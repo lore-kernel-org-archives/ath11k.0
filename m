@@ -4,78 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FCB6C77B75
-	for <ath11k@archiver.kernel.org>; Fri,  5 May 2023 13:40:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88CA9C77B75
+	for <ath11k@archiver.kernel.org>; Mon,  8 May 2023 05:23:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UogBVmTN/Gqbz0bfUzxhVnIzjwe11BEPk10ojwbXu3w=; b=OiIk0vnxV2DTzr
-	UjVBUpRd4v0+U1oo8QVTC1oa0duRg/J4oQfzO2deFlv6vuFtmeZT2XqTETBfOGRQr19JeGgQS1iUR
-	l3PCDu7pHONlzfvtk6pK7JCOZ9qyMx7wYoOOxh+7270GshS61gmLW3DqL7nrcS7h0+I8nQSMNjhsL
-	vKmvOsOiYUd9S3xmMbaH53LcLAVGfhISipvUquTkgAZP8v2Eh2pJZpnfL5PcjQ9Eh1YHyr8tueP8K
-	qkmmDo5mGK2erurF8Lg0diVGuiXAUvoFEM7OPIA3leq4mgK5WAyntTL96Pe/68JvLskjyyLdk8PZF
-	XmzIDBUO4Yj+to2LSkaw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:From:Cc:To
+	:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=YD5YuIZ1OaC3Pn/INiq26PGhmrx0TFWxSPD3IMMUpN8=; b=ncyBAmJVXcMt1X
+	SThCfKNHszPt6y/KTlCNp4F9oMzbEpzBPCEkyxrYpUl7KNrUUp1t6wojr4FgtNC2y7oAndIF4OKY4
+	XSlvmRxvjKv1zW514qltdAYgAjGP9sSjLMG4x9Kkm2MmYMyYo/P0YcKdW+3en5xawZBOmyEfXlSAZ
+	x2Fc4vEcR/KaDb3oz1L/5NtNGEGKE3y3W9CYUQo3OvfKSqTdmTJK9U6O8LvSfET9bGzTTsmr9lypF
+	9luw8mt+9B8pC9TzUuUIc+YMbDrHD24aVMIlhlOYHXS8QVYdr+2rT4zIwgyUfCmSRgGJRcVh55wdU
+	E3z7VO27dHH+RhDK3tjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1puvg5-00B0pa-1O;
-	Fri, 05 May 2023 13:40:53 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puvg3-00B0od-1o
-	for ath11k@bombadil.infradead.org;
-	Fri, 05 May 2023 13:40:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:MIME-Version:Message-ID:
-	In-Reply-To:Date:References:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=kN6+BE0WzsEaXuHEK9PFscbxyz9vQDDiHHf4+zVx63c=; b=lv2L3eSQSQxn7WAxETg8FIbbDZ
-	ep/ZMh0CLzhEmE5B3ezPocLK18d6DSq8OtJ9yb0ViwxA9YRv9E1nC+4NgHQVLp7Eihn4Movd0KIPn
-	XIAgIHWYPS0I5TTuuZkEAHoLvwnqxngjQmMvfCcCyDYD+ypE9fS9QfGRrYDNB3qQJeJR6OYfXWQ0p
-	ccTMT0mPih5DrwOYci22gXPg3xXZXDWrwYMugDzAq8APqxOQ37/I82QLoytTgJvhYsFyVXQxQD5XG
-	kDRZ4xbm6FOTcCf/thBfs3vGt/dDt/5MYt1dv9B02eAXPx1sgg0AFu1ipEIDWeZ8ocsGwQxfNhRel
-	j4dixJow==;
+	id 1pvtLk-00HIfn-1d;
+	Mon, 08 May 2023 05:23:52 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puvUT-003GFa-03
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1pvtLh-00HIfR-2p
 	for ath11k@lists.infradead.org;
-	Fri, 05 May 2023 13:28:55 +0000
+	Mon, 08 May 2023 05:23:51 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id DDF7263E17;
-	Fri,  5 May 2023 13:28:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83A1AC433D2;
-	Fri,  5 May 2023 13:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1683293330;
-	bh=/AfTIT7D3Pn1g5kTlzGw7Ho8tiDr7FeLjRkseBoo/3o=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=blC5zkzYK5NGSaACLhOHGdLEwX6UA511BANCyxDWfi4RmF4+WDWmZqrdW6JlShjgX
-	 F5R2c6eO+oqqtcpXNq7TQ6/BnyIzR8N1w3PjdTvCUtGQq31fAUMsB7XtdkWMqo4+Ws
-	 4D1beRCCrxs2C+o2bxrzdMJF+94kZ3fJcApS6ug/vZpJPhv12rxbtyLq7u6VU+C44b
-	 c5+IzTs1RVkUPYnnQmpNUide/70B6eiYqGFBCeNHv1AOcPpeqyCbwBOfRU9izG3DpF
-	 t0R1OKqB1B7tWuK1qexxdQzsgEoXUExir2PPaHpQ6ivUVuVViacQPfo04/pa91X5wx
-	 p31niXaet+7KA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Aloka Dixit <quic_alokad@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v3 4/7] wifi: ath11k: MBSSID parameter configuration in AP mode
-References: <20230405221648.17950-1-quic_alokad@quicinc.com>
-	<20230405221648.17950-5-quic_alokad@quicinc.com>
-	<87leibqme3.fsf@kernel.org>
-	<b9f98415-46f5-7b9e-ba61-9b11a4498a6c@quicinc.com>
-Date: Fri, 05 May 2023 16:28:47 +0300
-In-Reply-To: <b9f98415-46f5-7b9e-ba61-9b11a4498a6c@quicinc.com> (Aloka Dixit's
-	message of "Mon, 1 May 2023 10:41:01 -0700")
-Message-ID: <87y1m2oqk0.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 2826361113;
+	Mon,  8 May 2023 05:23:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA95C433EF;
+	Mon,  8 May 2023 05:23:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1683523428;
+	bh=uhFiOM9o8x/BsOIAZg+6sZzmQ135mwt1e6bwoLW8YUQ=;
+	h=Subject:To:Cc:From:Date:From;
+	b=c4OC7TtVYWOqlZXdbr4FG4Pg8UPY1pCCHxfG6gOy6hmd612RQlPy5099LtFjRJaXM
+	 1RnEuaghQHwxa3TNSsHY7HSXhO52u8zFMJi4ODLDoE6aPUMs790TJT4opREPlK9HVa
+	 dL5E60ipjktdoj+piN4NvrjRGlBbNeMJYf4MHVms=
+Subject: Patch "wifi: ath11k: synchronize ath11k_mac_he_gi_to_nl80211_he_gi()'s return type" has been added to the 6.1-stable tree
+To: ath11k@lists.infradead.org,davem@davemloft.net,edumazet@google.com,gregkh@linuxfoundation.org,jirislaby@kernel.org,kuba@kernel.org,kvalo@kernel.org,mliska@suse.cz,pabeni@redhat.com,quic_jjohnson@quicinc.com,quic_kvalo@quicinc.com
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Mon, 08 May 2023 07:23:35 +0200
+Message-ID: <2023050834-july-lullaby-f863@gregkh>
 MIME-Version: 1.0
+X-stable: commit
+X-Patchwork-Hint: ignore 
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230505_142853_440532_C3739A15 
-X-CRM114-Status: GOOD (  19.68  )
+X-CRM114-CacheID: sfid-20230507_222350_006658_A385A92E 
+X-CRM114-Status: GOOD (  14.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,83 +69,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Aloka Dixit <quic_alokad@quicinc.com> writes:
 
-> On 4/28/2023 10:37 PM, Kalle Valo wrote:
->
->> Aloka Dixit <quic_alokad@quicinc.com> writes:
->>
->>> Include MBSSID parameters in WMI vdev up operation.
->>>
->>> Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
->>> Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
->>> Co-developed-by: John Crispin <john@phrozen.org>
->>> Signed-off-by: John Crispin <john@phrozen.org>
->>> ---
->>
->> [...]
->>
->>> @@ -7153,8 +7161,13 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
->>>   			ath11k_warn(ab, "failed to update bcn tmpl during csa: %d\n",
->>>   				    ret);
->>>   +		if (arvif->vif->mbssid_tx_vif)
->>> +			tx_arvif = (struct ath11k_vif *)arvif->vif->mbssid_tx_vif->drv_priv;
->>
->> This had a warning:
->>
->> drivers/net/wireless/ath/ath11k/mac.c:7200: line length of 92 exceeds 90 columns
->>
->> In the pending branch I fixed it like this:
->>
->> --- a/drivers/net/wireless/ath/ath11k/mac.c
->> +++ b/drivers/net/wireless/ath/ath11k/mac.c
->> @@ -7143,6 +7143,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
->>   {
->>          struct ath11k_base *ab = ar->ab;
->>          struct ath11k_vif *arvif, *tx_arvif = NULL;
->> +       struct ieee80211_vif *mbssid_tx_vif;
->>          int ret;
->>          int i;
->>          bool monitor_vif = false;
->> @@ -7196,8 +7197,10 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
->>                          ath11k_warn(ab, "failed to update bcn tmpl during csa: %d\n",
->>                                      ret);
->>   -               if (arvif->vif->mbssid_tx_vif)
->> -                       tx_arvif = (struct ath11k_vif *)arvif->vif->mbssid_tx_vif->drv_priv;
->> +               mbssid_tx_vif = arvif->vif->mbssid_tx_vif;
->> +               if (mbssid_tx_vif)
->> +                       tx_arvif = (struct ath11k_vif *)mbssid_tx_vif->drv_priv;
->> +
->>                  ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
->>                                           arvif->bssid,
->>                                           tx_arvif ? tx_arvif->bssid : NULL,
->>
->> Link to the commit:
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=c884238009e778a0c8202a5eb0a7f68b13200bde
->>
->
-> Thank you.
->
-> I saw the warning but couldn't decide between adding a new pointer
-> variable and letting 2 extra characters for just one assignment.
+This is a note to let you know that I've just added the patch titled
 
-My scripts will fail loudly if any of the ath*0k-check scripts have
-warnings, so just like with compiler warnings I have a zero warnings
-policy :) It would become a mess otherwise to know which warnings are
-new and which are old.
+    wifi: ath11k: synchronize ath11k_mac_he_gi_to_nl80211_he_gi()'s return type
 
-> What are your thoughts on changing the scripts to allow up to 100?
-> Although nl80211 and mac80211 scripts also don't allow that long currently.
+to the 6.1-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
-Yeah, the checkpatch default is 100 right now and I have understood that
-what Linus prefers. I'm just worried that increasing the max to 100
-makes our code even more convoluted, it's a challenge as is.
+The filename of the patch is:
+     wifi-ath11k-synchronize-ath11k_mac_he_gi_to_nl80211_he_gi-s-return-type.patch
+and it can be found in the queue-6.1 subdirectory.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+From dd1c2322694522f674c874f5fa02ac5ae39135dd Mon Sep 17 00:00:00 2001
+From: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
+Date: Mon, 31 Oct 2022 12:43:41 +0100
+Subject: wifi: ath11k: synchronize ath11k_mac_he_gi_to_nl80211_he_gi()'s return type
+
+From: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+
+commit dd1c2322694522f674c874f5fa02ac5ae39135dd upstream.
+
+ath11k_mac_he_gi_to_nl80211_he_gi() generates a valid warning with gcc-13:
+  drivers/net/wireless/ath/ath11k/mac.c:321:20: error: conflicting types for 'ath11k_mac_he_gi_to_nl80211_he_gi' due to enum/integer mismatch; have 'enum nl80211_he_gi(u8)'
+  drivers/net/wireless/ath/ath11k/mac.h:166:5: note: previous declaration of 'ath11k_mac_he_gi_to_nl80211_he_gi' with type 'u32(u8)'
+
+I.e. the type of the return value ath11k_mac_he_gi_to_nl80211_he_gi() in
+the declaration is u32, while the definition spells enum nl80211_he_gi.
+Synchronize them to the latter.
+
+Cc: Martin Liska <mliska@suse.cz>
+Cc: Kalle Valo <kvalo@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://lore.kernel.org/r/20221031114341.10377-1-jirislaby@kernel.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/net/wireless/ath/ath11k/mac.h |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -163,7 +163,7 @@ void ath11k_mac_drain_tx(struct ath11k *
+ void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
+ int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
+ u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
+-u32 ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi);
++enum nl80211_he_gi ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi);
+ enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy);
+ enum nl80211_he_ru_alloc ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones);
+ enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
+
+
+Patches currently in stable-queue which might be from jirislaby@kernel.org are
+
+queue-6.1/linux-vt_buffer.h-allow-either-builtin-or-modular-fo.patch
+queue-6.1/net-wwan-t7xx-do-not-compile-with-werror.patch
+queue-6.1/bonding-gcc13-synchronize-bond_-a-t-lb_xmit-types.patch
+queue-6.1/wifi-ath11k-synchronize-ath11k_mac_he_gi_to_nl80211_he_gi-s-return-type.patch
+queue-6.1/thunderbolt-use-correct-type-in-tb_port_is_clx_enabled-prototype.patch
+queue-6.1/wireguard-timers-cast-enum-limits-members-to-int-in-prints.patch
 
 -- 
 ath11k mailing list
