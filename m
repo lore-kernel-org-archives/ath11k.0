@@ -4,59 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70359C7EE24
-	for <ath11k@archiver.kernel.org>; Tue,  9 May 2023 16:59:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE77BC7EE24
+	for <ath11k@archiver.kernel.org>; Wed, 10 May 2023 10:03:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B6Q0wVzYsRyA5mdi5j+NRAa22PCH38uEedaPI/VMGOk=; b=PP+m6S8qQXTLFw
-	t0g75oFet72K4BQtpog7+3UrXjmTqOFLOzXYfoLY9M3e7d4K3wnXWd3GZUi1nlkGI95OgWou5Za0U
-	zuG6lgDMWUnn9VsHowDenhGvCvFf+i+nfCVq3TRabEpN6pweTuhw0BDXvZsr9YuoQlAV00c0CDI1D
-	gMF0xzbFLkcONJZnGaR+SCJ9pqrIVOiRnD2Q5kdVoApLKBd9mLcdZvOjXkjbFmsyJquXvsPz3fSVZ
-	NtU44jvb6TEgzV/7C+PN6IV4OASz5oNkO8raYylwjphXdeHMJkKaBBSdk2cRDB/QMyYtVYpkf6XSR
-	jS3t6C7xiFR3aTnL7ULg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=nSQe6YlNFehB/nYAl9lLKuOCS8PtUuqq4j0YScSDnEk=; b=SBVslbo/RbXtrl
+	m7LaNrYqxLEe3BDlUXDFO9k/WpnWQXxi8ipNrY5U2Uccl0UvhZVhPbcVIdvG+I91MWnCukkaDj77I
+	eDPuG09UEIVlc9GFxCfJpX12c7trC4ncjHsTWKqBQVrfb7KmGUv1Had3rLHAlS0Ug4IzCrSNKwyVS
+	sTdMtlCneUzGgp4FYSuhS/FdXV5/mtBbsdUFs2aQleGolyd6c666c/x8cXUbJ+OfYHqrOU5ntEoIo
+	XRwGGcCh2M9NTb0cvu3zR+cTxwtIkZYAAMqQ15KyDLsF4CpKqyLSKuu8oTpcfCCcJezb0OLQu2T/W
+	82OhdtHsrvI8noGbtkFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwQgQ-003rMU-27;
-	Tue, 09 May 2023 16:59:26 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pwgfA-005iOz-23;
+	Wed, 10 May 2023 10:03:12 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pwQgO-003rLi-1B
+	id 1pwgf7-005iNs-2H
 	for ath11k@lists.infradead.org;
-	Tue, 09 May 2023 16:59:25 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id D9E9D6476D;
-	Tue,  9 May 2023 16:59:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7769DC433EF;
-	Tue,  9 May 2023 16:59:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1683651563;
-	bh=nJ7qm7dCXPLZjsUv2Zv2I3JSUpvWHMqX5gDg8LKZjmc=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=MID/fIbNlOxp3BXiZ39BIObWwCumMLRBa0r0jPe+3lNBBRbZtNLf+owPIbOZAjYrx
-	 pZvJ8n0bN7W2AdjxZxwlCmPX5qFtcu1Sc3CMrbSZcCDdmBYdtRli4YzVJDokpoFEU1
-	 lCg1WGEKBeTbSnwlZ3o1qWf4bX6oB0rB+pxHg9Hu9Ap3pj9/9EX0CYNKN0CCAnu9QB
-	 4wXsK6jpuMcUdf/hVliUT9gqcBhW/a9veqsWHDT1eezMJvbbpwuD7nQIOS5e3qmoG2
-	 XGHmjIrayhjD4q2fvhQzQIewZnUU8X8Kf7rW0MvSjWQLbkoQPA9CK9xFAy4BB3v/Lm
-	 TXsu+GTwoqfzA==
+	Wed, 10 May 2023 10:03:11 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34A9xoU3005149;
+	Wed, 10 May 2023 10:03:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=4bgASQcPvC1E7cReDcE2RMo87sKVC/FXDjSoeGyfoa0=;
+ b=jNW8H3+agrpiIjZcSAMb3Msn3zIs9cal9JKRzW8d/agFKDmYA+X1gBlqeMeWBNKwVeak
+ e/jdBiiAqklE4P6PZgxw7y5tBQu2RJt231wn9y1QQOi/ML4aMyJkLxXb/OZ/PXIg5Cy1
+ qJKTFNO8wNwuJGkYhuXeTPS+dBWWzkSuKrw9XI+tjMx5NabDcGQC3jJwTNapfk9WG3eU
+ 83tuQ8sD8ScfquXoE8g//FEXtMvfgp/kCPWwqhmfz+P+/ibNMpFBr3x//uRU0V4nZiPJ
+ /jyNvPann3UfUNnaP2+buNnmpme9E1k4gx3eSm5k/LjMoFQAAWbkKcAClrbQl2L8fIK0 RA== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qfrut9v4d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 May 2023 10:03:05 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34AA34KE022460
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 May 2023 10:03:04 GMT
+Received: from che-siroccolnx03.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 10 May 2023 03:03:02 -0700
+From: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>,
+        Maharaja Kennadyrajan
+	<quic_mkenna@quicinc.com>
+Subject: [PATCH v2 2/2] ath11k: Send HT fixed rate in WMI peer fixed param
+Date: Wed, 10 May 2023 15:32:42 +0530
+Message-ID: <20230510100242.1241752-3-quic_mkenna@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230510100242.1241752-1-quic_mkenna@quicinc.com>
+References: <20230510100242.1241752-1-quic_mkenna@quicinc.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 1/7] wifi: ath11k: driver settings for MBSSID and EMA
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230405221648.17950-2-quic_alokad@quicinc.com>
-References: <20230405221648.17950-2-quic_alokad@quicinc.com>
-To: Aloka Dixit <quic_alokad@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168365155854.21274.2582854709073882511.kvalo@kernel.org>
-Date: Tue,  9 May 2023 16:59:22 +0000 (UTC)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WBBoHuvXvDv9LenRoWmzMKeNGS2zgmfu
+X-Proofpoint-ORIG-GUID: WBBoHuvXvDv9LenRoWmzMKeNGS2zgmfu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0
+ clxscore=1015 adultscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305100078
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230509_095924_441662_812BCF3D 
-X-CRM114-Status: GOOD (  11.43  )
+X-CRM114-CacheID: sfid-20230510_030309_857445_C51E01D6 
+X-CRM114-Status: GOOD (  22.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,43 +97,144 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Aloka Dixit <quic_alokad@quicinc.com> wrote:
+Due to the firmware behavior with HT fixed rate setting,
+HT fixed rate MCS with NSS > 1 are treated as NSS = 1
+HT rates in the firmware and enables the HT fixed rate of
+NSS = 1.
 
-> Advertise the driver support for multiple BSSID (MBSSID) and
-> enhanced multi-BSSID advertisements (EMA) by setting extended
-> capabilities.
-> 
-> Configure mbssid_max_interfaces and ema_max_profile_periodicity
-> fields in structure wiphy which are used to advertise maximum number
-> of interfaces and profile periodicity supported by the driver.
-> 
-> Add new WMI fields to configure maximum vdev count supported for
-> MBSSID and profile periodicity in case of EMA.
-> Setting WMI_RSRC_CFG_FLAG2_CALC_NEXT_DTIM_COUNT_SET flag
-> indicates that the firmware should track and update the DTIM counts
-> for each non-transmitted profile.
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
-> Co-developed-by: John Crispin <john@phrozen.org>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+This leads to HT fixed rate is always configured for NSS = 1
+even though the user sets NSS = 2 or > 1 HT fixed MCS in the
+set bitrate command.
 
-7 patches applied to ath-next branch of ath.git, thanks.
+Currently HT fixed MCS is sent via WMI peer assoc command.
+Fix this issue, by sending the HT fixed rate MCS in WMI peer
+fixed param instead of sending in peer assoc command.
 
-a08dbb04d736 wifi: ath11k: driver settings for MBSSID and EMA
-5a81610acf66 wifi: ath11k: MBSSID configuration during vdev create/start
-cf604e72bc6e wifi: ath11k: rename MBSSID fields in wmi_vdev_up_cmd
-c82dc33f252f wifi: ath11k: MBSSID parameter configuration in AP mode
-cb9bea773c85 wifi: ath11k: refactor vif parameter configurations
-335a92765d30 wifi: ath11k: MBSSID beacon support
-87bd40113816 wifi: ath11k: EMA beacon support
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 
+Signed-off-by: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 63 ++++++++++++++++++++++++++-
+ 1 file changed, 61 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 33620a7a444b..c947d1c8d8c1 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4480,6 +4480,54 @@ ath11k_mac_set_peer_he_fixed_rate(struct ath11k_vif *arvif,
+ 	return ret;
+ }
+ 
++static int
++ath11k_mac_set_peer_ht_fixed_rate(struct ath11k_vif *arvif,
++				  struct ieee80211_sta *sta,
++				  const struct cfg80211_bitrate_mask *mask,
++				  enum nl80211_band band)
++{
++	struct ath11k *ar = arvif->ar;
++	u8 ht_rate, nss = 0;
++	u32 rate_code;
++	int ret, i;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].ht_mcs); i++) {
++		if (hweight8(mask->control[band].ht_mcs[i]) == 1) {
++			nss = i + 1;
++			ht_rate = ffs(mask->control[band].ht_mcs[i]) - 1;
++		}
++	}
++
++	if (!nss) {
++		ath11k_warn(ar->ab, "No single HT Fixed rate found to set for %pM",
++			    sta->addr);
++		return -EINVAL;
++	}
++
++	/* Avoid updating invalid nss as fixed rate*/
++	if (nss > sta->deflink.rx_nss)
++		return -EINVAL;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++		   "Setting Fixed HT Rate for peer %pM. Device will not switch to any other selected rates",
++		   sta->addr);
++
++	rate_code = ATH11K_HW_RATE_CODE(ht_rate, nss - 1,
++					WMI_RATE_PREAMBLE_HT);
++	ret = ath11k_wmi_set_peer_param(ar, sta->addr,
++					arvif->vdev_id,
++					WMI_PEER_PARAM_FIXED_RATE,
++					rate_code);
++	if (ret)
++		ath11k_warn(ar->ab,
++			    "failed to update STA %pM HT Fixed Rate %d: %d\n",
++			    sta->addr, rate_code, ret);
++
++	return ret;
++}
++
+ static int ath11k_station_assoc(struct ath11k *ar,
+ 				struct ieee80211_vif *vif,
+ 				struct ieee80211_sta *sta,
+@@ -4491,7 +4539,7 @@ static int ath11k_station_assoc(struct ath11k *ar,
+ 	struct cfg80211_chan_def def;
+ 	enum nl80211_band band;
+ 	struct cfg80211_bitrate_mask *mask;
+-	u8 num_vht_rates, num_he_rates;
++	u8 num_ht_rates, num_vht_rates, num_he_rates;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+ 
+@@ -4519,6 +4567,7 @@ static int ath11k_station_assoc(struct ath11k *ar,
+ 
+ 	num_vht_rates = ath11k_mac_bitrate_mask_num_vht_rates(ar, band, mask);
+ 	num_he_rates = ath11k_mac_bitrate_mask_num_he_rates(ar, band, mask);
++	num_ht_rates = ath11k_mac_bitrate_mask_num_ht_rates(ar, band, mask);
+ 
+ 	/* If single VHT/HE rate is configured (by set_bitrate_mask()),
+ 	 * peer_assoc will disable VHT/HE. This is now enabled by a peer specific
+@@ -4535,6 +4584,11 @@ static int ath11k_station_assoc(struct ath11k *ar,
+ 							band);
+ 		if (ret)
+ 			return ret;
++	} else if (sta->deflink.ht_cap.ht_supported && num_ht_rates == 1) {
++		ret = ath11k_mac_set_peer_ht_fixed_rate(arvif, sta, mask,
++							band);
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	/* Re-assoc is run only to update supported rates for given station. It
+@@ -4608,7 +4662,7 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+ 	const u16 *vht_mcs_mask;
+ 	const u16 *he_mcs_mask;
+ 	u32 changed, bw, nss, smps, bw_prev;
+-	int err, num_vht_rates, num_he_rates;
++	int err, num_ht_rates, num_vht_rates, num_he_rates;
+ 	const struct cfg80211_bitrate_mask *mask;
+ 	struct peer_assoc_params peer_arg;
+ 	enum wmi_phy_mode peer_phymode;
+@@ -4724,6 +4778,8 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+ 
+ 	if (changed & IEEE80211_RC_SUPP_RATES_CHANGED) {
+ 		mask = &arvif->bitrate_mask;
++		num_ht_rates = ath11k_mac_bitrate_mask_num_ht_rates(ar, band,
++								    mask);
+ 		num_vht_rates = ath11k_mac_bitrate_mask_num_vht_rates(ar, band,
+ 								      mask);
+ 		num_he_rates = ath11k_mac_bitrate_mask_num_he_rates(ar, band,
+@@ -4746,6 +4802,9 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+ 		} else if (sta->deflink.he_cap.has_he && num_he_rates == 1) {
+ 			ath11k_mac_set_peer_he_fixed_rate(arvif, sta, mask,
+ 							  band);
++		} else if (sta->deflink.ht_cap.ht_supported && num_ht_rates == 1) {
++			ath11k_mac_set_peer_ht_fixed_rate(arvif, sta, mask,
++							  band);
+ 		} else {
+ 			/* If the peer is non-VHT/HE or no fixed VHT/HE rate
+ 			 * is provided in the new bitrate mask we set the
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230405221648.17950-2-quic_alokad@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.25.1
 
 
 -- 
