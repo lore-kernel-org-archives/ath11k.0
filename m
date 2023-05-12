@@ -4,80 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8F13C7EE22
-	for <ath11k@archiver.kernel.org>; Thu, 11 May 2023 13:16:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D330C7EE24
+	for <ath11k@archiver.kernel.org>; Fri, 12 May 2023 09:05:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9n5r2BRSz4U6AePYR/QPuk1526yntxuOds19OnZIM4M=; b=O1E1GhIbmP5irt
-	v5OiHqJofnTzG4TdaPMeDbkYXMxE5fpdfsT8+9mEKwzhv5adECAD/T6wdTOCpckf0TQAgJwV2iMlg
-	fyarjQmr1l+R0VVmNdOcYdbJODhNmYnz1fUCe6qh+K03ZpL3stAXsMemuZAzgfcanl4dt+8XQDOg5
-	TTQHdiudr8krXwxgFO6lNbVyJ1TL3dq/dIf3mHti5fwdjh0E3taiRysydDyujq7oUdjEW1RlcHBDq
-	WzQO5dyOPV2NB3m3ZT5s5BrxxpOCVQ+Dehnd46nTiY0z0v9jsAd3drEUQhsUd9MteYahg+/aT4oYQ
-	XfJOg4Tz/PjOSEQyCgvA==;
+	List-Owner; bh=qIqaMcQjyynjGoflQN03hFeMY48F8J7euK0Xjav//is=; b=SdZqc7/rEYayH/
+	gpamyUmV3ChJDrwX6vGkRYhLleZTbJhVnGTMQIJB0Eua9CtuNrAqiJWmf4ymFI6ejf32tVajrnLKT
+	JCq6jMvey8rDs+jxkL5DpaNAbo1FF+GepLXlRnjtxJy1QSToOb+evSypZprY8V4fcrG7U54r0Jpl1
+	13Dp2qXKjrEuAYwGPKv/HOYiC8VUPy21gCyHwKt8D+93j2iVBz0q7z2b6vBp4RWfEgJ9QbzwLXYDm
+	HDqiMcx8djPGj+WvI1ml9G7tRUkmKihEmHO1vM8k5BNLNozvqDtr2FvvI3L0aBJ+k/EUgDTTPiNnL
+	814gujilTz7Pqv+Qwtpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1px69I-008q5K-0q;
-	Thu, 11 May 2023 13:16:00 +0000
-Received: from mga01.intel.com ([192.55.52.88])
+	id 1pxOiA-00BPty-33;
+	Fri, 12 May 2023 09:05:14 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1px69F-008q4F-2V
+	id 1pxOi7-00BPsk-2p
 	for ath11k@lists.infradead.org;
-	Thu, 11 May 2023 13:15:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683810957; x=1715346957;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zAxNSgIqZEwmVaKE1U0kMXB6SpY1gyI1AhVmM1SO/rc=;
-  b=b0rQbkchP8leGA+b69dG5zmAZCBPMYBnmPcYDKaRixgusP04rKFrCdhn
-   0qIreeDaNr03kn+54kiSLXVB1eFVHWJDTS8WMpvJ7mfkX7mELSk0K4EgF
-   HIoDqbMXqmE+1/UG92nrqUEu3yqRWdg4730VvHvlGyvQpaYUb1jg+7OqS
-   tf3pY6oAkz+6M/eHM1aN8JW6N682VvTbCnhA1tID5ZErQj1Wz88WY6keR
-   N2Bp1Qt74UfhnYaRMqZprIIjpERBWb+1SxKjD3DK1WU9x7R+Oo9wKs4z8
-   rmS8L7auupSo+zj8G4EQKk0pRK3A6t0r4u1j1O87G+RQy/FgmNLnZsXy7
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="378619736"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; 
-   d="scan'208";a="378619736"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2023 06:15:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="650170118"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; 
-   d="scan'208";a="650170118"
-Received: from jsanche3-mobl1.ger.corp.intel.com (HELO ijarvine-MOBL2.ger.corp.intel.com) ([10.252.39.112])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2023 06:15:52 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Kalle Valo <kvalo@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH 15/17] wifi: ath11k: Use pcie_lnkctl_clear_and_set() for changing LNKCTL
-Date: Thu, 11 May 2023 16:14:39 +0300
-Message-Id: <20230511131441.45704-16-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230511131441.45704-1-ilpo.jarvinen@linux.intel.com>
-References: <20230511131441.45704-1-ilpo.jarvinen@linux.intel.com>
+	Fri, 12 May 2023 09:05:13 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B17CF653FE;
+	Fri, 12 May 2023 09:05:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E27FC433D2;
+	Fri, 12 May 2023 09:05:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1683882310;
+	bh=gZF+Xguz9RCrAkGQCEJKmm2Z525C7fjWB8wIIxVpGCA=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=FhRWeq3XRRWxjPA8ps/Vk2I5RRROK9fE7uoVdKKQkq7vGKs7baX0UkqEG3hwHTIWX
+	 D/HAy47x5SfVuneU+R9NXM9WQmi3HjlmpnLgzgUkVU9P+aMzr4lb38MYRewBDSKDdH
+	 1ZbPoe4ibzbbDGfeOU0VJL3ETTwWktL5zku+1IoKXj4u/dpe+w6kzRSZG3QoN2U7x4
+	 gSPmJ63Ix/hICW3RSj8FsjGTUIMXF0bEbVF1CGDknyCNFqCvSYjgGsBXSp5vLfVkO9
+	 2NSfFiRVmjbze1qZm5rnHdUoUaMm5BupwTgcVlAFH0XMHmfq84hJPg4pcq1+e2up7r
+	 EhOxNa8tgF6og==
+From: Kalle Valo <kvalo@kernel.org>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH 0/2] ath11k: factory test mode support
+References: <20230213130854.2473-1-quic_rajkbhag@quicinc.com>
+	<87edpson9o.fsf@kernel.org>
+	<0289c7f1-e729-e924-5ae8-a6156266e675@quicinc.com>
+Date: Fri, 12 May 2023 12:05:05 +0300
+In-Reply-To: <0289c7f1-e729-e924-5ae8-a6156266e675@quicinc.com> (Raj Kumar
+	Bhagat's message of "Tue, 28 Mar 2023 10:16:58 +0530")
+Message-ID: <87ttwhncn2.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230511_061557_868570_314C0520 
-X-CRM114-Status: GOOD (  12.60  )
+X-CRM114-CacheID: sfid-20230512_020511_957715_1C93EADC 
+X-CRM114-Status: GOOD (  14.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,38 +71,60 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-RG9uJ3QgYXNzdW1lIHRoYXQgb25seSB0aGUgZHJpdmVyIHdvdWxkIGJlIGFjY2Vzc2luZyBMTktD
-VEwuIEFTUE0KcG9saWN5IGNoYW5nZXMgY2FuIHRyaWdnZXIgd3JpdGUgdG8gTE5LQ1RMIG91dHNp
-ZGUgb2YgZHJpdmVyJ3MgY29udHJvbC4KClVzZSBwY2llX2xua2N0bF9jbGVhcl9hbmRfc2V0KCkg
-d2hpY2ggZG9lcyBwcm9wZXIgbG9ja2luZyB0byBhdm9pZApsb3NpbmcgY29uY3VycmVudCB1cGRh
-dGVzIHRvIHRoZSByZWdpc3RlciB2YWx1ZS4KClN1Z2dlc3RlZC1ieTogTHVrYXMgV3VubmVyIDxs
-dWthc0B3dW5uZXIuZGU+ClNpZ25lZC1vZmYtYnk6IElscG8gSsOkcnZpbmVuIDxpbHBvLmphcnZp
-bmVuQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFr
-L3BjaS5jIHwgOCArKysrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgNCBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFr
-L3BjaS5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9wY2kuYwppbmRleCA3YjMz
-NzMxYTUwZWUuLmQwODg1ZDMwZGNiYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
-YXRoL2F0aDExay9wY2kuYworKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3Bj
-aS5jCkBAIC01ODEsOCArNTgxLDggQEAgc3RhdGljIHZvaWQgYXRoMTFrX3BjaV9hc3BtX2Rpc2Fi
-bGUoc3RydWN0IGF0aDExa19wY2kgKmFiX3BjaSkKIAkJICAgdTE2X2dldF9iaXRzKGFiX3BjaS0+
-bGlua19jdGwsIFBDSV9FWFBfTE5LQ1RMX0FTUE1fTDEpKTsKIAogCS8qIGRpc2FibGUgTDBzIGFu
-ZCBMMSAqLwotCXBjaWVfY2FwYWJpbGl0eV93cml0ZV93b3JkKGFiX3BjaS0+cGRldiwgUENJX0VY
-UF9MTktDVEwsCi0JCQkJICAgYWJfcGNpLT5saW5rX2N0bCAmIH5QQ0lfRVhQX0xOS0NUTF9BU1BN
-Qyk7CisJcGNpZV9sbmtjdGxfY2xlYXJfYW5kX3NldChhYl9wY2ktPnBkZXYsCisJCQkJICBhYl9w
-Y2ktPmxpbmtfY3RsICYgUENJX0VYUF9MTktDVExfQVNQTUMsIDApOwogCiAJc2V0X2JpdChBVEgx
-MUtfUENJX0FTUE1fUkVTVE9SRSwgJmFiX3BjaS0+ZmxhZ3MpOwogfQpAQCAtNTkwLDggKzU5MCw4
-IEBAIHN0YXRpYyB2b2lkIGF0aDExa19wY2lfYXNwbV9kaXNhYmxlKHN0cnVjdCBhdGgxMWtfcGNp
-ICphYl9wY2kpCiBzdGF0aWMgdm9pZCBhdGgxMWtfcGNpX2FzcG1fcmVzdG9yZShzdHJ1Y3QgYXRo
-MTFrX3BjaSAqYWJfcGNpKQogewogCWlmICh0ZXN0X2FuZF9jbGVhcl9iaXQoQVRIMTFLX1BDSV9B
-U1BNX1JFU1RPUkUsICZhYl9wY2ktPmZsYWdzKSkKLQkJcGNpZV9jYXBhYmlsaXR5X3dyaXRlX3dv
-cmQoYWJfcGNpLT5wZGV2LCBQQ0lfRVhQX0xOS0NUTCwKLQkJCQkJICAgYWJfcGNpLT5saW5rX2N0
-bCk7CisJCXBjaWVfbG5rY3RsX2NsZWFyX2FuZF9zZXQoYWJfcGNpLT5wZGV2LCAwLAorCQkJCQkg
-IGFiX3BjaS0+bGlua19jdGwgJiBQQ0lfRVhQX0xOS0NUTF9BU1BNQyk7CiB9CiAKIHN0YXRpYyBp
-bnQgYXRoMTFrX3BjaV9wb3dlcl91cChzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiKQotLSAKMi4zMC4y
-CgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
-cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
+
+> On 3/13/2023 5:51 PM, Kalle Valo wrote:
+>
+>> Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
+>> 
+>>> Device is booted in factory test mode to calibrate the board.
+>>> The commands are sent from a userspace application, which is
+>>> sent to firmware using wmi commands. Firmware will send the
+>>> response back to the application which stores the calibration
+>>> data in caldata.bin file. This file will be loaded when the
+>>> device boots up normally next time.
+>>>
+>>> Govindaraj Saminathan (1):
+>>>   wifi: ath11k: factory test mode support
+>>>
+>>> Sowmiya Sree Elavalagan (1):
+>>>   wifi: ath11k: Allow ath11k to boot without caldata in ftm mode
+>> 
+>> While reviewing the patches I made quite a few style cleanup to patches
+>> (too many to list):
+>> 
+>> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=master-pending&id=4a5ca29c396ace5c46b208a8c15a3ba53eabaddd
+>> 
+>> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=master-pending&id=ba74c7478f5d15ce38e609b9ad4810db7511a3dd
+>> 
+>> I only compile tested them. Please use these as the baseline for v2.
+>> 
+> Hi Kalle,
+>
+> Unable to get the baseline patch for v2 from the above link. Getting the
+> below error with the link:
+> Bad commit reference: 4a5ca29c396ace5c46b208a8c15a3ba53eabaddd
+
+I now pushed them again:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=f3d1f7ae115e12108ba7d7fa0ea6374b9e28869c
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=229ea354bdd24bf3c33c9447674fab8d609e24a2
+
+From now I'll tag every time I change the pending branch, this should
+prevent old commits from disappearing.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
