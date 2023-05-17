@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D330C7EE24
-	for <ath11k@archiver.kernel.org>; Fri, 12 May 2023 09:05:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FA7AC77B7A
+	for <ath11k@archiver.kernel.org>; Wed, 17 May 2023 08:19:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qIqaMcQjyynjGoflQN03hFeMY48F8J7euK0Xjav//is=; b=SdZqc7/rEYayH/
-	gpamyUmV3ChJDrwX6vGkRYhLleZTbJhVnGTMQIJB0Eua9CtuNrAqiJWmf4ymFI6ejf32tVajrnLKT
-	JCq6jMvey8rDs+jxkL5DpaNAbo1FF+GepLXlRnjtxJy1QSToOb+evSypZprY8V4fcrG7U54r0Jpl1
-	13Dp2qXKjrEuAYwGPKv/HOYiC8VUPy21gCyHwKt8D+93j2iVBz0q7z2b6vBp4RWfEgJ9QbzwLXYDm
-	HDqiMcx8djPGj+WvI1ml9G7tRUkmKihEmHO1vM8k5BNLNozvqDtr2FvvI3L0aBJ+k/EUgDTTPiNnL
-	814gujilTz7Pqv+Qwtpw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3A7sFHr9+LHCUsHlbFbB8uwbYK67fcBYvjhEG6ScT6E=; b=kScSfDKqAxOseo
+	yFYKIn9DGOifxkGvvKx+K2W66xA+ZF1EKlqNQ8Ue6YNolsoEM0ud7WsNcGw62EPw+ztGZLWbvhlLX
+	QcWRdNdOW1E4Vyyg2SA9/3DSA3x8ZFU3GCMFtJzWgNuIDQ0oVVWlSHciDOXCOY622RtnUwGYJEp1u
+	3tU33oicYM8NqvrJ0htYVsH+acoegHoR+a9irFljQwgPqc5xVg6hCirB/EnT8DAqn6FMuJsK7hjBF
+	DBg27XEmmJ1UDTscaR7h3W4cPgO0zmQ1iwC9CED/NEGTTc/UEwN3O3yMN/0PBOyOwMdVW8Ako9JBV
+	2BepuPzd5eoxatQ9bi6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxOiA-00BPty-33;
-	Fri, 12 May 2023 09:05:14 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pzCNM-008p8L-1e;
+	Wed, 17 May 2023 08:19:12 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pxOi7-00BPsk-2p
+	id 1pzCNJ-008p7e-25
 	for ath11k@lists.infradead.org;
-	Fri, 12 May 2023 09:05:13 +0000
+	Wed, 17 May 2023 08:19:11 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id B17CF653FE;
-	Fri, 12 May 2023 09:05:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E27FC433D2;
-	Fri, 12 May 2023 09:05:09 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 27D0061534;
+	Wed, 17 May 2023 08:19:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DFBFC433D2;
+	Wed, 17 May 2023 08:19:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1683882310;
-	bh=gZF+Xguz9RCrAkGQCEJKmm2Z525C7fjWB8wIIxVpGCA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=FhRWeq3XRRWxjPA8ps/Vk2I5RRROK9fE7uoVdKKQkq7vGKs7baX0UkqEG3hwHTIWX
-	 D/HAy47x5SfVuneU+R9NXM9WQmi3HjlmpnLgzgUkVU9P+aMzr4lb38MYRewBDSKDdH
-	 1ZbPoe4ibzbbDGfeOU0VJL3ETTwWktL5zku+1IoKXj4u/dpe+w6kzRSZG3QoN2U7x4
-	 gSPmJ63Ix/hICW3RSj8FsjGTUIMXF0bEbVF1CGDknyCNFqCvSYjgGsBXSp5vLfVkO9
-	 2NSfFiRVmjbze1qZm5rnHdUoUaMm5BupwTgcVlAFH0XMHmfq84hJPg4pcq1+e2up7r
-	 EhOxNa8tgF6og==
-From: Kalle Valo <kvalo@kernel.org>
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH 0/2] ath11k: factory test mode support
-References: <20230213130854.2473-1-quic_rajkbhag@quicinc.com>
-	<87edpson9o.fsf@kernel.org>
-	<0289c7f1-e729-e924-5ae8-a6156266e675@quicinc.com>
-Date: Fri, 12 May 2023 12:05:05 +0300
-In-Reply-To: <0289c7f1-e729-e924-5ae8-a6156266e675@quicinc.com> (Raj Kumar
-	Bhagat's message of "Tue, 28 Mar 2023 10:16:58 +0530")
-Message-ID: <87ttwhncn2.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1684311548;
+	bh=La1MuPZ/2qVLr9ylXbwJw83v1motV4uLHA32QcWjphE=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=pjkOMK8mjdsHwGQyCnyWrhd6uJXdle0Ld1hUetsbd/kNIZ881yzN6OuiwIHCyaWk2
+	 mbkXyp1+NgjXhq7V9ckLvkWgF5BPzHs3LTT0E+1Q2PkVYhFgDySdLOSBxOo2l0MwgU
+	 l6TOwXmCURxKIGmGeNGffpW9GJGmThPImp8GEldf7DhZ5wrwKCm23KSp8Io28+YmpV
+	 OwXAkd5v+TvtboC7cjYDolOzFLSQMQG1532WpOvbLOjf4YO2le1esNXvxxD2UOgkBk
+	 Bc6RMwja1WLZ6pvSXlRBbxse4TS18T9d4b52m4pDNDK2iEqHp+VgQwj297WBY/fR+0
+	 H5wBFCYSOu8NQ==
 MIME-Version: 1.0
+Subject: Re: [PATCH 1/2] ath11k: Relocate the func
+ ath11k_mac_bitrate_mask_num_ht_rates() and change hweight16 to hweight8
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230504092033.3542456-2-quic_mkenna@quicinc.com>
+References: <20230504092033.3542456-2-quic_mkenna@quicinc.com>
+To: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <168431154238.15787.9973143615337740761.kvalo@kernel.org>
+Date: Wed, 17 May 2023 08:19:07 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230512_020511_957715_1C93EADC 
-X-CRM114-Status: GOOD (  14.97  )
+X-CRM114-CacheID: sfid-20230517_011909_750654_8E93E42B 
+X-CRM114-Status: UNSURE (   9.20  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,53 +76,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
+Maharaja Kennadyrajan <quic_mkenna@quicinc.com> wrote:
 
-> On 3/13/2023 5:51 PM, Kalle Valo wrote:
->
->> Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
->> 
->>> Device is booted in factory test mode to calibrate the board.
->>> The commands are sent from a userspace application, which is
->>> sent to firmware using wmi commands. Firmware will send the
->>> response back to the application which stores the calibration
->>> data in caldata.bin file. This file will be loaded when the
->>> device boots up normally next time.
->>>
->>> Govindaraj Saminathan (1):
->>>   wifi: ath11k: factory test mode support
->>>
->>> Sowmiya Sree Elavalagan (1):
->>>   wifi: ath11k: Allow ath11k to boot without caldata in ftm mode
->> 
->> While reviewing the patches I made quite a few style cleanup to patches
->> (too many to list):
->> 
->> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=master-pending&id=4a5ca29c396ace5c46b208a8c15a3ba53eabaddd
->> 
->> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=master-pending&id=ba74c7478f5d15ce38e609b9ad4810db7511a3dd
->> 
->> I only compile tested them. Please use these as the baseline for v2.
->> 
-> Hi Kalle,
->
-> Unable to get the baseline patch for v2 from the above link. Getting the
-> below error with the link:
-> Bad commit reference: 4a5ca29c396ace5c46b208a8c15a3ba53eabaddd
+> Relocate the function ath11k_mac_bitrate_mask_num_ht_rates() definition
+> to call this function from other functions which helps to avoid the
+> compilation error (function not defined).
+> 
+> ht_mcs[] is 1 byte array and it is enough to use hweight8() instead
+> of hweight16(). Hence, fixed the same.
+> 
+> Tested on: Compile tested only.
+> 
+> Signed-off-by: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-I now pushed them again:
+2 patches applied to ath-next branch of ath.git, thanks.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=f3d1f7ae115e12108ba7d7fa0ea6374b9e28869c
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=229ea354bdd24bf3c33c9447674fab8d609e24a2
-
-From now I'll tag every time I change the pending branch, this should
-prevent old commits from disappearing.
+570eec3d4050 wifi: ath11k: Relocate the func ath11k_mac_bitrate_mask_num_ht_rates() and change hweight16 to hweight8
+df8e3729ffc0 wifi: ath11k: Send HT fixed rate in WMI peer fixed param
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230504092033.3542456-2-quic_mkenna@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
