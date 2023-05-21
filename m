@@ -4,69 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45789C7EE23
-	for <ath11k@archiver.kernel.org>; Thu, 18 May 2023 15:18:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B887C77B7C
+	for <ath11k@archiver.kernel.org>; Sun, 21 May 2023 19:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=L9FkafGktg5r8Bsolo2lL1qjRzapmHxqCGxawPm+ly4=; b=Fet
-	NsDi7uhxm02bMxpjnk4b8Bd0/1Bkssmqrh6lI3AciYGHVCs3HnMcsoe/a6tkfRP4uNLE/l4bQskCo
-	a6RR6B788uLgFQp1SJLbX76f8dqMUAYdek+M27ID3Fi6dnnpLs7E5IOsGC1jU4aEBRu6pdW7kTels
-	xYtWtQtvEIvYNbggA/fa1w6SCKACOwmB7zRbA3aSFDUxaLkCt25MODmDlpZbMCDfRcQrAn9UKlrTU
-	VY0510XDQzO0wdC7uuhSvT+sd7RCufeE/RpEQgwWeoksLFNcJhYizEqWw9kOhc0+cE3xYkxP+lY7y
-	vQJiMC3LlumLXQQ5SmXLm+1F0oOiuLA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=pLzxk3aVlfuZNpuOphdUf9cAc2vYBiDCYHZAN8wwvUM=; b=aYhdhOmwXZAD60
+	LncAaXp2ZwkqIfLXp7oaFUxbYWbM6onfgR3NqLenmyne/mAYcqkG5OUxPYFBwRGHyGZOkwAClZQwb
+	d9FGEnc0bwZ7CFH2PsP231tQt6N4tGNUsQx6u6OgrKcI2gx3TtusHI4jvbpLF7stYtKQHPwbk0O0P
+	9Q7nNq3ykmtvmsQSsR2cdpb4R3ufgC6aUiTqIy68CXtE88c1H9x8N/wL6aoPEul5Fu4j2x9I8LJ5d
+	m3U2+l3MIu80nlfCu+sRPUkRoBZdQLWc8fZhRdAA2Y/74xUkwe5XRsbQZqm8V5Ct29eM1Jja8t1zU
+	9vt3xh+8AbVz6Ask0zrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzfOg-00DIAt-0j;
-	Thu, 18 May 2023 15:18:30 +0000
-Received: from mail-oi1-x22c.google.com ([2607:f8b0:4864:20::22c])
+	id 1q0oHq-004Rep-1S;
+	Sun, 21 May 2023 19:00:10 +0000
+Received: from mail-yb1-xb33.google.com ([2607:f8b0:4864:20::b33])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pzfOd-00DIAG-1Q
+	id 1q0nB3-004IDG-2x
 	for ath11k@lists.infradead.org;
-	Thu, 18 May 2023 15:18:28 +0000
-Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-392116ae103so1329887b6e.0
-        for <ath11k@lists.infradead.org>; Thu, 18 May 2023 08:18:26 -0700 (PDT)
+	Sun, 21 May 2023 17:49:07 +0000
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-ba841216e92so7534026276.1
+        for <ath11k@lists.infradead.org>; Sun, 21 May 2023 10:49:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684423105; x=1687015105;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+        d=gmail.com; s=20221208; t=1684691343; x=1687283343;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=YYSdzW3UndEZVH0j/J6iynzoarfDA0cF0gYr3cxuDTc=;
-        b=oojTWBBSwG4eZltI+gR6MAEFa7qCec6JBVLaF3px8bCdSP3XoOVTeVMC/Boc5tjqwU
-         WuSWS+FcU5hPD/tjAW+l4HKQiLXkkaaeTFMkquRfzVmZEQaV+CE7i5zTt0/1vDnF8UVm
-         c29aTMs4WoT1BVT5an7F7aKTwdzVbd9BwmXlbB/cfgAH5z26fHXUZ6kRm56AXsdXlO95
-         WzS97kX4ltxhp56GeeDFzBt5g2LcAYAwYDzrF2tzRp063vzVWwaitS4//1tGcrNENxjn
-         yINx+4871YHQfRgnE5ORYVJVBvptDIYZNQdh9nC0prFUrhKVieYA6fj1CSNIVHPho4J2
-         oBkg==
+        bh=HA5i5d/MKnlZtzhCD2oMZslei4xU+OAXwtdVXosID+k=;
+        b=KsHJq9IMlQxSn1ymymDeONWRIBQ9QbDA+Vo5XChJkLsc/JeR0m+9onAFQopkmaRU8t
+         UwAxopzCuCp6G4CBDWhbxNOtxib28QT2C/Gkj7ageBjZQAfFdH3TK2P/lDYiRqYmJlI2
+         EoeX7ZbEXnTN9N+dDfnxvfctzgir/hIZEBBraYg+iVfleOMU59U9NHZeNT2+O5tRFSPG
+         DGVk9Oo6JOJdnCPsmkb6rUw5IUyySqAth59rpsSDZKLdz9Yo2eyVPIhhEoQQuIk3md3o
+         8Ul18TO9wcppcKna1BP5MU/OWqPd6WuAQVeuuOWHphmTPAb0TnJIppoI7KFmHLE2urOM
+         HkfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684423105; x=1687015105;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=1e100.net; s=20221208; t=1684691343; x=1687283343;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YYSdzW3UndEZVH0j/J6iynzoarfDA0cF0gYr3cxuDTc=;
-        b=XGCDv3kqheouLHSl4p9MlO42tCxDcu1LAgQU1y/mzjpCOlhWjwgttXDocVBN/e7aT1
-         GQ3SZiDGoDMmmgwKOZnYdJGKg0sbru5qpx/+uz+nuCEe5ZFOhVtntXpQXnGk4/+0kHIc
-         Lfq86/mmnn6kgJrCu3LAs2xihDzapNTl4xoGNNFquFscPz2NA8Drus/VsZPfy2siNm8r
-         daKvJgTP6b2QOXsBjPIDgEWnZ1pILhVO3c2bN3w5AUkqJrz1QWRj1rFRaB5soe2/IJHK
-         j//Samp6OJyFlR7INwA2u/ScAo3rdGzQyMp2NmjugFNSqXud+DjHVPatNYMeVZr1oUMN
-         sohA==
-X-Gm-Message-State: AC+VfDxHdANIZssCMbHBuoqHRbirDTESiV/1hkcpoKPGYM0lCn8VclL1
-	eGKyEFWph7HofBUKooUbalmW9kBYTVNlAcqnKr+vE6ho+U+s/g==
-X-Google-Smtp-Source: ACHHUZ4NTel97MH/FVyfZ11CzgB5lwt+9t9jliKAy+ZHixmtulAHTXlJfHTftnuYeg/Mrq+HUr+aXy/TgFBalgxnnSI=
-X-Received: by 2002:a05:6808:8eb:b0:38d:f794:26a with SMTP id
- d11-20020a05680808eb00b0038df794026amr1286395oic.41.1684423105381; Thu, 18
- May 2023 08:18:25 -0700 (PDT)
+        bh=HA5i5d/MKnlZtzhCD2oMZslei4xU+OAXwtdVXosID+k=;
+        b=HHLqNDq4RVDm6CAtCVFF9pmbytqbKBgKprYMAXUhMpKsBYT2L1YboTNp+ZMC5Np2hR
+         Hjln7vM1KlSyrXVcm+5MKeACKt+PgFTR3qkcxrYtb8OHr1NzUkPo4w+dYVMMzkL/foGE
+         BiiIwuMMz7CJWJ1vSmnL3LqzU4sQ7nLvUR49gY2EHVp+IKodJTbLrkCVAlE1YZtEUbeI
+         ki2//8OJ4xWQIGt67NdJn7Yjp1yaJX3gfimv+HiTqRu4D6Kh6WBk+RMQ6bh/6AuiDzvo
+         brp5bVnZmRWAM9CMuuUKUcXdg9Dd9VKMQl7Tqw9jANDsYpa8OIUWMpYTH7YmkPdpTbVf
+         seQw==
+X-Gm-Message-State: AC+VfDyTfk9oe+lDvyHJ+4rI3Jdv2oO9w6F84j8g2ddi7lC6YKMrSdJK
+	hpLrOixHTcvQ/Re55hfrzafTmffrFJ/QxYiQUyU=
+X-Google-Smtp-Source: ACHHUZ4vcfMyrkgGbEHgDaQ10EfDI+cPB7yCHp/bqpiX/PQH3ZIp0cLjwBYevD29UC76dHgsg09G0ag/APneTi4aBT0=
+X-Received: by 2002:a25:71d4:0:b0:ba8:3a86:15ca with SMTP id
+ m203-20020a2571d4000000b00ba83a8615camr8005285ybc.60.1684691343083; Sun, 21
+ May 2023 10:49:03 -0700 (PDT)
 MIME-Version: 1.0
-From: Cristian Ciobanu <cioby.service@gmail.com>
-Date: Thu, 18 May 2023 18:18:14 +0300
-Message-ID: <CAFoKhMxZ7Etx578CCz8ezhFy4UMXAGW14DX0kFuNUAtGmOv4DQ@mail.gmail.com>
-Subject: ath11k driver DBDC support
-To: ath11k@lists.infradead.org
+From: Tyler Stachecki <stachecki.tyler@gmail.com>
+Date: Sun, 21 May 2023 13:51:33 -0400
+Message-ID: <CAC6wqPVvke=Gy59yvYcaps2dwVzO=wfwdSTGNxFzAOWc5OpoDw@mail.gmail.com>
+Subject: Re: [PATCH v3] wifi: ath11k: Add rx histogram stats
+To: quic_mkenna@quicinc.com
+Cc: "open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER" <ath11k@lists.infradead.org>, 
+	"open list:NETWORKING DRIVERS (WIRELESS)" <linux-wireless@vger.kernel.org>, quic_akalaise@quicinc.com, 
+	quic_mpubbise@quicinc.com
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230518_081827_478766_CEC1C06C 
-X-CRM114-Status: UNSURE (   8.25  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230521_104905_976127_2E8CFFF0 
+X-CRM114-Status: GOOD (  10.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,41 +86,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello,
+Was this really tested on QCN9074 as the commit text suggests...?
 
-I have purchased this M.2 wireless card
-https://www.sparklan.com/product/wnfq-269axbt-wifi6-wifi6e-11ax-triband-m-2-dbdc-module/
-based on the WCN6856 chipset which states that it supports DBDC but I
-cannot make it work on Linux.  I plan to use it as an Soft AP for 2.4
-and 5/6Ghz.
+> const struct ath11k_hw_ops ipq6018_ops = {
+> @@ -1132,6 +1147,7 @@ const struct ath11k_hw_ops wcn6750_ops = {
+>  .rx_desc_get_msdu_payload = ath11k_hw_qcn9074_rx_desc_get_msdu_payload,
+>  .reo_setup = ath11k_hw_wcn6855_reo_setup,
+>  .mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
+> + .mpdu_info_get_mpdu_len = ath11k_hw_qcn9074_mpdu_info_get_mpdu_len,
 
-Does someone know if this DBDC feature is not yet supported in the
-current ath11k driver or is this a firmware limitation?
+...
 
-The card is detected and the ath11k driver is loaded but I only see
-one wlan card shown in the output of ip addr show command.
+> +static u32 ath11k_hal_rx_mpduinfo_get_mpdu_len(struct ath11k_base *ab,
+> +       struct hal_rx_mpdu_info *mpdu_info)
+> +{
+> + return ab->hw_params.hw_ops->mpdu_info_get_mpdu_len(mpdu_info);
+> +}
 
-Below is some output from dmesg log
+I think you want to put this under qcn9074_ops. As of now, when
+QCN9074 is present, it attempts to jump to a NULL pointer as
+mpdu_info_get_mpdu_len remains uninitialized for qcn9074_ops.
 
-dmesg | grep ath11k
-[   38.374925] ath11k_pci 0000:02:00.0: BAR 0: assigned [mem
-0x7fc00000-0x7fdfffff 64bit]
-[   38.374953] ath11k_pci 0000:02:00.0: enabling device (0000 -> 0002)
-[   38.375306] ath11k_pci 0000:02:00.0: MSI vectors: 32
-[   38.375313] ath11k_pci 0000:02:00.0: wcn6855 hw2.1
-[   39.749474] ath11k_pci 0000:02:00.0: chip_id 0x12 chip_family 0xb
-board_id 0xff soc_id 0x400c1211
-[   39.749481] ath11k_pci 0000:02:00.0: fw_version 0x110b196e
-fw_build_timestamp 2022-12-22 12:54 fw_build_id
-WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+And, do you not need to define mpdu_info_get_mpdu_len for all the
+other hw_ops? If so, please be careful about defining it for
+WCN6855/WCN6750 as there was a recent regression due to how the RX
+MPDU info is provided by those firmwares as it differed from
+IPQ8074/QCN9074. I personally do not have the appropriate literature
+to determine whether or not this is consequential or not here as well,
+though it seems like it would be:
+https://lore.kernel.org/linux-wireless/20230404072234.18503-3-quic_youghand@quicinc.com/
 
-Lspci detects it as an Qualcomm Atheros QCNFA765 [17cb:1103] 9rev01)
-network controller
-Subsystem : Lite-On Communications Inc Device [11ad:a85d]
-
-Please let me know if you need more information
-
-Kind regards,
+Tyler
 
 -- 
 ath11k mailing list
