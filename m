@@ -4,60 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27DC2C7EE2F
-	for <ath11k@archiver.kernel.org>; Tue, 30 May 2023 14:18:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76CA3C77B7A
+	for <ath11k@archiver.kernel.org>; Tue, 30 May 2023 15:34:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yCaty4kXsRTyv8n4a3cQrkegVxSTyaOadwf2QimjEXU=; b=BKUEkSPnuspPbl
-	kaTx6oK/HBBnatMKW1LnkBt6FdlhWjsgBtkTDe3WMZmxpprsmqhez+XTUePfT4L0PwI1/x7xWAaqJ
-	6AjOt47zEko0+qh+5ysMyPZwPOMo2lxNzVnfWHugWhi45UU2qyRRSACfHk1FsSI34Z6fhEo8FaJLs
-	dWPzqEif6NwOe0MhMfUNqq7EjxXuXjdtIm6TVo4hYVAgm6dwT+mYWmyhBW2wndE8jB4EYEsu9F5uc
-	r7Aftr2G3MsCHALC5nMjUJY8HN+TIeCPmYPF7HbhAMR6Sx6GpEzM/ImLwN5N6Ad3o4ibydKFPi0gb
-	UQOgK9rMNM4MLdIzgWxw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=B3iH0UMTmMymAhkBqg1+DCL/eb89zo+3fWkGJtxfajo=; b=RBJAn+cIANJdh0iKxDrkcRtc7u
+	rwLrBrKV+WeprZynz16jtwL9Y189cWNvcbQTXoR37+2xit5ECX6yDfyuyOw8k4MyLj5rP0ixeJq4/
+	0QJ2zOOUAwY5upmtvx0ETa3ZlNBe24oVnUafmKY4R0iaJtoS+VBDt89ix7AEk1Iu9hcwANgrdlj3t
+	3jNgFaFWq7MWQZvAWkXToJEnteFUZFuHDvvEgYYX5iMo+JpYiI/TTRwu6xZZcOaT15JcMjJ8IiUnl
+	0j4fbr7luWOIN0f2ys7fqXFxitugXI08d5HGHNf2IYxAv67U1cgx1PXMss4ieWVkO0ncSvgbofJCI
+	e0aajI8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q40B7-00EDG4-2g;
-	Tue, 30 May 2023 14:18:25 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1q41Mj-00EQKR-1Z;
+	Tue, 30 May 2023 15:34:29 +0000
+Received: from mail-dm6nam04on20618.outbound.protection.outlook.com ([2a01:111:f400:7e8b::618] helo=NAM04-DM6-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q40B4-00EDDx-32
-	for ath11k@lists.infradead.org;
-	Tue, 30 May 2023 14:18:25 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 755B56314C
-	for <ath11k@lists.infradead.org>; Tue, 30 May 2023 14:18:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2358FC433D2;
-	Tue, 30 May 2023 14:18:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1685456301;
-	bh=45Y/zq/+qnW44Yt3eW3gy1wGhl0oDCo1e1kPuKei/3U=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PvAE37CsUjHLzwAJaoxI84pbsdLX5Z4hLS+LdjTeOA/O0Xy0CRmBpfbvBhuuUnwQC
-	 pKi0pwTo7+/L9v97PTEf1Ok10wZCiMtBhQlNNev8D1svCqunNnp8CuU++TxgF7IFoh
-	 Cv0fK7A+fb5jS5NfB6KhqM75xmxdURy81Cs+rwpEj6xw48kfw32ia4IZVbZICB8Gls
-	 UN0W4/Db9nFiNb3DtFTWngRx0qot3OPA/NJD3RPTQ33mMz4r85Pg1ZqQcMkKs8ZhuJ
-	 FAXcxaZPBIwZF3x80jOJSTxE3Ajgp51c83E37lrjUYgIiBmA+112Q2O9mlTxgjtimd
-	 QWXjyV0y+UDJQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: mhi@lists.linux.dev
-Cc: ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org
-Subject: [PATCH v3 3/3] wifi: ath11k: add firmware-2.bin support
-Date: Tue, 30 May 2023 17:18:13 +0300
-Message-Id: <20230530141813.29333-4-kvalo@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230530141813.29333-1-kvalo@kernel.org>
-References: <20230530141813.29333-1-kvalo@kernel.org>
+	id 1q41Mg-00EQJG-1n;
+	Tue, 30 May 2023 15:34:28 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l5M3OaVO/fws1f2e2I8K3L0bDjQsblUZbYWoFeikriPL2/V11B9IGxkvPWYJQQeFjiaD6QaEthf/Q1tFyA1zmmABuXMtqBasz9RyDJ/E1heLLSVMTs0TPINK/McL16EwbyPHtefv75GZWOYYzRzbqnWX+mGdRMaIXiY4RM+nbG3qXq9SrB+QdUOtE5JhkCn0DSX1Sq2w6kJawl7m56qON4QQAbftqeHeEYLrTitx1vC5Qx5eTc0nXxrNEQsv3tawqyyIh0Vdu7/pUqKVFbY31T1oWHcXcLHjhS2IWhE64Xt2p45fhqo57xS9sB6GE2Qdg+EFpq5Ussceu4fIcI0dUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OTmkOQvBGR6nkg4HQbxLwpV8T7+vN6nrDv7aHAy6apg=;
+ b=MVwrMMzKhoWs/jE/Cp5PljATXoEM4Mp+0jU28ZI/OhA71RVFSiG3k/qScFMuJR4iXu+8ZXELWzFmGcAoOaMcDO3wIe1gMLPRHamY3ONjxjwy+V5eMBj6yTxzlCRA0X5VlomUgPNTi7w70QXYwLfdvDX0/IVd2gLBKIQ4ZCJmPhmKh7av/YgPHi4v/cYhWkFjBRzYrjT3CqjOEkL26Z6sqSysuEykZjShVWURdIodP/VXSXkbbhNqs81S3n/Xk6UccvB+rzB34P4EPx5NZUNLsmj2D9HEOU5SLZimQD5grjcDiAbo1sUqnW4BP1T3rnrD6pKWM09I0Skkondf9t0sVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OTmkOQvBGR6nkg4HQbxLwpV8T7+vN6nrDv7aHAy6apg=;
+ b=bhl4Svj6rNIxlUf5mry5aqH5F8w0CZJ/TAYPMEgnlSFcxT6M7eosmkcRVb5R08OtLVjHS/AOUpmdNLWcCOlC0JbhZos2nn83RjFjPSOuNfofc1WlQOjLBwR3fY88j0AElaCsBrsb7OqffY+96KmwkuFd5QgczNU6z1rLzVJ1xUE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
+ by DS7PR12MB5719.namprd12.prod.outlook.com (2603:10b6:8:72::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
+ 2023 15:34:18 +0000
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::a65c:3aa0:b759:8527]) by MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::a65c:3aa0:b759:8527%5]) with mapi id 15.20.6433.022; Tue, 30 May 2023
+ 15:34:18 +0000
+Message-ID: <20f02345-fb0a-8ec0-fc4e-1434b5a9466e@amd.com>
+Date: Tue, 30 May 2023 10:34:13 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 0/9] Support Wifi RFI interference mitigation feature
+To: Felix Fietkau <nbd@nbd.name>, Evan Quan <evan.quan@amd.com>,
+ rafael@kernel.org, lenb@kernel.org, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, kvalo@kernel.org, lorenzo@kernel.org,
+ ryder.lee@mediatek.com, shayne.chen@mediatek.com, sean.wang@mediatek.com,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ Lijo.Lazar@amd.com
+Cc: linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org
+References: <20230530024227.2139632-1-evan.quan@amd.com>
+ <1502188c-c527-3038-2163-5ca4f51ed735@nbd.name>
+Content-Language: en-US
+From: "Limonciello, Mario" <mario.limonciello@amd.com>
+In-Reply-To: <1502188c-c527-3038-2163-5ca4f51ed735@nbd.name>
+X-ClientProxiedBy: SA9PR13CA0155.namprd13.prod.outlook.com
+ (2603:10b6:806:28::10) To MN0PR12MB6101.namprd12.prod.outlook.com
+ (2603:10b6:208:3cb::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|DS7PR12MB5719:EE_
+X-MS-Office365-Filtering-Correlation-Id: af383cff-fd7d-47d9-53aa-08db612354e0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nW7Sq8Tifd6F+Q5pJxQ37xdppZT7ofqtdhs/0pRT1N7JqnNHczMgePhq8W8ZuCWzV+0srJWZhcKz0uyJg7hr5l8mhfJcWcjgL5draXr6RbPfogsCOV/FaVy+nKoY7IkK3tlBIAkBMW8itWwY/twkk6Yh5cB8bxPuxtbwVk+nX/LsS0YGbUthq4J5BNKLwSYpyC6gzVhS0lGclGjm43AaqiTzjQOacdRZilzWju7+3HL5GM8NlHte1V6OW23j3cSglT4u0RrcW1XOCzbGhzRM5bSDQimY3TnNYBEFIXUXgV6CRioYzNqmHq8zhYY4/j6i10Rh/AjGUg2y0DmEkmtjQXjlQY8XSdiHRUR+a77o6NbBmYi0Wdz4BWHNWmOsQ1ID7E2lCt1jPwEid52saiHS6z/LHNbi4xpnsCgcjduFg+hMjRC51C6j/IbWzuYjHD/MvjHPAB5XDqe+pqSvv4Tje1Ke1HEJPqGUsUh/le32qvF0+HAULCtOlchHYO45gIYCG8akTjx7w1wRwuVr8dt9j72d52/ID0MuD7tzNB7RU+5C5rsAQTQR5ADPm2cUbYkWjs+/8KGnqL44vg0tv0nG4WPkjj3pW4PuP0Cepjrx3So/2kTmJNYvyhV04aEROG2FDGYDX5BFharWMgqyieXSf05zEvsaJax4E4Kktn83yWQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB6101.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(39860400002)(396003)(376002)(136003)(451199021)(478600001)(110136005)(8936002)(8676002)(7416002)(5660300002)(86362001)(36756003)(2906002)(31696002)(921005)(6636002)(4326008)(66476007)(66556008)(66946007)(316002)(38100700002)(41300700001)(2616005)(186003)(6506007)(6512007)(53546011)(26005)(6486002)(6666004)(31686004)(83380400001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUxBRWpBdnZuekNiU25yRTQ0WXdPdEVHemk4WSt6a2pGd1NSTW5qZWFCT1ov?=
+ =?utf-8?B?NHMzUUlrb3pHaWtwUDdlZ2VKWEF6bGZ2ZVpQQ015SC8zellEcXlhT2wwWitq?=
+ =?utf-8?B?bDlDcGlqaG5hNzkyR1d3UjRDdTM4ejRIY2NpTWRuSmJWZlArSTRjcXNINHNR?=
+ =?utf-8?B?V0RCVlFJN0ljV0xOUTBoaEppNnZ0OWkzcTk1VTdvYjNlTG9ONVRzbVVaYUJk?=
+ =?utf-8?B?a1p1cTBIbW51MkJ5TXJRUWhIcG1GYmc1d081R0hPRm5KaXI1aWtOcU4rNXVr?=
+ =?utf-8?B?WW5pTjRqNk5ZbkFwb2srNWZxMFF1U0JVOVFVM0ZUUlBGRHF3UG9FKzVYVWYw?=
+ =?utf-8?B?aHNhUmdobERnaGxoc29kNWxQYU5rQ2dpRjNaNlFaNm82MEk0YkRFbWxYS01X?=
+ =?utf-8?B?eVgrUk4vUGRLaDJSSmttMUwvYU1yeVc4bFk5MitveEtZdk0vRUp0cHpNOVps?=
+ =?utf-8?B?MEVoaGVFODhlemlPeGMxcU9mSlYvbllFUVQwckQ0aFloSGpRejVldmNtcHpm?=
+ =?utf-8?B?QzFZTXQ4T0U5OVNyOU55ZkdldXI1U0UrY3B4emRHTU9WSGJManZvc1JNRVpi?=
+ =?utf-8?B?QVFNUkx2TDFYaStYVjJCQmVTYTV6TDQrakRMMVZNK2lSN0FhVW5nQm0zVEdu?=
+ =?utf-8?B?OWhKT0dTb3EzL21aSGRMS0dYWFNQY3VjT3F2MkxzMlBrampIakI5QUNPL2xZ?=
+ =?utf-8?B?V1g0SjVFL05Qem5aTHQrUWNBUko5ZzlrbHNMRXZsblZzamxHNEZ1NFhxSEV3?=
+ =?utf-8?B?Q2NNMUJyNU9DekVSTUhIeURadWwvc09QYjNwZXJqcFY5amVFYzBUVDFmdUF2?=
+ =?utf-8?B?cXpSMm5sM2hBQ002WnYyUW54ZXFpUVJJSEx1VXozcktTL0tqRHZ6aVVPK1lD?=
+ =?utf-8?B?YWdnaUpoZFF4Mml0bGN5TE01QUlSdzBncGdMTHBmMjY3cEZsNUhUeGV2aEFK?=
+ =?utf-8?B?WVBQclBhR3AxNGVmM0ZTRHp6MmJCQTQzQ3NmcFRIQ0t5VmVQUDIyWlRZNlZD?=
+ =?utf-8?B?QlFvNDR4US9iVnp4Y2FrVFlpOFN0TGpEa3U5ZUpXK0NBYUtJY0dDSHU5UlNY?=
+ =?utf-8?B?aUxpeWQ3KzJLaVhsK2xGVGJqVS9pOUZ0TzQ3VjRpTzdJKzFuQjNNdUtXRExS?=
+ =?utf-8?B?djlvSUhoTExaMTJDaVpMM3NRWTRtSzM2NHA0WUVZNUtIMGljbXdNNVlnUGNn?=
+ =?utf-8?B?QnBoYkJiVlFLYzlFUlI5SzA4UU43cmhFKzViRytYZzd5MkVtVXRwcGxxTmpu?=
+ =?utf-8?B?TVQzT0hDQitWaDE5d09MUGZjRnVNWXVYZ044VTY1R2ZLY1dUWE9hcUlWZ2lY?=
+ =?utf-8?B?eWVHVUlnZHhLRVlqdTdXK0tHWjRkOHllRUJ4OGVmcytXdzBzWFk1QzZDZFh0?=
+ =?utf-8?B?RkpxYjJVUmg3aVVoMXlMNmZTeXNSUUQxWGF2aURHNkt5MUV2NUk4MGJIeEl1?=
+ =?utf-8?B?djJuTHBtTmpWWHFMUXBuMFBKdUcyd3RvR0pxSHg3STZvc3NGR0IrbjYyck5v?=
+ =?utf-8?B?TzBGdzk5Z2hTTWZXY2pqSTNiV3FlL2w4MldKK2p6Rkg1RTN2Sk1VYkZIajJn?=
+ =?utf-8?B?QXUvN2wraytRZ0cwZ1FUeXZ1M3EwdlRDSzlnZ0VraURWRzhSaTdrWEN3bXpN?=
+ =?utf-8?B?cVcvMkY5UTRiVnZHaGpvMzRFMkt3VkJ6bzR2OUJ0MjRUOW9MNThvSnFHWDJF?=
+ =?utf-8?B?ZGpZdVNHVHJNZmxRY3E2ekFYcWhVS0s0eEFYcVVJa3VlZHg2bWJuZm4yR3p6?=
+ =?utf-8?B?ZmxnaDBaME42d3ZYWS9MWFJDalBkRGtkc1MrRXB1V0lKWUhFRnJyeXhwUFJY?=
+ =?utf-8?B?SnI4TjdoMzlodmQvWFd4blVhQkRGOHhlLzI1MlRpOVlMMlNIamJBRVhsZEZI?=
+ =?utf-8?B?L3NWcU5rMDgvWVlRR2FOVUVIck04d3M3bGtoQ3h2MEkwOUJMdVY3Y0dNcEhM?=
+ =?utf-8?B?V01JOUpJYVFMRktDeGEyNWpuWG5QNW1yT05UbnpydndzSllPajAyUHNFaGIz?=
+ =?utf-8?B?MVd6bzcvOFgxaWp2K0pucDh6dk4rd1RDazZCNVMwZmFyRUQvakFQOXZYTGtw?=
+ =?utf-8?B?MG9YK1dISmZ0eXJIQ1QvQXhsbHNWeHRubExBSldrV1U2WEhjQnc5THJwclYy?=
+ =?utf-8?Q?uoOCqFxhx8NlGO59Wf0B+XGAE?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: af383cff-fd7d-47d9-53aa-08db612354e0
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 15:34:18.1431
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YlROpklVcbIS1fjk468ZoJGGTAwGvc8VjKG/lHykMtepzJy7HrI6y6Vz0q/ysMXIIXzk0w8VILs1RvmymMyJaQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5719
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230530_071823_061243_61175D2C 
-X-CRM114-Status: GOOD (  34.80  )
+X-CRM114-CacheID: sfid-20230530_083426_597548_CF216BA7 
+X-CRM114-Status: GOOD (  14.82  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,448 +146,52 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Anilkumar Kolli <quic_akolli@quicinc.com>
-
-Firmware IE containers can dynamically provide various information
-what firmware supports. Also it can embed more than one image so
-updating firmware is easy, user just needs to update one file in
-/lib/firmware/.
-
-The firmware API 2 or higher will use the IE container format, the
-current API 1 will not use the new format but it still is supported
-for some time. Firmware API 2 files are named as firmware-2.bin
-(which contains both amss.bin and m3.bin images) and API 1 files are
-amss.bin and m3.bin.
-
-Currently ath11k PCI driver provides firmware binary (amss.bin) path to
-MHI driver, MHI driver reads firmware from filesystem and boots it. Add
-provision to read firmware files from ath11k driver and provide the amss.bin
-firmware data and size to MHI using a pointer.
-
-Currently enum ath11k_fw_features is empty, the patches adding features will
-add the flags.
-
-With AHB devices there's no amss.bin or m3.bin, so no changes in how AHB
-firmware files are used. But AHB devices can use future additions to the meta
-data, for example in enum ath11k_fw_features.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-
-Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
-Co-developed-by: Kalle Valo <quic_kvalo@quicinc.com>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/Makefile |   3 +-
- drivers/net/wireless/ath/ath11k/core.c   |   8 ++
- drivers/net/wireless/ath/ath11k/core.h   |  15 +++
- drivers/net/wireless/ath/ath11k/fw.c     | 157 +++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/fw.h     |  27 ++++
- drivers/net/wireless/ath/ath11k/mhi.c    |  18 ++-
- drivers/net/wireless/ath/ath11k/qmi.c    |  36 ++++--
- 7 files changed, 247 insertions(+), 17 deletions(-)
- create mode 100644 drivers/net/wireless/ath/ath11k/fw.c
- create mode 100644 drivers/net/wireless/ath/ath11k/fw.h
-
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index cc47e0114595..2c94d50ae36f 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -17,7 +17,8 @@ ath11k-y += core.o \
- 	    peer.o \
- 	    dbring.o \
- 	    hw.o \
--	    pcic.o
-+	    pcic.o \
-+	    fw.o
- 
- ath11k-$(CONFIG_ATH11K_DEBUGFS) += debugfs.o debugfs_htt_stats.o debugfs_sta.o
- ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index b1b90bd34d67..5290857db66b 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -16,6 +16,7 @@
- #include "debug.h"
- #include "hif.h"
- #include "wow.h"
-+#include "fw.h"
- 
- unsigned int ath11k_debug_mask;
- EXPORT_SYMBOL(ath11k_debug_mask);
-@@ -1942,6 +1943,12 @@ int ath11k_core_pre_init(struct ath11k_base *ab)
- 		return ret;
- 	}
- 
-+	ret = ath11k_fw_pre_init(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to pre init firmware: %d", ret);
-+		return ret;
-+	}
-+
- 	return 0;
- }
- EXPORT_SYMBOL(ath11k_core_pre_init);
-@@ -1972,6 +1979,7 @@ void ath11k_core_deinit(struct ath11k_base *ab)
- 	ath11k_hif_power_down(ab);
- 	ath11k_mac_destroy(ab);
- 	ath11k_core_soc_destroy(ab);
-+	ath11k_fw_destroy(ab);
- }
- EXPORT_SYMBOL(ath11k_core_deinit);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 0830276e5028..5ada78f4b9ec 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -15,6 +15,8 @@
- #include <linux/ctype.h>
- #include <linux/rhashtable.h>
- #include <linux/average.h>
-+#include <linux/firmware.h>
-+
- #include "qmi.h"
- #include "htc.h"
- #include "wmi.h"
-@@ -29,6 +31,7 @@
- #include "dbring.h"
- #include "spectral.h"
- #include "wow.h"
-+#include "fw.h"
- 
- #define SM(_v, _f) (((_v) << _f##_LSB) & _f##_MASK)
- 
-@@ -978,6 +981,18 @@ struct ath11k_base {
- 		const struct ath11k_pci_ops *ops;
- 	} pci;
- 
-+	struct {
-+		u32 api_version;
-+
-+		const struct firmware *fw;
-+		const u8 *amss_data;
-+		size_t amss_len;
-+		const u8 *m3_data;
-+		size_t m3_len;
-+
-+		DECLARE_BITMAP(fw_features, ATH11K_FW_FEATURE_COUNT);
-+	} fw;
-+
- 	/* must be last */
- 	u8 drv_priv[] __aligned(sizeof(void *));
- };
-diff --git a/drivers/net/wireless/ath/ath11k/fw.c b/drivers/net/wireless/ath/ath11k/fw.c
-new file mode 100644
-index 000000000000..5423c0be63fa
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/fw.c
-@@ -0,0 +1,157 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#include "core.h"
-+
-+#include "debug.h"
-+
-+static int ath11k_fw_request_firmware_api_n(struct ath11k_base *ab,
-+					    const char *name)
-+{
-+	size_t magic_len, len, ie_len;
-+	int ie_id, i, index, bit, ret;
-+	struct ath11k_fw_ie *hdr;
-+	const u8 *data;
-+	__le32 *timestamp;
-+
-+	ab->fw.fw = ath11k_core_firmware_request(ab, name);
-+	if (IS_ERR(ab->fw.fw)) {
-+		ret = PTR_ERR(ab->fw.fw);
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT, "failed to load %s: %d\n", name, ret);
-+		ab->fw.fw = NULL;
-+		return ret;
-+	}
-+
-+	data = ab->fw.fw->data;
-+	len = ab->fw.fw->size;
-+
-+	/* magic also includes the null byte, check that as well */
-+	magic_len = strlen(ATH11K_FIRMWARE_MAGIC) + 1;
-+
-+	if (len < magic_len) {
-+		ath11k_err(ab, "firmware image too small to contain magic: %zu\n",
-+			   len);
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+	if (memcmp(data, ATH11K_FIRMWARE_MAGIC, magic_len) != 0) {
-+		ath11k_err(ab, "Invalid firmware magic\n");
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+	/* jump over the padding */
-+	magic_len = ALIGN(magic_len, 4);
-+
-+	len -= magic_len;
-+	data += magic_len;
-+
-+	/* loop elements */
-+	while (len > sizeof(struct ath11k_fw_ie)) {
-+		hdr = (struct ath11k_fw_ie *)data;
-+
-+		ie_id = le32_to_cpu(hdr->id);
-+		ie_len = le32_to_cpu(hdr->len);
-+
-+		len -= sizeof(*hdr);
-+		data += sizeof(*hdr);
-+
-+		if (len < ie_len) {
-+			ath11k_err(ab, "Invalid length for FW IE %d (%zu < %zu)\n",
-+				   ie_id, len, ie_len);
-+			ret = -EINVAL;
-+			goto err;
-+		}
-+
-+		switch (ie_id) {
-+		case ATH11K_FW_IE_TIMESTAMP:
-+			if (ie_len != sizeof(u32))
-+				break;
-+
-+			timestamp = (__le32 *)data;
-+
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT, "found fw timestamp %d\n",
-+				   le32_to_cpup(timestamp));
-+			break;
-+		case ATH11K_FW_IE_FEATURES:
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+				   "found firmware features ie (%zd B)\n",
-+				   ie_len);
-+
-+			for (i = 0; i < ATH11K_FW_FEATURE_COUNT; i++) {
-+				index = i / 8;
-+				bit = i % 8;
-+
-+				if (index == ie_len)
-+					break;
-+
-+				if (data[index] & (1 << bit))
-+					__set_bit(i, ab->fw.fw_features);
-+			}
-+
-+			ath11k_dbg_dump(ab, ATH11K_DBG_BOOT, "features", "",
-+					ab->fw.fw_features,
-+					sizeof(ab->fw.fw_features));
-+			break;
-+		case ATH11K_FW_IE_AMSS_IMAGE:
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+				   "found fw image ie (%zd B)\n",
-+				   ie_len);
-+
-+			ab->fw.amss_data = data;
-+			ab->fw.amss_len = ie_len;
-+			break;
-+		case ATH11K_FW_IE_M3_IMAGE:
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+				   "found m3 image ie (%zd B)\n",
-+				   ie_len);
-+
-+			ab->fw.m3_data = data;
-+			ab->fw.m3_len = ie_len;
-+			break;
-+		default:
-+			ath11k_warn(ab, "Unknown FW IE: %u\n", ie_id);
-+			break;
-+		}
-+
-+		/* jump over the padding */
-+		ie_len = ALIGN(ie_len, 4);
-+
-+		len -= ie_len;
-+		data += ie_len;
-+	};
-+
-+	return 0;
-+
-+err:
-+	release_firmware(ab->fw.fw);
-+	ab->fw.fw = NULL;
-+	return ret;
-+}
-+
-+int ath11k_fw_pre_init(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_fw_request_firmware_api_n(ab, ATH11K_FW_API2_FILE);
-+	if (ret == 0) {
-+		ab->fw.api_version = 2;
-+		goto out;
-+	}
-+
-+	ab->fw.api_version = 1;
-+
-+out:
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "using fw api %d\n",
-+		   ab->fw.api_version);
-+
-+	return 0;
-+}
-+
-+void ath11k_fw_destroy(struct ath11k_base *ab)
-+{
-+	release_firmware(ab->fw.fw);
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/fw.h b/drivers/net/wireless/ath/ath11k/fw.h
-new file mode 100644
-index 000000000000..e33b0f78b571
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/fw.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear */
-+/*
-+ * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef ATH11K_FW_H
-+#define ATH11K_FW_H
-+
-+#define ATH11K_FW_API2_FILE		"firmware-2.bin"
-+#define ATH11K_FIRMWARE_MAGIC		"QCOM-ATH11K-FW"
-+
-+enum ath11k_fw_ie_type {
-+	ATH11K_FW_IE_TIMESTAMP = 0,
-+	ATH11K_FW_IE_FEATURES = 1,
-+	ATH11K_FW_IE_AMSS_IMAGE = 2,
-+	ATH11K_FW_IE_M3_IMAGE = 3,
-+};
-+
-+enum ath11k_fw_features {
-+	/* keep last */
-+	ATH11K_FW_FEATURE_COUNT,
-+};
-+
-+int ath11k_fw_pre_init(struct ath11k_base *ab);
-+void ath11k_fw_destroy(struct ath11k_base *ab);
-+
-+#endif /* ATH11K_FW_H */
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index a62ee05c5409..2e84248c12b8 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -6,6 +6,7 @@
- 
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/firmware.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/ioport.h>
-@@ -389,16 +390,23 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	if (!mhi_ctrl)
- 		return -ENOMEM;
- 
--	ath11k_core_create_firmware_path(ab, ATH11K_AMSS_FILE,
--					 ab_pci->amss_path,
--					 sizeof(ab_pci->amss_path));
--
- 	ab_pci->mhi_ctrl = mhi_ctrl;
- 	mhi_ctrl->cntrl_dev = ab->dev;
--	mhi_ctrl->fw_image = ab_pci->amss_path;
- 	mhi_ctrl->regs = ab->mem;
- 	mhi_ctrl->reg_len = ab->mem_len;
- 
-+	if (ab->fw.amss_data && ab->fw.amss_len > 0) {
-+		/* use MHI firmware file from firmware-N.bin */
-+		mhi_ctrl->fw_data = ab->fw.amss_data;
-+		mhi_ctrl->fw_sz = ab->fw.amss_len;
-+	} else {
-+		/* use the old separate mhi.bin MHI firmware file */
-+		ath11k_core_create_firmware_path(ab, ATH11K_AMSS_FILE,
-+						 ab_pci->amss_path,
-+						 sizeof(ab_pci->amss_path));
-+		mhi_ctrl->fw_image = ab_pci->amss_path;
-+	}
-+
- 	ret = ath11k_mhi_get_msi(ab_pci);
- 	if (ret) {
- 		ath11k_err(ab, "failed to get msi for mhi\n");
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 5bc98180aed4..426d047ff1d5 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2489,25 +2489,39 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab,
- static int ath11k_qmi_m3_load(struct ath11k_base *ab)
- {
- 	struct m3_mem_region *m3_mem = &ab->qmi.m3_mem;
--	const struct firmware *fw;
-+	const struct firmware *fw = NULL;
-+	const void *m3_data;
- 	char path[100];
-+	size_t m3_len;
- 	int ret;
- 
- 	if (m3_mem->vaddr)
- 		/* m3 firmware buffer is already available in the DMA buffer */
- 		return 0;
- 
--	fw = ath11k_core_firmware_request(ab, ATH11K_M3_FILE);
--	if (IS_ERR(fw)) {
--		ret = PTR_ERR(fw);
--		ath11k_core_create_firmware_path(ab, ATH11K_M3_FILE,
--						 path, sizeof(path));
--		ath11k_err(ab, "failed to load %s: %d\n", path, ret);
--		return ret;
-+	if (ab->fw.m3_data && ab->fw.m3_len > 0) {
-+		/* firmware-N.bin had a m3 firmware file so use that */
-+		m3_data = ab->fw.m3_data;
-+		m3_len = ab->fw.m3_len;
-+	} else {
-+		/* No m3 file in firmware-N.bin so try to request old
-+		 * separate m3.bin.
-+		 */
-+		fw = ath11k_core_firmware_request(ab, ATH11K_M3_FILE);
-+		if (IS_ERR(fw)) {
-+			ret = PTR_ERR(fw);
-+			ath11k_core_create_firmware_path(ab, ATH11K_M3_FILE,
-+							 path, sizeof(path));
-+			ath11k_err(ab, "failed to load %s: %d\n", path, ret);
-+			return ret;
-+		}
-+
-+		m3_data = fw->data;
-+		m3_len = fw->size;
- 	}
- 
- 	m3_mem->vaddr = dma_alloc_coherent(ab->dev,
--					   fw->size, &m3_mem->paddr,
-+					   m3_len, &m3_mem->paddr,
- 					   GFP_KERNEL);
- 	if (!m3_mem->vaddr) {
- 		ath11k_err(ab, "failed to allocate memory for M3 with size %zu\n",
-@@ -2516,8 +2530,8 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
- 		goto out;
- 	}
- 
--	memcpy(m3_mem->vaddr, fw->data, fw->size);
--	m3_mem->size = fw->size;
-+	memcpy(m3_mem->vaddr, m3_data, m3_len);
-+	m3_mem->size = m3_len;
- 
- 	ret = 0;
- 
--- 
-2.30.2
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDUvMzAvMjAyMyAxOjIyIEFNLCBGZWxpeCBGaWV0a2F1IHdyb3RlOgo+IE9uIDMwLjA1LjIz
+IDA0OjQyLCBFdmFuIFF1YW4gd3JvdGU6Cj4+IER1ZSB0byBlbGVjdHJpY2FsIGFuZCBtZWNoYW5p
+Y2FsIGNvbnN0cmFpbnRzIGluIGNlcnRhaW4gcGxhdGZvcm0gCj4+IGRlc2lnbnMgdGhlcmUgbWF5
+Cj4+IGJlIGxpa2VseSBpbnRlcmZlcmVuY2Ugb2YgcmVsYXRpdmVseSBoaWdoLXBvd2VyZWQgaGFy
+bW9uaWNzIG9mIHRoZSAKPj4gKEctKUREUiBtZW1vcnkKPj4gY2xvY2tzIHdpdGggbG9jYWwgcmFk
+aW8gbW9kdWxlIGZyZXF1ZW5jeSBiYW5kcyB1c2VkIGJ5IFdpZmkgNi82ZS83LiAKPj4gVG8gbWl0
+aWdhdGUKPj4gcG9zc2libGUgUkZJIGludGVyZmVyZW5jZSBwcm9kdWNlcnMgY2FuIGFkdmVydGlz
+ZSB0aGUgZnJlcXVlbmNpZXMgaW4gCj4+IHVzZSBhbmQKPj4gY29uc3VtZXJzIGNhbiB1c2UgdGhp
+cyBpbmZvcm1hdGlvbiB0byBhdm9pZCB1c2luZyB0aGVzZSBmcmVxdWVuY2llcyBmb3IKPj4gc2Vu
+c2l0aXZlIGZlYXR1cmVzLgo+Pgo+PiBUaGUgd2hvbGUgcGF0Y2ggc2V0IGlzIGJhc2VkIG9uIDYu
+NC1yYzMuIFdpdGggc29tZSBicmllZiAKPj4gaW50cm9kdWN0aW9ucyBhcyBiZWxvdzoKPj4gUGF0
+Y2gxOsKgwqDCoMKgIENvcmUgQUNQSSBpbnRlcmZhY2VzIG5lZWRlZCB0byBzdXBwb3J0IFdCUkYg
+ZmVhdHVyZS4KPj4gUGF0Y2gyIC0gNDogRW5hYmxlIFdCUkYgc3VwcG9ydCBmb3Igc29tZSBNZWRp
+YXRlayBhbmQgUXVhbGNvbW0gd2lmaSAKPj4gZHJpdmVycy4KPj4gUGF0Y2g1IC0gOTogRW5hYmxl
+IFdCUkYgc3VwcG9ydCBmb3IgQU1EIGdyYXBoaWNzIGRyaXZlci4KPj4KPj4gQW5zb24gVHNhbyAo
+MSk6Cj4+IMKgwqAgd2lmaTogYXRoMTFrOiBBZGQgc3VwcG9ydCB0byB0aGUgUXVhbGNvbW0gYXRo
+MTFrIGZvciBBQ1BJIFdCUkYKPj4KPj4gRXZhbiBRdWFuICg2KToKPj4gwqDCoCB3aWZpOiBhdGgx
+Mms6IEFkZCBzdXBwb3J0IHRvIHRoZSBRdWFsY29tbSBhdGgxMmsgZm9yIEFDUEkgV0JSRgo+PiDC
+oMKgIGRybS9hbWQvcG06IHVwZGF0ZSBkcml2ZXJfaWYgYW5kIHBwc21jIGhlYWRlcnMgZm9yIGNv
+bWluZyB3YnJmIAo+PiBmZWF0dXJlCj4+IMKgwqAgZHJtL2FtZC9wbTogc2V0dXAgdGhlIGZyYW1l
+d29yayB0byBzdXBwb3J0IFdpZmkgUkZJIG1pdGlnYXRpb24gCj4+IGZlYXR1cmUKPj4gwqDCoCBk
+cm0vYW1kL3BtOiBhZGQgZmxvb2QgZGV0ZWN0aW9uIGZvciB3YnJmIGV2ZW50cwo+PiDCoMKgIGRy
+bS9hbWQvcG06IGVuYWJsZSBXaWZpIFJGSSBtaXRpZ2F0aW9uIGZlYXR1cmUgc3VwcG9ydCBmb3Ig
+U01VMTMuMC4wCj4+IMKgwqAgZHJtL2FtZC9wbTogZW5hYmxlIFdpZmkgUkZJIG1pdGlnYXRpb24g
+ZmVhdHVyZSBzdXBwb3J0IGZvciBTTVUxMy4wLjcKPj4KPj4gTWFyaW8gTGltb25jaWVsbG8gKDIp
+Ogo+PiDCoMKgIGRyaXZlcnMvYWNwaTogQWRkIHN1cHBvcnQgZm9yIFdpZmkgYmFuZCBSRiBtaXRp
+Z2F0aW9ucwo+PiDCoMKgIG10NzY6IEFkZCBzdXBwb3J0IHRvIHRoZSBNZWRpYXRlayBNVDc5MjEg
+Zm9yIEFDUEkgV0JSRgo+IFdvdWxkbid0IGl0IG1ha2UgbW9yZSBzZW5zZSB0byBwdXQgdGhpcyBp
+biBtYWM4MDIxMSBvciBjZmc4MDIxMSAKPiBpbnN0ZWFkIG9mIGR1cGxpY2F0aW5nIHRoZSBsb2dp
+YyBpbiBkaWZmZXJlbnQgZHJpdmVycz8KPgo+IC0gRmVsaXgKPgpJIHRoaW5rIGl0J3MgZ2VuZXJh
+bGx5IGEgc2Vuc2libGUgcHJvcG9zYWwsIGJ1dCB0aGVyZSBhcmUgYSBmZXcgdGhpbmdzIAp0aGF0
+IG5lZWQgdG8gYmUgYWdyZWVkIHVwb24gdG8gZmluZCB0aGUgcmlnaHQgcGxhY2VzCmZvciBldmVy
+eXRoaW5nLgoKMSkgVGhlIGFjdHVhbCBub3RpZnlpbmcsIHdvdWxkIGl0IG1ha2Ugc2Vuc2UgdG8g
+cHV0IGl0IGRpcmVjdGx5IGludG8gCnRoZXNlIGZ1bmN0aW9ucz8KCmllZWU4MDIxMV9hZGRfY2hh
+bmN0eCAvIGllZWU4MDIxMV9kZWxfY2hhbmN0eAoKMikgIldoZXJlIiBzaG91bGQgdGhlIFdCUkYg
+c3VwcG9ydCBkZXRlY3Rpb24gbmVlZCB0byBoYXBwZW4/Cgp3YnJmX3N1cHBvcnRlZF9wcm9kdWNl
+ciBuZWVkcyB0byBoYXZlIGFuIGFyZ3VtZW50IG9mIHRoZSBBQ1BJIGNvbXBhbmlvbiAKZm9yIHRo
+ZSBkZXZpY2UuCldoYXQgbGV2ZWwgKnNob3VsZCogdGhlIEFDUEkgZGV2aWNlIGJlIGZvdW5kPwpT
+aG91bGQgdGhhdCBzdGlsbCBiZSBpbmRpdmlkdWFsIGRyaXZlcnMgY2FsbGluZyBhIG1hYzgwMjEx
+IGhlbHBlciAKZnVuY3Rpb24gdG8gaW5kaWNhdGUgdGhleSdyZSBvcHRpbmcgaW4/Ck9yIHNob3Vs
+ZCB0aGVyZSB0aGVyZSBiZSBzb21lIENPTkZJR19BQ1BJX1dCUkYgZ2F0ZWQgaGVscGVyIGFzIHBh
+cnQgb2YgYSAKZHJpdmVyIHJlZ2lzdHJhdGlvbj8KCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAph
+dGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2F0aDExawo=
