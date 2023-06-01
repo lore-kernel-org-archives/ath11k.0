@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51FA6C77B7A
-	for <ath11k@archiver.kernel.org>; Thu,  1 Jun 2023 10:31:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5F9DC7EE29
+	for <ath11k@archiver.kernel.org>; Thu,  1 Jun 2023 10:31:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7roO0rLNYorBhLjD8H44Q/2Uf0j+u6HejyPCs03CveQ=; b=crovSdd2NF12q4
-	NgNuld1FqkYO+RdBGhgkIXMqdwvqz7yaHQhIEDk/TdCD6bNb9ZdFd5wrfUoZVF2syV6pj6eeoSvlh
-	z5sKH42mEe8IRdxkunGLr431/fpvtAd6XlfwwNNEqGLlgNAUUkE7PAgVeqYg7YNaEd+C+K7lm4Vg4
-	d8W4eeSgFX6p+XYiF7LPFevd7KH8JwR2Ouukl4QEbac9/UjukLGn5FVW4IVwQpmVeuSbjuGEM0cGR
-	IXucI7n/cOqr1tFw/b4PAYhKCmwYgc/i3CuDAQXlQwoc4YQbg+pziKCpAnKXXmHUOkhoGejGx12ss
-	0IK8/ZX1ckW+cqUj+PPQ==;
+	List-Owner; bh=Y/8p+wOUU5PiG3bbnaGWTRh0/wH+7wFAvmX73OGoqcQ=; b=SknbkciHvRaQhz
+	7W3nbnkVcnkZ4W60NQAaX1q/1akHtsDPMhwVMUjxm2OsUrn/jpvKjQNj8sxowIBcLkDF49VNk1Qds
+	7GDKpiCGV5LodVePxkjHy3UBA53oUV5OvPN3yfoCr+BHssUxUjBnZnFnwhw4BGGP2+exrMjbWFD60
+	TQd047/yRQ0O3sRMnEKALynQ+mNHdJyQ4L5RdQXPHH84LU5BArYkEIq8Bux2Vqfy/dIx6XAB6meKI
+	dIklHTwr/cp/miWxC06ahAa7a2dA640JjmEJ9olabAbashUyG5NNhZyRO83MpF1HiSmBgNUVXj6t1
+	JuENlxVUnOi3BTNnPYww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4faD-0032H9-34;
-	Thu, 01 Jun 2023 10:31:05 +0000
+	id 1q4far-0032pb-12;
+	Thu, 01 Jun 2023 10:31:45 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4faB-0032Ea-1X
+	id 1q4fao-0032mX-1K
 	for ath11k@lists.infradead.org;
-	Thu, 01 Jun 2023 10:31:04 +0000
+	Thu, 01 Jun 2023 10:31:43 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 08CEA63016;
-	Thu,  1 Jun 2023 10:31:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C1D3C4339E;
-	Thu,  1 Jun 2023 10:31:01 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id EBC3564355;
+	Thu,  1 Jun 2023 10:31:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F252C433EF;
+	Thu,  1 Jun 2023 10:31:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1685615462;
-	bh=d0fuOG/QASBwSsrWcPuJdodt8L54UCvAIEmtMbErH8Y=;
+	s=k20201202; t=1685615501;
+	bh=vY0ak8FCDGLIm05/0KdfhWzAPS36q0ukUqV1Wa5Tzn8=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=rrmGUkQ27JcFPLQ/YuHxcBnL+050wDKX+clrbzJJ9XrjFUT1r9yruDtE31scNg4Rk
-	 gIBlOKCLKVL7Ks34fWeqaGp+C0jP7dfyXJAbQKr2t3fSUmsw1daYudONbtW82Yl/Qb
-	 HEhavW2z6zI5/hlgaQ84ci1kvZNRmPugNxM+BHAIABgj+CwjdFkUJUVgkm1Jon1qI4
-	 Dg+zLfB5SaevAHKdtSW+AV/88Vw7+TIcjsVYLqYpSB7K6qvASKZ1BFDU52/kTGmoMV
-	 jNpoxaoae1TJnJg4msN8phKqvvgiFAtohIFFit88l4ELx11kny2u6eswL9Ca//qjot
-	 vcyWAZMvpdoHg==
+	b=i8oMMu6pCwV3vQIrlY2Y2Um7fnQF5y4cwC5i7I59LJGmJ0fpYusdJUyoRVN6vaHsh
+	 BKzY2uq85c8X9Qn0wl1D+by/5xDMDzIhRytR91khPwOXqt+m5yjEgRFgXlJCau+YyN
+	 3MsJ1tuZeQBlm3xX4gU8Z4qFOe8xdJK963/PDkSSpXGe5NpoMHFz048NBkOwVnwy2U
+	 rfEOznEWDg1csc4zRU6VWOsgwz1W8ZgJ4fnE9TKexvxEduJeqVTVnkNLlq+bVUZuZ2
+	 Aj4dA0klWDue/9kQQuVTMg9X8C3YycIwgNuurjM8EAmt3j619hTGHA2obD9hn4GoSt
+	 ZpHTvEXh3WZMA==
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 1/4] wifi: ath11k: remove unused function
- ath11k_tm_event_wmi
+Subject: Re: [PATCH] wifi: ath11k: Add HTT stats for PHY reset case
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230517135934.16408-2-quic_rajkbhag@quicinc.com>
-References: <20230517135934.16408-2-quic_rajkbhag@quicinc.com>
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <20230517141242.2754293-1-quic_mkenna@quicinc.com>
+References: <20230517141242.2754293-1-quic_mkenna@quicinc.com>
+To: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Govindaraj Saminathan <quic_gsaminat@quicinc.com>,
- Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+ Nidhi Jain <quic_nidhjain@quicinc.com>,
+ Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168561545941.17301.10017481813934877130.kvalo@kernel.org>
-Date: Thu,  1 Jun 2023 10:31:01 +0000 (UTC)
+Message-ID: <168561549890.17301.6614952476365220366.kvalo@kernel.org>
+Date: Thu,  1 Jun 2023 10:31:40 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230601_033103_559049_F4F47445 
-X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-CacheID: sfid-20230601_033142_500005_DEBE2774 
+X-CRM114-Status: UNSURE (   8.66  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,25 +76,76 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> wrote:
+Maharaja Kennadyrajan <quic_mkenna@quicinc.com> wrote:
 
-> The function ath11k_tm_event_wmi() is only defined and it is not used
-> anywhere. Hence remove the unused.
+> New HTT stats are added with stats type 37 to
+> provide PHY reset stats and PHY reset counter stats.
+> 
+> PHY reset stats are used to display the current
+> PHY-related operation information such as band, CCA
+> threshold, current operating channel etc.,
+> 
+> PHY reset counter stats are used to display the
+> PHY reset counter values like calibration counts,
+> temperature based recalibration counts etc.,
+> 
+> Usage:
+> echo 37 > /sys/kernel/debug/ieee80211/phyX/ath11k/htt_stats_type
+> cat /sys/kernel/debug/ieee80211/phyx/ath11k/htt_stats
+> 
+> Output:
+> 
+> HTT_PHY_RESET_STATS_TLV:
+> pdev_id = 0
+> chan_mhz = 5180
+> chan_band_center_freq1 = 5210
+> chan_band_center_freq2 = 0
+> chan_phy_mode = 18
+> chan_flags = 0x8
+> chan_num = 36
+> reset_cause = 0x50000
+> prev_reset_cause = 0x50000
+> phy_warm_reset_src = 0x0
+> rx_gain_tbl_mode = 0
+> xbar_val = 0xfac688
+> force_calibration = 0
+> phyrf_mode = 0
+> phy_homechan = 0
+> phy_tx_ch_mask = 0x3
+> phy_rx_ch_mask = 0x3
+> phybb_ini_mask = 0x5
+> phyrf_ini_mask = 0x0
+> phy_dfs_en_mask = 0x0
+> phy_sscan_en_mask = 0x0
+> phy_synth_sel_mask = 0x0
+> phy_adfs_freq = 0
+> cck_fir_settings = 0x0
+> phy_dyn_pri_chan = 6
+> cca_thresh = 0x26232020
+> dyn_cca_status = 0
+> rxdesense_thresh_hw = 0xcfe0afe
+> rxdesense_thresh_sw = 0xcfe0afe
+> 
+> HTT_PHY_RESET_COUNTERS_TLV:
+> pdev_id = 0
+> cf_active_low_fail_cnt = 0
+> cf_active_low_pass_cnt = 0
+> phy_off_through_vreg_cnt = 0
+> force_calibration_cnt = 0
+> rf_mode_switch_phy_off_cnt = 0
 > 
 > Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 > 
-> Signed-off-by: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
-> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+> Signed-off-by: Nidhi Jain <quic_nidhjain@quicinc.com>
+> Signed-off-by: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-3 patches applied to ath-next branch of ath.git, thanks.
+Patch applied to ath-next branch of ath.git, thanks.
 
-86f85575a3f6 wifi: ath11k: remove unused function ath11k_tm_event_wmi()
-b43310e44edc wifi: ath11k: factory test mode support
-8aeba427296b wifi: ath11k: Allow ath11k to boot without caldata in ftm mode
+2d4f9093e2d8 wifi: ath11k: Add HTT stats for PHY reset case
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230517135934.16408-2-quic_rajkbhag@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230517141242.2754293-1-quic_mkenna@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
