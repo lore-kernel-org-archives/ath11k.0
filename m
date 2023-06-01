@@ -4,80 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6723FC7EE2F
-	for <ath11k@archiver.kernel.org>; Tue, 30 May 2023 19:43:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EB60C7EE24
+	for <ath11k@archiver.kernel.org>; Thu,  1 Jun 2023 03:39:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yNYmQQgL0xjqm83MPUTVZnI7dV1U255KhkEkoKWaynM=; b=ZNCd+gLVQdXu+X
-	Zthhs+/0A4hGJMp8RwqfHpHrKUyAXBZoC3safOj4rq/SrwsBOkSezYAF3JXx70n3pBoJ2DN43v47C
-	FPBiFU5606vq7TCloH10jgoFCd0BDmOZXkK+JmRo8icgb9tIXhr1OdYFXOrpTbjb65yg/aevyW/6w
-	AyhCkoLtZAFVL1jHh0/tdc/P5Hr/AeyaABXpevxiX+RTasg6rWMzivcyvfWs9bFW1uf6ZJvIGQNw4
-	9Jzb/uVeNueEyAqb4eA44g35Hj5CiRsPDaRQgNaEfotndrdOQJkWvYksMdpzEPpW8Orx4epDb2bUY
-	vWV6uIqznGvjAb5owR9g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6MBj1YfObcPc64aexkf+TNHAmuQs3O8/l/7Z3AWv6yM=; b=yo28vctfrrdON5
+	wht7q2sNCBiytlkf5YgwjUEbP+IlLLqFhmbNniusRwsm7XNas0dcoqrHiHHUnLYWe/L+1QRAJvgqb
+	dkz92N5FoLtMWSSdumiNUXZX5cIPO6QzZJg+lHFyaSp58PLdKinAy42xg9NHKcc8ewkNEejEoXZCc
+	DV3/+UH66ddvT+DIWGeXMbHyKikygxckPRkZjCR/g8Nce0WKxoGYx7P73iuhXCRx4OdWi/U6Y6Nba
+	FBBDVnT87n2hWHo2eihzT+O+jZ8XMPAeKZIztmvgP2cCaAWnBqIrIrEuE3eSDJP8vY2dWTl2cBiYT
+	G2MDIFTuEiAaLbBaC9/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q45G3-00F0Vu-1G;
-	Tue, 30 May 2023 19:43:51 +0000
-Received: from mga09.intel.com ([134.134.136.24])
+	id 1q4ZA1-001qBI-2J;
+	Thu, 01 Jun 2023 03:39:37 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q45G0-00F0VL-1x;
-	Tue, 30 May 2023 19:43:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685475828; x=1717011828;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nvmOvQoNmAoTsH+wEqnxySP1xPrfiw2o/cbFmdtW2O8=;
-  b=WYxp2O890KRLL3AdgiMMBYpNHoMHtIU0V9llXGSmYoEXSlFO66vShHzN
-   2VZ5leNyUyKtYe8agzLDy3HYTjJIzpb6ewqPhBg4s5SuL4DXvR0v1P20r
-   eyFpLHHdFRW8lK14X1L2y0pBn33yMV0lQGa70eL+DRp+rQztlOtwyYTHM
-   PoKVRvQXZms882TuO+O9NM2Iaj03iv5ZHrjheNlxONMCCi76y5gtLmA2r
-   1q8swInPZNM3Ckymzb7w1QVq6EZnz7FhacYkj+e0Tl31kQisFz4mL2Lk3
-   w+TAs73LHQULX0x1TW4eZrlV875KLrz9I48nJnrbEuHtyV3atI8xC+bVn
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="357410334"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; 
-   d="scan'208";a="357410334"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2023 12:43:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="776476045"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; 
-   d="scan'208";a="776476045"
-Received: from lkp-server01.sh.intel.com (HELO fb1ced2c09fb) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 30 May 2023 12:43:39 -0700
-Received: from kbuild by fb1ced2c09fb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1q45Fr-0000lq-06;
-	Tue, 30 May 2023 19:43:39 +0000
-Date: Wed, 31 May 2023 03:43:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Evan Quan <evan.quan@amd.com>, rafael@kernel.org, lenb@kernel.org,
-	alexander.deucher@amd.com, christian.koenig@amd.com,
-	Xinhui.Pan@amd.com, airlied@gmail.com, daniel@ffwll.ch,
-	kvalo@kernel.org, nbd@nbd.name, lorenzo@kernel.org,
-	ryder.lee@mediatek.com, shayne.chen@mediatek.com,
-	sean.wang@mediatek.com, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, Mario.Limonciello@amd.com,
-	Lijo.Lazar@amd.com
-Cc: oe-kbuild-all@lists.linux.dev, ath12k@lists.infradead.org,
-	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
-	amd-gfx@lists.freedesktop.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH 9/9] drm/amd/pm: enable Wifi RFI mitigation feature
- support for SMU13.0.7
-Message-ID: <202305310314.EAMX2AeE-lkp@intel.com>
-References: <20230530024227.2139632-10-evan.quan@amd.com>
+	id 1q4Z9x-001q7C-2w
+	for ath11k@lists.infradead.org;
+	Thu, 01 Jun 2023 03:39:35 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3513M9Hc021558;
+	Thu, 1 Jun 2023 03:38:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=aMIxp0e1AUChi9hZtcZV76sjyrYmsthynFspu1elmM8=;
+ b=PPIlJ6gNl0RHCBJCF06m3X7YNizy39f5TNEuz8i2ipe0F6U3DnOH7KLopK8qExE2qYaQ
+ 5LB54Phrm6BDzI1aDEWDSGCPzeBdzbcgP62zXE3PvXD1vSZLDnGfBs4WSYqx34aSMmzQ
+ dJaEFONvt2jGaEynjlNEXT4QCfANN1TuPRmge192OW/0KrAiiile9XlO1s78W+VlzQD4
+ /nf0bkOzY3/H4lfTz/8hG4fdXsEexoX3TRlteD9A8M9HxLUFjxsaswfZK5AkJmkxbJSc
+ wp0uhwzQPqbNZUyFYObzkSswInmHytk2g9wlkxkepc2UT61qkEtEvAdgeqB8nsunjX4H hg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxkbu00rr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Jun 2023 03:38:52 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3513cpII026310
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Jun 2023 03:38:51 GMT
+Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 31 May 2023 20:38:50 -0700
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH] wifi: ath11k: fix boot failure with one MSI vector
+Date: Thu, 1 Jun 2023 11:38:40 +0800
+Message-ID: <20230601033840.2997-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230530024227.2139632-10-evan.quan@amd.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 3UlFep7QibqqMsovCa6mOJSCcK8_xazS
+X-Proofpoint-GUID: 3UlFep7QibqqMsovCa6mOJSCcK8_xazS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-01_01,2023-05-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ spamscore=0 malwarescore=0 phishscore=0 clxscore=1011 priorityscore=1501
+ suspectscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2306010029
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230530_124348_737567_69693BAA 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20230531_203934_117161_FCFABBA3 
+X-CRM114-Status: GOOD (  19.60  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,54 +93,105 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Evan,
+Commit 5b32b6dd96633 ("ath11k: Remove core PCI references from
+PCI common code") breaks with one MSI vector because it moves
+affinity setting after IRQ request, see below log:
 
-kernel test robot noticed the following build errors:
+[ 1417.278835] ath11k_pci 0000:02:00.0: failed to receive control response completion, polling..
+[ 1418.302829] ath11k_pci 0000:02:00.0: Service connect timeout
+[ 1418.302833] ath11k_pci 0000:02:00.0: failed to connect to HTT: -110
+[ 1418.303669] ath11k_pci 0000:02:00.0: failed to start core: -110
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on kvalo-ath/ath-next wireless-next/main wireless/main]
-[cannot apply to linus/master v6.4-rc4 next-20230530]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The detail is, if do affinity request after IRQ activated,
+which is done in request_irq(), kernel caches that request and
+returns success directly. Later when a subsequent MHI interrupt is
+fired, kernel will do the real affinity setting work, as a result,
+changs the MSI vector. However at that time host has configured
+old vector to hardware, so host never receives CE or DP interrupts.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Evan-Quan/drivers-acpi-Add-support-for-Wifi-band-RF-mitigations/20230530-104541
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230530024227.2139632-10-evan.quan%40amd.com
-patch subject: [PATCH 9/9] drm/amd/pm: enable Wifi RFI mitigation feature support for SMU13.0.7
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20230531/202305310314.EAMX2AeE-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.3.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/8c935eeab7a439739f3dd369516f18ddd86ef348
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Evan-Quan/drivers-acpi-Add-support-for-Wifi-band-RF-mitigations/20230530-104541
-        git checkout 8c935eeab7a439739f3dd369516f18ddd86ef348
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+Fix it by setting affinity before registering MHI controller
+where host is, for the first time, doing IRQ request.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202305310314.EAMX2AeE-lkp@intel.com/
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
 
-All errors (new ones prefixed by >>):
+Fixes: 5b32b6dd9663 ("ath11k: Remove core PCI references from PCI common code")
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/pci.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-   arm-linux-gnueabi-ld: drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.o: in function `smu_v13_0_0_set_wbrf_exclusion_ranges':
-   smu_v13_0_0_ppt.c:(.text+0xfa8): undefined reference to `__aeabi_uldivmod'
-   arm-linux-gnueabi-ld: smu_v13_0_0_ppt.c:(.text+0xfc0): undefined reference to `__aeabi_uldivmod'
-   arm-linux-gnueabi-ld: smu_v13_0_0_ppt.c:(.text+0xfd4): undefined reference to `__aeabi_uldivmod'
-   arm-linux-gnueabi-ld: drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.o: in function `smu_v13_0_7_set_wbrf_exclusion_ranges':
->> smu_v13_0_7_ppt.c:(.text+0xe9c): undefined reference to `__aeabi_uldivmod'
->> arm-linux-gnueabi-ld: smu_v13_0_7_ppt.c:(.text+0xeb4): undefined reference to `__aeabi_uldivmod'
-   arm-linux-gnueabi-ld: drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.o:smu_v13_0_7_ppt.c:(.text+0xec8): more undefined references to `__aeabi_uldivmod' follow
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 7b33731a50ee..a67576226380 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -850,10 +850,16 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ 	if (ret)
+ 		goto err_pci_disable_msi;
+ 
++	ret = ath11k_pci_set_irq_affinity_hint(ab_pci, cpumask_of(0));
++	if (ret) {
++		ath11k_err(ab, "failed to set irq affinity %d\n", ret);
++		goto err_pci_disable_msi;
++	}
++
+ 	ret = ath11k_mhi_register(ab_pci);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to register mhi: %d\n", ret);
+-		goto err_pci_disable_msi;
++		goto err_irq_affinity_cleanup;
+ 	}
+ 
+ 	ret = ath11k_hal_srng_init(ab);
+@@ -874,12 +880,6 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ 		goto err_ce_free;
+ 	}
+ 
+-	ret = ath11k_pci_set_irq_affinity_hint(ab_pci, cpumask_of(0));
+-	if (ret) {
+-		ath11k_err(ab, "failed to set irq affinity %d\n", ret);
+-		goto err_free_irq;
+-	}
+-
+ 	/* kernel may allocate a dummy vector before request_irq and
+ 	 * then allocate a real vector when request_irq is called.
+ 	 * So get msi_data here again to avoid spurious interrupt
+@@ -888,19 +888,16 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ 	ret = ath11k_pci_config_msi_data(ab_pci);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to config msi_data: %d\n", ret);
+-		goto err_irq_affinity_cleanup;
++		goto err_free_irq;
+ 	}
+ 
+ 	ret = ath11k_core_init(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to init core: %d\n", ret);
+-		goto err_irq_affinity_cleanup;
++		goto err_free_irq;
+ 	}
+ 	return 0;
+ 
+-err_irq_affinity_cleanup:
+-	ath11k_pci_set_irq_affinity_hint(ab_pci, NULL);
+-
+ err_free_irq:
+ 	ath11k_pcic_free_irq(ab);
+ 
+@@ -913,6 +910,9 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ err_mhi_unregister:
+ 	ath11k_mhi_unregister(ab_pci);
+ 
++err_irq_affinity_cleanup:
++	ath11k_pci_set_irq_affinity_hint(ab_pci, NULL);
++
+ err_pci_disable_msi:
+ 	ath11k_pci_free_msi(ab_pci);
+ 
 
+base-commit: 4ab7f08db5310ded48a5c1f3ec3f2e177ba6b1c2
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
 -- 
 ath11k mailing list
