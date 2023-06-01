@@ -4,81 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82841C77B7A
-	for <ath11k@archiver.kernel.org>; Thu,  1 Jun 2023 05:19:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04C4AC77B7E
+	for <ath11k@archiver.kernel.org>; Thu,  1 Jun 2023 09:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=HhIlLjRHwJQApnt7LYAjQuMjfysvKzmwsgOktUTT/hI=; b=ZPdp2C1g7bMa+0
-	Y9uUi1zAiWim9NxyNI9o6ADf9sjqYf3Ei/MYCor+tLIJuDSXlQnOPxAXOM/UpqfmtK0NDsT27dwy1
-	KFQK6W4Ca99eQL00akF0z8069d9gnFIdn0N48Y7n4FkHu41XzZXMPUVxkIHyTHsFUoKprAbBFbaGq
-	bf2CswusIGcetlzygfGp6E94x9OUrNp4TTfR5ZGdgU5FWoS47LPzlkQGUmMOZUMxH8K2lAek73ZUH
-	LgBJQSEyFObLEBGGzJouSYpttehGeE+Ejn5s6CmvG/1cVdSqH4keV+VonbbVgHuIRCJVjoUMvaYz6
-	A5O8SwxMqGGTFQN1XS2w==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UDzgmmtv+PMEW7goWYrFYMaq2rsx3fgpPGmUIOOjE60=; b=IKsL6vkdttWoHc
+	ecBNZdc5bMBnnRH0SGLdvuJk0dWWox/o0JJZlkXP3JISARNumkMfi1Pslh8MM4xaFCgA3AfjG9dU0
+	00kUpAu8RKUeoI0yMjsCIiG/62/uAci6rJRKIY0vImBwc9Nr/GcQyXVWX2GqsImcAXpe+8sSUTF6/
+	xq30Ddd4pD7D7VaxRmafKZDzUWbsvBuS/YKYAAR1UI9vEzwH9GqDkvKNnWhdt8M5XKzS/V0Z69Uu0
+	h1Vq+KZb+/XC27FanEyMZ79NynAkKpGAdapIlQ6ER/ccolNtv2COUQxLrpjF0aaIb3H7v2xJrvI64
+	1LyxmWYci6T2jZ3Qb2NA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4ais-0020oU-23;
-	Thu, 01 Jun 2023 05:19:42 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1q4eXM-002ifI-19;
+	Thu, 01 Jun 2023 09:24:04 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q4aip-0020me-1j
+	id 1q4eXJ-002iee-20
 	for ath11k@lists.infradead.org;
-	Thu, 01 Jun 2023 05:19:41 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 351578ox031911;
-	Thu, 1 Jun 2023 05:19:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=Yy3oREs4FT+zq89LduHz1C83zuAHJT623vPqz8MkuEU=;
- b=EOH9VQZAuEUxQfeBTuodKPMomatDtimG66vOo9fbfr10BmTFsSkCUWYkxy4sVIDCV+ha
- XnDK54sq6c8kqBBFYprp92owUoEI38W9MPa2ER/aAN0q4VZbloiUd1QG+oVl2xWDX4Yx
- tsD6EONkRaj9O/h/E7Wqp/6dVHcrepzZy3hTsR1CZK+vsb5vbd8PNUTR+tVa0htcm9VT
- ob0aIUEWBpGTlxmFyF68HIIxk/UM5KaRvVhQ1TFhldYl6tTqehuDS6+wTXVb3jT3IuIW
- i5C5rTV66CxC2193hkJV4eTnX9jNIYA2UQQ2OHZQjr7yroiG/AnpKiiXGYaD+VYdcFNE Zg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxkbu05de-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Jun 2023 05:19:32 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3515JVd5011445
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Jun 2023 05:19:31 GMT
-Received: from rajkbhag-linux.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 31 May 2023 22:19:28 -0700
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Venkateswara Naralasetty
-	<quic_vnaralas@quicinc.com>,
-        Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Subject: [PATCH v2] wifi: ath11k: update proper pdev/vdev id for testmode command
-Date: Thu, 1 Jun 2023 10:49:07 +0530
-Message-ID: <20230601051907.13679-1-quic_rajkbhag@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	Thu, 01 Jun 2023 09:24:02 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id E16BA64276;
+	Thu,  1 Jun 2023 09:24:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64814C433EF;
+	Thu,  1 Jun 2023 09:23:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1685611440;
+	bh=0O/GI9jziIcE0yjMclqjVCTlKdf6tJ8wFmi3ZOU/5vY=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=SPO8mQSJq4TScaZqcrB3UdhbYWsgwaaTivSNaa1ZuhFbA9XOt76JKWVWZKPHGISb9
+	 boUC5jgBPM8Zz2tfswImC3lDPR+DGWX5i6IwPWhoMe1E4hmDhxOyMDLVizFWzEibH7
+	 ozdeKphKmG9w6SyT4YRZ3HzRHyFnC1w9ULIroiARpLA1+IQ7nqtrVxm7g3qgPv5uW+
+	 au71NCMfieoYboypMC9yWCf/sBW56nfBlmwIlVHG/QAYWaho9CHxOlxC6suuBPJ23C
+	 QVfI794e7b7vUlE2CUTvtUI8UC1nJ44dUveFCAkTd7gO2ZblnFbZzokPvDHqQxfT3b
+	 E7e23naon+P0g==
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: zcGklWjSgGuDuTXtOqyWU9ZXJc-AFfOk
-X-Proofpoint-GUID: zcGklWjSgGuDuTXtOqyWU9ZXJc-AFfOk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_02,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- spamscore=0 malwarescore=0 phishscore=0 clxscore=1011 priorityscore=1501
- suspectscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306010045
+Subject: Re: [PATCH] wifi: ath11k: add support default regdb while searching
+ board-2.bin for WCN6855
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230517133959.8224-1-quic_wgong@quicinc.com>
+References: <20230517133959.8224-1-quic_wgong@quicinc.com>
+To: Wen Gong <quic_wgong@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_wgong@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <168561143721.9854.3957851649423510026.kvalo@kernel.org>
+Date: Thu,  1 Jun 2023 09:23:59 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230531_221939_700283_66298886 
-X-CRM114-Status: GOOD (  20.22  )
+X-CRM114-CacheID: sfid-20230601_022401_698663_25E6C6E2 
+X-CRM114-Status: UNSURE (   9.17  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,100 +76,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+Wen Gong <quic_wgong@quicinc.com> wrote:
 
-User can extend test mode command support to set vdev and pdev params
-for debug purpose at run time by sending vdev/pdev param set command
-through the testmode command interface.
+> Sometimes board-2.bin does not have the regdb data which matched the
+> parameters such as vendor, device, subsystem-vendor, subsystem-device
+> and etc. Add default regdb data with 'bus=%s' into board-2.bin for
+> WCN6855, then ath11k use 'bus=pci' to search regdb data in board-2.bin
+> for WCN6855.
+> 
+> kernel: [  122.515808] ath11k_pci 0000:03:00.0: boot using board name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
+> kernel: [  122.517240] ath11k_pci 0000:03:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 6179564
+> kernel: [  122.517280] ath11k_pci 0000:03:00.0: failed to fetch regdb data for bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262 from ath11k/WCN6855/hw2.0/board-2.bin
+> kernel: [  122.517464] ath11k_pci 0000:03:00.0: boot using board name 'bus=pci'
+> kernel: [  122.518901] ath11k_pci 0000:03:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 6179564
+> kernel: [  122.518915] ath11k_pci 0000:03:00.0: board name
+> kernel: [  122.518917] ath11k_pci 0000:03:00.0: 00000000: 62 75 73 3d 70 63 69                             bus=pci
+> kernel: [  122.518918] ath11k_pci 0000:03:00.0: boot found match regdb data for name 'bus=pci'
+> kernel: [  122.518920] ath11k_pci 0000:03:00.0: boot found regdb data for 'bus=pci'
+> kernel: [  122.518921] ath11k_pci 0000:03:00.0: fetched regdb
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+> 
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Fill the proper pdev/vdev id in driver since, pdev/vdev id details may
-not be available at user space. It will make sure that the proper
-vdev/pdev ids are sent to firmware.
+Patch applied to ath-next branch of ath.git, thanks.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+88ca89202f8e wifi: ath11k: add support default regdb while searching board-2.bin for WCN6855
 
-Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
----
-Depends-On:
-	[v4,3/4] wifi: ath11k: factory test mode support
-v2:
-- Rebased and validated on latest version (v4) of dependency patch.
----
-
- drivers/net/wireless/ath/ath11k/testmode.c | 37 ++++++++++++++++++++--
- 1 file changed, 34 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/testmode.c b/drivers/net/wireless/ath/ath11k/testmode.c
-index 9dbe88e0546b..c5caa3449751 100644
---- a/drivers/net/wireless/ath/ath11k/testmode.c
-+++ b/drivers/net/wireless/ath/ath11k/testmode.c
-@@ -290,13 +290,16 @@ static int ath11k_tm_cmd_testmode_start(struct ath11k *ar, struct nlattr *tb[])
- 	return ret;
- }
- 
--static int ath11k_tm_cmd_wmi(struct ath11k *ar, struct nlattr *tb[])
-+static int ath11k_tm_cmd_wmi(struct ath11k *ar, struct nlattr *tb[],
-+			     struct ieee80211_vif *vif)
- {
- 	struct ath11k_pdev_wmi *wmi = ar->wmi;
- 	struct sk_buff *skb;
-+	struct ath11k_vif *arvif;
- 	u32 cmd_id, buf_len;
--	int ret;
-+	int ret, tag;
- 	void *buf;
-+	u32 *ptr;
- 
- 	mutex_lock(&ar->conf_mutex);
- 
-@@ -320,6 +323,34 @@ static int ath11k_tm_cmd_wmi(struct ath11k *ar, struct nlattr *tb[])
- 
- 	cmd_id = nla_get_u32(tb[ATH11K_TM_ATTR_WMI_CMDID]);
- 
-+	/* Make sure that the buffer length is long enough to
-+	 * hold TLV and pdev/vdev id.
-+	 */
-+	if (buf_len < sizeof(struct wmi_tlv) + sizeof(u32)) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
-+
-+	ptr = buf;
-+	tag = FIELD_GET(WMI_TLV_TAG, *ptr);
-+
-+	/* pdev/vdev id start after TLV header */
-+	ptr++;
-+
-+	if (tag == WMI_TAG_PDEV_SET_PARAM_CMD)
-+		*ptr = ar->pdev->pdev_id;
-+
-+	if (ar->ab->fw_mode != ATH11K_FIRMWARE_MODE_FTM &&
-+	    (tag == WMI_TAG_VDEV_SET_PARAM_CMD || tag == WMI_TAG_UNIT_TEST_CMD)) {
-+		if (vif) {
-+			arvif = (struct ath11k_vif *)vif->drv_priv;
-+			*ptr = arvif->vdev_id;
-+		} else {
-+			ret = -EINVAL;
-+			goto out;
-+		}
-+	}
-+
- 	ath11k_dbg(ar->ab, ATH11K_DBG_TESTMODE,
- 		   "testmode cmd wmi cmd_id %d buf length %d\n",
- 		   cmd_id, buf_len);
-@@ -453,7 +484,7 @@ int ath11k_tm_cmd(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
- 	case ATH11K_TM_CMD_GET_VERSION:
- 		return ath11k_tm_cmd_get_version(ar, tb);
- 	case ATH11K_TM_CMD_WMI:
--		return ath11k_tm_cmd_wmi(ar, tb);
-+		return ath11k_tm_cmd_wmi(ar, tb, vif);
- 	case ATH11K_TM_CMD_TESTMODE_START:
- 		return ath11k_tm_cmd_testmode_start(ar, tb);
- 	case ATH11K_TM_CMD_WMI_FTM:
 -- 
-2.17.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20230517133959.8224-1-quic_wgong@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
