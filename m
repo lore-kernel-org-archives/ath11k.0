@@ -4,72 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D662C7EE2C
-	for <ath11k@archiver.kernel.org>; Fri,  2 Jun 2023 11:20:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EA46C7EE2F
+	for <ath11k@archiver.kernel.org>; Fri,  2 Jun 2023 11:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6zkmsN6ggF/j2C2YGbJujLmzttzsNjhZWz/kGMCC8Eo=; b=M80t3qWas/Zm1j
-	9G9BCCrULrUYIbvif//xLyyydQtJxBkq4aFYcjLnG5hsZv3PjRuyjRe4CbGNfZtv+Y7ksYpCOMEmA
-	+5f/ybY9vOXm8x9RLFsSWaqtLsxMwwZFiaNcD4WZo/8LV6EWXoQzs4dWd1XBPfIv7Dy4b/H92iChN
-	JsKhOhJIXB6aTRsd2W1PGo9ABXVroAg+BKIK5hERSduydXjuKevpsDdJ8FM1cG83DO+OTapceHM+J
-	8fgAk7KWBFSaFI5Fr+GhiaCMZcLcc968OAi+zJMV98t8YwkCMVjFsex6D4Iph/182f/YRFwm1fXlh
-	8RFgoymoqDYz54exoe0w==;
+	List-Owner; bh=b78X19/nAH/rOvNVxxWCCfQVOkFgBQnQ/OosHZ0wIAQ=; b=S/WBVMkW+WCfTG
+	8VfqSzQyR31cjRHIQqPavFUHdY1454onERRbyhSE1Jps2A2+J6Bk8ULu+pxP7Tq/QUaByfRjx6Dnp
+	lS4sB1soUzVq65aBblfXRKg54AyvuJ4/74ymQrElXt8kGoToQd6OrS7R8o6JWliwUfyjscAasBUBs
+	13D39vIS2o9ROSB5Xq3INAPNJ7dt6/QsPhuoD5LgDlzHYfvj6Gs25Ib4c6TeSl1EFZhrtbUuI+5Pn
+	+KTvJzL8PXwZWRjqYBXWLm4Lk/MgVs5BP3IUHQM9pUQi9YiD9DaTrQ7lWfsz7Vsg8ogwLWivSjAlm
+	ks9ZSMLhRCTwjwxgS1zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q52pg-006l0e-1Y;
-	Fri, 02 Jun 2023 11:20:36 +0000
-Received: from mga01.intel.com ([192.55.52.88])
+	id 1q53HG-006njX-2N;
+	Fri, 02 Jun 2023 11:49:06 +0000
+Received: from mga09.intel.com ([134.134.136.24])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q52pd-006kzI-39
+	id 1q53HE-006ng4-02
 	for ath11k@lists.infradead.org;
-	Fri, 02 Jun 2023 11:20:35 +0000
+	Fri, 02 Jun 2023 11:49:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685704833; x=1717240833;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ibySYrNNT3IVJib73vqU6Prg/GfysDkIt45VKN1+9iI=;
-  b=l/IpKuaTSIFtEhe5jYzicbkBSsUiJDRB0PpccU+7My9GeG2z2t26QLPc
-   KcWeBhXpv77rEPRKs8/2kuU2cPNhHLEENtM2CjNY5CDSCOtcqusobwL0A
-   W49S/xLiEMPi5D2K+POavvKhFQBBHjzVW7l4+d3ATln9S+eItYo2IjSbE
-   XDB9LBMQ+UNB2qpRqi6XZNq9fU6bD3O+LBy511Lx049goW0Urr6VV+jBm
-   4sA+OV6VbnmoY0XotzTMNF8WHcqbwmvL93V26qNp/KrSCeyRL/QwgIBzG
-   lAWQ2TPY+a8FAOEPCOJsZQa2y84eq1Av5EnWb8JLgVrlr0xkxUmP4Ol6b
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="384127856"
+  t=1685706544; x=1717242544;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=56pRsAda1UvobTeyQtWYC5Q58IjfGAVi8hUctvKnaUY=;
+  b=T1cv+Z/zHrf79NmnMy91IpOzSa2RFpqU8QjBvpk1brKJpRMrB+geFq1L
+   eAMgrC7/7fMaeXKoIIzVrIbjFIQzKf63730iBAqdCD4L+VYIO9yKUND1q
+   rXZSVIlnq5Z8oZ6kWZrKi/NItJl98XJkVOFiAoWFg4I+b7/tXB1fk3XQF
+   Tg3DzZHDi5VhFnn6e4rop4oshnylG/DeP5GgCD1ENLbQCYQY4oWeJexA5
+   4ufbAb6ymAcUB/UTLDfyELpy69jJI74CUKJFIauFwGW89JfpLoOzdcyHI
+   PauzCkbwbYKfyrtke+S6nypQOF2lD9mrepKtpk8HoX3Lk5dgvDoAUTolc
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358279765"
 X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; 
-   d="scan'208";a="384127856"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2023 04:20:28 -0700
+   d="scan'208";a="358279765"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2023 04:49:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="685288774"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="707819534"
 X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; 
-   d="scan'208";a="685288774"
-Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 02 Jun 2023 04:20:26 -0700
-Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1q52pV-0000Nl-2C;
-	Fri, 02 Jun 2023 11:20:25 +0000
-Date: Fri, 2 Jun 2023 19:19:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Hari Chandrakanthan <quic_haric@quicinc.com>, quic_kvalo@quicinc.com,
-	ath11k@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-wireless@vger.kernel.org,
-	Hari Chandrakanthan <quic_haric@quicinc.com>
-Subject: Re: [PATCH] wifi: ath11k: add tx delay to TSF
-Message-ID: <202306021958.bdB3k531-lkp@intel.com>
-References: <1685698250-722-1-git-send-email-quic_haric@quicinc.com>
+   d="scan'208";a="707819534"
+Received: from rspatil-mobl3.gar.corp.intel.com (HELO ijarvine-MOBL2.ger.corp.intel.com) ([10.251.208.112])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2023 04:48:57 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Emmanuel Grumbach <emmanuel.grumbach@intel.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [RFC PATCH v1 10/13] wifi: ath11k: Use pci_disable/enable_link_state()
+Date: Fri,  2 Jun 2023 14:47:47 +0300
+Message-Id: <20230602114751.19671-11-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230602114751.19671-1-ilpo.jarvinen@linux.intel.com>
+References: <20230602114751.19671-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1685698250-722-1-git-send-email-quic_haric@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230602_042034_028682_D0A59EB4 
-X-CRM114-Status: GOOD (  12.65  )
+X-CRM114-CacheID: sfid-20230602_044904_095521_8684EA8F 
+X-CRM114-Status: GOOD (  11.37  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,74 +92,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Hari,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on kvalo-ath/ath-next]
-[also build test WARNING on next-20230602]
-[cannot apply to linus/master v6.4-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Hari-Chandrakanthan/wifi-ath11k-add-tx-delay-to-TSF/20230602-173351
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
-patch link:    https://lore.kernel.org/r/1685698250-722-1-git-send-email-quic_haric%40quicinc.com
-patch subject: [PATCH] wifi: ath11k: add tx delay to TSF
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20230602/202306021958.bdB3k531-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 12.3.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/493e1ad70fff68a5c06b59683ebd453dafcafd19
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Hari-Chandrakanthan/wifi-ath11k-add-tx-delay-to-TSF/20230602-173351
-        git checkout 493e1ad70fff68a5c06b59683ebd453dafcafd19
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=alpha olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash drivers/net/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306021958.bdB3k531-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/wireless/ath/ath11k/wmi.c:8609:6: warning: no previous prototype for 'ath11k_wmi_event_tbttoffset_update' [-Wmissing-prototypes]
-    8609 | void ath11k_wmi_event_tbttoffset_update(struct ath11k_base *ab, struct sk_buff *skb)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/ath11k_wmi_event_tbttoffset_update +8609 drivers/net/wireless/ath/ath11k/wmi.c
-
-  8608	
-> 8609	void ath11k_wmi_event_tbttoffset_update(struct ath11k_base *ab, struct sk_buff *skb)
-  8610	{
-  8611		struct wmi_tbtt_offset_info tbtt_offset_info;
-  8612		int ret;
-  8613	
-  8614		ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
-  8615					  ath11k_wmi_tbtt_offset_event_parser,
-  8616					  &tbtt_offset_info);
-  8617		if (ret) {
-  8618			ath11k_warn(ab, "failed to parse tbtt tlv %d\n", ret);
-  8619		}
-  8620	}
-  8621	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+YXRoMTFrIGRyaXZlciBhZGp1c3RzIEFTUE0gc3RhdGUgaXRzZWxmIHdoaWNoIGxlYXZlcyBBU1BN
+IHNlcnZpY2UKZHJpdmVyIGluIFBDSSBjb3JlIHVuYXdhcmUgb2YgdGhlIGxpbmsgc3RhdGUgY2hh
+bmdlcyB0aGUgZHJpdmVyCmltcGxlbWVudGVkLgoKQ2FsbCBwY2lfZGlzYWJsZV9saW5rX3N0YXRl
+KCkgYW5kIHBjaV9lbmFibGVfbGlua19zdGF0ZSgpIGluc3RlYWQgb2YKYWRqdXN0aW5nIEFTUE1D
+IGZpZWxkIGluIExOS0NUTCBkaXJlY3RseSBpbiB0aGUgZHJpdmVyIGFuZCBsZXQgUENJIGNvcmUK
+aGFuZGxlIHRoZSBBU1BNIHN0YXRlIG1hbmFnZW1lbnQuCgpTaWduZWQtb2ZmLWJ5OiBJbHBvIErD
+pHJ2aW5lbiA8aWxwby5qYXJ2aW5lbkBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9uZXQv
+d2lyZWxlc3MvYXRoL2F0aDExay9wY2kuYyB8IDEwICsrKy0tLS0tLS0KIDEgZmlsZSBjaGFuZ2Vk
+LCAzIGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9u
+ZXQvd2lyZWxlc3MvYXRoL2F0aDExay9wY2kuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9h
+dGgxMWsvcGNpLmMKaW5kZXggNmJhNGNlZjZiMWM3Li5hOWVhYzUxNjU4ZjYgMTAwNjQ0Ci0tLSBh
+L2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcGNpLmMKKysrIGIvZHJpdmVycy9uZXQv
+d2lyZWxlc3MvYXRoL2F0aDExay9wY2kuYwpAQCAtNTgxLDE5ICs1ODEsMTUgQEAgc3RhdGljIHZv
+aWQgYXRoMTFrX3BjaV9hc3BtX2Rpc2FibGUoc3RydWN0IGF0aDExa19wY2kgKmFiX3BjaSkKIAkJ
+ICAgdTE2X2dldF9iaXRzKGFiX3BjaS0+bGlua19jdGwsIFBDSV9FWFBfTE5LQ1RMX0FTUE1fTDEp
+KTsKIAogCS8qIGRpc2FibGUgTDBzIGFuZCBMMSAqLwotCXBjaWVfY2FwYWJpbGl0eV9jbGVhcl93
+b3JkKGFiX3BjaS0+cGRldiwgUENJX0VYUF9MTktDVEwsCi0JCQkJICAgUENJX0VYUF9MTktDVExf
+QVNQTUMpOwotCisJcGNpX2Rpc2FibGVfbGlua19zdGF0ZShhYl9wY2ktPnBkZXYsIFBDSUVfTElO
+S19TVEFURV9MMFMgfCBQQ0lFX0xJTktfU1RBVEVfTDEpOwogCXNldF9iaXQoQVRIMTFLX1BDSV9B
+U1BNX1JFU1RPUkUsICZhYl9wY2ktPmZsYWdzKTsKIH0KIAogc3RhdGljIHZvaWQgYXRoMTFrX3Bj
+aV9hc3BtX3Jlc3RvcmUoc3RydWN0IGF0aDExa19wY2kgKmFiX3BjaSkKIHsKIAlpZiAodGVzdF9h
+bmRfY2xlYXJfYml0KEFUSDExS19QQ0lfQVNQTV9SRVNUT1JFLCAmYWJfcGNpLT5mbGFncykpCi0J
+CXBjaWVfY2FwYWJpbGl0eV9jbGVhcl9hbmRfc2V0X3dvcmQoYWJfcGNpLT5wZGV2LCBQQ0lfRVhQ
+X0xOS0NUTCwKLQkJCQkJCSAgIFBDSV9FWFBfTE5LQ1RMX0FTUE1DLAotCQkJCQkJICAgYWJfcGNp
+LT5saW5rX2N0bCAmCi0JCQkJCQkgICBQQ0lfRVhQX0xOS0NUTF9BU1BNQyk7CisJCXBjaV9lbmFi
+bGVfbGlua19zdGF0ZShhYl9wY2ktPnBkZXYsIGFiX3BjaS0+bGlua19jdGwgJgorCQkJCSAgICAg
+IChQQ0lFX0xJTktfU1RBVEVfTDBTIHwgUENJRV9MSU5LX1NUQVRFX0wxKSk7CiB9CiAKIHN0YXRp
+YyBpbnQgYXRoMTFrX3BjaV9wb3dlcl91cChzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiKQotLSAKMi4z
+MC4yCgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcK
+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
