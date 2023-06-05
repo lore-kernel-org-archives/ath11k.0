@@ -4,85 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8760FC7EE29
-	for <ath11k@archiver.kernel.org>; Fri,  2 Jun 2023 17:17:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1080EC7EE24
+	for <ath11k@archiver.kernel.org>; Mon,  5 Jun 2023 21:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cVkAyKuf4Q196InHauYjmPEbJhwy/A/Ffsx/Cnv2ikE=; b=T0sxKEfzxGxbv6
-	wVnxEZZKvBfQBl3YMZKLxSzIkfCOXke+H2amLq2ZJl8uKnZ8wm//Y0yVFwuxRbHRLRSe8p+D1e4iG
-	3NF/yWiBu6myhjPOMTE1h82k7uAvWUdShOsFKkrRzjegrV62bFhCClKAaLwAzjVG2U4wmpMEH9bPJ
-	nZak82F8Cg/G89NiWZS2UGH8FDg2Yagq3eBDPzfXStj7bEgV/H7vJ8675WOhjitxdZWpvVTOc7ttg
-	G2/TsChz/WfqGugMVz7FdGaovinDUUji6GwMnPQQ1AtTdTo59zOD9fCjNCAHUO83K9pIcKhfCCiYv
-	Qt81PVRC8UDZ/iX7Ud6Q==;
+	List-Unsubscribe:List-Id:Subject:From:To:MIME-Version:Date:Message-ID:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9CanTtjbFHTCOYllm0vHRAHGrgsMC7Et1lYfIxfUJYw=; b=t9k2xcxjTFNhCZ
+	Vk7Ylq9sqSM7Sp04IRmTZwTVqpXI+YA6RFt89qGa17cIxjMyMjIYIeq3y2VpcKUxenTsLarVHpZeE
+	E0/bjJUfA2dx7NyZgbrn/65ZcmIYEY9YDLmyGyyyOQNLvtw/nke2EpYIj05ZgZ0rygbxNP+rFsk7b
+	UpK/Oq/DzQGGkTequrETAsugnU6WlQgCKeftoTvhu3RWLVvXK15Unvm8Fff0LIwXHgiKqXbPmb9EB
+	KvSTgcv/kSnrnweUy2YtF8/HCj4c9Pchdu3UaCIZ6DGZhKh/TOwBA+Lrmm1B3EE0C+R+Dn3GqsCaC
+	TR/5aZqaYGNdcf2z3e1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q58P7-007W2h-2w;
-	Fri, 02 Jun 2023 17:17:33 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1q6IDR-00GwJ9-2x;
+	Mon, 05 Jun 2023 21:58:17 +0000
+Received: from shout01.mail.de ([2001:868:100:600::216])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q58P4-007W23-1e
+	id 1q6IDN-00GwHG-2K
 	for ath11k@lists.infradead.org;
-	Fri, 02 Jun 2023 17:17:32 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 352CsuID026594;
-	Fri, 2 Jun 2023 17:17:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=P8kyodF2jzzYpDdKzUjvz7vqif2Wp2TMDpY8lTBod4I=;
- b=R5MJsUKWhOn57dozDKyCqGTWVfua8y0bMUZYdTPP3eQXa1msh/e8zfms9b9H0I1aNbif
- OQnn3mK95CzxuStiKocWhw3iem1oZeDiadJBaQ3S1MKsK/mWzHLIWUoxYCPNOa0alPEI
- DqfSVnWyhuwPqOESrPdhgLqx1H0kS7zZTEELopPtlme+gZubZM6nfO2Y9M0GIKiu6V7S
- aClWVqQoFbFzWP6AAyhkUEEuZgsz15x6b12AmdK8VP05eGKDs0QuM31mbYRqMhLB3MSC
- +7PweVM/l85cJPBNe2kTra6B+lSIJIVyVqMJXhm3wiDiVIzwUoT0phwyjhloP/oOF0IK Pw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qy1bcjbab-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 Jun 2023 17:17:24 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 352HHNQT005274
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 2 Jun 2023 17:17:23 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 2 Jun 2023
- 10:17:22 -0700
-Message-ID: <6494e9f5-a4df-c058-49bb-1ebfeca5a91d@quicinc.com>
-Date: Fri, 2 Jun 2023 11:17:22 -0600
+	Mon, 05 Jun 2023 21:58:15 +0000
+Received: from postfix03.mail.de (postfix03.bt.mail.de [10.0.121.127])
+	by shout01.mail.de (Postfix) with ESMTP id E4227A061E;
+	Mon,  5 Jun 2023 23:58:07 +0200 (CEST)
+Received: from smtp03.mail.de (smtp03.bt.mail.de [10.0.121.213])
+	by postfix03.mail.de (Postfix) with ESMTP id C595580088;
+	Mon,  5 Jun 2023 23:58:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.de;
+	s=mailde202009; t=1686002287;
+	bh=VxH6TMoPTzxmyTAfKajqBAyIfUk5oMLIIfERggF+HW8=;
+	h=Message-ID:Date:To:From:Subject:From:To:CC:Subject:Reply-To;
+	b=xG2F37dpGcHNLFgr4FljAZqFecTIzOZEd321CQEe9Zr++LlCIfi70u6j3pzjlhZRj
+	 a9mGifGF2LK6PU8uT9BzygP1bTlBI/IQ6LMNz920JVJHdiKZL7JNy4dMY7HWctZuDQ
+	 ougHrxk6Od0z+0pe3TlplszgEkmj8dNuVZxTkVuHPF/x6/F+J51jOIbP79nOOHmWNb
+	 kSmYyXFBP4RB0OORjViWt7sydmcyB++yZPd8EvnqgSpGTcuQm9ePdejQTp4fwJCwVL
+	 rBgsCpV/MJZRECp+Xrq7NUv9gIQq2cdKUDBPJ1vm6SrkZblnumTsK8Lf6pTxQmH+gW
+	 BVQFYsXERrHBA==
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp03.mail.de (Postfix) with ESMTPSA id 75830A02C3;
+	Mon,  5 Jun 2023 23:58:06 +0200 (CEST)
+Message-ID: <e6caae5c-e105-5db2-2982-1a31fbbc0b07@my.mail.de>
+Date: Mon, 5 Jun 2023 23:58:06 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v3 1/3] bus: mhi: host: allow MHI client drivers to
- provide the firmware via a pointer
 Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>, <mhi@lists.linux.dev>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20230530141813.29333-1-kvalo@kernel.org>
- <20230530141813.29333-2-kvalo@kernel.org>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20230530141813.29333-2-kvalo@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: lOK129aB9OipqPTAAAGtNBeu9PcWq32J
-X-Proofpoint-GUID: lOK129aB9OipqPTAAAGtNBeu9PcWq32J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-02_13,2023-06-02_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- malwarescore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0
- mlxlogscore=999 adultscore=0 clxscore=1011 priorityscore=1501 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2306020131
+To: ath11k@lists.infradead.org, kvalo@kernel.org
+From: Christopher Klooz <py0xc3@my.mail.de>
+Subject: slub_debug=F output indicates bug in ath11k: corrupting kmalloc-1k
+X-purgate: clean
+X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
+X-purgate: clean
+X-purgate-size: 2346
+X-purgate-ID: 154282::1686002287-70FF9647-085AACE8/0/0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230602_101730_557009_49F64B23 
-X-CRM114-Status: GOOD (  32.46  )
+X-CRM114-CacheID: sfid-20230605_145814_064486_D12F9795 
+X-CRM114-Status: UNSURE (   2.59  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,168 +78,50 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 5/30/2023 8:18 AM, Kalle Valo wrote:
-> From: Kalle Valo <quic_kvalo@quicinc.com>
-> 
-> Currently MHI loads the firmware image from the path provided by client
-> devices. ath11k needs to support firmware image embedded along with meta data
-> (named as firmware-2.bin). So allow the client driver to request the firmware
-> file from user space on it's own and provide the firmware image data and size
-> to MHI via a pointer struct mhi_controller::fw_data.
-> 
-> This is an optional feature, if fw_data is NULL MHI load the firmware using the
-> name from struct mhi_controller::fw_image string as before.
-> 
-> Tested with ath11k and WCN6855 hw2.0.
-> 
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> ---
->   drivers/bus/mhi/host/boot.c | 34 +++++++++++++++++++++++++---------
->   include/linux/mhi.h         |  6 ++++++
->   2 files changed, 31 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/bus/mhi/host/boot.c b/drivers/bus/mhi/host/boot.c
-> index d2a19b07ccb8..edc0ec5a0933 100644
-> --- a/drivers/bus/mhi/host/boot.c
-> +++ b/drivers/bus/mhi/host/boot.c
-> @@ -365,12 +365,10 @@ int mhi_alloc_bhie_table(struct mhi_controller *mhi_cntrl,
->   }
->   
->   static void mhi_firmware_copy(struct mhi_controller *mhi_cntrl,
-> -			      const struct firmware *firmware,
-> +			      const u8 *buf, size_t remainder,
->   			      struct image_info *img_info)
->   {
-> -	size_t remainder = firmware->size;
->   	size_t to_cpy;
-> -	const u8 *buf = firmware->data;
->   	struct mhi_buf *mhi_buf = img_info->mhi_buf;
->   	struct bhi_vec_entry *bhi_vec = img_info->bhi_vec;
->   
-> @@ -393,9 +391,10 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
->   	struct device *dev = &mhi_cntrl->mhi_dev->dev;
->   	enum mhi_pm_state new_state;
->   	const char *fw_name;
-> +	const u8 *fw_data;
->   	void *buf;
->   	dma_addr_t dma_addr;
-> -	size_t size;
-> +	size_t size, fw_sz;
->   	int i, ret;
->   
->   	if (MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state)) {
-> @@ -425,6 +424,20 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
->   	fw_name = (mhi_cntrl->ee == MHI_EE_EDL) ?
->   		mhi_cntrl->edl_image : mhi_cntrl->fw_image;
->   
-> +	/* check if the driver has already provided the firmware data */
-> +	if (!fw_name && mhi_cntrl->fbc_download &&
-> +	    mhi_cntrl->fw_data && mhi_cntrl->fw_sz) {
-> +		if (!mhi_cntrl->sbl_size) {
-> +			dev_err(dev, "fw_data provided but no sbl_size\n");
-> +			goto error_fw_load;
-> +		}
-> +
-> +		size = mhi_cntrl->sbl_size;
-> +		fw_data = mhi_cntrl->fw_data;
-> +		fw_sz = mhi_cntrl->fw_sz;
-> +		goto skip_req_fw;
-> +	}
-> +
->   	if (!fw_name || (mhi_cntrl->fbc_download && (!mhi_cntrl->sbl_size ||
->   						     !mhi_cntrl->seg_len))) {
->   		dev_err(dev,
-> @@ -444,6 +457,10 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
->   	if (size > firmware->size)
->   		size = firmware->size;
->   
-> +	fw_data = firmware->data;
-> +	fw_sz = firmware->size;
-> +
-> +skip_req_fw:
->   	buf = dma_alloc_coherent(mhi_cntrl->cntrl_dev, size, &dma_addr,
->   				 GFP_KERNEL);
->   	if (!buf) {
-> @@ -452,7 +469,7 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
->   	}
->   
->   	/* Download image using BHI */
-> -	memcpy(buf, firmware->data, size);
-> +	memcpy(buf, fw_data, size);
->   	ret = mhi_fw_load_bhi(mhi_cntrl, dma_addr, size);
->   	dma_free_coherent(mhi_cntrl->cntrl_dev, size, buf, dma_addr);
->   
-> @@ -464,7 +481,7 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
->   	}
->   
->   	/* Wait for ready since EDL image was loaded */
-> -	if (fw_name == mhi_cntrl->edl_image) {
-> +	if (fw_name && fw_name == mhi_cntrl->edl_image) {
->   		release_firmware(firmware);
->   		goto fw_load_ready_state;
->   	}
-> @@ -478,15 +495,14 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
->   	 * device transitioning into MHI READY state
->   	 */
->   	if (mhi_cntrl->fbc_download) {
-> -		ret = mhi_alloc_bhie_table(mhi_cntrl, &mhi_cntrl->fbc_image,
-> -					   firmware->size);
-> +		ret = mhi_alloc_bhie_table(mhi_cntrl, &mhi_cntrl->fbc_image, fw_sz);
->   		if (ret) {
->   			release_firmware(firmware);
->   			goto error_fw_load;
->   		}
->   
->   		/* Load the firmware into BHIE vec table */
-> -		mhi_firmware_copy(mhi_cntrl, firmware, mhi_cntrl->fbc_image);
-> +		mhi_firmware_copy(mhi_cntrl, fw_data, fw_sz, mhi_cntrl->fbc_image);
->   	}
->   
->   	release_firmware(firmware);
-> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-> index f6de4b6ecfc7..7bd58fcb7e58 100644
-> --- a/include/linux/mhi.h
-> +++ b/include/linux/mhi.h
-> @@ -299,6 +299,10 @@ struct mhi_controller_config {
->    * @iova_start: IOMMU starting address for data (required)
->    * @iova_stop: IOMMU stop address for data (required)
->    * @fw_image: Firmware image name for normal booting (optional)
-> + * @fw_data: Firmware image data content for normal booting, used only
-> + *           if fw_image is NULL (optional)
-
-It looks like your implementation requires fbc_download to be set, and 
-while you mention that for fw_sz, you don't mention it here.  While I 
-think this would be useful for non-fbc usecases, we don't have that use 
-currently.
-
-I think documenting the fbc_download requirement and letting the usecase 
-that needs this for non-fbc extend it is reasonable.
-
-With this,
-Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
-
-> + * @fw_sz: Firmware image data size for normal booting, used only if fw_image
-> + *         is NULL and fbc_download is true (optional)
->    * @edl_image: Firmware image name for emergency download mode (optional)
->    * @rddm_size: RAM dump size that host should allocate for debugging purpose
->    * @sbl_size: SBL image size downloaded through BHIe (optional)
-> @@ -384,6 +388,8 @@ struct mhi_controller {
->   	dma_addr_t iova_start;
->   	dma_addr_t iova_stop;
->   	const char *fw_image;
-> +	const u8 *fw_data;
-> +	size_t fw_sz;
->   	const char *edl_image;
->   	size_t rddm_size;
->   	size_t sbl_size;
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+UGxlYXNlIHNlZSB0aGUgZnVsbCBzbHViX2RlYnVnPUYgYGpvdXJuYWxjdGwgLXJgOiAKaHR0cHM6
+Ly9naXRsYWIuY29tL3B5MHhjMzEvcHVibGljLXRtcC1zdG9yYWdlLy0vYmxvYi9tYWluL3NsdWJf
+ZGVidWctRi9ISVQvc2x1Yl9kZWJ1Z19ISVQubG9nCgpFeHRyYWN0cyBmcm9tIHJlbGF0ZWQgYGpv
+dXJuYWxjdGwgLXJgOgoKYGBgCi4uLgpKdW4gMDUgMTg6NTY6MjAgZmVkb3JhLmRvbWFpbiBrZXJu
+ZWw6IEhhcmR3YXJlIG5hbWU6IExFTk9WTyAKMjFDSENUTzFXVy8yMUNIQ1RPMVdXLCBCSU9TIFIy
+M0VUNjBXICgxLjMwICkgMDkvMTQvMjAyMgpKdW4gMDUgMTg6NTY6MjAgZmVkb3JhLmRvbWFpbiBr
+ZXJuZWw6IENQVTogMSBQSUQ6IDEzNTkyIENvbW06IAprd29ya2VyL3UzMjo2IFRhaW50ZWQ6IEfC
+oMKgwqAgQsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDYuMy41LTIwMC5mYzM4Lng4Nl82NCAj
+MQpKdW4gMDUgMTg6NTY6MjAgZmVkb3JhLmRvbWFpbiBrZXJuZWw6IFNsYWIgMHhmZmZmZWZmZDRk
+MzI0MDAwIG9iamVjdHM9MzIgCnVzZWQ9MTAgZnA9MHhmZmZmOGZkMTBjOTAxNDAwIApmbGFncz0w
+eDE3ZmZmZmMwMDEwMjAwKHNsYWJ8aGVhZHxub2RlPTB8em9uZT0yfGxhc3RjcHVwaWQ9MHgxZmZm
+ZmYpCkp1biAwNSAxODo1NjoyMCBmZWRvcmEuZG9tYWluIGtlcm5lbDogCi0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCkp1biAwNSAxODo1NjoyMCBmZWRvcmEuZG9tYWluIGtlcm5lbDogQlVHIGttYWxsb2Mt
+MWsgKFRhaW50ZWQ6IEcgCkLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKTogV3Jvbmcgb2JqZWN0
+IGNvdW50LiBDb3VudGVyIGlzIDEwIGJ1dCBjb3VudGVkIHdlcmUgMjgKSnVuIDA1IDE4OjU2OjIw
+IGZlZG9yYS5kb21haW4ga2VybmVsOiAKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KSnVuIDA1IDE4OjU2
+OjIwIGZlZG9yYS5kb21haW4ga2VybmVsOiBEaXNhYmxpbmcgbG9jayBkZWJ1Z2dpbmcgZHVlIHRv
+IAprZXJuZWwgdGFpbnQKLi4uCmBgYAoKYGBgCi4uLgpKdW4gMDUgMTg6NTY6MjAgZmVkb3JhLmRv
+bWFpbiBrZXJuZWw6IE9iamVjdCAweGZmZmY4ZmQxMGM5MDIwMDAgCkBvZmZzZXQ9ODE5MiBmcD0w
+eGM1ZDZlMzc1MmQ5MDEwOTIKSnVuIDA1IDE4OjU2OjIwIGZlZG9yYS5kb21haW4ga2VybmVsOiBT
+bGFiIDB4ZmZmZmVmZmQ0ZDMyNDAwMCBvYmplY3RzPTMyIAp1c2VkPTEwIGZwPTB4ZmZmZjhmZDEw
+YzkwMTQwMCAKZmxhZ3M9MHgxN2ZmZmZjMDAxMDIwMChzbGFifGhlYWR8bm9kZT0wfHpvbmU9Mnxs
+YXN0Y3B1cGlkPTB4MWZmZmZmKQpKdW4gMDUgMTg6NTY6MjAgZmVkb3JhLmRvbWFpbiBrZXJuZWw6
+IAotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpKdW4gMDUgMTg6NTY6MjAgZmVkb3JhLmRvbWFpbiBrZXJu
+ZWw6IEJVRyBrbWFsbG9jLTFrIChOb3QgdGFpbnRlZCk6IApGcmVlY2hhaW4gY29ycnVwdApKdW4g
+MDUgMTg6NTY6MjAgZmVkb3JhLmRvbWFpbiBrZXJuZWw6IAo9PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpK
+dW4gMDUgMTg6NTY6MTcgZmVkb3JhLmRvbWFpbiBrZXJuZWw6IGF0aDExa19wY2kgMDAwMDowMjow
+MC4wOiBGYWlsZWQgdG8gCnNldCB0aGUgcmVxdWVzdGVkIENvdW50cnkgcmVndWxhdG9yeSBzZXR0
+aW5nCkp1biAwNSAxODo1NjoxNyBmZWRvcmEuZG9tYWluIGtlcm5lbDogYXRoMTFrX3BjaSAwMDAw
+OjAyOjAwLjA6IEZhaWxlZCB0byAKc2V0IHRoZSByZXF1ZXN0ZWQgQ291bnRyeSByZWd1bGF0b3J5
+IHNldHRpbmcKLi4uCmBgYAoKLT4gQWZ0ZXIgdGhlIGlzc3VlczogY2F0IC9wcm9jL3N5cy9rZXJu
+ZWwvdGFpbnRlZCAtPiAzMgoKLT4gTm9ybWFsbHk6IGNhdCAvcHJvYy9zeXMva2VybmVsL3RhaW50
+ZWQgLT4gMAoKVGhlIHByb2JsZW0vYnVnIGhhcyBiZWVuIGhhbmRsZWQgYW5kIGlkZW50aWZpZWQg
+aW46IApodHRwczovL2J1Z3ppbGxhLnJlZGhhdC5jb20vc2hvd19idWcuY2dpP2lkPTIxOTMxMTAg
+KHJlbGV2YW50IGFyZSBtb3N0bHkgCnRoZSBjb21tZW50cyBvZiB0b2RheSkKClRoYW5rcyB0byBZ
+aSBIYW8gZm9yIGhlbHBpbmcgdG8gaWRlbnRpZnkgdGhlIGJ1ZyEKClRoYW5rcyAmIHJlZ2FyZHMs
+CkNocmlzCgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5v
+cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
