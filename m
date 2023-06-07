@@ -4,79 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC668C7EE24
-	for <ath11k@archiver.kernel.org>; Tue,  6 Jun 2023 09:11:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F111C7EE23
+	for <ath11k@archiver.kernel.org>; Wed,  7 Jun 2023 09:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4gvXtJ24gxSkvGTToVb8IAFdQRk3liP6lftIvYgzCaw=; b=TXA7pQVn+PF9eL
-	kkx2Kq883KU6gpJO14yr1JNjvl0KT9GVb4mxvcVE5Ut596dBEs7pvXscfVoMhliWbVtwsAWvg6BF9
-	ITR2US6vvg0g1M6yjP2nwWU21Bptdjl2Y8cdrbCMsqHbNKOgsYv0oA6y0n+rS+mvrYyx0iHir+g5t
-	rAmVK30V+bVRqqWyoL7nLFIwMKLfdbv7CebEpUolVdBYKCkPcF5c6X5syv3QstBdZAgbYmdYEazoI
-	D/lDqAiDDoADGoP0hHV6h6DW/6ARm/k3E68wtM+SBb44qK9XiolHWjVbTM3qYvhzk440ihZSAqi6I
-	BTomWli0YhY+MV6HA9bQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=SvFxS8yaCpQb9Vo9PELzZc9TJ81kd2t2LMaosc7SunU=; b=BLwZLxsSchAxb1
+	iA1R5nnzz1iOYHtvnNb4LZKMGFer0sRqmCvbYBdk2eEFJ8hPNPnmK//Y9y6idiqHwwZsbC1ziEHW3
+	V7v4BgAvV/5jfx+bax/M5DXEO0Nkot3b6BstPpT5cU59JMQ3fVU9CzpTurNBaymipkPraoN1gTypK
+	YH+IwGnIMGsZbJhVzw8AeczuLU/hiVJu95hNzaVDYT6C9rzw55+duXD3iI0JphOreLbhBwhqqejyy
+	7UXR6k3FKctlkmbZ/hViqYJPsFJFMeD6xXDWU1nrK2FihK73zA7eoRlF6BUqaR5EXha/i0p0c+FDB
+	ze3lbYg5BHoZmUZJID1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6SjM-000xGb-17;
-	Tue, 06 Jun 2023 09:11:56 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1q6pmY-005KiT-16;
+	Wed, 07 Jun 2023 09:48:46 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6SjK-000xFu-07
+	id 1q6pmV-005Kfy-0B
 	for ath11k@lists.infradead.org;
-	Tue, 06 Jun 2023 09:11:55 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3565lJaZ023783;
-	Tue, 6 Jun 2023 09:11:50 GMT
+	Wed, 07 Jun 2023 09:48:44 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3578Pf9k001184;
+	Wed, 7 Jun 2023 09:48:37 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=Z739tshZdcCOSCVWX/c0g3mPD4OKB+kCcIYxzcUC5pw=;
- b=EoAr5ruOgVOLMD8VgwsOUhKubvfvCJmAA3Xy1541Bq09FR3KsSK8iZg61DPuUEgFv+0h
- tZefNPy0iGshV8QdWOa0e1asj/V93jPG1pQX4ViYTksU6iQR15GWhcwv++IJe5VpJcws
- bgXfimiouFW0kwAxDHNhoStXXVtPJqPQZEeKtMtYI9OPd6KwGGnk1Y8gBJv/yAhA0VKh
- S4JUNRkFjoh3YyBg6EUjSBvJ5h594DX0KmStmKx9ZxRT/lX+B5mwxkuR1G++nGWGlJx4
- KEIYSeLKuMqmVmb5czFaRxI4gSJeYzn4VlY2hk8ASu035GUUrgXWjq672hJoVuhOdZtV dQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r1xxr0dxj-1
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=cM9jReKouTVLL+zcwgSI29X/WPZawjDK/bye4JoQ7Uk=;
+ b=hyuTE9W9Ip7pwG9y7FCQKaPghpNaXvlojILxa68fVi6hQX6Ejmlhf5wv5poBhTpMYEB8
+ 7pwWVJgGr4UoYfr7A7BsgIamJvKQZNRRp3A8Smd6ZmpJglipxAXL8f3qw9xYzHko3Hba
+ 5ikII21fLr38d4jgw/k+tKOhPrhv0CunL/2UfHQ1/Hw0Cv1cQ5LZ7G6fDsT16DyLguax
+ yEJBHRZA4aYz4hgdqJ4JUqrs4unpWwn+SDKLpwjywkK780ImU4mZoqAcscmewiorQ0ag
+ vG2N/TYaMooU+qq6uOAjJG24dffVfzPyqVAuMXU/pUfQLwN2fz54hRgk+Z3tnWerh61+ EA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r2a719gn7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 06 Jun 2023 09:11:50 +0000
+	Wed, 07 Jun 2023 09:48:37 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3569BnJO030055
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3579mac3017550
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 6 Jun 2023 09:11:49 GMT
-Received: from adisi-linux.qualcomm.com (10.80.80.8) by
+	Wed, 7 Jun 2023 09:48:36 GMT
+Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 6 Jun 2023 02:11:46 -0700
-From: Aditya Kumar Singh <quic_adisi@quicinc.com>
+ 15.2.986.42; Wed, 7 Jun 2023 02:48:35 -0700
+From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, P Praneesh <quic_ppranees@quicinc.com>,
-        Aditya Kumar Singh <quic_adisi@quicinc.com>
-Subject: [PATCH] wifi: ath11k: fix memory leak in WMI firmware stats
-Date: Tue, 6 Jun 2023 14:41:28 +0530
-Message-ID: <20230606091128.14202-1-quic_adisi@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+CC: <linux-wireless@vger.kernel.org>, Wen Gong <quic_wgong@quicinc.com>
+Subject: [PATCH v4 1/5] wifi: ath11k: add support to select 6 GHz Regulatory type
+Date: Wed, 7 Jun 2023 05:48:06 -0400
+Message-ID: <20230607094810.26707-2-quic_wgong@quicinc.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230607094810.26707-1-quic_wgong@quicinc.com>
+References: <20230607094810.26707-1-quic_wgong@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YLa51FTN1lJxfko8yUPqCEOqx6VgCWcg
-X-Proofpoint-ORIG-GUID: YLa51FTN1lJxfko8yUPqCEOqx6VgCWcg
+X-Proofpoint-GUID: Xeg-lwaO-Tb4zQsGBOWonO1Cmk5VnjPJ
+X-Proofpoint-ORIG-GUID: Xeg-lwaO-Tb4zQsGBOWonO1Cmk5VnjPJ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-06_05,2023-06-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- lowpriorityscore=0 suspectscore=0 phishscore=0 impostorscore=0
- mlxlogscore=939 spamscore=0 mlxscore=0 adultscore=0 priorityscore=1501
- bulkscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306060078
+ definitions=2023-06-07_06,2023-06-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1011 mlxlogscore=969
+ phishscore=0 suspectscore=0 priorityscore=1501 spamscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306070079
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230606_021154_213424_80E7CD63 
-X-CRM114-Status: GOOD (  16.01  )
+X-CRM114-CacheID: sfid-20230607_024843_103958_8C4DCDB7 
+X-CRM114-Status: GOOD (  20.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,60 +95,147 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: P Praneesh <quic_ppranees@quicinc.com>
+There are 3 types of regulatory rules for AP mode and 6 type for
+station mode. Add wmi_vdev_type and ieee80211_ap_reg_power to
+select the exact reg rules.
 
-Memory allocated for firmware pdev, vdev and beacon statistics
-are not released during rmmod.
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
 
-Fix it by calling ath11k_fw_stats_free() function before hardware
-unregister.
-
-While at it, avoid calling ath11k_fw_stats_free() while processing
-the firmware stats received in the WMI event because the local list
-is getting spliced and reinitialised and hence there are no elements
-in the list after splicing.
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- drivers/net/wireless/ath/ath11k/wmi.c | 5 +++++
- 2 files changed, 6 insertions(+)
+ drivers/net/wireless/ath/ath11k/reg.c | 66 +++++++++++++++++++++------
+ drivers/net/wireless/ath/ath11k/reg.h |  6 ++-
+ drivers/net/wireless/ath/ath11k/wmi.c |  3 +-
+ 3 files changed, 58 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a31b8e89684b..2e462e7a8b4d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9792,6 +9792,7 @@ void ath11k_mac_destroy(struct ath11k_base *ab)
- 		if (!ar)
- 			continue;
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index 67443457f4da..761b83c924f6 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -607,25 +607,64 @@ ath11k_reg_update_weather_radar_band(struct ath11k_base *ab,
+ 	*rule_idx = i;
+ }
  
-+		ath11k_fw_stats_free(&ar->fw_stats);
- 		ieee80211_free_hw(ar->hw);
- 		pdev->ar = NULL;
- 	}
++enum wmi_reg_6ghz_ap_type
++ath11k_ieee80211_ap_pwr_type_convert(enum ieee80211_ap_reg_power power_type)
++{
++	switch (power_type) {
++	case IEEE80211_REG_LPI_AP:
++		return WMI_REG_INDOOR_AP;
++	case IEEE80211_REG_SP_AP:
++		return WMI_REG_STANDARD_POWER_AP;
++	case IEEE80211_REG_VLP_AP:
++		return WMI_REG_VERY_LOW_POWER_AP;
++	default:
++		return WMI_REG_MAX_AP_TYPE;
++	}
++}
++
+ struct ieee80211_regdomain *
+ ath11k_reg_build_regd(struct ath11k_base *ab,
+-		      struct cur_regulatory_info *reg_info, bool intersect)
++		      struct cur_regulatory_info *reg_info, bool intersect,
++		      enum wmi_vdev_type vdev_type,
++		      enum ieee80211_ap_reg_power power_type)
+ {
+ 	struct ieee80211_regdomain *tmp_regd, *default_regd, *new_regd = NULL;
+-	struct cur_reg_rule *reg_rule;
++	struct cur_reg_rule *reg_rule, *reg_rule_6ghz;
+ 	u8 i = 0, j = 0, k = 0;
+ 	u8 num_rules;
+ 	u16 max_bw;
+-	u32 flags;
++	u32 flags, reg_6ghz_number, max_bw_6ghz;
+ 	char alpha2[3];
+ 
+ 	num_rules = reg_info->num_5ghz_reg_rules + reg_info->num_2ghz_reg_rules;
+ 
+-	/* FIXME: Currently taking reg rules for 6 GHz only from Indoor AP mode list.
+-	 * This can be updated after complete 6 GHz regulatory support is added.
+-	 */
+-	if (reg_info->is_ext_reg_event)
+-		num_rules += reg_info->num_6ghz_rules_ap[WMI_REG_INDOOR_AP];
++	if (reg_info->is_ext_reg_event) {
++		if (vdev_type == WMI_VDEV_TYPE_STA) {
++			enum wmi_reg_6ghz_ap_type ap_type;
++
++			ap_type = ath11k_ieee80211_ap_pwr_type_convert(power_type);
++
++			if (ap_type == WMI_REG_MAX_AP_TYPE)
++				ap_type = WMI_REG_INDOOR_AP;
++			reg_6ghz_number = reg_info->num_6ghz_rules_client
++					[ap_type][WMI_REG_DEFAULT_CLIENT];
++			if (reg_6ghz_number == 0) {
++				ap_type = WMI_REG_INDOOR_AP;
++				reg_6ghz_number = reg_info->num_6ghz_rules_client
++						[ap_type][WMI_REG_DEFAULT_CLIENT];
++			}
++			reg_rule_6ghz = reg_info->reg_rules_6ghz_client_ptr
++					[ap_type][WMI_REG_DEFAULT_CLIENT];
++			max_bw_6ghz = reg_info->max_bw_6ghz_client
++					[ap_type][WMI_REG_DEFAULT_CLIENT];
++		} else {
++			reg_6ghz_number = reg_info->num_6ghz_rules_ap[WMI_REG_INDOOR_AP];
++			reg_rule_6ghz =
++				reg_info->reg_rules_6ghz_ap_ptr[WMI_REG_INDOOR_AP];
++			max_bw_6ghz = reg_info->max_bw_6ghz_ap[WMI_REG_INDOOR_AP];
++		}
++		num_rules += reg_6ghz_number;
++	}
+ 
+ 	if (!num_rules)
+ 		goto ret;
+@@ -672,13 +711,10 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
+ 			 * per other BW rule flags we pass from here
+ 			 */
+ 			flags = NL80211_RRF_AUTO_BW;
+-		} else if (reg_info->is_ext_reg_event &&
+-			   reg_info->num_6ghz_rules_ap[WMI_REG_INDOOR_AP] &&
+-			   (k < reg_info->num_6ghz_rules_ap[WMI_REG_INDOOR_AP])) {
+-			reg_rule = reg_info->reg_rules_6ghz_ap_ptr[WMI_REG_INDOOR_AP] +
+-				   k++;
+-			max_bw = min_t(u16, reg_rule->max_bw,
+-				       reg_info->max_bw_6ghz_ap[WMI_REG_INDOOR_AP]);
++		} else if (reg_info->is_ext_reg_event && reg_6ghz_number &&
++			   (k < reg_6ghz_number)) {
++			reg_rule = reg_rule_6ghz + k++;
++			max_bw = min_t(u16, reg_rule->max_bw, max_bw_6ghz);
+ 			flags = NL80211_RRF_AUTO_BW;
+ 		} else {
+ 			break;
+diff --git a/drivers/net/wireless/ath/ath11k/reg.h b/drivers/net/wireless/ath/ath11k/reg.h
+index 2f284f26378d..7e6944bf77ec 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.h
++++ b/drivers/net/wireless/ath/ath11k/reg.h
+@@ -30,7 +30,11 @@ void ath11k_reg_free(struct ath11k_base *ab);
+ void ath11k_regd_update_work(struct work_struct *work);
+ struct ieee80211_regdomain *
+ ath11k_reg_build_regd(struct ath11k_base *ab,
+-		      struct cur_regulatory_info *reg_info, bool intersect);
++		      struct cur_regulatory_info *reg_info, bool intersect,
++		      enum wmi_vdev_type vdev_type,
++		      enum ieee80211_ap_reg_power power_type);
++enum wmi_reg_6ghz_ap_type
++ath11k_ieee80211_ap_pwr_type_convert(enum ieee80211_ap_reg_power power_type);
+ int ath11k_regd_update(struct ath11k *ar);
+ int ath11k_reg_update_chan_list(struct ath11k *ar, bool wait);
+ #endif
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 68622a850527..8b457558b975 100644
+index d0b59bc2905a..975fd06eb21c 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -8097,6 +8097,11 @@ static void ath11k_update_stats_event(struct ath11k_base *ab, struct sk_buff *sk
- 	rcu_read_unlock();
- 	spin_unlock_bh(&ar->data_lock);
+@@ -7069,7 +7069,8 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab,
+ 	    !ath11k_reg_is_world_alpha((char *)reg_info->alpha2))
+ 		intersect = true;
  
-+	/* Since the stats's pdev, vdev and beacon list are spliced and reinitialised
-+	 * at this point, no need to free the individual list.
-+	 */
-+	return;
-+
- free:
- 	ath11k_fw_stats_free(&stats);
- }
-
-base-commit: a4756ac34a7002861c9bdf8cf45aec53a77fb78d
+-	regd = ath11k_reg_build_regd(ab, reg_info, intersect);
++	regd = ath11k_reg_build_regd(ab, reg_info, intersect,
++				     WMI_VDEV_TYPE_AP, IEEE80211_REG_LPI_AP);
+ 	if (!regd) {
+ 		ath11k_warn(ab, "failed to build regd from reg_info\n");
+ 		goto fallback;
 -- 
-2.17.1
+2.40.1
 
 
 -- 
