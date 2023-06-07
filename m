@@ -4,83 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6BEEC77B7A
-	for <ath11k@archiver.kernel.org>; Wed,  7 Jun 2023 14:00:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33D0DC7EE23
+	for <ath11k@archiver.kernel.org>; Wed,  7 Jun 2023 17:24:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Fbsw4CZppi9rwQyg7ode2nx9mgzxw4WxgLkwKI2Jx0k=; b=rR5CQyA5Ka8ZL0
-	5y7c3YYtpmJMJ+MxYtTiygOmkthdRBDQBPhvuHCvG0/Fd3nA/m3n+c5P6rcTkSfN0RUkA3sTPOdWM
-	CaYyTcySsFcxVR0l2lRbv8ruSX6BsvlGHeupowXL48rjggLOPCptXUmODyzT7yCzhVZWF1SLj4911
-	TsT0pxDPD/faKAIzdU3Y04cN4sqCEiS9Q2Bf4UqcstmM5t57EeBei20BdN8NH5k6tvkc6yTi/Ly9e
-	Fi7OjOjpXsa6KXdDUoeM/wu2CpCDVCGxiOpHg27xSTj0TKFFG00tHyxXxzYY8bTFUXtwDe+DPaSeK
-	kQYJNhXqq8Km6MUIkf6w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Wxsj4kRsWr6w/b6Im/MaQK0AORmb6SpxmRGEeWfeqCY=; b=dDmNucIlzhnIpp
+	18pTmjrD8EQ4106zhJorcvJDEsEXtIwSR/J5HupOQfDUcqTGxjd3H7tf24WYxDF0hfoFOAyuMj7J5
+	sFWpg/9kHQNGzy2sEcjYnOA+JEC910IuBh6bw8pshBNr61PKV2l/JNzaSbSM5vVQV9F3WQA3Diq4i
+	pFfj+N8vRUzut3k9Ts+VJP2NcbFzFbiTh+V+b8YIO/BXmDE2+MMsiyPB+UdBhJ6JMIlfiAQy2SMce
+	lAwUTGBcI6LXnOofhx0ZhpLBHQLuACWHXm787t8YOZ2vaQOMKQpeGOCANhpJCtUW3/qDqdk3MpC2B
+	l6FxZ8YrjTdZQt0I5+Ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6tiO-006B8P-1b;
-	Wed, 07 Jun 2023 14:00:44 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1q6wtP-006hHo-3D;
+	Wed, 07 Jun 2023 17:24:20 +0000
+Received: from mail-tyzapc01acsn20807.outbound.protection.outlook.com ([2a01:111:f403:704b::807] helo=APC01-TYZ-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q6sZB-005x1b-2k
+	id 1q6wtN-006hG6-0s
 	for ath11k@lists.infradead.org;
-	Wed, 07 Jun 2023 12:47:11 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3579tOKe025124;
-	Wed, 7 Jun 2023 12:47:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=hjl93FyYsrxHo2Q8SJ+Kksrjvu+qUD1t1slqkWFLyRE=;
- b=S0Od132gGPZnCXOFcgcorkcyTQMcCwiaXIRYHv0Jy3nzoqM90CWZtoJUfoyNS94G5leu
- eENWYY5OPLJzCp76fhXKbn75/FzifrI0lxv72ZsFYOIyfKFXeIDAZKrMka4EhePEyUoI
- a9G0k88u4jqLN7Cz/N2uSoKd46qX9b+E5ly50BK65t0QTJ+2HLwbGxayoejr3fwpBCni
- 7GstR4icNFl64CrBg2RNk/1uxLqRfM3u2+7VZpLO95OLgO0PF9soGdYhnfY9CY6cBg5i
- BKBZAlaUMCbo/yEpU3xOr2k2/M6Gfk5q3FgHy3v0MQD+ejMNN7giDxhkdhV2oIf1DF8R FA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r2a7g1uax-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Jun 2023 12:47:06 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 357Cl5ji022438
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Jun 2023 12:47:05 GMT
-Received: from adisi-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 7 Jun 2023 05:47:03 -0700
-From: Aditya Kumar Singh <quic_adisi@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <johannes@sipsolutions.net>,
-        "Aditya
- Kumar Singh" <quic_adisi@quicinc.com>
-Subject: [PATCH 1/3] wifi: cfg80211: export DFS CAC time and usable state helper functions
-Date: Wed, 7 Jun 2023 18:16:45 +0530
-Message-ID: <20230607124647.27682-2-quic_adisi@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230607124647.27682-1-quic_adisi@quicinc.com>
-References: <20230607124647.27682-1-quic_adisi@quicinc.com>
+	Wed, 07 Jun 2023 17:24:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L9Sv8N3ciING5ls6RTPbBMpGU6weYwCfhU2pkQ1i2Pe7ItXgOYYmo8ev/9s93v9eL+fDytQmXK4xwUsAoJ7b4bn1Txm4jTaOgFiggAI7lmmXTs4bs39lMM1xBdxzFLOn7kiUPLsPpNstBiVqffaZR7spMsvVjukpKA41FJ63lmQmpJj3ebDG3WY/sFVtEcpw7sr7E6MKzLGSStMzLeAla9jASjPlFomyPDCOto4RWms6Dl/kJ5oB1xwWrLo1laWYS6l+XZpMifVEG9d7liAZLMHIjzuOk2kLaUtGe13vgFKRuwokP3st+wX5wEGgn0+ybKTnawj1YbM51tGKfjGKkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=f33TL65L+W1/+oRk1KEhe7DHLVC1ecKeaiUIWK4X/Yw=;
+ b=EQlXeimPVV3SkyUhhgNQR5XRXc1VcHh/NFBZCflNhbhklJl/o9UEPuoJJd8JYR3XRiMfyLs60NyExwhkOjJ32X2azrv975xDdBAqu3UiBnOHrszd/l2R0MThL9kmNvwtmz4FSiQTTKDkIqPHGa2m3vO7Qr3NmG7mA7uPcvnAY70UEhbs9GGuFdXiPV0dblGIFeGltDAbcSLZdOZInjUl/R9DcCwKcwWGT5iEYX66s/CGsxu8pv3aClvjzb7cMo5Cx/bVQPAkLb4pY0GqoncLxNTGa+BvWd0Y6xaJFYvTNGfX8feCUd2P/XqahAH5ylrByp3/5AZ/2AOrvs3aEyMN1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f33TL65L+W1/+oRk1KEhe7DHLVC1ecKeaiUIWK4X/Yw=;
+ b=utzeflnbLHcBVpEbM93EF0lQuLX8+gYdu/+pi9utZsljtv3ywDn/Sku9ZLeWMKhHHYzd14dZdYR7r5SkUfN2qFjOzKGoRai5xdHBpU9BLexmCRxxspLHcfxvkf7YME1se/XwqXvT5FRwj+a50hgVR4NVx1xDV7uiRvdbmKkYtT2odTwvJNYSMeXvHEEuSpLuSWaO2KqkjgXkUiRrF5AcIoyUWnrRMf13bwsUAJazGMXV4XVjhDOsdeykf4D7NrAEwdDPmsj61VxPhGdq/yLktnuleofjg/cXbm1VONaKIwNPxfguEez4aZoIT7sVd/SNqs7DkG3WNr2zBLbxcwUokA==
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9) by SI2PR01MB4396.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:1b3::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Wed, 7 Jun
+ 2023 17:24:03 +0000
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::5b31:f8db:585d:f204]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::5b31:f8db:585d:f204%7]) with mapi id 15.20.6411.021; Wed, 7 Jun 2023
+ 17:24:03 +0000
+From: Ziyang Huang <hzyitc@outlook.com>
+To: kvalo@kernel.org
+Cc: quic_srirrama@quicinc.com,
+	quic_kathirve@quicinc.com,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ziyang Huang <hzyitc@outlook.com>
+Subject: [PATCH 0/3] wifi: ath11k: Fix runtime issues for IPQ5018
+Date: Wed,  7 Jun 2023 17:23:16 +0000
+Message-ID: <TYZPR01MB5556F7C9F8E5BB5F5E1C8770C953A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+X-Mailer: git-send-email 2.25.1
+X-TMN: [yl7HxIGS7K46dCY8V62DMej7eIOPo2aH6PWBOLeb/+E=]
+X-ClientProxiedBy: SJ0PR05CA0192.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::17) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9)
+X-Microsoft-Original-Message-ID: <20230607172316.2258278-1-hzyitc@outlook.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: MmcXlxVmtjIFT9hZ8cR7_WqQYxlthUpA
-X-Proofpoint-ORIG-GUID: MmcXlxVmtjIFT9hZ8cR7_WqQYxlthUpA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-07_06,2023-06-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- spamscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
- impostorscore=0 mlxscore=0 adultscore=0 priorityscore=1501 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306070107
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|SI2PR01MB4396:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a91e872-dc66-4a38-e01d-08db677bfd45
+X-MS-Exchange-SLBlob-MailProps: dx7TrgQSB6cnTu4xI/FKWkMgAUSlrozNByv3waylnVfc7LOQkKuwdoTDj6/k8SSvAM8dzgnqRcJVqBQKhFyIKzmB2NHcWopPB8SOjljTsq8RwC0BGdXP+HeW32ICwq4pc3RoMFkuZKZyHrlwrsoylMplajJIgN2/TrnM9CAf0PYwiixW2ryNAGu95HEMRLvFyHKVQidr6wIG+sX9IkeKLIvPu169FCj+UjJw61BNSMoD3sa7V9Wb4AI4RW6XrVMv0zIsyGxyhBbPmkzsnIwbskYg1EwRLOYpki2ZilznjLc/e5pxZvwu+y5F47o8FokD5GTTPRHSqy9LPMuA5LqtdEasSbcePE3iqa4T9GtF3kAmv3dmWjj4xq1E4h4eijwhP9+qI7tH+fuctTAz5W9iXLmI4OVtuRtCa4XpjqquvmIw8Z/pMFC+cV75gzYjB5/PQTb7Ch2kKKKlud14LH62ZD3/k/DvdZKJDKpS18WyXqRbQm8Q2vEM4RbcpidAVG/+PAVztm0X8TRLfQwHHvEdvXz4E/6yt7elxziuav9u4NM53P6lXyAVx7Pdmc0o5jz9pyLyA+8WDPAX+lDkibsOe94QBxC9TxnbLx5V4IO8Qoc7wVgU+LDA8o7i0al7t3+bKUUCYp7R3aFJW+glW2vlGlE4f2l3nOtBFSrTBYpiVvOLlkylSeo9TEmwUMS+psurBXSjiv3rPy5//kVRARfRuEuJw1Vs4ghA9c5ihmOSbxzoGMxwtLoIJGw7/IS44HvMLiW7xLGV8B0=
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: n4sdrrfZnM/K26VzKzZvkiMo+3BaIb+C7lkbOt85kqVhjRPQ+1qthIBJ5l42PLcwRbRo5ghtyAXAyjP95bshuyuQtLfZ6ENWakq02fGI60K/JcR9PLBn/C/gHdtr0CwXTpVmHGOrhdVATBvfw1yqfQ9Hkc9p+oiLElXKThkCuydfQIX/tfTDFellfuTxINcYu5frPyYaoO0iS1cNzSONvl6YExMyinbkmtvrMh6vY2BDI0Z6FG28npb7xmfIhhf/n8LcbDg20GUUcDuxCvDJV1DZBckMGeC1haJFq1Eepla99F4Etp6d6FsCWqwRcxoksa3du605af2hk08e1if5K1ZVLuIB8xK4It+Ohsy2NMse8Eq5mu9Aa/ryW9oj6qHYgDkdeOXb+oR0KymTstnSi3IWEfyp0mNJObFi23T9IwLJ/8vH8Ll/tSmBKr+DKHm26AbFc4PStrMhsJ/oFxCz39/hP0eW+d499Le/ttPIbL6XIYOoQISIYcyEna/JdiNjDTeaDXtdfUrPBowGVH1jbcRTu61FOhVd+7jCVlJwPBYMPh8Rpuga2lvqr3QteHsNEaBc4F7qLyn9eENfTSIOOZZFdveBfWlm5kCDna5zZWo=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?x4rPDnrGJ+hbvkZuGSespSGSe6M0fP3sANp/cjqqRSvEbVab5pKL3E9BaulC?=
+ =?us-ascii?Q?y823boqW7bx8PgrmjX7OlfQlhQoKCASAvD+NvgMoAM/zJjj88BOLy0wZ/Ltj?=
+ =?us-ascii?Q?Smst+ovDHnSvPZ+xzZXX6vVbTvD+0b4GMJ+Op5w6AibcVUv+uHTNq4dF3TPa?=
+ =?us-ascii?Q?g2Lghb+iNQbmk4uZLy7EZfiSqZQtERhHln2W9KA+c1oSaySwLfuqidkfeDdW?=
+ =?us-ascii?Q?nEvUJKOIjKmi4hwQPI2vHCH2cT5BjtzvUBZyIEWq3t/3am0PyQQE5qJYrVqE?=
+ =?us-ascii?Q?L4kzyaryULeeZQhNi2bN3z55/tguyTF/a5KDA03YGjUMqDpSrl0lxtjayqq9?=
+ =?us-ascii?Q?ksTTdHWYkX7yhn83rShVmRmflBStA0lrwGIVlXo3Eb/5GkEmIWee4bPDAUkO?=
+ =?us-ascii?Q?sZZhMoteLIdC1QGuRmu9lCGROh9OsiMiY3yuNYwxzaM03kKsWA4f3kguZGI6?=
+ =?us-ascii?Q?RHEsyEeCZCQzAaFenOcjwXBFFTW8/buWseZ66zEV1H+zM67FIpp4TBfeLpOT?=
+ =?us-ascii?Q?cX3yjLyXq0eDvUNVpEjhMCZF5WKj8AXfYyr/7YEvrIi20g+NEJXaPsWlfbC5?=
+ =?us-ascii?Q?jZzX0TrL9ehOKeG8zyl0dIm8wgiRtlEXExo18mQjP7fpyC5UHx6BStkCdWYo?=
+ =?us-ascii?Q?4hs0zTOvcjzqirCFUyt+qd3pWXbiukdk7DG8zVJ+j+zx4bVsOJDhm7M/zVsX?=
+ =?us-ascii?Q?YxLyVxhL843AP2DduXSf7NbEB0qpQH/FhxIJsEICbagKzs6sfAwskKS3QxYY?=
+ =?us-ascii?Q?sW88vz/vyrcY+PnlsyCoyEX5uszFMIs80UQ4pe+rbX58Kikm6mdQXk3eSIOW?=
+ =?us-ascii?Q?wqWJoLLcLBIZzplolHDb6CFjrDBOjYmbrp6zWQuJCHA7dVlWdWrnghAvKlsO?=
+ =?us-ascii?Q?LHQsmV/yfFYqDxvFITvuLCCca21T/3C0Mi1dum7stl+vGxOZC3Uo91UG94ca?=
+ =?us-ascii?Q?+Gocbn9xK8ZKYs/ACYtMxOesBe1yaUiJMfmOxe/wifCx2qm2vasD0Ai5kBYS?=
+ =?us-ascii?Q?zyIippfyIA8B79lhfTc5COo7EEY2/F9HrWW22FzoX10lfKernOKz7wLhcu1s?=
+ =?us-ascii?Q?QsbrLwGKH3OEMdUbiLuWYtb3FP7fxE45mk7oIwih+veRs4hubiMIfrG1UGNL?=
+ =?us-ascii?Q?BphPYvkhEdgSOpNTnjwFQwfSezc5p4m3NBTIJFBvyfj7axrbtdwS+eeEBk6c?=
+ =?us-ascii?Q?aIR6NBm8Wdziz6Lwgc3KhAtj1jB+eWpxBoVJI/VIfpZLDfgOnJoaxxzPJSc?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a91e872-dc66-4a38-e01d-08db677bfd45
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 17:24:03.5661
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR01MB4396
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230607_054710_011549_8EBB6F65 
-X-CRM114-Status: GOOD (  17.64  )
+X-CRM114-CacheID: sfid-20230607_102417_346090_1DE0F0C6 
+X-CRM114-Status: UNSURE (   7.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,116 +128,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-cfg80211 has cfg80211_chandef_dfs_usable() function to know whether
-at least one channel in the chandef is in usable state or not. Also,
-cfg80211_chandef_dfs_cac_time() function is there which tells the CAC
-time required for the given chandef.
+When I try to boot the IPQ5018 WiFi, I found some runtime issues. This
+series of patches will fix them.
 
-Make these two functions visible to drivers by exporting their symbol
-to global list of kernel symbols.
+Ziyang Huang (3):
+  wifi: ath11k: Add missing ops config for IPQ5018 in ath11k_ahb_probe()
+  wifi: ath11k: Restart firmware after cold boot calibration for IPQ5018
+  wifi: ath11k: Add missing hw_ops->get_ring_selector() for IPQ5018
 
-Lower level drivers can make use of these two functions to be aware
-if CAC is required on the given chandef and for how long. For example
-drivers which maintains the CAC state internally can make use of these.
+ drivers/net/wireless/ath/ath11k/ahb.c  | 1 +
+ drivers/net/wireless/ath/ath11k/core.c | 1 +
+ drivers/net/wireless/ath/ath11k/hw.c   | 2 +-
+ 3 files changed, 3 insertions(+), 1 deletion(-)
 
-Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
----
- include/net/cfg80211.h | 24 ++++++++++++++++++++++++
- net/wireless/chan.c    |  2 ++
- net/wireless/core.h    | 17 -----------------
- 3 files changed, 26 insertions(+), 17 deletions(-)
-
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index 9e04f69712b1..e99e83a7308e 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -950,6 +950,30 @@ int cfg80211_chandef_dfs_required(struct wiphy *wiphy,
- 				  const struct cfg80211_chan_def *chandef,
- 				  enum nl80211_iftype iftype);
- 
-+/**
-+ * cfg80211_chandef_dfs_usable - checks if chandef is DFS usable and we
-+ *				 can/need start CAC on such channel
-+ * @wiphy: the wiphy to validate against
-+ * @chandef: the channel definition to check
-+ *
-+ * Return: true if all channels available and at least
-+ *	   one channel requires CAC (NL80211_DFS_USABLE)
-+ */
-+bool cfg80211_chandef_dfs_usable(struct wiphy *wiphy,
-+				 const struct cfg80211_chan_def *chandef);
-+
-+/**
-+ * cfg80211_chandef_dfs_cac_time - get the DFS CAC time (in ms) for given
-+ *				   channel definition
-+ * @wiphy: the wiphy to validate against
-+ * @chandef: the channel definition to check
-+ *
-+ * Returns: DFS CAC time (in ms) which applies for this channel definition
-+ */
-+unsigned int
-+cfg80211_chandef_dfs_cac_time(struct wiphy *wiphy,
-+			      const struct cfg80211_chan_def *chandef);
-+
- /**
-  * nl80211_send_chandef - sends the channel definition.
-  * @msg: the msg to send channel definition
-diff --git a/net/wireless/chan.c b/net/wireless/chan.c
-index 0b7e81db383d..a78a6183d11e 100644
---- a/net/wireless/chan.c
-+++ b/net/wireless/chan.c
-@@ -666,6 +666,7 @@ bool cfg80211_chandef_dfs_usable(struct wiphy *wiphy,
- 
- 	return (r1 + r2 > 0);
- }
-+EXPORT_SYMBOL(cfg80211_chandef_dfs_usable);
- 
- /*
-  * Checks if center frequency of chan falls with in the bandwidth
-@@ -965,6 +966,7 @@ cfg80211_chandef_dfs_cac_time(struct wiphy *wiphy,
- 
- 	return max(t1, t2);
- }
-+EXPORT_SYMBOL(cfg80211_chandef_dfs_cac_time);
- 
- static bool cfg80211_secondary_chans_ok(struct wiphy *wiphy,
- 					u32 center_freq, u32 bandwidth,
-diff --git a/net/wireless/core.h b/net/wireless/core.h
-index 7c61752f6d83..c0eaa4d4f42e 100644
---- a/net/wireless/core.h
-+++ b/net/wireless/core.h
-@@ -462,29 +462,12 @@ int cfg80211_scan(struct cfg80211_registered_device *rdev);
- 
- extern struct work_struct cfg80211_disconnect_work;
- 
--/**
-- * cfg80211_chandef_dfs_usable - checks if chandef is DFS usable
-- * @wiphy: the wiphy to validate against
-- * @chandef: the channel definition to check
-- *
-- * Checks if chandef is usable and we can/need start CAC on such channel.
-- *
-- * Return: true if all channels available and at least
-- *	   one channel requires CAC (NL80211_DFS_USABLE)
-- */
--bool cfg80211_chandef_dfs_usable(struct wiphy *wiphy,
--				 const struct cfg80211_chan_def *chandef);
--
- void cfg80211_set_dfs_state(struct wiphy *wiphy,
- 			    const struct cfg80211_chan_def *chandef,
- 			    enum nl80211_dfs_state dfs_state);
- 
- void cfg80211_dfs_channels_update_work(struct work_struct *work);
- 
--unsigned int
--cfg80211_chandef_dfs_cac_time(struct wiphy *wiphy,
--			      const struct cfg80211_chan_def *chandef);
--
- void cfg80211_sched_dfs_chan_update(struct cfg80211_registered_device *rdev);
- 
- int
 -- 
-2.17.1
+2.25.1
 
 
 -- 
