@@ -4,84 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F630C7EE2E
-	for <ath11k@archiver.kernel.org>; Thu,  8 Jun 2023 07:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82682C83003
+	for <ath11k@archiver.kernel.org>; Thu,  8 Jun 2023 07:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RlK+jLCfGpQBsBf1q89XiKbTDAwPB4kwMvJfaJXFLaI=; b=RS+Vb1+wajJtTe
-	R880ntAwgjVk54QYjP4au/n6c0rJL8x9IkZGwcbCYsHrautHqkVLU5qLhys/i3Oayif5AtbHqc5An
-	5Bl2xzKXlCFsZaJ1tjlFHONYkHWJNQYCuj27oZfvZbflF14QQTEF3m7iV0ffiQXBJjGxLmanFFuVp
-	Dtv21b4XdDeBvohnljzIuKeYduKiPCAKITdC5DBJxtt8B1CTSbnEWclw+DK7GJSKEdSririDJ80kP
-	Ko1HTaNJhkliZ2RBOikyaJ2nDEAmZE0OnDK90NF1f4j0v9wTXlTcYaCM5hxmpI0j0c9+3aR2XNvUf
-	nS3yFauGbEupA6JVavsw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=eIjH9LVzVk5QtJeeA1yk/NcCPp88FBzH5p3r4TWgpC8=; b=GvYkvUd9eZNNM3
+	AluNAXeQAEnx6CtaNTsbiOQzThhgWzZ0JciXvVd9roAjm84CuimAnoV5g1GAFCE4l5rSH5USoyJwW
+	nXwVJfIX8AOtmjcA7LKKZC3wIonKBc3hfvgVe3s9QjCPxX6ItWzzE80VFeDl6ePvIZyVr1/QdQrN9
+	f6ZNdAL3o+wEDb7veVvisH3ndystAksNpQb55l4tgfvKYCUEq7j8A4Go3+Ed8f7hzwiLkXR0h0YBe
+	xkLIDCjjUtVYC35MdOxO7byxw2WOMH3OX2+2rIQSty7GtSeRLRMC81lpU4whurwLjQLIbu7RwRTo9
+	itokASwiItU3bZIEi/FQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q79l7-008LyE-2K;
-	Thu, 08 Jun 2023 07:08:37 +0000
+	id 1q79lA-008Lz8-0c;
+	Thu, 08 Jun 2023 07:08:40 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q79l4-008LvW-22
+	id 1q79l4-008Lv8-2B
 	for ath11k@lists.infradead.org;
-	Thu, 08 Jun 2023 07:08:36 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3586lTbK020861;
-	Thu, 8 Jun 2023 07:08:23 GMT
+	Thu, 08 Jun 2023 07:08:37 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3584k6F9028168;
+	Thu, 8 Jun 2023 07:08:18 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=etSRraY+YlwDG1Jy9nTdUcmr3fLuE/bD49cuaIRm+Xo=;
- b=dgA/VWMmbezyGQMVFBjoUp3KL+oEQHJj3fIhjECjQtYfZ5yJIR2u7o9BMrWAPOFtybni
- pQkAGS/W496pGZ+2W5YsDnT9XJEVRwnaLf9jvihgIVcwqDJ2XVpoCtrhWyEfGsnM9dEN
- I+PHu6WXw6wlvICdUs+0C8sCmwQpV2U+nLI41PNk1nHcpzfdNo7Hubm5terNsFlxr0WG
- 0G8Yr3yS1gzApbLgUKXLljlJJ1YXCmJtLaexZ2YmsXxTbLN2aWxfCl4dkgAWT1olY+qK
- LxqwpQP89oo/9J/jFJI0t2fmKz+9JXXO4zXBigin6FfsjQX86UtnwoLUwk45igmGqIYq ig== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r39ku82t5-1
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=SkAOiS0krWaUnd3fysrk308RWuoAvv04xv/9Jaqy5Qo=;
+ b=MqPmH8K0qO+7lgITj4EjtDyfPTa2F7mPGO5z6KLfstQMUfMXMsDolL3zue0rm5AOakQs
+ gHIYM7XAbWXslPm+YWHTUIFbhBSxtGSunzoooOA52JASByLRbUeXreu8O8eDJR5oNiVG
+ ak1Jx0jz/fXWzjHy5mbB/cmRgbAIBigPFBKk5YlLtu6rUJE6nc7qFNdHGdr3Ak2Kdzbk
+ at5gNlu4T4O9Brlfh3TmHPy6LP2YRvjdPn2txeJRqAqBerNXjmiBUchoZVyyRwvlhnVd
+ rKB59JiePbbDI5GAGPqvgzINVLcO96eTEvmZSiEtywdmL7Lz+eLie0UflRF44mbIwxyj 3A== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r33uygk7x-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 Jun 2023 07:08:22 +0000
+	Thu, 08 Jun 2023 07:08:18 +0000
 Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35878MLO000304
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35878HLS022163
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 Jun 2023 07:08:22 GMT
+	Thu, 8 Jun 2023 07:08:17 GMT
 Received: from aarasahu-linux.qualcomm.com (10.80.80.8) by
  nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 8 Jun 2023 00:08:20 -0700
+ 15.2.986.42; Thu, 8 Jun 2023 00:08:16 -0700
 From: Aaradhana Sahu <quic_aarasahu@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>,
-        Thiraviyam Mariyappan
-	<quic_tmariyap@quicinc.com>,
-        Aaradhana Sahu <quic_aarasahu@quicinc.com>
-Subject: [PATCH v2 2/3] wifi: ath11k: Fix tkip encryption traffic failure
-Date: Thu, 8 Jun 2023 12:37:53 +0530
-Message-ID: <20230608070754.7161-3-quic_aarasahu@quicinc.com>
+        Aaradhana Sahu
+	<quic_aarasahu@quicinc.com>
+Subject: [PATCH v2 0/3] Enable TKIP when using encapsulation offloading
+Date: Thu, 8 Jun 2023 12:37:51 +0530
+Message-ID: <20230608070754.7161-1-quic_aarasahu@quicinc.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230608070754.7161-1-quic_aarasahu@quicinc.com>
-References: <20230608070754.7161-1-quic_aarasahu@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nasanex01a.na.qualcomm.com (10.52.223.231)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tbwTBtmiEgZqrDOcX1zwehxogsB9AUjC
-X-Proofpoint-ORIG-GUID: tbwTBtmiEgZqrDOcX1zwehxogsB9AUjC
+X-Proofpoint-GUID: uda-LFsA09y8hzPHzuNsWUWEr2Er3aY8
+X-Proofpoint-ORIG-GUID: uda-LFsA09y8hzPHzuNsWUWEr2Er3aY8
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
  definitions=2023-06-08_03,2023-06-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- mlxscore=0 mlxlogscore=974 lowpriorityscore=0 phishscore=0 bulkscore=0
- priorityscore=1501 suspectscore=0 impostorscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306080058
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=553
+ priorityscore=1501 impostorscore=0 mlxscore=0 bulkscore=0 malwarescore=0
+ suspectscore=0 clxscore=1011 phishscore=0 lowpriorityscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306080058
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230608_000834_685518_D12DBD56 
-X-CRM114-Status: GOOD (  19.03  )
+X-CRM114-CacheID: sfid-20230608_000834_718720_A7914AB8 
+X-CRM114-Status: GOOD (  11.43  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,77 +94,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Thiraviyam Mariyappan <quic_tmariyap@quicinc.com>
+TKIP was disabled on encap offload mode since if TKIP MIC error
+reporting is not capable by the driver using encap offload mode,
+then TKIP countermeasures would not work.
 
-Currently, we are getting NULL value for fast_rx because
-fast_rx is not assigned in case of TKIP cipher and hence
-packets are dropped in fast path.
+Enabling back TKIP bring-up in encap offload mode to leave the
+control with the driver to disable hw encap when it is not capable
+of TKIP MIC error reporting.
 
-Fix this issue by handling the rx decap for TKIP so frames
-will be handled in normal rx path.
+Sathishkumar Muruganandam (2):
+  wifi: mac80211: Fix tkip encrypted packet transmission path
+  wifi: ath11k: add 802.3 undecap support to fix TKIP MIC error
+    reporting
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Thiraviyam Mariyappan (1):
+  wifi: ath11k: Fix tkip encryption traffic failure
 
-Signed-off-by: Thiraviyam Mariyappan <quic_tmariyap@quicinc.com>
-Signed-off-by: Aaradhana Sahu <quic_aarasahu@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h  |  2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c | 15 ++++++++++-----
- 2 files changed, 11 insertions(+), 6 deletions(-)
+v2:
+ -Send to ath11k mail list.
+---
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 0830276e5028..bb9acdda5aa8 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -122,7 +122,7 @@ struct ath11k_skb_rxcb {
- 	bool is_last_msdu;
- 	bool is_continuation;
- 	bool is_mcbc;
--	bool is_eapol;
-+	bool skip_decap;
- 	struct hal_rx_desc *rx_desc;
- 	u8 err_rel_src;
- 	u8 err_code;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 99859b59138e..03eeb3dfbb15 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2168,9 +2168,14 @@ static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
- 	case DP_RX_DECAP_TYPE_ETHERNET2_DIX:
- 		ehdr = (struct ethhdr *)msdu->data;
- 
--		/* mac80211 allows fast path only for authorized STA */
--		if (ehdr->h_proto == cpu_to_be16(ETH_P_PAE)) {
--			ATH11K_SKB_RXCB(msdu)->is_eapol = true;
-+		/* Fast_rx expects the STA to be authorized and
-+		 * its not assigned for TKIP cipher. Hence, set
-+		 * this flag to handle the EAPOL and TKIP packets
-+		 * in the normal path.
-+		 */
-+		if (ehdr->h_proto == cpu_to_be16(ETH_P_PAE) ||
-+		    enctype == HAL_ENCRYPT_TYPE_TKIP_MIC) {
-+			ATH11K_SKB_RXCB(msdu)->skip_decap = true;
- 			ath11k_dp_rx_h_undecap_eth(ar, msdu, first_hdr,
- 						   enctype, status);
- 			break;
-@@ -2423,7 +2428,7 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
- 	u8 decap = DP_RX_DECAP_TYPE_RAW;
- 	bool is_mcbc = rxcb->is_mcbc;
--	bool is_eapol = rxcb->is_eapol;
-+	bool skip_decap = rxcb->skip_decap;
- 
- 	if (status->encoding == RX_ENC_HE &&
- 	    !(status->flag & RX_FLAG_RADIOTAP_HE) &&
-@@ -2479,7 +2484,7 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
- 	 * Also, fast_rx expects the STA to be authorized, hence
- 	 * eapol packets are sent in slow path.
- 	 */
--	if (decap == DP_RX_DECAP_TYPE_ETHERNET2_DIX && !is_eapol &&
-+	if (decap == DP_RX_DECAP_TYPE_ETHERNET2_DIX && !skip_decap &&
- 	    !(is_mcbc && rx_status->flag & RX_FLAG_DECRYPTED))
- 		rx_status->flag |= RX_FLAG_8023;
- 
+ drivers/net/wireless/ath/ath11k/core.h  |  2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 54 ++++++++++++++++++++++---
+ net/mac80211/tx.c                       |  3 +-
+ 3 files changed, 50 insertions(+), 9 deletions(-)
+
 -- 
 2.17.1
 
