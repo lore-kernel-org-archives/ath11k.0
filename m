@@ -4,87 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 633DAC7EE29
-	for <ath11k@archiver.kernel.org>; Fri,  9 Jun 2023 08:45:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0066C7EE29
+	for <ath11k@archiver.kernel.org>; Fri,  9 Jun 2023 12:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0qMIIsiPzKw9URvUDOCc+DPlUlXTf/Bp+/yROF8vyZA=; b=pKmLoNBOoVIgRY
-	WW2iX4VGaetzg5DUL13gSs3EFbH87f5oK5bWrU5FxJCdEsY5t330v+Dbs1eb/qachoLm7S2CmDshB
-	iGkKi3ZBiXkVHv4VOuRx26S1v9YGTv9oDkhfJXj95TOSgUtWb9YbWlxkAX2Ed5AdCnHOcO1wqb9LJ
-	+hBWWCE1WChhKEhi/jrv8cmj0lT7emDdMU76xx2gjW0n8cjAXzW4oMYjl1TUVEa5UjadatVsWWQ4z
-	3+uKzFblFVwuLzcZIkMIlHnoe3siyQbXorWLo/6YX0NBggPzdaXf34omdCSFGfTw8bnOjAIQvywqN
-	Cvi26nP+cNs3UpcCZEBQ==;
+	List-Owner; bh=c2/riljnUDYdQ5ROJdfaDnTBMLcVlCwXWTVTUsE0nZA=; b=iyG2ynQjNNscG9
+	ACvX4JX1l7UsB3lajCfWscwerPjDj+TelQESC/n3l1dCcjOMVV+2EXLfas4IooLXC8rMbGnNWMRrl
+	M5dWGLM7QGFStMOn4diJJB8iN1XLRzoGtawnS4gm108BSctSUFexaxYnrC7+Q89ucjMY/p/ow3xfS
+	A88kzTAKoTUC6ket95eXV0DmGkyCkjtq7g0vVY7dDl+Jb2jBgoKmbTlfX8X6teKUXdTmcRwMbHVfi
+	2gr6HMS7bzyYxxf0gRIvQZe2aSc95UhUMJQy4U9SW0WD20eU4P6AeCxb9mXou+GD2hz9TlNVAhKZU
+	rbNRA7krYFKYUE1XrWxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7Xjz-00CHDx-1v;
-	Fri, 09 Jun 2023 08:45:03 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1q7bC8-00CzBQ-2X;
+	Fri, 09 Jun 2023 12:26:20 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7Xjw-00CHB7-2K
+	id 1q7bC6-00CzAn-1F
 	for ath11k@lists.infradead.org;
-	Fri, 09 Jun 2023 08:45:01 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-977d0ee1736so234769066b.0
-        for <ath11k@lists.infradead.org>; Fri, 09 Jun 2023 01:44:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686300297; x=1688892297;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
-        b=ev/gO9W54hYaCq9ean5DupK1uYMYJe2cw12AnKy5KCgHrVvXscqgta6p77dUi9PpD0
-         SQ/8RR5w1cKmN9AKkuezoVkYeu8oxjL1GovQ4Th659JBhce999+AcsmOkaqYQRkfCm1B
-         XRWej+p7auDkDaBPPqeKDPymHRTSJ/6iIV6W0Dy2kd0/SlXCXuwYrgaWzMSURucXRWye
-         DtfnyXC6hIDfEHOf0t09TwpMGqxWhV9Mf2oBVG2Q8AiLCiT+jxjU4rGtWrajThtnCXqq
-         2PEDII6gwra9FL/ixUsC2wZaUb+0bKHxfjioOC4g5KRZd2t7PvGuy9u83kxaIzbUAFma
-         oMKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686300297; x=1688892297;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
-        b=SJUo24N9L5op+okrt8o8LKl+uDhuRy+z/mk74vsrofiJlCsJ7ITPN6VEmOD8/cu/3h
-         cvj4u6tNM8y191oWmKkq+rTZJdrJYabQqLZ2Y6dUPr9GrRq4srNjS6MsxNJVuo4N1aAa
-         yUcc6TbmJBGpObe5j+9H0OfQcF+X5+lVWGsiDuwWFAKuVIcmrFWQk/I/C12kIKXLWFAe
-         8WhkZZHecLTb1k0HAU7HSeDs6g5JJH356RC6prmYTqwmOo3eRX1fppQSyKfvNxxkIVNn
-         /dY9vajDQ/YSYuX1CM9z/QBVIbDHwegQ2DLDifext54whrauxsUIINxrisT8X1k4VCEe
-         NA5Q==
-X-Gm-Message-State: AC+VfDy+fgskR8uTYLBc9OloPS1j4vyIMDCHhSfWB3o9eVzrbfubRsU6
-	rg7IZgIAF5fvq7Vx8l5sBfU=
-X-Google-Smtp-Source: ACHHUZ6BRxs/pXjmvDXY/Ix/M6PsYGHPtG5nSO4nq825Yv/jpYmkLikZjzLYUPDhzmiNY3syp+zKHg==
-X-Received: by 2002:a17:907:9349:b0:973:e4c2:2bcd with SMTP id bv9-20020a170907934900b00973e4c22bcdmr1042732ejc.18.1686300296517;
-        Fri, 09 Jun 2023 01:44:56 -0700 (PDT)
-Received: from shift.daheim (pd9e2959c.dip0.t-ipconnect.de. [217.226.149.156])
-        by smtp.gmail.com with ESMTPSA id jw19-20020a17090776b300b00973fac6065esm974199ejc.223.2023.06.09.01.44.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 01:44:56 -0700 (PDT)
-Received: from chuck by shift.daheim with local (Exim 4.96)
-	(envelope-from <chuck@shift.daheim>)
-	id 1q7Xjr-0004fR-1N;
-	Fri, 09 Jun 2023 10:44:55 +0200
-From: Christian Lamparter <chunkeey@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org
-Cc: kvalo@kernel.org,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org
-Subject: [PATCH v1 2/2] wifi: ath11k: add support DT ieee80211-freq-limit
-Date: Fri,  9 Jun 2023 10:44:55 +0200
-Message-Id: <a57a3e1e23b5ac4a18d772e3b82527498ac85bb5.1686300243.git.chunkeey@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
-References: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
+	Fri, 09 Jun 2023 12:26:19 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 7BED0619FF;
+	Fri,  9 Jun 2023 12:26:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0799C433EF;
+	Fri,  9 Jun 2023 12:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1686313574;
+	bh=sDqla35NPLBYgl0LPzzm4JHUqVVdHhzJ++zG4Cv5Xm0=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=eEtoTdP4K0F3D0sRvNPo9UU3ja3ErKFH0iXPQYeueJxBwx5a1Rn8L8h3R85zzgTIJ
+	 9+3tlPmHmGmaRPU87DLa818VcH1SXKSuWXOw+P7vE93+asqPEMitbE01DOnHvsQED/
+	 QazJhUxfZpF5XglJoNl3F1BzhEmFGE1pf+M7tsfUQphVfuF7qDYvLH3DrAnAgTWxLD
+	 dr5JuuhWQnDZoUgYHrm2q8KVw6VKRn7n5Xk2Qrvc5k4EGd/UzXBhYulZfv+2pIL61T
+	 vGc6zz5qO7D9XFOAGNyAhK/D4tuGiz4LyQdIPpHsDLPn2XjzgYd6lQNLHXFwhB49oh
+	 oAtAfFNB//4eg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>, Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH] wifi: ath11k: fix boot failure with one MSI vector
+References: <20230601033840.2997-1-quic_bqiang@quicinc.com>
+Date: Fri, 09 Jun 2023 15:26:10 +0300
+In-Reply-To: <20230601033840.2997-1-quic_bqiang@quicinc.com> (Baochen Qiang's
+	message of "Thu, 1 Jun 2023 11:38:40 +0800")
+Message-ID: <87fs70hlel.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_014500_753910_7F6564DA 
-X-CRM114-Status: UNSURE (   8.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230609_052618_485763_9AE62913 
+X-CRM114-Status: GOOD (  13.39  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,32 +74,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The common DT property can be used to limit the available
-channels/frequencies. But ath11k has to manually call
-wiphy_read_of_freq_limits().
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
----
-compile-tested only.
----
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- 1 file changed, 1 insertion(+)
+> Commit 5b32b6dd96633 ("ath11k: Remove core PCI references from
+> PCI common code") breaks with one MSI vector because it moves
+> affinity setting after IRQ request, see below log:
+>
+> [ 1417.278835] ath11k_pci 0000:02:00.0: failed to receive control response completion, polling..
+> [ 1418.302829] ath11k_pci 0000:02:00.0: Service connect timeout
+> [ 1418.302833] ath11k_pci 0000:02:00.0: failed to connect to HTT: -110
+> [ 1418.303669] ath11k_pci 0000:02:00.0: failed to start core: -110
+>
+> The detail is, if do affinity request after IRQ activated,
+> which is done in request_irq(), kernel caches that request and
+> returns success directly. Later when a subsequent MHI interrupt is
+> fired, kernel will do the real affinity setting work, as a result,
+> changs the MSI vector. However at that time host has configured
+> old vector to hardware, so host never receives CE or DP interrupts.
+>
+> Fix it by setting affinity before registering MHI controller
+> where host is, for the first time, doing IRQ request.
+>
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+>
+> Fixes: 5b32b6dd9663 ("ath11k: Remove core PCI references from PCI common code")
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c947d1c8d8c1..7e43f2770f27 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9414,6 +9414,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	if (ret)
- 		goto err;
- 
-+	wiphy_read_of_freq_limits(ar->hw->wiphy);
- 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
- 	ath11k_mac_setup_he_cap(ar, cap);
- 
+I'm worried if this breaks WCN6750 support. Manikanta, would able to
+test this patch on WCN6750 and let us know if breaks anything?
+
 -- 
-2.40.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
