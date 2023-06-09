@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C74ECC7EE43
-	for <ath11k@archiver.kernel.org>; Fri,  9 Jun 2023 14:24:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D6C7C7EE29
+	for <ath11k@archiver.kernel.org>; Fri,  9 Jun 2023 14:24:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0vPd8YfCUheS4fApOPC7MjSdeXXlvhvoiVqXZHXmTYE=; b=vDmwh7cme6D5TM
-	0mjX22z3MPZACCZ8ipu3utLG9MFhVp7w6sbras07Z5/y4dDBWWPRk9jvxk1svTvA/g8g40ebnJuDj
-	dTOnAR+Z7FEcqx2uHWppLMvlmi7NdKtBI94R2erbjwf4NNoXeINHOYv9eztXYOZta0N0ou0BCs5cj
-	lMpjcTPWIpAqw6X9eYWHFrnU5OFRFvdAa7TXtCv+W01sdRbJgUtKaZRZ5Uihs7jwgHmuT9TAnuHkC
-	x3I4y8p2WWQOvYFGVodi6nI5Cw1Qg+x6uUT1GXc5TU0TlLd7u0p9C3SaNlFNT8TOQ4RGJHoxkiKBG
-	sgERn3iTWuP+jUAyPGZA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=i56rVLoCmj06x/M5sjy84G9w3ZJoIpr/7yikKKTM0QY=; b=Vf/+X5DGumhaEL
+	EN9/a5HmkhOgq/2mXjkT5Z04iJuapID/k+zrO0wcHJmEsVDbluvVtAfF/qp1DWqrwi3SawmDLUQr5
+	5m0h2ZsXiIM9Qr12YvXykMQa3qmn8+eU224sFaA3QUy/LW92CYdWbPwgcuV4nrNT4g/0mAhQQUtKq
+	RfEeN46ghHjw9INEjh9SQFIJ2mmVczIVk47+qhKn5ZsuK42WMqtvljdT1va3FR9F8WLGWUMs+ixQ4
+	3TBxT15iJz1e2Lm2KIC1VMaAMUNPkWsO2JcLcQdQlN9GK8KAILKGXRsfKaqEK+TD1rgGbAdNRV1rN
+	1Z/X435bB/6Nt6DvI5aQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7d2l-00DFVf-1T;
-	Fri, 09 Jun 2023 14:24:47 +0000
+	id 1q7d2m-00DFVy-0U;
+	Fri, 09 Jun 2023 14:24:48 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7d2i-00DFUU-2b
+	id 1q7d2j-00DFUr-26
 	for ath11k@lists.infradead.org;
 	Fri, 09 Jun 2023 14:24:46 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 2C65F612E3
-	for <ath11k@lists.infradead.org>; Fri,  9 Jun 2023 14:24:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09A02C433EF;
-	Fri,  9 Jun 2023 14:24:42 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 3D3026173E
+	for <ath11k@lists.infradead.org>; Fri,  9 Jun 2023 14:24:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14429C433D2;
+	Fri,  9 Jun 2023 14:24:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1686320683;
-	bh=GNcaM5RE6Sq/mNvgioG2yaYjxqAFOAEAMgRlZ6mH+B4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=nSbMatYc+NKak8m3BJ4LvkSNWqUhCq2j+WuzWAMMLRaAyWliP/d3WZrQk+kU3cT+k
-	 GNIfR3kPcDM815gBXWHl7uPbbSwnBcXuRtO+atSoPrbwpbKh48OCUkcGXilcfGSU2l
-	 ha3kVv2uXv5tqkVJX+e9i1sEPri5YaWQTVYWvzRCyIDlU15oL2uhyETTmflPtyy/bM
-	 yU+XRq64W83q0baR5SBTBxpx7iRaLj5Yhe0TpY8bnhsWthyUq3B/6TOZY0jtfAfvpF
-	 qJauQogVPb0/RRypGFVskihfWXiZkuzYzHXpslXeI4o+NrjfpWLbel9vqxGG7AeiWy
-	 MNxXGaznzxykg==
+	s=k20201202; t=1686320684;
+	bh=UaJWYbBerV1+c0yzKaM0ZSFmcF3N7Eb/Hwya0EflQhk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Co0fOLUR91I1KLFbrxWdB90ygZFhi0sjHYmQgwZU/5gsIkXiX4n8UR6MYYdvUwxRN
+	 MqOpO5KkrgZ5DeFzg7dSmRJz27LdiT6YS6O1DooO9PpY6djP+VWRdWNXQMpvjQqbs6
+	 h/KtaZ2oez/eZak1/pf0U87rxWnUnkL6bANmTMllsrcRfm3rDj4h8M8s2hywLFUuHR
+	 UdWgyomS3WHt2SdBj5v3GuTWSRAmV7f5cx+s0TRswGqxUILiVRNRBL5+tMuURrCMN8
+	 2shph3bbhgWpSQs1pu6JhbM/wvg6xpnTucKoYuuqv28xlsBsdFnzZwrKckMs6tqbfT
+	 WD6DkEnaRDraw==
 From: Kalle Valo <kvalo@kernel.org>
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH 00/15] wifi: ath11k: debug message improvements
-Date: Fri,  9 Jun 2023 17:24:25 +0300
-Message-Id: <20230609142440.24643-1-kvalo@kernel.org>
+Subject: [PATCH 01/15] wifi: ath11k: debug: remove unused ATH11K_DBG_ANY
+Date: Fri,  9 Jun 2023 17:24:26 +0300
+Message-Id: <20230609142440.24643-2-kvalo@kernel.org>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230609142440.24643-1-kvalo@kernel.org>
+References: <20230609142440.24643-1-kvalo@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_072444_881497_E2CC8A30 
-X-CRM114-Status: UNSURE (   7.50  )
+X-CRM114-CacheID: sfid-20230609_072445_726886_3AF189AC 
+X-CRM114-Status: UNSURE (   9.54  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,49 +76,27 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Kalle Valo <quic_kvalo@quicinc.com>
 
-Some improvements and cleanup to ath11k debug messages. Print debug
-level automatically in kernel log messages.
+It's not used anywhere so can be easily removed.
 
-Kalle Valo (15):
-  wifi: ath11k: debug: remove unused ATH11K_DBG_ANY
-  wifi: ath11k: print debug level in debug messages
-  wifi: ath11k: remove manual mask names from debug messages
-  wifi: ath11k: add WMI event debug messages
-  wifi: ath11k: remove unsupported event handlers
-  wifi: ath11k: wmi: cleanup error handling in
-    ath11k_wmi_send_init_country_cmd()
-  wifi: ath11k: wmi: use common error handling style
-  wifi: ath11k: wmi: add unified command debug messages
-  wifi: ath11k: pci: cleanup debug logging
-  wifi: ath11k: dp: cleanup debug message
-  wifi: ath11k: debug: use all upper case in ATH11k_DBG_HAL
-  wifi: ath11k: hal: cleanup debug message
-  wifi: ath11k: don't use %pK
-  wifi: ath11k: htc: cleanup debug messages
-  wifi: ath11k: debug: add ATH11K_DBG_CE
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
 
- drivers/net/wireless/ath/ath11k/ahb.c    |   4 +-
- drivers/net/wireless/ath/ath11k/ce.c     |   4 +-
- drivers/net/wireless/ath/ath11k/core.c   |  14 +-
- drivers/net/wireless/ath/ath11k/debug.c  |   2 +-
- drivers/net/wireless/ath/ath11k/debug.h  |  48 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c  |   8 +-
- drivers/net/wireless/ath/ath11k/dp_tx.c  |  12 +-
- drivers/net/wireless/ath/ath11k/hal.c    |  10 +-
- drivers/net/wireless/ath/ath11k/hal_rx.c |  24 +-
- drivers/net/wireless/ath/ath11k/htc.c    |  42 +-
- drivers/net/wireless/ath/ath11k/mac.c    | 110 ++---
- drivers/net/wireless/ath/ath11k/mhi.c    |   6 +-
- drivers/net/wireless/ath/ath11k/pci.c    |  22 +-
- drivers/net/wireless/ath/ath11k/pcic.c   |   6 +-
- drivers/net/wireless/ath/ath11k/peer.c   |   4 +-
- drivers/net/wireless/ath/ath11k/qmi.c    |  58 +--
- drivers/net/wireless/ath/ath11k/reg.c    |   4 +-
- drivers/net/wireless/ath/ath11k/wmi.c    | 562 +++++++++++++----------
- 18 files changed, 544 insertions(+), 396 deletions(-)
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/debug.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-
-base-commit: 3b3d60fff1f7ecd2966a2f4f9b20a80630b93682
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index 621d85f3118c..0a9418c36bf4 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -26,7 +26,6 @@ enum ath11k_debug_mask {
+ 	ATH11K_DBG_PCI		= 0x00001000,
+ 	ATH11K_DBG_DP_TX	= 0x00002000,
+ 	ATH11K_DBG_DP_RX	= 0x00004000,
+-	ATH11K_DBG_ANY		= 0xffffffff,
+ };
+ 
+ __printf(2, 3) void ath11k_info(struct ath11k_base *ab, const char *fmt, ...);
 -- 
 2.30.2
 
