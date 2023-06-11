@@ -4,88 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3898C7EE29
-	for <ath11k@archiver.kernel.org>; Fri,  9 Jun 2023 17:11:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04751C7EE2E
+	for <ath11k@archiver.kernel.org>; Sun, 11 Jun 2023 12:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=27cqpelCKcVCt6v4r1sAJQMN/uODmlmSWgoVIIlGfC8=; b=wDcWwWj6a3UIVH
-	QYgYYNFzBjUxobzB9pQWalD7tq4F+aw6ZCHX8lELRGHmFm+mWjTtLISGnyPG0Fbr5JK6XJqwwK5fB
-	tm32YxOMExx+nVhwFBgizho/Ymt3oNSKLY2djAwLdT8Gd1vlgRhFQ3O8M/7jQGDvUxcT4/NXcIcb5
-	rX75cQIEv2O53EdQIr/6/Yc5D9dOGsGzNeVsfCTlB9KMmkrks6LVQorUFcr7MRb1UU37qiHSY8w93
-	G/FlM4o7GC4gQE4Zzr23+Zqt1SHMruOXNXY7JEWPqURjJLyiCQCVUrnQppPOJ6FuQrtXlbegaA55v
-	whNn5OUduRrDlAkipizQ==;
+	List-Owner; bh=0qMIIsiPzKw9URvUDOCc+DPlUlXTf/Bp+/yROF8vyZA=; b=yH8dUF89dLcZCU
+	EdnY/n9MnA6/OgAKoYOVy9KEQVmaO/kyp+oUGPINPMVRBN9gjb/WcrZNTKNn7Bx71F0P+sk85pkyZ
+	sn8V7CG69wMi5YYncCFhQcUo+qPbvX8af3hACx1mv2L+XHc2eR3irLV+fQjlQA/ab6Bnn6X6NG5Ru
+	Oh5RUeOxCl4pfjlZWePXJjOoavvajaJdoHD4Zopr5p6yWWG3pEHe0Qpu4HtvvRJ309cifokB+4LBg
+	fAXN5c4Tww3Rgp8bPEdZOr1sIbhmjuvO6x/tjL3SFkZ4mOr0YOtKm07kspQS+1CgLGdzAj382jLTY
+	0QyXxLI9d4uZdRSquD0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7feN-00DhQi-0m;
-	Fri, 09 Jun 2023 17:11:47 +0000
-Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
+	id 1q8KKE-000uCg-1o;
+	Sun, 11 Jun 2023 12:37:42 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q7feK-00DhPF-2X
+	id 1q8KKB-000uAk-37
 	for ath11k@lists.infradead.org;
-	Fri, 09 Jun 2023 17:11:46 +0000
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5149390b20aso3370912a12.3
-        for <ath11k@lists.infradead.org>; Fri, 09 Jun 2023 10:11:33 -0700 (PDT)
+	Sun, 11 Jun 2023 12:37:41 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51496f57e59so4735100a12.2
+        for <ath11k@lists.infradead.org>; Sun, 11 Jun 2023 05:37:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686330692; x=1688922692;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RbYIw9tUAYWWQYDm2hFNShk0R2ieZOPDUqTCunugD/A=;
-        b=k2mhiJUDrPJ76VLaEaKbjJ/hz3WPVGtjxVdkafO4KOn+RTACjDdx5aaGQav+/cbCOq
-         1OMWHVJBaMB8ADDgpzpSG6zm83yVEgjiYbARcbSf77VpeVqrJynS+cBIguI242sF7XSv
-         e35YSHXJKUk3C/vTXUL+4mdSW7vJgujXhsaPyIixMdXDEIXDgIMZpwQ9K9yzS1RWfcuT
-         0r+EbEWkO4SkoiqHoptCuQIp0v1ZCI4EpxiGW1N9fW/w2DBWYZI26i4l4qAipmfvWxaN
-         GJfILye+6Jj8or91eyCSO0de8nEM1ZmQID++CDmTgA8yzgzBo+KntXmJ2ynEpoqhVMGz
-         ek8Q==
+        d=gmail.com; s=20221208; t=1686487055; x=1689079055;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
+        b=cF6z1xdITZwBuJSfEmjH/z+MYgQa6wthMLGjBetd3+r+x+rszQ+Rm9mZozEEA9cHR7
+         2chTWTmNsABqQmt99SjzmNhB5X4R0F/0QIj0/7D558ncNVgwKZwzDuFgzA5U4AdxJsTL
+         4S8JPhYcuGHxn1NNbL7+t/QHJTKg0gYiAyDhM7tZ1/Tb9nRsv1RM87ySMLs5kbpulmEH
+         Utga4iCqqyo263e32Up7YU2oMkVFX+I1T9KimFgLCDXkJLWm8xYDIAJOFEREkO5/08UO
+         n5/9qrB7yxoeu8COJ29bHPXmKtxM+chHgyjz7KlO2IZgkvrkQfa8cj4TG7E3ZynmZQl8
+         bfNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686330692; x=1688922692;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RbYIw9tUAYWWQYDm2hFNShk0R2ieZOPDUqTCunugD/A=;
-        b=AkiVPVq8o0L7VsmbY4DxLw2LvdscRX/UsvlD5e+hTQNsd37a3F6UuMOsmvawX2ueCR
-         A36aC/MKYl4y3QhCrXEgDph98uiBXZe0clEV+jopBBOf8VeY97c4i6VlY8l5MFoof8WU
-         VuktieoT9rmW9rx2vltwIHETk5YrEBCLPGxHWi8loJtGlceQSwtFMCcb33WwmvTuPkiJ
-         DsR7nPfmxE2W2hKARlWphfCtFH9LzQyvGiOFw0pIaS7yuMBdIufqsVB9HaCfjJ+ubZd9
-         ULMZDZ4ZtvD/4QBCMVGCxueqvjX0pnOEQiXos4L33JwAd9qnSNTO0omRAWIKBR8OHvFL
-         zTFg==
-X-Gm-Message-State: AC+VfDznWvsqIGkQIg7LGD7IMdVWBnsj4H9i+o6yUdlT+BcWSy/LT905
-	16v+/QjzYhYTeRZFM38w4aFYGf494Nw=
-X-Google-Smtp-Source: ACHHUZ4+hTREUq2MAVjfeoHl9XRMnmtbKRLp1dSQWatMZz/rqBIwfUm0F4ppoWKXbON0L/AabZjEHg==
-X-Received: by 2002:aa7:c1c5:0:b0:516:4394:244f with SMTP id d5-20020aa7c1c5000000b005164394244fmr1437097edp.12.1686330691851;
-        Fri, 09 Jun 2023 10:11:31 -0700 (PDT)
-Received: from shift.daheim (pd9e2959c.dip0.t-ipconnect.de. [217.226.149.156])
-        by smtp.gmail.com with ESMTPSA id o8-20020aa7dd48000000b0051499320435sm2016281edw.14.2023.06.09.10.11.31
+        d=1e100.net; s=20221208; t=1686487055; x=1689079055;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sV5kS4uFTylsIKBTpLATpLjmqF+bm2uJbZFR1pKIFFU=;
+        b=lKNHPywK+jqVnYeNjGOce51Pc34BfgsdiLAT7jG+KmpGYZdxaDdC7HnDu7tm0D4WQg
+         DOnCjzSY3ZFf10m1XV/tE71hDwVEzYMGw2rV24arfBpgJ/Qdfd1xDzbp3kLtNgcpNrlf
+         rcDvk3X9Is3NCdBoNYbiESh5j3PGdHiwm8RKhcW7nAckcl2R3Vk3/vlxPgNJOoN1N0Ke
+         ftuezsgQJaY6e/1B2J+20E6jarEtXhBbqj/hfWj+Mhnwv5wZON6Qyy16IMnGYn/aHIQ6
+         hRsW77SblzHBaCl0G0fd1ZdtgD9nclsx6EIP6MrvY/anOqkd3rGey//wVa1H3wA7Sdia
+         j9Ow==
+X-Gm-Message-State: AC+VfDxlCFZQ4VrHJo3alteWxQ23kUsQfsjnPf1+8DMcnN7KTFBGsu7j
+	H30GnpUrTpBj7zCjjrfCVoY=
+X-Google-Smtp-Source: ACHHUZ5VWP0NHERLXgSX8/htApGTFSp4xIZ43YimlNMEmqPkZyr/BbV5qoFPogbWxjoMRvXLVK0GgA==
+X-Received: by 2002:a17:907:a0d:b0:978:6fbf:869c with SMTP id bb13-20020a1709070a0d00b009786fbf869cmr7003552ejc.16.1686487054755;
+        Sun, 11 Jun 2023 05:37:34 -0700 (PDT)
+Received: from shift.daheim (p4fd09ff6.dip0.t-ipconnect.de. [79.208.159.246])
+        by smtp.gmail.com with ESMTPSA id dx15-20020a170906a84f00b0097bb01516c2sm2738842ejb.0.2023.06.11.05.37.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 10:11:31 -0700 (PDT)
-Received: from localhost ([127.0.0.1])
-	by shift.daheim with esmtp (Exim 4.96)
-	(envelope-from <chunkeey@gmail.com>)
-	id 1q7fca-001jV8-1i;
-	Fri, 09 Jun 2023 19:11:30 +0200
-Message-ID: <54175c04-00f3-0094-7b70-3d08c0ab9d71@gmail.com>
-Date: Fri, 9 Jun 2023 19:11:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: net: ath11k: add ieee80211-freq-limit
- property
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, kvalo@kernel.org, conor+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-References: <a3075482150d342f71ec235badacec32cdd6c553.1686300243.git.chunkeey@gmail.com>
- <20230609165104.GA1257474-robh@kernel.org>
-Content-Language: de-DE
+        Sun, 11 Jun 2023 05:37:33 -0700 (PDT)
+Received: from chuck by shift.daheim with local (Exim 4.96)
+	(envelope-from <chuck@shift.daheim>)
+	id 1q8KK4-000LN5-2Z;
+	Sun, 11 Jun 2023 14:37:32 +0200
 From: Christian Lamparter <chunkeey@gmail.com>
-In-Reply-To: <20230609165104.GA1257474-robh@kernel.org>
+To: devicetree@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org
+Cc: kvalo@kernel.org,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org
+Subject: [PATCH v2 2/2] wifi: ath11k: add support DT ieee80211-freq-limit
+Date: Sun, 11 Jun 2023 14:37:32 +0200
+Message-Id: <ed266944c721de8dbf0fe35f387a3a71b2c84037.1686486468.git.chunkeey@gmail.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
+References: <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230609_101144_849507_6017489B 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20230611_053740_000781_B3AB4CA7 
+X-CRM114-Status: UNSURE (   8.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,42 +96,36 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 6/9/23 18:51, Rob Herring wrote:
-> On Fri, Jun 09, 2023 at 10:44:54AM +0200, Christian Lamparter wrote:
->> This is an existing optional property that ieee80211.yaml/cfg80211
->> provides. It's useful to further restrict supported frequencies
->> for a specified device through device-tree.
->>
->> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
->> ---
->>   Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> index 7d5f982a3d09..91bf69c2df01 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> @@ -58,6 +58,8 @@ properties:
->>       minItems: 1
->>       maxItems: 2
->>   
->> +  ieee80211-freq-limit: true
->> +
-> 
-> You need a ref to ieee80211.yaml as well.
+The common DT property can be used to limit the available
+channels/frequencies. But ath11k has to manually call
+wiphy_read_of_freq_limits().
 
-Yes. will fix that.
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+---
+compile-tested only.
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-(Related to that: ath10k already supported ieee80211-freq-limit since 2018
-but not in the binding. will post a separate patch shortly)
-
-Regards,
-Christian
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index c947d1c8d8c1..7e43f2770f27 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -9414,6 +9414,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	if (ret)
+ 		goto err;
+ 
++	wiphy_read_of_freq_limits(ar->hw->wiphy);
+ 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
+ 	ath11k_mac_setup_he_cap(ar, cap);
+ 
+-- 
+2.40.1
 
 
 -- 
