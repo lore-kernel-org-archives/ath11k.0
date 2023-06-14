@@ -4,74 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 434F2EB64D8
-	for <ath11k@archiver.kernel.org>; Wed, 14 Jun 2023 02:31:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B819EB64D8
+	for <ath11k@archiver.kernel.org>; Wed, 14 Jun 2023 04:04:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4SRyIUALihM0jIIULRrpifb21RNWNCMg64pfeRXMwWU=; b=4DstkyCFmvoNiu
-	CuIJmS64i2JiZtaoXXsCohmKnJpI8lO1T9Ge0tX/5RzW00Y3xBlk1Ilri/rXi7LXQs1SCGnhp3bhE
-	F8w45ns/QZYP3ofT8tZ0PdAQRED99xVr4MfLtRGGOD2Sg4pZVfNlSgZiw6RdETW1qwErXTbjASToX
-	p/d/Ad83z2w5UX3uFG6JQd+/xjnb74o1ewVEsSmJ2qhSaL1qV0PA3KdzrFwvScQF6g1JuPb8rXgGI
-	lZC+p720hihEnHPq6oxPAZcAfNSJCgBlb5qMjOmHqSJJE16nP+b9zpdOjramS5a4mS3MqCzzFLB3A
-	5+GysjY8lNjcHGv6ajZg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GS5v2xq0S/Q9fqHeKAY4h+vqYOt6j8oesz2amq2p61s=; b=25S3qDTSPX37Nc
+	Zx1jCJ6LSDW/ndG+vSZsrBZgs5G2nd1vPr29s+LC9lJIUgHkUyNWsMlJjNa2fouX9xdYOmSh5MhXU
+	nICzP9B+MUnmR/CkCy1l2guigLXFATie8CdT9k5MB2+XHgDea/QlE5y8X3Bv73snIHkJ6Pjj0WkTe
+	DYmSox38ylm82gjz4EnWfDb8yhz05qicv9s/2WcEm0Y3AblAInOImFXyyhQnUpAgh9vz6O53N0qtl
+	IIqOzZbsPTS4kkTkj3awsLN1xGcmwjjNciKTUF5B70MkWP8LfqKqPJOW4MGnjwdamLGDiOoYz3mOf
+	Fi6RtsP9aK1ufy8a+6Jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9GIR-009jwp-0G;
-	Wed, 14 Jun 2023 02:31:43 +0000
-Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
+	id 1q9HkE-009uoI-1m;
+	Wed, 14 Jun 2023 04:04:30 +0000
+Received: from mga11.intel.com ([192.55.52.93])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9GIL-009jvv-0e
+	id 1q9Hk7-009unC-2p
 	for ath11k@lists.infradead.org;
-	Wed, 14 Jun 2023 02:31:41 +0000
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-65314ee05c6so4986235b3a.1
-        for <ath11k@lists.infradead.org>; Tue, 13 Jun 2023 19:31:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1686709895; x=1689301895;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mu/bzW4YDRTXm6cR+TpzVhop9QR2G5AavGdzqjOazgY=;
-        b=CIBXFlsyyvLzoDaN7H6E/wd+00XfAF0g9EX9xwNGyTqg6+QxcnIImu7jienSY96tvh
-         cHZUIKNO7UactgKINOgq5yLRLr5QbwvRzqF0dD5EaS+lXasnRMshYVDNN71XJjH7cODB
-         BSZzuQUB8M/GJRzYV0zhvF4aqQKsHteycngSw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686709895; x=1689301895;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mu/bzW4YDRTXm6cR+TpzVhop9QR2G5AavGdzqjOazgY=;
-        b=lyXdzPhBPBBN3DZXik+D7uAs6HvHPf4IBGpXdVbaB13XWsGBVCxddPc1PsQxzmvwGo
-         kaY8Pkesitcyb4KS4QYwOVZpdu8Z4QXAMG1alZIGQqru18vUKAckrJb2NjKFDYqlR7Xl
-         kxPLTMYsnv63L3olL/7J89FXsb2suXccxow7zJxYLpVS5U6h6CF17wnMw/Tvjp5nyPHq
-         saBsqUD9yd45KhcsQEJY/htWU2pg9PFCX12GpSXAk0DfoIFdHdvFHFN6diseedR65K6v
-         rXlYma7UXEbgqmPOZd/m2oVMLSCZvvCICchH53OrW1bI4a6Keb8btrypHTZ13X443ypi
-         ZTkw==
-X-Gm-Message-State: AC+VfDwOcQwxmOPbx6szSWUOe9pCAVeqffqkWhLO6/iTuhRgvG+pJhUX
-	nM6yjxyVaIHldZsUzZ7ZvyGBKfD0/SSPJ0Tf63k=
-X-Google-Smtp-Source: ACHHUZ5Na9d99FoDjfvef6vmvvuaT/Z/e+4nMGfzYxgfLHB3qyMNZ1tx0r0QKI9Sr/Oi2gRpMEI1aw==
-X-Received: by 2002:a05:6a20:a10d:b0:111:97f:6db1 with SMTP id q13-20020a056a20a10d00b00111097f6db1mr904632pzk.19.1686709895330;
-        Tue, 13 Jun 2023 19:31:35 -0700 (PDT)
-Received: from arowa.mtv.corp.google.com ([2620:15c:9d:4:7237:6c0:a6ba:d618])
-        by smtp.gmail.com with ESMTPSA id n3-20020a170902968300b001b0266579ebsm10850714plp.194.2023.06.13.19.31.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 19:31:35 -0700 (PDT)
-From: Arowa Suliman <arowa@chromium.org>
-X-Google-Original-From: Arowa Suliman <arowa@google.com>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
+	Wed, 14 Jun 2023 04:04:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1686715463; x=1718251463;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=j9v4z+xOJMN2xrp3cgHzKRWncbNpcvkzIojQLXSttgw=;
+  b=O+ZYCARZIDwiFFsw2WgX5OxauIi9AK5hxYZr7AW2qgLlmgJ3FI1y5dpH
+   GvmQ+OvEkroo89SH8sBx7P+D+nNb/yKhEJhsRENXMEzfTqfFgaeG7HfRS
+   LmpxTOBEML6d0eb8S9etlG7BOsMvdX5whrISIsRtD+5al9Vrvjgqz3flC
+   JGxSYEg/KzpvT/ivQd5cfkEgilD9jUzt/vbbHI+BU6VX76xbj1X6MEZ7T
+   0FIgTsyWCI8lxyyB+LR25Tl8i5xhJdpXh811Hwo4tVS/ofaj9Gx+fBCFN
+   SMJUvg4/I0CWVVEjpzn0EYuRH0oiEBAzW1OeyIclsXwAOZFH+zVdwr/Zz
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="356007161"
+X-IronPort-AV: E=Sophos;i="6.00,241,1681196400"; 
+   d="scan'208";a="356007161"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2023 21:02:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="741680271"
+X-IronPort-AV: E=Sophos;i="6.00,241,1681196400"; 
+   d="scan'208";a="741680271"
+Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
+  by orsmga008.jf.intel.com with ESMTP; 13 Jun 2023 21:02:28 -0700
+Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1q9HiF-0000A1-2B;
+	Wed, 14 Jun 2023 04:02:27 +0000
+Date: Wed, 14 Jun 2023 12:01:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arowa Suliman <arowa@chromium.org>, ath11k@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-wireless@vger.kernel.org,
 	Arowa Suliman <arowa@google.com>
-Subject: [PATCH] wifi: ath11k: Add crash logging
-Date: Tue, 13 Jun 2023 19:29:41 -0700
-Message-ID: <20230614023125.284218-1-arowa@google.com>
-X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
+Subject: Re: [PATCH] wifi: ath11k: Add crash logging
+Message-ID: <202306141105.c1e82Q0y-lkp@intel.com>
+References: <20230614023125.284218-1-arowa@google.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230614023125.284218-1-arowa@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230613_193137_284541_8518750E 
-X-CRM114-Status: UNSURE (   9.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230613_210424_016966_DB38093A 
+X-CRM114-Status: GOOD (  14.50  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,42 +85,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Change crash logging from debug to informational and add warning when
-firmware crash MHI_CB_EE_RDDM happens.
+Hi Arowa,
 
-Tested-on: Qualcomm WCN6855
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Arowa Suliman <arowa@google.com>
----
- drivers/net/wireless/ath/ath11k/mhi.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+[auto build test WARNING on kvalo-ath/ath-next]
+[cannot apply to wireless/main wireless-next/main linus/master v6.4-rc6 next-20230613]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 3ac689f1def4..fb203e7c962b 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -325,7 +325,7 @@ static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
- {
- 	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
- 
--	ath11k_dbg(ab, ATH11K_DBG_BOOT, "notify status reason %s\n",
-+        ath11k_info(ab, ATH11K_DBG_BOOT, "notify status reason %s\n",
- 		   ath11k_mhi_op_callback_to_str(cb));
- 
- 	switch (cb) {
-@@ -333,7 +333,8 @@ static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
- 		ath11k_warn(ab, "firmware crashed: MHI_CB_SYS_ERROR\n");
- 		break;
- 	case MHI_CB_EE_RDDM:
--		if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags)))
-+		ath11k_warn(ab, "firmware crashed: MHI_CB_EE_RDDM\n");
-+                if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags)))
- 			queue_work(ab->workqueue_aux, &ab->reset_work);
- 		break;
- 	default:
+url:    https://github.com/intel-lab-lkp/linux/commits/Arowa-Suliman/wifi-ath11k-Add-crash-logging/20230614-103201
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
+patch link:    https://lore.kernel.org/r/20230614023125.284218-1-arowa%40google.com
+patch subject: [PATCH] wifi: ath11k: Add crash logging
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20230614/202306141105.c1e82Q0y-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        git remote add kvalo-ath https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
+        git fetch kvalo-ath ath-next
+        git checkout kvalo-ath/ath-next
+        b4 shazam https://lore.kernel.org/r/20230614023125.284218-1-arowa@google.com
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=alpha olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.3.0 ~/bin/make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash drivers/net/
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306141105.c1e82Q0y-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/net/wireless/ath/ath11k/mhi.c: In function 'ath11k_mhi_op_status_cb':
+>> drivers/net/wireless/ath/ath11k/mhi.c:328:25: warning: passing argument 2 of 'ath11k_info' makes pointer from integer without a cast [-Wint-conversion]
+     328 |         ath11k_info(ab, ATH11K_DBG_BOOT, "notify status reason %s\n",
+         |                         ^~~~~~~~~~~~~~~
+         |                         |
+         |                         int
+   In file included from drivers/net/wireless/ath/ath11k/mhi.c:14:
+   drivers/net/wireless/ath/ath11k/debug.h:76:69: note: expected 'const char *' but argument is of type 'int'
+      76 | __printf(2, 3) void ath11k_info(struct ath11k_base *ab, const char *fmt, ...);
+         |                                                         ~~~~~~~~~~~~^~~
+
+
+vim +/ath11k_info +328 drivers/net/wireless/ath/ath11k/mhi.c
+
+   322	
+   323	static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
+   324					    enum mhi_callback cb)
+   325	{
+   326		struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
+   327	
+ > 328	        ath11k_info(ab, ATH11K_DBG_BOOT, "notify status reason %s\n",
+   329			   ath11k_mhi_op_callback_to_str(cb));
+   330	
+   331		switch (cb) {
+   332		case MHI_CB_SYS_ERROR:
+   333			ath11k_warn(ab, "firmware crashed: MHI_CB_SYS_ERROR\n");
+   334			break;
+   335		case MHI_CB_EE_RDDM:
+   336			ath11k_warn(ab, "firmware crashed: MHI_CB_EE_RDDM\n");
+   337	                if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags)))
+   338				queue_work(ab->workqueue_aux, &ab->reset_work);
+   339			break;
+   340		default:
+   341			break;
+   342		}
+   343	}
+   344	
+
 -- 
-2.41.0.162.gfafddb0af9-goog
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 -- 
 ath11k mailing list
