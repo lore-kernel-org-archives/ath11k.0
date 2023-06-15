@@ -4,95 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B3EEEB64D9
-	for <ath11k@archiver.kernel.org>; Thu, 15 Jun 2023 02:27:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 036E0EB64D9
+	for <ath11k@archiver.kernel.org>; Thu, 15 Jun 2023 07:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fqF+8DwR0sFoDb1/ofjh60PIH7Pw62jWkodu4OH/d68=; b=vSgJkbkPRUojts
-	n59Xf3lYT0QPZxFD4G0Ki9eL9y8WP33qV8bA+GNdn/0TokiRrMmMucleXzDLLopjCeTUCt4YPFdT2
-	9FPPtY8b/WLD7XK3uj8FDe1fNmg0Xy1zMh5iZDJK4Una3UuebnMJDUuYBEyrZTOU2dxf6qj3FljlO
-	LY/1TrCb1pbyQBxZlBN9OmqOB10ixmHSKSP60XhP5hpd6HtYgWQnl2+mOzX6gcU2DkZgVRvd7k8LN
-	+TTJV1CFHWwWcn//RTLjUBJT9ti7y01tYGVQizDvFclKJBcH9sTasLpUJtOwwWmg+HAxuTdx7bL0B
-	3wgJHJrAnujYFGBYMA9A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=JIJz9fP0lCVqf9Lp6zKnWw/2mgT5wdaf/g2t3KiuV5M=; b=SSmAZQ3VV5aljo
+	JGZqt0ZBwjkXKqetgOiH+jB3STVYHoAVJr9YacnpyVPVWQ+VRpZ5ik27xp2/zgZ3glKTymCETpDeO
+	MEVEvOXFIaK8QxQodfnnBNlsN9cfMaeGtMvS/ECQLkrmoXz308kLdUaQ5uNSckTWjWtYvr056cF3Z
+	PX2XEItACmQi7XpJ5OkO52mx8+FMSB5Ebbbi+cLrO7b8n1c52Bz/tlvXC6vNJIOawWP+PBVBMAcnq
+	I6P7SPQh7xMCcaSOJ0FkbzvvHFXNJbmFMaSRPUQEkWQMDxQd7B3dFM2bfoZ3E+353HxExV5BKS0GI
+	vCVfWKcEtG1oG1D1KUvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9chS-00DMMG-2O;
-	Thu, 15 Jun 2023 02:27:02 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1q9h4y-00Dwuk-1E;
+	Thu, 15 Jun 2023 07:07:36 +0000
+Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9chP-00DMLY-2w
+	id 1q9h4u-00DwtO-2h
 	for ath11k@lists.infradead.org;
-	Thu, 15 Jun 2023 02:27:01 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35F1pW5W031795;
-	Thu, 15 Jun 2023 02:26:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=85CY28qY/Z7AbTsQPkZwoI55W/MMosYt1HZ/RFuZZv4=;
- b=SBaP0vYM3c1bZtokS95AgI5FzxZCGUQzZJSxjVv/RYzbcdRkjsj0f4QryG20OtqpiDcT
- d9qc9YKJnQVjmRvo0jRgbL/e6zHskBoKdwlsOJQn5fxJWobm0UN++gQORPbZ1eHuZSDM
- 7QEB1HE0yT0CDnc1gE+oDenThfUgRsYI8A/U/PZt7m49XByqBIzpXlXvd/KfQEKB5+sJ
- XwvgCi+OAAvObxCR6QM5ikrwMMe8DOaP2lUB/BJ7HQ/zmyxDaZAA6LhA3B0fpvUTc+xC
- Qw23z6JPlY4+FzsSRN3CUINNcHqlTK0j1sHR7ZuN2XwOYkcT+tHhgTBSNKaejjEjxnWM Kg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r7ks68hcd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Jun 2023 02:26:56 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35F2QtaW015885
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Jun 2023 02:26:55 GMT
-Received: from [10.231.195.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 14 Jun
- 2023 19:26:54 -0700
-Message-ID: <a7093d7a-0179-7b5f-cc61-a501331d35c6@quicinc.com>
-Date: Thu, 15 Jun 2023 10:26:52 +0800
+	Thu, 15 Jun 2023 07:07:34 +0000
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1b3c578c602so31188955ad.2
+        for <ath11k@lists.infradead.org>; Thu, 15 Jun 2023 00:07:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686812849; x=1689404849;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/XYFZNhQhLPndaLiIE3HiydrBYKKYSw5+7Q2Iga72GE=;
+        b=QffQjV5jdnIxPDfXyY+XAo4ikT59dZOrHS8Ci9EpL3ZVmwHVbRrlDq0uOoaqbQX0Ue
+         HDZdI0yQ3l3fhvEbgOyROCSY3+q553kB7qLI7mmo+quJhpu0JR95SfUlNOzIxvs/5tXE
+         ayDjDKtE1dbzRoK43PRcNM9xR96+DKZHc6gBrk3/2xFPl+evWDTGLvRfUSH2k7qtqkvU
+         I8NDJDlJzp8X3YoQY3nWYnSKueyaAYbU5WhgSENyeq8mlPeXVO4v3qRS9IpbBeaOw9Xb
+         Row6srUPosBQroYqRoQ+Mu7r6ck4g7YI8outObv7p/uA+cMuSZ/8PUYLDG3XvDTx50Pe
+         5U4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686812849; x=1689404849;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/XYFZNhQhLPndaLiIE3HiydrBYKKYSw5+7Q2Iga72GE=;
+        b=dJlVdt13O5g4aay0/c4HDw+Yr1b/Bvx4FgdzF3UpryxO8S8frEpSKhkt15/ueUAw2V
+         faTmcbkXISRg/8mLBrz5JogYy42lsDzAeZPZnRbD48AFZDLsT6KoDUSz9h7itBIjUPPn
+         pTKxyXIL+0sRMJ6y60nhoKMekAH6o5kTrqcxn4AUznQXzox/2ay8tllKXRuW1fkdku3c
+         Qo0bZq7Fg4Al01D9Z95skWa2AWsoCDQVm+ldpT4ct8L4K0/0E9OYTumpLRyBbhSay0DH
+         g31ITeMfXfO1VmKh8Oke2ycjS29i14vLvz5dqGqA3BG38H6JTpFfLs8enio1pzYubMGX
+         YAMA==
+X-Gm-Message-State: AC+VfDxRCBpBHYk0tuFqUrk90yrm3jajSPT96OG+m7qgjcPmX2jE9MYY
+	4OJacRCR5+XuqMtaRvfRUSY=
+X-Google-Smtp-Source: ACHHUZ5KArXvwmpPvjWJRsoIdcMTJrLgfD8jhLDG9rWLArrFTfLpS19d0IHExAAscENLa5ipZ/+sgg==
+X-Received: by 2002:a17:902:930c:b0:1ab:19db:f2b with SMTP id bc12-20020a170902930c00b001ab19db0f2bmr12869315plb.36.1686812849397;
+        Thu, 15 Jun 2023 00:07:29 -0700 (PDT)
+Received: from [192.168.0.103] ([103.124.138.155])
+        by smtp.gmail.com with ESMTPSA id m4-20020a1709026bc400b001ac5896e96esm1181351plt.207.2023.06.15.00.07.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jun 2023 00:07:28 -0700 (PDT)
+Message-ID: <1326a6e4-758d-3344-d90c-8a126748b034@gmail.com>
+Date: Thu, 15 Jun 2023 14:07:19 +0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 10/27] wifi: mac80211: isolate driver from inactive links
 Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
-        <linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>
-References: <20220902141259.377789-1-johannes@sipsolutions.net>
- <20220902161143.5ce3dad3be7c.I92e9f7a6c120cd4a3631baf486ad8b6aafcd796f@changeid>
- <5d82e564-86bf-c26b-077a-d0bc14e2d3c3@quicinc.com>
- <74f3eb848326607b15336c31a02bdd861ccafb47.camel@sipsolutions.net>
- <d10b88b4-0bd7-a38c-e8d7-8982a281c4b3@quicinc.com>
- <e5adbed1524b27228c152ba14f78c550c8730baa.camel@sipsolutions.net>
- <c15e368e-2fea-a1d8-9c0d-db9278ded5e5@quicinc.com>
- <113761966918b2f390d3c9304307b42a0b4a829b.camel@sipsolutions.net>
- <76863dec-1b2f-b933-7c5e-21c732de4bc6@quicinc.com>
- <2cc79101249548f2a92c14af6aff6121143907d6.camel@sipsolutions.net>
- <1c26c205-0240-7670-117d-02a7af068724@quicinc.com>
- <6f8db032286923845202c7d658f1d39db79a758c.camel@sipsolutions.net>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <6f8db032286923845202c7d658f1d39db79a758c.camel@sipsolutions.net>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: nLW19K9csLgH6zPzyLETVEXVFu7LdDv0
-X-Proofpoint-GUID: nLW19K9csLgH6zPzyLETVEXVFu7LdDv0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-14_14,2023-06-14_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=892 bulkscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 priorityscore=1501 adultscore=0
- spamscore=0 malwarescore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306150017
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+ Kalle Valo <quic_kvalo@quicinc.com>,
+ Johannes Berg <johannes@sipsolutions.net>, Jakub Kicinski <kuba@kernel.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Regressions <regressions@lists.linux.dev>,
+ Linux Atheros 11K <ath11k@lists.infradead.org>
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+Subject: Fwd: ath11k: QCN9074: ce desc not available for wmi command
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230614_192700_095940_F567698A 
-X-CRM114-Status: GOOD (  21.37  )
+X-CRM114-CacheID: sfid-20230615_000732_902955_F1A243D9 
+X-CRM114-Status: GOOD (  14.96  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,33 +90,100 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Ck9uIDYvMTUvMjAyMyAyOjMyIEFNLCBKb2hhbm5lcyBCZXJnIHdyb3RlOgo+IE9uIFdlZCwgMjAy
-My0wNS0yNCBhdCAxNTo0MSArMDgwMCwgV2VuIEdvbmcgd3JvdGU6Cj4+IE1heSBJIGFkZCBhIG5l
-dyBvcHMgaW4gc3RydWN0IGllZWU4MDIxMV9vcHM/IGxpa2UgdGhpczoKPj4KPj4gdTE2IGFjdGl2
-ZV9saW5rcyhzdHJ1Y3QgaWVlZTgwMjExX2h3ICpodywgc3RydWN0IGllZWU4MDIxMV92aWYgdmlm
-LCB1MTYKPj4gbmV3X2xpbmtzKSIKPj4KPj4gdGhlbiBpZWVlODAyMTFfc2V0X3ZpZl9saW5rc19i
-aXRtYXBzKCkgY2FsbCB0aGUgb3BzIHRvIGdldCB0aGUgbGlua3MgZm9yCj4+IHN0YXRpb24gYW5k
-IHNldCB0aGUgc2RhdGEtPnZpZi5hY3RpdmVfbGlua3Mgd2l0aCB0aGUgcmV0dXJuIHZhbHVlIGZy
-b20KPj4gbG93ZXIgZHJpdmVyLAo+PiBpdCBtZWFucyBsb3dlciBkcml2ZXIgd2lsbCBkeW5hbWlj
-IHNlbGVjdCB0aGUgbGlua3MgY291bnQgYXQgdGhpcyBtb21lbnQuCj4+Cj4+IElmIGxvd2VyIGRy
-aXZlciBub3QgcmVnaXN0ZXIgb3BzIGFjdGl2ZV9saW5rcywgdGhlbiBrZWVwIGN1cnJlbnQgbG9n
-aWMuCj4+Cj4gSSBndWVzcyB5b3UgY2FuIGNhbiBzZW5kIHBhdGNoZXMgZm9yIHdoYXRldmVyIHlv
-dSB3YW50IDopCj4KPiBCdXQgSSBoYXZlIG5vIGlkZWEgd2hhdCB5b3UncmUgdHJ5aW5nIHRvIGRv
-PyBXaHkgd291bGQgeW91IG5lZWQgdG8gaGF2ZQo+IGEgY2FsbGJhY2s/CgpDdXJyZW50bHkgZHJp
-dmVyIGNvdWxkIHVzZSBpZWVlODAyMTFfc2V0X2FjdGl2ZV9saW5rc19hc3luYygpIHRvIGFjdGl2
-ZSAKbGlua3MgYWZ0ZXIgY29ubmVjdGlvbiBjb21wbGV0ZWQuCgpCdXQgSSB3b3VsZCBsaWtlIHRv
-IGFsbG93IGRyaXZlciB0byBzZWxlY3QgYWN0aXZlIGxpbmtzIGluIGEgZWFybHkgdGltZSwgCml0
-IHdpbGwgYmUgbW9yZSBjb252ZW5pZW50IGZvciBkcml2ZXIuCgo+Cj4gV2FzIHRoaXMgZm9yIGxp
-bmsgc2VsZWN0aW9uIGluIHRoZSBkcml2ZXI/IFdlIHNob3VsZCBoYXZlIGEgcGF0Y2gKPiBzb21l
-d2hlcmUgdGhhdCBhZGRzIGEgQlNTX0NIQU5HRSBmbGFnIGZvciB3aGVuIHRoZSB2YWxpZCBsaW5r
-cyBjaGFuZ2UsCj4gc28gdGhlIGRyaXZlciBjYW4gc2VsZWN0IG90aGVycy4KPgo+IGpvaGFubmVz
-CgpZZXMsIGl0IGlzIGZvciBsaW5rIHNlbGVjdGlvbiBpbiBkcml2ZXIgYXQgYSBlYXJseSB0aW1l
-IGJlZm9yZSAKY29ubmVjdGlvbiBjb21wbGV0ZWQuCgpDb3VsZCB5b3UgdGVsbCBkZXRhaWwgYWJv
-dXQgaG93IHRoZSBCU1NfQ0hBTkdFIGZsYWcgd29ya3M/8J+YgQoKCi0tIAphdGgxMWsgbWFpbGlu
-ZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+Hi,
+
+I notice a regression report on Bugzilla [1]. Quoting from it:
+
+> Hello, 
+> 
+> We are trying to connect 2x QCN9074 together (one as AP, the other as client). 
+> 
+> Using Ubuntu 22.04 hwe 5.19 generic kernel allows to pair both units in 800.11ac 80MHz only. Any other combinations of 802.11ax or ac/ax with 160MHz bandwidth does not work. The client kernel freezes when associating to QCN9074 AP without specific logs and requires reboot. I'll post another bug once I can get more logs. 
+> 
+> Since quite some patches came through since 5.19 - some of them related to 160MHz bandwidth. I tried multiple newer mainline kernels without success and usually the same error. 
+> 
+> Building kernel from latest ath master branch: 6.4.0-rc4-wt-ath+ gives the following dmesg output:
+> 
+> [  353.587072] ath11k_pci 0000:04:00.0: BAR 0: assigned [mem 0xa4200000-0xa43fffff 64bit]
+> [  353.587180] ath11k_pci 0000:04:00.0: MSI vectors: 1
+> [  353.587186] ath11k_pci 0000:04:00.0: qcn9074 hw1.0
+> [  353.741799] mhi mhi0: Requested to power ON
+> [  353.741806] mhi mhi0: Power on setup success
+> [  353.912479] mhi mhi0: Wait for device to enter SBL or Mission mode
+> [  354.007221] ath11k_pci 0000:04:00.0: chip_id 0x0 chip_family 0x0 board_id 0xff soc_id 0xffffffff
+> [  354.007225] ath11k_pci 0000:04:00.0: fw_version 0x2403072e fw_build_timestamp 2021-06-06 23:27 fw_build_id 
+> [  355.333791] ath11k_pci 0000:04:00.0: leaving PCI ASPM disabled to avoid MHI M2 problems
+> [  355.729786] ath11k_pci 0000:04:00.0 wlp4s0: renamed from wlan0
+> [  358.960477] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 36866
+> [  358.960481] ath11k_pci 0000:04:00.0: failed to send WMI_STA_POWERSAVE_PARAM_CMDID
+> [  358.960484] ath11k_pci 0000:04:00.0: could not set uapsd params -105
+> [  358.960485] ath11k_pci 0000:04:00.0: failed to set sta uapsd: -105
+> [  362.032472] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 90113
+> [  362.032477] ath11k_pci 0000:04:00.0: failed to send WMI_REQUEST_STATS cmd
+> [  362.032479] ath11k_pci 0000:04:00.0: could not request fw stats (-105)
+> [  362.032480] ath11k_pci 0000:04:00.0: failed to request fw pdev stats: -105
+> [  365.104479] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 20482
+> [  365.104483] ath11k_pci 0000:04:00.0: failed to submit WMI_VDEV_DELETE_CMDID
+> [  365.104485] ath11k_pci 0000:04:00.0: failed to delete WMI vdev 0: -105
+> [  365.104487] ath11k_pci 0000:04:00.0: failed to delete vdev 0: -105
+> [  368.176472] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
+> [  368.176476] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+> [  368.176479] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
+> [  371.248474] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
+> [  371.248478] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+> [  371.248480] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
+> [  374.320393] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
+> [  374.320397] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+> [  374.320400] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
+> 
+> Both PCs are Intel x86 (same bug for AMD). We have multiple references of QCN9074 that we tested:
+> - Sparklan WPEQ-405AX (our preferred one, as they are the only vendor I know that went through FCC certification) - This unit can associate to APs only with the firmware Sparklan provided. Otherwise, link strength is reported low and barely no APs are listed after scanning.
+> - Emwicon WMX7406 - has better performances with Sparklan's vendor FW. Works with ath11k-firmware 2.7.0.1 but shows lower TX mostly.
+> 
+> Tested FW (non exhaustive):
+> # ath11k-firmware 2.5.0.1
+> 823915206101779f8cab6b89066e1040  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
+> 668f53050a92db5b4281ae5f26c7e35d  /lib/firmware/ath11k/QCN9074/hw1.0/board-2.bin
+> fcca36959c5f56f9f0fb7015083dc806  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
+> 
+> # ath11k-firmware 2.7.0.1
+> 465d0a063d049f7e4b79d267a035c6c7  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
+> 668f53050a92db5b4281ae5f26c7e35d  /lib/firmware/ath11k/QCN9074/hw1.0/board-2.bin
+> ad8fafb9c1deab744c972469be916e72  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
+> 
+> # Vendor firmware 
+> 1e88ff2e2b5bcf7f130397cb5b21ef39  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
+> 7b3ce8686713a724946466ec1fefc2f4  /lib/firmware/ath11k/QCN9074/hw1.0/board.bin
+> d0a6f7ccd52f9e3886f0bc96309f7b9a  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
+> 
+> 
+> Attached dmesg log with ath11k debug_mask=0xFFFF and lspci. 
+> 
+> Thank you
+
+See Bugzilla for the full thread and attached dmesg.
+
+Manikanta: This regression is apparently caused by a commit of yours.
+Would you like to take a look on it?
+
+Anyway, I'm adding it to regzbot:
+
+#regzbot introduced: 13aa2fb692d371 https://bugzilla.kernel.org/show_bug.cgi?id=217536
+#regzbot title: Threaded NAPI causes ce desc unavailable error on ath11k
+
+Thanks.
+
+[1]: https://bugzilla.kernel.org/show_bug.cgi?id=217536
+
+-- 
+An old man doll... just what I always wanted! - Clara
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
