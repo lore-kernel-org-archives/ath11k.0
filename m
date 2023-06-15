@@ -4,81 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 036E0EB64D9
-	for <ath11k@archiver.kernel.org>; Thu, 15 Jun 2023 07:07:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 142F1EB64D9
+	for <ath11k@archiver.kernel.org>; Thu, 15 Jun 2023 07:57:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=JIJz9fP0lCVqf9Lp6zKnWw/2mgT5wdaf/g2t3KiuV5M=; b=SSmAZQ3VV5aljo
-	JGZqt0ZBwjkXKqetgOiH+jB3STVYHoAVJr9YacnpyVPVWQ+VRpZ5ik27xp2/zgZ3glKTymCETpDeO
-	MEVEvOXFIaK8QxQodfnnBNlsN9cfMaeGtMvS/ECQLkrmoXz308kLdUaQ5uNSckTWjWtYvr056cF3Z
-	PX2XEItACmQi7XpJ5OkO52mx8+FMSB5Ebbbi+cLrO7b8n1c52Bz/tlvXC6vNJIOawWP+PBVBMAcnq
-	I6P7SPQh7xMCcaSOJ0FkbzvvHFXNJbmFMaSRPUQEkWQMDxQd7B3dFM2bfoZ3E+353HxExV5BKS0GI
-	vCVfWKcEtG1oG1D1KUvg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=lFFI1prnHePKQAPdQDs7Gi7uFMH/40rKsj9aLIh4eJE=; b=c/ertSgfBN3LOv
+	Vn+SWjZ9ccx5SAfh121y18e5M0j4etEsB9TvybeopkaQsObmE0kTqlUBexPaxMPIndmxc4CJWhX6z
+	MWMDtOHXy/BNvMlxcQ6YtTYx95EsUseueiGdT+TVlLKwqapc9hi00ISeEQ6kB28IkGm0oGQcpfVLR
+	NUrA/jDFlA4n3Qsxp7LS+3Z+hv1vZD7ucUjCILpSFVGCVCEVoJGuALM0OqF7AuluuCj7EMmdRS0lx
+	CfNVq8P324wYUk78zmOm4yki+umV3pPfsmqdc/acw1U7VfpW/4+OcYSA9akY6vh4ygIcUWiMUk4fg
+	13O8kkKHJHQQtuoT+4aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9h4y-00Dwuk-1E;
-	Thu, 15 Jun 2023 07:07:36 +0000
-Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
+	id 1q9hqr-00E5se-1s;
+	Thu, 15 Jun 2023 07:57:05 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9h4u-00DwtO-2h
+	id 1q9hqp-00E5rn-0C
 	for ath11k@lists.infradead.org;
-	Thu, 15 Jun 2023 07:07:34 +0000
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1b3c578c602so31188955ad.2
-        for <ath11k@lists.infradead.org>; Thu, 15 Jun 2023 00:07:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686812849; x=1689404849;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/XYFZNhQhLPndaLiIE3HiydrBYKKYSw5+7Q2Iga72GE=;
-        b=QffQjV5jdnIxPDfXyY+XAo4ikT59dZOrHS8Ci9EpL3ZVmwHVbRrlDq0uOoaqbQX0Ue
-         HDZdI0yQ3l3fhvEbgOyROCSY3+q553kB7qLI7mmo+quJhpu0JR95SfUlNOzIxvs/5tXE
-         ayDjDKtE1dbzRoK43PRcNM9xR96+DKZHc6gBrk3/2xFPl+evWDTGLvRfUSH2k7qtqkvU
-         I8NDJDlJzp8X3YoQY3nWYnSKueyaAYbU5WhgSENyeq8mlPeXVO4v3qRS9IpbBeaOw9Xb
-         Row6srUPosBQroYqRoQ+Mu7r6ck4g7YI8outObv7p/uA+cMuSZ/8PUYLDG3XvDTx50Pe
-         5U4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686812849; x=1689404849;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/XYFZNhQhLPndaLiIE3HiydrBYKKYSw5+7Q2Iga72GE=;
-        b=dJlVdt13O5g4aay0/c4HDw+Yr1b/Bvx4FgdzF3UpryxO8S8frEpSKhkt15/ueUAw2V
-         faTmcbkXISRg/8mLBrz5JogYy42lsDzAeZPZnRbD48AFZDLsT6KoDUSz9h7itBIjUPPn
-         pTKxyXIL+0sRMJ6y60nhoKMekAH6o5kTrqcxn4AUznQXzox/2ay8tllKXRuW1fkdku3c
-         Qo0bZq7Fg4Al01D9Z95skWa2AWsoCDQVm+ldpT4ct8L4K0/0E9OYTumpLRyBbhSay0DH
-         g31ITeMfXfO1VmKh8Oke2ycjS29i14vLvz5dqGqA3BG38H6JTpFfLs8enio1pzYubMGX
-         YAMA==
-X-Gm-Message-State: AC+VfDxRCBpBHYk0tuFqUrk90yrm3jajSPT96OG+m7qgjcPmX2jE9MYY
-	4OJacRCR5+XuqMtaRvfRUSY=
-X-Google-Smtp-Source: ACHHUZ5KArXvwmpPvjWJRsoIdcMTJrLgfD8jhLDG9rWLArrFTfLpS19d0IHExAAscENLa5ipZ/+sgg==
-X-Received: by 2002:a17:902:930c:b0:1ab:19db:f2b with SMTP id bc12-20020a170902930c00b001ab19db0f2bmr12869315plb.36.1686812849397;
-        Thu, 15 Jun 2023 00:07:29 -0700 (PDT)
-Received: from [192.168.0.103] ([103.124.138.155])
-        by smtp.gmail.com with ESMTPSA id m4-20020a1709026bc400b001ac5896e96esm1181351plt.207.2023.06.15.00.07.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jun 2023 00:07:28 -0700 (PDT)
-Message-ID: <1326a6e4-758d-3344-d90c-8a126748b034@gmail.com>
-Date: Thu, 15 Jun 2023 14:07:19 +0700
+	Thu, 15 Jun 2023 07:57:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=+Hu0ck9XCxIY2n8/byR+TEcnYCe2b0gqlzoS7QzsYf4=;
+	t=1686815821; x=1688025421; b=NRXfrBlaX0i00VSBxxCFnKmDoKXksrVJf7JOO+Vz1H97DLH
+	1iRvnWi8U04UGnBAOeK9XiZUJ+6ThWExuSc655fGKsoW5Y+SK2F7pYYj4a63SF2O1Eka1y1CcqetD
+	SewnlVd/cL3Wvf2ZFJ7G8KHF3mrehlvJilrIIK7Ot4SyYAR32uRpiu+6xMOfinYAoK8KeHBl9hoVW
+	wv2dHCeK5op7iHaGlZuw/I0Ug6KvLCLskF2d0rV9CRfcskN5m1HZfFQ0NXv1OooqHdohO2Aii3i36
+	mFwyTVHj/nAQIQKtdslNZEJQ9gP8ntCsqKkqZIGoyZvr3JbCW9AgJVZjWTWckNXg==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1q9hqi-0075q8-0G;
+	Thu, 15 Jun 2023 09:56:56 +0200
+Message-ID: <c60af4eb116ed330e8035503fb7944f8853bcfa4.camel@sipsolutions.net>
+Subject: Re: [PATCH 10/27] wifi: mac80211: isolate driver from inactive links
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Wen Gong <quic_wgong@quicinc.com>, linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
+Date: Thu, 15 Jun 2023 09:56:55 +0200
+In-Reply-To: <a7093d7a-0179-7b5f-cc61-a501331d35c6@quicinc.com>
+References: <20220902141259.377789-1-johannes@sipsolutions.net>
+	 <20220902161143.5ce3dad3be7c.I92e9f7a6c120cd4a3631baf486ad8b6aafcd796f@changeid>
+	 <5d82e564-86bf-c26b-077a-d0bc14e2d3c3@quicinc.com>
+	 <74f3eb848326607b15336c31a02bdd861ccafb47.camel@sipsolutions.net>
+	 <d10b88b4-0bd7-a38c-e8d7-8982a281c4b3@quicinc.com>
+	 <e5adbed1524b27228c152ba14f78c550c8730baa.camel@sipsolutions.net>
+	 <c15e368e-2fea-a1d8-9c0d-db9278ded5e5@quicinc.com>
+	 <113761966918b2f390d3c9304307b42a0b4a829b.camel@sipsolutions.net>
+	 <76863dec-1b2f-b933-7c5e-21c732de4bc6@quicinc.com>
+	 <2cc79101249548f2a92c14af6aff6121143907d6.camel@sipsolutions.net>
+	 <1c26c205-0240-7670-117d-02a7af068724@quicinc.com>
+	 <6f8db032286923845202c7d658f1d39db79a758c.camel@sipsolutions.net>
+	 <a7093d7a-0179-7b5f-cc61-a501331d35c6@quicinc.com>
+User-Agent: Evolution 3.48.3 (3.48.3-1.fc38) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Content-Language: en-US
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
- Kalle Valo <quic_kvalo@quicinc.com>,
- Johannes Berg <johannes@sipsolutions.net>, Jakub Kicinski <kuba@kernel.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Regressions <regressions@lists.linux.dev>,
- Linux Atheros 11K <ath11k@lists.infradead.org>
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-Subject: Fwd: ath11k: QCN9074: ce desc not available for wmi command
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230615_000732_902955_F1A243D9 
-X-CRM114-Status: GOOD (  14.96  )
+X-CRM114-CacheID: sfid-20230615_005703_370750_89D8CFC7 
+X-CRM114-Status: GOOD (  26.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,100 +79,50 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-I notice a regression report on Bugzilla [1]. Quoting from it:
-
-> Hello, 
-> 
-> We are trying to connect 2x QCN9074 together (one as AP, the other as client). 
-> 
-> Using Ubuntu 22.04 hwe 5.19 generic kernel allows to pair both units in 800.11ac 80MHz only. Any other combinations of 802.11ax or ac/ax with 160MHz bandwidth does not work. The client kernel freezes when associating to QCN9074 AP without specific logs and requires reboot. I'll post another bug once I can get more logs. 
-> 
-> Since quite some patches came through since 5.19 - some of them related to 160MHz bandwidth. I tried multiple newer mainline kernels without success and usually the same error. 
-> 
-> Building kernel from latest ath master branch: 6.4.0-rc4-wt-ath+ gives the following dmesg output:
-> 
-> [  353.587072] ath11k_pci 0000:04:00.0: BAR 0: assigned [mem 0xa4200000-0xa43fffff 64bit]
-> [  353.587180] ath11k_pci 0000:04:00.0: MSI vectors: 1
-> [  353.587186] ath11k_pci 0000:04:00.0: qcn9074 hw1.0
-> [  353.741799] mhi mhi0: Requested to power ON
-> [  353.741806] mhi mhi0: Power on setup success
-> [  353.912479] mhi mhi0: Wait for device to enter SBL or Mission mode
-> [  354.007221] ath11k_pci 0000:04:00.0: chip_id 0x0 chip_family 0x0 board_id 0xff soc_id 0xffffffff
-> [  354.007225] ath11k_pci 0000:04:00.0: fw_version 0x2403072e fw_build_timestamp 2021-06-06 23:27 fw_build_id 
-> [  355.333791] ath11k_pci 0000:04:00.0: leaving PCI ASPM disabled to avoid MHI M2 problems
-> [  355.729786] ath11k_pci 0000:04:00.0 wlp4s0: renamed from wlan0
-> [  358.960477] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 36866
-> [  358.960481] ath11k_pci 0000:04:00.0: failed to send WMI_STA_POWERSAVE_PARAM_CMDID
-> [  358.960484] ath11k_pci 0000:04:00.0: could not set uapsd params -105
-> [  358.960485] ath11k_pci 0000:04:00.0: failed to set sta uapsd: -105
-> [  362.032472] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 90113
-> [  362.032477] ath11k_pci 0000:04:00.0: failed to send WMI_REQUEST_STATS cmd
-> [  362.032479] ath11k_pci 0000:04:00.0: could not request fw stats (-105)
-> [  362.032480] ath11k_pci 0000:04:00.0: failed to request fw pdev stats: -105
-> [  365.104479] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 20482
-> [  365.104483] ath11k_pci 0000:04:00.0: failed to submit WMI_VDEV_DELETE_CMDID
-> [  365.104485] ath11k_pci 0000:04:00.0: failed to delete WMI vdev 0: -105
-> [  365.104487] ath11k_pci 0000:04:00.0: failed to delete vdev 0: -105
-> [  368.176472] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
-> [  368.176476] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
-> [  368.176479] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
-> [  371.248474] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
-> [  371.248478] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
-> [  371.248480] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
-> [  374.320393] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
-> [  374.320397] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
-> [  374.320400] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
-> 
-> Both PCs are Intel x86 (same bug for AMD). We have multiple references of QCN9074 that we tested:
-> - Sparklan WPEQ-405AX (our preferred one, as they are the only vendor I know that went through FCC certification) - This unit can associate to APs only with the firmware Sparklan provided. Otherwise, link strength is reported low and barely no APs are listed after scanning.
-> - Emwicon WMX7406 - has better performances with Sparklan's vendor FW. Works with ath11k-firmware 2.7.0.1 but shows lower TX mostly.
-> 
-> Tested FW (non exhaustive):
-> # ath11k-firmware 2.5.0.1
-> 823915206101779f8cab6b89066e1040  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
-> 668f53050a92db5b4281ae5f26c7e35d  /lib/firmware/ath11k/QCN9074/hw1.0/board-2.bin
-> fcca36959c5f56f9f0fb7015083dc806  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
-> 
-> # ath11k-firmware 2.7.0.1
-> 465d0a063d049f7e4b79d267a035c6c7  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
-> 668f53050a92db5b4281ae5f26c7e35d  /lib/firmware/ath11k/QCN9074/hw1.0/board-2.bin
-> ad8fafb9c1deab744c972469be916e72  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
-> 
-> # Vendor firmware 
-> 1e88ff2e2b5bcf7f130397cb5b21ef39  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
-> 7b3ce8686713a724946466ec1fefc2f4  /lib/firmware/ath11k/QCN9074/hw1.0/board.bin
-> d0a6f7ccd52f9e3886f0bc96309f7b9a  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
-> 
-> 
-> Attached dmesg log with ath11k debug_mask=0xFFFF and lspci. 
-> 
-> Thank you
-
-See Bugzilla for the full thread and attached dmesg.
-
-Manikanta: This regression is apparently caused by a commit of yours.
-Would you like to take a look on it?
-
-Anyway, I'm adding it to regzbot:
-
-#regzbot introduced: 13aa2fb692d371 https://bugzilla.kernel.org/show_bug.cgi?id=217536
-#regzbot title: Threaded NAPI causes ce desc unavailable error on ath11k
-
-Thanks.
-
-[1]: https://bugzilla.kernel.org/show_bug.cgi?id=217536
-
--- 
-An old man doll... just what I always wanted! - Clara
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gVGh1LCAyMDIzLTA2LTE1IGF0IDEwOjI2ICswODAwLCBXZW4gR29uZyB3cm90ZToKPiBPbiA2
+LzE1LzIwMjMgMjozMiBBTSwgSm9oYW5uZXMgQmVyZyB3cm90ZToKPiA+IE9uIFdlZCwgMjAyMy0w
+NS0yNCBhdCAxNTo0MSArMDgwMCwgV2VuIEdvbmcgd3JvdGU6Cj4gPiA+IE1heSBJIGFkZCBhIG5l
+dyBvcHMgaW4gc3RydWN0IGllZWU4MDIxMV9vcHM/IGxpa2UgdGhpczoKPiA+ID4gCj4gPiA+IHUx
+NiBhY3RpdmVfbGlua3Moc3RydWN0IGllZWU4MDIxMV9odyAqaHcsIHN0cnVjdCBpZWVlODAyMTFf
+dmlmIHZpZiwgdTE2Cj4gPiA+IG5ld19saW5rcykiCj4gPiA+IAo+ID4gPiB0aGVuIGllZWU4MDIx
+MV9zZXRfdmlmX2xpbmtzX2JpdG1hcHMoKSBjYWxsIHRoZSBvcHMgdG8gZ2V0IHRoZSBsaW5rcyBm
+b3IKPiA+ID4gc3RhdGlvbiBhbmQgc2V0IHRoZSBzZGF0YS0+dmlmLmFjdGl2ZV9saW5rcyB3aXRo
+IHRoZSByZXR1cm4gdmFsdWUgZnJvbQo+ID4gPiBsb3dlciBkcml2ZXIsCj4gPiA+IGl0IG1lYW5z
+IGxvd2VyIGRyaXZlciB3aWxsIGR5bmFtaWMgc2VsZWN0IHRoZSBsaW5rcyBjb3VudCBhdCB0aGlz
+IG1vbWVudC4KPiA+ID4gCj4gPiA+IElmIGxvd2VyIGRyaXZlciBub3QgcmVnaXN0ZXIgb3BzIGFj
+dGl2ZV9saW5rcywgdGhlbiBrZWVwIGN1cnJlbnQgbG9naWMuCj4gPiA+IAo+ID4gSSBndWVzcyB5
+b3UgY2FuIGNhbiBzZW5kIHBhdGNoZXMgZm9yIHdoYXRldmVyIHlvdSB3YW50IDopCj4gPiAKPiA+
+IEJ1dCBJIGhhdmUgbm8gaWRlYSB3aGF0IHlvdSdyZSB0cnlpbmcgdG8gZG8/IFdoeSB3b3VsZCB5
+b3UgbmVlZCB0byBoYXZlCj4gPiBhIGNhbGxiYWNrPwo+IAo+IEN1cnJlbnRseSBkcml2ZXIgY291
+bGQgdXNlIGllZWU4MDIxMV9zZXRfYWN0aXZlX2xpbmtzX2FzeW5jKCkgdG8gYWN0aXZlIAo+IGxp
+bmtzIGFmdGVyIGNvbm5lY3Rpb24gY29tcGxldGVkLgoKUmlnaHQuCgo+IEJ1dCBJIHdvdWxkIGxp
+a2UgdG8gYWxsb3cgZHJpdmVyIHRvIHNlbGVjdCBhY3RpdmUgbGlua3MgaW4gYSBlYXJseSB0aW1l
+LCAKPiBpdCB3aWxsIGJlIG1vcmUgY29udmVuaWVudCBmb3IgZHJpdmVyLgoKSG93IHNvPyBBbGwg
+eW91IGhhdmUgdG8gZG8gaXMgbG9vayBmb3IgdGhlIGNvbm5lY3Rpb24gYmVjb21pbmcKYXV0aG9y
+aXplZCAoZS5nLiBzdGEgc3RhdGUgZm9yIHRoZSBBUCBtb3ZpbmcgdG8gYXV0aG9yaXplZCkgYW5k
+IHRoZW4Kc2VsZWN0aW5nIHRoZSBsaW5rcyB5b3Ugd2FudC4gV2UndmUgYWxyZWFkeSBiZWVuIHdv
+cmtpbmcgb24gdGhhdCwgaXQncwpyZWFsbHkgZWFzeT8KCk9uIHRoZSBmbGlwLXNpZGUsIGl0IHdv
+dWxkIGJlIGhpZ2hseSBpbmNvbnZlbmllbnQgZm9yIG1hYzgwMjExIHRvIHRyeSB0bwplbmFibGUg
+bW9yZSBsaW5rcyAqZHVyaW5nKiB0aGUgYXNzb2NpYXRpb24gcHJvY2VzcywgYW5kIGFjdHVhbGx5
+IGl0J3MKbm90IGV2ZW4gYWxsb3dlZCBieSBzcGVjIHVudGlsIHRoZSA0LXdheS1IUyBmaW5pc2hl
+cy4gU28gdGhlIGVhcmxpZXN0CnBvc3NpYmxlIHRpbWUgaXMgcHJldHR5IG11Y2ggd2hlbiB5b3Ug
+Y2FuIGp1c3QgZG8gaXQgaW4gdGhlIGRyaXZlciBhcyBJCmp1c3QgZGVzY3JpYmVkLgoKPiA+IFdh
+cyB0aGlzIGZvciBsaW5rIHNlbGVjdGlvbiBpbiB0aGUgZHJpdmVyPyBXZSBzaG91bGQgaGF2ZSBh
+IHBhdGNoCj4gPiBzb21ld2hlcmUgdGhhdCBhZGRzIGEgQlNTX0NIQU5HRSBmbGFnIGZvciB3aGVu
+IHRoZSB2YWxpZCBsaW5rcyBjaGFuZ2UsCj4gPiBzbyB0aGUgZHJpdmVyIGNhbiBzZWxlY3Qgb3Ro
+ZXJzLgo+ID4gCj4gPiBqb2hhbm5lcwo+IAo+IFllcywgaXQgaXMgZm9yIGxpbmsgc2VsZWN0aW9u
+IGluIGRyaXZlciBhdCBhIGVhcmx5IHRpbWUgYmVmb3JlIAo+IGNvbm5lY3Rpb24gY29tcGxldGVk
+LgoKVGhpcyBpcyBub3QgcmVhbGx5IGFsbG93ZWQgLi4uIEF0IGxlYXN0IG5vdCB3aXRob3V0IGFs
+c28gZmluZGluZyB3YXlzIHRvCnJlYWxseSB0cmFuc21pdCB0aGUgODAyLjFYIGFuZCA0LXdheS1I
+UyBvbmx5IG9uIHRoZSByaWdodCBsaW5rLCBldGMuCgo+IENvdWxkIHlvdSB0ZWxsIGRldGFpbCBh
+Ym91dCBob3cgdGhlIEJTU19DSEFOR0UgZmxhZyB3b3Jrcz/wn5iBCgpUaGUgd29yayBpc24ndCBj
+b21wbGV0ZSB5ZXQsIGJ1dCBiYXNpY2FsbHkgaXQganVzdCBjYWxscyB0aGUgY2FsbGJhY2sKd2hl
+bmV2ZXIgdGhlIHZhbGlkX2xpbmtzIGNoYW5nZWQsIHNheSBieSBsaW5rLXJlY29uZmlndXJhdGlv
+bi4KCmpvaGFubmVzCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDEx
+awo=
