@@ -4,62 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B570EB64D9
-	for <ath11k@archiver.kernel.org>; Thu, 15 Jun 2023 11:40:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C893FEB64D7
+	for <ath11k@archiver.kernel.org>; Fri, 16 Jun 2023 07:50:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/geFNqOgbQ7fsVW3mOKhiRnHVZjeR6BjwN9LYiQlBwg=; b=4csYAy08gGlAzh
-	X5Adqm8spqOv9kzbGw61ZH1DDTe5Bd/xnhuWbxmnF4vg1nUJch3LGpqEcvcEjCKnm5UQMwMs28LMZ
-	x2dujlif31Ph9M+nDXJd4gJ2kSa3tC+w8PPzOa2nOvNAPN1aqIqtihRuVQYxOVzlUfAF62fZtrqzj
-	x+dHJb6xqiB1Bi/24GRfZT5OPim9cAca7esyw4hjA/g3Ol4tF4qeIX96lPAnO4o3APbD7I84sBQtB
-	o9SCoUwQpBSJTukXp1e8FXnH1F/7C4BYOj9D2ey4/xBZOuYpNj7MoAHKuxIdxthtedgCgdQzEOmm0
-	/sQpYuSQM/f53S2t9XtQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=YRbVXJcJmfr3Lteg7ecMC4xI36LNUCutLciUrefVtd0=; b=pJONTB46EjJPAO
+	57eIP62j221L34rYZjfAnwj6kZtEeuDRxiHAHqAv7HNl6+t7HpsbfjjcNJnxIqTlyJS2bYiaPugnY
+	PixUWe26tJLNkKUg4vH8yA9dNb34YOQUGh17tsz0l/tkM8/4Aq2R0MDeTCxiXJwYGwfTaaxuBWurd
+	pnB1j4fM1lTZBjZR2vZNnCYwQRF8mTuKV36I41MyIjL+kbcb5OYlrmVwmfP3YFDj1Mnu+tMazBoXY
+	nUiQP5AGMxojbbv7Noc34shCIlPqqCByjC7RxWA7fNXXduhJke5a4TkGp7MpJ4W67oBg3GPLEWwbv
+	HLmxEX0IurG1qI+aJBjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9lKg-00Ejpa-0X;
-	Thu, 15 Jun 2023 11:40:06 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qA4E1-00HC96-04;
+	Fri, 16 Jun 2023 07:50:29 +0000
+Received: from mail.severnusk.pl ([89.40.115.25])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1q9lKc-00Ejmq-1E
+	id 1qA4Dx-00HC7X-0k
 	for ath11k@lists.infradead.org;
-	Thu, 15 Jun 2023 11:40:03 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id C516761BB8;
-	Thu, 15 Jun 2023 11:40:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A87C433C8;
-	Thu, 15 Jun 2023 11:39:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1686829201;
-	bh=pyu4I/v1KzEtwaZxUoDpwULyt62LfG5n4s4H0cxODJM=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=nVyTTd7eaPRxYVWwnRycGUJGtoHFyfeudPP4aaCamDKe4lN5E2jlGSK3TqsyznXv0
-	 XBKEaRlnyUaGxRVrnzDmkRpD0ASfx2O4LOjF98mme1aZn2MVKn/aRSU8dh47CZsS3D
-	 stoZPcuysRnjID8x6UY8OckRtfZoroZtcH0tD9iw3NSigfDN5aQItoGxJV8PNiwWVH
-	 ru2AJy55+XNfVEjXrINOMeY9hyznOMHvny4Hq+ulueJpRKfelcPUxAQ41VX440Qe0P
-	 xVZfG3qGwHaD0RFjhDo6OLyIbvwlW1MN4MxHi3KMz2vh2ajzLXH1kBKDW58UjPqdIO
-	 d+xD0NYqcr4qw==
+	Fri, 16 Jun 2023 07:50:27 +0000
+Received: by mail.severnusk.pl (Postfix, from userid 1002)
+	id C98F682AD5; Fri, 16 Jun 2023 09:50:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=severnusk.pl; s=mail;
+	t=1686901817; bh=+EeLr85ZLPomICoBd9HkRfsh6EPM8XdZbVfrMzFBjC8=;
+	h=Date:From:To:Subject:From;
+	b=nW8JucK3Jcp1odbzIhHEXlOMzVXKzjxZbhXjvSVG3SbEMYFhs8bwY/CT7Pi94lqcR
+	 daPko62cwd9PJNcYpwj5J+xNaeOLkcULuW2VQbvULTkMrtRXH1kWGGl+o6JziEvf+n
+	 7xzasKY4CvS/ykBihaWB6EvPuBK50aQBn2tzZsPxh0iiNgOG+IU0nb1rJC+BXsrRIv
+	 TIaDDUMSq72p92b4Ims1LuebIFMjOZXvmgCr8NqOK1ObsE9z+1ZbLEo6QcIFZPo+0y
+	 n12E/lESPBy3iRqdjwCEqgt2Y8kBTQPGadwNC0F7Zlrb+gdpsVs3zW5w49yE/pMoyE
+	 eRMl57fsiMMAQ==
+Received: by mail.severnusk.pl for <ath11k@lists.infradead.org>; Fri, 16 Jun 2023 07:50:04 GMT
+Message-ID: <20230616084500-0.1.1a.26op.0.logmxkl8am@severnusk.pl>
+Date: Fri, 16 Jun 2023 07:50:04 GMT
+From: "Tomasz Wereszko" <tomasz.wereszko@severnusk.pl>
+To: <ath11k@lists.infradead.org>
+Subject: =?UTF-8?Q?Przyznanie_=C5=9Brodk=C3=B3w_na_rozw=C3=B3j_firmy?=
+X-Mailer: mail.severnusk.pl
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: Add missing check for ioremap
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230608022858.27405-1-jiasheng@iscas.ac.cn>
-References: <20230608022858.27405-1-jiasheng@iscas.ac.cn>
-To: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-Cc: akolli@codeaurora.org, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- Jiasheng Jiang <jiasheng@iscas.ac.cn>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168682919799.30767.14368815744969338217.kvalo@kernel.org>
-Date: Thu, 15 Jun 2023 11:39:59 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230615_044002_493570_15F2E330 
-X-CRM114-Status: UNSURE (   8.19  )
+X-CRM114-CacheID: sfid-20230616_005026_026510_6F729358 
+X-CRM114-Status: UNSURE (  -0.28  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -72,32 +61,22 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jiasheng Jiang <jiasheng@iscas.ac.cn> wrote:
-
-> Add check for ioremap() and return the error if it fails in order to
-> guarantee the success of ioremap(), same as in
-> ath11k_qmi_load_file_target_mem().
-> 
-> Fixes: 6ac04bdc5edb ("ath11k: Use reserved host DDR addresses from DT for PCI devices")
-> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-16e0077e14a7 wifi: ath11k: Add missing check for ioremap
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230608022858.27405-1-jiasheng@iscas.ac.cn/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+U3phbm93bmkgUGHFhHN0d28sCgpjenkgY2hjaWVsaWJ5IFBhxYRzdHdvIHNrb3J6eXN0YcSHIHog
+ZG9maW5hbnNvd2FuaWEgbmEgemFta25pxJl0ZSBzemtvbGVuaWUsIGRvcGFzb3dhbmUgZG8gUGHF
+hHN0d2EgcG90cnplYiByb3p3b2pvd3ljaD8KCkpha28gbGlkZXIgdyBwb3p5c2tpd2FuaXUgxZty
+b2Rrw7N3IHpld27EmXRyem55Y2ggZmluYW5zdWrEhWN5Y2ggcm96d8OzaiBwcnplZHNpxJliaW9y
+c3R3IG1vxbxlbXkgcG9tw7NjIFBhxYRzdHd1IG9ibmnFvHnEhyBrb3N6dHkgaW53ZXN0eWNqaSB3
+IHJvenfDs2ogcHJhY293bmlrw7N3IG5hd2V0IG8gODAlLgoKT3JnYW5penVqZW15IHN6a29sZW5p
+YSB3IGZvcm1pZSBzdGFjam9uYXJuZWogaSB6ZGFsbmVqIGRvcGFzb3dhbmUgZG8gcG90cnplYiBp
+IGtvbmtyZXRueWNoIHd5endhxYQgdyBvcmdhbml6YWNqaS4gT2QgMjAgbGF0IHphcGV3bmlhbXkg
+c3BlcnNvbmFsaXpvd2FuZSByb3p3acSFemFuaWEsIHoga3TDs3J5Y2ggc2tvcnp5c3RhxYJvIGJs
+aXNrbyA0LDYwMCB1Y3plc3RuaWvDs3cuCgpQcm9zesSZIG8gaW5mb3JtYWNqxJkgY3p5IG1vxbxl
+bXkgdW3Ds3dpxIcgc2nEmSBuYSBzcG90a2FuaWUgbHViIGtyw7N0a8SFIHJvem1vd8SZLgoKClBv
+emRyYXdpYW0KVG9tYXN6IFdlcmVzemtvCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2F0aDExawo=
