@@ -4,70 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E994EB64DA
-	for <ath11k@archiver.kernel.org>; Mon, 26 Jun 2023 12:27:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6ED7EB64D7
+	for <ath11k@archiver.kernel.org>; Mon, 26 Jun 2023 12:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:Subject:
-	Message-ID:Date:From:MIME-Version:Reply-To:Cc:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=ezF/bO48opZwSZJ0BnmsPtUKTBLDHaT5HE1YqmSpy5U=; b=wX+WAuy27NSaeXd0c9oSu1xwqg
-	BmKL1R+LYsNtNrWNBba3d0VonaY8YFVxewKzaoBy+tcgA4wU53RMgyZrrjrqeADOv3MexYYOJ2LkV
-	LrbWqTxQu/zxGY9KoX6jE7XUICQO7BKYJ4/12sD9Aq7m45o3SgkYf6U20qAOO4Hg/V7OLzqufZsR5
-	f3XHPUAIpL0muS3qtsbJnT5pOn6t+mR5cU49Z2cRhKxyPIPZNEe61CAMwIQekYFc63ZV3vMfWECgH
-	XRhiYobgNSuZJ/gFiUh8k2aHfIHucVjj0wxGTthpCMe+VCx4aRj12wpYeyCt9WN3bLS8dEKxvwQEi
-	rj5zgnew==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
+	Cc:To:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qtug3GGiYQ/7RHJ31hhnssWOeFS+N9Dmbq6dhlHaHAc=; b=VsJsfIYGnzXbV1
+	Bu0xJqeDt59KQMCDjToED2oNAAQNSrJFctfwtbbqY8ghkB/UpwZ+DFv8be0eqX2hlLcLFzQ7ju13B
+	/Sq0HRt3aKDjB2ua2JcIQ3owulaL6uMQEI3N5sZo2awgLjM5oUNaYfo3NhSTGyUokQuLdJ3o7NiKe
+	c5ixf6eVMJ7N5FkTPKek2a0Eo36cuu5qbgzoXzY1JqnyFvVVhbTHztUWJZBPqy4WaZTNqdoX0Wxj7
+	llqOiKenFitCIu2DMQR+WzjzU0BJKiZybLXZkvZQ1QkajWyUukHTEyIZN7sUaQrbamwUDGO+pY+ae
+	3PzdbcdZi1z28cr/9Yvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qDlJl-00ACdV-1q;
-	Mon, 26 Jun 2023 12:27:41 +0000
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+	id 1qDlfB-00AF8C-3A;
+	Mon, 26 Jun 2023 12:49:49 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qDlJi-00ACcu-2l
+	id 1qDlf7-00AF74-39
 	for ath11k@lists.infradead.org;
-	Mon, 26 Jun 2023 12:27:40 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51d97ba7c01so1411697a12.2
-        for <ath11k@lists.infradead.org>; Mon, 26 Jun 2023 05:27:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=squaremind-io.20221208.gappssmtp.com; s=20221208; t=1687782457; x=1690374457;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qtjRpihfmBF43v8uopj+SnOGzMPs03iR5PA/6PiBD5U=;
-        b=fKQl6WfQoAnCq4NhoQ64iJ/lxyTtdDjXGNTHlq5r7HsKN8gZUGWVTFBZK2TuqCDIKS
-         7wuz6dRf4NTBtagd3o+ALZdpls1KL9kzGRc2N5qEC1nvt0IrqJJr+f8/EBt2+7KQWLMt
-         pmMI31RfM4+H8kzFjYGnVVKlD3B6Qz47mXAADwNaxFd8PPRBYH4qKeM9eTZo0XCGKao/
-         sQ/lfaolD8603JEi8NudKkZinx3H5ZfaJBpi6oH6irCNZrQf2SE0lEilRabCXFQtca7/
-         eSKItBJzslBDOJwPub/ZKcmB3731Nw8bsp2Yc0CJEgCUBlVNWB1IXalANy1ebkSAsLeT
-         7OaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687782457; x=1690374457;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qtjRpihfmBF43v8uopj+SnOGzMPs03iR5PA/6PiBD5U=;
-        b=BxX/3ZJky71S3y/RkC5KUCW146XRom091zt8O8c1147wyEq66k7QHv4RIObF8x/IIp
-         eDfaewXjFXZIyAQ14QzSKCzoaKvU38SNKC2NGVnH2GxLqxeWxwrhOisoO7IO3Gekd+zi
-         ArP9zkLYRIlBunmKL7CgXeuIeoI72fWsbYfaU9jA96zKWJS6PqB4yHR34Ow8IyResAOV
-         NtU/ZU0aXswCw1wdqCU1Akf+KCBkYacekd4O2ofLWpRSawyzX0sobGNE7+vErmDaivU6
-         gedKvUPGTRO+XCKbImhHc4NFccoPKJb/RIh0ID6546aW2OTWfx2A3PmrZ6Zw4JkScR+w
-         DoVw==
-X-Gm-Message-State: AC+VfDzA4TtY2Z9MiKeka8kF7nk/ysgKa9L2g6FGXr+XyIzipEOsUWf6
-	Z098QwrTG5wDAZGFJi0DRUEdSY4smMbOkoek3FCBPcxqOwxUgc7LA6uF/Q==
-X-Google-Smtp-Source: ACHHUZ4k6teu72Yeh5/7pOYAs7eYA6b1xCb4fg3EVJ5TgK5dpVK5I6nUm+AyQMQSNueDZvKGGdGmL+iXU00YNWMej4I=
-X-Received: by 2002:aa7:d6d6:0:b0:51d:95f2:ee76 with SMTP id
- x22-20020aa7d6d6000000b0051d95f2ee76mr2439872edr.27.1687782455996; Mon, 26
- Jun 2023 05:27:35 -0700 (PDT)
+	Mon, 26 Jun 2023 12:49:48 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1qDleu-0002pe-MZ; Mon, 26 Jun 2023 14:49:32 +0200
+Message-ID: <6a0c3aa0-86a8-8c06-81df-2d7085946cf5@leemhuis.info>
+Date: Mon, 26 Jun 2023 14:49:32 +0200
 MIME-Version: 1.0
-From: Tanguy Serrat <tanguy@squaremind.io>
-Date: Mon, 26 Jun 2023 14:27:25 +0200
-Message-ID: <CAPr+0Hb5b_CEihVH+Mo-uR4+Wp-ACkoCySkyLrk=mkzme6ezPg@mail.gmail.com>
-Subject: ath11k: QCN9074: low HE-MCS index
-To: ath11k@lists.infradead.org
-Content-Type: multipart/mixed; boundary="000000000000bfb95305ff0779ae"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: Fwd: ath11k: QCN9074: ce desc not available for wmi command
+Content-Language: en-US, de-DE
+To: Bagas Sanjaya <bagasdotme@gmail.com>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+ Kalle Valo <quic_kvalo@quicinc.com>,
+ Johannes Berg <johannes@sipsolutions.net>, Jakub Kicinski <kuba@kernel.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Regressions <regressions@lists.linux.dev>,
+ Linux Atheros 11K <ath11k@lists.infradead.org>
+References: <1326a6e4-758d-3344-d90c-8a126748b034@gmail.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+In-Reply-To: <1326a6e4-758d-3344-d90c-8a126748b034@gmail.com>
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1687783786;0ec90ec6;
+X-HE-SMSGID: 1qDleu-0002pe-MZ
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230626_052738_893896_36D1F391 
-X-CRM114-Status: UNSURE (   7.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230626_054946_197752_45614B23 
+X-CRM114-Status: GOOD (  17.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,117 +64,118 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---000000000000bfb95305ff0779ae
-Content-Type: text/plain; charset="UTF-8"
+Hi, Thorsten here, the Linux kernel's regression tracker. Top-posting
+for once, to make this easily accessible to everyone.
 
-Hi everyone,
+Hmmm, there afaics was no real progress and not even a single reply from
+a developer (neither here or in bugzilla) since the issue was reported
+~10 days ago. :-/
 
-In my quest to get 2x QCN9074 paired and achieving high throughput
-data transfers, I am now facing issues with the AP configuration.
+Manikanta, did you maybe just miss that this is caused by change of
+yours (and thus is something you should look into)?
 
-Specifically, I cannot get more than HE-MCS 5 (AP and client 50cm
-apart) although SNR and RSSI are always very strong and supposedly in
-specs (SNR > 40db or RSSI < -48db).
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
 
-iw wlp6s0 link
-Connected to 00:15:61:27:cd:dc (on wlp6s0)
-SSID: Space
-freq: 5745
-RX: 1073584482 bytes (708567 packets)
-TX: 355824214 bytes (256143 packets)
-signal: -40 dBm
-rx bitrate: 1729.3 MBit/s 160MHz HE-MCS 4 HE-NSS 4 HE-GI 0 HE-DCM 0
-tx bitrate: 1729.3 MBit/s 160MHz HE-MCS 4 HE-NSS 4 HE-GI 0 HE-DCM 0
+#regzbot poke
 
-In this case iperf3 shows ~950Mbits/s transfer speed. I am hoping to
-get at least twice as much.
-
-It seems to me that either mac80211, ath11k or hostapd are not
-advertising the available capabilities correctly. I have tried setting
-hostapd he_basic_mcs_set=65530 or others but did not help.
-
-I have added ieee80211_regdom=FR option to cfg80211 module on the AP
-side. Channel selection is done with ACS survey. I also tried other
-channels/frequencies without success eg. 5500Mhz.
-
-iw reg get
-global
-country FR: DFS-ETSI
-(2400 - 2483 @ 40), (N/A, 20), (N/A)
-(5150 - 5250 @ 80), (N/A, 23), (N/A), NO-OUTDOOR, AUTO-BW
-(5250 - 5350 @ 80), (N/A, 20), (0 ms), NO-OUTDOOR, DFS, AUTO-BW
-(5470 - 5725 @ 160), (N/A, 26), (0 ms), DFS
-(5725 - 5875 @ 80), (N/A, 13), (N/A)
-(5945 - 6425 @ 160), (N/A, 23), (N/A), NO-OUTDOOR
-(57000 - 71000 @ 2160), (N/A, 40), (N/A)
-
-phy#0 (self-managed)
-country US: DFS-FCC
-(2402 - 2472 @ 40), (6, 30), (N/A)
-(5170 - 5250 @ 80), (N/A, 30), (N/A), AUTO-BW
-(5250 - 5330 @ 80), (N/A, 24), (0 ms), DFS, AUTO-BW
-(5490 - 5730 @ 160), (N/A, 24), (0 ms), DFS, AUTO-BW
-(5735 - 5895 @ 160), (N/A, 30), (N/A), AUTO-BW
-(5945 - 7125 @ 160), (N/A, 27), (N/A), NO-OUTDOOR, AUTO-BW
-
-Current setup is:
-- Intel x86
-- Ubuntu 22.04
-- Kernel built from ath 6.4.0-rc6-wt-ath+ (commit:
-c60d15f389ef9832a8da410e438d81b10327751f)
-with commit reverted from the bug ticket I opened
-(https://bugzilla.kernel.org/show_bug.cgi?id=217536).
-- 1x QCN9074 as AP, 1x as managed client 50cm apart
-- Both AP and Client are running with the latest 2.7.0 FW.
-
-I have started from this ticket
-(https://bugzilla.kernel.org/show_bug.cgi?id=217286) hostapd config
-file, and adapted, please find attached.
-
-Anyone seeing what could be my issue / how I could debug further ?
-
-Thank you !
-Tanguy
-
---000000000000bfb95305ff0779ae
-Content-Type: application/octet-stream; name="hostapd_ath11k.conf"
-Content-Disposition: attachment; filename="hostapd_ath11k.conf"
-Content-Transfer-Encoding: base64
-Content-ID: <f_ljcu2vyj0>
-X-Attachment-Id: f_ljcu2vyj0
-
-Y3RybF9pbnRlcmZhY2U9L3Zhci9ydW4vaG9zdGFwZApkcml2ZXI9bmw4MDIxMQppbnRlcmZhY2U9
-d2xwNHMwCmNvdW50cnlfY29kZT1GUgojYnJpZGdlPWxicjAKc3NpZD1TcGFjZQojaWdub3JlX2Jy
-b2FkY2FzdF9zc2lkPTAKbWF4X251bV9zdGE9MjU2CmR0aW1fcGVyaW9kPTQKd21tX2VuYWJsZWQ9
-MQppZWVlODAyMTFheD0xCmllZWU4MDIxMWFjPTEKaWVlZTgwMjExbj0xCmh3X21vZGU9YQpjaGFu
-bmVsPTAKaGVfb3Blcl9jZW50cl9mcmVxX3NlZzBfaWR4PQpoZV9vcGVyX2Nod2lkdGg9MgoKaWVl
-ZTgwMjExZD0xCmllZWU4MDIxMWg9MQojZnJlcWxpc3Q9NTUwMAoKaGVfc3VfYmVhbWZvcm1lcj0x
-CmhlX3N1X2JlYW1mb3JtZWU9MQpoZV9tdV9iZWFtZm9ybWVyPTEKI2hlX29wZXJfY2VudHJfZnJl
-cV9zZWcwX2lkeD0KI2hlX29wZXJfY2VudHJfZnJlcV9zZWcxX2lkeD0KaGVfYnNzX2NvbG9yPTEK
-I2hlX2RlZmF1bHRfcGVfZHVyYXRpb249MAojaGVfdHd0X3JlcXVpcmVkPTAKI2hlX3J0c190aHJl
-c2hvbGQ9MAoKI2hlX2Jhc2ljX21jc19uc3Nfc2V0PTY1NTMwCgoKaHRfY2FwYWI9W0xEUENdW1NN
-UFMtRFlOQU1JQ11bVFgtU1RCQ11bUlgtU1RCQy0xXVtNQVgtQU1TRFUtNzkzNV1bRFNTU19DQ0st
-NDBdW0hUNDArXVtTSE9SVC1HSS00MF0Kdmh0X2NhcGFiPVtNQVgtTVBEVS0xMTQ1NF1bVkhUMTYw
-LTgwUExVUzgwXVtSWExEUENdW1NIT1JULUdJLTgwXVtTSE9SVC1HSS0xNjBdW1RYLVNUQkMtMkJZ
-MV1bUlgtU1RCQzFdW1NVLUJFQU1GT1JNRVJdW1NPVU5ESU5HLURJTUVOU0lPTi00XVtTVS1CRUFN
-Rk9STUVFXVtNQVgtQS1NUERVLUxFTi1FWFA3XVtNVS1CRUFNRk9STUVSXVtSWC1BTlRFTk5BLVBB
-VFRFUk5dW1RYLUFOVEVOTkEtUEFUVEVSTl0KYXV0aF9hbGdzPTEKd3BhPTIKd3BhX2tleV9tZ210
-PVdQQS1QU0sgIAp3cGFfcGFpcndpc2U9Q0NNUAppZWVlODAyMTF3PTAKd3BhX3Bhc3NwaHJhc2U9
-MTIzNDU2NzgKI3dwc19pbmRlcGVuZGVudD0xCmVhcF9zZXJ2ZXI9MQojd3BzX3N0YXRlPTIKI2Fw
-X3NldHVwX2xvY2tlZD0wCiN3cHNfcmZfYmFuZHM9YQojbWFjYWRkcl9hY2w9MAo=
---000000000000bfb95305ff0779ae
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+On 15.06.23 09:07, Bagas Sanjaya wrote:
+> Hi,
+> 
+> I notice a regression report on Bugzilla [1]. Quoting from it:
+> 
+>> Hello, 
+>>
+>> We are trying to connect 2x QCN9074 together (one as AP, the other as client). 
+>>
+>> Using Ubuntu 22.04 hwe 5.19 generic kernel allows to pair both units in 800.11ac 80MHz only. Any other combinations of 802.11ax or ac/ax with 160MHz bandwidth does not work. The client kernel freezes when associating to QCN9074 AP without specific logs and requires reboot. I'll post another bug once I can get more logs. 
+>>
+>> Since quite some patches came through since 5.19 - some of them related to 160MHz bandwidth. I tried multiple newer mainline kernels without success and usually the same error. 
+>>
+>> Building kernel from latest ath master branch: 6.4.0-rc4-wt-ath+ gives the following dmesg output:
+>>
+>> [  353.587072] ath11k_pci 0000:04:00.0: BAR 0: assigned [mem 0xa4200000-0xa43fffff 64bit]
+>> [  353.587180] ath11k_pci 0000:04:00.0: MSI vectors: 1
+>> [  353.587186] ath11k_pci 0000:04:00.0: qcn9074 hw1.0
+>> [  353.741799] mhi mhi0: Requested to power ON
+>> [  353.741806] mhi mhi0: Power on setup success
+>> [  353.912479] mhi mhi0: Wait for device to enter SBL or Mission mode
+>> [  354.007221] ath11k_pci 0000:04:00.0: chip_id 0x0 chip_family 0x0 board_id 0xff soc_id 0xffffffff
+>> [  354.007225] ath11k_pci 0000:04:00.0: fw_version 0x2403072e fw_build_timestamp 2021-06-06 23:27 fw_build_id 
+>> [  355.333791] ath11k_pci 0000:04:00.0: leaving PCI ASPM disabled to avoid MHI M2 problems
+>> [  355.729786] ath11k_pci 0000:04:00.0 wlp4s0: renamed from wlan0
+>> [  358.960477] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 36866
+>> [  358.960481] ath11k_pci 0000:04:00.0: failed to send WMI_STA_POWERSAVE_PARAM_CMDID
+>> [  358.960484] ath11k_pci 0000:04:00.0: could not set uapsd params -105
+>> [  358.960485] ath11k_pci 0000:04:00.0: failed to set sta uapsd: -105
+>> [  362.032472] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 90113
+>> [  362.032477] ath11k_pci 0000:04:00.0: failed to send WMI_REQUEST_STATS cmd
+>> [  362.032479] ath11k_pci 0000:04:00.0: could not request fw stats (-105)
+>> [  362.032480] ath11k_pci 0000:04:00.0: failed to request fw pdev stats: -105
+>> [  365.104479] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 20482
+>> [  365.104483] ath11k_pci 0000:04:00.0: failed to submit WMI_VDEV_DELETE_CMDID
+>> [  365.104485] ath11k_pci 0000:04:00.0: failed to delete WMI vdev 0: -105
+>> [  365.104487] ath11k_pci 0000:04:00.0: failed to delete vdev 0: -105
+>> [  368.176472] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
+>> [  368.176476] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+>> [  368.176479] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
+>> [  371.248474] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
+>> [  371.248478] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+>> [  371.248480] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
+>> [  374.320393] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 16387
+>> [  374.320397] ath11k_pci 0000:04:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+>> [  374.320400] ath11k_pci 0000:04:00.0: failed to enable PMF QOS: (-105
+>>
+>> Both PCs are Intel x86 (same bug for AMD). We have multiple references of QCN9074 that we tested:
+>> - Sparklan WPEQ-405AX (our preferred one, as they are the only vendor I know that went through FCC certification) - This unit can associate to APs only with the firmware Sparklan provided. Otherwise, link strength is reported low and barely no APs are listed after scanning.
+>> - Emwicon WMX7406 - has better performances with Sparklan's vendor FW. Works with ath11k-firmware 2.7.0.1 but shows lower TX mostly.
+>>
+>> Tested FW (non exhaustive):
+>> # ath11k-firmware 2.5.0.1
+>> 823915206101779f8cab6b89066e1040  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
+>> 668f53050a92db5b4281ae5f26c7e35d  /lib/firmware/ath11k/QCN9074/hw1.0/board-2.bin
+>> fcca36959c5f56f9f0fb7015083dc806  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
+>>
+>> # ath11k-firmware 2.7.0.1
+>> 465d0a063d049f7e4b79d267a035c6c7  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
+>> 668f53050a92db5b4281ae5f26c7e35d  /lib/firmware/ath11k/QCN9074/hw1.0/board-2.bin
+>> ad8fafb9c1deab744c972469be916e72  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
+>>
+>> # Vendor firmware 
+>> 1e88ff2e2b5bcf7f130397cb5b21ef39  /lib/firmware/ath11k/QCN9074/hw1.0/amss.bin
+>> 7b3ce8686713a724946466ec1fefc2f4  /lib/firmware/ath11k/QCN9074/hw1.0/board.bin
+>> d0a6f7ccd52f9e3886f0bc96309f7b9a  /lib/firmware/ath11k/QCN9074/hw1.0/m3.bin
+>>
+>>
+>> Attached dmesg log with ath11k debug_mask=0xFFFF and lspci. 
+>>
+>> Thank you
+> 
+> See Bugzilla for the full thread and attached dmesg.
+> 
+> Manikanta: This regression is apparently caused by a commit of yours.
+> Would you like to take a look on it?
+> 
+> Anyway, I'm adding it to regzbot:
+> 
+> #regzbot introduced: 13aa2fb692d371 https://bugzilla.kernel.org/show_bug.cgi?id=217536
+> #regzbot title: Threaded NAPI causes ce desc unavailable error on ath11k
+> 
+> Thanks.
+> 
+> [1]: https://bugzilla.kernel.org/show_bug.cgi?id=217536
+> 
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---000000000000bfb95305ff0779ae--
-
