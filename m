@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F4021EB64DC
-	for <ath11k@archiver.kernel.org>; Sun,  9 Jul 2023 15:15:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 613D5EB64DD
+	for <ath11k@archiver.kernel.org>; Sun,  9 Jul 2023 15:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=IMFkslfeKFCjiotwGIKEydEo1j9jfhl0q5MmugBTluI=; b=lMKf7fSci7WPeL
-	yi5XvnRKVI57n/y11f0ztRoMjUbwPKeoDGAYXTmBrLWeEIkAcBqTuaiR/fKdtSE04ARhyLCGFyNJs
-	ZTlU0d4NpEntRLnNsSt+rMDPxhohSL3zWwxvKQe1hAxLuqNAnGnWJh8x1icrnh3MDnCiasBKvTBMs
-	jEoZatStU4j7+nY4D8MisA0+WNBTbtWIJrTYjmGrzUTGKUxbrpKjHkzakApsqB6Dc6SZNRWQZKsUx
-	u4koCGkVMIocCoNrx9c41alUSkM2vJutQ7i6E32QgGpgDXV/ZgMAt+1RBDO0uB/1V0VUlZHfgsaAW
-	t7kD0doPgH6chWQj6E1w==;
+	List-Owner; bh=wR+wzxn8ZqfMFlywS4K5cPI4QVRPDhRWe7ZwyhoeAto=; b=vfUCx6O3VCOGZE
+	i5QEEuJKAZVqMuzRM5OEr4p8XgaxT4dwyZG2oIcfxg6k2ysWjJlG2H01016+qmCUnDXsn1VUc1K3S
+	JdsM4W990KU8msKG1Z978FhCijFtLoZYeBnoqEMdhTbmpnARtKktNZJ1boTj09f1vu5GfkYMksFn+
+	ab6aUEwBY21cl0dkXjYsE33oRyghRkv/J0K77TKdPSDNnf14muhlFDFH5dWID33brGxsXPHJJF3vd
+	lIq+J4TxmWLVtQtab7PwvLsET/qDKA//r/UYRj//HhsLjaCppc58MreiJYIBIHKeUJiydBkfxxxv3
+	nowHBL+QX1PTF4B/wV0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIW8O-009Jjb-23;
-	Sun, 09 Jul 2023 15:15:36 +0000
+	id 1qIW8o-009Jqd-02;
+	Sun, 09 Jul 2023 15:16:02 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIW8L-009JiB-0Z
+	id 1qIW8l-009Jpl-1m
 	for ath11k@lists.infradead.org;
-	Sun, 09 Jul 2023 15:15:34 +0000
+	Sun, 09 Jul 2023 15:16:01 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 85C9760C07;
-	Sun,  9 Jul 2023 15:15:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC4D6C433CD;
-	Sun,  9 Jul 2023 15:15:30 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 124F060C3E;
+	Sun,  9 Jul 2023 15:15:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A392EC433CC;
+	Sun,  9 Jul 2023 15:15:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1688915732;
-	bh=uDizmLX+4EdiTmvhkhESwkpWuvU5ToZ4IYJkywYtczw=;
+	s=k20201202; t=1688915758;
+	bh=sPSF83Pa+6iysooxDfu1G5Cy7aII/KTDm7x39lE4rhA=;
 	h=From:To:Cc:Subject:Date:From;
-	b=glXoV/oQ0mFrNTkEoWGRTlO0F9OADUSmMHNlsneJjRqS7lc6meZbdF88P3M2kScmh
-	 k87Womj6/RS3gtdixrhlQcW1NmWHTAysELkPnfevFkAim1xJX66QWXLJEKcUPYvc5l
-	 9GNlINnwEjSkduiZ/0IAIHgCZk/CCUImvbD+bUdhT93Qk17OeLwKuwtClsgSz1nY1U
-	 RlNmVdxCrI6Y0lNrGgV1bvo5GG0T43v8NXqcDh2Fx/5TzI+qdzUDLPU7oeqMt3yqJi
-	 Lf22QIEY7vZw/16iK4UdaacvihpSO1xRORSrg7y4cSGQofLO4D8B1rF83/zJOF+MjQ
-	 /wY+/KwuCgcSw==
+	b=iXypVHig1/+oCxtqkMeNhwNKdNEN9K2x7LMxJQred1LgGC3lRaiFsPyiULBSrYlWP
+	 x/kyBTUjfWgi6MJ+pZRbkHc82455dtAiILTUYDgCu2lsCGjeFK0qVlI9b14YfeYvhf
+	 fUzbksGLSkNOCFsQTE46MSgk1hgo/l8aXRIdGA21rC+TX1M0HW+zEbGgl9vPteKK/F
+	 YPcRusGbN/VFeES2Vp29WPK7coxSNc81BNxEJ/coAwPpHgy+XdH6GiU2TLwLivg3MO
+	 /YY1jiudOl4VJdunb7jp1P4bJmKSR9OXEWEnrA37kJIpVxtGSYfg7dz7yxtiKtVTES
+	 G5ftsSvgkQwPQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -54,16 +54,16 @@ Cc: Maxime Bizon <mbizon@freebox.fr>,
 	kvalo@kernel.org,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 01/10] wifi: ath11k: fix registration of 6Ghz-only phy without the full channel range
-Date: Sun,  9 Jul 2023 11:15:19 -0400
-Message-Id: <20230709151528.513775-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 1/7] wifi: ath11k: fix registration of 6Ghz-only phy without the full channel range
+Date: Sun,  9 Jul 2023 11:15:49 -0400
+Message-Id: <20230709151555.513910-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.15.120
+X-stable-base: Linux 5.10.186
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230709_081533_289937_223C6E4D 
+X-CRM114-CacheID: sfid-20230709_081559_667840_9F08640D 
 X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,10 +131,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ae6e14fe03c72..c58fd836d4ade 100644
+index 67faf62999ded..3170c54c97b74 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6312,7 +6312,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+@@ -6044,7 +6044,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
  	}
  
  	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
