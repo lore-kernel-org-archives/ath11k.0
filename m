@@ -4,97 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88759EB64D7
-	for <ath11k@archiver.kernel.org>; Fri, 30 Jun 2023 09:32:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4164CC001DE
+	for <ath11k@archiver.kernel.org>; Sun,  9 Jul 2023 15:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1pNPincQTGdmARzQGhWxREGpnAN7oYzaAFOlGyACgiY=; b=UKUUPGgXfRTt4S
-	L2WTpWOxb0/k3h6KGVkPNCpQ0fO6hpnnjg1qQ33Jgit5J/s///XBsirOPtqLyX63MXkaU9ua9KbHc
-	/VWbLGXbCTM4o+9MqWipKAmSxnwg36GAalU86Z7WxTnZH+oiZHdTHFzIKyCPyEIs3Cfazm5XAFEgA
-	ibi8xr1aRwlAlFLksqz/vcspr0+Gr2WGGElTsbdq8FMFbbIylaoCgODLTd/5scvgb+9J076iqLfbI
-	H+Sr3wBVfXmIVTJtXragCePZS9V0XrF1OimIPQTWIiGLPhQGlfiGTwVTtkzGwAqEanOCzJxoA1HKz
-	PtEcZk3Xkvt4N55+1U8g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=z5oVPy8+KJmJrYrIHRphvEmxwjqiGjSX7hptpzjVQb4=; b=K02kHG3tALWD/7
+	29Q9nzIx6N5hUzWGQDK4rg5Gf9jFn1vY0FmLxUieSRn4avfP4+yZO4/5TKYQ47I7KMKDKs6gvVuwK
+	DDaXU2fSyQdSFHPiI/FTcbnXECfGlDHGomWqYk0baZl4OvSQ38X864hv8x+V2THUF8OidAPfWFG+p
+	u5FwmVJmnTJemtGKaspkFUeUinJ2EZRDB80VC0FX3nvdKJIRIs56Zxw9UwCWR0iMth9UNI02X71nN
+	qkiYn9jfMHr6ektQcRpLnzjUXKxiw9B9czFF6ArprY7wCSdehFE72K1f5FJAhW34Hvehiklxqz8oH
+	2p2IMEEZ3/s+GBgmbmzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qFAUJ-003IDP-2z;
-	Fri, 30 Jun 2023 09:32:23 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1qIW5u-009IxV-2h;
+	Sun, 09 Jul 2023 15:13:02 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qFAUG-003IBz-0t
+	id 1qIW5s-009IxB-1M
 	for ath11k@lists.infradead.org;
-	Fri, 30 Jun 2023 09:32:23 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35U8rA2O009671;
-	Fri, 30 Jun 2023 09:32:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PK24KpSvL0d1KNy5acQjsM972gYJThX7jVCYosHgcX8=;
- b=Svdl01UpCRa7sW4Kd8D/iu53nOScPxSqY/knNpQS3dmhlDBefVebiH/66g3A+BZygG2q
- XP2O6OVnASOBimnzUt8WFiwHr5KaQy+2wAzEir4fxz+KFx3Ta1k9NE61H2c9RpIYwoie
- gbVm9ARa2xTn95oooGCTBRqvHoqilvB/DycVj/gOpanBwN3rgK44VV9w56WDW83vYTcf
- ZCWkEMumk3oxzwtnVqTztO2bGDyopOIssH5kwk4251YdmHE+JylyC3fNPvUtxxMwypHl
- x2cPAceEJtqX1P0XHPmr1O6W1viOkBrreNIDYUSCVHvn6F9X6ljebf6ZiSDtkQLHFmqu pw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rh4y6auqf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Jun 2023 09:32:15 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35U9WEW1023000
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Jun 2023 09:32:14 GMT
-Received: from [10.231.195.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.7; Fri, 30 Jun
- 2023 02:32:13 -0700
-Message-ID: <bf774594-d1f9-8183-b5cf-55b2c0479aa4@quicinc.com>
-Date: Fri, 30 Jun 2023 17:32:09 +0800
+	Sun, 09 Jul 2023 15:13:01 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 7D89060B83;
+	Sun,  9 Jul 2023 15:12:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC528C433C7;
+	Sun,  9 Jul 2023 15:12:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1688915578;
+	bh=KptPEawdgWI9fzLCjG0bVYq+NRHIj8zv7gFX1hKEFxo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=o/NYTtY9l5fpxUhxNeKvYJINbvlqXbfk1PUyN5fasI875Sx7E3xIib0IURQmez7DR
+	 LobaeN29t3F9+vkY5XJG9Tcz08O13OMfYfKHIK0wcbJ6/u22fxiJaLpkix+NKmRohV
+	 LeD+aj7kFhWx1X8HOs7YIbmLZ5aJWglwfpJIC+qqm57C+yBDr7MMjuhumueWBNgxUk
+	 rhCz1rvXbg6y1Fpm/nVKFw5wBIS+Z5A83Vm/cAgaZifiXKTb0pll7XDo0CYV3nvhfg
+	 Y8ifrnH9MNMIV7SuI2yrRNeU3EdLrK1Xg1v0CoqJWVNsMq/jAzvQ8YOVS+z7TNu6Zv
+	 UDiLMUdITSZ+g==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Maxime Bizon <mbizon@freebox.fr>,
+	Kalle Valo <quic_kvalo@quicinc.com>,
+	Sasha Levin <sashal@kernel.org>,
+	kvalo@kernel.org,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.4 01/26] wifi: ath11k: fix registration of 6Ghz-only phy without the full channel range
+Date: Sun,  9 Jul 2023 11:12:30 -0400
+Message-Id: <20230709151255.512931-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 10/27] wifi: mac80211: isolate driver from inactive links
-Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
-        <linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>
-References: <20220902141259.377789-1-johannes@sipsolutions.net>
- <20220902161143.5ce3dad3be7c.I92e9f7a6c120cd4a3631baf486ad8b6aafcd796f@changeid>
- <5d82e564-86bf-c26b-077a-d0bc14e2d3c3@quicinc.com>
- <74f3eb848326607b15336c31a02bdd861ccafb47.camel@sipsolutions.net>
- <d10b88b4-0bd7-a38c-e8d7-8982a281c4b3@quicinc.com>
- <e5adbed1524b27228c152ba14f78c550c8730baa.camel@sipsolutions.net>
- <c15e368e-2fea-a1d8-9c0d-db9278ded5e5@quicinc.com>
- <113761966918b2f390d3c9304307b42a0b4a829b.camel@sipsolutions.net>
- <76863dec-1b2f-b933-7c5e-21c732de4bc6@quicinc.com>
- <2cc79101249548f2a92c14af6aff6121143907d6.camel@sipsolutions.net>
- <1c26c205-0240-7670-117d-02a7af068724@quicinc.com>
- <6f8db032286923845202c7d658f1d39db79a758c.camel@sipsolutions.net>
- <a7093d7a-0179-7b5f-cc61-a501331d35c6@quicinc.com>
- <c60af4eb116ed330e8035503fb7944f8853bcfa4.camel@sipsolutions.net>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <c60af4eb116ed330e8035503fb7944f8853bcfa4.camel@sipsolutions.net>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EjeUSHDCPmsfhSyh1c7o2LQPVaf5FISr
-X-Proofpoint-ORIG-GUID: EjeUSHDCPmsfhSyh1c7o2LQPVaf5FISr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-30_05,2023-06-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 malwarescore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 impostorscore=0 mlxlogscore=645 suspectscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306300079
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.4.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230630_023220_320635_349ECFD3 
-X-CRM114-Status: GOOD (  11.16  )
+X-CRM114-CacheID: sfid-20230709_081300_542203_1031E8AA 
+X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,28 +76,78 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gNi8xNS8yMDIzIDM6NTYgUE0sIEpvaGFubmVzIEJlcmcgd3JvdGU6Cj4gT24gVGh1LCAyMDIz
-LTA2LTE1IGF0IDEwOjI2ICswODAwLCBXZW4gR29uZyB3cm90ZToKPj4gT24gNi8xNS8yMDIzIDI6
-MzIgQU0sIEpvaGFubmVzIEJlcmcgd3JvdGU6Cj4+PiBPbiBXZWQsIDIwMjMtMDUtMjQgYXQgMTU6
-NDEgKzA4MDAsIFdlbiBHb25nIHdyb3RlOgo+Pj4KLi4uCj4+IENvdWxkIHlvdSB0ZWxsIGRldGFp
-bCBhYm91dCBob3cgdGhlIEJTU19DSEFOR0UgZmxhZyB3b3Jrcz/wn5iBCj4gVGhlIHdvcmsgaXNu
-J3QgY29tcGxldGUgeWV0LCBidXQgYmFzaWNhbGx5IGl0IGp1c3QgY2FsbHMgdGhlIGNhbGxiYWNr
-Cj4gd2hlbmV2ZXIgdGhlIHZhbGlkX2xpbmtzIGNoYW5nZWQsIHNheSBieSBsaW5rLXJlY29uZmln
-dXJhdGlvbi4KPgo+IGpvaGFubmVzCkkgZ3Vlc3MgdGhlIGxpbmstcmVjb25maWd1cmF0aW9uIHlv
-dSBzYWlkIGlzIGZvciBzdGF0aW9uLCBpdCBtZWFucyAKc3RhdGlvbiB3aWxsIGRvIGNvcnJlc3Bv
-bmRpbmcKbGluay1yZWNvbmZpZ3VyYXRpb24gYWZ0ZXIgcmVjZWl2ZSBsaW5rIHJlY29uZmlndXJh
-dGlvbiBpbmRpY2F0aW9uKGUuZy4gClJlY29uZmlndXJhdGlvbgpNdWx0aS1MaW5rIGVsZW1lbnQp
-IGZyb20gTUxPIEFQLCByaWdodD8KCkkgZ3Vlc3MgeW91IHdpbGwgYWRkIGVudW0gQlNTX0NIQU5H
-RURfeHh4KGUuZy4gCkJTU19DSEFOR0VEX0xJTktfUkVDT05GSUcpLCBhbmQgY2FsbAp2aWZfY2Zn
-X2NoYW5nZWQgb2Ygc3RydWN0IGllZWU4MDIxMV9vcHMgZm9yIGxpbmstcmVjb25maWd1cmF0aW9u
-LCByaWdodD8KCkFuZCBkbyB5b3Ugd2lsbCBpbXBsZW1lbnQgYm90aCByZW1vdmUgbGluayBhbmQg
-YWRkIGxpbmsgb2Ygc3RhdGlvbj8KCkZvciBhZGQgbGluaywgaXQgc2hvdWxkIGNhbGN1bGF0ZSB0
-aGUgbmV3IGtleSBvZiB0aGUgbmV3IGxpbmsoIjM1LjMuNi40IApNTCByZWNvbmZpZ3VyYXRpb24K
-dG8gdGhlIE1MIHNldHVwIiBvZiBJRUVFIFA4MDIuMTFiZeKEoi9EMy4yKS4KCi0tIAphdGgxMWsg
-bWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+From: Maxime Bizon <mbizon@freebox.fr>
+
+[ Upstream commit e2ceb1de2f83aafd8003f0b72dfd4b7441e97d14 ]
+
+Because of what seems to be a typo, a 6Ghz-only phy for which the BDF
+does not allow the 7115Mhz channel will fail to register:
+
+  WARNING: CPU: 2 PID: 106 at net/wireless/core.c:907 wiphy_register+0x914/0x954
+  Modules linked in: ath11k_pci sbsa_gwdt
+  CPU: 2 PID: 106 Comm: kworker/u8:5 Not tainted 6.3.0-rc7-next-20230418-00549-g1e096a17625a-dirty #9
+  Hardware name: Freebox V7R Board (DT)
+  Workqueue: ath11k_qmi_driver_event ath11k_qmi_driver_event_work
+  pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+  pc : wiphy_register+0x914/0x954
+  lr : ieee80211_register_hw+0x67c/0xc10
+  sp : ffffff800b123aa0
+  x29: ffffff800b123aa0 x28: 0000000000000000 x27: 0000000000000000
+  x26: 0000000000000000 x25: 0000000000000006 x24: ffffffc008d51418
+  x23: ffffffc008cb0838 x22: ffffff80176c2460 x21: 0000000000000168
+  x20: ffffff80176c0000 x19: ffffff80176c03e0 x18: 0000000000000014
+  x17: 00000000cbef338c x16: 00000000d2a26f21 x15: 00000000ad6bb85f
+  x14: 0000000000000020 x13: 0000000000000020 x12: 00000000ffffffbd
+  x11: 0000000000000208 x10: 00000000fffffdf7 x9 : ffffffc009394718
+  x8 : ffffff80176c0528 x7 : 000000007fffffff x6 : 0000000000000006
+  x5 : 0000000000000005 x4 : ffffff800b304284 x3 : ffffff800b304284
+  x2 : ffffff800b304d98 x1 : 0000000000000000 x0 : 0000000000000000
+  Call trace:
+   wiphy_register+0x914/0x954
+   ieee80211_register_hw+0x67c/0xc10
+   ath11k_mac_register+0x7c4/0xe10
+   ath11k_core_qmi_firmware_ready+0x1f4/0x570
+   ath11k_qmi_driver_event_work+0x198/0x590
+   process_one_work+0x1b8/0x328
+   worker_thread+0x6c/0x414
+   kthread+0x100/0x104
+   ret_from_fork+0x10/0x20
+  ---[ end trace 0000000000000000 ]---
+  ath11k_pci 0002:01:00.0: ieee80211 registration failed: -22
+  ath11k_pci 0002:01:00.0: failed register the radio with mac80211: -22
+  ath11k_pci 0002:01:00.0: failed to create pdev core: -22
+
+Signed-off-by: Maxime Bizon <mbizon@freebox.fr>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://lore.kernel.org/r/20230421145445.2612280-1-mbizon@freebox.fr
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 1c93f1afccc57..05920ad413c55 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -8892,7 +8892,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 	}
+ 
+ 	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
+-		if (reg_cap->high_5ghz_chan >= ATH11K_MAX_6G_FREQ) {
++		if (reg_cap->high_5ghz_chan >= ATH11K_MIN_6G_FREQ) {
+ 			channels = kmemdup(ath11k_6ghz_channels,
+ 					   sizeof(ath11k_6ghz_channels), GFP_KERNEL);
+ 			if (!channels) {
+-- 
+2.39.2
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
