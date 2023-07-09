@@ -4,70 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C92C9C00528
-	for <ath11k@archiver.kernel.org>; Sun,  9 Jul 2023 15:14:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 123F5EB64DD
+	for <ath11k@archiver.kernel.org>; Sun,  9 Jul 2023 15:14:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q8cojtJPBiSyxe5tBcoiZEOSlhoxkKlvJaRzEacBKcA=; b=EFtEYqjPQUol0k
-	ZzjAoIagFeqmrj0u3GVi3ztvqLnAezYANY7G4Wbrl+p4WEPb6DlzStl2ZLMiUO9hlBGWfn1P4V5gx
-	O87En2yL0lTaZ2CdgdmgKMjIniis0PXgeisKeGeLAPzxETQNfEQ/jbJyOqjraIP8tMLgaMrPfXa8b
-	DHD7fFXQ254RPyxgXzsETClLYiCIqCZ7rq1Q3mImbvIl76ZHkavNIs8HT917N9mVwZP3eXDArG8ui
-	T7kceFrPAywXq7YlqN8k35vP1KhSvgeuWMxGwCDn03VTa3363rNdtM6j1rztg+EOq8yuSEKe/B5ur
-	TJFtCPB966x4KKItRK3g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6ZGZ49zvzvrND4wlQDBQsOyoAoE70ojVj5OMP5CQ5zk=; b=WjW0Oh7FciMRP9
+	1i+p9xUZqnuHpaHmloWC3T4zTCtMkCZ2ORiY1jcsqej9p3GxfRMdmyZdRfV9H3XMOqyYUM0qIbYiM
+	IkTX2/9CUkefn9QW3qGfoNLMQrx4vmZlJsMU7E4JxbEEoL7UbG2xo8nDsktk79n427bS73zLRbuTV
+	QWU6y2VicKgBI15yZ1KpFxzF0CdxEqsDsSMzhhzE/2JvHvQ6CwqnSkh0llX1foYg6MIF1ZzFPwuFA
+	P7oAd7q8hP9XwHSI3+OUVgDeaTIZl45vJMetNvrSZj5lmzzMGMjwkB08JeAnBlc5VoNet7KdvLZD0
+	61M9vacPYXaxF2iZmOsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIW7C-009JKo-1W;
-	Sun, 09 Jul 2023 15:14:22 +0000
+	id 1qIW7i-009JUj-2I;
+	Sun, 09 Jul 2023 15:14:54 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIW79-009JJX-12
+	id 1qIW7f-009JSs-1J
 	for ath11k@lists.infradead.org;
-	Sun, 09 Jul 2023 15:14:21 +0000
+	Sun, 09 Jul 2023 15:14:53 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id DB07E60C04;
-	Sun,  9 Jul 2023 15:14:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC79C433C9;
-	Sun,  9 Jul 2023 15:14:17 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id A6C5A60C40;
+	Sun,  9 Jul 2023 15:14:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C368EC433D9;
+	Sun,  9 Jul 2023 15:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1688915658;
-	bh=CD2lK8E/W6ZnWeWOc+3c8JjIDvvqhN1z8hw73ASqT5c=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lfnR99q7QItdk593iqluBVfJ5HiMDmdeyNmP09pLfDh82o6Md5hDm/AEDX9hCvGRI
-	 bnZ3jhxPbgMVNO0DUBqOrSvzB3qCnLuJMvwZHIzILtSS7tgcRuN5iteDNIXaPJ2PpS
-	 oGXv/jhl5XPKxcEtH7nw9hXsiGdQKspjOzK5I7O4brfHHgdtJ7uZop/KdSergtvOja
-	 vqeb6UhZkxKsBuZg2ynZ6LnfGHPzRMUZljHTDnx25E22yw33cN43xaDytsMP1Vw8uk
-	 gY4t4oRRnwZE7MZW8SPVJEOhkGdN+Vq9t3S0x242HLdQ6XbIYaXeAgHT4EkSv2qvzh
-	 aLDPpjK12R29Q==
+	s=k20201202; t=1688915689;
+	bh=GBPgJfxiQ5r2sx8ga0FfDdUHZokRuoT4MKnvi1S4cGE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=U1hTMO1GoAwEnoUFUpHCKdiNHsWUlgifYvHZhYXNklHbh9VvbnquTS5BTF2yhpUb1
+	 1N+6sNNL1/w10IgFBHF5lNQLpbiMsx5GGwNx/xvroTB2nePyDdDm8HvRPO7rai++x6
+	 Gy20o+j7ASB0zEL24xADc/hWLOAYa/J35PUEu5cgj+FQtY5m5Jpk0pFK1Ug+M4IcwT
+	 7JhuEhX8byAOIBBfVph17HP+5oobTHhea48iUSRDL/dmsZn4bRksd5gt9XDjd02SDW
+	 gCB1C1h27y27ZkUI0Jf/mESlFQ9S9sfyxLjZA0Q8nBAlrm+6b2NqRda3CHjYTqGHjR
+	 Z50zLHWa8LBzg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: P Praneesh <quic_ppranees@quicinc.com>,
-	Aditya Kumar Singh <quic_adisi@quicinc.com>,
+Cc: Maxime Bizon <mbizon@freebox.fr>,
 	Kalle Valo <quic_kvalo@quicinc.com>,
 	Sasha Levin <sashal@kernel.org>,
 	kvalo@kernel.org,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.3 13/22] wifi: ath11k: fix memory leak in WMI firmware stats
-Date: Sun,  9 Jul 2023 11:13:47 -0400
-Message-Id: <20230709151356.513279-13-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 01/18] wifi: ath11k: fix registration of 6Ghz-only phy without the full channel range
+Date: Sun,  9 Jul 2023 11:14:29 -0400
+Message-Id: <20230709151446.513549-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230709151356.513279-1-sashal@kernel.org>
-References: <20230709151356.513279-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.3.12
+X-stable-base: Linux 6.1.38
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230709_081419_399424_DEE6CD77 
-X-CRM114-Status: GOOD (  11.33  )
+X-CRM114-CacheID: sfid-20230709_081451_522799_3FFCAEF5 
+X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,61 +81,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: P Praneesh <quic_ppranees@quicinc.com>
+From: Maxime Bizon <mbizon@freebox.fr>
 
-[ Upstream commit 6aafa1c2d3e3fea2ebe84c018003f2a91722e607 ]
+[ Upstream commit e2ceb1de2f83aafd8003f0b72dfd4b7441e97d14 ]
 
-Memory allocated for firmware pdev, vdev and beacon statistics
-are not released during rmmod.
+Because of what seems to be a typo, a 6Ghz-only phy for which the BDF
+does not allow the 7115Mhz channel will fail to register:
 
-Fix it by calling ath11k_fw_stats_free() function before hardware
-unregister.
+  WARNING: CPU: 2 PID: 106 at net/wireless/core.c:907 wiphy_register+0x914/0x954
+  Modules linked in: ath11k_pci sbsa_gwdt
+  CPU: 2 PID: 106 Comm: kworker/u8:5 Not tainted 6.3.0-rc7-next-20230418-00549-g1e096a17625a-dirty #9
+  Hardware name: Freebox V7R Board (DT)
+  Workqueue: ath11k_qmi_driver_event ath11k_qmi_driver_event_work
+  pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+  pc : wiphy_register+0x914/0x954
+  lr : ieee80211_register_hw+0x67c/0xc10
+  sp : ffffff800b123aa0
+  x29: ffffff800b123aa0 x28: 0000000000000000 x27: 0000000000000000
+  x26: 0000000000000000 x25: 0000000000000006 x24: ffffffc008d51418
+  x23: ffffffc008cb0838 x22: ffffff80176c2460 x21: 0000000000000168
+  x20: ffffff80176c0000 x19: ffffff80176c03e0 x18: 0000000000000014
+  x17: 00000000cbef338c x16: 00000000d2a26f21 x15: 00000000ad6bb85f
+  x14: 0000000000000020 x13: 0000000000000020 x12: 00000000ffffffbd
+  x11: 0000000000000208 x10: 00000000fffffdf7 x9 : ffffffc009394718
+  x8 : ffffff80176c0528 x7 : 000000007fffffff x6 : 0000000000000006
+  x5 : 0000000000000005 x4 : ffffff800b304284 x3 : ffffff800b304284
+  x2 : ffffff800b304d98 x1 : 0000000000000000 x0 : 0000000000000000
+  Call trace:
+   wiphy_register+0x914/0x954
+   ieee80211_register_hw+0x67c/0xc10
+   ath11k_mac_register+0x7c4/0xe10
+   ath11k_core_qmi_firmware_ready+0x1f4/0x570
+   ath11k_qmi_driver_event_work+0x198/0x590
+   process_one_work+0x1b8/0x328
+   worker_thread+0x6c/0x414
+   kthread+0x100/0x104
+   ret_from_fork+0x10/0x20
+  ---[ end trace 0000000000000000 ]---
+  ath11k_pci 0002:01:00.0: ieee80211 registration failed: -22
+  ath11k_pci 0002:01:00.0: failed register the radio with mac80211: -22
+  ath11k_pci 0002:01:00.0: failed to create pdev core: -22
 
-While at it, avoid calling ath11k_fw_stats_free() while processing
-the firmware stats received in the WMI event because the local list
-is getting spliced and reinitialised and hence there are no elements
-in the list after splicing.
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+Signed-off-by: Maxime Bizon <mbizon@freebox.fr>
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20230606091128.14202-1-quic_adisi@quicinc.com
+Link: https://lore.kernel.org/r/20230421145445.2612280-1-mbizon@freebox.fr
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- drivers/net/wireless/ath/ath11k/wmi.c | 5 +++++
- 2 files changed, 6 insertions(+)
+ drivers/net/wireless/ath/ath11k/mac.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 850ef35c1f75e..07efd48795d33 100644
+index ef7617802491e..b19d44b3f5dfb 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9349,6 +9349,7 @@ void ath11k_mac_destroy(struct ath11k_base *ab)
- 		if (!ar)
- 			continue;
- 
-+		ath11k_fw_stats_free(&ar->fw_stats);
- 		ieee80211_free_hw(ar->hw);
- 		pdev->ar = NULL;
+@@ -8715,7 +8715,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
  	}
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index b3a7d7bfe17c2..68fbddfd428a6 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -7590,6 +7590,11 @@ static void ath11k_update_stats_event(struct ath11k_base *ab, struct sk_buff *sk
- 	rcu_read_unlock();
- 	spin_unlock_bh(&ar->data_lock);
  
-+	/* Since the stats's pdev, vdev and beacon list are spliced and reinitialised
-+	 * at this point, no need to free the individual list.
-+	 */
-+	return;
-+
- free:
- 	ath11k_fw_stats_free(&stats);
- }
+ 	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
+-		if (reg_cap->high_5ghz_chan >= ATH11K_MAX_6G_FREQ) {
++		if (reg_cap->high_5ghz_chan >= ATH11K_MIN_6G_FREQ) {
+ 			channels = kmemdup(ath11k_6ghz_channels,
+ 					   sizeof(ath11k_6ghz_channels), GFP_KERNEL);
+ 			if (!channels) {
 -- 
 2.39.2
 
