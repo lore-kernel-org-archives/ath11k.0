@@ -4,67 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 123F5EB64DD
-	for <ath11k@archiver.kernel.org>; Sun,  9 Jul 2023 15:14:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E59EB64DD
+	for <ath11k@archiver.kernel.org>; Sun,  9 Jul 2023 15:15:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=6ZGZ49zvzvrND4wlQDBQsOyoAoE70ojVj5OMP5CQ5zk=; b=WjW0Oh7FciMRP9
-	1i+p9xUZqnuHpaHmloWC3T4zTCtMkCZ2ORiY1jcsqej9p3GxfRMdmyZdRfV9H3XMOqyYUM0qIbYiM
-	IkTX2/9CUkefn9QW3qGfoNLMQrx4vmZlJsMU7E4JxbEEoL7UbG2xo8nDsktk79n427bS73zLRbuTV
-	QWU6y2VicKgBI15yZ1KpFxzF0CdxEqsDsSMzhhzE/2JvHvQ6CwqnSkh0llX1foYg6MIF1ZzFPwuFA
-	P7oAd7q8hP9XwHSI3+OUVgDeaTIZl45vJMetNvrSZj5lmzzMGMjwkB08JeAnBlc5VoNet7KdvLZD0
-	61M9vacPYXaxF2iZmOsw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=JiwMnD9wnoDVNB6zDM+w3qSpn2uhyNFgptartimw09Y=; b=1wtmA97FlmzPSd
+	23K7gr+o28T7H3mKIuo3/d3nV8Q69x/5i/aO51oSscpUFt0PDQhRsjcqbri3lbH0TW5qEgf9BPy0l
+	cGlIplMHNpETVvNGF/5Na1cA65sHzfo3Yzbi+NwlXcMThuEjuw+WY59A9fI86JojfEh7mNkqrFz31
+	VrQjfobWw4Pp9TNqyxMXSIB18Vqsc7AAVwSujJrSXHaIDpXrAu/1LPasLw91FyxTVCPWVePLQXdk8
+	5r2Q+DY3sDEKT8khsUeRWpmxGBsxsoXmiNKT6sk59cP1QEV1pFWZ47cNnOcOsWfo2LGms3qRiylz6
+	lnITe17uYC6jdv6br6Kg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIW7i-009JUj-2I;
-	Sun, 09 Jul 2023 15:14:54 +0000
+	id 1qIW7r-009JZ5-2v;
+	Sun, 09 Jul 2023 15:15:03 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qIW7f-009JSs-1J
+	id 1qIW7p-009JXj-0W
 	for ath11k@lists.infradead.org;
-	Sun, 09 Jul 2023 15:14:53 +0000
+	Sun, 09 Jul 2023 15:15:02 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id A6C5A60C40;
-	Sun,  9 Jul 2023 15:14:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C368EC433D9;
-	Sun,  9 Jul 2023 15:14:48 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id A0B9C60C02;
+	Sun,  9 Jul 2023 15:15:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C2EDC43391;
+	Sun,  9 Jul 2023 15:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1688915689;
-	bh=GBPgJfxiQ5r2sx8ga0FfDdUHZokRuoT4MKnvi1S4cGE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=U1hTMO1GoAwEnoUFUpHCKdiNHsWUlgifYvHZhYXNklHbh9VvbnquTS5BTF2yhpUb1
-	 1N+6sNNL1/w10IgFBHF5lNQLpbiMsx5GGwNx/xvroTB2nePyDdDm8HvRPO7rai++x6
-	 Gy20o+j7ASB0zEL24xADc/hWLOAYa/J35PUEu5cgj+FQtY5m5Jpk0pFK1Ug+M4IcwT
-	 7JhuEhX8byAOIBBfVph17HP+5oobTHhea48iUSRDL/dmsZn4bRksd5gt9XDjd02SDW
-	 gCB1C1h27y27ZkUI0Jf/mESlFQ9S9sfyxLjZA0Q8nBAlrm+6b2NqRda3CHjYTqGHjR
-	 Z50zLHWa8LBzg==
+	s=k20201202; t=1688915700;
+	bh=9b+9aKuIZCx+bFQNZ80VhD+Nbq2DsN2OchqWP/egD/Q=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=nJqHqdOI3MG8JUllt9D5LBgDjc3EpO7KBhRIL8Vz7kNMPtfXXFbElmBXZOa1Drb/3
+	 sLZmR7PjcLlTxKf/nvJSKlyiXzPj0X1CClsOa8RwUV0R8o2QCkW69RrPEUm83imbeR
+	 rRRO0Nw5PxELMNuGchinuOgwx7xJNZx+kebn4FIT5jCqRX4Df+EaRuBN16izXGGnQ6
+	 QtRuJa7JTRE+G19URpkCajrWzsc1GNwpH/Us86TtkqawaXntUFuWvpD7IpSRFm0n5s
+	 lu+ODfQ/WrrCPIVCKx7irLfL5sCvKp/OKlVmlsGCKaWkvPCQEcDbgBSvky0YIjC026
+	 pFALBn+I5RM1w==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Maxime Bizon <mbizon@freebox.fr>,
+Cc: Wen Gong <quic_wgong@quicinc.com>,
 	Kalle Valo <quic_kvalo@quicinc.com>,
 	Sasha Levin <sashal@kernel.org>,
 	kvalo@kernel.org,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 01/18] wifi: ath11k: fix registration of 6Ghz-only phy without the full channel range
-Date: Sun,  9 Jul 2023 11:14:29 -0400
-Message-Id: <20230709151446.513549-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 07/18] wifi: ath11k: add support default regdb while searching board-2.bin for WCN6855
+Date: Sun,  9 Jul 2023 11:14:35 -0400
+Message-Id: <20230709151446.513549-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230709151446.513549-1-sashal@kernel.org>
+References: <20230709151446.513549-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.1.38
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230709_081451_522799_3FFCAEF5 
-X-CRM114-Status: GOOD (  12.11  )
+X-CRM114-CacheID: sfid-20230709_081501_286006_4CAB0E57 
+X-CRM114-Status: GOOD (  12.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,68 +83,134 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Maxime Bizon <mbizon@freebox.fr>
+From: Wen Gong <quic_wgong@quicinc.com>
 
-[ Upstream commit e2ceb1de2f83aafd8003f0b72dfd4b7441e97d14 ]
+[ Upstream commit 88ca89202f8e8afb5225eb5244d79cd67c15d744 ]
 
-Because of what seems to be a typo, a 6Ghz-only phy for which the BDF
-does not allow the 7115Mhz channel will fail to register:
+Sometimes board-2.bin does not have the regdb data which matched the
+parameters such as vendor, device, subsystem-vendor, subsystem-device
+and etc. Add default regdb data with 'bus=%s' into board-2.bin for
+WCN6855, then ath11k use 'bus=pci' to search regdb data in board-2.bin
+for WCN6855.
 
-  WARNING: CPU: 2 PID: 106 at net/wireless/core.c:907 wiphy_register+0x914/0x954
-  Modules linked in: ath11k_pci sbsa_gwdt
-  CPU: 2 PID: 106 Comm: kworker/u8:5 Not tainted 6.3.0-rc7-next-20230418-00549-g1e096a17625a-dirty #9
-  Hardware name: Freebox V7R Board (DT)
-  Workqueue: ath11k_qmi_driver_event ath11k_qmi_driver_event_work
-  pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-  pc : wiphy_register+0x914/0x954
-  lr : ieee80211_register_hw+0x67c/0xc10
-  sp : ffffff800b123aa0
-  x29: ffffff800b123aa0 x28: 0000000000000000 x27: 0000000000000000
-  x26: 0000000000000000 x25: 0000000000000006 x24: ffffffc008d51418
-  x23: ffffffc008cb0838 x22: ffffff80176c2460 x21: 0000000000000168
-  x20: ffffff80176c0000 x19: ffffff80176c03e0 x18: 0000000000000014
-  x17: 00000000cbef338c x16: 00000000d2a26f21 x15: 00000000ad6bb85f
-  x14: 0000000000000020 x13: 0000000000000020 x12: 00000000ffffffbd
-  x11: 0000000000000208 x10: 00000000fffffdf7 x9 : ffffffc009394718
-  x8 : ffffff80176c0528 x7 : 000000007fffffff x6 : 0000000000000006
-  x5 : 0000000000000005 x4 : ffffff800b304284 x3 : ffffff800b304284
-  x2 : ffffff800b304d98 x1 : 0000000000000000 x0 : 0000000000000000
-  Call trace:
-   wiphy_register+0x914/0x954
-   ieee80211_register_hw+0x67c/0xc10
-   ath11k_mac_register+0x7c4/0xe10
-   ath11k_core_qmi_firmware_ready+0x1f4/0x570
-   ath11k_qmi_driver_event_work+0x198/0x590
-   process_one_work+0x1b8/0x328
-   worker_thread+0x6c/0x414
-   kthread+0x100/0x104
-   ret_from_fork+0x10/0x20
-  ---[ end trace 0000000000000000 ]---
-  ath11k_pci 0002:01:00.0: ieee80211 registration failed: -22
-  ath11k_pci 0002:01:00.0: failed register the radio with mac80211: -22
-  ath11k_pci 0002:01:00.0: failed to create pdev core: -22
+kernel: [  122.515808] ath11k_pci 0000:03:00.0: boot using board name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
+kernel: [  122.517240] ath11k_pci 0000:03:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 6179564
+kernel: [  122.517280] ath11k_pci 0000:03:00.0: failed to fetch regdb data for bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262 from ath11k/WCN6855/hw2.0/board-2.bin
+kernel: [  122.517464] ath11k_pci 0000:03:00.0: boot using board name 'bus=pci'
+kernel: [  122.518901] ath11k_pci 0000:03:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 6179564
+kernel: [  122.518915] ath11k_pci 0000:03:00.0: board name
+kernel: [  122.518917] ath11k_pci 0000:03:00.0: 00000000: 62 75 73 3d 70 63 69                             bus=pci
+kernel: [  122.518918] ath11k_pci 0000:03:00.0: boot found match regdb data for name 'bus=pci'
+kernel: [  122.518920] ath11k_pci 0000:03:00.0: boot found regdb data for 'bus=pci'
+kernel: [  122.518921] ath11k_pci 0000:03:00.0: fetched regdb
 
-Signed-off-by: Maxime Bizon <mbizon@freebox.fr>
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20230421145445.2612280-1-mbizon@freebox.fr
+Link: https://lore.kernel.org/r/20230517133959.8224-1-quic_wgong@quicinc.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/core.c | 53 +++++++++++++++++++-------
+ 1 file changed, 40 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ef7617802491e..b19d44b3f5dfb 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -8715,7 +8715,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index b99180bc81723..893fefadbba96 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -870,7 +870,8 @@ int ath11k_core_check_dt(struct ath11k_base *ab)
+ }
  
- 	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
--		if (reg_cap->high_5ghz_chan >= ATH11K_MAX_6G_FREQ) {
-+		if (reg_cap->high_5ghz_chan >= ATH11K_MIN_6G_FREQ) {
- 			channels = kmemdup(ath11k_6ghz_channels,
- 					   sizeof(ath11k_6ghz_channels), GFP_KERNEL);
- 			if (!channels) {
+ static int __ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+-					   size_t name_len, bool with_variant)
++					   size_t name_len, bool with_variant,
++					   bool bus_type_mode)
+ {
+ 	/* strlen(',variant=') + strlen(ab->qmi.target.bdf_ext) */
+ 	char variant[9 + ATH11K_QMI_BDF_EXT_STR_LENGTH] = { 0 };
+@@ -881,15 +882,20 @@ static int __ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+ 
+ 	switch (ab->id.bdf_search) {
+ 	case ATH11K_BDF_SEARCH_BUS_AND_BOARD:
+-		scnprintf(name, name_len,
+-			  "bus=%s,vendor=%04x,device=%04x,subsystem-vendor=%04x,subsystem-device=%04x,qmi-chip-id=%d,qmi-board-id=%d%s",
+-			  ath11k_bus_str(ab->hif.bus),
+-			  ab->id.vendor, ab->id.device,
+-			  ab->id.subsystem_vendor,
+-			  ab->id.subsystem_device,
+-			  ab->qmi.target.chip_id,
+-			  ab->qmi.target.board_id,
+-			  variant);
++		if (bus_type_mode)
++			scnprintf(name, name_len,
++				  "bus=%s",
++				  ath11k_bus_str(ab->hif.bus));
++		else
++			scnprintf(name, name_len,
++				  "bus=%s,vendor=%04x,device=%04x,subsystem-vendor=%04x,subsystem-device=%04x,qmi-chip-id=%d,qmi-board-id=%d%s",
++				  ath11k_bus_str(ab->hif.bus),
++				  ab->id.vendor, ab->id.device,
++				  ab->id.subsystem_vendor,
++				  ab->id.subsystem_device,
++				  ab->qmi.target.chip_id,
++				  ab->qmi.target.board_id,
++				  variant);
+ 		break;
+ 	default:
+ 		scnprintf(name, name_len,
+@@ -908,13 +914,19 @@ static int __ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+ static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+ 					 size_t name_len)
+ {
+-	return __ath11k_core_create_board_name(ab, name, name_len, true);
++	return __ath11k_core_create_board_name(ab, name, name_len, true, false);
+ }
+ 
+ static int ath11k_core_create_fallback_board_name(struct ath11k_base *ab, char *name,
+ 						  size_t name_len)
+ {
+-	return __ath11k_core_create_board_name(ab, name, name_len, false);
++	return __ath11k_core_create_board_name(ab, name, name_len, false, false);
++}
++
++static int ath11k_core_create_bus_type_board_name(struct ath11k_base *ab, char *name,
++						  size_t name_len)
++{
++	return __ath11k_core_create_board_name(ab, name, name_len, false, true);
+ }
+ 
+ const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
+@@ -1218,7 +1230,7 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
+ 
+ int ath11k_core_fetch_regdb(struct ath11k_base *ab, struct ath11k_board_data *bd)
+ {
+-	char boardname[BOARD_NAME_SIZE];
++	char boardname[BOARD_NAME_SIZE], default_boardname[BOARD_NAME_SIZE];
+ 	int ret;
+ 
+ 	ret = ath11k_core_create_board_name(ab, boardname, BOARD_NAME_SIZE);
+@@ -1235,6 +1247,21 @@ int ath11k_core_fetch_regdb(struct ath11k_base *ab, struct ath11k_board_data *bd
+ 	if (!ret)
+ 		goto exit;
+ 
++	ret = ath11k_core_create_bus_type_board_name(ab, default_boardname,
++						     BOARD_NAME_SIZE);
++	if (ret) {
++		ath11k_dbg(ab, ATH11K_DBG_BOOT,
++			   "failed to create default board name for regdb: %d", ret);
++		goto exit;
++	}
++
++	ret = ath11k_core_fetch_board_data_api_n(ab, bd, default_boardname,
++						 ATH11K_BD_IE_REGDB,
++						 ATH11K_BD_IE_REGDB_NAME,
++						 ATH11K_BD_IE_REGDB_DATA);
++	if (!ret)
++		goto exit;
++
+ 	ret = ath11k_core_fetch_board_data_api_1(ab, bd, ATH11K_REGDB_FILE_NAME);
+ 	if (ret)
+ 		ath11k_dbg(ab, ATH11K_DBG_BOOT, "failed to fetch %s from %s\n",
 -- 
 2.39.2
 
