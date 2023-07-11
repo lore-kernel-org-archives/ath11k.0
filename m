@@ -4,63 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89258EB64DC
-	for <ath11k@archiver.kernel.org>; Tue, 11 Jul 2023 06:41:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34BECEB64DC
+	for <ath11k@archiver.kernel.org>; Tue, 11 Jul 2023 06:49:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=abihtPmTzfuxsD9A4Aup8gUoFp3sTD8DcwYiSAhk/FY=; b=UJ7/73RC5yt9rH
-	JwKT4CRvdKkaR7qAA/XMjXSDDEhmKEMUQlh1+RgUFNzfxctBVz+ojJizpAZnGojYwNEpmBzb6gqgl
-	M1Ndtl+qW0Ecytfn4IcFzjPgxGmv4fKvpZAqpUCa/1jqbkBYiHg/JoWWwxwaa6mS0pBUiIPv3dctl
-	iw0heQ5g7LeJ3DmOPhNkkbnnOsD9K4lBu3td6NwXJ4sfF4RHyMcYDraFLdYB5CHkDxvlJZamfoPt5
-	SfJxDT90Iqh7SdwtPhdyBI5jXQfdnnxUFZmuAOa7p693GrJo+hADtX5ww5TlR0sqOk2zqkoQ4mgbM
-	I6t52SoxROSVCliu6XAg==;
+	List-Owner; bh=Hm0YGBxEUgthb2NNKqEsJG12WMM0HDuceVshfWld/Us=; b=NWWI3tm2Inx1+3
+	v3rGZRV1NYXrgiBsL5YyMM5Pjqn5QqsKxfeOEkY6fgn8DwaSwgj6DfYf4Rz634zCcmYXVo7WNAt+b
+	R3fGzs4M9VjY1Bovg3RPdevWf4gyIEKo8ZDUDWhwuJniB6fUCKu5tIkzkpuLOJHLABKdLgNzTSo4f
+	pwFK2OVv4n6JorDQpnBPWAGnj3sMLQsm14EVpvV1MLBairC5Hn6ZecKr04GX7jid5IJf8yE4eYraa
+	eIP2is6SD+3s8y0ALlt5uS2PhM++u0SvmCNKMhe8hNETbKUFlQ6/RXqJOh8pJ3vGy55D3LjExAnvc
+	lX/wsM1i/P2Gho9Afmdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ73V-00DttO-0c;
-	Tue, 11 Jul 2023 06:41:01 +0000
+	id 1qJ7C7-00Dul0-1N;
+	Tue, 11 Jul 2023 06:49:55 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ73S-00Dtsg-2G
+	id 1qJ7C4-00DukZ-2F
 	for ath11k@lists.infradead.org;
-	Tue, 11 Jul 2023 06:41:00 +0000
+	Tue, 11 Jul 2023 06:49:54 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 8BAE86131C;
-	Tue, 11 Jul 2023 06:40:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9BB3C433C8;
-	Tue, 11 Jul 2023 06:40:55 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 02AB16129E;
+	Tue, 11 Jul 2023 06:49:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0C1EC433C8;
+	Tue, 11 Jul 2023 06:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689057657;
-	bh=EMDQ8n6s4uVXebs8rlUmtF4sMjk0GSqW8H9dqH1D4xw=;
+	s=k20201202; t=1689058191;
+	bh=kMqc4557kO524fJh538D17lXbwyN05bdTMQspaBTnBk=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=U6w3eiqNJbpZGPDgguPFC94bPKjKwkv0p1fbs2L1cLUVhmTTMl/H2zntoK71IB9Bm
-	 ey14lsKP7Q5y5LZTGASj0uSuWxCLSRXHK7snbsiCo8Y+Dy46pPMhePVCF/UZX7dJFL
-	 mMH60fPJXnJ5tbZi42BX9/mcjOB7JYfDkCdhRyz2FGHDRXdd4IwINIXfP0nbaBeoCy
-	 wcNLn4lzy2GzS//ymXHlGhnkISE2Z5MyVqeKqnoVU0am5UzaexfMPSNGmsUMVNOX8l
-	 wcBNYcihRBOA8NB990/0k8klkPYpncJ77u+AxceGp3Fy369Dfi1jzwuqiOvGNBRIs2
-	 8tPX/g6/2WABw==
+	b=m4AYyun+xHcWRh3zx+i+AL0rUx/01TICRittGnHRxVh7cjTWYTdge4ElasA/PfOKd
+	 d83VqKZUCRlIwr1b0KiQbzl3p53olXj7/zMcTkhePz7l/D7CwtLwjVw/3+QLvxM+IY
+	 XTJ1Fa2tg3bJtNPKybztAIIh7pIpMrd6HrUvJGcKAmsb1Cm8uSEomiJ26cug0F5cgE
+	 y1zPA18ggMPiO2HubFqB7LX1lbKnh8HFdhMBeuY/uPdNM1ko2EUXtEHL7O/5iYkb6D
+	 a6m2H9Nx821GLR9Q/7QRyOEHsB8O/0Wgn0KrXpr+vf+wgDEUT468y9MEX6lLiRMgCG
+	 Xj/DIYZgw96nQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Arowa Suliman <arowa@chromium.org>
-Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org,  Arowa
- Suliman <arowa@google.com>,  kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] wifi: ath11k: Add crash logging
-References: <20230710230546.3544912-1-arowa@google.com>
-Date: Tue, 11 Jul 2023 09:40:53 +0300
-In-Reply-To: <20230710230546.3544912-1-arowa@google.com> (Arowa Suliman's
-	message of "Mon, 10 Jul 2023 16:04:53 -0700")
-Message-ID: <87wmz77xxm.fsf@kernel.org>
+To: Tanguy Serrat <tanguy@squaremind.io>
+Cc: ath11k@lists.infradead.org
+Subject: Re: ath11k: QCN9074: low HE-MCS index
+References: <CAPr+0Hb5b_CEihVH+Mo-uR4+Wp-ACkoCySkyLrk=mkzme6ezPg@mail.gmail.com>
+Date: Tue, 11 Jul 2023 09:49:48 +0300
+In-Reply-To: <CAPr+0Hb5b_CEihVH+Mo-uR4+Wp-ACkoCySkyLrk=mkzme6ezPg@mail.gmail.com>
+	(Tanguy Serrat's message of "Mon, 26 Jun 2023 14:27:25 +0200")
+Message-ID: <87sf9v7xir.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230710_234058_798881_EBD2B71B 
-X-CRM114-Status: UNSURE (   9.49  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230710_234952_824070_D6284787 
+X-CRM114-Status: GOOD (  18.54  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,35 +75,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Arowa Suliman <arowa@chromium.org> writes:
+Tanguy Serrat <tanguy@squaremind.io> writes:
 
-> Change crash logging from debug to informational and add warning when
-> firmware crash MHI_CB_EE_RDDM happens.
+> Hi everyone,
+>
+> In my quest to get 2x QCN9074 paired and achieving high throughput
+> data transfers, I am now facing issues with the AP configuration.
+>
+> Specifically, I cannot get more than HE-MCS 5 (AP and client 50cm
+> apart) although SNR and RSSI are always very strong and supposedly in
+> specs (SNR > 40db or RSSI < -48db).
+>
+> iw wlp6s0 link
+> Connected to 00:15:61:27:cd:dc (on wlp6s0)
+> SSID: Space
+> freq: 5745
+> RX: 1073584482 bytes (708567 packets)
+> TX: 355824214 bytes (256143 packets)
+> signal: -40 dBm
+> rx bitrate: 1729.3 MBit/s 160MHz HE-MCS 4 HE-NSS 4 HE-GI 0 HE-DCM 0
+> tx bitrate: 1729.3 MBit/s 160MHz HE-MCS 4 HE-NSS 4 HE-GI 0 HE-DCM 0
+>
+> In this case iperf3 shows ~950Mbits/s transfer speed. I am hoping to
+> get at least twice as much.
+>
+> It seems to me that either mac80211, ath11k or hostapd are not
+> advertising the available capabilities correctly. I have tried setting
+> hostapd he_basic_mcs_set=65530 or others but did not help.
+>
+> I have added ieee80211_regdom=FR option to cfg80211 module on the AP
+> side. Channel selection is done with ACS survey. I also tried other
+> channels/frequencies without success eg. 5500Mhz.
+>
+> iw reg get
+> global
+> country FR: DFS-ETSI
+> (2400 - 2483 @ 40), (N/A, 20), (N/A)
+> (5150 - 5250 @ 80), (N/A, 23), (N/A), NO-OUTDOOR, AUTO-BW
+> (5250 - 5350 @ 80), (N/A, 20), (0 ms), NO-OUTDOOR, DFS, AUTO-BW
+> (5470 - 5725 @ 160), (N/A, 26), (0 ms), DFS
+> (5725 - 5875 @ 80), (N/A, 13), (N/A)
+> (5945 - 6425 @ 160), (N/A, 23), (N/A), NO-OUTDOOR
+> (57000 - 71000 @ 2160), (N/A, 40), (N/A)
+>
+> phy#0 (self-managed)
+> country US: DFS-FCC
+> (2402 - 2472 @ 40), (6, 30), (N/A)
+> (5170 - 5250 @ 80), (N/A, 30), (N/A), AUTO-BW
+> (5250 - 5330 @ 80), (N/A, 24), (0 ms), DFS, AUTO-BW
+> (5490 - 5730 @ 160), (N/A, 24), (0 ms), DFS, AUTO-BW
+> (5735 - 5895 @ 160), (N/A, 30), (N/A), AUTO-BW
+> (5945 - 7125 @ 160), (N/A, 27), (N/A), NO-OUTDOOR, AUTO-BW
+>
+> Current setup is:
+> - Intel x86
+> - Ubuntu 22.04
+> - Kernel built from ath 6.4.0-rc6-wt-ath+ (commit:
+> c60d15f389ef9832a8da410e438d81b10327751f)
+> with commit reverted from the bug ticket I opened
+> (https://bugzilla.kernel.org/show_bug.cgi?id=217536).
+> - 1x QCN9074 as AP, 1x as managed client 50cm apart
+> - Both AP and Client are running with the latest 2.7.0 FW.
+>
+> I have started from this ticket
+> (https://bugzilla.kernel.org/show_bug.cgi?id=217286) hostapd config
+> file, and adapted, please find attached.
+>
+> Anyone seeing what could be my issue / how I could debug further ?
 
-Why? What's the reason why you want to change this? The commit log
-should always describe that.
+As a start please file this to bugzilla as a new bug. Always one issue
+per report, please. Otherwise it's a nightmare to manage the bug
+reports.
 
-> Tested-on: Qualcomm WCN6855
+https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
 
-This is not correct format:
-
-https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches#tested-on_tag
-
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202306141105.c1e82Q0y-lkp@intel.com/
-
-The robot only reported problems with your patch, it didn't report the
-original problem. So you should remove these two lines.
-
-> Signed-off-by: Arowa Suliman <arowa@google.com>
-
-From and s-o-b have different email addresses.
-
-Also this seems to a second version of your patch so you should have
-marked it as v2 and include a changelog what changed from v1.
-
-Please read our documentation from the wiki link below how to submit
-patches.
+Try to provide as much as information as you can to the report. You said
+that you have tested it 50 cm apart but have you tested it, for example,
+3 m apart? Please also include your full kernel .config file and dmesg
+output.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
