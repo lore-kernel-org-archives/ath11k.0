@@ -4,61 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8F8BEB64DC
-	for <ath11k@archiver.kernel.org>; Tue, 11 Jul 2023 08:50:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC41EB64D9
+	for <ath11k@archiver.kernel.org>; Wed, 12 Jul 2023 08:38:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lemIPJdt8rZ/DHRAMi3B28mSDYkvtw+g7DikVX2Dtpc=; b=Vz/oN4aD4qZW6e
-	/S6YJDdJjs4IVzzHtN4AgMGr4sZYZAFsVJZ5pIpgOr1K8uX/CD0fMiEk+UJIX1XPNthzi36dzIs8f
-	yDLe4UgBVhAlVwTK63VBptKXQqHa7eXjNMSYCCsWN1vCaUeXzLdK/F38CXLX5j//6h8rsPyXPc8Wn
-	6w4dmMlu+pjsELf89yVxhuIdjyCyBWDKDj6iPh+F9K4gaWNVrhbM40QnLtKrb9DdrlnRaeT7PU9Jz
-	ORf/WozYus5pwBix7zUJATWqQMpgivt5EK0fXneeRiXglPksLSry6e0FGJqQCEg67sb4PAlQ8IOco
-	8gclWu76TUp47hglIb7A==;
+	List-Owner; bh=pTl1Fi7bRPTj9LBgqy8eOkVPOFbrrMHja0oWN5T0kIc=; b=vijcjUOrthq6AO
+	kIHVWm/Cus7zZTvrG0l4tudF18dMmbmk3GT3rTin9Y+yX3mOI5CLIF6xIXZf6vzyEcVlbHoCH6nsI
+	5NPs62K5/PS5mBxrwndsN4zHuSHBECkfwsKuFveyrGRs9oLLdBAtMcL3ZodNRhHejJvhMX/eOZViM
+	pfPc/q2v66mVzMoUgGgLghGLDRGYJwV8dF8voEtslktnpf1bpoJQ4yxZfpoL3srDh/Gxk8RpCS7wu
+	WWK2ckMr//ZwdKFYTtppZ8m9Yop3Jmr51OLB/Qai6lSy6OPwPEuy23yHhDW7mR4MGu2Pd3WOf9RBo
+	4vVRlmUdt6xyIou5BayQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ94L-00EARZ-1u;
-	Tue, 11 Jul 2023 08:50:01 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qJVMY-00GvyR-2I;
+	Wed, 12 Jul 2023 08:38:18 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qJ94I-00EAQR-1n
+	id 1qJVMV-00Gvw7-0A
 	for ath11k@lists.infradead.org;
-	Tue, 11 Jul 2023 08:49:59 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0C19C61368;
-	Tue, 11 Jul 2023 08:49:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F20C433C8;
-	Tue, 11 Jul 2023 08:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1689065397;
-	bh=vnuRFOlbTCDHw/iE3CrCORNC9hq7UhjCf0ZkcUmXb0g=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=can97JGF/+W+A6Jqu7kyCbGB64KNuVx0LfpxfiEcb/sv0CJBmXQPZWwB1j41iBt/R
-	 CsCF2LOIut13qo7jbqEJv+0fIR+Y+h6ZQ7orPadlsUdYFNCOoBY+VJoJgjwC1yT+7+
-	 xWQ5OjadJxqMWNsNLjfgIVzlM6dCDx+wzoXNmE9NGg8vYAfLJ7CSwIHOJZ2d9Yhrv4
-	 8R8eLLcZpzZ8eynj88R/DFFhEvDE6DcrmLQ2HOSC+/EBpujK7fJXlVva//NAZBm1FB
-	 m2QwIBIOXZDaWxz2vPRfRau79+OWMc5BVhal4+qlXzdVQZTRIk/bbba1eszv62Z3zQ
-	 KPcJFCJ5G3SjQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Alexander Wilhelm <alexander.wilhelm@westermo.com>
-Cc: <ath11k@lists.infradead.org>
-Subject: Re: ath11k: BigEndian platform support?
-References: <68290980-5bfb-c88c-be78-954f9591c135@westermo.com>
-Date: Tue, 11 Jul 2023 11:49:54 +0300
-In-Reply-To: <68290980-5bfb-c88c-be78-954f9591c135@westermo.com> (Alexander
-	Wilhelm's message of "Thu, 29 Jun 2023 11:50:03 +0200")
-Message-ID: <87cz0y96j1.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Wed, 12 Jul 2023 08:38:17 +0000
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51dec0b6fecso8484011a12.1
+        for <ath11k@lists.infradead.org>; Wed, 12 Jul 2023 01:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=squaremind-io.20221208.gappssmtp.com; s=20221208; t=1689151089; x=1691743089;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JwCizXSduRCXP+Rj6MgXBcIOIDagya4LEoqez6CL88U=;
+        b=v1nH54Cc5esjiYKsXu9BTeRiW2hJDftU4SEcEbofkFAE5a/3yr1st7w9L3fAOLwGHI
+         2eQfmdo3nzGzZrAZrXrgt9rP5keNHPFodzhPnzfkfJSOVe4qBlJNS+5a1pn+kZ5/UwEH
+         HIvYLtt/t7U0bxLdvqo0bh/2jcZ+afkF3ujjvW1uUGcEvaOR6WIof0+ytaqSAolR7M5h
+         ImrfVR6dVz8iMknSUCMunJRtVvpFDmOTBKBvf4QWz3wJsavdPwwOvqFE87SrGO8U20+M
+         +zlFT5DLB3x8BdyUxTEaPslDIfTVAs8ckDg+tq7LSy5WTbYU2pqFVKxZ5FryMIkzXTjk
+         NFLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689151089; x=1691743089;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JwCizXSduRCXP+Rj6MgXBcIOIDagya4LEoqez6CL88U=;
+        b=DZJRrB6iweidpEcdRQ92SbBkh80Ui9nB4HvDJeZVvS8px9d0gnnEJYYrWdXmduvAP/
+         3U7CeBgva9hEmybF7HnBTWFu78fc70hDFCDA6/f2MyNlwmXqL538117E7VE6dY+Np9tJ
+         SEve/lLbLoz2+b8n9rr9CYvFZFUrTWT01fytHmAylLW3laiqYS1rVtOUUReKHmCuoq3z
+         XJS1pMzk4kYSpfkbXsqR6gQ2BTihXbRWzLJm9Es1MolnV9I60ItwY9GTWvXCv1KwrN8H
+         OzaaLoliisThXKXKhAo+QAXSv6Qspp/IYa3CbfmwgfGy4+sjd8+hYerhzHYK2va81F5x
+         34pg==
+X-Gm-Message-State: ABy/qLaC94aBSl7UNSXzVdmGNZRWS523blPoOaStwfi7zQ8ZA8OM3byx
+	6bVa6Nk/7jaEHXmYpJJwu5B7wD5oyTV6yp4SDoSNUVwtmQcDm6Lr5uYEUQ==
+X-Google-Smtp-Source: APBJJlGaXbPwVGE1PhIBVnvWyIH5KbOgUmAxqR7VsnksDu4jhMDz4Je9lxoT8NLJYP0SNgLIXfhEK5quEfyIncKCQjQ=
+X-Received: by 2002:aa7:d349:0:b0:51e:16ae:b6d7 with SMTP id
+ m9-20020aa7d349000000b0051e16aeb6d7mr16634882edr.33.1689151089403; Wed, 12
+ Jul 2023 01:38:09 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAPr+0Hb5b_CEihVH+Mo-uR4+Wp-ACkoCySkyLrk=mkzme6ezPg@mail.gmail.com>
+ <87sf9v7xir.fsf@kernel.org> <CAPr+0HbwpA0KrV71ah8bQ_Gnn9Ch2PMZnHE3uqRUrNU8=DoMFA@mail.gmail.com>
+ <87jzv696zv.fsf@kernel.org>
+In-Reply-To: <87jzv696zv.fsf@kernel.org>
+From: Tanguy Serrat <tanguy@squaremind.io>
+Date: Wed, 12 Jul 2023 10:37:58 +0200
+Message-ID: <CAPr+0HbBEXXqTJ7Hv3cfKBB=rtZ+tq4Xn_YVLxsNz=kbn3b=Ww@mail.gmail.com>
+Subject: Re: ath11k: QCN9074: low HE-MCS index
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230711_014958_638375_1A437DA6 
-X-CRM114-Status: GOOD (  14.39  )
+X-CRM114-CacheID: sfid-20230712_013815_276974_823C96FF 
+X-CRM114-Status: GOOD (  16.34  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,52 +84,41 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Alexander Wilhelm <alexander.wilhelm@westermo.com> writes:
-
-> I am trying to get the QCN9074 module to work on a BigEndian PowerPC
-> platform. My question would be, has anyone done it yet? If not, what
-> kind of effort would you estimate for porting or are there any
-> firmware limitations?
-
-This is a good question. The short answer is that it _might_ work with
-QCN9074 but AFAIK nobody has tested it and I'm not really optimistic.
-
-The long answer is that the big endian support in ath11k is implemented
-in a weird way which I regret big time. The idea is that the firmware
-does the translation instead of ath11k driver with this flag:
-
-/* Host software's Copy Engine configuration. */
-#ifdef __BIG_ENDIAN
-#define CE_ATTR_FLAGS CE_ATTR_BYTE_SWAP_DATA
-#else
-#define CE_ATTR_FLAGS 0
-#endif
-
-But later I was told that not all firmware branches actually support
-this feature, sigh. To my knowledge QCA6390 and WCN6855 firmwares do not
-support this CE_ATTR_BYTE_SWAP_DATA but I'm hoping QCN9074 firmware
-would support it. Grep for BIG_ENDIAN to see more big endian specific
-changes.
-
-In ath12k the endian support was implemented in a proper way using
-__le32 type family and cpu_to_le32() & co macros, but it's also
-untested. It's on my todo list to convert ath11k to do the same but no
-idea when I'm able to work on it. Patches very welcome.
-
-Do let me know if you test ath11k on big endian, I'm very curious to
-know the results.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+PiBUaGFua3MgZm9yIGZpbGluZyB0aGUgcmVwb3J0LCB3ZSB3aWxsIGxvb2sgYXQgYnVnICMyMTc2
+NTIgYW5kIGdldCBiYWNrCj4gdG8geW91LiBCdXQgZG8gbm90ZSB0aGF0IHRoaXMgd2lsbCBtb3N0
+IGxpa2VseSB0YWtlIHNvbWUgdGltZSwgb3VyCj4gYmFja2xvZyBpcyBsb25nIGFuZCBwZW9wbGUg
+YXJlIGFsc28gdGFraW5nIHZhY2F0aW9ucy4gSSBqdXN0IGNhbWUgYmFjawo+IHllc3RlcmRheSBh
+bmQgSSdtIGhvcGluZyB0byB0YWtlIG1vcmUgdmFjYXRpb24gbGF0ZXIgdGhpcyBtb250aC4KCkR1
+bHkgbm90ZWQsIHRoYW5rIHlvdS4gSSBob3BlIHlvdSBhbmQgeW91ciB0ZWFtIHdpbGwgaGF2ZSBh
+IGdvb2QgYnJlYWsuCgpXZSd2ZSBzcGVudCAxNTArIGhvdXJzIHdvcmtpbmcgb24gYmFja3BvcnRp
+bmcgYW5kIGdldHRpbmcgb3VyIFFDTjkwNzQgdG8gd29yay4KV2Ugd291bGQgYmUgZXh0cmVtZWx5
+IGdyYXRlZnVsIGlmIHlvdSBndXlzIGNhbiBoZWxwIHVzIHB1dCB0aGlzCm1pbGVzdG9uZSBiZWhp
+bmQsIHNvIHRoYXQgd2UgY2FuIG1vdmUgZm9yd2FyZCBpbiB0aGUgZGV2ZWxvcG1lbnQgb2YKb3Vy
+IG1lZGljYWwgcHJvZHVjdCBhbmQgYmUgb24gdGltZSBmb3Igb3VyIFJhZGlvIGNlcnRpZmljYXRp
+b24uCgpMZSBtYXIuIDExIGp1aWwuIDIwMjMgw6AgMTA6MzksIEthbGxlIFZhbG8gPGt2YWxvQGtl
+cm5lbC5vcmc+IGEgw6ljcml0IDoKPgo+IFRhbmd1eSBTZXJyYXQgPHRhbmd1eUBzcXVhcmVtaW5k
+LmlvPiB3cml0ZXM6Cj4KPiA+IERlYXIgS2FsbGUsCj4gPgo+ID4gVGhhbmsgeW91IGZvciB5b3Vy
+IHJlcGx5Lgo+ID4KPiA+IEkgaGF2ZSBvcGVuZWQgdHdvIHNlcGFyYXRlIGlzc3VlczoKPiA+IDEp
+IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjE3NTM2IC0gcmVs
+YXRlZCB0byBhCj4gPiBwcmV2aW91cyBpc3N1ZSBJIGVuY291bnRlcmVkLgo+ID4KPiA+IDIpIGh0
+dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjE3NjUyIC0gcmVsYXRl
+ZCB0byB0aGlzIGZlZWQuCj4gPgo+ID4gSSBoYXZlIHRlc3RlZCAzbSBhcGFydCwgYXMgZGVzY3Jp
+YmVkIGluIDIxNzY1MiwgcmVzdWx0cyBhcmUganVzdAo+ID4gc2xpZ2h0bHkgYmV0dGVyIGluIHRl
+cm1zIG9mIHJlcG9ydGVkIE1DUy4gSSBzdGlsbCBzZWVtIHRvIGJlIG1pc3NpbmcKPiA+IGFsbCBj
+YXBhYmlsaXRpZXMgb3ZlciA3LiBJIGhhdmUgYXR0YWNoZWQgdGhlIGZ1bGwgZG1lc2cgbG9nIGFu
+ZAo+ID4gLmNvbmZpZyBmaWxlIHRvIHRoZSBidWcgcmVwb3J0Cj4KPiBUaGFua3MgZm9yIGZpbGlu
+ZyB0aGUgcmVwb3J0LCB3ZSB3aWxsIGxvb2sgYXQgYnVnICMyMTc2NTIgYW5kIGdldCBiYWNrCj4g
+dG8geW91LiBCdXQgZG8gbm90ZSB0aGF0IHRoaXMgd2lsbCBtb3N0IGxpa2VseSB0YWtlIHNvbWUg
+dGltZSwgb3VyCj4gYmFja2xvZyBpcyBsb25nIGFuZCBwZW9wbGUgYXJlIGFsc28gdGFraW5nIHZh
+Y2F0aW9ucy4gSSBqdXN0IGNhbWUgYmFjawo+IHllc3RlcmRheSBhbmQgSSdtIGhvcGluZyB0byB0
+YWtlIG1vcmUgdmFjYXRpb24gbGF0ZXIgdGhpcyBtb250aC4KPgo+IC0tCj4gaHR0cHM6Ly9wYXRj
+aHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdpcmVsZXNzL2xpc3QvCj4KPiBodHRwczov
+L3dpcmVsZXNzLndpa2kua2VybmVsLm9yZy9lbi9kZXZlbG9wZXJzL2RvY3VtZW50YXRpb24vc3Vi
+bWl0dGluZ3BhdGNoZXMKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRo
+MTFrCg==
