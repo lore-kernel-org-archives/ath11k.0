@@ -4,72 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 950A7C001B0
-	for <ath11k@archiver.kernel.org>; Fri, 14 Jul 2023 00:11:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D13C001DD
+	for <ath11k@archiver.kernel.org>; Fri, 14 Jul 2023 01:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=EgsKWhwf9I4eVts2YZiRQsuOLkkYNftbgG54xv2V2fQ=; b=3s33HWm365Af2t
-	toPolEd32XlfhRRmanlY3l6dXVOA1M56Zbn8bjTdjyEsCTpz5zGMTajTEMmfkp7MMhnBFGiDExbZx
-	WTjS9SbqdGQgp9S1eghbiTof40ngMHQHNgypqkkK+d6MTqz4gwfwR1OoLEDb/7YWzxpxrn0EzsiTn
-	+Bk2+SGdrT20qHqDCrnc4RDZvvGzsO42Utkjns416u6rbfL7C3Q/UW1Rc8zEFxOQKJqZiMgyvTWYQ
-	hciSjZy54BjSuSc4zplFXoDX6Qr2N/zI6qU17YOcWFcdOapKke1otJnp/xDpWrhxOQSMawasoIAds
-	CZ0mtUiBw39fagvwEaVQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=wmgOGkvF/4RwD/uA99kVcS9Fv9FDhhl7IaxX00z0vHQ=; b=QOHaZH54ln1VX3
+	1YZjC4MgtcAmfDLeAxQ13D1rfIEHqhP3f+oqwq2V4dHhnGYqW6ieE7C2B99Ia02o+U+138YZQq7XV
+	UKx7PlJeT91h/ot9IELWgnKA7V0aI5qOByjkDpehf4b3eMev/YxmYN6Xvk3x/rqwOc0ujiRefwfTJ
+	gYA3i0Mv4j/JILv+L6NZCoPymBc9OK977itw3mB3i8/R8gNINbUdp5kJ/fhVOsvTxRa/7u4IlBmCm
+	NqSbNxjjSdTLuZibhNYguIPKEziDgEb0GwlfN68MBp94aUPljR0P3CWcPR3bOJXMPJmRY16jhgc7m
+	FKT+NWNlWXW6zEkvpamA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qK6PO-004c4A-11;
-	Fri, 14 Jul 2023 00:11:42 +0000
-Received: from mail-pg1-x536.google.com ([2607:f8b0:4864:20::536])
+	id 1qK7dr-004hnm-1a;
+	Fri, 14 Jul 2023 01:30:43 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qK6PK-004c3N-1P
+	id 1qK7dn-004hml-2r
 	for ath11k@lists.infradead.org;
-	Fri, 14 Jul 2023 00:11:40 +0000
-Received: by mail-pg1-x536.google.com with SMTP id 41be03b00d2f7-55b0e7efb1cso803289a12.1
-        for <ath11k@lists.infradead.org>; Thu, 13 Jul 2023 17:11:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1689293494; x=1691885494;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5vqUOvUXa8K5Wx+m88RxVlwrv8R/El1ZGP9GFTtwjCI=;
-        b=W5MkhmHGhYTWevAnklGe1SJrBEc4X86lBc5Bt+8KOBXcZkq7R6Cx+JcbVv9i/q48n4
-         WD/oisoaO0vnhgPjsp2DFBOfj+qrTSqSkBCX1am4CqVzeIk/eEM1+60lInYo8I55uQDO
-         TBVZ8TEgF1B+ulcfQTP8Eiqf3zonk3AAXhyuo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689293494; x=1691885494;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5vqUOvUXa8K5Wx+m88RxVlwrv8R/El1ZGP9GFTtwjCI=;
-        b=GGmgZgkzgoJ/4iNbhX6P7xxEcTqlC9mp3zNfhGH0aJsmRn2/nm60Xl7qnnmtrGMHNH
-         bI3LdiJKVWZ24V8n6+OD8vA6JEW2NaMqsS8YiBlkqF/oOts3hpPOrsm0pNe7Ov5TESUC
-         nE+zR8fkuvEqhFeZjbDQkTVnaqet9o+o6BxvYnA6hqJokeF1fd56S0iWJL4Y+Y0P9fo2
-         zn+M51NIUCJXpBV8hmtWIGuHKOwMOMJhoqYQfl0wYyGnvJDOmFEIEBSqFtgla5QOnNNZ
-         52ucVb8ZWhG6xPUJXuMbrKWNChpxXjVkASP0S99qxZl7DUYf69Xk/eaWv9V/jEe6HjzU
-         TX/Q==
-X-Gm-Message-State: ABy/qLYYc6eiQaH9BFO+frQ3TjzBtSRFenh9FOuxAQAzH/oJgrfQ5BTc
-	6EhyGT1Fb7+JtTtbFcYcJE46RGz3w000VxBzDZM=
-X-Google-Smtp-Source: APBJJlENggqfPIe1kAkA+PQdxXbJ5uO5HJuxYrC+uu2Rnd73CEg/zX2p1g9IRDhdCcV6yQj8/SaiFw==
-X-Received: by 2002:a17:902:c40f:b0:1ac:63ac:10a7 with SMTP id k15-20020a170902c40f00b001ac63ac10a7mr2825431plk.68.1689293493801;
-        Thu, 13 Jul 2023 17:11:33 -0700 (PDT)
-Received: from arowa.mtv.corp.google.com ([2620:15c:9d:4:752b:86eb:10d6:65b4])
-        by smtp.gmail.com with ESMTPSA id 20-20020a170902ee5400b001b81a97860asm6444207plo.27.2023.07.13.17.11.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 17:11:33 -0700 (PDT)
-From: Arowa Suliman <arowa@chromium.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-	Arowa Suliman <arowa@chromium.org>
-Subject: [v4] wifi: ath11k: Add crash logging
-Date: Thu, 13 Jul 2023 17:10:54 -0700
-Message-ID: <20230714001126.463127-1-arowa@chromium.org>
-X-Mailer: git-send-email 2.41.0.255.g8b1d071c50-goog
+	Fri, 14 Jul 2023 01:30:41 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36E1JQ5d009251;
+	Fri, 14 Jul 2023 01:30:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=iIYd+ndnBP9Et0RdX1MT727gSCrDVeXp4gIeVGs58Xo=;
+ b=Bn837O5NuhmHE4Z7uzcSiFILDjnM239SjcdIG7ZjO9JcP25UZn+GAU3sXYNlxS8tA8cM
+ pgU2aPzQ4zn2KSOUD0KedJTgBCxdTG1gh2IH/okgl6O8yxsuGM0tdYVNP4Ucz9oA8OHb
+ BH8KaK2XjwsEmAFap0SjwtqRysJiEE32+fUO31r+EjDANG5H/1Tm93dH6mGyTefCsU03
+ RNWbpJitLIvQCLPFOIQk6a9rInGjH4iX9D0nO0IQwjcNV7W/HBQCB3EHEa1lLWKK2O9l
+ lsvd9smMeDbeMjB9ktWD+/uOUyCJi6xGYyKtyNXSOINrN+DcG76twxsjaptNkbt4lpsS 4A== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rtptu8kcv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Jul 2023 01:30:30 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36E1UT7C026872
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Jul 2023 01:30:29 GMT
+Received: from [10.111.182.44] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 13 Jul
+ 2023 18:30:29 -0700
+Message-ID: <c88f4ea8-34ca-8544-3b74-4641557da9ba@quicinc.com>
+Date: Thu, 13 Jul 2023 18:30:28 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [v4] wifi: ath11k: Add crash logging
+Content-Language: en-US
+To: Arowa Suliman <arowa@chromium.org>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20230714001126.463127-1-arowa@chromium.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20230714001126.463127-1-arowa@chromium.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Y9nnnd2rj8rolU2ha7XreZeiABh70oYe
+X-Proofpoint-ORIG-GUID: Y9nnnd2rj8rolU2ha7XreZeiABh70oYe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-13_12,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 phishscore=0 lowpriorityscore=0 clxscore=1015 mlxscore=0
+ suspectscore=0 adultscore=0 mlxlogscore=999 spamscore=0 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307140012
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230713_171138_519047_DC8FE8DE 
-X-CRM114-Status: GOOD (  10.67  )
+X-CRM114-CacheID: sfid-20230713_183039_934738_0DE648B5 
+X-CRM114-Status: GOOD (  11.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,54 +92,26 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, the ath11k driver does not print a crash signature when a
-crash happens. Checked by triggering a simulated crash using the command
-[1] and checking dmesg for logs.
+On 7/13/2023 5:10 PM, Arowa Suliman wrote:
+> Currently, the ath11k driver does not print a crash signature when a
+> crash happens. Checked by triggering a simulated crash using the command
+> [1] and checking dmesg for logs.
+> 
+> [1] echo assert > /sys/kernel/debug/ath11k/../simulate_fw_crash
+> 
+> Change the crash logging from debug to informational and add a warning
+> when firmware crash MHI_CB_EE_RDDM happens.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> 
+> Signed-off-by: Arowa Suliman <arowa@chromium.org>
 
-[1] echo assert > /sys/kernel/debug/ath11k/../simulate_fw_crash
-
-Change the crash logging from debug to informational and add a warning
-when firmware crash MHI_CB_EE_RDDM happens.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-
-Signed-off-by: Arowa Suliman <arowa@chromium.org>
----
-v4:
-Shift line 329 one space to the right to fix code alignment.
----
- drivers/net/wireless/ath/ath11k/mhi.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 3ac689f1def4..025fa58b1503 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -325,14 +325,15 @@ static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
- {
- 	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
- 
--	ath11k_dbg(ab, ATH11K_DBG_BOOT, "notify status reason %s\n",
--		   ath11k_mhi_op_callback_to_str(cb));
-+	ath11k_info(ab, "notify status reason %s\n",
-+		    ath11k_mhi_op_callback_to_str(cb));
- 
- 	switch (cb) {
- 	case MHI_CB_SYS_ERROR:
- 		ath11k_warn(ab, "firmware crashed: MHI_CB_SYS_ERROR\n");
- 		break;
- 	case MHI_CB_EE_RDDM:
-+		ath11k_warn(ab, "firmware crashed: MHI_CB_EE_RDDM\n");
- 		if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags)))
- 			queue_work(ab->workqueue_aux, &ab->reset_work);
- 		break;
--- 
-2.41.0.255.g8b1d071c50-goog
+Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
 
 -- 
