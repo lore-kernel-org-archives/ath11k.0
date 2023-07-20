@@ -4,80 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F7FFEB64DA
-	for <ath11k@archiver.kernel.org>; Wed, 19 Jul 2023 06:44:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E654EB64DA
+	for <ath11k@archiver.kernel.org>; Thu, 20 Jul 2023 10:03:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=eL8j8u+EfF13r48DRK9h98p1ah/tUzUBRW5hxPe+GH8=; b=1GfwaEFEP3+QLq
-	fQiGzfrDvcISnT5YIEpRDXPn36L64fGu1fRSj6wL5os/A5tP6lPNs9lSBNU4QQUb1/yCa1Xc7p/z9
-	Y29RmComwqa1CKWrYMNNT6I6XQCriF5M3rmd3CEV5rzc/4xCg+vXgKBa3Pwl3Y5Lbw8CiCVKNHaf0
-	6hyHBHwaIQw5nwZKQh2Et1eVjlPKtLvcSE9GH/ra0AiVgeEYj8wJxxZ9qQ9bwYXvISQmlSY/RxgPa
-	2HfE27FhMY7zucdjF9CT6JIdbbTejKOAxrd0xH6rw7HoYFkHVRYzHYEvvsqXl3ofSys3iVWOE7ePi
-	5YZgzZA40V+wNV6yakig==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=x2zKDVuTkl3szS3hYblt7X62p8NoKBFVBs3+FW1ftPQ=; b=Ee8BL8jRjZicka
+	Dy6UhQTWnM5bVWqqS9KyWuDO7+/5wLUDHNnWaaT5PgIffLyCWmRXUc87l/OfI1nuFBR6pAD53cQQt
+	GAMdIXrsfUDJOphBZFM5bE3feTYeo7wx1SjI3zm3VQ7dldvvHMmZJgmcR3kPXqCL1tvv3Q76eJTwS
+	69V1UKVti7YkbsYVfPsU73NMcDd4f4tZdkZxy+h/j+EcBXb2MalXY82uLsvH8EtUXrXGYLN6hMMqU
+	R/+u5ZsZG6kjFgOSaRt+pX1wLQCewh9sR3grgqA5VUujiowP1kC2DBqA5gXeApD0GgRRW6Yu7nLw5
+	HD7lUwa+bmmUX4vzALWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qM0ve-005sDp-36;
-	Wed, 19 Jul 2023 06:44:54 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1qMQVR-00AfdG-2E;
+	Thu, 20 Jul 2023 10:03:33 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qM0vV-005s7E-0Q
+	id 1qMQVP-00AfcZ-1j
+	for ath11k@bombadil.infradead.org;
+	Thu, 20 Jul 2023 10:03:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=Bm7kvP9mjtgWMDTk0x3n9fvdJasu+xrGpL0E8vcP3ks=; b=Dg14FOW2lazXEohV+u8rZ+wfiC
+	MYZcp6vvN3zoJ14WHVmo0/3nNEWddyi7dYO3ZkgtMMWTN72D/fxiu5Z47k1tKdAJpx4pb8WvVcpjx
+	1TnvwFSC+ISFRNlhh5pY9O+tbjiQCuuEaZ5OBN8ZkM96/Pm38IRVUqoEMLINtpbmubnWiEGx1S03G
+	Bwyj0AR1aqEVIK9nglxyXYFotnbWOFoOQ8dHO5gK5BNwWhPWxQAEbgy8GysgKHl0Csk7emMkAmaeP
+	+AOzy6lUZ3hsEPIwl1PeGOCly5EfkZZmvb1nnAfv5oXaajq6FDBfv9sAC+E2pIjQTr/ZjElJ9hm1L
+	sOYKnrSQ==;
+Received: from mail.cassleycruden.pl ([217.61.97.118])
+	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qMPEe-00FQi2-1V
 	for ath11k@lists.infradead.org;
-	Wed, 19 Jul 2023 06:44:46 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36J6Orfl031221;
-	Wed, 19 Jul 2023 06:44:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=Cb6DvDrWEBxB94sYgoPejnVukAljeQUEaVmedz+ukXs=;
- b=HlsLQn2xD6HtBIZQEthzpKSeXZESRkddcAQiD5Oet3J6n55JVq3tnt2Fltoacsq7U8ma
- mmFBf/yyjci1Eu73cUnKZ05gHLNNrZAZaTJxVyh65GtZLkGNGqmPaMVsRhWO7INU2lPc
- vMzerK6MpD8+PCi+OTDDP/dbJY353lwthfC45aVxxIpNENf/4Tix5ynFswDXandtgA0D
- 7fBFWNHs/mGqptmX8Cc5m1TNgs3mlxEyRiMT69IKAOO8UkIi0Ce8hzbsQbwkvWuIYZXq
- bwuhPG79g6OCN5L/DteSDn5fm5LG+mpp9W0s9J/rbWwiBMPF/OkxKDpI6tDSjiqhYUGV KA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwpphjjt3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jul 2023 06:44:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36J6igxP018181
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jul 2023 06:44:42 GMT
-Received: from haric-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 18 Jul 2023 23:44:40 -0700
-From: Hari Chandrakanthan <quic_haric@quicinc.com>
-To: <quic_kvalo@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Hari Chandrakanthan
-	<quic_haric@quicinc.com>
-Subject: wifi: ath12k: do not drop data frames from unassociated stations
-Date: Wed, 19 Jul 2023 12:14:34 +0530
-Message-ID: <1689749074-14676-1-git-send-email-quic_haric@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+	Thu, 20 Jul 2023 08:42:10 +0000
+Received: by mail.cassleycruden.pl (Postfix, from userid 1001)
+	id CAC41841B8; Thu, 20 Jul 2023 09:16:34 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=cassleycruden.pl;
+	s=mail; t=1689840995;
+	bh=Bm7kvP9mjtgWMDTk0x3n9fvdJasu+xrGpL0E8vcP3ks=;
+	h=Date:From:To:Subject:From;
+	b=alvTCzB6TfWAkAn+tRf0iUja+ZhT1YvWWNrmubY51sfja0mlM2ar8AH2jb0aRp8Go
+	 vkeMzlgvKEPR7I0FWO0aE8UekndxN5R9yoxk4u/hLRy8Ay2PrYgDlJGKtd6VVCWou0
+	 5ksLS2xnRYC4mh9qtznELS6TLJ+GQ6dbfWoiB627x0b1wDGDckobobwVI56YjlA99P
+	 vnZqhYhh4ec9PfTd7wvYfyKzQ1Vh9AfCuyqjjldWHWBJutRSaMYB8ZeaPL9GQOgN67
+	 7K2A+nN3IQjYSKvkZIZY3drSuD/ZmJs02df4jz/7/MY954f5ILWJiRvyxeDU4HjIoJ
+	 OLHjreVDqmeIQ==
+Received: by mail.cassleycruden.pl for <ath11k@lists.infradead.org>; Thu, 20 Jul 2023 08:16:04 GMT
+Message-ID: <20230720074501-0.1.6b.cl8y.0.1had3tjv9p@cassleycruden.pl>
+Date: Thu, 20 Jul 2023 08:16:04 GMT
+From: "Adrian Giermata" <adrian.giermata@cassleycruden.pl>
+To: <ath11k@lists.infradead.org>
+Subject: Nieaktywna strona www
+X-Mailer: mail.cassleycruden.pl
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HoYQ6VSeFuLvzvFq17LZrP-95rri9Ztz
-X-Proofpoint-ORIG-GUID: HoYQ6VSeFuLvzvFq17LZrP-95rri9Ztz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-19_03,2023-07-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 spamscore=0 clxscore=1011
- bulkscore=0 mlxlogscore=834 malwarescore=0 mlxscore=0 suspectscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307190063
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230718_234445_171354_F20A198C 
-X-CRM114-Status: GOOD (  17.86  )
+X-CRM114-CacheID: sfid-20230720_094209_053301_3AFF9C29 
+X-CRM114-Status: UNSURE (   1.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,80 +77,20 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From 'IEEE Std 802.11-2020 section 11.3.4.1':
-If STA A in an infrastructure BSS receives a Class 2 or Class 3 frame
-from STA B that is not authenticated with STA A
-(i.e., the state for STA B is State 1), STA A shall discard the frame.
-If the frame has an individual address in the Address 1 field,
-the MLME of STA A shall send a Deauthentication frame to STA B.
-
-When data frames from unassociated stations are received by an AP,
-the AP is supposed to send a deauthentication/disassociation frame with
-reason code "Class 2 frame received from nonauthenticated STA" or
-"Class 3 frame received from nonassociated STA".
-
-But ath12k AP doesn't send deauthentication/disassociation frames,
-when it receives data frames from unassociated stations.
-
-The ath12k driver drops the data frames from unassociated
-station and the upper layer(mac80211/hostapd) is not aware of such event.
-Hence deauthentication/disassociation frame is not sent to that
-particular station by the AP.
-
-To address this issue, allow the data frames from the
-unassociated stations to reach mac80211 so that mac80211 can send
-NL80211_CMD_UNEXPECTED_FRAME event to userspace(hostapd) and hostapd
-upon receiving the event will send the deauthentication/disassociation
-frame with proper reason code.
-
-The data frame from unassociated stations gets dropped in mac80211.
-
-Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.0-02903-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Hari Chandrakanthan <quic_haric@quicinc.com>
----
- drivers/net/wireless/ath/ath12k/dp_rx.c | 12 +-----------
- 1 file changed, 1 insertion(+), 11 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath12k/dp_rx.c b/drivers/net/wireless/ath/ath12k/dp_rx.c
-index 0adcbcf..90eaf2d 100644
---- a/drivers/net/wireless/ath/ath12k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath12k/dp_rx.c
-@@ -3485,23 +3485,13 @@ static int ath12k_dp_rx_h_null_q_desc(struct ath12k *ar, struct sk_buff *msdu,
- 				      struct sk_buff_head *msdu_list)
- {
- 	struct ath12k_base *ab = ar->ab;
--	u16 msdu_len, peer_id;
-+	u16 msdu_len;
- 	struct hal_rx_desc *desc = (struct hal_rx_desc *)msdu->data;
- 	u8 l3pad_bytes;
- 	struct ath12k_skb_rxcb *rxcb = ATH12K_SKB_RXCB(msdu);
- 	u32 hal_rx_desc_sz = ar->ab->hw_params->hal_desc_sz;
- 
- 	msdu_len = ath12k_dp_rx_h_msdu_len(ab, desc);
--	peer_id = ath12k_dp_rx_h_peer_id(ab, desc);
--
--	spin_lock(&ab->base_lock);
--	if (!ath12k_peer_find_by_id(ab, peer_id)) {
--		spin_unlock(&ab->base_lock);
--		ath12k_dbg(ab, ATH12K_DBG_DATA, "invalid peer id received in wbm err pkt%d\n",
--			   peer_id);
--		return -EINVAL;
--	}
--	spin_unlock(&ab->base_lock);
- 
- 	if (!rxcb->is_frag && ((msdu_len + hal_rx_desc_sz) > DP_RX_BUFFER_SIZE)) {
- 		/* First buffer will be freed by the caller, so deduct it's length */
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+RHppZcWEIGRvYnJ5IQoKd8WCYcWbbmllIHpha2/FhGN6ecWCZW0gYnVkb3fEmSBub3dlaiBzdHJv
+bnkgaW50ZXJuZXRvd2VqIGRsYSBmaXJteSBkemlhxYJhasSFY2VqIHcgUGHFhHN0d2EgYnJhbsW8
+eS4KCkR6acSZa2kgbm93b2N6ZXNueW0gZnVua2Nqb25hbG5vxZtjaW9tIGkgbmllc3RhbmRhcmRv
+d2VqIGtyZWFjamkgdW1vY25pxYJlbSBtYXJrxJkgdGVqIGZpcm15IGRvZGFqxIVjIGplaiB3YXJ0
+b8WbY2kgaSB0b8W8c2Ftb8WbY2ksIGt0w7NyZWogc3p1a2FqxIUgS2xpZW5jaS4KClogcHJ6eWpl
+bW5vxZtjacSFIG1vZ8SZIG9kd2llZHppxIcgc2llZHppYsSZIFBhxYRzdHdhIGZpcm15IGkgcHJ6
+ZWRzdGF3acSHIHN3b2plIHBvcnRmb2xpbyBsdWIgbW9nxJkgemFkendvbmnEhyBpIHBvem5hxIcg
+UGHFhHN0d2Egb2N6ZWtpd2FuaWEsIHd0ZWR5IHdzcMOzbG5pZSBwcnplYW5hbGl6dWplbXkgcG90
+ZW5jamHFgiB3c3DDs8WCcHJhY3kuIAoKQ3p5IG1vamEgcHJvcG96eWNqYSB3eWRhamUgc2nEmSBh
+dHJha2N5am5hPwoKClBvemRyYXdpYW0KQWRyaWFuIEdpZXJtYXRhCgotLSAKYXRoMTFrIG1haWxp
+bmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
