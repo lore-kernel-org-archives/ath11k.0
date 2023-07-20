@@ -4,67 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E654EB64DA
-	for <ath11k@archiver.kernel.org>; Thu, 20 Jul 2023 10:03:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C19EB64DA
+	for <ath11k@archiver.kernel.org>; Thu, 20 Jul 2023 15:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=x2zKDVuTkl3szS3hYblt7X62p8NoKBFVBs3+FW1ftPQ=; b=Ee8BL8jRjZicka
-	Dy6UhQTWnM5bVWqqS9KyWuDO7+/5wLUDHNnWaaT5PgIffLyCWmRXUc87l/OfI1nuFBR6pAD53cQQt
-	GAMdIXrsfUDJOphBZFM5bE3feTYeo7wx1SjI3zm3VQ7dldvvHMmZJgmcR3kPXqCL1tvv3Q76eJTwS
-	69V1UKVti7YkbsYVfPsU73NMcDd4f4tZdkZxy+h/j+EcBXb2MalXY82uLsvH8EtUXrXGYLN6hMMqU
-	R/+u5ZsZG6kjFgOSaRt+pX1wLQCewh9sR3grgqA5VUujiowP1kC2DBqA5gXeApD0GgRRW6Yu7nLw5
-	HD7lUwa+bmmUX4vzALWw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fdNzdXsSXmjr74hx2tyu4/yNUNFyCGyUfFr8JXB0ACQ=; b=ZMQytNJb/BDIFe
+	77gNY7mdHehKyfoWfAEC7eZzRu6TzBjGMxk72MmlBbhRPZwrwNMqyA3bePD+yRIAeBGqkXnSwW2Ge
+	Tf8FapxjlzUNbGN+NzJdudfsmufXqbXNuYFDf8QVSN6uYmPpDM9o3nLq6+VrxACIrJV6x6xZzG/Hr
+	MlysCbHtd5kgPPFmfJtRxY6yuG5ZX1NdAPuDh9zWPWg8AhCO6AXR0JydAk3T44ujVtoD4kJnfLf6g
+	zpvysuXBlqopea4ee4mtPahgq32gG5y2d2wFp/wD9VbyLEDI1f2QjN09rT+yo/6R5nLwBcAzpqxyQ
+	LMhDeQ+tFcuKA8vfYf6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMQVR-00AfdG-2E;
-	Thu, 20 Jul 2023 10:03:33 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1qMVMg-00BVrx-27;
+	Thu, 20 Jul 2023 15:14:50 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMQVP-00AfcZ-1j
-	for ath11k@bombadil.infradead.org;
-	Thu, 20 Jul 2023 10:03:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=Bm7kvP9mjtgWMDTk0x3n9fvdJasu+xrGpL0E8vcP3ks=; b=Dg14FOW2lazXEohV+u8rZ+wfiC
-	MYZcp6vvN3zoJ14WHVmo0/3nNEWddyi7dYO3ZkgtMMWTN72D/fxiu5Z47k1tKdAJpx4pb8WvVcpjx
-	1TnvwFSC+ISFRNlhh5pY9O+tbjiQCuuEaZ5OBN8ZkM96/Pm38IRVUqoEMLINtpbmubnWiEGx1S03G
-	Bwyj0AR1aqEVIK9nglxyXYFotnbWOFoOQ8dHO5gK5BNwWhPWxQAEbgy8GysgKHl0Csk7emMkAmaeP
-	+AOzy6lUZ3hsEPIwl1PeGOCly5EfkZZmvb1nnAfv5oXaajq6FDBfv9sAC+E2pIjQTr/ZjElJ9hm1L
-	sOYKnrSQ==;
-Received: from mail.cassleycruden.pl ([217.61.97.118])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qMPEe-00FQi2-1V
+	id 1qMVMe-00BVr4-0d
 	for ath11k@lists.infradead.org;
-	Thu, 20 Jul 2023 08:42:10 +0000
-Received: by mail.cassleycruden.pl (Postfix, from userid 1001)
-	id CAC41841B8; Thu, 20 Jul 2023 09:16:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=cassleycruden.pl;
-	s=mail; t=1689840995;
-	bh=Bm7kvP9mjtgWMDTk0x3n9fvdJasu+xrGpL0E8vcP3ks=;
-	h=Date:From:To:Subject:From;
-	b=alvTCzB6TfWAkAn+tRf0iUja+ZhT1YvWWNrmubY51sfja0mlM2ar8AH2jb0aRp8Go
-	 vkeMzlgvKEPR7I0FWO0aE8UekndxN5R9yoxk4u/hLRy8Ay2PrYgDlJGKtd6VVCWou0
-	 5ksLS2xnRYC4mh9qtznELS6TLJ+GQ6dbfWoiB627x0b1wDGDckobobwVI56YjlA99P
-	 vnZqhYhh4ec9PfTd7wvYfyKzQ1Vh9AfCuyqjjldWHWBJutRSaMYB8ZeaPL9GQOgN67
-	 7K2A+nN3IQjYSKvkZIZY3drSuD/ZmJs02df4jz/7/MY954f5ILWJiRvyxeDU4HjIoJ
-	 OLHjreVDqmeIQ==
-Received: by mail.cassleycruden.pl for <ath11k@lists.infradead.org>; Thu, 20 Jul 2023 08:16:04 GMT
-Message-ID: <20230720074501-0.1.6b.cl8y.0.1had3tjv9p@cassleycruden.pl>
-Date: Thu, 20 Jul 2023 08:16:04 GMT
-From: "Adrian Giermata" <adrian.giermata@cassleycruden.pl>
-To: <ath11k@lists.infradead.org>
-Subject: Nieaktywna strona www
-X-Mailer: mail.cassleycruden.pl
+	Thu, 20 Jul 2023 15:14:49 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id AD9D961B3B
+	for <ath11k@lists.infradead.org>; Thu, 20 Jul 2023 15:14:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8836BC433C7;
+	Thu, 20 Jul 2023 15:14:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1689866087;
+	bh=5ELkPJcjYCzpeSg2TRXcApgBHsHAR6BWhJZznl/8NUM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jIzQYvav17pLrACw4dSg/i23Im3FxhkxhJPzDZNYu4KWDuCAE2eRTJX2sdTJheuwx
+	 NtgrQrr7NpoFxCC33rjPvD7Wh/yNmihFdBP3Z5pDdAGvFONJXbOSeUvLW/dLYbU3yt
+	 Eh9pqVfwefFMgvs2h9ENc85Qk7Xhh7BDF3BHdsHz5kKwv9vds9c1mswH3fakgTt6Vr
+	 gGel5Ff8keX6uDVmCsUk0Do7V0HC4nIZycUPkxlhIGVwHBEbCuMDwajTeLwqvO3Bqz
+	 9bN9Edd/rANVS94XCm54CEuuF792mFVVpahtCdPeH89xKCqmaJfyh1v0jmUl8kRmcF
+	 C3acxzwMutJCQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH v6.5] Revert "wifi: ath11k: Enable threaded NAPI"
+Date: Thu, 20 Jul 2023 18:14:44 +0300
+Message-Id: <20230720151444.2016637-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230720_094209_053301_3AFF9C29 
-X-CRM114-Status: UNSURE (   1.42  )
+X-CRM114-CacheID: sfid-20230720_081448_278243_476A3F0E 
+X-CRM114-Status: UNSURE (   9.18  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,20 +68,61 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5IQoKd8WCYcWbbmllIHpha2/FhGN6ecWCZW0gYnVkb3fEmSBub3dlaiBzdHJv
-bnkgaW50ZXJuZXRvd2VqIGRsYSBmaXJteSBkemlhxYJhasSFY2VqIHcgUGHFhHN0d2EgYnJhbsW8
-eS4KCkR6acSZa2kgbm93b2N6ZXNueW0gZnVua2Nqb25hbG5vxZtjaW9tIGkgbmllc3RhbmRhcmRv
-d2VqIGtyZWFjamkgdW1vY25pxYJlbSBtYXJrxJkgdGVqIGZpcm15IGRvZGFqxIVjIGplaiB3YXJ0
-b8WbY2kgaSB0b8W8c2Ftb8WbY2ksIGt0w7NyZWogc3p1a2FqxIUgS2xpZW5jaS4KClogcHJ6eWpl
-bW5vxZtjacSFIG1vZ8SZIG9kd2llZHppxIcgc2llZHppYsSZIFBhxYRzdHdhIGZpcm15IGkgcHJ6
-ZWRzdGF3acSHIHN3b2plIHBvcnRmb2xpbyBsdWIgbW9nxJkgemFkendvbmnEhyBpIHBvem5hxIcg
-UGHFhHN0d2Egb2N6ZWtpd2FuaWEsIHd0ZWR5IHdzcMOzbG5pZSBwcnplYW5hbGl6dWplbXkgcG90
-ZW5jamHFgiB3c3DDs8WCcHJhY3kuIAoKQ3p5IG1vamEgcHJvcG96eWNqYSB3eWRhamUgc2nEmSBh
-dHJha2N5am5hPwoKClBvemRyYXdpYW0KQWRyaWFuIEdpZXJtYXRhCgotLSAKYXRoMTFrIG1haWxp
-bmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+From: Kalle Valo <quic_kvalo@quicinc.com>
+
+This reverts commit 13aa2fb692d3717767303817f35b3e650109add3.
+
+This commit broke QCN9074 initialisation:
+
+[  358.960477] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 36866
+[  358.960481] ath11k_pci 0000:04:00.0: failed to send WMI_STA_POWERSAVE_PARAM_CMDID
+[  358.960484] ath11k_pci 0000:04:00.0: could not set uapsd params -105
+
+As there's no fix available let's just revert it to get QCN9074 working again.
+
+Closes: https://bugzilla.kernel.org/show_bug.cgi?id=217536
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c  | 1 -
+ drivers/net/wireless/ath/ath11k/pcic.c | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 1cebba7889d7..139da578831a 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -376,7 +376,6 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
+-			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index c899616fbee4..c63083633b37 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -466,7 +466,6 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
+-			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
+
+base-commit: ac528649f7c63bc233cc0d33cff11f767cc666e3
+-- 
+2.39.2
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
