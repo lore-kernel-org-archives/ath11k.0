@@ -4,60 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09E01C0015E
-	for <ath11k@archiver.kernel.org>; Tue, 25 Jul 2023 09:42:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADB79C001DF
+	for <ath11k@archiver.kernel.org>; Tue, 25 Jul 2023 10:22:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=yr1j+BrRAQrqQtEU/QQ8r0L5UtSXYeHsy49LBBjtB84=; b=a4WoHACRKLH9fO
-	uHl7mM98IRrhCXewWfGVp58Lu2hb+Ng/oKSFsHbOITABGDRWdkESJ7hIGsV+Tz91DVImZjWGTX5Nz
-	MuhHQ2u7u+/vf5IE5OLX/iBguFNatZvyU4tlm8AfKUbjhHDwHYLM5bMo+1r6rWuCrgCCo1bQnzxQx
-	rWTmNpTS8XSVMcxCXka+x7QieVAgdsRLdcNunaZHaHM6gd3TUQa0P8CDjUaG2VIUjqy529fPCpwri
-	15WNWbSM23iSmDg33/dbeHiCyCATX+joay9wVbnmdDNeCgrF/BDmPLpTy7kmPK/NEN+hCu//b7jCm
-	W0IDnXYpyd5dYRITB0Ng==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=0v5tl++Tb4lw1t9j3mwdVEM+919Dl94vaGFd4QbPN3k=; b=RUtqIvg/wajzUTvxemhDGia65q
+	ihdK0aSRgZcviBtaiK7S2kqPRhbjQWuCAmgQKe+QwsV/PcD3HnkmECnEqZ/dWLPTLQmKANK+0mQDW
+	oKuPAvy/6YLuROy9o4BfpNInYVAjl/ZF9a6+Y/E9KLXTuikShpX+c3aNHVPK1n0R9L1uN9ydOMzqH
+	BuFvchNzGS06d9ZL6KC/AqOhdO9Pj1sjeVrtLOGetPm+puG8lwTXU+hi2nNiLo9iT1jzZoWxtedj5
+	VF671U4Cqk/3tHBJUdVXKupJPURXbL3g9VIY5vISVnxedoQgrCM7/1KU5LWPnuanIkAwPQoQYdAxq
+	h+Hq1CdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOEZD-006zE6-2s;
-	Tue, 25 Jul 2023 09:42:56 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qOFBd-0075YQ-19;
+	Tue, 25 Jul 2023 10:22:37 +0000
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOEZA-006zD4-2d;
-	Tue, 25 Jul 2023 09:42:54 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 2A84D615CD;
-	Tue, 25 Jul 2023 09:42:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A08FC433C8;
-	Tue, 25 Jul 2023 09:42:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1690278171;
-	bh=K0q3hxr2miXWjf12Pi9Tt2qxj8zRYXBEa4bLBHdyHdo=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VvPakJ031k8agtqJmw1+tACFRzv63eN0DodmonkFf31Hn71eN4UZGIvbgg5oV/nIp
-	 LnSMFHWWqR1oaQhMKwcJ2ov+hAbfQaWUarUk9MOsAG8tmyXPINherpdbtbnPufjJBQ
-	 IO7RbEtEWSybShflByL35Rb1Xp/9E4cX4bna884lBgl3cBIMzKMBYnM6Au9LRY1Fzb
-	 cqKgUFGvEQDz/2KOw03beRRIrB1Jekobx/HPDISC3RDfmPaqJRVHN7rdxJbuVSvvtF
-	 bdnXXONAdvDz8G6EtS3TpZ/QYVO8tIL+IChaN91cnRVrLClsBVAiNwKnoZQjCK+OtH
-	 skjdEJxzNvCbg==
-From: Kalle Valo <kvalo@kernel.org>
-To: ath10k@lists.infradead.org,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org
+	id 1qOFBY-0075Wj-1z;
+	Tue, 25 Jul 2023 10:22:35 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1b89d47ffb6so26989955ad.2;
+        Tue, 25 Jul 2023 03:22:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690280547; x=1690885347;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=st1c6y6bpzS1m6/OLQ/WRJ6hdioncwRRD9te/qaHNm0=;
+        b=oNjiEPYT5xOd9syCdBiia6JXFOYaOrHnjHetbNWxCruQpkyjk8GxUDHaUBmzcM9sfI
+         h8TTZ8w/VZ7QrAR9K9e6Ysre8HdyuCc6K6zRwM+AJv7wRMtSr9hkiAcpkR0FiIAYJT7+
+         1vwauLkrXnK3A9JSX8+3X9S7MPKt+skRTqGpiAcoQhpiDwn6zMQArGrgd9qLBed+0CBq
+         AwHuQ4GTKICZM7nheNUM2qFjR9b0SfxernYQmC47+DAmnzp8oRE0pnG9cinfWRETHmf9
+         AFT3/0FNfpB9o0z0rtsxJG4TB3sFgRSigpCQSs6GMV68uOzx1Xja6I3569vu5Tnpd3f4
+         mgJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690280547; x=1690885347;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=st1c6y6bpzS1m6/OLQ/WRJ6hdioncwRRD9te/qaHNm0=;
+        b=IJhUfowMn+mgeW6wsgbulaU64StCucjds6X2Nj1TOTBHRMjgcW8jl+qC0uxemqsyf5
+         ZjOK2Q5ZuJBM67U5A49T97bHDWGbK9bCzM+KK8wHGlEqiUr5iDa2tYJPquD1ilN2V10+
+         B5u9Au2sPxHZi0MStERNSchUbxWcHc/6B6nb2SjNvb8/uDl1apI+8602oTlieGfpNCNC
+         zIW8QJvAdJkuwhSwDY5yDu+nXVN7jZGillOZQF3l170Eko/Tyo4G6jK5DLQC93/Y5eT/
+         +/TS9ZEOl8qaAWLgfO9C3z7yuHWl+AXEYx39SQXFELTclfoCDVzGF6cCFuGh7WP9ndVd
+         tGWw==
+X-Gm-Message-State: ABy/qLaQgrk6blZFWJcDeR8Oo6HmyUvJ7OpqHhkuqqPvs40ozReyK78d
+	G+dwBNJlD8V5mwH9ZeqCp+Ao6JVPA9eQ/w==
+X-Google-Smtp-Source: APBJJlH8waVFJBjk2pzAHNfgFspl+McpQX/EQlkc8JCDxWgqg42Zzi0aaMimRtwVYCQrMlU5sF7BLg==
+X-Received: by 2002:a17:902:ea04:b0:1b8:b3f9:58e5 with SMTP id s4-20020a170902ea0400b001b8b3f958e5mr12806537plg.38.1690280547139;
+        Tue, 25 Jul 2023 03:22:27 -0700 (PDT)
+Received: from debian.me ([103.131.18.64])
+        by smtp.gmail.com with ESMTPSA id c9-20020a170902c1c900b001bb8be10a84sm6239417plc.304.2023.07.25.03.22.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 03:22:26 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+	id 2EE88811C67C; Tue, 25 Jul 2023 17:22:22 +0700 (WIB)
+Date: Tue, 25 Jul 2023 17:22:22 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Kalle Valo <kvalo@kernel.org>, ath10k@lists.infradead.org,
+	ath11k@lists.infradead.org, ath12k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH] MAINTAINERS: add Jeff as ath10k, ath11k and ath12k maintainer
-Date: Tue, 25 Jul 2023 12:42:48 +0300
-Message-Id: <20230725094248.3205486-1-kvalo@kernel.org>
-X-Mailer: git-send-email 2.39.2
+Subject: Re: [PATCH] MAINTAINERS: add Jeff as ath10k, ath11k and ath12k
+ maintainer
+Message-ID: <ZL+iXrR1yNz3cfV8@debian.me>
+References: <20230725094248.3205486-1-kvalo@kernel.org>
 MIME-Version: 1.0
+In-Reply-To: <20230725094248.3205486-1-kvalo@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230725_024252_897263_D005BB70 
-X-CRM114-Status: UNSURE (   7.77  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230725_032232_655913_2FE200D3 
+X-CRM114-Status: GOOD (  14.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,53 +87,89 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============5090795880989002262=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff will now start maintaining these drivers together with me.
 
-Signed-off-by: Kalle Valo <kvalo@kernel.org>
----
- MAINTAINERS | 3 +++
- 1 file changed, 3 insertions(+)
+--===============5090795880989002262==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="0xVLwENwrMrscJsq"
+Content-Disposition: inline
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 42e78a696be6..292910ef17d1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17433,6 +17433,7 @@ F:	drivers/media/tuners/qt1010*
- 
- QUALCOMM ATH12K WIRELESS DRIVER
- M:	Kalle Valo <kvalo@kernel.org>
-+M:	Jeff Johnson <quic_jjohnson@quicinc.com>
- L:	ath12k@lists.infradead.org
- S:	Supported
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
-@@ -17440,6 +17441,7 @@ F:	drivers/net/wireless/ath/ath12k/
- 
- QUALCOMM ATHEROS ATH10K WIRELESS DRIVER
- M:	Kalle Valo <kvalo@kernel.org>
-+M:	Jeff Johnson <quic_jjohnson@quicinc.com>
- L:	ath10k@lists.infradead.org
- S:	Supported
- W:	https://wireless.wiki.kernel.org/en/users/Drivers/ath10k
-@@ -17449,6 +17451,7 @@ F:	drivers/net/wireless/ath/ath10k/
- 
- QUALCOMM ATHEROS ATH11K WIRELESS DRIVER
- M:	Kalle Valo <kvalo@kernel.org>
-+M:	Jeff Johnson <quic_jjohnson@quicinc.com>
- L:	ath11k@lists.infradead.org
- S:	Supported
- W:	https://wireless.wiki.kernel.org/en/users/Drivers/ath11k
 
-base-commit: a2777be03236c00466326acba8d39ac4f9c3e971
--- 
-2.39.2
+--0xVLwENwrMrscJsq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jul 25, 2023 at 12:42:48PM +0300, Kalle Valo wrote:
+> Jeff will now start maintaining these drivers together with me.
+>=20
+> Signed-off-by: Kalle Valo <kvalo@kernel.org>
+> ---
+>  MAINTAINERS | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 42e78a696be6..292910ef17d1 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17433,6 +17433,7 @@ F:	drivers/media/tuners/qt1010*
+> =20
+>  QUALCOMM ATH12K WIRELESS DRIVER
+>  M:	Kalle Valo <kvalo@kernel.org>
+> +M:	Jeff Johnson <quic_jjohnson@quicinc.com>
+>  L:	ath12k@lists.infradead.org
+>  S:	Supported
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
+> @@ -17440,6 +17441,7 @@ F:	drivers/net/wireless/ath/ath12k/
+> =20
+>  QUALCOMM ATHEROS ATH10K WIRELESS DRIVER
+>  M:	Kalle Valo <kvalo@kernel.org>
+> +M:	Jeff Johnson <quic_jjohnson@quicinc.com>
+>  L:	ath10k@lists.infradead.org
+>  S:	Supported
+>  W:	https://wireless.wiki.kernel.org/en/users/Drivers/ath10k
+> @@ -17449,6 +17451,7 @@ F:	drivers/net/wireless/ath/ath10k/
+> =20
+>  QUALCOMM ATHEROS ATH11K WIRELESS DRIVER
+>  M:	Kalle Valo <kvalo@kernel.org>
+> +M:	Jeff Johnson <quic_jjohnson@quicinc.com>
+>  L:	ath11k@lists.infradead.org
+>  S:	Supported
+>  W:	https://wireless.wiki.kernel.org/en/users/Drivers/ath11k
+>=20
+
+Acked-by: Bagas Sanjaya <bagasdotme@gmail.com>
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--0xVLwENwrMrscJsq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZL+iVwAKCRD2uYlJVVFO
+o+acAP9X8xYaesXihr/7vqWc6wUpnMRtMCbxV78gKtoPHMbG6gEAnyUtaVWC3EPc
+RMQk45NVfU1ycG+UPXGAtjUWiMYT2gU=
+=lWF5
+-----END PGP SIGNATURE-----
+
+--0xVLwENwrMrscJsq--
+
+
+--===============5090795880989002262==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============5090795880989002262==--
+
