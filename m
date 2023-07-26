@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17B10C001DC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 737F4C001B0
 	for <ath11k@archiver.kernel.org>; Wed, 26 Jul 2023 14:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,56 +12,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vaFqXzDdqnRnIr4L9SsPz06306YiKM8Z/wua0oTUXrk=; b=eMJXGNemv7KsEM
-	+w5WgWgtt2FiJtaTzHgJR4TaFsK2HqIg7SHH+bT9kE4+zO6s/eogAMbCXtY21+td/L5bsUvvec/10
-	2PUtZDHv1zJM6/+kgodaNBuzBR42aNJIKKm4+JdoWqlrgE2W6MwJHgxRqcgRiHQeCyb/8et6+vs1k
-	HCgKCIPicJOIGQKINKGeOLEJri//h3pfVhXO24ir+Q9ABVXKOK53S45btLaVHwpVD+e3tHg56c11G
-	bxl/pHQa9rP5RIIeI2Ym6DJz1zd1UNOkcg4yJ7i+ie5N5PiO6FyvRQDy19L8mW6ZK9VaJn4UD84WF
-	WWrDQVB5iqQWcUeAirng==;
+	List-Owner; bh=QdmulkpIQHwnUTfPQXVzZqlgaLJe96NJWgd5o+WlFsk=; b=XJ9qdQsXchmlqy
+	c+XAIKV0Gri0ylpaURGQiuhl5xMgOK0xIjsPxDW8LS1HvQ6Cj96bUYBlyZfDH/EJEH+Dn1BDBaE01
+	47918xr9tWJs8CFkJqUayFqH2Ma6yvEKS+SyW55JIzX2hyWb5HHXNarCt5SfmOdgk3oEcECjknC/q
+	f+JgfJv2i241WM5GpiPo0h+tZEMbvvhEvpnKhLsvCmVvhcOA0nvvMt83LUEa/FlxI/Nb8kUQVBMCR
+	h9TJ38lFnA8jF3tnMjmr0ag2y1dJrA/+kez6rOcMpjo65Aj35RkNlk/8KhPz+QfSzswVZl32FOOFB
+	Sezq/5Hq+7gkFTPFazhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOfEF-00Advq-2V;
-	Wed, 26 Jul 2023 14:11:03 +0000
+	id 1qOfEG-00Adw3-0Z;
+	Wed, 26 Jul 2023 14:11:04 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOfEC-00AduW-2l
+	id 1qOfEC-00AduH-2l
 	for ath11k@lists.infradead.org;
-	Wed, 26 Jul 2023 14:11:02 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36QDGgg1005271;
-	Wed, 26 Jul 2023 14:11:00 GMT
+	Wed, 26 Jul 2023 14:11:03 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36QCYY9D019843;
+	Wed, 26 Jul 2023 14:10:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-type; s=qcppdkim1;
- bh=CzFmdiRwEj5/Dg4zB4V9253Bz7Qb1UA0+vnHFNwn7B4=;
- b=KGfWJs0pGZPatMc9f0uPiPSlxQFSmVyw3ysb9wOba6/8llP05lj/RBmXMfqyGFO6tU8f
- EwOgEFIlfzzfsnb+HrCFJ6wRJizI6INXySftVqmw14Mnuqh5qngVlZMNHQkVYx5emBAO
- C1n8PtOnO6s8hrvcLmHiRkstLtdUxW34VVIaAu6p+zaItxqBO0jrQdRSyF6+lk0dMUt7
- ze25Fdf5j6vUHFbk1IhdxJmepbH6P/S2vDVrLX9Lnlu3ZZui589G8I0tEpehF8T1T9zm
- Q07shNyF7yptfCufuke4mwqxN7pwmfE0hY/1hoYpDHUZAxFl1oXjRtnPeD45HFL8qldu yw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s2gp1tf1y-1
+ bh=7/jNWXuc8GWD9NXfCV41vK+CR3OfSrJlggdVC3YKEhI=;
+ b=en5c6ycWp2UY+pRcVnllKkKjDaIPcMBQXgA3Ys0yZkYhrhFxquTmVSj4EBEsDIJKyw3Y
+ 6X9vxD3SSN1AV1WIt6EqkI9IK8tOjfOa1OXt1IfKcJFbNltf007ZrzRXK0WGTnL24Ta4
+ BWl0Q11inmCocS0afS1kcRVEGrE19v3LPWLx+3VTF7dtKXFy1M/tshyooST5XNH+pVnK
+ YRbF+zvE2wpTBu+IQ22c2ZpKDFXxEDyHEYLbGmZsZcBjdGJ55VJKVNPYKKBpOex3GKw8
+ /qO/miKCwO/NUwoI2NxIAE9Rddr7RbIsnSApdIB53pNyMQyhm+UMYMzzoqa7SUfk/Ph8 xg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s2mxrhvbd-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Jul 2023 14:10:57 +0000
+	Wed, 26 Jul 2023 14:10:56 +0000
 Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36QEAutH005936
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36QEAtPT009941
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Jul 2023 14:10:56 GMT
+	Wed, 26 Jul 2023 14:10:55 GMT
 Received: from rajkbhag-linux.qualcomm.com (10.80.80.8) by
  nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 26 Jul 2023 07:10:54 -0700
+ 15.2.1118.30; Wed, 26 Jul 2023 07:10:52 -0700
 From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>,
-        Anilkumar Kolli
-	<quic_akolli@quicinc.com>,
         Seevalamuthu Mariappan
 	<quic_seevalam@quicinc.com>,
         Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Subject: [PATCH 2/3] wifi: ath11k: Add coldboot calibration support for QCN9074
-Date: Wed, 26 Jul 2023 19:40:31 +0530
-Message-ID: <20230726141032.3061-3-quic_rajkbhag@quicinc.com>
+Subject: [PATCH 1/3] wifi: ath11k: Split coldboot calibration hw_param
+Date: Wed, 26 Jul 2023 19:40:30 +0530
+Message-ID: <20230726141032.3061-2-quic_rajkbhag@quicinc.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20230726141032.3061-1-quic_rajkbhag@quicinc.com>
 References: <20230726141032.3061-1-quic_rajkbhag@quicinc.com>
@@ -71,19 +69,19 @@ X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hi0LAP1N7aDJ6uyv7PJIt5O5vLt1QaPB
-X-Proofpoint-ORIG-GUID: hi0LAP1N7aDJ6uyv7PJIt5O5vLt1QaPB
+X-Proofpoint-GUID: wtgGsOfW_jYRDp33ZDbyU5GUOY2ItzBu
+X-Proofpoint-ORIG-GUID: wtgGsOfW_jYRDp33ZDbyU5GUOY2ItzBu
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
  definitions=2023-07-26_06,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- mlxlogscore=999 clxscore=1015 lowpriorityscore=0 bulkscore=0 phishscore=0
- malwarescore=0 spamscore=0 suspectscore=0 impostorscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307260125
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 suspectscore=0
+ clxscore=1015 mlxlogscore=999 mlxscore=0 bulkscore=0 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307260125
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230726_071101_011509_CD6DB350 
-X-CRM114-Status: GOOD (  25.11  )
+X-CRM114-CacheID: sfid-20230726_071101_012484_2FEC289E 
+X-CRM114-Status: GOOD (  19.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,186 +98,191 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Anilkumar Kolli <quic_akolli@quicinc.com>
+From: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
 
-QCN9074 supports 6 GHz, which has increased number of channels
-compared to 5 GHz/2 GHz. So, to support coldboot calibration in
-QCN9074 ATH11K_COLD_BOOT_FW_RESET_DELAY extended to 60 seconds. To
-avoid code redundancy, fwreset_from_cold_boot moved to QMI and made
-common for both ahb and pci. Coldboot calibration is enabled only in
-FTM mode for QCN9074. QCN9074 requires firmware restart after coldboot,
-hence enable cbcal_restart_fw in hw_params.
-
-This support can be enabled/disabled using hw params for different
-hardware. Currently it is not enabled for QCA6390.
+QCN9074 enables coldboot calibration only in Factory Test Mode (FTM).
+Hence, split cold_boot_calib to two hw_params for mission and FTM
+mode.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 
-Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
 Signed-off-by: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
 Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c  | 28 ++------------------------
- drivers/net/wireless/ath/ath11k/core.c |  4 ++--
- drivers/net/wireless/ath/ath11k/pci.c  |  2 ++
- drivers/net/wireless/ath/ath11k/qmi.c  | 28 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/qmi.h  |  3 ++-
- 5 files changed, 36 insertions(+), 29 deletions(-)
+ drivers/net/wireless/ath/ath11k/ahb.c  |  3 +--
+ drivers/net/wireless/ath/ath11k/core.c | 36 ++++++++++++++++++++------
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/hw.h   |  3 ++-
+ drivers/net/wireless/ath/ath11k/qmi.c  |  6 ++---
+ 5 files changed, 35 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 56aea2bc9..b0a40970b 100644
+index 1cebba788..56aea2bc9 100644
 --- a/drivers/net/wireless/ath/ath11k/ahb.c
 +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -14,6 +14,7 @@
- #include "ahb.h"
- #include "debug.h"
- #include "hif.h"
-+#include "qmi.h"
- #include <linux/remoteproc.h>
- #include "pcic.h"
- #include <linux/soc/qcom/smem.h>
-@@ -419,31 +420,6 @@ static void ath11k_ahb_power_down(struct ath11k_base *ab)
- 	rproc_shutdown(ab_ahb->tgt_rproc);
- }
- 
--static int ath11k_ahb_fwreset_from_cold_boot(struct ath11k_base *ab)
--{
--	int timeout;
--
--	if (!ath11k_core_coldboot_cal_support(ab) || ab->qmi.cal_done ||
--	    ab->hw_params.cbcal_restart_fw == 0)
--		return 0;
--
--	ath11k_dbg(ab, ATH11K_DBG_AHB, "wait for cold boot done\n");
--	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
--				     (ab->qmi.cal_done  == 1),
--				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
--	if (timeout <= 0) {
--		ath11k_cold_boot_cal = 0;
--		ath11k_warn(ab, "Coldboot Calibration failed timed out\n");
--	}
--
--	/* reset the firmware */
--	ath11k_ahb_power_down(ab);
--	ath11k_ahb_power_up(ab);
--
--	ath11k_dbg(ab, ATH11K_DBG_AHB, "exited from cold boot mode\n");
--	return 0;
--}
--
- static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
- {
- 	struct ath11k_qmi_ce_cfg *cfg = &ab->qmi.ce_cfg;
-@@ -1226,7 +1202,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		goto err_ce_free;
- 	}
- 
--	ath11k_ahb_fwreset_from_cold_boot(ab);
-+	ath11k_qmi_fwreset_from_cold_boot(ab);
- 
- 	return 0;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index d5bf2896d..fc7c4564a 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -336,8 +336,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.idle_ps = false,
- 		.supports_sta_ps = false,
- 		.coldboot_cal_mm = false,
--		.coldboot_cal_ftm = false,
--		.cbcal_restart_fw = false,
-+		.coldboot_cal_ftm = true,
-+		.cbcal_restart_fw = true,
- 		.fw_mem_mode = 2,
- 		.num_vdevs = 8,
- 		.num_peers = 128,
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 79e2cbe82..5fd08ffc2 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -15,6 +15,7 @@
- #include "mhi.h"
- #include "debug.h"
- #include "pcic.h"
-+#include "qmi.h"
- 
- #define ATH11K_PCI_BAR_NUM		0
- #define ATH11K_PCI_DMA_MASK		32
-@@ -897,6 +898,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 		ath11k_err(ab, "failed to init core: %d\n", ret);
- 		goto err_irq_affinity_cleanup;
- 	}
-+	ath11k_qmi_fwreset_from_cold_boot(ab);
- 	return 0;
- 
- err_irq_affinity_cleanup:
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 91a214caa..c4eab5d7f 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -9,6 +9,7 @@
- #include "qmi.h"
- #include "core.h"
- #include "debug.h"
-+#include "hif.h"
- #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/ioport.h>
-@@ -2839,6 +2840,33 @@ int ath11k_qmi_firmware_start(struct ath11k_base *ab,
- 	return 0;
- }
- 
-+int ath11k_qmi_fwreset_from_cold_boot(struct ath11k_base *ab)
-+{
-+	int timeout;
-+
-+	if (!ath11k_core_coldboot_cal_support(ab) || ab->qmi.cal_done ||
-+	    ab->hw_params.cbcal_restart_fw == 0)
-+		return 0;
-+
-+	ath11k_dbg(ab, ATH11K_DBG_QMI, "wait for cold boot done\n");
-+
-+	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
-+				     (ab->qmi.cal_done == 1),
-+				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
-+
-+	if (timeout <= 0) {
-+		ath11k_warn(ab, "Coldboot Calibration timed out\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	/* reset the firmware */
-+	ath11k_hif_power_down(ab);
-+	ath11k_hif_power_up(ab);
-+	ath11k_dbg(ab, ATH11K_DBG_QMI, "exit wait for cold boot done\n");
-+	return 0;
-+}
-+EXPORT_SYMBOL(ath11k_qmi_fwreset_from_cold_boot);
-+
- static int ath11k_qmi_process_coldboot_calibration(struct ath11k_base *ab)
+@@ -423,8 +423,7 @@ static int ath11k_ahb_fwreset_from_cold_boot(struct ath11k_base *ab)
  {
  	int timeout;
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 0909d53ce..b0407abf9 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -37,7 +37,7 @@
  
- #define QMI_WLANFW_MAX_DATA_SIZE_V01		6144
- #define ATH11K_FIRMWARE_MODE_OFF		4
--#define ATH11K_COLD_BOOT_FW_RESET_DELAY		(40 * HZ)
-+#define ATH11K_COLD_BOOT_FW_RESET_DELAY		(60 * HZ)
+-	if (ath11k_cold_boot_cal == 0 || ab->qmi.cal_done ||
+-	    ab->hw_params.cold_boot_calib == 0 ||
++	if (!ath11k_core_coldboot_cal_support(ab) || ab->qmi.cal_done ||
+ 	    ab->hw_params.cbcal_restart_fw == 0)
+ 		return 0;
  
- #define ATH11K_QMI_DEVICE_BAR_SIZE		0x200000
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index bebfd342e..d5bf2896d 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -86,7 +86,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
+ 		.supports_sta_ps = false,
+-		.cold_boot_calib = true,
++		.coldboot_cal_mm = true,
++		.coldboot_cal_ftm = true,
+ 		.cbcal_restart_fw = true,
+ 		.fw_mem_mode = 0,
+ 		.num_vdevs = 16 + 1,
+@@ -167,7 +168,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
+ 		.supports_sta_ps = false,
+-		.cold_boot_calib = true,
++		.coldboot_cal_mm = true,
++		.coldboot_cal_ftm = true,
+ 		.cbcal_restart_fw = true,
+ 		.fw_mem_mode = 0,
+ 		.num_vdevs = 16 + 1,
+@@ -248,7 +250,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
+ 		.supports_sta_ps = true,
+-		.cold_boot_calib = false,
++		.coldboot_cal_mm = false,
++		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+ 		.num_vdevs = 16 + 1,
+@@ -332,7 +335,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
+ 		.supports_sta_ps = false,
+-		.cold_boot_calib = false,
++		.coldboot_cal_mm = false,
++		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 2,
+ 		.num_vdevs = 8,
+@@ -413,7 +417,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
+ 		.supports_sta_ps = true,
+-		.cold_boot_calib = false,
++		.coldboot_cal_mm = false,
++		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+ 		.num_vdevs = 16 + 1,
+@@ -495,7 +500,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
+ 		.supports_sta_ps = true,
+-		.cold_boot_calib = false,
++		.coldboot_cal_mm = false,
++		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+ 		.num_vdevs = 16 + 1,
+@@ -578,7 +584,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
+ 		.supports_sta_ps = true,
+-		.cold_boot_calib = true,
++		.coldboot_cal_mm = true,
++		.coldboot_cal_ftm = true,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+ 		.num_vdevs = 16 + 1,
+@@ -667,7 +674,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = false,
+ 		.hal_params = &ath11k_hw_hal_params_ipq8074,
+ 		.single_pdev_only = false,
+-		.cold_boot_calib = true,
++		.coldboot_cal_mm = true,
++		.coldboot_cal_ftm = true,
+ 		.cbcal_restart_fw = true,
+ 		.fix_l1ss = true,
+ 		.supports_dynamic_smps_6ghz = false,
+@@ -749,6 +757,18 @@ void ath11k_fw_stats_free(struct ath11k_fw_stats *stats)
+ 	ath11k_fw_stats_bcn_free(&stats->bcn);
+ }
  
-@@ -519,5 +519,6 @@ void ath11k_qmi_msg_recv_work(struct work_struct *work);
- void ath11k_qmi_deinit_service(struct ath11k_base *ab);
- int ath11k_qmi_init_service(struct ath11k_base *ab);
- void ath11k_qmi_free_resource(struct ath11k_base *ab);
-+int ath11k_qmi_fwreset_from_cold_boot(struct ath11k_base *ab);
++bool ath11k_core_coldboot_cal_support(struct ath11k_base *ab)
++{
++	if (!ath11k_cold_boot_cal)
++		return false;
++
++	if (ath11k_ftm_mode)
++		return ab->hw_params.coldboot_cal_ftm;
++
++	else
++		return ab->hw_params.coldboot_cal_mm;
++}
++
+ int ath11k_core_suspend(struct ath11k_base *ab)
+ {
+ 	int ret;
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 9d15b4390..b04447762 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -1186,6 +1186,7 @@ void ath11k_core_halt(struct ath11k *ar);
+ int ath11k_core_resume(struct ath11k_base *ab);
+ int ath11k_core_suspend(struct ath11k_base *ab);
+ void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab);
++bool ath11k_core_coldboot_cal_support(struct ath11k_base *ab);
  
- #endif
+ const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
+ 						    const char *filename);
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index f5533630a..d51a99669 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -187,7 +187,8 @@ struct ath11k_hw_params {
+ 	bool supports_shadow_regs;
+ 	bool idle_ps;
+ 	bool supports_sta_ps;
+-	bool cold_boot_calib;
++	bool coldboot_cal_mm;
++	bool coldboot_cal_ftm;
+ 	bool cbcal_restart_fw;
+ 	int fw_mem_mode;
+ 	u32 num_vdevs;
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index d4eaf7d2b..91a214caa 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -2079,7 +2079,7 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
+ 				return -EINVAL;
+ 			}
+ 
+-			if (ath11k_cold_boot_cal && ab->hw_params.cold_boot_calib) {
++			if (ath11k_core_coldboot_cal_support(ab)) {
+ 				if (hremote_node) {
+ 					ab->qmi.target_mem[idx].paddr =
+ 							res.start + host_ddr_sz;
+@@ -3209,8 +3209,8 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 				break;
+ 			}
+ 
+-			if (ath11k_cold_boot_cal && ab->qmi.cal_done == 0 &&
+-			    ab->hw_params.cold_boot_calib) {
++			if (ab->qmi.cal_done == 0 &&
++			    ath11k_core_coldboot_cal_support(ab)) {
+ 				ath11k_qmi_process_coldboot_calibration(ab);
+ 			} else {
+ 				clear_bit(ATH11K_FLAG_CRASH_FLUSH,
 -- 
 2.17.1
 
