@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92AADEB64DD
-	for <ath11k@archiver.kernel.org>; Thu, 27 Jul 2023 06:13:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45627C41513
+	for <ath11k@archiver.kernel.org>; Thu, 27 Jul 2023 10:04:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TG1DPL5FdTrgCaaugiLs2Zk8TtmmUGSoSarW0ukdYEY=; b=RkvmMMwrs5uxq8
-	sXVdiEh3oGpYon2hqtqCHAUQrq43AX4t2CLncEgH0YvpscPdHExqUhA+Mb1CyJQz2etCOhS8TfgiB
-	2Rmcp+EKzuVfq/DZvwHvduQGIQwzjarUhV9vv5uNzGkOoIxg0+uTRccOaVWQBznfDy5nDd8HP3Z7r
-	Wr3RdIlHovYRSiIod7Vg36qTxAdNhBHMhDXQDo/PPzQiFxOar23qXw2hwFbCwLfYBaDuHtaPmdj+r
-	KX9aFZ+gxR7QKRbqB/dVFAnkOSkJTs6J9wHdJK8t0EG3D0bl6ZgFuNguVzfa5AT06aSVNIJ1jWpUf
-	MG8G2z1DeTbba1E7Q4DQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HGHeZDAPXApn2QXflibo6pXTUcjXYl3V/PiaIvxQB2Q=; b=Y25vcfexDJ9GHA
+	u/3eLHcwauYUH8trKnw2sYZ7r9LcVEuIBFdqGw69Gy5dYk2oPjDO2Rae19G+wUM0I3ryvwI5Qabsu
+	zTOJi6jQ/LveG6Kv8MIHFPZf+ct14lTgmZK0/+crlAyR5A/WfY59qFEvq8OzpIy93sURHcoR6RxPD
+	NNes+IvDUoaaSYrJf3Hx9mNZBOND+QBOxu3aTvuwVNeKApYcr8dQXrWaO4dCirWi7Nt7gY8KUSq75
+	LTvW1+SbcbMsQHAz0vzOu+ijekQBVRKneF6BWAqZIk29X34kVCr3lBNR8THpU00osq/Rh9aUNgnZt
+	5INHvZoUk8tcmzIo8FWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOuFG-00CIIf-1g;
-	Thu, 27 Jul 2023 06:13:06 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qOxrI-00CvQE-2N;
+	Thu, 27 Jul 2023 10:04:36 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qOuFD-00CIIC-0Z
+	id 1qOxrG-00CvPZ-1W
 	for ath11k@lists.infradead.org;
-	Thu, 27 Jul 2023 06:13:04 +0000
+	Thu, 27 Jul 2023 10:04:36 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 2A7AB61D2B;
-	Thu, 27 Jul 2023 06:13:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 965BAC433C8;
-	Thu, 27 Jul 2023 06:13:00 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id BD91A61DF6
+	for <ath11k@lists.infradead.org>; Thu, 27 Jul 2023 10:04:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B92DC433C7;
+	Thu, 27 Jul 2023 10:04:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1690438381;
-	bh=OAvI6XopJNi1Pf1KeGKriGVhqxH7EObNZwlGc2oTbuY=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=OZOqhfD8zNOLVPJlMCo41bDv4ViHZ3ibINvG8b2uJwFThMZm8GMaxlDkXC5ivd1yr
-	 fRnFPt6UylbmGfvkVyE7ScWVuLIR4MMAdP/6L8VmmKIS/MY76+2avyY6JTRMzThHOK
-	 ihE1F/9HD2O37/2tFZgmtVjiauWDZALqqwCYNzozFYGtKiAJVHKg924Ii0svy2l50v
-	 hAkuwrN2A7z+qZkgfanAOoc1DSWbXqwybWcCAvJ+1xWz1ssDcDhOKjL1Ud8BQjiWil
-	 3/GY/IWy/uET9jcKO82MAuJR7hfbEC8fCwgXQCO8uMuftw2N4GYrnE4WLyL/9kb/eI
-	 Sq6JcDZ94u2Sg==
+	s=k20201202; t=1690452273;
+	bh=VvxorfFjHb3zIR2wfuiAdZuvChNDahN8yMlJek4Epsk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qNO+jbEsjthVmwiMqTqCKzykRbuabYL2IjAnuiyzhya934fbR1Cub3t6Gp6vD8vbp
+	 4gIFCoM+ZBsYefFlvfBQcfIMCtO5E0yAyM4ocQhu/LUkb84Viagt7Wju3tm7aYZL9G
+	 1ghd5Cl0xSlkOO2kttbFSXPVR/DR93VAcYMf1jQMu6VS47mP4NB7kTtD3fQtYfCD62
+	 NPXHJ7wM7jsRPcfXaboRlogQcitmrByEm/1oSDyTmi8nUN7xATmbklcaOgzTBi/Vk/
+	 497TNl8W76tOBoSIRztvszlTg5ovPld7pRDwhaV04g6JnwW7OjBAGkkPnlX66jAeCl
+	 5ekAK5lhDJHLA==
 From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Aditya Kumar Singh <quic_adisi@quicinc.com>,
-  <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH] wifi: ath11k: fix band selection for ppdu received in
- channel 177 of 5 GHz
-References: <20230726044624.20507-1-quic_adisi@quicinc.com>
-	<8fe1a927-14da-445c-4c48-e3f4b4c324d4@quicinc.com>
-Date: Thu, 27 Jul 2023 09:12:58 +0300
-In-Reply-To: <8fe1a927-14da-445c-4c48-e3f4b4c324d4@quicinc.com> (Jeff
-	Johnson's message of "Wed, 26 Jul 2023 09:54:46 -0700")
-Message-ID: <87bkfx287p.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+To: mhi@lists.linux.dev
+Cc: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: [PATCH v4 0/3] wifi: ath11k: support firmware-2.bin
+Date: Thu, 27 Jul 2023 13:04:27 +0300
+Message-Id: <20230727100430.3603551-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230726_231303_281475_3AB97374 
-X-CRM114-Status: UNSURE (   9.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230727_030434_570002_D82CCB2F 
+X-CRM114-Status: GOOD (  11.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,28 +73,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-> On 7/25/2023 9:46 PM, Aditya Kumar Singh wrote:
->> 5 GHz band channel 177 support was added with the commit
->> "wifi: ath11k: add channel 177 into 5 GHz channel list". However,
->
-> I'd use the same syntax here as in the Fixes tag:
-> e5e94d10c856 ("wifi: ath11k: add channel 177 into 5 GHz channel list")
->
->> during processing for the received ppdu in ath11k_dp_rx_h_ppdu(), channel
->> number is checked only till 173. This leads to driver code checking for
->> channel and then fetching the band from it which is extra effort since
->> firmware has already given the channel number in the meta deta.
->
-> nit: s/meta deta/metadata/
+We need firmware-2.bin support in ath11k so that we can add ath11k specific meta
+data to firmware releases, for example feature flags so that ath11k can
+automatically detect what features the firmware release supports.  Also makes
+it easier and more reliable to update the firmware for PCI devices as it's not
+possible to mix firmware files, everything will be in one file.
 
-I can fix these in the pending branch.
+Please review and comment.
 
+v4:
+
+* patch 1: document in struct struct mhi_controller_config::fw_data the
+           fbc_download requirement (Jeffrey)
+
+v3: https://patchwork.kernel.org/project/linux-wireless/list/?series=752266&state=*&order=date
+
+* patch 1: add "bus: mhi: host: ..." to title
+
+* patch 1: add a comment to mhi_fw_load_handler()
+
+* patch 1: check sbl_size
+
+* patch 3: for smooth backwards compatibility don't print an error "failed to
+  load firmware-2.bin: -2"
+
+v2: https://patchwork.kernel.org/project/linux-wireless/list/?series=727935&state=*&order=date
+
+* mhi_fw_load_handler(): fold two lines into one
+
+* struct mhi_controller_config: document that fbc_download needs to be set
+
+* run pahole struct mhi_controller_config
+
+v1: https://patchwork.kernel.org/project/linux-wireless/list/?series=710862&state=*&order=date
+
+Anilkumar Kolli (1):
+  wifi: ath11k: add firmware-2.bin support
+
+Kalle Valo (2):
+  bus: mhi: host: allow MHI client drivers to provide the firmware via a
+    pointer
+  wifi: ath11k: qmi: refactor ath11k_qmi_m3_load()
+
+ drivers/bus/mhi/host/boot.c              |  34 +++--
+ drivers/net/wireless/ath/ath11k/Makefile |   3 +-
+ drivers/net/wireless/ath/ath11k/core.c   |   8 ++
+ drivers/net/wireless/ath/ath11k/core.h   |  15 +++
+ drivers/net/wireless/ath/ath11k/fw.c     | 157 +++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/fw.h     |  27 ++++
+ drivers/net/wireless/ath/ath11k/mhi.c    |  18 ++-
+ drivers/net/wireless/ath/ath11k/qmi.c    |  54 +++++---
+ include/linux/mhi.h                      |   6 +
+ 9 files changed, 289 insertions(+), 33 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/fw.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/fw.h
+
+
+base-commit: 9102ee8eaa6d29624ed2068396502ad8545f2ff0
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.39.2
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
