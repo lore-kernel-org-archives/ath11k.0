@@ -4,80 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5732C0015E
-	for <ath11k@archiver.kernel.org>; Thu, 27 Jul 2023 17:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82A9DC0015E
+	for <ath11k@archiver.kernel.org>; Thu, 27 Jul 2023 17:57:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DbWFxwFppAu32ji5HbsQwt60S5tsPKVp9Af4g3AUURo=; b=RFSjL1bl+Fvfz9
-	KAudUffdzgo7+kMfjIIxsahc1kK7WbZNvIh6hDE+r3tSeb4nNzenngS27zPxYG2yxEbtkd/3ViYvw
-	skmlR915+bwSu2X/+L/1F9jsLEgkxQo9wmyc4Ng90XhcvZCvb0Or2b4W7QWKq9ybZOxO7uoX10LDM
-	uHs8msODQSb8tTgTbWYnVsH6civzTCuFajfcCYBeEbfa1rTYuHLiftRlkbbdLdTBfZr9MZl9oDa1E
-	RNQJ1ur6lNBsNgCGQAB6EB+WilY/6UqFXRCUdPK75NSDtzcYbMEmZKmG/eNCmgBdBJd5R6iX3DkPk
-	IkOb/oFyVCJRwAR+Drzg==;
+	List-Owner; bh=bIXWf5pqXBN4pF1PRnn21PP8pjeWDY4mHWRhXrTAbS8=; b=LkCrLkxKXLBooo
+	2cKNW1hiSJd4pRIit+v133oAl8PHuWa2ZLdtQeztWrdeJUq7PihEJLuilB+9Z0/Y/0PNzNuN8iUP/
+	Lg+aEQ19XMoBptUOHrveVRkjCk/C/O6+9sWrETyRzyWsOZ9ffDeBW2jIPYtnLsC7cjlRLPAbzPFjo
+	qu0gsCW9tmS7TZb4hC0ZXDs3gTYmMWjik+UodmzV2GlUu5Ll70dhGGYOaFJjdyE3JUwaKHhSijIfl
+	ZHuKlidX12w1IAyeTIdHQoKUVLCnDfR50gfKSBBVLHL26zFJUbp+klApqacQxmdq+qMKFiqJEkCGj
+	sgDnCyg/tfJKKk8f//aA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP5ET-0000NP-2W;
-	Thu, 27 Jul 2023 17:57:01 +0000
+	id 1qP5El-0000lM-2k;
+	Thu, 27 Jul 2023 17:57:19 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP5ES-0000He-0t
+	id 1qP5Eb-0000WF-0E
 	for ath11k@bombadil.infradead.org;
-	Thu, 27 Jul 2023 17:57:00 +0000
+	Thu, 27 Jul 2023 17:57:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:MIME-Version:Message-ID:
-	In-Reply-To:Date:References:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=ydcN7KdZZ/27QfGC1dtODeQ46m5XK3Zf78caSNgHk4o=; b=jfgW1w141iiilHM1plt2xLfdi+
-	hhxOdYU3HOF5PWqrIeSD0zOiPL8h/int3m9ndY5zffjuidw3TvMrYMcTvWq4sY6/oDbCASAHy7Xg6
-	GG+N7c0ECPOsrHpmUzYfbJJuTL0QrYGcd1EaRNyhk1T6seTYH8sOCBMXU3N8lRlkX70gbNUHkMA60
-	596yzHNLN9bDQn3yOypLZbWIdVsQKVIq0NqlNHYwJcqlM3APZz1KWoX4ufIHGth70S8rOmOG/COOz
-	edXxQEwACsXfcNV5x5laImeZKzh7RtL9cQXHztgnD+Sh7BY/UEFHupyXBHrhxx1q83v5iOVPf21p+
-	cQhpE+cQ==;
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=WB28qqUYvyseSWD/r/j4+D+ItZWixPmzGHBsazWIPyA=; b=FakDhjToeFYMFrQZvFYS1mmQoe
+	wTwxzPHzhzzypUFaHEAcRtD/fZ7eNtpLiANB9joHgf2R8U5yQLAoSFrzSPtStLpOB0dzqduD5yGD9
+	5H1EvVuzg1pfCVITh6zOkdn6YrBTOEGJCHiDb/QXym6V6UTmkmYCvdHXHlCYWy7ZPcVXiDTgMb2F9
+	6lIXhNcZXwYzubtvSF3fyJOuLyECK3IGnoX8hzwc794+TIwdqzwJvYK9N+yFQZ/ap/K+QOBVs14j1
+	uZPjpWQHymfZkz+MrmDGQc61wZD6Ym+0p1vCrIn+u1OhQNgQMXWFQSs92oxUF3d0n2JoY10DDIUi9
+	c8cRGC5Q==;
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP3vM-007AKP-2p
+	id 1qP49G-007B0x-0b
 	for ath11k@lists.infradead.org;
-	Thu, 27 Jul 2023 16:33:14 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id AAF1E61EC6;
-	Thu, 27 Jul 2023 16:33:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDC98C433C9;
-	Thu, 27 Jul 2023 16:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1690475583;
-	bh=++37BNE68MVdChM0LoCg87zzFbUTUqDbPyrk6Ns+omM=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=aOoqepxGAxgNou/FgG/YKjQ7UahRNLeWqXeT+HaXRG+UM3TckogBFg3sa/jD7uNwY
-	 GiUdGgPbNhQP8B/wJ2Tnmt1EVBudqzM+pKZXpT73EQabEn7mneosW55nqPSkYLRofX
-	 2UPdFKRlzIKdeSvixgmZ8wqivK941MewwbgiC8lORnQ4Wxpgm0yYqHvC9xwGi3z2Ci
-	 bmAOJtMfB6E7+Zj60zIuaIqKqV6sWWd2/pRXs/f0j8Geq9AqylggnMwOWgzVc0vyE+
-	 pvEIW692GmXtOLVW0RSHyMtLw76Zi+nr3w8V1Kh50crZNiTMtb1AE7xEzTj1uAN0H0
-	 ict9xf5yfWJbw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Dmitry Antipov <dmantipov@yandex.ru>,  Ziyang Huang
- <hzyitc@outlook.com>,  <linux-wireless@vger.kernel.org>,
-  <ath11k@lists.infradead.org>
-Subject: Re: [PATCH] wifi: ath11k: simplify
- ath11k_mac_validate_vht_he_fixed_rate_settings()
-References: <20230726092113.78794-1-dmantipov@yandex.ru>
-	<b23c9ebe-b49b-0c8c-5e20-d02fd4134844@quicinc.com>
-Date: Thu, 27 Jul 2023 19:33:00 +0300
-In-Reply-To: <b23c9ebe-b49b-0c8c-5e20-d02fd4134844@quicinc.com> (Jeff
-	Johnson's message of "Wed, 26 Jul 2023 11:31:12 -0700")
-Message-ID: <87h6ppz54z.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 27 Jul 2023 16:47:36 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RDkJRP008071;
+	Thu, 27 Jul 2023 16:47:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=WB28qqUYvyseSWD/r/j4+D+ItZWixPmzGHBsazWIPyA=;
+ b=IUW7GFZVOiHOHNTTb6IvgWd/OEryD+D1NLucbHlhwhk7OECar+an4Zu9Nmk92uqTultZ
+ u52jjWkv9rNJDRtd9QVtArx4OEMDTSDwuW/0M2Jm7XXD43zS9H9BQoh/a6iidXpam1Ga
+ /8qEIYjNoBxt8wzE80LwrD1T0XfSjaYK4sU0sVFsoFIzEizIY7YuwAFVtGmHonc0t0Bd
+ N4DYN/Vzx9TaTJ21LqsxJpJrqrm0vCOvU5+35VXXdpwrdR+m8Lv9QbM8y6hYB8TP0pSV
+ Q64iGuiroOSTPRBdobWyyf46ETvGLjnEuKWr0x/LWMPxRM+UivsHBvQ2dBbk4C/SGWCW 6Q== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s3krn9eth-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Jul 2023 16:47:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36RGlMqN022812
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Jul 2023 16:47:23 GMT
+Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 27 Jul
+ 2023 09:47:21 -0700
+Message-ID: <d86d8f47-dbb2-1da6-794a-c020c317b4b5@quicinc.com>
+Date: Thu, 27 Jul 2023 09:47:21 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] wifi: ath11k: qmi: refactor ath11k_qmi_m3_load()
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, <mhi@lists.linux.dev>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20230727100430.3603551-1-kvalo@kernel.org>
+ <20230727100430.3603551-3-kvalo@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20230727100430.3603551-3-kvalo@kernel.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JoQrgzWxSJuMopEaBaBWAcPav_TeIEeU
+X-Proofpoint-GUID: JoQrgzWxSJuMopEaBaBWAcPav_TeIEeU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-27_07,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
+ adultscore=0 suspectscore=0 mlxlogscore=921 priorityscore=1501 bulkscore=0
+ phishscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2307270151
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230727_173313_108772_96AC43E7 
-X-CRM114-Status: GOOD (  10.82  )
+X-CRM114-CacheID: sfid-20230727_174734_860086_DBED5108 
+X-CRM114-Status: GOOD (  29.91  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,38 +107,93 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+On 7/27/2023 3:04 AM, Kalle Valo wrote:
+> From: Kalle Valo <quic_kvalo@quicinc.com>
+> 
+> Simple refactoring to make it easier to add firmware-2.bin support in the
+> following patch.
+> 
+> Earlier ath11k_qmi_m3_load() supported changing m3.bin contents while ath11k is
+> running. But that's not going to actually work, m3.bin is supposed to the be
 
-> On 7/26/2023 2:21 AM, Dmitry Antipov wrote:
->
->> In 'ath11k_mac_validate_vht_he_fixed_rate_settings()', 'ar->ab->peers'
->> list is not altered so 'list_for_each_entry()' should be safe.
->> Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
->
-> In the future please make sure driver-specific mailing lists are
-> included in your patches when they exist in the MAINTAINERS file.
-> Adding ath11k@lists.infradead.org
+nit: s/to the be/to be the/
 
-And this is actually v2, there was already v1 sent earlier this month:
+> same during the lifetime of ath11k, for example we don't support changing the
+> firmware capabilities on the fly. Due to this ath11k requests m3.bin firmware
+> file first and only then checks m3_mem->vaddr, so we are basically requesting
+> the firmware file even if it's not needed. Reverse the code so that m3_mem
+> buffer is checked first, and only if it doesn't exist, then m3.bin is requested
+> from user space.
+> 
+> Checking for m3_mem->size is redundant when m3_mem->vaddr is NULL, we would
+> not be able to use the buffer in that case. So remove the check for size.
+> 
+> Simplify the exit handling and use 'goto out'.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+> 
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230704174753.76968-1-dmantipov@yandex.ru/
+Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-Dmitry, PLEASE read our documentation from the wiki below. You need to
-always mark the patch as v2 and provide a changelog what changed since
-v1.
+> ---
+>   drivers/net/wireless/ath/ath11k/qmi.c | 18 +++++++++++-------
+>   1 file changed, 11 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+> index d4eaf7d2ba84..9b13628fa3c7 100644
+> --- a/drivers/net/wireless/ath/ath11k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
+> @@ -2506,6 +2506,10 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
+>   	char path[100];
+>   	int ret;
+>   
+> +	if (m3_mem->vaddr)
+> +		/* m3 firmware buffer is already available in the DMA buffer */
+> +		return 0;
+> +
+>   	fw = ath11k_core_firmware_request(ab, ATH11K_M3_FILE);
+>   	if (IS_ERR(fw)) {
+>   		ret = PTR_ERR(fw);
+> @@ -2515,25 +2519,25 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
+>   		return ret;
+>   	}
+>   
+> -	if (m3_mem->vaddr || m3_mem->size)
+> -		goto skip_m3_alloc;
+> -
+>   	m3_mem->vaddr = dma_alloc_coherent(ab->dev,
+>   					   fw->size, &m3_mem->paddr,
+>   					   GFP_KERNEL);
+>   	if (!m3_mem->vaddr) {
+>   		ath11k_err(ab, "failed to allocate memory for M3 with size %zu\n",
+>   			   fw->size);
+> -		release_firmware(fw);
+> -		return -ENOMEM;
+> +		ret = -ENOMEM;
+> +		goto out;
+>   	}
+>   
+> -skip_m3_alloc:
+>   	memcpy(m3_mem->vaddr, fw->data, fw->size);
+>   	m3_mem->size = fw->size;
+> +
+> +	ret = 0;
+> +
+> +out:
+>   	release_firmware(fw);
+>   
+> -	return 0;
+> +	return ret;
+>   }
+>   
+>   static void ath11k_qmi_m3_free(struct ath11k_base *ab)
 
-And especially slow down with the rate of patches you are submitting and
-instead use that time to learn the process first.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
