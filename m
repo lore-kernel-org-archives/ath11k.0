@@ -4,98 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82A9DC0015E
-	for <ath11k@archiver.kernel.org>; Thu, 27 Jul 2023 17:57:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1959EB64DD
+	for <ath11k@archiver.kernel.org>; Tue,  1 Aug 2023 04:21:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bIXWf5pqXBN4pF1PRnn21PP8pjeWDY4mHWRhXrTAbS8=; b=LkCrLkxKXLBooo
-	2cKNW1hiSJd4pRIit+v133oAl8PHuWa2ZLdtQeztWrdeJUq7PihEJLuilB+9Z0/Y/0PNzNuN8iUP/
-	Lg+aEQ19XMoBptUOHrveVRkjCk/C/O6+9sWrETyRzyWsOZ9ffDeBW2jIPYtnLsC7cjlRLPAbzPFjo
-	qu0gsCW9tmS7TZb4hC0ZXDs3gTYmMWjik+UodmzV2GlUu5Ll70dhGGYOaFJjdyE3JUwaKHhSijIfl
-	ZHuKlidX12w1IAyeTIdHQoKUVLCnDfR50gfKSBBVLHL26zFJUbp+klApqacQxmdq+qMKFiqJEkCGj
-	sgDnCyg/tfJKKk8f//aA==;
+	List-Owner; bh=GBPF4P/bvCLJJnhJmATnixuOOm0IOkCS/K+hu8DRd+E=; b=ylotkUxTSQbcHg
+	14ug+L+EoopjPpjpUQ4BpZ4N9+KJbPwJujXWpej3iK8paWghODtpF5yI1PJG0lVZJWPJIkVqDVooI
+	fG7p0O/1Xg1z30WjugKt6N1/3bVrp1KmUKT86F0tXwmfHcp0jIIO/zj40hnbVAfgu5+sptbA6CznO
+	gfA4uClcP+AgxRICXAVUOvYLA2fnLKf2RMoq8zS1zwtD/uBdNAoXgnRvGgvfI74fe/XiE0UEtK/sx
+	WCuXhqOvYapK67laJwU2sO7gOkhTWXQddp5Vyr7KQUotJcvrcsXUYIx1fx3yrxNNqYD0YEeqbiJLi
+	8VawJTjUzLAvOe2wBCNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP5El-0000lM-2k;
-	Thu, 27 Jul 2023 17:57:19 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1qQgt4-000KlT-0D;
+	Tue, 01 Aug 2023 04:21:34 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP5Eb-0000WF-0E
-	for ath11k@bombadil.infradead.org;
-	Thu, 27 Jul 2023 17:57:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=WB28qqUYvyseSWD/r/j4+D+ItZWixPmzGHBsazWIPyA=; b=FakDhjToeFYMFrQZvFYS1mmQoe
-	wTwxzPHzhzzypUFaHEAcRtD/fZ7eNtpLiANB9joHgf2R8U5yQLAoSFrzSPtStLpOB0dzqduD5yGD9
-	5H1EvVuzg1pfCVITh6zOkdn6YrBTOEGJCHiDb/QXym6V6UTmkmYCvdHXHlCYWy7ZPcVXiDTgMb2F9
-	6lIXhNcZXwYzubtvSF3fyJOuLyECK3IGnoX8hzwc794+TIwdqzwJvYK9N+yFQZ/ap/K+QOBVs14j1
-	uZPjpWQHymfZkz+MrmDGQc61wZD6Ym+0p1vCrIn+u1OhQNgQMXWFQSs92oxUF3d0n2JoY10DDIUi9
-	c8cRGC5Q==;
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
-	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qP49G-007B0x-0b
+	id 1qQgt1-000Kkn-0C
 	for ath11k@lists.infradead.org;
-	Thu, 27 Jul 2023 16:47:36 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RDkJRP008071;
-	Thu, 27 Jul 2023 16:47:24 GMT
+	Tue, 01 Aug 2023 04:21:32 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3711uRP1000919;
+	Tue, 1 Aug 2023 04:21:17 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=WB28qqUYvyseSWD/r/j4+D+ItZWixPmzGHBsazWIPyA=;
- b=IUW7GFZVOiHOHNTTb6IvgWd/OEryD+D1NLucbHlhwhk7OECar+an4Zu9Nmk92uqTultZ
- u52jjWkv9rNJDRtd9QVtArx4OEMDTSDwuW/0M2Jm7XXD43zS9H9BQoh/a6iidXpam1Ga
- /8qEIYjNoBxt8wzE80LwrD1T0XfSjaYK4sU0sVFsoFIzEizIY7YuwAFVtGmHonc0t0Bd
- N4DYN/Vzx9TaTJ21LqsxJpJrqrm0vCOvU5+35VXXdpwrdR+m8Lv9QbM8y6hYB8TP0pSV
- Q64iGuiroOSTPRBdobWyyf46ETvGLjnEuKWr0x/LWMPxRM+UivsHBvQ2dBbk4C/SGWCW 6Q== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s3krn9eth-1
+ bh=0RtP2Y3YQXXQfiijFoqpCWqcsbUeRAPKQJssdfDcNFs=;
+ b=pnxwmuV4w8VfwVOeT14cieYychGwYFikctTfkzvpMiLMYsFEvSdg0B9Vb/6td9nOL1kf
+ eehsLRSFQVs6zm6RFlhD367bYfO2S/33t0s8Om0AB5rFxh2u+tsoO0hgf3z0Ig7KM7Ub
+ 0ZWhDX28Zc3Itoc9pThZQRpjy1V7knEu8tOnxTajgMhbxDJwi/36Gv20vmU0vb8El1vs
+ lCcd3xDmZl/WK6rLPKGaRBe6UeY7MoSmBhQf8SS5NluacKWrtV39IR5OjkO+ROcF+duz
+ RI5g4RR4zqROqwHUMTnb9Po0551zEV7U7MoBEZRtgDb+24kbmmyNg0BTy+VQXbyQpSFG ug== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s6d8gt2fu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jul 2023 16:47:24 +0000
+	Tue, 01 Aug 2023 04:21:17 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36RGlMqN022812
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3714Korw020313
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jul 2023 16:47:23 GMT
-Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Tue, 1 Aug 2023 04:20:50 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 27 Jul
- 2023 09:47:21 -0700
-Message-ID: <d86d8f47-dbb2-1da6-794a-c020c317b4b5@quicinc.com>
-Date: Thu, 27 Jul 2023 09:47:21 -0700
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 31 Jul
+ 2023 21:20:49 -0700
+Message-ID: <09c8f5b1-dfa0-9d3f-4164-cfad4d4edc67@quicinc.com>
+Date: Mon, 31 Jul 2023 22:20:48 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] wifi: ath11k: qmi: refactor ath11k_qmi_m3_load()
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v4 1/3] bus: mhi: host: allow MHI client drivers to
+ provide the firmware via a pointer
 Content-Language: en-US
 To: Kalle Valo <kvalo@kernel.org>, <mhi@lists.linux.dev>
 CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
 References: <20230727100430.3603551-1-kvalo@kernel.org>
- <20230727100430.3603551-3-kvalo@kernel.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20230727100430.3603551-3-kvalo@kernel.org>
+ <20230727100430.3603551-2-kvalo@kernel.org>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20230727100430.3603551-2-kvalo@kernel.org>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: JoQrgzWxSJuMopEaBaBWAcPav_TeIEeU
-X-Proofpoint-GUID: JoQrgzWxSJuMopEaBaBWAcPav_TeIEeU
+X-Proofpoint-ORIG-GUID: DgV7rGZyieAPqpMTFAFGHJnkMVOiCRJ2
+X-Proofpoint-GUID: DgV7rGZyieAPqpMTFAFGHJnkMVOiCRJ2
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-27_07,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- adultscore=0 suspectscore=0 mlxlogscore=921 priorityscore=1501 bulkscore=0
- phishscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307270151
+ definitions=2023-07-31_18,2023-07-31_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 impostorscore=0 spamscore=0 adultscore=0
+ phishscore=0 priorityscore=1501 clxscore=1011 mlxlogscore=793
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308010039
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230727_174734_860086_DBED5108 
-X-CRM114-Status: GOOD (  29.91  )
+X-CRM114-CacheID: sfid-20230731_212131_443507_36DD3E3D 
+X-CRM114-Status: GOOD (  14.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,88 +99,23 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 7/27/2023 3:04 AM, Kalle Valo wrote:
+On 7/27/2023 4:04 AM, Kalle Valo wrote:
 > From: Kalle Valo <quic_kvalo@quicinc.com>
 > 
-> Simple refactoring to make it easier to add firmware-2.bin support in the
-> following patch.
+> Currently MHI loads the firmware image from the path provided by client
+> devices. ath11k needs to support firmware image embedded along with meta data
+> (named as firmware-2.bin). So allow the client driver to request the firmware
+> file from user space on it's own and provide the firmware image data and size
+> to MHI via a pointer struct mhi_controller::fw_data.
 > 
-> Earlier ath11k_qmi_m3_load() supported changing m3.bin contents while ath11k is
-> running. But that's not going to actually work, m3.bin is supposed to the be
-
-nit: s/to the be/to be the/
-
-> same during the lifetime of ath11k, for example we don't support changing the
-> firmware capabilities on the fly. Due to this ath11k requests m3.bin firmware
-> file first and only then checks m3_mem->vaddr, so we are basically requesting
-> the firmware file even if it's not needed. Reverse the code so that m3_mem
-> buffer is checked first, and only if it doesn't exist, then m3.bin is requested
-> from user space.
+> This is an optional feature, if fw_data is NULL MHI load the firmware using the
+> name from struct mhi_controller::fw_image string as before.
 > 
-> Checking for m3_mem->size is redundant when m3_mem->vaddr is NULL, we would
-> not be able to use the buffer in that case. So remove the check for size.
-> 
-> Simplify the exit handling and use 'goto out'.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+> Tested with ath11k and WCN6855 hw2.0.
 > 
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-
-> ---
->   drivers/net/wireless/ath/ath11k/qmi.c | 18 +++++++++++-------
->   1 file changed, 11 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-> index d4eaf7d2ba84..9b13628fa3c7 100644
-> --- a/drivers/net/wireless/ath/ath11k/qmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
-> @@ -2506,6 +2506,10 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
->   	char path[100];
->   	int ret;
->   
-> +	if (m3_mem->vaddr)
-> +		/* m3 firmware buffer is already available in the DMA buffer */
-> +		return 0;
-> +
->   	fw = ath11k_core_firmware_request(ab, ATH11K_M3_FILE);
->   	if (IS_ERR(fw)) {
->   		ret = PTR_ERR(fw);
-> @@ -2515,25 +2519,25 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
->   		return ret;
->   	}
->   
-> -	if (m3_mem->vaddr || m3_mem->size)
-> -		goto skip_m3_alloc;
-> -
->   	m3_mem->vaddr = dma_alloc_coherent(ab->dev,
->   					   fw->size, &m3_mem->paddr,
->   					   GFP_KERNEL);
->   	if (!m3_mem->vaddr) {
->   		ath11k_err(ab, "failed to allocate memory for M3 with size %zu\n",
->   			   fw->size);
-> -		release_firmware(fw);
-> -		return -ENOMEM;
-> +		ret = -ENOMEM;
-> +		goto out;
->   	}
->   
-> -skip_m3_alloc:
->   	memcpy(m3_mem->vaddr, fw->data, fw->size);
->   	m3_mem->size = fw->size;
-> +
-> +	ret = 0;
-> +
-> +out:
->   	release_firmware(fw);
->   
-> -	return 0;
-> +	return ret;
->   }
->   
->   static void ath11k_qmi_m3_free(struct ath11k_base *ab)
-
+Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
 
 -- 
 ath11k mailing list
