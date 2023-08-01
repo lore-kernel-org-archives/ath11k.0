@@ -4,54 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B064C04A6A
-	for <ath11k@archiver.kernel.org>; Tue,  1 Aug 2023 21:41:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7052C00528
+	for <ath11k@archiver.kernel.org>; Tue,  1 Aug 2023 22:46:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=O5oQe3Wldx0Lwmi5xjsRbMm9PsAQQ6pruGzRD1DSDy0=; b=MpG4WqCGUrqtNK5/CrSe8cNZP9
-	XB9Hsl3hplFnHBaOC3DY2y2oc3ReB427EzftBW24QTX7E8bvGh4mM29iQtxZFxHONMAQwyZ+l0yfn
-	SWWHVPmHIT0w19tGZEimTIlEYKSz84+9WRWVylKGN1cHfCsPdGlJYrTU6VprCOlfo51nB/Pb2kXFO
-	b2nlgZR/WfH8gAzxUZSgs3nCajSfqsE6sRzaoHZNij/84KChAZ9z0nr3EdVacb5hy/HTrE28njHw5
-	y/gMmv4h0RoOjI59EMF+aZKAtUa+y3VJsECqLN8Ozf/4UTTrXgHgxbtHefkZr6jkUlwxHvJ7304tY
-	S63F8Cyg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=SLeXFmRpwNa5piLvqplxzYmvrYyJORTC7jT5CPXKQH8=; b=sp3kuaI0I8EM6L
+	9W0atrHjHVtTQrvfMkcsH3dQMBAtAIITN1tr3qIGn4v/Ju1IxN9MjLCI3Dm5EFXSfh7TKDzTbqELN
+	CUOCJVFBpiEgE9O2Vyza8J69uxeBFOj6qxo+ylLIBNnZZLKqd1PLOVZAYGrmWgkS6pIMCvMroRJVn
+	XtLejXZblqaVo2LtXr8vMkKr9VBL3YlBdOw3b0l39+72a71jtPSQ9DJGAOgF7Lu4pYFDSZX9DjIlG
+	HX1nsvqhRARTQggXXNclFQ7fqJTdc9EG0giAx4O3yguoSexaf2Sx/3jPKiF0o5DKpTXO4Fen+d2Ci
+	AHFSYoHTBue+6LHQNUfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQx7o-003Mnl-0z;
-	Tue, 01 Aug 2023 21:41:52 +0000
+	id 1qQy8o-003TFS-2y;
+	Tue, 01 Aug 2023 22:46:58 +0000
 Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qQx7m-003Mn9-12
+	id 1qQy8l-003TEs-2R
 	for ath11k@lists.infradead.org;
-	Tue, 01 Aug 2023 21:41:51 +0000
+	Tue, 01 Aug 2023 22:46:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1690926106;
+	s=20121; t=1690930007;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PeuHe0ibwWfeipHJZ12SRhKU9WUjNOeatmosU/WErOA=;
-	b=R4crp2cZXdhurP9rHFku1DlFW6A7l1EO8s25nowqefJg7V1h4C5XcBRdsPLtL+1mDceASr
-	iT98oMUuBEeTBKv0zBdCOsVgzsQ6Zk6ubVq2W7CI1no9WUPXK2xmaCthmTntRFyTiPC1AG
-	g0rRQiOQloFxEWsPF2+WXDyOJPmbrlo=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=tHEfEuheYq1rMmU1IaJm2EFOCvJfmQ3ow7jMNnIxa/M=;
+	b=MSu4DZNa3bvrCP+heR+AOZfSkDu75Iw6kFWS/Dz71v+UIw3G/+MNovPRlwhwQjCu4o/ABp
+	1hPqUKZ5l4uckFZfOoayy8H9OJg7YHVz1mjJ3uSum1AyIZ15FDv7r4bCQw/UQ/LWm3+V3O
+	MftzXTLiFtt9FAUMu7bNzTuqYk6ItI8=
 From: Sven Eckelmann <sven@narfation.org>
-To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
- Felix Fietkau <nbd@nbd.name>
-Cc: Kalle Valo <quic_kvalo@quicinc.com>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org
-Subject: Re: [PATCH RFC] ath11k: Don't drop tx_status when peer cannot be found
-Date: Tue, 01 Aug 2023 23:41:43 +0200
-Message-ID: <4836979.GXAFRqVoOG@sven-l14>
-In-Reply-To: <a8986afb-3e92-8314-d932-3f2bc8ca1936@nbd.name>
-References: <20230801-ath11k-ack_status_leak-v1-1-539cb72c55bc@narfation.org>
- <a8986afb-3e92-8314-d932-3f2bc8ca1936@nbd.name>
+Subject: [PATCH v2 0/2] ath11k: Don't leak ack_status_frame during
+ tx_complete* processing
+Date: Wed, 02 Aug 2023 00:46:25 +0200
+Message-Id: <20230802-ath11k-ack_status_leak-v2-0-c0af729d6229@narfation.org>
 MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAEGLyWQC/43OQQqDMBCF4avIrDsliQRrV71HKTLGiQZbI5NUC
+ uLdG3qCLr/F+3k7JJbACa7VDsJbSCEuBeZUgZtoGRnDUAxGmVpdlEbKk9Yzkpu7lCm/U/dkmrF
+ R1FCt2A6thzJehX34/ML3R7GX+MI8CdNfuU2jRlu3rm+Ms7Z3t4XEUy7vzlFGOI4v37F6AboAA
+ AA=
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>, 
+ Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>
+Cc: Kalle Valo <quic_kvalo@quicinc.com>, ath11k@lists.infradead.org, 
+ linux-wireless@vger.kernel.org, Felix Fietkau <nbd@nbd.name>, 
+ Sven Eckelmann <sven@narfation.org>, stable@vger.kernel.org
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1943; i=sven@narfation.org;
+ h=from:subject:message-id; bh=NCr+XZUPJYsm0GGWvSDiIYvPVRyI2bf72kEgqxdL8a0=;
+ b=owEBbQKS/ZANAwAKAV2HCgfBJntGAcsmYgBkyYtPRPa2MLdnh+gYmkV/WsqI2xv99XWI5nkj3
+ /ts+ZsZvnmJAjMEAAEKAB0WIQQXXSuHYSVz3OMy4AJdhwoHwSZ7RgUCZMmLTwAKCRBdhwoHwSZ7
+ Rg71D/9ZSifsvtEFs6NOoYEqLiMtXYjqpYmYHL4hOfX5PMLrn0HwizkdauD5KbxH6wy15zyMDlK
+ 2OdG1VIP+nWkJlSmdz+XXfO2PnsZ4lOt0TD0/x3DjH1HmsIEl9qgEfnokrTbMLe92kc/4bou4dz
+ 4t6y01LXeGQTud6BnXzAjP9Xgp+sT59VyQluNw5WIP7L60LE2aWbKWxGIK+wNni/TSFT+B7gZAd
+ 7cuLSjvtfPzfrq1fzkYRf7kj0gnELrljReFv9dx8gtrul7CasaPDuO693K6mP/azk44jRayidqV
+ /VyRfCyweUXk3EzFOG8r0fuqRQhazHIhdJXw6p2yyIFhuRsbyU6t8OumRF1g9RO0QQkiRDN+OKI
+ SLdZVUApoYohUzUwNVHukf11oFkywg+gtWWbdcQs3jh+NMAAuvwPA1qbdhgBVdlkEUzi1NFYxTe
+ LqHTrgWAKHNLFkJIUEgLK+bqFZKY5CwkYGDha1Fk2kHbJ1MgMJfyczvIz8Zu4dCzXu3Ykqq0N69
+ CHGiy/NKmLx/rWuexyHT7Y9SiUWeBgdiQrGNoJiiiSk0FZ2EF5YH1jUEk90x9J9a3GeFQCJx8Qs
+ 9J5x0uv5E6hJ/0UbJnbe6q+duCNOI3JCwj5KMJt7FiJn/NfZto8zwzdPNNhiwHCBdoxFH5WKA8T
+ 7mJPGZvU8smMj5Q==
+X-Developer-Key: i=sven@narfation.org; a=openpgp;
+ fpr=522D7163831C73A635D12FE5EC371482956781AF
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230801_144150_502253_0A069EE9 
-X-CRM114-Status: GOOD (  22.37  )
+X-CRM114-CacheID: sfid-20230801_154655_949440_AFD02EB1 
+X-CRM114-Status: GOOD (  10.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,120 +82,60 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8452492491961103150=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============8452492491961103150==
-Content-Type: multipart/signed; boundary="nextPart1875646.tdWV9SEqCh";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+It was noticed that APs stopped to accept clients after a while. With QCA's
+ath11k fork, it even printed some additional information:
 
---nextPart1875646.tdWV9SEqCh
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-Date: Tue, 01 Aug 2023 23:41:43 +0200
-Message-ID: <4836979.GXAFRqVoOG@sven-l14>
-In-Reply-To: <a8986afb-3e92-8314-d932-3f2bc8ca1936@nbd.name>
-MIME-Version: 1.0
+  attach ack fail -28
 
-On Tuesday, 1 August 2023 20:11:51 CEST Felix Fietkau wrote:
-[...]
-> > when new clients try to connect - and connection attempt will obviously
-> > fail. Most likely with an "deauthenticated due to inactivity (timer
-> > DEAUTH/REMOVE)" by hostapd.
-> > 
-> > And the fix (required for both platches) would then be something like:
-> > 
-> >    --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-> >    +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-> >    @@ -629,8 +629,14 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
-> >     			   "dp_tx: failed to find the peer with peer_id %d\n",
-> >     			    ts->peer_id);
-> >     		spin_unlock_bh(&ab->base_lock);
-> >    -		dev_kfree_skb_any(msdu);
-> >    -		goto exit;
-> >    +		rcu_read_unlock();
-> >    +
-> >    +		if (skb_cb->flags & ATH11K_SKB_HW_80211_ENCAP)
-> >    +			ieee80211_tx_status_8023(ar->hw, skb_cb->vif, msdu);
-> >    +		else
-> >    +			ieee80211_tx_status(ar->hw, msdu);
-> >    +
-> >    +		return;
-> >     	}
-> >     	arsta = (struct ath11k_sta *)peer->sta->drv_priv;
-> >     	status.sta = peer->sta;
-> > 
-> > But this is not possible any longer because Felix Fietkau removed
-> > ieee80211_tx_status_8023 in commit 9ae708f00161 ("wifi: mac80211: remove
-> > ieee80211_tx_status_8023") - and the function ieee80211_lookup_ra_sta
-> > (required for this task) is currently not exported. And the sta information
-> > is required to reach the ieee80211_sta_tx_notify code section in
-> > ieee80211_tx_status_ext()
-> 
-> This does not make much sense to me. ieee80211_sta_tx_notify is specific 
-> to interfaces running in client mode, thus unrelated to anything hostapd 
-> is doing. It's a different kind of probing than the one you're looking into.
+when new clients tried to connect. hostapd was then usually showing a
+message like "deauthenticated due to inactivity (timer DEAUTH/REMOVE)".
 
-Sorry, copied something to my notes and then mixed up basically everything 
-after that. Interesting for the fix was only that it reaches 
-ieee80211_report_ack_skb via ieee80211_report_used_skb. This can either be 
-done via __ieee80211_tx_status/ieee80211_tx_status_ext (which doesn't have any 
-dependency to the sta - which I incorrectly said earlier) or via 
-ieee80211_free_txskb (which I missed earlier)
+While debugging this, it was noticed that this happened when a peer was no
+longer known by ath11k but an NL80211_CMD_PROBE_CLIENT triggered TX was
+just "finished" for it. In that case, ath11k was just throwing the skb away
+and left some information in various data structures in mac80211.
 
-[...]
-> The main bug is the fact that dev_kfree_skb* must not be called for tx 
-> packets passed from mac80211. If you replace it with a call to 
-> ieee80211_free_txskb, the bug goes away.
+And after Felix pointed out ieee80211_free_txskb(), it is also clear that
+dev_kfree_skb_any() in these functions should also be calls to
+ieee80211_free_txskb() - but for these, I have nothing to trigger this
+error case. Still, a patch is provided as part of this patch series.
 
-Thanks for the hint. Will submit an actual patch with your recommended
-replacement.
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+Changes in v2:
+- Simply switch to ieee80211_free_txskb() as recommended by Felix Fietkau
 
-Kind regards,
-	Sven
---nextPart1875646.tdWV9SEqCh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+  + ieee80211_free_txskb calls ieee80211_report_used_skb
+  + ieee80211_report_used_skb calls ieee80211_report_ack_skb (when
+    ack_frame_id is set and !IEEE80211_TX_INTFL_MLME_CONN_TX)
+  + ieee80211_report_ack_skb will remove skb from ack_status_frames
 
------BEGIN PGP SIGNATURE-----
+- Add second patch which handles similar situations in the previously
+  patched functions
+- Link to v1: https://lore.kernel.org/r/20230801-ath11k-ack_status_leak-v1-1-539cb72c55bc@narfation.org
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmTJfBcACgkQXYcKB8Em
-e0ZmzBAApeRTlHLHJwpLbJzXVLGL3UViBiSk5+pqp1szpk/KWjraXtj7mnySYS87
-vl98s5ctuBp1foSgMoabET6xzSzKIpY76wohLIRE87NXEF4xc/2eYtRpX8S7Ne/z
-s7h+Li23VjUEtYOfa+4dbEbSXhYSptZ3laCKO5wfqBFFBykFVXU2M0LEECyJDzpU
-T4Nt+jfKKw30Gtd/GU8dYyu/7/9wzaEc2KmKLUiArSZ3RF5rdO2QLxph//ECHLMR
-cQN856y1SrHhg8rVOFUxqII0uG6ARlMnLURkUmzNs3BRSr2OJbtu95yJ3AlKaZEJ
-3vlMHzyIkou0LMp20IYluTyd0jSyR5s3G+zFTQ4LZHtVduryie+XMEQznDaAEga7
-CmB/oEYRTCIa4lTtok2u49RRF0+fM7UK5LRC4+lWQ0XPAslbUEE3mhfXoGd6x6Au
-Wh7ZWkc+aa8TrOAZrgHBbGu3tIyUSmMKcOczAtSI/3DK2O++xYuDBIMZrDAhNHhW
-qtFuFrf48irQuUpVj+oV1RFnUZxZMpFEET9zktiAFKzpkAWoDX/85s9H8wsBWfzj
-LLvuKFzwcfj2MD1/SKrUoBuypkBkLsuEym6RK66rlxRuk7BRmf6qkYqF8veCItXF
-U2QINKL+/2kyX+avMhCAcnWdzb3/FLhzldWZI6OCWKy1TCLF9lM=
-=Pczz
------END PGP SIGNATURE-----
+---
+Sven Eckelmann (2):
+      ath11k: Don't drop tx_status when peer cannot be found
+      ath11k: Cleanup mac80211 references on failure during tx_complete
 
---nextPart1875646.tdWV9SEqCh--
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+---
+base-commit: 1d7dd5aa35474e553b8671b58579e0749b560779
+change-id: 20230801-ath11k-ack_status_leak-70a7a30e5d9f
 
+Best regards,
+-- 
+Sven Eckelmann <sven@narfation.org>
 
-
-
-
---===============8452492491961103150==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============8452492491961103150==--
-
-
-
-
