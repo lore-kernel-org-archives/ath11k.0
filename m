@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F9E5C04E69
-	for <ath11k@archiver.kernel.org>; Wed,  2 Aug 2023 11:31:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E1C4C001E0
+	for <ath11k@archiver.kernel.org>; Wed,  2 Aug 2023 11:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RsOYNa6FvR438SNDVnL9ZpbaD4IfswHKHOFU6iFbTkM=; b=sqZyGc5SoXPgK0
-	Xd+2DQLNZ5K7wOg+Did3qnTom68D0EEB0nPij/cgXQuQtRq/fXe6Agj/fvDY/LfoghEgkRR+xAXNK
-	49J2mWYdl5edLklT8ejpfJh2mUu3pERdKR8OXvZds9DetbkTmmzXFSkQVQbysJr1esf+8qRY5FpJZ
-	fadyBNQ0iViPYxaTWYz3fUsHvyytOAmYQ3f6ZPRCTq+AwyY5QNC2BA4Rj4tc4aGucrLHRCI7y6btA
-	amndI93plGWqEY+wFwwmg4mdUx5aA1qCfsc9TADmmhqB2UGZJu/prLDg0SUz7UpkGXCAa5De9yi92
-	LL5cJiqJ+dmA4B/TS9AQ==;
+	List-Owner; bh=yys2Y1lsaqkiz6r1RkgDBRGO6vg4TqmQTXUknlML2FI=; b=X8CSJWYkreIqsy
+	4OtY2FcAgkTikVPVfq6A+czyMs3YG8Y1kK5mFlDb37xieP2RzfjgmXK292TioqMM7PtoFbKwHtnbG
+	HvtstNNK8j3sF+XMZ8R6NE/oOXML2/MZEhl+odrw1r1BsMw8P2dFKuULzBW/5WOcbphEHntYDl2K4
+	J3/DOjyRJJwLMaNq/J8vEwsOXrArFBaRYNSbr6pXT59MP+b4gVtO2fPMuIX2DfTcSVut1VXc707Up
+	MItWZkElU5nNEJtw1xSgSL/1ntAiyDn9pHT1Qmo7qwZW+v0Zi7Hc6gM5VRgkMA7M0qOzbe79AKkvs
+	xeobdnmLpVEpzGFKn3Zg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRA4E-004nsX-0G;
-	Wed, 02 Aug 2023 11:31:02 +0000
+	id 1qRAA3-004oVO-2n;
+	Wed, 02 Aug 2023 11:37:03 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qRA4B-004ns9-1a
+	id 1qRAA1-004oUg-1W
 	for ath11k@lists.infradead.org;
-	Wed, 02 Aug 2023 11:31:00 +0000
+	Wed, 02 Aug 2023 11:37:02 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id C73E36191C;
-	Wed,  2 Aug 2023 11:30:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FD00C433C8;
-	Wed,  2 Aug 2023 11:30:57 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id BF2F16192C;
+	Wed,  2 Aug 2023 11:37:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67F44C433CC;
+	Wed,  2 Aug 2023 11:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1690975858;
-	bh=4Vaae40qqGxW8R/6dHIGcwOUOUHcW3fvn7vSPHPAkqg=;
+	s=k20201202; t=1690976220;
+	bh=bQYnWsfeRljqk1mmtmVRAyq5XZ7VtvuLqFh9lbdjcrM=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=nZYg6adai1wgb+4OAIrt7bPJG6g09OiiJpZhAebmbpbxF3wlWhatwVdKow3CN7JJn
-	 W8Oy8/IO/VJnI5Z4mEKJggqcQwAOlRfAaHjt0Ffr4aRuckfQdCUwQUKwIEeJYHwo1H
-	 2Af95FFJubryYQ9sxFZ2iqXx1oBsaBAnHR7M7DNkCeJePnfQVyRPh6KHQRku3nkVQh
-	 Wq3nCU/nM/km4pc9R4BQ9ayb8xNqLVc30tNVpT4cB0xzD9w6IW5zusTIqCFKNuYoZG
-	 DDuvwxp7f2DW/3JFyRWh8goe7VnYkVWHv4Nz1/CKbhMc88Qy6qYU9OUWoWhNdSrY3O
-	 1Sb9R0FJZpW8w==
+	b=fE/iYIAjau3g+EFehzi2StLIisw1EDqMKbk6mimm41dNcrrqCtwOV7OSgt7qSEFxq
+	 H8l95ylXJuimSKNrr5+/QajPHCtbOKVZMazfhmodgNiCG9azn4VN6o++BmcYo7IU53
+	 jOf5Mv0LjMyptEcgjept68R9YB4XocdyTgyxCn3jROG1JtHFFdHHERtJ72N2MgUcyz
+	 YSZN1AMyo2ySmkwyb3iaodOFW21nc8vtw76fD1gDGSeEqToGafWYhBe7x2AewwWmFs
+	 j4Obv/vgdvFem8neYo9RxfFDbNdxeVL+Ft9wkh1DD8o+c40agICoDfkeaSg81ipPK9
+	 r/bX6BuUDHJ/A==
 From: Kalle Valo <kvalo@kernel.org>
 To: Wen Gong <quic_wgong@quicinc.com>
 Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
@@ -52,15 +52,15 @@ Subject: Re: [PATCH v4 2/5] wifi: ath11k: store cur_regulatory_info for each
  radio
 References: <20230607094810.26707-1-quic_wgong@quicinc.com>
 	<20230607094810.26707-3-quic_wgong@quicinc.com>
-Date: Wed, 02 Aug 2023 14:30:55 +0300
+Date: Wed, 02 Aug 2023 14:36:57 +0300
 In-Reply-To: <20230607094810.26707-3-quic_wgong@quicinc.com> (Wen Gong's
 	message of "Wed, 7 Jun 2023 05:48:07 -0400")
-Message-ID: <878ratwuj4.fsf@kernel.org>
+Message-ID: <874jlhwu92.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230802_043059_591417_08D06202 
-X-CRM114-Status: GOOD (  13.00  )
+X-CRM114-CacheID: sfid-20230802_043701_549691_58EF1D1A 
+X-CRM114-Status: GOOD (  10.90  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,24 +90,15 @@ Wen Gong <quic_wgong@quicinc.com> writes:
 
 [...]
 
-> +enum wmi_vdev_type ath11k_mac_get_ar_vdev_type(struct ath11k *ar)
-> +{
-> +	struct ath11k_vif *arvif;
-> +
-> +	list_for_each_entry(arvif, &ar->arvifs, list) {
-> +		return arvif->vdev_type;
-> +	}
-> +
-> +	return WMI_VDEV_TYPE_UNSPEC;
-> +}
+> +	ret = ath11k_reg_handle_chan_list(ab, reg_info, IEEE80211_REG_UNSET_AP);
+> +	if (ret) {
+> +		ath11k_dbg(ab, ATH11K_DBG_WMI,
+> +			   "failed to process regulatory info from received event\n");
+> +		goto mem_free;
+>  	}
 
-This function looks odd to me and there are no comments to clarify.
-What's the idea of using list_for_each_entry() and then immediately
-return with the first entry? I guess the assumption here is that every
-arvif has the same type? Can we really trust that? And at least it
-should be documented here.
-
-Also wouldn't list_first_entry_or_null() be more intuitive?
+Why the warning message is using ath11k_dbg()? I think it should be
+ath11k_warn() and also print ret value.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
