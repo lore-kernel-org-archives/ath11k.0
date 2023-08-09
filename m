@@ -4,92 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9AD2C001B0
-	for <ath11k@archiver.kernel.org>; Tue,  8 Aug 2023 05:08:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D247C001E0
+	for <ath11k@archiver.kernel.org>; Wed,  9 Aug 2023 07:34:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H6FCpV07FwciaT7OTfaJD9gs5Ju72OKy5f6iz/Yqeps=; b=vn06ze7+RLNX4N
-	h7EPPcvHJrM70fh4RJ35itb+MROAw8GRVljUx8PLq2C+UV7sJByHZoT8Yj6OP/I0Cj6Q/piqx8uDT
-	gxnyylOjNl5oop1pqoCYfKWtn/XcQzZLKlbj1KFV7sqrroTYGzSOoYjWPZeybRdaTgg4Bx9XW/je9
-	d8OjwFLEErTy5PfNPi3LWa14irBmfEYyccAmvqXQRnhEz5PR3LpZlu5i5Xo9yEyrnM5Sp5NFEqmNs
-	sXZuONW+RGDFufROCz0TLfRcskxLNlM3ntWIUqdMUlzu6UiVJGYwY2aX0GJa6l34+1cA1rTHGYR+G
-	XfwOMNY70q9idu8jGrPQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=p21Xk9eIEMEpZ8SGd83I8FtRjbUXIwUcBXI+htp01BM=; b=yNF0mqwG5D0hY9
+	+KV0hpoCscZ9VlbrvfAGoRaSWRvGkOVHkkvOfAXjAlnkZyoZCLGEf/GnnI8xKQtU2Rk5rWd5QuKck
+	HjAtvn4levzncv2hTXIaXEpeVDHpstvpLyUpMOuxrXDvmn0W7wjv8nWSfPoIjsbjkagIsUa5shrX1
+	2OLf6Dk4BTaWIAtw++C50kLBA7XCleu2wkDYznPmbcWBTal8EGUwic1nJRfERipyf/PiRm97xSq50
+	G2pB+dMdu6UK7rk6rvcx+svcZ2TNxjlCuItSASyjlxVGbJSKJ0c5nzTrLG1Ys7b0P4XROUK5L3Da5
+	xWyzlJfangCKdnNuKH6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTEww-001kKx-2W;
-	Tue, 08 Aug 2023 05:08:06 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1qTdia-004H7s-1X;
+	Wed, 09 Aug 2023 07:34:56 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qTEwt-001kKU-19
+	id 1qTdiX-004H6m-1B
 	for ath11k@lists.infradead.org;
-	Tue, 08 Aug 2023 05:08:04 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3784v3cw029152;
-	Tue, 8 Aug 2023 05:07:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=fba6K9Q3uuGERCgjltObNFtYzuy2qZ5f5kNSyET8KQE=;
- b=AMdNHwG/cZLD4UAw34bKJECgwn3kI4IObx0do9JJGSL96RoKjXKrwfArYTNwMhQdXRH+
- MEHUVOvC82QcScWMFZIn7Ew/lUuqzg+64cPR8pYqwS+b+vQagZRSy4HiCoKh5WXLTYSK
- x0M53K260YUNShQwsRBjDO+9SISQ76bXE6M6qSMNmN+GheTboyfsJx3JxJ1tTXVGWeAq
- KnAX7mgCBFn/A8Y42M6eOXLFVYTsS4W7FyoygqMpKa+h0ZZnvYVrJhohOnIn1O3e0gmV
- rhyPY/An4x09eVxK6X7UdzZUsBh85XratlshO4DRKnI3bHoflh0IZUuuMmb2i8pGPVbR 0A== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sb7bb8sa4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Aug 2023 05:07:55 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37857rxh016905
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 8 Aug 2023 05:07:53 GMT
-Received: from [10.252.212.151] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 7 Aug
- 2023 22:07:51 -0700
-Message-ID: <4720b820-523a-477a-436c-72fceb4a6a12@quicinc.com>
-Date: Tue, 8 Aug 2023 10:37:47 +0530
+	Wed, 09 Aug 2023 07:34:54 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id E9DCB62FC2;
+	Wed,  9 Aug 2023 07:34:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59A0FC433C7;
+	Wed,  9 Aug 2023 07:34:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1691566491;
+	bh=60Y6J4I0j3xXL5Nco312J593o+/GGtthikOgUobZJYo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=KLYbVGAPMTOE6TBQhJigf7VgNNYfcES5L5qJFBKGt1lX4B7ZhbYwkwLo2SVmkKUlx
+	 jLl4q13qQfGDIX1SSZwBVsqxJc37jScOg/DEQEqi8jus0qQ1rn2aAQrhB9XYMWaYG5
+	 ZWaScln3FVt0MBewvBUzRQGa0MXJ1u13QtJCL33XV2CAqaVCSVUKzz9dKAyBtpy+0B
+	 1+lJCA0TmNshW026Cs1LL23QCTwDn/nAsHmDaVMIcDNtoi2BXG4FBp0fLHMHbS+/nG
+	 tPJTtOzmnErHWYsC7yCsAUxdnkIwyvJDCq2tPtgG4aEsyoNevVUF5LDSiR3NO78poY
+	 ry76Tm+3uD1Xw==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1qTdiS-00016I-1p;
+	Wed, 09 Aug 2023 09:34:48 +0200
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] Revert "Revert "wifi: ath11k: Enable threaded NAPI""
+Date: Wed,  9 Aug 2023 09:34:32 +0200
+Message-ID: <20230809073432.4193-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] wifi: ath11k: fix boot failure with one MSI vector
-Content-Language: en-US
-To: Jeff Johnson <quic_jjohnson@quicinc.com>,
-        Baochen Qiang
-	<quic_bqiang@quicinc.com>,
-        Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20230601033840.2997-1-quic_bqiang@quicinc.com>
- <87fs70hlel.fsf@kernel.org>
- <545cc8e8-481d-85b2-5692-43580936b48d@quicinc.com>
- <897b61ea-36d2-1ab4-9c60-9bdfd2d9cad7@quicinc.com>
- <fa70ca5e-001b-3c6b-dbc2-2853f8fc2f72@quicinc.com>
- <fcb783b4-95e9-24d8-a656-b273a79598a0@quicinc.com>
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <fcb783b4-95e9-24d8-a656-b273a79598a0@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bXXus_wXxlZN_3oboTdn0x7QLxye6xom
-X-Proofpoint-ORIG-GUID: bXXus_wXxlZN_3oboTdn0x7QLxye6xom
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-08_03,2023-08-03_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 mlxscore=0 adultscore=0 bulkscore=0 malwarescore=0
- impostorscore=0 spamscore=0 phishscore=0 mlxlogscore=766 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308080045
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230807_220803_515011_1B050C5C 
-X-CRM114-Status: UNSURE (   8.43  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230809_003453_501319_8C7E3F96 
+X-CRM114-Status: GOOD (  11.99  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,26 +79,73 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+This reverts commit d265ebe41c911314bd273c218a37088835959fa1.
+
+Disabling threaded NAPI causes the Lenovo ThinkPad X13s to hang (e.g. no
+more interrupts received) almost immediately during RX.
+
+Apparently something broke since commit 13aa2fb692d3 ("wifi: ath11k:
+Enable threaded NAPI") so that a simple revert is no longer possible.
+
+As commit d265ebe41c91 ("Revert "wifi: ath11k: Enable threaded NAPI"")
+does not address the underlying issue reported with QCN9074, it seems we
+need to reenable threaded NAPI before fixing both bugs properly.
+
+Fixes: d265ebe41c91 ("Revert "wifi: ath11k: Enable threaded NAPI"")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+
+Hi Kalle,
+
+Disabling threaded NAPI caused a severe regression in 6.5-rc5 by making
+the X13s completely unusable (e.g. no keyboard input, I've seen an RCU
+splat once).
+
+I'm supposed to be on holiday this week, but thanks to the rain I gave
+rc5 a try and ran into this.
+
+I've added Bjorn, Mani and Konrad on CC who may be able to help with
+debugging this further if needed while I'm out-of-office.
+
+Johan
 
 
-On 8/7/2023 8:59 PM, Jeff Johnson wrote:
-> On 8/7/2023 3:16 AM, Manikanta Pubbisetty wrote:
->> No impact on WCN6750.
->>
->> Tested-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> 
-> Can you provide a Tested-on: flag that Kalle can add to the commit text?
-> 
+ drivers/net/wireless/ath/ath11k/ahb.c  | 1 +
+ drivers/net/wireless/ath/ath11k/pcic.c | 1 +
+ 2 files changed, 2 insertions(+)
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-01160-QCAMSLSWPLZ-1
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 139da578831a..1cebba7889d7 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -376,6 +376,7 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
++			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index c63083633b37..c899616fbee4 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -466,6 +466,7 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
++			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
+-- 
+2.41.0
 
-Thanks,
-Manikanta
 
 -- 
 ath11k mailing list
