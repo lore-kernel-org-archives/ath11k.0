@@ -4,67 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F591C0015E
-	for <ath11k@archiver.kernel.org>; Fri, 11 Aug 2023 09:19:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34702C04A6A
+	for <ath11k@archiver.kernel.org>; Fri, 11 Aug 2023 10:44:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=or8DuAlGPCfXKfkOUi3fJFHrl9DsLXx8+1kyNPSBgnw=; b=bsPUDvVDqKJUFf
-	OKUM/XGBD/A1XFMbzEaF1X8p37bYh3N4zCPmVEBGTLfInBxG4AUfIsSYZRHOYOI5nhKfwy5SRGD43
-	msPsmC9TiwGkUpa6gjxskQ/76MMnN+UIZchwOLXFaH2KPSt1HtxOnCSAmq/c4jA1dacfkHZ70iXoj
-	fhc6uzIBiV6kVFGVxgZZwRkzE3HL68MDV63uP0tL//L615o7y1tACjZYqogRybiQhfWhcdaE7bWxs
-	77JA+wby18Y3WZHZfgxLs5Kgi3wDYUFFt+SIxZ9z3uNacgUs1q6ZrL0/4FEBsukGiosJsoEnH/uCt
-	h9O/VyNV7y6UuiQLiY5A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=U9nUO/Ap/glqAL41s9wx5rLOVnIuRn7dpGAN9H/MRG0=; b=49wyZKzHBJx59X
+	PlUclfJR12UCf+JRvSG4e8g/+tUMYKAZD5m18oDjlnl5bS7z9lYa/npipa9104QeL31GbsbrmKOvh
+	Kr7ZQSDXDelnJCQtWYZTx112VwbktDqt0jBh2z1NamCMtdz5W7GLDUUhcxGmFd1YX6o36HTtyzGn/
+	fUzdN8V3JTTs2A7J9toV5pZO0+ndQDPOWLh9xzJE10Wapnz29UpCazcKEwb3aamR6/frPwKunGDIt
+	duj8pMLV6McOU+cur0q77ZLvfc3z7bYrMk8hgij69Vf6x0VvD0H6qtRasNW+OSpBwrEkJ/hstuitt
+	M0Q/NFmf7ZgxKD/GBMZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qUOIz-009wnU-1G;
-	Fri, 11 Aug 2023 09:19:37 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1qUPdC-00AJSr-06;
+	Fri, 11 Aug 2023 10:44:34 +0000
+Received: from szxga01-in.huawei.com ([45.249.212.187])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qUOIw-009wn1-0q
+	id 1qUPd9-00AJPl-0Q
 	for ath11k@lists.infradead.org;
-	Fri, 11 Aug 2023 09:19:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=4Sar5Lcc0N8EDoByeYYF1XXtTNCXfHKAoUEecHC/FLw=;
-	t=1691745573; x=1692955173; b=ErUr0mEDbH+o4MjpelAfXrN3/8aiFcrdERtE8qeZOed+wTm
-	dJloxZuRRIWNcm9AG7tbcIA4fs0pDrz/8FJ9Pn2SFZsqqI2M1EjvnORrxwGkEIKFw00Y9nkGkXkEH
-	udpxy/TRCduYNnYPd8ASI1JRGikAjYjzPHJc19q/ktXY2mfg6O3Wnb+yiuLvOISMyYFWASF2ZdPuK
-	zcRYaMf3mLqiMSk3RqTG+v9HJDpfYGrK/oIRnjIdzGs67NrN8mbX13fYm4xYq11yjK+gJC9uKHRGy
-	tSD2++M5DCWiF3hhXVfXdvn5YlloHH5nZ1TKUcia5iudewEkRoy+adrxfMml4W6A==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.96)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1qUOIt-000p9a-32;
-	Fri, 11 Aug 2023 11:19:32 +0200
-Message-ID: <30ad9d872e0555d801e9b22c9a72edb0f62a61a6.camel@sipsolutions.net>
-Subject: Re: parsing the multi-link element with STA profile wifi: mac80211:
- support MLO authentication/association with one link
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Wen Gong <quic_wgong@quicinc.com>, linux-wireless
-	 <linux-wireless@vger.kernel.org>
-Cc: ath11k@lists.infradead.org, Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Fri, 11 Aug 2023 11:19:31 +0200
-In-Reply-To: <b5de662d-fd49-7b94-f617-89d4761c175b@quicinc.com>
-References: <48715509-62fd-2307-e38f-176234b482c1@quicinc.com>
-	 <f240b33d507daf898480b0a11eb27d4475e45164.camel@sipsolutions.net>
-	 <571d8ecf-2ca6-8b7b-6e15-be12c56e9f88@quicinc.com>
-	 <e40ee96ab2a8d9d079d3a06b7b1c615ab25a2403.camel@sipsolutions.net>
-	 <2842f57c-e383-fb9e-d994-95336cb65e0d@quicinc.com>
-	 <6a33a41b5aa6c98d95ff934fbb6a10dfe78e6e6e.camel@sipsolutions.net>
-	 <2d3a6578-68c5-a0f3-b18b-bce2e67d3fdc@quicinc.com>
-	 <b5de662d-fd49-7b94-f617-89d4761c175b@quicinc.com>
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+	Fri, 11 Aug 2023 10:44:33 +0000
+Received: from canpemm500007.china.huawei.com (unknown [172.30.72.55])
+	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4RMgP02yHdzrSXT;
+	Fri, 11 Aug 2023 18:43:00 +0800 (CST)
+Received: from localhost (10.174.179.215) by canpemm500007.china.huawei.com
+ (7.192.104.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 11 Aug
+ 2023 18:44:14 +0800
+From: Yue Haibing <yuehaibing@huawei.com>
+To: <kvalo@kernel.org>, <quic_jjohnson@quicinc.com>,
+	<quic_srirrama@quicinc.com>, <yuehaibing@huawei.com>,
+	<quic_mpubbise@quicinc.com>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+Subject: [PATCH] wifi: ath11k: Remove unused declarations
+Date: Fri, 11 Aug 2023 18:44:13 +0800
+Message-ID: <20230811104413.33668-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.10.2.windows.1
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+X-Originating-IP: [10.174.179.215]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ canpemm500007.china.huawei.com (7.192.104.62)
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230811_021934_301083_91745E68 
-X-CRM114-Status: GOOD (  10.15  )
+X-CRM114-CacheID: sfid-20230811_034431_375519_97B41201 
+X-CRM114-Status: UNSURE (   6.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,35 +68,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2023-07-26 at 14:30 +0800, Wen Gong wrote:
-> Hi Johannes,
-> 
-> I guess you have already fix it in some patch, right?
-> 
+Commit 2c3960c2253d ("ath11k: setup ce tasklet for control path")
+declared but never implemented ath11k_ce_map_service_to_pipe().
+Commit e3396b8bddd2 ("ath11k: ce: support different CE configurations")
+declared but never implemented ath11k_ce_attr_attach().
+Commit d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+declared but never implemented ath11k_qmi_event_work()/ath11k_qmi_msg_recv_work().
 
-No, I don't. We've not seen this, it's not been a priority.
+Signed-off-by: Yue Haibing <yuehaibing@huawei.com>
+---
+ drivers/net/wireless/ath/ath11k/ce.h  | 3 ---
+ drivers/net/wireless/ath/ath11k/qmi.h | 2 --
+ 2 files changed, 5 deletions(-)
 
-<rant>
+diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
+index 1fc6360e7f01..c0f6a0ba86df 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.h
++++ b/drivers/net/wireless/ath/ath11k/ce.h
+@@ -203,9 +203,6 @@ int ath11k_ce_alloc_pipes(struct ath11k_base *ab);
+ void ath11k_ce_free_pipes(struct ath11k_base *ab);
+ int ath11k_ce_get_attr_flags(struct ath11k_base *ab, int ce_id);
+ void ath11k_ce_poll_send_completed(struct ath11k_base *ab, u8 pipe_id);
+-int ath11k_ce_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
+-				  u8 *ul_pipe, u8 *dl_pipe);
+-int ath11k_ce_attr_attach(struct ath11k_base *ab);
+ void ath11k_ce_get_shadow_config(struct ath11k_base *ab,
+ 				 u32 **shadow_cfg, u32 *shadow_cfg_len);
+ void ath11k_ce_stop_shadow_timers(struct ath11k_base *ab);
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
+index b0407abf90cd..d477e2be814b 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.h
++++ b/drivers/net/wireless/ath/ath11k/qmi.h
+@@ -514,8 +514,6 @@ struct qmi_wlanfw_wlan_ini_resp_msg_v01 {
+ int ath11k_qmi_firmware_start(struct ath11k_base *ab,
+ 			      u32 mode);
+ void ath11k_qmi_firmware_stop(struct ath11k_base *ab);
+-void ath11k_qmi_event_work(struct work_struct *work);
+-void ath11k_qmi_msg_recv_work(struct work_struct *work);
+ void ath11k_qmi_deinit_service(struct ath11k_base *ab);
+ int ath11k_qmi_init_service(struct ath11k_base *ab);
+ void ath11k_qmi_free_resource(struct ath11k_base *ab);
+-- 
+2.34.1
 
-Look, I told you how I think you can fix it _literally_ three months
-ago. I was on vacation for pretty much exactly half of that time. And
-during that time you ask if _I_ have a fix? What have you been doing for
-the past three months that prevented you from fixing it?
-
-Upstream is supposed to be a collaborative effort, not a place where
-I/we do the work and you keep asking me to make the changes you need for
-you!
-
-Sure, it there's a bug, and we should probably be fixing it  too, but if
-that's not high on our list right now because we don't experience it,
-then I don't see why you don't just send a patch!
-
-I even get that you might not know whether something is a bug, and when
-we determine that it is, how to fix it. But we cleared that up three
-months ago, and all you've done in this thread is ask whether I have a
-fix for you. Why?
-
-johannes
 
 -- 
 ath11k mailing list
