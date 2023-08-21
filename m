@@ -4,70 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BFF9EE49A6
-	for <ath11k@archiver.kernel.org>; Mon, 21 Aug 2023 13:41:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39BFEE4993
+	for <ath11k@archiver.kernel.org>; Mon, 21 Aug 2023 14:13:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xf5OJ7tGD6MrBzVxtSjSZbPdg9gkf7sEaYcjJ8Nn3SI=; b=qZVlFmqG/V2MdO
-	VbngnGLAiZmr28jdzkpfx+RNbjIeev3EgYwf+4WC9uxgPoaXoS57MZ4dpFCx0fTu/MfQlT884Dg4Q
-	Afi0gKqCCVpG7X6vsvHuTOfNKddyxUwLsXsosO0cC4FOoOnBVVggm50nnmylhMfGA+W/Kvn67Rxf9
-	wfvEmX1YwCRNITcxa7NPf/2po+y1LTkW0xR9noQ9REWT6AQYcdIBloXYTqoKl8/yLUa1F3c1I+wv4
-	c3lXNXNbRwVBC/A9GXOCsGrXBGdDk9hzg5dv7ynISCJjyol9rAOO03HlndsdPgiIDRO6b1tdfZkds
-	Bm18FRE5L73t1Hvze4lg==;
+	List-Archive:List-Unsubscribe:List-Id:CC:To:Message-ID:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=77rKaarwmXFSnXvwOcXgYM/ltKwP0gGmFIbyfYdho9c=; b=w7pEPM79M4Sl2T
+	4ncwPoJYzr/vibPqqERobbQTvmNpAvZQGaKN8miOp2kpFOxiblkNoEsXPJQyoj1qTRiH5f6n+ImcI
+	cGyp/J1IPa5lKQ3zGBAnnVx4m4BOdVLMcZ3vONteEE/lNtD3B44Ip7kt2j2QwG/KaaMVCjRb6dZLf
+	CUEcTs2qhBNxv9C4oaQpmwRlI/Y2OlSZQyQnfDoLhs7xZ3X5+w8FFQgoAJT0x1gRZQo4rlpE2PzoD
+	YoA40krb5CSNQlJ0oX9hJ4Nj1fNkmdrdswykTRHUvLapUtobNCMwZCdIeBg9eh+75Er6tgvFvbFuK
+	hvd4Q/dYyXYhYDYpPbnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qY5AA-00E6Iy-22;
-	Mon, 21 Aug 2023 13:41:46 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qY5fI-00E9Wq-14;
+	Mon, 21 Aug 2023 14:13:56 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qY5A7-00E6I7-10
+	id 1qY5fE-00E9WM-37
 	for ath11k@lists.infradead.org;
-	Mon, 21 Aug 2023 13:41:44 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 9B7BC628D4;
-	Mon, 21 Aug 2023 13:41:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FAD5C433C8;
-	Mon, 21 Aug 2023 13:41:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1692625302;
-	bh=llcWAky7/0VeprxT0Gji6lhNX28k6inu87hMNuVO7Io=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Duz3brgrVzq4Vc6da+rOIyvYRJ1x75AftCzmwv78iF9MHPOLns2FMDB4HXTukcU2B
-	 Zbf2PxWHwY6HICh3fpEwoqwjkaszpW54cmiowxSGycXiXYg6/V5YBsE89dirNdAPMC
-	 Yc9Syn4U2GnCGAVji9KR7Dg+AG6QZQnAPuYbSeIxHmMw6HEVxFX8Iw/RDAG8Ry++xW
-	 vSSo7MPPiOwM2LLtjhPwnr1u1KCvlcM7SZQA34yoOy8ZDZIKL4bmrJjZMp/MXR6wVS
-	 WjOpZ/uISHH+HZnb2ZUxu6kL1+pSRiC5Rpg54JKIs8ZjXtCsYhs17w09SuJ6WpbyiG
-	 AWyZB7dEsnHBQ==
-Received: from johan by theta with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qY5A1-0000xg-2T;
-	Mon, 21 Aug 2023 15:41:37 +0200
-Date: Mon, 21 Aug 2023 15:41:37 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "Revert "wifi: ath11k: Enable threaded NAPI""
-Message-ID: <ZONpkVU1ORHj-zFH@hovoldconsulting.com>
-References: <20230809073432.4193-1-johan+linaro@kernel.org>
+	Mon, 21 Aug 2023 14:13:55 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37LALMmj027900;
+	Mon, 21 Aug 2023 14:13:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
+ subject : mime-version : content-type : content-transfer-encoding :
+ message-id : to : cc; s=qcppdkim1;
+ bh=pBf5rfOuZnk0fZM7AWeGe7l0NsKwLyxeWi7K67R7t04=;
+ b=EQ9bJGbZWct8XkdFCC5lvI+q46c25y1aiXOctLu1AXbiyhgtWq9IPNHh+MRN6usppRcT
+ BH6kaFC53+StzwdhxKSdUrSO5UGbLvF/vBD/h0T9GUrgzXkPMmpenaJKDNT9bTTITfZp
+ +cppUnGLVxzy1sReQiTPEkE5OdLFZ3A4rLNiZSwBeq68FyTADnKFbFp82PaXBXqhSeRD
+ hs7cUO/QdluMTcnLp8Cgw1eBZoLLSVlprIeO5aJLXjANNEL9gN8BKnDSaJt5+6vLYmAC
+ J++WPxJCETvTMkWyZtaC+RvUvXbEb7JKVJB8GAU4e9CSGDiH8Eca8r7rOzxALgc5d88C qA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sm3xv8wm2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Aug 2023 14:13:44 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37LEDhA0024199
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Aug 2023 14:13:43 GMT
+Received: from hu-jjohnson-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Mon, 21 Aug 2023 07:13:42 -0700
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Date: Mon, 21 Aug 2023 07:13:36 -0700
+Subject: [PATCH] wifi: ath11k: Consistently use ath11k_vif_to_arvif()
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230809073432.4193-1-johan+linaro@kernel.org>
+Message-ID: <20230821-ath11k_vif_to_arvif-v1-1-fa2c3b60b5cf@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAA9x42QC/32NUQrCMBBEr1L228hui2j88h5SSky3ZhETTWJQS
+ u9u7AH8mzcwb2ZIHIUTHJsZIhdJEnwF2jRgnfFXVjJWhhbbDg+EymRHdBuKTEMOg4k1KNRoL4T
+ IuttDXT4iT/Jeree+spOUQ/ysJ4V+7X9fIUVK7xg7nEZCxtPzJVa83dpwh35Zli9n9aFfuAAAA
+ A==
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>
+X-Mailer: b4 0.12.3
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: po6G8UgkJll4s1spkrHzoYLQQyV-chuI
+X-Proofpoint-ORIG-GUID: po6G8UgkJll4s1spkrHzoYLQQyV-chuI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-21_01,2023-08-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 impostorscore=0 clxscore=1015 adultscore=0 suspectscore=0
+ mlxlogscore=999 priorityscore=1501 mlxscore=0 malwarescore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308210131
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230821_064143_393112_A43EC7A7 
-X-CRM114-Status: GOOD (  12.62  )
+X-CRM114-CacheID: sfid-20230821_071353_034602_34409179 
+X-CRM114-Status: GOOD (  20.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,29 +99,328 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
+Helper function ath11k_vif_to_arvif() exists to retrieve a struct
+ath11k_vif from a struct ieee80211_vif. However, in multiple places
+this logic is open-coded with inline typecasting. Since the
+typecasting prevents the compiler from type-checking the source and
+destination, update the driver to consistently use the helper
+function.
 
-On Wed, Aug 09, 2023 at 09:34:32AM +0200, Johan Hovold wrote:
+No functional changes, compile tested only.
 
-> Disabling threaded NAPI caused a severe regression in 6.5-rc5 by making
-> the X13s completely unusable (e.g. no keyboard input, I've seen an RCU
-> splat once).
-> 
-> I'm supposed to be on holiday this week, but thanks to the rain I gave
-> rc5 a try and ran into this.
-> 
-> I've added Bjorn, Mani and Konrad on CC who may be able to help with
-> debugging this further if needed while I'm out-of-office.
+Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c      | 64 +++++++++++++++---------------
+ drivers/net/wireless/ath/ath11k/testmode.c |  2 +-
+ 2 files changed, 33 insertions(+), 33 deletions(-)
 
-Back from my holiday now, and this regression is still there with
-6.5-rc7.
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 2aadf2c387b6..c071bf5841af 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -566,7 +566,7 @@ static void ath11k_get_arvif_iter(void *data, u8 *mac,
+ 				  struct ieee80211_vif *vif)
+ {
+ 	struct ath11k_vif_iter *arvif_iter = data;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 
+ 	if (arvif->vdev_id == arvif_iter->vdev_id)
+ 		arvif_iter->arvif = arvif;
+@@ -1464,7 +1464,7 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif)
+ 	u32 params = 0;
+ 	u8 i = 0;
+ 
+-	tx_arvif = (void *)arvif->vif->mbssid_tx_vif->drv_priv;
++	tx_arvif = ath11k_vif_to_arvif(arvif->vif->mbssid_tx_vif);
+ 
+ 	beacons = ieee80211_beacon_get_template_ema_list(tx_arvif->ar->hw,
+ 							 tx_arvif->vif, 0);
+@@ -1520,8 +1520,8 @@ static int ath11k_mac_setup_bcn_tmpl_mbssid(struct ath11k_vif *arvif)
+ 	struct sk_buff *bcn;
+ 	int ret;
+ 
+-	if (arvif->vif->mbssid_tx_vif) {
+-		tx_arvif = (void *)arvif->vif->mbssid_tx_vif->drv_priv;
++	if (vif->mbssid_tx_vif) {
++		tx_arvif = ath11k_vif_to_arvif(vif->mbssid_tx_vif);
+ 		if (tx_arvif != arvif) {
+ 			ar = tx_arvif->ar;
+ 			ab = ar->ab;
+@@ -1562,7 +1562,7 @@ static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
+ 	 * non-transmitting interfaces, and results in a crash if sent.
+ 	 */
+ 	if (vif->mbssid_tx_vif &&
+-	    arvif != (void *)vif->mbssid_tx_vif->drv_priv && arvif->is_up)
++	    arvif != ath11k_vif_to_arvif(vif->mbssid_tx_vif) && arvif->is_up)
+ 		return 0;
+ 
+ 	if (vif->bss_conf.ema_ap && vif->mbssid_tx_vif)
+@@ -1626,7 +1626,7 @@ static void ath11k_control_beaconing(struct ath11k_vif *arvif,
+ 	ether_addr_copy(arvif->bssid, info->bssid);
+ 
+ 	if (arvif->vif->mbssid_tx_vif)
+-		tx_arvif = (struct ath11k_vif *)arvif->vif->mbssid_tx_vif->drv_priv;
++		tx_arvif = ath11k_vif_to_arvif(arvif->vif->mbssid_tx_vif);
+ 
+ 	ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
+ 				 arvif->bssid,
+@@ -1649,7 +1649,7 @@ static void ath11k_mac_handle_beacon_iter(void *data, u8 *mac,
+ {
+ 	struct sk_buff *skb = data;
+ 	struct ieee80211_mgmt *mgmt = (void *)skb->data;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 
+ 	if (vif->type != NL80211_IFTYPE_STATION)
+ 		return;
+@@ -1672,7 +1672,7 @@ static void ath11k_mac_handle_beacon_miss_iter(void *data, u8 *mac,
+ 					       struct ieee80211_vif *vif)
+ {
+ 	u32 *vdev_id = data;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct ath11k *ar = arvif->ar;
+ 	struct ieee80211_hw *hw = ar->hw;
+ 
+@@ -1718,7 +1718,7 @@ static void ath11k_peer_assoc_h_basic(struct ath11k *ar,
+ 				      struct ieee80211_sta *sta,
+ 				      struct peer_assoc_params *arg)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	u32 aid;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+@@ -1746,7 +1746,7 @@ static void ath11k_peer_assoc_h_crypto(struct ath11k *ar,
+ 	struct ieee80211_bss_conf *info = &vif->bss_conf;
+ 	struct cfg80211_chan_def def;
+ 	struct cfg80211_bss *bss;
+-	struct ath11k_vif *arvif = (struct ath11k_vif *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	const u8 *rsnie = NULL;
+ 	const u8 *wpaie = NULL;
+ 
+@@ -1804,7 +1804,7 @@ static void ath11k_peer_assoc_h_rates(struct ath11k *ar,
+ 				      struct ieee80211_sta *sta,
+ 				      struct peer_assoc_params *arg)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct wmi_rate_set_arg *rateset = &arg->peer_legacy_rates;
+ 	struct cfg80211_chan_def def;
+ 	const struct ieee80211_supported_band *sband;
+@@ -1867,7 +1867,7 @@ static void ath11k_peer_assoc_h_ht(struct ath11k *ar,
+ 				   struct peer_assoc_params *arg)
+ {
+ 	const struct ieee80211_sta_ht_cap *ht_cap = &sta->deflink.ht_cap;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct cfg80211_chan_def def;
+ 	enum nl80211_band band;
+ 	const u8 *ht_mcs_mask;
+@@ -2064,7 +2064,7 @@ static void ath11k_peer_assoc_h_vht(struct ath11k *ar,
+ 				    struct peer_assoc_params *arg)
+ {
+ 	const struct ieee80211_sta_vht_cap *vht_cap = &sta->deflink.vht_cap;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct cfg80211_chan_def def;
+ 	enum nl80211_band band;
+ 	u16 *vht_mcs_mask;
+@@ -2261,7 +2261,7 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 				   struct ieee80211_sta *sta,
+ 				   struct peer_assoc_params *arg)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct cfg80211_chan_def def;
+ 	const struct ieee80211_sta_he_cap *he_cap = &sta->deflink.he_cap;
+ 	enum nl80211_band band;
+@@ -2584,7 +2584,7 @@ static void ath11k_peer_assoc_h_qos(struct ath11k *ar,
+ 				    struct ieee80211_sta *sta,
+ 				    struct peer_assoc_params *arg)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 
+ 	switch (arvif->vdev_type) {
+ 	case WMI_VDEV_TYPE_AP:
+@@ -2747,7 +2747,7 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
+ 					struct ieee80211_sta *sta,
+ 					struct peer_assoc_params *arg)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct cfg80211_chan_def def;
+ 	enum nl80211_band band;
+ 	const u8 *ht_mcs_mask;
+@@ -2933,7 +2933,7 @@ static bool ath11k_mac_vif_recalc_sta_he_txbf(struct ath11k *ar,
+ 					      struct ieee80211_vif *vif,
+ 					      struct ieee80211_sta_he_cap *he_cap)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct ieee80211_he_cap_elem he_cap_elem = {0};
+ 	struct ieee80211_sta_he_cap *cap_band = NULL;
+ 	struct cfg80211_chan_def def;
+@@ -2995,7 +2995,7 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 			     struct ieee80211_bss_conf *bss_conf)
+ {
+ 	struct ath11k *ar = hw->priv;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct peer_assoc_params peer_arg;
+ 	struct ieee80211_sta *ap_sta;
+ 	struct ath11k_peer *peer;
+@@ -3111,7 +3111,7 @@ static void ath11k_bss_disassoc(struct ieee80211_hw *hw,
+ 				struct ieee80211_vif *vif)
+ {
+ 	struct ath11k *ar = hw->priv;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	int ret;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+@@ -3160,7 +3160,7 @@ static void ath11k_recalculate_mgmt_rate(struct ath11k *ar,
+ 					 struct ieee80211_vif *vif,
+ 					 struct cfg80211_chan_def *def)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	const struct ieee80211_supported_band *sband;
+ 	u8 basic_rate_idx;
+ 	int hw_rate_code;
+@@ -4632,7 +4632,7 @@ static int ath11k_station_disassoc(struct ath11k *ar,
+ 				   struct ieee80211_vif *vif,
+ 				   struct ieee80211_sta *sta)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	int ret = 0;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+@@ -5160,7 +5160,7 @@ static int ath11k_mac_op_sta_set_txpwr(struct ieee80211_hw *hw,
+ 				       struct ieee80211_sta *sta)
+ {
+ 	struct ath11k *ar = hw->priv;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	int ret = 0;
+ 	s16 txpwr;
+ 
+@@ -5210,7 +5210,7 @@ static void ath11k_mac_op_sta_rc_update(struct ieee80211_hw *hw,
+ {
+ 	struct ath11k *ar = hw->priv;
+ 	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct ath11k_peer *peer;
+ 	u32 bw, smps;
+ 
+@@ -5337,7 +5337,7 @@ static int ath11k_mac_op_conf_tx(struct ieee80211_hw *hw,
+ 				 const struct ieee80211_tx_queue_params *params)
+ {
+ 	struct ath11k *ar = hw->priv;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct wmi_wmm_params_arg *p = NULL;
+ 	int ret;
+ 
+@@ -6455,7 +6455,7 @@ static int ath11k_mac_setup_vdev_params_mbssid(struct ath11k_vif *arvif,
+ 		return 0;
+ 	}
+ 
+-	tx_arvif = (void *)tx_vif->drv_priv;
++	tx_arvif = ath11k_vif_to_arvif(tx_vif);
+ 
+ 	if (arvif->vif->bss_conf.nontransmitted) {
+ 		if (ar->hw->wiphy != ieee80211_vif_to_wdev(tx_vif)->wiphy)
+@@ -7408,7 +7408,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
+ 	/* TODO: Update ar->rx_channel */
+ 
+ 	for (i = 0; i < n_vifs; i++) {
+-		arvif = (void *)vifs[i].vif->drv_priv;
++		arvif = ath11k_vif_to_arvif(vifs[i].vif);
+ 
+ 		if (WARN_ON(!arvif->is_started))
+ 			continue;
+@@ -7450,7 +7450,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
+ 
+ 		mbssid_tx_vif = arvif->vif->mbssid_tx_vif;
+ 		if (mbssid_tx_vif)
+-			tx_arvif = (struct ath11k_vif *)mbssid_tx_vif->drv_priv;
++			tx_arvif = ath11k_vif_to_arvif(mbssid_tx_vif);
+ 
+ 		ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
+ 					 arvif->bssid,
+@@ -7546,7 +7546,7 @@ static int ath11k_start_vdev_delay(struct ieee80211_hw *hw,
+ {
+ 	struct ath11k *ar = hw->priv;
+ 	struct ath11k_base *ab = ar->ab;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	int ret;
+ 
+ 	if (WARN_ON(arvif->is_started))
+@@ -7596,7 +7596,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
+ {
+ 	struct ath11k *ar = hw->priv;
+ 	struct ath11k_base *ab = ar->ab;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	int ret;
+ 	struct peer_create_params param;
+ 
+@@ -7686,7 +7686,7 @@ ath11k_mac_op_unassign_vif_chanctx(struct ieee80211_hw *hw,
+ {
+ 	struct ath11k *ar = hw->priv;
+ 	struct ath11k_base *ab = ar->ab;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct ath11k_peer *peer;
+ 	int ret;
+ 
+@@ -8307,7 +8307,7 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 			       struct ieee80211_vif *vif,
+ 			       const struct cfg80211_bitrate_mask *mask)
+ {
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct cfg80211_chan_def def;
+ 	struct ath11k_pdev_cap *cap;
+ 	struct ath11k *ar = arvif->ar;
+@@ -8904,7 +8904,7 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
+ 					   enum ieee80211_roc_type type)
+ {
+ 	struct ath11k *ar = hw->priv;
+-	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct scan_req_params arg;
+ 	int ret;
+ 	u32 scan_time_msec;
+diff --git a/drivers/net/wireless/ath/ath11k/testmode.c b/drivers/net/wireless/ath/ath11k/testmode.c
+index 8fc5cddb28bd..43bb23265d34 100644
+--- a/drivers/net/wireless/ath/ath11k/testmode.c
++++ b/drivers/net/wireless/ath/ath11k/testmode.c
+@@ -350,7 +350,7 @@ static int ath11k_tm_cmd_wmi(struct ath11k *ar, struct nlattr *tb[],
+ 	if (ar->ab->fw_mode != ATH11K_FIRMWARE_MODE_FTM &&
+ 	    (tag == WMI_TAG_VDEV_SET_PARAM_CMD || tag == WMI_TAG_UNIT_TEST_CMD)) {
+ 		if (vif) {
+-			arvif = (struct ath11k_vif *)vif->drv_priv;
++			arvif = ath11k_vif_to_arvif(vif);
+ 			*ptr = arvif->vdev_id;
+ 		} else {
+ 			ret = -EINVAL;
 
-Any chance we can get the offending commit reverted before 6.5 is
-released? 
+---
+base-commit: 3f257461ab0ab19806bae2bfde4c3cd88dbf050e
+change-id: 20230810-ath11k_vif_to_arvif-090cb100e937
 
-I'll take a closer look at this meanwhile.
+Best regards,
+-- 
+Jeff Johnson <quic_jjohnson@quicinc.com>
 
-Johan
 
 -- 
 ath11k mailing list
