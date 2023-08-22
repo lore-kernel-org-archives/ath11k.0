@@ -4,71 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB945EE49A4
-	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 13:02:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C88AEE4996
+	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 13:44:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7+UfdEJriueUliweOIk6rpYHnZms/++cQYL51qHL3fo=; b=VPe+bpamZ6vjzl
-	seM7E6sL3Kmx4qdTXSPkvVGzTu0jy7C1utMe5LBF+/XukGhjbenSZmeOJ8ROwLMTTD8rjAdyTIapC
-	MZ7tiapx9XjxVf3k6FtzZlahoO6mmlebTvwl+6xAQJUSYTNK742+6iBQNTo0q0uVnVZi/d8B3bCST
-	b0n+E8KQgUpjzDBVlaqgOD4xMVg15Di0kf3Jy9IGrP9W9bejhQ/8bOlBmFpJFhtwz2PBdAWEjMfHf
-	gPgAlHsRSx/LDYcb+hQdcap9uv5mJNYBVgmROeTPpSLGi7rvwKoWt7D4lOh+gpUaobEzr7b4K1SGR
-	L32sfQT16HlkTVoTTzqw==;
+	List-Owner; bh=1YPwpORbkLN5jmI1dw2XKyyJl34Y8gk5j7rCU8YC4bQ=; b=4Id+nJLcscf/FZ
+	9gxAXzNyg2EWNUR0U2lgEYOZqVXDXgi1goxhylksdZdyZ4K/9q/wiztRDGzK0HIinMnsI/JHbUEX/
+	qxYrUx9simb/WqGrBboif9IiWoA43cjgQ/OOygl8LRHCXxfRQ6vE/dMU6B8Sh7W6P+CHLbPSMdnm2
+	dOarr63IIvYEZuQWMTuRjewz/POpqRQc8NBSO/wLKEtxyauNKqIgN3WfKL6hmFxF4HmEMVdmyMj/+
+	WSXdOMKpECmGLq+Gcvy2a8NPS/NfrA7/u4jTnb1MsGX///Vv/zu9Vq3JMQGMBsKbhC+Gge1wF1RYL
+	drMfeactUZM05xPXx0Kg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYR1K-00FwuN-0T;
-	Tue, 22 Aug 2023 13:02:06 +0000
+	id 1qYRgk-00G40F-2k;
+	Tue, 22 Aug 2023 13:44:54 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYR1H-00Fwtx-03
+	id 1qYRgi-00G3zY-1S
 	for ath11k@lists.infradead.org;
-	Tue, 22 Aug 2023 13:02:04 +0000
+	Tue, 22 Aug 2023 13:44:53 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 6376663972;
-	Tue, 22 Aug 2023 13:02:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0F5FC433BA;
-	Tue, 22 Aug 2023 13:01:59 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id A20A3656FD;
+	Tue, 22 Aug 2023 13:44:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5439C433C7;
+	Tue, 22 Aug 2023 13:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1692709321;
-	bh=5wNvmmVUGipwdFV4DA5Qq+spVPdhC20+U8ualyHiEww=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=If6P8PLS1eHkLD5z6uQv3eMQ0eflflKqG0zQ/E7ehqhE9Ccgbgpuibkpy7IulplHp
-	 iGsGdyaSo36LwFFEYMc3u15d35wD0ajPs9MQOvgogLcHhYnNLRwnQC1dOF1OsLsq/a
-	 HacXXIROiENeIzBPt/QU12GeEi98/wOm53q+NinEQhu4n16dzIbeBYuBQz5gjvoOhv
-	 BRYYDrYSrCfOW8j2idMQKHbre+FQ+uwC/kVQvqBemCZVebvENM9bu86E9MOQ23HzFq
-	 j9eb1Ha5RWNbOYusxmQvzOs0FuWoAlhOI9N3oECwXjlOWNXwD1iIzw5qRxz8Oz7yhW
-	 mcIfc8FsMY70A==
-From: Kalle Valo <kvalo@kernel.org>
-To: Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  =?utf-8?Q?Fran=C3=A7ois?=
- Armand
- <fanf42@gmail.com>,  Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>,  Linux ath11k
- <ath11k@lists.infradead.org>,  Linux Bluetooth
- <linux-bluetooth@vger.kernel.org>,  Marcel Holtmann <marcel@holtmann.org>,
-  Johan Hedberg <johan.hedberg@gmail.com>,  Luiz Augusto von Dentz
- <luiz.dentz@gmail.com>
-Subject: Re: Fwd: Qualcomm NFA725A on T14s AMD Gen3: Bluetooth: hci0: Failed
- to send headers (or body or access otp area)
-References: <a669d2d5-fee8-5841-eb5f-b7d047d3cdb2@gmail.com>
-	<87il99j8dh.fsf@kernel.org>
-	<89c53213-cb9b-7a8c-bc9c-92cabfdbba4d@gmail.com>
-Date: Tue, 22 Aug 2023 16:01:57 +0300
-In-Reply-To: <89c53213-cb9b-7a8c-bc9c-92cabfdbba4d@gmail.com> (Bagas Sanjaya's
-	message of "Tue, 22 Aug 2023 15:21:13 +0700")
-Message-ID: <87fs4bi62i.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1692711889;
+	bh=0cUpYuMSDrgHXWCsxLU6JaxRi+nUtLLQl0WkRsCUSD8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h58jkPrUVrFT5bYstrdcltlWZbIgg2BEJHzRk5VjfuWh2Ng/s0nztCnEUaNamBMwf
+	 lkEXeAT4CB6TPXc2rAt0wtFb4WVAdF9b2A6t2/Wq2pfdflP1LOgAsNGGi0Bj4jf5Zr
+	 3NIgbbbwCX5muM0uQqVp7svns0oyfuFItWU1DAb7tdZHKUJbiP20KQ3Fp8AP41jPMw
+	 gY1vA9sGu4PcQafZIfNrm2Flvat/WdfcXTMeYu3w0FrknZAfsFIeiGcvHuUp+zTY1T
+	 NEh98VVz4bCKTIhkWK21qXziaCUmA5l4E8GU+mrLvdPR/yHr2g2NW4rmrRaQAw2PAd
+	 A+ikNfn/uGKIA==
+Received: from johan by theta with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qYRgb-000127-1r;
+	Tue, 22 Aug 2023 15:44:45 +0200
+Date: Tue, 22 Aug 2023 15:44:45 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "Revert "wifi: ath11k: Enable threaded NAPI""
+Message-ID: <ZOS7zdWNaqmfCHet@hovoldconsulting.com>
+References: <20230809073432.4193-1-johan+linaro@kernel.org>
+ <ZONpkVU1ORHj-zFH@hovoldconsulting.com>
+ <87o7izi6br.fsf@kernel.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87o7izi6br.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_060203_097042_89E9644A 
-X-CRM114-Status: GOOD (  14.93  )
+X-CRM114-CacheID: sfid-20230822_064452_555668_6D47BDEB 
+X-CRM114-Status: GOOD (  22.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,56 +86,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Bagas Sanjaya <bagasdotme@gmail.com> writes:
+On Tue, Aug 22, 2023 at 03:56:24PM +0300, Kalle Valo wrote:
+> Johan Hovold <johan@kernel.org> writes:
+> > On Wed, Aug 09, 2023 at 09:34:32AM +0200, Johan Hovold wrote:
+> >
+> >> Disabling threaded NAPI caused a severe regression in 6.5-rc5 by making
+> >> the X13s completely unusable (e.g. no keyboard input, I've seen an RCU
+> >> splat once).
 
-> On 21/08/2023 12:02, Kalle Valo wrote:
->> Bagas Sanjaya <bagasdotme@gmail.com> writes:
->> 
->>> Hi,
->>>
->>> I notice a bug report on Bugzilla [1]. Quoting from it:
->>>
->>>> Hello,
->>>>
->>>> (Sorry by advance if it's not the correct place to discuss that, but
->>>> I tried other place like my distro kernel forum
->>>> (https://bbs.archlinux.org/viewtopic.php?id=286929), interactive
->>>> chat, etc and nobody was able to help).
->>>>
->>>> [1] == Short summary ==
->>>>
->>>> I have a lenovo T14S AMD Gen 3 with a *Qualcomm NFA725A* Wi-Fi card
->>>> (which is actually reported by lspci as QCNFA765) and bluetooth
->>>> never worked on it, failing to load the rampatch with "failed to
->>>> send header" or "failed to send body" or "Failed to access otp area
->>>> (-71)".
->>>>
->>>> Other people reports bluetooth as working
->>>> (https://wiki.archlinux.org/title/Lenovo_ThinkPad_T14s_(AMD)_Gen_3)
->>>> and a work friend has a T16 AMD gen1 which seems to have exactly the
->>>> same chipset and work flowlessly. So perhaps it's an hardware issue,
->>>> but I don't know how to qualify it if so.
->>>>
->>>> => How can this be further qualified/debuged/workarounded?
->>>>
->>>> Any help, even RTFM pointing to corresponding manuals would be very
->>>> much appreciated.
->> 
->> This looks like a bluetooth bug so not related to ath11k (which is a
->> Wi-Fi driver).
->> 
->
-> Oops, I really can't guess which driver is the culprit in this case unless
-> the reporter also attaches lsmod output.
+> > Any chance we can get the offending commit reverted before 6.5 is
+> > released? 
+> 
+> The problem here is that would break QCN9074 again so there is no good
+> solution. I suspect we have a fundamental issue in ath11k which we just
+> haven't discovered yet. I would prefer to get to the bottom of this
+> before reverting anything.
 
-No worries, it's understandable that it's not always clear where the
-problem is. And most likely the reporter also has ath11k driver loaded
-as the same chip has both Wi-Fi and Bluetooth functionality.
+Sure, ideally we can find and fix the underlying issues these next few
+days, but since this regression was introduced in rc5 in an attempt to
+address the QCN9074 issue which has been there since 6.1 I think we
+need to revert otherwise. 
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+> > I'll take a closer look at this meanwhile.
+> 
+> Thanks, much appreciated. Did you try enabling all kernel debug
+> features, maybe they would give some hints?
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Yes, I have a bunch of those enabled. Lockdep does not complain, but the
+hard lockup detector triggers and it looks like CPU0 (which handles most
+interrupts on this machine currently) has got stuck while processing an
+interrupt.
+
+RCU also detects the stall on CPU0 and provides a task dump for
+ksoftirqd with the following call trace:
+
+	__switch_to
+	run_ksoftirqd
+	smpboot_thread_fn
+	kthread
+	ret_from_fork
+
+I just tried the out-of-tree pseudo NMI series [0] to get a stack trace,
+but CPU0 does not respond to those either when I hit this.
+
+Note that it takes a bit of RX to trigger this, but I hit it as soon as
+I try to download something substantial (e.g. after a couple of MB).
+
+Johan
+
+[0] https://lore.kernel.org/lkml/20230419225604.21204-1-dianders@chromium.org/
 
 -- 
 ath11k mailing list
