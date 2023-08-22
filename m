@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39FADEE49B1
-	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 11:31:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07E56EE49A3
+	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 11:31:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oDObwK2YGJugApNFKM3//llkL3nx/kXAdgOrVynQFUY=; b=HG8vKiCPZwqZV0
-	67CYF5yhfhJ0astI+rNlbt2B+D7fZDrYw57FK2l6aCEbYzjIOFHfNjhx9ug8/qXYrt/Hs7JExUNfI
-	fTCm02o6Mot6pZshJ+srp57bro0um3dzfwCugCXoP80RTFHoMgoZ7AC2oO2u9D3YY3KhpWjZs/b44
-	K/Yh9JKZ/hWha0W/G9wcOoUhFg0IwftgjllK/szzGIP13GTttrnFyDjxd5VGBl2UNeEyXwxM3fjT5
-	9X6QMVYu9VFL50qOJcLrMHna1L3Dw+VC9AHA2h91pRV4lyxuZa7b3G6tfKO6dNXAoG2SzFS9ft2KF
-	LGFVNhd+vYxJcmxJrXnw==;
+	List-Owner; bh=0J6pJYSGXOibmM7rLpz1z1Q4KyOK/YDj+rta89VmNEk=; b=qbRExx9FQwK52J
+	nJIZY0pBq07LGcyqetL029iyrNkrM1idt+Wm3zDNQT0x+ui3FskODH2XM5qocBlqTqUvQmRyVxatQ
+	HfaEjPxjA9onYngNQAxxojyprlAmyiqmJrQB8xRAbyZFxUTg6MtynK/EwPehTjmkZpzOYi8wC22GY
+	2CHHeIZ9RMOUN3zVWcIK3Vnop2S5IbkQCiaaKdyJnHjnR2YBE+WF9mZU43nNso6MivV3l0kjXZSLa
+	jUObKy9iuHtQTvSgDqCrxvViYJCfmRXsgs7BzM7yr5EYTazBofPsIkdbYuO3FLl6kTsGgObb7zW5t
+	jwl0RARWs0y5wjPf0LYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYPbL-00Foye-1h;
-	Tue, 22 Aug 2023 11:31:11 +0000
+	id 1qYPbo-00Fp4Z-2G;
+	Tue, 22 Aug 2023 11:31:40 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYPbJ-00FoxP-0K
+	id 1qYPbl-00Fp3z-2L
 	for ath11k@lists.infradead.org;
-	Tue, 22 Aug 2023 11:31:10 +0000
+	Tue, 22 Aug 2023 11:31:39 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0041565046;
-	Tue, 22 Aug 2023 11:31:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 503CDC433C9;
-	Tue, 22 Aug 2023 11:31:06 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 339C5639AE;
+	Tue, 22 Aug 2023 11:31:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A441C433CA;
+	Tue, 22 Aug 2023 11:31:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1692703867;
-	bh=ClUbNh5Ba5Ijk1bbKYM7eB7v7clusIUN0C4gBbPZPDg=;
+	s=k20201202; t=1692703896;
+	bh=QkC640psDqZzHVrH2pj1SLaMBwAO0XRqN6ukHG1V6ZE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Gfp9XaCwnP76zzJNmcmmEERnOZp5wb7aUyJ4dCINIpwE6aC1QlTiujZao070najm0
-	 es9nk1ttwJNWAonWlA+2jDhTiD8QctUCMRM0TqlhlzOv2IQs0aHloxl4jRgBmd7F11
-	 nOFjSqkdpRw/J4zaK3ob4u5L9LaM9gCxUjv54KCAq5noTVsdsEeGuL/EQfsV1kxQr1
-	 5ZcVnzD0EjySmNup2+WEucpJTij+4xrc+RTgVYS5Rbx+Dqa0hJK6qBRJx5guFiGhqL
-	 IEqV6afVquJSeIQKU9FIziWcW4dnU5/pG0CQE+Fr7OXUqp8pMZYsw9l+AW1a38nSYE
-	 ES2QnTbFQeKJQ==
+	b=Zia2jntrOru3nmrVkXTk3r2b1V+L4sDABlDSp3bKDJhNooHAP81otgxiJjv28Mpvq
+	 5cG/WZ7gimdp6VyO/HjSLC/uXAo3y6TObzNy4r0khQhGDMC+hbaHrpv1U18V5QQdlE
+	 OyBxeIi6CJESqZ8l6v2xxEjhQSswadwPucCe5i3tUSahaZC0aT0XAMnAidjIk0qw/Z
+	 nNgHILI78/XBM8ELiQxZ6xFhxQC6Zq3yzsqzusdGlGyuSW3M50OOQDreqWvbTxEdR4
+	 3OQ7oc1IV8NdBpWMwozRRSE/+UQjiHZPjW6zIPtQ01iciRuDSbfhz+UWx8+JciEwpn
+	 D9WSNIggZ2moA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -54,20 +54,19 @@ Cc: Kalle Valo <quic_kvalo@quicinc.com>,
 	quic_jjohnson@quicinc.com,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.4 03/10] Revert "wifi: ath11k: Enable threaded NAPI"
-Date: Tue, 22 Aug 2023 07:30:53 -0400
-Message-Id: <20230822113101.3549915-3-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 3/9] Revert "wifi: ath11k: Enable threaded NAPI"
+Date: Tue, 22 Aug 2023 07:31:24 -0400
+Message-Id: <20230822113130.3550050-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230822113101.3549915-1-sashal@kernel.org>
-References: <20230822113101.3549915-1-sashal@kernel.org>
+In-Reply-To: <20230822113130.3550050-1-sashal@kernel.org>
+References: <20230822113130.3550050-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.4.11
+X-stable-base: Linux 6.1.46
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_043109_201719_8283E9F3 
-X-CRM114-Status: UNSURE (   9.91  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230822_043137_802876_2421C03E 
+X-CRM114-Status: GOOD (  10.01  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,10 +108,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 2 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 396548e57022f..88aeb36ab2e79 100644
+index 76f275ca53e9c..ff8c0274dde8c 100644
 --- a/drivers/net/wireless/ath/ath11k/ahb.c
 +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -376,7 +376,6 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
+@@ -361,7 +361,6 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
  		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
  
  		if (!irq_grp->napi_enabled) {
@@ -121,10 +120,10 @@ index 396548e57022f..88aeb36ab2e79 100644
  			irq_grp->napi_enabled = true;
  		}
 diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index 30d66147223f4..a8bcffcf2e813 100644
+index 380f9d37b6449..3c095f986f4dd 100644
 --- a/drivers/net/wireless/ath/ath11k/pcic.c
 +++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -466,7 +466,6 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
+@@ -459,7 +459,6 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
  		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
  
  		if (!irq_grp->napi_enabled) {
