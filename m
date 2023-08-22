@@ -4,72 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C88AEE4996
-	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 13:44:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9F5EEE4993
+	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 14:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References:Message-ID
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1YPwpORbkLN5jmI1dw2XKyyJl34Y8gk5j7rCU8YC4bQ=; b=4Id+nJLcscf/FZ
-	9gxAXzNyg2EWNUR0U2lgEYOZqVXDXgi1goxhylksdZdyZ4K/9q/wiztRDGzK0HIinMnsI/JHbUEX/
-	qxYrUx9simb/WqGrBboif9IiWoA43cjgQ/OOygl8LRHCXxfRQ6vE/dMU6B8Sh7W6P+CHLbPSMdnm2
-	dOarr63IIvYEZuQWMTuRjewz/POpqRQc8NBSO/wLKEtxyauNKqIgN3WfKL6hmFxF4HmEMVdmyMj/+
-	WSXdOMKpECmGLq+Gcvy2a8NPS/NfrA7/u4jTnb1MsGX///Vv/zu9Vq3JMQGMBsKbhC+Gge1wF1RYL
-	drMfeactUZM05xPXx0Kg==;
+	List-Owner; bh=hxVMeCb0wr3Bw3F3C3gfaZvb8W8m3EopwDGgZqbJmCA=; b=d73vV5T662KilA
+	Cl1AjwxjR4tetlY6GdYlizkmXuRBd+HLtmvVrW/Y7hdJETFAYX3moxtcN5r9CTRm8asQWOFYErhXl
+	G6+KfrpZ5G9BCb0wjvfvy1+cj6atCkf7CIOdfoXWmMIVhz//ix+kXd8CWD+yifXngqMlfUx4CJDki
+	junI7D8a8UKZAIUpQw9i7HSlmntonTRhiu4AZdX5tijmdBn+QZDbIXT2ds13ceeuyOqVxwyMcOozM
+	jL9XRv/KQkj2asdLcnkrIS9yE5ZrVGvzO1KXsxsJoq+8SLSr9sfORxMvlfYBmprEOAOl+CdWdR0t9
+	hAWmRHvIzVYlcOEsQs0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRgk-00G40F-2k;
-	Tue, 22 Aug 2023 13:44:54 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qYSik-00GF7O-0r;
+	Tue, 22 Aug 2023 14:51:02 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYRgi-00G3zY-1S
-	for ath11k@lists.infradead.org;
-	Tue, 22 Aug 2023 13:44:53 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id A20A3656FD;
-	Tue, 22 Aug 2023 13:44:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5439C433C7;
-	Tue, 22 Aug 2023 13:44:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1692711889;
-	bh=0cUpYuMSDrgHXWCsxLU6JaxRi+nUtLLQl0WkRsCUSD8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h58jkPrUVrFT5bYstrdcltlWZbIgg2BEJHzRk5VjfuWh2Ng/s0nztCnEUaNamBMwf
-	 lkEXeAT4CB6TPXc2rAt0wtFb4WVAdF9b2A6t2/Wq2pfdflP1LOgAsNGGi0Bj4jf5Zr
-	 3NIgbbbwCX5muM0uQqVp7svns0oyfuFItWU1DAb7tdZHKUJbiP20KQ3Fp8AP41jPMw
-	 gY1vA9sGu4PcQafZIfNrm2Flvat/WdfcXTMeYu3w0FrknZAfsFIeiGcvHuUp+zTY1T
-	 NEh98VVz4bCKTIhkWK21qXziaCUmA5l4E8GU+mrLvdPR/yHr2g2NW4rmrRaQAw2PAd
-	 A+ikNfn/uGKIA==
-Received: from johan by theta with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qYRgb-000127-1r;
-	Tue, 22 Aug 2023 15:44:45 +0200
-Date: Tue, 22 Aug 2023 15:44:45 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "Revert "wifi: ath11k: Enable threaded NAPI""
-Message-ID: <ZOS7zdWNaqmfCHet@hovoldconsulting.com>
-References: <20230809073432.4193-1-johan+linaro@kernel.org>
- <ZONpkVU1ORHj-zFH@hovoldconsulting.com>
- <87o7izi6br.fsf@kernel.org>
+	id 1qYSig-00GF69-1q;
+	Tue, 22 Aug 2023 14:51:00 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37MCi54I015178;
+	Tue, 22 Aug 2023 14:50:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
+ subject : mime-version : content-type : content-transfer-encoding :
+ message-id : references : in-reply-to : to : cc; s=qcppdkim1;
+ bh=bHpBcfydAA/FQ9/KVYQ/NasYt+qP7kxdQqF/eVbjYUU=;
+ b=cJ9F8pSII3hb5Dk3KG42O16La/vSp6Oj23Ydp/j3adEeB/qXrBA/GCAj5WWRrHRQ9Gd5
+ IGrCyiyLd7Hf8u3MyMzL7VkEDMWRD16mEFFNMDbwJw+ZX1Fv1Om0z1TjlR5qrnauDyvp
+ 0B+qAYjMFGU2rxD4SPcfdpGVRl/lONmBRYBLNM+KhIjEDN5b9fwKxSZo/MllCYGZCg/R
+ H6O1YB89RduD6k1nqebwLyo6wisOnMnGzxQkV6zEnTzBEC21gHZMaPP5V2+5SNNFW0OC
+ FHT3rpE+1OTVR73KgCaJ9JtvTouPAEo8SYJHCj6DJaYMCOsS1Wj4uOPNjnaNxBxjXKV9 Lw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3smasmt8v9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Aug 2023 14:50:52 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37MEop3i023950
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Aug 2023 14:50:51 GMT
+Received: from hu-jjohnson-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Tue, 22 Aug 2023 07:50:51 -0700
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Date: Tue, 22 Aug 2023 07:50:50 -0700
+Subject: [PATCH 3/3] wifi: ath12k: Fix a few spelling errors
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87o7izi6br.fsf@kernel.org>
+Message-ID: <20230822-ath_spelling-v1-3-8e2698759564@quicinc.com>
+References: <20230822-ath_spelling-v1-0-8e2698759564@quicinc.com>
+In-Reply-To: <20230822-ath_spelling-v1-0-8e2698759564@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
+CC: <ath10k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <ath11k@lists.infradead.org>,
+        <ath12k@lists.infradead.org>
+X-Mailer: b4 0.12.3
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yo4smiRTOXq6dKysmvE0qQ9peD9y3ebO
+X-Proofpoint-GUID: yo4smiRTOXq6dKysmvE0qQ9peD9y3ebO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-22_13,2023-08-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ bulkscore=0 clxscore=1015 suspectscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 impostorscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308220112
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_064452_555668_6D47BDEB 
-X-CRM114-Status: GOOD (  22.63  )
+X-CRM114-CacheID: sfid-20230822_075058_762577_CF53906E 
+X-CRM114-Status: GOOD (  16.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,55 +96,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Aug 22, 2023 at 03:56:24PM +0300, Kalle Valo wrote:
-> Johan Hovold <johan@kernel.org> writes:
-> > On Wed, Aug 09, 2023 at 09:34:32AM +0200, Johan Hovold wrote:
-> >
-> >> Disabling threaded NAPI caused a severe regression in 6.5-rc5 by making
-> >> the X13s completely unusable (e.g. no keyboard input, I've seen an RCU
-> >> splat once).
+Fix a few issues flagged by 'codespell'.
 
-> > Any chance we can get the offending commit reverted before 6.5 is
-> > released? 
-> 
-> The problem here is that would break QCN9074 again so there is no good
-> solution. I suspect we have a fundamental issue in ath11k which we just
-> haven't discovered yet. I would prefer to get to the bottom of this
-> before reverting anything.
+Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+---
+ drivers/net/wireless/ath/ath12k/dp.h      | 2 +-
+ drivers/net/wireless/ath/ath12k/dp_rx.c   | 2 +-
+ drivers/net/wireless/ath/ath12k/dp_tx.c   | 2 +-
+ drivers/net/wireless/ath/ath12k/mac.c     | 2 +-
+ drivers/net/wireless/ath/ath12k/rx_desc.h | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-Sure, ideally we can find and fix the underlying issues these next few
-days, but since this regression was introduced in rc5 in an attempt to
-address the QCN9074 issue which has been there since 6.1 I think we
-need to revert otherwise. 
+diff --git a/drivers/net/wireless/ath/ath12k/dp.h b/drivers/net/wireless/ath/ath12k/dp.h
+index 7c5dafce5a68..6e7b7281d549 100644
+--- a/drivers/net/wireless/ath/ath12k/dp.h
++++ b/drivers/net/wireless/ath/ath12k/dp.h
+@@ -712,7 +712,7 @@ enum htt_stats_internal_ppdu_frametype {
+  *          b'24    - status_swap: 1 is to swap status TLV
+  *          b'25    - pkt_swap:  1 is to swap packet TLV
+  *          b'26:31 - rsvd1:  reserved for future use
+- * dword1 - b'0:16  - ring_buffer_size: size of bufferes referenced by rx ring,
++ * dword1 - b'0:16  - ring_buffer_size: size of buffers referenced by rx ring,
+  *                    in byte units.
+  *                    Valid only for HW_TO_SW_RING and SW_TO_HW_RING
+  *        - b'16:31 - rsvd2: Reserved for future use
+diff --git a/drivers/net/wireless/ath/ath12k/dp_rx.c b/drivers/net/wireless/ath/ath12k/dp_rx.c
+index 67f8c140840f..e6e64d437c47 100644
+--- a/drivers/net/wireless/ath/ath12k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath12k/dp_rx.c
+@@ -3027,7 +3027,7 @@ static int ath12k_dp_rx_h_defrag_reo_reinject(struct ath12k *ar,
+ 					desc_info->cookie,
+ 					HAL_RX_BUF_RBM_SW3_BM);
+ 
+-	/* Fill mpdu details into reo entrace ring */
++	/* Fill mpdu details into reo entrance ring */
+ 	srng = &ab->hal.srng_list[dp->reo_reinject_ring.ring_id];
+ 
+ 	spin_lock_bh(&srng->lock);
+diff --git a/drivers/net/wireless/ath/ath12k/dp_tx.c b/drivers/net/wireless/ath/ath12k/dp_tx.c
+index d661fe586651..8874c815d7fa 100644
+--- a/drivers/net/wireless/ath/ath12k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath12k/dp_tx.c
+@@ -301,7 +301,7 @@ int ath12k_dp_tx(struct ath12k *ar, struct ath12k_vif *arvif,
+ 		spin_unlock_bh(&tcl_ring->lock);
+ 		ret = -ENOMEM;
+ 
+-		/* Checking for available tcl descritors in another ring in
++		/* Checking for available tcl descriptors in another ring in
+ 		 * case of failure due to full tcl ring now, is better than
+ 		 * checking this ring earlier for each pkt tx.
+ 		 * Restart ring selection if some rings are not checked yet.
+diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
+index 0f2af2f14ef7..dbaf033c2527 100644
+--- a/drivers/net/wireless/ath/ath12k/mac.c
++++ b/drivers/net/wireless/ath/ath12k/mac.c
+@@ -6771,7 +6771,7 @@ ath12k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+ 			/* After trigger disconnect, then upper layer will
+ 			 * trigger connect again, then the PN number of
+ 			 * upper layer will be reset to keep up with AP
+-			 * side, hence PN number mis-match will not happened.
++			 * side, hence PN number mismatch will not happened.
+ 			 */
+ 			if (arvif->is_up &&
+ 			    arvif->vdev_type == WMI_VDEV_TYPE_STA &&
+diff --git a/drivers/net/wireless/ath/ath12k/rx_desc.h b/drivers/net/wireless/ath/ath12k/rx_desc.h
+index f99556a253e5..bfa87cb8d021 100644
+--- a/drivers/net/wireless/ath/ath12k/rx_desc.h
++++ b/drivers/net/wireless/ath/ath12k/rx_desc.h
+@@ -221,7 +221,7 @@ struct rx_mpdu_start_qcn9274 {
+  *		PPE routing even if RXOLE CCE or flow search indicate 'Use_PPE'
+  *		This is set by SW for peers which are being handled by a
+  *		host SW/accelerator subsystem that also handles packet
+- *		uffer management for WiFi-to-PPE routing.
++ *		buffer management for WiFi-to-PPE routing.
+  *
+  *		This is cleared by SW for peers which are being handled
+  *		by a different subsystem, completely disabling WiFi-to-PPE
 
-> > I'll take a closer look at this meanwhile.
-> 
-> Thanks, much appreciated. Did you try enabling all kernel debug
-> features, maybe they would give some hints?
+-- 
+2.25.1
 
-Yes, I have a bunch of those enabled. Lockdep does not complain, but the
-hard lockup detector triggers and it looks like CPU0 (which handles most
-interrupts on this machine currently) has got stuck while processing an
-interrupt.
-
-RCU also detects the stall on CPU0 and provides a task dump for
-ksoftirqd with the following call trace:
-
-	__switch_to
-	run_ksoftirqd
-	smpboot_thread_fn
-	kthread
-	ret_from_fork
-
-I just tried the out-of-tree pseudo NMI series [0] to get a stack trace,
-but CPU0 does not respond to those either when I hit this.
-
-Note that it takes a bit of RX to trigger this, but I hit it as soon as
-I try to download something substantial (e.g. after a couple of MB).
-
-Johan
-
-[0] https://lore.kernel.org/lkml/20230419225604.21204-1-dianders@chromium.org/
 
 -- 
 ath11k mailing list
