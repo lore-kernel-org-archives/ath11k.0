@@ -4,88 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C0B6EE49AB
-	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 08:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39FADEE49B1
+	for <ath11k@archiver.kernel.org>; Tue, 22 Aug 2023 11:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gG4iU1wng9PJt4E+G/fLNrFEKuXOivAytMm6GstPwTE=; b=0csmoE+p8pN1j/
-	CaY+YimoRIv4SbRR2b9rG3laMo5DDQ0wDIZwJMFPisDc7g3rnFG2UJOIneZEnlFe/7ACA5Ne9FKBu
-	rSJScM8RwfaiYwDBhvQn1dZdvGXF6wM0x/i96ei5+yZF9VfBAnu3DlEJjqB0CzaL50eaMv1NLanjY
-	EQeUhRrwph6RvC8LsMo94tO/FG85yPWMFgpJMfqp+f+w0HhGvVH85kCvmSAREIgeEFTppAsBTXzeU
-	Z45ltdnLj+FlYdoRhnPtm+8C+qs2Ju2/pdiD9asoFsKfYbzlQLlPXr+ye1dH9gcMpmqMWC9hGDkLA
-	a5cQx3tbD7T2puxyDKIQ==;
+	List-Owner; bh=oDObwK2YGJugApNFKM3//llkL3nx/kXAdgOrVynQFUY=; b=HG8vKiCPZwqZV0
+	67CYF5yhfhJ0astI+rNlbt2B+D7fZDrYw57FK2l6aCEbYzjIOFHfNjhx9ug8/qXYrt/Hs7JExUNfI
+	fTCm02o6Mot6pZshJ+srp57bro0um3dzfwCugCXoP80RTFHoMgoZ7AC2oO2u9D3YY3KhpWjZs/b44
+	K/Yh9JKZ/hWha0W/G9wcOoUhFg0IwftgjllK/szzGIP13GTttrnFyDjxd5VGBl2UNeEyXwxM3fjT5
+	9X6QMVYu9VFL50qOJcLrMHna1L3Dw+VC9AHA2h91pRV4lyxuZa7b3G6tfKO6dNXAoG2SzFS9ft2KF
+	LGFVNhd+vYxJcmxJrXnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYMdm-00FS0Y-2n;
-	Tue, 22 Aug 2023 08:21:30 +0000
-Received: from mail-pl1-x62b.google.com ([2607:f8b0:4864:20::62b])
+	id 1qYPbL-00Foye-1h;
+	Tue, 22 Aug 2023 11:31:11 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qYMdk-00FS03-0y
+	id 1qYPbJ-00FoxP-0K
 	for ath11k@lists.infradead.org;
-	Tue, 22 Aug 2023 08:21:29 +0000
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1bc0d39b52cso26699365ad.2
-        for <ath11k@lists.infradead.org>; Tue, 22 Aug 2023 01:21:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692692487; x=1693297287;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uI5wJ9ct8HbAPvV5fuCcTfn2AV2BtXUESKYHqH+gEZw=;
-        b=dmmVzhodRiHBaiBk2cTWwNeLD5MFk3SlNyeOdRVp3rZLKMfD3iSVt1Z6Du4MoEAu3C
-         VJRu+oVvutrc4I7CGNZZZPshYchrQO4wmwV7Y3suUfneMzz8yD1QkqG1lI5b++7A7aa+
-         orSuAMiMZyqXA+lQN97vF1/nTbmZ+5BDyC+LJ7Nvcd98oZCs6xmsoJmX/eIFZYP2jNLG
-         dKPM7tFQ7cJwC09BldNmZYtjNIch3mStTE313G3Keq55TIq+GYAcp1DUIYU0c0Evb0K0
-         vCFOYBZWYTnQdh+EYHzUVnUVIu7dcUwZRts1P1r45drWpWDNjQxyoo0WL2xDG0TG/BiK
-         X+2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692692487; x=1693297287;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uI5wJ9ct8HbAPvV5fuCcTfn2AV2BtXUESKYHqH+gEZw=;
-        b=Hvz+NPRxoGUCCNfTTlPDIXbZT38srbsUUAGPDF/Ct0kC/u1WHCZKgB9aRNQKVP7k7D
-         lK9BvMNuJyA1LSigIWbrU8W+ONjjXJfWncdpHSysO+76QwOO1Svs1Tt4HG3OKZxx91yj
-         OhRawY9Q8UU6hVI6tmFUOfetONy4rwa0vTdqOe2j6rp4N/5VEzc7b33Uonjw6iBrV9/+
-         4mqRwgYiUhg1hpZNeFpLMpYWC0LvZ3GSQ50fOmML76Q5vWp2lh1Kj1bgRDBFnZ32aDhR
-         7switAS1G7qrXoa7IUVmUAgHI2Feo3lVkogX1Qw3yTj1ETN8pGpUoDuWh4GBAn+/5jhI
-         yGHw==
-X-Gm-Message-State: AOJu0YxkAvA3hTtgE2a+MBrdUoaEOIYJ+bgo5ByOGQYqw5EWwo4mYrd9
-	zC4qq3is2fSjN932i/rCne5qsbVBfRg=
-X-Google-Smtp-Source: AGHT+IGkJqTPjxCrrWnjEwUbe4lmC/X6ykOLRTrv5yzolm6JCwBcEWYWVYQI6N7/AQ/ohx6Hz0hmcg==
-X-Received: by 2002:a17:903:25d4:b0:1bc:2c83:f770 with SMTP id jc20-20020a17090325d400b001bc2c83f770mr6068989plb.45.1692692486623;
-        Tue, 22 Aug 2023 01:21:26 -0700 (PDT)
-Received: from [192.168.0.105] ([103.124.138.83])
-        by smtp.gmail.com with ESMTPSA id h3-20020a170902748300b001bbb8d5166bsm8358202pll.123.2023.08.22.01.21.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 01:21:26 -0700 (PDT)
-Message-ID: <89c53213-cb9b-7a8c-bc9c-92cabfdbba4d@gmail.com>
-Date: Tue, 22 Aug 2023 15:21:13 +0700
+	Tue, 22 Aug 2023 11:31:10 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 0041565046;
+	Tue, 22 Aug 2023 11:31:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 503CDC433C9;
+	Tue, 22 Aug 2023 11:31:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1692703867;
+	bh=ClUbNh5Ba5Ijk1bbKYM7eB7v7clusIUN0C4gBbPZPDg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Gfp9XaCwnP76zzJNmcmmEERnOZp5wb7aUyJ4dCINIpwE6aC1QlTiujZao070najm0
+	 es9nk1ttwJNWAonWlA+2jDhTiD8QctUCMRM0TqlhlzOv2IQs0aHloxl4jRgBmd7F11
+	 nOFjSqkdpRw/J4zaK3ob4u5L9LaM9gCxUjv54KCAq5noTVsdsEeGuL/EQfsV1kxQr1
+	 5ZcVnzD0EjySmNup2+WEucpJTij+4xrc+RTgVYS5Rbx+Dqa0hJK6qBRJx5guFiGhqL
+	 IEqV6afVquJSeIQKU9FIziWcW4dnU5/pG0CQE+Fr7OXUqp8pMZYsw9l+AW1a38nSYE
+	 ES2QnTbFQeKJQ==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Kalle Valo <quic_kvalo@quicinc.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Sasha Levin <sashal@kernel.org>,
+	quic_jjohnson@quicinc.com,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.4 03/10] Revert "wifi: ath11k: Enable threaded NAPI"
+Date: Tue, 22 Aug 2023 07:30:53 -0400
+Message-Id: <20230822113101.3549915-3-sashal@kernel.org>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230822113101.3549915-1-sashal@kernel.org>
+References: <20230822113101.3549915-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: Fwd: Qualcomm NFA725A on T14s AMD Gen3: Bluetooth: hci0: Failed
- to send headers (or body or access otp area)
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
- =?UTF-8?Q?Fran=c3=a7ois_Armand?= <fanf42@gmail.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux ath11k <ath11k@lists.infradead.org>,
- Linux Bluetooth <linux-bluetooth@vger.kernel.org>,
- Marcel Holtmann <marcel@holtmann.org>,
- Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-References: <a669d2d5-fee8-5841-eb5f-b7d047d3cdb2@gmail.com>
- <87il99j8dh.fsf@kernel.org>
-Content-Language: en-US
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <87il99j8dh.fsf@kernel.org>
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.4.11
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230822_012128_359092_D5EEBC9B 
-X-CRM114-Status: GOOD (  13.56  )
+X-CRM114-CacheID: sfid-20230822_043109_201719_8283E9F3 
+X-CRM114-Status: UNSURE (   9.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,38 +79,64 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gMjEvMDgvMjAyMyAxMjowMiwgS2FsbGUgVmFsbyB3cm90ZToKPiBCYWdhcyBTYW5qYXlhIDxi
-YWdhc2RvdG1lQGdtYWlsLmNvbT4gd3JpdGVzOgo+IAo+PiBIaSwKPj4KPj4gSSBub3RpY2UgYSBi
-dWcgcmVwb3J0IG9uIEJ1Z3ppbGxhIFsxXS4gUXVvdGluZyBmcm9tIGl0Ogo+Pgo+Pj4gSGVsbG8s
-Cj4+Pgo+Pj4gKFNvcnJ5IGJ5IGFkdmFuY2UgaWYgaXQncyBub3QgdGhlIGNvcnJlY3QgcGxhY2Ug
-dG8gZGlzY3VzcyB0aGF0LCBidXQKPj4+IEkgdHJpZWQgb3RoZXIgcGxhY2UgbGlrZSBteSBkaXN0
-cm8ga2VybmVsIGZvcnVtCj4+PiAoaHR0cHM6Ly9iYnMuYXJjaGxpbnV4Lm9yZy92aWV3dG9waWMu
-cGhwP2lkPTI4NjkyOSksIGludGVyYWN0aXZlCj4+PiBjaGF0LCBldGMgYW5kIG5vYm9keSB3YXMg
-YWJsZSB0byBoZWxwKS4KPj4+Cj4+PiBbMV0gPT0gU2hvcnQgc3VtbWFyeSA9PQo+Pj4KPj4+IEkg
-aGF2ZSBhIGxlbm92byBUMTRTIEFNRCBHZW4gMyB3aXRoIGEgKlF1YWxjb21tIE5GQTcyNUEqIFdp
-LUZpIGNhcmQKPj4+ICh3aGljaCBpcyBhY3R1YWxseSByZXBvcnRlZCBieSBsc3BjaSBhcyBRQ05G
-QTc2NSkgYW5kIGJsdWV0b290aAo+Pj4gbmV2ZXIgd29ya2VkIG9uIGl0LCBmYWlsaW5nIHRvIGxv
-YWQgdGhlIHJhbXBhdGNoIHdpdGggImZhaWxlZCB0bwo+Pj4gc2VuZCBoZWFkZXIiIG9yICJmYWls
-ZWQgdG8gc2VuZCBib2R5IiBvciAiRmFpbGVkIHRvIGFjY2VzcyBvdHAgYXJlYQo+Pj4gKC03MSki
-Lgo+Pj4KPj4+IE90aGVyIHBlb3BsZSByZXBvcnRzIGJsdWV0b290aCBhcyB3b3JraW5nCj4+PiAo
-aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvTGVub3ZvX1RoaW5rUGFkX1QxNHNfKEFN
-RClfR2VuXzMpCj4+PiBhbmQgYSB3b3JrIGZyaWVuZCBoYXMgYSBUMTYgQU1EIGdlbjEgd2hpY2gg
-c2VlbXMgdG8gaGF2ZSBleGFjdGx5IHRoZQo+Pj4gc2FtZSBjaGlwc2V0IGFuZCB3b3JrIGZsb3ds
-ZXNzbHkuIFNvIHBlcmhhcHMgaXQncyBhbiBoYXJkd2FyZSBpc3N1ZSwKPj4+IGJ1dCBJIGRvbid0
-IGtub3cgaG93IHRvIHF1YWxpZnkgaXQgaWYgc28uCj4+Pgo+Pj4gPT4gSG93IGNhbiB0aGlzIGJl
-IGZ1cnRoZXIgcXVhbGlmaWVkL2RlYnVnZWQvd29ya2Fyb3VuZGVkPwo+Pj4KPj4+IEFueSBoZWxw
-LCBldmVuIFJURk0gcG9pbnRpbmcgdG8gY29ycmVzcG9uZGluZyBtYW51YWxzIHdvdWxkIGJlIHZl
-cnkKPj4+IG11Y2ggYXBwcmVjaWF0ZWQuCj4gCj4gVGhpcyBsb29rcyBsaWtlIGEgYmx1ZXRvb3Ro
-IGJ1ZyBzbyBub3QgcmVsYXRlZCB0byBhdGgxMWsgKHdoaWNoIGlzIGEKPiBXaS1GaSBkcml2ZXIp
-Lgo+IAoKT29wcywgSSByZWFsbHkgY2FuJ3QgZ3Vlc3Mgd2hpY2ggZHJpdmVyIGlzIHRoZSBjdWxw
-cml0IGluIHRoaXMgY2FzZSB1bmxlc3MKdGhlIHJlcG9ydGVyIGFsc28gYXR0YWNoZXMgbHNtb2Qg
-b3V0cHV0LiBUbyBGcmFuw6dvaXM6IENhbiB5b3Ugc2hvdwpsc21vZCBsaXN0IGFzIHJlcXVlc3Rl
-ZD8KCkFsc28gQ2M6IGJsdWV0b290aCBwZW9wbGUuCgotLSAKQW4gb2xkIG1hbiBkb2xsLi4uIGp1
-c3Qgd2hhdCBJIGFsd2F5cyB3YW50ZWQhIC0gQ2xhcmEKCgotLSAKYXRoMTFrIG1haWxpbmcgbGlz
-dAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+From: Kalle Valo <quic_kvalo@quicinc.com>
+
+[ Upstream commit d265ebe41c911314bd273c218a37088835959fa1 ]
+
+This reverts commit 13aa2fb692d3717767303817f35b3e650109add3.
+
+This commit broke QCN9074 initialisation:
+
+[  358.960477] ath11k_pci 0000:04:00.0: ce desc not available for wmi command 36866
+[  358.960481] ath11k_pci 0000:04:00.0: failed to send WMI_STA_POWERSAVE_PARAM_CMDID
+[  358.960484] ath11k_pci 0000:04:00.0: could not set uapsd params -105
+
+As there's no fix available let's just revert it to get QCN9074 working again.
+
+Closes: https://bugzilla.kernel.org/show_bug.cgi?id=217536
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Signed-off-by: Kalle Valo <kvalo@kernel.org>
+Link: https://lore.kernel.org/r/20230720151444.2016637-1-kvalo@kernel.org
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c  | 1 -
+ drivers/net/wireless/ath/ath11k/pcic.c | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 396548e57022f..88aeb36ab2e79 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -376,7 +376,6 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
+-			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index 30d66147223f4..a8bcffcf2e813 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -466,7 +466,6 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
+-			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
+-- 
+2.40.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
