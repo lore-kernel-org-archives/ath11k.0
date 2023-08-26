@@ -4,52 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 460BAC7EE2C
-	for <ath11k@archiver.kernel.org>; Fri, 25 Aug 2023 07:46:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 369A9C83F01
+	for <ath11k@archiver.kernel.org>; Sat, 26 Aug 2023 15:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=nh6vlVRC+9prKysRb6MEWxCtsoyhfO2GYfXyewWRmuc=; b=jsh+gD3JQGbo2K
-	PhWn2EGndK+31p4oYvg3fVMnJJQkZjzEpsywmLgRICkXGPCNfkNwwH1MG+n0fNr/NeUDU4zRfqkfa
-	RAxyPsF9+L2FW7DZsAqNKMZwtL8ocCbiw2cJzWv3JKJNjYE73i0imgP2qq2jnrW3ZjmAcm92fm9Ka
-	NC2lQiv/LS25SHwwICfB/2oiWS2u9knn5HC3LpqzhhIvDwEtQPeLpU2e3txpYKIW3NRE5KLbOV1tN
-	55CNl9l70sOBfMbBQ14orF2YLbrJj2OYkQaQ4bxLYxKWalE7+iHjzerzsxzv7Xc0V7sOiyfd1yto7
-	PWGUbcogGVHpo3NcH5ew==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GN8p8DhqFuejGtCit3agiaKmf1FVNdo2esjd6xTr7xE=; b=oDooAXkcWM11lL
+	mGmv2+HDgiVNi+JWcU/9vOuEM5Mmn+VmOcU7wEeWoc9SQ6HhxPzTxsSmJq8u6QVdNoB2pcPIHjZiY
+	/wrhrce2f1guAjK7a6HaEmAPUrtVnqqgFhz+fZjfh0E55FmN0rdu4vMX20i1qlM0jByXQxcWWhuFq
+	CTbCP2RNhAvF4kL6ZqJLATZKKz445YPn8AVMDgChRP1nxhPMKI+Tl1W4bp94qjwv0kJyeCH4681gw
+	wONHYvgoyxvY2IX4C6JCMo0vDAVEJM4o3nUzKajCalaxgobXaGaVqsZln4PgfrvuEh3e02GZ+PDEY
+	132rRG3BaUtEnVybnKvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZRWH-004ZDh-0q;
-	Fri, 25 Aug 2023 07:46:13 +0000
-Received: from mail.tarvie.pl ([217.61.105.186])
+	id 1qZvbF-007232-0w;
+	Sat, 26 Aug 2023 15:53:21 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qZRWB-004ZCf-33
+	id 1qZvbB-00722e-0w
 	for ath11k@lists.infradead.org;
-	Fri, 25 Aug 2023 07:46:11 +0000
-Received: by mail.tarvie.pl (Postfix, from userid 1001)
-	id BAF6A83087; Fri, 25 Aug 2023 08:45:59 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tarvie.pl; s=mail;
-	t=1692949560; bh=Y2yJ+RomELl4kjdwTjOCFteq1VzoJmA+J1hDVnltrr4=;
-	h=Date:From:To:Subject:From;
-	b=ge6hJqKUhwMv9rRSEYJDVazfBPZDuhobqTYJSk2n/3/s8hO8mQiCircQu0mv/NBjw
-	 fPeIo9M4RQVmxs6gMlXFKwUnKQYf8VehQVIEwxLu4vjKfEAiqYWpT01lAp0wB5JcvK
-	 NfGXZxb5VIxbTXe83Wr6b231EGSAq2yo8VkhQo7DEwPyync7uGZtChpxe9gtxBNbQb
-	 aXH4sF4DX4aABV7JYqSCPPoKtuK/PqsaMqQHrq/uRUn7Yz6RUlIkzmol+NZA6kqqkp
-	 BJzn3XtjcPeI0grLdCKpfs/EZeyX+hTCVTRgVezvVYnUrVtoyydJ/+1qBVDJqjoQf5
-	 YXW8XSDKIYyzA==
-Received: by mail.tarvie.pl for <ath11k@lists.infradead.org>; Fri, 25 Aug 2023 07:45:52 GMT
-Message-ID: <20230825074500-0.1.7v.9dpb.0.dresnis9tc@tarvie.pl>
-Date: Fri, 25 Aug 2023 07:45:52 GMT
-From: =?UTF-8?Q?"Micha=C5=82_Tetmajer"?= <michal.tetmajer@tarvie.pl>
-To: <ath11k@lists.infradead.org>
-Subject: Uszczelnienie dachu
-X-Mailer: mail.tarvie.pl
+	Sat, 26 Aug 2023 15:53:18 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 20C916101A;
+	Sat, 26 Aug 2023 15:53:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8408FC433C7;
+	Sat, 26 Aug 2023 15:53:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1693065195;
+	bh=jRp5J5zfBMQENdgSowokFSlTIvvrIvYSssKqh8Hw7C0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oWeC7YdLlOfWmW9hf4SWWtktwWX8R7IW/D5JH/PvI7Yd51paYleLvUIvzA2QCIUbW
+	 06Z5bcXAFTj3y8Ur04h4ew+JcDSB7hrkVZv8RT+vlWPiaxEKGyUPghLlCjahtQRD6K
+	 SHEDpNidSXNPPR8vP2zIkX2CIj+esuy/SMsoXlLyZ3ofuteWHh3Re10WJmOQd3e4Ym
+	 LXAalMWJFXf4OM95urH+pJDtYhugleVYvBu+LI4WHLutS0koLb7uPJlImSMrs1Nqib
+	 nU9yLCDLkX5nD+Sp0ARk/tRvwuF8jQ2Wk7vE4HlcdGFVxUpQRozb/mH9lkmAjEeLt0
+	 oVXq9iHyNQG1A==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qZvbA-0000QB-0P;
+	Sat, 26 Aug 2023 17:53:16 +0200
+Date: Sat, 26 Aug 2023 17:53:16 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "Revert "wifi: ath11k: Enable threaded NAPI""
+Message-ID: <ZOof7EE0tXAt0YN7@hovoldconsulting.com>
+References: <20230809073432.4193-1-johan+linaro@kernel.org>
+ <ZONpkVU1ORHj-zFH@hovoldconsulting.com>
+ <87o7izi6br.fsf@kernel.org>
+ <ZOS7zdWNaqmfCHet@hovoldconsulting.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <ZOS7zdWNaqmfCHet@hovoldconsulting.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230825_004608_708944_10B334AF 
-X-CRM114-Status: UNSURE (   1.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230826_085317_398168_98DC16AB 
+X-CRM114-Status: GOOD (  20.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,25 +82,48 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LAoKcG90cnplYnVqxIUgUGHFhHN0d28ga29uc2Vyd2FjamkgZGFjaHUsIHBv
-cHJhd3kgZXN0ZXR5a2ksIHNjaMWCb2R6ZW5pYSBwb2RkYXN6YSBjenkgdXN6Y3plbG5pZW5pYSBt
-aWVqc2Nvd2Vnbz8KCld5a29udWplbXkgaHlkcm9pem9sYWN5am5lIHBvd8WCb2tvd2UgcG9rcnlj
-aWEgZGFjaG93ZSwga3TDs3JlIHNrdXRlY3puaWUgcm96d2nEhXp1asSFIHByb2JsZW15IHogbmll
-c3pjemVsbnltIGRhY2hlbSwgamVnbyBuYWdyemV3YW5pZW0gc2nEmSwgYnJha2llbSBsdWIgemJ5
-dCBtYcWCeW1pIHNwYWRrYW1pLCB1c3pjemVsbmllbmllbSB0cnVkbm8gZG9zdMSZcG55Y2ggbWll
-anNjIG5hIGRhY2h1IG9yYXogbmFwcmF3YW1pIHBvIHVzemtvZHplbmlhY2ggbWVjaGFuaWN6bnlj
-aC4KClN5c3RlbXkgbmllIHd5bWFnYWrEhSBtb2Nvd2FuaWEgbWVjaGFuaWN6bmVnbywgbmllIG9i
-Y2nEhcW8YWrEhSBkYWNodSwgYSBzaWF0a2EgemJyb2rEhWNhIGd3YXJhbnR1amUgUGHFhHN0d3Ug
-dHJ3YcWCb8WbxIcgaSBuYWpsZXBzemUgcGFyYW1ldHJ5IG1lY2hhbmljem5lLgoKUG9zaWFkYW15
-IHdpZWxvbGV0bmllIGRvxZt3aWFkY3plbmllIHByb2R1a2N5am5lLCBsYWJvcmF0b3J5am5lIGkg
-YXV0b3J5em93YW5lIHd5a29uYXdzdHdvLiBEb2t1bWVudGFjamEgamFrb8WbY2lvd2EgcG90d2ll
-cmR6YSBtb8W8bGl3b8WbxIcgc3Rvc293YW5pYSBwb3fFgm9rIG5hIHLDs8W8bnljaCBwb2TFgm/F
-vGFjaC4KCkplxZtsaSBzxIUgUGHFhHN0d28gemFpbnRlcmVzb3dhbmkgdGVtYXRlbSwgcHJvc3rE
-mSBvIGluZm9ybWFjasSZLgoKClBvemRyYXdpYW0KTWljaGHFgiBUZXRtYWplcgoKLS0gCmF0aDEx
-ayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+On Tue, Aug 22, 2023 at 03:44:45PM +0200, Johan Hovold wrote:
+> On Tue, Aug 22, 2023 at 03:56:24PM +0300, Kalle Valo wrote:
+> > Johan Hovold <johan@kernel.org> writes:
+> > > On Wed, Aug 09, 2023 at 09:34:32AM +0200, Johan Hovold wrote:
+> > >
+> > >> Disabling threaded NAPI caused a severe regression in 6.5-rc5 by making
+> > >> the X13s completely unusable (e.g. no keyboard input, I've seen an RCU
+> > >> splat once).
+> 
+> > > Any chance we can get the offending commit reverted before 6.5 is
+> > > released? 
+> > 
+> > The problem here is that would break QCN9074 again so there is no good
+> > solution. I suspect we have a fundamental issue in ath11k which we just
+> > haven't discovered yet. I would prefer to get to the bottom of this
+> > before reverting anything.
+> 
+> Sure, ideally we can find and fix the underlying issues these next few
+> days, but since this regression was introduced in rc5 in an attempt to
+> address the QCN9074 issue which has been there since 6.1 I think we
+> need to revert otherwise. 
+
+I've managed to track down what causes the hang on the X13s after
+disabling threaded NAPI. Turns out to be a severe regression in the
+genirq code that causes the software resend tasklet to loop
+indefinitely.
+
+I've just sent a fix here:
+
+	https://lore.kernel.org/lkml/20230826154004.1417-1-johan+linaro@kernel.org/
+
+I've also made some progress on the QCN9074 hang, but keeping the
+threaded NAPI revert for now is indeed the right thing to do.
+
+Johan
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
