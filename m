@@ -4,69 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04B37EE14A3
-	for <ath11k@archiver.kernel.org>; Wed,  6 Sep 2023 14:55:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7962FEE14A5
+	for <ath11k@archiver.kernel.org>; Wed,  6 Sep 2023 15:12:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nHvjoQP7e9sMYYWQ73OylHrdf32pOp0wgb8+amyuODk=; b=ldNOnWCxij5zqJ
-	lBzfBwrtBB23NhjhEaztwbagR/Do9L9nYgKqglVQ0tAEGAUEdJ5YGKPO4RC2Ie6oO7W8G33tEFFQ+
-	ODCo/FnezaHwLkvXpU9Mt0Tih1zJMnMA0px0/XHH4giv/POD/X4FUtTSxMP/wDyA1YP5jziPnfnfb
-	PV1s9l7MusiQ8AQGqRm65peVkVcUY/Alv4SbqAXWYDVulnBmhClS7s12Cu6vM00iULCqGXhZHhgjx
-	58SV9rTM2lo51LIS+/yiGCRIVDpi7cPZW1IsELr7syN4KO8vvquLSwaI8Tp4dLqI/F34Ud987gfkM
-	8nmu0UONvwG1pbuxKDOA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=AiewoP4tFHF3JWkncNZRtBSRekxBnrcjCKzO/84SmCc=; b=FO3GqBe9JfFc+E
+	z8c+gGsWh+kFyps8q3SytbOn9ED0a4AyyY6GiB9Z9C3S7KnA9drtDGiqttCvmcZ5wedeF2W4m+h/G
+	ypO5QuakHS4G1jyTvhupA0f5OXwjiC5HQ6PRrvs9IKEXxFtNcVQEcKl7vPvjE3V8GmFtbewk7sT91
+	gDHHO6c0v6wltNx+mHx77kJrDc13Koslbox3y84X5KZo7VZsHD3mNpqTJsaKb3DJB7xb7N2EkcIFB
+	vizTYcncVGsly3I5wJK9Kv1Cc0joB6FwoylZCREa52CMkkGdIbXlUPXqAdDHzYWuFXvLqm3rbQNK1
+	r6Mq4+rKqk8Q3TDb78iA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qdtw6-00AKkE-2E;
-	Wed, 06 Sep 2023 14:55:18 +0000
+	id 1qduD9-00AN9Z-07;
+	Wed, 06 Sep 2023 15:12:55 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qdtw3-00AKjX-1K
+	id 1qduD6-00AN9C-0J
 	for ath11k@lists.infradead.org;
-	Wed, 06 Sep 2023 14:55:16 +0000
+	Wed, 06 Sep 2023 15:12:53 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id DBC65610A3;
-	Wed,  6 Sep 2023 14:55:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B91C433C9;
-	Wed,  6 Sep 2023 14:55:14 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B717A6111C;
+	Wed,  6 Sep 2023 15:12:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58642C433C8;
+	Wed,  6 Sep 2023 15:12:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694012114;
-	bh=xjtzvFZoW+qCCsOn7bYqsTOWwU4z1z6KK7muQqsOpUU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MwNNxv1w8uIGGsGF/KBV1qD7Ol4exXc8QjOL7cTlbs4Z+Fjig6tO9qTz2Le6crDYr
-	 qW23pic/fga6dsKpdcizgQMkw/4SRJ9u+DRGsigBKrB7xUATFaPpldZ6BGHHkAbMHo
-	 Kmj59RT2J+gAEzJp2zixQBZnr8eMiF/sBW62cOS8VqCvQlP4q/KvX0nO20w29UwgDn
-	 6bFjtF1Wt4NUq5SwkI7jR9u5N06pQw3tKmkgpc/JA8HGG0WyuApPIcwLA/RIeb7BGU
-	 9IaznvqXRGeGkBT17QZsd4extfBJVzzT9KY6PXoGNPDSQqHgC7Zs8u31bfG23p7McA
-	 SKrUZnOv5TqVw==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qdtwS-0004cy-1S;
-	Wed, 06 Sep 2023 16:55:40 +0200
-Date: Wed, 6 Sep 2023 16:55:40 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Kalle Valo <kvalo@kernel.org>, Alex R <alex@ironrobin.net>,
-	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: WCN6855: Request: Support ThinkPad X13s 21BY-S03Y00
-Message-ID: <ZPiS7EJe7teOpOyw@hovoldconsulting.com>
-References: <mYl9fKKm9_Kn1aqjsnk6yx9YxhhFShCQeF2qptjjWlKDJ-XpxsO038Eag4A9S4EABiWbhiJ8polAtrOwVGIZeZ1yYTSwNYldBBDeZXMmtxI=@ironrobin.net>
- <87jzt3ellx.fsf@kernel.org>
- <ZPhCq32KlaZteCzG@hovoldconsulting.com>
- <d191d35f-f006-45e6-bf69-3d4d251a892b@quicinc.com>
+	s=k20201202; t=1694013170;
+	bh=ff+H75uDTdhbM2dFlEGFYvMNpQvwcLgyYJIPzFO8uuA=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=Zaxt3vIpZK0oFbeMlXILxWhb7y/cJwp/k1J7R6kHN8PSKAGbtkfl8BSY4y+1k+OK4
+	 K5NGJzHunNXJV+GHi8Iv7LCn6Nxpn0tGY4BrC+VVNTYpOhmfPYv4CJR+UhgtIcCbrW
+	 GR+2kNXtF70YB4ZezZFovd3BNBpxgkNuxXmBqWZooONryXdnQuWT80o3DFJ50RVXdl
+	 /xE7b7ZxCpCCS125FYNViP5FPzTSxjYUiJt+Rn4e6QzUP9e6YeAnkDgKyqFJTFPBNt
+	 JtS0IyarCH1SUpwvyzAkflnIE2m1oo0raboUx0rBlVCO3kBHYzCcQ2Wv3JyRU5L/uY
+	 C4UX2cfvAH7kg==
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <d191d35f-f006-45e6-bf69-3d4d251a892b@quicinc.com>
+Subject: Re: [PATCH] wifi: ath11k: fix boot failure with one MSI vector
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230601033840.2997-1-quic_bqiang@quicinc.com>
+References: <20230601033840.2997-1-quic_bqiang@quicinc.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <169401316702.3891753.7206466024669177368.kvalo@kernel.org>
+Date: Wed,  6 Sep 2023 15:12:49 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230906_075515_496228_66769778 
-X-CRM114-Status: UNSURE (   9.05  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230906_081252_204434_6840B6BA 
+X-CRM114-Status: GOOD (  10.98  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,22 +74,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Sep 06, 2023 at 07:47:17AM -0700, Jeff Johnson wrote:
-> On 9/6/2023 2:13 AM, Johan Hovold wrote:
+Baochen Qiang <quic_bqiang@quicinc.com> wrote:
 
-> > I've asked for some more details from Alex over IRC, but it's currently
-> > not clear why there are problems with this particular machine.
-
-> Is this using the single MSI interrupt feature? If so, try:
-> "[PATCH] wifi: ath11k: fix boot failure with one MSI vector"
+> Commit 5b32b6dd96633 ("ath11k: Remove core PCI references from
+> PCI common code") breaks with one MSI vector because it moves
+> affinity setting after IRQ request, see below log:
 > 
-> <https://lore.kernel.org/ath11k/20230601033840.2997-1-quic_bqiang@quicinc.com/T/>
+> [ 1417.278835] ath11k_pci 0000:02:00.0: failed to receive control response completion, polling..
+> [ 1418.302829] ath11k_pci 0000:02:00.0: Service connect timeout
+> [ 1418.302833] ath11k_pci 0000:02:00.0: failed to connect to HTT: -110
+> [ 1418.303669] ath11k_pci 0000:02:00.0: failed to start core: -110
+> 
+> The detail is, if do affinity request after IRQ activated,
+> which is done in request_irq(), kernel caches that request and
+> returns success directly. Later when a subsequent MHI interrupt is
+> fired, kernel will do the real affinity setting work, as a result,
+> changs the MSI vector. However at that time host has configured
+> old vector to hardware, so host never receives CE or DP interrupts.
+> 
+> Fix it by setting affinity before registering MHI controller
+> where host is, for the first time, doing IRQ request.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+> 
+> Fixes: 5b32b6dd9663 ("ath11k: Remove core PCI references from PCI common code")
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Tested-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 
-No, it's not:
+Fails to apply, please rebase.
 
-	[    2.195919] ath11k_pci 0006:01:00.0: MSI vectors: 32
+error: patch failed: drivers/net/wireless/ath/ath11k/pci.c:888
+error: drivers/net/wireless/ath/ath11k/pci.c: patch does not apply
+stg import: Diff does not apply cleanly
 
-Johan
+Patch set to Changes Requested.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20230601033840.2997-1-quic_bqiang@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
