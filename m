@@ -4,65 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71B10EB8FA5
-	for <ath11k@archiver.kernel.org>; Wed,  6 Sep 2023 09:12:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B3C5EB8FAF
+	for <ath11k@archiver.kernel.org>; Wed,  6 Sep 2023 09:37:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yfgwA1oRKiy/GP8RRCKAsgm9o/7ax9EqN5Ooq1on+0U=; b=coL/7WYJdVf3mf
-	TnbcH1ugIF1lZ1F9Fs17rhsMfJwpmfTjGl/VJH1id/R4qMwJWFnDkMbNom4gwqWQnJKBhVGImJ8Wg
-	gojB5glcb5xBdDmXU4zVsVGxXVO/LL1RTFlEE1Rn3F7v1DHQW2w3YfTSkEvvuWOsAm0DP6FJQjS8P
-	mNNZWe9MMSfBR5tPps85sLZh1py8gK9NNKdCiadGRnMAOPQB+EnUFV77locXtrg+43Ayz6ooLUZ3f
-	jM7jUP53wRu0P9CAIGDB3wjgJ14eaZFnny3YSx6087HPSfI3f5+wmfl11FzN/peWDKUYkwyHeOmEC
-	judKq5W6sylHQt5nSEiw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fq1UVCzwTtVq6mEU7L439uLjRuZXazbuwLSYCIE5ZZ0=; b=bHxMN9lmRBo5Ne
+	q21oDD9NTxai76HmWFZSTdFHavb5hGDX5cAoQ2N4hp1UCE4792Ldpkmr5l41FMvIGf9MoGu6DO7Id
+	2WtXW6nTBxtNDBHVPyrAcyuqcUl9c89U4TyV+n4kQ/ofYEfinGPwKqrSgHzmhJ+nSfF7RXla1dc7B
+	kzIBh2pdiH6lLI0MOyoV+ZJLClHUhzqiUkBaVEhDCfeLNSzv/q2EwHKI+BIvecj0edePn5wrfHPUL
+	6T9JLqIkRSeY6c1IlIFclo1XMTkVaJmKw0PrRm+GS8KwADeJFCSDHe7lsB8YIxTbUl2Ciw7bXYdlW
+	tESenv+iCoO5ySuk0Iug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qdoao-007s6u-09;
-	Wed, 06 Sep 2023 09:12:58 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1qdoys-007xK9-0F;
+	Wed, 06 Sep 2023 09:37:50 +0000
+Received: from forward101a.mail.yandex.net ([178.154.239.84])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qdoak-007s5N-2A
+	id 1qdoyo-007xGs-1Q
 	for ath11k@lists.infradead.org;
-	Wed, 06 Sep 2023 09:12:56 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id 399CDCE13D0;
-	Wed,  6 Sep 2023 09:12:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EE80C433C7;
-	Wed,  6 Sep 2023 09:12:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1693991570;
-	bh=c8LxhEs+G4wU8wLC9cBf4+u64WmfRNcIl9fmj4JU4rE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zs0Jd+jakqWzadoWW4jwOXcAvIPoMuyT8zJIi4xgW2ECS0oj/o86S4LpJ57XPQbEZ
-	 b3QkKvzhGqYsfNwC8DXHT/geDz2cM3LKHIeSRk0lZDlZskYZ4AK8AySJTK0dcQBf21
-	 MzKflsY4gT8Jugmify+rIjSIxRv3irbXVW0eGIYaEt9JbfKVVc+Uxy8SLaR39JmAaF
-	 OP89yQbvaj2hfuHeFo1cGmMX3PyJ9XWEp5c7tl8Dg6hlHeeqL+lanw3JR2pbBFM46+
-	 YDv/+WiJvcMqOcJ9urzfUuuZf076wPMYahZDROQ4Mlithme5VeGn7FADMFa4NpYb6t
-	 96arUxIcf6cRg==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qdob5-0000iD-1Z;
-	Wed, 06 Sep 2023 11:13:16 +0200
-Date: Wed, 6 Sep 2023 11:13:15 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>, Alex R <alex@ironrobin.net>
-Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: WCN6855: Request: Support ThinkPad X13s 21BY-S03Y00
-Message-ID: <ZPhCq32KlaZteCzG@hovoldconsulting.com>
-References: <mYl9fKKm9_Kn1aqjsnk6yx9YxhhFShCQeF2qptjjWlKDJ-XpxsO038Eag4A9S4EABiWbhiJ8polAtrOwVGIZeZ1yYTSwNYldBBDeZXMmtxI=@ironrobin.net>
- <87jzt3ellx.fsf@kernel.org>
+	Wed, 06 Sep 2023 09:37:49 +0000
+Received: from mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net [IPv6:2a02:6b8:c22:d84:0:640:51d4:0])
+	by forward101a.mail.yandex.net (Yandex) with ESMTP id A979742322;
+	Wed,  6 Sep 2023 12:37:35 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id YbUwVB1WliE0-QJNhyVH5;
+	Wed, 06 Sep 2023 12:37:35 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+	t=1693993055; bh=H9mtoWSF8K60E7Mct4idhTBiYLlmvfyM4sv1+L+IpAI=;
+	h=Message-ID:Date:Cc:Subject:To:From;
+	b=MbhDm+Pjm0kb+kycMJ9lg4+5kLFL1kqT9XXSDKtRQ5AzjoqEAG66ohjAJhyY2U87L
+	 bKb5a/SU7EsbvpI0wBWFnqPk4TcnNFoMgTuxWO0H8CZrGM40Hn7DoYLJENBvLJWg6W
+	 Ltm97bndnp17jlnfRIkLV8KlNV4B/QGmmPPMMH90=
+Authentication-Results: mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
+From: Dmitry Antipov <dmantipov@yandex.ru>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: Kalle Valo <kvalo@kernel.org>,
+	linux-wireless@vger.kernel.org,
+	lvc-project@linuxtesting.org,
+	ath11k@lists.infradead.org,
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: [PATCH] wifi: ath11k: drop NULL pointer check in ath11k_update_per_peer_tx_stats()
+Date: Wed,  6 Sep 2023 12:36:55 +0300
+Message-ID: <20230906093704.14001-1-dmantipov@yandex.ru>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87jzt3ellx.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230906_021254_931790_5136754A 
-X-CRM114-Status: GOOD (  17.02  )
+X-CRM114-CacheID: sfid-20230906_023747_032937_19252A1D 
+X-CRM114-Status: UNSURE (   6.32  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,52 +72,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Sep 06, 2023 at 11:45:14AM +0300, Kalle Valo wrote:
-> Alex R <alex@ironrobin.net> writes:
-> 
-> > Trying the latest board-2.bin from
-> > https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855 and my
-> > wlan0 fails to come up. dmesg: https://pastebin.com/CWHpD0kC
-> >
-> > My other X13s system (21BX-0015US) works fine so I am wondering if my
-> > new X13s (21BY-S03Y00) product type is unsupported.
-> 
-> For easier tracking can you please file a bug to bugzilla:
-> 
-> https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
-> 
-> Also adding Johan in case he has any ideas or knows what has changed in
-> 21BY-S03Y00.
+Since 'user_stats' is a fixed-size array of 'struct htt_ppdu_user_stats'
+in 'struct htt_ppdu_stats', any of its member can't be NULL and so
+relevant check may be dropped.
 
-I've asked for some more details from Alex over IRC, but it's currently
-not clear why there are problems with this particular machine.
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-It appears that firmware download fails, but apparently only sometimes.
-And it fails before loading board-2.bin so that bit of the report looks
-irrelevant:
+Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-	[    2.195948] ath11k_pci 0006:01:00.0: wcn6855 hw2.1
-	...
-	[    2.423948] mhi mhi1: Requested to power ON
-	[    2.427589] mhi mhi1: Power on setup success
-	...
-	[    4.035111] mhi mhi1: Wait for device to enter SBL or Mission mode
-	...
-	[   23.518986] mhi mhi1: MHI did not load AMSS, ret:-5
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 62bc98852f0f..146201d8dba2 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1388,9 +1388,6 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 	u8 tid = HTT_PPDU_STATS_NON_QOS_TID;
+ 	bool is_ampdu = false;
+ 
+-	if (!usr_stats)
+-		return;
+-
+ 	if (!(usr_stats->tlv_flags & BIT(HTT_PPDU_STATS_TAG_USR_RATE)))
+ 		return;
+ 
+-- 
+2.41.0
 
-IIUC, things got worse with 6.5, possible due to random changes in
-timing.
-
-You need to provide a lot more detail, Alex:
-
-For example, did this module ever work, and if so with which kernel
-version? How is this module identified when it starts successfully? How
-did things change in 6.5? Have you verified that you're using the same
-fw on both the working and non-working machine (not just board-2.bin,
-which does not seem to be involved here)? You also said something on IRC
-about dual-booting Windows making a difference, etc. etc.
-
-Johan
 
 -- 
 ath11k mailing list
