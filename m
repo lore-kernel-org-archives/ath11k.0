@@ -4,84 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4540DEC8735
-	for <ath11k@archiver.kernel.org>; Thu,  7 Sep 2023 14:52:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA28EC8737
+	for <ath11k@archiver.kernel.org>; Thu,  7 Sep 2023 15:16:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:From:To:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0VqDzLn5xDXSNaWBJmbpu4aLv0UcjFdSu/uQOKgne9c=; b=fAN3OOraaB9ON7
-	8H1yZTqolPPd65P4XB2V3fYMThR92eQisMzeTtrwApMxStUu4G+6gfbZs8l9+gJVtWMBqZDdUr6Bl
-	Kp6SB8MGpKguIZJE1T3se6ENqrRT1X8+c5GN6J4syFxR2pSd2NmRLulbGNCSUAkjs2VAcqpzz4c94
-	cQTHn+w4IAf6hLCTEAAALuKo29ARuvTpiLvAv1e4ZHoCd/BCJsjuVZXIo+ybzOMuQFfZ2Dq22RnDv
-	uh18jpz2y2cilNmSz0BM0x/kRyCBweMU2SXobHGZSD8LDM3mDYI2OFKjEJ3AvvRMTxfYb0Vwijc7T
-	TP3iBpoUeg8vUIgUD9XA==;
+	List-Owner; bh=MTtrNeynbO5ZvFyeFeboNgcD8zmmKp0HUSPujcN8+GM=; b=JPycehbcQuqtuC
+	53qx9XrI/yiN2+p3IGVp3qkuR8iK3I4H1t3QBFcRd+hpKcm3cA8wHAwtAF82i5RvdqlvAjDVxmaK6
+	zYQzDAZsfS+IKQfS3bhcFNcwPbe3apsK90HCrPcfZSMHn+HUXqvuut5LtOxMGShjPw5Yi9GjsMVaw
+	aGDoszt08IBsGptJDIanPK98sTfNa48wmHHeEe1mzqdkAK9WpYy9i9x9hCCiUIzZzTnoOF1ufs3oZ
+	GFv7xy78yvvryxaeI9p0HvcZ0dtRE2Jra1D7CT/+apmWHisHHoCDY4fGo92U8YCJQIlg83nR2pXJK
+	1BekEJs+YS3o+fRSyoCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeGN5-00CDhr-16;
-	Thu, 07 Sep 2023 14:52:39 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1qeGkM-00CFDU-0G;
+	Thu, 07 Sep 2023 15:16:42 +0000
+Received: from mail-4323.proton.ch ([185.70.43.23])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qeGN2-00CDgz-2l
+	id 1qeGkG-00CFC6-1M
 	for ath11k@lists.infradead.org;
-	Thu, 07 Sep 2023 14:52:38 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 387DGftb004404;
-	Thu, 7 Sep 2023 14:52:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=uNekWqbroiT3eusW/jNl1HsuJO2UwOq39m0u9BjMw9o=;
- b=bveoZhUuDDXC/WFCDgL0VZPIEL1DGvHWRzZpIp0NMKQ6BxmKIr6wHk0qwZbjFkDQMyrq
- sAH0LD4+yE3x5Q+QAplswU4ZUSJnOMa07y2JNA2Cu8Pvj+gyZCNizAll6hC5uCJUoxbO
- yZzgnXYAYa5Cin9pK+JPuIp/VipQckTIMXZXQSIC9SqtWS4A813IHQimpdW0mWFvmZ63
- JMiEJkYOvBaLlVHkznBbtiseQH6Qg7lZBZUdFeQ2tK0z2REX9tCFv1RgVpRJSs/Oo4VM
- G8CHbMJIUT+1LgMTX0hDjgsL66e5JppwN4QuVGh7A9WNVO1pq+M5lURMDKJ+sHOZVtBp ng== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sy4s7sgp8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Sep 2023 14:52:26 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 387EqQ7x028647
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 7 Sep 2023 14:52:26 GMT
-Received: from [10.111.180.119] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 7 Sep
- 2023 07:52:25 -0700
-Message-ID: <4c0c9068-0982-4b05-9c11-1aa5913a9c8c@quicinc.com>
-Date: Thu, 7 Sep 2023 07:52:25 -0700
+	Thu, 07 Sep 2023 15:16:39 +0000
+Date: Thu, 07 Sep 2023 15:16:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ironrobin.net;
+	s=protonmail3; t=1694099788; x=1694358988;
+	bh=p90YcYPPX1GDi/aHXgUPhpVPTXN6sPVRNEYYf8Pj3jQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=Vh37t9JCEiKBNd7gSrJps12zzpsmPApFhFz7EmpoVvDGkdIrEzKEJpXPnafCaO2GT
+	 /nUz2Sp9m+4W6/iw5NBrNxWGe5sPrr//WhgbH7hNamu988kyrkqw1oHyTJ89dXBLmR
+	 42m3jcXXtn4NO8ZL2lFdVtTEQrx7ZPGSyzLzqX9w3Q8/rpziX3fiU4KioPWfQJs5Kg
+	 f5CRdTKj+ojjvjL7840GeMYWLEUPlZxMgh1tJmnuttHxM/v8vbvmWnW3Bf8c7f9Oq6
+	 mSl0AiVGi+qi54MAOK6r8HPW74RTw6oVTb/XiR/+EGBq8apMYQg3lbRUC/ocR2dGpC
+	 QTokrK5pl3Utg==
+To: Johan Hovold <johan@kernel.org>
+From: Alex R <alex@ironrobin.net>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, Kalle Valo <kvalo@kernel.org>, "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: WCN6855: Request: Support ThinkPad X13s 21BY-S03Y00
+Message-ID: <aMi4zXfWxMWs2QxBRyLwLb30U-nf6DPgkOd27if32rD-T5rYfBcS5q8fXgUE-FAarK7NlWmNjDt12o81fDVLJMtygm5mpracZ2TuvrVoFQg=@ironrobin.net>
+In-Reply-To: <ZPiS7EJe7teOpOyw@hovoldconsulting.com>
+References: <mYl9fKKm9_Kn1aqjsnk6yx9YxhhFShCQeF2qptjjWlKDJ-XpxsO038Eag4A9S4EABiWbhiJ8polAtrOwVGIZeZ1yYTSwNYldBBDeZXMmtxI=@ironrobin.net> <87jzt3ellx.fsf@kernel.org> <ZPhCq32KlaZteCzG@hovoldconsulting.com> <d191d35f-f006-45e6-bf69-3d4d251a892b@quicinc.com> <ZPiS7EJe7teOpOyw@hovoldconsulting.com>
+Feedback-ID: 54785507:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: drop NULL pointer check in
- ath11k_dp_rx_mon_dest_process()
-Content-Language: en-US
-To: Dmitry Antipov <dmantipov@yandex.ru>
-CC: Kalle Valo <kvalo@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <lvc-project@linuxtesting.org>, <ath11k@lists.infradead.org>
-References: <20230907083852.10775-1-dmantipov@yandex.ru>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20230907083852.10775-1-dmantipov@yandex.ru>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: F6BDw0kUruSFLFV7ZEWUTnqCYT_BTGsB
-X-Proofpoint-ORIG-GUID: F6BDw0kUruSFLFV7ZEWUTnqCYT_BTGsB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-07_07,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- malwarescore=0 mlxscore=0 clxscore=1015 adultscore=0 spamscore=0
- mlxlogscore=605 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2308100000 definitions=main-2309070132
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230907_075236_901061_3C7FD70C 
-X-CRM114-Status: GOOD (  17.54  )
+X-CRM114-CacheID: sfid-20230907_081638_578359_0E4F6A5F 
+X-CRM114-Status: GOOD (  16.41  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,45 +63,60 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/7/2023 1:38 AM, Dmitry Antipov wrote:
-> Since 'srng_list' is a fixed-size array of 'struct hal_srng'
-> in 'struct ath11_hal', any of its member can't be NULL and
-> so relevant check may be dropped.
-> 
-> Found by Linux Verification Center (linuxtesting.org) with SVACE.
-> 
-> Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
+Q. Did this module ever work, and if so with which kernel version?
+A. It seems to work more reliably on my archiso kernel, which is 5.19.0. 
+IIRC this is where we were using the wifi hack, before we got the new X13s board file.
 
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Q. How is this module identified when it starts successfully? 
+A. Here is the dmesg from a "successful" bootup: https://pastebin.com/1kLDzXSD
+(I was able to get the wlan0 device to come up by booting into Windows 11, checking for updates, and then shutting down (not rebooting) 
+(fast boot Windows 11 setting is disabled)
 
-> ---
->   drivers/net/wireless/ath/ath11k/dp_rx.c | 7 -------
->   1 file changed, 7 deletions(-)
+Q. How did things change in 6.5?
+A. On both 6.4 and 6.5 of those versions, we have the same issue in the dmesg logs. 
+Although it seems I am able to get "successful" boots more often with 6.4.
+I have no data on this though and could be wrong.
+
+Q. Have you verified that you're using the same fw on both the working and non-working machine (not just board-2.bin, which does not seem to be involved here)?
+A. I use my own distro based on Arch Linux ARM project, and use the same x13s-firmware package on both machines, so firmware must be the same.
+https://github.com/ironrobin/x13s-alarm/tree/trunk/x13s-firmware
+
+Q. You also said something on IRC about dual-booting Windows making a difference, etc. etc.
+A. On my faulty machine, I've tried both dual booting Windows and running linux as the only root partition on a nvme drive.
+The only difference I've noticed is that I can more reliably bring back the wlan0 device by booting into Windows 11, connecting to the internet, and then rebooting into Linux.
+
+
+Alex
+
+------- Original Message -------
+On Wednesday, September 6th, 2023 at 9:55 AM, Johan Hovold <johan@kernel.org> wrote:
+
+
 > 
-> diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-> index 146201d8dba2..4463e308968c 100644
-> --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-> +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-> @@ -5094,13 +5094,6 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
->   
->   	mon_dst_srng = &ar->ab->hal.srng_list[ring_id];
->   
-> -	if (!mon_dst_srng) {
-> -		ath11k_warn(ar->ab,
-> -			    "HAL Monitor Destination Ring Init Failed -- %p",
-> -			    mon_dst_srng);
-> -		return;
-> -	}
-> -
->   	spin_lock_bh(&pmon->mon_lock);
->   
->   	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
-
+> 
+> On Wed, Sep 06, 2023 at 07:47:17AM -0700, Jeff Johnson wrote:
+> 
+> > On 9/6/2023 2:13 AM, Johan Hovold wrote:
+> 
+> > > I've asked for some more details from Alex over IRC, but it's currently
+> > > not clear why there are problems with this particular machine.
+> 
+> > Is this using the single MSI interrupt feature? If so, try:
+> > "[PATCH] wifi: ath11k: fix boot failure with one MSI vector"
+> > 
+> > https://lore.kernel.org/ath11k/20230601033840.2997-1-quic_bqiang@quicinc.com/T/
+> 
+> 
+> No, it's not:
+> 
+> [ 2.195919] ath11k_pci 0006:01:00.0: MSI vectors: 32
+> 
+> Johan
 
 -- 
 ath11k mailing list
