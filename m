@@ -4,76 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A548EEB570
-	for <ath11k@archiver.kernel.org>; Fri,  8 Sep 2023 21:32:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 801ECEE57DF
+	for <ath11k@archiver.kernel.org>; Mon, 11 Sep 2023 07:39:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rRDzCjBd9NvggPoiEB+bsNXoBnySbIKcDL+yys7ZqMo=; b=FHb/NTheslT+oB
-	OeqH0H2p/XjYAm9pfXMn7kDyOtpbVFHt2WrDcV8eMWBqwLwO8lokifiCS986JxDSFQfNY7FE9JWsx
-	wEAPGJ1IJ2HbfO87XMxTvMfzdfTRZ1DXzM9eR+2vdloRDkD463lv9ertFFjex8Kc8dohCZA/yx3Q1
-	z7CkDZmAcNCIiNpfe3XLcTDtdzBlObMiqYLNkY/HSiCWh5stidIikvNEixxDmT8+b+lwhlpvbzbWW
-	mC0f+SeM60f07YP7c2zi6jTnkaqSo5A1jc63q02DvAbIsHvt73+Be2svZgdIJ7LRdWIjaJXTlxmEP
-	sOAc7yuMX+U6ZWDEVBLw==;
+	List-Owner; bh=Jl1AbEFlgmqCX96fdEk55lk46BVgvfyJJ5kJXEfi9Aw=; b=IiJQFy1vYpE4ao
+	7mvdJjvOUcSde+m96AwKxa0UxOD5CXSY0LIHaqqWt4eoq+BeJ6NyMGk2Mtc9eG9dJwQrZsbnxEmmg
+	bgIOScMLH3EHE3uEqL+iRyw8V3JX0Xi19CGasoXBzQOb0eAQZlUPb/gdMuQlj5QOROLPjrndOH0gm
+	ETtoefUunFYCYyVhdjtLgC87vVGh8pPDbWkwAtTFMLbNF40N5nGdz9PMQDAtDEqZ4738fogjBxXZb
+	FSVsAnsjiPv5SbPKdYxXlHJgUvEELJ0ySRx0JEjA4fupH3WKaXfocaE07nTf6agejqr80kPHUEQ+R
+	43zrnwX7b7ZFeHov1O9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qej5D-00EWA0-08;
-	Fri, 08 Sep 2023 21:32:07 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1qfbVh-00HQqT-0w;
+	Mon, 11 Sep 2023 07:39:05 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qej59-00EW7Q-0M;
-	Fri, 08 Sep 2023 21:32:05 +0000
+	id 1qfbVf-00HQqB-0l
+	for ath11k@lists.infradead.org;
+	Mon, 11 Sep 2023 07:39:04 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id 71B72CE1C9D;
-	Fri,  8 Sep 2023 21:32:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F758C433C7;
-	Fri,  8 Sep 2023 21:31:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1694208718;
-	bh=jnZW3kJ1q2GcV2pxAvLRxz+0IUuoJxM+MtHeCLvaV3k=;
+	by ams.source.kernel.org (Postfix) with ESMTPS id F3121B80E69;
+	Mon, 11 Sep 2023 07:39:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1D8DC433C7;
+	Mon, 11 Sep 2023 07:38:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694417939;
+	bh=HxCuO+57mqYUW9iEG10BXOfbR+5C1YI43i83vJ0jGZQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rL/hXl1JmyCN2+NX3XFRjO3IBjzj3gm/vyTf/yQM/ms1fYHZLLheiBdkAscyPD4ig
-	 xEJBQ/sHZdVG/iM0p8OjYq7bcd79OWbtESi4cnpza8CsO0AlxstTVZg+crAliB0M+u
-	 sMtzHFoNhDRydKXF6ghbQDeG3lQZH7cQseD/hGy4=
-Date: Fri, 8 Sep 2023 22:31:55 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Alan Stern <stern@rowland.harvard.edu>
-Cc: Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
-	quic_jjohnson@quicinc.com, nbd@nbd.name, lorenzo@kernel.org,
-	ryder.lee@mediatek.com, matthias.bgg@gmail.com, kuba@kernel.org,
-	srini.raju@purelifi.com, stf_xl@wp.pl, helmut.schaa@googlemail.com,
-	pkshih@realtek.com, corentin.chary@gmail.com, hdegoede@redhat.com,
-	markgross@kernel.org, johannes.berg@intel.com,
-	alexander@wetzel-home.de, error27@gmail.com,
-	szymon.heidrich@gmail.com, gustavoars@kernel.org, lynxis@fe80.eu,
-	daniel@makrotopia.org, arnd@arndb.de, shayne.chen@mediatek.com,
-	keescook@chromium.org, tglx@linutronix.de, pabeni@redhat.com,
-	rostedt@goodmis.org, jacob.e.keller@intel.com,
-	ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org, ath12k@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	acpi4asus-user@lists.sourceforge.net,
-	platform-driver-x86@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH AUTOSEL 6.5 43/45] Fix nomenclature for USB and PCI
- wireless devices
-Message-ID: <2023090838-slurp-tilt-c7c4@gregkh>
-References: <20230908181327.3459042-1-sashal@kernel.org>
- <20230908181327.3459042-43-sashal@kernel.org>
- <0d2ddf90-2334-4d0c-9f63-018c150e06a9@rowland.harvard.edu>
+	b=dUA6B4Ku/n4obKjRk1QQauMCOiWEULZvIfGPkYeFIE9mBrj1LY80P3emnBtK6lrqh
+	 RYJRiKxaI3U7me/aiXoB/lDfREyE2eLp54i/9PvwwnOgrBNeAb53a2BmDwni0PP6JQ
+	 iwQL42wj07c0X3UU/HRQp3B5UpCuC1wZGKRmSecpe5iolNVFU5j98OuSF9/Ty73b0O
+	 Sat5gMwRC40DxQ4zfPCcO4RQ8cZJt3trS/i/1oJpGV8Cc8w4xexOZGWAt2PTW5uaXC
+	 ZwqH4jyZDRD4i0JptIi4IlAXD+fdpkBF2B15H3RvHTqP11fQ89kr/HWwm7ueFaOskS
+	 aAq8rQK8Sfuiw==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qfbVZ-0001Ww-05;
+	Mon, 11 Sep 2023 09:38:57 +0200
+Date: Mon, 11 Sep 2023 09:38:57 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Alex R <alex@ironrobin.net>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: WCN6855: Request: Support ThinkPad X13s 21BY-S03Y00
+Message-ID: <ZP7EERThjmdfIjJl@hovoldconsulting.com>
+References: <mYl9fKKm9_Kn1aqjsnk6yx9YxhhFShCQeF2qptjjWlKDJ-XpxsO038Eag4A9S4EABiWbhiJ8polAtrOwVGIZeZ1yYTSwNYldBBDeZXMmtxI=@ironrobin.net>
+ <87jzt3ellx.fsf@kernel.org>
+ <ZPhCq32KlaZteCzG@hovoldconsulting.com>
+ <d191d35f-f006-45e6-bf69-3d4d251a892b@quicinc.com>
+ <ZPiS7EJe7teOpOyw@hovoldconsulting.com>
+ <aMi4zXfWxMWs2QxBRyLwLb30U-nf6DPgkOd27if32rD-T5rYfBcS5q8fXgUE-FAarK7NlWmNjDt12o81fDVLJMtygm5mpracZ2TuvrVoFQg=@ironrobin.net>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <0d2ddf90-2334-4d0c-9f63-018c150e06a9@rowland.harvard.edu>
+In-Reply-To: <aMi4zXfWxMWs2QxBRyLwLb30U-nf6DPgkOd27if32rD-T5rYfBcS5q8fXgUE-FAarK7NlWmNjDt12o81fDVLJMtygm5mpracZ2TuvrVoFQg=@ironrobin.net>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230908_143203_519861_1CF5A6F8 
-X-CRM114-Status: GOOD (  18.60  )
+X-CRM114-CacheID: sfid-20230911_003903_442090_33775136 
+X-CRM114-Status: UNSURE (   5.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,46 +85,14 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 08, 2023 at 03:12:26PM -0400, Alan Stern wrote:
-> On Fri, Sep 08, 2023 at 02:13:24PM -0400, Sasha Levin wrote:
-> > From: Alan Stern <stern@rowland.harvard.edu>
-> > 
-> > [ Upstream commit 5d7cf67f72ae34d38e090bdfa673da4aefe4048e ]
-> > 
-> > A mouse that uses a USB connection is called a "USB mouse" device (or
-> > "USB mouse" for short), not a "mouse USB" device.  By analogy, a WiFi
-> > adapter that connects to the host computer via USB is a "USB wireless"
-> > device, not a "wireless USB" device.  (The latter term more properly
-> > refers to a defunct Wireless USB specification, which described a
-> > technology for sending USB protocol messages over an ultra wideband
-> > radio link.)
-> > 
-> > Similarly for a WiFi adapter card that plugs into a PCIe slot: It is a
-> > "PCIe wireless" device, not a "wireless PCIe" device.
-> > 
-> > Rephrase the text in the kernel source where the word ordering is
-> > wrong.
-> > 
-> > Signed-off-by: Alan Stern <stern@rowland.harvard.edu>
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Signed-off-by: Kalle Valo <kvalo@kernel.org>
-> > Link: https://lore.kernel.org/r/57da7c80-0e48-41b5-8427-884a02648f55@rowland.harvard.edu
-> > Signed-off-by: Sasha Levin <sashal@kernel.org>
-> 
-> 
-> Is there any real reason to apply this commit to the -stable kernels?
-> I did not mark it that way when it was submitted, and it doesn't fix
-> any bugs.  In fact, aside from updating some module and device
-> description strings, all it does is change a bunch of comments.
-> 
-> Does that really fall under the -stable rules for acceptance?
+Alex,
 
-Not really, this is just documentation, it should be dropped from the
-autosel queues.
+You sent an encrypted mail to a public mailing list, which does not
+really work.
 
-thanks,
+Please resend your reply unencrypted.
 
-greg k-h
+Johan
 
 -- 
 ath11k mailing list
