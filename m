@@ -4,70 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A21AEE57DF
-	for <ath11k@archiver.kernel.org>; Mon, 11 Sep 2023 11:27:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC4C8CA0EC9
+	for <ath11k@archiver.kernel.org>; Tue, 12 Sep 2023 05:19:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AMSlMbITVGVVH+TGYHZ42vEFmevb3jOPdo6rYQhODn4=; b=CR69ou1iZBYo36
-	rMQubOgGafWmpyMKNQwaDYvrMv8i5TTjOnGAhOn2VORAfwtgFJyrX2btNUUuhZ1UVzkNqgkodp15H
-	02yhfbg/15YPcd7I4nKaM/JqivPW+ASg3p+g1ahNhlqk/ll8det63Xj6U7Q0IQ3SDzvKeEPldy26f
-	vdtx5t1XszgjxevikPE6mnVccvVFMMh3b5Z8PM5qAGk2m8OG7A5RmJA+UVo5vzWgIj+HJkZZeR8FW
-	bLrr4wIH/aGBsE+zGgAEWE8f4Gj7UTuKZVEblRLUo91PvhwLRemMURkWCJkU8e2AbdpTjlM1JqoYN
-	aBgH2EGcE9q6Ye8STBJw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3fr+pa4dIUc5pVgkeknjeI9OdA1chx9xzEqiVIrUtSQ=; b=BVc1fZ3oFbYdW0
+	cuPpCjFoUllGpS4eOZuZLEZLvX98d9lZ4bHpDNSY7KaVBH6/mjMWDGbeSMjso3vQniijHB7kIOoq3
+	mhcOZNlq8tF1QFK6QiwJ3CSKabOF4AKUP3vs3tG3Z4jlALG3Uauqre0ABfSHQhtC+yMzUyhzbdBF/
+	RM86Qd5WBIXxtaOiibNYKfCN/8sw/GKpODo1KMo4NO83hkF3CurALNUAA6EDt88Xupz2NjmKEAtgV
+	0GA9bq+afgor+AJUMOGG3W4pa+DQdvA15/2VivARI/TNKZzSv8+arH7ic9JkNO+crSdAvPmN72RJN
+	9nDXlwiUjhmN5FZ2a53Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qff4M-000Nad-0k;
-	Mon, 11 Sep 2023 11:27:06 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1qfvoE-002BZK-2S;
+	Tue, 12 Sep 2023 05:19:34 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qff4I-000Na7-18
+	id 1qfvoB-002BYn-1t
 	for ath11k@lists.infradead.org;
-	Mon, 11 Sep 2023 11:27:04 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id 3D7D7CE129B;
-	Mon, 11 Sep 2023 11:27:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C16CC433C7;
-	Mon, 11 Sep 2023 11:26:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694431618;
-	bh=DF/qfsszTcv7zwe+8RhA/+c3s6dIAdavwqlf2ypN4Gw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dcBXNWTexE90psRMN83fptBA97QX3ucM+BD51tQpZLd6l2++qCLsHSkXmRla6/rZS
-	 RZAtYAwo18iRX6NiCfdREkp11Zz4AII+q4ZoOPHecCAmZLGV1+S/gZC7lgr/uuYEIJ
-	 pkZBQZCJ8tIfva7rOlIf6fLO99rr/gCCAPbWREKaMtDSyhhvTjdwrn/u1YdOAWM6Sl
-	 +mkcyF72O1pQzMA2QfvyrcF+tA6D70iwC94lvqrHO+JC9G46wdF59Hxv/OVlW0w2Tj
-	 JCc4HCfWxNSW45RiyT12vrkHnHQstwOM70bEu2nvGm3SfiTMuHqpnu9vh6mweZHofU
-	 F24w6TlhP6OJA==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qff4C-0003t0-09;
-	Mon, 11 Sep 2023 13:26:56 +0200
-Date: Mon, 11 Sep 2023 13:26:56 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Alex R <alex@ironrobin.net>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
-	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: WCN6855: Request: Support ThinkPad X13s 21BY-S03Y00
-Message-ID: <ZP75gMQVajZIJlIL@hovoldconsulting.com>
-References: <mYl9fKKm9_Kn1aqjsnk6yx9YxhhFShCQeF2qptjjWlKDJ-XpxsO038Eag4A9S4EABiWbhiJ8polAtrOwVGIZeZ1yYTSwNYldBBDeZXMmtxI=@ironrobin.net>
- <87jzt3ellx.fsf@kernel.org>
- <ZPhCq32KlaZteCzG@hovoldconsulting.com>
- <d191d35f-f006-45e6-bf69-3d4d251a892b@quicinc.com>
- <ZPiS7EJe7teOpOyw@hovoldconsulting.com>
- <aMi4zXfWxMWs2QxBRyLwLb30U-nf6DPgkOd27if32rD-T5rYfBcS5q8fXgUE-FAarK7NlWmNjDt12o81fDVLJMtygm5mpracZ2TuvrVoFQg=@ironrobin.net>
+	Tue, 12 Sep 2023 05:19:32 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38C4QOkW028316;
+	Tue, 12 Sep 2023 05:19:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=TJbAoEQqo6+uWPfCRClZYQfwe1JwyrzoVgw97CEUR+Q=;
+ b=MDMl3Dv2xD1x0T5MpcIPYPompHgyvu11xDQLt1BbrmAdRdIZAkFZraRIod35y2Cp+4XD
+ MGSqUa77Z+GeFi51FA2gN5uLQsm6wvh9qUvck735OXdiJtMX9xBCywuoKZbx+/yFpWSi
+ ZDdhVWOnBzisuUDs2wFWEeYe8Pf4tqKLiCtIXf/L377bY4gq/B9dsa0ykxLYgCyyfIFD
+ F5T7YI0e08hlaTDdPW+I/B03YfpRriKaV1s11xuRf5twIYyIkce8DD6ABxXikHwcMuU6
+ mixjR+KO4Zxz8pCm+4IJdAQ1ZCgSu5q8RuItKLhYWDBH0SdaE0kXGjOC3qDne0vzu/Tk Sg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t2f3yr8s6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Sep 2023 05:19:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38C5JRRI030837
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Sep 2023 05:19:27 GMT
+Received: from adisi-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Mon, 11 Sep 2023 22:19:25 -0700
+From: Aditya Kumar Singh <quic_adisi@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <johannes@sipsolutions.net>,
+        "Aditya
+ Kumar Singh" <quic_adisi@quicinc.com>
+Subject: [PATCH v2 0/3] wifi: ath11k: fix CAC running state
+Date: Tue, 12 Sep 2023 10:48:54 +0530
+Message-ID: <20230912051857.2284-1-quic_adisi@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <aMi4zXfWxMWs2QxBRyLwLb30U-nf6DPgkOd27if32rD-T5rYfBcS5q8fXgUE-FAarK7NlWmNjDt12o81fDVLJMtygm5mpracZ2TuvrVoFQg=@ironrobin.net>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Qv9nUkGH93U-HRKFt-bnTEB2s4D5ZxLy
+X-Proofpoint-ORIG-GUID: Qv9nUkGH93U-HRKFt-bnTEB2s4D5ZxLy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-12_02,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 adultscore=0 mlxlogscore=862
+ impostorscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2309120043
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230911_042702_850360_14BE199B 
-X-CRM114-Status: GOOD (  28.96  )
+X-CRM114-CacheID: sfid-20230911_221931_659195_D8AB0EDD 
+X-CRM114-Status: GOOD (  14.34  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,69 +94,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Sep 07, 2023 at 03:16:15PM +0000, Alex R wrote:
-> Q. Did this module ever work, and if so with which kernel version?
-> A. It seems to work more reliably on my archiso kernel, which is 5.19.0. 
-> 
-> IIRC this is where we were using the wifi hack, before we got the new
-> X13s board file.
+Currently CAC running flag in ath11k is not set if DFS radar is required in
+secondary channel. This is due to the fact that only primary channel's DFS
+state and CAC time is being checked before setting the flag.
 
-Yes, but it seems you never get as far as loading the board file so I
-don't think that one's involved here.
+Fix this issue by checking the DFS state of all the sub-channels inside a
+channel definition and not just the primary channel.
 
-> Q. How is this module identified when it starts successfully? 
-> 
-> A. Here is the dmesg from a "successful" bootup: https://pastebin.com/1kLDzXSD
-> (I was able to get the wlan0 device to come up by booting into Windows
-> 11, checking for updates, and then shutting down (not rebooting) 
-> 
-> (fast boot Windows 11 setting is disabled)
+Also, make minor change in debug prints to show the CAC time
 
-Ok, so you do have a different chip_id than I do (0x2 instead of 0x12),
-but both ids have an entry in board-2.bin (otherwise it would not work
-"sometimes"):
+Aditya Kumar Singh (3):
+  wifi: cfg80211: export DFS CAC time and usable state helper functions
+  wifi: ath11k: fix CAC running state during virtual interface start
+  wifi: ath11k: fix Tx power value during active CAC
+---
+v2: rebased on ToT
 
-	ath11k_pci 0006:01:00.0: chip_id 0x2 chip_family 0xb board_id 0x8c soc_id 0x400c0210
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 27 +++++++++++++++++++--------
+ include/net/cfg80211.h                | 24 ++++++++++++++++++++++++
+ net/wireless/chan.c                   |  2 ++
+ net/wireless/core.h                   | 17 -----------------
+ 4 files changed, 45 insertions(+), 25 deletions(-)
 
-You could compare it with what the chip in your other machine which does
-not have this issue is identified as (compare all the values above).
 
-> Q. How did things change in 6.5?
-> A. On both 6.4 and 6.5 of those versions, we have the same issue in
-> the dmesg logs. 
-> 
-> Although it seems I am able to get "successful" boots more often with 6.4.
-> I have no data on this though and could be wrong.
+base-commit: 0263687f4441d5a5eab8074d56b4693c8f0acf85
+-- 
+2.17.1
 
-Ok, got it. But with 5.19 you never saw this issue at all?
-
-> Q. Have you verified that you're using the same fw on both the working
-> and non-working machine (not just board-2.bin, which does not seem to
-> be involved here)?
-> A. I use my own distro based on Arch Linux ARM project, and use the
-> same x13s-firmware package on both machines, so firmware must be the
-> same.
-> https://github.com/ironrobin/x13s-alarm/tree/trunk/x13s-firmware
-
-Ok, the fw version is also logged on successful probe and you appear to
-use the same version as I do:
-
-	ath11k_pci 0006:01:00.0: fw_version 0x110b196e fw_build_timestamp 2022-12-22 12:54 fw_build_id WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-
-Could you check what fw version you were using with your 5.19 iso image?
-
-> Q. You also said something on IRC about dual-booting Windows making a
-> difference, etc. etc.
-> A. On my faulty machine, I've tried both dual booting Windows and
-> running linux as the only root partition on a nvme drive.
-> The only difference I've noticed is that I can more reliably bring
-> back the wlan0 device by booting into Windows 11, connecting to the
-> internet, and then rebooting into Linux.
-
-Hmm... Not sure what's going on here, and I'm afraid I won't have time
-to look at this myself for a while.
-
-Johan
 
 -- 
 ath11k mailing list
