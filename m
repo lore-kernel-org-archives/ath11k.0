@@ -4,69 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E80B5CA553B
-	for <ath11k@archiver.kernel.org>; Thu, 14 Sep 2023 04:05:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AE55CA0EF6
+	for <ath11k@archiver.kernel.org>; Thu, 14 Sep 2023 04:05:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=p/qcF5ngUiUyQeyRfjm/fUk9k/fWLsdbKz9ObMb0xU0=; b=Xj2/SXR8vrjN89
-	C3u5HOQ8XdhO1aK/jkoF4hykUYqEm13B5s8vJn+Dtybqoq2W7GUbalO/4VjeBX6fMzxglXZyJW+S7
-	fBg7VyJcVTiKh0VddELpd5ap0++2NnsLB46ux66TksJM7a0DxK7aqTJNOGuTpc91dspELLkg8T++9
-	/GsEWORsuBxbNerJZv4KPPOSN9r8kpad7I8FuWv7edhIjHce8Nw6UdJdfKuj34WZxJeAk97ZZ6RWY
-	KjUX/FjSUAVmIAbYIV96Pyf0/1kkqoPyyYJkDYZXXzSbQ1IvppRoErb8UXXMTDlwXyPDsf+VGSpMO
-	ZyiSdmuR09eYqkHW5bpw==;
+	List-Owner; bh=Th3YHHNqoSo38Ihm8Bvmg3VzPYhbwXnhlK3WlFbF5cs=; b=gdcjnc4DYAQ12C
+	1ib0/Jc0deX5S06YrBjC3rWwJVbw0ABLB6Sx/7TzsJFTA+GReKgNg2D87CFlIhStwg/syEYrix6Ks
+	twif1JJ9u8dG04XDG+wRJ0Z1l0e88CwOI4hn6G0d3R84K6gzH5IAZyXrk8KxcoNu6iCo31/7tW/Qu
+	6KRP2h9s0RUd0wfKunkuZxGtxf2WOZpTyw9/kekmjPds3AfxqjfJLgLY9I+0KKp1xgnbltuOCjQrU
+	vwJRUxPFoaz4kn1fkAU+hq/cKM/N2lqMMF016Kt3kNo0AYAUp+wOEF6l1LHepe8w17geykTV4OfLU
+	qMLccWLc2qmQP0scvTuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgdbJ-007JbA-17;
-	Thu, 14 Sep 2023 04:05:09 +0000
+	id 1qgdbo-007Jm6-15;
+	Thu, 14 Sep 2023 04:05:40 +0000
 Received: from [42.101.60.195] (helo=mail.nfschina.com)
 	by bombadil.infradead.org with smtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgdbE-007JXe-0D;
-	Thu, 14 Sep 2023 04:05:06 +0000
+	id 1qgdbk-007JkU-2L
+	for ath11k@lists.infradead.org;
+	Thu, 14 Sep 2023 04:05:39 +0000
 Received: from localhost.localdomain (unknown [180.167.10.98])
-	by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPA id 2ED14606080E2;
-	Thu, 14 Sep 2023 12:04:17 +0800 (CST)
+	by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPA id 764C1606080E2;
+	Thu, 14 Sep 2023 12:05:34 +0800 (CST)
 X-MD-Sfrom: yunchuan@nfschina.com
 X-MD-SrcIP: 180.167.10.98
 From: Wu Yunchuan <yunchuan@nfschina.com>
 To: kvalo@kernel.org,
-	quic_jjohnson@quicinc.com,
-	jirislaby@kernel.org,
-	mickflemm@gmail.com,
-	mcgrof@kernel.org,
-	toke@toke.dk,
-	afaerber@suse.de,
-	mani@kernel.org,
-	chunkeey@googlemail.com,
-	loic.poulain@linaro.org,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com
-Cc: johannes.berg@intel.com,
-	syoshida@redhat.com,
-	alexander@wetzel-home.de,
+	quic_jjohnson@quicinc.com
+Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	ath10k@lists.infradead.org,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-actions@lists.infradead.org,
-	wcn36xx@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
 	kernel-janitors@vger.kernel.org,
 	Wu Yunchuan <yunchuan@nfschina.com>
-Subject: [PATCH wireless-next 0/9] Remove unnecessary (void*) conversions
-Date: Thu, 14 Sep 2023 12:03:16 +0800
-Message-Id: <20230914040315.1169121-1-yunchuan@nfschina.com>
+Subject: [PATCH wireless-next 8/9] wifi: ath11k: remove unnecessary (void*) conversions
+Date: Thu, 14 Sep 2023 12:05:33 +0800
+Message-Id: <20230914040533.1170191-1-yunchuan@nfschina.com>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230913_210504_315145_3660450F 
-X-CRM114-Status: UNSURE (   4.68  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230913_210537_144441_46EF6AFB 
+X-CRM114-Status: GOOD (  11.50  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,53 +64,262 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Remove all unnecessary (void*) conversions under the directory drivers/net/wireless/ath.
+No need cast (void *) to (struct ath11k_base *),
+struct hal_rx_msdu_link *), (struct ath11k_buffer_addr *) or
+other types.
 
-Wu Yunchuan (9):
-  wifi: ar5523: Remove unnecessary (void*) conversions
-  carl9170: remove unnecessary (void*) conversions
-  wifi: wcn36xx: remove unnecessary (void*) conversions
-  wifi: ath5k: remove unnecessary (void*) conversions
-  ath6kl: remove unnecessary (void*) conversions
-  wifi: ath10k: Remove unnecessary (void*) conversions
-  wifi: ath12k: Remove unnecessary (void*) conversions
-  wifi: ath11k: remove unnecessary (void*) conversions
-  wifi: ath9k: Remove unnecessary (void*) conversions
+Signed-off-by: Wu Yunchuan <yunchuan@nfschina.com>
+---
+ drivers/net/wireless/ath/ath11k/dp.c       |  2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c    | 13 +++++--------
+ drivers/net/wireless/ath/ath11k/hal.c      |  8 +++-----
+ drivers/net/wireless/ath/ath11k/hal_rx.c   | 17 +++++++----------
+ drivers/net/wireless/ath/ath11k/hal_tx.c   |  2 +-
+ drivers/net/wireless/ath/ath11k/mac.c      |  4 ++--
+ drivers/net/wireless/ath/ath11k/spectral.c |  2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c      |  6 +++---
+ 8 files changed, 23 insertions(+), 31 deletions(-)
 
- drivers/net/wireless/ath/ar5523/ar5523.c      |  2 +-
- drivers/net/wireless/ath/ath10k/htt_tx.c      |  6 ++--
- drivers/net/wireless/ath/ath11k/dp.c          |  2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c       | 13 +++----
- drivers/net/wireless/ath/ath11k/hal.c         |  8 ++---
- drivers/net/wireless/ath/ath11k/hal_rx.c      | 17 ++++-----
- drivers/net/wireless/ath/ath11k/hal_tx.c      |  2 +-
- drivers/net/wireless/ath/ath11k/mac.c         |  4 +--
- drivers/net/wireless/ath/ath11k/spectral.c    |  2 +-
- drivers/net/wireless/ath/ath11k/wmi.c         |  6 ++--
- drivers/net/wireless/ath/ath12k/dp_mon.c      |  6 ++--
- drivers/net/wireless/ath/ath12k/dp_rx.c       |  2 +-
- drivers/net/wireless/ath/ath12k/dp_tx.c       |  2 +-
- drivers/net/wireless/ath/ath5k/base.c         |  4 +--
- drivers/net/wireless/ath/ath5k/pci.c          |  4 +--
- drivers/net/wireless/ath/ath6kl/main.c        |  4 +--
- drivers/net/wireless/ath/ath6kl/txrx.c        |  2 +-
- .../wireless/ath/ath9k/ath9k_pci_owl_loader.c |  2 +-
- drivers/net/wireless/ath/ath9k/common-init.c  |  2 +-
- .../net/wireless/ath/ath9k/common-spectral.c  |  2 +-
- drivers/net/wireless/ath/ath9k/debug.c        |  2 +-
- drivers/net/wireless/ath/ath9k/hif_usb.c      | 10 +++---
- .../net/wireless/ath/ath9k/htc_drv_debug.c    |  2 +-
- drivers/net/wireless/ath/ath9k/htc_drv_init.c | 36 +++++++++----------
- drivers/net/wireless/ath/ath9k/htc_hst.c      |  2 +-
- drivers/net/wireless/ath/ath9k/init.c         | 12 +++----
- drivers/net/wireless/ath/ath9k/link.c         |  2 +-
- drivers/net/wireless/ath/ath9k/pci.c          |  6 ++--
- drivers/net/wireless/ath/carl9170/usb.c       | 10 +++---
- drivers/net/wireless/ath/wcn36xx/dxe.c        |  6 ++--
- drivers/net/wireless/ath/wcn36xx/smd.c        | 20 +++++------
- drivers/net/wireless/ath/wcn36xx/testmode.c   |  2 +-
- 32 files changed, 95 insertions(+), 107 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index d070bcb3fe24..a7252b52555c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -1009,7 +1009,7 @@ void ath11k_dp_vdev_tx_attach(struct ath11k *ar, struct ath11k_vif *arvif)
+ 
+ static int ath11k_dp_tx_pending_cleanup(int buf_id, void *skb, void *ctx)
+ {
+-	struct ath11k_base *ab = (struct ath11k_base *)ctx;
++	struct ath11k_base *ab = ctx;
+ 	struct sk_buff *msdu = skb;
+ 
+ 	dma_unmap_single(ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 62bc98852f0f..77a1112b4d88 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1256,7 +1256,7 @@ static int ath11k_htt_tlv_ppdu_stats_parse(struct ath11k_base *ab,
+ 	int cur_user;
+ 	u16 peer_id;
+ 
+-	ppdu_info = (struct htt_ppdu_stats_info *)data;
++	ppdu_info = data;
+ 
+ 	switch (tag) {
+ 	case HTT_PPDU_STATS_TAG_COMMON:
+@@ -4489,8 +4489,7 @@ int ath11k_dp_rx_monitor_link_desc_return(struct ath11k *ar,
+ 	src_srng_desc = ath11k_hal_srng_src_get_next_entry(ar->ab, hal_srng);
+ 
+ 	if (src_srng_desc) {
+-		struct ath11k_buffer_addr *src_desc =
+-				(struct ath11k_buffer_addr *)src_srng_desc;
++		struct ath11k_buffer_addr *src_desc = src_srng_desc;
+ 
+ 		*src_desc = *((struct ath11k_buffer_addr *)p_last_buf_addr_info);
+ 	} else {
+@@ -4509,8 +4508,7 @@ void ath11k_dp_rx_mon_next_link_desc_get(void *rx_msdu_link_desc,
+ 					 u8 *rbm,
+ 					 void **pp_buf_addr_info)
+ {
+-	struct hal_rx_msdu_link *msdu_link =
+-			(struct hal_rx_msdu_link *)rx_msdu_link_desc;
++	struct hal_rx_msdu_link *msdu_link = rx_msdu_link_desc;
+ 	struct ath11k_buffer_addr *buf_addr_info;
+ 
+ 	buf_addr_info = (struct ath11k_buffer_addr *)&msdu_link->buf_addr_info;
+@@ -4551,7 +4549,7 @@ static void ath11k_hal_rx_msdu_list_get(struct ath11k *ar,
+ 	u32 first = FIELD_PREP(RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU, 1);
+ 	u8  tmp  = 0;
+ 
+-	msdu_link = (struct hal_rx_msdu_link *)msdu_link_desc;
++	msdu_link = msdu_link_desc;
+ 	msdu_details = &msdu_link->msdu_link[0];
+ 
+ 	for (i = 0; i < HAL_RX_NUM_MSDU_DESC; i++) {
+@@ -4648,8 +4646,7 @@ ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
+ 	bool is_frag, is_first_msdu;
+ 	bool drop_mpdu = false;
+ 	struct ath11k_skb_rxcb *rxcb;
+-	struct hal_reo_entrance_ring *ent_desc =
+-			(struct hal_reo_entrance_ring *)ring_entry;
++	struct hal_reo_entrance_ring *ent_desc = ring_entry;
+ 	int buf_id;
+ 	u32 rx_link_buf_info[2];
+ 	u8 rbm;
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index 0a99aa7ddbf4..23f3af8e372d 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -571,7 +571,7 @@ u32 ath11k_hal_ce_get_desc_size(enum hal_ce_desc type)
+ void ath11k_hal_ce_src_set_desc(void *buf, dma_addr_t paddr, u32 len, u32 id,
+ 				u8 byte_swap_data)
+ {
+-	struct hal_ce_srng_src_desc *desc = (struct hal_ce_srng_src_desc *)buf;
++	struct hal_ce_srng_src_desc *desc = buf;
+ 
+ 	desc->buffer_addr_low = paddr & HAL_ADDR_LSB_REG_MASK;
+ 	desc->buffer_addr_info =
+@@ -586,8 +586,7 @@ void ath11k_hal_ce_src_set_desc(void *buf, dma_addr_t paddr, u32 len, u32 id,
+ 
+ void ath11k_hal_ce_dst_set_desc(void *buf, dma_addr_t paddr)
+ {
+-	struct hal_ce_srng_dest_desc *desc =
+-		(struct hal_ce_srng_dest_desc *)buf;
++	struct hal_ce_srng_dest_desc *desc = buf;
+ 
+ 	desc->buffer_addr_low = paddr & HAL_ADDR_LSB_REG_MASK;
+ 	desc->buffer_addr_info =
+@@ -597,8 +596,7 @@ void ath11k_hal_ce_dst_set_desc(void *buf, dma_addr_t paddr)
+ 
+ u32 ath11k_hal_ce_dst_status_get_length(void *buf)
+ {
+-	struct hal_ce_srng_dst_status_desc *desc =
+-		(struct hal_ce_srng_dst_status_desc *)buf;
++	struct hal_ce_srng_dst_status_desc *desc = buf;
+ 	u32 len;
+ 
+ 	len = FIELD_GET(HAL_CE_DST_STATUS_DESC_FLAGS_LEN, desc->flags);
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index e5ed5efb139e..5a6df83c2094 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -265,7 +265,7 @@ int ath11k_hal_reo_cmd_send(struct ath11k_base *ab, struct hal_srng *srng,
+ void ath11k_hal_rx_buf_addr_info_set(void *desc, dma_addr_t paddr,
+ 				     u32 cookie, u8 manager)
+ {
+-	struct ath11k_buffer_addr *binfo = (struct ath11k_buffer_addr *)desc;
++	struct ath11k_buffer_addr *binfo = desc;
+ 	u32 paddr_lo, paddr_hi;
+ 
+ 	paddr_lo = lower_32_bits(paddr);
+@@ -279,7 +279,7 @@ void ath11k_hal_rx_buf_addr_info_set(void *desc, dma_addr_t paddr,
+ void ath11k_hal_rx_buf_addr_info_get(void *desc, dma_addr_t *paddr,
+ 				     u32 *cookie, u8 *rbm)
+ {
+-	struct ath11k_buffer_addr *binfo = (struct ath11k_buffer_addr *)desc;
++	struct ath11k_buffer_addr *binfo = desc;
+ 
+ 	*paddr =
+ 		(((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR, binfo->info1)) << 32) |
+@@ -292,7 +292,7 @@ void ath11k_hal_rx_msdu_link_info_get(void *link_desc, u32 *num_msdus,
+ 				      u32 *msdu_cookies,
+ 				      enum hal_rx_buf_return_buf_manager *rbm)
+ {
+-	struct hal_rx_msdu_link *link = (struct hal_rx_msdu_link *)link_desc;
++	struct hal_rx_msdu_link *link = link_desc;
+ 	struct hal_rx_msdu_details *msdu;
+ 	int i;
+ 
+@@ -699,7 +699,7 @@ u32 ath11k_hal_reo_qdesc_size(u32 ba_window_size, u8 tid)
+ void ath11k_hal_reo_qdesc_setup(void *vaddr, int tid, u32 ba_window_size,
+ 				u32 start_seq, enum hal_pn_type type)
+ {
+-	struct hal_rx_reo_queue *qdesc = (struct hal_rx_reo_queue *)vaddr;
++	struct hal_rx_reo_queue *qdesc = vaddr;
+ 	struct hal_rx_reo_queue_ext *ext_desc;
+ 
+ 	memset(qdesc, 0, sizeof(*qdesc));
+@@ -809,8 +809,7 @@ static inline void
+ ath11k_hal_rx_handle_ofdma_info(void *rx_tlv,
+ 				struct hal_rx_user_status *rx_user_status)
+ {
+-	struct hal_rx_ppdu_end_user_stats *ppdu_end_user =
+-		(struct hal_rx_ppdu_end_user_stats *)rx_tlv;
++	struct hal_rx_ppdu_end_user_stats *ppdu_end_user = rx_tlv;
+ 
+ 	rx_user_status->ul_ofdma_user_v0_word0 = __le32_to_cpu(ppdu_end_user->info6);
+ 
+@@ -821,8 +820,7 @@ static inline void
+ ath11k_hal_rx_populate_byte_count(void *rx_tlv, void *ppduinfo,
+ 				  struct hal_rx_user_status *rx_user_status)
+ {
+-	struct hal_rx_ppdu_end_user_stats *ppdu_end_user =
+-		(struct hal_rx_ppdu_end_user_stats *)rx_tlv;
++	struct hal_rx_ppdu_end_user_stats *ppdu_end_user = rx_tlv;
+ 
+ 	rx_user_status->mpdu_ok_byte_count =
+ 		FIELD_GET(HAL_RX_PPDU_END_USER_STATS_RSVD2_6_MPDU_OK_BYTE_COUNT,
+@@ -1540,8 +1538,7 @@ void ath11k_hal_rx_reo_ent_buf_paddr_get(void *rx_desc, dma_addr_t *paddr,
+ 					 u32 *sw_cookie, void **pp_buf_addr,
+ 					 u8 *rbm, u32 *msdu_cnt)
+ {
+-	struct hal_reo_entrance_ring *reo_ent_ring =
+-		(struct hal_reo_entrance_ring *)rx_desc;
++	struct hal_reo_entrance_ring *reo_ent_ring = rx_desc;
+ 	struct ath11k_buffer_addr *buf_addr_info;
+ 	struct rx_mpdu_desc *rx_mpdu_desc_info_details;
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
+index d1b0e36e04a9..b919df6ce743 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
+@@ -37,7 +37,7 @@ static const u8 dscp_tid_map[DSCP_TID_MAP_TBL_ENTRY_SIZE] = {
+ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 				  struct hal_tx_info *ti)
+ {
+-	struct hal_tcl_data_cmd *tcl_cmd = (struct hal_tcl_data_cmd *)cmd;
++	struct hal_tcl_data_cmd *tcl_cmd = cmd;
+ 
+ 	tcl_cmd->buf_addr_info.info0 =
+ 		FIELD_PREP(BUFFER_ADDR_INFO0_ADDR, ti->paddr);
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index c071bf5841af..39f673aa4b00 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6967,8 +6967,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 
+ static int ath11k_mac_vif_unref(int buf_id, void *skb, void *ctx)
+ {
+-	struct ieee80211_vif *vif = (struct ieee80211_vif *)ctx;
+-	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB((struct sk_buff *)skb);
++	struct ieee80211_vif *vif = ctx;
++	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB(skb);
+ 
+ 	if (skb_cb->vif == vif)
+ 		skb_cb->vif = NULL;
+diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
+index 705868198df4..3289492cd259 100644
+--- a/drivers/net/wireless/ath/ath11k/spectral.c
++++ b/drivers/net/wireless/ath/ath11k/spectral.c
+@@ -598,7 +598,7 @@ int ath11k_spectral_process_fft(struct ath11k *ar,
+ 		return -EINVAL;
+ 	}
+ 
+-	tlv = (struct spectral_tlv *)data;
++	tlv = data;
+ 	tlv_len = FIELD_GET(SPECTRAL_TLV_HDR_LEN, __le32_to_cpu(tlv->header));
+ 	/* convert Dword into bytes */
+ 	tlv_len *= ATH11K_SPECTRAL_DWORD_SIZE;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 23ad6825e5be..01c27c40ba5e 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2281,7 +2281,7 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
+ 	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_UINT32) |
+ 		      FIELD_PREP(WMI_TLV_LEN, len);
+ 	ptr += TLV_HDR_SIZE;
+-	tmp_ptr = (u32 *)ptr;
++	tmp_ptr = ptr;
+ 
+ 	for (i = 0; i < params->num_chan; ++i)
+ 		tmp_ptr[i] = params->chan_list[i];
+@@ -4148,7 +4148,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
+ 	ptr += TLV_HDR_SIZE + len;
+ 
+ 	if (param->hw_mode_id != WMI_HOST_HW_MODE_MAX) {
+-		hw_mode = (struct wmi_pdev_set_hw_mode_cmd_param *)ptr;
++		hw_mode = ptr;
+ 		hw_mode->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+ 						 WMI_TAG_PDEV_SET_HW_MODE_CMD) |
+ 				      FIELD_PREP(WMI_TLV_LEN,
+@@ -4168,7 +4168,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
+ 		len = sizeof(*band_to_mac);
+ 
+ 		for (idx = 0; idx < param->num_band_to_mac; idx++) {
+-			band_to_mac = (void *)ptr;
++			band_to_mac = ptr;
+ 
+ 			band_to_mac->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+ 							     WMI_TAG_PDEV_BAND_TO_MAC) |
 -- 
 2.30.2
 
