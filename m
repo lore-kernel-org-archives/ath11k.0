@@ -4,50 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AE55CA0EF6
-	for <ath11k@archiver.kernel.org>; Thu, 14 Sep 2023 04:05:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97D70EDE98C
+	for <ath11k@archiver.kernel.org>; Thu, 14 Sep 2023 08:21:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Th3YHHNqoSo38Ihm8Bvmg3VzPYhbwXnhlK3WlFbF5cs=; b=gdcjnc4DYAQ12C
-	1ib0/Jc0deX5S06YrBjC3rWwJVbw0ABLB6Sx/7TzsJFTA+GReKgNg2D87CFlIhStwg/syEYrix6Ks
-	twif1JJ9u8dG04XDG+wRJ0Z1l0e88CwOI4hn6G0d3R84K6gzH5IAZyXrk8KxcoNu6iCo31/7tW/Qu
-	6KRP2h9s0RUd0wfKunkuZxGtxf2WOZpTyw9/kekmjPds3AfxqjfJLgLY9I+0KKp1xgnbltuOCjQrU
-	vwJRUxPFoaz4kn1fkAU+hq/cKM/N2lqMMF016Kt3kNo0AYAUp+wOEF6l1LHepe8w17geykTV4OfLU
-	qMLccWLc2qmQP0scvTuA==;
+	List-Owner; bh=Ukv3yIMRLbyQ4VYlE+gyjwkwJdM1EJZ/MhzD02zu44U=; b=glT8ZxvKDbltwU
+	YhiF1ubX46bl5ZPSm0HeOhlJzI8wtIxuFEIYLIWAtqm6UjkL50J1gdNisuAtHs2WXS5YzXiABQo+Y
+	amIHMOYqokeEk5STbYcOWf6HyRxCT3CByytNnEHTKoi+k9bu/tIfLlFW73YtWdEPBZfhRwPX8SOHr
+	4MdlqcU0UsUIROyeVOHdG5LO9hoS5v4ObkhpBARybL9xVwJ9PFrc2JY4CUNGb4czzjEfXSuN++cPJ
+	/V6DvfiohG31NaYanEPDZqUP0uKiGG9pHNZV08xGS41fE9F7ItLqDQZtTIr2tb7xTCuqdS7X2HblQ
+	SgvyONDloWn9X1uUTjsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgdbo-007Jm6-15;
-	Thu, 14 Sep 2023 04:05:40 +0000
-Received: from [42.101.60.195] (helo=mail.nfschina.com)
-	by bombadil.infradead.org with smtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgdbk-007JkU-2L
+	id 1qghb1-007gh7-1W;
+	Thu, 14 Sep 2023 08:21:07 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
+	id 1qghax-007ges-2J
 	for ath11k@lists.infradead.org;
-	Thu, 14 Sep 2023 04:05:39 +0000
-Received: from localhost.localdomain (unknown [180.167.10.98])
-	by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPA id 764C1606080E2;
-	Thu, 14 Sep 2023 12:05:34 +0800 (CST)
-X-MD-Sfrom: yunchuan@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Wu Yunchuan <yunchuan@nfschina.com>
-To: kvalo@kernel.org,
-	quic_jjohnson@quicinc.com
-Cc: ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel-janitors@vger.kernel.org,
-	Wu Yunchuan <yunchuan@nfschina.com>
-Subject: [PATCH wireless-next 8/9] wifi: ath11k: remove unnecessary (void*) conversions
-Date: Thu, 14 Sep 2023 12:05:33 +0800
-Message-Id: <20230914040533.1170191-1-yunchuan@nfschina.com>
-X-Mailer: git-send-email 2.30.2
+	Thu, 14 Sep 2023 08:21:05 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E6Qkkb020578;
+	Thu, 14 Sep 2023 08:21:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=vPmd2x9Ads2imXPGSQeGl0Mg3P4X/mqnSeDSYdTrZHo=;
+ b=b8MXIdz416YtKyh9Tojf8VWCYUdSm0r1Iz3jE5NyiHecq9IKK15fO8R/uM90Ats85QGj
+ axYNyPSPQamblvFszV/SzWj/jzY6ADubXemPBAn8WBr6K+gqMOKYmiUvQa3q+dYA3b0v
+ ipMtYzPJtU931fZrRuHU5roQ6CYJHNKiKxlPOMI1mR50QQMsmzCuZ+fGbMNJ5pqBJ99z
+ hsNvXOsAcE+klY6Dj5EFPESrdKKYz8/aaunwXIxShTQ1EmJSxTMkumoDn1xg560fbeYM
+ +ZybVNDV1/5Ugttrm7QZ5c0pVQvcZVfl3oAS1uPQ2JAuILa49pIWKQPhaBqVNGa8rIWJ sg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3re30vhf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 08:20:59 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E8Kw4h032691
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 08:20:58 GMT
+Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 14 Sep 2023 01:20:56 -0700
+From: Wen Gong <quic_wgong@quicinc.com>
+To: <johannes@sipsolutions.net>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <quic_jjohnson@quicinc.com>,
+        <quic_wgong@quicinc.com>
+Subject: [PATCH v6] wifi: cfg80211: save power spectral density(psd) of regulatory rule
+Date: Thu, 14 Sep 2023 04:20:26 -0400
+Message-ID: <20230914082026.3709-1-quic_wgong@quicinc.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: A2pDJd7u4AEPr-_kmYFXYO5nYNj-vpN7
+X-Proofpoint-ORIG-GUID: A2pDJd7u4AEPr-_kmYFXYO5nYNj-vpN7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-14_06,2023-09-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 mlxlogscore=999
+ lowpriorityscore=0 spamscore=0 clxscore=1011 suspectscore=0
+ impostorscore=0 adultscore=0 phishscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2309140072
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230913_210537_144441_46EF6AFB 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20230914_012103_884499_C219B85D 
+X-CRM114-Status: GOOD (  24.26  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,264 +95,239 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-No need cast (void *) to (struct ath11k_base *),
-struct hal_rx_msdu_link *), (struct ath11k_buffer_addr *) or
-other types.
+6 GHz regulatory domains introduces Power Spectral Density (PSD).
+The PSD value of the regulatory rule should be taken into effect
+for the ieee80211_channels falling into that particular regulatory
+rule. Save the values in the channel which has PSD value and add
+nl80211 attributes accordingly to handle it.
 
-Signed-off-by: Wu Yunchuan <yunchuan@nfschina.com>
+Co-developed-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/dp.c       |  2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c    | 13 +++++--------
- drivers/net/wireless/ath/ath11k/hal.c      |  8 +++-----
- drivers/net/wireless/ath/ath11k/hal_rx.c   | 17 +++++++----------
- drivers/net/wireless/ath/ath11k/hal_tx.c   |  2 +-
- drivers/net/wireless/ath/ath11k/mac.c      |  4 ++--
- drivers/net/wireless/ath/ath11k/spectral.c |  2 +-
- drivers/net/wireless/ath/ath11k/wmi.c      |  6 +++---
- 8 files changed, 23 insertions(+), 31 deletions(-)
+V6: change per johannes.
+   1. rebased to ath-202308030925
+   2. remove change in parse_reg_rule() which is for CRDA
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index d070bcb3fe24..a7252b52555c 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -1009,7 +1009,7 @@ void ath11k_dp_vdev_tx_attach(struct ath11k *ar, struct ath11k_vif *arvif)
+v5: change by comments of johannes.
+    1. add handler for nl80211 attributes
+    2. add indentation for NL80211_RRF_PSD
+    3. squashed with "cfg80211: add definition for 6 GHz power spectral density(psd)"
+    4. remove all other patches
+
+v4:
+    1. rebased to top commit id 9e263e193af7 kernel/git/jberg/mac80211-next.git
+    2. add NULL check for "mac80211: use ieee802_11_parse_elems() to find ies instead of ieee80211_bss_get_ie()"
+    3. remove the 3 patches which already upstream:
+       "mac80211: parse transmit power envelope element"
+       "ieee80211: add definition for transmit power envelope element"
+       "ieee80211: add definition of regulatory info in 6 GHz operation information"
+
+v3: change per comments of Johannes.
+    1. add patch "mac80211: use ieee802_11_parse_elems() to find ies instead of ieee80211_bss_get_ie()"
+    2. move nl80211_ap_reg_power to ieee80211
+    3. change some comments, length check, stack big size variable...
+
+v2: change per comments of johannes.
+    including code style, code logic, patch merge, commit log...
+
+ include/net/cfg80211.h       |  4 ++++
+ include/net/regulatory.h     |  1 +
+ include/uapi/linux/nl80211.h |  9 +++++++++
+ net/wireless/nl80211.c       |  9 +++++++++
+ net/wireless/reg.c           | 17 +++++++++++++++++
+ 5 files changed, 40 insertions(+)
+
+diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+index 7c7d03aa9d06..a02f78197af4 100644
+--- a/include/net/cfg80211.h
++++ b/include/net/cfg80211.h
+@@ -115,6 +115,7 @@ struct wiphy;
+  *	This may be due to the driver or due to regulatory bandwidth
+  *	restrictions.
+  * @IEEE80211_CHAN_NO_EHT: EHT operation is not permitted on this channel.
++ * @IEEE80211_CHAN_PSD: Power spectral density (in dBm) on this channel.
+  */
+ enum ieee80211_channel_flags {
+ 	IEEE80211_CHAN_DISABLED		= 1<<0,
+@@ -138,6 +139,7 @@ enum ieee80211_channel_flags {
+ 	IEEE80211_CHAN_16MHZ		= 1<<18,
+ 	IEEE80211_CHAN_NO_320MHZ	= 1<<19,
+ 	IEEE80211_CHAN_NO_EHT		= 1<<20,
++	IEEE80211_CHAN_PSD		= 1<<21,
+ };
  
- static int ath11k_dp_tx_pending_cleanup(int buf_id, void *skb, void *ctx)
- {
--	struct ath11k_base *ab = (struct ath11k_base *)ctx;
-+	struct ath11k_base *ab = ctx;
- 	struct sk_buff *msdu = skb;
+ #define IEEE80211_CHAN_NO_HT40 \
+@@ -171,6 +173,7 @@ enum ieee80211_channel_flags {
+  *	on this channel.
+  * @dfs_state_entered: timestamp (jiffies) when the dfs state was entered.
+  * @dfs_cac_ms: DFS CAC time in milliseconds, this is valid for DFS channels.
++ * @psd: power spectral density (in dBm)
+  */
+ struct ieee80211_channel {
+ 	enum nl80211_band band;
+@@ -187,6 +190,7 @@ struct ieee80211_channel {
+ 	enum nl80211_dfs_state dfs_state;
+ 	unsigned long dfs_state_entered;
+ 	unsigned int dfs_cac_ms;
++	s8 psd;
+ };
  
- 	dma_unmap_single(ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 62bc98852f0f..77a1112b4d88 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1256,7 +1256,7 @@ static int ath11k_htt_tlv_ppdu_stats_parse(struct ath11k_base *ab,
- 	int cur_user;
- 	u16 peer_id;
+ /**
+diff --git a/include/net/regulatory.h b/include/net/regulatory.h
+index b2cb4a9eb04d..ebf9e028d1ef 100644
+--- a/include/net/regulatory.h
++++ b/include/net/regulatory.h
+@@ -213,6 +213,7 @@ struct ieee80211_reg_rule {
+ 	u32 flags;
+ 	u32 dfs_cac_ms;
+ 	bool has_wmm;
++	s8 psd;
+ };
  
--	ppdu_info = (struct htt_ppdu_stats_info *)data;
-+	ppdu_info = data;
+ struct ieee80211_regdomain {
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+index 88eb85c63029..a5d2759b31e5 100644
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -4213,6 +4213,8 @@ enum nl80211_wmm_rule {
+  *	as the primary or any of the secondary channels isn't possible
+  * @NL80211_FREQUENCY_ATTR_NO_EHT: EHT operation is not allowed on this channel
+  *	in current regulatory domain.
++ * @NL80211_FREQUENCY_ATTR_PSD: Power spectral density (in dBm)
++ *	is allowed on this channel in current regulatory domain.
+  * @NL80211_FREQUENCY_ATTR_MAX: highest frequency attribute number
+  *	currently defined
+  * @__NL80211_FREQUENCY_ATTR_AFTER_LAST: internal use
+@@ -4251,6 +4253,7 @@ enum nl80211_frequency_attr {
+ 	NL80211_FREQUENCY_ATTR_16MHZ,
+ 	NL80211_FREQUENCY_ATTR_NO_320MHZ,
+ 	NL80211_FREQUENCY_ATTR_NO_EHT,
++	NL80211_FREQUENCY_ATTR_PSD,
  
- 	switch (tag) {
- 	case HTT_PPDU_STATS_TAG_COMMON:
-@@ -4489,8 +4489,7 @@ int ath11k_dp_rx_monitor_link_desc_return(struct ath11k *ar,
- 	src_srng_desc = ath11k_hal_srng_src_get_next_entry(ar->ab, hal_srng);
+ 	/* keep last */
+ 	__NL80211_FREQUENCY_ATTR_AFTER_LAST,
+@@ -4351,6 +4354,8 @@ enum nl80211_reg_type {
+  * 	a given frequency range. The value is in mBm (100 * dBm).
+  * @NL80211_ATTR_DFS_CAC_TIME: DFS CAC time in milliseconds.
+  *	If not present or 0 default CAC time will be used.
++ * @NL80211_ATTR_POWER_RULE_PSD: power spectral density (in dBm).
++ *	This could be negative.
+  * @NL80211_REG_RULE_ATTR_MAX: highest regulatory rule attribute number
+  *	currently defined
+  * @__NL80211_REG_RULE_ATTR_AFTER_LAST: internal use
+@@ -4368,6 +4373,8 @@ enum nl80211_reg_rule_attr {
  
- 	if (src_srng_desc) {
--		struct ath11k_buffer_addr *src_desc =
--				(struct ath11k_buffer_addr *)src_srng_desc;
-+		struct ath11k_buffer_addr *src_desc = src_srng_desc;
+ 	NL80211_ATTR_DFS_CAC_TIME,
  
- 		*src_desc = *((struct ath11k_buffer_addr *)p_last_buf_addr_info);
- 	} else {
-@@ -4509,8 +4508,7 @@ void ath11k_dp_rx_mon_next_link_desc_get(void *rx_msdu_link_desc,
- 					 u8 *rbm,
- 					 void **pp_buf_addr_info)
- {
--	struct hal_rx_msdu_link *msdu_link =
--			(struct hal_rx_msdu_link *)rx_msdu_link_desc;
-+	struct hal_rx_msdu_link *msdu_link = rx_msdu_link_desc;
- 	struct ath11k_buffer_addr *buf_addr_info;
++	NL80211_ATTR_POWER_RULE_PSD,
++
+ 	/* keep last */
+ 	__NL80211_REG_RULE_ATTR_AFTER_LAST,
+ 	NL80211_REG_RULE_ATTR_MAX = __NL80211_REG_RULE_ATTR_AFTER_LAST - 1
+@@ -4451,6 +4458,7 @@ enum nl80211_sched_scan_match_attr {
+  * @NL80211_RRF_NO_HE: HE operation not allowed
+  * @NL80211_RRF_NO_320MHZ: 320MHz operation not allowed
+  * @NL80211_RRF_NO_EHT: EHT operation not allowed
++ * @NL80211_RRF_PSD: Channels has power spectral density value
+  */
+ enum nl80211_reg_rule_flags {
+ 	NL80211_RRF_NO_OFDM		= 1<<0,
+@@ -4471,6 +4479,7 @@ enum nl80211_reg_rule_flags {
+ 	NL80211_RRF_NO_HE		= 1<<17,
+ 	NL80211_RRF_NO_320MHZ		= 1<<18,
+ 	NL80211_RRF_NO_EHT		= 1<<19,
++	NL80211_RRF_PSD			= 1<<20,
+ };
  
- 	buf_addr_info = (struct ath11k_buffer_addr *)&msdu_link->buf_addr_info;
-@@ -4551,7 +4549,7 @@ static void ath11k_hal_rx_msdu_list_get(struct ath11k *ar,
- 	u32 first = FIELD_PREP(RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU, 1);
- 	u8  tmp  = 0;
+ #define NL80211_RRF_PASSIVE_SCAN	NL80211_RRF_NO_IR
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index 0da2e6a2a7ea..279c3fa888e4 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -1114,6 +1114,10 @@ static int nl80211_msg_put_channel(struct sk_buff *msg, struct wiphy *wiphy,
+ 	if (nla_put_u32(msg, NL80211_FREQUENCY_ATTR_OFFSET, chan->freq_offset))
+ 		goto nla_put_failure;
  
--	msdu_link = (struct hal_rx_msdu_link *)msdu_link_desc;
-+	msdu_link = msdu_link_desc;
- 	msdu_details = &msdu_link->msdu_link[0];
++	if ((chan->flags & IEEE80211_CHAN_PSD) &&
++	    nla_put_s8(msg, NL80211_FREQUENCY_ATTR_PSD, chan->psd))
++		goto nla_put_failure;
++
+ 	if ((chan->flags & IEEE80211_CHAN_DISABLED) &&
+ 	    nla_put_flag(msg, NL80211_FREQUENCY_ATTR_DISABLED))
+ 		goto nla_put_failure;
+@@ -8556,6 +8560,11 @@ static int nl80211_put_regdom(const struct ieee80211_regdomain *regdom,
+ 				reg_rule->dfs_cac_ms))
+ 			goto nla_put_failure;
  
- 	for (i = 0; i < HAL_RX_NUM_MSDU_DESC; i++) {
-@@ -4648,8 +4646,7 @@ ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
- 	bool is_frag, is_first_msdu;
- 	bool drop_mpdu = false;
- 	struct ath11k_skb_rxcb *rxcb;
--	struct hal_reo_entrance_ring *ent_desc =
--			(struct hal_reo_entrance_ring *)ring_entry;
-+	struct hal_reo_entrance_ring *ent_desc = ring_entry;
- 	int buf_id;
- 	u32 rx_link_buf_info[2];
- 	u8 rbm;
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 0a99aa7ddbf4..23f3af8e372d 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -571,7 +571,7 @@ u32 ath11k_hal_ce_get_desc_size(enum hal_ce_desc type)
- void ath11k_hal_ce_src_set_desc(void *buf, dma_addr_t paddr, u32 len, u32 id,
- 				u8 byte_swap_data)
- {
--	struct hal_ce_srng_src_desc *desc = (struct hal_ce_srng_src_desc *)buf;
-+	struct hal_ce_srng_src_desc *desc = buf;
- 
- 	desc->buffer_addr_low = paddr & HAL_ADDR_LSB_REG_MASK;
- 	desc->buffer_addr_info =
-@@ -586,8 +586,7 @@ void ath11k_hal_ce_src_set_desc(void *buf, dma_addr_t paddr, u32 len, u32 id,
- 
- void ath11k_hal_ce_dst_set_desc(void *buf, dma_addr_t paddr)
- {
--	struct hal_ce_srng_dest_desc *desc =
--		(struct hal_ce_srng_dest_desc *)buf;
-+	struct hal_ce_srng_dest_desc *desc = buf;
- 
- 	desc->buffer_addr_low = paddr & HAL_ADDR_LSB_REG_MASK;
- 	desc->buffer_addr_info =
-@@ -597,8 +596,7 @@ void ath11k_hal_ce_dst_set_desc(void *buf, dma_addr_t paddr)
- 
- u32 ath11k_hal_ce_dst_status_get_length(void *buf)
- {
--	struct hal_ce_srng_dst_status_desc *desc =
--		(struct hal_ce_srng_dst_status_desc *)buf;
-+	struct hal_ce_srng_dst_status_desc *desc = buf;
- 	u32 len;
- 
- 	len = FIELD_GET(HAL_CE_DST_STATUS_DESC_FLAGS_LEN, desc->flags);
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index e5ed5efb139e..5a6df83c2094 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -265,7 +265,7 @@ int ath11k_hal_reo_cmd_send(struct ath11k_base *ab, struct hal_srng *srng,
- void ath11k_hal_rx_buf_addr_info_set(void *desc, dma_addr_t paddr,
- 				     u32 cookie, u8 manager)
- {
--	struct ath11k_buffer_addr *binfo = (struct ath11k_buffer_addr *)desc;
-+	struct ath11k_buffer_addr *binfo = desc;
- 	u32 paddr_lo, paddr_hi;
- 
- 	paddr_lo = lower_32_bits(paddr);
-@@ -279,7 +279,7 @@ void ath11k_hal_rx_buf_addr_info_set(void *desc, dma_addr_t paddr,
- void ath11k_hal_rx_buf_addr_info_get(void *desc, dma_addr_t *paddr,
- 				     u32 *cookie, u8 *rbm)
- {
--	struct ath11k_buffer_addr *binfo = (struct ath11k_buffer_addr *)desc;
-+	struct ath11k_buffer_addr *binfo = desc;
- 
- 	*paddr =
- 		(((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR, binfo->info1)) << 32) |
-@@ -292,7 +292,7 @@ void ath11k_hal_rx_msdu_link_info_get(void *link_desc, u32 *num_msdus,
- 				      u32 *msdu_cookies,
- 				      enum hal_rx_buf_return_buf_manager *rbm)
- {
--	struct hal_rx_msdu_link *link = (struct hal_rx_msdu_link *)link_desc;
-+	struct hal_rx_msdu_link *link = link_desc;
- 	struct hal_rx_msdu_details *msdu;
- 	int i;
- 
-@@ -699,7 +699,7 @@ u32 ath11k_hal_reo_qdesc_size(u32 ba_window_size, u8 tid)
- void ath11k_hal_reo_qdesc_setup(void *vaddr, int tid, u32 ba_window_size,
- 				u32 start_seq, enum hal_pn_type type)
- {
--	struct hal_rx_reo_queue *qdesc = (struct hal_rx_reo_queue *)vaddr;
-+	struct hal_rx_reo_queue *qdesc = vaddr;
- 	struct hal_rx_reo_queue_ext *ext_desc;
- 
- 	memset(qdesc, 0, sizeof(*qdesc));
-@@ -809,8 +809,7 @@ static inline void
- ath11k_hal_rx_handle_ofdma_info(void *rx_tlv,
- 				struct hal_rx_user_status *rx_user_status)
- {
--	struct hal_rx_ppdu_end_user_stats *ppdu_end_user =
--		(struct hal_rx_ppdu_end_user_stats *)rx_tlv;
-+	struct hal_rx_ppdu_end_user_stats *ppdu_end_user = rx_tlv;
- 
- 	rx_user_status->ul_ofdma_user_v0_word0 = __le32_to_cpu(ppdu_end_user->info6);
- 
-@@ -821,8 +820,7 @@ static inline void
- ath11k_hal_rx_populate_byte_count(void *rx_tlv, void *ppduinfo,
- 				  struct hal_rx_user_status *rx_user_status)
- {
--	struct hal_rx_ppdu_end_user_stats *ppdu_end_user =
--		(struct hal_rx_ppdu_end_user_stats *)rx_tlv;
-+	struct hal_rx_ppdu_end_user_stats *ppdu_end_user = rx_tlv;
- 
- 	rx_user_status->mpdu_ok_byte_count =
- 		FIELD_GET(HAL_RX_PPDU_END_USER_STATS_RSVD2_6_MPDU_OK_BYTE_COUNT,
-@@ -1540,8 +1538,7 @@ void ath11k_hal_rx_reo_ent_buf_paddr_get(void *rx_desc, dma_addr_t *paddr,
- 					 u32 *sw_cookie, void **pp_buf_addr,
- 					 u8 *rbm, u32 *msdu_cnt)
- {
--	struct hal_reo_entrance_ring *reo_ent_ring =
--		(struct hal_reo_entrance_ring *)rx_desc;
-+	struct hal_reo_entrance_ring *reo_ent_ring = rx_desc;
- 	struct ath11k_buffer_addr *buf_addr_info;
- 	struct rx_mpdu_desc *rx_mpdu_desc_info_details;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
-index d1b0e36e04a9..b919df6ce743 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
-@@ -37,7 +37,7 @@ static const u8 dscp_tid_map[DSCP_TID_MAP_TBL_ENTRY_SIZE] = {
- void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
- 				  struct hal_tx_info *ti)
- {
--	struct hal_tcl_data_cmd *tcl_cmd = (struct hal_tcl_data_cmd *)cmd;
-+	struct hal_tcl_data_cmd *tcl_cmd = cmd;
- 
- 	tcl_cmd->buf_addr_info.info0 =
- 		FIELD_PREP(BUFFER_ADDR_INFO0_ADDR, ti->paddr);
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c071bf5841af..39f673aa4b00 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6967,8 +6967,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 
- static int ath11k_mac_vif_unref(int buf_id, void *skb, void *ctx)
- {
--	struct ieee80211_vif *vif = (struct ieee80211_vif *)ctx;
--	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB((struct sk_buff *)skb);
-+	struct ieee80211_vif *vif = ctx;
-+	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB(skb);
- 
- 	if (skb_cb->vif == vif)
- 		skb_cb->vif = NULL;
-diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
-index 705868198df4..3289492cd259 100644
---- a/drivers/net/wireless/ath/ath11k/spectral.c
-+++ b/drivers/net/wireless/ath/ath11k/spectral.c
-@@ -598,7 +598,7 @@ int ath11k_spectral_process_fft(struct ath11k *ar,
- 		return -EINVAL;
++		if ((reg_rule->flags & NL80211_RRF_PSD) &&
++		    nla_put_s8(msg, NL80211_ATTR_POWER_RULE_PSD,
++			       reg_rule->psd))
++			goto nla_put_failure;
++
+ 		nla_nest_end(msg, nl_reg_rule);
  	}
  
--	tlv = (struct spectral_tlv *)data;
-+	tlv = data;
- 	tlv_len = FIELD_GET(SPECTRAL_TLV_HDR_LEN, __le32_to_cpu(tlv->header));
- 	/* convert Dword into bytes */
- 	tlv_len *= ATH11K_SPECTRAL_DWORD_SIZE;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 23ad6825e5be..01c27c40ba5e 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2281,7 +2281,7 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_UINT32) |
- 		      FIELD_PREP(WMI_TLV_LEN, len);
- 	ptr += TLV_HDR_SIZE;
--	tmp_ptr = (u32 *)ptr;
-+	tmp_ptr = ptr;
+diff --git a/net/wireless/reg.c b/net/wireless/reg.c
+index 0317cf9da307..e60861610659 100644
+--- a/net/wireless/reg.c
++++ b/net/wireless/reg.c
+@@ -1589,6 +1589,8 @@ static u32 map_regdom_flags(u32 rd_flags)
+ 		channel_flags |= IEEE80211_CHAN_NO_320MHZ;
+ 	if (rd_flags & NL80211_RRF_NO_EHT)
+ 		channel_flags |= IEEE80211_CHAN_NO_EHT;
++	if (rd_flags & NL80211_RRF_PSD)
++		channel_flags |= IEEE80211_CHAN_PSD;
+ 	return channel_flags;
+ }
  
- 	for (i = 0; i < params->num_chan; ++i)
- 		tmp_ptr[i] = params->chan_list[i];
-@@ -4148,7 +4148,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
- 	ptr += TLV_HDR_SIZE + len;
+@@ -1795,6 +1797,9 @@ static void handle_channel_single_rule(struct wiphy *wiphy,
+ 				chan->dfs_cac_ms = reg_rule->dfs_cac_ms;
+ 		}
  
- 	if (param->hw_mode_id != WMI_HOST_HW_MODE_MAX) {
--		hw_mode = (struct wmi_pdev_set_hw_mode_cmd_param *)ptr;
-+		hw_mode = ptr;
- 		hw_mode->tlv_header = FIELD_PREP(WMI_TLV_TAG,
- 						 WMI_TAG_PDEV_SET_HW_MODE_CMD) |
- 				      FIELD_PREP(WMI_TLV_LEN,
-@@ -4168,7 +4168,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
- 		len = sizeof(*band_to_mac);
++		if (chan->flags & IEEE80211_CHAN_PSD)
++			chan->psd = reg_rule->psd;
++
+ 		return;
+ 	}
  
- 		for (idx = 0; idx < param->num_band_to_mac; idx++) {
--			band_to_mac = (void *)ptr;
-+			band_to_mac = ptr;
+@@ -1815,6 +1820,9 @@ static void handle_channel_single_rule(struct wiphy *wiphy,
+ 			chan->dfs_cac_ms = IEEE80211_DFS_MIN_CAC_TIME_MS;
+ 	}
  
- 			band_to_mac->tlv_header = FIELD_PREP(WMI_TLV_TAG,
- 							     WMI_TAG_PDEV_BAND_TO_MAC) |
++	if (chan->flags & IEEE80211_CHAN_PSD)
++		chan->psd = reg_rule->psd;
++
+ 	if (chan->orig_mpwr) {
+ 		/*
+ 		 * Devices that use REGULATORY_COUNTRY_IE_FOLLOW_POWER
+@@ -1884,6 +1892,12 @@ static void handle_channel_adjacent_rules(struct wiphy *wiphy,
+ 							 rrule2->dfs_cac_ms);
+ 		}
+ 
++		if ((rrule1->flags & NL80211_RRF_PSD) &&
++		    (rrule2->flags & NL80211_RRF_PSD))
++			chan->psd = min_t(s8, rrule1->psd, rrule2->psd);
++		else
++			chan->flags &= ~NL80211_RRF_PSD;
++
+ 		return;
+ 	}
+ 
+@@ -2577,6 +2591,9 @@ static void handle_channel_custom(struct wiphy *wiphy,
+ 			chan->dfs_cac_ms = IEEE80211_DFS_MIN_CAC_TIME_MS;
+ 	}
+ 
++	if (chan->flags & IEEE80211_CHAN_PSD)
++		chan->psd = reg_rule->psd;
++
+ 	chan->max_power = chan->max_reg_power;
+ }
+ 
+
+base-commit: 3f257461ab0ab19806bae2bfde4c3cd88dbf050e
 -- 
-2.30.2
+2.40.1
 
 
 -- 
