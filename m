@@ -4,63 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B00ECA553C
-	for <ath11k@archiver.kernel.org>; Thu, 14 Sep 2023 13:18:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BD15CD13D2
+	for <ath11k@archiver.kernel.org>; Mon, 18 Sep 2023 13:18:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Uso/jgHy8RhhmB/uesCIU0wfLutvWjdHTE2rqhO/tqk=; b=kSgq1kGJHoeMrZ
-	bc6d+05xbtpauttcRZy3Zy3Uk09L0jNTmt92V9+xqFzdEosl/WYvwkacnQKJmxgK0hhFNu3dkqY7e
-	iKY3x0Zk3Atn4wZUADz8sp2pxlaev3HBS4CkZTN5vgiPAnoDqCNlrDcYECrJ8HsUheJYObrpgIj/5
-	l4QS36sID3rTu9309ZsHns9ALpOdj22pTVPdobhZGxYD6ccx3g71rI0rC2nuD1rJRHWD7LgyjBMmj
-	TrIPAeDJbNQ879baYze5qgQCeslE8MiYdkDEbXj2+QNVda1q12LrCKJ5gksfL9svkUvQOmdrxeTgZ
-	u5kHy+cQ21KuVRvNe3dA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=BG9VKsn325/nskVBaeVvL7HitPaAGZXWJZTSDmJVor4=; b=eRm0mUZNZRzJVo
+	f2R4ex5Wke9J4UOjzvAF9F6zcqGyCW3LtprjyOdDlHMJv5xUHKmyX/eDCAc8X8nCZVPMy6lcqGfPw
+	2Qtc5uAnxpLxktTnjNrymElENlJn9X9ivUOO9/+S/GlBhVRCrzlU1b+mA1EPRAbFDSVvpJ7c700xE
+	zWJHcmwp/eOgUflIAGdyYeOZdOX1TIS3lLSEPYP2RVc3nqyay7xbPrN3Da31TzZ101Y/FzYtVz5DN
+	mVhD8JxI3r3mjumreFB74xCcdEl7Ov01INqmW44RfuWYLwXRPVodeFkaR/ny7PJxHRJUG4GVsQ60Z
+	9PUdz6C58eO8AzoGSveg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgmEZ-008Qve-3B;
-	Thu, 14 Sep 2023 13:18:15 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1qiE92-00FWQL-0P;
+	Mon, 18 Sep 2023 13:18:32 +0000
+Received: from mgamail.intel.com ([134.134.136.100])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qgmEX-008Qur-0X
-	for ath11k@lists.infradead.org;
-	Thu, 14 Sep 2023 13:18:14 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id 7EC8DCE2693;
-	Thu, 14 Sep 2023 13:18:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D7DDC433C7;
-	Thu, 14 Sep 2023 13:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694697489;
-	bh=oRdTkO1Bg/J6QPqLOcvJSa1zSAhMOHyLWami5YtJwr4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=hh7lNoQ07hRSM49MuXmbmXOOkReaKt+F8pAZS6gPziDZMMC+NQUDMMkW6oxj6lW6v
-	 KJUf45C5/2pIot22CPhpTzY8UnITh14sfz5rPk0MphnqP8H9gv30oumhk1BoF/SFvy
-	 QGCikFHJHQnLL8q5gdHCXmhcGCx3fBeKnEVOsP4rMUqblCdJyaQqOLSiMzYhojicQM
-	 gpL1lMealSNvB8XKFUCe+HkA1Werz3zbpU1OvIpC4mKW1nwltLPUz/BTOxTAvIDbhP
-	 d5F014rkjOzPICJ6llg0T5eMCRKD8d+4GmmQIIlUGnN1KqdT1RYGJwVyv+C2gvY1FI
-	 6cqA1Yw+a31mw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <johannes@sipsolutions.net>,  <ath11k@lists.infradead.org>,
-  <linux-wireless@vger.kernel.org>,  <quic_jjohnson@quicinc.com>
-Subject: Re: [PATCH v6] wifi: cfg80211: save power spectral density(psd) of
- regulatory rule
-References: <20230914082026.3709-1-quic_wgong@quicinc.com>
-Date: Thu, 14 Sep 2023 16:18:06 +0300
-In-Reply-To: <20230914082026.3709-1-quic_wgong@quicinc.com> (Wen Gong's
-	message of "Thu, 14 Sep 2023 04:20:26 -0400")
-Message-ID: <87bke4dhbl.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	id 1qiE8x-00FWOo-0n;
+	Mon, 18 Sep 2023 13:18:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695043107; x=1726579107;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Um9SQvE/5HeieZqdelS3qtLTo5NsX9iapqTm1J+iScg=;
+  b=JBsD6tllrTA8PfoIFVAI4bGnUqFKbAqKdgijCo3BJAXKGh0UXELkX8d5
+   vaf/YxOXtPPQGGOF66uGP1xWcl267j+Ld4s2x5sukJmeTPhFgsCDrRd7K
+   bPpiRUtahjMCy7041cAAfsOpOKszVCP40ilLCDqROvHuBj++5QgtsRCmS
+   IbisjDedS8NRComhPSzHTVjNtZ8lDZ/y9gmwlR/PcG7JJz8ksu4o+xYft
+   CG6QN5oJIDd95BOG48byrOVdTkZhiv2Usrt6Xmz1abKLoGDabwsFKJgpW
+   mt7aP9SajstbvkzMkQW12lWPGILp73tKcoeMWQ0E7xVUVdda5y/qRuT0T
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="446112587"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
+   d="scan'208";a="446112587"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 06:11:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="811341354"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
+   d="scan'208";a="811341354"
+Received: from nprotaso-mobl1.ccr.corp.intel.com (HELO ijarvine-mobl2.ger.corp.intel.com) ([10.252.49.156])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 06:11:23 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Emmanuel Grumbach <emmanuel.grumbach@intel.com>,
+	linux-kernel@vger.kernel.org
+Cc: ath10k@lists.infradead.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	intel-wired-lan@lists.osuosl.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-bluetooth@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-rdma@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v2 00/13] PCI/ASPM: Make ASPM in core robust and remove driver workarounds
+Date: Mon, 18 Sep 2023 16:10:50 +0300
+Message-Id: <20230918131103.24119-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230914_061813_400735_95D5090A 
-X-CRM114-Status: GOOD (  10.52  )
+X-CRM114-CacheID: sfid-20230918_061827_392880_54258AEB 
+X-CRM114-Status: GOOD (  14.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,37 +91,75 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> writes:
-
-> 6 GHz regulatory domains introduces Power Spectral Density (PSD).
-> The PSD value of the regulatory rule should be taken into effect
-> for the ieee80211_channels falling into that particular regulatory
-> rule. Save the values in the channel which has PSD value and add
-> nl80211 attributes accordingly to handle it.
->
-> Co-developed-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
-> Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> ---
-> V6: change per johannes.
->    1. rebased to ath-202308030925
->    2. remove change in parse_reg_rule() which is for CRDA
-
-It's a bit risky to use my ath.git master branch as the baseline for
-cfg80211 and mac80211 patches, for example it doesn't have the latest
-locking rework yet.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+UHJldmlvdXNseSwgQVNQTSBzZXJ2aWNlIGRyaXZlciBoYXMgaWdub3JlZCBsaW5rIHN0YXRlIG1h
+bmFnZW1lbnQKcmVxdWVzdHMgd2hlbiBPUyBpcyBub3QgYXV0aG9yaXplZCB0byB0b3VjaCBMTktD
+VEwgKG9yIEFTUE0gaXMgbm90CmNvbmZpZ3VyZWQgYXQgYWxsKS4gQmVjYXVzZSB0aGUgY29yZSBp
+bnRlcmZhY2UgaGFzIG5vdCBiZWVuIHJlbGlhYmxlLApkcml2ZXJzIGhhdmUgY3JlYXRlIHdvcmth
+cm91bmRzIHRvIGZvcmNlIEFTUE0gc3RhdGUgYnkgZGlyZWN0bHkKd3JpdGluZyBpbnRvIExOS0NU
+TCB0aGVtc2VsdmVzLgoKQSBzZWNvbmQgcHJvYmxlbSBpcyBsYWNrIG9mIHN5bW1ldHJpYyBwYWly
+IGZvcgpwY2lfZGlzYWJsZV9saW5rX3N0YXRlKCkuIEFueSBsaW5rIHN0YXRlIGRpc2FibGUgaXMg
+cGVybWFuZW50IChOT1RFOgpwY2lfZW5hYmxlX2xpbmtfc3RhdGUoKSBkZXNwaXRlIGl0cyBuYW1l
+IGlzIG5vdCBhIHN5bW1ldHJpYyBwYWlyIGZvcgpwY2lfZGlzYWJsZV9saW5rX3N0YXRlKCkpLiBU
+aGUgbGFjayBvZiB3YXkgdG8gcmUtZW5hYmxlIEFTUE0gcHJldmVudHMKZHJpdmVycyBmcm9tIHVz
+aW5nIHBjaV9kaXNhYmxlX2xpbmtfc3RhdGUoKSB0byBkaXNhYmxpbmcgQVNQTSBmb3IKY2VydGFp
+biBwaGFzZXMgb2YgZHJpdmVyIG9wZXJhdGlvbiBhbmQgcmUtZW5hYmxpbmcgaXQgbGF0ZXIuCgpC
+b3RoIGNhc2VzIGFyZSBwcm9ibGVtYXRpYyBiZWNhdXNlIHdoZW4gQVNQTSBpcyB3b3JraW5nIG5v
+cm1hbGx5CnRocm91Z2ggdGhlIHNlcnZpY2UgZHJpdmVyLCBpdCBpcyBub3QgYXdhcmUgb2YgdGhl
+IGV4dHJhIGxpbmsgc3RhdGUKY2hhbmdlcyBkcml2ZXJzIHBlcmZvcm0gZGlyZWN0bHkgY2F1c2lu
+ZyB0aGUgc2VydmljZSBkcml2ZXIgdG8gaGF2ZQppbmNvcnJlY3QgdmlldyBhYm91dCB0aGUgQVNQ
+TSBzdGF0ZS4KCkFkZHJlc3MgdGhlc2UgcHJvYmxlbXMgYnkgbWFraW5nIHBjaV9kaXNhYmxlX2xp
+bmtfc3RhdGUoKSByZWxpYWJsZSBhbmQKYnkgcHJvdmlkaW5nIHByb3BlciBwY2lfZW5hYmxlX2xp
+bmtfc3RhdGUoKSBwYWlyIGZvciBpdCAodGhlIGZ1bmN0aW9uCmN1cnJlbnRseSBvbiB0aGUgd2F5
+IGlzIHJlbmFtZWQgZmlyc3QgdG8gYSBtb3JlIGRlc2NyaXB0aXZlIG5hbWUpLgpBZnRlciBjb3Jl
+IGltcHJvdmVtZW50cywgY29udmVydCBkcml2ZXJzIHRvIHVzZSB0aGUgbmV3IGludGVyZmFjZSBh
+bmQKZHJvcCB0aGUgd29ya2Fyb3VuZHMuCgp2MjoKLSBSZWJhc2VkIHRoZSBzZXJpZXMKLSBSZW9y
+ZGVyIHBhdGNoZXMgKHJlbmFtZSBwYXRjaCBmaXJzdCkKCklscG8gSsOkcnZpbmVuICgxMyk6CiAg
+UENJL0FTUE06IFJlbmFtZSBwY2lfZW5hYmxlX2xpbmtfc3RhdGUoKSB0bwogICAgcGNpX3NldF9k
+ZWZhdWx0X2xpbmtfc3RhdGUoKQogIFBDSS9BU1BNOiBJbXByb3ZlIHBjaV9zZXRfZGVmYXVsdF9s
+aW5rX3N0YXRlKCkga2VybmVsZG9jCiAgUENJL0FTUE06IERpc2FibGUgQVNQTSB3aGVuIGRyaXZl
+ciByZXF1ZXN0cyBpdAogIFBDSS9BU1BNOiBNb3ZlIEwwUy9MMS9zdWIgc3RhdGVzIG1hc2sgY2Fs
+Y3VsYXRpb24gaW50byBhIGhlbHBlcgogIFBDSS9BU1BNOiBBZGQgcGNpX2VuYWJsZV9saW5rX3N0
+YXRlKCkKICBCbHVldG9vdGg6IGhjaV9iY200Mzc3OiBDb252ZXJ0IGFzcG0gZGlzYWJsZSB0byBx
+dWlyawogIG10NzY6IFJlbW92ZSB1bnJlbGlhYmxlIHBjaV9kaXNhYmxlX2xpbmtfc3RhdGUoKSB3
+b3JrYXJvdW5kCiAgZTEwMDBlOiBSZW1vdmUgdW5yZWxpYWJsZSBwY2lfZGlzYWJsZV9saW5rX3N0
+YXRleyxfbG9ja2VkfSgpCiAgICB3b3JrYXJvdW5kCiAgd2lmaTogYXRoMTBrOiBVc2UgcGNpX2Rp
+c2FibGUvZW5hYmxlX2xpbmtfc3RhdGUoKQogIHdpZmk6IGF0aDExazogVXNlIHBjaV9kaXNhYmxl
+L2VuYWJsZV9saW5rX3N0YXRlKCkKICB3aWZpOiBhdGgxMms6IFVzZSBwY2lfZGlzYWJsZS9lbmFi
+bGVfbGlua19zdGF0ZSgpCiAgUkRNQS9oZmkxOiBVc2UgcGNpX2Rpc2FibGUvZW5hYmxlX2xpbmtf
+c3RhdGUoKQogIG1pc2M6IHJ0c3g6IFVzZSBwY2lfZGlzYWJsZS9lbmFibGVfbGlua19zdGF0ZSgp
+CgogZHJpdmVycy9ibHVldG9vdGgvaGNpX2JjbTQzNzcuYyAgICAgICAgICAgICAgIHwgIDIwIC0t
+LQogZHJpdmVycy9pbmZpbmliYW5kL2h3L2hmaTEvYXNwbS5jICAgICAgICAgICAgIHwgIDM4ICst
+LS0tLQogZHJpdmVycy9pbmZpbmliYW5kL2h3L2hmaTEvcGNpZS5jICAgICAgICAgICAgIHwgICAy
+ICstCiBkcml2ZXJzL21pc2MvY2FyZHJlYWRlci9ydHM1MjI4LmMgICAgICAgICAgICAgfCAgIDYg
+Ky0KIGRyaXZlcnMvbWlzYy9jYXJkcmVhZGVyL3J0czUyNjEuYyAgICAgICAgICAgICB8ICAgNiAr
+LQogZHJpdmVycy9taXNjL2NhcmRyZWFkZXIvcnRzeF9wY3IuYyAgICAgICAgICAgIHwgICA4ICst
+CiBkcml2ZXJzL25ldC9ldGhlcm5ldC9pbnRlbC9lMTAwMGUvbmV0ZGV2LmMgICAgfCAgNzcgKy0t
+LS0tLS0tLS0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMGsvcGNpLmMgICAgICAgICB8
+ICAgOCArLQogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9wY2kuYyAgICAgICAgIHwg
+IDEwICstCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTJrL3BjaS5jICAgICAgICAgfCAg
+MTAgKy0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL21lZGlhdGVrL210NzYvTWFrZWZpbGUgICB8ICAg
+MSAtCiBkcml2ZXJzL25ldC93aXJlbGVzcy9tZWRpYXRlay9tdDc2L210NzYuaCAgICAgfCAgIDEg
+LQogLi4uL25ldC93aXJlbGVzcy9tZWRpYXRlay9tdDc2L210NzYxNS9wY2kuYyAgIHwgICAyICst
+CiAuLi4vbmV0L3dpcmVsZXNzL21lZGlhdGVrL210NzYvbXQ3NngwL3BjaS5jICAgfCAgIDIgKy0K
+IC4uLi9uZXQvd2lyZWxlc3MvbWVkaWF0ZWsvbXQ3Ni9tdDc2eDIvcGNpLmMgICB8ICAgMiArLQog
+Li4uL25ldC93aXJlbGVzcy9tZWRpYXRlay9tdDc2L210NzkxNS9wY2kuYyAgIHwgICAyICstCiAu
+Li4vbmV0L3dpcmVsZXNzL21lZGlhdGVrL210NzYvbXQ3OTIxL3BjaS5jICAgfCAgIDIgKy0KIC4u
+Li9uZXQvd2lyZWxlc3MvbWVkaWF0ZWsvbXQ3Ni9tdDc5OTYvcGNpLmMgICB8ICAgMiArLQogZHJp
+dmVycy9uZXQvd2lyZWxlc3MvbWVkaWF0ZWsvbXQ3Ni9wY2kuYyAgICAgIHwgIDQ3IC0tLS0tLS0K
+IGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvdm1kLmMgICAgICAgICAgICAgICAgICB8ICAgMiArLQog
+ZHJpdmVycy9wY2kvcGNpZS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAgIHwgICAxICsKIGRy
+aXZlcnMvcGNpL3BjaWUvYXNwbS5jICAgICAgICAgICAgICAgICAgICAgICB8IDEyNiArKysrKysr
+KysrKysrLS0tLS0KIGRyaXZlcnMvcGNpL3BjaWUvYXNwbV9taW5pbWFsLmMgICAgICAgICAgICAg
+ICB8ICA2NiArKysrKysrKysKIGRyaXZlcnMvcGNpL3F1aXJrcy5jICAgICAgICAgICAgICAgICAg
+ICAgICAgICB8ICAgMyArCiBpbmNsdWRlL2xpbnV4L3BjaS5oICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgfCAgMTAgKy0KIDI1IGZpbGVzIGNoYW5nZWQsIDE5OSBpbnNlcnRpb25zKCspLCAyNTUg
+ZGVsZXRpb25zKC0pCiBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9uZXQvd2lyZWxlc3MvbWVk
+aWF0ZWsvbXQ3Ni9wY2kuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvcGNpL3BjaWUvYXNw
+bV9taW5pbWFsLmMKCi0tIAoyLjMwLjIKCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2F0aDExawo=
