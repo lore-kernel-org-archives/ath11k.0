@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54564CE79AF
-	for <ath11k@archiver.kernel.org>; Wed, 20 Sep 2023 08:24:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63B1FCE79AC
+	for <ath11k@archiver.kernel.org>; Wed, 20 Sep 2023 08:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IfV0lNRAGp3LxLe0NYnD6yDtS6WNmhyD7Raox8byCjo=; b=j57NEs9fW9atul
-	Ncb05Ysyb2k+//a6XAu4h2HL3fdPsx9XP6dQGzaRgQUJ88guer8wiG1oQVa4bztLuaXLOrdjnr2hU
-	cX//1ff2N+jVCRW/JCDkLQZSytTErZHeon8g+DG/xTUcRRuIJx3/SnTgkbozVqAAIm0JHbHFOMzeD
-	kQL42eGGVviz691VncdC/2TDJ6OIFAk3F5m8xwiLfG9RrE71oDRCA5GW4u24AEaNU1L1P+F6gq37g
-	S8MpQKazrBkfSCEwKUSkaSAGvLrjF9kL6gxLIprffmJgno0GyxArTAHFvXi8dOI/HuEBbga3WO3BY
-	X8v1Ji5tnqrvjZI+TJfw==;
+	List-Owner; bh=ooNrMUliv5PrqpXLdDkO4+Gz2APW/RBgzriGvOmoDkM=; b=C60wzg8UPAhNGX
+	tDUG/d+4LXMA0coYbH+klWeHDh6zmxJ+EWdV3GbdH3vvMogdutePVweD3OALm0sOIJVT8LOmss6e9
+	EW3OasnJDWrtBYQ3OAHlsL4SHrzGb51888Pqx9J0fl6OJrI554frNjkFtybVbie32PVE6kg8ugwFb
+	8wHtzWRF75XuEUIAbdaGXVOVlAyhfH9GCQ9ux4v/cxbr9Tx5sqgNPh0Ui33OHyjz1ntI4pajACY+p
+	HpncoAUoCKqO8hk9V6E3+JjQ7aHaUYEj5nYFBrlgkPTDgELw3Jy6Pxe6p7XkW/Gxhnq3jMFs8O1Cz
+	R1pwBcOMyznkwtskJRwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qisVT-002Gy6-05;
-	Wed, 20 Sep 2023 08:24:23 +0000
+	id 1qisVX-002H1J-0M;
+	Wed, 20 Sep 2023 08:24:27 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qisVQ-002Gwh-1q
+	id 1qisVU-002Gz8-0J
 	for ath11k@lists.infradead.org;
-	Wed, 20 Sep 2023 08:24:21 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38K6EIIE032404;
-	Wed, 20 Sep 2023 08:24:18 GMT
+	Wed, 20 Sep 2023 08:24:25 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38K6e5jh029693;
+	Wed, 20 Sep 2023 08:24:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=qcppdkim1;
- bh=2HTi0K8uN9eUy+5fL6mzwZr+mGlPxQXM9PcsDS7UW1U=;
- b=ZDm8zi5hXMbntHk7Cr3W/KqZLVZ2w8+K6C7TwakuCwtgQuK8esivm++7fe+LuKMDPEWI
- 6NIqCiX2Ik9ga8IwN0n/OTYWMOyHtcHijGUesOQ0dJPEsxIpU4IQ/ucJ8RjLS11XdN21
- HEJpKJWrmEd7aCBzLJjWrmAJP9oVrE8XLu5PhcJgi9YWlWp0AIKu/KVPUs45WsJYyflO
- 3O3WM44wH5PoRYWxDm10nuboShVQNrRupvlvflm9HKdeTH1DdJKm/Vkh52wOycovzI0F
- RwMoTmOeAiZSp8p+p+ybg88NUZuQcnAIXJF78YPEock4c4hK95RBNGrjoBZHWT0tXg61 8Q== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t78upjmhh-1
+ bh=22gE0UneMpSPEfGCZk25Flb4zpT5bu4R4eyJz0EczH4=;
+ b=fBTA5kXR4ykdCnn5mknfni2yySyMJDd2y+3URniPAl59F80woKV/8S+sJ+dsZ3tgjAv7
+ wTBLRS2PfjMEAe9vlVLIs7i7iB+fepwXna7/qw8RyF9yl+2MyOvSQ6LANtZN5qACuN1j
+ cGcOb5fCPJ5p8tz9n8IgbcdckJ3qSq/zNZDq06smjoLL+wNW2lfWnBSbuV9r2p6G2tTA
+ X4enUYgWYUzFNk0q6RQJZ1Xr85sMzBkvYlt4wgobZF+1VzbOZSatydZAsnBSBpuR+Wrb
+ VRMVvvE/BAiwPl22jumAcCjdgZGTNwF9tUeK7ActyYk+tf91IVUa/vST2f5DcD5Mc0/q hA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t7qj90pun-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Sep 2023 08:24:18 +0000
+	Wed, 20 Sep 2023 08:24:22 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38K8OIgg031270
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38K8OLlU006170
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Sep 2023 08:24:18 GMT
+	Wed, 20 Sep 2023 08:24:21 GMT
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Wed, 20 Sep 2023 01:24:16 -0700
+ 15.2.1118.36; Wed, 20 Sep 2023 01:24:19 -0700
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <kvalo@kernel.org>,
         <quic_jjohnson@quicinc.com>, <quic_wgong@quicinc.com>
-Subject: [PATCH v6 06/13] wifi: ath11k: save power spectral density(psd) of regulatory rule
-Date: Wed, 20 Sep 2023 04:23:42 -0400
-Message-ID: <20230920082349.29111-7-quic_wgong@quicinc.com>
+Subject: [PATCH v6 08/13] wifi: ath11k: save max tx power in vdev start response event from firmware
+Date: Wed, 20 Sep 2023 04:23:44 -0400
+Message-ID: <20230920082349.29111-9-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230920082349.29111-1-quic_wgong@quicinc.com>
 References: <20230920082349.29111-1-quic_wgong@quicinc.com>
@@ -67,19 +67,19 @@ X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: FGOWv4Ny0KWk8VaDVHFxF6xwtx3ePJkN
-X-Proofpoint-ORIG-GUID: FGOWv4Ny0KWk8VaDVHFxF6xwtx3ePJkN
+X-Proofpoint-GUID: WgkyEezJ9ZbWWCkK8DQOogcsMHjCvMBh
+X-Proofpoint-ORIG-GUID: WgkyEezJ9ZbWWCkK8DQOogcsMHjCvMBh
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
  definitions=2023-09-20_02,2023-09-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 phishscore=0 mlxscore=0 mlxlogscore=999 suspectscore=0
- spamscore=0 clxscore=1015 adultscore=0 priorityscore=1501 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 suspectscore=0 mlxlogscore=975
+ mlxscore=0 phishscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0
+ malwarescore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2308100000 definitions=main-2309200067
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230920_012420_612499_375DFBE9 
-X-CRM114-Status: GOOD (  17.15  )
+X-CRM114-CacheID: sfid-20230920_012424_145915_D8A9BD67 
+X-CRM114-Status: GOOD (  17.54  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,92 +96,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Save the power spectral density(psd) report from firmware to struct
-ieee80211_reg_rule.
+Save the max tx power received in the vdev start response event from
+firmware. A subsequent patch will use this to calculate the final power
+value for WMI_VDEV_SET_TPC_POWER_CMDID.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/reg.c | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h | 1 +
+ drivers/net/wireless/ath/ath11k/wmi.c  | 3 ++-
+ drivers/net/wireless/ath/ath11k/wmi.h  | 1 +
+ 3 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 0535ab8a28fa..622fb07eade0 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -413,6 +413,10 @@ static void ath11k_reg_intersect_rules(struct ieee80211_reg_rule *rule1,
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 42e02df0526c..ebbea4719572 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -775,6 +775,7 @@ struct ath11k {
+ 	/* protected by conf_mutex */
+ 	bool ps_state_enable;
+ 	bool ps_timekeeper_enable;
++	s8 max_allowed_tx_power;
+ };
  
- 	/* Use the flags of both the rules */
- 	new_rule->flags = rule1->flags | rule2->flags;
-+	if ((rule1->flags & NL80211_RRF_PSD) && (rule2->flags & NL80211_RRF_PSD))
-+		new_rule->psd = min_t(s8, rule1->psd, rule2->psd);
-+	else
-+		new_rule->flags &= ~NL80211_RRF_PSD;
+ struct ath11k_band_cap {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index c427299b7202..d93ed92335c7 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -5033,6 +5033,7 @@ static int ath11k_pull_vdev_start_resp_tlv(struct ath11k_base *ab, struct sk_buf
+ 	vdev_rsp->mac_id = ev->mac_id;
+ 	vdev_rsp->cfgd_tx_streams = ev->cfgd_tx_streams;
+ 	vdev_rsp->cfgd_rx_streams = ev->cfgd_rx_streams;
++	vdev_rsp->max_allowed_tx_power = ev->max_allowed_tx_power;
  
- 	/* To be safe, lts use the max cac timeout of both rules */
- 	new_rule->dfs_cac_ms = max_t(u32, rule1->dfs_cac_ms,
-@@ -516,13 +520,14 @@ ath11k_reg_adjust_bw(u16 start_freq, u16 end_freq, u16 max_bw)
- static void
- ath11k_reg_update_rule(struct ieee80211_reg_rule *reg_rule, u32 start_freq,
- 		       u32 end_freq, u32 bw, u32 ant_gain, u32 reg_pwr,
--		       u32 reg_flags)
-+		       s8 psd, u32 reg_flags)
- {
- 	reg_rule->freq_range.start_freq_khz = MHZ_TO_KHZ(start_freq);
- 	reg_rule->freq_range.end_freq_khz = MHZ_TO_KHZ(end_freq);
- 	reg_rule->freq_range.max_bandwidth_khz = MHZ_TO_KHZ(bw);
- 	reg_rule->power_rule.max_antenna_gain = DBI_TO_MBI(ant_gain);
- 	reg_rule->power_rule.max_eirp = DBM_TO_MBM(reg_pwr);
-+	reg_rule->psd = psd;
- 	reg_rule->flags = reg_flags;
- }
+ 	kfree(tb);
+ 	return 0;
+@@ -7425,7 +7426,7 @@ static void ath11k_vdev_start_resp_event(struct ath11k_base *ab, struct sk_buff
+ 	}
  
-@@ -552,7 +557,7 @@ ath11k_reg_update_weather_radar_band(struct ath11k_base *ab,
- 				       reg_rule->start_freq,
- 				       ETSI_WEATHER_RADAR_BAND_LOW, bw,
- 				       reg_rule->ant_gain, reg_rule->reg_power,
--				       flags);
-+				       reg_rule->psd_eirp, flags);
+ 	ar->last_wmi_vdev_start_status = 0;
+-
++	ar->max_allowed_tx_power = vdev_start_resp.max_allowed_tx_power;
+ 	status = vdev_start_resp.status;
  
- 		ath11k_dbg(ab, ATH11K_DBG_REG,
- 			   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
-@@ -573,7 +578,7 @@ ath11k_reg_update_weather_radar_band(struct ath11k_base *ab,
+ 	if (WARN_ON_ONCE(status)) {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index a34a04bd4612..106e1d672b9a 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4143,6 +4143,7 @@ struct wmi_vdev_start_resp_event {
+ 	};
+ 	u32 cfgd_tx_streams;
+ 	u32 cfgd_rx_streams;
++	s32 max_allowed_tx_power;
+ } __packed;
  
- 		ath11k_reg_update_rule(regd->reg_rules + i, start_freq,
- 				       end_freq, bw, reg_rule->ant_gain,
--				       reg_rule->reg_power, flags);
-+				       reg_rule->reg_power, reg_rule->psd_eirp, flags);
- 
- 		regd->reg_rules[i].dfs_cac_ms = ETSI_WEATHER_RADAR_BAND_CAC_TIMEOUT;
- 
-@@ -594,7 +599,7 @@ ath11k_reg_update_weather_radar_band(struct ath11k_base *ab,
- 				       ETSI_WEATHER_RADAR_BAND_HIGH,
- 				       reg_rule->end_freq, bw,
- 				       reg_rule->ant_gain, reg_rule->reg_power,
--				       flags);
-+				       reg_rule->psd_eirp, flags);
- 
- 		ath11k_dbg(ab, ATH11K_DBG_REG,
- 			   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
-@@ -716,6 +721,8 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
- 			reg_rule = reg_rule_6ghz + k++;
- 			max_bw = min_t(u16, reg_rule->max_bw, max_bw_6ghz);
- 			flags = NL80211_RRF_AUTO_BW;
-+			if (reg_rule->psd_flag)
-+				flags |= NL80211_RRF_PSD;
- 		} else {
- 			break;
- 		}
-@@ -726,7 +733,7 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
- 				       reg_rule->start_freq,
- 				       reg_rule->end_freq, max_bw,
- 				       reg_rule->ant_gain, reg_rule->reg_power,
--				       flags);
-+				       reg_rule->psd_eirp, flags);
- 
- 		/* Update dfs cac timeout if the dfs domain is ETSI and the
- 		 * new rule covers weather radar band.
+ /* VDEV start response status codes */
 -- 
 2.40.1
 
