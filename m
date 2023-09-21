@@ -4,64 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 277ABE706E5
-	for <ath11k@archiver.kernel.org>; Thu, 21 Sep 2023 08:15:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C782E71096
+	for <ath11k@archiver.kernel.org>; Thu, 21 Sep 2023 17:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f6LPTafTjv04rzLiLs32P6ruTdp7KOKEbEEpgGN/4WI=; b=MCdxjhZuljdRkl
-	lhvTUDL8aws2gS1ToXTAFm6Xm/QIbUEXvwy2xrd3RfRWEJ4RhCnY+5a3aFRWRk1bQlf4q9+pb+fvZ
-	DW6wKP3n6DG7CNB+S7Jzy5oxyIgni06FthPvUNQY3jaSO3xmUTmQgTMFdGFnu5f9PPk7Fol0krwx2
-	nF0Pury3AvaY133RyX0xNazIgOl3ymBAus9x2ve5uW7Q6p7J3Zv+S5l1h2aFXxQcQm/Q5biEpuosT
-	450CpW+gDxUOxTHFd1WuF7vsdxgbOi5W5wuewJjspjiOHVT4ylrd26xl8XvEeWrtgZWPpMo/iFynN
-	DOk830ZvPIBUJritj02A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vroCmcReDjtTBVWdICAQ5ajY6whPbEbC5HyykRDQjVA=; b=BocVHkQoJWWd5H
+	lRPeoDxuz0FfRI5zXG2c+g81qSGKCFEvNOYDz+I6l6vhbG9t3/PpD5pom21g6oHVKC2NsL0TE0Udi
+	zLbdVixuHYyICMauuZdWtbys7xid6DUipK/7oipyI+TALkYEOCKNSRTBsiWQeUpmlU+fuu4r737VH
+	dXlUUK5k5SxIoVDwo/RbPiObycXyxYY+r/Lu3BiPrwfuUkWO+8tBJTdChN0L1tuzUW+Kgjw2DtRcd
+	VHa9n7R1NrjDBXmxLSQdscvTDF2kgcjX4HGiDs7SycdOFOxnOjHFUpCXwHdcKCRU201nEqE9hYlIO
+	KgJoMyg4yEk2yXxhHCNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjEq2-005TR8-2m;
-	Thu, 21 Sep 2023 08:15:06 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qjNBD-006bY1-0r;
+	Thu, 21 Sep 2023 17:09:31 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjEq0-005TQa-1f
+	id 1qjNBA-006bWM-03
 	for ath11k@lists.infradead.org;
-	Thu, 21 Sep 2023 08:15:05 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 889DF61DC5;
-	Thu, 21 Sep 2023 08:15:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BF60C116B7;
-	Thu, 21 Sep 2023 08:15:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695284101;
-	bh=AHBLwwOIwVWEmEP99U0FHUEQNUBcOntQwAP8JLk0Nrw=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=oZQtzsaJoI5FcqsIFrLXfTKb3OPPmMerddAnyEue6eMDGmf74sMvx+jD/mt7bVlV8
-	 lvWElRz1BmVrCaU4Cr1Nk5/4MI5rQDgZTKvgYEKQyEwr4wTqlFx+n6+/DaLXJjnRZH
-	 qvn0lBrmP/ZbfuoUlSCS8/oW3Ow7gIAxJy9/dL0/H+XdY1BINd+R5qe3+dfuPPHRgx
-	 PMVHXKD2NbpkoaVYlr7Yci5jZZU4Xvv/rnPBdVXISV/MdNw9pog6vOIJIC0bEXFt2D
-	 lELB5upUDb7e61eERDi67C3qs1NAvDZ66Z9wx6cDaICSs83rms7jqh2J3MqAXX4F7z
-	 L/buhWfrVQjqA==
+	Thu, 21 Sep 2023 17:09:29 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38LF7K1m001558;
+	Thu, 21 Sep 2023 17:09:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=LNygmIKmXn3TloZGMOTcy11agEPItZJYdzbjy1HGvWk=;
+ b=SliNADxf7u5WBn+rq01ZtCA+qs2wlN0DEJJ28EcgQx8VXnh4Kb2Huo5xbh7NJ/ctQFSX
+ BsKVmeDIllju3Dzh8olDIbrCpZLZGrVyUZtVeHkN/9XLxA5NlO7x/FnQ4Wo9keoOIrx3
+ pF6cgEBmu/f5bOthkhqLQnj5e7LW2BNesu1WEOjKFY5ANydhXkBq3GlqVHyLCOzlbFqo
+ rKESAlss6RNw8kxpU06XF9w87hsLN57arPDV+WLDXqsYZPa1yLRk1jUS3keJT3RsVwmx
+ 8XkIvE6CkfQZ2qYCroq1YMfQt+UpbBeN1+UghIXzuVRJy/rhyhH+sYzYBM127gTPLHuv Uw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8892252b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Sep 2023 17:09:21 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38LH9KKK010028
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Sep 2023 17:09:20 GMT
+Received: from [10.48.245.144] (10.49.16.6) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 21 Sep
+ 2023 10:09:20 -0700
+Message-ID: <edd759d5-855e-4438-b649-db7915bab3e0@quicinc.com>
+Date: Thu, 21 Sep 2023 10:09:19 -0700
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/5] wifi: ath11k: drop redundant check in
- ath11k_dp_rx_mon_dest_process()
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230824075121.121144-1-dmantipov@yandex.ru>
-References: <20230824075121.121144-1-dmantipov@yandex.ru>
-To: Dmitry Antipov <dmantipov@yandex.ru>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, Tom Rix <trix@redhat.com>,
- linux-wireless@vger.kernel.org, lvc-project@linuxtesting.org,
- ath11k@lists.infradead.org, Dmitry Antipov <dmantipov@yandex.ru>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <169528409870.1539628.16918837777689234702.kvalo@kernel.org>
-Date: Thu, 21 Sep 2023 08:15:00 +0000 (UTC)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: mac: fix struct ieee80211_sband_iftype_data
+ handling
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20230921075440.1539515-1-kvalo@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20230921075440.1539515-1-kvalo@kernel.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jcGFp4CQEDmuo_hanOfCvgozzez4Wq8H
+X-Proofpoint-ORIG-GUID: jcGFp4CQEDmuo_hanOfCvgozzez4Wq8H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-21_14,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ mlxlogscore=947 adultscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 mlxscore=0 phishscore=0 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2309210148
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230921_011504_603512_491226A6 
-X-CRM114-Status: UNSURE (   9.12  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230921_100928_188849_4EB87819 
+X-CRM114-Status: GOOD (  12.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,34 +92,32 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dmitry Antipov <dmantipov@yandex.ru> wrote:
-
-> In 'ath11k_dp_rx_mon_dest_process()', 'mon_dst_srng' points to
-> a member of 'srng_list', which is a fixed-size array inside
-> 'struct ath11k_hal'. This way, if 'ring_id' is valid (i. e.
-> between 0 and HAL_SRNG_RING_ID_MAX - 1 inclusive), 'mon_dst_srng'
-> can't be NULL and so relevant check may be dropped.
+On 9/21/2023 12:54 AM, Kalle Valo wrote:
+> From: Kalle Valo <quic_kvalo@quicinc.com>
 > 
-> Found by Linux Verification Center (linuxtesting.org) with SVACE.
+> Commit e8c1841278a7 ("wifi: cfg80211: annotate iftype_data pointer with
+> sparse") added sparse checks for struct ieee80211_sband_iftype_data handling
+> which immediately found an issue in ath11k:
 > 
-> Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> drivers/net/wireless/ath/ath11k/mac.c:7952:22: warning: incorrect type in argument 1 (different address spaces)
+> drivers/net/wireless/ath/ath11k/mac.c:7952:22:    expected struct ieee80211_sta_he_cap const *he_cap
+> drivers/net/wireless/ath/ath11k/mac.c:7952:22:    got struct ieee80211_sta_he_cap const [noderef] __iftype_data *
+> 
+> The problem here is that we are accessing sband->iftype_data directly even
+> though we should use for_each_sband_iftype_data(). Now we iterate over each
+> item in the array and use the correct vif type which this vif is using.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> 
+> Reported-by: Johannes Berg <johannes@sipsolutions.net>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-2 patches applied to ath-next branch of ath.git, thanks.
-
-82ae3f463538 wifi: ath11k: drop redundant check in ath11k_dp_rx_mon_dest_process()
-9066794113c4 wifi: ath11k: remove unused members of 'struct ath11k_base'
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230824075121.121144-1-dmantipov@yandex.ru/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
 
 -- 
