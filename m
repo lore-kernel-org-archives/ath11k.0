@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFFCBE6FE32
-	for <ath11k@archiver.kernel.org>; Fri, 22 Sep 2023 14:10:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8542E6FE3E
+	for <ath11k@archiver.kernel.org>; Fri, 22 Sep 2023 14:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=50bqmhyY6zNppny86DX2Zj96Sqw5N0w3uYUrDFmyGp4=; b=pjTFa6OAW1j/rK/rF6i2Grgz77
-	BnLOy4Je6uASK1cvrj+caurFzMfKQPAxJ0+96VdHBufpRpDSMGE8TugSfisZVMZykSUkSf86Q3O0P
-	OuEfS1zk1QnjEUrkSVtac/rT0/yEiM2RPn8BAbIvNlOd4YjukLGmMO17kVcYG6YpHZOh0lksc1m36
-	I6EzRy5bJWJPRdY/JR0REabdVmv6zkhhG7+EhJ+085nyvMnZPYsaob5IPLgRUf68ctPlXCP6ukwyK
-	Ng/uvOGduojzUQU1lrapYBeE2uJvJD6i2cwdyF5t62GWnW+oOw2r9IbgsyfK2sBa/1BfXOmGkDEcz
-	q5+HFUBg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cIUpFbrjPb0P/mKGL9WaJYHJmPqeUafGZLz6LgG9eVg=; b=FnWHrzmRaGU+K3
+	Ola2dBXBzXMW4ZtrXMZ4CkQ4yS1v6UOLFOq8fr6KcyCKeYmSg76/gaxWjQfgJaoUqkXuJHEOUzipw
+	IqzDtVfCwFv2w6agAd/rffK0eq4dqz4oyxKSNOmYyxdsAz6EMndrkwL34rwxdT5CoinFOcrxHZ50i
+	d6KwuySuhTNh/hixdd0U6HjSLRBz7MIbJi1054Fd3WEJJTCuv13mGPxDxTy1btqz4xDWCrHE9+oFU
+	cajQv9t1H8590MA22LRMsReehOXhGNlfX/dn6MAb3Lab29WOCSSoCBrkBcZgtImvZjDgnymOvFJVy
+	jEQqtFB3qf23aUq2j9Pg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjgrD-009B1y-2s;
-	Fri, 22 Sep 2023 14:10:11 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1qjhKY-009E3f-0t;
+	Fri, 22 Sep 2023 14:40:30 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjgrA-009B1T-28
+	id 1qjhKW-009E1w-1b
 	for ath11k@lists.infradead.org;
-	Fri, 22 Sep 2023 14:10:10 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38MAlPgr013694;
-	Fri, 22 Sep 2023 14:10:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=oGkedumiF7qYscPq09Wq92YClO+TfRoVXGPIg+PD0HQ=;
- b=Iar2PsA+0E28/CsFqHGYd7r3UjZPVQpoujsfZeeSjbJ6/Qp2k+RrRyyTSk2CbcMe5kVi
- iGZkGYFWIfUJjQAU67QlAjfKXiGDpQztz/6nBuGrunS70v9JEp63IX3RAT8TqoPxjtnp
- fvxFXe9kr4U74CoyINvW/2jZEIzunz8pOp+63HSNgCYbR99Ix6/6AQgnpQxq0WaYTG9E
- utWo/L/2i/aQsHqTegA3hVbzngUQm1HBL3G2tPZ9KqjjP6uaVJT4Xqihmf6COf1BENfA
- en6G6bFxFgZWP4YG6i22r8+nwv0tNkDcj0lF3TazJuEeqcORzkPYQN3eKeGo+K+kY9U8 6A== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8txga2d8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 14:10:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38MEA38a027467
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 14:10:03 GMT
-Received: from [10.48.243.100] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 22 Sep
- 2023 07:10:03 -0700
-Message-ID: <b5fa2ea0-d025-47e3-a1c3-eb7c2f6bc5b7@quicinc.com>
-Date: Fri, 22 Sep 2023 07:10:02 -0700
+	Fri, 22 Sep 2023 14:40:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1695393626;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=rGnMCyubh7bE+/HJGj4DK0rgvnpm1pyHq1+UZD2NCjY=;
+	b=VbVQRiN3J/8nbxfz7R4heChBOhXHRhGrmGAQf+26ocGHC2KzkAtks7TjjuINyvc8fYlMZT
+	6IvKhyp2rJKFsOyZ/a0XWnMZEKGXTYVc9RZ/WPNgyGWaywZrqv1LRB5Je4bSqvp7RfWAkY
+	+sOsKYetEPUt+JmYCG1jFgjKWO5ajE4=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-534-h-j_7iwQM6ub9BnngjW_3w-1; Fri, 22 Sep 2023 10:40:25 -0400
+X-MC-Unique: h-j_7iwQM6ub9BnngjW_3w-1
+Received: by mail-ed1-f70.google.com with SMTP id 4fb4d7f45d1cf-530a085c62dso159330a12.0
+        for <ath11k@lists.infradead.org>; Fri, 22 Sep 2023 07:40:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695393624; x=1695998424;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rGnMCyubh7bE+/HJGj4DK0rgvnpm1pyHq1+UZD2NCjY=;
+        b=YdQP3rWtUUsVmZaVdAlLWWn0OAK8epf5rc8GejSXArRolTKazHhRcMs5xIqBlpg3be
+         DZel9Dgg2wP7Pr0nuSKRjjxtbeLBi25OWOcV4rxJZXBNgpZobM4VNWr0bJomD+7qDUgb
+         jZjC722+qRJhHAXOYCncDuBxhm4DFQrtqpQ7ww69S7kKn7XMOIBXULH/L7/v9cT/RwYM
+         7Gws65gWSzUFTWNQgXChaTB+6iOvSbLEg5F+xAuT9gJFNk6fW2bC+Ddk2Za6YJ69mjeF
+         0kz74nuHNUrLxXr9AvGti3S7benEXLvLAiHZVYCHCYv2FTOIu8DIEYAv1m9+V8KGpmcf
+         cODA==
+X-Gm-Message-State: AOJu0YyzY8n51coeVOD1dTxcCTE91YqCmbfZL2v3HmzAraGjgKJd3Irv
+	Uo/BJywUNf3EstxptH4nP32no4lqJ+thAHj2zmBlTCO/6SmRwJMwlPhhtiN6gLXwJZx1iDd3KRS
+	5EkPi5qumRLKjgj5vNzutd9aaMzI3uIT3aAoSFw==
+X-Received: by 2002:a05:6402:51c9:b0:523:37cf:6f37 with SMTP id r9-20020a05640251c900b0052337cf6f37mr7551714edd.4.1695393624167;
+        Fri, 22 Sep 2023 07:40:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGaeMW0q3DuXsz0kHM9h9ZNaXKgZp/1aLg9254A9wa9TAeKK35Kd9zJ4ORdo4O86nq3u3AP7AmJn65V6xp8rOs=
+X-Received: by 2002:a05:6402:51c9:b0:523:37cf:6f37 with SMTP id
+ r9-20020a05640251c900b0052337cf6f37mr7551703edd.4.1695393623879; Fri, 22 Sep
+ 2023 07:40:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+References: <20230922120040.15460-1-jtornosm@redhat.com> <b5fa2ea0-d025-47e3-a1c3-eb7c2f6bc5b7@quicinc.com>
+In-Reply-To: <b5fa2ea0-d025-47e3-a1c3-eb7c2f6bc5b7@quicinc.com>
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+Date: Fri, 22 Sep 2023 16:40:12 +0200
+Message-ID: <CABk-BGuOxCeHH0wJX9J3KBdn58nLDGnhWSn1Cma9R8AS2Xe_kQ@mail.gmail.com>
 Subject: Re: [bug] mhi: ath11k: resume after hibernation is not working
-Content-Language: en-US
-To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>, <kvalo@kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230922120040.15460-1-jtornosm@redhat.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20230922120040.15460-1-jtornosm@redhat.com>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5eaN3bOQAHFkZHFd0mV6_XoLmwyPlDDd
-X-Proofpoint-GUID: 5eaN3bOQAHFkZHFd0mV6_XoLmwyPlDDd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-22_12,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 suspectscore=0 mlxlogscore=804 mlxscore=0 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309220121
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: kvalo@kernel.org, ath11k@lists.infradead.org, 
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230922_071008_861024_36075861 
-X-CRM114-Status: GOOD (  11.17  )
+X-CRM114-CacheID: sfid-20230922_074028_660389_E8ADF808 
+X-CRM114-Status: UNSURE (   3.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,28 +92,11 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/22/2023 5:00 AM, Jose Ignacio Tornos Martinez wrote:
-> Hello,
-> 
-> We have several machines with QCNFA765 wireless card (WCN6856) and with
-> the same behavior: although hibernation seems to work, post resume is not
-> working due to the wireless card (if the wireless card is disabled or ath11k
-> driver is blacklisted, everything is working).
-
-This is a known issue being tracked by:
-https://bugzilla.kernel.org/show_bug.cgi?id=214649
-
-A fix for this issue is under development.
-
-/jeff
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+R3JlYXQhCgpUaGFua3MgZm9yIHRoZSBpbmZvCgpCZXN0IHJlZ2FyZHMKSm9zw6kgSWduYWNpbwoK
+Ci0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
