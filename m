@@ -4,85 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84112CD4F33
-	for <ath11k@archiver.kernel.org>; Fri, 22 Sep 2023 09:04:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7918CD4F3F
+	for <ath11k@archiver.kernel.org>; Fri, 22 Sep 2023 09:18:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ogxpw+gamzyYJa/oVV2J9aMr7jymwgZF4x8iEWicz9o=; b=SJw6NkSVAJn0m+
-	Z0UBAXwFRY+gPhNc1gZflI/pUbkOKk1IF5RHNdf+I56qElWEQQv7SDpUfg1QM+NxaxjVFoWC6qwy7
-	A21mzQO0J9aJHlliq1dx7iKPbY5qBff/6K6Rp+Y4kK19rv55EW6U1+1AQlGpqt9C9MbilllDNlQ8S
-	c5c8SaHGsy5b1yEeKCgGQRgskLzAG6RtnzLTDl4KCMy062WYgqtfjNRV7yHUhihMGC2rPUIZSI2vC
-	MwIioCajiRx67bVavXlYS3Y6Id9/tac/UNKs3gzBzAVHMzeR6cWKWdUP+rUILfn3CmuGlPj3wynel
-	ehbEG5BOdcqLOZ7TUuHg==;
+	List-Owner; bh=h2cliIJavN9C7X5Q9N5qO5jTa+YZF2B8pBdkudQZ23E=; b=WSV4HkqtchHTCr
+	69xbqOn+ZRlB7XRC618cQ+QSWjIWnyyV6sMA3G5E31NGorVAgp/u+pADUSIz1bc27M8rc3dvAtM1S
+	hMC3dg0SjK0fKlqVoWMxM0Hc0nH5CDg35rZdtuJr77G/7TQL8PRfKPyMCUzqgntqXCi5hz9I18Gwu
+	B9kksJilyMJJlSpoRAWqz4X+EMyjx1I6bvCol8mLo01ZKZ803ZjeD5qmMZqt7C32Nqxhe2xSWMkC/
+	uVVIsjVLeN/kQPBN+zlpj7BrkA4YTGRXCCSx2yb/nRHlPRHN8xuG559fkSWrOZwLtPq8oYJT4ADjr
+	E+aP0aQSCrKa1mBtS9FA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjc5k-008V6t-38;
-	Fri, 22 Sep 2023 09:04:52 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1qjcIc-008YD0-0q;
+	Fri, 22 Sep 2023 09:18:10 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qjc5i-008V6I-2a
+	id 1qjcIY-008YB3-3A
 	for ath11k@lists.infradead.org;
-	Fri, 22 Sep 2023 09:04:52 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M6qrnl022431;
-	Fri, 22 Sep 2023 09:04:44 GMT
+	Fri, 22 Sep 2023 09:18:08 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M79Znr032765;
+	Fri, 22 Sep 2023 09:17:57 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=bewMMnqBnCdNIT4yW8o4o38X35WCo1vUlQhyYH1Yn9A=;
- b=Koa7hxwOQv+sAVuLOEZUAwH8JN1Lr/yBfFqdzot5/VlYOCTbkVwmTOAWNv0d+L1VFb99
- 8jzXdi8uIoxuWLtJIvTXG+dJ8sypsAR0MAWK76pmtSWIYcOi0d0dImo/iNLDo5ULzA9E
- yKvencSXQFt7qxfwTdaxx7S7MQn7RtWoF5Sk307jZYmWQwDGzgUwt+djZ2dRI1g3EK3m
- jilgFV5oYyjBYDdjePUzAtE0TI6uJrI2TsRRUJyYatuOPXTrKAfxdTi+thhkMAdif9Mv
- sYBweJqjFE48zTcqpMOC4cCPx1Gb30gziOokOx5tVidmQGc/aGorYOPnmSgAXXXA5co8 ew== 
+ bh=LonnscLcKZUYt42xOOi1psonh9Iz49FVeWCDCAFBj8g=;
+ b=W5u1HdwKAF5fdIVs5FVunxpAeSF1yTX9oUdW+5SZoLySXXlC3rKBfCBny/a13u3i/Tm9
+ EG4sru7wFOprOeI2xxQKux3WjIg5CN0SHEIn5cbfC2rGlvaKt42GQLGg87ZPM+3j/BrX
+ Zu+7hV9AlEhC6Os5upQ5Xc3bXM/Ik8q3yx416hqIwmnGcdNLYu/NuivP7/ANzYG8AYXO
+ W5zTmVgggXyH3tb7ZedaQRfJuPS+oiOBZTuXWk0Wqz3gaCcYE739UOeXk7irTWZj+bJE
+ zgK4O034Mi5Rz16uDvzU0SvI0RJp1UGm4EB2XzbtTnX6Cg72KZuyhOvbFpAKzxOkLSQi Pg== 
 Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8u0s1f80-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8u9h9chs-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 09:04:44 +0000
+	Fri, 22 Sep 2023 09:17:57 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38M94hYd001307
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38M9Hu8U017218
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 09:04:43 GMT
-Received: from [10.216.13.153] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Fri, 22 Sep 2023 09:17:56 GMT
+Received: from [10.231.195.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 22 Sep
- 2023 02:04:40 -0700
-Message-ID: <4e4024eb-b518-4a36-b230-3c413c3a06e8@quicinc.com>
-Date: Fri, 22 Sep 2023 14:34:32 +0530
+ 2023 02:17:54 -0700
+Message-ID: <1a52925f-0b18-9c42-4005-47de075ce1d0@quicinc.com>
+Date: Fri, 22 Sep 2023 17:17:52 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
 Subject: Re: [PATCH v6 11/13] wifi: ath11k: discard BSS_CHANGED_TXPOWER when
  EXT_TPC_REG_SUPPORT for 6 GHz
-To: Wen Gong <quic_wgong@quicinc.com>, <ath11k@lists.infradead.org>
+Content-Language: en-US
+To: Aditya Kumar Singh <quic_adisi@quicinc.com>, <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <kvalo@kernel.org>,
         <quic_jjohnson@quicinc.com>
 References: <20230920082349.29111-1-quic_wgong@quicinc.com>
  <20230920082349.29111-12-quic_wgong@quicinc.com>
-Content-Language: en-US
-From: Aditya Kumar Singh <quic_adisi@quicinc.com>
-In-Reply-To: <20230920082349.29111-12-quic_wgong@quicinc.com>
+ <4e4024eb-b518-4a36-b230-3c413c3a06e8@quicinc.com>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <4e4024eb-b518-4a36-b230-3c413c3a06e8@quicinc.com>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rWOoh66CShe4RfN21tAv8Y2yDpykiw3w
-X-Proofpoint-ORIG-GUID: rWOoh66CShe4RfN21tAv8Y2yDpykiw3w
+X-Proofpoint-GUID: fQVxZAipyfNEyevbZJZ80AC_k5ryocOY
+X-Proofpoint-ORIG-GUID: fQVxZAipyfNEyevbZJZ80AC_k5ryocOY
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-22_06,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0
- adultscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501 clxscore=1015
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309220075
+ definitions=2023-09-22_07,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0
+ suspectscore=0 malwarescore=0 clxscore=1015 mlxlogscore=878 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309220076
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230922_020450_843614_BF149F72 
-X-CRM114-Status: GOOD (  26.01  )
+X-CRM114-CacheID: sfid-20230922_021807_194680_A1648BB0 
+X-CRM114-Status: GOOD (  14.23  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,78 +96,32 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/20/23 13:53, Wen Gong wrote:
-> When station is connected to a 6 GHz AP, it has 2 way to configure
-> the power limit to firmware. The first way is to send 2 wmi command
-> WMI_PDEV_PARAM_TXPOWER_LIMIT2G/WMI_PDEV_PARAM_TXPOWER_LIMIT5G to
-> firmware, the second way is to send WMI_VDEV_SET_TPC_POWER_CMDID to
-> firmware which include more parameters for power control.
-> 
-> When firmware support SERVICE_EXT_TPC_REG, it means firmware support
-> the second way for WMI_VDEV_SET_TPC_POWER_CMDID, then ath11k discard
-> BSS_CHANGED_TXPOWER flag from mac80211 which is used to the first way
-> for 6 GHz band in this patch and select the second way in the subsequent
-> patch.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> ---
->   drivers/net/wireless/ath/ath11k/mac.c | 22 +++++++++++++++++++---
->   1 file changed, 19 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> index f05d66913abd..a8ae281d2635 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -3396,6 +3396,18 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
->   	return 0;
->   }
->   
-> +static bool ath11k_mac_supports_station_tpc(struct ath11k *ar,
-> +					    struct ath11k_vif *arvif,
-> +					    const struct cfg80211_chan_def *chandef)
-> +{
-> +	return ath11k_mac_supports_6ghz_cc_ext(ar) &&
-> +		test_bit(WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT, ar->ab->wmi_ab.svc_map) &&
-> +		arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-> +		arvif->vdev_subtype == WMI_VDEV_SUBTYPE_NONE &&
-> +		chandef->chan &&
-> +		chandef->chan->band == NL80211_BAND_6GHZ;
-> +}
-> +
->   static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->   					   struct ieee80211_vif *vif,
->   					   struct ieee80211_bss_conf *info,
-> @@ -3595,9 +3607,13 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->   	if (changed & BSS_CHANGED_TXPOWER) {
->   		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "vdev_id %i txpower %d\n",
->   			   arvif->vdev_id, info->txpower);
-> -
-> -		arvif->txpower = info->txpower;
-> -		ath11k_mac_txpower_recalc(ar);
-> +		if (ath11k_mac_supports_station_tpc(ar, arvif, &info->chandef)) {
-So even if user wants to operate in low power value, we won't be 
-allowing to do that in case of 6 GHz station mode? Only TPC power is valid?
-
-> +			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-> +				   "discard tx power, change to set TPC power\n");
-> +		} else {
-> +			arvif->txpower = info->txpower;
-> +			ath11k_mac_txpower_recalc(ar);
-> +		}
->   	}
->   
->   	if (changed & BSS_CHANGED_PS &&
-
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gOS8yMi8yMDIzIDU6MDQgUE0sIEFkaXR5YSBLdW1hciBTaW5naCB3cm90ZToKPiBPbiA5LzIw
+LzIzIDEzOjUzLCBXZW4gR29uZyB3cm90ZToKPj4KWy4uLl0KPj4gQEAgLTM1OTUsOSArMzYwNywx
+MyBAQCBzdGF0aWMgdm9pZCAKPj4gYXRoMTFrX21hY19vcF9ic3NfaW5mb19jaGFuZ2VkKHN0cnVj
+dCBpZWVlODAyMTFfaHcgKmh3LAo+PiDCoMKgwqDCoMKgIGlmIChjaGFuZ2VkICYgQlNTX0NIQU5H
+RURfVFhQT1dFUikgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgYXRoMTFrX2RiZyhhci0+YWIsIEFU
+SDExS19EQkdfTUFDLCAidmRldl9pZCAlaSB0eHBvd2VyICVkXG4iLAo+PiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBhcnZpZi0+dmRldl9pZCwgaW5mby0+dHhwb3dlcik7Cj4+IC0K
+Pj4gLcKgwqDCoMKgwqDCoMKgIGFydmlmLT50eHBvd2VyID0gaW5mby0+dHhwb3dlcjsKPj4gLcKg
+wqDCoMKgwqDCoMKgIGF0aDExa19tYWNfdHhwb3dlcl9yZWNhbGMoYXIpOwo+PiArwqDCoMKgwqDC
+oMKgwqAgaWYgKGF0aDExa19tYWNfc3VwcG9ydHNfc3RhdGlvbl90cGMoYXIsIGFydmlmLCAKPj4g
+JmluZm8tPmNoYW5kZWYpKSB7Cj4gU28gZXZlbiBpZiB1c2VyIHdhbnRzIHRvIG9wZXJhdGUgaW4g
+bG93IHBvd2VyIHZhbHVlLCB3ZSB3b24ndCBiZSAKPiBhbGxvd2luZyB0byBkbyB0aGF0IGluIGNh
+c2Ugb2YgNiBHSHogc3RhdGlvbiBtb2RlPyBPbmx5IFRQQyBwb3dlciBpcyAKPiB2YWxpZD8KPgpZ
+b3UgYXJlIHJpZ2h0LiBJIHRoaW5rIEkgd2lsbCBkcm9wIHRoaXMgcGF0Y2guIEZpcm13YXJlIHdp
+bGwgc2VsZWN0IHRoZSAKbG93ZXN0IFRYIHBvd2VyIGZyb20gbXVsdGktc291cmNlLgo+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBhdGgxMWtfZGJnKGFyLT5hYiwgQVRIMTFLX0RCR19NQUMsCj4+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImRpc2NhcmQgdHggcG93ZXIs
+IGNoYW5nZSB0byBzZXQgVFBDIHBvd2VyXG4iKTsKPj4gK8KgwqDCoMKgwqDCoMKgIH0gZWxzZSB7
+Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGFydmlmLT50eHBvd2VyID0gaW5mby0+dHhwb3dl
+cjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYXRoMTFrX21hY190eHBvd2VyX3JlY2FsYyhh
+cik7Cj4+ICvCoMKgwqDCoMKgwqDCoCB9Cj4+IMKgwqDCoMKgwqAgfQo+PiDCoCDCoMKgwqDCoMKg
+IGlmIChjaGFuZ2VkICYgQlNTX0NIQU5HRURfUFMgJiYKPgo+CgotLSAKYXRoMTFrIG1haWxpbmcg
+bGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
