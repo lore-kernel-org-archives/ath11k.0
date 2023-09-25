@@ -4,64 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1AD1CE7A81
-	for <ath11k@archiver.kernel.org>; Mon, 25 Sep 2023 10:35:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1955ACE7A81
+	for <ath11k@archiver.kernel.org>; Mon, 25 Sep 2023 10:43:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dq3PZtDmGmRD5p7yYvqwdiBhrAIIUlwAdRmwKb50dqw=; b=IOx40XRoldBs4n
-	8TzoHZrpOLIFquhijVrJqdXNuI+9Id2flKU5VEmdd9IfoZjbdn/r8NBFHrRfFF1r01QBXARiNfOt8
-	XvZhtQx7QwhbKV/CNo3OZ2A0AJKxFRINxrQTKffP8s9ShfSSL4rp8ptjPzABuFpc4jKJnU1lZBToB
-	wN8LEvXyvqUNyMWDam4b4f8ImjROKvahJgAxTKHjnQNkFvWh2jUhuDv2E5zgJyD/hhw0SnKpVmJz3
-	dsEn3LQdCSRefj34lxAlTH1l4JljIWLjUHHOcy8LDobpSUyM+UXQAYgn4btJNy7IcEpCfvUVqcCfk
-	ABnvzbquYQaB5e6eti3Q==;
+	List-Owner; bh=Z0di4DZ3gLbw5dcq9LU4MX70MtG2UlEANjLtslKj/8k=; b=A/zZmUFt4S4ZmY
+	3b8Zed71e4Z7U8h5xdT6Xw1EkOJwADpG40iGBtiQLS45gD3syoKJx2bv2xfDJSL+2eMiOVH+PJCPo
+	CHMXC3SeFzJaoNbaG2KbYHzWXTwKLnmkApbQZ8Pt9vHibiHFIrVNbTB4ql0xsefC1o6BPnK1mOLHv
+	JM9FIxaOxlg29WSgC1ZOOUVLuAg2fasj0Lh9KKv7wjQharkJLmaNJ9yfLWbzmPplU7m4YBLm86iZH
+	2bJto7HlcXPoauJc1LdvWe4uaRD5P7FvDiEyQ0oCxZa7NV5HFSZ+StZ2iK+7PVmwrxsFpB2tEJuxT
+	VOZ7eYOM39iU1qOtb4rg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qkiwC-00Dz5a-0W;
-	Mon, 25 Sep 2023 10:35:36 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qkj3e-00Dzpr-2U;
+	Mon, 25 Sep 2023 10:43:18 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qkiw8-00Dz59-1y
+	id 1qkj3b-00DzpG-0O
 	for ath11k@lists.infradead.org;
-	Mon, 25 Sep 2023 10:35:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 3D1696101A;
-	Mon, 25 Sep 2023 10:35:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4FB1C433C7;
-	Mon, 25 Sep 2023 10:35:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695638131;
-	bh=JZ5uv7t3glsM4ahkV+/PvSpGadJDXXdYDes3y5CsZvw=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=Z7XVDPn+pa81kYHkfG6+EBiBPK7Gu0vXzK8g4NL73MvnyROpKTEvV57tn9Gk9MM53
-	 1w56wgFpsMSshWTkJJ7cPIvY5eDaMJxyqfoCm3l/zMUgtMn9HnBOMLTKxUEa+HObVz
-	 rXdxTREakbPDDxF2x3QPRQjUTKoTv170y1mOEwwwQ1goonEFmmwqFdELfc5SOoARKW
-	 mCN3UkVCGxsnF32lRKSItr5E2Z4YQHVoKoWJKy+iIhifOvI0/xFK0qMxC9q+LUfQmK
-	 lkpMWiDfd6lkvSOXsjgQbtxv2JecMbFQd4NjloXzUn+nt9WD+D9Nbsc7c+sWn9LUB8
-	 PW7GvoznMta6Q==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Wen Gong <quic_wgong@quicinc.com>,  <ath11k@lists.infradead.org>,
-  <linux-wireless@vger.kernel.org>,  Baochen Qiang
- <quic_bqiang@quicinc.com>
-Subject: Re: [PATCH v6 03/13] wifi: ath11k: fix a possible dead lock caused
- by ab->base_lock
-References: <20230920082349.29111-1-quic_wgong@quicinc.com>
-	<20230920082349.29111-4-quic_wgong@quicinc.com>
-	<f9f0b511-74ce-4c3b-afdf-6352faae2ddb@quicinc.com>
-Date: Mon, 25 Sep 2023 13:35:27 +0300
-In-Reply-To: <f9f0b511-74ce-4c3b-afdf-6352faae2ddb@quicinc.com> (Jeff
-	Johnson's message of "Thu, 21 Sep 2023 12:54:02 -0700")
-Message-ID: <871qema6c0.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Mon, 25 Sep 2023 10:43:16 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38P9Oiwb028120;
+	Mon, 25 Sep 2023 10:43:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=OUoEKTmMxCx+vq623ICuvH1JQjknRMxyE0mOmxlcN40=;
+ b=YWJK5eiXz5b4YEujnaTMMXzjWSx1bI0c3H8GpOcs7j7KLCtOA2phyQWMzaaGAzNiOmUq
+ 5QitnkY4ph5hIWn78xdK+FOPb09ZxJ7icG+GcYFshUq7HuBEVc3qmnbLuDsEgcIom2gi
+ 9vtNCpMwa8e1UKX9xIYCx1+XAtgGkYmim8yvV+PBIXcTdfKDYdpHUpKVp54jfC2U9X5i
+ NEy/fSPC8lHAlZO+kS7aAFxP1jOCdFnSIJhrJ0FMStG+QNiDdcCCXL2YK4+bCK/i/jxy
+ bhgGJOD07qx5ZNxk++lIXHQcuSwRcRagYXgpInHl8lepyHkZTAAABXEDBdx537CGGVFS ng== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tb3hfrwjq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 10:43:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38PAh9CU005745
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 10:43:09 GMT
+Received: from [10.231.195.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 25 Sep
+ 2023 03:43:06 -0700
+Message-ID: <2aae986b-1d16-3b75-d2c9-a740f6817650@quicinc.com>
+Date: Mon, 25 Sep 2023 18:43:03 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v6 05/13] wifi: ath11k: update regulatory rules when
+ connect to AP on 6 GHz band for station
+Content-Language: en-US
+To: Aditya Kumar Singh <quic_adisi@quicinc.com>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <kvalo@kernel.org>,
+        <quic_jjohnson@quicinc.com>
+References: <20230920082349.29111-1-quic_wgong@quicinc.com>
+ <20230920082349.29111-6-quic_wgong@quicinc.com>
+ <5e9439c5-fc02-4a18-8cc8-c76998bfcbc6@quicinc.com>
+ <1f739d62-d5c0-a64b-ef9b-d5fd7b79755e@quicinc.com>
+ <47e2ce79-2885-489c-b567-fdbcb120d056@quicinc.com>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <47e2ce79-2885-489c-b567-fdbcb120d056@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WptxZKIoz6kQ0QIGK4y_brGWcPRKO1zU
+X-Proofpoint-ORIG-GUID: WptxZKIoz6kQ0QIGK4y_brGWcPRKO1zU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-25_07,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 bulkscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ adultscore=0 suspectscore=0 mlxscore=0 clxscore=1015 priorityscore=1501
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309250078
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230925_033532_691885_9BB3A24B 
-X-CRM114-Status: UNSURE (   8.09  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230925_034315_169009_F231A0B1 
+X-CRM114-Status: GOOD (  14.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,30 +98,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
-
-> On 9/20/2023 1:23 AM, Wen Gong wrote:
->> From: Baochen Qiang <quic_bqiang@quicinc.com>
->> spin_lock/spin_unlock are used in ath11k_reg_chan_list_event to
->> acquire/release ab->base_lock, for now this is safe because that
->
-> Kalle, can you s/, for/. For/ when you pull into pending?
-
-Yes, will do. BTW to save time for simple edits like this I don't always
-reply to you, I just do the edit the silently. In case you wonder if why
-I don't reply.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gOS8yMi8yMDIzIDk6MTggUE0sIEFkaXR5YSBLdW1hciBTaW5naCB3cm90ZToKPiBPbiA5LzIy
+LzIzIDE1OjMyLCBXZW4gR29uZyB3cm90ZToKPj4gT24gOS8yMi8yMDIzIDU6MzkgUE0sIEFkaXR5
+YSBLdW1hciBTaW5naCB3cm90ZToKPj4+IE9uIDkvMjAvMjMgMTM6NTMsIFdlbiBHb25nIHdyb3Rl
+Ogo+Pj4KPj4+PiArwqDCoMKgIGlmIChhdGgxMWtfbWFjX3N1cHBvcnRzXzZnaHpfY2NfZXh0KGFy
+KSAmJgo+Pj4+ICvCoMKgwqDCoMKgwqDCoCBjdHgtPmRlZi5jaGFuLT5iYW5kID09IE5MODAyMTFf
+QkFORF82R0haICYmCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGFydmlmLT52ZGV2X3R5cGUgPT0gV01J
+X1ZERVZfVFlQRV9TVEEpIHsKPj4+PiArwqDCoMKgwqDCoMKgwqAgcmVnX2luZm8gPSAmYWItPnJl
+Z19pbmZvX3N0b3JlW2FyLT5wZGV2X2lkeF07Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHBvd2VyX3R5
+cGUgPSB2aWYtPmJzc19jb25mLnBvd2VyX3R5cGU7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGF0aDEx
+a19kYmcoYWIsIEFUSDExS19EQkdfTUFDLCAibWFjIGNoYW5jdHggcG93ZXIgdHlwZSAlZFxuIiwK
+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwb3dlcl90eXBlKTsKPj4+PiArwqDC
+oMKgwqDCoMKgwqAgaWYgKHBvd2VyX3R5cGUgPT0gSUVFRTgwMjExX1JFR19VTlNFVF9BUCkKPj4+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwb3dlcl90eXBlID0gSUVFRTgwMjExX1JFR19MUElf
+QVA7Cj4+PiBXaHkgaGF2aW5nIF9VTlNFVF8gcG93ZXIgdHlwZSBpbiB2aWYtPmJzc19jb25mLnBv
+d2VyX3R5cGUgaXMgZmluZT8gCj4+PiBUeXBpY2FsbHksIGR1cmluZyBhc3NvY2lhdGlvbiwgd2Ug
+d291bGQgYmUgc2V0dGluZyB0aGlzIGZyb20gdGhlIAo+Pj4gYmVhY29uL2Fzc29jaWF0aW9uIHJl
+c3BvbnNlIGZyYW1lJ3MgSEUgNiBHSHogT3BlcmF0aW9uIEluZm8gRmllbGQuIAo+Pj4gU28gaXMg
+aXQgZmluZSBpZiB0aGUgZmllbGQgaXMgY2Fycnlpbmcgc29tZSBpbmZvIHdoaWNoIHdlIGRvbid0
+IGtub3cgCj4+PiAob3IgbWF5IGJlIGRvbid0IHN1cHBvcnQgaXQgeWV0KT8gV2h5IGFyZSB3ZSBt
+YXNraW5nIGl0IHdpdGggX0xQSV8gCj4+PiBtb2RlPwo+Pj4KPj4+IEFsc28sIEkgc2VlIHRoYXQg
+Y3VycmVudGx5IG1hYzgwMjExIG9ubHkgc2V0cyBMUEkgb3IgU1AuIFNvIGxldCdzIAo+Pj4gc2F5
+IFNUQSBpcyB0cnlpbmcgdG8gY29ubmVjdCB0byBWTFAgQVAsIG1hYzgwMjExIHdpbGwgc2V0IGl0
+IGFzIAo+Pj4gX1VOU0VUXy4gQW5kIHRoZW4gaGVyZSwgd2Ugd2lsbCBiZSB0cmVhdGluZyBpdCBh
+cyBMUEkgQVAuIElzIHRoYXQgZmluZT8KPj4KPj4gQ3VycmVudGx5IG9ubHkgU1AvTFBJIGFyZSBk
+ZWZpbmVkIGluICJUYWJsZSBFLTEy4oCUUmVndWxhdG9yeSBJbmZvIAo+PiBzdWJmaWVsZCBlbmNv
+ZGluZyBpbiB0aGUgVW5pdGVkIFN0YXRlcyIgb2YgSUVFRSBTdGQgODAyLjExYXjihKLigJAyMDIx
+Lgo+Pgo+PiBTbyBtYXliZSBJIG5lZWQgdG8gc2V0IHBvd2VyX3R5cGUgdG8gVkxQIHdoZW4gaXQg
+aXMgVU5TRVQgaGVyZS4KPiBZZWFoLCBvciBtYXkgYmUgZGVueSBhc3NvY2lhdGlvbiBpZiB3ZSBk
+b24ndCBzdXBwb3J0IHRoYXQgbW9kZT8gSSAKPiB3b3VsZCBsZXQgb3RoZXJzIGNvbW1lbnQgb24g
+dGhpcy4KRG8geW91IGtub3cgaG93IHRvIGNoZWNrIHdoaWNoIG1vZGUgc3VwcG9ydCBieSBhdGgx
+MWs/CgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
+dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
