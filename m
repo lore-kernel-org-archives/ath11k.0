@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6AA0E7E64E
-	for <ath11k@archiver.kernel.org>; Tue, 26 Sep 2023 16:36:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AEB0E7E652
+	for <ath11k@archiver.kernel.org>; Tue, 26 Sep 2023 16:44:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qNugxlgjw5NAjgA8jZUiH625TDJ0/b8ma0oyvP5tcms=; b=lBCgE5eZztd8uT
-	SKS0p3//90m3GE1f0C8D9m1F67f7rWjkgC/6PVEym/rokLYSzom7Yfri4yCrJYXKblCSPj38zJ1uH
-	yJDU5hkv4NlhoZh3k2VmuX1WT8t9Pz+OgOywhMDFMAluAjTnwSwWsswaL99NdnJUiMjQOt7by9odJ
-	mwAT5rLCdRhne5YZmxxJjq55KlTIrw6TTslWWQ626vbNfkHC95lAthTVltKS4leNiUR180kmKTv/z
-	pOlTOelF9fpdN456h8uQv+M5bxmRT4ZgzVHfg69/SWKGR2Z/93f9g4HsEVykzbPzp+Nd6INeP0k7o
-	6VNjVyGkqRdUGVjEID6Q==;
+	List-Owner; bh=oL9C0sVhc6mU7uuxUPaayQJUIIO8GsYO/E8zX4DfG8s=; b=gJxt+FwtxlDJ1e
+	AdJtzmdDXzPH7Xc86wWnGs/sgLoZEfgai2Cuiiktr8bWz8fZMTqmwVwrnBDHO7G3xABbfURZwbwqC
+	xwh5oUAdrKQfhFmWha3T4NuDrpaWsnMQ4zhkVZmxjysLSkyAKR/dwQBIHWMCA+QemVXm5SZBREwoQ
+	vob8yp3yLhyocpnRyBgafPrr4yuPn2i7YwFd1d2a5o4ZpcmWsO2Mooh1HAcBV8Jmo1X/zT2AachgD
+	ZOQEGqKxtt78nttX61h33RxDUhzdHb8kT7SGJgj4H6APVil2MQVDSZSJNHc/J/pr+4ogpv6lk2aRS
+	qwiqExyVjz0NBYiY/9Ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlB3G-00Gj6G-1G;
-	Tue, 26 Sep 2023 16:36:46 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qlBAJ-00Gji0-3A;
+	Tue, 26 Sep 2023 16:44:03 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlB3D-00Gj5r-2B
+	id 1qlBAG-00Gjhb-2j
 	for ath11k@lists.infradead.org;
-	Tue, 26 Sep 2023 16:36:45 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 0A699614E2
-	for <ath11k@lists.infradead.org>; Tue, 26 Sep 2023 16:36:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B478C433C7;
-	Tue, 26 Sep 2023 16:36:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695746202;
-	bh=lP81uXoqChNq6ZrPgB/+WsvOkHx6EnfAUwM1LkqDnvU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=CKbs5rJ0/RY2YSaDoBpcEwpN4FKzVMUIxuRpWOM+IJXQ2cARULamePKKGm69YBj3a
-	 EXewJ2LBEsDebRZ/p+APfg3H/NPIH4iJEc+NXT6O7V+oHn2srYUvSKWZU4x/ImzxFP
-	 0sjfxyn0KglrgfqEVzsS68gEsIucNYWuAnlxZJ0MiOdFfkdd6/Qxtlj1JiiThr/W9L
-	 8XNCHKK5ImfQZfhNu0VjiBd49YM+mf1mRFKlc9Z5rQQw7xKCcgigYc7cVOTYpoKvAT
-	 6mgw7agEBRGD1D7qtsHMGAxrrp699ETLX7Fv4DgqnK1ope7UamRWOWzKt8/FtpmsEs
-	 T9HA6pryhJYAA==
-From: Kalle Valo <kvalo@kernel.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+	Tue, 26 Sep 2023 16:44:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=COVzJlCjkIJzEAzNkBevFRzBhs8gP5wTdIzIYOr5xsM=;
+	t=1695746639; x=1696956239; b=GYabd/QFdu9Y7CIXSk+kf7pnDJAEai0iCLqfGwfWkZ3DcU4
+	LrO9TjPstDo8HXZD+Y4S/4iqKHM6g7KggZJUcyl8odusOIodNf1UUraWcRpBDI+5lNy/N6fqcoaCL
+	SLDArJ5RnqdW6ctUXhhS13nUtPxjNIKaHQhHoROSJAOqulNxBz3Yvd2IhFuml8JpPsw2L1VgrpliA
+	FgFMJ4SXNXnL16ZqK4pWDkBgC3xQ72Gnh6lU+llKUrq/hS3ZcLOG4RMYO3dZ/oE49RJc14ObqL9ZD
+	vcIGLsUfj8EoS89NzO4GzSx0THoxFp5aRiRbAf5DrVdQuHHduseI/HeIz8oRKP8g==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1qlBAD-005qwV-1s;
+	Tue, 26 Sep 2023 18:43:57 +0200
+Message-ID: <49b5de54ca00f5521ceaa8210f587f2af48d6835.camel@sipsolutions.net>
 Subject: Re: [PATCH v2] wifi: ath11k: mac: fix struct
  ieee80211_sband_iftype_data handling
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Date: Tue, 26 Sep 2023 18:43:56 +0200
+In-Reply-To: <20230926163350.2641064-1-kvalo@kernel.org>
 References: <20230926163350.2641064-1-kvalo@kernel.org>
-Date: Tue, 26 Sep 2023 19:36:40 +0300
-In-Reply-To: <20230926163350.2641064-1-kvalo@kernel.org> (Kalle Valo's message
-	of "Tue, 26 Sep 2023 19:33:50 +0300")
-Message-ID: <87jzsc99if.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230926_093643_756613_056CAB6C 
-X-CRM114-Status: GOOD (  10.47  )
+X-CRM114-CacheID: sfid-20230926_094401_115428_C196BFC8 
+X-CRM114-Status: UNSURE (   5.17  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,40 +74,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+On Tue, 2023-09-26 at 19:33 +0300, Kalle Valo wrote:
+> 
+> -	he_mcs_map = le16_to_cpu(ath11k_mac_get_tx_mcs_map(&sband->iftype_data->he_cap));
+> +	he_cap = ieee80211_get_he_iftype_cap_vif(sband, arvif->vif);
+> +	he_mcs_map = le16_to_cpu(ath11k_mac_get_tx_mcs_map(he_cap));
 
-> From: Kalle Valo <quic_kvalo@quicinc.com>
->
-> Commit e8c1841278a7 ("wifi: cfg80211: annotate iftype_data pointer with
-> sparse") added sparse checks for struct ieee80211_sband_iftype_data handling
-> which immediately found an issue in ath11k:
->
-> drivers/net/wireless/ath/ath11k/mac.c:7952:22: warning: incorrect type
-> in argument 1 (different address spaces)
-> drivers/net/wireless/ath/ath11k/mac.c:7952:22: expected struct
-> ieee80211_sta_he_cap const *he_cap
-> drivers/net/wireless/ath/ath11k/mac.c:7952:22: got struct
-> ieee80211_sta_he_cap const [noderef] __iftype_data *
->
-> The problem here is that we are accessing sband->iftype_data directly even
-> though we should use for_each_sband_iftype_data() or similar. Fortunately
-> there's ieee80211_get_he_iftype_cap_vif() which is just we need here so use it
-> to get HE capabilities.
->
-> Tested-on: WCN6855 hw2.0 PCI
-> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
->
-> Reported-by: Johannes Berg <johannes@sipsolutions.net>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Technically, ieee80211_get_he_iftype_cap_vif() could return NULL if you
+didn't actually configure/enable HE for this iftype, the static checkers
+might complain here.
 
-Changelog for v2:
-
-* use ieee80211_get_he_iftype_cap_vif() instead of open coding it
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+johannes
 
 -- 
 ath11k mailing list
