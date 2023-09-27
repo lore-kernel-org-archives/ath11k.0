@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 076E3E80A85
-	for <ath11k@archiver.kernel.org>; Wed, 27 Sep 2023 05:10:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90D83E80A9D
+	for <ath11k@archiver.kernel.org>; Wed, 27 Sep 2023 07:16:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e53kyPOxguj7Y47jqN5L2k17sFLIwks6GggYZMfLIV8=; b=FjYqIOwjKTP/IW
-	XvePgyecA2wHZfInmLuW7LIUa13McBFCXfvUbk/oIEjagzgehHTIBOj0m37c5x6SwK6o7R1fxRTtT
-	U2MZkmgMz+9eg2I73IkUH/9G+yZloEHlnI5fd9LgfBDM0tVcxkuZiH6hd+rd0xTSndJEqfS4hHXm+
-	7S0AsprLW6IXG2wmmidi4jA8JFSwvO3HSestNFfSqURLznOX9Ij2TBRUWWWAn9BZ9H4NHjonDmaMX
-	KaoLSJf5FckaP4lVXi1oWhzFj0VNOfxDtLdAMdVMq5P8f/Wg4oRZ/DBPdl7Jfa8edJjMG3JVn/jiA
-	4edRt3wfHOCLVHcQPDSQ==;
+	List-Owner; bh=b465/v4cPkB8ye/pweVsXckr4m0PzFhRkci9/VGyhYs=; b=G3wsvo9U39wQ/U
+	QluAFvP/hsEG7JJ3T+X+ZZrk8sKZBWKnPMRjxVdCNoB5QFcRAgg3Mjk2nbYAVytAWHSOJ70d5JGwX
+	NdV1eP7Y7d4BcsUjTiFQrsfmeoNDV3EH5jL0eLU2yaOqGXUrvYDLjTuuHDu/yKFhxyg1wzszShDYH
+	n7Jc+et5miiWg5GfOnc4JeMHqahj8D3k5rqn4vnRD6ynyBL7tuqYdrPPVYFX31MMrTsZO7f6IE+sK
+	h0bKVrAEKG989WwaQMEo6G8ZuTaDFWliYUj/G08MRWp/5qezPaSfD+G841ylKFsea2HW9EbHu94m5
+	yP3VopgeqiycLn/J4JqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlMoJ-00HZbf-0D;
-	Wed, 27 Sep 2023 05:10:07 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1qlOn3-000AMc-0H;
+	Wed, 27 Sep 2023 07:16:57 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlMoF-00HZb2-2W
+	id 1qlOmz-000AME-0z
 	for ath11k@lists.infradead.org;
-	Wed, 27 Sep 2023 05:10:05 +0000
+	Wed, 27 Sep 2023 07:16:54 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 29C4F61644;
-	Wed, 27 Sep 2023 05:10:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBEFAC433C8;
-	Wed, 27 Sep 2023 05:10:00 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 17E18CE184C;
+	Wed, 27 Sep 2023 07:16:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF6FC433C8;
+	Wed, 27 Sep 2023 07:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695791401;
-	bh=3pSV5XDCtO13XD805MCW3In/6s76oMfmdYsUpvAdOyM=;
+	s=k20201202; t=1695799009;
+	bh=i0hdeZsdwJTN2HnDWoAdqYR54CzDZbQvG8/u4rENkv0=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=AK2QOuvcVVw+pxKtJ84KNEyQO4DNRx4GB5YCYP06T8SLD2mf6jjJ4IQfeaMMb/J5f
-	 X6vUeOiVGJoajSD1nVB6aO6APV9I5yQlWclpG3CyEmYPMQVIklnBExfb/EEnnjCVoY
-	 ppCPTfkZn2q3ChU4DJJBACwNqLM4JWQQte7zKpCJxV0CItSS7fV9+zAk4ynrgPLBtI
-	 muiRGpMOd3isP2+Tnw+22Mo/FXyhH7w3Po+qTer4lUPr5G5ZN5WEPZ5hDSBI9hIKfu
-	 AOK7/1Zp6iaADKdoLNhq/OrhpGu3t5Xcjlsyu00DVN4T7zBCaBIa/puN1kyOttAQYn
-	 6Nm70KrZvwI7Q==
+	b=hVAd+WFfuHwT/VFymA2SnCkSclwppQrcqatEj5bgdM9VqcFN+yXXDrCZWN5zsN650
+	 ZhpgfOpqTVek9lGFS0mQSiekIPTE40YV4XFbeML4nqBw02IO4ZDTxpMSWG4QvBgWHP
+	 XVWQ+b97PuPZuSFaRKwK4vrJHhio36z/L7v2oW6202bz8NrFzqV9NxWcHWhhsN8FUW
+	 mF5Iy6h615rTTSBuVt7xbDUTYNheeSwi/MQudprNFtx2mHce5IeFVUub+HHyXqUqrp
+	 twM3Pyl1vu7WIKgvir+akH0R5qYDS7RLDW8AqJ4LTRDe4cwme5ukYQTmbEZqZ7dGE4
+	 +sluGgbfIWsoQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v2] wifi: ath11k: mac: fix struct
- ieee80211_sband_iftype_data handling
-References: <20230926163350.2641064-1-kvalo@kernel.org>
-	<70a75205-8f27-4e73-9d32-d92b6f7bec68@quicinc.com>
-Date: Wed, 27 Sep 2023 08:12:04 +0300
-In-Reply-To: <70a75205-8f27-4e73-9d32-d92b6f7bec68@quicinc.com> (Jeff
-	Johnson's message of "Tue, 26 Sep 2023 13:55:16 -0700")
-Message-ID: <874jjgjj2z.fsf@kernel.org>
+To: Tanguy Serrat <tanguy@squaremind.io>
+Cc: ath11k@lists.infradead.org
+Subject: Re: ath11k: QCN9074: low HE-MCS index
+References: <CAPr+0Hb5b_CEihVH+Mo-uR4+Wp-ACkoCySkyLrk=mkzme6ezPg@mail.gmail.com>
+	<87sf9v7xir.fsf@kernel.org>
+	<CAPr+0HbwpA0KrV71ah8bQ_Gnn9Ch2PMZnHE3uqRUrNU8=DoMFA@mail.gmail.com>
+	<87jzv696zv.fsf@kernel.org>
+	<CAPr+0HbBEXXqTJ7Hv3cfKBB=rtZ+tq4Xn_YVLxsNz=kbn3b=Ww@mail.gmail.com>
+	<CAPr+0HYQqU_xciRk5+y1PN_UqZi_EY0FacH43Bxfw-daCMgY4w@mail.gmail.com>
+Date: Wed, 27 Sep 2023 10:16:46 +0300
+In-Reply-To: <CAPr+0HYQqU_xciRk5+y1PN_UqZi_EY0FacH43Bxfw-daCMgY4w@mail.gmail.com>
+	(Tanguy Serrat's message of "Tue, 26 Sep 2023 13:05:44 +0200")
+Message-ID: <877coc84rl.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230926_221003_866478_9CB0A109 
-X-CRM114-Status: UNSURE (   8.75  )
+X-CRM114-CacheID: sfid-20230927_001653_571833_A8B77B24 
+X-CRM114-Status: UNSURE (   9.99  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,26 +78,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+Tanguy Serrat <tanguy@squaremind.io> writes:
 
-> On 9/26/2023 9:33 AM, Kalle Valo wrote:
->> From: Kalle Valo <quic_kvalo@quicinc.com>
->> Commit e8c1841278a7 ("wifi: cfg80211: annotate iftype_data pointer
->> with
->> sparse") added sparse checks for struct ieee80211_sband_iftype_data handling
->> which immediately found an issue in ath11k:
->> drivers/net/wireless/ath/ath11k/mac.c:7952:22: warning: incorrect
->> type in argument 1 (different address spaces)
->> drivers/net/wireless/ath/ath11k/mac.c:7952:22:    expected struct ieee80211_sta_he_cap const *he_cap
->> drivers/net/wireless/ath/ath11k/mac.c:7952:22:    got struct ieee80211_sta_he_cap const [noderef] __iftype_data *
->> The problem here is that we are accessing sband->iftype_data
->> directly even
->> though we should use for_each_sband_iftype_data() or similar. Fortunately
->> there's ieee80211_get_he_iftype_cap_vif() which is just we need here so use it
+> Dear Kalle,
 >
-> nit: just *what* we need
+> I hope you and your team had great vacations.
+>
+> Would it be possible to have someone helping us out on our #217652 bug
+> with QCN9074 ?
+>
+> This is a strong bottleneck on our side that we really need to solve.
 
-I'll add that, thanks.
+Unfortunately I haven't been able to look at this at all and not sure
+when I'm able to. Can anyone else help?
+
+The bug report is here:
+
+https://bugzilla.kernel.org/show_bug.cgi?id=217652
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
