@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47CB5E732E2
-	for <ath11k@archiver.kernel.org>; Thu, 28 Sep 2023 15:09:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ECBAE732E3
+	for <ath11k@archiver.kernel.org>; Thu, 28 Sep 2023 15:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VP+1jKVzNTJvKRiz7sY9ta/p0gHL69TSN5mEoOXrVhc=; b=38AYDt9Yjcl+uo
-	+Eis/rfbzu9NWuuITPCGr60fLyCBFqfiKg3Iecet2m1IFGOCPHE3uIhFu2QOgYlCLxhKs8pGxN42Z
-	MS+Yl5brarxbdV3NZsF+AnMv5YP8oGpOhLXiDCiaIyy7bl0iB+Xgraqh1WWWEF1QT8b6AS8YMm4oY
-	sE2gUErewe1Gk8ZYDxwwnr+o7mzdtQBda4ukGY/JhEsxD2hcQASs8Bp7h+OKvGkGye3YPxDeTiOcq
-	gQT6wE2W39cirBt1AwrrKesaXnA1XvkQ0bZIhqkPYueUpobjtgiu3DXp/GsCTU7/FcdSLcGl1+gBO
-	iklIfOrdTT1gQGKBo7dw==;
+	List-Owner; bh=+aSQzZZRocsYOpfp6JAbXu2qtN8Lze/Eg5SupwFG3Eg=; b=yfPjoJuf2BHFff
+	ylSJjqvuLwbOy17f+gb0oj86/M0ivJbRFhjdjXdNxAkOLzaS3Pr5X+XoJzp5OdYEbMmQdsYqjBbUe
+	zT31s3SmUF9k/whlGyoz5fC6Lz5HKNNx8SMHbvo8kJRFe3JxHEl47nlxw56gI6rF4eFWOJ6k1fHpm
+	Tp0xV3vDZipObPAQwCz1jos26qg2CcKs2hiXrfFcVLiJywxrQDBkktN0zDgCCkRN03CIum8sRUmVk
+	jboyv+QruWAlQm18G8FGa0qFlaycv+fzZyDvc4IdWoaNdWsrAazrbfnnHXKXziEPZQ+f7QeQq6ATd
+	+wmECZji55qtcRmnspoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlsdr-005FNe-0S;
-	Thu, 28 Sep 2023 15:09:30 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1qlskC-005KIR-0J;
+	Thu, 28 Sep 2023 15:16:00 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qlsdo-005FKa-0x
+	id 1qlsjy-005K6c-2O
 	for ath11k@lists.infradead.org;
-	Thu, 28 Sep 2023 15:09:25 +0000
+	Thu, 28 Sep 2023 15:15:58 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id DE979CE1C66;
-	Thu, 28 Sep 2023 15:09:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7EEEC433C7;
-	Thu, 28 Sep 2023 15:09:18 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id 1BD97B81C55
+	for <ath11k@lists.infradead.org>; Thu, 28 Sep 2023 15:15:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3B1BC433C7;
+	Thu, 28 Sep 2023 15:15:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695913760;
-	bh=oh808DVw8eOQZT9DfCsp2ZukXXSSMvbMKkxP52OYxec=;
+	s=k20201202; t=1695914144;
+	bh=XOhBYn/JHHhfAw/p/+BQBzEcxPWQepN23p/3A8jF5aY=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=TtMzWc5VA2OFCfw2jd7iAixAH2L4nWRdKRANRDB78+QkcS6MWknD0GnCoecy5sc0o
-	 UWIdq0QPKmpBUAPtVxmc1RXA73rJwtMDpr0mctx+HRZHQavACuTZ32yWBt9urVrxH7
-	 hAYOVJQlizRKkoH0aXKi2sISJjh8/5IV5g3uKpeakzJMBvhAQ90eci/C2D+lhv85Y1
-	 K6N4Uiq6dBg99+hW08cgMy7wntvRIG4AEbRD0H3lFPUMlIbBXc2GZYTKYmF2lpaZxQ
-	 CK18a2zda1dqscdXJFabBKU+f6nl87T2VC1xGdkQcsPkNK6Y0kB0jsqG8U9Qcxd3FG
-	 CmhDck98V1ccA==
+	b=kIJMKyLGP8czi/FsD3bViZ8B8OSpGrvB01SnA1BHWrNlzNePGrS2cCyQpCmYULvu8
+	 sh4TPZWekcNvRbfGE/fTXYs4c6Co3JHxGSDqNyX5IFpU7IF299tCtvjzf8IoOt2aG6
+	 +GViy5wYKkDMeaXJ/xjdsyV7nI3956vtN0LNBfLorxAa0JchlWBmT7r/XaPhvsnim1
+	 lW/0Ed4OE1Ow6HoRz8qlGTkdIOEWtzuG5W7aa4+rr5oABlc4MCl/vGyWpUx0JPLITg
+	 I/n6p5NS3KGGwEY+l1S86hn7PzIVKd4w+XeysJaWMXip/JmwaAbMyvyitVqEkUV4j6
+	 9ZQwH+1mi8yMQ==
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 wireless-next 8/9] wifi: ath11k: remove unnecessary
- (void*)
- conversions
+Subject: Re: [PATCH v3 1/1] wifi: ath11k: mac: fix struct
+ ieee80211_sband_iftype_data handling
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230919045150.524304-1-yunchuan@nfschina.com>
-References: <20230919045150.524304-1-yunchuan@nfschina.com>
-To: Wu Yunchuan <yunchuan@nfschina.com>
-Cc: quic_jjohnson@quicinc.com, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org, Wu Yunchuan <yunchuan@nfschina.com>
+In-Reply-To: <20230927142708.2897504-2-kvalo@kernel.org>
+References: <20230927142708.2897504-2-kvalo@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <169591375653.3019228.16747034733497698800.kvalo@kernel.org>
-Date: Thu, 28 Sep 2023 15:09:18 +0000 (UTC)
+Message-ID: <169591414195.3019228.2015665207547569831.kvalo@kernel.org>
+Date: Thu, 28 Sep 2023 15:15:43 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230928_080924_560523_9CC0169B 
-X-CRM114-Status: UNSURE (   5.02  )
+X-CRM114-CacheID: sfid-20230928_081546_943932_D6F7B108 
+X-CRM114-Status: UNSURE (   8.02  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,22 +73,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wu Yunchuan <yunchuan@nfschina.com> wrote:
+Kalle Valo <kvalo@kernel.org> wrote:
 
-> No need cast (void *) to (struct ath11k_base *),
-> struct hal_rx_msdu_link *), (struct ath11k_buffer_addr *) or
-> other types.
+> Commit e8c1841278a7 ("wifi: cfg80211: annotate iftype_data pointer with
+> sparse") added sparse checks for struct ieee80211_sband_iftype_data handling
+> which immediately found an issue in ath11k:
 > 
-> Signed-off-by: Wu Yunchuan <yunchuan@nfschina.com>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> drivers/net/wireless/ath/ath11k/mac.c:7952:22: warning: incorrect type in argument 1 (different address spaces)
+> drivers/net/wireless/ath/ath11k/mac.c:7952:22:    expected struct ieee80211_sta_he_cap const *he_cap
+> drivers/net/wireless/ath/ath11k/mac.c:7952:22:    got struct ieee80211_sta_he_cap const [noderef] __iftype_data *
+> 
+> The problem here is that we are accessing sband->iftype_data directly even
+> though we should use for_each_sband_iftype_data() or similar. Fortunately
+> there's ieee80211_get_he_iftype_cap_vif() which is just what we need here so
+> use it to get HE capabilities.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> 
+> Reported-by: Johannes Berg <johannes@sipsolutions.net>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-87fd0602610d wifi: ath11k: remove unnecessary (void*) conversions
+9e61589ac3c2 wifi: ath11k: mac: fix struct ieee80211_sband_iftype_data handling
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230919045150.524304-1-yunchuan@nfschina.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230927142708.2897504-2-kvalo@kernel.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
