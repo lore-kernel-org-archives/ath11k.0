@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 666A0E732FE
-	for <ath11k@archiver.kernel.org>; Thu, 28 Sep 2023 17:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9FE8E743FE
+	for <ath11k@archiver.kernel.org>; Fri, 29 Sep 2023 09:09:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vrz4q4muYh4L3Y/NTWHhrjQQoOdKN9E3NojCnheSYoA=; b=Zx7a9p2905Us67
-	7471ixehyzJ8YOksV8tXY6n1KH16EFBXdtmoUQxA7+8ga92PBgwSA5VMQqeICR/xIEfEhLrFNlTOt
-	TSu2BMqqxOoZTjKol4N8I41LfxiJCavZAcK/hF9eZHV4dfLhXIikwKFdUI536+l7+z4Zzs9YvdZ69
-	HF36veCyqy8cIyRwc2TYvxCgAK7BqiNvrCuQtfzBBM1MA0TN1wg6XJnZ1H+JqP9k2J/Y3MKBNyPJm
-	2YHCMNivCnMa3DyyxI1kCG50rmugbu7qX55Coz7SiTfZWCiXeeC4eKf4cKHAJ+25rZRWRyt6rG2uz
-	tPvFZw3kF183eIqfKFqA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Fif+suHSClep4fXH3LP/fCKCaEXOv9TU/MUDksxsyb0=; b=lypIYaUbGhyKXA
+	M9Nv4NVi8hVGM1j0mu67OBzUaPEDgK1s44tV9TkOH8txrJw35F3kym/HiQrSb6JUPGhWSaCStktzj
+	WV8jygNdFhp4K032hKtiji3iOQmOZrC/Up9HR3fN9Mb/DnM8/urHbIylCZyui0eLlmoNBWGN1Tg7Z
+	8AipEB/7YGAmZEwrbH0bqkpRaQ23INtCCkyXjhBO6bYpNHl3FCbQGVVm2qJBfyoun+wqDVWHXylzH
+	O0L10HtFhpF5vL5UjQI8IreDAoSuJR6kiEDlhi0xIgG1fr3mkyE8sVyaU5NEGuJcrSWguTwYDonYd
+	6v9jBAquX4MDySUunIiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qluiq-006QAD-39;
-	Thu, 28 Sep 2023 17:22:44 +0000
-Received: from forward500a.mail.yandex.net ([178.154.239.80])
+	id 1qm9Um-007RUL-0M;
+	Fri, 29 Sep 2023 09:09:12 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qluin-006Q9b-04
+	id 1qm9Ui-007RU0-2Z
 	for ath11k@lists.infradead.org;
-	Thu, 28 Sep 2023 17:22:44 +0000
-Received: from mail-nwsmtp-smtp-production-main-54.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-54.vla.yp-c.yandex.net [IPv6:2a02:6b8:c18:3d80:0:640:1395:0])
-	by forward500a.mail.yandex.net (Yandex) with ESMTP id A18FF6041D;
-	Thu, 28 Sep 2023 20:22:30 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-54.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id TMVMXK3uACg0-tJO1bq20;
-	Thu, 28 Sep 2023 20:22:30 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
-	t=1695921750; bh=CKSzaldp3JpbeHm6oJmpWRnYA1nkbH6WLJrRWMqn9a0=;
-	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
-	b=Rfsd10zjlGJIy2ELEXaJMIPG4c/5/r/KMGnEh8fvMb3D60/Zmf5TwRNVTQlC6qX3u
-	 WWl/a1FfKTkumJXV1VBYKxHiEVgjYgwFb2QG8TPHJdQpWF97Y2SlaS++BMG2uU0Q7K
-	 swJO2O02ipVwD3+XTdvgQlbxO3P5Fky1FETS1rE4=
-Authentication-Results: mail-nwsmtp-smtp-production-main-54.vla.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
-Message-ID: <30d83337-1311-19e8-47f2-391c5e5bd8bd@yandex.ru>
-Date: Thu, 28 Sep 2023 20:22:29 +0300
+	Fri, 29 Sep 2023 09:09:10 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id EEFED61E60;
+	Fri, 29 Sep 2023 09:09:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0699C433C8;
+	Fri, 29 Sep 2023 09:09:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695978547;
+	bh=wfl6ypqxXpzsB73dvy0nGzMg6Q0TrSyFS3x5+ngV/Ro=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=EFYlNHtwEaNJihc0U7jRQFABRTp6nnaAjIR3G8BkJwQQLuT1RVNSwWq4j46oFK2Sh
+	 R/xP3e2I0s9nqqqXySQOFKTQT/slfUgqDFXXkQLnlUXkdPF5KtibazSrwTI2z33f3c
+	 LIGevQxQN2fe6xUSWVRVTTk7SA63rHwr354UjYx9jYPRbgg2sDsUQn80AqkwWImaSJ
+	 Csv3jqShapbhpEqMPRos3uhTIt3h9puTKY+VcKAEJoJZ0zwDG/3vpBTJiHtXH8Mdqy
+	 lJKb/kNbLGvqUQp+BPUY1QM6yuMs7cpETjJ7HcHAseRKNKDQzDorc5Ny+ccakajffV
+	 cFiIwvf+HLeTw==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] wifi: ath11k: drop NULL pointer check in
- ath11k_dp_rx_mon_dest_process()
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, linux-wireless@vger.kernel.org,
- lvc-project@linuxtesting.org, ath11k@lists.infradead.org
-References: <20230907083852.10775-1-dmantipov@yandex.ru>
- <169591601112.3096214.11174520645995155662.kvalo@kernel.org>
-From: Dmitry Antipov <dmantipov@yandex.ru>
-In-Reply-To: <169591601112.3096214.11174520645995155662.kvalo@kernel.org>
+Subject: Re: [PATCH 1/2] wifi: ath11k: move pci.ops registration ahead
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230807061749.9404-2-quic_bqiang@quicinc.com>
+References: <20230807061749.9404-2-quic_bqiang@quicinc.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <169597854467.3479545.1030727333826913383.kvalo@kernel.org>
+Date: Fri, 29 Sep 2023 09:09:06 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230928_102242_134649_18E8704B 
-X-CRM114-Status: UNSURE (   5.11  )
+X-CRM114-CacheID: sfid-20230929_020908_876656_8BBB060B 
+X-CRM114-Status: UNSURE (   9.68  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -70,21 +67,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/28/23 18:46, Kalle Valo wrote:
+Baochen Qiang <quic_bqiang@quicinc.com> wrote:
 
-> Patch set to Changes Requested.
+> In ath11k_pci_probe() there is a switch statement that, based
+> upon the PCI device ID, assigns pci_ops. After the switch,
+> ath11k_pcic_register_pci_ops() is called to register the pci_ops.
+> 
+> Unfortunately, this registration is too late if any of the cases
+> in the switch need to perform operations that require the pci_ops
+> to already be registered. In particular, an upcoming patch for
+> QCA2066 needs to call ath11k_pcic_read32().
+> 
+> To address this issue, call ath11k_pcic_register_pci_ops() from
+> each case instead of doing so after the switch. That way the ops
+> will be registered if any subsequent operations within the case
+> processing require the ops to be present.
+> 
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+> 
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
-Probably I miss something around your internal ath-specific workflow
-but AFAICS this fix is not needed for ath-next branch of ath.git
-(there is no redundant NULL pointer check there).
+I'll now drop these from my queue, please resubmit as v2 once we have
+pushed the firmware to public.
 
-Dmitry
+2 patches set to Changes Requested.
 
+13343062 [1/2] wifi: ath11k: move pci.ops registration ahead
+13343063 [2/2] wifi: ath11k: add support for QCA2066
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20230807061749.9404-2-quic_bqiang@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
