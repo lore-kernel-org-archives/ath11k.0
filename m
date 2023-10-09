@@ -4,85 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0642ACD6105
-	for <ath11k@archiver.kernel.org>; Mon,  9 Oct 2023 16:39:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34ECBCD6118
+	for <ath11k@archiver.kernel.org>; Mon,  9 Oct 2023 17:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:CC:To:Message-ID:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ciwaLVAxzNn/soe5FwwLVuFmD3t06SLt+QD0xm6C0sk=; b=q1odHsNGOmqWVa
-	YhoxVChs2kqliSGw6N1HS25Kz1OGTImXzFsPC7dYJw4tTDE+9DzlxY+jST+nl++gVUK2EX7g+6FHu
-	2Kl79nUvtf8CiYFfJUzMbjv368FTxDQ/GX9JcX4eQ7XStOK5VFVW+QhqLWWoGUY1nhM608gd4ceTB
-	JTtuEotml7yIOk28R8CfGjdZkU8mc5oOjYydh7cTyQoxkbakACiqpjvRSLGsHqf1+zluEHKcF/N3m
-	ddf5riIoBfC6Zto7tzC2AusMPClH/YBUm7tYOse3kb79Lzj0GFpjMfbcD1pe39bUixTaBINQfPA/S
-	A9z9+0vExvnt3bFQBgcg==;
+	List-Owner; bh=ggVkdkDjUhKNi6kSV4ABJUS1bTERnhNjYwts9PJWeYk=; b=QdTHJ02ojQ/TVY
+	zAOik0mjP/EuvV9UnNDlhsOQIzc/Mq0yZEbjR+yh194CxfUp/wW3rkLTdASnpHkiboXsEaUFoQqQg
+	wgrY2FkAYzsvMs8DEnN85OV+CA4Z6lYbtwUE0g/X2DAPNprSJnnwC2KSH6t28pNnJJHad/AVACmE5
+	5NUw7ivZf5hNFatLzn/dpMcH7ideJCv+lGkNpjk1OnyxFteUemoi/02vZ6uELjrnlb6LuQvs7NqI9
+	wU5Qy7ZZJlVNcQ/uJ+f/4CZz1k5ZKKvEQIih3H4IeulQIeoSH/LzB804hngmQdw3kqJ7tP1DIslr3
+	Kbu2uF5kvo6UwSlk3c8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qptIO-00BCqI-1H;
-	Mon, 09 Oct 2023 16:39:52 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1qpu7D-00BIj4-37;
+	Mon, 09 Oct 2023 17:32:23 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qptIK-00BCpk-0z
+	id 1qpu7A-00BIiJ-1o
 	for ath11k@lists.infradead.org;
-	Mon, 09 Oct 2023 16:39:51 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 399CmUN6020781;
-	Mon, 9 Oct 2023 16:39:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
- subject : mime-version : content-type : content-transfer-encoding :
- message-id : to : cc; s=qcppdkim1;
- bh=Xmyppk5/viY7nifckWgVhQklOnvWpW9990tdMTqTkTc=;
- b=A1FDebOwESAN+BUoD0pRNO3wWEkFfbimfX6fstQjpglR1bNg0hZ7R8XoJJ8BAH0scTu2
- tREje75hm6koftFbxtuWBz+qB150Do1NHRUcHU90nGYSkOxdBofYvHf1M1qJP4/cyLkm
- BeME3vJL5RnogeXG1/8NWlk58CCT4Sn71X5fHg3JcQSD4TnVDomhbbRvM5Xhx7kBA2v0
- yle3adLt8hckhsofG1fiMIuImMoGOOyUzm0N0ZumfrQvRbEyghKQw/Omhcfo3L5OsTUW
- HvKLHzLbJChGlMc1WYN0V2OiJhUNi0gQgTv4njtGqA+QWdHjeIsjDG9Ys+KBT1nrKwKO 3w== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tkh8d32dn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Oct 2023 16:39:45 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 399GdinI017318
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Oct 2023 16:39:44 GMT
-Received: from hu-jjohnson-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Mon, 9 Oct 2023 09:39:44 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Mon, 9 Oct 2023 09:39:42 -0700
-Subject: [PATCH] wifi: ath11k: Introduce and use ath11k_sta_to_arsta()
+	Mon, 09 Oct 2023 17:32:22 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 0FB4361253;
+	Mon,  9 Oct 2023 17:32:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FAB7C433C7;
+	Mon,  9 Oct 2023 17:32:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696872739;
+	bh=hEEuhVXB8jp3AkUNOcjWDBzJbGLaSJnvN8RUFaE21U4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=TYyL+4tOoVHormNoyYzlFs41+kBwRCWzQ1RjpCVa8R+Eg8z+ly8uzQSRc3uL5AQnJ
+	 SS/klPxwVxHrdxfK1ahqQ83DANXbmFEl8R/W7p3FuiEjnyZWYODv7d4gwH1r5/FLYv
+	 tF4bUi6M2UOba1gdiXweHmR+tSF8f/5zSow2Uw1Wig+T/5qjKxkp+R6R2XEVWYX570
+	 3peoQs07wT4hJ4Hwm5BYBo2XcV7jeJTo+KGG4+vHAlOI0MmoO9HE5iZQuM1vZZfhxa
+	 ELgXzSpDY4VQ75G5HjtQAlFHxTipo1kmTUbsiDSwLQKlNYbcky6bz1I6fZtygtpSO7
+	 t4CC/FsPJcJ8g==
+Received: (nullmailer pid 2523356 invoked by uid 1000);
+	Mon, 09 Oct 2023 17:32:18 -0000
+From: Rob Herring <robh@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH net-next] net: wireless: ath11k: Use device_get_match_data()
+Date: Mon,  9 Oct 2023 12:29:06 -0500
+Message-ID: <20231009172923.2457844-11-robh@kernel.org>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Message-ID: <20231009-ath11k_sta_to_arsta-v1-1-1563e3a307e8@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAM0sJGUC/43NwQ6CMAyA4VchOzuzDhjEk+9hDBmjk8bIdJuLh
- vDuDm5ejLf+Tfp1ZgE9YWCHYmYeEwVyUw7YFcyMerogpyE3k0KWIETNdRwBrl2Iuouu0z4PvDd
- VraGpEXvF8uXdo6XXpp7OuUcK0fn39iTBuv3tJeDAy9aAVSLLtj0+nmRoMnvjbmwVk/xDkVmBS
- mklNQ7SNt/Ksiwf1b4xGv4AAAA=
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jeff Johnson <quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.12.3
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RAFJip5oxc6hR55d0TfpAckjLi_f-gG4
-X-Proofpoint-ORIG-GUID: RAFJip5oxc6hR55d0TfpAckjLi_f-gG4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-09_14,2023-10-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=849 lowpriorityscore=0 malwarescore=0 impostorscore=0
- priorityscore=1501 bulkscore=0 clxscore=1015 mlxscore=0 spamscore=0
- adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310090136
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231009_093948_354825_B4CC3041 
-X-CRM114-Status: GOOD (  19.11  )
+X-CRM114-CacheID: sfid-20231009_103220_640812_EFC31909 
+X-CRM114-Status: GOOD (  11.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,403 +71,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, the logic to return an ath11k_sta pointer, given a
-ieee80211_sta pointer, uses typecasting throughout the driver. In
-general, conversion functions are preferable to typecasting since
-using a conversion function allows the compiler to validate the types
-of both the input and output parameters.
+Use preferred device_get_match_data() instead of of_match_device() to
+get the driver match data. With this, adjust the includes to explicitly
+include the correct headers.
 
-ath11k already defines a conversion function ath11k_vif_to_arvif() for
-a similar conversion. So introduce ath11k_sta_to_arsta() for this use
-case, and convert all of the existing typecasting to use this
-function.
-
-No functional changes, compile tested only.
-
-Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h        |  5 +++++
- drivers/net/wireless/ath/ath11k/debugfs.c     |  4 ++--
- drivers/net/wireless/ath/ath11k/debugfs_sta.c | 30 +++++++++++++--------------
- drivers/net/wireless/ath/ath11k/dp_rx.c       |  8 +++----
- drivers/net/wireless/ath/ath11k/dp_tx.c       |  4 ++--
- drivers/net/wireless/ath/ath11k/mac.c         | 18 ++++++++--------
- drivers/net/wireless/ath/ath11k/peer.c        |  2 +-
- drivers/net/wireless/ath/ath11k/wmi.c         |  6 +++---
- 8 files changed, 41 insertions(+), 36 deletions(-)
+ drivers/net/wireless/ath/ath11k/ahb.c | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 650972f9d146..489c863215a4 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -1223,6 +1223,11 @@ static inline struct ath11k_vif *ath11k_vif_to_arvif(struct ieee80211_vif *vif)
- 	return (struct ath11k_vif *)vif->drv_priv;
- }
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 1215ebdf173a..235336ef2a7a 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -6,6 +6,7 @@
  
-+static inline struct ath11k_sta *ath11k_sta_to_arsta(struct ieee80211_sta *sta)
-+{
-+	return (struct ath11k_sta *)sta->drv_priv;
-+}
-+
- static inline struct ath11k *ath11k_ab_to_ar(struct ath11k_base *ab,
- 					     int mac_id)
+ #include <linux/module.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/of_device.h>
+ #include <linux/of.h>
+ #include <linux/dma-mapping.h>
+@@ -1084,19 +1085,12 @@ static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
+ static int ath11k_ahb_probe(struct platform_device *pdev)
  {
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 5bb6fd17fdf6..9f1a2569aaed 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -1459,7 +1459,7 @@ static void ath11k_reset_peer_ps_duration(void *data,
- 					  struct ieee80211_sta *sta)
- {
- 	struct ath11k *ar = data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 
- 	spin_lock_bh(&ar->data_lock);
- 	arsta->ps_total_duration = 0;
-@@ -1510,7 +1510,7 @@ static void ath11k_peer_ps_state_disable(void *data,
- 					 struct ieee80211_sta *sta)
- {
- 	struct ath11k *ar = data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 
- 	spin_lock_bh(&ar->data_lock);
- 	arsta->peer_ps_state = WMI_PEER_PS_STATE_DISABLED;
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index 9cc4ef28e751..8c177fba6f14 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -136,7 +136,7 @@ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
- 					    size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	struct ath11k_htt_data_stats *stats;
- 	static const char *str_name[ATH11K_STATS_TYPE_MAX] = {"succ", "fail",
-@@ -243,7 +243,7 @@ static ssize_t ath11k_dbg_sta_dump_rx_stats(struct file *file,
- 					    size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	struct ath11k_rx_peer_stats *rx_stats = arsta->rx_stats;
- 	int len = 0, i, retval = 0;
-@@ -340,7 +340,7 @@ static int
- ath11k_dbg_sta_open_htt_peer_stats(struct inode *inode, struct file *file)
- {
- 	struct ieee80211_sta *sta = inode->i_private;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	struct debug_htt_stats_req *stats_req;
- 	int type = ar->debug.htt_stats.type;
-@@ -376,7 +376,7 @@ static int
- ath11k_dbg_sta_release_htt_peer_stats(struct inode *inode, struct file *file)
- {
- 	struct ieee80211_sta *sta = inode->i_private;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 
- 	mutex_lock(&ar->conf_mutex);
-@@ -413,7 +413,7 @@ static ssize_t ath11k_dbg_sta_write_peer_pktlog(struct file *file,
- 						size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	int ret, enable;
- 
-@@ -453,7 +453,7 @@ static ssize_t ath11k_dbg_sta_read_peer_pktlog(struct file *file,
- 					       size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	char buf[32] = {0};
- 	int len;
-@@ -480,7 +480,7 @@ static ssize_t ath11k_dbg_sta_write_delba(struct file *file,
- 					  size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	u32 tid, initiator, reason;
- 	int ret;
-@@ -531,7 +531,7 @@ static ssize_t ath11k_dbg_sta_write_addba_resp(struct file *file,
- 					       size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	u32 tid, status;
- 	int ret;
-@@ -581,7 +581,7 @@ static ssize_t ath11k_dbg_sta_write_addba(struct file *file,
- 					  size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	u32 tid, buf_size;
- 	int ret;
-@@ -632,7 +632,7 @@ static ssize_t ath11k_dbg_sta_read_aggr_mode(struct file *file,
- 					     size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	char buf[64];
- 	int len = 0;
-@@ -652,7 +652,7 @@ static ssize_t ath11k_dbg_sta_write_aggr_mode(struct file *file,
- 					      size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	u32 aggr_mode;
- 	int ret;
-@@ -697,7 +697,7 @@ ath11k_write_htt_peer_stats_reset(struct file *file,
- 				  size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	struct htt_ext_stats_cfg_params cfg_params = { 0 };
- 	int ret;
-@@ -756,7 +756,7 @@ static ssize_t ath11k_dbg_sta_read_peer_ps_state(struct file *file,
- 						 size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	char buf[20];
- 	int len;
-@@ -783,7 +783,7 @@ static ssize_t ath11k_dbg_sta_read_current_ps_duration(struct file *file,
- 						       loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	u64 time_since_station_in_power_save;
- 	char buf[20];
-@@ -817,7 +817,7 @@ static ssize_t ath11k_dbg_sta_read_total_ps_duration(struct file *file,
- 						     size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	char buf[20];
- 	u64 power_save_duration;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 9de849f09620..96a60bfd1b16 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1099,7 +1099,7 @@ int ath11k_dp_rx_ampdu_start(struct ath11k *ar,
- 			     struct ieee80211_ampdu_params *params)
- {
- 	struct ath11k_base *ab = ar->ab;
--	struct ath11k_sta *arsta = (void *)params->sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(params->sta);
- 	int vdev_id = arsta->arvif->vdev_id;
+ 	struct ath11k_base *ab;
+-	const struct of_device_id *of_id;
+ 	const struct ath11k_hif_ops *hif_ops;
+ 	const struct ath11k_pci_ops *pci_ops;
+ 	enum ath11k_hw_rev hw_rev;
  	int ret;
  
-@@ -1117,7 +1117,7 @@ int ath11k_dp_rx_ampdu_stop(struct ath11k *ar,
- {
- 	struct ath11k_base *ab = ar->ab;
- 	struct ath11k_peer *peer;
--	struct ath11k_sta *arsta = (void *)params->sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(params->sta);
- 	int vdev_id = arsta->arvif->vdev_id;
- 	dma_addr_t paddr;
- 	bool active;
-@@ -1456,7 +1456,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	}
+-	of_id = of_match_device(ath11k_ahb_of_match, &pdev->dev);
+-	if (!of_id) {
+-		dev_err(&pdev->dev, "failed to find matching device tree id\n");
+-		return -EINVAL;
+-	}
+-
+-	hw_rev = (uintptr_t)of_id->data;
++	hw_rev = (uintptr_t)device_get_match_data(&pdev->dev);
  
- 	sta = peer->sta;
--	arsta = (struct ath11k_sta *)sta->drv_priv;
-+	arsta = ath11k_sta_to_arsta(sta);
- 
- 	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
- 
-@@ -5242,7 +5242,7 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
- 			goto next_skb;
- 		}
- 
--		arsta = (struct ath11k_sta *)peer->sta->drv_priv;
-+		arsta = ath11k_sta_to_arsta(peer->sta);
- 		ath11k_dp_rx_update_peer_stats(arsta, ppdu_info);
- 
- 		if (ath11k_debugfs_is_pktlog_peer_valid(ar, peer->addr))
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 0dda76f7a4b5..a5fa08bc623b 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -467,7 +467,7 @@ void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts)
- 	}
- 
- 	sta = peer->sta;
--	arsta = (struct ath11k_sta *)sta->drv_priv;
-+	arsta = ath11k_sta_to_arsta(sta);
- 
- 	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
- 	pkt_type = FIELD_GET(HAL_TX_RATE_STATS_INFO0_PKT_TYPE,
-@@ -627,7 +627,7 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 		ieee80211_free_txskb(ar->hw, msdu);
- 		return;
- 	}
--	arsta = (struct ath11k_sta *)peer->sta->drv_priv;
-+	arsta = ath11k_sta_to_arsta(peer->sta);
- 	status.sta = peer->sta;
- 	status.skb = msdu;
- 	status.info = info;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a36208a0aab5..7f7b39817773 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2832,7 +2832,7 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
- 
- 	lockdep_assert_held(&ar->conf_mutex);
- 
--	arsta = (struct ath11k_sta *)sta->drv_priv;
-+	arsta = ath11k_sta_to_arsta(sta);
- 
- 	memset(arg, 0, sizeof(*arg));
- 
-@@ -4315,7 +4315,7 @@ static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
- 		ath11k_warn(ab, "peer %pM disappeared!\n", peer_addr);
- 
- 	if (sta) {
--		arsta = (struct ath11k_sta *)sta->drv_priv;
-+		arsta = ath11k_sta_to_arsta(sta);
- 
- 		switch (key->cipher) {
- 		case WLAN_CIPHER_SUITE_TKIP:
-@@ -4906,7 +4906,7 @@ static int ath11k_mac_station_add(struct ath11k *ar,
- {
- 	struct ath11k_base *ab = ar->ab;
- 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct peer_create_params peer_param;
- 	int ret;
- 
-@@ -5030,7 +5030,7 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- {
- 	struct ath11k *ar = hw->priv;
- 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k_peer *peer;
- 	int ret = 0;
- 
-@@ -5196,7 +5196,7 @@ static void ath11k_mac_op_sta_set_4addr(struct ieee80211_hw *hw,
- 					struct ieee80211_sta *sta, bool enabled)
- {
- 	struct ath11k *ar = hw->priv;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 
- 	if (enabled && !arsta->use_4addr_set) {
- 		ieee80211_queue_work(ar->hw, &arsta->set_4addr_wk);
-@@ -5210,7 +5210,7 @@ static void ath11k_mac_op_sta_rc_update(struct ieee80211_hw *hw,
- 					u32 changed)
- {
- 	struct ath11k *ar = hw->priv;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
- 	struct ath11k_peer *peer;
- 	u32 bw, smps;
-@@ -6203,7 +6203,7 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
- 	}
- 
- 	if (control->sta)
--		arsta = (struct ath11k_sta *)control->sta->drv_priv;
-+		arsta = ath11k_sta_to_arsta(control->sta);
- 
- 	ret = ath11k_dp_tx(ar, arvif, arsta, skb);
- 	if (unlikely(ret)) {
-@@ -8235,7 +8235,7 @@ static void ath11k_mac_set_bitrate_mask_iter(void *data,
- 					     struct ieee80211_sta *sta)
- {
- 	struct ath11k_vif *arvif = data;
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arvif->ar;
- 
- 	spin_lock_bh(&ar->data_lock);
-@@ -8639,7 +8639,7 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 					 struct ieee80211_sta *sta,
- 					 struct station_info *sinfo)
- {
--	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
- 	struct ath11k *ar = arsta->arvif->ar;
- 	s8 signal;
- 	bool db2dbm = test_bit(WMI_TLV_SERVICE_HW_DB2DBM_CONVERSION_SUPPORT,
-diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
-index 114aa3a9a339..1c79a932d17f 100644
---- a/drivers/net/wireless/ath/ath11k/peer.c
-+++ b/drivers/net/wireless/ath/ath11k/peer.c
-@@ -446,7 +446,7 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
- 	peer->sec_type_grp = HAL_ENCRYPT_TYPE_OPEN;
- 
- 	if (sta) {
--		arsta = (struct ath11k_sta *)sta->drv_priv;
-+		arsta = ath11k_sta_to_arsta(sta);
- 		arsta->tcl_metadata |= FIELD_PREP(HTT_TCL_META_DATA_TYPE, 0) |
- 				       FIELD_PREP(HTT_TCL_META_DATA_PEER_ID,
- 						  peer->peer_id);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index e93601fe7bcb..9282ecb57380 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -6452,7 +6452,7 @@ static int ath11k_wmi_tlv_rssi_chain_parse(struct ath11k_base *ab,
- 		goto exit;
- 	}
- 
--	arsta = (struct ath11k_sta *)sta->drv_priv;
-+	arsta = ath11k_sta_to_arsta(sta);
- 
- 	BUILD_BUG_ON(ARRAY_SIZE(arsta->chain_signal) >
- 		     ARRAY_SIZE(stats_rssi->rssi_avg_beacon));
-@@ -6540,7 +6540,7 @@ static int ath11k_wmi_tlv_fw_stats_data_parse(struct ath11k_base *ab,
- 							   arvif->bssid,
- 							   NULL);
- 			if (sta) {
--				arsta = (struct ath11k_sta *)sta->drv_priv;
-+				arsta = ath11k_sta_to_arsta(sta);
- 				arsta->rssi_beacon = src->beacon_snr;
- 				ath11k_dbg(ab, ATH11K_DBG_WMI,
- 					   "stats vdev id %d snr %d\n",
-@@ -7467,7 +7467,7 @@ static void ath11k_wmi_event_peer_sta_ps_state_chg(struct ath11k_base *ab,
- 		goto exit;
- 	}
- 
--	arsta = (struct ath11k_sta *)sta->drv_priv;
-+	arsta = ath11k_sta_to_arsta(sta);
- 
- 	spin_lock_bh(&ar->data_lock);
- 
-
----
-base-commit: 453a62a3ee65aeba6e69bfd09227fc2f19290bea
-change-id: 20231005-ath11k_sta_to_arsta-bc45a175eeb6
+ 	switch (hw_rev) {
+ 	case ATH11K_HW_IPQ8074:
+-- 
+2.42.0
 
 
 -- 
