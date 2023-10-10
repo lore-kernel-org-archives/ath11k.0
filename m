@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 348D3CD68EE
-	for <ath11k@archiver.kernel.org>; Tue, 10 Oct 2023 06:23:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F02CD68F5
+	for <ath11k@archiver.kernel.org>; Tue, 10 Oct 2023 07:23:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=qzU6+7vvXjfBEP85CiKmrwTEDVwTPuZCEDra1p98Qcw=; b=yM4X8LFyjOmvDC
-	3OqUUG1aiGmrbfe3qnUtTqA9M/+B0n7bVeTkuHeJM8QVJ1m3ENakZi87XONoDrPK82TdhzXVhltZb
-	PwQfz0mNhFBbufQzHctrD5oEfydnlNzj23yR87sAtCx4vihzxxCg/WUwxIshdWmSF1rdWj2yTfRuS
-	lGW0Iy0VKcNNOpPtrKd9n4FxRnSk4guOeewdwAWKgnGzneW7NepuoZ8PNFiGGf5gpyUn443B51ufX
-	KAqxVWzytsfLakSdGzGIKvRKx1NkmNCdpv9gYnPRE5kr0JXS44UXQzuLf0Np+42+wyToEKcCPzHzL
-	oSi4vRuNsCD50pdhaoRw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Q/88CHInXW0JC5pYbWpKY7zaXJ0xmE2fa/hMD+o1HjQ=; b=H6clhIqYaJ6dBD
+	uSvX1ekXozDWVpGhYYR/dG3SL30c9EyhUl2sQilWgDpkJFHuSbfVrpQXGqKv+BH2cDHpPws1qGnuw
+	Qu4bol/skryItdYwSLtxXvt26yQtZJyCr4pZysGaBTwyaV00XvEyCL8DtmYN5keVqKdAqOcdGijFD
+	n6F0J0GXFrIyBxi/o9r6GXl0jKmb49NUqWjczvVLMt5AQxuRFVqx43LbHOXGDptnFBxLC8bB+ayfd
+	yFmUOz3c39rMILL+tpzba25qqnTdrXPIaeD72Un19TA1/rO8ZEece/hrkEUzyxkjSCE90DPovtoyU
+	oDN+JOkTA/FRGHQ6Rp7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qq68v-00CZJV-05;
-	Tue, 10 Oct 2023 06:22:57 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1qq75W-00Ch3A-2q;
+	Tue, 10 Oct 2023 07:23:30 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qq68s-00CZIB-0c
+	id 1qq75U-00Ch2n-0y
 	for ath11k@lists.infradead.org;
-	Tue, 10 Oct 2023 06:22:55 +0000
+	Tue, 10 Oct 2023 07:23:29 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 5B279614E2
-	for <ath11k@lists.infradead.org>; Tue, 10 Oct 2023 06:22:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69E04C433C7;
-	Tue, 10 Oct 2023 06:22:52 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 78859CE1BFE;
+	Tue, 10 Oct 2023 07:23:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3FECC433C8;
+	Tue, 10 Oct 2023 07:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696918973;
-	bh=5NOg5uNUDnpZqHcJPhdo5YvKO0Os9HQIPC4c1sGnyPw=;
-	h=From:To:Cc:Subject:Date:From;
-	b=aacs0stuQVdFu4ERHSz8s2LC+p5c5tLKNMXRrUalh77ExMDnIB3vKNqv44Evd2ayr
-	 utToWvTgLQ2BjLk3bwmatsi8PuN4eAqMAfdcRW3Grwl51Gxb2mw0FJaGFepz+cu+hZ
-	 7WPNyi5IMVbyjEfslpwKzMwunW2Ih6ZULp7C5FdHyr/zQQVNa8KFYhbh9yLW+8YhYA
-	 JoCXY9MxS6ll30E4m9rQJhTDBi/6GRYX+m3NL+nIg1y21xwNP4kCjR1AgdeHg9j0Df
-	 J3iWVsuI+qr15tiywJnC8BKoxbo/wxitHBkfOROhtldeI5RIQOBxjPf+68AkwNRZJR
-	 XuUf7vWYlCylA==
-From: Kalle Valo <kvalo@kernel.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: ath11k_debugfs_register(): fix format-truncation warning
-Date: Tue, 10 Oct 2023 09:22:50 +0300
-Message-Id: <20231010062250.2580951-1-kvalo@kernel.org>
-X-Mailer: git-send-email 2.39.2
+	s=k20201202; t=1696922605;
+	bh=ov8mQoiPuDvyppz0707yD4QUGRw0hSxq2OdsgOrCKjU=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=cuszz+DrTvLMYNMq3EsgEVg8QixFxCtFFYMIgQog9aSg0jJyn95ilz9hS8ER6w0vw
+	 LEH4M8V+pylXhgkWaF8kOAh6JxtT0ScQzyZTnOXnvXWKzwp0ILRkGmDIV6cJ5P7jMy
+	 X8xSdv22wC98fxVZIr4CQlJLoiPOu3jdl2bwusPHO6CWo9lqeXlQc2FjPfmECHVPI4
+	 p4s0WUqFdHiOjcVWY/D6lKYSDiqDgrY3l8vY5yweLWbw5iKWkG9Wo7nTePSgAByYz2
+	 6xTAMyH5+ZxTo5Q3uncjEDJV1vOCsdoqdObxxiNWcnph2wPXPWeRwkLkDA+B4veMOD
+	 7ig8ofWKYxT6A==
 MIME-Version: 1.0
+Subject: Re: [PATCH] wifi: ath11k: call ath11k_mac_fils_discovery() without
+ condition
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20231004044915.6817-1-quic_alokad@quicinc.com>
+References: <20231004044915.6817-1-quic_alokad@quicinc.com>
+To: Aloka Dixit <quic_alokad@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Aloka Dixit <quic_alokad@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <169692260273.2589238.2783908442272487567.kvalo@kernel.org>
+Date: Tue, 10 Oct 2023 07:23:24 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231009_232254_290276_C5BF4A3A 
-X-CRM114-Status: UNSURE (   9.96  )
+X-CRM114-CacheID: sfid-20231010_002328_516317_F1FEE466 
+X-CRM114-Status: UNSURE (   7.16  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -70,46 +74,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+Aloka Dixit <quic_alokad@quicinc.com> wrote:
 
-In v6.6-rc4 with GCC 13.2 I see a new warning:
+> Mac80211 does not set flags BSS_CHANGED_FILS_DISCOVERY and
+> BSS_CHANGED_UNSOL_BCAST_PROBE_RESP if there are no updates to
+> FILS discovery and unsolicited broadcast probe response transmission
+> configurations respectively. This results in the transmissions getting
+> stopped during BSS change operations which do not include these
+> attributes. Remove the checks for the flags and always send the existing
+> configuration to firmware.
+> 
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
+> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-drivers/net/wireless/ath/ath11k/debugfs.c: In function 'ath11k_debugfs_register':
-drivers/net/wireless/ath/ath11k/debugfs.c:1597:51: error: '%d' directive output may be truncated writing between 1 and 3 bytes into a region of size 2 [-Werror=format-truncation=]
-drivers/net/wireless/ath/ath11k/debugfs.c:1597:48: note: directive argument in the range [0, 255]
-drivers/net/wireless/ath/ath11k/debugfs.c:1597:9: note: 'snprintf' output between 5 and 7 bytes into a destination of size 5
+Patch applied to ath-next branch of ath.git, thanks.
 
-Increase the size of pdev_name to 10 bytes to make sure there's enough room for
-the string. Also change the format to '%u' as ar->pdev_idx is u8.
+e149353e6562 wifi: ath11k: call ath11k_mac_fils_discovery() without condition
 
-Compile tested only.
-
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/debugfs.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 5bb6fd17fdf6..6f89e24cb612 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -1591,10 +1591,10 @@ static const struct file_operations fops_ps_state_enable = {
- int ath11k_debugfs_register(struct ath11k *ar)
- {
- 	struct ath11k_base *ab = ar->ab;
--	char pdev_name[5];
-+	char pdev_name[10];
- 	char buf[100] = {0};
- 
--	snprintf(pdev_name, sizeof(pdev_name), "%s%d", "mac", ar->pdev_idx);
-+	snprintf(pdev_name, sizeof(pdev_name), "%s%u", "mac", ar->pdev_idx);
- 
- 	ar->debug.debugfs_pdev = debugfs_create_dir(pdev_name, ab->debugfs_soc);
- 	if (IS_ERR(ar->debug.debugfs_pdev))
-
-base-commit: 54ca82af78699713bae8b086f46ae13179772085
 -- 
-2.39.2
+https://patchwork.kernel.org/project/linux-wireless/patch/20231004044915.6817-1-quic_alokad@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
