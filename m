@@ -4,60 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F02CD68F5
-	for <ath11k@archiver.kernel.org>; Tue, 10 Oct 2023 07:23:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B5B6CD8CA2
+	for <ath11k@archiver.kernel.org>; Tue, 10 Oct 2023 15:24:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Q/88CHInXW0JC5pYbWpKY7zaXJ0xmE2fa/hMD+o1HjQ=; b=H6clhIqYaJ6dBD
-	uSvX1ekXozDWVpGhYYR/dG3SL30c9EyhUl2sQilWgDpkJFHuSbfVrpQXGqKv+BH2cDHpPws1qGnuw
-	Qu4bol/skryItdYwSLtxXvt26yQtZJyCr4pZysGaBTwyaV00XvEyCL8DtmYN5keVqKdAqOcdGijFD
-	n6F0J0GXFrIyBxi/o9r6GXl0jKmb49NUqWjczvVLMt5AQxuRFVqx43LbHOXGDptnFBxLC8bB+ayfd
-	yFmUOz3c39rMILL+tpzba25qqnTdrXPIaeD72Un19TA1/rO8ZEece/hrkEUzyxkjSCE90DPovtoyU
-	oDN+JOkTA/FRGHQ6Rp7A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5xe6xsIT7yjpnxdCNC/h22js31LBxJqtiD32ty39UEc=; b=ACzlmL/CiY6EYB
+	IzmgT1OD7v8YYbcllRMwlY+oHUQlUhTDYxKqEVhEcQ1zVaHBDPhPihOyo/dixg8rvzX4iQb9Qg2Qe
+	F4q2LTdwk4r4JhQU30glWe/G3QIM2uC9qL1HDLSYUKRjkR2YLeFuszXW3TI4qI0yqXWN0JgXJ86Qc
+	4PYdmYu/JqZsSjay2kWj19itz9vZd5hwW8QsfNv5aoS9e5JpGdg+vMagXEdSg0jPBGJn4lcULT34v
+	/FFoNcpWQ81OokU05UZO+xSygdFHfNFs3Kdt/PjUJjIYbmwOJR9CRC2Q0fw06EBNjgYrRdMATizD9
+	x2lzQovfz0BH+T6Co2RA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qq75W-00Ch3A-2q;
-	Tue, 10 Oct 2023 07:23:30 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1qqEaW-00Dg2o-1S;
+	Tue, 10 Oct 2023 15:24:00 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qq75U-00Ch2n-0y
+	id 1qqEaS-00Dg25-0Z
 	for ath11k@lists.infradead.org;
-	Tue, 10 Oct 2023 07:23:29 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 78859CE1BFE;
-	Tue, 10 Oct 2023 07:23:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3FECC433C8;
-	Tue, 10 Oct 2023 07:23:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696922605;
-	bh=ov8mQoiPuDvyppz0707yD4QUGRw0hSxq2OdsgOrCKjU=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=cuszz+DrTvLMYNMq3EsgEVg8QixFxCtFFYMIgQog9aSg0jJyn95ilz9hS8ER6w0vw
-	 LEH4M8V+pylXhgkWaF8kOAh6JxtT0ScQzyZTnOXnvXWKzwp0ILRkGmDIV6cJ5P7jMy
-	 X8xSdv22wC98fxVZIr4CQlJLoiPOu3jdl2bwusPHO6CWo9lqeXlQc2FjPfmECHVPI4
-	 p4s0WUqFdHiOjcVWY/D6lKYSDiqDgrY3l8vY5yweLWbw5iKWkG9Wo7nTePSgAByYz2
-	 6xTAMyH5+ZxTo5Q3uncjEDJV1vOCsdoqdObxxiNWcnph2wPXPWeRwkLkDA+B4veMOD
-	 7ig8ofWKYxT6A==
+	Tue, 10 Oct 2023 15:23:58 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39AEKaUa023884;
+	Tue, 10 Oct 2023 15:23:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=jIEk7bY1igBLvz7sWdZaDhWClh1IdiHKmn4/UZenYjo=;
+ b=QCwkFm1ek6k5619ED+B98Vlf0irH0m4mmsSOb3xRkhe1+QlWuJCkaNktTm9gc7Wrp5Ds
+ KcJ3hyEYcSj08UXm9+QSwSy5Ehn81Ac+ByUF8emq3NVFSRnmJ7QcGCGDaRYQ80zvUZwB
+ 9tFwUQQFdG2QHgwHKmOBJPyZLvVl4mokVVGmsl0ky+C62u4uYGt3r9blmEsd+ZSU8N9Q
+ 3nHziLs5atA4jKDo83YM9+3CbniJCfhCnznjXCF/oS0HsrLv2LoYCGSVHkUGIFObWgt5
+ sCZDsd0KWX6na1VdP6H+9aOq0oziJvauJei8VCdC2FtCujLkyTQ+uHO6kJY1lz4+j0xL 5A== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tmyma95pa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Oct 2023 15:23:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39AFNeZV027254
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Oct 2023 15:23:41 GMT
+Received: from [10.111.180.41] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 10 Oct
+ 2023 08:23:17 -0700
+Message-ID: <2c08791e-44b7-444e-9fb6-a828d849a67b@quicinc.com>
+Date: Tue, 10 Oct 2023 08:23:16 -0700
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: call ath11k_mac_fils_discovery() without
- condition
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20231004044915.6817-1-quic_alokad@quicinc.com>
-References: <20231004044915.6817-1-quic_alokad@quicinc.com>
-To: Aloka Dixit <quic_alokad@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Aloka Dixit <quic_alokad@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <169692260273.2589238.2783908442272487567.kvalo@kernel.org>
-Date: Tue, 10 Oct 2023 07:23:24 +0000 (UTC)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: ath11k_debugfs_register(): fix
+ format-truncation warning
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20231010062250.2580951-1-kvalo@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20231010062250.2580951-1-kvalo@kernel.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 634K_kZdhPhQ8BOY2QMrwvFiQHeRgQqQ
+X-Proofpoint-GUID: 634K_kZdhPhQ8BOY2QMrwvFiQHeRgQqQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-10_10,2023-10-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 impostorscore=0
+ adultscore=0 spamscore=0 clxscore=1015 mlxscore=0 mlxlogscore=750
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310100113
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231010_002328_516317_F1FEE466 
-X-CRM114-Status: UNSURE (   7.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231010_082356_334219_FD244C87 
+X-CRM114-Status: GOOD (  11.40  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,35 +92,28 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Aloka Dixit <quic_alokad@quicinc.com> wrote:
-
-> Mac80211 does not set flags BSS_CHANGED_FILS_DISCOVERY and
-> BSS_CHANGED_UNSOL_BCAST_PROBE_RESP if there are no updates to
-> FILS discovery and unsolicited broadcast probe response transmission
-> configurations respectively. This results in the transmissions getting
-> stopped during BSS change operations which do not include these
-> attributes. Remove the checks for the flags and always send the existing
-> configuration to firmware.
+On 10/9/2023 11:22 PM, Kalle Valo wrote:
+> From: Kalle Valo <quic_kvalo@quicinc.com>
 > 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> In v6.6-rc4 with GCC 13.2 I see a new warning:
 > 
-> Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> drivers/net/wireless/ath/ath11k/debugfs.c: In function 'ath11k_debugfs_register':
+> drivers/net/wireless/ath/ath11k/debugfs.c:1597:51: error: '%d' directive output may be truncated writing between 1 and 3 bytes into a region of size 2 [-Werror=format-truncation=]
+> drivers/net/wireless/ath/ath11k/debugfs.c:1597:48: note: directive argument in the range [0, 255]
+> drivers/net/wireless/ath/ath11k/debugfs.c:1597:9: note: 'snprintf' output between 5 and 7 bytes into a destination of size 5
+> 
+> Increase the size of pdev_name to 10 bytes to make sure there's enough room for
+> the string. Also change the format to '%u' as ar->pdev_idx is u8.
+> 
+> Compile tested only.
+> 
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-e149353e6562 wifi: ath11k: call ath11k_mac_fils_discovery() without condition
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20231004044915.6817-1-quic_alokad@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
 
 -- 
