@@ -4,59 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 417FDCDB47E
-	for <ath11k@archiver.kernel.org>; Thu, 12 Oct 2023 16:08:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43130CDB483
+	for <ath11k@archiver.kernel.org>; Fri, 13 Oct 2023 14:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X+FaPqDze+6u/iJkOyROadkseRMFyO3yyl6FQXEaVKU=; b=SPr6jdsEl/6lo1
-	EgBVApt9PBnamo/F/N13nGrX7lzNpoNk+0aHx9u/6sXtEnHY4Xj4D1TDqk9zOnC0REkvTQfwct1vh
-	hXl5TT0WEDh1QlEuhD5HZVKj6KBCUsysRMH8brUxgfg8QzJ3Bj42cMP+b8DsIpQGviKkOUXULZnZY
-	CT/tl7uVWDTLikqulYUDCVGXHuCc/5zBgAsjc8wNM7GMUAoRWNXpOhhNypxYc2nuRQuqS+9C6FmEL
-	/dJu52P9bEwDmujJIgSujcOF7U4JjjQEYsEUBtN2zh3OUOLMqDYBXiX+mokR/dRlIz7isKjzb5wz2
-	/fd5nyDc7KAHjG0W4plw==;
+	List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References:Message-ID
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TXoz2Fh5IP6a4HZPPcT1WZAfPPXV8vYFF9UsqsnhVJ4=; b=Pbx/kWq+HMpkLd
+	HLaKrc/qWYF98JvnAkFznFaOxIbK/VIIMxtLs//hp5jtXbwwEdGLp2hDkkW8OpiczlXxWeDzRAO5y
+	5QSY4bpFX/wFRkaZTW7RbN+eN9G5eCn8jhDGwshJ5CvFHpyWMKM7QU7JrHV7nj+d0GLf1IUtadGp7
+	iEskELsPnpQ3NiBW2AJwvf5bO4v68/sGu9UmpmZu5j7pEpn96izKxMEEZWTqAyr3ZF33bTbnwnNrq
+	AyjxMLJkJSog2nyrDg9DTjgBXsWj//Ooz80dGEK57lWzaNX4p3F4ZlLHrKNC6rDnwwrIJSEJwRfHp
+	Wn2nrjrWsnqFV4B44qCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqyEx-001Mgi-32;
-	Thu, 12 Oct 2023 16:08:47 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1qrJ5V-003aJ5-2F;
+	Fri, 13 Oct 2023 14:24:25 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qqyEv-001Mfn-1K
-	for ath11k@lists.infradead.org;
-	Thu, 12 Oct 2023 16:08:46 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 2825BB82399;
-	Thu, 12 Oct 2023 16:08:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44987C433C8;
-	Thu, 12 Oct 2023 16:08:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697126923;
-	bh=WyU9XAjD3B9ziyuyYmadcf6A83tJF/r6+JldUx4J6k4=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=vJIpcU+8lFVMrB0+9NB9EOFaYhBF5ZoeaoBXMvDGYQeGcP5TY0HW5M8bZ7yvNQaQy
-	 PBVoCzDMuR1LKz9Yem8VzxIIqVztMe8j8WDJ10nf5/Y7KiRt8irnmU62D51XtVXUxv
-	 qvDY1izlR7shUVG9/4mps0ZL4zocF8xXrO1MjgSk3netYAsx7DoaWaiicEmQOz/nvm
-	 WC4J+Y/TpsukuzpKFqUZKCb9vAm0Wb+Uop3e6FQnnvKlDKAypfdtbP+FKGmhdi3Bre
-	 0uvFOiQOFxemVdHMae7Xg+K1QiQiSxBxly3lqE/MQ/fnFxlzUk9RIO0imCndGhjsQ6
-	 D0E7PJ+n6ZQJw==
+	id 1qrJ5S-003aIS-1u;
+	Fri, 13 Oct 2023 14:24:24 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39DDgIpY022651;
+	Fri, 13 Oct 2023 14:24:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
+ subject : mime-version : content-type : content-transfer-encoding :
+ message-id : references : in-reply-to : to : cc; s=qcppdkim1;
+ bh=Pir3ku6EK/1+189ah2jxDNBM4ljMV2VO5+1SLY1pm7o=;
+ b=DoIU1Ijl7NPjgnowNkqLnUDsrRBZC91Bzz7ze1RG0T3qVFmgF9S0GzrmBvmgss3i9Wax
+ iDIWzLArZ9w42g9TUosZnH8WdcUIlwrHCGHo41rhDwT8eVXOyaN9wqhHTRmMfpuWDIRt
+ 96hI9aJVITS7St/IYIlr4JwFNvibhZvGOY/o6kskIhimorNUnl/2Qnc4lDYK9j7v1SWl
+ OgVq9tH8XKHTRO6l0kGGJY2/EWny3isx/qkRy73YP2+fq8nxGYwjc9cOaeySot7mSo72
+ rO0khbjh2DLSnIMK0zpB7db/AJ1Nd29lIaSzGXqV9QQALFpER6aP+Et/3+dla/v8nYbl qg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tpt1nsw9u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Oct 2023 14:24:11 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39DEOAA8018261
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Oct 2023 14:24:10 GMT
+Received: from hu-jjohnson-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Fri, 13 Oct 2023 07:24:09 -0700
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Date: Fri, 13 Oct 2023 07:24:09 -0700
+Subject: [PATCH 2/2] wifi: ath12k: Remove ath12k_base::bd_api
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: Introduce and use ath11k_sta_to_arsta()
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20231009-ath11k_sta_to_arsta-v1-1-1563e3a307e8@quicinc.com>
-References: <20231009-ath11k_sta_to_arsta-v1-1-1563e3a307e8@quicinc.com>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <169712692043.3501995.15122826028111120811.kvalo@kernel.org>
-Date: Thu, 12 Oct 2023 16:08:42 +0000 (UTC)
+Message-ID: <20231013-ath11k_bd_api-v1-2-3fefe4629706@quicinc.com>
+References: <20231013-ath11k_bd_api-v1-0-3fefe4629706@quicinc.com>
+In-Reply-To: <20231013-ath11k_bd_api-v1-0-3fefe4629706@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <ath12k@lists.infradead.org>,
+        Jeff Johnson
+	<quic_jjohnson@quicinc.com>
+X-Mailer: b4 0.12.3
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FeGpHGFb-SMvgN0PWMIR2ipi0-XpTjZE
+X-Proofpoint-ORIG-GUID: FeGpHGFb-SMvgN0PWMIR2ipi0-XpTjZE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-13_05,2023-10-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 phishscore=0 clxscore=1015 suspectscore=0
+ lowpriorityscore=0 mlxlogscore=894 mlxscore=0 spamscore=0 adultscore=0
+ bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2309180000 definitions=main-2310130120
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231012_090845_586008_86515BF1 
-X-CRM114-Status: UNSURE (   8.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231013_072422_766866_13F17FEE 
+X-CRM114-Status: GOOD (  15.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,32 +97,70 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
+Currently struct ath12k_base defines the member bd_api. However, this
+member is only accessed within ath12k_core_fetch_bdf(). Since the
+scope is local just to that one function, remove it from ath12k_base
+and instead just use a local stack variable.
 
-> Currently, the logic to return an ath11k_sta pointer, given a
-> ieee80211_sta pointer, uses typecasting throughout the driver. In
-> general, conversion functions are preferable to typecasting since
-> using a conversion function allows the compiler to validate the types
-> of both the input and output parameters.
-> 
-> ath11k already defines a conversion function ath11k_vif_to_arvif() for
-> a similar conversion. So introduce ath11k_sta_to_arsta() for this use
-> case, and convert all of the existing typecasting to use this
-> function.
-> 
-> No functional changes, compile tested only.
-> 
-> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+No functional changes, compile tested only.
 
-Patch applied to ath-next branch of ath.git, thanks.
+Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+---
+ drivers/net/wireless/ath/ath12k/core.c | 7 ++++---
+ drivers/net/wireless/ath/ath12k/core.h | 1 -
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-10c65f97b424 wifi: ath11k: Introduce and use ath11k_sta_to_arsta()
+diff --git a/drivers/net/wireless/ath/ath12k/core.c b/drivers/net/wireless/ath/ath12k/core.c
+index c68750cb3c4d..dbffd1c7cd88 100644
+--- a/drivers/net/wireless/ath/ath12k/core.c
++++ b/drivers/net/wireless/ath/ath12k/core.c
+@@ -360,6 +360,7 @@ int ath12k_core_fetch_board_data_api_1(struct ath12k_base *ab,
+ int ath12k_core_fetch_bdf(struct ath12k_base *ab, struct ath12k_board_data *bd)
+ {
+ 	char boardname[BOARD_NAME_SIZE];
++	int bd_api;
+ 	int ret;
+ 
+ 	ret = ath12k_core_create_board_name(ab, boardname, BOARD_NAME_SIZE);
+@@ -368,12 +369,12 @@ int ath12k_core_fetch_bdf(struct ath12k_base *ab, struct ath12k_board_data *bd)
+ 		return ret;
+ 	}
+ 
+-	ab->bd_api = 2;
++	bd_api = 2;
+ 	ret = ath12k_core_fetch_board_data_api_n(ab, bd, boardname);
+ 	if (!ret)
+ 		goto success;
+ 
+-	ab->bd_api = 1;
++	bd_api = 1;
+ 	ret = ath12k_core_fetch_board_data_api_1(ab, bd, ATH12K_DEFAULT_BOARD_FILE);
+ 	if (ret) {
+ 		ath12k_err(ab, "failed to fetch board-2.bin or board.bin from %s\n",
+@@ -382,7 +383,7 @@ int ath12k_core_fetch_bdf(struct ath12k_base *ab, struct ath12k_board_data *bd)
+ 	}
+ 
+ success:
+-	ath12k_dbg(ab, ATH12K_DBG_BOOT, "using board api %d\n", ab->bd_api);
++	ath12k_dbg(ab, ATH12K_DBG_BOOT, "using board api %d\n", bd_api);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath12k/core.h b/drivers/net/wireless/ath/ath12k/core.h
+index 254eb42a85c5..fafb2a5b9350 100644
+--- a/drivers/net/wireless/ath/ath12k/core.h
++++ b/drivers/net/wireless/ath/ath12k/core.h
+@@ -737,7 +737,6 @@ struct ath12k_base {
+ 	struct ath12k_wmi_target_cap_arg target_caps;
+ 	u32 ext_service_bitmap[WMI_SERVICE_EXT_BM_SIZE];
+ 	bool pdevs_macaddr_valid;
+-	int bd_api;
+ 
+ 	const struct ath12k_hw_params *hw_params;
+ 
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20231009-ath11k_sta_to_arsta-v1-1-1563e3a307e8@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.42.0
 
 
 -- 
