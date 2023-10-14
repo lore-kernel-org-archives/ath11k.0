@@ -4,80 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D228CDB47E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1C98C46CA1
 	for <ath11k@archiver.kernel.org>; Sat, 14 Oct 2023 03:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Yayag6DLnm9OimNnQRqnf0kPE+Zyi8GvmuEa4pCTyRw=; b=2maDXuWDGfvnQZ
-	oBrkYYFKCTLGlHcjxQDlOKgh9ntvbuaJauCKIKjJ82S9w1G9Xnc979JoShJSPXFWdC/i1CU/GkOM4
-	6n++gFtlgV1SgmSJUEJI8GHHHUI/rRnmFF1rkH5893bS0ksthflCR5utMFNApkbmbWnZC5/Z/FXyX
-	ePGITfcZ1s8E57GrFtsOn2BMl7LcxhSHocE1YIAIADhR5aWsqYev7Axiyk3jdR8XgSvZCcntN0X+N
-	DBgXEn0CI4TA1Xpp33NBf6ByWvWF1u2HLrDHFhy34KQnJYDslGIlPIQpqO8btHqNQ/O3A4LHFMIXq
-	XnOeiAC0HdipvJIyXBTQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8J/kI7lE1swWQBsO0DiZs1NzgjqkOJ6Xr5vYxxNv+L8=; b=w+mV/y3RYG+FQW
+	4k0I11fzkPpda1GRocKbQk6xR6Vr1TLqvVFabrv6hGHV51tvEbcTrN44jlxFekhro96a5gohqSJjU
+	+MFp9XoUBUFi4f8GkHvQmIxC+nEzFunV+QM6HRILW5z5fFHabOVPyICIBDADvIRaIQSOEzrPH2chC
+	+ogX/13UGgYNokD4SNJVcHCZI7B9cmBdjEViBUiLVenIxlHT7YZkESvuIqSwz0jZ+xgxAwzE9mQ3k
+	XQhBGKV+p5Jz6Av+WT+aEwA6GycIYJpY7wU5ZUc8iX8JVpYJaek/pE0JperLCgFzzLVlRsnu7R8mf
+	aGmJzcnya/ZkE+XONNwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qrVJ7-004i2P-25;
-	Sat, 14 Oct 2023 03:27:17 +0000
+	id 1qrVJ9-004i2f-0H;
+	Sat, 14 Oct 2023 03:27:19 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qrVJ4-004i1T-2h
+	id 1qrVJ5-004i1Z-2Q
 	for ath11k@lists.infradead.org;
-	Sat, 14 Oct 2023 03:27:16 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39E3Qt3J027062;
-	Sat, 14 Oct 2023 03:27:11 GMT
+	Sat, 14 Oct 2023 03:27:18 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39E2V1Bu030991;
+	Sat, 14 Oct 2023 03:27:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=WoRIoC2pNy+mVCrK4MWkNJ/kwgApnFh/V14PjpnJc54=;
- b=PYQ6wyH56czXX6OxHKvfD3+0SIDZwad5Cj74uM7HzXskk7KX/U6wGyFD7TimV3Oed6zF
- 2x38R5StXEA4QW71ACNkMCTHfhVXCT5+vEvue4yJo+UUn73DiAMAsKHNq7ICnv2Bz5KV
- rABBHcY357vkno76kFSZUQkbXAmz7RMcnYutxuGn/5czLsSi9mhhDJJsAm6tUuQs2Y+F
- oOvTzVyi+/ke3ma09JxZTwCR+Xnh8mnNaEqPkpWiHuDBZkTb1Els+yRkJG7kna4iBuEI
- d+phBHmCFixtHIwbAxxbw1L7hh3FZ2aJ881R3LYgWjGXMt7KdH3u/XTrAgwxoN0UmYtq pA== 
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=bIgSrNAcFSQ5KTBkwyfl5cCjrSpUNyMeJ4btEoDQZFY=;
+ b=h5Th45/aDnSJPBo6IzAHdxf9gOeErFyBRxSKHMpOPdPmxeSb2jGyq2dDqLuKkGDbEKp2
+ ALSZ5ZF6xqh+mOlZhYffNFeZ3qtf2c0+BddJqFayIj39z50vYEbxagW3N5it6qLHvWcq
+ mdvTCqcBNL8QXLynNVXczFzweideLEcLJgtleDtySOojclYHQeqX6eIL4SkMFbyE10oF
+ mBGrMX89ZUxhmCfvp3LusKRqIGLVHpgXasCjfDk4igo38yGoErAs+3EBNLLsm5TvsMQf
+ R/TpJ+gFltaBFh8BV+OT3g1NwAhemvy03e1PR8oA4kg2xDPIox5tIH7XRC+kwzipwbFL bg== 
 Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tqgbt06k4-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tpt1k374w-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 14 Oct 2023 03:27:11 +0000
+	Sat, 14 Oct 2023 03:27:13 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39E3RAjk030511
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39E3RCUA030516
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 14 Oct 2023 03:27:10 GMT
+	Sat, 14 Oct 2023 03:27:12 GMT
 Received: from periyasa-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Fri, 13 Oct 2023 20:27:09 -0700
+ 15.2.1118.36; Fri, 13 Oct 2023 20:27:11 -0700
 From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>,
         Karthikeyan Periyasamy
 	<quic_periyasa@quicinc.com>
-Subject: [PATCH 0/2] wifi: ath11k: rename the variable naming convention
-Date: Sat, 14 Oct 2023 08:56:48 +0530
-Message-ID: <20231014032650.32605-1-quic_periyasa@quicinc.com>
+Subject: [PATCH 1/2] wifi: ath11k: rename the wmi_sc naming convention to wmi_ab
+Date: Sat, 14 Oct 2023 08:56:49 +0530
+Message-ID: <20231014032650.32605-2-quic_periyasa@quicinc.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20231014032650.32605-1-quic_periyasa@quicinc.com>
+References: <20231014032650.32605-1-quic_periyasa@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Y8DTqIgvWRIk_HZEts-HF8KOnbJcdm0f
-X-Proofpoint-ORIG-GUID: Y8DTqIgvWRIk_HZEts-HF8KOnbJcdm0f
+X-Proofpoint-ORIG-GUID: yXV64CgIQDvSspO7rh11QXbOkHH_NxQx
+X-Proofpoint-GUID: yXV64CgIQDvSspO7rh11QXbOkHH_NxQx
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-13_12,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- priorityscore=1501 impostorscore=0 malwarescore=0 mlxlogscore=648
- adultscore=0 spamscore=0 bulkscore=0 clxscore=1011 phishscore=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
+ spamscore=0 mlxscore=0 malwarescore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 bulkscore=0 impostorscore=0 suspectscore=0
  lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2309180000 definitions=main-2310140029
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231013_202715_028219_B7602BBB 
-X-CRM114-Status: GOOD (  10.81  )
+X-CRM114-CacheID: sfid-20231013_202715_944643_C9B6AB24 
+X-CRM114-Status: GOOD (  16.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,23 +97,116 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, the identifier sc is used to represent an instance of
-SoC structure. But in ath11k ab is refer to the SoC data structure.
-So rename the variable name.
+In WMI layer module, the identifier wmi_sc is used to represent
+an instance of ath11k_wmi_base structure. However, within ath11k,
+the convention is to use "ab" to represent an SoC "base" struct.
+So change the all instances of wmi_sc to wmi_ab.
 
-Karthikeyan Periyasamy (2):
-  wifi: ath11k: rename the wmi_sc naming convention to wmi_ab
-  wifi: ath11k: rename the sc naming convention to ab
+Compile tested only.
 
- drivers/net/wireless/ath/ath11k/hif.h     | 54 +++++++++++------------
- drivers/net/wireless/ath/ath11k/pcic.c    |  6 +--
- drivers/net/wireless/ath/ath11k/thermal.c | 22 ++++-----
- drivers/net/wireless/ath/ath11k/thermal.h |  8 ++--
- drivers/net/wireless/ath/ath11k/wmi.c     | 32 +++++++-------
- 5 files changed, 61 insertions(+), 61 deletions(-)
+Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 32 +++++++++++++--------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-
-base-commit: acbc21b2b1b18429244266f70a44b7043d391eae
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 26d416aa9c1f..8fd946437858 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -292,18 +292,18 @@ static int ath11k_wmi_cmd_send_nowait(struct ath11k_pdev_wmi *wmi, struct sk_buf
+ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
+ 			u32 cmd_id)
+ {
+-	struct ath11k_wmi_base *wmi_sc = wmi->wmi_ab;
++	struct ath11k_wmi_base *wmi_ab = wmi->wmi_ab;
+ 	int ret = -EOPNOTSUPP;
+-	struct ath11k_base *ab = wmi_sc->ab;
++	struct ath11k_base *ab = wmi_ab->ab;
+ 
+ 	might_sleep();
+ 
+ 	if (ab->hw_params.credit_flow) {
+-		wait_event_timeout(wmi_sc->tx_credits_wq, ({
++		wait_event_timeout(wmi_ab->tx_credits_wq, ({
+ 			ret = ath11k_wmi_cmd_send_nowait(wmi, skb, cmd_id);
+ 
+ 			if (ret && test_bit(ATH11K_FLAG_CRASH_FLUSH,
+-					    &wmi_sc->ab->dev_flags))
++					    &wmi_ab->ab->dev_flags))
+ 				ret = -ESHUTDOWN;
+ 
+ 			(ret != -EAGAIN);
+@@ -313,7 +313,7 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
+ 			ret = ath11k_wmi_cmd_send_nowait(wmi, skb, cmd_id);
+ 
+ 			if (ret && test_bit(ATH11K_FLAG_CRASH_FLUSH,
+-					    &wmi_sc->ab->dev_flags))
++					    &wmi_ab->ab->dev_flags))
+ 				ret = -ESHUTDOWN;
+ 
+ 			(ret != -ENOBUFS);
+@@ -321,10 +321,10 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
+ 	}
+ 
+ 	if (ret == -EAGAIN)
+-		ath11k_warn(wmi_sc->ab, "wmi command %d timeout\n", cmd_id);
++		ath11k_warn(wmi_ab->ab, "wmi command %d timeout\n", cmd_id);
+ 
+ 	if (ret == -ENOBUFS)
+-		ath11k_warn(wmi_sc->ab, "ce desc not available for wmi command %d\n",
++		ath11k_warn(wmi_ab->ab, "ce desc not available for wmi command %d\n",
+ 			    cmd_id);
+ 
+ 	return ret;
+@@ -611,10 +611,10 @@ static int ath11k_service_ready_event(struct ath11k_base *ab, struct sk_buff *sk
+ 	return 0;
+ }
+ 
+-struct sk_buff *ath11k_wmi_alloc_skb(struct ath11k_wmi_base *wmi_sc, u32 len)
++struct sk_buff *ath11k_wmi_alloc_skb(struct ath11k_wmi_base *wmi_ab, u32 len)
+ {
+ 	struct sk_buff *skb;
+-	struct ath11k_base *ab = wmi_sc->ab;
++	struct ath11k_base *ab = wmi_ab->ab;
+ 	u32 round_len = roundup(len, 4);
+ 
+ 	skb = ath11k_htc_alloc_skb(ab, WMI_SKB_HEADROOM + round_len);
+@@ -4291,7 +4291,7 @@ int ath11k_wmi_set_hw_mode(struct ath11k_base *ab,
+ 
+ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ {
+-	struct ath11k_wmi_base *wmi_sc = &ab->wmi_ab;
++	struct ath11k_wmi_base *wmi_ab = &ab->wmi_ab;
+ 	struct wmi_init_cmd_param init_param;
+ 	struct target_resource_config  config;
+ 
+@@ -4304,12 +4304,12 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ 		     ab->wmi_ab.svc_map))
+ 		config.is_reg_cc_ext_event_supported = 1;
+ 
+-	memcpy(&wmi_sc->wlan_resource_config, &config, sizeof(config));
++	memcpy(&wmi_ab->wlan_resource_config, &config, sizeof(config));
+ 
+-	init_param.res_cfg = &wmi_sc->wlan_resource_config;
+-	init_param.num_mem_chunks = wmi_sc->num_mem_chunks;
+-	init_param.hw_mode_id = wmi_sc->preferred_hw_mode;
+-	init_param.mem_chunks = wmi_sc->mem_chunks;
++	init_param.res_cfg = &wmi_ab->wlan_resource_config;
++	init_param.num_mem_chunks = wmi_ab->num_mem_chunks;
++	init_param.hw_mode_id = wmi_ab->preferred_hw_mode;
++	init_param.mem_chunks = wmi_ab->mem_chunks;
+ 
+ 	if (ab->hw_params.single_pdev_only)
+ 		init_param.hw_mode_id = WMI_HOST_HW_MODE_MAX;
+@@ -4317,7 +4317,7 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ 	init_param.num_band_to_mac = ab->num_radios;
+ 	ath11k_fill_band_to_mac_param(ab, init_param.band_to_mac);
+ 
+-	return ath11k_init_cmd_send(&wmi_sc->wmi[0], &init_param);
++	return ath11k_init_cmd_send(&wmi_ab->wmi[0], &init_param);
+ }
+ 
+ int ath11k_wmi_vdev_spectral_conf(struct ath11k *ar,
 -- 
 2.17.1
 
