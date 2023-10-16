@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 464FBCDB465
-	for <ath11k@archiver.kernel.org>; Mon, 16 Oct 2023 12:57:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA38ECDB482
+	for <ath11k@archiver.kernel.org>; Mon, 16 Oct 2023 14:27:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-ID:Content-Type:
+	MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9hp7roPJFIQ+ckv9OM6jsni7UGUksP5R/DbZu5sqGjo=; b=vwuqMtS6nGFltqU81qyzccCYTf
-	9WAA9QdXZ0KR1zFFSnB7pHMe6dGdhJvdn//2WfW+h+Jg3YV3glBeg6I1BufXkm2G2cXvj/XYJoP2S
-	0KtyuXr2uTFGpWw9Ch5vhbpU0EaXTbOsEEbJq3f6TXQwk807akt86tvyuui7Mk7EbS1h2z8cW2fEk
-	/Vn70n/LJKzFJdqc4Z8e+BN/qle8+Kn/hyI7sKFKAP/lvAEyZbCJQ5de7Lm55vOgLGBgwS1kjfH7V
-	sc8VK1Eip6AgAUimWVcbJvdm5GHexnWlFks6RSztWa7BfTb7ZjVA0gZszr/H/A8PbhRMK66c9iEd4
-	yqd0a+zg==;
+	bh=V3yNZGJ+rJpHomMcatn1T1MDK4EjOWQCx9RTT7lCqpA=; b=r3io0CFLbNprWxO/Iw9FU28eh5
+	Vcya7L+Oy3gOe4NB95cAWIZA/lMN9QBEP6v0crE4PjpO+JYLv4NPn4b5emmttUin22pTBJZRxcO3T
+	vvHyQvCUvmsIVhcLLR3DjL5zM79NVlTJ4l4ovcNKXIxqVel5XLLUPXUx4Uv0ymsLN++TJgWE6UZGi
+	Yc/1kFAvb3YVIYmJ+fs+xIAPy6ldzYhkJT6cFl7rKC5O98Bs0T1xmDk9kakhE8Sjkh2Rdv29l93Y6
+	t+18P4TNJRPQtfOk9F6VMSXwbSYY5ZHT1d2EooGviPYu/4DSloryr3bpX4EmjRfL/t4SUJybNBJJe
+	ESVfeD3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qsN9r-009ewP-1F;
-	Mon, 16 Oct 2023 12:57:19 +0000
-Received: from mgamail.intel.com ([198.175.65.9])
+	id 1qsOZZ-009rj6-0l;
+	Mon, 16 Oct 2023 14:27:57 +0000
+Received: from mgamail.intel.com ([134.134.136.24])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qsN9m-009euW-1l;
-	Mon, 16 Oct 2023 12:57:16 +0000
+	id 1qsOZU-009rgf-2A;
+	Mon, 16 Oct 2023 14:27:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1697461035; x=1728997035;
+  t=1697466472; x=1729002472;
   h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=33VN831uWAKG7f4eIn44PpDJgWUV0McuEtJM+oSWIh4=;
-  b=lp+N0iDegos1KqT0YHUk8zJeCMUF891HPeNecMLT7Z88naTNfHsSkcgx
-   QxsDd2OdH3NF6sY33CXGJ4W+CGAtBN77FUNwqpiuOt87MfgdZkxRN9Bet
-   RFydGD5hSKrn3dlXzv3QToJkFQYsOY3JgFlyLabT2FGG2lDaFscvR9Jkj
-   +2CDwF9J9ZAqUy/r21UPBBeql4cOU2JxUlKDVIdLMrB+C5+Hszkz+1P5/
-   ErO19JsuND5+5Y1ETsrzEzVJLcoUFVaRi7yVk5ahk0RznzNH82YU9Bn+H
-   uRMz7/OESAn0Ioe7hyo4wV0qlPQZ/AMsLSvgfPGb32Xu+fssy3JVhbOQF
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="4130584"
+   references:mime-version:content-id;
+  bh=WAHtEU+QRIIV0hjjctV4dFUOMA87lFSZZckv/e6FmbI=;
+  b=IkTX6lhlY1FuqijdSWvkIzdDkZDGD46bsHERHQbhLODCsVzoxC9LqPd4
+   u9JsyuuJ8gq3jYan1Pttp8LidJ/z81B7hCN51dWkZ+AQp3vfQSBFAC2tr
+   FLPggcUPSVWGNweI7nHriuXEBBWT95mwuqp0NdiZYc84CiZW8aAky7/+t
+   ko3E9uGNo27Mst/GHEGrnZjNoUUHX3uQ3X8WclFs7xrduH6gAF8hKAsHW
+   MHwl/xY/q4Y8wJjvv1NQ9GDtVZNGDhozt0mvMHk5N/VxuN5+HpgOll/lZ
+   G1ADAo++W6ePndVIW34cJm5HFYjaDjTOwzHIUdM7W2WCRaBc7MhvALhIn
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="388396816"
 X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; 
-   d="scan'208";a="4130584"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 05:57:13 -0700
+   d="scan'208";a="388396816"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 07:27:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="1087063948"
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="759416190"
 X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; 
-   d="scan'208";a="1087063948"
-Received: from rhaeussl-mobl.ger.corp.intel.com (HELO bhoerz-mobl1.ger.corp.intel.com) ([10.252.59.103])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 05:57:07 -0700
-Date: Mon, 16 Oct 2023 15:57:05 +0300 (EEST)
+   d="scan'208";a="759416190"
+Received: from rhaeussl-mobl.ger.corp.intel.com ([10.252.59.103])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 07:27:40 -0700
+Date: Mon, 16 Oct 2023 17:27:37 +0300 (EEST)
 From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>, 
+    "Rafael J . Wysocki" <rafael@kernel.org>
 cc: linux-pci@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
     Rob Herring <robh@kernel.org>, 
     =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
-    Lukas Wunner <lukas@wunner.de>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-    Heiner Kallweit <hkallweit1@gmail.com>, 
+    Lukas Wunner <lukas@wunner.de>, Heiner Kallweit <hkallweit1@gmail.com>, 
     Emmanuel Grumbach <emmanuel.grumbach@intel.com>, 
     LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
     ath10k@lists.infradead.org, ath11k@lists.infradead.org, 
@@ -65,15 +65,17 @@ cc: linux-pci@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
     linux-arm-kernel@lists.infradead.org, linux-bluetooth@vger.kernel.org, 
     linux-mediatek@lists.infradead.org, linux-rdma@vger.kernel.org, 
     linux-wireless@vger.kernel.org, Netdev <netdev@vger.kernel.org>
-Subject: Re: [PATCH v2 05/13] PCI/ASPM: Add pci_enable_link_state()
-In-Reply-To: <20231013164850.GA1118214@bhelgaas>
-Message-ID: <9da430a3-9336-8e75-7385-3d5ddcb6cb7@linux.intel.com>
-References: <20231013164850.GA1118214@bhelgaas>
+Subject: Re: [PATCH v2 03/13] PCI/ASPM: Disable ASPM when driver requests
+ it
+In-Reply-To: <20231013164228.GA1117889@bhelgaas>
+Message-ID: <a434d9f-48ec-cfe5-900-8923361798a9@linux.intel.com>
+References: <20231013164228.GA1117889@bhelgaas>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1750157713-1697461032=:1986"
+Content-Type: multipart/mixed; BOUNDARY="8323329-158890400-1697462044=:1986"
+Content-ID: <58c8d854-b57c-582-1ba0-efeb857febe@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231016_055714_652251_7F6BD44E 
-X-CRM114-Status: GOOD (  43.65  )
+X-CRM114-CacheID: sfid-20231016_072752_769021_2149A43A 
+X-CRM114-Status: GOOD (  38.01  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,108 +93,90 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-1750157713-1697461032=:1986
-Content-Type: text/plain; charset=utf-8
+--8323329-158890400-1697462044=:1986
+Content-Type: text/plain; CHARSET=ISO-8859-15
 Content-Transfer-Encoding: 8BIT
+Content-ID: <a321263b-cac2-11d0-6cb1-43cc78d1c6d1@linux.intel.com>
 
 On Fri, 13 Oct 2023, Bjorn Helgaas wrote:
-
-> On Thu, Oct 12, 2023 at 03:53:39PM +0300, Ilpo JÃ¤rvinen wrote:
+> On Thu, Oct 12, 2023 at 01:56:16PM +0300, Ilpo Järvinen wrote:
 > > On Wed, 11 Oct 2023, Bjorn Helgaas wrote:
-> > > On Mon, Sep 18, 2023 at 04:10:55PM +0300, Ilpo JÃ¤rvinen wrote:
-> > > > pci_disable_link_state() lacks a symmetric pair. Some drivers want to
-> > > > disable ASPM during certain phases of their operation but then
-> > > > re-enable it later on. If pci_disable_link_state() is made for the
-> > > > device, there is currently no way to re-enable the states that were
-> > > > disabled.
-> > > 
-> > > pci_disable_link_state() gives drivers a way to disable specified ASPM
-> > > states using a bitmask (PCIE_LINK_STATE_L0S, PCIE_LINK_STATE_L1,
-> > > PCIE_LINK_STATE_L1_1, etc), but IIUC the driver can't tell exactly
-> > > what changed and can't directly restore the original state, e.g.,
-> > > 
-> > >   - PCIE_LINK_STATE_L1 enabled initially
-> > >   - driver calls pci_disable_link_state(PCIE_LINK_STATE_L0S)
-> > >   - driver calls pci_enable_link_state(PCIE_LINK_STATE_L0S)
-> > >   - PCIE_LINK_STATE_L0S and PCIE_LINK_STATE_L1 are enabled now
-> > > 
-> > > Now PCIE_LINK_STATE_L0S is enabled even though it was not initially
-> > > enabled.  Maybe that's what we want; I dunno.
-> > > 
-> > > pci_disable_link_state() currently returns success/failure, but only
-> > > r8169 and mt76 even check, and only rtl_init_one() (r8169) has a
-> > > non-trivial reason, so it's conceivable that it could return a bitmask
-> > > instead.
-> > 
-> > It's great that you suggested this since it's actually what also I've been 
-> > started to think should be done instead of this straightforward approach
-> > I used in V2. 
-> > 
-> > That is, don't have the drivers to get anything directly from LNKCTL
-> > but they should get everything through the API provided by the 
-> > disable/enable calls which makes it easy for the driver to pass the same
-> > value back into the enable call.
-> > 
-> > > > Add pci_enable_link_state() to remove ASPM states from the state
-> > > > disable mask.
-> > > > 
-> > > > Signed-off-by: Ilpo JÃ¤rvinen <ilpo.jarvinen@linux.intel.com>
-> > > > ---
-> > > >  drivers/pci/pcie/aspm.c | 42 +++++++++++++++++++++++++++++++++++++++++
-> > > >  include/linux/pci.h     |  2 ++
-> > > >  2 files changed, 44 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-> > > > index 91dc95aca90f..f45d18d47c20 100644
-> > > > --- a/drivers/pci/pcie/aspm.c
-> > > > +++ b/drivers/pci/pcie/aspm.c
-> > > > @@ -1117,6 +1117,48 @@ int pci_disable_link_state(struct pci_dev *pdev, int state)
-> > > >  }
-> > > >  EXPORT_SYMBOL(pci_disable_link_state);
-> > > >  
-> > > > +/**
-> > > > + * pci_enable_link_state - Re-enable device's link state
-> > > > + * @pdev: PCI device
-> > > > + * @state: ASPM link states to re-enable
-> > > > + *
-> > > > + * Enable device's link state that were previously disable so the link is
-> > > 
-> > > "state[s] that were previously disable[d]" alludes to the use case you
-> > > have in mind, but I don't think it describes how this function
-> > > actually works.  This function just makes it possible to enable the
-> > > specified states.  The @state parameter may have nothing to do with
-> > > any previously disabled states.
-> > 
-> > Yes, it's what I've been thinking between the lines. But I see your point 
-> > that this API didn't make it easy/obvious as is.
-> > 
-> > Would you want me to enforce it too besides altering the API such that the 
-> > states are actually returned from disable call? (I don't personally find
-> > that necessary as long as the API pair itself makes it obvious what the 
-> > driver is expect to pass there.)
+> > > On Mon, Sep 18, 2023 at 04:10:53PM +0300, Ilpo Järvinen wrote:
+> > > > PCI core/ASPM service driver allows controlling ASPM state through
+> > > > pci_disable_link_state() and pci_enable_link_state() API. It was
+> > > > decided earlier (see the Link below), to not allow ASPM changes when OS
+> > > > does not have control over it but only log a warning about the problem
+> > > > (commit 2add0ec14c25 ("PCI/ASPM: Warn when driver asks to disable ASPM,
+> > > > but we can't do it")). Similarly, if ASPM is not enabled through
+> > > > config, ASPM cannot be disabled.
+> > ...
 > 
-> This was just a comment about the doc not matching the function
-> behavior.
+> > > This disables *all* ASPM states, unlike the version when
+> > > CONFIG_PCIEASPM is enabled.  I suppose there's a reason, and maybe a
+> > > comment could elaborate on it?
+> > >
+> > > When CONFIG_PCIEASPM is not enabled, I don't think we actively
+> > > *disable* ASPM in the hardware; we just leave it as-is, so firmware
+> > > might have left it enabled.
+> > 
+> > This whole trickery is intended for drivers that do not want to have ASPM 
+> > because the devices are broken with it. So leaving it as-is is not really 
+> > an option (as demonstrated by the custom workarounds).
 > 
-> I think we have to support pci_enable_link_state() even if the driver
-> hasn't previously called pci_disable_link_state(), so drivers have to
-> be able to specify the pci_enable_link_state() @state from scratch.
+> Right.
 > 
-> Does that answer the enforcement question?
+> > > Conceptually it seems like the LNKCTL updates here should be the same
+> > > whether CONFIG_PCIEASPM is enabled or not (subject to the question
+> > > above).
+> > > 
+> > > When CONFIG_PCIEASPM is enabled, we might need to do more stuff, but
+> > > it seems like the core should be the same.
+> > 
+> > So you think it's safer to partially disable ASPM (as per driver's 
+> > request) rather than disable it completely? I got the impression that the 
+> > latter might be safer from what Rafael said earlier but I suppose I might 
+> > have misinterpreted him since he didn't exactly say that it might be safer 
+> > to _completely_ disable it.
+> 
+> My question is whether the state of the device should depend on
+> CONFIG_PCIEASPM.  If the driver does this:
+> 
+>   pci_disable_link_state(PCIE_LINK_STATE_L0S)
+> 
+> do we want to leave L1 enabled when CONFIG_PCIEASPM=y but disable L1
+> when CONFIG_PCIEASPM is unset?
+> 
+> I can see arguments both ways.  My thought was that it would be nice
+> to end up with a single implementation of pci_disable_link_state()
+> with an #ifdef around the CONFIG_PCIEASPM-enabled stuff because it
+> makes the code easier to read.
 
-Yes.
+Hi Bjorn,
+
+Thanks a lot for all your feedback so far, it has been very helpful.
+
+I think there's still one important thing to discuss and none of the 
+comments have covered that area so far.
+
+The drivers that have workaround are not going to turn more dangerous than 
+they're already without this change, so we're mostly within charted waters 
+there even with what you propose. However, I think the bigger catch and 
+potential source of problems, with both this v2 and your alternative, are 
+the drivers that do not have the workarounds around CONFIG_PCIEASPM=n 
+and/or _OSC permissions. Those code paths just call 
+pci_disable_link_state() and do nothing else.
+
+Do you think it's okay to alter the behavior for those drivers too 
+(disable ASPM where it previously was a no-op)?
+
+I'm okay with going the direction you indicated but I just wanted to ask
+this in advance before reworking the behavior so I can take that detail 
+also into account.
+
 
 -- 
  i.
-
-> I don't think we can
-> really enforce anything other than that @state specifies valid ASPM
-> states.
-> 
-> Bjorn
-> 
-
---8323329-1750157713-1697461032=:1986
+--8323329-158890400-1697462044=:1986
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,5 +187,5 @@ ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
 
---8323329-1750157713-1697461032=:1986--
+--8323329-158890400-1697462044=:1986--
 
