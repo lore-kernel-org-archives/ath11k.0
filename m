@@ -4,83 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B0B2CDB47E
-	for <ath11k@archiver.kernel.org>; Sat, 14 Oct 2023 03:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 464FBCDB465
+	for <ath11k@archiver.kernel.org>; Mon, 16 Oct 2023 12:57:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S1W7MT5kygmtlE7Aks3XSTte9xWC4lOgEvL+jeUWCaU=; b=pNMTfZniPALm0b
-	r7PQW2ffyBtvOnEttrnVTDMDRM1hDdAxw+6+soW6j3Yot4hzqdfgi+UdMk0ONSvy3kllNQd/YmJsF
-	XbA3coDQU3/pNGO+bJv2u4YGi4IayhTAKiAYDVhrNO+U9u8tFB48Z63IkWwxr2UH9p3k+zXMJrvqu
-	K5RMGUxUvYZ3IKZMBaT8udjLQ0/LLjm04mGs3QNU+h3AZKruHtzRW92HgFIo4OUAZdyF+nAPisCRK
-	IS3Zc1frMjbbYn73/zXgWqnXCdr2gv+lrn8VM4WpfgPGCtUQkNnmKFj/aostPPjKE77nF/ZxqnSbb
-	F1z2wo2yCqt5DiVvZHww==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=9hp7roPJFIQ+ckv9OM6jsni7UGUksP5R/DbZu5sqGjo=; b=vwuqMtS6nGFltqU81qyzccCYTf
+	9WAA9QdXZ0KR1zFFSnB7pHMe6dGdhJvdn//2WfW+h+Jg3YV3glBeg6I1BufXkm2G2cXvj/XYJoP2S
+	0KtyuXr2uTFGpWw9Ch5vhbpU0EaXTbOsEEbJq3f6TXQwk807akt86tvyuui7Mk7EbS1h2z8cW2fEk
+	/Vn70n/LJKzFJdqc4Z8e+BN/qle8+Kn/hyI7sKFKAP/lvAEyZbCJQ5de7Lm55vOgLGBgwS1kjfH7V
+	sc8VK1Eip6AgAUimWVcbJvdm5GHexnWlFks6RSztWa7BfTb7ZjVA0gZszr/H/A8PbhRMK66c9iEd4
+	yqd0a+zg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qrVJ9-004i2n-1e;
-	Sat, 14 Oct 2023 03:27:19 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1qsN9r-009ewP-1F;
+	Mon, 16 Oct 2023 12:57:19 +0000
+Received: from mgamail.intel.com ([198.175.65.9])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qrVJ6-004i25-2n
-	for ath11k@lists.infradead.org;
-	Sat, 14 Oct 2023 03:27:18 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39E3RGlr002150;
-	Sat, 14 Oct 2023 03:27:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=6fKpL2G2olmKs/C9CRxIxQ1pVCXZPwGDxKQomyD+XEI=;
- b=l/vWREXdgPSMbmHBirxFjDkJXCrMBkbQlrREYEAogu1o3Y8ju7PyMf5u4u3CsOwv//ZE
- Ub46kat48jyPA/jUznrooym8AAiDCmNjpDmUkCw1HxFaV6lWSXDeH26BQavwCo63AifS
- DqnOGVjVoL8nm21sGl73sPSWmT/52/h6wmCgEjUgjwEKvlXeS0ztO2AO9f1ZhNdDNFwS
- 3IyPJmmSbfDkg0SPuYdKTzkogaCy77viPcTUxBkwmSRS9KNo5WrLSJX9eqgSir0IngHR
- VFoyNRlMpOkrFB4YRZJPcMQzRYXlW+eReDXPOe36h2NnN8Jk107cwWuGqYa0kDqLfSRN 9g== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tpt1k374y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 14 Oct 2023 03:27:16 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39E3RFeU012704
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 14 Oct 2023 03:27:15 GMT
-Received: from periyasa-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Fri, 13 Oct 2023 20:27:13 -0700
-From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Karthikeyan Periyasamy
-	<quic_periyasa@quicinc.com>
-Subject: [PATCH 2/2] wifi: ath11k: rename the sc naming convention to ab
-Date: Sat, 14 Oct 2023 08:56:50 +0530
-Message-ID: <20231014032650.32605-3-quic_periyasa@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231014032650.32605-1-quic_periyasa@quicinc.com>
-References: <20231014032650.32605-1-quic_periyasa@quicinc.com>
+	id 1qsN9m-009euW-1l;
+	Mon, 16 Oct 2023 12:57:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1697461035; x=1728997035;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=33VN831uWAKG7f4eIn44PpDJgWUV0McuEtJM+oSWIh4=;
+  b=lp+N0iDegos1KqT0YHUk8zJeCMUF891HPeNecMLT7Z88naTNfHsSkcgx
+   QxsDd2OdH3NF6sY33CXGJ4W+CGAtBN77FUNwqpiuOt87MfgdZkxRN9Bet
+   RFydGD5hSKrn3dlXzv3QToJkFQYsOY3JgFlyLabT2FGG2lDaFscvR9Jkj
+   +2CDwF9J9ZAqUy/r21UPBBeql4cOU2JxUlKDVIdLMrB+C5+Hszkz+1P5/
+   ErO19JsuND5+5Y1ETsrzEzVJLcoUFVaRi7yVk5ahk0RznzNH82YU9Bn+H
+   uRMz7/OESAn0Ioe7hyo4wV0qlPQZ/AMsLSvgfPGb32Xu+fssy3JVhbOQF
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="4130584"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; 
+   d="scan'208";a="4130584"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 05:57:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="1087063948"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; 
+   d="scan'208";a="1087063948"
+Received: from rhaeussl-mobl.ger.corp.intel.com (HELO bhoerz-mobl1.ger.corp.intel.com) ([10.252.59.103])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2023 05:57:07 -0700
+Date: Mon, 16 Oct 2023 15:57:05 +0300 (EEST)
+From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+cc: linux-pci@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+    Rob Herring <robh@kernel.org>, 
+    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+    Lukas Wunner <lukas@wunner.de>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+    Heiner Kallweit <hkallweit1@gmail.com>, 
+    Emmanuel Grumbach <emmanuel.grumbach@intel.com>, 
+    LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+    ath10k@lists.infradead.org, ath11k@lists.infradead.org, 
+    ath12k@lists.infradead.org, intel-wired-lan@lists.osuosl.org, 
+    linux-arm-kernel@lists.infradead.org, linux-bluetooth@vger.kernel.org, 
+    linux-mediatek@lists.infradead.org, linux-rdma@vger.kernel.org, 
+    linux-wireless@vger.kernel.org, Netdev <netdev@vger.kernel.org>
+Subject: Re: [PATCH v2 05/13] PCI/ASPM: Add pci_enable_link_state()
+In-Reply-To: <20231013164850.GA1118214@bhelgaas>
+Message-ID: <9da430a3-9336-8e75-7385-3d5ddcb6cb7@linux.intel.com>
+References: <20231013164850.GA1118214@bhelgaas>
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: xufwJ-XWBKmnDQWsCxxlCJ9NiFz3ZbnZ
-X-Proofpoint-GUID: xufwJ-XWBKmnDQWsCxxlCJ9NiFz3ZbnZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-13_12,2023-10-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=577 phishscore=0
- spamscore=0 mlxscore=0 malwarescore=0 priorityscore=1501 adultscore=0
- clxscore=1015 bulkscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310140029
+Content-Type: multipart/mixed; boundary="8323329-1750157713-1697461032=:1986"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231013_202717_037032_C09BBD81 
-X-CRM114-Status: GOOD (  20.08  )
+X-CRM114-CacheID: sfid-20231016_055714_652251_7F6BD44E 
+X-CRM114-Status: GOOD (  43.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,273 +85,123 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In PCI, thermal and HAL interface layer module, the identifier
-sc is used to represent an instance of ath11k_base structure.
-However, within ath11k, the convention is to use "ab" to
-represent an SoC "base" struct. So change the all instances
-of sc to ab.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Compile tested only.
+--8323329-1750157713-1697461032=:1986
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 
-Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/hif.h     | 54 +++++++++++------------
- drivers/net/wireless/ath/ath11k/pcic.c    |  6 +--
- drivers/net/wireless/ath/ath11k/thermal.c | 22 ++++-----
- drivers/net/wireless/ath/ath11k/thermal.h |  8 ++--
- 4 files changed, 45 insertions(+), 45 deletions(-)
+On Fri, 13 Oct 2023, Bjorn Helgaas wrote:
 
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index 659b80d2abd4..d68ed4214dec 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -9,18 +9,18 @@
- #include "core.h"
- 
- struct ath11k_hif_ops {
--	u32 (*read32)(struct ath11k_base *sc, u32 address);
--	void (*write32)(struct ath11k_base *sc, u32 address, u32 data);
-+	u32 (*read32)(struct ath11k_base *ab, u32 address);
-+	void (*write32)(struct ath11k_base *ab, u32 address, u32 data);
- 	int (*read)(struct ath11k_base *ab, void *buf, u32 start, u32 end);
--	void (*irq_enable)(struct ath11k_base *sc);
--	void (*irq_disable)(struct ath11k_base *sc);
--	int (*start)(struct ath11k_base *sc);
--	void (*stop)(struct ath11k_base *sc);
--	int (*power_up)(struct ath11k_base *sc);
--	void (*power_down)(struct ath11k_base *sc);
-+	void (*irq_enable)(struct ath11k_base *ab);
-+	void (*irq_disable)(struct ath11k_base *ab);
-+	int (*start)(struct ath11k_base *ab);
-+	void (*stop)(struct ath11k_base *ab);
-+	int (*power_up)(struct ath11k_base *ab);
-+	void (*power_down)(struct ath11k_base *ab);
- 	int (*suspend)(struct ath11k_base *ab);
- 	int (*resume)(struct ath11k_base *ab);
--	int (*map_service_to_pipe)(struct ath11k_base *sc, u16 service_id,
-+	int (*map_service_to_pipe)(struct ath11k_base *ab, u16 service_id,
- 				   u8 *ul_pipe, u8 *dl_pipe);
- 	int (*get_user_msi_vector)(struct ath11k_base *ab, char *user_name,
- 				   int *num_vectors, u32 *user_base_data,
-@@ -44,34 +44,34 @@ static inline void ath11k_hif_ce_irq_disable(struct ath11k_base *ab)
- 		ab->hif.ops->ce_irq_disable(ab);
- }
- 
--static inline int ath11k_hif_start(struct ath11k_base *sc)
-+static inline int ath11k_hif_start(struct ath11k_base *ab)
- {
--	return sc->hif.ops->start(sc);
-+	return ab->hif.ops->start(ab);
- }
- 
--static inline void ath11k_hif_stop(struct ath11k_base *sc)
-+static inline void ath11k_hif_stop(struct ath11k_base *ab)
- {
--	sc->hif.ops->stop(sc);
-+	ab->hif.ops->stop(ab);
- }
- 
--static inline void ath11k_hif_irq_enable(struct ath11k_base *sc)
-+static inline void ath11k_hif_irq_enable(struct ath11k_base *ab)
- {
--	sc->hif.ops->irq_enable(sc);
-+	ab->hif.ops->irq_enable(ab);
- }
- 
--static inline void ath11k_hif_irq_disable(struct ath11k_base *sc)
-+static inline void ath11k_hif_irq_disable(struct ath11k_base *ab)
- {
--	sc->hif.ops->irq_disable(sc);
-+	ab->hif.ops->irq_disable(ab);
- }
- 
--static inline int ath11k_hif_power_up(struct ath11k_base *sc)
-+static inline int ath11k_hif_power_up(struct ath11k_base *ab)
- {
--	return sc->hif.ops->power_up(sc);
-+	return ab->hif.ops->power_up(ab);
- }
- 
--static inline void ath11k_hif_power_down(struct ath11k_base *sc)
-+static inline void ath11k_hif_power_down(struct ath11k_base *ab)
- {
--	sc->hif.ops->power_down(sc);
-+	ab->hif.ops->power_down(ab);
- }
- 
- static inline int ath11k_hif_suspend(struct ath11k_base *ab)
-@@ -90,14 +90,14 @@ static inline int ath11k_hif_resume(struct ath11k_base *ab)
- 	return 0;
- }
- 
--static inline u32 ath11k_hif_read32(struct ath11k_base *sc, u32 address)
-+static inline u32 ath11k_hif_read32(struct ath11k_base *ab, u32 address)
- {
--	return sc->hif.ops->read32(sc, address);
-+	return ab->hif.ops->read32(ab, address);
- }
- 
--static inline void ath11k_hif_write32(struct ath11k_base *sc, u32 address, u32 data)
-+static inline void ath11k_hif_write32(struct ath11k_base *ab, u32 address, u32 data)
- {
--	sc->hif.ops->write32(sc, address, data);
-+	ab->hif.ops->write32(ab, address, data);
- }
- 
- static inline int ath11k_hif_read(struct ath11k_base *ab, void *buf,
-@@ -109,10 +109,10 @@ static inline int ath11k_hif_read(struct ath11k_base *ab, void *buf,
- 	return ab->hif.ops->read(ab, buf, start, end);
- }
- 
--static inline int ath11k_hif_map_service_to_pipe(struct ath11k_base *sc, u16 service_id,
-+static inline int ath11k_hif_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
- 						 u8 *ul_pipe, u8 *dl_pipe)
- {
--	return sc->hif.ops->map_service_to_pipe(sc, service_id, ul_pipe, dl_pipe);
-+	return ab->hif.ops->map_service_to_pipe(ab, service_id, ul_pipe, dl_pipe);
- }
- 
- static inline int ath11k_get_user_msi_vector(struct ath11k_base *ab, char *user_name,
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index c63083633b37..16d1e332193f 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -422,14 +422,14 @@ static void ath11k_pcic_ext_grp_disable(struct ath11k_ext_irq_grp *irq_grp)
- 		disable_irq_nosync(irq_grp->ab->irq_num[irq_grp->irqs[i]]);
- }
- 
--static void __ath11k_pcic_ext_irq_disable(struct ath11k_base *sc)
-+static void __ath11k_pcic_ext_irq_disable(struct ath11k_base *ab)
- {
- 	int i;
- 
--	clear_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &sc->dev_flags);
-+	clear_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &ab->dev_flags);
- 
- 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
--		struct ath11k_ext_irq_grp *irq_grp = &sc->ext_irq_grp[i];
-+		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
- 
- 		ath11k_pcic_ext_grp_disable(irq_grp);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
-index 23ed01bd44f9..c9b012f97ba5 100644
---- a/drivers/net/wireless/ath/ath11k/thermal.c
-+++ b/drivers/net/wireless/ath/ath11k/thermal.c
-@@ -125,7 +125,7 @@ ATTRIBUTE_GROUPS(ath11k_hwmon);
- 
- int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state)
- {
--	struct ath11k_base *sc = ar->ab;
-+	struct ath11k_base *ab = ar->ab;
- 	struct thermal_mitigation_params param;
- 	int ret = 0;
- 
-@@ -147,14 +147,14 @@ int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state)
- 
- 	ret = ath11k_wmi_send_thermal_mitigation_param_cmd(ar, &param);
- 	if (ret) {
--		ath11k_warn(sc, "failed to send thermal mitigation duty cycle %u ret %d\n",
-+		ath11k_warn(ab, "failed to send thermal mitigation duty cycle %u ret %d\n",
- 			    throttle_state, ret);
- 	}
- 
- 	return ret;
- }
- 
--int ath11k_thermal_register(struct ath11k_base *sc)
-+int ath11k_thermal_register(struct ath11k_base *ab)
- {
- 	struct thermal_cooling_device *cdev;
- 	struct device *hwmon_dev;
-@@ -162,8 +162,8 @@ int ath11k_thermal_register(struct ath11k_base *sc)
- 	struct ath11k_pdev *pdev;
- 	int i, ret;
- 
--	for (i = 0; i < sc->num_radios; i++) {
--		pdev = &sc->pdevs[i];
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
- 		if (!ar)
- 			continue;
-@@ -172,7 +172,7 @@ int ath11k_thermal_register(struct ath11k_base *sc)
- 						       &ath11k_thermal_ops);
- 
- 		if (IS_ERR(cdev)) {
--			ath11k_err(sc, "failed to setup thermal device result: %ld\n",
-+			ath11k_err(ab, "failed to setup thermal device result: %ld\n",
- 				   PTR_ERR(cdev));
- 			ret = -EINVAL;
- 			goto err_thermal_destroy;
-@@ -183,7 +183,7 @@ int ath11k_thermal_register(struct ath11k_base *sc)
- 		ret = sysfs_create_link(&ar->hw->wiphy->dev.kobj, &cdev->device.kobj,
- 					"cooling_device");
- 		if (ret) {
--			ath11k_err(sc, "failed to create cooling device symlink\n");
-+			ath11k_err(ab, "failed to create cooling device symlink\n");
- 			goto err_thermal_destroy;
- 		}
- 
-@@ -204,18 +204,18 @@ int ath11k_thermal_register(struct ath11k_base *sc)
- 	return 0;
- 
- err_thermal_destroy:
--	ath11k_thermal_unregister(sc);
-+	ath11k_thermal_unregister(ab);
- 	return ret;
- }
- 
--void ath11k_thermal_unregister(struct ath11k_base *sc)
-+void ath11k_thermal_unregister(struct ath11k_base *ab)
- {
- 	struct ath11k *ar;
- 	struct ath11k_pdev *pdev;
- 	int i;
- 
--	for (i = 0; i < sc->num_radios; i++) {
--		pdev = &sc->pdevs[i];
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
- 		if (!ar)
- 			continue;
-diff --git a/drivers/net/wireless/ath/ath11k/thermal.h b/drivers/net/wireless/ath/ath11k/thermal.h
-index 3e39675ef7f5..83cb67686733 100644
---- a/drivers/net/wireless/ath/ath11k/thermal.h
-+++ b/drivers/net/wireless/ath/ath11k/thermal.h
-@@ -26,17 +26,17 @@ struct ath11k_thermal {
- };
- 
- #if IS_REACHABLE(CONFIG_THERMAL)
--int ath11k_thermal_register(struct ath11k_base *sc);
--void ath11k_thermal_unregister(struct ath11k_base *sc);
-+int ath11k_thermal_register(struct ath11k_base *ab);
-+void ath11k_thermal_unregister(struct ath11k_base *ab);
- int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state);
- void ath11k_thermal_event_temperature(struct ath11k *ar, int temperature);
- #else
--static inline int ath11k_thermal_register(struct ath11k_base *sc)
-+static inline int ath11k_thermal_register(struct ath11k_base *ab)
- {
- 	return 0;
- }
- 
--static inline void ath11k_thermal_unregister(struct ath11k_base *sc)
-+static inline void ath11k_thermal_unregister(struct ath11k_base *ab)
- {
- }
- 
+> On Thu, Oct 12, 2023 at 03:53:39PM +0300, Ilpo Järvinen wrote:
+> > On Wed, 11 Oct 2023, Bjorn Helgaas wrote:
+> > > On Mon, Sep 18, 2023 at 04:10:55PM +0300, Ilpo Järvinen wrote:
+> > > > pci_disable_link_state() lacks a symmetric pair. Some drivers want to
+> > > > disable ASPM during certain phases of their operation but then
+> > > > re-enable it later on. If pci_disable_link_state() is made for the
+> > > > device, there is currently no way to re-enable the states that were
+> > > > disabled.
+> > > 
+> > > pci_disable_link_state() gives drivers a way to disable specified ASPM
+> > > states using a bitmask (PCIE_LINK_STATE_L0S, PCIE_LINK_STATE_L1,
+> > > PCIE_LINK_STATE_L1_1, etc), but IIUC the driver can't tell exactly
+> > > what changed and can't directly restore the original state, e.g.,
+> > > 
+> > >   - PCIE_LINK_STATE_L1 enabled initially
+> > >   - driver calls pci_disable_link_state(PCIE_LINK_STATE_L0S)
+> > >   - driver calls pci_enable_link_state(PCIE_LINK_STATE_L0S)
+> > >   - PCIE_LINK_STATE_L0S and PCIE_LINK_STATE_L1 are enabled now
+> > > 
+> > > Now PCIE_LINK_STATE_L0S is enabled even though it was not initially
+> > > enabled.  Maybe that's what we want; I dunno.
+> > > 
+> > > pci_disable_link_state() currently returns success/failure, but only
+> > > r8169 and mt76 even check, and only rtl_init_one() (r8169) has a
+> > > non-trivial reason, so it's conceivable that it could return a bitmask
+> > > instead.
+> > 
+> > It's great that you suggested this since it's actually what also I've been 
+> > started to think should be done instead of this straightforward approach
+> > I used in V2. 
+> > 
+> > That is, don't have the drivers to get anything directly from LNKCTL
+> > but they should get everything through the API provided by the 
+> > disable/enable calls which makes it easy for the driver to pass the same
+> > value back into the enable call.
+> > 
+> > > > Add pci_enable_link_state() to remove ASPM states from the state
+> > > > disable mask.
+> > > > 
+> > > > Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+> > > > ---
+> > > >  drivers/pci/pcie/aspm.c | 42 +++++++++++++++++++++++++++++++++++++++++
+> > > >  include/linux/pci.h     |  2 ++
+> > > >  2 files changed, 44 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
+> > > > index 91dc95aca90f..f45d18d47c20 100644
+> > > > --- a/drivers/pci/pcie/aspm.c
+> > > > +++ b/drivers/pci/pcie/aspm.c
+> > > > @@ -1117,6 +1117,48 @@ int pci_disable_link_state(struct pci_dev *pdev, int state)
+> > > >  }
+> > > >  EXPORT_SYMBOL(pci_disable_link_state);
+> > > >  
+> > > > +/**
+> > > > + * pci_enable_link_state - Re-enable device's link state
+> > > > + * @pdev: PCI device
+> > > > + * @state: ASPM link states to re-enable
+> > > > + *
+> > > > + * Enable device's link state that were previously disable so the link is
+> > > 
+> > > "state[s] that were previously disable[d]" alludes to the use case you
+> > > have in mind, but I don't think it describes how this function
+> > > actually works.  This function just makes it possible to enable the
+> > > specified states.  The @state parameter may have nothing to do with
+> > > any previously disabled states.
+> > 
+> > Yes, it's what I've been thinking between the lines. But I see your point 
+> > that this API didn't make it easy/obvious as is.
+> > 
+> > Would you want me to enforce it too besides altering the API such that the 
+> > states are actually returned from disable call? (I don't personally find
+> > that necessary as long as the API pair itself makes it obvious what the 
+> > driver is expect to pass there.)
+> 
+> This was just a comment about the doc not matching the function
+> behavior.
+> 
+> I think we have to support pci_enable_link_state() even if the driver
+> hasn't previously called pci_disable_link_state(), so drivers have to
+> be able to specify the pci_enable_link_state() @state from scratch.
+> 
+> Does that answer the enforcement question?
+
+Yes.
+
 -- 
-2.17.1
+ i.
 
+> I don't think we can
+> really enforce anything other than that @state specifies valid ASPM
+> states.
+> 
+> Bjorn
+> 
+
+--8323329-1750157713-1697461032=:1986
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--8323329-1750157713-1697461032=:1986--
+
