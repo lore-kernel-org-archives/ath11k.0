@@ -4,61 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28DA8CDB465
-	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 13:27:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D87DCCDB483
+	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 15:05:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vjSrICDaGahVRyQXKUEiQu7nIxhMCQ0BoZYMYBcGWmU=; b=0/rbYkvMQPZFEe
-	VKyCiWcMK61r7H+TRI080BIIZfEkgeW+44FIsvVq1QmFzDs0EnOObpzG3xJ6TJJc76KE7O0PUZmJr
-	/aZQSCqJ0OdPbD3HApFYwCl8ARWFp8kJ25aeQPnRL3sbGps7bvcfr/axZwZBshMsT8qySK7ksz9R4
-	L54kis6DvcwmNJZX9dIv7eaiy+Ad7Atl7RpbnVrli+ClDtNoUo8801gNi2EqKl/Sr6hmg3HWcls4G
-	5VgfQuVGlkSHmytNP+BA4dRigTWGSBc1wRHmmocnA3HZdJ9ujMTvRZgqJZR9tLJCr1qW/7Hxtae+s
-	2v7wN16HYp4TEyHrQC4Q==;
+	List-Owner; bh=77gkFpkgsFIFa1O3RI8RLqGm334ri/zgxTAcIkRtdPA=; b=LnMc4yrgKOXbZ0
+	EYyEUczkE4cJQuNQvxj7OrIkSl0QhvEMPpWs6tFy6bsC5VuOY37R8LhAcUDQV6Yot1rJXNi7P7ulZ
+	vRt9hGHLMnbDTG2naub1y0ggWcp8Iajrf80/CVclbWCbBr15RTBpCtlSJQ3FQuHlbDDE3SalnL4L2
+	uE0qWz3A1+8RUSARiijgR+HpMNwTM/0ltFwp+Kqeo0vt/4C0O328tuPNJ42hhlGkeP+E7zLxczXxX
+	J/yLBIHmEsRdsih5a6zQ55rH4zOVKQ313jvSLLCAgO/j4eO9DpOoS9EuUdikn0BLMHsndIxwKAYQy
+	jFedssv9IA8pjyYcW6gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtT3k-00HWWt-0z;
-	Thu, 19 Oct 2023 13:27:32 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1qtUa8-0009sZ-1C;
+	Thu, 19 Oct 2023 15:05:04 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtT3f-00HWWQ-2F
+	id 1qtUa6-0009rT-0m
 	for ath11k@lists.infradead.org;
-	Thu, 19 Oct 2023 13:27:29 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id B3EA0CE2CC9;
-	Thu, 19 Oct 2023 13:27:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0A6C433C8;
-	Thu, 19 Oct 2023 13:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697722044;
-	bh=lPXHENQXTgIKjA0QHMUHzGz9n4glR1pHgOhWvBoM1O0=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=Ng7B2wwUV/nxvj2UxMpPsYWeR4gRJEEuMfWTxub09U/tW07tOJMeTTCRPCbliAjNp
-	 ieqyAN8rVYjp4eut1wl+3mR4umLiMyGBEF6mUutinwr4Jz9rYIirGGRWZfypBfPpFx
-	 R8YBsYjswTmD6iRAY4g9HlW1SCLrpORHsbviDILt3huL0uh2Mppgq8NklUfWpjfGzG
-	 ZOSIxTRBN74Q/c9R7FKiBsP16C23K1WoyK77ARcY2h+y7qn+aDxQjUPFpT1WSDfk+J
-	 NANbf1PUglVcD7uFbwp3nEG+kaMxzuesWcMtefpp89d+yAkSdM+fQ0R0w9pEPOkOiX
-	 I65a6Ru3YgJxg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: <mhi@lists.linux.dev>,  <ath11k@lists.infradead.org>,
-  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v4 3/3] wifi: ath11k: add firmware-2.bin support
-References: <20230727100430.3603551-1-kvalo@kernel.org>
-	<20230727100430.3603551-4-kvalo@kernel.org>
-	<563e8d01-beba-bff2-54e0-7629c462add0@quicinc.com>
-Date: Thu, 19 Oct 2023 16:27:21 +0300
-In-Reply-To: <563e8d01-beba-bff2-54e0-7629c462add0@quicinc.com> (Jeff
-	Johnson's message of "Thu, 27 Jul 2023 10:12:27 -0700")
-Message-ID: <87leby2152.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 19 Oct 2023 15:05:03 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JBTTpm015458;
+	Thu, 19 Oct 2023 15:04:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=qanLP9cmLj+5RCqf6a5RUipKVc/ue5qlpWjav39spJI=;
+ b=N55h2sDaxlOTr5cqyrZiCojGMyOT9NR8bSHs2F/gOzJ89WNMIKTr60vipNiPCo/+3Sns
+ s9GKmNGFGb/DYAaUt51KrBwTsRDOmqq9aI588puJePZ50WEq/k/OSQRhtSUQvdaVLgbU
+ gKP4qqzDrkaKFm7yAimUjb6A24J3vn3W3VAd/2CV+0vahAV8+ThzHw2QjQos7XCyFtHe
+ WoQsyi+0ix57YBvgsGD7uVVlOsc0OPZuI5GcFh50kThYUBmFCxPzQ4az5BbvH8dFKzTJ
+ a6se8ExXuw+V/Rqktd42HFEhGYI7WQgpkaL078xfrcxGyPb+KWMq8Vp/rR2lRG2yGep0 qg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tu14crsrq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 15:04:57 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39JF4ujJ005265
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 15:04:56 GMT
+Received: from [10.48.241.70] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 19 Oct
+ 2023 08:04:56 -0700
+Message-ID: <4233c8af-5911-40bf-b5ba-dd0a63863a45@quicinc.com>
+Date: Thu, 19 Oct 2023 08:04:55 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] wifi: ath11k: fix temperature event locking
+Content-Language: en-US
+To: Johan Hovold <johan+linaro@kernel.org>, Kalle Valo <kvalo@kernel.org>
+CC: Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
+        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
+References: <20231019104211.13769-1-johan+linaro@kernel.org>
+ <20231019104211.13769-2-johan+linaro@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20231019104211.13769-2-johan+linaro@kernel.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: LLFEGCv0SJ0xik2fPzfmGJ9UzfpCfQCs
+X-Proofpoint-ORIG-GUID: LLFEGCv0SJ0xik2fPzfmGJ9UzfpCfQCs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-19_14,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=703 clxscore=1011 suspectscore=0 impostorscore=0 adultscore=0
+ bulkscore=0 mlxscore=0 spamscore=0 phishscore=0 lowpriorityscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310190127
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231019_062728_091586_786236F1 
-X-CRM114-Status: GOOD (  23.84  )
+X-CRM114-CacheID: sfid-20231019_080502_399330_58F5485A 
+X-CRM114-Status: GOOD (  20.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,128 +94,76 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+On 10/19/2023 3:42 AM, Johan Hovold wrote:
+> The ath11k active pdevs are protected by RCU but the temperature event
+> handling code calling ath11k_mac_get_ar_by_pdev_id() was not marked as a
+> read-side critical section as reported by RCU lockdep:
 
-> On 7/27/2023 3:04 AM, Kalle Valo wrote:
->
->> From: Anilkumar Kolli <quic_akolli@quicinc.com>
->> Firmware IE containers can dynamically provide various information
->> what firmware supports. Also it can embed more than one image so
->> updating firmware is easy, user just needs to update one file in
->> /lib/firmware/.
->> The firmware API 2 or higher will use the IE container format, the
->> current API 1 will not use the new format but it still is supported
->> for some time. Firmware API 2 files are named as firmware-2.bin
->> (which contains both amss.bin and m3.bin images) and API 1 files are
->> amss.bin and m3.bin.
->> Currently ath11k PCI driver provides firmware binary (amss.bin) path
->> to
->> MHI driver, MHI driver reads firmware from filesystem and boots it. Add
->> provision to read firmware files from ath11k driver and provide the amss.bin
->> firmware data and size to MHI using a pointer.
->> Currently enum ath11k_fw_features is empty, the patches adding
->> features will
->> add the flags.
->> With AHB devices there's no amss.bin or m3.bin, so no changes in how
->> AHB
->> firmware files are used. But AHB devices can use future additions to the meta
->> data, for example in enum ath11k_fw_features.
->> Tested-on: WCN6855 hw2.0 PCI
->> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
->> Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
->> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
->> Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
->> Co-developed-by: Kalle Valo <quic_kvalo@quicinc.com>
->> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+How do I enable this? Just enable CONFIG_PROVE_RCU?
+Of course I'd also need to exercise the code path...
 
-[...]
+> 
+> 	=============================
+> 	WARNING: suspicious RCU usage
+> 	6.6.0-rc6 #7 Not tainted
+> 	-----------------------------
+> 	drivers/net/wireless/ath/ath11k/mac.c:638 suspicious rcu_dereference_check() usage!
+> 
+> 	other info that might help us debug this:
+> 
+> 	rcu_scheduler_active = 2, debug_locks = 1
+> 	no locks held by swapper/0/0.
+> 	...
+> 	Call trace:
+> 	...
+> 	 lockdep_rcu_suspicious+0x16c/0x22c
+> 	 ath11k_mac_get_ar_by_pdev_id+0x194/0x1b0 [ath11k]
+> 	 ath11k_wmi_tlv_op_rx+0xa84/0x2c1c [ath11k]
+> 	 ath11k_htc_rx_completion_handler+0x388/0x510 [ath11k]
+> 
+> Mark the code in question as an RCU read-side critical section to avoid
+> any potential use-after-free issues.
+> 
+> Fixes: a41d10348b01 ("ath11k: add thermal sensor device support")
+> Cc: stable@vger.kernel.org      # 5.7
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/net/wireless/ath/ath11k/wmi.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+> index 23ad6825e5be..980ff588325d 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+> @@ -8383,6 +8383,8 @@ ath11k_wmi_pdev_temperature_event(struct ath11k_base *ab,
+>   	ath11k_dbg(ab, ATH11K_DBG_WMI, "event pdev temperature ev temp %d pdev_id %d\n",
+>   		   ev->temp, ev->pdev_id);
+>   
+> +	rcu_read_lock();
+> +
+>   	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
+>   	if (!ar) {
+>   		ath11k_warn(ab, "invalid pdev id in pdev temperature ev %d", ev->pdev_id);
 
->> diff --git a/drivers/net/wireless/ath/ath11k/fw.c
->> b/drivers/net/wireless/ath/ath11k/fw.c
->> new file mode 100644
->> index 000000000000..5423c0be63fa
->> --- /dev/null
->> +++ b/drivers/net/wireless/ath/ath11k/fw.c
->> @@ -0,0 +1,157 @@
->> +// SPDX-License-Identifier: BSD-3-Clause-Clear
->> +/*
->> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
->
-> should the year be updated?
-> same question applies to the .h file
+aren't you missing an unlock() in this error path?
 
-I added 2023 to both files.
+perhaps have a goto cleanup that does both the unlock() and the kfree()?
 
->> +		case ATH11K_FW_IE_M3_IMAGE:
->> +			ath11k_dbg(ab, ATH11K_DBG_BOOT,
->> +				   "found m3 image ie (%zd B)\n",
->> +				   ie_len);
->> +
->> +			ab->fw.m3_data = data;
->> +			ab->fw.m3_len = ie_len;
->> +			break;
->> +		default:
->> +			ath11k_warn(ab, "Unknown FW IE: %u\n", ie_id);
->> +			break;
->> +		}
->> +
->> +		/* jump over the padding */
->> +		ie_len = ALIGN(ie_len, 4);
->> +
->> +		len -= ie_len;
->> +		data += ie_len;
->
-> is this always safe?
->
-> can we have a case where the original ie_len was <= len but the
-> aligned ie_len is > len, and hence this will lead to an integer
-> underflow of len (becoming a large unsigned value) and we'll continue
-> looping with a buffer overread?
+> @@ -8392,6 +8394,8 @@ ath11k_wmi_pdev_temperature_event(struct ath11k_base *ab,
+>   
+>   	ath11k_thermal_event_temperature(ar, ev->temp);
+>   
+> +	rcu_read_unlock();
+> +
+>   	kfree(tb);
+>   }
+>   
 
-A very good point, this isn't safe. I fixed it like this:
-
-		/* jump over the padding */
-		ie_len = ALIGN(ie_len, 4);
-
-		/* make sure there's space for padding */
-		if (ie_len > len)
-			break;
-
-		len -= ie_len;
-		data += ie_len;
-
-Does that look correct?
-
-> the same question applies to the code where the magic is checked & skipped
-
-Indeed, I fixed that like this:
-
-	/* jump over the padding */
-	magic_len = ALIGN(magic_len, 4);
-
-	/* make sure there's space for padding */
-	if (magic_len > len) {
-		ath11k_err(ab, "No space for padding after magic\n");
-		ret = -EINVAL;
-		goto err;
-	}
-
-	len -= magic_len;
-	data += magic_len;
-
-Here's the updated commit in pending branch:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=96e0d3887f65eaac7745ff9da7c89f0c59bb347d
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
