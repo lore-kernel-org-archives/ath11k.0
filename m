@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B6CFCDB47E
-	for <ath11k@archiver.kernel.org>; Wed, 18 Oct 2023 08:34:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25600CDB465
+	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 09:53:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=apLuebE+T38N5NrQ+I2lhWRfY5pCRyTBXaNDydr0vac=; b=IQYbWHHbKZvJtV
-	qnZnJXPkFl/YsyVA+HLd+0VwxGsNA3JoWmWG7aKoj5D0HeoyT3Mj4tJ43v2TggtkS3XKmnpOGhLSr
-	LiigHEMB08+JKOrxCfCsTyEoMfMpHa71q6AgL5bKxlP6Fb1p83fi05Mq+DVtvMrjOV2lfjokv03qg
-	uxR1o2aDrnsq+LqnmS2zFHhhqu08gQicO07X6I4J552vLnBlKXJ2T7XgqquKWBMF9tdcOHvsl0LWU
-	SXifi015UbtqPUXfE15l5fKJojTkB0p8qDzSuNgOUteABy5HuwdGWxH5vb2GNFJlx3jKLmdzDMenW
-	HHvIUwiSgCRQQG6cOKxA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=s/tEXnZLX32hsOAyj21ICOKafpESvFi/3GdT1aXCYxU=; b=D9rTzC/35IXZ7S
+	NVBW9d+yRO7Ghiyo+wjjimL5Uc03c6aZV0GexodQj9GACogkGjXHrUZZgxH5rZEi3FWISicjyWzmO
+	LqKDA0V0uZdlLlCp6YFPXidLwAZ+tWotZ7Xg7ByEKJZM4I8+2vJNDd6M02NFtEUPxpAh6cG7unUnO
+	BTxYqsCdMuMojw/4sNSjrxUdb5wYn4kJtc24fT/E2WPuub6BWRdWoT33q2EHsuTP9r/8/7AZoN73C
+	Qqcu5olnF49oGNsoCHqZixZ2EuQnNi9aN1A4uLPxnxMMf8At8Sl4Uxm3QYwBPwaPhNKuqHMmLMqF2
+	o14vYPriNqHMbxTIfxPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qt20O-00EAAi-0V;
-	Wed, 18 Oct 2023 08:34:16 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1qtPiq-00GstR-0i;
+	Thu, 19 Oct 2023 09:53:44 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qt20L-00EAA8-3B
+	id 1qtPim-00Gst2-0T
 	for ath11k@lists.infradead.org;
-	Wed, 18 Oct 2023 08:34:15 +0000
+	Thu, 19 Oct 2023 09:53:41 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 2C6E3CE2394;
-	Wed, 18 Oct 2023 08:34:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E5DFC433C8;
-	Wed, 18 Oct 2023 08:34:10 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 7011561B0C;
+	Thu, 19 Oct 2023 09:53:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F408C433C7;
+	Thu, 19 Oct 2023 09:53:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697618051;
-	bh=ItZbsx5rjZBBJaips/za6Qp1TpT1tQ6Gk+GqI7+4Qyc=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=C7N6mjYPnSzXbJuLTvu34JS8I1dAhDXlI8DFnQ8NVEXru3dLfK95GlRV6fV259JRR
-	 wcCZ2Tw1zXxOcqzMXrpjykpDFl1olNuzWtDzJYEkYCBL78X0v367vGI7R5OIHx5o8g
-	 Bowj8/gTtS+3ynbxurwhVVybRjpUAEyFASWLUsaKlBXYgKd2fmdb8GVKul3cqR/4Dl
-	 5id321FZ4fp9P72w+E7y1LcjLJ3FVO+JzL9DeLHyLYRMpUlzpVoRLfPe1VyKb1XhVc
-	 bG6uJ4Ob2B42vFenE7nTiU+tw7zI1I1u4gBGqTR5pWpkC8u+PB20pjZg+m/Tzr0PZa
-	 2SPAJ0yob0WSA==
-MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] wifi: ath11k: rename the wmi_sc naming convention to
- wmi_ab
+	s=k20201202; t=1697709219;
+	bh=WuLlGEqjoehEfby0RKfxXzF4AUhxhkyRp8krWGQEpZw=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=s/uuqQTKKeHSMWcRTOKEW+/NOuualBhDX/EUDLCUVsgLv/q5krD3HNZh6VGksGylO
+	 /Np7pFuyBI/6ReQXP+5LI0VGc6hHWyVCJ3ak2vVKNx3PI3iMf78CT27i+ZPMFmzYXm
+	 irFSN8VX6zHM85Y31JoWew53VvB+ODxvIc9qqoce4EgMrS3wftGkTI6weF0kkE8xnv
+	 Wc4sBDBOrGPeaWywc/fF+0u++Fgg1lXHQm+5PpSKHGNQ2NPGEAUg1jvClUO3EauWUr
+	 UMQvuegGf8s5NY4UTC/B7Gmep5vNROb9zwXNmPal6uQ8uV2c8zIN8WGphxVKMqAyJr
+	 x6Fe5kyCH+2Ag==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20231014032650.32605-2-quic_periyasa@quicinc.com>
-References: <20231014032650.32605-2-quic_periyasa@quicinc.com>
-To: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <169761804880.48072.5715328837742123686.kvalo@kernel.org>
-Date: Wed, 18 Oct 2023 08:34:10 +0000 (UTC)
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: <mhi@lists.linux.dev>,  <ath11k@lists.infradead.org>,
+  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] wifi: ath11k: qmi: refactor ath11k_qmi_m3_load()
+References: <20230727100430.3603551-1-kvalo@kernel.org>
+	<20230727100430.3603551-3-kvalo@kernel.org>
+	<d86d8f47-dbb2-1da6-794a-c020c317b4b5@quicinc.com>
+Date: Thu, 19 Oct 2023 12:53:36 +0300
+In-Reply-To: <d86d8f47-dbb2-1da6-794a-c020c317b4b5@quicinc.com> (Jeff
+	Johnson's message of "Thu, 27 Jul 2023 09:47:21 -0700")
+Message-ID: <87ttqn0wgv.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231018_013414_200046_4BAF1626 
-X-CRM114-Status: UNSURE (   6.97  )
+X-CRM114-CacheID: sfid-20231019_025340_225509_24CEDC59 
+X-CRM114-Status: UNSURE (   8.55  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,29 +76,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Karthikeyan Periyasamy <quic_periyasa@quicinc.com> wrote:
+Jeff Johnson <quic_jjohnson@quicinc.com> writes:
 
-> In WMI layer module, the identifier wmi_sc is used to represent
-> an instance of ath11k_wmi_base structure. However, within ath11k,
-> the convention is to use "ab" to represent an SoC "base" struct.
-> So change the all instances of wmi_sc to wmi_ab.
-> 
-> Compile tested only.
-> 
-> Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> On 7/27/2023 3:04 AM, Kalle Valo wrote:
+>> From: Kalle Valo <quic_kvalo@quicinc.com>
+>> Simple refactoring to make it easier to add firmware-2.bin support
+>> in the
+>> following patch.
+>> Earlier ath11k_qmi_m3_load() supported changing m3.bin contents
+>> while ath11k is
+>> running. But that's not going to actually work, m3.bin is supposed to the be
+>
+> nit: s/to the be/to be the/
 
-2 patches applied to ath-next branch of ath.git, thanks.
-
-265c038ac9c2 wifi: ath11k: rename the wmi_sc naming convention to wmi_ab
-2e66190e0d87 wifi: ath11k: rename the sc naming convention to ab
+Fixed in the pending branch, thanks.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20231014032650.32605-2-quic_periyasa@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
