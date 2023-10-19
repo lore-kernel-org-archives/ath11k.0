@@ -4,66 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0F1DCDB482
-	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 15:17:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1718BCDB482
+	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 15:22:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QBsYtywuhwbZSRLTRK1HhGsAJMSIw4fULg/kx4680oA=; b=kMSo2dhGJmiQ7w
-	mF6LupLy1kcjyRPjETKy5/aLVyHMP6dJd5cgfg3NiDzTRNoKMdvjglQjuRgqCi4jqPqyAOWlWRER1
-	Vvzicu+ZJN06EfRumOZAAq26CveGLfLxo2Sc4XUfQjylL2GVdNNFUgYC2slKcHAvE9na8V8qZvfQh
-	nhPC9HMWF9+YuasruPqPleemFR9qyBn5O1OA5Ry1uevEiT7HY3iWUHbOjzYuw89u2wdTgCTJcZg/6
-	Lh3rdeSli17k4NyCaRMbWvIDKsbFlGXMiaMp01aTG+/LJd2ZhsH123q3hkTsPkEkLT8YoS4lRoYl4
-	v5Z5t1NTHLWi5u/p5qmg==;
+	List-Owner; bh=EAToBvJw8nlPoL77sZ+sbjGDtH2UWLDzTzpLr/cYZFI=; b=xj04za/P81ncXb
+	Zy4M1XDkWWLY/49KF2Kym5w4GlYnRGCGIkgpabM5saXsY7Jqluzq7X4+HI5TElD8P6E54ep8VQ0uh
+	KU2Ap2oSN5NEJIuhYpvsrY0J/Bgf1OX1fJ3tY0COSnlOmYr4KIs1H+gZGH24zzpQRj8lx1kmJVAi8
+	B/zg0+esYm5C9FIDAhv6oz5bqyVsKB+wVTgGJ/GIne4mn9ksNFZQFImYG4GsAIS7glENVOOGZPeJF
+	Ct/txsjjq1zGk5XtoqPU4oS5vnqwtu+jntgBbnJv1EKphoR7EVOy6GnDjQvRBAsWR+Y2FGI4Wz3rN
+	Af5A6ffM9HXVyy5tR4TA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtUmQ-000B9f-0q;
-	Thu, 19 Oct 2023 15:17:46 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1qtUqn-000Bb7-2F;
+	Thu, 19 Oct 2023 15:22:17 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtUmM-000B8p-2B
+	id 1qtUql-000Bah-15
 	for ath11k@lists.infradead.org;
-	Thu, 19 Oct 2023 15:17:44 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id B201BB82984;
-	Thu, 19 Oct 2023 15:17:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E51C433C7;
-	Thu, 19 Oct 2023 15:17:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697728659;
-	bh=WtVNBWC5iNjbnScpjiJDxp8GdsgsTgsH5bVGO2dnDFk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ueOCtb8TLybx9AXSOcBSm2CkxjqD3rXqlLe1hBgQL4guFYt9A9ld77Tg2HjbC6I2O
-	 6GlFAo/ZlGKnRsw3N3mRy0cvXRyzLjTlWP+VGrLngQMb3movYXiFNSxTSOzAU9U2mG
-	 UoHaq0cADAyCel5zgFycAu8fqXLvYg0u/zeKKfgyF3JPWAGx7zN2CFhWPH1s2snv8M
-	 X5cRVu/cCbZa5jN/INltP35xMFxOzRNYAFRbj0r1TWHKmkq6eHkRLkvRCg8ZVp7jCJ
-	 2jTmgBsPOMXsx4+ot11p7+juPto3ClaY9SxL/ui8wZ8V0HQf3MO7wDKgU0q9AiQ//8
-	 Fb/KK4JAtRLfg==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qtUmL-0005Sf-2m;
-	Thu, 19 Oct 2023 17:17:42 +0200
-Date: Thu, 19 Oct 2023 17:17:41 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] wifi: ath11k: fix temperature event locking
-Message-ID: <ZTFIlS79DclOOjrS@hovoldconsulting.com>
-References: <20231019104211.13769-1-johan+linaro@kernel.org>
- <20231019104211.13769-2-johan+linaro@kernel.org>
- <4233c8af-5911-40bf-b5ba-dd0a63863a45@quicinc.com>
+	Thu, 19 Oct 2023 15:22:16 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39JERbDc005020;
+	Thu, 19 Oct 2023 15:22:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=0v2LvWG1tVNrZ6aUGcIw7ZwbbjE/fboEMBfgC/plseQ=;
+ b=lgiPLyIx8LcIdxy4/Z56HVuKnBQEITyMdd2tYBjq3F0t9VafBnbGvP7HIuKiRux2UFBg
+ R+WCa1eWGtDkyBl0yx9ie4vP1SSel7mHTjuUacGL8nlRwvSS/C5UOPRXp9HzggHsX9PK
+ qQq62mInG22h0JveXZTlm/OpPGppyRa1fNhw1JJiw1/E/OwpgZ56PA1R2pppUFQc9xJK
+ Kdn+hLyASnArIieYfjjvpWksy+dGQImAb3vIUhk/pkJYoBjLO/j1faUlsxpzcaiv4xFc
+ y0JwUC6+ZFz7Y2s9IVLY6FtWZfK+6ERv+IzAEl6Dh32yUe5UxsCOE/uP3ZBa/MBAXak7 ww== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tu67jr441-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 15:22:10 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39JFM9pN010981
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Oct 2023 15:22:10 GMT
+Received: from [10.48.241.70] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 19 Oct
+ 2023 08:22:09 -0700
+Message-ID: <626763fa-4691-4e81-9afb-77f60b017d74@quicinc.com>
+Date: Thu, 19 Oct 2023 08:22:09 -0700
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <4233c8af-5911-40bf-b5ba-dd0a63863a45@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] wifi: ath11k: add firmware-2.bin support
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <mhi@lists.linux.dev>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>
+References: <20230727100430.3603551-1-kvalo@kernel.org>
+ <20230727100430.3603551-4-kvalo@kernel.org>
+ <563e8d01-beba-bff2-54e0-7629c462add0@quicinc.com>
+ <87leby2152.fsf@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <87leby2152.fsf@kernel.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZNFuLNRZZ-m0d71pHTZpO9m-B6aQhZDL
+X-Proofpoint-ORIG-GUID: ZNFuLNRZZ-m0d71pHTZpO9m-B6aQhZDL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-19_14,2023-10-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 mlxlogscore=552 impostorscore=0 mlxscore=0 malwarescore=0
+ phishscore=0 spamscore=0 priorityscore=1501 bulkscore=0 adultscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310190129
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231019_081742_872107_8BA8C09A 
-X-CRM114-Status: GOOD (  15.01  )
+X-CRM114-CacheID: sfid-20231019_082215_488606_7979D9E0 
+X-CRM114-Status: UNSURE (   8.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,42 +96,18 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Oct 19, 2023 at 08:04:55AM -0700, Jeff Johnson wrote:
-> On 10/19/2023 3:42 AM, Johan Hovold wrote:
-> > The ath11k active pdevs are protected by RCU but the temperature event
-> > handling code calling ath11k_mac_get_ar_by_pdev_id() was not marked as a
-> > read-side critical section as reported by RCU lockdep:
+On 10/19/2023 6:27 AM, Kalle Valo wrote:
+> Here's the updated commit in pending branch:
 > 
-> How do I enable this? Just enable CONFIG_PROVE_RCU?
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=96e0d3887f65eaac7745ff9da7c89f0c59bb347d
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-Yeah, via CONFIG_PROVE_LOCKING.
 
-> Of course I'd also need to exercise the code path...
-
-Right, this one I hit when reading out the sensor temperature (e.g.
-using lm_sensors).
- 
-> > +	rcu_read_lock();
-> > +
-> >   	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
-> >   	if (!ar) {
-> >   		ath11k_warn(ab, "invalid pdev id in pdev temperature ev %d", ev->pdev_id);
-> 
-> aren't you missing an unlock() in this error path?
-> 
-> perhaps have a goto cleanup that does both the unlock() and the kfree()?
-
-Bah, I am, thanks for catching that.
-
-Spent too much time on scanning for further instances that I didn't
-check the first one properly. Sorry about that. Will send a v2.
-
-Johan
 
 -- 
 ath11k mailing list
