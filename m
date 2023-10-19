@@ -4,65 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DDB3CDB465
-	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 11:25:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28DA8CDB465
+	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 13:27:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FC/Xk7xgO1DcbD79iDm8pfIS1Edru7ZeJWjknaJ1F5U=; b=2bjwQOGn8d/C/P
-	CdVuiXVOgvw7Z6buaw+2xa2kxvIZ1bB2gn1LmGOKQbFIAFKpwPT2pyWRiWNy3unET66zAHGv9LaIs
-	9LnB0o4i9W3BhlgIHbLgB2cb2qa6+3flnc7H6dQxnM+mwTtMrO39JBCFWwVSNoUl5ao9xvWmtWGQc
-	4ffc+ImqkGxNfTbPZX+JhZd4Bx+MjZkLwdu6lPz8xATrT17DRBjLiM2KjJG6QbibVDEu3Br2dYGdV
-	YuIchfB0NeWwnD6Zfrq58sKI0qgInRXQJR1WdaC/+9qTF3L8Hbc0BMOMpnWW4NoWFEhFrXNZTFLcl
-	d1OpumwWQyY7xn/t1IKQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vjSrICDaGahVRyQXKUEiQu7nIxhMCQ0BoZYMYBcGWmU=; b=0/rbYkvMQPZFEe
+	VKyCiWcMK61r7H+TRI080BIIZfEkgeW+44FIsvVq1QmFzDs0EnOObpzG3xJ6TJJc76KE7O0PUZmJr
+	/aZQSCqJ0OdPbD3HApFYwCl8ARWFp8kJ25aeQPnRL3sbGps7bvcfr/axZwZBshMsT8qySK7ksz9R4
+	L54kis6DvcwmNJZX9dIv7eaiy+Ad7Atl7RpbnVrli+ClDtNoUo8801gNi2EqKl/Sr6hmg3HWcls4G
+	5VgfQuVGlkSHmytNP+BA4dRigTWGSBc1wRHmmocnA3HZdJ9ujMTvRZgqJZR9tLJCr1qW/7Hxtae+s
+	2v7wN16HYp4TEyHrQC4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtR9f-00H9bl-0B;
-	Thu, 19 Oct 2023 11:25:31 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1qtT3k-00HWWt-0z;
+	Thu, 19 Oct 2023 13:27:32 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtR9b-00H9bA-32
+	id 1qtT3f-00HWWQ-2F
 	for ath11k@lists.infradead.org;
-	Thu, 19 Oct 2023 11:25:29 +0000
+	Thu, 19 Oct 2023 13:27:29 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id EF505B827E4;
-	Thu, 19 Oct 2023 11:25:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50389C433C7;
-	Thu, 19 Oct 2023 11:25:25 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id B3EA0CE2CC9;
+	Thu, 19 Oct 2023 13:27:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0A6C433C8;
+	Thu, 19 Oct 2023 13:27:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697714725;
-	bh=2+1ko55W9laxkcWM8XgRn2t5ivATFYF/i+u9InS6YGg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=iFvREIZttd4PBZP5wFQgW5etIhNOod1lbEpO6DboYsnmHopXPF+nkcYHeWu7lFIk+
-	 9Awcuzz9OUOD2zYmvbf5UhZAr38qduuWe/CGusXmhCPLjHLgylJjajGteVdG/0LKt2
-	 BmjdUS/32FIfKQZFbbu/Xst0tGHXok7bZNidnvgNcFde6oYTZpnFNk2foNy2vPGwyq
-	 RfUPnMjI3Te7coftpneYAaFXFuRbouSldLU0Q36q0EjFjCJYlPrwr70Tq4Hpl/zeCx
-	 jf6ohOfVUtrgTHVTf8qHSGrxMRPqTUIO67yhyWT9pSduo8yWQokEpTLEQt7LnT2M9e
-	 sgVzSmYdHGn2Q==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1qtR9b-0000Xa-2E;
-	Thu, 19 Oct 2023 13:25:28 +0200
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>,
-	stable@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: fix htt pktlog locking
-Date: Thu, 19 Oct 2023 13:25:21 +0200
-Message-ID: <20231019112521.2071-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.41.0
+	s=k20201202; t=1697722044;
+	bh=lPXHENQXTgIKjA0QHMUHzGz9n4glR1pHgOhWvBoM1O0=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=Ng7B2wwUV/nxvj2UxMpPsYWeR4gRJEEuMfWTxub09U/tW07tOJMeTTCRPCbliAjNp
+	 ieqyAN8rVYjp4eut1wl+3mR4umLiMyGBEF6mUutinwr4Jz9rYIirGGRWZfypBfPpFx
+	 R8YBsYjswTmD6iRAY4g9HlW1SCLrpORHsbviDILt3huL0uh2Mppgq8NklUfWpjfGzG
+	 ZOSIxTRBN74Q/c9R7FKiBsP16C23K1WoyK77ARcY2h+y7qn+aDxQjUPFpT1WSDfk+J
+	 NANbf1PUglVcD7uFbwp3nEG+kaMxzuesWcMtefpp89d+yAkSdM+fQ0R0w9pEPOkOiX
+	 I65a6Ru3YgJxg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: <mhi@lists.linux.dev>,  <ath11k@lists.infradead.org>,
+  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v4 3/3] wifi: ath11k: add firmware-2.bin support
+References: <20230727100430.3603551-1-kvalo@kernel.org>
+	<20230727100430.3603551-4-kvalo@kernel.org>
+	<563e8d01-beba-bff2-54e0-7629c462add0@quicinc.com>
+Date: Thu, 19 Oct 2023 16:27:21 +0300
+In-Reply-To: <563e8d01-beba-bff2-54e0-7629c462add0@quicinc.com> (Jeff
+	Johnson's message of "Thu, 27 Jul 2023 10:12:27 -0700")
+Message-ID: <87leby2152.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231019_042528_136320_2FBCF791 
-X-CRM114-Status: UNSURE (   8.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231019_062728_091586_786236F1 
+X-CRM114-Status: GOOD (  23.84  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,52 +75,123 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The ath11k active pdevs are protected by RCU but the htt pktlog handling
-code calling ath11k_mac_get_ar_by_pdev_id() was not marked as a
-read-side critical section.
+Jeff Johnson <quic_jjohnson@quicinc.com> writes:
 
-Mark the code in question as an RCU read-side critical section to avoid
-any potential use-after-free issues.
+> On 7/27/2023 3:04 AM, Kalle Valo wrote:
+>
+>> From: Anilkumar Kolli <quic_akolli@quicinc.com>
+>> Firmware IE containers can dynamically provide various information
+>> what firmware supports. Also it can embed more than one image so
+>> updating firmware is easy, user just needs to update one file in
+>> /lib/firmware/.
+>> The firmware API 2 or higher will use the IE container format, the
+>> current API 1 will not use the new format but it still is supported
+>> for some time. Firmware API 2 files are named as firmware-2.bin
+>> (which contains both amss.bin and m3.bin images) and API 1 files are
+>> amss.bin and m3.bin.
+>> Currently ath11k PCI driver provides firmware binary (amss.bin) path
+>> to
+>> MHI driver, MHI driver reads firmware from filesystem and boots it. Add
+>> provision to read firmware files from ath11k driver and provide the amss.bin
+>> firmware data and size to MHI using a pointer.
+>> Currently enum ath11k_fw_features is empty, the patches adding
+>> features will
+>> add the flags.
+>> With AHB devices there's no amss.bin or m3.bin, so no changes in how
+>> AHB
+>> firmware files are used. But AHB devices can use future additions to the meta
+>> data, for example in enum ath11k_fw_features.
+>> Tested-on: WCN6855 hw2.0 PCI
+>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+>> Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
+>> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+>> Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
+>> Co-developed-by: Kalle Valo <quic_kvalo@quicinc.com>
+>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Cc: stable@vger.kernel.org      # 5.6
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
+[...]
 
-Here's one more...
+>> diff --git a/drivers/net/wireless/ath/ath11k/fw.c
+>> b/drivers/net/wireless/ath/ath11k/fw.c
+>> new file mode 100644
+>> index 000000000000..5423c0be63fa
+>> --- /dev/null
+>> +++ b/drivers/net/wireless/ath/ath11k/fw.c
+>> @@ -0,0 +1,157 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause-Clear
+>> +/*
+>> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
+>
+> should the year be updated?
+> same question applies to the .h file
 
-Johan
+I added 2023 to both files.
 
- drivers/net/wireless/ath/ath11k/dp_rx.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+>> +		case ATH11K_FW_IE_M3_IMAGE:
+>> +			ath11k_dbg(ab, ATH11K_DBG_BOOT,
+>> +				   "found m3 image ie (%zd B)\n",
+>> +				   ie_len);
+>> +
+>> +			ab->fw.m3_data = data;
+>> +			ab->fw.m3_len = ie_len;
+>> +			break;
+>> +		default:
+>> +			ath11k_warn(ab, "Unknown FW IE: %u\n", ie_id);
+>> +			break;
+>> +		}
+>> +
+>> +		/* jump over the padding */
+>> +		ie_len = ALIGN(ie_len, 4);
+>> +
+>> +		len -= ie_len;
+>> +		data += ie_len;
+>
+> is this always safe?
+>
+> can we have a case where the original ie_len was <= len but the
+> aligned ie_len is > len, and hence this will lead to an integer
+> underflow of len (becoming a large unsigned value) and we'll continue
+> looping with a buffer overread?
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 62bc98852f0f..0acbf53ae991 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1621,14 +1621,18 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab, struct sk_buff *skb)
- 	u8 pdev_id;
- 
- 	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_INFO_PDEV_ID, data->hdr);
-+
-+	rcu_read_lock();
- 	ar = ath11k_mac_get_ar_by_pdev_id(ab, pdev_id);
- 	if (!ar) {
- 		ath11k_warn(ab, "invalid pdev id %d on htt pktlog\n", pdev_id);
--		return;
-+		goto out;
- 	}
- 
- 	trace_ath11k_htt_pktlog(ar, data->payload, hdr->size,
- 				ar->ab->pktlog_defs_checksum);
-+out:
-+	rcu_read_unlock();
- }
- 
- static void ath11k_htt_backpressure_event_handler(struct ath11k_base *ab,
+A very good point, this isn't safe. I fixed it like this:
+
+		/* jump over the padding */
+		ie_len = ALIGN(ie_len, 4);
+
+		/* make sure there's space for padding */
+		if (ie_len > len)
+			break;
+
+		len -= ie_len;
+		data += ie_len;
+
+Does that look correct?
+
+> the same question applies to the code where the magic is checked & skipped
+
+Indeed, I fixed that like this:
+
+	/* jump over the padding */
+	magic_len = ALIGN(magic_len, 4);
+
+	/* make sure there's space for padding */
+	if (magic_len > len) {
+		ath11k_err(ab, "No space for padding after magic\n");
+		ret = -EINVAL;
+		goto err;
+	}
+
+	len -= magic_len;
+	data += magic_len;
+
+Here's the updated commit in pending branch:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=96e0d3887f65eaac7745ff9da7c89f0c59bb347d
+
 -- 
-2.41.0
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
