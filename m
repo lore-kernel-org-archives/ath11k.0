@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3689C41513
-	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 10:43:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7887CDB487
+	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 10:43:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/KOWFayB01DyMMPwto17judzxIiE/8gTHsIwyfpCPHE=; b=KP6Mr93UE7NnFN
-	Esb3Bme7UbybDvvm50pGyd8jJE3CMuWtfGsO+HIbigxjFFvB5vn2hj243Gq0ckUAqw43usSXU4Lgp
-	PnSAtUt+9PePtmfiUy/tnafwyrMRh8FlfH1ziW5p8xjuZ434gjODRHdlWNOYci6o17fhPxI2io71c
-	YA4lMs5ZcoTFQWS0q0SrCzzeJM4QFAtCgexmN4Z4huJke5Yc4CaPfN/JbR5IJ+WwC7+Bawy0EVsoU
-	nxVYOj42WEZnA5i6CG4Xh0lno8wVFPC+PG44CaUord1jF0kBsEpuzgFL09gwxgKa/4btUVVO9KcQT
-	1iLEadGywPjC/FHGqx4Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9GeQeCVqlnmDgvQYV9cS7N96CiAO9sQgUmVUmgB4ycM=; b=yBTne4YH3IxQ/K
+	/orUDGhaUMB66t31y51iZPb1jlP2J0MFdOjAREKwyHp/T9ovHo0+wt2Hx1T4XEBO1gc6moH7XuWvM
+	uejaxBHLWrd17bsJIBmPE4bMmYbho8vPF6DW7c9QY2m7Z1/En1yQXCeXEDjiw+qfFfVLy/ABoA50x
+	tr51VV8I8b1jXFt1waLyG98QRgDRl/eRshDLkNWUBySdmiwXxp68oEZcs7GPl+x6zDK1NBXT510Fi
+	cjTh66nn0tge2Y/h5dNw89/JkqbKm4Wa9jnVzKk5iuSct9wnxNOiC+vrYXYKER5uNpXO4N/6u9zJq
+	MDTUjMuTFv3FL0rBuj4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtQUl-00H3u6-1B;
-	Thu, 19 Oct 2023 10:43:15 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1qtQUk-00H3ti-2l;
+	Thu, 19 Oct 2023 10:43:14 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtQUi-00H3qU-1P
+	id 1qtQUh-00H3qE-27
 	for ath11k@lists.infradead.org;
-	Thu, 19 Oct 2023 10:43:13 +0000
+	Thu, 19 Oct 2023 10:43:12 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 6428BCE2B0B;
+	by ams.source.kernel.org (Postfix) with ESMTP id 33A92B827A4;
 	Thu, 19 Oct 2023 10:43:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A9BEC433CA;
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85AD0C433C7;
 	Thu, 19 Oct 2023 10:43:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1697712189;
-	bh=+65hIKor49TrWPpX1MZLxHjHl0a9EdHwn7yekofvZVA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kz3CVktyrqbK/5jucRIqPe4Bg8/2aUDx5aCC5oLs93UOJ5tvN73wKlRdWq5NTtP+W
-	 Mc/TknTyh1iGgz1UoQOadGAH77q/0zr3L/5nkjnJtDc+TUTjMLONonwsLMMLi6/Pew
-	 3Hwej3Jtows5gPsRuMU8pPa6+PjI7jxF7eVJ7dgWctg0OqH626yg0pGxs/mE26M9db
-	 YX16xbHr8mJY4dsZzDyBYrnUHJXh3pWb/3FbYzuzp/f1/2DMdPtAgJhkyHsBhuSfZb
-	 MLmLetIvMB22OLHJZdUvpmCg7XGbuTQ0WektV7RzW8qKEaH8S6nGaT9Zw+wF5tuqb1
-	 /yYqoFvMDy3gw==
+	bh=iUSdV9CFZmw4yRgGQyhrpABX6aSvA+ch603XWDzFF6E=;
+	h=From:To:Cc:Subject:Date:From;
+	b=PB9JH2lKw92emWDbT8O4k989xfioIzTWSkvZC36EY8GmomzMrdlUwFj4um5PleG2z
+	 hznwRuYuSvJ8T8+EIGqgVZtWx/AT2wJNhU/UfsRdFhuglbl1cxgoxKWSPmU6/k5Lko
+	 6dTGH7Cn3kG8FsN1q9y5vSYfugN/ExifmxhFdGzrT4caXP3KXxixJz73kvD4Ni4OqO
+	 29pbGcHEbRlBWiYkodZAbWHqSS6PJmFheaac1qMXj4DLI1HBV7SFkv/VlOkw6vY2ri
+	 RmjMnDd7yN3zZTbcCL0ZOBK4eZ6cs0vCUS451hl7RqIFEvGv9L14kL+XG/MiNFAOWO
+	 9CYL1/56G+zPA==
 Received: from johan by xi.lan with local (Exim 4.96)
 	(envelope-from <johan+linaro@kernel.org>)
-	id 1qtQUi-0003ao-2U;
+	id 1qtQUh-0003ak-2v;
 	Thu, 19 Oct 2023 12:43:12 +0200
 From: Johan Hovold <johan+linaro@kernel.org>
 To: Kalle Valo <kvalo@kernel.org>
@@ -53,18 +53,15 @@ Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>,
-	stable@vger.kernel.org
-Subject: [PATCH 2/2] wifi: ath11k: fix dfs radar event locking
-Date: Thu, 19 Oct 2023 12:42:11 +0200
-Message-ID: <20231019104211.13769-3-johan+linaro@kernel.org>
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/2] wifi: ath11k: fix event locking
+Date: Thu, 19 Oct 2023 12:42:09 +0200
+Message-ID: <20231019104211.13769-1-johan+linaro@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231019104211.13769-1-johan+linaro@kernel.org>
-References: <20231019104211.13769-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231019_034312_650573_832A2439 
-X-CRM114-Status: UNSURE (   7.89  )
+X-CRM114-CacheID: sfid-20231019_034311_846180_3EE5905C 
+X-CRM114-Status: UNSURE (   5.15  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,42 +79,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The ath11k active pdevs are protected by RCU but the DFS radar event
-handling code calling ath11k_mac_get_ar_by_pdev_id() was not marked as a
-read-side critical section.
+RCU lockdep reported suspicious RCU usage when accessing the temperature
+sensor. Inspection revealed that the DFS radar event code was also
+missing the required RCU read-side critical section marking.
 
-Mark the code in question as an RCU read-side critical section to avoid
-any potential use-after-free issues.
+Johan
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Cc: stable@vger.kernel.org      # 5.6
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 980ff588325d..fe6b70a503d0 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -8337,6 +8337,8 @@ ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab, struct sk_buff
- 		   ev->detector_id, ev->segment_id, ev->timestamp, ev->is_chirp,
- 		   ev->freq_offset, ev->sidx);
- 
-+	rcu_read_lock();
-+
- 	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
- 
- 	if (!ar) {
-@@ -8354,6 +8356,8 @@ ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab, struct sk_buff
- 		ieee80211_radar_detected(ar->hw);
- 
- exit:
-+	rcu_read_unlock();
-+
- 	kfree(tb);
- }
- 
+Johan Hovold (2):
+  wifi: ath11k: fix temperature event locking
+  wifi: ath11k: fix dfs radar event locking
+
+ drivers/net/wireless/ath/ath11k/wmi.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
 -- 
 2.41.0
 
