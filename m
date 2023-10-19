@@ -4,63 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37119CDB489
-	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 15:33:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31A32CDB482
+	for <ath11k@archiver.kernel.org>; Thu, 19 Oct 2023 15:54:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=eB7Gk1HWMcE7jTpSiqc6F55mzjfuW11MtyfNvSW8ZuY=; b=okFWubeM/7OH7p
-	v/6RqcsUHezHPKGcQ8Fy4ZaG8OfVlDTPnvqe1+VqsXLsTLIeS08p9k7MwiiAHvj3AGm7WqWowx5/O
-	+/R7vPb7juMxzY2qqlV6Z8aKIBUr+vS7AXu9xLvEY1dIla6LiUOAR5WE3WqlRQst+egehp70KAlCG
-	CrCbiGWx9fmvJz1v3PGEd13sK2mXAmjJrbTsTJzaPAjUwdNmXWis9hAZc31BvAJs98xaa9u4nAor6
-	gPb/kAkjNxK3kE6oaHl6yt1q+0xdnK5eN6397RUB6N8eYHOH3TfV9cK+biUVtMHCXTXqzD187uUhH
-	uUfRqCkYl1bxo9C70X6A==;
+	List-Owner; bh=k8LIy7DpU9ngg0RRQLgDJEUEeGwb32UlbRkpROf3+No=; b=FRmW6Q9/Ak4McH
+	umpZbNpQDs1NhdARDwMJ3hrgJKNpFe1aIu2OGs1HEUVl3+rDpxOsiRJIPtCvX/Maq7ZlQetK4uXLK
+	X7CgtsDJTbZZ6bNvQ8GZhuCA9vcX5UXWBLTQcrsrjoywMhWUxyILjax9z3dd1gB5emJjfHtC5iNVG
+	yffPCjcDc6HzluGcbzasTJavThSh3O8nlhfDd4xppQL+nrEEvyCeng+tF6A/3LIfHFB9ztw8tQtTW
+	Ig934md/ckLAJQHzyB9zaCe5uyb6FS+G5qyfEhriTpUo9VFq/3fCmSJIhjHlOfkpKb//wshv4H3o7
+	d3CNyJG8HPkJdYioKheA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtV1C-000CZU-17;
-	Thu, 19 Oct 2023 15:33:02 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1qtVLV-000GGy-2E;
+	Thu, 19 Oct 2023 15:54:01 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qtV18-000CXt-2p
+	id 1qtVLS-000GFh-0q
 	for ath11k@lists.infradead.org;
-	Thu, 19 Oct 2023 15:33:00 +0000
+	Thu, 19 Oct 2023 15:53:59 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 663D3B825E1;
-	Thu, 19 Oct 2023 15:32:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71960C433CA;
-	Thu, 19 Oct 2023 15:32:56 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id 9E71CB8290B;
+	Thu, 19 Oct 2023 15:53:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1B09C433C8;
+	Thu, 19 Oct 2023 15:53:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1697729576;
-	bh=6AUvT9lmCnlzH7BLowOH+X3uuIrFpt3l7ALwRPy7k48=;
+	s=k20201202; t=1697730836;
+	bh=wa4WXUdBJDSprT0pug2ujhG4LLF9gr+xArqonoxADzw=;
 	h=From:To:Cc:Subject:Date:From;
-	b=eSSR0/rRNY8AZ6icxglMEVkboZR646ZlZMHxFOfc7LUuqbxuZXnuQ2m/uouOp/RBR
-	 QxGBBEa91unkbPNTEApm4rpxBDC7RrTRXkaGniCCFWxnpIts0wAYFTRR08iBMCxOqd
-	 xT3j7+RHWKQP+L+0olZsY+oHPd8tzkg0DJRMxOGssDivldEvqrRn30jYvqLIlXAkuT
-	 Fv2lJ26ZCT4xV9apTy4FZQtJfdKEaDDBmA1BVJUW22H5ntf04SW5LVr9ETR5az90DS
-	 cgGE+P8/B6z3MdOZlOZQKu4YhHnS6SNsivEx/fpL73ADd4LFIa6fOsNtNGBb4M1RgQ
-	 R3AwqSLXf332w==
+	b=sXKWpTylvlESxh+A9Ob0R/6Ik+gMuidD6esDgwByGAV8s6TPXDJolqJ8+l+mEAHYh
+	 d1M59feYyobvivShElD7sHFA1952PL4IhTuygo2gVnCTiM2/+aOmL/VMxuVNXQlC4B
+	 Pkvr7U9z4QIB8r2Jy2rKHXVbYa09DwZn3Xd8/Aeg4Ou4eBbaFlpGA3Be3uOG7gU4aZ
+	 WtR6mxZnlEKNWalKmfIDIYPn/XQKlFxyTwnjR2f24gw0BqI3BQbR4AIdNxYFE0gNg4
+	 RyNzKWp8mWJSCHYMNKmjQcGRBOQ8FnAi+LDtskbRn2XKQ/Ygc/VHfWOZL9VNFS+mPd
+	 ljpK+AzNp49rg==
 Received: from johan by xi.lan with local (Exim 4.96)
 	(envelope-from <johan+linaro@kernel.org>)
-	id 1qtV19-0006t8-1D;
-	Thu, 19 Oct 2023 17:33:00 +0200
+	id 1qtVLT-0008Eg-2K;
+	Thu, 19 Oct 2023 17:53:59 +0200
 From: Johan Hovold <johan+linaro@kernel.org>
 To: Kalle Valo <kvalo@kernel.org>
 Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 0/2] wifi: ath11k: fix event locking
-Date: Thu, 19 Oct 2023 17:31:13 +0200
-Message-ID: <20231019153115.26401-1-johan+linaro@kernel.org>
+	Johan Hovold <johan+linaro@kernel.org>,
+	stable@vger.kernel.org,
+	Carl Huang <quic_cjhuang@quicinc.com>
+Subject: [PATCH] wifi: ath11k: fix gtk offload status event locking
+Date: Thu, 19 Oct 2023 17:53:42 +0200
+Message-ID: <20231019155342.31631-1-johan+linaro@kernel.org>
 X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231019_083259_044812_57203C4A 
-X-CRM114-Status: UNSURE (   6.02  )
+X-CRM114-CacheID: sfid-20231019_085358_456720_9CD89E10 
+X-CRM114-Status: UNSURE (   8.77  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,25 +80,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-RCU lockdep reported suspicious RCU usage when accessing the temperature
-sensor. Inspection revealed that the DFS radar event code was also
-missing the required RCU read-side critical section marking.
+The ath11k active pdevs are protected by RCU but the gtk offload status
+event handling code calling ath11k_mac_get_arvif_by_vdev_id() was not
+marked as a read-side critical section.
+
+Mark the code in question as an RCU read-side critical section to avoid
+any potential use-after-free issues.
+
+Fixes: a16d9b50cfba ("ath11k: support GTK rekey offload")
+Cc: stable@vger.kernel.org      # 5.18
+Cc: Carl Huang <quic_cjhuang@quicinc.com>
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+
+...and here's one more, this time using the
+ath11k_mac_get_arvif_by_vdev_id() helper.
 
 Johan
 
 
-Changes in v2
- - add the missing rcu_read_unlock() to an
-   ath11k_wmi_pdev_temperature_event() error path as noticed by Jeff
+ drivers/net/wireless/ath/ath11k/wmi.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-
-Johan Hovold (2):
-  wifi: ath11k: fix temperature event locking
-  wifi: ath11k: fix dfs radar event locking
-
- drivers/net/wireless/ath/ath11k/wmi.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index f0eac6cb84fd..78af659b1ccd 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -8618,12 +8618,13 @@ static void ath11k_wmi_gtk_offload_status_event(struct ath11k_base *ab,
+ 		return;
+ 	}
+ 
++	rcu_read_lock();
++
+ 	arvif = ath11k_mac_get_arvif_by_vdev_id(ab, ev->vdev_id);
+ 	if (!arvif) {
+ 		ath11k_warn(ab, "failed to get arvif for vdev_id:%d\n",
+ 			    ev->vdev_id);
+-		kfree(tb);
+-		return;
++		goto exit;
+ 	}
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI, "event gtk offload refresh_cnt %d\n",
+@@ -8640,6 +8641,8 @@ static void ath11k_wmi_gtk_offload_status_event(struct ath11k_base *ab,
+ 
+ 	ieee80211_gtk_rekey_notify(arvif->vif, arvif->bssid,
+ 				   (void *)&replay_ctr_be, GFP_ATOMIC);
++exit:
++	rcu_read_unlock();
+ 
+ 	kfree(tb);
+ }
 -- 
 2.41.0
 
