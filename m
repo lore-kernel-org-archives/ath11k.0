@@ -4,63 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E6F8C25B47
-	for <ath11k@archiver.kernel.org>; Wed, 25 Oct 2023 09:51:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED265C0032E
+	for <ath11k@archiver.kernel.org>; Wed, 25 Oct 2023 09:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lKbmR8WT+L/N1TQIo3wmbdEKLr9GYDNx+aYchogK2Kw=; b=Yf6AusQMlaci1V
-	NHNIKG8zzoboj49MidvKEESt9dNiLo/9iAdvocmq5pmEippw9ki4fU10pbltQfsCqhLMvVcPFeSy+
-	tD6oMMGrXS7SUpPDsctA/4Eqsn6hD0HAr68WNopsPRGdDUcr49OsccP0wJbX/FpQn9M6am3Nwx2VZ
-	LMqFc0p/8Xe7pgaC/4a3n5aRNxNCWGLXuYYdAnkHP7L++kbvyTQvw2mIFwBZS0idUAndTWLWlgauF
-	hoKU0gnVlCeyb73dkpACfRB+Xy0rsvcZ8ak/Y0lJguaqv4UzOb0/RRljFDhJFBYl6ONxKd9iWj410
-	Pow0maE/SEp1IXPfLYrw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+qT41OEbEDlfLBzmWYTQcMjqxPAhdEy2kLM4g4PGT7w=; b=jqzgif/3l6HGoz
+	3ybagFWtMwEB/w6XAbHNq7pQwb1O6KE13KVhIoU5n4bHqAQZlIm0uvTf+Fhro2dAXulYzaidZITQu
+	FY1DjHMIE/Zvl8bNr+I9prcCXr4VVIyGjmP3naW7fRNOgQkDyY/6tCyXQrhgVDJS2/1s08ZyKtbyO
+	ArYIDu7BnqwjDOhOyAgqe544CgKVhJcBxlSbuxYAMCrWHP/+RBfaIF93sw5wo1Flqpcl/fvt7bJNv
+	Q+Qzlmqtfoyr2x2oUIL6LWFrRpgs6GQfCmZ7CWouCMc5hjbiWbnX23c8gtBMntAiogcNUbgWEYGNy
+	QHmeJT1sCh2WoZOAwBLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvaXp-00BsQT-20;
-	Wed, 25 Oct 2023 09:51:21 +0000
+	id 1qvabE-00BsuD-2B;
+	Wed, 25 Oct 2023 09:54:52 +0000
 Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvaXn-00BsPX-0G
+	id 1qvabB-00Bstk-0H
 	for ath11k@lists.infradead.org;
-	Wed, 25 Oct 2023 09:51:20 +0000
+	Wed, 25 Oct 2023 09:54:50 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id B0E34CE24F0;
-	Wed, 25 Oct 2023 09:51:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50ADBC433C7;
-	Wed, 25 Oct 2023 09:51:12 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 6F674CE2360
+	for <ath11k@lists.infradead.org>; Wed, 25 Oct 2023 09:54:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B126FC433C8;
+	Wed, 25 Oct 2023 09:54:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698227473;
-	bh=+cg3kYM3oFry35hZbmbwSVjd6ek+Za/QIdrk5JlXVCU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=Mk3aBPSYzxfaNtQwgFmWCAiO3PKRxQWVvwar4NEUMMiOvsIundUsqhpzRFFMObBCE
-	 QveXtgBd9HCA98TLqFTA7yovLjoI21iZM1b2zsZT+w7MRzWAckSLuIKE2YobbE61dQ
-	 sgLdpJ/XgcIOmVN79MziCxoVSJzNyhWmXslfB81mka1hPexK5GDEhlcoSjoBwK0fto
-	 bW9Wzd1ZHIMD7kMd60aPMQtGNiYylkYtgeclMtVyBvZnyl1bTaNtztUOlC3YFUNyfZ
-	 2+dIJhrxa0fr8p8lwqkv2YcQ8y8axKaoishIr0bOR+6khcx8rQgNlfypsgPtQ8fVrF
-	 QAAdapnSoULUA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>,  ath11k@lists.infradead.org,
-  linux-wireless@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] wifi: ath11k: fix temperature event locking
-References: <20231019153115.26401-1-johan+linaro@kernel.org>
-	<20231019153115.26401-2-johan+linaro@kernel.org>
-	<87sf60xgs8.fsf@kernel.org> <ZTfUswqVkAgJvnye@hovoldconsulting.com>
-Date: Wed, 25 Oct 2023 12:51:10 +0300
-In-Reply-To: <ZTfUswqVkAgJvnye@hovoldconsulting.com> (Johan Hovold's message
-	of "Tue, 24 Oct 2023 16:29:07 +0200")
-Message-ID: <87bkcnxc6p.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1698227686;
+	bh=yaAsiujagvZOvQ/PZwj5xUzfTRKtOWgXCQg/2408jBA=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=m+tu1xFnEA69yPdgsePYfRs0i3vP7Lxr6ub4xdGpFSPPKNu1iDZBP6N7rXG83tZvL
+	 Zq2sgl/rpQvJu8qk7ABR0hNPAyCpr5ENBTkezMMwgEUXHflTeVfZYyb5iGtSUCMt06
+	 x/h76Ylb+so3oF9ZZV9AarumiUad/KPDN2F6C8jojq8UX4C3cWJ3d/wSKxQcLWTKdA
+	 R87jTfWBF54nB3ufllxIoWKUogEsSJ6/WPtSUXTJ5ROCbM7NDqw2vo8DDe942TLise
+	 W1OLTG0+UI+J3D8daZkfnQQB2um5XRP8qs9dwViO+J01sbwds7qmH7kPamzBWp/okK
+	 gR/Sq9vjVtOEQ==
 MIME-Version: 1.0
+Subject: Re: [PATCH v4 2/3] wifi: ath11k: qmi: refactor ath11k_qmi_m3_load()
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230727100430.3603551-3-kvalo@kernel.org>
+References: <20230727100430.3603551-3-kvalo@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: mhi@lists.linux.dev, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <169822768265.891844.9494809896760074747.kvalo@kernel.org>
+Date: Wed, 25 Oct 2023 09:54:45 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231025_025119_299803_F59EE476 
-X-CRM114-Status: GOOD (  15.89  )
+X-CRM114-CacheID: sfid-20231025_025449_294564_B5BB133F 
+X-CRM114-Status: GOOD (  16.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,41 +72,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Johan Hovold <johan@kernel.org> writes:
+Kalle Valo <kvalo@kernel.org> wrote:
 
-> On Tue, Oct 24, 2023 at 04:59:35PM +0300, Kalle Valo wrote:
->> Johan Hovold <johan+linaro@kernel.org> writes:
->> 
->> > The ath11k active pdevs are protected by RCU but the temperature event
->> > handling code calling ath11k_mac_get_ar_by_pdev_id() was not marked as a
->> > read-side critical section as reported by RCU lockdep:
->
->> On what hardware and firmware version did you test this? As there's so
->> many different combos we use Tested-on tag to provide that information
->> in the commit message:
->> 
->> https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches#tested-on_tag
->> 
->> I can add that if you let me know what you used.
->
-> I hit this on the Lenovo Thinkpad X13s and I guess the tag should be:
->
-> Tested-on: QCNFA765 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> Simple refactoring to make it easier to add firmware-2.bin support in the
+> following patch.
+> 
+> Earlier ath11k_qmi_m3_load() supported changing m3.bin contents while ath11k is
+> running. But that's not going to actually work, m3.bin is supposed to be the
+> same during the lifetime of ath11k, for example we don't support changing the
+> firmware capabilities on the fly. Due to this ath11k requests m3.bin firmware
+> file first and only then checks m3_mem->vaddr, so we are basically requesting
+> the firmware file even if it's not needed. Reverse the code so that m3_mem
+> buffer is checked first, and only if it doesn't exist, then m3.bin is requested
+> from user space.
+> 
+> Checking for m3_mem->size is redundant when m3_mem->vaddr is NULL, we would
+> not be able to use the buffer in that case. So remove the check for size.
+> 
+> Simplify the exit handling and use 'goto out'.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+> 
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-From ath11k point of view QCNFA765 is WCN6855 so I used this one:
+2 patches applied to ath-next branch of ath.git, thanks.
 
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-
-> Note that I've only been able to test the ath11k fixes (not the
-> corresponding ath12k) and I only tested this particular patch fully
-
-Thanks, I added Tested-on to this patch 1 and for the rest I added
-"compile tested only".
+b49381d3de3a wifi: ath11k: qmi: refactor ath11k_qmi_m3_load()
+7db88b962f06 wifi: ath11k: add firmware-2.bin support
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230727100430.3603551-3-kvalo@kernel.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
