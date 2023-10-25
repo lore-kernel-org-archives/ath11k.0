@@ -4,59 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3FDBC0032E
-	for <ath11k@archiver.kernel.org>; Wed, 25 Oct 2023 10:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42880C25B6F
+	for <ath11k@archiver.kernel.org>; Wed, 25 Oct 2023 12:26:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1Ncbix9kgLQ6xs3DKqsnVk6TA79/F6vh9DxiLWLGvbI=; b=Yzf+HE103lIePE
-	j7eF+sCE02wYYmcoQhrY3fZqs0wV7qNlHZ2E3JXHtmadxi469YPlkfWWfH3eEaPAYZn5cFAmhue4I
-	rhyAHzgSLI+3nq0qldwl2kkKZ+h9zi4gEsz1Ln1ewXkAyu0TQh4eA+c2zSna+bCXKcyDsdTOiqlIH
-	AX4UVgC0k18qlocthPPC9pCekmBkQWPBuu3W0T+wbUuXwcIa/s/DqpjndiHmfnBki0sKYhVB4ORDR
-	Bixa4WoplNm0K5PMDjBenkHo535CNdriUtezD0TY4RRN93s9rli708Q0j6H1UlS/J9Qt5dl/CfD59
-	hD9rH83FArPtPakc30ug==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GKjWvfOn2PiHiu62wgy/bWjOzNBfcymEcWRd5X5kANE=; b=XsFVaH7Yms2t3w
+	8idwu6KH2nVLClwKp8oqIT22VRFqrZhB1X1+XNH41bIcRdSjdguDyvnSjUG6kwWUramFUq5BDHmcY
+	a+xasUH7shGSebuPFtF3+/HPQixWYELK+q8Ona4gBBEX7ZFw3I6mWFPXpSmnvVaJc6OhNJA+m+6AE
+	CZ6U37pe/hUG61nrQVCw0dqIKoC5vlGInXsJ+SdHE2rG/0kDWuWoU0eG9bXhpD3B/EMpkCcpSbDEf
+	zvJv8OPmDgu81Hr3eyNdA8RtKj1VCVxZEA08NSMXDzkP3EZDN1QdeTIY8EwVkKYx7ZZzgq7z36Ze/
+	Xs1vgfpmPk9i9UTVwfXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvbG1-00C553-2U;
-	Wed, 25 Oct 2023 10:37:01 +0000
+	id 1qvcxq-00CIgt-0F;
+	Wed, 25 Oct 2023 12:26:22 +0000
 Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qvbFz-00C539-0s
+	id 1qvcxn-00CIg6-0q
 	for ath11k@lists.infradead.org;
-	Wed, 25 Oct 2023 10:37:00 +0000
+	Wed, 25 Oct 2023 12:26:20 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 5F714CE2997
-	for <ath11k@lists.infradead.org>; Wed, 25 Oct 2023 10:36:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB672C433C9;
-	Wed, 25 Oct 2023 10:36:55 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 1044ACE0B52;
+	Wed, 25 Oct 2023 12:26:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3611AC433C8;
+	Wed, 25 Oct 2023 12:26:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698230216;
-	bh=7Rl8C1Uk+dHF25r0wiSnC9dy7aLIzE0A9eteM9RTuhE=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=t/LRDwuWt0ezmpb2wvHnc5DDZMgIQnEDcDTVNVdrkiy6kOp7SuZEjOP57Qkl6rv6E
-	 TjqijEbsR1lNpoyT+puU7pPXDFON4zEa/Myq3E8L0CCKxV7v13syy6lZqdk6wUy4iv
-	 0RH0chClhab/vd4KPTnXDE3mi1v482d4duuaeGrrOSnoeC5ndSqLF//dhvu1kUX+I+
-	 iT/hM/f2Amg4ARaEF7fHQ81MUkMae+I2EHRsQGz9iQjgAMogdS25gW9cq76xx/k94e
-	 Jt1f5Vg1NL89WTtutCU5hLSCfnunomCnNLrgJxxFQQbvYBotjYTdAHwsXkLXhawS+2
-	 j+EPTbHrt7WBg==
-MIME-Version: 1.0
-Subject: Re: [PATCH] Revert "wifi: ath11k: call ath11k_mac_fils_discovery()
- without condition"
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20231023164120.651151-1-kvalo@kernel.org>
-References: <20231023164120.651151-1-kvalo@kernel.org>
+	s=k20201202; t=1698236776;
+	bh=cHUrccN7fXiRcS7yUlCSEnQli9FvN2GxQnGR+MMlk0Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hBxMFi5IsvHNJCRE7uT3jxIgh7tHwPqhCVKKMkprmCadTtQn/Y4mEAB899H2sMsyW
+	 6FN51RHaR1chZR0mBRKFomGQl6XcTEDwAD7Ap+MnSO8GQ7ZIzEV6oRAoly7KYOuXO4
+	 kkb2mMNcHkv7muHwjWdrZMXF/TpJ+iQL0ZVbjGOdKzYlz7F7ANRQbbj10/PmW2tQlu
+	 BrmRvpq8JBATmhnwzBKa60FSicSy8xdrlESvCvzr8ae7fLQ5MwfSE6PXIgyibqFfgq
+	 EVwgsK+XUrKpGPt/zfdp4JbUjW8FZiuwRiYjxSy+Uq6b0kzG4p5Pg2QUvLFCzyULJ2
+	 tyVV4YKYsJM+A==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qvcy4-0006F7-15;
+	Wed, 25 Oct 2023 14:26:36 +0200
+Date: Wed, 25 Oct 2023 14:26:36 +0200
+From: Johan Hovold <johan@kernel.org>
 To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <169823021370.891844.8029663919365856343.kvalo@kernel.org>
-Date: Wed, 25 Oct 2023 10:36:55 +0000 (UTC)
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] wifi: ath11k: fix temperature event locking
+Message-ID: <ZTkJfGhCRpy9ESth@hovoldconsulting.com>
+References: <20231019153115.26401-1-johan+linaro@kernel.org>
+ <20231019153115.26401-2-johan+linaro@kernel.org>
+ <87sf60xgs8.fsf@kernel.org>
+ <ZTfUswqVkAgJvnye@hovoldconsulting.com>
+ <87bkcnxc6p.fsf@kernel.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87bkcnxc6p.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231025_033659_482804_90CDD1C7 
-X-CRM114-Status: UNSURE (   4.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231025_052619_472385_95083521 
+X-CRM114-Status: GOOD (  12.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,27 +82,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> wrote:
+On Wed, Oct 25, 2023 at 12:51:10PM +0300, Kalle Valo wrote:
+> Johan Hovold <johan@kernel.org> writes:
 
-> This reverts commit e149353e6562f3e3246f75dfc4cca6a0cc5b4efc. The commit caused
-> QCA6390 hw2.0 firmware WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1 to crash
-> during disconnect:
+> > I hit this on the Lenovo Thinkpad X13s and I guess the tag should be:
+> >
+> > Tested-on: QCNFA765 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
 > 
-> [71990.787525] ath11k_pci 0000:72:00.0: firmware crashed: MHI_CB_EE_RDDM
+> From ath11k point of view QCNFA765 is WCN6855 so I used this one:
 > 
-> Closes: https://lore.kernel.org/all/87edhu3550.fsf@kernel.org/
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> 
+> > Note that I've only been able to test the ath11k fixes (not the
+> > corresponding ath12k) and I only tested this particular patch fully
+> 
+> Thanks, I added Tested-on to this patch 1 and for the rest I added
+> "compile tested only".
 
-Patch applied to ath-next branch of ath.git, thanks.
+Thanks for fixing that, I'll try to remember the Tested-on tag next
+time.
 
-f59065401602 Revert "wifi: ath11k: call ath11k_mac_fils_discovery() without condition"
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20231023164120.651151-1-kvalo@kernel.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Johan
 
 -- 
 ath11k mailing list
