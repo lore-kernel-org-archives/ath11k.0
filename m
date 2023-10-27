@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFEAC25B6B
-	for <ath11k@archiver.kernel.org>; Thu, 26 Oct 2023 23:06:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E276AC25B67
+	for <ath11k@archiver.kernel.org>; Fri, 27 Oct 2023 06:57:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T/j30Eti4EwKf/HUGlhzEIGDWvDFBFq9vazp6o3I/Gc=; b=LpTADhNHt92hlV
-	72F0X7oMlOUnyIG1JUMJ6AQ5Wa9/7IQKOIPNHCbt3zMQfpsioYT+3hLJM4zc3MIUCmkMZYUVzIK3U
-	vz+3CvhqVbXrzowkbTnY9eq1iahT/LcUGlUf99VzrbBjifriLNQLQzsmTUf94FmdBFxvNqhgqCyt1
-	0AGtUCNi3JCcJ4vy/k3eVFgzmto7AbP8ibcUtKq/rTtSlWEcYIvPRzpo/zA5pviHy/ZmoSIpU5W93
-	6OBqqy5v7VKmYAPguUTo3y4sQe0eEjaHZKZEEUYd5YSqIZOf+2XGp5g0XtEoEbQpZqchROy4bP/9H
-	vfalhb2w7f/Up6wyNHIg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=N6QLOwAH7s0Tv3Ix+wQR0CqplNw2ilyj7TI+hcs7C6Y=; b=HkVgO5pvXVeIti
+	fOEoa8bQKXQA0edRYi75UKzulfnlaeQNCblY6XsGj5eDTyLPSAMpHftQA/7wyrElIVptltnKiqTR1
+	WayhpUfrIEiMaOsxkP0UIg4n7+UUT91yNArBrQuEb2C+RnjFbaRUBw49h4tZn6xOd2AECDzpa5BMN
+	1/A5DqUdnH7Z6A2H0udDpNgOYwxFCz9e09t2UI3y8rWlCUI4dxXEuvphKYABdY+yZwoGKgaHnimJl
+	FW+HD2GaTU8a4eA5b/8+TSqCo5Ydl0lD3vIR+ht5TMVZtJIrNgxdN4AA6Ga/I0r+8SinCKTdnMCuE
+	4RxcopCnJLf/OVmnrcew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qw9R9-00FIOx-1v;
-	Thu, 26 Oct 2023 23:06:47 +0000
-Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
+	id 1qwGme-00FiRZ-2u;
+	Fri, 27 Oct 2023 06:57:29 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qw9R6-00FIOH-2c
+	id 1qwGmc-00FiQp-29
 	for ath11k@lists.infradead.org;
-	Thu, 26 Oct 2023 23:06:46 +0000
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9c5b313b3ffso214591866b.0
-        for <ath11k@lists.infradead.org>; Thu, 26 Oct 2023 16:06:42 -0700 (PDT)
+	Fri, 27 Oct 2023 06:57:28 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so268272666b.3
+        for <ath11k@lists.infradead.org>; Thu, 26 Oct 2023 23:57:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698361601; x=1698966401; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S1lvafxgrPH4MslhVVJ8PWeokuJA7ysCGpjbxciD6xM=;
-        b=cDTK6fmmUBaVkHOLG3dm6nvelEUfJEKYS1LgC54GihqZ1qj6k5jNfhJPY2TOuEwh0H
-         McC1QpWG/DUS68ecusAGWa4sQ+rMcffDZpdlgX0pEnoOAWlBUo0MOJdWUY5Eu8AY/U4h
-         xOTMXn9a/XW30eBV2l96aEALCFyS+YxtWj/Lo3LmX/lrRc4HAurdyg8QX3w9K3dJTnWC
-         Gqr67ild31LXO1m/hAFPhH5bk76SJhAJBcXM95gxJBLpNL2nWZZwTAyqjMX5sG8RjsnH
-         p9wUzDJfiu8A+Xy+Z46dyk73ceXIdJ8fqjL/d28cjft7fui3uVv3uYcHjl0kCzo9UgWO
-         efKw==
+        d=fairphone.com; s=fair; t=1698389841; x=1698994641; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kj3Zu6WMlpxQr17sM16EXcoz5cOx2Zq8aggknXeJGWY=;
+        b=sPtxzTLwVsmJoBigd6S40r54CoGiexOAhHqt4i0iGvXb6e8L0xieqm6jDtLgdMYSy0
+         xVVko1/KiQHNkllOotInnFdw8r5Yp2WjpwYlEtVIMKEooj/l3jiOiXyOGMZUAkyURe81
+         tPK/nz/6TZTVQEln/17scMoVmfCKJ+hxdWjRAOA57liB/Nliu6uLMKaaEaHkAosPV7+p
+         921ylH6MuyCk5z4ZgK63eylRprlEjPNkoin9SKsAOkQafLGw3efJ8cPmWxmpPFdy2FsS
+         UYTxvQxU6tafXnNK14X3XgIpSMXlEY0FxV5tGGkEldLvmQ+C2ACfCaA1Fx2FdK7bEs6f
+         cUsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698361601; x=1698966401;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S1lvafxgrPH4MslhVVJ8PWeokuJA7ysCGpjbxciD6xM=;
-        b=VIiFte3KhAR1CAcuotYw614mD3OlZ7YrxeuEPEuJFnZ4gQmeTGmjLpbfJJGkCheaIr
-         /vLKPta/DSZU6prbX1tnif9ZMXFk1IL1WjGOjtu+mq+itoryYtE81W4HTQT5KmZm4azH
-         U20nf0s3oZFBVSBNGMKZaNFiN1+5o/Prq2hcH7HJbLkPqjtWat4Or7bRpAptH/l5eZMX
-         Xt77EODUu1btL+pgxsigaVfmydQeGuIVg5eD5bLoo++F+941HWpNvohCDfYRN5ie8pWD
-         OCk+XxNWMBToO0qhSDGlJLsHb/unzb3iVAyO0GRu3FpMiWdm+nWso4HGvuTiA0Ze1Iiz
-         Ms8Q==
-X-Gm-Message-State: AOJu0YwqpVf5aTcV2+lmxgeSu4sVXEIi4xdghpbgDP6QumSNeUPUrV1n
-	r4XxLiwbXiF3e0hlt5ezFIWcAbnroizxV0fq1dSclyezOpSGLg==
-X-Google-Smtp-Source: AGHT+IGxmHbbMVWBC/bICXPWqiak9mqMZ+cfACESgbJx35V7lt5rWdCzi2NT9XuSrO2RdKAwoa9UzoocTNcZXwV4X6s=
-X-Received: by 2002:a17:906:fd8b:b0:9bf:30e8:5bfd with SMTP id
- xa11-20020a170906fd8b00b009bf30e85bfdmr892154ejb.48.1698361601374; Thu, 26
- Oct 2023 16:06:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698389841; x=1698994641;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kj3Zu6WMlpxQr17sM16EXcoz5cOx2Zq8aggknXeJGWY=;
+        b=MDFleeLqYVyL/WGM3pJjGw6BlKWzRzsZCQeRa5tNld+NavytYjXMJ1nNi9H7vxJG/o
+         ioOfMlo4M2VHeHSeFjHYEUtZ8uPNALkQs3wDZPGRXlYcQGyHj7WXTkcjiGsgvcQhrtL1
+         0LLvsmd0vgPS4CR7BgwH+HvxcBMhygZ3JqZ1NQde5Ocp93dAxrCsiZ/PcfwRLM1wgHeF
+         ZNmEP1eWo9sgQ7eQQT0mCc8OlQJkBOqozcnSqAlMBPNgrNrWQILQwH9h/W7Pg6DmI4p+
+         MsJC7Dsnu9EDYNnvnfXUw3jGCe0jycC1oUBqf1w0IHdRL0tSwIC2uGIxjwtGgZDFJxRK
+         O6Bw==
+X-Gm-Message-State: AOJu0YxI7akVNELDwsFbZGCEkRCyu9Nw53ECvZ4jcAN5NQl1NzBVed9n
+	tE1n87M1WG9gzPr3S/TEBhinOg2L4mh1S/FqsqBcqg==
+X-Google-Smtp-Source: AGHT+IHq5doa0BQX+kMaVEeO5/zwweZM2r10RQCthE0JiUtVHXqbkVYblKtKbVO/w75KYeXdp21e6Q==
+X-Received: by 2002:a17:907:9718:b0:9be:6395:6b0f with SMTP id jg24-20020a170907971800b009be63956b0fmr1436632ejc.29.1698389840852;
+        Thu, 26 Oct 2023 23:57:20 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id rp28-20020a170906d97c00b009b296ce13a3sm731381ejb.18.2023.10.26.23.57.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 23:57:20 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Fri, 27 Oct 2023 08:57:18 +0200
+Subject: [PATCH] wifi: ath11k: Defer on rproc_get failure
 MIME-Version: 1.0
-References: <1326a6e4-758d-3344-d90c-8a126748b034@gmail.com>
- <6a0c3aa0-86a8-8c06-81df-2d7085946cf5@leemhuis.info> <16885654-09f0-c139-cc9b-c6c4d666932e@quicinc.com>
- <ae1ad814-5613-704e-b0b1-4f1fc4bead44@leemhuis.info> <1945f748-fb71-f1c1-83a2-ba0470daf817@quicinc.com>
- <ZPUXMx0H/8U9j15F@luigi.stachecki.net> <1ba68ccb-9faa-8f9f-64cb-cf74dc0a2184@quicinc.com>
-In-Reply-To: <1ba68ccb-9faa-8f9f-64cb-cf74dc0a2184@quicinc.com>
-From: Tyler Stachecki <stachecki.tyler@gmail.com>
-Date: Thu, 26 Oct 2023 19:06:49 -0400
-Message-ID: <CAC6wqPUFkXqT5t2jQxtDPfUtjUVLkKyzWawwDOxW7h_74PxhZQ@mail.gmail.com>
-Subject: Re: Fwd: ath11k: QCN9074: ce desc not available for wmi command
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>, Bagas Sanjaya <bagasdotme@gmail.com>, 
-	Kalle Valo <quic_kvalo@quicinc.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	Jakub Kicinski <kuba@kernel.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
-	Linux Atheros 11K <ath11k@lists.infradead.org>
+Message-Id: <20231027-ath11k-rproc-defer-v1-1-f6b6a812cd18@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAE1fO2UC/x3MMQqAMAxA0atIZgNNBYteRRxKm2oQVFIRQXp3i
+ +Mb/n8hswpnGJsXlG/JcuwV1DYQVr8vjBKrwRrbkbEO/bUSbainHgEjJ1aM1PfODckTdVDDUzn
+ J80+nuZQPzjDaZmQAAAA=
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231026_160644_869064_FF3B23EB 
-X-CRM114-Status: GOOD (  23.08  )
+X-CRM114-CacheID: sfid-20231026_235726_753526_A8FB68D5 
+X-CRM114-Status: GOOD (  12.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,45 +89,61 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBTZXAgNCwgMjAyMyBhdCA1OjQ34oCvQU0gTWFuaWthbnRhIFB1YmJpc2V0dHkKPHF1
-aWNfbXB1YmJpc2VAcXVpY2luYy5jb20+IHdyb3RlOgo+ID4gSGkgTWFuaWthbnRhLAo+ID4KPiA+
-IEkganVzdCB3YW50ZWQgdG8gcmVwb3J0IHRoYXQgdGhpcyBpcyBsaWtlbHkgcmVsYXRlZCB0byBR
-Q045MDc0IHdoZW4gdGhlIGhvc3QKPiA+IHN5c3RlbSBvbmx5IGhhcyAxIE1TSS1YIHZlY3RvciBh
-dmFpbGFibGUgZm9yIHRoZSBtb2RlbSBhbmQvb3IgcmVsYXRlZCB0byBhCj4gPiBwcm9kdWN0IG5h
-bWVkICJXUEVRLTQwNUFYIi4KPiA+Cj4gPiBJIGhhdmUgdHdvIGRpZmZlcmVudCBob3N0cyBydW5u
-aW5nIHRoZSBleGFjdCBzYW1lIGtlcm5lbCwgc2FtZSBRQ045MDc0Cj4gPiBmaXJtd2FyZSAoV0xB
-Ti5ISy4yLjcuMC4xLTAxNzQ0LVFDQUhLU1dQTF9TSUxJQ09OWi0xKSwgZXRjLiBUaGUgb25seQo+
-ID4gZGlmZmVyZW5jZXMgYXJlIHRoYXQgdGhlIG9uZSB3aGljaCBkb2VzIG5vdCB3b3JrIGlzIHJ1
-bm5pbmcgb24gYSBzbGlnaHRseQo+ID4gb2xkZXIgSW50ZWwgU0JDLCB3aXRoIHRoZSBvbGRlciBv
-bmUgbGV2ZXJhZ2luZyBtUENJZSBpbnN0ZWFkIG9mIFBDSWUgYW5kCj4gPiBvbmx5IGhhdmluZyBv
-bmUgTVNJLVggdmVjdG9yLgo+Cj4gWWVzLCB5b3UgYXJlIHJpZ2h0LiBUaGlzIHNlZW1zIHRvIGJl
-IGEgcHJvYmxlbSB3aXRoIHNvbWUgaGFyZHdhcmUgaGF2aW5nCj4gUUNOOTA3NC4gV2UgaGF2ZSB0
-cmllZCB0byByZXByb2R1Y2UgdGhpcyBwcm9ibGVtIGluIFFDIG9uIGRpZmZlcmVudAo+IGhhcmR3
-YXJlIGJ1dCBjb3VsZCBub3QgcmVwcm9kdWNlIGl0IGV2ZW4gb25jZS4gTm90IGV2ZW4gd2l0aCBv
-bmUgTVNJIHZlY3Rvci4KCkp1c3QgYXMgYSBoZWFkcyB1cCwgdGhpcyAiU3BhcmtsYW4gV1BFUS00
-MDVBWCIgdmVyc2lvbiBvZiBRQ045MDc0IG1heQpiZSBhZGRpbmcgdG8gc29tZSBvZiB0aGUgY29u
-ZnVzaW9uIGhlcmUgYW5kIHNvIHRoZXJlIG1heSBiZSB0d28KcHJvYmxlbXMuIEFzIG1lbnRpb25l
-ZCBwcmV2aW91c2x5LCBDRSBkZXNjIGVycm9ycyBzdG9wcGVkIGFmdGVyCnJldmVydGluZyB0aGUg
-dGhyZWFkZWQgTkFQSSBwYXRjaC4gSG93ZXZlciwgdGhlcmUncyBzb21ldGhpbmcgb2RkCmFib3V0
-IHRoaXMgbW9kZW0gLSBpdCBkb2VzIG5vdCB3b3JrIHdpdGggdGhlIGJvYXJkLTIuYmluIHRoYXQg
-S2FsbGUKcHJvdmlkZXMgYXMgdGhlIE9QIG5vdGVkLgoKVXBvbiByZXF1ZXN0LCB0aGUgdmVuZG9y
-IG9mIHRoaXMgbW9kZW0gcHJvdmlkZXMgYSBib2FyZC5iaW4gZm9yCldQRVEtNDA1QVggY29tcGF0
-aWJsZSB3aXRoIGEgY29weSBvZiBhbXNzL20zIHdoaWNoIGFwcGVhcnMgdG8gYmUKV0xBTi5ISy4y
-LjQuMC4xLTAxODM4LVFDQUhLU1dQTF9TSUxJQ09OWi0xIChiYXNlZCBvbiBjaGVja3N1bXMpLiBJ
-CmZvdW5kIG91dCB0aGUgaGFyZCB3YXkgdGhhdCB0aGUgQUJJIG9mIHRoZSBCREZzIGNoYW5nZWQg
-Zm9yCldMQU4uSEsuMi41LjAgZmlybXdhcmVzIGFuZCBiZXlvbmQsIG1ha2luZyB0aGluZ3Mgbm9u
-LWJhY2t3YXJkcwpjb21wYXRpYmxlIHdpdGggdGhlIGJvYXJkLmJpbiB0aGF0IHRoZSB2ZW5kb3Ig
-cHJvdmlkZXMuLiB3aGljaCBpcwp1bmZvcnR1bmF0ZSBhcyB0aGUgdmVuZG9yIHdvdWxkIG5vdCBz
-dXBwbHkgYSBCREYgYnVpbHQgYWdhaW5zdCAyLjUuMCsKd2hlbiByZXF1ZXN0ZWQuCgpUaGUgYm9h
-cmQtMi5iaW4gdGhhdCBLYWxsZSBhbGxvd3MgdGhlIG1vZGVtIHN0YXJ0LCBidXQgaXQgZmFpbHMg
-dG8KYXNzb2NpYXRlIG9yIHJlYWxseSBkbyBhbnl0aGluZyB1c2VmdWwgYmV5b25kIGFubm91bmNp
-bmcgYSBTU0lEIGluIEFQCm1vZGUuCgpBbnl3YXlzOiBJIHRoaW5rIGl0J3MgbW9zdGx5IGp1c3Qg
-YW4gaXNzdWUgd2l0aCB0aGUgSVJRIGFmZmluaXR5IC0tCm1heWJlIHRoZSB0aHJlYWRlZCBOQVBJ
-IHBhdGNoIGlzIGNoYW5naW5nIGl0IHNvbWVob3cuLi4KCkNoZWVycywKVHlsZXIKCi0tIAphdGgx
-MWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5p
-bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+If we already have gotten the rproc_handle (meaning the "qcom,rproc"
+property is defined in the devicetree), it's a valid state that the
+remoteproc module hasn't probed yet so we should defer probing instead
+of just failing to probe.
+
+This resolves a race condition when the ath11k driver probes and fails
+before the wpss remoteproc driver has probed, like the following:
+
+  [    6.232360] ath11k 17a10040.wifi: failed to get rproc
+  [    6.232366] ath11k 17a10040.wifi: failed to get rproc: -22
+  [    6.232478] ath11k: probe of 17a10040.wifi failed with error -22
+       ...
+  [    6.252415] remoteproc remoteproc2: 8a00000.remoteproc is available
+  [    6.252776] remoteproc remoteproc2: powering up 8a00000.remoteproc
+  [    6.252781] remoteproc remoteproc2: Booting fw image qcom/qcm6490/fairphone5/wpss.mdt, size 7188
+
+So, defer the probe if we hit that so we can retry later once the wpss
+remoteproc is available.
+
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 235336ef2a7a..f8f5e653cd03 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -803,8 +803,8 @@ static int ath11k_core_get_rproc(struct ath11k_base *ab)
+ 
+ 	prproc = rproc_get_by_phandle(rproc_phandle);
+ 	if (!prproc) {
+-		ath11k_err(ab, "failed to get rproc\n");
+-		return -EINVAL;
++		ath11k_dbg(ab, ATH11K_DBG_AHB, "failed to get rproc, deferring\n");
++		return -EPROBE_DEFER;
+ 	}
+ 	ab_ahb->tgt_rproc = prproc;
+ 
+
+---
+base-commit: 2ef7141596eed0b4b45ef18b3626f428a6b0a822
+change-id: 20231027-ath11k-rproc-defer-d166779fa113
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
