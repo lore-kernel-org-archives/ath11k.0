@@ -4,66 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 091F6C4332F
-	for <ath11k@archiver.kernel.org>; Tue, 31 Oct 2023 20:25:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBD07C4332F
+	for <ath11k@archiver.kernel.org>; Tue, 31 Oct 2023 20:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:Subject:
-	Message-ID:Date:From:MIME-Version:Reply-To:Cc:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=PAyOoC0C1w0PTFziZpjP11Hipakbiw8qT0Ls+FsjBUI=; b=3lqsd2UUmY0eS4MQRYJQTvbZFd
-	vBXo4/9IF31odbfrTokeuw6x/KiMsgkLWhEw+PEZgHPGldLGUQSYfQ+GywXpzELJrEr9FGpcf13Ic
-	FE3cODB5Zq5cTGntkhcimEMo9AtM64PKht/aRrkjQBk/fbeWixYBzouEGl5lpiJkNF7F359Aj/WD5
-	GZCiKFgALitIK1PJFAmDk1E8qhWM/GBWB0+YLsGePqklrxvgUikykANKy5QtHRxIEGlZNL6Dk3Fee
-	n08kVN6aDEoVDcp985Cb1P+WBrOKPR86HuWJsfIyfutWVcj19oBOnakG8PGofYbeaenLNIHz6cK8O
-	9uVqJjvA==;
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:Cc:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=zViGNTBrV14dwldCh7Dfu349jFKr7RfHypUC+IIO2to=; b=LNFqOh9pi62OXYw6ZTZ0/1Hqlt
+	HXblu2dLcpVNH+dLYlH1I+Z8/xNEMXbXGgn8LffnaSUHw31vBZRl+otRBEfm5MwxaS/L4hSj2yaT8
+	yWYBymiESzkbqTvvhaAORvOkwSR1F6BC6V6yK6UD942XCjvNAm63ymweUlZrW4L2zFnfJSelT7CVG
+	QMSG5WARQG1h1eHA1RFODHaG3/sn8aVeNBkRkK0gHULhnRPuHdODkC8hRS2GrcKyn0GzHzrk+/jlX
+	rSCnIQvfvuJwUTjzJzk3LS8zP52/hiLJqTG2NfInB/S6I8Fl6K3+9nww+jzq1KW4GUPy5HCQX6EcZ
+	jOerrCbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1qxvJB-0065Fb-04;
-	Tue, 31 Oct 2023 20:25:53 +0000
-Received: from mail-vk1-xa32.google.com ([2607:f8b0:4864:20::a32])
+	id 1qxvQB-0065bt-0a;
+	Tue, 31 Oct 2023 20:33:07 +0000
+Received: from mail-vk1-xa2f.google.com ([2607:f8b0:4864:20::a2f])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1qxvJ8-0065FP-0O
+	id 1qxvQ7-0065bc-1U
 	for ath11k@lists.infradead.org;
-	Tue, 31 Oct 2023 20:25:51 +0000
-Received: by mail-vk1-xa32.google.com with SMTP id 71dfb90a1353d-49dd3bb5348so2495178e0c.0
-        for <ath11k@lists.infradead.org>; Tue, 31 Oct 2023 13:25:49 -0700 (PDT)
+	Tue, 31 Oct 2023 20:33:04 +0000
+Received: by mail-vk1-xa2f.google.com with SMTP id 71dfb90a1353d-49d39f07066so2556351e0c.0
+        for <ath11k@lists.infradead.org>; Tue, 31 Oct 2023 13:32:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698783948; x=1699388748; darn=lists.infradead.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qQBNHOAhEgpIqYHLWnboP6aX/HKD6Y6cf0EYelU6oWk=;
-        b=A3ZGWLP1H5OBW3ZdlaHFqCxNCfDMK2DvJeEHJilKWm8tA+y0hfjbzltbPtnDBBl50E
-         EuNEIsepbrhl/YF3LpgBBWWqhlbijUI5+/BDIDk15An5jlq2WWpCwsD6ALpszEZlrPvi
-         MQe0wOySv3gltHeCbwdeavoJgDUpl8e+kk9b+SCWtaNtnOVf62V3UzoC32reCHiWIhG+
-         dQRbSmqcYaru0SB55X2/B+7mV5bUldVcJVuJwaTXIdvfyto/qHgnTeadjIwkIrDV7JOu
-         E6YhCsV8jt6biUJ141GHynB8Je82+mNYoAxOtWnYd0IfNOQb+zqXR60SfF7iqVFEAIqw
-         +plA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698783948; x=1699388748;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1698784379; x=1699389179; darn=lists.infradead.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qQBNHOAhEgpIqYHLWnboP6aX/HKD6Y6cf0EYelU6oWk=;
-        b=JWdzPp4R6fYsc7uhZNHWMv7gnCiQDJCzvYtOpWY6ZwUY6RGgEUjoKakvcfCkEozv+E
-         5+4/tO05SDFZ0IJdCiIQ4TQAIYCAZG6M7LcM/KMm/wIlYZcsICZN7MLeEKSzPc40aIS3
-         L4YzV9WfiE93iifMEMHvsrbhLaqAkzRA7yBQYUhbzibdc8bQ9jOloX2XIgdWP+bSJAg+
-         NhHLjzY24kkbzaYlTdzaT/OcTHqaqFFq/3QDM8zf/7sKBniMw7tQF0CA9WrU6oDXWi44
-         jguFtJB61wqvSWqBYWd4tz/wFBRFVze1tS0Y307BFXhvx9eQGfP9WlwJyWAXIgq65vMd
-         B4QQ==
-X-Gm-Message-State: AOJu0YwBmHtuppuzVtJ/nhBl3rZEFTG6zg5V/5JKY8IFkmbZp43czBmW
-	+t8M6fWaakVeiJi6ARbm0BAePdK2KgAenHmKDA8hSkXW3AYyB/yI
-X-Google-Smtp-Source: AGHT+IGa+p59mcqYYH2LdL71NsMCPa1c/vHny8Nn0y8/GCGvF3gBelTBkEvXgl2cnwP6Phoe4utylBjEEcKsVQ2moAE=
-X-Received: by 2002:a1f:ad04:0:b0:495:cace:d59c with SMTP id
- w4-20020a1fad04000000b00495caced59cmr12730950vke.0.1698783948361; Tue, 31 Oct
- 2023 13:25:48 -0700 (PDT)
+        bh=LoJRMxdYx/gbEwD4vxuZFUo5wo8mU8Jmp1sEazF3XGA=;
+        b=OA1FnTL8KuiXzUx5tprvq6ZWA4XmYfOo3ZgBS0Fe034QRuFKLFkGJxncFiq5mKyMbE
+         GH7cDTxvEFIDdA88n7wy54wEp25Q698cciaLc7kbFaiy1EbxRC5Q/MYu6LpDh5BBXJ4O
+         UzqboPkOR1Wn+S38DzQqJrQOWeVRbtl7+MNL+WwlIe9hG3FTkdh1i18nHHiGtA1u4QuA
+         8iZpsngKhNeCkZN1BYYBdkBh6EoaLr3ri6GtyU+71Px4TOHLKXRSfzlpMQuFRdShGQgt
+         8kupeGBSu9k0GN8f37Gp8hatmOJhbBa5dFjM5UiwkyvTRP07S9uim1NcwLyjun0jQoW6
+         2kqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698784379; x=1699389179;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LoJRMxdYx/gbEwD4vxuZFUo5wo8mU8Jmp1sEazF3XGA=;
+        b=jBF0S2pIsYK6FS3d/VER+S0Z6MMiBEEJ1VmYSf30T12vvAjhhTDnnr22KJrY6D4bnD
+         qxH6l/U748iRRtoqZNvWvdHbo/E/PR4J2DRaorb4ZMH8s6HvETaaryBS7z47cPvK/YOa
+         n73tFHTjY8WINZ6u5oRJVm+FKnIz1ojrrkOTeL/Y3nxxok3wKzV6A/eW3psIQu1Ogtq4
+         H0GcMVnDLtZi8mwQttEEMKaLFrK28vIT/w2qMQWymyAHgpqET1LnHJThHSpow0okm//A
+         ccuPSq7x5HbCS4LpHnqwuFnYS7ibX4UmyRvOv0naIpmY5/DShSdFykP1n3290/p2dwh5
+         vwnQ==
+X-Gm-Message-State: AOJu0Yw6NnMODwcXtZWss412EnMOzVaYNGUmeyhKctGo+oqvFxJQmzfY
+	tctoiOHFX/zPtH8klhujxJIES5X2hNwgO4Ve1CL87SX+uno0YTF7
+X-Google-Smtp-Source: AGHT+IEhKlQLzNXq2Ksq/RQjYDKGFSKDW86jNjarc9xJ3s+nVnWZwWSRppW+qd/t6palpZQiBnivQ1W72ov6uEGCpV4=
+X-Received: by 2002:a1f:a412:0:b0:4a4:156b:b46 with SMTP id
+ n18-20020a1fa412000000b004a4156b0b46mr13116584vke.2.1698784378759; Tue, 31
+ Oct 2023 13:32:58 -0700 (PDT)
 MIME-Version: 1.0
+References: <CACDmYycYkdrCnSA0QK6eSMKkgqxDDmA0w_9A2e9aK2N6hhWDug@mail.gmail.com>
+In-Reply-To: <CACDmYycYkdrCnSA0QK6eSMKkgqxDDmA0w_9A2e9aK2N6hhWDug@mail.gmail.com>
 From: Legale Legale <legale.legale@gmail.com>
-Date: Tue, 31 Oct 2023 23:25:37 +0300
-Message-ID: <CACDmYycYkdrCnSA0QK6eSMKkgqxDDmA0w_9A2e9aK2N6hhWDug@mail.gmail.com>
-Subject: ath11k-firmware: IPQ8074 hw2.0: Add Yuncore AX880 specific BDF
+Date: Tue, 31 Oct 2023 23:32:47 +0300
+Message-ID: <CACDmYyefzY=Fd2xoAy11dp4visP=EDizoz560cXW95U==yR52A@mail.gmail.com>
+Subject: Fwd: ath11k-firmware: IPQ8074 hw2.0: Add Yuncore AX880 specific BDF
 To: ath11k@lists.infradead.org
-Content-Type: multipart/mixed; boundary="000000000000cb7448060908f582"
+Content-Type: multipart/mixed; boundary="0000000000007251270609090fbc"
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,12 +80,14 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---000000000000cb7448060908f582
+--0000000000007251270609090fbc
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-I have grabbed stock fw bdf file for the device Yuncore AX880 (bdwlan.b290).
+I have grabbed stock fw bdf file for the device Yuncore AX880
+(bdwlan.b290). This device is based on ipq8072a chipset (hk09) with 2
+QCN5054 wifi chips.
 
 ../ath11k-bdencoder -e board-yuncore_ax880.ipq8074_b290
 bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=Yuncore-AX880.bin
@@ -94,7 +98,7 @@ board-2.json created
 bdf filename:  bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=Yuncore-AX880.bin
 sha256sum: 243340c0ac21ace6fb7f5452091824d641724d0512418325bd7fa8e518a1dec5
 
---000000000000cb7448060908f582
+--0000000000007251270609090fbc
 Content-Type: application/octet-stream; 
 	name="bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=Yuncore-AX880.bin"
 Content-Disposition: attachment; 
@@ -2403,7 +2407,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
---000000000000cb7448060908f582
+--0000000000007251270609090fbc
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2414,5 +2418,5 @@ ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
 
---000000000000cb7448060908f582--
+--0000000000007251270609090fbc--
 
