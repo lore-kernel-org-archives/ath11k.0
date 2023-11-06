@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CCEBC001B2
-	for <ath11k@archiver.kernel.org>; Mon,  6 Nov 2023 18:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17507C4332F
+	for <ath11k@archiver.kernel.org>; Mon,  6 Nov 2023 18:26:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References:Message-ID
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=90jFZBVdsr2e5Amtjmxn/ifL2wwSUGGMrWN41dWmnVQ=; b=36vR66EdbbFuuu
-	YtZho0j2wERTd6Zem7jBd5du6UnJwRF41TbbKRPNayXkUSf02boww/ZPFleTvhlmHpGg9bFJkN+9n
-	f8Vm7ToGgHXh/lF4dpDXT1vGpQmdimlyCK1jKXoGOi/mQ0Vdr6/WrOGLMR5Y+JZM2rmlP3aXaVoL+
-	cpqN/9j7S874NaQ0vXf9ppQbC5GrumQkkvlZlBf8bJr1SnVJ8ihbKA/rRstmCtnLa+t7LVsPVvryO
-	wnckuIw5zDTkEp0qonYRKpbB97bMkewBjpvpFtlxJUYwo6KQLykXQCeIOSd4EtUcV1qtP6GSBvG3S
-	cnp++wTT/ydk1nnCC+9Q==;
+	List-Archive:List-Unsubscribe:List-Id:CC:To:MIME-Version:Message-ID:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=DIssV3jjkWmwdcs+3hVcB4RB14PVrkrk5LtBrfouA8o=; b=C/G6xNpiK7HOFJ
+	M842oz8povljFkg0RwtbYr3Jc2sL4MwajQN/QaXBp80AiUgO4vV3nTEhM6Iu2l3JT3H5vNhyWE/mI
+	+4hF0uI2qjDgaA4iCOV0HtdcC6sJEpY5za4SyBUfA9maC+OpBqLOB/00O1azz7uULPciZiJASIdvc
+	VKBd24aixLnOwog23H/JbCC2VSkwL8mZZ6/a/8khXk5degk96sMN9UOu6qw2o2XRzjNqhgQZcJGDv
+	6yvIVve+xk8sc0PPYdnipR6/UnhTTHIbh9KPWz0fC4ZSHzypJtxMuSBWcmQhYy14L9a9/dPFBc8RZ
+	GY4Zan51pyBWrAdGLEig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r04Dt-00HJC6-24;
-	Mon, 06 Nov 2023 18:21:17 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1r04Ih-00HJgf-1D;
+	Mon, 06 Nov 2023 18:26:15 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r04Do-00HJ9K-1Q;
-	Mon, 06 Nov 2023 18:21:15 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A6D8Fai021364;
-	Mon, 6 Nov 2023 18:21:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
- subject : mime-version : content-type : content-transfer-encoding :
- message-id : references : in-reply-to : to : cc; s=qcppdkim1;
- bh=KXhTaYqFaKXTr7+mcAYcRVmQtxxoVueu+E2/hfA2RQs=;
- b=OnYhsNFVWdgD+5c63G+YMjcIyWcBHG3YgV1k1DT8EPzZ1jmUTqB6fcESX7Wmquvu9IuM
- enrwEBQ2nQYoptlsQuvkOwUHdeeqiVowywE88rxZT1/q+H81PLNgGq3UXsXYblIjwgDP
- iMM4b5pFbLEGqLPsSfGxmlwpcUrJB+H60WpLxMsE+Bcg41y1xwk/P8KcZVOgEk2f3cJF
- iKGWUwotMBHDieVQOudFlQK1xEVInkwutpogoMTSelIkyLK1JxQXnmJvMf9C/lv0Clfg
- d8ByqXteqQ2Bglh8dn2hkxjDzV+4zznshegXT2qlLmdzh1PFy3BP5Z+Yq8hD2pZ8gNQh UA== 
+	id 1r04Ie-00HJef-1n;
+	Mon, 06 Nov 2023 18:26:14 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A6FMouU010307;
+	Mon, 6 Nov 2023 18:26:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding : to : cc; s=qcppdkim1;
+ bh=RRWRgFaAfm7cZ7J8Siauhh/pe7RSZ+2aVReaG7ZVh64=;
+ b=ke9M8AKX+yB+eUwBFNj10BkCs/MHJx1AVXv6peYVMYCClfE9cIiLY+2IuoI+Vb+daron
+ Myr1PUy4lUU7liROGJlJxAgDe9ho3Z0TmP5brJfJDzYFrkDV/g5obX0EpmXz9Zu6Cj2+
+ VSCO2BKCxdD1MkqfFthGh4RcNikX1OnjRIOQsEDm+Nf96Lra7leSssMZtiUDLkQZbskz
+ rmYPbNqxBgmRei9VGKjvDjW1rp0b4eDTbHu6NXYqSiScIQCC05vMGZ+1ZugPDvDmDkWL
+ JCgJifATOYBxWrB+DZjI8hBxxIgU/1ZvCKuZSkQZBtwSG2RxZp9/LyeSF+zFPSTBdnck Hw== 
 Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u6wer1dnb-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u72r28f9k-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 Nov 2023 18:21:05 +0000
+	Mon, 06 Nov 2023 18:26:05 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A6IL5Fi021760
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A6IQ4X7029692
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 6 Nov 2023 18:21:05 GMT
+	Mon, 6 Nov 2023 18:26:04 GMT
 Received: from hu-jjohnson-lv.qualcomm.com (10.49.16.6) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Mon, 6 Nov 2023 10:21:05 -0800
+ 15.2.1118.39; Mon, 6 Nov 2023 10:26:03 -0800
 From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Mon, 6 Nov 2023 10:21:04 -0800
-Subject: [PATCH 1/2] wifi: ath11k: Remove struct ath11k::ops
+Subject: [PATCH 0/4] wifi: ath: Cleanup WMI peer flags
+Date: Mon, 6 Nov 2023 10:26:02 -0800
+Message-ID: <20231106-ath-peer-flags-v1-0-781e83b7e8e8@quicinc.com>
 MIME-Version: 1.0
-Message-ID: <20231106-ath12k-remove-ieee80211_ops-v1-1-d72cef1a855b@quicinc.com>
-References: <20231106-ath12k-remove-ieee80211_ops-v1-0-d72cef1a855b@quicinc.com>
-In-Reply-To: <20231106-ath12k-remove-ieee80211_ops-v1-0-d72cef1a855b@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIALsvSWUC/33MQQ6CMBCF4auQrq1ppyroynsYF8O0hUkUsMVGQ
+ 7i7hZ0LXf4ved8kogvsojgVkwguceS+y6E3haAWu8ZJtrkFKDBaK5A4tnJwLkh/wybKCnboTaW
+ gVLXIpyE4z68VvFxztxzHPrxXP+ll/UklLZUktMaCLRHr+vx4MnFHW+rvYsES/AcgA/7oywMZs
+ lrvv4F5nj8UNqe87wAAAA==
 To: Kalle Valo <kvalo@kernel.org>
 CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <ath12k@lists.infradead.org>,
@@ -68,19 +70,20 @@ X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LxNsz99jzpYWetG5oIxXXWm9Ea_55EZi
-X-Proofpoint-GUID: LxNsz99jzpYWetG5oIxXXWm9Ea_55EZi
+X-Proofpoint-GUID: kR5dy0D9mzBaXAl28jm49zqSGNjHBM1y
+X-Proofpoint-ORIG-GUID: kR5dy0D9mzBaXAl28jm49zqSGNjHBM1y
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-06_14,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- spamscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0 phishscore=0
- mlxscore=0 priorityscore=1501 adultscore=0 mlxlogscore=481 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310240000
- definitions=main-2311060150
+ definitions=2023-11-06_13,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ adultscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
+ clxscore=1015 phishscore=0 priorityscore=1501 mlxscore=0 spamscore=0
+ mlxlogscore=314 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311060149
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231106_102112_486522_32182255 
-X-CRM114-Status: GOOD (  14.26  )
+X-CRM114-CacheID: sfid-20231106_102612_711360_972C81CB 
+X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,37 +100,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently struct ath11k defines the following member:
-        struct ieee80211_ops *ops;
+Both ath11k and ath12k inherited from ath10k some WMI peer flag
+definitions that are unused, so remove them.
 
-This is being flagged by checkpatch.pl:
-WARNING: struct ieee80211_ops should normally be const
-
-The original plan was to add the const qualifier.  However, it turns
-out this is actually unused, so remove it.
-
-No functional changes, compile tested only.
+This series is compile tested only.
 
 Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h | 1 -
- 1 file changed, 1 deletion(-)
+Jeff Johnson (4):
+      wifi: ath11k: Remove obsolete struct wmi_peer_flags_map *peer_flags
+      wifi: ath12k: Remove obsolete struct wmi_peer_flags_map *peer_flags
+      wifi: ath11k: Consolidate WMI peer flags
+      wifi: ath12k: Consolidate WMI peer flags
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index f12b606e2d2e..7e3b6779f4e9 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -599,7 +599,6 @@ struct ath11k {
- 	struct ath11k_base *ab;
- 	struct ath11k_pdev *pdev;
- 	struct ieee80211_hw *hw;
--	struct ieee80211_ops *ops;
- 	struct ath11k_pdev_wmi *wmi;
- 	struct ath11k_pdev_dp dp;
- 	u8 mac_addr[ETH_ALEN];
-
--- 
-2.42.0
+ drivers/net/wireless/ath/ath11k/wmi.h | 61 ++++++++++-----------------------
+ drivers/net/wireless/ath/ath12k/wmi.h | 63 +++++++++++------------------------
+ 2 files changed, 37 insertions(+), 87 deletions(-)
+---
+base-commit: ac2f43d3d34e52b0d388b4c573ff6bbac90235b9
+change-id: 20231102-ath-peer-flags-824af380270b
 
 
 -- 
