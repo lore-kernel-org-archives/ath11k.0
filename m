@@ -4,82 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0257C4167D
-	for <ath11k@archiver.kernel.org>; Wed,  8 Nov 2023 14:39:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29C42C4332F
+	for <ath11k@archiver.kernel.org>; Fri, 10 Nov 2023 10:22:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VdHR/X+oU4lkuCd1uttmUNr5MzqavZb+B8uIkEL9c04=; b=rDM+UKtv40eEvuTRg1ElIqy19S
-	2plDZJF/0lFTcpVjoiZEuXcp13UgO4nvbCZ96oX9idyhdO37vPYJc2hdzoB9HCsIEDKkY8cg5E5+0
-	L5ThqUNgpx9H1s6YKWJdDqUwJx6C3KEZSutE8erJYfa/RW60mcR9iFTr/22LQFBgSJ0n1J9VVMMgF
-	kmVXFTgWm7IgjNH6FLH0D0Uver6ygbXVWA/UKQBj+hbfP3CQYd0oZTvIOa2t7Mc8zA4zsbot4lie9
-	m9AhDaX7xIEtlQ2FxDJTRE4bfj39aK17QhBqTMDpcfQSbIQMvy+DxnEtimwfQBN+qOe/ThfLAJCve
-	L2360lSg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=69KHGCSIwZP2wWeCJ74Roxs53YpSkIWWPXusKoGc3Ew=; b=vglVffdhPJGj64
+	PiIqFhdEva8E5g/qJiFRPjaBVpFPs96q5ziMfj2k7mPALjNb2rAropHIOd3UPllBRUqZKzakSUqe8
+	o1TL+pwbCskpbdG3RedqJPRoWD7JIyYgBZw40qrj/11ulZgv8lduSGyijuIO/tm0YrOwTP1NxsFzt
+	QN5u/vd1ervzXpVujqK+9hdLJgzC/gY5Xu8JUR3CK4acKxLawFx8m5ctQP6aX5Zepw3dx0RGf1oLb
+	vVXlNnWqWoHXE7mGN2yBz5lnpvACFI1JYjc+bWaoYF/syhoc0RMA2AByEgCjOWlF6ZupNHWOeEa4E
+	jsz+TVLYmw1LB8qt+uYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r0jiH-0042c3-0t;
-	Wed, 08 Nov 2023 14:39:25 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1r1OeQ-008Hpz-1K;
+	Fri, 10 Nov 2023 10:22:10 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r0jiE-0042b9-26
+	id 1r1OeM-008Hox-2c
 	for ath11k@lists.infradead.org;
-	Wed, 08 Nov 2023 14:39:24 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A8E2ddA015496;
-	Wed, 8 Nov 2023 14:39:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=dv/Z9G6ZAr9+lMxiIaSYC1sphG27a5cZSvv4iXRKE4E=;
- b=VSi+0vhHhqkroGtIAQtYVqxDjxxDmSMhworfrSpTdIjGIddR3ewKbXcn4bPPSwKUOI+M
- PujqA8FLYosifRbed2QMDT91KXfaooS3H65LXXq7phi13SPNnvCfO/qDm7nD7CflxRjH
- dXjnedg56zHVARxqncDsXryQeZGhVzE+ZvNdR1dNAn2DVUA5Ha4XqP08vgdxuiG2hAqL
- BeXXfz/oxhyIn/USkuj4LbKFm4KN7DepEu1G6dXu3/IqBOwsyVudLay8fvoqK8059Vzl
- dyoOU9HGBHsS2w9dCgZmfUdkpG5K038Zr4KDT39nyAJGeBzmcJEPrMc/gzck/mUwV6nV kg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u7w2c1vvq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Nov 2023 14:39:18 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A8EdFaX013459
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Nov 2023 14:39:15 GMT
-Received: from [10.110.1.228] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 8 Nov
- 2023 06:39:14 -0800
-Message-ID: <b2a44dc4-f5ec-46fe-a4ce-a2151ac65aa3@quicinc.com>
-Date: Wed, 8 Nov 2023 06:39:14 -0800
+	Fri, 10 Nov 2023 10:22:08 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 7E52E619D6
+	for <ath11k@lists.infradead.org>; Fri, 10 Nov 2023 10:22:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63945C433C7;
+	Fri, 10 Nov 2023 10:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699611725;
+	bh=AMPU4LRyX+OkgHTzmLqYpkHVXivN15INxbcqDW+e4HI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=f25paLpmrrOypJkE+2mOFhXwjwmYKnrZzre9uvCGJFfliCC3KoHtyiViJoXGT2cFi
+	 b++rfZtaMcghghE2dF3fFBgMn+UB7HUphttZhtMwguSh9I3D6IJTbHHj9B/jPCdD1O
+	 MV5Zya/1VfTCFtMACL/Yl7WhXzNgjoqP6VsS/kul3cyhGif5Ogyp2Sxmp+DP/r907u
+	 wX23PukQ4ay1o7U69473/LRzGr7DOzWQMVLlLrs5PaxXAvsEZAPqE4TURk4zv4RwBE
+	 +y2zB+cIyrJQIDcDORId+jQeoRTJLr4v5xKKpi8NnolmFYVPswBMa144n8zgG4Ljxk
+	 M5keyYeN+XCrA==
+From: Kalle Valo <kvalo@kernel.org>
+To: mhi@lists.linux.dev
+Cc: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: [PATCH RFC 0/8] wifi: ath11k: hibernation support
+Date: Fri, 10 Nov 2023 12:21:54 +0200
+Message-Id: <20231110102202.3168243-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Can ath11k automatically enable CRYPTO_MICHAEL_MIC?
-Content-Language: en-US
-To: James Prestwood <prestwoj@gmail.com>, <linux-wireless@vger.kernel.org>,
-        "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-References: <c558e244-b10d-43f3-9f42-f6c2f98d5b95@gmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <c558e244-b10d-43f3-9f42-f6c2f98d5b95@gmail.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: K52qDjw9qRCO-05013gYInzWHpQXaLlV
-X-Proofpoint-ORIG-GUID: K52qDjw9qRCO-05013gYInzWHpQXaLlV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-08_03,2023-11-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=703
- lowpriorityscore=0 phishscore=0 adultscore=0 clxscore=1011
- priorityscore=1501 impostorscore=0 spamscore=0 bulkscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311080121
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231108_063922_696454_92643CF5 
-X-CRM114-Status: GOOD (  15.91  )
+X-CRM114-CacheID: sfid-20231110_022206_914641_2C1EEF00 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,31 +65,69 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/8/2023 6:33 AM, James Prestwood wrote:
-> Hi,
-> 
-> I'm not very familiar with how the Kconfig stuff works, but I spent 
-> longer than I care to admit trying to get the ath11k support to show up 
-> in menuconfig.
-> 
-> The issue was CONFIG_CRYPT_MICHAEL_MIC was not set, which removed the 
-> ath11k driver from menuconfig because of:
-> 
-> depends on CRYPTO_MICHAEL_MIC
-> 
-> Maybe there was a good reason (again, I don't know much about Kconfig), 
-> but should/could this use "select" to automatically enable 
-> CRYPTO_MICHAEL_MIC?
-> 
-> Thanks,
-> James
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-+ ath11k list to see if there is any history on this topic
+Currently in ath11k we keep the firmware running on the WLAN device when the
+network interface (wlan0) is down. The problem is that this will break
+hibernation, obviously the firmware can't be running after the whole system is
+powered off. To power down the ath11k firmware for suspend/hibernation some
+changes both in MHI subsystem and ath11k is needed.
+
+This patchset fixes a longstanding bug report about broken hibernation support:
+
+https://bugzilla.kernel.org/show_bug.cgi?id=214649
+
+This patchset is marked as RFC as it requires changes in MHI subsystem. Also
+this has been tested only on WCN6855, need to test also on more AP based
+chipsets like IPQ8074 and QCN9074.
+
+The patches are also available at:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-hibernation-support
+
+Earlier versions of this patchset have been tested by multiple users with
+positive results. Takashi also tested this latest version:
+
+  Tested-by: Takashi Iwai <tiwai@suse.de>
+
+Baochen Qiang (7):
+  bus: mhi: host: add mhi_power_down_no_destroy()
+  bus: mhi: host: add new interfaces to handle MHI channels directly
+  wifi: ath11k: handle irq enable/disable in several code path
+  wifi: ath11k: remove MHI LOOPBACK channels
+  wifi: ath11k: do not dump SRNG statistics during resume
+  wifi: ath11k: fix warning on DMA ring capabilities event
+  wifi: ath11k: support hibernation
+
+Kalle Valo (1):
+  wifi: ath11k: thermal: don't try to register multiple times
+
+ drivers/bus/mhi/host/internal.h           |  1 +
+ drivers/bus/mhi/host/main.c               | 91 +++++++++++++++++++++++
+ drivers/bus/mhi/host/pm.c                 | 26 +++++--
+ drivers/net/wireless/ath/ath11k/ahb.c     |  8 +-
+ drivers/net/wireless/ath/ath11k/core.c    | 44 ++++++-----
+ drivers/net/wireless/ath/ath11k/core.h    |  2 +
+ drivers/net/wireless/ath/ath11k/hif.h     | 12 +--
+ drivers/net/wireless/ath/ath11k/mhi.c     | 49 +++++-------
+ drivers/net/wireless/ath/ath11k/mhi.h     |  4 +-
+ drivers/net/wireless/ath/ath11k/pci.c     | 55 ++++++++++++--
+ drivers/net/wireless/ath/ath11k/qmi.c     |  7 +-
+ drivers/net/wireless/ath/ath11k/thermal.c |  3 +
+ drivers/net/wireless/ath/ath11k/wmi.c     |  1 +
+ include/linux/mhi.h                       | 47 +++++++++++-
+ 14 files changed, 268 insertions(+), 82 deletions(-)
+
+
+base-commit: f24dee89bb8a7ef33c28e31632b1f3dd4e196413
+-- 
+2.39.2
+
 
 -- 
 ath11k mailing list
