@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96035C4167D
-	for <ath11k@archiver.kernel.org>; Fri, 10 Nov 2023 10:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 700B7C4167B
+	for <ath11k@archiver.kernel.org>; Fri, 10 Nov 2023 10:22:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=V6MmMSFsSS4xJbasUpA6mBPUF1E0XaBtx5gd1H53crk=; b=mNL0QR2Iv6qG3y
-	kNtixmYsKsaMtWmg3z+/Rbg8gHbI9B75ici0EMi+5XoxopCBixDyHbwV6wbmUu7+EGI535JQD0h55
-	dQwFJAXm85+FEkHVvK5kwGQOzKYknSd+rebqTUEjTqNznxrOD3mmHco9Y3UtaE0NchS7xCEklqQbh
-	ahU34u6QTausc0KHRS8wi62AKiUrrYGC7g89ui5Py39ugjUq5nB4Honb3jm0c2H4szb+YuG1DJx66
-	YF1Zl11H5IELBu/bKAfx3+gqg4kUiUxMpwL+Vsst/bw9tks8VJ9KmfaYHYJmfZTkAJuskHxAlKDD+
-	1HUIxvC+kzQhOYPSmUQg==;
+	List-Owner; bh=cGyoGO1ZfQ1dmeM+RgDclbsrFbOphr5TLoBFYBOuhBk=; b=4t2XT/JLS5qHuo
+	JV5TwqrBg/VuBxkgbOpLYBbl8ny3mFXjqR8QWHUDtgBJQrDeldWCgJmhPVtwy4QT0VvZbldVoqlY8
+	5e1Iusk3P7qhdyfVPoEzK7o7Hj3Czk1a/Ul3CTA5i3EuiaCENBZbIOBZLv55a3gyQ1RwMJDlTIsbf
+	37YhLhNjZJjis34z1l1ZNsJ3QjtUrcl5mW9dKjnm4/WUa9BaDqf4wj5RNyQOu3U8QSXVS61z1xKVT
+	rQfU1cyT+bP843sa2uVnx8C9+5LrdXX1cs/z0CF0BZU7yPb6MJY4rL+RUFWnVZuEapFYakS27PYAS
+	qfcL2EnKPco5vLITd8eA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1OeV-008HtE-14;
-	Fri, 10 Nov 2023 10:22:15 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1r1OeX-008Hv4-0W;
+	Fri, 10 Nov 2023 10:22:17 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1OeS-008Hqq-0n
+	id 1r1OeT-008HrT-1J
 	for ath11k@lists.infradead.org;
-	Fri, 10 Nov 2023 10:22:13 +0000
+	Fri, 10 Nov 2023 10:22:14 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id D734DB81E21
-	for <ath11k@lists.infradead.org>; Fri, 10 Nov 2023 10:22:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70A57C433C8;
-	Fri, 10 Nov 2023 10:22:09 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id 1ED78B82234
+	for <ath11k@lists.infradead.org>; Fri, 10 Nov 2023 10:22:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F02C433C7;
+	Fri, 10 Nov 2023 10:22:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699611730;
-	bh=hptKbYz04+x5Rr0maSkv69QvScaY06HUThEK/G5dIhM=;
+	s=k20201202; t=1699611731;
+	bh=m1Qw8/vtVY4p1/3aRSjL1MDaqIJS0lXW4t1xxd50gVI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BkMo7EG6iUws0M/o6eo67UcGSSC6caRinXQ6YCAQIeTAjUdzj/soIs7A00vEsswei
-	 Uz/eA64OKT6OWdFUiYd7UnU211hCMV65JQ7yG/A3Oze90Fxlfau00+KR1j7ZVgW9I2
-	 cutec7332I9fLZAvWwAXxK81C3Tq7rGL5yIIw/13E0quEN6Wq0OCiYWWWUKUwLXDJt
-	 qFG4eaApzDzE0dpRhvw3DMdyOICKrbvEiYmrQ5JJPeuJ0sBWQtgIbV/aLFkNVPhFZK
-	 Aj+E0Ts36sj/gKYP57gKjgM7aNhK78Pk8RwoD1DBDk/68H7Sf8jYpI5kS8ttPPjsgc
-	 rHN3ObEhPfFDA==
+	b=h5OioymDllpakzBKbYnzBWdc/VgmmcFiXEAZZSrR818B67Td+0rPM38wF/zFfIqn+
+	 PCh33PyArwPEa9NHGo0Mk12GlIWKgz9tQCTiLMLiIBMAJHGPK9bHg6GXj0Nq+8tSgj
+	 EvrJzFJaV8lnA9b+GCMuMFas5Aq6n9cBXFbZ93X7bgtxSdGm4mdp4ND/S7mz8CRcYq
+	 l4uu6yTvEpg3uzIhflT8s/uLv3cxsK9vQ1JrJtN+ljGYvkUEvUxSUBiuT9p3NGsSgY
+	 Qi6wdO6Fntdl3D4dXi2FRsP+T8js3F15Q4/sUVXr55/JjY0rD2T1rVGk/K7njEQBji
+	 JRnYZdP4jQAsA==
 From: Kalle Valo <kvalo@kernel.org>
 To: mhi@lists.linux.dev
 Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH RFC 4/8] wifi: ath11k: remove MHI LOOPBACK channels
-Date: Fri, 10 Nov 2023 12:21:58 +0200
-Message-Id: <20231110102202.3168243-5-kvalo@kernel.org>
+Subject: [PATCH RFC 5/8] wifi: ath11k: do not dump SRNG statistics during resume
+Date: Fri, 10 Nov 2023 12:21:59 +0200
+Message-Id: <20231110102202.3168243-6-kvalo@kernel.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231110102202.3168243-1-kvalo@kernel.org>
 References: <20231110102202.3168243-1-kvalo@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231110_022212_435056_7B48A492 
-X-CRM114-Status: UNSURE (   8.86  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20231110_022213_581276_F4EBD888 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,59 +74,45 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Baochen Qiang <quic_bqiang@quicinc.com>
 
-There is no driver to match these two channels, so
-remove them. This fixes warnings from MHI subsystem during suspend:
+Both the firmware reset feature and the power management
+suspend/resume feature share common power-down and power-up
+functionality. One aspect of the power-up functionality is
+the handling of the ATH11K_QMI_EVENT_FW_INIT_DONE event.
+When this event is received, a call is made to
+ath11k_hal_dump_srng_stats(), with the purpose to collect
+information that may be useful in debugging the cause of a
+firmware reset.
 
-mhi mhi0_LOOPBACK: 1: Failed to reset channel, still resetting
-mhi mhi0_LOOPBACK: 0: Failed to reset channel, still resetting
+Unfortunately, since this functionality is shared between
+both the firmware reset path and the power management
+resume path, the kernel log is flooded with messages during
+resume. Since these messages are not useful during resume,
+and in fact can be confusing and can increase the time it
+takes to resume, update the logic to only call
+ath11k_hal_dump_srng_stats() during firmware reset.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
 
 Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mhi.c | 28 ---------------------------
- 1 file changed, 28 deletions(-)
+ drivers/net/wireless/ath/ath11k/qmi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index afeabd6ecc67..d4fe1d1c86e4 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -21,34 +21,6 @@
- #define RDDM_DUMP_SIZE	0x420000
- 
- static struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
--	{
--		.num = 0,
--		.name = "LOOPBACK",
--		.num_elements = 32,
--		.event_ring = 0,
--		.dir = DMA_TO_DEVICE,
--		.ee_mask = 0x4,
--		.pollcfg = 0,
--		.doorbell = MHI_DB_BRST_DISABLE,
--		.lpm_notify = false,
--		.offload_channel = false,
--		.doorbell_mode_switch = false,
--		.auto_queue = false,
--	},
--	{
--		.num = 1,
--		.name = "LOOPBACK",
--		.num_elements = 32,
--		.event_ring = 0,
--		.dir = DMA_FROM_DEVICE,
--		.ee_mask = 0x4,
--		.pollcfg = 0,
--		.doorbell = MHI_DB_BRST_DISABLE,
--		.lpm_notify = false,
--		.offload_channel = false,
--		.doorbell_mode_switch = false,
--		.auto_queue = false,
--	},
- 	{
- 		.num = 20,
- 		.name = "IPCR",
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index c270dc46d506..97a74563d4a6 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -3249,7 +3249,8 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 		case ATH11K_QMI_EVENT_FW_INIT_DONE:
+ 			clear_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
+ 			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
+-				ath11k_hal_dump_srng_stats(ab);
++				if (ab->is_reset)
++					ath11k_hal_dump_srng_stats(ab);
+ 				queue_work(ab->workqueue, &ab->restart_work);
+ 				break;
+ 			}
 -- 
 2.39.2
 
