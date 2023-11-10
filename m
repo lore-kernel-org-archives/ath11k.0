@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EF21C04A95
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96035C4167D
 	for <ath11k@archiver.kernel.org>; Fri, 10 Nov 2023 10:22:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,50 +12,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H7nqOxkKyfA0YkNq08WjPwxagl3eK1+ukHjHKmgLRfk=; b=G3lIbHLb5MhTmZ
-	yXPCAe7cjplRc3a2kjUaZGQvf2fDCUldfRSdHNEsI/LIGGt/XksBSDIFOZeQBzESyT9a6ShBNwVcu
-	LQW0rpZpIqKZ2OESvrqQij8BwpFZxBBet3rL56lpUezFydMqRRFMsgmLH12QudlUNLj7LJjuFmpGR
-	5j5R4TmPblmQ/wTFwQcyuj7LSphFxzDzDhIKkrrlvfDeKxL+mSTGxGzCm0rl6+cEhaHPpqjJHE5UH
-	rOs3K7QBgxb59TOlvU1vonInn5Tguw3ufFoW/GdwYefyoY5NjZAV0X4YTbjNGhiSTGxWe9cx1NRda
-	ERDoxMYPnfCEc9jBpDFQ==;
+	List-Owner; bh=V6MmMSFsSS4xJbasUpA6mBPUF1E0XaBtx5gd1H53crk=; b=mNL0QR2Iv6qG3y
+	kNtixmYsKsaMtWmg3z+/Rbg8gHbI9B75ici0EMi+5XoxopCBixDyHbwV6wbmUu7+EGI535JQD0h55
+	dQwFJAXm85+FEkHVvK5kwGQOzKYknSd+rebqTUEjTqNznxrOD3mmHco9Y3UtaE0NchS7xCEklqQbh
+	ahU34u6QTausc0KHRS8wi62AKiUrrYGC7g89ui5Py39ugjUq5nB4Honb3jm0c2H4szb+YuG1DJx66
+	YF1Zl11H5IELBu/bKAfx3+gqg4kUiUxMpwL+Vsst/bw9tks8VJ9KmfaYHYJmfZTkAJuskHxAlKDD+
+	1HUIxvC+kzQhOYPSmUQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1OeU-008Hsx-2x;
-	Fri, 10 Nov 2023 10:22:14 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1r1OeV-008HtE-14;
+	Fri, 10 Nov 2023 10:22:15 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r1OeQ-008HpX-13
+	id 1r1OeS-008Hqq-0n
 	for ath11k@lists.infradead.org;
 	Fri, 10 Nov 2023 10:22:13 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 63D14CE16BB
-	for <ath11k@lists.infradead.org>; Fri, 10 Nov 2023 10:22:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6454C433C8;
-	Fri, 10 Nov 2023 10:22:05 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id D734DB81E21
+	for <ath11k@lists.infradead.org>; Fri, 10 Nov 2023 10:22:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70A57C433C8;
+	Fri, 10 Nov 2023 10:22:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699611726;
-	bh=4R+48ZsZ6g6W/iclu+AoYZ4jUcByaUxPgac3A4UoqZw=;
+	s=k20201202; t=1699611730;
+	bh=hptKbYz04+x5Rr0maSkv69QvScaY06HUThEK/G5dIhM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=I1b4xoASLNZkFLnpBRCNyVvsw5GtJYDvTd+94wQ6wapIFnNbGlrgfGK2jjRZNMDpu
-	 U+SksjmptPpASrcgwX9qsvuxVGT4HEl5VSeYoyPWipoMC8cobwLLd4rdTimPy84Kdq
-	 TFkUZpe25gGt9FFnl0dZ+jJDH9bQj7tphgiNiaTo3vyGn5YF4PQ2P099jrrAOZNZxb
-	 Zk6lstxtwf6RMoRwQICt2ZJsn7laCiBdnoAY7xCLJexHvkDKdFBEsqIylwKN2rBp+s
-	 6hUxGjiTDztIC1HAZ/eKfXyFeYmgD39nKwWS7QVoJxN2WqLJbIzoQUgIw9s7lGkOO1
-	 Vf+GDjXsapZDg==
+	b=BkMo7EG6iUws0M/o6eo67UcGSSC6caRinXQ6YCAQIeTAjUdzj/soIs7A00vEsswei
+	 Uz/eA64OKT6OWdFUiYd7UnU211hCMV65JQ7yG/A3Oze90Fxlfau00+KR1j7ZVgW9I2
+	 cutec7332I9fLZAvWwAXxK81C3Tq7rGL5yIIw/13E0quEN6Wq0OCiYWWWUKUwLXDJt
+	 qFG4eaApzDzE0dpRhvw3DMdyOICKrbvEiYmrQ5JJPeuJ0sBWQtgIbV/aLFkNVPhFZK
+	 Aj+E0Ts36sj/gKYP57gKjgM7aNhK78Pk8RwoD1DBDk/68H7Sf8jYpI5kS8ttPPjsgc
+	 rHN3ObEhPfFDA==
 From: Kalle Valo <kvalo@kernel.org>
 To: mhi@lists.linux.dev
 Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH RFC 1/8] bus: mhi: host: add mhi_power_down_no_destroy()
-Date: Fri, 10 Nov 2023 12:21:55 +0200
-Message-Id: <20231110102202.3168243-2-kvalo@kernel.org>
+Subject: [PATCH RFC 4/8] wifi: ath11k: remove MHI LOOPBACK channels
+Date: Fri, 10 Nov 2023 12:21:58 +0200
+Message-Id: <20231110102202.3168243-5-kvalo@kernel.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231110102202.3168243-1-kvalo@kernel.org>
 References: <20231110102202.3168243-1-kvalo@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231110_022210_707186_3BBC599D 
-X-CRM114-Status: GOOD (  20.18  )
+X-CRM114-CacheID: sfid-20231110_022212_435056_7B48A492 
+X-CRM114-Status: UNSURE (   8.86  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,182 +75,59 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Baochen Qiang <quic_bqiang@quicinc.com>
 
-If ath11k tries to call mhi_power_up() during resume it fails:
+There is no driver to match these two channels, so
+remove them. This fixes warnings from MHI subsystem during suspend:
 
-ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
-
-This happens because when calling mhi_power_up() the MHI subsystem eventually
-calls device_add() from mhi_create_devices() but the device creation is
-deferred:
-
-mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
-
-The reason for deferring device creation is explained in dpm_prepare():
-
-	/*
-	 * It is unsafe if probing of devices will happen during suspend or
-	 * hibernation and system behavior will be unpredictable in this case.
-	 * So, let's prohibit device's probing here and defer their probes
-	 * instead. The normal behavior will be restored in dpm_complete().
-	 */
-
-Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not called and
-qcom_mhi_qrtr_dl_callback() fails silently as qdev is zero:
-
-static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
-				      struct mhi_result *mhi_res)
-{
-	struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
-	int rc;
-
-	if (!qdev || mhi_res->transaction_status)
-		return;
-
-So what this means that QRTR is not delivering messages and the QMI connection
-is not working between ath11k and the firmware, resulting a failure in firmware
-initialisation.
-
-To fix this add new function mhi_power_down_no_destroy() which does not destroy
-the devices during power down. This way mhi_power_up() can be called during
-resume and we can get ath11k hibernation working with the following patches.
+mhi mhi0_LOOPBACK: 1: Failed to reset channel, still resetting
+mhi mhi0_LOOPBACK: 0: Failed to reset channel, still resetting
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
 
 Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 ---
- drivers/bus/mhi/host/internal.h |  1 +
- drivers/bus/mhi/host/pm.c       | 26 +++++++++++++++++++-------
- include/linux/mhi.h             | 29 +++++++++++++++++++++++++++--
- 3 files changed, 47 insertions(+), 9 deletions(-)
+ drivers/net/wireless/ath/ath11k/mhi.c | 28 ---------------------------
+ 1 file changed, 28 deletions(-)
 
-diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
-index 2e139e76de4c..d1033af285e2 100644
---- a/drivers/bus/mhi/host/internal.h
-+++ b/drivers/bus/mhi/host/internal.h
-@@ -69,6 +69,7 @@ enum dev_st_transition {
- 	DEV_ST_TRANSITION_FP,
- 	DEV_ST_TRANSITION_SYS_ERR,
- 	DEV_ST_TRANSITION_DISABLE,
-+	DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE,
- 	DEV_ST_TRANSITION_MAX,
- };
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+index afeabd6ecc67..d4fe1d1c86e4 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.c
++++ b/drivers/net/wireless/ath/ath11k/mhi.c
+@@ -21,34 +21,6 @@
+ #define RDDM_DUMP_SIZE	0x420000
  
-diff --git a/drivers/bus/mhi/host/pm.c b/drivers/bus/mhi/host/pm.c
-index 8a4362d75fc4..e0e429adbda6 100644
---- a/drivers/bus/mhi/host/pm.c
-+++ b/drivers/bus/mhi/host/pm.c
-@@ -453,7 +453,8 @@ static int mhi_pm_mission_mode_transition(struct mhi_controller *mhi_cntrl)
- }
- 
- /* Handle shutdown transitions */
--static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
-+static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl,
-+				      bool destroy_device)
- {
- 	enum mhi_pm_state cur_state;
- 	struct mhi_event *mhi_event;
-@@ -515,8 +516,10 @@ static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
- 	dev_dbg(dev, "Waiting for all pending threads to complete\n");
- 	wake_up_all(&mhi_cntrl->state_event);
- 
--	dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
--	device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
-+	if (destroy_device) {
-+		dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
-+		device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
-+	}
- 
- 	mutex_lock(&mhi_cntrl->pm_mutex);
- 
-@@ -801,7 +804,10 @@ void mhi_pm_st_worker(struct work_struct *work)
- 			mhi_pm_sys_error_transition(mhi_cntrl);
- 			break;
- 		case DEV_ST_TRANSITION_DISABLE:
--			mhi_pm_disable_transition(mhi_cntrl);
-+			mhi_pm_disable_transition(mhi_cntrl, false);
-+			break;
-+		case DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE:
-+			mhi_pm_disable_transition(mhi_cntrl, true);
- 			break;
- 		default:
- 			break;
-@@ -1154,7 +1160,8 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl)
- }
- EXPORT_SYMBOL_GPL(mhi_async_power_up);
- 
--void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
-+void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
-+		      bool destroy_device)
- {
- 	enum mhi_pm_state cur_state, transition_state;
- 	struct device *dev = &mhi_cntrl->mhi_dev->dev;
-@@ -1190,14 +1197,19 @@ void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
- 	write_unlock_irq(&mhi_cntrl->pm_lock);
- 	mutex_unlock(&mhi_cntrl->pm_mutex);
- 
--	mhi_queue_state_transition(mhi_cntrl, DEV_ST_TRANSITION_DISABLE);
-+	if (destroy_device)
-+		mhi_queue_state_transition(mhi_cntrl,
-+					   DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE);
-+	else
-+		mhi_queue_state_transition(mhi_cntrl,
-+					   DEV_ST_TRANSITION_DISABLE);
- 
- 	/* Wait for shutdown to complete */
- 	flush_work(&mhi_cntrl->st_worker);
- 
- 	disable_irq(mhi_cntrl->irq[0]);
- }
--EXPORT_SYMBOL_GPL(mhi_power_down);
-+EXPORT_SYMBOL_GPL(__mhi_power_down);
- 
- int mhi_sync_power_up(struct mhi_controller *mhi_cntrl)
- {
-diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-index 039943ec4d4e..85edc9c5df88 100644
---- a/include/linux/mhi.h
-+++ b/include/linux/mhi.h
-@@ -644,12 +644,37 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl);
-  */
- int mhi_sync_power_up(struct mhi_controller *mhi_cntrl);
- 
-+void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
-+		    bool destroy_device);
-+
- /**
-- * mhi_power_down - Start MHI power down sequence
-+ * mhi_power_down - Start MHI power down sequence. See also
-+ * mhi_power_down_no_destroy() which is a variant of this for suspend.
-+ *
-  * @mhi_cntrl: MHI controller
-  * @graceful: Link is still accessible, so do a graceful shutdown process
-  */
--void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful);
-+static inline void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
-+{
-+	__mhi_power_down(mhi_cntrl, graceful, true);
-+}
-+
-+/**
-+ * mhi_power_down_no_destroy - Start MHI power down sequence but don't
-+ * destroy struct devices. This is a variant for mhi_power_down() and is a
-+ * workaround to make it possible to use mhi_power_up() in a resume
-+ * handler. When using this variant the caller must also call
-+ * mhi_prepare_all_for_transfer_autoqueue() and
-+ * mhi_unprepare_all_from_transfer().
-+ *
-+ * @mhi_cntrl: MHI controller
-+ * @graceful: Link is still accessible, so do a graceful shutdown process
-+ */
-+static inline void mhi_power_down_no_destroy(struct mhi_controller *mhi_cntrl,
-+					     bool graceful)
-+{
-+	__mhi_power_down(mhi_cntrl, graceful, false);
-+}
- 
- /**
-  * mhi_unprepare_after_power_down - Free any allocated memory after power down
+ static struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
+-	{
+-		.num = 0,
+-		.name = "LOOPBACK",
+-		.num_elements = 32,
+-		.event_ring = 0,
+-		.dir = DMA_TO_DEVICE,
+-		.ee_mask = 0x4,
+-		.pollcfg = 0,
+-		.doorbell = MHI_DB_BRST_DISABLE,
+-		.lpm_notify = false,
+-		.offload_channel = false,
+-		.doorbell_mode_switch = false,
+-		.auto_queue = false,
+-	},
+-	{
+-		.num = 1,
+-		.name = "LOOPBACK",
+-		.num_elements = 32,
+-		.event_ring = 0,
+-		.dir = DMA_FROM_DEVICE,
+-		.ee_mask = 0x4,
+-		.pollcfg = 0,
+-		.doorbell = MHI_DB_BRST_DISABLE,
+-		.lpm_notify = false,
+-		.offload_channel = false,
+-		.doorbell_mode_switch = false,
+-		.auto_queue = false,
+-	},
+ 	{
+ 		.num = 20,
+ 		.name = "IPCR",
 -- 
 2.39.2
 
