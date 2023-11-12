@@ -4,85 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F500C4332F
-	for <ath11k@archiver.kernel.org>; Sun, 12 Nov 2023 04:24:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61EDBC4332F
+	for <ath11k@archiver.kernel.org>; Sun, 12 Nov 2023 16:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RKQyrah87AAK8m8N55ETgGT8kmPpydZv2vA0LHbtyPg=; b=DiMmbscILcDh/0
-	6JGqLHhkr7HtOfAlTJ5BiMD6a4kI0DSoL/d+9HeatmQtFSn+wxgLWlOqR+r+EESId8NBYF7DnU6tH
-	/zw6YD/FLl63n8mDAQNjpL7vBMNAZUZa3Wvzza65qdSEox2aZPN1g5B/A+577UBKPd//j8cFxB2HW
-	1iL9ueZa7B31w4kZLCsvxqBMS0ycuzH3WEEGw4/GSWnNQLbtDaQWVtSmDT5IEBUBcRgveX7CJEyGv
-	Ifp24IAkzk3qrNNozZGcEsjBSrsYthTXwaGCI4bOCDgPljllv6GOTIIh41qYg0skxfohy0tFInNGZ
-	4nylOvVQQwBg8sLifjag==;
+	List-Owner; bh=aAo0c1ZJJEAbgx/MHT0upjPcv91jX9DzOie5TZw5qeM=; b=CEvsmnK8mWs7jq
+	COpzVtQMYyGPJfDM3CygOGY3MYhppwjrnYBNwTMqaYfPsjTljtuu6wQkAiGELajQIRm9APW55UO8X
+	qoQ9+S/1DZ4djxU8VTc+o/xHT9m2PHUoZGu7ft0x6+vV/wx4JP5Y26vEtwJrIVIRO32CqWqyvkgCz
+	nzF9q5e1NJYIfk5XoG/rSupTmZRowoD26OZftP5KJoRhpX4KVTwAWJPA4OB8zRKfJgjeB66kIgn4T
+	uJ0pflFjSfKv8WrDK7IjdcUK22mwZIVpqVADMm1el/N6RRhJMl0hBcKGvvQnxNXtmI5eoFSYH8OPB
+	PAR1GlHGR3tzMs7K/xTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r221n-00BfCE-22;
-	Sun, 12 Nov 2023 04:24:55 +0000
+	id 1r2D7m-00CZe0-0V;
+	Sun, 12 Nov 2023 16:15:50 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r221l-00BfBW-06
+	id 1r2D7i-00CZdG-2s
 	for ath11k@lists.infradead.org;
-	Sun, 12 Nov 2023 04:24:54 +0000
+	Sun, 12 Nov 2023 16:15:48 +0000
 Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AC4OivZ000997;
-	Sun, 12 Nov 2023 04:24:44 GMT
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ACG0vWm019096;
+	Sun, 12 Nov 2023 16:15:42 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=MHyF5XFWxTDTGEuQZvCCBwCqoNyzxAZnfW1V2Z2coto=;
- b=AGBy4oEVe3DNXMq+nG6m1Ix/DcOtZE6GLSthQAbbbyAWm1KxIZ203+SVwfnVNw0y6NEp
- XIPoIddnns3ZdLNaHgymPFnfZ/k44Crmvw/iV0EUWLmhKlJsYlz2M1FlOIvogmvclHL/
- r9BMA6HJv7G3XPDVOIlwEhw+6rtsgT9KrdvIdEum6+9Y9GChqO2ME1wQz6zt7In/0nHS
- 8HqRahePxwiaAU4rrI04UT0WIBmCl/LnbecFNXwlwlEBsSV4/WABBQwcrUOJrhfJmFyc
- K+yqvedvuunuyT4O7tkWz6YKPYJdhYP3E8ZjjHWPs0d2lzRYJQHIPbM5iEc1Db75tn4B Qg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ua2sw1b7m-1
+ bh=EjZRLRapeJGE9nRtCrvzmZ0/G6eqt6q1wxe/ljCM6cc=;
+ b=EVAtDCsXQHuGjN3+jHm8y3aKF8Xi6WXTQcbbrLl3ZliPc2wR05xifs5ht0D5gZaI3xDI
+ ENwXmlPxMcE0TMpo2dEDqdgVcKdUeIWloBXUSabFmjobu3+BNdLdoEk8c97U+5bLzGSE
+ wsDvGbU2mBZXk5th+kfUozBhxlCjp2ENPLMG4OSfJno3IK0v8FpQXLrZMVg4VI6axOsh
+ FKLMWsur4ZAiDXlrN6jBGvX8b1YhednlQLFnRyj4cBMaSU8R3TKvSkFUT6YJ5wlzgkU+
+ 6DKNSltqO7Devgqj+RQ9FWu2Ubm/DihdTio+yz/W0paOiPHbOIic+r9od0vdfFP2ozz3 lw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ua2sw1x54-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 12 Nov 2023 04:24:44 +0000
+	Sun, 12 Nov 2023 16:15:42 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AC4OhuZ005337
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ACGFfkX017085
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 12 Nov 2023 04:24:43 GMT
-Received: from [10.253.35.191] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Sun, 12 Nov 2023 16:15:41 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Sat, 11 Nov
- 2023 20:24:41 -0800
-Message-ID: <e2ad1380-d55f-42bd-9f40-ef8aa6e0f105@quicinc.com>
-Date: Sun, 12 Nov 2023 12:24:38 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Sun, 12 Nov
+ 2023 08:15:41 -0800
+Message-ID: <818fddb9-b59e-7a6f-6605-2ba016d0db60@quicinc.com>
+Date: Sun, 12 Nov 2023 09:15:40 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
 Subject: Re: [PATCH RFC 4/8] wifi: ath11k: remove MHI LOOPBACK channels
 Content-Language: en-US
-To: Jeffrey Hugo <quic_jhugo@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+To: Baochen Qiang <quic_bqiang@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
         <mhi@lists.linux.dev>
 CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
 References: <20231110102202.3168243-1-kvalo@kernel.org>
  <20231110102202.3168243-5-kvalo@kernel.org>
  <f56bce13-bba8-40d2-1dfc-210478ff63d6@quicinc.com>
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <f56bce13-bba8-40d2-1dfc-210478ff63d6@quicinc.com>
+ <e2ad1380-d55f-42bd-9f40-ef8aa6e0f105@quicinc.com>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <e2ad1380-d55f-42bd-9f40-ef8aa6e0f105@quicinc.com>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: E3MZTNXumas3qj3-t4tOf1c-3D0HHu1Z
-X-Proofpoint-GUID: E3MZTNXumas3qj3-t4tOf1c-3D0HHu1Z
+X-Proofpoint-ORIG-GUID: ch8vXW29ui1GbesnmnHfPW209WaOpGuh
+X-Proofpoint-GUID: ch8vXW29ui1GbesnmnHfPW209WaOpGuh
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-12_01,2023-11-09_01,2023-05-22_02
+ definitions=2023-11-12_15,2023-11-09_01,2023-05-22_02
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- mlxscore=0 phishscore=0 suspectscore=0 mlxlogscore=515 priorityscore=1501
+ mlxscore=0 phishscore=0 suspectscore=0 mlxlogscore=628 priorityscore=1501
  adultscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1015
  classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311120039
+ definitions=main-2311120142
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231111_202453_072473_A261BAA4 
-X-CRM114-Status: GOOD (  11.99  )
+X-CRM114-CacheID: sfid-20231112_081546_971290_590D4542 
+X-CRM114-Status: GOOD (  14.45  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,20 +101,25 @@ Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Ck9uIDExLzExLzIwMjMgMTI6NTQgQU0sIEplZmZyZXkgSHVnbyB3cm90ZToKPiBPbiAxMS8xMC8y
-MDIzIDM6MjEgQU0sIEthbGxlIFZhbG8gd3JvdGU6Cj4+IEZyb206IEJhb2NoZW4gUWlhbmcgPHF1
-aWNfYnFpYW5nQHF1aWNpbmMuY29tPgo+Pgo+PiBUaGVyZSBpcyBubyBkcml2ZXIgdG8gbWF0Y2gg
-dGhlc2UgdHdvIGNoYW5uZWxzLCBzbwo+PiByZW1vdmUgdGhlbS4gVGhpcyBmaXhlcyB3YXJuaW5n
-cyBmcm9tIE1ISSBzdWJzeXN0ZW0gZHVyaW5nIHN1c3BlbmQ6Cj4+Cj4+IG1oaSBtaGkwX0xPT1BC
-QUNLOiAxOiBGYWlsZWQgdG8gcmVzZXQgY2hhbm5lbCwgc3RpbGwgcmVzZXR0aW5nCj4+IG1oaSBt
-aGkwX0xPT1BCQUNLOiAwOiBGYWlsZWQgdG8gcmVzZXQgY2hhbm5lbCwgc3RpbGwgcmVzZXR0aW5n
-Cj4KPiBUaGlzIGZlZWxzIGxpa2UganVzdCBtYXNraW5nIGEgcmVhbCBpc3N1ZS4KPgo+IElmIExP
-T1BCQUNLIGlzIG5vdCBiZWluZyBjb25zdW1lZCwgdGhlbiB0aGUgY2hhbm5lbCBzaG91bGQgbmV2
-ZXIgZ28gCj4gaW50byB0aGUgc3RhcnQgc3RhdGUuwqAgV2h5IHdvdWxkIHdlIGJlIHRyeWluZyB0
-byB0cmFuc2l0aW9uIHRvIHRoZSAKPiByZXNldCBzdGF0ZSB0aGVuPwo+Cj4gLUplZmYKVGhhdCBp
-cyBiZWNhdXNlLCB3aXRoIHBhdGNoICdidXM6IG1oaTogaG9zdDogYWRkIG5ldyBpbnRlcmZhY2Vz
-IHRvIApoYW5kbGUgTUhJIGNoYW5uZWxzIGRpcmVjdGx5JyBpbiB0aGlzIHBhdGNoIHNldCwgYXRo
-MTFrIGlzIGFibGUgdG8gY2FsbCAKbWhpX3VucHJlcGFyZV9hbGxfZnJvbV90cmFuc2ZlcigpLCB3
-aGljaCB3aWxsIHJlc2V0IGFsbCBjaGFubmVscy4KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0
-aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxt
-YW4vbGlzdGluZm8vYXRoMTFrCg==
+T24gMTEvMTEvMjAyMyA5OjI0IFBNLCBCYW9jaGVuIFFpYW5nIHdyb3RlOgo+IAo+IE9uIDExLzEx
+LzIwMjMgMTI6NTQgQU0sIEplZmZyZXkgSHVnbyB3cm90ZToKPj4gT24gMTEvMTAvMjAyMyAzOjIx
+IEFNLCBLYWxsZSBWYWxvIHdyb3RlOgo+Pj4gRnJvbTogQmFvY2hlbiBRaWFuZyA8cXVpY19icWlh
+bmdAcXVpY2luYy5jb20+Cj4+Pgo+Pj4gVGhlcmUgaXMgbm8gZHJpdmVyIHRvIG1hdGNoIHRoZXNl
+IHR3byBjaGFubmVscywgc28KPj4+IHJlbW92ZSB0aGVtLiBUaGlzIGZpeGVzIHdhcm5pbmdzIGZy
+b20gTUhJIHN1YnN5c3RlbSBkdXJpbmcgc3VzcGVuZDoKPj4+Cj4+PiBtaGkgbWhpMF9MT09QQkFD
+SzogMTogRmFpbGVkIHRvIHJlc2V0IGNoYW5uZWwsIHN0aWxsIHJlc2V0dGluZwo+Pj4gbWhpIG1o
+aTBfTE9PUEJBQ0s6IDA6IEZhaWxlZCB0byByZXNldCBjaGFubmVsLCBzdGlsbCByZXNldHRpbmcK
+Pj4KPj4gVGhpcyBmZWVscyBsaWtlIGp1c3QgbWFza2luZyBhIHJlYWwgaXNzdWUuCj4+Cj4+IElm
+IExPT1BCQUNLIGlzIG5vdCBiZWluZyBjb25zdW1lZCwgdGhlbiB0aGUgY2hhbm5lbCBzaG91bGQg
+bmV2ZXIgZ28gCj4+IGludG8gdGhlIHN0YXJ0IHN0YXRlLsKgIFdoeSB3b3VsZCB3ZSBiZSB0cnlp
+bmcgdG8gdHJhbnNpdGlvbiB0byB0aGUgCj4+IHJlc2V0IHN0YXRlIHRoZW4/Cj4+Cj4+IC1KZWZm
+Cj4gVGhhdCBpcyBiZWNhdXNlLCB3aXRoIHBhdGNoICdidXM6IG1oaTogaG9zdDogYWRkIG5ldyBp
+bnRlcmZhY2VzIHRvIAo+IGhhbmRsZSBNSEkgY2hhbm5lbHMgZGlyZWN0bHknIGluIHRoaXMgcGF0
+Y2ggc2V0LCBhdGgxMWsgaXMgYWJsZSB0byBjYWxsIAo+IG1oaV91bnByZXBhcmVfYWxsX2Zyb21f
+dHJhbnNmZXIoKSwgd2hpY2ggd2lsbCByZXNldCBhbGwgY2hhbm5lbHMuCgp0aGF0IGltcGxlbWVu
+dGF0aW9uIGlzIGZsYXdlZCBpZiBpdCBpcyBjYXVzaW5nIHRoaXMuICBMb29rcyBsaWtlIHlvdSAK
+bmV2ZXIgY2hlY2sgdG8gc2VlIGlmIHRoZSBjaGFubmVsIHdhcyBwcmVwYXJlZCBpbiB0aGUgZmly
+c3QgcGxhY2UuCgpJZiB5b3UgZ28gZml4IHRoYXQsIHRoZW4gaXQgbG9va3MgbGlrZSB0aGlzIGNo
+YW5nZSBpcyBub3QgbmVlZGVkLgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9hdGgxMWsK
