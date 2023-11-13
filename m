@@ -4,76 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A5BCC05021
-	for <ath11k@archiver.kernel.org>; Mon, 13 Nov 2023 14:11:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 131B7C4167B
+	for <ath11k@archiver.kernel.org>; Mon, 13 Nov 2023 14:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kEpyBKtIq0ckT1eIb8Dt9mIO5hMIQNvNlWH5nn8nSz8=; b=ASSU6ZGHr1yZCH
-	L8Eq8TYcGq+G2gqT5IQupLEykBCX8YeJnpmG2ay/b9w0QdcIfHLzbqrlLNPBjBuOXDFo7cEnPE+tF
-	gAhLteu+1r1cjoFkJyncwbyJuBFgKfh6qhBE/kxmnEvzGpEKliXVqoSn8guXoSzahZCmOvJ8P35e5
-	+9TXxtwihjSy/7P1k++Aj43i0Yj/3/FHxh/Sn5qQ7k2obpp8zEy1L+rTyADtnuQtANI2byZCQ8WF5
-	Z0/71sngNdu9BG7+QsPgtDSlQurR6ymFPs9C/dT190gdlAQF7TvD6TKhxr15S8DhO+mOw2mYqxWjK
-	+dOCNgxAGzQne2NukfyA==;
+	List-Owner; bh=7Lxx2s8ff1ppwHNR4qHLLx5NpakxO5j6MgReyI6fFFY=; b=DhE9QWraindODK
+	BgYNwQdT0ESZn5V1A2NY2IhEJGt4aYMeRnygFyi2E2J2/ROY1NYYQXSGVaGXVQpGei5edy+ZlvTJW
+	jrMp7veR/uPnv5msuUIdEgMcy/BNtJTKi7i0JWhFwzP+ht5kL+PfpvtBDkWdDVp7opGZk6QLi4K2V
+	NZrxRjeieUH4TLdd7mO5aDLHtgBKNaJkFn7PKp3Jwf5YuFXMh4YerVQ6wL3cgcYsUfFj/FqF4fiBN
+	LJZG39F2VnDsgmI587OQ3dVAx0M8Go3WwT+VkpnMT1RXGBXwf8JhSc/BO03YInSGy01T5eLOYP+1B
+	K+F+LACqWcnXehyH8Xyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2XeY-00E6xc-30;
-	Mon, 13 Nov 2023 14:11:02 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1r2Xij-00E7PH-2Y;
+	Mon, 13 Nov 2023 14:15:21 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2XeV-00E6xB-2v
+	id 1r2Xif-00E7OR-2c
 	for ath11k@lists.infradead.org;
-	Mon, 13 Nov 2023 14:11:01 +0000
+	Mon, 13 Nov 2023 14:15:20 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 48047B80DFA;
-	Mon, 13 Nov 2023 14:10:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56B90C433C8;
-	Mon, 13 Nov 2023 14:10:53 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 5B35ECE14E4;
+	Mon, 13 Nov 2023 14:15:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F321EC433C8;
+	Mon, 13 Nov 2023 14:15:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699884657;
-	bh=2vpy58rQTHTP9krRVNgcAQrv/Q/+avRu6pax/Biruds=;
+	s=k20201202; t=1699884906;
+	bh=y1OMZ6z7efDhKj1vsokZwE/dfo0DW7No+kNt4zr/hMA=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=J3ay90WHC4ALuWZzRA6IAYlybdjApZS9p2RVDXtuXHnkWS7x0DOZEkfn/uXDp1IaA
-	 WKiPqVM1DJvqdJejm4ZO6tnPrJqw8ph6QyrtjW28Eq1bIzm31leY/dGKFXYYWHqYBg
-	 y4VAgNZtktIzHV0GYWAuc05wxFSClKCWiwIG1puKsf6fT95+mEDV1F8PJLUgOpzpCb
-	 B8BJO0bcBD1XK821yKbKpCc1kInm6+ae4p8lWG++1F9rXd4OwuakoWh+YekOWxi9/m
-	 a2CnN0GSmBUE+1nNZ1B68QZDp9mnQKs+PnOVIYmYyHH8fjQraIzZIjG4zR0lMfkvN0
-	 GjZqHE6whIX9g==
+	b=W6ijUz7t8wqqkvA4nNp8oJE1agaJUXkRQBBsP8k1HL8FXbHJAT7DbjYYosBg2Rj+r
+	 wsOed5P5VP1NobrIAd32YKDp77ZwSdWv0qtg1IeBcOy6Est+KeI9qIGxoXkQd+lqSe
+	 Rhhy8QboGRBOzxmeVy103L8BEVNmMkEzKw0JeB1ZYXZNrplw3b2jvv7wKlnR5ccr3d
+	 l8/CK0E34OOiH57X7Wjz/q/OpLq+a3Z9TP42z27CSnHuculfzcEgTVGyXq6VjKoTVl
+	 JtVRKkWMyIFmHqaOYxrGmM3Wz40d3l3vzseWNI1lou0aFZS1u93HDZV6g6ukXYOalr
+	 12WXmxxiowGHQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: "Luca Weiss" <luca.weiss@fairphone.com>
-Cc: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,  "Konrad Dybcio"
- <konrad.dybcio@linaro.org>,  "Andy Gross" <agross@kernel.org>,  "Bjorn
- Andersson" <andersson@kernel.org>,  "Mathieu Poirier"
- <mathieu.poirier@linaro.org>,  "Rob Herring" <robh+dt@kernel.org>,
-  "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,  "Conor
- Dooley" <conor+dt@kernel.org>,  "Manivannan Sadhasivam" <mani@kernel.org>,
-  <cros-qcom-dts-watchers@chromium.org>,
-  <~postmarketos/upstreaming@lists.sr.ht>,  <phone-devel@vger.kernel.org>,
-  "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,  "Rob Herring"
- <robh@kernel.org>,  Matti =?utf-8?Q?Lehtim=C3=A4ki?=
- <matti.lehtimaki@gmail.com>,
-  <linux-arm-msm@vger.kernel.org>,  <linux-remoteproc@vger.kernel.org>,
-  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
-  <ath11k@lists.infradead.org>
-Subject: Re: [PATCH 9/9] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable WiFi
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
-	<20231027-sc7280-remoteprocs-v1-9-05ce95d9315a@fairphone.com>
-	<12ea48bd-5022-4820-815a-89ef23ec9385@linaro.org>
-	<CWMK0AQRL87L.1F9MIDVQ4J439@fairphone.com>
-	<CAA8EJpqCeW8NVcrpwo6JVn0kE2W-QMELB1YH7i7pgOH6qiPbCQ@mail.gmail.com>
-	<87zfzhu9kx.fsf@kernel.org> <CWXP3TCW3A1G.2ME0JJT3S540G@fairphone.com>
-Date: Mon, 13 Nov 2023 16:10:51 +0200
-In-Reply-To: <CWXP3TCW3A1G.2ME0JJT3S540G@fairphone.com> (Luca Weiss's message
-	of "Mon, 13 Nov 2023 13:50:21 +0100")
-Message-ID: <87r0ktu4k4.fsf@kernel.org>
+To: Jeffrey Hugo <quic_jhugo@quicinc.com>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>,  <mhi@lists.linux.dev>,
+  <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH RFC 4/8] wifi: ath11k: remove MHI LOOPBACK channels
+References: <20231110102202.3168243-1-kvalo@kernel.org>
+	<20231110102202.3168243-5-kvalo@kernel.org>
+	<f56bce13-bba8-40d2-1dfc-210478ff63d6@quicinc.com>
+	<e2ad1380-d55f-42bd-9f40-ef8aa6e0f105@quicinc.com>
+	<818fddb9-b59e-7a6f-6605-2ba016d0db60@quicinc.com>
+Date: Mon, 13 Nov 2023 16:15:02 +0200
+In-Reply-To: <818fddb9-b59e-7a6f-6605-2ba016d0db60@quicinc.com> (Jeffrey
+	Hugo's message of "Sun, 12 Nov 2023 09:15:40 -0700")
+Message-ID: <87msvhu4d5.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231113_061100_098515_BF3E3486 
-X-CRM114-Status: GOOD (  14.74  )
+X-CRM114-CacheID: sfid-20231113_061519_272914_D3721FCA 
+X-CRM114-Status: GOOD (  13.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,47 +72,36 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-"Luca Weiss" <luca.weiss@fairphone.com> writes:
-
->> >> > > --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->> >> > > +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->> >> > > @@ -713,3 +713,7 @@ &venus {
->> >> > >     firmware-name = "qcom/qcm6490/fairphone5/venus.mbn";
->> >> > >     status = "okay";
->> >> > >  };
->> >> > > +
->> >> > > +&wifi {
->> >> > > +   status = "okay";
->> >> > qcom,ath11k-calibration-variant?
->> >>
->> >> What value would I put there for my device? Based on existing usages
->> >> (mostly for ath10k) I'd say "Fairphone_5"?
->> >
->> > I think this is fine.
->>
->> From style point of view I would prefer lower case and dashes, for
->> example "fairphone-5" but I'm just nitpicking, uppercase and underscores
->> work fine as well.
->
-> I really don't mind, but I used "Fairphone_5" in v2 now, but I can
-> change it for v3 if that happens if you wish.
-
-Nah, no need to resend. That's fine.
-
-But in the future please try to CC the ath11k list for patches like
-this, easier to follow what's happening.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SmVmZnJleSBIdWdvIDxxdWljX2podWdvQHF1aWNpbmMuY29tPiB3cml0ZXM6Cgo+IE9uIDExLzEx
+LzIwMjMgOToyNCBQTSwgQmFvY2hlbiBRaWFuZyB3cm90ZToKPgo+PiBPbiAxMS8xMS8yMDIzIDEy
+OjU0IEFNLCBKZWZmcmV5IEh1Z28gd3JvdGU6Cj4+PiBPbiAxMS8xMC8yMDIzIDM6MjEgQU0sIEth
+bGxlIFZhbG8gd3JvdGU6Cj4+Pj4gRnJvbTogQmFvY2hlbiBRaWFuZyA8cXVpY19icWlhbmdAcXVp
+Y2luYy5jb20+Cj4+Pj4KPj4+PiBUaGVyZSBpcyBubyBkcml2ZXIgdG8gbWF0Y2ggdGhlc2UgdHdv
+IGNoYW5uZWxzLCBzbwo+Pj4+IHJlbW92ZSB0aGVtLiBUaGlzIGZpeGVzIHdhcm5pbmdzIGZyb20g
+TUhJIHN1YnN5c3RlbSBkdXJpbmcgc3VzcGVuZDoKPj4+Pgo+Pj4+IG1oaSBtaGkwX0xPT1BCQUNL
+OiAxOiBGYWlsZWQgdG8gcmVzZXQgY2hhbm5lbCwgc3RpbGwgcmVzZXR0aW5nCj4+Pj4gbWhpIG1o
+aTBfTE9PUEJBQ0s6IDA6IEZhaWxlZCB0byByZXNldCBjaGFubmVsLCBzdGlsbCByZXNldHRpbmcK
+Pj4+Cj4+PiBUaGlzIGZlZWxzIGxpa2UganVzdCBtYXNraW5nIGEgcmVhbCBpc3N1ZS4KPj4+Cj4+
+PiBJZiBMT09QQkFDSyBpcyBub3QgYmVpbmcgY29uc3VtZWQsIHRoZW4gdGhlIGNoYW5uZWwgc2hv
+dWxkIG5ldmVyIGdvCj4+PiBpbnRvIHRoZSBzdGFydCBzdGF0ZS7CoCBXaHkgd291bGQgd2UgYmUg
+dHJ5aW5nIHRvIHRyYW5zaXRpb24gdG8gdGhlCj4+PiByZXNldCBzdGF0ZSB0aGVuPwo+Pj4KPj4+
+IC1KZWZmCj4+IFRoYXQgaXMgYmVjYXVzZSwgd2l0aCBwYXRjaCAnYnVzOiBtaGk6IGhvc3Q6IGFk
+ZCBuZXcgaW50ZXJmYWNlcyB0bwo+PiBoYW5kbGUgTUhJIGNoYW5uZWxzIGRpcmVjdGx5JyBpbiB0
+aGlzIHBhdGNoIHNldCwgYXRoMTFrIGlzIGFibGUgdG8KPj4gY2FsbCBtaGlfdW5wcmVwYXJlX2Fs
+bF9mcm9tX3RyYW5zZmVyKCksIHdoaWNoIHdpbGwgcmVzZXQgYWxsCj4+IGNoYW5uZWxzLgo+Cj4g
+dGhhdCBpbXBsZW1lbnRhdGlvbiBpcyBmbGF3ZWQgaWYgaXQgaXMgY2F1c2luZyB0aGlzLiAgTG9v
+a3MgbGlrZSB5b3UKPiBuZXZlciBjaGVjayB0byBzZWUgaWYgdGhlIGNoYW5uZWwgd2FzIHByZXBh
+cmVkIGluIHRoZSBmaXJzdCBwbGFjZS4KPgo+IElmIHlvdSBnbyBmaXggdGhhdCwgdGhlbiBpdCBs
+b29rcyBsaWtlIHRoaXMgY2hhbmdlIGlzIG5vdCBuZWVkZWQuCgpCVFcgd2hhdCBkbyB0aGVzZSBs
+b29wYmFjayBjaGFubmVscyBkbz8gSSBkaWRuJ3Qgbm90aWNlIGFueSBkaWZmZXJlbmNlCmluIHRo
+ZSBmdW5jdGlvbmFsaXR5IHNvIEknbSB3b25kZXJpbmcgdGhlIHJlYXNvbiBmb3IgdGhlc2UuCgot
+LSAKaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdpcmVsZXNzL2xp
+c3QvCgpodHRwczovL3dpcmVsZXNzLndpa2kua2VybmVsLm9yZy9lbi9kZXZlbG9wZXJzL2RvY3Vt
+ZW50YXRpb24vc3VibWl0dGluZ3BhdGNoZXMKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDEx
+a0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vYXRoMTFrCg==
