@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B247C4167B
-	for <ath11k@archiver.kernel.org>; Mon, 13 Nov 2023 15:11:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46076C4332F
+	for <ath11k@archiver.kernel.org>; Mon, 13 Nov 2023 15:38:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2SKN5YXRD/1bbo/y1zuoQcbyrZg8cAV4EvsY1CVYkh0=; b=dHYmy52GKMzQhN
-	UNCnggpnhPoX2W0vDezLXvH8vUWRXzUNsmhYXg6mEH+w3/BCHdd2qARmBj+NjJcRY6f3azGeF2EQt
-	4aArKMgk+QW/YH/r2AU0YQ9vVssFjTf1jN2Q0lVhQwvDJ/+k9FsRa/KPySa/1UqZutmIsk6zPQ6Zx
-	5En/0v/Xb6fcnsomVY2/CdfGWlVTLqn2tNea8QIg8VTs0m6lfPP+4ptX9t8PkFprGlSRaEVQqciWX
-	yF5L6PvT+DVZOfVQrCrWF1NHL0clxHiCXahsBiL13aAPlinLVX7a+xX17Xoh2FIcQ1OQeKHUT/4Yc
-	9jWJtohR2PPhCyJuoXoA==;
+	List-Owner; bh=3rKjAIz49Yew35svscRBRpXkVL9KDRUr8H/tc6hwNew=; b=RtPzU9jwRIDIcd
+	nnBCdj9od5etd7J5y+BuBRAXY7UBA3BGYg2hZ1FySibEQjDdjwfl4FHzmjLAVR/7cJaENYMSQx688
+	FVkEG42VHKjmbQteS0QRA47q+iqEeOlqu0Ys7aRHqjvWQJOKc7KctdCUzklc14+TKZKRyBjt9Ac/s
+	TY+q8wvodBTHT+o24le0/erQ6FsSRBD0YXhHip4RTThRjlzE5YN+GoZnwRyxSAAABDWTENOJ4Ik+P
+	zlCYwMyW4EYl8qg4hnGDBG2xqsRitFc03xZjjqz599PkWi6Jp/oomcPzFDRiL4ctFg5R/skL9moGQ
+	3HlbAJdyNwMVfX/WsVpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2Yaw-00EDC5-2l;
-	Mon, 13 Nov 2023 15:11:22 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1r2Z0o-00EFdp-0G;
+	Mon, 13 Nov 2023 15:38:06 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r2Yau-00EDBZ-0F
+	id 1r2Z0l-00EFcl-0O
 	for ath11k@lists.infradead.org;
-	Mon, 13 Nov 2023 15:11:21 +0000
+	Mon, 13 Nov 2023 15:38:04 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 61577B80DF7;
-	Mon, 13 Nov 2023 15:11:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1DFBC433C7;
-	Mon, 13 Nov 2023 15:11:16 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 7BD75CE16E9;
+	Mon, 13 Nov 2023 15:38:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03E4CC433C7;
+	Mon, 13 Nov 2023 15:37:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699888277;
-	bh=APV7Qhqjaxd3OtxJX4eUx/5vcGB1ZCX7+5XUWVVLz40=;
+	s=k20201202; t=1699889880;
+	bh=nodC5p6ug9A05wH2ElfMtDXiy9l8bsxSv4FLIQhdg+8=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=Qd2FnMhU/BLN+iEceJaGOzttAdjrxg3zw/vuygyDA8PkMvp6whSa2zeGuQuuhuPgf
-	 elLfZS0xEwTwiSLZJ3o8kCwTPIt5jBpfw0vmrYcoxe+vdTr22mWzg7Ig2pOA0Lvl9M
-	 DCA9xEZLjKTgP88t9aP2e4sDSJ3jA7hrImjU2McOhcjh9/fB/GUpwtQlRgAvAj2Jpf
-	 LgJnhuK8nwXcRLa+//beyuRAOrQ/BlI0EQy5G4Zb9OoqzMuerue8km5qi2JG/1Pk97
-	 5TMbTS1tm9jVcUUVugV3UL5Hh0drWMQrnaJQ5hDwlcG6l5tM2fL04gC6wm62wukrG/
-	 muLrt0bq/RUcw==
+	b=OVppq6+u/PyTFjBKZoEW1bZQdrZdfALGvpZuIevND49++UtW0H1PQBT8OCcDyj7bq
+	 6T5Y+bxzkoh05KHmQJ9K+YPcnS5HwNo/MkXw/19RPzalc1SsXBa55IFnnS6utSwk4T
+	 LWx1zxUxsF0cBMcy4y6XyFZhbTV54zaEZ0rHdSR3wwzcGF0qkYK7PLJVjRIQc58rGc
+	 HBmGLRVyXR6LL7h0P4WKnCtSOsuf3xfPbR4Gyn34y4olTQX1rEXeDO4qpMxSHYJIJQ
+	 4HbEF/CEXFjktmfTAOwNIada18f7cLpOQFSxkOuHmFoo6AMffAEDGJ3e2l51Ne9K7k
+	 /GwrwlYSkmdLA==
 From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: James Prestwood <prestwoj@gmail.com>,  <linux-wireless@vger.kernel.org>,
-  "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: Can ath11k automatically enable CRYPTO_MICHAEL_MIC?
-References: <c558e244-b10d-43f3-9f42-f6c2f98d5b95@gmail.com>
-	<b2a44dc4-f5ec-46fe-a4ce-a2151ac65aa3@quicinc.com>
-Date: Mon, 13 Nov 2023 17:11:14 +0200
-In-Reply-To: <b2a44dc4-f5ec-46fe-a4ce-a2151ac65aa3@quicinc.com> (Jeff
-	Johnson's message of "Wed, 8 Nov 2023 06:39:14 -0800")
-Message-ID: <87edgtu1rh.fsf@kernel.org>
+To: "Luca Weiss" <luca.weiss@fairphone.com>
+Cc: "Jeff Johnson" <quic_jjohnson@quicinc.com>,
+  <~postmarketos/upstreaming@lists.sr.ht>,  <phone-devel@vger.kernel.org>,
+  <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH] wifi: ath11k: Defer on rproc_get failure
+References: <20231027-ath11k-rproc-defer-v1-1-f6b6a812cd18@fairphone.com>
+	<87lebowjyf.fsf@kernel.org> <CWJ4ZLEZCKQC.2STOBNUU06B2P@fairphone.com>
+Date: Mon, 13 Nov 2023 17:37:57 +0200
+In-Reply-To: <CWJ4ZLEZCKQC.2STOBNUU06B2P@fairphone.com> (Luca Weiss's message
+	of "Fri, 27 Oct 2023 12:07:09 +0200")
+Message-ID: <87a5rhu0iy.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231113_071120_245285_579F9925 
-X-CRM114-Status: GOOD (  12.83  )
+X-CRM114-CacheID: sfid-20231113_073803_503879_ABAE6030 
+X-CRM114-Status: GOOD (  25.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,41 +76,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+"Luca Weiss" <luca.weiss@fairphone.com> writes:
 
-> On 11/8/2023 6:33 AM, James Prestwood wrote:
->> Hi,
->> I'm not very familiar with how the Kconfig stuff works, but I spent
->> longer than I care to admit trying to get the ath11k support to show
->> up in menuconfig.
->> The issue was CONFIG_CRYPT_MICHAEL_MIC was not set, which removed
->> the ath11k driver from menuconfig because of:
->> depends on CRYPTO_MICHAEL_MIC
->> Maybe there was a good reason (again, I don't know much about
->> Kconfig), but should/could this use "select" to automatically enable
->> CRYPTO_MICHAEL_MIC?
->> Thanks,
->> James
+> On Fri Oct 27, 2023 at 10:25 AM CEST, Kalle Valo wrote:
 >
-> + ath11k list to see if there is any history on this topic
+>> Luca Weiss <luca.weiss@fairphone.com> writes:
+>>
+>> > If we already have gotten the rproc_handle (meaning the "qcom,rproc"
+>> > property is defined in the devicetree), it's a valid state that the
+>> > remoteproc module hasn't probed yet so we should defer probing instead
+>> > of just failing to probe.
+>> >
+>> > This resolves a race condition when the ath11k driver probes and fails
+>> > before the wpss remoteproc driver has probed, like the following:
+>> >
+>> >   [    6.232360] ath11k 17a10040.wifi: failed to get rproc
+>> >   [    6.232366] ath11k 17a10040.wifi: failed to get rproc: -22
+>> >   [    6.232478] ath11k: probe of 17a10040.wifi failed with error -22
+>> >        ...
+>> >   [    6.252415] remoteproc remoteproc2: 8a00000.remoteproc is available
+>> >   [    6.252776] remoteproc remoteproc2: powering up 8a00000.remoteproc
+>> >   [    6.252781] remoteproc remoteproc2: Booting fw image qcom/qcm6490/fairphone5/wpss.mdt, size 7188
+>> >
+>> > So, defer the probe if we hit that so we can retry later once the wpss
+>> > remoteproc is available.
+>> >
+>> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>
+>> Did you test this on a real device? If yes, what ath11k hardware and firmware
+>> did you use? We use Tested-on tag to document that:
+>>
+>> https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches#tested-on_tag
+>
+> Hi,
+>
+> Yes I tested this on qcm6490-fairphone-fp5 including some extra patches
+> for wpss-pas remoteproc support (nothing special, just adding it to the
+> existing PAS driver) and wifi enablement in dts.
 
-I checked the history and this dependency was added by commit
-243874c64c81 ("ath11k: handle RX fragments") back in 2020, the commit
-message doesn't specify why 'depends on' was used instead of 'select'.
+Nice, do you have a link to the patches or a git tree which has
+everything? And how difficult would it be for me to run vanilla
+kernel.org kernel (no vendor kernels or anything like that) on Fairphone
+5? Any documentation available for that?
 
-Further investigation shows that ath11k and ath12k are the only who use
-'depends on' with CRYPTO_MICHAEL_MIC:
+I'm asking because I don't have a test setup for WCN6750 right now. It
+would be awesome if I could use Fairphone for testing :)
 
-./drivers/net/wireless/intel/ipw2x00/Kconfig:	select CRYPTO_MICHAEL_MIC
-./drivers/net/wireless/intersil/hostap/Kconfig:	select CRYPTO_MICHAEL_MIC
-./drivers/net/wireless/intersil/orinoco/Kconfig:	select CRYPTO_MICHAEL_MIC
-./drivers/net/wireless/ath/ath11k/Kconfig:	depends on CRYPTO_MICHAEL_MIC
-./drivers/net/wireless/ath/ath12k/Kconfig:	depends on CRYPTO_MICHAEL_MIC
-./drivers/staging/rtl8192e/Kconfig:	select CRYPTO_MICHAEL_MIC
-./drivers/staging/ks7010/Kconfig:	select CRYPTO_MICHAEL_MIC
+> I built this line from info from the dmesg, hope it's okay:
+>
+> Tested-on: wcn6750 hw1.0 AHB WLAN.MSL.1.0.1-01264-QCAMSLSWPLZ-1.37886.3
 
-So switching ath11k and ath12k to use 'select' should be the best thing
-to do. Patches welcome :)
+Thanks, I added that to the commit message.
+
+> And thinking about it, a Fixes tag would also be appropriate for this
+> patch. The code was moved to a different file in commit ba929d6fe31a
+> ("ath11k: Remove rproc references from common core layer") but I think
+> this tag should be correct.
+>
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+
+Ok, I added that as well.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
