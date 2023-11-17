@@ -4,83 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EBC6C197A0
-	for <ath11k@archiver.kernel.org>; Fri, 17 Nov 2023 01:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11EE6C072A2
+	for <ath11k@archiver.kernel.org>; Fri, 17 Nov 2023 09:31:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gaDEV2SLDKYouz0eYiW/W0JV3VmuX5fARcbznWS9G9k=; b=KdchWbK3+sL2tI
-	STKuae07RMj3l3dJR/QpOp1PjS6JGXV+EzzRvGwYF+d4Ylka25VALm/7lmdBrcmbSwH/m7oumj59H
-	g7xNz2XNDYsR4clkAplW7333xXZ/IlUJLGL9Ot+vVRKEoNzGBn8i7cPg5bID11BWY9vWs2pSRXtHJ
-	dQFuyqa+uARXJvd4lxsn1ebjqipdu0rnhnckeG08biLFWFpBPqJq2vIsulE54n+6NFk22/e76GuHS
-	RuDi9Itg0M1WcNT/pA6rlpDpYMmtrtDY6Ki2Pd8CDy5q7MlF7lxDkfoeDQIvmrBDejakSu1bva1ty
-	v0GXGo83FYXY7kml2OQQ==;
+	List-Owner; bh=CCmHeiuaoao4sW1zcgKukGHM3w/CXDb7yABxhWetzgE=; b=gWdgNtgECTBExC
+	Kkmfqz0iZKuDsehVzupPOkgTvEEohgP61FBnUsQCNm+DUyzvcu51YP05sQAqRLjKr/07uEs0n6TIL
+	lmmr5MwVLEtsy/gPI4Bp5Bv9roaF0V0xX7Tl3l5ZkGRuStWwKCMGGg1uZ9c4CnQPi1FN5K4Fnazwt
+	Fz+CuZUS5t7SVxTKrkRh/hJ4oGM3lheMP5oJb94ScylSYzXN7nXtDPry46TEFNTs0buq8Hc3oicbV
+	xqfezLoNgOE16DMM4noTPE/PdZgc9GQ7O4Ct8skVERpt9Ipj3VEHpCWYYawJmk+DsygFFHTZ4iYDT
+	bYkh+wAN2dr74ccZBqeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r3nhM-005PNE-0I;
-	Fri, 17 Nov 2023 01:31:08 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1r3vC5-00658N-0T;
+	Fri, 17 Nov 2023 09:31:21 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r3nhF-005PMc-28
+	id 1r3vC2-00655i-0x
 	for ath11k@lists.infradead.org;
-	Fri, 17 Nov 2023 01:31:05 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AH0GV70000409;
-	Fri, 17 Nov 2023 01:31:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=sqg4Xz/17GfEmjamOFsQf5DpoV5qumNYXp9eABsg9/Y=;
- b=Lcywg6F1sgd9l3IZGGw9j+HJ2R9KtO/BMkEjpAFJtXNx+2CbFOjqiNSdhczlZqWB6dlI
- +GJsJuqjlP13A3ueCh9CdI0wezHJkuKgK5mr9C5ibW6bldrpkBOEGF15j8RJdlucFBei
- 7r7MKbXgSuSGzuOcaZsR23l6IynXminVtedb922ADILLw/Tuh9Az0TU1AS6Y7JgMzN+m
- WQrKSJEGmTwL9vPX+VLCeyZPsth0RUEN2rahPVzyMcZyIKg1qTND9GIdxtNUfkWl51vW
- 4RssLxEcpRMPkRJBB5pcAmce7aex/hE7Iwk0BUASu0XVrFQnXciCwdJ6wV7AbJpUqGQx Fg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udkqa1kbf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 01:31:00 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AH1V0Zd026130
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 01:31:00 GMT
-Received: from [10.110.1.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 16 Nov
- 2023 17:30:59 -0800
-Message-ID: <911a18d7-3c2c-4c9c-b309-6e0879ed7867@quicinc.com>
-Date: Thu, 16 Nov 2023 17:30:58 -0800
+	Fri, 17 Nov 2023 09:31:20 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1r3vBw-0002W1-7T; Fri, 17 Nov 2023 10:31:12 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1r3vBv-009e8M-Ga; Fri, 17 Nov 2023 10:31:11 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1r3vBv-002yjZ-7e; Fri, 17 Nov 2023 10:31:11 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: [PATCH wifi-next 1/6] wifi: ath11k: Convert to platform remove callback returning void
+Date: Fri, 17 Nov 2023 10:30:58 +0100
+Message-ID: <20231117093056.873834-9-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231117093056.873834-8-u.kleine-koenig@pengutronix.de>
+References: <20231117093056.873834-8-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: fix race due to setting
- ATH11K_FLAG_EXT_IRQ_ENABLED too early
-Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20231117003919.26218-1-quic_bqiang@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20231117003919.26218-1-quic_bqiang@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uJOU8_SZRIorsq4hpjR191A23BL36rTZ
-X-Proofpoint-GUID: uJOU8_SZRIorsq4hpjR191A23BL36rTZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_25,2023-11-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=738
- suspectscore=0 bulkscore=0 impostorscore=0 mlxscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
- adultscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311170010
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1890; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=3hYN3tnM4/NZ3knZ/+upus+mpO+Pxs5arIlHPwnJHaU=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlVzLSL9vS6NnmImZuTLnRn0N7U5Tf5PTOeIPAq +P5ZjIJpaaJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZVcy0gAKCRCPgPtYfRL+ Tsi0B/9CWelcJYoumkh4qKAWMn+yfrTHa3oNZC8oj2WIo1CAmki62h720/KIXJAKJNhRUgxlPBd a/AM6wsviq081gNYx5al77rBGez7HA1HWdjJmgCNKDPfF+NoU/n1/8TRerAaQU/yfKSRRsn5ZCf ANcAFLLiJMMvOjfgmp3S+Fs/l3jvXIjBwB3SgUnyHMCVZTWZvIl8OaC17iHYiLhpZSy7ezGdyN2 1Guu929RP0Y6BXZsSW2L8ovYi2EqcOdm0LvV6KdDFRmZgqOldK/sh0UvcixRfOT6UVis9yC8GbQ Fm9ZlQumTYb4qSqoLlxzm3HbzAUoUEVcQJ5JXVds+mfxXJU+
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231116_173101_711030_5D7EA5C6 
-X-CRM114-Status: GOOD (  17.11  )
+X-CRM114-CacheID: sfid-20231117_013118_338833_DA3D1E6C 
+X-CRM114-Status: GOOD (  14.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,48 +73,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/16/2023 4:39 PM, Baochen Qiang wrote:
-> We are seeing below error randomly in the case where only
-> one MSI vector is configured:
-> 
-> kernel: ath11k_pci 0000:03:00.0: wmi command 16387 timeout
-> 
-> The reason is, currently, in ath11k_pcic_ext_irq_enable(),
-> ATH11K_FLAG_EXT_IRQ_ENABLED is set before NAPI is enabled.
-> This results in a race condition: after
-> ATH11K_FLAG_EXT_IRQ_ENABLED is set but before NAPI enabled,
-> CE interrupt breaks in. Since IRQ is shared by CE and data
-> path, ath11k_pcic_ext_interrupt_handler() is also called
-> where we call disable_irq_nosync() to disable IRQ. Then
-> napi_schedule() is called but it does nothing because NAPI
-> is not enabled at that time, meaning
-> ath11k_pcic_ext_grp_napi_poll() will never run, so we have
-> no chance to call enable_irq() to enable IRQ back. Finally
-> we get above error.
-> 
-> Fix it by setting ATH11K_FLAG_EXT_IRQ_ENABLED after all
-> NAPI and IRQ work are done. With the fix, we are sure that
-> by the time ATH11K_FLAG_EXT_IRQ_ENABLED is set, NAPI is
-> enabled.
-> 
-> Note that the fix above also introduce some side effects:
-> if ath11k_pcic_ext_interrupt_handler() breaks in after NAPI
-> enabled but before ATH11K_FLAG_EXT_IRQ_ENABLED set, nothing
-> will be done by the handler this time, the work will be
-> postponed till the next time the IRQ fires.
-> 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+VGhlIC5yZW1vdmUoKSBjYWxsYmFjayBmb3IgYSBwbGF0Zm9ybSBkcml2ZXIgcmV0dXJucyBhbiBp
+bnQgd2hpY2ggbWFrZXMKbWFueSBkcml2ZXIgYXV0aG9ycyB3cm9uZ2x5IGFzc3VtZSBpdCdzIHBv
+c3NpYmxlIHRvIGRvIGVycm9yIGhhbmRsaW5nIGJ5CnJldHVybmluZyBhbiBlcnJvciBjb2RlLiBI
+b3dldmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyBpZ25vcmVkIChhcGFydApmcm9tIGVtaXR0aW5n
+IGEgd2FybmluZykgYW5kIHRoaXMgdHlwaWNhbGx5IHJlc3VsdHMgaW4gcmVzb3VyY2UgbGVha3Mu
+CgpUbyBpbXByb3ZlIGhlcmUgdGhlcmUgaXMgYSBxdWVzdCB0byBtYWtlIHRoZSByZW1vdmUgY2Fs
+bGJhY2sgcmV0dXJuCnZvaWQuIEluIHRoZSBmaXJzdCBzdGVwIG9mIHRoaXMgcXVlc3QgYWxsIGRy
+aXZlcnMgYXJlIGNvbnZlcnRlZCB0bwoucmVtb3ZlX25ldygpLCB3aGljaCBhbHJlYWR5IHJldHVy
+bnMgdm9pZC4gRXZlbnR1YWxseSBhZnRlciBhbGwgZHJpdmVycwphcmUgY29udmVydGVkLCAucmVt
+b3ZlX25ldygpIHdpbGwgYmUgcmVuYW1lZCB0byAucmVtb3ZlKCkuCgpUcml2aWFsbHkgY29udmVy
+dCB0aGlzIGRyaXZlciBmcm9tIGFsd2F5cyByZXR1cm5pbmcgemVybyBpbiB0aGUgcmVtb3ZlCmNh
+bGxiYWNrIHRvIHRoZSB2b2lkIHJldHVybmluZyB2YXJpYW50LgoKU2lnbmVkLW9mZi1ieTogVXdl
+IEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4KLS0tCiBkcml2
+ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2FoYi5jIHwgNiArKy0tLS0KIDEgZmlsZSBjaGFu
+Z2VkLCAyIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9haGIuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0
+aC9hdGgxMWsvYWhiLmMKaW5kZXggMjM1MzM2ZWYyYTdhLi5mOGFlOWJhODU1MDAgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvYWhiLmMKKysrIGIvZHJpdmVycy9u
+ZXQvd2lyZWxlc3MvYXRoL2F0aDExay9haGIuYwpAQCAtMTI1MSw3ICsxMjUxLDcgQEAgc3RhdGlj
+IHZvaWQgYXRoMTFrX2FoYl9mcmVlX3Jlc291cmNlcyhzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiKQog
+CXBsYXRmb3JtX3NldF9kcnZkYXRhKHBkZXYsIE5VTEwpOwogfQogCi1zdGF0aWMgaW50IGF0aDEx
+a19haGJfcmVtb3ZlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCitzdGF0aWMgdm9pZCBh
+dGgxMWtfYWhiX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogewogCXN0cnVj
+dCBhdGgxMWtfYmFzZSAqYWIgPSBwbGF0Zm9ybV9nZXRfZHJ2ZGF0YShwZGV2KTsKIApAQCAtMTI2
+Nyw4ICsxMjY3LDYgQEAgc3RhdGljIGludCBhdGgxMWtfYWhiX3JlbW92ZShzdHJ1Y3QgcGxhdGZv
+cm1fZGV2aWNlICpwZGV2KQogCiBxbWlfZmFpbDoKIAlhdGgxMWtfYWhiX2ZyZWVfcmVzb3VyY2Vz
+KGFiKTsKLQotCXJldHVybiAwOwogfQogCiBzdGF0aWMgdm9pZCBhdGgxMWtfYWhiX3NodXRkb3du
+KHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCkBAIC0xMjk2LDcgKzEyOTQsNyBAQCBzdGF0
+aWMgc3RydWN0IHBsYXRmb3JtX2RyaXZlciBhdGgxMWtfYWhiX2RyaXZlciA9IHsKIAkJLm9mX21h
+dGNoX3RhYmxlID0gYXRoMTFrX2FoYl9vZl9tYXRjaCwKIAl9LAogCS5wcm9iZSAgPSBhdGgxMWtf
+YWhiX3Byb2JlLAotCS5yZW1vdmUgPSBhdGgxMWtfYWhiX3JlbW92ZSwKKwkucmVtb3ZlX25ldyA9
+IGF0aDExa19haGJfcmVtb3ZlLAogCS5zaHV0ZG93biA9IGF0aDExa19haGJfc2h1dGRvd24sCiB9
+OwogCi0tIAoyLjQyLjAKCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0
+aDExawo=
