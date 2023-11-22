@@ -4,87 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23DBFC197A0
-	for <ath11k@archiver.kernel.org>; Fri, 17 Nov 2023 17:23:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E757C61D9C
+	for <ath11k@archiver.kernel.org>; Wed, 22 Nov 2023 09:16:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3JNJcoVUe4aV6pKqxPdHkHwF8IvcKFqqEgS4boAzr4o=; b=SCTm8nEEyz3qq2
-	f4jtNRXZ3c2806MOQ9tYDGfYqerUe56j48ru1wiooTlen1QoRFmOlPg0l+NDxpE78U5rX6Kk9N/w/
-	z0mRJB9VQFe90nqjhonoiTwWkuTD/FKw+Xb8vKyACElNFqcEaxbYGIdXVsw4QlPg20ji7fKSJ6DWZ
-	n2qtMCvPHFUSFOzH+cCavgz+8+CKHtzrOuZg2e3BBq6QO53ETtIidso5rfquEqdACgdtgnJoaFLfY
-	GbxJCutoeqNqaEFIZISg5OXZSralREUC/pc/aCYGC158QoiyAhHF06h9EBhRy7HbBOXEdvEGtO4a1
-	i7Dnuab/mxBEKZP2ObWg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HRIDFw6ogUdYkmEs6KgRtd52Fngvd7aQ1ZSB6Qne2kE=; b=bR69WjaxEAsNkf
+	e+1fIZ7g1Z8irvoEBx56NpmqJ7JjlNK7B3jL1/pe5LTc7zzOLWKj3Cx4yLmcUR8iCaNoZNYbBEk2Q
+	/qpAs6Yu0ZRcwUbSDXTKLrx85lwlhHN2jPVl/iIbh2B5CkZbUp5N34E3tsoOTyJd1H2jBjj7F4rjd
+	p5yofR9KkQVnF95ElJwCh076+xGc5iAWAcMQSFK+nDtA+C7X71mFhfDT5Cz9NB6/+Sqs2i0sSZeyI
+	g2lfEUrLuilhF/rBmBWcmOH3yTiOXCQ6HQHpstO7TNytIYekKOoIhQw8Si7mpc4fYFm59qJhGUT2Q
+	fpCSpJSa29921NtansuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r42Z3-0070zm-0W;
-	Fri, 17 Nov 2023 17:23:33 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1r5jLE-001AYt-2A;
+	Wed, 22 Nov 2023 09:16:16 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r42Z0-0070zL-0s
+	id 1r5jLC-001AX5-0P
 	for ath11k@lists.infradead.org;
-	Fri, 17 Nov 2023 17:23:31 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AHBxaSw031874;
-	Fri, 17 Nov 2023 17:23:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=OOs0J4hfvKI2bT13KzEGG3NF4a93twa4+FvtyJ2hsAE=;
- b=cjhPSz8GZO0AZn7BJTobLhperN3PuN2GfecKot8bYLBO3x1XUSO/DCMsMASrVkNJL1wd
- MZQ0cQAOo9a8W91ol+nfurY1Ls2tNdcxLxn+Y/SP4L+sJkZ5J/RqE7aiUwv4f8I55rQS
- 3fAF5ZrFKGw+GFh7fW7N+Agm0bWP2eKZFqY6/ffWbm7Fzoezw/o/B+BKR3b69n7OhvJx
- uwnH8sprpAd69OHlk1TR3cSpmA2PM06mQR89oFOquNEE8I88sSgjECSi/+OTS5K2ONec
- ikYQ72f5iAmhR22eKitxx8R+vZngG3oWDCCJpKtTMp82m7ZoiS2h6EtdI+3B8bbzuC8n nA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ue6vars6m-1
+	Wed, 22 Nov 2023 09:16:16 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AM7BNjF018219;
+	Wed, 22 Nov 2023 09:16:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=H/VVYSY/t5R/HqAo1ZFABX4r81hnwduLE/DpKtLp57o=;
+ b=LOVZnz3gM1Z1lDRxawmHfbJP62TVf3677xGpuF3bHeaLY1D3+lZRIolmHs4UsUT/wyki
+ Fg8v/s05CcXymWrUystABsaR500nl4oEpAI0FKcL1vQ9Kr3wwl8msBt/VfO2PdiXB+45
+ ncuqydyLPh4dQoH7enAaQeBnw8PcgQDzlU0Ato5KrilBfDFJhEt5QMgm7gDynRhptl+6
+ M769ObPpbmJ0QQsCVJWGkUc3elpFFnWzKWmxP+Ur2o2DblcoyR5vA8bpTiO2hOIfwQJL
+ +GDHFq6QICDwR2l/rqWAcDP83YESQA5n/OFhzMx1lPxjGlm/NMoApUZwzVts8xC3b0S4 hw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uh8mw8ygq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 17:23:24 +0000
+	Wed, 22 Nov 2023 09:16:10 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AHHNNAW025028
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AM9G9kk008001
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Nov 2023 17:23:23 GMT
-Received: from [10.110.1.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 17 Nov
- 2023 09:23:23 -0800
-Message-ID: <fdc9b3b2-fe54-41ae-9886-614fc88f6861@quicinc.com>
-Date: Fri, 17 Nov 2023 09:23:22 -0800
+	Wed, 22 Nov 2023 09:16:09 GMT
+Received: from bqiang-Celadon-RN.lan (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 22 Nov 2023 01:16:08 -0800
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH v7 00/12] wifi: ath11k: add support for 6 GHz station for various modes : LPI, SP and VLP
+Date: Wed, 22 Nov 2023 17:15:41 +0800
+Message-ID: <20231122091553.10837-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH wifi-next 1/6] wifi: ath11k: Convert to platform remove
- callback returning void
-Content-Language: en-US
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Kalle
- Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <kernel@pengutronix.de>
-References: <20231117093056.873834-8-u.kleine-koenig@pengutronix.de>
- <20231117093056.873834-9-u.kleine-koenig@pengutronix.de>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20231117093056.873834-9-u.kleine-koenig@pengutronix.de>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tZD3HYRhyXhiBNBblhCYYcuxoluvpThC
-X-Proofpoint-ORIG-GUID: tZD3HYRhyXhiBNBblhCYYcuxoluvpThC
+X-Proofpoint-GUID: g_SMLb0OzHbMkfPFyCM6O35S-Dk8BP6S
+X-Proofpoint-ORIG-GUID: g_SMLb0OzHbMkfPFyCM6O35S-Dk8BP6S
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-17_15,2023-11-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- spamscore=0 lowpriorityscore=0 clxscore=1011 bulkscore=0 malwarescore=0
- phishscore=0 impostorscore=0 mlxlogscore=980 adultscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311170130
+ definitions=2023-11-22_06,2023-11-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 mlxlogscore=767
+ adultscore=0 impostorscore=0 spamscore=0 bulkscore=0 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311220064
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231117_092330_452598_6538554D 
-X-CRM114-Status: GOOD (  14.07  )
+X-CRM114-CacheID: sfid-20231122_011614_170121_3727421E 
+X-CRM114-Status: GOOD (  13.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,25 +88,124 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gMTEvMTcvMjAyMyAxOjMwIEFNLCBVd2UgS2xlaW5lLUvDtm5pZyB3cm90ZToKPiBUaGUgLnJl
-bW92ZSgpIGNhbGxiYWNrIGZvciBhIHBsYXRmb3JtIGRyaXZlciByZXR1cm5zIGFuIGludCB3aGlj
-aCBtYWtlcwo+IG1hbnkgZHJpdmVyIGF1dGhvcnMgd3JvbmdseSBhc3N1bWUgaXQncyBwb3NzaWJs
-ZSB0byBkbyBlcnJvciBoYW5kbGluZyBieQo+IHJldHVybmluZyBhbiBlcnJvciBjb2RlLiBIb3dl
-dmVyIHRoZSB2YWx1ZSByZXR1cm5lZCBpcyBpZ25vcmVkIChhcGFydAo+IGZyb20gZW1pdHRpbmcg
-YSB3YXJuaW5nKSBhbmQgdGhpcyB0eXBpY2FsbHkgcmVzdWx0cyBpbiByZXNvdXJjZSBsZWFrcy4K
-PiAKPiBUbyBpbXByb3ZlIGhlcmUgdGhlcmUgaXMgYSBxdWVzdCB0byBtYWtlIHRoZSByZW1vdmUg
-Y2FsbGJhY2sgcmV0dXJuCj4gdm9pZC4gSW4gdGhlIGZpcnN0IHN0ZXAgb2YgdGhpcyBxdWVzdCBh
-bGwgZHJpdmVycyBhcmUgY29udmVydGVkIHRvCj4gLnJlbW92ZV9uZXcoKSwgd2hpY2ggYWxyZWFk
-eSByZXR1cm5zIHZvaWQuIEV2ZW50dWFsbHkgYWZ0ZXIgYWxsIGRyaXZlcnMKPiBhcmUgY29udmVy
-dGVkLCAucmVtb3ZlX25ldygpIHdpbGwgYmUgcmVuYW1lZCB0byAucmVtb3ZlKCkuCj4gCj4gVHJp
-dmlhbGx5IGNvbnZlcnQgdGhpcyBkcml2ZXIgZnJvbSBhbHdheXMgcmV0dXJuaW5nIHplcm8gaW4g
-dGhlIHJlbW92ZQo+IGNhbGxiYWNrIHRvIHRoZSB2b2lkIHJldHVybmluZyB2YXJpYW50Lgo+IAo+
-IFNpZ25lZC1vZmYtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0
-cm9uaXguZGU+CkFja2VkLWJ5OiBKZWZmIEpvaG5zb24gPHF1aWNfampvaG5zb25AcXVpY2luYy5j
-b20+CgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcK
-aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+This introduced some new concept:
+power type of AP(STANDARD_POWER_AP, INDOOR_AP, VERY_LOW_POWER_AP)
+power type of STATION(DEFAULT_CLIENT, SUBORDINATE_CLIENT)
+power spectral density(psd)
+
+This patchset is to implement the new rules for 6 GHz band in
+ath11k.
+
+ath11k parsed the reg rules from new WMI event
+WMI_REG_CHAN_LIST_CC_EXT_EVENTID and parse the
+transmit power envelope element in beacon of AP
+and then set new WMI command WMI_VDEV_SET_TPC_POWER_CMDID
+to firmware when connect to 6G AP, also support backward
+compatibility with firmware which not support new wmi
+cmd WMI_VDEV_SET_TPC_POWER_CMDID.
+
+v7: address review comments per Kalle, Jeff and Aditya. Also rebased to ToT.
+
+v6: (NOT depends to any patch now)
+   1. The dependent patch "wifi: cfg80211: save power spectral density(psd) of regulatory rule"
+      has upstream to wireless-next https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git/commit/?id=ddd7f45c899f7524bdbe6a32fe4906cde8b07b9b
+      The prerequisite-patch is cherry-pick from wireless-next
+      So add back the other patches in v3 since no dependency to cfg80211 public patch above now.
+      [v3,08/15] wifi: ath11k: save power spectral density(psd) of regulatory rule
+      [v3,09/15] wifi: ath11k: add parse of transmit power envelope element
+      [v3,10/15] wifi: ath11k: save max tx power in vdev start response event from firmware
+      [v3,11/15] wifi: ath11k: fill parameters for vdev_set_tpc_power wmi command
+      [v3,12/15] wifi: ath11k: add WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT service bit
+      [v3,13/15] wifi: ath11k: discard BSS_CHANGED_TXPOWER when EXT_TPC_REG_SUPPORT for 6 GHz
+      [v3,14/15] wifi: ath11k: add handler for WMI_VDEV_SET_TPC_POWER_CMDID
+      [v3,15/15] wifi: ath11k: send TPC power to firmware for 6 GHz station
+   2. rename some "6g" to "6ghz"
+   3. remove "static" for ath11k_reg_ap_pwr_convert()
+   4. add 20 Mhz check in ath11k_mac_get_eirp_power()
+   5. remove min_t() in ath11k_mac_fill_reg_tpc_info() for not is_tpe_present
+   6. rebased to ath-202309051328
+
+   link of v5:
+   [PATCH v5 0/5] fix wrong TX power and frequency in regdomain by dynamic switch 6 GHz reg rules of LPI/SP/VLP for station mode
+   https://lore.kernel.org/linux-wireless/20230803071701.15084-1-quic_wgong@quicinc.com/
+
+v5: change per Kalle and rebased to ath.git ath-202306211808
+   1. ath11k_ieee80211_ap_pwr_type_convert() to ath11k_reg_ap_pwr_convert()
+   2. used list_first_entry_or_null() and add comments
+   3. ath11k_dbg() to ath11k_warn()
+   4. ath11k_hw_supports_6g_cc_ext() to ath11k_mac_supports_6g_cc_ext()
+   5. add mesh in commit log
+
+v4: (NOT depends to any patch now).
+   1. removed patches which depends on
+      wifi: cfg80211: save Power Spectral Density (PSD) of the regulatory rule
+      https://lore.kernel.org/linux-wireless/20230315132904.31779-3-quic_adisi@quicinc.com/
+      removed:
+      [v3,08/15] wifi: ath11k: save power spectral density(psd) of regulatory rule
+      [v3,09/15] wifi: ath11k: add parse of transmit power envelope element
+      [v3,10/15] wifi: ath11k: save max tx power in vdev start response event from firmware
+      [v3,11/15] wifi: ath11k: fill parameters for vdev_set_tpc_power wmi command
+      [v3,12/15] wifi: ath11k: add WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT service bit
+      [v3,13/15] wifi: ath11k: discard BSS_CHANGED_TXPOWER when EXT_TPC_REG_SUPPORT for 6 GHz
+      [v3,14/15] wifi: ath11k: add handler for WMI_VDEV_SET_TPC_POWER_CMDID
+      [v3,15/15] wifi: ath11k: send TPC power to firmware for 6 GHz station
+
+   2. rebased to ath.git ath-202304281700
+
+   3. deleted "wifi: ath11k: Add support to parse new wmi event for 6 GHz regulatory" which is alreay upstream.
+
+   link of v3:
+   [v3,00/15] wifi: ath11k: add support for 6 GHz station for various modes : LPI, SP and VLP
+   https://patchwork.kernel.org/project/linux-wireless/cover/20220913051518.23051-1-quic_wgong@quicinc.com/
+
+v3:
+   1. added "ath11k: fix a possible dead lock caused by ab->base_lock".
+   3. deleted "ath11k: add support for extended wmi service bit" which is alreay upstream.
+
+v2:
+   1. change some minor comments by Kalle.
+   2. rebased to ath.git ath-202112220603
+
+Baochen Qiang (1):
+  wifi: ath11k: fix a possible dead lock caused by ab->base_lock
+
+Wen Gong (11):
+  wifi: ath11k: add support to select 6 GHz regulatory type
+  wifi: ath11k: store cur_regulatory_info for each radio
+  wifi: ath11k: update regulatory rules when interface added
+  wifi: ath11k: update regulatory rules when connect to AP on 6 GHz band
+    for station
+  wifi: ath11k: save power spectral density(PSD) of regulatory rule
+  wifi: ath11k: add parse of transmit power envelope element
+  wifi: ath11k: save max tx power in vdev start response event from
+    firmware
+  wifi: ath11k: fill parameters for vdev set tpc power WMI command
+  wifi: ath11k: add WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT service bit
+  wifi: ath11k: add handler for WMI_VDEV_SET_TPC_POWER_CMDID
+  wifi: ath11k: discard BSS_CHANGED_TXPOWER when EXT_TPC_REG_SUPPORT for
+    6 GHz
+
+ drivers/net/wireless/ath/ath11k/core.h |  40 ++
+ drivers/net/wireless/ath/ath11k/mac.c  | 516 ++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/mac.h  |   5 +-
+ drivers/net/wireless/ath/ath11k/reg.c  |  89 ++++-
+ drivers/net/wireless/ath/ath11k/reg.h  |   6 +-
+ drivers/net/wireless/ath/ath11k/wmi.c  | 231 ++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.h  |  69 ++++
+ 7 files changed, 882 insertions(+), 74 deletions(-)
+
+
+base-commit: 9a36440d929d134c56030a8492405708a143f580
+-- 
+2.25.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
