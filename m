@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 479DEC4167B
-	for <ath11k@archiver.kernel.org>; Mon, 27 Nov 2023 16:20:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4323C07CB1
+	for <ath11k@archiver.kernel.org>; Mon, 27 Nov 2023 16:20:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9Ae7k9lijBp0F/VP8Ro8qYWURLGpFUJnDIhv/puORMg=; b=LFQB9zwnXltk83
-	12FuwYSEMCTYBg6pObzvwdA4XXMBxIN0OSX7r1MEaA76JUy73nafiBzXHVKtuhizxx3I2HiTliwnn
-	h9UzvDvxcfoI7mbnoNT5kmpmSMtxl5wvhGwbP97JLbHAeVbpY1TV86DWBCWDzUSpLpu9XiUca1H89
-	7OlS/9VRYy4NstuLzr4L+x4JO3JuUrCb4hhy4WEtO+o+vNsjxf6iRL/y09C+fKfw/cNpRDFNgYJL/
-	VLw5avnG7jyYGN6+UCxQREaNyspRbUpK0DKa9gYNDCaNYryaHLhlBam1ARHl2/HyfJIGCbKigJFvb
-	9D2dpFqrZzGSHOxs0FlA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LVU0ty5Cm2WaxFFlfADXz9O3CwGb3Qnj7pr0cdkTT74=; b=ag8mqyuloPy0WF
+	gikbt0kniwMNY5uXuJN/yfVM20ahNvw+WLnFl3iMpXH1O572a0C5YJowGIBj58UsoftndOJpU3KLV
+	vfpTw34dS3CJs5b8IPXC9GAdM8NpJ80pw+FSFUmwQi3mbYgNoKvQ0tVlIXfTNOW4izzFfDlR1GUEp
+	zjaY5ZtKsO91+00QIZlfzYnPzQLWERd7w3SOQhzjoCC7tG17/X0kCFld/AxWez74a1aZIla1pED4u
+	VBqyKcxgaFnVQrJQ/ZoFhIkVXsNRgTG7o0EFGVjvL2YOm2x/bSREm5A/J20qz85CbqQtTunb/BL9N
+	bega+1UfeRxcJfTMbETQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7eLs-002xSH-00;
-	Mon, 27 Nov 2023 16:20:52 +0000
+	id 1r7eLu-002xU7-16;
+	Mon, 27 Nov 2023 16:20:54 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7eLS-002xBP-2w
+	id 1r7eLV-002xEy-2d
 	for ath11k@lists.infradead.org;
-	Mon, 27 Nov 2023 16:20:29 +0000
+	Mon, 27 Nov 2023 16:20:31 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 51F8D6132F
-	for <ath11k@lists.infradead.org>; Mon, 27 Nov 2023 16:20:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 500F2C43395;
-	Mon, 27 Nov 2023 16:20:24 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 407BD61343
+	for <ath11k@lists.infradead.org>; Mon, 27 Nov 2023 16:20:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33EDDC433C7;
+	Mon, 27 Nov 2023 16:20:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701102025;
-	bh=Z3NXOof2eRrfFmizeCVpeB9sXefpEKLjnDTpPAKUtmE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=QTY5d9bdSSSIFrsCI99T+x4ZtlVlyH+tYoAWxqM28/1oGVAA6Y9G0wh1KPC93PRQg
-	 DX4tBfsyZ62TSGRKp+lmp2shWbbj7cd056knxIEGuIdcK5iumFru67i0Mf5OziAMA1
-	 t+Xkd1TaJEBkAtna9alo8vp1EO8Qefty+yPCDq/0eGKMim1WkMXjCTEv/HrX866P9Y
-	 6N+4mA3g97SbfBavsTr0wt9bACzC+YxFAzSHN5ukKRh1RHnH/NrGjxWoA0ESBkeAef
-	 LS3PFiyjt6aOoAe8/PV9Zo5RArQ4sa+SnySTKQU48aEPBFGL+4FI69flPcljhB8KuZ
-	 m4IMSzu+/tLLA==
+	s=k20201202; t=1701102029;
+	bh=5ou17yiktRU9nagkHXi6c6F9I8XPQs9jzQuZICUzCw4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=fmNRLMZ5HHgeTI8q/E817rmKIoEht8FTlg3XPowTCpn+Aqp9X6RovHciR3ym0hdkf
+	 2kvL6tBOjz1VdFmc9rFzlpjMwou/5x0UH7lQhwF8MqSSRpvUTuxKJzR09EH/GeTOOx
+	 86dH+C9ktuAG5mPk3SDFYci7U91ipp2C6NrtnwRLDCzVurQ6DN+v3EJ/Y/MkxGOGzx
+	 E1N5SUmDiNF8glr8RoGzWR6wbQi6yTIKX42/xg4nKhCp3Qvqnmr1jh78oAcyaZj4Qe
+	 hSZi6AnZRcCIcj5LKNINcjze5Bcoc/qrv2BTpnEnIM+MCltRMyQVNyvpHspXn5ii2B
+	 xyWYUZkzAf1xg==
 From: Kalle Valo <kvalo@kernel.org>
 To: mhi@lists.linux.dev
 Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH RFC v2 0/8] wifi: ath11k: hibernation support
-Date: Mon, 27 Nov 2023 18:20:14 +0200
-Message-Id: <20231127162022.518834-1-kvalo@kernel.org>
+Subject: [PATCH RFC v2 3/8] wifi: ath11k: handle irq enable/disable in several code path
+Date: Mon, 27 Nov 2023 18:20:17 +0200
+Message-Id: <20231127162022.518834-4-kvalo@kernel.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231127162022.518834-1-kvalo@kernel.org>
+References: <20231127162022.518834-1-kvalo@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231127_082027_059507_C148BC43 
-X-CRM114-Status: GOOD (  11.65  )
+X-CRM114-CacheID: sfid-20231127_082030_013334_565F7366 
+X-CRM114-Status: UNSURE (   9.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,81 +73,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
 
-Currently in ath11k we keep the firmware running on the WLAN device when the
-network interface (wlan0) is down. The problem is that this will break
-hibernation, obviously the firmware can't be running after the whole system is
-powered off. To power down the ath11k firmware for suspend/hibernation some
-changes both in MHI subsystem and ath11k is needed.
+For non WoW suspend/resume, ath11k host powers down whole hardware
+when suspend and power up it when resume, the code path it goes
+through is very like the ath11k reset logic.
 
-This patchset fixes a longstanding bug report about broken hibernation support:
+In order to reuse that logic, do some IRQ management work to make
+it work.
 
-https://bugzilla.kernel.org/show_bug.cgi?id=214649
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
 
-This patchset is marked as RFC as it requires changes in MHI subsystem. Also
-this has been tested only on WCN6855, need to test also on more AP based
-chipsets like IPQ8074 and QCN9074.
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
-The patches are also available at:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-hibernation-support
-
-Earlier versions of this patchset have been tested by multiple users with
-positive results.
-
-v2:
-
-* rebase to ath-202311221826 (6.7.0-rc2-wt-ath+)
-
-* 'bus: mhi: host: add mhi_power_down_no_destroy()': fix null state string for
-   DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE
-
-* 'bus: mhi: host: add new interfaces to handle MHI channels
-  directly': fix typos in comments
-
-* 'bus: mhi: host: add new interfaces to handle MHI channels directly': honour
-   initial autoqueue configuration
-
-* 'bus: mhi: host: add new interfaces to handle MHI channels
-   directly': don't prepare/unprepare MHI devices that don't match
-   with a MHI client driver
-
-* 'wifi: ath11k: remove MHI LOOPBACK channels': remove LOOPBACK channels for QCN9074 as well
-
-v1: https://lore.kernel.org/mhi/20231110102202.3168243-1-kvalo@kernel.org/
-
-Baochen Qiang (7):
-  bus: mhi: host: add mhi_power_down_no_destroy()
-  bus: mhi: host: add new interfaces to handle MHI channels directly
-  wifi: ath11k: handle irq enable/disable in several code path
-  wifi: ath11k: remove MHI LOOPBACK channels
-  wifi: ath11k: do not dump SRNG statistics during resume
-  wifi: ath11k: fix warning on DMA ring capabilities event
-  wifi: ath11k: support hibernation
-
-Kalle Valo (1):
-  wifi: ath11k: thermal: don't try to register multiple times
-
- drivers/bus/mhi/host/init.c               |   1 +
- drivers/bus/mhi/host/internal.h           |   1 +
- drivers/bus/mhi/host/main.c               | 107 ++++++++++++++++++++++
- drivers/bus/mhi/host/pm.c                 |  26 ++++--
- drivers/net/wireless/ath/ath11k/ahb.c     |   8 +-
- drivers/net/wireless/ath/ath11k/core.c    |  44 +++++----
- drivers/net/wireless/ath/ath11k/core.h    |   2 +
- drivers/net/wireless/ath/ath11k/hif.h     |  12 +--
- drivers/net/wireless/ath/ath11k/mhi.c     |  77 ++++------------
- drivers/net/wireless/ath/ath11k/mhi.h     |   4 +-
- drivers/net/wireless/ath/ath11k/pci.c     |  55 +++++++++--
- drivers/net/wireless/ath/ath11k/qmi.c     |   7 +-
- drivers/net/wireless/ath/ath11k/thermal.c |   3 +
- drivers/net/wireless/ath/ath11k/wmi.c     |   1 +
- include/linux/mhi.h                       |  47 +++++++++-
- 15 files changed, 285 insertions(+), 110 deletions(-)
-
-
-base-commit: 16a212b4f33c4edd9ce9a9e0953b5389216e8ed9
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 0c6ecbb9a066..fbd6b6a0e12c 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -852,9 +852,6 @@ int ath11k_core_resume(struct ath11k_base *ab)
+ 		return ret;
+ 	}
+ 
+-	ath11k_hif_ce_irq_enable(ab);
+-	ath11k_hif_irq_enable(ab);
+-
+ 	ret = ath11k_dp_rx_pktlog_start(ab);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to start rx pktlog during resume: %d\n",
+@@ -1775,10 +1772,9 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
+ 
+ 	mutex_lock(&ab->core_lock);
+ 	ath11k_thermal_unregister(ab);
+-	ath11k_hif_irq_disable(ab);
+ 	ath11k_dp_pdev_free(ab);
+ 	ath11k_spectral_deinit(ab);
+-	ath11k_hif_stop(ab);
++	ath11k_ce_cleanup_pipes(ab);
+ 	ath11k_wmi_detach(ab);
+ 	ath11k_dp_pdev_reo_cleanup(ab);
+ 	mutex_unlock(&ab->core_lock);
+@@ -2033,8 +2029,8 @@ static void ath11k_core_reset(struct work_struct *work)
+ 	time_left = wait_for_completion_timeout(&ab->recovery_start,
+ 						ATH11K_RECOVER_START_TIMEOUT_HZ);
+ 
+-	ath11k_hif_power_down(ab);
+-	ath11k_hif_power_up(ab);
++	ath11k_hif_irq_disable(ab);
++	ath11k_hif_ce_irq_disable(ab);
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset started\n");
+ }
 -- 
 2.39.2
 
