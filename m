@@ -4,82 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAEE4C4167B
-	for <ath11k@archiver.kernel.org>; Mon, 27 Nov 2023 18:49:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89795C4167B
+	for <ath11k@archiver.kernel.org>; Mon, 27 Nov 2023 22:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:From:Subject:
+	Cc:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=r/ClG0OzUyBGY/N3i7W1/8V3EmYlY2pY7ciffkhw/I0=; b=VzuSXAcmVuzhO9
-	XPIOFQBacL5TVGpdJYiSTeM//p2OPaKW64qxpUh2KalJLwSGurzLAKHGrVd8rza5XqiGzeOap8++u
-	PTcpz4OUvsi4m7ub+Lt/af9pljdUA3O9BL6Xw4HtMlAXudOJy2gzjZQXhrV8DL/omZReA43pfyuS3
-	hACCmbS7p9jUw/yD5hUr9wppGZOtdvsEq+PERIbGwdpczasQBZY/dKKc3F+GvP9RD85PX+Vet+I7P
-	XhWxqWwdcL4LxH4xstFO702RHUeSNmGznc/XLu5q5nz6B3JuFTY7zrG6rRg72MMoIO0T9igD5I1VL
-	A+I5p0nFp3aLb38PGS9w==;
+	List-Owner; bh=U9iPAvEFNJGpOrrJWeJh2QzFdOmCrNjBGjwFY7ex16E=; b=czkIxgJ/7jNLMo
+	nSk/Ygr7+XJ30A6uqWGpAPhT4HSFRjKObzDR/yZO0TlWAQczOr4mGRFyR1TsDf7hXkzMcVOKJNd7I
+	CnolfUOpUBE1Hk0LU3JwP0nMA8IKiZgyQxRic/1dYf9tFrkkI4KJwk3bF0swZ54mhBeELpHHbk3/g
+	CtBJyittwi6mxegl7oJLt1Gr0NcG7eHRuAFBVq4byHHp8G8Ixpk59CLYnWge1BzW/JGv0XkXxbeVD
+	xiSGTKVnHCBNRXhKXU90OFU7qfbwpCW4NonESg6miOZGmTKJoxmOYGCVMyfuzOgWQEVdCF5Lkot3y
+	ZySmXXHkhnwIMK5M/z7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7gfW-003G2W-1U;
-	Mon, 27 Nov 2023 18:49:18 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1r7kUh-003cqo-1Z;
+	Mon, 27 Nov 2023 22:54:23 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7gfT-003G1i-2w
+	id 1r7kUe-003cpu-14
 	for ath11k@lists.infradead.org;
-	Mon, 27 Nov 2023 18:49:17 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AR8wSUO007676;
-	Mon, 27 Nov 2023 18:49:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=RPAoCY4Yz2IAN2+mroe9auOkhni0k+RBCqloksd9vA4=;
- b=IN8gShE+P0KvlvTrSTx/26HTKOhUksrjiCuN1/7TWISkWDSlG1pye5p8tSYa2Qjg5sMM
- o+/weMgLqlbUNAGykjUovBkIBL7sbbLVrHY4kFguQNEhj9rO59qX5QNbbS0F6+siYkLr
- zxmatxtZ8++JpN890gLE+ZzB7D4kZfdc9qItaGnx9iEtrAuiC9CB2lL2QzaaGakt3lwW
- X90Hr/RM6t6qPRidkLRHOboxoChy3aSqlhFqaDCgqbwu5winGUjtQ46WUqYCfR6tJ+WQ
- R1eeH1DCFFR7l4Z9DGm3cja4kAcNDvvdlpsHHewArrZ7oFnT00q+8grpRguValQTcCe7 LQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uk69udh37-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Nov 2023 18:49:08 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ARIn7Sa005072
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Nov 2023 18:49:07 GMT
-Received: from [10.110.63.243] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 27 Nov
- 2023 10:49:07 -0800
-Message-ID: <c59e408f-1e44-4c23-b073-19f85cb28383@quicinc.com>
-Date: Mon, 27 Nov 2023 10:49:06 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 0/8] wifi: ath11k: hibernation support
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>, <mhi@lists.linux.dev>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20231127162022.518834-1-kvalo@kernel.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20231127162022.518834-1-kvalo@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: K4MWfMf1VtJWfZdNggP2cnN_KrJQzQM5
-X-Proofpoint-GUID: K4MWfMf1VtJWfZdNggP2cnN_KrJQzQM5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-27_16,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- adultscore=0 spamscore=0 mlxlogscore=999 mlxscore=0 phishscore=0
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311270129
+	Mon, 27 Nov 2023 22:54:21 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-332e3ad436cso2920924f8f.3
+        for <ath11k@lists.infradead.org>; Mon, 27 Nov 2023 14:54:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701125658; x=1701730458; darn=lists.infradead.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QIZZjVzYyIfXfJZDLrm8sokZX3uH1Dv9Mf0lFv/fkno=;
+        b=EHTiOzmP9rGlWxBcdo/srCZyErr4LN5DdeEr2cnkT3ElVov8TP4sZ9UBKhoNsqddoG
+         cvRlOLs+3oty1lL/KFCVdCbmLzTLP5x2kypq3BRDVLm/GUEMYfTiIhdnkTEj8L3WZfc3
+         LiYZC49ZOFiafsRpHjAAkjWhN/cwAB/Z4gmwGgf5Gces6wdadCi0HKrztqjs3Nt+trrl
+         r5splwricNKbz53ToS4fBDeNNF6fqhNDbmd87bEYz04BVrwp0VsnniV2oGi7pCj+h6fQ
+         ZbohV5lu2L9glct7L48PpEzxMYnyFhwEsjcPupT+8MAAPxk4UEk8o1RXQLmBk3qrDd+f
+         U8sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701125658; x=1701730458;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QIZZjVzYyIfXfJZDLrm8sokZX3uH1Dv9Mf0lFv/fkno=;
+        b=elCOZwhi88AUjebwhS3Qw+yTsWU0UbhdfP5xuopJM4iWfNvDKe37eUgsgLdmXcAq6x
+         gsHTe4814QwOsEDyu1EcxVjEAjH2SvJHx+u0bl9OaXeQ0Z/+pa1xvTh2uJCu+5EMFIpk
+         IvU0KDzGxJp0mQpsq0ZKQqpoyuzPiRa+fFuwXV5oKqqM1aOL218L9vaPGGolfDZVwC5h
+         IUE1qjaJpWnT5h6PNDQ/EGYPcAVOMRFuLd3WPLVTFhcet9cz2oKRRZc/l8+249WULiBT
+         AayNw/Atw3SnYQFzvD+RaH2yfYJZGOS8dwg9m3CN2l7X1QVskdbJYD2utE/e5uldq4Jg
+         tNTA==
+X-Gm-Message-State: AOJu0YyfbKOJC665QuVHdBAq0l3N7csYWc9hHXoLi37OCklpOTlcP0Gz
+	Pf7m2XoDotNcTHeyiPCf13w=
+X-Google-Smtp-Source: AGHT+IEOptO9tc+DnBiK8/x4iOCPqjUwNymCAFCsQEo5iBKNgEhWeaNKzV748GEliI/QGLFHM8rUoQ==
+X-Received: by 2002:a5d:6352:0:b0:332:d360:5df5 with SMTP id b18-20020a5d6352000000b00332d3605df5mr8416414wrw.54.1701125657881;
+        Mon, 27 Nov 2023 14:54:17 -0800 (PST)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id u12-20020a05600c138c00b004063c9f68f2sm15238589wmf.26.2023.11.27.14.54.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Nov 2023 14:54:17 -0800 (PST)
+Mime-Version: 1.0
+Date: Mon, 27 Nov 2023 23:54:17 +0100
+Message-Id: <CX9YPUDTAT1N.23DMRB5O9FEAO@gmail.com>
+Cc: <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <ath11k@lists.infradead.org>
+Subject: Re: [PATCH] wifi: ath11k: fix layout of scan_flags in struct
+ scan_req_params
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: "Jeff Johnson" <quic_jjohnson@quicinc.com>, "Kalle Valo"
+ <kvalo@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20231127180559.1696041-1-nico.escande@gmail.com>
+ <bdcdbd06-e9bd-4a92-b27b-d94b2d8fb52d@quicinc.com>
+In-Reply-To: <bdcdbd06-e9bd-4a92-b27b-d94b2d8fb52d@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231127_104916_092712_2AF034AC 
-X-CRM114-Status: GOOD (  24.97  )
+X-CRM114-CacheID: sfid-20231127_145420_372218_BA54598C 
+X-CRM114-Status: GOOD (  29.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,85 +95,99 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/27/2023 8:20 AM, Kalle Valo wrote:
-> From: Kalle Valo <quic_kvalo@quicinc.com>
-> 
-> Currently in ath11k we keep the firmware running on the WLAN device when the
-> network interface (wlan0) is down. The problem is that this will break
-> hibernation, obviously the firmware can't be running after the whole system is
-> powered off. To power down the ath11k firmware for suspend/hibernation some
-> changes both in MHI subsystem and ath11k is needed.
-> 
-> This patchset fixes a longstanding bug report about broken hibernation support:
-> 
-> https://bugzilla.kernel.org/show_bug.cgi?id=214649
-> 
-> This patchset is marked as RFC as it requires changes in MHI subsystem. Also
-> this has been tested only on WCN6855, need to test also on more AP based
-> chipsets like IPQ8074 and QCN9074.
-> 
-> The patches are also available at:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-hibernation-support
-> 
-> Earlier versions of this patchset have been tested by multiple users with
-> positive results.
-> 
-> v2:
-> 
-> * rebase to ath-202311221826 (6.7.0-rc2-wt-ath+)
-> 
-> * 'bus: mhi: host: add mhi_power_down_no_destroy()': fix null state string for
->    DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE
-> 
-> * 'bus: mhi: host: add new interfaces to handle MHI channels
->   directly': fix typos in comments
-> 
-> * 'bus: mhi: host: add new interfaces to handle MHI channels directly': honour
->    initial autoqueue configuration
-> 
-> * 'bus: mhi: host: add new interfaces to handle MHI channels
->    directly': don't prepare/unprepare MHI devices that don't match
->    with a MHI client driver
-> 
-> * 'wifi: ath11k: remove MHI LOOPBACK channels': remove LOOPBACK channels for QCN9074 as well
-> 
-> v1: https://lore.kernel.org/mhi/20231110102202.3168243-1-kvalo@kernel.org/
-> 
-> Baochen Qiang (7):
->   bus: mhi: host: add mhi_power_down_no_destroy()
->   bus: mhi: host: add new interfaces to handle MHI channels directly
->   wifi: ath11k: handle irq enable/disable in several code path
->   wifi: ath11k: remove MHI LOOPBACK channels
->   wifi: ath11k: do not dump SRNG statistics during resume
->   wifi: ath11k: fix warning on DMA ring capabilities event
->   wifi: ath11k: support hibernation
-> 
-> Kalle Valo (1):
->   wifi: ath11k: thermal: don't try to register multiple times
-> 
->  drivers/bus/mhi/host/init.c               |   1 +
->  drivers/bus/mhi/host/internal.h           |   1 +
->  drivers/bus/mhi/host/main.c               | 107 ++++++++++++++++++++++
->  drivers/bus/mhi/host/pm.c                 |  26 ++++--
->  drivers/net/wireless/ath/ath11k/ahb.c     |   8 +-
->  drivers/net/wireless/ath/ath11k/core.c    |  44 +++++----
->  drivers/net/wireless/ath/ath11k/core.h    |   2 +
->  drivers/net/wireless/ath/ath11k/hif.h     |  12 +--
->  drivers/net/wireless/ath/ath11k/mhi.c     |  77 ++++------------
->  drivers/net/wireless/ath/ath11k/mhi.h     |   4 +-
->  drivers/net/wireless/ath/ath11k/pci.c     |  55 +++++++++--
->  drivers/net/wireless/ath/ath11k/qmi.c     |   7 +-
->  drivers/net/wireless/ath/ath11k/thermal.c |   3 +
->  drivers/net/wireless/ath/ath11k/wmi.c     |   1 +
->  include/linux/mhi.h                       |  47 +++++++++-
->  15 files changed, 285 insertions(+), 110 deletions(-)
-> 
-> 
-> base-commit: 16a212b4f33c4edd9ce9a9e0953b5389216e8ed9
+On Mon Nov 27, 2023 at 7:38 PM CET, Jeff Johnson wrote:
+> On 11/27/2023 10:05 AM, Nicolas Escande wrote:
+> > The is a layout mismatch between the bitfield representing scan_flags in
+> > struct scan_req_params & the bits as defined in the WMI_SCAN_XXX macros.
+> > Lets fix it by making the struct match the #defines.
+> > 
+> > I tried to correct it by making the struct match the #define and it 
+> > worked for WMI_SCAN_FLAG_FORCE_ACTIVE_ON_DFS / scan_f_force_active_dfs_chn
+> > so I'm assuming this is the right thing to do.
+> > 
+> > Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> > 
+> > Signed-off-by: Nicolas Escande <nico.escande@gmail.com>
+> > ---
+> >  drivers/net/wireless/ath/ath11k/wmi.h | 10 +++++-----
+> >  1 file changed, 5 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+> > index 100bb816b592..0b4e6c2f7860 100644
+> > --- a/drivers/net/wireless/ath/ath11k/wmi.h
+> > +++ b/drivers/net/wireless/ath/ath11k/wmi.h
+> > @@ -3348,17 +3348,17 @@ struct scan_req_params {
+> >  			    scan_f_filter_prb_req:1,
+> >  			    scan_f_bypass_dfs_chn:1,
+> >  			    scan_f_continue_on_err:1,
+> > +			    scan_f_promisc_mode:1,
+> > +			    scan_f_force_active_dfs_chn:1,
+> > +			    scan_f_add_tpc_ie_in_probe:1,
+> > +			    scan_f_add_ds_ie_in_probe:1,
+> > +			    scan_f_add_spoofed_mac_in_probe:1,
+> >  			    scan_f_offchan_mgmt_tx:1,
+> >  			    scan_f_offchan_data_tx:1,
+> > -			    scan_f_promisc_mode:1,
+> >  			    scan_f_capture_phy_err:1,
+> >  			    scan_f_strict_passive_pch:1,
+> >  			    scan_f_half_rate:1,
+> >  			    scan_f_quarter_rate:1,
+> > -			    scan_f_force_active_dfs_chn:1,
+> > -			    scan_f_add_tpc_ie_in_probe:1,
+> > -			    scan_f_add_ds_ie_in_probe:1,
+> > -			    scan_f_add_spoofed_mac_in_probe:1,
+> >  			    scan_f_add_rand_seq_in_probe:1,
+> >  			    scan_f_en_ie_whitelist_in_probe:1,
+> >  			    scan_f_forced:1,
+>
+> You are convoluting two different data structures.
 
-Series LGTM. Will add appropriate tags when this is no longer RFC
+So maybe I'm missing something and please correct me where I'm wrong.
 
+> struct scan_req_params is used to represent a scan request within the
+> host driver. This does not use the WMI_SCAN_XXX macros.
+>
+
+In mac.c when we start a scan with ath11k_mac_op_hw_scan() for example we first
+initialize a struct scan_req_params with ath11k_wmi_start_scan_init().
+ath11k_wmi_start_scan_init() by itself does use the WMI_SCAN_XXX macros
+
+	arg->scan_flags |= WMI_SCAN_CHAN_STAT_EVENT;
+
+Then later on in ath11k_mac_op_hw_scan() we either use the bitfield like with
+
+	arg->scan_f_add_spoofed_mac_in_probe = 1;
+
+or we directly modify scan_flags like with
+
+	arg->scan_flags |= WMI_SCAN_FLAG_PASSIVE;
+
+So is it not expected to use those flags there ?
+
+> struct wmi_start_scan_cmd is used to represent the scan request command
+> sent to firmware. This struct uses the WMI_SCAN_XXX macros to fill some
+> members of this struct in ath11k_wmi_copy_scan_event_cntrl_flags().
+
+Indeed ath11k_wmi_copy_scan_event_cntrl_flags() copies from struct
+scan_req_params to struct wmi_start_scan_cmd but this time we do not use 
+scan_flags directly, only ever use the bitfield that is in the same union
+as scan_flags
+
+So having the bitfield out of sync does cause the struct wmi_start_scan_cmd that
+gets sent to the driver to not reflect the desired state set in scan_req_params.
+
+> So your change has no effect on the driver operation and incorrectly
+> tries to foist the firmware definition upon the host internal
+> representation.
+
+So either we should not use WMI_SCAN_XXX with scan_req_params.scan_flags ever
+and only use the bitfield to set scan parameters or if we use WMI_SCAN_XXX with
+scan_req_params.scan_flags they need to match the corresponding bitfield.
+
+>
+> So NAK to this patch.
+>
+> /jeff
 
 -- 
 ath11k mailing list
