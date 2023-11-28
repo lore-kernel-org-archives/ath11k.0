@@ -4,83 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4614C4167B
-	for <ath11k@archiver.kernel.org>; Tue, 28 Nov 2023 01:13:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 750A7C07CA9
+	for <ath11k@archiver.kernel.org>; Tue, 28 Nov 2023 15:19:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BCS7zyxu9RdWvhsJ3hKWPHiiextYJ5r8KiC7X+AF/ow=; b=KnA3UV7P0jTalE
-	As91zEDEc5D7/A3k615mkVtMwFBjfBgCmd8Ga+6B/RQ9LpdIXZWgtt/cA/UrYHgoz4S1IIpHXw/LL
-	TY05h6ujQfgPlTHjy+sf0nMcu3zpIga3S2U9hVDeodZgypwC8n4ciO9nCcRHTCBTRNiUW5SR1ztHF
-	D9nj3IulQO4IxnjNgdljfzPso/gAlkhk8Mn/mrG5Vz68B64XzEib05PS5wFdd40WxLJeYLrPDKrC/
-	u0ja/cEWXIlc5tItwq/crZOjnRw7+k9RXeICxgZbd1peUXZ0Fm+jEowHA9JSWVaoN+OBUyZ3DmqGN
-	w8ZARQyxdkx0JtiUeCPg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:CC:To:MIME-Version:Message-ID:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=enjUiPn81fkkaMCR+IWj8Jo4e35yfk/Fm8renV5Il20=; b=AgYdu2QhzNcgTy
+	1QMkFKoHepMJmFG/7Un/+SIxHU4svGdW1cm6ZkaLBLVwfoT51BPn7kHOKClbZdOk5GXTZcSC+CcYE
+	7ueqyOUDSrgqswFN67XsOHelaqTE8NoU5/V9rqqIl3d6LjdOYu6JzWPyoPq//dfc3RHMw3q4sZ1Ws
+	DDxoB9I8apooFSZOlKsXb/k0/gRdapxLMRKRTL34Vok6HXXoGMZR88Cm9SQ7lhEX5uGx7TvYPviaI
+	P6kiz61l2A5AS40YYq+IokMvcySvS+lG6KAHKq9ahUza3dEFZVyrhzkskA2Gm81i1zs6qWm5Bd7du
+	iX+nUvBOiviJd76tcsmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7mfT-003niC-11;
-	Tue, 28 Nov 2023 01:13:39 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1r7zsN-005esa-1g;
+	Tue, 28 Nov 2023 15:19:51 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r7mfQ-003nhF-1T
-	for ath11k@lists.infradead.org;
-	Tue, 28 Nov 2023 01:13:38 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS0jLb4032114;
-	Tue, 28 Nov 2023 01:13:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zmXrVDwk9PW2eTGFIyou52WJVtdPQELuoB2+agP0haY=;
- b=p2Mhgd8UlvC/oLcF3QDMRQnMuit71WSJXSteG2qxd+z5l7u25Zyuhb5Eon0XNncP7XR6
- vqg4RwIoztPdCl8NTNPtVMIpaPQSUkqy1OHrZJulYHUJi/M/wt4ldytFgCTqhnvntQRL
- c8GANT01L+VoTKqBez5QHzY0Rb5sz5HYH1DIfz7ikYrSmAkhuywhr2hpfMYrzUH1NYRx
- qX57YGYxyQTtrclf+Nhd3eKIC6ABbevYHeEXz6yDhVq4Qkpsg8krM++nUQPjEzFCVn9J
- 9u8zudJ7+WAnUTOWjQ07cG4K9jFFZvob+mFChhQnKZuNrr3eULQZ7ZyYZ+s46QBDye7n jw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3umt9c1y00-1
+	id 1r7zsI-005ens-0K;
+	Tue, 28 Nov 2023 15:19:48 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AS9C5hX030030;
+	Tue, 28 Nov 2023 15:19:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding : to : cc; s=qcppdkim1;
+ bh=Zm7gFhlGOc++7Q48R9aQfql/ulMk2C2mbXeKH6ph2Rc=;
+ b=kJXNMnlEV7ZeBXzYGsbAWz1PZ8vscqOXPZusxrLoshE8/Y9Ci7IH+8zkdou7wh3Di5RL
+ oePHF77niflWBrnCa46wjEV18/BfzpSlgnlYTVZ+BMTbo4F0wfCqqDbBtVajuOV/ul1k
+ MiwoaBMWoEaWsGtyOJluaIzFQh6gud7xehVHqnLEK4wB8AfNlLOct52nRPQt0TAP22gu
+ 5qdIstpTzrtlcWhW9N7yQbVof9KMflNuxewhk7M+xI9KlBUiSHdm9O7G5d3tkY4KJ1pC
+ U1KkQvPVgciTXm9xGp5NSuQ1C0iAJWY5xHmReYkJBepjdD2opbHupjyBEznBPPVqC9+i 8Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3undc593br-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 01:13:31 +0000
+	Tue, 28 Nov 2023 15:19:40 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AS1DUcS002839
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ASFJdS6001949
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Nov 2023 01:13:30 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Tue, 28 Nov 2023 15:19:39 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 27 Nov
- 2023 17:13:29 -0800
-Message-ID: <7b833b76-13d2-4672-8f70-5ec681648c28@quicinc.com>
-Date: Tue, 28 Nov 2023 09:13:26 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 28 Nov
+ 2023 07:19:39 -0800
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Subject: [PATCH 0/3] wifi: ath: Update Qualcomm Innovation Center, Inc.
+ copyrights
+Date: Tue, 28 Nov 2023 07:19:24 -0800
+Message-ID: <20231128-ath12kcopyrights-v1-0-be0b7408cbac@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 4/8] wifi: ath11k: remove MHI LOOPBACK channels
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>, <mhi@lists.linux.dev>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20231127162022.518834-1-kvalo@kernel.org>
- <20231127162022.518834-5-kvalo@kernel.org>
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20231127162022.518834-5-kvalo@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-B4-Tracking: v=1; b=H4sIAPwEZmUC/4XNQQ6CMBCF4auQrq1hpljElfcwLupQYGIEbLGRE
+ O5uYWdMZPm/ZL6ZhLeOrRenZBLOBvbctTFglwhqTFtbyWVsgSkqAMikGRrAO3X96LhuBi9JocY
+ CUJNNRTzrna34vZKXa+yG/dC5cf0QYFn/YAEkyEpTqQ46NVE9P19M3NKeuodYuIBbBMpUYn6EQ
+ itLdKt+CbVFqEhYKPJSZVCSgW9inucPCI8hkzgBAAA=
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
+CC: <ath12k@lists.infradead.org>, <ath11k@lists.infradead.org>,
+        <ath10k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+X-Mailer: b4 0.12.3
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PnEjgTK82t8yS0PAczJNIMkXt5uuzWhE
-X-Proofpoint-ORIG-GUID: PnEjgTK82t8yS0PAczJNIMkXt5uuzWhE
+X-Proofpoint-GUID: T57cVo-RxCBy7Nqu7Z-nMImzD8Bd8OfE
+X-Proofpoint-ORIG-GUID: T57cVo-RxCBy7Nqu7Z-nMImzD8Bd8OfE
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-28_01,2023-11-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- clxscore=1015 priorityscore=1501 malwarescore=0 phishscore=0
- suspectscore=0 adultscore=0 impostorscore=0 mlxlogscore=928
- lowpriorityscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311060000 definitions=main-2311280007
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-28_17,2023-11-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ priorityscore=1501 mlxlogscore=399 mlxscore=0 suspectscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311280122
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231127_171336_628162_F3CB406D 
-X-CRM114-Status: GOOD (  18.86  )
+X-CRM114-CacheID: sfid-20231128_071946_155157_DB2AC832 
+X-CRM114-Status: UNSURE (   9.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,108 +95,127 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Update the copyright for all ath10k, ath11k, and ath12k files modified
+on behalf of Qualcomm Innovation Center, Inc. in 2021 through 2023.
 
+---
+Jeff Johnson (3):
+      wifi: ath12k: Update Qualcomm Innovation Center, Inc. copyrights
+      wifi: ath11k: Update Qualcomm Innovation Center, Inc. copyrights
+      wifi: ath10k: Update Qualcomm Innovation Center, Inc. copyrights
 
-On 11/28/2023 12:20 AM, Kalle Valo wrote:
-> From: Baochen Qiang <quic_bqiang@quicinc.com>
-> 
-> There is no driver to match these two channels, so
-> remove them. This fixes warnings from MHI subsystem during suspend:
-> 
-> mhi mhi0_LOOPBACK: 1: Failed to reset channel, still resetting
-> mhi mhi0_LOOPBACK: 0: Failed to reset channel, still resetting
-With v2, these warnings are gone even without this patch. so it should 
-be removed from commit log. It's enough to only mention that those 
-channels are not used.
+ drivers/net/wireless/ath/ath10k/bmi.c               | 1 +
+ drivers/net/wireless/ath/ath10k/ce.c                | 1 +
+ drivers/net/wireless/ath/ath10k/core.c              | 1 +
+ drivers/net/wireless/ath/ath10k/core.h              | 1 +
+ drivers/net/wireless/ath/ath10k/coredump.c          | 1 +
+ drivers/net/wireless/ath/ath10k/coredump.h          | 1 +
+ drivers/net/wireless/ath/ath10k/debug.c             | 1 +
+ drivers/net/wireless/ath/ath10k/debugfs_sta.c       | 1 +
+ drivers/net/wireless/ath/ath10k/htc.c               | 1 +
+ drivers/net/wireless/ath/ath10k/htt.h               | 1 +
+ drivers/net/wireless/ath/ath10k/htt_rx.c            | 1 +
+ drivers/net/wireless/ath/ath10k/htt_tx.c            | 1 +
+ drivers/net/wireless/ath/ath10k/hw.c                | 1 +
+ drivers/net/wireless/ath/ath10k/hw.h                | 1 +
+ drivers/net/wireless/ath/ath10k/mac.c               | 1 +
+ drivers/net/wireless/ath/ath10k/pci.c               | 1 +
+ drivers/net/wireless/ath/ath10k/pci.h               | 1 +
+ drivers/net/wireless/ath/ath10k/qmi.c               | 1 +
+ drivers/net/wireless/ath/ath10k/qmi_wlfw_v01.c      | 1 +
+ drivers/net/wireless/ath/ath10k/qmi_wlfw_v01.h      | 1 +
+ drivers/net/wireless/ath/ath10k/rx_desc.h           | 1 +
+ drivers/net/wireless/ath/ath10k/sdio.c              | 1 +
+ drivers/net/wireless/ath/ath10k/thermal.c           | 1 +
+ drivers/net/wireless/ath/ath10k/usb.h               | 1 +
+ drivers/net/wireless/ath/ath10k/wmi-tlv.h           | 1 +
+ drivers/net/wireless/ath/ath10k/wmi.c               | 1 +
+ drivers/net/wireless/ath/ath10k/wmi.h               | 1 +
+ drivers/net/wireless/ath/ath10k/wow.c               | 1 +
+ drivers/net/wireless/ath/ath11k/ce.c                | 2 +-
+ drivers/net/wireless/ath/ath11k/ce.h                | 1 +
+ drivers/net/wireless/ath/ath11k/dbring.c            | 1 +
+ drivers/net/wireless/ath/ath11k/dbring.h            | 1 +
+ drivers/net/wireless/ath/ath11k/debug.c             | 1 +
+ drivers/net/wireless/ath/ath11k/debug.h             | 2 +-
+ drivers/net/wireless/ath/ath11k/debugfs.c           | 1 +
+ drivers/net/wireless/ath/ath11k/debugfs.h           | 1 +
+ drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c | 2 +-
+ drivers/net/wireless/ath/ath11k/debugfs_htt_stats.h | 2 +-
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c       | 1 +
+ drivers/net/wireless/ath/ath11k/debugfs_sta.h       | 1 +
+ drivers/net/wireless/ath/ath11k/dp.c                | 2 +-
+ drivers/net/wireless/ath/ath11k/dp.h                | 2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c             | 1 +
+ drivers/net/wireless/ath/ath11k/dp_tx.c             | 2 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.h             | 1 +
+ drivers/net/wireless/ath/ath11k/hal.c               | 2 +-
+ drivers/net/wireless/ath/ath11k/hal.h               | 2 +-
+ drivers/net/wireless/ath/ath11k/hal_desc.h          | 1 +
+ drivers/net/wireless/ath/ath11k/hal_rx.c            | 1 +
+ drivers/net/wireless/ath/ath11k/hal_rx.h            | 1 +
+ drivers/net/wireless/ath/ath11k/hif.h               | 1 +
+ drivers/net/wireless/ath/ath11k/htc.c               | 1 +
+ drivers/net/wireless/ath/ath11k/htc.h               | 1 +
+ drivers/net/wireless/ath/ath11k/hw.c                | 2 +-
+ drivers/net/wireless/ath/ath11k/hw.h                | 2 +-
+ drivers/net/wireless/ath/ath11k/mac.h               | 1 +
+ drivers/net/wireless/ath/ath11k/mhi.c               | 2 +-
+ drivers/net/wireless/ath/ath11k/mhi.h               | 1 +
+ drivers/net/wireless/ath/ath11k/pcic.c              | 2 +-
+ drivers/net/wireless/ath/ath11k/peer.c              | 2 +-
+ drivers/net/wireless/ath/ath11k/peer.h              | 2 +-
+ drivers/net/wireless/ath/ath11k/qmi.c               | 2 +-
+ drivers/net/wireless/ath/ath11k/qmi.h               | 2 +-
+ drivers/net/wireless/ath/ath11k/reg.c               | 1 +
+ drivers/net/wireless/ath/ath11k/reg.h               | 1 +
+ drivers/net/wireless/ath/ath11k/rx_desc.h           | 1 +
+ drivers/net/wireless/ath/ath11k/spectral.c          | 1 +
+ drivers/net/wireless/ath/ath11k/spectral.h          | 1 +
+ drivers/net/wireless/ath/ath11k/thermal.c           | 1 +
+ drivers/net/wireless/ath/ath11k/thermal.h           | 1 +
+ drivers/net/wireless/ath/ath11k/trace.h             | 1 +
+ drivers/net/wireless/ath/ath11k/wmi.c               | 2 +-
+ drivers/net/wireless/ath/ath11k/wmi.h               | 2 +-
+ drivers/net/wireless/ath/ath11k/wow.h               | 1 +
+ drivers/net/wireless/ath/ath12k/core.c              | 2 +-
+ drivers/net/wireless/ath/ath12k/core.h              | 2 +-
+ drivers/net/wireless/ath/ath12k/dbring.c            | 2 +-
+ drivers/net/wireless/ath/ath12k/debug.c             | 2 +-
+ drivers/net/wireless/ath/ath12k/dp.c                | 2 +-
+ drivers/net/wireless/ath/ath12k/dp.h                | 2 +-
+ drivers/net/wireless/ath/ath12k/dp_mon.c            | 2 +-
+ drivers/net/wireless/ath/ath12k/dp_rx.c             | 2 +-
+ drivers/net/wireless/ath/ath12k/dp_tx.c             | 2 +-
+ drivers/net/wireless/ath/ath12k/hal.c               | 2 +-
+ drivers/net/wireless/ath/ath12k/hal.h               | 2 +-
+ drivers/net/wireless/ath/ath12k/hal_rx.c            | 2 +-
+ drivers/net/wireless/ath/ath12k/hif.h               | 2 +-
+ drivers/net/wireless/ath/ath12k/hw.c                | 2 +-
+ drivers/net/wireless/ath/ath12k/hw.h                | 2 +-
+ drivers/net/wireless/ath/ath12k/mac.c               | 2 +-
+ drivers/net/wireless/ath/ath12k/mac.h               | 2 +-
+ drivers/net/wireless/ath/ath12k/mhi.c               | 2 +-
+ drivers/net/wireless/ath/ath12k/pci.c               | 2 +-
+ drivers/net/wireless/ath/ath12k/pci.h               | 2 +-
+ drivers/net/wireless/ath/ath12k/peer.h              | 2 +-
+ drivers/net/wireless/ath/ath12k/qmi.c               | 2 +-
+ drivers/net/wireless/ath/ath12k/qmi.h               | 2 +-
+ drivers/net/wireless/ath/ath12k/reg.c               | 2 +-
+ drivers/net/wireless/ath/ath12k/reg.h               | 2 +-
+ drivers/net/wireless/ath/ath12k/rx_desc.h           | 2 +-
+ drivers/net/wireless/ath/ath12k/wmi.c               | 2 +-
+ drivers/net/wireless/ath/ath12k/wmi.h               | 2 +-
+ 102 files changed, 102 insertions(+), 47 deletions(-)
+---
+base-commit: 8f157593689fcffc2d9b18af9472fce764188b43
+change-id: 20231114-ath12kcopyrights-c32629126ce0
 
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> ---
->   drivers/net/wireless/ath/ath11k/mhi.c | 56 ---------------------------
->   1 file changed, 56 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-> index afeabd6ecc67..579af57f7377 100644
-> --- a/drivers/net/wireless/ath/ath11k/mhi.c
-> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
-> @@ -21,34 +21,6 @@
->   #define RDDM_DUMP_SIZE	0x420000
->   
->   static struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
-> -	{
-> -		.num = 0,
-> -		.name = "LOOPBACK",
-> -		.num_elements = 32,
-> -		.event_ring = 0,
-> -		.dir = DMA_TO_DEVICE,
-> -		.ee_mask = 0x4,
-> -		.pollcfg = 0,
-> -		.doorbell = MHI_DB_BRST_DISABLE,
-> -		.lpm_notify = false,
-> -		.offload_channel = false,
-> -		.doorbell_mode_switch = false,
-> -		.auto_queue = false,
-> -	},
-> -	{
-> -		.num = 1,
-> -		.name = "LOOPBACK",
-> -		.num_elements = 32,
-> -		.event_ring = 0,
-> -		.dir = DMA_FROM_DEVICE,
-> -		.ee_mask = 0x4,
-> -		.pollcfg = 0,
-> -		.doorbell = MHI_DB_BRST_DISABLE,
-> -		.lpm_notify = false,
-> -		.offload_channel = false,
-> -		.doorbell_mode_switch = false,
-> -		.auto_queue = false,
-> -	},
->   	{
->   		.num = 20,
->   		.name = "IPCR",
-> @@ -114,34 +86,6 @@ static struct mhi_controller_config ath11k_mhi_config_qca6390 = {
->   };
->   
->   static struct mhi_channel_config ath11k_mhi_channels_qcn9074[] = {
-> -	{
-> -		.num = 0,
-> -		.name = "LOOPBACK",
-> -		.num_elements = 32,
-> -		.event_ring = 1,
-> -		.dir = DMA_TO_DEVICE,
-> -		.ee_mask = 0x14,
-> -		.pollcfg = 0,
-> -		.doorbell = MHI_DB_BRST_DISABLE,
-> -		.lpm_notify = false,
-> -		.offload_channel = false,
-> -		.doorbell_mode_switch = false,
-> -		.auto_queue = false,
-> -	},
-> -	{
-> -		.num = 1,
-> -		.name = "LOOPBACK",
-> -		.num_elements = 32,
-> -		.event_ring = 1,
-> -		.dir = DMA_FROM_DEVICE,
-> -		.ee_mask = 0x14,
-> -		.pollcfg = 0,
-> -		.doorbell = MHI_DB_BRST_DISABLE,
-> -		.lpm_notify = false,
-> -		.offload_channel = false,
-> -		.doorbell_mode_switch = false,
-> -		.auto_queue = false,
-> -	},
->   	{
->   		.num = 20,
->   		.name = "IPCR",
 
 -- 
 ath11k mailing list
