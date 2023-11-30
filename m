@@ -4,62 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3EEFC4167B
-	for <ath11k@archiver.kernel.org>; Thu, 30 Nov 2023 05:43:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 595A0C4167B
+	for <ath11k@archiver.kernel.org>; Thu, 30 Nov 2023 08:24:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3EYr/oh17tAISzk9mgxqAT+dXIXcb/J9kLZEk7RNyD0=; b=0sr75egnWz2NsDDNMXlqJv9Mxn
-	r9lcFXmv0wD5zmNmsVAcIzijsnEr1WOoclqPvlJ9iud1PjWwetUB/cH3jEirQfvIKSLQF0yJEf/bM
-	NAcaagoJFuQP/J0iWBPZMV2znEJAiQZOmAnGXx5mbpJUAd1pdRoIDpdY+LWTOhc379VROZqHcvGJV
-	F+dah37+aAx0kz/N12TwiOVkNECctEhEcZyh4z34jOP3nFNlBDp9xR6KFbLG1d/gXQdudlazl7KCW
-	5Nkf8nhqCHdO4jTtliige/du3IPnmfy7YkdZ19SqGMskrHKCP+3ClF76oZN+a4vVV3WeeMeBTmLSs
-	oLnmFOdw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To
+	:From:Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=3TQqYuMpS0IutFQA0jTxrDWzedXIaMHOHDdeUN7WQuw=; b=3blDBTZfOwUl0X3y2q3pUxnKoy
+	UYoy8ULo7w6q95d4tZNfcZssffp7l/Q049XL+yzjna+GDPaIf8F6Ml145ZdL4+b97+n/EnJyGy7jO
+	W3kvod89GEa2a7iU5roTEMMslYrOxo2c6D9gF6TkTzSzM8sltnrrr6nrShRuEKZF4eQYoatuwTtQ2
+	SFKrU+NI3VADx5OrhtkMzYlTcgRDLiepTHUaU42BFK5he5wKGJ0Mhy8BU3IqHfUPGGC/WR5g2Iks7
+	HAjzFPHo84Oa1KkwFFNE64SJSb8jFQ5SbU+Ji6tT4Eg25E0QDdFp4tpLX1L2+rZPN3vqz7PpvmGKz
+	8KzA6RJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8ZpJ-009z4Z-34;
-	Thu, 30 Nov 2023 05:43:05 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1r8cLY-00ACeG-2Y;
+	Thu, 30 Nov 2023 08:24:32 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8ZpG-009z3F-2R
+	id 1r8cLW-00ACda-00
 	for ath11k@lists.infradead.org;
-	Thu, 30 Nov 2023 05:43:04 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id EE90CCE20C9
-	for <ath11k@lists.infradead.org>; Thu, 30 Nov 2023 05:42:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B813C433C7;
-	Thu, 30 Nov 2023 05:42:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701322976;
-	bh=Q5/K0MR79gw5PPh04/03uahxI4FEyM/Kmchpy41iaqo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BWFIHXN78HNYEnaHa+V+/3HXGa0VGRKaxkqNXiqLoDtgZAwbd48FfoiWk3yzVIHU0
-	 veTrvlWp5QJfkXOXxQgeOZJH6y0oFZO4VszMFqzRSdMm3ALfCY/6VTLp8QTPUEVjwZ
-	 /+xxQ2YbHBGrEs/VdlGP0bolToIhNcb5oB+4SuF7cdVUxTFn7Jlt8wpRlfEd/pgysc
-	 yD/xGmY56OcFTa01KswwBz+jX3ECoKaoufkokVoxzrCpM33YCCRJWdTDSJshPYu5Kv
-	 jlIm+VAj4sB+RmJmTr80lHOzgUTl8hKpeOqv/TZvKVojMGM4YlcaKEIKytQP4csHS4
-	 QismSjOdMMQ7Q==
-Date: Thu, 30 Nov 2023 11:12:50 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: mhi@lists.linux.dev, ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org
-Subject: Re: [PATCH RFC v2 1/8] bus: mhi: host: add
- mhi_power_down_no_destroy()
-Message-ID: <20231130054250.GC3043@thinkpad>
-References: <20231127162022.518834-1-kvalo@kernel.org>
- <20231127162022.518834-2-kvalo@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231127162022.518834-2-kvalo@kernel.org>
+	Thu, 30 Nov 2023 08:24:31 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40b54261534so5279185e9.3
+        for <ath11k@lists.infradead.org>; Thu, 30 Nov 2023 00:24:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701332667; x=1701937467; darn=lists.infradead.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3TQqYuMpS0IutFQA0jTxrDWzedXIaMHOHDdeUN7WQuw=;
+        b=hmssAt2gRcLwC4F4RVu++HqdU8wTyStmbAvirWevEqJ7FoZ8RplmLNGcOVnkBQOfIJ
+         ncii2zI/zLAxc/CS63EK0bLOiWr7FgdzjsYWWMmJHAGRG0KqYbGGnWPWFXueN0fgM/NC
+         mB4X5PPHsHOOiOQLQ6JTIFKgwFptpbpL124avohFe4bd7e15cdgTLErDT5IJdttYoVGm
+         cGOtFFBSaj7uPrRv/v9z3Gn+VcQ2KthwUacc82VwKDbo0Z4qFw4DMSUBxZkUEj+QTluG
+         qoQVFBG4Ze227B3K4K1dOlbKpJWnENauS0mm55pVIK6ieupRs9dxoP36HATK6fGOWjLB
+         O8ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701332667; x=1701937467;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3TQqYuMpS0IutFQA0jTxrDWzedXIaMHOHDdeUN7WQuw=;
+        b=bHZW+IbqbQFr6EY2/uechHH16Co90/uM5NOgN5OMLk3Ae8t+GCS4+O0M4ciW1hnDOh
+         XGgHK3elATWUPvST+EQJTnVvhBsu8ZIQndmRgV6m4GyDkO++LDJh7GaF6SBTPFNTAC+O
+         hjH2DM5GjI6CrRFY3myjZtm7LCYqVzG8+C6jJ+9L6Tk+YWIP8km3OXw1xBzKHOX5TywM
+         gNPoifydQVo5XuuNYRfCrRD3H2c4if0cmZ/hyQ1PYsYBo+QdqIOPVLmjij9KSnUVwgAf
+         XteQNZuaTVjBeMNmclELxf1mTCOIFB0vGMxvD4QpxsxwvSKh0I02EDOubrI4SauhJzEY
+         Rg4w==
+X-Gm-Message-State: AOJu0YzWCVgmMqKrtmZnazzksBqd3x9IsG/oYLAp7z17sxqw5ufritoO
+	hnNWzz4Xd0Z+dhSkoR795mdDr67DqLY=
+X-Google-Smtp-Source: AGHT+IHWJgbhZy4z5ajH3SCgvaHk+CQS1O+0oW2p34le3I8bCk5zc+Q4Ge9qW03jVvhxInLNxkWE2A==
+X-Received: by 2002:a05:600c:3b20:b0:40b:3e23:f0a0 with SMTP id m32-20020a05600c3b2000b0040b3e23f0a0mr11358637wms.4.1701332667016;
+        Thu, 30 Nov 2023 00:24:27 -0800 (PST)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id p23-20020a05600c1d9700b0040b3645a7c2sm4839247wms.40.2023.11.30.00.24.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Nov 2023 00:24:26 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 30 Nov 2023 09:24:26 +0100
+Message-Id: <CXC03GYAN4VN.2PQ88Q1S7IL6H@gmail.com>
+Subject: Re: [PATCH] wifi: ath11k: fix layout of scan_flags in struct
+ scan_req_params
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: "Jeff Johnson" <quic_jjohnson@quicinc.com>, "Kalle Valo"
+ <kvalo@kernel.org>
+Cc: <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <ath11k@lists.infradead.org>
+X-Mailer: aerc 0.15.2
+References: <20231127180559.1696041-1-nico.escande@gmail.com>
+ <bdcdbd06-e9bd-4a92-b27b-d94b2d8fb52d@quicinc.com>
+ <CX9YPUDTAT1N.23DMRB5O9FEAO@gmail.com>
+ <20c7a367-2243-4e13-b023-9999dc6c6790@quicinc.com>
+In-Reply-To: <20c7a367-2243-4e13-b023-9999dc6c6790@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231129_214303_268886_3EAFACC5 
-X-CRM114-Status: GOOD (  37.14  )
+X-CRM114-CacheID: sfid-20231130_002430_046561_EDA659DA 
+X-CRM114-Status: GOOD (  14.41  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,212 +97,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Nov 27, 2023 at 06:20:15PM +0200, Kalle Valo wrote:
-> From: Baochen Qiang <quic_bqiang@quicinc.com>
-> 
-> If ath11k tries to call mhi_power_up() during resume it fails:
-> 
-> ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
-> 
-> This happens because when calling mhi_power_up() the MHI subsystem eventually
-> calls device_add() from mhi_create_devices() but the device creation is
-> deferred:
-> 
-> mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
-> 
-> The reason for deferring device creation is explained in dpm_prepare():
-> 
-> 	/*
-> 	 * It is unsafe if probing of devices will happen during suspend or
-> 	 * hibernation and system behavior will be unpredictable in this case.
-> 	 * So, let's prohibit device's probing here and defer their probes
-> 	 * instead. The normal behavior will be restored in dpm_complete().
-> 	 */
-> 
-> Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not called and
-> qcom_mhi_qrtr_dl_callback() fails silently as qdev is zero:
-> 
-> static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
-> 				      struct mhi_result *mhi_res)
-> {
-> 	struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
-> 	int rc;
-> 
-> 	if (!qdev || mhi_res->transaction_status)
-> 		return;
-> 
-> So what this means that QRTR is not delivering messages and the QMI connection
-> is not working between ath11k and the firmware, resulting a failure in firmware
-> initialisation.
-> 
-> To fix this add new function mhi_power_down_no_destroy() which does not destroy
-> the devices during power down. This way mhi_power_up() can be called during
-> resume and we can get ath11k hibernation working with the following patches.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+On Tue Nov 28, 2023 at 1:57 AM CET, Jeff Johnson wrote:
+> On 11/27/2023 2:54 PM, Nicolas Escande wrote:
+[...]
+> > So either we should not use WMI_SCAN_XXX with scan_req_params.scan_flag=
+s ever
+> > and only use the bitfield to set scan parameters or if we use WMI_SCAN_=
+XXX with
+> > scan_req_params.scan_flags they need to match the corresponding bitfiel=
+d.
+>
+> IMO the correct thing to do is to remove the unions from that struct and
+> only leave behind the bitfields and not use the WMI_SCAN_XXX masks
+> except when filling the firmware structure.
+>
+> But don't spin an update to your patches until Kalle has a chance to
+> give his opinion. I'm new to maintaining these drivers and Kalle may
+> have a different opinion on this.
+>
+> /jeff
 
-Any reason for reposting this series without discussing the suggestion from
-Mayank? As I said in the internal thread, this patch breaks the Linux device
-driver model by not destroying the "struct device" when the actual device gets
-removed. We should try to explore alternate options instead of persisting with
-this solution.
-
-- Mani
-
-> ---
->  drivers/bus/mhi/host/init.c     |  1 +
->  drivers/bus/mhi/host/internal.h |  1 +
->  drivers/bus/mhi/host/pm.c       | 26 +++++++++++++++++++-------
->  include/linux/mhi.h             | 29 +++++++++++++++++++++++++++--
->  4 files changed, 48 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
-> index 65ceac1837f9..e626b03ffafa 100644
-> --- a/drivers/bus/mhi/host/init.c
-> +++ b/drivers/bus/mhi/host/init.c
-> @@ -43,6 +43,7 @@ const char * const dev_state_tran_str[DEV_ST_TRANSITION_MAX] = {
->  	[DEV_ST_TRANSITION_FP] = "FLASH PROGRAMMER",
->  	[DEV_ST_TRANSITION_SYS_ERR] = "SYS ERROR",
->  	[DEV_ST_TRANSITION_DISABLE] = "DISABLE",
-> +	[DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE] = "DISABLE (DESTROY DEVICE)",
->  };
->  
->  const char * const mhi_ch_state_type_str[MHI_CH_STATE_TYPE_MAX] = {
-> diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
-> index 30ac415a3000..3f45c9c447bd 100644
-> --- a/drivers/bus/mhi/host/internal.h
-> +++ b/drivers/bus/mhi/host/internal.h
-> @@ -69,6 +69,7 @@ enum dev_st_transition {
->  	DEV_ST_TRANSITION_FP,
->  	DEV_ST_TRANSITION_SYS_ERR,
->  	DEV_ST_TRANSITION_DISABLE,
-> +	DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE,
->  	DEV_ST_TRANSITION_MAX,
->  };
->  
-> diff --git a/drivers/bus/mhi/host/pm.c b/drivers/bus/mhi/host/pm.c
-> index a2f2feef1476..8833b0248393 100644
-> --- a/drivers/bus/mhi/host/pm.c
-> +++ b/drivers/bus/mhi/host/pm.c
-> @@ -458,7 +458,8 @@ static int mhi_pm_mission_mode_transition(struct mhi_controller *mhi_cntrl)
->  }
->  
->  /* Handle shutdown transitions */
-> -static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
-> +static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl,
-> +				      bool destroy_device)
->  {
->  	enum mhi_pm_state cur_state;
->  	struct mhi_event *mhi_event;
-> @@ -520,8 +521,10 @@ static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
->  	dev_dbg(dev, "Waiting for all pending threads to complete\n");
->  	wake_up_all(&mhi_cntrl->state_event);
->  
-> -	dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
-> -	device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
-> +	if (destroy_device) {
-> +		dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
-> +		device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
-> +	}
->  
->  	mutex_lock(&mhi_cntrl->pm_mutex);
->  
-> @@ -806,7 +809,10 @@ void mhi_pm_st_worker(struct work_struct *work)
->  			mhi_pm_sys_error_transition(mhi_cntrl);
->  			break;
->  		case DEV_ST_TRANSITION_DISABLE:
-> -			mhi_pm_disable_transition(mhi_cntrl);
-> +			mhi_pm_disable_transition(mhi_cntrl, false);
-> +			break;
-> +		case DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE:
-> +			mhi_pm_disable_transition(mhi_cntrl, true);
->  			break;
->  		default:
->  			break;
-> @@ -1160,7 +1166,8 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl)
->  }
->  EXPORT_SYMBOL_GPL(mhi_async_power_up);
->  
-> -void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
-> +void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
-> +		      bool destroy_device)
->  {
->  	enum mhi_pm_state cur_state, transition_state;
->  	struct device *dev = &mhi_cntrl->mhi_dev->dev;
-> @@ -1196,14 +1203,19 @@ void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
->  	write_unlock_irq(&mhi_cntrl->pm_lock);
->  	mutex_unlock(&mhi_cntrl->pm_mutex);
->  
-> -	mhi_queue_state_transition(mhi_cntrl, DEV_ST_TRANSITION_DISABLE);
-> +	if (destroy_device)
-> +		mhi_queue_state_transition(mhi_cntrl,
-> +					   DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE);
-> +	else
-> +		mhi_queue_state_transition(mhi_cntrl,
-> +					   DEV_ST_TRANSITION_DISABLE);
->  
->  	/* Wait for shutdown to complete */
->  	flush_work(&mhi_cntrl->st_worker);
->  
->  	disable_irq(mhi_cntrl->irq[0]);
->  }
-> -EXPORT_SYMBOL_GPL(mhi_power_down);
-> +EXPORT_SYMBOL_GPL(__mhi_power_down);
->  
->  int mhi_sync_power_up(struct mhi_controller *mhi_cntrl)
->  {
-> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-> index d0f9b522f328..ae092bc8b97e 100644
-> --- a/include/linux/mhi.h
-> +++ b/include/linux/mhi.h
-> @@ -648,12 +648,37 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl);
->   */
->  int mhi_sync_power_up(struct mhi_controller *mhi_cntrl);
->  
-> +void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
-> +		    bool destroy_device);
-> +
->  /**
-> - * mhi_power_down - Start MHI power down sequence
-> + * mhi_power_down - Start MHI power down sequence. See also
-> + * mhi_power_down_no_destroy() which is a variant of this for suspend.
-> + *
->   * @mhi_cntrl: MHI controller
->   * @graceful: Link is still accessible, so do a graceful shutdown process
->   */
-> -void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful);
-> +static inline void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
-> +{
-> +	__mhi_power_down(mhi_cntrl, graceful, true);
-> +}
-> +
-> +/**
-> + * mhi_power_down_no_destroy - Start MHI power down sequence but don't
-> + * destroy struct devices. This is a variant for mhi_power_down() and is a
-> + * workaround to make it possible to use mhi_power_up() in a resume
-> + * handler. When using this variant the caller must also call
-> + * mhi_prepare_all_for_transfer_autoqueue() and
-> + * mhi_unprepare_all_from_transfer().
-> + *
-> + * @mhi_cntrl: MHI controller
-> + * @graceful: Link is still accessible, so do a graceful shutdown process
-> + */
-> +static inline void mhi_power_down_no_destroy(struct mhi_controller *mhi_cntrl,
-> +					     bool graceful)
-> +{
-> +	__mhi_power_down(mhi_cntrl, graceful, false);
-> +}
->  
->  /**
->   * mhi_unprepare_after_power_down - Free any allocated memory after power down
-> -- 
-> 2.39.2
-> 
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+No problem, I'll wait for Kalle's input on this before doing anything.
+As soon as we decide which way is the right way, I'll work on this. I only =
+care
+that this gets resolved.
 
