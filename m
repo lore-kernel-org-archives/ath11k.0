@@ -4,61 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D3FDC4167B
-	for <ath11k@archiver.kernel.org>; Thu, 30 Nov 2023 17:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FDCDC4167B
+	for <ath11k@archiver.kernel.org>; Fri,  1 Dec 2023 01:09:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=a86nEtI427ZkCbWDYc5Gc1YXkU4renPXQebxHKDo9fA=; b=vMHqFUWon87hwHYa2H3YgQ2V5E
-	VDIBQB5O/siidLaVVYO9pAa0o5b1gsD58cI1Q7JQQml/DvASQ9ORcETgal+gnFhtQ6x8UHBO6Sbj9
-	/2O0gvadMu031yGQDcARkYI/BG9kBz7aszXQG4Xz7Vt6UZXbDBXeoO3a9DC9X9NrSXe7ZLpoWh6sv
-	5FuEtQcO8uihCozbmgVsJKJcTUdXFsQ6mv7dLJNcScuIAZ6IsxXeSvh4s8zgK7daeSyKODmqE0Lag
-	Osa9oSPuQ0AUNac6a+0R0Jm0WpNXavBG0LUVGCwXji7NjS3M6St30yWx5zjvPyHWlsO2x+nbnEGdB
-	FJsBfeSA==;
+	bh=tKB5+wk19WcOQEmyWEcHr4ysKsILrzHd7yuMdqUYA8E=; b=DXO+vyWdEf2M63lRRDzaA+COEh
+	pbbuZx1t8bdXZBOHPqzSzdkWktcBsZSk8FXYA/qL2GyxpTTIYz0J4oluHsDILAkY6qjM0bYBXxgkO
+	2cC3u/EBhdlAOimFD9mNB6AzTtJ2Tq/sNFDPlHUUYBjG8tMskf19rTGEsYNPaVwpL1Vjy72gzPUjf
+	8XnV8UvUipe/Yfz4w+JHTRe5Lq58Zkj4J70yiFCk/q4pmGl4PMfaQCpEXQjeQ/jcYl0zkq12UkP/e
+	yBYED+OKQrHyr7b0O1+V9KTuQzFtwhqsziF28XdcboGhE2Zi+lkDM1j27xxLA6HZP2cXdi2sBMMCC
+	bQWX9xCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8kUP-00BSlc-0m;
-	Thu, 30 Nov 2023 17:06:13 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1r8s1b-00CJzC-0j;
+	Fri, 01 Dec 2023 01:08:59 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1r8kUM-00BSl1-0k
+	id 1r8s1X-00CJyk-22
 	for ath11k@lists.infradead.org;
-	Thu, 30 Nov 2023 17:06:11 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id D4237B827AF;
-	Thu, 30 Nov 2023 17:06:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 190DFC433C7;
-	Thu, 30 Nov 2023 17:06:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701363967;
-	bh=C9xNgVVhXRSyE0l4y+M6+IWYv5jkCVWMh6VIt0VA/fs=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=g4XTjG8y9knI3NBpjmTbY0jzFw1mcc8iGTdhzD7XCC86xTR66ytM4U3sCJEbptvGC
-	 WaURhaPOoe0YRt72iQB5S8OT3kTeOHpJXFqqkUoRlXzw107QCz1bBK/pnOq6Wu5WGd
-	 3mRQBGy355RRvxnoF7KEwJXXbOQIbdkVQ7kr4qJ8Phe34meaoksvynwBQb9DYmbops
-	 L9FzU5EVrZOTLUm5oKo6v2XcyzO8V3qlzqSIT3yAO5/8Z2yMAhkKT3YB8T6W7W+wMf
-	 tovsKxEmGSU0L59zRi5GhbYqwnwGbn8MFHx+xplKXYD5q1hwU8wwCbBXU1LZHU0/2P
-	 FfJUYY21ujKOw==
-Content-Type: text/plain; charset="utf-8"
+	Fri, 01 Dec 2023 01:08:57 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B1106Ho005214;
+	Fri, 1 Dec 2023 01:08:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=tKB5+wk19WcOQEmyWEcHr4ysKsILrzHd7yuMdqUYA8E=;
+ b=KIh4rQoXiCIZthjby1Zy4o/T5SboE731qTJlomxGw39EJ3Jz/zIq+3n+CgUzo8IBDous
+ 8PPQoD215iEkfYkT6YtYeVWJnhTDX+k0MmRsoliF1rBnDkxYadDGeGRWcohMULuIRLqV
+ 7k+TqPOVw0nvfZ1nVyEoWZD+yMTXZo01DQmbW5XTgI0ieH4KLPPAay7YC429tAvBVl0a
+ 27KU1lkQ0T6ssAhKVSo1nPXTRsL6zdIN/bz79w5YirqHHI0FcImLnMJMzVfLowjF5jpe
+ dYJB6eLQHCYR1A74YiVlD17cHUi9nL/bzDHZOSHfPBZz7dGeUqbiRvYJ3nQ2UKHLLf12 Mw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uph8x36xe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Dec 2023 01:08:50 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B118oWm008965
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 1 Dec 2023 01:08:50 GMT
+Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 30 Nov
+ 2023 17:08:48 -0800
+Message-ID: <9d6fa75b-a024-4501-ba26-d9cfb17c8636@quicinc.com>
+Date: Fri, 1 Dec 2023 09:08:45 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH wifi-next 1/6] wifi: ath11k: Convert to platform remove
- callback returning void
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20231117093056.873834-9-u.kleine-koenig@pengutronix.de>
-References: <20231117093056.873834-9-u.kleine-koenig@pengutronix.de>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=  <u.kleine-koenig@pengutronix.de>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, kernel@pengutronix.de
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <170136396402.1435047.15867746880964995534.kvalo@kernel.org>
-Date: Thu, 30 Nov 2023 17:06:05 +0000 (UTC)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 1/8] bus: mhi: host: add
+ mhi_power_down_no_destroy()
+To: Manivannan Sadhasivam <mani@kernel.org>, Kalle Valo <kvalo@kernel.org>
+CC: <mhi@lists.linux.dev>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>
+References: <20231127162022.518834-1-kvalo@kernel.org>
+ <20231127162022.518834-2-kvalo@kernel.org> <20231130054250.GC3043@thinkpad>
+Content-Language: en-US
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20231130054250.GC3043@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: h_I7cF3MPgvZbDjhGAqQpw6GdOdbCJ1-
+X-Proofpoint-GUID: h_I7cF3MPgvZbDjhGAqQpw6GdOdbCJ1-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-30_25,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ bulkscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ priorityscore=1501 clxscore=1011 malwarescore=0 spamscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2312010006
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231130_090610_410270_53114338 
-X-CRM114-Status: GOOD (  10.68  )
+X-CRM114-CacheID: sfid-20231130_170855_701298_90D8B1E2 
+X-CRM114-Status: GOOD (  37.03  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,32 +99,226 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Uwe Kleine-König  <u.kleine-koenig@pengutronix.de> wrote:
 
-> The .remove() callback for a platform driver returns an int which makes
-> many driver authors wrongly assume it's possible to do error handling by
-> returning an error code. However the value returned is ignored (apart
-> from emitting a warning) and this typically results in resource leaks.
+
+On 11/30/2023 1:42 PM, Manivannan Sadhasivam wrote:
+> On Mon, Nov 27, 2023 at 06:20:15PM +0200, Kalle Valo wrote:
+>> From: Baochen Qiang <quic_bqiang@quicinc.com>
+>>
+>> If ath11k tries to call mhi_power_up() during resume it fails:
+>>
+>> ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
+>>
+>> This happens because when calling mhi_power_up() the MHI subsystem eventually
+>> calls device_add() from mhi_create_devices() but the device creation is
+>> deferred:
+>>
+>> mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
+>>
+>> The reason for deferring device creation is explained in dpm_prepare():
+>>
+>> 	/*
+>> 	 * It is unsafe if probing of devices will happen during suspend or
+>> 	 * hibernation and system behavior will be unpredictable in this case.
+>> 	 * So, let's prohibit device's probing here and defer their probes
+>> 	 * instead. The normal behavior will be restored in dpm_complete().
+>> 	 */
+>>
+>> Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not called and
+>> qcom_mhi_qrtr_dl_callback() fails silently as qdev is zero:
+>>
+>> static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
+>> 				      struct mhi_result *mhi_res)
+>> {
+>> 	struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
+>> 	int rc;
+>>
+>> 	if (!qdev || mhi_res->transaction_status)
+>> 		return;
+>>
+>> So what this means that QRTR is not delivering messages and the QMI connection
+>> is not working between ath11k and the firmware, resulting a failure in firmware
+>> initialisation.
+>>
+>> To fix this add new function mhi_power_down_no_destroy() which does not destroy
+>> the devices during power down. This way mhi_power_up() can be called during
+>> resume and we can get ath11k hibernation working with the following patches.
+>>
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>>
+>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 > 
-> To improve here there is a quest to make the remove callback return
-> void. In the first step of this quest all drivers are converted to
-> .remove_new(), which already returns void. Eventually after all drivers
-> are converted, .remove_new() will be renamed to .remove().
+> Any reason for reposting this series without discussing the suggestion from
+> Mayank? As I said in the internal thread, this patch breaks the Linux device
+> driver model by not destroying the "struct device" when the actual device gets
+> removed. We should try to explore alternate options instead of persisting with
+> this solution.
 > 
-> Trivially convert this driver from always returning zero in the remove
-> callback to the void returning variant.
+> - Mani
+I shared my opinion on Mayank's proposal, but not noticed it is in 
+internal thead. I will repost here:
+
+Mayank's proposal assumes that at the time PM_POST_HIBERNATION is 
+posted, all deferred probe is unblocked and completed, however which is 
+not true.
+
+Yes, kernel's sequence is first unblock probe defer and trigger probe 
+again, then post PM_POST_HIBERNATION message. But the problem here is 
+that the probe-trigger is delegated to an work item and returns 
+immediately, kernel does not wait for all probe to complete before 
+posting PM_POST_HIBERNATION. So it is not guaranteed that an MHI device 
+is probed at the time we get that message.
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-62e31362033e wifi: ath11k: Convert to platform remove callback returning void
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20231117093056.873834-9-u.kleine-koenig@pengutronix.de/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+>> ---
+>>   drivers/bus/mhi/host/init.c     |  1 +
+>>   drivers/bus/mhi/host/internal.h |  1 +
+>>   drivers/bus/mhi/host/pm.c       | 26 +++++++++++++++++++-------
+>>   include/linux/mhi.h             | 29 +++++++++++++++++++++++++++--
+>>   4 files changed, 48 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
+>> index 65ceac1837f9..e626b03ffafa 100644
+>> --- a/drivers/bus/mhi/host/init.c
+>> +++ b/drivers/bus/mhi/host/init.c
+>> @@ -43,6 +43,7 @@ const char * const dev_state_tran_str[DEV_ST_TRANSITION_MAX] = {
+>>   	[DEV_ST_TRANSITION_FP] = "FLASH PROGRAMMER",
+>>   	[DEV_ST_TRANSITION_SYS_ERR] = "SYS ERROR",
+>>   	[DEV_ST_TRANSITION_DISABLE] = "DISABLE",
+>> +	[DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE] = "DISABLE (DESTROY DEVICE)",
+>>   };
+>>   
+>>   const char * const mhi_ch_state_type_str[MHI_CH_STATE_TYPE_MAX] = {
+>> diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
+>> index 30ac415a3000..3f45c9c447bd 100644
+>> --- a/drivers/bus/mhi/host/internal.h
+>> +++ b/drivers/bus/mhi/host/internal.h
+>> @@ -69,6 +69,7 @@ enum dev_st_transition {
+>>   	DEV_ST_TRANSITION_FP,
+>>   	DEV_ST_TRANSITION_SYS_ERR,
+>>   	DEV_ST_TRANSITION_DISABLE,
+>> +	DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE,
+>>   	DEV_ST_TRANSITION_MAX,
+>>   };
+>>   
+>> diff --git a/drivers/bus/mhi/host/pm.c b/drivers/bus/mhi/host/pm.c
+>> index a2f2feef1476..8833b0248393 100644
+>> --- a/drivers/bus/mhi/host/pm.c
+>> +++ b/drivers/bus/mhi/host/pm.c
+>> @@ -458,7 +458,8 @@ static int mhi_pm_mission_mode_transition(struct mhi_controller *mhi_cntrl)
+>>   }
+>>   
+>>   /* Handle shutdown transitions */
+>> -static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
+>> +static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl,
+>> +				      bool destroy_device)
+>>   {
+>>   	enum mhi_pm_state cur_state;
+>>   	struct mhi_event *mhi_event;
+>> @@ -520,8 +521,10 @@ static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
+>>   	dev_dbg(dev, "Waiting for all pending threads to complete\n");
+>>   	wake_up_all(&mhi_cntrl->state_event);
+>>   
+>> -	dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
+>> -	device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
+>> +	if (destroy_device) {
+>> +		dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
+>> +		device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
+>> +	}
+>>   
+>>   	mutex_lock(&mhi_cntrl->pm_mutex);
+>>   
+>> @@ -806,7 +809,10 @@ void mhi_pm_st_worker(struct work_struct *work)
+>>   			mhi_pm_sys_error_transition(mhi_cntrl);
+>>   			break;
+>>   		case DEV_ST_TRANSITION_DISABLE:
+>> -			mhi_pm_disable_transition(mhi_cntrl);
+>> +			mhi_pm_disable_transition(mhi_cntrl, false);
+>> +			break;
+>> +		case DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE:
+>> +			mhi_pm_disable_transition(mhi_cntrl, true);
+>>   			break;
+>>   		default:
+>>   			break;
+>> @@ -1160,7 +1166,8 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl)
+>>   }
+>>   EXPORT_SYMBOL_GPL(mhi_async_power_up);
+>>   
+>> -void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
+>> +void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
+>> +		      bool destroy_device)
+>>   {
+>>   	enum mhi_pm_state cur_state, transition_state;
+>>   	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+>> @@ -1196,14 +1203,19 @@ void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
+>>   	write_unlock_irq(&mhi_cntrl->pm_lock);
+>>   	mutex_unlock(&mhi_cntrl->pm_mutex);
+>>   
+>> -	mhi_queue_state_transition(mhi_cntrl, DEV_ST_TRANSITION_DISABLE);
+>> +	if (destroy_device)
+>> +		mhi_queue_state_transition(mhi_cntrl,
+>> +					   DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE);
+>> +	else
+>> +		mhi_queue_state_transition(mhi_cntrl,
+>> +					   DEV_ST_TRANSITION_DISABLE);
+>>   
+>>   	/* Wait for shutdown to complete */
+>>   	flush_work(&mhi_cntrl->st_worker);
+>>   
+>>   	disable_irq(mhi_cntrl->irq[0]);
+>>   }
+>> -EXPORT_SYMBOL_GPL(mhi_power_down);
+>> +EXPORT_SYMBOL_GPL(__mhi_power_down);
+>>   
+>>   int mhi_sync_power_up(struct mhi_controller *mhi_cntrl)
+>>   {
+>> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+>> index d0f9b522f328..ae092bc8b97e 100644
+>> --- a/include/linux/mhi.h
+>> +++ b/include/linux/mhi.h
+>> @@ -648,12 +648,37 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl);
+>>    */
+>>   int mhi_sync_power_up(struct mhi_controller *mhi_cntrl);
+>>   
+>> +void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
+>> +		    bool destroy_device);
+>> +
+>>   /**
+>> - * mhi_power_down - Start MHI power down sequence
+>> + * mhi_power_down - Start MHI power down sequence. See also
+>> + * mhi_power_down_no_destroy() which is a variant of this for suspend.
+>> + *
+>>    * @mhi_cntrl: MHI controller
+>>    * @graceful: Link is still accessible, so do a graceful shutdown process
+>>    */
+>> -void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful);
+>> +static inline void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
+>> +{
+>> +	__mhi_power_down(mhi_cntrl, graceful, true);
+>> +}
+>> +
+>> +/**
+>> + * mhi_power_down_no_destroy - Start MHI power down sequence but don't
+>> + * destroy struct devices. This is a variant for mhi_power_down() and is a
+>> + * workaround to make it possible to use mhi_power_up() in a resume
+>> + * handler. When using this variant the caller must also call
+>> + * mhi_prepare_all_for_transfer_autoqueue() and
+>> + * mhi_unprepare_all_from_transfer().
+>> + *
+>> + * @mhi_cntrl: MHI controller
+>> + * @graceful: Link is still accessible, so do a graceful shutdown process
+>> + */
+>> +static inline void mhi_power_down_no_destroy(struct mhi_controller *mhi_cntrl,
+>> +					     bool graceful)
+>> +{
+>> +	__mhi_power_down(mhi_cntrl, graceful, false);
+>> +}
+>>   
+>>   /**
+>>    * mhi_unprepare_after_power_down - Free any allocated memory after power down
+>> -- 
+>> 2.39.2
+>>
+>>
+> 
 
