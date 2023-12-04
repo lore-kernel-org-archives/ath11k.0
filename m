@@ -4,83 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D5C7C4167B
-	for <ath11k@archiver.kernel.org>; Mon,  4 Dec 2023 08:14:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ABF6C4167B
+	for <ath11k@archiver.kernel.org>; Mon,  4 Dec 2023 08:42:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xro87ZzoWEwkL7fzoxplIk829T8c9X6jA2hV1SIVUqs=; b=MGmh4C3sYJjOCfNFz2upiRidX1
-	pu/j5ooxyM5483146JUPoZMxQWF4JSYxKp6z0p7ThLDre8I5PHqocnqzQDwS8wKzGkAucStZWGwHF
-	Bw3N/qCS0n+fcw/BcqEG67zh1RyfFd/sJmksZVOkXqzgEDGkOb67eoDPoXSogiWruIEzBhBQSTLUx
-	UsCb54IBuhjMKMRsnzBxi6SKNi+rX5hWFl3qy02QWu9SSLQsKCAcjvJTDCjhUF8OLA03WkkEFVC3n
-	+P+h2BrLl3tinvFYnY4jjtdn5cWRrWQAcFNZpGt8RLus7BbHZsXoWfusnbfmRx/gELtxG1kUDAlac
-	GzGICO0Q==;
+	bh=VdWjcFwQwnupEpDLyhCXMGqCj8+RIhmx0h4+mPyBb80=; b=HqJHiOBtyytitIkU5mGXPQsp4l
+	xuc0Gtpu7jhmvdv2oaVCTTpSRSESPFrGs0BxawTJMvvkeF6x1gy5HMGWi39bn2E1mBwov5P4AZbmO
+	Td8Ez7QOZ2+VdvA6eLzE7Gy04SpO3Tk87uy5ZknJaAP3L52LIdtEhz1i5ortBRvO7IXjwissg06hb
+	w0CKUx0+ezoKr8mRFQ1KBTV8HEULZAEUqx0boAwpTN3912LQEWR53jXs/NexpsKXCv/RdBg/ed0iE
+	8095iB7ycYpMUK1r3UzfESb9F08sapMW21zGXgwvU42awrPfCBipKe0THBK2ScY4aN2LgNlFjysVS
+	fCi7wq4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rA45Y-003ERU-0u;
-	Mon, 04 Dec 2023 08:14:00 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rA4XE-003IPH-2d;
+	Mon, 04 Dec 2023 08:42:37 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rA45R-003EMO-0w
+	id 1rA4X5-003IHr-11
 	for ath11k@lists.infradead.org;
-	Mon, 04 Dec 2023 08:13:55 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B46K22u013187;
-	Mon, 4 Dec 2023 08:13:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=xro87ZzoWEwkL7fzoxplIk829T8c9X6jA2hV1SIVUqs=;
- b=GUSmljcWjFjtwJ8Vr0LSgYDiAF7lM0+4NRbVKcatpe5nCO3b25pVBFMHMUNYPO3fByhB
- /dgB0/drn1W1+yIQWnK9X6Dq7mwXNfRPfX7BaYGASKx97ofz2GA7zMNCYGaLI58dfQ82
- WuAGyCeH+v/LgNidpRMDRBYjnwJYjYB42A6s2WInWDCTMTMt96cf9Q5+lGwou1RPQ3O9
- O/HNU88ihe7PUT0s18kmPUIbLnZARz95aFWwv48Jps1FX2mLFgbCgKtqWfQdXIxkPkgA
- 6L+ag0rfwP9Oy/X/2BxCdTpoFvH2dfTpSy+vjmdrCBbE7iO3HPtSH5fU3BLPZ7XbXjRk fw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3us81ygdp3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Dec 2023 08:13:52 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B48DpqB021139
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Dec 2023 08:13:51 GMT
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 4 Dec 2023 00:13:50 -0800
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH v8 12/12] wifi: ath11k: discard BSS_CHANGED_TXPOWER when EXT_TPC_REG_SUPPORT for 6 GHz
-Date: Mon, 4 Dec 2023 16:13:23 +0800
-Message-ID: <20231204081323.5582-13-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231204081323.5582-1-quic_bqiang@quicinc.com>
+	Mon, 04 Dec 2023 08:42:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by ams.source.kernel.org (Postfix) with ESMTP id E8559B80D55;
+	Mon,  4 Dec 2023 08:42:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8895C433C9;
+	Mon,  4 Dec 2023 08:42:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701679345;
+	bh=TE3EEYEpxG4JPMq2js26Nz226K897mSnVYCmC8qPc0s=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=JM4YDTuLHIWdRTIjhw3grwuZsVr5JWhuCF6KFL3xywLNUHCT/t8HpTwIcX/PPFHms
+	 zMOb9DY+Mdr75ug7SLXcLQUxon91nXeenglmw1fiKUBdwUsj1I8T7Y7Go6/buvBuW0
+	 owGkp5SUQaYB0D7m0e5J+QsOB6ZrJVz5CuhKJKTX4W/PfMb/jX8PrmWBpWKSJFvRg4
+	 SQRmGxj5a7iWZVhNF15/rAZ4RHrhCBhSWTpFjtIZWsIi+mzqPxg4S1/4xFsbD+DQpr
+	 1oCthyCHMtFeEBFFKF2rllgRYwRkz53wfcWTL8ilTcn6qiOlR3Uvik5pzejeJbvf9k
+	 /gYzxfIsIGpLw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v8 00/12] wifi: ath11k: add support for 6 GHz station
+ for various modes : LPI, SP and VLP
 References: <20231204081323.5582-1-quic_bqiang@quicinc.com>
+Date: Mon, 04 Dec 2023 10:42:22 +0200
+In-Reply-To: <20231204081323.5582-1-quic_bqiang@quicinc.com> (Baochen Qiang's
+	message of "Mon, 4 Dec 2023 16:13:11 +0800")
+Message-ID: <87v89eqryp.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ZcxkrKHsL_9_LAAD4VHV709xVbnzGZ19
-X-Proofpoint-GUID: ZcxkrKHsL_9_LAAD4VHV709xVbnzGZ19
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-04_06,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 adultscore=0 mlxscore=0 bulkscore=0 lowpriorityscore=0
- spamscore=0 impostorscore=0 suspectscore=0 malwarescore=0 clxscore=1015
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2312040061
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231204_001353_336504_1C8ED451 
-X-CRM114-Status: GOOD (  18.57  )
+X-CRM114-CacheID: sfid-20231204_004227_512684_699FA964 
+X-CRM114-Status: UNSURE (   7.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,101 +73,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Wen Gong <quic_wgong@quicinc.com>
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-When station is connected to a 6 GHz AP, it has 2 ways to configure
-the power limit to firmware. The first way is to send 2 WMI commands
-WMI_PDEV_PARAM_TXPOWER_LIMIT2G/WMI_PDEV_PARAM_TXPOWER_LIMIT5G to
-firmware, the second way is to send WMI_VDEV_SET_TPC_POWER_CMDID to
-firmware which include more parameters for power control.
+> This introduced some new concept:
+> power type of AP(STANDARD_POWER_AP, INDOOR_AP, VERY_LOW_POWER_AP)
+> power type of STATION(DEFAULT_CLIENT, SUBORDINATE_CLIENT)
+> power spectral density(psd)
+>
+> This patchset is to implement the new rules for 6 GHz band in
+> ath11k.
+>
 
-When firmware support SERVICE_EXT_TPC_REG, it means firmware support
-the second way for WMI_VDEV_SET_TPC_POWER_CMDID, then ath11k discard
-BSS_CHANGED_TXPOWER flag from mac80211 which is used to the first way
-for 6 GHz band and select the second way.
+[...]
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> v7: address review comments per Kalle, Jeff and Aditya. Also rebased to ToT.
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
-v8:
- no change.
-v7:
- 1. squash original patch 11 and patch 13.
- 2. s/wmi command/WMI commands/
- 3. s/way/ways/
- 4. add TODO tag for CSA.
+Just a small comment that most important is to list here the changes you
+made, not who provided reviewed comments. But no need to resend because
+of this.
 
- drivers/net/wireless/ath/ath11k/mac.c | 33 +++++++++++++++++++++++----
- 1 file changed, 29 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2520f78c9c0b..254cb0427d12 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3397,6 +3397,18 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
- 	return 0;
- }
- 
-+static bool ath11k_mac_supports_station_tpc(struct ath11k *ar,
-+					    struct ath11k_vif *arvif,
-+					    const struct cfg80211_chan_def *chandef)
-+{
-+	return ath11k_wmi_supports_6ghz_cc_ext(ar) &&
-+		test_bit(WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT, ar->ab->wmi_ab.svc_map) &&
-+		arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-+		arvif->vdev_subtype == WMI_VDEV_SUBTYPE_NONE &&
-+		chandef->chan &&
-+		chandef->chan->band == NL80211_BAND_6GHZ;
-+}
-+
- static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 					   struct ieee80211_vif *vif,
- 					   struct ieee80211_bss_conf *info,
-@@ -3596,9 +3608,13 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 	if (changed & BSS_CHANGED_TXPOWER) {
- 		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "vdev_id %i txpower %d\n",
- 			   arvif->vdev_id, info->txpower);
--
--		arvif->txpower = info->txpower;
--		ath11k_mac_txpower_recalc(ar);
-+		if (ath11k_mac_supports_station_tpc(ar, arvif, &info->chandef)) {
-+			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-+				   "discard tx power, change to set TPC power\n");
-+		} else {
-+			arvif->txpower = info->txpower;
-+			ath11k_mac_txpower_recalc(ar);
-+		}
- 	}
- 
- 	if (changed & BSS_CHANGED_PS &&
-@@ -7279,6 +7295,15 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 		return ret;
- 	}
- 
-+	/* TODO: For now we only set TPC power here. However when
-+	 * channel changes, say CSA, it should be updated again.
-+	 */
-+	if (ath11k_mac_supports_station_tpc(ar, arvif, chandef)) {
-+		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, &arvif->chanctx);
-+		ath11k_wmi_send_vdev_set_tpc_power(ar, arvif->vdev_id,
-+						   &arvif->reg_tpc_info);
-+	}
-+
- 	if (!restart)
- 		ar->num_started_vdevs++;
- 
-@@ -8093,7 +8118,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 			goto out;
- 		}
- 		ath11k_reg_handle_chan_list(ab, reg_info, power_type);
--
-+		arvif->chanctx = *ctx;
- 		ath11k_mac_parse_tx_pwr_env(ar, vif, ctx);
- 	}
- 
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
