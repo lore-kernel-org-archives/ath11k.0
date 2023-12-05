@@ -4,86 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 490AFC4167B
-	for <ath11k@archiver.kernel.org>; Mon,  4 Dec 2023 15:53:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90304C4167B
+	for <ath11k@archiver.kernel.org>; Tue,  5 Dec 2023 03:13:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PgI9mC5H4unxLeCAaapB8iuEQRGbVrHuq+A9Bd3ltpU=; b=Gf1Zn/EZqMW56FSDQZ1MxfpY1+
-	0KCZK4FcwOBSEfWyp156lzfXIjkboWJDp1nzTUFhPG6dfEhJWzDlGYJoRjjMx02LXQUhlfVEg7+eS
-	3Wx1WVcqFiPmTDvJkIxhw+R4J7TX44gdbfDAhhmk2kDYu0JBn0SvDuncJkuxZPMluaQFIEofO0Bzz
-	3bCc474gZ7OM6CZgYVFdU80PuZvFSqA5KZW9a/X8AWZ5IT2MfBQdXjRCGd+Pgcrm/poEejK3EXGIN
-	UJb+uuubSXJjph1qwc9rOGWxRddbsDzL9G9/6q+T3RoP306o1tvepDsGYU2ARqXq9stCa9CIShzpw
-	zq0kO7+A==;
+	Content-Type:MIME-Version:Date:Message-ID:Subject:From:To:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=bTHvAwz4pRsHGdSYFA85IYtgD6rufPtY98UBoo7roKU=; b=SgsVP4V9fCPUzUM1V2/pi58XuG
+	PClnAnjQERAOoSle3T2aRaibFMUHMZNAZySYrQS9IPV8lsAj5m5eiw/YYFwO2YLvTdfCWRyHcL2we
+	4jkkHCtYPlkYWFqTdsviqr3z0dIy9jIGqQbnaSOKpblmSj9p/Z1lBFeC7fsWG1gIhxWR6n1JWfR+U
+	hOZE4xvcGH1np9co7Q65I9BngDQuxJWzwggJC5Z4bPwEokpsDcx9YcTQO/e04DdVi7NyvThZEnPWg
+	w0xVec3tNHfM7pFRYOePeyQeZkggWiSwFZSfVM02BI5lKsF9nZUNLV6iJitLWuNV1b81RUNpOefz8
+	Si32wsHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rABGD-0051J2-1P;
-	Mon, 04 Dec 2023 15:53:29 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rALsN-0066eB-1r;
+	Tue, 05 Dec 2023 03:13:35 +0000
+Received: from smtp-8fad.mail.infomaniak.ch ([83.166.143.173])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rABGA-0051IO-1u
+	id 1rALsK-0066dj-2Y
 	for ath11k@lists.infradead.org;
-	Mon, 04 Dec 2023 15:53:28 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B4BwXhd013443;
-	Mon, 4 Dec 2023 15:53:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PgI9mC5H4unxLeCAaapB8iuEQRGbVrHuq+A9Bd3ltpU=;
- b=HQWXCafpeNcBAdKQRzDzfoKzH050v2dyyi7ZGARsCLmxb7lEhObf6ukbXahj3YQ0mq1h
- UUgSpibPlfvpBXcd6BORTpvmYEcOC4hbpyf4ICZKmqqxqNLqifJfQM2fvaf1kS3X5sy7
- SMMFsU40a1ph/aJEQKJJjvBVxFKDM7LpeVtPJUjsi57RyNTcO9joxvonV8CpDi8tjahs
- hnV0lhf3NGiZTsbdLQMLlGNO9nSABYMA/z11jCiaw72PtOOMWrz+6viN9Ss9K7YP5PLi
- ZgVS0TjS78iCOFCAdznV5kW+8yHXt94IU6JsnL1NO0lR1h36mVEi5kg0xT2cWJYYJCJ5 pw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3usdfwgrrr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Dec 2023 15:53:22 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B4FrLTH029988
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Dec 2023 15:53:21 GMT
-Received: from [10.216.6.98] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 4 Dec
- 2023 07:53:19 -0800
-Message-ID: <33d629b1-674e-42c1-8969-18fa636d370c@quicinc.com>
-Date: Mon, 4 Dec 2023 21:23:15 +0530
+	Tue, 05 Dec 2023 03:13:34 +0000
+Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
+	by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4Sklwh418GzMq0NF
+	for <ath11k@lists.infradead.org>; Tue,  5 Dec 2023 03:13:24 +0000 (UTC)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4Sklwh1cwjz3Y
+	for <ath11k@lists.infradead.org>; Tue,  5 Dec 2023 04:13:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ik.me; s=20200325;
+	t=1701746004; bh=q6ZAzmPE6GfLJ0F6n75WoAzCK7avvFTFV0pcVotqfIc=;
+	h=To:From:Subject:Date:From;
+	b=1EYHl0uNp+qx5Rk/Nk7jDpVkbUUP5kzs0iJr6zAEdllQEd6+rYFopjuVZMfrOkTxz
+	 U0n2KHnF+9PmuZH+mepChIF94dGU8oa4NaP2UL64RmaNyrVKhN+b/k//I86GdXFVgj
+	 tq8UdOlEatmTd7K19gHTsij1JWeNCBY9nbd3KMc8=
+To: ath11k@lists.infradead.org
+From: Fourhundred Thecat <400thecat@ik.me>
+Subject: bizarre network problem on kernel 6.6.4
+Message-ID: <39e47336-79f6-5465-7768-a405e2ee3b0a@ik.me>
+Date: Tue, 5 Dec 2023 04:13:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 12/12] wifi: ath11k: discard BSS_CHANGED_TXPOWER when
- EXT_TPC_REG_SUPPORT for 6 GHz
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20231204081323.5582-1-quic_bqiang@quicinc.com>
- <20231204081323.5582-13-quic_bqiang@quicinc.com>
-From: Aditya Kumar Singh <quic_adisi@quicinc.com>
-In-Reply-To: <20231204081323.5582-13-quic_bqiang@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wOhkx1WRsm_FxJTKdwoN9YvnD5mhJB72
-X-Proofpoint-ORIG-GUID: wOhkx1WRsm_FxJTKdwoN9YvnD5mhJB72
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-04_15,2023-12-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 mlxscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0 clxscore=1011
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2312040120
+X-Infomaniak-Routing: alpha
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231204_075326_802583_8F749705 
-X-CRM114-Status: GOOD (  17.46  )
+X-CRM114-CacheID: sfid-20231204_191332_969751_4B957538 
+X-CRM114-Status: UNSURE (   9.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,43 +68,45 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 12/4/23 13:43, Baochen Qiang wrote:
-> From: Wen Gong <quic_wgong@quicinc.com>
-> 
-> When station is connected to a 6 GHz AP, it has 2 ways to configure
-> the power limit to firmware. The first way is to send 2 WMI commands
-> WMI_PDEV_PARAM_TXPOWER_LIMIT2G/WMI_PDEV_PARAM_TXPOWER_LIMIT5G to
-> firmware, the second way is to send WMI_VDEV_SET_TPC_POWER_CMDID to
-> firmware which include more parameters for power control.
-> 
-> When firmware support SERVICE_EXT_TPC_REG, it means firmware support
-> the second way for WMI_VDEV_SET_TPC_POWER_CMDID, then ath11k discard
-> BSS_CHANGED_TXPOWER flag from mac80211 which is used to the first way
-> for 6 GHz band and select the second way.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> ---
-...snip...
-> @@ -3596,9 +3608,13 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->   	if (changed & BSS_CHANGED_TXPOWER) {
->   		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "vdev_id %i txpower %d\n",
->   			   arvif->vdev_id, info->txpower);
-> -
-> -		arvif->txpower = info->txpower;
-> -		ath11k_mac_txpower_recalc(ar);
-> +		if (ath11k_mac_supports_station_tpc(ar, arvif, &info->chandef)) {
-> +			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-> +				   "discard tx power, change to set TPC power\n");
-> +		} else {
-> +			arvif->txpower = info->txpower;
-> +			ath11k_mac_txpower_recalc(ar);
-> +		}
+Hello,
 
-Could you check v6 once? I remember Wen told he would drop this check 
-and let FW take the min value. If we do like this, then user could not 
-set his own desired value even if that is well inside the reg limits.
+I have the most bizarre network problem on my laptop that I have ever
+seen, and I don't even know where to start:
+
+This is lenovo T14s Gen 4, using qualcomm driver ath11k_pci
+
+Previously I was using kernel 6.6.1 and wireless network was working fine.
+
+Now I compiled kernel 6.6.4 with identical config, and when I boot it,
+wireless network does not work:
+
+- WPA supplicant authenticated and associated successfully
+- ifconfig shows interface wlan0 is configured properly and has IP
+address 10.1.4.8
+- route is configured properly:
+
+  default via 10.1.4.1   wlan0 onlink
+  10.1.4.0/24            wlan0 proto kernel src 10.1.4.8
+
+but I cannot ping even my Gataway: 10.1.4.1
+
+bizarrely, when I start tcpdump on my gateway, I see arp requests coming
+from my laptop asking for some strange public ips, such as 208.163.36.0
+
+when I interrupt ping, and start again, then arp asks for other strange IPs.
+
+But in every case, I see only these arp requests, not the pings coming
+from my laptop.
+
+But when I ping the other way (from gateway to my laptop), I do see the
+incoming pings on my laptop (but no response pings)
+
+Also, with "arp-scan -l" on my laptop, I see other devices on my
+wireless subnet:
+
+  10.1.4.1    00:0d:b9:53:ea:3c    PC Engines GmbH
+  10.1.4.2    b0:7f:b9:50:5b:21    NETGEAR
+
+any idea what is going on?
 
 
