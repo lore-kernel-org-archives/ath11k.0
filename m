@@ -4,76 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBA27C4167B
-	for <ath11k@archiver.kernel.org>; Wed,  6 Dec 2023 02:43:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50202C10DC1
+	for <ath11k@archiver.kernel.org>; Wed,  6 Dec 2023 05:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=CHKQqyZy+g524fgsbEY/VwWQxSo6h1c/KOycwt/arPo=; b=CFxoYGqpoef+SeYlWWIab/hRAF
-	s/XDZ9kmQH9WkJGqitFXPLEfU8g5cqJJdaAUa1j91YP1JbcDREdZNmi/iKNovVgWi38nbNmMdcuh2
-	C/+lRLx8/FFuAY5qV7PhHHPBnFyj3vwijVqnqRtFsEgNKHbpl1cSldV9PMByA6qk7AS48kHbFzge5
-	qvod2gOBjq+ZUe79HRWlGMbao6ee90mdo1sJ45nuGKljAgAh+09Cyak9svfIBWltkqzuKptAUS7Qr
-	9RGVB+D7X/oKlxV1N6Q6ebpZU/GSXqQ+HSr4YvZbSUW5JY2Qq0aqxkzEhSF9qN79q/AccDC2+EJus
-	scOntsvQ==;
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=wReELadF95EkmgEoHbVPpsyaHW0F41MQ1ZXmtKW4EmI=; b=qD59zZfQ4Sq1esXvQL+dboQ8Wz
+	zXIW9cF0cBSGuRZOB5NzWOmXnwp7/HIbQh9L9uj3japgqWdqiREw9YReUgZCWCczPMVX2xvpKabN+
+	R1A5wuQDzmYDXQuH2Zqbj154kuPsZ/JGccgvGUrm4eyxsSxfFl5GZkqKnbcHLyVtRIpyIYc7cYsAJ
+	QptPUAipez+EX6g55A8ct3kp/Cx4zN7rgBmot5SMVKXDU1kgQqrgCjBDHncclfTDRMUAwrAsEnjdh
+	FnZy79kPl900qXw3uIr6k5/lLmKTCc+9v+ZWdw7lEe565Z3AIaW5dVI6zVUgXJiUFf+yXPt1RqP21
+	+vBBqVGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rAhtA-008uKN-2c;
-	Wed, 06 Dec 2023 02:43:52 +0000
-Received: from mail-qv1-xf41.google.com ([2607:f8b0:4864:20::f41])
+	id 1rAkYK-0096sU-1T;
+	Wed, 06 Dec 2023 05:34:32 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rAht7-008uJh-2c
+	id 1rAkYI-0096rR-0p
 	for ath11k@lists.infradead.org;
-	Wed, 06 Dec 2023 02:43:51 +0000
-Received: by mail-qv1-xf41.google.com with SMTP id 6a1803df08f44-67a8a745c43so3667046d6.0
-        for <ath11k@lists.infradead.org>; Tue, 05 Dec 2023 18:43:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701830625; x=1702435425; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CHKQqyZy+g524fgsbEY/VwWQxSo6h1c/KOycwt/arPo=;
-        b=h6aDy1DihnTuaZDbmphBumWIob//VX4SXUOU1yd2wvdbOgPp4l7v+QHc3ZNcOPNSR6
-         S+qnGN6xKv4fe4JftYRkCZ7WrrcGRT17VzbNJuADX0yQ/AxU4HcJcRpQrC9KaJM9iUlv
-         tDcILLLdedITBaCBRwAisvDGy/e14meaDJ8YP4Jo1xxSZYGc/oVwvnfrQbg8AqLvtv2S
-         ocjWofKQKpTubG3WYprFKkr8UXRC/EeL8c1wQoI4CWM4lALEhaDsmna5/CSD7KgVc2UK
-         VGr043flEPCVGpGG3VZry9Oz/7VIECD5vaICRV/7cJb3oXqrZdNWWahXfrvdZjDCj+tt
-         U11Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701830625; x=1702435425;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CHKQqyZy+g524fgsbEY/VwWQxSo6h1c/KOycwt/arPo=;
-        b=tk2HISeqCVjXMvXblbfkMlLmUnaa2adDZ0mUW/6IQdWZuYbmBTkAHR1n62j/+zIACj
-         zro80fHBPIjHVRpAZXCk8MMnMTBSZ4sQUCGTE6JHhvLVWHtKwuKrBevJHN0J4FozSWP6
-         +Kje8PAgyJIi1bxGvMGOchl6XTz4EG7ojLeBQtW5v2lMSkyXgVaGk+Xvu6u/NAmh4DvP
-         8VjxByKz9azp37ctmT+IaNRXFNuMN4UT2w3Fvkby3YvALzrtPH28GQR0korO6nwNl+0L
-         3VnNXSpukwV4ywS/263cRTGPqcz4j/40D1i1CRnxdGfmkh+ntZW7klR5H1892tINFQkm
-         9BBA==
-X-Gm-Message-State: AOJu0Yy/eT9EsuBLAOyrk/XwAxtYPftW8xZgSr6Chh8bfuT8+boLBeTb
-	qXykyau1zVNTW4JR5FkW29FNrqnjrTCXi7Uv
-X-Google-Smtp-Source: AGHT+IGIaQYxmKovTvb6RA2ApPZOvr488kuKkXz5uSLu+X8THLgukkQscvjv1FJ0krvV6wp3T+2a4g==
-X-Received: by 2002:a05:6214:f2c:b0:67a:a532:d33a with SMTP id iw12-20020a0562140f2c00b0067aa532d33amr4168215qvb.0.1701830625143;
-        Tue, 05 Dec 2023 18:43:45 -0800 (PST)
-Received: from localhost.localdomain ([2600:1700:9850:b60:48c0:d784:7e4c:676])
-        by smtp.gmail.com with ESMTPSA id b16-20020a0ccd10000000b0067acbd864e0sm2015561qvm.69.2023.12.05.18.43.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 18:43:42 -0800 (PST)
-From: Zhenghao Gu <imguzh@gmail.com>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-	Zhenghao Gu <imguzh@gmail.com>
-Subject: [PATCH] wifi: ath11k: fix IOMMU errors on buffer rings
-Date: Tue,  5 Dec 2023 20:43:25 -0600
-Message-ID: <20231206024325.27283-1-imguzh@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	Wed, 06 Dec 2023 05:34:31 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B64HN3B013790;
+	Wed, 6 Dec 2023 05:34:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=wReELadF95EkmgEoHbVPpsyaHW0F41MQ1ZXmtKW4EmI=;
+ b=ce8sNNqSkRE4D9Y6P1+49xMjgsG8E41q+W84Zl49E69q/puXOyEvBu5P5mwz46CE34MV
+ 0o2RtglIONlbTDLv96/iJDJPNv18NkB5yqCEi0keJ/kjgHk8oeWvOqq+muX5G+r/sKB9
+ jNLa8oYRmqLUShckBxx4xD77cOsQAnMyXz4OuXM++aB8upYNuyDwzW/yb97f4Lysemi2
+ ykWwBRTX/e1rvNpVFwIsjmyK1A1Dvyb8RsFPb6yvsQYAOIF2PNpTyTJnZU92fSw8AsDd
+ LhY7rBt3NoSH4ut9v+R3XT5tZoYfx4q92ksJ5waAlVYkwIQ6/J9qbPcUg8lm7eEnkiRn 8Q== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3utdtg0k7d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Dec 2023 05:34:26 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B65YPn1004808
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Dec 2023 05:34:25 GMT
+Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 5 Dec
+ 2023 21:34:24 -0800
+Message-ID: <2337a414-4aa2-47ad-8cc4-a631de15ea6f@quicinc.com>
+Date: Wed, 6 Dec 2023 13:34:21 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 12/12] wifi: ath11k: discard BSS_CHANGED_TXPOWER when
+ EXT_TPC_REG_SUPPORT for 6 GHz
+To: Aditya Kumar Singh <quic_adisi@quicinc.com>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20231204081323.5582-1-quic_bqiang@quicinc.com>
+ <20231204081323.5582-13-quic_bqiang@quicinc.com>
+ <33d629b1-674e-42c1-8969-18fa636d370c@quicinc.com>
+Content-Language: en-US
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <33d629b1-674e-42c1-8969-18fa636d370c@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MUy1xgrE-tl-NhVHHzyuVNIvXYgQjSPF
+X-Proofpoint-GUID: MUy1xgrE-tl-NhVHHzyuVNIvXYgQjSPF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-06_04,2023-12-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0
+ mlxlogscore=999 mlxscore=0 priorityscore=1501 adultscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311290000 definitions=main-2312060044
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231205_184349_851002_B01F088D 
-X-CRM114-Status: GOOD (  12.77  )
+X-CRM114-CacheID: sfid-20231205_213430_441903_1116E5B5 
+X-CRM114-Status: GOOD (  17.45  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,111 +99,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-virt_to_phys doesn't work on systems with IOMMU enabled,
-which have non-identity physical-to-IOVA mappings.
-It leads to IO_PAGE_FAULTs like this:
-[IO_PAGE_FAULT domain=0x0023 address=0x1cce00000 flags=0x0020]
-and no link can be established.
 
-This patch changes that to dma_map_single(), which works correctly.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-Signed-off-by: Zhenghao Gu <imguzh@gmail.com>
----
- drivers/net/wireless/ath/ath11k/dp.c  | 19 ++++++++++++++++---
- drivers/net/wireless/ath/ath11k/hal.c | 20 ++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/hal.h |  2 ++
- 3 files changed, 36 insertions(+), 5 deletions(-)
+On 12/4/2023 11:53 PM, Aditya Kumar Singh wrote:
+> On 12/4/23 13:43, Baochen Qiang wrote:
+>> From: Wen Gong <quic_wgong@quicinc.com>
+>>
+>> When station is connected to a 6 GHz AP, it has 2 ways to configure
+>> the power limit to firmware. The first way is to send 2 WMI commands
+>> WMI_PDEV_PARAM_TXPOWER_LIMIT2G/WMI_PDEV_PARAM_TXPOWER_LIMIT5G to
+>> firmware, the second way is to send WMI_VDEV_SET_TPC_POWER_CMDID to
+>> firmware which include more parameters for power control.
+>>
+>> When firmware support SERVICE_EXT_TPC_REG, it means firmware support
+>> the second way for WMI_VDEV_SET_TPC_POWER_CMDID, then ath11k discard
+>> BSS_CHANGED_TXPOWER flag from mac80211 which is used to the first way
+>> for 6 GHz band and select the second way.
+>>
+>> Tested-on: WCN6855 hw2.0 PCI 
+>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+>>
+>> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+>> ---
+> ...snip...
+>> @@ -3596,9 +3608,13 @@ static void 
+>> ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+>>       if (changed & BSS_CHANGED_TXPOWER) {
+>>           ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "vdev_id %i txpower %d\n",
+>>                  arvif->vdev_id, info->txpower);
+>> -
+>> -        arvif->txpower = info->txpower;
+>> -        ath11k_mac_txpower_recalc(ar);
+>> +        if (ath11k_mac_supports_station_tpc(ar, arvif, 
+>> &info->chandef)) {
+>> +            ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
+>> +                   "discard tx power, change to set TPC power\n");
+>> +        } else {
+>> +            arvif->txpower = info->txpower;
+>> +            ath11k_mac_txpower_recalc(ar);
+>> +        }
+> 
+> Could you check v6 once? I remember Wen told he would drop this check 
+> and let FW take the min value. If we do like this, then user could not 
+> set his own desired value even if that is well inside the reg limits.
+I did notice this comment in V6, but came out of a different opinion: it 
+is OK to discard the TX power here, because that will be sent to 
+firmware using WMI_VDEV_SET_TPC_POWER_CMDID command in another patch. 
+Please correct me if wrong.
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index d070bcb3f..c74230e4c 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -104,11 +104,14 @@ void ath11k_dp_srng_cleanup(struct ath11k_base *ab, struct dp_srng *ring)
- 	if (!ring->vaddr_unaligned)
- 		return;
- 
--	if (ring->cached)
-+	if (ring->cached) {
-+		dma_unmap_single(ab->dev, ring->paddr_unaligned, ring->size,
-+				 DMA_FROM_DEVICE);
- 		kfree(ring->vaddr_unaligned);
--	else
-+	} else {
- 		dma_free_coherent(ab->dev, ring->size, ring->vaddr_unaligned,
- 				  ring->paddr_unaligned);
-+	}
- 
- 	ring->vaddr_unaligned = NULL;
- }
-@@ -249,7 +252,17 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, struct dp_srng *ring,
- 
- 		if (cached) {
- 			ring->vaddr_unaligned = kzalloc(ring->size, GFP_KERNEL);
--			ring->paddr_unaligned = virt_to_phys(ring->vaddr_unaligned);
-+			if (!ring->vaddr_unaligned)
-+				return -ENOMEM;
-+
-+			ring->paddr_unaligned =
-+				dma_map_single(ab->dev, ring->vaddr_unaligned,
-+					       ring->size, DMA_FROM_DEVICE);
-+			if (dma_mapping_error(ab->dev, ring->paddr_unaligned)) {
-+				kfree(ring->vaddr_unaligned);
-+				ring->vaddr_unaligned = NULL;
-+				return -ENOMEM;
-+			}
- 		}
- 	}
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 0a99aa7dd..bd4cccdba 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -628,15 +628,31 @@ u32 *ath11k_hal_srng_dst_peek(struct ath11k_base *ab, struct hal_srng *srng)
- 	return NULL;
- }
- 
-+u32 *ath11k_hal_srng_dst_peek_with_dma(struct ath11k_base *ab,
-+				       struct hal_srng *srng, dma_addr_t *paddr)
-+{
-+	lockdep_assert_held(&srng->lock);
-+
-+	if (srng->u.dst_ring.tp != srng->u.dst_ring.cached_hp) {
-+		*paddr = (srng->ring_base_paddr +
-+			  sizeof(*srng->ring_base_vaddr) * srng->u.dst_ring.tp);
-+		return (srng->ring_base_vaddr + srng->u.dst_ring.tp);
-+	}
-+
-+	return NULL;
-+}
-+
- static void ath11k_hal_srng_prefetch_desc(struct ath11k_base *ab,
- 					  struct hal_srng *srng)
- {
- 	u32 *desc;
-+	dma_addr_t desc_paddr;
-+
- 
- 	/* prefetch only if desc is available */
--	desc = ath11k_hal_srng_dst_peek(ab, srng);
-+	desc = ath11k_hal_srng_dst_peek_with_dma(ab, srng, &desc_paddr);
- 	if (likely(desc)) {
--		dma_sync_single_for_cpu(ab->dev, virt_to_phys(desc),
-+		dma_sync_single_for_cpu(ab->dev, desc_paddr,
- 					(srng->entry_size * sizeof(u32)),
- 					DMA_FROM_DEVICE);
- 		prefetch(desc);
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index 1942d41d6..facaf8fe0 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -943,6 +943,8 @@ void ath11k_hal_srng_get_params(struct ath11k_base *ab, struct hal_srng *srng,
- u32 *ath11k_hal_srng_dst_get_next_entry(struct ath11k_base *ab,
- 					struct hal_srng *srng);
- u32 *ath11k_hal_srng_dst_peek(struct ath11k_base *ab, struct hal_srng *srng);
-+u32 *ath11k_hal_srng_dst_peek_with_dma(struct ath11k_base *ab,
-+				       struct hal_srng *srng, dma_addr_t *paddr);
- int ath11k_hal_srng_dst_num_free(struct ath11k_base *ab, struct hal_srng *srng,
- 				 bool sync_hw_ptr);
- u32 *ath11k_hal_srng_src_peek(struct ath11k_base *ab, struct hal_srng *srng);
+> 
 
