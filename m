@@ -4,61 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9371FC10DC3
-	for <ath11k@archiver.kernel.org>; Thu,  7 Dec 2023 15:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BA9CC4167B
+	for <ath11k@archiver.kernel.org>; Fri,  8 Dec 2023 05:50:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TMBZABbpBLoobJK9bkZp9lwx2WswLjU6Wj7S4NnL+Xs=; b=fOiJ3uZWHi6QwGP+k2TEINJNfi
-	U55uYmAXb0fiVCkuCmg68uy4i/RmS2/fYB0qm7+cbdSwmh53XTA2fhS5zPzc02b5uPTuMstEW19sI
-	j2SfQo3Teg6rbCRusyMFkmvjxtCbBYYAdORZYX6uDhNvp1PpNWigTGQorxaf7dKibPt80vKZ5WxAU
-	xElE9iJdJdGjPuxW62cJTSohk1xCWD/acLyC8ghEzpYkgd8hl3C9Lu1Q+yrZQiaw4dPXGVFYXFSiH
-	41SSBIEAmEBAqxuwkZKv9iQWwJ6VYJtYIN2UmwhY7z2or9L3OhEENt+tMjfSG0j9QjjJwmMh4kBKo
-	/AVyvmrA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Subject:To:From:
+	Date:Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=RlGO75cVyyO6/egfGnXxOs869qnVKisPyuOwGEPh2Zk=; b=tWAnPHZ7kzbVjsCHkFVUNcNUKR
+	JxuOK0V2Z6xJx4jy/Q9jbAd2LbvrF8IkYjIaxO0lGhTMm6EpINqacpLJpxqpNk0DjO4B3hlb+CJad
+	LGV7pKiJkcaNxn5TiDtQi1e8Wm4dlchYuTbos2wlQFbW1FlNWxU/Y5N6uEIoMCMWK+z4fixwxTtQI
+	XWTX6bCs4gQb/9x7fVTqTyKfImbuPsjm1rjC66dGO4rgJNlumoWcHELZFIYw9JpuzpahxbZKjaTbi
+	xSN5ClTGaIH6t4vlRwhH4rBvhy6s3uWRag8w2eNWAKO07UEp8Rk8Yy+Hgm14OHKlHst7nWpUGDu4q
+	KP9dgoXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rBGJt-00DCCv-1p;
-	Thu, 07 Dec 2023 15:29:45 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rBTl7-00En8d-0u;
+	Fri, 08 Dec 2023 05:50:45 +0000
+Received: from mailgw3.alcom.ax ([194.112.1.144])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rBGJr-00DCCF-1J
+	id 1rBTl4-00En8D-0f
 	for ath11k@lists.infradead.org;
-	Thu, 07 Dec 2023 15:29:44 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id E9E936215F;
-	Thu,  7 Dec 2023 15:29:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18EA0C433C9;
-	Thu,  7 Dec 2023 15:29:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701962982;
-	bh=Dkc/bgGCRbsrE+8dmAQ1ZSZbA5B5EpqqN6hPV9vyrO8=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=azmwd+qSHm8aeO+1i1+6zpAooR6XSGHZH+5KuDqLB3kLgJ/JNKel8gPAU8mXS6C1z
-	 fTAG6Iet7i2jD5N1JKHtwC/fE56Qusd6aakFmOPT7LJasnW+6BkXYdih4lNzCSrKvq
-	 rZkSyIHmVmTZ1u58um2fNLvM8gpCQtkPuH5BrtV37I3QnFqcS6rZYm8hrXddqohXxO
-	 qmzhOiZyWfXa/CaBYatfHGJ9lHZmVUv2wEuChGSBqSer19hvX8p31ZqKsHGyFnSBKS
-	 E94vqaZ8zQFhHzkd9/gLtHD9jkX9MSoIVFVA+vuRcznj/Bf2cHUbVx5n4QMneRTttJ
-	 +cc85ifbaMcxw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Legale Legale <legale.legale@gmail.com>
-Cc: ath11k@lists.infradead.org
-Subject: Re: Fwd: ath11k-firmware: IPQ8074 hw2.0: Add Yuncore AX880 specific
- BDF
-References: <CACDmYycYkdrCnSA0QK6eSMKkgqxDDmA0w_9A2e9aK2N6hhWDug@mail.gmail.com>
-	<CACDmYyefzY=Fd2xoAy11dp4visP=EDizoz560cXW95U==yR52A@mail.gmail.com>
-Date: Thu, 07 Dec 2023 17:29:40 +0200
-In-Reply-To: <CACDmYyefzY=Fd2xoAy11dp4visP=EDizoz560cXW95U==yR52A@mail.gmail.com>
-	(Legale Legale's message of "Tue, 31 Oct 2023 23:32:47 +0300")
-Message-ID: <87h6kum3ob.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Fri, 08 Dec 2023 05:50:44 +0000
+Received: from smtp.aland.net (smtp.aland.net [194.112.1.117])
+	by mailgw3.alcom.ax (Postfix) with ESMTPS id 8CE4054C4A
+	for <ath11k@lists.infradead.org>; Fri,  8 Dec 2023 07:50:33 +0200 (EET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailgw3.alcom.ax 8CE4054C4A
+Received: from mail.monsterbitar.se (213-204-48-48.bredband.aland.net [213.204.48.48])
+	by smtp.aland.net (Postfix) with ESMTP id 878EE3065505
+	for <ath11k@lists.infradead.org>; Fri,  8 Dec 2023 07:50:33 +0200 (EET)
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Fri, 08 Dec 2023 07:50:16 +0200
+From: Jonathan Silverblood <jonathan@silverblood.se>
+To: ath11k@lists.infradead.org
+Subject: Steam Deck OLED
+Organization: Monsterbitar
+Message-ID: <474422d679cfcf33eaa4129fd7491512@silverblood.se>
+X-Sender: jonathan@silverblood.se
+User-Agent: Roundcube Webmail/1.3.7
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231207_072943_488163_245CC542 
-X-CRM114-Status: UNSURE (   6.81  )
+X-CRM114-CacheID: sfid-20231207_215042_421729_358DAEC4 
+X-CRM114-Status: UNSURE (   7.35  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,26 +64,45 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Legale Legale <legale.legale@gmail.com> writes:
+I'm trying to run my preferred flavour of linux on the new steam deck 
+oled and the wireless/bluetooth is not recognized.Based on some dmesg 
+output and casual searching I suspect it's the firmware files that don't 
+know the specific configuration used in this device. I verified it was 
+working on steamos before I re-installed, so I thought I'd send my dmesg 
+output here and see if there's anything else I can do to help.
 
-> I have grabbed stock fw bdf file for the device Yuncore AX880
-> (bdwlan.b290). This device is based on ipq8072a chipset (hk09) with 2
-> QCN5054 wifi chips.
->
-> ../ath11k-bdencoder -e board-yuncore_ax880.ipq8074_b290
-> bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=Yuncore-AX880.bin
-> created size: 131072
-> board-2.json created
->
->
-> bdf filename:  bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=Yuncore-AX880.bin
-> sha256sum: 243340c0ac21ace6fb7f5452091824d641724d0512418325bd7fa8e518a1dec5
+ath11k_pci 0000:03:00.0: chip_id 0x12 chip_family 0xb board_id 0x309 
+soc_id 0x400c1211
+ath11k_pci 0000:03:00.0: fw_version 0x110b196e fw_build_timestamp 
+2022-12-22 12:54 fw_build_id 
+WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+Loading firmware: ath11k/WCN6855/hw2.1/regdb.bin
+Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+Loading firmware: ath11k/WCN6855/hw2.1/board.bin
+ath11k_pci 0000:03:00.0: failed to fetch board data for 
+bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=18,qmi-board-id=777 
+from ath11k/WCN6855/hw2.1/board-2.bin
+ath11k_pci 0000:03:00.0: failed to fetch board.bin from WCN6855/hw2.1
+ath11k_pci 0000:03:00.0: qmi failed to fetch board file: -2
+ath11k_pci 0000:03:00.0: failed to load board data file: -2
 
-I assume this is the same file as the one you submitted few minutes
-earlier so dropping this one.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Here's the lspci output as well, just in case:
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+03:00.0 Network controller: Qualcomm Technologies, Inc QCNFA765 Wireless 
+Network Adapter (rev 01)
+         DeviceName: Broadcom 5762
+         Subsystem: Qualcomm Technologies, Inc QCNFA765 Wireless Network 
+Adapter
+         !!! Unknown header type 7f
+         Interrupt: pin ? routed to IRQ 67
+         Region 0: Memory at 80000000 (64-bit, non-prefetchable) 
+[size=2M]
+         Kernel driver in use: ath11k_pci
+         Kernel modules: ath11k_pci
+
+// Jonathan
 
