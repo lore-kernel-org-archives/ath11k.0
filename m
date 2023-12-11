@@ -4,88 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 814C8C4167B
-	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 03:57:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C564C4167B
+	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 06:22:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=cbGhdVTcI/aVomh6hJpeZFwWbflJrOoOloLwZ+SLRM0=; b=B2/33kME6aSRQtdjISz+scifuP
-	od5mNaGUIhxPmLYDkWWcxMv6/s/Pg/qH84kjVqUuJr/3mUZQQfaqzURDeyJWRFUirR3cNIQDkwpeB
-	u1UjZtPBnF94jBq4xG+zOkg4d7Fj7P24tZTvQatORbj4oZ3XxUkgDJ8rQSdq1JiAzlWy4RZOpVX3d
-	T8VZVmGjT5lxxI13WPwCpr3mFdEmH6Kwvw1W76eHCGGAczV2kcH+SWdx9IKUAR5T1kH/ijwRCf52K
-	LE4OzZiZA9cQRozP0Ltu8yBN+T/BBxHKqlb/tjARKpLXR2+sX+IHcMGv+ECGGh7mGREh+Spx6Ddu0
-	W2sr412Q==;
+	Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Wf+bYBr65uKLUwSvxXCR9GZ11IdqEchpAT8ScAH2O3E=; b=lgCuNo5W3xo2A0ghkGvyKB6bjP
+	jZYjWyDQo9vHcTj3FRkmZKw7vo7cRhhMHYmMS4jCTrlKTHCeN3pIsZWCFxwMgLF1i2hfnt9LQpAZn
+	TlWMtug334GhilZGdbkvvkFF+5lzwtsgd54JBc0Ap3d8DOUsXfHo188Dmnk4/7IL33dY0NxE9oxju
+	w9vtgrZzaqgsAVL3/FDCRdtEIj4D21Q+CDcqxfE0vdeK5phx3cZROOTHL3JVI7hn3WjaarCFJMmOK
+	zNQ73vrsfau6pC6EBNRBw7mpN8Du9rAN7YkhcIVZq/LADxTSS39MzFqqa3khm8o8GMlVRXt1q1J5b
+	5J9gxbtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCXPf-003vuH-2G;
-	Mon, 11 Dec 2023 03:57:00 +0000
+	id 1rCZgW-0049w6-1V;
+	Mon, 11 Dec 2023 06:22:32 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCXPb-003vta-1N
+	id 1rCZgS-0049ud-11
 	for ath11k@lists.infradead.org;
-	Mon, 11 Dec 2023 03:56:58 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BB3avmH007820;
-	Mon, 11 Dec 2023 03:56:55 GMT
+	Mon, 11 Dec 2023 06:22:30 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BB5uJ93001873;
+	Mon, 11 Dec 2023 06:22:27 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=cbGhdVTcI/aVomh6hJpeZFwWbflJrOoOloLwZ+SLRM0=; b=RK
-	eaUVwZP+6wkG3Yq2rH4cLfG+hHNgmuCDyrGfQtIe1hn+jSKbMGhK/JvDRBwhF3ag
-	Wm0FU8KzPL4R6eEtEK1gx/ncehB2LNdraDxXgl3cZ3GzoINhEUPbW7F3gfoNCGWg
-	xN+mIDr6cofJDhrxMn358HbpT3UjxDTmSgYgRuMlpNcvw8FgyNRVRFib/esRPaZ2
-	hQO0kWa7TOQ0rVZuLzzc6LUHdd9BB+VlXJTQBH+2vyGZKVcBFfsNlTtKQJ+hga5D
-	oM7g0lwcpjd9WAyv+57KoUHWMr3UNXTS3meuQAVXlbyzYlKsdSk0fG7Si6gNNJ4w
-	D0X3IY9wplzve0dtfR7w==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvney2752-1
+	from:to:cc:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding; s=qcppdkim1; bh=Wf+bYBr65uKLUwSvxXCR
+	9GZ11IdqEchpAT8ScAH2O3E=; b=IuoHGj50XQ3L+oBKSEDbU/ziGXRSpq1QsPbm
+	nmyIEkT5VY8cJtRdS8pOxeO50cIknSeC+l3dSUO/vQE3QjFCCz1SYwmfrwwnBO8X
+	9/zPJtTgPvMQ/p34Xfwh8/F1MJLwaxueto1q8veg3WcRsaItBqNjKPQLtFxCQr1j
+	P2A0B0ol14evJ105TOJIYFbZTsFdVuczWHMmwk9tkGiIAUuPoVXfYn210S0wxTkN
+	nO3KpqE8/huEGLrSdts5r8F4yBAgHcvMmlo10IYImbXw1HmjLMUabY7ZZNKJNQ4x
+	24iHwhfWqGwtJaacftNHbqDADuLyCDH4V7zBvTpW44vjfnL4+w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvnfjaek0-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 03:56:54 +0000 (GMT)
+	Mon, 11 Dec 2023 06:22:27 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BB3usMe014818
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BB6MQgY029289
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 03:56:54 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 10 Dec
- 2023 19:56:52 -0800
-Message-ID: <2c70dfd6-9e0e-468b-8585-252f0c23ff0a@quicinc.com>
-Date: Mon, 11 Dec 2023 11:56:52 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 02/12] wifi: ath11k: store cur_regulatory_info for each
- radio
-Content-Language: en-US
-To: Aditya Kumar Singh <quic_adisi@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20231204081323.5582-1-quic_bqiang@quicinc.com>
- <20231204081323.5582-3-quic_bqiang@quicinc.com>
- <db8b0734-8e4e-43f9-ba48-b3df2d33e29e@quicinc.com>
+	Mon, 11 Dec 2023 06:22:26 GMT
+Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 10 Dec 2023 22:22:25 -0800
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <db8b0734-8e4e-43f9-ba48-b3df2d33e29e@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH v9 00/12] wifi: ath11k: add support for 6 GHz station for various modes : LPI, SP and VLP
+Date: Mon, 11 Dec 2023 14:22:04 +0800
+Message-ID: <20231211062216.382164-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2nodsRR9MpKM83N-HDzKkYi1CmYoEwlg
-X-Proofpoint-ORIG-GUID: 2nodsRR9MpKM83N-HDzKkYi1CmYoEwlg
+X-Proofpoint-ORIG-GUID: jqudK3hkTRnLc_GS0p4wRtjbTL8nx42h
+X-Proofpoint-GUID: jqudK3hkTRnLc_GS0p4wRtjbTL8nx42h
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- impostorscore=0 mlxlogscore=999 mlxscore=0 phishscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312110031
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ spamscore=0 adultscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
+ bulkscore=0 mlxlogscore=957 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312110051
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231210_195656_400895_3387B0B7 
-X-CRM114-Status: GOOD (  18.10  )
+X-CRM114-CacheID: sfid-20231210_222228_371490_F186E7BC 
+X-CRM114-Status: GOOD (  10.00  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,122 +93,136 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+This introduced some new concept:
+power type of AP(STANDARD_POWER_AP, INDOOR_AP, VERY_LOW_POWER_AP)
+power type of STATION(DEFAULT_CLIENT, SUBORDINATE_CLIENT)
+power spectral density(psd)
+
+This patchset is to implement the new rules for 6 GHz band in
+ath11k.
+
+ath11k parsed the reg rules from new WMI event
+WMI_REG_CHAN_LIST_CC_EXT_EVENTID and parse the
+transmit power envelope element in beacon of AP
+and then set new WMI command WMI_VDEV_SET_TPC_POWER_CMDID
+to firmware when connect to 6G AP, also support backward
+compatibility with firmware which not support new wmi
+cmd WMI_VDEV_SET_TPC_POWER_CMDID.
+
+v9；
+ 1. [PATCH 02/12] wifi: ath11k: store cur_regulatory_info for each radio:
+  a. add check to soc->reg_info_store in case memory allocation fails.
+  b. remove irrelevant change w.r.t commit message.
+
+ 2. [PATCH 04/12] wifi: ath11k: update regulatory rules when interface added:
+  a. remove unnecessary parenthesis.
+  b. remove irrelevant change w.r.t commit message.
+
+ 3. [PATCH 12/12] wifi: ath11k: discard BSS_CHANGED_TXPOWER when EXT_TPC_REG_SUPPORT for 6 GHz
+drop below patch:
+  a. do not discard txpower setting for BSS_CHANGED_TXPOWER.
+  b. renamed subject as below and update commit log:
+  	wifi: ath11k: use WMI_VDEV_SET_TPC_POWER_CMDID when
+    		EXT_TPC_REG_SUPPORT for 6 GHz
+
+ 4. rebased to ToT.
+
+v8:
+    add my own s-o-b tag to each patch if not present. Also rebased to ToT.
+
+v7: address review comments per Kalle, Jeff and Aditya. Also rebased to ToT.
+
+v6: (NOT depends to any patch now)
+   1. The dependent patch "wifi: cfg80211: save power spectral density(psd) of regulatory rule"
+      has upstream to wireless-next https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git/commit/?id=ddd7f45c899f7524bdbe6a32fe4906cde8b07b9b
+      The prerequisite-patch is cherry-pick from wireless-next
+      So add back the other patches in v3 since no dependency to cfg80211 public patch above now.
+      [v3,08/15] wifi: ath11k: save power spectral density(psd) of regulatory rule
+      [v3,09/15] wifi: ath11k: add parse of transmit power envelope element
+      [v3,10/15] wifi: ath11k: save max tx power in vdev start response event from firmware
+      [v3,11/15] wifi: ath11k: fill parameters for vdev_set_tpc_power wmi command
+      [v3,12/15] wifi: ath11k: add WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT service bit
+      [v3,13/15] wifi: ath11k: discard BSS_CHANGED_TXPOWER when EXT_TPC_REG_SUPPORT for 6 GHz
+      [v3,14/15] wifi: ath11k: add handler for WMI_VDEV_SET_TPC_POWER_CMDID
+      [v3,15/15] wifi: ath11k: send TPC power to firmware for 6 GHz station
+   2. rename some "6g" to "6ghz"
+   3. remove "static" for ath11k_reg_ap_pwr_convert()
+   4. add 20 Mhz check in ath11k_mac_get_eirp_power()
+   5. remove min_t() in ath11k_mac_fill_reg_tpc_info() for not is_tpe_present
+   6. rebased to ath-202309051328
+
+   link of v5:
+   [PATCH v5 0/5] fix wrong TX power and frequency in regdomain by dynamic switch 6 GHz reg rules of LPI/SP/VLP for station mode
+   https://lore.kernel.org/linux-wireless/20230803071701.15084-1-quic_wgong@quicinc.com/
+
+v5: change per Kalle and rebased to ath.git ath-202306211808
+   1. ath11k_ieee80211_ap_pwr_type_convert() to ath11k_reg_ap_pwr_convert()
+   2. used list_first_entry_or_null() and add comments
+   3. ath11k_dbg() to ath11k_warn()
+   4. ath11k_hw_supports_6g_cc_ext() to ath11k_mac_supports_6g_cc_ext()
+   5. add mesh in commit log
+
+v4: (NOT depends to any patch now).
+   1. removed patches which depends on
+      wifi: cfg80211: save Power Spectral Density (PSD) of the regulatory rule
+      https://lore.kernel.org/linux-wireless/20230315132904.31779-3-quic_adisi@quicinc.com/
+      removed:
+      [v3,08/15] wifi: ath11k: save power spectral density(psd) of regulatory rule
+      [v3,09/15] wifi: ath11k: add parse of transmit power envelope element
+      [v3,10/15] wifi: ath11k: save max tx power in vdev start response event from firmware
+      [v3,11/15] wifi: ath11k: fill parameters for vdev_set_tpc_power wmi command
+      [v3,12/15] wifi: ath11k: add WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT service bit
+      [v3,13/15] wifi: ath11k: discard BSS_CHANGED_TXPOWER when EXT_TPC_REG_SUPPORT for 6 GHz
+      [v3,14/15] wifi: ath11k: add handler for WMI_VDEV_SET_TPC_POWER_CMDID
+      [v3,15/15] wifi: ath11k: send TPC power to firmware for 6 GHz station
+
+   2. rebased to ath.git ath-202304281700
+
+   3. deleted "wifi: ath11k: Add support to parse new wmi event for 6 GHz regulatory" which is alreay upstream.
+
+   link of v3:
+   [v3,00/15] wifi: ath11k: add support for 6 GHz station for various modes : LPI, SP and VLP
+   https://patchwork.kernel.org/project/linux-wireless/cover/20220913051518.23051-1-quic_wgong@quicinc.com/
+
+v3:
+   1. added "ath11k: fix a possible dead lock caused by ab->base_lock".
+   3. deleted "ath11k: add support for extended wmi service bit" which is alreay upstream.
+
+v2:
+   1. change some minor comments by Kalle.
+   2. rebased to ath.git ath-202112220603
+
+Baochen Qiang (1):
+  wifi: ath11k: fix a possible dead lock caused by ab->base_lock
+
+Wen Gong (11):
+  wifi: ath11k: add support to select 6 GHz regulatory type
+  wifi: ath11k: store cur_regulatory_info for each radio
+  wifi: ath11k: update regulatory rules when interface added
+  wifi: ath11k: update regulatory rules when connect to AP on 6 GHz band
+    for station
+  wifi: ath11k: save power spectral density(PSD) of regulatory rule
+  wifi: ath11k: add parse of transmit power envelope element
+  wifi: ath11k: save max tx power in vdev start response event from
+    firmware
+  wifi: ath11k: fill parameters for vdev set tpc power WMI command
+  wifi: ath11k: add WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT service bit
+  wifi: ath11k: add handler for WMI_VDEV_SET_TPC_POWER_CMDID
+  wifi: ath11k: use WMI_VDEV_SET_TPC_POWER_CMDID when
+    EXT_TPC_REG_SUPPORT for 6 GHz
+
+ drivers/net/wireless/ath/ath11k/core.h |  40 ++
+ drivers/net/wireless/ath/ath11k/mac.c  | 507 ++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/mac.h  |   3 +
+ drivers/net/wireless/ath/ath11k/reg.c  |  89 ++++-
+ drivers/net/wireless/ath/ath11k/reg.h  |   6 +-
+ drivers/net/wireless/ath/ath11k/wmi.c  | 234 +++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.h  |  69 ++++
+ 7 files changed, 878 insertions(+), 70 deletions(-)
 
 
-On 12/7/2023 11:15 AM, Aditya Kumar Singh wrote:
-> On 12/4/23 13:43, Baochen Qiang wrote:
->> --- a/drivers/net/wireless/ath/ath11k/mac.h
->> +++ b/drivers/net/wireless/ath/ath11k/mac.h
->> @@ -159,7 +159,6 @@ struct ath11k_vif *ath11k_mac_get_vif_up(struct 
->> ath11k_base *ab);
->>   struct ath11k *ath11k_mac_get_ar_by_vdev_id(struct ath11k_base *ab, 
->> u32 vdev_id);
->>   struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, 
->> u32 pdev_id);
->> -
-> 
-> Irrelevant change w.r.t commit message?
-> 
-> 
->>   void ath11k_mac_drain_tx(struct ath11k *ar);
->>   void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
->>   int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
-> ...
->> @@ -4749,6 +4749,11 @@ static int 
->> ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
->>           soc->pdevs[0].pdev_id = 0;
->>       }
->> +    if (!soc->reg_info_store)
->> +        soc->reg_info_store = kcalloc(soc->num_radios,
->> +                          sizeof(*soc->reg_info_store),
->> +                          GFP_ATOMIC);
-> What if this memory allocation request fails? Any negative case check 
-> should be present?
-> 
-> 
->> +
->>       return 0;
->>   }
->> @@ -7071,33 +7076,54 @@ static bool ath11k_reg_is_world_alpha(char 
->> *alpha)
->>       return false;
->>   }
->> -static int ath11k_reg_chan_list_event(struct ath11k_base *ab,
->> -                      struct sk_buff *skb,
->> -                      enum wmi_reg_chan_list_cmd_type id)
->> +void ath11k_reg_reset_info(struct cur_regulatory_info *reg_info)
->>   {
->> -    struct cur_regulatory_info *reg_info = NULL;
->> -    struct ieee80211_regdomain *regd = NULL;
->> -    bool intersect = false;
->> -    int ret = 0, pdev_idx, i, j;
->> -    struct ath11k *ar;
->> +    int i, j;
->> -    reg_info = kzalloc(sizeof(*reg_info), GFP_ATOMIC);
->> -    if (!reg_info) {
->> -        ret = -ENOMEM;
->> -        goto fallback;
->> -    }
->> +    if (reg_info) {
->> +        kfree(reg_info->reg_rules_2ghz_ptr);
->> -    if (id == WMI_REG_CHAN_LIST_CC_ID)
->> -        ret = ath11k_pull_reg_chan_list_update_ev(ab, skb, reg_info);
->> -    else
->> -        ret = ath11k_pull_reg_chan_list_ext_update_ev(ab, skb, 
->> reg_info);
->> +        kfree(reg_info->reg_rules_5ghz_ptr);
->> -    if (ret) {
->> -        ath11k_warn(ab, "failed to extract regulatory info from 
->> received event\n");
->> -        goto fallback;
->> +        for (i = 0; i < WMI_REG_CURRENT_MAX_AP_TYPE; i++) {
->> +            kfree(reg_info->reg_rules_6ghz_ap_ptr[i]);
->> +            for (j = 0; j < WMI_REG_MAX_CLIENT_TYPE; j++)
->> +                kfree(reg_info->reg_rules_6ghz_client_ptr[i][j]);
->> +        }
->> +
->> +        memset(reg_info, 0, sizeof(*reg_info));
->>       }
->> +}
->> +
->> +static
->> +enum wmi_vdev_type ath11k_reg_get_ar_vdev_type(struct ath11k *ar)
->> +{
->> +    struct ath11k_vif *arvif;
->> +
->> +    /* Currently each struct ath11k maps to one struct 
->> ieee80211_hw/wiphy
->> +     * and one struct ieee80211_regdomain, so it could only store one 
->> group
->> +     * reg rules. It means muti-interface concurrency in the same 
->> ath11k is
->> +     * not support for the regdomain. So get the vdev type of the 
->> first entry
->> +     * now. After concurrency support for the regdomain, this should 
->> change.
->> +     */
->> +    arvif = list_first_entry_or_null(&ar->arvifs, struct ath11k_vif, 
->> list);
->> +    if (arvif)
->> +        return arvif->vdev_type;
->> +
->> +    return WMI_VDEV_TYPE_UNSPEC;
->> +}
->> +
->> +int ath11k_reg_handle_chan_list(struct ath11k_base *ab,
->> +                struct cur_regulatory_info *reg_info,
->> +                enum ieee80211_ap_reg_power power_type)
->> +{
->> +    struct ieee80211_regdomain *regd;
->> +    bool intersect = false;
->> +    int pdev_idx;
->> +    struct ath11k *ar;
->> +    enum wmi_vdev_type vdev_type;
->> -    ath11k_dbg(ab, ATH11K_DBG_WMI, "event reg chan list id %d", id);
->> +    ath11k_dbg(ab, ATH11K_DBG_WMI, "event reg handle chan list");
-> 
-> I believe this debug was helpful in the sense it showed which type of 
-> event came. Can't we still print this somehow? Or may be somewhere else?You can check the event type from logs of 
-ath11k_pull_reg_chan_list_update_ev() and 
-ath11k_pull_reg_chan_list_ext_update_ev().
+base-commit: e68ab45f992d29cb4189f73e8bd9c8e9d2ef30ed
+-- 
+2.25.1
+
 
