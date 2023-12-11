@@ -4,85 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A34DC10DC3
-	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 14:55:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12E69C4167B
+	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 15:18:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DXqbcW2/yfevKNDzFduXfzs6j0etXw4ujAd+Te43fK4=; b=kjmOHKE3bg28vdRVOkIbIrg/U8
-	ahqOy9R2+wcysd1IPwufQxo0esIey9PolEINplU+zRKODDbum30GW2f9PzyNy8n1f27Euvj51+glW
-	9z1tDXhJ2ekftrCbrCorRmQWuUgW/poipEVfpVCE9nJraeAbdOCw3fVy8QxIfY/gfwS3ROFFz5Ks3
-	T5EBe84MLyZ8fd9sB0ihdN+GeC8nRVWsvV788yAsKkIAR5AnOqKsUzKdOeoAA3RYOzqH2a7KYSX/j
-	DlClIskD9GNSwdtyNhbxAARlRYsX/fzBJJ1kmWLK/lM+7ietSM0Qau9tQI/0B7mY+TlsE7gFzk3PE
-	UtoJkFjw==;
+	bh=Sg9LH3dFc3PNlGjbWX6hAhLHhjdap8awuYbouxTP5OY=; b=vwmWdwIRQq5igVdVus1ThqfpYz
+	RuTAKoH51q7OIkGEkyLLYqrosKFzpiiaRWOXG1rwqdEuNbKJPXkBE9FXhaFo+A79Q/8OSMueOMpuS
+	ylwuEv/rwI4zBnaRlBGkfaqpbM088QABqFX1GNTwWrbN4p+iJxahqsqNoeFaSMPC66xo9T5GLl9f5
+	SayM4RGyRvlxtdopuJ2zdQCoO2NnrQI70NYT4bzGi6z1vOtHgEcmwmC6OKNUVxFthqv7uCQfJ+aUb
+	zoZ2rAwD7qM3ck44nED9HBfpElZU69XMV2uxlhLK8avyJVGshTyCO9JfGSiKdxj+PkFal+E2fbWmf
+	kr5ZUP5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rChgT-005Ewg-2h;
-	Mon, 11 Dec 2023 14:55:02 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rCi3A-005NRF-2G;
+	Mon, 11 Dec 2023 15:18:28 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rChgB-005Etc-2i
+	id 1rCi37-005NPT-0W
 	for ath11k@lists.infradead.org;
-	Mon, 11 Dec 2023 14:54:57 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BBC9kZm010067;
-	Mon, 11 Dec 2023 14:54:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=DXqbcW2/yfevKNDzFduXfzs6j0etXw4ujAd+Te43fK4=; b=dA
-	x3NDT7Ww/VxrYNp7+v3LdFuB7OSbkrWwxHSffZygN4VlUGCyYHdORPpniiha2IjO
-	zQin4X7vXDlRBcnMtel9H6ViwRtEZC31mqk/AU+C+GUyPFxarlAWo9HhHJIHt8JZ
-	AdFrvGt1jx0mFhe/tHkI92oI/M2d6ABEDUqbSQ+t6XwINIoJgWvzTw9F/sTbqLI5
-	17cWJYBHpKNQ5ocwgnO28vDkF2GaDfvirm6mKOcFqr+vzgC60KLsKAnWuZjl6Ytz
-	xNFLzXN245QRD2J/UafE+C8sxioYYrgOb6bS99ctxELCOwItUvVoq/9Zpi+i9/iq
-	ASNM3HAy0i407r+H1vdg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ux25xgbb1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 14:54:38 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BBEscjW021479
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 14:54:38 GMT
-Received: from [10.110.106.103] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 11 Dec
- 2023 06:54:37 -0800
-Message-ID: <6e09aeb2-4811-47ff-aa4b-beb1a30ba00d@quicinc.com>
-Date: Mon, 11 Dec 2023 06:54:36 -0800
+	Mon, 11 Dec 2023 15:18:27 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by ams.source.kernel.org (Postfix) with ESMTP id D1BFDB80E7E;
+	Mon, 11 Dec 2023 15:18:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 472CAC433C7;
+	Mon, 11 Dec 2023 15:18:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702307903;
+	bh=Sg9LH3dFc3PNlGjbWX6hAhLHhjdap8awuYbouxTP5OY=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=VYpy3mKhDmzToxUD0q7aDhAl5Fa0NQOou+v16Oi/Mu6gwGMYtl8h/xOGDf4emq4cA
+	 AdxEojpCIUqtnQYJH6UexnwoDYJQ7si9eUs7Sj8msYnbZmMGcEXekwXri3zmlA70Ho
+	 nFML4XAApHUhb/0s9/4TXgXuHur/0S2uwVKxGnxoGy6gfwLdw87PGXLLT0pU1XqC/C
+	 NnsGjoinhU6pqLDGjuMafAZpR5qWnxIxiHccYUqsEqEszYgU/xGLOJ15fu+NA5Oiyh
+	 1HhKgKBW0YawkeIID4FZmecNu7ZIpqcLjQ6wBOaKMb9TB33xfkSY+aCAe9zaSPJEL4
+	 Kkv/1W2grEPZg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Aditya Kumar Singh <quic_adisi@quicinc.com>,
+  <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v8 02/12] wifi: ath11k: store cur_regulatory_info for
+ each radio
+References: <20231204081323.5582-1-quic_bqiang@quicinc.com>
+	<20231204081323.5582-3-quic_bqiang@quicinc.com>
+	<db8b0734-8e4e-43f9-ba48-b3df2d33e29e@quicinc.com>
+	<2c70dfd6-9e0e-468b-8585-252f0c23ff0a@quicinc.com>
+Date: Mon, 11 Dec 2023 17:18:19 +0200
+In-Reply-To: <2c70dfd6-9e0e-468b-8585-252f0c23ff0a@quicinc.com> (Baochen
+	Qiang's message of "Mon, 11 Dec 2023 11:56:52 +0800")
+Message-ID: <871qbs6a4k.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: fix IOMMU errors on buffer rings
-Content-Language: en-US
-To: Zhenghao Gu <imguzh@gmail.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20231206024325.27283-1-imguzh@gmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20231206024325.27283-1-imguzh@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dgkxoVU3qJQi5SczLJM7wcF_N5AY0Hh3
-X-Proofpoint-GUID: dgkxoVU3qJQi5SczLJM7wcF_N5AY0Hh3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- suspectscore=0 phishscore=0 malwarescore=0 bulkscore=0 adultscore=0
- priorityscore=1501 clxscore=1011 spamscore=0 lowpriorityscore=0
- mlxlogscore=445 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312110122
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231211_065443_909607_B6ACCB6A 
-X-CRM114-Status: GOOD (  22.06  )
+X-CRM114-CacheID: sfid-20231211_071825_474365_49D7257D 
+X-CRM114-Status: GOOD (  10.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,120 +77,158 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 12/5/2023 6:43 PM, Zhenghao Gu wrote:
-> virt_to_phys doesn't work on systems with IOMMU enabled,
-> which have non-identity physical-to-IOVA mappings.
-> It leads to IO_PAGE_FAULTs like this:
-> [IO_PAGE_FAULT domain=0x0023 address=0x1cce00000 flags=0x0020]
-> and no link can be established.
-> 
-> This patch changes that to dma_map_single(), which works correctly.
-> 
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> Signed-off-by: Zhenghao Gu <imguzh@gmail.com>
-> ---
->  drivers/net/wireless/ath/ath11k/dp.c  | 19 ++++++++++++++++---
->  drivers/net/wireless/ath/ath11k/hal.c | 20 ++++++++++++++++++--
->  drivers/net/wireless/ath/ath11k/hal.h |  2 ++
->  3 files changed, 36 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-> index d070bcb3f..c74230e4c 100644
-> --- a/drivers/net/wireless/ath/ath11k/dp.c
-> +++ b/drivers/net/wireless/ath/ath11k/dp.c
-> @@ -104,11 +104,14 @@ void ath11k_dp_srng_cleanup(struct ath11k_base *ab, struct dp_srng *ring)
->  	if (!ring->vaddr_unaligned)
->  		return;
->  
-> -	if (ring->cached)
-> +	if (ring->cached) {
-> +		dma_unmap_single(ab->dev, ring->paddr_unaligned, ring->size,
-> +				 DMA_FROM_DEVICE);
->  		kfree(ring->vaddr_unaligned);
-> -	else
-> +	} else {
->  		dma_free_coherent(ab->dev, ring->size, ring->vaddr_unaligned,
->  				  ring->paddr_unaligned);
-> +	}
->  
->  	ring->vaddr_unaligned = NULL;
->  }
-> @@ -249,7 +252,17 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, struct dp_srng *ring,
->  
->  		if (cached) {
->  			ring->vaddr_unaligned = kzalloc(ring->size, GFP_KERNEL);
-> -			ring->paddr_unaligned = virt_to_phys(ring->vaddr_unaligned);
-> +			if (!ring->vaddr_unaligned)
-> +				return -ENOMEM;
-> +
-> +			ring->paddr_unaligned =
-> +				dma_map_single(ab->dev, ring->vaddr_unaligned,
-> +					       ring->size, DMA_FROM_DEVICE);
-> +			if (dma_mapping_error(ab->dev, ring->paddr_unaligned)) {
-> +				kfree(ring->vaddr_unaligned);
-> +				ring->vaddr_unaligned = NULL;
-> +				return -ENOMEM;
-> +			}
->  		}
->  	}
->  
-> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-> index 0a99aa7dd..bd4cccdba 100644
-> --- a/drivers/net/wireless/ath/ath11k/hal.c
-> +++ b/drivers/net/wireless/ath/ath11k/hal.c
-> @@ -628,15 +628,31 @@ u32 *ath11k_hal_srng_dst_peek(struct ath11k_base *ab, struct hal_srng *srng)
->  	return NULL;
->  }
->  
-> +u32 *ath11k_hal_srng_dst_peek_with_dma(struct ath11k_base *ab,
-> +				       struct hal_srng *srng, dma_addr_t *paddr)
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-since this is only used from within hal.c make it static
+> On 12/7/2023 11:15 AM, Aditya Kumar Singh wrote:
+>> On 12/4/23 13:43, Baochen Qiang wrote:
+>>> --- a/drivers/net/wireless/ath/ath11k/mac.h
+>>> +++ b/drivers/net/wireless/ath/ath11k/mac.h
+>>> @@ -159,7 +159,6 @@ struct ath11k_vif *ath11k_mac_get_vif_up(struct
+>>> ath11k_base *ab);
+>>> =C2=A0 struct ath11k *ath11k_mac_get_ar_by_vdev_id(struct ath11k_base
+>>> *ab, u32 vdev_id);
+>>> =C2=A0 struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base
+>>> *ab, u32 pdev_id);
+>>> -
+>> Irrelevant change w.r.t commit message?
+>>=20
+>>> =C2=A0 void ath11k_mac_drain_tx(struct ath11k *ar);
+>>> =C2=A0 void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
+>>> =C2=A0 int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void =
+*ctx);
+>> ...
+>>> @@ -4749,6 +4749,11 @@ static int
+>>> ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 soc->pdevs[0].pd=
+ev_id =3D 0;
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>>> +=C2=A0=C2=A0=C2=A0 if (!soc->reg_info_store)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 soc->reg_info_store =3D kca=
+lloc(soc->num_radios,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 sizeof(*soc->reg_info_store),
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 GFP_ATOMIC);
+>> What if this memory allocation request fails? Any negative case
+>> check should be present?
+>>=20
+>>> +
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
+>>> =C2=A0 }
+>>> @@ -7071,33 +7076,54 @@ static bool ath11k_reg_is_world_alpha(char
+>>> *alpha)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return false;
+>>> =C2=A0 }
+>>> -static int ath11k_reg_chan_list_event(struct ath11k_base *ab,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct sk_buff *s=
+kb,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum wmi_reg_chan=
+_list_cmd_type id)
+>>> +void ath11k_reg_reset_info(struct cur_regulatory_info *reg_info)
+>>> =C2=A0 {
+>>> -=C2=A0=C2=A0=C2=A0 struct cur_regulatory_info *reg_info =3D NULL;
+>>> -=C2=A0=C2=A0=C2=A0 struct ieee80211_regdomain *regd =3D NULL;
+>>> -=C2=A0=C2=A0=C2=A0 bool intersect =3D false;
+>>> -=C2=A0=C2=A0=C2=A0 int ret =3D 0, pdev_idx, i, j;
+>>> -=C2=A0=C2=A0=C2=A0 struct ath11k *ar;
+>>> +=C2=A0=C2=A0=C2=A0 int i, j;
+>>> -=C2=A0=C2=A0=C2=A0 reg_info =3D kzalloc(sizeof(*reg_info), GFP_ATOMIC);
+>>> -=C2=A0=C2=A0=C2=A0 if (!reg_info) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D -ENOMEM;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto fallback;
+>>> -=C2=A0=C2=A0=C2=A0 }
+>>> +=C2=A0=C2=A0=C2=A0 if (reg_info) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kfree(reg_info->reg_rules_2=
+ghz_ptr);
+>>> -=C2=A0=C2=A0=C2=A0 if (id =3D=3D WMI_REG_CHAN_LIST_CC_ID)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D ath11k_pull_reg_cha=
+n_list_update_ev(ab, skb, reg_info);
+>>> -=C2=A0=C2=A0=C2=A0 else
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D ath11k_pull_reg_cha=
+n_list_ext_update_ev(ab, skb,
+>>> reg_info);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kfree(reg_info->reg_rules_5=
+ghz_ptr);
+>>> -=C2=A0=C2=A0=C2=A0 if (ret) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ath11k_warn(ab, "failed to =
+extract regulatory info from
+>>> received event\n");
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto fallback;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < WMI_REG_C=
+URRENT_MAX_AP_TYPE; i++) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kfr=
+ee(reg_info->reg_rules_6ghz_ap_ptr[i]);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for=
+ (j =3D 0; j < WMI_REG_MAX_CLIENT_TYPE; j++)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 kfree(reg_info->reg_rules_6ghz_client_ptr[i][j]);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 memset(reg_info, 0, sizeof(=
+*reg_info));
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>>> +}
+>>> +
+>>> +static
+>>> +enum wmi_vdev_type ath11k_reg_get_ar_vdev_type(struct ath11k *ar)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0 struct ath11k_vif *arvif;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 /* Currently each struct ath11k maps to one struct
+>>> ieee80211_hw/wiphy
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * and one struct ieee80211_regdomain, so it c=
+ould only store
+>>> one group
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * reg rules. It means muti-interface concurre=
+ncy in the same
+>>> ath11k is
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * not support for the regdomain. So get the v=
+dev type of the
+>>> first entry
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * now. After concurrency support for the regd=
+omain, this
+>>> should change.
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> +=C2=A0=C2=A0=C2=A0 arvif =3D list_first_entry_or_null(&ar->arvifs, str=
+uct
+>>> ath11k_vif, list);
+>>> +=C2=A0=C2=A0=C2=A0 if (arvif)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return arvif->vdev_type;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 return WMI_VDEV_TYPE_UNSPEC;
+>>> +}
+>>> +
+>>> +int ath11k_reg_handle_chan_list(struct ath11k_base *ab,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 struct cur_regulatory_info *reg_info,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 enum ieee80211_ap_reg_power power_type)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0 struct ieee80211_regdomain *regd;
+>>> +=C2=A0=C2=A0=C2=A0 bool intersect =3D false;
+>>> +=C2=A0=C2=A0=C2=A0 int pdev_idx;
+>>> +=C2=A0=C2=A0=C2=A0 struct ath11k *ar;
+>>> +=C2=A0=C2=A0=C2=A0 enum wmi_vdev_type vdev_type;
+>>> -=C2=A0=C2=A0=C2=A0 ath11k_dbg(ab, ATH11K_DBG_WMI, "event reg chan list=
+ id %d", id);
+>>> +=C2=A0=C2=A0=C2=A0 ath11k_dbg(ab, ATH11K_DBG_WMI, "event reg handle ch=
+an list");
+>> I believe this debug was helpful in the sense it showed which type
+>> of event came. Can't we still print this somehow? Or may be
+>> somewhere else?You can check the event type from logs of=20
+> ath11k_pull_reg_chan_list_update_ev() and
+> ath11k_pull_reg_chan_list_ext_update_ev().
 
-> +{
-> +	lockdep_assert_held(&srng->lock);
-> +
-> +	if (srng->u.dst_ring.tp != srng->u.dst_ring.cached_hp) {
-> +		*paddr = (srng->ring_base_paddr +
-> +			  sizeof(*srng->ring_base_vaddr) * srng->u.dst_ring.tp);
-> +		return (srng->ring_base_vaddr + srng->u.dst_ring.tp);
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
->  static void ath11k_hal_srng_prefetch_desc(struct ath11k_base *ab,
->  					  struct hal_srng *srng)
->  {
->  	u32 *desc;
-> +	dma_addr_t desc_paddr;
-> +
->  
->  	/* prefetch only if desc is available */
-> -	desc = ath11k_hal_srng_dst_peek(ab, srng);
-> +	desc = ath11k_hal_srng_dst_peek_with_dma(ab, srng, &desc_paddr);
->  	if (likely(desc)) {
-> -		dma_sync_single_for_cpu(ab->dev, virt_to_phys(desc),
-> +		dma_sync_single_for_cpu(ab->dev, desc_paddr,
->  					(srng->entry_size * sizeof(u32)),
->  					DMA_FROM_DEVICE);
->  		prefetch(desc);
-> diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-> index 1942d41d6..facaf8fe0 100644
-> --- a/drivers/net/wireless/ath/ath11k/hal.h
-> +++ b/drivers/net/wireless/ath/ath11k/hal.h
-> @@ -943,6 +943,8 @@ void ath11k_hal_srng_get_params(struct ath11k_base *ab, struct hal_srng *srng,
->  u32 *ath11k_hal_srng_dst_get_next_entry(struct ath11k_base *ab,
->  					struct hal_srng *srng);
->  u32 *ath11k_hal_srng_dst_peek(struct ath11k_base *ab, struct hal_srng *srng);
-> +u32 *ath11k_hal_srng_dst_peek_with_dma(struct ath11k_base *ab,
-> +				       struct hal_srng *srng, dma_addr_t *paddr);
+Baochen, I didn't see any comments from you. Did you send an empty mail
+by accident?
 
-should be static so remove this
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
->  int ath11k_hal_srng_dst_num_free(struct ath11k_base *ab, struct hal_srng *srng,
->  				 bool sync_hw_ptr);
->  u32 *ath11k_hal_srng_src_peek(struct ath11k_base *ab, struct hal_srng *srng);
-> 
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
 
