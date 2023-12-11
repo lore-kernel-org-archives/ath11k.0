@@ -4,70 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E2E6C4167B
-	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 02:26:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 914AEC4167B
+	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 03:55:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iQ5X4DUNJe0BI6nqEp4pBb9gnbMu/M+dpl7v2q5uUNg=; b=Nmi3vNO7KnMgfYgk0Sv24l/iij
-	XzJFmWjNG6L3d+H429ih2E9l1/Dws/3oetYySt/uTnUXrYX4mdhubLcpGA24jEEJyDk1j7pK0EOw8
-	UEl8lEdUvMn00fRSyqYdi2rjrE5oNWS9TjDi4FALYO/Dfebvff8GuMOhbstDK568EoylpBhq9E8ep
-	qczAmrxuzxGRQZ8c+k/0NlOKvOrlmDtQJbW1vc6IM+CzY92REeQ0HUx0ODSbgeroNPFHPxO4XTbFO
-	lk6Nn4YYeopNY7q5lk4lXVtTJrRxZLKl8SMAGTBYfCRTh4W2jyfSrfgL/qga3y23aSHZboz7x2t2D
-	gSjfpSHg==;
+	bh=QSC79UzKC/zcRuptrIKTZ+OC5PqBy2cQjRqmGD1l5S0=; b=okBza74unubAyv7hnGekKTXIza
+	Hj63HAfrCV/Pa1RO5ILbHOXWE43pM46/XCEqzoZRf5UUdgraMAFsOKN8VyVq562hWHfIPAT+1KWxA
+	QtljCalDAnJQFe5rfYhNv7MOLk/cPTeMgKp5SvUeBO6tGmipFvrjBOnc+NRs55Wsz8awf5CXkGpQP
+	y2IH+0HwOOLLaCxC8X1Gwze5jAp28zckRDClvmmrxY1biQDTgvSLp6dNF3QZqdRizZFuVaeHl3GTK
+	2QNF9H+EMameO3PLuqPJKhfjXiFOAJNAxC4ee24ARCfT665hqFOHnIni7Ir2vZta5h1byKi8frBBK
+	InnCZeGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCVzn-003n03-34;
-	Mon, 11 Dec 2023 02:26:12 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rCXOU-003vpu-2n;
+	Mon, 11 Dec 2023 03:55:46 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCVzk-003mzV-28
+	id 1rCXOR-003vpV-35
 	for ath11k@lists.infradead.org;
-	Mon, 11 Dec 2023 02:26:10 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BB1pJFS027756;
-	Mon, 11 Dec 2023 02:26:06 GMT
+	Mon, 11 Dec 2023 03:55:45 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BB3k7xV032083;
+	Mon, 11 Dec 2023 03:55:43 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=iQ5X4DUNJe0BI6nqEp4pBb9gnbMu/M+dpl7v2q5uUNg=; b=p3
-	wwrV889jcshXc8KgKWH3NFQEwRfTsFoBYWnntG3D3rC5MAkxCBo/i3LpRQJXzXln
-	IGTRu0S6eXptmeBqzLLl2ZQouuA1pimpRF4nQWMImCkiZJLvBRyn0961xi4k/4+8
-	zg1l7D1FELEFM8F00+VPJL6xz7sC5a69xyG5mJL78FZ/3T0VtGAQDCja01jYkqyw
-	WMJpMkMHrd6gEfWeE6sDK/GkL+Uvuz5SudrWeEVV1mRgrlYebdDtN9LneZF4Psn6
-	yWMETyR8AH3On7rjI1m0Vw8IxeUhJhA4Fd1nYgcWGw04BF9vl9MHy8XyUI3gbOSo
-	B/zbsjNO0JOo6Vc8K2zw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvnuvj3a4-1
+	qcppdkim1; bh=QSC79UzKC/zcRuptrIKTZ+OC5PqBy2cQjRqmGD1l5S0=; b=fp
+	A5C2owPIhhcpmYrhMwsLT1N+nNf7YCsP8eWNAXJK9LPHTgK2o5+GQxQPKgk4VYT7
+	SzJY4TwjJK9b+6Pwz9Tl6wjRtMiaBTXPhzCo4ZSrShjF1OKyvmEdwDm9oR18psqG
+	ODI5bVo3/6DYJ0nDyd9hHQcsg2INcZFnkLFPn1weCBgC586YrbmuR+YVHX5bKB1Y
+	2UWhBwd3i+bSEavYWYR35lQVHPF7TGbBLaCiJ9smssKuTvvcqk8nT5pzD05ypeZz
+	b+MhE6YsrFymDQay8g3zvLY3DRL7RKwZ/Da977g2DDfmjGyAA7VCb4XteVBQNbZy
+	87DEPzqYgplTM/cEs/Ig==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvnnst59g-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 02:26:05 +0000 (GMT)
+	Mon, 11 Dec 2023 03:55:42 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BB2Q5Vq032330
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BB3tfYw017746
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 02:26:05 GMT
+	Mon, 11 Dec 2023 03:55:41 GMT
 Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 10 Dec
- 2023 18:26:03 -0800
-Message-ID: <06123d7c-8f70-4ab7-8e0d-e308caa612ec@quicinc.com>
-Date: Mon, 11 Dec 2023 10:26:00 +0800
+ 2023 19:55:40 -0800
+Message-ID: <07d346b6-d8e7-458c-a8c3-4f0d901d22c9@quicinc.com>
+Date: Mon, 11 Dec 2023 11:55:37 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 12/12] wifi: ath11k: discard BSS_CHANGED_TXPOWER when
- EXT_TPC_REG_SUPPORT for 6 GHz
+Subject: Re: [PATCH v8 04/12] wifi: ath11k: update regulatory rules when
+ interface added
 Content-Language: en-US
 To: Aditya Kumar Singh <quic_adisi@quicinc.com>, <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>
 References: <20231204081323.5582-1-quic_bqiang@quicinc.com>
- <20231204081323.5582-13-quic_bqiang@quicinc.com>
- <33d629b1-674e-42c1-8969-18fa636d370c@quicinc.com>
- <2337a414-4aa2-47ad-8cc4-a631de15ea6f@quicinc.com>
- <189b7768-4783-48e9-9a3d-a986b70a2508@quicinc.com>
+ <20231204081323.5582-5-quic_bqiang@quicinc.com>
+ <d3cad84f-2795-40c6-9e8b-2dd3c2ddd73b@quicinc.com>
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <189b7768-4783-48e9-9a3d-a986b70a2508@quicinc.com>
+In-Reply-To: <d3cad84f-2795-40c6-9e8b-2dd3c2ddd73b@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.80.80.8]
@@ -75,19 +73,20 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: U1KWPVRpuViI9vwSNLC_8BOp91i9-7QF
-X-Proofpoint-ORIG-GUID: U1KWPVRpuViI9vwSNLC_8BOp91i9-7QF
+X-Proofpoint-ORIG-GUID: 4iMzHUtJEoeGM6-oN9KHTmy9xR3VCrKg
+X-Proofpoint-GUID: 4iMzHUtJEoeGM6-oN9KHTmy9xR3VCrKg
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- malwarescore=0 phishscore=0 mlxscore=0 clxscore=1015 bulkscore=0
- impostorscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312110019
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ spamscore=0 priorityscore=1501 adultscore=0 malwarescore=0 mlxlogscore=999
+ clxscore=1015 mlxscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312110031
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231210_182608_743803_0678F325 
-X-CRM114-Status: GOOD (  14.85  )
+X-CRM114-CacheID: sfid-20231210_195544_137039_08FED633 
+X-CRM114-Status: UNSURE (   9.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,61 +103,42 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 12/7/2023 11:31 AM, Aditya Kumar Singh wrote:
-> On 12/6/23 11:04, Baochen Qiang wrote:
->>
->>
->> On 12/4/2023 11:53 PM, Aditya Kumar Singh wrote:
->>> On 12/4/23 13:43, Baochen Qiang wrote:
->>>> From: Wen Gong <quic_wgong@quicinc.com>
->>>>
->>>> When station is connected to a 6 GHz AP, it has 2 ways to configure
->>>> the power limit to firmware. The first way is to send 2 WMI commands
->>>> WMI_PDEV_PARAM_TXPOWER_LIMIT2G/WMI_PDEV_PARAM_TXPOWER_LIMIT5G to
->>>> firmware, the second way is to send WMI_VDEV_SET_TPC_POWER_CMDID to
->>>> firmware which include more parameters for power control.
->>>>
->>>> When firmware support SERVICE_EXT_TPC_REG, it means firmware support
->>>> the second way for WMI_VDEV_SET_TPC_POWER_CMDID, then ath11k discard
->>>> BSS_CHANGED_TXPOWER flag from mac80211 which is used to the first way
->>>> for 6 GHz band and select the second way.
->>>>
->>>> Tested-on: WCN6855 hw2.0 PCI 
->>>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
->>>>
->>>> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
->>>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
->>>> ---
->>> ...snip...
->>>> @@ -3596,9 +3608,13 @@ static void 
->>>> ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->>>>       if (changed & BSS_CHANGED_TXPOWER) {
->>>>           ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "vdev_id %i txpower %d\n",
->>>>                  arvif->vdev_id, info->txpower);
->>>> -
->>>> -        arvif->txpower = info->txpower;
->>>> -        ath11k_mac_txpower_recalc(ar);
->>>> +        if (ath11k_mac_supports_station_tpc(ar, arvif, 
->>>> &info->chandef)) {
->>>> +            ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
->>>> +                   "discard tx power, change to set TPC power\n");
->>>> +        } else {
->>>> +            arvif->txpower = info->txpower;
->>>> +            ath11k_mac_txpower_recalc(ar);
->>>> +        }
->>>
->>> Could you check v6 once? I remember Wen told he would drop this check 
->>> and let FW take the min value. If we do like this, then user could 
->>> not set his own desired value even if that is well inside the reg 
->>> limits.
->> I did notice this comment in V6, but came out of a different opinion: 
->> it is OK to discard the TX power here, because that will be sent to 
->> firmware using WMI_VDEV_SET_TPC_POWER_CMDID command in another patch. 
->> Please correct me if wrong.
-> Yeah that is correct but applies only during initial bring up. What if 
-> after client gets connected and user still wants to lower power level by 
-> giving command "iw wlanX set txpower fixed 1000" something like this? 
-> This time again it will be ignored but it won't be sent to FW.
-Exactly, will drop this patch in V9.
+On 12/7/2023 11:15 AM, Aditya Kumar Singh wrote:
+> On 12/4/23 13:43, Baochen Qiang wrote:
 > 
+>> --- a/drivers/net/wireless/ath/ath11k/mac.h
+>> +++ b/drivers/net/wireless/ath/ath11k/mac.h
+>> @@ -156,7 +156,6 @@ struct ath11k_vif 
+>> *ath11k_mac_get_arvif_by_vdev_id(struct ath11k_base *ab,
+>>   u8 ath11k_mac_get_target_pdev_id(struct ath11k *ar);
+>>   u8 ath11k_mac_get_target_pdev_id_from_vif(struct ath11k_vif *arvif);
+>>   struct ath11k_vif *ath11k_mac_get_vif_up(struct ath11k_base *ab);
+>> -
+> 
+> Irrelevant change?
+> 
+>>   struct ath11k *ath11k_mac_get_ar_by_vdev_id(struct ath11k_base *ab, 
+>> u32 vdev_id);
+>>   struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, 
+>> u32 pdev_id);
+>>   void ath11k_mac_drain_tx(struct ath11k *ar);
+>> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c 
+>> b/drivers/net/wireless/ath/ath11k/wmi.c
+>> index 6f0a35fcc9c1..9a0568676a74 100644
+>> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+>> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+>> @@ -9858,3 +9858,9 @@ int ath11k_wmi_sta_keepalive(struct ath11k *ar,
+>>       return ath11k_wmi_cmd_send(wmi, skb, WMI_STA_KEEPALIVE_CMDID);
+>>   }
+>> +
+>> +bool ath11k_wmi_supports_6ghz_cc_ext(struct ath11k *ar)
+>> +{
+>> +    return (test_bit(WMI_TLV_SERVICE_REG_CC_EXT_EVENT_SUPPORT,
+>> +             ar->ab->wmi_ab.svc_map)) && ar->supports_6ghz;
+> 
+> What is the use of first parenthesis? I don't see a closing one after 
+> ar->supports_6ghz so its just guarding test_bit() which is not required.
+> I believe intention here was to guard whole expression?
+I don't see an need to guard the whole expression or the test_bit(), so 
+will drop extra parenthesis in V9.
 
