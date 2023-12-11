@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71C49C4167B
-	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 06:22:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B31EC10F05
+	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 06:22:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2/84iWAiZrQSwfScrDoWqtOsudGJJ7rIlaNhSNkbzAQ=; b=AzGRheu1g+iSwpsSL4tDStJtZV
-	+CXCZcYY+Petr4h8jha8oDgq2y8cZjSjcRHPTM3DVaFEqzXOhdsl6y8AQXV6amUyUDwXBlfIe69ID
-	y22G9UDymaxugQGRjMM5xZCEJeVl7PshzQqkCRtfszp1nyIboD9C+acXljuRH1xJToFRWWl4MCc+Q
-	5VIDAMkzh7K9+o3WYtqqeoJC3DkFENE1yCnVITMMeBB1E61SMRVsW6A4v4PkfsXD30Od73yQG95Gg
-	9ZU8xduFu4SCWasHG98rNx3+EDJWUkPD/2d44YubsWBxfpx+DLy/gdvvKZLF6MA+tZg8qetMKUvFb
-	8dxS0yyg==;
+	bh=3FKKOtT3ghXlTeGmxZmNCED6IGTSmKOD7cChKg3LS/I=; b=iLePhgUShVeZnyL5PBDWMtXmIb
+	tiKzrYltlYXAiRknAcpQtMFt87GqN7S6MgQ89kOMksATM1lA/U23jl5vJ3JURNn2XLYjR5ak6IDRj
+	6lNk+YWHnSme2ZVuG3Wagd8rVDYqKpDL1yKnf/HZTEO8b40XVhFm6DOtuB4+5XTZ0gxaAdVDw49E6
+	Xhpdou00ZPIyG0/Tnaego94qwT3qC3T7Q4RJXtThtY9b17fpFxZRqMRo3Mvu6e7xbDKwOoc3xNIbK
+	cNlk4eBA6TRv/X0UHYpIWH7legdEkyZjUl8xF2kqGxs0PVxW2Gtbx0FqzUn/N1E/KzmwbSSgTkmxT
+	YGHBrZyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCZgc-0049zs-0Q;
-	Mon, 11 Dec 2023 06:22:38 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rCZge-004A28-2M;
+	Mon, 11 Dec 2023 06:22:40 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCZgX-0049wP-2m
+	id 1rCZgb-0049zB-29
 	for ath11k@lists.infradead.org;
-	Mon, 11 Dec 2023 06:22:35 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BB5QmSM022730;
-	Mon, 11 Dec 2023 06:22:33 GMT
+	Mon, 11 Dec 2023 06:22:39 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BB4d2T6006602;
+	Mon, 11 Dec 2023 06:22:37 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=2/84iWAiZrQSwfScrDoWqtOsudGJJ7rIlaNhSNkbzAQ=; b=Ub
-	WBhmQmHlF1mX1Db2nFx6V97RB37ytM4iAOWoDJ2kuxhXx/aJ2lj3yYVqN03SL+8l
-	lHhmyris9MaGSiyURwGy+wSlg3jZ/4Of89bDZNXvE/nyILfo/mkqgJE+dx5oxKvt
-	LyhaHKXGbgrSLc15MHzQe9GWC0LiHpD7doNZ3ZkKhdqnB3Ga1g6A90xVrDIBwGS2
-	Y+WJjkc3RTZ5GXZevR7KuNFceA8Sg4rAdRj/840BrSbdkx0CaUCyQK3TKY66qZFI
-	GiJ+4J/dkoW035CqQWFSsElS+NgKi14lNu4CBbePcoanR2qqjWdqaC3wbxeNrVCw
-	u9mlteCSgNTycYIWKKbg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvnyvacaf-1
+	qcppdkim1; bh=3FKKOtT3ghXlTeGmxZmNCED6IGTSmKOD7cChKg3LS/I=; b=YE
+	ySVESsPIxbrbLoiMgKnEzni7IoN+LI7tiIaX2rC9bKuIbTBRh2Q5szBXqLQW6Iji
+	WVYiCPrXUfKqpqcB6zLg+raSgMNTgPVaFtuCkzQKSustvEvJmdavTdMNOW6AZMnw
+	eW1RSgvHjTapGp7D1Qyr2/kfXCl4zt7eFruqINRgxy6SRt9mPWM8BHqZNaVK9Nbr
+	bIGAtkbxsd8m+s4M9hSVG+24tothg8amvjydmG9s/g7rcoPV8m2pUNt76W/NJ/ce
+	Ln0dIHPEP9MrqFSapynAHMvj0yhoyzROpa/7kspwt9t+JKEW2jaAx6RY2IADPXtM
+	ff/o7XPfjelC5RGgIsaQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvnuvjf2y-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 06:22:32 +0000 (GMT)
+	Mon, 11 Dec 2023 06:22:37 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BB6MVFc029303
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BB6Mab1010083
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 06:22:31 GMT
+	Mon, 11 Dec 2023 06:22:36 GMT
 Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sun, 10 Dec 2023 22:22:30 -0800
+ 15.2.1118.40; Sun, 10 Dec 2023 22:22:35 -0800
 From: Baochen Qiang <quic_bqiang@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH v9 04/12] wifi: ath11k: update regulatory rules when interface added
-Date: Mon, 11 Dec 2023 14:22:08 +0800
-Message-ID: <20231211062216.382164-5-quic_bqiang@quicinc.com>
+Subject: [PATCH v9 08/12] wifi: ath11k: save max tx power in vdev start response event from firmware
+Date: Mon, 11 Dec 2023 14:22:12 +0800
+Message-ID: <20231211062216.382164-9-quic_bqiang@quicinc.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231211062216.382164-1-quic_bqiang@quicinc.com>
 References: <20231211062216.382164-1-quic_bqiang@quicinc.com>
@@ -69,19 +69,19 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: x2mjeFwvkqx4PCnkk0coeQhIeh2yOFpU
-X-Proofpoint-ORIG-GUID: x2mjeFwvkqx4PCnkk0coeQhIeh2yOFpU
+X-Proofpoint-GUID: Ybrm31w9hOgXE6Uxj5yhLSKt5L2z-E1C
+X-Proofpoint-ORIG-GUID: Ybrm31w9hOgXE6Uxj5yhLSKt5L2z-E1C
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 suspectscore=0 spamscore=0 bulkscore=0 clxscore=1015
- phishscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ malwarescore=0 phishscore=0 mlxscore=0 clxscore=1015 bulkscore=0
+ impostorscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
+ mlxlogscore=986 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2311290000 definitions=main-2312110051
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231210_222234_223665_5F487F60 
-X-CRM114-Status: GOOD (  13.87  )
+X-CRM114-CacheID: sfid-20231210_222237_881231_8E6E29D0 
+X-CRM114-Status: GOOD (  13.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,19 +98,9 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Wen Gong <quic_wgong@quicinc.com>
 
-There are two power types for 6 GHz regulatory, one is AP, another
-is client.
-
-When wlan boot up, WMI_REG_CHAN_LIST_CC_EXT_EVENTID is sent from
-firmware at an early stage, the interface mode is not decided at
-this point, then ath11k select reg rules of AP type as default.
-
-After interface is created, it is exactly decided the interface
-type such as AP/mesh point/station. Then ath11k need to update
-reg rules to the exact power type matched to the interface type.
-
-The client power type is used for station interface, and AP power
-type is used for AP/mesh point interface.
+Save the max tx power received in the vdev start response event from
+firmware. A subsequent patch will use this to calculate the final power
+value for WMI_VDEV_SET_TPC_POWER_CMDID.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
 
@@ -119,62 +109,62 @@ Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 ---
 v9:
- 1. remove unnecessary parenthesis.
- 2. remove irrelevant change w.r.t commit message.
-v8:
  no change.
+v8:
+ add s-o-b tag
 v7:
- 1. move ath11k_mac_supports_6ghz_cc_ext() to
-    wmi.c and renamed as ath11k_wmi_supports_6ghz_cc_ext().
+ no change.
 
- drivers/net/wireless/ath/ath11k/mac.c | 8 ++++++++
- drivers/net/wireless/ath/ath11k/wmi.c | 6 ++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 1 +
- 3 files changed, 15 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.h | 1 +
+ drivers/net/wireless/ath/ath11k/wmi.c  | 3 ++-
+ drivers/net/wireless/ath/ath11k/wmi.h  | 1 +
+ 3 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 7f7b39817773..1e314fcab41b 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6943,6 +6943,14 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 				    ret);
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 7774e487abcf..bc125a2c1eac 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -777,6 +777,7 @@ struct ath11k {
+ 	/* protected by conf_mutex */
+ 	bool ps_state_enable;
+ 	bool ps_timekeeper_enable;
++	s8 max_allowed_tx_power;
+ };
  
-+	if (ath11k_wmi_supports_6ghz_cc_ext(ar)) {
-+		struct cur_regulatory_info *reg_info;
-+
-+		reg_info = &ab->reg_info_store[ar->pdev_idx];
-+		ath11k_dbg(ab, ATH11K_DBG_MAC, "mac interface added to change reg rules\n");
-+		ath11k_reg_handle_chan_list(ab, reg_info, IEEE80211_REG_LPI_AP);
-+	}
-+
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	return 0;
+ struct ath11k_band_cap {
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 1d033507a24c..cd879eae6c92 100644
+index cd879eae6c92..4bdb71287f07 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -9861,3 +9861,9 @@ int ath11k_wmi_sta_keepalive(struct ath11k *ar,
+@@ -5036,6 +5036,7 @@ static int ath11k_pull_vdev_start_resp_tlv(struct ath11k_base *ab, struct sk_buf
+ 	vdev_rsp->mac_id = ev->mac_id;
+ 	vdev_rsp->cfgd_tx_streams = ev->cfgd_tx_streams;
+ 	vdev_rsp->cfgd_rx_streams = ev->cfgd_rx_streams;
++	vdev_rsp->max_allowed_tx_power = ev->max_allowed_tx_power;
  
- 	return ath11k_wmi_cmd_send(wmi, skb, WMI_STA_KEEPALIVE_CMDID);
- }
-+
-+bool ath11k_wmi_supports_6ghz_cc_ext(struct ath11k *ar)
-+{
-+	return test_bit(WMI_TLV_SERVICE_REG_CC_EXT_EVENT_SUPPORT,
-+			ar->ab->wmi_ab.svc_map) && ar->supports_6ghz;
-+}
+ 	kfree(tb);
+ 	return 0;
+@@ -7430,7 +7431,7 @@ static void ath11k_vdev_start_resp_event(struct ath11k_base *ab, struct sk_buff
+ 	}
+ 
+ 	ar->last_wmi_vdev_start_status = 0;
+-
++	ar->max_allowed_tx_power = vdev_start_resp.max_allowed_tx_power;
+ 	status = vdev_start_resp.status;
+ 
+ 	if (WARN_ON_ONCE(status)) {
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index d46c70704774..fa85e6eb4ab4 100644
+index fa85e6eb4ab4..a9a7d81236cb 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.h
 +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -6485,4 +6485,5 @@ void ath11k_reg_reset_info(struct cur_regulatory_info *reg_info);
- int ath11k_reg_handle_chan_list(struct ath11k_base *ab,
- 				struct cur_regulatory_info *reg_info,
- 				enum ieee80211_ap_reg_power power_type);
-+bool ath11k_wmi_supports_6ghz_cc_ext(struct ath11k *ar);
- #endif
+@@ -4119,6 +4119,7 @@ struct wmi_vdev_start_resp_event {
+ 	};
+ 	u32 cfgd_tx_streams;
+ 	u32 cfgd_rx_streams;
++	s32 max_allowed_tx_power;
+ } __packed;
+ 
+ /* VDEV start response status codes */
 -- 
 2.25.1
 
