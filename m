@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12E69C4167B
-	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 15:18:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29B7EC4167B
+	for <ath11k@archiver.kernel.org>; Mon, 11 Dec 2023 16:21:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Sg9LH3dFc3PNlGjbWX6hAhLHhjdap8awuYbouxTP5OY=; b=vwmWdwIRQq5igVdVus1ThqfpYz
-	RuTAKoH51q7OIkGEkyLLYqrosKFzpiiaRWOXG1rwqdEuNbKJPXkBE9FXhaFo+A79Q/8OSMueOMpuS
-	ylwuEv/rwI4zBnaRlBGkfaqpbM088QABqFX1GNTwWrbN4p+iJxahqsqNoeFaSMPC66xo9T5GLl9f5
-	SayM4RGyRvlxtdopuJ2zdQCoO2NnrQI70NYT4bzGi6z1vOtHgEcmwmC6OKNUVxFthqv7uCQfJ+aUb
-	zoZ2rAwD7qM3ck44nED9HBfpElZU69XMV2uxlhLK8avyJVGshTyCO9JfGSiKdxj+PkFal+E2fbWmf
-	kr5ZUP5w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Cxw4DUP9ZwH7Kkhsc9vnZbGp+73eT/u8vhKE2UAckcE=; b=GIDQLOBEqr8mC8A4Sm9yyWGH/t
+	CkfVTIvai44of7L03waLcxHcsJeuaEF+kWTs41PKlUKmFNxrcQwKRBouKFJiaEqe2UunznGK7V/hz
+	CwOhyHaI0AYSwnKgJCdVU1ACCIXJ3snLmzK6Z7caozO4aKEFHWNHJv9GgPTRHIVuDiVrFp5ygUIkD
+	GRD2FXb/68W/oPg1prgwoB3CAiKG+bxK70aEh7bVT+Yv+QaWkvs/oG/BqenPRj1A1UV236jf+nHRO
+	O5DckFvE5f4VYDV06k7VGIjtp4LYNWNuA0ybYaKTfp2WBR9KAL7TAtEP69Gw2jWvRwkdf8TygP07n
+	cKBleUSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCi3A-005NRF-2G;
-	Mon, 11 Dec 2023 15:18:28 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1rCj2X-005lK9-2F;
+	Mon, 11 Dec 2023 16:21:53 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rCi37-005NPT-0W
+	id 1rCj2P-005lGP-1h
 	for ath11k@lists.infradead.org;
-	Mon, 11 Dec 2023 15:18:27 +0000
+	Mon, 11 Dec 2023 16:21:52 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id D1BFDB80E7E;
-	Mon, 11 Dec 2023 15:18:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 472CAC433C7;
-	Mon, 11 Dec 2023 15:18:22 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id D0756B80E6F;
+	Mon, 11 Dec 2023 16:21:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4E7BC433C7;
+	Mon, 11 Dec 2023 16:21:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702307903;
-	bh=Sg9LH3dFc3PNlGjbWX6hAhLHhjdap8awuYbouxTP5OY=;
+	s=k20201202; t=1702311703;
+	bh=IsVcmVaOq6dhAIFUxQQ76EOSwAHDoENQEc5t9GpD53I=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=VYpy3mKhDmzToxUD0q7aDhAl5Fa0NQOou+v16Oi/Mu6gwGMYtl8h/xOGDf4emq4cA
-	 AdxEojpCIUqtnQYJH6UexnwoDYJQ7si9eUs7Sj8msYnbZmMGcEXekwXri3zmlA70Ho
-	 nFML4XAApHUhb/0s9/4TXgXuHur/0S2uwVKxGnxoGy6gfwLdw87PGXLLT0pU1XqC/C
-	 NnsGjoinhU6pqLDGjuMafAZpR5qWnxIxiHccYUqsEqEszYgU/xGLOJ15fu+NA5Oiyh
-	 1HhKgKBW0YawkeIID4FZmecNu7ZIpqcLjQ6wBOaKMb9TB33xfkSY+aCAe9zaSPJEL4
-	 Kkv/1W2grEPZg==
+	b=M5pdaw53YwXDdJkbaF2ma6rhy7kbWINRxABirP8b9yKmW1O3ZMdnV/DM0dZSOYEf2
+	 HuP49VSDRfhGNsmprPq49jhv0XMnQUCQAa3q9SQgwSqcTphMi2y2Q39tDveGGjTfdb
+	 LuEG7FaKZ4cy9Ep3JcBGI76fmIpQ/jh8xzkPW4Y1KPJIe/LCAutfkdO0uRwbHDdO7+
+	 KyUmY0UOD/nBWQDID7grCyj6RHJ+odET0I+SSe6nLM+QSh96JitvGA9smvDjPvt7y4
+	 U8B3vJFpmHqXyKNNDx9hvXIoJ+HsZ0bVNrSkWGNlZKWGuvb4VptdFcAjsQuva3KwPU
+	 8JPSW+yDeHdYw==
 From: Kalle Valo <kvalo@kernel.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Aditya Kumar Singh <quic_adisi@quicinc.com>,
-  <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v8 02/12] wifi: ath11k: store cur_regulatory_info for
- each radio
-References: <20231204081323.5582-1-quic_bqiang@quicinc.com>
-	<20231204081323.5582-3-quic_bqiang@quicinc.com>
-	<db8b0734-8e4e-43f9-ba48-b3df2d33e29e@quicinc.com>
-	<2c70dfd6-9e0e-468b-8585-252f0c23ff0a@quicinc.com>
-Date: Mon, 11 Dec 2023 17:18:19 +0200
-In-Reply-To: <2c70dfd6-9e0e-468b-8585-252f0c23ff0a@quicinc.com> (Baochen
-	Qiang's message of "Mon, 11 Dec 2023 11:56:52 +0800")
-Message-ID: <871qbs6a4k.fsf@kernel.org>
+To: Jonathan Silverblood <jonathan@silverblood.se>
+Cc: ath11k@lists.infradead.org
+Subject: Re: Steam Deck OLED
+References: <474422d679cfcf33eaa4129fd7491512@silverblood.se>
+Date: Mon, 11 Dec 2023 18:21:40 +0200
+In-Reply-To: <474422d679cfcf33eaa4129fd7491512@silverblood.se> (Jonathan
+	Silverblood's message of "Fri, 08 Dec 2023 07:50:16 +0200")
+Message-ID: <871qbspv57.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231211_071825_474365_49D7257D 
-X-CRM114-Status: GOOD (  10.52  )
+X-CRM114-CacheID: sfid-20231211_082146_147395_772BC106 
+X-CRM114-Status: GOOD (  13.96  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,158 +71,42 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> writes:
+Jonathan Silverblood <jonathan@silverblood.se> writes:
 
-> On 12/7/2023 11:15 AM, Aditya Kumar Singh wrote:
->> On 12/4/23 13:43, Baochen Qiang wrote:
->>> --- a/drivers/net/wireless/ath/ath11k/mac.h
->>> +++ b/drivers/net/wireless/ath/ath11k/mac.h
->>> @@ -159,7 +159,6 @@ struct ath11k_vif *ath11k_mac_get_vif_up(struct
->>> ath11k_base *ab);
->>> =C2=A0 struct ath11k *ath11k_mac_get_ar_by_vdev_id(struct ath11k_base
->>> *ab, u32 vdev_id);
->>> =C2=A0 struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base
->>> *ab, u32 pdev_id);
->>> -
->> Irrelevant change w.r.t commit message?
->>=20
->>> =C2=A0 void ath11k_mac_drain_tx(struct ath11k *ar);
->>> =C2=A0 void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
->>> =C2=A0 int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void =
-*ctx);
->> ...
->>> @@ -4749,6 +4749,11 @@ static int
->>> ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 soc->pdevs[0].pd=
-ev_id =3D 0;
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>> +=C2=A0=C2=A0=C2=A0 if (!soc->reg_info_store)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 soc->reg_info_store =3D kca=
-lloc(soc->num_radios,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 sizeof(*soc->reg_info_store),
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 GFP_ATOMIC);
->> What if this memory allocation request fails? Any negative case
->> check should be present?
->>=20
->>> +
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
->>> =C2=A0 }
->>> @@ -7071,33 +7076,54 @@ static bool ath11k_reg_is_world_alpha(char
->>> *alpha)
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return false;
->>> =C2=A0 }
->>> -static int ath11k_reg_chan_list_event(struct ath11k_base *ab,
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct sk_buff *s=
-kb,
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum wmi_reg_chan=
-_list_cmd_type id)
->>> +void ath11k_reg_reset_info(struct cur_regulatory_info *reg_info)
->>> =C2=A0 {
->>> -=C2=A0=C2=A0=C2=A0 struct cur_regulatory_info *reg_info =3D NULL;
->>> -=C2=A0=C2=A0=C2=A0 struct ieee80211_regdomain *regd =3D NULL;
->>> -=C2=A0=C2=A0=C2=A0 bool intersect =3D false;
->>> -=C2=A0=C2=A0=C2=A0 int ret =3D 0, pdev_idx, i, j;
->>> -=C2=A0=C2=A0=C2=A0 struct ath11k *ar;
->>> +=C2=A0=C2=A0=C2=A0 int i, j;
->>> -=C2=A0=C2=A0=C2=A0 reg_info =3D kzalloc(sizeof(*reg_info), GFP_ATOMIC);
->>> -=C2=A0=C2=A0=C2=A0 if (!reg_info) {
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D -ENOMEM;
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto fallback;
->>> -=C2=A0=C2=A0=C2=A0 }
->>> +=C2=A0=C2=A0=C2=A0 if (reg_info) {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kfree(reg_info->reg_rules_2=
-ghz_ptr);
->>> -=C2=A0=C2=A0=C2=A0 if (id =3D=3D WMI_REG_CHAN_LIST_CC_ID)
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D ath11k_pull_reg_cha=
-n_list_update_ev(ab, skb, reg_info);
->>> -=C2=A0=C2=A0=C2=A0 else
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D ath11k_pull_reg_cha=
-n_list_ext_update_ev(ab, skb,
->>> reg_info);
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kfree(reg_info->reg_rules_5=
-ghz_ptr);
->>> -=C2=A0=C2=A0=C2=A0 if (ret) {
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ath11k_warn(ab, "failed to =
-extract regulatory info from
->>> received event\n");
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto fallback;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < WMI_REG_C=
-URRENT_MAX_AP_TYPE; i++) {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kfr=
-ee(reg_info->reg_rules_6ghz_ap_ptr[i]);
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for=
- (j =3D 0; j < WMI_REG_MAX_CLIENT_TYPE; j++)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 kfree(reg_info->reg_rules_6ghz_client_ptr[i][j]);
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>> +
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 memset(reg_info, 0, sizeof(=
-*reg_info));
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>> +}
->>> +
->>> +static
->>> +enum wmi_vdev_type ath11k_reg_get_ar_vdev_type(struct ath11k *ar)
->>> +{
->>> +=C2=A0=C2=A0=C2=A0 struct ath11k_vif *arvif;
->>> +
->>> +=C2=A0=C2=A0=C2=A0 /* Currently each struct ath11k maps to one struct
->>> ieee80211_hw/wiphy
->>> +=C2=A0=C2=A0=C2=A0=C2=A0 * and one struct ieee80211_regdomain, so it c=
-ould only store
->>> one group
->>> +=C2=A0=C2=A0=C2=A0=C2=A0 * reg rules. It means muti-interface concurre=
-ncy in the same
->>> ath11k is
->>> +=C2=A0=C2=A0=C2=A0=C2=A0 * not support for the regdomain. So get the v=
-dev type of the
->>> first entry
->>> +=C2=A0=C2=A0=C2=A0=C2=A0 * now. After concurrency support for the regd=
-omain, this
->>> should change.
->>> +=C2=A0=C2=A0=C2=A0=C2=A0 */
->>> +=C2=A0=C2=A0=C2=A0 arvif =3D list_first_entry_or_null(&ar->arvifs, str=
-uct
->>> ath11k_vif, list);
->>> +=C2=A0=C2=A0=C2=A0 if (arvif)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return arvif->vdev_type;
->>> +
->>> +=C2=A0=C2=A0=C2=A0 return WMI_VDEV_TYPE_UNSPEC;
->>> +}
->>> +
->>> +int ath11k_reg_handle_chan_list(struct ath11k_base *ab,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 struct cur_regulatory_info *reg_info,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 enum ieee80211_ap_reg_power power_type)
->>> +{
->>> +=C2=A0=C2=A0=C2=A0 struct ieee80211_regdomain *regd;
->>> +=C2=A0=C2=A0=C2=A0 bool intersect =3D false;
->>> +=C2=A0=C2=A0=C2=A0 int pdev_idx;
->>> +=C2=A0=C2=A0=C2=A0 struct ath11k *ar;
->>> +=C2=A0=C2=A0=C2=A0 enum wmi_vdev_type vdev_type;
->>> -=C2=A0=C2=A0=C2=A0 ath11k_dbg(ab, ATH11K_DBG_WMI, "event reg chan list=
- id %d", id);
->>> +=C2=A0=C2=A0=C2=A0 ath11k_dbg(ab, ATH11K_DBG_WMI, "event reg handle ch=
-an list");
->> I believe this debug was helpful in the sense it showed which type
->> of event came. Can't we still print this somehow? Or may be
->> somewhere else?You can check the event type from logs of=20
-> ath11k_pull_reg_chan_list_update_ev() and
-> ath11k_pull_reg_chan_list_ext_update_ev().
+> I'm trying to run my preferred flavour of linux on the new steam deck
+> oled and the wireless/bluetooth is not recognized.Based on some dmesg
+> output and casual searching I suspect it's the firmware files that
+> don't know the specific configuration used in this device. I verified
+> it was working on steamos before I re-installed, so I thought I'd send
+> my dmesg output here and see if there's anything else I can do to
+> help.
+>
+> ath11k_pci 0000:03:00.0: chip_id 0x12 chip_family 0xb board_id 0x309
+> soc_id 0x400c1211
+> ath11k_pci 0000:03:00.0: fw_version 0x110b196e fw_build_timestamp
+> 2022-12-22 12:54 fw_build_id
+> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+> Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+> Loading firmware: ath11k/WCN6855/hw2.1/regdb.bin
+> Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+> Loading firmware: ath11k/WCN6855/hw2.1/board-2.bin
+> Loading firmware: ath11k/WCN6855/hw2.1/board.bin
+> ath11k_pci 0000:03:00.0: failed to fetch board data for
+> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=18,qmi-board-id=777
+> from ath11k/WCN6855/hw2.1/board-2.bin
+> ath11k_pci 0000:03:00.0: failed to fetch board.bin from WCN6855/hw2.1
+> ath11k_pci 0000:03:00.0: qmi failed to fetch board file: -2
+> ath11k_pci 0000:03:00.0: failed to load board data file: -2
 
-Baochen, I didn't see any comments from you. Did you send an empty mail
-by accident?
+The board file for your device is missing from board-2.bin. Could you
+please file a report to bugzilla.kernel.org so that it's easier to track
+the issue:
 
---=20
+https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
+
+-- 
 https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
