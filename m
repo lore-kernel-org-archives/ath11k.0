@@ -4,62 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF0EDC4332F
-	for <ath11k@archiver.kernel.org>; Tue, 12 Dec 2023 17:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80E81C4332F
+	for <ath11k@archiver.kernel.org>; Tue, 12 Dec 2023 18:15:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VyNVfsZs6BUgqYYbWSXjvuozmrTOlEroFlx9p/gGTjQ=; b=icfk1eRnEpgyVEKGS1RQX63Hrh
-	ny/6pWM37xsS0yzk7Hq/20sbAwC3undr1oYiBJKFgqM4dQRjfhom3MGh8FUdz4p5uT+zt9gxyJJRi
-	S6K+Iot4nmQpYgxNHElWjo3MJYB45S6M6uYK2se0D9UX6HsRu2Dypeyho09eqpWCCanVzHzRMGfF7
-	h0x2aFqeZStiAk0cI7o1FaN0ig/lMI8NzrezkkiymZFTHNvUm3QQqXDlVZuqP2abWT38m+M8ePLLY
-	qZ17E4yOfm/4H11HGESGa04Pc3JGmtLaxYDOWeedM9zY/E/tSYCqFRCguDnU/upVr8XPh11qL0FYd
-	LqMSOyfA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Cc:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=WB88RFlP0qW+BEESRq4+6gcx4/r6x2h6TMxX17XTYEc=; b=zhDmT+KkcTks3cnytfVRfykafQ
+	+gya6CskxIbcNT0WunKsd+minVaTLS/wQuBhrOJbI0LyX28pTPjwjAw8MJHXiILXDCAdxqwnOd+Tj
+	xxnkzGReiAsrsSaG3boTMbRPW3eJc1j+W6zvAjMOVI3Ar7uOTdMTxjS328cgKUZwG7HM+Y7kUKIIa
+	lh9PnlX2quCVx2skdSIXeg996IPXWaPgech1MRcZO2T5R0cqgH4wvh9kOpcFpnmi8FR0iW94Lr9ph
+	eyWr231wzf7/23DIbETlVb+FpptlVYhQOlarJjZDUbYEU0c8nmobZlXJe009xGMgK3H5/7bGy11Bj
+	7LWgtdGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rD6JN-00CLHr-29;
-	Tue, 12 Dec 2023 17:12:49 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1rD7IF-00CTpk-2b;
+	Tue, 12 Dec 2023 18:15:43 +0000
+Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rD6JK-00CLHD-2B
+	id 1rD7IB-00CTp7-1o
 	for ath11k@lists.infradead.org;
-	Tue, 12 Dec 2023 17:12:48 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 4B72FCE1B0F;
-	Tue, 12 Dec 2023 17:12:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF99DC433C7;
-	Tue, 12 Dec 2023 17:12:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702401163;
-	bh=11KCF6eSfX3xll38pRiWQMZTkETjMhw6UMQe+oezm78=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=JUaoRgfnbG3rvgefKvEPEIVdTLPOtFJN5zQ42Fh1q7LwJIk11bBtG/fSym3OaFS4X
-	 8qyGvBj+NLb+mcwzSbuOghxn6a9l/E5Hjv4Mi0G/p4rhyO6uD/9tkPVNH+d3dmsr0k
-	 PTbIPFnx9NrjdRdWQdSQARv5GU1EGVDRIYd3Cj80kKij6aOSPrV8btNNt1aD/Lnodx
-	 crc1c/nXU+NB4z8CNtz4cw5j0dDOXZDbnj3z1DAZjjidn5czF/Quhz6VtG2ZGtzGyo
-	 NxBn+VjFRyk7xqKDamf6cq0qZDZhVUVbCawrLU39Qba21U14d+rpiEjYwuYV+Pd1AJ
-	 oQz4W6NGLcBmQ==
-Content-Type: text/plain; charset="utf-8"
+	Tue, 12 Dec 2023 18:15:41 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2ca09601127so81060821fa.1
+        for <ath11k@lists.infradead.org>; Tue, 12 Dec 2023 10:15:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702404936; x=1703009736; darn=lists.infradead.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WB88RFlP0qW+BEESRq4+6gcx4/r6x2h6TMxX17XTYEc=;
+        b=nQjuWyR99wXApSL5ZFNlRAnjyIupvO6gRe9ks+W9TFB2epC3aoJU9s0I7mz0i+5a2D
+         R0wHvubgAE5xgJFzPfKkyFMEsJS8KBDQiDfLl5bDKKWxng1o2kkkusYEM/PTV7X7kRvL
+         MPp6fXg3FiWCLeeXGcomRyRkY7q82lk9pINXbHrenijdQjJx1OS62QS/v+82TW5YrfA8
+         0ehSeBL1CDuAI4vaeg/Ci5xIJVKvA5lmTR9DCU3AxxyHiZlferqYfIAyONvoAsjCBpQB
+         ID4Zm5VHzdd0wsAbNm5AL3EiKIkhmlfShlUuE3K3TE1fsx0rdAvIPAOxIQRJPrHWu7Fm
+         y/mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702404936; x=1703009736;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WB88RFlP0qW+BEESRq4+6gcx4/r6x2h6TMxX17XTYEc=;
+        b=SSuJALdrNVg5rlWHhV+b8yoOzqdsBoGRq8P4oSb8SLxa3KihXkcIzyiFgSetZQBl1V
+         9XRaOfiCuXemFnwq93STWdBzIxix5ZGNezRTxKGxKQoBp0U5TFzRugObs/7WpL1/FYKC
+         5TKxBjQJcSi2i2TIqPugggpj2fpgQK3qDA1yVO0vgLDLnITBLG3etmEE5nqL6HoxdsAg
+         gz5HJQUgBllK95+ugn8J7B6A2Bql40PUqu7wdp5O1Hn+SbvzlQY+Lc9Of6z6kOOAXnLZ
+         hw7CoFCFG1p4P9j4IrGHSvztkf5EpBxV4AZR39X1LkcT/Pg5fcphG/KEoDm3AUftNN06
+         xGxg==
+X-Gm-Message-State: AOJu0YyY7eVWTxXSf1BmGfAmCwzmFtv8tVrgixQxNGIBmQ7944fpY+X9
+	I6T3N+D5JEZuvCRPbu0i4ntcAGWnbmdsv6MBuMwXOB8LVBs=
+X-Google-Smtp-Source: AGHT+IGtTqDoB6c05nm/DSJj0I1caN/z3MOFrEx+JDWW3x55QN9PGHAH01B8W1hpZWrs4XiTOZFfITJJZKdMn4hAlUg=
+X-Received: by 2002:a2e:9f49:0:b0:2c9:f6e2:41bb with SMTP id
+ v9-20020a2e9f49000000b002c9f6e241bbmr3097499ljk.91.1702404936349; Tue, 12 Dec
+ 2023 10:15:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2] wifi: ath11k: Fix ath11k_htc_record flexible record
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20231205-flexarray-htc_record-v2-1-fbb56d436951@quicinc.com>
-References: <20231205-flexarray-htc_record-v2-1-fbb56d436951@quicinc.com>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>, Kees Cook
-	<keescook@chromium.org>, <ath11k@lists.infradead.org>,
- <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jeff
- Johnson" <quic_jjohnson@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <170240115970.422537.17165398794556525510.kvalo@kernel.org>
-Date: Tue, 12 Dec 2023 17:12:41 +0000 (UTC)
+From: Yaroslav Isakov <yaroslav.isakov@gmail.com>
+Date: Tue, 12 Dec 2023 19:15:25 +0100
+Message-ID: <CADS+iDVE8GB_+H+1DAPwcwdpjddUqzsvRmnygtXv7yUxRwLTZQ@mail.gmail.com>
+Subject: wcn6855 - stuck in 20Mhz on rx, but full 80mhz on tx
+To: ath11k@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231212_091246_884566_5FF83C8E 
-X-CRM114-Status: UNSURE (   5.03  )
+X-CRM114-CacheID: sfid-20231212_101539_603838_7CE22A6A 
+X-CRM114-Status: UNSURE (   3.43  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,24 +82,9 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
-
-> Transform the zero-length ath11k_htc_record::credit_report array into
-> a proper flexible array. Since this is the only array in
-> ath11k_htc_record, remove the unnecessary union.
-> 
-> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Reviewed-by: Gustavo A. R. Silva <gustavoars@kernel.org>
-> Reviewed-by: Kees Cook <keescook@chromium.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-add731385eed wifi: ath11k: Fix ath11k_htc_record flexible record
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20231205-flexarray-htc_record-v2-1-fbb56d436951@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Hello! I found that my new laptop, Thinkpad T14 Gen 4 AMD, cannot use
+80Mhz for rx - even though AP supports 80mhz, and tx shows full 80Mhz.
+I reported it as https://bugzilla.kernel.org/show_bug.cgi?id=218246,
+with all the details, but, there is no comments in it, so, sending it
+for visibility.
 
