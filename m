@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17C40C4332F
-	for <ath11k@archiver.kernel.org>; Thu, 14 Dec 2023 16:17:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F105C4332F
+	for <ath11k@archiver.kernel.org>; Thu, 14 Dec 2023 16:40:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=hz1+YMRAstdv5EgbChlbxOov2x2Um/C96q0K55+WKRg=; b=xIMF5o714k3OFQNQhKExEBo1ze
-	V8G1pLkY9JxnENWunKLgX7L7FMLWjEAXcdkhWEUi9BCso01UxbaireCxqHWaY2VDCxqieR31Pajur
-	kMouYnkhpFYf69DLcttX+xovdrh1V2sfj+mWrtnmDH8nraTcEhmNUmu8ay1DM4mF7TuH7aJDxDQSL
-	4RR9eD+9jFi5UK9H3SGOy8+x0q6xpL4MIztI6tOYN0gZFO9s3C5Kl4CUNTygnKAODmFrRH92VJIrq
-	PxVwJiGrkSTljRGiNjQsuZ2FspLQ4kdBzqgDTyjPc7jm1MCf3TA/f7O46UVUhUbz7jiOsB3DNU68B
-	+yYqNYng==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=inz7hgruWKT/m0gVs399XfijN1O1Msuzz1I4VVSggLA=; b=QxQsJ1brxCZiGo9omXV3XbONCX
+	aJTwhWC/xFILThsNpejyXy9qyXLZjRrnwy9sdOQ/NfhgvdyPC7YTogXHDs4bunh8h+Tsb3Tpfd+++
+	CpvSTXWtRawSR0ahUvKJK9kvcwCSHPC/jSj1tlEXgb+LZHv5MBvqVTXQCYcqkUtmLdoPxExLNJ5E8
+	6HxPpa8j2ztlvbCUnkBaBhuqhmPR46v54aLnqgBPWM0l4jY+rlfSQ7eV42eBFnWKijasIh7yFnq3W
+	MKoKMwNi2q/YnD6to37jK3FlozbVV7kYrRJn/cMXDCtDn8AgBEYLsfs3j+1EGcAJMBAQpPMHrhqDE
+	/MhD61qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rDoPG-000mOs-1r;
-	Thu, 14 Dec 2023 16:17:50 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1rDolX-000poh-32;
+	Thu, 14 Dec 2023 16:40:51 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rDoPD-000mOS-0x
+	id 1rDolV-000plE-1s
 	for ath11k@lists.infradead.org;
-	Thu, 14 Dec 2023 16:17:48 +0000
+	Thu, 14 Dec 2023 16:40:51 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 50D68CE1F08
-	for <ath11k@lists.infradead.org>; Thu, 14 Dec 2023 16:17:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3A57C433C8;
-	Thu, 14 Dec 2023 16:17:43 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id D97DBCE2426;
+	Thu, 14 Dec 2023 16:40:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34495C433C8;
+	Thu, 14 Dec 2023 16:40:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702570664;
-	bh=HK2BDsbsHED2loV2Pn+V2u8GAyC11wNlFeiJkuRxH6U=;
-	h=From:To:Cc:Subject:Date:From;
-	b=LV6roAwc0lWjnq+YxsLp4q3/4VyNnCZ13UP7MKvqXOm//3zZvGKp4MnRCLuNdCwfS
-	 UiLWF61E7BN2KwkduWgwY040wbmcULQawvK0bLsQmHX9392QFOtzbS7gvR8cews22G
-	 almDKa1VZW7Agkt0KXhlkETgfVvyRsa5k7L29vSLSjJWXvUHn3khz4Rrpt3vwnIYrk
-	 bNx79nVbr0V73gku6wv06RoQ5nCQPxQ3IfgExtui/zlaumIYdeVTScY8JtRzJ4CPV6
-	 Q8ksQlgLPY0cGBgH4LEhrvixwOJpeptUocu+8Gd1yaEjpUt2/wBLYvUlpAlzjIGueq
-	 uOKv9htCb36Fg==
+	s=k20201202; t=1702572043;
+	bh=7q4xziHGQZPDQMbjsW2etL7QNNmAAzU2B1pJxrK6e9U=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=WTv3fVXjIgFvGu1uedym2kbxmcukkRvuBgsdXQTg1ZeOWfiQM6AnWogT8AtbWMdXW
+	 1W/bqxkYc+ixqbsVPUjPPMG88tKGOcK02WhUqzuvU9BVCrQWdw/NU1lExdMim2WrqW
+	 eIF91R+a2Lba91Mm3ERSN4DM6yuomlcNjZyvYy/LuHFwq7E4eGcGGZuGSTWLYqI+At
+	 u8iGMqVCugdDaR5L1bE8KlBUrEz7oAZF+l4GTLmn7p8F76MO4eftL5SCsHE7pJH4CD
+	 AYvZBKveayrKsGFXMyoWJxzjvzl8Cd2HHeAyim7VNMjUpeTBNfhWgIk3Qd2qeEkyNU
+	 CkUA0zweHLYNg==
 From: Kalle Valo <kvalo@kernel.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: workaround too long expansion sparse warnings
-Date: Thu, 14 Dec 2023 18:17:40 +0200
-Message-Id: <20231214161740.1582340-1-kvalo@kernel.org>
-X-Mailer: git-send-email 2.39.2
+To: Dmitry Antipov <dmantipov@yandex.ru>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  linux-wireless@vger.kernel.org,
+    ath11k@lists.infradead.org
+Subject: Re: [PATCH] wifi: ath11k: refactor ath11k_wmi_tlv_parse_alloc()
+References: <20231214161117.75145-1-dmantipov@yandex.ru>
+Date: Thu, 14 Dec 2023 18:40:38 +0200
+In-Reply-To: <20231214161117.75145-1-dmantipov@yandex.ru> (Dmitry Antipov's
+	message of "Thu, 14 Dec 2023 19:11:14 +0300")
+Message-ID: <87fs04n3eh.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231214_081747_557854_A9BDDBEC 
-X-CRM114-Status: UNSURE (   9.23  )
+X-CRM114-CacheID: sfid-20231214_084049_796700_4ECE3F5A 
+X-CRM114-Status: UNSURE (   9.93  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -69,70 +73,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+Dmitry Antipov <dmantipov@yandex.ru> writes:
 
-In v6.7-rc1 sparse warns:
+> Since 'ath11k_wmi_tlv_parse_alloc()' always operates on
+> 'skb->data, skb->len' tuple, it may be simplified to pass
+> the only 'skb' argument instead (which also implies
+> refactoring of 'ath11k_pull_bcn_tx_status_ev()' and
+> 'ath11k_pull_chan_info_ev()' in the same way). Compile
+> tested only.
+>
+> Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
+> ---
+>  drivers/net/wireless/ath/ath11k/testmode.c |  2 +-
+>  drivers/net/wireless/ath/ath11k/wmi.c      | 73 +++++++++++-----------
+>  drivers/net/wireless/ath/ath11k/wmi.h      |  4 +-
+>  3 files changed, 39 insertions(+), 40 deletions(-)
 
-drivers/net/wireless/ath/ath11k/mac.c:4702:15: error: too long token expansion
-drivers/net/wireless/ath/ath11k/mac.c:4702:15: error: too long token expansion
-drivers/net/wireless/ath/ath11k/mac.c:8393:23: error: too long token expansion
-drivers/net/wireless/ath/ath11k/mac.c:8393:23: error: too long token expansion
+Please Cc ath11k list for all ath11k patches, added it now. No need to
+resend because of this.
 
-Workaround the warnings by refactoring the code to a new function, which also
-reduces code duplication. And in the new function use max3() to make the code
-more readable.
-
-No functional changes, compile tested only.
-
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 7f7b39817773..db241589424d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4654,6 +4654,14 @@ static int ath11k_station_disassoc(struct ath11k *ar,
- 	return 0;
- }
- 
-+static u32 ath11k_mac_max_nss(const u8 *ht_mcs_mask, const u16 *vht_mcs_mask,
-+			      const u16 *he_mcs_mask)
-+{
-+	return max3(ath11k_mac_max_ht_nss(ht_mcs_mask),
-+		    ath11k_mac_max_vht_nss(vht_mcs_mask),
-+		    ath11k_mac_max_he_nss(he_mcs_mask));
-+}
-+
- static void ath11k_sta_rc_update_wk(struct work_struct *wk)
- {
- 	struct ath11k *ar;
-@@ -4699,9 +4707,7 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
- 	mutex_lock(&ar->conf_mutex);
- 
- 	nss = max_t(u32, 1, nss);
--	nss = min(nss, max(max(ath11k_mac_max_ht_nss(ht_mcs_mask),
--			       ath11k_mac_max_vht_nss(vht_mcs_mask)),
--			   ath11k_mac_max_he_nss(he_mcs_mask)));
-+	nss = min(nss, ath11k_mac_max_nss(ht_mcs_mask, vht_mcs_mask, he_mcs_mask));
- 
- 	if (changed & IEEE80211_RC_BW_CHANGED) {
- 		/* Get the peer phymode */
-@@ -8391,9 +8397,7 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
- 			ath11k_warn(ar->ab,
- 				    "could not update fixed rate settings to all peers due to mcs/nss incompatibility\n");
- 		nss = min_t(u32, ar->num_tx_chains,
--			    max(max(ath11k_mac_max_ht_nss(ht_mcs_mask),
--				    ath11k_mac_max_vht_nss(vht_mcs_mask)),
--				ath11k_mac_max_he_nss(he_mcs_mask)));
-+			    ath11k_mac_max_nss(ht_mcs_mask, vht_mcs_mask, he_mcs_mask));
- 
- 		/* If multiple rates across different preambles are given
- 		 * we can reconfigure this info with all peers using PEER_ASSOC
-
-base-commit: e0d94824fa388d81bb1f27e9486cb2d0f6fee3fb
 -- 
-2.39.2
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
