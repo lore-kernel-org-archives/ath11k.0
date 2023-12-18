@@ -4,84 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60923C46CD2
-	for <ath11k@archiver.kernel.org>; Mon, 18 Dec 2023 08:59:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AA1EC35274
+	for <ath11k@archiver.kernel.org>; Mon, 18 Dec 2023 16:20:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=o+Yep8X1j0SEhhVYMflfGOuCkYqfud6ay9fk4BfZDyg=; b=tqR3NzZY//25rfMON3dAbKwtBT
-	30TcLpkgQZP99jtf7XE4GL+YIYwCzxf95oWBRnnmQI0g3k51Fbi3RoVotyry+gTB4/Gf/ltrNQdxJ
-	vkCVHulAmYejOj4QDDmMfmL8oT6lGk7IlJMK20hurA9FtVKO9e/vZVck2i766/pE6uuKkg3dzFdTY
-	QTHc0PSyw/AZffRklhjvZQJ0elFm3/JpBlwhz/f5TvMrQFP18GeiypJqh6OZ6OumnqhCxhctvy6Jt
-	LOQ5G3jdEtfjRzfuP5X9wog6j7IPpVr6jbQkLk1vTuB7OHiJzrB5dZGJrOMG3IxK6J5WuRpkwvUNq
-	cwPhmyrw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oh6WOAgMbRlFvpoY5zeQ+UPwLxf/DsG3j8pELKI+vs4=; b=iu/Xmh7JFQ/XIBhdsX5kner4z/
+	zYGtKi4xM5HPihMUfyjddD1xu8FXyahq19SvIY6PycIcpbkxNRRdQkT2lJ1tUzbSe8A4BUZNAWocG
+	FskvxQGb8y1eJikwZU082giWJG0mJpxz0RpWsRc7kkIyKKOSn/sonTPXootarzqR6PDMQm7JO5BeJ
+	DZ6b0phHAeUTfkFPzC5Y+nigtKXQJSjSaoEDc3m8NAel3IMlMmSUL8T6Z+79UZQwF+6uSpaCDqanL
+	gne2NDesViZkqM8Xc15KFQuI7Ty/PA5K6KxF2/iZeiKW0rFm5Q2JStRLZqIgHahFMcc1C0N11lv+4
+	ihIiQuhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rF9T2-009YZv-0N;
-	Mon, 18 Dec 2023 08:59:16 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rFGLh-00BQC7-1P;
+	Mon, 18 Dec 2023 16:20:09 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rF9Sz-009YVj-1R
+	id 1rFGLe-00BQAV-1G
 	for ath11k@lists.infradead.org;
-	Mon, 18 Dec 2023 08:59:14 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BI702qw031757;
-	Mon, 18 Dec 2023 08:59:12 GMT
+	Mon, 18 Dec 2023 16:20:08 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BICShi2013722;
+	Mon, 18 Dec 2023 16:20:01 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=o+Yep8X1j0SEhhVYMflfGOuCkYqfud6ay9fk4BfZDyg=; b=n6
-	DQlsWKbAk6KIKdG89MsUz7Ki8sakvAQjGUi4yA8S7scTdLHvVZIhyhZIImqfTVe6
-	gN+wf/AEltolmXA66pSKvnISfXrFTFegitQ39CYdLrh+JOV760cWRGVRQEZXgWTK
-	zdgh6QxOBoP/kzqg1fbCwvokwjevViuKGDSMcAmiXLramoYLlTxm3FpwvWvna+De
-	cffZZP0NWIsvudE3WuQwEpcQisftT204SZ2oLEyDMqnEBHWIIsMxPGgqCtulEfL8
-	+ShrYdFB6u0QB68j/h9frX+YztXViEISV/KeHIifg6K5SIqn+S+9ZhGspSpGDEu/
-	HckSaRls9OC+RR4A2MiQ==
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=oh6WOAgMbRlFvpoY5zeQ+UPwLxf/DsG3j8pELKI+vs4=; b=GH
+	KQ48H/pOcKWoD9M+yHT0AyOscPmOOdMJ1vNdSTHZjaDXZiHaNQcmzUU0wIEEHIfd
+	Wy/xrE+itM9sXS1AD0FbBFvdvUuC6yl5lYUluRkKI5hEaRX64+lVpHu2qkTKdltc
+	mOn+OUNWOiHUPasKicRN6nBOQQq0Q2sXqk3qlRF70sdvlr0w/B+SezY3j+m5Ha/l
+	yFp46fBJws6cwrWLo9BduJYnKY4mLJFWm22XHOFhw52CzTuDR+6cYwMcJWGDfY7m
+	gJ3cpxlbjiX8zQcDkdyGT3dDbG8+uKSdcU1+8fbV+NHWEaaxcnA5jn0/HyPKTuTm
+	JsfnIa9OajPWMjOH1BBA==
 Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v1536utfn-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2mfe0vpv-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Dec 2023 08:59:12 +0000 (GMT)
+	Mon, 18 Dec 2023 16:20:01 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BI8xB5R022845
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BIGK1Rd025655
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Dec 2023 08:59:11 GMT
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 18 Dec 2023 00:59:10 -0800
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH v10 12/12] wifi: ath11k: use WMI_VDEV_SET_TPC_POWER_CMDID when EXT_TPC_REG_SUPPORT for 6 GHz
-Date: Mon, 18 Dec 2023 16:58:44 +0800
-Message-ID: <20231218085844.2658-13-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231218085844.2658-1-quic_bqiang@quicinc.com>
-References: <20231218085844.2658-1-quic_bqiang@quicinc.com>
+	Mon, 18 Dec 2023 16:20:01 GMT
+Received: from [10.110.4.21] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Dec
+ 2023 08:19:57 -0800
+Message-ID: <6cf3e5aa-411b-4c6c-a67b-6e61c1258b9c@quicinc.com>
+Date: Mon, 18 Dec 2023 08:19:56 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 1/8] bus: mhi: host: add
+ mhi_power_down_no_destroy()
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+        Mayank Rana <quic_mrana@quicinc.com>
+CC: <mhi@lists.linux.dev>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>,
+        "kernel@quicinc.com" <kernel@quicinc.com>
+References: <20231127162022.518834-1-kvalo@kernel.org>
+ <20231127162022.518834-2-kvalo@kernel.org> <20231130054250.GC3043@thinkpad>
+ <87v89cq1ci.fsf@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <87v89cq1ci.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9h_QyCHFq6Qu_KoH7SOSJdJQOyCb5NTx
-X-Proofpoint-ORIG-GUID: 9h_QyCHFq6Qu_KoH7SOSJdJQOyCb5NTx
+X-Proofpoint-ORIG-GUID: K4MNfyV7sWdzA1R_VX3VNoL1TKeXcZmS
+X-Proofpoint-GUID: K4MNfyV7sWdzA1R_VX3VNoL1TKeXcZmS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- mlxscore=0 suspectscore=0 spamscore=0 impostorscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312180063
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1011 suspectscore=0 malwarescore=0 lowpriorityscore=0 mlxscore=0
+ mlxlogscore=876 phishscore=0 adultscore=0 impostorscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312180120
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231218_005913_601636_13FC36BE 
-X-CRM114-Status: GOOD (  14.01  )
+X-CRM114-CacheID: sfid-20231218_082006_433798_1E7DACD4 
+X-CRM114-Status: GOOD (  26.75  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,95 +103,90 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Wen Gong <quic_wgong@quicinc.com>
+On 12/5/2023 4:29 AM, Kalle Valo wrote:
+> Manivannan Sadhasivam <mani@kernel.org> writes:
+> 
+>> On Mon, Nov 27, 2023 at 06:20:15PM +0200, Kalle Valo wrote:
+>>
+>>> From: Baochen Qiang <quic_bqiang@quicinc.com>
+>>>
+>>> If ath11k tries to call mhi_power_up() during resume it fails:
+>>>
+>>> ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
+>>>
+>>> This happens because when calling mhi_power_up() the MHI subsystem eventually
+>>> calls device_add() from mhi_create_devices() but the device creation is
+>>> deferred:
+>>>
+>>> mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
+>>>
+>>> The reason for deferring device creation is explained in dpm_prepare():
+>>>
+>>> 	/*
+>>> 	 * It is unsafe if probing of devices will happen during suspend or
+>>> 	 * hibernation and system behavior will be unpredictable in this case.
+>>> 	 * So, let's prohibit device's probing here and defer their probes
+>>> 	 * instead. The normal behavior will be restored in dpm_complete().
+>>> 	 */
+>>>
+>>> Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not called and
+>>> qcom_mhi_qrtr_dl_callback() fails silently as qdev is zero:
+>>>
+>>> static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
+>>> 				      struct mhi_result *mhi_res)
+>>> {
+>>> 	struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
+>>> 	int rc;
+>>>
+>>> 	if (!qdev || mhi_res->transaction_status)
+>>> 		return;
+>>>
+>>> So what this means that QRTR is not delivering messages and the QMI connection
+>>> is not working between ath11k and the firmware, resulting a failure in firmware
+>>> initialisation.
+>>>
+>>> To fix this add new function mhi_power_down_no_destroy() which does not destroy
+>>> the devices during power down. This way mhi_power_up() can be called during
+>>> resume and we can get ath11k hibernation working with the following patches.
+>>>
+>>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>>>
+>>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+>>
+>> Any reason for reposting this series without discussing the suggestion from
+>> Mayank?
+> 
+> Baochen quickly sent me fixes for the v1 review comments, as I have been
+> out of office for some time I didn't want to sit on Baochen's fixes for
+> too long. Better to get them out of the door as soon as possible. I will
+> definitely look at Mayank's proposal but that will take longer.
+> 
+>> As I said in the internal thread, this patch breaks the Linux device
+>> driver model by not destroying the "struct device" when the actual
+>> device gets removed.
+> 
+> This patchset has been tested by several people, I'm even using this
+> patchset on main laptop every day, and we haven't noticed any issues.
+> 
+> Can you elaborate more about this driver model? We are not removing any
+> ath11k devices, we just want to power down the ath11k (and in the future
+> ath12k) devices for suspend and power up during resume.
+> 
+>> We should try to explore alternate options instead of persisting with
+>> this solution.
+> 
+> What other options we have here? At least Baochen is not optimistic that
+> using PM_POST_HIBERNATION as a workaround would work. The issue we have
+> here is that mhi_power_up() doesn't work in the resume handler and
+> that's what we should try to fix, not make workarounds.
+> 
 
-When station is connected to a 6 GHz AP, it has 2 ways to configure
-the power limit to firmware. The first way is to send 2 WMI commands
-WMI_PDEV_PARAM_TXPOWER_LIMIT2G/WMI_PDEV_PARAM_TXPOWER_LIMIT5G to
-firmware, the second way is to send WMI_VDEV_SET_TPC_POWER_CMDID to
-firmware which include more parameters for power control.
+Adding Mayank directly plus others to this discussion since we need a
+solution to have proper hibernation support for devices containing
+ath11k (and in the near future ath12k).
 
-When firmware supports SERVICE_EXT_TPC_REG, it means firmware supports
-WMI_VDEV_SET_TPC_POWER_CMDID, then ath11k selects the second way.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
-v10:
- no change.
-v9:
- 1. do not discard txpower setting for BSS_CHANGED_TXPOWER.
- 2. rename subject and update commit log.
-v8:
- no change.
-v7:
- 1. squash original patch 11 and patch 13.
- 2. s/wmi command/WMI commands/
- 3. s/way/ways/
- 4. add TODO tag for CSA.
-
- drivers/net/wireless/ath/ath11k/mac.c | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 9048dec5cda5..843d92dfcaf9 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3397,6 +3397,18 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
- 	return 0;
- }
- 
-+static bool ath11k_mac_supports_station_tpc(struct ath11k *ar,
-+					    struct ath11k_vif *arvif,
-+					    const struct cfg80211_chan_def *chandef)
-+{
-+	return ath11k_wmi_supports_6ghz_cc_ext(ar) &&
-+		test_bit(WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT, ar->ab->wmi_ab.svc_map) &&
-+		arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-+		arvif->vdev_subtype == WMI_VDEV_SUBTYPE_NONE &&
-+		chandef->chan &&
-+		chandef->chan->band == NL80211_BAND_6GHZ;
-+}
-+
- static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 					   struct ieee80211_vif *vif,
- 					   struct ieee80211_bss_conf *info,
-@@ -3596,7 +3608,6 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 	if (changed & BSS_CHANGED_TXPOWER) {
- 		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "vdev_id %i txpower %d\n",
- 			   arvif->vdev_id, info->txpower);
--
- 		arvif->txpower = info->txpower;
- 		ath11k_mac_txpower_recalc(ar);
- 	}
-@@ -7285,6 +7296,15 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 		return ret;
- 	}
- 
-+	/* TODO: For now we only set TPC power here. However when
-+	 * channel changes, say CSA, it should be updated again.
-+	 */
-+	if (ath11k_mac_supports_station_tpc(ar, arvif, chandef)) {
-+		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, &arvif->chanctx);
-+		ath11k_wmi_send_vdev_set_tpc_power(ar, arvif->vdev_id,
-+						   &arvif->reg_tpc_info);
-+	}
-+
- 	if (!restart)
- 		ar->num_started_vdevs++;
- 
-@@ -8107,7 +8127,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 			goto out;
- 		}
- 		ath11k_reg_handle_chan_list(ab, reg_info, power_type);
--
-+		arvif->chanctx = *ctx;
- 		ath11k_mac_parse_tx_pwr_env(ar, vif, ctx);
- 	}
- 
--- 
-2.25.1
+/jeff
+/jeff
 
 
