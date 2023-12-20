@@ -4,63 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5037FC3DA6E
-	for <ath11k@archiver.kernel.org>; Wed, 20 Dec 2023 14:31:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 703B8C3DA6E
+	for <ath11k@archiver.kernel.org>; Wed, 20 Dec 2023 16:32:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=N39PxtHZcFs3qJ4hh3xlM/jq0KDCehSTsf7Y9YbXRRw=; b=sgy7s6x3AFW951Y/HGNxiDGU68
-	WQ9JDdqrP3btDVgousMMweExA0AgfdMw0to47s314hy5I5V04R7gkcTVFPf88W685pYb07EjkbjCy
-	Q/qlVU3+g7Tm3EM5xm1dFq6TsaqbSqJT9nklLDDK9wPcJ+5QtwCzPgoPzEbbP1xRzQc5OhfDLI8hs
-	0tjMwmZv5+QlLCUAtK8mSczr+w3mg6gomT2nSyKf/r1BUDph0FKMlWipObzi3cHsiLs/UehQ3QxkY
-	rBJuDQZwcEF3kzoY+BpeLod/JZ2PtzQjYT5NLgofg7bAqPcD3MkNBSTuBEomzK94jMW0/Mgt3/QPt
-	r9JR5Cng==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=FY3DCXHW12eNM8eZuV7r6lr29YllkrhbDdoTw9juF88=; b=Y7hR9n7GNnGmhoFHbSG2SQx9Cn
+	/t/Qa5olE6Fqy++8b+EvH5VICLo5G/dBNIwhCkibFNRMAXuaUVyvhwTLuXolpYhkbaNMKPKdzzKNk
+	zjEFvovT23fAkfehca0HiWLQZev7Iw6YQTppnQ3/HKEzX/S3wPSvI31ZHHhYvbCrnQix2ksByyiht
+	py5JycX+jKO+rqWQA4BoLhVqrbi290X2E0PDUdwv1q3wRiw1noOT9ToP/ZAjG8eQWCdInCeVPNXIb
+	eSm/7UJocK+JnfNAEhmuKosaWyS0ZTmdeMfDqGYEEihG1XETrNqSzRN8wINGwMRI1Bb8d+NueE0Lo
+	05UXcSKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rFxbB-0005q7-1K;
-	Wed, 20 Dec 2023 14:31:01 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rFzUl-000SvW-1k;
+	Wed, 20 Dec 2023 16:32:31 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rFxb9-0005pZ-0B
+	id 1rFzUh-000Sti-2G
 	for ath11k@lists.infradead.org;
-	Wed, 20 Dec 2023 14:31:00 +0000
+	Wed, 20 Dec 2023 16:32:29 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 16C556167E;
-	Wed, 20 Dec 2023 14:30:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53D71C433C8;
-	Wed, 20 Dec 2023 14:30:56 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 8310ACE1D2A
+	for <ath11k@lists.infradead.org>; Wed, 20 Dec 2023 16:32:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07289C433C8;
+	Wed, 20 Dec 2023 16:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703082657;
-	bh=N39PxtHZcFs3qJ4hh3xlM/jq0KDCehSTsf7Y9YbXRRw=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=WuTVSssMIulKIbbWlo4i1oWwARMyVJUI7d0DJg80mE4ZHhFPADvIsTOei8eL3KR49
-	 sMZ3I6MlXXRqUjlIbQ8VfmucTRmNQIqsC/rPl6eYyFlA3mvn5vfHq7dMmphuQVj4X2
-	 O0EVsMmvuP/j2K4QDgIzb+wewQcrEHICYQe1FeoHVQVcARxDyNalvcys6bATFuOg/j
-	 z0gKGoaSj+Cz+vLR7swu9qfXKQzZQQ9dIEAk109veC3tTelcNWrjjXyMFfNF07VtLk
-	 1+mTQ4TxfQ0U5okWzETz/0Ah2u42SV+QNzIkjx/Zda+BnWTyXBsU5hUTpUf5bmZ0U0
-	 uslLPYScy5mzA==
-From: Kalle Valo <kvalo@kernel.org>
-To: James Prestwood <prestwoj@gmail.com>
-Cc: "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
- <linux-wireless@vger.kernel.org>,  ath11k@lists.infradead.org
-Subject: Re: Ath11k warnings, and eventual phy going away requiring reboot
-References: <ab00ff77-23de-43a1-9eb9-6ac036ab80e3@gmail.com>
-	<87edfiqcdi.fsf@kernel.org>
-	<6122eb4e-66f5-4772-b211-8fc69ac88ebe@gmail.com>
-Date: Wed, 20 Dec 2023 16:30:54 +0200
-In-Reply-To: <6122eb4e-66f5-4772-b211-8fc69ac88ebe@gmail.com> (James
-	Prestwood's message of "Wed, 20 Dec 2023 04:42:31 -0800")
-Message-ID: <87o7elosip.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1703089944;
+	bh=Q0b7XQPdpwyNLyUYvwT+iUYCdrczCyDcdXAigrJ2J4A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZpBARzR5tiF2awmOecbentq43agUMkmZv/VkF2QMY2oGDjSOWs1eNcdDN5hyZo5ZH
+	 EefTWwidW1ld9f9ZBNMWThQpNY2vHRjpwRitrIOU9ckIpXGhXTnvxAwVEps0Eo1Aod
+	 xM1BHr9azA2ZOLlD+yX4axG4gmbOLpD87zKgEy+mhj1OraFUCs1IqwreS2/bdl/tan
+	 4Se9bRFDQ6RghEEAg0E9xSBY/k05lUhjMnsP2B6NvgQ6dc5T/CGhJz31fl3grw1/ds
+	 ePtoG9JeHREWMzUJb/CK/8pHW4D+5ImZ+OvYkFAlt0muSm+a1y6AOi63HcGkYLRhn2
+	 ZLHybjHFgd38g==
+Date: Wed, 20 Dec 2023 22:02:09 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: mhi@lists.linux.dev, ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: Re: [PATCH RFC v2 1/8] bus: mhi: host: add
+ mhi_power_down_no_destroy()
+Message-ID: <20231220163209.GJ3544@thinkpad>
+References: <20231127162022.518834-1-kvalo@kernel.org>
+ <20231127162022.518834-2-kvalo@kernel.org>
+ <20231130054250.GC3043@thinkpad>
+ <87v89cq1ci.fsf@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87v89cq1ci.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20231220_063059_197286_53F2D113 
-X-CRM114-Status: GOOD (  18.78  )
+X-CRM114-CacheID: sfid-20231220_083228_193327_3635FCD0 
+X-CRM114-Status: GOOD (  40.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,80 +76,111 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-James Prestwood <prestwoj@gmail.com> writes:
+On Tue, Dec 05, 2023 at 02:29:33PM +0200, Kalle Valo wrote:
+> Manivannan Sadhasivam <mani@kernel.org> writes:
+> 
+> > On Mon, Nov 27, 2023 at 06:20:15PM +0200, Kalle Valo wrote:
+> >
+> >> From: Baochen Qiang <quic_bqiang@quicinc.com>
+> >> 
+> >> If ath11k tries to call mhi_power_up() during resume it fails:
+> >> 
+> >> ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
+> >> 
+> >> This happens because when calling mhi_power_up() the MHI subsystem eventually
+> >> calls device_add() from mhi_create_devices() but the device creation is
+> >> deferred:
+> >> 
+> >> mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
+> >> 
+> >> The reason for deferring device creation is explained in dpm_prepare():
+> >> 
+> >> 	/*
+> >> 	 * It is unsafe if probing of devices will happen during suspend or
+> >> 	 * hibernation and system behavior will be unpredictable in this case.
+> >> 	 * So, let's prohibit device's probing here and defer their probes
+> >> 	 * instead. The normal behavior will be restored in dpm_complete().
+> >> 	 */
+> >> 
+> >> Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not called and
+> >> qcom_mhi_qrtr_dl_callback() fails silently as qdev is zero:
+> >> 
+> >> static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
+> >> 				      struct mhi_result *mhi_res)
+> >> {
+> >> 	struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
+> >> 	int rc;
+> >> 
+> >> 	if (!qdev || mhi_res->transaction_status)
+> >> 		return;
+> >> 
+> >> So what this means that QRTR is not delivering messages and the QMI connection
+> >> is not working between ath11k and the firmware, resulting a failure in firmware
+> >> initialisation.
+> >> 
+> >> To fix this add new function mhi_power_down_no_destroy() which does not destroy
+> >> the devices during power down. This way mhi_power_up() can be called during
+> >> resume and we can get ath11k hibernation working with the following patches.
+> >> 
+> >> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+> >> 
+> >> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> >> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> >
+> > Any reason for reposting this series without discussing the suggestion from
+> > Mayank?
+> 
+> Baochen quickly sent me fixes for the v1 review comments, as I have been
+> out of office for some time I didn't want to sit on Baochen's fixes for
+> too long. Better to get them out of the door as soon as possible. I will
+> definitely look at Mayank's proposal but that will take longer.
+> 
+> > As I said in the internal thread, this patch breaks the Linux device
+> > driver model by not destroying the "struct device" when the actual
+> > device gets removed.
+> 
+> This patchset has been tested by several people, I'm even using this
+> patchset on main laptop every day, and we haven't noticed any issues.
+> 
+> Can you elaborate more about this driver model? We are not removing any
+> ath11k devices, we just want to power down the ath11k (and in the future
+> ath12k) devices for suspend and power up during resume.
+> 
 
-> Hi Kalle,
->
-> On 12/19/23 10:24 AM, Kalle Valo wrote:
->> James Prestwood <prestwoj@gmail.com> writes:
->>
->>> I noticed this after one of our devices dropped offline. The device
->>> had roamed 7 minutes prior so I doubt that had anything to do with it.
->>> But then we get this, and then tons of warnings. I'm happy to provide
->>> full stack traces but its quite a few, not sure which ones are
->>> relevant or not. After all the warnings IWD got an RTNL del link event
->>> and was unable to recover from that. It seems after that ath11k tried
->>> to power back on but failed.
->>>
->>> This is a stock 6.2 ubuntu kernel, WCN6855:
->> BTW I don't know how it's nowadays, but back in the day Ubuntu heavily
->> modified ath11k. And we can't support distro kernels anyway as we don't
->> know what they have changed in the kernel.
->
-> Ok. I understand where your coming from, but at the same time Ubuntu
-> is the largest linux distribution so it seems like these type of
-> reports wouldn't be uncommon. OTOH maybe users just go directly to
-> Ubuntu.
+Devices (struct dev) for each channels are created once the device (WLAN) enters
+runtime mode such as (MISSION, SBL etc...). During hibernation, ath11k stack
+calls mhi_power_down() which essentially resets the device to POR and also the
+stack powers down the device properly.
 
-Isn't the recommendation that distro kernel bugs should be reported to
-distro bug trackers? At least that's what I have understood. At least
-our bugzilla says that:
+In that case, MHI channels do not exist as the device (WLAN) itself is powered
+down. As per kernel driver model, each struct device is tied to its reference
+count. And the reference count should be decremented whenever the actual device
+is not in use. Once the actual device is removed from the system, then the
+respective struct device has to be destroyed altogether.
 
-https://bugzilla.kernel.org/
+So in this case, even though the channels are not active (present) in the
+device, the device itself gets powered off, you want MHI stack to keep the
+struct device active, which is against the model I referenced above.
 
-> Anyways, this is a list of patches isn't huge according to the
-> changelog (for 6.2):
->
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: fix registration of 6Ghz-only ph=
-y without the
-> full channel
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: add support default regdb while =
-searching
-> board-2.bin for
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: fix memory leak in WMI firmware =
-stats
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: Add missing check for ioremap
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: Ignore frags from uninitialized =
-peer in dp.
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: Fix SKB corruption in REO destin=
-ation ring
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: reduce the MHI timeout to 20s
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: Use platform_get_irq() to get th=
-e interrupt
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: fix SAC bug on peer addition wit=
-h sta band migration
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: fix deinitialization of firmware=
- resources
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: fix writing to unintended memory=
- region
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: Fix memory leak in ath11k_peer_r=
-x_frag_setup
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: fix monitor mode bringup crash
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: debugfs: fix to work with multip=
-le PCI devices
-> =C2=A0=C2=A0=C2=A0=C2=A0 - wifi: ath11k: allow system suspend to survive =
-ath11k
->
-> I see the dilemma of not wanting to waste time debugging when there
-> are unknown changes applied. I was hoping someone would recognize the
-> behavior and could suggest a patch/kernel/firmware to try
+To fix this issue properly, we need to investigate on how other subsystems are
+handling this situation (device getting powered down during hibernation), like
+USB.
 
-Sure, I also get where you are coming from :) Just wanted to make sure
-you know the problem with distro kernels.
+- Mani
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+> > We should try to explore alternate options instead of persisting with
+> > this solution.
+> 
+> What other options we have here? At least Baochen is not optimistic that
+> using PM_POST_HIBERNATION as a workaround would work. The issue we have
+> here is that mhi_power_up() doesn't work in the resume handler and
+> that's what we should try to fix, not make workarounds.
+> 
+> -- 
+> https://patchwork.kernel.org/project/linux-wireless/list/
+> 
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+-- 
+மணிவண்ணன் சதாசிவம்
 
