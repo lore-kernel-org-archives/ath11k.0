@@ -4,87 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5370AC47073
-	for <ath11k@archiver.kernel.org>; Wed,  3 Jan 2024 16:36:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 160ECC3DA6E
+	for <ath11k@archiver.kernel.org>; Thu,  4 Jan 2024 03:04:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=g7qTu3VkiUpqlR77+uQfKE+Acb+SUIp2sYG69or21u0=; b=2WmTvMKW3Rp/1yoew0otFoTdE1
-	E38C0mZT/AHduk7Tma7FUN3p+RL2wxjk799+aEJhFEopEK2eIy5ABzbXGDTlUSMd4ND3RV6AkYa6x
-	930nCPs5wfGs3TI52O+CKlshrgWuLfiEjrjBQGaw7CI/VykNeCP7VvJUyzIC56cHG7D89GjDAXotF
-	NBME7vGHJ3pZ2thwk2SIuCqEk18Wtuho73loxht2rxtUcnmEoSiVpE2yKLhb6mlBnCSgJbWtkDVro
-	LghJK6bTlvGRMK4fUQa+fIu3sHc/DQNu7mrFDmDM/xfgAOttOvYzHgA5XXTgC47iGVVu62K3Q2mA+
-	ewbRV4Cw==;
+	bh=GO1gd7Yuo8ZHteydzdNhiAeb9+APPsknpyteqWmjRXc=; b=3qrpsKT+BeFkHZlusSv9xJgnJC
+	yGX6NtGjN9/FUUznDiG3s8vB47Hwrbn0rCfpzWDzY+jv2MvDifOGbqlAdK5EP8NR1x/ZvqEFAyevM
+	nkq5i9jKc4yTwBF6MoAbAnoZHH+mYU+e6rwVJ453gTobDlB7Cf9/Sfxjrn4nv5l6n4wq1DJJoEJr1
+	l1qftqDsCl8flgGU6uMsPl5vA3PptP15EEs068SVRVI/DfyPt+443zTPuf4j9807HqARhL8b1QIjg
+	8JtlqSoZt04o6Ib3+jQPmdReyJbigWNVHAgaLBH1XbxPN4bBTjWrb9fl3kxtLtaCFf1CBG8Urekur
+	CyUngkWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rL4Dz-00BPwM-02;
-	Wed, 03 Jan 2024 16:36:11 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rLE1c-00ChIv-0z;
+	Thu, 04 Jan 2024 03:04:04 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rL4Dv-00BPvM-0z;
-	Wed, 03 Jan 2024 16:36:09 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 403DNLIn026005;
-	Wed, 3 Jan 2024 16:36:04 GMT
+	id 1rLE1Y-00ChI4-1X;
+	Thu, 04 Jan 2024 03:04:02 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4041nfTI003528;
+	Thu, 4 Jan 2024 03:03:59 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=g7qTu3VkiUpqlR77+uQfKE+Acb+SUIp2sYG69or21u0=; b=cS
-	vXoLaefg1dd4dDWSUALXidV/Oc+UPix2QFyYsHwSA1wCt/C1yp5/btkn/iDC0G2+
-	UjwQktoL/BchWG91LRk97vk4PnYPze2yMSI/Cij2L4+wXGHIgyszY2ZyvYEnfTKK
-	wL036KaCw5ch1pQiqhL3hzGhNbPipiooB08zbIE4kOAzlyxj2TC+dLx7K2WHF6os
-	KaNPB4JFg2pRL8zvxKIuqa/h9rpVrN1SffAa7oE69vzWzFRC8uqxpRN3plDaH9dK
-	bt5GMdCHuHZPAb6WIs4kLakpLWkGXH6akFUGMESRI6lisFfqHTcpQRs4wmJ0F7Js
-	lMYfDC2nceLJvR3PLFEw==
+	qcppdkim1; bh=GO1gd7Yuo8ZHteydzdNhiAeb9+APPsknpyteqWmjRXc=; b=ao
+	vqY7Ev8VjGcts4VQw7IPOgRp2votAPT7Y4GIAZwmyJZfCfnLlkCVmbHCp7AQPnyj
+	2KAkC6LnF8XQOPYKxU6PacdN2byy49LvKP77C0QY9cjMQvBxeq8/DihcVbq6p/7v
+	5GMCV60bjbHS5is375Rv3hYxmH86n4IAeaAIIS8UL7uRvjO3IHdXr9mgXvZd2WZB
+	xe30DwzRr2GvTyD2y8aMK31uPXbHqumvqPdb4Lr1zeJ4qi76PJTWsUctuIkOSguR
+	k6pxRwSpFZDjZTGAN6ClJFil6EkoSolyEemOffjAiw6VPQhmUr13NsaZhxcUIGuE
+	4UfjIVb4qXW2xlFsBatQ==
 Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vd0cksswq-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vd2tmag2q-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Jan 2024 16:36:03 +0000 (GMT)
+	Thu, 04 Jan 2024 03:03:58 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 403Ga2Yl027540
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40433wV1030917
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Jan 2024 16:36:02 GMT
-Received: from [10.110.76.17] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Thu, 4 Jan 2024 03:03:58 GMT
+Received: from [10.201.208.160] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 3 Jan
- 2024 08:36:02 -0800
-Message-ID: <2269025d-d1ef-4940-a438-c67d3d94baf9@quicinc.com>
-Date: Wed, 3 Jan 2024 08:36:01 -0800
+ 2024 19:03:56 -0800
+Message-ID: <9636aec8-8fa3-6129-294a-69dec53276fa@quicinc.com>
+Date: Thu, 4 Jan 2024 08:33:52 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
 Subject: Re: [PATCH 3/3] wifi: ath10k: replace ENOTSUPP with EOPNOTSUPP
-Content-Language: en-US
-To: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
-        <ath12k@lists.infradead.org>, <ath11k@lists.infradead.org>,
-        <ath10k@lists.infradead.org>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath12k@lists.infradead.org>,
+        <ath11k@lists.infradead.org>, <ath10k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>
 References: <20240103041220.3082014-1-quic_periyasa@quicinc.com>
  <20240103041220.3082014-4-quic_periyasa@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240103041220.3082014-4-quic_periyasa@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+ <2269025d-d1ef-4940-a438-c67d3d94baf9@quicinc.com>
+Content-Language: en-US
+From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+In-Reply-To: <2269025d-d1ef-4940-a438-c67d3d94baf9@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5lJnuiGkm_p3jmZsVpAc0qSAjA5ShI9p
-X-Proofpoint-ORIG-GUID: 5lJnuiGkm_p3jmZsVpAc0qSAjA5ShI9p
+X-Proofpoint-GUID: MsvdMyNwrjESe4sH4UaNniDN3aKC4ndV
+X-Proofpoint-ORIG-GUID: MsvdMyNwrjESe4sH4UaNniDN3aKC4ndV
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- priorityscore=1501 phishscore=0 adultscore=0 bulkscore=0 malwarescore=0
- mlxscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxlogscore=550
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401030135
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ suspectscore=0 mlxlogscore=527 impostorscore=0 priorityscore=1501
+ spamscore=0 lowpriorityscore=0 mlxscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401040019
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240103_083607_515219_CE8C41B0 
-X-CRM114-Status: GOOD (  14.91  )
+X-CRM114-CacheID: sfid-20240103_190400_549229_AB1F429E 
+X-CRM114-Status: GOOD (  13.69  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,44 +100,55 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/2/2024 8:12 PM, Karthikeyan Periyasamy wrote:
-> ENOTSUPP is not a standard error code, don't use it. Replace with
-> EOPNOTSUPP instead.
-> 
-> No functional changes, compile tested only.
-> 
-> Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-> ---
 
-> diff --git a/drivers/net/wireless/ath/ath10k/htt.c b/drivers/net/wireless/ath/ath10k/htt.c
-> index 907e1e13871a..3835c5cc07f9 100644
-> --- a/drivers/net/wireless/ath/ath10k/htt.c
-> +++ b/drivers/net/wireless/ath/ath10k/htt.c
-> @@ -2,6 +2,8 @@
->  /*
->   * Copyright (c) 2005-2011 Atheros Communications Inc.
->   * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
-> + * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
+On 1/3/2024 10:06 PM, Jeff Johnson wrote:
+> On 1/2/2024 8:12 PM, Karthikeyan Periyasamy wrote:
+>> ENOTSUPP is not a standard error code, don't use it. Replace with
+>> EOPNOTSUPP instead.
+>>
+>> No functional changes, compile tested only.
+>>
+>> Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+>> ---
+>> diff --git a/drivers/net/wireless/ath/ath10k/htt.c b/drivers/net/wireless/ath/ath10k/htt.c
+>> index 907e1e13871a..3835c5cc07f9 100644
+>> --- a/drivers/net/wireless/ath/ath10k/htt.c
+>> +++ b/drivers/net/wireless/ath/ath10k/htt.c
+>> @@ -2,6 +2,8 @@
+>>   /*
+>>    * Copyright (c) 2005-2011 Atheros Communications Inc.
+>>    * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
+>> + * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
+> You are not working on behalf of The Linux Foundation so you should not
+> be adding or modifying Linux Foundation copyrights
 
-You are not working on behalf of The Linux Foundation so you should not
-be adding or modifying Linux Foundation copyrights
+Sure
 
-> + * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 
-And this should only have 2024 since there were not any Qualcomm changes
-in 2021-2023
+>> + * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> And this should only have 2024 since there were not any Qualcomm changes
+> in 2021-2023
 
-> diff --git a/drivers/net/wireless/ath/ath10k/wmi-tlv.c b/drivers/net/wireless/ath/ath10k/wmi-tlv.c
-> index 0ce08e9a0a3d..9a1889599729 100644
-> --- a/drivers/net/wireless/ath/ath10k/wmi-tlv.c
-> +++ b/drivers/net/wireless/ath/ath10k/wmi-tlv.c
-> @@ -3,6 +3,7 @@
->   * Copyright (c) 2005-2011 Atheros Communications Inc.
->   * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
->   * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+Sure
 
-Again this should only have 2024
 
+>> diff --git a/drivers/net/wireless/ath/ath10k/wmi-tlv.c b/drivers/net/wireless/ath/ath10k/wmi-tlv.c
+>> index 0ce08e9a0a3d..9a1889599729 100644
+>> --- a/drivers/net/wireless/ath/ath10k/wmi-tlv.c
+>> +++ b/drivers/net/wireless/ath/ath10k/wmi-tlv.c
+>> @@ -3,6 +3,7 @@
+>>    * Copyright (c) 2005-2011 Atheros Communications Inc.
+>>    * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
+>>    * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> Again this should only have 2024
+
+
+Will address in the next version of the patch
+
+
+Thanks,
+
+Karthikeyan
 
 
