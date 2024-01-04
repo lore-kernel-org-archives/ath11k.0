@@ -4,68 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836CAC47073
-	for <ath11k@archiver.kernel.org>; Thu,  4 Jan 2024 06:09:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F38ABC47074
+	for <ath11k@archiver.kernel.org>; Thu,  4 Jan 2024 16:38:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=j4x1V74pCfVSziIysubkvW1fAg/wNIRB03S1OoWPTpA=; b=hphYOCw9AsQNco/QKI5zKEKh7G
-	ioZ/eX899t6zGxIyVUukBehEAez63gWfD+vSCz4ah5EjFFTxHb7VpHvWDVH4eClqcZg8utxWPwpBJ
-	XgN9v6WJoKMNfC18d2OiXqNOG/1ejQpqERScLSiZSkTWv9mEHBRrc9leGzj9A5qo/4g3SFB0jHCpq
-	kBOmPUlclX+Gu5tEZtl1Kwq+BSdpk66fckPfDDhSom6S0ODJYrJJf0Wxp0VJviHKvN02JGHCi6BSA
-	rqCXpV089Xx0IBeOwmV2E5W0zBhqeNf4Cn16LZeP0kMz/TnDN9SoNb/pPSzZnpcbKkEB5RITRAqEI
-	KicQvnNA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=725xWrXyb9AEsIa2JUrisQww8XUSBvF31V7Coo8VDbo=; b=lmgTWb/q+RK9nXNTjWFKkph5Bx
+	9l06wvp46CI3TasftPYQ8f+PrMSpATELU0cQURYGlDpIy8EuJYai5BoY4AFOedSM+/065SqAFLo13
+	JoajeEdUntYdnahdogbYwlbhavaNer5IsXmG9Nll/46xKOWzALCOL5AP+p4gep49IunaLsQ6g3rpZ
+	wyhupM9Kz1cs9e5E7fLNLaImZXrtpVuHxWr/wiBORReNsBpmffzL0rYRblH/L4V3N4FxvYWynVelj
+	WB+DCqisoYL5aEtBY5GomYqAaDwIEK/Jc4/FQgCnXoYI8IKtZoGdeGCvlabnEMwPqy/CtSKJvdnIB
+	4pUi8rzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rLGut-00CxJb-1b;
-	Thu, 04 Jan 2024 06:09:19 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1rLQk0-00Ehnv-0T;
+	Thu, 04 Jan 2024 16:38:44 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rLGuq-00CxHH-03
-	for ath11k@lists.infradead.org;
-	Thu, 04 Jan 2024 06:09:17 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 51E1D615DA;
-	Thu,  4 Jan 2024 06:09:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5395C433C8;
-	Thu,  4 Jan 2024 06:09:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704348552;
-	bh=Ko5iXtApY0EshgnOz1TdDJDaIgaK62Wjlz/YlsDmp/Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZC75+OcfCxOYgSYIsmIqVLQPOXEK02OfoMCF4zLeWMpoOc9hce4fEKk09/oCVdbj0
-	 jfNJc+AsT43AjBnCpcgcL5YCEs+2tPJlJG5VGGESkQwdsGH38JgIXfR2RswM6Cn6ht
-	 mNfTIb/8JvEMElb+XNCVBDYBTPLw3O/V53NvJt4FQE6PZ7VzlcMzkkoDnow/4uTgmH
-	 XTLhxbiBJ4QwEdILJfH4mSEXyCOINZrZPYDbXzZvCvZl08VKuLC/nFUYcu1Si/SPey
-	 3OKXBBKXZMHaTKUVSW3z74P0XHoSN0E7IhZ+dATWdi1+lbcOpchX3AzcHuLIkfJm2W
-	 JUpTHlVHvNfJw==
-Date: Thu, 4 Jan 2024 11:39:04 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	mhi@lists.linux.dev, ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org
-Subject: Re: [PATCH RFC v2 1/8] bus: mhi: host: add
- mhi_power_down_no_destroy()
-Message-ID: <20240104060904.GB3031@thinkpad>
-References: <20231127162022.518834-1-kvalo@kernel.org>
- <20231127162022.518834-2-kvalo@kernel.org>
- <20231130054250.GC3043@thinkpad>
- <87v89cq1ci.fsf@kernel.org>
- <20231220163209.GJ3544@thinkpad>
- <20231220165113.GK3544@thinkpad>
- <7a31696b-cf2b-48c0-bad3-327e9ce47172@quicinc.com>
+	id 1rLQjx-00EhmU-0b;
+	Thu, 04 Jan 2024 16:38:42 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 404DhCAo030989;
+	Thu, 4 Jan 2024 16:38:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=725xWrXyb9AEsIa2JUrisQww8XUSBvF31V7Coo8VDbo=; b=RJ
+	B4Vv0TmVrMz+0h00lGOm8INXdNALmQLzeJqM4OyHOOxtB+gUxO8z5SHktK2V8z34
+	yzLfFyvFdi6ki61GncQgnJdFKbsMMLjfhGUZ6ZoEsVSYC43n0TuDN+GgijP6ydCJ
+	jP7/n82e5NZOzZu/JCCB4ow+X5BSO7M9QyHSqUpTMpJlDza0d+pnerqKg4tmNsp3
+	n5IjgKN1xFRmL0c80za/RLBC4iTr0qnAX3cFAk9Gl87S5mF1By0JVio3jKTHos/C
+	SyAiKzdQqwVeLu6SseFst1U0paRpz8jW2G0D0hw63L7VjGZEhVucYnKseNYy3zpv
+	cxZ4exSRBgKbTAVTd/7A==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vdsams72w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jan 2024 16:38:37 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 404GcaQK005358
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Jan 2024 16:38:36 GMT
+Received: from [10.110.76.17] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 4 Jan
+ 2024 08:38:36 -0800
+Message-ID: <5c853e8f-f7df-408f-b520-76eaa4fa436e@quicinc.com>
+Date: Thu, 4 Jan 2024 08:38:35 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7a31696b-cf2b-48c0-bad3-327e9ce47172@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] wifi: ath: replace ENOTSUPP with EOPNOTSUPP
+Content-Language: en-US
+To: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
+        <ath12k@lists.infradead.org>, <ath11k@lists.infradead.org>,
+        <ath10k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240104031509.366302-1-quic_periyasa@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240104031509.366302-1-quic_periyasa@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vwhDW2pZALrk7aFCkVFSaf1YxJLQ2vMX
+X-Proofpoint-ORIG-GUID: vwhDW2pZALrk7aFCkVFSaf1YxJLQ2vMX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ phishscore=0 mlxscore=0 mlxlogscore=620 suspectscore=0 impostorscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401040131
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240103_220916_161062_FBEA4608 
-X-CRM114-Status: GOOD (  52.37  )
+X-CRM114-CacheID: sfid-20240104_083841_226678_2830EAFA 
+X-CRM114-Status: GOOD (  11.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,143 +98,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 21, 2023 at 07:05:09PM +0800, Baochen Qiang wrote:
+On 1/3/2024 7:15 PM, Karthikeyan Periyasamy wrote:
+> ENOTSUPP is not a standard error code, don't use it. Replace with
+> EOPNOTSUPP instead.
 > 
-> 
-> On 12/21/2023 12:51 AM, Manivannan Sadhasivam wrote:
-> > On Wed, Dec 20, 2023 at 10:02:25PM +0530, Manivannan Sadhasivam wrote:
-> > > On Tue, Dec 05, 2023 at 02:29:33PM +0200, Kalle Valo wrote:
-> > > > Manivannan Sadhasivam <mani@kernel.org> writes:
-> > > > 
-> > > > > On Mon, Nov 27, 2023 at 06:20:15PM +0200, Kalle Valo wrote:
-> > > > > 
-> > > > > > From: Baochen Qiang <quic_bqiang@quicinc.com>
-> > > > > > 
-> > > > > > If ath11k tries to call mhi_power_up() during resume it fails:
-> > > > > > 
-> > > > > > ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
-> > > > > > 
-> > > > > > This happens because when calling mhi_power_up() the MHI subsystem eventually
-> > > > > > calls device_add() from mhi_create_devices() but the device creation is
-> > > > > > deferred:
-> > > > > > 
-> > > > > > mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
-> > > > > > 
-> > > > > > The reason for deferring device creation is explained in dpm_prepare():
-> > > > > > 
-> > > > > > 	/*
-> > > > > > 	 * It is unsafe if probing of devices will happen during suspend or
-> > > > > > 	 * hibernation and system behavior will be unpredictable in this case.
-> > > > > > 	 * So, let's prohibit device's probing here and defer their probes
-> > > > > > 	 * instead. The normal behavior will be restored in dpm_complete().
-> > > > > > 	 */
-> > > > > > 
-> > > > > > Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not called and
-> > > > > > qcom_mhi_qrtr_dl_callback() fails silently as qdev is zero:
-> > > > > > 
-> > > > > > static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
-> > > > > > 				      struct mhi_result *mhi_res)
-> > > > > > {
-> > > > > > 	struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
-> > > > > > 	int rc;
-> > > > > > 
-> > > > > > 	if (!qdev || mhi_res->transaction_status)
-> > > > > > 		return;
-> > > > > > 
-> > > > > > So what this means that QRTR is not delivering messages and the QMI connection
-> > > > > > is not working between ath11k and the firmware, resulting a failure in firmware
-> > > > > > initialisation.
-> > > > > > 
-> > > > > > To fix this add new function mhi_power_down_no_destroy() which does not destroy
-> > > > > > the devices during power down. This way mhi_power_up() can be called during
-> > > > > > resume and we can get ath11k hibernation working with the following patches.
-> > > > > > 
-> > > > > > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> > > > > > 
-> > > > > > Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> > > > > > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> > > > > 
-> > > > > Any reason for reposting this series without discussing the suggestion from
-> > > > > Mayank?
-> > > > 
-> > > > Baochen quickly sent me fixes for the v1 review comments, as I have been
-> > > > out of office for some time I didn't want to sit on Baochen's fixes for
-> > > > too long. Better to get them out of the door as soon as possible. I will
-> > > > definitely look at Mayank's proposal but that will take longer.
-> > > > 
-> > > > > As I said in the internal thread, this patch breaks the Linux device
-> > > > > driver model by not destroying the "struct device" when the actual
-> > > > > device gets removed.
-> > > > 
-> > > > This patchset has been tested by several people, I'm even using this
-> > > > patchset on main laptop every day, and we haven't noticed any issues.
-> > > > 
-> > > > Can you elaborate more about this driver model? We are not removing any
-> > > > ath11k devices, we just want to power down the ath11k (and in the future
-> > > > ath12k) devices for suspend and power up during resume.
-> > > > 
-> > > 
-> > > Devices (struct dev) for each channels are created once the device (WLAN) enters
-> > > runtime mode such as (MISSION, SBL etc...). During hibernation, ath11k stack
-> > > calls mhi_power_down() which essentially resets the device to POR and also the
-> > > stack powers down the device properly.
-> > > 
-> > > In that case, MHI channels do not exist as the device (WLAN) itself is powered
-> > > down. As per kernel driver model, each struct device is tied to its reference
-> > > count. And the reference count should be decremented whenever the actual device
-> > > is not in use. Once the actual device is removed from the system, then the
-> > > respective struct device has to be destroyed altogether.
-> > > 
-> > > So in this case, even though the channels are not active (present) in the
-> > > device, the device itself gets powered off, you want MHI stack to keep the
-> > > struct device active, which is against the model I referenced above.
-> > > 
-> > > To fix this issue properly, we need to investigate on how other subsystems are
-> > > handling this situation (device getting powered down during hibernation), like
-> > > USB.
-> > > 
-> > 
-> > To me it all sounds like the probe deferral is not handled properly in mac80211
-> > stack. As you mentioned in the commit message that the dpm_prepare() blocks
-> > probing of devices. It gets unblocked and trigerred in dpm_complete():
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/base/power/main.c#n1131
-> > 
-> > So if mac80211/ath11k cannot probe the devices at the dpm_complete() stage, then
-> > it is definitely an issue that needs to be fixed properly.
-> To clarify, ath11k CAN probe the devices at dpm_complete() stage. The
-> problem is kernel does not wait for all probes to finish, and in that way we
-> will face the issue that user space applications are likely to fail because
-> they get thawed BEFORE WLAN is ready.
+> No functional changes, compile tested only.
 > 
 
-Hmm. Please give me some time to reproduce this issue locally. I will get back
-to this thread with my analysis.
+I would have expected a changelog for v2
 
-- Mani
+But no need to resend as a result of the missing changelog since it is
+trivial
 
-> > 
-> > - Mani
-> > 
-> > > - Mani
-> > > 
-> > > > > We should try to explore alternate options instead of persisting with
-> > > > > this solution.
-> > > > 
-> > > > What other options we have here? At least Baochen is not optimistic that
-> > > > using PM_POST_HIBERNATION as a workaround would work. The issue we have
-> > > > here is that mhi_power_up() doesn't work in the resume handler and
-> > > > that's what we should try to fix, not make workarounds.
-> > > > 
-> > > > -- 
-> > > > https://patchwork.kernel.org/project/linux-wireless/list/
-> > > > 
-> > > > https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-> > > 
-> > > -- 
-> > > மணிவண்ணன் சதாசிவம்
-> > 
+> Karthikeyan Periyasamy (3):
+>   wifi: ath12k: replace ENOTSUPP with EOPNOTSUPP
+>   wifi: ath11k: replace ENOTSUPP with EOPNOTSUPP
+>   wifi: ath10k: replace ENOTSUPP with EOPNOTSUPP
 > 
+>  drivers/net/wireless/ath/ath10k/core.c    |  4 ++--
+>  drivers/net/wireless/ath/ath10k/htt.c     |  3 ++-
+>  drivers/net/wireless/ath/ath10k/mac.c     |  6 +++---
+>  drivers/net/wireless/ath/ath10k/pci.c     | 10 +++++-----
+>  drivers/net/wireless/ath/ath10k/wmi-tlv.c |  7 ++++---
+>  drivers/net/wireless/ath/ath10k/wmi.c     | 12 ++++++------
+>  drivers/net/wireless/ath/ath11k/dp_tx.c   |  6 +++---
+>  drivers/net/wireless/ath/ath11k/hal_rx.c  |  4 ++--
+>  drivers/net/wireless/ath/ath12k/dp_tx.c   |  6 +++---
+>  drivers/net/wireless/ath/ath12k/hal_rx.c  |  4 ++--
+>  drivers/net/wireless/ath/ath12k/mac.c     | 10 +++++-----
+>  11 files changed, 37 insertions(+), 35 deletions(-)
+> 
+> 
+> base-commit: 2cd4e3f91f264926a6b11df948417b74d52ca9b9
 
--- 
-மணிவண்ணன் சதாசிவம்
 
