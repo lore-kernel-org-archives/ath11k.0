@@ -4,82 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D338FC4707C
-	for <ath11k@archiver.kernel.org>; Wed, 10 Jan 2024 14:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14A34C4707C
+	for <ath11k@archiver.kernel.org>; Wed, 10 Jan 2024 16:20:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6s/DjyGGlYA04VcYhLlf5rs2XIHUh5tvTkRQGkhtStw=; b=lLUFBHC/Ph/L5KfLZBKofZ31mU
-	ffq943dVWeFDLOBH7ICKs1yOg/GauAlJt6MtFzW44TeU9z4KEcCeCNtR/xGkdDIKjGtvmjtr9U2/m
-	A8tnGsm97m5xyYHX9lp3ienQNViEEUI7qULGyO/5C0NdYdNUNR8WpmYTnH0iOpNv00sy6N8oH3j2r
-	LFXCXRdjbhdyLLuqhWCmH7tqnfqJ1Oe/m1wrFrEkYMjiQQMhVHdr+rFlXBsTzwHlWxftmEQxJGZUB
-	9qVwymxvEv73a6sIpQQkX/21FMUmW7DRRyA0x2sHr6mw78mgeCCgEF502RRWQJ/1KMKyV7IgF1xX1
-	83fnoV9Q==;
+	bh=hmUcomUAFN0uAnfvzkXpoc1svcrrGLxqjY4x2TQVtpE=; b=CY6ZAxaaTwFBd6gyCCQknuiPww
+	Uz7smXhdnRPbS197lGtdfUS7jVEERDqp+WrxOatbwSTlS/bzUiK0fPAjMsgLIAz14OmioHyZ23RxS
+	bHd3vPXdaiLIpekieYvBFAKXOwVwOEUEcr2qCamuxcDFnJfrKhe7iR9/EHFIa539ay8Sghqiebxcv
+	bkQ1y4uYFZ6zOrI3SrCOGHqdaXRjiRJvhGx+REvHdxVi8KghjUFNYv7mZ0XZrJUyNWQ4YmPbmizDJ
+	Jvm6Bzvza8ehN6sR6pWXqyrklEC1ZxE5cR4ImJBk4eyuPEcHeDNpt4aeVFAdd0KcqTM2yw1qdXPYU
+	yv5dni1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNZzR-00CQyF-2p;
-	Wed, 10 Jan 2024 14:55:33 +0000
-Received: from mail-yb1-xb34.google.com ([2607:f8b0:4864:20::b34])
+	id 1rNbK2-00Cr7S-1T;
+	Wed, 10 Jan 2024 16:20:54 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNZzO-00CQx0-2w
+	id 1rNbJz-00Cr5Y-0t
 	for ath11k@lists.infradead.org;
-	Wed, 10 Jan 2024 14:55:32 +0000
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-dbed0710c74so3343106276.1
-        for <ath11k@lists.infradead.org>; Wed, 10 Jan 2024 06:55:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704898526; x=1705503326; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6s/DjyGGlYA04VcYhLlf5rs2XIHUh5tvTkRQGkhtStw=;
-        b=SElA0od4skS0TS8P95HZ6DgrSaMda9Xt8U63PI0oAJgX1dbM5UhnUK39WvuoNCVdkD
-         mSH6azq7fADEp6jT8LIhdKzsjh8tbl5B4l6piOE29dlTb3lxNvsjcsB2OAkQZMWXZJzO
-         d5j28/lpOqM06LFxbSgbcSTk8ElrZOjqrnozz06ERY80t6l22SeE0eL78rtSL0WdNvDk
-         jNgRlDR5SxZgB3EwJBPpajhOJZV5G2pKSyLXeVG6wjMW7MN/OG4aa32gWvq0stsf5fUC
-         7/4aJT8mXTryBcDn7ChCkOxC7cko8Pxn4/COGn0NYsUxprjwJNkrQSsrQXEtHK2muwOC
-         tzrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704898526; x=1705503326;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6s/DjyGGlYA04VcYhLlf5rs2XIHUh5tvTkRQGkhtStw=;
-        b=XntPB5n9l/Gcjf3vjRr6WQydOrAeThbakKUxLeCM16i0K1dtVMnB653E7WqG9s3Vyx
-         95mFMUoNTfqPB6T10o9jbm1D+BE2exk8fFqCvggtVUcs0O8K4LZnAZNItyMqcW0yGokj
-         eg70AXAAlbrQl6SHgRzUJ2oMyXnUpPuLwCdQQKOHRonhOsfnNBvRK8SKS0awBTa0fGKy
-         ot3NlKAJz3hjPnplmBBSdRDXg0iooRQKXLEbxVB7KBbWlMniUECc2mo4/nrZYZT/mBH6
-         stdtBQyOv/5v579ahMA4/j8gPS4Ix3nSnl0ApXlrNrQnxXaMs/+8YMqY6GC9avQEGWxA
-         cOWQ==
-X-Gm-Message-State: AOJu0YwYnEx5Mo741Z6rSmnVrm8431HR0OeX8z1YVwSkXNVrtJjkoVE2
-	zPnhfT8omzdia4unIa60aCg=
-X-Google-Smtp-Source: AGHT+IFSA6hpG4OYNoXISy+6NXPM9czRtads/xSkt7aYl95uddlxeYmpUxwoyzIzFIz2F8OAqVGjcQ==
-X-Received: by 2002:a05:6902:1023:b0:dbd:bf0d:d97f with SMTP id x3-20020a056902102300b00dbdbf0dd97fmr845117ybt.126.1704898526128;
-        Wed, 10 Jan 2024 06:55:26 -0800 (PST)
-Received: from [10.102.4.159] (50-78-19-50-static.hfc.comcastbusiness.net. [50.78.19.50])
-        by smtp.gmail.com with ESMTPSA id ge8-20020a05622a5c8800b00429bd898838sm53212qtb.47.2024.01.10.06.55.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 06:55:25 -0800 (PST)
-Message-ID: <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
-Date: Wed, 10 Jan 2024 06:55:23 -0800
+	Wed, 10 Jan 2024 16:20:53 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40AE0nmR000806;
+	Wed, 10 Jan 2024 16:20:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=hmUcomUAFN0uAnfvzkXpoc1svcrrGLxqjY4x2TQVtpE=; b=ch
+	QaU9jxf40Ubk2bMYhb+QrI9YIB93xyCdhYxUiQLTgn3ANovODpeeZf0TyLKKkkWZ
+	cf16LbFbobWOYwc4TQLNU4hDYIi9ZKFTYSgZ3Bgvc6chTJf/OvpSB1eeRRQvDKK4
+	Nqoorvg5w5jplZkL2rk1jElkGJBpQenYw5Mq+RxUtLz5mRuv4nivgA7pwWiG/7jJ
+	3ApENMdf+yEbbtcQHSPjJT9918w1axDuFcMf4vkcKEbk+sx7wqYzoLvq8G2VXzm9
+	XbjRmCMAnY/wsiSYJxCpaRViGqhruIb/7MbxorCB/vYtqWX9uvSTTj+ZDvw9U1L4
+	uMvt6C3rCpub6Y8HXijQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vhvhp0bf9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 16:20:47 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40AGKlGu032738
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 16:20:47 GMT
+Received: from [10.110.103.239] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 10 Jan
+ 2024 08:20:46 -0800
+Message-ID: <da6ff953-07a4-4226-a7dc-b816f8dc5724@quicinc.com>
+Date: Wed, 10 Jan 2024 08:20:46 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k and vfio-pci support
+Subject: Re: [PATCH v2 2/2] wifi: ath11k: add support for QCA2066
 Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
- <8734v5zhol.fsf@kernel.org> <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
- <87r0ipcn7j.fsf@kernel.org>
-From: James Prestwood <prestwoj@gmail.com>
-In-Reply-To: <87r0ipcn7j.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240109021336.4143-1-quic_bqiang@quicinc.com>
+ <20240109021336.4143-3-quic_bqiang@quicinc.com>
+ <e19baf59-c17b-4e2b-96d7-f4fc9812c99a@quicinc.com>
+ <56282bad-b59d-4572-a6f1-1b905bf0edbd@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <56282bad-b59d-4572-a6f1-1b905bf0edbd@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZSaIGInvrtTOQIOAtsQlVpZq_hK23hGY
+X-Proofpoint-ORIG-GUID: ZSaIGInvrtTOQIOAtsQlVpZq_hK23hGY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ impostorscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 spamscore=0 clxscore=1015 mlxscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401100132
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240110_065530_951596_C6FA6A0E 
-X-CRM114-Status: GOOD (  10.77  )
+X-CRM114-CacheID: sfid-20240110_082051_330391_09B1A949 
+X-CRM114-Status: GOOD (  14.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,27 +100,62 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
-
-On 1/10/24 5:49 AM, Kalle Valo wrote:
-> James Prestwood <prestwoj@gmail.com> writes:
->
->>> But I have also no idea what is causing this, I guess we are doing
->>> something wrong with the PCI communication? That reminds me, you could
->>> try this in case that helps:
+On 1/9/2024 6:16 PM, Baochen Qiang wrote:
+> On 1/10/2024 1:41 AM, Jeff Johnson wrote:
+>> On 1/8/2024 6:13 PM, Baochen Qiang wrote:
+>>> QCA2066 is a PCI based DBS device. It is very similar to WCN6855
+>>> overall: they share the same PCI device ID, the same major and
+>>> minor version numbers, the same register address, and same HAL
+>>> descriptors etc. The most significant difference is that QCA2066
+>>> supports 3-antenna configuration while WCN6855 does not. To differentiate
+>>> them, subversion numbers are used. Currently four numbers are used
+>>> by QCA2066: 0x1019A0E1, 0x1019B0E1, 0x1019C0E1 and 0x1019D0E1.
 >>>
->>> https://patchwork.kernel.org/project/linux-wireless/patch/20231212031914.47339-1-imguzh@gmail.com/
->> Heh, I saw this pop up a day after I sent this and was wondering. Is
->> this something I'd need on the host kernel, guest, or both?
-> On the guest where ath11k is running. I'm not optimistic that this would
-> solve your issue, I suspect there can be also other bugs, but good to
-> know if the patch changes anything.
+>>> Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03737-QCAHSPSWPL_V2_SILICONZ_CE-1
+>>> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+>>>
+>>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+>>> ---
+>>> v2:
+>>>   - Rebased on ToT.
+>>
+>> hmmm, fails to apply using b4 shazam
+>>
+>> Checking attestation on all messages, may take a moment...
+>> ---
+>>    ✓ [PATCH v2 1/2] wifi: ath11k: move pci.ops registration ahead
+>>    ✓ [PATCH v2 2/2] wifi: ath11k: add support for QCA2066
+>>    ---
+>>    ✓ Signed: DKIM/quicinc.com
+>> ---
+>> Total patches: 2
+>> ---
+>>   Base: using specified base-commit 2cd4e3f91f264926a6b11df948417b74d52ca9b9
+>> Applying: wifi: ath11k: move pci.ops registration ahead
+>> Applying: wifi: ath11k: add support for QCA2066
+>> Patch failed at 0002 wifi: ath11k: add support for QCA2066
+>> error: patch failed: drivers/net/wireless/ath/ath11k/core.c:711
+>> error: drivers/net/wireless/ath/ath11k/core.c: patch does not apply
+>>
+>> And sure enough the code at drivers/net/wireless/ath/ath11k/core.c:711
+>> doesn't match the code in the 2nd patch so something is amiss here.
+>>
+>> note your patch has reference to .support_dual_stations that is not
+>> present in ath11k -- perhaps there are other prerequisites?
+>> <https://patchwork.kernel.org/project/linux-wireless/patch/20230714023801.2621802-2-quic_cjhuang@quicinc.com/>
+> Yes, as said in the cover letter, this patch set depends on the above patch.
 
-Looks the same here, didn't seem to change anything based on the kernel 
-logs.
+Unfortunately automated tasks don't parse cover letters. But it looks
+like b4 doesn't handle or warn about:
+prerequisite-patch-id: 640366721125b1adea0eeabd5cdfca5e91476e7c
 
-Thanks,
+And not quite sure how it would handle that.
 
-James
+Kalle, that prerequisite series is set to Deferred and predates my
+transition to the ath11k maintainer role. What action is needed from the
+developers?
+<https://patchwork.kernel.org/project/linux-wireless/list/?series=765506&state=*>
+
+/jeff
 
 
