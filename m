@@ -4,86 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31423C46CD2
-	for <ath11k@archiver.kernel.org>; Tue,  9 Jan 2024 17:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51145C4706C
+	for <ath11k@archiver.kernel.org>; Wed, 10 Jan 2024 00:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=XLre+Q2XrFVNZAOFTmZJhq7cWjUTLjdctE3w1PxdB7c=; b=obfVX5alQ+J/HE/o0upfWSe2Ib
-	FAp2Jzeh2WHDn92MPOXE/5Yw8kpsTGLC34fVbuAP2w3Z9zFRZ3oD0uZMY5NI8IFykkdCHKTzpBp9h
-	NSmU4VW8OBL+nP27aCOWYCalXPAbVRff06V8ECdp4nIoBk/VHF3aABozgSEeSxEGDrQVNRAgoAVsQ
-	3x4pVsD5v9kezaWxY5FQol4THnd3yWoqMy7FK3SlHv1cratA5DbrC6lMrBSyxQ3utQUC7kYjb5ZEc
-	4G2E0hUDchgqTiQhT1ts395Z7TOmYuX4f0z0zae6M2OH3l47ZEX0+MgY65WnOVhOf1kGHdAc0fDkl
-	GN3xNIQg==;
+	bh=kM8heQLb1WxBeDONq1X7q8jQ8JXiO0fRAK69Y+bY9XY=; b=XXQ8DdczKxkRldvlLUM4ZZk06W
+	TdaQrGsrEJrlTGXcIpf6iqx8oQ2oETqgspCBnKNNULVxD3zYNYGjgAxkXekz6DDAo18elKM8fHsZh
+	gKv6x5pxDt8nTQuz5EJWm3XDmedcR0aL1vs2azMXMe/PrkomKSIly7FcLIdeJ0LMkBbN7EhNZk/jn
+	z5w1dDsbhaVR621zx1poSirPgzTcsh1mvydOxONPP7ta+OFTCG6+hxq3R0S2vBGit6dTI6inluq3F
+	9wcpz3kjsM6OJeJGjdpY/KzGQoVSiSv1r2zVYayqybI8r4ntOJ4bE8R6G3i408ioVSBM1wKirVL3K
+	PS4/1tEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNG6X-0091TQ-1k;
-	Tue, 09 Jan 2024 17:41:33 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rNMgX-009zLT-03;
+	Wed, 10 Jan 2024 00:43:09 +0000
+Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rNG6U-0091Sc-0d
+	id 1rNMgT-009zI2-1b
 	for ath11k@lists.infradead.org;
-	Tue, 09 Jan 2024 17:41:32 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 409Ga4CQ010601;
-	Tue, 9 Jan 2024 17:41:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=XLre+Q2XrFVNZAOFTmZJhq7cWjUTLjdctE3w1PxdB7c=; b=lS
-	lMr4NCMN46TP+qJd+JmS6EoDU5vo4JTUqhbFWdcpd8rQ6SAoFC7JaY2iOQ53fdmP
-	HfVzULa/Od8VC7VVBC2a73sQxkFXEV1WaKRhqmmjJbqiX8lYcyWFiZFX9LOzyWY7
-	z9eqKXrcvxvumpr1iKZzIOlCn7RWdOS8AWzzEXE3FOETBzs1HezS7Sxf3kRjK74o
-	8cjcVv5KktxC/ObGt+hLVbLfEEf896dM0JUZG9WD0A3OKsnOZExwSk+VOVfndU1d
-	6cpjECWQ8rsjuh9BA2HObkCbpjuYDdMOPGNweADIJ2hgFxEp8d9GdgeFtib0rM5F
-	IZ9aUZuXaMw2Z0Ey9Kfw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vh9ta055k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jan 2024 17:41:28 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 409HfR4P019475
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jan 2024 17:41:27 GMT
-Received: from [10.110.103.239] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 9 Jan
- 2024 09:41:26 -0800
-Message-ID: <e19baf59-c17b-4e2b-96d7-f4fc9812c99a@quicinc.com>
-Date: Tue, 9 Jan 2024 09:41:25 -0800
+	Wed, 10 Jan 2024 00:43:07 +0000
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2cd0d05838fso40229661fa.1
+        for <ath11k@lists.infradead.org>; Tue, 09 Jan 2024 16:43:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704847382; x=1705452182; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kM8heQLb1WxBeDONq1X7q8jQ8JXiO0fRAK69Y+bY9XY=;
+        b=JNWlpi4AMSjHOtZLR/6aLflfb+QO4QLuMpv6Od2geQSS3TTHSNRj4c+H70EDmfwHOC
+         B1tRqJcLKdq4LKz8YwOm41QzaDhzXLjpDjvKITrniteLoGc7yzm8/uN2iwxZbvfTNSEk
+         WLEKrmL+B5t6gBVnfdn1McUO65D1VzJJRwsyg7zg49DTPseZCuu7RdtbUiPsPBkjs06x
+         HGxfbPmNfK81bgStQaL4hfTyQ29Z7e2KaoAg4Kt5H5s+OXwgrm3q9HIKW3QSzZfczpvn
+         i0iq5YNrbsEFRA3nGcl++tToUWjJjwoKSozKwJQ/8f8yjZTtMZGKsBv0z2o59UVb8EIj
+         Mq4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704847382; x=1705452182;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kM8heQLb1WxBeDONq1X7q8jQ8JXiO0fRAK69Y+bY9XY=;
+        b=RPyA24T4GlZcYZbI3mobbrbjLd8SrmRjVGbvCfq9KWMzbGXof1pWzZM3sSEw30Obf/
+         wawd1OdGfHDbbNiV5bPKsIT1CKm2kCOdTIEw+Q/L/ncD85vim1M1nf/sEQDwgl/1HduI
+         avUWYt00DY+UWLvaYTb8SC9Iv9xdAI5lzQY72LM94qOcC2/Ac6uxjRCJpQIs4ta3Fhk3
+         DfwMVRsqvXvcqvZLMDkViniU9SMw5IjY2bqRSrBuzcimPmlIy+pMbB4NfkFyVBkG0/Ao
+         RtgFebNB60H+KK4RTVydT43LsST+x0ycFzBZOU0ddWrkmcAmAweS3rikT3FL9BObnPuG
+         C1RA==
+X-Gm-Message-State: AOJu0YwvrHnr1PAw4pu0qm7L6QJhzHGRTcJKMBgDsL8eyYC0ZlpUqipu
+	ALQ+qtkGFQBackS7ncQuqj+iiwZwdmj5CafhiAc=
+X-Google-Smtp-Source: AGHT+IGp7Svf1+qtr+oIJ3lI1JMomxiI1ELL3hpayjh1w0As/k9QdU0Q4TgGJGkw6bBmNF8huV0bjq91MJiwdckEomk=
+X-Received: by 2002:a05:651c:1315:b0:2cc:e919:eb8f with SMTP id
+ u21-20020a05651c131500b002cce919eb8fmr75322lja.101.1704847381655; Tue, 09 Jan
+ 2024 16:43:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] wifi: ath11k: add support for QCA2066
-Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240109021336.4143-1-quic_bqiang@quicinc.com>
- <20240109021336.4143-3-quic_bqiang@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240109021336.4143-3-quic_bqiang@quicinc.com>
+References: <20231212031914.47339-1-imguzh@gmail.com> <8734v6ecp1.fsf@kernel.org>
+In-Reply-To: <8734v6ecp1.fsf@kernel.org>
+From: Zhenghao Gu <imguzh@gmail.com>
+Date: Tue, 9 Jan 2024 18:42:50 -0600
+Message-ID: <CAMuEUs+ZOwgOmNXSc42H5yFiNWQQiKJL7Q1isBUCBO1AaVsN1g@mail.gmail.com>
+Subject: Re: [PATCH v2] wifi: ath11k: fix IOMMU errors on buffer rings
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aUQ_Er5TkNIW_NEXKMux8rqruCke3tsa
-X-Proofpoint-ORIG-GUID: aUQ_Er5TkNIW_NEXKMux8rqruCke3tsa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 malwarescore=0 mlxscore=0 adultscore=0 mlxlogscore=999
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 clxscore=1015
- phishscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401090143
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240109_094130_350205_E4B49372 
-X-CRM114-Status: GOOD (  10.95  )
+X-CRM114-CacheID: sfid-20240109_164305_531734_466B6B90 
+X-CRM114-Status: GOOD (  18.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,47 +87,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/8/2024 6:13 PM, Baochen Qiang wrote:
-> QCA2066 is a PCI based DBS device. It is very similar to WCN6855
-> overall: they share the same PCI device ID, the same major and
-> minor version numbers, the same register address, and same HAL
-> descriptors etc. The most significant difference is that QCA2066
-> supports 3-antenna configuration while WCN6855 does not. To differentiate
-> them, subversion numbers are used. Currently four numbers are used
-> by QCA2066: 0x1019A0E1, 0x1019B0E1, 0x1019C0E1 and 0x1019D0E1.
-> 
-> Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03737-QCAHSPSWPL_V2_SILICONZ_CE-1
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> ---
-> v2:
->  - Rebased on ToT.
+On Tue, Jan 9, 2024 at 9:41=E2=80=AFAM Kalle Valo <kvalo@kernel.org> wrote:
+>
+> Zhenghao Gu <imguzh@gmail.com> writes:
+>
+> > virt_to_phys doesn't work on systems with IOMMU enabled,
+> > which have non-identity physical-to-IOVA mappings.
+>
+> Can you give an example of such system? Just curious where you are
+> seeing this.
 
-hmmm, fails to apply using b4 shazam
+I'm testing on an AMD system with IOMMU enabled in the BIOS and "iommu=3Dno=
+pt"
+in the kernel command line. I also noticed
+https://bugzilla.kernel.org/show_bug.cgi?id=3D217056
+which may be the same issue.
 
-Checking attestation on all messages, may take a moment...
----
-  ✓ [PATCH v2 1/2] wifi: ath11k: move pci.ops registration ahead
-  ✓ [PATCH v2 2/2] wifi: ath11k: add support for QCA2066
-  ---
-  ✓ Signed: DKIM/quicinc.com
----
-Total patches: 2
----
- Base: using specified base-commit 2cd4e3f91f264926a6b11df948417b74d52ca9b9
-Applying: wifi: ath11k: move pci.ops registration ahead
-Applying: wifi: ath11k: add support for QCA2066
-Patch failed at 0002 wifi: ath11k: add support for QCA2066
-error: patch failed: drivers/net/wireless/ath/ath11k/core.c:711
-error: drivers/net/wireless/ath/ath11k/core.c: patch does not apply
+>
+> > It leads to IO_PAGE_FAULTs like this:
+> > [IO_PAGE_FAULT domain=3D0x0023 address=3D0x1cce00000 flags=3D0x0020]
+> > and no link can be established.
+>
+> What do you mean with link in this context? Are you talking about 802.11
+> association?
 
-And sure enough the code at drivers/net/wireless/ath/ath11k/core.c:711
-doesn't match the code in the 2nd patch so something is amiss here.
+Yes.
 
-note your patch has reference to .support_dual_stations that is not
-present in ath11k -- perhaps there are other prerequisites?
-<https://patchwork.kernel.org/project/linux-wireless/patch/20230714023801.2621802-2-quic_cjhuang@quicinc.com/>
-
-/jeff
+>
+> > This patch changes that to dma_map_single(), which works correctly.
+>
+> Good catch. And virt_to_phys() documentation even says this:
+>
+>  *      This function does not give bus mappings for DMA transfers. In
+>  *      almost all conceivable cases a device driver should not be using
+>  *      this function
+>
+> > Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> > Signed-off-by: Zhenghao Gu <imguzh@gmail.com>
+>
+> Jeff, are you ok with this?
+>
+> I did some cosmetics changes in the pending branch (removed unnecessary
+> parenthesis, reverse xmas tree etc), please check:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=
+=3Dpending&id=3Dfefa43d63e1928fce6e8c2bb626900e9ce98ca69
 
