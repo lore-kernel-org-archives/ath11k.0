@@ -4,63 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9E54C4706C
-	for <ath11k@archiver.kernel.org>; Fri, 12 Jan 2024 06:25:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61FD9C4706C
+	for <ath11k@archiver.kernel.org>; Fri, 12 Jan 2024 08:24:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=M2J+k1SIthxRKnugzR1AaldE/aPDOVUzbgE3fekXgfQ=; b=5EmmJxFWmpnYhFy5gTFi0EnB0g
-	Xg5jFEGr3P2Y6pngOHGLLJIrTTivvPcZjdzIzHWJtfdf5wsKFj+i8cAq2JYXcrh0Y7XoljKR1H1So
-	bgQ7GmEWZvqTB5InSB4gTK1flxgANfof3aZaCabkYtrYH13tzd5Oa8g7r58h1iVN5D0jXanGudVjB
-	lo56Q8eX0XNEMmXt0AEn+GyjHWM/nEHVYENB25AH37SWvIh4OTC1R9/ZTr1vvmr6A+f8drR/1+7pp
-	GAV8Yv1pxoXIdzaSwnh/bIjYs+BnhSSPRKVCsgBQgqVwmZLnSPF7G7T+EPyCIFcSLPlr3Cc8cquMJ
-	dNBhWQRQ==;
+	bh=mwO1o1MVlkTnBwM3yZCDOA6cAzYCKTlNN3wIP9L9uaE=; b=PsKVfOrIrqLfb5iCB/DeQiW6P2
+	wDunOo8Qrg21+jR0GNcBD3g62Y757JA++KL1CW3ITOgziJe7lyi8Fw39EGpJz1bZqk4Rm+HFJScHx
+	JoPl1WBVZMoXQvRBxQ92nQpXYkhNg+Mklt1X+dQa/ovujIi5XA7HdWLw0quvpg1dq9ojNfYp3c7/V
+	yy+rZ1tXnzMHREVvgUEVf6oLcZTtgYoStawNlRH9jro5741oUc3o8WtYO4uyd3s223kWcyTFMO/GE
+	MVoNG2WSInlbF6wZM2sRJk5bI2Nh2QAt87D8ew9m40fiXQeKNQs0WLGeM+emkAfxwhzvX/m9LwTvv
+	5jsUVkvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rOAyl-0020cB-1M;
-	Fri, 12 Jan 2024 06:25:19 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1rOCqK-002CFd-14;
+	Fri, 12 Jan 2024 08:24:44 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rOAyi-0020bl-0b
+	id 1rOCqH-002CF2-3A
 	for ath11k@lists.infradead.org;
-	Fri, 12 Jan 2024 06:25:17 +0000
+	Fri, 12 Jan 2024 08:24:43 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 7C590CE233F;
-	Fri, 12 Jan 2024 06:25:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE547C433C7;
-	Fri, 12 Jan 2024 06:25:08 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id DB4B661D0B;
+	Fri, 12 Jan 2024 08:24:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AA76C43390;
+	Fri, 12 Jan 2024 08:24:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705040709;
-	bh=ltAFigckzoyq+M2uicYFrx84Y169sQJ1vb3Owsd0y+A=;
+	s=k20201202; t=1705047877;
+	bh=wy11WvA+L49StKXUfkcnYNhF7BZlgsmUfBARPZg1eks=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=NYq7b5/pGPEK7Dwy0xcnWCOAJGelxrvR2igcEeYuflbsGcKCj9pGqjeZ95NQ6bc2W
-	 qq7B5j3EpJUpHhvFfE0xZOeaF1XAnNFiziZOJL5a8ybavnivqyxn9sAPFP3zNYuY80
-	 ETcXqvaLzJKVgWvhdRi7fsmd2U8yamIh9PE3JcvcQd8kEEoIr/onrL89o1bKr3ZyEI
-	 99+pirHw7SoEmM1p5jiUEexbOTzMVr3kur5vNxFDVbBQIN43BrklU1nBIqRbkO4gUa
-	 Fiw9oi3DOwt4xJVA42W46K3SGu0albHhNZsq0+lNsFiYig67o1XFMFCnITiDmXabbV
-	 J7IOtEZsbkINw==
+	b=JZ+u1VSLguqGGIZ82VsReCwl2NsxooLCcMBT0ylmVYE14zgxLKNMgzEYHRiEJj+5a
+	 D7Sy15HZuP6C2lqLtSWseqVyMZ3QqZngiA5ulCL0xCflbhKPxbQ0zlMyH2RUW5J730
+	 h6scMZZA61GcyQkCY/vjUfj7U1iUsNg6gjYcGwtUo9ZpoXZnefy5EXENM4qK+zCJqn
+	 pgMaNLEs8oswAUVwOmN82pgtFz4ddfOR1zaNHHv7hqK0lt4ueJ/UZGHCzhR7t54MiF
+	 OMfuzCbR2w5zYx38EC63ObkuhqGCdDfnh4t4+GwWsJojxWsAgTdX3HPeh2/aXdhSyw
+	 /xYxvUW4gArqw==
 From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>,  <ath11k@lists.infradead.org>,
-  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v10 07/12] wifi: ath11k: add parse of transmit power
- envelope element
-References: <20231218085844.2658-1-quic_bqiang@quicinc.com>
-	<20231218085844.2658-8-quic_bqiang@quicinc.com>
-	<93c178cd-8a16-48e5-b352-f14afab07498@quicinc.com>
-Date: Fri, 12 Jan 2024 08:25:06 +0200
-In-Reply-To: <93c178cd-8a16-48e5-b352-f14afab07498@quicinc.com> (Jeff
-	Johnson's message of "Thu, 11 Jan 2024 09:13:19 -0800")
-Message-ID: <87eden9igt.fsf@kernel.org>
+To: benjamin@sipsolutions.net
+Cc: linux-wireless@vger.kernel.org,  lenb@kernel.org,  Benjamin Berg
+ <benjamin.berg@intel.com>,  ath11k@lists.infradead.org
+Subject: Re: [PATCH] wifi: ath11k: rely on mac80211 debugfs handling for vif
+References: <20240111170629.1257217-1-benjamin@sipsolutions.net>
+	<877ckfip1g.fsf@kernel.org>
+Date: Fri, 12 Jan 2024 10:24:34 +0200
+In-Reply-To: <877ckfip1g.fsf@kernel.org> (Kalle Valo's message of "Thu, 11 Jan
+	2024 22:38:19 +0200")
+Message-ID: <87a5pb9cxp.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240111_222516_424637_68F38496 
-X-CRM114-Status: UNSURE (   7.27  )
+X-CRM114-CacheID: sfid-20240112_002442_060296_2673BF4E 
+X-CRM114-Status: UNSURE (   8.20  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,23 +74,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+Kalle Valo <kvalo@kernel.org> writes:
 
-> On 12/18/2023 12:58 AM, Baochen Qiang wrote:
->> +/**
->> + * struct reg_tpc_power_info - regulatory TPC power info
+> benjamin@sipsolutions.net writes:
 >
-> Kalle,
+>> From: Benjamin Berg <benjamin.berg@intel.com>
+>>
+>> mac80211 started to delete debugfs entries in certain cases, causing a
+>> conflict between ath11k also trying to delete them later on. Fix this by
+>> relying on mac80211 to delete the entries when appropriate and adding
+>> them from the vif_add_debugfs handler.
+>>
+>> Fixes: 0a3d898ee9a8 ("wifi: mac80211: add/remove driver debugfs entries as appropriate")
+>> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=218364
+>> Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
 >
-> just spotted this kernel-doc issue in the pending branch
->
-> s/reg_tpc_power_info/ath11k_reg_tpc_power_info/
->
-> can you update?
+> Adding ath11k list so that the whole team sees this.
 
-Yup, did that now:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=180335ddf80a8cd44a9b261db548c14ede01da44
+Thanks, this patch passes my ath11k tests and I don't see crashes
+anymore. But what about other drivers, can we trust that they don't have
+similar problems? I'm just wondering should we consider reverting the
+mac80211 commit for the time being?
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
