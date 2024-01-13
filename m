@@ -4,67 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 352CFC4725D
-	for <ath11k@archiver.kernel.org>; Fri, 12 Jan 2024 15:47:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A517C4706C
+	for <ath11k@archiver.kernel.org>; Sat, 13 Jan 2024 10:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YyetyWeG9UbSbOOnqmlTvkeIXgj/ry23oApekZQV2l8=; b=GK6z9uwKhs0LI7gMDOGt0RJm+U
-	45Ptw+IOfoz+lgBphuAKZuUzgDMdtNJkUWRzfjKCaxLMgv6558raW5jJuc57wHU6TaYgxczUSQ86b
-	T8z0eiQ7glfjbDkkKyFPdgNdzT9N6jOmTNwvJVTT7o7OoxD1Yfw9TxEJhbBGBkSWTQ5735bdPckqj
-	RuqcBfgqO/bBFfzBjI1ylJ6XJ/Z7+Tauhel369RyYtovMrrR71AVINdRvdMEKkYds6HQXaD1wH8qw
-	K/81ciRBVjO7L5Btx8cV8lW46wbuJAYx6yY+1w0k1XDU80231UuuE5sJtTEcAnF9DJPqaGtHsI+Ch
-	HXyhAEwg==;
+	bh=lrlH0dI/rLGPYpeW0qH4BHPJwFKQcBa4W+d2qHa/7vc=; b=vZJ8COZotp0dKBTaWFIF6plwzi
+	eXxr3Y9vsZY2/V+5uD9eVma86xQ3JrREBRF1CuzeLboGQnYiSfT0EM7/cOUYtJrHGVOOshbGXWyqW
+	lNAd5jgVESzXfoC/wc92dwjSpUTosdeK8lQdhG7LvVYUvcvhtt1WFDeabsk3TrrnKBC/sruvQn85m
+	kivlxj+znQV7MGXBxGMu5iMNgcP1knUEqhStkv3lL2h8Dw6gPq/YJyoe/dt6X06PMprXZFM9yC2Vs
+	R2Ow9LXNMjWcI3OjsQkjHe7Aex9/0m6WYJ3JhHNoVucOVtgF8MTUTWnMlrjHUNX+CARAmBvPrJqaW
+	qCGDwJiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rOJkN-003COa-13;
-	Fri, 12 Jan 2024 15:47:03 +0000
+	id 1rObEk-004tqq-0V;
+	Sat, 13 Jan 2024 10:27:34 +0000
 Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rOJkK-003CNs-2P
+	id 1rObEh-004tov-0V
 	for ath11k@lists.infradead.org;
-	Fri, 12 Jan 2024 15:47:02 +0000
+	Sat, 13 Jan 2024 10:27:32 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id AEEA7B8233D;
-	Fri, 12 Jan 2024 15:46:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E299DC433C7;
-	Fri, 12 Jan 2024 15:46:56 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTP id 384D8B82431;
+	Sat, 13 Jan 2024 10:26:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 371DDC433F1;
+	Sat, 13 Jan 2024 10:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705074418;
-	bh=igEeV4GkCvqUGqVrM5kh4M1lITRFNUlb7FBFynlbMJI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=vH+Z0++EVXTiW4epCVxhtxdJs+02tksp8zU2XTP0lVUM+7dwVMaPRoFGK9bV1f4pS
-	 +7EReTkt3uUeBzy/xb6pVn3s/bUGc6H0lwv85TBKkTz+24vfvkmEYZxgDPH/h0zXcE
-	 JhD4rDZiU/BIliE6VkcNmKDPhOyXo/H/KiubJ0VLPmxsicyOWtxXcEIl1J6KwAzZAu
-	 ivHp0Nz3FHx2HUtOAFZz871gEMF4CtSzz6mB32/+1ZiEbWaxGP7hLqGH+L0nKdVyC3
-	 rcgt+ZHKtUr0UBKjuBIn52LXVyDhuCDxe2OTGmFxNOBShUsv9IFpYTVZnePHRgRv6G
-	 vXlfRiJLsFlEw==
+	s=k20201202; t=1705141616;
+	bh=JFI/sg9PG8bnP6shSEl0PaqRN8tCMbNQeFxvpUYK4tU=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=j3PCvLUmYJFRYZIniSh4Vb51WLTdh9rzhALwc4E+Xmuzk37yJU3u3xFKcKB5inpTl
+	 dQ6lcf8I0iSHk5+9ZHifVBhNp1/jGC2L6pzO9hzdFFteQi00Muw2CnaMG+MaNyOkOS
+	 RJpuoKU45iQfqdWJ0jblk+EZQUNyGdR7+JYZhusJDCaZC4uLYbDHHjpDeYUceCS38+
+	 NWCfN/85UD0KJ2O5DC05YEYdzliR6OpnFRPkeMGIsBfhE51pHv+jX2Bs/22UXjvSeM
+	 ivZVD93M3fZbOkayTKoh/o88yKvrKWBlspoIjBwNavs9+Vom9kKWAA1RY/LOCPuMNa
+	 +O1uruxECWEaw==
 From: Kalle Valo <kvalo@kernel.org>
-To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  Baochen Qiang
- <quic_bqiang@quicinc.com>,  ath11k@lists.infradead.org,
-  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] wifi: ath11k: add support for QCA2066
-In-Reply-To: <20240112-dangerous-cow-of-excitement-fdbaa6@lemur> (Konstantin
-	Ryabitsev's message of "Fri, 12 Jan 2024 09:38:22 -0500")
-References: <20240109021336.4143-1-quic_bqiang@quicinc.com>
-	<20240109021336.4143-3-quic_bqiang@quicinc.com>
-	<e19baf59-c17b-4e2b-96d7-f4fc9812c99a@quicinc.com>
-	<56282bad-b59d-4572-a6f1-1b905bf0edbd@quicinc.com>
-	<da6ff953-07a4-4226-a7dc-b816f8dc5724@quicinc.com>
-	<20240112-dangerous-cow-of-excitement-fdbaa6@lemur>
+To: Johan Hovold <johan@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,  Jeff Johnson
+ <quic_jjohnson@quicinc.com>,  ath11k@lists.infradead.org,
+  linux-wireless@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: ath11k: checking RCU usage
+References: <20231019153115.26401-1-johan+linaro@kernel.org>
+	<87o7goxget.fsf@kernel.org> <ZTfgJCBxsNv3bVjv@hovoldconsulting.com>
+Date: Sat, 13 Jan 2024 12:26:53 +0200
+In-Reply-To: <ZTfgJCBxsNv3bVjv@hovoldconsulting.com> (Johan Hovold's message
+	of "Tue, 24 Oct 2023 17:17:56 +0200")
+Message-ID: <87zfx98r6a.fsf_-_@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
-Date: Fri, 12 Jan 2024 17:46:54 +0200
-Message-ID: <874jfia70x.fsf@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
+X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240112_074700_955292_CF157119 
-X-CRM114-Status: UNSURE (   8.91  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240113_022731_346449_B3601612 
+X-CRM114-Status: GOOD (  14.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,21 +75,51 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Konstantin Ryabitsev <konstantin@linuxfoundation.org> writes:
+(old discussion, changing title)
 
-> On Wed, Jan 10, 2024 at 08:20:46AM -0800, Jeff Johnson wrote:
->> Unfortunately automated tasks don't parse cover letters. But it looks
->> like b4 doesn't handle or warn about:
->> prerequisite-patch-id: 640366721125b1adea0eeabd5cdfca5e91476e7c
+Johan Hovold <johan@kernel.org> writes:
+
+> On Tue, Oct 24, 2023 at 05:07:38PM +0300, Kalle Valo wrote:
+>
+>> Johan Hovold <johan+linaro@kernel.org> writes:
 >> 
->> And not quite sure how it would handle that.
+>> > RCU lockdep reported suspicious RCU usage when accessing the temperature
+>> > sensor. Inspection revealed that the DFS radar event code was also
+>> > missing the required RCU read-side critical section marking.
+>> >
+>> > Johan
+>> >
+>> >
+>> > Changes in v2
+>> >  - add the missing rcu_read_unlock() to an
+>> >    ath11k_wmi_pdev_temperature_event() error path as noticed by Jeff
+>> >
+>> >
+>> > Johan Hovold (2):
+>> >   wifi: ath11k: fix temperature event locking
+>> >   wifi: ath11k: fix dfs radar event locking
+>> 
+>> Thanks for the fixes. I really like using lockdep_assert_held() to
+>> document if a function requires some lock held, is there anything
+>> similar for RCU?
 >
-> B4 should be able to handle dependencies like that in the future. For example,
-> we can already locate this patch using:
+> Not really, but the checking is instead built into the primitives like
+> rcu_dereference() and enabled whenever CONFIG_PROVE_RCU is set.
 >
-> https://lore.kernel.org/all/?q=patchid%3A640366721125b1adea0eeabd5cdfca5e91476e7c
+> For some special cases, we have open-coded checks like:
+>
+> 	RCU_LOCKDEP_WARN(!rcu_read_lock_held());
+>
+> which similarly depend on CONFIG_PROVE_RCU or simply
+>
+> 	WARN_ON_ONCE(!rcu_read_lock_held());
 
-Oh, that is a very useful feature. Thank you.
+I just found out that sparse has __must_hold():
+
+https://lore.kernel.org/linux-wireless/87sf31hhfp.fsf@kernel.org/
+
+That looks promising, should we start using that in ath11k and ath12k to
+check our RCU usage?
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
