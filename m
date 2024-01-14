@@ -4,63 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A517C4706C
-	for <ath11k@archiver.kernel.org>; Sat, 13 Jan 2024 10:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12715C4707B
+	for <ath11k@archiver.kernel.org>; Sun, 14 Jan 2024 12:37:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=lrlH0dI/rLGPYpeW0qH4BHPJwFKQcBa4W+d2qHa/7vc=; b=vZJ8COZotp0dKBTaWFIF6plwzi
-	eXxr3Y9vsZY2/V+5uD9eVma86xQ3JrREBRF1CuzeLboGQnYiSfT0EM7/cOUYtJrHGVOOshbGXWyqW
-	lNAd5jgVESzXfoC/wc92dwjSpUTosdeK8lQdhG7LvVYUvcvhtt1WFDeabsk3TrrnKBC/sruvQn85m
-	kivlxj+znQV7MGXBxGMu5iMNgcP1knUEqhStkv3lL2h8Dw6gPq/YJyoe/dt6X06PMprXZFM9yC2Vs
-	R2Ow9LXNMjWcI3OjsQkjHe7Aex9/0m6WYJ3JhHNoVucOVtgF8MTUTWnMlrjHUNX+CARAmBvPrJqaW
-	qCGDwJiA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=kVDLCmu1HPIDXNubYu8nKYPaR8pIz4+hElnHGJhhzFw=; b=ccskWp9OGsPzos9syTw2wLk6Fz
+	a0c7k6JbHALQuhmJwZaayYK41V9rqbTPMiUfv5Y4FOpthhYVCkS/hDcyhfV7HRq94RJOkj1aqisHc
+	y/Tkk/UjVHp+ZKO1MVcOLAYwEou6bTQvo95wdBYRM7+w4ekF/Sp/uk2u5/UhXdGQYKg4jVduNWNFh
+	MqpNiBy7X3INrYEVjCgpcgCGEYO+VIvxmlVjvthLl+Z4cX4Bt4rSIS1wAb0AVsMAEmUOHecbxqddN
+	WBMNI08kTxgXRb5zzJ7XifUsc2E04HguvYnbKTq5dfi6qalx7ve7B9LU0oQVMrZ3vrYZkfNiw6A2S
+	iILDCLhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rObEk-004tqq-0V;
-	Sat, 13 Jan 2024 10:27:34 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1rOzkD-006jXG-1P;
+	Sun, 14 Jan 2024 12:37:41 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rObEh-004tov-0V
+	id 1rOzk6-006jVz-2z
 	for ath11k@lists.infradead.org;
-	Sat, 13 Jan 2024 10:27:32 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 384D8B82431;
-	Sat, 13 Jan 2024 10:26:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 371DDC433F1;
-	Sat, 13 Jan 2024 10:26:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705141616;
-	bh=JFI/sg9PG8bnP6shSEl0PaqRN8tCMbNQeFxvpUYK4tU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=j3PCvLUmYJFRYZIniSh4Vb51WLTdh9rzhALwc4E+Xmuzk37yJU3u3xFKcKB5inpTl
-	 dQ6lcf8I0iSHk5+9ZHifVBhNp1/jGC2L6pzO9hzdFFteQi00Muw2CnaMG+MaNyOkOS
-	 RJpuoKU45iQfqdWJ0jblk+EZQUNyGdR7+JYZhusJDCaZC4uLYbDHHjpDeYUceCS38+
-	 NWCfN/85UD0KJ2O5DC05YEYdzliR6OpnFRPkeMGIsBfhE51pHv+jX2Bs/22UXjvSeM
-	 ivZVD93M3fZbOkayTKoh/o88yKvrKWBlspoIjBwNavs9+Vom9kKWAA1RY/LOCPuMNa
-	 +O1uruxECWEaw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>,  ath11k@lists.infradead.org,
-  linux-wireless@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: ath11k: checking RCU usage
-References: <20231019153115.26401-1-johan+linaro@kernel.org>
-	<87o7goxget.fsf@kernel.org> <ZTfgJCBxsNv3bVjv@hovoldconsulting.com>
-Date: Sat, 13 Jan 2024 12:26:53 +0200
-In-Reply-To: <ZTfgJCBxsNv3bVjv@hovoldconsulting.com> (Johan Hovold's message
-	of "Tue, 24 Oct 2023 17:17:56 +0200")
-Message-ID: <87zfx98r6a.fsf_-_@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Sun, 14 Jan 2024 12:37:40 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40ECUNXj029363;
+	Sun, 14 Jan 2024 12:37:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=kVDLCmu1HPIDXNubYu8nKYPaR8pIz4+hElnHGJhhzFw=; b=Yk
+	zm99J3HZW+xj8dm1yb/35RA/C4SFYIXeVKR2n5S+74aOZ8CpZAgAngb6WnHj6iEx
+	1lsqgBKQo7Ywj6zhIuEJfiSig5orzhASh6ki7kngZfVuXneezOmyphMOF8Y0dpym
+	VbZH0h/8Lhjq7v0C3aBvF7+bvNbH0GYnGU+2XHb6Gla/YRr0gEuGt0yW1VPu9WFJ
+	SrUsSn44pPJG+wiSEnojRdQTGxXT6wCp49abUO3SXumAL1TnPsNNuj+GbDJsNdT/
+	YowwpcCjXaOZYmIrVmIbCy2y7uQmvUbBoog9LyOdGXng922oydSmp7uvaXtlWlkN
+	8Vx5EEl3Wm/lNn9I9u3A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vkmgt9nye-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 14 Jan 2024 12:37:12 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40ECb8Lv027442
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 14 Jan 2024 12:37:08 GMT
+Received: from [10.253.12.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 14 Jan
+ 2024 04:37:06 -0800
+Message-ID: <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
+Date: Sun, 14 Jan 2024 20:37:03 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k and vfio-pci support
+Content-Language: en-US
+To: James Prestwood <prestwoj@gmail.com>, Kalle Valo <kvalo@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+ <8734v5zhol.fsf@kernel.org> <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
+ <87r0ipcn7j.fsf@kernel.org> <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
+ <26119c3f-9012-47bb-948e-7e976d4773a7@quicinc.com>
+ <87mstccmk6.fsf@kernel.org> <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
+ <8734v4auc4.fsf@kernel.org> <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
+ <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
+ <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: I17hN3dBRRncW40uKPxADCJmUN8xfY3J
+X-Proofpoint-GUID: I17hN3dBRRncW40uKPxADCJmUN8xfY3J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ bulkscore=0 mlxlogscore=999 adultscore=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401140099
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240113_022731_346449_B3601612 
-X-CRM114-Status: GOOD (  14.87  )
+X-CRM114-CacheID: sfid-20240114_043736_580999_9C191112 
+X-CRM114-Status: GOOD (  40.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,54 +104,200 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-(old discussion, changing title)
 
-Johan Hovold <johan@kernel.org> writes:
 
-> On Tue, Oct 24, 2023 at 05:07:38PM +0300, Kalle Valo wrote:
->
->> Johan Hovold <johan+linaro@kernel.org> writes:
->> 
->> > RCU lockdep reported suspicious RCU usage when accessing the temperature
->> > sensor. Inspection revealed that the DFS radar event code was also
->> > missing the required RCU read-side critical section marking.
->> >
->> > Johan
->> >
->> >
->> > Changes in v2
->> >  - add the missing rcu_read_unlock() to an
->> >    ath11k_wmi_pdev_temperature_event() error path as noticed by Jeff
->> >
->> >
->> > Johan Hovold (2):
->> >   wifi: ath11k: fix temperature event locking
->> >   wifi: ath11k: fix dfs radar event locking
->> 
->> Thanks for the fixes. I really like using lockdep_assert_held() to
->> document if a function requires some lock held, is there anything
->> similar for RCU?
->
-> Not really, but the checking is instead built into the primitives like
-> rcu_dereference() and enabled whenever CONFIG_PROVE_RCU is set.
->
-> For some special cases, we have open-coded checks like:
->
-> 	RCU_LOCKDEP_WARN(!rcu_read_lock_held());
->
-> which similarly depend on CONFIG_PROVE_RCU or simply
->
-> 	WARN_ON_ONCE(!rcu_read_lock_held());
+On 1/12/2024 8:47 PM, James Prestwood wrote:
+> Hi,
+> 
+> On 1/11/24 6:04 PM, Baochen Qiang wrote:
+>>
+>>
+>> On 1/11/2024 9:38 PM, James Prestwood wrote:
+>>>
+>>> On 1/11/24 5:11 AM, Kalle Valo wrote:
+>>>> James Prestwood <prestwoj@gmail.com> writes:
+>>>>
+>>>>> Hi Kalle, Baochen,
+>>>>>
+>>>>> On 1/11/24 12:16 AM, Kalle Valo wrote:
+>>>>>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
+>>>>>>
+>>>>>>> On 1/10/2024 10:55 PM, James Prestwood wrote:
+>>>>>>>> Hi Kalle,
+>>>>>>>> On 1/10/24 5:49 AM, Kalle Valo wrote:
+>>>>>>>>> James Prestwood <prestwoj@gmail.com> writes:
+>>>>>>>>>
+>>>>>>>>>>> But I have also no idea what is causing this, I guess we are 
+>>>>>>>>>>> doing
+>>>>>>>>>>> something wrong with the PCI communication? That reminds me, 
+>>>>>>>>>>> you could
+>>>>>>>>>>> try this in case that helps:
+>>>>>>>>>>>
+>>>>>>>>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20231212031914.47339-1-imguzh@gmail.com/
+>>>>>>>>>> Heh, I saw this pop up a day after I sent this and was 
+>>>>>>>>>> wondering. Is
+>>>>>>>>>> this something I'd need on the host kernel, guest, or both?
+>>>>>>>>> On the guest where ath11k is running. I'm not optimistic that 
+>>>>>>>>> this would
+>>>>>>>>> solve your issue, I suspect there can be also other bugs, but 
+>>>>>>>>> good to
+>>>>>>>>> know if the patch changes anything.
+>>>>>>>> Looks the same here, didn't seem to change anything based on the
+>>>>>>>> kernel logs.
+>>>>>>>>
+>>>>>>> Could you try this?
+>>>>>>>
+>>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/net/wireless/ath/ath11k/pci.c?id=39564b475ac5a589e6c22c43a08cbd283c295d2c
+>>>>>> This reminds me, I assumed James was testing with ath.git master 
+>>>>>> branch
+>>>>>> (which has that commit) but I never checked that. So for testing 
+>>>>>> please
+>>>>>> always use the master branch to get the latest and greatest ath11k:
+>>>>>>
+>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/
+>>>>>>
+>>>>>> There's a quite long delay from ath.git to official releases.
+>>>>> Good to know, and I was not in fact using that branch. Rebuilt from
+>>>>> ath.git/master but still roughly the same behavior. There does appear
+>>>>> to be more output now though, specifically a firmware crash:
+>>>>>
+>>>>> [    2.281721] ath11k_pci 0000:00:06.0: failed to receive control
+>>>>> response completion, polling..
+>>>>> [    2.282101] ip (65) used greatest stack depth: 12464 bytes left
+>>>>> [    3.306039] ath11k_pci 0000:00:06.0: Service connect timeout
+>>>>> [    3.307588] ath11k_pci 0000:00:06.0: failed to connect to HTT: -110
+>>>>> [    3.309286] ath11k_pci 0000:00:06.0: failed to start core: -110
+>>>>> [    3.519637] ath11k_pci 0000:00:06.0: firmware crashed: 
+>>>>> MHI_CB_EE_RDDM
+>>>>> [    3.519678] ath11k_pci 0000:00:06.0: ignore reset dev flags 0x4000
+>>>>> [    3.627087] ath11k_pci 0000:00:06.0: firmware crashed: 
+>>>>> MHI_CB_EE_RDDM
+>>>>> [    3.627129] ath11k_pci 0000:00:06.0: ignore reset dev flags 0x4000
+>>>>> [   13.802105] ath11k_pci 0000:00:06.0: failed to wait wlan mode
+>>>>> request (mode 4): -110
+>>>>> [   13.802175] ath11k_pci 0000:00:06.0: qmi failed to send wlan mode
+>>>>> off: -110
+>>>> Ok, that's progress now. Can you try next try the iommu patch[1] we
+>>>> talked about earlier? It's already in master-pending branch (along with
+>>>> other pending patches) so you can use that branch if you want.
+>>>>
+>>>> [1] 
+>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20231212031914.47339-1-imguzh@gmail.com/
+>>>
+>>> Same result unfortunately, tried both with just [1] applied to 
+>>> ath.git and at HEAD of master-pending.
+>>>
+>>> Thanks,
+>>>
+>>> James
+>> Strange that still fails. Are you now seeing this error in your host 
+>> or your Qemu? or both?
+>> Could you share your test steps? And if you can share please be as 
+>> detailed as possible since I'm not familiar with passing WLAN hardware 
+>> to a VM using vfio-pci.
+> 
+> Just in Qemu, the hardware works fine on my host machine.
+> 
+> I basically follow this guide to set it up, its written in the context 
+> of GPUs/libvirt but the host setup is exactly the same. By no means do 
+> you need to read it all, once you set the vfio-pci.ids and see your 
+> unclaimed adapter you can stop:
+> 
+> https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
+> 
+> In short you should be able to set the following host kernel options and 
+> reboot (assuming your motherboard/hardware is compatible):
+> 
+> intel_iommu=on iommu=pt vfio-pci.ids=17cb:1103
+> 
+> Obviously change the device/vendor IDs to whatever ath11k hw you have. 
+> Once the host is rebooted you should see your wlan adapter as UNCLAIMED, 
+> showing the driver in use as vfio-pci. If not, its likely your 
+> motherboard just isn't compatible, the device has to be in its own IOMMU 
+> group (you could try switching PCI ports if this is the case).
+> 
+> I then build a "kvm_guest.config" kernel with the driver/firmware for 
+> ath11k and boot into that with the following Qemu options:
+> 
+> -enable-kvm -device -vfio-pci,host=<PCI address>
+> 
+> If it seems easier you could also utilize IWD's test-runner which 
+> handles launching the Qemu kernel automatically, detecting any 
+> vfio-devices and passes them through and mounts some useful host folders 
+> into the VM. Its actually a very good general purpose tool for kernel 
+> testing, not just for IWD:
+> 
+> https://git.kernel.org/pub/scm/network/wireless/iwd.git/tree/doc/test-runner.txt
+> 
+> Once set up you can just run test-runner with a few flags and you'll 
+> boot into a shell:
+> 
+> ./tools/test-runner -k <kernel-image> --hw --start /bin/bash
+> 
+> Please reach out if you have questions, thanks for looking into this.
+> 
+Thanks for these details. I reproduced this issue by following your guide.
 
-I just found out that sparse has __must_hold():
+Seems the root cause is that the MSI vector assigned to WCN6855 in qemu 
+is different with that in host. In my case the MSI vector in qemu is 
+[Address: fee00000  Data: 0020] while in host it is [Address: fee00578 
+Data: 0000]. So in qemu ath11k configures MSI vector [Address: fee00000 
+Data: 0020] to WCN6855 hardware/firmware, and firmware uses that vector 
+to fire interrupts to host/qemu. However host IOMMU doesn't know that 
+vector because the real vector is [Address: fee00578  Data: 0000], as a 
+result host blocks that interrupt and reports an error, see below log:
 
-https://lore.kernel.org/linux-wireless/87sf31hhfp.fsf@kernel.org/
+[ 1414.206069] DMAR: DRHD: handling fault status reg 2
+[ 1414.206081] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
+0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
+[ 1414.210334] DMAR: DRHD: handling fault status reg 2
+[ 1414.210342] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
+0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
+[ 1414.212496] DMAR: DRHD: handling fault status reg 2
+[ 1414.212503] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
+0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
+[ 1414.214600] DMAR: DRHD: handling fault status reg 2
 
-That looks promising, should we start using that in ath11k and ath12k to
-check our RCU usage?
+While I don't think there is a way for qemu/ath11k to get the real MSI 
+vector from host, I will try to read the vfio code to check further. 
+Before that, to unblock you, a possible hack is to hard code the MSI 
+vector in qemu to the same as in host, on condition that the MSI vector 
+doesn't change. In my case, the change looks like
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c 
+b/drivers/net/wireless/ath/ath11k/pci.c
+index 09e65c5e55c4..89a9bbe9e4d2 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -459,7 +459,12 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci 
+*ab_pci)
+                 ab->pci.msi.addr_hi = 0;
+         }
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+-       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", 
+ab->pci.msi.ep_base_data);
++       ab->pci.msi.addr_hi = 0;
++       ab->pci.msi.addr_lo = 0xfee00578;
++       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x base 
+data is %d\n",
++                  ab->pci.msi.addr_hi,
++                  ab->pci.msi.addr_lo,
++                  ab->pci.msi.ep_base_data);
+
+         return 0;
+
+@@ -487,6 +492,7 @@ static int ath11k_pci_config_msi_data(struct 
+ath11k_pci *ab_pci)
+         }
+
+         ab_pci->ab->pci.msi.ep_base_data = msi_desc->msg.data;
++       ab_pci->ab->pci.msi.ep_base_data = 0;
+
+         ath11k_dbg(ab_pci->ab, ATH11K_DBG_PCI, "after request_irq 
+msi_ep_base_data %d\n",
+                    ab_pci->ab->pci.msi.ep_base_data);
+
+
+This hack works on my setup.
+
 
