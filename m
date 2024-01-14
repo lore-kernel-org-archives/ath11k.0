@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C87CEC47077
-	for <ath11k@archiver.kernel.org>; Sun, 14 Jan 2024 14:59:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A201C4707B
+	for <ath11k@archiver.kernel.org>; Sun, 14 Jan 2024 15:09:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=koprWsqMccu51Qs17y+k1e1rBuJH0fl3cociG57fldc=; b=4m1Z7xTlj3qQq9vFv/m6WV1iZ4
-	DNGrIIgyCRQvLNVhwQYmRiB5r/qk26IY5lwLdreWrCREYkN8s9YKWlLroW7ofvZMpIQSokKRFCfGo
-	7pUUyvHRCc4ZkaL10EUKd8+p6Uqv0bFHtWgI2iPW45MkLwFu5/59TMfsrh2oRWr9sfML3bjFx/7Zk
-	r97RX//JfLDbQyaaNYyZx4r7tNQUnbOC9szcaBrBuNJprKMPVU7wCR+52fwCgdDLbjEeDLk4DTghv
-	HnteI837TIIo/qx1lRnF9wXDRb6hNZZzQyAp6ZSfwe20AFv4oxKCJCXcqddZmhYaKCPc2+S4oWlgV
-	LQUNc2fQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Gle7RXrMebez8TQY9xDvaqt4P4lmptCo8wlV5kYkpqg=; b=CHeS9dGZbpRtFAW4cAlekvhnXf
+	duS8OhUb+2mupkDGoMr7RdgIvy0AVLFqzra9PrV6GRMFGYfqkm9dSVmaPBz4B2z8EQUQchBIwBzL3
+	dDlwWovSQRPNV5bIXpLMkP+KVJ7J+WjdxIww/rVxuqlZw+dUKFJaIhE7jhyn2Hh1MmlFZsf0EloeD
+	FKInSPc6fKedBkVRW8n+FiPPgA86tKngAFgQezW/2Xr2XC5+HPrp2vUxB35Cjt2WJXs9snIAkIS/C
+	uid0OGz+Mhc4mjEDqHz8O6rkhC3t6o2TzZOY/HT/AyZqRu/CvOMtg24VggkC8l5ReYyhirgiyHqI4
+	BZKAhVWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rP1xo-006rTe-2c;
-	Sun, 14 Jan 2024 14:59:52 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1rP27R-006sCO-3D;
+	Sun, 14 Jan 2024 15:09:50 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rP1xl-006rTF-2e
+	id 1rP27P-006sBY-0d
 	for ath11k@lists.infradead.org;
-	Sun, 14 Jan 2024 14:59:51 +0000
+	Sun, 14 Jan 2024 15:09:48 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by ams.source.kernel.org (Postfix) with ESMTP id 643D6B80A76;
-	Sun, 14 Jan 2024 14:59:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E7AAC433F1;
-	Sun, 14 Jan 2024 14:59:44 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 57E3460BC3;
+	Sun, 14 Jan 2024 15:09:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1863C433F1;
+	Sun, 14 Jan 2024 15:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705244385;
-	bh=Dy5kPxsHjGqVTGPSsW4+1cdug+F9HxfM/LEsiCVjKcc=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=p23S/zSFZdCksXJB7VsnADBcYzejKET70aVO9whCGItmzqxPTtUwg58ksMIaRPKQO
-	 nxJDqB3dzH1+R2U/CquVTGSaSEH43OonOPl7Msos+bFmWn9E7z4iAs7VKtxiILTu91
-	 R87SnOd4KhArQ2hG6KxOf3adfWfQ2YlPHDYCYRZBaFQ4hBFn3aXsmG+bdDUx/cdJw4
-	 KoAVGVoCZ6+HNWk7OomD6m1dl9JhD1TUX2SqOuj72+120LQwCIeRv8W8riSnMD5sxb
-	 6Y8w9fcnksCJ+zuJRn/VZEp0vpguR1YXuNTL6IKcmSj/I9b9RwVQahuzeVmzDZpAAU
-	 iCEepUnOYJAmQ==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v10 01/12] wifi: ath11k: add support to select 6 GHz
- regulatory type
+	s=k20201202; t=1705244986;
+	bh=KonVwvysHSEyFJbAjmUrw7TyfJrPr/NzwAPENtus/EA=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=dffpTODqOU1KwpxGdKP+9C7E1MKQ/ZTW8B5SxTSMpeDocSxUTih+LLZWsYBedL1C4
+	 y29rroLqpHLE7E7W7KRL+TWjVIFpALLQb/sa+zwZZqaEtsTjAVZssYc95BFH+OipWC
+	 3IPdCzrqc1ZeU9gywp9p5luxqBfd4LDnY6TdQlucEBJ90tsjIcfwMdCsc0Xw1nvpnI
+	 Q2r/DtYPZLxGuoW+4yORkTKR8xF+kf1IsZs4bU+dbF3lcnr2CzXwjsrGcjtOcVR7Ga
+	 t/oyLUU3yYZSu35h3dfNYVH861ebw6eoP4DSP24GXcF9GzVi2yZwIlEtdK4hYf6/lL
+	 f+7VDUbuik0UA==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20231218085844.2658-2-quic_bqiang@quicinc.com>
-References: <20231218085844.2658-2-quic_bqiang@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <170524438206.1421352.5740886782222495154.kvalo@kernel.org>
-Date: Sun, 14 Jan 2024 14:59:44 +0000 (UTC)
+To: benjamin@sipsolutions.net
+Cc: linux-wireless@vger.kernel.org,  lenb@kernel.org,  Benjamin Berg
+ <benjamin.berg@intel.com>,  ath11k@lists.infradead.org
+Subject: Re: [PATCH] wifi: ath11k: rely on mac80211 debugfs handling for vif
+References: <20240111170629.1257217-1-benjamin@sipsolutions.net>
+	<877ckfip1g.fsf@kernel.org>
+Date: Sun, 14 Jan 2024 17:09:42 +0200
+In-Reply-To: <877ckfip1g.fsf@kernel.org> (Kalle Valo's message of "Thu, 11 Jan
+	2024 22:38:19 +0200")
+Message-ID: <87a5p87xzd.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240114_065950_027167_7B5F4E3A 
-X-CRM114-Status: UNSURE (   4.92  )
+X-CRM114-CacheID: sfid-20240114_070947_277895_711BCBC0 
+X-CRM114-Status: UNSURE (   5.98  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,36 +74,26 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+Kalle Valo <kvalo@kernel.org> writes:
 
-> There are 3 types of regulatory rules for AP mode and 6 type for
-> station mode. Add wmi_vdev_type and ieee80211_ap_reg_power to
-> select the exact reg rules.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> benjamin@sipsolutions.net writes:
+>
+>> From: Benjamin Berg <benjamin.berg@intel.com>
+>>
+>> mac80211 started to delete debugfs entries in certain cases, causing a
+>> conflict between ath11k also trying to delete them later on.
 
-12 patches applied to ath-next branch of ath.git, thanks.
+Instead of calling it a conflict I would prefer to clearly document that
+ath11k was crashing so badly that it was unusable.
 
-e3d373ec4f02 wifi: ath11k: add support to select 6 GHz regulatory type
-7004bdceef60 wifi: ath11k: store cur_regulatory_info for each radio
-cf2df0080bd5 wifi: ath11k: fix a possible dead lock caused by ab->base_lock
-17144d32e907 wifi: ath11k: update regulatory rules when interface added
-1329beb56297 wifi: ath11k: update regulatory rules when connect to AP on 6 GHz band for station
-28f64d368b21 wifi: ath11k: save power spectral density(PSD) of regulatory rule
-6f4e235be655 wifi: ath11k: add parse of transmit power envelope element
-46f20de2c4f8 wifi: ath11k: save max transmit power in vdev start response event from firmware
-92425f788fee wifi: ath11k: fill parameters for vdev set tpc power WMI command
-f8a573bd5f3b wifi: ath11k: add WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT service bit
-ed0a61dcb2d3 wifi: ath11k: add handler for WMI_VDEV_SET_TPC_POWER_CMDID
-74ef2d05ede6 wifi: ath11k: use WMI_VDEV_SET_TPC_POWER_CMDID when EXT_TPC_REG_SUPPORT for 6 GHz
+>>
+>> Fixes: 0a3d898ee9a8 ("wifi: mac80211: add/remove driver debugfs entries as appropriate")
+>> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=218364
+
+s/Bugzilla:/Closes:/
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20231218085844.2658-2-quic_bqiang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
