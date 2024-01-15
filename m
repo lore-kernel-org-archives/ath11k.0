@@ -4,86 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31661C3DA79
-	for <ath11k@archiver.kernel.org>; Mon, 15 Jan 2024 13:09:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B616C3DA79
+	for <ath11k@archiver.kernel.org>; Mon, 15 Jan 2024 17:47:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xqciNHiwX5Xpe9HUhoDTBRkSyWdUM5unYCkQrW8mDZo=; b=t0lxIeEToIum7eWi+6rmUL/mc0
-	N8Boe/VgoOiPjdAh7GiYTuYbOGdKoFg2ccQUiom6bdjCqCilspbW87xrJQHmMQTMflnHrP9oug3Kn
-	oyh/I5uZTt13JAH5dJv39zc3tp4VODl8rdnCwF+6wAZo+JUTIPfJNWVgOqfgK4qEojMJAA/wS+zsx
-	cf3Vcfx4YwrteSqCi8ICYYRGhhuYG5DRsqldr/hqUMoLmEq2UURJdn8aF7omKMjAmplGMb5h5Eb8t
-	0fl2p2K+TupuXpH9BRYAdt30cULblMhdC98+jSDzh3FpzcRhJPPrEfBgCoEPY/FTHnOQc7J1Hcs11
-	LkrBB++w==;
+	bh=tj95X6Cb7bhoneZp66ZNJxrjevei8xxSJ8nqqi86PvE=; b=v/C7SARkQ4Nzyqzr0ElPpOIXjC
+	9gTdfbx3FTgadR1Do0zen3Pp1mwWC5cUvMG2ATQ/JwqBmH9bEBleMm4xsXJgZjBNoKPtcp7alcUsd
+	fDj2GQzqtjpAxGhvnVuugqFtBpBNlDtHpvliW9ZI9E84aPGuujkFS25Iujuy+6vfkpgWhDSy3d2V3
+	LfKaED3yLUPzOKQiFzds2CnNCJDIr4/Kbco5bLjM5GQZWjVPH886lxOlwQYL4Jl7lOXbmGBMWnfBO
+	mjaVUgQNPFd7iHTLy048SIoWPzuL8yVLv8lYEhlT52J7+EF37nbhIfSSS1saLxMrpkq+QdgdvfirC
+	Mft6aesQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPMie-0090Dr-1P;
-	Mon, 15 Jan 2024 13:09:36 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1rPR3F-009qKs-0F;
+	Mon, 15 Jan 2024 17:47:09 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPMib-0090Bv-1q
+	id 1rPR3B-009qK6-2I
 	for ath11k@lists.infradead.org;
-	Mon, 15 Jan 2024 13:09:35 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3368ac0f74dso6369051f8f.0
-        for <ath11k@lists.infradead.org>; Mon, 15 Jan 2024 05:09:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705324169; x=1705928969; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xqciNHiwX5Xpe9HUhoDTBRkSyWdUM5unYCkQrW8mDZo=;
-        b=A84AF6NpCunKYSzgrKEm5PXf7+t/PSRXYjT9jSdsipzMNgVOOgMS5PdPgTiTyvl6Lz
-         rFAcfq6IwbLSoocpqIh6flNPuEIq7Rp4AWL8VdHH7tlByFzhxe0aeZ4812BlC0mBum8j
-         SWTINFARwC5K87xtYQhUuL7ykekaxjMtlOLIG6L8gD4KeSguiiizisDm+wp1+9cwcQl7
-         Jz478V4joZiN/ySPTIKWeyWPtYcFEed3pmRd7/1bHpBu+T3tGFBo7Ol/LHRNPBNnPFBM
-         8z570/Bq87PPphbK3K3ZSd9UjHLvNolo1mdfgWHcfoCbyR0r6AcVKMUp8iuk/NFQ43d6
-         h/9Q==
+	Mon, 15 Jan 2024 17:47:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1705340823;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tj95X6Cb7bhoneZp66ZNJxrjevei8xxSJ8nqqi86PvE=;
+	b=GG0F/wTvyi5OVz5sg4ThOzg3u2xwu5Jv3CuidXyRn9k0if0ujM/xaCQeD2svGCuA6YbkJY
+	M0cNeoVvDFRqqxm+UuoUFXo1UBP0NfLiiZi23XzL6E60w6jFrBPK8kjlK0dRwWquI90ahK
+	mZoe9ujVK1hdCTx0XCiGJkmuFIe56DM=
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
+ [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-524-62foK4ryNLq4tkOqtalIwA-1; Mon, 15 Jan 2024 12:47:01 -0500
+X-MC-Unique: 62foK4ryNLq4tkOqtalIwA-1
+Received: by mail-io1-f72.google.com with SMTP id ca18e2360f4ac-7bc32b2226aso622472739f.2
+        for <ath11k@lists.infradead.org>; Mon, 15 Jan 2024 09:47:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705324169; x=1705928969;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=xqciNHiwX5Xpe9HUhoDTBRkSyWdUM5unYCkQrW8mDZo=;
-        b=gq8jlGXWkX9gvaZNRCZ2cCxMbCxQnTRRwIYRvuEAilnwU020zJ8WEaQ3tXZVVfPtZA
-         +ASiC+JqSlHWL+nZ3CwhOwMESa9LSPVJyZsFfGJ92i9HFulv4S0iADy7+yX74ywsvyBB
-         3BShgfgcmXEb1c2s4M//e9AlaKJ3RQY1jRhkgJ+V57IJa2HUscHpf+W3pC3TJMC/69SV
-         MIG3vHVA4Ci7KJQ9976hCe4xOuJxiuANtXucqtIIMm/clae59QpTKX4ITjsEL8xHdViW
-         3zkhQmhAEJ/ZMvhngWv+4VZCgIeJ8sPMMhi4vCN1QV+nnxCAnVtJSRidAtbDAKW7y10w
-         mvjA==
-X-Gm-Message-State: AOJu0YxO+d/VNd/xWNNEOkzNvGwG83s/AYTJUicG4ZhIQUsKheBxe5wV
-	8e2bm/tfl/piZmWYZc3fPf6f+ISyal0=
-X-Google-Smtp-Source: AGHT+IE3Hcks9ZuOLGbttyuv2aHArfvLfRvJchXNZtRx7ewfjtOLGEBT8LxfluFLjDM8Gk5c+eFnvQ==
-X-Received: by 2002:a5d:420a:0:b0:337:9015:ab4b with SMTP id n10-20020a5d420a000000b003379015ab4bmr3610104wrq.108.1705324169004;
-        Mon, 15 Jan 2024 05:09:29 -0800 (PST)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id d16-20020adf9c90000000b003366c058509sm11850615wre.23.2024.01.15.05.09.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 05:09:28 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 15 Jan 2024 14:09:28 +0100
-Message-Id: <CYFAYRP5MWTZ.Q272WWLLE7MW@gmail.com>
-Cc: <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <ath11k@lists.infradead.org>
-Subject: Re: [PATCH] wifi: ath11k: fix layout of scan_flags in struct
- scan_req_params
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Jeff Johnson" <quic_jjohnson@quicinc.com>, "Kalle Valo"
- <kvalo@kernel.org>
-X-Mailer: aerc 0.15.2
-References: <20231127180559.1696041-1-nico.escande@gmail.com>
- <bdcdbd06-e9bd-4a92-b27b-d94b2d8fb52d@quicinc.com>
- <CX9YPUDTAT1N.23DMRB5O9FEAO@gmail.com>
- <20c7a367-2243-4e13-b023-9999dc6c6790@quicinc.com>
- <CXC03GYAN4VN.2PQ88Q1S7IL6H@gmail.com>
-In-Reply-To: <CXC03GYAN4VN.2PQ88Q1S7IL6H@gmail.com>
+        d=1e100.net; s=20230601; t=1705340820; x=1705945620;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tj95X6Cb7bhoneZp66ZNJxrjevei8xxSJ8nqqi86PvE=;
+        b=ujeWxwCiBfI0cbX15qnAWbwBHecPpMljJtRarGanJeE7oPunhaceSzw3Jd6q/C5e0n
+         z7Djq6iXKXkK9cB1KbQHk0XqpEc7sk0XTWCi0IdcpYDLBFLJgX+NjF24t1V38H9IsJEc
+         GUM+8rPh2AzcDVEepZ0EtUNQuRlLf4eHQrINPUKmmZThLLByElGuHfZAbJenMqXKDNAI
+         BNinW0RuC/5vH/92Y1xE2NHS4fuBgmzeMRffIbFT559kadWu6FmnV5tG4L9EBTtVS6ns
+         VYOPUE3gi5IRDnpZyCgBmbn4surGALLdbIlB+v3gOnZtXi9wnjgiQcysXxY3tsCCBNMD
+         j04A==
+X-Gm-Message-State: AOJu0YymLuTY3TQsFBwJvrpaLWR0J6WqHJ1r6EhSWtbnOuHFWR9sJ3Do
+	JoO5CILxsZrLXs1ia2c6hcDGIJ83ME4qzCY+g2B44FJ5y6iCqK819wJKFmiCqT2RplPe0GGuRrL
+	umOJJyVU1fMW60ZBBPC3ZqpDblJEzuw==
+X-Received: by 2002:a6b:f017:0:b0:7bf:3b15:a4b8 with SMTP id w23-20020a6bf017000000b007bf3b15a4b8mr2592080ioc.37.1705340820577;
+        Mon, 15 Jan 2024 09:47:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHsk5tH1OmNXvCvtcX6HYKQW/5RrTQyTMoRwHQR84713RSt0MxE+/PyZzU6KANDdoWAD43sQA==
+X-Received: by 2002:a6b:f017:0:b0:7bf:3b15:a4b8 with SMTP id w23-20020a6bf017000000b007bf3b15a4b8mr2592064ioc.37.1705340820242;
+        Mon, 15 Jan 2024 09:47:00 -0800 (PST)
+Received: from redhat.com ([38.15.60.12])
+        by smtp.gmail.com with ESMTPSA id a1-20020a0566380b0100b0046d9e290a74sm2445951jab.7.2024.01.15.09.46.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jan 2024 09:46:59 -0800 (PST)
+Date: Mon, 15 Jan 2024 10:46:58 -0700
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>, James Prestwood
+ <prestwoj@gmail.com>, <linux-wireless@vger.kernel.org>,
+ <ath11k@lists.infradead.org>, David Woodhouse <dwmw2@infradead.org>,
+ iommu@lists.linux.dev
+Subject: Re: ath11k and vfio-pci support
+Message-ID: <20240115104658.0b56bd35.alex.williamson@redhat.com>
+In-Reply-To: <87il3w7zjh.fsf@kernel.org>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+	<8734v5zhol.fsf@kernel.org>
+	<87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
+	<87r0ipcn7j.fsf@kernel.org>
+	<356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
+	<26119c3f-9012-47bb-948e-7e976d4773a7@quicinc.com>
+	<87mstccmk6.fsf@kernel.org>
+	<df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
+	<8734v4auc4.fsf@kernel.org>
+	<e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
+	<285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
+	<4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
+	<3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
+	<87il3w7zjh.fsf@kernel.org>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240115_050933_607943_AAC26B93 
-X-CRM114-Status: GOOD (  18.14  )
+X-CRM114-CacheID: sfid-20240115_094705_848732_D4E11546 
+X-CRM114-Status: GOOD (  40.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,39 +115,106 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu Nov 30, 2023 at 9:24 AM CET, Nicolas Escande wrote:
-> On Tue Nov 28, 2023 at 1:57 AM CET, Jeff Johnson wrote:
-> > On 11/27/2023 2:54 PM, Nicolas Escande wrote:
-> [...]
-> > > So either we should not use WMI_SCAN_XXX with scan_req_params.scan_fl=
-ags ever
-> > > and only use the bitfield to set scan parameters or if we use WMI_SCA=
-N_XXX with
-> > > scan_req_params.scan_flags they need to match the corresponding bitfi=
-eld.
-> >
-> > IMO the correct thing to do is to remove the unions from that struct an=
-d
-> > only leave behind the bitfields and not use the WMI_SCAN_XXX masks
-> > except when filling the firmware structure.
-> >
-> > But don't spin an update to your patches until Kalle has a chance to
-> > give his opinion. I'm new to maintaining these drivers and Kalle may
-> > have a different opinion on this.
-> >
-> > /jeff
->
-> No problem, I'll wait for Kalle's input on this before doing anything.
-> As soon as we decide which way is the right way, I'll work on this. I onl=
-y care
-> that this gets resolved.
+On Sun, 14 Jan 2024 16:36:02 +0200
+Kalle Valo <kvalo@kernel.org> wrote:
 
-Hi Kalle/Jeff,
+> Baochen Qiang <quic_bqiang@quicinc.com> writes:
+> 
+> >>> Strange that still fails. Are you now seeing this error in your
+> >>> host or your Qemu? or both?
+> >>> Could you share your test steps? And if you can share please be as
+> >>> detailed as possible since I'm not familiar with passing WLAN
+> >>> hardware to a VM using vfio-pci.  
+> >>
+> >> Just in Qemu, the hardware works fine on my host machine.
+> >> I basically follow this guide to set it up, its written in the
+> >> context of GPUs/libvirt but the host setup is exactly the same. By
+> >> no means do you need to read it all, once you set the vfio-pci.ids
+> >> and see your unclaimed adapter you can stop:
+> >> https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
+> >> In short you should be able to set the following host kernel options
+> >> and reboot (assuming your motherboard/hardware is compatible):
+> >> intel_iommu=on iommu=pt vfio-pci.ids=17cb:1103
+> >> Obviously change the device/vendor IDs to whatever ath11k hw you
+> >> have. Once the host is rebooted you should see your wlan adapter as
+> >> UNCLAIMED, showing the driver in use as vfio-pci. If not, its likely
+> >> your motherboard just isn't compatible, the device has to be in its
+> >> own IOMMU group (you could try switching PCI ports if this is the
+> >> case).
+> >> I then build a "kvm_guest.config" kernel with the driver/firmware
+> >> for ath11k and boot into that with the following Qemu options:
+> >> -enable-kvm -device -vfio-pci,host=<PCI address>
+> >> If it seems easier you could also utilize IWD's test-runner which
+> >> handles launching the Qemu kernel automatically, detecting any
+> >> vfio-devices and passes them through and mounts some useful host
+> >> folders into the VM. Its actually a very good general purpose tool
+> >> for kernel testing, not just for IWD:
+> >> https://git.kernel.org/pub/scm/network/wireless/iwd.git/tree/doc/test-runner.txt
+> >> Once set up you can just run test-runner with a few flags and you'll
+> >> boot into a shell:
+> >> ./tools/test-runner -k <kernel-image> --hw --start /bin/bash
+> >> Please reach out if you have questions, thanks for looking into
+> >> this.  
+> >
+> > Thanks for these details. I reproduced this issue by following your guide.
+> >
+> > Seems the root cause is that the MSI vector assigned to WCN6855 in
+> > qemu is different with that in host. In my case the MSI vector in qemu
+> > is [Address: fee00000  Data: 0020] while in host it is [Address:
+> > fee00578 Data: 0000]. So in qemu ath11k configures MSI vector
+> > [Address: fee00000 Data: 0020] to WCN6855 hardware/firmware, and
+> > firmware uses that vector to fire interrupts to host/qemu. However
+> > host IOMMU doesn't know that vector because the real vector is
+> > [Address: fee00578  Data: 0000], as a result host blocks that
+> > interrupt and reports an error, see below log:
+> >
+> > [ 1414.206069] DMAR: DRHD: handling fault status reg 2
+> > [ 1414.206081] DMAR: [INTR-REMAP] Request device [02:00.0] fault index
+> > 0x0 [fault reason 0x25] Blocked a compatibility format interrupt
+> > request
+> > [ 1414.210334] DMAR: DRHD: handling fault status reg 2
+> > [ 1414.210342] DMAR: [INTR-REMAP] Request device [02:00.0] fault index
+> > 0x0 [fault reason 0x25] Blocked a compatibility format interrupt
+> > request
+> > [ 1414.212496] DMAR: DRHD: handling fault status reg 2
+> > [ 1414.212503] DMAR: [INTR-REMAP] Request device [02:00.0] fault index
+> > 0x0 [fault reason 0x25] Blocked a compatibility format interrupt
+> > request
+> > [ 1414.214600] DMAR: DRHD: handling fault status reg 2
+> >
+> > While I don't think there is a way for qemu/ath11k to get the real MSI
+> > vector from host, I will try to read the vfio code to check further.
+> > Before that, to unblock you, a possible hack is to hard code the MSI
+> > vector in qemu to the same as in host, on condition that the MSI
+> > vector doesn't change.  
+> 
+> Baochen, awesome that you were able to debug this further. Now we at
+> least know what's the problem.
 
-Any new input on this so I can move forward on fixing this ?
-Otherwise I think I'll end up going on with Jeff's proposal of only using t=
-he
-bitfield for intra driver representation & then converting the bitfields to
-their corresponding WMI_SCAN_XXX when transmiting the req to the hw with wm=
-i.
+It's an interesting problem, I don't think we've seen another device
+where the driver reads the MSI register in order to program another
+hardware entity to match the MSI address and data configuration.
+
+When assigning a device, the host and guest use entirely separate
+address spaces for MSI interrupts.  When the guest enables MSI, the
+operation is trapped by the VMM and triggers an ioctl to the host to
+perform an equivalent configuration.  Generally the physical device
+will interrupt within the host where it may be directly attached to KVM
+to signal the interrupt, trigger through the VMM, or where
+virtualization hardware supports it, the interrupt can directly trigger
+the vCPU.   From the VM perspective, the guest address/data pair is used
+to signal the interrupt, which is why it makes sense to virtualize the
+MSI registers.
+
+Off hand I don't have a good solution for this, the hardware is
+essentially imposing a unique requirement for MSI programming that the
+driver needs visibility of the physical MSI address and data.  It's
+conceivable that device specific code could either make the physical
+address/data pair visible to the VM or trap the firmware programming to
+inject the correct physical values.  Is there somewhere other than the
+standard MSI capability in config space that the driver could learn the
+physical values, ie. somewhere that isn't virtualized?  Thanks,
+
+Alex
+
 
