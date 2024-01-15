@@ -4,62 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7748AC3DA79
-	for <ath11k@archiver.kernel.org>; Mon, 15 Jan 2024 10:36:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31661C3DA79
+	for <ath11k@archiver.kernel.org>; Mon, 15 Jan 2024 13:09:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0wa17+crlsPrpTtPM/bWsnoOfURri5ucSyKPwfWoNOA=; b=AABH9Ud0mHouuYA/bMdrX5MQhS
-	tzNWeCCB+SjWsZBzqT8udYJ+ESVZBdZYm3bbdgoP5w0dD6lBaYXHFGgdiPIccQrG9ST6T1MUtaqOP
-	JsBAi5QrFsIGv0hEk7q9WZAtEhjDwfiVIiwbHoWwO6hJfNMlEGvVj/6myq2V3+r/CEyZiW1SBXKNA
-	vvTuHe6RfoHCKoJkfAfLFkQFAwY3SJ4R/CWRfRu2v6U7FfxrhG0/bg2Fvsikwz5RO7Vy4NY91bUeU
-	D8U0GsezDiv0qH02ejnIQt+95gGTYB+AQUOd2Baw2f2wbXcQ2BJP3at0W6LQoo3ClT3CtUkes5IQ7
-	sDmov7Yg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
+	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=xqciNHiwX5Xpe9HUhoDTBRkSyWdUM5unYCkQrW8mDZo=; b=t0lxIeEToIum7eWi+6rmUL/mc0
+	N8Boe/VgoOiPjdAh7GiYTuYbOGdKoFg2ccQUiom6bdjCqCilspbW87xrJQHmMQTMflnHrP9oug3Kn
+	oyh/I5uZTt13JAH5dJv39zc3tp4VODl8rdnCwF+6wAZo+JUTIPfJNWVgOqfgK4qEojMJAA/wS+zsx
+	cf3Vcfx4YwrteSqCi8ICYYRGhhuYG5DRsqldr/hqUMoLmEq2UURJdn8aF7omKMjAmplGMb5h5Eb8t
+	0fl2p2K+TupuXpH9BRYAdt30cULblMhdC98+jSDzh3FpzcRhJPPrEfBgCoEPY/FTHnOQc7J1Hcs11
+	LkrBB++w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPKKH-008b4D-1i;
-	Mon, 15 Jan 2024 10:36:17 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1rPMie-0090Dr-1P;
+	Mon, 15 Jan 2024 13:09:36 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPKKE-008b3u-2I
+	id 1rPMib-0090Bv-1q
 	for ath11k@lists.infradead.org;
-	Mon, 15 Jan 2024 10:36:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=0wa17+crlsPrpTtPM/bWsnoOfURri5ucSyKPwfWoNOA=;
-	t=1705314974; x=1706524574; b=p0fopxZ583P1f5BBV/Bob+cDMG+uy+PilyxCGfk9+KItIKq
-	jFsClDUOFza5DQKg4Akrjd5l/vcxdSbheL7G7cySCJeXKhKHJYz3AkypPuWEZuxLu9QxTfQW4SjSm
-	VeOhxqnUed6kci08S9ySd+w0YMe55ya9D/9k7sMX1yT5oJmUQ45WZrallZIrlcChMlWLMf5qqPMJN
-	a0nBKk3cGBpfbvFIWsCYe+aXeqR/THTtbWhSltmH858JdUVD+1E3ty0OEZqwbUzDWwN8KkJE/vx+l
-	MnKn3CF+70cqRg90Y3845xD2+MBFw6KyDkdVydwqNyV+rqxcf0cXGfIOA3zzQgkg==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.97)
-	(envelope-from <benjamin@sipsolutions.net>)
-	id 1rPKKC-00000003PIh-3HZv;
-	Mon, 15 Jan 2024 11:36:12 +0100
-Message-ID: <ef5ea65e80aa0eb8d73d37505a26d2dbc32c2e0f.camel@sipsolutions.net>
-Subject: Re: [PATCH] wifi: ath11k: rely on mac80211 debugfs handling for vif
-From: Benjamin Berg <benjamin@sipsolutions.net>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: linux-wireless@vger.kernel.org, lenb@kernel.org,
- ath11k@lists.infradead.org
-Date: Mon, 15 Jan 2024 11:36:11 +0100
-In-Reply-To: <87a5pb9cxp.fsf@kernel.org>
-References: <20240111170629.1257217-1-benjamin@sipsolutions.net>
-	 <877ckfip1g.fsf@kernel.org> <87a5pb9cxp.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+	Mon, 15 Jan 2024 13:09:35 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3368ac0f74dso6369051f8f.0
+        for <ath11k@lists.infradead.org>; Mon, 15 Jan 2024 05:09:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705324169; x=1705928969; darn=lists.infradead.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xqciNHiwX5Xpe9HUhoDTBRkSyWdUM5unYCkQrW8mDZo=;
+        b=A84AF6NpCunKYSzgrKEm5PXf7+t/PSRXYjT9jSdsipzMNgVOOgMS5PdPgTiTyvl6Lz
+         rFAcfq6IwbLSoocpqIh6flNPuEIq7Rp4AWL8VdHH7tlByFzhxe0aeZ4812BlC0mBum8j
+         SWTINFARwC5K87xtYQhUuL7ykekaxjMtlOLIG6L8gD4KeSguiiizisDm+wp1+9cwcQl7
+         Jz478V4joZiN/ySPTIKWeyWPtYcFEed3pmRd7/1bHpBu+T3tGFBo7Ol/LHRNPBNnPFBM
+         8z570/Bq87PPphbK3K3ZSd9UjHLvNolo1mdfgWHcfoCbyR0r6AcVKMUp8iuk/NFQ43d6
+         h/9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705324169; x=1705928969;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xqciNHiwX5Xpe9HUhoDTBRkSyWdUM5unYCkQrW8mDZo=;
+        b=gq8jlGXWkX9gvaZNRCZ2cCxMbCxQnTRRwIYRvuEAilnwU020zJ8WEaQ3tXZVVfPtZA
+         +ASiC+JqSlHWL+nZ3CwhOwMESa9LSPVJyZsFfGJ92i9HFulv4S0iADy7+yX74ywsvyBB
+         3BShgfgcmXEb1c2s4M//e9AlaKJ3RQY1jRhkgJ+V57IJa2HUscHpf+W3pC3TJMC/69SV
+         MIG3vHVA4Ci7KJQ9976hCe4xOuJxiuANtXucqtIIMm/clae59QpTKX4ITjsEL8xHdViW
+         3zkhQmhAEJ/ZMvhngWv+4VZCgIeJ8sPMMhi4vCN1QV+nnxCAnVtJSRidAtbDAKW7y10w
+         mvjA==
+X-Gm-Message-State: AOJu0YxO+d/VNd/xWNNEOkzNvGwG83s/AYTJUicG4ZhIQUsKheBxe5wV
+	8e2bm/tfl/piZmWYZc3fPf6f+ISyal0=
+X-Google-Smtp-Source: AGHT+IE3Hcks9ZuOLGbttyuv2aHArfvLfRvJchXNZtRx7ewfjtOLGEBT8LxfluFLjDM8Gk5c+eFnvQ==
+X-Received: by 2002:a5d:420a:0:b0:337:9015:ab4b with SMTP id n10-20020a5d420a000000b003379015ab4bmr3610104wrq.108.1705324169004;
+        Mon, 15 Jan 2024 05:09:29 -0800 (PST)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id d16-20020adf9c90000000b003366c058509sm11850615wre.23.2024.01.15.05.09.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jan 2024 05:09:28 -0800 (PST)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
-MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 15 Jan 2024 14:09:28 +0100
+Message-Id: <CYFAYRP5MWTZ.Q272WWLLE7MW@gmail.com>
+Cc: <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <ath11k@lists.infradead.org>
+Subject: Re: [PATCH] wifi: ath11k: fix layout of scan_flags in struct
+ scan_req_params
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: "Jeff Johnson" <quic_jjohnson@quicinc.com>, "Kalle Valo"
+ <kvalo@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20231127180559.1696041-1-nico.escande@gmail.com>
+ <bdcdbd06-e9bd-4a92-b27b-d94b2d8fb52d@quicinc.com>
+ <CX9YPUDTAT1N.23DMRB5O9FEAO@gmail.com>
+ <20c7a367-2243-4e13-b023-9999dc6c6790@quicinc.com>
+ <CXC03GYAN4VN.2PQ88Q1S7IL6H@gmail.com>
+In-Reply-To: <CXC03GYAN4VN.2PQ88Q1S7IL6H@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240115_023614_744653_A60C3998 
-X-CRM114-Status: GOOD (  15.25  )
+X-CRM114-CacheID: sfid-20240115_050933_607943_AAC26B93 
+X-CRM114-Status: GOOD (  18.14  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,43 +98,39 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2024-01-12 at 10:24 +0200, Kalle Valo wrote:
-> Kalle Valo <kvalo@kernel.org> writes:
->=20
-> > benjamin@sipsolutions.net=C2=A0writes:
-> >=20
-> > > From: Benjamin Berg <benjamin.berg@intel.com>
-> > >=20
-> > > mac80211 started to delete debugfs entries in certain cases,
-> > > causing a
-> > > conflict between ath11k also trying to delete them later on. Fix
-> > > this by
-> > > relying on mac80211 to delete the entries when appropriate and
-> > > adding
-> > > them from the vif_add_debugfs handler.
-> > >=20
-> > > Fixes: 0a3d898ee9a8 ("wifi: mac80211: add/remove driver debugfs
-> > > entries as appropriate")
-> > > Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D218364
-> > > Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
-> >=20
-> > Adding ath11k list so that the whole team sees this.
->=20
-> Thanks, this patch passes my ath11k tests and I don't see crashes
-> anymore. But what about other drivers, can we trust that they don't
-> have
-> similar problems? I'm just wondering should we consider reverting the
-> mac80211 commit for the time being?
+On Thu Nov 30, 2023 at 9:24 AM CET, Nicolas Escande wrote:
+> On Tue Nov 28, 2023 at 1:57 AM CET, Jeff Johnson wrote:
+> > On 11/27/2023 2:54 PM, Nicolas Escande wrote:
+> [...]
+> > > So either we should not use WMI_SCAN_XXX with scan_req_params.scan_fl=
+ags ever
+> > > and only use the bitfield to set scan parameters or if we use WMI_SCA=
+N_XXX with
+> > > scan_req_params.scan_flags they need to match the corresponding bitfi=
+eld.
+> >
+> > IMO the correct thing to do is to remove the unions from that struct an=
+d
+> > only leave behind the bitfields and not use the WMI_SCAN_XXX masks
+> > except when filling the firmware structure.
+> >
+> > But don't spin an update to your patches until Kalle has a chance to
+> > give his opinion. I'm new to maintaining these drivers and Kalle may
+> > have a different opinion on this.
+> >
+> > /jeff
+>
+> No problem, I'll wait for Kalle's input on this before doing anything.
+> As soon as we decide which way is the right way, I'll work on this. I onl=
+y care
+> that this gets resolved.
 
-Good question.
+Hi Kalle/Jeff,
 
-I did have a look originally and I just went over all drivers (i.e.
-debugfs_remove calls). None of these seem to be vif related. As such, I
-would say we could just go ahead with this patch and leave in the fix.
-
-That said, we could also revert 0a3d898ee9a8 for now. I don't think
-that has any severe side effects other than a warning from debugfs
-reappearing again for iwlwifi.
-
-Benjamin
+Any new input on this so I can move forward on fixing this ?
+Otherwise I think I'll end up going on with Jeff's proposal of only using t=
+he
+bitfield for intra driver representation & then converting the bitfields to
+their corresponding WMI_SCAN_XXX when transmiting the req to the hw with wm=
+i.
 
