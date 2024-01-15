@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E307C3DA79
-	for <ath11k@archiver.kernel.org>; Mon, 15 Jan 2024 10:14:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63E5FC3DA79
+	for <ath11k@archiver.kernel.org>; Mon, 15 Jan 2024 10:18:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=atlEj+PzljHFeiNDOtXU/bwhsHPVfdma3zGILln3RrY=; b=chUYXNgiW9K+pa4TxLrm9fk0u4
-	aMRfN+LuJvM4tEbyTe+6V86infKkQ5voTMCVriHleK7l0nWFLZG8mKIK0U9sFu1+dylAFHuPyS/Wb
-	MUKzPF8ot28BXA3d6FtZrJz7Fwi0+YfSEnFzDQy8SOZ7+Z77BUWC8b9vK1grtgW+KFV6e8dXNLfOL
-	ANEoXTicjcQote0mWs62EPzXwWhlDLzLUwDpATjCQBpL13/dKlhrwI2iOoYiV+rwm3jvNbbSzCWef
-	wB8wTTcdc4YC+XpNZTeNUrHAzBYNMCZO4fN9BdqlnDUo8F40U4gs7/fnSLAa8NpLCviiAWlcksqXU
-	aTZukpCg==;
+	bh=Xzf2Lo9zKemHnyjovifDRAEjSYxaH8QbSwRN6oNEdC8=; b=h80Ai4pcc2v5x2v9rXrEm1VBmI
+	lhJ+qkxTGh6XZDOnx90QNxddTZrw/oqV6Cu39TRitrF8mn7JJ+VUYeZmvLxkbSNg17wmr7jo0QdU8
+	M9De9SJSoYYOHNUxjxXfGEDGgDODP2FIXrAkKrato5o7z3MwLOQKq481kaUwLVBKLN/GpEewq2ad2
+	NkyXbJRu48Gmg4GLCSvDVRHsIhPkYy82PweSfyTvFQ9oojB/i+Gf3qVOa1GvM18WgdKuDO/k4dXdg
+	8vh9O6kubyAkc8fJF0yNJ8EY0xZG7xxm1HRtBgsEsX9CcHwwFMI97hTyCUC+7KQOqIgEzcTiXV5Af
+	ucx4xvwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPJyq-008Y9u-2a;
-	Mon, 15 Jan 2024 10:14:08 +0000
+	id 1rPK2s-008YbY-0u;
+	Mon, 15 Jan 2024 10:18:18 +0000
 Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPJyn-008Y8I-0P
+	id 1rPK2p-008Yb6-1k
 	for ath11k@lists.infradead.org;
-	Mon, 15 Jan 2024 10:14:07 +0000
+	Mon, 15 Jan 2024 10:18:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
 	Message-ID:Date:Subject:Cc:To:From:Content-Type:Sender:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-To:Resent-Cc:
 	Resent-Message-ID:In-Reply-To:References;
-	bh=atlEj+PzljHFeiNDOtXU/bwhsHPVfdma3zGILln3RrY=; t=1705313640; x=1706523240; 
-	b=Ac4ON8ic2gqpldlaVq3XbrCstOQepNzZezySLZpLLlkUCHxZdSKQuG42Gy3ts4pUEYWZpkiSao/
-	cSDBktCL7ZIUqvUWctuNmqCUGp8/riOKPy6n/Rwrr45I6XJed0uFUsT2MbDB+WfgbUQTVk/VC89yx
-	JiU27w+5bgx6IDyZBM0qh1R+w2U4giMx8lWDXdxmhmckJFHBPN3FDgtuzm0U6iTD7cjX6OT/kKrAk
-	ufCptRHxVvGHQlANnD6WS6EA7UqVrIhFVGox83sthzVsp2nOPREVSkNr4oi3RX0wxbFDau86DWwoa
-	Gs4QtCZmJIuzrtV6SP9ipbbrGekZXDQpx5lA==;
+	bh=Xzf2Lo9zKemHnyjovifDRAEjSYxaH8QbSwRN6oNEdC8=; t=1705313895; x=1706523495; 
+	b=U1KK21t8VmEZFhOQJgdbU3gRapL7mlg1AlSCxYdUg51/C5H68BT5RX2W7GKEyf51C3ODfmJvZLf
+	sKg1eEnkw0JL2+iXqnmO5HkeBcwedO6Bl0tOuqCTGmyD1tGPKVse3SsYDZukWxGdL5WfmoCyV9HMq
+	pLa4eKjDuX7OlzyLHVxyLmABQ30jkuLeF2bsCchM7ScbXKkHTy1XbGxv/Zr8lpw4ynJS20HatYoWv
+	tcARIWWJxCennpRexYQJRLxLqb60AxQWT/K/QtwAauhNJbt+3bc5t/rpk6m1SgEPQHlE5v1kjiUzw
+	or/j6qd6kuYp4ZSAcjOw9vQfkB5LdYyHPm1w==;
 Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
 	(Exim 4.97)
 	(envelope-from <benjamin@sipsolutions.net>)
-	id 1rPJyf-00000003OTd-3KW5;
-	Mon, 15 Jan 2024 11:13:58 +0100
+	id 1rPK2n-00000003Obf-0IHI;
+	Mon, 15 Jan 2024 11:18:13 +0100
 From: benjamin@sipsolutions.net
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org,
 	Benjamin Berg <benjamin.berg@intel.com>
-Subject: [PATCH v2] wifi: ath11k: rely on mac80211 debugfs handling for vif
-Date: Mon, 15 Jan 2024 11:13:49 +0100
-Message-ID: <20240115101349.1276608-1-benjamin@sipsolutions.net>
+Subject: [PATCH v3] wifi: ath11k: rely on mac80211 debugfs handling for vif
+Date: Mon, 15 Jan 2024 11:18:05 +0100
+Message-ID: <20240115101805.1277949-1-benjamin@sipsolutions.net>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240115_021405_161240_9991AF05 
-X-CRM114-Status: GOOD (  16.22  )
+X-CRM114-CacheID: sfid-20240115_021815_584040_591F2A1B 
+X-CRM114-Status: GOOD (  16.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,6 +86,9 @@ Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
 v2:
  * Adjust commit message to say that this caused crashes
  * Fix function name to match mac80211 op
+
+v3:
+ * Remove duplicate debugfs from function name
 ---
  drivers/net/wireless/ath/ath11k/core.h    |  4 ----
  drivers/net/wireless/ath/ath11k/debugfs.c | 25 +++++++++--------------
@@ -109,7 +112,7 @@ index 7e3b6779f4e9..02e160d831be 100644
  
  struct ath11k_vif_iter {
 diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index a847bc0d50c0..f53b712e169f 100644
+index a847bc0d50c0..a48e737ef35d 100644
 --- a/drivers/net/wireless/ath/ath11k/debugfs.c
 +++ b/drivers/net/wireless/ath/ath11k/debugfs.c
 @@ -1894,35 +1894,30 @@ static const struct file_operations ath11k_fops_twt_resume_dialog = {
@@ -117,8 +120,8 @@ index a847bc0d50c0..f53b712e169f 100644
  };
  
 -void ath11k_debugfs_add_interface(struct ath11k_vif *arvif)
-+void ath11k_debugfs_op_vif_add_debugfs(struct ieee80211_hw *hw,
-+				      struct ieee80211_vif *vif)
++void ath11k_debugfs_op_vif_add(struct ieee80211_hw *hw,
++			       struct ieee80211_vif *vif)
  {
 +	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
  	struct ath11k_base *ab = arvif->ar->ab;
@@ -159,7 +162,7 @@ index a847bc0d50c0..f53b712e169f 100644
 -	arvif->debugfs_twt = NULL;
 -}
 diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
-index 44d15845f39a..d6e38988fecf 100644
+index 44d15845f39a..a39e458637b0 100644
 --- a/drivers/net/wireless/ath/ath11k/debugfs.h
 +++ b/drivers/net/wireless/ath/ath11k/debugfs.h
 @@ -307,8 +307,8 @@ static inline int ath11k_debugfs_rx_filter(struct ath11k *ar)
@@ -168,8 +171,8 @@ index 44d15845f39a..d6e38988fecf 100644
  
 -void ath11k_debugfs_add_interface(struct ath11k_vif *arvif);
 -void ath11k_debugfs_remove_interface(struct ath11k_vif *arvif);
-+void ath11k_debugfs_op_vif_add_debugfs(struct ieee80211_hw *hw,
-+				       struct ieee80211_vif *vif);
++void ath11k_debugfs_op_vif_add(struct ieee80211_hw *hw,
++			       struct ieee80211_vif *vif);
  void ath11k_debugfs_add_dbring_entry(struct ath11k *ar,
  				     enum wmi_direct_buffer_module id,
  				     enum ath11k_dbg_dbr_event event,
@@ -189,7 +192,7 @@ index 44d15845f39a..d6e38988fecf 100644
  ath11k_debugfs_add_dbring_entry(struct ath11k *ar,
  				enum wmi_direct_buffer_module id,
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index db241589424d..b980680e0d9c 100644
+index db241589424d..b13525bbbb80 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
 @@ -6756,13 +6756,6 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
@@ -228,7 +231,7 @@ index db241589424d..b980680e0d9c 100644
  #endif
  
  #ifdef CONFIG_ATH11K_DEBUGFS
-+	.vif_add_debugfs		= ath11k_debugfs_op_vif_add_debugfs,
++	.vif_add_debugfs		= ath11k_debugfs_op_vif_add,
  	.sta_add_debugfs		= ath11k_debugfs_sta_op_add,
  #endif
  
