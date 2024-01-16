@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56B97C47DA7
-	for <ath11k@archiver.kernel.org>; Tue, 16 Jan 2024 19:50:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A0D5C47258
+	for <ath11k@archiver.kernel.org>; Tue, 16 Jan 2024 19:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iFzoRKqaeQsc1qmbCfHjuNcitltJPncYRjMLfoo94l8=; b=yiNxydB57qf7pU2acVzRdb/Csd
-	TcJHv80QxvD3rzbB3X4CDN681q0mlGXiyamq6m8ElkC454ImjNVQ+gY/3bLgYBdgPvNDeufuXUO8C
-	vw8Ru3G+8COXY7fSrkQK4cGYBJ30195/gygUXbsFd00+1sy2PlumEf2aWbrLSxK/JBB++sZOobPZO
-	4aKKtaIp74n0V96uHUvw4D9ja+0Kc+0HsrQBCmAmaY79kjGyqm39aal0ieK265EGPeCHmUz+je+Dv
-	ns49jV3AfYwXr+ROJSC9ExPZnu3tpSFUeD6L/5rTpwMnvYeIDmFC9zvZFvZZzp6dQRU2ewr/gYiYa
-	RS5i2tQw==;
+	bh=rlrJ0PyN+vOOhlGcQVUbrzik9S7VmRfKpd/9aehNehc=; b=t82e0ZlGfUV40EotBaw+iVjypk
+	Uly0NU6EAspPqtT2jcf3mk8zVpbm/p3K9AoMqs2Rlvmo2MXxBrHd7xT7kv0Nb/6vRdzaOkQZe04o/
+	TDcc9g6b9QVV8sR+bYxFijUp/NsYHMk/V8D6grpYuXmxsimCI/awzScIKjklX8h4To8v+KQiYEsRA
+	za977p2oN6O+OzBgIiYrDzjWjfTynOyKvNrMakK19r5rrrFNQcaqgnbqw6gIcrLsUWoQcIOLQJmUp
+	bzX70ZHzOS89LP1KIqBRoXU6V7UKVl9R0XihfUIEMbJytYZTGReo9JXnY0vNi/RDTUXjk+6OTlAOk
+	A7vFCROw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPpSC-00DEU2-39;
-	Tue, 16 Jan 2024 19:50:32 +0000
+	id 1rPpXW-00DH7i-2N;
+	Tue, 16 Jan 2024 19:56:02 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPpS9-00DER5-0Z
+	id 1rPpXP-00DH3D-28
 	for ath11k@lists.infradead.org;
-	Tue, 16 Jan 2024 19:50:30 +0000
+	Tue, 16 Jan 2024 19:55:58 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id A487860ED1;
-	Tue, 16 Jan 2024 19:50:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 853C6C433F1;
-	Tue, 16 Jan 2024 19:50:27 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 0907760B51;
+	Tue, 16 Jan 2024 19:55:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D94A6C433A6;
+	Tue, 16 Jan 2024 19:55:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434628;
-	bh=6IgYL5SnuaELuOcHIBQzCwdSCyfs6lnHzt0aCcaMJZ4=;
+	s=k20201202; t=1705434954;
+	bh=JQgC8gBEtMvthTY2S1yrwtzHzw2JvYybosFzy5IkWPU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=j6ED+2CvSCHPJPu17BZPwBwoGzlH7fijr6X3d2kdNQ1L2AKU6AiC7U0xy459RQZOP
-	 Xi1411c+t2UoYAI+aFu1Vq4n3/Tdq53zCCOtyh8KK+nE968qc5rBGFt/PegEIUFfRJ
-	 VAKkWd00xZ9Cx78cjIc2+lHS1QCzqZAWgmydQGz/w/xYsEU4BfhgdcAPvdJGp3gF81
-	 a3ljS9jzIw772G/E6VSTCV6SsKr2IdSG+LlWjJvNVH9bSUdkXUQtCO+DCYnmZEdlYI
-	 4D9DAWRsa9g933gddSUH0ldmjkX2UaoTdFB2ZkbcbM9ORY8JLfMk7Pz0Y34y9W+X9v
-	 KHmXhcLkaoplw==
+	b=gD22OFJ5RvHg+DDXjwLM8dvJ2dJkVNiKJHQgLB2NofsZAS6UVpZnXdFGDYd3ZdkVu
+	 Dzpyb/jZoxJ1wl5Sb4PQ/rp52uUzkFPyMSQEA/Hsq1/XvnrojEYFPRL2ld6ZwJZP/9
+	 erWpMgfeSUu9QQ72KbzjrU7Kia56n24vCD2+TZHLJF+982xUpmdlU8C+Stw6L8N5N8
+	 rW4ZtZpSh0n2ZqbkKueI6/xyNrePi5esr0qsBCxs+TXEnBGxGv1zjHNdz4+Czpvhp+
+	 s9hH548mMuqwSPsxhr70aHCfE9yCvHFXiElPA/6eaaw6PqIniDJxEtbEJwXpl8cyzT
+	 HJZQr/JN33jTg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -52,19 +52,19 @@ Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
 	kvalo@kernel.org,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 033/104] wifi: ath11k: fix race due to setting ATH11K_FLAG_EXT_IRQ_ENABLED too early
-Date: Tue, 16 Jan 2024 14:45:59 -0500
-Message-ID: <20240116194908.253437-33-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 19/68] wifi: ath11k: fix race due to setting ATH11K_FLAG_EXT_IRQ_ENABLED too early
+Date: Tue, 16 Jan 2024 14:53:18 -0500
+Message-ID: <20240116195511.255854-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240116194908.253437-1-sashal@kernel.org>
-References: <20240116194908.253437-1-sashal@kernel.org>
+In-Reply-To: <20240116195511.255854-1-sashal@kernel.org>
+References: <20240116195511.255854-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.12
+X-stable-base: Linux 6.1.73
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240116_115029_311016_0D84EC75 
+X-CRM114-CacheID: sfid-20240116_115555_784940_99E7E1F6 
 X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,10 +125,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index c63083633b37..011cf5fb8023 100644
+index 380f9d37b644..e3b65efcc868 100644
 --- a/drivers/net/wireless/ath/ath11k/pcic.c
 +++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -460,8 +460,6 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
+@@ -453,8 +453,6 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
  {
  	int i;
  
@@ -137,7 +137,7 @@ index c63083633b37..011cf5fb8023 100644
  	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
  		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
  
-@@ -471,6 +469,8 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
+@@ -465,6 +463,8 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
  		}
  		ath11k_pcic_ext_grp_enable(irq_grp);
  	}
