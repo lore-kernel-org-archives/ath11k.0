@@ -4,88 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1B57C4706C
-	for <ath11k@archiver.kernel.org>; Tue, 16 Jan 2024 13:06:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FC55C47077
+	for <ath11k@archiver.kernel.org>; Tue, 16 Jan 2024 15:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AMyoE0CoNSm3fuY7i7G7KD+fZOF7GEEhgAjyXp/kUv8=; b=Nfh4RE8cbNBe+ytjFSwTHIQc3P
-	DJC/3UAT0T9DijDBpEJVfSvFtRDiu7k5rXEpsAc1uzfdtA0IzPfUoByPtL9bgRwSSU35bea0ELNlm
-	YZJaafZGCEANjE2HnrsnNlUYLwDx/UKn2rvYgOurEH9I10glfxF4PB6yjjQP3mhSVgKnx188UFzBO
-	NK/HkD8UYFuMDe2rPZ1ZLd0xtAZOK8dy2mz8cwcCRkk8oQ1mQsX9pSf97GWUuBE15rHc6PCCTZmay
-	n6GsoaNq6K9N/b7VTdhkBfwlSeFoSOPZVKW2nrb7izFig670bGv2blAqCCSjxWJn4vqoDGL3smnQD
-	rkn1MRUg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=iJ8kDv4NT77wbV/RUW9AhIRHKupbHjNRdeQr3Ppsnl0=; b=t3Fcs7vHjvsViB6QWIagJCj77A
+	YqI5zoe1yPuxO2d/JncCAlR58oQsf4fmJLMn3zEdsf8ckKpdjJlu6oPUlMaAcsL0BJ/RJUbXwj5og
+	Pfw4hLCzIhYSSWFGDAC7TPkdtQai4IChj7ZJWNNcA4auW3YThHFHtidEeqk/KHYpjC23rkOjtV07w
+	gKVtX+T5xNR0q6iUxgFMU0F2LU8Wyg5zf/4p9v/rOQUmfHezD3tbXcbVJU6V78RnfB8YuU9lQ8zqx
+	zQlANmFglomKEWK/8dD6bUvEo4rjkpwaZmwXtBN2fjBrcP6mTPHDKDqHCuhI3pAv6BX6BWSg0RlYp
+	VbdbUGAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPj8m-00C83F-3C;
-	Tue, 16 Jan 2024 13:06:04 +0000
-Received: from mail-qt1-x82f.google.com ([2607:f8b0:4864:20::82f])
+	id 1rPlOe-00CQfO-13;
+	Tue, 16 Jan 2024 15:30:36 +0000
+Received: from mail-oi1-f179.google.com ([209.85.167.179])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPj8j-00C82W-00
+	id 1rPlOb-00CQdh-1z
 	for ath11k@lists.infradead.org;
-	Tue, 16 Jan 2024 13:06:03 +0000
-Received: by mail-qt1-x82f.google.com with SMTP id d75a77b69052e-429c00bf0efso35127051cf.1
-        for <ath11k@lists.infradead.org>; Tue, 16 Jan 2024 05:05:58 -0800 (PST)
+	Tue, 16 Jan 2024 15:30:34 +0000
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3bd87b652eeso489240b6e.3
+        for <ath11k@lists.infradead.org>; Tue, 16 Jan 2024 07:30:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705410357; x=1706015157; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AMyoE0CoNSm3fuY7i7G7KD+fZOF7GEEhgAjyXp/kUv8=;
-        b=IGXUrOzkNSE/v6PViC7peIQuTjXspLSu23yUX3lQuXBgXs6+lAWsxnTwN8faHE8oo6
-         eyJhyZ6MkpLpW5oAVNM0oWtg2bpN7GTyOW6773xYv3QiqZ6m1WWGezNPDPjqyJzF8TeY
-         +FJKRviZtx2ocNpnI9V413qFdnMrUNFnxtPSKbM321xQEeRwtEJxpT9Ud3qbgERVYcgW
-         f8jccspZQLrSdxdCbE5a79la13cpY7EZUsXLTvvNEv8w29yzXNyUa/f7En6DZ4uVVlE9
-         LeQgAL+fI6j3UYYdGAZbBo82MeBli0qSAqghs3NO8MnxUUyTgq1nYd3lz1FEDwj1x8MT
-         Vrfg==
+        d=ziepe.ca; s=google; t=1705418969; x=1706023769; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iJ8kDv4NT77wbV/RUW9AhIRHKupbHjNRdeQr3Ppsnl0=;
+        b=J4l8QmGKGpIbtBS+/TfhMSqNLNUKLcPnKGJ/xg7OB0nSAPBn+fvrvl4p55a7ia6fqX
+         Xai2iT5m/UOjcW9npyd7e9pgDxNOYVXmOUEpXsmxnq7yb2qJI5h1MmcHHNHy/3KUtcsk
+         3SHwGYIvJwp2vV5dwcuz+wXLtO5vFjNyGWJ4/UA0eM3UQg6NWGNG6RVLOWRCnD8c5gMM
+         Oa8uNE3LSrinotRpKKZxowqgD5kRmHkVIUT0D6lAfjR8MdX36MsRVVP+MN+p6pZ2B9q5
+         WO4gYeXXTTcjMW8fXHvBh1WhUAxVLaBSnL6mbGEfNxZmE+HZ1mumpdDh50yHtldSOetw
+         5FZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705410357; x=1706015157;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1705418969; x=1706023769;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AMyoE0CoNSm3fuY7i7G7KD+fZOF7GEEhgAjyXp/kUv8=;
-        b=bMP+7OLNQvFSpuuaQFwuWnUbXv6zeDCUb1KUlB/3lXnOiYPjV0Oc7M0iwLEO7aI34t
-         bd5kaOcPNI4cClZ0zweWqYM2FDMuM7Enz9DOf/NY/OYVLIjQ3ox0BRXssyyMEu5IQQUj
-         8en2PhAka2MIkMEPfMBgRqfniRJgAtlvj98ujViCG4IdcPbRSjzU6ZaecpP3e5PDAKVR
-         kfgvcamiI4Ft2m2J67cmfBKM/r6M0lMTEVRAiixLuehAI2gJZwvKDE9hu5f1KgkXXaXZ
-         OXYL4OCWqZpXMhRmvfQskGLzi9TdAQMNPuxldMFdLNoon2BxXOHmgmmYj/otsgiTLedA
-         wXiQ==
-X-Gm-Message-State: AOJu0YxmBACiwZbspXAsAZ5nxpJ0Cer2qchTxg5Ssl1Z6yA/RJWBahxq
-	OYgEY8tEyF6PGWDHPE8PjIM=
-X-Google-Smtp-Source: AGHT+IFrIiNKTcl8aNaV4lwcxs9e28ORM0BGWqVOh/sj3Tyefu2A4/bKBnindTXK8BtWOLcrtorrVA==
-X-Received: by 2002:a05:622a:1a9d:b0:429:d954:b342 with SMTP id s29-20020a05622a1a9d00b00429d954b342mr6703001qtc.73.1705410357318;
-        Tue, 16 Jan 2024 05:05:57 -0800 (PST)
-Received: from [10.102.4.159] ([208.195.13.130])
-        by smtp.gmail.com with ESMTPSA id t26-20020ac86a1a000000b00419732075b4sm4826547qtr.84.2024.01.16.05.05.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 05:05:56 -0800 (PST)
-Message-ID: <ee0280fd-032c-4f45-a3f9-50d96d8bed6d@gmail.com>
-Date: Tue, 16 Jan 2024 05:05:55 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        bh=iJ8kDv4NT77wbV/RUW9AhIRHKupbHjNRdeQr3Ppsnl0=;
+        b=PMheFteA+rlTsFxMphLqGyFLrsqWVXjAF2SVMGKXGzyYSvCnTGbLWh/YNksbdTdXtR
+         VNHwmZwlypKVTKO8S9rXiHV/OKYNtDHQujCzWcfqvl9Qm6eB2wdkusijQ2gICw5M7gKX
+         SyrAIceejO1VqqTR6ZMTeB4tmayEx1exLIbl0yWcCKJyT7oJ/QuNXSDLQUKWzwYrUuWp
+         Tg3lfX06IFGha2naTdzCAcdggIIAZSkrNGPB2z8+YHpvflhigcxNBf4tmbSS8qp09/Kk
+         xO/t3/EJFOZXdAsEBnHUG7xtA/QZwRH1vYFzBavGwsH6GRrOHwZYgY0k+w+qU6IM7kHa
+         GZag==
+X-Gm-Message-State: AOJu0Yz0mfKUeXuhr3LYIT/fgu5dEvpHea3YqOMX+B2H+yT9eCyQqlu5
+	61Gt1ZuLc/toyO9ICCl++XdLwfVh2bpI8w==
+X-Google-Smtp-Source: AGHT+IGBWdHLHlu+WKmrXxmyfAaya9jZa+J4uJQ5YBat9EhQgRdlPfVABfpR7u3rUy/Ip3xt+opsKg==
+X-Received: by 2002:a05:6808:2e91:b0:3bd:72dc:65a6 with SMTP id gt17-20020a0568082e9100b003bd72dc65a6mr3757509oib.58.1705418969400;
+        Tue, 16 Jan 2024 07:29:29 -0800 (PST)
+Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
+        by smtp.gmail.com with ESMTPSA id q16-20020a05620a0c9000b007815844a295sm3800321qki.116.2024.01.16.07.29.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jan 2024 07:29:28 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1rPlNY-0045nl-7f;
+	Tue, 16 Jan 2024 11:29:28 -0400
+Date: Tue, 16 Jan 2024 11:29:28 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
+	Alex Williamson <alex.williamson@redhat.com>,
+	Kalle Valo <kvalo@kernel.org>, James Prestwood <prestwoj@gmail.com>,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	iommu@lists.linux.dev
 Subject: Re: ath11k and vfio-pci support
-Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, Kalle Valo <kvalo@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
- <8734v5zhol.fsf@kernel.org> <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
- <87r0ipcn7j.fsf@kernel.org> <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
- <26119c3f-9012-47bb-948e-7e976d4773a7@quicinc.com>
- <87mstccmk6.fsf@kernel.org> <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
- <8734v4auc4.fsf@kernel.org> <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
+Message-ID: <20240116152928.GF50608@ziepe.ca>
+References: <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
+ <8734v4auc4.fsf@kernel.org>
+ <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
  <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
  <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
  <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
-From: James Prestwood <prestwoj@gmail.com>
-In-Reply-To: <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <87il3w7zjh.fsf@kernel.org>
+ <20240115104658.0b56bd35.alex.williamson@redhat.com>
+ <543d9d2f-e132-4fdb-8454-68595cd20515@quicinc.com>
+ <57d20bd812ccf8d1a5815ad41b5dcea3925d4fe1.camel@infradead.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <57d20bd812ccf8d1a5815ad41b5dcea3925d4fe1.camel@infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240116_050601_065300_259FD893 
-X-CRM114-Status: GOOD (  40.55  )
+X-CRM114-CacheID: sfid-20240116_073033_655264_D9175F77 
+X-CRM114-Status: GOOD (  17.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,221 +108,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Baochen,
+On Tue, Jan 16, 2024 at 11:41:19AM +0100, David Woodhouse wrote:
 
-On 1/14/24 4:37 AM, Baochen Qiang wrote:
->
->
-> On 1/12/2024 8:47 PM, James Prestwood wrote:
->> Hi,
->>
->> On 1/11/24 6:04 PM, Baochen Qiang wrote:
->>>
->>>
->>> On 1/11/2024 9:38 PM, James Prestwood wrote:
->>>>
->>>> On 1/11/24 5:11 AM, Kalle Valo wrote:
->>>>> James Prestwood <prestwoj@gmail.com> writes:
->>>>>
->>>>>> Hi Kalle, Baochen,
->>>>>>
->>>>>> On 1/11/24 12:16 AM, Kalle Valo wrote:
->>>>>>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
->>>>>>>
->>>>>>>> On 1/10/2024 10:55 PM, James Prestwood wrote:
->>>>>>>>> Hi Kalle,
->>>>>>>>> On 1/10/24 5:49 AM, Kalle Valo wrote:
->>>>>>>>>> James Prestwood <prestwoj@gmail.com> writes:
->>>>>>>>>>
->>>>>>>>>>>> But I have also no idea what is causing this, I guess we 
->>>>>>>>>>>> are doing
->>>>>>>>>>>> something wrong with the PCI communication? That reminds 
->>>>>>>>>>>> me, you could
->>>>>>>>>>>> try this in case that helps:
->>>>>>>>>>>>
->>>>>>>>>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20231212031914.47339-1-imguzh@gmail.com/ 
->>>>>>>>>>>>
->>>>>>>>>>> Heh, I saw this pop up a day after I sent this and was 
->>>>>>>>>>> wondering. Is
->>>>>>>>>>> this something I'd need on the host kernel, guest, or both?
->>>>>>>>>> On the guest where ath11k is running. I'm not optimistic that 
->>>>>>>>>> this would
->>>>>>>>>> solve your issue, I suspect there can be also other bugs, but 
->>>>>>>>>> good to
->>>>>>>>>> know if the patch changes anything.
->>>>>>>>> Looks the same here, didn't seem to change anything based on the
->>>>>>>>> kernel logs.
->>>>>>>>>
->>>>>>>> Could you try this?
->>>>>>>>
->>>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/net/wireless/ath/ath11k/pci.c?id=39564b475ac5a589e6c22c43a08cbd283c295d2c 
->>>>>>>>
->>>>>>> This reminds me, I assumed James was testing with ath.git master 
->>>>>>> branch
->>>>>>> (which has that commit) but I never checked that. So for testing 
->>>>>>> please
->>>>>>> always use the master branch to get the latest and greatest ath11k:
->>>>>>>
->>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/
->>>>>>>
->>>>>>> There's a quite long delay from ath.git to official releases.
->>>>>> Good to know, and I was not in fact using that branch. Rebuilt from
->>>>>> ath.git/master but still roughly the same behavior. There does 
->>>>>> appear
->>>>>> to be more output now though, specifically a firmware crash:
->>>>>>
->>>>>> [    2.281721] ath11k_pci 0000:00:06.0: failed to receive control
->>>>>> response completion, polling..
->>>>>> [    2.282101] ip (65) used greatest stack depth: 12464 bytes left
->>>>>> [    3.306039] ath11k_pci 0000:00:06.0: Service connect timeout
->>>>>> [    3.307588] ath11k_pci 0000:00:06.0: failed to connect to HTT: 
->>>>>> -110
->>>>>> [    3.309286] ath11k_pci 0000:00:06.0: failed to start core: -110
->>>>>> [    3.519637] ath11k_pci 0000:00:06.0: firmware crashed: 
->>>>>> MHI_CB_EE_RDDM
->>>>>> [    3.519678] ath11k_pci 0000:00:06.0: ignore reset dev flags 
->>>>>> 0x4000
->>>>>> [    3.627087] ath11k_pci 0000:00:06.0: firmware crashed: 
->>>>>> MHI_CB_EE_RDDM
->>>>>> [    3.627129] ath11k_pci 0000:00:06.0: ignore reset dev flags 
->>>>>> 0x4000
->>>>>> [   13.802105] ath11k_pci 0000:00:06.0: failed to wait wlan mode
->>>>>> request (mode 4): -110
->>>>>> [   13.802175] ath11k_pci 0000:00:06.0: qmi failed to send wlan mode
->>>>>> off: -110
->>>>> Ok, that's progress now. Can you try next try the iommu patch[1] we
->>>>> talked about earlier? It's already in master-pending branch (along 
->>>>> with
->>>>> other pending patches) so you can use that branch if you want.
->>>>>
->>>>> [1] 
->>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20231212031914.47339-1-imguzh@gmail.com/
->>>>
->>>> Same result unfortunately, tried both with just [1] applied to 
->>>> ath.git and at HEAD of master-pending.
->>>>
->>>> Thanks,
->>>>
->>>> James
->>> Strange that still fails. Are you now seeing this error in your host 
->>> or your Qemu? or both?
->>> Could you share your test steps? And if you can share please be as 
->>> detailed as possible since I'm not familiar with passing WLAN 
->>> hardware to a VM using vfio-pci.
->>
->> Just in Qemu, the hardware works fine on my host machine.
->>
->> I basically follow this guide to set it up, its written in the 
->> context of GPUs/libvirt but the host setup is exactly the same. By no 
->> means do you need to read it all, once you set the vfio-pci.ids and 
->> see your unclaimed adapter you can stop:
->>
->> https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
->>
->> In short you should be able to set the following host kernel options 
->> and reboot (assuming your motherboard/hardware is compatible):
->>
->> intel_iommu=on iommu=pt vfio-pci.ids=17cb:1103
->>
->> Obviously change the device/vendor IDs to whatever ath11k hw you 
->> have. Once the host is rebooted you should see your wlan adapter as 
->> UNCLAIMED, showing the driver in use as vfio-pci. If not, its likely 
->> your motherboard just isn't compatible, the device has to be in its 
->> own IOMMU group (you could try switching PCI ports if this is the case).
->>
->> I then build a "kvm_guest.config" kernel with the driver/firmware for 
->> ath11k and boot into that with the following Qemu options:
->>
->> -enable-kvm -device -vfio-pci,host=<PCI address>
->>
->> If it seems easier you could also utilize IWD's test-runner which 
->> handles launching the Qemu kernel automatically, detecting any 
->> vfio-devices and passes them through and mounts some useful host 
->> folders into the VM. Its actually a very good general purpose tool 
->> for kernel testing, not just for IWD:
->>
->> https://git.kernel.org/pub/scm/network/wireless/iwd.git/tree/doc/test-runner.txt 
->>
->>
->> Once set up you can just run test-runner with a few flags and you'll 
->> boot into a shell:
->>
->> ./tools/test-runner -k <kernel-image> --hw --start /bin/bash
->>
->> Please reach out if you have questions, thanks for looking into this.
->>
-> Thanks for these details. I reproduced this issue by following your 
-> guide.
->
-> Seems the root cause is that the MSI vector assigned to WCN6855 in 
-> qemu is different with that in host. In my case the MSI vector in qemu 
-> is [Address: fee00000  Data: 0020] while in host it is [Address: 
-> fee00578 Data: 0000]. So in qemu ath11k configures MSI vector 
-> [Address: fee00000 Data: 0020] to WCN6855 hardware/firmware, and 
-> firmware uses that vector to fire interrupts to host/qemu. However 
-> host IOMMU doesn't know that vector because the real vector is 
-> [Address: fee00578  Data: 0000], as a result host blocks that 
-> interrupt and reports an error, see below log:
->
-> [ 1414.206069] DMAR: DRHD: handling fault status reg 2
-> [ 1414.206081] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
-> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
-> [ 1414.210334] DMAR: DRHD: handling fault status reg 2
-> [ 1414.210342] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
-> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
-> [ 1414.212496] DMAR: DRHD: handling fault status reg 2
-> [ 1414.212503] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
-> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
-> [ 1414.214600] DMAR: DRHD: handling fault status reg 2
->
-> While I don't think there is a way for qemu/ath11k to get the real MSI 
-> vector from host, I will try to read the vfio code to check further. 
-> Before that, to unblock you, a possible hack is to hard code the MSI 
-> vector in qemu to the same as in host, on condition that the MSI 
-> vector doesn't change. In my case, the change looks like
->
-> diff --git a/drivers/net/wireless/ath/ath11k/pci.c 
-> b/drivers/net/wireless/ath/ath11k/pci.c
-> index 09e65c5e55c4..89a9bbe9e4d2 100644
-> --- a/drivers/net/wireless/ath/ath11k/pci.c
-> +++ b/drivers/net/wireless/ath/ath11k/pci.c
-> @@ -459,7 +459,12 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci 
-> *ab_pci)
->                 ab->pci.msi.addr_hi = 0;
->         }
->
-> -       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", 
-> ab->pci.msi.ep_base_data);
-> +       ab->pci.msi.addr_hi = 0;
-> +       ab->pci.msi.addr_lo = 0xfee00578;
-> +       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x base 
-> data is %d\n",
-> +                  ab->pci.msi.addr_hi,
-> +                  ab->pci.msi.addr_lo,
-> +                  ab->pci.msi.ep_base_data);
->
->         return 0;
->
-> @@ -487,6 +492,7 @@ static int ath11k_pci_config_msi_data(struct 
-> ath11k_pci *ab_pci)
->         }
->
->         ab_pci->ab->pci.msi.ep_base_data = msi_desc->msg.data;
-> +       ab_pci->ab->pci.msi.ep_base_data = 0;
->
->         ath11k_dbg(ab_pci->ab, ATH11K_DBG_PCI, "after request_irq 
-> msi_ep_base_data %d\n",
->                    ab_pci->ab->pci.msi.ep_base_data);
->
->
-> This hack works on my setup.
+> If we had had this posted interrupt support from the beginning, perhaps
+> we could have have a much simpler model — we just let the guest write
+> its intended (v)CPU#/vector *directly* to the MSI table in the device,
+> and let the IOMMU fix it up by having a table pointing to the
+> appropriate set of vCPUs. But that isn't how it happened. The model we
+> have is that the VMM has to *emulate* the config space and handle the
+> interrupts as described above.
 
-Progress! Thank you. This didn't work for me but its likely because my 
-host MSI vector is not fee00578. Where did you come up with this value? 
-I don't see anything in the dmesg logs, or in lspci etc.
+I do have a strong desire to rework things to be more like this, just
+not time yet :)
 
-Thanks,
+We have enough real problems related to the fake interrupt data in
+the guest.
 
-James
+This ath11k thing sounds more like IMS really - it makes zero sense
+that a device would be designed where the MSI vector has to be copied
+to another location - most likely the other location is another
+interrupt source that can be programmed independently, with its own
+irqchip, etc? Linux supports this now. Thomas and Intel did it to
+support SIOV IMS.
+
+Are you sure you have implemented your Linux driver correctly? :)
+
+Of course IMS doesn't work in VMs, but that is a big motivation to fix
+the irq organizing. At least you'd know why the device is broken :)
+
+Jason
 
 
