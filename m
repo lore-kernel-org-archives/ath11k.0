@@ -4,96 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FC55C47077
-	for <ath11k@archiver.kernel.org>; Tue, 16 Jan 2024 15:30:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E69C1C47DA2
+	for <ath11k@archiver.kernel.org>; Tue, 16 Jan 2024 16:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iJ8kDv4NT77wbV/RUW9AhIRHKupbHjNRdeQr3Ppsnl0=; b=t3Fcs7vHjvsViB6QWIagJCj77A
-	YqI5zoe1yPuxO2d/JncCAlR58oQsf4fmJLMn3zEdsf8ckKpdjJlu6oPUlMaAcsL0BJ/RJUbXwj5og
-	Pfw4hLCzIhYSSWFGDAC7TPkdtQai4IChj7ZJWNNcA4auW3YThHFHtidEeqk/KHYpjC23rkOjtV07w
-	gKVtX+T5xNR0q6iUxgFMU0F2LU8Wyg5zf/4p9v/rOQUmfHezD3tbXcbVJU6V78RnfB8YuU9lQ8zqx
-	zQlANmFglomKEWK/8dD6bUvEo4rjkpwaZmwXtBN2fjBrcP6mTPHDKDqHCuhI3pAv6BX6BWSg0RlYp
-	VbdbUGAw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=GGCf2oVrPExymJ+LoSpyhflVsJy1oqjW5/tJ73eB70E=; b=3meiypiKFufWBJefiKc9xVx1u4
+	/AVYYg0cZfAkXHfLqVAWhWp0JjieJMT5O1ekSUxig0WEYXaLWWOQ12RQQ9kH5TfhOVa0ThSPMEG/e
+	usRCmK1sKaAxE90QF+v3N4sQHmUAsapz/837a5M66qWwYGa8JMSdQk6tlB5SmyjAYsPxglVoWpva/
+	OelD5VX1oBL5eKQpMvwnGuHizHdYI3K+YmygPHJ2kyMQtnGhY/Row4LfRTvpuTOBOiltKj+F20WZs
+	UOp1GkcSWKY+Aj5abMCYBGVxbUr1PVC7N9xipaB1D+AMLeOH+6o3I0tqwdu9qtlMTMSoDclGbM7yu
+	CLVfi8HQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPlOe-00CQfO-13;
-	Tue, 16 Jan 2024 15:30:36 +0000
-Received: from mail-oi1-f179.google.com ([209.85.167.179])
+	id 1rPmlU-00Cg25-0s;
+	Tue, 16 Jan 2024 16:58:16 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPlOb-00CQdh-1z
+	id 1rPmlR-00Cg0g-0Q
 	for ath11k@lists.infradead.org;
-	Tue, 16 Jan 2024 15:30:34 +0000
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3bd87b652eeso489240b6e.3
-        for <ath11k@lists.infradead.org>; Tue, 16 Jan 2024 07:30:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1705418969; x=1706023769; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iJ8kDv4NT77wbV/RUW9AhIRHKupbHjNRdeQr3Ppsnl0=;
-        b=J4l8QmGKGpIbtBS+/TfhMSqNLNUKLcPnKGJ/xg7OB0nSAPBn+fvrvl4p55a7ia6fqX
-         Xai2iT5m/UOjcW9npyd7e9pgDxNOYVXmOUEpXsmxnq7yb2qJI5h1MmcHHNHy/3KUtcsk
-         3SHwGYIvJwp2vV5dwcuz+wXLtO5vFjNyGWJ4/UA0eM3UQg6NWGNG6RVLOWRCnD8c5gMM
-         Oa8uNE3LSrinotRpKKZxowqgD5kRmHkVIUT0D6lAfjR8MdX36MsRVVP+MN+p6pZ2B9q5
-         WO4gYeXXTTcjMW8fXHvBh1WhUAxVLaBSnL6mbGEfNxZmE+HZ1mumpdDh50yHtldSOetw
-         5FZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705418969; x=1706023769;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iJ8kDv4NT77wbV/RUW9AhIRHKupbHjNRdeQr3Ppsnl0=;
-        b=PMheFteA+rlTsFxMphLqGyFLrsqWVXjAF2SVMGKXGzyYSvCnTGbLWh/YNksbdTdXtR
-         VNHwmZwlypKVTKO8S9rXiHV/OKYNtDHQujCzWcfqvl9Qm6eB2wdkusijQ2gICw5M7gKX
-         SyrAIceejO1VqqTR6ZMTeB4tmayEx1exLIbl0yWcCKJyT7oJ/QuNXSDLQUKWzwYrUuWp
-         Tg3lfX06IFGha2naTdzCAcdggIIAZSkrNGPB2z8+YHpvflhigcxNBf4tmbSS8qp09/Kk
-         xO/t3/EJFOZXdAsEBnHUG7xtA/QZwRH1vYFzBavGwsH6GRrOHwZYgY0k+w+qU6IM7kHa
-         GZag==
-X-Gm-Message-State: AOJu0Yz0mfKUeXuhr3LYIT/fgu5dEvpHea3YqOMX+B2H+yT9eCyQqlu5
-	61Gt1ZuLc/toyO9ICCl++XdLwfVh2bpI8w==
-X-Google-Smtp-Source: AGHT+IGBWdHLHlu+WKmrXxmyfAaya9jZa+J4uJQ5YBat9EhQgRdlPfVABfpR7u3rUy/Ip3xt+opsKg==
-X-Received: by 2002:a05:6808:2e91:b0:3bd:72dc:65a6 with SMTP id gt17-20020a0568082e9100b003bd72dc65a6mr3757509oib.58.1705418969400;
-        Tue, 16 Jan 2024 07:29:29 -0800 (PST)
-Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id q16-20020a05620a0c9000b007815844a295sm3800321qki.116.2024.01.16.07.29.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jan 2024 07:29:28 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1rPlNY-0045nl-7f;
-	Tue, 16 Jan 2024 11:29:28 -0400
-Date: Tue, 16 Jan 2024 11:29:28 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: David Woodhouse <dwmw2@infradead.org>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
-	Alex Williamson <alex.williamson@redhat.com>,
-	Kalle Valo <kvalo@kernel.org>, James Prestwood <prestwoj@gmail.com>,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	iommu@lists.linux.dev
-Subject: Re: ath11k and vfio-pci support
-Message-ID: <20240116152928.GF50608@ziepe.ca>
-References: <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
- <8734v4auc4.fsf@kernel.org>
- <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
- <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
- <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
- <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
- <87il3w7zjh.fsf@kernel.org>
- <20240115104658.0b56bd35.alex.williamson@redhat.com>
- <543d9d2f-e132-4fdb-8454-68595cd20515@quicinc.com>
- <57d20bd812ccf8d1a5815ad41b5dcea3925d4fe1.camel@infradead.org>
+	Tue, 16 Jan 2024 16:58:14 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40GE0SRq017782;
+	Tue, 16 Jan 2024 16:58:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=GGCf2oVrPExymJ+LoSpyhflVsJy1oqjW5/tJ73eB70E=; b=iZ
+	XCTlrIAErVdZlGVSb/i0Hn44IG2n7ptRNNEWTfgWeaRMxPgVw0V0TRLwmy+15mH5
+	L/UtoABG2B4NixijR3ewBDVmHgykD+H2Tot3Fu6yTW2UBDsTs0prmJTdnRtU+OI0
+	lxo6Us7c8jAddwoqqjOM1+E6vCekAvtEKo8MXHeOvB+sYYlnaluhxVmEVtUsXAqS
+	a5uUTWyz8DjNTrrxVEUZIGpxk40mRzC1V4qpgQKz12cHOPIJQVARyc4dy0snPa6n
+	WAoo6QpBnRHwukKm+AuZoF/6fg22a3N+IFimqZzthfc3E2+1Iagyfo7e1wnKthc2
+	ElhK4/w/trbrxkAnaprA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vnq4t13k8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jan 2024 16:58:06 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40GGw56q005399
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jan 2024 16:58:05 GMT
+Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 16 Jan
+ 2024 08:58:04 -0800
+Message-ID: <b4f29511-e001-4964-b88d-208dabf88121@quicinc.com>
+Date: Tue, 16 Jan 2024 08:58:04 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <57d20bd812ccf8d1a5815ad41b5dcea3925d4fe1.camel@infradead.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: document HAL_RX_BUF_RBM_SW4_BM
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240111-document-hal_rx_buf_rbm_sw4_bm-v1-1-ad277e8ab3cc@quicinc.com>
+ <874jfg7xm4.fsf@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <874jfg7xm4.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: yQp3OW0jwCxWbxg37ISj41BS-p-b-ZMg
+X-Proofpoint-ORIG-GUID: yQp3OW0jwCxWbxg37ISj41BS-p-b-ZMg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ clxscore=1015 malwarescore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
+ bulkscore=0 mlxlogscore=371 priorityscore=1501 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401160134
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240116_073033_655264_D9175F77 
-X-CRM114-Status: GOOD (  17.08  )
+X-CRM114-CacheID: sfid-20240116_085813_327821_70E91BB7 
+X-CRM114-Status: GOOD (  10.32  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,34 +99,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 16, 2024 at 11:41:19AM +0100, David Woodhouse wrote:
+On 1/14/2024 7:17 AM, Kalle Valo wrote:
+> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+> 
+>> Commit 7636c9a6e7d7 ("wifi: ath11k: Add multi TX ring support for WCN6750")
+>> added HAL_RX_BUF_RBM_SW4_BM to enum hal_rx_buf_return_buf_manager. However,
+>> as flagged by the kernel-doc script, the documentation was not updated:
+>>
+>> drivers/net/wireless/ath/ath11k/hal.h:689: warning: Enum value 'HAL_RX_BUF_RBM_SW4_BM' not described in enum 'hal_rx_buf_return_buf_manager'
+>>
+>> So update the documentation. No functional changes, compile tested only.
+>>
+>> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> 
+> I'm not really a fan of kernel-doc in wireless drivers, it feels more
+> unnecessary work. Should we remove the kernel-doc markings from ath11k
+> altogether?
 
-> If we had had this posted interrupt support from the beginning, perhaps
-> we could have have a much simpler model — we just let the guest write
-> its intended (v)CPU#/vector *directly* to the MSI table in the device,
-> and let the IOMMU fix it up by having a table pointing to the
-> appropriate set of vCPUs. But that isn't how it happened. The model we
-> have is that the VMM has to *emulate* the config space and handle the
-> interrupts as described above.
+Are you not a fan of kernel-doc format specifically, or not a fan of
+documentation at all?
 
-I do have a strong desire to rework things to be more like this, just
-not time yet :)
+I'm personally a fan of documentation since good documentation makes the
+code more maintainable. Yes, there is a cost in creating and maintaining
+the documentation, but this is hopefully offset by cost saving when new
+developers are trying to understand and modify the code.
 
-We have enough real problems related to the fake interrupt data in
-the guest.
+I'm also a fan of consistency. And since kernel-doc is the standard
+format defined for the kernel, it is my personal preference to use that
+format.
 
-This ath11k thing sounds more like IMS really - it makes zero sense
-that a device would be designed where the MSI vector has to be copied
-to another location - most likely the other location is another
-interrupt source that can be programmed independently, with its own
-irqchip, etc? Linux supports this now. Thomas and Intel did it to
-support SIOV IMS.
+I'm curious what others think of the ath10/11/12k level and style of
+documentation.
 
-Are you sure you have implemented your Linux driver correctly? :)
-
-Of course IMS doesn't work in VMs, but that is a big motivation to fix
-the irq organizing. At least you'd know why the device is broken :)
-
-Jason
-
+/jeff
 
