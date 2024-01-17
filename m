@@ -4,68 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37ADDC47077
-	for <ath11k@archiver.kernel.org>; Tue, 16 Jan 2024 21:11:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3650C47DA7
+	for <ath11k@archiver.kernel.org>; Wed, 17 Jan 2024 05:26:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ntTg0X+EOcZumleCxTU3lAbbf9/sklJEYhE5L7Q2eO8=; b=El/cbCTEcEBhIW1xklxM0N8OWm
-	NuWwW22lGih7THIy53OJLarPIF+ogxwCBEC2fQ3s1c+ONLInHAH3J5Hk+G1FyXsdQX87bxGxxLeIP
-	y/hix3zU6RnwSY+8kEWns4L1BwQ/U8JnRiOUNIzc99XOEqi8cX4pk7MJO7G5CY65dlnP8bFs3gDGT
-	dcocRkqpCXjjc6m9xF283fjNiakdvVOLyRSpBOMrRWQNUxy4+aU0H9MLIIFYYPxuXkvaN1afUaHd2
-	NpX6JevHa54RmNUfqI7Li/UC1cZtaKdZagFMcDIKrXbFW+hPExfqEYVmRtpKuchLm2RCTPes6PkTQ
-	75SmgSig==;
+	bh=EK2Q9F0VzalOSp1xYGRINbraJvYUCEpexiyblMBeymU=; b=sBvsET4adE5IoC5JwbsgnMLmi6
+	23ydXuM8aWpo/2KVKh9h+A7Bhe/0koBuZKJ9FUevjZ4yHQW2foinbA/1lgzeJ+Hu6lipslixZ5QRN
+	VDGJ7HozNzMiu8MP7bUT6kfgVVAJo6FgP0Hq5nMFKOJAMxiTwtJFMAqQwlzAtE+BZ7HtQoOH1XxL4
+	WOzOYp9QG0i7atQunPc3RiqYVEQ/FHFhSqN7pAO/9BKiHghJdu9uJNrFF4j7iFV2qv06dXwXBRp82
+	SI1ziTZ+YFzd+tvBg6ZLX9nADu3WNXagaKmw4ea9Zmg16+nMKmgtaFfde6lmq9VxwjCHodYCnC4rv
+	Q1POux/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPqiS-00Dabz-2b;
-	Tue, 16 Jan 2024 21:11:24 +0000
+	id 1rPyRt-00EUdN-0r;
+	Wed, 17 Jan 2024 05:26:49 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rPqiO-00DaWZ-1N
+	id 1rPyRn-00EUZt-1u
 	for ath11k@lists.infradead.org;
-	Tue, 16 Jan 2024 21:11:22 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40GHJmLg008703;
-	Tue, 16 Jan 2024 21:11:01 GMT
+	Wed, 17 Jan 2024 05:26:47 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40H2x1ir019770;
+	Wed, 17 Jan 2024 05:26:37 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=ntTg0X+EOcZumleCxTU3lAbbf9/sklJEYhE5L7Q2eO8=; b=VT
-	AtwrSOibpv1xqgQ1qYxlB6B0gJZY2wQPxgyUcqYYHyHAPOL8jPdDhE4PZ4iABoA8
-	/ylRhB6+TwSeJWOgWWV1JSy0hEznlfdpzT81/FO6SQ5pSER2rlb0OO2AbhJMyKSO
-	gaIUE3ow85tGCVJet8oVhGsP/f2FpX22QAhcFLAk13r7JcOD8R8aFMTlW2BXlR5C
-	9SjaBNBllJBQkmvpIDnBmNIP+KpAIV4nHZaNTfu3D8uIiMu3OP+uzWvkr+ECDFpV
-	3JGIfebVe63S1zD/crmCfLzOoFkjiFR4UnjvL2V20j4CVB+K3NFySJLHYBUZkqaE
-	bGB86o7bBukH1h5IKWiw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vnn1qsyra-1
+	qcppdkim1; bh=EK2Q9F0VzalOSp1xYGRINbraJvYUCEpexiyblMBeymU=; b=mk
+	11eseOaHcBRHKniwZb0KDdvHotMQpSjxVoXh89e19pXQUd6/3Nqgu5uKnfcwfkVU
+	0Kga7A2CyDuPdJ3Lx9c6yCJ9kokhIe+20RtQXmQT0ZV2joLFUs6pHytQN48W/FFG
+	gQJhXrKufVc7OsjKR+Z10MX0Ts6ritrzYNLGsOrcpxJXo1dp2tHI3AKxeYDhLhgH
+	OoPJCP4x4E+joNwYQPaCQUlW/iFSDiqc8IhGT+7SBkZxyGbNSzMcXqYVrDqBxmjq
+	4URiCp6i/99Js3BQT0wewCF2M2eDyqln4bGWlltRNNdLKjVOxmBbGy/6jemLR7qZ
+	oFECbpNTdTXR2Iy2vN8Q==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vnrndadpx-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 21:11:01 +0000 (GMT)
+	Wed, 17 Jan 2024 05:26:37 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40GLB06D029109
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40H5QaBW001092
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 21:11:00 GMT
-Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Wed, 17 Jan 2024 05:26:36 GMT
+Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 16 Jan
- 2024 13:10:57 -0800
-Message-ID: <71559fe3-3125-43c4-959a-32bc30e165e4@quicinc.com>
-Date: Tue, 16 Jan 2024 13:10:56 -0800
+ 2024 21:26:35 -0800
+Message-ID: <16cfd010-b62d-4385-92d1-002820a8db38@quicinc.com>
+Date: Wed, 17 Jan 2024 13:26:32 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: ath11k and vfio-pci support
 Content-Language: en-US
-To: Alex Williamson <alex.williamson@redhat.com>,
-        David Woodhouse
-	<dwmw2@infradead.org>
-CC: Baochen Qiang <quic_bqiang@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
-        James Prestwood <prestwoj@gmail.com>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <iommu@lists.linux.dev>,
-        "kernel@quicinc.com"
-	<kernel@quicinc.com>
+To: James Prestwood <prestwoj@gmail.com>, Kalle Valo <kvalo@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
 References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
  <8734v5zhol.fsf@kernel.org> <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
  <87r0ipcn7j.fsf@kernel.org> <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
@@ -75,33 +69,29 @@ References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
  <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
  <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
  <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
- <87il3w7zjh.fsf@kernel.org>
- <20240115104658.0b56bd35.alex.williamson@redhat.com>
- <543d9d2f-e132-4fdb-8454-68595cd20515@quicinc.com>
- <57d20bd812ccf8d1a5815ad41b5dcea3925d4fe1.camel@infradead.org>
- <20240116112845.55ebfcf7.alex.williamson@redhat.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240116112845.55ebfcf7.alex.williamson@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
+ <ee0280fd-032c-4f45-a3f9-50d96d8bed6d@gmail.com>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <ee0280fd-032c-4f45-a3f9-50d96d8bed6d@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: NVbf2E3F484SdgKaOFbxgXcUbnAeSTyW
-X-Proofpoint-ORIG-GUID: NVbf2E3F484SdgKaOFbxgXcUbnAeSTyW
+X-Proofpoint-GUID: XHpg58u55UjWk8wZVZx0YhUECWYRQhwR
+X-Proofpoint-ORIG-GUID: XHpg58u55UjWk8wZVZx0YhUECWYRQhwR
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
- mlxlogscore=999 lowpriorityscore=0 phishscore=0 bulkscore=0
- impostorscore=0 mlxscore=0 priorityscore=1501 spamscore=0 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401160167
+ definitions=2024-01-17_02,2024-01-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 mlxscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015
+ adultscore=0 impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401170035
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240116_131120_470048_78574C3C 
-X-CRM114-Status: GOOD (  53.93  )
+X-CRM114-CacheID: sfid-20240116_212643_726915_44A773DE 
+X-CRM114-Status: GOOD (  35.56  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,272 +106,230 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/16/2024 10:28 AM, Alex Williamson wrote:
-> On Tue, 16 Jan 2024 11:41:19 +0100
-> David Woodhouse <dwmw2@infradead.org> wrote:
+
+
+On 1/16/2024 9:05 PM, James Prestwood wrote:
+> Hi Baochen,
 > 
->> On Tue, 2024-01-16 at 18:08 +0800, Baochen Qiang wrote:
+> On 1/14/24 4:37 AM, Baochen Qiang wrote:
+>>
+>>
+>> On 1/12/2024 8:47 PM, James Prestwood wrote:
+>>> Hi,
 >>>
->>>
->>> On 1/16/2024 1:46 AM, Alex Williamson wrote:  
->>>> On Sun, 14 Jan 2024 16:36:02 +0200
->>>> Kalle Valo <kvalo@kernel.org> wrote:
->>>>   
->>>>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
->>>>>   
->>>>>>>> Strange that still fails. Are you now seeing this error in your
->>>>>>>> host or your Qemu? or both?
->>>>>>>> Could you share your test steps? And if you can share please be as
->>>>>>>> detailed as possible since I'm not familiar with passing WLAN
->>>>>>>> hardware to a VM using vfio-pci.  
->>>>>>>
->>>>>>> Just in Qemu, the hardware works fine on my host machine.
->>>>>>> I basically follow this guide to set it up, its written in the
->>>>>>> context of GPUs/libvirt but the host setup is exactly the same. By
->>>>>>> no means do you need to read it all, once you set the vfio-pci.ids
->>>>>>> and see your unclaimed adapter you can stop:
->>>>>>> https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
->>>>>>> In short you should be able to set the following host kernel options
->>>>>>> and reboot (assuming your motherboard/hardware is compatible):
->>>>>>> intel_iommu=on iommu=pt vfio-pci.ids=17cb:1103
->>>>>>> Obviously change the device/vendor IDs to whatever ath11k hw you
->>>>>>> have. Once the host is rebooted you should see your wlan adapter as
->>>>>>> UNCLAIMED, showing the driver in use as vfio-pci. If not, its likely
->>>>>>> your motherboard just isn't compatible, the device has to be in its
->>>>>>> own IOMMU group (you could try switching PCI ports if this is the
->>>>>>> case).
->>>>>>> I then build a "kvm_guest.config" kernel with the driver/firmware
->>>>>>> for ath11k and boot into that with the following Qemu options:
->>>>>>> -enable-kvm -device -vfio-pci,host=<PCI address>
->>>>>>> If it seems easier you could also utilize IWD's test-runner which
->>>>>>> handles launching the Qemu kernel automatically, detecting any
->>>>>>> vfio-devices and passes them through and mounts some useful host
->>>>>>> folders into the VM. Its actually a very good general purpose tool
->>>>>>> for kernel testing, not just for IWD:
->>>>>>> https://git.kernel.org/pub/scm/network/wireless/iwd.git/tree/doc/test-runner.txt
->>>>>>> Once set up you can just run test-runner with a few flags and you'll
->>>>>>> boot into a shell:
->>>>>>> ./tools/test-runner -k <kernel-image> --hw --start /bin/bash
->>>>>>> Please reach out if you have questions, thanks for looking into
->>>>>>> this.  
->>>>>>
->>>>>> Thanks for these details. I reproduced this issue by following your guide.
->>>>>>
->>>>>> Seems the root cause is that the MSI vector assigned to WCN6855 in
->>>>>> qemu is different with that in host. In my case the MSI vector in qemu
->>>>>> is [Address: fee00000  Data: 0020] while in host it is [Address:
->>>>>> fee00578 Data: 0000]. So in qemu ath11k configures MSI vector
->>>>>> [Address: fee00000 Data: 0020] to WCN6855 hardware/firmware, and
->>>>>> firmware uses that vector to fire interrupts to host/qemu. However
->>>>>> host IOMMU doesn't know that vector because the real vector is
->>>>>> [Address: fee00578  Data: 0000], as a result host blocks that
->>>>>> interrupt and reports an error, see below log:
->>>>>>
->>>>>> [ 1414.206069] DMAR: DRHD: handling fault status reg 2
->>>>>> [ 1414.206081] DMAR: [INTR-REMAP] Request device [02:00.0] fault index
->>>>>> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt
->>>>>> request
->>>>>> [ 1414.210334] DMAR: DRHD: handling fault status reg 2
->>>>>> [ 1414.210342] DMAR: [INTR-REMAP] Request device [02:00.0] fault index
->>>>>> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt
->>>>>> request
->>>>>> [ 1414.212496] DMAR: DRHD: handling fault status reg 2
->>>>>> [ 1414.212503] DMAR: [INTR-REMAP] Request device [02:00.0] fault index
->>>>>> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt
->>>>>> request
->>>>>> [ 1414.214600] DMAR: DRHD: handling fault status reg 2
->>>>>>
->>>>>> While I don't think there is a way for qemu/ath11k to get the real MSI
->>>>>> vector from host, I will try to read the vfio code to check further.
->>>>>> Before that, to unblock you, a possible hack is to hard code the MSI
->>>>>> vector in qemu to the same as in host, on condition that the MSI
->>>>>> vector doesn't change.  
+>>> On 1/11/24 6:04 PM, Baochen Qiang wrote:
+>>>>
+>>>>
+>>>> On 1/11/2024 9:38 PM, James Prestwood wrote:
 >>>>>
->>>>> Baochen, awesome that you were able to debug this further. Now we at
->>>>> least know what's the problem.  
->>>>
->>>> It's an interesting problem, I don't think we've seen another device
->>>> where the driver reads the MSI register in order to program another
->>>> hardware entity to match the MSI address and data configuration.
->>>>
->>>> When assigning a device, the host and guest use entirely separate
->>>> address spaces for MSI interrupts.  When the guest enables MSI, the
->>>> operation is trapped by the VMM and triggers an ioctl to the host to
->>>> perform an equivalent configuration.  Generally the physical device
->>>> will interrupt within the host where it may be directly attached to KVM
->>>> to signal the interrupt, trigger through the VMM, or where
->>>> virtualization hardware supports it, the interrupt can directly trigger
->>>> the vCPU.   From the VM perspective, the guest address/data pair is used
->>>> to signal the interrupt, which is why it makes sense to virtualize the
->>>> MSI registers.  
+>>>>> On 1/11/24 5:11 AM, Kalle Valo wrote:
+>>>>>> James Prestwood <prestwoj@gmail.com> writes:
+>>>>>>
+>>>>>>> Hi Kalle, Baochen,
+>>>>>>>
+>>>>>>> On 1/11/24 12:16 AM, Kalle Valo wrote:
+>>>>>>>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
+>>>>>>>>
+>>>>>>>>> On 1/10/2024 10:55 PM, James Prestwood wrote:
+>>>>>>>>>> Hi Kalle,
+>>>>>>>>>> On 1/10/24 5:49 AM, Kalle Valo wrote:
+>>>>>>>>>>> James Prestwood <prestwoj@gmail.com> writes:
+>>>>>>>>>>>
+>>>>>>>>>>>>> But I have also no idea what is causing this, I guess we 
+>>>>>>>>>>>>> are doing
+>>>>>>>>>>>>> something wrong with the PCI communication? That reminds 
+>>>>>>>>>>>>> me, you could
+>>>>>>>>>>>>> try this in case that helps:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20231212031914.47339-1-imguzh@gmail.com/
+>>>>>>>>>>>> Heh, I saw this pop up a day after I sent this and was 
+>>>>>>>>>>>> wondering. Is
+>>>>>>>>>>>> this something I'd need on the host kernel, guest, or both?
+>>>>>>>>>>> On the guest where ath11k is running. I'm not optimistic that 
+>>>>>>>>>>> this would
+>>>>>>>>>>> solve your issue, I suspect there can be also other bugs, but 
+>>>>>>>>>>> good to
+>>>>>>>>>>> know if the patch changes anything.
+>>>>>>>>>> Looks the same here, didn't seem to change anything based on the
+>>>>>>>>>> kernel logs.
+>>>>>>>>>>
+>>>>>>>>> Could you try this?
+>>>>>>>>>
+>>>>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/net/wireless/ath/ath11k/pci.c?id=39564b475ac5a589e6c22c43a08cbd283c295d2c
+>>>>>>>> This reminds me, I assumed James was testing with ath.git master 
+>>>>>>>> branch
+>>>>>>>> (which has that commit) but I never checked that. So for testing 
+>>>>>>>> please
+>>>>>>>> always use the master branch to get the latest and greatest ath11k:
+>>>>>>>>
+>>>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/
+>>>>>>>>
+>>>>>>>> There's a quite long delay from ath.git to official releases.
+>>>>>>> Good to know, and I was not in fact using that branch. Rebuilt from
+>>>>>>> ath.git/master but still roughly the same behavior. There does 
+>>>>>>> appear
+>>>>>>> to be more output now though, specifically a firmware crash:
+>>>>>>>
+>>>>>>> [    2.281721] ath11k_pci 0000:00:06.0: failed to receive control
+>>>>>>> response completion, polling..
+>>>>>>> [    2.282101] ip (65) used greatest stack depth: 12464 bytes left
+>>>>>>> [    3.306039] ath11k_pci 0000:00:06.0: Service connect timeout
+>>>>>>> [    3.307588] ath11k_pci 0000:00:06.0: failed to connect to HTT: 
+>>>>>>> -110
+>>>>>>> [    3.309286] ath11k_pci 0000:00:06.0: failed to start core: -110
+>>>>>>> [    3.519637] ath11k_pci 0000:00:06.0: firmware crashed: 
+>>>>>>> MHI_CB_EE_RDDM
+>>>>>>> [    3.519678] ath11k_pci 0000:00:06.0: ignore reset dev flags 
+>>>>>>> 0x4000
+>>>>>>> [    3.627087] ath11k_pci 0000:00:06.0: firmware crashed: 
+>>>>>>> MHI_CB_EE_RDDM
+>>>>>>> [    3.627129] ath11k_pci 0000:00:06.0: ignore reset dev flags 
+>>>>>>> 0x4000
+>>>>>>> [   13.802105] ath11k_pci 0000:00:06.0: failed to wait wlan mode
+>>>>>>> request (mode 4): -110
+>>>>>>> [   13.802175] ath11k_pci 0000:00:06.0: qmi failed to send wlan mode
+>>>>>>> off: -110
+>>>>>> Ok, that's progress now. Can you try next try the iommu patch[1] we
+>>>>>> talked about earlier? It's already in master-pending branch (along 
+>>>>>> with
+>>>>>> other pending patches) so you can use that branch if you want.
+>>>>>>
+>>>>>> [1] 
+>>>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20231212031914.47339-1-imguzh@gmail.com/
+>>>>>
+>>>>> Same result unfortunately, tried both with just [1] applied to 
+>>>>> ath.git and at HEAD of master-pending.
+>>>>>
+>>>>> Thanks,
+>>>>>
+>>>>> James
+>>>> Strange that still fails. Are you now seeing this error in your host 
+>>>> or your Qemu? or both?
+>>>> Could you share your test steps? And if you can share please be as 
+>>>> detailed as possible since I'm not familiar with passing WLAN 
+>>>> hardware to a VM using vfio-pci.
 >>>
->>> Hi Alex, could you help elaborate more? why from the VM perspective MSI 
->>> virtualization is necessary?  
->>
->> An MSI is just a write to physical memory space. You can even use it
->> like that; configure the device to just write 4 bytes to some address
->> in a struct in memory to show that it needs attention, and you then
->> poll that memory.
->>
->> But mostly we don't (ab)use it like that, of course. We tell the device
->> to write to a special range of the physical address space where the
->> interrupt controller lives — the range from 0xfee00000 to 0xfeefffff.
->> The low 20 bits of the address, and the 32 bits of data written to that
->> address, tell the interrupt controller which CPU to interrupt, and
->> which vector to raise on the CPU (as well as some other details and
->> weird interrupt modes which are theoretically encodable).
->>
->> So in your example, the guest writes [Address: fee00000  Data: 0020]
->> which means it wants vector 0x20 on CPU#0 (well, the CPU with APICID
->> 0). But that's what the *guest* wants. If we just blindly programmed
->> that into the hardware, the hardware would deliver vector 0x20 to the
->> host's CPU0... which would be very confused by it.
->>
->> The host has a driver for that device, probably the VFIO driver. The
->> host registers its own interrupt handlers for the real hardware,
->> decides which *host* CPU (and vector) should be notified when something
->> happens. And when that happens, the VFIO driver will raise an event on
->> an eventfd, which will notify QEMU to inject the appropriate interrupt
->> into the guest.
->>
->> So... when the guest enables the MSI, that's trapped by QEMU which
->> remembers which *guest* CPU/vector the interrupt should go to. QEMU
->> tells VFIO to enable the corresponding interrupt, and what gets
->> programmed into the actual hardware is up to the *host* operating
->> system; nothing to do with the guest's information at all.
->>
->> Then when the actual hardware raises the interrupt, the VFIO interrupt
->> handler runs in the guest, signals an event on the eventfd, and QEMU
-> 
-> s/guest/host/
-> 
->> receives that and injects the event into the appropriate guest vCPU.
->>
->> (In practice QEMU doesn't do it these days; there's actually a shortcut
->> which improves latency by allowing the kernel to deliver the event to
->> the guest directly, connecting the eventfd directly to the KVM irq
->> routing table.)
->>
->>
->> Interrupt remapping is probably not important here, but I'll explain it
->> briefly anyway. With interrupt remapping, the IOMMU handles the
->> 'memory' write from the device, just as it handles all other memory
->> transactions. One of the reasons for interrupt remapping is that the
->> original definitions of the bits in the MSI (the low 20 bits of the
->> address and the 32 bits of what's written) only had 8 bits for the
->> target CPU APICID. And we have bigger systems than that now.
->>
->> So by using one of the spare bits in the MSI message, we can indicate
->> that this isn't just a directly-encoded cpu/vector in "Compatibility
->> Format", but is a "Remappable Format" interrupt. Instead of the
->> cpu/vector it just contains an index in to the IOMMU's Interrupt
->> Redirection Table. Which *does* have a full 32-bits for the target APIC
->> ID. That's why x2apic support (which gives us support for >254 CPUs)
->> depends on interrupt remapping. 
->>
->> The other thing that the IOMMU can do in modern systems is *posted*
->> interrupts. Where the entry in the IOMMU's IRT doesn't just specify the
->> host's CPU/vector, but actually specifies a *vCPU* to deliver the
->> interrupt to. 
->>
->> All of which is mostly irrelevant as it's just another bypass
->> optimisation to improve latency. The key here is that what the guest
->> writes to its emulated MSI table and what the host writes to the real
->> hardware are not at all related.
->>
->> If we had had this posted interrupt support from the beginning, perhaps
->> we could have have a much simpler model — we just let the guest write
->> its intended (v)CPU#/vector *directly* to the MSI table in the device,
->> and let the IOMMU fix it up by having a table pointing to the
->> appropriate set of vCPUs. But that isn't how it happened. The model we
->> have is that the VMM has to *emulate* the config space and handle the
->> interrupts as described above.
->>
->> This means that whenever a device has a non-standard way of configuring
->> MSIs, the VMM has to understand and intercept that. I believe we've
->> even seen some Atheros devices with the MSI target in some weird MMIO
->> registers instead of the standard location, so we've had to hack QEMU
->> to handle those too?
->>
->>> And, maybe a stupid question, is that possible VM/KVM or vfio only 
->>> virtualize write operation to MSI register but leave read operation 
->>> un-virtualized? I am asking this because in that way ath11k may get a
->>> chance to run in VM after getting the real vector.  
->>
->> That might confuse a number of operating systems. Especially if they
->> mask/unmask by reading the register, flipping the mask bit and writing
->> back again.
->>
->> How exactly is the content of this register then given back to the
->> firmware? Is that communication snoopable by the VMM?
->>
->>
->>>>
->>>> Off hand I don't have a good solution for this, the hardware is
->>>> essentially imposing a unique requirement for MSI programming that the
->>>> driver needs visibility of the physical MSI address and data.
->>>>   
->>
->> Strictly, the driver doesn't need visibility to the actual values used
->> by the hardware. Another way of it looking at it would be to say that
->> the driver programs the MSI through this non-standard method, it just
->> needs the VMM to trap and handle that, just as the VMM does for the
->> standard MSI table. 
->>
->> Which is what I thought we'd already seen on some Atheros devices.
->>
->>>>   It's
->>>> conceivable that device specific code could either make the physical
->>>> address/data pair visible to the VM or trap the firmware programming to
->>>> inject the correct physical values.  Is there somewhere other than the
->>>> standard MSI capability in config space that the driver could learn the
->>>> physical values, ie. somewhere that isn't virtualized?  Thanks,  
+>>> Just in Qemu, the hardware works fine on my host machine.
 >>>
->>> I don't think we have such capability in configuration space.  
+>>> I basically follow this guide to set it up, its written in the 
+>>> context of GPUs/libvirt but the host setup is exactly the same. By no 
+>>> means do you need to read it all, once you set the vfio-pci.ids and 
+>>> see your unclaimed adapter you can stop:
+>>>
+>>> https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
+>>>
+>>> In short you should be able to set the following host kernel options 
+>>> and reboot (assuming your motherboard/hardware is compatible):
+>>>
+>>> intel_iommu=on iommu=pt vfio-pci.ids=17cb:1103
+>>>
+>>> Obviously change the device/vendor IDs to whatever ath11k hw you 
+>>> have. Once the host is rebooted you should see your wlan adapter as 
+>>> UNCLAIMED, showing the driver in use as vfio-pci. If not, its likely 
+>>> your motherboard just isn't compatible, the device has to be in its 
+>>> own IOMMU group (you could try switching PCI ports if this is the case).
+>>>
+>>> I then build a "kvm_guest.config" kernel with the driver/firmware for 
+>>> ath11k and boot into that with the following Qemu options:
+>>>
+>>> -enable-kvm -device -vfio-pci,host=<PCI address>
+>>>
+>>> If it seems easier you could also utilize IWD's test-runner which 
+>>> handles launching the Qemu kernel automatically, detecting any 
+>>> vfio-devices and passes them through and mounts some useful host 
+>>> folders into the VM. Its actually a very good general purpose tool 
+>>> for kernel testing, not just for IWD:
+>>>
+>>> https://git.kernel.org/pub/scm/network/wireless/iwd.git/tree/doc/test-runner.txt
+>>>
+>>> Once set up you can just run test-runner with a few flags and you'll 
+>>> boot into a shell:
+>>>
+>>> ./tools/test-runner -k <kernel-image> --hw --start /bin/bash
+>>>
+>>> Please reach out if you have questions, thanks for looking into this.
+>>>
+>> Thanks for these details. I reproduced this issue by following your 
+>> guide.
 >>
->> Configuration space is a complete fiction though; it's all emulated. We
->> can do anything we like. Or we can have a PV hypercall which will
->> report it. I don't know that we'd *want* to, but all things are
->> possible.
+>> Seems the root cause is that the MSI vector assigned to WCN6855 in 
+>> qemu is different with that in host. In my case the MSI vector in qemu 
+>> is [Address: fee00000  Data: 0020] while in host it is [Address: 
+>> fee00578 Data: 0000]. So in qemu ath11k configures MSI vector 
+>> [Address: fee00000 Data: 0020] to WCN6855 hardware/firmware, and 
+>> firmware uses that vector to fire interrupts to host/qemu. However 
+>> host IOMMU doesn't know that vector because the real vector is 
+>> [Address: fee00578  Data: 0000], as a result host blocks that 
+>> interrupt and reports an error, see below log:
+>>
+>> [ 1414.206069] DMAR: DRHD: handling fault status reg 2
+>> [ 1414.206081] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
+>> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
+>> [ 1414.210334] DMAR: DRHD: handling fault status reg 2
+>> [ 1414.210342] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
+>> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
+>> [ 1414.212496] DMAR: DRHD: handling fault status reg 2
+>> [ 1414.212503] DMAR: [INTR-REMAP] Request device [02:00.0] fault index 
+>> 0x0 [fault reason 0x25] Blocked a compatibility format interrupt request
+>> [ 1414.214600] DMAR: DRHD: handling fault status reg 2
+>>
+>> While I don't think there is a way for qemu/ath11k to get the real MSI 
+>> vector from host, I will try to read the vfio code to check further. 
+>> Before that, to unblock you, a possible hack is to hard code the MSI 
+>> vector in qemu to the same as in host, on condition that the MSI 
+>> vector doesn't change. In my case, the change looks like
+>>
+>> diff --git a/drivers/net/wireless/ath/ath11k/pci.c 
+>> b/drivers/net/wireless/ath/ath11k/pci.c
+>> index 09e65c5e55c4..89a9bbe9e4d2 100644
+>> --- a/drivers/net/wireless/ath/ath11k/pci.c
+>> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+>> @@ -459,7 +459,12 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci 
+>> *ab_pci)
+>>                 ab->pci.msi.addr_hi = 0;
+>>         }
+>>
+>> -       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", 
+>> ab->pci.msi.ep_base_data);
+>> +       ab->pci.msi.addr_hi = 0;
+>> +       ab->pci.msi.addr_lo = 0xfee00578;
+>> +       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x base 
+>> data is %d\n",
+>> +                  ab->pci.msi.addr_hi,
+>> +                  ab->pci.msi.addr_lo,
+>> +                  ab->pci.msi.ep_base_data);
+>>
+>>         return 0;
+>>
+>> @@ -487,6 +492,7 @@ static int ath11k_pci_config_msi_data(struct 
+>> ath11k_pci *ab_pci)
+>>         }
+>>
+>>         ab_pci->ab->pci.msi.ep_base_data = msi_desc->msg.data;
+>> +       ab_pci->ab->pci.msi.ep_base_data = 0;
+>>
+>>         ath11k_dbg(ab_pci->ab, ATH11K_DBG_PCI, "after request_irq 
+>> msi_ep_base_data %d\n",
+>>                    ab_pci->ab->pci.msi.ep_base_data);
+>>
+>>
+>> This hack works on my setup.
 > 
-> RTL8169 has a back door to the MSI-X vector table, maybe that's the one
-> you're thinking of.  Alternate methods for the driver to access config
-> space is common on GPUs, presumably because they require extensive
-> vBIOS support and IO port and MMIO windows through which pre-boot code
-> can interact with config space is faster and easier than standard
-> config accesses.  Much of the work of assigning a GPU to a VM is to
-> wrap those alternate methods in virtualization to keep the driver
-> working within the guest address space.
-> 
-> The fictitious config space was my thought too, an ath11k vfio-pci
-> variant driver could insert a vendor defined capability into config
-> space to expose the physical MSI address/data.  The driver would know
-> by the presence of the capability that it's running in a VM and to
-> prefer that mechanism to retrieve MSI address and data.
-> 
-> Alternatively as also suggested here, if programming of the firmware
-> with the MSI address/data is something that a hypervisor could trap,
-> then we might be able to make it transparent to the guest.  For example
-> if it were programmed via MMIO, the guest address/data values could be
-> auto-magically replaced with physical values.  Since QEMU doesn't know
-> the physical values, this would also likely be through a device
-> specific extension to vfio-pci through a variant driver, or maybe some
-> combination of variant driver and QEMU if we need to make trapping
-> conditional in order to avoid a performance penalty.
-> 
-> This is essentially device specific interrupt programming, which either
-> needs to be virtualized (performed by the VMM) or paravirtualized
-> (performed in cooperation with the guest).  This is also something to
-> keep in mind relative to the initial source of this issue, ie. testing
-> device drivers and hardware under device assignment.  There can be
-> subtle differences.  Thanks,
-> 
-> Alex
-> 
->
+> Progress! Thank you. This didn't work for me but its likely because my 
+> host MSI vector is not fee00578. Where did you come up with this value? 
+It could, and most likely, be different from machine to machine.
 
-+ kernel@quicinc.com for added visibility and advice
+> I don't see anything in the dmesg logs, or in lspci etc.
+> 
+fee00578 is the physical MSI vector so I got it using lspci in host, see
+...
+         Capabilities: [50] MSI: Enable+ Count=1/32 Maskable+ 64bit-
+                 Address: fee00578  Data: 0000
+                 Masking: fffffffe  Pending: 00000000
+...
 
-Full thread:
-<https://lore.kernel.org/all/adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com/>
+> Thanks,
+> 
+> James
+> 
 
