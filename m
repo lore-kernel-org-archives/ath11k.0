@@ -4,87 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67ABCC47DA7
-	for <ath11k@archiver.kernel.org>; Wed, 17 Jan 2024 08:05:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E9C7C47258
+	for <ath11k@archiver.kernel.org>; Wed, 17 Jan 2024 13:20:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZLS779yNw9ZdfSFCMzX1JzTyCde5GIKRd+RinMp1nh0=; b=hrqCp5jqSJ/gN6EG7VVtm9lMGq
-	LmkTAlxt8hiFg0+AP2bCg+imRmtUU5M5dENDn3blapplmXHLhePduOPiB4e7YTftT80JzvugriFUT
-	nrvC82lDDoZfu7Cn8vfaVOFXzXn1Dg4UAadj06/jCYewT+xIOvi6OO3ljbzN601KtVSg3jxHadpz6
-	2rLmhNOkJ/lfRKIFbcZ5fJj/8HJuaVVcDyKz2eBA8667Xt9OM+UlvQpb3GrpSr0Qr5yl3PUO/0+3x
-	49IRRLt7VhwU0A76rXMBk7Km+VPbmc3o/OUDp8892SxJTXPJvgVbbCFMLkyf/LgzYMs5Q7e9ygdsA
-	GkYn0pIA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Ayacpk0mYFVAI8Zmor+mj51uWH17gR3u7QFZfKXaCao=; b=gZ5SX+7nwp1p/ehn3Yd1eU0EEz
+	hWDAgAl+w6ov6I+49OpXs3GFn0HXrre/n9rCKwvjFAKP2QrjafJ+V/1GCjnjeW6+YRWIfWdva230r
+	RzhwnX8lJPc/STb0RlO8pa68cLNoLejdPQzVbNGY64vkJhnOix1xppROChlX3w0Xcf2mz/hwQYjQr
+	Y9MGZ7gefFR30ng772ppsGcrzee6WfhFaLpDPypCMjKLRdN2cgau47DRF/2ZgcIlvq2D05Tp8UBl7
+	ZWMgpEHwpo+l4lZdM0GfFoTFwdEDdIBX7OcIXedyz7uTPWAYpRIKuOxi0a2gdiUB6kfjXN/bcJtlf
+	sbfGawbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQ0uy-00EnjH-2t;
-	Wed, 17 Jan 2024 08:05:00 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rQ5qN-00GQTh-2j;
+	Wed, 17 Jan 2024 13:20:36 +0000
+Received: from mail-qv1-xf2b.google.com ([2607:f8b0:4864:20::f2b])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQ0uv-00Enge-1D;
-	Wed, 17 Jan 2024 08:04:59 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40H7GXoc008692;
-	Wed, 17 Jan 2024 08:04:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=ZLS779yNw9ZdfSFCMzX1JzTyCde5GIKRd+RinMp1nh0=; b=Kj
-	GMeJZ+1j6iWQ7iMf4rTCIAmjx5sTfhkr2Q6kZ41tPn935vd6qY9JAdOIMzF1+HnO
-	IKmW3FrPvyzYIHT4DTdfnzcr0rDnXbni+9xbYucow/nM0Zc+lPAGeyej9V7CyxwL
-	wexc++kE4//sx8uepqzUM/3LkxWz48EZQfIXXu5/w1vvD2b60owLmT7CZhEXeFLU
-	l0sd7a3zlsYXlqL2iN9z4LjbyCO29VcxzHWp/T7W2Xk3J3iVJupWLJDEXHBswWLG
-	dx/Dhd4+qzbH6kAivd1975V63U2OWokjLqFCi8g+yc93X9Qq34ih6sPc0oqJhLB6
-	nrJwc/UVYLH2qtLtKl5Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vp4ak0sa5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 08:04:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40H84uEO032464
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 08:04:56 GMT
-Received: from hu-periyasa-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 17 Jan 2024 00:04:53 -0800
-From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-To: <ath12k@lists.infradead.org>, <ath11k@lists.infradead.org>,
-        <ath10k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Karthikeyan Periyasamy
-	<quic_periyasa@quicinc.com>,
-        Jeff Johnson <quic_jjohnson@quicinc.com>
-Subject: [PATCH v3 3/3] wifi: ath10k: replace ENOTSUPP with EOPNOTSUPP
-Date: Wed, 17 Jan 2024 13:34:31 +0530
-Message-ID: <20240117080431.2907471-4-quic_periyasa@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240117080431.2907471-1-quic_periyasa@quicinc.com>
-References: <20240117080431.2907471-1-quic_periyasa@quicinc.com>
+	id 1rQ5qJ-00GQNX-2r
+	for ath11k@lists.infradead.org;
+	Wed, 17 Jan 2024 13:20:33 +0000
+Received: by mail-qv1-xf2b.google.com with SMTP id 6a1803df08f44-68174626bb9so10712496d6.3
+        for <ath11k@lists.infradead.org>; Wed, 17 Jan 2024 05:20:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705497626; x=1706102426; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ayacpk0mYFVAI8Zmor+mj51uWH17gR3u7QFZfKXaCao=;
+        b=bnJ3pyvcaAbML+4ErGg5MxWy1f4mrS01qjYpZVd1J+fyiiCSqvVPe7oO8PtcVjbAU5
+         xjmZP8viM0nR3WpEoApV+XfagWl+k3LoNUQ0xTmy38RU8hWUgQhGvSpoHPthsMa8JODX
+         gVhLUFZOcYhIp7oEMxBjWrXGqzgRhFyWV5b9iy4P6xg4Bd+vo7/LC63/VppeANw8zPs/
+         tF93tebQsznQZwqpZwCSnIemysKnLdMi9R0RwvL6McNQCvI79GqTUjfWknXjNS0Ee+ak
+         eMsSGCxDcHJ6I7QOH0MjJIl96kc1/EodIhP5oTCA/L4RG12NjtetoZTPvW9ZETWLzx+z
+         K9LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705497626; x=1706102426;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ayacpk0mYFVAI8Zmor+mj51uWH17gR3u7QFZfKXaCao=;
+        b=Y15H8LmqaKLSMEdGscR5Xrpt0nTsv+QfO9KUYRvWXTjRSrYYvhMORa/jnWPyZ/582S
+         VmYVZtSl0xVKBLYuN84Z3GJ4emxTKmBbWU8DGT7l7saig3HAR43DFV0Lec4mKhMLkfo4
+         LJM8l7HbkSIi6gwZV83xOIQWz/RRovLiyRP/qaXbeEYp7+5NCLxBc1FimSS5xM2C6a1E
+         FIIqPbQAC6CpwyQTkVuHcJVimmD+7dved+Eetbk7K98WNV7hsop6VRJwlpjALfhr//ow
+         OpcBRkyWlQUwnIAXIWwcNpGEeV16O0zIpbcNVLRMY+dYdidoNqG1iSs8qb2tea/YrEF0
+         24Bw==
+X-Gm-Message-State: AOJu0Yy7vGPDaTuM2siMXfC1Ro6mKP1jT971eoCHP/v/mJghaFlSTDxa
+	KA6jfwONaPZ8bXGqY9zd8zo=
+X-Google-Smtp-Source: AGHT+IEaJK5Q6fRGT5r0up1X7hjzPl1BKX4+mHAJ/6UQ4kh4T+61U6WyhpQLyAEDalAyUPCYfKmy1g==
+X-Received: by 2002:a05:6214:230f:b0:681:2640:3c17 with SMTP id gc15-20020a056214230f00b0068126403c17mr12740581qvb.55.1705497626436;
+        Wed, 17 Jan 2024 05:20:26 -0800 (PST)
+Received: from [10.102.4.159] (50-78-19-50-static.hfc.comcastbusiness.net. [50.78.19.50])
+        by smtp.gmail.com with ESMTPSA id ee14-20020a0562140a4e00b0067f64c06bcesm4979071qvb.102.2024.01.17.05.20.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jan 2024 05:20:25 -0800 (PST)
+Message-ID: <cdec259a-b779-4856-8585-f285179e3671@gmail.com>
+Date: Wed, 17 Jan 2024 05:20:24 -0800
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k and vfio-pci support
+Content-Language: en-US
+To: Baochen Qiang <quic_bqiang@quicinc.com>, Kalle Valo <kvalo@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+ <8734v5zhol.fsf@kernel.org> <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
+ <87r0ipcn7j.fsf@kernel.org> <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
+ <26119c3f-9012-47bb-948e-7e976d4773a7@quicinc.com>
+ <87mstccmk6.fsf@kernel.org> <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
+ <8734v4auc4.fsf@kernel.org> <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
+ <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
+ <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
+ <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
+ <ee0280fd-032c-4f45-a3f9-50d96d8bed6d@gmail.com>
+ <16cfd010-b62d-4385-92d1-002820a8db38@quicinc.com>
+From: James Prestwood <prestwoj@gmail.com>
+In-Reply-To: <16cfd010-b62d-4385-92d1-002820a8db38@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uWKj961xquEXBadmyz5eXnS8-Aom1m21
-X-Proofpoint-GUID: uWKj961xquEXBadmyz5eXnS8-Aom1m21
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-17_04,2024-01-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- mlxlogscore=947 mlxscore=0 impostorscore=0 phishscore=0 adultscore=0
- malwarescore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401170054
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240117_000457_421382_A4A2652B 
-X-CRM114-Status: GOOD (  15.63  )
+X-CRM114-CacheID: sfid-20240117_052032_141876_72ADD092 
+X-CRM114-Status: GOOD (  17.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,225 +102,131 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ENOTSUPP is not a standard error code, don't use it. Replace with
-EOPNOTSUPP instead.
+Hi Baochen,
 
-No functional changes, compile tested only.
+<snip>
 
-Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
----
- drivers/net/wireless/ath/ath10k/core.c    |  4 ++--
- drivers/net/wireless/ath/ath10k/htt.c     |  3 ++-
- drivers/net/wireless/ath/ath10k/mac.c     |  6 +++---
- drivers/net/wireless/ath/ath10k/pci.c     | 10 +++++-----
- drivers/net/wireless/ath/ath10k/wmi-tlv.c |  7 ++++---
- drivers/net/wireless/ath/ath10k/wmi.c     | 12 ++++++------
- 6 files changed, 22 insertions(+), 20 deletions(-)
+>>>
+>>> While I don't think there is a way for qemu/ath11k to get the real 
+>>> MSI vector from host, I will try to read the vfio code to check 
+>>> further. Before that, to unblock you, a possible hack is to hard 
+>>> code the MSI vector in qemu to the same as in host, on condition 
+>>> that the MSI vector doesn't change. In my case, the change looks like
+>>>
+>>> diff --git a/drivers/net/wireless/ath/ath11k/pci.c 
+>>> b/drivers/net/wireless/ath/ath11k/pci.c
+>>> index 09e65c5e55c4..89a9bbe9e4d2 100644
+>>> --- a/drivers/net/wireless/ath/ath11k/pci.c
+>>> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+>>> @@ -459,7 +459,12 @@ static int ath11k_pci_alloc_msi(struct 
+>>> ath11k_pci *ab_pci)
+>>>                 ab->pci.msi.addr_hi = 0;
+>>>         }
+>>>
+>>> -       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", 
+>>> ab->pci.msi.ep_base_data);
+>>> +       ab->pci.msi.addr_hi = 0;
+>>> +       ab->pci.msi.addr_lo = 0xfee00578;
+>>> +       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x 
+>>> base data is %d\n",
+>>> +                  ab->pci.msi.addr_hi,
+>>> +                  ab->pci.msi.addr_lo,
+>>> +                  ab->pci.msi.ep_base_data);
+>>>
+>>>         return 0;
+>>>
+>>> @@ -487,6 +492,7 @@ static int ath11k_pci_config_msi_data(struct 
+>>> ath11k_pci *ab_pci)
+>>>         }
+>>>
+>>>         ab_pci->ab->pci.msi.ep_base_data = msi_desc->msg.data;
+>>> +       ab_pci->ab->pci.msi.ep_base_data = 0;
+>>>
+>>>         ath11k_dbg(ab_pci->ab, ATH11K_DBG_PCI, "after request_irq 
+>>> msi_ep_base_data %d\n",
+>>>                    ab_pci->ab->pci.msi.ep_base_data);
+>>>
+>>>
+>>> This hack works on my setup.
+>>
+>> Progress! Thank you. This didn't work for me but its likely because 
+>> my host MSI vector is not fee00578. Where did you come up with this 
+>> value? 
+> It could, and most likely, be different from machine to machine.
+>
+>> I don't see anything in the dmesg logs, or in lspci etc.
+>>
+> fee00578 is the physical MSI vector so I got it using lspci in host, see
+> ...
+>         Capabilities: [50] MSI: Enable+ Count=1/32 Maskable+ 64bit-
+>                 Address: fee00578  Data: 0000
+>                 Masking: fffffffe  Pending: 00000000
+> ...
 
-diff --git a/drivers/net/wireless/ath/ath10k/core.c b/drivers/net/wireless/ath/ath10k/core.c
-index 0032f8aa892f..9ce6f49ab261 100644
---- a/drivers/net/wireless/ath/ath10k/core.c
-+++ b/drivers/net/wireless/ath/ath10k/core.c
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2005-2011 Atheros Communications Inc.
-  * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
-  * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/module.h>
-@@ -3613,7 +3613,7 @@ struct ath10k *ath10k_core_create(size_t priv_size, struct device *dev,
- 	default:
- 		ath10k_err(ar, "unsupported core hardware revision %d\n",
- 			   hw_rev);
--		ret = -ENOTSUPP;
-+		ret = -EOPNOTSUPP;
- 		goto err_free_mac;
- 	}
- 
-diff --git a/drivers/net/wireless/ath/ath10k/htt.c b/drivers/net/wireless/ath/ath10k/htt.c
-index 907e1e13871a..dbaf262cd7c1 100644
---- a/drivers/net/wireless/ath/ath10k/htt.c
-+++ b/drivers/net/wireless/ath/ath10k/htt.c
-@@ -2,6 +2,7 @@
- /*
-  * Copyright (c) 2005-2011 Atheros Communications Inc.
-  * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/slab.h>
-@@ -381,7 +382,7 @@ static int ath10k_htt_verify_version(struct ath10k_htt *htt)
- 	    htt->target_version_major != 3) {
- 		ath10k_err(ar, "unsupported htt major version %d. supported versions are 2 and 3\n",
- 			   htt->target_version_major);
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 	}
- 
- 	return 0;
-diff --git a/drivers/net/wireless/ath/ath10k/mac.c b/drivers/net/wireless/ath/ath10k/mac.c
-index 090bcf148d0c..fc503db2fd8e 100644
---- a/drivers/net/wireless/ath/ath10k/mac.c
-+++ b/drivers/net/wireless/ath/ath10k/mac.c
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2005-2011 Atheros Communications Inc.
-  * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
-  * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include "mac.h"
-@@ -4056,7 +4056,7 @@ static int ath10k_mac_tx(struct ath10k *ar,
- 		    !(skb_cb->flags & ATH10K_SKB_F_RAW_TX)) {
- 			WARN_ON_ONCE(1);
- 			ieee80211_free_txskb(hw, skb);
--			return -ENOTSUPP;
-+			return -EOPNOTSUPP;
- 		}
- 	}
- 
-@@ -7065,7 +7065,7 @@ static int ath10k_mac_set_tid_config(struct ath10k *ar, struct ieee80211_sta *st
- 
- 	if (sta) {
- 		if (!sta->wme)
--			return -ENOTSUPP;
-+			return -EOPNOTSUPP;
- 
- 		arsta = (struct ath10k_sta *)sta->drv_priv;
- 
-diff --git a/drivers/net/wireless/ath/ath10k/pci.c b/drivers/net/wireless/ath/ath10k/pci.c
-index 3de2de6d44bc..5c34b156b4ff 100644
---- a/drivers/net/wireless/ath/ath10k/pci.c
-+++ b/drivers/net/wireless/ath/ath10k/pci.c
-@@ -2,7 +2,7 @@
- /*
-  * Copyright (c) 2005-2011 Atheros Communications Inc.
-  * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
-- * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/pci.h>
-@@ -889,7 +889,7 @@ static u32 ath10k_pci_targ_cpu_to_ce_addr(struct ath10k *ar, u32 addr)
- 	struct ath10k_pci *ar_pci = ath10k_pci_priv(ar);
- 
- 	if (WARN_ON_ONCE(!ar_pci->targ_cpu_to_ce_addr))
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 
- 	return ar_pci->targ_cpu_to_ce_addr(ar, addr);
- }
-@@ -2668,7 +2668,7 @@ static int ath10k_pci_safe_chip_reset(struct ath10k *ar)
- 	struct ath10k_pci *ar_pci = ath10k_pci_priv(ar);
- 
- 	if (!ar_pci->pci_soft_reset)
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 
- 	return ar_pci->pci_soft_reset(ar);
- }
-@@ -2808,7 +2808,7 @@ static int ath10k_pci_chip_reset(struct ath10k *ar)
- 	struct ath10k_pci *ar_pci = ath10k_pci_priv(ar);
- 
- 	if (WARN_ON(!ar_pci->pci_hard_reset))
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 
- 	return ar_pci->pci_hard_reset(ar);
- }
-@@ -3594,7 +3594,7 @@ static int ath10k_pci_probe(struct pci_dev *pdev,
- 		break;
- 	default:
- 		WARN_ON(1);
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 	}
- 
- 	ar = ath10k_core_create(sizeof(*ar_pci), &pdev->dev, ATH10K_BUS_PCI,
-diff --git a/drivers/net/wireless/ath/ath10k/wmi-tlv.c b/drivers/net/wireless/ath/ath10k/wmi-tlv.c
-index 0ce08e9a0a3d..aed97fd121ba 100644
---- a/drivers/net/wireless/ath/ath10k/wmi-tlv.c
-+++ b/drivers/net/wireless/ath/ath10k/wmi-tlv.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2005-2011 Atheros Communications Inc.
-  * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
-  * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- #include "core.h"
- #include "debug.h"
-@@ -1351,7 +1352,7 @@ static int ath10k_wmi_tlv_op_pull_svc_rdy_ev(struct ath10k *ar,
- 	    __le32_to_cpu(ev->abi.abi_ver_ns1) != WMI_TLV_ABI_VER_NS1 ||
- 	    __le32_to_cpu(ev->abi.abi_ver_ns2) != WMI_TLV_ABI_VER_NS2 ||
- 	    __le32_to_cpu(ev->abi.abi_ver_ns3) != WMI_TLV_ABI_VER_NS3) {
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 	}
- 
- 	arg->min_tx_power = ev->hw_min_tx_power;
-@@ -2123,9 +2124,9 @@ static int ath10k_wmi_tlv_op_get_vdev_subtype(struct ath10k *ar,
- 	case WMI_VDEV_SUBTYPE_MESH_11S:
- 		return WMI_TLV_VDEV_SUBTYPE_MESH_11S;
- 	case WMI_VDEV_SUBTYPE_MESH_NON_11S:
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 	}
--	return -ENOTSUPP;
-+	return -EOPNOTSUPP;
- }
- 
- static struct sk_buff *
-diff --git a/drivers/net/wireless/ath/ath10k/wmi.c b/drivers/net/wireless/ath/ath10k/wmi.c
-index 0cfd9484c45e..9e2f0a50aaea 100644
---- a/drivers/net/wireless/ath/ath10k/wmi.c
-+++ b/drivers/net/wireless/ath/ath10k/wmi.c
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2005-2011 Atheros Communications Inc.
-  * Copyright (c) 2011-2017 Qualcomm Atheros, Inc.
-  * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/skbuff.h>
-@@ -8733,9 +8733,9 @@ int ath10k_wmi_op_get_vdev_subtype(struct ath10k *ar,
- 		return WMI_VDEV_SUBTYPE_LEGACY_PROXY_STA;
- 	case WMI_VDEV_SUBTYPE_MESH_11S:
- 	case WMI_VDEV_SUBTYPE_MESH_NON_11S:
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 	}
--	return -ENOTSUPP;
-+	return -EOPNOTSUPP;
- }
- 
- static int ath10k_wmi_10_2_4_op_get_vdev_subtype(struct ath10k *ar,
-@@ -8755,9 +8755,9 @@ static int ath10k_wmi_10_2_4_op_get_vdev_subtype(struct ath10k *ar,
- 	case WMI_VDEV_SUBTYPE_MESH_11S:
- 		return WMI_VDEV_SUBTYPE_10_2_4_MESH_11S;
- 	case WMI_VDEV_SUBTYPE_MESH_NON_11S:
--		return -ENOTSUPP;
-+		return -EOPNOTSUPP;
- 	}
--	return -ENOTSUPP;
-+	return -EOPNOTSUPP;
- }
- 
- static int ath10k_wmi_10_4_op_get_vdev_subtype(struct ath10k *ar,
-@@ -8779,7 +8779,7 @@ static int ath10k_wmi_10_4_op_get_vdev_subtype(struct ath10k *ar,
- 	case WMI_VDEV_SUBTYPE_MESH_NON_11S:
- 		return WMI_VDEV_SUBTYPE_10_4_MESH_NON_11S;
- 	}
--	return -ENOTSUPP;
-+	return -EOPNOTSUPP;
- }
- 
- static struct sk_buff *
--- 
-2.34.1
+Mine looks like this:
 
+...
+
+     Capabilities: [50] MSI: Enable- Count=1/32 Maskable+ 64bit-
+         Address: 00000000  Data: 0000
+         Masking: 00000000  Pending: 00000000
+...
+
+I've adjusted the patch:
+
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c 
+b/drivers/net/wireless/ath/ath11k/pci.c
+index 09e65c5e55..1cc7115582 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -459,7 +459,12 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci 
+*ab_pci)
+                 ab->pci.msi.addr_hi = 0;
+         }
+
+-       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", 
+ab->pci.msi.ep_base_data);
++        ab->pci.msi.addr_hi = 0;
++        ab->pci.msi.addr_lo = 0;
++        ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x base 
+data is %d\n",
++                   ab->pci.msi.addr_hi,
++                   ab->pci.msi.addr_lo,
++                   ab->pci.msi.ep_base_data);
+
+         return 0;
+
+@@ -487,6 +492,7 @@ static int ath11k_pci_config_msi_data(struct 
+ath11k_pci *ab_pci)
+         }
+
+         ab_pci->ab->pci.msi.ep_base_data = msi_desc->msg.data;
++       ab_pci->ab->pci.msi.ep_base_data = 0;
+
+         ath11k_dbg(ab_pci->ab, ATH11K_DBG_PCI, "after request_irq 
+msi_ep_base_data %d\n",
+                    ab_pci->ab->pci.msi.ep_base_data);
+
+But still getting the same errors:
+
+[    3.563057] ath11k_pci 0000:00:06.0: Service connect timeout
+[    3.565044] ath11k_pci 0000:00:06.0: failed to connect to HTT: -110
+[    3.567031] ath11k_pci 0000:00:06.0: failed to start core: -110
+[    3.777514] ath11k_pci 0000:00:06.0: firmware crashed: MHI_CB_EE_RDDM
+[    3.777555] ath11k_pci 0000:00:06.0: ignore reset dev flags 0x4000
+[    3.885137] ath11k_pci 0000:00:06.0: firmware crashed: MHI_CB_EE_RDDM
+[    3.885178] ath11k_pci 0000:00:06.0: ignore reset dev flags 0x4000
+
+I know this isn't a proper fix, so if its something that needs more 
+thought than just hard-coded values I understand.
+
+Thanks,
+
+James
+
+>
+>> Thanks,
+>>
+>> James
+>>
 
