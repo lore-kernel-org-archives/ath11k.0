@@ -4,62 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58530C47258
-	for <ath11k@archiver.kernel.org>; Wed, 17 Jan 2024 18:10:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 668C3C47258
+	for <ath11k@archiver.kernel.org>; Thu, 18 Jan 2024 02:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EYExs+W6qIRgU9Ny6qCdrGjU3yi2VKCDagSq4S4ku7E=; b=FySLBB08BNB9YD5pwbKkMoSv0Z
-	fwShrLsqzyrNxrsm4fSanT1JjU/su754yXvM6rEiMMj6ZgTXsIzacVOAMbZGL+PBDAo9c+jOThQjr
-	RwRVV04VMPtmzr605RXPbWDRXzneM2h0M20Pe6fqYjesJtJfRMfcE/kknwRxNcJ5MQd6jmELMTgrh
-	CSUFJqZzgQIudtnRVaGnCRnn5fRkCBqKx6axFypl3Y5P4dxhLS5OzKpGTxdgdYBmMIQ74i3eNeEnz
-	o5/aDFcni+lCoJRM9pG4Myx50DcEoT5O3uFHhJ8r5fyaowj+9ErtukluLll+6R3FVzoGbv4qnt8kZ
-	QEP0cCPQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=qJwNqiJ7X5VFwpQJcwrYyDtTs4VFOPesxsEGz+h5Z0w=; b=qc3N45pLzK0Qj2LPE+fxjtG4sw
+	cMRvi0AQDDhSIEvFJV0pCw4DaEMzC6t8UfG0LB3lFc+Y4gsi5cBOpft7oSQttIYOqm83x3ZSTlw2Z
+	ZaN5cdd8B8Y14dbUQdbkm3ooa5/M5e8Sgo2D9SHqy+34Oirn9E8vK1bhdD3/bdwC9VWqN7CCXV2Vm
+	HOcviidQSSSvo+ItMFOsi6ARMLfsLZj578fvbk6qRH1A4Fdm8pwxVVL5GqIxsBO24TWiJ8zUrsY4U
+	7Bme4DFxZEtO2AJAoUXJF/rDEDAhQklW1n/SEY8aAiQJfmiZUC4tLxiqKgvstiLENcHDUdQHrzUgP
+	k7mn1A0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQANC-000Jfs-0f;
-	Wed, 17 Jan 2024 18:10:46 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rQHr1-001NYf-1p;
+	Thu, 18 Jan 2024 02:10:03 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQAN8-000Jf7-2W
+	id 1rQHqx-001NXi-2k
 	for ath11k@lists.infradead.org;
-	Wed, 17 Jan 2024 18:10:44 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 14D406151E;
-	Wed, 17 Jan 2024 18:10:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D7FEC433C7;
-	Wed, 17 Jan 2024 18:10:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705515041;
-	bh=RTRyEp2WNcu13qaBMTceLYJiUr8QpjU4P2esWE0WBWs=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=qBl7Bvs8naFzAmPvyUpHcIl1d8CKQB11eXSTW2r9+fGKeNPQ6XAmlxM65bCoKypLW
-	 T3tvJyvw8EKwBBFPftuFiQxw1I5ysnLaK4Fh4JfzakGCeXH4yjMUb3mf1xWHwH66lR
-	 ygEX+m1pQDJ9Z4zUYWSi/CXHVZzg4EdupB2NqY4Gda2+eqCOHKCH1FxcUugnkw4lsp
-	 AHBYZHb4/p4kebKMkwnVuUZnb1VoluebhhHTgGg3zG34siab+yxwqIsgb2OZkkaHK2
-	 9DcOABGNsdJVFMMgA/b1x0R1Duo5ZKKlfBgSSU0eBCa6hwHXolf3FHOLt/UsM77Kyi
-	 dnlFN8/McCE6Q==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: <benjamin@sipsolutions.net>,  <linux-wireless@vger.kernel.org>,
-  <ath11k@lists.infradead.org>,  Benjamin Berg <benjamin.berg@intel.com>
-Subject: Re: [PATCH v3] wifi: ath11k: rely on mac80211 debugfs handling for vif
-References: <20240115101805.1277949-1-benjamin@sipsolutions.net>
-	<26a42f14-dd38-4c67-8f66-16baaff25885@quicinc.com>
-Date: Wed, 17 Jan 2024 20:10:38 +0200
-In-Reply-To: <26a42f14-dd38-4c67-8f66-16baaff25885@quicinc.com> (Jeff
-	Johnson's message of "Wed, 17 Jan 2024 07:14:18 -0800")
-Message-ID: <87r0if4yqp.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 18 Jan 2024 02:10:01 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40I1VIUu010429;
+	Thu, 18 Jan 2024 02:09:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=qJwNqiJ7X5VFwpQJcwrYyDtTs4VFOPesxsEGz+h5Z0w=; b=bX
+	/tX9wZIdMpOLvJDTJSnvZQlGcIbeEd6/a/a0tgKcUI70KTzizGC376mhepTkrkIr
+	enNzNI2D1amfITZj5SqTQjA4joqtZUO+V9v7TI+KK6JQSKdn2QDgIJ1H4/KHWdZ3
+	auY1KjaNmDl/E3WseSKdFPEaEI/NfiPgI8MhDyVwvHomrTrXkRm6y8jLLUN/kkVF
+	X9q4pg5R9P9wvVswpVGGheANNPBSzjGNC9UeCAQ6yJnG3dlGL+hxZ4E4I+t7MvFZ
+	aCSZJYLyNzZ8fLt+AYIZ3E0miVQ2y8zZCelV1Kyo11hleAby7g+3OyqexeEES2G2
+	YTOUuABUKVEMS+GrU2ew==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vpspf0434-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jan 2024 02:09:53 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40I29r4o009839
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jan 2024 02:09:53 GMT
+Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 17 Jan
+ 2024 18:09:52 -0800
+Message-ID: <21e925bc-ee3e-4421-949b-b3839d2abdef@quicinc.com>
+Date: Thu, 18 Jan 2024 10:09:49 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k and vfio-pci support
+Content-Language: en-US
+To: James Prestwood <prestwoj@gmail.com>, Kalle Valo <kvalo@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+ <8734v5zhol.fsf@kernel.org> <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
+ <87r0ipcn7j.fsf@kernel.org> <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
+ <26119c3f-9012-47bb-948e-7e976d4773a7@quicinc.com>
+ <87mstccmk6.fsf@kernel.org> <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
+ <8734v4auc4.fsf@kernel.org> <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
+ <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
+ <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
+ <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
+ <ee0280fd-032c-4f45-a3f9-50d96d8bed6d@gmail.com>
+ <16cfd010-b62d-4385-92d1-002820a8db38@quicinc.com>
+ <cdec259a-b779-4856-8585-f285179e3671@gmail.com>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <cdec259a-b779-4856-8585-f285179e3671@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cNcpFGHioX5z5SG69UlCjER48sARv4Xc
+X-Proofpoint-ORIG-GUID: cNcpFGHioX5z5SG69UlCjER48sARv4Xc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-17_14,2024-01-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 bulkscore=0 malwarescore=0 clxscore=1015 phishscore=0
+ impostorscore=0 spamscore=0 adultscore=0 mlxscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401180012
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240117_101042_880562_18876105 
-X-CRM114-Status: UNSURE (   8.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240117_180959_923103_0D637C35 
+X-CRM114-Status: GOOD (  26.41  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,28 +108,146 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
 
-> On 1/15/2024 2:18 AM, benjamin@sipsolutions.net wrote:
->> From: Benjamin Berg <benjamin.berg@intel.com>
->> 
->> mac80211 started to delete debugfs entries in certain cases, causing a
->> ath11k to crash when it tried to delete the entries later. Fix this by
->> relying on mac80211 to delete the entries when appropriate and adding
->> them from the vif_add_debugfs handler.
->> 
->> Fixes: 0a3d898ee9a8 ("wifi: mac80211: add/remove driver debugfs
->> entries as appropriate")
->> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=218364
->> Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
->
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-This also passes my tests, thanks Benjamin. If there are no objections
-I'll take this to wireless tree tomorrow and try to get it to v6.8-rc2.
+On 1/17/2024 9:20 PM, James Prestwood wrote:
+> Hi Baochen,
+> 
+> <snip>
+> 
+>>>>
+>>>> While I don't think there is a way for qemu/ath11k to get the real 
+>>>> MSI vector from host, I will try to read the vfio code to check 
+>>>> further. Before that, to unblock you, a possible hack is to hard 
+>>>> code the MSI vector in qemu to the same as in host, on condition 
+>>>> that the MSI vector doesn't change. In my case, the change looks like
+>>>>
+>>>> diff --git a/drivers/net/wireless/ath/ath11k/pci.c 
+>>>> b/drivers/net/wireless/ath/ath11k/pci.c
+>>>> index 09e65c5e55c4..89a9bbe9e4d2 100644
+>>>> --- a/drivers/net/wireless/ath/ath11k/pci.c
+>>>> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+>>>> @@ -459,7 +459,12 @@ static int ath11k_pci_alloc_msi(struct 
+>>>> ath11k_pci *ab_pci)
+>>>>                 ab->pci.msi.addr_hi = 0;
+>>>>         }
+>>>>
+>>>> -       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", 
+>>>> ab->pci.msi.ep_base_data);
+>>>> +       ab->pci.msi.addr_hi = 0;
+>>>> +       ab->pci.msi.addr_lo = 0xfee00578;
+>>>> +       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x 
+>>>> base data is %d\n",
+>>>> +                  ab->pci.msi.addr_hi,
+>>>> +                  ab->pci.msi.addr_lo,
+>>>> +                  ab->pci.msi.ep_base_data);
+>>>>
+>>>>         return 0;
+>>>>
+>>>> @@ -487,6 +492,7 @@ static int ath11k_pci_config_msi_data(struct 
+>>>> ath11k_pci *ab_pci)
+>>>>         }
+>>>>
+>>>>         ab_pci->ab->pci.msi.ep_base_data = msi_desc->msg.data;
+>>>> +       ab_pci->ab->pci.msi.ep_base_data = 0;
+>>>>
+>>>>         ath11k_dbg(ab_pci->ab, ATH11K_DBG_PCI, "after request_irq 
+>>>> msi_ep_base_data %d\n",
+>>>>                    ab_pci->ab->pci.msi.ep_base_data);
+>>>>
+>>>>
+>>>> This hack works on my setup.
+>>>
+>>> Progress! Thank you. This didn't work for me but its likely because 
+>>> my host MSI vector is not fee00578. Where did you come up with this 
+>>> value? 
+>> It could, and most likely, be different from machine to machine.
+>>
+>>> I don't see anything in the dmesg logs, or in lspci etc.
+>>>
+>> fee00578 is the physical MSI vector so I got it using lspci in host, see
+>> ...
+>>         Capabilities: [50] MSI: Enable+ Count=1/32 Maskable+ 64bit-
+>>                 Address: fee00578  Data: 0000
+>>                 Masking: fffffffe  Pending: 00000000
+>> ...
+> 
+> Mine looks like this:
+> 
+> ...
+> 
+>      Capabilities: [50] MSI: Enable- Count=1/32 Maskable+ 64bit-
+>          Address: 00000000  Data: 0000
+>          Masking: 00000000  Pending: 00000000
+I guess you got this output when qemu/ath11k is not running, either qemu 
+not started or ath11k module not loaded, right? Since MSI is not enabled 
+in this output.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Sorry I should have made it clear:
+step1: start qemu and load ath11k without changing anything, then you 
+get those errors;
+step2: keep qemu running and ath11k there, don't unload it. Then check 
+lspci output in host to get the MSI vector.
+step3: Back in qemu, hard code MSI vector to the one you get in step2, 
+then rebuild and reload ath11k.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> ...
+> 
+> I've adjusted the patch:
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/pci.c 
+> b/drivers/net/wireless/ath/ath11k/pci.c
+> index 09e65c5e55..1cc7115582 100644
+> --- a/drivers/net/wireless/ath/ath11k/pci.c
+> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+> @@ -459,7 +459,12 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci 
+> *ab_pci)
+>                  ab->pci.msi.addr_hi = 0;
+>          }
+> 
+> -       ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", 
+> ab->pci.msi.ep_base_data);
+> +        ab->pci.msi.addr_hi = 0;
+> +        ab->pci.msi.addr_lo = 0;
+> +        ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x base 
+> data is %d\n",
+> +                   ab->pci.msi.addr_hi,
+> +                   ab->pci.msi.addr_lo,
+> +                   ab->pci.msi.ep_base_data);
+> 
+>          return 0;
+> 
+> @@ -487,6 +492,7 @@ static int ath11k_pci_config_msi_data(struct 
+> ath11k_pci *ab_pci)
+>          }
+> 
+>          ab_pci->ab->pci.msi.ep_base_data = msi_desc->msg.data;
+> +       ab_pci->ab->pci.msi.ep_base_data = 0;
+> 
+>          ath11k_dbg(ab_pci->ab, ATH11K_DBG_PCI, "after request_irq 
+> msi_ep_base_data %d\n",
+>                     ab_pci->ab->pci.msi.ep_base_data);
+> 
+> But still getting the same errors:
+> 
+> [    3.563057] ath11k_pci 0000:00:06.0: Service connect timeout
+> [    3.565044] ath11k_pci 0000:00:06.0: failed to connect to HTT: -110
+> [    3.567031] ath11k_pci 0000:00:06.0: failed to start core: -110
+> [    3.777514] ath11k_pci 0000:00:06.0: firmware crashed: MHI_CB_EE_RDDM
+> [    3.777555] ath11k_pci 0000:00:06.0: ignore reset dev flags 0x4000
+> [    3.885137] ath11k_pci 0000:00:06.0: firmware crashed: MHI_CB_EE_RDDM
+> [    3.885178] ath11k_pci 0000:00:06.0: ignore reset dev flags 0x4000
+> 
+> I know this isn't a proper fix, so if its something that needs more 
+> thought than just hard-coded values I understand.
+> 
+> Thanks,
+> 
+> James
+> 
+>>
+>>> Thanks,
+>>>
+>>> James
+>>>
 
