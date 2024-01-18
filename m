@@ -4,76 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EF17C4707B
-	for <ath11k@archiver.kernel.org>; Thu, 18 Jan 2024 10:32:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 404A9C4707B
+	for <ath11k@archiver.kernel.org>; Thu, 18 Jan 2024 10:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=n8JRHjWU69dwSPIM6WJBhgXT8XsLLJN/pb4e4fztr1U=; b=JsEuhGLPuvPvQvfKEK+8CQ4qQj
-	ZX21MhW7jfH12fuMXPQQo83SLCbP0JQ4IxrOeTws3c3dUFKwDlTd5nSGWh3IyjYR2JCoZm5CiXGNf
-	iJUrNskiJMk9GZXOR5YgLGhQUCGTLp0fI3k3p+4nVsZXKaUmI+wgfnOTRE/WZZ/bDr8PER4P/MwJW
-	lZK0E0GixDvf884wqhlWp8GPLN3UXfSkhwc/v4L75xfcEsQAxK2CtjVeN2M969y7JJXkziuWdkXTS
-	g4SR6vNANrih8WVqzZIec4j39c89HqO+vkkL3x1XhHMbVmLVbb0tjKQ+/BHgV5bQP9Ooeg/zo0a+g
-	uKDaxEhg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Vy/0MT8KuX3xt4oViAwqdFskOSIEVfu3S6sTs5Q4whg=; b=XR3+eYvu4X6y/BwuOmq7jfTPg1
+	Kpvv1PSh0vdq2KFwhT1xclZM27fobtbDucAq5Wl1h3ELH5fB8tu2UDZnCy/mjCKZorgnOVJCisqgG
+	iGGxIQXfhirmRyglUF/L8154f4NT8yvKaDm/SbNm1943ikcVBjTVT8oGoXvW/Uzp/jT+G0Ot0QBgb
+	1U1aLpcc83mx66BNl7a3qWedkK0rgUrnCMuafA5RznJP/0Ufo1SxsrRU+pZzMaDM1SO8Om0DRrcq2
+	Z6thZIxXLKU6g4vvbToGLFn4hUPdXV1RmdMFNYy46WK1amMK1CWuuQqb9x4O7DLSIUanOoM2B/TJx
+	T/oRJg9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQPh7-002PJ6-2C;
-	Thu, 18 Jan 2024 10:32:21 +0000
-Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
+	id 1rQPlD-002Pbr-2i;
+	Thu, 18 Jan 2024 10:36:35 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQPh5-002PIk-03
+	id 1rQPlB-002PbJ-05
 	for ath11k@lists.infradead.org;
-	Thu, 18 Jan 2024 10:32:20 +0000
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1d5f388407bso17062445ad.0
-        for <ath11k@lists.infradead.org>; Thu, 18 Jan 2024 02:32:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1705573937; x=1706178737; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n8JRHjWU69dwSPIM6WJBhgXT8XsLLJN/pb4e4fztr1U=;
-        b=Qju3YnpOfO5WiTmV4HrF2k5YiujEs8bF4WkMQ+kNSE4UNjLdWYM/WuYDBJy8N+2CCO
-         sV30b9WnA/wzq5nNvi8d94DLs9fQU3J22NOOjJYfERP9yP37ls4XZh7d8Js9dhQckwho
-         F/kRzhttbAcxxoYgn3fKplIzKeIjN/AJwHdpTtpkpcrlhSFbb7+ZXT68Yz/n0a0NbOOc
-         /buFA3R2ZaN+ZEpy/oSKWgCDmEy2W+heDAB4vceDzVTdyzCe/+kCsmxu8JIFOY4gc8DB
-         NhqfRGTJstdpo/Azw9SUd/Yq3sAZgO7kBWdnn7symI4shejIBM5v2dhMhuRBfS9+tAbW
-         1scQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705573937; x=1706178737;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n8JRHjWU69dwSPIM6WJBhgXT8XsLLJN/pb4e4fztr1U=;
-        b=hNlciKSHCKIO1gQpNCeqE7xrygBVkthNFuqqgudaBn46Y1AFtyyljKItPvd5J7iIFC
-         seKPzDyZkOgDRQfi/xO9fG6tmI7eJipmjNzoyC7mHkXqGuk9OTRt7qiXQk/QNOhhG236
-         njkA2XhZl0SWjKnj7tLoSamrZaY+0dh6KFGMbamhxFVq4tmBhU7J2UYVNRrtu9tPyCGc
-         wGL0DDUtSf7NTgi0QEfhHQczmrjwgQEVezjchmDQflDlvffV3P7fard6aygg0HddUEGY
-         4vFNzrveXWtF8Bh8wmxFVHYYo8PJqpY3rQwh2LOMhO0tJ9lURdG8bBjI5Kygydo1jYhn
-         PUvA==
-X-Gm-Message-State: AOJu0Yx6EIsHINjmrL2Bc44i5OCf9tFeRVNHSw9MzxD7vIOh7606pgRb
-	4m+nXzPgPXCE5CUMA4DG24JrPW42WHTutJFf1oVT6zOIqhB5E6a+5wAunlQiqnKNJyTJkt8mOlh
-	0uMYDnVzSw1J8mI4lLmtukqNSQPgmLIv5SYjYjA==
-X-Google-Smtp-Source: AGHT+IEDM3HbbsuKApku43Lu/2JjWxFCcVci23+0cVFkNikC0krrWi1PaUl1FpgsS7iQZdhfQGRrv13ZX/42Dd4tQJ4=
-X-Received: by 2002:a17:90b:17c8:b0:290:ce3:a734 with SMTP id
- me8-20020a17090b17c800b002900ce3a734mr482097pjb.25.1705573936909; Thu, 18 Jan
- 2024 02:32:16 -0800 (PST)
-MIME-Version: 1.0
-References: <d857016e-7bea-4f77-8931-97b0d56751f5@westermo.com>
-In-Reply-To: <d857016e-7bea-4f77-8931-97b0d56751f5@westermo.com>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Thu, 18 Jan 2024 11:32:05 +0100
-Message-ID: <CA+HBbNGiM9hyFCFq9-sWgL_DFHNKzdDeW3v2YHR0Z9YXxbG1jA@mail.gmail.com>
-Subject: Re: ath11k: 512 client support on QCN9074
+	Thu, 18 Jan 2024 10:36:34 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 9A688CE1EFA;
+	Thu, 18 Jan 2024 10:36:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51EFBC433F1;
+	Thu, 18 Jan 2024 10:36:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705574187;
+	bh=V7SLY2WKm0BeySvWZxBq2SEwTs/OZEEQZ6MOE6yAWbg=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=mt6S1xRK8J9VQW8+KWcRHdIY0hVHkPIk35lYK+/gV0ejpbL8fnC6Qb4RfalNfQ1cx
+	 T0GUYurWqL3IKmdHdMvE2j5sp3bYm5v89mJKAgYDuv5K1E5g9IwegaNrJOfWa6xFXZ
+	 bdZEXIShtcrj40t4+kQQu5gdo1xIH17OxNV6FTEVrW7I3l0Znq4gbg2nwrKnsls1ls
+	 7w2EwCgDRP5ECMcQYjqiCK9zLca3mgEBVUi0S2u45SgEKRSHn6UneQOkFGx8eN8xnX
+	 k0fYDTatkjTaSU0wsIPthJUa6GWFjTsRAgN7gC2Bbrdeu6NkhSeAPpDRPgCNQmiHw9
+	 Y/rgV3V1fD2fA==
+From: Kalle Valo <kvalo@kernel.org>
 To: Alexander Wilhelm <alexander.wilhelm@westermo.com>
-Cc: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Cc: <ath11k@lists.infradead.org>
+Subject: Re: ath11k: 512 client support on QCN9074
+References: <d857016e-7bea-4f77-8931-97b0d56751f5@westermo.com>
+Date: Thu, 18 Jan 2024 12:36:25 +0200
+In-Reply-To: <d857016e-7bea-4f77-8931-97b0d56751f5@westermo.com> (Alexander
+	Wilhelm's message of "Thu, 18 Jan 2024 11:30:06 +0100")
+Message-ID: <87a5p33p3q.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240118_023219_062731_9B58B3F6 
-X-CRM114-Status: UNSURE (   9.22  )
+X-CRM114-CacheID: sfid-20240118_023633_260760_F42317AD 
+X-CRM114-Status: UNSURE (   7.73  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,33 +72,19 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 18, 2024 at 11:31=E2=80=AFAM Alexander Wilhelm
-<alexander.wilhelm@westermo.com> wrote:
->
-> Hi kvalo,
->
-> The QCN9074 module with the ath11k driver currently only supports 128 cli=
-ents. It should actually be able to support 512, shouldn't it? If so, is th=
-ere a firmware restriction because of this, etc?
+Alexander Wilhelm <alexander.wilhelm@westermo.com> writes:
 
-For that you need to change the FW mode to 0 as I think it currently
-defaults to 2 to save on memory.
+> The QCN9074 module with the ath11k driver currently only supports 128
+> clients. It should actually be able to support 512, shouldn't it? If
+> so, is there a firmware restriction because of this, etc?
 
-Regards,
-Robert
->
->
-> Best regards
-> Alexander Wilhelm
->
+IIRC increasing station limit means that we have to reduce memory usage
+somewhere else and we don't have a good dynamic way to change those
+values in ath11k right now. Hopefully someone else answers who knows
+this better.
 
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
