@@ -4,89 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BAF8C4707B
-	for <ath11k@archiver.kernel.org>; Thu, 18 Jan 2024 15:44:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F2A1C4725D
+	for <ath11k@archiver.kernel.org>; Fri, 19 Jan 2024 06:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+ZVAgZga1ii+/Sn5ORFdOSTTD7OrfCcFwm/OpdMmb8Y=; b=TrIfTntL8XdMwPKQQxvBiptuL3
-	cCZ2r3iWYebNfCt4RnbukHyCUHiiuPkCfhEybSvaqFxmxPSK/nQgqtkMIZSXB675vuwRfrSL6hdGP
-	C9rc48VsYhSjTBRc7+zJfgYXQ/pARDWrZSpTJG+cktpqcgJUAA/KsCGVoEshCChMQ/lyK9w6xtU4L
-	FGsmQEmZJyWmaZYLP/MvcsA2MnyV5FIMr9LQyKWkgnhFr9zCdrm4lZS/qgmK020GCz8pjsRziJY3h
-	kSprxzvLLlYtv529GePVtLfXI7C2te8v8GFkhHwVLVZxeD/oTzgbYuUYWqVqxehIHWKOdNeJNRryn
-	6RthyDHw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=+WjhaWDL1v9ajKtKVC+vyuQvC6YacprOCkHhqOgcNE8=; b=o+wf+VCOJAqkxvpCiFivQ7M/ze
+	79Qy1rc+sY7/DhnR0cZ/jlQSBUf13LX06U00rUkydR1BenQD9/fVVihul5SofHgZs4YR7jSBIxSaK
+	D16m9i6eVzgaBWk/qK5gOcpieLE3tWIKfHfH2gjlxe0hPFRgQO+gW7XiHU3E75bLKduFfBrNdWvTV
+	TaXHFyHGoQ2otot30P+kKWcO/hIfsx79euI7B60C+C6dfN2VnxxmDfq+NNVzd0DNVG1A7jzfziznQ
+	+S1T6Tfxl+fsMAuKNp6gXTgFM0NaTW17h4O7BkukY5g4JAbPjeCjhZsI0+H3U8Uv1mzBLoKtC0/aU
+	pIpUShlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQUZ2-0038iS-0n;
-	Thu, 18 Jan 2024 15:44:20 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rQiSj-004c1r-2P;
+	Fri, 19 Jan 2024 06:34:45 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQUZ0-0038h8-0S
+	id 1rQiSf-004c0t-2n
 	for ath11k@lists.infradead.org;
-	Thu, 18 Jan 2024 15:44:19 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40IF0EDN015329;
-	Thu, 18 Jan 2024 15:44:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=+ZVAgZga1ii+/Sn5ORFdOSTTD7OrfCcFwm/OpdMmb8Y=; b=Ch
-	k0Y6eWiXMr2eCVZwWihw+4wX6E3jXZZmfQ+kXvZtcBXezznGdbAcmqNNabjgaB5T
-	f3MPs/IYmHZqrkZ4mNG6eX6bHE4amI8NhrEMTFmMnlY8uS/kjH1Ok61xVs5ERBLl
-	/MxblLxd5V755MfpDmDggpKXj1a5DK6xCGgqLmwYJe/lbp+WdTVR6hHw4v1tMohW
-	TzVz40k0eWrf+FppwtngLGqbwqXJBOx6cCvMEqnm68lcqd+JKroZdJninCG74+PW
-	cd4TbU9eG/w/IQzXEzEWHb5fsPjvVO5scEd4Nebi8U7v0BnMwRIoMWWEKN3IKDI8
-	OnE6s+T3iCRUNGLg2rRw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vq5qrg65s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Jan 2024 15:44:12 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40IFiBbb020942
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Jan 2024 15:44:11 GMT
-Received: from [10.110.99.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 18 Jan
- 2024 07:44:11 -0800
-Message-ID: <fc6ca019-83e9-4571-bfce-2b4e5c233aef@quicinc.com>
-Date: Thu, 18 Jan 2024 07:44:10 -0800
+	Fri, 19 Jan 2024 06:34:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id A1A02CE20AA
+	for <ath11k@lists.infradead.org>; Fri, 19 Jan 2024 06:34:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAFE6C433F1;
+	Fri, 19 Jan 2024 06:34:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705646078;
+	bh=ybA7Oc8IdtrO7eV7Gbv0lepTuXv8HmJ31IowmvsVq8w=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=PGAzh/4YmVT5S4OS9eQk1mS4lN+09SjCWQE/JyAgmagMRQz0wNuhoSlnMlF/0FY5x
+	 /Ij/Gt1u0ioX1CjhSasQTC5mSgkYcKOtyMJgptXWkUM/RpVpgYHku/cyC2m9Q6mVJ5
+	 RkE2DP+0ODENZESZATD8M6uMMXYhuSEQVGtc9LP1soaBY8Oh7HE5YY9qoy2aaRk/am
+	 UgyZgUKGC4Uwg2QFHNsL7QVId0nBxXu3O2TJhHkiBsMYTEyHPLTlq45GgLNr/9mb4i
+	 u743CyBKjfqm+It734T8hi4T7yWXmPlI8rolnK2IksV6rBscxQ+B1wNrYR8vblXK7S
+	 AyqlpJGW1p8vw==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,  regressions@lists.linux.dev,
+  linux-kernel@vger.kernel.org
+Subject: Re: [regression] ath11k broken in v6.7
+References: <874jfjiolh.fsf@kernel.org>
+Date: Fri, 19 Jan 2024 08:34:35 +0200
+In-Reply-To: <874jfjiolh.fsf@kernel.org> (Kalle Valo's message of "Thu, 11 Jan
+	2024 22:47:54 +0200")
+Message-ID: <87frytg7b8.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: document HAL_RX_BUF_RBM_SW4_BM
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240111-document-hal_rx_buf_rbm_sw4_bm-v1-1-ad277e8ab3cc@quicinc.com>
- <874jfg7xm4.fsf@kernel.org>
- <b4f29511-e001-4964-b88d-208dabf88121@quicinc.com>
- <875xzq526o.fsf@kernel.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <875xzq526o.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -VQvq0zZEl9ZJ6TH2fjw2tzKOMgYchL_
-X-Proofpoint-ORIG-GUID: -VQvq0zZEl9ZJ6TH2fjw2tzKOMgYchL_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-18_08,2024-01-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 suspectscore=0 mlxscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 clxscore=1015 malwarescore=0
- phishscore=0 mlxlogscore=791 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2401180114
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240118_074418_186450_96485B94 
-X-CRM114-Status: GOOD (  20.66  )
+X-CRM114-CacheID: sfid-20240118_223442_082819_416D34D1 
+X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,71 +73,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/18/2024 3:08 AM, Kalle Valo wrote:
-> * To make sure there are no kernel-doc warnings we would have to add
->   checks to ath11k-check, which would slow down it considerably and it
->   would again slow down our workflow (I run it several times a day).
+Kalle Valo <kvalo@kernel.org> writes:
 
-I currently run the following on every upstream patch series I review:
+> Just trying to make everyone aware because I suspect this will affect
+> quite a few people: ath11k is crashing during suspend on v6.7 due to a
+> mac80211 patch, more info:
+>
+> https://bugzilla.kernel.org/show_bug.cgi?id=218364
+>
+> Proposed fix:
+>
+> https://patchwork.kernel.org/project/linux-wireless/patch/20240111170629.1257217-1-benjamin@sipsolutions.net/
 
-scripts/kernel-doc -Werror -none \
-	$(find drivers/net/wireless/ath/ath1*k -name '*.[ch]')
+The fix is now applied:
 
-It takes a trivial amount of time.
+https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless.git/commit/?id=556857aa1d0855aba02b1c63bc52b91ec63fc2cc
 
-> * To use kernel-doc formatting alone doesn't really make sense so we
->   would have to start creating a kernel-doc book or something. But who
->   would read it?
+I'll try to use regzbot for the first time, let's see how it goes:
 
-Due to the sparseness, nobody would read the actual rendered
-documentation; only the documentation as it exists in the code would be
-read. However note that Linux cross-reference tool also links to the
-documentation, which I often find useful when looking at core kernel
-code, and would find it useful when looking at driver code.
+#regzbot introduced: 0a3d898ee9a8 ^
 
-> * kernel-doc moves field documentation in structures away from the
->   actual fields which I find confusing.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-kernel-doc does support in-line commenting as well:
-<https://www.kernel.org/doc/html/latest/doc-guide/kernel-doc.html#in-line-member-documentation-comments>
-
-Although I don't see that used much.
-
-> * The risk of having outdated kernel-doc documentation is high, it would
->   need active maintenance etc.
-
-Agree, but that is true of any documentation. The nice thing about
-kernel-doc is that it can actively tell you when the documentation
-doesn't match the code.
-
-> * I'm worried about creating useless documentation, like "Count number
->   foo" for foo_count() just because of kernel-doc.
-
-Valid concern
-
-> This is why I consider return on investment is low here :) My preference
-> is to make the code understandable (good symbol names etc) and document
-> the special cases, which are not obvious from the code, with a normal
-> code comment.
-
-Which I'm also fine with.
-
->> I'm curious what others think of the ath10/11/12k level and style of
->> documentation.
-> 
-> IIRC iwlwifi uses kernel-doc to document the firmware interface, not
-> sure how much it's used elsewhere in the driver.
-
-They have the same problem I'm trying to fix ;)
-% scripts/kernel-doc -Werror -none \
-	$(find drivers/net/wireless/intel/iwlwifi -name '*.[ch]')
-...
-322 warnings as Errors
-%
-
-I'm not looking to change the status quo. Let me get the last of the
-ath10k cleanups in place, and I'll continue to run kernel-doc to make
-sure the existing ath1*k documentation is kept up to date.
-
-/jeff
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
