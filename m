@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09933C4725D
-	for <ath11k@archiver.kernel.org>; Mon, 22 Jan 2024 08:25:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A754C4725D
+	for <ath11k@archiver.kernel.org>; Mon, 22 Jan 2024 10:24:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=s3cG+TSRJua5Vjxjqlp6dpsQQc0W/gqByT2YYlA85vY=; b=qUcxSF/XQiMwYvfGqtVRrFVkBy
-	BGlhl695BcQGTZhnGCEptMVihCD5vw99glGOjb4Vo3jQ52q5KQ97NkkiicLm8pjVJyTPvHBOn9HNE
-	mu6/G/qhD91PjXDn2/s9Mg/f3TA+b/odH97HlPZ+WpbYKY0Kd1VajoDJ6S62EMbhCQIwDJvvgPDXL
-	EoOQ0m9g+MdLPzpEAD79E+GwcH1gQRMbNAvpkjYqru36TC5ABC3+uXbefONPEXJIDJa8Dw68CNpbZ
-	ZQEMo2wm2rJ6Cmm6ARbrilExkDims2BfOQ/kD7VACD7/MfpgCaHiVNZQkxxnk1erS/CroSPeiEUgs
-	sFcEuUtg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=q3XJQKOH+QNkDT5OMjON7lz8l9QTsq1Jp8Ev866yAn0=; b=r3uPrlncCVwWOoDVwxpr7+p4HG
+	I4jufsHn3VDnqoBYdEaaQX5ZROiIj0GKW7HM2Sffj8z5r2liEszicV698zLZrxqGxpxWbbQDZCihZ
+	3HRTqGl0K7FVXiMsq1T9wmbzvbKsgXdxALdmcvyj5ER5DUZI8v8OYRYeBm7ZqrZsAMCqLe08Kqaqx
+	lc4ZeIZeHpjrBah10BVpdi11qltyi5KQMBVFS2JpuyOdeM3ON2T/pIlwechJQEdAfIL+CyMeG+xpA
+	rcDOU8bkdAHAAb7+24UemSMSE7l+UQRPPuBplmMIffGuIhsJKPy15ERvquIzvEN2jHxpnB38TuQLV
+	6CDNV3ag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rRpc5-00B2NN-03;
-	Mon, 22 Jan 2024 08:25:01 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rRrTY-00BVyu-04;
+	Mon, 22 Jan 2024 10:24:20 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rRpc1-00B2M9-35
+	id 1rRrTT-00BVr2-2q
 	for ath11k@lists.infradead.org;
-	Mon, 22 Jan 2024 08:24:59 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 4E46B60F37;
-	Mon, 22 Jan 2024 08:24:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3693C433C7;
-	Mon, 22 Jan 2024 08:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705911867;
-	bh=+DIt2XHxR6GWd87F4zF71KKoFdrIBtRWA2j/kw1c0rI=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=U9yVUA7ussq3zLhB7QYCuHHjo7VA6uSyWsUtucbdkKJqLtHrXHCZlLTlb7AkP7x9p
-	 KAnO6b7eHzgEZnbaVH84M6vxblFJiBQjCV3Md/2QS6ehAAok6VfACKisSOq9lDiEFO
-	 LGPWTuyQ8KMbIYxXIAjwuODbhXn4lnGCm+1nScMmpYtqove6hSuQA4eJDdKLAbwlrJ
-	 cLrE1P4eTzV5lr9tMUupqCbfR9NoomokJcdW9L5xBqXvaOHjb+wPYw6t1Jsswb7lXd
-	 d7jqBa0Nz547WYXOZCzIp48mgmFtbuCNPKkDVT92lXDKZxrQQeXZ4ReZSKt5rpzN+s
-	 zo/NZkZfZBsvg==
-From: Kalle Valo <kvalo@kernel.org>
-To: "Linux regression tracking (Thorsten Leemhuis)" <regressions@leemhuis.info>
-Cc: ath11k@lists.infradead.org,  Linux regressions mailing list
- <regressions@lists.linux.dev>,  linux-wireless@vger.kernel.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [regression] ath11k broken in v6.7
-References: <874jfjiolh.fsf@kernel.org> <87frytg7b8.fsf@kernel.org>
-	<878r4lg3t8.fsf@kernel.org> <87jzo13jmf.fsf@kernel.org>
-	<94150b26-bdd9-49c2-82a1-26ff46c9d32a@leemhuis.info>
-Date: Mon, 22 Jan 2024 10:24:23 +0200
-In-Reply-To: <94150b26-bdd9-49c2-82a1-26ff46c9d32a@leemhuis.info> (Linux
-	regression tracking's message of "Mon, 22 Jan 2024 09:03:27 +0100")
-Message-ID: <87fryp3he0.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Mon, 22 Jan 2024 10:24:18 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1rRrTM-0008R4-F5; Mon, 22 Jan 2024 11:24:08 +0100
+Message-ID: <0253854a-e5f9-4316-bec3-61aaf3ebfd1a@leemhuis.info>
+Date: Mon, 22 Jan 2024 11:24:06 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [regression] ath11k broken in v6.7
+Content-Language: en-US, de-DE
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <874jfjiolh.fsf@kernel.org> <87frytg7b8.fsf@kernel.org>
+ <878r4lg3t8.fsf@kernel.org> <87jzo13jmf.fsf@kernel.org>
+ <94150b26-bdd9-49c2-82a1-26ff46c9d32a@leemhuis.info>
+ <87fryp3he0.fsf@kernel.org>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <87fryp3he0.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1705919055;82d64f6a;
+X-HE-SMSGID: 1rRrTM-0008R4-F5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240122_002458_081568_C5913F14 
-X-CRM114-Status: GOOD (  15.00  )
+X-CRM114-CacheID: sfid-20240122_022416_057698_1D922FED 
+X-CRM114-Status: GOOD (  20.56  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,61 +67,80 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-"Linux regression tracking (Thorsten Leemhuis)"
-<regressions@leemhuis.info> writes:
-
-> On 22.01.24 08:36, Kalle Valo wrote:
->> Kalle Valo <kvalo@kernel.org> writes:
+On 22.01.24 09:24, Kalle Valo wrote:
+> "Linux regression tracking (Thorsten Leemhuis)"
+> <regressions@leemhuis.info> writes:
+>> On 22.01.24 08:36, Kalle Valo wrote:
 >>> Kalle Valo <kvalo@kernel.org> writes:
 >>>> Kalle Valo <kvalo@kernel.org> writes:
+>>>>> Kalle Valo <kvalo@kernel.org> writes:
+>>>>>>
+>>>>>> Proposed fix:
+>>>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20240111170629.1257217-1-benjamin@sipsolutions.net/
+>>>>> The fix is now applied:
+>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless.git/commit/?id=556857aa1d0855aba02b1c63bc52b91ec63fc2cc
+>>>>> I'll try to use regzbot for the first time, let's see how it goes:
+>>>>> #regzbot introduced: 0a3d898ee9a8 ^
+>>>> Forgot to include the bug report:
 >>>>
->>>>> Just trying to make everyone aware because I suspect this will affect
->>>>> quite a few people: ath11k is crashing during suspend on v6.7 due to a
->>>>> mac80211 patch, more info:
->>>>> https://bugzilla.kernel.org/show_bug.cgi?id=218364
->
-> Many thx for the heads up, much appreciated. Sorry, forgot to add it to
-> the tracking myself: during the merge window thing are sometimes a bit
-> chaotic for myself as well. And I was head-down in rewriting some parts
-> of regzbot (see below).
+>>>> #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=218364
+>>
+>> FWIW, that usage was slightly off and not how it's supposed to be done.
+>> But whatever, let's ignore that. I'm reworking things currently
+>> slightly, as you are not the first one that slightly got mislead -- and
+>> the newer commands will hopefully be mire intuitive.
+> 
+> Just to educate myself, how should I have done it? (But feel free to
+> skip the question if you are busy)
 
-No worries, this was a good time to learn all this myself.
+I think that's not worth it, as I hope to introduce the new commands in
+the near future (but you know how it is with the last 5 to 10
+percent...). But let me show you how it's then supposed to be done in
+this situation, that way you can give early feedback:
 
->>>>> Proposed fix:
->>>>> https://patchwork.kernel.org/project/linux-wireless/patch/20240111170629.1257217-1-benjamin@sipsolutions.net/
->>>>
->>>> The fix is now applied:
->>>>
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless.git/commit/?id=556857aa1d0855aba02b1c63bc52b91ec63fc2cc
->>>>
->>>> I'll try to use regzbot for the first time, let's see how it goes:
->>>>
->>>> #regzbot introduced: 0a3d898ee9a8 ^
->>>
->>> Forgot to include the bug report:
->>>
->>> #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=218364
->
-> FWIW, that usage was slightly off and not how it's supposed to be done.
-> But whatever, let's ignore that. I'm reworking things currently
-> slightly, as you are not the first one that slightly got mislead -- and
-> the newer commands will hopefully be mire intuitive.
+  #regzbot report: https://bugzilla.kernel.org/show_bug.cgi?id=218364
+  #regzbot introduced: 0a3d898ee9a8
 
-Just to educate myself, how should I have done it? (But feel free to
-skip the question if you are busy)
+That "#regzbot report" will be new and make it more obvious to users
+what regzbot should consider to be the report (e.g. what Link:/Closes:
+tags later in commits fixing the issue will link to). You used "#regzbot
+introduced: 0a3d898ee9a8 ^" and due to the "^" it assumed the start of
+this thread would be the report (side note: mixing that aspect into the
+"introduced" command was a stupid idea anyway.).
 
->> #regzbot fix: 556857aa1d0855aba02b1c63bc52b91ec63fc2cc
->
-> Great, thx. Hope it reached mainline soon. Maybe once it's there you or
-> I should tell Greg to pick this up quickly for stable given that it
-> apparently "might affect quite a few people".
+That "#regzbot link:" will vanish as well (at least from the docs, it
+will remain to be supported), as people use it wrong in various
+different ways: for duplicates, reports (like your did), patch
+submissions fixing the issue (then 'regzbot monitor' should have been
+used) among others. Which is totally understandable now that I look at
+it. That's why it will be replaced by "#regzbot related: <url>" to avoid
+any connection with the Link: tag used in commits; for duplicates
+"#regzbot dup:" will stay around.
 
-I'll try to remember that but the thing is that I don't really follow
-stable releases. I wish there would be a person who could follow stable
-releases from wireless perspective and make sure everything is ok there.
+>> Great, thx. Hope it reached mainline soon. Maybe once it's there you or
+>> I should tell Greg to pick this up quickly for stable given that it
+>> apparently "might affect quite a few people".
+> I'll try to remember that but the thing is that I don't really follow
+> stable releases.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Let me do it, it's easy for me. And FWIW, I don't even follow the stable
+releases for that, I just drop Greg a mail when I notice the patch
+reached mainline through the weekly net merge. He'll take care of the rest.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> I wish there would be a person who could follow stable
+> releases from wireless perspective and make sure everything is ok there.
+
+Maybe at some point regression tracking can help somewhat with that. But
+I still have to fix a few things to make people use it and scale it up.
+
+Side note: some people seem to have gotten the impression that I care a
+lot about *all* stable/longterm kernels. Let me use this opportunity to
+say that it's not really the case. I fully understand and respect that
+those series are a somewhat separate thing some developers don't want to
+be involved in (especially the older trees). But the thing is: the
+latest stable tree is what we tell users to use -- and something quite a
+few important distros ship as their regular kernel these days. That's
+why I take special care of regression that found there.
+
+Ciao, Thorsten
 
