@@ -4,94 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0F9FC47DD3
-	for <ath11k@archiver.kernel.org>; Fri, 19 Jan 2024 18:08:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27F7EC4725D
+	for <ath11k@archiver.kernel.org>; Mon, 22 Jan 2024 06:24:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OouLsUncXdro84LkucUunUlvqGOy/RT1zxKH4rfrFVI=; b=cBfzMUEyEWOrn4ddCN6nYKQ47r
-	/y0jGa4T4scrx/riF4IpIxeLXwZHmIqiu7tk+l5s9Zoy5UxIWx03OBt/BfGXfMlcbddGRSzoLoWhD
-	oz/jqbXtTHn6GwuqiSOYOGU4VF3KtuGbtf+Zlt0SKglG2KvCpL3pJ66O8JIA9OnfQVV2A098JVX44
-	X6bJuSJ0ldBoiXrEkMH6cA+2P8jQi4GX5ID53+VPvSVKjvzJo8DACh2h6lJVEhgBdZ1WPfYpkjYNM
-	MNKn3tVaDUAkjFMqsZ0eG3OPg+6M+8pDZMrhUGcOhe5DN/2f1sXjrou4+yS8C1qExCFPzSwOexwkv
-	jVXFIASw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=9fWFb/CMMbk+zbwiuUZOAf7hLx0dO6RI2qXsAK29ZSY=; b=GMQdN7C6ojcSaLUeTY4N7VPrNc
+	XiVTUjeYcVMteJPp/4ueBSTHYlSbIopegAQF7r04NKVNekK8RYF5eEWzjL88y1kdUzTiPJ9nD/zC+
+	XxXEHgmWk5Yw8GqJwPamuooZebsRDz2nUiIIpJfj0FCA4XvnpqLC9V54jDGwx0eVNKI+PD6QCbTtQ
+	zJ4AB32e3Yc8KMAYVCt7i87CNspIAA58tIb+VL1hpi0IgJimosUWKv16IK9mQ/qasZjOxWBkbjlON
+	I73HTOnRnZ59z4FAeWJiF/WR5lPts+6m+EsvJ9DR/zf4XSd318EtlUcsVW9IJyVGW2qTISPTXtCYt
+	bnYaWZbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQtHe-006Lsv-35;
-	Fri, 19 Jan 2024 18:08:02 +0000
-Received: from mail-io1-xd33.google.com ([2607:f8b0:4864:20::d33])
+	id 1rRnjR-00AjEa-2W;
+	Mon, 22 Jan 2024 06:24:29 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rQtHc-006LsR-1j
+	id 1rRnjP-00AjE7-2A
 	for ath11k@lists.infradead.org;
-	Fri, 19 Jan 2024 18:08:01 +0000
-Received: by mail-io1-xd33.google.com with SMTP id ca18e2360f4ac-7bf2ab2c4caso29998239f.3
-        for <ath11k@lists.infradead.org>; Fri, 19 Jan 2024 10:07:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705687673; x=1706292473; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OouLsUncXdro84LkucUunUlvqGOy/RT1zxKH4rfrFVI=;
-        b=WAD4A3w1KIBI61pfSn0YB6vvZQxqgLmmSm2BRSCHu4WSMUipjCxJd++7lM451dckI8
-         imTyUp8jRSrW05DtiRmrGvFlkjQtmJNtZ2ERa7WZ/8dMH6//kO/1PHltGgoy0i5Ru3ID
-         hyTy9AxUK7uUYmgRc06t0B/MG1ErYgSBShrI0svKxJAAzrcG3cvSFgukqZSe8jJ68P1P
-         Unr86z1L0MVy92PVa2Fvs1bw8Rh9NM1aaVJfRCJ1mqO5rx8kn5Wa+XIe2w0O46GZGwhn
-         /poj9F7+KENffphsQvKomTyr2kpm7kTGON2kL0R2m948eBlyRpNzf+/Pfk2Sj0O1ZIER
-         lKKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705687673; x=1706292473;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OouLsUncXdro84LkucUunUlvqGOy/RT1zxKH4rfrFVI=;
-        b=PRzFVXGj1ZGYhHTm6ikBCTTYmcSj/xlNz3FwwWlbEqWBrsmtMHQskdnNzqwzV7XAPi
-         P/dPwTfeV677Jb6l83cGoyLngHrlu/JYkoPAM3AZDRT5p9PzPMn81XZos6mIpNyszhkz
-         nMnVmS+yscMTpa/fbWKeDdz70P6CNbWHPXnZLVVP5JP6t+tPzgK3GujKVpzbQ37iQmUz
-         dVZOEg7ZCC76UbOig6UUKbMmuLVlOUDsDlgZcf6a0LN+NoWh/ptYAa8waxf7+MaYc/De
-         m/Vhe5Z6QSnPzH+eql3Bxcaw1q9UwF4AZKgFqjC5nV0Z9Wk85cwMLEkJpRbtwYtauKDp
-         MjOQ==
-X-Gm-Message-State: AOJu0YzFyYs1StYfX0yE7SlGdrDp3v1XQa6Uapho7xs2MtBu+a+CwNfS
-	h2gLUEUo0APjsfOu0Jx+obDM1BuFGqPzAH+b8p8CDoyolPLFLGFM
-X-Google-Smtp-Source: AGHT+IEFXRi1LmbdEEQsUtYNN0rpYkaNjeeD5bB3vQeaTSmSWQ/ruYV3YLUoYLuqLWEREmJh9xoxQA==
-X-Received: by 2002:a6b:e608:0:b0:7bf:1c0b:db43 with SMTP id g8-20020a6be608000000b007bf1c0bdb43mr84290ioh.38.1705687672876;
-        Fri, 19 Jan 2024 10:07:52 -0800 (PST)
-Received: from [10.100.20.9] ([50.225.159.98])
-        by smtp.gmail.com with ESMTPSA id a6-20020a02ac06000000b0046dfd35b042sm1693277jao.73.2024.01.19.10.07.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jan 2024 10:07:52 -0800 (PST)
-Message-ID: <26aba780-d175-46ff-9943-c36625e7757a@gmail.com>
-Date: Fri, 19 Jan 2024 10:07:50 -0800
+	Mon, 22 Jan 2024 06:24:29 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by ams.source.kernel.org (Postfix) with ESMTP id A024DB80B71;
+	Mon, 22 Jan 2024 06:24:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0572C433C7;
+	Mon, 22 Jan 2024 06:24:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705904665;
+	bh=ytQ70xzw9VFq0ngIprfNmliPx9LBkAoh27nHd5RHzYE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CY1ZkjTDYIl7+UJ1dyUpfirvwdoVAMRbMoqr9lWpPih1UFj+oYhgembV47LZcvka3
+	 ExmL9/w3jSOjXOu3sQ0hG9Sf0Wbmh5NvsZan+IxhCKH5c1c/dgYYV7fZ4aUkfWQ/ns
+	 lV05TA9OP5gb+AY2XqshCbLZkEEjz+gO1nbmwIEOLc4qHzeBvNjl7CryfR/YPoShfD
+	 Rn/yOP6PuRwBdNlvSkNkCno2V3Bs2xmxXq2LoAKI34rAoNH0Vcdsus0/IKMY9qvvGQ
+	 GDd37K0EOtunAA/DH5lQE8Lj7IbOa5AbjU0aUEe4DYmUu/2JjkjGFnOp6ba5/zEvhs
+	 Zq3Up7LuKcwPA==
+Date: Mon, 22 Jan 2024 11:54:11 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+	mhi@lists.linux.dev, ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org, quic_cang@quicinc.com,
+	quic_qianyu@quicinc.com
+Subject: Re: [PATCH RFC v2 1/8] bus: mhi: host: add
+ mhi_power_down_no_destroy()
+Message-ID: <20240122062411.GA3176@thinkpad>
+References: <20231127162022.518834-1-kvalo@kernel.org>
+ <20231127162022.518834-2-kvalo@kernel.org>
+ <20231130054250.GC3043@thinkpad>
+ <87v89cq1ci.fsf@kernel.org>
+ <20231220163209.GJ3544@thinkpad>
+ <20231220165113.GK3544@thinkpad>
+ <7a31696b-cf2b-48c0-bad3-327e9ce47172@quicinc.com>
+ <20240104060904.GB3031@thinkpad>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k and vfio-pci support
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org
-References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
- <8734v5zhol.fsf@kernel.org> <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
- <87r0ipcn7j.fsf@kernel.org> <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
- <26119c3f-9012-47bb-948e-7e976d4773a7@quicinc.com>
- <87mstccmk6.fsf@kernel.org> <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
- <8734v4auc4.fsf@kernel.org> <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
- <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
- <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
- <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
- <ee0280fd-032c-4f45-a3f9-50d96d8bed6d@gmail.com>
- <16cfd010-b62d-4385-92d1-002820a8db38@quicinc.com>
- <cdec259a-b779-4856-8585-f285179e3671@gmail.com>
- <21e925bc-ee3e-4421-949b-b3839d2abdef@quicinc.com>
- <08457e37-49f4-4c51-998b-e577731c8022@gmail.com> <87o7dh2oky.fsf@kernel.org>
-From: James Prestwood <prestwoj@gmail.com>
-In-Reply-To: <87o7dh2oky.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240104060904.GB3031@thinkpad>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240119_100800_599865_36C29A9A 
-X-CRM114-Status: GOOD (  10.07  )
+X-CRM114-CacheID: sfid-20240121_222427_872570_AA5D08E6 
+X-CRM114-Status: GOOD (  17.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,38 +82,45 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
+On Thu, Jan 04, 2024 at 11:39:12AM +0530, Manivannan Sadhasivam wrote:
 
-On 1/19/24 9:57 AM, Kalle Valo wrote:
-> James Prestwood <prestwoj@gmail.com> writes:
->
->>> Sorry I should have made it clear:
->>> step1: start qemu and load ath11k without changing anything, then
->>> you get those errors;
->>> step2: keep qemu running and ath11k there, don't unload it. Then
->>> check lspci output in host to get the MSI vector.
->>> step3: Back in qemu, hard code MSI vector to the one you get in
->>> step2, then rebuild and reload ath11k.
->> Thank you for the clarification, this worked like a charm!
-> Very nice, huge thanks to Baochen for finding the workaround! James, let
-> us know how it works for you in the long run. This would definitely help
-> automating ath11k testing so I'm very interested about this.
++ Can, Qiang
 
-Yes thank you Baochen!
+[...]
 
-You mean using PCI pass-through? Yes, its immensely useful for testing 
-kernel changes. No swapping host kernels/reboots and you can build a 
-very minimal kernel, mine takes ~10 min to build initially then 
-iterative changes take ~10 seconds.
+> > > To me it all sounds like the probe deferral is not handled properly in mac80211
+> > > stack. As you mentioned in the commit message that the dpm_prepare() blocks
+> > > probing of devices. It gets unblocked and trigerred in dpm_complete():
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/base/power/main.c#n1131
+> > > 
+> > > So if mac80211/ath11k cannot probe the devices at the dpm_complete() stage, then
+> > > it is definitely an issue that needs to be fixed properly.
+> > To clarify, ath11k CAN probe the devices at dpm_complete() stage. The
+> > problem is kernel does not wait for all probes to finish, and in that way we
+> > will face the issue that user space applications are likely to fail because
+> > they get thawed BEFORE WLAN is ready.
+> > 
+> 
+> Hmm. Please give me some time to reproduce this issue locally. I will get back
+> to this thread with my analysis.
+> 
 
-We have also integrated this into IWD's autotest framework so you can, 
-in theory, run tests you normally run using mac80211_hwsim but using 
-real hardware (assuming you aren't needing to modify frames). I did at 
-one point have a system set up with 4-5 wifi cards and could run python 
-tests against them, bring up an AP, connect, etc. It was pretty neat.
+We reproduced the issue with the help of PCIe team (thanks Can). What we found
+out was, during the resume from hibernation the faliure happens in
+ath11k_core_resume(). Precisely here:
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/tree/drivers/net/wireless/ath/ath11k/core.c?h=ath11k-hibernation-support#n850
 
-Thanks,
+This code waits for the QMI messages to arrive and eventually timesout. But the
+impression I got from the start was that the mhi_power_up() always fails during
+resume. In our investigation, we confirmed that the failure is not happening at
+the MHI level.
 
-James
+I'm not pointing fingers here, but trying to understand why can't you fix
+ath11k_core_resume() to not timeout? IMO this timeout should be handled as a
+deferral case.
 
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
