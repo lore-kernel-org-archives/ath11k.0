@@ -4,61 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 196CDC47DDF
-	for <ath11k@archiver.kernel.org>; Tue, 23 Jan 2024 02:57:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F160BC48260
+	for <ath11k@archiver.kernel.org>; Tue, 23 Jan 2024 02:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=2rULumssjPVe3Ecz4XwiMCfYVtvvuc+ITFJdrM0Ckbo=; b=dPb2TCJwqZBY7CKhyCBDjm5Ca+
-	gZ4SL495EW0fM0fkDfRZfY1jJqz0ZCICGLWT9DGH9rmQRDsSu5Lo9nVxL/ffdmGUGT7qllVYgyLrh
-	FBlYjmMvjQwPpqXfawfhuVsLnRep4hK2E6HUV6VsrBE5F1Wb2ttLrY7ZUvii1QpF/T6kG964Qcnpa
-	WBsVJRG7iwIHf/bCEetdLebhxD9iZbyTTNXBeob6oXOC/Nzgm2t7DygF/4nWQWBQtuKqajKB3Zpaj
-	9AO6bPMbzRWwIp/KLqZLqRpyQj9y6XIOFo5MdxkXMcJ3ixsSVD8g9xLBXwcMw+hpC/6hZdLNHyFc3
-	Dvoi4eag==;
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=7JbpltriaTuF83ZfC7cp752TABuiStiadXNCOmLsryk=; b=mWkpCD5et3gNFHXRSVyZ+2f3xT
+	fNfDCwV4Xu2vllREKXO72qM757oeCPM/JQKjvHR8+vXAoG2oSxhIxWRa8zj95GC9QiUkPyAwzy2KA
+	x7pZpP95VqQ1wbaQ9TF6yQKf07rTSwVmol/LiBiyL7vevHJsCpaR8KsJs+cWKOvlefnJgJMzBFHkr
+	LhPmHzFxRzBbm8z+QgKAw8v7yOkKdYeOIQ9HJGeNNYMrMgCNrUIK4xLrTKxAA9ra5BNZ/mx0Y3/QB
+	oVUJTU/2UmXdS2rc9PZdZlOeJDJOo1Hnf8ebSsVWddOgiAJ9JY9sp6ECxKCFpPx8drbP2rxHGBxqu
+	Pd83kZ6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rS6yV-00ExFS-2n;
-	Tue, 23 Jan 2024 02:57:19 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rS6yX-00ExGF-2q;
+	Tue, 23 Jan 2024 02:57:21 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rS6yR-00ExCl-2S
+	id 1rS6yU-00ExET-0m
 	for ath11k@lists.infradead.org;
-	Tue, 23 Jan 2024 02:57:17 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40N1pnux032489;
-	Tue, 23 Jan 2024 02:57:11 GMT
+	Tue, 23 Jan 2024 02:57:20 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40N2RFcF014750;
+	Tue, 23 Jan 2024 02:57:17 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=2rULums
-	sjPVe3Ecz4XwiMCfYVtvvuc+ITFJdrM0Ckbo=; b=JZypEor2A9YAfnEcaHt2w3i
-	r/6cQfYVTp9BnKlKqi+hyOJUeSJ+UAN5nuoTLiI4GFjtw+NwTnhFTITLqisF918Y
-	cQpZpXaN/79btD/CU4HJry/gq2slFjXGlZ70dZzkS8keY8eLU+hYNuD+pbvqKYx8
-	h4sgkmJSjQ6EvXQPRAYcadKysNlvU7SecKKyYpVHvriTkfaamwrhNLLVTzHwkqN9
-	aNs5aEKKPb3yxTAq+xOGxG0A0NSSexw9XjiInBgBmTCRwpJ5FYeTXN7v4BkMjajg
-	nsoRaCchIwWr084geuXfaL/SPQUZkK1Zf8s2sWf/S5GeskAtIYRp47qAUn9cMlw=
-	=
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vt3ku85xd-1
+	from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding:content-type; s=
+	qcppdkim1; bh=7JbpltriaTuF83ZfC7cp752TABuiStiadXNCOmLsryk=; b=EP
+	+D/vb+ovB3xlUJ7nnMxvVU+wxGl8XaxeoV6LADtR/euMlnhhfZLikNugw5+LTOVj
+	+iUPzXt0qgatGuDoJNsZakjfrKetwdGUo9erGGVvxSz8a64UtpR9jzPTZ9QcpA5S
+	kRdRwqjPEGtDdLwN1fZrsCeZ2UDXGWvB43OYpXEhcaSN+9/Ax0Xwjm+zO5fk9rQl
+	+MBNp1M2mG3MKBHtbmJhshReEeBO8dVdlQ9z+gcag66yHysPsq5HKPlJvZIBsJD8
+	6UdG7/W2uh1BwUVRN2zWs65bVbvZzlGw7wf47GwsB6YqwQULaaCyL0zEzTkmllFE
+	2vCw8ybFFVD9Kdi7OjwQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vst8w9h4d-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 02:57:11 +0000 (GMT)
+	Tue, 23 Jan 2024 02:57:17 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40N2vAKX016227
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40N2vGNg001268
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 02:57:10 GMT
+	Tue, 23 Jan 2024 02:57:16 GMT
 Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 22 Jan 2024 18:57:09 -0800
+ 15.2.1118.40; Mon, 22 Jan 2024 18:57:15 -0800
 From: Baochen Qiang <quic_bqiang@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH 0/4] wifi: ath11k: fix connection failure due to unexpected peer delete
-Date: Tue, 23 Jan 2024 10:56:56 +0800
-Message-ID: <20240123025700.2929-1-quic_bqiang@quicinc.com>
+Subject: [PATCH 4/4] wifi: ath11k: fix connection failure due to unexpected peer delete
+Date: Tue, 23 Jan 2024 10:57:00 +0800
+Message-ID: <20240123025700.2929-5-quic_bqiang@quicinc.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240123025700.2929-1-quic_bqiang@quicinc.com>
+References: <20240123025700.2929-1-quic_bqiang@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -67,19 +69,19 @@ X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bL0mO0VpTQhg7ab17WvsppsFT4_Gu19E
-X-Proofpoint-GUID: bL0mO0VpTQhg7ab17WvsppsFT4_Gu19E
+X-Proofpoint-GUID: z3rZjI5VfFb5jXVJzU0WzxV5dtu55XCl
+X-Proofpoint-ORIG-GUID: z3rZjI5VfFb5jXVJzU0WzxV5dtu55XCl
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-01-22_12,2024-01-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=926
- suspectscore=0 priorityscore=1501 phishscore=0 clxscore=1015 adultscore=0
- impostorscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401230018
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ impostorscore=0 phishscore=0 mlxlogscore=999 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 adultscore=0 suspectscore=0
+ spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401230019
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240122_185716_194246_EE6A6175 
-X-CRM114-Status: GOOD (  10.61  )
+X-CRM114-CacheID: sfid-20240122_185718_310687_02C84010 
+X-CRM114-Status: GOOD (  19.00  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,26 +130,215 @@ peer delete back to ath11k_mac_op_sta_state(), also stop vdev before
 deleting peer to fix the firmware crash issue mentioned there. In
 this way the connection failure mentioned here is also fixed.
 
-Also do some cleanups in patch "wifi: ath11k: remove invalid peer
-create logic", and refactor in patches "wifi: ath11k: rename
-ath11k_start_vdev_delay()" and "wifi: ath11k: avoid forward declaration
-of ath11k_mac_start_vdev_delay()".
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 
-Tested this patch set using QCA6390 and WCN6855 on both STA and SAP
-interfaces. Basic connection and ping work well.
+Fixes: b4a0f54156ac ("ath11k: move peer delete after vdev stop of station for QCA6390 and WCN6855")
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 139 ++++++++++++++++----------
+ 1 file changed, 85 insertions(+), 54 deletions(-)
 
-Baochen Qiang (4):
-  wifi: ath11k: remove invalid peer create logic
-  wifi: ath11k: rename ath11k_start_vdev_delay()
-  wifi: ath11k: avoid forward declaration of
-    ath11k_mac_start_vdev_delay()
-  wifi: ath11k: fix connection failure due to unexpected peer delete
-
- drivers/net/wireless/ath/ath11k/mac.c | 564 +++++++++++++-------------
- 1 file changed, 288 insertions(+), 276 deletions(-)
-
-
-base-commit: 8ff464a183f92836d7fd99edceef50a89d8ea797
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 8aa2b4fae79b..14f2947600dc 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7386,6 +7386,30 @@ static int ath11k_mac_start_vdev_delay(struct ieee80211_hw *hw,
+ 	return 0;
+ }
+ 
++static int ath11k_mac_stop_vdev_early(struct ieee80211_hw *hw,
++				      struct ieee80211_vif *vif)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	int ret;
++
++	if (WARN_ON(!arvif->is_started))
++		return -EBUSY;
++
++	ret = ath11k_mac_vdev_stop(arvif);
++	if (ret) {
++		ath11k_warn(ab, "failed to stop vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++
++	arvif->is_started = false;
++
++	/* TODO: Setup ps and cts/rts protection */
++	return 0;
++}
++
+ static u8 ath11k_mac_get_tpe_count(u8 txpwr_intrprt, u8 txpwr_cnt)
+ {
+ 	switch (txpwr_intrprt) {
+@@ -7920,15 +7944,17 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
+ 		goto out;
+ 	}
+ 
+-	ret = ath11k_mac_vdev_start(arvif, ctx);
+-	if (ret) {
+-		ath11k_warn(ab, "failed to start vdev %i addr %pM on freq %d: %d\n",
+-			    arvif->vdev_id, vif->addr,
+-			    ctx->def.chan->center_freq, ret);
+-		goto out;
+-	}
++	if (!arvif->is_started) {
++		ret = ath11k_mac_vdev_start(arvif, ctx);
++		if (ret) {
++			ath11k_warn(ab, "failed to start vdev %i addr %pM on freq %d: %d\n",
++				    arvif->vdev_id, vif->addr,
++				    ctx->def.chan->center_freq, ret);
++			goto out;
++		}
+ 
+-	arvif->is_started = true;
++		arvif->is_started = true;
++	}
+ 
+ 	if (arvif->vdev_type != WMI_VDEV_TYPE_MONITOR &&
+ 	    test_bit(ATH11K_FLAG_MONITOR_VDEV_CREATED, &ar->monitor_flags)) {
+@@ -7968,8 +7994,6 @@ ath11k_mac_op_unassign_vif_chanctx(struct ieee80211_hw *hw,
+ 		   "chanctx unassign ptr %p vdev_id %i\n",
+ 		   ctx, arvif->vdev_id);
+ 
+-	WARN_ON(!arvif->is_started);
+-
+ 	if (ab->hw_params.vdev_start_delay &&
+ 	    arvif->vdev_type == WMI_VDEV_TYPE_MONITOR) {
+ 		spin_lock_bh(&ab->base_lock);
+@@ -7993,24 +8017,13 @@ ath11k_mac_op_unassign_vif_chanctx(struct ieee80211_hw *hw,
+ 		return;
+ 	}
+ 
+-	ret = ath11k_mac_vdev_stop(arvif);
+-	if (ret)
+-		ath11k_warn(ab, "failed to stop vdev %i: %d\n",
+-			    arvif->vdev_id, ret);
+-
+-	arvif->is_started = false;
+-
+-	if (ab->hw_params.vdev_start_delay &&
+-	    arvif->vdev_type == WMI_VDEV_TYPE_STA) {
+-		ret = ath11k_peer_delete(ar, arvif->vdev_id, arvif->bssid);
++	if (arvif->is_started) {
++		ret = ath11k_mac_vdev_stop(arvif);
+ 		if (ret)
+-			ath11k_warn(ar->ab,
+-				    "failed to delete peer %pM for vdev %d: %d\n",
+-				    arvif->bssid, arvif->vdev_id, ret);
+-		else
+-			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
+-				   "removed peer %pM  vdev %d after vdev stop\n",
+-				   arvif->bssid, arvif->vdev_id);
++			ath11k_warn(ab, "failed to stop vdev %i: %d\n",
++				    arvif->vdev_id, ret);
++
++		arvif->is_started = false;
+ 	}
+ 
+ 	if (ab->hw_params.vdev_start_delay &&
+@@ -9462,6 +9475,46 @@ static int ath11k_mac_station_add(struct ath11k *ar,
+ 	return ret;
+ }
+ 
++static int ath11k_mac_station_remove(struct ath11k *ar,
++				     struct ieee80211_vif *vif,
++				     struct ieee80211_sta *sta)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
++	int ret;
++
++	if (ab->hw_params.vdev_start_delay &&
++	    arvif->is_started &&
++	    arvif->vdev_type != WMI_VDEV_TYPE_AP) {
++		ret = ath11k_mac_stop_vdev_early(ar->hw, vif);
++		if (ret) {
++			ath11k_warn(ab, "failed to do early vdev stop: %d\n", ret);
++			return ret;
++		}
++	}
++
++	ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
++
++	ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
++	if (ret)
++		ath11k_warn(ab, "Failed to delete peer: %pM for VDEV: %d\n",
++			    sta->addr, arvif->vdev_id);
++	else
++		ath11k_dbg(ab, ATH11K_DBG_MAC, "Removed peer: %pM for VDEV: %d\n",
++			   sta->addr, arvif->vdev_id);
++
++	ath11k_mac_dec_num_stations(arvif, sta);
++
++	kfree(arsta->tx_stats);
++	arsta->tx_stats = NULL;
++
++	kfree(arsta->rx_stats);
++	arsta->rx_stats = NULL;
++
++	return ret;
++}
++
+ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 				   struct ieee80211_vif *vif,
+ 				   struct ieee80211_sta *sta,
+@@ -9497,31 +9550,15 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 				    sta->addr, arvif->vdev_id);
+ 	} else if ((old_state == IEEE80211_STA_NONE &&
+ 		    new_state == IEEE80211_STA_NOTEXIST)) {
+-		bool skip_peer_delete = ar->ab->hw_params.vdev_start_delay &&
+-			vif->type == NL80211_IFTYPE_STATION;
+-
+-		ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
+-
+-		if (!skip_peer_delete) {
+-			ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
+-			if (ret)
+-				ath11k_warn(ar->ab,
+-					    "Failed to delete peer: %pM for VDEV: %d\n",
+-					    sta->addr, arvif->vdev_id);
+-			else
+-				ath11k_dbg(ar->ab,
+-					   ATH11K_DBG_MAC,
+-					   "Removed peer: %pM for VDEV: %d\n",
+-					   sta->addr, arvif->vdev_id);
+-		}
++		ret = ath11k_mac_station_remove(ar, vif, sta);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to remove station: %pM for VDEV: %d\n",
++				    sta->addr, arvif->vdev_id);
+ 
+-		ath11k_mac_dec_num_stations(arvif, sta);
+ 		mutex_lock(&ar->ab->tbl_mtx_lock);
+ 		spin_lock_bh(&ar->ab->base_lock);
+ 		peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
+-		if (skip_peer_delete && peer) {
+-			peer->sta = NULL;
+-		} else if (peer && peer->sta == sta) {
++		if (peer && peer->sta == sta) {
+ 			ath11k_warn(ar->ab, "Found peer entry %pM n vdev %i after it was supposedly removed\n",
+ 				    vif->addr, arvif->vdev_id);
+ 			ath11k_peer_rhash_delete(ar->ab, peer);
+@@ -9532,12 +9569,6 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 		}
+ 		spin_unlock_bh(&ar->ab->base_lock);
+ 		mutex_unlock(&ar->ab->tbl_mtx_lock);
+-
+-		kfree(arsta->tx_stats);
+-		arsta->tx_stats = NULL;
+-
+-		kfree(arsta->rx_stats);
+-		arsta->rx_stats = NULL;
+ 	} else if (old_state == IEEE80211_STA_AUTH &&
+ 		   new_state == IEEE80211_STA_ASSOC &&
+ 		   (vif->type == NL80211_IFTYPE_AP ||
 -- 
 2.25.1
 
