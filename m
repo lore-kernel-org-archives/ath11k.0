@@ -4,85 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14D24C47258
-	for <ath11k@archiver.kernel.org>; Wed, 24 Jan 2024 02:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5BBFC46CD2
+	for <ath11k@archiver.kernel.org>; Wed, 24 Jan 2024 13:06:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ry6TUcO/tVaxpVzOT+I1siLRRNkF5Nd5FE83y4j4sJU=; b=tyoUXt8LbdXFg9ejNj6OoELaaZ
-	UP8ShhrLrzFWbFLqO0b3RuUjR0qhGjfhFQWQHbZSbJT2100er1ezy7cL4gmrAjp56/F+h9Xs9m+HR
-	yPUTIZGXzWb/EO2aEey0ftewVDKCHgZsg4vnMlCOmFgSVFxq30qqtypSEbNC7SEnBgiLCF0GqzPCt
-	m2VUbwy9a18c5xzMF7ecMZO6tnc31yW2Z5Al2QZUh0shvSu15dSIOKz8EeXdgwaWWUyErkRvGzvh+
-	XxSXbiJQp50+F1cL11uZ2ZcftGfZq8PRtZVZFbZzOaRCfnyskEIsSqQaj+/ei4jIs7iK5nqoN1yV6
-	iQcXlhHg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Subject:From:To:Date:Message-ID:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=TOl1JxY2nemJ1gLPItVz4g7BN4LuRJIeqYTRODR/USU=; b=eaC5G6lOkMSaya
+	+FVlc6pSAqvO6JN73r0Hb+yHuFcxBA3mbkb70vmVlPPk1E/XBGeq1b4kIjdMNiK58Sue/hdki05jT
+	TxjTz1r1/WKVTGDrLTavwHc59lJt1cXZv/5O7HIjvDWAHQOcp1EePIWdkcJ/5zjZtPQBpXje98hpe
+	tkJ9pb8ct+M7VbWlHSha7UXTQlJgFoPdPP0mX7eOaP1MBrvyYj7ZgoXJ0XPUvzFSzxNQdUD162oiR
+	FxFjSWuwR0zFDIZg/wzpVQvdsb79iS+Mnueyt5KrYZiLQrDCCn7ZaHP5GzlA3Pl59+fPe2NC2Xs+s
+	MYB18IZV+gi8T6C9Jl5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1rST7I-0019fh-24;
-	Wed, 24 Jan 2024 02:35:52 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rScxi-003P1R-1U;
+	Wed, 24 Jan 2024 13:06:38 +0000
+Received: from mail-mw2nam10on20700.outbound.protection.outlook.com ([2a01:111:f403:2412::700] helo=NAM10-MW2-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1rST7G-0019fG-0I
+	id 1rScxf-003P0a-0D
 	for ath11k@lists.infradead.org;
-	Wed, 24 Jan 2024 02:35:51 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40O1MLnP027786;
-	Wed, 24 Jan 2024 02:35:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=ry6TUcO/tVaxpVzOT+I1siLRRNkF5Nd5FE83y4j4sJU=; b=ZN
-	FxpPNK15YyHwLdBcYyWh8L57Ud8dQNWpKozngB2PP+5nUi4TNaLcldXe1b+RV+X+
-	0ASb+I5SlszpYqxnB9rlcnUBbwXYbukwd56WwpNWKh2uv7Qk9GRKLA6ODc3/bUcu
-	cOuZmrlc88KGJRDEmd+bYXjSRMPlTilRL0e8RDp1zbrWxBj/Ir7EcDwiNfER0FDE
-	nB+ZX4ylNWg4jwUJGCxJQglCcx6tYh3H/zhDgD5QKq58KvM6lfIF723Y4k01JuyT
-	SvZAC7WW7aHKv7/YZOARUQuVGSVRd8cCYH1wYFkqjCf+7U4bM/CMuSA3z3uRVdW/
-	5WEcqErhKD/dv+z2plTw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vtmmegj6s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 02:35:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40O2Zm3Z019378
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 02:35:48 GMT
-Received: from [10.110.18.75] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 23 Jan
- 2024 18:35:47 -0800
-Message-ID: <73e9ddd2-7c0c-4a96-a120-7480ebffc4f0@quicinc.com>
-Date: Tue, 23 Jan 2024 18:35:47 -0800
-MIME-Version: 1.0
+	Wed, 24 Jan 2024 13:06:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MVudKYaLvJqGOhTGZefHjdjURCAYhz1guPc6srNxeGqC3+EA4nRzQltYctw2msonguHeHG3r/5kDL4lakBCGAdVGNqLQbxQ6ywW36Lb2Kpe/1WcZAV0GjGGeqBpgT9BidMpWqokw1rMD5uT/esnL2HvNXzG/R+4MVs3F9sVPOi6pdV8qFyL5z5SGOfdMQiiNJSR8VjZuQW8a3VqJRW0wCYAWJ/vg8BxqCp6TtUrKIwc2hqible+2jl7qHI+/kcgp+y0ysH0sYaM2nyUKjlgxibB9+N3QNvkAVAxuir6Kf/lwgviqBdK6TVx4fgSDFU6+w7t9b7UujFDaTifFQP7S+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TOl1JxY2nemJ1gLPItVz4g7BN4LuRJIeqYTRODR/USU=;
+ b=l1azrkfwTla0TtPsJ47OaY607Ggk9Q8/8KzZ32lK7jAH1gdR6fCLqLhNfj+PxKPcm2tCeCaEAb/ytXPXHV+upFLhFZLt2x85VVN5CtzlksbL1JUCFnlVFiyx2MpiI72/FXSc0y/qrTFssfHsKxsDh+C4d4Ex9Hop+fVOakvRb0SWjVeWQpoUdElSEFBCNOlJ0HIaKEF+B87jGp6Ygu2H2Iyz6sic2ggvHIsHYbLBprHgiXxbHgXjKPSRIJtZpuyq5Uqb46FfxjSBZFg+oWWloWhO6b4fdfyjHSV79nfn+ojulOzRr8IpAgTtnWx1+WJ+9ZfvoWbrQII78mpzfspOKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=locusrobotics.com; dmarc=pass action=none
+ header.from=locusrobotics.com; dkim=pass header.d=locusrobotics.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=locusrobotics.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TOl1JxY2nemJ1gLPItVz4g7BN4LuRJIeqYTRODR/USU=;
+ b=F38fPzqHlfGKmQbCQsM7Scx00YVaaBquXVg9fERkSopmdBKhJDJR7nZTllHZprngc3Li56I5OM4Z45pxQLMeCIRRT77zqBFzB/YPQlfPHcM6WXxKHmZtJ73gzy7vHboAZXWpYqLaatFZJWa4Xw7gAXfXaaCxpDkOQdRFb9fM4Lg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=locusrobotics.com;
+Received: from BL3PR10MB6163.namprd10.prod.outlook.com (2603:10b6:208:3be::9)
+ by PH0PR10MB7062.namprd10.prod.outlook.com (2603:10b6:510:283::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.37; Wed, 24 Jan
+ 2024 13:06:29 +0000
+Received: from BL3PR10MB6163.namprd10.prod.outlook.com
+ ([fe80::fa77:414c:bd6f:3bac]) by BL3PR10MB6163.namprd10.prod.outlook.com
+ ([fe80::fa77:414c:bd6f:3bac%4]) with mapi id 15.20.7228.022; Wed, 24 Jan 2024
+ 13:06:28 +0000
+Message-ID: <dcdbd757-ad6e-4fe0-a0c1-fe328431b73b@locusrobotics.com>
+Date: Wed, 24 Jan 2024 05:06:26 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: enable 36 bit mask for stream DMA
 Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240123015201.28939-1-quic_bqiang@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240123015201.28939-1-quic_bqiang@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yyhLIKeTVocZkE2UvWO9haVYNpg7V10P
-X-Proofpoint-ORIG-GUID: yyhLIKeTVocZkE2UvWO9haVYNpg7V10P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-23_15,2024-01-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- phishscore=0 lowpriorityscore=0 suspectscore=0 mlxscore=0 adultscore=0
- clxscore=1015 priorityscore=1501 spamscore=0 mlxlogscore=999
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2401240018
+To: "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
+ <linux-wireless@vger.kernel.org>, ath11k@lists.infradead.org
+From: James Prestwood <jprestwood@locusrobotics.com>
+Subject: ath11k multicast action frame RX
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BLAP220CA0002.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:208:32c::7) To BL3PR10MB6163.namprd10.prod.outlook.com
+ (2603:10b6:208:3be::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR10MB6163:EE_|PH0PR10MB7062:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90698d3f-3bf4-4818-f7e2-08dc1cdd4730
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: H73BeGOxKht+xf/sKKTp5tv2LKZ4odI6drx2r6xfKOO/4eDqSpL9fOQd4KxOFvcbV8fnGY3whIKhi4bCALLh7oq4dZviBx3YYh22l0LtcRugnWFdjB3N+VjCI4JYFQdL4G5VuC1m/9n1luBYiIJKbNhWnTZzhSzfkQjJLuuGTmBLlFBI2EglyZjdc1WoSmk0Gl7a0KJEubN/U83RmwYW+yPp7E1fs4JGogQy9Y/IFo3ovozJxvkCiS+RRmotgniJjKzIMxtNBLde2oBRhRDAIGza8jUXFvabocboCEOkIVANXGcrHoFni7ybj0jcSfFTjnDpfIO9RBav6/BSJnbqkk+4dThOTcJUwMnJVimJDA4mZBBWv+BDM724VNPZBz4ILGRecFjXy10U6TZFRw6EmGSKSSdbDrZtKoLlZuCdUycVtrGXBtmpZabTq+XyfsiJOt6mJSeIPBfAmfRZuuh8/3M8fSEiJNWMqgRmi7peYwJa0noSU+bATwLFaLcrtBfjy/MxhUWOofulywU3RCSjkh0nVSjbNS7WQUSxgONPJgLtwdz7VQgqaSPcdOT2csg3M6nxGPHihpGDGqtefjGwJ+0lacaWA4FCQkeIUbWc/SpWOui3E5pMcaD+30Vzu8MHLU2p2y1bSG6w6h8pE0GdrqolKUDbpmKUa8j5dDdRP8oxhoXCy0hHsqS5sAq8sP+K
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR10MB6163.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(136003)(396003)(39850400004)(366004)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(36756003)(8936002)(8676002)(4744005)(2906002)(5660300002)(41300700001)(2616005)(6512007)(6506007)(83380400001)(86362001)(26005)(478600001)(66946007)(6486002)(66556008)(66476007)(316002)(31696002)(38100700002)(31686004)(83323001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OW5UNmxvVTZwQmJua2RsNnVzS3o0cmlQZ1RubGlYTlRUMXBKc2RNdFptb1I3?=
+ =?utf-8?B?Wjg5Q2ZYemkxL1VubnNHZXJnU1JRQWlQS0o0REFKN29iY0hhckZnV1VFYUsx?=
+ =?utf-8?B?RHYwMmdvcDhOeXF1Z002MUR1UXVTYzl5RG5PaDAvcGJ2NTVyNTRYQ3JIeWYv?=
+ =?utf-8?B?eDQvMGZZR0pkYWVTeTNMQUgrQXd0RVhBSW5zUzdPdDBXS3NSS0xkeXNhN0Rz?=
+ =?utf-8?B?STdwU0liM1FLSGpkZmpZRk9ReFJBSjJjbmpvTTg2S2Rsb1E4a3k4SzBSbFZ4?=
+ =?utf-8?B?T2Q1MmtuOGNFSEFaVVV1aEsyMWxlbWNpLzJxT0c4b1k4c0IyamlLNmFxMk5U?=
+ =?utf-8?B?UEJmeFQxOWFlSWgwWGNnNjIxY3YwdVVNTDg2K2NrQU4rM0JkZHNtMVM5VkJj?=
+ =?utf-8?B?bW0vdVM1OWZVTTViWmZyVFovbWIydXZWdmZFakhlOEl2OHNNS2g0V082Z0N4?=
+ =?utf-8?B?Y1dVdlY0akgxS3dKMDVBSCtIdkY0ZEwyYnVwS2JqMVpuanlLK1JGVXFNZkRO?=
+ =?utf-8?B?N0NyQVRYQW91ejR0ZjFXQXl6RWt6ekJvYmhCbGtNdEhDZmg2bkhEMFgxbW9q?=
+ =?utf-8?B?dlV1MEFTVHlWdVVIMFlJVE5BcCtGUWNpcGFnU0pTZVY1K0dLWmwyZkVvNkJV?=
+ =?utf-8?B?UE9VRGFqN3BxcmxKT0R6NDBjYndnWUdIaGJYMzgyVkVMa1l1REh5Q3VZTzNE?=
+ =?utf-8?B?UldrOXBtZklnZDhZUGR2MXA1Z25VOGxDZkdVTGFyUnJNblNPODRXemtzME9n?=
+ =?utf-8?B?WEIrRDM1QkE1Vjhtd1QxVm44SzY3SG5XbjhjdXU3NHczWEo4RWRTZ0dBMzRQ?=
+ =?utf-8?B?VkVnbWNPbjkxRjJzREcva2RSdHd2L1l0Tnljd3BLT3NJcW5jbEZzN3NMc0dh?=
+ =?utf-8?B?WWxsaUtjc2pYd2pKb1VOa1VmZnF2d3d2OW1zaklJVlFoL0gxbG16NVJLa3Fa?=
+ =?utf-8?B?MEFHRFpUQWNKUWZzczJ6YzBNZkhUYkNpRHErcnBOaWZUTi9FSVB4NHoraFFt?=
+ =?utf-8?B?bTdIdGVSMDBrdzg5Z2t0NDh2VTRpaWQwcTNjUDlpMXdMLzhRMFNrbU1LRDI0?=
+ =?utf-8?B?RXcydG5DaXVvS3R4c2MrUU9idytYWWwwSUpFd05XWWJOQXFESjN3ZUNSRm9U?=
+ =?utf-8?B?L21aWTJRZEZHcjF1bXhaTFB4NVRQc09QOERNd0plL244dnlKT1FPMUxxcTYx?=
+ =?utf-8?B?bHBnUDRmZ3MrVFYydk82blAyZDFoTVdTWWNDZlNkMTlBWTV3WmVMSjAydjlV?=
+ =?utf-8?B?MW14ZVFJNUtkbXZ2MUVSYTJtU0NzNFlQRE1vMnNSMHFHMFFMSXNETjVRekdx?=
+ =?utf-8?B?YmxGUHZpcGJFRHdva2Y2SkE4RTQ0YVJvMzZHaEhrMWtjZlBEV2xDVTVkeUd6?=
+ =?utf-8?B?b0pwa3NLRUlQY29HODFncUJ1d0VPRkhtamZEL3FBMmNlT2M1dEMxNjYvYXNq?=
+ =?utf-8?B?Vjg1RTZ4eWFDd3NLZXhLRHNEd25QYkg5alg2RVJEZDlDMzhXVU5zUHVJM2Fx?=
+ =?utf-8?B?VjVBY2xKWVNxaTVPWjYvZ1U2TnJtMlduWW0wSlFoN2QrS2hlTDRxcXlOazV0?=
+ =?utf-8?B?N3oyT09Hb0MrSUZLMkRnYU1kbmtLY21OaEl0U1A4VzQzMXgxQWlSVStOQXZx?=
+ =?utf-8?B?VldSTkl2L3ZmUXBtOVN3aVNIZm9oc3BRcmVOOFliMmtqcnMyWE5Zc1ZKWjRh?=
+ =?utf-8?B?Mm9BL1NaNkRteG5ndEVkZU9NSUNMWHIrOEdTbnpsQXhGMGp2M1VZRVdKdjJw?=
+ =?utf-8?B?QkZ0VmttR3RYRng5bEVDMUN1ZUFHTWsreEJ4N2YyUHNlbHJZWlB2QkErZ3kr?=
+ =?utf-8?B?Sm93RUc0TlBIS09BSmt6WEpxWkFSVU04aEtHRk9YNm1UTkdESmlnbXNxNUtR?=
+ =?utf-8?B?a1ZmTThod1NpM3B0NjIwZzlFMERUQXBoekpPSDB2NHRIU0tiQTdqeE1CRzg3?=
+ =?utf-8?B?SjBLWjh5dklVSHFva3VVRWtiRjArWGlrc0s4Z2l0ZEViL0VFQ0hDcmVZZnk2?=
+ =?utf-8?B?VVVyd2ZtVDgyOWVTOVZIQXo3aithSVV6dDlSaVBjY1IzNXZjQ3N6ZkFsbk1V?=
+ =?utf-8?B?TElOM1ZJZHdGeGVqdTJmbHBIMjRoVUF3TW1manpIK0I2UURmeE14QU9SWk4v?=
+ =?utf-8?B?RWEzYTlFZUZEbWgvbkdSNjh3bld0ZVRZeUpXSnBtbXlJNC9uV2FmYWxNWUlN?=
+ =?utf-8?B?ZHc9PQ==?=
+X-OriginatorOrg: locusrobotics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90698d3f-3bf4-4818-f7e2-08dc1cdd4730
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR10MB6163.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 13:06:28.8515
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 068f275f-67fa-4977-a33b-80fe854a9590
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tklXoHeGJBAS5Hbm7Ck27wtPzWi75zXLOc0TlnR4RNCWfCSsurXCpAldae9j83rqm/Onr6xZ1vTVIsnrkXo6AN/UEuQ018srV4xdlbQIT4w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB7062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240123_183550_136278_1FC7F54B 
-X-CRM114-Status: GOOD (  17.06  )
+X-CRM114-CacheID: sfid-20240124_050635_138725_346EF085 
+X-CRM114-Status: UNSURE (   7.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,48 +142,36 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/22/2024 5:52 PM, Baochen Qiang wrote:
-> Currently 32 bit DMA mask is used, telling kernel to get us an DMA
-> address under 4GB when mapping a buffer. This results in a very high
-> CPU overhead in the case where IOMMU is disabled and more than 4GB
-> system memory is installed. The reason is, with more than 4GB memory
-> installed, kernel is likely to allocate a buffer whose physical
-> address is above 4GB. While with IOMMU disabled, kernel has to involve
-> SWIOTLB to map/unmap that buffer, which consumes lots of CPU cycles.
-> 
-> We did hit an issue caused by the reason mentioned above: in a system
-> that disables IOMMU and gets 8GB memory installed, a total of 40.5%
-> CPU usage is observed in throughput test. CPU profiling shows nearly
-> 60% of CPU cycles are consumed by SWIOTLB.
-> 
-> By enabling 36 bit DMA mask, we can bypass SWIOTLB for any buffer
-> whose physical address is below 64GB. There are two types of DMA mask
-> within struct device, named dma_mask and coherent_dma_mask. Here we
-> only enable 36 bit for dma_mask, because firmware crashes if
-> coherent_dma_mask is also enabled, due to some unknown hardware
-> limitations. This is acceptable because coherent_dma_mask is used for
-> mapping a consistent DMA buffer, which generally does not happen in
-> a hot path.
-> 
-> With this change, the total CPU usage mentioned in above issue drops
-> to 18.9%.
-> 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> ---
->  drivers/net/wireless/ath/ath11k/mhi.c |  2 +-
->  drivers/net/wireless/ath/ath11k/pci.c | 16 +++++++++++++---
->  drivers/net/wireless/ath/ath11k/pci.h |  1 +
->  3 files changed, 15 insertions(+), 4 deletions(-)
-My Qualcomm Innovation Center copyright checker reports:
-drivers/net/wireless/ath/ath11k/mhi.c copyright missing 2024
-drivers/net/wireless/ath/ath11k/pci.c copyright missing 2024
-drivers/net/wireless/ath/ath11k/pci.h copyright missing 2024
+Hi,
 
-Kalle can fix this in the pending tree, actual code LGTM
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+I recently added support to ath10k, for the QCA6174, to receive 
+multicast action frames in order to support DPP. I'm trying to do this 
+for the ath11k QCNFA765/WCN6855. I took the same approach as ath10k 
+which was actually quite simple but I'm unable to see any multicast 
+frames coming over even when I enable RX/DATA debugging.
+
+What I've done so far is:
+
+  - Add FIF_MCAST_ACTION to the supported filters list
+
+  - Created/started a monitor vdev from within 
+ath11k_mac_op_configure_filter()
+
+     ath11k_mac_monitor_vdev_create(ar);
+
+     ath11k_mac_monitor_start(ar);
+
+- Also tried adding
+
+     ath11k_mac_config_mon_status_default(ar, true);
+
+I can successfully create/start the monitor vdev. I see now as I'm 
+writing this email that my specific hardware does not support monitor 
+mode outright... Is this a dead end or is there hope with purely driver 
+changes? or is it some filtering at the firmware level preventing this?
+
+Thanks,
+
+James
 
 
