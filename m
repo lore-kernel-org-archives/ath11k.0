@@ -4,65 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79737C47422
-	for <ath11k@archiver.kernel.org>; Fri, 26 Jan 2024 06:07:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6013CC47DDB
+	for <ath11k@archiver.kernel.org>; Fri, 26 Jan 2024 09:11:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=x40ZDo5tZUCf8h+fkQ83ptCeoCgOEQRuWMLcbB8r5RA=; b=vY4qIjazjHwCgNGcncQ5JdavxA
-	LP/9OaXcInPfzqmz2+rEwjz+Q7Izw5Jn/xLAekgWA60Ie6S17XPRYPqHL+CxdX66hy6knmPOsmjxI
-	Rc2Eoa4boWC3xPgRYerGcau3r1nv2E5boj65hhv0ySvNs8wF7tFD1XMWqB4FHcVXONwlNN5rCanSx
-	ojgUYwkr0PkyKJ6g3nToyRx5seP39x2P4mPS+vYeQwx1G5yQ7X5pr7wujsW21bxGueweBywfOEcmY
-	wubtgHETxXfaamuN5HND+YmdjJIFRBQK2a15nkGwFq64JsZ4oEryiru77P4ArDJa119wGKGMvB8kc
-	tq4hUuhw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=; b=VupDqBJ2JuYUXfm+1JLy76GNz9
+	OsC/fT21+RQqY9DlpIPblsWr6zJDhUY4am1ppPhVPevkgCuMC0PtVdowRJh3KbelxO89VoDP5dByK
+	/XZKN8bkXnOSIdY4/30ZIbY63IufU07VlNA50JTWT+5X5ei4PS+P/FyavAf+2Do1ZEG3p0eK2J8fo
+	g9Lwet5Zx3HsScbBmc/V3llv2jvujzTich4vvzpNwDpIWYKcFBRzu3yPbzYbA3V95PYL9MMC/VCTl
+	AMzcKlhWKk1diLMrgPjnURcFCV91UgbaOeKK7SaM8UWvAraTgXozJyr/Tk43wkhYBeRt5oKOkc7gW
+	JdHthSLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTFMq-00000003Cc4-3Hcb;
-	Fri, 26 Jan 2024 06:07:08 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1rTIEs-00000003aZv-159C;
+	Fri, 26 Jan 2024 09:11:06 +0000
+Received: from [162.19.155.126] (helo=mail.commercesolutions.pl)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rTFMo-00000003Cb1-3kzp
+	id 1rTIEo-00000003aXZ-44Ys
 	for ath11k@lists.infradead.org;
-	Fri, 26 Jan 2024 06:07:08 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 7B667CE353C;
-	Fri, 26 Jan 2024 06:07:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A746C433C7;
-	Fri, 26 Jan 2024 06:07:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706249222;
-	bh=Rwtxc+Dc2BLkxO+V8Dz2wt33cbpIubHKLZXOqbvU/G4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=FwdAebmFCuoCOLvnN7eL2WlUDnG2IU6NfUz7aMmzc+VL344iBSdgO9OgeTsY/ah8g
-	 JKWGAhbT68sEAvyl+0h6gTDsi7w4JElnP1xsiWgbMSG2paHLLl4WqOZW56bWFFwFtI
-	 z1656XLAhkje7rzyktPoIPbyvuwA4rOEQVDjjniOjcLMJwsZtt7FGxzbYCxOSfN9zP
-	 dI4vwU7hkW5BT43UR9a3WTp3v2ZNj0BvtqnfAq9hzj4SWsfq3HtHWtvPH3cH+FTg41
-	 8kchidonLm/1bsP/aCpiaVlZaqar3MNIIGSQpasLUuOPJK9ykQX8w1+lnAVU5g7JOr
-	 iO9Y8EPH3ZBEg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Thorsten Leemhuis <regressions@leemhuis.info>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,  Greg KH
- <gregkh@linuxfoundation.org>,  Sasha Levin <sashal@kernel.org>,  Linux
- kernel regressions list <regressions@lists.linux.dev>,  LKML
- <linux-kernel@vger.kernel.org>,  netdev <netdev@vger.kernel.org>,
-  Benjamin Berg <benjamin.berg@intel.com>,
-    linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Subject: Re: Consider picking up "tpm: Enable hwrng only for Pluton on AMD
- CPUs" rather sooner than later
-References: <3bfb5c07-664e-49cd-a470-635a36bcf806@leemhuis.info>
-Date: Fri, 26 Jan 2024 08:06:58 +0200
-In-Reply-To: <3bfb5c07-664e-49cd-a470-635a36bcf806@leemhuis.info> (Thorsten
-	Leemhuis's message of "Fri, 26 Jan 2024 07:02:43 +0100")
-Message-ID: <87mssszkzh.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Fri, 26 Jan 2024 09:11:04 +0000
+Received: by mail.commercesolutions.pl (Postfix, from userid 1002)
+	id 54C652707E; Fri, 26 Jan 2024 09:10:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=commercesolutions.pl;
+	s=mail; t=1706260261;
+	bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
+	h=Date:From:To:Subject:From;
+	b=lsrkAV4zfmw8cPqXkjCUtLHVv7flBNL7aosWXiJe+xDt8XxM/Dk8cvTk/MjPq7AXE
+	 cJB9eVw6TsHy0KuabIWXye2V0n0xblg1TiSbQqV9jEy5DTx6tRcdjwSpyslSvM8Xgj
+	 yDosS44H1kht6nOqDKcBCYasGZ6kakBL4QxYplPoPEb2XUBV2XNWkAhjHGm46D0Geh
+	 IrmGkbbSdiMrYvIsUWN5ihANHm2O1BhJs3pzcizU/+0WwT3XvlbMMf2JCq8xVe4QpB
+	 Ono9sD0JJBzFLy2O1aDOUEdFIxy31+IceTXgxg2B5ULT+7JeL55VjpNfTE7cGVdwOO
+	 tZW7k7OFeLMCQ==
+Received: by mail.commercesolutions.pl for <ath11k@lists.infradead.org>; Fri, 26 Jan 2024 09:10:21 GMT
+Message-ID: <20240126074500-0.1.b9.2gekf.0.nhimp2nrfq@commercesolutions.pl>
+Date: Fri, 26 Jan 2024 09:10:21 GMT
+From: "Kamil Tralewski" <kamil.tralewski@commercesolutions.pl>
+To: <ath11k@lists.infradead.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.commercesolutions.pl
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240125_220707_135500_B82B86A1 
-X-CRM114-Status: UNSURE (   7.87  )
+X-CRM114-CacheID: sfid-20240126_011103_194891_DDA36CE9 
+X-CRM114-Status: UNSURE (   0.99  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,24 +67,19 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ linux-wireless, ath11k
+Dzie=C5=84 dobry,
 
-Thorsten Leemhuis <regressions@leemhuis.info> writes:
+zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
+=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
+o dalszych rozm=C3=B3w.=20
 
-> Hi stable team, JFYI, yesterdays mainline commit 556857aa1d0855 ("wifi:
-> ath11k: rely on mac80211 debugfs handling for vif") from Benjamin
-> contains no stable tag, but a Fixes: tag for a 6.7 commit. So it guess
-> you will pick it up anyway. Might be worth picking up rather sooner than
-> later, as it fixes a regression that according to Kalle causes ath11k to
-> crash during suspend:
-> https://lore.kernel.org/all/874jfjiolh.fsf@kernel.org/
-> https://bugzilla.kernel.org/show_bug.cgi?id=218364
+Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
+=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
+=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
+strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
 
-Thanks. The subject doesn't match the body but I guess that's just a
-copypaste error :)
+Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Pozdrawiam
+Kamil Tralewski
 
