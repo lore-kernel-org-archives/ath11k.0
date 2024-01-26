@@ -4,60 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FDFDC47422
-	for <ath11k@archiver.kernel.org>; Thu, 25 Jan 2024 16:45:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79737C47422
+	for <ath11k@archiver.kernel.org>; Fri, 26 Jan 2024 06:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VkzOD/fulUKa7whNkl9ln+RqnfukefqIVWZDTC+QjkM=; b=4ko+85elHcoI7mgiyRmVswOXQ1
-	kk4S0vOhyMJLSjQv9hDs9Fm0jDoqjs7ItmzMo+TCFTVNLjnvBZ+5IRUn68tS0swn7kr/JV3hXXxM4
-	1Xs8tq8VMBeZ8kBetLyaFdOCmutHLAfMk9Ehzvaqdiq6PWVoWn2AnlkFUgdlufjQMYk6ASPg/PW8T
-	R+CMEJUKD8K9p7SeI3hUNk7FYwEucTixEXM5OWkLFoAVTU3KlyT2MKS0wjXg1gebdeOvL+AWWpPrZ
-	je21okwyktEFS5MG+ft0V9ZPrlLnzs0uMPm0TJJEM8rsVLrxzJT0YhiNHEmbvfhS3ap5Aq/mdL+Vp
-	/xjZ6bBA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=x40ZDo5tZUCf8h+fkQ83ptCeoCgOEQRuWMLcbB8r5RA=; b=vY4qIjazjHwCgNGcncQ5JdavxA
+	LP/9OaXcInPfzqmz2+rEwjz+Q7Izw5Jn/xLAekgWA60Ie6S17XPRYPqHL+CxdX66hy6knmPOsmjxI
+	Rc2Eoa4boWC3xPgRYerGcau3r1nv2E5boj65hhv0ySvNs8wF7tFD1XMWqB4FHcVXONwlNN5rCanSx
+	ojgUYwkr0PkyKJ6g3nToyRx5seP39x2P4mPS+vYeQwx1G5yQ7X5pr7wujsW21bxGueweBywfOEcmY
+	wubtgHETxXfaamuN5HND+YmdjJIFRBQK2a15nkGwFq64JsZ4oEryiru77P4ArDJa119wGKGMvB8kc
+	tq4hUuhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rT2qs-00000000tau-0CK3;
-	Thu, 25 Jan 2024 16:45:18 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rTFMq-00000003Cc4-3Hcb;
+	Fri, 26 Jan 2024 06:07:08 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rT2pt-00000000srv-3eFd
+	id 1rTFMo-00000003Cb1-3kzp
 	for ath11k@lists.infradead.org;
-	Thu, 25 Jan 2024 16:44:22 +0000
+	Fri, 26 Jan 2024 06:07:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 22B956217D;
-	Thu, 25 Jan 2024 16:44:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1E26C433F1;
-	Thu, 25 Jan 2024 16:44:15 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 7B667CE353C;
+	Fri, 26 Jan 2024 06:07:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A746C433C7;
+	Fri, 26 Jan 2024 06:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706201056;
-	bh=wcCNop60hgk2j5yhVDqKEmLRVykIVtyvwQqWxiqbSlk=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=uaRJQtQIAbei8YJM7J6brVdZNuT0jxerVh/3uNw7N0uebStc/lyeNYQKps69RRsiI
-	 0lpVfXpYU332k+xo1VdYftU7/78fzbF2Vz7jFnUVAJHfp2kF2UGKdTXikdpFSxmBAg
-	 lGjgKaV6oDxAbIACztxpf3VHHXdc22cGwDb+d+bgohXYGE38x4mUs1tTlaecgcSkRr
-	 GIsoTzaOK45RzrXWkKHX4TB/zCGrAfaSeYmP9I9SrQWG+zaZv7bTvgYgi0ELXe9C9p
-	 5UPU3EYL1JfacgKtMxFJOS7HIWIZvLNDhu54+dEYqFptsHoCIxGyk1ZWOYqbTGLhE+
-	 KQ8liHRZpCJHg==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 1/4] wifi: ath11k: remove invalid peer create logic
+	s=k20201202; t=1706249222;
+	bh=Rwtxc+Dc2BLkxO+V8Dz2wt33cbpIubHKLZXOqbvU/G4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=FwdAebmFCuoCOLvnN7eL2WlUDnG2IU6NfUz7aMmzc+VL344iBSdgO9OgeTsY/ah8g
+	 JKWGAhbT68sEAvyl+0h6gTDsi7w4JElnP1xsiWgbMSG2paHLLl4WqOZW56bWFFwFtI
+	 z1656XLAhkje7rzyktPoIPbyvuwA4rOEQVDjjniOjcLMJwsZtt7FGxzbYCxOSfN9zP
+	 dI4vwU7hkW5BT43UR9a3WTp3v2ZNj0BvtqnfAq9hzj4SWsfq3HtHWtvPH3cH+FTg41
+	 8kchidonLm/1bsP/aCpiaVlZaqar3MNIIGSQpasLUuOPJK9ykQX8w1+lnAVU5g7JOr
+	 iO9Y8EPH3ZBEg==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240123025700.2929-2-quic_bqiang@quicinc.com>
-References: <20240123025700.2929-2-quic_bqiang@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_bqiang@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <170620105373.504797.9989085853141323864.kvalo@kernel.org>
-Date: Thu, 25 Jan 2024 16:44:15 +0000 (UTC)
+To: Thorsten Leemhuis <regressions@leemhuis.info>
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,  Greg KH
+ <gregkh@linuxfoundation.org>,  Sasha Levin <sashal@kernel.org>,  Linux
+ kernel regressions list <regressions@lists.linux.dev>,  LKML
+ <linux-kernel@vger.kernel.org>,  netdev <netdev@vger.kernel.org>,
+  Benjamin Berg <benjamin.berg@intel.com>,
+    linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Subject: Re: Consider picking up "tpm: Enable hwrng only for Pluton on AMD
+ CPUs" rather sooner than later
+References: <3bfb5c07-664e-49cd-a470-635a36bcf806@leemhuis.info>
+Date: Fri, 26 Jan 2024 08:06:58 +0200
+In-Reply-To: <3bfb5c07-664e-49cd-a470-635a36bcf806@leemhuis.info> (Thorsten
+	Leemhuis's message of "Fri, 26 Jan 2024 07:02:43 +0100")
+Message-ID: <87mssszkzh.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240125_084418_181523_93C37B99 
-X-CRM114-Status: UNSURE (   8.78  )
+X-CRM114-CacheID: sfid-20240125_220707_135500_B82B86A1 
+X-CRM114-Status: UNSURE (   7.87  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,36 +78,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> wrote:
++ linux-wireless, ath11k
 
-> In ath11k_mac_op_assign_vif_chanctx(), there is a logic to
-> create peer using ar->mac_addr for a STA vdev. This is invalid
-> because a STA vdev should have a peer created using AP's
-> MAC address. Besides, if we run into that logic, it means a peer
-> has already been created earlier, we should not create it again.
-> So remove it.
-> 
-> This is found during code review.
-> 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Thorsten Leemhuis <regressions@leemhuis.info> writes:
 
-4 patches applied to ath-next branch of ath.git, thanks.
+> Hi stable team, JFYI, yesterdays mainline commit 556857aa1d0855 ("wifi:
+> ath11k: rely on mac80211 debugfs handling for vif") from Benjamin
+> contains no stable tag, but a Fixes: tag for a 6.7 commit. So it guess
+> you will pick it up anyway. Might be worth picking up rather sooner than
+> later, as it fixes a regression that according to Kalle causes ath11k to
+> crash during suspend:
+> https://lore.kernel.org/all/874jfjiolh.fsf@kernel.org/
+> https://bugzilla.kernel.org/show_bug.cgi?id=218364
 
-171203f0c409 wifi: ath11k: remove invalid peer create logic
-629642fa8b25 wifi: ath11k: rename ath11k_start_vdev_delay()
-ce59902e56ea wifi: ath11k: avoid forward declaration of ath11k_mac_start_vdev_delay()
-9d5f28c1366f wifi: ath11k: fix connection failure due to unexpected peer delete
+Thanks. The subject doesn't match the body but I guess that's just a
+copypaste error :)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240123025700.2929-2-quic_bqiang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
