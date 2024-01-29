@@ -4,87 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5DFFC47422
-	for <ath11k@archiver.kernel.org>; Mon, 29 Jan 2024 10:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E441EC47422
+	for <ath11k@archiver.kernel.org>; Mon, 29 Jan 2024 11:14:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:CC:To:From:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=3RJdt4HZT0/lsSk3pmr0LA/dVSCwX27tK2gaoXum9Nc=; b=49OPgxjW5YT+P7fQj3RJ01IU8w
-	7CmC/o4b+MylugoBiTVhj3UXVWgvT129RZtZCVxZ3YFSRpgAqHQ6W4B2zjrK1JUdHBRXiyq6ltVPk
-	cZg6LVwBJYrlPEKNBdPZHyvamvimXPNkBBL6rr+HE2yeAWYrAcVve7qQSv05no/BpHKmLQgeLjBLR
-	rO4KH/NkPA9XJtu7lQ5aC3hLG23L3N0Xxu9bkq1w1q1/rreYiCo+M5p0KwMML3VGuZkzdk8YJNMWU
-	NExI5b9fvFlemM9miLgM5wIJU+IjiImC3LO/KJQ9Lxbax3vufvi85n5821wj1tE3xiEp018kpuVNk
-	U73tgUcQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=M/YNNP3dQ096/ctf1cO2Y/8JuPGQvKQjrgzL4GgK9KU=; b=ZvWgLY4vA5ziQZ88id0rdQM+05
+	LEQ6XfWjQg/5HzQ3WkMrBxof1FSITCTdrYs9LlvvihaRDuN1ssA5sstsZubbaxnIay+Fqy6/6bF4Q
+	nSH+4PK6IueWumGTfYUgcEKs6De2lsmElNLCh0LhrF1PQVJY6IcezBjcNAuDUgfnV+USBxhGO8zOK
+	5Clr427Wy9zCSWFuaDDuqleYLzXQi8ieb3ObsjWCwDH7DdH99R73u0+SVHOBbVGmv9rJX/zCikOC7
+	tYyvu0E/B1VbHNe0sfBfPXxx+xIFHUmXLGpCDSlJfNsVnV1PxJgUrbOkjdSGkJ8F0GdzQjuNi9dJ7
+	Gvps/QfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rUObK-0000000CAkt-0jft;
-	Mon, 29 Jan 2024 10:10:50 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rUPbC-0000000CN3p-1sgR;
+	Mon, 29 Jan 2024 11:14:46 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rUObG-0000000CAiV-2mtb
+	id 1rUPbA-0000000CN3D-0oEV
 	for ath11k@lists.infradead.org;
-	Mon, 29 Jan 2024 10:10:48 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40T9VFYZ024381;
-	Mon, 29 Jan 2024 10:10:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:from:to:cc:subject:content-type
-	:content-transfer-encoding; s=qcppdkim1; bh=3RJdt4HZT0/lsSk3pmr0
-	LA/dVSCwX27tK2gaoXum9Nc=; b=K1jPv0J9ZR60+yCyXGp62pHwB+JrKg+Mzo0w
-	kJ2HvKbq/4vbNiJBiC0l7XSZwBoR1r4kk+fStO2Q+7JCTSYHCNeflQMk2u0v32qT
-	cu/VQYj3N8GUmDKsXQVJNBuwPawQJiPOUs3LjukD8K3B8sMfzCtzf18IIqHfO/rp
-	5VF6GNKJqAXSF7SZJ4mF6AqrcuP++Sn3xN4v3QtVHNQWy3pww3aHoqd69D2paaSn
-	y0nn6rZwsEtIwNRS4DVHmkWp258sbahL6BfdkuWNBny7VuWuO5sUyd9w8+6DNlEG
-	XiXnFCxriZrvlMMwesXOduC/1fZV7ze0cERoDJduHH4MPQHsuQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vx86hr7t6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jan 2024 10:10:41 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40TAAe9F014561
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jan 2024 10:10:40 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
- 2024 02:10:34 -0800
-Message-ID: <21cd2098-97e1-4947-a5bb-a97582902ead@quicinc.com>
-Date: Mon, 29 Jan 2024 18:10:32 +0800
+	Mon, 29 Jan 2024 11:14:45 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 5E8FD620CD;
+	Mon, 29 Jan 2024 11:14:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18052C433C7;
+	Mon, 29 Jan 2024 11:14:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706526883;
+	bh=WmE0fsg1x9uaRKxDdJFE55N2p6ZINp1Yi48GoUlIIsc=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=AJX8NpXlwvyEcyqETHycRIfU3BmA3IJvX2EJsIH3Gx9wsO+hpJHCwvbBJv32e0dq5
+	 JJPI+NDMTp6rTf85q2yrnQbTLr+O/KBdG/im06hpX1g2L6694mR12w0sUJn9gBdyb5
+	 9LjJ5ds6YmXZyyFIQl7G7kqsnDDYweO25nuZheOQOOMd2Nt/+ScABH7J9PLdq4dATI
+	 R0+JbPVCDlIM/HIs2XrREgL7/armESBa1z65Pwo5fIDkVQsNmMyhiK/Xw2q15aCXQa
+	 kQeRE89hu0SLGHDhtTLQ8qHZaRgWKfpUMt/y9FSI1D/0Om13MA3JoNWrCQ0SC31MrY
+	 plnmHKajOTBYg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] wifi: ath11k: document HAL_RX_BUF_RBM_SW4_BM
+References: <20240111-document-hal_rx_buf_rbm_sw4_bm-v1-1-ad277e8ab3cc@quicinc.com>
+	<874jfg7xm4.fsf@kernel.org>
+	<b4f29511-e001-4964-b88d-208dabf88121@quicinc.com>
+	<875xzq526o.fsf@kernel.org>
+	<fc6ca019-83e9-4571-bfce-2b4e5c233aef@quicinc.com>
+	<87ttn0xc9y.fsf@kernel.org>
+	<9c321dfc-f10d-4092-a1cd-30952e4da695@quicinc.com>
+Date: Mon, 29 Jan 2024 13:14:38 +0200
+In-Reply-To: <9c321dfc-f10d-4092-a1cd-30952e4da695@quicinc.com> (Jeff
+	Johnson's message of "Fri, 26 Jan 2024 09:05:26 -0800")
+Message-ID: <875xzcxug1.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <rafael@kernel.org>, <pavel@ucw.cz>
-CC: Manivannan Sadhasivam <mani@kernel.org>,
-        "Kalle Valo (QUIC)"
-	<quic_kvalo@quicinc.com>,
-        Jeff Johnson <quic_jjohnson@quicinc.com>, <linux-pm@vger.kernel.org>,
-        "kernel@quicinc.com" <kernel@quicinc.com>,
-        <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
-Subject: ath11k resume fails due to kernel blocks probing MHI virtual devices
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: saXM1sRVGRpu7ijQ6uFEfbdSF65S4T9r
-X-Proofpoint-GUID: saXM1sRVGRpu7ijQ6uFEfbdSF65S4T9r
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-29_06,2024-01-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- mlxscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0
- impostorscore=0 adultscore=0 clxscore=1011 mlxlogscore=999
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2401290073
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240129_021046_876243_E1E2892B 
-X-CRM114-Status: GOOD (  11.13  )
+X-CRM114-CacheID: sfid-20240129_031444_358755_A09F8CFF 
+X-CRM114-Status: GOOD (  13.14  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,46 +78,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Rafael and Pavel,
+Jeff Johnson <quic_jjohnson@quicinc.com> writes:
 
-Currently I am facing an ath11k (a kernel WLAN driver) resume issue 
-related with kernel PM framework and MHI module.
+> On 1/26/2024 8:58 AM, Kalle Valo wrote:
+>> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+>>> They have the same problem I'm trying to fix ;)
+>>> % scripts/kernel-doc -Werror -none \
+>>> 	$(find drivers/net/wireless/intel/iwlwifi -name '*.[ch]')
+>>> ...
+>>> 322 warnings as Errors
+>>> %
+>> 
+>> Ouch. But I'm surprised why nobody has reported these before? Are the
+>> kernel-doc warnings ignored by everyone?
+>
+> There are folks who use the kernel 'make' command to build the
+> documentation, and report issues from that. But my understanding is that
+> 'make' only processes the source files that are referenced by the
+> kernel's .rst files. So if a source file has documentation, but that
+> source file is not included by one of the .rst files, it won't normally
+> be processed.
+>
+> It is only by running kernel-doc directly against the sources that you
+> can spot these issues.
 
-Before introducing the issue details, I'd like to summarize how ath11k 
-interacts with MHI stack to download WLAN firmware to hardware target:
-1. when booting/restarting, ath11k powers on MHI module and waits for 
-MHI channels to be ready.
-2. When power on, MHI stack creates some virtual MHI devices, which 
-represents MHI hardware channels, and adds them to MHI bus. This 
-triggers MHI client driver, named QRTR, to get matched and probe those 
-MHI devices. In probe, QRTR initializes MHI channels and finally move 
-them to ready state.
-3. Once MHI channels ready, ath11k downloads WLAN firmware to hardware 
-target, then WLAN is working.
+Ah, thanks for the explanation.
 
-Such an flow works well in general, but introduces issues in hibernation 
-cycle: when preparing for hibernation, ath11k powers down MHI, this 
-results in MHI devices being destroyed thus QRTR resets MHI channels. 
-When resuming back from hibernation, ath11k powers on MHI and waits for 
-MHI channels to be ready in its resume callback. As said above, MHI 
-creates and adds MHI devices to MHI bus, but they can't be probed at 
-that time because device probe is prohibited in device_block_probing(), 
-finally this results in ath11k resume timeout.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Now there is an potential fix to this issue which would needs changes in 
-MHI stack, i.e., don't destroy MHI devices while hibernating. And we 
-have had a plenty talk with MHI community regarding this change, see [1] 
-and [2].
-
-However Mani (the MHI maintainer) doesn't think it's right to fix it in 
-MHI stack. Instead, he thought we might need to add a new PM callback 
-which will be called after device probe is unblocked. By registering 
-such a callback ath11k can wait the dependency driver, i.e., QRTR, to 
-probe and initialize those MHI devices.
-
-Your thoughts?
-
-
-[1] https://lists.infradead.org/pipermail/ath11k/2023-December/005098.html
-[2] https://lists.infradead.org/pipermail/ath11k/2024-January/005205.html
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
