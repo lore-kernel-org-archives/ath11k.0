@@ -4,88 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ADAFC46CD2
-	for <ath11k@archiver.kernel.org>; Tue, 30 Jan 2024 07:00:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D637CC46CD2
+	for <ath11k@archiver.kernel.org>; Tue, 30 Jan 2024 12:47:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=mIqgUfcXfNItkGKdsceAlheC0PfPnmZTRSdcvfF55+U=; b=mH6EsWJU5AVrt9lzRwbRu4/YDQ
-	sXDJl5NlAHa5XKEKbHypjPNYqPmpjOW9EiHbgFfBk6ZaR+63l9OfBkztJGa0iL7fEWhTSBsWPUnu+
-	WdCnEaYIH6QeBFbB5joMxQ+zLH6YuS/++0dJV8iphI5SLvpbhE3uH1QIjPQofWqiylN1qwX/leTbB
-	Ai3o8dvH3RPlu2lP9PLOaE3aJiy0lj/on2pQmSJXphwZJMdPlfDIzKyh6jAKrfrIBmcKYncyI2AAK
-	K10/YYj4fmiSwx+kCh9BVnlNhnOc0baDeKhHLUo3990+rtN4oQmiAGJpAc+s1dG2hcVVuMI8U1et8
-	ttxOkPNg==;
+	Content-Type:In-Reply-To:From:Cc:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=r1A7lAno5x9C29tGnNasR6WfLx0tGgZFi6+7h8bi5BQ=; b=Ckt2BAtvLIVjZ9e5G0ngfayVlB
+	ibSThSHu++yWqqdAnzIAawrSHELqgLIkroClh5N1pbgFPyS1+9aGrjERJ8tutG7gAzCiIh24y+PWq
+	9cv8t1/EnwdHTYel6/VinXOUO/cVrIJs1aKJTxGTwFTC8o/N6UYQyrH6tThz/zxbEjojhXhgTvjsx
+	l1te6a1uE5OeVb/DzAZ3pZttXxfr6l6i9QLc9uY2Cn55EV0Me9zJCD08CwasyqE3KQQDWekwYsbEd
+	KtJg2v5IOFHtB0lZGlLhheiwJaK5iFW+m2SKe/ypOHtjV/ZNEtCBldI39oSLxpWIo2eDKu1iRFtn4
+	mGhRDVHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rUi6N-0000000FTuP-1Tcx;
-	Tue, 30 Jan 2024 07:00:11 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rUnWr-0000000GjIL-1LAE;
+	Tue, 30 Jan 2024 12:47:53 +0000
+Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rUi6K-0000000FTth-2CiU
+	id 1rUnWp-0000000GjHW-1HuJ
 	for ath11k@lists.infradead.org;
-	Tue, 30 Jan 2024 07:00:09 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40U6Sa1X022746;
-	Tue, 30 Jan 2024 07:00:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=mIqgUfcXfNItkGKdsceAlheC0PfPnmZTRSdcvfF55+U=; b=Hc
-	/wwrmfdaaw8E+wcubJ1n/zNSfW8xhAO0s08IVmOtLp8BOPN9Hf9dCNPm5huhwV2u
-	wDz+lqaddZj97YRxYgqPbwnRX6VIixJ0kbxHls3/9qtynD5tvhKJhR0d5elv/7Km
-	XV1DQefcNTDW7SMCuiJeN9YZQQqu5q8LOGcMi+LIF/LqNQNKtw8iLsNDb5zO0PvN
-	Uw1I1g+DKiym+zrja3u+NblzQU5SvsnwN9LI079585gBSOk4Q6r/yDO6CblpOrlE
-	CGHblNGL1CB4L70vvkgHXzPWkRrI8slmq3mpHzBDf3LOrJaSMBNHKVCizldbGFBV
-	rwEKV/bwYMBoemKhQyrg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vxdwf9rv0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jan 2024 07:00:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40U7062d032608
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jan 2024 07:00:06 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
- 2024 23:00:05 -0800
-Message-ID: <90ac3bdc-8797-4d57-8bc9-48e0ad406674@quicinc.com>
-Date: Tue, 30 Jan 2024 15:00:02 +0800
+	Tue, 30 Jan 2024 12:47:52 +0000
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-5cdf76cde78so2195595a12.1
+        for <ath11k@lists.infradead.org>; Tue, 30 Jan 2024 04:47:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706618869; x=1707223669; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=r1A7lAno5x9C29tGnNasR6WfLx0tGgZFi6+7h8bi5BQ=;
+        b=JSoh1cJCjIT5r54mk1aXjMBXAT6vLXzTBHskjvk7ErjoYZYcJ7U5AbcSNMqGzaKptQ
+         zApcTD+ubX4CAsOHLb9bXw7RE5TbtvQRjosshGFKwTjf+k5h5dTv1YWkOxqFissRbjMb
+         XJS+pTkUE2ROXzPBpjokqWSD5rpM9y191ul72bVIBKlXlmTOPuny1HzhQ50MH2QP7HBt
+         m/JHBjCdqkFkF9wVT9Mdb3t87I7YFnvoNr+LTqaLnh7oub/WTdNwogT8GaT40ngjRbC1
+         Jq04MBY5KcHx8VJ5uQ3OFFbqg1pdBg9LjLZQ/SLM8PxxLa6G35H4Bm8QKN34Hy0inWhX
+         jJqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706618869; x=1707223669;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=r1A7lAno5x9C29tGnNasR6WfLx0tGgZFi6+7h8bi5BQ=;
+        b=j4M4ZOxe2/BRwtHQ6eeTTVP1OoVdmRkpByPrXd5NAPK8/Un6q2FzWSLR5jNcGPRk/o
+         P50eEkJSss70IMVZynAcL2gGG+0wT/yQGqmzgNUqmc8Kp3wcl/EZY8PwthbGlPrKEf23
+         gW8/DB8teB5IDCbptG8B5AAszOgcEcZEIaOpzgzsoqtLkFL/RdIleKv1OSvRkpl0bPeN
+         rGpHwyoviJrFfKwdpGioA54ZDcrOiEiumMhMSpu6ax5s2FAYw2eooeDy7xY8VXLymg4h
+         kt/bECWukpmAVd4T8K0TsZib8qoeYHDj530A3w6wYURUcj22N8BiiWwT/+TA4xfOyLtQ
+         Pq9Q==
+X-Gm-Message-State: AOJu0Yx4VHVOZOKSDaQPnyXApBYBx0QciuQXrANUZ/7z5pkbxSebQ5s6
+	IeCW9y/u7dT2Edv07co4kWVO+UfAMuaZpLxamNEfN9VgLfM7Lign
+X-Google-Smtp-Source: AGHT+IGjmtBVR3GPrHrPAln3egIkNUUaeyzoNHquZBybeWZzhsqy5DN4P34ArZ3nEEbv+mORdz0ciQ==
+X-Received: by 2002:a05:6a20:4f1e:b0:19b:e91c:1a42 with SMTP id gi30-20020a056a204f1e00b0019be91c1a42mr4463748pzb.55.1706618869413;
+        Tue, 30 Jan 2024 04:47:49 -0800 (PST)
+Received: from [192.168.254.83] ([50.39.172.77])
+        by smtp.gmail.com with ESMTPSA id j12-20020a17090a31cc00b002868abc0e6dsm11374081pjf.11.2024.01.30.04.47.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 04:47:48 -0800 (PST)
+Message-ID: <1dafe0e5-292b-4764-86c7-cc1757aeb3b6@gmail.com>
+Date: Tue, 30 Jan 2024 04:47:48 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: ath11k multicast action frame RX
 Content-Language: en-US
-To: James Prestwood <jprestwood@locusrobotics.com>,
-        "open list:MEDIATEK MT76
- WIRELESS LAN DRIVER" <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>,
+ "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
+ <linux-wireless@vger.kernel.org>, ath11k@lists.infradead.org
 References: <dcdbd757-ad6e-4fe0-a0c1-fe328431b73b@locusrobotics.com>
  <642b61a6-e3c0-4831-887f-f25314bf166d@locusrobotics.com>
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <642b61a6-e3c0-4831-887f-f25314bf166d@locusrobotics.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ <90ac3bdc-8797-4d57-8bc9-48e0ad406674@quicinc.com>
+Cc: James Prestwood <prestwoj@gmail.com>
+From: James Prestwood <prestwoj@gmail.com>
+In-Reply-To: <90ac3bdc-8797-4d57-8bc9-48e0ad406674@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uCGgT4tfipFSIAFlorCMTxFm2VQaVI65
-X-Proofpoint-ORIG-GUID: uCGgT4tfipFSIAFlorCMTxFm2VQaVI65
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-30_02,2024-01-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- bulkscore=0 malwarescore=0 clxscore=1011 spamscore=0 impostorscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2401300049
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240129_230008_599220_51173FBE 
-X-CRM114-Status: GOOD (  23.38  )
+X-CRM114-CacheID: sfid-20240130_044751_371428_2C42E0B5 
+X-CRM114-Status: GOOD (  24.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,76 +96,107 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi Baochen,
 
+On 1/29/24 11:00 PM, Baochen Qiang wrote:
+>
+>
+> On 1/27/2024 3:18 AM, James Prestwood wrote:
+>> On 1/24/24 5:06 AM, James Prestwood wrote:
+>>
+>>> Hi,
+>>>
+>>> I recently added support to ath10k, for the QCA6174, to receive 
+>>> multicast action frames in order to support DPP. I'm trying to do 
+>>> this for the ath11k QCNFA765/WCN6855. I took the same approach as 
+>>> ath10k which was actually quite simple but I'm unable to see any 
+>>> multicast frames coming over even when I enable RX/DATA debugging.
+>>>
+>>> What I've done so far is:
+>>>
+>>>  - Add FIF_MCAST_ACTION to the supported filters list
+>>>
+>>>  - Created/started a monitor vdev from within 
+>>> ath11k_mac_op_configure_filter()
+>>>
+>>>     ath11k_mac_monitor_vdev_create(ar);
+>>>
+>>>     ath11k_mac_monitor_start(ar);
+>>>
+>>> - Also tried adding
+>>>
+>>>     ath11k_mac_config_mon_status_default(ar, true);
+>>>
+>>> I can successfully create/start the monitor vdev. I see now as I'm 
+>>> writing this email that my specific hardware does not support 
+>>> monitor mode outright... Is this a dead end or is there hope with 
+>>> purely driver changes? or is it some filtering at the firmware level 
+>>> preventing this?
+>>
+>> I was able to finally see my broadcast frame after some additional 
+>> testing. It seems the driver/firmware/something gets a bit hung up 
+>> when I attempt to put it in monitor mode. It will start printing 
+>> these messages for about a minute:
+>>
+>> [   51.093034] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id 
+>> a1a2 != status ppdu_id a1a1 dest_mon_not_reaped = 650 dest_mon_stuck 
+>> = 12
+>> [   51.094461] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id 
+>> a1a3 != status ppdu_id a1a2 dest_mon_not_reaped = 651 dest_mon_stuck 
+>> = 12
+>> [   51.096281] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id 
+>> a1a5 != status ppdu_id a1a3 dest_mon_not_reaped = 652 dest_mon_stuck 
+>> = 12
+>>
+>> In most cases these ppdu ID's are a one-off from the expected ID 
+>> which seemed weird to me. But if I let it sit long enough I all of a 
+>> sudden get a ton of "data rx" messages, which is what I would expect 
+>> if I enabled a monitor vdev. Once this flurry starts I see the action 
+>> frame from my other client, sometimes at least. The firmware 
+>> generally crashes after a while so I've still got a ways to go but it 
+>> seems within the realm of possibility that this device could receive 
+>> broadcast action frames?
+>>
+>> Hoping for some breadcrumbs to follow here...
+>>
+> Hi James, as you already mentioned, ath11k/WCN6855 doesn't support 
+> monitor mode yet. I don't know why you are testing multicast action 
+> frame with monitor mode. So if monitor mode is not a must, could you 
+> test this with STATION mode? We would look into this if any issue found.
 
-On 1/27/2024 3:18 AM, James Prestwood wrote:
-> On 1/24/24 5:06 AM, James Prestwood wrote:
-> 
->> Hi,
->>
->> I recently added support to ath10k, for the QCA6174, to receive 
->> multicast action frames in order to support DPP. I'm trying to do this 
->> for the ath11k QCNFA765/WCN6855. I took the same approach as ath10k 
->> which was actually quite simple but I'm unable to see any multicast 
->> frames coming over even when I enable RX/DATA debugging.
->>
->> What I've done so far is:
->>
->>  - Add FIF_MCAST_ACTION to the supported filters list
->>
->>  - Created/started a monitor vdev from within 
->> ath11k_mac_op_configure_filter()
->>
->>     ath11k_mac_monitor_vdev_create(ar);
->>
->>     ath11k_mac_monitor_start(ar);
->>
->> - Also tried adding
->>
->>     ath11k_mac_config_mon_status_default(ar, true);
->>
->> I can successfully create/start the monitor vdev. I see now as I'm 
->> writing this email that my specific hardware does not support monitor 
->> mode outright... Is this a dead end or is there hope with purely 
->> driver changes? or is it some filtering at the firmware level 
->> preventing this?
-> 
-> I was able to finally see my broadcast frame after some additional 
-> testing. It seems the driver/firmware/something gets a bit hung up when 
-> I attempt to put it in monitor mode. It will start printing these 
-> messages for about a minute:
-> 
-> [   51.093034] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id a1a2 
-> != status ppdu_id a1a1 dest_mon_not_reaped = 650 dest_mon_stuck = 12
-> [   51.094461] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id a1a3 
-> != status ppdu_id a1a2 dest_mon_not_reaped = 651 dest_mon_stuck = 12
-> [   51.096281] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id a1a5 
-> != status ppdu_id a1a3 dest_mon_not_reaped = 652 dest_mon_stuck = 12
-> 
-> In most cases these ppdu ID's are a one-off from the expected ID which 
-> seemed weird to me. But if I let it sit long enough I all of a sudden 
-> get a ton of "data rx" messages, which is what I would expect if I 
-> enabled a monitor vdev. Once this flurry starts I see the action frame 
-> from my other client, sometimes at least. The firmware generally crashes 
-> after a while so I've still got a ways to go but it seems within the 
-> realm of possibility that this device could receive broadcast action 
-> frames?
-> 
-> Hoping for some breadcrumbs to follow here...
-> 
-Hi James, as you already mentioned, ath11k/WCN6855 doesn't support 
-monitor mode yet. I don't know why you are testing multicast action 
-frame with monitor mode. So if monitor mode is not a must, could you 
-test this with STATION mode? We would look into this if any issue found.
+As you may have guessed I don't _really_ know what I'm doing. When I got 
+this working with ath10k I saw monitor device was being used in order to 
+receive probes, and did the same for multicast action frames and it 
+"just worked". The frames themselves were still being received on the 
+station device. I attempted to mimic the changes with ath11k.
 
-> Thanks,
-> 
-> James
-> 
->>
+The end goal here is just that, be able to receive multicast action 
+frames on the station device which currently does not work. I'm only 
+seeing unicast frames when i enable RX debugging. The driver support for 
+multicast action RX in the kernel for this is basically zero. An 
+extended feature flag was added by Jouni when he added support to ath9k, 
+I added limited ath10k support for a variant I tested, and I'd like to 
+do the same for ath11k as we are transitioning to the WCN6855.
+
+And help is much appreciated, and I'm happy to put in the work its just 
+a steep learning curve coupled with the fact that any FW level 
+communication is proprietary. I really just need a nudge in the right 
+direction.
+
+Thanks,
+
+James
+
+>
 >> Thanks,
 >>
 >> James
 >>
->>
+>>>
+>>> Thanks,
+>>>
+>>> James
+>>>
+>>>
+>
 
