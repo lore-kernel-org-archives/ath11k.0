@@ -4,90 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FA61C46CD2
-	for <ath11k@archiver.kernel.org>; Wed, 31 Jan 2024 02:01:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE7E5C46CD2
+	for <ath11k@archiver.kernel.org>; Wed, 31 Jan 2024 02:19:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qF+f0yshJR8OgFlSQedsqYf6Yd5XbhAAHOGR2TIpWt0=; b=CLlPJMXaHXk/pG3vWAMXjBfy1J
-	UZWnQZHnqkR+osJKtVeIzDf1NSlzXHBbFBo5alwjOr00InjkAvtIjwjIDTwX/qFpgkrCuZtRPy/BJ
-	+YKtyjCAa1DJFEy+zJiROaU7Ha15vYmjytESo5pfIAoRDPS36ks8bY/PeRHW1io9NSacAP+O8ZNUy
-	4+U03GxJeAuuTlJZUNFKxHm0LkXmWTt68+Y88rzO29PSqqEVFlGl46e4NGUyOcA2+2hk24RTkdiVA
-	ZUmx2IwT4JHY3WQCG/rV33lsR3pAywMbVDk+nouMV+9XgqbHIL+GbeokSbvVkKWNX56M8Klz49gq3
-	voxH2zPw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=IrPzMA0u01I/2LBA8mPdHLEkHw96CWFguTjmoCVRapQ=; b=0tE9fZCQXrUt+4c+B3woYl5zEM
+	XRYCW62tdPTFBouWy2sbzqhyPfLvlyqE81AMeW43kSNR8cJAvcxfJsCqnftQsCGWah5qpbrk9TqcL
+	byN+iUXnH4h800c2ODPxOtvVVuC8NxEP6dEE25LdcC4DcrXkVBrtR/BzgPQ6xTvP2HNmHd8R2FN6V
+	KocrKoRex8zVNzoMv4iSSOUBfteosFPdHnoNjq+QHkHv1Z4AMrPfAxGVqO4S26+hrSXP6s5TcDmNR
+	wO5dX8VyWPjaV8vhzoZGamH7FirG1AjfG+XRrlhimQwkVKd17IgLHTeyx5BdzShiqQGvpKfFxbm9C
+	gUOy821A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rUzvC-00000001CQF-1YUg;
-	Wed, 31 Jan 2024 02:01:50 +0000
+	id 1rV0Br-00000001FER-2Zqg;
+	Wed, 31 Jan 2024 02:19:03 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rUzv9-00000001CPo-19bn
+	id 1rV0Bo-00000001FCI-1Y0E
 	for ath11k@lists.infradead.org;
-	Wed, 31 Jan 2024 02:01:48 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40V0GEGE027971;
-	Wed, 31 Jan 2024 02:01:45 GMT
+	Wed, 31 Jan 2024 02:19:01 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40UN8ex0028444;
+	Wed, 31 Jan 2024 02:18:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=qF+f0yshJR8OgFlSQedsqYf6Yd5XbhAAHOGR2TIpWt0=; b=TF
-	59mXLPKuktH5OgBnX+EQ64tOnV5XVhHq7vFv5a9ubHqaAl8w5X768Hlq1DYqUCin
-	eSQpudAVmvn+DMDt+j66TpZZ9f5T8sSLK0fVwwd48pn7KmiuqEyOoRyzlS4l3HzP
-	ucaDpbbZVWQ/KrrALXvwQ7LIvwIxREkyk6IFrIbXba3+VvEtrAcrRk+CVBd1RCZi
-	NK2rXOiHkMOj+iqk751BuOU1MhDbQlLQtj0CxIbc8jHV7Wl5AhywXvQzModd+Deu
-	Ux2gOhFz1Vnu9SvvhzfZdHyiXRLHrDsREQ47lWcOH0yE327o2ivhfxHSJE0TfkNy
-	3MyvHbEHZMfyfy6hOdFw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vxtp32kgd-1
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=IrPzMA0
+	u01I/2LBA8mPdHLEkHw96CWFguTjmoCVRapQ=; b=DtbGAyCbIW+bmYbd/xprIzy
+	1d/CJH8hpF3EUEbWHF5khRU4ziMX5+Lo8/Dv0v2IcOyWVkqlcZ46nkhW1SzCuIB7
+	+jp1yzaGKrb/gQH+BnMFJGEy/2ai2bV3yqAWCV24o/78QupMSIU2hlDGROnJlnqU
+	kpvy0wnZBGn9GU9ZNbxkcfzulMhjr8w0vf0nehYclPY4R6sqspKClL9BERVRQz5r
+	AcudYLZRY6Ne7/3kIaLl2TPLX/tXKOncbde+wx0i4FCgT6QcwCaAa9JAdje6jvoj
+	5zWlU3HxBEf/ZvAVpcpjdm8FthKp2+pGhWnJXimNyXqITxg/JnWOLvSR8lBeNCg=
+	=
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vy6gmgt5k-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 31 Jan 2024 02:01:44 +0000 (GMT)
+	Wed, 31 Jan 2024 02:18:58 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40V21hPg016669
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40V2IufN001220
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 31 Jan 2024 02:01:43 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 30 Jan
- 2024 18:01:42 -0800
-Message-ID: <ed8eeb92-e1eb-445e-989d-2340c26faf44@quicinc.com>
-Date: Wed, 31 Jan 2024 10:01:40 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k multicast action frame RX
-Content-Language: en-US
-To: James Prestwood <prestwoj@gmail.com>,
-        "open list:MEDIATEK MT76 WIRELESS
- LAN DRIVER" <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>
-References: <dcdbd757-ad6e-4fe0-a0c1-fe328431b73b@locusrobotics.com>
- <642b61a6-e3c0-4831-887f-f25314bf166d@locusrobotics.com>
- <90ac3bdc-8797-4d57-8bc9-48e0ad406674@quicinc.com>
- <1dafe0e5-292b-4764-86c7-cc1757aeb3b6@gmail.com>
+	Wed, 31 Jan 2024 02:18:57 GMT
+Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 30 Jan 2024 18:18:55 -0800
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <1dafe0e5-292b-4764-86c7-cc1757aeb3b6@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
+Subject: [PATCH] wifi: ath11k: change to move WMI_VDEV_PARAM_SET_HEMU_MODE before WMI_PEER_ASSOC_CMDID
+Date: Wed, 31 Jan 2024 10:18:32 +0800
+Message-ID: <20240131021832.17298-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: TeBJLYeySVUdj1h-f2j50wODxp2z1FAb
-X-Proofpoint-GUID: TeBJLYeySVUdj1h-f2j50wODxp2z1FAb
+X-Proofpoint-GUID: vhKCeVMTieXWMG22pvIzD3Of8v2YxHCp
+X-Proofpoint-ORIG-GUID: vhKCeVMTieXWMG22pvIzD3Of8v2YxHCp
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-01-30_14,2024-01-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- spamscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 bulkscore=0
- mlxlogscore=999 malwarescore=0 mlxscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2401310014
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ suspectscore=0 impostorscore=0 phishscore=0 mlxscore=0 malwarescore=0
+ clxscore=1015 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401310018
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240130_180147_457658_73F9FBDE 
-X-CRM114-Status: GOOD (  28.94  )
+X-CRM114-CacheID: sfid-20240130_181900_565843_70E61DB7 
+X-CRM114-Status: GOOD (  13.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,116 +94,92 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+From: Wen Gong <quic_wgong@quicinc.com>
 
+Currently when connecting to an AP with 11AX-HE phy mode, host sends
+WMI_VDEV_PARAM_SET_HEMU_MODE parameter to firmware after
+WMI_PEER_ASSOC_CMDID command. This results in TXBF not working, because
+firmware calculates TXBF values while handling WMI_PEER_ASSOC_CMDID,
+however at that time WMI_VDEV_PARAM_SET_HEMU_MODE has not been sent yet.
+See below log:
 
-On 1/30/2024 8:47 PM, James Prestwood wrote:
-> Hi Baochen,
-> 
-> On 1/29/24 11:00 PM, Baochen Qiang wrote:
->>
->>
->> On 1/27/2024 3:18 AM, James Prestwood wrote:
->>> On 1/24/24 5:06 AM, James Prestwood wrote:
->>>
->>>> Hi,
->>>>
->>>> I recently added support to ath10k, for the QCA6174, to receive 
->>>> multicast action frames in order to support DPP. I'm trying to do 
->>>> this for the ath11k QCNFA765/WCN6855. I took the same approach as 
->>>> ath10k which was actually quite simple but I'm unable to see any 
->>>> multicast frames coming over even when I enable RX/DATA debugging.
->>>>
->>>> What I've done so far is:
->>>>
->>>>  - Add FIF_MCAST_ACTION to the supported filters list
->>>>
->>>>  - Created/started a monitor vdev from within 
->>>> ath11k_mac_op_configure_filter()
->>>>
->>>>     ath11k_mac_monitor_vdev_create(ar);
->>>>
->>>>     ath11k_mac_monitor_start(ar);
->>>>
->>>> - Also tried adding
->>>>
->>>>     ath11k_mac_config_mon_status_default(ar, true);
->>>>
->>>> I can successfully create/start the monitor vdev. I see now as I'm 
->>>> writing this email that my specific hardware does not support 
->>>> monitor mode outright... Is this a dead end or is there hope with 
->>>> purely driver changes? or is it some filtering at the firmware level 
->>>> preventing this?
->>>
->>> I was able to finally see my broadcast frame after some additional 
->>> testing. It seems the driver/firmware/something gets a bit hung up 
->>> when I attempt to put it in monitor mode. It will start printing 
->>> these messages for about a minute:
->>>
->>> [   51.093034] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id 
->>> a1a2 != status ppdu_id a1a1 dest_mon_not_reaped = 650 dest_mon_stuck 
->>> = 12
->>> [   51.094461] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id 
->>> a1a3 != status ppdu_id a1a2 dest_mon_not_reaped = 651 dest_mon_stuck 
->>> = 12
->>> [   51.096281] ath11k_pci 0000:00:06.0: data dest_rx: new ppdu_id 
->>> a1a5 != status ppdu_id a1a3 dest_mon_not_reaped = 652 dest_mon_stuck 
->>> = 12
->>>
->>> In most cases these ppdu ID's are a one-off from the expected ID 
->>> which seemed weird to me. But if I let it sit long enough I all of a 
->>> sudden get a ton of "data rx" messages, which is what I would expect 
->>> if I enabled a monitor vdev. Once this flurry starts I see the action 
->>> frame from my other client, sometimes at least. The firmware 
->>> generally crashes after a while so I've still got a ways to go but it 
->>> seems within the realm of possibility that this device could receive 
->>> broadcast action frames?
->>>
->>> Hoping for some breadcrumbs to follow here...
->>>
->> Hi James, as you already mentioned, ath11k/WCN6855 doesn't support 
->> monitor mode yet. I don't know why you are testing multicast action 
->> frame with monitor mode. So if monitor mode is not a must, could you 
->> test this with STATION mode? We would look into this if any issue found.
-> 
-> As you may have guessed I don't _really_ know what I'm doing. When I got 
-> this working with ath10k I saw monitor device was being used in order to 
-> receive probes, and did the same for multicast action frames and it 
-> "just worked". The frames themselves were still being received on the 
-> station device. I attempted to mimic the changes with ath11k.
-> 
-> The end goal here is just that, be able to receive multicast action 
-> frames on the station device which currently does not work. I'm only 
-> seeing unicast frames when i enable RX debugging. The driver support for 
-> multicast action RX in the kernel for this is basically zero. An 
-> extended feature flag was added by Jouni when he added support to ath9k, 
-> I added limited ath10k support for a variant I tested, and I'd like to 
-> do the same for ath11k as we are transitioning to the WCN6855.
-OK, so you are testing this with latest ath.git, without any private 
-changes, and it doesn't work, right? Could you share your test steps? 
-Basically how are you sending multicast action frames from AP/peer, and 
-how to check if that frame received or not (I am assuming by checking RX 
-logs)?
+AP sends "VHT/HE/EHT NDP Announcement" to station, and station sends
+"Action no Ack" of category code HE to AP, the "Nc Index" and
+"Codebook Information" are wrong:
 
-> 
-> And help is much appreciated, and I'm happy to put in the work its just 
-> a steep learning curve coupled with the fact that any FW level 
-> communication is proprietary. I really just need a nudge in the right 
-> direction.
-> 
-> Thanks,
-> 
-> James
-> 
->>
->>> Thanks,
->>>
->>> James
->>>
->>>>
->>>> Thanks,
->>>>
->>>> James
->>>>
->>>>
->>
+Issued action:
+IEEE 802.11 Action No Ack, Flags: ........
+IEEE 802.11 wireless LAN
+    Fixed parameters
+        Category code: HE (30)
+        HE Action: HE Compressed Beamforming And CQI (0)
+            Total length: 152
+            HE MIMO Control: 0x0004008018
+                .... .... .... .... .... .... .... .... .... .000 = Nc Index: 1 Column (0)
+                .... .... .... .... .... .... .... ..0. .... .... = Codebook Information: 0
+
+Change to send WMI_VDEV_PARAM_SET_HEMU_MODE before WMI_PEER_ASSOC_CMDID,
+then firmware will calculate the TXBF values with valid parameters
+instead of empty values. TXBF works well and throughput performance is
+improved from 80 Mbps to 130 Mbps with this patch.
+
+Good action after this patch:
+IEEE 802.11 Action No Ack, Flags: ........
+IEEE 802.11 wireless LAN
+    Fixed parameters
+        Category code: HE (30)
+        HE Action: HE Compressed Beamforming And CQI (0)
+            Total length: 409
+            HE MIMO Control: 0x0004008219
+                .... .... .... .... .... .... .... .... .... .001 = Nc Index: 2 Columns (1)
+                .... .... .... .... .... .... .... ..1. .... .... = Codebook Information: 1
+
+This change applies to all chipsets.
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+
+Fixes: 38dfe775d0ab ("wifi: ath11k: push MU-MIMO params from hostapd to hardware")
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index bbf4d1f4d310..df1b1ee71881 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3023,7 +3023,14 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 
+ 	rcu_read_unlock();
+ 
++	if (!ath11k_mac_vif_recalc_sta_he_txbf(ar, vif, &he_cap)) {
++		ath11k_warn(ar->ab, "failed to recalc he txbf for vdev %i on bss %pM\n",
++			    arvif->vdev_id, bss_conf->bssid);
++		return;
++	}
++
+ 	peer_arg.is_assoc = true;
++
+ 	ret = ath11k_wmi_send_peer_assoc_cmd(ar, &peer_arg);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to run peer assoc for %pM vdev %i: %d\n",
+@@ -3046,12 +3053,6 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 		return;
+ 	}
+ 
+-	if (!ath11k_mac_vif_recalc_sta_he_txbf(ar, vif, &he_cap)) {
+-		ath11k_warn(ar->ab, "failed to recalc he txbf for vdev %i on bss %pM\n",
+-			    arvif->vdev_id, bss_conf->bssid);
+-		return;
+-	}
+-
+ 	WARN_ON(arvif->is_up);
+ 
+ 	arvif->aid = vif->cfg.aid;
+
+base-commit: 17f4b952f067b1f87d14e6df4c8c216fe7a245d1
+-- 
+2.25.1
+
 
