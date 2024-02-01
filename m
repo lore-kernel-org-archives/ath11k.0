@@ -4,86 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 807ABC47DDF
-	for <ath11k@archiver.kernel.org>; Thu,  1 Feb 2024 10:00:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3B79C4828F
+	for <ath11k@archiver.kernel.org>; Thu,  1 Feb 2024 16:19:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MtEt022kkPXVXmIT70xulNhz204nKO73T0HIbZTpt3c=; b=RioFUv3PgOsykOr/u9f9Y1IKqa
-	rGAyWtNAApYwWJaeP1ybfwuLoMIZNbdx4YnTOelVEaehdRzOi1JaUQGoz+Yx94HPWaVRWWQgLM03W
-	Ru5IvMflZjtDZda83UMQ/f8VooXnf4wH4McjonX0wVHpFEexb9ykoD8CTBJMgoueylHDrMtg5+02+
-	sREMhLSKVGva/7WWBzEymSIWzR4verPvzBisbzem+QprIRWemMtcURZCZhnzEDOI9Tq/hI+rTIHYJ
-	KTKcUjl4ql0wY5ew6vjOIrPnaspkIYgax5SWG4z3Vf4jjHvOv8TZbDvS5FY0mCRrmiBzdQiX3lXDJ
-	gFN/zHIQ==;
+	bh=1vY8rGfIMjq9je2rE0Py30/zItWtbY5H3Tgqnk2+jHI=; b=mS0XVDeu1kxbvSLoDGZ+vXkm74
+	+9X6fjuAIhQJjo4Jas7/eWC3K3l5JbEynxvOdvnE6rwNk9u5iRyCXIj92/1TuudvEkaYv7G0FCGIs
+	vYjWkYcXEEO1cvxR1zk+iU2r5M6/sPlN2ELBC0xZlOIGCmVGdO7fJnYUin6nQCr5khtbJ094xg2Um
+	fOwsdybTROzZjNKY+6jA8oACWzGfS8NbfbBBc4tyOCpmQD8ezgoH/9Rjre5d2I8e3qv8k1RJUzxRA
+	idl5JMWnW7eRc0YMG6eZjOXex/I0NODGq/RhZOjhnM8cKNX0OnEHT2N2xE2SfCjAaa9OzOgawmNj6
+	WvbS4jEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVTsI-00000007NQV-1V4Z;
-	Thu, 01 Feb 2024 10:00:50 +0000
-Received: from mail-pf1-x436.google.com ([2607:f8b0:4864:20::436])
+	id 1rVZmf-00000008bqO-1Fqz;
+	Thu, 01 Feb 2024 16:19:25 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVTsF-00000007NPy-3bRi
-	for ath11k@lists.infradead.org;
-	Thu, 01 Feb 2024 10:00:49 +0000
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-6d9f94b9186so620145b3a.0
-        for <ath11k@lists.infradead.org>; Thu, 01 Feb 2024 02:00:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706781646; x=1707386446; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MtEt022kkPXVXmIT70xulNhz204nKO73T0HIbZTpt3c=;
-        b=bfXkKXlbyb4F1nIXu3IYg4iPiardwhfCReoCDLGMMgr2S1Mhgys3zLylnyUMEn+k7j
-         GeyKGRc3oi6SuOyhz4VsH7OWU2Y44QEbir/pVB9mnVtb/lgt7JpbjziNhBklD/oYA/Nr
-         3taPWl/YTND7O/qjPFZAU+oCjtANcxVvspmF/kc1eUQeeGitImUxwhnEclw9uDnoMLSV
-         kzlDZtxqOMqt70XIPtBuZi2AqN5c7UW/tbqYcHEdGXMs781FYh5bwKLgztCQMx3HB2H9
-         ZdfrwYkIgINlgd6Eym8wO9TRq6Fg7+ThDlBJcQZa7p3m0Gvb1YLxWyBbPTArF7rGdHK5
-         XprA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706781646; x=1707386446;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MtEt022kkPXVXmIT70xulNhz204nKO73T0HIbZTpt3c=;
-        b=Qlo9RrrodXZys81n1RFqpiDZltkev9ms6RHHqm9ady3AY+PaRgGdtWo2jXLfXK0YHj
-         30F8gGYWPOseFbsh9MjD30M/vISuIRJ3NgFPnBQMQI/XrRZ6mmf3ywGs/jWhltE52gs9
-         Dm9TlaJfDZUDNsHWKmdtY1I+2fLrLi8GSy4UpYQo8c3qbvE0nSlDtjIAdFKsYEfSQ8ib
-         as7CPC7uHK0XwchGAIYLqhlUJWOWPieoiNcY8ZnxGcoPHde8SslSTYoq4BHOROhJj1s2
-         La3rjqUqyF7KrDYa4knG6szhDoSD6iC49ieZS5N0TAjc5vyni8/xMfLABCfgu2mVmtVR
-         tnlw==
-X-Gm-Message-State: AOJu0Yy9iiRBe0aPqnBlA9UxVk0SICWnDLmAhaDLqli3I9m0MDNxenOa
-	5ZJGY3+gzeMlr7okImPy3vM6PIDfoZuKq8PX9relx579OVZ/rmihVEnKDj9nydnj0TXBTW4XKGE
-	=
-X-Google-Smtp-Source: AGHT+IF+MGpP/C7cfZjCjiG2aRdHkdHtz96E7vnVzdz00IberE36RJU8ufLm/3ynoxUiAbLUZ2NUiw==
-X-Received: by 2002:a05:6a00:830d:b0:6dd:a0a5:141f with SMTP id gd13-20020a056a00830d00b006dda0a5141fmr3943855pfb.28.1706781645551;
-        Thu, 01 Feb 2024 02:00:45 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXVWK7ZNbXwm8vo/FW2JCaF4MCdQw3rEaFqlzDa/y5YlePi0w/NMK0AEl0x8jlw0AbXA9MhulRZ+/8PwRsfzInBnqlY1r3hro1Tt8zcjhBxn5KeDzZrmq98Ak8CZC517clv5wEvyNOvk0H/BttdCSmlwXbr97Wxfaoa2qNX26Ew
-Received: from thinkpad ([117.248.5.99])
-        by smtp.gmail.com with ESMTPSA id r6-20020a056a00216600b006dbda1b19f7sm11389533pff.159.2024.02.01.02.00.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Feb 2024 02:00:45 -0800 (PST)
-Date: Thu, 1 Feb 2024 15:30:40 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+	id 1rVZmb-00000008bp6-1Ca4;
+	Thu, 01 Feb 2024 16:19:22 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 5BE32CE0E74;
+	Thu,  1 Feb 2024 16:19:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 760F4C433C7;
+	Thu,  1 Feb 2024 16:19:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706804358;
+	bh=pSQXkVGhSGtJOxhtkZViUKXNZZUqaeze9tefymigJbA=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=exyFCQTl+lEujf2xl6+qQVAB/fItTO43EFuBTk3rBdhLadCVw+liyTtzHRs7VoOJf
+	 BQ1m3ISjqq/4i7TAC9lUa8VmaZ7dKfzbOOT/hYXL2Z22/O6ubtY5+SyMq981QOMNHM
+	 1ckfRXeEUYUMYYCh3NiUuAkW7+cV3PyWT2Rouzqg1aN0LY+MGRYlOoq4Xz0RF0k0M3
+	 KqpBYG1dpowlJhbezMVTZM3gi4yIrlLC0gYxTCwPLVJxx/F0bflFNFr9GnNOHGk6Bj
+	 SD65/iWn6HEqD38xhNSYwPsLpGM8up20GaTj08oV352+gC8S2wRouz7wUdX3ZqvXIM
+	 9eRHZqwk2af6g==
+From: Kalle Valo <kvalo@kernel.org>
 To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Kalle Valo <kvalo@kernel.org>, mhi@lists.linux.dev,
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH RFC v2 2/8] bus: mhi: host: add new interfaces to handle
- MHI channels directly
-Message-ID: <20240201100040.GB17027@thinkpad>
-References: <20231127162022.518834-1-kvalo@kernel.org>
- <20231127162022.518834-3-kvalo@kernel.org>
- <20240130181938.GB4218@thinkpad>
- <d002afe9-3c01-413c-82d2-353db0356802@quicinc.com>
+Cc: <oe-kbuild-all@lists.linux.dev>,  <ath10k@lists.infradead.org>,  kernel
+ test robot <lkp@intel.com>,  <ath11k@lists.infradead.org>
+Subject: Re: [kvalo-ath:pending 47/100]
+ drivers/net/wireless/ath/ath11k/mac.c:7949 ath11k_mac_fill_reg_tpc_info()
+ error: uninitialized symbol 'eirp_power'.
+References: <202401311243.NyXwWZxP-lkp@intel.com> <87ttmtvfx4.fsf@kernel.org>
+	<a2fb59bb-6090-433f-9c3d-d35aaab93e70@quicinc.com>
+Date: Thu, 01 Feb 2024 18:19:15 +0200
+In-Reply-To: <a2fb59bb-6090-433f-9c3d-d35aaab93e70@quicinc.com> (Baochen
+	Qiang's message of "Thu, 1 Feb 2024 12:31:22 +0800")
+Message-ID: <87zfwktaws.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d002afe9-3c01-413c-82d2-353db0356802@quicinc.com>
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240201_020047_934289_9F0A4013 
-X-CRM114-Status: GOOD (  38.75  )
+X-CRM114-CacheID: sfid-20240201_081921_522547_2D60D314 
+X-CRM114-Status: GOOD (  10.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,242 +74,42 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 31, 2024 at 03:39:26PM +0800, Baochen Qiang wrote:
-> 
-> 
-> On 1/31/2024 2:19 AM, Manivannan Sadhasivam wrote:
-> > On Mon, Nov 27, 2023 at 06:20:16PM +0200, Kalle Valo wrote:
-> > > From: Baochen Qiang <quic_bqiang@quicinc.com>
-> > > 
-> > > When using mhi_power_down_no_destroy() MHI hosts need to unprepare MHI channels
-> > > by themselves.  Similarly, MHI stack will also not create new MHI device since
-> > > old devices were not destroyed, so MHI hosts need to prepare channels as well.
-> > > Hence add these two interfaces to make that possible.
-> > > 
-> > > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> > > 
-> > > Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> > > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> > > ---
-> > >   drivers/bus/mhi/host/main.c | 107 ++++++++++++++++++++++++++++++++++++
-> > >   include/linux/mhi.h         |  20 ++++++-
-> > >   2 files changed, 126 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/bus/mhi/host/main.c b/drivers/bus/mhi/host/main.c
-> > > index d80975f4bba8..3f677fc628ad 100644
-> > > --- a/drivers/bus/mhi/host/main.c
-> > > +++ b/drivers/bus/mhi/host/main.c
-> > > @@ -1669,6 +1669,58 @@ int mhi_prepare_for_transfer_autoqueue(struct mhi_device *mhi_dev)
-> > >   }
-> > >   EXPORT_SYMBOL_GPL(mhi_prepare_for_transfer_autoqueue);
-> > > +static int ____mhi_prepare_for_transfer(struct device *dev, void *data)
-> > 
-> > "__mhi_prepare_all_for_transfer"
-> 
-> This is to prepare one single child device, I don't think a name like
-> __mhi_prepare_all_for_transfer (with 'all' inside) make sense, right?
-> How about changing to "mhi_prepare_dev_for_transfer" or
-> "mhi_prepare_single_for_transfer"?
-> 
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-I think most of the checks in this function can be moved inside
-mhi_prepare_for_transfer() API. With that you can just reuse the API without
-adding a new helper.
+> On 1/31/2024 8:35 PM, Kalle Valo wrote:
+>> + ath11k list
+>> kernel test robot <lkp@intel.com> writes:
+>> 
+>>> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git pending
+>>> head:   2c471f31297856be56f60ef29f2565dea1470800
+>>> commit: 92425f788feede9bf152ecf3fb7a264942ee7719 [47/100] wifi:
+>>> ath11k: fill parameters for vdev set tpc power WMI command
+>>> config: i386-randconfig-141-20240129
+>>> (https://download.01.org/0day-ci/archive/20240131/202401311243.NyXwWZxP-lkp@intel.com/config)
+>>> compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+>>>
+>>> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+>>> the same patch/commit), kindly add following tags
+>>> | Reported-by: kernel test robot <lkp@intel.com>
+>>> | Closes:
+>>> | https://lore.kernel.org/oe-kbuild-all/202401311243.NyXwWZxP-lkp@intel.com/
+>>>
+>>> New smatch warnings:
+>>> drivers/net/wireless/ath/ath11k/mac.c:7949
+>>> ath11k_mac_fill_reg_tpc_info() error: uninitialized symbol
+>>> 'eirp_power'.
+>> Baochen, could you take a look at this new warning and if it's valid
+>> send a fix for it, please?
+>
+> I sent the patch yesterday. search
+> "wifi: ath11k: initialize eirp_power before use"
 
-For autoqueue channels, you can add another API
-mhi_prepare_all_for_transfer_autoqueue() just like
-mhi_prepare_for_transfer_autoqueue() to maintain uniformity.
-
-- Mani
-
-> > 
-> > > +{
-> > > +	struct mhi_device *mhi_dev;
-> > > +	struct mhi_chan *ul_chan, *dl_chan;
-> > > +	enum mhi_ee_type ee = MHI_EE_MAX;
-> > 
-> > Reverse Xmas order, please.
-> > 
-> > > +
-> > > +	if (dev->bus != &mhi_bus_type)
-> > > +		return 0;
-> > > +
-> > > +	mhi_dev = to_mhi_device(dev);
-> > > +
-> > > +	/* Only prepare virtual devices that are attached to bus */
-> > 
-> > "Only prepare virtual devices for the channels". Here and below.
-> > 
-> > > +	if (mhi_dev->dev_type == MHI_DEVICE_CONTROLLER)
-> > > +		return 0;
-> > > +
-> > > +	/* There are cases where there is no MHI client driver matches
-> > > +	 * this device, we are not allowed to do prepare for it.
-> > > +	 */
-> > 
-> > Use the preferred style for comment:
-> > 
-> > 	/*
-> > 	 * ...
-> > 	 */
-> > 
-> > > +	if (!mhi_dev->id)
-> > > +		return 0;
-> > > +
-> > > +	ul_chan = mhi_dev->ul_chan;
-> > > +	dl_chan = mhi_dev->dl_chan;
-> > > +
-> > > +	/*
-> > > +	 * If execution environment is specified, remove only those devices that
-> > > +	 * started in them based on ee_mask for the channels as we move on to a
-> > > +	 * different execution environment
-> > > +	 */
-> > > +	if (data)
-> > > +		ee = *(enum mhi_ee_type *)data;
-> > > +
-> > > +	if (ul_chan && ee != MHI_EE_MAX && !(ul_chan->ee_mask & BIT(ee)))
-> > > +		return 0;
-> > > +
-> > > +
-> > 
-> > Remove extra newline.
-> > 
-> > > +	if (dl_chan && ee != MHI_EE_MAX && !(dl_chan->ee_mask & BIT(ee)))
-> > > +		return 0;
-> > > +
-> > > +	if (dl_chan->pre_alloc)
-> > > +		return mhi_prepare_for_transfer_autoqueue(mhi_dev);
-> > > +	else
-> > > +		return mhi_prepare_for_transfer(mhi_dev);
-> > > +}
-> > > +
-> > > +int mhi_prepare_all_for_transfer(struct mhi_controller *mhi_cntrl)
-> > > +{
-> > > +	return device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL,
-> > > +				     ____mhi_prepare_for_transfer);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(mhi_prepare_all_for_transfer);
-> > > +
-> > >   void mhi_unprepare_from_transfer(struct mhi_device *mhi_dev)
-> > >   {
-> > >   	struct mhi_controller *mhi_cntrl = mhi_dev->mhi_cntrl;
-> > > @@ -1684,3 +1736,58 @@ void mhi_unprepare_from_transfer(struct mhi_device *mhi_dev)
-> > >   	}
-> > >   }
-> > >   EXPORT_SYMBOL_GPL(mhi_unprepare_from_transfer);
-> > > +
-> > > +static int ____mhi_unprepare_from_transfer(struct device *dev, void *data)
-> > 
-> > __mhi_unprepare_all_from_transfer
-> 
-> same as above.
-> 
-> > 
-> > > +{
-> > > +	struct mhi_device *mhi_dev;
-> > > +	struct mhi_chan *ul_chan, *dl_chan;
-> > > +	enum mhi_ee_type ee = MHI_EE_MAX;
-> > > +
-> > > +	if (dev->bus != &mhi_bus_type)
-> > > +		return 0;
-> > > +
-> > > +	mhi_dev = to_mhi_device(dev);
-> > > +
-> > > +	/* Only unprepare virtual devices that are attached to bus */
-> > > +	if (mhi_dev->dev_type == MHI_DEVICE_CONTROLLER)
-> > > +		return 0;
-> > > +
-> > > +	/* There are cases where there is no MHI client driver matches
-> > > +	 * this device, so it is not probed or prepared, no need to
-> > > +	 * do unprepare for it.
-> > > +	 */
-> > > +	if (!mhi_dev->id)
-> > > +		return 0;
-> > > +
-> > > +	ul_chan = mhi_dev->ul_chan;
-> > > +	dl_chan = mhi_dev->dl_chan;
-> > > +
-> > > +	/*
-> > > +	 * If execution environment is specified, remove only those devices that
-> > > +	 * started in them based on ee_mask for the channels as we move on to a
-> > > +	 * different execution environment
-> > > +	 */
-> > > +	if (data)
-> > > +		ee = *(enum mhi_ee_type *)data;
-> > > +
-> > > +	if (ul_chan) {
-> > > +		if (ee != MHI_EE_MAX && !(ul_chan->ee_mask & BIT(ee)))
-> > > +			return 0;
-> > > +	}
-> > > +
-> > > +	if (dl_chan) {
-> > > +		if (ee != MHI_EE_MAX && !(dl_chan->ee_mask & BIT(ee)))
-> > > +			return 0;
-> > > +	}
-> > > +
-> > > +	mhi_unprepare_from_transfer(mhi_dev);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +int mhi_unprepare_all_from_transfer(struct mhi_controller *mhi_cntrl)
-> > > +{
-> > > +	return device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL,
-> > > +				     ____mhi_unprepare_from_transfer);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(mhi_unprepare_all_from_transfer);
-> > > diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-> > > index ae092bc8b97e..dcf62a57056a 100644
-> > > --- a/include/linux/mhi.h
-> > > +++ b/include/linux/mhi.h
-> > > @@ -668,7 +668,7 @@ static inline void mhi_power_down(struct mhi_controller *mhi_cntrl, bool gracefu
-> > >    * destroy struct devices. This is a variant for mhi_power_down() and is a
-> > >    * workaround to make it possible to use mhi_power_up() in a resume
-> > >    * handler. When using this variant the caller must also call
-> > > - * mhi_prepare_all_for_transfer_autoqueue() and
-> > > + * mhi_prepare_all_for_transfer() and
-> > 
-> > This change belongs to previous patch.
-> > 
-> > >    * mhi_unprepare_all_from_transfer().
-> > >    *
-> > >    * @mhi_cntrl: MHI controller
-> > > @@ -842,4 +842,22 @@ int mhi_queue_skb(struct mhi_device *mhi_dev, enum dma_data_direction dir,
-> > >    */
-> > >   bool mhi_queue_is_full(struct mhi_device *mhi_dev, enum dma_data_direction dir);
-> > > +/**
-> > > + * mhi_prepare_all_for_transfer - if you are using
-> > > + * mhi_power_down_no_destroy() variant this needs to be called after
-> > > + * calling mhi_power_up().
-> > 
-> > Add info about what this API does also.
-> > 
-> > > + *
-> > > + * @mhi_cntrl: MHI controller
-> > > + */
-> > > +int mhi_prepare_all_for_transfer(struct mhi_controller *mhi_cntrl);
-> > > +
-> > > +/**
-> > > + * mhi_unprepare_all_from_transfer - if you are using
-> > > + * mhi_power_down_no_destroy() variant this function needs to be called
-> > > + * before calling mhi_power_down_no_destroy().
-> > 
-> > Same as above.
-> > 
-> > - Mani
-> > 
-> > > + *
-> > > + * @mhi_cntrl: MHI controller
-> > > + */
-> > > +int mhi_unprepare_all_from_transfer(struct mhi_controller *mhi_cntrl);
-> > > +
-> > >   #endif /* _MHI_H_ */
-> > > -- 
-> > > 2.39.2
-> > > 
-> > > 
-> > 
+Great, thanks again Baochen. It's always a good practice to reply to
+build bot mails, something like "This is a valid warning, I'll fix it"
+is usually enough.
 
 -- 
-மணிவண்ணன் சதாசிவம்
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
