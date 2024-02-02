@@ -4,82 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C9E1C48286
-	for <ath11k@archiver.kernel.org>; Fri,  2 Feb 2024 02:40:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 218CEC4828D
+	for <ath11k@archiver.kernel.org>; Fri,  2 Feb 2024 02:45:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=x3B6yMoNCPrcXyrT5pXAy2ib6QX9PgtK6OglhKLjstE=; b=ZZFcZWOqcWvSV360o++enOKh4p
-	O5VprV92R7rupQ/2gmJd6wWVyoxU07R60JU9Xkk/Fr4N5u+mBoteXoXppK5m4VHEC+HGGnCWs17K+
-	P50dMMk/8kEvSU+enLVrqmbiHP/oJ88RFu2p1FoIghYVqEK1jsCzP/iWibDVQdtaQ8WVAHCCRvOcy
-	NRHHR16hKR7/QLvDVa/pyEgOTpmJ5UPOnVF6Kf0GL8nbEBhoDtjqLOto5kvbyr3WAzQlsmTjl/4SE
-	c1mNIT/Z+THo5EBXXGxBoSDnqvGxOqTyJAxwmaOFH+WktMuJW4UIF7hKoERntzf9V0Gj06568Pz5b
-	nNzZFXyw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=8MyOR6juEfYYlI/Kvs5o3c2m2K3i/huXkF9+m7b70mw=; b=rmZAEVCf3KvXU/wze9sovRRkVm
+	QClvIpphN9qnsdMWKs39tAuzG30VixOE+xGGsAEbhg3lmlo7px0qznirAmUAjJit7fw/fL37C/BL/
+	x3Bt7sWsbRidE3r2PuxozV7KVwj4pvBX6AGjOHtSEWP5Lpb+tue8xt9o9rP+yiSbakRihQscYc14O
+	tl93DQ2RzT4YhoQOLS6oAeT8535cIL7S5yd08FiH/HwEMjD6z+B3GOZIpponyapICNVbTpBOMW4Xn
+	YFdLl+qjShoXmOs5tJEYBZkXkJP5hMDlYS6ZNMEl/Ex2pZMX6s2u+b3KnA9amnpJ9cJs055L2bKNr
+	fJxihTOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVjTh-00000009uwI-2cj3;
-	Fri, 02 Feb 2024 02:40:29 +0000
+	id 1rVjYp-00000009vVr-3NLB;
+	Fri, 02 Feb 2024 02:45:47 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVjTe-00000009uvX-0vZW
-	for ath11k@lists.infradead.org;
-	Fri, 02 Feb 2024 02:40:27 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4121a5B5029120;
-	Fri, 2 Feb 2024 02:40:25 GMT
+	id 1rVjYn-00000009vVH-0NFQ;
+	Fri, 02 Feb 2024 02:45:46 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4121WY86014692;
+	Fri, 2 Feb 2024 02:45:41 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=x3B6yMo
-	NCPrcXyrT5pXAy2ib6QX9PgtK6OglhKLjstE=; b=DTocWw131xcgh7qfGprXsrV
-	wEp+tjy50TpKn8iKxgjp9CxroXLvZMzhSbvtiBWwmcqfYqQmPTeGfnpZW835AUUJ
-	mpOEXZjKWhlXPNOs60oLld/sVo8fI51/5AlJPfkjQeDo25oQOz/aKUvX6Gzx8dfB
-	W83uqId8hIsOQwpmCpLUCR3NLwdbQUAZGhCSPtbmfxR79K8CZh2wS8JGrfOWmrAI
-	Wt7pvDCvsr6paMeq7CiWRkzbCCMpcbiaAWjbWCT/aog0EgNmkaBdxx3tG4dpC33j
-	r7m2Z+0PzoOzzHrU2gtmLAU23HgkHG22moe0EzR5YL5MxiA8v3Q3k0T5xVKKL+A=
-	=
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w0ptyg3gf-1
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=8MyOR6juEfYYlI/Kvs5o3c2m2K3i/huXkF9+m7b70mw=; b=Br
+	OT32d6T0L7urISx7NL1ls+pluG4RJGOjiwgOhTFhIuWDb01kLZdKYCAt+c5vHLKz
+	jA91qh8P5VFM8mKnl6Lsyt6iqJ6F18e+hIT6I6FHyc+O2277v3VTn8SnYj48UbdH
+	Em36vTK6xyRew3niYdwM8WukEsyk4q1zROxhZgfhymTQ7i+VkktOcyR9ZU8HiTBo
+	yDBvW7B1EDGVy4DJ+pKCt0nV9hIbi39aEd2UJw6mWFT9bTeG85Wgc/+SMlUlX7tP
+	8gSQX4utKGx/gosZigCEsQh6jKKAp8I7sR6QomxQNYCJVyeHjih710iGhEVITeSX
+	de9QPGBIC0Pr0qSD7o3A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w0ptv03sh-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 Feb 2024 02:40:25 +0000 (GMT)
+	Fri, 02 Feb 2024 02:45:41 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4122eO3k032520
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4122jeO8002795
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 2 Feb 2024 02:40:24 GMT
-Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 1 Feb 2024 18:40:23 -0800
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH] wifi: ath11k: initialize eirp_power before use
-Date: Fri, 2 Feb 2024 10:40:11 +0800
-Message-ID: <20240202024011.11341-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	Fri, 2 Feb 2024 02:45:40 GMT
+Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 1 Feb
+ 2024 18:45:38 -0800
+Message-ID: <a626846c-0b0c-4656-bf10-0fc187553aaf@quicinc.com>
+Date: Fri, 2 Feb 2024 10:45:38 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [kvalo-ath:pending 47/100]
+ drivers/net/wireless/ath/ath11k/mac.c:7949 ath11k_mac_fill_reg_tpc_info()
+ error: uninitialized symbol 'eirp_power'.
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <oe-kbuild-all@lists.linux.dev>, <ath10k@lists.infradead.org>,
+        kernel test
+ robot <lkp@intel.com>, <ath11k@lists.infradead.org>
+References: <202401311243.NyXwWZxP-lkp@intel.com> <87ttmtvfx4.fsf@kernel.org>
+ <a2fb59bb-6090-433f-9c3d-d35aaab93e70@quicinc.com>
+ <87zfwktaws.fsf@kernel.org>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <87zfwktaws.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: STSX0Rp9myUR-i7J5CeSil7NHcocYZNf
-X-Proofpoint-GUID: STSX0Rp9myUR-i7J5CeSil7NHcocYZNf
+X-Proofpoint-ORIG-GUID: ItZ-MkuCs1zMEHsVRJCi0tg0Yi7BC60u
+X-Proofpoint-GUID: ItZ-MkuCs1zMEHsVRJCi0tg0Yi7BC60u
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-02-01_10,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=2 malwarescore=0 spamscore=2
- impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- mlxlogscore=165 lowpriorityscore=0 mlxscore=2 suspectscore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402020016
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 impostorscore=0 bulkscore=0 suspectscore=0
+ priorityscore=1501 clxscore=1015 spamscore=0 phishscore=0 adultscore=0
+ mlxscore=0 mlxlogscore=790 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402020017
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240201_184026_292349_A93D2E5A 
-X-CRM114-Status: GOOD (  11.75  )
+X-CRM114-CacheID: sfid-20240201_184545_177054_00EAF5D3 
+X-CRM114-Status: GOOD (  11.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,49 +102,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, at the end of ath11k_mac_fill_reg_tpc_info(), the
-reg_tpc_info struct is populated, including the following:
-	reg_tpc_info->is_psd_power = is_psd_power;
-	reg_tpc_info->eirp_power = eirp_power;
 
-Kernel test robot complains on uninitialized symbol:
-drivers/net/wireless/ath/ath11k/mac.c:7949
-ath11k_mac_fill_reg_tpc_info() error: uninitialized symbol 'eirp_power'.
 
-This is because there are some code paths that never set eirp_power, so
-the assignment of reg_tpc_info->eirp_power can come from an
-uninitialized variable. Functionally this is OK since the eirp_power
-only has meaning when is_psd_power is true, and all code paths which set
-is_psd_power to true also set eirp_power. However, to keep the robot
-happy, always initialize eirp_power before use.
+On 2/2/2024 12:19 AM, Kalle Valo wrote:
+> Baochen Qiang <quic_bqiang@quicinc.com> writes:
+> 
+>> On 1/31/2024 8:35 PM, Kalle Valo wrote:
+>>> + ath11k list
+>>> kernel test robot <lkp@intel.com> writes:
+>>>
+>>>> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git pending
+>>>> head:   2c471f31297856be56f60ef29f2565dea1470800
+>>>> commit: 92425f788feede9bf152ecf3fb7a264942ee7719 [47/100] wifi:
+>>>> ath11k: fill parameters for vdev set tpc power WMI command
+>>>> config: i386-randconfig-141-20240129
+>>>> (https://download.01.org/0day-ci/archive/20240131/202401311243.NyXwWZxP-lkp@intel.com/config)
+>>>> compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+>>>>
+>>>> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+>>>> the same patch/commit), kindly add following tags
+>>>> | Reported-by: kernel test robot <lkp@intel.com>
+>>>> | Closes:
+>>>> | https://lore.kernel.org/oe-kbuild-all/202401311243.NyXwWZxP-lkp@intel.com/
+>>>>
+>>>> New smatch warnings:
+>>>> drivers/net/wireless/ath/ath11k/mac.c:7949
+>>>> ath11k_mac_fill_reg_tpc_info() error: uninitialized symbol
+>>>> 'eirp_power'.
+>>> Baochen, could you take a look at this new warning and if it's valid
+>>> send a fix for it, please?
+>>
+>> I sent the patch yesterday. search
+>> "wifi: ath11k: initialize eirp_power before use"
+> 
+> Great, thanks again Baochen. It's always a good practice to reply to
+> build bot mails, something like "This is a valid warning, I'll fix it"
+> is usually enough.
 
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+Got it Kalle, will do.
 
-Fixes: 92425f788fee ("wifi: ath11k: fill parameters for vdev set tpc power WMI command")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202401311243.NyXwWZxP-lkp@intel.com/
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index bbf4d1f4d310..310055843ee9 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7592,7 +7592,8 @@ void ath11k_mac_fill_reg_tpc_info(struct ath11k *ar,
- 	u8 pwr_lvl_idx, num_pwr_levels, pwr_reduction;
- 	bool is_psd_power = false, is_tpe_present = false;
- 	s8 max_tx_power[IEEE80211_MAX_NUM_PWR_LEVEL],
--		psd_power, tx_power, eirp_power;
-+		psd_power, tx_power;
-+	s8 eirp_power = 0;
- 	u16 start_freq, center_freq;
- 
- 	chan = ctx->def.chan;
-
-base-commit: d4d13947306ab3c98c84389d9397563b550b71b8
--- 
-2.25.1
-
+> 
 
