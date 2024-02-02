@@ -4,62 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3B79C4828F
-	for <ath11k@archiver.kernel.org>; Thu,  1 Feb 2024 16:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C7FAC4828D
+	for <ath11k@archiver.kernel.org>; Fri,  2 Feb 2024 02:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1vY8rGfIMjq9je2rE0Py30/zItWtbY5H3Tgqnk2+jHI=; b=mS0XVDeu1kxbvSLoDGZ+vXkm74
-	+9X6fjuAIhQJjo4Jas7/eWC3K3l5JbEynxvOdvnE6rwNk9u5iRyCXIj92/1TuudvEkaYv7G0FCGIs
-	vYjWkYcXEEO1cvxR1zk+iU2r5M6/sPlN2ELBC0xZlOIGCmVGdO7fJnYUin6nQCr5khtbJ094xg2Um
-	fOwsdybTROzZjNKY+6jA8oACWzGfS8NbfbBBc4tyOCpmQD8ezgoH/9Rjre5d2I8e3qv8k1RJUzxRA
-	idl5JMWnW7eRc0YMG6eZjOXex/I0NODGq/RhZOjhnM8cKNX0OnEHT2N2xE2SfCjAaa9OzOgawmNj6
-	WvbS4jEw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=ALH7s/KPki3oSi9AzApjxN2Bp7leFa3xByFm5jAbAxw=; b=3L1fWUZE917Oybw0j4L/DlTwJx
+	kTluhxe9rRqDRoIGiRPyrAD1j3QYM+Ll5MdN9glhkE6hC+5ERwHAg+wHsD7vaA7iK335XKTCaCbft
+	mKmpoqmAud3VgGF0wPJ4xB175MFoUL+lscSqQUeCEyn3P1IFXe7oNy0v/z9/wzTaQxmF38bgeCapk
+	fFDiozLgGO1fxnINp3hXy0wnnKklWH+Lo1swG/GeHfgh4k8xycj0i4bTmLf21ISM7NtBrG/W03WQt
+	AxzU2140jx2zPKkNTJmEFv3rhyH/sBMe3GjU9pqTrvBQQauSUVKzPSQ+8pWuWwJRnzNJr4lTmnK7i
+	4fiutdpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVZmf-00000008bqO-1Fqz;
-	Thu, 01 Feb 2024 16:19:25 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1rVjPf-00000009uT2-2fVy;
+	Fri, 02 Feb 2024 02:36:19 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVZmb-00000008bp6-1Ca4;
-	Thu, 01 Feb 2024 16:19:22 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 5BE32CE0E74;
-	Thu,  1 Feb 2024 16:19:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 760F4C433C7;
-	Thu,  1 Feb 2024 16:19:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706804358;
-	bh=pSQXkVGhSGtJOxhtkZViUKXNZZUqaeze9tefymigJbA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=exyFCQTl+lEujf2xl6+qQVAB/fItTO43EFuBTk3rBdhLadCVw+liyTtzHRs7VoOJf
-	 BQ1m3ISjqq/4i7TAC9lUa8VmaZ7dKfzbOOT/hYXL2Z22/O6ubtY5+SyMq981QOMNHM
-	 1ckfRXeEUYUMYYCh3NiUuAkW7+cV3PyWT2Rouzqg1aN0LY+MGRYlOoq4Xz0RF0k0M3
-	 KqpBYG1dpowlJhbezMVTZM3gi4yIrlLC0gYxTCwPLVJxx/F0bflFNFr9GnNOHGk6Bj
-	 SD65/iWn6HEqD38xhNSYwPsLpGM8up20GaTj08oV352+gC8S2wRouz7wUdX3ZqvXIM
-	 9eRHZqwk2af6g==
-From: Kalle Valo <kvalo@kernel.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <oe-kbuild-all@lists.linux.dev>,  <ath10k@lists.infradead.org>,  kernel
- test robot <lkp@intel.com>,  <ath11k@lists.infradead.org>
-Subject: Re: [kvalo-ath:pending 47/100]
- drivers/net/wireless/ath/ath11k/mac.c:7949 ath11k_mac_fill_reg_tpc_info()
- error: uninitialized symbol 'eirp_power'.
-References: <202401311243.NyXwWZxP-lkp@intel.com> <87ttmtvfx4.fsf@kernel.org>
-	<a2fb59bb-6090-433f-9c3d-d35aaab93e70@quicinc.com>
-Date: Thu, 01 Feb 2024 18:19:15 +0200
-In-Reply-To: <a2fb59bb-6090-433f-9c3d-d35aaab93e70@quicinc.com> (Baochen
-	Qiang's message of "Thu, 1 Feb 2024 12:31:22 +0800")
-Message-ID: <87zfwktaws.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	id 1rVjPc-00000009uSQ-3HTg
+	for ath11k@lists.infradead.org;
+	Fri, 02 Feb 2024 02:36:18 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4122IJB2027530;
+	Fri, 2 Feb 2024 02:36:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=ALH7s/K
+	Pki3oSi9AzApjxN2Bp7leFa3xByFm5jAbAxw=; b=m9DnQpUg86QJFUCRWaF1A7J
+	kpvzewCoOk3XL1ViUnysLato6zlFhSVB/kNCF6gLBf5etg46V40DFH2iX4E7SKOv
+	0m/XDSoC8ZqTYnoMXviOrhFVixblHJTH+xm6DOQEzakp7vR0VvsXBvk4iK74x9SF
+	XakB4t3BBJl8QJTGa9yctpjOLLAqXatbi32lZfsEyTS7k7Ejh6lyrXaJuGEZn7VJ
+	ATzj7UECWq9p8pyKj+oFmQHI6MjbJ+wjCf0OL1VZboQKmTCBTi8Ow9abjvXPtXVg
+	EhxxygWwfwt81A7R87kMFUQc2KVE8/nozu17PkCzVD63Cm8n8PQ6WCN9zW0UBEA=
+	=
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w0pu4g32c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 02 Feb 2024 02:36:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4122aEdE002431
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 2 Feb 2024 02:36:14 GMT
+Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 1 Feb 2024 18:36:12 -0800
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
+Subject: [PATCH] wifi: ath11k: initialize rx_mcs_80 and rx_mcs_160 before use
+Date: Fri, 2 Feb 2024 10:35:47 +0800
+Message-ID: <20240202023547.11141-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: AyjsI91anBgS2Z4B_6rNeInZbOz41g7v
+X-Proofpoint-ORIG-GUID: AyjsI91anBgS2Z4B_6rNeInZbOz41g7v
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-01_10,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 mlxscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
+ mlxlogscore=680 clxscore=1015 bulkscore=0 spamscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402020016
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240201_081921_522547_2D60D314 
-X-CRM114-Status: GOOD (  10.68  )
+X-CRM114-CacheID: sfid-20240201_183616_961913_55818776 
+X-CRM114-Status: GOOD (  12.98  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,42 +94,64 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> writes:
+Currently in ath11k_peer_assoc_h_he() rx_mcs_80 and rx_mcs_160
+are used to calculate max_nss, see
+	if (support_160)
+		max_nss = min(rx_mcs_80, rx_mcs_160);
+	else
+		max_nss = rx_mcs_80;
 
-> On 1/31/2024 8:35 PM, Kalle Valo wrote:
->> + ath11k list
->> kernel test robot <lkp@intel.com> writes:
->> 
->>> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git pending
->>> head:   2c471f31297856be56f60ef29f2565dea1470800
->>> commit: 92425f788feede9bf152ecf3fb7a264942ee7719 [47/100] wifi:
->>> ath11k: fill parameters for vdev set tpc power WMI command
->>> config: i386-randconfig-141-20240129
->>> (https://download.01.org/0day-ci/archive/20240131/202401311243.NyXwWZxP-lkp@intel.com/config)
->>> compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
->>>
->>> If you fix the issue in a separate patch/commit (i.e. not just a new version of
->>> the same patch/commit), kindly add following tags
->>> | Reported-by: kernel test robot <lkp@intel.com>
->>> | Closes:
->>> | https://lore.kernel.org/oe-kbuild-all/202401311243.NyXwWZxP-lkp@intel.com/
->>>
->>> New smatch warnings:
->>> drivers/net/wireless/ath/ath11k/mac.c:7949
->>> ath11k_mac_fill_reg_tpc_info() error: uninitialized symbol
->>> 'eirp_power'.
->> Baochen, could you take a look at this new warning and if it's valid
->> send a fix for it, please?
->
-> I sent the patch yesterday. search
-> "wifi: ath11k: initialize eirp_power before use"
+Kernel test robot complains on uninitialized symbols:
+drivers/net/wireless/ath/ath11k/mac.c:2321 ath11k_peer_assoc_h_he() error: uninitialized symbol 'rx_mcs_80'.
+drivers/net/wireless/ath/ath11k/mac.c:2321 ath11k_peer_assoc_h_he() error: uninitialized symbol 'rx_mcs_160'.
+drivers/net/wireless/ath/ath11k/mac.c:2323 ath11k_peer_assoc_h_he() error: uninitialized symbol 'rx_mcs_80'.
 
-Great, thanks again Baochen. It's always a good practice to reply to
-build bot mails, something like "This is a valid warning, I'll fix it"
-is usually enough.
+This is because there are some code paths that never set them, so
+the assignment of max_nss can come from uninitialized variables.
+This could result in some unknown issues since a wrong peer_nss
+might be passed to firmware.
 
+Change to initialize them to an invalid value at the beginning. This
+makes sense because even max_nss gets an invalid value, due to either
+or both of them being invalid, we can get an valid peer_nss with
+following guard:
+	arg->peer_nss = min(sta->deflink.rx_nss, max_nss)
+
+Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+
+Fixes: 3db26ecf7114 ("ath11k: calculate the correct NSS of peer for HE capabilities")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202401311243.NyXwWZxP-lkp@intel.com/
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index bbf4d1f4d310..299f4f3d7659 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2294,6 +2294,8 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 	mcs_160_map = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_160);
+ 	mcs_80_map = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_80);
+ 
++	/* Initialize rx_mcs_160 to 9 which is an invalid value */
++	rx_mcs_160 = 9;
+ 	if (support_160) {
+ 		for (i = 7; i >= 0; i--) {
+ 			u8 mcs_160 = (mcs_160_map >> (2 * i)) & 3;
+@@ -2305,6 +2307,8 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 		}
+ 	}
+ 
++	/* Initialize rx_mcs_80 to 9 which is an invalid value */
++	rx_mcs_80 = 9;
+ 	for (i = 7; i >= 0; i--) {
+ 		u8 mcs_80 = (mcs_80_map >> (2 * i)) & 3;
+ 
+
+base-commit: d4d13947306ab3c98c84389d9397563b550b71b8
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.25.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
