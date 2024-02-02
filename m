@@ -4,92 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21DA1C4828E
-	for <ath11k@archiver.kernel.org>; Fri,  2 Feb 2024 10:49:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E264C47DB3
+	for <ath11k@archiver.kernel.org>; Fri,  2 Feb 2024 11:29:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=r/vYhl3PQI50RWcwzVPq43BmiasixwPxSX7bPMzn85g=; b=yEzQRXGenqEDslcMBeobsU1i6j
-	TH5tzaMhOpRHpWdR2hCu8zD7lC7cbhZY7YEf5zW6Jhobf5GT/DFlbR1NkCV08r98iaODbe0kSIEfl
-	pw0M/tMFdUVUbPBdy41rdaOx3YlKvcSxHZCHTm45njkdXAXKm6pE2TJSTeqXEB2+PTJjqSf8T7BCL
-	rtoFS9MVuDzCzg5wh97ASJ5uM385OQKTit1e6IjqrspLcTp9lGhog9wPtChAPQeiT4JPllubId1Z1
-	S89FgUGQm8Nrj+SM9Waky+xn6/ApIDOn+gWe+/5haPGsOX4h8u3nGAwxh/WzGZe0T3gel8CcKRYuk
-	yqIkZvHw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=C9IOJzSuARY+kxR//B1+oqmeyqGna1ZBx2UtGPHtjGs=; b=HW9to9PB1JFSkU
+	lOs4CZoH0GySqhWrktoMuRYX7Os8VE0tOZzi0C7RoTqueRK9VwinIHoHPAH/DK6JPdy6nFS3gOgEV
+	KG4i9wqBF6A/y3+TXL33jwYKlfISW/HLMaIvtgl1K7BiS4FOc3jcXsEGnOYsAWGhO5ml7rTo3V/yW
+	kzc9FjmMpu2SU/sPQ3m/rcxOqekISMLbqZukg5t9z88d4coj6H+RJqpnBnHMbPjx+gzqF0kYO3h7e
+	iWnF/A7fCEv4eB2dg4ENptnW27IviVx3SBbbE5KXqtIqgO8Q0wL9O4OhO3ic1lwSQ+fsllrqbsOT8
+	hg9fU1uyIM3Iup4dsIQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVr6y-0000000BCWx-3Jco;
-	Fri, 02 Feb 2024 10:49:32 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rVrjS-0000000BII8-0ktm;
+	Fri, 02 Feb 2024 11:29:18 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rVr6v-0000000BCVr-3ZoS
+	id 1rVrjP-0000000BIHh-1CYG
 	for ath11k@lists.infradead.org;
-	Fri, 02 Feb 2024 10:49:31 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4128KCue020122;
-	Fri, 2 Feb 2024 10:49:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=r/vYhl3PQI50RWcwzVPq43BmiasixwPxSX7bPMzn85g=; b=C4
-	8MimFkG5Abofw3x3Bi8zINHWPAzBOjW/SrpzLL8+fO7HKIBnqicCgxcD5d7rnYoP
-	MGfvGsE9+MdWPEQ0cK+rsqDmHMQElSZ17t7W+P5CSoSoWMom6tMNwhfQ1KxWJOVl
-	2wNpscxqcppyOqBJhFLuYUAP9z7zROzE54j4Vg79uEM34Br6y5PjMlEZuzCJ4EGx
-	YrCyAdD4r3+5kKDHfiK+ECEhWmqsVwIW9TLPHoG7pxFxAmUJ4W+Z8GAUUU3Xguei
-	z4hXYJmzmPIoCguj+GKpzVvnAudN4IPq0kgAsySlQ1ioov2M/XG2FComRHHR74tw
-	paWxP2qcHvcgB9CBvo8w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w0ptw960j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 Feb 2024 10:49:24 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 412AnNJ6007090
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 2 Feb 2024 10:49:23 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 2 Feb
- 2024 02:49:22 -0800
-Message-ID: <34e80f19-8804-4505-b134-f099e087b53e@quicinc.com>
-Date: Fri, 2 Feb 2024 18:49:19 +0800
+	Fri, 02 Feb 2024 11:29:16 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1rVrjM-0002A8-EW; Fri, 02 Feb 2024 12:29:12 +0100
+Message-ID: <0c8e379b-91fa-4e02-8758-aeee01024c93@leemhuis.info>
+Date: Fri, 2 Feb 2024 12:29:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 2/8] bus: mhi: host: add new interfaces to handle
- MHI channels directly
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: Kalle Valo <kvalo@kernel.org>, <mhi@lists.linux.dev>,
-        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20231127162022.518834-1-kvalo@kernel.org>
- <20231127162022.518834-3-kvalo@kernel.org> <20240130181938.GB4218@thinkpad>
- <d002afe9-3c01-413c-82d2-353db0356802@quicinc.com>
- <20240201100040.GB17027@thinkpad>
- <07668be1-8366-43b5-83ca-bf66d0d8087b@quicinc.com>
- <20240202071011.GA2961@thinkpad>
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20240202071011.GA2961@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [regression] ath11k broken in v6.7
+Content-Language: en-US, de-DE
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <874jfjiolh.fsf@kernel.org> <87frytg7b8.fsf@kernel.org>
+ <878r4lg3t8.fsf@kernel.org> <87jzo13jmf.fsf@kernel.org>
+ <94150b26-bdd9-49c2-82a1-26ff46c9d32a@leemhuis.info>
+ <87fryp3he0.fsf@kernel.org>
+ <0253854a-e5f9-4316-bec3-61aaf3ebfd1a@leemhuis.info>
+ <871qa0xtk6.fsf@kernel.org>
+ <ccbb3aeb-daa1-49ba-b729-964bd97748bc@leemhuis.info>
+ <87r0hvta9a.fsf@kernel.org>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+In-Reply-To: <87r0hvta9a.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Mmzq7vdMjELr0zlhXlzEPAkV6tyKqmrK
-X-Proofpoint-GUID: Mmzq7vdMjELr0zlhXlzEPAkV6tyKqmrK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-02_04,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- malwarescore=0 mlxscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015
- mlxlogscore=740 adultscore=0 impostorscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402020078
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1706873355;fc0b0b0a;
+X-HE-SMSGID: 1rVrjM-0002A8-EW
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240202_024930_059183_DA93758D 
-X-CRM114-Status: GOOD (  32.58  )
+X-CRM114-CacheID: sfid-20240202_032915_505229_2C9E8972 
+X-CRM114-Status: GOOD (  11.81  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,285 +69,41 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 2/2/2024 3:10 PM, Manivannan Sadhasivam wrote:
-> On Fri, Feb 02, 2024 at 02:42:58PM +0800, Baochen Qiang wrote:
+On 02.02.24 11:45, Kalle Valo wrote:
+> Thorsten Leemhuis <regressions@leemhuis.info> writes:
+> 
+>>> So, in the new interface, how should I handle a situation that a
+>>> regression is first reported on the mailing list, added to regzbot and
+>>> later there's also a bug report opened for the issue?
 >>
->>
->> On 2/1/2024 6:00 PM, Manivannan Sadhasivam wrote:
->>> On Wed, Jan 31, 2024 at 03:39:26PM +0800, Baochen Qiang wrote:
->>>>
->>>>
->>>> On 1/31/2024 2:19 AM, Manivannan Sadhasivam wrote:
->>>>> On Mon, Nov 27, 2023 at 06:20:16PM +0200, Kalle Valo wrote:
->>>>>> From: Baochen Qiang <quic_bqiang@quicinc.com>
->>>>>>
->>>>>> When using mhi_power_down_no_destroy() MHI hosts need to unprepare MHI channels
->>>>>> by themselves.  Similarly, MHI stack will also not create new MHI device since
->>>>>> old devices were not destroyed, so MHI hosts need to prepare channels as well.
->>>>>> Hence add these two interfaces to make that possible.
->>>>>>
->>>>>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
->>>>>>
->>>>>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
->>>>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->>>>>> ---
->>>>>>     drivers/bus/mhi/host/main.c | 107 ++++++++++++++++++++++++++++++++++++
->>>>>>     include/linux/mhi.h         |  20 ++++++-
->>>>>>     2 files changed, 126 insertions(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/drivers/bus/mhi/host/main.c b/drivers/bus/mhi/host/main.c
->>>>>> index d80975f4bba8..3f677fc628ad 100644
->>>>>> --- a/drivers/bus/mhi/host/main.c
->>>>>> +++ b/drivers/bus/mhi/host/main.c
->>>>>> @@ -1669,6 +1669,58 @@ int mhi_prepare_for_transfer_autoqueue(struct mhi_device *mhi_dev)
->>>>>>     }
->>>>>>     EXPORT_SYMBOL_GPL(mhi_prepare_for_transfer_autoqueue);
->>>>>> +static int ____mhi_prepare_for_transfer(struct device *dev, void *data)
->>>>>
->>>>> "__mhi_prepare_all_for_transfer"
->>>>
->>>> This is to prepare one single child device, I don't think a name like
->>>> __mhi_prepare_all_for_transfer (with 'all' inside) make sense, right?
->>>> How about changing to "mhi_prepare_dev_for_transfer" or
->>>> "mhi_prepare_single_for_transfer"?
->>>>
->>>
->>> I think most of the checks in this function can be moved inside
->>> mhi_prepare_for_transfer() API. With that you can just reuse the API without
->>> adding a new helper.
->>>
->>> For autoqueue channels, you can add another API
->>> mhi_prepare_all_for_transfer_autoqueue() just like
->>> mhi_prepare_for_transfer_autoqueue() to maintain uniformity.
->>>
->>> - Mani
->> If we do that, we need to call two APIs together, does it make sense? From
->> the view of an MHI user, what we want is an API to prepare all channels, no
->> matter whether a channel is configured as autoqueue or non-autoqueue, we
->> don't care about it.
->>
+>> You will have to options: reply to the first report with a "#regzbot
+>> duplicate https://bugzilla.kernel.org/show_bug.cgi?id=325423423423542"
+>> or add a comment to the bugzilla ticket pointing to a report already
+>> tracked by regzbot, e.g. "#regzbot duplicate
+>> https://lore.kernel.org/not_relevant/msgid-423423423423423423/"
 > 
-> You are calling this API from a wrong place first up.
-> mhi_{prepare/unprepare}_transfer* APIs are meant to be used by the client
-> drivers like QRTR. Controller drivers should not call them.
-> 
-> What you need here is the hibernation support for QRTR itself and call these
-> APIs from there.
+> Oh, regzbot also follows bugzilla comments? Didn't know that, very nice.
 
-OK, I got your point. QRTR is the right place to manage MHI channels, 
-not ath11k it self.
-And we even don't need these two APIs if change to do it in QRTR.
+Right not it only notices them. Commands in comments are not supported
+yet, but will be once the partial rewrite lands.
 
+> One more question, I promise it's the last one :) When using the Closes
+> tag in patches does it matter which URL is used, either the original or
+> the duplicate? For example, do these both tags close the issue:
 > 
->> And besides, I don't think there is a scenario where we need to use them
->> separately. So if we always need to use them together, why not merge them in
->> a single API?
->>
-> 
-> A single controller driver may expose multiple channels and those will bind to
-> multiple client drivers. So only the client drivers should manage the channels,
-> not the controller drivers themselves.
-Exactly.
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=325423423423542
+> Closes: https://lore.kernel.org/not_relevant/msgid-423423423423423423/
 
-Great thanks for the proposal, Mani. Will change accordingly in next 
-version.
+Yes, you can use either or both of them together to make regzbot close a
+issue and it's duplicates. But to make Linus happy I guess he'd prefer
+to have both links in there, if those are reports from different people
+that contain background information that might sooner or later be handy
+to have at hand.
 
-> 
-> - Mani
-> 
->>>
->>>>>
->>>>>> +{
->>>>>> +	struct mhi_device *mhi_dev;
->>>>>> +	struct mhi_chan *ul_chan, *dl_chan;
->>>>>> +	enum mhi_ee_type ee = MHI_EE_MAX;
->>>>>
->>>>> Reverse Xmas order, please.
->>>>>
->>>>>> +
->>>>>> +	if (dev->bus != &mhi_bus_type)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	mhi_dev = to_mhi_device(dev);
->>>>>> +
->>>>>> +	/* Only prepare virtual devices that are attached to bus */
->>>>>
->>>>> "Only prepare virtual devices for the channels". Here and below.
->>>>>
->>>>>> +	if (mhi_dev->dev_type == MHI_DEVICE_CONTROLLER)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	/* There are cases where there is no MHI client driver matches
->>>>>> +	 * this device, we are not allowed to do prepare for it.
->>>>>> +	 */
->>>>>
->>>>> Use the preferred style for comment:
->>>>>
->>>>> 	/*
->>>>> 	 * ...
->>>>> 	 */
->>>>>
->>>>>> +	if (!mhi_dev->id)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	ul_chan = mhi_dev->ul_chan;
->>>>>> +	dl_chan = mhi_dev->dl_chan;
->>>>>> +
->>>>>> +	/*
->>>>>> +	 * If execution environment is specified, remove only those devices that
->>>>>> +	 * started in them based on ee_mask for the channels as we move on to a
->>>>>> +	 * different execution environment
->>>>>> +	 */
->>>>>> +	if (data)
->>>>>> +		ee = *(enum mhi_ee_type *)data;
->>>>>> +
->>>>>> +	if (ul_chan && ee != MHI_EE_MAX && !(ul_chan->ee_mask & BIT(ee)))
->>>>>> +		return 0;
->>>>>> +
->>>>>> +
->>>>>
->>>>> Remove extra newline.
->>>>>
->>>>>> +	if (dl_chan && ee != MHI_EE_MAX && !(dl_chan->ee_mask & BIT(ee)))
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	if (dl_chan->pre_alloc)
->>>>>> +		return mhi_prepare_for_transfer_autoqueue(mhi_dev);
->>>>>> +	else
->>>>>> +		return mhi_prepare_for_transfer(mhi_dev);
->>>>>> +}
->>>>>> +
->>>>>> +int mhi_prepare_all_for_transfer(struct mhi_controller *mhi_cntrl)
->>>>>> +{
->>>>>> +	return device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL,
->>>>>> +				     ____mhi_prepare_for_transfer);
->>>>>> +}
->>>>>> +EXPORT_SYMBOL_GPL(mhi_prepare_all_for_transfer);
->>>>>> +
->>>>>>     void mhi_unprepare_from_transfer(struct mhi_device *mhi_dev)
->>>>>>     {
->>>>>>     	struct mhi_controller *mhi_cntrl = mhi_dev->mhi_cntrl;
->>>>>> @@ -1684,3 +1736,58 @@ void mhi_unprepare_from_transfer(struct mhi_device *mhi_dev)
->>>>>>     	}
->>>>>>     }
->>>>>>     EXPORT_SYMBOL_GPL(mhi_unprepare_from_transfer);
->>>>>> +
->>>>>> +static int ____mhi_unprepare_from_transfer(struct device *dev, void *data)
->>>>>
->>>>> __mhi_unprepare_all_from_transfer
->>>>
->>>> same as above.
->>>>
->>>>>
->>>>>> +{
->>>>>> +	struct mhi_device *mhi_dev;
->>>>>> +	struct mhi_chan *ul_chan, *dl_chan;
->>>>>> +	enum mhi_ee_type ee = MHI_EE_MAX;
->>>>>> +
->>>>>> +	if (dev->bus != &mhi_bus_type)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	mhi_dev = to_mhi_device(dev);
->>>>>> +
->>>>>> +	/* Only unprepare virtual devices that are attached to bus */
->>>>>> +	if (mhi_dev->dev_type == MHI_DEVICE_CONTROLLER)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	/* There are cases where there is no MHI client driver matches
->>>>>> +	 * this device, so it is not probed or prepared, no need to
->>>>>> +	 * do unprepare for it.
->>>>>> +	 */
->>>>>> +	if (!mhi_dev->id)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	ul_chan = mhi_dev->ul_chan;
->>>>>> +	dl_chan = mhi_dev->dl_chan;
->>>>>> +
->>>>>> +	/*
->>>>>> +	 * If execution environment is specified, remove only those devices that
->>>>>> +	 * started in them based on ee_mask for the channels as we move on to a
->>>>>> +	 * different execution environment
->>>>>> +	 */
->>>>>> +	if (data)
->>>>>> +		ee = *(enum mhi_ee_type *)data;
->>>>>> +
->>>>>> +	if (ul_chan) {
->>>>>> +		if (ee != MHI_EE_MAX && !(ul_chan->ee_mask & BIT(ee)))
->>>>>> +			return 0;
->>>>>> +	}
->>>>>> +
->>>>>> +	if (dl_chan) {
->>>>>> +		if (ee != MHI_EE_MAX && !(dl_chan->ee_mask & BIT(ee)))
->>>>>> +			return 0;
->>>>>> +	}
->>>>>> +
->>>>>> +	mhi_unprepare_from_transfer(mhi_dev);
->>>>>> +
->>>>>> +	return 0;
->>>>>> +}
->>>>>> +
->>>>>> +int mhi_unprepare_all_from_transfer(struct mhi_controller *mhi_cntrl)
->>>>>> +{
->>>>>> +	return device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL,
->>>>>> +				     ____mhi_unprepare_from_transfer);
->>>>>> +}
->>>>>> +EXPORT_SYMBOL_GPL(mhi_unprepare_all_from_transfer);
->>>>>> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
->>>>>> index ae092bc8b97e..dcf62a57056a 100644
->>>>>> --- a/include/linux/mhi.h
->>>>>> +++ b/include/linux/mhi.h
->>>>>> @@ -668,7 +668,7 @@ static inline void mhi_power_down(struct mhi_controller *mhi_cntrl, bool gracefu
->>>>>>      * destroy struct devices. This is a variant for mhi_power_down() and is a
->>>>>>      * workaround to make it possible to use mhi_power_up() in a resume
->>>>>>      * handler. When using this variant the caller must also call
->>>>>> - * mhi_prepare_all_for_transfer_autoqueue() and
->>>>>> + * mhi_prepare_all_for_transfer() and
->>>>>
->>>>> This change belongs to previous patch.
->>>>>
->>>>>>      * mhi_unprepare_all_from_transfer().
->>>>>>      *
->>>>>>      * @mhi_cntrl: MHI controller
->>>>>> @@ -842,4 +842,22 @@ int mhi_queue_skb(struct mhi_device *mhi_dev, enum dma_data_direction dir,
->>>>>>      */
->>>>>>     bool mhi_queue_is_full(struct mhi_device *mhi_dev, enum dma_data_direction dir);
->>>>>> +/**
->>>>>> + * mhi_prepare_all_for_transfer - if you are using
->>>>>> + * mhi_power_down_no_destroy() variant this needs to be called after
->>>>>> + * calling mhi_power_up().
->>>>>
->>>>> Add info about what this API does also.
->>>>>
->>>>>> + *
->>>>>> + * @mhi_cntrl: MHI controller
->>>>>> + */
->>>>>> +int mhi_prepare_all_for_transfer(struct mhi_controller *mhi_cntrl);
->>>>>> +
->>>>>> +/**
->>>>>> + * mhi_unprepare_all_from_transfer - if you are using
->>>>>> + * mhi_power_down_no_destroy() variant this function needs to be called
->>>>>> + * before calling mhi_power_down_no_destroy().
->>>>>
->>>>> Same as above.
->>>>>
->>>>> - Mani
->>>>>
->>>>>> + *
->>>>>> + * @mhi_cntrl: MHI controller
->>>>>> + */
->>>>>> +int mhi_unprepare_all_from_transfer(struct mhi_controller *mhi_cntrl);
->>>>>> +
->>>>>>     #endif /* _MHI_H_ */
->>>>>> -- 
->>>>>> 2.39.2
->>>>>>
->>>>>>
->>>>>
->>>
-> 
+Ciao, Thosten
+
 
