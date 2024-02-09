@@ -4,88 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24A6EC48260
-	for <ath11k@archiver.kernel.org>; Fri,  9 Feb 2024 00:01:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCBE3C4829B
+	for <ath11k@archiver.kernel.org>; Fri,  9 Feb 2024 11:35:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DjHnlFwhfRg/+W+t0IhdhVIPwPmCY9RO9f2DiYCS50s=; b=MQeZK5MBClwsv+H+nPk+tbwmN5
-	qGWpbdpjEj3TzVakaq33x/mRAuR+o3bwnUo+j8C7qZ4J73Ax7BqQsaGK67AHov8bSyNk9tuzuW98a
-	ebw/CvgaLCF+GGUyhR3FWGTOmE1xO04qSABfEUaRw3LfU+ksGwM6aqOFNevXhOmee/CSTBdmj3BrF
-	u+gWcRRTTtgaHr0TluJxZz513UWXvelOHEppvQhLT+WbOOzdIgaJwq7pDZjtaG/GcZ1Z6CkDwXNz+
-	oXG4jdpr9s+XYThF1CQywP4d7Q+bG6xZtm58VniWFEEluLPCIvIBpLlm28s0HB++r4Rf0+kKKuXHl
-	XniBgngQ==;
+	bh=rtlqHllwjFZl2786B/ZnNk68ctdlZdYfKUj7z5b/g7E=; b=e1+WgJZ7oZHmzQHQB8Ltkac8yY
+	0LTlBjOgNY1MpHSEuIZfYiNm2UR5skfEd7hTrJ+YZPbqLUCrST3XGkTWNdSQbk/XWLP6qeDh1pPHu
+	EzFtR0DLbhCoaBToJYFLN3oPkFqL8kR+IU1uPOOd88IsRvAh2Ze/i/bggHAS3yw/yQqOQckH1m0T8
+	FPI2pgp3tUGuJ5GNr/OBydYoTd60WUSmotqD+koxKmXaYiedvn9+s6dZi4heF76l2/ydz7BNVmYyK
+	kn1NUXktav6phHb5x5RnCh3xvwjEbcf80vPDv4i+9GI+UEMilXZsCAfIEJ0Ye91jKiSHMRC8QKCPX
+	6dPCIRMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rYEKR-0000000FcLH-2iut;
-	Fri, 09 Feb 2024 00:01:15 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rYPAW-0000000GsQZ-0Lmo;
+	Fri, 09 Feb 2024 11:35:44 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rYEKO-0000000FcKO-2waa
+	id 1rYPAT-0000000GsPM-0564
 	for ath11k@lists.infradead.org;
-	Fri, 09 Feb 2024 00:01:14 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 418Mhkqu026726;
-	Fri, 9 Feb 2024 00:01:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=DjHnlFwhfRg/+W+t0IhdhVIPwPmCY9RO9f2DiYCS50s=; b=ih
-	Ov7bOdI3d7CU5uYA1wsOaGX104z03vy7oc7KAhEcb7D190ZqwhcDHt6zJ29nzP0C
-	/6U8YvCzXSLbUiLDYpXO7vwjQwZaN/88Ck4F9hFthOvSTrGlJWB0yQzJ6WeWZ07g
-	XFKm+7GFWVK0rA59uR0VwxcWocx+cx18fuHZ4FdADYbZuLCD/behiuAd+GErnDeZ
-	OmBFPPnG82kroGEvxXX24d7fWC0icEAK36VxmIDoi6XENMudn1jk1IB2Ov9taSmp
-	nyRViNKqBNceu8XrkBeTZFdt1lCyOVYqg5coISNr03vdjQni09OPiUND1mWMslxk
-	uzkTrtvJ66YE8iv8XgpA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4pavjv7u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 09 Feb 2024 00:01:04 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 419013Lb025433
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 9 Feb 2024 00:01:03 GMT
-Received: from [10.110.97.178] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 8 Feb
- 2024 16:01:02 -0800
-Message-ID: <e8ecb4cb-bc84-4fe0-915a-cf6d7f1e241f@quicinc.com>
-Date: Thu, 8 Feb 2024 16:01:01 -0800
+	Fri, 09 Feb 2024 11:35:42 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4106cf2e9e2so3625625e9.3
+        for <ath11k@lists.infradead.org>; Fri, 09 Feb 2024 03:35:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707478538; x=1708083338; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rtlqHllwjFZl2786B/ZnNk68ctdlZdYfKUj7z5b/g7E=;
+        b=LDX/d/tfNWomgU8RRPGrdOGouQtriCVm098DZOHWnecczQOikJnsR1m8m3F51LV2A0
+         Kum0z6RUYRUP5ClmP+RDozxO0U5iRgZwX+qlv97ZUd3hPyngAlMrxadiPQ8fM9bSfMPc
+         khQ5X5ENHWTRQlrLDK330sq0d7pEk11m8ZF9H9Tv9Zc+w6ORuniAni3FCJKGG9QY53za
+         vK9aPeZBP/W1DjBUqpjHlhCCtP/GDWD4GS7drMvcRySSQjlns3iqXmij2sSmad/Df5Tb
+         bduwmiVzgM892/MKfvJ6EKjGNm6vwDwWOm9MLRdFCbwZtVuVfjYfI/O+f7ku88/Y3Vzw
+         vikQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707478538; x=1708083338;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rtlqHllwjFZl2786B/ZnNk68ctdlZdYfKUj7z5b/g7E=;
+        b=LRzdJGMzzUCBCgswZpi9oPfDpoJ0lXeBnY7cVxGMp6id0nlG5yrZX0achsBuLVlYaB
+         CV9VyRLVmRPmYukBiqSghEkumred8MhbHltGxIpRrC8rAGI2iHKaC7A/31eWIazQkAFv
+         i35/Q0KlEQ8Im41OFVFOzr5KDkiFvJ3MyzcT89eTPFQItKBTAJGkbBjibJqWmBFB5GzQ
+         5P5lLS0ZO8IFUs/s710s4ikLoyKOE7iYeKe7HFV77IYFxKMwef6jfi9sl3M7wM0i8luj
+         bcRLjBF5PZgPS6zVLYHY8mO+wwCCxqt+ymnsQszr40kL8rqqmSnZ9iRaqvq87IZY0pks
+         iQSQ==
+X-Gm-Message-State: AOJu0YwO4yGlH3j08BYN2CEuJCHD3Tk7GpOWw7EB2umnR6dE9G4sX4lb
+	samPVLgCOd7PxGlGYntOmlaNg4v1wnwln+WgHsT2K2Je5YuzgME9QOg/LCNk
+X-Google-Smtp-Source: AGHT+IHA4KQZAMJuYwS55zu/hXNFYZN3e63pc3he17mm07yp14L6PPs7xrz3EhPSfP9uVJBH4AFn2Q==
+X-Received: by 2002:a05:600c:468e:b0:410:1d09:701f with SMTP id p14-20020a05600c468e00b004101d09701fmr856436wmo.14.1707478538264;
+        Fri, 09 Feb 2024 03:35:38 -0800 (PST)
+Received: from syracuse.iliad.local (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id y18-20020a1c4b12000000b00410723b14e4sm346251wma.19.2024.02.09.03.35.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Feb 2024 03:35:37 -0800 (PST)
+From: Nicolas Escande <nico.escande@gmail.com>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH v2 2/2] wifi: ath11k: Remove scan_flags union from struct scan_req_params
+Date: Fri,  9 Feb 2024 12:35:36 +0100
+Message-ID: <20240209113536.266822-3-nico.escande@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240209113536.266822-1-nico.escande@gmail.com>
+References: <20240209113536.266822-1-nico.escande@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH wireless] wifi: mac80211: remove gfp parameter from
- ieee80211_obss_color_collision_notify signature
-Content-Language: en-US
-To: Lorenzo Bianconi <lorenzo@kernel.org>, <linux-wireless@vger.kernel.org>
-CC: <dan.carpenter@linaro.org>, <ath11k@lists.infradead.org>,
-        <johannes@sipsolutions.net>, <lorenzo.bianconi@redhat.com>,
-        <kvalo@kernel.org>
-References: <f91e1c78896408ac556586ba8c99e4e389aeba02.1707389901.git.lorenzo@kernel.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <f91e1c78896408ac556586ba8c99e4e389aeba02.1707389901.git.lorenzo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: GCoj5rKq2pAFuEpS7cT3sOUEQi1il6_L
-X-Proofpoint-GUID: GCoj5rKq2pAFuEpS7cT3sOUEQi1il6_L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-08_12,2024-02-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 malwarescore=0
- mlxlogscore=712 phishscore=0 bulkscore=0 adultscore=0 clxscore=1011
- suspectscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2401310000 definitions=main-2402080137
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240208_160112_890364_4E455EAB 
-X-CRM114-Status: UNSURE (   5.62  )
+X-CRM114-CacheID: sfid-20240209_033541_086561_2655E5A1 
+X-CRM114-Status: UNSURE (   9.14  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,13 +91,86 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2/8/2024 3:01 AM, Lorenzo Bianconi wrote:
-> Get rid of gfp parameter from ieee80211_obss_color_collision_notify
-> signature since it is no longer used.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Now that we do not use scan_flags directly with WMI_SCAN_XXX macros anymore but
+only the bitfield scan_f_xxx, lets remove the scan_flags & the underlying union.
 
+This will prevent further problems as some entries in the scan_f_xxx bitfield
+don't match their corresponding WMI_SCAN_XXX flags as seen in [1]
+
+[1] https://lore.kernel.org/all/20231127180559.1696041-1-nico.escande@gmail.com/
+
+Signed-off-by: Nicolas Escande <nico.escande@gmail.com>
+---
+ drivers/net/wireless/ath/ath11k/wmi.h | 55 ++++++++++++---------------
+ 1 file changed, 25 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 6dcd14700570..bc7adf7f13fb 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -3394,36 +3394,31 @@ struct scan_req_params {
+ 	u32 idle_time;
+ 	u32 max_scan_time;
+ 	u32 probe_delay;
+-	union {
+-		struct {
+-			u32 scan_f_passive:1,
+-			    scan_f_bcast_probe:1,
+-			    scan_f_cck_rates:1,
+-			    scan_f_ofdm_rates:1,
+-			    scan_f_chan_stat_evnt:1,
+-			    scan_f_filter_prb_req:1,
+-			    scan_f_bypass_dfs_chn:1,
+-			    scan_f_continue_on_err:1,
+-			    scan_f_offchan_mgmt_tx:1,
+-			    scan_f_offchan_data_tx:1,
+-			    scan_f_promisc_mode:1,
+-			    scan_f_capture_phy_err:1,
+-			    scan_f_strict_passive_pch:1,
+-			    scan_f_half_rate:1,
+-			    scan_f_quarter_rate:1,
+-			    scan_f_force_active_dfs_chn:1,
+-			    scan_f_add_tpc_ie_in_probe:1,
+-			    scan_f_add_ds_ie_in_probe:1,
+-			    scan_f_add_spoofed_mac_in_probe:1,
+-			    scan_f_add_rand_seq_in_probe:1,
+-			    scan_f_en_ie_whitelist_in_probe:1,
+-			    scan_f_forced:1,
+-			    scan_f_2ghz:1,
+-			    scan_f_5ghz:1,
+-			    scan_f_80mhz:1;
+-		};
+-		u32 scan_flags;
+-	};
++	u32 scan_f_passive:1,
++	    scan_f_bcast_probe:1,
++	    scan_f_cck_rates:1,
++	    scan_f_ofdm_rates:1,
++	    scan_f_chan_stat_evnt:1,
++	    scan_f_filter_prb_req:1,
++	    scan_f_bypass_dfs_chn:1,
++	    scan_f_continue_on_err:1,
++	    scan_f_offchan_mgmt_tx:1,
++	    scan_f_offchan_data_tx:1,
++	    scan_f_promisc_mode:1,
++	    scan_f_capture_phy_err:1,
++	    scan_f_strict_passive_pch:1,
++	    scan_f_half_rate:1,
++	    scan_f_quarter_rate:1,
++	    scan_f_force_active_dfs_chn:1,
++	    scan_f_add_tpc_ie_in_probe:1,
++	    scan_f_add_ds_ie_in_probe:1,
++	    scan_f_add_spoofed_mac_in_probe:1,
++	    scan_f_add_rand_seq_in_probe:1,
++	    scan_f_en_ie_whitelist_in_probe:1,
++	    scan_f_forced:1,
++	    scan_f_2ghz:1,
++	    scan_f_5ghz:1,
++	    scan_f_80mhz:1;
+ 	enum scan_dwelltime_adaptive_mode adaptive_dwell_time_mode;
+ 	u32 burst_duration;
+ 	u32 num_chan;
+-- 
+2.43.0
 
 
