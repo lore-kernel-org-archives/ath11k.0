@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1BB1C48297
-	for <ath11k@archiver.kernel.org>; Mon, 12 Feb 2024 12:55:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FCABC48260
+	for <ath11k@archiver.kernel.org>; Tue, 13 Feb 2024 16:17:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=BVdXI0ZB4vehiyivEttDZJn3E2Jxr6cD7AWAF2Ejtok=; b=nrmLEMrSgl3JDX4G2z9mpUF/Nc
-	R3wNjWenKhwDvj0SDVUKlbAeHJ6PoXwHwL5RcF/aggAoemprJPYI1+6tDrYF624tN/uGj0lU3Giio
-	3aZfW/FUbR768bprnZbIRs2JzYkGAl4Mf366Uphd46U/hfmZB3YSlPmXekS4zjQVe4HGtkoX4aBKs
-	TTsUhyHe9T7ON1/Yd/hzJws5+bd9YSJ/ClESfhHWPLeJuFvGNj18tp+1Ab5VNJO7c6mgxvx3w4XQ9
-	XxlzGp93eW16qmLJwyAq7RWhPegcjm7eiRp9dV9UvanyJcopziV29MuS0f2I+Iaih3W2YVchMu05F
-	Bmi0e65g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=UDIAilYB59+yQVyo2XKtPqnznr0hKBQ9kFSAsXlOHxk=; b=elu/Bgs8DwCxGXwJwuBFmdwpF7
+	XRzXlKmOQPuAfXiLanJ7O1Hcd9Tp9RbNfJFz1fhAZVUldP5i/eb2zxEFqJzXD+vVjtShRs/fKQxU2
+	bhKX2U8Jk0qXqz828hlNzjQji08RrdsdPp9cjbeA/Jx5BkhayRuZzFlxL+7Kpeyvo8r0UUw4+6p6z
+	vAhQYfI4LBMHLC41ziaeumbytNb6EpGhrmgNKgyWHxeZxT17JuNlB9VEqzQL8vUxeHgzmodxL5tt+
+	z/5pMlLoMA5MxN3QUqUYwuj24vxkQMcXfOdNygDBSCvAeAiYbF+Cj5UbbbNSU89Ywf92kZMCPP7Ba
+	Bu1mvY8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZVqL-00000005Ktc-2CCF;
-	Mon, 12 Feb 2024 12:55:29 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1rZvT8-00000009vFA-0ahj;
+	Tue, 13 Feb 2024 16:17:14 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZVqI-00000005KsW-1xBG
+	id 1rZvSz-00000009vCF-14vV
 	for ath11k@lists.infradead.org;
-	Mon, 12 Feb 2024 12:55:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=BVdXI0ZB4vehiyivEttDZJn3E2Jxr6cD7AWAF2Ejtok=;
-	t=1707742524; x=1708952124; b=udrqircivar7W1pqNL10IQDh64bvZElbWET7B1a15AbWbPv
-	0zF2KmPJ533mHPI2xzQ9IibE7FBnwgEJdZJe8d0lTyjEscxoktJlsW+t5b7pgAu+xxp70lRqXRuch
-	ytGPK5jDvLe/ypdeucORpqOc8FOqu9hG6SxNKSiO7jfwm5wSz3VS06Q9L0NZQOAe1XVCEJDMN+lGs
-	uu43qSR5m3PnZDrzicjISLMBoAn8NVm3gs49qKtylVU/lqo5Q6X1BTafgjfybTjxTffKMDB4ox5Go
-	g7VhB5CV4fI7/X7NlOnccMF2bSyik7mT97YypanKBO2uRd1+fexMaVWOLzTts/eg==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.97)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1rZVqC-000000066Hd-0w52;
-	Mon, 12 Feb 2024 13:55:20 +0100
-Message-ID: <c6192c28d7d30198b8b53f89a06c0c37d4ab9d0e.camel@sipsolutions.net>
-Subject: Re: [PATCH 0/2] wifi: cfg80211/ath12k: Add support to rx retry stats
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Hari Chandrakanthan <quic_haric@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Date: Mon, 12 Feb 2024 13:55:19 +0100
-In-Reply-To: <20240212121616.3683197-1-quic_haric@quicinc.com>
-References: <20240212121616.3683197-1-quic_haric@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+	Tue, 13 Feb 2024 16:17:13 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 442836156A;
+	Tue, 13 Feb 2024 16:17:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D32CC433F1;
+	Tue, 13 Feb 2024 16:17:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707841024;
+	bh=U1hlxuuGM31EsFxR96p8z5hGYfThQsiQscHYRLeJkRM=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=fBDiVsLPvXkglEu72avpNr59iWLOAb3NhQ2REWCeQGlyJdrfLppRy+PqYS3GMSrVL
+	 QTN4ULOuXcNhfC4qwTw0x6EvGkr45sTcreQ+fUBbUqypEaASXKeCsBAVphqXMplhmz
+	 3MXoopb2hJVPvWA9BRaaa7wIeWUkIHwWowvEhEqzqG3nXE6WJUGfeKJ2ccA6hhC0TW
+	 e+ZptPHuo/ob9iMi5E7uZE9YcCexyMZ5UgY5+sPOKdzyDFWkYOgTla2mv5xG/QQMe7
+	 /hilfIMXPbC2YZXRoUAWsmZTTBE+lnTGzqkDKN2YPVxj3it5RobKwmpsX056ye9rVj
+	 rttm8MJutH3cQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] wifi: ath11k: supports 2 station interfaces
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230714023801.2621802-2-quic_cjhuang@quicinc.com>
+References: <20230714023801.2621802-2-quic_cjhuang@quicinc.com>
+To: Carl Huang <quic_cjhuang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_cjhuang@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <170784102087.3076911.1922636810071020971.kvalo@kernel.org>
+Date: Tue, 13 Feb 2024 16:17:02 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240212_045526_529816_D6926B6F 
-X-CRM114-Status: UNSURE (   7.07  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240213_081705_527619_EF7C6007 
+X-CRM114-Status: GOOD (  10.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,21 +72,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2024-02-12 at 17:46 +0530, Hari Chandrakanthan wrote:
-> This patch series adds support to count station level rx retries.
->=20
-> wifi: cfg80211: Add support to rx retry stats
-> wifi: ath12k: Add support to rx retry stats
->=20
-> Tested-on: QCN9274 hw1.0 PCI WLAN.WBE.1.2.1-00148-QCAHKSWPL_SILICONZ-1
->=20
-> Hari Chandrakanthan (2):
->   wifi: cfg80211: Add support to rx retry stats
->   wifi: ath12k: Add support to rx retry stats
+Carl Huang <quic_cjhuang@quicinc.com> wrote:
 
-There's trivial work here to expose them from mac80211, so please do
-that. Also not entirely sure then why you need it in ath12k, but perhaps
-if it's already done header conversion?
+> Add hardware parameter support_dual_stations to indicate
+> whether 2 station interfaces are supported. For chips which
+> support this feature, limit total number of AP interface and
+> mesh point to 1. The max interfaces are 3 for such chips.
+> 
+> The chips affected are:
+> 
+>  QCA6390 hw2.0
+>  WCN6855 hw2.0
+>  WCN6855 hw2.1
+> 
+> Other chips are not affected.
 
-johannes
+Sorry for delay. I have now added this to the pending branch, there was some
+simply conflict which 'git am -3' was able to fix on it's own:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=43b8e99e19e8126e113eb9141621cf7e4b32d4f0
+
+> For affected chips, remove radar_detect_widths because now
+> num_different_channels is set to 2. radar_detect_widths can
+> be set only when num_different_channels is 1. See mac80211
+> function wiphy_verify_combinations for details.
+
+So removing radar_detect_widths means that DFS will not be supported on the
+affect chips, right? I think I should add that to the commit message.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20230714023801.2621802-2-quic_cjhuang@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
