@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FCABC48260
-	for <ath11k@archiver.kernel.org>; Tue, 13 Feb 2024 16:17:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29831C48BEB
+	for <ath11k@archiver.kernel.org>; Wed, 14 Feb 2024 08:16:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
 	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=UDIAilYB59+yQVyo2XKtPqnznr0hKBQ9kFSAsXlOHxk=; b=elu/Bgs8DwCxGXwJwuBFmdwpF7
-	XRzXlKmOQPuAfXiLanJ7O1Hcd9Tp9RbNfJFz1fhAZVUldP5i/eb2zxEFqJzXD+vVjtShRs/fKQxU2
-	bhKX2U8Jk0qXqz828hlNzjQji08RrdsdPp9cjbeA/Jx5BkhayRuZzFlxL+7Kpeyvo8r0UUw4+6p6z
-	vAhQYfI4LBMHLC41ziaeumbytNb6EpGhrmgNKgyWHxeZxT17JuNlB9VEqzQL8vUxeHgzmodxL5tt+
-	z/5pMlLoMA5MxN3QUqUYwuj24vxkQMcXfOdNygDBSCvAeAiYbF+Cj5UbbbNSU89Ywf92kZMCPP7Ba
-	Bu1mvY8g==;
+	bh=dE+FoD/DpULRJbQ66+ibJ5p8wSSDaHa8OQCd6oggK5E=; b=zGs/VdLxvJx0PtyUMdleQpSUuD
+	lJvF72NgBxkdLnwsLbSb+uAlaf98ScGQmlxeNkAMJZforRU/p9fcrtzVV+04/qqKzuthyvs4nuyAI
+	zSZw+ZNir29fBTXAMRqB3rVRpN88EeqD97besS6+IeZ22TgyB2WBF2+ijgvSllddhpn208mCJEFsb
+	paUWHPLFcB23x94mieDgEBj6/nt2IKoOKsfYs6n+HrPcaOq9Txb7E4eo9BF4AhRTjmYiZvM+qslTg
+	i5wtKOjEuOWvUxlPSt//+u5srxT/HgX1T4zOS5HdIW4buF5PKWrPczo6c0D3OrglLvMnvg34XMUNj
+	TA7jxmMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZvT8-00000009vFA-0ahj;
-	Tue, 13 Feb 2024 16:17:14 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1raAQx-0000000C7qD-46Wq;
+	Wed, 14 Feb 2024 08:15:59 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rZvSz-00000009vCF-14vV
+	id 1raAQu-0000000C7ov-2GAC
 	for ath11k@lists.infradead.org;
-	Tue, 13 Feb 2024 16:17:13 +0000
+	Wed, 14 Feb 2024 08:15:58 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 442836156A;
-	Tue, 13 Feb 2024 16:17:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D32CC433F1;
-	Tue, 13 Feb 2024 16:17:02 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 0057C6151C;
+	Wed, 14 Feb 2024 08:15:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2E30C433C7;
+	Wed, 14 Feb 2024 08:15:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707841024;
-	bh=U1hlxuuGM31EsFxR96p8z5hGYfThQsiQscHYRLeJkRM=;
+	s=k20201202; t=1707898555;
+	bh=qOkqjcmIQarjisBZIh76v+uAW3kG2nLiaTnmAU/OxKE=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=fBDiVsLPvXkglEu72avpNr59iWLOAb3NhQ2REWCeQGlyJdrfLppRy+PqYS3GMSrVL
-	 QTN4ULOuXcNhfC4qwTw0x6EvGkr45sTcreQ+fUBbUqypEaASXKeCsBAVphqXMplhmz
-	 3MXoopb2hJVPvWA9BRaaa7wIeWUkIHwWowvEhEqzqG3nXE6WJUGfeKJ2ccA6hhC0TW
-	 e+ZptPHuo/ob9iMi5E7uZE9YcCexyMZ5UgY5+sPOKdzyDFWkYOgTla2mv5xG/QQMe7
-	 /hilfIMXPbC2YZXRoUAWsmZTTBE+lnTGzqkDKN2YPVxj3it5RobKwmpsX056ye9rVj
-	 rttm8MJutH3cQ==
+	b=ATUooogL91zyqTu4hUp+29S6PPukUun34xRjWuGPqQXULkgg9YxXLDwaCWN4oThBP
+	 dO34VIlgfE3ATsV+//lDip4CmQ+zqKanyFKcH8WQ9d1ymLZxZmQQ8rM5KRtWbTEQa4
+	 xMo0D1skN5l+jSVOcoCZSQbslJErtZ+jq+PoH250QCPsDutJAn5jeK9bARM/ZBJZHq
+	 e7pR5fYOkkMZf4x9roPWKH4awBXX203wrnQ/MvfaZWanEqLymCOKXrloH3S62mfB/P
+	 jdSe0+RQBnC613toTxXnxNQhl0aZcjE/dDn84dp9uC5mDe3OlDIfgjeUWUmycoK8Hx
+	 R/1pPmNWNbSfQ==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 1/2] wifi: ath11k: supports 2 station interfaces
+Subject: Re: [PATCH v2 1/2] wifi: ath11k: Do not directly use scan_flags in
+ struct
+ scan_req_params
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230714023801.2621802-2-quic_cjhuang@quicinc.com>
-References: <20230714023801.2621802-2-quic_cjhuang@quicinc.com>
-To: Carl Huang <quic_cjhuang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_cjhuang@quicinc.com>
+In-Reply-To: <20240209113536.266822-2-nico.escande@gmail.com>
+References: <20240209113536.266822-2-nico.escande@gmail.com>
+To: Nicolas Escande <nico.escande@gmail.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <170784102087.3076911.1922636810071020971.kvalo@kernel.org>
-Date: Tue, 13 Feb 2024 16:17:02 +0000 (UTC)
+Message-ID: <170789855274.3088943.4437243850124616394.kvalo@kernel.org>
+Date: Wed, 14 Feb 2024 08:15:54 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240213_081705_527619_EF7C6007 
-X-CRM114-Status: GOOD (  10.17  )
+X-CRM114-CacheID: sfid-20240214_001556_677528_D21A37F9 
+X-CRM114-Status: UNSURE (   6.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,36 +74,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Carl Huang <quic_cjhuang@quicinc.com> wrote:
+Nicolas Escande <nico.escande@gmail.com> wrote:
 
-> Add hardware parameter support_dual_stations to indicate
-> whether 2 station interfaces are supported. For chips which
-> support this feature, limit total number of AP interface and
-> mesh point to 1. The max interfaces are 3 for such chips.
+> As discussed in [1] lets not use WMI_SCAN_XXX defines in combination with
+> scan_flags directly when setting scan params in struct scan_req_params but use
+> the underlying bitfield. This bitfield is then converted to WMI_SCAN_XXX when
+> filling the WMI command to send to the firmware.
 > 
-> The chips affected are:
+> [1] https://lore.kernel.org/all/871qae51wx.fsf@kernel.org/
 > 
->  QCA6390 hw2.0
->  WCN6855 hw2.0
->  WCN6855 hw2.1
+> Tested-on: QCN9074 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 > 
-> Other chips are not affected.
+> Signed-off-by: Nicolas Escande <nico.escande@gmail.com>
+> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Sorry for delay. I have now added this to the pending branch, there was some
-simply conflict which 'git am -3' was able to fix on it's own:
+2 patches applied to ath-next branch of ath.git, thanks.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=43b8e99e19e8126e113eb9141621cf7e4b32d4f0
-
-> For affected chips, remove radar_detect_widths because now
-> num_different_channels is set to 2. radar_detect_widths can
-> be set only when num_different_channels is 1. See mac80211
-> function wiphy_verify_combinations for details.
-
-So removing radar_detect_widths means that DFS will not be supported on the
-affect chips, right? I think I should add that to the commit message.
+64493a7ff74b wifi: ath11k: Do not directly use scan_flags in struct scan_req_params
+79ad70c6df0a wifi: ath11k: Remove scan_flags union from struct scan_req_params
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230714023801.2621802-2-quic_cjhuang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20240209113536.266822-2-nico.escande@gmail.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
