@@ -4,134 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0CCCC48BC3
-	for <ath11k@archiver.kernel.org>; Tue, 20 Feb 2024 10:06:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6C23C54764
+	for <ath11k@archiver.kernel.org>; Tue, 20 Feb 2024 17:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OkchbsZxGOhljr94oe0JbGL0thIi/eckxczpaAhfho4=; b=EViI/Di4cCahpZwUlUJqEbESCt
-	RzmoWsalzTUOo32L8N9b17QqHIEAXm6y9lv3UEA9f0HhyeBEJG05UMNhoCauzaLQsv443UDdyHAo1
-	RP8UrnQezHOLynz7qXPtiMNn3v0jSohoHPWX69ly6CqX4NizS16B9hS/spAQLkhdW2KTf+soTxm7S
-	gTNlSttN9Hpeb1bVA+qxzxq43n8+Zf/hkkTT0+Xl0AfZJPqatLYb5C1VBc6yTsTKoT4UhsnrU201s
-	CY3nd8J0cajlfz5Isely6BxHP3LyKobXptXgXSs2Z14I0tcNyIIrI/pFIGFzS4I1ccw9Y5q9pvdJr
-	ApYO5HLA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:From:Subject:Message-Id:
+	Date:Content-Type:Content-Transfer-Encoding:Mime-Version:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=VE1b7+Zs1sAYzLfGxr5znkkGcQFqRIY7wI1kANXm/Uw=; b=OZzyPiDoshkK3Lw1WZDwsCBPSn
+	6RlD3oH8FdhtjyZgvT9dAIHQXX/IWKcAPVAuJw7QGZx3pDU9qbRelgPg7Ri+prnfhVuE+ZItNgJXp
+	Cu1OrK0gGealO4Fh2tcId/0pb4UyNpF9Gl01j0PP7AhrkThg7lLA4InJ1mN9z2wTi226wPdxy7//m
+	1DftlZlNSdY8ay+WhMLHkLyGpLixYqhRfr8hAPnAEgEbyTEt1RpFybfb4MlCUDQ/fWpYupayuolUt
+	O83NkK6HI3k3wqE3DhyXqvAt2i8FW5XddSvq9wpMBvx3dCSyuT87fIVjojmUqmNZmqbiMqGfJQqEX
+	6L3Klozg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcN1J-0000000EAtq-2Tan;
-	Tue, 20 Feb 2024 10:06:37 +0000
-Received: from mail-lj1-x233.google.com ([2a00:1450:4864:20::233])
+	id 1rcTei-0000000FaFu-2tL9;
+	Tue, 20 Feb 2024 17:11:44 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcN1G-0000000EAsm-3Btl
-	for ath11k@lists.infradead.org;
-	Tue, 20 Feb 2024 10:06:36 +0000
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2d23d301452so22244101fa.1
-        for <ath11k@lists.infradead.org>; Tue, 20 Feb 2024 02:06:34 -0800 (PST)
+	id 1rcTef-0000000FaEd-12n9;
+	Tue, 20 Feb 2024 17:11:42 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-41272d42207so1479955e9.2;
+        Tue, 20 Feb 2024 09:11:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708423592; x=1709028392; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OkchbsZxGOhljr94oe0JbGL0thIi/eckxczpaAhfho4=;
-        b=OkbRokBdFgNb9+GiW/PieXogrX9tFvHflNGCgLFQqzZsSrV3OH/Y5YIbm3tGGE1JNE
-         UzTWjZ5MF/IfMoHFOESQ1fxwndL9vQpD/46GRwD5YBIoeYu2iQMqcup64Gh1807jhnb9
-         KbHn5FR1G9fpF1xcXdBPWc5vmHD/u683qoN/B4WiljUbEZJin24uvffw9mjwu2PhzFr9
-         2mDOVVV3V1k/y+trQfDJSdE2GKKMljiWRZtUSdCDYBI3C3dVR37Aefdc34PWMGqPUma8
-         EitUaZcNohVNV6S0/+pq9ibvOu9i4hA7CotkCinLQ5aYLSJffLdRXI+DfpZQlW9fV0mY
-         nC1w==
+        d=gmail.com; s=20230601; t=1708449098; x=1709053898; darn=lists.infradead.org;
+        h=to:from:subject:message-id:date:content-transfer-encoding
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VE1b7+Zs1sAYzLfGxr5znkkGcQFqRIY7wI1kANXm/Uw=;
+        b=jCEU4slOQdpSAGbW3PNav0Xu8M6RfMo1uuoT1f8XwYKNMDQeKXCSLo7+4DODQ42hQb
+         IpqkW2kfW9ScUw9607sQTjlWNVZUB891B+7sDtz80MDnAjtJiNN7NSLvlSIlpp0Qgetd
+         TADofxUNYzXtEDaSp5wJddsFFm8fgQ3IszlJQm3mYn7sWYTD6VO2Oyc4TmcD7N6gX8fa
+         KQRUuEcBvwKHAuT+NGir0HOCLCfr38ffEm55bB10+W+cxR7WXcEqYeY+WflLzi7Nufdo
+         rOCEQ2C+dJra1UNAr5qF+A6VduFNYzjUKaj0vT5fGW3Areh5KvTooFqwpHiZi99d7ckO
+         zASQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708423592; x=1709028392;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OkchbsZxGOhljr94oe0JbGL0thIi/eckxczpaAhfho4=;
-        b=ZpfomQxsNnP2Xi7ByywY5I7BxY00WSIi2OH/n/yAq29KKhJz55MLu7Tz/OhPggDB2k
-         EKzP12qxPyRWsJNEdnoTyCrLUbVBZkENO4ugf3hth+oseWGej5ydMoUhPvs5zbd59EX2
-         F4jq80Y0vNJJEwckOljr6b+4R5zEgVaP6kH7mMWsBEa9j3uYYLhhn1/JKxZm7bYhIUl/
-         y19zHElhSzKAT17dzq49sukdGkKa03blM4Oi/uAKSbwgqnTtmmeUfMPZxOHE+ckwdnGb
-         17IctdMZ8sc9SKT427LL3PoBS2IRIKC60365+PyE9AphQz5/jmisMfG/2VMDoZ5fyh1Y
-         ZbIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVqnb7CrIwRfWZGDRb1CwmR2FiHD2TJvq5cL81wkwWNp9Fq+FraoqAaU+jdE93d5aaKEoOuUgpJ8f5S6eKQFu0ppNVdcwaAd0Wg2g==
-X-Gm-Message-State: AOJu0YwkiwY5ts0dokll8wpZZa95wGINN5+IzrkWDujwn39OYdaFUouE
-	TczKF/hds4QG6LOtBJXt4znmRuH82FBnIEVRZfdHF7r6eUQPVEKKtUkNu2Z63EE=
-X-Google-Smtp-Source: AGHT+IEKfiYlW6oMAe4WVdRoHVpic4US6QNAohcexgMfawSDVCg00TcQ3jPEsIUlcJJs8NsgqrGwiw==
-X-Received: by 2002:a2e:80ca:0:b0:2d2:2dec:8f5b with SMTP id r10-20020a2e80ca000000b002d22dec8f5bmr5492256ljg.30.1708423592566;
-        Tue, 20 Feb 2024 02:06:32 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id az19-20020adfe193000000b0033d6ff7f9edsm839756wrb.95.2024.02.20.02.06.30
+        d=1e100.net; s=20230601; t=1708449098; x=1709053898;
+        h=to:from:subject:message-id:date:content-transfer-encoding
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VE1b7+Zs1sAYzLfGxr5znkkGcQFqRIY7wI1kANXm/Uw=;
+        b=X+ajDRQvJgAUUQZTP8LRNHNMuEW7FdB5xWqcmP1vyBgEyuc5xgZLzooK8+AJSlj3dG
+         zS+U6FPYmIr5mljqSMnQLu9agiqVzTVriOlUoZt0HFTlP45/nZyOirycO3zXUB80+FN9
+         WfGb4J47R33yxhAMflHJyhJGY4it57fE6kJ4PgeRfvt4dHYL0S2uo5D8kxzzrjpFLBbV
+         BkRd066aNtQVk3Fj9OydjEQPCxzVInuw/L3jZXabSuDE4XQOhRwTFqSGwyVS4fvPdG44
+         ipyZBm1QIwUN7ZoZ4Ue0ro8lP8LY75gpSOeW7tKAuS4LpRH75mV0olj9UcnbbsQ40TCN
+         svyA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKHtrDj/Z+xNaeKxG8VHKwG6l7gtDScOQL0ONYYYSPwhGMUiL2qDjSo7/3Rc9O9EVmTFSfX7j2F/blxl5uN9MxJcUBmZJ0/4WlCg==
+X-Gm-Message-State: AOJu0Yxg17GQqx9vHS6416+C88DD2Xo6EpyE1o7crFTvtiTrGeG2qzap
+	+Pa/wR/8XqMKwkdarJZyuiGK/GvbCuaEQ8u9P2U3QU9cBcYaoYcTWyPC/HJ4
+X-Google-Smtp-Source: AGHT+IGELZLv6VyK0+cuniAr5wftu3t4c8qApMtycEcTK4QnkiGkja/d6yCvpkEkOF8hXELu+eTCSQ==
+X-Received: by 2002:a05:600c:68d0:b0:411:3673:1c6d with SMTP id jd16-20020a05600c68d000b0041136731c6dmr13346859wmb.37.1708449097893;
+        Tue, 20 Feb 2024 09:11:37 -0800 (PST)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id k10-20020a7bc40a000000b004101f27737asm15116765wmi.29.2024.02.20.09.11.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Feb 2024 02:06:32 -0800 (PST)
-Message-ID: <81506f26-d7c3-4b65-b47a-ca3ea3e4b5d6@linaro.org>
-Date: Tue, 20 Feb 2024 11:06:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: net: wireless: qcom: Update maintainers
-Content-Language: en-US
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Jeff Johnson <jjohnson@kernel.org>, ath10k@lists.infradead.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ath11k@lists.infradead.org
-References: <20240217-ath1xk-maintainer-v1-1-9f7ff5fb6bf4@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240217-ath1xk-maintainer-v1-1-9f7ff5fb6bf4@quicinc.com>
+        Tue, 20 Feb 2024 09:11:37 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Tue, 20 Feb 2024 18:11:37 +0100
+Message-Id: <CZA2NS7J83D4.18SU6W9R96KPY@gmail.com>
+Subject: ath12k & ath11k beacon miss detection
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
+X-Mailer: aerc 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240220_020634_845288_7AFFE06D 
-X-CRM114-Status: UNSURE (   5.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240220_091141_322050_2A319C59 
+X-CRM114-Status: GOOD (  13.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,15 +87,51 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 17/02/2024 22:30, Jeff Johnson wrote:
-> Add Jeff Johnson as a maintainer of the qcom,ath1*k.yaml files.
-> 
-> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> ---
+Hi there,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I found that when using QCN9274 iun station mode, we never get disconnected=
+ from
+the AP even if it stops beaconning. Using iw I can see the "inactive time"
+increasing without supplicant ever getting a beacon miss event.
 
-Best regards,
-Krzysztof
+From what I gathered, given we set the flag CONNECTION_MONITOR using
+ieee80211_hw_set in __ath12k_mac_register (mac.c) we should detect the
+connection loss and call ieee80211_connection_loss() at some point. Right n=
+ow,
+there is no such mecanism in ath12k.
 
+So looking at ath11k code I found out that in that driver we have a specifi=
+c
+WMI event "WMI_ROAM_EVENTID" that can report a WMI_ROAM_REASON_BEACON_MISS =
+that
+in turn ends up calling ieee80211_beacon_loss after some time.
+
+But trying ath11k & qcn9074 in station mode yielded the same result, we nev=
+er
+get the roam event and never get disconnected either.
+
+So going back to ath10k this time, the code isn't exactly the same but even=
+ then
+we had the same wmi event, with the same WMI_ROAM_REASON_BEACON_MISS and we=
+'d
+call ath10k_mac_handle_beacon_miss which in turn ends up calling
+ieee80211_beacon_loss via a work item.
+
+And using ath10k on qca9888 works well for me.
+
+So I have a few questions:
+  - is this supposed to work on ath11k ? Does it not work for me specifical=
+ly
+    because of my chipset ? Or are we missing some wmi config ?
+  - as the code to handle the roam event is missing/commented out in ath12k=
+ will
+    it be a different mecanism to detect connection loss ? Or it'll be the =
+same
+    and you guys just did not have time yet to tackle this ?
+
+I'm happy to add the missing code to fix that use case in both drivers but =
+I'll
+need some insight from you ath folks on this.
+
+Thanks =20
 
