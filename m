@@ -4,87 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB0E1C5478A
-	for <ath11k@archiver.kernel.org>; Wed, 21 Feb 2024 18:25:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14B0DC48BEB
+	for <ath11k@archiver.kernel.org>; Wed, 21 Feb 2024 18:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kLiKQmvF1Vw+hboepdQr7A7saE0S87PT9STsSbbPacA=; b=pmOk0ZdWKv4Evh3QBRxkaazyvT
-	C5rAUHFR55PQ3a8y9cHeTx2FVihcDAq758kFZENwkAD2LfbISsj+kBP+CvjuU6YJrnzASHIYc9P8j
-	abqE9n6EEVQT+Ud2xZd9vbdY4sVY7gd0OWP63WhUGFa19Lt41PWJoIC2SE/KAj98e0y80P6bmm9Bs
-	QeN87EBGAczJWxjPDt3c9T/BxoFa58aoCJgwMCvT+ckIJ1bwSLChxvFjRp3vFVXFMsWtQGth0XeZK
-	mOYaHKoElO5WeuaGExlvVHdv/6lErxPd6sxg0hQY8WVjo5ZLcoa8bL6pgbxAxkeyIDgvvN4w+9AZ8
-	y3KGzT2Q==;
+	bh=6eaQTcUoeKL7PqXkEqP+E59DQs9+SQ8x5ErceTOTabM=; b=FD/Q7nUpxE7T2+KVokhJVpE3ee
+	84Cos2fG1ikj5XUBY+UP6T9XjSx/Jn7+eXcDZWh0dMEx8vxP0eU6/ueAS80TSajgGU7i0HWYCjF8R
+	q5h8VpQBMAkz1m+BdQXD3uEcxCqqq3mjHMtDe4H/HvZtUEk9Rod5X7NcgtCpv1PFN3GPdiEYPbfCn
+	mOVowO2AweOjo9HZe2deNPaZH/DXLVDl4gNUMZhprOHytOrwWYnr+XOA2hqtvA07FbesuVajZIDrv
+	4lj+eQe+mowgdiZD4nTKaKOf7n0sDJfSwGuro9k9ItfhuR2NlXirYkMAESXZbGtzJVpEV2PU0Mf2K
+	p1DFWwNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcrHY-000000024iS-42VQ;
-	Wed, 21 Feb 2024 18:25:24 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rcrcu-00000002Axy-35ZD;
+	Wed, 21 Feb 2024 18:47:28 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcrGx-000000024TB-2qOK
-	for ath11k@lists.infradead.org;
-	Wed, 21 Feb 2024 18:24:50 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41LEnWaD021912;
-	Wed, 21 Feb 2024 18:24:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=kLiKQmvF1Vw+hboepdQr7A7saE0S87PT9STsSbbPacA=; b=S2
-	531RbLY20iAJRVjrNxallRvqsFIR5N5LAeCsCSjoCxL9b40Mw/tohB+SNGGpFXnA
-	6+ZQjNc8DyNDbBocGMpCDkN1nD0kSAVr+ZObTKysK/ZxMTMHitZY5TnGS4wJ8WWG
-	ZNv0vWFwv72ZX0vDRxE4JJjl6JYbxlhCcilQ6c9PqzBkZvk5jxbpHUuLGgHClTpq
-	OtuPAaH51wha2N1CtaB6LJSBoDTTsBBVhdfBruiNyeay9Aoj1npVJe1yBh1jlD7m
-	DQYRNbXNQFNpPayFR20Fon1jm3cY3lHXlQsgp+kcavQ8dnOP1xBh9wZ7IndyhzhB
-	m1BBfaPeYLS0ErYDCQ0g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdfm794cm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 18:24:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41LIOj5q030870
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 18:24:45 GMT
-Received: from [10.110.34.22] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
- 2024 10:24:44 -0800
-Message-ID: <dc54be43-e27f-4b5b-9b84-cf0856370abf@quicinc.com>
-Date: Wed, 21 Feb 2024 10:24:44 -0800
+	id 1rcrcr-00000002AwX-0fNH;
+	Wed, 21 Feb 2024 18:47:27 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id D3B89CE1F52;
+	Wed, 21 Feb 2024 18:47:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60FE2C433F1;
+	Wed, 21 Feb 2024 18:47:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708541240;
+	bh=gqoAm28ysMhQcEAAi5Gh3dH2gq6BWAr+ceiJbrjqTLw=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=B4a49GRxpgPJI2ECisO/VeUOxKUutVCrIW4oXYFeemxKREmjO4ZIBHQwmxTMuu7ir
+	 yWvYvDsaJBjexF4S7mUZpUOzTsS4NBr+uTRcHfInbw1OBtpPytvT6RIXETNCb5mO2/
+	 /ChAOFz+Ta+Fw2oFV9YNv+LwyTnbZtw/mLHJtUuZ5PP04y9iCQvrqGuxGNCIlA0gef
+	 iva8GpSCKQ3C9EX70Hz6GpvLL090bHj3ALKDJizvIKsbiisDEGG+77r7Srefr+nnCL
+	 4xQNz+H+8cDIc+jFSuE4U2l+Td9+nXv6AFe2X8YOiD1eUFTSKDOrEmViJtR+l1tAhL
+	 Ns/2jC9pyTBgQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] net: qrtr: support suspend/hibernation
-Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>,
-        <mhi@lists.linux.dev>
-CC: <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20240221030026.10553-1-quic_bqiang@quicinc.com>
- <20240221030026.10553-3-quic_bqiang@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240221030026.10553-3-quic_bqiang@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OYoakFoWCnbxQ2Fcz-wSJuMQ-RLpZMsT
-X-Proofpoint-ORIG-GUID: OYoakFoWCnbxQ2Fcz-wSJuMQ-RLpZMsT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-21_05,2024-02-21_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- mlxlogscore=999 lowpriorityscore=0 clxscore=1015 mlxscore=0
- impostorscore=0 phishscore=0 malwarescore=0 bulkscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402210143
+Subject: Re: [1/2] MAINTAINERS: wifi: update Jeff Johnson e-mail address
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240217-update-maintainer-v1-1-1426cf7a8bb1@quicinc.com>
+References: <20240217-update-maintainer-v1-1-1426cf7a8bb1@quicinc.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: <ath10k@lists.infradead.org>, <ath11k@lists.infradead.org>,
+ <ath12k@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jeff
+ Johnson" <quic_jjohnson@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <170854123612.1848588.403515299525075943.kvalo@kernel.org>
+Date: Wed, 21 Feb 2024 18:47:18 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_102448_061648_8FB56B8D 
-X-CRM114-Status: GOOD (  26.26  )
+X-CRM114-CacheID: sfid-20240221_104725_935466_A308AAF0 
+X-CRM114-Status: UNSURE (   5.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,91 +74,21 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2/20/2024 7:00 PM, Baochen Qiang wrote:
-> MHI devices may not be destroyed during suspend/hibernation, so need
-> to unprepare/prepare MHI channels throughout the transition.
-> 
-> The RFC version adds new API to MHI stack with which an MHI controller
-> driver can do unprepare/prepare directly by itself, see
-> 
-> https://patchwork.kernel.org/project/linux-wireless/patch/20231127162022.518834-3-kvalo@kernel.org/
-> 
-> Although it works well Mani pointed out that the design is not good
-> because MHI channels are managed by MHI client driver thus should not
-> be touched by others. See the discussion
-> 
-> https://lore.kernel.org/mhi/20231127162022.518834-1-kvalo@kernel.org/
-> 
-> This version changes to add suspend/resume callbacks to achieve the
-> same purpose. The suspend callback is called in the late suspend stage,
-> this means MHI channels are still alive at suspend stage, and that makes
-> it possible for an MHI controller driver to communicate with others over
-> those channels at suspend stage. While the resume callback is called in
-> the early resume stage, for a similar reason.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> ---
->  net/qrtr/mhi.c | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/net/qrtr/mhi.c b/net/qrtr/mhi.c
-> index 9ced13c0627a..b54a6c2113e9 100644
-> --- a/net/qrtr/mhi.c
-> +++ b/net/qrtr/mhi.c
-> @@ -118,6 +118,32 @@ static const struct mhi_device_id qcom_mhi_qrtr_id_table[] = {
->  };
->  MODULE_DEVICE_TABLE(mhi, qcom_mhi_qrtr_id_table);
->  
-> +static int qcom_mhi_qrtr_pm_suspend_late(struct device *dev)
+Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
 
-Don't your new functions also need to be annotated as __maybe_unused?
+> I now have a @kernel.org e-mail address, so use that for my
+> maintenance activities.
+> 
+> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-> +{
-> +	struct mhi_device *mhi_dev = container_of(dev, struct mhi_device, dev);
-> +
-> +	mhi_unprepare_from_transfer(mhi_dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_mhi_qrtr_pm_resume_early(struct device *dev)
-> +{
-> +	struct mhi_device *mhi_dev = container_of(dev, struct mhi_device, dev);
-> +	int rc;
-> +
-> +	rc = mhi_prepare_for_transfer_autoqueue(mhi_dev);
-> +	if (rc)
-> +		dev_err(dev, "failed to prepare for autoqueue transfer %d\n", rc);
-> +
-> +	return rc;
-> +}
-> +
-> +static const struct dev_pm_ops __maybe_unused qcom_mhi_qrtr_pm_ops = {
+2 patches applied to wireless.git, thanks.
 
-this does not need to be __maybe_unused, see below
+27dc4c6ee5fe MAINTAINERS: wifi: update Jeff Johnson e-mail address
+1b7d9ab3e666 MAINTAINERS: wifi: Add N: ath1*k entries to match .yaml files
 
-> +	SET_LATE_SYSTEM_SLEEP_PM_OPS(qcom_mhi_qrtr_pm_suspend_late,
-> +				     qcom_mhi_qrtr_pm_resume_early)
-> +};
-> +
->  static struct mhi_driver qcom_mhi_qrtr_driver = {
->  	.probe = qcom_mhi_qrtr_probe,
->  	.remove = qcom_mhi_qrtr_remove,
-> @@ -126,6 +152,9 @@ static struct mhi_driver qcom_mhi_qrtr_driver = {
->  	.id_table = qcom_mhi_qrtr_id_table,
->  	.driver = {
->  		.name = "qcom_mhi_qrtr",
-> +#ifdef CONFIG_PM
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20240217-update-maintainer-v1-1-1426cf7a8bb1@quicinc.com/
 
-conditional compilation isn't necessary here since the 'pm' member is
-always present
-
-> +		.pm = &qcom_mhi_qrtr_pm_ops,
-> +#endif
->  	},
->  };
->  
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
