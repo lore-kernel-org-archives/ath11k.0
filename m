@@ -4,84 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F00C5C48BC4
-	for <ath11k@archiver.kernel.org>; Wed, 21 Feb 2024 02:47:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 286B8C48BC4
+	for <ath11k@archiver.kernel.org>; Wed, 21 Feb 2024 03:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qOMthkJSSuF/rFQcDtP0nI1AWdAT83mtw6UiamFQT1k=; b=T7HSFvpPHGzoFVT7BNcOGv4xSP
-	LxiIEj0wHxNCEPtj+mA+y/AR09EGScCBxvK6um6ZZCjsHrZnr3WHaZ4fCvfik2YilLNub8QoTqXaX
-	x8o+iEMscG1zWwSNi4Fl1OGuOiFC7yfAsZx1jB87OM3uREXgVMx+6BLzlwOIspe3o4sVtbSU+l2Gv
-	o/GKdHeF5bRdOvmFG6CLBza9P0c3jlk2uk5qoFO1N/JLGlF/mIkzEyI4mHq0n+WAE/3UfeX1LPpgm
-	gt9Xh/zn8LgrFB5Zs71WiM7LqtKkLitTnsgLtRqv3F67oZLUXBavtjzXIzYnunwibCCcOWuikQDrr
-	k2GGiVOw==;
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=xqAx+6q4cmST+6i8xL4b9Nl9jzjBC8YxcMrVxIe0LCk=; b=jx1a6NTrdltqRrqq6zIelMTWuq
+	hkGq6sTBrr8OeR2iWof6wiCe+bEKX8lwBnnjRcLI6XWC9nO8sYEsn8w2BFuJj9CL6kE4WdLun0ppJ
+	6ClwBR4o/G63xH58a3LhOu2mSlN4FHyLC+e6OQmj9f79OPmYh+VvT0ICDOa57w6vTANjP6msAhsHq
+	8uK6Qr8ORSz8FoU6ptSxawQCOjdb3NqN0jYXb919zZ1xWGWsiQvOW7oD6dZP6sI9H+Rx7e9ASZFbV
+	CxitFqcnTmUuYmzUSvjKPddycd6G9ia7wDGyG9ifBX0bwjL+SjQDx8eP2UMSWtBoARo/svcz8Vc5M
+	ora80iZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcceE-0000000Gurn-2OS3;
-	Wed, 21 Feb 2024 02:47:50 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rccqn-0000000GwIs-3EHR;
+	Wed, 21 Feb 2024 03:00:49 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcceB-0000000Gupp-2reV
+	id 1rccqj-0000000GwGh-3FUM
 	for ath11k@lists.infradead.org;
-	Wed, 21 Feb 2024 02:47:49 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41L2MMi5012011;
-	Wed, 21 Feb 2024 02:47:47 GMT
+	Wed, 21 Feb 2024 03:00:48 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41L2uFC7006944;
+	Wed, 21 Feb 2024 03:00:44 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=qOMthkJSSuF/rFQcDtP0nI1AWdAT83mtw6UiamFQT1k=; b=Eu
-	3xXQGjYwzjCSmeLui+LxgJlt9z0/tD0tbu/IcLboWx1gXAbWOjuzPY+9njq9xwMV
-	S8slNkMeK8ZpdEEgbFj3kCg4gsIOWraX3vsUPCWCJK5cWu2MO+XWB/5HEhByaYh7
-	G8x84UNClCG0J9wn2fyty3Qj+aq7YbyCg2sGxx9SeoFfcOwh9gdq/PjI3t9gcJwD
-	ZUWnpVq19oQc0dgiJY2BBZJfJ5hmbOgVlJp1hd7UyozjvzXoKXo9ZJVhamiveY9o
-	GmsD91BFQuqVqadYJQPMaUCDS2nLVuyoq5GQ2T/BmLgiCgFIt/5FSnJ0cWnQUyqX
-	8TetOaVNYxP3jhokKPjg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wd21s8sea-1
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=xqAx+6q
+	4cmST+6i8xL4b9Nl9jzjBC8YxcMrVxIe0LCk=; b=lztLj9E++KjoMzhqx0QJq6K
+	01r4Sm3DORPnlu2d06Gq2AJj9tph/uqDqxnS1NSM+l0STGhnRGvpZfczrkQnb6T3
+	XB/gYdpL+rTtcVRroNkyPjo9WG7AibRfjNfKBMal1t25sDCSjsg11hNOC6P3jnM2
+	IEm0A2IxU3jM3RtM3fiu8SDh+m03tvEFuZD00tZ9b47NTXN5T7UQgxSSCnf7ROHi
+	WtIsjcRGAjZK4PMfHZchreYnKa0V5cwCe1nMQfJVDbfS+dsUJ2YTJxSJVDGTErTo
+	e2U3A8rXXT7duMAigZCSq+JDiyCgFV476kMeRGg+MlgXWo5Hu9WXSGjrdaM8jNw=
+	=
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wd22u0sy9-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 02:47:47 +0000 (GMT)
+	Wed, 21 Feb 2024 03:00:44 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41L2lkkt000814
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41L30hOI022919
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 02:47:46 GMT
+	Wed, 21 Feb 2024 03:00:43 GMT
 Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 20 Feb 2024 18:47:45 -0800
+ 15.2.1118.40; Tue, 20 Feb 2024 19:00:41 -0800
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH 5/5] wifi: ath11k: thermal: don't try to register multiple times
-Date: Wed, 21 Feb 2024 10:47:25 +0800
-Message-ID: <20240221024725.10057-6-quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>, <mhi@lists.linux.dev>
+CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH 0/3] wifi: ath11k: hibernation support
+Date: Wed, 21 Feb 2024 11:00:23 +0800
+Message-ID: <20240221030026.10553-1-quic_bqiang@quicinc.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240221024725.10057-1-quic_bqiang@quicinc.com>
-References: <20240221024725.10057-1-quic_bqiang@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BaFrx51x8GL4s67XgfFm8L2824hw7w3W
-X-Proofpoint-GUID: BaFrx51x8GL4s67XgfFm8L2824hw7w3W
+X-Proofpoint-GUID: odlhEWLq-eHOKnhP-TNm4Eys2KyOYTAX
+X-Proofpoint-ORIG-GUID: odlhEWLq-eHOKnhP-TNm4Eys2KyOYTAX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 suspectscore=0 impostorscore=0 mlxscore=0 phishscore=0
- adultscore=0 malwarescore=0 spamscore=0 bulkscore=0 mlxlogscore=743
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402210018
+ suspectscore=0 bulkscore=0 phishscore=0 adultscore=0 mlxscore=0
+ spamscore=0 mlxlogscore=927 priorityscore=1501 clxscore=1011
+ malwarescore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2402120000 definitions=main-2402210020
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240220_184747_806916_AD879CAD 
-X-CRM114-Status: GOOD (  15.22  )
+X-CRM114-CacheID: sfid-20240220_190045_957420_623CDC5A 
+X-CRM114-Status: GOOD (  19.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,48 +95,90 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+Currently in ath11k we keep the firmware running on the WLAN device when the
+network interface (wlan0) is down. The problem is that this will break
+hibernation, obviously the firmware can't be running after the whole system is
+powered off. To power down the ath11k firmware for suspend/hibernation some
+changes both in MHI subsystem and ath11k are needed.
 
-Every time the firmware boots we call ath11k_core_qmi_firmware_ready() which
-ends up calling ath11k_thermal_register(). So we try to register thermal
-devices multiple times. And when we power off the firmware during
-suspend/hibernation (implemented in the next patch) we get a warning in resume:
+This patchset fixes a longstanding bug report about broken hibernation support:
 
-hwmon hwmon4: PM: parent phy0 should not be sleeping
+https://bugzilla.kernel.org/show_bug.cgi?id=214649
 
-Workaround this similarly like ath11k_mac_register() does by testing
-ATH11K_FLAG_REGISTERED.
+There already is an RFC version which has been tested by multiple users with
+positive results:
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+https://patchwork.kernel.org/project/linux-wireless/cover/20231127162022.518834-1-kvalo@kernel.org/
 
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/thermal.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Basically the RFC version adds two APIs to MHI stack: with the first one ath11k
+is able to keep MHI devices when going to suspend/hibernation, getting us rid of
+the probe deferral issue when resume back. while with the second one ath11k could
+manually prepare/unprepare MHI channels by itself, which is needed because QRTR
+doesn't probe those channels automatically in this case.
 
-diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
-index c29b11ab5bfa..41e7499f075f 100644
---- a/drivers/net/wireless/ath/ath11k/thermal.c
-+++ b/drivers/net/wireless/ath/ath11k/thermal.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/device.h>
-@@ -163,6 +163,9 @@ int ath11k_thermal_register(struct ath11k_base *ab)
- 	struct ath11k_pdev *pdev;
- 	int i, ret;
- 
-+	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
-+		return 0;
-+
- 	for (i = 0; i < ab->num_radios; i++) {
- 		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
+Mani, the MHI maintainer, firstly doesn't like that version and insists that an
+MHI device should be destroyed when suspend/hibernation, according to his
+understanding on device driver model. See
+
+https://lore.kernel.org/mhi/20231127162022.518834-1-kvalo@kernel.org/
+
+After a long discussion Mani thought we might need a new PM callback with which
+ath11k is able to wait until kernel unblocks device probe and thus MHI channels
+get probed. So we came to the kernel PM list and there Mani realized that his
+understanding is not correct so he finally agrees to keep MHI device during
+suspend/hibernation. See
+
+https://lore.kernel.org/all/21cd2098-97e1-4947-a5bb-a97582902ead@quicinc.com/
+
+Mani also pointed out that an MHI controller driver (ath11k here) should not touch
+MHI channels directly because those channels are managed by the corresponding MHI
+client driver (QRTR here). To address this, we come up with this version.
+
+Compared with that RFC version, this version adds PM callbacks in QRTR module:
+suspend callback unprepares MHI channels during suspend and resume callback
+prepares those channels during resume. In this way ath11k doesn't need to do
+unprepare/prepare work by itself so those two APIs added in RFC version are
+removed now.
+
+The power down/up procedure requires a specific sequence in which PM callbacks
+of wiphy, ath11k and QRTR are called, this is achieved by exploiting the
+child-father relationship between their device struct, and also the PM framework
+which separates whole suspend/resume process into several stages. Details in
+patch [3/3].
+
+Depends on:
+wifi: ath11k: rearrange IRQ enable/disable in reset path
+wifi: ath11k: remove MHI LOOPBACK channels
+wifi: ath11k: do not dump SRNG statistics during resume
+wifi: ath11k: fix warning on DMA ring capabilities event
+wifi: ath11k: thermal: don't try to register multiple times
+
+Baochen Qiang (3):
+  bus: mhi: host: add mhi_power_down_no_destroy()
+  net: qrtr: support suspend/hibernation
+  wifi: ath11k: support hibernation
+
+ drivers/bus/mhi/host/internal.h        |   4 +-
+ drivers/bus/mhi/host/pm.c              |  36 +++++++--
+ drivers/net/wireless/ath/ath11k/ahb.c  |   6 +-
+ drivers/net/wireless/ath/ath11k/core.c | 105 +++++++++++++++++--------
+ drivers/net/wireless/ath/ath11k/core.h |   6 +-
+ drivers/net/wireless/ath/ath11k/hif.h  |  14 +++-
+ drivers/net/wireless/ath/ath11k/mhi.c  |  12 ++-
+ drivers/net/wireless/ath/ath11k/mhi.h  |   5 +-
+ drivers/net/wireless/ath/ath11k/pci.c  |  44 +++++++++--
+ drivers/net/wireless/ath/ath11k/qmi.c  |   2 +-
+ include/linux/mhi.h                    |  15 +++-
+ net/qrtr/mhi.c                         |  29 +++++++
+ 12 files changed, 218 insertions(+), 60 deletions(-)
+
+
+base-commit: 707e306f3573fa321ae197d77366578e4566cff5
+prerequisite-patch-id: d3f76112f9a55195c71459e0edf3a4ecf8af9181
+prerequisite-patch-id: 340d15aad1d3c1c3c93d9d996e1c96226c8bad8f
+prerequisite-patch-id: 98cdd37a68df4f651a065145e946d92c43be799e
+prerequisite-patch-id: a19ed13af0c894b7f9b22cedc99029991f48e47c
+prerequisite-patch-id: b5ad50fae6167c7c2b60cc063a8d460f7ddd4997
 -- 
 2.25.1
 
