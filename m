@@ -4,94 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3557C48BEB
-	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 02:27:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25BF1C48BEB
+	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 02:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WCRqsmVIUC0ZU9cijek8ats1kVe1u6JnVzeVhtYNO1g=; b=wyOZSpqeO+vVNZyWM0RFTk+Sdm
-	Wh6twieTlpd6uJFpBs2pqoEyQUfNqXeUSmWRFJjLKbNqX24Wk7zv822GmfqZ6rPN2VCvqbIY6suHS
-	ii+LiVea98BsKl1VGeHIKbaEJd2fV3Imu3mejBvcG+NzBpg5sXzkR0J9Ftg8XWHsOQGDEPop34zu+
-	DIexAiFlyJ3KcCryyUuoGdkZ1JlEHu6HvGuNqf80DuvC+cb0Dr1XROyakYMyFJgU0xbXsg4GHaFMX
-	dFbetkCo2kSEW+f2FDOvuknncbDz4XIBpB7/HHxlcHgtTzkCTLyVr4oD02W76zZZvhDnOFyNH+zMm
-	4m7cksGQ==;
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Pfot7sAKRzjoMPJH/FBh9iX8mxb5jR44xgnyvxe9w3A=; b=ojhn8ZDOX/iHmHGWlN7FnlIz4O
+	j5k+VVHn0AyMfzJC7s8sXfotTHrCGGmyyRN7qOBkc2MqC6hWLGaWMZJpKaP+kYM0Z6RobR7Hs/eIH
+	wzidyLJxGmmpYrHV7IHrUNBZb8licea6nZEKDtWY0LaOMZSyZb+7DMZBdCWYcQF2Yh89SFRehGNt1
+	zCm0LF8uWXuDiEEoa23bRcFbFJEGtepoHxKAzdvsTaMClztH3/brz4YArYW9e6iGHD7jYcAANBMMJ
+	hBbJcLuFqL35L/vOQtjzLYYccv6QwM3ZPYgE4bnS51m4ok3GgMAzZdYFgoEBhjhaYWQZsnLIMPFDS
+	l1PNzViQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcynt-00000003Fmy-22FM;
-	Thu, 22 Feb 2024 02:27:17 +0000
+	id 1rcyun-00000003GE0-2iNZ;
+	Thu, 22 Feb 2024 02:34:25 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcynq-00000003FmH-3BRo
+	id 1rcyuk-00000003GDa-2YoB
 	for ath11k@lists.infradead.org;
-	Thu, 22 Feb 2024 02:27:16 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M0t79R003821;
-	Thu, 22 Feb 2024 02:27:13 GMT
+	Thu, 22 Feb 2024 02:34:23 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41LNoOqp020539;
+	Thu, 22 Feb 2024 02:34:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:references:from
+	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=WCRqsmVIUC0ZU9cijek8ats1kVe1u6JnVzeVhtYNO1g=; b=T3
-	MSHrPQwmD4oRkvp+D2K0YX6YV1gl70fuMl7yAvDn+RaYdn7XGEikVIsZdlk/prtJ
-	meqSLUFKqwqHT1dRKcNFCOkGwquFiFNdyxJyqQNJ3LiRkW8WuZAgqiNHSb+wVXri
-	QqDEv0/5CF/dKxrtqxuV8lzTvb0gTqyCadPSe9F7g27IHNHvYu+wcBOAXjThCoGp
-	EkUWGs/XgJPmPLLxYiwT6hFBsZZdROsgJSa1H5ccXLanXgskBUwFBsgJkEgGg5jL
-	27q0u5bxaC7FDo6hT/miZsDpurGkU+WkwbLRTg4i9ItGoPZkVAVzjw15EovKG9O5
-	FkAmumB78hkV0Qus4r8w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdfx4hxc7-1
+	qcppdkim1; bh=Pfot7sAKRzjoMPJH/FBh9iX8mxb5jR44xgnyvxe9w3A=; b=Fg
+	yQFe6W6y9waBMoTqk66EaY+ha0J9286yY7SL99sBp28YKTsbyiMHRoxxVUvqClcr
+	2oZ5uYug19eHIxhVGH7sn5RBs0qonxzkqPhyz6bCd0RuXyUouC0ZjQd6IVjSQAqE
+	y77Bf+U1GtJcB2rXCXk/+iI8lOiWus8PCa4piRReTJyaTSTu0vUhuqpm70O2euIP
+	l+LkQYygJmAg9alUppQdVlnC019x3P7/OWv4PupnI03qUyq8Gaa4RCzN+16MpuVT
+	epvT5nETRKgCotsoHIqvOMXrAg4NTNP041cQbcHL6zgi1dibWWMLtQ9uDfvZUbbC
+	W8Yfv0FY0ujQBRTdIllg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdpjn8uhk-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 02:27:12 +0000 (GMT)
+	Thu, 22 Feb 2024 02:34:21 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41M2QnKJ013300
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41M2YLVw030842
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 02:26:49 GMT
+	Thu, 22 Feb 2024 02:34:21 GMT
 Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
- 2024 18:26:48 -0800
-Message-ID: <026d9ba3-525d-4a12-8d03-5fece818330c@quicinc.com>
-Date: Thu, 22 Feb 2024 10:26:45 +0800
+ 2024 18:34:19 -0800
+Message-ID: <5828b835-6b4d-4245-991a-7f6b54ee8b51@quicinc.com>
+Date: Thu, 22 Feb 2024 10:34:16 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k multicast action frame RX
+Subject: Re: [PATCH 5/5] wifi: ath11k: thermal: don't try to register multiple
+ times
 Content-Language: en-US
-To: James Prestwood <prestwoj@gmail.com>,
-        "open list:MEDIATEK MT76 WIRELESS
- LAN DRIVER" <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>
-References: <dcdbd757-ad6e-4fe0-a0c1-fe328431b73b@locusrobotics.com>
- <642b61a6-e3c0-4831-887f-f25314bf166d@locusrobotics.com>
- <90ac3bdc-8797-4d57-8bc9-48e0ad406674@quicinc.com>
- <1dafe0e5-292b-4764-86c7-cc1757aeb3b6@gmail.com>
- <ed8eeb92-e1eb-445e-989d-2340c26faf44@quicinc.com>
- <7a62031b-ad1f-4da2-8217-19a5d7fdc0f4@gmail.com>
- <f363f179-b41f-4bea-882f-e4aacb8ad519@quicinc.com>
- <eaeb8e9b-3809-4f89-a5b2-7949aa01fbde@gmail.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
+        "Kalle Valo (QUIC)" <quic_kvalo@quicinc.com>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240221024725.10057-1-quic_bqiang@quicinc.com>
+ <20240221024725.10057-6-quic_bqiang@quicinc.com>
+ <df08dfd4-189c-407b-8a2e-6fd2bbf3b22f@quicinc.com>
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <eaeb8e9b-3809-4f89-a5b2-7949aa01fbde@gmail.com>
+In-Reply-To: <df08dfd4-189c-407b-8a2e-6fd2bbf3b22f@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: aoXNhlcmuNX24PyQzxDv1ccO7RvbfToT
-X-Proofpoint-GUID: aoXNhlcmuNX24PyQzxDv1ccO7RvbfToT
+X-Proofpoint-ORIG-GUID: uV9foEl_WsDLbFi93Q31RYrhryUItgOF
+X-Proofpoint-GUID: uV9foEl_WsDLbFi93Q31RYrhryUItgOF
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-02-22_01,2024-02-21_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- mlxlogscore=999 clxscore=1015 mlxscore=0 malwarescore=0 impostorscore=0
- priorityscore=1501 phishscore=0 spamscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ spamscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ clxscore=1015 bulkscore=0 mlxlogscore=984 malwarescore=0 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2402120000 definitions=main-2402220018
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_182714_833635_7DD67B67 
-X-CRM114-Status: GOOD (  27.24  )
+X-CRM114-CacheID: sfid-20240221_183422_694747_629BB69C 
+X-CRM114-Status: GOOD (  18.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,140 +103,58 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 2/21/2024 8:24 PM, James Prestwood wrote:
-> 
-> On 2/20/24 7:45 PM, Baochen Qiang wrote:
+On 2/22/2024 1:15 AM, Jeff Johnson wrote:
+> On 2/20/2024 6:47 PM, Baochen Qiang wrote:
+>> From: Kalle Valo <quic_kvalo@quicinc.com>
 >>
+>> Every time the firmware boots we call ath11k_core_qmi_firmware_ready() which
+>> ends up calling ath11k_thermal_register(). So we try to register thermal
+>> devices multiple times. And when we power off the firmware during
+>> suspend/hibernation (implemented in the next patch) we get a warning in resume:
 >>
->> On 1/31/2024 8:28 PM, James Prestwood wrote:
->>> Hi Baochen,
->>>
->>>>> As you may have guessed I don't _really_ know what I'm doing. When 
->>>>> I got this working with ath10k I saw monitor device was being used 
->>>>> in order to receive probes, and did the same for multicast action 
->>>>> frames and it "just worked". The frames themselves were still being 
->>>>> received on the station device. I attempted to mimic the changes 
->>>>> with ath11k.
->>>>>
->>>>> The end goal here is just that, be able to receive multicast action 
->>>>> frames on the station device which currently does not work. I'm 
->>>>> only seeing unicast frames when i enable RX debugging. The driver 
->>>>> support for multicast action RX in the kernel for this is basically 
->>>>> zero. An extended feature flag was added by Jouni when he added 
->>>>> support to ath9k, I added limited ath10k support for a variant I 
->>>>> tested, and I'd like to do the same for ath11k as we are 
->>>>> transitioning to the WCN6855.
->>>> OK, so you are testing this with latest ath.git, without any private 
->>>> changes, and it doesn't work, right? Could you share your test 
->>>> steps? Basically how are you sending multicast action frames from 
->>>> AP/peer, and how to check if that frame received or not (I am 
->>>> assuming by checking RX logs)?
->>>
->>> Yep I'm on the latest ath.git, and with no changes apart from that 
->>> MSI vector hack to get it working with vfio-pci.
->>>
->>> The way I'm testing this is using IWD with DPP PKEX. Building IWD 
->>> should be relatively straight forward, very few dependencies. This 
->>> will also include iwctl which is IWD's command line utility:
->>>
->>> https://git.kernel.org/pub/scm/network/wireless/iwd.git/
->>>
->>> I have two devices, the configurator device (device A, ath11k) is 
->>> what should be able to receive the multicast action frames. The 
->>> enrollee device (device B) can use probably any hardware as sending 
->>> multicast action frames should be supported. IWD will not start a DPP 
->>> PKEX configurator without EXT_FEATURE_MULTICAST_REGISTRATIONS set but 
->>> if you enable RX logging that should be good enough to see if the 
->>> frame is making it to the ath11k driver itself. Once multicast RX is 
->>> supported we would need to add that extended feature to ath11k, or at 
->>> least the tested variant. If you want, you can hack in that feature 
->>> bit and start a configurator but if your able to get the muticast RX 
->>> working I can probably take it from there:
->>>
->>> 1. Enable RX logging on device A
->>>
->>> 2. Start IWD on device A
->>>
->>>      iwd -d
->>>
->>> 3. Connect to a network on device A
->>>
->>>      iwctl station <wlan> connect <ssid>
->>>
->>>      <enter passphrase>
->>>
->>> # Optional: start a configurator. This won't work without the ext 
->>> feature set
->>>
->>>     iwctl pkex <wlan> configure secret123
->>>
->>> 4. Start IWD on device B, do not connect.
->>>
->>>      iwd -d
->>>
->>> 5. Start DPP PKEX as an enrollee on device B:
->>>
->>>      iwctl pkex <wlan> enroll secret123
->>>
->>> On device B you should see IWD first scan to establish nearby 
->>> APs/frequencies, then begin iterating those frequencies and sending a 
->>> multicast action frame.
->> Hi James, I reproduced this issue following your guide. From the 
->> advise of firmware team, a new flag is needed. With that flag, I did 
->> see the multicast action frame in device A logging. Before I proceed, 
->> want to clarify something: that frame is only seen after device A 
->> triggers a scan (I triggered it manually using iw, not IWD itself 
->> because IWD not working on device A due to unknown errors), if no scan 
->> no frame seen. I am not sure if this behavior is expected so now 
->> checking with internal team on it.
+>> hwmon hwmon4: PM: parent phy0 should not be sleeping
 >>
->> So there comes a question: will IWD triggers scan on device A in order 
->> to receive that frame?
+>> Workaround this similarly like ath11k_mac_register() does by testing
+>> ATH11K_FLAG_REGISTERED.
+>>
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>>
+>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 > 
-> That's great its possible! And thank you for looking into this.
-> 
-> That seems very odd that device A would need to scan in order to receive 
-> a multicast frame. In all reality neither device should have to scan at 
-> all, device B just does in order to know what frequencies to start 
-> sending the multicast frames on. Even this isn't entirely needed if the 
-> frequency was known ahead of time. I think something is not right if a 
-> scan must be issued in order to receive these frames. This wasn't 
-> required by ath10k when I added it, nor is it by mac80211_hwsim; you can 
-But you are using monitor mode, not station mode, on ath10k, right?
+> you need to add your own S-O-B
+Oh, sorry for missing that.
 
-> just start listening and receive the frames.
+Hi Kalle, I see you have put this series in pending branch. I am 
+wondering if I need to send a v2 to add my S-O-B tag, or you have any 
+other plan?
+
 > 
-> Thanks,
-> 
-> James
-> 
+>> ---
+>>   drivers/net/wireless/ath/ath11k/thermal.c | 5 ++++-
+>>   1 file changed, 4 insertions(+), 1 deletion(-)
 >>
->>>
->>> Thanks,
->>>
->>> James
->>>
->>>>
->>>>>
->>>>> And help is much appreciated, and I'm happy to put in the work its 
->>>>> just a steep learning curve coupled with the fact that any FW level 
->>>>> communication is proprietary. I really just need a nudge in the 
->>>>> right direction.
->>>>>
->>>>> Thanks,
->>>>>
->>>>> James
->>>>>
->>>>>>
->>>>>>> Thanks,
->>>>>>>
->>>>>>> James
->>>>>>>
->>>>>>>>
->>>>>>>> Thanks,
->>>>>>>>
->>>>>>>> James
->>>>>>>>
->>>>>>>>
->>>>>>
+>> diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
+>> index c29b11ab5bfa..41e7499f075f 100644
+>> --- a/drivers/net/wireless/ath/ath11k/thermal.c
+>> +++ b/drivers/net/wireless/ath/ath11k/thermal.c
+>> @@ -1,7 +1,7 @@
+>>   // SPDX-License-Identifier: BSD-3-Clause-Clear
+>>   /*
+>>    * Copyright (c) 2020 The Linux Foundation. All rights reserved.
+>> - * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>   
+>>   #include <linux/device.h>
+>> @@ -163,6 +163,9 @@ int ath11k_thermal_register(struct ath11k_base *ab)
+>>   	struct ath11k_pdev *pdev;
+>>   	int i, ret;
+>>   
+>> +	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
+>> +		return 0;
+>> +
+>>   	for (i = 0; i < ab->num_radios; i++) {
+>>   		pdev = &ab->pdevs[i];
+>>   		ar = pdev->ar;
+> 
 
