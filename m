@@ -4,66 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF3DEC48BF8
-	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 14:58:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED637C48BF8
+	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 15:38:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ITGkq6N1vZiHyu2avn7BJdXk/1LJT5fVPzF4PRmPrJk=; b=vlHFagVofPzjAG9EVzGu1+pdxP
-	u2KA5Yjuj91SPH/YecJDHxP3Wtar80EWmn8B12no15JINChZs6J19wC5hGXWfHvVP29AUJ0tDLrqJ
-	lslml2LbkJweWLgICNfF5BmNOD5Quw5aSzOSGnmmS0+tiAwYA8G3145mRefca/pQZMJHvUKvR3d04
-	4cs+oiu1TmNLTt5u3ldycCiuz51/4UcarRd8Q3riSm31lTXxFzW1hSgv0y5nbfT7gzBlIgUhTV+TO
-	KiMihPsWfQDtXKK3atXfweXLblqfZu0dSJWxxvLK2OBNj6N2VJTHZ8Q9k6QE8QmCOnSqxa4CTTKdr
-	xqeFw0Sg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JgiwPF0aDe9yj5CzJjlZKdJuiYIbrJDtCrpJLyrGsCk=; b=Rhbzx0AJxlAyWel6tUt9pIS8eC
+	xaL/ZFy9JqV6bOs0rXUjL9X4IDi2Ph4vxQDuBtnbkM2xD4dEF0Bf7KzHWsDxT4sivRBC7eA7iSyvc
+	RkuDUhee7IOHda1Zkx6QwY/5hKXJm23EsIgUW1cIHJiCwnlxNIIu2BuwL+OUg+pQc2eiX7RhWmyat
+	K27E0/pdDe7/ZxvmorVeUdaGl9H3y+SgsU1DA6wLJAKJda8oczNMgpzdKt3dxyVd22sNuj33v+qKJ
+	GAAzO2BBbtsfxptt3lXjN1kJziHlWdOe9Qh1vVnZy2B+oWsoJAgM1N11m6CLrFYg0l0Oubsauqj+T
+	GFQAnzZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdAX0-00000005IzL-1XKU;
-	Thu, 22 Feb 2024 14:58:38 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1rdB9v-00000005QhJ-2aB0;
+	Thu, 22 Feb 2024 15:38:51 +0000
+Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdAWw-00000005Iy2-3cAk
+	id 1rdB9s-00000005Qgb-1S4X
 	for ath11k@lists.infradead.org;
-	Thu, 22 Feb 2024 14:58:36 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 3893ACE219E;
-	Thu, 22 Feb 2024 14:58:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65248C433F1;
-	Thu, 22 Feb 2024 14:58:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708613908;
-	bh=d1/TmCT/PSUNMvVkg8Qx4qfwGfw5wg3z0Xbjn1a9QyE=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=mcizg/rDjPKnH38U1Sd/QOmL95ab3MqUaFnWGjlNfFA+hCbOiSua4Opheb/vQxz0F
-	 kRzrxEr3wk6gPiBE4hhGsEsGhHz0J6fUvmnenTfKdYc5my9CVMFmUn7MlsPD15SCTJ
-	 ao9vzQWbjnw9XgbToI76FSCMqfAvkCFeGVIKShXCDTSGeJNdcLKVmBOYYkx3k+hPg0
-	 sgSTRzn3+rSV+DSSFBOdfhKTCv3OM3h62/iva+6fNePycgsgS6pD3Hw8dg4VKkvz0H
-	 UCC074LPP42o8uONTdyrUh1rsJCYm6G15+11AjDmgpXctfbqNY0d2a5WfWjnIJAgwM
-	 dYq7NftC3jSGw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  <ath11k@lists.infradead.org>,
-  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH 5/5] wifi: ath11k: thermal: don't try to register
- multiple times
-References: <20240221024725.10057-1-quic_bqiang@quicinc.com>
-	<20240221024725.10057-6-quic_bqiang@quicinc.com>
-	<df08dfd4-189c-407b-8a2e-6fd2bbf3b22f@quicinc.com>
-	<5828b835-6b4d-4245-991a-7f6b54ee8b51@quicinc.com>
-	<871q95audb.fsf@kernel.org>
-	<f2536171-f878-4a71-a49b-ca87abb17251@quicinc.com>
-Date: Thu, 22 Feb 2024 16:58:25 +0200
-In-Reply-To: <f2536171-f878-4a71-a49b-ca87abb17251@quicinc.com> (Baochen
-	Qiang's message of "Thu, 22 Feb 2024 15:43:22 +0800")
-Message-ID: <87cysolf5a.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 22 Feb 2024 15:38:51 +0000
+Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-5ce9555d42eso1515618a12.2
+        for <ath11k@lists.infradead.org>; Thu, 22 Feb 2024 07:38:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708616327; x=1709221127; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JgiwPF0aDe9yj5CzJjlZKdJuiYIbrJDtCrpJLyrGsCk=;
+        b=Da7+YsfrCqyGeSezjxwCQF2vbRWIVtTbHl4q16W+pMNARToFbQV2ySu706EscO+tAq
+         Hv5HRMDqM0j2kuYiX2lWqxLFjKD0RvmXZJcPXPkw6JYuMYUxuNtmynYdD1UdwLERU6BJ
+         nzcL6HKJ39Zs6PR1VzFJ+dK0l2xaApbEIYiBTbQyqfbxjCrce5UR9exg0Wp5Iz21NIWD
+         US2VFkPzb8eT5OCtvvQPR0sejNb7t0+nHG9pPKtOPbySiWUPFYMgKswpx0Gcr/FfCU+e
+         +KwRgjEDxD9i8R37uQ9tUX6WP/H3Xb6R4w82b0j1DBNAPPt/IDmgmb9wBMigcD2jqMF6
+         DUjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708616327; x=1709221127;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JgiwPF0aDe9yj5CzJjlZKdJuiYIbrJDtCrpJLyrGsCk=;
+        b=mOjrIpyGZpZ8keLKJZOUhGoyjpljHL/xRUiBhqnmeMEetLMkXhxxaY2luTWaX8ys7P
+         C8lfcVYJRdbGXeKDg+rC79qf6kGuU4izHF2Utk3HgoxO426D26t8pwTqN1Ri77/ygcUf
+         rP2cesu85C55Fr37vFM079vCxlkVaQZnnv3q9wCWp4fsGk2mkwrqAdCv7BdXOB7dqa5r
+         s6cPZbQHP606oHXSZDQIq8VHlBk9k1GAdNHbjyIsZoj7ajCejxxVOwpX2XuA1pFrr4FX
+         uG2rYi3o5crdqt39vJOThPVGVW4pUB/wjXQ6uvD/Om+82Xx2izegKUoZBXonyryqSDdP
+         26LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+P8IQumXOU1rcZoyLB8AKVVP0i6O75hV296N+IeNuC3J718NwviNRBdrkp/ZRlZXELsqUDft+OtcwSfvngvWkaZiupoDh2Oc/CQ==
+X-Gm-Message-State: AOJu0YzuXrVIzo0QyiWI4zanYW9Tru4BUOMy1BcZQmsNqROQ1cZG706U
+	QoEWzZHvhtd78U60GGU3nrmoYehzLu+5NEZ114u/bGaJEXVU4akZ
+X-Google-Smtp-Source: AGHT+IE1VLtTaQqTb9bDv83/VhdyBtgAzckhiW9A65DY59qzo6Awfa/BtWlp5LxDbKF/i24C+Z1vjQ==
+X-Received: by 2002:a05:6a21:3183:b0:19e:a9e6:c05 with SMTP id za3-20020a056a21318300b0019ea9e60c05mr26816890pzb.43.1708616326926;
+        Thu, 22 Feb 2024 07:38:46 -0800 (PST)
+Received: from [10.102.4.159] ([208.195.13.130])
+        by smtp.gmail.com with ESMTPSA id e8-20020aa798c8000000b006e45a0101basm9302539pfm.99.2024.02.22.07.38.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Feb 2024 07:38:46 -0800 (PST)
+Message-ID: <0e8ad2c2-cc39-4903-97f7-c3ffb525e61a@gmail.com>
+Date: Thu, 22 Feb 2024 07:38:43 -0800
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k multicast action frame RX
+Content-Language: en-US
+To: Baochen Qiang <quic_bqiang@quicinc.com>,
+ "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
+ <linux-wireless@vger.kernel.org>, ath11k@lists.infradead.org
+References: <dcdbd757-ad6e-4fe0-a0c1-fe328431b73b@locusrobotics.com>
+ <642b61a6-e3c0-4831-887f-f25314bf166d@locusrobotics.com>
+ <90ac3bdc-8797-4d57-8bc9-48e0ad406674@quicinc.com>
+ <1dafe0e5-292b-4764-86c7-cc1757aeb3b6@gmail.com>
+ <ed8eeb92-e1eb-445e-989d-2340c26faf44@quicinc.com>
+ <7a62031b-ad1f-4da2-8217-19a5d7fdc0f4@gmail.com>
+ <f363f179-b41f-4bea-882f-e4aacb8ad519@quicinc.com>
+ <eaeb8e9b-3809-4f89-a5b2-7949aa01fbde@gmail.com>
+ <026d9ba3-525d-4a12-8d03-5fece818330c@quicinc.com>
+From: James Prestwood <prestwoj@gmail.com>
+In-Reply-To: <026d9ba3-525d-4a12-8d03-5fece818330c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240222_065835_168204_3DAC75EF 
-X-CRM114-Status: GOOD (  11.71  )
+X-CRM114-CacheID: sfid-20240222_073848_439322_852DB273 
+X-CRM114-Status: UNSURE (   4.73  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,48 +103,17 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> writes:
+Hi Baochen,
 
-> On 2/22/2024 2:25 PM, Kalle Valo wrote:
->> Baochen Qiang <quic_bqiang@quicinc.com> writes:
->> 
->>> On 2/22/2024 1:15 AM, Jeff Johnson wrote:
->>>> On 2/20/2024 6:47 PM, Baochen Qiang wrote:
->>>>> From: Kalle Valo <quic_kvalo@quicinc.com>
->>>>>
->>>>> Every time the firmware boots we call ath11k_core_qmi_firmware_ready() which
->>>>> ends up calling ath11k_thermal_register(). So we try to register thermal
->>>>> devices multiple times. And when we power off the firmware during
->>>>> suspend/hibernation (implemented in the next patch) we get a warning in resume:
->>>>>
->>>>> hwmon hwmon4: PM: parent phy0 should not be sleeping
->>>>>
->>>>> Workaround this similarly like ath11k_mac_register() does by testing
->>>>> ATH11K_FLAG_REGISTERED.
->>>>>
->>>>> Tested-on: WCN6855 hw2.0 PCI
->>>>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
->>>>>
->>>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->>>> you need to add your own S-O-B
->>> Oh, sorry for missing that.
->>>
->>> Hi Kalle, I see you have put this series in pending branch. I am
->>> wondering if I need to send a v2 to add my S-O-B tag, or you have any
->>> other plan?
->> I can add it in the pending branch if you send it to me as a reply
->> to
->> this mail. s-o-b is like a signature so I won't add it on my own.
-> Understood Kalle. So please help add below tag to this patch in
-> pending branch:
-> 	Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+On 2/21/24 6:26 PM, Baochen Qiang wrote:
+> But you are using monitor mode, not station mode, on ath10k, right? 
 
-Thanks, added:
+No I'm using station mode. It looks like ath10k creates a monitor device 
+to receive these frames (that was already done before my patch), but the 
+interface I'm using from userspace is a regular station interface
 
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=a88f2007763465f2be307c3a5ed542233bc3c77e
+Thanks,
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+James
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
