@@ -4,88 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B875C48BF8
-	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 07:48:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22F12C48BF8
+	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 08:31:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=psqBUKQGbSXbbAVz6siNfbT5CXvozy5U7okkg1Pdo+U=; b=bK2++nCQfKoD3o/QORuAYJn+jc
-	VuQzNy+gKFCvF9kRjt7BTQ3oU7kUUL9ltUD38237WEsJBgvDBRII2+eYqeCGB3qQ6gq+/dvlkASLy
-	PoO5xWoCPaxrsgjIdWMjdTSjDLSLr4VUOgByw4os7w1JPrtL0JsJFQ+jncmdCOi+oiQaVbavdt1Kx
-	Xbp3K76NA4Ng8lXccYdERALVkc2HOAKV7GR4NXI4ute81bmdRzczmWdc2hYzdyMagygi4RsEFV/Zj
-	nWrZAEovhYCEkXUemORTOABh2uUzRhAHxY/hvBtn5XLcQiGNQ5XIqtXSrGfb1TvtWM1pe9z1Cw5rV
-	9ZYfEqQQ==;
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=MnOGdMh0iyMca94aHByyq2RLP1AvWyGMT/MDG+67vwc=; b=asr+BM+P299AIG8cQdV20BaaHs
+	ZwmeKHyYPOfzuNAWB8cB/gAOm2nus9R9mo7IMNp0WY/lKhEGNpikvNalDZZu50DsjrqpuH428DoZj
+	M+HopyiXqHn81TxpZmTTHfHZazbDwAd5WIpeG3NeBpRvcdJEtONSQljUQvYOtx6ntv2sIsDnTfp1y
+	D9n0lWt7znYvsQfXokPnTd+XCjl+YSdYWmOCoeStTVc3/cS50zjW9Z73Sgj1ZIFh8IciIwHFWjBqr
+	FvMCGNgevNaNt3j3U3iKzyB/kg63zE+yy2Q0JUPYfYmQ7L3YZ05ojW2zkH8L7Fa1y0bneonio4nOc
+	1D0eSwVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rd3p6-00000003sKf-0HT6;
-	Thu, 22 Feb 2024 07:48:52 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rd4Tz-000000042a3-3Pow;
+	Thu, 22 Feb 2024 08:31:07 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rd3p3-00000003sKE-17nF
-	for ath11k@lists.infradead.org;
-	Thu, 22 Feb 2024 07:48:50 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M3kI7X011318;
-	Thu, 22 Feb 2024 07:48:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=psqBUKQGbSXbbAVz6siNfbT5CXvozy5U7okkg1Pdo+U=; b=bI
-	kAmb3DoGAkSsJ/hHT6Udv8/yp0Ek0VtrvE99Jya7DTOIY4kv35ENxk+HZcAjTXlH
-	dkiV92pNGvT3yGsxXKNEeRDOIqs8Hc61ovtCQcsS6SSWvdsjzb4jrYwIUL8q6nQu
-	1WTpmRz2oQPh+paNQbuYVMwcjU50MexPsBF9NnV4AXNZMhI3wslfIKAywW1VFQ1s
-	moH8lN5c/CpipQ4LzCILjEGutnj+5wG2AtXPG8RHHwRhp4FVVmLQOpwJHWPFI2T1
-	jB8d5AaLRl28/69/ks3zppSRN0fAsiCrcNODH/H0gF3t1EJYiWlbRsQ08AYWdSXU
-	ugC2N4ALn/PyiSBAI5BA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdckvb1jf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 07:48:48 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41M7mlWk029379
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2024 07:48:47 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
- 2024 23:48:46 -0800
-Message-ID: <77f6bbf6-add1-4f3b-9c10-5292e032c758@quicinc.com>
-Date: Thu, 22 Feb 2024 15:48:43 +0800
+	id 1rd4Tw-000000042Xh-3sf8;
+	Thu, 22 Feb 2024 08:31:06 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 0BE54616D6;
+	Thu, 22 Feb 2024 08:31:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 646F3C433F1;
+	Thu, 22 Feb 2024 08:31:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708590663;
+	bh=k0DEzDQSLa5M/GLDTtBEZ67yVwcDnrxRQUYOAgzB1Ug=;
+	h=From:To:Cc:Subject:Date:From;
+	b=FXs0MxblGlWpyZkACaFxHffYijg8Ly2azPuFldNHW4UMoAF59GNmxQGUPsMtrFtug
+	 XFRPmmLobQklBcC54D6h2RqQCXNLc2NrpiTH9q4o1svWp/2LP7vkvt7Nv962Lu0U4K
+	 AqgvUsgAiUGPfyspjFpDA6os1OYQyQznJ5yU2ZNS/JX+2lPotFJ31+4MGXSedHNM8x
+	 e1m5zj/MFXRLvDZvS17/X2Gspcz0iBgayp2gZFLtlGkYBj8ow8xqAWDYFmNMTIu0ZE
+	 7Gyt6NyIqWr95qIc8dmJR4vilFi2f46KSFsNNfsmYmJmGLVru2O7arJVuT4WQK3shJ
+	 CwtcKR/Nlnrhw==
+From: Kalle Valo <kvalo@kernel.org>
+To: linux-wireless@vger.kernel.org
+Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, quic_jjohnson@quicinc.com
+Subject: pull-request: ath-next-20240222
+Date: Thu, 22 Feb 2024 10:31:00 +0200
+Message-ID: <87plwolx2z.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] net: qrtr: support suspend/hibernation
-Content-Language: en-US
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
-        <mhi@lists.linux.dev>
-CC: <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20240221030026.10553-1-quic_bqiang@quicinc.com>
- <20240221030026.10553-3-quic_bqiang@quicinc.com>
- <dc54be43-e27f-4b5b-9b84-cf0856370abf@quicinc.com>
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <dc54be43-e27f-4b5b-9b84-cf0856370abf@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: khza-GBEbGNQoETOuHopejsYeNiKfW8u
-X-Proofpoint-ORIG-GUID: khza-GBEbGNQoETOuHopejsYeNiKfW8u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-22_05,2024-02-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 malwarescore=0 mlxlogscore=999 impostorscore=0 mlxscore=0
- bulkscore=0 phishscore=0 priorityscore=1501 clxscore=1015 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402220061
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_234849_356240_5EF58FD3 
-X-CRM114-Status: GOOD (  21.26  )
+X-CRM114-CacheID: sfid-20240222_003105_069665_92D97851 
+X-CRM114-Status: GOOD (  13.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,98 +69,190 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
+Here's an ath-next pull request to wireless-next. More info below.
 
-On 2/22/2024 2:24 AM, Jeff Johnson wrote:
-> On 2/20/2024 7:00 PM, Baochen Qiang wrote:
->> MHI devices may not be destroyed during suspend/hibernation, so need
->> to unprepare/prepare MHI channels throughout the transition.
->>
->> The RFC version adds new API to MHI stack with which an MHI controller
->> driver can do unprepare/prepare directly by itself, see
->>
->> https://patchwork.kernel.org/project/linux-wireless/patch/20231127162022.518834-3-kvalo@kernel.org/
->>
->> Although it works well Mani pointed out that the design is not good
->> because MHI channels are managed by MHI client driver thus should not
->> be touched by others. See the discussion
->>
->> https://lore.kernel.org/mhi/20231127162022.518834-1-kvalo@kernel.org/
->>
->> This version changes to add suspend/resume callbacks to achieve the
->> same purpose. The suspend callback is called in the late suspend stage,
->> this means MHI channels are still alive at suspend stage, and that makes
->> it possible for an MHI controller driver to communicate with others over
->> those channels at suspend stage. While the resume callback is called in
->> the early resume stage, for a similar reason.
->>
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
->>
->> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
->> ---
->>   net/qrtr/mhi.c | 29 +++++++++++++++++++++++++++++
->>   1 file changed, 29 insertions(+)
->>
->> diff --git a/net/qrtr/mhi.c b/net/qrtr/mhi.c
->> index 9ced13c0627a..b54a6c2113e9 100644
->> --- a/net/qrtr/mhi.c
->> +++ b/net/qrtr/mhi.c
->> @@ -118,6 +118,32 @@ static const struct mhi_device_id qcom_mhi_qrtr_id_table[] = {
->>   };
->>   MODULE_DEVICE_TABLE(mhi, qcom_mhi_qrtr_id_table);
->>   
->> +static int qcom_mhi_qrtr_pm_suspend_late(struct device *dev)
-> 
-> Don't your new functions also need to be annotated as __maybe_unused?
-OK, will add __maybe_unused in next version.
+Kalle
 
-> 
->> +{
->> +	struct mhi_device *mhi_dev = container_of(dev, struct mhi_device, dev);
->> +
->> +	mhi_unprepare_from_transfer(mhi_dev);
->> +
->> +	return 0;
->> +}
->> +
->> +static int qcom_mhi_qrtr_pm_resume_early(struct device *dev)
->> +{
->> +	struct mhi_device *mhi_dev = container_of(dev, struct mhi_device, dev);
->> +	int rc;
->> +
->> +	rc = mhi_prepare_for_transfer_autoqueue(mhi_dev);
->> +	if (rc)
->> +		dev_err(dev, "failed to prepare for autoqueue transfer %d\n", rc);
->> +
->> +	return rc;
->> +}
->> +
->> +static const struct dev_pm_ops __maybe_unused qcom_mhi_qrtr_pm_ops = {
-> 
-> this does not need to be __maybe_unused, see below
-> 
->> +	SET_LATE_SYSTEM_SLEEP_PM_OPS(qcom_mhi_qrtr_pm_suspend_late,
->> +				     qcom_mhi_qrtr_pm_resume_early)
->> +};
->> +
->>   static struct mhi_driver qcom_mhi_qrtr_driver = {
->>   	.probe = qcom_mhi_qrtr_probe,
->>   	.remove = qcom_mhi_qrtr_remove,
->> @@ -126,6 +152,9 @@ static struct mhi_driver qcom_mhi_qrtr_driver = {
->>   	.id_table = qcom_mhi_qrtr_id_table,
->>   	.driver = {
->>   		.name = "qcom_mhi_qrtr",
->> +#ifdef CONFIG_PM
-> 
-> conditional compilation isn't necessary here since the 'pm' member is
-> always present
-Sure, will remove that in next version.
+The following changes since commit 2a71528427c635f0a8bff704b2e62ce81c641d6f:
 
-> 
->> +		.pm = &qcom_mhi_qrtr_pm_ops,
->> +#endif
->>   	},
->>   };
->>   
-> 
+  wifi: brcmfmac: fix copyright year mentioned in platform_data header (202=
+4-01-31 18:48:06 +0200)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git tags/ath-next=
+-20240222
+
+for you to fetch changes up to 3ab6aff5793c3c7bdf6535d9b0024544a4abbdd5:
+
+  wifi: ath11k: remove unused scan_events from struct scan_req_params (2024=
+-02-15 13:24:18 +0200)
+
+----------------------------------------------------------------
+ath.git patches for v6.9
+
+We have support for QCA2066 now and also several new features in ath12k.
+
+Major changes:
+
+ath12k
+
+* firmware-2.bin support
+
+* support having multiple identical PCI devices (firmware needs to
+  have ATH12K_FW_FEATURE_MULTI_QRTR_ID)
+
+* QCN9274: support split-PHY devices
+
+* WCN7850: enable Power Save Mode in station mode
+
+* WCN7850: P2P support
+
+ath11k:
+
+* QCA6390 & WCN6855: support 2 concurrent station interfaces
+
+* QCA2066 support
+
+----------------------------------------------------------------
+Aaradhana Sahu (1):
+      wifi: ath12k: fix firmware assert during insmod in memory segment mode
+
+Baochen Qiang (5):
+      wifi: ath12k: enable 802.11 power save mode in station mode
+      wifi: ath11k: initialize rx_mcs_80 and rx_mcs_160 before use
+      wifi: ath11k: initialize eirp_power before use
+      wifi: ath11k: move pci.ops registration ahead
+      wifi: ath11k: add support for QCA2066
+
+Carl Huang (2):
+      wifi: ath11k: support 2 station interfaces
+      wifi: ath11k: provide address list if chip supports 2 stations
+
+Colin Ian King (2):
+      wifi: ath9k:  remove redundant assignment to variable ret
+      wifi: carl9170: Remove redundant assignment to pointer super
+
+Ganesh Babu Jothiram (1):
+      wifi: ath12k: Read board id to support split-PHY QCN9274
+
+Harshitha Prem (1):
+      wifi: ath12k: add support for peer meta data version
+
+Jeff Johnson (1):
+      wifi: ath11k: Really consistently use ath11k_vif_to_arvif()
+
+Kang Yang (11):
+      wifi: ath12k: fix broken structure wmi_vdev_create_cmd
+      wifi: ath12k: fix incorrect logic of calculating vdev_stats_id
+      wifi: ath12k: change interface combination for P2P mode
+      wifi: ath12k: add P2P IE in beacon template
+      wifi: ath12k: implement handling of P2P NoA event
+      wifi: ath12k: implement remain on channel for P2P mode
+      wifi: ath12k: change WLAN_SCAN_PARAMS_MAX_IE_LEN from 256 to 512
+      wifi: ath12k: allow specific mgmt frame tx while vdev is not up
+      wifi: ath12k: move peer delete after vdev stop of station for WCN7850
+      wifi: ath12k: designating channel frequency for ROC scan
+      wifi: ath12k: advertise P2P dev support for WCN7850
+
+Karthikeyan Kathirvel (1):
+      wifi: ath12k: subscribe required word mask from rx tlv
+
+Karthikeyan Periyasamy (2):
+      wifi: ath12k: add MAC id support in WBM error path
+      wifi: ath12k: refactor the rfkill worker
+
+Lingbo Kong (2):
+      wifi: ath12k: add processing for TWT enable event
+      wifi: ath12k: add processing for TWT disable event
+
+Nathan Chancellor (1):
+      wifi: ath12k: Fix uninitialized use of ret in ath12k_mac_allocate()
+
+Nicolas Escande (6):
+      wifi: ath11k: Do not directly use scan_flags in struct scan_req_params
+      wifi: ath11k: Remove scan_flags union from struct scan_req_params
+      wifi: ath12k: Do not use scan_flags from struct ath12k_wmi_scan_req_a=
+rg
+      wifi: ath12k: Remove unused scan_flags from struct ath12k_wmi_scan_re=
+q_arg
+      wifi: ath12k: remove the unused scan_events from ath12k_wmi_scan_req_=
+arg
+      wifi: ath11k: remove unused scan_events from struct scan_req_params
+
+P Praneesh (2):
+      wifi: ath12k: Add logic to write QRTR node id to scratch
+      wifi: ath12k: fix PCI read and write
+
+Raj Kumar Bhagat (5):
+      wifi: ath12k: add firmware-2.bin support
+      wifi: ath12k: fix fetching MCBC flag for QCN9274
+      wifi: ath12k: split hal_ops to support RX TLVs word mask compaction
+      wifi: ath12k: remove hal_desc_sz from hw params
+      wifi: ath12k: disable QMI PHY capability learn in split-phy QCN9274
+
+Sowmiya Sree Elavalagan (1):
+      wifi: ath12k: fetch correct pdev id from WMI_SERVICE_READY_EXT_EVENTID
+
+Sriram R (1):
+      wifi: ath12k: indicate NON MBSSID vdev by default during vdev start
+
+Toke H=C3=B8iland-J=C3=B8rgensen (1):
+      wifi: ath9k: delay all of ath9k_wmi_event_tasklet() until init is com=
+plete
+
+Wen Gong (1):
+      wifi: ath11k: change to move WMI_VDEV_PARAM_SET_HEMU_MODE before WMI_=
+PEER_ASSOC_CMDID
+
+ drivers/net/wireless/ath/ath11k/core.c        | 100 +++++-
+ drivers/net/wireless/ath/ath11k/core.h        |   1 +
+ drivers/net/wireless/ath/ath11k/hw.c          |   2 +-
+ drivers/net/wireless/ath/ath11k/hw.h          |   1 +
+ drivers/net/wireless/ath/ath11k/mac.c         | 116 +++++--
+ drivers/net/wireless/ath/ath11k/mhi.c         |   1 +
+ drivers/net/wireless/ath/ath11k/pci.c         |  43 ++-
+ drivers/net/wireless/ath/ath11k/pcic.c        |  11 +
+ drivers/net/wireless/ath/ath11k/wmi.c         |   2 +-
+ drivers/net/wireless/ath/ath11k/wmi.h         |  86 +++--
+ drivers/net/wireless/ath/ath12k/Makefile      |   4 +-
+ drivers/net/wireless/ath/ath12k/core.c        |  55 +++-
+ drivers/net/wireless/ath/ath12k/core.h        |  27 ++
+ drivers/net/wireless/ath/ath12k/dp.c          |  25 +-
+ drivers/net/wireless/ath/ath12k/dp.h          |  17 +-
+ drivers/net/wireless/ath/ath12k/dp_mon.c      |   5 +-
+ drivers/net/wireless/ath/ath12k/dp_rx.c       | 158 ++++-----
+ drivers/net/wireless/ath/ath12k/dp_tx.c       |  20 ++
+ drivers/net/wireless/ath/ath12k/fw.c          | 171 ++++++++++
+ drivers/net/wireless/ath/ath12k/fw.h          |  33 ++
+ drivers/net/wireless/ath/ath12k/hal.c         | 415 ++++++++++++++++++++++=
++-
+ drivers/net/wireless/ath/ath12k/hal.h         |  20 +-
+ drivers/net/wireless/ath/ath12k/hw.c          |  24 +-
+ drivers/net/wireless/ath/ath12k/hw.h          |  32 +-
+ drivers/net/wireless/ath/ath12k/mac.c         | 443 ++++++++++++++++++++++=
+----
+ drivers/net/wireless/ath/ath12k/mhi.c         |  52 ++-
+ drivers/net/wireless/ath/ath12k/p2p.c         | 142 +++++++++
+ drivers/net/wireless/ath/ath12k/p2p.h         |  23 ++
+ drivers/net/wireless/ath/ath12k/pci.c         |  84 +++--
+ drivers/net/wireless/ath/ath12k/pci.h         |   6 +-
+ drivers/net/wireless/ath/ath12k/qmi.c         |  52 ++-
+ drivers/net/wireless/ath/ath12k/qmi.h         |   1 -
+ drivers/net/wireless/ath/ath12k/rx_desc.h     | 116 ++++++-
+ drivers/net/wireless/ath/ath12k/wmi.c         | 230 +++++++++++--
+ drivers/net/wireless/ath/ath12k/wmi.h         | 202 ++++++++----
+ drivers/net/wireless/ath/ath9k/htc.h          |   2 +-
+ drivers/net/wireless/ath/ath9k/htc_drv_init.c |   4 +
+ drivers/net/wireless/ath/ath9k/htc_drv_txrx.c |   4 -
+ drivers/net/wireless/ath/ath9k/wmi.c          |  10 +-
+ drivers/net/wireless/ath/ath9k/xmit.c         |   3 +-
+ drivers/net/wireless/ath/carl9170/tx.c        |   2 +-
+ 41 files changed, 2334 insertions(+), 411 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath12k/fw.c
+ create mode 100644 drivers/net/wireless/ath/ath12k/fw.h
+ create mode 100644 drivers/net/wireless/ath/ath12k/p2p.c
+ create mode 100644 drivers/net/wireless/ath/ath12k/p2p.h
 
