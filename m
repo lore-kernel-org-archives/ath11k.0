@@ -4,59 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C52CCC5478C
-	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 10:43:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF3DEC48BF8
+	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 14:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=dRArE7dUAcUWsYrGH5QpXG60jI/Bywls5niWJ9K/z5s=; b=aYvO+fFvkHZjuGbpGphS8UCrSA
-	vjQaIEzmMZa18uDGtJg9rYKxaPrj31JK8SiTXCnuG42f5H+8MtyEpkmAUrhnZkEhgm3QHmwesHXbq
-	AeGHjD6MfDmXtrfSDNSsxOwP21NxLS1UIWeQb46OJbTAygCm4sNwUoyyM7aedPnyymB0wp3NKDSXC
-	W1knTsmZfReS/KLMoJ0jy1rdG3jRPFXgMSFaXHWpnhIk/9bqAD5PX8tpmxazvJkjPOZTjHfNsqbrX
-	kaBeL6dmuo/sGJ0aCXZgfkrOIWXUrIdjbxo5HcQh9YQEd709wqYUP1nIon6yk0Q1362VtxZQrZhN+
-	Kege3CmQ==;
+	bh=ITGkq6N1vZiHyu2avn7BJdXk/1LJT5fVPzF4PRmPrJk=; b=vlHFagVofPzjAG9EVzGu1+pdxP
+	u2KA5Yjuj91SPH/YecJDHxP3Wtar80EWmn8B12no15JINChZs6J19wC5hGXWfHvVP29AUJ0tDLrqJ
+	lslml2LbkJweWLgICNfF5BmNOD5Quw5aSzOSGnmmS0+tiAwYA8G3145mRefca/pQZMJHvUKvR3d04
+	4cs+oiu1TmNLTt5u3ldycCiuz51/4UcarRd8Q3riSm31lTXxFzW1hSgv0y5nbfT7gzBlIgUhTV+TO
+	KiMihPsWfQDtXKK3atXfweXLblqfZu0dSJWxxvLK2OBNj6N2VJTHZ8Q9k6QE8QmCOnSqxa4CTTKdr
+	xqeFw0Sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rd6YC-00000004WZ1-0EWV;
-	Thu, 22 Feb 2024 10:43:36 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1rdAX0-00000005IzL-1XKU;
+	Thu, 22 Feb 2024 14:58:38 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rd6Y8-00000004WYA-18BD;
-	Thu, 22 Feb 2024 10:43:33 +0000
+	id 1rdAWw-00000005Iy2-3cAk
+	for ath11k@lists.infradead.org;
+	Thu, 22 Feb 2024 14:58:36 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 75BC861795;
-	Thu, 22 Feb 2024 10:43:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11CFC433F1;
-	Thu, 22 Feb 2024 10:43:29 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 3893ACE219E;
+	Thu, 22 Feb 2024 14:58:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65248C433F1;
+	Thu, 22 Feb 2024 14:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1708598611;
-	bh=PHAYR+G8AEvsMILj2TGvpVCTUhyBs8YZi1hH4Qg/CIc=;
+	s=k20201202; t=1708613908;
+	bh=d1/TmCT/PSUNMvVkg8Qx4qfwGfw5wg3z0Xbjn1a9QyE=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=e8gXrHGNxRBvV8NmJaFSP9Ip3AIwZiihjEDfH3OpsgfZO7tBFvo9ycEWl+sx8/ylu
-	 Q54AgX97YFkgBG8iIGtXWhSDzV6uaSdowshlosM7K2oOO/NuBxbKYgwp3qPMXuq/0I
-	 A/4od94pfngBbhr0jvHTiH8zJTfKK4U5zu573yYc4Ze31M4FXf5JF8GssRk9qUZ8Z8
-	 v68zyR/HGYp/c7a+0udvGRReSXs/seAVcpHkdGwjcgh0DgJiWg8N56whYrys3q3I2v
-	 O5r2v5dV0C4p7UNkvFhzqVkfz9g/ZBJQ7+7mJjR04PWL7Ypo65K6TFuNEJr8N7CK16
-	 WCV3nPUh5WQJQ==
+	b=mcizg/rDjPKnH38U1Sd/QOmL95ab3MqUaFnWGjlNfFA+hCbOiSua4Opheb/vQxz0F
+	 kRzrxEr3wk6gPiBE4hhGsEsGhHz0J6fUvmnenTfKdYc5my9CVMFmUn7MlsPD15SCTJ
+	 ao9vzQWbjnw9XgbToI76FSCMqfAvkCFeGVIKShXCDTSGeJNdcLKVmBOYYkx3k+hPg0
+	 sgSTRzn3+rSV+DSSFBOdfhKTCv3OM3h62/iva+6fNePycgsgS6pD3Hw8dg4VKkvz0H
+	 UCC074LPP42o8uONTdyrUh1rsJCYm6G15+11AjDmgpXctfbqNY0d2a5WfWjnIJAgwM
+	 dYq7NftC3jSGw==
 From: Kalle Valo <kvalo@kernel.org>
-To: linux-wireless@vger.kernel.org
-Cc: ath10k@lists.infradead.org,  ath11k@lists.infradead.org,
-  ath12k@lists.infradead.org,  quic_jjohnson@quicinc.com
-Subject: Re: pull-request: ath-next-20240222
-References: <87plwolx2z.fsf@kernel.org>
-Date: Thu, 22 Feb 2024 12:43:27 +0200
-In-Reply-To: <87plwolx2z.fsf@kernel.org> (Kalle Valo's message of "Thu, 22 Feb
-	2024 10:31:00 +0200")
-Message-ID: <87h6i0lqy8.fsf@kernel.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  <ath11k@lists.infradead.org>,
+  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH 5/5] wifi: ath11k: thermal: don't try to register
+ multiple times
+References: <20240221024725.10057-1-quic_bqiang@quicinc.com>
+	<20240221024725.10057-6-quic_bqiang@quicinc.com>
+	<df08dfd4-189c-407b-8a2e-6fd2bbf3b22f@quicinc.com>
+	<5828b835-6b4d-4245-991a-7f6b54ee8b51@quicinc.com>
+	<871q95audb.fsf@kernel.org>
+	<f2536171-f878-4a71-a49b-ca87abb17251@quicinc.com>
+Date: Thu, 22 Feb 2024 16:58:25 +0200
+In-Reply-To: <f2536171-f878-4a71-a49b-ca87abb17251@quicinc.com> (Baochen
+	Qiang's message of "Thu, 22 Feb 2024 15:43:22 +0800")
+Message-ID: <87cysolf5a.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240222_024332_378255_214FCB64 
-X-CRM114-Status: GOOD (  12.26  )
+X-CRM114-CacheID: sfid-20240222_065835_168204_3DAC75EF 
+X-CRM114-Status: GOOD (  11.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,55 +78,45 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-> Hi,
->
-> Here's an ath-next pull request to wireless-next. More info below.
->
-> Kalle
->
-> The following changes since commit 2a71528427c635f0a8bff704b2e62ce81c641d6f:
->
->   wifi: brcmfmac: fix copyright year mentioned in platform_data header (2024-01-31 18:48:06 +0200)
->
-> are available in the Git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git tags/ath-next-20240222
->
-> for you to fetch changes up to 3ab6aff5793c3c7bdf6535d9b0024544a4abbdd5:
->
->   wifi: ath11k: remove unused scan_events from struct scan_req_params (2024-02-15 13:24:18 +0200)
->
-> ----------------------------------------------------------------
-> ath.git patches for v6.9
->
-> We have support for QCA2066 now and also several new features in ath12k.
->
-> Major changes:
->
-> ath12k
->
-> * firmware-2.bin support
->
-> * support having multiple identical PCI devices (firmware needs to
->   have ATH12K_FW_FEATURE_MULTI_QRTR_ID)
->
-> * QCN9274: support split-PHY devices
->
-> * WCN7850: enable Power Save Mode in station mode
->
-> * WCN7850: P2P support
->
-> ath11k:
->
-> * QCA6390 & WCN6855: support 2 concurrent station interfaces
->
-> * QCA2066 support
->
-> ----------------------------------------------------------------
+> On 2/22/2024 2:25 PM, Kalle Valo wrote:
+>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
+>> 
+>>> On 2/22/2024 1:15 AM, Jeff Johnson wrote:
+>>>> On 2/20/2024 6:47 PM, Baochen Qiang wrote:
+>>>>> From: Kalle Valo <quic_kvalo@quicinc.com>
+>>>>>
+>>>>> Every time the firmware boots we call ath11k_core_qmi_firmware_ready() which
+>>>>> ends up calling ath11k_thermal_register(). So we try to register thermal
+>>>>> devices multiple times. And when we power off the firmware during
+>>>>> suspend/hibernation (implemented in the next patch) we get a warning in resume:
+>>>>>
+>>>>> hwmon hwmon4: PM: parent phy0 should not be sleeping
+>>>>>
+>>>>> Workaround this similarly like ath11k_mac_register() does by testing
+>>>>> ATH11K_FLAG_REGISTERED.
+>>>>>
+>>>>> Tested-on: WCN6855 hw2.0 PCI
+>>>>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>>>>>
+>>>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+>>>> you need to add your own S-O-B
+>>> Oh, sorry for missing that.
+>>>
+>>> Hi Kalle, I see you have put this series in pending branch. I am
+>>> wondering if I need to send a v2 to add my S-O-B tag, or you have any
+>>> other plan?
+>> I can add it in the pending branch if you send it to me as a reply
+>> to
+>> this mail. s-o-b is like a signature so I won't add it on my own.
+> Understood Kalle. So please help add below tag to this patch in
+> pending branch:
+> 	Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
-Pulled.
+Thanks, added:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=a88f2007763465f2be307c3a5ed542233bc3c77e
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
