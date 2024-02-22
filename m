@@ -4,87 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D666FC5478A
-	for <ath11k@archiver.kernel.org>; Wed, 21 Feb 2024 19:46:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3557C48BEB
+	for <ath11k@archiver.kernel.org>; Thu, 22 Feb 2024 02:27:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=j9l9WM1qKo7UMdTBEdEi1ZcMt204djLcampA01wtfYM=; b=iQ7zeTmDwVsen0YkQUHOvoSM/s
-	SPrEJE6vSBb1a2qZ4DMIuIYSiTBbanrODME6dZdejDlEW3wwqEuIDtoEJ/GHgnY3OdEJ8rniqOC80
-	R+gXt38ga0cnadLFkerRiZb2cCqz+6LklsUBKMnxYHZB4cSaoOb1Zd+DGu5n6cFRYiUT/udHmlDxW
-	XORrjtiR5zP7BEYKUcTqh+m3J+VFRe5AekaB1vaPbrzvt1K0D9JGlp4kYQoXvqBVlHfk0jsdFLOwz
-	FxaWF65GBfG8hVo1iRRrLLTXfvjp7DFrJjT7YKEJjfNZvZukX0t+3N6NnD052/RJkqwyfKyfubFJK
-	pf/A/+lA==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=WCRqsmVIUC0ZU9cijek8ats1kVe1u6JnVzeVhtYNO1g=; b=wyOZSpqeO+vVNZyWM0RFTk+Sdm
+	Wh6twieTlpd6uJFpBs2pqoEyQUfNqXeUSmWRFJjLKbNqX24Wk7zv822GmfqZ6rPN2VCvqbIY6suHS
+	ii+LiVea98BsKl1VGeHIKbaEJd2fV3Imu3mejBvcG+NzBpg5sXzkR0J9Ftg8XWHsOQGDEPop34zu+
+	DIexAiFlyJ3KcCryyUuoGdkZ1JlEHu6HvGuNqf80DuvC+cb0Dr1XROyakYMyFJgU0xbXsg4GHaFMX
+	dFbetkCo2kSEW+f2FDOvuknncbDz4XIBpB7/HHxlcHgtTzkCTLyVr4oD02W76zZZvhDnOFyNH+zMm
+	4m7cksGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcsXZ-00000002Lcq-281b;
-	Wed, 21 Feb 2024 19:46:01 +0000
+	id 1rcynt-00000003Fmy-22FM;
+	Thu, 22 Feb 2024 02:27:17 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rcrR5-0000000281K-2wBU
+	id 1rcynq-00000003FmH-3BRo
 	for ath11k@lists.infradead.org;
-	Wed, 21 Feb 2024 18:35:20 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41LAPkSC031361;
-	Wed, 21 Feb 2024 18:35:14 GMT
+	Thu, 22 Feb 2024 02:27:16 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41M0t79R003821;
+	Thu, 22 Feb 2024 02:27:13 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
+	message-id:date:mime-version:subject:to:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=j9l9WM1qKo7UMdTBEdEi1ZcMt204djLcampA01wtfYM=; b=Kf
-	2VAcjTKImtM2ODEnhjCUm3nZqd0o8PCl3blq6meVSo9ouDeqbR0ADCH/ARG+iono
-	SLua+2z6q609F4LSArdR83z7hOeFgwsDPxAu+FitoV4lfNc8SvnnAyc2+wga8hag
-	0/vp73wjL4/YXqNSdQTc1Dn/CtRUwoxtoUEKVFKWx1T/q9pHUZ4xOgcQqC7KCbdL
-	7vhxtiG8lk8D8bfml5vWV3fXdG5MaFn1v7Ob9lbIlNx0kHFVBEfhCcdhl83RFzd4
-	UjJNtCa3OE62PbnepDGqEJNlQfpbKtadAbwLn0XreqOzmy+9cWjmUq6M3p/nlr5e
-	znguyBdWu2Q2DVZY3fnw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdckv9jdh-1
+	qcppdkim1; bh=WCRqsmVIUC0ZU9cijek8ats1kVe1u6JnVzeVhtYNO1g=; b=T3
+	MSHrPQwmD4oRkvp+D2K0YX6YV1gl70fuMl7yAvDn+RaYdn7XGEikVIsZdlk/prtJ
+	meqSLUFKqwqHT1dRKcNFCOkGwquFiFNdyxJyqQNJ3LiRkW8WuZAgqiNHSb+wVXri
+	QqDEv0/5CF/dKxrtqxuV8lzTvb0gTqyCadPSe9F7g27IHNHvYu+wcBOAXjThCoGp
+	EkUWGs/XgJPmPLLxYiwT6hFBsZZdROsgJSa1H5ccXLanXgskBUwFBsgJkEgGg5jL
+	27q0u5bxaC7FDo6hT/miZsDpurGkU+WkwbLRTg4i9ItGoPZkVAVzjw15EovKG9O5
+	FkAmumB78hkV0Qus4r8w==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wdfx4hxc7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 18:35:14 +0000 (GMT)
+	Thu, 22 Feb 2024 02:27:12 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41LIZDXA009405
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41M2QnKJ013300
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Feb 2024 18:35:13 GMT
-Received: from [10.110.34.22] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Thu, 22 Feb 2024 02:26:49 GMT
+Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 21 Feb
- 2024 10:35:13 -0800
-Message-ID: <93397cef-e088-419e-be5b-e7394e088ad0@quicinc.com>
-Date: Wed, 21 Feb 2024 10:35:12 -0800
+ 2024 18:26:48 -0800
+Message-ID: <026d9ba3-525d-4a12-8d03-5fece818330c@quicinc.com>
+Date: Thu, 22 Feb 2024 10:26:45 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] wifi: ath11k: support hibernation
+Subject: Re: ath11k multicast action frame RX
 Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>,
-        <mhi@lists.linux.dev>
-CC: <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20240221030026.10553-1-quic_bqiang@quicinc.com>
- <20240221030026.10553-4-quic_bqiang@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240221030026.10553-4-quic_bqiang@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+To: James Prestwood <prestwoj@gmail.com>,
+        "open list:MEDIATEK MT76 WIRELESS
+ LAN DRIVER" <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>
+References: <dcdbd757-ad6e-4fe0-a0c1-fe328431b73b@locusrobotics.com>
+ <642b61a6-e3c0-4831-887f-f25314bf166d@locusrobotics.com>
+ <90ac3bdc-8797-4d57-8bc9-48e0ad406674@quicinc.com>
+ <1dafe0e5-292b-4764-86c7-cc1757aeb3b6@gmail.com>
+ <ed8eeb92-e1eb-445e-989d-2340c26faf44@quicinc.com>
+ <7a62031b-ad1f-4da2-8217-19a5d7fdc0f4@gmail.com>
+ <f363f179-b41f-4bea-882f-e4aacb8ad519@quicinc.com>
+ <eaeb8e9b-3809-4f89-a5b2-7949aa01fbde@gmail.com>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <eaeb8e9b-3809-4f89-a5b2-7949aa01fbde@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ABNJpMUmCDuXYEFoVC_wK083Gm9hgXr9
-X-Proofpoint-ORIG-GUID: ABNJpMUmCDuXYEFoVC_wK083Gm9hgXr9
+X-Proofpoint-ORIG-GUID: aoXNhlcmuNX24PyQzxDv1ccO7RvbfToT
+X-Proofpoint-GUID: aoXNhlcmuNX24PyQzxDv1ccO7RvbfToT
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-21_06,2024-02-21_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 malwarescore=0 mlxlogscore=934 impostorscore=0 mlxscore=0
- bulkscore=0 phishscore=0 priorityscore=1501 clxscore=1015 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402210145
+ definitions=2024-02-22_01,2024-02-21_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ mlxlogscore=999 clxscore=1015 mlxscore=0 malwarescore=0 impostorscore=0
+ priorityscore=1501 phishscore=0 spamscore=0 lowpriorityscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402220018
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240221_103516_061472_313FF37E 
-X-CRM114-Status: GOOD (  16.94  )
+X-CRM114-CacheID: sfid-20240221_182714_833635_7DD67B67 
+X-CRM114-Status: GOOD (  27.24  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,44 +106,142 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2/20/2024 7:00 PM, Baochen Qiang wrote:
-> Now that all infrastructure is in place and ath11k is fixed to handle all the
-> corner cases, power down the ath11k firmware during suspend and power it back
-> up during resume. This fixes the problem when using hibernation with ath11k PCI
-> devices.
-> 
-> For suspend, two conditions needs to be satisfied:
->         1. since MHI channel unprepare would be done in late suspend stage,
->            ath11k needs to get all QMI-dependent things done before that stage.
->         2. and because unprepare MHI channels requires a working MHI stack,
->            ath11k is not allowed to call mhi_power_down() until that finishes.
-> So the original suspend callback is separated into two parts: the first part
-> handles all QMI-dependent things in suspend callback; while the second part
-> powers down MHI in suspend_late callback. This is valid because kernel calls
-> ath11k's suspend callback before all suspend_late callbacks, making the first
-> condition happy. And because MHI devices are children of ath11k device
-> (ab->dev), kernel guarantees that ath11k's suspend_late callback is called
-> after QRTR's suspend_late callback, this satisfies the second condition.
-> 
-> Above analysis also applies to resume process. so the original resume
-> callback is separated into two parts: the first part powers up MHI stack
-> in resume_early callback, this guarantees MHI stack is working when
-> QRTR tries to prepare MHI channels (kernel calls QRTR's resume_early callback
-> after ath11k's resume_early callback, due to the child-father relationship);
-> the second part waits for the completion of restart, which won't fail now
-> since MHI channels are ready for use by QMI.
-> 
-> Another notable change is in power down path, we tell mhi_power_down() to not
-> to destroy MHI devices, making it possible for QRTR to help unprepare/prepare
-> MHI channels, and finally get us rid of the probe-defer issue when resume.
-> 
-> Also change related code due to interface changes.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> 
-> Tested-by: Takashi Iwai <tiwai@suse.de>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
+
+On 2/21/2024 8:24 PM, James Prestwood wrote:
+> 
+> On 2/20/24 7:45 PM, Baochen Qiang wrote:
+>>
+>>
+>> On 1/31/2024 8:28 PM, James Prestwood wrote:
+>>> Hi Baochen,
+>>>
+>>>>> As you may have guessed I don't _really_ know what I'm doing. When 
+>>>>> I got this working with ath10k I saw monitor device was being used 
+>>>>> in order to receive probes, and did the same for multicast action 
+>>>>> frames and it "just worked". The frames themselves were still being 
+>>>>> received on the station device. I attempted to mimic the changes 
+>>>>> with ath11k.
+>>>>>
+>>>>> The end goal here is just that, be able to receive multicast action 
+>>>>> frames on the station device which currently does not work. I'm 
+>>>>> only seeing unicast frames when i enable RX debugging. The driver 
+>>>>> support for multicast action RX in the kernel for this is basically 
+>>>>> zero. An extended feature flag was added by Jouni when he added 
+>>>>> support to ath9k, I added limited ath10k support for a variant I 
+>>>>> tested, and I'd like to do the same for ath11k as we are 
+>>>>> transitioning to the WCN6855.
+>>>> OK, so you are testing this with latest ath.git, without any private 
+>>>> changes, and it doesn't work, right? Could you share your test 
+>>>> steps? Basically how are you sending multicast action frames from 
+>>>> AP/peer, and how to check if that frame received or not (I am 
+>>>> assuming by checking RX logs)?
+>>>
+>>> Yep I'm on the latest ath.git, and with no changes apart from that 
+>>> MSI vector hack to get it working with vfio-pci.
+>>>
+>>> The way I'm testing this is using IWD with DPP PKEX. Building IWD 
+>>> should be relatively straight forward, very few dependencies. This 
+>>> will also include iwctl which is IWD's command line utility:
+>>>
+>>> https://git.kernel.org/pub/scm/network/wireless/iwd.git/
+>>>
+>>> I have two devices, the configurator device (device A, ath11k) is 
+>>> what should be able to receive the multicast action frames. The 
+>>> enrollee device (device B) can use probably any hardware as sending 
+>>> multicast action frames should be supported. IWD will not start a DPP 
+>>> PKEX configurator without EXT_FEATURE_MULTICAST_REGISTRATIONS set but 
+>>> if you enable RX logging that should be good enough to see if the 
+>>> frame is making it to the ath11k driver itself. Once multicast RX is 
+>>> supported we would need to add that extended feature to ath11k, or at 
+>>> least the tested variant. If you want, you can hack in that feature 
+>>> bit and start a configurator but if your able to get the muticast RX 
+>>> working I can probably take it from there:
+>>>
+>>> 1. Enable RX logging on device A
+>>>
+>>> 2. Start IWD on device A
+>>>
+>>>      iwd -d
+>>>
+>>> 3. Connect to a network on device A
+>>>
+>>>      iwctl station <wlan> connect <ssid>
+>>>
+>>>      <enter passphrase>
+>>>
+>>> # Optional: start a configurator. This won't work without the ext 
+>>> feature set
+>>>
+>>>     iwctl pkex <wlan> configure secret123
+>>>
+>>> 4. Start IWD on device B, do not connect.
+>>>
+>>>      iwd -d
+>>>
+>>> 5. Start DPP PKEX as an enrollee on device B:
+>>>
+>>>      iwctl pkex <wlan> enroll secret123
+>>>
+>>> On device B you should see IWD first scan to establish nearby 
+>>> APs/frequencies, then begin iterating those frequencies and sending a 
+>>> multicast action frame.
+>> Hi James, I reproduced this issue following your guide. From the 
+>> advise of firmware team, a new flag is needed. With that flag, I did 
+>> see the multicast action frame in device A logging. Before I proceed, 
+>> want to clarify something: that frame is only seen after device A 
+>> triggers a scan (I triggered it manually using iw, not IWD itself 
+>> because IWD not working on device A due to unknown errors), if no scan 
+>> no frame seen. I am not sure if this behavior is expected so now 
+>> checking with internal team on it.
+>>
+>> So there comes a question: will IWD triggers scan on device A in order 
+>> to receive that frame?
+> 
+> That's great its possible! And thank you for looking into this.
+> 
+> That seems very odd that device A would need to scan in order to receive 
+> a multicast frame. In all reality neither device should have to scan at 
+> all, device B just does in order to know what frequencies to start 
+> sending the multicast frames on. Even this isn't entirely needed if the 
+> frequency was known ahead of time. I think something is not right if a 
+> scan must be issued in order to receive these frames. This wasn't 
+> required by ath10k when I added it, nor is it by mac80211_hwsim; you can 
+But you are using monitor mode, not station mode, on ath10k, right?
+
+> just start listening and receive the frames.
+> 
+> Thanks,
+> 
+> James
+> 
+>>
+>>>
+>>> Thanks,
+>>>
+>>> James
+>>>
+>>>>
+>>>>>
+>>>>> And help is much appreciated, and I'm happy to put in the work its 
+>>>>> just a steep learning curve coupled with the fact that any FW level 
+>>>>> communication is proprietary. I really just need a nudge in the 
+>>>>> right direction.
+>>>>>
+>>>>> Thanks,
+>>>>>
+>>>>> James
+>>>>>
+>>>>>>
+>>>>>>> Thanks,
+>>>>>>>
+>>>>>>> James
+>>>>>>>
+>>>>>>>>
+>>>>>>>> Thanks,
+>>>>>>>>
+>>>>>>>> James
+>>>>>>>>
+>>>>>>>>
+>>>>>>
 
