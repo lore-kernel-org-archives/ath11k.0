@@ -4,80 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72B7EC48BC4
-	for <ath11k@archiver.kernel.org>; Fri, 23 Feb 2024 08:43:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2F94C5478C
+	for <ath11k@archiver.kernel.org>; Fri, 23 Feb 2024 09:02:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To
-	:From:Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=hU3iFOSCko42DRSnePDzSzRwdXNU3Nnq6+I0003hxQ8=; b=coUWDrW6BwtY/INLW25jn5143a
-	w5N05vYxSObN+yi1lBOTYzdduOa/rbHHkoNlwF7l4LD1RDtJx8BAy4w75DrPjAVS53gsaZD2dHRB6
-	PsXQLcq3WeVeOLJWfy609uflh2OMo45dv3TINA1jsrOrZP/cKH2uQlgwqAEiI1hvoJdd3a4fukAQE
-	7TuCv9B4V8GAm92sGLfPcdK98W9/BhEMtBjHsNetrbd+VgTnj04qWuxkfTsHHcBaNyhD7l1ea8lai
-	DW4A/oXVK78B8jD8dCjPNiKb1Zqr3XYsaAAB2vOqGF/VZx32Waggi3uDWz3ICAXpr6K7qyDOQrW8i
-	oEFaMuVw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=NFnawQLqckakB5qhJof+/PNCBcsfRpomgyB1w5DcmpI=; b=v/deNcD6yYXNwWxygiMQkOSUID
+	qzV4LqnS+oUZcZMvaxJQYXKbNkH/WMBa6xSlklQHxGTrPghVvgVGpyZnndeSs/5cp7FY0SS/PuUoQ
+	mndKBlybstx6YfNX5nkvAmuVb/vy7FyNyGY5R+l5iqD2qG3HaoWaUd0VCVw0aHq4XK0Qok6I791DL
+	pzIQaU5tabiXcU8aebWY5QXDz1VM9NXsQOwunNK4mqGQCkwDf3cw1e0mIhshBh8PEs8S5AjOyaHwH
+	PxPc0bzjUjuakym7ferq+FURiLxfOVxf1pcjPv9OJkcMcz+4zDnFVjFigpsQycGVTd9/mdwKzWXzs
+	cwksb/Sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdR9I-00000008Xem-3Arr;
-	Fri, 23 Feb 2024 08:43:17 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1rdRRQ-00000008b3f-1WpN;
+	Fri, 23 Feb 2024 09:02:00 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdR90-00000008XdF-1mt5;
-	Fri, 23 Feb 2024 08:43:05 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-33aeb088324so70819f8f.2;
-        Fri, 23 Feb 2024 00:42:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708677776; x=1709282576; darn=lists.infradead.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hU3iFOSCko42DRSnePDzSzRwdXNU3Nnq6+I0003hxQ8=;
-        b=QXykgV18xXFaM4yKBWfpnnN3wwJlwXjYJ4gZbk23K3e0Pa/JZ18BaRWWo3VRMmv4Cx
-         kICbj8k2NRYBwc0RWYNAmHAbC3YkK9pzkMZA2V79evayA+pDf2LScmZgFCc4TohGPHBY
-         Hh4DrATG/PI9ma2PygxkR5P95QbwmFSkgDb3xhCADksnKIdRQdZdBBqamQsNu6yBBoMm
-         Aw/KndT/T8tqRUZMungGABaa7x79m6XgZhIixNth11JeVYHIiJwVgyIrSXJhhXrrUPtC
-         dj8wkMx+E2UEbqmzjl6J6IlQuhEwX5ofT9HF5sczHx8yBA9OCU1PjcqA4ZYjUILUjjtl
-         13AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708677776; x=1709282576;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hU3iFOSCko42DRSnePDzSzRwdXNU3Nnq6+I0003hxQ8=;
-        b=cH+A2twliTyBFVrSQ/G1aCv6S6uiuCWbS/ABJJ/q3343f3H9k+sUxfVjvkY6At2YKF
-         gvI48u2ZcHjdS30lE5tTjbRflskHpXsIqqldY+v6VcuVCZfKGdzfgJoXZOxu01tDmaoP
-         J4ohDPhqt3b2ldvaa3wfITW2YxbLXDY/wUdDTx9m3CyueN8t9PzD9lar1wQOzZhQbfqo
-         CqM96Ixmcfr2lkbYqfEe/6/puzHay8RSnbGvlQSdVPE3LZ0T4F5+/VGafs41Px4WsKn6
-         t1qROo6+yhxBb0jhNN6+mGEqtVUTEAyg2wDXtuYZBF/2MUe+uakg14LU0hIKZbHT63wX
-         jF3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUbOvVVtb2JWQgjYThwXn7OPyjLvWnFtP8V1a09Lm/s4ksd7eiUkL1CGM7K2XIUbfx0tAqkfaB0CVA81Pc+YWaa5ZCWqQNDnqFclw==
-X-Gm-Message-State: AOJu0Yw8bi2kxJdXqMKgCJ6qlTMnDkRCM6urfRlibVMBw/n/fintOVL9
-	8u/beQFKdbHprWN1CT2/Kg5cA37jc/btDQ5KRoLUqRzaNAd6PGd9
-X-Google-Smtp-Source: AGHT+IG5EOjMCDt4pixur26JEEpvHGDj1fIKjTHRorIkdfy0EcCrdWmA52/OSCNjq6tTnCmbEj9aGQ==
-X-Received: by 2002:a5d:5244:0:b0:33d:3553:d395 with SMTP id k4-20020a5d5244000000b0033d3553d395mr1006409wrc.15.1708677776485;
-        Fri, 23 Feb 2024 00:42:56 -0800 (PST)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id m20-20020a056000025400b0033d071c0477sm1912522wrz.59.2024.02.23.00.42.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Feb 2024 00:42:56 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 23 Feb 2024 09:42:55 +0100
-Message-Id: <CZCBPXTOU5QM.2CV2WOTP0YW48@gmail.com>
-Subject: Re: ath12k & ath11k beacon miss detection
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Kalle Valo" <kvalo@kernel.org>
-Cc: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
-X-Mailer: aerc 0.15.2
-References: <CZA2NS7J83D4.18SU6W9R96KPY@gmail.com>
- <87a5nub8r8.fsf@kernel.org>
-In-Reply-To: <87a5nub8r8.fsf@kernel.org>
+	id 1rdRRN-00000008b2O-283D
+	for ath11k@lists.infradead.org;
+	Fri, 23 Feb 2024 09:01:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Content-Type:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-To:Resent-Cc:
+	Resent-Message-ID:In-Reply-To:References;
+	bh=NFnawQLqckakB5qhJof+/PNCBcsfRpomgyB1w5DcmpI=; t=1708678915; x=1709888515; 
+	b=DImYfY8sDqUT1OHQt1KpSlV9aj3F8rocXrtAqC/Ez4eRTlUJTyjH9d8ZEodjVXqZJMit+9OFlHG
+	OaTDCYDv0BBIVQIo3qd1g1X1XyjqjMEp7uhyBib2NV7C0t2SN0lKGSBChv5BTh5JcU8lQc3b4iSNH
+	8dx4fPIUavm4YnE7Rnw2+mSCOp40Go5037zVNIIL2x+uioVZIgo9+6wuskngSeCiYGW7f7FhM8W+J
+	8WuMJh7jZnA0sXabPlDht3yrGuzQ9jZnbCFCNjnqOL3deS3xu789MlofBM7fMkHYbCiSGMnjrz98p
+	YbSJPxUoOXSEBO018aVDpUhHD432ksn2UJjw==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.97)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1rdRRG-00000004yKf-17gB;
+	Fri, 23 Feb 2024 10:01:50 +0100
+From: Johannes Berg <johannes@sipsolutions.net>
+To: linux-wireless@vger.kernel.org
+Cc: Felix Fietkau <nbd@nbd.name>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	ath11k@lists.infradead.org,
+	Johannes Berg <johannes.berg@intel.com>
+Subject: [PATCH] bitfield: suppress "dubious: x & !y" sparse warning
+Date: Fri, 23 Feb 2024 10:01:46 +0100
+Message-ID: <20240223100146.d243b6b1a9a1.I033828b1187c6bccf086e31400f7e933bb8373e7@changeid>
+X-Mailer: git-send-email 2.43.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240223_004303_331459_197E60CA 
-X-CRM114-Status: UNSURE (   5.64  )
+X-CRM114-CacheID: sfid-20240223_010157_702732_D7D18D82 
+X-CRM114-Status: UNSURE (   9.31  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,15 +73,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed Feb 21, 2024 at 8:02 AM CET, Kalle Valo wrote:
-[...]
->
-> Just a generic comment: QCN9074 and QCN9274 chipsets are designed for AP
-> use cases and their firmware tends to be lacking on station mode
-> features.
+From: Johannes Berg <johannes.berg@intel.com>
 
-Yeah I know full station mode is not to be expected on thoses chipsets but =
-we
-do use them as such for a short period of time on our product...
-We just need basic connectivity for a few seconds.
+There's a somewhat common pattern of using FIELD_PREP()
+even for single bits, e.g.
+
+ cmd->info1 |= FIELD_PREP(HTT_SRNG_SETUP_CMD_INFO1_RING_FLAGS_MSI_SWAP,
+                          !!(params.flags & HAL_SRNG_FLAGS_MSI_SWAP));
+
+which might as well be written as
+
+ if (params.flags & HAL_SRNG_FLAGS_MSI_SWAP)
+   cmd->info1 |= HTT_SRNG_SETUP_CMD_INFO1_RING_FLAGS_MSI_SWAP;
+
+(since info1 is fully initialized to start with), but in
+a long chain of FIELD_PREP() this really seems fine.
+
+However, it triggers a sparse warning, in the check in
+the macro for whether a constant value fits into the mask,
+as this contains a "& (_val)". In this case, this really
+is always intentional, so just suppress the warning by
+adding "0+" to the expression, indicating explicitly that
+this is correct.
+
+Signed-off-by: Johannes Berg <johannes.berg@intel.com>
+---
+ include/linux/bitfield.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/include/linux/bitfield.h b/include/linux/bitfield.h
+index ebfa12f69501..63928f173223 100644
+--- a/include/linux/bitfield.h
++++ b/include/linux/bitfield.h
+@@ -66,7 +66,8 @@
+ 				 _pfx "mask is not constant");		\
+ 		BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");	\
+ 		BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?		\
+-				 ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
++				 ~((_mask) >> __bf_shf(_mask)) &	\
++					(0 + (_val)) : 0,		\
+ 				 _pfx "value too large for the field"); \
+ 		BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >	\
+ 				 __bf_cast_unsigned(_reg, ~0ull),	\
+-- 
+2.43.2
+
 
