@@ -4,82 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17102C48BC4
-	for <ath11k@archiver.kernel.org>; Fri, 23 Feb 2024 05:32:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCCA5C5478C
+	for <ath11k@archiver.kernel.org>; Fri, 23 Feb 2024 08:39:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=/ix5n4Uy7ZZck+FQJQw+eupkhQcsnzI4Byt+3vQeupU=; b=eIFuOmjRV1vv2pzyvSvthPTatA
-	3G0PVH+3h7omRYnwo2Md4WD7t0JR57HobviJUpKBu0XSywVSRFRCT09DIriV8IXRIUUe3Vr5o9NDt
-	Ud1W14cjDLenpUz1yV7vSaOWVns+h1Y04pjY5s7+sGX66XxV1TDY8jMC6b1hRVtVpNwr4DQ0hZ/Ln
-	VESb+Tp+7rjSjJfHxxm4uaM2PYFb/4fdz9CIuwLth2T1rFJZphK+AcNuJCcgoZQ1ydQ9mE8x3pU6E
-	CyehU9dt1Fm9FH9QKETiA3zXXznoau7L0T9HivxDUlp/6nh7phAYsquCaBnTtop21RdK8yWtHqUJb
-	QNDbkgkA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:
+	Subject:Cc:To:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ldkorrO5V49rHWcwXcMfoKdpKrCIDFvOVC6j++21hqc=; b=JoNb/wOUBMlgzOq6fHe4Y/pa1u
+	HO6Q+PrbTfp+Oy/ACGhzL627891b0yG+ShbxGmG1v0PzxG8tFr+kB9sTsUFkUfy+tNdYraCUr74tl
+	IvG4c42Lc2Uu0XKEm9sESIxzp3KTGgF8B5tRMaSfD5GqcNzqXhjbMzIAEo9J3LRRTkHyXD0Z0FEOf
+	wFodLp5bUm1PUUqDwYDQ0nDa7R8Vp8ZQ7NCF4W/1adUm6dyD6kSVgw2rBtXNyF2uHdSReX2IsZvCW
+	mVa1AnXdLopTPOiv1ar562JeeqU6F0IF5MxpP5wT+3vAmCyAuEmHan/tDwLKhuIOAfTGLp/MmGrbz
+	TCM0NHlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdOAD-000000080Z8-2yNI;
-	Fri, 23 Feb 2024 05:32:16 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rdR5r-00000008XDU-38HB;
+	Fri, 23 Feb 2024 08:39:43 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdO9v-000000080Sr-09zb
-	for ath11k@lists.infradead.org;
-	Fri, 23 Feb 2024 05:31:51 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41N1sGfp010430;
-	Fri, 23 Feb 2024 05:31:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=/ix5n4U
-	y7ZZck+FQJQw+eupkhQcsnzI4Byt+3vQeupU=; b=ShuwfJh+lFs7N0OsA7shgjx
-	SgjuwCY4+obTjfwuuE85Y2kqgs4OjDjt58D9hD101I8YWzraEc9z1weyOAAgIYyM
-	sMYQyYlWwMPyLf+QObYcJyFabFbntoBaJ7C6MXRb7h+TVbKhUDk/YW9xmYgI8wCK
-	vwhI3zbrL40DljH9O+JSjLWQVxgr3LvCPCq7s5k1okFSAIPI82h/NoHDFJTyzc3p
-	BBiu9TXsJK2JEsR+bVJoeRqAXiiiur7Q7uSc32rKWMvBhG1Yj/gODN/pJnFWJUT4
-	UwzqhzLmWala01x6jKxamaHgc8Kocd8FxkE0aeHbvLOlb3We+DIqraqOgKls9Vw=
-	=
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3weedkru8c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Feb 2024 05:31:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41N5VVnw002597
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Feb 2024 05:31:31 GMT
-Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 22 Feb 2024 21:31:29 -0800
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH] wifi: ath11k: decrease MHI channel buffer length to 8KB
-Date: Fri, 23 Feb 2024 13:31:11 +0800
-Message-ID: <20240223053111.29170-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: oGn3GiT7OAvn6WmeSJ_KZgpqgxdUkoz-
-X-Proofpoint-GUID: oGn3GiT7OAvn6WmeSJ_KZgpqgxdUkoz-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-22_15,2024-02-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxlogscore=717
- phishscore=0 suspectscore=0 spamscore=0 adultscore=0 mlxscore=0
- bulkscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2402120000 definitions=main-2402230037
+	id 1rdR5Y-00000008X8Y-0QUU;
+	Fri, 23 Feb 2024 08:39:28 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4127190ad83so3934905e9.0;
+        Fri, 23 Feb 2024 00:39:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708677554; x=1709282354; darn=lists.infradead.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ldkorrO5V49rHWcwXcMfoKdpKrCIDFvOVC6j++21hqc=;
+        b=bVMDDFrUMPHSiVtm6bxAmTHmeneDmrag9j2d68aRi4gJjlD+BG2sYMn50RwCaFLYb0
+         B9pMZp5qCrik55WQm0vCgdITtX+tlvl70JBJWWba8+Kv0d8V7vSUjO3Jbe0bbk7KHaka
+         03X+8Q/7mOIafeZALgEjP1ppPRPNj0Pi6W2UPvVRCY9zZ22TykDdOdoC78lKLOTyclqV
+         EqBm0Aka3BM6FooywLBlFSIJzkJqQsi00vo3ZBDdwhMDt6jDRRB9iPMmWgm7G5B5HGv1
+         EIw7Cz8r314QGYZEoKSTNWbdtnBtx0vTqzixC7439H6dFGv5ekG4hidklETrgDyhzYNe
+         fo5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708677554; x=1709282354;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ldkorrO5V49rHWcwXcMfoKdpKrCIDFvOVC6j++21hqc=;
+        b=hE9O9da5eV7m+0fyuKh4iWbXGO4RiKYa+iZyghXWhFNWmmb549ZkC/dLSkc0yZry3Z
+         6haKJ25TL6THHLugfWSbMYY+2hMaecBYWsXUekSvnqkxnCUWZUEMMoazaeKzaPRowpCf
+         WrZbd0tc+TwL1HjlPoalD3AWr3KvCmX296Sxkj7gP/Nta5m/lPtpQE5+u9ndtjCPKaSq
+         7ddahUTCK2ygq02RMVFCpKSCboipVJZP/w1iiBhnQiQ21d66+K6E0JZe68rtukiUsrBy
+         pXLhle5WeVWrHsZbZ70LJGal+HuYsdGE6THS7QyvS/ADpG+W2J3hS++5Fzo8mBVaeI97
+         Owpw==
+X-Forwarded-Encrypted: i=1; AJvYcCXKfTJ9thtbSXiGAuDzOaiNHJY7taNsjsXn9E/RqdShJMtwdhGlpFv+dkg+YWbOQsqFWmsgL1AHd7VJkU/Wt+4eHxZi1450xLE9ONu16NGIsCWc0pQeYv5FnS1Il7lse1+39J1/5/k=
+X-Gm-Message-State: AOJu0YxiHYHXQCbxegPVTrNAYVqBhy3aD02dzhTsEFaszFYflYtcEO5v
+	RrzdSWCrCrSU86wHKtDX9JolLKOd7gusDq38q/1hEl73Z1ZSaDnF
+X-Google-Smtp-Source: AGHT+IHAtGeQB6nxsIpcnBJg+QhKvo5hAtwf9Z7of8zmaY7bsNqPjZMaP1syY09iPYFFIhNDk/3xxw==
+X-Received: by 2002:a05:600c:3c85:b0:40f:b45c:85a5 with SMTP id bg5-20020a05600c3c8500b0040fb45c85a5mr804794wmb.22.1708677554171;
+        Fri, 23 Feb 2024 00:39:14 -0800 (PST)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id d5-20020a5d4f85000000b0033d9ee09b7asm1902509wru.107.2024.02.23.00.39.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Feb 2024 00:39:13 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 23 Feb 2024 09:39:13 +0100
+Message-Id: <CZCBN3MIGKZS.2DZMAGUD4RS59@gmail.com>
+To: "Jeff Johnson" <quic_jjohnson@quicinc.com>,
+ <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
+Cc: "Kalle Valo" <kvalo@kernel.org>
+Subject: Re: ath12k & ath11k beacon miss detection
+From: "Nicolas Escande" <nico.escande@gmail.com>
+X-Mailer: aerc 0.15.2
+References: <CZA2NS7J83D4.18SU6W9R96KPY@gmail.com>
+ <a35eca5b-e6e6-46e8-85b5-dbcbda0d2f04@quicinc.com>
+In-Reply-To: <a35eca5b-e6e6-46e8-85b5-dbcbda0d2f04@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240222_213147_732644_C8273D7E 
-X-CRM114-Status: GOOD (  14.03  )
+X-CRM114-CacheID: sfid-20240223_003924_783301_D6764C27 
+X-CRM114-Status: GOOD (  10.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,85 +93,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently buf_len field of ath11k_mhi_config_qca6390 is assigned
-with 0, making MHI use a default size, 64KB, to allocate channel
-buffers. This is likely to fail in some scenarios where system
-memory is highly fragmented and memory compaction or reclaim is
-not allowed.
+On Wed Feb 21, 2024 at 1:46 AM CET, Jeff Johnson wrote:
+[...]
+>
+> The ath12k driver is still work-in-progress and there is quite a bit of
+> functionality missing there due to the refactoring to handle 802.11be
+> Multi-Link Operation. However I'm surprised that ath11k has this issue.
+> I've asked the development team to look at this. It would be helpful for
+> you to open a bug to track the issue. Please see
+> <https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport>.
 
-There is a fail report which is caused by it:
-kworker/u32:45: page allocation failure: order:4, mode:0x40c00(GFP_NOIO|__GFP_COMP), nodemask=(null),cpuset=/,mems_allowed=0
-CPU: 0 PID: 19318 Comm: kworker/u32:45 Not tainted 6.8.0-rc3-1.gae4495f-default #1 openSUSE Tumbleweed (unreleased) 493b6d5b382c603654d7a81fc3c144d59a1dfceb
-Workqueue: events_unbound async_run_entry_fn
-Call Trace:
- <TASK>
- dump_stack_lvl+0x47/0x60
- warn_alloc+0x13a/0x1b0
- ? srso_alias_return_thunk+0x5/0xfbef5
- ? __alloc_pages_direct_compact+0xab/0x210
- __alloc_pages_slowpath.constprop.0+0xd3e/0xda0
- __alloc_pages+0x32d/0x350
- ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
- __kmalloc_large_node+0x72/0x110
- __kmalloc+0x37c/0x480
- ? mhi_map_single_no_bb+0x77/0xf0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
- ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
- mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
- __mhi_prepare_for_transfer+0x44/0x80 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
- ? __pfx_____mhi_prepare_for_transfer+0x10/0x10 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
- device_for_each_child+0x5c/0xa0
- ? __pfx_pci_pm_resume+0x10/0x10
- ath11k_core_resume+0x65/0x100 [ath11k a5094e22d7223135c40d93c8f5321cf09fd85e4e]
- ? srso_alias_return_thunk+0x5/0xfbef5
- ath11k_pci_pm_resume+0x32/0x60 [ath11k_pci 830b7bfc3ea80ebef32e563cafe2cb55e9cc73ec]
- ? srso_alias_return_thunk+0x5/0xfbef5
- dpm_run_callback+0x8c/0x1e0
- device_resume+0x104/0x340
- ? __pfx_dpm_watchdog_handler+0x10/0x10
- async_resume+0x1d/0x30
- async_run_entry_fn+0x32/0x120
- process_one_work+0x168/0x330
- worker_thread+0x2f5/0x410
- ? __pfx_worker_thread+0x10/0x10
- kthread+0xe8/0x120
- ? __pfx_kthread+0x10/0x10
- ret_from_fork+0x34/0x50
- ? __pfx_kthread+0x10/0x10
- ret_from_fork_asm+0x1b/0x30
- </TASK>
+Yeah I fugured as much for ath12k so I thought I try to do as it was done i=
+n
+ath11k and that's how I found out it wasn't working either there.
 
-Actually those buffers are used only by QMI target -> host communication.
-And for WCN6855 and QCA6390, the largest packet size for that is less
-than 6KB. So change buf_len field to 8KB, which results in order 1
-allocation if page size is 4KB. In this way, we can at least save some
-memory, and as well as decrease the possibility of allocation failure
-in those scenarios.
+Thanks for having your guys looking into it, in the mean time here is a lin=
+k to
+the bug report on buzilla https://bugzilla.kernel.org/show_bug.cgi?id=3D218=
+522
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+I'll be happy to test anything you can throw at me on this
 
-Reported-by: Vlastimil Babka <vbabka@suse.cz>
-Closes: https://lore.kernel.org/ath11k/96481a45-3547-4d23-ad34-3a8f1d90c1cd@suse.cz/
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mhi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index b53659145fcf..a5b9ec2ed8f8 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -106,7 +106,7 @@ static struct mhi_controller_config ath11k_mhi_config_qca6390 = {
- 	.max_channels = 128,
- 	.timeout_ms = 2000,
- 	.use_bounce_buf = false,
--	.buf_len = 0,
-+	.buf_len = 8192,
- 	.num_channels = ARRAY_SIZE(ath11k_mhi_channels_qca6390),
- 	.ch_cfg = ath11k_mhi_channels_qca6390,
- 	.num_events = ARRAY_SIZE(ath11k_mhi_events_qca6390),
-
-base-commit: 707e306f3573fa321ae197d77366578e4566cff5
--- 
-2.25.1
-
+> Thanks!
+> /jeff
 
