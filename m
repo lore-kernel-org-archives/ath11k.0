@@ -4,76 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DAE5C54798
-	for <ath11k@archiver.kernel.org>; Fri, 23 Feb 2024 20:44:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7153C54798
+	for <ath11k@archiver.kernel.org>; Sat, 24 Feb 2024 01:24:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DRAMtPNH4cH1OfY7wvt+OqRp3vR5K7J3ULIP+QaVcEU=; b=B7wTlKdA1J7YF9irBx3AqPW1lp
-	R5oANW4JcMvj9L11h5G4ACqt3nhCS8a1QEKXRPoeihYBjOMu/KgJTkdVQsOMWPMIR12VW7gD498df
-	thR8CO9FKF+PN6Zbts3906VHr3A9gOuK57aCpbR1NLwlkUQqjRFf32rXqgqgWHhWnbSDrTTreapUO
-	Dt/diEKfeNLd+jndhxKYdCwcHIfgEj3GD/VytVf7wk7TFnfY786EFDCV4WNV1Mpb11oChHozrI6qL
-	stSqTA6pCbTn1We+SN4V1uIA/avo3Hm8OKIXHxiYIjMjUXk69uqqf/a+FympRfPK2gfHJl00+JJ5P
-	N3ueoCFA==;
+	bh=1f11qGuY7NIezPSMBTWWviWwZMg5mwUudP8vtfOtE24=; b=Wb1niDZUJ+Zb56O6HzS5pjHhlp
+	tJI82rhMpJ0+/136I4PnonZ4ibRCbzk43YLAblHV/gX2JBv/JLAo9c8fFz0D8gWi7uPN/tciLf6yK
+	H4xhPNwWXncrfWMiZ3o616V4cLosMKcP8iBA4SBx4YqfgD/cQbQuWP2D+qU5//9M2cu3xLeP8deCP
+	VVW0lWjwnnjBwBxvaRzMQUzP5Q10tNYqWsHqFGLFV43mfIvCmYESZJbHmFjNP/vu1MiRdXvfmyavq
+	2I2Q7X9XmYoMY/8tZRIzMjx9oyDlAjx97e4aoeGW/gaIj/Vnu9xWFn3FV1QZnknWi8eh2TnqSckNn
+	DkyRwE4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdcPd-0000000BDOy-1unp;
-	Fri, 23 Feb 2024 20:44:53 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1rdgmH-0000000BnDv-3gdy;
+	Sat, 24 Feb 2024 01:24:33 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rdcOe-0000000BDCr-2xUG;
-	Fri, 23 Feb 2024 20:44:06 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id CAB6DCE2E6D;
-	Fri, 23 Feb 2024 20:43:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67DE0C43390;
-	Fri, 23 Feb 2024 20:43:39 +0000 (UTC)
-Date: Fri, 23 Feb 2024 15:45:32 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Linux Trace Kernel
- <linux-trace-kernel@vger.kernel.org>, Masami Hiramatsu
- <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- <linuxppc-dev@lists.ozlabs.org>, <kvm@vger.kernel.org>,
- <linux-block@vger.kernel.org>, <linux-cxl@vger.kernel.org>,
- <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
- <freedreno@lists.freedesktop.org>, <virtualization@lists.linux.dev>,
- <linux-rdma@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <iommu@lists.linux.dev>, <linux-tegra@vger.kernel.org>,
- <netdev@vger.kernel.org>, <linux-hyperv@vger.kernel.org>,
- <ath10k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>,
- <brcm80211@lists.linux.dev>, <brcm80211-dev-list.pdl@broadcom.com>,
- <linux-usb@vger.kernel.org>, <linux-bcachefs@vger.kernel.org>,
- <linux-nfs@vger.kernel.org>, <ocfs2-devel@lists.linux.dev>,
- <linux-cifs@vger.kernel.org>, <linux-xfs@vger.kernel.org>,
- <linux-edac@vger.kernel.org>, <selinux@vger.kernel.org>,
- <linux-btrfs@vger.kernel.org>, <linux-erofs@lists.ozlabs.org>,
- <linux-f2fs-devel@lists.sourceforge.net>, <linux-hwmon@vger.kernel.org>,
- <io-uring@vger.kernel.org>, <linux-sound@vger.kernel.org>,
- <bpf@vger.kernel.org>, <linux-wpan@vger.kernel.org>, <dev@openvswitch.org>,
- <linux-s390@vger.kernel.org>, <tipc-discussion@lists.sourceforge.net>,
- Julia Lawall <Julia.Lawall@inria.fr>
-Subject: Re: [FYI][PATCH] tracing/treewide: Remove second parameter of
- __assign_str()
-Message-ID: <20240223154532.76475d82@gandalf.local.home>
-In-Reply-To: <20240223134653.524a5c9e@gandalf.local.home>
-References: <20240223125634.2888c973@gandalf.local.home>
-	<0aed6cf2-17ae-45aa-b7ff-03da932ea4e0@quicinc.com>
-	<20240223134653.524a5c9e@gandalf.local.home>
-X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	id 1rdgmE-0000000BnCe-1abY
+	for ath11k@lists.infradead.org;
+	Sat, 24 Feb 2024 01:24:32 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41O0jAm6010182;
+	Sat, 24 Feb 2024 01:24:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=1f11qGuY7NIezPSMBTWWviWwZMg5mwUudP8vtfOtE24=; b=Po
+	ScY9JNbv6FqNl07o7IFMy1RUQIzDF13KhYQtwoiScflGF0V1rcOg2vjszsXc0h5i
+	tJb0/ai+/h8OmZZURhuGdFZp89/kYFJ4OpS2oJ/NiZjCa7A+xSooQAPGeOYNzh72
+	bqrL7C6Q+WS/exq3vkRXQD8mpXfXWat+YrlW6t2KRQw8Kxs4Qv3gbF3/ueIyFYx9
+	aUzj3zsc2mDNAHg6iMt3DkGNEWZj50V+NSItYt3f6Mfxm/aQk1Sd4DM5EdFqZSlV
+	8RlUoWy4V509682HVak/yH9UlhoJm9SI1iachyrdn5jzLBD5/y3Tixc0ksNlR3u6
+	mTMtJUTVInqo8bii736w==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3weqcfa1sv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Feb 2024 01:24:26 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41O1OPJO029999
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Feb 2024 01:24:25 GMT
+Received: from [10.110.104.142] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
+ 2024 17:24:24 -0800
+Message-ID: <cda4c968-29b0-4e64-9d20-bb2f0e6cd32d@quicinc.com>
+Date: Fri, 23 Feb 2024 17:24:24 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: decrease MHI channel buffer length to 8KB
+Content-Language: en-US
+To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240223053111.29170-1-quic_bqiang@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240223053111.29170-1-quic_bqiang@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HdwCsTK6wXD-kzpHqLxjEnH8l8x0pmU6
+X-Proofpoint-GUID: HdwCsTK6wXD-kzpHqLxjEnH8l8x0pmU6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-23_08,2024-02-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=726
+ impostorscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402240009
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240223_124353_097986_574C5E98 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20240223_172430_467568_BE711D8A 
+X-CRM114-Status: GOOD (  10.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,33 +97,66 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, 23 Feb 2024 13:46:53 -0500
-Steven Rostedt <rostedt@goodmis.org> wrote:
-
-> Now one thing I could do is to not remove the parameter, but just add:
+On 2/22/2024 9:31 PM, Baochen Qiang wrote:
+> Currently buf_len field of ath11k_mhi_config_qca6390 is assigned
+> with 0, making MHI use a default size, 64KB, to allocate channel
+> buffers. This is likely to fail in some scenarios where system
+> memory is highly fragmented and memory compaction or reclaim is
+> not allowed.
 > 
-> 	WARN_ON_ONCE((src) != __data_offsets->item##_ptr_);
+> There is a fail report which is caused by it:
+> kworker/u32:45: page allocation failure: order:4, mode:0x40c00(GFP_NOIO|__GFP_COMP), nodemask=(null),cpuset=/,mems_allowed=0
+> CPU: 0 PID: 19318 Comm: kworker/u32:45 Not tainted 6.8.0-rc3-1.gae4495f-default #1 openSUSE Tumbleweed (unreleased) 493b6d5b382c603654d7a81fc3c144d59a1dfceb
+> Workqueue: events_unbound async_run_entry_fn
+> Call Trace:
+>  <TASK>
+>  dump_stack_lvl+0x47/0x60
+>  warn_alloc+0x13a/0x1b0
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  ? __alloc_pages_direct_compact+0xab/0x210
+>  __alloc_pages_slowpath.constprop.0+0xd3e/0xda0
+>  __alloc_pages+0x32d/0x350
+>  ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  __kmalloc_large_node+0x72/0x110
+>  __kmalloc+0x37c/0x480
+>  ? mhi_map_single_no_bb+0x77/0xf0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  __mhi_prepare_for_transfer+0x44/0x80 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  ? __pfx_____mhi_prepare_for_transfer+0x10/0x10 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  device_for_each_child+0x5c/0xa0
+>  ? __pfx_pci_pm_resume+0x10/0x10
+>  ath11k_core_resume+0x65/0x100 [ath11k a5094e22d7223135c40d93c8f5321cf09fd85e4e]
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  ath11k_pci_pm_resume+0x32/0x60 [ath11k_pci 830b7bfc3ea80ebef32e563cafe2cb55e9cc73ec]
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  dpm_run_callback+0x8c/0x1e0
+>  device_resume+0x104/0x340
+>  ? __pfx_dpm_watchdog_handler+0x10/0x10
+>  async_resume+0x1d/0x30
+>  async_run_entry_fn+0x32/0x120
+>  process_one_work+0x168/0x330
+>  worker_thread+0x2f5/0x410
+>  ? __pfx_worker_thread+0x10/0x10
+>  kthread+0xe8/0x120
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork+0x34/0x50
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork_asm+0x1b/0x30
+>  </TASK>
 > 
-> in the __assign_str() macro to make sure that it's still the same that is
-> assigned. But I'm not sure how useful that is, and still causes burden to
-> have it. I never really liked the passing of the string in two places to
-> begin with.
+> Actually those buffers are used only by QMI target -> host communication.
+> And for WCN6855 and QCA6390, the largest packet size for that is less
+> than 6KB. So change buf_len field to 8KB, which results in order 1
+> allocation if page size is 4KB. In this way, we can at least save some
+> memory, and as well as decrease the possibility of allocation failure
+> in those scenarios.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+> 
+> Reported-by: Vlastimil Babka <vbabka@suse.cz>
+> Closes: https://lore.kernel.org/ath11k/96481a45-3547-4d23-ad34-3a8f1d90c1cd@suse.cz/
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-Hmm, maybe I'll just add this patch for 6.9 and then in 6.10 do the
-parameter removal.
-
--- Steve
-
-diff --git a/include/trace/stages/stage6_event_callback.h b/include/trace/stages/stage6_event_callback.h
-index 0c0f50bcdc56..7372e2c2a0c4 100644
---- a/include/trace/stages/stage6_event_callback.h
-+++ b/include/trace/stages/stage6_event_callback.h
-@@ -35,6 +35,7 @@ #define __assign_str(dst, src)
- 	do {								\
- 		char *__str__ = __get_str(dst);				\
- 		int __len__ = __get_dynamic_array_len(dst) - 1;		\
-+		WARN_ON_ONCE((src) != __data_offsets.dst##_ptr_); 	\
- 		memcpy(__str__, __data_offsets.dst##_ptr_ ? :		\
- 		       EVENT_NULL_STR, __len__);			\
- 		__str__[__len__] = '\0';				\
 
