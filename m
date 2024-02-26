@@ -4,108 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B289AC54E41
-	for <ath11k@archiver.kernel.org>; Mon, 26 Feb 2024 14:01:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 125FFC48BF6
+	for <ath11k@archiver.kernel.org>; Mon, 26 Feb 2024 15:54:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=A0/ZCukQ/ioxMt1iZ+gVoj8e21UGTGIMIaePv4w50ls=; b=XK1fj5Pn6EsFPuGmahw7fBnQ5y
-	AgsQehTiy0MXfLB+ANlN9X9IRvVwYyoTVCixFLDs0DD/k9ElHqI+NhbWPQI9p3yd0mASoI6VQbAEo
-	S1zlfBS/uQPRrBOaVhdomTrQMr6tom8t5f8xtrOHHqIFNgRAw7QfcZBAY2yRUevufRRa77R3C32+N
-	F8kRwz9CYG+bCN3/WlL55+y36QtMZDFRrRyVEGoSY9gKmUC/pnHpOpUv6BIKH6SZ6c6npGW+xHVPo
-	eF4EB7sOFmR8gucsRx/vnKxVYsKtiijJy+mY5MalxtI9Gjfti8aU0gJesqwChuDOH9udmJBoN/qzI
-	dL2FeQXA==;
+	bh=mURvE2uGGILYDli2lzQcpu/FLaa1U78HVSbHyRgIir0=; b=WH29A1kpM4CT1sNRytdKBds7Pi
+	0m4Qh3rb7PVPOhOniwv3NHURfDD2AAg5qEr6ejsdez0px1ydGKQwvRE7KGrbsaWVRwmVpb8WdZCqk
+	e75QNAPG2diVrROT3Kwtvs54mJAEMWFqnO3HbWeAbUF0lv5261bSpBXbSukUz4m0U2pC1E/mOtHYv
+	sfyG1NrBDyBsf16NQ/AxIDDuisx9dWz1Icyw1Iiorbqa3WCFNYlUCKI5C2smgC0xvscpR/0AVUzcn
+	0MhImVeROLkxf5Y89BD4mtZLoFouln63xt6Uf4WXluHwuF3oVydHxhK10yeS/yivDcEMK3//7acPK
+	gDNZBPfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rebYE-00000000yCW-1fsy;
-	Mon, 26 Feb 2024 14:01:50 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1redIu-00000001WV9-1jxh;
+	Mon, 26 Feb 2024 15:54:08 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reZOC-00000000OvS-49VQ
-	for ath11k@bombadil.infradead.org;
-	Mon, 26 Feb 2024 11:43:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=A0/ZCukQ/ioxMt1iZ+gVoj8e21UGTGIMIaePv4w50ls=; b=DojO9rEDmunZv2k6aq+eiGrKSi
-	wE5w9cozgtcThw0D4WU3NarKdhzcA16ZWEAH/QloD3mK6W+qkjz6t2U3ow3woBiy3GejujgCHnyJ/
-	mjyvocbtCSqTu4HgRWqMZCH0pdlirhGSh1G1fefCTbzpqaIPWZkEYuHb78AMzHeAD4F7VPhuRQHYP
-	t1X3l70JpMoZ7tCLucEkt2A6V8/jU9e8+DjYYN9WXW++UUtQHVTKWao2HV/MZ/pgpJc11XHM+TGSb
-	pf7JOChIySbh5qmuRmnUhqmGk5TPFpSoA4QUt4im015RpnfBhFWvTCEZXQ+tNIzosbRkkTOXh6GPP
-	OB995VFQ==;
-Received: from mail-qk1-x72a.google.com ([2607:f8b0:4864:20::72a])
-	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reZO9-000000019rn-0M8u
+	id 1redIn-00000001WR8-21hh
 	for ath11k@lists.infradead.org;
-	Mon, 26 Feb 2024 11:43:19 +0000
-Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-787ac650561so159936685a.3
-        for <ath11k@lists.infradead.org>; Mon, 26 Feb 2024 03:43:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1708947794; x=1709552594; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=A0/ZCukQ/ioxMt1iZ+gVoj8e21UGTGIMIaePv4w50ls=;
-        b=qgYqTB91Owk0j/6Ffl8Aa7FzieVMHDu+7cIX9NZHnku043Icx1jRLlwxcRYv2re3om
-         Wiit/ZD7HGufDPqzUZi45y+TUfXHhjTxPZzchRR40b7LBUgvDFXM0Rl79z/dUIzXK9E/
-         6B+L3KGRl5odoozW//SHUNBQNdB0fXYuIZ+UoF9ZCrb+ZPsiR4hhyp4NsN6F8Nr6lN+N
-         TagiNqbHiK5mxOvBLzwSdiUP0iRKLX6Kb/72Jb4Pf0BYcDNG5vcSAtmCufitnVlkIKyA
-         sQVTY3NkeueQqIvOEKy/9I/j7KiIVlF+MHxitViSU1DwYjgXhGKT0RFXI0hBnz8Og4Cz
-         fStQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708947794; x=1709552594;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A0/ZCukQ/ioxMt1iZ+gVoj8e21UGTGIMIaePv4w50ls=;
-        b=Ip1VclvwCONw+uCc5ytEcaKJpR9Xe/xNCOfdPh7cH0nwG6y/oxz1dZlvw3zqJWeEm5
-         l285DRiEacS8sIQuCgVJ2h0c9MY7wxwJnt5v/vSjTeto3gjAR/nFrIzGntdWjnfpWcYL
-         AY0PXYUngbQAeNJ1QcLmwv96U9MeBxohZfkxoQ3RflkeqS1CnMYnnqYWIKdkWBbz+spk
-         7YJQ3ag9RvxN4S7xyBKj8NJEA5wXWy/PGbetlUX+LKmK36EOnKDZTV5hWZiXYWmRy0tU
-         e/6KnJ5zVFL3WI41ttIIVZ2JuuIcUa7ZdYQxmG4eIsc1yt+5Y5hy3tydhkbe2DQHPoPW
-         6PmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsmmLadIFcRt/bIK9C+O29uAPAdX85LeT8MdAPZSuMmU0oh0ZWwNQBs2RN0ltYECtBPOFNehP1yKzLu785jE2FfkrS6CC1YT4xMQ==
-X-Gm-Message-State: AOJu0YxxuNCJx5wBsAdZzYMnXOarPGXN3XmklWv3L7tS4FH/TAEJhlnZ
-	ylBE85XyWIp1PR8PMdGbT/TK1mg59o9sM2neVwwZCHFB0clpifUt7RdRS8K4XA==
-X-Google-Smtp-Source: AGHT+IHNgsf5DnizKG2yBjKkWpOwY6iMjPFmpI2P1crIgzEbd9mSBKH0ULZjXVuNxKokSy0+vf8RYg==
-X-Received: by 2002:ac8:5e97:0:b0:42e:74bb:5fd3 with SMTP id r23-20020ac85e97000000b0042e74bb5fd3mr5280037qtx.55.1708947793999;
-        Mon, 26 Feb 2024 03:43:13 -0800 (PST)
-Received: from thinkpad ([117.202.184.81])
-        by smtp.gmail.com with ESMTPSA id r5-20020ac84245000000b0042e61ef71dfsm2347580qtm.33.2024.02.26.03.43.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Feb 2024 03:43:13 -0800 (PST)
-Date: Mon, 26 Feb 2024 17:13:07 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Vlastimil Babka <vbabka@suse.cz>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	Takashi Iwai <tiwai@suse.de>, Jiri Slaby <jirislaby@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	Linux Wireless <linux-wireless@vger.kernel.org>,
-	ath11k@lists.infradead.org, LKML <linux-kernel@vger.kernel.org>,
-	mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org
-Subject: Re: ath11k allocation failure on resume breaking wifi until power
- cycle
-Message-ID: <20240226114307.GA8422@thinkpad>
-References: <96481a45-3547-4d23-ad34-3a8f1d90c1cd@suse.cz>
- <0994ae16-8174-4a04-b454-1974b16bc106@quicinc.com>
- <20240222054739.GG3374@thinkpad>
- <38c36d16-9cc1-4f03-b758-4a3ba90f8aa4@suse.cz>
- <abc0c24f-2137-41eb-bb99-80aea8dacdb2@quicinc.com>
- <a36b35a9-fb37-4afe-a718-a47dfe658cb5@suse.cz>
- <34123ee0-26c9-4240-8d58-aba02f7c66b9@quicinc.com>
+	Mon, 26 Feb 2024 15:54:03 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id C695ACE1345;
+	Mon, 26 Feb 2024 15:53:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C920C433F1;
+	Mon, 26 Feb 2024 15:53:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1708962838;
+	bh=hOcwgVVHllRsU7aOePk2RzhuPZQC9eu4t3f3aZeY32c=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=qNtQoZMFDz+VHlsa4B62y3eo3/x/5WQh3VbvMLZj31L0fMzVYtYrgBGU0GnnGX+XO
+	 Pij5+oELlOGfHx936vmoB8ppZgs4SWNIcaGpPNLhcnHc+f8Mn3pdIqVBWST8AVGnwf
+	 RGXxx7QqxF4WpzFFOv7G3S+KPnbtrH78XzY4RMF3Cmnz5VMxCixHgP46v3nK0sEM9X
+	 cBcdtZnqw6QnGB7nWElLZW+NhzQ81MWYnAcw3SgmHJaXytwU16QQJEzZM0AFgZ9ZMr
+	 IG6AUzNwr7fBT+R+xUkOE0OtsEvCQsEmLCBYz+R9kk/3njVEDLDrGbadmPhAj+x8sh
+	 Qg3eeMzOqOBTQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: Tanjeff Moos <Tanjeff.Moos@westermo.com>,
+  openwrt-devel@lists.openwrt.org,  Felix Fietkau <nbd@nbd.name>,
+    ath11k@lists.infradead.org,
+    Jeff Johnson <quic_jjohnson@quicinc.com>
+Subject: Re: Question to recent Qualcomm CVEs
+References: <48174971-4b30-4046-9710-2acb16990e07@westermo.com>
+	<5e5c35eb-336b-4e92-b506-506e9fbeef7d@nbd.name>
+	<2668032.usQuhbGJ8B@ripper>
+Date: Mon, 26 Feb 2024 17:53:54 +0200
+In-Reply-To: <2668032.usQuhbGJ8B@ripper> (Sven Eckelmann's message of "Mon, 26
+	Feb 2024 16:38:02 +0100")
+Message-ID: <87ttlvjk6l.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <34123ee0-26c9-4240-8d58-aba02f7c66b9@quicinc.com>
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240226_114317_284251_06F25019 
-X-CRM114-Status: GOOD (  33.03  )
+X-CRM114-CacheID: sfid-20240226_075402_135661_373EDB33 
+X-CRM114-Status: GOOD (  23.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,83 +76,60 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Feb 26, 2024 at 05:11:17PM +0800, Baochen Qiang wrote:
-> 
-> 
-> On 2/26/2024 4:45 PM, Vlastimil Babka wrote:
-> > On 2/26/24 03:09, Baochen Qiang wrote:
-> > > 
-> > > 
-> > > On 2/23/2024 11:28 PM, Vlastimil Babka wrote:
-> > > > On 2/22/24 06:47, Manivannan Sadhasivam wrote:
-> > > > > On Wed, Feb 21, 2024 at 08:34:23AM -0800, Jeff Johnson wrote:
-> > > > > > On 2/21/2024 6:39 AM, Vlastimil Babka wrote:
-> > > > > > > Hi,
-> > > > > > > 
-> > > > > > > starting with 6.8 rc series, I'm experiencing problems on resume from s2idle
-> > > > > > > on my laptop, which is Lenovo T14s Gen3:
-> > > > > > > 
-> > > > > > > LENOVO 21CRS0K63K/21CRS0K63K, BIOS R22ET65W (1.35 )
-> > > > > > > ath11k_pci 0000:01:00.0: wcn6855 hw2.1
-> > > > > > > ath11k_pci 0000:01:00.0: chip_id 0x12 chip_family 0xb board_id 0xff soc_id 0x400c1211
-> > > > > > > ath11k_pci 0000:01:00.0: fw_version 0x1106196e fw_build_timestamp 2024-01-12 11:30 fw_build_id WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
-> > > > > > > 
-> > > > > > > The problem is an allocation failure happening on resume from s2idle. After
-> > > > > > > that the wifi stops working and even a reboot won't fix it, only a
-> > > > > > > poweroff/poweron cycle of the laptop.
-> > > > > > > 
-> > > > > 
-> > > > > Looks like WLAN is powered down during s2idle, which doesn't make sense. I hope
-> > > > > Jeff will figure out what's going on.
-> > > > 
-> > > > You mean the firmware is supposed to power it down/up transparently without
-> > > > kernel involvement? Because it should be powered down to save the power, no?
-> > > Let me clarify: from backtrace info, seems you are using a kernel with
-> > > the hibernation-support patches [1] applied, which are not accepted yet
-> > > to mainline kernel or even
-> > > git://git.kernel.org/pub/scm/linux/kernel/git/mani/mhi.git.
-> > 
-> > Oh, you're right. Sorry for confusing you all. The rc kernel builds we have
-> > for openSUSE have nearly no non-upstream patches so it didn't really occur
-> > to me to double check if there might be in the area.
-> > 
-> > Seems Takashi (Cc'd) added them indeed to make hibernation work:
-> > https://bugzilla.suse.com/show_bug.cgi?id=1207948#c51
-> > 
-> > But then, why do they affect also s2idle, is it intentional? And why I only
-> Yes, it's intentional. When suspend/resume, ath11k does the same for either
-> a s2idle suspend or a deep one.
-> 
++ ath11k, jeff
 
-That's a terrible idea for usecases like Android IMO. s2idle happens very often
-on Android platforms (screen lock) and do you want to powerdown the WLAN device
-all the time?
+Sven Eckelmann <sven@narfation.org> writes:
 
-Even though it offers power saving, I'm worried about the latency and possible
-teardown of the chipset. Later is only valid if the chipset undergoes complete
-power cycle though.
+> On Monday, 26 February 2024 15:50:44 CET Felix Fietkau wrote:
+> [...]
+>>> The Qualcomm bulletin[1] says "Patches are being actively
+>> > shared with OEMs".
+>> > 
+>> > Were these bugfixes made available for OpenWRT? Is there an established
+>> > procedure for such cases, where closed-source firmware gets bugfixes?
+> [...]
+>> > [1]
+>> > https://docs.qualcomm.com/product/publicresources/securitybulletin/
+> december-2023-bulletin.html
+>> 
+>> The fixes were not shared with OpenWrt. Qualcomm does not care about 
+>> OpenWrt support for their platforms.
+>
+> I've asked (using their qualcomm-cdmatech-support portal) for an official 
+> release of their WiFi firmware with all gathered bugfixes via 
+> linux-firmware.git. I got statements that the ath10k firmware is no longer 
+> supported + ath11k firmware is not developed further. But for some of them it 
+> is possible to request a release of the firmwares via Kalle's repositories. 
+> But also that Kalle's repositories are now replaced. Which seems to be 
+> confirmed by Kalle's statement [1] regarding the firmware-N.bin files on 
+> ath12k@lists.infradead.org .
+>
+> The new positions for firmware files were not revealed but I found a couple of 
+> places [2,3,4,5] in my search.
 
-- Mani
+Yeah, the ath1?k-firmware.git repos are being moved to
+git.codelinaro.org and we will send an announcement once everything is
+ready.
 
-> > started seeing the problems in 6.8, the patches are there since August.
-> > 
-> > > So this is why you see WLAN firmware is powered down during suspend.
-> > > 
-> > > [1]
-> > > https://patchwork.kernel.org/project/linux-wireless/cover/20231127162022.518834-1-kvalo@kernel.org/
-> > > 
-> > > > 
-> > > > But I just found out that when I build my own kernel using the distro config
-> > > > as base but reduced by make localmodconfig, the "mhi mhi0: Requested to
-> > > > power ON" and related messages don't occur anymore, so there's something
-> > > > weird going on.
-> > > Here your own kernel doesn't include the hibernation-support patches, right?
-> > 
-> > Right.
-> > 
-> > 
-> > 
+> And to the request to get the latest versions released via linux-firmware.git 
+> (or maybe even only in Kalle's repositories), I got (some weeks ago) the 
+> answer "Let me check with our team.".
+>
+> It is rather hard to make statements about Qualcomm  - simply because it is 
+> not just a single person and I have no idea about the internal structures. But 
+> it doesn't seem to be the highest priority (for the "internal team"?) to make 
+> fixes available for everyone. I still hope that it is just delayed due to some 
+> unfortunate circumstances. But this is just the current state.
+
+Thanks for letting me know, I was not aware any of this. Me and Jeff
+will investigate and get back to you.
+
+For others, here's a link to the thread in openwrt-devel:
+
+https://lists.openwrt.org/pipermail/openwrt-devel/2024-February/042341.html
 
 -- 
-மணிவண்ணன் சதாசிவம்
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
