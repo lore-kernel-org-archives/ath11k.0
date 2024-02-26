@@ -4,87 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25998C47DD9
-	for <ath11k@archiver.kernel.org>; Sun, 25 Feb 2024 14:34:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75C2EC54798
+	for <ath11k@archiver.kernel.org>; Mon, 26 Feb 2024 02:09:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Uc0wMqLN4cXLorwtjxl+1hxzQu0VmHmGBOY2K5ZtoN0=; b=y9PMdGmD4fgbIfsEmR8+3oY4pi
-	/4vDGAB+9DKC2yRO4R5MdkZEmi765UsYr7UhpUTJBHNuenl68GNYiP0qnKGo4IbS6rrP4aFYGQXf4
-	awRpE46mrRZQuzbN5JBsLRrtlxQX6u1NBEAeskFHD1FrCxzNz3rp1TzzLZ9irCOis/Q5KX7/0kOmk
-	F+EUrn3ue3uiuYw9aDcHKpGEMxyYvUxxj5aqnEVVBjd6J8LVUmusbmbKA0HPSqLKZbTsKsa7pFyHL
-	YW/addtkCourDSafqwrWmD7BPexjFF/nxJM4u477yKRS1Dkn6FyDClsuEqbLzxS8CcywVG7IVPY1d
-	rqTZnJjQ==;
+	bh=8bIzrQILyw2B1FAgettwxaEyCsaN0lYSJppG7Dh4O4Y=; b=WVH3C2lvCgYp9TH/ZzSkEagoYI
+	Yl26wXOEtcdHADphwmQEqIv7Z31c+cb9fxaCzodYL/dSz1J1Oogiu+6pL6Mc8JsKKrtHkl1LQL6jR
+	KHfWYpoSro9Q8M4wKE0DPSF0UXIegye16f2Y0GoVIh6SlKZJf5bX4uGGCVGy2Am7ix0wzEPO0OTbY
+	3h7ZSneVsnBRuHaeSPQHE/Ay1+MSIQ0D4LeTmtGgz6WLuOBLtEnOpde0juXgr3KbGM3sVqYAXe82v
+	LBiK03on60Kl4zt6EMBiXRZe70NQxr5regHjftU6izyDqS9chiVF3kFZzcDmR4hSmdr0YGJPe5f20
+	htk/lZdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reFaM-0000000F5Sx-0xFO;
-	Sun, 25 Feb 2024 14:34:34 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1reQR8-0000000G8Qw-350D;
+	Mon, 26 Feb 2024 02:09:46 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reFaJ-0000000F5SS-1xEX
+	id 1reQR5-0000000G8QL-1mvi
 	for ath11k@lists.infradead.org;
-	Sun, 25 Feb 2024 14:34:32 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41PEVbZ7029290;
-	Sun, 25 Feb 2024 14:34:29 GMT
+	Mon, 26 Feb 2024 02:09:45 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41Q1gqvJ027266;
+	Mon, 26 Feb 2024 02:09:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Uc0wMqLN4cXLorwtjxl+1hxzQu0VmHmGBOY2K5ZtoN0=; b=cH
-	Kz66FIp7BAgYNGp1w59++Gg0jxz1pf1jAh12UzYvC6Ta6i0uM5rR6d1ARVUDm3bl
-	Kf16kbI8qp8FuS+Qv2Q7fbgR+LahezI4Dt+Lfd/AFn9oJpO2kyAizLUZfdndKAaM
-	SEnSqibQj0072GM0xF9Sc4xlFmxSgPW/QjLJFbZKzJCuxgJFI890FPob5BUK3Xhn
-	ppgPrbyDn2c12mc0Uk+gyuZ41pa89pB5Ui8ZHt/tolKR6Qq+YbOHnyhgw3/fXBtP
-	ebrmPXYgrQX9RreSH56DeDsHagCFYLs7W2iNeff3RdjQZex6o/SMHHEeTi+BR537
-	+P5I3kKIt3AAJODY+OYw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wf8p7j0bm-1
+	qcppdkim1; bh=8bIzrQILyw2B1FAgettwxaEyCsaN0lYSJppG7Dh4O4Y=; b=VB
+	PbqCW2G/lW2vqdFsxTwFl6n1uIrGAdi8gMGPxj0xiHxI+Qe7fQUUnKL6nTlZC+Yh
+	5iJlrJKNJo8TJfwGkjTdzehF9g5uUBO9l4oQCTSjPZDlbsdAJ8tOiffWd18nqqHk
+	TZRzEOw49/rN81BFAnlPlSPpXQDp5kw5FBUaJy0UfRqH6FZ48rEdY96z5nrLQ6Qx
+	zreuiFBv8rV9zVgZX0jAZKEPO37dFm1GVuFoDP0EhCeGs30JH3DKC+gHY9KHUnQh
+	bW03IaxIFOqtTMTUGQHwF2oZ7+q03VA5b9PONgmVKponD8xyJwxcj14YVs6Zg5hB
+	R/EvucTgatRvml/npmGA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wf8uban15-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 25 Feb 2024 14:34:29 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41PEYSdT026435
+	Mon, 26 Feb 2024 02:09:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41Q29OkM029419
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 25 Feb 2024 14:34:28 GMT
-Received: from [10.216.1.166] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 26 Feb 2024 02:09:24 GMT
+Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 25 Feb
- 2024 06:34:26 -0800
-Message-ID: <38def880-b4f0-a4da-6189-b986d986e486@quicinc.com>
-Date: Sun, 25 Feb 2024 20:04:22 +0530
+ 2024 18:09:22 -0800
+Message-ID: <abc0c24f-2137-41eb-bb99-80aea8dacdb2@quicinc.com>
+Date: Mon, 26 Feb 2024 10:09:19 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 0/2] wifi: cfg80211/ath12k: Add support to rx retry stats
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k allocation failure on resume breaking wifi until power
+ cycle
 Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240212121616.3683197-1-quic_haric@quicinc.com>
- <c6192c28d7d30198b8b53f89a06c0c37d4ab9d0e.camel@sipsolutions.net>
-From: Hari Chandrakanthan <quic_haric@quicinc.com>
-In-Reply-To: <c6192c28d7d30198b8b53f89a06c0c37d4ab9d0e.camel@sipsolutions.net>
+To: Vlastimil Babka <vbabka@suse.cz>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>
+CC: Kalle Valo <kvalo@kernel.org>,
+        Linux Wireless
+	<linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, LKML
+	<linux-kernel@vger.kernel.org>,
+        <mhi@lists.linux.dev>, <linux-arm-msm@vger.kernel.org>
+References: <96481a45-3547-4d23-ad34-3a8f1d90c1cd@suse.cz>
+ <0994ae16-8174-4a04-b454-1974b16bc106@quicinc.com>
+ <20240222054739.GG3374@thinkpad>
+ <38c36d16-9cc1-4f03-b758-4a3ba90f8aa4@suse.cz>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <38c36d16-9cc1-4f03-b758-4a3ba90f8aa4@suse.cz>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 80I_RjxbUadBD1LIF_7f1vNrBZQ94xbr
-X-Proofpoint-GUID: 80I_RjxbUadBD1LIF_7f1vNrBZQ94xbr
+X-Proofpoint-ORIG-GUID: Unxksi7IMwzeBv7ib7QW4EKj_IBRIq6Z
+X-Proofpoint-GUID: Unxksi7IMwzeBv7ib7QW4EKj_IBRIq6Z
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-25_16,2024-02-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- adultscore=0 malwarescore=0 bulkscore=0 mlxlogscore=737 clxscore=1011
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402250116
+ definitions=2024-02-25_29,2024-02-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0
+ priorityscore=1501 mlxlogscore=999 spamscore=0 bulkscore=0 clxscore=1011
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402260013
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240225_063431_571997_256743C8 
-X-CRM114-Status: GOOD (  11.10  )
+X-CRM114-CacheID: sfid-20240225_180943_642879_321C4C32 
+X-CRM114-Status: GOOD (  19.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,28 +110,73 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
-On 2/12/2024 6:25 PM, Johannes Berg wrote:
-> On Mon, 2024-02-12 at 17:46 +0530, Hari Chandrakanthan wrote:
->> This patch series adds support to count station level rx retries.
->>
->> wifi: cfg80211: Add support to rx retry stats
->> wifi: ath12k: Add support to rx retry stats
->>
->> Tested-on: QCN9274 hw1.0 PCI WLAN.WBE.1.2.1-00148-QCAHKSWPL_SILICONZ-1
->>
->> Hari Chandrakanthan (2):
->>    wifi: cfg80211: Add support to rx retry stats
->>    wifi: ath12k: Add support to rx retry stats
-> There's trivial work here to expose them from mac80211, so please do
-> that. Also not entirely sure then why you need it in ath12k, but perhaps
-> if it's already done header conversion?
->
-> johannes
 
-When RX_FLAG_8023 is set, the rx skb contains 802.3 header.
-Also the flag member(u32) in struct ieee80211_rx_status is also completely
-utilized. can we extend it to u64 and use a bit in the u64 to indicate 
-that retry bit
-is set in 802.11 header when rx decap is offloaded?
+On 2/23/2024 11:28 PM, Vlastimil Babka wrote:
+> On 2/22/24 06:47, Manivannan Sadhasivam wrote:
+>> On Wed, Feb 21, 2024 at 08:34:23AM -0800, Jeff Johnson wrote:
+>>> On 2/21/2024 6:39 AM, Vlastimil Babka wrote:
+>>>> Hi,
+>>>>
+>>>> starting with 6.8 rc series, I'm experiencing problems on resume from s2idle
+>>>> on my laptop, which is Lenovo T14s Gen3:
+>>>>
+>>>> LENOVO 21CRS0K63K/21CRS0K63K, BIOS R22ET65W (1.35 )
+>>>> ath11k_pci 0000:01:00.0: wcn6855 hw2.1
+>>>> ath11k_pci 0000:01:00.0: chip_id 0x12 chip_family 0xb board_id 0xff soc_id 0x400c1211
+>>>> ath11k_pci 0000:01:00.0: fw_version 0x1106196e fw_build_timestamp 2024-01-12 11:30 fw_build_id WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
+>>>>
+>>>> The problem is an allocation failure happening on resume from s2idle. After
+>>>> that the wifi stops working and even a reboot won't fix it, only a
+>>>> poweroff/poweron cycle of the laptop.
+>>>>
+>>
+>> Looks like WLAN is powered down during s2idle, which doesn't make sense. I hope
+>> Jeff will figure out what's going on.
+> 
+> You mean the firmware is supposed to power it down/up transparently without
+> kernel involvement? Because it should be powered down to save the power, no?
+Let me clarify: from backtrace info, seems you are using a kernel with 
+the hibernation-support patches [1] applied, which are not accepted yet 
+to mainline kernel or even 
+git://git.kernel.org/pub/scm/linux/kernel/git/mani/mhi.git.
 
+So this is why you see WLAN firmware is powered down during suspend.
+
+[1] 
+https://patchwork.kernel.org/project/linux-wireless/cover/20231127162022.518834-1-kvalo@kernel.org/
+
+> 
+> But I just found out that when I build my own kernel using the distro config
+> as base but reduced by make localmodconfig, the "mhi mhi0: Requested to
+> power ON" and related messages don't occur anymore, so there's something
+> weird going on.
+Here your own kernel doesn't include the hibernation-support patches, right?
+
+> 
+>> But if you can share the dmesg after enabling the debug prints of both ath11k
+>> and MHI, it will help a lot.
+>>
+>> - Mani
+>>
+>>>> This is order 4 (costly order), GFP_NOIO (maybe it's originally GFP_KERNEL
+>>>> but we restrict to GFP_NOIO during resume) allocation, thus it's impossible
+>>>> to do memory compaction and the page allocator gives up. Such high-order
+>>>> allocations should have a fallback using smaller pages, or maybe it could at
+>>>> least retry once the restricted GFP_NOIO context is gone.
+>>>>
+>>>> I don't know why it never happened before 6.8, didn't spot anything obvious
+>>>> and it happens too unreliably to go bisect. Any idea?
+>>>
+>>> I've asked the development team to look at this, but in the interim can
+>>> you apply the two hibernation patchsets to see if those cleanups also
+>>> fix your problem:
+>>>
+>>> [PATCH 0/5] wifi: ath11k: prepare for hibernation support
+>>> https://lore.kernel.org/linux-wireless/20240221024725.10057-1-quic_bqiang@quicinc.com
+>>>
+>>> [PATCH 0/3] wifi: ath11k: hibernation support
+>>> https://lore.kernel.org/linux-wireless/20240221030026.10553-1-quic_bqiang@quicinc.com
+>>
+> 
+> 
 
