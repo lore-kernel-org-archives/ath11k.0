@@ -4,90 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB524C54798
-	for <ath11k@archiver.kernel.org>; Tue, 27 Feb 2024 10:02:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D972EC5478C
+	for <ath11k@archiver.kernel.org>; Tue, 27 Feb 2024 10:44:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qe0Tx2ka+A9mGQoK1t7SZ1TAMYNSj6k5fP2hyL0lf6E=; b=WsSCW1oot9BGXLP64aipC67I2V
-	fPR/lX2ptiCes9Dke4e6y0RtrIim7mG8/kWkt7zOk+1IzQh6SVk20NAQPMYFUwzRrfIdeEzNurkpt
-	IvbTlUyme874vJhMpYAORJJfIdi4QTFDtgFQOHR4DNHZ9p7UYgQzDlHLQM5+kj5OPNwZk2AeXpmns
-	OVwAO50KCi4SsBIJcRTva7mW+ukqm0T1rOQVl0OHGFynx2fHm+/0dgI+c9LUCArnq5Anf3tXAN6Pf
-	gbYTy1fPD2RJS5eTh4bhMj/FBoba6RJ8wRnntVycDggI9eTT7ezvdWU9pDv4eMgN5R1Qg/yI+CWck
-	Yvuy8HZg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=UJTGq7n6GoxpyBjmH/lFnHHZvZJsgG8yVtlMJkDtr64=; b=MhKXPasicPvDuvApJy87JQQiaZ
+	kiD15kg7W/MNbCmmqwIqFUr4bBuewgi6tyWmaqxn7gD4o3wjoGlGhAf5WR2y4Hbg8iT1EM5i+xy9T
+	rRPdcHHipb0J7RYwhpDM5g7GJwbvuBaWYqQgaGparYmJkZRMSf3EiRTWhs3jFdVYk3HXYz7GWn3BY
+	RLN+QPvZAkQZ1GaU9VzMMONRhnv5Dyitf0k4WWWYxz44khDitiZhvLAM8msIoF0lTfrD8jpWkGzz7
+	UKlCOwzktMUkXrrHCXmBWPaRtZeV46R4HEKgXkR/CDNEZVkkLLfVmRPQpbNwZ1KqTVsgA9iN7AmCX
+	0By9UyCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reuI0-00000004dM0-2BqF;
-	Tue, 27 Feb 2024 10:02:20 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1reux4-00000004oWO-2HAB;
+	Tue, 27 Feb 2024 10:44:46 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1reuHx-00000004dKn-20RR
+	id 1reux1-00000004oVI-1GFE
 	for ath11k@lists.infradead.org;
-	Tue, 27 Feb 2024 10:02:18 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41R9Ycwk010343;
-	Tue, 27 Feb 2024 10:02:14 GMT
+	Tue, 27 Feb 2024 10:44:44 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41R9XtEM030871;
+	Tue, 27 Feb 2024 10:44:41 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=qe0Tx2ka+A9mGQoK1t7SZ1TAMYNSj6k5fP2hyL0lf6E=; b=kk
-	AXlMlPYSfzv5aEWSPtAnQP4ZN/RwF7EY2vZidPYnomafFZwLBHtkDVDwM76fjyJd
-	iOd+LCOz2szAXyABuCxIc0w3nRYoIX22iCRvhmoQ0KiYlx6alkoqSxgH+BdhyMcf
-	BZLSd1vL+YwF3i/oocR0Svqg1nxu/c95jHKtNJtf3W56EFjluvZnOxbUdh/h4LHH
-	qVXSteJuoZRbbB5x7lxDThAWkxvGGOgJH8C3xehLfZ/2vtDhPHBg0san8qAGmCdZ
-	RA9ftCOjjFWQNa9fcrxjgIh86dWfC0j5y8YKnR9hdtdUAu9OEZbpukAeMw9ROgjD
-	Xji0IV0mdBwGCaWC+eNg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh6ws8udt-1
+	from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding:content-type; s=
+	qcppdkim1; bh=UJTGq7n6GoxpyBjmH/lFnHHZvZJsgG8yVtlMJkDtr64=; b=EC
+	ChiZxPiEaEysQDl4feSixjtgO7RLX63QIpJofgTl00eF23RI/ndP2XjGtPx9GK2v
+	tQMdHee6AR0CKNPjAa/WxgZh580MgCeXNo+gwaxakTZsWJqHOsUi2yA2nN9wXui5
+	3HnRczgQ5/DXSgiAavKGK4FLuq80EJs84ITznuJk6SzYJZGwgcnC5YuDlckSrPwq
+	OUIkbl0/O5A5ScHMYdSBDUNdx43w8cswIzWnWHcyJQMYzXLeU66P/J+Das2TuGcF
+	2L782RDHp5zf2kEywgVKDKr7snw/qzLY+E/vqaUUDa61iKxLrHN45Z/4pmq7eltQ
+	br/8LM6rlZ3Uuh3j8qCw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3whccw88jb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 10:02:14 +0000 (GMT)
+	Tue, 27 Feb 2024 10:44:41 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41RA26nl031869
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41RAie3T008387
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 10:02:06 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 27 Feb
- 2024 02:02:05 -0800
-Message-ID: <bb25f9cb-720e-4b53-950c-41eddc19da59@quicinc.com>
-Date: Tue, 27 Feb 2024 18:02:01 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] net: qrtr: support suspend/hibernation
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <mhi@lists.linux.dev>
-References: <20240227063613.4478-1-quic_bqiang@quicinc.com>
- <20240227063613.4478-3-quic_bqiang@quicinc.com>
- <20240227071531.GD2587@thinkpad>
- <7b743820-850a-4871-a0d8-aded36e11aba@quicinc.com>
- <20240227095602.GK2587@thinkpad>
+	Tue, 27 Feb 2024 10:44:40 GMT
+Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 27 Feb 2024 02:44:38 -0800
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20240227095602.GK2587@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+To: <ath11k@lists.infradead.org>, <manivannan.sadhasivam@linaro.org>
+CC: <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <mhi@lists.linux.dev>, <quic_bqiang@quicinc.com>
+Subject: [PATCH v3 1/3] bus: mhi: host: add mhi_power_down_keep_dev()
+Date: Tue, 27 Feb 2024 18:44:25 +0800
+Message-ID: <20240227104427.7505-2-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240227104427.7505-1-quic_bqiang@quicinc.com>
+References: <20240227104427.7505-1-quic_bqiang@quicinc.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: mMmjDsH45GzbprlQkc4a1QEzvh3aF9_g
-X-Proofpoint-GUID: mMmjDsH45GzbprlQkc4a1QEzvh3aF9_g
+X-Proofpoint-GUID: -F8xVZqKlgA1razbVtgKWCagjldNM4bG
+X-Proofpoint-ORIG-GUID: -F8xVZqKlgA1razbVtgKWCagjldNM4bG
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-02-26_11,2024-02-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- lowpriorityscore=0 malwarescore=0 spamscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 clxscore=1015 suspectscore=0
- mlxlogscore=999 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2402120000 definitions=main-2402270079
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ spamscore=0 mlxlogscore=999 mlxscore=0 phishscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402270083
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240227_020217_566147_7B6AA239 
-X-CRM114-Status: GOOD (  19.40  )
+X-CRM114-CacheID: sfid-20240227_024443_491721_0D3652EB 
+X-CRM114-Status: GOOD (  24.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,66 +97,192 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+ath11k fails to resume:
 
+ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
 
-On 2/27/2024 5:56 PM, Manivannan Sadhasivam wrote:
-> On Tue, Feb 27, 2024 at 04:39:41PM +0800, Baochen Qiang wrote:
->>
->>
->> On 2/27/2024 3:15 PM, Manivannan Sadhasivam wrote:
->>> On Tue, Feb 27, 2024 at 02:36:12PM +0800, Baochen Qiang wrote:
->>>> MHI devices may not be destroyed during suspend/hibernation, so need
->>>> to unprepare/prepare MHI channels throughout the transition, this is
->>>> done by adding suspend/resume callbacks.
->>>>
->>>> The suspend callback is called in the late suspend stage, this means
->>>> MHI channels are still alive at suspend stage, and that makes it
->>>> possible for an MHI controller driver to communicate with others over
->>>> those channels at suspend stage. While the resume callback is called
->>>> in the early resume stage, for a similar reason.
->>>>
->>>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
->>>>
->>>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
->>>
->>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>>
->>> Could you please confirm if this patch can be applied separately and won't cause
->>> regression?
->> Just searched the kernel and found another two drivers using IPCR channels,
->> one is pci_epf_mhi_driver in drivers/pci/endpoint/functions/pci-epf-mhi.c
->> and the other is mhi_pci_driver in drivers/bus/mhi/host/pci_generic.c.
->>
->> For pci_epf_mhi_driver, this is not impacted because the devices for those
->> channels are attached to mhi_ep_bus_type while QRTR MHI driver attached to
->> mhi_bus_type.
->>
->> For mhi_pci_driver, I am afraid there would be regressions caused by this
->> patch. The regression is because when system suspends, mhi_pci_suspend() is
->> called and then qcom_mhi_qrtr_pm_suspend_late() called, however the latter
->> would fail because MHI is moved to M3 state by call mhi_pm_suspend() in
->> mhi_pci_suspend(). To address this, there might be two options: the first is
->> to move mhi_pci_suspend() to a late suspend stage which would be called
->> after qcom_mhi_qrtr_pm_suspend_late(). and the second is to avoid whole QRTR
->> suspend operation in such cases. I prefer the second one, because if MHI is
->> going to suspend, instead of power down, it is pointless to unprepare MHI
->> channels and re-prepare them after resume back. We can achieve this purpose
->> by adding a status_cb() to QRTR MHI driver which would be called when MHI
->> goes to low power mode. And then QRTR MHI driver could decide not to
->> suspend/resume if low power mode is notified.
->>
->> Your thoughts?
->>
-> 
-> I'd rather query the MHI state of the device in suspend/resume callback using
-> mhi_get_mhi_state(mhi_dev->mhi_cntrl) and if the device is found to be in M3
-> (suspend) state, then I'd skip prepare/unprepare part.
-> 
-> Because this makes it clear that, if the device is in suspend state, then no
-> need for the client drivers to unprepare/prepare the channels.
-> 
-Sounds reasonable, will do accordingly in v3.
+This happens because when calling mhi_sync_power_up() the MHI subsystem
+eventually calls device_add() from mhi_create_devices() but the device
+creation is deferred:
 
-> - Mani
-> 
+mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
+
+The reason for deferring device creation is explained in dpm_prepare():
+
+        /*
+         * It is unsafe if probing of devices will happen during suspend or
+         * hibernation and system behavior will be unpredictable in this case.
+         * So, let's prohibit device's probing here and defer their probes
+         * instead. The normal behavior will be restored in dpm_complete().
+         */
+
+Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not
+called and thus MHI channels are not prepared:
+
+So what this means that QRTR is not delivering messages and the QMI connection
+is not working between ath11k and the firmware, resulting a failure in firmware
+initialization.
+
+To fix this add new function mhi_power_down_keep_dev() which doesn't destroy
+the devices for channels during power down. This way we avoid probe defer issue
+and finally can get ath11k hibernation working with the following patches.
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/bus/mhi/host/internal.h |  4 +++-
+ drivers/bus/mhi/host/pm.c       | 42 ++++++++++++++++++++++++++++-----
+ include/linux/mhi.h             | 18 +++++++++++++-
+ 3 files changed, 56 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
+index 5fe49311b8eb..aaad40a07f69 100644
+--- a/drivers/bus/mhi/host/internal.h
++++ b/drivers/bus/mhi/host/internal.h
+@@ -80,6 +80,7 @@ enum dev_st_transition {
+ 	DEV_ST_TRANSITION_FP,
+ 	DEV_ST_TRANSITION_SYS_ERR,
+ 	DEV_ST_TRANSITION_DISABLE,
++	DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE,
+ 	DEV_ST_TRANSITION_MAX,
+ };
+ 
+@@ -90,7 +91,8 @@ enum dev_st_transition {
+ 	dev_st_trans(MISSION_MODE,	"MISSION MODE")		\
+ 	dev_st_trans(FP,		"FLASH PROGRAMMER")	\
+ 	dev_st_trans(SYS_ERR,		"SYS ERROR")		\
+-	dev_st_trans_end(DISABLE,	"DISABLE")
++	dev_st_trans(DISABLE,		"DISABLE")		\
++	dev_st_trans_end(DISABLE_DESTROY_DEVICE, "DISABLE (DESTROY DEVICE)")
+ 
+ extern const char * const dev_state_tran_str[DEV_ST_TRANSITION_MAX];
+ #define TO_DEV_STATE_TRANS_STR(state) (((state) >= DEV_ST_TRANSITION_MAX) ? \
+diff --git a/drivers/bus/mhi/host/pm.c b/drivers/bus/mhi/host/pm.c
+index 8b40d3f01acc..11c0e751f223 100644
+--- a/drivers/bus/mhi/host/pm.c
++++ b/drivers/bus/mhi/host/pm.c
+@@ -468,7 +468,8 @@ static int mhi_pm_mission_mode_transition(struct mhi_controller *mhi_cntrl)
+ }
+ 
+ /* Handle shutdown transitions */
+-static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
++static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl,
++				      bool destroy_device)
+ {
+ 	enum mhi_pm_state cur_state;
+ 	struct mhi_event *mhi_event;
+@@ -530,8 +531,16 @@ static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
+ 	dev_dbg(dev, "Waiting for all pending threads to complete\n");
+ 	wake_up_all(&mhi_cntrl->state_event);
+ 
+-	dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
+-	device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
++	/*
++	 * Only destroy the 'struct device' for channels if indicated by the
++	 * 'destroy_device' flag. Because, during system suspend or hibernation
++	 * state, there is no need to destroy the 'struct device' as the endpoint
++	 * device would still be physically attached to the machine.
++	 */
++	if (destroy_device) {
++		dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
++		device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
++	}
+ 
+ 	mutex_lock(&mhi_cntrl->pm_mutex);
+ 
+@@ -821,7 +830,10 @@ void mhi_pm_st_worker(struct work_struct *work)
+ 			mhi_pm_sys_error_transition(mhi_cntrl);
+ 			break;
+ 		case DEV_ST_TRANSITION_DISABLE:
+-			mhi_pm_disable_transition(mhi_cntrl);
++			mhi_pm_disable_transition(mhi_cntrl, false);
++			break;
++		case DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE:
++			mhi_pm_disable_transition(mhi_cntrl, true);
+ 			break;
+ 		default:
+ 			break;
+@@ -1175,7 +1187,8 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl)
+ }
+ EXPORT_SYMBOL_GPL(mhi_async_power_up);
+ 
+-void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
++static void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
++			     bool destroy_device)
+ {
+ 	enum mhi_pm_state cur_state, transition_state;
+ 	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+@@ -1211,15 +1224,32 @@ void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
+ 	write_unlock_irq(&mhi_cntrl->pm_lock);
+ 	mutex_unlock(&mhi_cntrl->pm_mutex);
+ 
+-	mhi_queue_state_transition(mhi_cntrl, DEV_ST_TRANSITION_DISABLE);
++	if (destroy_device)
++		mhi_queue_state_transition(mhi_cntrl,
++					   DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE);
++	else
++		mhi_queue_state_transition(mhi_cntrl,
++					   DEV_ST_TRANSITION_DISABLE);
+ 
+ 	/* Wait for shutdown to complete */
+ 	flush_work(&mhi_cntrl->st_worker);
+ 
+ 	disable_irq(mhi_cntrl->irq[0]);
+ }
++
++void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
++{
++	__mhi_power_down(mhi_cntrl, graceful, true);
++}
+ EXPORT_SYMBOL_GPL(mhi_power_down);
+ 
++void mhi_power_down_keep_dev(struct mhi_controller *mhi_cntrl,
++			       bool graceful)
++{
++	__mhi_power_down(mhi_cntrl, graceful, false);
++}
++EXPORT_SYMBOL_GPL(mhi_power_down_keep_dev);
++
+ int mhi_sync_power_up(struct mhi_controller *mhi_cntrl)
+ {
+ 	int ret = mhi_async_power_up(mhi_cntrl);
+diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+index 77b8c0a26674..cde01e133a1b 100644
+--- a/include/linux/mhi.h
++++ b/include/linux/mhi.h
+@@ -630,12 +630,28 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl);
+ int mhi_sync_power_up(struct mhi_controller *mhi_cntrl);
+ 
+ /**
+- * mhi_power_down - Start MHI power down sequence
++ * mhi_power_down - Power down the MHI device and also destroy the
++ *                  'struct device' for the channels associated with it.
++ *                  See also mhi_power_down_keep_dev() which is a variant
++ *                  of this API that keeps the 'struct device' for channels
++ *                  (useful during suspend/hibernation).
+  * @mhi_cntrl: MHI controller
+  * @graceful: Link is still accessible, so do a graceful shutdown process
+  */
+ void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful);
+ 
++/**
++ * mhi_power_down_keep_dev - Power down the MHI device but keep the 'struct
++ *                           device' for the channels associated with it.
++ *                           This is a variant of 'mhi_power_down()' and
++ *                           useful in scenarios such as suspend/hibernation
++ *                           where destroying of the 'struct device' is not
++ *                           needed.
++ * @mhi_cntrl: MHI controller
++ * @graceful: Link is still accessible, so do a graceful shutdown process
++ */
++void mhi_power_down_keep_dev(struct mhi_controller *mhi_cntrl, bool graceful);
++
+ /**
+  * mhi_unprepare_after_power_down - Free any allocated memory after power down
+  * @mhi_cntrl: MHI controller
+-- 
+2.25.1
+
 
