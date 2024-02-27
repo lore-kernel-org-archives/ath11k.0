@@ -4,87 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FD6FC5478C
-	for <ath11k@archiver.kernel.org>; Tue, 27 Feb 2024 06:59:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E55C5478C
+	for <ath11k@archiver.kernel.org>; Tue, 27 Feb 2024 07:13:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=JYQWqLpgQS8OK1mJDtCFlZGHCJqKlWClvboaDMAZTak=; b=gW6Nq+X20PVz/C6RU8P+zjSqOp
-	lDe29kvrC3qo1UdWdm6NJypa4CbzW2yK/xJzOECStdMr9y64z3Ng5IUG5lZJpKtss9ktt8aBYCAM0
-	bPkC9g3Fg/e2vbB24N06fgGqwZb4M/WUgFM+paNwNfddYkLSM4TP8LE1M+D0V1cTR34BmGWRlVmhq
-	u0EJSajjd10WIiJnLMTOWoH7NIvn4eEpEldtvg2FcfxKNcvhVzCS4uTMhtsNE5z4dKrs1rDhn35x/
-	mNZ/4bxdYFY1zMPSM18XbjKB1vV7JD3Sob5Cw15j2gUVyNkWJcKldMZxGxybIegZe9/T4ZMoCc21i
-	IH54knsg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=2d45gls5E6DHoFDGkz67r8N78oa/WUavR6gYW/EilR8=; b=zjZ0L8RhizX5rD63soETPiiDBp
+	3XZaU4wq7fpDGvu+8LyknpMgutDu66mG8SdcQvyhduvMFBeckc8UY7m0JFuKucL8vyUiNEnlGTeNQ
+	SbpcqRO5/O3/PLbzveIxZ8gu/xbpNTO5Ri0QhUxF/3RHYGO+KyyShiy4qEKUm40EPU0xdyhNSdtle
+	Ai0uyg+tYOJEqR/eTNeWZQjxNhf16p8+4LIIqpazrsR4riKKJWTpk46e5Y9QT/wdTQIXGAIrpTdJq
+	uz5tRkJyugjfznjz4u4ZAlzbnDNH5qIs+ifuOPxhO6uZ1A0iKA2M2T/3Hy9nCdUc6zmof4QP3xp9L
+	DObsGCpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rerQf-000000042fz-39PH;
-	Tue, 27 Feb 2024 06:59:05 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rere9-000000045Fj-0VbJ;
+	Tue, 27 Feb 2024 07:13:01 +0000
+Received: from mail-pf1-x432.google.com ([2607:f8b0:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rerQd-000000042fC-1ghF
+	id 1rere6-000000045EZ-15IQ
 	for ath11k@lists.infradead.org;
-	Tue, 27 Feb 2024 06:59:04 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41R3omth004253;
-	Tue, 27 Feb 2024 06:59:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=JYQWqLpgQS8OK1mJDtCFlZGHCJqKlWClvboaDMAZTak=; b=oi
-	0Sd3Hlf8jrfUTWs4Ft4NhIM4/oNbo76sAP4d/+QdFdigdCUYqhntRev/1+ZAesNo
-	UPR46HWc4FQx2XuPnviANGj0nRUOU6WEGvRRY2pu0utdgXX67fdmS2JOcnCnIUIU
-	c5WEgBwjPpF3oZdutvpoeumWkE2C+Kuj9dpwgbGhFVMtQXqelM6hCYI6pKDSdwqP
-	6XBKbChrEyKdPC6lo/NJaR6tine/dXn+4Mli5eUQvgOLcN8bfuLwCy20VGNkiG+N
-	ZMbC1Wv+EK9CkwE9hjlOh9rpEPhIDkgd+aOSrMzoFeTEOVD6FpN+G9voxDpG2VWC
-	ECuwNUaqyIvTZF+HvvCA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh4e60s85-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 06:59:01 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41R6x1gk003487
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 06:59:01 GMT
-Received: from [10.253.12.70] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 26 Feb
- 2024 22:58:59 -0800
-Message-ID: <b20fc717-654d-4e64-920f-699fe3ec5598@quicinc.com>
-Date: Tue, 27 Feb 2024 14:58:57 +0800
+	Tue, 27 Feb 2024 07:12:59 +0000
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-6e544942455so859987b3a.3
+        for <ath11k@lists.infradead.org>; Mon, 26 Feb 2024 23:12:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709017975; x=1709622775; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2d45gls5E6DHoFDGkz67r8N78oa/WUavR6gYW/EilR8=;
+        b=f3hO4YPDWfXFdRRE3dFJ4y4du7sSjvP0jAmpLctuhuBjcDszLr/F/jsp7C3cSDn6xh
+         JZYWyhgRrmYzFAeM/LT8oXRb16jrrKjct1iTWifJHG0g+rXPfK9DUlxFlrTXqHtO0pmB
+         9sRX83WbJzctO8ejEvwliDyCa/iYH2mv5P5AqHlNLDKi7rotef5McLn02mfS0NbtcbgB
+         oQqKZA5HUowNsPqkvTKDoqYzX2xcUgeLHrrKvH3QYW+RZt70X259OZCi0SH9ARkCjSGS
+         bnHIsVg0w8LwTyBQeF72LGcnu58XrNQlSgzCVCVvIuDkcJGMSeNeI0rAAzJC+C2RHfKI
+         RDWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709017975; x=1709622775;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2d45gls5E6DHoFDGkz67r8N78oa/WUavR6gYW/EilR8=;
+        b=Y8WaLo3+RZJVwgzHLsIn8BPOpt+NJkMQ5WJqD8bZXbntlZOSZfDnQ5XJQHNkPF5NlH
+         yZSG45kgPqP+rKFFarWxPmrzCjjLxz+q/zfOL3ZyZHjh7ZOGqOnBOfMaEirmZKKKdx+p
+         AVC7DputATKJ4hKXazLQIwP8SjF2lbRnIVfySSUbTK/SQQ4uGTOYhgmgE2ku0A7f9JOx
+         wbyNLd461mzNdqMKoVZbXkFAlAYGbhBt3Emvpn7FfadbZNfiPZIzITzbomn53jOdXnnS
+         WudY3IUJJLvV9d5Vd0aDfn1Z9Btlfw/szrGz1tQX0dseeLLue39hVSlZOqsi3PXUPCdG
+         n0LQ==
+X-Gm-Message-State: AOJu0YzQbvLhqpIAWLoa45PA0YLu7McIyY0REQmGiKfaFbfsPrx/AErU
+	vvBAPxEine0k+0rUqHFcv5+apj3UokbiRIupw0wqHMjBSUix54F0uu1qTlRLfkt2sUJL2IPAmbI
+	=
+X-Google-Smtp-Source: AGHT+IELCobY2pUNJ1u/obojIQqEMSdmJboJV9duSJH4f/IOyx64dLYkKcOFFTxC9LjzZndNZ4hGVQ==
+X-Received: by 2002:a62:cd48:0:b0:6e4:bb45:49f3 with SMTP id o69-20020a62cd48000000b006e4bb4549f3mr9585299pfg.34.1709017975099;
+        Mon, 26 Feb 2024 23:12:55 -0800 (PST)
+Received: from thinkpad ([117.213.97.177])
+        by smtp.gmail.com with ESMTPSA id ei29-20020a056a0080dd00b006e507a98254sm3951760pfb.206.2024.02.26.23.12.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Feb 2024 23:12:54 -0800 (PST)
+Date: Tue, 27 Feb 2024 12:42:49 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev
+Subject: Re: [PATCH v2 1/3] bus: mhi: host: add mhi_power_down_keep_dev()
+Message-ID: <20240227071249.GC2587@thinkpad>
+References: <20240227063613.4478-1-quic_bqiang@quicinc.com>
+ <20240227063613.4478-2-quic_bqiang@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] wifi: ath11k: add P2P IE in beacon template
-Content-Language: en-US
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240226060203.2040444-1-quic_kangyang@quicinc.com>
- <20240226060203.2040444-3-quic_kangyang@quicinc.com>
- <42652a06-33f3-445a-bd8a-da4633fa52f8@quicinc.com>
-From: Kang Yang <quic_kangyang@quicinc.com>
-In-Reply-To: <42652a06-33f3-445a-bd8a-da4633fa52f8@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PgJ858lO1C6i0mXn8f8xH7oJjoO4NXiX
-X-Proofpoint-ORIG-GUID: PgJ858lO1C6i0mXn8f8xH7oJjoO4NXiX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-26_11,2024-02-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 malwarescore=0 phishscore=0 lowpriorityscore=0
- adultscore=0 bulkscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0
- clxscore=1015 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2402120000 definitions=main-2402270054
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240227063613.4478-2-quic_bqiang@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240226_225903_489481_0C63AB4C 
-X-CRM114-Status: GOOD (  21.47  )
+X-CRM114-CacheID: sfid-20240226_231258_330654_CB0D70BC 
+X-CRM114-Status: GOOD (  36.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,253 +94,220 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 2/27/2024 3:05 AM, Jeff Johnson wrote:
-> On 2/25/2024 10:01 PM, Kang Yang wrote:
->> P2P Element is a necessary component of P2P protocol communication.
->> It contains the Vendor Specific Information Element which includes
->> the WFA OUI and an OUI Type indicating P2P.
->>
->> Add P2P IE in beacon template, and implement WMI interface for it.
->>
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
->> Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.2
->>
->> Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
->> ---
->>   drivers/net/wireless/ath/ath11k/mac.c | 103 ++++++++++++++++++++++++--
->>   drivers/net/wireless/ath/ath11k/wmi.c |  39 ++++++++++
->>   drivers/net/wireless/ath/ath11k/wmi.h |   9 +++
->>   3 files changed, 143 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
->> index 9240dedf3217..f52dd52dabbb 100644
->> --- a/drivers/net/wireless/ath/ath11k/mac.c
->> +++ b/drivers/net/wireless/ath/ath11k/mac.c
->> @@ -1430,10 +1430,67 @@ static bool ath11k_mac_set_nontx_vif_params(struct ath11k_vif *tx_arvif,
->>   	return false;
->>   }
->>   
->> -static void ath11k_mac_set_vif_params(struct ath11k_vif *arvif,
->> -				      struct sk_buff *bcn)
->> +static int ath11k_mac_setup_bcn_p2p_ie(struct ath11k_vif *arvif,
->> +				       struct sk_buff *bcn)
->>   {
->> +	struct ath11k *ar = arvif->ar;
->> +	struct ieee80211_mgmt *mgmt;
->> +	const u8 *p2p_ie;
->> +	int ret = 0;
->> +
->> +	mgmt = (void *)bcn->data;
->> +	p2p_ie = cfg80211_find_vendor_ie(WLAN_OUI_WFA, WLAN_OUI_TYPE_WFA_P2P,
->> +					 mgmt->u.beacon.variable,
->> +					 bcn->len - (mgmt->u.beacon.variable -
->> +						     bcn->data));
->> +	if (!p2p_ie)
->> +		return -ENOENT;
->> +
->> +	ret = ath11k_wmi_p2p_go_bcn_ie(ar, arvif->vdev_id, p2p_ie);
->> +	if (ret) {
->> +		ath11k_warn(ar->ab, "failed to submit P2P GO bcn ie for vdev %i: %d\n",
->> +			    arvif->vdev_id, ret);
->> +		return ret;
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->> +static int ath11k_mac_remove_vendor_ie(struct sk_buff *skb, unsigned int oui,
->> +				       u8 oui_type, size_t ie_offset)
->> +{
->> +	size_t len;
->> +	const u8 *next, *end;
->> +	u8 *ie;
->> +
->> +	if (WARN_ON(skb->len < ie_offset))
->> +		return -EINVAL;
->> +
->> +	ie = (u8 *)cfg80211_find_vendor_ie(oui, oui_type,
->> +					   skb->data + ie_offset,
->> +					   skb->len - ie_offset);
->> +	if (!ie)
->> +		return -ENOENT;
->> +
->> +	len = ie[1] + 2;
->> +	end = skb->data + skb->len;
->> +	next = ie + len;
->> +
->> +	if (WARN_ON(next > end))
->> +		return -EINVAL;
->> +
->> +	memmove(ie, next, end - next);
->> +	skb_trim(skb, skb->len - len);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ath11k_mac_set_vif_params(struct ath11k_vif *arvif,
->> +				     struct sk_buff *bcn)
->> +{
->> +	struct ath11k_base *ab = arvif->ar->ab;
->>   	struct ieee80211_mgmt *mgmt;
->> +	int ret = 0;
->>   	u8 *ies;
->>   
->>   	ies = bcn->data + ieee80211_get_hdrlen_from_skb(bcn);
->> @@ -1451,6 +1508,32 @@ static void ath11k_mac_set_vif_params(struct ath11k_vif *arvif,
->>   		arvif->wpaie_present = true;
->>   	else
->>   		arvif->wpaie_present = false;
->> +
->> +	if (arvif->vif->type != NL80211_IFTYPE_AP || !arvif->vif->p2p)
+On Tue, Feb 27, 2024 at 02:36:11PM +0800, Baochen Qiang wrote:
+> ath11k fails to resume:
 > 
-> this logic isn't applicable for NL80211_IFTYPE_P2P_GO ?
-
-The original intention here is to determine if it is P2P GO, if yes, 
-continue, otherwise return.
-
-
-Maybe this judgment is a bit misleading, let me replace with
-if (arvif->vdev_subtype != WMI_VDEV_SUBTYPE_P2P_GO) ?
-
-
+> ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
 > 
->> +		return ret;
->> +
->> +	ret = ath11k_mac_setup_bcn_p2p_ie(arvif, bcn);
->> +	if (ret) {
->> +		ath11k_warn(ab, "failed to setup P2P GO bcn ie: %d\n",
->> +			    ret);
->> +		return ret;
->> +	}
->> +
->> +	/* P2P IE is inserted by firmware automatically (as
->> +	 * configured above) so remove it from the base beacon
->> +	 * template to avoid duplicate P2P IEs in beacon frames.
->> +	 */
->> +	ret = ath11k_mac_remove_vendor_ie(bcn, WLAN_OUI_WFA,
->> +					  WLAN_OUI_TYPE_WFA_P2P,
->> +					  offsetof(struct ieee80211_mgmt,
->> +						   u.beacon.variable));
->> +	if (ret) {
->> +		ath11k_warn(ab, "failed to remove P2P vendor ie: %d\n",
->> +			    ret);
->> +		return ret;
->> +	}
->> +
->> +	return ret;
->>   }
->>   
->>   static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif)
->> @@ -1472,10 +1555,12 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif)
->>   		return -EPERM;
->>   	}
->>   
->> -	if (tx_arvif == arvif)
->> -		ath11k_mac_set_vif_params(tx_arvif, beacons->bcn[0].skb);
->> -	else
->> +	if (tx_arvif == arvif) {
->> +		if (ath11k_mac_set_vif_params(tx_arvif, beacons->bcn[0].skb))
->> +			return -EINVAL;
->> +	} else {
->>   		arvif->wpaie_present = tx_arvif->wpaie_present;
->> +	}
->>   
->>   	for (i = 0; i < beacons->cnt; i++) {
->>   		if (tx_arvif != arvif && !nontx_vif_params_set)
->> @@ -1534,10 +1619,12 @@ static int ath11k_mac_setup_bcn_tmpl_mbssid(struct ath11k_vif *arvif)
->>   		return -EPERM;
->>   	}
->>   
->> -	if (tx_arvif == arvif)
->> -		ath11k_mac_set_vif_params(tx_arvif, bcn);
->> -	else if (!ath11k_mac_set_nontx_vif_params(tx_arvif, arvif, bcn))
->> +	if (tx_arvif == arvif) {
->> +		if (ath11k_mac_set_vif_params(tx_arvif, bcn))
->> +			return -EINVAL;
->> +	} else if (!ath11k_mac_set_nontx_vif_params(tx_arvif, arvif, bcn)) {
->>   		return -EINVAL;
->> +	}
->>   
->>   	ret = ath11k_wmi_bcn_tmpl(ar, arvif->vdev_id, &offs, bcn, 0);
->>   	kfree_skb(bcn);
->> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
->> index 34ab9631ff36..d86fcdd374c6 100644
->> --- a/drivers/net/wireless/ath/ath11k/wmi.c
->> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
->> @@ -1704,6 +1704,45 @@ int ath11k_wmi_send_bcn_offload_control_cmd(struct ath11k *ar,
->>   	return ret;
->>   }
->>   
->> +int ath11k_wmi_p2p_go_bcn_ie(struct ath11k *ar, u32 vdev_id,
->> +			     const u8 *p2p_ie)
->> +{
->> +	struct ath11k_pdev_wmi *wmi = ar->wmi;
->> +	struct wmi_p2p_go_set_beacon_ie_cmd *cmd;
->> +	size_t p2p_ie_len, aligned_len;
->> +	struct wmi_tlv *tlv;
->> +	struct sk_buff *skb;
->> +	int ret, len;
->> +
->> +	p2p_ie_len = p2p_ie[1] + 2;
->> +	aligned_len = roundup(p2p_ie_len, 4);
->> +
->> +	len = sizeof(*cmd) + TLV_HDR_SIZE + aligned_len;
->> +
->> +	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
->> +	if (!skb)
->> +		return -ENOMEM;
->> +
->> +	cmd = (struct wmi_p2p_go_set_beacon_ie_cmd *)skb->data;
->> +	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_P2P_GO_SET_BEACON_IE) |
->> +			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
->> +	cmd->vdev_id = vdev_id;
->> +	cmd->ie_buf_len = p2p_ie_len;
->> +
->> +	tlv = (struct wmi_tlv *)cmd->tlv;
->> +	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_BYTE) |
->> +		      FIELD_PREP(WMI_TLV_LEN, aligned_len);
->> +	memcpy(tlv->value, p2p_ie, p2p_ie_len);
->> +
->> +	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_P2P_GO_SET_BEACON_IE);
->> +	if (ret) {
->> +		ath11k_warn(ar->ab, "failed to send WMI_P2P_GO_SET_BEACON_IE\n");
->> +		dev_kfree_skb(skb);
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->>   int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
->>   			struct ieee80211_mutable_offsets *offs,
->>   			struct sk_buff *bcn, u32 ema_params)
->> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
->> index bb419e3abb00..4c20202947c7 100644
->> --- a/drivers/net/wireless/ath/ath11k/wmi.h
->> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
->> @@ -3653,6 +3653,13 @@ struct wmi_bcn_tmpl_cmd {
->>   	u32 ema_params;
->>   } __packed;
->>   
->> +struct wmi_p2p_go_set_beacon_ie_cmd {
->> +	u32 tlv_header;
->> +	u32 vdev_id;
->> +	u32 ie_buf_len;
->> +	u8 tlv[];
->> +} __packed;
->> +
->>   struct wmi_key_seq_counter {
->>   	u32 key_seq_counter_l;
->>   	u32 key_seq_counter_h;
->> @@ -6349,6 +6356,8 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
->>   struct sk_buff *ath11k_wmi_alloc_skb(struct ath11k_wmi_base *wmi_sc, u32 len);
->>   int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
->>   			 struct sk_buff *frame);
->> +int ath11k_wmi_p2p_go_bcn_ie(struct ath11k *ar, u32 vdev_id,
->> +			     const u8 *p2p_ie);
->>   int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
->>   			struct ieee80211_mutable_offsets *offs,
->>   			struct sk_buff *bcn, u32 ema_param);
+> This happens because when calling mhi_sync_power_up() the MHI subsystem
+> eventually calls device_add() from mhi_create_devices() but the device
+> creation is deferred:
 > 
+> mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
+> 
+> The reason for deferring device creation is explained in dpm_prepare():
+> 
+>         /*
+>          * It is unsafe if probing of devices will happen during suspend or
+>          * hibernation and system behavior will be unpredictable in this case.
+>          * So, let's prohibit device's probing here and defer their probes
+>          * instead. The normal behavior will be restored in dpm_complete().
+>          */
+> 
+> Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not
+> called and thus MHI channels are not prepared:
+> 
+> So what this means that QRTR is not delivering messages and the QMI connection
+> is not working between ath11k and the firmware, resulting a failure in firmware
+> initialization.
+> 
+> To fix this add new function mhi_power_down_keep_dev() which doesn't destroy
+> the devices for channels during power down. This way we avoid probe defer issue
+> and finally can get ath11k hibernation working with the following patches.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+> 
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+
+Small nitpicks below. With that fixed,
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Unfortunately, I just sent the PR for 6.9. If possible, I'll try to send v2.
+Otherwise, I can only apply it for 6.10.
+
+> ---
+>  drivers/bus/mhi/host/internal.h |  4 +++-
+>  drivers/bus/mhi/host/pm.c       | 41 ++++++++++++++++++++++++++++-----
+>  include/linux/mhi.h             | 18 ++++++++++++++-
+>  3 files changed, 55 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
+> index 5fe49311b8eb..aaad40a07f69 100644
+> --- a/drivers/bus/mhi/host/internal.h
+> +++ b/drivers/bus/mhi/host/internal.h
+> @@ -80,6 +80,7 @@ enum dev_st_transition {
+>  	DEV_ST_TRANSITION_FP,
+>  	DEV_ST_TRANSITION_SYS_ERR,
+>  	DEV_ST_TRANSITION_DISABLE,
+> +	DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE,
+>  	DEV_ST_TRANSITION_MAX,
+>  };
+>  
+> @@ -90,7 +91,8 @@ enum dev_st_transition {
+>  	dev_st_trans(MISSION_MODE,	"MISSION MODE")		\
+>  	dev_st_trans(FP,		"FLASH PROGRAMMER")	\
+>  	dev_st_trans(SYS_ERR,		"SYS ERROR")		\
+> -	dev_st_trans_end(DISABLE,	"DISABLE")
+> +	dev_st_trans(DISABLE,		"DISABLE")		\
+> +	dev_st_trans_end(DISABLE_DESTROY_DEVICE, "DISABLE (DESTROY DEVICE)")
+>  
+>  extern const char * const dev_state_tran_str[DEV_ST_TRANSITION_MAX];
+>  #define TO_DEV_STATE_TRANS_STR(state) (((state) >= DEV_ST_TRANSITION_MAX) ? \
+> diff --git a/drivers/bus/mhi/host/pm.c b/drivers/bus/mhi/host/pm.c
+> index 8b40d3f01acc..4b817b259a3e 100644
+> --- a/drivers/bus/mhi/host/pm.c
+> +++ b/drivers/bus/mhi/host/pm.c
+> @@ -468,7 +468,8 @@ static int mhi_pm_mission_mode_transition(struct mhi_controller *mhi_cntrl)
+>  }
+>  
+>  /* Handle shutdown transitions */
+> -static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
+> +static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl,
+> +				      bool destroy_device)
+>  {
+>  	enum mhi_pm_state cur_state;
+>  	struct mhi_event *mhi_event;
+> @@ -530,8 +531,15 @@ static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl)
+>  	dev_dbg(dev, "Waiting for all pending threads to complete\n");
+>  	wake_up_all(&mhi_cntrl->state_event);
+>  
+> -	dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
+> -	device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
+> +	/**
+
+Use the preferred style for multi line comments:
+
+	/*
+	 *...
+	 */
+
+> +	 * Some MHI controller drivers, ath11k as an example, would like to keep
+> +	 * MHI deivces for channels during suspend/hibernation to avoid the
+> +	 * probe defer issue. Add a check here to make it possible.
+
+How about:
+
+	Only destroy the 'struct device' for channels if indicated by the
+	'destroy_device' flag. Because, during system suspend or hibernation
+	state, there is no need to destroy the 'struct device' as the endpoint
+	device would still be physically attached to the machine.
+
+- Mani
+
+> +	 */
+> +	if (destroy_device) {
+> +		dev_dbg(dev, "Reset all active channels and remove MHI devices\n");
+> +		device_for_each_child(&mhi_cntrl->mhi_dev->dev, NULL, mhi_destroy_device);
+> +	}
+>  
+>  	mutex_lock(&mhi_cntrl->pm_mutex);
+>  
+> @@ -821,7 +829,10 @@ void mhi_pm_st_worker(struct work_struct *work)
+>  			mhi_pm_sys_error_transition(mhi_cntrl);
+>  			break;
+>  		case DEV_ST_TRANSITION_DISABLE:
+> -			mhi_pm_disable_transition(mhi_cntrl);
+> +			mhi_pm_disable_transition(mhi_cntrl, false);
+> +			break;
+> +		case DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE:
+> +			mhi_pm_disable_transition(mhi_cntrl, true);
+>  			break;
+>  		default:
+>  			break;
+> @@ -1175,7 +1186,8 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl)
+>  }
+>  EXPORT_SYMBOL_GPL(mhi_async_power_up);
+>  
+> -void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
+> +static void __mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful,
+> +			     bool destroy_device)
+>  {
+>  	enum mhi_pm_state cur_state, transition_state;
+>  	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+> @@ -1211,15 +1223,32 @@ void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
+>  	write_unlock_irq(&mhi_cntrl->pm_lock);
+>  	mutex_unlock(&mhi_cntrl->pm_mutex);
+>  
+> -	mhi_queue_state_transition(mhi_cntrl, DEV_ST_TRANSITION_DISABLE);
+> +	if (destroy_device)
+> +		mhi_queue_state_transition(mhi_cntrl,
+> +					   DEV_ST_TRANSITION_DISABLE_DESTROY_DEVICE);
+> +	else
+> +		mhi_queue_state_transition(mhi_cntrl,
+> +					   DEV_ST_TRANSITION_DISABLE);
+>  
+>  	/* Wait for shutdown to complete */
+>  	flush_work(&mhi_cntrl->st_worker);
+>  
+>  	disable_irq(mhi_cntrl->irq[0]);
+>  }
+> +
+> +void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful)
+> +{
+> +	__mhi_power_down(mhi_cntrl, graceful, true);
+> +}
+>  EXPORT_SYMBOL_GPL(mhi_power_down);
+>  
+> +void mhi_power_down_keep_dev(struct mhi_controller *mhi_cntrl,
+> +			       bool graceful)
+> +{
+> +	__mhi_power_down(mhi_cntrl, graceful, false);
+> +}
+> +EXPORT_SYMBOL_GPL(mhi_power_down_keep_dev);
+> +
+>  int mhi_sync_power_up(struct mhi_controller *mhi_cntrl)
+>  {
+>  	int ret = mhi_async_power_up(mhi_cntrl);
+> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+> index 77b8c0a26674..5ce1fc1167d0 100644
+> --- a/include/linux/mhi.h
+> +++ b/include/linux/mhi.h
+> @@ -630,12 +630,28 @@ int mhi_async_power_up(struct mhi_controller *mhi_cntrl);
+>  int mhi_sync_power_up(struct mhi_controller *mhi_cntrl);
+>  
+>  /**
+> - * mhi_power_down - Start MHI power down sequence
+> + * mhi_power_down - Power down the MHI device and also destroy the
+> + *		    'struct device' for the channels associated with it.
+> + *		    See also mhi_power_down_keep_dev() which is a variant
+> + *		    of this API that keeps the 'struct device' for channels
+> + *		    (useful during suspend/hibernation).
+>   * @mhi_cntrl: MHI controller
+>   * @graceful: Link is still accessible, so do a graceful shutdown process
+>   */
+>  void mhi_power_down(struct mhi_controller *mhi_cntrl, bool graceful);
+>  
+> +/**
+> + * mhi_power_down_keep_dev - Power down the MHI device but keep the 'struct
+> + *			     device' for the channels associated with it.
+> + *			     This is a variant of 'mhi_power_down()' and
+> + *			     useful in scenarios such as suspend/hibernation
+> + *			     where destroying of the 'struct device' is not
+> + *			     needed.
+> + * @mhi_cntrl: MHI controller
+> + * @graceful: Link is still accessible, so do a graceful shutdown process
+> + */
+> +void mhi_power_down_keep_dev(struct mhi_controller *mhi_cntrl, bool graceful);
+> +
+>  /**
+>   * mhi_unprepare_after_power_down - Free any allocated memory after power down
+>   * @mhi_cntrl: MHI controller
+> -- 
+> 2.25.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
