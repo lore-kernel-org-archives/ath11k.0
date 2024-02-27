@@ -4,86 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC4ACC54798
-	for <ath11k@archiver.kernel.org>; Tue, 27 Feb 2024 10:52:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AE80C54798
+	for <ath11k@archiver.kernel.org>; Tue, 27 Feb 2024 11:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oDTJ2+9IOdVFHed5HSEjPpe5xJe6fV9RI3NfptpcPqs=; b=vbX9AajQlz+6Z8LqmsEwe9U0kl
-	5KTtlmJeum4c1IjLUnutXbJv29pOMVXSe0oZZrMPW1XTue4Fmpfptq5mQvp06ZpJMYzPbZx9OqO39
-	L5L7N7+EpsT1X9F5vC01nHJS8bMI1TSfn4L6I5WMYytgmkxD6qS8qdXZjpOJoF0iePunGY2yLpw0d
-	ScWmipaFIRoaJllMjdFxqxGc5ijytdHkPVWGouCOfzIHvEKAtzx7/GsjZ8Kk1Y5638QHBvOGSfumY
-	fNSE8rzgG/wzfRrL4dVeWbWcwgdFIjCbfOGPUp8zQO73dB/cQXwvEx/u3b9la8wzNuqtsK/fWqiLs
-	yhZflYgA==;
+	bh=C7JPjmXuxye/Env1zhf3k9kRNU1YZcUBMB4RQ9uFFt8=; b=v24UQxGf4KzLxYc89iM+QuWLoI
+	RhVpBR5roeb23ua0q4mm94RXptYVw2eMK0rmyg+1/JSnpVUDLTk0znq8U1TywY28YbaF2xN6a5XcN
+	vDSUKGXmgo5qq4hlXq0xw9qz75gN4ZzbxnvFhj6xoyxpMB3UhwZOfU7VD+/Y6AKAUhzQqkDbuLLNt
+	mQqcb07jSrWA3lxE7E4ghDANU2ywKJVrnCrHSI/Zo4qbKbv9fKGl8Qt4mUGHpoHk7Y0u6Ldiyasad
+	uPhGPK4HEpLWtO1prV24E+qiDHl7nYmIJFR02QoIeQy5+aa//yluq3GOU8W0fdYkO7NICarhtShWT
+	+L4fGyAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rev4z-00000004q1h-1TtP;
-	Tue, 27 Feb 2024 10:52:57 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1revjp-00000004xJo-3Pr5;
+	Tue, 27 Feb 2024 11:35:09 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rev4w-00000004q08-1qRe
+	id 1revjm-00000004xIC-3mK4
 	for ath11k@lists.infradead.org;
-	Tue, 27 Feb 2024 10:52:56 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41R9ZEO6022683;
-	Tue, 27 Feb 2024 10:52:53 GMT
+	Tue, 27 Feb 2024 11:35:08 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41R9Ynt0020951;
+	Tue, 27 Feb 2024 11:35:05 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=oDTJ2+9IOdVFHed5HSEjPpe5xJe6fV9RI3NfptpcPqs=; b=Hd
-	24gszBc7RVtN/CcDKsaPg+8q8BxR+sVHWy8r1Iq0UuiJ4lv6zw4tG1r7yd3h/O3N
-	NB87wTnctuFZ4p3Zrm1MJkJ+nz89M7plIfl/ep/KHkWsnjSr9btO8FxWi2pRHGQU
-	YfZrzcS9CYy/UH4erOM69IPHpz78j63DffgqMMLVj5A76oGrDo5M6eOubM1T1+M8
-	I9ZKMBvezkpXDiagHwXAU5P6ExEftDDMwWeuufZfiQRGEkEaRMFV3z+J4v4KoEQC
-	VNuyQ7BpQbbgf65Bu4nL5HblMSwgZGBjNGlI2t5ARlzkVga3Prkn1tAn3idcgOsl
-	BsNb24ktk6hCmk7pQj+A==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh50795km-1
+	qcppdkim1; bh=C7JPjmXuxye/Env1zhf3k9kRNU1YZcUBMB4RQ9uFFt8=; b=Zh
+	Zr3iBvZ0eSfQKXFOcQ/J9TkEd+bGzkD/LGxfdBiSaJTHjgkaQyD7Vk7IzIxWv/fa
+	vDm5LapuMKrCv/lLhmnEsUbMQEzD26IR2v4ThKp+lkbNoTWdrRjaObloMdfH8wat
+	HZdJZGRE3Wa7CytfLVJnHpNfMFHV5IunuS5w3EaHDG0OEi69KqDxw0dia6GkIPgs
+	qg5gb/18559NnI8uUU1IC79aTbZI7pVBZX5tgWv3cPKgJMLSnAlWBU5SVzqOIDNw
+	3s04QI/nuQwo4cEIxojTpvD6nwNO78GbQQJVHTeUw03zEI43qvEOlRnqzUfwtPz1
+	oYbovmYkCNulRYHJtw4w==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh89t0v94-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 10:52:51 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41RAqbO6007654
+	Tue, 27 Feb 2024 11:35:05 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41RBZ4oD010176
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Feb 2024 10:52:37 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 27 Feb 2024 11:35:04 GMT
+Received: from [10.253.12.70] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 27 Feb
- 2024 02:52:36 -0800
-Message-ID: <033a82d5-b8c1-437c-be85-ea37fb1e9420@quicinc.com>
-Date: Tue, 27 Feb 2024 18:52:33 +0800
+ 2024 03:35:03 -0800
+Message-ID: <9f26a75a-df9a-405a-b1ac-2e457eef8416@quicinc.com>
+Date: Tue, 27 Feb 2024 19:35:00 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] wifi: ath11k: hibernation support
+Subject: Re: [PATCH 3/6] wifi: ath11k: implement handling of P2P NoA event
 Content-Language: en-US
-To: <ath11k@lists.infradead.org>, <manivannan.sadhasivam@linaro.org>
-CC: <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <mhi@lists.linux.dev>
-References: <20240227104427.7505-1-quic_bqiang@quicinc.com>
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20240227104427.7505-1-quic_bqiang@quicinc.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240226060203.2040444-1-quic_kangyang@quicinc.com>
+ <20240226060203.2040444-4-quic_kangyang@quicinc.com>
+ <032375ce-7dc0-4d93-9f26-12a6bb89dbe0@quicinc.com>
+From: Kang Yang <quic_kangyang@quicinc.com>
+In-Reply-To: <032375ce-7dc0-4d93-9f26-12a6bb89dbe0@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: CrHNkUuqffRZyeNywZ20-pPS7P4TUBea
-X-Proofpoint-GUID: CrHNkUuqffRZyeNywZ20-pPS7P4TUBea
+X-Proofpoint-ORIG-GUID: O0trx4G4M6jMz5uLAd7q7e_7rUjlJlBG
+X-Proofpoint-GUID: O0trx4G4M6jMz5uLAd7q7e_7rUjlJlBG
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-02-26_11,2024-02-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- clxscore=1015 mlxscore=0 malwarescore=0 impostorscore=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402270084
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 suspectscore=0 malwarescore=0 mlxscore=0 phishscore=0
+ adultscore=0 spamscore=0 impostorscore=0 bulkscore=0 mlxlogscore=999
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402270090
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240227_025254_644041_CF9FF3E0 
-X-CRM114-Status: GOOD (  30.19  )
+X-CRM114-CacheID: sfid-20240227_033506_983313_2BB669AF 
+X-CRM114-Status: GOOD (  21.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,94 +100,189 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
+>> +
+>> +static void ath11k_p2p_noa_ie_fill(u8 *data, size_t len,
+>> +				   const struct ath11k_wmi_p2p_noa_info *noa)
+>> +{
+>> +	struct ieee80211_p2p_noa_attr *noa_attr;
+>> +	u8 ctwindow = u32_get_bits(noa->noa_attr, WMI_P2P_NOA_INFO_CTWIN_TU);
+>> +	bool oppps = u32_get_bits(noa->noa_attr, WMI_P2P_NOA_INFO_OPP_PS);
+>> +	__le16 *noa_attr_len;
+>> +	u16 attr_len;
+>> +	u8 noa_descriptors = u32_get_bits(noa->noa_attr,
+>> +					   WMI_P2P_NOA_INFO_DESC_NUM);
+> 
+> do you need to validate that this doesn't exceed
+> WMI_P2P_MAX_NOA_DESCRIPTORS?
+> 
+>> +	int i;
+>> +
+>> +	/* P2P IE */
+……
 
-On 2/27/2024 6:44 PM, Baochen Qiang wrote:
-> Currently in ath11k we keep the firmware running on the WLAN device when the
-> network interface (wlan0) is down. The problem is that this will break
-> hibernation, obviously the firmware can't be running after the whole system is
-> powered off. To power down the ath11k firmware for suspend/hibernation some
-> changes both in MHI subsystem and ath11k are needed.
+>> +
+>> +static size_t
+>> +ath11k_p2p_noa_ie_len_compute(const struct ath11k_wmi_p2p_noa_info *noa)
+>> +{
+>> +	size_t len = 0;
+>> +
+>> +	if (!(u32_get_bits(noa->noa_attr, WMI_P2P_NOA_INFO_DESC_NUM)) &&
+>> +	    !(u32_get_bits(noa->noa_attr, WMI_P2P_NOA_INFO_OPP_PS)))
+>> +		return 0;
+>> +
+>> +	len += 1 + 1 + 4; /* EID + len + OUI */
+>> +	len += 1 + 2; /* noa attr + attr len */
+>> +	len += 1 + 1; /* index + oppps_ctwindow */
+>> +	len += u32_get_bits(noa->noa_attr, WMI_P2P_NOA_INFO_DESC_NUM) *
 > 
-> This patchset fixes a longstanding bug report about broken hibernation support:
+> here again do you need to validate that this doesn't exceed
+> WMI_P2P_MAX_NOA_DESCRIPTORS?
 > 
-> https://bugzilla.kernel.org/show_bug.cgi?id=214649
-> 
-> There already is an RFC version which has been tested by multiple users with
-> positive results:
-> 
-> https://patchwork.kernel.org/project/linux-wireless/cover/20231127162022.518834-1-kvalo@kernel.org/
-> 
-> Basically the RFC version adds two APIs to MHI stack: with the first one ath11k
-> is able to keep MHI devices when going to suspend/hibernation, getting us rid of
-> the probe deferral issue when resume back. while with the second one ath11k could
-> manually prepare/unprepare MHI channels by itself, which is needed because QRTR
-> doesn't probe those channels automatically in this case.
-> 
-> Mani, the MHI maintainer, firstly doesn't like that version and insists that an
-> MHI device should be destroyed when suspend/hibernation, according to his
-> understanding on device driver model. See
-> 
-> https://lore.kernel.org/mhi/20231127162022.518834-1-kvalo@kernel.org/
-> 
-> After a long discussion Mani thought we might need a new PM callback with which
-> ath11k is able to wait until kernel unblocks device probe and thus MHI channels
-> get probed. So we came to the kernel PM list and there Mani realized that his
-> understanding is not correct so he finally agrees to keep MHI device during
-> suspend/hibernation. See
-> 
-> https://lore.kernel.org/all/21cd2098-97e1-4947-a5bb-a97582902ead@quicinc.com/
-> 
-> Mani also pointed out that an MHI controller driver (ath11k here) should not touch
-> MHI channels directly because those channels are managed by the corresponding MHI
-> client driver (QRTR here). To address this, we come up with this version.
-> 
-> Compared with that RFC version, this version adds PM callbacks in QRTR module:
-> suspend callback unprepares MHI channels during suspend and resume callback
-> prepares those channels during resume. In this way ath11k doesn't need to do
-> unprepare/prepare work by itself so those two APIs added in RFC version are
-> removed now.
-> 
-> The power down/up procedure requires a specific sequence in which PM callbacks
-> of wiphy, ath11k and QRTR are called, this is achieved by exploiting the
-> child-father relationship between their device struct, and also the PM framework
-> which separates whole suspend/resume process into several stages. Details in
-> patch [3/3].
-> 
-> v3:
->   - skip QRTR suspend/resume if MHI device is found to be in suspend state.
-Forget to mention that comments on 'destroy_device' are also updated per 
-Mani in patch 1/3.
+> also rather than call u32_get_bits() twice for the same field, call it
+> once and cache the result
+
+
+Will add this check in ath11k_wmi_p2p_noa_event(), cause 
+ath11k_p2p_noa_ie_fill() and ath11k_p2p_noa_ie_len_compute will only be 
+called through ath11k_wmi_p2p_noa_event().
+
 
 > 
-> v2:
->   - add comment on why destroying the device is optional in
->     mhi_pm_disable_transition().
->   - rename mhi_power_down_no_destroy() as mhi_power_down_keep_dev().
->   - refine API description of mhi_power_down() and
->     mhi_power_down_keep_dev().
->   - add/remove __maybe_unused to QRTR PM callbacks.
->   - remove '#ifdef CONFIG_PM'.
->   - refine commit log of patch 1/3 and 2/3.
+>> +			sizeof(struct ieee80211_p2p_noa_desc);
+>> +
+>> +	return len;
+>> +}
+>> +
+
+……
+
+>>   
+>> +static int ath11k_wmi_p2p_noa_event(struct ath11k_base *ab,
+>> +				    struct sk_buff *skb)
+>> +{
+>> +	const void **tb;
+>> +	const struct wmi_p2p_noa_event *ev;
+>> +	const struct ath11k_wmi_p2p_noa_info *noa;
+>> +	struct ath11k *ar;
+>> +	int ret, vdev_id;
+>> +
+>> +	tb = ath11k_wmi_tlv_parse_alloc(ab, skb, GFP_ATOMIC);
+>> +	if (IS_ERR(tb)) {
+>> +		ret = PTR_ERR(tb);
+>> +		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ev = tb[WMI_TAG_P2P_NOA_EVENT];
+>> +	noa = tb[WMI_TAG_P2P_NOA_INFO];
+>> +
+>> +	if (!ev || !noa) {
+>> +		ret = -EPROTO;
+>> +		goto out;
+>> +	}
+>> +
+>> +	vdev_id = ev->vdev_id;
+>> +
+>> +	ath11k_dbg(ab, ATH11K_DBG_WMI,
+>> +		   "wmi tlv p2p noa vdev_id %i descriptors %u\n",
+>> +		   vdev_id, u32_get_bits(noa->noa_attr, WMI_P2P_NOA_INFO_DESC_NUM));
+>> +	rcu_read_lock();
+>> +	ar = ath11k_mac_get_ar_by_vdev_id(ab, vdev_id);
+>> +	if (!ar) {
+>> +		ath11k_warn(ab, "invalid vdev id %d in P2P NoA event\n",
+>> +			    vdev_id);
+>> +		ret = -EINVAL;
+>> +		goto unlock;
+>> +	}
+>> +
+>> +	ath11k_p2p_noa_update_by_vdev_id(ar, vdev_id, noa);
+>> +
+>> +unlock:
+>> +	rcu_read_unlock();
+>> +out:
+>> +	kfree(tb);
+>> +	return 0;
+>> +}
+>> +
+>>   static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+>>   {
+>>   	struct wmi_cmd_hdr *cmd_hdr;
+>> @@ -8772,6 +8824,9 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+>>   	case WMI_GTK_OFFLOAD_STATUS_EVENTID:
+>>   		ath11k_wmi_gtk_offload_status_event(ab, skb);
+>>   		break;
+>> +	case WMI_P2P_NOA_EVENTID:
+>> +		ath11k_wmi_p2p_noa_event(ab, skb);
+>> +		break;
+>>   	default:
+>>   		ath11k_dbg(ab, ATH11K_DBG_WMI, "unsupported event id 0x%x\n", id);
+>>   		break;
+>> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+>> index 4c20202947c7..564f4a9ac8ce 100644
+>> --- a/drivers/net/wireless/ath/ath11k/wmi.h
+>> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
 > 
-> Baochen Qiang (3):
->    bus: mhi: host: add mhi_power_down_keep_dev()
->    net: qrtr: support suspend/hibernation
->    wifi: ath11k: support hibernation
+> drivers/net/wireless/ath/ath11k/wmi.h QuIC copyright missing 2024
 > 
->   drivers/bus/mhi/host/internal.h        |   4 +-
->   drivers/bus/mhi/host/pm.c              |  42 ++++++++--
->   drivers/net/wireless/ath/ath11k/ahb.c  |   6 +-
->   drivers/net/wireless/ath/ath11k/core.c | 105 +++++++++++++++++--------
->   drivers/net/wireless/ath/ath11k/core.h |   6 +-
->   drivers/net/wireless/ath/ath11k/hif.h  |  14 +++-
->   drivers/net/wireless/ath/ath11k/mhi.c  |  12 ++-
->   drivers/net/wireless/ath/ath11k/mhi.h  |   5 +-
->   drivers/net/wireless/ath/ath11k/pci.c  |  44 +++++++++--
->   drivers/net/wireless/ath/ath11k/qmi.c  |   2 +-
->   include/linux/mhi.h                    |  18 ++++-
->   net/qrtr/mhi.c                         |  46 +++++++++++
->   12 files changed, 244 insertions(+), 60 deletions(-)
+>> @@ -3630,6 +3630,37 @@ struct wmi_ftm_event_msg {
+>>   	u8 data[];
+>>   } __packed;
+>>   
+>> +#define WMI_P2P_MAX_NOA_DESCRIPTORS		4
+>> +
+>> +struct wmi_p2p_noa_event {
+>> +	u32 vdev_id;
+>> +} __packed;
+>> +
+>> +struct ath11k_wmi_p2p_noa_descriptor {
+>> +	u32 type_count; /* 255: continuous schedule, 0: reserved */
+>> +	u32 duration;  /* Absent period duration in micro seconds */
+>> +	u32 interval;   /* Absent period interval in micro seconds */
+>> +	u32 start_time; /* 32 bit tsf time when in starts */
+>> +} __packed;
+>> +
+>> +#define WMI_P2P_NOA_INFO_CHANGED_FLAG		BIT(0)
+>> +#define WMI_P2P_NOA_INFO_INDEX			GENMASK(15, 8)
+>> +#define WMI_P2P_NOA_INFO_OPP_PS			BIT(16)
+>> +#define WMI_P2P_NOA_INFO_CTWIN_TU		GENMASK(23, 17)
+>> +#define WMI_P2P_NOA_INFO_DESC_NUM		GENMASK(31, 24)
+>> +
+>> +struct ath11k_wmi_p2p_noa_info {
+>> +	/* Bit 0 - Flag to indicate an update in NOA schedule
+>> +	 * Bits 7-1 - Reserved
+>> +	 * Bits 15-8 - Index (identifies the instance of NOA sub element)
+>> +	 * Bit  16 - Opp PS state of the AP
+>> +	 * Bits 23-17 -  Ctwindow in TUs
+>> +	 * Bits 31-24 -  Number of NOA descriptors
+>> +	 */
+>> +	u32 noa_attr;
+>> +	struct ath11k_wmi_p2p_noa_descriptor descriptors[WMI_P2P_MAX_NOA_DESCRIPTORS];
 > 
+> so firmware always sends the max number of records even if Bits 31-24 -
+> Number of NOA descriptors indicates a smaller number?
 > 
-> base-commit: c39a5cfa0448f3afbee78373f16d87815a674f11
+
+I just checked this, firmware will fill this according to valid number, 
+not max number.
+But when fill WMI event for P2P NOA, the TLV length is based on max number.
+
+Even if the valid number does not reach the max number, the remain part 
+is just empty.
+
+
+
+So i think this definition is OK.
+
+
+
+>> +} __packed;
+>> +
+>>   #define WMI_BEACON_TX_BUFFER_SIZE	512
+>>   
+>>   #define WMI_EMA_TMPL_IDX_SHIFT            8
+> 
+> I'm seeing things today I probably missed in the ath12k review, so let's
+> make sure that when this is merged that ath12k si updated as well.
+
+> /jeff
 
