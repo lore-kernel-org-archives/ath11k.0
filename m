@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70BFDC5478C
-	for <ath11k@archiver.kernel.org>; Wed, 28 Feb 2024 14:01:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2CAAC47DD9
+	for <ath11k@archiver.kernel.org>; Wed, 28 Feb 2024 14:07:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=NtVZWVpU5R9hAHptwiMhbrmLXWCn2BTLHVeNkeWNIZs=; b=43YMDfG2vSxpdnn1Tkfny9Z97r
-	duES3wjL6i8vWdsW1Kk8iimKIRw/m6Dm36Ezq36T1PCkORdmw4HsqvyxF5GWMIGfPouNeChrh2XnQ
-	LImrRk5R/6oczF1LhLVAdlFmyndL060aX2oiz/au0RW2tmob8HPVXP+YnUQRbwuHvO7THS+mw5q7u
-	ZA0DiBHNQAJxHxwEn0Q6mF5MemHWuAeMas/hxFu2GX3h3ZS4yM6pMW6tW+zQXGMR6g+48tcGPM3Oj
-	m3cxi4IxDSW20hDnFr2FY8Y8BtQrEgPObivBuHnWN0LfxgdDrquDdmCUPbJhHieiVb89e3DA/vxo/
-	xM2HISaw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gbyg7PyWRPkYa6Iqwx5I0p3AWV0DWSA8GiMI4A+1+NY=; b=3VrH4VyrhoOb8nIaWHasnHCzDs
+	iSYes0YrVcpGdwFdZbaWIkCqVJEy50SJgvqnRg3W25MwjJYuGJlQfR0sOI497lAoythwpJ8M+Erqq
+	kespSk/2/KJqvQWpeVK4zCjvx19G2yavy+KW+r/jrV9H+kGuGX3JBRdYLtclH7mAipUnQSb2deMDQ
+	htvZTxBNWCSBP9AaXSDBV0TT7J83rqW7BoA60nBD1BiYNP98r7yeOdqFiejYPllgwmh6LNxZh5pL1
+	HfFZrhGsrmBo1sdxGYYgsqQbGk/NFPz7i8RMj7jiIk5fTD7H1YJjuZxEUhnnmGjkcCDHWnuGYhhqL
+	fEpJle3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfKUn-00000009aqH-3ctF;
-	Wed, 28 Feb 2024 14:01:17 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rfKaR-00000009dKC-0wX6;
+	Wed, 28 Feb 2024 14:07:07 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfKUk-00000009ao8-2KJ7
+	id 1rfKaO-00000009dJk-1JVG
 	for ath11k@lists.infradead.org;
-	Wed, 28 Feb 2024 14:01:16 +0000
+	Wed, 28 Feb 2024 14:07:06 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id CB1A861262;
-	Wed, 28 Feb 2024 14:01:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2272AC433C7;
-	Wed, 28 Feb 2024 14:01:11 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 08EDBCE1AA5;
+	Wed, 28 Feb 2024 14:07:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58A13C433C7;
+	Wed, 28 Feb 2024 14:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709128873;
-	bh=PQzkPrDo1YRo7+0s5+rzZSeJRnOLSEyHGwogClOAXNE=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=tu7ykhg2nMk6abggJ0xU/tnHpUtTaVix0hYBh+eRcNsV0e18t0ryQ5Q5wxnPjUpLn
-	 6k9rmoc1F8Xed9MQJ64a2IaywyhUhqGRdBruCM8GDrrJFfh9zkYwHZLrh3/Usuk4BU
-	 EbG+hOGUIoO1N5jismTvvvsMZIkeXPqEfLjlvgdWw/W6kAeeJTMx0ejMZJ50Hh9Zzh
-	 Pzktv6+nVEzWf2FN7Q5L0Mh45puvL8tQmIhalc26bVr6jul8zYyQm07aJlLMJXKXcG
-	 +lt1Smgzr2SxS5M0bWk/5zu3GmYj98LKySZGJciVq97AwQQUfVssZLo4QKa0u9BGli
-	 SiAkpTgI2weZg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dmitry Antipov <dmantipov@yandex.ru>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>,  ath11k@lists.infradead.org,
-  linux-wireless@vger.kernel.org,  lvc-project@linuxtesting.org
-Subject: Re: [PATCH] wifi: ath11k: fix few -Wmaybe-uninitialized warnings
-References: <20240228131406.165786-1-dmantipov@yandex.ru>
-Date: Wed, 28 Feb 2024 16:01:10 +0200
-In-Reply-To: <20240228131406.165786-1-dmantipov@yandex.ru> (Dmitry Antipov's
-	message of "Wed, 28 Feb 2024 16:14:06 +0300")
-Message-ID: <875xy8k7rt.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1709129221;
+	bh=LLiUQxAIFIKWPBJQ3sMl02IvWthafFFY0702VaoxBZE=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=B+dkZJ2XP66+zwsgVIjdTyOx2BR0EMp3xxQNd3yCo7pisfBPRjH8da1zSTYuqDfBz
+	 KH0j6CNTkvBA1YR64Yr+TmG1mD5zT9VUGCf78K7vFRBMPByFFzzRCFr9W69PXzIuHh
+	 6quCqIKz9H1xjgxtQLYjQ2C4mjUmIxNCBpFR7QTIpVBk3ow5DxofSHjrhujnXJ1AA2
+	 HQrDMwUKahzyHJbfSbeFnyoa7NLpisoQC7EaLbzyF6IOzp1KLB3gIWUI+iIh+aH7dc
+	 5lA8zuBUEMH0xyx09y1Kok5foyMeVRndNNgzbyMJofA0ruuDp5wTt+4kks9N2j+o59
+	 F3bxOoIr1fktA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] wifi: ath11k: decrease MHI channel buffer length to 8KB
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240223053111.29170-1-quic_bqiang@quicinc.com>
+References: <20240223053111.29170-1-quic_bqiang@quicinc.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_bqiang@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <170912921854.3989537.5989822587227176426.kvalo@kernel.org>
+Date: Wed, 28 Feb 2024 14:07:00 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240228_060114_684493_6B40D81F 
-X-CRM114-Status: GOOD (  12.11  )
+X-CRM114-CacheID: sfid-20240228_060704_872069_278A1CBC 
+X-CRM114-Status: UNSURE (   9.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,47 +73,77 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dmitry Antipov <dmantipov@yandex.ru> writes:
+Baochen Qiang <quic_bqiang@quicinc.com> wrote:
 
-> When compiling with gcc version 14.0.1 20240226 (experimental) and
-> W=12, I've noticed the following warnings:
->
-> drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_mac_op_remain_on_channel':
-> drivers/net/wireless/ath/ath11k/mac.c:9230:12: warning: 'ret' may be used uninitialized
-> [-Wmaybe-uninitialized]
->  9230 |         if (ret)
->
-> drivers/net/wireless/ath/ath11k/qmi.c: In function 'ath11k_qmi_load_file_target_mem':
-> drivers/net/wireless/ath/ath11k/qmi.c:2401:16: warning: 'ret' may be used uninitialized
-> [-Wmaybe-uninitialized]
->  2401 |         return ret;
->
-> drivers/net/wireless/ath/ath11k/qmi.c: In function 'ath11k_qmi_load_bdf_qmi':
-> drivers/net/wireless/ath/ath11k/qmi.c:2494:17: warning: 'fw_entry' may be used uninitialized
-> [-Wmaybe-uninitialized]
->  2494 |                 release_firmware(fw_entry);
->
-> And a bunch of them traced to uninitialized fields of the same
-> variable, e.g.:
->
-> drivers/net/wireless/ath/ath11k/spectral.c: In function 'ath11k_spectral_process_data':
-> drivers/net/wireless/ath/ath11k/spectral.c:700:47: warning: 'summ_rpt.meta.freq1' may
-> be used uninitialized [-Wmaybe-uninitialized]
->   700 |         struct ath11k_spectral_summary_report summ_rpt;
->
-> Fix all of the above by using 0 and NULL initializers where appropriate.
-> Note there are few more (less obvious) -Wmaybe-uninitialized warnings
-> still remains, but they're hardly possible to fix without running on
-> a physical hardware. Compile tested oly.
->
-> Also noticed by Linux Verification Center (linuxtesting.org) with SVACE.
->
-> Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
+> Currently buf_len field of ath11k_mhi_config_qca6390 is assigned
+> with 0, making MHI use a default size, 64KB, to allocate channel
+> buffers. This is likely to fail in some scenarios where system
+> memory is highly fragmented and memory compaction or reclaim is
+> not allowed.
+> 
+> There is a fail report which is caused by it:
+> kworker/u32:45: page allocation failure: order:4, mode:0x40c00(GFP_NOIO|__GFP_COMP), nodemask=(null),cpuset=/,mems_allowed=0
+> CPU: 0 PID: 19318 Comm: kworker/u32:45 Not tainted 6.8.0-rc3-1.gae4495f-default #1 openSUSE Tumbleweed (unreleased) 493b6d5b382c603654d7a81fc3c144d59a1dfceb
+> Workqueue: events_unbound async_run_entry_fn
+> Call Trace:
+>  <TASK>
+>  dump_stack_lvl+0x47/0x60
+>  warn_alloc+0x13a/0x1b0
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  ? __alloc_pages_direct_compact+0xab/0x210
+>  __alloc_pages_slowpath.constprop.0+0xd3e/0xda0
+>  __alloc_pages+0x32d/0x350
+>  ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  __kmalloc_large_node+0x72/0x110
+>  __kmalloc+0x37c/0x480
+>  ? mhi_map_single_no_bb+0x77/0xf0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  __mhi_prepare_for_transfer+0x44/0x80 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  ? __pfx_____mhi_prepare_for_transfer+0x10/0x10 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+>  device_for_each_child+0x5c/0xa0
+>  ? __pfx_pci_pm_resume+0x10/0x10
+>  ath11k_core_resume+0x65/0x100 [ath11k a5094e22d7223135c40d93c8f5321cf09fd85e4e]
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  ath11k_pci_pm_resume+0x32/0x60 [ath11k_pci 830b7bfc3ea80ebef32e563cafe2cb55e9cc73ec]
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  dpm_run_callback+0x8c/0x1e0
+>  device_resume+0x104/0x340
+>  ? __pfx_dpm_watchdog_handler+0x10/0x10
+>  async_resume+0x1d/0x30
+>  async_run_entry_fn+0x32/0x120
+>  process_one_work+0x168/0x330
+>  worker_thread+0x2f5/0x410
+>  ? __pfx_worker_thread+0x10/0x10
+>  kthread+0xe8/0x120
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork+0x34/0x50
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork_asm+0x1b/0x30
+>  </TASK>
+> 
+> Actually those buffers are used only by QMI target -> host communication.
+> And for WCN6855 and QCA6390, the largest packet size for that is less
+> than 6KB. So change buf_len field to 8KB, which results in order 1
+> allocation if page size is 4KB. In this way, we can at least save some
+> memory, and as well as decrease the possibility of allocation failure
+> in those scenarios.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+> 
+> Reported-by: Vlastimil Babka <vbabka@suse.cz>
+> Closes: https://lore.kernel.org/ath11k/96481a45-3547-4d23-ad34-3a8f1d90c1cd@suse.cz/
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Did you verify that the warnings are valid?
+Patch applied to ath-next branch of ath.git, thanks.
+
+1cca1bddf9ef wifi: ath11k: decrease MHI channel buffer length to 8KB
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20240223053111.29170-1-quic_bqiang@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
