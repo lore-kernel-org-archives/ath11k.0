@@ -4,84 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A4D5C54E4A
-	for <ath11k@archiver.kernel.org>; Wed, 28 Feb 2024 09:36:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BE95C54E41
+	for <ath11k@archiver.kernel.org>; Wed, 28 Feb 2024 10:01:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xhZpSXOktuljl2YCd0chFVKdksb1/p3nGTT5rFI0ha8=; b=i/YOEMNSrbgJdJC8+u77uDqSfl
-	Fg1VmVCOPLSdzXO6JD9T8pA6Xli1YxrzbXPjjz4YT4ki+DfHAaXozJDfU+cSjwvRfnLT8/xmaIg4F
-	57UF8o+3ORaI6A1m+DRL5eqloqbnDbYlrOIuM8Ngn+eMHR56r5bSgYoSplD7zVCDPIjNMtYJa4KCd
-	Es6lZNEFd7OVEVDCQJezSXyWxEn0uiGSmZvq+PHYWicXLJcLYvX6orvt7a5SFTVYuRU1VKUi3RmZQ
-	NTu+PE3ih4Dvkl0+q1DSwvU39cRwVPwbJA0EUmpjX2QcS/AhzOVIzc2FtekzcVpC9pI1/s9q+ZZ2O
-	f32oh/rQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=qEJeYbmJxo0BtItp/7yVTF7rBZlv9oown4rhFVe/Ymw=; b=akiCuSUiJKcbsuZMJTJ4eA23TT
+	39Dd55aFniYqxe52BUZidVPeih5gWOA5MTNgz48iPsXCrioXlwDhCSfNU3iPrua5MVa3JvcXTX0R2
+	GEZ6GYUJ/je80erGXpYH/9fRsB/BJVeIlZBDDZ2N7UaykLtEQdJlixmynBAN/0lfTki8f4XJU7rBv
+	2jPboh3Wq/H4aHTs/3/4cpFEDHNbxE+NBcuCQMo2ziOAkltxbcfLq7qkwNf2OGbQWQJUgoLQS0zkH
+	LQe+6mSJXHP/Hjfpdt22FcGfH1XFWNXbyDFFzrwsG/ts7ZKpHnrsul9aX0QCKMIrZuL01+6EicvfE
+	ZLFcQ0sQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfGMD-00000008hYu-1jFE;
-	Wed, 28 Feb 2024 09:36:09 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rfGkV-00000008laO-06XL;
+	Wed, 28 Feb 2024 10:01:15 +0000
+Received: from forward102b.mail.yandex.net ([2a02:6b8:c02:900:1:45:d181:d102])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfGM9-00000008hVu-2Rsc
+	id 1rfGkQ-00000008lYS-14uh
 	for ath11k@lists.infradead.org;
-	Wed, 28 Feb 2024 09:36:07 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41S6wQpA021955;
-	Wed, 28 Feb 2024 09:36:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=xhZpSXOktuljl2YCd0chFVKdksb1/p3nGTT5rFI0ha8=; b=bX
-	dn2NNlIqcY12hPOVJyggz5BmdTbVhU2XbzCmmB3LSfINSCr0TtIExyx5oCuCygAq
-	ZwVvJ+QPAN6jgBwZypO7ZrwslgJreVBZ1JnJ6llZLPPG56PWZJW4SLigMn1PciLf
-	5pau68yoYHJ1poqu/ofC/tlhmXvBTYWyAxgI/ptnH14O1jCWNB5t2mc/aEYbc8CF
-	oB+pZiY/xZFP/aVxqrwcaMZm3T6pm1UfwhBXNOdgVXNZ3YQid4XuRc68bXAb84e7
-	WvNUt7nZHvAAV8Wb4vUd2rcmVzTJlSLfL/MrmDUOaekSFfC+HthoA3JodJUUVTlB
-	Ipd0JkRxHB3vLv4ASP7g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3whtbw8vvw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Feb 2024 09:36:05 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41S9a3DD001623
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Feb 2024 09:36:03 GMT
-Received: from Mayan.qca.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 28 Feb 2024 01:36:01 -0800
-From: Kang Yang <quic_kangyang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_kangyang@quicinc.com>
-Subject: [PATCH v2 6/6] wifi: ath11k: advertise P2P dev support for QCA6390/WCN6855/QCA2066
-Date: Wed, 28 Feb 2024 17:35:37 +0800
-Message-ID: <20240228093537.25052-7-quic_kangyang@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240228093537.25052-1-quic_kangyang@quicinc.com>
-References: <20240228093537.25052-1-quic_kangyang@quicinc.com>
+	Wed, 28 Feb 2024 10:01:12 +0000
+Received: from mail-nwsmtp-smtp-production-main-46.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-46.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:40a4:0:640:8f61:0])
+	by forward102b.mail.yandex.net (Yandex) with ESMTPS id ED909609CC;
+	Wed, 28 Feb 2024 13:00:55 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-46.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id s0WeXZ7EUGk0-MPorsuKX;
+	Wed, 28 Feb 2024 13:00:55 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+	t=1709114455; bh=qEJeYbmJxo0BtItp/7yVTF7rBZlv9oown4rhFVe/Ymw=;
+	h=Message-ID:Date:Cc:Subject:To:From;
+	b=SK1CSyQMM4jD42S1SLWEHk7xn+TZARBpgwD7fqWz+ozAdqoZmY7hzrMtI0ezC0wGd
+	 Q520UvPdLOjkv4GpbO/eGos5M1AThga4qVbXFaRLxs4bKkXVQB7dsMCphdaPGY7AoY
+	 gAUMR/6+omTKRKV7I8zVaFfwBMmxY4nL/6BSZd8A=
+Authentication-Results: mail-nwsmtp-smtp-production-main-46.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
+From: Dmitry Antipov <dmantipov@yandex.ru>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	lvc-project@linuxtesting.org,
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: [PATCH] wifi: ath11k: use ath11k_mac_get_ar_by_pdev_id() consistently
+Date: Wed, 28 Feb 2024 13:00:38 +0300
+Message-ID: <20240228100038.138267-1-dmantipov@yandex.ru>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: FQHr_VAeHJ169jaG-7dyEsyLZYuhNd3t
-X-Proofpoint-ORIG-GUID: FQHr_VAeHJ169jaG-7dyEsyLZYuhNd3t
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-28_04,2024-02-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- suspectscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
- spamscore=0 mlxlogscore=692 lowpriorityscore=0 mlxscore=0 bulkscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402280075
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240228_013605_713689_9DCE2A51 
-X-CRM114-Status: GOOD (  11.48  )
+X-CRM114-CacheID: sfid-20240228_020110_861238_6351F653 
+X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,103 +72,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Now that all the necessary pieces are implemented we can enable P2P
-support for QCA6390/WCN6855/QCA2066.
+Since 'ath11k_mac_get_ar_by_pdev_id()' can return NULL, check
+the return value in 'ath11k_wmi_tlv_rssi_chain_parse()' as well
+as in 'ath11k_wmi_tlv_fw_stats_data_parse()', and return -EINVAL
+in case of error. Compile tested only.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
-Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.2
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 20 ++++++++++++++++----
- drivers/net/wireless/ath/ath11k/mac.c  |  9 +++++++++
- 2 files changed, 25 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index c78bce19bd75..6e9f16f01ebd 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -247,7 +247,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		},
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 34ab9631ff36..2d93e4e78a37 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -6498,6 +6498,12 @@ static int ath11k_wmi_tlv_rssi_chain_parse(struct ath11k_base *ab,
+ 	rcu_read_lock();
  
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
--					BIT(NL80211_IFTYPE_AP),
-+					BIT(NL80211_IFTYPE_AP) |
-+					BIT(NL80211_IFTYPE_P2P_DEVICE) |
-+					BIT(NL80211_IFTYPE_P2P_CLIENT) |
-+					BIT(NL80211_IFTYPE_P2P_GO),
- 		.supports_monitor = false,
- 		.full_monitor_mode = false,
- 		.supports_shadow_regs = true,
-@@ -416,7 +419,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		},
+ 	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
++	if (!ar) {
++		ath11k_warn(ab, "%s: invalid pdev_id %d\n",
++			    __func__, ev->pdev_id);
++		ret = -EINVAL;
++		goto exit;
++	}
+ 	stats->stats_id = WMI_REQUEST_RSSI_PER_CHAIN_STAT;
  
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
--					BIT(NL80211_IFTYPE_AP),
-+					BIT(NL80211_IFTYPE_AP) |
-+					BIT(NL80211_IFTYPE_P2P_DEVICE) |
-+					BIT(NL80211_IFTYPE_P2P_CLIENT) |
-+					BIT(NL80211_IFTYPE_P2P_GO),
- 		.supports_monitor = false,
- 		.full_monitor_mode = false,
- 		.supports_shadow_regs = true,
-@@ -501,7 +507,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		},
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI,
+@@ -6570,6 +6576,12 @@ static int ath11k_wmi_tlv_fw_stats_data_parse(struct ath11k_base *ab,
+ 	rcu_read_lock();
  
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
--					BIT(NL80211_IFTYPE_AP),
-+					BIT(NL80211_IFTYPE_AP) |
-+					BIT(NL80211_IFTYPE_P2P_DEVICE) |
-+					BIT(NL80211_IFTYPE_P2P_CLIENT) |
-+					BIT(NL80211_IFTYPE_P2P_GO),
- 		.supports_monitor = false,
- 		.supports_shadow_regs = true,
- 		.idle_ps = true,
-@@ -750,7 +759,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		},
+ 	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
++	if (!ar) {
++		ath11k_warn(ab, "%s: invalid pdev_id %d\n",
++			    __func__, ev->pdev_id);
++		ret = -EINVAL;
++		goto exit;
++	}
  
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
--					BIT(NL80211_IFTYPE_AP),
-+					BIT(NL80211_IFTYPE_AP) |
-+					BIT(NL80211_IFTYPE_P2P_DEVICE) |
-+					BIT(NL80211_IFTYPE_P2P_CLIENT) |
-+					BIT(NL80211_IFTYPE_P2P_GO),
- 		.supports_monitor = false,
- 		.full_monitor_mode = false,
- 		.supports_shadow_regs = true,
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index d66d09adf2fa..d65a19f9b694 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6660,17 +6660,26 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 	case NL80211_IFTYPE_UNSPECIFIED:
- 	case NL80211_IFTYPE_STATION:
- 		arvif->vdev_type = WMI_VDEV_TYPE_STA;
-+		if (vif->p2p)
-+			arvif->vdev_subtype = WMI_VDEV_SUBTYPE_P2P_CLIENT;
- 		break;
- 	case NL80211_IFTYPE_MESH_POINT:
- 		arvif->vdev_subtype = WMI_VDEV_SUBTYPE_MESH_11S;
- 		fallthrough;
- 	case NL80211_IFTYPE_AP:
- 		arvif->vdev_type = WMI_VDEV_TYPE_AP;
-+		if (vif->p2p)
-+			arvif->vdev_subtype = WMI_VDEV_SUBTYPE_P2P_GO;
- 		break;
- 	case NL80211_IFTYPE_MONITOR:
- 		arvif->vdev_type = WMI_VDEV_TYPE_MONITOR;
- 		ar->monitor_vdev_id = bit;
- 		break;
-+	case NL80211_IFTYPE_P2P_DEVICE:
-+		arvif->vdev_type = WMI_VDEV_TYPE_STA;
-+		arvif->vdev_subtype = WMI_VDEV_SUBTYPE_P2P_DEVICE;
-+		break;
-+
- 	default:
- 		WARN_ON(1);
- 		break;
+ 	for (i = 0; i < ev->num_pdev_stats; i++) {
+ 		const struct wmi_pdev_stats *src;
 -- 
-2.34.1
+2.43.2
 
 
