@@ -4,90 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7108C5478C
-	for <ath11k@archiver.kernel.org>; Thu, 29 Feb 2024 02:30:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8E2AC48BF6
+	for <ath11k@archiver.kernel.org>; Thu, 29 Feb 2024 08:41:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0/+C9tGIWpwPDFX0nUJBfhs5juresADDoCaZ7B+HQJM=; b=j04NfHmptAsLRvW8NS4n7fCeKj
-	P5n7fYoE8j6mNGOqbtjbQjHnczicG71Z5FQ54ligXnLcsm54yIgb3KiJqxGo9H1DCd/+kXdNAFiVI
-	Djtexkb3hpe/Px26PU6fQ86/aTrb7vj6QPjlDKKk6qSysjT6J9LH6QDkiqfMEQ22FeKkcCTxCujLp
-	kpG6QdkL3LLoHWESLS6xn/zxHmX75J9qO7/X3dvO6GaIkolbdq92P3Bj1cHCwG9o5lhYClvCqCG4q
-	N5HMLqo7hgjxFuGM8iTx/n1HHIAayIY9esefr+gOV1qY5N9xZw/yMZ4owIDXjrDcqkbwi9vt+n1Sb
-	of0l9CQQ==;
+	bh=0Ttr1Rc6LQgnqCWP+1fX+y357g9rrnweJwnKxC38lcw=; b=BvXGHyKpuh2bEV5nfcUgYGXkiz
+	l0m3msUJYhqV8PrSX0+86UFWt2qZ5MkOWQb53x099X9tA3FcaAG/O6xcgmYP3xmFeqiv5T6uZjFR5
+	Pnuyw5olIH/pjACwbgRxjYdzGoShiE9aiOj9eS2sNT3aYQ27nnPA1wSGteLjt0ypvXTGkpU9EyenK
+	FjjuEGgxSRkwoUgxW5Pp6/Ds5+rV+1vhFYZKYn04H1v6p2xXm4SsfrzSkODnf1qPgkVHtsOvRbJpQ
+	uaQTWufqmy/pCPyb9mZzPAqYI5ENeo8ZF3TsSmqwKx1BJBdmZvM9AyO7A1V027tTDhmgxZHANeCuw
+	IO4NoyKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfWBj-0000000BkVh-3yUc;
-	Thu, 29 Feb 2024 02:30:23 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rfbyV-0000000CiAU-0j3f;
+	Thu, 29 Feb 2024 08:41:07 +0000
+Received: from forward103c.mail.yandex.net ([2a02:6b8:c03:500:1:45:d181:d103])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfWBh-0000000BkUq-17IM
+	id 1rfbyR-0000000Ci7D-1Hk0
 	for ath11k@lists.infradead.org;
-	Thu, 29 Feb 2024 02:30:22 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41T1mfQd007940;
-	Thu, 29 Feb 2024 02:30:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=0/+C9tGIWpwPDFX0nUJBfhs5juresADDoCaZ7B+HQJM=; b=iQ
-	fdAyOZy4J3CmN9WqWJmFLtxKex91dvUNix40Bu5eWdto7YFP6Rvdr80VMX/uQxqQ
-	VQ6ZO05jwWZMsmX2BkOgW9D7d/BDSP8Yl+tLyy3k7ejQEZqVjq/eSvLQN7MEmQvq
-	8cXfy6gfz6k5/xtT1JS92Fs2HTi3WIOTM+MIoSZ/odeyHetsvLgw14kZRn7vr+6K
-	NR3dNfOSSJjrutEdoBj1qY5CBgY6O+cnHqm9vUselJhvGAkhhLInx3DvRsgp32Th
-	ShNja+SZzuEcfTe5Hfs7okzEBYyi30PbaRYStGYfdMqdhFh4UdZ+FkyaSdTiBJ/z
-	zzmas5Ib3xfymCkdMhUA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wj6en9mf1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Feb 2024 02:30:11 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41T2U9gv007702
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Feb 2024 02:30:09 GMT
-Received: from [10.253.39.33] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 28 Feb
- 2024 18:30:06 -0800
-Message-ID: <60d9970b-b397-4c3d-b3cb-9d90866acebf@quicinc.com>
-Date: Thu, 29 Feb 2024 10:30:04 +0800
+	Thu, 29 Feb 2024 08:41:06 +0000
+Received: from mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:6e01:0:640:627f:0])
+	by forward103c.mail.yandex.net (Yandex) with ESMTPS id 129A860B62;
+	Thu, 29 Feb 2024 11:40:57 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id teVSqmLJiW20-6Zz5L67T;
+	Thu, 29 Feb 2024 11:40:56 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+	t=1709196056; bh=0Ttr1Rc6LQgnqCWP+1fX+y357g9rrnweJwnKxC38lcw=;
+	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
+	b=fPcJytgmrLEdj4b4RUjGE1QFf2MbLbirXX7ySfLWviSpH9d84PMpWcv4JDZrKDeI/
+	 NlE9eu7RmuIm8isWTbIH04HFEcQTM7NKeK4WbMMPmlWIBXqjjbWpNaJK/wvz0efAh+
+	 aSaN3+xDLSrJd/2Kr1/STmhI0dLvEVz1fLSM4vfE=
+Authentication-Results: mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
+From: Dmitry Antipov <dmantipov@yandex.ru>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	lvc-project@linuxtesting.org,
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: [PATCH 1/3] [v2] wifi: ath11k: use ath11k_mac_get_ar_by_pdev_id() consistently
+Date: Thu, 29 Feb 2024 11:40:29 +0300
+Message-ID: <20240229084031.51957-1-dmantipov@yandex.ru>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <788f1df8-64e1-4b3c-ae8e-00c67be1c3de@quicinc.com>
+References: <788f1df8-64e1-4b3c-ae8e-00c67be1c3de@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] wifi: ath11k: support hibernation
-Content-Language: en-US
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
-        <manivannan.sadhasivam@linaro.org>
-CC: <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <mhi@lists.linux.dev>, <davem@davemloft.net>, <edumazet@google.com>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <netdev@vger.kernel.org>
-References: <20240228022243.17762-1-quic_bqiang@quicinc.com>
- <20240228022243.17762-4-quic_bqiang@quicinc.com>
- <ae3ec744-2157-4a8c-aa1b-38a22dc18042@quicinc.com>
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <ae3ec744-2157-4a8c-aa1b-38a22dc18042@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: B3EbC9YNp5quH_dD_zn2pm_Byq4raZCR
-X-Proofpoint-ORIG-GUID: B3EbC9YNp5quH_dD_zn2pm_Byq4raZCR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-28_08,2024-02-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 spamscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 impostorscore=0 bulkscore=0 mlxlogscore=999 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402290018
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240228_183021_519913_8EBD2F66 
-X-CRM114-Status: GOOD (  27.75  )
+X-CRM114-CacheID: sfid-20240229_004103_965010_FDBAFC17 
+X-CRM114-Status: UNSURE (   9.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,144 +74,51 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Since 'ath11k_mac_get_ar_by_pdev_id()' can return NULL, check
+the return value in 'ath11k_wmi_tlv_rssi_chain_parse()' as well
+as in 'ath11k_wmi_tlv_fw_stats_data_parse()', and return -EINVAL
+in case of error. Compile tested only.
 
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-On 2/28/2024 11:31 PM, Jeff Johnson wrote:
-> On 2/27/2024 6:22 PM, Baochen Qiang wrote:
->> Now that all infrastructure is in place and ath11k is fixed to handle all the
->> corner cases, power down the ath11k firmware during suspend and power it back
->> up during resume. This fixes the problem when using hibernation with ath11k PCI
->> devices.
->>
->> For suspend, two conditions needs to be satisfied:
->>          1. since MHI channel unprepare would be done in late suspend stage,
->>             ath11k needs to get all QMI-dependent things done before that stage.
->>          2. and because unprepare MHI channels requires a working MHI stack,
->>             ath11k is not allowed to call mhi_power_down() until that finishes.
->> So the original suspend callback is separated into two parts: the first part
->> handles all QMI-dependent things in suspend callback; while the second part
->> powers down MHI in suspend_late callback. This is valid because kernel calls
->> ath11k's suspend callback before all suspend_late callbacks, making the first
->> condition happy. And because MHI devices are children of ath11k device
->> (ab->dev), kernel guarantees that ath11k's suspend_late callback is called
->> after QRTR's suspend_late callback, this satisfies the second condition.
->>
->> Above analysis also applies to resume process. so the original resume
->> callback is separated into two parts: the first part powers up MHI stack
->> in resume_early callback, this guarantees MHI stack is working when
->> QRTR tries to prepare MHI channels (kernel calls QRTR's resume_early callback
->> after ath11k's resume_early callback, due to the child-father relationship);
->> the second part waits for the completion of restart, which won't fail now
->> since MHI channels are ready for use by QMI.
->>
->> Another notable change is in power down path, we tell mhi_power_down() to not
->> to destroy MHI devices, making it possible for QRTR to help unprepare/prepare
->> MHI channels, and finally get us rid of the probe-defer issue when resume.
->>
->> Also change related code due to interface changes.
->>
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
->>
->> Tested-by: Takashi Iwai <tiwai@suse.de>
->> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
->> ---
->>   drivers/net/wireless/ath/ath11k/ahb.c  |   6 +-
->>   drivers/net/wireless/ath/ath11k/core.c | 105 +++++++++++++++++--------
->>   drivers/net/wireless/ath/ath11k/core.h |   6 +-
->>   drivers/net/wireless/ath/ath11k/hif.h  |  14 +++-
->>   drivers/net/wireless/ath/ath11k/mhi.c  |  12 ++-
->>   drivers/net/wireless/ath/ath11k/mhi.h  |   5 +-
->>   drivers/net/wireless/ath/ath11k/pci.c  |  44 +++++++++--
->>   drivers/net/wireless/ath/ath11k/qmi.c  |   2 +-
->>   8 files changed, 142 insertions(+), 52 deletions(-)
-> ...snip...
->> +int ath11k_core_resume_early(struct ath11k_base *ab)
->> +{
->> +	int ret;
->> +	struct ath11k_pdev *pdev;
->> +	struct ath11k *ar;
->> +
->> +	if (!ab->hw_params.supports_suspend)
->> +		return -EOPNOTSUPP;
->> +
->> +	/* so far signle_pdev_only chips have supports_suspend as true
-> 
-> nit: s/signle/single/
-> 
->> +	 * and only the first pdev is valid.
->> +	 */
->> +	pdev = ath11k_core_get_single_pdev(ab);
->> +	ar = pdev->ar;
->> +	if (!ar || ar->state != ATH11K_STATE_OFF)
->> +		return 0;
->> +
->> +	reinit_completion(&ab->restart_completed);
->> +	ret = ath11k_hif_power_up(ab);
->> +	if (ret)
->> +		ath11k_warn(ab, "failed to power up hif during resume: %d\n", ret);
->> +
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL(ath11k_core_resume_early);
->>   
->>   int ath11k_core_resume(struct ath11k_base *ab)
->>   {
->>   	int ret;
->>   	struct ath11k_pdev *pdev;
->>   	struct ath11k *ar;
->> +	long time_left;
->>   
->>   	if (!ab->hw_params.supports_suspend)
->>   		return -EOPNOTSUPP;
->> @@ -940,29 +990,19 @@ int ath11k_core_resume(struct ath11k_base *ab)
->>   	if (!ar || ar->state != ATH11K_STATE_OFF)
->>   		return 0;
->>   
->> -	ret = ath11k_hif_resume(ab);
->> -	if (ret) {
->> -		ath11k_warn(ab, "failed to resume hif during resume: %d\n", ret);
->> -		return ret;
->> +	time_left = wait_for_completion_timeout(&ab->restart_completed,
->> +						ATH11K_RESET_TIMEOUT_HZ);
->> +	if (time_left == 0) {
->> +		ath11k_warn(ab, "timeout while waiting for restart complete");
->> +		return -ETIMEDOUT;
->>   	}
->>   
->> -	ath11k_hif_ce_irq_enable(ab);
->> -	ath11k_hif_irq_enable(ab);
-> 
-> these are disabled in suspend_late()
-> do you need to enable in resume_early()?
-> or are they expected to be enabled via ath11k_wow_op_resume()?
-> 
-> and if that is the case, why isn't the disable in
-> ath11k_wow_op_suspend() sufficient? can the disables in suspend_late()
-> be removed?
-There are two user cases here:
-1. if WoWLAN is enabled, IRQ enable/disable only happens in 
-ath11k_wow_op_suspend()/resume(), ath11k_core_suspend()/late_suspend() 
-and ath11k_core_resume()/early_resume() do nothing but return directly 
-due to below check:
-		if (!ar || ar->state != ATH11K_STATE_OFF)
-			return 0;
-so this is symmetric and no issues here.
+Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
+---
+v2: aggregate to the series
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-2. if WoWLAN is disabled, ath11k_wow_op_suspend()/resume() won't get 
-called, see the check on 'local->wowlan' in __ieee80211_suspend(). Then 
-IRQ is disabled in ath11k_core_suspend_late(). The reason why IRQ is not 
-enabled in ath11k_core_resume()/early_resume() is because in this case 
-we power down/up firmware, and during power up we go the reset path 
-where IRQ would be enabled back in below calls:
-	CE irqs: ath11k_core_qmi_firmware_ready() -> ath11k_core_start() -> 
-ath11k_hif_start() -> ath11k_pci_start() -> ath11k_pcic_start() -> 
-ath11k_pcic_ce_irqs_enable()
-	DP irqs: ath11k_core_qmi_firmware_ready() -> ath11k_hif_irq_enable()
-> 
-> just concerned about the lack of symmetry here
-Yes, also noticed it but didn't figure out a better way.
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 34ab9631ff36..2d93e4e78a37 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -6498,6 +6498,12 @@ static int ath11k_wmi_tlv_rssi_chain_parse(struct ath11k_base *ab,
+ 	rcu_read_lock();
+ 
+ 	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
++	if (!ar) {
++		ath11k_warn(ab, "%s: invalid pdev_id %d\n",
++			    __func__, ev->pdev_id);
++		ret = -EINVAL;
++		goto exit;
++	}
+ 	stats->stats_id = WMI_REQUEST_RSSI_PER_CHAIN_STAT;
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI,
+@@ -6570,6 +6576,12 @@ static int ath11k_wmi_tlv_fw_stats_data_parse(struct ath11k_base *ab,
+ 	rcu_read_lock();
+ 
+ 	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
++	if (!ar) {
++		ath11k_warn(ab, "%s: invalid pdev_id %d\n",
++			    __func__, ev->pdev_id);
++		ret = -EINVAL;
++		goto exit;
++	}
+ 
+ 	for (i = 0; i < ev->num_pdev_stats; i++) {
+ 		const struct wmi_pdev_stats *src;
+-- 
+2.44.0
 
-> 
-> /jeff
 
