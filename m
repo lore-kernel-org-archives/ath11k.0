@@ -4,66 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33EADC48BF6
-	for <ath11k@archiver.kernel.org>; Thu, 29 Feb 2024 19:35:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F727C48BF6
+	for <ath11k@archiver.kernel.org>; Thu, 29 Feb 2024 20:10:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1mNs5kC6TksS6UB+6cGJY1ZereaVWhJ+biN+qJFhJDA=; b=PDHHxGuxiCTTrwDM0+GuvsTLL7
-	A+MWjgTQAuYusZAiJ4j9Crym7zaQiWS38rDMxa7nJh5qiXfaVWLsIrddmgfhgPuJ1FmjbD5V6hutE
-	j2dcrfG7Ga1EYXwzrpSAK4+UQq6aSh+WlBE5cKwRytMjKMivFow91mQrvQsRbClY0GLmRBnNtcv57
-	IK7qKKM8OW7rPx4F6J2A5exZjhmeNmkMe3wSAubAq8FRViQc6e8xjpkn5e9Na3TMA8bOSHXv92VCR
-	VAtnTcffs0YWThAQbUnRf6qb2tLAwp5fVvj23OHq/Y9GICB5PEJqH4+olAUwPOHlhGr6PTdaX4oob
-	e9nftjbw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=1CcyJbEfna7NtQC9oeqraeumFk2pyv8puZ1bXPL2s3I=; b=TzFTb11kl2/P+jaw5BXXvLsyrW
+	C9ep0X5sX3ZyeHQNMS6U/t0YqiOekFpDJXkYmBH52WF8gF+2GI/Fu+y5vw0qPbJHgAL02RpH9FalU
+	NMZBsiA1co6kL/ULoAJGYusxFMhMsxci4mJbd03mSGUgh2wn60OsJocxHvVmxfcgJnhj8sj/UcMa5
+	Oxp65YNjYaffparcRFeTePuw94R7jCRSDv//tk0yo9oPOfFc87DF+UV5s+Wq0n5TXmZ5lfRGPTllH
+	jBiolXUl3hHc0M4YR9YLye/v7DoZ5x5wpum+U/i+RuGn6S64SUW2NZYxo0nt4Qww7F6PxXqcWklvt
+	iRdb0W7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfmC0-0000000EuIG-1eRm;
-	Thu, 29 Feb 2024 19:35:44 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1rfmjY-0000000F1Vy-04US;
+	Thu, 29 Feb 2024 20:10:24 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfmBx-0000000EuHA-3XeH
+	id 1rfmjV-0000000F1VK-3hMP
 	for ath11k@lists.infradead.org;
-	Thu, 29 Feb 2024 19:35:43 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id BD045CE1F97;
-	Thu, 29 Feb 2024 19:35:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA240C433F1;
-	Thu, 29 Feb 2024 19:35:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709235339;
-	bh=z+ll6MviZxAO9oJ8WAt1UoEwqN5J4y0yQMH87Dp3Lgg=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=jQJtxn7+AqbnVuE+PBx7GcVjn06hzaXhUwyYdOKDoNFmbPZii46rlwhjAdB24ZI4Q
-	 T4kZauY7MEISI8Kzd0vzFUKUC2BUzWeSbTNchV8hsy7+KVjrd8CnICSp3Hw260uLVs
-	 f/FtpHhp4apxYVCwfWB0vqs54p965NrDRxkeqHTk9W7tdGzHeJ5xcJROr/EV3Bg/kC
-	 y9dEjBdhmv6fjVosVqvXRyE2E4UxEpB1aOeLBGobOLrK098vT5B/+n6zgc/u1ExYoE
-	 IcZJLJXgbPx1v+5p4AKF2dgtK905OAM7NpixAjFItscUdjjzxK9Yz+0g1Oy7Vsgjgl
-	 vVWK5ir8KoDWw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,  "Kalle Valo
- (QUIC)" <quic_kvalo@quicinc.com>,  <ath11k@lists.infradead.org>,
-  <linux-wireless@vger.kernel.org>,  <linux-arm-msm@vger.kernel.org>,
-  <mhi@lists.linux.dev>,  <davem@davemloft.net>,  <edumazet@google.com>,
-  <kuba@kernel.org>,  <pabeni@redhat.com>,  <netdev@vger.kernel.org>
-Subject: Re: [PATCH v4 1/3] bus: mhi: host: add mhi_power_down_keep_dev()
-References: <20240228022243.17762-1-quic_bqiang@quicinc.com>
-	<20240228022243.17762-2-quic_bqiang@quicinc.com>
-	<20240229101202.GB2999@thinkpad>
-	<531daaa9-cf14-4812-8908-c617bd25bc08@quicinc.com>
-Date: Thu, 29 Feb 2024 21:35:34 +0200
-In-Reply-To: <531daaa9-cf14-4812-8908-c617bd25bc08@quicinc.com> (Baochen
-	Qiang's message of "Thu, 29 Feb 2024 18:33:43 +0800")
-Message-ID: <87le7383nd.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 29 Feb 2024 20:10:23 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41TIe7WI014560;
+	Thu, 29 Feb 2024 20:10:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=1CcyJbEfna7NtQC9oeqraeumFk2pyv8puZ1bXPL2s3I=; b=VC
+	Bzc9zf9qkd3ggbuDrgcEZCzglOtVlknjelQJFxOctnV70G2tC0LOgiMQdpBaBu7Y
+	hGzLWzJT8RGzc/pY+yonRgw31O5NjEO97o74WuEe9ZACeogzUNV1HDt5f+UjUAN5
+	UvjR4pX0Dd7c6RPUAJUUVsJApC8Dh1CEYUKZwDepYU8fHVD4fqQt/Ij/SWBMrF04
+	TAR9oLNAdlSYoVe8GJpYTlI/elwRoGbNDF7XAPP5pfA8Cqz8aNr2w6eHLDEVnb5P
+	+/XLI9tK42twf8DzGoCCgF4/Sq/twAvLWskFaZmchPP69XacYK8eS9nmYbBFoaHh
+	IxrZQ2Xlrt+ShCoZmRSw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjycdg6ps-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 20:10:16 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41TKAFTL015090
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 20:10:15 GMT
+Received: from [10.110.42.209] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 29 Feb
+ 2024 12:10:14 -0800
+Message-ID: <a79de0d7-f630-4a11-8cde-3444a6b93ee1@quicinc.com>
+Date: Thu, 29 Feb 2024 12:10:14 -0800
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] [v2] wifi: ath11k: use ath11k_mac_get_ar_by_pdev_id()
+ consistently
+Content-Language: en-US
+To: Dmitry Antipov <dmantipov@yandex.ru>
+CC: Baochen Qiang <quic_bqiang@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <lvc-project@linuxtesting.org>
+References: <788f1df8-64e1-4b3c-ae8e-00c67be1c3de@quicinc.com>
+ <20240229084031.51957-1-dmantipov@yandex.ru>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240229084031.51957-1-dmantipov@yandex.ru>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: C-RQTzIEMqjFWTfTJuKp1c45sdQnVpO4
+X-Proofpoint-ORIG-GUID: C-RQTzIEMqjFWTfTJuKp1c45sdQnVpO4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-29_06,2024-02-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ mlxlogscore=874 impostorscore=0 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 adultscore=0 suspectscore=0 spamscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402290156
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240229_113542_103231_4324E8B2 
-X-CRM114-Status: GOOD (  14.74  )
+X-CRM114-CacheID: sfid-20240229_121021_980366_567C086A 
+X-CRM114-Status: GOOD (  20.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,55 +101,73 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> writes:
+On 2/29/2024 12:40 AM, Dmitry Antipov wrote:
+> Since 'ath11k_mac_get_ar_by_pdev_id()' can return NULL, check
+> the return value in 'ath11k_wmi_tlv_rssi_chain_parse()' as well
+> as in 'ath11k_wmi_tlv_fw_stats_data_parse()', and return -EINVAL
+> in case of error. Compile tested only.
+> 
+> Found by Linux Verification Center (linuxtesting.org) with SVACE.
+> 
+> Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
+> ---
+> v2: aggregate to the series
 
-> On 2/29/2024 6:12 PM, Manivannan Sadhasivam wrote:
->> On Wed, Feb 28, 2024 at 10:22:41AM +0800, Baochen Qiang wrote:
->>> ath11k fails to resume:
->>>
->>> ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
->>>
->>> This happens because when calling mhi_sync_power_up() the MHI subsystem
->>> eventually calls device_add() from mhi_create_devices() but the device
->>> creation is deferred:
->>>
->>> mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
->>>
->>> The reason for deferring device creation is explained in dpm_prepare():
->>>
->>>          /*
->>>           * It is unsafe if probing of devices will happen during suspend or
->>>           * hibernation and system behavior will be unpredictable in this case.
->>>           * So, let's prohibit device's probing here and defer their probes
->>>           * instead. The normal behavior will be restored in dpm_complete().
->>>           */
->>>
->>> Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not
->>> called and thus MHI channels are not prepared:
->>>
->>> So what this means that QRTR is not delivering messages and the QMI connection
->>> is not working between ath11k and the firmware, resulting a failure in firmware
->>> initialization.
->>>
->>> To fix this add new function mhi_power_down_keep_dev() which doesn't destroy
->>> the devices for channels during power down. This way we avoid probe defer issue
->>> and finally can get ath11k hibernation working with the following patches.
->>>
->>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
->>>
->>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->>
->> Did Kalle co-author this patch? If so, his Co-developed-by tag should
->> be added.
->
-> Hmm, I'm not sure...  I would like Kalle's thoughts on this.
+In the future please don't use In-Reply-To: when submitting a new
+version of a patch/series. Each version should start its own thread.
+Having In-Reference-To: is OK
 
-IIRC I did only some simple cleanup before submitting the patch so I
-don't think Co-developed-by is justified. I'm also fine with removing my
-Signed-off-by.
+> ---
+>  drivers/net/wireless/ath/ath11k/wmi.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+> index 34ab9631ff36..2d93e4e78a37 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+> @@ -6498,6 +6498,12 @@ static int ath11k_wmi_tlv_rssi_chain_parse(struct ath11k_base *ab,
+>  	rcu_read_lock();
+>  
+>  	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
+> +	if (!ar) {
+> +		ath11k_warn(ab, "%s: invalid pdev_id %d\n",
+> +			    __func__, ev->pdev_id);
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+it is currently not the convention to use __func__ in ath11k logs.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+there are currently 6 instances where the NULL check is present, and
+each has a custom log message
+
+I personally would be ok having this new format, but want to get Kalle's
+approval for that. But if we do that I'd also want a follow-up patch to
+modify those 6 existing logs.
+
+FWIW in all of ath11k there are only 3 instances of __func__:
+mac.c:                     "%s: rsn ie found\n", __func__);
+mac.c:                     "%s: wpa ie found\n", __func__);
+wmi.c:                     __func__);
+
+> +		ret = -EINVAL;
+> +		goto exit;
+> +	}
+>  	stats->stats_id = WMI_REQUEST_RSSI_PER_CHAIN_STAT;
+>  
+>  	ath11k_dbg(ab, ATH11K_DBG_WMI,
+> @@ -6570,6 +6576,12 @@ static int ath11k_wmi_tlv_fw_stats_data_parse(struct ath11k_base *ab,
+>  	rcu_read_lock();
+>  
+>  	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
+> +	if (!ar) {
+> +		ath11k_warn(ab, "%s: invalid pdev_id %d\n",
+> +			    __func__, ev->pdev_id);
+> +		ret = -EINVAL;
+> +		goto exit;
+> +	}
+>  
+>  	for (i = 0; i < ev->num_pdev_stats; i++) {
+>  		const struct wmi_pdev_stats *src;
+
+The actual logic is correct.
+
+/jeff
 
