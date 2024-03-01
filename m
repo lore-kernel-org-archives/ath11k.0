@@ -4,86 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE9BDC54798
-	for <ath11k@archiver.kernel.org>; Fri,  1 Mar 2024 02:13:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 498B6C5475B
+	for <ath11k@archiver.kernel.org>; Fri,  1 Mar 2024 12:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DTdjKzfF+wLCw2HEeowzvC/2ioh+ybgSCMwH90VAiMQ=; b=mcfn7l9E8CwjsmF2KgaKbAxVE7
-	oJo6ktawj7y48nF91Dop3XK5lVdmZYCm40T2ajnZSjkc9x9qlqfR2zGlokMmhINBiuqyTpa2YXLT0
-	g3+ow8Q4j0XWMYoENHp8VLVVQO81DPNC+sTuvtn8RLlnKSGC2dxL0gn+vWi6nzXweTOVUJzzhKTkV
-	NW37MLow4s/gnHMyp9xnQQRGDjtVafo9Xyu7yGkBMNU2DVGU3QcqoT61STWofBC7mAECYv1C4TkB1
-	pKHRZZbZkK5xBXleLDAhpNiLxZxexBJvPgcZyY7xwvCW7rgPazbyDyo897NZKxaAHQJtbHeXh8n8R
-	6gahqK9Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=n4vy0ssj1y9OKJx6whcKaZP2Wd8dgYFve24tfX8P7n0=; b=CECkYK2Yq/TuAc2+l/pBHKuTsS
+	PM3KPkWjmYvWjoJdlmiur/xBGfeiS8/3OhHxLNwJJ1N+eXdFruzV/FtUyVaQ/ilnaMo62hK0eFS+x
+	on8phHC5vINMUmJ6qe9muRqMbPio9lBzo9S3yt/tuHuvca9m0tAb5jHMWt1zCqmjQ2dCJ+kASewzY
+	NetcWk5tRlC0AtX0pOV7phCuKleiXSy79m/Y/hXmux2+C4rjWiKHWSOrxN5QLR97pihVyAY9E2jOk
+	2e/Ng9/p46+it2V38G4YrpF8J0EDb5SirL35ukaAyVakEg5TRcyOGhcLUdv9E26apebnQ8u5lxEa4
+	YtoDUFjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfsOY-0000000FyLp-2hSx;
-	Fri, 01 Mar 2024 02:13:06 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rg1xp-000000009ND-3T3D;
+	Fri, 01 Mar 2024 12:26:09 +0000
+Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rfsOW-0000000FyK9-0czg
+	id 1rg1xn-000000009LS-2BMJ
 	for ath11k@lists.infradead.org;
-	Fri, 01 Mar 2024 02:13:05 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4210kc0S020781;
-	Fri, 1 Mar 2024 02:13:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=DTdjKzfF+wLCw2HEeowzvC/2ioh+ybgSCMwH90VAiMQ=; b=FF
-	3GkalGOKJ3+tjg4sbnttvuQCz8gb9tPqXD/4AlX01eObxCGvQ8j2utW91GxbRd1q
-	hAo9XwzrKEBuRqZdVSiDFqDsJha+/dM6PY+F+1egSIkjuOhxPOlMukoIHpqIO7TD
-	LUz8SB6htbn5qMoD9IOexO7YdgeiprqcV+8OmxBu8LKrqX/Wo+HkzPlj+0VfVyDW
-	ybdi39au0PQ/UevG+qsDMEQClAsbgiHBkVu8XXE22SQA8uTSJD1EHB7TO5cQKIWo
-	z3rTXdb4D4107sfyzTgBiPw7ElqbJDcjOOKrdZPaX8LFD7twAszex3XO4Byvjmci
-	ozWbDAc47XKvpM09q04A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wk4rvr66r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Mar 2024 02:13:01 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4212D1cl011827
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Mar 2024 02:13:01 GMT
-Received: from [10.253.10.248] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 29 Feb
- 2024 18:12:59 -0800
-Message-ID: <8014cab6-8d8e-4c9c-98ea-fe0567e0e578@quicinc.com>
-Date: Fri, 1 Mar 2024 10:12:57 +0800
+	Fri, 01 Mar 2024 12:26:09 +0000
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6e5b1c6daa3so740550b3a.1
+        for <ath11k@lists.infradead.org>; Fri, 01 Mar 2024 04:26:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709295965; x=1709900765; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=n4vy0ssj1y9OKJx6whcKaZP2Wd8dgYFve24tfX8P7n0=;
+        b=vgdKBs0Wql+lU0308aYOG7AmGJwzcKkAGOY/JgxImkf/OnU7v0LzT/F+l7zHEogIrH
+         bLBUsbbXX+v3A7VvdMeMFajptt3b574hDGzoT9DslwrqngdEzJJxQxs8MqTgKrqMG9nR
+         6DkxE+FIXlE/fnNq6/Y+FB/XXTbVhNlC6nmfCCLZ5Xh3Z8mF57PCNS10XxPz36TGVL7y
+         RN77Iicb1YLq0F3Rds09711s3MgiFm4o1AEAbbNv2vFe+QlnwNBZ4FRNMeADJAlOGuq7
+         N5HcxIzg63C+4/S9FFm437HxcfOB6uhUV2k3luSwqN7MrzBgGRMEGtcj11rY9EsMHqXf
+         Z9aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709295965; x=1709900765;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n4vy0ssj1y9OKJx6whcKaZP2Wd8dgYFve24tfX8P7n0=;
+        b=FirpUWe1DafyHVHK3xzQwyf2G0V/7jTlF/cDyJd+2M0Pgv6yNYK/PuMMJ8uRWtod9y
+         QLmcsggHPNgDl6ERuJMGfSnazKYmkRRrTHMhVV7IslT6m4pLzYQMsfiFStP5VJ7uA0Kj
+         vnCH5U/EDpAPGxfIoIHbsbF+IrY/RGPe0cNU0ZWc2vB8nBK39skv82fk+cnbfWjInNw4
+         xMxMbQGPtg8Idk1SySyoMz+uT6GNskWflKlsmh53xcEP2fA1//xG70Yry8PMRaFUpXwQ
+         7v7xHRdGFIJTLHk4/6QXKsCeGqrxfTAGq7SCcFHGmrg5TrByilpPJlWdgQFDW7zMiiDM
+         smgA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwIb2G3pZ7Hv0rj34YV0Q75M44+FRDhd4VdzuhUfOEMgsVwHf8JaLC2o9MCTmLc9XXHcC00+9sQD7kwV19C9+cmIi1RrqxfwqHkw==
+X-Gm-Message-State: AOJu0Yxc0SWFezJsjqitd+e+J4t6pocIo3RJZ60FSXZe00/PydQrqZnk
+	iTXACPFYkU0e6/wrzvJ8JoZfLfsTFSDs3CBPN33cHgKW8WM7CyHMl1Ows/mk7A==
+X-Google-Smtp-Source: AGHT+IHDbZOb0MqU0lNgT6Ylu5XAVO9Rkznovko5WeZRWLmmdsVhJISyuzq0BMbPgmlDmT83+wLDug==
+X-Received: by 2002:a05:6a20:4327:b0:1a0:6856:d12c with SMTP id h39-20020a056a20432700b001a06856d12cmr1584913pzk.18.1709295965331;
+        Fri, 01 Mar 2024 04:26:05 -0800 (PST)
+Received: from thinkpad ([2409:40f4:13:3cbc:2484:3780:dcff:ebcf])
+        by smtp.gmail.com with ESMTPSA id p12-20020aa7860c000000b006e50e79f155sm2834437pfn.60.2024.03.01.04.26.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Mar 2024 04:26:04 -0800 (PST)
+Date: Fri, 1 Mar 2024 17:55:59 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Kalle Valo <kvalo@kernel.org>,
+	"Kalle Valo (QUIC)" <quic_kvalo@quicinc.com>,
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, netdev@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] bus: mhi: host: add mhi_power_down_keep_dev()
+Message-ID: <20240301122559.GB2401@thinkpad>
+References: <20240228022243.17762-1-quic_bqiang@quicinc.com>
+ <20240228022243.17762-2-quic_bqiang@quicinc.com>
+ <20240229101202.GB2999@thinkpad>
+ <531daaa9-cf14-4812-8908-c617bd25bc08@quicinc.com>
+ <87le7383nd.fsf@kernel.org>
+ <b5b3f46d-ad98-44e5-84e0-7b00fe29ec5a@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] wifi: ath11k: P2P support for
- QCA6390/WCN6855/QCA2066
-To: <ath11k@lists.infradead.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240228093537.25052-1-quic_kangyang@quicinc.com>
-Content-Language: en-US
-From: Kang Yang <quic_kangyang@quicinc.com>
-In-Reply-To: <20240228093537.25052-1-quic_kangyang@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 3BvrH0bvawuGzRhoL-oRxcBmbOdoyzyx
-X-Proofpoint-GUID: 3BvrH0bvawuGzRhoL-oRxcBmbOdoyzyx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-29_08,2024-02-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=842 clxscore=1015
- phishscore=0 adultscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2402120000 definitions=main-2403010017
+In-Reply-To: <b5b3f46d-ad98-44e5-84e0-7b00fe29ec5a@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240229_181304_384687_661BC794 
-X-CRM114-Status: GOOD (  12.47  )
+X-CRM114-CacheID: sfid-20240301_042607_585885_003C60AB 
+X-CRM114-Status: GOOD (  28.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,41 +102,66 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi，jeff, this is 2nd version of P2P for ath11k, could you please review 
-them?
+On Fri, Mar 01, 2024 at 10:04:06AM +0800, Baochen Qiang wrote:
+> 
+> 
+> On 3/1/2024 3:35 AM, Kalle Valo wrote:
+> > Baochen Qiang <quic_bqiang@quicinc.com> writes:
+> > 
+> > > On 2/29/2024 6:12 PM, Manivannan Sadhasivam wrote:
+> > > > On Wed, Feb 28, 2024 at 10:22:41AM +0800, Baochen Qiang wrote:
+> > > > > ath11k fails to resume:
+> > > > > 
+> > > > > ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
+> > > > > 
+> > > > > This happens because when calling mhi_sync_power_up() the MHI subsystem
+> > > > > eventually calls device_add() from mhi_create_devices() but the device
+> > > > > creation is deferred:
+> > > > > 
+> > > > > mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
+> > > > > 
+> > > > > The reason for deferring device creation is explained in dpm_prepare():
+> > > > > 
+> > > > >           /*
+> > > > >            * It is unsafe if probing of devices will happen during suspend or
+> > > > >            * hibernation and system behavior will be unpredictable in this case.
+> > > > >            * So, let's prohibit device's probing here and defer their probes
+> > > > >            * instead. The normal behavior will be restored in dpm_complete().
+> > > > >            */
+> > > > > 
+> > > > > Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not
+> > > > > called and thus MHI channels are not prepared:
+> > > > > 
+> > > > > So what this means that QRTR is not delivering messages and the QMI connection
+> > > > > is not working between ath11k and the firmware, resulting a failure in firmware
+> > > > > initialization.
+> > > > > 
+> > > > > To fix this add new function mhi_power_down_keep_dev() which doesn't destroy
+> > > > > the devices for channels during power down. This way we avoid probe defer issue
+> > > > > and finally can get ath11k hibernation working with the following patches.
+> > > > > 
+> > > > > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+> > > > > 
+> > > > > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> > > > 
+> > > > Did Kalle co-author this patch? If so, his Co-developed-by tag should
+> > > > be added.
+> > > 
+> > > Hmm, I'm not sure...  I would like Kalle's thoughts on this.
+> > 
+> > IIRC I did only some simple cleanup before submitting the patch so I
+> > don't think Co-developed-by is justified. I'm also fine with removing my
+> > Signed-off-by.
+> Thanks Kalle.
+> 
+> Hi Mani, so according to Kalle's comments, I'd like to keep the patch as is.
+> 
 
-On 2/28/2024 5:35 PM, Kang Yang wrote:
-> Add P2P support for QCA6390/WCN6855/QCA2066.
-> 
-> v2:
->      1. patch #1, #4 and #6 have already been acked by Jeff.
->      2. patch #2: remove unnecessary initializer in
-> ath11k_mac_setup_bcn_p2p_ie() and change judgement for P2P GO.
->      3. patch #3: verify the validity of descriptors number and remove
-> blank line.
->      4. patch #5: change scan flag filter before
-> ath11k_wmi_send_scan_start_cmd().
-> 
-> Kang Yang (6):
->    wifi: ath11k: change interface combination for P2P mode
->    wifi: ath11k: add P2P IE in beacon template
->    wifi: ath11k: implement handling of P2P NoA event
->    wifi: ath11k: change WLAN_SCAN_PARAMS_MAX_IE_LEN from 256 to 512
->    wifi: ath11k: change scan flag scan_f_filter_prb_req for
->      QCA6390/WCN6855/QCA2066
->    wifi: ath11k: advertise P2P dev support for QCA6390/WCN6855/QCA2066
-> 
->   drivers/net/wireless/ath/ath11k/Makefile |   3 +-
->   drivers/net/wireless/ath/ath11k/core.c   |  20 ++-
->   drivers/net/wireless/ath/ath11k/mac.c    | 166 ++++++++++++++++++-----
->   drivers/net/wireless/ath/ath11k/p2p.c    | 149 ++++++++++++++++++++
->   drivers/net/wireless/ath/ath11k/p2p.h    |  22 +++
->   drivers/net/wireless/ath/ath11k/wmi.c    | 107 ++++++++++++++-
->   drivers/net/wireless/ath/ath11k/wmi.h    |  42 +++++-
->   7 files changed, 471 insertions(+), 38 deletions(-)
->   create mode 100644 drivers/net/wireless/ath/ath11k/p2p.c
->   create mode 100644 drivers/net/wireless/ath/ath11k/p2p.h
-> 
-> 
-> base-commit: c39a5cfa0448f3afbee78373f16d87815a674f11
+No. Either remove his signed off by (as indicated by Kalle) or add a
+co-developed-by tag. Keeping just a signed-off-by tag is wrong.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
