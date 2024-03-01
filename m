@@ -4,90 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 498B6C5475B
-	for <ath11k@archiver.kernel.org>; Fri,  1 Mar 2024 12:26:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21FDBC5478C
+	for <ath11k@archiver.kernel.org>; Fri,  1 Mar 2024 16:16:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=n4vy0ssj1y9OKJx6whcKaZP2Wd8dgYFve24tfX8P7n0=; b=CECkYK2Yq/TuAc2+l/pBHKuTsS
-	PM3KPkWjmYvWjoJdlmiur/xBGfeiS8/3OhHxLNwJJ1N+eXdFruzV/FtUyVaQ/ilnaMo62hK0eFS+x
-	on8phHC5vINMUmJ6qe9muRqMbPio9lBzo9S3yt/tuHuvca9m0tAb5jHMWt1zCqmjQ2dCJ+kASewzY
-	NetcWk5tRlC0AtX0pOV7phCuKleiXSy79m/Y/hXmux2+C4rjWiKHWSOrxN5QLR97pihVyAY9E2jOk
-	2e/Ng9/p46+it2V38G4YrpF8J0EDb5SirL35ukaAyVakEg5TRcyOGhcLUdv9E26apebnQ8u5lxEa4
-	YtoDUFjQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=P9oSbjYVwwJViyUns6YHVbiAEOcSyvonOUoUVWmngIM=; b=cPVRU9UUOAKiY5kZjEsq1pZvdJ
+	ndraZS3yAic8zNESoVLBkbfqNfa6ZrZdDZGJPOu9iwwuPjgKjk47i3Y7dwcROj2BbOjD8Ui0OYE3e
+	6EepDTZuT6KWfT+1qf69UmoY2YB3lbovtR1wWOtiQ7029CUhMbFviDgWx5HjIVhamnl8RgkeuZoZs
+	UU3C/7HjOZt485zSvp3QU2HfaXE8jkceyX5GnGaNkCjeI1uCsgGllVd5E3eHMwwheyzo6OxhxiuvI
+	3XH29hGi6yFMaTWqmVUznRQelKQu8MpaSRYRrVWWeR94cD7SDKS4lV19WDpPo4WTaf8Rjpoc/w7JM
+	jlqVNJtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rg1xp-000000009ND-3T3D;
-	Fri, 01 Mar 2024 12:26:09 +0000
-Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
+	id 1rg5Yh-000000013FJ-3mUF;
+	Fri, 01 Mar 2024 16:16:27 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rg1xn-000000009LS-2BMJ
+	id 1rg5Yf-000000013Ei-1wCz
 	for ath11k@lists.infradead.org;
-	Fri, 01 Mar 2024 12:26:09 +0000
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6e5b1c6daa3so740550b3a.1
-        for <ath11k@lists.infradead.org>; Fri, 01 Mar 2024 04:26:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709295965; x=1709900765; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=n4vy0ssj1y9OKJx6whcKaZP2Wd8dgYFve24tfX8P7n0=;
-        b=vgdKBs0Wql+lU0308aYOG7AmGJwzcKkAGOY/JgxImkf/OnU7v0LzT/F+l7zHEogIrH
-         bLBUsbbXX+v3A7VvdMeMFajptt3b574hDGzoT9DslwrqngdEzJJxQxs8MqTgKrqMG9nR
-         6DkxE+FIXlE/fnNq6/Y+FB/XXTbVhNlC6nmfCCLZ5Xh3Z8mF57PCNS10XxPz36TGVL7y
-         RN77Iicb1YLq0F3Rds09711s3MgiFm4o1AEAbbNv2vFe+QlnwNBZ4FRNMeADJAlOGuq7
-         N5HcxIzg63C+4/S9FFm437HxcfOB6uhUV2k3luSwqN7MrzBgGRMEGtcj11rY9EsMHqXf
-         Z9aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709295965; x=1709900765;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n4vy0ssj1y9OKJx6whcKaZP2Wd8dgYFve24tfX8P7n0=;
-        b=FirpUWe1DafyHVHK3xzQwyf2G0V/7jTlF/cDyJd+2M0Pgv6yNYK/PuMMJ8uRWtod9y
-         QLmcsggHPNgDl6ERuJMGfSnazKYmkRRrTHMhVV7IslT6m4pLzYQMsfiFStP5VJ7uA0Kj
-         vnCH5U/EDpAPGxfIoIHbsbF+IrY/RGPe0cNU0ZWc2vB8nBK39skv82fk+cnbfWjInNw4
-         xMxMbQGPtg8Idk1SySyoMz+uT6GNskWflKlsmh53xcEP2fA1//xG70Yry8PMRaFUpXwQ
-         7v7xHRdGFIJTLHk4/6QXKsCeGqrxfTAGq7SCcFHGmrg5TrByilpPJlWdgQFDW7zMiiDM
-         smgA==
-X-Forwarded-Encrypted: i=1; AJvYcCWwIb2G3pZ7Hv0rj34YV0Q75M44+FRDhd4VdzuhUfOEMgsVwHf8JaLC2o9MCTmLc9XXHcC00+9sQD7kwV19C9+cmIi1RrqxfwqHkw==
-X-Gm-Message-State: AOJu0Yxc0SWFezJsjqitd+e+J4t6pocIo3RJZ60FSXZe00/PydQrqZnk
-	iTXACPFYkU0e6/wrzvJ8JoZfLfsTFSDs3CBPN33cHgKW8WM7CyHMl1Ows/mk7A==
-X-Google-Smtp-Source: AGHT+IHDbZOb0MqU0lNgT6Ylu5XAVO9Rkznovko5WeZRWLmmdsVhJISyuzq0BMbPgmlDmT83+wLDug==
-X-Received: by 2002:a05:6a20:4327:b0:1a0:6856:d12c with SMTP id h39-20020a056a20432700b001a06856d12cmr1584913pzk.18.1709295965331;
-        Fri, 01 Mar 2024 04:26:05 -0800 (PST)
-Received: from thinkpad ([2409:40f4:13:3cbc:2484:3780:dcff:ebcf])
-        by smtp.gmail.com with ESMTPSA id p12-20020aa7860c000000b006e50e79f155sm2834437pfn.60.2024.03.01.04.26.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Mar 2024 04:26:04 -0800 (PST)
-Date: Fri, 1 Mar 2024 17:55:59 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Kalle Valo <kvalo@kernel.org>,
-	"Kalle Valo (QUIC)" <quic_kvalo@quicinc.com>,
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, netdev@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] bus: mhi: host: add mhi_power_down_keep_dev()
-Message-ID: <20240301122559.GB2401@thinkpad>
-References: <20240228022243.17762-1-quic_bqiang@quicinc.com>
- <20240228022243.17762-2-quic_bqiang@quicinc.com>
- <20240229101202.GB2999@thinkpad>
- <531daaa9-cf14-4812-8908-c617bd25bc08@quicinc.com>
- <87le7383nd.fsf@kernel.org>
- <b5b3f46d-ad98-44e5-84e0-7b00fe29ec5a@quicinc.com>
+	Fri, 01 Mar 2024 16:16:26 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 421B1LP3023563;
+	Fri, 1 Mar 2024 16:16:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=P9oSbjYVwwJViyUns6YHVbiAEOcSyvonOUoUVWmngIM=; b=bG
+	5ygqzjSrP3tQctJO7k8jkDe/SqI7BGpb7WxC3jv5dLahF1+RR6UPuK6u/nS3E0t5
+	3n71gKIOjfvMvSAJupo3VXM0b4oXBeGA0s9vBJu0I7mLzTPL3SmqFM/5oge1CxBF
+	aKpKBPRYbomP95MIbUG+6YNDQS0jPTu4i9ux//rNmOD6xUgqqMksumWGqSklYXEE
+	xHb4CH1ogq1jTJs+Og4JkeYfqcTLiIKJTrwQAw4D0BwsI16xSO7rdzN1/LxjpRWR
+	L06nDaXuxgG7KA0n53DJMaIrEcES+tcw7KGML5GkihwbvpNoovUYIXnkhBJvKvvy
+	mP0URZ2X5raYPFyrmVdw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wk9mf1cvv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Mar 2024 16:16:18 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 421GGHa7015847
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 1 Mar 2024 16:16:17 GMT
+Received: from [10.110.42.209] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 1 Mar
+ 2024 08:16:17 -0800
+Message-ID: <6bdcffce-e657-4990-bd60-5dd67abbb9c9@quicinc.com>
+Date: Fri, 1 Mar 2024 08:16:16 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b5b3f46d-ad98-44e5-84e0-7b00fe29ec5a@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: adjust a comment to reflect reality
+Content-Language: en-US
+To: Kevin Lo <kevlo@kevlo.org>, <ath11k@lists.infradead.org>
+CC: Kalle Valo <kvalo@kernel.org>, <linux-wireless@vger.kernel.org>
+References: <Zd1Muyd8mtA1Hih7@ns.kevlo.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <Zd1Muyd8mtA1Hih7@ns.kevlo.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: H6N7GW0bgFRtuYB6wISkgmCb7NRoJ7Et
+X-Proofpoint-GUID: H6N7GW0bgFRtuYB6wISkgmCb7NRoJ7Et
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-01_17,2024-03-01_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ spamscore=0 clxscore=1011 priorityscore=1501 adultscore=0 impostorscore=0
+ mlxscore=0 mlxlogscore=896 lowpriorityscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2403010135
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240301_042607_585885_003C60AB 
-X-CRM114-Status: GOOD (  28.64  )
+X-CRM114-CacheID: sfid-20240301_081625_676875_61360A10 
+X-CRM114-Status: GOOD (  12.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,66 +97,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Mar 01, 2024 at 10:04:06AM +0800, Baochen Qiang wrote:
+On 2/26/2024 6:45 PM, Kevin Lo wrote:
+> In ath11k_mhi_set_mhictrl_reset(), I observed on QCA6390/QCN9074/WCN6855,
+> MHISTATUS has SYSERR bit always been set after SOC_GLOBAL_RESET.
 > 
-> 
-> On 3/1/2024 3:35 AM, Kalle Valo wrote:
-> > Baochen Qiang <quic_bqiang@quicinc.com> writes:
-> > 
-> > > On 2/29/2024 6:12 PM, Manivannan Sadhasivam wrote:
-> > > > On Wed, Feb 28, 2024 at 10:22:41AM +0800, Baochen Qiang wrote:
-> > > > > ath11k fails to resume:
-> > > > > 
-> > > > > ath11k_pci 0000:06:00.0: timeout while waiting for restart complete
-> > > > > 
-> > > > > This happens because when calling mhi_sync_power_up() the MHI subsystem
-> > > > > eventually calls device_add() from mhi_create_devices() but the device
-> > > > > creation is deferred:
-> > > > > 
-> > > > > mhi mhi0_IPCR: Driver qcom_mhi_qrtr force probe deferral
-> > > > > 
-> > > > > The reason for deferring device creation is explained in dpm_prepare():
-> > > > > 
-> > > > >           /*
-> > > > >            * It is unsafe if probing of devices will happen during suspend or
-> > > > >            * hibernation and system behavior will be unpredictable in this case.
-> > > > >            * So, let's prohibit device's probing here and defer their probes
-> > > > >            * instead. The normal behavior will be restored in dpm_complete().
-> > > > >            */
-> > > > > 
-> > > > > Because the device probe is deferred, the qcom_mhi_qrtr_probe() is not
-> > > > > called and thus MHI channels are not prepared:
-> > > > > 
-> > > > > So what this means that QRTR is not delivering messages and the QMI connection
-> > > > > is not working between ath11k and the firmware, resulting a failure in firmware
-> > > > > initialization.
-> > > > > 
-> > > > > To fix this add new function mhi_power_down_keep_dev() which doesn't destroy
-> > > > > the devices for channels during power down. This way we avoid probe defer issue
-> > > > > and finally can get ath11k hibernation working with the following patches.
-> > > > > 
-> > > > > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> > > > > 
-> > > > > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> > > > 
-> > > > Did Kalle co-author this patch? If so, his Co-developed-by tag should
-> > > > be added.
-> > > 
-> > > Hmm, I'm not sure...  I would like Kalle's thoughts on this.
-> > 
-> > IIRC I did only some simple cleanup before submitting the patch so I
-> > don't think Co-developed-by is justified. I'm also fine with removing my
-> > Signed-off-by.
-> Thanks Kalle.
-> 
-> Hi Mani, so according to Kalle's comments, I'd like to keep the patch as is.
-> 
+> Signed-off-by: Kevin Lo <kevlo@kevlo.org>
+> ---
+> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+> index 3de7fa6f88d0..1198e80d9dff 100644
+> --- a/drivers/net/wireless/ath/ath11k/mhi.c
+> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
+> @@ -158,8 +158,8 @@ void ath11k_mhi_set_mhictrl_reset(struct ath11k_base *ab)
+>  
+>  	ath11k_dbg(ab, ATH11K_DBG_PCI, "mhistatus 0x%x\n", val);
+>  
+> -	/* Observed on QCA6390 that after SOC_GLOBAL_RESET, MHISTATUS
+> -	 * has SYSERR bit set and thus need to set MHICTRL_RESET
+> +	/* After SOC_GLOBAL_RESET, MHISTATUS has SYSERR bit
+> +	 * always been set and thus need to set MHICTRL_RESET
+>  	 * to clear SYSERR.
+>  	 */
+>  	ath11k_pcic_write32(ab, MHICTRL, MHICTRL_RESET_MASK);
 
-No. Either remove his signed off by (as indicated by Kalle) or add a
-co-developed-by tag. Keeping just a signed-off-by tag is wrong.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Unless you've verified this is always true for every supported chipset
+I'd rather more accurately say something like:
+After SOC_GLOBAL_RESET, MHISTATUS may still have SYSERR bit set and thus...
 
