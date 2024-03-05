@@ -4,86 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D5ACC5478C
-	for <ath11k@archiver.kernel.org>; Mon,  4 Mar 2024 15:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC3CFC48BF6
+	for <ath11k@archiver.kernel.org>; Tue,  5 Mar 2024 02:13:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/d3O2flMmIfwl8AcHFH2F11T5Q0WP2/Z4oV+r+V5GkE=; b=H6FHoEpF4WXnsE1IDxbcOqkxkt
-	T5A3ze8MCAqvkc14qBJE0ZPQW8zcVYxhzyqT78w6bg5k3Nfzgo0PpiZTIgE/+INxU3tdu96ffa1MG
-	KJOBBf6xNP6/Aj2M9LFEDOLaD9c46ogF2oCeWZRGdmfbWe7YbHDbbNY8jgbC2wh9cqON05DpltArY
-	SlFENABOj0n++kfoxmELkxOlfRKtehD1zT07HhIU73+G4fvB5PkMuaZSkthbGCFnk1+KXO/qhyzA0
-	bC/VXmsZN1v/VZCeCFJ8wAgC73nV+PYE+89N8YWfqZLzRPDPyStc27aqFMqmpMPPmVfzIKiZrwghv
-	kJFe9SXw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=dCzFLTUTEiYo4M/JEgFhJfKqhgtEMAvYsFn2UQ1ru7c=; b=tTrsPlRwEH2ab20+FNlp9CBwfy
+	JZcFX5xVUQE8Ob4r2vrxBZLPtU6VDMaEzbYFpHa61NBcmqbzR/eop25S7z2zD0YF6mMrWeUGAnAxl
+	6DPxH+wylTp3IdpvouNGiPRybQTa5arsOoNk7KgvUxXeqCUFAEKjN4ven2IWkNTmoA/JARkFbFP5S
+	a0lsGsjPt4HcVch+U6XTCgKHcFVeHv7tnhQr11f1MYnN7/WOuowfGh/VTnXmqtL7adTUeTBApV5hp
+	OIg8E0pXNX4amHntQg1RDwsf8Iac3FGRhyAzkY46R0H0XbpUne5eTR02IpZXNO3HdzXllOXH1HLHi
+	LYIGpsIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhAWZ-00000009g97-3vXl;
-	Mon, 04 Mar 2024 15:46:43 +0000
+	id 1rhKJN-0000000BWJK-2kI2;
+	Tue, 05 Mar 2024 02:13:45 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhAWW-00000009g88-2pN9
+	id 1rhKJI-0000000BWIH-2xEp
 	for ath11k@lists.infradead.org;
-	Mon, 04 Mar 2024 15:46:41 +0000
+	Tue, 05 Mar 2024 02:13:43 +0000
 Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 424DLlq8008602;
-	Mon, 4 Mar 2024 15:46:36 GMT
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42510D6A002006;
+	Tue, 5 Mar 2024 02:13:33 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=/d3O2flMmIfwl8AcHFH2F11T5Q0WP2/Z4oV+r+V5GkE=; b=Le
-	1nvCTFU9L9ZULmC3QVtDBJbUkhuR0o+/qnPGJK8A+R0Sf1G1tLUTqDI8TftjJnp2
-	81T+JDQQuwuE5paTRl1Gqz8SJ0N1PEcxTGw1uMRlgqoOWh/cKGOoETq/pV0vz6iF
-	0g+K4E1BT/SJE77XQxApYpB66odk7xxQ/E9YIxFI8kTNFL+m96fMduJF0AfJMt9i
-	a18JY37cq8BfuM4Ov3QdkW6kinBDN67kYeXAhuY3zpBbZchHIaWcb0RMPAGghLYJ
-	8jVPHchJRF1yEVUzVo0S3HwlKaurtajNzknTp0ikrnQ5V6MO2H/xkZHrviofN+uQ
-	WZT3QdGlxbdlM3s7br3w==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wnarj0v6c-1
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=dCzFLTU
+	TEiYo4M/JEgFhJfKqhgtEMAvYsFn2UQ1ru7c=; b=SyAId4ZDIaclVwqaQc/rvp6
+	AwxQOid2YCrCw1lhP4Salqn/eGzscA0Zql05AHURJG46ry+U/oFCLn3+EQYx1dpZ
+	Snc6RY74JksTer5R5S9hboinzUfLTLYngaK9dXqAERj6Wns27d7ei0krmKSKR8gw
+	cL60LxfYtsKLM5neQFTY2GYwgX5zJnTemy6QVsU3iqnPelNNrNDPRJdESEivrn94
+	gOiff9pbmdO7VKlyXAeRJPTFlr2XXXzQVRt2UU9dnGqQ5JmESUPRjUp8jEqvt1r3
+	sOYZpjeMwa+rlMu4ZDZPkLWpq+BB1v4KKmMPb56urPWsgTX5igdo2ZhUbjfByGw=
+	=
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wnarj23et-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Mar 2024 15:46:35 +0000 (GMT)
+	Tue, 05 Mar 2024 02:13:33 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 424FkZQo031536
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4252DWdf023741
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Mar 2024 15:46:35 GMT
-Received: from [10.110.86.150] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 4 Mar
- 2024 07:46:34 -0800
-Message-ID: <7d1800b1-276f-4426-b8d8-f6cef4545913@quicinc.com>
-Date: Mon, 4 Mar 2024 07:46:33 -0800
+	Tue, 5 Mar 2024 02:13:32 GMT
+Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 4 Mar 2024 18:13:30 -0800
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>, <manivannan.sadhasivam@linaro.org>
+CC: <linux-wireless@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <mhi@lists.linux.dev>, <quic_bqiang@quicinc.com>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <netdev@vger.kernel.org>
+Subject: [PATCH v7 0/3] wifi: ath11k: hibernation support
+Date: Tue, 5 Mar 2024 10:13:17 +0800
+Message-ID: <20240305021320.3367-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] wifi: ath11k: adjust a comment to reflect reality
-Content-Language: en-US
-To: Kevin Lo <kevlo@kevlo.org>, <ath11k@lists.infradead.org>
-CC: Kalle Valo <kvalo@kernel.org>, <linux-wireless@vger.kernel.org>
-References: <ZeWEqGVibkMg2APi@ns.kevlo.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <ZeWEqGVibkMg2APi@ns.kevlo.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LsQmatgkR3UfJg280viOPmi-FFU6oOnL
-X-Proofpoint-GUID: LsQmatgkR3UfJg280viOPmi-FFU6oOnL
+X-Proofpoint-ORIG-GUID: D_zV4LcTcGJOhPtel2aaVglDu0pPevEG
+X-Proofpoint-GUID: D_zV4LcTcGJOhPtel2aaVglDu0pPevEG
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-04_11,2024-03-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=815 adultscore=0
+ definitions=2024-03-04_20,2024-03-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=995 adultscore=0
  spamscore=0 impostorscore=0 mlxscore=0 malwarescore=0 phishscore=0
  suspectscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
  lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403040120
+ engine=8.19.0-2402120000 definitions=main-2403050015
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240304_074640_771228_9EB859F2 
-X-CRM114-Status: UNSURE (   9.42  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240304_181340_785940_D4847424 
+X-CRM114-Status: GOOD (  21.84  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,23 +97,105 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/4/2024 12:22 AM, Kevin Lo wrote:
-> On QCA6390/QCN9074/WCN6855, MHISTATUS may still have SYSERR bit set
-> after SOC_GLOBAL_RESET.
-> 
-> changes for v2:
-> - update comment about resetting MHICTRL to clear SYSERR
+Currently in ath11k we keep the firmware running on the WLAN device when the
+network interface (wlan0) is down. The problem is that this will break
+hibernation, obviously the firmware can't be running after the whole system is
+powered off. To power down the ath11k firmware for suspend/hibernation some
+changes both in MHI subsystem and ath11k are needed.
 
-for future reference the version log should not be part of the commit text
-> 
-> Signed-off-by: Kevin Lo <kevlo@kevlo.org>
-> --- 
+This patchset fixes a longstanding bug report about broken hibernation support:
 
-the version log goes here, after the --- ("after the cut")
+https://bugzilla.kernel.org/show_bug.cgi?id=214649
 
-but no need to send another version -- Kalle can fix this when he pulls
-into the pending branch.
+There already is an RFC version which has been tested by multiple users with
+positive results:
 
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+https://patchwork.kernel.org/project/linux-wireless/cover/20231127162022.518834-1-kvalo@kernel.or
+
+Basically the RFC version adds two APIs to MHI stack: with the first one ath11k
+is able to keep MHI devices when going to suspend/hibernation, getting us rid of
+the probe deferral issue when resume back. while with the second one ath11k could
+manually prepare/unprepare MHI channels by itself, which is needed because QRTR
+doesn't probe those channels automatically in this case.
+
+Mani, the MHI maintainer, firstly doesn't like that version and insists that an
+MHI device should be destroyed when suspend/hibernation, according to his
+understanding on device driver model. See
+
+https://lore.kernel.org/mhi/20231127162022.518834-1-kvalo@kernel.org/
+
+After a long discussion Mani thought we might need a new PM callback with which
+ath11k is able to wait until kernel unblocks device probe and thus MHI channels
+get probed. So we came to the kernel PM list and there Mani realized that his
+understanding is not correct so he finally agrees to keep MHI device during
+suspend/hibernation. See
+
+https://lore.kernel.org/all/21cd2098-97e1-4947-a5bb-a97582902ead@quicinc.com/
+
+Mani also pointed out that an MHI controller driver (ath11k here) should not touch
+MHI channels directly because those channels are managed by the corresponding MHI
+client driver (QRTR here). To address this, we come up with this version.
+
+Compared with that RFC version, this version adds PM callbacks in QRTR module:
+suspend callback unprepares MHI channels during suspend and resume callback
+prepares those channels during resume. In this way ath11k doesn't need to do
+unprepare/prepare work by itself so those two APIs added in RFC version are
+removed now.
+
+The power down/up procedure requires a specific sequence in which PM callbacks
+of wiphy, ath11k and QRTR are called, this is achieved by exploiting the
+child-father relationship between their device struct, and also the PM framework
+which separates whole suspend/resume process into several stages. Details in
+patch [3/3].
+
+v7:
+ - remove Kalle's s-o-b tag in patch 3/3.
+
+v6:
+ - add 'Reviewed-by' tags.
+ - s/signle/single/
+
+v5:
+ - remove Kalle's s-o-b tag in patch 1/3 per Mani.
+
+v4:
+ - resend v3 as v4 to CC netdev folks. No changes in patches themselves.
+
+v3:
+ - skip QRTR suspend/resume if MHI device is found to be in suspend state.
+
+v2:
+ - add comment on why destroying the device is optional in
+   mhi_pm_disable_transition().
+ - rename mhi_power_down_no_destroy() as mhi_power_down_keep_dev().
+ - refine API description of mhi_power_down() and
+   mhi_power_down_keep_dev().
+ - add/remove __maybe_unused to QRTR PM callbacks.
+ - remove '#ifdef CONFIG_PM'.
+ - refine commit log of patch 1/3 and 2/3.
+
+Baochen Qiang (3):
+  bus: mhi: host: add mhi_power_down_keep_dev()
+  net: qrtr: support suspend/hibernation
+  wifi: ath11k: support hibernation
+
+ drivers/bus/mhi/host/internal.h        |   4 +-
+ drivers/bus/mhi/host/pm.c              |  42 ++++++++--
+ drivers/net/wireless/ath/ath11k/ahb.c  |   6 +-
+ drivers/net/wireless/ath/ath11k/core.c | 107 +++++++++++++++++--------
+ drivers/net/wireless/ath/ath11k/core.h |   6 +-
+ drivers/net/wireless/ath/ath11k/hif.h  |  14 +++-
+ drivers/net/wireless/ath/ath11k/mhi.c  |  12 ++-
+ drivers/net/wireless/ath/ath11k/mhi.h  |   5 +-
+ drivers/net/wireless/ath/ath11k/pci.c  |  44 ++++++++--
+ drivers/net/wireless/ath/ath11k/qmi.c  |   2 +-
+ include/linux/mhi.h                    |  18 ++++-
+ net/qrtr/mhi.c                         |  46 +++++++++++
+ 12 files changed, 245 insertions(+), 61 deletions(-)
+
+
+base-commit: 48294c8a226d82c687b52b2eb90a075bbfbcb884
+-- 
+2.25.1
 
 
