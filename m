@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB51AC54E41
-	for <ath11k@archiver.kernel.org>; Tue,  5 Mar 2024 18:58:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFC3C5475B
+	for <ath11k@archiver.kernel.org>; Wed,  6 Mar 2024 09:14:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=wlDKxbR41RHpafnkeoIXHYJzElj6gfNZseg/jVQU1qM=; b=vXS1vEvrnSCO2PGZ3JG2Jdyxga
-	Qhlpe/PFtA24ePFiv5Rt5aE/KpUu4STp5fDXtR6+cGA1am1B3RGGrurG8l8kpQVOMKDt6aGmV9Kph
-	GEH9Wo1jLSiBLjE+4OAariuShf5lDfx1yvXWXMnzYT/eaXmGb5Z5L23qVqUtv4WMPFOMuiKgh5Cpv
-	PvM2HuQvvXsXspQGcfDpEIuf3Rt17uGjX6bmXgfIkNo7Pa3coEpl0G/Gaex3mpgCLIeulX2+LN6mh
-	cyyszJIfWuR80CdILOrV1QQU7ketPhgicbxfuIRkYqi3Ms/dicdoEfL3HAURkWjWThe5TvBJ85cBJ
-	F0ni12jg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=6YYuWoCN0IcagVV+yInHVUfCTIAibJUfY1G809E120o=; b=otonQIdzCuH2ZvnOMw3uej97pc
+	4AGAkM/pCvNT31QZxU4YLFNBau/HKNR0cvVxJ8HxAHbMXxNvgJnPz74S3l8fDqFI46vYCFzb2Gy68
+	XyIM4YwnQsnRW5tzpTnV1MlrPKdFPm49Zqn/IR/wCP3/Ak80erv/yRmXN8zMXxRnPWq3/RSZbcaL9
+	UoEYFJ2yV7GZl6X0xOtwP/2jrvOFusGP19b63nU4DrXLA9X1Jo/glZo0o1OaX9YTaqhTyRU8EFhLp
+	bjE94KF9HfJSZMefGwGNGvcRU0kucF7fFQBkVevl2jf6sDWVgznXhmaG4SVlz5uYKsisgK/ErkrW9
+	wd9hphUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhZzK-0000000EwOx-0YLM;
-	Tue, 05 Mar 2024 18:58:06 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1rhnLp-0000000H6gr-39os;
+	Wed, 06 Mar 2024 09:14:13 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rhZzF-0000000EwMa-3hK8;
-	Tue, 05 Mar 2024 18:58:04 +0000
+	id 1rhnLm-0000000H6el-1By2
+	for ath11k@lists.infradead.org;
+	Wed, 06 Mar 2024 09:14:12 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id CE2EBCE1DF9;
-	Tue,  5 Mar 2024 18:57:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C184AC433C7;
-	Tue,  5 Mar 2024 18:57:57 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 67EE9CE20A4;
+	Wed,  6 Mar 2024 09:14:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF40BC433C7;
+	Wed,  6 Mar 2024 09:14:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709665079;
-	bh=h+7wf7RO/SXTi2xMW6pf3osdjV68Mp9fLkZgtd5hih4=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=LKU15OYndlqoUpe+hKbrfJ+mvdmFeEfKbMIH2ClOwkKJuKlBXYCS7evt4I4h4iluW
-	 x9V8B2ML55oWp3wsx1J85622naSoN2ulNMWAuCZojtCtPOSXHed17mjJrqnsUcozuo
-	 12u/OOjR+nVThUMzmVOaVpbHtZNwpUoNF8wzJbDsKmmN/ZQRoxaQ4VSFULd3SS/TtY
-	 eVs8sVrGwQ/fkXTmUb2sVMAC8FYgPTskbQc4Dr8UEaCkoS1U7DYFx85oaOfFzkFElJ
-	 uwQcsv3YwPWGDuPD9KGAAE++OIBikYYBWSwQjGrAqkN3oZ2bpbl0ak+clYN8rNFX9i
-	 1J5HV0NAwB8tg==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: pull-request: ath-next-20240305
+	s=k20201202; t=1709716446;
+	bh=gYzMZ/+cPGxLTP+zBtocfjmFMnBIyF7p6unjEf2f0y8=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=FHJZmM/hFT9X8RegrSI675wAQbs7xeT42clmaFOuipTPm3V1AmBXcOMCixkUdLcNE
+	 yCF4YPDIV6PVYIn3yTr5jS/n5TJ6mw5E04Rq9YkIaq1u6mfaI4k1ZnM/km7uu3Ml8T
+	 J8qq3AqIIMsCAWtoIFcPrT84zRaWRGYn039/mIvN9/Ktm1VwngaIyCJJwFVtxktrIF
+	 SP88lpHnkApEJGODAy2tFSzmZsEqGDPPL6TUXfuQsCGbGdTckZbcns1y1GPSARoBSq
+	 7tD/5hklgUWtdKFFcLfER366i9SFJxLY/e/ucY7kRHo/iWT8/i3FyRtO2opmAwYbnT
+	 cYaLoCVvsO0WA==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <87y1awh8kj.fsf@kernel.org>
-References: <87y1awh8kj.fsf@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org, ath12k@lists.infradead.org,
- quic_jjohnson@quicinc.com
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <170966507585.424347.4426290600622256900.kvalo@kernel.org>
-Date: Tue,  5 Mar 2024 18:57:57 +0000 (UTC)
+To: Kevin Lo <kevlo@kevlo.org>
+Cc: ath11k@lists.infradead.org,  Jeff Johnson <quic_jjohnson@quicinc.com>,
+  linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v2] wifi: ath11k: adjust a comment to reflect reality
+References: <ZeWEqGVibkMg2APi@ns.kevlo.org>
+Date: Wed, 06 Mar 2024 11:14:03 +0200
+In-Reply-To: <ZeWEqGVibkMg2APi@ns.kevlo.org> (Kevin Lo's message of "Mon, 4
+	Mar 2024 16:22:00 +0800")
+Message-ID: <87le6vhgdg.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240305_105802_307696_33A8A3A1 
-X-CRM114-Status: GOOD (  12.17  )
+X-CRM114-CacheID: sfid-20240306_011410_520987_14D291FE 
+X-CRM114-Status: UNSURE (   7.10  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,72 +73,23 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> wrote:
+Kevin Lo <kevlo@kevlo.org> writes:
 
-> Hi,
-> 
-> Please pull, more information in the tag below.
-> 
-> Kalle
-> 
-> 
-> The following changes since commit a4634aa71fee11f5e3e13bf7d80ee1480a64ce70:
-> 
->   bonding: rate-limit bonding driver inspect messages (2024-02-22 19:13:18 -0800)
-> 
-> are available in the Git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git tags/ath-next-20240305
-> 
-> for you to fetch changes up to 776c9c93bb0511d04e6222546499e5ea20ad51b0:
-> 
->   wifi: ath12k: fix license in p2p.c and p2p.h (2024-02-28 16:09:29 +0200)
-> 
-> ----------------------------------------------------------------
-> ath.git patches for v6.9
-> 
-> Only some minor cleanup in ath11k and ath12k. Adding Jeff as the
-> maintainer for ath10k, ath11k and ath12k DT bindings.
-> 
-> ----------------------------------------------------------------
-> Baochen Qiang (5):
->       wifi: ath11k: rearrange IRQ enable/disable in reset path
->       wifi: ath11k: remove MHI LOOPBACK channels
->       wifi: ath11k: do not dump SRNG statistics during resume
->       wifi: ath11k: fix warning on DMA ring capabilities event
->       wifi: ath11k: decrease MHI channel buffer length to 8KB
-> 
-> Jeff Johnson (2):
->       dt-bindings: net: wireless: qcom: Update maintainers
->       wifi: ath11k: constify MHI channel and controller configs
-> 
-> Kalle Valo (2):
->       wifi: ath11k: thermal: don't try to register multiple times
->       wifi: ath12k: fix license in p2p.c and p2p.h
-> 
-> Kang Yang (1):
->       wifi: ath12k: add rcu lock for ath12k_wmi_p2p_noa_event()
-> 
->  .../bindings/net/wireless/qcom,ath10k.yaml         |  1 +
->  .../bindings/net/wireless/qcom,ath11k-pci.yaml     |  1 +
->  .../bindings/net/wireless/qcom,ath11k.yaml         |  1 +
->  drivers/net/wireless/ath/ath11k/core.c             |  8 ++-
->  drivers/net/wireless/ath/ath11k/mhi.c              | 68 ++--------------------
->  drivers/net/wireless/ath/ath11k/qmi.c              |  5 +-
->  drivers/net/wireless/ath/ath11k/thermal.c          |  5 +-
->  drivers/net/wireless/ath/ath11k/wmi.c              |  3 +-
->  drivers/net/wireless/ath/ath12k/p2p.c              |  2 +-
->  drivers/net/wireless/ath/ath12k/p2p.h              |  2 +-
->  drivers/net/wireless/ath/ath12k/wmi.c              |  5 +-
->  11 files changed, 29 insertions(+), 72 deletions(-)
+> On QCA6390/QCN9074/WCN6855, MHISTATUS may still have SYSERR bit set
+> after SOC_GLOBAL_RESET.
+>
+> changes for v2:
+> - update comment about resetting MHICTRL to clear SYSERR
+>
+> Signed-off-by: Kevin Lo <kevlo@kevlo.org>
 
-Pulled, thanks.
+This didn't apply and I manually edited the patch. I also removed the
+changelog from the commit message, please check my changes:
 
-f654e228ed6b Merge tag 'ath-next-20240305' of git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=709cd1c88a11bc1969cf573575b0a2027e720146
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/87y1awh8kj.fsf@kernel.org/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
