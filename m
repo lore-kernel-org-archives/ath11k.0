@@ -4,79 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78098C54E49
-	for <ath11k@archiver.kernel.org>; Thu,  7 Mar 2024 08:39:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15535C54798
+	for <ath11k@archiver.kernel.org>; Thu,  7 Mar 2024 16:49:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=hS8zu4sRYSZWgtYsgxH06GASLmu07y/0dobyT5SPg6U=; b=WGFJM8X2v8IEquSBHeCbQ9m8cL
-	bmWzdjcfXGZsADBF6VDGWkbt0aXPUaZqBl9Tzk7caqsBEES4PD/Qnt07GRNKwxlAl7BpX3OOfcjRu
-	C7kHY0qzmRQzqc0Mft5UNHWLiKnQjMNobhJ0yfYEmQky+ZRtunXNQOom+BF3cHbVLQMybCuIBzNH0
-	GROT6rpUigbRVsYoUyLmWSdy1I3o4bQHRQMDwptL8gxGJbGd47AMgHHjhRLzdpKwNrupIfPLuVkT+
-	DPmzsvahxsXMEBlVJWLtLk6o3jQqxyCrcuMV18ghzZQYP0UmfL13nx5jQre1PJGDn3yvOoOBXHAGi
-	ah5fEz/w==;
+	bh=J8Lo61HZVMQ6CigBjAy14gesjPzmknIZL6TU+MMbkpw=; b=L9wWppAGctJ2V49n+g46e2wWvp
+	+cQuYRG1zvieOUS69LlZqZbVI0br8zL2kJuoCtc6EavAJgc7+s0AnF63nEkrLozmsZYvPAXKO2ehZ
+	W3qpHD6B0FzABogoAIbz03iJfaX3lqerKR0yGbkQz7I/yj4YpXsgPKSDv9XssgdKf3WSUuFl97kFd
+	pJKXLdytLpMgNoH03jqkfuqlz7NzEGER0lcNbLrA3bTuqaYx3WarNaVq9o+Y5g0zQf2/IYl5gAqME
+	IKNr1B5pUGF+B8vYNy2WKFgSKj5RW7BjgS9Q66rT1OfJplxZKulgHswwQjrM5i/1iDb1BN7YI9UI5
+	Ed60DhIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ri9I4-00000003g11-2ieB;
-	Thu, 07 Mar 2024 08:39:48 +0000
-Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
+	id 1riGvv-00000005Ynl-2oOl;
+	Thu, 07 Mar 2024 16:49:27 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ri9Hy-00000003fui-07cD
-	for ath11k@lists.infradead.org;
-	Thu, 07 Mar 2024 08:39:45 +0000
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-29b7b9a4908so357963a91.1
-        for <ath11k@lists.infradead.org>; Thu, 07 Mar 2024 00:39:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1709800777; x=1710405577; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hS8zu4sRYSZWgtYsgxH06GASLmu07y/0dobyT5SPg6U=;
-        b=z5EiG5Mq0lq8UGHnfrMqW4ho0okN8NmRb49Z4buhbFK44YcYF2JhhgcelDTtfWxJAW
-         /4myXWJilF8BLblNPIrlmNA7JiShGyxtxkyjYIUBCRyLY/2UpR4MFPoqipiWjIHfQyjV
-         aITcoKD+DInXaCxU8sUUnKpxqTE7sCbzNCZMO4t+BXzRoGdF3l4x+/mnmJR9LR6agTiE
-         iabeX+74YKFfo+oesqpSLbZhAB5sNa1ChNOBwAdlhv50V8UHAK8JuaKm8zwrU2NGt1MO
-         7+dDwCavhxISK3mG0SJwhZD0BnuFojcGCv2wZ29WNguLSk09ispmKxHdbvvV1JIfQLOt
-         mybA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709800777; x=1710405577;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hS8zu4sRYSZWgtYsgxH06GASLmu07y/0dobyT5SPg6U=;
-        b=MRiDbF704LZUBKpB0FtLg8HCLtketnpC6yoFwoUeS4hyNwLpWefgyEA3MAZ9ym6wdp
-         KXoBtVFC1SyPY18FMRJv7AEqzAzAAlicncizuege9mXfcURxOe6GW1IGNs/2UxCKbCb6
-         DrzjPqGYgti5gyadidwWJTmPOaNkrNmLxG9OWBNyB3fcKvXb/JjHqex9QNrSEA9D89si
-         VBwGIldQ1nPHeJgir1huv+0960WJJ/61fIsUIosTI7QPmRq9UTYA8S47M/NdkgaEobKS
-         oxBiZiYWbKSkWolUZdYYFwTny+wM+zCWBddTl3U1CHO6kLIvbs1+Xt6/k6hxqyL3iNST
-         B3jg==
-X-Forwarded-Encrypted: i=1; AJvYcCXvnt5syBDHUfelCfX0T8BNnYaaLGnMslVbu/ko11pdgJvjdZkFlHWwQUTHFiuGfNszgHPGEgh08+NeK2PP5onXfcecPG3rbCQ1vQ==
-X-Gm-Message-State: AOJu0Yy3HyukVRxSJ9Pn5jvu3/FQO5HkrA25Jo51Q46HuSUljptYJpLV
-	tZjFUCeQPAxWFLAys/0ctthZjM+16U902R/t5zdTFzIhdwFbYubhYGHo6twEX0UO2kKaaedB6+j
-	x4LlqrowEuVjrQkYqyBt1+WhF+rBnqT7KU5lCmg==
-X-Google-Smtp-Source: AGHT+IFtYoz85x+BrsyL3WDeniAwghS6EjRoEeJUdL1XSOqljGL47ACIuTJtfbK74x/u65ZmTCLctG2MbKAUjQXLWiY=
-X-Received: by 2002:a17:90a:9b02:b0:299:2807:1eb1 with SMTP id
- f2-20020a17090a9b0200b0029928071eb1mr16879947pjp.34.1709800777227; Thu, 07
- Mar 2024 00:39:37 -0800 (PST)
-MIME-Version: 1.0
-References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
-In-Reply-To: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Thu, 7 Mar 2024 09:39:26 +0100
-Message-ID: <CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
+	id 1riGvr-00000005Yle-43Lb;
+	Thu, 07 Mar 2024 16:49:26 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 4B533CE254A;
+	Thu,  7 Mar 2024 16:49:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35D59C433C7;
+	Thu,  7 Mar 2024 16:49:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709830160;
+	bh=J8Lo61HZVMQ6CigBjAy14gesjPzmknIZL6TU+MMbkpw=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=QYW62JPtlbjaNdp4ECVGkJ/R92sB1uYgsw8YtSqqtPIJrWWTUaMqgncYU/Xcl6Qdg
+	 q+E/YTP/niZh8PQ1bUfa7C6an+ZyBBrN5PGeCI4kRH6Z9Ty4wCgq5ZKNwuAdYWoViL
+	 smamuVhAYvccYBlzg7i3lHddO+H58gtyQDdn1YAYj/SecSDIeY9nfJP1bDdHO3w0Ot
+	 AbvBGodNKr7HF32lbSxWqke+CP+hPrZ2NgAA+AUk/8PrPZWuZ76ALE6hNbQSwMoZ+f
+	 4FCXjB/MqZH3wobQLrtwuZ8IhbN+CVpDnMIZCQBj5664IZRVw0paN4QtTBozfV3v5x
+	 Ewi6zg4fyxiSQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
+ <ath10k@lists.infradead.org>,  ath11k <ath11k@lists.infradead.org>,
+  ath12k <ath12k@lists.infradead.org>,  linux-wireless
+ <linux-wireless@vger.kernel.org>
 Subject: Re: New staging repos for ath1*k firmware
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: ath10k <ath10k@lists.infradead.org>, ath11k <ath11k@lists.infradead.org>, 
-	ath12k <ath12k@lists.infradead.org>, 
-	linux-wireless <linux-wireless@vger.kernel.org>, Kalle Valo <quic_kvalo@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
+	<CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
+Date: Thu, 07 Mar 2024 18:49:17 +0200
+In-Reply-To: <CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
+	(Robert Marko's message of "Thu, 7 Mar 2024 09:39:26 +0100")
+Message-ID: <874jdigf76.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240307_003942_157441_10ED1BEC 
-X-CRM114-Status: GOOD (  18.71  )
+X-CRM114-CacheID: sfid-20240307_084924_499090_033FA623 
+X-CRM114-Status: GOOD (  19.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,62 +75,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 6, 2024 at 8:23=E2=80=AFPM Jeff Johnson <quic_jjohnson@quicinc.=
-com> wrote:
->
-> Historically, prior to being incorporated into the linux-firmware
-> project, firmware for kernel.org ath1*k drivers has been first published
-> to Kalle's GitHub:
-> https://github.com/kvalo/ath10k-firmware
-> https://github.com/kvalo/ath11k-firmware
-> (ath12k firmware was pushed to the ath11k-firmware repo on a temporary
-> basis in anticipation of this move)
->
-> But in order to have repos with multiple maintainers, as well as to have
-> a hosting platform with more control, we have moved to CodeLinaro:
-> https://git.codelinaro.org/clo/ath-firmware/ath10k-firmware
-> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
-> https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware
->
-> Note that most people should not care about this -- normally you should
-> use the firmware that is in the official linux-firmware repo:
-> https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/
->
-> You should only need to access the staging repos if you need a previous
-> version to work around an issue, or if you are testing new firmware that
-> is supposed to fix a problem that you've reported.
->
-> Please let Kalle & I know if you have any issues with these new repos!
+Robert Marko <robert.marko@sartura.hr> writes:
 
-Can I please ask for IPQ6018 firmware to be updated to 2.9.0.1 as well?
-
-We have added IPQ6018 support to OpenWrt but we are forced to use the old 2=
-.4
-firmware since anything newer is crashing on IPQ6018, we had the same issue=
- on
-IPQ8074 but it was fixed with 2.9.0.1 firmware.
-
-Even for IPQ8074, there is newer 2.9.0.1 firmware that is only
-available as part of
-QSDK and the community would benefit from being able to use it.
-
-Ideally, ath11k-firmware would at least contain the same blobs as the QUIC =
-repo:
-https://github.com/quic/upstream-wifi-fw.git
-
-Regards,
-Robert
+> On Wed, Mar 6, 2024 at 8:23=E2=80=AFPM Jeff Johnson <quic_jjohnson@quicin=
+c.com> wrote:
 >
-> /jeff
+>>
+>> Historically, prior to being incorporated into the linux-firmware
+>> project, firmware for kernel.org ath1*k drivers has been first published
+>> to Kalle's GitHub:
+>> https://github.com/kvalo/ath10k-firmware
+>> https://github.com/kvalo/ath11k-firmware
+>> (ath12k firmware was pushed to the ath11k-firmware repo on a temporary
+>> basis in anticipation of this move)
+>>
+>> But in order to have repos with multiple maintainers, as well as to have
+>> a hosting platform with more control, we have moved to CodeLinaro:
+>> https://git.codelinaro.org/clo/ath-firmware/ath10k-firmware
+>> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
+>> https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware
+>>
+>> Note that most people should not care about this -- normally you should
+>> use the firmware that is in the official linux-firmware repo:
+>> https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/
+>>
+>> You should only need to access the staging repos if you need a previous
+>> version to work around an issue, or if you are testing new firmware that
+>> is supposed to fix a problem that you've reported.
+>>
+>> Please let Kalle & I know if you have any issues with these new repos!
 >
+> Can I please ask for IPQ6018 firmware to be updated to 2.9.0.1 as well?
+>
+> We have added IPQ6018 support to OpenWrt but we are forced to use the old=
+ 2.4
+> firmware since anything newer is crashing on IPQ6018, we had the same iss=
+ue on
+> IPQ8074 but it was fixed with 2.9.0.1 firmware.
+>
+> Even for IPQ8074, there is newer 2.9.0.1 firmware that is only
+> available as part of
+> QSDK and the community would benefit from being able to use it.
 
+We are working on getting the AP chipset firmwares updated but
+unfortunately no news yet.
 
 --=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
 
