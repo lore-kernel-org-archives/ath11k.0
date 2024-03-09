@@ -4,83 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD556C54E41
-	for <ath11k@archiver.kernel.org>; Sat,  9 Mar 2024 12:12:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85A64C54E41
+	for <ath11k@archiver.kernel.org>; Sat,  9 Mar 2024 17:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=8spNzfVDYXqnoGqZxoqtSV6/KIyrNwZMnMKRiN9BDlE=; b=tiUUv9vAq37YXcxyUza+by4XqE
-	xMA0eby9wRqEPR6mjxg8r3tzfMa8MUdqSYYOqMlUrCNoAyCPcaefOpMgCScBz16y9un3VqtcPy1OB
-	rrZX2ICar15h/OaF2kuX+Ofv/Yaru29rnGknWo17xzDAc67nfVIlG8lZuUaYgPwd2iL1TS/AvlZeJ
-	N1v+GSHNCbQ79XZtg4DkP71ciHiNHcPz42eLZV7Ije9DOeOUVpcmLNFytxmGbsisnE7PrIHlYpN0v
-	NjtL8/uzaFwpYgwzjXDBe5CzpXWRmsltglzSecAKmvQ9YnGkbaXzlE2OCvpc8V0h6XM5liiKVHuwj
-	cLhcHKLw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=RfEPUE/s2ovA9Fjpc51gZmR3vhNMiXC763Bj0mwC0dY=; b=it6VdjbWrT1ErwcUmQIP4+dPWU
+	Hs/wcgX68AtcEr5XgYOK+6sr1JYb0PyrBnUkjkCCInGxCq6HFYc8gwq9FVWi7O3lUlJrpiYP53q69
+	jT5vPMnVM+A2x1nNsom/m2UYBXF0Sf7Y/orB0zFHaNcP7YZglDI/ftzFadGI5ueE+GFUiQY/8lbxS
+	Du8PIoKi2+S+cvQ1ddjSsY9QvH0lho4bZTIHUruiO0qvB12SEPx8qlft58gVWbX60wL+flgcNrcSz
+	X/TEPj2kkx8otR9nOFT1fx+jClNnlPS0BvDn9rhP6TNFS0c7jjKIwzjQxMH8yRjP5QTWuQBov0KDA
+	moOWY7YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rivYe-0000000DIeu-1Wbh;
-	Sat, 09 Mar 2024 12:12:08 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rj0yl-0000000Du8Y-2rNi;
+	Sat, 09 Mar 2024 17:59:27 +0000
+Received: from mail.as201155.net ([185.84.6.188])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rivYb-0000000DICY-0MQL
+	id 1rj0yh-0000000Du5r-2lWx
 	for ath11k@lists.infradead.org;
-	Sat, 09 Mar 2024 12:12:07 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 429C9QvG023037;
-	Sat, 9 Mar 2024 12:11:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=8spNzfV
-	DYXqnoGqZxoqtSV6/KIyrNwZMnMKRiN9BDlE=; b=RMieqmfoHBnG+9Ku4NsIX8s
-	TSwi5zvJ362NfTQ/xAKoFt5F+z65/AVyMODKO52Fa9kRL4ox8Y/aF/x8eXuWD/db
-	OvNNb9HQhUvo7cYxtZnPct3UzwMvi8e9QiukgC3OKECtDZGYy2OHhe8ef4tAUA6T
-	fjPLh23qvM7/jYpw1oqhnpfmpoL6JknuQ5pWRrV3LgDP+dGs7QJuzFbrisvVlgHP
-	oMt9Incv1C0bVBD8ArbieQQQu4CFSLAfuUmbb6UwxrERoRCO5GQcxZIm2bP3LUdS
-	U2tKToSYU2fKR942imJwuiMbDJ0ArGwT50BXSd6IFykeCEip+rPNaGu7IcC5G0w=
-	=
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wrfc40gdc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 09 Mar 2024 12:11:47 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 429CBku9025436
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 9 Mar 2024 12:11:46 GMT
-Received: from lingbok-Birman-PHX.qca.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 9 Mar 2024 04:11:45 -0800
-From: Lingbo Kong <quic_lingbok@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_lingbok@quicinc.com>
-Subject: [PATCH] wifi: ath11k: modify the calculation of the average signal strength in station mode
-Date: Sat, 9 Mar 2024 20:11:29 +0800
-Message-ID: <20240309121129.5379-1-quic_lingbok@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	Sat, 09 Mar 2024 17:59:26 +0000
+Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:57564 helo=webmail.newmedia-net.de)
+	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
+	(Exim 4.96)
+	(envelope-from <s.gottschall@dd-wrt.com>)
+	id 1rj0yY-0002s4-1t;
+	Sat, 09 Mar 2024 18:59:15 +0100
+X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_2000_2999 0.000000,
+	BODY_SIZE_5000_LESS 0.000000, BODY_SIZE_7000_LESS 0.000000,
+	CTE_8BIT 0.000000, DKIM_ALIGNS 0.000000, DKIM_SIGNATURE 0.000000,
+	HTML_00_01 0.050000, HTML_00_10 0.050000, IN_REP_TO 0.000000,
+	LEGITIMATE_SIGNS 0.000000, MSGID_SAMEAS_FROM_HEX_844412 0.100000,
+	MSG_THREAD 0.000000, MULTIPLE_RCPTS 0.100000, MULTIPLE_REAL_RCPTS 0.000000,
+	NO_FUR_HEADER 0.000000, OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000,
+	REFERENCES 0.000000, SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000,
+	URI_WITH_PATH_ONLY 0.000000, __ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
+	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
+	__BULK_NEGATE 0.000000, __CC_NAME 0.000000, __CC_NAME_DIFF_FROM_ACC 0.000000,
+	__CC_REAL_NAMES 0.000000, __CP_URI_IN_BODY 0.000000, __CT 0.000000,
+	__CTE 0.000000, __CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000,
+	__DKIM_ALIGNS_2 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
+	__DQ_NEG_IP 0.000000, __FORWARDED_MSG 0.000000, __FRAUD_PARTNERSHIP 0.000000,
+	__FROM_DOMAIN_NOT_IN_BODY 0.000000, __FROM_NAME_NOT_IN_BODY 0.000000,
+	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
+	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000,
+	__HEADER_ORDER_FROM 0.000000, __HIGHBIT_ASCII_MIX 0.000000,
+	__HTTPS_URI 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
+	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
+	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
+	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
+	__MULTIPLE_RCPTS_CC_X2 0.000000, __MULTIPLE_RCPTS_TO_X2 0.000000,
+	__MULTIPLE_URI_TEXT 0.000000, __NO_HTML_TAG_RAW 0.000000,
+	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
+	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __RCVD_PASS 0.000000,
+	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
+	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
+	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_END 0.000000,
+	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
+	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
+	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
+	__URI_ENDS_IN_SLASH 0.000000, __URI_HAS_HYPHEN_USC 0.000000,
+	__URI_IN_BODY 0.000000, __URI_MAILTO 0.000000, __URI_NOT_IMG 0.000000,
+	__URI_NO_WWW 0.000000, __URI_NS 0.000000, __URI_WITH_PATH 0.000000,
+	__USER_AGENT 0.000000, __X_MAILSCANNER 0.000000
+X-SASI-Probability: 8%
+X-SASI-RCODE: 200
+X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2024.3.9.173017
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=RfEPUE/s2ovA9Fjpc51gZmR3vhNMiXC763Bj0mwC0dY=;
+	b=Q/Eu5PgnXLQwMSES/d9nQ2JI7Flke2Sqa7KXKzVVIhJRf/fQMghpO9E1iIyejOBRY40V7H2b+bthUWYbumHEIkmos8UgQNNiw6rC9ENP6BYUmLgMSrwCZlJ15nCUTsrdcWViSQ+xmdQ2SxWQnvwmwTLhEUSuCzD65iB9pHyDd0Y=;
+Message-ID: <3b57d932-0848-40f4-ab2d-a8d4afe11df1@dd-wrt.com>
+Date: Sat, 9 Mar 2024 18:58:47 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: New staging repos for ath1*k firmware
+To: Kalle Valo <kvalo@kernel.org>, Robert Marko <robert.marko@sartura.hr>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>, ath11k <ath11k@lists.infradead.org>,
+ ath12k <ath12k@lists.infradead.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>
+References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
+ <CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
+ <874jdigf76.fsf@kernel.org>
+From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
+In-Reply-To: <874jdigf76.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RjZfXhawuQL65f5jBpmYmYePYhydz9he
-X-Proofpoint-GUID: RjZfXhawuQL65f5jBpmYmYePYhydz9he
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-08_08,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 clxscore=1011 spamscore=0 mlxscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 suspectscore=0 phishscore=0 bulkscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403090098
+Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
+X-SA-Exim-Connect-IP: 127.0.0.1
+X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
+X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
+X-NMN-MailScanner-Information: Please contact the ISP for more information
+X-NMN-MailScanner-ID: 1rj0yD-000FpE-At
+X-NMN-MailScanner: Found to be clean
+X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
+X-Received: from localhost.localdomain ([127.0.0.1] helo=webmail.newmedia-net.de)
+	by webmail.newmedia-net.de with esmtp (Exim 4.72)
+	(envelope-from <s.gottschall@dd-wrt.com>)
+	id 1rj0yD-000FpE-At; Sat, 09 Mar 2024 18:58:53 +0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240309_041205_288067_D2963D40 
-X-CRM114-Status: UNSURE (   9.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240309_095923_891960_F40B06AD 
+X-CRM114-Status: GOOD (  15.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,42 +122,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, the calculation of the average signal strength in station mode
-is incorrect.
 
-This is because before calculating the average signal strength, ath11k need
-to determine whether the hardware and firmware support db2dbm, if the
-hardware and firmware support db2dbm, do not need to add noise floor,
-otherwise, need to add noise floor.
+Am 07.03.2024 um 17:49 schrieb Kalle Valo:
+> Robert Marko <robert.marko@sartura.hr> writes:
+>
+>> On Wed, Mar 6, 2024 at 8:23 PM Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
+>>
+>>> Historically, prior to being incorporated into the linux-firmware
+>>> project, firmware for kernel.org ath1*k drivers has been first published
+>>> to Kalle's GitHub:
+>>> https://github.com/kvalo/ath10k-firmware
+>>> https://github.com/kvalo/ath11k-firmware
+>>> (ath12k firmware was pushed to the ath11k-firmware repo on a temporary
+>>> basis in anticipation of this move)
+>>>
+>>> But in order to have repos with multiple maintainers, as well as to have
+>>> a hosting platform with more control, we have moved to CodeLinaro:
+>>> https://git.codelinaro.org/clo/ath-firmware/ath10k-firmware
+>>> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
+>>> https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware
+>>>
+>>> Note that most people should not care about this -- normally you should
+>>> use the firmware that is in the official linux-firmware repo:
+>>> https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/
+>>>
+>>> You should only need to access the staging repos if you need a previous
+>>> version to work around an issue, or if you are testing new firmware that
+>>> is supposed to fix a problem that you've reported.
+>>>
+>>> Please let Kalle & I know if you have any issues with these new repos!
+>> Can I please ask for IPQ6018 firmware to be updated to 2.9.0.1 as well?
+>>
+>> We have added IPQ6018 support to OpenWrt but we are forced to use the old 2.4
+>> firmware since anything newer is crashing on IPQ6018, we had the same issue on
+>> IPQ8074 but it was fixed with 2.9.0.1 firmware.
+>>
+>> Even for IPQ8074, there is newer 2.9.0.1 firmware that is only
+>> available as part of
+>> QSDK and the community would benefit from being able to use it.
+> We are working on getting the AP chipset firmwares updated but
+> unfortunately no news yet.
+why isnt qca releasing the latest firmwares at all. i mean we all know 
+that the qca networking tree contains way newer firmwares for all 
+chipsets since a long time
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-
-Signed-off-by: Lingbo Kong <quic_lingbok@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a6a37d67a50a..1f9cf7a42ba8 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -8976,8 +8976,11 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 		sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL);
- 	}
- 
--	sinfo->signal_avg = ewma_avg_rssi_read(&arsta->avg_rssi) +
--		ATH11K_DEFAULT_NOISE_FLOOR;
-+	sinfo->signal_avg = ewma_avg_rssi_read(&arsta->avg_rssi);
-+
-+	if (!db2dbm)
-+		sinfo->signal_avg += ATH11K_DEFAULT_NOISE_FLOOR;
-+
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL_AVG);
- }
- 
-
-base-commit: 7a5ed5a3801e9b6cf7bafbb0a05c70cef620b22a
--- 
-2.34.1
-
+>
 
