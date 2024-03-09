@@ -4,82 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38DEDC54798
-	for <ath11k@archiver.kernel.org>; Sat,  9 Mar 2024 11:31:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD556C54E41
+	for <ath11k@archiver.kernel.org>; Sat,  9 Mar 2024 12:12:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=+wyx/VhGct4tBH0Mou0Kr9MyBVWlStejrsiczgJZsiA=; b=Mv0PKYePp672GW4wyZ8r1xAxDs
-	3rgoUo+D1HC+OgRIzfmII5Puhg01lOxAIkBHf6aRKEJ4xAPfOxBx7zXez/on6vXuKR+OyfJc6jrwy
-	z2aqcavBd6NkeuksxNng+C0feeyo3qk5vnd2Gk87dloT/Ec32m2nfxFfWBpZdMJ9FYcQfexkxRnvC
-	SHMMsI8jLZWFKvtYSpqitjfqLp9t6gfYXShpXimRRBq1C2/Lb8Yn25/eX5oWzz2tFPmzf5HqQANK6
-	8ItQpF6BkPoe23jnDufOEqrcRU98mJcp0vcIcuG7YRjg0FewCpaTOSTqWNTdY0qp9SxD4G5y2uZjw
-	C/KGLwsQ==;
+	bh=8spNzfVDYXqnoGqZxoqtSV6/KIyrNwZMnMKRiN9BDlE=; b=tiUUv9vAq37YXcxyUza+by4XqE
+	xMA0eby9wRqEPR6mjxg8r3tzfMa8MUdqSYYOqMlUrCNoAyCPcaefOpMgCScBz16y9un3VqtcPy1OB
+	rrZX2ICar15h/OaF2kuX+Ofv/Yaru29rnGknWo17xzDAc67nfVIlG8lZuUaYgPwd2iL1TS/AvlZeJ
+	N1v+GSHNCbQ79XZtg4DkP71ciHiNHcPz42eLZV7Ije9DOeOUVpcmLNFytxmGbsisnE7PrIHlYpN0v
+	NjtL8/uzaFwpYgwzjXDBe5CzpXWRmsltglzSecAKmvQ9YnGkbaXzlE2OCvpc8V0h6XM5liiKVHuwj
+	cLhcHKLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1riuvR-0000000DEpE-3zGL;
-	Sat, 09 Mar 2024 11:31:37 +0000
+	id 1rivYe-0000000DIeu-1Wbh;
+	Sat, 09 Mar 2024 12:12:08 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1riuvO-0000000DEoh-2jjk
+	id 1rivYb-0000000DICY-0MQL
 	for ath11k@lists.infradead.org;
-	Sat, 09 Mar 2024 11:31:36 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 429BJ1nc013375;
-	Sat, 9 Mar 2024 11:31:29 GMT
+	Sat, 09 Mar 2024 12:12:07 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 429C9QvG023037;
+	Sat, 9 Mar 2024 12:11:47 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=+wyx/Vh
-	Gct4tBH0Mou0Kr9MyBVWlStejrsiczgJZsiA=; b=MT101XZK6YLmPkfBiMU2d9t
-	Jm4pH5rdFiQ/bCDTPei6vBmBfHzVfRSCiqmUHj6gFtEZhk80nBpEbY1WilCw3rgW
-	c9NtL/ymzB2PGnlLJRSuhN39nv+nerBYy1wW38lMu2fDbMpjzbt625HV6jQbE8bL
-	4qWmzLj/ttTySF9sKXxiKxjPeof8gezXURaqFvlDuL8M8ddzDxOBtM3kt28xVkrR
-	XyVlZyjNRw9Mgeid4yg5v+RFMiEOJSxMq+LnKFYRdWBB2Lej0Q5T4r1DwOJZQ/xo
-	ROiN6oo64TXbo346xJ7kVkWorpUL/DP0TBr4dsVBXb33uFgx3G1Nf7qe0V5RN1Q=
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=8spNzfV
+	DYXqnoGqZxoqtSV6/KIyrNwZMnMKRiN9BDlE=; b=RMieqmfoHBnG+9Ku4NsIX8s
+	TSwi5zvJ362NfTQ/xAKoFt5F+z65/AVyMODKO52Fa9kRL4ox8Y/aF/x8eXuWD/db
+	OvNNb9HQhUvo7cYxtZnPct3UzwMvi8e9QiukgC3OKECtDZGYy2OHhe8ef4tAUA6T
+	fjPLh23qvM7/jYpw1oqhnpfmpoL6JknuQ5pWRrV3LgDP+dGs7QJuzFbrisvVlgHP
+	oMt9Incv1C0bVBD8ArbieQQQu4CFSLAfuUmbb6UwxrERoRCO5GQcxZIm2bP3LUdS
+	U2tKToSYU2fKR942imJwuiMbDJ0ArGwT50BXSd6IFykeCEip+rPNaGu7IcC5G0w=
 	=
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wrg5b0dwb-1
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wrfc40gdc-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 09 Mar 2024 11:31:29 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 429BVSCs003955
+	Sat, 09 Mar 2024 12:11:47 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 429CBku9025436
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 9 Mar 2024 11:31:28 GMT
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+	Sat, 9 Mar 2024 12:11:46 GMT
+Received: from lingbok-Birman-PHX.qca.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 9 Mar 2024 03:31:27 -0800
-From: Baochen Qiang <quic_bqiang@quicinc.com>
+ 15.2.1118.40; Sat, 9 Mar 2024 04:11:45 -0800
+From: Lingbo Kong <quic_lingbok@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH] wifi: ath11k: don't force enable power save on non-running vdevs
-Date: Sat, 9 Mar 2024 19:31:15 +0800
-Message-ID: <20240309113115.11498-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+CC: <linux-wireless@vger.kernel.org>, <quic_lingbok@quicinc.com>
+Subject: [PATCH] wifi: ath11k: modify the calculation of the average signal strength in station mode
+Date: Sat, 9 Mar 2024 20:11:29 +0800
+Message-ID: <20240309121129.5379-1-quic_lingbok@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QMr27MUFxRgrmnh_kk8i3YnMjow-HylW
-X-Proofpoint-ORIG-GUID: QMr27MUFxRgrmnh_kk8i3YnMjow-HylW
+X-Proofpoint-ORIG-GUID: RjZfXhawuQL65f5jBpmYmYePYhydz9he
+X-Proofpoint-GUID: RjZfXhawuQL65f5jBpmYmYePYhydz9he
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-03-08_08,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
- mlxscore=0 phishscore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
- malwarescore=0 spamscore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2403090092
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 clxscore=1011 spamscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 adultscore=0 suspectscore=0 phishscore=0 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403090098
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240309_033134_871276_212F94C9 
-X-CRM114-Status: GOOD (  15.29  )
+X-CRM114-CacheID: sfid-20240309_041205_288067_D2963D40 
+X-CRM114-Status: UNSURE (   9.66  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,88 +95,42 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently we force enable power save on non-running vdevs, this results
-in unexpected ping latency in below scenarios:
-	1. disable power save from userspace.
-	2. trigger suspend/resume.
+Currently, the calculation of the average signal strength in station mode
+is incorrect.
 
-With step 1 power save is disabled successfully and we get a good latency:
+This is because before calculating the average signal strength, ath11k need
+to determine whether the hardware and firmware support db2dbm, if the
+hardware and firmware support db2dbm, do not need to add noise floor,
+otherwise, need to add noise floor.
 
-PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
-64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=5.13 ms
-64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=5.45 ms
-64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=5.99 ms
-64 bytes from 192.168.1.1: icmp_seq=4 ttl=64 time=6.34 ms
-64 bytes from 192.168.1.1: icmp_seq=5 ttl=64 time=4.47 ms
-64 bytes from 192.168.1.1: icmp_seq=6 ttl=64 time=6.45 ms
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
 
-While after step 2, the latency becomes much larger:
-
-PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
-64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=17.7 ms
-64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=15.0 ms
-64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=14.3 ms
-64 bytes from 192.168.1.1: icmp_seq=4 ttl=64 time=16.5 ms
-64 bytes from 192.168.1.1: icmp_seq=5 ttl=64 time=20.1 ms
-
-The reason is, with step 2, power save is force enabled due to vdev not
-running, although mac80211 was trying to disable it to honor userspace
-configuration:
-
-ath11k_pci 0000:03:00.0: wmi cmd sta powersave mode psmode 1 vdev id 0
-Call Trace:
- ath11k_wmi_pdev_set_ps_mode
- ath11k_mac_op_bss_info_changed
- ieee80211_bss_info_change_notify
- ieee80211_reconfig
- ieee80211_resume
- wiphy_resume
-
-This logic is taken from ath10k where it was added due to below comment:
-
-	Firmware doesn't behave nicely and consumes more power than
-	necessary if PS is disabled on a non-started vdev.
-
-However we don't know whether such an issue also occurs to ath11k firmware
-or not. But even if it does, it's not appropriate because it goes against
-userspace, even cfg/mac80211 don't know we have enabled it in fact.
-
-Remove it to fix this issue. In this way we not only get a better latency,
-but also, and the most important, keeps the consistency between userspace
-and kernel/driver. The biggest price for that would be the power consumption,
-which is not that important, compared with the consistency.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-
-Fixes: b2beffa7d9a6 ("ath11k: enable 802.11 power save mode in station mode")
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Signed-off-by: Lingbo Kong <quic_lingbok@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a6a37d67a50a..42a6a51a6a9d 100644
+index a6a37d67a50a..1f9cf7a42ba8 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1231,14 +1231,7 @@ static int ath11k_mac_vif_setup_ps(struct ath11k_vif *arvif)
+@@ -8976,8 +8976,11 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
+ 		sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL);
+ 	}
  
- 	enable_ps = arvif->ps;
- 
--	if (!arvif->is_started) {
--		/* mac80211 can update vif powersave state while disconnected.
--		 * Firmware doesn't behave nicely and consumes more power than
--		 * necessary if PS is disabled on a non-started vdev. Hence
--		 * force-enable PS for non-running vdevs.
--		 */
--		psmode = WMI_STA_PS_MODE_ENABLED;
--	} else if (enable_ps) {
-+	if (enable_ps) {
- 		psmode = WMI_STA_PS_MODE_ENABLED;
- 		param = WMI_STA_PS_PARAM_INACTIVITY_TIME;
+-	sinfo->signal_avg = ewma_avg_rssi_read(&arsta->avg_rssi) +
+-		ATH11K_DEFAULT_NOISE_FLOOR;
++	sinfo->signal_avg = ewma_avg_rssi_read(&arsta->avg_rssi);
++
++	if (!db2dbm)
++		sinfo->signal_avg += ATH11K_DEFAULT_NOISE_FLOOR;
++
+ 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL_AVG);
+ }
  
 
 base-commit: 7a5ed5a3801e9b6cf7bafbb0a05c70cef620b22a
 -- 
-2.25.1
+2.34.1
 
 
