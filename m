@@ -4,62 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B294C54E5D
-	for <ath11k@archiver.kernel.org>; Tue, 12 Mar 2024 15:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA4BEC54E66
+	for <ath11k@archiver.kernel.org>; Wed, 13 Mar 2024 16:20:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
 	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9KXamnDTq0ahhizFFFO2G1XNhGR1aO6N+9YDezLmQTQ=; b=1EC6TX3TrULrDgJDuv+bwi3rib
-	7EdwILEUczysWGO9Ifnp61ybx0mVGSem85dF4a1Fe0qXz14mhHnclgZpIpwvRDSQVyQBxorRwM9Ve
-	1lgqqfrxuOW0PUggK+WkGd0vIpBXVmXKSEd1U2P916UqKrb7VJOqEVv4MsHQZ81zaNZM7ga3T8d8W
-	C9+xGSohv4+1QpPbI1upwKEjlLEPMGrPoQPXEPqq4XqivzTcXxXxl/+xTS0t/oCdcNApCkXHaipve
-	ccxn5GEtu163GMstOtg1ZcldmCUXLgUl/gK0ji+Cby6JY3ubnQmfeX4xNDvx4ahekAZnUKkEL56eL
-	2pb5b+gw==;
+	bh=bAZQM4tB/W4u0keqVYtJTRB5pxovCdHhPH5CJaJYSFU=; b=MQfmSau8XJbc43DHwap/D0pOiW
+	VH8Bv1OiXCb63yhgnmNMvri1gyJKDcaGo8+0Nw/Ia5VIZbRLvQYLA8b9odRp+XEqygSd40MmLOYu+
+	N8gyOfJJNfi3nGZEu5uR6PuNXI0UGa52AahzIhw/eTBX/SCHAZn5mt5DyWTyqBbYszS8qgi/17iJK
+	bOdLcpw2wX82Nqr98pZqqqbMq60XMQZ0qCcfY0UUeh+Qyq3imLipkBt8GU/FB0IabhhZ7E4oBFSUF
+	qQHeiUcbXqWuoLhME43she/7tJ6QCuNNbWQ2m1fBREbfFSetvSXGLP/WW7W3Bd2julhMx3MXgZd53
+	q7vgsXPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rk4Ig-00000006QTI-0irw;
-	Tue, 12 Mar 2024 15:44:22 +0000
+	id 1rkRL7-0000000AkR0-0ZdB;
+	Wed, 13 Mar 2024 16:20:25 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rk4Ic-00000006QSh-1lzi
+	id 1rkRL3-0000000AkQD-3Fab
 	for ath11k@lists.infradead.org;
-	Tue, 12 Mar 2024 15:44:19 +0000
+	Wed, 13 Mar 2024 16:20:23 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id CB51060F03;
-	Tue, 12 Mar 2024 15:44:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25F0DC43390;
-	Tue, 12 Mar 2024 15:44:15 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 57FE76148B;
+	Wed, 13 Mar 2024 16:20:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 118EAC433C7;
+	Wed, 13 Mar 2024 16:20:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710258257;
-	bh=snpqoaWKx8iTXyE2sCbCJPAM5Y7erY06kxvvCuQSX40=;
+	s=k20201202; t=1710346820;
+	bh=3wzUd65sE8PPvf1zN3NvhnEeMECYa7wGQzfd/IvjO6w=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=kHQ3wnPdos0Weuu7tWpl2eoIblEHFdZJbAPZ3lbwAwx5Dk7v2Haq35rKDKwmcYixW
-	 CvsltBENLsCxSm6jtePFJk21jxwjcUyZC6rw+8wj+cLyiYVIUze6+SMEY69ONDPzE/
-	 +YLGgzptUAyLm8u9fLJk/TAdz13Qsi3HysfQMtPYPZrGfGYRduVV3PASv8HqgE16lm
-	 1RwOs1N8rfPdHGnmgP5XGordeXGVUb8gK9QIfDiYzw0W2FmlpYecwYFJPprAisIdM9
-	 0hrVtqfG5AbuQWEw3neJAdFX9RGXUGp8byLLZB3VgBrhkyUek9e1cFjbplxTvYohl+
-	 O4CNWr/D+bHaQ==
+	b=gUkWXc1Vna8dqL+5VHZMrmtHvkyLl+rrknPwD0/f1Z0sVi+lSmBSRbZBsaS9LGVJI
+	 XdqjRf6HkoBS6mLuoGr2Vq/IWr9LOmv7+JxfayMxusLVl6RXAYloO93MigHAqxJNHw
+	 0vh19tK2LCy/wvLCf0N1MRBLaY6ZvcwQoLlvyv3vcW+Ljmuhz/9ayEs9ZOKWKoMg8N
+	 Vhx0Q9+YSqWNe2gxE1YLbUS32N7JG287uLY+i4IerSCqyBl4eQAETT/BAavdG0eA0x
+	 NabcnvywWlPsdoqwOFXgCJsOrnJP8Igw0AjhKSKiXaCzwOv5IoZg66UGC3MPMP7tXa
+	 GHhpaWek6lMtA==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] wifi: ath11k: don't force enable power save on
- non-running
- vdevs
+Subject: Re: [PATCH] wifi: ath11k: modify the calculation of the average
+ signal
+ strength in station mode
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240309113115.11498-1-quic_bqiang@quicinc.com>
-References: <20240309113115.11498-1-quic_bqiang@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20240309121129.5379-1-quic_lingbok@quicinc.com>
+References: <20240309121129.5379-1-quic_lingbok@quicinc.com>
+To: Lingbo Kong <quic_lingbok@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_bqiang@quicinc.com>
+ <quic_lingbok@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <171025825444.2014319.13788313325908699695.kvalo@kernel.org>
-Date: Tue, 12 Mar 2024 15:44:15 +0000 (UTC)
+Message-ID: <171034681684.2322265.9660346495295315212.kvalo@kernel.org>
+Date: Wed, 13 Mar 2024 16:20:18 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240312_084418_589269_D20B13BF 
-X-CRM114-Status: GOOD (  15.34  )
+X-CRM114-CacheID: sfid-20240313_092022_166256_068BFB36 
+X-CRM114-Status: UNSURE (   6.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,71 +75,25 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+Lingbo Kong <quic_lingbok@quicinc.com> wrote:
 
-> Currently we force enable power save on non-running vdevs, this results
-> in unexpected ping latency in below scenarios:
->         1. disable power save from userspace.
->         2. trigger suspend/resume.
+> Currently, the calculation of the average signal strength in station mode
+> is incorrect.
 > 
-> With step 1 power save is disabled successfully and we get a good latency:
+> This is because before calculating the average signal strength, ath11k need
+> to determine whether the hardware and firmware support db2dbm, if the
+> hardware and firmware support db2dbm, do not need to add noise floor,
+> otherwise, need to add noise floor.
 > 
-> PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
-> 64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=5.13 ms
-> 64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=5.45 ms
-> 64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=5.99 ms
-> 64 bytes from 192.168.1.1: icmp_seq=4 ttl=64 time=6.34 ms
-> 64 bytes from 192.168.1.1: icmp_seq=5 ttl=64 time=4.47 ms
-> 64 bytes from 192.168.1.1: icmp_seq=6 ttl=64 time=6.45 ms
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
 > 
-> While after step 2, the latency becomes much larger:
-> 
-> PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
-> 64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=17.7 ms
-> 64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=15.0 ms
-> 64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=14.3 ms
-> 64 bytes from 192.168.1.1: icmp_seq=4 ttl=64 time=16.5 ms
-> 64 bytes from 192.168.1.1: icmp_seq=5 ttl=64 time=20.1 ms
-> 
-> The reason is, with step 2, power save is force enabled due to vdev not
-> running, although mac80211 was trying to disable it to honor userspace
-> configuration:
-> 
-> ath11k_pci 0000:03:00.0: wmi cmd sta powersave mode psmode 1 vdev id 0
-> Call Trace:
->  ath11k_wmi_pdev_set_ps_mode
->  ath11k_mac_op_bss_info_changed
->  ieee80211_bss_info_change_notify
->  ieee80211_reconfig
->  ieee80211_resume
->  wiphy_resume
-> 
-> This logic is taken from ath10k where it was added due to below comment:
-> 
->         Firmware doesn't behave nicely and consumes more power than
->         necessary if PS is disabled on a non-started vdev.
-> 
-> However we don't know whether such an issue also occurs to ath11k firmware
-> or not. But even if it does, it's not appropriate because it goes against
-> userspace, even cfg/mac80211 don't know we have enabled it in fact.
-> 
-> Remove it to fix this issue. In this way we not only get a better latency,
-> but also, and the most important, keeps the consistency between userspace
-> and kernel/driver. The biggest price for that would be the power consumption,
-> which is not that important, compared with the consistency.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> 
-> Fixes: b2beffa7d9a6 ("ath11k: enable 802.11 power save mode in station mode")
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Signed-off-by: Lingbo Kong <quic_lingbok@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
-
-01296b39d351 wifi: ath11k: don't force enable power save on non-running vdevs
+What about AP chipsets like QCN9074, do they also work similarly?
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240309113115.11498-1-quic_bqiang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20240309121129.5379-1-quic_lingbok@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
