@@ -4,87 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91CF4C54E67
-	for <ath11k@archiver.kernel.org>; Thu, 14 Mar 2024 09:48:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43400C54E67
+	for <ath11k@archiver.kernel.org>; Thu, 14 Mar 2024 15:05:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=iTtLbHsIOnRZr1h22E53rw8mzeKiaDfgErrScdq9sRA=; b=Pr797WXJ2vWvj04rjhKA1Sfif2
-	LZ3TgHK+4YDV789LN2SLR1M5fGFGkDVMV8eaUieqhZSGIIaFYJqVxj7Vf9lvNn5Wc84Gs678jeZqe
-	vIJ/r8cGLNVMjOPUh/uKtVzlgt6ZruxBe+PuIPrAsNiJiGJwEzHoCGbj+WmqG9JMDohYYxsGt5kt9
-	WgP5j7gp4F8VM1ugwZOTo9EFR4dl/S7so5vIasNWbpjLpVS0IYX6Ex6i/iMQKpMBiHq2nuZsmjX2O
-	JWH0KN/cQdwGiK3mlUQPPtgzV7HWswAKIruzdnGpU+N9cBKizFoAvlbr6fvJej1LLuxVLi8Jf8ucO
-	H3w5hCQg==;
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=MJMU6Qoh7AZDZUKtL/bMo4bto1ABZh3rkz5XpjNQs2c=; b=qJRU9LfO2XptHHlnUrFI/qT1/e
+	90n9VXriZMXZtyaepVrURIiOMDzOl7cLWAabO93YuBrD1Z7qOyk47EGo7gDwsmpzvt9XlFist0/58
+	Cdscb9w9fF7swy3OmH5p3A/+lpq3ZQCssFacZW3rv+1Ftf+AJIS1O4ZT+ku2ylhPNO6XqfMHp6m4P
+	RvQZO1q3ehTjUevfaULMROqhWnrMgCoLldZwSg4HfBUI9IMrf2HIaMTVp84VSCUjPrXqpAfTyg357
+	dq2HHxLtA/isK52OOREzluXEJl7mGWXHf2yLhsIk52UV5vAZ5+kj+STrSdRnQ/m112c4DkN8elvJ+
+	v6t7dKxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkhhf-0000000DmhI-3uLX;
-	Thu, 14 Mar 2024 09:48:47 +0000
-Received: from esa3.hc1455-7.c3s2.iphmx.com ([207.54.90.49])
+	id 1rkmdy-0000000Eks5-13Q2;
+	Thu, 14 Mar 2024 15:05:18 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkhha-0000000DmdG-0sIy;
-	Thu, 14 Mar 2024 09:48:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
-  t=1710409722; x=1741945722;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=tXWoDv0MCVcjPegxH+LsuRrAuyb6Of1Y0FhIRJQ/Wsw=;
-  b=s7xwtt5+KHfsYZ8VROOSWymgJ7l1zSLWO5Ge179mrpCe5ZeoFHn7Uynm
-   6HfhZ/aU6nyo9GJwi3Zd1mVxAIYuWuuacHM121A6ww0EF1mIm3wlZ+a+0
-   L9jph+LtWqfbUGUq8J0ADWJvyedIX2A141+QA5uAQ3vQtVbaB6suDgLSY
-   JZOFeCMhSGRW4Czfmo2S4J5nMrNZJFipuau5WoZHCHAufzhAkKsGqsLqq
-   CeyK3a9LbChcd+msRbjTYa6wwquHpYEULjKCaTFNql0tkY+kHLXTQRis5
-   oOiWNDLNcSLvbvwdo7auyiszVyDQ1N1+hPwCK0gijbamgDxp/61lFSh1F
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="152240894"
-X-IronPort-AV: E=Sophos;i="6.07,125,1708354800"; 
-   d="scan'208";a="152240894"
-Received: from unknown (HELO yto-r2.gw.nic.fujitsu.com) ([218.44.52.218])
-  by esa3.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2024 18:48:36 +0900
-Received: from yto-m1.gw.nic.fujitsu.com (yto-nat-yto-m1.gw.nic.fujitsu.com [192.168.83.64])
-	by yto-r2.gw.nic.fujitsu.com (Postfix) with ESMTP id 159E1275F6;
-	Thu, 14 Mar 2024 18:48:34 +0900 (JST)
-Received: from kws-ab3.gw.nic.fujitsu.com (kws-ab3.gw.nic.fujitsu.com [192.51.206.21])
-	by yto-m1.gw.nic.fujitsu.com (Postfix) with ESMTP id 37F9C4262F;
-	Thu, 14 Mar 2024 18:48:33 +0900 (JST)
-Received: from edo.cn.fujitsu.com (edo.cn.fujitsu.com [10.167.33.5])
-	by kws-ab3.gw.nic.fujitsu.com (Postfix) with ESMTP id BF5E620098E23;
-	Thu, 14 Mar 2024 18:48:32 +0900 (JST)
-Received: from localhost.localdomain (unknown [10.167.226.45])
-	by edo.cn.fujitsu.com (Postfix) with ESMTP id 1D2AE1A006B;
-	Thu, 14 Mar 2024 17:48:32 +0800 (CST)
-From: Li Zhijian <lizhijian@fujitsu.com>
-To: linux-kernel@vger.kernel.org
-Cc: Li Zhijian <lizhijian@fujitsu.com>,
-	Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	ath10k@lists.infradead.org
-Subject: [PATCH 1/3] net: ath: Convert sprintf/snprintf to sysfs_emit
-Date: Thu, 14 Mar 2024 17:48:21 +0800
-Message-Id: <20240314094823.1324898-1-lizhijian@fujitsu.com>
-X-Mailer: git-send-email 2.31.1
+	id 1rkmdu-0000000Ekr1-0Ftj
+	for ath11k@lists.infradead.org;
+	Thu, 14 Mar 2024 15:05:16 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42ECNsZ3031849;
+	Thu, 14 Mar 2024 15:05:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=MJMU6Qoh7AZDZUKtL/bMo4bto1ABZh3rkz5XpjNQs2c=; b=Ci
+	evCYgVqXYZw+hjpsUnCseRzmR4IkZhjCwmqa/VhYABwP+3F2wl3GOND+I4zp84Oi
+	t/1AjAhWzsFOXqrwa5Emlw6HRpaX/X0i/8NuQWk3B0GKuzUQrC7Rcxs2B1YSiNNv
+	a+CbNXSB4vpyIc5NFjlFxcxzr/NFcQ3NzSWqQ8DdOobGReToQhyZRwIlJVFjFhff
+	LLIX8PCAEH49xZ+rY+gwDAbp+5M4fVIivU4OutjR2RqMKOCK+HsTs/OKMd1xOdVC
+	r0uMJjYpxA+7Hit13EkEjwnR3sXYuj6trZaJWfgtmAZxLCjsIz0AewuZmK0fNB9C
+	V9GjNxu21xUcd77D80eA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wuy3g0mne-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 15:05:12 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42EF5BMN023227
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 15:05:11 GMT
+Received: from [10.110.27.195] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Mar
+ 2024 08:05:11 -0700
+Message-ID: <415bd131-7305-4e9b-8b14-c3104a23312a@quicinc.com>
+Date: Thu, 14 Mar 2024 08:05:10 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28250.006
-X-TM-AS-User-Approved-Sender: Yes
-X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28250.006
-X-TMASE-Result: 10--3.130400-10.000000
-X-TMASE-MatchedRID: ebEStOsB1eE4ibokZ3+Q0CoiRKlBVkYIBXngI6jFvpfDqO6/8R69QE8U
-	roFNOGp7a6aAZTOwtJmRloiW1Kgftd2ZdKe8BPbSrMZ+BqQt2Nps/NNpVQ666iXOD7ucKRbIQiM
-	ingSlKoKMx5HzfQifbPE41045MrHXFDCN/1eC4ASdVNZaI2n6/wmWvXEqQTm5wLkNMQzGl5B+Kr
-	WCPbERPznpYPqS6jzxEi2pD9yuITrh15/JKUJo/p4CIKY/Hg3AGdQnQSTrKGPEQdG7H66TyHEqm
-	8QYBtMO3LlEZYYZnW9rIyN56uP6NRM6ylMvEXGk1oRQBQClV4HA/0Gjnf5bBp2jOiFp3dpx6YyQ
-	KoFjU2kssxlojaTXaZ9+GrWpP0BdW4wbpXTb5DJKKve1kh3RY37qSWrndbmQn0bOriG5BVc=
-X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: remove duplicate definitions in wmi.h
+Content-Language: en-US
+To: Kang Yang <quic_kangyang@quicinc.com>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240314021654.304451-1-quic_kangyang@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240314021654.304451-1-quic_kangyang@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QfJJCnuFtI4LxZH8bh63u_JGbhR_l2I0
+X-Proofpoint-ORIG-GUID: QfJJCnuFtI4LxZH8bh63u_JGbhR_l2I0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-14_12,2024-03-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxscore=0 spamscore=0 phishscore=0 bulkscore=0 suspectscore=0
+ mlxlogscore=951 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403140112
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_024842_623460_9A0B82F4 
-X-CRM114-Status: GOOD (  10.65  )
+X-CRM114-CacheID: sfid-20240314_080514_450196_C9A791E2 
+X-CRM114-Status: GOOD (  13.84  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,62 +97,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Per filesystems/sysfs.rst, show() should only use sysfs_emit()
-or sysfs_emit_at() when formatting the value to be returned to user space.
+On 3/13/2024 7:16 PM, Kang Yang wrote:
+> There are some duplicate definitions in wmi.h, remove them.
+> 
+> No functional changes, compile tested only.
+> 
+> Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/wmi.h | 6 ------
+>  1 file changed, 6 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+> index bb419e3abb00..9652f4eb2f32 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.h
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
+> @@ -60,10 +60,6 @@ struct wmi_tlv {
+>  #define WLAN_SCAN_MAX_HINT_BSSID         10
+>  #define MAX_RNR_BSS                    5
+>  
+> -#define WLAN_SCAN_MAX_HINT_S_SSID        10
+> -#define WLAN_SCAN_MAX_HINT_BSSID         10
+> -#define MAX_RNR_BSS                    5
+> -
+>  #define WLAN_SCAN_PARAMS_MAX_SSID    16
+>  #define WLAN_SCAN_PARAMS_MAX_BSSID   4
+>  #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
 
-coccinelle complains that there are still a couple of functions that use
-snprintf(). Convert them to sysfs_emit().
+This patch doesn't apply (when using b4 shazam) when trying to verify with the
+'pending' branch due to a pending change to WLAN_SCAN_PARAMS_MAX_IE_LEN.
 
-sprintf() will be converted as weel if they have.
+So I verified against ath-next instead.
 
-Generally, this patch is generated by
-make coccicheck M=<path/to/file> MODE=patch \
-COCCI=scripts/coccinelle/api/device_attr_show.cocci
+I'll let Kalle comment on if he can handle the conflict himself or if he wants
+a rebased patch.
 
-No functional change intended
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-CC: Kalle Valo <kvalo@kernel.org>
-CC: Jeff Johnson <jjohnson@kernel.org>
-CC: linux-wireless@vger.kernel.org
-CC: ath11k@lists.infradead.org
-CC: ath10k@lists.infradead.org
-Signed-off-by: Li Zhijian <lizhijian@fujitsu.com>
----
-This is a part of the work "Fix coccicheck device_attr_show warnings"[1]
-Split them per subsystem so that the maintainer can review it easily
-[1] https://lore.kernel.org/lkml/20240116041129.3937800-1-lizhijian@fujitsu.com/
----
- drivers/net/wireless/ath/ath10k/thermal.c | 2 +-
- drivers/net/wireless/ath/ath11k/thermal.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath10k/thermal.c b/drivers/net/wireless/ath/ath10k/thermal.c
-index 31c8d7fbb095..8b15ec07b107 100644
---- a/drivers/net/wireless/ath/ath10k/thermal.c
-+++ b/drivers/net/wireless/ath/ath10k/thermal.c
-@@ -100,7 +100,7 @@ static ssize_t ath10k_thermal_show_temp(struct device *dev,
- 	spin_unlock_bh(&ar->data_lock);
- 
- 	/* display in millidegree celsius */
--	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
-+	ret = sysfs_emit(buf, "%d\n", temperature * 1000);
- out:
- 	mutex_unlock(&ar->conf_mutex);
- 	return ret;
-diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
-index 41e7499f075f..18d6eab5cce3 100644
---- a/drivers/net/wireless/ath/ath11k/thermal.c
-+++ b/drivers/net/wireless/ath/ath11k/thermal.c
-@@ -101,7 +101,7 @@ static ssize_t ath11k_thermal_show_temp(struct device *dev,
- 	spin_unlock_bh(&ar->data_lock);
- 
- 	/* display in millidegree Celsius */
--	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
-+	ret = sysfs_emit(buf, "%d\n", temperature * 1000);
- out:
- 	mutex_unlock(&ar->conf_mutex);
- 	return ret;
--- 
-2.29.2
 
 
