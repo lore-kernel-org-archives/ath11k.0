@@ -4,85 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43400C54E67
-	for <ath11k@archiver.kernel.org>; Thu, 14 Mar 2024 15:05:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5703C54E5D
+	for <ath11k@archiver.kernel.org>; Thu, 14 Mar 2024 16:41:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MJMU6Qoh7AZDZUKtL/bMo4bto1ABZh3rkz5XpjNQs2c=; b=qJRU9LfO2XptHHlnUrFI/qT1/e
-	90n9VXriZMXZtyaepVrURIiOMDzOl7cLWAabO93YuBrD1Z7qOyk47EGo7gDwsmpzvt9XlFist0/58
-	Cdscb9w9fF7swy3OmH5p3A/+lpq3ZQCssFacZW3rv+1Ftf+AJIS1O4ZT+ku2ylhPNO6XqfMHp6m4P
-	RvQZO1q3ehTjUevfaULMROqhWnrMgCoLldZwSg4HfBUI9IMrf2HIaMTVp84VSCUjPrXqpAfTyg357
-	dq2HHxLtA/isK52OOREzluXEJl7mGWXHf2yLhsIk52UV5vAZ5+kj+STrSdRnQ/m112c4DkN8elvJ+
-	v6t7dKxg==;
+	bh=lJvWKb+2KS84VgxKqZ81qAh+2twGEGXjcl8B5ZguKoY=; b=Nn/Nl0EO2wb6ATguvEDyzHuTOs
+	ndmYeZ5UHGmIMdEo42O1jN3qrUdyRQuKljoEjm+vmJ3ZnxlKfsYi+Qfsvhv0CLdShdrMb9uISoG1G
+	fHfnRjyXCL42oqYFyDPOy18f9ctECPcHATOJWeAqULSkyC2SFpxVyJkugFsadU5lY+3asjbbXD12q
+	HO2srd89GmMLMw4K6uWXpHg2oDpIRHXcK5fLZdhxTn3WWGMZok0xnJ/2lnftoQ6fY6RbcxHAyaK2r
+	boAmE8NG6tMTL/YCFizr4Lj/fpkxpqwyyzUTv2iMaFyCubwLark2BXe6irrcqg/h/8iwAOKEf4v30
+	PMS9HI3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkmdy-0000000Eks5-13Q2;
-	Thu, 14 Mar 2024 15:05:18 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rko9K-0000000F2FQ-2xzL;
+	Thu, 14 Mar 2024 16:41:46 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkmdu-0000000Ekr1-0Ftj
+	id 1rko9H-0000000F2Ex-3DIN
 	for ath11k@lists.infradead.org;
-	Thu, 14 Mar 2024 15:05:16 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42ECNsZ3031849;
-	Thu, 14 Mar 2024 15:05:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=MJMU6Qoh7AZDZUKtL/bMo4bto1ABZh3rkz5XpjNQs2c=; b=Ci
-	evCYgVqXYZw+hjpsUnCseRzmR4IkZhjCwmqa/VhYABwP+3F2wl3GOND+I4zp84Oi
-	t/1AjAhWzsFOXqrwa5Emlw6HRpaX/X0i/8NuQWk3B0GKuzUQrC7Rcxs2B1YSiNNv
-	a+CbNXSB4vpyIc5NFjlFxcxzr/NFcQ3NzSWqQ8DdOobGReToQhyZRwIlJVFjFhff
-	LLIX8PCAEH49xZ+rY+gwDAbp+5M4fVIivU4OutjR2RqMKOCK+HsTs/OKMd1xOdVC
-	r0uMJjYpxA+7Hit13EkEjwnR3sXYuj6trZaJWfgtmAZxLCjsIz0AewuZmK0fNB9C
-	V9GjNxu21xUcd77D80eA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wuy3g0mne-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Mar 2024 15:05:12 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42EF5BMN023227
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Mar 2024 15:05:11 GMT
-Received: from [10.110.27.195] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Mar
- 2024 08:05:11 -0700
-Message-ID: <415bd131-7305-4e9b-8b14-c3104a23312a@quicinc.com>
-Date: Thu, 14 Mar 2024 08:05:10 -0700
+	Thu, 14 Mar 2024 16:41:45 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 31A1A614E6;
+	Thu, 14 Mar 2024 16:41:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E545FC433F1;
+	Thu, 14 Mar 2024 16:41:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710434501;
+	bh=sPw89LfyZm0F1ziV09IYWXQhMlHw2bEAtttpScIXKys=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=GO7deHE8/iMLIDY/izre5RNQCgsb+908yEXH2YBz9mfFejmVhZM+NRLJJDS0MYt/m
+	 9m5CFNwWB5k3FRtI0aiJpnD5imAEQj7vkNIwQ3O8fENZln0bCgSg7lkda/fwwmzPJv
+	 53EGyxtR7zrcvUe9X9tE+Qjp7OrJonrLJwnBgbLOq09H1mothudIxH5Cioo33xFjl7
+	 alocdUwV96HiVISXqo5SXz6l5YQmVe7AveIXOccs31QHEiLV3YG2jgCYDRK33vJoIW
+	 pfg/PFC11pWkeSHVskrQc0AN6E6CRJTuxFETeg4230iMPibmEqnqnn7CBE+IFgQhhy
+	 IP+b+1wstViyA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: remove duplicate definitions in wmi.h
-Content-Language: en-US
-To: Kang Yang <quic_kangyang@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240314021654.304451-1-quic_kangyang@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240314021654.304451-1-quic_kangyang@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QfJJCnuFtI4LxZH8bh63u_JGbhR_l2I0
-X-Proofpoint-ORIG-GUID: QfJJCnuFtI4LxZH8bh63u_JGbhR_l2I0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-14_12,2024-03-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- mlxscore=0 spamscore=0 phishscore=0 bulkscore=0 suspectscore=0
- mlxlogscore=951 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403140112
+Subject: Re: [PATCH v2 1/6] wifi: ath11k: change interface combination for P2P
+ mode
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240228093537.25052-2-quic_kangyang@quicinc.com>
+References: <20240228093537.25052-2-quic_kangyang@quicinc.com>
+To: Kang Yang <quic_kangyang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_kangyang@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <171043449897.2496983.14481800262284990010.kvalo@kernel.org>
+Date: Thu, 14 Mar 2024 16:41:40 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_080514_450196_C9A791E2 
-X-CRM114-Status: GOOD (  13.84  )
+X-CRM114-CacheID: sfid-20240314_094143_884571_4E0FEB7F 
+X-CRM114-Status: UNSURE (   5.65  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,41 +74,31 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/13/2024 7:16 PM, Kang Yang wrote:
-> There are some duplicate definitions in wmi.h, remove them.
+Kang Yang <quic_kangyang@quicinc.com> wrote:
+
+> Current interface combination doesn't support P2P mode.
 > 
-> No functional changes, compile tested only.
+> So change it for P2P mode.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
+> Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.2
 > 
 > Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
-> ---
->  drivers/net/wireless/ath/ath11k/wmi.h | 6 ------
->  1 file changed, 6 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-> index bb419e3abb00..9652f4eb2f32 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.h
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-> @@ -60,10 +60,6 @@ struct wmi_tlv {
->  #define WLAN_SCAN_MAX_HINT_BSSID         10
->  #define MAX_RNR_BSS                    5
->  
-> -#define WLAN_SCAN_MAX_HINT_S_SSID        10
-> -#define WLAN_SCAN_MAX_HINT_BSSID         10
-> -#define MAX_RNR_BSS                    5
-> -
->  #define WLAN_SCAN_PARAMS_MAX_SSID    16
->  #define WLAN_SCAN_PARAMS_MAX_BSSID   4
->  #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
+> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-This patch doesn't apply (when using b4 shazam) when trying to verify with the
-'pending' branch due to a pending change to WLAN_SCAN_PARAMS_MAX_IE_LEN.
+6 patches applied to ath-next branch of ath.git, thanks.
 
-So I verified against ath-next instead.
+faedd6e0e139 wifi: ath11k: change interface combination for P2P mode
+3a415daa3e8b wifi: ath11k: add P2P IE in beacon template
+2408379f15a1 wifi: ath11k: implement handling of P2P NoA event
+75b5f1e71abc wifi: ath11k: change WLAN_SCAN_PARAMS_MAX_IE_LEN from 256 to 512
+6c7c30adf79e wifi: ath11k: change scan flag scan_f_filter_prb_req for QCA6390/WCN6855/QCA2066
+f8c0799b2428 wifi: ath11k: advertise P2P dev support for QCA6390/WCN6855/QCA2066
 
-I'll let Kalle comment on if he can handle the conflict himself or if he wants
-a rebased patch.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20240228093537.25052-2-quic_kangyang@quicinc.com/
 
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
