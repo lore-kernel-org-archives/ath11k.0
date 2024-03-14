@@ -4,82 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A553C54E68
-	for <ath11k@archiver.kernel.org>; Thu, 14 Mar 2024 07:54:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91CF4C54E67
+	for <ath11k@archiver.kernel.org>; Thu, 14 Mar 2024 09:48:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=cN7o+/qmYgcI6mfFvGvyMIK9dyOtURHv4+OCyOKUvZw=; b=O5WzimDtgRRzBi+Fq2yl4DoMkV
-	LpTOiz0zd8yEXIJHiydMk31fMc7Q74oRwkIaprX5hr6XQusgdCcOAWBdAAckA70a9eINaA4bS8j9a
-	BH6vqr4Mk6PQrGks/keCpBq6Tq4XjvjmCB7Kej4HmKzDlsb7P2WDvyw+hr01UKTjDDqWBHfPE8amD
-	4vrq22wO41zj7giTMSVLI6kReE9EiIiP9QgP/ndw1Y4Lc8roQAESgndqEtTGoeJqggp6GY3HCqGjO
-	l5paTyWIPxQG6EI3s7uNhbj7+hBbh1EPBlu4BM71MMxIDtK21m3E5pTU8CCdP70xJ7j4aJF2w1ZNC
-	i5lWpxJQ==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=iTtLbHsIOnRZr1h22E53rw8mzeKiaDfgErrScdq9sRA=; b=Pr797WXJ2vWvj04rjhKA1Sfif2
+	LZ3TgHK+4YDV789LN2SLR1M5fGFGkDVMV8eaUieqhZSGIIaFYJqVxj7Vf9lvNn5Wc84Gs678jeZqe
+	vIJ/r8cGLNVMjOPUh/uKtVzlgt6ZruxBe+PuIPrAsNiJiGJwEzHoCGbj+WmqG9JMDohYYxsGt5kt9
+	WgP5j7gp4F8VM1ugwZOTo9EFR4dl/S7so5vIasNWbpjLpVS0IYX6Ex6i/iMQKpMBiHq2nuZsmjX2O
+	JWH0KN/cQdwGiK3mlUQPPtgzV7HWswAKIruzdnGpU+N9cBKizFoAvlbr6fvJej1LLuxVLi8Jf8ucO
+	H3w5hCQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkfvR-0000000DT5T-43vo;
-	Thu, 14 Mar 2024 07:54:53 +0000
-Received: from mail-pf1-x42b.google.com ([2607:f8b0:4864:20::42b])
+	id 1rkhhf-0000000DmhI-3uLX;
+	Thu, 14 Mar 2024 09:48:47 +0000
+Received: from esa3.hc1455-7.c3s2.iphmx.com ([207.54.90.49])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkfvO-0000000DT46-1OSq
-	for ath11k@lists.infradead.org;
-	Thu, 14 Mar 2024 07:54:52 +0000
-Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-6e6ce174d45so266729b3a.3
-        for <ath11k@lists.infradead.org>; Thu, 14 Mar 2024 00:54:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1710402887; x=1711007687; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cN7o+/qmYgcI6mfFvGvyMIK9dyOtURHv4+OCyOKUvZw=;
-        b=Cxc4mcR1R5gqQRjH7BilBuLtQ3GuSS3tcFH35vZ5Ohi+da3J5k9HL6lbr+Wjynsphs
-         IcYEit6G5HuYPPsU4/aevIePIT1t3l69VeNM1qfxrN7bxy9rP37Drr6whlKtWo4GzDVL
-         t6nIsxn4ACMRktxQUrhHBOxYsRMhUXL5tyAJ+KHQa/2QxjuiG6J+g3haTaJs/MeUFKtP
-         rd9wBfKG3y9G7TdTjhr3n5NpqsOj7+stA/zb5VLky4CZekRTDQe+aMuCOd9pZQmSzDJ8
-         s5rpypZT0eCTVCy/+gqBCzobxUWDWTEhvZttCIBbxH4jMRvjVg/KXNMBjLhLMrdmqEQo
-         b1Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710402887; x=1711007687;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cN7o+/qmYgcI6mfFvGvyMIK9dyOtURHv4+OCyOKUvZw=;
-        b=fEHTE5lX/vTh0P/s02pr9RiR+yD01ppzUWDH18yeH/S4+5JfoDglIIemEkBIZNx/6x
-         ArMXtWCcUOxOkqba3Tgtc7sukSlb2T99tzwXrx4tdprQD8y/c4h8EvzG/VwSI3eYSmHq
-         hkPUS7Ji7gsXmfy/vKkuvO5TnMOeJkoGALI/cjl6Hf4aPoOPowTI3VEAlr68/EnxZUgy
-         Qvl0rlp62GGTE2pC+i+jBKndN07WLbivVWa/CuPrLvGc0xs+phyh3KCKlg+IC+QR31Np
-         C22bVUXpcTYTq1eztAEQkfZIRylJknu3ObLFDWzsL/4old8hRwM0qWDEzXzndcQ2F8ca
-         NPjg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6akN3Ys34lakNex64aYrU/ia8NRvmv7QwMrC5ieE3vOIzEpDJTM6RxFnElPfMPHP6Hh2savRL0m6GPMBy6UAMWzVtwsQ7JQA35w==
-X-Gm-Message-State: AOJu0YyXcxC2S6W6TX6NTEAhRyX+sxpmtnUT+acG8rVx6GEZCGdTTIL/
-	iBqkqK00kZjKRn0uCZYctpFa25tqbVg9kypimbCbiyREcE5+A6gyAnMPCxbL+UPWhm63DLsOczt
-	3fI8IGaIAhNyF5GFVSCXtmyt2IEre68Wfgm5nbg==
-X-Google-Smtp-Source: AGHT+IG/lL1tGT8pUkeu0A2+qzoAZei3Uz5BJOvgcI6NI2QLRo2V2am+Q+iMK9F7GfX4WbiCWc94PrXdNrcRfpaX310=
-X-Received: by 2002:a05:6a21:a596:b0:1a0:f2a4:40da with SMTP id
- gd22-20020a056a21a59600b001a0f2a440damr1353534pzc.6.1710402887344; Thu, 14
- Mar 2024 00:54:47 -0700 (PDT)
+	id 1rkhha-0000000DmdG-0sIy;
+	Thu, 14 Mar 2024 09:48:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
+  t=1710409722; x=1741945722;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=tXWoDv0MCVcjPegxH+LsuRrAuyb6Of1Y0FhIRJQ/Wsw=;
+  b=s7xwtt5+KHfsYZ8VROOSWymgJ7l1zSLWO5Ge179mrpCe5ZeoFHn7Uynm
+   6HfhZ/aU6nyo9GJwi3Zd1mVxAIYuWuuacHM121A6ww0EF1mIm3wlZ+a+0
+   L9jph+LtWqfbUGUq8J0ADWJvyedIX2A141+QA5uAQ3vQtVbaB6suDgLSY
+   JZOFeCMhSGRW4Czfmo2S4J5nMrNZJFipuau5WoZHCHAufzhAkKsGqsLqq
+   CeyK3a9LbChcd+msRbjTYa6wwquHpYEULjKCaTFNql0tkY+kHLXTQRis5
+   oOiWNDLNcSLvbvwdo7auyiszVyDQ1N1+hPwCK0gijbamgDxp/61lFSh1F
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="152240894"
+X-IronPort-AV: E=Sophos;i="6.07,125,1708354800"; 
+   d="scan'208";a="152240894"
+Received: from unknown (HELO yto-r2.gw.nic.fujitsu.com) ([218.44.52.218])
+  by esa3.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2024 18:48:36 +0900
+Received: from yto-m1.gw.nic.fujitsu.com (yto-nat-yto-m1.gw.nic.fujitsu.com [192.168.83.64])
+	by yto-r2.gw.nic.fujitsu.com (Postfix) with ESMTP id 159E1275F6;
+	Thu, 14 Mar 2024 18:48:34 +0900 (JST)
+Received: from kws-ab3.gw.nic.fujitsu.com (kws-ab3.gw.nic.fujitsu.com [192.51.206.21])
+	by yto-m1.gw.nic.fujitsu.com (Postfix) with ESMTP id 37F9C4262F;
+	Thu, 14 Mar 2024 18:48:33 +0900 (JST)
+Received: from edo.cn.fujitsu.com (edo.cn.fujitsu.com [10.167.33.5])
+	by kws-ab3.gw.nic.fujitsu.com (Postfix) with ESMTP id BF5E620098E23;
+	Thu, 14 Mar 2024 18:48:32 +0900 (JST)
+Received: from localhost.localdomain (unknown [10.167.226.45])
+	by edo.cn.fujitsu.com (Postfix) with ESMTP id 1D2AE1A006B;
+	Thu, 14 Mar 2024 17:48:32 +0800 (CST)
+From: Li Zhijian <lizhijian@fujitsu.com>
+To: linux-kernel@vger.kernel.org
+Cc: Li Zhijian <lizhijian@fujitsu.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	ath10k@lists.infradead.org
+Subject: [PATCH 1/3] net: ath: Convert sprintf/snprintf to sysfs_emit
+Date: Thu, 14 Mar 2024 17:48:21 +0800
+Message-Id: <20240314094823.1324898-1-lizhijian@fujitsu.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
- <CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
- <874jdigf76.fsf@kernel.org> <3b57d932-0848-40f4-ab2d-a8d4afe11df1@dd-wrt.com> <e1c3ba7e-b358-42a3-a8db-f9c098132350@quicinc.com>
-In-Reply-To: <e1c3ba7e-b358-42a3-a8db-f9c098132350@quicinc.com>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Thu, 14 Mar 2024 08:54:36 +0100
-Message-ID: <CA+HBbNGZJdvHBeP0cFwK4XgEWxggxqE1RGAXrJmavaExv6NH6A@mail.gmail.com>
-Subject: Re: New staging repos for ath1*k firmware
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Sebastian Gottschall <s.gottschall@dd-wrt.com>, Kalle Valo <kvalo@kernel.org>, 
-	ath10k <ath10k@lists.infradead.org>, ath11k <ath11k@lists.infradead.org>, 
-	ath12k <ath12k@lists.infradead.org>, 
-	linux-wireless <linux-wireless@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28250.006
+X-TM-AS-User-Approved-Sender: Yes
+X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28250.006
+X-TMASE-Result: 10--3.130400-10.000000
+X-TMASE-MatchedRID: ebEStOsB1eE4ibokZ3+Q0CoiRKlBVkYIBXngI6jFvpfDqO6/8R69QE8U
+	roFNOGp7a6aAZTOwtJmRloiW1Kgftd2ZdKe8BPbSrMZ+BqQt2Nps/NNpVQ666iXOD7ucKRbIQiM
+	ingSlKoKMx5HzfQifbPE41045MrHXFDCN/1eC4ASdVNZaI2n6/wmWvXEqQTm5wLkNMQzGl5B+Kr
+	WCPbERPznpYPqS6jzxEi2pD9yuITrh15/JKUJo/p4CIKY/Hg3AGdQnQSTrKGPEQdG7H66TyHEqm
+	8QYBtMO3LlEZYYZnW9rIyN56uP6NRM6ylMvEXGk1oRQBQClV4HA/0Gjnf5bBp2jOiFp3dpx6YyQ
+	KoFjU2kssxlojaTXaZ9+GrWpP0BdW4wbpXTb5DJKKve1kh3RY37qSWrndbmQn0bOriG5BVc=
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_005450_484212_44C0403F 
-X-CRM114-Status: GOOD (  23.27  )
+X-CRM114-CacheID: sfid-20240314_024842_623460_9A0B82F4 
+X-CRM114-Status: GOOD (  10.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,87 +99,62 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 13, 2024 at 8:32=E2=80=AFPM Jeff Johnson <quic_jjohnson@quicinc=
-.com> wrote:
->
-> On 3/9/2024 9:58 AM, Sebastian Gottschall wrote:
-> >
-> > Am 07.03.2024 um 17:49 schrieb Kalle Valo:
-> >> Robert Marko <robert.marko@sartura.hr> writes:
-> >>
-> >>> On Wed, Mar 6, 2024 at 8:23=E2=80=AFPM Jeff Johnson <quic_jjohnson@qu=
-icinc.com> wrote:
-> >>>
-> >>>> Historically, prior to being incorporated into the linux-firmware
-> >>>> project, firmware for kernel.org ath1*k drivers has been first publi=
-shed
-> >>>> to Kalle's GitHub:
-> >>>> https://github.com/kvalo/ath10k-firmware
-> >>>> https://github.com/kvalo/ath11k-firmware
-> >>>> (ath12k firmware was pushed to the ath11k-firmware repo on a tempora=
-ry
-> >>>> basis in anticipation of this move)
-> >>>>
-> >>>> But in order to have repos with multiple maintainers, as well as to =
-have
-> >>>> a hosting platform with more control, we have moved to CodeLinaro:
-> >>>> https://git.codelinaro.org/clo/ath-firmware/ath10k-firmware
-> >>>> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
-> >>>> https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware
-> >>>>
-> >>>> Note that most people should not care about this -- normally you sho=
-uld
-> >>>> use the firmware that is in the official linux-firmware repo:
-> >>>> https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware=
-.git/
-> >>>>
-> >>>> You should only need to access the staging repos if you need a previ=
-ous
-> >>>> version to work around an issue, or if you are testing new firmware =
-that
-> >>>> is supposed to fix a problem that you've reported.
-> >>>>
-> >>>> Please let Kalle & I know if you have any issues with these new repo=
-s!
-> >>> Can I please ask for IPQ6018 firmware to be updated to 2.9.0.1 as wel=
-l?
-> >>>
-> >>> We have added IPQ6018 support to OpenWrt but we are forced to use the=
- old 2.4
-> >>> firmware since anything newer is crashing on IPQ6018, we had the same=
- issue on
-> >>> IPQ8074 but it was fixed with 2.9.0.1 firmware.
-> >>>
-> >>> Even for IPQ8074, there is newer 2.9.0.1 firmware that is only
-> >>> available as part of
-> >>> QSDK and the community would benefit from being able to use it.
-> >> We are working on getting the AP chipset firmwares updated but
-> >> unfortunately no news yet.
-> > why isnt qca releasing the latest firmwares at all. i mean we all know
-> > that the qca networking tree contains way newer firmwares for all
-> > chipsets since a long time
->
-> Kalle & I are just the conduit, but I've relayed this thread to the folks
-> responsible for feeding us the firmware releases.
+Per filesystems/sysfs.rst, show() should only use sysfs_emit()
+or sysfs_emit_at() when formatting the value to be returned to user space.
 
-Trust me,
-the community knows that you are trying your best and a lot of things
-are out of your control and we really appreciate that.
+coccinelle complains that there are still a couple of functions that use
+snprintf(). Convert them to sysfs_emit().
 
-Regards,
-Robert
->
-> /jeff
->
->
+sprintf() will be converted as weel if they have.
 
+Generally, this patch is generated by
+make coccicheck M=<path/to/file> MODE=patch \
+COCCI=scripts/coccinelle/api/device_attr_show.cocci
 
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+No functional change intended
+
+CC: Kalle Valo <kvalo@kernel.org>
+CC: Jeff Johnson <jjohnson@kernel.org>
+CC: linux-wireless@vger.kernel.org
+CC: ath11k@lists.infradead.org
+CC: ath10k@lists.infradead.org
+Signed-off-by: Li Zhijian <lizhijian@fujitsu.com>
+---
+This is a part of the work "Fix coccicheck device_attr_show warnings"[1]
+Split them per subsystem so that the maintainer can review it easily
+[1] https://lore.kernel.org/lkml/20240116041129.3937800-1-lizhijian@fujitsu.com/
+---
+ drivers/net/wireless/ath/ath10k/thermal.c | 2 +-
+ drivers/net/wireless/ath/ath11k/thermal.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath10k/thermal.c b/drivers/net/wireless/ath/ath10k/thermal.c
+index 31c8d7fbb095..8b15ec07b107 100644
+--- a/drivers/net/wireless/ath/ath10k/thermal.c
++++ b/drivers/net/wireless/ath/ath10k/thermal.c
+@@ -100,7 +100,7 @@ static ssize_t ath10k_thermal_show_temp(struct device *dev,
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+ 	/* display in millidegree celsius */
+-	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
++	ret = sysfs_emit(buf, "%d\n", temperature * 1000);
+ out:
+ 	mutex_unlock(&ar->conf_mutex);
+ 	return ret;
+diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
+index 41e7499f075f..18d6eab5cce3 100644
+--- a/drivers/net/wireless/ath/ath11k/thermal.c
++++ b/drivers/net/wireless/ath/ath11k/thermal.c
+@@ -101,7 +101,7 @@ static ssize_t ath11k_thermal_show_temp(struct device *dev,
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+ 	/* display in millidegree Celsius */
+-	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
++	ret = sysfs_emit(buf, "%d\n", temperature * 1000);
+ out:
+ 	mutex_unlock(&ar->conf_mutex);
+ 	return ret;
+-- 
+2.29.2
+
 
