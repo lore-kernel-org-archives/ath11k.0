@@ -4,84 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F028C54E5D
-	for <ath11k@archiver.kernel.org>; Fri, 15 Mar 2024 01:44:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CA7EC54E66
+	for <ath11k@archiver.kernel.org>; Fri, 15 Mar 2024 05:52:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=RTbjxZIOMviRH3aUzis16GaSM/Y+0ZKj9CvJ6VLKnZs=; b=yfc9Skk9nUoKsfG88U9s7PnPTC
-	v+F2ORCwiiyDvNq5mQULx1gC1PGTdJCrxKo3SSCKLU1HlacPXyxamCDxtWSeEti5WCnR9SYrC5GpQ
-	ps5vPsqHPEqJ2XlN3mnUnI0qXMpZpA1Fq/PoI/VFgGsWRFFz6/yLqg13HyBgyYykfPZIPYRLjeH4K
-	iugO4ec9M6ZcEgQPIBnM3ui3nlG/bcObPG50ICGcbHM232nfgMRM+zye0oHdBn0Ek9zgqVRrHp/ZU
-	N3v9LS8p7TQqKzqeOFqJY9m8NbTPt2Llji7W5PcFp4+DwWbi1QoKjRaiewcIafF81MwemiMh2p5nm
-	W6xMvrsg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=I3M2FQXA24ojL/+FyY3k102AJ+AonKYH0KtBD1aMntM=; b=XwVutz6BWRYneMiifLtjktGtkJ
+	SWjHpOzrNaeEnNMMtQiAs8xTqIbtZypyiA3TNpXukL7LVAELP4QCI0duvQkYXuXVv+GRr97Wp3K0f
+	j5uGArV48oYvRYbjlIqKQJeXWTpPwRm3f6ZfBI3VeIqSa50qq0hKEWlM9mcIEcYxPM45dUpwiK3+c
+	j91aRjj2XNbBJXQe1LOmTMT9lvZq7AxahIW8ktkSW4fbkeRmd82v+5YF7l6hXueowQ1lyIlGWCcpe
+	Ayr5cYgVYAuKUSYTW+C9JFYbsPy7953b14MLQQyRpj59qDrHqnFGxpeKexccc/t6DhXfpZpDMr/NS
+	o/WGUDhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkwcO-0000000GLKm-0i18;
-	Fri, 15 Mar 2024 01:44:20 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rl0Ug-0000000Glcr-2KOo;
+	Fri, 15 Mar 2024 05:52:38 +0000
+Received: from esa2.hc1455-7.c3s2.iphmx.com ([207.54.90.48])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rkwcK-0000000GLK8-0JWm
-	for ath11k@lists.infradead.org;
-	Fri, 15 Mar 2024 01:44:17 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42F0rj8n007011;
-	Fri, 15 Mar 2024 01:44:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=RTbjxZI
-	OMviRH3aUzis16GaSM/Y+0ZKj9CvJ6VLKnZs=; b=TE06+Pid3fXdXgUndikRCvE
-	lZcx96JtqUGIDt5ROL3RAQKCicGB+3r1DfdZTTJwJmhKB4QywoM5MRTKNlpr/yYk
-	5EwegHTDK/24u56ZpuPmg8/Y/QmI8PtvDwBFH/uvjcHVPeqdPSLrflf4SIrgKtYm
-	Sdm7AdNaw5fjLQ5XWOtSi3ep3sjkmPrpiGJ8cPwIaDgUUJNEy+irT8eI/iV0rdMc
-	+c4Fs1BVYZsWAZeSP+sG7xIaQpaq8RudAxGYCj6jGo6vRYmknCxuXskOhNKhcjOT
-	e9J/KYKbrQy2xlY5MhswzAgHGxg+vzXJ2yyGIC06DUQ3YpBveHZjeWc0bP6a0Ig=
-	=
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wva0609d9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Mar 2024 01:44:08 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42F1i74U028555
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Mar 2024 01:44:07 GMT
-Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 14 Mar 2024 18:44:05 -0700
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-To: <kvalo@kernel.org>
-CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>,
-        Miaoqing Pan <quic_miaoqing@quicinc.com>
-Subject: [PATCH] wifi: ath11k: fix memory leak in ath11k_xxx_remove()
-Date: Fri, 15 Mar 2024 09:43:07 +0800
-Message-ID: <20240315014307.3132980-1-quic_miaoqing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	id 1rl0Uc-0000000Glbb-0RBY;
+	Fri, 15 Mar 2024 05:52:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
+  t=1710481954; x=1742017954;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Qv6phc/4FuyjqrfYPdqCTnpCxBNfhp35atRySiUpzR8=;
+  b=FLSW6a5bgYrfbozk/al6jEX8zXfmqCp/KXmwpSCZLLxE3y7kll0Qa15/
+   nK1sSzrICbYdaQDyTNtp9W57tX7+TYrykXTi4VBnIK4vM1IVxu2HMmoqa
+   ndy0UWQdGJp7njg/b2dELfVHmNSqKLIBqHH3coFgqUI/MVvkS8deib5nn
+   eA58e8aLGtQWpnwKGOSR25yuo5nuQ1yk4Q9reqbp2fVR6wB+wdtF/b5YE
+   2r+kZ6CH7pJRTM9MFH8x7kYswnTjgPRKIsVpd8+AjPSx3ibT6B+o4nJFA
+   6C1rQ1TbNMS25VMuGkYCS93vBxnZuVd0hM6qGei0v7JEWIQPFXEZLG26q
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="152383414"
+X-IronPort-AV: E=Sophos;i="6.07,127,1708354800"; 
+   d="scan'208";a="152383414"
+Received: from unknown (HELO oym-r4.gw.nic.fujitsu.com) ([210.162.30.92])
+  by esa2.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2024 14:52:29 +0900
+Received: from oym-m2.gw.nic.fujitsu.com (oym-nat-oym-m2.gw.nic.fujitsu.com [192.168.87.59])
+	by oym-r4.gw.nic.fujitsu.com (Postfix) with ESMTP id 3E1A9141205;
+	Fri, 15 Mar 2024 14:52:27 +0900 (JST)
+Received: from kws-ab3.gw.nic.fujitsu.com (kws-ab3.gw.nic.fujitsu.com [192.51.206.21])
+	by oym-m2.gw.nic.fujitsu.com (Postfix) with ESMTP id 64DC214D22;
+	Fri, 15 Mar 2024 14:52:26 +0900 (JST)
+Received: from edo.cn.fujitsu.com (edo.cn.fujitsu.com [10.167.33.5])
+	by kws-ab3.gw.nic.fujitsu.com (Postfix) with ESMTP id E1A0A200A7E3A;
+	Fri, 15 Mar 2024 14:52:25 +0900 (JST)
+Received: from localhost.localdomain (unknown [10.167.226.45])
+	by edo.cn.fujitsu.com (Postfix) with ESMTP id 1A9A31A006B;
+	Fri, 15 Mar 2024 13:52:24 +0800 (CST)
+From: Li Zhijian <lizhijian@fujitsu.com>
+To: linux-kernel@vger.kernel.org
+Cc: Li Zhijian <lizhijian@fujitsu.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	ath10k@lists.infradead.org
+Subject: [PATCH v2 1/3] wifi: ath: Convert sprintf/snprintf to sysfs_emit
+Date: Fri, 15 Mar 2024 13:52:09 +0800
+Message-Id: <20240315055211.1347548-1-lizhijian@fujitsu.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 22b0kfWFUIDFYEBMIersIueYpjbfAZNA
-X-Proofpoint-ORIG-GUID: 22b0kfWFUIDFYEBMIersIueYpjbfAZNA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
- clxscore=1011 priorityscore=1501 mlxscore=0 adultscore=0 mlxlogscore=834
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403140001
- definitions=main-2403150010
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28252.004
+X-TM-AS-User-Approved-Sender: Yes
+X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28252.004
+X-TMASE-Result: 10--3.370400-10.000000
+X-TMASE-MatchedRID: /mcjwogdDrk4ibokZ3+Q0CoiRKlBVkYIBXngI6jFvpfDqO6/8R69QE8U
+	roFNOGp7a6aAZTOwtJmRloiW1Kgftd2ZdKe8BPbSrMZ+BqQt2Nps/NNpVQ666hXsn8ikX6Gtzv0
+	+UmYCZcMPNxz2EvpSIAhBeNJICtc+zK2lwdvrNt2qH6mIBejVf2ItZ2e1geixEd+K6O5Nt53oKE
+	r2irJf5CL637QCIVpi8vc3EUpCmrV8M8QL/JCA9N9JA2lmQRNUrzl8sNiWClKbKItl61J/yZ+in
+	TK0bC9eKrauXd3MZDXdPm6Zo4+L6rfjitlkYmpJaIu8tbWsF6z9+jPt2YyIEwSvEMdfhO/82WMg
+	P9XH4iW61V4Xac0M7FrnjD0+bxg0N7Br+Gphn4yMa1PejsZJrBXFEH92Kf64nTtPxlIuIBW9Hzj
+	86YHXBCnifx5AGfCL
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240314_184416_266685_52D50C23 
-X-CRM114-Status: GOOD (  10.98  )
+X-CRM114-CacheID: sfid-20240314_225234_623422_2F9270A0 
+X-CRM114-Status: GOOD (  10.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,57 +100,64 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The firmware memory was allocated in ath11k_pci_probe() or
-ath11k_ahb_probe(), but not freed in ath11k_xxx_remove() in case
-ATH11K_FLAG_QMI_FAIL bit is set. So call ath11k_fw_destroy() to
-free the memory.
+Per filesystems/sysfs.rst, show() should only use sysfs_emit()
+or sysfs_emit_at() when formatting the value to be returned to user space.
 
-Found while fixing the same problem in ath12k:
-https://lore.kernel.org/linux-wireless/20240314012746.2729101-1-quic_miaoqing@quicinc.com
+coccinelle complains that there are still a couple of functions that use
+snprintf(). Convert them to sysfs_emit().
 
-No functional changes, compile tested only.
+sprintf() will be converted as weel if they have.
 
-Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Generally, this patch is generated by
+make coccicheck M=<path/to/file> MODE=patch \
+COCCI=scripts/coccinelle/api/device_attr_show.cocci
+
+No functional change intended
+
+CC: Kalle Valo <kvalo@kernel.org>
+CC: Jeff Johnson <jjohnson@kernel.org>
+CC: linux-wireless@vger.kernel.org
+CC: ath11k@lists.infradead.org
+CC: ath10k@lists.infradead.org
+Signed-off-by: Li Zhijian <lizhijian@fujitsu.com>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c | 1 +
- drivers/net/wireless/ath/ath11k/fw.c  | 1 +
- drivers/net/wireless/ath/ath11k/pci.c | 1 +
- 3 files changed, 3 insertions(+)
+V2: subject updated
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 7c0a23517949..6bc4e55c6c2b 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -1259,6 +1259,7 @@ static void ath11k_ahb_remove(struct platform_device *pdev)
- 		ath11k_ahb_power_down(ab);
- 		ath11k_debugfs_soc_destroy(ab);
- 		ath11k_qmi_deinit_service(ab);
-+		ath11k_fw_destroy(ab);
- 		goto qmi_fail;
- 	}
+This is a part of the work "Fix coccicheck device_attr_show warnings"[1]
+Split them per subsystem so that the maintainer can review it easily
+[1] https://lore.kernel.org/lkml/20240116041129.3937800-1-lizhijian@fujitsu.com/
+---
+ drivers/net/wireless/ath/ath10k/thermal.c | 2 +-
+ drivers/net/wireless/ath/ath11k/thermal.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath10k/thermal.c b/drivers/net/wireless/ath/ath10k/thermal.c
+index 31c8d7fbb095..8b15ec07b107 100644
+--- a/drivers/net/wireless/ath/ath10k/thermal.c
++++ b/drivers/net/wireless/ath/ath10k/thermal.c
+@@ -100,7 +100,7 @@ static ssize_t ath10k_thermal_show_temp(struct device *dev,
+ 	spin_unlock_bh(&ar->data_lock);
  
-diff --git a/drivers/net/wireless/ath/ath11k/fw.c b/drivers/net/wireless/ath/ath11k/fw.c
-index 4e36292a79db..22327d5f9680 100644
---- a/drivers/net/wireless/ath/ath11k/fw.c
-+++ b/drivers/net/wireless/ath/ath11k/fw.c
-@@ -166,3 +166,4 @@ void ath11k_fw_destroy(struct ath11k_base *ab)
- {
- 	release_firmware(ab->fw.fw);
- }
-+EXPORT_SYMBOL(ath11k_fw_destroy);
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index be9d2c69cc41..6099d02d5f65 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -973,6 +973,7 @@ static void ath11k_pci_remove(struct pci_dev *pdev)
- 		ath11k_pci_power_down(ab);
- 		ath11k_debugfs_soc_destroy(ab);
- 		ath11k_qmi_deinit_service(ab);
-+		ath11k_fw_destroy(ab);
- 		goto qmi_fail;
- 	}
+ 	/* display in millidegree celsius */
+-	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
++	ret = sysfs_emit(buf, "%d\n", temperature * 1000);
+ out:
+ 	mutex_unlock(&ar->conf_mutex);
+ 	return ret;
+diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
+index 41e7499f075f..18d6eab5cce3 100644
+--- a/drivers/net/wireless/ath/ath11k/thermal.c
++++ b/drivers/net/wireless/ath/ath11k/thermal.c
+@@ -101,7 +101,7 @@ static ssize_t ath11k_thermal_show_temp(struct device *dev,
+ 	spin_unlock_bh(&ar->data_lock);
  
+ 	/* display in millidegree Celsius */
+-	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
++	ret = sysfs_emit(buf, "%d\n", temperature * 1000);
+ out:
+ 	mutex_unlock(&ar->conf_mutex);
+ 	return ret;
 -- 
-2.25.1
+2.29.2
 
 
