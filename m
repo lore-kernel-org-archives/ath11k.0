@@ -4,83 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE09C54E58
-	for <ath11k@archiver.kernel.org>; Mon, 18 Mar 2024 08:33:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EFC7C54E5D
+	for <ath11k@archiver.kernel.org>; Mon, 18 Mar 2024 19:41:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WD9e5KRsKFSY3mJTRq+H/hatWIgf2BjwSx3HN41sPcA=; b=ftIqv6IGKJ3/ELIlglnONsxP7P
-	AUbWsGWQAxbOxv02IBNcwU686NFIeqlLEP/o8U8uBZVk/YUChJznxiy3m4Wi999ggKR6YTt/FtE/m
-	OAkxyHYRMSOe4aANIqm3eR5EEU34C4AKb28rJ5mXn/QKMIpKaetgtcE5vTeezGFA4sNwG+4KHsvKB
-	nY0XXlBoH48EgeI2g7yGDa62Nof1IJOFVfna0n7u/K4iL5JgQU04Bo45Ko0tlB8jByfFfdwqTYbau
-	6saABQHo8ls+Gq+frpX2HH1i7IZKT8JiEsP5Q9qd/DJZ9YZcQXVm9OLrbJSS3zTleY6D/hLNjqKdy
-	ikPyikmw==;
+	bh=wv518dmYEwtTR+TjjPyC6YIb0i+sx73V1gS2n1N7lFE=; b=cNskV8FWhizcQmtrZ6cJ8neViI
+	zLf52v+owATHfL//EV8CiqlxOAwdQkizu4QdafyxStrw6rVv5sXEuvueg7XyGTAjzCYLdgVcrIJbU
+	ZJdxJyproON13bsZdiQiTP9+qxER4WJrCp8W25vPVZhQhzK1v3xXCDEZGfCsNuGeM4ZnAxEUmImyL
+	xRmdtJMLn2hHzoFsblchl+CO20D4rJp6e8oyAjUnoZ06R9IgEbOGStQzq+yq2jvPY77cHM7VeI5xu
+	8OlKLnWxoIZ+XirvyyH4LCLd9fcDz9ysbrJSHVTw+YeJpD+6KEnSToweoxQHRYiR46cTpUITtVtrh
+	C3lca8bQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rm8RE-00000007lM6-1ije;
-	Mon, 18 Mar 2024 08:33:44 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1rmIr8-00000009smD-0FJn;
+	Mon, 18 Mar 2024 19:41:10 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rm8RC-00000007lLC-1CCI;
-	Mon, 18 Mar 2024 08:33:43 +0000
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-512bde3d197so3375268e87.0;
-        Mon, 18 Mar 2024 01:33:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710750819; x=1711355619; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WD9e5KRsKFSY3mJTRq+H/hatWIgf2BjwSx3HN41sPcA=;
-        b=mUS8ne512gc+gkNCFWOpcJXLNqdMes+IprfGBOgIgmC5EVhSF/2Cl+NGHp6qr/I5ex
-         qbzjfvlgn+X4YdACpBCldUghxdq/8OBPG8gykR9vmWAZCVtJU3Hl/WqascjamKOrSSY+
-         ahDjceJv/zVeMcj2+wZ6sGPZ6z6yjqZ8mlTyv0yehPnAawXND6+IVfGkOEcxpxMmuz1R
-         IceGM60MAHAxKr5p31PKRjAAq7cvjXuXtssGMTDcHfP3ieFX5w0Jz05prw1LA/ubkmLI
-         CLsj5XW8bHUy6cL0C8PH5fMuziGIwobkrpiPwz9YcZLAS3z5iT+aGe1VZX3Y9mKPn3z9
-         XkUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710750819; x=1711355619;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WD9e5KRsKFSY3mJTRq+H/hatWIgf2BjwSx3HN41sPcA=;
-        b=UwqCdlK09tXDQyYD8Xtrhk0+oQpr2jcN96uw4xhhwGx6c1WBstUUOYra47aJPPeEzG
-         QXG+Z58CohzCMGGIK2ljgtINPc44S1Iwv2O1wVOtv6DiDXeCWf2tMBld54PPj7bQDlzG
-         bqN2yMFWWMeFjB2PXWCmmrfCjvjnwT0aTrl1x5VseHjJdhR+D0wF6AInTQzFGBx5/2ey
-         lKagb4FmEdv0nlSBW+QHxK5mZNU6e7tY0SxYYMhnsoohfHUePVnGxkfaheApJvkdd2l3
-         YnJVhpqfnzCjYRNS1uBH64RMT/s7tDYtnTjSqjILDqFHYnlJCZOW5IKCf/VkCZkgkqiU
-         UDyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWH4MBTSDnbruTtzAJABgXwSk8l09IH98cEoDX4JgG8bsxDNVq0SAvbRFr/PAXfHs0W8qxPPVIwIM1zv2ZCJiGfd6xFT8qwC2LVR4LiTuUVIYeOEjONLUlgKxrADborlY5O1nhLPsw=
-X-Gm-Message-State: AOJu0Yx7RRQ+98DYPvL/RHr3XKGcBL44PSQ4Ch0DtgE97yVKgbJOMqgI
-	5Fk3QabrlG85FtF1oLGfzvXsH9MmHF4LKJr+e8RGTtbcjnaiZ1Ly
-X-Google-Smtp-Source: AGHT+IEO594O017XxCncKzJ069xXLH7dPYMbXUEMfFgPTuke+UVDTO9OlPpFdSWe5W24rJCjQmEM4g==
-X-Received: by 2002:ac2:58c7:0:b0:513:c962:71a1 with SMTP id u7-20020ac258c7000000b00513c96271a1mr7711444lfo.50.1710750818413;
-        Mon, 18 Mar 2024 01:33:38 -0700 (PDT)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id bi27-20020a05600c3d9b00b0041413a5473bsm855020wmb.32.2024.03.18.01.33.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Mar 2024 01:33:38 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 18 Mar 2024 09:33:37 +0100
-Message-Id: <CZWQJW12K3AK.AYQ7YYDWMV6G@gmail.com>
-Cc: "Kalle Valo" <kvalo@kernel.org>
-Subject: Re: ath12k & ath11k beacon miss detection
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Jeff Johnson" <quic_jjohnson@quicinc.com>,
- <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
-X-Mailer: aerc 0.15.2
-References: <CZA2NS7J83D4.18SU6W9R96KPY@gmail.com>
- <a35eca5b-e6e6-46e8-85b5-dbcbda0d2f04@quicinc.com>
- <CZU8N7QWGITF.1DC5A13NM18UI@gmail.com>
- <6874f568-88dd-40cb-bf57-d41b2d7aa41f@quicinc.com>
-In-Reply-To: <6874f568-88dd-40cb-bf57-d41b2d7aa41f@quicinc.com>
+	id 1rmIr4-00000009skc-1Tql
+	for ath11k@lists.infradead.org;
+	Mon, 18 Mar 2024 19:41:07 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42IDTbm5009153;
+	Mon, 18 Mar 2024 19:41:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=wv518dmYEwtTR+TjjPyC6YIb0i+sx73V1gS2n1N7lFE=; b=pE
+	//NR0JkPfv5Vm1njMkPfe6C8ItrtGqNiCq/2wSJ+5SOWYQ76UPfUe8/KqmXAD52f
+	76WD5QLkWvfz10RuVqemzerPfMuS4/s/Gj0DiWCMPWiIE/yUBF1wXnm42AmxxEX6
+	NkVu8umOuhb6427C+gtbGMLWJAM/W5fqzp4y7MYIXXzT1Huf/TawC8gPtQiNLm6D
+	PS4m0Cn+sH0+K8zIkuTQlQDxDec+IMcvrdAMwcldgAEizexi6o6oUwf/vMZbkxFI
+	EfsaYc+fFR9aCHax/C2MEQlbTiCWoEbTr5L8MHjB1K0ThaQruvWnPz6SSg44NS3D
+	aT2x7HMAEDLTSJ96+A3A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wxmnjs4r7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Mar 2024 19:41:02 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42IJf2GQ031024
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Mar 2024 19:41:02 GMT
+Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Mar
+ 2024 12:41:01 -0700
+Message-ID: <2e46eb4e-daa9-46ad-acc5-4a7e1321a5bc@quicinc.com>
+Date: Mon, 18 Mar 2024 12:41:00 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: fix memory leak in ath11k_xxx_remove()
+Content-Language: en-US
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>, <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20240315014307.3132980-1-quic_miaoqing@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240315014307.3132980-1-quic_miaoqing@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: O5zhKu4OInZ2TzPAHCBbVTzetMYI2cW2
+X-Proofpoint-ORIG-GUID: O5zhKu4OInZ2TzPAHCBbVTzetMYI2cW2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-18_12,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ clxscore=1015 mlxscore=0 lowpriorityscore=0 mlxlogscore=471 phishscore=0
+ impostorscore=0 bulkscore=0 priorityscore=1501 adultscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403140001
+ definitions=main-2403180149
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240318_013342_347120_5A4E7E45 
-X-CRM114-Status: GOOD (  11.93  )
+X-CRM114-CacheID: sfid-20240318_124106_446903_DC843CF5 
+X-CRM114-Status: GOOD (  10.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,21 +97,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri Mar 15, 2024 at 8:55 PM CET, Jeff Johnson wrote:
-[...]
-> > Hi Jeff,
-> >=20
-> > Any news from the developement team ? Is this something that got into t=
-heir
-> > backlog, or even better, got a chance to be looked into ? I'm sure if w=
-e tackle
-> > it on either ath 11k or 12k the other one will be trivial to fix.
->
-> Yes, there is an ath12k patch under internal review and test. Hope it wil=
-l
-> reach the list soon.
->
-> /jeff
+On 3/14/2024 6:43 PM, Miaoqing Pan wrote:
+> The firmware memory was allocated in ath11k_pci_probe() or
+> ath11k_ahb_probe(), but not freed in ath11k_xxx_remove() in case
+> ATH11K_FLAG_QMI_FAIL bit is set. So call ath11k_fw_destroy() to
+> free the memory.
+> 
+> Found while fixing the same problem in ath12k:
+> https://lore.kernel.org/linux-wireless/20240314012746.2729101-1-quic_miaoqing@quicinc.com
+> 
+> No functional changes, compile tested only.
+> 
+> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/ahb.c | 1 +
+>  drivers/net/wireless/ath/ath11k/fw.c  | 1 +
+>  drivers/net/wireless/ath/ath11k/pci.c | 1 +
 
-Great news. Thanks !
+My Qualcomm Innovation Center copyright checker reports:
+drivers/net/wireless/ath/ath11k/ahb.c copyright missing 2024
+drivers/net/wireless/ath/ath11k/fw.c copyright missing 2024
+
+Kalle, do you want a respin or will you handle this?
+With copyrights fixed you can add my:
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+
 
