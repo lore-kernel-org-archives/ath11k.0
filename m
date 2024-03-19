@@ -4,91 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E128C54E5D
-	for <ath11k@archiver.kernel.org>; Tue, 19 Mar 2024 13:45:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 673BAC54E68
+	for <ath11k@archiver.kernel.org>; Tue, 19 Mar 2024 18:57:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AQFx2OUsNi7a3yBPHysolSPdvNgpM939e+P8DENsLjQ=; b=meD3LJ+CQ6TKXdKKipUo4BZ8pH
-	H8aZcKB5ANH4YJh9O668pi5u5fp9swnFoTbSOvem9L8rDaL8T/2T9vMm6wNTIRPyNMVswAJADejHI
-	5UMyA+nCGm02aDG9IRkwlvjWfNJalIE2PgQtiUAGuPO/P17tAC++p6vmch0ZrtMMlQI7oetRJF0P+
-	5Au9AmthE/D20OgN50pO/ZrbFAuRCtMBPpN34VxeJhe5L5w+ni9WtvjPtMsK+LAvxdzrYSdM3EJps
-	biWT1KlGIKxAI6PFokkRu8YmhLiyKLcUx72E7vHKZ3E/hEPm4tCjPJ/zZRzw5mF/Eug/flCbZWx84
-	9k/ESjVQ==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=S5vbUK0x5mQPz4Xbo7a3iJQ4eSaXAWOMaKCyLfiRGyQ=; b=qz+M5Y+eZbeGKgmq/3TpGn5kSA
+	A1gO4fFImuotkipkR7sd6FAGq3wFBaX6mNH4iwsNFBPYgnyvSGekj/DJ5Gps//146cy0D/cBh+A52
+	M7tmhlD3wEZq6YCby5B5qFSmUkhGJtP+PT+BkPd0zPRKl+tvG6BBlhf13HTLgTVfl6576M8NIvqV2
+	RzR8esq58fOqNJLLf4oOuOhCHpXTaemGNHB2W08J3E0dyP3E6L6z7Afo3j5MAlVWA7D09crPgTZgF
+	UKWyt/ggMnzCA72Go4SMFBz2w6M6D7NvHmrz7Xo2eRH+Vs05ms6Eg521PUD1OKX0j2cQdomHc2FMp
+	3iwcVzrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmZma-0000000CqoL-0sK1;
-	Tue, 19 Mar 2024 13:45:36 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1rmeel-0000000Du51-3ngh;
+	Tue, 19 Mar 2024 18:57:51 +0000
+Received: from mail-lf1-f53.google.com ([209.85.167.53])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmZmV-0000000CqmC-3kJN
+	id 1rmeei-0000000Du46-2UIa
 	for ath11k@lists.infradead.org;
-	Tue, 19 Mar 2024 13:45:33 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42J4Q8iu029011;
-	Tue, 19 Mar 2024 13:45:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding; s=qcppdkim1; bh=AQFx2OU
-	sNi7a3yBPHysolSPdvNgpM939e+P8DENsLjQ=; b=es/EYNT1invHP0PjeIbIXaQ
-	Tb4SwLKP061k+vfQkKNs+ZnkrtrndoTLoQkyOB6Y8e8JropXzpUsnQB9A0EkOKp0
-	QWcZjd+E23K3DhHQ3TFPZvm9daP3HdNWthM4XRoKxrtJKnSfTLlenuU9OuuhcKKt
-	19r43z4y5ADRNppgCHhRXKbboUfYvhph+k+4DUDO0JxkfuXr6MiyHqQhWEY8ZY13
-	RSg/1mbghYMIVjkjBHxtwhhZrqYTxJRPCp7fk5qpvqlFe+jBVkQquuBsmtsh5rRo
-	oeLA65atoueW/BVqJqhNfKe1gPZ4AvGsQizeq30jV/n+HsbPidaxZonwUfQ9+Hg=
-	=
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wy2cjsbbn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Mar 2024 13:45:29 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 42JDjQhm031321;
-	Tue, 19 Mar 2024 13:45:26 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3ww4gkbf05-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Mar 2024 13:45:26 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 42JDjQSk031313;
-	Tue, 19 Mar 2024 13:45:26 GMT
-Received: from hu-devc-blr-u22-a.qualcomm.com (hu-haric-blr.qualcomm.com [10.131.39.39])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 42JDjPiV031311
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Mar 2024 13:45:26 +0000
-Received: by hu-devc-blr-u22-a.qualcomm.com (Postfix, from userid 3844793)
-	id 54F4241330; Tue, 19 Mar 2024 19:15:25 +0530 (+0530)
-From: Hari Chandrakanthan <quic_haric@quicinc.com>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-        Hari Chandrakanthan <quic_haric@quicinc.com>
-Subject: [PATCH v2 2/2] wifi: ath12k: Add support to rx retry stats
-Date: Tue, 19 Mar 2024 19:15:22 +0530
-Message-Id: <20240319134522.4021062-3-quic_haric@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240319134522.4021062-1-quic_haric@quicinc.com>
-References: <20240319134522.4021062-1-quic_haric@quicinc.com>
+	Tue, 19 Mar 2024 18:57:50 +0000
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-513e6777af4so4820073e87.2
+        for <ath11k@lists.infradead.org>; Tue, 19 Mar 2024 11:57:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710874666; x=1711479466;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S5vbUK0x5mQPz4Xbo7a3iJQ4eSaXAWOMaKCyLfiRGyQ=;
+        b=Li21ia5917oAVMYa4hfx24Cx/xlpdka//LFAETjogWXHaUwTKyvo8AH/4XMlIWFOo3
+         enuYrWE4as7qEVcKDzxva1NUkSF00DpGM0FEZAvOpdUI70aLxaHMW63MUYTokOQ+N5KN
+         XaGkG8gLVE6n0/LklOOGALWUgHKbvkGHepswrxNHY+kzEslVYEk6A1LPa763+4qIzS1s
+         1fF0GQpl7uP1erTjmsTc7/WY3WKmC+Fj1kivwUBSPhsv1RNMpITU7g6PK02DPzKyEhBF
+         sIBawGpLo+9VyrEr8AVRxYfwdp4Vn2zy4JKdqZWndnCKOwMAPx8zuAyDe5BIgx9xRuab
+         09nw==
+X-Forwarded-Encrypted: i=1; AJvYcCVyrjDzYR7/XmSr7GUxavLA608TKAV6kRIQfJi7TcNkxYyvQty5n++cmdmdhjg7FYep8wdh9uwB5/hhtEzeS0Nc/QE/jAU1jFzCCA==
+X-Gm-Message-State: AOJu0Ywb+b9eUP3RLGWn5RZMRuzy1+IA21dLNPgv216J0xXRR+uHXF1X
+	UfOIugh2qWsKvycC5WP+GkIZeYThBScPjcMT3O2NgjXBvcfABpFg
+X-Google-Smtp-Source: AGHT+IHEWx37j6x265cYHrxTAmCCI0WI/coMWHrWzV++c9l6d4k592ZUGWdrKqUy/weuDlnX+e09YQ==
+X-Received: by 2002:a05:6512:3c9d:b0:513:dc7c:4956 with SMTP id h29-20020a0565123c9d00b00513dc7c4956mr10588671lfv.48.1710874666277;
+        Tue, 19 Mar 2024 11:57:46 -0700 (PDT)
+Received: from localhost (fwdproxy-lla-008.fbsv.net. [2a03:2880:30ff:8::face:b00c])
+        by smtp.gmail.com with ESMTPSA id o1-20020a1709064f8100b00a4671c92907sm6282594eju.28.2024.03.19.11.57.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Mar 2024 11:57:45 -0700 (PDT)
+From: Breno Leitao <leitao@debian.org>
+To: Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: kuba@kernel.org,
+	keescook@chromium.org,
+	linux-wireless@vger.kernel.org (open list:NETWORKING DRIVERS (WIRELESS)),
+	ath11k@lists.infradead.org (open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] wifi: ath11k: allocate dummy net_device dynamically
+Date: Tue, 19 Mar 2024 11:57:33 -0700
+Message-ID: <20240319185735.1268980-1-leitao@debian.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kycZQHAjaQyp-i0Zb1hvEJeeo0kokrvy
-X-Proofpoint-GUID: kycZQHAjaQyp-i0Zb1hvEJeeo0kokrvy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-19_03,2024-03-18_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015
- impostorscore=0 lowpriorityscore=0 mlxlogscore=999 suspectscore=0
- mlxscore=0 phishscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2403140001 definitions=main-2403190105
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240319_064532_071291_774F53D7 
-X-CRM114-Status: GOOD (  15.13  )
+X-CRM114-CacheID: sfid-20240319_115748_693723_8AAAC2CA 
+X-CRM114-Status: GOOD (  13.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,130 +82,128 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add support to count station level rx retries.
-It denotes the number of data frames(MPDUs) received with rx retry bit
-set.
+Embedding net_device into structures prohibits the usage of flexible
+arrays in the net_device structure. For more details, see the discussion
+at [1].
 
-The rx retry stats helps in understanding the medium during
-UL transmission.
+Un-embed the net_device from struct ath11k_ext_irq_grp by converting it
+into a pointer. Then use the leverage alloc_netdev() to allocate the
+net_device object at ath11k_ahb_config_ext_irq() for ahb, and
+ath11k_pcic_ext_irq_config() for pcic.
 
-Tested-on: QCN9274 hw1.0 PCI WLAN.WBE.1.2.1-00148-QCAHKSWPL_SILICONZ-1
+ The free of the device occurs at ath11k_ahb_free_ext_irq() for the ahb
+case, and ath11k_pcic_free_ext_irq() for the pcic case.
 
-Signed-off-by: Hari Chandrakanthan <quic_haric@quicinc.com>
+[1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
+
+Signed-off-by: Breno Leitao <leitao@debian.org>
 ---
-v2: Rebased the patch
----
- drivers/net/wireless/ath/ath12k/core.h   | 1 +
- drivers/net/wireless/ath/ath12k/dp_mon.c | 8 ++++++++
- drivers/net/wireless/ath/ath12k/hal_rx.h | 7 ++++++-
- drivers/net/wireless/ath/ath12k/mac.c    | 3 +++
- 4 files changed, 18 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/ahb.c  |  8 ++++++--
+ drivers/net/wireless/ath/ath11k/core.h |  2 +-
+ drivers/net/wireless/ath/ath11k/pcic.c | 21 +++++++++++++++++----
+ 3 files changed, 24 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath12k/core.h b/drivers/net/wireless/ath/ath12k/core.h
-index 97e5a0ccd233..8ffa9feb58d9 100644
---- a/drivers/net/wireless/ath/ath12k/core.h
-+++ b/drivers/net/wireless/ath/ath12k/core.h
-@@ -425,6 +425,7 @@ struct ath12k_sta {
- 	struct ath12k_rx_peer_stats *rx_stats;
- 	struct ath12k_wbm_tx_stats *wbm_tx_stats;
- 	u32 bw_prev;
-+	u32 rx_retries;
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 7c0a23517949..a8d89f510f62 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -442,6 +442,7 @@ static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+ 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
+ 
+ 		netif_napi_del(&irq_grp->napi);
++		free_netdev(irq_grp->napi_ndev);
+ 	}
+ }
+ 
+@@ -533,8 +534,11 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 
+ 		irq_grp->ab = ab;
+ 		irq_grp->grp_id = i;
+-		init_dummy_netdev(&irq_grp->napi_ndev);
+-		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
++		irq_grp->napi_ndev = alloc_netdev(0, "dummy", NET_NAME_UNKNOWN,
++						  init_dummy_netdev);
++		if (!irq_grp->napi_ndev)
++			return -ENOMEM;
++		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
+ 			       ath11k_ahb_ext_grp_napi_poll);
+ 
+ 		for (j = 0; j < ATH11K_EXT_IRQ_NUM_MAX; j++) {
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index b3fb74a226fb..590307ca7a11 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -174,7 +174,7 @@ struct ath11k_ext_irq_grp {
+ 	u64 timestamp;
+ 	bool napi_enabled;
+ 	struct napi_struct napi;
+-	struct net_device napi_ndev;
++	struct net_device *napi_ndev;
  };
  
- #define ATH12K_MIN_5G_FREQ 4150
-diff --git a/drivers/net/wireless/ath/ath12k/dp_mon.c b/drivers/net/wireless/ath/ath12k/dp_mon.c
-index 2d56913a75d0..eb2f156b3e82 100644
---- a/drivers/net/wireless/ath/ath12k/dp_mon.c
-+++ b/drivers/net/wireless/ath/ath12k/dp_mon.c
-@@ -774,9 +774,11 @@ ath12k_dp_mon_rx_parse_status_tlv(struct ath12k_base *ab,
- 		u16 peer_id;
+ enum ath11k_smbios_cc_type {
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index add4db4c50bc..ebb1d0432d94 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -316,6 +316,7 @@ static void ath11k_pcic_free_ext_irq(struct ath11k_base *ab)
+ 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
  
- 		info[1] = __le32_to_cpu(mpdu_start->info1);
-+		info[3] = __le32_to_cpu(mpdu_start->info3);
- 		peer_id = u32_get_bits(info[1], HAL_RX_MPDU_START_INFO1_PEERID);
- 		if (peer_id)
- 			ppdu_info->peer_id = peer_id;
-+		ppdu_info->mpdu_retry = info[3] & HAL_RX_MPDU_START_INFO3_MPDU_RETRY;
+ 		netif_napi_del(&irq_grp->napi);
++		free_netdev(irq_grp->napi_ndev);
+ 	}
+ }
  
- 		ppdu_info->mpdu_len += u32_get_bits(info[1],
- 						    HAL_RX_MPDU_START_INFO2_MPDU_LEN);
-@@ -785,6 +787,9 @@ ath12k_dp_mon_rx_parse_status_tlv(struct ath12k_base *ab,
- 			ppdu_info->userid = userid;
- 			ppdu_info->ampdu_id[userid] =
- 				u32_get_bits(info[0], HAL_RX_MPDU_START_INFO1_PEERID);
-+			ppdu_info->userstats[userid].mpdu_retry =
-+				info[3] & HAL_RX_MPDU_START_INFO3_MPDU_RETRY;
-+
+@@ -558,7 +559,7 @@ ath11k_pcic_get_msi_irq(struct ath11k_base *ab, unsigned int vector)
+ 
+ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ {
+-	int i, j, ret, num_vectors = 0;
++	int i, j, n, ret, num_vectors = 0;
+ 	u32 user_base_data = 0, base_vector = 0;
+ 	unsigned long irq_flags;
+ 
+@@ -578,8 +579,11 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ 
+ 		irq_grp->ab = ab;
+ 		irq_grp->grp_id = i;
+-		init_dummy_netdev(&irq_grp->napi_ndev);
+-		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
++		irq_grp->napi_ndev = alloc_netdev(0, "dummy", NET_NAME_UNKNOWN,
++						  init_dummy_netdev);
++		if (!irq_grp->napi_ndev)
++			return -ENOMEM;
++		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
+ 			       ath11k_pcic_ext_grp_napi_poll);
+ 
+ 		if (ab->hw_params.ring_mask->tx[i] ||
+@@ -601,8 +605,13 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ 			int vector = (i % num_vectors) + base_vector;
+ 			int irq = ath11k_pcic_get_msi_irq(ab, vector);
+ 
+-			if (irq < 0)
++			if (irq < 0) {
++				for (n = 0; n <= i; n++) {
++					irq_grp = &ab->ext_irq_grp[n];
++					free_netdev(irq_grp->napi_ndev);
++				}
+ 				return irq;
++			}
+ 
+ 			ab->irq_num[irq_idx] = irq;
+ 
+@@ -615,6 +624,10 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ 			if (ret) {
+ 				ath11k_err(ab, "failed request irq %d: %d\n",
+ 					   vector, ret);
++				for (n = 0; n <= i; n++) {
++					irq_grp = &ab->ext_irq_grp[n];
++					free_netdev(irq_grp->napi_ndev);
++				}
+ 				return ret;
+ 			}
  		}
- 
- 		mon_mpdu = kzalloc(sizeof(*mon_mpdu), GFP_ATOMIC);
-@@ -2209,6 +2214,8 @@ static void ath12k_dp_mon_rx_update_peer_su_stats(struct ath12k *ar,
- 	struct ath12k_rx_peer_stats *rx_stats = arsta->rx_stats;
- 	u32 num_msdu;
- 
-+	arsta->rx_retries  += ppdu_info->mpdu_retry;
-+
- 	if (!rx_stats)
- 		return;
- 
-@@ -2378,6 +2385,7 @@ ath12k_dp_mon_rx_update_user_stats(struct ath12k *ar,
- 
- 	arsta = ath12k_sta_to_arsta(peer->sta);
- 	rx_stats = arsta->rx_stats;
-+	arsta->rx_retries = user_stats->mpdu_retry;
- 
- 	if (!rx_stats)
- 		return;
-diff --git a/drivers/net/wireless/ath/ath12k/hal_rx.h b/drivers/net/wireless/ath/ath12k/hal_rx.h
-index 095216eabc01..ea2b89896abd 100644
---- a/drivers/net/wireless/ath/ath12k/hal_rx.h
-+++ b/drivers/net/wireless/ath/ath12k/hal_rx.h
-@@ -143,6 +143,7 @@ struct hal_rx_user_status {
- 	u32 mpdu_fcs_ok_bitmap[HAL_RX_NUM_WORDS_PER_PPDU_BITMAP];
- 	u32 mpdu_ok_byte_count;
- 	u32 mpdu_err_byte_count;
-+	bool mpdu_retry;
- };
- 
- #define HAL_MAX_UL_MU_USERS	37
-@@ -230,6 +231,7 @@ struct hal_rx_mon_ppdu_info {
- 	bool first_msdu_in_mpdu;
- 	bool is_ampdu;
- 	u8 medium_prot_type;
-+	bool mpdu_retry;
- };
- 
- #define HAL_RX_PPDU_START_INFO0_PPDU_ID		GENMASK(15, 0)
-@@ -447,10 +449,13 @@ struct hal_rx_phyrx_rssi_legacy_info {
- #define HAL_RX_MPDU_START_INFO0_PPDU_ID	GENMASK(31, 16)
- #define HAL_RX_MPDU_START_INFO1_PEERID	GENMASK(31, 16)
- #define HAL_RX_MPDU_START_INFO2_MPDU_LEN GENMASK(13, 0)
-+#define HAL_RX_MPDU_START_INFO3_MPDU_RETRY	BIT(19)
- struct hal_rx_mpdu_start {
- 	__le32 info0;
- 	__le32 info1;
--	__le32 rsvd1[11];
-+	__le32 rsvd1[8];
-+	__le32 info3;
-+	__le32 rsvd3[2];
- 	__le32 info2;
- 	__le32 rsvd2[9];
- } __packed;
-diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
-index 52a5fb8b03e9..f050c5079e80 100644
---- a/drivers/net/wireless/ath/ath12k/mac.c
-+++ b/drivers/net/wireless/ath/ath12k/mac.c
-@@ -7467,6 +7467,9 @@ static void ath12k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 	sinfo->txrate.flags = arsta->txrate.flags;
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_BITRATE);
- 
-+	sinfo->rx_retries = arsta->rx_retries;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_RX_RETRIES);
-+
- 	/* TODO: Use real NF instead of default one. */
- 	sinfo->signal = arsta->rssi_comb + ATH12K_DEFAULT_NOISE_FLOOR;
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL);
 -- 
-2.34.1
+2.43.0
 
 
