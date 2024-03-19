@@ -4,85 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EFC7C54E5D
-	for <ath11k@archiver.kernel.org>; Mon, 18 Mar 2024 19:41:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF93CC54E60
+	for <ath11k@archiver.kernel.org>; Tue, 19 Mar 2024 13:45:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=wv518dmYEwtTR+TjjPyC6YIb0i+sx73V1gS2n1N7lFE=; b=cNskV8FWhizcQmtrZ6cJ8neViI
-	zLf52v+owATHfL//EV8CiqlxOAwdQkizu4QdafyxStrw6rVv5sXEuvueg7XyGTAjzCYLdgVcrIJbU
-	ZJdxJyproON13bsZdiQiTP9+qxER4WJrCp8W25vPVZhQhzK1v3xXCDEZGfCsNuGeM4ZnAxEUmImyL
-	xRmdtJMLn2hHzoFsblchl+CO20D4rJp6e8oyAjUnoZ06R9IgEbOGStQzq+yq2jvPY77cHM7VeI5xu
-	8OlKLnWxoIZ+XirvyyH4LCLd9fcDz9ysbrJSHVTw+YeJpD+6KEnSToweoxQHRYiR46cTpUITtVtrh
-	C3lca8bQ==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=ZouL0q0CYDy3Ap0rdMDBY+DxKyvsgs2LrhS9NVf/WWI=; b=q0KJiGyvrijnBRxQdcO9roxAY0
+	o84bCwfKFSuRKLpErKSDx0THEnKrBxvTBjCxDQnc+0flHnnYglj9IbKHWAunK5vkmoNranXkjUaIq
+	ikUwxucGHTN3k+50tKt5OJZqBCsnu7bTp3vG44ovhDLiuU5kCQu+gm2rpfxxxqbIvtfY0SKQ/yonI
+	v2za2Ho5jiLxbb3bbkeXrYgA1ubEkK7eEKa01B+TEg8lMmAIe/hTArsWHPK2qrdTI7PWagCnyDSjg
+	65F/18emPFnZpQJJbE5lCxb8P4qElCbluHhKkiznii7KBCTpEExZ7GMm5gNmCf0vczYyVoC55aDpP
+	2UOk9VnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmIr8-00000009smD-0FJn;
-	Mon, 18 Mar 2024 19:41:10 +0000
+	id 1rmZmX-0000000CqnI-2a8j;
+	Tue, 19 Mar 2024 13:45:33 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmIr4-00000009skc-1Tql
+	id 1rmZmV-0000000Cqm7-0dIF
 	for ath11k@lists.infradead.org;
-	Mon, 18 Mar 2024 19:41:07 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42IDTbm5009153;
-	Mon, 18 Mar 2024 19:41:03 GMT
+	Tue, 19 Mar 2024 13:45:32 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42JCbZ9O005993;
+	Tue, 19 Mar 2024 13:45:28 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=wv518dmYEwtTR+TjjPyC6YIb0i+sx73V1gS2n1N7lFE=; b=pE
-	//NR0JkPfv5Vm1njMkPfe6C8ItrtGqNiCq/2wSJ+5SOWYQ76UPfUe8/KqmXAD52f
-	76WD5QLkWvfz10RuVqemzerPfMuS4/s/Gj0DiWCMPWiIE/yUBF1wXnm42AmxxEX6
-	NkVu8umOuhb6427C+gtbGMLWJAM/W5fqzp4y7MYIXXzT1Huf/TawC8gPtQiNLm6D
-	PS4m0Cn+sH0+K8zIkuTQlQDxDec+IMcvrdAMwcldgAEizexi6o6oUwf/vMZbkxFI
-	EfsaYc+fFR9aCHax/C2MEQlbTiCWoEbTr5L8MHjB1K0ThaQruvWnPz6SSg44NS3D
-	aT2x7HMAEDLTSJ96+A3A==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wxmnjs4r7-1
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=qcppdkim1; bh=ZouL0q0CYDy3Ap0rdMDB
+	Y+DxKyvsgs2LrhS9NVf/WWI=; b=KU83rwaf0d94wAgVihQtCm/rQ6KpFEUIGKeQ
+	BTE5zsLom/Cf71ceWZ4i7qZh0KJynYVCbm8F7UtoKNw35glNceJ5B+W0ODyTQI93
+	TEi+Ttw2bL09QX/wmmIhm8YMuPoqwCjbGclxH4Zqzy6O9Iw2ueDaMlxPb6NLkHXU
+	SVZExgW9f2JbjLKF1/zMljb7Tj1JHDlzUHVVaWg7IF3kdMytlYKmi8CFTYXCUYBI
+	TOZfZAfBrxAUMTlhsvJFUuZctTFEAeNzI1QStTNCSHzfLBI8O7tdg9x+nNkmClgu
+	Sd7QiNj8mJpdkwjDkz4WnxJT1XR1PW0jmPKaUKtL1o97BDwm2A==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wy1j2hdem-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Mar 2024 19:41:02 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42IJf2GQ031024
+	Tue, 19 Mar 2024 13:45:27 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 42JDjO8B031277;
+	Tue, 19 Mar 2024 13:45:24 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3ww4gkbeyp-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Mar 2024 19:41:02 GMT
-Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Mar
- 2024 12:41:01 -0700
-Message-ID: <2e46eb4e-daa9-46ad-acc5-4a7e1321a5bc@quicinc.com>
-Date: Mon, 18 Mar 2024 12:41:00 -0700
+	Tue, 19 Mar 2024 13:45:24 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 42JDjOSH031272;
+	Tue, 19 Mar 2024 13:45:24 GMT
+Received: from hu-devc-blr-u22-a.qualcomm.com (hu-haric-blr.qualcomm.com [10.131.39.39])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 42JDjO99031271
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Mar 2024 13:45:24 +0000
+Received: by hu-devc-blr-u22-a.qualcomm.com (Postfix, from userid 3844793)
+	id 9A62041330; Tue, 19 Mar 2024 19:15:23 +0530 (+0530)
+From: Hari Chandrakanthan <quic_haric@quicinc.com>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,
+        Hari Chandrakanthan <quic_haric@quicinc.com>
+Subject: [PATCH v2 0/2] wifi: cfg80211/ath12k: Add support to rx retry stats
+Date: Tue, 19 Mar 2024 19:15:20 +0530
+Message-Id: <20240319134522.4021062-1-quic_haric@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: fix memory leak in ath11k_xxx_remove()
-Content-Language: en-US
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>, <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20240315014307.3132980-1-quic_miaoqing@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240315014307.3132980-1-quic_miaoqing@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: O5zhKu4OInZ2TzPAHCBbVTzetMYI2cW2
-X-Proofpoint-ORIG-GUID: O5zhKu4OInZ2TzPAHCBbVTzetMYI2cW2
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: eRE9736lPYcmT9jRN-02mN1SfaonLBQ3
+X-Proofpoint-ORIG-GUID: eRE9736lPYcmT9jRN-02mN1SfaonLBQ3
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-18_12,2024-03-18_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- clxscore=1015 mlxscore=0 lowpriorityscore=0 mlxlogscore=471 phishscore=0
- impostorscore=0 bulkscore=0 priorityscore=1501 adultscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2403140001
- definitions=main-2403180149
+ definitions=2024-03-19_03,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ impostorscore=0 phishscore=0 mlxlogscore=550 spamscore=0 suspectscore=0
+ malwarescore=0 priorityscore=1501 lowpriorityscore=0 clxscore=1011
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403140001 definitions=main-2403190105
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240318_124106_446903_DC843CF5 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20240319_064531_226838_D9315690 
+X-CRM114-Status: GOOD (  10.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,29 +100,30 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/14/2024 6:43 PM, Miaoqing Pan wrote:
-> The firmware memory was allocated in ath11k_pci_probe() or
-> ath11k_ahb_probe(), but not freed in ath11k_xxx_remove() in case
-> ATH11K_FLAG_QMI_FAIL bit is set. So call ath11k_fw_destroy() to
-> free the memory.
-> 
-> Found while fixing the same problem in ath12k:
-> https://lore.kernel.org/linux-wireless/20240314012746.2729101-1-quic_miaoqing@quicinc.com
-> 
-> No functional changes, compile tested only.
-> 
-> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
-> ---
->  drivers/net/wireless/ath/ath11k/ahb.c | 1 +
->  drivers/net/wireless/ath/ath11k/fw.c  | 1 +
->  drivers/net/wireless/ath/ath11k/pci.c | 1 +
+This patch series adds support to count station level rx retries.
 
-My Qualcomm Innovation Center copyright checker reports:
-drivers/net/wireless/ath/ath11k/ahb.c copyright missing 2024
-drivers/net/wireless/ath/ath11k/fw.c copyright missing 2024
+wifi: cfg80211/mac80211: Add support to rx retry stats
+wifi: ath12k: Add support to rx retry stats
 
-Kalle, do you want a respin or will you handle this?
-With copyrights fixed you can add my:
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Tested-on: QCN9274 hw1.0 PCI WLAN.WBE.1.2.1-00148-QCAHKSWPL_SILICONZ-1
+
+Hari Chandrakanthan (2):
+  wifi: cfg80211/mac80211: Add support to rx retry stats
+  wifi: ath12k: Add support to rx retry stats
+
+ drivers/net/wireless/ath/ath12k/core.h   | 1 +
+ drivers/net/wireless/ath/ath12k/dp_mon.c | 8 ++++++++
+ drivers/net/wireless/ath/ath12k/hal_rx.h | 7 ++++++-
+ drivers/net/wireless/ath/ath12k/mac.c    | 3 +++
+ include/net/cfg80211.h                   | 2 ++
+ include/uapi/linux/nl80211.h             | 3 +++
+ net/mac80211/rx.c                        | 6 ++++++
+ net/mac80211/sta_info.c                  | 5 +++++
+ net/mac80211/sta_info.h                  | 1 +
+ net/wireless/nl80211.c                   | 1 +
+ 10 files changed, 36 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
 
 
