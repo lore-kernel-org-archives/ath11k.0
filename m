@@ -4,63 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B95F3C54E58
-	for <ath11k@archiver.kernel.org>; Wed, 20 Mar 2024 14:32:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DDA7C54E58
+	for <ath11k@archiver.kernel.org>; Wed, 20 Mar 2024 16:17:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/OBCzVSEVTn3ny5BqEcqCsfhpxIpwbRUXrVJ8LjnOZc=; b=TlrzBCKitnlxj4z6ObVcsgp6c6
-	sLKjqkZc+c+Bd1OmB7K3jF3UA1sKafPY+ZMjKi9gItJ2N2X6a+FjueqFm1d3DdY/wr8jkkmvOTb8o
-	JBIpM4b72ZOuE1tw7G5uArc2vfbxBSiFLQpKLSLhTCu5uENuHqzAKF1Q6wsdjwq+QfA56FUxcd0cc
-	ZPEE7ZHwAn4r24oxiS/Jwgxf7J0w1orKk3yXr197SvoH3aoG+bt72BEra3veJy5sepGSadcQfErQV
-	4cBDaEgdvd82uQ7V8sIMESswBljyRIE25gu2BfiOWRfUwEX3l4jnsV9jxtrL4Nb0Ht2k8ZzpAlcxb
-	4RxnPZ9w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ftYAxfkICjzayR6na3uXUiysjfTJYLrKXjK/TKVeJNE=; b=enTzo5WeH479us0nSwPuNBQYS0
+	NwnN/0ohB0Ki4DwwThp8CMvPqfWPluoytSZpBcjWWzBCGZbWpyMbUv10nrL8s9HXeAe309Vl1irrl
+	BXYRfrRpwDgXs+lyRUkRTY1AqPQdEnUUXVY/gD2W4uPwOtHG6wSgtS4zS60TeWElGH62GVGLhDJk/
+	iE2B/kSKx74uqynSIku51Hx/lUQPVQEFjgNFdNrC2O0Zs3uLiM7cAkllXhXqeM68Yzs//WRuFj8mi
+	GiUykEhgWb69ojo5JGpHw/G2dY18TeqijOELVf7og5VdNBRZXKvgt3t4guav010RaFloNuaE03OiK
+	5VLDsodA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmwzz-0000000HSGA-0z5s;
-	Wed, 20 Mar 2024 14:32:59 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1rmycl-00000000GZE-1ojI;
+	Wed, 20 Mar 2024 16:17:07 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rmwzw-0000000HSFH-3Hud
+	id 1rmxWk-0000000Haqt-1xOs
+	for ath11k@bombadil.infradead.org;
+	Wed, 20 Mar 2024 15:06:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=ftYAxfkICjzayR6na3uXUiysjfTJYLrKXjK/TKVeJNE=; b=FvbFzPGCo/xEp6CY8/z53OiAus
+	CesZzjp58shpZa3v55gxuUKiKzaSc8N28O2OlpO4Is+oYeMvaoMx5Qtay8xs4Gz4JfRAoDr1WkHG9
+	S0EdJo8CRhRJTIYHRfl52YGe4ZS/ZJxV6BagIB83DNUrz5F58khjM6ltsikcOmFI9bg6kD2KcFavb
+	p9SDUi4byP4HRY9xLwmDy2h9R6OHwXrbc35vZSLePJLigaCaeQILgPel5No0tBMUTADR6pRRDmqhQ
+	z9o6coSVa4nkgZz95ixKIVuJkQ2cyX30e+yTlr/jy8dw6/M+uhXlfHbCkemhJDu1UvV71rte8sp9v
+	radBDoKA==;
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rmxWg-0000000Dm7C-0unc
 	for ath11k@lists.infradead.org;
-	Wed, 20 Mar 2024 14:32:58 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 50BB6CE1082;
-	Wed, 20 Mar 2024 14:32:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9EA6C433F1;
-	Wed, 20 Mar 2024 14:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710945173;
-	bh=3JQ9oCUa5g8iZh84z/dzwbM73ILVKpXL8PoHZSM9gvk=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=c8Ehzo7BsszXKbeF3LNKpF6Noap1iL3xRmv2MnDQjRhbF+toiBF9BaRxOKKcRFkXv
-	 1xpyj1S8yy1sD+lkm5SiEcx19yx+IjzXO+t9hL1CRkMljzLPJyBjsVbGvfUx7WhMR1
-	 m2MDFZ/x2Onu4npbOlbJFMfArm6DCgIbWWkSc/McJA1zkI6zwc9u/ixbwcBNbdd9ng
-	 19PafV4b/09z9cPu7fgQ3sUWEAGVT/JrML6OOBeKdWw5zXWWNbfl4JaDtcDagSSpHu
-	 gDunFaw3IdNDYmKRg97fk3tsPmo2Lv8y8OelQS/imOBg5D4jy02kJAxC8daTuudfBW
-	 JQBttvHSEW84w==
-From: Kalle Valo <kvalo@kernel.org>
-To: Breno Leitao <leitao@debian.org>
-Cc: Jeff Johnson <jjohnson@kernel.org>,  kuba@kernel.org,
-  keescook@chromium.org,  linux-wireless@vger.kernel.org (open
- list:NETWORKING DRIVERS (WIRELESS)),  ath11k@lists.infradead.org (open
- list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER),
-  linux-kernel@vger.kernel.org (open list)
-Subject: Re: [PATCH] wifi: ath11k: allocate dummy net_device dynamically
-References: <20240319185735.1268980-1-leitao@debian.org>
-Date: Wed, 20 Mar 2024 16:32:49 +0200
-In-Reply-To: <20240319185735.1268980-1-leitao@debian.org> (Breno Leitao's
-	message of "Tue, 19 Mar 2024 11:57:33 -0700")
-Message-ID: <871q85as8e.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Wed, 20 Mar 2024 15:06:49 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42KEkBGt005328;
+	Wed, 20 Mar 2024 15:06:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=ftYAxfkICjzayR6na3uXUiysjfTJYLrKXjK/TKVeJNE=; b=L1
+	p0M6VQ5XRXBs2KBPs51l7VHXL21Kc9/UhAOV6am/LeGt5TNjvNMw0K2Mml/6ZvUo
+	mSfbifa4aJBUp7NJSJOJS0McCWVtBKMNQaReJemK5ytYVR1UhZtkycM4iBQGBLZ/
+	g8ylZ17tkav0qYVzrzc2SGUC87oYrlCkSS9/ZfrgnG0Wngd8MY4hJVEuaPui6X/S
+	OK026MFHM7OKePUfB8Wt2j+WfSkDCmzEthYyiBYMGbE+navwbmwWhlCHMsIE1sl3
+	lr/wjPLwhG1RuaaMH7M0/Bi/jjM20rQiz9aff4r8mdnUgdm3mj8E4anPXLVmaE8u
+	/V5aksc+MJdjBC9enOSA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wypxq1gy1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 15:06:32 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42KF6V5D031726
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Mar 2024 15:06:31 GMT
+Received: from [10.110.120.226] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 20 Mar
+ 2024 08:06:30 -0700
+Message-ID: <bd9a0575-c7e0-4443-9417-7a998e1ae123@quicinc.com>
+Date: Wed, 20 Mar 2024 08:06:29 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: allocate dummy net_device dynamically
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, Breno Leitao <leitao@debian.org>
+CC: Jeff Johnson <jjohnson@kernel.org>, <kuba@kernel.org>,
+        <keescook@chromium.org>,
+        "open list:NETWORKING DRIVERS (WIRELESS)"
+	<linux-wireless@vger.kernel.org>,
+        "open list:QUALCOMM ATHEROS ATH11K WIRELESS
+ DRIVER" <ath11k@lists.infradead.org>,
+        open list
+	<linux-kernel@vger.kernel.org>
+References: <20240319185735.1268980-1-leitao@debian.org>
+ <871q85as8e.fsf@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <871q85as8e.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: AxPF9uDyi_6B6ePxD4VeAmyI9iZYg6Y_
+X-Proofpoint-GUID: AxPF9uDyi_6B6ePxD4VeAmyI9iZYg6Y_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-20_10,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 clxscore=1015 malwarescore=0
+ priorityscore=1501 mlxlogscore=999 adultscore=0 suspectscore=0 mlxscore=0
+ bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2403140001 definitions=main-2403200120
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240320_073257_207309_BD885A52 
-X-CRM114-Status: GOOD (  13.28  )
+X-CRM114-CacheID: sfid-20240320_150647_020151_79E59D3A 
+X-CRM114-Status: GOOD (  12.28  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,215 +120,31 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Breno Leitao <leitao@debian.org> writes:
+On 3/20/2024 7:32 AM, Kalle Valo wrote:
+> Breno Leitao <leitao@debian.org> writes:
+> 
+>> Embedding net_device into structures prohibits the usage of flexible
+>> arrays in the net_device structure. For more details, see the discussion
+>> at [1].
+>>
+>> Un-embed the net_device from struct ath11k_ext_irq_grp by converting it
+>> into a pointer. Then use the leverage alloc_netdev() to allocate the
+>> net_device object at ath11k_ahb_config_ext_irq() for ahb, and
+>> ath11k_pcic_ext_irq_config() for pcic.
+>>
+>>  The free of the device occurs at ath11k_ahb_free_ext_irq() for the ahb
+>> case, and ath11k_pcic_free_ext_irq() for the pcic case.
+>>
+>> [1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
+>>
+>> Signed-off-by: Breno Leitao <leitao@debian.org>
+> 
+> This crashes on my nuc x86 test box with WCN6855 hw2.0 when running
+> rmmod, stacktrace below. I used tag ath-202403201010 from my ath.git
+> tree as the baseline. Sorry that I'm not able to debug this further
+> right now.
 
-> Embedding net_device into structures prohibits the usage of flexible
-> arrays in the net_device structure. For more details, see the discussion
-> at [1].
->
-> Un-embed the net_device from struct ath11k_ext_irq_grp by converting it
-> into a pointer. Then use the leverage alloc_netdev() to allocate the
-> net_device object at ath11k_ahb_config_ext_irq() for ahb, and
-> ath11k_pcic_ext_irq_config() for pcic.
->
->  The free of the device occurs at ath11k_ahb_free_ext_irq() for the ahb
-> case, and ath11k_pcic_free_ext_irq() for the pcic case.
->
-> [1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
->
-> Signed-off-by: Breno Leitao <leitao@debian.org>
+It seems to maintain the logic of the original that we should not use
+alloc_netdev() and free_netdev() but instead should just use kmalloc()/kfree().
 
-This crashes on my nuc x86 test box with WCN6855 hw2.0 when running
-rmmod, stacktrace below. I used tag ath-202403201010 from my ath.git
-tree as the baseline. Sorry that I'm not able to debug this further
-right now.
-
-[  116.584290] rmmod ath11k_pci
-[  117.274127] general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] PREEMPT SMP DEBUG_PAGEALLOC KASAN
-[  117.274175] KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
-[  117.274210] CPU: 1 PID: 1467 Comm: rmmod Not tainted 6.8.0-wt-ath+ #1338
-[  117.274259] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-[  117.274290] RIP: 0010:memcmp (lib/string.c:666) 
-[ 117.274335] Code: 24 0f 85 1a ff ff ff 49 83 ed 08 48 83 c3 08 49 83 c4 08 49 83 fd 07 0f 86 fb fe ff ff 48 89 d8 48 89 de 48 c1 e8 03 83 e6 07 <42> 0f b6 14 30 48 8d 43 07 48 89 c1 48 c1 e9 03 40 38 f2 40 0f 9e
-All code
-========
-   0:	24 0f                	and    $0xf,%al
-   2:	85 1a                	test   %ebx,(%rdx)
-   4:	ff                   	(bad)
-   5:	ff                   	(bad)
-   6:	ff 49 83             	decl   -0x7d(%rcx)
-   9:	ed                   	in     (%dx),%eax
-   a:	08 48 83             	or     %cl,-0x7d(%rax)
-   d:	c3                   	ret
-   e:	08 49 83             	or     %cl,-0x7d(%rcx)
-  11:	c4                   	(bad)
-  12:	08 49 83             	or     %cl,-0x7d(%rcx)
-  15:	fd                   	std
-  16:	07                   	(bad)
-  17:	0f 86 fb fe ff ff    	jbe    0xffffffffffffff18
-  1d:	48 89 d8             	mov    %rbx,%rax
-  20:	48 89 de             	mov    %rbx,%rsi
-  23:	48 c1 e8 03          	shr    $0x3,%rax
-  27:	83 e6 07             	and    $0x7,%esi
-  2a:*	42 0f b6 14 30       	movzbl (%rax,%r14,1),%edx		<-- trapping instruction
-  2f:	48 8d 43 07          	lea    0x7(%rbx),%rax
-  33:	48 89 c1             	mov    %rax,%rcx
-  36:	48 c1 e9 03          	shr    $0x3,%rcx
-  3a:	40 38 f2             	cmp    %sil,%dl
-  3d:	40                   	rex
-  3e:	0f                   	.byte 0xf
-  3f:	9e                   	sahf
-
-Code starting with the faulting instruction
-===========================================
-   0:	42 0f b6 14 30       	movzbl (%rax,%r14,1),%edx
-   5:	48 8d 43 07          	lea    0x7(%rbx),%rax
-   9:	48 89 c1             	mov    %rax,%rcx
-   c:	48 c1 e9 03          	shr    $0x3,%rcx
-  10:	40 38 f2             	cmp    %sil,%dl
-  13:	40                   	rex
-  14:	0f                   	.byte 0xf
-  15:	9e                   	sahf
-[  117.274385] RSP: 0018:ffffc90004177af0 EFLAGS: 00010246
-[  117.274423] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 1ffffffff57f2de9
-[  117.274461] RDX: 0000000000000020 RSI: 0000000000000000 RDI: 0000000000000000
-[  117.274493] RBP: ffffc90004177b20 R08: 0000000000000001 R09: fffffbfff57f3342
-[  117.274529] R10: ffffffffabf99a17 R11: ffffffffaa325926 R12: ffff888112c54bf8
-[  117.274568] R13: 0000000000000020 R14: dffffc0000000000 R15: ffff888112c54688
-[  117.274603] FS:  00007f1520d33740(0000) GS:ffff888231c00000(0000) knlGS:0000000000000000
-[  117.274637] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  117.274672] CR2: 00007f675c010d68 CR3: 000000010a9a0001 CR4: 00000000003706f0
-[  117.274707] Call Trace:
-[  117.274740]  <TASK>
-[  117.274776] ? show_regs (arch/x86/kernel/dumpstack.c:479) 
-[  117.274841] ? die_addr (arch/x86/kernel/dumpstack.c:421 arch/x86/kernel/dumpstack.c:460) 
-[  117.274891] ? exc_general_protection (arch/x86/kernel/traps.c:701 arch/x86/kernel/traps.c:643) 
-[  117.274935] ? asm_exc_general_protection (./arch/x86/include/asm/idtentry.h:564) 
-[  117.274983] ? do_syscall_64 (arch/x86/entry/common.c:52 (discriminator 1) arch/x86/entry/common.c:83 (discriminator 1)) 
-[  117.275019] ? memcmp (lib/string.c:666) 
-[  117.275050] dev_addr_check (net/core/dev_addr_lists.c:513 (discriminator 1)) 
-[  117.275090] dev_addr_flush (net/core/dev_addr_lists.c:535) 
-[  117.275127] free_netdev (net/core/dev.c:10976) 
-[  117.275164] ath11k_pcic_free_irq (drivers/net/wireless/ath/ath11k/pcic.c:312 (discriminator 2) drivers/net/wireless/ath/ath11k/pcic.c:334 (discriminator 2)) ath11k
-[  117.275234] ath11k_pci_remove (drivers/net/wireless/ath/ath11k/pci.c:478 drivers/net/wireless/ath/ath11k/pci.c:987) ath11k_pci
-[  117.275273] pci_device_remove (./include/linux/pm_runtime.h:140 drivers/pci/pci-driver.c:477) 
-[  117.275309] device_remove (drivers/base/dd.c:570) 
-[  117.275338] device_release_driver_internal (drivers/base/dd.c:1274 drivers/base/dd.c:1295) 
-[  117.275374] ? __kasan_check_read (mm/kasan/shadow.c:32) 
-[  117.275412] driver_detach (drivers/base/dd.c:1359) 
-[  117.275448] bus_remove_driver (drivers/base/bus.c:736) 
-[  117.275481] driver_unregister (drivers/base/driver.c:275) 
-[  117.275518] pci_unregister_driver (./include/linux/spinlock.h:351 drivers/pci/pci-driver.c:85 drivers/pci/pci-driver.c:1472) 
-[  117.275553] ? find_module_all (kernel/module/main.c:357 (discriminator 1)) 
-[  117.275588] ath11k_pci_exit (drivers/net/wireless/ath/ath11k/pci.c:1069) ath11k_pci
-[  117.275625] __do_sys_delete_module (kernel/module/main.c:756) 
-[  117.275663] ? module_flags (kernel/module/main.c:700) 
-[  117.275697] ? kmem_cache_free (mm/slub.c:4299 (discriminator 3) mm/slub.c:4363 (discriminator 3)) 
-[  117.275726] ? __fput (fs/file_table.c:390) 
-[  117.275763] ? debug_smp_processor_id (lib/smp_processor_id.c:61) 
-[  117.275802] __x64_sys_delete_module (kernel/module/main.c:698) 
-[  117.275890] do_syscall_64 (arch/x86/entry/common.c:52 (discriminator 1) arch/x86/entry/common.c:83 (discriminator 1)) 
-[  117.275925] entry_SYSCALL_64_after_hwframe (arch/x86/entry/entry_64.S:129) 
-[  117.275954] RIP: 0033:0x7f1520e80c8b
-[ 117.275994] Code: 73 01 c3 48 8b 0d 05 c2 0c 00 f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa b8 b0 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d d5 c1 0c 00 f7 d8 64 89 01 48
-All code
-========
-   0:	73 01                	jae    0x3
-   2:	c3                   	ret
-   3:	48 8b 0d 05 c2 0c 00 	mov    0xcc205(%rip),%rcx        # 0xcc20f
-   a:	f7 d8                	neg    %eax
-   c:	64 89 01             	mov    %eax,%fs:(%rcx)
-   f:	48 83 c8 ff          	or     $0xffffffffffffffff,%rax
-  13:	c3                   	ret
-  14:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
-  1b:	00 00 00 
-  1e:	90                   	nop
-  1f:	f3 0f 1e fa          	endbr64
-  23:	b8 b0 00 00 00       	mov    $0xb0,%eax
-  28:	0f 05                	syscall
-  2a:*	48 3d 01 f0 ff ff    	cmp    $0xfffffffffffff001,%rax		<-- trapping instruction
-  30:	73 01                	jae    0x33
-  32:	c3                   	ret
-  33:	48 8b 0d d5 c1 0c 00 	mov    0xcc1d5(%rip),%rcx        # 0xcc20f
-  3a:	f7 d8                	neg    %eax
-  3c:	64 89 01             	mov    %eax,%fs:(%rcx)
-  3f:	48                   	rex.W
-
-Code starting with the faulting instruction
-===========================================
-   0:	48 3d 01 f0 ff ff    	cmp    $0xfffffffffffff001,%rax
-   6:	73 01                	jae    0x9
-   8:	c3                   	ret
-   9:	48 8b 0d d5 c1 0c 00 	mov    0xcc1d5(%rip),%rcx        # 0xcc1e5
-  10:	f7 d8                	neg    %eax
-  12:	64 89 01             	mov    %eax,%fs:(%rcx)
-  15:	48                   	rex.W
-[  117.276031] RSP: 002b:00007ffe05526498 EFLAGS: 00000206 ORIG_RAX: 00000000000000b0
-[  117.276069] RAX: ffffffffffffffda RBX: 00005582d521c7e0 RCX: 00007f1520e80c8b
-[  117.276098] RDX: 000000000000000a RSI: 0000000000000800 RDI: 00005582d521c848
-[  117.276134] RBP: 00007ffe055264f8 R08: 0000000000000000 R09: 0000000000000000
-[  117.276174] R10: 00007f1520efcac0 R11: 0000000000000206 R12: 00007ffe055266d0
-[  117.276208] R13: 00007ffe05527eb7 R14: 00005582d521b2a0 R15: 00005582d521c7e0
-[  117.276245]  </TASK>
-[  117.276280] Modules linked in: ath11k_pci(-) ath11k mac80211 libarc4 cfg80211 qmi_helpers qrtr_mhi mhi qrtr nvme nvme_core
-[  117.276380] ---[ end trace 0000000000000000 ]---
-[  117.298338] RIP: 0010:memcmp (lib/string.c:666) 
-[ 117.298394] Code: 24 0f 85 1a ff ff ff 49 83 ed 08 48 83 c3 08 49 83 c4 08 49 83 fd 07 0f 86 fb fe ff ff 48 89 d8 48 89 de 48 c1 e8 03 83 e6 07 <42> 0f b6 14 30 48 8d 43 07 48 89 c1 48 c1 e9 03 40 38 f2 40 0f 9e
-All code
-========
-   0:	24 0f                	and    $0xf,%al
-   2:	85 1a                	test   %ebx,(%rdx)
-   4:	ff                   	(bad)
-   5:	ff                   	(bad)
-   6:	ff 49 83             	decl   -0x7d(%rcx)
-   9:	ed                   	in     (%dx),%eax
-   a:	08 48 83             	or     %cl,-0x7d(%rax)
-   d:	c3                   	ret
-   e:	08 49 83             	or     %cl,-0x7d(%rcx)
-  11:	c4                   	(bad)
-  12:	08 49 83             	or     %cl,-0x7d(%rcx)
-  15:	fd                   	std
-  16:	07                   	(bad)
-  17:	0f 86 fb fe ff ff    	jbe    0xffffffffffffff18
-  1d:	48 89 d8             	mov    %rbx,%rax
-  20:	48 89 de             	mov    %rbx,%rsi
-  23:	48 c1 e8 03          	shr    $0x3,%rax
-  27:	83 e6 07             	and    $0x7,%esi
-  2a:*	42 0f b6 14 30       	movzbl (%rax,%r14,1),%edx		<-- trapping instruction
-  2f:	48 8d 43 07          	lea    0x7(%rbx),%rax
-  33:	48 89 c1             	mov    %rax,%rcx
-  36:	48 c1 e9 03          	shr    $0x3,%rcx
-  3a:	40 38 f2             	cmp    %sil,%dl
-  3d:	40                   	rex
-  3e:	0f                   	.byte 0xf
-  3f:	9e                   	sahf
-
-Code starting with the faulting instruction
-===========================================
-   0:	42 0f b6 14 30       	movzbl (%rax,%r14,1),%edx
-   5:	48 8d 43 07          	lea    0x7(%rbx),%rax
-   9:	48 89 c1             	mov    %rax,%rcx
-   c:	48 c1 e9 03          	shr    $0x3,%rcx
-  10:	40 38 f2             	cmp    %sil,%dl
-  13:	40                   	rex
-  14:	0f                   	.byte 0xf
-  15:	9e                   	sahf
-[  117.298448] RSP: 0018:ffffc90004177af0 EFLAGS: 00010246
-[  117.298504] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 1ffffffff57f2de9
-[  117.298554] RDX: 0000000000000020 RSI: 0000000000000000 RDI: 0000000000000000
-[  117.298600] RBP: ffffc90004177b20 R08: 0000000000000001 R09: fffffbfff57f3342
-[  117.298651] R10: ffffffffabf99a17 R11: ffffffffaa325926 R12: ffff888112c54bf8
-[  117.298700] R13: 0000000000000020 R14: dffffc0000000000 R15: ffff888112c54688
-[  117.298749] FS:  00007f1520d33740(0000) GS:ffff888231c00000(0000) knlGS:0000000000000000
-[  117.298810] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  117.298871] CR2: 00007f675c010d68 CR3: 000000010a9a0001 CR4: 00000000003706f0
-[  117.298924] Kernel panic - not syncing: Fatal exception
-[  117.299488] Kernel Offset: 0x26600000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
-[  117.328105] Rebooting in 10 seconds..
-
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
