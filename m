@@ -4,69 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEA0CC54E58
-	for <ath11k@archiver.kernel.org>; Thu, 21 Mar 2024 17:24:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06308C54E58
+	for <ath11k@archiver.kernel.org>; Thu, 21 Mar 2024 19:14:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=nx/csSlPOluSCIW0mpv5oVPqUBgi5HWFro0Q1XSjqX8=; b=LPx0TVlaYSGVXlb/ybP6MM+ms8
-	S+4YMHwCpm47k4Qol5q4E9a/x81XIZn2nKdb7iwt3ipk9OtH3kfZLSqNF+Tihu+0w2zYd3++HDMPy
-	Gbqk1WOPqFhKDYoTXkgFH8WRpQjgSnesK1aTRVfn2kgCrkyan953gSDEEbiE/xFkFyzggyC9L3KOQ
-	+Z+rKzFByEOV8T/1EkE0fW968WhaRXaPf06Ju5fGbJPwTLmkQE3+QV1Hqth5imJUo3dl3yfYy2d1+
-	v5UHrNnEmNqVtJxc2Dqn+1XwlspnYWbz8lUQGdpRUXK6eMpoHUA0qXxHc7nzI4y1dDbfq+F1oXClH
-	SkEjQVgw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NfFW5kCLFafWVBiNpJ5W+QaU+TMnoueVsQ3m1t2yNsk=; b=ZDBss39O3DBfs0jJTJx3gmgusC
+	oUwzJg5dNoFZN0Tk2r95ZYP72+zeZgTENZK792cYEW4cK6Za50h8y/5+h+rOojyJ5Tyk5vJAUOyzw
+	B32Mvy/m9PgqX0NuJBLDMGNV53ixhIpApTgS6eWwrLfHkRSILzW30CGPIeJxdxQrLZ+48H5eNnwDN
+	6zu3oW84hMuxj68vaKT4LQ9UTPsU7Uu1WCLfRAIEPVXua4o24nDOe9oeaYyY/Dfj4cWLk4ffaaEyV
+	9OpLAhOI68rzJeBXcjO1b0mLbf8TUi54QQQ91qSLpQF6gPBOFY4vX4p0fpyIKDO0w3lkbEpzIZyC8
+	ud45cPKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rnM9M-000000044Fw-3bR3;
-	Thu, 21 Mar 2024 17:24:20 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1rnNs2-00000004MOn-3vsV;
+	Thu, 21 Mar 2024 19:14:34 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rnM9J-000000044FD-336K
+	id 1rnNrz-00000004MOO-1tr4
 	for ath11k@lists.infradead.org;
-	Thu, 21 Mar 2024 17:24:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1711041854;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=nx/csSlPOluSCIW0mpv5oVPqUBgi5HWFro0Q1XSjqX8=;
-	b=hyx78quDSSaMfPqqggWq0VWUMvlmXvGV7ULXRm+9Y1gO6HgDG+O1byH5hOy9y8jpNxA71S
-	2p3TbGQZUBIVXObNeK+6nkbQ64tLWumoiMqlKa3DVmrxiqv6oe8HXViIhQ6pvdkp3HXT8f
-	rS/wB7UzmTVUvMWmIGFzV7fDl/c7SL8=
-Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-644-BIZles-tO0q0bkr2sYcD1w-1; Thu,
- 21 Mar 2024 13:24:11 -0400
-X-MC-Unique: BIZles-tO0q0bkr2sYcD1w-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.rdu2.redhat.com [10.11.54.5])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id CAB8638009FB;
-	Thu, 21 Mar 2024 17:24:10 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.39.193.172])
-	by smtp.corp.redhat.com (Postfix) with ESMTP id 373F18173;
-	Thu, 21 Mar 2024 17:24:09 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: kvalo@kernel.org,
-	jjohnson@kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: quic_bqiang@quicinc.com,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH] wifi: ath11k: workaround to use VMs
-Date: Thu, 21 Mar 2024 18:23:53 +0100
-Message-ID: <20240321172402.346191-1-jtornosm@redhat.com>
+	Thu, 21 Mar 2024 19:14:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=NfFW5kCLFafWVBiNpJ5W+QaU+TMnoueVsQ3m1t2yNsk=;
+	t=1711048471; x=1712258071; b=WlgeONcr+ljfR3PN6CBAbq9OJgxOS+1LBPlg+jG+KalWsj+
+	ou+tJWkEO2IHSntqx25Q+46jJy1wlCST9TZRQC5CeiXPisHJ7Rqmvgz2LHTmeNl4io1fFCb3FYLdS
+	vhZZATxdhn5qaoJ+FV9/0o2t/CA6ErnpYffwbJI2qEDEjRYjgOIFhp68Z2jWiSrO7XtFJBD5ZgYum
+	M01CGtoELEpK91va9mGceUW9saoohy1U/IgBOdd35R893RcoVEGRi8mf7kMWyAT4j5+olpdyJ4oAt
+	hM8YX5Ehqb8lopqd+BymavEtN9+aQWIagqAMpbicKCelyL8dDJBc15wsSxZyGNww==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.97)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1rnNrn-00000008deO-075c;
+	Thu, 21 Mar 2024 20:14:19 +0100
+Message-ID: <55125648b2553ce746b92092a009d4939d1eb6b8.camel@sipsolutions.net>
+Subject: Re: ath11k and vfio-pci support
+From: Johannes Berg <johannes@sipsolutions.net>
+To: David Woodhouse <dwmw2@infradead.org>, Baochen Qiang
+	 <quic_bqiang@quicinc.com>, Alex Williamson <alex.williamson@redhat.com>, 
+	Kalle Valo <kvalo@kernel.org>
+Cc: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>, James Prestwood
+	 <prestwoj@gmail.com>, linux-wireless@vger.kernel.org, 
+	ath11k@lists.infradead.org, iommu@lists.linux.dev
+Date: Thu, 21 Mar 2024 20:14:17 +0100
+In-Reply-To: <57d20bd812ccf8d1a5815ad41b5dcea3925d4fe1.camel@infradead.org>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+	 <8734v5zhol.fsf@kernel.org>
+	 <87fa5220-6fd9-433d-879b-c55ac67a0748@gmail.com>
+	 <87r0ipcn7j.fsf@kernel.org>
+	 <356e0b05-f396-4ad7-9b29-c492b54af834@gmail.com>
+	 <26119c3f-9012-47bb-948e-7e976d4773a7@quicinc.com>
+	 <87mstccmk6.fsf@kernel.org>
+	 <df9fd970-5af3-468c-b1f1-18f91215cf44@gmail.com>
+	 <8734v4auc4.fsf@kernel.org>
+	 <e8878979-1f3f-4635-a716-9ac381c617d9@gmail.com>
+	 <285b84d0-229c-4c83-a7d6-4c3c23139597@quicinc.com>
+	 <4607fb37-8227-49a3-9e8c-10c9b117ec7b@gmail.com>
+	 <3d22a730-aee5-4f2a-9ddc-b4b5bd4d62fe@quicinc.com>
+	 <87il3w7zjh.fsf@kernel.org>
+	 <20240115104658.0b56bd35.alex.williamson@redhat.com>
+	 <543d9d2f-e132-4fdb-8454-68595cd20515@quicinc.com>
+	 <57d20bd812ccf8d1a5815ad41b5dcea3925d4fe1.camel@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.5
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240321_102417_857206_BF2B87B9 
-X-CRM114-Status: GOOD (  18.87  )
+X-CRM114-CacheID: sfid-20240321_121431_573744_EF046F87 
+X-CRM114-Status: GOOD (  19.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,74 +92,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, this driver is not working when the device is handled in a
-Virtual Machine (PCI pass-through), as it was already reported here:
-https://lore.kernel.org/all/fc6bd06f-d52b-4dee-ab1b-4bb845cc0b95@quicinc.com/T/
-Baochen Qiang focused the problem and described how to have it working
-for a specific real MSI vector from host that needs to be used in VM too.
-And this value, as it was commented, can change.
+Given the "ewww" patch to make a module parameter workaround for this:
+https://lore.kernel.org/linux-wireless/20240321172402.346191-1-jtornosm@red=
+hat.com/T/#u
 
-The problem seems complex to me and I don't know if there is any easy way
-to solve it. Meanwhile and using the information from Baochen Qiang,
-since the use of VMs is very interesting for testing procedures,
-I would like to just add this workaround that consists on adding a
-parameter to pass the real MSI vector from host to the VM. In that way,
-checking the 'lscpi' command output from host, it could be handled manually
-or with some user tool in order to have the VM with the driver working.
-Of course, if this parameter is not configured (zero value and default),
-we will have the same behavior as always.
 
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
----
- drivers/net/wireless/ath/ath11k/pci.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+On Tue, 2024-01-16 at 11:41 +0100, David Woodhouse wrote:
+>=20
+> How exactly is the content of this register then given back to the
+> firmware? Is that communication snoopable by the VMM?
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index be9d2c69cc41..0e322956b10f 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -31,6 +31,11 @@
- 
- #define TCSR_SOC_HW_SUB_VER	0x1910010
- 
-+static ulong ath11k_host_msi_addr = 0;
-+module_param_named(host_msi_addr, ath11k_host_msi_addr, ulong, 0644);
-+MODULE_PARM_DESC(host_msi_addr,
-+		 "Workaround to configure the MSI address that is used from host in order to be used in VM");
-+
- static const struct pci_device_id ath11k_pci_id_table[] = {
- 	{ PCI_VDEVICE(QCOM, QCA6390_DEVICE_ID) },
- 	{ PCI_VDEVICE(QCOM, WCN6855_DEVICE_ID) },
-@@ -443,6 +448,18 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci *ab_pci)
- 
- 	ath11k_pci_msi_disable(ab_pci);
- 
-+	if (ath11k_host_msi_addr) {
-+		ab_pci->ab->pci.msi.ep_base_data = 0;
-+		ab->pci.msi.addr_hi = (u32)(ath11k_host_msi_addr >> 32);
-+		ab->pci.msi.addr_lo = (u32)(ath11k_host_msi_addr & 0xffffffff);
-+
-+		ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x base data is %d\n",
-+			   ab->pci.msi.addr_hi,
-+			   ab->pci.msi.addr_lo,
-+			   ab->pci.msi.ep_base_data);
-+		return 0;
-+	}
-+
- 	msi_desc = irq_get_msi_desc(ab_pci->pdev->irq);
- 	if (!msi_desc) {
- 		ath11k_err(ab, "msi_desc is NULL!\n");
-@@ -482,6 +499,9 @@ static int ath11k_pci_config_msi_data(struct ath11k_pci *ab_pci)
- {
- 	struct msi_desc *msi_desc;
- 
-+	if (ath11k_host_msi_addr)
-+		return 0;
-+
- 	msi_desc = irq_get_msi_desc(ab_pci->pdev->irq);
- 	if (!msi_desc) {
- 		ath11k_err(ab_pci->ab, "msi_desc is NULL!\n");
--- 
-2.44.0
+If I'm reading the code correctly, it's just a write to a register in a
+memory mapped region, possibly in multiple locations (different queues
+or something). Possibly indirect (see __ath11k_pcic_write32), but
+someone would have to trace it or know the HW better to understand which
+locations it's written to.
 
+But yeah seems totally feasible to just translate that back in the VMM.
+
+> > > Off hand I don't have a good solution for this, the hardware is
+> > > essentially imposing a unique requirement for MSI programming that th=
+e
+> > > driver needs visibility of the physical MSI address and data.
+> > >=20
+>=20
+> Strictly, the driver doesn't need visibility to the actual values used
+> by the hardware. Another way of it looking at it would be to say that
+> the driver programs the MSI through this non-standard method, it just
+> needs the VMM to trap and handle that, just as the VMM does for the
+> standard MSI table.=20
+
+Indeed. Much better than having a module parameter.
+
+> Which is what I thought we'd already seen on some Atheros devices.
+
+It probably also affects ath12k, seems similar.
+
+johannes
 
