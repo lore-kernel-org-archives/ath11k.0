@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88D0EC54E58
-	for <ath11k@archiver.kernel.org>; Thu, 21 Mar 2024 11:40:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3859C54E68
+	for <ath11k@archiver.kernel.org>; Thu, 21 Mar 2024 11:41:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
 	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FbbyCSTuQeE8/emTu4JhVLYIjyoX3KJqiTEOITPTII4=; b=KCe6pUN63gmIYAgOeeAZTlKTxO
-	LnfdvmcjvIGVnyx5iJFqYOp20MoqPe9khC77N1IQL14TIDW/SM46x2B1HGRupD/CKKVq97GS2xEbs
-	QXIdH0uWIG4tn60coSIJwaAFP6k2NaEK8F0ntiWWc4mMBKKd0Asd0QWtui7NDTzoz/MMjECnYI41J
-	0MDORJLMumFUpivqJCrantYBF2NTDVqksX52axvaWFnAtEy5+PdBRJAVbEZ3h93ZfoGQuEnNtuKUK
-	O8AMcEi3czn6BaukqDIHJVQMqtEf7IO2ygyrralXV6gVA1ekUNmUZ6qvfryfIFSrJclBRugBV0m8j
-	Cvo5hcEw==;
+	bh=ap3bhGZxiXIDqmkbnajnK9vhh4EMOtPx5lI7xq6fj9E=; b=mCvc8g6yl/1eIWDHBnbbHpooBY
+	usvnst+F7J/p2caY3Qb9CUoRmx2Op1Ta2VHQCrKhFjL/OjdAjE5TFQVHnIG23R/NiEIX6KQNibbHv
+	QZ5VEcKJda9COqeXiKXeceTDXcN3x16PopZFweuN0mdjv6HbWgJIBytYMsuWJcVKNDf2IQWsVOI/3
+	DDWDte2rB7sStFaOsPbs9tDXuhfwZ0REMFd05UHX/N8kJ68Zl2iL59sUjw8qxdxqc/3kreVnNsbBJ
+	A/+5TxdW820S+dR3HGcX1N3WClqDd4QsvENCjmAl46XiGpa5v975Ch3f9eG/5S6XOMY3lZjo2urx7
+	FMz9lA/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rnGmc-00000002qcp-3smW;
-	Thu, 21 Mar 2024 11:40:30 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1rnGnH-00000002qjG-2quD;
+	Thu, 21 Mar 2024 11:41:11 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rnGma-00000002qcJ-2EhX
+	id 1rnGnE-00000002qi2-3IJK
 	for ath11k@lists.infradead.org;
-	Thu, 21 Mar 2024 11:40:29 +0000
+	Thu, 21 Mar 2024 11:41:10 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id D79B16116D;
-	Thu, 21 Mar 2024 11:40:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98ED2C433C7;
-	Thu, 21 Mar 2024 11:40:26 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id E284ECE12AF;
+	Thu, 21 Mar 2024 11:41:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 313A7C43394;
+	Thu, 21 Mar 2024 11:41:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1711021227;
-	bh=BDrs6bk24h92KdGirrXYHOyB22BWqkXqdzBUtsoeK70=;
+	s=k20201202; t=1711021266;
+	bh=dhXj0sMSbf3W2sui2Z1tSKMD7c6sHo6XgzPWyJjdDzc=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=C3v9iapxnEr8TgEo3fE91CLPlfvPhg/d6Hten8qu64UMm4cQVhqyQ/TXiuIcTG69Q
-	 gw8GXO+i+P7ufJB1xphF1xJUtjhxUcKdoPa7i1JbRpJPdODB9+4qhJhC3IaTHMUZ6b
-	 t5HHRFBuEf8mExhogi3IjvUaQIxLyVx0MOkji/P8pQXpIyugJqL+FB44LLl3VQ1h42
-	 Mf1pzGLwSqQKqHKKdoKsWoMYBuQxkD9rARO0CPFjH4BT28P1lOIM7qX2znjJRt2rb7
-	 O0EUlFm/bwq3yvuWs974589WIy++XTZLEB9Lr0Wke7gdHyM5bpa1CKza/g3kh7qblw
-	 ndz0mwew+FMaQ==
+	b=kAmOERZE9L8ANnSwBtQIOwO7pPaoK9/Ebm8h+6gXt/D6xUSHaB4YRJ9icVWIQKF0/
+	 /mQywf9X0BJAiZEvIOyR7K0h4+0PfR75utSMBrs11aGxW6WwxmlDpu51ZxN/0HLpME
+	 a5ttC1OCbTsefqYeayhf/9cET1zVOtc1PRnKV72Dp1iFXoBDKvcisAy1Y09vcyVBvN
+	 9cQoFqDhWLpzZClLgnWoNMBYxZMxgcD1s4YDf3V5mMhXx8TdUkYBUfRCmRjQEAXUhv
+	 UkTJkZxBvdewwneOZpUqXG7gmskjGiVb2DyF0yTCrRNzFl1hAA3uYP73AMO4JDl7ev
+	 J/EmZtyyG8rGg==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] wifi: ath11k: do not process consecutive RDDM event
+Subject: Re: [PATCH] wifi: ath11k: remove duplicate definitions in wmi.h
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240111071406.14053-1-quic_bqiang@quicinc.com>
-References: <20240111071406.14053-1-quic_bqiang@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20240314021654.304451-1-quic_kangyang@quicinc.com>
+References: <20240314021654.304451-1-quic_kangyang@quicinc.com>
+To: Kang Yang <quic_kangyang@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_bqiang@quicinc.com>
+ <quic_kangyang@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <171102122457.4024062.7715360244094507698.kvalo@kernel.org>
-Date: Thu, 21 Mar 2024 11:40:26 +0000 (UTC)
+Message-ID: <171102126347.4024062.3271271155664462733.kvalo@kernel.org>
+Date: Thu, 21 Mar 2024 11:41:05 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240321_044028_654229_9722CFCE 
-X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-CacheID: sfid-20240321_044109_049126_2E7CBFC5 
+X-CRM114-Status: UNSURE (   4.48  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,35 +73,22 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+Kang Yang <quic_kangyang@quicinc.com> wrote:
 
-> Currently we do reset for each RDDM event from MHI, however there are
-> cases, see below log, that we get two or more consecutive events, and
-> it is pointless to do reset for the subsequent ones. What's more, it
-> makes reset process more likely to fail.
+> There are some duplicate definitions in wmi.h, remove them.
 > 
-> [ 1502.115876] ath11k_pci 0000:04:00.0: boot notify status reason MHI_CB_EE_RDDM
-> [ 1502.115884] ath11k_pci 0000:04:00.0: firmware crashed: MHI_CB_EE_RDDM
-> [ 1502.224041] ath11k_pci 0000:04:00.0: boot notify status reason MHI_CB_EE_RDDM
-> [ 1502.224050] ath11k_pci 0000:04:00.0: firmware crashed: MHI_CB_EE_RDDM
+> No functional changes, compile tested only.
 > 
-> Add a check to avoid reset again and again. This is done by tracking previous
-> MHI status: if we receive a new RDDM event while the previous one is
-> also the same, we treat it as duplicate and ignore it, because normally
-> we should receive a MHI_CB_EE_MISSION_MODE event between them.
-> 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
 > Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-7c352a4d0183 wifi: ath11k: do not process consecutive RDDM event
+3b8e475b27d7 wifi: ath11k: remove duplicate definitions in wmi.h
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240111071406.14053-1-quic_bqiang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20240314021654.304451-1-quic_kangyang@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
