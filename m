@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64578C54E71
-	for <ath11k@archiver.kernel.org>; Fri, 22 Mar 2024 10:49:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D238C54E71
+	for <ath11k@archiver.kernel.org>; Fri, 22 Mar 2024 15:16:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7QdoXDPkirjhYNpXA2MhOMT7OeLESzKe1cciF8iSzK0=; b=TTNWK3n08/PRuNAjaM4wQhN8R/
-	6DRCeBC7hB9PSBNKOn3FETMu60UsoQ5xO5lnanZmVgc5IJxEQgUVwpoJ7hDhwI05BA6Upc+Jy1c81
-	nVNi+uxob0lbwuSK5LS4tcmIP7qu/uH3kqcgyFgjWOIeapTXJqbq5cYzrZc5zdLSwx/VAcLWuRETX
-	yxEtooix93rvUZi665w0oTkEpEY8gIING66tNGsW+EJFnQ+8xiOpfTcUmSNKcc3xN0hARRy0EEvAz
-	TMQ5X3OlKzwchPjQ2Br1GcVsE5wwJs83yRLfiovsQjU2nEolj3lZo2x/r9+UDgIlNYO8fdE2kuviw
-	bZJaWcEw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=SMb2IgPKyZnj/ue62em5Q9KAY8/Lp0+DnO65BTLg4OM=; b=ZxvXG5iPXXTohDm7lZfWehTyIJ
+	doFq35STwV5Z1O+SIwNo8kqbp6pbWx5Yqhtk873qFdk+gG7YOFuzCFVY8Dwft+ASdOAPj7J5APZHl
+	n3Jg+Kat/irdFT61aPC0/f2g+C3BInQ4wc/4EBtbQr3oJ2SfWiAiv0XOrJLbHJH5ZN90cbTnZeQja
+	+kJ6vYUE66R3NgU+r43tFG8ZmGgikxfmbNr8Um2Eqz5C0NE3K/oUI7ig7dRvaIG7EvwnwRsqfS7Z9
+	68eAh/2c1JkxbqdoNxAApEzFBfsKdaItGT9P86g14HNkSSgplxchFEv8RcXbB23M1KyH4gpqvoHtH
+	32hpCncg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rncSw-00000006rH2-3TFi;
-	Fri, 22 Mar 2024 10:49:38 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1rngdA-00000007iwu-3F1N;
+	Fri, 22 Mar 2024 15:16:28 +0000
+Received: from mail-ed1-f54.google.com ([209.85.208.54])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rncSu-00000006rGP-0DJa
+	id 1rngd5-00000007ivd-2ReI
 	for ath11k@lists.infradead.org;
-	Fri, 22 Mar 2024 10:49:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1711104574;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7QdoXDPkirjhYNpXA2MhOMT7OeLESzKe1cciF8iSzK0=;
-	b=IjVO6f7BByhemNANc3aB3cjYoO8BJFZvyDMD5uuxL/WD9YGdc52tBwkgWCl6OmnAh85XkM
-	HlrHVJvP7L2jAy28cmOzHIYWcicQA+WBfhycEKkvpHufBGLIM4y/L9ugI9WtSV1KDWI6iJ
-	+t27ip2xsCKIIAlwimEHJfB87havR/A=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-459-CRPaDkl7NPSo9yKN7u25hg-1; Fri, 22 Mar 2024 06:49:31 -0400
-X-MC-Unique: CRPaDkl7NPSo9yKN7u25hg-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com [10.11.54.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id DC43385A58B;
-	Fri, 22 Mar 2024 10:49:30 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.39.193.83])
-	by smtp.corp.redhat.com (Postfix) with ESMTP id CB34B2022C1D;
-	Fri, 22 Mar 2024 10:49:28 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: quic_bqiang@quicinc.com
-Cc: ath11k@lists.infradead.org,
-	jjohnson@kernel.org,
-	jtornosm@redhat.com,
-	kvalo@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org
-Subject: [PATCH V2] wifi: ath11k: workaround to use VMs
-Date: Fri, 22 Mar 2024 11:49:12 +0100
-Message-ID: <20240322104912.94811-1-jtornosm@redhat.com>
-In-Reply-To: <87f0c6c9-43e5-4ea3-8f4c-9425e6a74b10@quicinc.com>
-References: <87f0c6c9-43e5-4ea3-8f4c-9425e6a74b10@quicinc.com>
+	Fri, 22 Mar 2024 15:16:27 +0000
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56bc8cfc19fso2421546a12.1
+        for <ath11k@lists.infradead.org>; Fri, 22 Mar 2024 08:16:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711120580; x=1711725380;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SMb2IgPKyZnj/ue62em5Q9KAY8/Lp0+DnO65BTLg4OM=;
+        b=aQCGb5GIqAveEu4doXDNbJsIZLbJ8o3MK92lYTqoYt9Uzaf3vYxmiLfVHbZeieClys
+         WfVkDO0pPdRnzekUlDIioXiOaPUMsiYU0Alm82D5fEBEuESFlakv4eOrWkT0r9DpF/qx
+         Jh/E4emDuEqgej65XNVYEagjzkZFAph1omPQNGTlX82DZqRe9tPUnEOAB1o91Z0ZO5Aj
+         H7FmdbmE1fGYIQd0OWmCJY+QQ4QQ65h74ifLRCf4lRVJwqukDNnIc0UYiiEg0wrkcFWX
+         EbgbYNNnWNfbZRW2rm0ofCtYW3mBQQJWloEB7R4p5kuTX+twhurjl0otGJ3C0JjgMA+9
+         i3uA==
+X-Forwarded-Encrypted: i=1; AJvYcCVyZv/nDuWosa5rHu+fO+Wf6DMem1/iajUOtOmhqoiXKmDuTBe6DtU+2SsGbcN6sPdbUq/1L2RLIYWIM5E5hg3K3JnxxZJNdPPvtw==
+X-Gm-Message-State: AOJu0Yxo/TxgOEBJDKIuBURwr9xsk4zGC6nzTnuw3ws6JkCKGZaL8He8
+	XwiHA8x6TYBENZTX8HxK/g+45RGXNO3nIn+Ymtr7RhAIG0AY5XT6
+X-Google-Smtp-Source: AGHT+IG19fJVfmLxYOcOEr80oE8P0l2x5mYegvQxSIpQMrvkuLrpfoVX+O792HS4x99bT+I74w91TA==
+X-Received: by 2002:a17:906:1843:b0:a46:f958:2eb6 with SMTP id w3-20020a170906184300b00a46f9582eb6mr1801147eje.67.1711120580209;
+        Fri, 22 Mar 2024 08:16:20 -0700 (PDT)
+Received: from gmail.com (fwdproxy-lla-120.fbsv.net. [2a03:2880:30ff:78::face:b00c])
+        by smtp.gmail.com with ESMTPSA id oz27-20020a170906cd1b00b00a473490aae8sm543234ejb.24.2024.03.22.08.16.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Mar 2024 08:16:19 -0700 (PDT)
+Date: Fri, 22 Mar 2024 08:16:17 -0700
+From: Breno Leitao <leitao@debian.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <jjohnson@kernel.org>, kuba@kernel.org,
+	keescook@chromium.org,
+	"open list:NETWORKING DRIVERS (WIRELESS)" <linux-wireless@vger.kernel.org>,
+	"open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER" <ath11k@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] wifi: ath11k: allocate dummy net_device dynamically
+Message-ID: <Zf2gwaEU4PQ+6GMe@gmail.com>
+References: <20240319185735.1268980-1-leitao@debian.org>
+ <871q85as8e.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <871q85as8e.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240322_034936_200302_7A584827 
-X-CRM114-Status: GOOD (  20.65  )
+X-CRM114-CacheID: sfid-20240322_081626_551504_4FA0F0E9 
+X-CRM114-Status: GOOD (  16.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,85 +84,45 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, this driver is not working when the device is handled in a
-Virtual Machine (PCI pass-through), as it was already reported here:
-https://lore.kernel.org/all/fc6bd06f-d52b-4dee-ab1b-4bb845cc0b95@quicinc.com/T/
-Baochen Qiang focused the problem and described how to have it working
-for a specific real MSI vector from host that needs to be used in VM too.
-And this value, as it was commented, can change.
+On Wed, Mar 20, 2024 at 04:32:49PM +0200, Kalle Valo wrote:
+> Breno Leitao <leitao@debian.org> writes:
+> 
+> > Embedding net_device into structures prohibits the usage of flexible
+> > arrays in the net_device structure. For more details, see the discussion
+> > at [1].
+> >
+> > Un-embed the net_device from struct ath11k_ext_irq_grp by converting it
+> > into a pointer. Then use the leverage alloc_netdev() to allocate the
+> > net_device object at ath11k_ahb_config_ext_irq() for ahb, and
+> > ath11k_pcic_ext_irq_config() for pcic.
+> >
+> >  The free of the device occurs at ath11k_ahb_free_ext_irq() for the ahb
+> > case, and ath11k_pcic_free_ext_irq() for the pcic case.
+> >
+> > [1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
+> >
+> > Signed-off-by: Breno Leitao <leitao@debian.org>
+> 
+> This crashes on my nuc x86 test box with WCN6855 hw2.0 when running
+> rmmod, stacktrace below. I used tag ath-202403201010 from my ath.git
+> tree as the baseline. Sorry that I'm not able to debug this further
+> right now.
 
-The problem seems complex to me and I don't know if there is any easy way
-to solve it (with no more information, not hardware/firmware related help
-or VMM action).
-Meanwhile and using the information from Baochen Qiang, since the use of
-VMs is very interesting for testing procedures, I would like to include
-this workaround that consists on adding two parameters to pass the real MSI
-vector address and data from host to the VM.
-In that way, checking the 'lscpi' command output from host, it could be
-handled manually or with some user tool in order to have the VM with the
-driver working.
-Of course, if the workaround is not used, that is if MSI vector address
-parameter is not configured (zero value and default), we will have the same
-behavior as always.
+Thanks for the detailed log. I am trying to understood the issue, and I think
+we are deferring a null pointer, which is likely net_device->dev_addr.
 
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
----
-V1 -> V2:
-- Add parameter for msi vector data as Baochen Qiang suggests.
+Here, dev->dev_addr seems to be NULL.
 
- drivers/net/wireless/ath/ath11k/pci.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+>   27:	83 e6 07             	and    $0x7,%esi
+>   2a:*	42 0f b6 14 30       	movzbl (%rax,%r14,1),%edx		<-- trapping instruction
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index be9d2c69cc41..4c84208dcf5d 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -31,6 +31,15 @@
- 
- #define TCSR_SOC_HW_SUB_VER	0x1910010
- 
-+static ulong ath11k_host_msi_vector_addr = 0;
-+module_param_named(host_msi_vector_addr, ath11k_host_msi_vector_addr, ulong, 0644);
-+MODULE_PARM_DESC(host_msi_vector_addr,
-+		 "Workaround to configure the MSI vector address that is used from host in order to be used in VM");
-+static uint ath11k_host_msi_vector_data = 0;
-+module_param_named(host_msi_vector_data, ath11k_host_msi_vector_data, uint, 0644);
-+MODULE_PARM_DESC(host_msi_vector_data,
-+		 "Workaround to configure the MSI vector data that is used from host in order to be used in VM");
-+
- static const struct pci_device_id ath11k_pci_id_table[] = {
- 	{ PCI_VDEVICE(QCOM, QCA6390_DEVICE_ID) },
- 	{ PCI_VDEVICE(QCOM, WCN6855_DEVICE_ID) },
-@@ -443,6 +452,18 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci *ab_pci)
- 
- 	ath11k_pci_msi_disable(ab_pci);
- 
-+	if (ath11k_host_msi_vector_addr) {
-+		ab_pci->ab->pci.msi.ep_base_data = ath11k_host_msi_vector_data;
-+		ab->pci.msi.addr_hi = (u32)(ath11k_host_msi_vector_addr >> 32);
-+		ab->pci.msi.addr_lo = (u32)(ath11k_host_msi_vector_addr & 0xffffffff);
-+
-+		ath11k_dbg(ab, ATH11K_DBG_PCI, "msi addr hi 0x%x lo 0x%x base data is %d\n",
-+			   ab->pci.msi.addr_hi,
-+			   ab->pci.msi.addr_lo,
-+			   ab->pci.msi.ep_base_data);
-+		return 0;
-+	}
-+
- 	msi_desc = irq_get_msi_desc(ab_pci->pdev->irq);
- 	if (!msi_desc) {
- 		ath11k_err(ab, "msi_desc is NULL!\n");
-@@ -482,6 +503,9 @@ static int ath11k_pci_config_msi_data(struct ath11k_pci *ab_pci)
- {
- 	struct msi_desc *msi_desc;
- 
-+	if (ath11k_host_msi_vector_addr)
-+		return 0;
-+
- 	msi_desc = irq_get_msi_desc(ab_pci->pdev->irq);
- 	if (!msi_desc) {
- 		ath11k_err(ab_pci->ab, "msi_desc is NULL!\n");
--- 
-2.44.0
+In this case, and I understand RAX seems to be dev->addr, and R14 is the
+KASAN shadow:
 
+	RAX = 0000000000000000
+	R14 = dffffc0000000000 (CONFIG_KASAN_SHADOW_OFFSET)
+
+So, we are clearly deferring a NULL pointer.
+
+Now, why? Not sure yet.
 
