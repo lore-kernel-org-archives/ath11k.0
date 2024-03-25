@@ -4,72 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D238C54E71
-	for <ath11k@archiver.kernel.org>; Fri, 22 Mar 2024 15:16:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6711C54E64
+	for <ath11k@archiver.kernel.org>; Mon, 25 Mar 2024 10:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=SMb2IgPKyZnj/ue62em5Q9KAY8/Lp0+DnO65BTLg4OM=; b=ZxvXG5iPXXTohDm7lZfWehTyIJ
-	doFq35STwV5Z1O+SIwNo8kqbp6pbWx5Yqhtk873qFdk+gG7YOFuzCFVY8Dwft+ASdOAPj7J5APZHl
-	n3Jg+Kat/irdFT61aPC0/f2g+C3BInQ4wc/4EBtbQr3oJ2SfWiAiv0XOrJLbHJH5ZN90cbTnZeQja
-	+kJ6vYUE66R3NgU+r43tFG8ZmGgikxfmbNr8Um2Eqz5C0NE3K/oUI7ig7dRvaIG7EvwnwRsqfS7Z9
-	68eAh/2c1JkxbqdoNxAApEzFBfsKdaItGT9P86g14HNkSSgplxchFEv8RcXbB23M1KyH4gpqvoHtH
-	32hpCncg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gfA6FhDBLXqznEdK2FhLuGeDuuSjyn8hFe7WVfTwENU=; b=aMiAvuXhwp8o9YmjOfaKBrkdIa
+	XgZ2+TxR9MfPcnVXEp+P0SwdVXMovw4AcMwBjl4lFl63Km2pSi88JKVy+8g62NrPSVjRCg+OpCgys
+	7fsNPIHVmMlWKdxMfXU18reKbIsG4PUCHvfhGY1VKjuM1K5kwRT6w1FugWVpunhHpA6e0Cg8P5ujt
+	cG41nQbDH5DYgmkCSOzZ/2enFpqKHdJqdouEyDbXnXn0hHRJHo3z4YintIIFKwm1LzZ6nRYn4+aB1
+	WDq0HSFtPReb7yUC6C0S7xhbFsqqXo8q+uNpI8FYoyl/S3Pd/6OXqGUeIUOiYD4wqSLU9hUFuchaR
+	rGdtTrWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rngdA-00000007iwu-3F1N;
-	Fri, 22 Mar 2024 15:16:28 +0000
-Received: from mail-ed1-f54.google.com ([209.85.208.54])
+	id 1rohuT-0000000GrVS-0VFD;
+	Mon, 25 Mar 2024 10:50:33 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rngd5-00000007ivd-2ReI
-	for ath11k@lists.infradead.org;
-	Fri, 22 Mar 2024 15:16:27 +0000
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56bc8cfc19fso2421546a12.1
-        for <ath11k@lists.infradead.org>; Fri, 22 Mar 2024 08:16:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711120580; x=1711725380;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SMb2IgPKyZnj/ue62em5Q9KAY8/Lp0+DnO65BTLg4OM=;
-        b=aQCGb5GIqAveEu4doXDNbJsIZLbJ8o3MK92lYTqoYt9Uzaf3vYxmiLfVHbZeieClys
-         WfVkDO0pPdRnzekUlDIioXiOaPUMsiYU0Alm82D5fEBEuESFlakv4eOrWkT0r9DpF/qx
-         Jh/E4emDuEqgej65XNVYEagjzkZFAph1omPQNGTlX82DZqRe9tPUnEOAB1o91Z0ZO5Aj
-         H7FmdbmE1fGYIQd0OWmCJY+QQ4QQ65h74ifLRCf4lRVJwqukDNnIc0UYiiEg0wrkcFWX
-         EbgbYNNnWNfbZRW2rm0ofCtYW3mBQQJWloEB7R4p5kuTX+twhurjl0otGJ3C0JjgMA+9
-         i3uA==
-X-Forwarded-Encrypted: i=1; AJvYcCVyZv/nDuWosa5rHu+fO+Wf6DMem1/iajUOtOmhqoiXKmDuTBe6DtU+2SsGbcN6sPdbUq/1L2RLIYWIM5E5hg3K3JnxxZJNdPPvtw==
-X-Gm-Message-State: AOJu0Yxo/TxgOEBJDKIuBURwr9xsk4zGC6nzTnuw3ws6JkCKGZaL8He8
-	XwiHA8x6TYBENZTX8HxK/g+45RGXNO3nIn+Ymtr7RhAIG0AY5XT6
-X-Google-Smtp-Source: AGHT+IG19fJVfmLxYOcOEr80oE8P0l2x5mYegvQxSIpQMrvkuLrpfoVX+O792HS4x99bT+I74w91TA==
-X-Received: by 2002:a17:906:1843:b0:a46:f958:2eb6 with SMTP id w3-20020a170906184300b00a46f9582eb6mr1801147eje.67.1711120580209;
-        Fri, 22 Mar 2024 08:16:20 -0700 (PDT)
-Received: from gmail.com (fwdproxy-lla-120.fbsv.net. [2a03:2880:30ff:78::face:b00c])
-        by smtp.gmail.com with ESMTPSA id oz27-20020a170906cd1b00b00a473490aae8sm543234ejb.24.2024.03.22.08.16.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Mar 2024 08:16:19 -0700 (PDT)
-Date: Fri, 22 Mar 2024 08:16:17 -0700
-From: Breno Leitao <leitao@debian.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <jjohnson@kernel.org>, kuba@kernel.org,
-	keescook@chromium.org,
-	"open list:NETWORKING DRIVERS (WIRELESS)" <linux-wireless@vger.kernel.org>,
-	"open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER" <ath11k@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] wifi: ath11k: allocate dummy net_device dynamically
-Message-ID: <Zf2gwaEU4PQ+6GMe@gmail.com>
-References: <20240319185735.1268980-1-leitao@debian.org>
- <871q85as8e.fsf@kernel.org>
+	id 1rohu1-0000000GrOG-3dz1;
+	Mon, 25 Mar 2024 10:50:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 73A38CE0B65;
+	Mon, 25 Mar 2024 10:49:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E7EDC433F1;
+	Mon, 25 Mar 2024 10:49:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711363798;
+	bh=4APY93stsQD/f+BZlZm5PfAh7Rhqxtgpj8c6AP25p3k=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=iH0CeQlApW8aTUVFbZu1b/HMbevfcepTiv36TcCR+vHgR2RzsGJcAAXMusTOj93Sa
+	 e5tsN+k/nkCbm86QSwcKYyySqK5tbBlQi7TMejLo5C83kE3JKcaSizi8GN9341lKPH
+	 OnfZEv5C1nuKWFAt9QvTLPBlKvt6GupcrUbviHoHueVIg+DIIn+75aPn8N5WtmRgsO
+	 tnc5vln5FjMjASrvYKsaaoeJG/Z9PhuVvkP/LIROwqSd2zEFXA6z8nwhbysKad3sQ1
+	 Nbf4H2WNL417ms1KiSSpEgBOvYdsvg6i2TxnA1B1MLtugurRK313lNurYiEj8YTqJM
+	 yOzT5kZxK/Lvw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <871q85as8e.fsf@kernel.org>
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 1/3] wifi: ath: Convert sprintf/snprintf to sysfs_emit
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240315055211.1347548-1-lizhijian@fujitsu.com>
+References: <20240315055211.1347548-1-lizhijian@fujitsu.com>
+To: Li Zhijian <lizhijian@fujitsu.com>
+Cc: linux-kernel@vger.kernel.org, Li Zhijian <lizhijian@fujitsu.com>,
+ Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, ath10k@lists.infradead.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <171136379518.1022746.15442509873111996623.kvalo@kernel.org>
+Date: Mon, 25 Mar 2024 10:49:56 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240322_081626_551504_4FA0F0E9 
-X-CRM114-Status: GOOD (  16.68  )
+X-CRM114-CacheID: sfid-20240325_035006_152899_201102E7 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,45 +73,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 20, 2024 at 04:32:49PM +0200, Kalle Valo wrote:
-> Breno Leitao <leitao@debian.org> writes:
+Li Zhijian <lizhijian@fujitsu.com> wrote:
+
+> Per filesystems/sysfs.rst, show() should only use sysfs_emit()
+> or sysfs_emit_at() when formatting the value to be returned to user space.
 > 
-> > Embedding net_device into structures prohibits the usage of flexible
-> > arrays in the net_device structure. For more details, see the discussion
-> > at [1].
-> >
-> > Un-embed the net_device from struct ath11k_ext_irq_grp by converting it
-> > into a pointer. Then use the leverage alloc_netdev() to allocate the
-> > net_device object at ath11k_ahb_config_ext_irq() for ahb, and
-> > ath11k_pcic_ext_irq_config() for pcic.
-> >
-> >  The free of the device occurs at ath11k_ahb_free_ext_irq() for the ahb
-> > case, and ath11k_pcic_free_ext_irq() for the pcic case.
-> >
-> > [1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
-> >
-> > Signed-off-by: Breno Leitao <leitao@debian.org>
+> coccinelle complains that there are still a couple of functions that use
+> snprintf(). Convert them to sysfs_emit().
 > 
-> This crashes on my nuc x86 test box with WCN6855 hw2.0 when running
-> rmmod, stacktrace below. I used tag ath-202403201010 from my ath.git
-> tree as the baseline. Sorry that I'm not able to debug this further
-> right now.
+> sprintf() will be converted as weel if they have.
+> 
+> Generally, this patch is generated by
+> make coccicheck M=<path/to/file> MODE=patch \
+> COCCI=scripts/coccinelle/api/device_attr_show.cocci
+> 
+> No functional change intended
+> 
+> CC: Kalle Valo <kvalo@kernel.org>
+> CC: Jeff Johnson <jjohnson@kernel.org>
+> CC: linux-wireless@vger.kernel.org
+> CC: ath11k@lists.infradead.org
+> CC: ath10k@lists.infradead.org
+> Signed-off-by: Li Zhijian <lizhijian@fujitsu.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Thanks for the detailed log. I am trying to understood the issue, and I think
-we are deferring a null pointer, which is likely net_device->dev_addr.
+Patch applied to ath-next branch of ath.git, thanks.
 
-Here, dev->dev_addr seems to be NULL.
+fa1a4f15bdca wifi: ath: Convert sprintf/snprintf to sysfs_emit
 
->   27:	83 e6 07             	and    $0x7,%esi
->   2a:*	42 0f b6 14 30       	movzbl (%rax,%r14,1),%edx		<-- trapping instruction
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20240315055211.1347548-1-lizhijian@fujitsu.com/
 
-In this case, and I understand RAX seems to be dev->addr, and R14 is the
-KASAN shadow:
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
-	RAX = 0000000000000000
-	R14 = dffffc0000000000 (CONFIG_KASAN_SHADOW_OFFSET)
-
-So, we are clearly deferring a NULL pointer.
-
-Now, why? Not sure yet.
 
