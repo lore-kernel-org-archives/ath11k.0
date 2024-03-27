@@ -4,64 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACD21C54E67
-	for <ath11k@archiver.kernel.org>; Wed, 27 Mar 2024 10:32:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50CD8C54E67
+	for <ath11k@archiver.kernel.org>; Wed, 27 Mar 2024 15:02:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/vE/qKbFcsr453lP/nQUsxyq9xtcN9Hp1eXb/WHDqZg=; b=GW/EOETJZ0deMPaaHMQDivUAg3
-	hCqVccL7DfBlC/cp/kMGGwDh9usb6NjeRkZzdX1DEupPAeCEfeBDUlCu1GxrzJbC8/3Vlm/gO3Rkt
-	aOo7FusePLs/sQlAX1SlsxEWLmIw2iSLglU0PKTUG9yQ9OKgia21qJizo+uCfWuXwh3ZYwHGNSkcZ
-	C0NAT4CGMdEdvO2ObH2epFV1xW2oLdVmVHAX0tMGNHhYKs+1XrcKEBJ1/iFI5edLgFqILoEYrutuZ
-	5sdWbwH5n3FFFfT4jJL6cfsAIwucaa0pDxaFbX5DEsWkCYzmP9lfls+YGjMWFf8vHaQq87rPhYlQV
-	1J8OfwXg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=3N1FmIYiPH53Ka4MptREjaALirR4n0ouCVqaY1qOPtU=; b=dbCAV65Ji7wvIM6zu1zRrqfouq
+	YuQk9GIbliXG89TDLKW6YXUf3ltzC3Z7Wb+YjigaTY4WqRVaI71EN9HbMpMGwPtOfcu7tfwRfAZdq
+	D89YlVxFd1K4MpPv3JrOHtQciQOYLJ9oKC1liOqto+bD+Oh34Zdp4T8EUhNxr07uK7zUg+YBvt0PT
+	G/Ai+9gm32xpHQlGFtqWAvQQAoL3QuI36+B5mQd+VXU0XKMS0Z8FksGOVGQjC9AD+7vhzkRUkgM6y
+	7xPaH8Hy44elzLdGDAiBLUeb7UmeTpAuyo6RBWND1jPl8r60JXhztOKRWKA1Xsx7DgBXMEap1eEPk
+	WoMiljaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpQaX-00000008QfU-0wHP;
-	Wed, 27 Mar 2024 10:32:57 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1rpUnW-00000009f3O-3T1V;
+	Wed, 27 Mar 2024 15:02:38 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpQaT-00000008Qe0-3SE7
+	id 1rpUnT-00000009f1U-4480
 	for ath11k@lists.infradead.org;
-	Wed, 27 Mar 2024 10:32:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=/vE/qKbFcsr453lP/nQUsxyq9xtcN9Hp1eXb/WHDqZg=;
-	t=1711535572; x=1712745172; b=DA3hdq8NnuyG59eTTb4jcPaNfPTqqUV60S2pFjC78WmKqMh
-	lNMfsyaosXSi5uK2ZjWUG2cyNFcESM9ePPhT09RL9JcSq3EnIbNiidhCg8WNz0ztXIj3y21jvI+SF
-	nMbiaWnHxvM/0c6QPor7ZX6+brzqWIDotc+6dw/r2a9Y+VCgSWGhJmwfFSljfmyx6mrXuA4Y4YR/5
-	VRkfjSwgEdEI/rg8TSQLfkXVJqX1RM3SHzYWinEtQt6bWoFqusFzByLbtLggApTlX3J1HYy4pvLlq
-	hydafhE49AIoi8ohiOLd8QV2+ilV0mc2REDXTw3rtFkb8UOUb3Si1F07iURSj2aQ==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.97)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1rpQaP-0000000H0PI-00ZZ;
-	Wed, 27 Mar 2024 11:32:49 +0100
-Message-ID: <b9dfab64822bacf0cc72380c0de034b79d489668.camel@sipsolutions.net>
+	Wed, 27 Mar 2024 15:02:37 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42RDdPX5004238;
+	Wed, 27 Mar 2024 15:02:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=3N1FmIYiPH53Ka4MptREjaALirR4n0ouCVqaY1qOPtU=; b=fC
+	4xPg1/KbDFhkdpH1mbJUHMYoT1plAb9ZwVKVh4YsDs92UbRHqmDUFq+/yzM847u6
+	YlqTPJMhdNX9FDN9Y4M7oxkNP3HijVyZaigoEifpPyqjt5ApOj+bkzhHpIxsPN10
+	04VX0+XqbI1kM33aYQp/ya0w2ZR4PWujjCW7aDzUpop3rsytU4iHhrZIU6khE9H1
+	QNRk92KJy25eiqyaOxP1wxsvG6zYVTXgsAYbZ52qjdsQUpXPwXBhppo805ZdX/xS
+	xz0AfH78wI9ZQgoFozeYvNNg14Bigqgaoxr09n1lOae+kFlAnh9cPMeN8/BkSMF5
+	8wogyBwyfzIJyW2oE9EA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x4mh9g7bq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Mar 2024 15:02:34 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42RF2Xfk014545
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Mar 2024 15:02:33 GMT
+Received: from [10.110.28.48] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 27 Mar
+ 2024 08:02:32 -0700
+Message-ID: <68c6fcbd-0aaa-43b2-b5e2-08367c11e79d@quicinc.com>
+Date: Wed, 27 Mar 2024 08:02:32 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/2] wifi: cfg80211/mac80211: Add support to rx retry
  stats
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Hari Chandrakanthan <quic_haric@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Date: Wed, 27 Mar 2024 11:32:48 +0100
-In-Reply-To: <14699537-99b2-e468-6a7b-7b721193400e@quicinc.com>
+To: Johannes Berg <johannes@sipsolutions.net>,
+        Hari Chandrakanthan
+	<quic_haric@quicinc.com>,
+        <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
 References: <20240319134522.4021062-1-quic_haric@quicinc.com>
-	 <20240319134522.4021062-2-quic_haric@quicinc.com>
-	 <d364e872eb29f03236630bab49a3243e2118ab22.camel@sipsolutions.net>
-	 <14699537-99b2-e468-6a7b-7b721193400e@quicinc.com>
+ <20240319134522.4021062-2-quic_haric@quicinc.com>
+ <d364e872eb29f03236630bab49a3243e2118ab22.camel@sipsolutions.net>
+ <14699537-99b2-e468-6a7b-7b721193400e@quicinc.com>
+ <b9dfab64822bacf0cc72380c0de034b79d489668.camel@sipsolutions.net>
+Content-Language: en-US
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <b9dfab64822bacf0cc72380c0de034b79d489668.camel@sipsolutions.net>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
-MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: dzcq6EVj_P6iDDnJd7NywHEMWer9ggaI
+X-Proofpoint-ORIG-GUID: dzcq6EVj_P6iDDnJd7NywHEMWer9ggaI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-27_12,2024-03-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1015 adultscore=0 impostorscore=0 spamscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 mlxlogscore=979
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403270103
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240327_033254_171939_0E70B8C0 
-X-CRM114-Status: GOOD (  11.14  )
+X-CRM114-CacheID: sfid-20240327_080236_281152_D7E05CE7 
+X-CRM114-Status: GOOD (  23.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,54 +105,81 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2024-03-27 at 15:39 +0530, Hari Chandrakanthan wrote:
+On 3/27/2024 3:32 AM, Johannes Berg wrote:
+> On Wed, 2024-03-27 at 15:39 +0530, Hari Chandrakanthan wrote:
+> 
+>> Fields such packet count, retries etc can be summed up for the MLD 
+>> representation and the existing NL attribute can be used for exposing
+>> the summed up value.
+> 
+> I think the existing attributes can also be used for per-link STA?
+> 
+> I'm kind of imagining that - once we actually do all of this properly -
+> the representation in nl80211 would be something like
+> 
+> 
+> STA 00:00:00:00:00:00
+>  - TX bytes: 123456
+>  - RX bytes: 654321
+>  - signal avg: -60 dBm     // picking the best of all links?
+>  ...
+>  - LINK 00:00:00:00:00:01
+>     - link ID: 10
+>     - TX bytes: 100000
+>     - RX bytes: 600000
+>     - signal avg: -60 dBm
+>  - LINK 00:00:00:00:00:02
+>     - link ID: 11
+>     - TX bytes: 23456
+>     - RX bytes: 54321
+>     - signal avg: -70 dBm
+> 
+> etc.
+> 
+>> But there are fields such as signal avg, bitrate etc which cannot be 
+>> summed up.
+> 
+> Right, but I guess we can pick 'best' for those, to at least have a
+> value? Or we could just not emit those attributes I guess, but not sure
+> if that's then all that useful?
+> 
+>> Should we expose such fields of each link STA through NL?
+> 
+> All of them, I guess?
+> 
+> I'm also imagining that we change the API from cfg80211 to the drivers
+> to get the *link* STA information, and do the summing up and/or "best"
+> selection there in cfg80211 itself. However, I am prepared to accept the
+> possibility that we may do _both_ in the API, if not all drivers can
+> even do all of the statistics per link. We should probably still have
+> the link STAs in the statistics in nl80211, but then they may not be
+> populated?
 
-> Fields such packet count, retries etc can be summed up for the MLD=20
-> representation and the existing NL attribute can be used for exposing
-> the summed up value.
+First remember that there are a lot of statistics, and each driver is free to
+return as many or as few as they support, indicating the ones they are
+returning using the "filled" bitmap. I would expect MLO-capable drivers to
+provide the same information on a per-link basis that they previously provided
+on a per-interface basis, but the "filled" bitmap leaves that to the drivers.
 
-I think the existing attributes can also be used for per-link STA?
+But I think a fundamental question needs to be answered: To what extent do we
+need to support legacy userspace applications that are not MLO-aware?
 
-I'm kind of imagining that - once we actually do all of this properly -
-the representation in nl80211 would be something like
+My expectation is that MLO-aware applications only need the per-link
+information, and from that they can derive their own "aggregate" of the
+per-link information. So to support that we'd need per-link nesting of the
+associated attributes. And if we don't need to support legacy userspace we
+could completely remove populating the top-level statistic attributes. Non-MLO
+interfaces would have a single link nest that contains the same information
+that is now in the top-level of the NL message.
 
+But if we need to support legacy userspace then we would indeed need to
+continue to populate those top-level attributes with some form of aggregate data.
 
-STA 00:00:00:00:00:00
- - TX bytes: 123456
- - RX bytes: 654321
- - signal avg: -60 dBm     // picking the best of all links?
- ...
- - LINK 00:00:00:00:00:01
-    - link ID: 10
-    - TX bytes: 100000
-    - RX bytes: 600000
-    - signal avg: -60 dBm
- - LINK 00:00:00:00:00:02
-    - link ID: 11
-    - TX bytes: 23456
-    - RX bytes: 54321
-    - signal avg: -70 dBm
+And even for the MLO-aware case there is the issue of how do we want to handle
+the case that links may come and go, and hence aggregate counters would appear
+to have huge fluctuations in values when links are added or removed if the
+aggregate values are only calculated by adding the values from the
+currently-attached links.
 
-etc.
-
-> But there are fields such as signal avg, bitrate etc which cannot be=20
-> summed up.
-
-Right, but I guess we can pick 'best' for those, to at least have a
-value? Or we could just not emit those attributes I guess, but not sure
-if that's then all that useful?
-
-> Should we expose such fields of each link STA through NL?
-
-All of them, I guess?
-
-I'm also imagining that we change the API from cfg80211 to the drivers
-to get the *link* STA information, and do the summing up and/or "best"
-selection there in cfg80211 itself. However, I am prepared to accept the
-possibility that we may do _both_ in the API, if not all drivers can
-even do all of the statistics per link. We should probably still have
-the link STAs in the statistics in nl80211, but then they may not be
-populated?
-
-johannes
+/jeff
 
