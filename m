@@ -4,81 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D2F3C54E64
-	for <ath11k@archiver.kernel.org>; Thu, 28 Mar 2024 14:37:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 391E2CD11DD
+	for <ath11k@archiver.kernel.org>; Thu, 28 Mar 2024 17:19:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:Cc:References:To:From:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=627mkCdVGao7oDK8Ssw4iDjUepk9Kg1HbgzRtecPuMc=; b=iy1O+1xReHyyqXXzbR3cj4+xPV
-	apgLBj4Y+hhmLAHE2uFHqK6/9wcfXZfjR078tkkneYcO5M3etrys2VErZ9KV9yDsQ5JgGmOYqBPfs
-	vjbT7qG6y7tOlDXpMRQcGZCK1XWxFKDdoqZoSermXNgd9Ow2B5rpzO+mPcElikFrcv6kCnaDIuErM
-	IjrCZ/1ksq9bAH4v7WHNZY3u10UWGsjkgKaYFViibKmiJ+kGP968g/kHng+q1WA36mZg/mstHzV2O
-	czLRS2mEtjJEVdKAQ/Qg66UfBchDG8E/95RWS1Cq/7SsqrMOIMSrvR9iekSfd2OriwLJOu5yYJ0ht
-	mYWggPRA==;
+	bh=fZ7Iz+yfSs0sampUggH73kYieS4vekjfL+iln2taZrw=; b=a7sifPzF6U+p10Yvl+Meo+CX0R
+	zzojruv0/3zrR9HNHadjnJG1cLZyU9i9n8PEhVED4V7/+y77RWpAswFWdc5gPZpMaDBYgwYkpcQen
+	JnAoxso+AaKY5z87Vb2ztEjF1n/HR7AWXunKNiaeywZg25IR9IZEPZnAMIGVqIf6XaBzx2+IwXkkC
+	bvSRoNsJQaDROViJ1CjqWosqjr4ogqOmYAFJyJuTer32ISuL0X0TvR/Nxsz/r25JPV0NQHy58jkhc
+	DX4Y5WhO7Ap6F5R3OCb4GOrlxMzH5FgkppLZKrXCqU9dTbyCq1FHGY5QFDuWDKbdwnkuqx6y/MiZb
+	p/EwIWSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpqsX-0000000ELyy-0Xts;
-	Thu, 28 Mar 2024 14:37:17 +0000
-Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
+	id 1rptPT-0000000ExUC-26uS;
+	Thu, 28 Mar 2024 17:19:27 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpqsS-0000000ELxo-04Xi
+	id 1rptPQ-0000000ExTe-39Hu
 	for ath11k@lists.infradead.org;
-	Thu, 28 Mar 2024 14:37:15 +0000
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1e0878b76f3so8315945ad.0
-        for <ath11k@lists.infradead.org>; Thu, 28 Mar 2024 07:37:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711636629; x=1712241429; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:cc:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=627mkCdVGao7oDK8Ssw4iDjUepk9Kg1HbgzRtecPuMc=;
-        b=LVUYIqGM0tTA6iozmOp3+EUS1S3u4b8/NZk1TZnO/XxSjyW8qKkBRfKCiLESRk0PzI
-         uKeawr/9xEYhkoaLiWx1nn/f7u9BTTg72VLEKFVTyNz5Y+fkYt6vJzQ5fqTz5fBFdKHP
-         sd29Jg/GsLIBuZLTzAtvG0psEZ+1zDulM4+IKtdWuAwzJMSZmemAhIU9oBVrq/e0+W0C
-         YSIZGA1cmINkBz2EVRMksg3EZO2wsiUsN9qlDybjljM54U68tG4tPyqkJjozczOBhtAZ
-         0aMeKZb9xITiWV8JSP3CgJh7wubGbhahlYEgQLIFSRJYraoFqd1CAEV4LYwn8HjHvDtt
-         9zmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711636629; x=1712241429;
-        h=content-transfer-encoding:in-reply-to:cc:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=627mkCdVGao7oDK8Ssw4iDjUepk9Kg1HbgzRtecPuMc=;
-        b=w5Ix1kQeOcxIEmyfwk5W2AjPORfduam9vlp1aGebpDL1z7T3bcH5RtQng9gFp61sx/
-         R5UrYyf7ByhTORC2SFypuS/aQbTV+u5fcznPBL+zap8R5Aybzk7vjqMAPD81U/glBPn2
-         RziJyJ1y6MIp4Qcg6wqxEjg7Rej9N1pZdbRdU1BD1u5vajNZIaFqxZ9Jxr1BeN2e75pk
-         fmrQlNcdWqLjvCH3Wu/rkefO8MZiuY6PqpkwEtKok6prhv8l3zxqbb+GFkVROv9SWJxa
-         0GmVq9lYBMIK3qUQFDGPFZ33sII8OteRM+dJQY0i2GSDkhSMhUH+IIWWz2PrZa9Sc6kB
-         CfJQ==
-X-Gm-Message-State: AOJu0Yyr23f7yywT9fvBxXqFXnMljTZ4zRMkdSfbjQUnKWg16Zbsaqw/
-	v0PWkuEfuhZ+o+Z3nQw7K6OYfG+CymfmjqVjY+9eIBPRVvQxZwDgAeJop1VB
-X-Google-Smtp-Source: AGHT+IG6QHQI1QO4neaXgDVm+rE1f9V/zg1wj8Y2RJDezlfk4u6wZ9fdMUFm2NR4OZgmVDeMoxbEMQ==
-X-Received: by 2002:a17:902:dac3:b0:1dd:1c6f:af51 with SMTP id q3-20020a170902dac300b001dd1c6faf51mr3618780plx.16.1711636628657;
-        Thu, 28 Mar 2024 07:37:08 -0700 (PDT)
-Received: from [192.168.254.87] ([50.39.172.77])
-        by smtp.gmail.com with ESMTPSA id l16-20020a170903121000b001e0c956f0dcsm1643887plh.213.2024.03.28.07.37.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Mar 2024 07:37:08 -0700 (PDT)
-Message-ID: <e458216d-b389-4abd-a9b2-90525ea10a8d@gmail.com>
-Date: Thu, 28 Mar 2024 07:37:07 -0700
+	Thu, 28 Mar 2024 17:19:26 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42SGVLAi028527;
+	Thu, 28 Mar 2024 17:19:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=fZ7Iz+yfSs0sampUggH73kYieS4vekjfL+iln2taZrw=; b=RT
+	IQINPqiBhseq5dTY1ok6Gw7AeOMMEyE2NPLP3nPzw4JO2bqOZgB/+2mF12ED98Tr
+	VZ5ONNcJ1125MEFxk7bsqC+pfiCqu3dEmubbVM8TCuM4sV7Wn4gV5SdeIJHGjhbJ
+	9ddzj3O++mWIEuvBYpXYdMrd87CbjtzrNfDPFsxif4WLILYtmyA7LKrTZMrK32Xa
+	s99jO9+EYl8ZHqTgb03gfhsmW6D7HMXzOwqNaR+qhwc3QCa31NG9VENVouRxx/zM
+	M8b5HAWyrYLmBQDG0aR7XM6AbwP3bvKMvJIRG7AwtPtXOfID/YX0FoyuQlyK3P2F
+	xhTc+I8SchPzYJGoJEEQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3x5580sjrg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Mar 2024 17:19:22 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42SHJLmb002014
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Mar 2024 17:19:21 GMT
+Received: from [10.216.50.75] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 28 Mar
+ 2024 10:19:19 -0700
+Message-ID: <4d569d40-d0a8-10d5-7e6d-4c9c03c14371@quicinc.com>
+Date: Thu, 28 Mar 2024 22:49:16 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k failed to enqueue rx buf: -28
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 1/2] wifi: cfg80211/mac80211: Add support to rx retry
+ stats
 Content-Language: en-US
-From: James Prestwood <prestwoj@gmail.com>
-To: "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
- <linux-wireless@vger.kernel.org>
-References: <5c63a3a2-29fe-444c-96f1-f87c89d7af39@gmail.com>
-Cc: ath11k@lists.infradead.org
-In-Reply-To: <5c63a3a2-29fe-444c-96f1-f87c89d7af39@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson
+	<quic_jjohnson@quicinc.com>,
+        <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240319134522.4021062-1-quic_haric@quicinc.com>
+ <20240319134522.4021062-2-quic_haric@quicinc.com>
+ <d364e872eb29f03236630bab49a3243e2118ab22.camel@sipsolutions.net>
+ <14699537-99b2-e468-6a7b-7b721193400e@quicinc.com>
+ <b9dfab64822bacf0cc72380c0de034b79d489668.camel@sipsolutions.net>
+ <68c6fcbd-0aaa-43b2-b5e2-08367c11e79d@quicinc.com>
+ <f5cb9edcea875920e0ce156be76d06c78d1279ec.camel@sipsolutions.net>
+From: Hari Chandrakanthan <quic_haric@quicinc.com>
+In-Reply-To: <f5cb9edcea875920e0ce156be76d06c78d1279ec.camel@sipsolutions.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: fE9fTy_kJYLw3umQrVz9eDuBMvdDCR7p
+X-Proofpoint-ORIG-GUID: fE9fTy_kJYLw3umQrVz9eDuBMvdDCR7p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-28_15,2024-03-28_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 adultscore=0 priorityscore=1501 spamscore=0 bulkscore=0
+ mlxscore=0 suspectscore=0 clxscore=1015 malwarescore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2403280119
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240328_073712_077271_4F7738E8 
-X-CRM114-Status: GOOD (  12.29  )
+X-CRM114-CacheID: sfid-20240328_101924_965001_DBDDBF88 
+X-CRM114-Status: GOOD (  28.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,32 +108,78 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ CC ath11k
 
-On 3/27/24 9:25 AM, James Prestwood wrote:
-> Hi,
+On 3/27/2024 8:37 PM, Johannes Berg wrote:
+> On Wed, 2024-03-27 at 08:02 -0700, Jeff Johnson wrote:
+>>> I'm also imagining that we change the API from cfg80211 to the drivers
+>>> to get the *link* STA information, and do the summing up and/or "best"
+>>> selection there in cfg80211 itself. However, I am prepared to accept the
+>>> possibility that we may do _both_ in the API, if not all drivers can
+>>> even do all of the statistics per link. We should probably still have
+>>> the link STAs in the statistics in nl80211, but then they may not be
+>>> populated?
+>> First remember that there are a lot of statistics, and each driver is free to
+>> return as many or as few as they support, indicating the ones they are
+>> returning using the "filled" bitmap.
+> Yes, I'd think we want to use the same data structure for both, though
+> setting something in *both* links and *mld* would (should) be an error.
+The statistics can be populated by driver or mac80211.(say tx retries, 
+tx packets etc)
+So we should also change the existing stats update in mac80211 on link 
+STA basis instead of deflink?
+>> I would expect MLO-capable drivers to
+>> provide the same information on a per-link basis that they previously provided
+>> on a per-interface basis, but the "filled" bitmap leaves that to the drivers.
+> Unless we don't actually ask the drivers at the MLD level if (the
+> station is an MLD). But I suspect we will have to do both, ask for MLD-
+> level stats and link-level stats.
 >
-> This error was brought to my attention in the kernel logs and I'm 
-> wondering if it is of any concern:
+>> But I think a fundamental question needs to be answered: To what extent do we
+>> need to support legacy userspace applications that are not MLO-aware?
+> I have no idea who even uses this and how :-) But I guess things like
+> NetworkManager might, even just to show some signal strength values
+> etc.?
 >
-> kernel: ath11k_pci 0000:03:00.0: failed to enqueue rx buf: -28
+>> My expectation is that MLO-aware applications only need the per-link
+>> information, and from that they can derive their own "aggregate" of the
+>> per-link information.
+> Agree, though it'll be a long time until all applications are MLO-aware?
+> Unless there aren't many using it, but ...
 >
-> It seems to happen every few minutes or so. I don't notice any bad 
-> behavior associated with it per-se, but maybe its an issue of some 
-> buffer needing to be increased in size? Does this mean a frame is 
-> being dropped due to no room to receive it?
+>> So to support that we'd need per-link nesting of the
+>> associated attributes.
+> Sure, that's a given.
 >
-> Hardware we are running is:
+>> And if we don't need to support legacy userspace we
+>> could completely remove populating the top-level statistic attributes. Non-MLO
+>> interfaces would have a single link nest that contains the same information
+>> that is now in the top-level of the NL message.
+>>
+>> But if we need to support legacy userspace then we would indeed need to
+>> continue to populate those top-level attributes with some form of aggregate data.
+> I think we probably have to.
 >
-> [    4.610399] ath11k_pci 0000:03:00.0: wcn6855 hw2.1
-> [    5.777030] ath11k_pci 0000:03:00.0: chip_id 0x12 chip_family 0xb 
-> board_id 0xff soc_id 0x400c1211
-> [    5.777039] ath11k_pci 0000:03:00.0: fw_version 0x1109996e 
-> fw_build_timestamp 2023-12-19 11:11 fw_build_id 
-> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.36
->
-> Thanks,
->
-> James
->
+>> And even for the MLO-aware case there is the issue of how do we want to handle
+>> the case that links may come and go, and hence aggregate counters would appear
+>> to have huge fluctuations in values when links are added or removed if the
+>> aggregate values are only calculated by adding the values from the
+>> currently-attached links.
+> Good point, when they're really removed we'd want to probably keep that
+> value as a bias for the MLD-level stats?
+
+ok. Then the statistics value in MLD STA would be bias + summed up value 
+of currently alive links?
+
+On the same line , ethtool stats(*interface level stats*) in 
+mac80211(ieee80211_get_stats())
+computes the stats by summing up the current STA statistics.
+Here stations can come and go and the ethtool stats may not reflect the 
+total packets transmitted or received by the interface.
+It just reflects the summed up value of current alive stations.
+
+Since these two problems are similar (ethtool stats and MLD stats 
+calculation),
+would like to understand what type of value would be more useful to user?
+
+> johannes
 
