@@ -4,77 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71665CD11DF
-	for <ath11k@archiver.kernel.org>; Thu, 28 Mar 2024 18:48:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC093CD128A
+	for <ath11k@archiver.kernel.org>; Fri, 29 Mar 2024 12:29:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=34IdPJ2YjUqkOuthgegfpvX5HlFd0ZzxbNQAIIA7Ka4=; b=coCPpMXInhJiUWyOnZYCWKDqGN
-	UrPd1G8MvE9lc6h+VPJs/Htb1YWVlh0BeWfoa7Dx4fK6DPEvUrZSuY5hWGIl7Ecg1llATOIOd6s/C
-	1nbprXjBYyVvLzeAelYb82EOXkE2s02wTnElOQYK+7HkiUBBPwx2K2Iuh0SD6AdMvI8muqOeFKJ/+
-	rETMp2Tz68UrYphpH40nH5HKJZz708PsWOgEAyrI89OZaBisR8XQrR/7MmdocsW0tpT8C/prq2Dcw
-	JoC4pKw8iNUipJeYNjkXVZ7vkd9p29tAhTHih5LeXIBiV7l/2lf+UpsECZx2q93g9h+/FSYS1n548
-	w7lgSRgg==;
+	bh=z6vZPUmDu2p6yeT7RbDnm4ftmJnutYh2a/UiljfRItU=; b=KtP6KIcAUJABLt5+Jhuk0J85QJ
+	sxygJDsnrGCVpHsevrIh+HzX+n8W1mHUNrebkfrIEhmXP4LFhIWx3OeCCln0SHdIY/7gLMBwoJnd/
+	0sSm815ucCvv9skApUwppRvg4tMDlAPheBcS4yT2P8mpgRBEqsqAK0THk3b8EFHDaqgfYiJvRMZwT
+	SvxBj4vGvDh37GJOIuntQuFcjXhwxILsJjFl6yyLjfwQFoUPWUsVaa2kIydtEmqTuu3vZdwvSYZOX
+	Isb1I0wrFHXHdRaOSZU94YAld6V8nuLTRqo/ON41Bveur4a+kjIJ5eOBRhgg8aM6Nqn1Q4VcEhmty
+	4t7Iv18A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpunw-0000000FFJy-04RY;
-	Thu, 28 Mar 2024 18:48:48 +0000
-Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.183])
+	id 1rqBM5-00000000LRe-1f9v;
+	Fri, 29 Mar 2024 12:29:09 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rpunt-0000000FFHg-1WH1
+	id 1rqBLc-00000000L9w-124i
 	for ath11k@lists.infradead.org;
-	Thu, 28 Mar 2024 18:48:47 +0000
-X-Virus-Scanned: Proofpoint Essentials engine
-Received: from mail3.candelatech.com (mail2.candelatech.com [208.74.158.173])
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id 447FF300079;
-	Thu, 28 Mar 2024 18:48:40 +0000 (UTC)
-Received: from [192.168.100.159] (unknown [50.251.239.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail3.candelatech.com (Postfix) with ESMTPSA id 9B5B113C2B0;
-	Thu, 28 Mar 2024 11:48:38 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail3.candelatech.com 9B5B113C2B0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=candelatech.com;
-	s=default; t=1711651718;
-	bh=CmB2h6S88adzHttfAYrKSEf4TP3tIHk7MJBcg9ErpW8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T74uUOaYaRZa3U6sZ3vv6DBvwAel+fvNMJ490xACYVZWggN/GMg2FCYhxuveMnqpp
-	 O14Qn2yiY1d62Ab3F0ZBO1bfiQcTJ6KZuXxDem4n3DM88low/AviAFUbjyF3ya8XwV
-	 GXaVNib8j/t2waGOsLw75wo2tkC4cb5ebaGM8Tr4=
-Message-ID: <b890c308-5d66-d9cc-ebff-17e8554f9a69@candelatech.com>
-Date: Thu, 28 Mar 2024 11:48:38 -0700
+	Fri, 29 Mar 2024 12:28:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 8E91B61926;
+	Fri, 29 Mar 2024 12:28:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B634C43390;
+	Fri, 29 Mar 2024 12:28:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1711715319;
+	bh=JqUuGiDE40YrvaUE3aMQq/tZU7+N7m0ERzkVn3GKpeU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=NRdKUtsydTwOhKCrwk6pqT3kx//yVceF0JxhHF8tr0AiS8LGf0ytcVprOrTFdsI++
+	 4pyRyl1D4SpmfqSyTbXseqcL+CiO3xy5TAdvqy9eDd3WLoS8Xnk5+js5RGG8Z00adH
+	 tN+8ewYnuhUsojqaDUIUFq18W9JBuL1CWKo1HeLb1UL+OG1789Sq5/6SStNm6qcov6
+	 JYhN4QMpniYH8rFqQM09WOjU6LM9NugQ9p+8NPm7COXVdD9VAepBea30tqrSioexrd
+	 5i0L8WDnWmuB0nllIkxloxQiYRTeXsT7vi5DNQ755sxp/v06MZteQgu8LhNNG0RSJH
+	 Ii+hBAgVq4ECA==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	Kalle Valo <quic_kvalo@quicinc.com>,
+	Sasha Levin <sashal@kernel.org>,
+	kvalo@kernel.org,
+	jjohnson@kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.8 51/68] wifi: ath11k: decrease MHI channel buffer length to 8KB
+Date: Fri, 29 Mar 2024 08:25:47 -0400
+Message-ID: <20240329122652.3082296-51-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240329122652.3082296-1-sashal@kernel.org>
+References: <20240329122652.3082296-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 1/2] wifi: cfg80211/mac80211: Add support to rx retry
- stats
-Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
- Hari Chandrakanthan <quic_haric@quicinc.com>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <20240319134522.4021062-1-quic_haric@quicinc.com>
- <20240319134522.4021062-2-quic_haric@quicinc.com>
- <d364e872eb29f03236630bab49a3243e2118ab22.camel@sipsolutions.net>
- <14699537-99b2-e468-6a7b-7b721193400e@quicinc.com>
- <b9dfab64822bacf0cc72380c0de034b79d489668.camel@sipsolutions.net>
- <68c6fcbd-0aaa-43b2-b5e2-08367c11e79d@quicinc.com>
- <f5cb9edcea875920e0ce156be76d06c78d1279ec.camel@sipsolutions.net>
- <4d569d40-d0a8-10d5-7e6d-4c9c03c14371@quicinc.com>
- <3f6de100163a8521ab09929abc537e57d26dafea.camel@sipsolutions.net>
-From: Ben Greear <greearb@candelatech.com>
-Organization: Candela Technologies
-In-Reply-To: <3f6de100163a8521ab09929abc537e57d26dafea.camel@sipsolutions.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MDID: 1711651721-hBjz7CKCAwug
-X-MDID-O: us5;at1;1711651721;hBjz7CKCAwug;<greearb@candelatech.com>;a91bce00847de6afce4cb86e1e327970
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.8.2
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240328_114845_519063_3913B51E 
-X-CRM114-Status: GOOD (  38.40  )
+X-CRM114-CacheID: sfid-20240329_052840_514459_E5317C6B 
+X-CRM114-Status: GOOD (  11.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,92 +82,91 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/28/24 10:54, Johannes Berg wrote:
-> On Thu, 2024-03-28 at 22:49 +0530, Hari Chandrakanthan wrote:
->> On 3/27/2024 8:37 PM, Johannes Berg wrote:
->>> On Wed, 2024-03-27 at 08:02 -0700, Jeff Johnson wrote:
->>>>> I'm also imagining that we change the API from cfg80211 to the drivers
->>>>> to get the *link* STA information, and do the summing up and/or "best"
->>>>> selection there in cfg80211 itself. However, I am prepared to accept the
->>>>> possibility that we may do _both_ in the API, if not all drivers can
->>>>> even do all of the statistics per link. We should probably still have
->>>>> the link STAs in the statistics in nl80211, but then they may not be
->>>>> populated?
->>>> First remember that there are a lot of statistics, and each driver is free to
->>>> return as many or as few as they support, indicating the ones they are
->>>> returning using the "filled" bitmap.
->>> Yes, I'd think we want to use the same data structure for both, though
->>> setting something in *both* links and *mld* would (should) be an error.
->> The statistics can be populated by driver or mac80211.(say tx retries,
->> tx packets etc)
-> 
-> Right.
-> 
->> So we should also change the existing stats update in mac80211 on link
->> STA basis instead of deflink?
-> 
-> Absolutely, we need to do that, it's been on my list forever, since the
-> early MLO work... I'm a bit torn between not wanting you to have to do
-> all that work (even if we know that we'll have to do it) and on the
-> other hand not wanting to make it worse with more statistics now ...
-> There's no good middle ground here though now.
-> 
->>> Good point, when they're really removed we'd want to probably keep that
->>> value as a bias for the MLD-level stats?
->>
->> ok. Then the statistics value in MLD STA would be bias + summed up value
->> of currently alive links?
-> 
-> I guess? But I'm not sure where we'd actually _keep_ the bias values.
-> Maybe give up on that idea that cfg80211 could sum it all up, and just
-> require the underlying driver (or mac80211) to report both per-link and
-> total stats, where available? That way, mac80211 could keep the bias
-> somewhere and just add it to the total before reporting _that_.
-> 
->> On the same line , ethtool stats(*interface level stats*) in
->> mac80211(ieee80211_get_stats())
->> computes the stats by summing up the current STA statistics.
->> Here stations can come and go and the ethtool stats may not reflect the
->> total packets transmitted or received by the interface.
->> It just reflects the summed up value of current alive stations.
-> 
-> Yeah ... I know Ben loves it, but personally I kind of think of ethtool
-> as a dead legacy interface for this respect, it just doesn't have the
-> ability to reflect the required structures/hierarchy/etc. well since
-> it's just a flat list. Sure you can structure the names in some way, but
-> it's iffy at best. I'd just ignore that for now. If we have better
-> statistics to nl80211, we can always make ethtool support on top of
-> that, perhaps even moving it to cfg80211, if we even need more support
-> there. I'm not hugely in favour, but if it stays contained somewhere and
-> consumes existing APIs I'm OK with it.
+From: Baochen Qiang <quic_bqiang@quicinc.com>
 
-I have my own hacks to make ethtool be minimally useful for MLO,
-but I think it can be revisited later once the over-all MLO
-architecture is solidified.
+[ Upstream commit 1cca1bddf9ef080503c15378cecf4877f7510015 ]
 
-As Hari says, even without MLO, the AP's ethtool stats are not well
-defined (it works better for STA vdevs).  Something that can also be fixed later after MLO calms down,
-but my initial thought is to keep per-vdev counters that accumulate
-any per-station counters and then the ethtool logic would not
-try to sum the current stations but rather just grab the accumulated stats.
+Currently buf_len field of ath11k_mhi_config_qca6390 is assigned
+with 0, making MHI use a default size, 64KB, to allocate channel
+buffers. This is likely to fail in some scenarios where system
+memory is highly fragmented and memory compaction or reclaim is
+not allowed.
 
-Thanks,
-Ben
+There is a fail report which is caused by it:
+kworker/u32:45: page allocation failure: order:4, mode:0x40c00(GFP_NOIO|__GFP_COMP), nodemask=(null),cpuset=/,mems_allowed=0
+CPU: 0 PID: 19318 Comm: kworker/u32:45 Not tainted 6.8.0-rc3-1.gae4495f-default #1 openSUSE Tumbleweed (unreleased) 493b6d5b382c603654d7a81fc3c144d59a1dfceb
+Workqueue: events_unbound async_run_entry_fn
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0x47/0x60
+ warn_alloc+0x13a/0x1b0
+ ? srso_alias_return_thunk+0x5/0xfbef5
+ ? __alloc_pages_direct_compact+0xab/0x210
+ __alloc_pages_slowpath.constprop.0+0xd3e/0xda0
+ __alloc_pages+0x32d/0x350
+ ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+ __kmalloc_large_node+0x72/0x110
+ __kmalloc+0x37c/0x480
+ ? mhi_map_single_no_bb+0x77/0xf0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+ ? mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+ mhi_prepare_channel+0x127/0x2d0 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+ __mhi_prepare_for_transfer+0x44/0x80 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+ ? __pfx_____mhi_prepare_for_transfer+0x10/0x10 [mhi 40df44e07c05479f7a6e7b90fba9f0e0031a7814]
+ device_for_each_child+0x5c/0xa0
+ ? __pfx_pci_pm_resume+0x10/0x10
+ ath11k_core_resume+0x65/0x100 [ath11k a5094e22d7223135c40d93c8f5321cf09fd85e4e]
+ ? srso_alias_return_thunk+0x5/0xfbef5
+ ath11k_pci_pm_resume+0x32/0x60 [ath11k_pci 830b7bfc3ea80ebef32e563cafe2cb55e9cc73ec]
+ ? srso_alias_return_thunk+0x5/0xfbef5
+ dpm_run_callback+0x8c/0x1e0
+ device_resume+0x104/0x340
+ ? __pfx_dpm_watchdog_handler+0x10/0x10
+ async_resume+0x1d/0x30
+ async_run_entry_fn+0x32/0x120
+ process_one_work+0x168/0x330
+ worker_thread+0x2f5/0x410
+ ? __pfx_worker_thread+0x10/0x10
+ kthread+0xe8/0x120
+ ? __pfx_kthread+0x10/0x10
+ ret_from_fork+0x34/0x50
+ ? __pfx_kthread+0x10/0x10
+ ret_from_fork_asm+0x1b/0x30
+ </TASK>
 
-> 
->> Since these two problems are similar (ethtool stats and MLD stats
->> calculation),
->> would like to understand what type of value would be more useful to user?
->>
-> 
-> What do you mean by that?
-> 
-> johannes
-> 
+Actually those buffers are used only by QMI target -> host communication.
+And for WCN6855 and QCA6390, the largest packet size for that is less
+than 6KB. So change buf_len field to 8KB, which results in order 1
+allocation if page size is 4KB. In this way, we can at least save some
+memory, and as well as decrease the possibility of allocation failure
+in those scenarios.
 
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+
+Reported-by: Vlastimil Babka <vbabka@suse.cz>
+Closes: https://lore.kernel.org/ath11k/96481a45-3547-4d23-ad34-3a8f1d90c1cd@suse.cz/
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://msgid.link/20240223053111.29170-1-quic_bqiang@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/mhi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+index 6835c14b82cc9..337590236485f 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.c
++++ b/drivers/net/wireless/ath/ath11k/mhi.c
+@@ -106,7 +106,7 @@ static struct mhi_controller_config ath11k_mhi_config_qca6390 = {
+ 	.max_channels = 128,
+ 	.timeout_ms = 2000,
+ 	.use_bounce_buf = false,
+-	.buf_len = 0,
++	.buf_len = 8192,
+ 	.num_channels = ARRAY_SIZE(ath11k_mhi_channels_qca6390),
+ 	.ch_cfg = ath11k_mhi_channels_qca6390,
+ 	.num_events = ARRAY_SIZE(ath11k_mhi_events_qca6390),
 -- 
-Ben Greear <greearb@candelatech.com>
-Candela Technologies Inc  http://www.candelatech.com
-
+2.43.0
 
 
