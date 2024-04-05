@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B1FDC67861
-	for <ath11k@archiver.kernel.org>; Fri,  5 Apr 2024 12:23:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 125A3CD11C2
+	for <ath11k@archiver.kernel.org>; Fri,  5 Apr 2024 12:23:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=p3/nt0HPMXG8aoNmtG875gZ5EQW+1CWKXZLRdkC3kPU=; b=AJTqFwo/bpil0ftkAu8hVUOHlj
-	/rPhXcIDcwr0e0O/2chDvPlT10L5QQ1qx/tRSIyHVfFWp/0YOkt8qDTa8jMi+PXh71buk+ME9XAwf
-	xm8MYI4TA+WxuLzRyX7LKd4QorPBsbbl9WMkLDeu0c6RUkxuxod6ZEm1tbJiCzeqmJrxkii9lUzLE
-	NobF1VP5AiwOBlTljsluDLi+OoNp2wwAq8BLM7fPMoH3DOVyjjgDBP32ogF5I9lK1Jo4hgNElgxwG
-	NO1WMPjjieTEIKQFjdX4XyhBRw33heDB4OHuGYzQ4fKz5cHGgvWQcDDSUechsOILj2qqYyh4j34y5
-	B3Oc+/GA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=9uOh18J18K7IiJjOdRTp7+wBD9ghOrm4r66dFYnU+6Y=; b=4702ByWeGgtqnjx0MC5Qxgao/e
+	xoABU4A3iyuogl/IARcOzp0jIkCvMO7/Mpw6Bk+q9lGHZpJ5ZzAxQ2OtEyk2vul207t/pF8izcfwW
+	0etAgLeyVbLybVo9gby+KDML0ZUZ8BvqvdSxzXyDHFNkg7BZ39u/H19eoiFG0IdEzwarAdZVTmNER
+	UHgmSUVMJhe+AR6Rg1+CvUUs5CiizsA3CudSQ7ipw0gosB6D1AA8YlzRUQ1+v+H396hr5O5Ok8EJE
+	jHXfesCTprP+c7IlNLoKs65Dqviwqty9/pxhAhooMmEgW6HY8mJoJ2QlYX/0bPs3lLHY33vcr7/y5
+	PAqCzC7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rsib0-00000006uVk-39vx;
-	Fri, 05 Apr 2024 12:23:02 +0000
-Received: from mail-ej1-f47.google.com ([209.85.218.47])
+	id 1rsib2-00000006uWY-2hPS;
+	Fri, 05 Apr 2024 12:23:04 +0000
+Received: from mail-ej1-f41.google.com ([209.85.218.41])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rsiax-00000006uTS-3zDR;
-	Fri, 05 Apr 2024 12:23:01 +0000
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a519e04b142so121461866b.3;
-        Fri, 05 Apr 2024 05:22:56 -0700 (PDT)
+	id 1rsiay-00000006uUK-3t4s;
+	Fri, 05 Apr 2024 12:23:02 +0000
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4644bde1d4so288498466b.3;
+        Fri, 05 Apr 2024 05:23:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712319775; x=1712924575;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p3/nt0HPMXG8aoNmtG875gZ5EQW+1CWKXZLRdkC3kPU=;
-        b=BdO6L6M/Hy5l88Hgt3EG3SnQV77abze+4TmIUbJdf8bhMuCYHpF6TGbBjx3gfkC4ow
-         UM+twDqWkpOTGs83kQfsOUMa6YhLTmFHjhDMxe41LvhejDM9Bh0aj1AeFdDVReGBz4Z5
-         cl7ZxGFW1ktkC9EOiRXB9DTAYuq8ZQIEmKe72EWcb/7fOku40V+1PE2zdL2oqqO8E2Sz
-         phJdRmF3bz5calA4V+c2a9eOnTJ7T0ArCG1jofcwWu4MdeA33UfJa0vcBGz6sZg+mwmO
-         7Wmn0s1QZbELdDiO4cEGFsvhMl4Iqo0kCWp5zxmP0cpgZ1Ke3uKH3n4ivbkBYCf5cKvx
-         lWYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWGzaCAveuXjNd2eAZ3v4GUtqSxqTI8zXeXfQnGMAuPX513SuOalvUmrcMFIi1o5iLMCp7zhfxIwPNN4o/YQMFYI+z9xxWg5dcSLuVdgF6JdK5Uw8geT3O6xcA4XqBHxsJa7G78NwU=
-X-Gm-Message-State: AOJu0Yy/3JusI3UDqHOcJ8TsEhLkny/f0Jc45wcdRXgDSdm9c0qX3QQ8
-	q1x2sJkBZ0axp3da7mdjrH+/nVsifli9eY8VK5aQq9ZCGSxY5MaqZj76MnVE
-X-Google-Smtp-Source: AGHT+IGzns9AtViEj1GDmp1+cwDZ17HecKDitxqIN0xXVXQF2dM+Tu6JfhMb2iexyCWmd+mYOw+N+w==
-X-Received: by 2002:a17:906:cf90:b0:a51:97df:16fb with SMTP id um16-20020a170906cf9000b00a5197df16fbmr1013435ejb.41.1712319775282;
-        Fri, 05 Apr 2024 05:22:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712319779; x=1712924579;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9uOh18J18K7IiJjOdRTp7+wBD9ghOrm4r66dFYnU+6Y=;
+        b=qGSJSwgdcnMLQMYApbLXw02/O9OteZFc4vKYOhcQpVleuEYvLZYeJHYcEreYMtWHl+
+         H4qbUvJQVpejuKZXQHRCPuQOA2UDFyIJCDhqG9WW7vDGGbALtIjsXDepBVMLYVDGOOd/
+         FjoLUmwos1QjE5K/1+gdhmOppikbDaRkTcEUyINucAaswGag46d5mTaHUJycmvXHr8cW
+         AkR/lkvh3aRcZPBXK1ZzeuvlxpIXgeK9lIhvToxq8tbSWynSfZJley9SHo9qlCoOaEhb
+         jGCO7r6h3g87E7EUlomPnGrbkz+ZcZwE3BaHvslTIL2IS20Q8ZVTgIp+pQzLjhWqCAdi
+         yPog==
+X-Forwarded-Encrypted: i=1; AJvYcCVCkqlxBJ9O1EuzlWJ50iAfYiFQPlcWx/aWJFK3XN8AJ2ezzlDiVXeNVsLrQVoa/rHj9H98FFY7I/YGk64TgstAwfcM6cUFHhh5nFexU8k8sl9Z//OchNiHG2b+Wk01oEgntS/6YnE=
+X-Gm-Message-State: AOJu0Yy/d/qaT/7ab9r0552D9qImFNrtcCMHXfphOLARPV8k4SpuCqqr
+	HIrLCQx3pNfk06NSDupCNd8j9AqxqwsTfyHG/HDWrNE1GDUq9PO6
+X-Google-Smtp-Source: AGHT+IFdHsxwrbfbqJKvyoc+YkWTyw7/1mQKOsUp9VLVmBgIlDYCc0+Dird1CdX5KOpfcS1gvPdwJQ==
+X-Received: by 2002:a17:907:78d7:b0:a47:340b:df71 with SMTP id kv23-20020a17090778d700b00a47340bdf71mr982006ejc.2.1712319778959;
+        Fri, 05 Apr 2024 05:22:58 -0700 (PDT)
 Received: from localhost (fwdproxy-lla-005.fbsv.net. [2a03:2880:30ff:5::face:b00c])
-        by smtp.gmail.com with ESMTPSA id jt2-20020a170906dfc200b00a4e1aa345f6sm770369ejc.115.2024.04.05.05.22.54
+        by smtp.gmail.com with ESMTPSA id z7-20020a17090655c700b00a46d9966ff8sm790247ejp.147.2024.04.05.05.22.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Apr 2024 05:22:54 -0700 (PDT)
+        Fri, 05 Apr 2024 05:22:58 -0700 (PDT)
 From: Breno Leitao <leitao@debian.org>
 To: kuba@kernel.org,
 	ath11k@lists.infradead.org,
@@ -60,15 +60,18 @@ To: kuba@kernel.org,
 	kvalo@kernel.org
 Cc: linux-kernel@vger.kernel.org,
 	netdev@vger.kernel.org
-Subject: [PATCH 0/3] wifi: Un-embed ath10k and ath11k dummy netdev
-Date: Fri,  5 Apr 2024 05:21:15 -0700
-Message-ID: <20240405122123.4156104-1-leitao@debian.org>
+Subject: [PATCH 1/3] wifi: qtnfmac: Use netdev dummy allocator helper
+Date: Fri,  5 Apr 2024 05:21:16 -0700
+Message-ID: <20240405122123.4156104-2-leitao@debian.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240405122123.4156104-1-leitao@debian.org>
+References: <20240405122123.4156104-1-leitao@debian.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240405_052300_095484_90CF5F6B 
-X-CRM114-Status: GOOD (  10.43  )
+X-CRM114-CacheID: sfid-20240405_052300_990889_11592534 
+X-CRM114-Status: UNSURE (   9.72  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,39 +86,32 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-struct net_device shouldn't be embedded into any structure, instead,
-the owner should use the private space to embed their state into
-net_device.
+There is a new dummy netdev allocator, use it instead of
+alloc_netdev()/init_dummy_netdev combination.
 
-This patch set fixes the problem above for ath10k and ath11k. This also
-fixes the conversion of qtnfmac driver to the new helper.
+Using alloc_netdev() with init_dummy_netdev might cause some memory
+corruption at the driver removal side.
 
-This patch set depends on a series that is still under review:
-https://lore.kernel.org/all/20240404114854.2498663-1-leitao@debian.org/#t
+Fixes: 61cdb09ff760 ("wifi: qtnfmac: allocate dummy net_device dynamically")
+Signed-off-by: Breno Leitao <leitao@debian.org>
+---
+ drivers/net/wireless/quantenna/qtnfmac/pcie/pcie.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-If it helps, I've pushed the tree to
-https://github.com/leitao/linux/tree/wireless-dummy
-
-PS: Due to lack of hardware, unfortunately all these patches are
-compiled tested only.
-
-Breno Leitao (3):
-  wifi: qtnfmac: Use netdev dummy allocator helper
-  wifi: ath10k: allocate dummy net_device dynamically
-  wifi: ath11k: allocate dummy net_device dynamically
-
- drivers/net/wireless/ath/ath10k/core.c        |  9 ++++++--
- drivers/net/wireless/ath/ath10k/core.h        |  2 +-
- drivers/net/wireless/ath/ath10k/pci.c         |  2 +-
- drivers/net/wireless/ath/ath10k/sdio.c        |  2 +-
- drivers/net/wireless/ath/ath10k/snoc.c        |  4 ++--
- drivers/net/wireless/ath/ath10k/usb.c         |  2 +-
- drivers/net/wireless/ath/ath11k/ahb.c         |  9 ++++++--
- drivers/net/wireless/ath/ath11k/core.h        |  2 +-
- drivers/net/wireless/ath/ath11k/pcic.c        | 21 +++++++++++++++----
- .../wireless/quantenna/qtnfmac/pcie/pcie.c    |  3 +--
- 10 files changed, 39 insertions(+), 17 deletions(-)
-
+diff --git a/drivers/net/wireless/quantenna/qtnfmac/pcie/pcie.c b/drivers/net/wireless/quantenna/qtnfmac/pcie/pcie.c
+index f8f55db2f454..f66eb43094d4 100644
+--- a/drivers/net/wireless/quantenna/qtnfmac/pcie/pcie.c
++++ b/drivers/net/wireless/quantenna/qtnfmac/pcie/pcie.c
+@@ -372,8 +372,7 @@ static int qtnf_pcie_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+ 		goto error;
+ 	}
+ 
+-	bus->mux_dev = alloc_netdev(0, "dummy", NET_NAME_UNKNOWN,
+-				    init_dummy_netdev);
++	bus->mux_dev = alloc_netdev_dummy(0);
+ 	if (!bus->mux_dev) {
+ 		ret = -ENOMEM;
+ 		goto error;
 -- 
 2.43.0
 
