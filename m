@@ -4,72 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B78C0C67861
-	for <ath11k@archiver.kernel.org>; Mon,  8 Apr 2024 19:34:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18696C67861
+	for <ath11k@archiver.kernel.org>; Mon,  8 Apr 2024 19:50:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GfCVjviWJeub0v2MSTKXDx11MJAse5lPODUz+n33hmU=; b=Cn9Kkydc+Ty+GGL5ids6aKMIls
-	7XnAAr3Na9OJGY/V1S9H4Yvp87wVkgP+yMs2miVBrc8AOdqxNMNA4tNwKxi3KDvWJ4UG8+y2loWcX
-	604Tf5BMfs665V8oR0aOZ6pfSFOQs5Gzg2kfWeJLZRqbrrtQZWdhF7kmvTYg1SaOl4IZlGseKlvTM
-	+fVAJMXe/C/Bjk3ps7CccRaQrhUkSOOikioGWhIbk3xJd82fiso13922mdL2WxUzvH5OZDFXNJNAy
-	NwwFr0fx2bTtk8jQmyf6a3JmD95OHR/Byq3E0BHdIJL9ZZdB9HTqmQGCr7s43lbsMwTf5e1LGF397
-	6SZaC2Eg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=0ABkw0n+kT0MUIyt8vFQsVmH5MKBmnK69dGxayslQsI=; b=l9oHlg/9FYSkofbkVAl0ltiq1k
+	3c3KDbB+qba8u4KSMAVFqlEjua2bapHkX1PrYTOh5jwjTBzq+yIjznDlIdQ8IyzhlUckZvOxTMxhe
+	fYD+evbib+y7pcfunE0U8aZqqqP530cMaBFZKnc84ng0MCgPMNMWNZBgK+t2VtnxN123oRritP77D
+	IWOh0e59s3QH/4nKGIevZR6sw8xxD5Y9kPdJGBp2VBdFWCpEof7FNzywVJfPpyEP3Xmj4DAxmTBQo
+	BtBpgfEObSSZY24/T7c83qFABnK+TnzTt9Z4lcJ1MTRptsejk0wJwQklzdpJPYki4rqQ14CLVsW+J
+	VPguaaNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtukn-0000000Gdvm-3Zpc;
-	Mon, 08 Apr 2024 19:34:06 +0000
-Received: from mail-ej1-f43.google.com ([209.85.218.43])
+	id 1rtv0C-0000000GgDK-1F21;
+	Mon, 08 Apr 2024 19:50:00 +0000
+Received: from mail-pf1-x42d.google.com ([2607:f8b0:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rtukk-0000000Gdv5-0yCN;
-	Mon, 08 Apr 2024 19:34:03 +0000
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a51e368c6dcso72163366b.3;
-        Mon, 08 Apr 2024 12:33:59 -0700 (PDT)
+	id 1rtv09-0000000GgCq-2kUl
+	for ath11k@lists.infradead.org;
+	Mon, 08 Apr 2024 19:49:59 +0000
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6ed2dc03df6so1244807b3a.1
+        for <ath11k@lists.infradead.org>; Mon, 08 Apr 2024 12:49:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=penguintechs.org; s=google; t=1712605794; x=1713210594; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0ABkw0n+kT0MUIyt8vFQsVmH5MKBmnK69dGxayslQsI=;
+        b=InA7Ui003D3X7IB6LfW5XNGHFJ8hTTMgtfTbnTtMPCF7/AJJXhelUpKXYIETnU33w5
+         hkYXF2jYzGPqQn0dQtMdnrBMWvDRUVObeBOZgmSZQIBJmILIcsuhtapfuIpzYKtW54UB
+         ON4rpVi+uUXEtqmYNxu/PJ1YOrjMUC6wkSBSc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712604838; x=1713209638;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GfCVjviWJeub0v2MSTKXDx11MJAse5lPODUz+n33hmU=;
-        b=dB/NtHjR4nRqr3UX5L2sPE9j4NEjCQy1iQF8Lc1Z1loLaoR5FtrFTpDUnvJ5ieAeft
-         AmYHR9A/Dz2w2c5pmAUwLCSCuFfVjOClCC9jGteb3qUP6S8y2zRDJ7VEXk/rNWPlXjg7
-         REWzeRJM0etQkJSZHOLSgpGtHLgCg/zyvsoRcxzBF7uRppFqwiDmrjFYYamJt9rIvtFM
-         zN1hLjPydx4Bt1EQhQ6je+Sxp1c7Poc3y7b4wzLaxLkzhG5/BPclC2NTxdq6vOpPXGEE
-         8eCpm3kIhIG7XsG8MMEyZrW3oSYRmkVkNffvDZue0oS95mpnWTKUkhr0+RzAqZOyCsRs
-         g9gA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/VbMslhxxAMxLzekK3If0g34vmiuY2cCbH94J1KtVSvyk4e4aZazy9XMG11ixvQByiucu8oQpMQ6XpPDzvseYZElWAbddCmq1ktT4MRoyai+HAVZGBRWwKwgbGQ2YAO2Q5oHLHlI=
-X-Gm-Message-State: AOJu0YxUmTDvI4E5O55AkEBwsltAh69OmeI8VbiKEk7kFsfqk+thdvF5
-	OwmYsUty/E2gmK9ttv9aoAtjIBDja2OMQZy24xU8bKDZG8qE7wJm
-X-Google-Smtp-Source: AGHT+IFVHHOuNQdDkgTThZIsOIA2O31M9s6h62JAwb2e7rIFNi7t+6i8asIMrJ5fM6Dg38+17TsPPA==
-X-Received: by 2002:a17:907:7213:b0:a4e:609c:3985 with SMTP id dr19-20020a170907721300b00a4e609c3985mr8079720ejc.52.1712604838302;
-        Mon, 08 Apr 2024 12:33:58 -0700 (PDT)
-Received: from gmail.com (fwdproxy-lla-008.fbsv.net. [2a03:2880:30ff:8::face:b00c])
-        by smtp.gmail.com with ESMTPSA id gs44-20020a1709072d2c00b00a46a3ad035esm4804743ejc.179.2024.04.08.12.33.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Apr 2024 12:33:57 -0700 (PDT)
-Date: Mon, 8 Apr 2024 12:33:55 -0700
-From: Breno Leitao <leitao@debian.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: kuba@kernel.org, ath11k@lists.infradead.org, ath10k@lists.infradead.org,
-	linux-wireless@vger.kernel.org, imitsyanko@quantenna.com,
-	geomatsi@gmail.com, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH 0/3] wifi: Un-embed ath10k and ath11k dummy netdev
-Message-ID: <ZhRGo3I57rXxsMV/@gmail.com>
-References: <20240405122123.4156104-1-leitao@debian.org>
- <87y19r264m.fsf@kernel.org>
- <ZhPyRHHlVot+a8Xq@gmail.com>
- <87pluz24ap.fsf@kernel.org>
+        d=1e100.net; s=20230601; t=1712605794; x=1713210594;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0ABkw0n+kT0MUIyt8vFQsVmH5MKBmnK69dGxayslQsI=;
+        b=dbn7LCzPMXxj8/GryqbjEj68L16ARFkueppv6kN3t7gnNzFH1gaZN51C3l8WgYkgqL
+         sWNqV8Nq9RWg5ANhZ+fTPibN2MLugV0qa2M+6NQZM52y4QvYXBo3uWxZ5Yz2PJqF/g5U
+         FpBLyQfS0zktL/78EefiXZLsUOiS1pl7qYsVGbEyVZ1VAasZH6xoS8bJd08lIsdU2Ezl
+         2gF47TV8Iy2ktFtdPonPtLNIfz3dL53Hln+p7yT5wiPIBWwjWoqTPTGfNwodb1Xe8ULW
+         rArJEoHdpZMt/ZKCxXVG9QELNZR+6/NJFJPXcm8MBVEjvWH+aQ/a+FmJjKUnwqf8iEFC
+         liKg==
+X-Gm-Message-State: AOJu0Ywd0VQ1aKXr/Ik83oMB0jLDfHJ69f7jSi6uD9j2+2EgHpRX4VI9
+	jqlI/N1makv7JOEngQe4sGtYSVdRyswbJIn1DnrOV8P7HwKy+KfOu0ms4U9uQC9U9pTpmgihssT
+	moQ==
+X-Google-Smtp-Source: AGHT+IE/FKbIpteF5IIBqtHUuyhiLNvy1EUBvQu8lE5mUTzamtt6rRH0Y/H5IDfyS1mxxOWmYBz6gg==
+X-Received: by 2002:aa7:8893:0:b0:6e5:faca:3683 with SMTP id z19-20020aa78893000000b006e5faca3683mr12094916pfe.26.1712605792189;
+        Mon, 08 Apr 2024 12:49:52 -0700 (PDT)
+Received: from ?IPV6:2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08? ([2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08])
+        by smtp.gmail.com with ESMTPSA id z6-20020aa79e46000000b006ed059cdf02sm5989195pfq.116.2024.04.08.12.49.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Apr 2024 12:49:51 -0700 (PDT)
+Message-ID: <b592d037-41ed-42e8-8c3c-286eb1a68ceb@penguintechs.org>
+Date: Mon, 8 Apr 2024 12:49:50 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87pluz24ap.fsf@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: QCA6390 bluetooth doesn't work after warm boot or
+ disable/reenable
+Content-Language: en-US
+From: Wren Turkal <wt@penguintechs.org>
+To: ath11k@lists.infradead.org, linux-bluetooth@vger.kernel.org,
+ Kalle Valo <kvalo@kernel.org>, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+References: <a03dace1-ca0f-41d6-8e2c-636e3b053a3a@penguintechs.org>
+ <31bb6e18-ecee-49b3-87d7-50ab53e07447@penguintechs.org>
+ <1b3d3937-6679-491e-a5c6-818ae8ac639a@penguintechs.org>
+In-Reply-To: <1b3d3937-6679-491e-a5c6-818ae8ac639a@penguintechs.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_123402_320290_2138239D 
-X-CRM114-Status: GOOD (  34.94  )
+X-CRM114-CacheID: sfid-20240408_124957_858668_2C9975BC 
+X-CRM114-Status: GOOD (  33.39  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,105 +94,238 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Apr 08, 2024 at 07:43:42PM +0300, Kalle Valo wrote:
-> Breno Leitao <leitao@debian.org> writes:
-> > On Fri, Apr 05, 2024 at 06:15:05PM +0300, Kalle Valo wrote:
-> >> Breno Leitao <leitao@debian.org> writes:
-> >> 
-> >> > struct net_device shouldn't be embedded into any structure, instead,
-> >> > the owner should use the private space to embed their state into
-> >> > net_device.
-> >> >
-> >> > This patch set fixes the problem above for ath10k and ath11k. This also
-> >> > fixes the conversion of qtnfmac driver to the new helper.
-> >> >
-> >> > This patch set depends on a series that is still under review:
-> >> > https://lore.kernel.org/all/20240404114854.2498663-1-leitao@debian.org/#t
-> >> >
-> >> > If it helps, I've pushed the tree to
-> >> > https://github.com/leitao/linux/tree/wireless-dummy
-> >> >
-> >> > PS: Due to lack of hardware, unfortunately all these patches are
-> >> > compiled tested only.
-> >> >
-> >> > Breno Leitao (3):
-> >> >   wifi: qtnfmac: Use netdev dummy allocator helper
-> >> >   wifi: ath10k: allocate dummy net_device dynamically
-> >> >   wifi: ath11k: allocate dummy net_device dynamically
-> >> 
-> >> Thanks for setting up the branch, that makes the testing very easy. I
-> >> now tested the branch using the commit below with ath11k WCN6855 hw2.0
-> >> on an x86 box:
-> >> 
-> >> 5be9a125d8e7 wifi: ath11k: allocate dummy net_device dynamically
-> >> 
-> >> But unfortunately it crashes, the stack trace below. I can easily test
-> >> your branches, just let me know what to test. A direct 'git pull'
-> >> command is the best.
-> >
-> > Thanks for the test.
-> >
-> > Reading the issue, I am afraid that freeing netdev explicitly
-> > (free_netdev()) might not be the best approach at the exit path.
-> >
-> > I would like to try to leverage the ->needs_free_netdev netdev
-> > mechanism to do the clean-up, if that makes sense. I've updated the
-> > ath11k patch, and I am curious if that is what we want.
-> >
-> > Would you mind testing a net patch I have, please?
-> >
-> >   https://github.com/leitao/linux/tree/wireless-dummy_v2
++Marcel Holtmann <marcel@holtmann.org>
++Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+
+Added maintainers identified from the get_maintainer.pl script in the 
+kernel repo. Hoping to get some ideas for next steps.
+
+More contextual info below:
+
+On 4/6/24 1:27 PM, Wren Turkal wrote:
+> +Kalle Valo since you have the same laptop
 > 
-> I tested this again with my WCN6855 hw2.0 x86 test box on this commit:
+> On 4/6/24 1:16 PM, Wren Turkal wrote:
+>> Sorry for the double send on the original message. I am still hoping 
+>> to get some help. I have added additional info below.
+>>
+>> On 4/4/24 12:14 PM, Wren Turkal wrote:
+>>> Hey there ath11k/bluetooth folks,
+>>>
+>>> I am having a pretty major problem with QCA6930 for some time (maybe 
+>>> a year or two). I have this bluetooth device:
+>>>
+>>> 72:00.0 Unassigned class [ff00]: Qualcomm Technologies, Inc QCA6390 
+>>> Wireless Network Adapter
+>>>
+>>> This device appears to be driven by the ath11k module and others. I 
+>>> hope I am pinging the right lists.
+>>>
+>>> I am using Fedora Rawhide. Fully updated yesterday. My uname reports 
+>>> this:
+>>>
+>>> Linux braindead.localdomain 
+>>> 6.9.0-0.rc2.20240402git026e680b0a08.24.fc41.x86_64 #1 SMP 
+>>> PREEMPT_DYNAMIC Tue Apr  2 17:51:18 UTC 2024 x86_64 GNU/Linux
+>>
+>> Updated today. Here's the new uname:
+>>
+>> Linux braindead.localdomain 
+>> 6.9.0-0.rc2.20240405git8cb4a9a82b21.27.fc41.x86_64 #1 SMP 
+>> PREEMPT_DYNAMIC Fri Apr  5 16:48:07 UTC 2024 x86_64 GNU/Linux
+
+I looked at the current mainline kernel code. I found the following.
+
+I found that there was a patch authored by Zijun Hu that was supposed to 
+address a warm reboot issue on QCA6390 here: 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/bluetooth/hci_qca.c?h=v6.9-rc3&id=7e7bbddd029b644f00f0ffbfbc485ed71977d0d5
+
+The same code path from the above patch is now slightly different 
+because another patch authored by Krzysztof Kozlowski, namely: 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/bluetooth/hci_qca.c?h=v6.9-rc3&id=272970be3dabd24cbe50e393ffee8f04aec3b9a8
+
+I also see a few fixed over time in the btqca.c file. I wonder if any of 
+these are related.
+
+Unfortunately, none of these changes were made recently.
+
+Does anyone have an suggestions for next steps?
+
+>>
+>> I also noticed a new version of bluez. Here is the RPM package 
+>> version: bluez-5.73-3.fc41.x86_64
+>>
+>>> My main bluetooth device is  a Logitech MX 3 Mac mouse that uses 
+>>> bluetooth. When bluetooth fails, so does the mouse. I have power 
+>>> cycle my laptop when that happens. I'd love to help find a fix for this.
+>>>
+>>> The problem is that I cannot disable and re-enable the bluetooth on 
+>>> my system. Bluetooth also doesn't work after a warm boot. I have to 
+>>> power cycle my laptop to recover bluetooth funcitonality. I have 
+>>> tried the following:
+>>>
+>>> * logging into KDE Plasma (bluetooth stops working)
+>>> * logging into GNOME (works on cold boot, fails on warm boot)
+>>
+>> I did notice that the mouse seems to work in Plasma until a few sec 
+>> after I see the background image appears. I suspect that Plasma is 
+>> disabling and reenabling the bluetooth where Gnome does not do that.
+>>
+>>> After logging into GNOME during a cold boot, I have also done 
+>>> "systemctl restart bluetooth.service". I get these journal logs 
+>>> during the stop;
+>>>
+>>> ➜  bt_kernel_bug cat journal-stop-bluetooth-service.log
+>>> Apr 04 10:14:41 braindead.localdomain NetworkManager[1120]: <info> 
+>>> [1712250881.7060] device (F0:5C:77:F2:60:FC): state change: 
+>>> disconnected -> unmanaged (reason 'removed', sys-iface-state: 'removed')
+>>> Apr 04 10:14:41 braindead.localdomain systemd[1]: Starting 
+>>> systemd-rfkill.service - Load/Save RF Kill Switch Status...
+>>> Apr 04 10:14:41 braindead.localdomain systemd[1]: Started 
+>>> systemd-rfkill.service - Load/Save RF Kill Switch Status.
+>>> Apr 04 10:14:41 braindead.localdomain audit[1]: SERVICE_START pid=1 
+>>> uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 
+>>> msg='unit=systemd-rfkill comm="systemd" 
+>>> exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+>>> Apr 04 10:14:46 braindead.localdomain systemd[1]: 
+>>> systemd-rfkill.service: Deactivated successfully.
+>>> Apr 04 10:14:46 braindead.localdomain audit[1]: SERVICE_STOP pid=1 
+>>> uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 
+>>> msg='unit=systemd-rfkill comm="systemd" 
+>>> exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+>>>
+>>> I get these journal logs during start:
+>>>
+>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: 
+>>> setting up ROME/QCA6390
+>>> Apr 04 10:15:05 braindead.localdomain systemd[1]: Starting 
+>>> systemd-rfkill.service - Load/Save RF Kill Switch Status...
+>>> Apr 04 10:15:05 braindead.localdomain systemd[1]: Started 
+>>> systemd-rfkill.service - Load/Save RF Kill Switch Status.
+>>> Apr 04 10:15:05 braindead.localdomain audit[1]: SERVICE_START pid=1 
+>>> uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 
+>>> msg='unit=systemd-rfkill comm="systemd" 
+>>> exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> Product ID   :0x00000010
+>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> SOC Version  :0x400a0200
+>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> ROM Version  :0x00000200
+>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> Patch Version:0x00003ac0
+>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> controller version 0x02000200
+>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> Downloading qca/htbtfw20.tlv
+>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> Failed to send TLV segment (-110)
+>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> Failed to download patch (-110)
+>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: Retry 
+>>> BT power ON:0
+>>> Apr 04 10:15:08 braindead.localdomain kernel: Bluetooth: hci0: 
+>>> command 0xfc00 tx timeout
+>>> Apr 04 10:15:08 braindead.localdomain kernel: Bluetooth: hci0: 
+>>> Reading QCA version information failed (-110)
+>>> Apr 04 10:15:08 braindead.localdomain kernel: Bluetooth: hci0: Retry 
+>>> BT power ON:1
+>>> Apr 04 10:15:10 braindead.localdomain systemd[1]: 
+>>> systemd-rfkill.service: Deactivated successfully.
+>>> Apr 04 10:15:10 braindead.localdomain audit[1]: SERVICE_STOP pid=1 
+>>> uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 
+>>> msg='unit=systemd-rfkill comm="systemd" 
+>>> exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+>>> Apr 04 10:15:10 braindead.localdomain kernel: Bluetooth: hci0: 
+>>> command 0xfc00 tx timeout
+>>> Apr 04 10:15:10 braindead.localdomain kernel: Bluetooth: hci0: 
+>>> Reading QCA version information failed (-110)
+>>> Apr 04 10:15:10 braindead.localdomain kernel: Bluetooth: hci0: Retry 
+>>> BT power ON:2
+>>> Apr 04 10:15:13 braindead.localdomain bluetoothd[986]: Failed to set 
+>>> mode: Authentication Failed (0x05)
+>>> Apr 04 10:15:13 braindead.localdomain kernel: Bluetooth: hci0: 
+>>> command 0xfc00 tx timeout
+>>> Apr 04 10:15:13 braindead.localdomain kernel: Bluetooth: hci0: 
+>>> Reading QCA version information failed (-110)
+>>> Apr 04 10:15:15 braindead.localdomain chronyd[1065]: Selected source 
+>>> 204.17.205.8 (2.fedora.pool.ntp.org)
+>>> Apr 04 10:15:22 braindead.localdomain systemd[1687]: Created slice 
+>>> background.slice - User Background Tasks Slice.
+>>> Apr 04 10:15:22 braindead.localdomain systemd[1687]: Starting 
+>>> systemd-tmpfiles-clean.service - Cleanup of User's Temporary Files 
+>>> and Directories...
+>>> Apr 04 10:15:22 braindead.localdomain systemd[1687]: Finished 
+>>> systemd-tmpfiles-clean.service - Cleanup of User's Temporary Files 
+>>> and Directories.
+>>> Apr 04 10:15:38 braindead.localdomain audit: BPF prog-id=86 op=LOAD
+>>> Apr 04 10:15:38 braindead.localdomain systemd[1]: Starting 
+>>> plocate-updatedb.service - Update the plocate database...
+>>> Apr 04 10:15:41 braindead.localdomain systemd[1687]: Started 
+>>> vte-spawn-21527424-cb2d-479f-af17-22251e2b37a0.scope - VTE child 
+>>> process 5144 launched by gnome-terminal-server process 4668.
+>>> Apr 04 10:15:53 braindead.localdomain systemd[1]: 
+>>> plocate-updatedb.service: Deactivated successfully.
+>>> Apr 04 10:15:53 braindead.localdomain systemd[1]: Finished 
+>>> plocate-updatedb.service - Update the plocate database.
+>>> Apr 04 10:15:53 braindead.localdomain systemd[1]: 
+>>> plocate-updatedb.service: Consumed 6.802s CPU time.
+>>> Apr 04 10:15:53 braindead.localdomain audit[1]: SERVICE_START pid=1 
+>>> uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 
+>>> msg='unit=plocate-updatedb comm="systemd" 
+>>> exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+>>> Apr 04 10:15:53 braindead.localdomain audit[1]: SERVICE_STOP pid=1 
+>>> uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 
+>>> msg='unit=plocate-updatedb comm="systemd" 
+>>> exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+>>> Apr 04 10:15:54 braindead.localdomain audit: BPF prog-id=86 op=UNLOAD
+>>> Apr 04 10:16:13 braindead.localdomain baloo_file_extractor[5251]: 
+>>> kf.idletime: Could not find any system poller plugin
+>>> Apr 04 10:16:13 braindead.localdomain baloo_file_extractor[5251]: 
+>>> qt.core.qobject.connect: QObject::connect(KAbstractIdleTimePoller, 
+>>> KIdleTime): invalid nullptr parameter
+>>> Apr 04 10:16:13 braindead.localdomain baloo_file_extractor[5251]: 
+>>> qt.core.qobject.connect: QObject::connect(KAbstractIdleTimePoller, 
+>>> KIdleTime): invalid nullptr parameter
+>>>
+>>> There's a bunch of errors in those logs starting with these two 
+>>> seemingly important lines:
+>>>
+>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> Failed to send TLV segment (-110)
+>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>> Failed to download patch (-110)
+>>
+>> Logs are mostly unchanges when restarting the bluetooth service after 
+>> a cold boot with the bluetooth originally working.
+>>
+>>> FWIW, I get similar logs after logging into KDE Plasma. I also get 
+>>> similar logs after a warm boot.
+>>>
+>>> This appears to be some kind of bug in the initialization of the 
+>>> hardware. Is there any additional information I can provide to help 
+>>> troubleshoot this problem.
+>>
+>> I will also say that the bluetooth appears to work throught a 
+>> suspend/resume cycle as long as I don't restart the bluetooth service.
+>>
+>> Oh, and my laptop is a Dell 9310 if that helps.
 > 
-> a87674ac820e wifi: ath11k: allocate dummy net_device dynamically
+> Kalle, I noticed that you reported having a Dell 9310 in 2021 in a 
+> message on this very mailing list. Do you happen to still have that 
+> laptop? If so, so you still test on that laptop at all? I am curious if 
+> it is having the same issue I am experiencing?
 > 
-> It passes my tests and doesn't crash, but I see this kmemleak warning a
-> lot:
+>> Is there any other info I could collect that might be useful?
+>>
+>> I'm pretty new to troubleshooting a problem like this and would be 
+>> happy to have any advice anyone might want to share.
+>>
+>> Thanks,
+>> wt
+>>
+> 
 
-Thanks Kalle, that was helpful. The device is not being clean-up
-automatically.
-
-Chatting with Jakub, he suggested coming back to the original approach,
-but, adding a additional patch, at the free_netdev().
-
-Would you mind running another test, please?
-
-	https://github.com/leitao/linux/tree/wireless-dummy_v3
-
-The branch above is basically the original branch (as in this patch
-series), with this additional patch:
-
-	Author: Breno Leitao <leitao@debian.org>
-	Date:   Mon Apr 8 11:37:32 2024 -0700
-
-	    net: free_netdev: exit earlier if dummy
-
-	    For dummy devices, exit earlier at free_netdev() instead of executing
-	    the whole function. This is necessary, because dummy devices are
-	    special, and shouldn't have the second part of the function executed.
-
-	    Otherwise reg_state, which is NETREG_DUMMY, will be overwritten and
-	    there will be no way to identify that this is a dummy device. Also, this
-	    device do not need the final put_device(), since dummy devices are not
-	    registered (through register_netdevice()), where the device reference is
-	    increased (at netdev_register_kobject()/device_add()).
-
-	    Suggested-by: Jakub Kicinski <kuba@kernel.org>
-	    Signed-off-by: Breno Leitao <leitao@debian.org>
-
-	diff --git a/net/core/dev.c b/net/core/dev.c
-	index 2b82bd1cd2f8..5d2cb97d0ae6 100644
-	--- a/net/core/dev.c
-	+++ b/net/core/dev.c
-	@@ -11058,7 +11058,8 @@ void free_netdev(struct net_device *dev)
-		dev->xdp_bulkq = NULL;
-
-		/*  Compatibility with error handling in drivers */
-	-       if (dev->reg_state == NETREG_UNINITIALIZED) {
-	+       if (dev->reg_state == NETREG_UNINITIALIZED ||
-	+           dev->reg_state == NETREG_DUMMY) {
-			netdev_freemem(dev);
-			return;
-		}
+-- 
+You're more amazing than you think!
 
