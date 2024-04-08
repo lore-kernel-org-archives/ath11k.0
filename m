@@ -4,82 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C54AFCD1292
-	for <ath11k@archiver.kernel.org>; Mon,  8 Apr 2024 18:35:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B78C0C67861
+	for <ath11k@archiver.kernel.org>; Mon,  8 Apr 2024 19:34:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=nm8t/x2uwmSp1PQu1GfRMMntuaVcapxgFKyhLMy4YmY=; b=CaJZvfP3S8grVF4XMoAY/ggI5T
-	7oyxisn54pwsW+XikiRNbR01Shvmc9zV8xeupNHf8VxjrzTJb7ThLPgC+jUAY47NgXxXAe9nUMt6X
-	JYTH6UBFyTvz9f6K9pY3+1F4LiHN0nukQrHJuTTsfecUenuI6WqXvtezi+BNAW7R557f52vaqMuaI
-	wLE+AoJ/mLwrUJy2opqb07v4qhjwUhfI+hUw+OjKx8KWlRXWajvj9nhcgUlOO4eOHzaJ574lci8Ls
-	1/1a23ZJ90WGnzhuvRebLleIv+5DWlcNyDPt+v0u3Qct9xUPa7Sl3+Ui2362bvky5I9+2FJ+7mtR0
-	ww/eLfbA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=GfCVjviWJeub0v2MSTKXDx11MJAse5lPODUz+n33hmU=; b=Cn9Kkydc+Ty+GGL5ids6aKMIls
+	7XnAAr3Na9OJGY/V1S9H4Yvp87wVkgP+yMs2miVBrc8AOdqxNMNA4tNwKxi3KDvWJ4UG8+y2loWcX
+	604Tf5BMfs665V8oR0aOZ6pfSFOQs5Gzg2kfWeJLZRqbrrtQZWdhF7kmvTYg1SaOl4IZlGseKlvTM
+	+fVAJMXe/C/Bjk3ps7CccRaQrhUkSOOikioGWhIbk3xJd82fiso13922mdL2WxUzvH5OZDFXNJNAy
+	NwwFr0fx2bTtk8jQmyf6a3JmD95OHR/Byq3E0BHdIJL9ZZdB9HTqmQGCr7s43lbsMwTf5e1LGF397
+	6SZaC2Eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rttqV-0000000GVMW-0eIt;
-	Mon, 08 Apr 2024 18:35:55 +0000
-Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
+	id 1rtukn-0000000Gdvm-3Zpc;
+	Mon, 08 Apr 2024 19:34:06 +0000
+Received: from mail-ej1-f43.google.com ([209.85.218.43])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rttqS-0000000GVM3-0oMf
-	for ath11k@lists.infradead.org;
-	Mon, 08 Apr 2024 18:35:53 +0000
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1e41f984d34so10751245ad.1
-        for <ath11k@lists.infradead.org>; Mon, 08 Apr 2024 11:35:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=penguintechs.org; s=google; t=1712601350; x=1713206150; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nm8t/x2uwmSp1PQu1GfRMMntuaVcapxgFKyhLMy4YmY=;
-        b=H5XFFDBSVUJE32Eo3MCkLGNkUESf1C26CP/tOV3a65ietD/v9hJu4GwhfjwQ8OILjz
-         PpLxYP0tzcFdTyHb8RhXJzpQTdh1zm+otAMWLG4/w0K8eCCmGWcob75wzoFpGSBxI5Vx
-         xZDkbA4kPbPSPf31ixfPRszMnt2oj5qXa+PB0=
+	id 1rtukk-0000000Gdv5-0yCN;
+	Mon, 08 Apr 2024 19:34:03 +0000
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a51e368c6dcso72163366b.3;
+        Mon, 08 Apr 2024 12:33:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712601350; x=1713206150;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nm8t/x2uwmSp1PQu1GfRMMntuaVcapxgFKyhLMy4YmY=;
-        b=teKW2oGaCBvcN89v4Zd1zgfydoEQN67jlSif982B4SFmoxGdX9/LAZE1zvjnRUSweT
-         5r+N639trlsN6HcaQli5EkYFf3ylzTH5/B8Z1+G0Vo4YZFtVQBMykJ5BTS8wpYgV2Z1E
-         tH7skdEfW4d9W6OeRrEZiR3OqJQn5K2RyLkcXEuZIa+P7VUdzU+UjgHjD+Udphwsw9Dz
-         AVTctKA826QO8LIcaf6/WbPfFRg0a3lsXzmQNMAjP2x5WozTRgfRYBI281sF3ExwOgOg
-         LkISajrA1ewZy5mIaCL2cFUUJ00s5LOsq7l6UhQcKHysDhdsRFJqjmrfVxfu9w2nZCJ7
-         /Y1Q==
-X-Gm-Message-State: AOJu0YxKugfi/aYn4w8P4r1YXtTmVma3GIQ1g+eBh2cxOtYJkqfdgVx0
-	H/LM64eh7nu85ShPH3pnLeWM/SGbcsbcd9qXKm9i3UNtQMTWBhRRKbJ0XMwcBA==
-X-Google-Smtp-Source: AGHT+IFfnkAR7C9SXUsEI1m9SG5HvTsx7iGg0BYwfHhXYsFcaNk5AN/AUuIyVkavDJsczeKsWxqukg==
-X-Received: by 2002:a17:902:a386:b0:1e3:dfdd:21c0 with SMTP id x6-20020a170902a38600b001e3dfdd21c0mr5723950pla.27.1712601349724;
-        Mon, 08 Apr 2024 11:35:49 -0700 (PDT)
-Received: from ?IPV6:2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08? ([2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08])
-        by smtp.gmail.com with ESMTPSA id kj8-20020a17090306c800b001dd69aca213sm7340841plb.270.2024.04.08.11.35.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Apr 2024 11:35:48 -0700 (PDT)
-Message-ID: <99e404ee-81ca-4dcc-811f-9c55fc52c551@penguintechs.org>
-Date: Mon, 8 Apr 2024 11:35:47 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: QCA6390 bluetooth doesn't work after warm boot or
- disable/reenable
+        d=1e100.net; s=20230601; t=1712604838; x=1713209638;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GfCVjviWJeub0v2MSTKXDx11MJAse5lPODUz+n33hmU=;
+        b=dB/NtHjR4nRqr3UX5L2sPE9j4NEjCQy1iQF8Lc1Z1loLaoR5FtrFTpDUnvJ5ieAeft
+         AmYHR9A/Dz2w2c5pmAUwLCSCuFfVjOClCC9jGteb3qUP6S8y2zRDJ7VEXk/rNWPlXjg7
+         REWzeRJM0etQkJSZHOLSgpGtHLgCg/zyvsoRcxzBF7uRppFqwiDmrjFYYamJt9rIvtFM
+         zN1hLjPydx4Bt1EQhQ6je+Sxp1c7Poc3y7b4wzLaxLkzhG5/BPclC2NTxdq6vOpPXGEE
+         8eCpm3kIhIG7XsG8MMEyZrW3oSYRmkVkNffvDZue0oS95mpnWTKUkhr0+RzAqZOyCsRs
+         g9gA==
+X-Forwarded-Encrypted: i=1; AJvYcCV/VbMslhxxAMxLzekK3If0g34vmiuY2cCbH94J1KtVSvyk4e4aZazy9XMG11ixvQByiucu8oQpMQ6XpPDzvseYZElWAbddCmq1ktT4MRoyai+HAVZGBRWwKwgbGQ2YAO2Q5oHLHlI=
+X-Gm-Message-State: AOJu0YxUmTDvI4E5O55AkEBwsltAh69OmeI8VbiKEk7kFsfqk+thdvF5
+	OwmYsUty/E2gmK9ttv9aoAtjIBDja2OMQZy24xU8bKDZG8qE7wJm
+X-Google-Smtp-Source: AGHT+IFVHHOuNQdDkgTThZIsOIA2O31M9s6h62JAwb2e7rIFNi7t+6i8asIMrJ5fM6Dg38+17TsPPA==
+X-Received: by 2002:a17:907:7213:b0:a4e:609c:3985 with SMTP id dr19-20020a170907721300b00a4e609c3985mr8079720ejc.52.1712604838302;
+        Mon, 08 Apr 2024 12:33:58 -0700 (PDT)
+Received: from gmail.com (fwdproxy-lla-008.fbsv.net. [2a03:2880:30ff:8::face:b00c])
+        by smtp.gmail.com with ESMTPSA id gs44-20020a1709072d2c00b00a46a3ad035esm4804743ejc.179.2024.04.08.12.33.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Apr 2024 12:33:57 -0700 (PDT)
+Date: Mon, 8 Apr 2024 12:33:55 -0700
+From: Breno Leitao <leitao@debian.org>
 To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-bluetooth@vger.kernel.org
-References: <a03dace1-ca0f-41d6-8e2c-636e3b053a3a@penguintechs.org>
- <31bb6e18-ecee-49b3-87d7-50ab53e07447@penguintechs.org>
- <1b3d3937-6679-491e-a5c6-818ae8ac639a@penguintechs.org>
- <87sezwjums.fsf@kernel.org>
-Content-Language: en-US
-From: Wren Turkal <wt@penguintechs.org>
-In-Reply-To: <87sezwjums.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Cc: kuba@kernel.org, ath11k@lists.infradead.org, ath10k@lists.infradead.org,
+	linux-wireless@vger.kernel.org, imitsyanko@quantenna.com,
+	geomatsi@gmail.com, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH 0/3] wifi: Un-embed ath10k and ath11k dummy netdev
+Message-ID: <ZhRGo3I57rXxsMV/@gmail.com>
+References: <20240405122123.4156104-1-leitao@debian.org>
+ <87y19r264m.fsf@kernel.org>
+ <ZhPyRHHlVot+a8Xq@gmail.com>
+ <87pluz24ap.fsf@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87pluz24ap.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240408_113552_500093_AC030D31 
-X-CRM114-Status: UNSURE (   9.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240408_123402_320290_2138239D 
+X-CRM114-Status: GOOD (  34.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,24 +84,105 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Thanks for letting me know. The wifi is working great. Thank you for 
-your work on that.
-
-I doubt you will have time, but if you do have a chance to test it, that 
-would be amazing. I would love to make sure that I am not the only 
-person having this issue, if possible.
-
-Thanks,
-wt
-
-On 4/7/24 10:22 PM, Kalle Valo wrote:
-> Yes, I still have that laptop and I use it as my daily driver. But I
-> don't use Bluetooth and I don't even have the Bluetooth enabled in my
-> .config.
+On Mon, Apr 08, 2024 at 07:43:42PM +0300, Kalle Valo wrote:
+> Breno Leitao <leitao@debian.org> writes:
+> > On Fri, Apr 05, 2024 at 06:15:05PM +0300, Kalle Valo wrote:
+> >> Breno Leitao <leitao@debian.org> writes:
+> >> 
+> >> > struct net_device shouldn't be embedded into any structure, instead,
+> >> > the owner should use the private space to embed their state into
+> >> > net_device.
+> >> >
+> >> > This patch set fixes the problem above for ath10k and ath11k. This also
+> >> > fixes the conversion of qtnfmac driver to the new helper.
+> >> >
+> >> > This patch set depends on a series that is still under review:
+> >> > https://lore.kernel.org/all/20240404114854.2498663-1-leitao@debian.org/#t
+> >> >
+> >> > If it helps, I've pushed the tree to
+> >> > https://github.com/leitao/linux/tree/wireless-dummy
+> >> >
+> >> > PS: Due to lack of hardware, unfortunately all these patches are
+> >> > compiled tested only.
+> >> >
+> >> > Breno Leitao (3):
+> >> >   wifi: qtnfmac: Use netdev dummy allocator helper
+> >> >   wifi: ath10k: allocate dummy net_device dynamically
+> >> >   wifi: ath11k: allocate dummy net_device dynamically
+> >> 
+> >> Thanks for setting up the branch, that makes the testing very easy. I
+> >> now tested the branch using the commit below with ath11k WCN6855 hw2.0
+> >> on an x86 box:
+> >> 
+> >> 5be9a125d8e7 wifi: ath11k: allocate dummy net_device dynamically
+> >> 
+> >> But unfortunately it crashes, the stack trace below. I can easily test
+> >> your branches, just let me know what to test. A direct 'git pull'
+> >> command is the best.
+> >
+> > Thanks for the test.
+> >
+> > Reading the issue, I am afraid that freeing netdev explicitly
+> > (free_netdev()) might not be the best approach at the exit path.
+> >
+> > I would like to try to leverage the ->needs_free_netdev netdev
+> > mechanism to do the clean-up, if that makes sense. I've updated the
+> > ath11k patch, and I am curious if that is what we want.
+> >
+> > Would you mind testing a net patch I have, please?
+> >
+> >   https://github.com/leitao/linux/tree/wireless-dummy_v2
 > 
-> BTW ath11k is a Wi-Fi driver so most likely it isn't affecting your
-> problem.
+> I tested this again with my WCN6855 hw2.0 x86 test box on this commit:
+> 
+> a87674ac820e wifi: ath11k: allocate dummy net_device dynamically
+> 
+> It passes my tests and doesn't crash, but I see this kmemleak warning a
+> lot:
 
--- 
-You're more amazing than you think!
+Thanks Kalle, that was helpful. The device is not being clean-up
+automatically.
+
+Chatting with Jakub, he suggested coming back to the original approach,
+but, adding a additional patch, at the free_netdev().
+
+Would you mind running another test, please?
+
+	https://github.com/leitao/linux/tree/wireless-dummy_v3
+
+The branch above is basically the original branch (as in this patch
+series), with this additional patch:
+
+	Author: Breno Leitao <leitao@debian.org>
+	Date:   Mon Apr 8 11:37:32 2024 -0700
+
+	    net: free_netdev: exit earlier if dummy
+
+	    For dummy devices, exit earlier at free_netdev() instead of executing
+	    the whole function. This is necessary, because dummy devices are
+	    special, and shouldn't have the second part of the function executed.
+
+	    Otherwise reg_state, which is NETREG_DUMMY, will be overwritten and
+	    there will be no way to identify that this is a dummy device. Also, this
+	    device do not need the final put_device(), since dummy devices are not
+	    registered (through register_netdevice()), where the device reference is
+	    increased (at netdev_register_kobject()/device_add()).
+
+	    Suggested-by: Jakub Kicinski <kuba@kernel.org>
+	    Signed-off-by: Breno Leitao <leitao@debian.org>
+
+	diff --git a/net/core/dev.c b/net/core/dev.c
+	index 2b82bd1cd2f8..5d2cb97d0ae6 100644
+	--- a/net/core/dev.c
+	+++ b/net/core/dev.c
+	@@ -11058,7 +11058,8 @@ void free_netdev(struct net_device *dev)
+		dev->xdp_bulkq = NULL;
+
+		/*  Compatibility with error handling in drivers */
+	-       if (dev->reg_state == NETREG_UNINITIALIZED) {
+	+       if (dev->reg_state == NETREG_UNINITIALIZED ||
+	+           dev->reg_state == NETREG_DUMMY) {
+			netdev_freemem(dev);
+			return;
+		}
 
