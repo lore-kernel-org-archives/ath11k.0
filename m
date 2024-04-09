@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A562CD129C
-	for <ath11k@archiver.kernel.org>; Tue,  9 Apr 2024 12:59:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 763A4C67861
+	for <ath11k@archiver.kernel.org>; Tue,  9 Apr 2024 12:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZeyrNbxQo5gOwdkkAEV+0vUgg75RvJ4U5yeN3K4c0b4=; b=BuGWXsSx43stxkSYq+tTfU05yL
-	3TcjD/Mtp1kbV6/vAyH07I4tSHsXlLqF007bd1HtoNhRYrFHbQ4sRP3hHA/6dyvv75JfF0HxBW/Mp
-	btkLHdhWdn6Pm+7nscSPznXaK0obC5Dr+2Wz/2mLKTlTO7oveXu8FMjDS2G/hBylPz+AAepxZhjbz
-	AHlqiUbxch9HpwcZVjhBd5sROwGfhkHBaIuip2Dn26+MiT4oYP4NLTgRL1zlk8oGi3rebZNnyGcoD
-	tSMrwSXA5HCMfnpi3tJsrK4vFlCsxML2FJuzKeSFCwwobvz/3VIMGip/YjbT8k5U/CAid3m4dyFTe
-	z9i9h36Q==;
+	bh=E0v0jOuLRJCnWd0s0TIZZ1gZgekQUwAKs2R0RJj3DsM=; b=UUTVFSVp/UoTmG24DmeyWVdv7u
+	an82K4jKn61gaJSQkpdnceLzDc3caV0GqFYOYF4L2cxdaGazigWSzA+p4lNOpcoVTa5bYrcIdTWgi
+	DWHrEYvB/C0SA/rpvA7KKn+C62wHMKA6IESiMzl1rlat462kdFCnhG4ndcZqkN/hNe7TRPNrsLNgZ
+	Uo6YJ8wYaE94gBOAGENiceGNG/WWiz6QkKB1kWgRHEjN3m/wyoNXXlkrq1BHGA0/MBRxO/feCjQ4+
+	raNKRBSkPkeND8y00YoPNJSXe3KSYoS4eMjIv+XYTibGS30avXlMZh1JJkzUc7G1x2o1IsDxHOSFG
+	EDT3mdZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruB45-000000020QU-3bJX;
+	id 1ruB45-000000020PW-080x;
 	Tue, 09 Apr 2024 12:59:05 +0000
-Received: from mail-lf1-f43.google.com ([209.85.167.43])
+Received: from mail-ej1-f52.google.com ([209.85.218.52])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruB3Z-00000001zzX-0Ji4;
-	Tue, 09 Apr 2024 12:58:35 +0000
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516b6e75dc3so7044581e87.3;
-        Tue, 09 Apr 2024 05:58:31 -0700 (PDT)
+	id 1ruB3Z-00000001zzs-2p4G;
+	Tue, 09 Apr 2024 12:58:38 +0000
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a51a7d4466bso488733666b.2;
+        Tue, 09 Apr 2024 05:58:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712667509; x=1713272309;
+        d=1e100.net; s=20230601; t=1712667511; x=1713272311;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZeyrNbxQo5gOwdkkAEV+0vUgg75RvJ4U5yeN3K4c0b4=;
-        b=OcQ5OgR8zOlIi8C1UbkKz6PRXufum+sDDOGMX+2LpPiO+TasNjZFNrEO6dRm7CKZGJ
-         hHHkhh3r71WDO8ah5uvmU2Z0pHmapyv4wDdOULlCc8LcjMihwGNj87daonE/O/QiGn0n
-         66RoYXl2abib5OkM151NxFM2Alo8SBmULW46lWc9dSFiGZQCu9uxC2zHrgNjP6SAQcea
-         ucmIUCGywty4corTKfpUVS9caL3iEsxVU6jnbnu3qOGID6lZFTYn6KLjik8kSzVVikGa
-         Cm9L4Sq08IlvrZ4DB02j5C2JUpgkOs18/oqQUe1eqam5tV56xa/noT+mkaVGm14fDks8
-         ozog==
-X-Forwarded-Encrypted: i=1; AJvYcCUOrX+sgmpzeH/YBZtgA0NhAJE/swV5wJP1wjpaIsAqba77ITJ7Nly86i/6j/De7A/rqWARdVvjdpjMN/Ads81HKt54Sy8gjnQaI/EduGgCbOWaPAwpRPaACVNHSewQ//A/t/KSOzLmr4ekksDF7GSkid13D+kZG47wsifCfUhq6LocKgu6gBPAHdiNOCKLT3ys6Wyt166sGmvUqLXKUN5kene7e6gbB2Du1zAhur2ZQw==
-X-Gm-Message-State: AOJu0YxGEr2dca3qODadBvVbYsVVZvX3SaZpmMkSV+Kd+vEDkvrUUIz8
-	js6MWhQfAmNJcHWjSkCKNTNGz7f01nG6oN+NZyKD2/rSZ8wH7Psi
-X-Google-Smtp-Source: AGHT+IH6XD+fmejUsktY/+7eeYpDSuJZiImwWhbauJPASwZetxxyKDNYTe6x668707j5jS0/7gsbkw==
-X-Received: by 2002:a05:6512:499:b0:515:d100:1650 with SMTP id v25-20020a056512049900b00515d1001650mr7312038lfq.57.1712667508768;
-        Tue, 09 Apr 2024 05:58:28 -0700 (PDT)
-Received: from localhost (fwdproxy-lla-119.fbsv.net. [2a03:2880:30ff:77::face:b00c])
-        by smtp.gmail.com with ESMTPSA id y15-20020a170906448f00b00a51d250a1a4sm2903733ejo.80.2024.04.09.05.58.28
+        bh=E0v0jOuLRJCnWd0s0TIZZ1gZgekQUwAKs2R0RJj3DsM=;
+        b=uk4INKRRdtWww815cLHkt58IyNdMqaJqxJFK1MKQqR2cx0F8EaZMa/+qExiuUJguVo
+         KKYpXtklRmg4S1E7XYq75pB2zPEaeGQsj0jeunQVDd5cvxLE6zP1JW28iL3ONnvXIQud
+         bdeWG2uGQeJ3wTbOIONX35bFnoKOP9QFeLzC15kfg4+UjChlVxJVjUDwuM8x2hQuvayQ
+         gUHS7FoisRnt9hDKfuiL7kfObR0wLWNocGL4yxZ2ucLi6+JcJZJAyup/SC9d68NanCaE
+         O19F0CoB4UTpUUhlpDjkngwrzIx4bl99nu1nRxVG/1Gm87wqI0vmvPSyQ9uEqPHIhJ/O
+         7u5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVGuVVung5B+hltrew9sFMakkyaqy2gEZYQw79wTPbbn4BgEsiyG+o8RSryHpE68WQXu9iWn3HvGqa97NNxTNHhwXmQRjwAAnluFP7Ej8nfvgt7ERcqe3Pr323zslifj2ZNMUNWNDlscwy0/rAr/aHq8nxFvPSG3zgoXVKiUiq4EUDPs21eo1YVvSLdi9VyeaoNyrPLktlRF826e2ARvUnBIWHU/dmz+Ncze9Fl+rTGjA==
+X-Gm-Message-State: AOJu0Yx5XLFoFa6xHtOik7rTO//0wk9M99wIC6TINR2bcwYS+S0YXdtU
+	ZVRiSQDXXhzapH5Rpu9MnuVY1FKibXmx6ZPOcwhhJ8p7wzhekKx9
+X-Google-Smtp-Source: AGHT+IHyK7ujyUyZh8iF233ZssOvRS6odkm3B+SQqJXDLyPLOk07R78HAolnGi6zyM2diHi7B8+VPw==
+X-Received: by 2002:a17:906:11da:b0:a46:d041:28e0 with SMTP id o26-20020a17090611da00b00a46d04128e0mr7230425eja.59.1712667510661;
+        Tue, 09 Apr 2024 05:58:30 -0700 (PDT)
+Received: from localhost (fwdproxy-lla-003.fbsv.net. [2a03:2880:30ff:3::face:b00c])
+        by smtp.gmail.com with ESMTPSA id m8-20020a1709061ec800b00a46d2e9fd73sm5660571ejj.222.2024.04.09.05.58.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 05:58:28 -0700 (PDT)
+        Tue, 09 Apr 2024 05:58:30 -0700 (PDT)
 From: Breno Leitao <leitao@debian.org>
 To: aleksander.lobakin@intel.com,
 	kuba@kernel.org,
@@ -75,21 +75,18 @@ Cc: quic_jjohnson@quicinc.com,
 	linux-kernel@vger.kernel.org,
 	netdev@vger.kernel.org,
 	bpf@vger.kernel.org,
-	Jiri Pirko <jiri@resnulli.us>,
-	Simon Horman <horms@kernel.org>,
-	Daniel Borkmann <daniel@iogearbox.net>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH net-next v4 2/9] net: create a dummy net_device allocator
-Date: Tue,  9 Apr 2024 05:57:16 -0700
-Message-ID: <20240409125738.1824983-3-leitao@debian.org>
+	Elad Nachman <enachman@marvell.com>
+Subject: [PATCH net-next v4 3/9] net: marvell: prestera: allocate dummy net_device dynamically
+Date: Tue,  9 Apr 2024 05:57:17 -0700
+Message-ID: <20240409125738.1824983-4-leitao@debian.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240409125738.1824983-1-leitao@debian.org>
 References: <20240409125738.1824983-1-leitao@debian.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240409_055833_186277_181962E5 
-X-CRM114-Status: GOOD (  19.00  )
+X-CRM114-CacheID: sfid-20240409_055834_088998_54A03C1C 
+X-CRM114-Status: GOOD (  11.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,132 +101,67 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-It is impossible to use init_dummy_netdev together with alloc_netdev()
-as the 'setup' argument.
+Embedding net_device into structures prohibits the usage of flexible
+arrays in the net_device structure. For more details, see the discussion
+at [1].
 
-This is because alloc_netdev() initializes some fields in the net_device
-structure, and later init_dummy_netdev() memzero them all. This causes
-some problems as reported here:
+Un-embed the net_device from the private struct by converting it
+into a pointer. Then use the leverage the new alloc_netdev_dummy()
+helper to allocate and initialize dummy devices.
 
-	https://lore.kernel.org/all/20240322082336.49f110cc@kernel.org/
+[1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
 
-Split the init_dummy_netdev() function in two. Create a new function called
-init_dummy_netdev_core() that does not memzero the net_device structure.
-Then have init_dummy_netdev() memzero-ing and calling
-init_dummy_netdev_core(), keeping the old behaviour.
-
-init_dummy_netdev_core() is the new function that could be called as an
-argument for alloc_netdev().
-
-Also, create a helper to allocate and initialize dummy net devices,
-leveraging init_dummy_netdev_core() as the setup argument. This function
-basically simplify the allocation of dummy devices, by allocating and
-initializing it. Freeing the device continue to be done through
-free_netdev()
-
-Suggested-by: Jakub Kicinski <kuba@kernel.org>
 Signed-off-by: Breno Leitao <leitao@debian.org>
+Acked-by: Elad Nachman <enachman@marvell.com>
 ---
- include/linux/netdevice.h |  3 +++
- net/core/dev.c            | 54 ++++++++++++++++++++++++++-------------
- 2 files changed, 39 insertions(+), 18 deletions(-)
+ .../net/ethernet/marvell/prestera/prestera_rxtx.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/include/linux/netdevice.h b/include/linux/netdevice.h
-index 0c198620ac93..544767d218c0 100644
---- a/include/linux/netdevice.h
-+++ b/include/linux/netdevice.h
-@@ -4517,6 +4517,9 @@ static inline void netif_addr_unlock_bh(struct net_device *dev)
+diff --git a/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c b/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
+index cc2a9ae794be..39d9bf82c115 100644
+--- a/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
++++ b/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
+@@ -96,7 +96,7 @@ struct prestera_sdma {
+ 	struct dma_pool *desc_pool;
+ 	struct work_struct tx_work;
+ 	struct napi_struct rx_napi;
+-	struct net_device napi_dev;
++	struct net_device *napi_dev;
+ 	u32 map_addr;
+ 	u64 dma_mask;
+ 	/* protect SDMA with concurrent access from multiple CPUs */
+@@ -654,13 +654,21 @@ static int prestera_sdma_switch_init(struct prestera_switch *sw)
+ 	if (err)
+ 		goto err_evt_register;
  
- void ether_setup(struct net_device *dev);
+-	init_dummy_netdev(&sdma->napi_dev);
++	sdma->napi_dev = alloc_netdev_dummy(0);
++	if (!sdma->napi_dev) {
++		dev_err(dev, "not able to initialize dummy device\n");
++		err = -ENOMEM;
++		goto err_alloc_dummy;
++	}
  
-+/* Allocate dummy net_device */
-+struct net_device *alloc_netdev_dummy(int sizeof_priv);
-+
- /* Support for loadable net-drivers */
- struct net_device *alloc_netdev_mqs(int sizeof_priv, const char *name,
- 				    unsigned char name_assign_type,
-diff --git a/net/core/dev.c b/net/core/dev.c
-index bf0a335781aa..5d2cb97d0ae6 100644
---- a/net/core/dev.c
-+++ b/net/core/dev.c
-@@ -10413,25 +10413,12 @@ int register_netdevice(struct net_device *dev)
- }
- EXPORT_SYMBOL(register_netdevice);
+-	netif_napi_add(&sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll);
++	netif_napi_add(sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll);
+ 	napi_enable(&sdma->rx_napi);
  
--/**
-- *	init_dummy_netdev	- init a dummy network device for NAPI
-- *	@dev: device to init
-- *
-- *	This takes a network device structure and initialize the minimum
-- *	amount of fields so it can be used to schedule NAPI polls without
-- *	registering a full blown interface. This is to be used by drivers
-- *	that need to tie several hardware interfaces to a single NAPI
-- *	poll scheduler due to HW limitations.
-+/* Initialize the core of a dummy net device.
-+ * This is useful if you are calling this function after alloc_netdev(),
-+ * since it does not memset the net_device fields.
-  */
--void init_dummy_netdev(struct net_device *dev)
-+static void init_dummy_netdev_core(struct net_device *dev)
- {
--	/* Clear everything. Note we don't initialize spinlocks
--	 * are they aren't supposed to be taken by any of the
--	 * NAPI code and this dummy netdev is supposed to be
--	 * only ever used for NAPI polls
--	 */
--	memset(dev, 0, sizeof(struct net_device));
--
- 	/* make sure we BUG if trying to hit standard
- 	 * register/unregister code path
- 	 */
-@@ -10452,8 +10439,28 @@ void init_dummy_netdev(struct net_device *dev)
- 	 * its refcount.
- 	 */
- }
--EXPORT_SYMBOL_GPL(init_dummy_netdev);
+ 	return 0;
  
-+/**
-+ *	init_dummy_netdev	- init a dummy network device for NAPI
-+ *	@dev: device to init
-+ *
-+ *	This takes a network device structure and initialize the minimum
-+ *	amount of fields so it can be used to schedule NAPI polls without
-+ *	registering a full blown interface. This is to be used by drivers
-+ *	that need to tie several hardware interfaces to a single NAPI
-+ *	poll scheduler due to HW limitations.
-+ */
-+void init_dummy_netdev(struct net_device *dev)
-+{
-+	/* Clear everything. Note we don't initialize spinlocks
-+	 * are they aren't supposed to be taken by any of the
-+	 * NAPI code and this dummy netdev is supposed to be
-+	 * only ever used for NAPI polls
-+	 */
-+	memset(dev, 0, sizeof(struct net_device));
-+	init_dummy_netdev_core(dev);
-+}
-+EXPORT_SYMBOL_GPL(init_dummy_netdev);
++err_alloc_dummy:
++	prestera_hw_event_handler_unregister(sw, PRESTERA_EVENT_TYPE_RXTX,
++					     prestera_rxtx_handle_event);
+ err_evt_register:
+ err_tx_init:
+ 	prestera_sdma_tx_fini(sdma);
+@@ -677,6 +685,7 @@ static void prestera_sdma_switch_fini(struct prestera_switch *sw)
  
- /**
-  *	register_netdev	- register a network device
-@@ -11065,6 +11072,17 @@ void free_netdev(struct net_device *dev)
- }
- EXPORT_SYMBOL(free_netdev);
- 
-+/**
-+ * alloc_netdev_dummy - Allocate and initialize a dummy net device.
-+ * @sizeof_priv: size of private data to allocate space for
-+ */
-+struct net_device *alloc_netdev_dummy(int sizeof_priv)
-+{
-+	return alloc_netdev(sizeof_priv, "dummy#", NET_NAME_UNKNOWN,
-+			    init_dummy_netdev_core);
-+}
-+EXPORT_SYMBOL_GPL(alloc_netdev_dummy);
-+
- /**
-  *	synchronize_net -  Synchronize with packet receive processing
-  *
+ 	napi_disable(&sdma->rx_napi);
+ 	netif_napi_del(&sdma->rx_napi);
++	free_netdev(sdma->napi_dev);
+ 	prestera_hw_event_handler_unregister(sw, PRESTERA_EVENT_TYPE_RXTX,
+ 					     prestera_rxtx_handle_event);
+ 	prestera_sdma_tx_fini(sdma);
 -- 
 2.43.0
 
