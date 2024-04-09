@@ -4,89 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F98ACD1296
-	for <ath11k@archiver.kernel.org>; Tue,  9 Apr 2024 13:00:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6115CD128A
+	for <ath11k@archiver.kernel.org>; Tue,  9 Apr 2024 19:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xrYnp1tDsZ0sxZFnn5u9gBZrt+Gb2bRXco5M67sATos=; b=T7PbITCHqcku0f7XOWXUp9y05l
-	blsokpyzurwvIT4kuMonPNOrQB1gWN3Qsmw/K0BDP1E2KtCNO7Gxb0z2RdjwYM2ZxnrrtjHX4aS0x
-	o6hcDWb2GsdZSe/PZxan5CNmfLjgsJUCVtXx7dQ4ObYNWmjRZuttTamQCKONOHALkqTyCzeIsOUEm
-	81auIk7RLtZlwF+78x0YtK/kwgKKnBOFXcOti+oGUsSTKCAaoIyUqouXpxk+bznXpvL3VLb1aYR5h
-	cHqqSyM0O3vcEF954EPQ3BDdHLLXdeiI9WP3gboiRyGg2A5syAW79wj8l2SbDPTwxsaY/RJwaaJB9
-	xDtc3upg==;
+	Content-Type:In-Reply-To:References:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=5I1VrLcfT3JuR18SqF8hq8jOCuxceprqgGwOZl371VI=; b=Zw8LqNLAdfKvA0Ryg0CARO+RB6
+	RaXBIyN9KofFxZURt4kh8MNEjZk2ZTv6D2VVLYZ14p1i6az/+Zddus2eSkG4eHTR2+t3kiM8HUI35
+	WjFLrN5/daCHyyMNhgUIWbfKCDuWtxqd44IDqoROaGpE8J03Q2dpfaXN0/gEhsnGRMxivTNp5Mktr
+	/YzQ8AhiKdWQzj/aZezmhrTnDG0wBVjpZRoh1TMhPr0Bpvtx8ZdukQH50YDBaGZgBTw5M1lmW95oI
+	0qURmZFantkRylbDapOCIRvhXEBm3Z5FMDQ6nI24yPXe1k+Gw75T+N3VF2Ay25EnLM4CPJn5oB38A
+	t6wvnmxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruB5c-000000021jQ-0ed8;
-	Tue, 09 Apr 2024 13:00:40 +0000
-Received: from mail-ej1-f46.google.com ([209.85.218.46])
+	id 1ruHWw-00000003bky-3kOY;
+	Tue, 09 Apr 2024 19:53:19 +0000
+Received: from mail-pj1-x102f.google.com ([2607:f8b0:4864:20::102f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruB3r-000000020Da-0lna;
-	Tue, 09 Apr 2024 12:58:59 +0000
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a51aac16b6eso234021266b.1;
-        Tue, 09 Apr 2024 05:58:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712667528; x=1713272328;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+	id 1ruHWs-00000003bhy-1O3F
+	for ath11k@lists.infradead.org;
+	Tue, 09 Apr 2024 19:53:16 +0000
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-2a519ac18b3so1793514a91.2
+        for <ath11k@lists.infradead.org>; Tue, 09 Apr 2024 12:53:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=penguintechs.org; s=google; t=1712692391; x=1713297191; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xrYnp1tDsZ0sxZFnn5u9gBZrt+Gb2bRXco5M67sATos=;
-        b=aFI78Rly5xnaW460mPBYqwFDraT92d23SAAuBHRy8YvtdndnFWLCnnM5rVQ3fXL+ac
-         +AanPe+GzwYY2lvjpzuc1dF064YaufQ3r58QL+W8Cxuma+ZuDOCpP7eNcR50qBXRN974
-         /ALuE0YNv+49Mx6A04cp+4F+riHB+EPYo5G8LJt2DjVo5ZEp+DOGCjmpEgFEH/xiTp4K
-         fJ5LtTpeIX3Gp7iHRwmM75ccplSG0vfUBkIfCKrppW/vPv88bB0UB5nvubaM4gEzninC
-         BHIGNgeYgywARkz7BIZwd5Mho2Tj1c9yY9vJJ5BOC27+K7do3BJu2Cchno9aRFgj4yYA
-         VjXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWef8K8RyW9adZrL4/5KS3wgefQI3N7Ct58WYLoldRLk5EYmtctpCBA5Oh//zMRNac19MAgtS5meR1PbDHL3BxiDFQN3rC1FCGJDSmP6nJzjcPLWEw79zu7y+BOw86osfKsJVtLNiL+BNPuQzNvyclO0HVFameotp1BTDRSp0H34Rrlnq5faEZ+ktFm7cc5mPeS6GPGbLIPDvkK1OBKbl5x3qoQK7tEYBwcWMPuuA6mPQ==
-X-Gm-Message-State: AOJu0Yx+YBBUvVN2twLN4SW6Uh1CIcRpg3K0/aqgwf67UOUhCJh8EMiF
-	wN7nz8XXTC0CUUozhichh/EjGq3blGASmoc2OrO8gckV7aJ/CyE8jFBUrqAn
-X-Google-Smtp-Source: AGHT+IFWbbwWw6wBloVf2pT4eFhSFrEA8FnCKj6FSU15WISPqlCBgNputQ7rdLR70eQG8NtTDx8VvQ==
-X-Received: by 2002:a50:8d15:0:b0:56e:ddc:17ad with SMTP id s21-20020a508d15000000b0056e0ddc17admr9776816eds.30.1712667528396;
-        Tue, 09 Apr 2024 05:58:48 -0700 (PDT)
-Received: from localhost (fwdproxy-lla-004.fbsv.net. [2a03:2880:30ff:4::face:b00c])
-        by smtp.gmail.com with ESMTPSA id dm16-20020a05640222d000b0056e44b681a6sm3977858edb.57.2024.04.09.05.58.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 05:58:48 -0700 (PDT)
-From: Breno Leitao <leitao@debian.org>
-To: aleksander.lobakin@intel.com,
-	kuba@kernel.org,
-	davem@davemloft.net,
-	pabeni@redhat.com,
-	edumazet@google.com,
-	elder@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	nbd@nbd.name,
-	sean.wang@mediatek.com,
-	Mark-MC.Lee@mediatek.com,
-	lorenzo@kernel.org,
-	taras.chornyi@plvision.eu,
-	ath11k@lists.infradead.org,
-	ath10k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	geomatsi@gmail.com,
-	kvalo@kernel.org,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: quic_jjohnson@quicinc.com,
-	leon@kernel.org,
-	dennis.dalessandro@cornelisnetworks.com,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	bpf@vger.kernel.org
-Subject: [PATCH net-next v4 9/9] wifi: ath11k: allocate dummy net_device dynamically
-Date: Tue,  9 Apr 2024 05:57:23 -0700
-Message-ID: <20240409125738.1824983-10-leitao@debian.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240409125738.1824983-1-leitao@debian.org>
-References: <20240409125738.1824983-1-leitao@debian.org>
+        bh=5I1VrLcfT3JuR18SqF8hq8jOCuxceprqgGwOZl371VI=;
+        b=d124EYlPwgLpX7xabvRIhwV8+JA+2vFwR8CFBu3FzIPkmuMMcNeGh5AixXu/b8nhff
+         FsPbfvtNyrDNvPVLdZ5Eyt3qveXdRTNOKEW6rBq2GNLY/hbWFRHNmVyaE6p6luMRnd4y
+         wkgxYtCtwwq74Qu1mzF2INknGriCqdTaVol+I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712692391; x=1713297191;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5I1VrLcfT3JuR18SqF8hq8jOCuxceprqgGwOZl371VI=;
+        b=mjndEooBtTxnUihN+dl+KcnnFrd+2unI/qOHRQNJ8Qn+fP6WumtWGDk6NcVhv8Pq2n
+         ZF+2UFzwuYyGRnAQm5oFKJhEC9KEf6g0VHnSqka2fhENQzbbvYlslb7sGCV1CYBj0Q8O
+         vfHCpo6Zqt/6CrkF8jXo8EZh6kWj88N9jYybTBEhayevQfXLd6Ok31gIH7jrhafJqHxL
+         VySgeNFfJ9MlrCSsN/vqCOIkQKDvWqSQmDFn1iDXj0LIxkFpqYRVaA8g6k02R++b0XFH
+         BTiQ5tgzrvkYHziyg2VNWqY+/ei9SLI/Y1kIZTPkO3whyiOm5gEmd2ahozTE2PJ5zhdM
+         agpg==
+X-Gm-Message-State: AOJu0YxC+2VnV5JuEPe6RzUlDEzQyJLQAHgMSV50s82SSCH5PAAjQ7eQ
+	iqJBg8NssYSvF9pLacqYWPbtYjXyBkeXP7d26yW59RAhFajN6VGlr656Nm7fNOCAvR7QMgkFsdl
+	caQ==
+X-Google-Smtp-Source: AGHT+IHSOjE4fEu4bRv6+Iy27WGZOHyEONpMVUtQIUezXIkwFcZX5pktsXW+kR017MdHRm+nDL4GHQ==
+X-Received: by 2002:a17:90b:4d83:b0:2a5:3aec:fdef with SMTP id oj3-20020a17090b4d8300b002a53aecfdefmr562133pjb.47.1712692391251;
+        Tue, 09 Apr 2024 12:53:11 -0700 (PDT)
+Received: from ?IPV6:2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08? ([2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08])
+        by smtp.gmail.com with ESMTPSA id g20-20020a17090a7d1400b002a53b9cf356sm3421706pjl.0.2024.04.09.12.53.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Apr 2024 12:53:10 -0700 (PDT)
+Message-ID: <68a31d6a-8eb8-4d78-819b-fb67367cc41d@penguintechs.org>
+Date: Tue, 9 Apr 2024 12:53:08 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: QCA6390 bluetooth doesn't work after warm boot or
+ disable/reenable
+From: Wren Turkal <wt@penguintechs.org>
+To: ath11k@lists.infradead.org, linux-bluetooth@vger.kernel.org,
+ Kalle Valo <kvalo@kernel.org>, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+References: <a03dace1-ca0f-41d6-8e2c-636e3b053a3a@penguintechs.org>
+ <31bb6e18-ecee-49b3-87d7-50ab53e07447@penguintechs.org>
+ <1b3d3937-6679-491e-a5c6-818ae8ac639a@penguintechs.org>
+ <b592d037-41ed-42e8-8c3c-286eb1a68ceb@penguintechs.org>
+Content-Language: en-US
+In-Reply-To: <b592d037-41ed-42e8-8c3c-286eb1a68ceb@penguintechs.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240409_055851_562034_94248672 
-X-CRM114-Status: GOOD (  14.13  )
+X-CRM114-CacheID: sfid-20240409_125314_538579_89909FCE 
+X-CRM114-Status: GOOD (  35.81  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,130 +95,254 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Embedding net_device into structures prohibits the usage of flexible
-arrays in the net_device structure. For more details, see the discussion
-at [1].
+On 4/8/24 12:49 PM, Wren Turkal wrote:
+> +Marcel Holtmann <marcel@holtmann.org>
+> +Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+> 
+> Added maintainers identified from the get_maintainer.pl script in the 
+> kernel repo. Hoping to get some ideas for next steps.
+> 
+> More contextual info below:
+> 
+> On 4/6/24 1:27 PM, Wren Turkal wrote:
+>> +Kalle Valo since you have the same laptop
+>>
+>> On 4/6/24 1:16 PM, Wren Turkal wrote:
+>>> Sorry for the double send on the original message. I am still hoping 
+>>> to get some help. I have added additional info below.
+>>>
+>>> On 4/4/24 12:14 PM, Wren Turkal wrote:
+>>>> Hey there ath11k/bluetooth folks,
+>>>>
+>>>> I am having a pretty major problem with QCA6930 for some time (maybe 
+>>>> a year or two). I have this bluetooth device:
+>>>>
+>>>> 72:00.0 Unassigned class [ff00]: Qualcomm Technologies, Inc QCA6390 
+>>>> Wireless Network Adapter
+>>>>
+>>>> This device appears to be driven by the ath11k module and others. I 
+>>>> hope I am pinging the right lists.
+>>>>
+>>>> I am using Fedora Rawhide. Fully updated yesterday. My uname reports 
+>>>> this:
+>>>>
+>>>> Linux braindead.localdomain 
+>>>> 6.9.0-0.rc2.20240402git026e680b0a08.24.fc41.x86_64 #1 SMP 
+>>>> PREEMPT_DYNAMIC Tue Apr  2 17:51:18 UTC 2024 x86_64 GNU/Linux
+>>>
+>>> Updated today. Here's the new uname:
+>>>
+>>> Linux braindead.localdomain 
+>>> 6.9.0-0.rc2.20240405git8cb4a9a82b21.27.fc41.x86_64 #1 SMP 
+>>> PREEMPT_DYNAMIC Fri Apr  5 16:48:07 UTC 2024 x86_64 GNU/Linux
+> 
+> I looked at the current mainline kernel code. I found the following.
+> 
+> I found that there was a patch authored by Zijun Hu that was supposed to 
+> address a warm reboot issue on QCA6390 here: 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/bluetooth/hci_qca.c?h=v6.9-rc3&id=7e7bbddd029b644f00f0ffbfbc485ed71977d0d5
+> 
+> The same code path from the above patch is now slightly different 
+> because another patch authored by Krzysztof Kozlowski, namely: 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/bluetooth/hci_qca.c?h=v6.9-rc3&id=272970be3dabd24cbe50e393ffee8f04aec3b9a8
+> 
+> I also see a few fixed over time in the btqca.c file. I wonder if any of 
+> these are related.
+> 
+> Unfortunately, none of these changes were made recently.
+> 
+> Does anyone have an suggestions for next steps?
 
-Un-embed the net_device from struct ath11k_ext_irq_grp by converting it
-into a pointer. Then use the leverage alloc_netdev() to allocate the
-net_device object at ath11k_ahb_config_ext_irq() for ahb, and
-ath11k_pcic_ext_irq_config() for pcic.
+I am trying to build kernels as old as 5.19 to start a bisect. I have 
+been unsuccessful due to compiler warnings (presumably from newer 
+version of gcc than were used at the time those kernels were released. 
+Is there any secret sauce to getting these older kernels to build with 
+newer gccs?
 
-The free of the device occurs at ath11k_ahb_free_ext_irq() for the ahb
-case, and ath11k_pcic_free_ext_irq() for the pcic case.
+>>>
+>>> I also noticed a new version of bluez. Here is the RPM package 
+>>> version: bluez-5.73-3.fc41.x86_64
+>>>
+>>>> My main bluetooth device is  a Logitech MX 3 Mac mouse that uses 
+>>>> bluetooth. When bluetooth fails, so does the mouse. I have power 
+>>>> cycle my laptop when that happens. I'd love to help find a fix for 
+>>>> this.
+>>>>
+>>>> The problem is that I cannot disable and re-enable the bluetooth on 
+>>>> my system. Bluetooth also doesn't work after a warm boot. I have to 
+>>>> power cycle my laptop to recover bluetooth funcitonality. I have 
+>>>> tried the following:
+>>>>
+>>>> * logging into KDE Plasma (bluetooth stops working)
+>>>> * logging into GNOME (works on cold boot, fails on warm boot)
+>>>
+>>> I did notice that the mouse seems to work in Plasma until a few sec 
+>>> after I see the background image appears. I suspect that Plasma is 
+>>> disabling and reenabling the bluetooth where Gnome does not do that.
+>>>
+>>>> After logging into GNOME during a cold boot, I have also done 
+>>>> "systemctl restart bluetooth.service". I get these journal logs 
+>>>> during the stop;
+>>>>
+>>>> ➜  bt_kernel_bug cat journal-stop-bluetooth-service.log
+>>>> Apr 04 10:14:41 braindead.localdomain NetworkManager[1120]: <info> 
+>>>> [1712250881.7060] device (F0:5C:77:F2:60:FC): state change: 
+>>>> disconnected -> unmanaged (reason 'removed', sys-iface-state: 
+>>>> 'removed')
+>>>> Apr 04 10:14:41 braindead.localdomain systemd[1]: Starting 
+>>>> systemd-rfkill.service - Load/Save RF Kill Switch Status...
+>>>> Apr 04 10:14:41 braindead.localdomain systemd[1]: Started 
+>>>> systemd-rfkill.service - Load/Save RF Kill Switch Status.
+>>>> Apr 04 10:14:41 braindead.localdomain audit[1]: SERVICE_START pid=1 
+>>>> uid=0 auid=4294967295 ses=4294967295 
+>>>> subj=system_u:system_r:init_t:s0 msg='unit=systemd-rfkill 
+>>>> comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? 
+>>>> terminal=? res=success'
+>>>> Apr 04 10:14:46 braindead.localdomain systemd[1]: 
+>>>> systemd-rfkill.service: Deactivated successfully.
+>>>> Apr 04 10:14:46 braindead.localdomain audit[1]: SERVICE_STOP pid=1 
+>>>> uid=0 auid=4294967295 ses=4294967295 
+>>>> subj=system_u:system_r:init_t:s0 msg='unit=systemd-rfkill 
+>>>> comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? 
+>>>> terminal=? res=success'
+>>>>
+>>>> I get these journal logs during start:
+>>>>
+>>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: 
+>>>> setting up ROME/QCA6390
+>>>> Apr 04 10:15:05 braindead.localdomain systemd[1]: Starting 
+>>>> systemd-rfkill.service - Load/Save RF Kill Switch Status...
+>>>> Apr 04 10:15:05 braindead.localdomain systemd[1]: Started 
+>>>> systemd-rfkill.service - Load/Save RF Kill Switch Status.
+>>>> Apr 04 10:15:05 braindead.localdomain audit[1]: SERVICE_START pid=1 
+>>>> uid=0 auid=4294967295 ses=4294967295 
+>>>> subj=system_u:system_r:init_t:s0 msg='unit=systemd-rfkill 
+>>>> comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? 
+>>>> terminal=? res=success'
+>>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> Product ID   :0x00000010
+>>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> SOC Version  :0x400a0200
+>>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> ROM Version  :0x00000200
+>>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> Patch Version:0x00003ac0
+>>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> controller version 0x02000200
+>>>> Apr 04 10:15:05 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> Downloading qca/htbtfw20.tlv
+>>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> Failed to send TLV segment (-110)
+>>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> Failed to download patch (-110)
+>>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: Retry 
+>>>> BT power ON:0
+>>>> Apr 04 10:15:08 braindead.localdomain kernel: Bluetooth: hci0: 
+>>>> command 0xfc00 tx timeout
+>>>> Apr 04 10:15:08 braindead.localdomain kernel: Bluetooth: hci0: 
+>>>> Reading QCA version information failed (-110)
+>>>> Apr 04 10:15:08 braindead.localdomain kernel: Bluetooth: hci0: Retry 
+>>>> BT power ON:1
+>>>> Apr 04 10:15:10 braindead.localdomain systemd[1]: 
+>>>> systemd-rfkill.service: Deactivated successfully.
+>>>> Apr 04 10:15:10 braindead.localdomain audit[1]: SERVICE_STOP pid=1 
+>>>> uid=0 auid=4294967295 ses=4294967295 
+>>>> subj=system_u:system_r:init_t:s0 msg='unit=systemd-rfkill 
+>>>> comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? 
+>>>> terminal=? res=success'
+>>>> Apr 04 10:15:10 braindead.localdomain kernel: Bluetooth: hci0: 
+>>>> command 0xfc00 tx timeout
+>>>> Apr 04 10:15:10 braindead.localdomain kernel: Bluetooth: hci0: 
+>>>> Reading QCA version information failed (-110)
+>>>> Apr 04 10:15:10 braindead.localdomain kernel: Bluetooth: hci0: Retry 
+>>>> BT power ON:2
+>>>> Apr 04 10:15:13 braindead.localdomain bluetoothd[986]: Failed to set 
+>>>> mode: Authentication Failed (0x05)
+>>>> Apr 04 10:15:13 braindead.localdomain kernel: Bluetooth: hci0: 
+>>>> command 0xfc00 tx timeout
+>>>> Apr 04 10:15:13 braindead.localdomain kernel: Bluetooth: hci0: 
+>>>> Reading QCA version information failed (-110)
+>>>> Apr 04 10:15:15 braindead.localdomain chronyd[1065]: Selected source 
+>>>> 204.17.205.8 (2.fedora.pool.ntp.org)
+>>>> Apr 04 10:15:22 braindead.localdomain systemd[1687]: Created slice 
+>>>> background.slice - User Background Tasks Slice.
+>>>> Apr 04 10:15:22 braindead.localdomain systemd[1687]: Starting 
+>>>> systemd-tmpfiles-clean.service - Cleanup of User's Temporary Files 
+>>>> and Directories...
+>>>> Apr 04 10:15:22 braindead.localdomain systemd[1687]: Finished 
+>>>> systemd-tmpfiles-clean.service - Cleanup of User's Temporary Files 
+>>>> and Directories.
+>>>> Apr 04 10:15:38 braindead.localdomain audit: BPF prog-id=86 op=LOAD
+>>>> Apr 04 10:15:38 braindead.localdomain systemd[1]: Starting 
+>>>> plocate-updatedb.service - Update the plocate database...
+>>>> Apr 04 10:15:41 braindead.localdomain systemd[1687]: Started 
+>>>> vte-spawn-21527424-cb2d-479f-af17-22251e2b37a0.scope - VTE child 
+>>>> process 5144 launched by gnome-terminal-server process 4668.
+>>>> Apr 04 10:15:53 braindead.localdomain systemd[1]: 
+>>>> plocate-updatedb.service: Deactivated successfully.
+>>>> Apr 04 10:15:53 braindead.localdomain systemd[1]: Finished 
+>>>> plocate-updatedb.service - Update the plocate database.
+>>>> Apr 04 10:15:53 braindead.localdomain systemd[1]: 
+>>>> plocate-updatedb.service: Consumed 6.802s CPU time.
+>>>> Apr 04 10:15:53 braindead.localdomain audit[1]: SERVICE_START pid=1 
+>>>> uid=0 auid=4294967295 ses=4294967295 
+>>>> subj=system_u:system_r:init_t:s0 msg='unit=plocate-updatedb 
+>>>> comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? 
+>>>> terminal=? res=success'
+>>>> Apr 04 10:15:53 braindead.localdomain audit[1]: SERVICE_STOP pid=1 
+>>>> uid=0 auid=4294967295 ses=4294967295 
+>>>> subj=system_u:system_r:init_t:s0 msg='unit=plocate-updatedb 
+>>>> comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? 
+>>>> terminal=? res=success'
+>>>> Apr 04 10:15:54 braindead.localdomain audit: BPF prog-id=86 op=UNLOAD
+>>>> Apr 04 10:16:13 braindead.localdomain baloo_file_extractor[5251]: 
+>>>> kf.idletime: Could not find any system poller plugin
+>>>> Apr 04 10:16:13 braindead.localdomain baloo_file_extractor[5251]: 
+>>>> qt.core.qobject.connect: QObject::connect(KAbstractIdleTimePoller, 
+>>>> KIdleTime): invalid nullptr parameter
+>>>> Apr 04 10:16:13 braindead.localdomain baloo_file_extractor[5251]: 
+>>>> qt.core.qobject.connect: QObject::connect(KAbstractIdleTimePoller, 
+>>>> KIdleTime): invalid nullptr parameter
+>>>>
+>>>> There's a bunch of errors in those logs starting with these two 
+>>>> seemingly important lines:
+>>>>
+>>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> Failed to send TLV segment (-110)
+>>>> Apr 04 10:15:06 braindead.localdomain kernel: Bluetooth: hci0: QCA 
+>>>> Failed to download patch (-110)
+>>>
+>>> Logs are mostly unchanges when restarting the bluetooth service after 
+>>> a cold boot with the bluetooth originally working.
+>>>
+>>>> FWIW, I get similar logs after logging into KDE Plasma. I also get 
+>>>> similar logs after a warm boot.
+>>>>
+>>>> This appears to be some kind of bug in the initialization of the 
+>>>> hardware. Is there any additional information I can provide to help 
+>>>> troubleshoot this problem.
+>>>
+>>> I will also say that the bluetooth appears to work throught a 
+>>> suspend/resume cycle as long as I don't restart the bluetooth service.
+>>>
+>>> Oh, and my laptop is a Dell 9310 if that helps.
+>>
+>> Kalle, I noticed that you reported having a Dell 9310 in 2021 in a 
+>> message on this very mailing list. Do you happen to still have that 
+>> laptop? If so, so you still test on that laptop at all? I am curious 
+>> if it is having the same issue I am experiencing?
+>>
+>>> Is there any other info I could collect that might be useful?
+>>>
+>>> I'm pretty new to troubleshooting a problem like this and would be 
+>>> happy to have any advice anyone might want to share.
+>>>
+>>> Thanks,
+>>> wt
+>>>
+>>
+> 
 
-[1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
-
-Signed-off-by: Breno Leitao <leitao@debian.org>
-Tested-by: Kalle Valo <kvalo@kernel.org>
----
- drivers/net/wireless/ath/ath11k/ahb.c  |  9 +++++++--
- drivers/net/wireless/ath/ath11k/core.h |  2 +-
- drivers/net/wireless/ath/ath11k/pcic.c | 21 +++++++++++++++++----
- 3 files changed, 25 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 7c0a23517949..7f3f6479d553 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -442,6 +442,7 @@ static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
- 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
- 
- 		netif_napi_del(&irq_grp->napi);
-+		free_netdev(irq_grp->napi_ndev);
- 	}
- }
- 
-@@ -533,8 +534,12 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
- 
- 		irq_grp->ab = ab;
- 		irq_grp->grp_id = i;
--		init_dummy_netdev(&irq_grp->napi_ndev);
--		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
-+
-+		irq_grp->napi_ndev = alloc_netdev_dummy(0);
-+		if (!irq_grp->napi_ndev)
-+			return -ENOMEM;
-+
-+		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
- 			       ath11k_ahb_ext_grp_napi_poll);
- 
- 		for (j = 0; j < ATH11K_EXT_IRQ_NUM_MAX; j++) {
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index b3fb74a226fb..590307ca7a11 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -174,7 +174,7 @@ struct ath11k_ext_irq_grp {
- 	u64 timestamp;
- 	bool napi_enabled;
- 	struct napi_struct napi;
--	struct net_device napi_ndev;
-+	struct net_device *napi_ndev;
- };
- 
- enum ath11k_smbios_cc_type {
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index add4db4c50bc..79eb3f9c902f 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -316,6 +316,7 @@ static void ath11k_pcic_free_ext_irq(struct ath11k_base *ab)
- 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
- 
- 		netif_napi_del(&irq_grp->napi);
-+		free_netdev(irq_grp->napi_ndev);
- 	}
- }
- 
-@@ -558,7 +559,7 @@ ath11k_pcic_get_msi_irq(struct ath11k_base *ab, unsigned int vector)
- 
- static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- {
--	int i, j, ret, num_vectors = 0;
-+	int i, j, n, ret, num_vectors = 0;
- 	u32 user_base_data = 0, base_vector = 0;
- 	unsigned long irq_flags;
- 
-@@ -578,8 +579,11 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- 
- 		irq_grp->ab = ab;
- 		irq_grp->grp_id = i;
--		init_dummy_netdev(&irq_grp->napi_ndev);
--		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
-+		irq_grp->napi_ndev = alloc_netdev_dummy(0);
-+		if (!irq_grp->napi_ndev)
-+			return -ENOMEM;
-+
-+		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
- 			       ath11k_pcic_ext_grp_napi_poll);
- 
- 		if (ab->hw_params.ring_mask->tx[i] ||
-@@ -601,8 +605,13 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- 			int vector = (i % num_vectors) + base_vector;
- 			int irq = ath11k_pcic_get_msi_irq(ab, vector);
- 
--			if (irq < 0)
-+			if (irq < 0) {
-+				for (n = 0; n <= i; n++) {
-+					irq_grp = &ab->ext_irq_grp[n];
-+					free_netdev(irq_grp->napi_ndev);
-+				}
- 				return irq;
-+			}
- 
- 			ab->irq_num[irq_idx] = irq;
- 
-@@ -615,6 +624,10 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- 			if (ret) {
- 				ath11k_err(ab, "failed request irq %d: %d\n",
- 					   vector, ret);
-+				for (n = 0; n <= i; n++) {
-+					irq_grp = &ab->ext_irq_grp[n];
-+					free_netdev(irq_grp->napi_ndev);
-+				}
- 				return ret;
- 			}
- 		}
 -- 
-2.43.0
-
+You're more amazing than you think!
 
