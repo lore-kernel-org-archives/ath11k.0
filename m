@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 763A4C67861
-	for <ath11k@archiver.kernel.org>; Tue,  9 Apr 2024 12:59:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94FD8C67861
+	for <ath11k@archiver.kernel.org>; Tue,  9 Apr 2024 12:59:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=E0v0jOuLRJCnWd0s0TIZZ1gZgekQUwAKs2R0RJj3DsM=; b=UUTVFSVp/UoTmG24DmeyWVdv7u
-	an82K4jKn61gaJSQkpdnceLzDc3caV0GqFYOYF4L2cxdaGazigWSzA+p4lNOpcoVTa5bYrcIdTWgi
-	DWHrEYvB/C0SA/rpvA7KKn+C62wHMKA6IESiMzl1rlat462kdFCnhG4ndcZqkN/hNe7TRPNrsLNgZ
-	Uo6YJ8wYaE94gBOAGENiceGNG/WWiz6QkKB1kWgRHEjN3m/wyoNXXlkrq1BHGA0/MBRxO/feCjQ4+
-	raNKRBSkPkeND8y00YoPNJSXe3KSYoS4eMjIv+XYTibGS30avXlMZh1JJkzUc7G1x2o1IsDxHOSFG
-	EDT3mdZg==;
+	bh=bGHHnAjzHXOHKZAHNwNt7Xm//rgfn0lSUB+nM5VysgU=; b=IIgM2MRz7OiKtF2/s8ZCjPH371
+	eQhznM543oh+MygkD1Bl3q0TCxd1X24otxIGOP7154L9dqhZBduHGNJ1XS1nKkO5TAkMYVZfjP1Dd
+	isW80jbHoyGgW32+t+/RQTH/6MiAX1yiDSjMT0VHeNBNXrF0z53c1xvcN1MlMJoIipY58OwA/2pu0
+	hmnnyGycjVqkZDjO31t1JwfjQxLwYnV6WkVsw/8Rw2KesIC+MYWnE1wSFAXc3KFc27Hi9Sn1zn8w1
+	cusTZhrzQ1FZ1Rx2rIPKykQ+F9LtgP5zTrh6kpzvdXQGOVSJbRA7TygqnFHuZzqW1pbxU9150Fwyx
+	gAr4uyAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruB45-000000020PW-080x;
-	Tue, 09 Apr 2024 12:59:05 +0000
-Received: from mail-ej1-f52.google.com ([209.85.218.52])
+	id 1ruB4J-000000020c1-3sF0;
+	Tue, 09 Apr 2024 12:59:19 +0000
+Received: from mail-ej1-f42.google.com ([209.85.218.42])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruB3Z-00000001zzs-2p4G;
-	Tue, 09 Apr 2024 12:58:38 +0000
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a51a7d4466bso488733666b.2;
-        Tue, 09 Apr 2024 05:58:32 -0700 (PDT)
+	id 1ruB3b-0000000201E-0Y0i;
+	Tue, 09 Apr 2024 12:58:41 +0000
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a51d3193e54so260786266b.2;
+        Tue, 09 Apr 2024 05:58:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712667511; x=1713272311;
+        d=1e100.net; s=20230601; t=1712667513; x=1713272313;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=E0v0jOuLRJCnWd0s0TIZZ1gZgekQUwAKs2R0RJj3DsM=;
-        b=uk4INKRRdtWww815cLHkt58IyNdMqaJqxJFK1MKQqR2cx0F8EaZMa/+qExiuUJguVo
-         KKYpXtklRmg4S1E7XYq75pB2zPEaeGQsj0jeunQVDd5cvxLE6zP1JW28iL3ONnvXIQud
-         bdeWG2uGQeJ3wTbOIONX35bFnoKOP9QFeLzC15kfg4+UjChlVxJVjUDwuM8x2hQuvayQ
-         gUHS7FoisRnt9hDKfuiL7kfObR0wLWNocGL4yxZ2ucLi6+JcJZJAyup/SC9d68NanCaE
-         O19F0CoB4UTpUUhlpDjkngwrzIx4bl99nu1nRxVG/1Gm87wqI0vmvPSyQ9uEqPHIhJ/O
-         7u5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVGuVVung5B+hltrew9sFMakkyaqy2gEZYQw79wTPbbn4BgEsiyG+o8RSryHpE68WQXu9iWn3HvGqa97NNxTNHhwXmQRjwAAnluFP7Ej8nfvgt7ERcqe3Pr323zslifj2ZNMUNWNDlscwy0/rAr/aHq8nxFvPSG3zgoXVKiUiq4EUDPs21eo1YVvSLdi9VyeaoNyrPLktlRF826e2ARvUnBIWHU/dmz+Ncze9Fl+rTGjA==
-X-Gm-Message-State: AOJu0Yx5XLFoFa6xHtOik7rTO//0wk9M99wIC6TINR2bcwYS+S0YXdtU
-	ZVRiSQDXXhzapH5Rpu9MnuVY1FKibXmx6ZPOcwhhJ8p7wzhekKx9
-X-Google-Smtp-Source: AGHT+IHyK7ujyUyZh8iF233ZssOvRS6odkm3B+SQqJXDLyPLOk07R78HAolnGi6zyM2diHi7B8+VPw==
-X-Received: by 2002:a17:906:11da:b0:a46:d041:28e0 with SMTP id o26-20020a17090611da00b00a46d04128e0mr7230425eja.59.1712667510661;
-        Tue, 09 Apr 2024 05:58:30 -0700 (PDT)
-Received: from localhost (fwdproxy-lla-003.fbsv.net. [2a03:2880:30ff:3::face:b00c])
-        by smtp.gmail.com with ESMTPSA id m8-20020a1709061ec800b00a46d2e9fd73sm5660571ejj.222.2024.04.09.05.58.30
+        bh=bGHHnAjzHXOHKZAHNwNt7Xm//rgfn0lSUB+nM5VysgU=;
+        b=lZSNbR/coIge5VMg5F6Yf23Yxw61bF9Hju7xpAHuN/HikKukDSF+cwVYWQtqqZAJ6+
+         RAaoKUxtjcAJFTnlEpiJ2TLkYJnx7tCZfpw0AzTv6e6gbVgZm80Dt+V1kliRGjfrwcQ3
+         Vt3fVaqSDNcfiMKy4zmWZp6Lc/1+58QIPSr+cW7TqEzKYzcdndc+BTnQnAbkHDfdFORm
+         UMSSw1jHMxmX1h3xIsBSi55y2EvcRKFRAnkbPWXxqNck+5Rk55hvUMxz9/IgrKATuaxx
+         eQtK1Yy02dYvn1CMB2QFJpGCN31jyF854AfvscM06E6Oeman/vGZHj/o6z1PQE+RDP/W
+         rj8g==
+X-Forwarded-Encrypted: i=1; AJvYcCXsi1+L0Nr63JBIOyaS1nvogSUx9izzv7mWTWPoFt333O8tWEjU7JxI+iFkKpKV6fTr5WOIbB0IrG6VCpRicsNndjYBFKSntG8vOEs2aIGDfvZ0gobi5UlYIdyhPsUQ83FbnGHrKKiYEHt2dQD+JOKoCUiuUlxrzPfDJMWp5sC3QzShIvPquENQucW/r2StYThj+08CaKDZYHE2d7+Q49h5LEeLXB+kmR3O56p8NCNWBQ==
+X-Gm-Message-State: AOJu0YzEHwOjuJ4maaQsXoufs25Vjmh7ELHHhdYgkqqV/Tm+5nCEdkOe
+	PZ8bRsbhJqLE6m5RDXzpLJxTuUfjcoQMmzrisk/fXxgMzjwfnxad
+X-Google-Smtp-Source: AGHT+IGMgSFXt7t2xIbiDfP6KwVGUdieuhC7/Y1prTMT8Szxp9BfUspk13DMg+jmJkRrU6tRzs6JxA==
+X-Received: by 2002:a17:907:1c1f:b0:a51:d1f6:393b with SMTP id nc31-20020a1709071c1f00b00a51d1f6393bmr4812180ejc.40.1712667512608;
+        Tue, 09 Apr 2024 05:58:32 -0700 (PDT)
+Received: from localhost (fwdproxy-lla-120.fbsv.net. [2a03:2880:30ff:78::face:b00c])
+        by smtp.gmail.com with ESMTPSA id hx17-20020a170906847100b00a4e393b6349sm5669943ejc.5.2024.04.09.05.58.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Apr 2024 05:58:30 -0700 (PDT)
+        Tue, 09 Apr 2024 05:58:32 -0700 (PDT)
 From: Breno Leitao <leitao@debian.org>
 To: aleksander.lobakin@intel.com,
 	kuba@kernel.org,
@@ -68,25 +68,30 @@ To: aleksander.lobakin@intel.com,
 	ath10k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	geomatsi@gmail.com,
-	kvalo@kernel.org
+	kvalo@kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Alexei Starovoitov <ast@kernel.org>,
+	Daniel Borkmann <daniel@iogearbox.net>,
+	Jesper Dangaard Brouer <hawk@kernel.org>,
+	John Fastabend <john.fastabend@gmail.com>
 Cc: quic_jjohnson@quicinc.com,
 	leon@kernel.org,
 	dennis.dalessandro@cornelisnetworks.com,
 	linux-kernel@vger.kernel.org,
 	netdev@vger.kernel.org,
-	bpf@vger.kernel.org,
-	Elad Nachman <enachman@marvell.com>
-Subject: [PATCH net-next v4 3/9] net: marvell: prestera: allocate dummy net_device dynamically
-Date: Tue,  9 Apr 2024 05:57:17 -0700
-Message-ID: <20240409125738.1824983-4-leitao@debian.org>
+	bpf@vger.kernel.org
+Subject: [PATCH net-next v4 4/9] net: mediatek: mtk_eth_sock: allocate dummy net_device dynamically
+Date: Tue,  9 Apr 2024 05:57:18 -0700
+Message-ID: <20240409125738.1824983-5-leitao@debian.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240409125738.1824983-1-leitao@debian.org>
 References: <20240409125738.1824983-1-leitao@debian.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240409_055834_088998_54A03C1C 
-X-CRM114-Status: GOOD (  11.58  )
+X-CRM114-CacheID: sfid-20240409_055835_212840_AE5B8F40 
+X-CRM114-Status: GOOD (  15.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,56 +117,73 @@ helper to allocate and initialize dummy devices.
 [1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
 
 Signed-off-by: Breno Leitao <leitao@debian.org>
-Acked-by: Elad Nachman <enachman@marvell.com>
 ---
- .../net/ethernet/marvell/prestera/prestera_rxtx.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c | 17 +++++++++++++----
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h |  2 +-
+ 2 files changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c b/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
-index cc2a9ae794be..39d9bf82c115 100644
---- a/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
-+++ b/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
-@@ -96,7 +96,7 @@ struct prestera_sdma {
- 	struct dma_pool *desc_pool;
- 	struct work_struct tx_work;
- 	struct napi_struct rx_napi;
--	struct net_device napi_dev;
-+	struct net_device *napi_dev;
- 	u32 map_addr;
- 	u64 dma_mask;
- 	/* protect SDMA with concurrent access from multiple CPUs */
-@@ -654,13 +654,21 @@ static int prestera_sdma_switch_init(struct prestera_switch *sw)
- 	if (err)
- 		goto err_evt_register;
+diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+index caa13b9cedff..d7a96dc11c07 100644
+--- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
++++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+@@ -1710,7 +1710,7 @@ static struct page_pool *mtk_create_page_pool(struct mtk_eth *eth,
+ 	if (IS_ERR(pp))
+ 		return pp;
  
--	init_dummy_netdev(&sdma->napi_dev);
-+	sdma->napi_dev = alloc_netdev_dummy(0);
-+	if (!sdma->napi_dev) {
-+		dev_err(dev, "not able to initialize dummy device\n");
+-	err = __xdp_rxq_info_reg(xdp_q, &eth->dummy_dev, id,
++	err = __xdp_rxq_info_reg(xdp_q, eth->dummy_dev, id,
+ 				 eth->rx_napi.napi_id, PAGE_SIZE);
+ 	if (err < 0)
+ 		goto err_free_pp;
+@@ -4188,6 +4188,8 @@ static int mtk_free_dev(struct mtk_eth *eth)
+ 		metadata_dst_free(eth->dsa_meta[i]);
+ 	}
+ 
++	free_netdev(eth->dummy_dev);
++
+ 	return 0;
+ }
+ 
+@@ -4983,9 +4985,14 @@ static int mtk_probe(struct platform_device *pdev)
+ 	/* we run 2 devices on the same DMA ring so we need a dummy device
+ 	 * for NAPI to work
+ 	 */
+-	init_dummy_netdev(&eth->dummy_dev);
+-	netif_napi_add(&eth->dummy_dev, &eth->tx_napi, mtk_napi_tx);
+-	netif_napi_add(&eth->dummy_dev, &eth->rx_napi, mtk_napi_rx);
++	eth->dummy_dev = alloc_netdev_dummy(0);
++	if (!eth->dummy_dev) {
 +		err = -ENOMEM;
-+		goto err_alloc_dummy;
++		dev_err(eth->dev, "failed to allocated dummy device\n");
++		goto err_unreg_netdev;
 +	}
++	netif_napi_add(eth->dummy_dev, &eth->tx_napi, mtk_napi_tx);
++	netif_napi_add(eth->dummy_dev, &eth->rx_napi, mtk_napi_rx);
  
--	netif_napi_add(&sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll);
-+	netif_napi_add(sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll);
- 	napi_enable(&sdma->rx_napi);
+ 	platform_set_drvdata(pdev, eth);
+ 	schedule_delayed_work(&eth->reset.monitor_work,
+@@ -4993,6 +5000,8 @@ static int mtk_probe(struct platform_device *pdev)
  
  	return 0;
  
-+err_alloc_dummy:
-+	prestera_hw_event_handler_unregister(sw, PRESTERA_EVENT_TYPE_RXTX,
-+					     prestera_rxtx_handle_event);
- err_evt_register:
- err_tx_init:
- 	prestera_sdma_tx_fini(sdma);
-@@ -677,6 +685,7 @@ static void prestera_sdma_switch_fini(struct prestera_switch *sw)
- 
- 	napi_disable(&sdma->rx_napi);
- 	netif_napi_del(&sdma->rx_napi);
-+	free_netdev(sdma->napi_dev);
- 	prestera_hw_event_handler_unregister(sw, PRESTERA_EVENT_TYPE_RXTX,
- 					     prestera_rxtx_handle_event);
- 	prestera_sdma_tx_fini(sdma);
++err_unreg_netdev:
++	mtk_unreg_dev(eth);
+ err_deinit_ppe:
+ 	mtk_ppe_deinit(eth);
+ 	mtk_mdio_cleanup(eth);
+diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.h b/drivers/net/ethernet/mediatek/mtk_eth_soc.h
+index 9ae3b8a71d0e..723fc637027c 100644
+--- a/drivers/net/ethernet/mediatek/mtk_eth_soc.h
++++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.h
+@@ -1242,7 +1242,7 @@ struct mtk_eth {
+ 	spinlock_t			page_lock;
+ 	spinlock_t			tx_irq_lock;
+ 	spinlock_t			rx_irq_lock;
+-	struct net_device		dummy_dev;
++	struct net_device		*dummy_dev;
+ 	struct net_device		*netdev[MTK_MAX_DEVS];
+ 	struct mtk_mac			*mac[MTK_MAX_DEVS];
+ 	int				irq[3];
 -- 
 2.43.0
 
