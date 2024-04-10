@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7ABDCD128A
-	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 13:18:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BF1FCD11C2
+	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 13:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WCSWo+cbTjbJqU2UMVUeUJFNUS6Yf5iPYegXsbIUp/M=; b=1Q+ndnSHqjqLBYj/BRwXhmmIyn
-	CofeP/RPTJBoHa6qW55azdYh/yzQ9O160YwOcZkwU+xWtUtc5LtvDmCURgxecWZJLytte+H0+FvIx
-	5+pCUw+Oqjo4f+A85AScDASYckFVrKeqqO6sold9FKd+UwIbLYe42af0CC9q3GSs0/xdfAMBIwKma
-	dzaaJOpzhLlo0Rm2sp4aojcYi4MH6VYEdDhP33oVBgeCEav8z/fpu4V+rq8UdVM1ItmcP0p99URe1
-	CJkrtASLOnARfOzZ9BEPoobSEc8DhDsTFrOiBSZJYY4lvsG05WFfn8nl5Aot51a0LCT1YIid/i68S
-	ZoOZuRZQ==;
+	bh=E0v0jOuLRJCnWd0s0TIZZ1gZgekQUwAKs2R0RJj3DsM=; b=2PzUQH2efjmKr3g1L6dXcJxt3P
+	beDPLsL1JtKz5ALH2ofBhkvQD5ZH7d2Ozfle7FtB2BKID6mLqVQWNDq8aeVWceiXMleQeWQ2BUPhS
+	TREFJuvhZ2rI4WM15Qp/Ufp5ZfYKKw8syv5ecGJa/hg767CLeJbjLAbyLGTaV7MZ2v298AHRb4rLm
+	bJN7H/xg66XFK4LfMHJ8A5Itx3Lqg1m3XXhnRKSHvJvC1KQCw5qQJChm2IjkDtZpW09PkU+kK58or
+	iRDDxvP+Q63Qv3+7amRku/PX6mPeXgxdc7JIrPJ1RCqleEkW59Yt8SR/EKb9vGHLoxXodnE6kA5vk
+	aCoMrhSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruXqd-000000075sn-3FPI;
-	Wed, 10 Apr 2024 13:18:43 +0000
+	id 1ruXqi-000000075vx-2DmH;
+	Wed, 10 Apr 2024 13:18:48 +0000
 Received: from mail-ed1-f43.google.com ([209.85.208.43])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruXq1-000000075HB-3j4T;
+	id 1ruXq2-000000075LO-1jRQ;
 	Wed, 10 Apr 2024 13:18:08 +0000
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56e1bbdb362so8242940a12.1;
-        Wed, 10 Apr 2024 06:17:55 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56e6acb39d4so3741232a12.1;
+        Wed, 10 Apr 2024 06:18:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712755074; x=1713359874;
+        d=1e100.net; s=20230601; t=1712755085; x=1713359885;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WCSWo+cbTjbJqU2UMVUeUJFNUS6Yf5iPYegXsbIUp/M=;
-        b=OY3HXb4kjBo88or738hZioG27a4PXF24jLl1Qi3a25V7ZT4CB8s55/WVSgr6SbgN4h
-         kDHe47wpjsX2sE/nk1n1NGUDYjERoRDfh/WQ3bKqNfUlIS/QkdneBolRmjrlxFVsJOkB
-         FbOfopvkkZS/YScuDlirElH1zdHNg8fY/nW8lSvtGAKZZVsI9arafmb1XXqF/FRJhJWv
-         n76UL1b7ioIWZPETKihatoR64BIZEaztKimLcANDqIZKEuYEo0Rut2OOni+VTvrWWGrv
-         XYpNUgHjYxqOO1pMxu0m2FurMt3qsehgZhtRW3YKrVetm3zVUlEiWX74Tb+cXJHqV79X
-         jv1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXSMMyQn65Pmz3OjYReTKLaKkqGLQKqsW5kLgTnfT6SpOgb/39aCLoqWtuIYZ1kDIpmqcsq3CW4gFWAqxDF3Dkm1IGheix1ZmJ3GYQwtftirABMTbF+8LRQLPUr+FGBSUgzbLYVlK+C+xCzzNJ/TkUZXFxQh5jEVAxmlVoioSR7HmtbJL9MmnDI1l5GaJQu3M2XdDXE93xr4tC5j9EME9tHUakZu/tiefvZD9UdWCxbjw==
-X-Gm-Message-State: AOJu0YwhlzbKhp8HPnWrz0+bsMQl31ovCrb1UOtBxifS7Xo+ERyDDiCD
-	5mcx1eOo+JLtvpYJdhn9HLYYNAhCqW37eM4bEU4N9bKJYFME6uSb
-X-Google-Smtp-Source: AGHT+IFzohQ8nifeoYK9ng+dXMVkUWT33vP4drtn7UGXanZmNkg0eJxYz4rgtTa24o9nG26otr90ng==
-X-Received: by 2002:a50:baa4:0:b0:568:9d31:2a75 with SMTP id x33-20020a50baa4000000b005689d312a75mr2097283ede.4.1712755073613;
-        Wed, 10 Apr 2024 06:17:53 -0700 (PDT)
-Received: from localhost (fwdproxy-lla-006.fbsv.net. [2a03:2880:30ff:6::face:b00c])
-        by smtp.gmail.com with ESMTPSA id y9-20020a056402440900b0056e3707323bsm5689027eda.97.2024.04.10.06.17.52
+        bh=E0v0jOuLRJCnWd0s0TIZZ1gZgekQUwAKs2R0RJj3DsM=;
+        b=fqILSOsIQpI5VWWt6kdd51zHlqz8RyRYn/C2fE3T2vAXiaw0VbJaYecvvvvsm34waU
+         Rok2wTq5C2ZdvYIfw+CdH+oUcikCrRmd569OD0jdpUpEHOmtquJWqw38jGECaDF6XaiP
+         HnpEt9QUroy7vqB4dFDXMcbUXJEItCRVgoz1l8Y3B4BL/ZEuaPobnzcYbSky+VZOdpIE
+         15nmy6TUsc6I2EtLUFgFfMjHZ1UmMw9r9xrALf3KtkVCBg/Eij6Eq61ztQs0Vq6M/In/
+         wrcVBeJaplfp53shxrlzXkAbEjcAZI1JS6UglEF9Qp3bWiCggqMjzUa3mZ/z3zQh0RPd
+         F0qw==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ24hfHO2SP0ByUZiC+mJzkolkpmPcJxTcKrPp89VZJXuIEJrBE2ct/WQEREyvReoRI9BgaQkC/OOQqOaX1NOBgsmYSxbzmgZC5Lh8ZRpKbeR42FITJf3xThK//+w20LVramzntBz18IKslV6ppj6eN3LdebsFSRdnEe5Ng6hVrajjetDPnSUrLllmjMBmMvzak+L5tVjkMWpZ1q4+Q2NZyi+6z1TsKr7mvCw5bZLwUw==
+X-Gm-Message-State: AOJu0YxhxOFRHIEuh4UxKyRup0AAjD+jtHpB+UWf3d9aJ4dARIrhmkML
+	cgl9UlCXIZaTS7ZO9p8hF5ABu/KGJbwkI8m4nXuh/AEMX5IDHKml
+X-Google-Smtp-Source: AGHT+IH7+U+qW5DuChVaZ9Yjnr/uILgb+IAUK0IN9pp6hNnY+Ion9hpWvWwXtUxP7oAsdllTb4QHyw==
+X-Received: by 2002:a17:907:20e8:b0:a50:e067:e211 with SMTP id rh8-20020a17090720e800b00a50e067e211mr1583949ejb.36.1712755085041;
+        Wed, 10 Apr 2024 06:18:05 -0700 (PDT)
+Received: from localhost (fwdproxy-lla-116.fbsv.net. [2a03:2880:30ff:74::face:b00c])
+        by smtp.gmail.com with ESMTPSA id gs44-20020a1709072d2c00b00a46a3ad035esm6986256ejc.179.2024.04.10.06.18.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 06:17:52 -0700 (PDT)
+        Wed, 10 Apr 2024 06:18:04 -0700 (PDT)
 From: Breno Leitao <leitao@debian.org>
 To: aleksander.lobakin@intel.com,
 	kuba@kernel.org,
@@ -77,22 +77,18 @@ Cc: quic_jjohnson@quicinc.com,
 	bpf@vger.kernel.org,
 	idosch@idosch.org,
 	leitao@debian.org,
-	Ido Schimmel <idosch@nvidia.com>,
-	Jiri Pirko <jiri@resnulli.us>,
-	Simon Horman <horms@kernel.org>,
-	Daniel Borkmann <daniel@iogearbox.net>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH net-next v5 01/10] net: core: Fix documentation
-Date: Wed, 10 Apr 2024 06:13:42 -0700
-Message-ID: <20240410131407.3897251-2-leitao@debian.org>
+	Elad Nachman <enachman@marvell.com>
+Subject: [PATCH net-next v5 04/10] net: marvell: prestera: allocate dummy net_device dynamically
+Date: Wed, 10 Apr 2024 06:13:45 -0700
+Message-ID: <20240410131407.3897251-5-leitao@debian.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240410131407.3897251-1-leitao@debian.org>
 References: <20240410131407.3897251-1-leitao@debian.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_061806_020739_AF9CB36F 
-X-CRM114-Status: GOOD (  13.20  )
+X-CRM114-CacheID: sfid-20240410_061806_512096_118647C8 
+X-CRM114-Status: GOOD (  11.40  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,38 +103,67 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Fix bad grammer in description of init_dummy_netdev() functio.  This
-topic showed up in the review of the "allocate dummy device dynamically"
-patchset.
+Embedding net_device into structures prohibits the usage of flexible
+arrays in the net_device structure. For more details, see the discussion
+at [1].
 
-Suggested-by: Ido Schimmel <idosch@nvidia.com>
+Un-embed the net_device from the private struct by converting it
+into a pointer. Then use the leverage the new alloc_netdev_dummy()
+helper to allocate and initialize dummy devices.
+
+[1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
+
 Signed-off-by: Breno Leitao <leitao@debian.org>
+Acked-by: Elad Nachman <enachman@marvell.com>
 ---
- net/core/dev.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../net/ethernet/marvell/prestera/prestera_rxtx.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/net/core/dev.c b/net/core/dev.c
-index 854a3a28a8d8..987039ffa63c 100644
---- a/net/core/dev.c
-+++ b/net/core/dev.c
-@@ -10418,7 +10418,7 @@ EXPORT_SYMBOL(register_netdevice);
-  *	init_dummy_netdev	- init a dummy network device for NAPI
-  *	@dev: device to init
-  *
-- *	This takes a network device structure and initialize the minimum
-+ *	This takes a network device structure and initializes the minimum
-  *	amount of fields so it can be used to schedule NAPI polls without
-  *	registering a full blown interface. This is to be used by drivers
-  *	that need to tie several hardware interfaces to a single NAPI
-@@ -10427,7 +10427,7 @@ EXPORT_SYMBOL(register_netdevice);
- void init_dummy_netdev(struct net_device *dev)
- {
- 	/* Clear everything. Note we don't initialize spinlocks
--	 * are they aren't supposed to be taken by any of the
-+	 * as they aren't supposed to be taken by any of the
- 	 * NAPI code and this dummy netdev is supposed to be
- 	 * only ever used for NAPI polls
- 	 */
+diff --git a/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c b/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
+index cc2a9ae794be..39d9bf82c115 100644
+--- a/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
++++ b/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
+@@ -96,7 +96,7 @@ struct prestera_sdma {
+ 	struct dma_pool *desc_pool;
+ 	struct work_struct tx_work;
+ 	struct napi_struct rx_napi;
+-	struct net_device napi_dev;
++	struct net_device *napi_dev;
+ 	u32 map_addr;
+ 	u64 dma_mask;
+ 	/* protect SDMA with concurrent access from multiple CPUs */
+@@ -654,13 +654,21 @@ static int prestera_sdma_switch_init(struct prestera_switch *sw)
+ 	if (err)
+ 		goto err_evt_register;
+ 
+-	init_dummy_netdev(&sdma->napi_dev);
++	sdma->napi_dev = alloc_netdev_dummy(0);
++	if (!sdma->napi_dev) {
++		dev_err(dev, "not able to initialize dummy device\n");
++		err = -ENOMEM;
++		goto err_alloc_dummy;
++	}
+ 
+-	netif_napi_add(&sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll);
++	netif_napi_add(sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll);
+ 	napi_enable(&sdma->rx_napi);
+ 
+ 	return 0;
+ 
++err_alloc_dummy:
++	prestera_hw_event_handler_unregister(sw, PRESTERA_EVENT_TYPE_RXTX,
++					     prestera_rxtx_handle_event);
+ err_evt_register:
+ err_tx_init:
+ 	prestera_sdma_tx_fini(sdma);
+@@ -677,6 +685,7 @@ static void prestera_sdma_switch_fini(struct prestera_switch *sw)
+ 
+ 	napi_disable(&sdma->rx_napi);
+ 	netif_napi_del(&sdma->rx_napi);
++	free_netdev(sdma->napi_dev);
+ 	prestera_hw_event_handler_unregister(sw, PRESTERA_EVENT_TYPE_RXTX,
+ 					     prestera_rxtx_handle_event);
+ 	prestera_sdma_tx_fini(sdma);
 -- 
 2.43.0
 
