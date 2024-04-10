@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF534CD11C2
-	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 15:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4672CCD128A
+	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 15:06:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fDN7LNg3MU1SeI2iaSN0kzB8FZeKumLZXWxQhW85B6o=; b=Oz/F8FqcwUe2CYtw6644gx1LrX
-	aMsINCyKfYHxKruZ0nK5L6xzY03TgKEaOZL6gMMtNqsBvM/ow//bdosW3BWA5NOkTP0R7VBNLod/2
-	bDA6AgjUPu5JJIHRYzk7rkB9STgCTK0oPD1frVhVD1MhPa0PJuY4EVswJk6XvPyZs/B5s773XV+LL
-	OB62z2q4EJiTZUQ1BgaDoUAb2+VJOKhkCzR6Iztfk6xQUnNcTwuZg/NYf7Sj5Q4GsVYH/y7TAPVxr
-	fedVRmFrHdw8nGMj4PSOM663Fubv/2+dkpae5oEyT5GLncu8YoZoESBOwvkUb4DMHxjpBJmBLdYQq
-	f4ypWsBw==;
+	bh=TDGvkul+Q73nN0fHZOhTAHooDQZwt3FC9x/QxxSs3zo=; b=zAXe/TqTHQMfkY/nOQkLK0N9Jx
+	jQ4PNOrGyZRJi2sESN2ioWZwEFHru8Goy+tbdZlPM0vPo4T/du4IeRjF5Jc24rZkQtbEscPuYKW/C
+	Zmq/CaV5BMu+Gj9/U1m7EkE1F9uVcSZQ0S6TpslGzvch1/ICjuVTpA1LKD17XiBvbPXEezxPq5lCS
+	2zhsIEhDTWIhEPjmU2gpPDreTlin/6fZ0XDhLQIeujapMXuEkr4YqNbyTIJnbdgWbpNHlnxuzU5lk
+	/+9w8Gc+uSeOouI//gTaJ1KRtLuXeexoQCodEMUSk9snAr9p7i5ogla41kksiM27gNiZkKVsuZ4Dq
+	BRv8cwlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruZU5-00000007gF9-1KJV;
-	Wed, 10 Apr 2024 15:03:33 +0000
-Received: from wfout3-smtp.messagingengine.com ([64.147.123.146])
+	id 1ruZWV-00000007grY-3GN4;
+	Wed, 10 Apr 2024 15:06:03 +0000
+Received: from wfhigh3-smtp.messagingengine.com ([64.147.123.154])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruZU1-00000007gCb-0jIp;
-	Wed, 10 Apr 2024 15:03:30 +0000
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
-	by mailfout.west.internal (Postfix) with ESMTP id C043C1C00081;
-	Wed, 10 Apr 2024 11:03:21 -0400 (EDT)
+	id 1ruZWR-00000007gpw-3x2k;
+	Wed, 10 Apr 2024 15:06:01 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfhigh.west.internal (Postfix) with ESMTP id AF66B18000F0;
+	Wed, 10 Apr 2024 11:05:52 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute7.internal (MEProxy); Wed, 10 Apr 2024 11:03:24 -0400
+  by compute5.internal (MEProxy); Wed, 10 Apr 2024 11:05:55 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-type:content-type:date:date
 	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
 	:message-id:mime-version:references:reply-to:subject:subject:to
 	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1712761401; x=1712847801; bh=fDN7LNg3MU1SeI2iaSN0kzB8FZeK
-	umLZXWxQhW85B6o=; b=WFYVPKzf+WTlvkgORk5e+JbUnduryZ++mSz035b372fQ
-	nuuwL97dI7BBVgjaBXXEKiIFzh1Xyv01xkS/cq15Jf/6yZYpZtPHaLiypshuFuF3
-	pdNQ89u0rPhqaZ0v4nEn/rH0Pm4IWN/RmYSgWwTslJtiTZfFs9TnrC1vfw7hS6cS
-	slsC7omM+v2bCRAG4tS98FRNeLa9r/PsYaf6q3SMIfjSW26kXJOAuPipp0e1V/1t
-	1gSSXfltOJA0rvVU/U6Bt1i1CuIc3N5d2S3+iWEu2lw7ds4BFcIWg5HbAgpKfY7A
-	//X3QyB6pnzMMsz5r74VsH5uH5SzoBvlIUGD+3U+Ug==
-X-ME-Sender: <xms:OKoWZqnU0_nEs71C46y4upxl7qPl4h1wr0ptDI2N1EkWGPuRowxEOQ>
-    <xme:OKoWZh1-A5K0sHS6Pz9MY-Jkcho3tPyb0Ezz3esBLHAFD3WITI1k-Dra9lZtBIzMW
-    GnK_CXTzQcXB7M>
-X-ME-Received: <xmr:OKoWZooY5673t2tsp3KDlWLQHLuu_S2mDs72czBwe9btkSIQlt6gBKV7kcyQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudehiedgkeduucetufdoteggodetrfdotf
+	fm2; t=1712761552; x=1712847952; bh=TDGvkul+Q73nN0fHZOhTAHooDQZw
+	t3FC9x/QxxSs3zo=; b=SNGUDwkXjBq6YtQxxM3lA3GMHmXSrT2cy2J4JaBa5KHE
+	Hc+xeukLb0K8D1cZxsH4khv3vX5w4V26Ev7YwRBsBzEtfVxXcQG/DDo7Wq92YHEw
+	dcfJTEmtqnjPnc9NgFt/el+AJwp41r1btXkQrABaZ7W99StTxiXT58NBJ8p2lltD
+	iUKRp+tK1x7+tt/v5GS20dHXtRAxxLkSGlKzr4tdgJHRLM34nG7atn/SqZAqyZjE
+	Kghp5JrU2hT2wOiFqGuku2InwpV8r62JpiCDJeaLhY1qurB+4dCCtq3yEjCwQQhp
+	exn1cwQNlaGDPugyI06Ob69hDT0wm+lzpi7kihAHuA==
+X-ME-Sender: <xms:z6oWZirsV-nMSlBJ_lJHht3gSOq-1b8CG2vrEJEIev3ET7Gg5BIBhw>
+    <xme:z6oWZgpmS8OJjlntZPqhKVYsG_Ms_fMU82xVOyAvV8_0Lf8-lfkq0Hq4pN2Xy7GMZ
+    deF3Ovb49n63Gc>
+X-ME-Received: <xmr:z6oWZnPGX5nP-7JRHmiHleiBxQF-dNbP1wTCXQU8oUbIv9e_gjPq_L4IW_Kc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudehiedgkedvucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesthdtrodttddtvdenucfhrhhomhepkfguohcu
+    cujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepkfguohcu
     ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrth
-    htvghrnhepfeefueegheehleelgeehjefgieeltdeuteekkeefheejudffleefgfeludeh
-    hfejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepih
+    htvghrnhepvddufeevkeehueegfedtvdevfefgudeifeduieefgfelkeehgeelgeejjeeg
+    gefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepih
     guohhstghhsehiughoshgthhdrohhrgh
-X-ME-Proxy: <xmx:OKoWZunajKgXJvlzXySKL6AtIdjUEocGwBl1aQWCUN20yrdhYwhE6A>
-    <xmx:OKoWZo1PtmmB9RkBuY-kuLKW7T5dem6xCJWre-MPRzex3HJzmqr_EA>
-    <xmx:OKoWZlsp--rAHoLzaGyDDV9iW1zsiKd9Rl-zswd2O8QO_HZxOI8W5g>
-    <xmx:OKoWZkXvmTDOCoYgZzXSBYss2L67git07oFAdqTQjzSm7k4qlvQHtg>
-    <xmx:OaoWZt9mVLzcYFfWAX767iMyveSzZBJ9U9WoRGWckea2lIuLxllqdVCr>
+X-ME-Proxy: <xmx:z6oWZh49-kpbe5t6iou3vs4d-1A5eJnaI5xAIu1_4gCElWtyVPM-Cw>
+    <xmx:z6oWZh6-YFeqxhU1DrfRO3jic7Oo4N5ICNItdUDiCIzLDV9VlwEIDQ>
+    <xmx:z6oWZhiDjueR4bTXrVLEOVXiuABAM3tjPYq_DnwRZaBQzewPK0MBUA>
+    <xmx:z6oWZr7yMr5pEO2Zbdcw9y9CBMvABVOix3FefIk--Aup764a9f9V1w>
+    <xmx:0KoWZumSlhW9MHX9P70o-XAB3cMSnYOwHvogsN-suiaqrMuljzfLXBGb>
 Feedback-ID: i494840e7:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 10 Apr 2024 11:03:18 -0400 (EDT)
-Date: Wed, 10 Apr 2024 18:03:16 +0300
+ 10 Apr 2024 11:05:50 -0400 (EDT)
+Date: Wed, 10 Apr 2024 18:05:47 +0300
 From: Ido Schimmel <idosch@idosch.org>
 To: Breno Leitao <leitao@debian.org>
 Cc: aleksander.lobakin@intel.com, kuba@kernel.org, davem@davemloft.net,
@@ -77,21 +77,21 @@ Cc: aleksander.lobakin@intel.com, kuba@kernel.org, davem@davemloft.net,
 	kvalo@kernel.org, quic_jjohnson@quicinc.com, leon@kernel.org,
 	dennis.dalessandro@cornelisnetworks.com,
 	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	bpf@vger.kernel.org, Ido Schimmel <idosch@nvidia.com>,
-	Jiri Pirko <jiri@resnulli.us>, Simon Horman <horms@kernel.org>,
+	bpf@vger.kernel.org, Jiri Pirko <jiri@resnulli.us>,
+	Simon Horman <horms@kernel.org>,
 	Daniel Borkmann <daniel@iogearbox.net>,
 	Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: Re: [PATCH net-next v5 01/10] net: core: Fix documentation
-Message-ID: <ZhaqNOCeCFSObcPS@shredder>
+Subject: Re: [PATCH net-next v5 02/10] net: free_netdev: exit earlier if dummy
+Message-ID: <Zhaqyyk9CUaUvMDy@shredder>
 References: <20240410131407.3897251-1-leitao@debian.org>
- <20240410131407.3897251-2-leitao@debian.org>
+ <20240410131407.3897251-3-leitao@debian.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240410131407.3897251-2-leitao@debian.org>
+In-Reply-To: <20240410131407.3897251-3-leitao@debian.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_080329_360067_C74A93F7 
-X-CRM114-Status: UNSURE (   5.06  )
+X-CRM114-CacheID: sfid-20240410_080600_038643_1B5C6B33 
+X-CRM114-Status: UNSURE (   8.54  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,18 +107,19 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 10, 2024 at 06:13:42AM -0700, Breno Leitao wrote:
-> Fix bad grammer in description of init_dummy_netdev() functio.  This
-> topic showed up in the review of the "allocate dummy device dynamically"
-> patchset.
+On Wed, Apr 10, 2024 at 06:13:43AM -0700, Breno Leitao wrote:
+> For dummy devices, exit earlier at free_netdev() instead of executing
+> the whole function. This is necessary, because dummy devices are
+> special, and shouldn't have the second part of the function executed.
 > 
-> Suggested-by: Ido Schimmel <idosch@nvidia.com>
+> Otherwise reg_state, which is NETREG_DUMMY, will be overwritten and
+> there will be no way to identify that this is a dummy device. Also, this
+> device do not need the final put_device(), since dummy devices are not
+> registered (through register_netdevice()), where the device reference is
+> increased (at netdev_register_kobject()/device_add()).
+> 
+> Suggested-by: Jakub Kicinski <kuba@kernel.org>
 > Signed-off-by: Breno Leitao <leitao@debian.org>
 
 Reviewed-by: Ido Schimmel <idosch@nvidia.com>
-
-In case you need to send another version:
-
-s/grammer/grammar/
-s/functio/function/
 
