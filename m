@@ -4,95 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4672CCD128A
-	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 15:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4BE9CD11C2
+	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 22:00:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TDGvkul+Q73nN0fHZOhTAHooDQZwt3FC9x/QxxSs3zo=; b=zAXe/TqTHQMfkY/nOQkLK0N9Jx
-	jQ4PNOrGyZRJi2sESN2ioWZwEFHru8Goy+tbdZlPM0vPo4T/du4IeRjF5Jc24rZkQtbEscPuYKW/C
-	Zmq/CaV5BMu+Gj9/U1m7EkE1F9uVcSZQ0S6TpslGzvch1/ICjuVTpA1LKD17XiBvbPXEezxPq5lCS
-	2zhsIEhDTWIhEPjmU2gpPDreTlin/6fZ0XDhLQIeujapMXuEkr4YqNbyTIJnbdgWbpNHlnxuzU5lk
-	/+9w8Gc+uSeOouI//gTaJ1KRtLuXeexoQCodEMUSk9snAr9p7i5ogla41kksiM27gNiZkKVsuZ4Dq
-	BRv8cwlQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=xBagYfSF2VpuPkFqS5FJ8XAb1CielWua0CPGtB5IEPE=; b=BawpPIbbMLz+Vs80jhnbbUH4kZ
+	zDITVf5H2wU3cJkd6CC7TqEYQh0NbTdmDs9Xcs+EgfgF3yOCc2yJM8gouEzCjqH7VdGZZz8kKW3/n
+	QNVE0XT0Pzd8kQM5ZrZTZSBdy6KI87ucTXAKdbcBnZfkcIuwRG28Pzr32E2QKF+NdLNAp7AlMjqBS
+	MAlt0MIuJqUMxqlLXw0fM151rTr60jA+Pc0iIpzT3GEOr/zvDd34lqPN4HdvK+oCWt+vAumHlLuKB
+	nIGAUVGsbHO6URjQGk9QW9bdFhCtTzI12NPi/PPLDIcFd3UbDiVPN8hjr3+jxiZM5Zksi87WxDwYX
+	wNjZ0Uhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruZWV-00000007grY-3GN4;
-	Wed, 10 Apr 2024 15:06:03 +0000
-Received: from wfhigh3-smtp.messagingengine.com ([64.147.123.154])
+	id 1rufzc-0000000989h-05HH;
+	Wed, 10 Apr 2024 22:00:32 +0000
+Received: from mail-pf1-x434.google.com ([2607:f8b0:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruZWR-00000007gpw-3x2k;
-	Wed, 10 Apr 2024 15:06:01 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.west.internal (Postfix) with ESMTP id AF66B18000F0;
-	Wed, 10 Apr 2024 11:05:52 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 10 Apr 2024 11:05:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1712761552; x=1712847952; bh=TDGvkul+Q73nN0fHZOhTAHooDQZw
-	t3FC9x/QxxSs3zo=; b=SNGUDwkXjBq6YtQxxM3lA3GMHmXSrT2cy2J4JaBa5KHE
-	Hc+xeukLb0K8D1cZxsH4khv3vX5w4V26Ev7YwRBsBzEtfVxXcQG/DDo7Wq92YHEw
-	dcfJTEmtqnjPnc9NgFt/el+AJwp41r1btXkQrABaZ7W99StTxiXT58NBJ8p2lltD
-	iUKRp+tK1x7+tt/v5GS20dHXtRAxxLkSGlKzr4tdgJHRLM34nG7atn/SqZAqyZjE
-	Kghp5JrU2hT2wOiFqGuku2InwpV8r62JpiCDJeaLhY1qurB+4dCCtq3yEjCwQQhp
-	exn1cwQNlaGDPugyI06Ob69hDT0wm+lzpi7kihAHuA==
-X-ME-Sender: <xms:z6oWZirsV-nMSlBJ_lJHht3gSOq-1b8CG2vrEJEIev3ET7Gg5BIBhw>
-    <xme:z6oWZgpmS8OJjlntZPqhKVYsG_Ms_fMU82xVOyAvV8_0Lf8-lfkq0Hq4pN2Xy7GMZ
-    deF3Ovb49n63Gc>
-X-ME-Received: <xmr:z6oWZnPGX5nP-7JRHmiHleiBxQF-dNbP1wTCXQU8oUbIv9e_gjPq_L4IW_Kc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudehiedgkedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepkfguohcu
-    ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrth
-    htvghrnhepvddufeevkeehueegfedtvdevfefgudeifeduieefgfelkeehgeelgeejjeeg
-    gefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepih
-    guohhstghhsehiughoshgthhdrohhrgh
-X-ME-Proxy: <xmx:z6oWZh49-kpbe5t6iou3vs4d-1A5eJnaI5xAIu1_4gCElWtyVPM-Cw>
-    <xmx:z6oWZh6-YFeqxhU1DrfRO3jic7Oo4N5ICNItdUDiCIzLDV9VlwEIDQ>
-    <xmx:z6oWZhiDjueR4bTXrVLEOVXiuABAM3tjPYq_DnwRZaBQzewPK0MBUA>
-    <xmx:z6oWZr7yMr5pEO2Zbdcw9y9CBMvABVOix3FefIk--Aup764a9f9V1w>
-    <xmx:0KoWZumSlhW9MHX9P70o-XAB3cMSnYOwHvogsN-suiaqrMuljzfLXBGb>
-Feedback-ID: i494840e7:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 10 Apr 2024 11:05:50 -0400 (EDT)
-Date: Wed, 10 Apr 2024 18:05:47 +0300
-From: Ido Schimmel <idosch@idosch.org>
-To: Breno Leitao <leitao@debian.org>
-Cc: aleksander.lobakin@intel.com, kuba@kernel.org, davem@davemloft.net,
-	pabeni@redhat.com, edumazet@google.com, elder@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, nbd@nbd.name,
-	sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-	lorenzo@kernel.org, taras.chornyi@plvision.eu,
-	ath11k@lists.infradead.org, ath10k@lists.infradead.org,
-	linux-wireless@vger.kernel.org, geomatsi@gmail.com,
-	kvalo@kernel.org, quic_jjohnson@quicinc.com, leon@kernel.org,
-	dennis.dalessandro@cornelisnetworks.com,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	bpf@vger.kernel.org, Jiri Pirko <jiri@resnulli.us>,
-	Simon Horman <horms@kernel.org>,
-	Daniel Borkmann <daniel@iogearbox.net>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: Re: [PATCH net-next v5 02/10] net: free_netdev: exit earlier if dummy
-Message-ID: <Zhaqyyk9CUaUvMDy@shredder>
-References: <20240410131407.3897251-1-leitao@debian.org>
- <20240410131407.3897251-3-leitao@debian.org>
+	id 1rufzX-0000000988C-42ey
+	for ath11k@lists.infradead.org;
+	Wed, 10 Apr 2024 22:00:30 +0000
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6ecf8ebff50so193583b3a.1
+        for <ath11k@lists.infradead.org>; Wed, 10 Apr 2024 15:00:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=penguintechs.org; s=google; t=1712786425; x=1713391225; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xBagYfSF2VpuPkFqS5FJ8XAb1CielWua0CPGtB5IEPE=;
+        b=aCIwat+9XABoWD62HT4IupJLVBQOLgcb/m9RAXJMmKydlvmIB/1WS1C4x3riw/dHov
+         KognOtN95TJ3o0svCm12YvMhGLousywoZgceSdNCcGPDkagZ1dl7P5cOzvGHonD720R2
+         j61XQNMCOxLJRJA6aNOhEWf3rk9J57AnF89t8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712786425; x=1713391225;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xBagYfSF2VpuPkFqS5FJ8XAb1CielWua0CPGtB5IEPE=;
+        b=q6OvxeLMDgYSA/Za5n5EMRqTjL9wz4Bzs+hP8Vb4cfSh9M98knjK+T0tpTCkCDJ8B1
+         T0EdoxEa7Pwjdo5No99XiHxMNeHS6tYGHmdoT3dXx7hmyKIPxqVHbhx72dYjgRRn+oDY
+         wetVA72fjuCDv/FYAepb70p5wpFs9+3aoty8WAr8y+uEe39IMcBDYn4DaOHfP71xqWS4
+         uOgOO181Az/fi0PMgqkYQ3HV6t1EFu+Y9CZ5WbBTgXSGHodIzxanZhg7pPGywWJoXf4/
+         g6afPubuXEPoJpZxxyH+gHwuvMyAF1yJRaKYsK4g/0LB3xJp/RBs3v0XZm1Me3D7VC6d
+         3FDA==
+X-Gm-Message-State: AOJu0YybOknYkxSWTigBJy2AvKn8/TjR3THRdGohUEciDP7xEszWsQYb
+	fcuTFf+9u07b1/Cpfu/hiUchU1fFlyXqsqmiMWdt5E7r11huwqxZWfuH+1a6Cg==
+X-Google-Smtp-Source: AGHT+IE7tJUtmyDmEfT88K4d36972vBAPniKC9dO38yf4Vy4usYUldMNxrpkF6RJSBtYWrcfp9uU+A==
+X-Received: by 2002:a05:6a00:9394:b0:6ed:21d5:fbdb with SMTP id ka20-20020a056a00939400b006ed21d5fbdbmr1115316pfb.8.1712786424445;
+        Wed, 10 Apr 2024 15:00:24 -0700 (PDT)
+Received: from ?IPV6:2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08? ([2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08])
+        by smtp.gmail.com with ESMTPSA id n3-20020aa78a43000000b006ed0d0307aasm131148pfa.70.2024.04.10.15.00.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Apr 2024 15:00:23 -0700 (PDT)
+Message-ID: <02400664-2d23-42d3-b49b-0c59f606d298@penguintechs.org>
+Date: Wed, 10 Apr 2024 15:00:22 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240410131407.3897251-3-leitao@debian.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: QCA6390 bluetooth doesn't work after warm boot or
+ disable/reenable
+From: Wren Turkal <wt@penguintechs.org>
+To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Marcel Holtmann <marcel@holtmann.org>,
+ Johan Hedberg <johan.hedberg@gmail.com>
+Cc: ath11k@lists.infradead.org, linux-bluetooth@vger.kernel.org,
+ Kalle Valo <kvalo@kernel.org>
+References: <a03dace1-ca0f-41d6-8e2c-636e3b053a3a@penguintechs.org>
+ <31bb6e18-ecee-49b3-87d7-50ab53e07447@penguintechs.org>
+ <1b3d3937-6679-491e-a5c6-818ae8ac639a@penguintechs.org>
+ <b592d037-41ed-42e8-8c3c-286eb1a68ceb@penguintechs.org>
+ <68a31d6a-8eb8-4d78-819b-fb67367cc41d@penguintechs.org>
+ <CABBYNZJQUy37fxWuCXV1OgM+DNnOr7V0h_rkgcSdw-5hF7iauQ@mail.gmail.com>
+ <fca46585-c1ed-4a60-91b5-6da39a5bbdec@penguintechs.org>
+Content-Language: en-US
+In-Reply-To: <fca46585-c1ed-4a60-91b5-6da39a5bbdec@penguintechs.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_080600_038643_1B5C6B33 
-X-CRM114-Status: UNSURE (   8.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240410_150028_174959_110D1146 
+X-CRM114-Status: GOOD (  12.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,19 +99,48 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 10, 2024 at 06:13:43AM -0700, Breno Leitao wrote:
-> For dummy devices, exit earlier at free_netdev() instead of executing
-> the whole function. This is necessary, because dummy devices are
-> special, and shouldn't have the second part of the function executed.
-> 
-> Otherwise reg_state, which is NETREG_DUMMY, will be overwritten and
-> there will be no way to identify that this is a dummy device. Also, this
-> device do not need the final put_device(), since dummy devices are not
-> registered (through register_netdevice()), where the device reference is
-> increased (at netdev_register_kobject()/device_add()).
-> 
-> Suggested-by: Jakub Kicinski <kuba@kernel.org>
-> Signed-off-by: Breno Leitao <leitao@debian.org>
++Johan since he's a former BT drivers maintainer.
 
-Reviewed-by: Ido Schimmel <idosch@nvidia.com>
+On 4/9/24 1:11 PM, Wren Turkal wrote:
+> On 4/9/24 1:03 PM, Luiz Augusto von Dentz wrote:
+>> 5.19 seems a little too old, imo, or has it been broken for that long,
+>> did you at least tried with bluetooth-next? Try contacting the people
+>> who actually wrote the driver.
+> 
+> Sorry, I didn't answer your question. Yes, I do think it's been broken 
+> for longer than that, but I wanted to confirm.
+
+Okay, so I tried 6.9-rc3 and every main release 5.19-6.8.
+
+I have found the following:
+
+* older kernels (6.3 and before) seem to be far less likely to kill on a 
+cycling the bluetooth service.
+* 6.8/6.9-rcs consistently destroy bluetooth when stopping and 
+restarting the service
+* If I destroy the bluetooth service with a BT service restart in 
+6.9-rc3 and warm reboot into any release back to 5.19, bluetooth does 
+not work
+* cold boot works in all cases assuming I give the laptop about 5s 
+between power off/on
+
+So, I suspsect that the process of closing out the hardware may be 
+leaving it in a state that the reset cannot handle (and probably never 
+could handle).
+
+I also found that qualcomm has docs here: 
+https://www.qualcomm.com/products/technology/wi-fi/fastconnect/fastconnect-6800#Documentation
+
+However, I am not a member of a Qualcomm verified company (mentioned in 
+the doc links). Luiz, Marcel, or Johan, do you have any contacts that 
+might be able to help me in getting info about the technical docs for 
+this hardware? I would love to see if I can find any issues in how the 
+hardware is being reset.
+
+As an independent dev, I don't even know what it takes to get that kind 
+of access. I would welcome any help here. Hey Qualcomm, are you hiring? :P
+
+wt
+-- 
+You're more amazing than you think!
 
