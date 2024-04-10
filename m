@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3F96CD128A
-	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 13:18:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E032CD128A
+	for <ath11k@archiver.kernel.org>; Wed, 10 Apr 2024 13:18:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=NK/ebucV8gkQdirPclBiNQxag+qh5mnAVP3hrQ1KOiw=; b=eKGQwtCaWk+Rc/4TMoFZ0BNNnm
-	97/iudNpsgVfW92rdGgbhhn43/ghRGYduhhqQwSkzRgA6Q9Se2mw60rD5SSG2fjqXTp5BE5Cn88qP
-	cIXLrcRHN6nPcbpOAO0HhTW35SaVwrGjuwyeYzs1NNTjOJF06NuSWmhEUFt41qUOiyR//aQdGVgH2
-	JIcp4vDtwL+Y0N1/+G4MzTvUR3/jhCQUJMEII+i2KCneYtNAiqNv2ZYytimBji52512kzI0B8/Lz3
-	EjtZNRoGREPS+eHloQJImnba12Cj6pvfCA/E4uwguFNlnUgg5KnKb55S5wv51/SGIZlTQZPM9tjZn
-	C7FIBxcg==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=occnMuVDkr0AXBDmVEHk6wT/diJ6dvMaufRR7UkwoZc=; b=rQTAsdkdmGPwPS+f6NwNj87q/P
+	zagrpGhokjfAtQBLbdQwpzJk6ZunCEa5/bT3MUmS+VAPpDxvBpMtzmZt36mcyjM8b5hShDt7D9tbo
+	Lg1vx6h0Xe6SyaAXTtThaWLpPkxAMXYV4877tOgu63kDIcsPJvblIIHX+J6WPY8IZTQxgTn8s3MjK
+	urNNL3iwYcFtTjOmzhAzWO+nzRPnuQP/XZYHZxwWY/5cKE8SzhbBbEkMKMXpINoglOkDgaaTX2BHE
+	K7qCVDP/xkc0WlxF4NPf7UTfUtlzaY/LhDEGggRish1xRVFNtsitQZ/O0W+zrwD+d6av3zrEdgw9O
+	KnemrHNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruXpy-000000075J3-1dkF;
-	Wed, 10 Apr 2024 13:18:02 +0000
-Received: from mail-ed1-f53.google.com ([209.85.208.53])
+	id 1ruXqF-000000075Y0-3vLx;
+	Wed, 10 Apr 2024 13:18:19 +0000
+Received: from mail-ed1-f43.google.com ([209.85.208.43])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruXpu-000000075G8-032D;
-	Wed, 10 Apr 2024 13:17:59 +0000
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-56bdf81706aso8939103a12.2;
-        Wed, 10 Apr 2024 06:17:50 -0700 (PDT)
+	id 1ruXq1-000000075HY-3atf;
+	Wed, 10 Apr 2024 13:18:07 +0000
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56e69888a36so4120702a12.3;
+        Wed, 10 Apr 2024 06:17:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712755069; x=1713359869;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NK/ebucV8gkQdirPclBiNQxag+qh5mnAVP3hrQ1KOiw=;
-        b=ndRxqYTpK05J2IZNJMIt601saG8/1+I6/oia5KbUgdDhdHVNExhtDKfBQgRqGgLRvV
-         RB1kyEP1+d4KxpN7enm/Jm5Jp+0iQ6Pn5Tsex3Hs7MuiG1pzAy7oM01jQpHl1X+FSLi2
-         cY4JJz1hBlDpCY1Y5L8D1BvfrLO9ECN+HXvFqp7uHJkxQ2cvzkGvTAG7VUumvXcoqtWV
-         b0KPCeCLiBWaODcu+GRWRrkSJwFw/4HtBZNjQ9xSY2wFIB3eMcsqW5ygOEn5JcOFrXKY
-         Qk4F0nBp2zT87vcsq6EtmTXPCV4TD54xVQgtWC1bsIcfmtTpSS5dLftlMQhYUSmCkAYD
-         o53A==
-X-Forwarded-Encrypted: i=1; AJvYcCVbzxiJ0334BHuLrJruPHiIjQv61KDufzWBMTuY4U5LxImhOplTUwQaVjTHi6d13swg+2k+LEaa5b+6wJwFZZnJ/69n4bkS0xYQGBxvFL5wUIK5H2T1Blnly37OoECK2MKJ7yVKQzUILW4GrPYk3/c0lUwVtE7VatN0ODeV5EiHyhCINCkdxTRoHD1uH++7Rm63UqtymIDON0M62MZ+/nBguj555jxBqeMD3VbweHMpog==
-X-Gm-Message-State: AOJu0Yx4gWFrQh7zGWKIiOlFL0Jdn4b4XTtp5kh7TV0VPjorvRXa3/L2
-	yHygwkZ72YVJbG28pD9LxVPYww4NRoUSLNY7C/AfviC7NXfyZhNO
-X-Google-Smtp-Source: AGHT+IFSd0Sg381tqtWe29jdXXqCNujDjWni8Ms+Iy/hEjPdANID9QF0uHrZU2yu/2/4I7NBrTO3cw==
-X-Received: by 2002:a17:906:4f17:b0:a52:140c:571b with SMTP id t23-20020a1709064f1700b00a52140c571bmr735783eju.3.1712755069216;
-        Wed, 10 Apr 2024 06:17:49 -0700 (PDT)
-Received: from localhost (fwdproxy-lla-001.fbsv.net. [2a03:2880:30ff:1::face:b00c])
-        by smtp.gmail.com with ESMTPSA id jl7-20020a17090775c700b00a4e70ede2b7sm7016390ejc.174.2024.04.10.06.17.48
+        d=1e100.net; s=20230601; t=1712755078; x=1713359878;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=occnMuVDkr0AXBDmVEHk6wT/diJ6dvMaufRR7UkwoZc=;
+        b=WS/KyEpHTtkTW0m3N2ohz3NGNkH+Lrt6VvpzJs4woh9lWhrCqkXsdFRzaE3h+KtjrE
+         eo2Wf+a94JYdUnaFluUZe2TBt1GCbOrvw9cuFnOrvFDI7+eDMrfR4hU6O0kW3CTKLthQ
+         2LdgvXwU/zM3zoUiPInJNUElxCSIu7l0uXLgJ6XGIE1GP/PFkS0NhSwSsh6jZJOnq6jX
+         H10By6H/ZGhZS1+QmiO2YlHZ7kKhSnPHrZcbFLw4QBPIqHm+Suc7rXByCnabVRTi6nAI
+         0kSypiUeSFwvFCm1M8aBrnf9EIBaMLKoER2j7EDet0WyoMN2hYrqgLPyKLw7sPFc/MJE
+         uouw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1R1hklKRCy2ogRu50nJ2L7eJs0JplzLQBXTeTmXIEZZfKwYPudHKsj2VtAcqUe/jRzlFkwb4VUQs968rA9aon/lNa/alyV4GzZYge7B8aJNL//LhIge/31LNfpDmzf+K+AOkrhtI9kuJBCyOd07pgdnGh86rOPSNpXd6Tm1jqGD93V3c4gHZ+q1Fv6XvPM2dzLrv/0bEd++PjbWJYHc+SL0I8u9ctYbr0NPfCA8xRLw==
+X-Gm-Message-State: AOJu0YxopMYymB5xxNgE4VTIkJTQZVdZRyuidIptIjmu0V530vs/6JJl
+	IKjQMV/jd4dtjSDsBX8kQPijCyKCX1HnO3KjgUWQ5Yn05IzmRwC6
+X-Google-Smtp-Source: AGHT+IFYz6nezPO0nvcRaOh3691IM+U3aDTWAVz3mLdQiEXd+y4Shu3fXDmKe+RO4EdGoiCoIVd5pg==
+X-Received: by 2002:a50:8e50:0:b0:56d:f3a7:60e with SMTP id 16-20020a508e50000000b0056df3a7060emr1782120edx.22.1712755077926;
+        Wed, 10 Apr 2024 06:17:57 -0700 (PDT)
+Received: from localhost (fwdproxy-lla-006.fbsv.net. [2a03:2880:30ff:6::face:b00c])
+        by smtp.gmail.com with ESMTPSA id ij6-20020a056402158600b0056ddd9427d2sm6504617edb.58.2024.04.10.06.17.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Apr 2024 06:17:48 -0700 (PDT)
+        Wed, 10 Apr 2024 06:17:57 -0700 (PDT)
 From: Breno Leitao <leitao@debian.org>
 To: aleksander.lobakin@intel.com,
 	kuba@kernel.org,
@@ -68,9 +68,7 @@ To: aleksander.lobakin@intel.com,
 	ath10k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	geomatsi@gmail.com,
-	kvalo@kernel.org,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+	kvalo@kernel.org
 Cc: quic_jjohnson@quicinc.com,
 	leon@kernel.org,
 	dennis.dalessandro@cornelisnetworks.com,
@@ -78,16 +76,22 @@ Cc: quic_jjohnson@quicinc.com,
 	netdev@vger.kernel.org,
 	bpf@vger.kernel.org,
 	idosch@idosch.org,
-	leitao@debian.org
-Subject: [PATCH net-next v5 00/10] allocate dummy device dynamically
-Date: Wed, 10 Apr 2024 06:13:41 -0700
-Message-ID: <20240410131407.3897251-1-leitao@debian.org>
+	leitao@debian.org,
+	Jiri Pirko <jiri@resnulli.us>,
+	Simon Horman <horms@kernel.org>,
+	Daniel Borkmann <daniel@iogearbox.net>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Subject: [PATCH net-next v5 02/10] net: free_netdev: exit earlier if dummy
+Date: Wed, 10 Apr 2024 06:13:43 -0700
+Message-ID: <20240410131407.3897251-3-leitao@debian.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240410131407.3897251-1-leitao@debian.org>
+References: <20240410131407.3897251-1-leitao@debian.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240410_061758_076559_B1547FA6 
-X-CRM114-Status: GOOD (  12.07  )
+X-CRM114-CacheID: sfid-20240410_061805_934692_465C760B 
+X-CRM114-Status: GOOD (  10.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,83 +106,36 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-struct net_device shouldn't be embedded into any structure, instead,
-the owner should use the private space to embed their state into
-net_device.
+For dummy devices, exit earlier at free_netdev() instead of executing
+the whole function. This is necessary, because dummy devices are
+special, and shouldn't have the second part of the function executed.
 
-But, in some cases the net_device is embedded inside the private
-structure, which blocks the usage of zero-length arrays inside
-net_device.
+Otherwise reg_state, which is NETREG_DUMMY, will be overwritten and
+there will be no way to identify that this is a dummy device. Also, this
+device do not need the final put_device(), since dummy devices are not
+registered (through register_netdevice()), where the device reference is
+increased (at netdev_register_kobject()/device_add()).
 
-Create a helper to allocate a dummy device at dynamically runtime, and
-move the Ethernet devices to use it, instead of embedding the dummy
-device inside the private structure.
-
-This fixes all the network cases plus some wireless drivers.
-
-PS: Due to lack of hardware, unfortunately most these patches are
-compiled tested only, except ath11k that was kindly tested by Kalle Valo.
-
+Suggested-by: Jakub Kicinski <kuba@kernel.org>
+Signed-off-by: Breno Leitao <leitao@debian.org>
 ---
-Changelog:
+ net/core/dev.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-v1:
-	* https://lore.kernel.org/all/20240327200809.512867-1-leitao@debian.org/
-
-v2:
-	* Patch 1: Use a pre-defined name ("dummy#") for the dummy
-	  net_devices.
-	* Patch 2-5: Added users for the new helper.
-v3:
-	* Use free_netdev() instead of kfree() as suggested by Jakub.
-	* Change the free_netdev() place in ipa driver, as suggested by
-	  Alex Elder.
-	* Set err in the error path in the Marvell driver, as suggested
-	  by Simon Horman.
-v4:
-	* Added a new patch to add dummy device at free_netdev(), as suggested
-	  by Jakub.
-	* Added support for some wireless driver.
-	* Added some Acked-by and Reviewed-by.
-v5:
-	* Added a new patch to fix some typos in the previous code,
-	  suggested by Ido.
-	* Rebased to net-net/main
-
-
-Breno Leitao (10):
-  net: core: Fix documentation
-  net: free_netdev: exit earlier if dummy
-  net: create a dummy net_device allocator
-  net: marvell: prestera: allocate dummy net_device dynamically
-  net: mediatek: mtk_eth_sock: allocate dummy net_device dynamically
-  net: ipa: allocate dummy net_device dynamically
-  net: ibm/emac: allocate dummy net_device dynamically
-  wifi: qtnfmac: Use netdev dummy allocator helper
-  wifi: ath10k: allocate dummy net_device dynamically
-  wifi: ath11k: allocate dummy net_device dynamically
-
- drivers/net/ethernet/ibm/emac/mal.c           | 14 ++++-
- drivers/net/ethernet/ibm/emac/mal.h           |  2 +-
- .../ethernet/marvell/prestera/prestera_rxtx.c | 15 ++++-
- drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 17 ++++--
- drivers/net/ethernet/mediatek/mtk_eth_soc.h   |  2 +-
- drivers/net/ipa/gsi.c                         | 12 ++--
- drivers/net/ipa/gsi.h                         |  2 +-
- drivers/net/wireless/ath/ath10k/core.c        |  9 ++-
- drivers/net/wireless/ath/ath10k/core.h        |  2 +-
- drivers/net/wireless/ath/ath10k/pci.c         |  2 +-
- drivers/net/wireless/ath/ath10k/sdio.c        |  2 +-
- drivers/net/wireless/ath/ath10k/snoc.c        |  4 +-
- drivers/net/wireless/ath/ath10k/usb.c         |  2 +-
- drivers/net/wireless/ath/ath11k/ahb.c         |  9 ++-
- drivers/net/wireless/ath/ath11k/core.h        |  2 +-
- drivers/net/wireless/ath/ath11k/pcic.c        | 21 +++++--
- .../wireless/quantenna/qtnfmac/pcie/pcie.c    |  3 +-
- include/linux/netdevice.h                     |  3 +
- net/core/dev.c                                | 57 ++++++++++++-------
- 19 files changed, 127 insertions(+), 53 deletions(-)
-
+diff --git a/net/core/dev.c b/net/core/dev.c
+index 987039ffa63c..c74b42bc6888 100644
+--- a/net/core/dev.c
++++ b/net/core/dev.c
+@@ -11060,7 +11060,8 @@ void free_netdev(struct net_device *dev)
+ 	phy_link_topo_destroy(dev->link_topo);
+ 
+ 	/*  Compatibility with error handling in drivers */
+-	if (dev->reg_state == NETREG_UNINITIALIZED) {
++	if (dev->reg_state == NETREG_UNINITIALIZED ||
++	    dev->reg_state == NETREG_DUMMY) {
+ 		netdev_freemem(dev);
+ 		return;
+ 	}
 -- 
 2.43.0
 
