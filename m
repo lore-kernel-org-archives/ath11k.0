@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 711E5C04FF0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FC8BC41513
 	for <ath11k@archiver.kernel.org>; Thu, 11 Apr 2024 16:55:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,50 +12,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2tiy1gt4Woafvx0uRnSK7MBSrbRDXILF+pVSATv8TAI=; b=jlGi96/4A+cGeA38Cf2IV12HqE
-	pufGDJtccdttcBr7M5BJpsKUdRwKxzmTvgCOtogOJt6cixhznIBxxF+1RNPlXVCnNQYWwYuXZAdQ7
-	GVi3+vRztmwkazlgHribgpDuEzsn+bL0LH+29RPzE4EKh1CosJ7yADBZyRkdmG5QXzRLNleaCVqtB
-	wpB7AQ46SM10iivxGq8n31ckufoVbQo8eVJlIJjFTD8K2vPOzQzWFQWRoiEmjLKqqRpjvMm9/cw6J
-	C0008B64PZvzjSiO/bN+DI/LICdfZnuAJQ8RwmhuebW0+K6fhy2CQUsitLHP1NucC8iBqp7RtQPp9
-	d+rsVUog==;
+	bh=ETnqpfx+G77pnJ/fxowRO/fxEqWzHDaFw0QU8+RTG+M=; b=I5pOtvz6fZryT0okswGXhTCd4H
+	eWo9f2LTjvW4R6FNK0YpmQrbyHl62tH7ypsgRmU5p6L9EU15fleT/zeMh447RzAgKg/SiBeLu0ism
+	vgrULg0GVMmr3aBqbvg5xzFfE+O/pXNSkAbj1QAmuYaRqBPGJ/LwwuT7ItQM8ysItNNvBbHE12RcT
+	4e42I7BNyli+ukLWtwqygVQ6yfobAr6AERj9BnXcjct8tK4CjDBnVRFErK0xH7oCBSoCQkPliHyOk
+	3bVazzgWKSEND2dRVWGlCXjUpcU2f9RgwC97cFZZF9sqHu0Ma2XZplCATxYio6GPqGxobofSFM6ZN
+	s1c0r1YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruxhv-0000000DCb3-0RNG;
+	id 1ruxhv-0000000DCbC-2s0K;
 	Thu, 11 Apr 2024 16:55:27 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ruxhr-0000000DCYf-0RyS
+	id 1ruxhs-0000000DCZ5-0XI7
 	for ath11k@lists.infradead.org;
 	Thu, 11 Apr 2024 16:55:25 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 695D0CE1233
-	for <ath11k@lists.infradead.org>; Thu, 11 Apr 2024 16:55:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CA7AC113CE;
-	Thu, 11 Apr 2024 16:55:19 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 73599CE12CF
+	for <ath11k@lists.infradead.org>; Thu, 11 Apr 2024 16:55:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 262B1C113CD;
+	Thu, 11 Apr 2024 16:55:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1712854520;
-	bh=mD15s8QTfvS01rb0QJAhoIJhD4a3Q4/jwyVKrvxr9mo=;
+	s=k20201202; t=1712854521;
+	bh=PIuzyiawecI9ZT/F/gvfPSL47CLIFp0J4d/wSzhLX9Q=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kh5m6T6Rkn6NoY+t9k1pvf+zZzl/SR4R3I84prDvKhCzOQvZP78ZSk/rBRD9xWZL5
-	 cLcSwYXjc9s5KtDsu8a1SfL2g7tDKCwHaNCK78j+K5m06PcDqL/lyKsaNYDw6oD8Qm
-	 MJJZU4Mjj2FygAEY69DyTZHS4G7IRKmhbPPKWNDtY8+jgiy5lnRnnv3mknASUas3hv
-	 u2XkM0q9DUyt7rHJ2LqWt79ysqyVunS2qkvkYb3DPi4El8Nzmw0T7CJ21vFazwnO1z
-	 epiBQzT98wI3XK066w+JtyG5o6ySlzhNmNr7GE5K7EIBZRTFymxV5OxLrTZq+V6ZM8
-	 XdNdqRGiDrrBw==
+	b=r9A7Af92CnZJEYonTzgi1InBB2PCMyMBAtCQe+Q5mpUPxayatA4Yy7eYPs/Xxwn5v
+	 YDcdnfplC8Gs3CV2kMpLT3mBU3XvB7DXkTXxiEYLtJDYfJoSJ7iwaWfwrVjLbdgGp5
+	 QeSMYdXg89aeySC97kao6KBqwyVoVoMW/eI5X183+ZSziIY09bRJzPMSnS3IBRwsNo
+	 8sO/0K3hVvMhRlog80kWlGsMQpDVPVBg411vtH1J2nnsjkB0ro19IYr94XD5YMbsfQ
+	 tJ3s5wqHjbdMxYtH+Z1gYnA4CmjZu30ksiXO6ebNBAyj4NzMdUDAOIQnjKm9FDYW+1
+	 EzAwQ+3Fvug/Q==
 From: Kalle Valo <kvalo@kernel.org>
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH 1/2] wifi: ath11k: use RCU when accessing struct inet6_dev::ac_list
-Date: Thu, 11 Apr 2024 19:55:15 +0300
-Message-Id: <20240411165516.4070649-2-kvalo@kernel.org>
+Subject: [PATCH 2/2] wifi: ath11k: ath11k_mac_op_ipv6_changed(): use list_for_each_entry()
+Date: Thu, 11 Apr 2024 19:55:16 +0300
+Message-Id: <20240411165516.4070649-3-kvalo@kernel.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240411165516.4070649-1-kvalo@kernel.org>
 References: <20240411165516.4070649-1-kvalo@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240411_095523_451424_0DA2FEC6 
-X-CRM114-Status: GOOD (  10.22  )
+X-CRM114-CacheID: sfid-20240411_095524_499590_A87A63C9 
+X-CRM114-Status: UNSURE (   9.01  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,50 +73,40 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Kalle Valo <quic_kvalo@quicinc.com>
 
-Commit c3718936ec47 ("ipv6: anycast: complete RCU handling of struct
-ifacaddr6") converted struct inet6_dev::ac_list to use RCU but missed that
-ath11k also accesses this list. Now sparse warns:
-
-drivers/net/wireless/ath/ath11k/mac.c:9145:21: warning: incorrect type in assignment (different address spaces)
-drivers/net/wireless/ath/ath11k/mac.c:9145:21:    expected struct ifacaddr6 *ifaca6
-drivers/net/wireless/ath/ath11k/mac.c:9145:21:    got struct ifacaddr6 [noderef] __rcu *ac_list
-drivers/net/wireless/ath/ath11k/mac.c:9145:53: warning: incorrect type in assignment (different address spaces)
-drivers/net/wireless/ath/ath11k/mac.c:9145:53:    expected struct ifacaddr6 *ifaca6
-drivers/net/wireless/ath/ath11k/mac.c:9145:53:    got struct ifacaddr6 [noderef] __rcu *aca_next
-
-Fix it by using rtnl_dereference(). Also add a note that read_lock_bh() calls
-rcu_read_lock() which I was not aware of.
+Simplify the loop by using list_for_each_entry(). No functional changes.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
 
-Fixes: c3718936ec47 ("ipv6: anycast: complete RCU handling of struct ifacaddr6")
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c32be587000d..4fdd56cd30a1 100644
+index 4fdd56cd30a1..4ff8dd0d157b 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9112,6 +9112,7 @@ static void ath11k_mac_op_ipv6_changed(struct ieee80211_hw *hw,
- 	offload = &arvif->arp_ns_offload;
- 	count = 0;
+@@ -9104,7 +9104,6 @@ static void ath11k_mac_op_ipv6_changed(struct ieee80211_hw *hw,
+ 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct inet6_ifaddr *ifa6;
+ 	struct ifacaddr6 *ifaca6;
+-	struct list_head *p;
+ 	u32 count, scope;
  
-+	/* Note: read_lock_bh() calls rcu_read_lock() */
- 	read_lock_bh(&idev->lock);
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "op ipv6 changed\n");
+@@ -9120,11 +9119,10 @@ static void ath11k_mac_op_ipv6_changed(struct ieee80211_hw *hw,
+ 	memcpy(offload->mac_addr, vif->addr, ETH_ALEN);
  
- 	memset(offload->ipv6_addr, 0, sizeof(offload->ipv6_addr));
-@@ -9142,7 +9143,8 @@ static void ath11k_mac_op_ipv6_changed(struct ieee80211_hw *hw,
- 	}
- 
- 	/* get anycast address */
--	for (ifaca6 = idev->ac_list; ifaca6; ifaca6 = ifaca6->aca_next) {
-+	for (ifaca6 = rcu_dereference(idev->ac_list); ifaca6;
-+	     ifaca6 = rcu_dereference(ifaca6->aca_next)) {
+ 	/* get unicast address */
+-	list_for_each(p, &idev->addr_list) {
++	list_for_each_entry(ifa6, &idev->addr_list, if_list) {
  		if (count >= ATH11K_IPV6_MAX_COUNT)
  			goto generate;
  
+-		ifa6 = list_entry(p, struct inet6_ifaddr, if_list);
+ 		if (ifa6->flags & IFA_F_DADFAILED)
+ 			continue;
+ 		scope = ipv6_addr_src_scope(&ifa6->addr);
 -- 
 2.39.2
 
