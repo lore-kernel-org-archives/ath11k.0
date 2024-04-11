@@ -4,91 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84B92CD128A
-	for <ath11k@archiver.kernel.org>; Thu, 11 Apr 2024 08:00:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A33CD1284
+	for <ath11k@archiver.kernel.org>; Thu, 11 Apr 2024 08:38:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:CC:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7hylFzyfijs5LQOKu5+jSq20piEtACWL1+Ic3lbFN38=; b=ywr8XhLKSG/QnhTBGWfYocxpTF
-	6bDvzSuHHEW/aGtb7H7ENJwRpI1eAVPjxfovBgzyOO21drAkJd07SegRypHgQ/DeyoLSXidyeGCAE
-	ThcQMBFqKmdGMxeugKLwv0zemjOGiLk0ARoohNgmThjM0kllipVxdFz2/2Ye6+pLYXxTRDb5TMp3E
-	wIfjIcOzAJidPPuKwncxEaHd/NB851StgMh4ffPUqq+0ee6+jeu9aB1wMWhavXLQaqmQIhBmHIB5S
-	vnSqmstP9DGz4slcC/pvM7Vs6QQn068SgrnMCXCYFKMhMhZnwRgvw9i7CWnGZgwGzt+nEXgaOjtvp
-	f+SF0+2g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=RGu/0ma3ezFeXYAMPoATRHDCuVlhyus9tFn/tyNcnZA=; b=WcGTCtlmbUjZgv6IRkAv5BMho/
+	XeXLwRaIIcL7axEV2qBs3ksRMEWA8Mbt+Dkc5eHEjMk0xswALKQiDEy7SWtFc1S0wtGDqUmaKuU7j
+	t/GbNcbIhXDH14Yhoo0o8e5tttoUa/OnoicYAo2K1N1A47m/hz/PMJszewV1ZgwdLjZ9wM6YV21Bf
+	agYcwkHDKkhtLxdC8zEHvPA3aOUyl/iRLqW6bb1tFP3sarfUEqxiG/Xk9FoMz1rSi31miGUk+ksKZ
+	p/wnGqLrfBWmxdfBTZkehIaqcr8I9g1aH/Q4mMBWMtHDW/9kUgl98GPt8jHPYH8UlZDGinjOnA1TQ
+	oVflFpRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rupM0-0000000AzUo-1BCL;
-	Thu, 11 Apr 2024 08:00:16 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rupxT-0000000B8Lp-1Aee;
+	Thu, 11 Apr 2024 08:38:59 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rupLv-0000000AzSp-3Vqz
-	for ath11k@lists.infradead.org;
-	Thu, 11 Apr 2024 08:00:14 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43B7igHM032011;
-	Thu, 11 Apr 2024 08:00:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:from:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=7hylFzyfijs5LQOKu5+jSq20piEtACWL1+Ic3lbFN38=; b=Zm
-	brgCVQntH8p4b19NN9KVmJM8B43S1KO9zPmyjxG7BfWCjhGIVppaHIyyk61Zl3W7
-	GqZ4NfaQAphZE5WGYb3Z+IcfU49QQUYgc1cKIaRoG3HMiHj7Tn+zordLtRMT+an1
-	EW2mSdzllljqd2lDIdOhe+KMKSBrMYXPHlPmf9eM8rbi7kmMHJ43gNHC0Buavmg5
-	fDRNcJCZ1jiIJ19EYCrZQo/7RN0ZcovZ4Zl9sFB2c8R1w6UzHWParWQ1+MDhTV29
-	6KtQnnC0EQ8OOT9ntDv0hF3o169i08K/gYbjJYCVgBwg04l4igElyF7xS8xfIapx
-	iCdugERObJZrktoFKcog==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xebqx8296-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Apr 2024 08:00:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43B806dt010429
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Apr 2024 08:00:06 GMT
-Received: from [10.231.195.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 11 Apr
- 2024 01:00:05 -0700
-Message-ID: <347dce6b-94c6-4aa3-89ef-25525b4e72db@quicinc.com>
-Date: Thu, 11 Apr 2024 16:00:02 +0800
+	id 1rupxP-0000000B8KB-3pHc;
+	Thu, 11 Apr 2024 08:38:57 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id E3577CE2F8D;
+	Thu, 11 Apr 2024 08:38:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BF14C433F1;
+	Thu, 11 Apr 2024 08:38:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1712824733;
+	bh=hFPKYBGIMfpUrwovYlZJbiVjlexhjRbaRyeGHPPWlns=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=NAFuS0Ppx0+PkVXSEJz4rvVpoClDsOe3OP/22UTvK7TVNvqysCmc8ya7CP2kXYKvq
+	 MEzj40HuEA/CIdTXGdMDf4FVp2dQlSbFqLoCRy35QUEqVmt8aFV8jgAtdGQoqiZq6b
+	 BcfQG6FtYZhS9tDybY8gp5mq07k1BpKuWR7Te7A3rCLgTY2AW/t69iINWHG4b/X7GT
+	 4vOoFym4qjz6G+QWNyugZh3HemWLtgqsvwx0eVo+r65d63JWxk7GFJXZAY+IE1RxEt
+	 Du5oakGX1TS7W6YWY6MWkYSCOM8v+fPCQQ03DzRgwDh08cEfH0rlwvp3CzAPwRwrjf
+	 MW64XnTh5rKaQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Breno Leitao <leitao@debian.org>
+Cc: aleksander.lobakin@intel.com,  kuba@kernel.org,  davem@davemloft.net,
+  pabeni@redhat.com,  edumazet@google.com,  elder@kernel.org,
+  linux-arm-kernel@lists.infradead.org,
+  linux-mediatek@lists.infradead.org,  nbd@nbd.name,
+  sean.wang@mediatek.com,  Mark-MC.Lee@mediatek.com,  lorenzo@kernel.org,
+  taras.chornyi@plvision.eu,  ath11k@lists.infradead.org,
+  ath10k@lists.infradead.org,  linux-wireless@vger.kernel.org,
+  geomatsi@gmail.com,  Matthias Brugger <matthias.bgg@gmail.com>,
+  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+  quic_jjohnson@quicinc.com,  leon@kernel.org,
+  dennis.dalessandro@cornelisnetworks.com,  linux-kernel@vger.kernel.org,
+  netdev@vger.kernel.org,  bpf@vger.kernel.org,  idosch@idosch.org
+Subject: Re: [PATCH net-next v5 00/10] allocate dummy device dynamically
+References: <20240410131407.3897251-1-leitao@debian.org>
+Date: Thu, 11 Apr 2024 11:38:45 +0300
+In-Reply-To: <20240410131407.3897251-1-leitao@debian.org> (Breno Leitao's
+	message of "Wed, 10 Apr 2024 06:13:41 -0700")
+Message-ID: <87frvsz42y.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k failed to enqueue rx buf: -28
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>,
-        James Prestwood
-	<prestwoj@gmail.com>,
-        "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
-	<linux-wireless@vger.kernel.org>
-CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-References: <5c63a3a2-29fe-444c-96f1-f87c89d7af39@gmail.com>
- <216b223b-e871-42d4-8e53-59dd64efe4b9@quicinc.com>
- <6e8fe8cf-315c-47bb-b8db-5b17f7323109@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <6e8fe8cf-315c-47bb-b8db-5b17f7323109@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: NPTJIT34ipikYo5jNTIec3YT0P53tM2v
-X-Proofpoint-ORIG-GUID: NPTJIT34ipikYo5jNTIec3YT0P53tM2v
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-04-11_02,2024-04-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 mlxlogscore=757 malwarescore=0 phishscore=0 suspectscore=0
- adultscore=0 spamscore=0 lowpriorityscore=0 clxscore=1015 mlxscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404110057
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240411_010011_914144_B8D9CA4C 
-X-CRM114-Status: GOOD (  10.88  )
+X-CRM114-CacheID: sfid-20240411_013856_341063_5AC0CB40 
+X-CRM114-Status: GOOD (  17.90  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,55 +81,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Breno Leitao <leitao@debian.org> writes:
 
+> struct net_device shouldn't be embedded into any structure, instead,
+> the owner should use the private space to embed their state into
+> net_device.
+>
+> But, in some cases the net_device is embedded inside the private
+> structure, which blocks the usage of zero-length arrays inside
+> net_device.
+>
+> Create a helper to allocate a dummy device at dynamically runtime, and
+> move the Ethernet devices to use it, instead of embedding the dummy
+> device inside the private structure.
+>
+> This fixes all the network cases plus some wireless drivers.
+>
+> PS: Due to lack of hardware, unfortunately most these patches are
+> compiled tested only, except ath11k that was kindly tested by Kalle Valo.
+>
+> ---
+> Changelog:
+>
+> v1:
+> 	* https://lore.kernel.org/all/20240327200809.512867-1-leitao@debian.org/
+>
+> v2:
+> 	* Patch 1: Use a pre-defined name ("dummy#") for the dummy
+> 	  net_devices.
+> 	* Patch 2-5: Added users for the new helper.
+> v3:
+> 	* Use free_netdev() instead of kfree() as suggested by Jakub.
+> 	* Change the free_netdev() place in ipa driver, as suggested by
+> 	  Alex Elder.
+> 	* Set err in the error path in the Marvell driver, as suggested
+> 	  by Simon Horman.
+> v4:
+> 	* Added a new patch to add dummy device at free_netdev(), as suggested
+> 	  by Jakub.
+> 	* Added support for some wireless driver.
+> 	* Added some Acked-by and Reviewed-by.
+> v5:
+> 	* Added a new patch to fix some typos in the previous code,
+> 	  suggested by Ido.
+> 	* Rebased to net-net/main
 
-On 4/1/2024 11:30 AM, Baochen Qiang wrote:
-> 
-> 
-> On 3/30/2024 2:39 AM, Jeff Johnson wrote:
->> On 3/27/2024 9:25 AM, James Prestwood wrote:
->>> Hi,
->>>
->>> This error was brought to my attention in the kernel logs and I'm
->>> wondering if it is of any concern:
->>>
->>> kernel: ath11k_pci 0000:03:00.0: failed to enqueue rx buf: -28
->>>
->>> It seems to happen every few minutes or so. I don't notice any bad
->>> behavior associated with it per-se, but maybe its an issue of some
->>> buffer needing to be increased in size? Does this mean a frame is being
->>> dropped due to no room to receive it?
->>>
->>> Hardware we are running is:
->>>
->>> [    4.610399] ath11k_pci 0000:03:00.0: wcn6855 hw2.1
->>> [    5.777030] ath11k_pci 0000:03:00.0: chip_id 0x12 chip_family 0xb
->>> board_id 0xff soc_id 0x400c1211
->>> [    5.777039] ath11k_pci 0000:03:00.0: fw_version 0x1109996e
->>> fw_build_timestamp 2023-12-19 11:11 fw_build_id
->>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.36
->>>
->>> Thanks,
->>>
->>> James
-Hi James, I was not able to reproduce this issue so wondering if you 
-could help reproduce and collect logs for debug. If OK please first 
-merge the debug patch which is available in patchwork:
+I'm nitpicking here but I prefer to have the changelog in reverse order,
+that is v5 first and v1 last. I'm most interested about the changes in
+v5, I don't care about v1 at this point. Though I don't know if net
+folks have a different prefence, just wanted to mention this.
 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240411074812.86700-1-quic_bqiang@quicinc.com/
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Please also enable full ath11k log:
-	modprobe ath11k debug_mask=0xffffffff
-	modprobe ath11k_pci
-
-Once enabled you should see lots of ath11k logs.
-
->>>
->>>
->>
->> + ath11k list to get more specific eyes on this issue
->> + bcc to internal list as well
->>
-> I will look into this.
->>
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
