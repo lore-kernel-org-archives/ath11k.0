@@ -4,90 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CF56C4345F
-	for <ath11k@archiver.kernel.org>; Fri, 12 Apr 2024 19:46:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9461C4345F
+	for <ath11k@archiver.kernel.org>; Fri, 12 Apr 2024 19:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=M8qp/N2JinKkkNqm1DqAk69/KqQp+0SDzwBkriIPK1g=; b=KrGkv3AQFjc0YbpcfTMNIiLKK8
-	6ggW5ikq+AwYWTCubyQimpN3fH5BsdKHffiIOrq5y6kkIXY9Y+dGkjyH2a6mRD3SEXGJi4pWbUPnn
-	olZ6JB+uXBS71oJZ7vmhFwl9ff508QLUEpwweyCZtvWbBN3pWlEu/HQ1Lj3IxrQh9rAnehI3ZTNGl
-	es3E01AukHsD+9ADRTfM1QUIn5MpnwJrxbxXYZC6+4vbjAsmIm23Wq8Leo2cYAB5n/XvQdJ19UJfy
-	FldfohqEDGH3to8Je9w0HFAlsr2EeoPWxg+e9cZAVj5hc/DcHEukcTEblzR1jw7aYBvQw4gNrWZzy
-	OvESa2cg==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=7ikBphsePqsyYm+YPfd8yomsvkUJogaU4UHkXE0t+T0=; b=hdxBhbWA7pKq4EZu/PcHdWBxoQ
+	eorN4c1shqekTnk44iyqCouwXWmuVVW/rN+s3PotWx7u9+btv2mNiIvan1MEOTHIjZjXaOZdCF/in
+	L845tM5ql4p4pokNTF6Z6s3EIPPvYzaxpQKDxiK4WcP6t+kBJ0xHeuVhlo+qBMhtI828u6eS3YvpG
+	D9KGfIIh/+wXWWEpEQ4aKNiOFV/Ib1cGGoHVjVxvEDRCFPbAUgnrRk/4MTP1L+kL17+2aE1ywDRPU
+	yRtD0wd7ZW44RWBa7vC5PHika1zGyC6WTcO5fFEcbUREHMDFdcxac4mWnZIkpM8cvBfPqQeJSbR8T
+	Yvgo376A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvMrE-000000015OL-2NBe;
-	Fri, 12 Apr 2024 19:46:44 +0000
-Received: from mail-pg1-x536.google.com ([2607:f8b0:4864:20::536])
+	id 1rvMwj-000000016Sm-0szi;
+	Fri, 12 Apr 2024 19:52:25 +0000
+Received: from mxex2.tik.uni-stuttgart.de ([129.69.192.21])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rvMrB-000000015N7-0ziQ
+	id 1rvMwf-000000016N9-1Mpo
 	for ath11k@lists.infradead.org;
-	Fri, 12 Apr 2024 19:46:42 +0000
-Received: by mail-pg1-x536.google.com with SMTP id 41be03b00d2f7-5f415fd71f8so981468a12.3
-        for <ath11k@lists.infradead.org>; Fri, 12 Apr 2024 12:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=penguintechs.org; s=google; t=1712951199; x=1713555999; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=M8qp/N2JinKkkNqm1DqAk69/KqQp+0SDzwBkriIPK1g=;
-        b=O7OE46mJkruwMd3jMfat0CgstZq7I7YfKgkjQudUFba5S7J5NF0F4gXuLJW79pijVW
-         M1RAzZfBQ/Mm3aTS8qb94sSzBVLB+5BDLFkDwf4hFhDmZXahpJslLspwyLAnvwB1uXYm
-         3nOS0rccPlXrHFpdiEOZxOiBbpqnACYvbTwyk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712951199; x=1713555999;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M8qp/N2JinKkkNqm1DqAk69/KqQp+0SDzwBkriIPK1g=;
-        b=mHBZsG3APWldpPIpUNhW8zs9YYKQ+E9/hjyid35cm2jE7n/4wqiNrP0jLYGwjWNUoa
-         VEPvqb2bBmixrpIJGPJowY0fRpToltHzwgraA9KrN/aIzyMadttuhnxtAzvMxNAamDU+
-         t7BbsoF4EbjcO2+x6K03WhdQKjdkD16TCC6u1x8cDfk/E8QmFAJIORx9a7BmxPiFM2ev
-         Kbqwh8y+8r16TAlKYoB0r3Liu0HZ/EEK3j1rUOvsv7sTXlPG9LOqYAttHJ9/gEI3nad6
-         Op256aKTy2B3H/yPCmbfiWf4HnOUAJWJCbmclgk29J6wOYLW7JlEgmPcprTP9GRBm+Nt
-         V8Pg==
-X-Gm-Message-State: AOJu0YzfsXbAq/Bjwt7rCzjyHCp4Y+jr54Yb8uPLyPEal5gSDKFKp0bA
-	pFGHoGGnQR1ZgsOl49DOeIMze19W5/vaJwC+yvJvAImgiW4EBicdD4r3w75aRQ==
-X-Google-Smtp-Source: AGHT+IHyRhpoQB/O9/JUOzCEbz0879nJPLeW3KrYxpjdrpG+iz0ZbDVyB2LgWENUAnmtTSs1TOZcOQ==
-X-Received: by 2002:a17:903:185:b0:1e0:b87f:beb4 with SMTP id z5-20020a170903018500b001e0b87fbeb4mr4117712plg.30.1712951198725;
-        Fri, 12 Apr 2024 12:46:38 -0700 (PDT)
-Received: from ?IPV6:2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08? ([2601:646:8700:dd30:5f3e:5ba7:e0ea:9a08])
-        by smtp.gmail.com with ESMTPSA id m7-20020a1709026bc700b001dd69aca213sm3361881plt.270.2024.04.12.12.46.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Apr 2024 12:46:37 -0700 (PDT)
-Message-ID: <b999d783-4912-471e-a978-6c7f0cbcd1e6@penguintechs.org>
-Date: Fri, 12 Apr 2024 12:46:36 -0700
+	Fri, 12 Apr 2024 19:52:24 +0000
+Received: from localhost (localhost [127.0.0.1])
+	by mxex2.tik.uni-stuttgart.de (Postfix) with ESMTP id CFCA660B43;
+	Fri, 12 Apr 2024 21:52:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=uni-stuttgart.de;
+	 h=content-transfer-encoding:content-type:content-type
+	:in-reply-to:organization:from:from:content-language:references
+	:subject:subject:user-agent:mime-version:date:date:message-id;
+	 s=dkim; i=@isd.uni-stuttgart.de; t=1712951522; x=1714690323;
+	 bh=ObWGWVtdg8U0NPbe/EAvSL2dL0N1qhqx+T4lt2FGPoo=; b=bglzD7amfmfJ
+	kMS2GaVF0TWKN1LuhlbIIguj1W3FyyWEpxF1gHVyoj1aT5mMCGafjtUMk3eu/KMW
+	VaW8shkw+IkpLmY1Z/hzGPDMX+lL/T1+rWcwp4PDz46j/5hqLiP4McOOOJP2uV03
+	N4cbnbv008i0dIfgyN3pDMBLUpAEnBJFAN1YN4jjiFp4FUMzfx4wiXjG0fO2ma91
+	ZDQUDIiTq8nJfUNi0sXFamJqPQ8yiJ/Goj955aYNbcbd4ua2RJIRftnR9wsdrS5G
+	6XT97+7h1jzVYmAmASVwwy+l05rXBT6U+OtOsxEcxW9pLd5gByYsTNYI0/5VoS5a
+	T8Rd5sufrw==
+X-Virus-Scanned: USTUTT mailrelay AV services at mxex2.tik.uni-stuttgart.de
+Received: from mxex2.tik.uni-stuttgart.de ([127.0.0.1])
+ by localhost (mxex2.tik.uni-stuttgart.de [127.0.0.1]) (amavis, port 10031)
+ with ESMTP id hMBUxXXMAYCz; Fri, 12 Apr 2024 21:52:02 +0200 (CEST)
+Received: from authenticated client
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mxex2.tik.uni-stuttgart.de (Postfix) with ESMTPSA
+Message-ID: <4a1e0cb6-c319-4eb1-9bd1-5ff13eabfe1b@isd.uni-stuttgart.de>
+Date: Fri, 12 Apr 2024 21:52:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: QCA6390 bluetooth doesn't work after warm boot or
- disable/reenable
-From: Wren Turkal <wt@penguintechs.org>
-To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Marcel Holtmann <marcel@holtmann.org>,
- Johan Hedberg <johan.hedberg@gmail.com>
-Cc: ath11k@lists.infradead.org, linux-bluetooth@vger.kernel.org,
- Kalle Valo <kvalo@kernel.org>, Zijun Hu <quic_zijuhu@quicinc.com>
-References: <a03dace1-ca0f-41d6-8e2c-636e3b053a3a@penguintechs.org>
- <31bb6e18-ecee-49b3-87d7-50ab53e07447@penguintechs.org>
- <1b3d3937-6679-491e-a5c6-818ae8ac639a@penguintechs.org>
- <b592d037-41ed-42e8-8c3c-286eb1a68ceb@penguintechs.org>
- <68a31d6a-8eb8-4d78-819b-fb67367cc41d@penguintechs.org>
- <CABBYNZJQUy37fxWuCXV1OgM+DNnOr7V0h_rkgcSdw-5hF7iauQ@mail.gmail.com>
- <fca46585-c1ed-4a60-91b5-6da39a5bbdec@penguintechs.org>
- <02400664-2d23-42d3-b49b-0c59f606d298@penguintechs.org>
- <8162d6c7-d968-465e-bb8f-3c939eb8d783@penguintechs.org>
- <f7a24b54-9a1f-41f4-8706-d7199a4a84e8@penguintechs.org>
-Content-Language: en-US
-In-Reply-To: <f7a24b54-9a1f-41f4-8706-d7199a4a84e8@penguintechs.org>
+Subject: Re: [PATCH 2/2] wifi: ath11k: support DT ieee80211-freq-limit
+ property to limit channels
+To: Robert Marko <robimarko@gmail.com>, kvalo@kernel.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, jjohnson@kernel.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240412162510.29483-1-robimarko@gmail.com>
+ <20240412162510.29483-2-robimarko@gmail.com>
+Content-Language: de-DE, en-US
+From: Christian Lamparter <christian.lamparter@isd.uni-stuttgart.de>
+Organization: Universitaet Stuttgart - ISD
+In-Reply-To: <20240412162510.29483-2-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240412_124641_430960_CABD49AB 
-X-CRM114-Status: GOOD (  27.52  )
+X-CRM114-CacheID: sfid-20240412_125222_140435_00AD932B 
+X-CRM114-Status: GOOD (  11.38  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,171 +88,36 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/11/24 1:30 PM, Wren Turkal wrote:
-> On 4/10/24 3:40 PM, Wren Turkal wrote:
->> On 4/10/24 3:00 PM, Wren Turkal wrote:
->>> +Johan since he's a former BT drivers maintainer.
->>>
->>> On 4/9/24 1:11 PM, Wren Turkal wrote:
->>>> On 4/9/24 1:03 PM, Luiz Augusto von Dentz wrote:
->>>>> 5.19 seems a little too old, imo, or has it been broken for that long,
->>>>> did you at least tried with bluetooth-next? Try contacting the people
->>>>> who actually wrote the driver.
->>>>
->>>> Sorry, I didn't answer your question. Yes, I do think it's been 
->>>> broken for longer than that, but I wanted to confirm.
->>>
->>> Okay, so I tried 6.9-rc3 and every main release 5.19-6.8.
->>>
->>> I have found the following:
->>>
->>> * older kernels (6.3 and before) seem to be far less likely to kill 
->>> on a cycling the bluetooth service.
->>> * 6.8/6.9-rcs consistently destroy bluetooth when stopping and 
->>> restarting the service
->>> * If I destroy the bluetooth service with a BT service restart in 
->>> 6.9-rc3 and warm reboot into any release back to 5.19, bluetooth does 
->>> not work
->>> * cold boot works in all cases assuming I give the laptop about 5s 
->>> between power off/on
->>
->> I just did another experiment on 6.9-rc3. I blacklisted relevant 
->> bluetooth modules and then warm booted without the blacklist. I did 
->> this for both the "bluetooth" and "btqca" modules. In both cases, I 
->> cold booted with and appropriate "module_blacklist" kernel arg. After 
->> the boot, I verified the module was not loaded. I then warm booted 
->> without the blacklist, and the bluetooth works, so bluetooth only 
->> seems to fail when the linux module code for closing the device is run 
->> before a warm boot.
-> 
-> And another experiment. I disabled the bluetooth.service and 
-> bluetooth.target with systemctl. I then shutdown and cold booted. After 
-> logging into GNOME, starting the service. Similar failures show up in 
-> the kernel logs as after the failure during a warm boot:
-> 
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: Bluetooth 
-> management interface 1.22 initialized
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: 
-> src/adapter.c:reset_adv_monitors_complete() Failed to reset Adv 
-> Monitors: Failed (0x03)
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: Battery Provider 
-> Manager created
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: MGMT ver 1.22
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: 
-> src/device.c:device_set_wake_support() Unable to set wake_support 
-> without RPA resolution
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: Failed to clear 
-> UUIDs: Failed (0x03)
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:17:54 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:17:54 braindead.localdomain wireplumber[2139]: 
-> org.bluez.GattManager1.RegisterApplication() failed: 
-> GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Invalid method call
-> Apr 11 13:17:54 braindead.localdomain wireplumber[2139]: 
-> org.bluez.GattManager1.RegisterApplication() failed: 
-> GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Invalid method call
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: setting 
-> up ROME/QCA6390
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: RFCOMM TTY 
-> layer initialized
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: RFCOMM socket 
-> layer initialized
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: RFCOMM ver 1.11
-> 
-> ... skip some logs about registering modules in the bluetoothd ...
-> 
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA 
-> Product ID   :0x00000010
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA SOC 
-> Version  :0x400a0200
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA ROM 
-> Version  :0x00000200
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA Patch 
-> Version:0x00003ac0
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA 
-> controller version 0x02000200
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA 
-> Downloading qca/htbtfw20.tlv
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA 
-> Failed to send TLV segment (-110)
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: QCA 
-> Failed to download patch (-110)
-> Apr 11 13:17:54 braindead.localdomain kernel: Bluetooth: hci0: Retry BT 
-> power ON:0
-> Apr 11 13:17:57 braindead.localdomain kernel: Bluetooth: hci0: command 
-> 0xfc00 tx timeout
-> Apr 11 13:17:57 braindead.localdomain kernel: Bluetooth: hci0: Reading 
-> QCA version information failed (-110)
-> Apr 11 13:17:57 braindead.localdomain kernel: Bluetooth: hci0: Retry BT 
-> power ON:1
-> Apr 11 13:17:59 braindead.localdomain kernel: Bluetooth: hci0: command 
-> 0xfc00 tx timeout
-> Apr 11 13:17:59 braindead.localdomain kernel: Bluetooth: hci0: Reading 
-> QCA version information failed (-110)
-> Apr 11 13:17:59 braindead.localdomain kernel: Bluetooth: hci0: Retry BT 
-> power ON:2
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to set 
-> mode: Authentication Failed (0x05)
-> Apr 11 13:18:01 braindead.localdomain kernel: Bluetooth: hci0: command 
-> 0xfc00 tx timeout
-> Apr 11 13:18:01 braindead.localdomain kernel: Bluetooth: hci0: Reading 
-> QCA version information failed (-110)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Too small Add 
-> Device complete event
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
-> Apr 11 13:18:01 braindead.localdomain bluetoothd[4408]: Failed to add 
-> UUID: Failed (0x03)
+On 4/12/24 6:24 PM, Robert Marko wrote:
+> The common DT property can be used to limit the available channels
+> but ath11k has to manually call wiphy_read_of_freq_limits().
+>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 
-I have captured a full log of my system since boot including debug 
-messages for the hci_hca.c file. Should I attach that log to a message 
-here? In general, I am not totally certain of how I should track the 
-troubleshooting for this problem. Do y'all want it on the mailing list?
+I've seen this before.
 
-> 
-> It looks like the firmware is failing to load. Is there some kind of 
-> time limit on loading the firmware after the module is loaded?
-> 
-> Why would this work if I allow the service to be started on boot, but 
-> not if I wait until after logging into GNOME?
-> 
->>> So, I suspsect that the process of closing out the hardware may be 
->>> leaving it in a state that the reset cannot handle (and probably 
->>> never could handle).
->>>
->>> I also found that qualcomm has docs here: 
->>> https://www.qualcomm.com/products/technology/wi-fi/fastconnect/fastconnect-6800#Documentation
->>>
->>> However, I am not a member of a Qualcomm verified company (mentioned 
->>> in the doc links). Luiz, Marcel, or Johan, do you have any contacts 
->>> that might be able to help me in getting info about the technical 
->>> docs for this hardware? I would love to see if I can find any issues 
->>> in how the hardware is being reset.
->>>
->>> As an independent dev, I don't even know what it takes to get that 
->>> kind of access. I would welcome any help here. Hey Qualcomm, are you 
->>> hiring? :P
->>>
->>> wt
->>
-> 
+https://patchwork.kernel.org/project/linux-wireless/patch/ed266944c721de8dbf0fe35f387a3a71b2c84037.1686486468.git.chunkeey@gmail.com/
 
--- 
-You're more amazing than you think!
+(dt-binding too. it has/had an ack)
+https://patchwork.kernel.org/project/linux-wireless/patch/fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com/
+
+sooo.... this is awkward.
+
+> ---
+>   drivers/net/wireless/ath/ath11k/mac.c | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+> index c32be587000d..59bde128d351 100644
+> --- a/drivers/net/wireless/ath/ath11k/mac.c
+> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+> @@ -10124,6 +10124,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
+>   	if (ret)
+>   		goto err;
+>   
+> +	wiphy_read_of_freq_limits(ar->hw->wiphy);
+>   	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
+>   	ath11k_mac_setup_he_cap(ar, cap);
+>   
+
 
