@@ -4,66 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65BC1C4345F
-	for <ath11k@archiver.kernel.org>; Mon, 15 Apr 2024 11:24:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B608C4345F
+	for <ath11k@archiver.kernel.org>; Mon, 15 Apr 2024 11:27:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=ub4eBCk8TBPNCwE8W3RDmCm3hBSXAehuhbWgGV6jTnI=; b=EpJQxFJi9vNsVMcff1WSJcohL+
-	gNjSAL46YoAUL03fNFqs1WIWArNLUZDKv//522PcUBx31/HgUyJyJo6+K6J6r5P8KlX6SNBIUvjPF
-	KVOKG1MXlhjGzTPSDz+NdtBpvL8mHIZjv++GBx5u9J1gFB0uAXwi/PVLxL4LcY/b6lYQsHB8eTknl
-	rVlrSGWhSMfsiAcQ/jyHJoQwth7jQv4oppUtcXZdw8XX9vsAFbc/2x0bsRw/9S0CQ8dLPMDDS9Rf+
-	WCfnOtcFrN+78EuZi3Teja1CVy2cCs168WfYXI/GObxDWpbRJYJTFBITxALuLg79TfqI+rts90p49
-	pdCT/gSQ==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/K2PqjTQyQgYqRT5pN9iO/vdh21jU+eODfC8847dTNM=; b=Yqrohdx2+1ZFL3n1w8m2Z/MKxu
+	9i/48g3hg2yBlHcXZyuJwVZ0EmyOD4X8pNK0bUQGIY9q3l+erYdhyC5JRJBLOUeEsMUxbpi2wCURL
+	TiovU8k88QvFNFwMZdV16r/MF0QV1q2ezjTKZcEQQw9wYInYTR53D+4uDlPsZznFpPNPjVCgQmDDy
+	0V7ckD7nRPFXqKrNGpK5I3t+9aIP4VGgQS62D79WMbeNkVZlL4s5kPUTh6S7V/FClf+KhWtQfY6ur
+	jvJBdOFpErG29d4gHka5BL6LSdlFXD6Xf+GF9hLIbLmaGZ88LDcUfGTHbXBouvNIKt7SEkC0v3sJk
+	1uTKkPaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwKRt-000000081qP-2OVR;
-	Mon, 15 Apr 2024 11:24:33 +0000
-Received: from smtp-26.smtpout.orange.fr ([80.12.242.26] helo=smtp.smtpout.orange.fr)
+	id 1rwKUU-000000082FG-2ck2;
+	Mon, 15 Apr 2024 11:27:14 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwKRp-000000081pl-0zdc
+	id 1rwKUR-000000082EM-2IPt
 	for ath11k@lists.infradead.org;
-	Mon, 15 Apr 2024 11:24:31 +0000
-Received: from fedora.home ([86.243.17.157])
-	by smtp.orange.fr with ESMTPA
-	id wKRerx2nqPlGBwKReriKR4; Mon, 15 Apr 2024 13:24:21 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1713180261;
-	bh=ub4eBCk8TBPNCwE8W3RDmCm3hBSXAehuhbWgGV6jTnI=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=kSRxP7JX6jTcA8/uJSqnnk9ne7reFCXZZm1Mfa5+Xnymb251WK/qMJ6mCXM9NBsn4
-	 h8pZelhfJFAdPZwqeY+ljhvdmwxFyoBVtL09gzURZKmnIzfKrqvKydE+qI6ljA2DW1
-	 hkberrIoc28ydprnSygtlOyFW8Zk86A3eiWvOiya7U78rTsujl2rJAIRFnCNR9kaPF
-	 4BEe5wSLNgcZi2boq5I+tRauo96eqol87XDwHFJA/nAO1lN1L/k7lNPTpdDlAYMufm
-	 rH6evc+nXnSneuk+sHFlFzAG1DZMkIqPc+VA0E+JJr8vw/d+ATIiCQGJ9Ed8NZyPZZ
-	 tFRYenYaUgZ0g==
-X-ME-Helo: fedora.home
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Mon, 15 Apr 2024 13:24:21 +0200
-X-ME-IP: 86.243.17.157
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Kang Yang <quic_kangyang@quicinc.com>
-Cc: linux-kernel@vger.kernel.org,
-	kernel-janitors@vger.kernel.org,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	Kalle Valo <quic_kvalo@quicinc.com>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org
-Subject: [PATCH] wifi: ath11k: Fix error handling in ath11k_wmi_p2p_noa_event()
-Date: Mon, 15 Apr 2024 13:23:46 +0200
-Message-ID: <6ee80f65f736db1646f6f201f60816cf35b6f3fe.1713180046.git.christophe.jaillet@wanadoo.fr>
-X-Mailer: git-send-email 2.44.0
+	Mon, 15 Apr 2024 11:27:13 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-56fe7dc7f58so2427315a12.2
+        for <ath11k@lists.infradead.org>; Mon, 15 Apr 2024 04:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713180425; x=1713785225; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/K2PqjTQyQgYqRT5pN9iO/vdh21jU+eODfC8847dTNM=;
+        b=LETYjYPuAz5IK1zLXai0lAS89kfpmnmBH12Y48zjcr60Iv1bfw1/G09hM+tJvdNGLI
+         vaqVoeoMTkf85EcOQzGt9ltSUAPABwnK1ajfT2DAiKf8rTqqf4pH+C6j5K0eVjlJUPr9
+         B3LKhkFjNAkGY4/L6S5LqNsCl3cWWtABSKEvnYB285PIqyCS+9/SMosDdiVuSlKC/EmH
+         W8UdlOoAV7lkDNY1pvGh2l9kPbfv2Mb5Ej3DfTXltB0faTqgwonJohK7u7e5GDRCHRmr
+         Dpb5gi23Llc6RJ4CkBtRHIMjVJbbwg+lRNsUjbB2TgZqe88OxV2QVOFSG/F3H60Ifxat
+         Z3Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713180425; x=1713785225;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/K2PqjTQyQgYqRT5pN9iO/vdh21jU+eODfC8847dTNM=;
+        b=VI2EBiN/XiH7oz91Gwczl2i7WZgQKwPClKvdES2WG3o2uthGWoBEAUBdiyPN031Riw
+         NQ/Sjj7rYWIAOfIYpNIFfV/yQ3t41xIkyN85kVVw38Wtp0axxk90dH1DvDZzoeKwg7sq
+         RwKgxq/nWfATDhC+nzLm9cNySyB4Hcgb9mZzblMfMF4KT01DfEVU/lknbqDuwtqsGzQW
+         /bbvEQVowufC1dLEeM06Z1ZA523VbamcOZELxhoGHjaRV7mpRirp8udryQL4MrJzK0hn
+         AahESsEet5hQlKMvTzvys7LQSHs740zdSf/ud9md8TS5koFNpv7eTzlEp5p1gUXS0nOZ
+         wxAA==
+X-Forwarded-Encrypted: i=1; AJvYcCXtX9O0mWg+reooNzW98sDpOqaQKvOmeAJiju+JjdLhaVDfmga6FkzCUqXVNu6Y8taHu7KyBBcY7xqWeAuvZjWx2z0OA93gBNYEEg==
+X-Gm-Message-State: AOJu0Yyy1Yf31x2wL6OyJFEFk7uUMUvpEvJIZbKi3uYhZzFrneqxjn6o
+	ZNwY1TzA1cDEb+YHbtQxajKVidRwNifh+P0Tqg4lew8MO3oMYkzLazcs783r2tucCCAmH0I9xIf
+	LfCzRbPzAgKkGF06HZbZULe+UgE/fSg==
+X-Google-Smtp-Source: AGHT+IGS5rh+f4qcqE62ebFbGxLB5DrHzTkhTZb66+iyP4q1lU4iT8Ev07ddm5Z+ylmP7dLyINyPFw/g83E3bTNS+ww=
+X-Received: by 2002:a50:cd82:0:b0:56e:2e17:a3d1 with SMTP id
+ p2-20020a50cd82000000b0056e2e17a3d1mr7775649edi.25.1713180424342; Mon, 15 Apr
+ 2024 04:27:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CADS+iDX5=JtJr0apAtAQ02WWBxgOFEv8G063vuGYwDTC8AVZaw@mail.gmail.com>
+ <19778bfe-19ad-4ee4-8f3b-80e7b124571f@quicinc.com> <7cd963ba-e4b0-4714-a814-983434589059@quicinc.com>
+ <CADS+iDWeb39_FQQg2j6bk05BV73pOU=Ck+uBadeg+3Nnc6sKiA@mail.gmail.com>
+In-Reply-To: <CADS+iDWeb39_FQQg2j6bk05BV73pOU=Ck+uBadeg+3Nnc6sKiA@mail.gmail.com>
+From: Yaroslav Isakov <yaroslav.isakov@gmail.com>
+Date: Mon, 15 Apr 2024 13:26:53 +0200
+Message-ID: <CADS+iDUr=kVumMdBAU-AcaE-Q9TPN4K3dCe1C4KW2tqs7ziBKw@mail.gmail.com>
+Subject: Re: wcn6855 2.1 - slow download speed on any pairwise cipher except CCMP
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, ath11k@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240415_042429_728217_1DD051DE 
-X-CRM114-Status: GOOD (  11.21  )
+X-CRM114-CacheID: sfid-20240415_042711_631429_5F2BF648 
+X-CRM114-Status: GOOD (  26.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,52 +91,85 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-if (noa_descriptors > WMI_P2P_MAX_NOA_DESCRIPTORS), there is a mix of
-return and goto. in such a case, 'ret' should be assigned an error code and
-the 'td' should be freed to avoid a memory leak.
+Hello!
 
-While at it, return 'ret' instead of 0 in case of error.
-This is actually harmless, because the only caller does not handle the
-return value.
+=D0=B2=D1=81, 14 =D0=B0=D0=BF=D1=80. 2024=E2=80=AF=D0=B3. =D0=B2 10:12, Yar=
+oslav Isakov <yaroslav.isakov@gmail.com>:
+>
+> Hello!
+>
+> =D0=B2=D1=82, 2 =D0=B0=D0=BF=D1=80. 2024=E2=80=AF=D0=B3. =D0=B2 02:35, Ba=
+ochen Qiang <quic_bqiang@quicinc.com>:
+> >
+> >
+> >
+> > On 4/1/2024 10:53 PM, Jeff Johnson wrote:
+> > > On 3/31/2024 8:49 AM, Yaroslav Isakov wrote:
+> > >> Hello! When I tried to switch my OpenWRT router from default CCMP
+> > >> pairwise cipher to any other, supported by both my router (Asus
+> > >> TUF-AX6000) and my laptop (Thinkpat T14 Gen 4 AMD with WCN6855 2.1),=
+ I
+> > >> saw that download dropped from 1Gbit/s to 100 MBit/s. When I changed
+> > >> back to CCMP, download speed recovered back to 1Gbit/s. Upload speed
+> > >> is good, though, for all ciphers - 1Gbit/s.
+> > >>
+> > >> Initially, I thought, that issue with either router hardware, or
+> > >> openwrt driver - but, I tested the same settings on another laptop -
+> > >> T14 Gen3 Intel - and with Intel WIFI, both download and upload speed
+> > >> was 1Gbit/s on any pairwise cipher.
+> > >>
+> > >> This issue is 100% reproducible for me, it happens all the times I'm
+> > >> switching to any pairwise cipher other than CCMP.
+> > >>
+> > >> I'm on Linux 6.7.6, compiled from sources on Gentoo.
+> > I'm not familiar with Gentoo, is there any private changes in it
+> > compared to upstream ath11k? If there indeed is, could you try Kalle's
+> > ath11k tree?
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/
+> >
+> Sorry, missed the message. Gentoo kernel I'm using is very close to
+> upstream. I will try ath11.git, and will report there, thank you.
+>
 
-Fixes: 2408379f15a1 ("wifi: ath11k: implement handling of P2P NoA event")
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index c74aa3f95658..589a1b5ec517 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -8657,7 +8657,7 @@ static int ath11k_wmi_p2p_noa_event(struct ath11k_base *ab,
- 	const struct wmi_p2p_noa_event *ev;
- 	const struct ath11k_wmi_p2p_noa_info *noa;
- 	struct ath11k *ar;
--	int ret, vdev_id;
-+	int ret = 0, vdev_id;
- 	u8 noa_descriptors;
- 
- 	tb = ath11k_wmi_tlv_parse_alloc(ab, skb, GFP_ATOMIC);
-@@ -8682,7 +8682,7 @@ static int ath11k_wmi_p2p_noa_event(struct ath11k_base *ab,
- 	if (noa_descriptors > WMI_P2P_MAX_NOA_DESCRIPTORS) {
- 		ath11k_warn(ab, "invalid descriptor num %d in P2P NoA event\n",
- 			    noa_descriptors);
--		return -EINVAL;
-+		ret = -EINVAL;
- 		goto out;
- 	}
- 
-@@ -8705,7 +8705,7 @@ static int ath11k_wmi_p2p_noa_event(struct ath11k_base *ab,
- 	rcu_read_unlock();
- out:
- 	kfree(tb);
--	return 0;
-+	return ret;
- }
- 
- static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
--- 
-2.44.0
-
+I checked ath.git, master branch - it has the exact same behavior as
+kernel I used - 1Gbit download with CCMP, 100Mbit download with GCMP.
+For me, this issue is easily reproducible, it happens 100% if I'm
+switching to pairwise_cipher (and therefore, groupwise, too) other
+than CCMP.
+> > >>
+> > >> Here is my dmesg for ath11k:
+> > >> [   13.092519] ath11k_pci 0000:02:00.0: BAR 0: assigned [mem
+> > >> 0x78600000-0x787fffff 64bit]
+> > >> [   13.093400] ath11k_pci 0000:02:00.0: enabling device (0000 -> 000=
+2)
+> > >> [   13.095723] ath11k_pci 0000:02:00.0: MSI vectors: 32
+> > >> [   13.096260] ath11k_pci 0000:02:00.0: wcn6855 hw2.1
+> > >> [   13.974707] ath11k_pci 0000:02:00.0: chip_id 0x12 chip_family 0xb
+> > >> board_id 0xff soc_id 0x400c1211
+> > >> [   13.974732] ath11k_pci 0000:02:00.0: fw_version 0x1106196e
+> > >> fw_build_timestamp 2024-01-12 11:30 fw_build_id
+> > >> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
+> > >> [   14.315774] ath11k_pci 0000:02:00.0: Failed to set the requested
+> > >> Country regulatory setting
+> > >> [   14.316046] ath11k_pci 0000:02:00.0: Failed to set the requested
+> > >> Country regulatory setting
+> > >> [  337.889222] ath11k_pci 0000:02:00.0: failed to enqueue rx buf: -2=
+8
+> > >>
+> > >
+> > > There was another reporting of that error in this thread:
+> > > https://lore.kernel.org/all/5c63a3a2-29fe-444c-96f1-f87c89d7af39@gmai=
+l.com/
+> > >
+> > I don't think this is the same issue as reported by James there althoug=
+h
+> > same error message. For now I don't know the root cause to that message
+> > but it's unlikely it causes some tput issue.
+> >
+> > Let's wait for Yasoslav verifying it on latest ath.git.
+> >
+> > > +Baochen Qiang for awareness
+> > >
+> > > /jeff
 
