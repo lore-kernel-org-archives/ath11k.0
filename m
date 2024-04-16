@@ -4,80 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76576C4345F
-	for <ath11k@archiver.kernel.org>; Tue, 16 Apr 2024 13:22:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99493C4345F
+	for <ath11k@archiver.kernel.org>; Tue, 16 Apr 2024 15:25:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=NUyFM9i0rtryeQoNW8AUTADCgYG36OPoQZzM4bvcyrg=; b=MvBaQDKjZu3xccOIS5ek6OlBRy
-	43afZ28d1WNl4/g76LXhlOwkp3Bx0Y0LWYTkD8K8i20kVXJ/LBZoq7NKSsAIZCFz2+81vnhN8z57W
-	/r11v2hcAidyQepnCPqJ33Aw6iog24kCHuCYC8etpFez5N6MmY/V1aLIKqIGIA3MKfLhinLmA0D8A
-	8h08bh6L+F6FievB4zyFTEZeQhAqoc5uLHxKngN0dFxR81YNU0hva2rkPL264d1H4HO8c9OCwkkt+
-	+a7iCp1odR4aiA0XEZp5DH1hYAxkIN9irLyq4kZXHV36UmQi4M/XOzguXo6Wl2wJqBbtyzNmhL42u
-	f7hNt4/w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=hBZxWjBkHSS2q1EUDy5i0Ui386IEoz7+xKnj7yslKHo=; b=do/cjG8IkTQklYSaHzmxbKjTBn
+	Li9sWnmHc2T749mawGChadCch1SaN3kiDR8xGQVENhCGz9jV9L6BT6O+ONoSpRUo4taeTO3rLTz1R
+	wKxXkeLJUWT8cWHtZfaaCD3KUazXxDDAITqksKMWKH1fiHeYRlnF12L8PjxTIqjYSg1OMB3bnpXGU
+	jUGMP4KF6vARDV9jZc0g8xv57f4489ozRd6b0KBeN0434lShVgfpsen3z7XVJJj6iUVc3F5nLqtiM
+	SNrxSChM01uUk+xP+MoBXrqx+RMxninhNUNr48rVJEwfBOyQKTW6msu8TosqfWopANdNHayQfBktv
+	3XlYE/Tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwim3-0000000CHjs-0Em7;
-	Tue, 16 Apr 2024 13:22:59 +0000
-Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
+	id 1rwkgk-0000000CkvQ-0yom;
+	Tue, 16 Apr 2024 15:25:38 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rwilv-0000000CHeD-1ejL
+	id 1rwkgh-0000000Ckub-2OnF
 	for ath11k@lists.infradead.org;
-	Tue, 16 Apr 2024 13:22:57 +0000
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-2a2d0ca3c92so2858596a91.0
-        for <ath11k@lists.infradead.org>; Tue, 16 Apr 2024 06:22:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713273767; x=1713878567; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NUyFM9i0rtryeQoNW8AUTADCgYG36OPoQZzM4bvcyrg=;
-        b=N4zPiwq9iuHK8dxl0TPb24ut/eMaQHyJEiAm8Td+iqy6EQDzFWIEPkKGnU8f+pXjw7
-         /jK89k6nDmJ2BWZSigro7F9mvqfq2ld2CcyI9cVyPdBwnE++5UwD/kOElwXpkS3rJGce
-         ppm7Zsh0ZUvpkGVZ+7Iy9XtsuP4tVYvzK9KOHqp0VicZxRKLPGQ1oO6LtLKNc7cdbIWO
-         UlR7QnTiwO/KrpB07Ca+eL3UaHxBewoTWP2RMPJszN3tM2tt9W1mxtGw2MUdRt9DtKZe
-         O57NaskcGVih3uVah+trclay8hRKlleTsHgTobSg6R9+73Z0xZ2fICS10GtHakL6fK5n
-         iHrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713273767; x=1713878567;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NUyFM9i0rtryeQoNW8AUTADCgYG36OPoQZzM4bvcyrg=;
-        b=ebqDHtjGPXvNDJ6OHUg8Inqc8NdRiulh/qbPEbI/bBDr661lwzJZSyVU6T+FIgXfQn
-         QBOLxDYho1Ix4RJPBBQmlFn7Aema/z4tvU9oJjZojlE1KgdnuLFrJLj8xHolKlC00f7F
-         GNitgzo8a4o9id1keOh2iLBpTGxo+pbmlt48txOv1XnQMTZKad8RDHLL/1vxhUHd3zBp
-         Nqc5RCCjHGV3y6JJtjGIj833GT70dDB3fJHUGLM1q1ngYPYyE9cRaFQMOjNadrqcILRA
-         uINrWYtinMU0FLoPa6G+d4NoG3axKFwieqg1y9uO1nNp9C3Lk/EgVW4f4q32laJAKM9k
-         cYsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXe1no7bQQxrEw2k14CKA2+o1sPX1zecabPbXnRfa+EmStuJ3AWzX7swc5Kl/oMNiraYWX0gKp6HbtGkjmP51N9kcK2Z8DLTT5Mew==
-X-Gm-Message-State: AOJu0YxrbgVe68RnbAq7bQBX0LZ+EkcMXEbABb1nesLf5ITlUCta1UFs
-	Do3Z8w4ePZN85/x18Cqm21Z0oArl3ZgK6GBq2bpJ5js/k+cRG1n1RHETzswm0N6k/QpZEnP/S7J
-	mvBEWPczJCzucEhhXHCpxR94SMVs=
-X-Google-Smtp-Source: AGHT+IFP6210waMqO1NN+/uEDyO7Znkn9Ms/B1bjT8WrCAkXIpVxBUQKxtXXNBOYwcbWaGoZpe/UQlzDo69EIq+/22M=
-X-Received: by 2002:a17:90a:ad7:b0:2a2:dcfe:bd69 with SMTP id
- r23-20020a17090a0ad700b002a2dcfebd69mr3827029pje.13.1713273766756; Tue, 16
- Apr 2024 06:22:46 -0700 (PDT)
+	Tue, 16 Apr 2024 15:25:37 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id E3D876121D
+	for <ath11k@lists.infradead.org>; Tue, 16 Apr 2024 15:25:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2AAEC113CE;
+	Tue, 16 Apr 2024 15:25:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713281134;
+	bh=K/MSx+kBrzVHwkn5x+iwOZu5fOasPv/F/bgNFCFPMFc=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=cLbRiTBm6XzsFNgW7z9JMXlns1VpD+qOu2wXeAvaV7900t62bBlGDMzVIcghQLmDF
+	 3i3wKYxh9r5YYp5TJC/24hYTAPLly7jHigz+CXglb9fOzdw1lSi1TIq4oul/sVMbKx
+	 aCsI/R3Iyi1rcnrDMDNve7Z8+1iDVUxDRaH17ZcXeukoAJaBGiMxWe8eWWSYiu1zOn
+	 NsmnBIT1/m1hOVmKIv3YhXTP4zhpudCdLREWvU237RcKJY8b1YuzehuzvWn5TjLltr
+	 49BguSTzIVZTKF3wpKz/jH3lI9mJoOSAgx6cadUK+p2jTG6twIvG1TOBvdP+46dbqM
+	 H3zQbKwi1RWpw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20240412162510.29483-1-robimarko@gmail.com> <20240416132124.GA2143558-robh@kernel.org>
-In-Reply-To: <20240416132124.GA2143558-robh@kernel.org>
-From: Robert Marko <robimarko@gmail.com>
-Date: Tue, 16 Apr 2024 15:22:34 +0200
-Message-ID: <CAOX2RU5tWt-dEA4it1G+LeNawwPqkwdG=vBBgnmdD6CNc4iywA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add
- ieee80211-freq-limit property
-To: Rob Herring <robh@kernel.org>
-Cc: kvalo@kernel.org, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, jjohnson@kernel.org, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] wifi: ath11k: use RCU when accessing struct
+ inet6_dev::ac_list
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240411165516.4070649-2-kvalo@kernel.org>
+References: <20240411165516.4070649-2-kvalo@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <171328113106.329964.14896487316067436390.kvalo@kernel.org>
+Date: Tue, 16 Apr 2024 15:25:32 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240416_062251_967329_066FA208 
-X-CRM114-Status: GOOD (  16.95  )
+X-CRM114-CacheID: sfid-20240416_082535_745082_5D1B77F9 
+X-CRM114-Status: UNSURE (   6.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,50 +73,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 16 Apr 2024 at 15:21, Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Apr 12, 2024 at 06:24:08PM +0200, Robert Marko wrote:
-> > This is an existing optional property that ieee80211.yaml/cfg80211
-> > provides. It's useful to further restrict supported frequencies
-> > for a specified device through device-tree.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml          | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > index 672282cdfc2f..907bbb646614 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > @@ -55,6 +55,8 @@ properties:
-> >        phandle to a node describing reserved memory (System RAM memory)
-> >        used by ath11k firmware (see bindings/reserved-memory/reserved-memory.txt)
-> >
-> > +  ieee80211-freq-limit: true
-> > +
->
-> Drop this and change additionalProperties to unevaluatedProperties.
+Kalle Valo <kvalo@kernel.org> wrote:
 
-Hi Rob,
-This patch series has been dropped as Christian already proposed the
-same before and it was reviewed.
+> From: Kalle Valo <quic_kvalo@quicinc.com>
+> 
+> Commit c3718936ec47 ("ipv6: anycast: complete RCU handling of struct
+> ifacaddr6") converted struct inet6_dev::ac_list to use RCU but missed that
+> ath11k also accesses this list. Now sparse warns:
+> 
+> drivers/net/wireless/ath/ath11k/mac.c:9145:21: warning: incorrect type in assignment (different address spaces)
+> drivers/net/wireless/ath/ath11k/mac.c:9145:21:    expected struct ifacaddr6 *ifaca6
+> drivers/net/wireless/ath/ath11k/mac.c:9145:21:    got struct ifacaddr6 [noderef] __rcu *ac_list
+> drivers/net/wireless/ath/ath11k/mac.c:9145:53: warning: incorrect type in assignment (different address spaces)
+> drivers/net/wireless/ath/ath11k/mac.c:9145:53:    expected struct ifacaddr6 *ifaca6
+> drivers/net/wireless/ath/ath11k/mac.c:9145:53:    got struct ifacaddr6 [noderef] __rcu *aca_next
+> 
+> Fix it by using rtnl_dereference(). Also add a note that read_lock_bh() calls
+> rcu_read_lock() which I was not aware of.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
+> 
+> Fixes: c3718936ec47 ("ipv6: anycast: complete RCU handling of struct ifacaddr6")
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-Regards,
-Robert
->
-> >    iommus:
-> >      minItems: 1
-> >      maxItems: 2
-> > @@ -88,6 +90,7 @@ required:
-> >  additionalProperties: false
-> >
-> >  allOf:
-> > +  - $ref: ieee80211.yaml#
-> >    - if:
-> >        properties:
-> >          compatible:
-> > --
-> > 2.44.0
-> >
+Patch applied to wireless.git, thanks.
+
+feafe59c8975 wifi: ath11k: use RCU when accessing struct inet6_dev::ac_list
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20240411165516.4070649-2-kvalo@kernel.org/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
