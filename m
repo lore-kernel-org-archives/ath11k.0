@@ -4,60 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D36FFC04FFF
-	for <ath11k@archiver.kernel.org>; Wed, 17 Apr 2024 15:30:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6AAAC04FF8
+	for <ath11k@archiver.kernel.org>; Thu, 18 Apr 2024 15:19:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=z71MR9/FB4ZLioSpgSrKFmW/9gLRNuEnvteXucs//5s=; b=wrTYY0FTE08tb6HkwgH6VWalil
-	PWiJkORsnvoMM0wBm0JpBnQZkewvVzhL52f91x2sSwIo3ShRn2IIWX0uO8D7XZCrVJ8ONi+ByavTK
-	hCtbwA4hU5sWeWB4idGuOW6GkL90OqQwMUMhGjj/rU6G3/42R6k98yd5u7sYfcCz3HU3BhaKiUEaR
-	gdYg7LRT7B8yRAEsfQI8gfWCsxEWIwrbDYWxXhSsGgb3Sj7pXyq7BNUsmcGBBW3Hs1iH8XuX2IaDa
-	c8VbJcRDfAf+l2fUd4dIZnPFrRG828eQnysoXHEZOJL8jXv7Hw1/XD3Zbsp3yTQ/bcn4RK4Lh9/xj
-	t5fZ/BlA==;
+	bh=0mAEURmz4d1+sLaWuNAi4xBgWo+xPNax3CENc+IBRLk=; b=gmIipi1Ym5sUIW/CVnD3l/Nn0c
+	YNXTgCHX0Y3CAtsorBHadzBP0EUOGSZdJ+mPyO7gCz42MFYoBBv7e2Zb3zJugCtttV6x7SsWqwiXb
+	x8VzoQ4tIbY6aNIv/8CBh8olU7w4ExiZmz93zyWLuF6DUThPzE0LQJ0vB41ASz4ShWDFuOjS7qd/J
+	TtnmMmIP5PBVpJ86j43DO5yND6dRqbExbEye3JMd7TP4uo9vUh9601iu0QuMOk+3TzYymW1tQgVv/
+	bmkCwLEtIzWtZagNTPUUxy5ChTqgTVz2f4BEDEKnHer8NKFjWL8dTnRhGZocrVKfEbGPz5aqAaOPx
+	Jm6b6JQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rx7EY-0000000Gad9-1KLN;
-	Wed, 17 Apr 2024 15:30:02 +0000
-Received: from [50.53.2.121] (helo=[192.168.254.15])
-	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rx7ES-0000000GabK-0bD4;
-	Wed, 17 Apr 2024 15:29:56 +0000
-Message-ID: <1c1bc9c3-978c-4e41-8a4b-66da25416304@infradead.org>
-Date: Wed, 17 Apr 2024 08:29:53 -0700
+	id 1rxTXw-00000002lTu-0agF;
+	Thu, 18 Apr 2024 15:19:32 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1rxTXs-00000002lTN-1Vos
+	for ath11k@lists.infradead.org;
+	Thu, 18 Apr 2024 15:19:29 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 55B9A61788;
+	Thu, 18 Apr 2024 15:19:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FB0C113CC;
+	Thu, 18 Apr 2024 15:19:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713453566;
+	bh=/m88cFY+sszGDVxvUiNXiACTSqHBNqQZiJLjJ0y5k2k=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=K0sWNa9Bk2ceR6Kb7RYjPXgvqXWm0UkYxC8L7sOtDEIbREpV2Gp7RLlGsRV5k9RaC
+	 ++QOO3xj4aXywwtMx5mu7wQy+JBG15VC5r7/EXeiEHrt7YobDffBtkJN6FZ6pxI4Ii
+	 p6U2GJEDTw2v1KsCuKiAjsaUlOiNV8IjO/zEIvtyZWlLGfV/yogBQT6MhEF3TEUp0d
+	 mps7gpAj5gEH48Iyxn0L2X4JhapoSrCgIvIzVR1Ru6UPJlmkKb6F4Ek+q9qEUQLNhg
+	 kSa6E5nF43ErGOzN3aeO6AWP+XWD4bo83piXoITvH81RH/irMx6oDB09brtu2UjTok
+	 vnsFZGjfSXfWQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 03/10] net: create a dummy net_device
- allocator
-To: Alexander Lobakin <aleksander.lobakin@intel.com>,
- Johannes Berg <johannes@sipsolutions.net>, Jakub Kicinski <kuba@kernel.org>,
- Breno Leitao <leitao@debian.org>
-Cc: davem@davemloft.net, pabeni@redhat.com, edumazet@google.com,
- elder@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, nbd@nbd.name, sean.wang@mediatek.com,
- Mark-MC.Lee@mediatek.com, lorenzo@kernel.org, taras.chornyi@plvision.eu,
- ath11k@lists.infradead.org, ath10k@lists.infradead.org,
- linux-wireless@vger.kernel.org, geomatsi@gmail.com, kvalo@kernel.org,
- quic_jjohnson@quicinc.com, leon@kernel.org,
- dennis.dalessandro@cornelisnetworks.com, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, bpf@vger.kernel.org, idosch@idosch.org,
- Ido Schimmel <idosch@nvidia.com>, Jiri Pirko <jiri@resnulli.us>,
- Simon Horman <horms@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-References: <20240411135952.1096696-1-leitao@debian.org>
- <20240411135952.1096696-4-leitao@debian.org>
- <20240412191626.2e9bfb4a@kernel.org>
- <ebe80c29-4884-488d-ab83-c020f9c3bc81@intel.com>
- <e0d5741ee053c11fe078fc8afe6cf4a92e274095.camel@sipsolutions.net>
- <d4991f11-a527-429d-b71f-d4ca3a18f501@intel.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <d4991f11-a527-429d-b71f-d4ca3a18f501@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: wireless: ath11k: add
+ ieee80211-freq-limit property
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
+References: <fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com>
+To: Christian Lamparter <chunkeey@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <171345356303.934743.10571401233268486603.kvalo@kernel.org>
+Date: Thu, 18 Apr 2024 15:19:24 +0000 (UTC)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20240418_081928_478901_465639F5 
+X-CRM114-Status: UNSURE (   5.77  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,36 +76,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Christian Lamparter <chunkeey@gmail.com> wrote:
 
-
-On 4/17/24 4:19 AM, Alexander Lobakin wrote:
-> From: Johannes Berg <johannes@sipsolutions.net>
-> Date: Wed, 17 Apr 2024 13:11:38 +0200
+> This is an existing optional property that ieee80211.yaml/cfg80211
+> provides. It's useful to further restrict supported frequencies
+> for a specified device through device-tree.
 > 
->> On Wed, 2024-04-17 at 12:51 +0200, Alexander Lobakin wrote:
->>> Just FYI: kdoc accepts only this pattern:
->>>
->>>  * @last_param: blah
->>>  *
->>>  * Return: blah
->>>
->>> NOT
->>>
->>>  * Returns: blah
->>
->> Actually, it does accept that, the regex is "returns?". It's just
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-ack (Return: is documented)
+2 patches applied to ath-next branch of ath.git, thanks.
 
-> Hmm, I was sure I had warnings on "Returns:"... Not sure now.
-> 
-Yes, either way is accepted.
-
-> documented only as "Return" . IMHO it sometimes reads nicer as "Returns"
->> depending on how you phrase it, but ...
+30ba0022b30a dt-bindings: net: wireless: ath11k: add ieee80211-freq-limit property
+43528ae9d9bf wifi: ath11k: add support DT ieee80211-freq-limit
 
 -- 
-#Randy
-https://people.kernel.org/tglx/notes-about-netiquette
-https://subspace.kernel.org/etiquette.html
+https://patchwork.kernel.org/project/linux-wireless/patch/fc606d2550d047a53b4289235dd3c0fe23d5daac.1686486468.git.chunkeey@gmail.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
