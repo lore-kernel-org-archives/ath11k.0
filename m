@@ -4,93 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E97CBC07E8E
-	for <ath11k@archiver.kernel.org>; Mon, 22 Apr 2024 12:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0FF8C4345F
+	for <ath11k@archiver.kernel.org>; Mon, 22 Apr 2024 13:08:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xrYnp1tDsZ0sxZFnn5u9gBZrt+Gb2bRXco5M67sATos=; b=UWT3WPsqk7Ffm3l/jLgTZd5/+Z
-	QncJs35zd6YnEExqziY3nk1452iphIwYpUGxMP3KFgAaGOkxmJjS+bDFSTMjNjMaYapUCg53+/2lv
-	ypsRJv65wIEOwyyCiwPTu/8sRBrmbIhSHwT9YKKdwbh2nk82clag0O5QbNhVPa2yC+iKednelodz4
-	FnPGGzqsCu14IRL+QxDfpILfgsI8qVy7iSguXO9WHQhL6W7XinmME28PjNb0YSZi+tpi6QfbJFuqN
-	6IMvHpXLI12lg8MLyTToTC36nqNFdZc4LoXdRrY0rpF+kCk6wD24xfg73AuuoeSyxpVLfkyM5tQBm
-	JWkYPI+g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=93J8UaMzS+7O+iNBrRp2s5A4WqBU9HqLHO1AgyN8UH8=; b=Z07YN+pry9M2PTsubPOdP5WbZj
+	9tltnlgzyZxx0wu7tHyC6AxACYzSCH/6NMJd7pJRgH39l1gSGojLBe+RlZJcyBT6npZG2m1kllBuy
+	jllA3+AOOvJCUIQHI4rGGjkcu6tvWi6IvzkzjfLaGdM07rM6O3PhPnZ2jyIxM8xyNzYoMW15SeJUk
+	ohUOPpsaVj9Zlb/hTgQj2b5ntuYMCtjyYTfAv8VKelgjB/SNIU/oIot7tIpkD8h3Bxb526laqbDXq
+	/zIBwnl11/T3K/NiCFlOLDGcGwDOioviMk5RfAVChNYG2cJ2u/9SOMooYwRaArSK92NVmxByE7ZUa
+	4CbwrZpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ryt0A-0000000DYfJ-1U2J;
-	Mon, 22 Apr 2024 12:42:30 +0000
-Received: from mail-ed1-f48.google.com ([209.85.208.48])
+	id 1rytOu-0000000DfZQ-1Yw3;
+	Mon, 22 Apr 2024 13:08:04 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rysy1-0000000DX0J-3AhR;
-	Mon, 22 Apr 2024 12:40:27 +0000
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-56e69a51a33so3955489a12.1;
-        Mon, 22 Apr 2024 05:40:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713789610; x=1714394410;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xrYnp1tDsZ0sxZFnn5u9gBZrt+Gb2bRXco5M67sATos=;
-        b=eEv4PJzwboZAckreTWSfsVOnO2WSDd+VSVp2SyUqF3TLbFTHoEoOmkREwe8vIj9L8Z
-         T9EoNb+8lGt6ofBw+GBYPlYGqeQs1tk+Ke53D3AOOoGeK1XxT+lRMiZ7fkhXxgjT+S+G
-         gq7B5SkkaGEflYEhACWs7bhDctY3ZojTz21kQgAIohd6zsAuzjTAcuhkQarIQvd0rk6q
-         MEiDP04S070tplrjxizddIuIcL7wO3MCmme3aohx/ZxPTfPqJfifttPujxmSYprgM4fd
-         dY33c2laVSuVA8dyGNPeWgQrJ6hbVpaUhJBdAJ6bJX0ny6pWxleOkDlM1HS3mH20TnAm
-         blGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVba/11ZMOTlmoGYO8vktwJ5Xh0H6Z0/2JUdxoIksoLNfhIpgWGs65vGF79toEwYrc36mKwo7f+3G7MOxM+NY9DKBhvPAXcacOktatDYxbwQw+VumriHpj3k0stjYVHEYFBmvt5KySP53pmfh2IDSb+08cduDPa0SsVmw+exXf4YnLCkfPmEkm2c9/DRSXugHSjuHtzAASKu3+pnFrEvB9GMVj5b6NiETgWrG8kVtu87Q==
-X-Gm-Message-State: AOJu0YyWcWIMhg3iBK0Bj6n7WDVy/cMqIbuY71F69r7rcxjxqftsETbC
-	14C3NBvZmXJutED+wK33kLuM80FmUMgYGYs6VGd67q5cKcvOgroM
-X-Google-Smtp-Source: AGHT+IGrZgag9UeQefghQLPV+ku8otAJz6U28ozWysOWpOYWi3aSs0tMI8tAitrA/dkQ2iNnyOPaxQ==
-X-Received: by 2002:a50:8e5b:0:b0:56b:cfef:b2de with SMTP id 27-20020a508e5b000000b0056bcfefb2demr6802703edx.26.1713789609790;
-        Mon, 22 Apr 2024 05:40:09 -0700 (PDT)
-Received: from localhost (fwdproxy-lla-007.fbsv.net. [2a03:2880:30ff:7::face:b00c])
-        by smtp.gmail.com with ESMTPSA id q10-20020a056402248a00b0056fe7c5475bsm5505410eda.10.2024.04.22.05.40.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Apr 2024 05:40:09 -0700 (PDT)
-From: Breno Leitao <leitao@debian.org>
-To: aleksander.lobakin@intel.com,
-	kuba@kernel.org,
-	davem@davemloft.net,
-	pabeni@redhat.com,
-	edumazet@google.com,
-	elder@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	nbd@nbd.name,
-	sean.wang@mediatek.com,
-	Mark-MC.Lee@mediatek.com,
-	lorenzo@kernel.org,
-	taras.chornyi@plvision.eu,
-	ath11k@lists.infradead.org,
-	ath10k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	geomatsi@gmail.com,
-	kvalo@kernel.org,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: quic_jjohnson@quicinc.com,
-	leon@kernel.org,
-	dennis.dalessandro@cornelisnetworks.com,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	bpf@vger.kernel.org,
-	idosch@idosch.org,
-	leitao@debian.org,
-	angelogioacchino.delregno@collabora.com,
-	matthias.bgg@gmail.com
-Subject: [PATCH net-next v7 10/10] wifi: ath11k: allocate dummy net_device dynamically
-Date: Mon, 22 Apr 2024 05:39:03 -0700
-Message-ID: <20240422123921.854943-11-leitao@debian.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240422123921.854943-1-leitao@debian.org>
+	id 1rytOp-0000000DfXu-1wDV;
+	Mon, 22 Apr 2024 13:08:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 324D160DFB;
+	Mon, 22 Apr 2024 13:07:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 030FDC113CC;
+	Mon, 22 Apr 2024 13:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713791277;
+	bh=yfG+kUmCzNShwqakh8yn3JA3rJOrIkdZFg2+CO25P+o=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=ANvLJA7biQ9f6pkY5lJrJl+ZcdKSSALWrgT6llVYoiv35Imd5Zo+H6zpMIL/usbEP
+	 1zY8AXLDhqhHe7DxBNq8Zp0YnkFut7iq5c0imJAMyYh1Q70pIFczPuHmPwF5W7FL98
+	 cB+67aE+2KWePsmpE1Ku9uFhBf0Tnje6fjv2cYExqBdfG4ycIkkaCdVx8MMguXMIvi
+	 YHTSMeeN19NHzEDZVWZJ6wF7XD0Pawu3LAEh/FsWo9k/T6Uo1oGLh7aYnljfLNOQR1
+	 U09qYeGKM9FDM7Yik0XukOqQg9H3irEvD91hgMtYxZh7vrU4JcCJ/RL7jBQV7yBx1z
+	 7P6R43TEygQ1w==
+From: Kalle Valo <kvalo@kernel.org>
+To: Breno Leitao <leitao@debian.org>
+Cc: aleksander.lobakin@intel.com,  kuba@kernel.org,  davem@davemloft.net,
+  pabeni@redhat.com,  edumazet@google.com,  elder@kernel.org,
+  linux-arm-kernel@lists.infradead.org,
+  linux-mediatek@lists.infradead.org,  nbd@nbd.name,
+  sean.wang@mediatek.com,  Mark-MC.Lee@mediatek.com,  lorenzo@kernel.org,
+  taras.chornyi@plvision.eu,  ath11k@lists.infradead.org,
+  ath10k@lists.infradead.org,  linux-wireless@vger.kernel.org,
+  geomatsi@gmail.com,  Igor Mitsyanko <imitsyanko@quantenna.com>,
+  quic_jjohnson@quicinc.com,  leon@kernel.org,
+  dennis.dalessandro@cornelisnetworks.com,  linux-kernel@vger.kernel.org,
+  netdev@vger.kernel.org,  bpf@vger.kernel.org,  idosch@idosch.org,
+  angelogioacchino.delregno@collabora.com,  matthias.bgg@gmail.com
+Subject: Re: [PATCH net-next v7 08/10] wifi: qtnfmac: Use netdev dummy
+ allocator helper
 References: <20240422123921.854943-1-leitao@debian.org>
+	<20240422123921.854943-9-leitao@debian.org>
+Date: Mon, 22 Apr 2024 16:07:49 +0300
+In-Reply-To: <20240422123921.854943-9-leitao@debian.org> (Breno Leitao's
+	message of "Mon, 22 Apr 2024 05:39:01 -0700")
+Message-ID: <87ttjtv93u.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240422_054018_964478_21A95421 
-X-CRM114-Status: GOOD (  13.69  )
+X-CRM114-CacheID: sfid-20240422_060759_565558_A798BE53 
+X-CRM114-Status: UNSURE (   8.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,130 +84,23 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Embedding net_device into structures prohibits the usage of flexible
-arrays in the net_device structure. For more details, see the discussion
-at [1].
+Breno Leitao <leitao@debian.org> writes:
 
-Un-embed the net_device from struct ath11k_ext_irq_grp by converting it
-into a pointer. Then use the leverage alloc_netdev() to allocate the
-net_device object at ath11k_ahb_config_ext_irq() for ahb, and
-ath11k_pcic_ext_irq_config() for pcic.
+> There is a new dummy netdev allocator, use it instead of
+> alloc_netdev()/init_dummy_netdev combination.
+>
+> Using alloc_netdev() with init_dummy_netdev might cause some memory
+> corruption at the driver removal side.
+>
+> Fixes: 61cdb09ff760 ("wifi: qtnfmac: allocate dummy net_device dynamically")
+> Signed-off-by: Breno Leitao <leitao@debian.org>
 
-The free of the device occurs at ath11k_ahb_free_ext_irq() for the ahb
-case, and ath11k_pcic_free_ext_irq() for the pcic case.
+I assume this goes via net-next:
 
-[1] https://lore.kernel.org/all/20240229225910.79e224cf@kernel.org/
+Acked-by: Kalle Valo <kvalo@kernel.org>
 
-Signed-off-by: Breno Leitao <leitao@debian.org>
-Tested-by: Kalle Valo <kvalo@kernel.org>
----
- drivers/net/wireless/ath/ath11k/ahb.c  |  9 +++++++--
- drivers/net/wireless/ath/ath11k/core.h |  2 +-
- drivers/net/wireless/ath/ath11k/pcic.c | 21 +++++++++++++++++----
- 3 files changed, 25 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 7c0a23517949..7f3f6479d553 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -442,6 +442,7 @@ static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
- 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
- 
- 		netif_napi_del(&irq_grp->napi);
-+		free_netdev(irq_grp->napi_ndev);
- 	}
- }
- 
-@@ -533,8 +534,12 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
- 
- 		irq_grp->ab = ab;
- 		irq_grp->grp_id = i;
--		init_dummy_netdev(&irq_grp->napi_ndev);
--		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
-+
-+		irq_grp->napi_ndev = alloc_netdev_dummy(0);
-+		if (!irq_grp->napi_ndev)
-+			return -ENOMEM;
-+
-+		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
- 			       ath11k_ahb_ext_grp_napi_poll);
- 
- 		for (j = 0; j < ATH11K_EXT_IRQ_NUM_MAX; j++) {
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index b3fb74a226fb..590307ca7a11 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -174,7 +174,7 @@ struct ath11k_ext_irq_grp {
- 	u64 timestamp;
- 	bool napi_enabled;
- 	struct napi_struct napi;
--	struct net_device napi_ndev;
-+	struct net_device *napi_ndev;
- };
- 
- enum ath11k_smbios_cc_type {
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index add4db4c50bc..79eb3f9c902f 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -316,6 +316,7 @@ static void ath11k_pcic_free_ext_irq(struct ath11k_base *ab)
- 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
- 
- 		netif_napi_del(&irq_grp->napi);
-+		free_netdev(irq_grp->napi_ndev);
- 	}
- }
- 
-@@ -558,7 +559,7 @@ ath11k_pcic_get_msi_irq(struct ath11k_base *ab, unsigned int vector)
- 
- static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- {
--	int i, j, ret, num_vectors = 0;
-+	int i, j, n, ret, num_vectors = 0;
- 	u32 user_base_data = 0, base_vector = 0;
- 	unsigned long irq_flags;
- 
-@@ -578,8 +579,11 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- 
- 		irq_grp->ab = ab;
- 		irq_grp->grp_id = i;
--		init_dummy_netdev(&irq_grp->napi_ndev);
--		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
-+		irq_grp->napi_ndev = alloc_netdev_dummy(0);
-+		if (!irq_grp->napi_ndev)
-+			return -ENOMEM;
-+
-+		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
- 			       ath11k_pcic_ext_grp_napi_poll);
- 
- 		if (ab->hw_params.ring_mask->tx[i] ||
-@@ -601,8 +605,13 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- 			int vector = (i % num_vectors) + base_vector;
- 			int irq = ath11k_pcic_get_msi_irq(ab, vector);
- 
--			if (irq < 0)
-+			if (irq < 0) {
-+				for (n = 0; n <= i; n++) {
-+					irq_grp = &ab->ext_irq_grp[n];
-+					free_netdev(irq_grp->napi_ndev);
-+				}
- 				return irq;
-+			}
- 
- 			ab->irq_num[irq_idx] = irq;
- 
-@@ -615,6 +624,10 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
- 			if (ret) {
- 				ath11k_err(ab, "failed request irq %d: %d\n",
- 					   vector, ret);
-+				for (n = 0; n <= i; n++) {
-+					irq_grp = &ab->ext_irq_grp[n];
-+					free_netdev(irq_grp->napi_ndev);
-+				}
- 				return ret;
- 			}
- 		}
 -- 
-2.43.0
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
