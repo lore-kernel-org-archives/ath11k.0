@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C344EC4345F
-	for <ath11k@archiver.kernel.org>; Wed, 24 Apr 2024 01:41:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5DCCC4345F
+	for <ath11k@archiver.kernel.org>; Wed, 24 Apr 2024 06:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tdsotHHW9f8oGB6FEJcS0bd54BMZhiKbOxm1dTrTlZ0=; b=JcXKEBipNhj6jyYs+93d2muFQZ
-	NbntBzYTDK3ElFQHangY9xpk4OxLonnjfzFW0kcnt497DCnNh027bwcmzwsHLEYn0hvtsHWFPCXa/
-	AOZGwZXUxVndy62GGUlV7sqassJyVsJe5nq2hXcSJFQuqpOZeeJrcG2+YMut35665xaJfda9flkP+
-	mKPf+5S3bqbkeIfkZqRr7mODwE7OkfqEndmkrx1Xd8c7PGN1kDsTDBBJoyO4UrY8P5vd6ZCrwfQdT
-	q9tauuiueAkoDipTifIqjnBZ4twZDxzE5evMydTrIfCU5ll6m0L3W/CKpscPwfcdFlnrkVcXs8MCp
-	SUzJWfAQ==;
+	bh=Hw2YDeyX38KG+vIBCO/7JNsnFFxa6b0mgvZCY7RGBFY=; b=YMKK4Xb82MgiKewwo9/TSOkqVW
+	S9H4hvJT7FOFyarg+E/nWKHz8VrLwmZP9Ugd+gCjoUwRplsO0YL1XJ75XkrN5KEVxpFKBc+nAvKFX
+	Gr78JnDqZbdKCPfc7c9NUGF9XGqBxd45GpsDVb1tAbh36Fk4mrojpTe0RvERUtKZiU4ce0VfLvj2u
+	xBqlmRJUwH8q1ROpuX8dBx7cM7Sb3MsN2AuJFYXVWUlpzXHaY39p42FHF/Svkd9xahpCuSfXpSqR5
+	CCGay1ao1IOYZHIVqp2siKBFHB+Xqn+3z9jBvuTfBxGdGQwZtV9P2COOsqi2A0xondr/uNk4p7zak
+	DcL+ivHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzRdy-000000026FC-3PlM;
-	Wed, 24 Apr 2024 01:41:54 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rzW4s-00000002qNU-41nm;
+	Wed, 24 Apr 2024 06:25:58 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzRdv-000000026EZ-3qYk
+	id 1rzW4p-00000002qMh-2aWV
 	for ath11k@lists.infradead.org;
-	Wed, 24 Apr 2024 01:41:53 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43O0oo7x001126;
-	Wed, 24 Apr 2024 01:41:46 GMT
+	Wed, 24 Apr 2024 06:25:57 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43O5o9Au027547;
+	Wed, 24 Apr 2024 06:25:51 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=tdsotHHW9f8oGB6FEJcS0bd54BMZhiKbOxm1dTrTlZ0=; b=Ch
-	Hi6ql/jz29339sqphdVcO+egvJrAnz9ecozTwOKgqV/7cBMoyvJPbN1Cx0OqdzYt
-	otnk5FuMSBJq8Z1CF2iPiuExi0ywyXJs/zpLYDCzaKSZYO0EQn1M4c8IfWjdfUUH
-	zQjjRugSwMQDD7FVRVNMUdCLd3vF+F4Nfuwva3ZlnB76fNsK1pbqELfRnNvASO2t
-	cC0P+BFwrYt4+OVabM4eBvOM47mwMAu3jvnI1f3Rm2PYvha6ilLMUDO6OuGNYOIN
-	4ACffifzkKHYqpX97uBlW0r5mHsvK8nJuPY3VeVmVEF638x3Qj598lXeOFgQ5OkH
-	VBU9oipo7MQZ/32pJ0wA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xpapmjkcu-1
+	qcppdkim1; bh=Hw2YDeyX38KG+vIBCO/7JNsnFFxa6b0mgvZCY7RGBFY=; b=Qv
+	gYtHzwjsHvotPsLjIINKu/Ag6qqsZZ2sRuwOUE5qyEzAR5bkgWqDJWk6XI+ATwaF
+	NW8bhGIWS8cMJ/Q/LIrFjHEG1P5sUbqxZzAEOo71mTQvc5RpMVdOTMpuggw7wF7l
+	oicNr7diAt9csxar2ajV0Uj/qmOqDVS/VnwMg9Z3OZSOFyeahRaTM7qxKAbrF2/M
+	1fNzDaXexGT7ywTIiCocYXIKBe6RDT1kW4EoQODKLFSVE8d2epJ2tEXa27CYvZyB
+	OdxGEQ4ArjCcfHaAdklr7DPHxsILrxGiRRCkVQDyaNYY8ctY7h+K+NiVmb2jgCPu
+	LmBUOT4Az1WFPA2CfTAA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xpv9kr2ce-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Apr 2024 01:41:46 +0000 (GMT)
+	Wed, 24 Apr 2024 06:25:50 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43O1fjIf010623
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43O6PnpO022978
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Apr 2024 01:41:45 GMT
+	Wed, 24 Apr 2024 06:25:49 GMT
 Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 23 Apr
- 2024 18:41:44 -0700
-Message-ID: <588a3e21-4d4c-4e83-8e2e-f725db1e9ab7@quicinc.com>
-Date: Wed, 24 Apr 2024 09:41:42 +0800
+ 2024 23:25:48 -0700
+Message-ID: <3b1a52ff-eca1-426e-81cd-4437af5525ba@quicinc.com>
+Date: Wed, 24 Apr 2024 14:25:47 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] wifi: ath11k: move power type check to ASSOC stage when
@@ -72,19 +72,19 @@ X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7zFldS5h7PHFZfUDHnbdeYfBpsrpZNIf
-X-Proofpoint-GUID: 7zFldS5h7PHFZfUDHnbdeYfBpsrpZNIf
+X-Proofpoint-ORIG-GUID: HAdipKnRBGVo4RcsWa6SGqjDZiAwbwKn
+X-Proofpoint-GUID: HAdipKnRBGVo4RcsWa6SGqjDZiAwbwKn
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-23_20,2024-04-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
- mlxscore=0 mlxlogscore=999 clxscore=1015 spamscore=0 adultscore=0
- phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404240007
+ definitions=2024-04-24_03,2024-04-23_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ clxscore=1015 priorityscore=1501 adultscore=0 lowpriorityscore=0
+ mlxlogscore=999 impostorscore=0 phishscore=0 spamscore=0 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404240027
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_184152_033698_26C0B9DD 
-X-CRM114-Status: GOOD (  14.50  )
+X-CRM114-CacheID: sfid-20240423_232556_024307_D746A922 
+X-CRM114-Status: GOOD (  16.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -241,6 +241,7 @@ On 4/23/2024 8:02 PM, Kalle Valo wrote:
 > [  291.645473] Kernel panic - not syncing: Fatal exception
 > [  291.646324] Kernel Offset: 0xa400000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
 > 
-Ah.. Didn't test in AP mode. 
-I will look into this crash. Thanks.
+The crash is caused by arvif->chanctx.def.chan being NULL. Further the NULL pointer is because, when in AP mode, whole arvif->chanctx structure is not filled in ath11k_mac_op_assign_vif_chanctx().
+
+Will add check on 'arvif->chanctx.def.chan' in the new version to avoid this issue.
 
