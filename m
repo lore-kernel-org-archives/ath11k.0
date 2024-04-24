@@ -4,82 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44512C4345F
-	for <ath11k@archiver.kernel.org>; Wed, 24 Apr 2024 06:40:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB716C10F15
+	for <ath11k@archiver.kernel.org>; Wed, 24 Apr 2024 11:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=uLpixUn7RJFTBrbvGL1PC0hi1XN0K5AWYQA3NCBGJB8=; b=zbDjX71xIbnlBJp6XnKA8LxiFu
-	aZV6S6fZd6azQf36vNBnCYoHc3j0uMOdlIUMRQPhcB71Lzs6mJJptBrhd2Jjx5M6EvsohWiVk7oX4
-	Tk3P1QI/OsThrYumcDXTVKcEwwIq89XzOW+NMiac2rIS2TeO4Br1qrzdEfIK+5DqrSCkQ5hNTb8ZJ
-	QtTtfBo2srfJUe7iBXbUkT5kyuGerGwdp76DeJ/mC6mUMHZrFCnfBR6gIa+CG17p086LJSy1Wr49i
-	McqAzc8MS2XgXExJroqkandvpiT6usJYEUygHME2M2C6clwdSuYFKs5kHgaDL+v3k9aJ94hs3+gXF
-	fcr8uRpQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=OMGzAJc20NJL3gSYgRPADWhaRVuwqk6dTZECjo689DA=; b=JbmPKRMSyb2flYmcZ98feBuOOf
+	CZFf4OyA9U1fSyRLX8aQxNGyWiCB015L6ljCnpil/h5txbeXfkPXj/kyEs5san501EDEdL9wA/9rj
+	l0zVYlhzGPSXQdD0WAEdG2Pw9afXS7+mfejkubED0HxNGevYnRUIH4DzAtxCjllE4ma3zIpRXPvcl
+	A1/PFaDNTzX6nIfcuIIh4NQnOZoGn4C92GOeTXvb/TYyLQGcNMR9lgNjzoJGtq84O0FLp6clKrTls
+	aWpTUaaWT5psjnmRn3OJXd5BzhEN6IAKkmKi5dDZlYCNvG6Us8xoeHY/HQebzB/fQWjaY9TOyDnmG
+	R349eeng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzWJ4-00000002ulj-2wax;
-	Wed, 24 Apr 2024 06:40:38 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1rzaWa-00000003r2C-0emJ;
+	Wed, 24 Apr 2024 11:10:52 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1rzWIz-00000002uiK-3Xmw
-	for ath11k@lists.infradead.org;
-	Wed, 24 Apr 2024 06:40:35 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43O6X8ig026957;
-	Wed, 24 Apr 2024 06:40:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=uLpixUn
-	7RJFTBrbvGL1PC0hi1XN0K5AWYQA3NCBGJB8=; b=lAUFwekgMPrTyYVESSUV90y
-	S6O7CbgCjn9FNNlAV658lSCLqi+jhGvtht2gIqv/Ey/21h7mliznKhALDbVOgVI8
-	Y7l2K99ff5CWzYRRgG3e7opo63KsjuWgczqS4+TkGjmBcTX5gvHP6YJAcbbMyq0m
-	jizLUKjjJPt8/i5qktMK8uWVTwDJahQ0bkppDzR3gdW6P22vaWcY0Z5jpEdOehve
-	zuu+oQOVt2JYnHmwAhKpvXiBJ/oirl17Pvh9MVjbOPkHPnKRUQ4LzAtpDn4k1hV4
-	kvu0JpwSTH6xIJYY0PQFljsyaW4li9Y3mAC5eiwpiSWmXAPrGsqIEZ2oPEKuy+Q=
-	=
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xpv9dg351-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Apr 2024 06:40:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43O6eUDP011782
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Apr 2024 06:40:30 GMT
-Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 23 Apr 2024 23:40:28 -0700
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH v2] wifi: ath11k: move power type check to ASSOC stage when connecting to 6 GHz AP
-Date: Wed, 24 Apr 2024 14:40:19 +0800
-Message-ID: <20240424064019.4847-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	id 1rzaWI-00000003qoJ-25ou;
+	Wed, 24 Apr 2024 11:10:37 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id CD80761A2F;
+	Wed, 24 Apr 2024 11:10:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C9438C4AF16;
+	Wed, 24 Apr 2024 11:10:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1713957031;
+	bh=5gH5c9GDDi9WLsKl6Z7sGCJeqtsVrGwX2qo4yjbesBQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=lLRpz56F9j55d+6+qu39aNUTMLy7csK6asaF+R997D3H77neV+fKWIP1P0g9HC7MX
+	 vGJzItw+ps3IDad3rYSXgqM1wQcZ92403W39GmvmGPSo4K3DqEchhOSBKmn3WmEzn8
+	 uWggEcPmCuqGgl3/IfYvFqD7ygaPulhp64ijkE8vgY5UDpOSfTu8/rnaAs1sxvS4lz
+	 D/qRuYL9JdEKYX8aSTSV4yd8zwI/wxWow/6s5PCtgnmOLYujO0BSP5opoGCyF/EjSZ
+	 n+KSCP7uroT83MKzNEyHF9oin4czDsVB0TennMitDo/oVxQUBgSAB6N6LjfJZ7Yq07
+	 0z+uVazcvXK+Q==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id BADCCCF21D8;
+	Wed, 24 Apr 2024 11:10:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3oWTPK9R37IIWQc3oW3pMyjst5fJm6aC
-X-Proofpoint-ORIG-GUID: 3oWTPK9R37IIWQc3oW3pMyjst5fJm6aC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-24_04,2024-04-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0
- impostorscore=0 mlxlogscore=999 bulkscore=0 clxscore=1015 phishscore=0
- adultscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2404010003 definitions=main-2404240028
+Subject: Re: [PATCH net-next v7 00/10] allocate dummy device dynamically
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <171395703175.12181.16297886360257972212.git-patchwork-notify@kernel.org>
+Date: Wed, 24 Apr 2024 11:10:31 +0000
+References: <20240422123921.854943-1-leitao@debian.org>
+In-Reply-To: <20240422123921.854943-1-leitao@debian.org>
+To: Breno Leitao <leitao@debian.org>
+Cc: aleksander.lobakin@intel.com, kuba@kernel.org, davem@davemloft.net,
+ pabeni@redhat.com, edumazet@google.com, elder@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ nbd@nbd.name, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+ lorenzo@kernel.org, taras.chornyi@plvision.eu, ath11k@lists.infradead.org,
+ ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ geomatsi@gmail.com, kvalo@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, quic_jjohnson@quicinc.com,
+ leon@kernel.org, dennis.dalessandro@cornelisnetworks.com,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+ idosch@idosch.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240423_234034_032221_8F2419FC 
-X-CRM114-Status: GOOD (  14.30  )
+X-CRM114-CacheID: sfid-20240424_041034_726201_094C6B27 
+X-CRM114-Status: UNSURE (   7.61  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,103 +83,48 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-With commit bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
-ath11k fails to connect to 6 GHz AP.
+Hello:
 
-This is because currently ath11k checks AP's power type in
-ath11k_mac_op_assign_vif_chanctx() which would be called in AUTH stage.
-However with above commit power type is not available until ASSOC stage.
-As a result power type check fails and therefore connection fails.
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-Fix this by moving power type check to ASSOC stage, also move regulatory
-rules update there because it depends on power type.
+On Mon, 22 Apr 2024 05:38:53 -0700 you wrote:
+> struct net_device shouldn't be embedded into any structure, instead,
+> the owner should use the private space to embed their state into
+> net_device.
+> 
+> But, in some cases the net_device is embedded inside the private
+> structure, which blocks the usage of zero-length arrays inside
+> net_device.
+> 
+> [...]
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+Here is the summary with links:
+  - [net-next,v7,01/10] net: core: Fix documentation
+    https://git.kernel.org/netdev/net-next/c/c6e7f276841d
+  - [net-next,v7,02/10] net: free_netdev: exit earlier if dummy
+    https://git.kernel.org/netdev/net-next/c/f8d05679fb3f
+  - [net-next,v7,03/10] net: create a dummy net_device allocator
+    https://git.kernel.org/netdev/net-next/c/c661050f93d3
+  - [net-next,v7,04/10] net: marvell: prestera: allocate dummy net_device dynamically
+    https://git.kernel.org/netdev/net-next/c/ec24c06eb312
+  - [net-next,v7,05/10] net: mediatek: mtk_eth_sock: allocate dummy net_device dynamically
+    https://git.kernel.org/netdev/net-next/c/b209bd6d0bff
+  - [net-next,v7,06/10] net: ipa: allocate dummy net_device dynamically
+    https://git.kernel.org/netdev/net-next/c/1bdab0ee635d
+  - [net-next,v7,07/10] net: ibm/emac: allocate dummy net_device dynamically
+    https://git.kernel.org/netdev/net-next/c/2eb5e25d8495
+  - [net-next,v7,08/10] wifi: qtnfmac: Use netdev dummy allocator helper
+    https://git.kernel.org/netdev/net-next/c/4a8b77eff7e5
+  - [net-next,v7,09/10] wifi: ath10k: allocate dummy net_device dynamically
+    https://git.kernel.org/netdev/net-next/c/57738dab12d9
+  - [net-next,v7,10/10] wifi: ath11k: allocate dummy net_device dynamically
+    https://git.kernel.org/netdev/net-next/c/bca592ead825
 
-Fixes: bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
-v2:
- - add check on 'arvif->chanctx.def.chan' in ath11k_mac_op_sta_state()
-   to avoid NULL pointer dereference.
- - add 'Fixes:' tag.
-
- drivers/net/wireless/ath/ath11k/mac.c | 38 ++++++++++++++++++---------
- 1 file changed, 25 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 3202e36f9663..69ad38e0efe0 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7988,8 +7988,6 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 	struct ath11k_base *ab = ar->ab;
- 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
- 	int ret;
--	struct cur_regulatory_info *reg_info;
--	enum ieee80211_ap_reg_power power_type;
- 
- 	mutex_lock(&ar->conf_mutex);
- 
-@@ -8000,17 +7998,6 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 	if (ath11k_wmi_supports_6ghz_cc_ext(ar) &&
- 	    ctx->def.chan->band == NL80211_BAND_6GHZ &&
- 	    arvif->vdev_type == WMI_VDEV_TYPE_STA) {
--		reg_info = &ab->reg_info_store[ar->pdev_idx];
--		power_type = vif->bss_conf.power_type;
--
--		ath11k_dbg(ab, ATH11K_DBG_MAC, "chanctx power type %d\n", power_type);
--
--		if (power_type == IEEE80211_REG_UNSET_AP) {
--			ret = -EINVAL;
--			goto out;
--		}
--
--		ath11k_reg_handle_chan_list(ab, reg_info, power_type);
- 		arvif->chanctx = *ctx;
- 		ath11k_mac_parse_tx_pwr_env(ar, vif, ctx);
- 	}
-@@ -9626,6 +9613,8 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 	struct ath11k *ar = hw->priv;
- 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
- 	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
-+	enum ieee80211_ap_reg_power power_type;
-+	struct cur_regulatory_info *reg_info;
- 	struct ath11k_peer *peer;
- 	int ret = 0;
- 
-@@ -9705,6 +9694,29 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 				ath11k_warn(ar->ab, "Unable to authorize peer %pM vdev %d: %d\n",
- 					    sta->addr, arvif->vdev_id, ret);
- 		}
-+
-+		if (!ret &&
-+		    ath11k_wmi_supports_6ghz_cc_ext(ar) &&
-+		    arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-+		    arvif->chanctx.def.chan &&
-+		    arvif->chanctx.def.chan->band == NL80211_BAND_6GHZ) {
-+			reg_info = &ar->ab->reg_info_store[ar->pdev_idx];
-+			power_type = vif->bss_conf.power_type;
-+
-+			if (power_type == IEEE80211_REG_UNSET_AP) {
-+				ath11k_warn(ar->ab, "invalid power type %d\n",
-+					    power_type);
-+				ret = -EINVAL;
-+			} else {
-+				ret = ath11k_reg_handle_chan_list(ar->ab,
-+								  reg_info,
-+								  power_type);
-+				if (ret)
-+					ath11k_warn(ar->ab,
-+						    "failed to handle chan list with power type %d\n",
-+						    power_type);
-+			}
-+		}
- 	} else if (old_state == IEEE80211_STA_AUTHORIZED &&
- 		   new_state == IEEE80211_STA_ASSOC) {
- 		spin_lock_bh(&ar->ab->base_lock);
-
-base-commit: 1b61047b44218a00c7a7836eff4f8e037d5634d8
+You are awesome, thank you!
 -- 
-2.25.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
