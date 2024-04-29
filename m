@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2223EC4345F
-	for <ath11k@archiver.kernel.org>; Mon, 29 Apr 2024 13:14:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C3A1C4345F
+	for <ath11k@archiver.kernel.org>; Mon, 29 Apr 2024 13:37:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=32UddEEH/ABzniJANKQRw8CBrfB7EKYjnd7moyU61Lg=; b=ZBqBDQqKE8Z/HagwntligrY/os
-	BoNI1LytMhxT2fb7jOFUMKfWhk6Z6jzdK/3NNGQyG8j1BISVeKmv4OfrND0uxJh/Yz5FgcNimPTLB
-	9ZtFeHC8bvkrK7JC0HfTaJMoC4v+j+jwHaTI1gDrHjbvrlfFnk+2PWk0/Z6X0eyKaUvP+z095VP24
-	gBEdrvvJKwQ+y1IFt8bZ4JHHRDep4Ln45pC6kuI1LyLjjIURaPKXJLKxQjMdGsqDmV1xDf2EIlLhj
-	dVBIKluVu3oOXSiV7e8mTsrHKRR4jH/N1N3qD2ed46AuSxtelxCo41nKN2921uRHUUyhLHVEk0jeK
-	vFsZBhXA==;
+	bh=Dqbkib0bxKKANnpl4mPSGPwuahB3su7zfx76HtatWR4=; b=Zuj3oS/KeAJf51tXeGBZe/LyDE
+	cdUu/ZSzWt1hvyAX9B21xAjiSdwnX0y2XldIoj8ySNKJkeKgXZASN5qEFUNCgpLnCu9Eb4Z+IrpeO
+	4lSZBiENZTqTvgiuTv8TgU2vgYkOAe55i6hf8YoW8DxaPIDqPH7MfCrahmMoKQ8WkimqaEQCiuiOa
+	jt+NGJ5tbO7+sKgwMGZZm3/gAAWCCfnSOjLG3No2q73eVwyfVN/icfLXT5NUK5zJf4PhWvp1RhmrC
+	5Lfp9/ZPqm+P/d12aJ50ywVI3sKaBq9Xhd++YeyZODuKFl1t30tqsqcocYraT1PL9s5PORi3FZxeT
+	0Dcz7uIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1Qpv-00000002siC-2dIx;
-	Mon, 29 Apr 2024 13:14:27 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1s1RBo-00000002y1f-47K4;
+	Mon, 29 Apr 2024 13:37:04 +0000
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1Qpr-00000002sgp-0Mjq
+	id 1s1RBl-00000002y04-41pF
 	for ath11k@lists.infradead.org;
-	Mon, 29 Apr 2024 13:14:24 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 6CC0960C86;
-	Mon, 29 Apr 2024 13:14:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A041C113CD;
-	Mon, 29 Apr 2024 13:14:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1714396461;
-	bh=FdRJiCn6ZyDAd2R8zbK2F1Wy9ITfBYOKeCJJnU4ZIJ8=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=SGsWrzD72sAms6fPJvBtRjRYudRkLAvXAOJK9ejpgNkTXRw2klSFm3Cjvs02ewx7f
-	 HP2tKO1/IEIjyIpf1xqInZRkcCeGlYFg05D4xt6+s5qWjDWzfYo4o695BOyFQFgPXL
-	 wIUsUHxeuEzRdOMNRJ99meWowH/FdsGbAB6JSWRnqrEPvtwgihelZxLclk5A4+sswn
-	 4/KgTbpv7qGt/4VWrvW5sAF7O7X03fIdyAWyKWQbi4BF88LTI9BTKrzD25LPmaMBx8
-	 5+UDQwyY/G00T6By1O6monh/yZYUdhwIxes59zw3FaEuB3EyfI5uvU+ZC/K84ESdeD
-	 c8851zgQEuSyA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Sven Eckelmann <sven@narfation.org>
-Cc: Tanjeff Moos <Tanjeff.Moos@westermo.com>,
-  openwrt-devel@lists.openwrt.org,  Felix Fietkau <nbd@nbd.name>,
-  ath11k@lists.infradead.org,  Jeff Johnson <quic_jjohnson@quicinc.com>
+	Mon, 29 Apr 2024 13:37:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1714397816;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Dqbkib0bxKKANnpl4mPSGPwuahB3su7zfx76HtatWR4=;
+	b=fzC42RRH+dAiq8tdJgrC5qHQnTZqIQUAxa9SWyapXAOTGWZiAB3qraQ3/FH66ydypd4VKb
+	2ESHZlNYl46JYduSaxW8vSFHnPjLEZ2H8zRNCWTwNh87KJyMalJdSSBWFR/GV/CQFXHXWQ
+	U9Wl1dIqwSPW5aXWVWIOIwpCNruwUQY=
+From: Sven Eckelmann <sven@narfation.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Tanjeff Moos <Tanjeff.Moos@westermo.com>, openwrt-devel@lists.openwrt.org,
+ Felix Fietkau <nbd@nbd.name>, ath11k@lists.infradead.org,
+ Jeff Johnson <quic_jjohnson@quicinc.com>
 Subject: Re: Question to recent Qualcomm CVEs
+Date: Mon, 29 Apr 2024 15:36:47 +0200
+Message-ID: <4889305.GXAFRqVoOG@bentobox>
+In-Reply-To: <87il00qpjp.fsf@kernel.org>
 References: <48174971-4b30-4046-9710-2acb16990e07@westermo.com>
-	<5e5c35eb-336b-4e92-b506-506e9fbeef7d@nbd.name>
-	<2668032.usQuhbGJ8B@ripper> <87ttlvjk6l.fsf@kernel.org>
-Date: Mon, 29 Apr 2024 16:14:18 +0300
-In-Reply-To: <87ttlvjk6l.fsf@kernel.org> (Kalle Valo's message of "Mon, 26 Feb
-	2024 17:53:54 +0200")
-Message-ID: <87il00qpjp.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+ <87ttlvjk6l.fsf@kernel.org> <87il00qpjp.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; boundary="nextPart1886866.tdWV9SEqCh";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240429_061423_254448_853077AD 
-X-CRM114-Status: GOOD (  22.85  )
+X-CRM114-CacheID: sfid-20240429_063702_215984_808436B0 
+X-CRM114-Status: GOOD (  10.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,71 +67,56 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+--nextPart1886866.tdWV9SEqCh
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: Kalle Valo <kvalo@kernel.org>
+Subject: Re: Question to recent Qualcomm CVEs
+Date: Mon, 29 Apr 2024 15:36:47 +0200
+Message-ID: <4889305.GXAFRqVoOG@bentobox>
+In-Reply-To: <87il00qpjp.fsf@kernel.org>
+MIME-Version: 1.0
 
-> + ath11k, jeff
->
-> Sven Eckelmann <sven@narfation.org> writes:
->
->> On Monday, 26 February 2024 15:50:44 CET Felix Fietkau wrote:
->> [...]
->>>> The Qualcomm bulletin[1] says "Patches are being actively
->>> > shared with OEMs".
->>> > 
->>> > Were these bugfixes made available for OpenWRT? Is there an established
->>> > procedure for such cases, where closed-source firmware gets bugfixes?
->> [...]
->>> > [1]
->>> > https://docs.qualcomm.com/product/publicresources/securitybulletin/
->> december-2023-bulletin.html
->>> 
->>> The fixes were not shared with OpenWrt. Qualcomm does not care about 
->>> OpenWrt support for their platforms.
->>
->> I've asked (using their qualcomm-cdmatech-support portal) for an official 
->> release of their WiFi firmware with all gathered bugfixes via 
->> linux-firmware.git. I got statements that the ath10k firmware is no longer 
->> supported + ath11k firmware is not developed further. But for some of them it 
->> is possible to request a release of the firmwares via Kalle's repositories. 
->> But also that Kalle's repositories are now replaced. Which seems to be 
->> confirmed by Kalle's statement [1] regarding the firmware-N.bin files on 
->> ath12k@lists.infradead.org .
->>
->> The new positions for firmware files were not revealed but I found a couple of 
->> places [2,3,4,5] in my search.
->
-> Yeah, the ath1?k-firmware.git repos are being moved to
-> git.codelinaro.org and we will send an announcement once everything is
-> ready.
->
->> And to the request to get the latest versions released via linux-firmware.git 
->> (or maybe even only in Kalle's repositories), I got (some weeks ago) the 
->> answer "Let me check with our team.".
->>
->> It is rather hard to make statements about Qualcomm  - simply because it is 
->> not just a single person and I have no idea about the internal structures. But 
->> it doesn't seem to be the highest priority (for the "internal team"?) to make 
->> fixes available for everyone. I still hope that it is just delayed due to some 
->> unfortunate circumstances. But this is just the current state.
->
-> Thanks for letting me know, I was not aware any of this. Me and Jeff
-> will investigate and get back to you.
+On Monday, 29 April 2024 15:14:18 CEST Kalle Valo wrote:
+> It's quite strange that they updated 2.5.0.1 branch first but my
+> understanding that there should be updates for the newer 2.7.0.1 branch
+> as well (2.7.0.1 branch is also in linux-firmware).
 
-In case not everyone noticed but Jeff has now uploaded updates to
-2.5.0.1 branch:
+Yes, I also told them in the support ticket that this is from an older branch 
+than what is currently shipped in linux-firmware.git. But they told me 
+that they are working on newer versions (whatever that means) - but they 
+wanted to  handle first the update to ATH.11.4 (2.5.0.x) and then 
+step-by-step release it for newer firmware branches. It seem like that would be 
+up to 2.9.0.x - no idea why there is no (public) 2.10.x/2.11.x for the AP 
+SoCs.
 
-https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/commit/97e0d33fe3e0f708459a682b167014906719337d
+Kind regards,
+	Sven
+--nextPart1886866.tdWV9SEqCh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/commit/04dd351414737ac14b3e381d3695b59f4de67eaa
+-----BEGIN PGP SIGNATURE-----
 
-https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/commit/2dda8ce67f65af54f86fb2f49316174841fa95f7
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmYvom8ACgkQXYcKB8Em
+e0bRsxAAnMMYFIu5D9dmMhN8X89gWc8rJZu8hfLdN2no2xEscV+4MPRXPhnyTlAG
+QSOQcmNDMQNWFOLMNmElqSozHUSyweAOATktad4uhusxOp9rN/3Zrvgbqtxf2vSR
+EOy+R0yRB6rvog7cepP9WHhTqEJwrbIi5jmuFAwpxCKRs/p+uYAbvCIbefF66yh0
+j7eSU9xfhK0buIxINBs22awIR5QfvcwxMBU71pN3M4VIluQR3sbk6ZzJ0mk0KW04
+QS3ZV+A6mfOQEzP7R+WZ3XGrMGPkdkCgtfjQzo4LLfJsj4c7KGaKp1lDM71SeUgw
+mOGSBBy240FR41DlD1Ma/looqHOEm2/agjbKWkVO41LxA9q4Wk8aO2yA3cFM0wyg
+h6naN7c3GpfMRgUIMRlBMtk1gUTW3hh9Fg4W2GudztNAOeONH7jAEGfRzPKwwxrH
+lMkPz9yV0ilzxcjD8dFAv+9+ATrLNZVzQ85nXx8JZv1rbOEo6Op1Bv1rnz9wAlsP
+G2exubPV8hPmu2/t+YttVzIxp8Y/vV6Q9rvfPftGAgmZ6JS+oDbbGQcOEUgbaR1h
++qwVzRrUkPnwa5UQFHcmNiwHhlh/3m2aw1rdpxIZeDyItqtA23on1X+ZJ8PctpSz
+BxA/kWtkjo9u8RoHuZ0dJXUHcwqMIWZXj4TRa6rXktImPenOXog=
+=fjWX
+-----END PGP SIGNATURE-----
 
-It's quite strange that they updated 2.5.0.1 branch first but my
-understanding that there should be updates for the newer 2.7.0.1 branch
-as well (2.7.0.1 branch is also in linux-firmware).
+--nextPart1886866.tdWV9SEqCh--
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
