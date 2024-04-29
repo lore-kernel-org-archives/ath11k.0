@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE2BC4345F
-	for <ath11k@archiver.kernel.org>; Mon, 29 Apr 2024 07:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9D55C4345F
+	for <ath11k@archiver.kernel.org>; Mon, 29 Apr 2024 07:36:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Qb3/qj8BDdjM2l978ZwujkPeSakWiXeuXcjnYbqnHtE=; b=VOFBj6Xnmz1lXozO9gkCklZcQg
-	an7d82RFuO8aShkgyWc29wmvSY02amhRgwBUu5/YM+8z1n3nOtQGJmZd4SzvQDejd7ICGe015xF/b
-	2+2v9vEIa1a3+Dkvb2wwESRHI37MVtEyioW40lgrwCWm/l8GJPNQA/7OvFZ9ssI0v78DKk9NN8FEO
-	kJGT8ZA0UI0ZpyGqufZwEuRb2cky9KtJBqcVIO2w5FJ20xoCD3fwb/NKLaZg7N3MfZLyhDDa/Az07
-	jjA7noU6AuCZfJzj/l6bkHA0BfScBnQZDRFszYXv/duExFOARvvv5CCjucOkA2Tvz/N7/nDNq4+Sg
-	WuSUM0Zw==;
+	bh=aFeDMpMTO7LYMBAAOpVeWnz4ywTsiGmjjbhaDfsATek=; b=oRAank0T/H1wNd9FF1OMRbOsKZ
+	sugZ0d3XXEflzwroBOhd8I7+zsg7MLwtI5Nd/5gG1sEeP6AcW/vYnipfYb7HpysE1XLS61v2QVXMg
+	/jgguZrnN8PsVNoIG4/ydBCaE3EsXbtR/pqso11W00MIIHmY1+zRgLugNQMaeW6iajjLzvrsm15tN
+	3BSDsNeDJwIl/vUcfL/hQIDiiDPpMwHCjc15/G7+/lTbs2le3BjG7NxVwiJl4SVZl0R6JJmru5zor
+	MgG3rgj0ZqK2c9VOGcBjg4Xn/5sV48Zbu+2bMkZqfhu8gA/sc3YHubS2vuWmbGfNWdk//ooh0/f1r
+	f15wo+lQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1LQM-00000001pMM-0kwi;
-	Mon, 29 Apr 2024 07:27:42 +0000
+	id 1s1LZ4-00000001qc6-1oSm;
+	Mon, 29 Apr 2024 07:36:42 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1LQJ-00000001pLp-29Lh
+	id 1s1LZ1-00000001qbZ-1beZ
 	for ath11k@lists.infradead.org;
-	Mon, 29 Apr 2024 07:27:40 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43T5L8Hp024225;
-	Mon, 29 Apr 2024 07:27:38 GMT
+	Mon, 29 Apr 2024 07:36:40 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43T5lO9h011455;
+	Mon, 29 Apr 2024 07:36:38 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=Qb3/qj8
-	BDdjM2l978ZwujkPeSakWiXeuXcjnYbqnHtE=; b=OuoKULnblweFYDjf9fuamAj
-	uFAtKuJ+ZJORtXN6u1xHT/ELxSDqb5OyTFMjgsNvnIDKEeGomX4MqIFy1K4llzHA
-	MVG6OhhGPOJH932bO3QLcLGO9AY1jL/Rz0heE7AAuqtmugOb1uREqGzQ9kCXMaY2
-	GwSPWXlskMZ+TbwY7FoDiC2l+IIxarLDizvwQr1oo1KIbor9PilF5gGlckO5+YT4
-	1qhlRTOIaix4erJ7lcjA6u52L+sQK7GZtyIOuVbXI/7KuAVZmjE8kDo7AVBVOTct
-	E5m1+An5ADcMurU0iM9d8cUvoAxKKLEoBp795MmSV95phsYBEG9ZJxm9M/MBvGQ=
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=aFeDMpM
+	TO7LYMBAAOpVeWnz4ywTsiGmjjbhaDfsATek=; b=ES6sGDQsP60BVnS3nrrgQNL
+	OA118KaS4bI1GGSAnoQ6zK7PX4oagvt/UgxQeuAl8C1hH0xyphOINpMe9TZVhYVK
+	1pZdEhuCi/Bilm7NszXYq8hG1JSdbK7DTOKScnFHf3QGKVA6BCdp/4L5BJwCxy+W
+	2ltNj5RzSK9TzVfZNPtaKqMQZjzk0aAVyAtwauONYGFmyE58UDbmDySNd+uu+tUk
+	dAdVOLE3KgV6q8H11Xvbh3u4r5Ga+G3QVZl+09ut/CKanPdwZkIU1/vVZr5CFDwY
+	sx/CNNiNBQPNwKM11hwcqjkimiH4uR+xlmlPLiSFbBSaOPMBA1QHi/KH0wXenLA=
 	=
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xrthtax3d-1
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xrt4ku067-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Apr 2024 07:27:38 +0000 (GMT)
+	Mon, 29 Apr 2024 07:36:38 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43T7RbHs020134
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43T7abDi002872
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Apr 2024 07:27:37 GMT
+	Mon, 29 Apr 2024 07:36:37 GMT
 Received: from hu-tamizhr-blr.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 29 Apr 2024 00:27:35 -0700
+ 15.2.1544.9; Mon, 29 Apr 2024 00:36:35 -0700
 From: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>,
         Venkateswara Naralasetty
 	<quic_vnaralas@quicinc.com>,
         Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-Subject: [PATCHv4] wifi: ath11k: skip status ring entry processing
-Date: Mon, 29 Apr 2024 12:57:23 +0530
-Message-ID: <20240429072723.712841-1-quic_tamizhr@quicinc.com>
+Subject: [PATCHv5] wifi: ath11k: skip status ring entry processing
+Date: Mon, 29 Apr 2024 13:06:24 +0530
+Message-ID: <20240429073624.736147-1-quic_tamizhr@quicinc.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cZm5ZGuEdnQE80NE20GK7CWGW2m8OWvY
-X-Proofpoint-GUID: cZm5ZGuEdnQE80NE20GK7CWGW2m8OWvY
+X-Proofpoint-GUID: RaaYU4COtiL9AHZRojLd8MOfgTUgMAP0
+X-Proofpoint-ORIG-GUID: RaaYU4COtiL9AHZRojLd8MOfgTUgMAP0
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-29_04,2024-04-26_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- mlxscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=719 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2404290047
+ definitions=2024-04-29_05,2024-04-26_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 impostorscore=0 malwarescore=0 suspectscore=0 mlxlogscore=714
+ clxscore=1015 mlxscore=0 phishscore=0 bulkscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404290047
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240429_002739_600343_98647392 
-X-CRM114-Status: GOOD (  19.84  )
+X-CRM114-CacheID: sfid-20240429_003639_476283_8993F87B 
+X-CRM114-Status: GOOD (  21.69  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,6 +128,8 @@ Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 Co-developed-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
 Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
 ---
+v5:
+  * Updated copyright info in dp_rx.c and hal.c
 v4:
   * Removed kernel reported compilation warning from Signed off place
 v3:
@@ -135,15 +137,24 @@ v3:
 v2:
   * Fixed compilation warning Reported-by: kernel test robot <lkp@intel.com>
 
- drivers/net/wireless/ath/ath11k/dp_rx.c | 88 ++++++++++++++++++++++---
- drivers/net/wireless/ath/ath11k/hal.c   | 14 ++++
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 90 ++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/hal.c   | 16 ++++-
  drivers/net/wireless/ath/ath11k/hal.h   |  2 +
- 3 files changed, 94 insertions(+), 10 deletions(-)
+ 3 files changed, 96 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index afd481f5858f..79b7f4996f5d 100644
+index afd481f5858f..e9919a2ef4fb 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #include <linux/ieee80211.h>
 @@ -2990,11 +2990,52 @@ ath11k_dp_rx_mon_update_status_buf_state(struct ath11k_mon_data *pmon,
  	}
  }
@@ -260,9 +271,18 @@ index afd481f5858f..79b7f4996f5d 100644
  
  			spin_lock_bh(&rx_ring->idr_lock);
 diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index f3d04568c221..dbba45c22dc6 100644
+index f3d04568c221..f02599bd1c36 100644
 --- a/drivers/net/wireless/ath/ath11k/hal.c
 +++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ #include <linux/dma-mapping.h>
+ #include "hal_tx.h"
 @@ -796,6 +796,20 @@ u32 *ath11k_hal_srng_src_get_next_reaped(struct ath11k_base *ab,
  	return desc;
  }
