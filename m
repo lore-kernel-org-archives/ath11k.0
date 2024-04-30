@@ -4,82 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44641C4345F
-	for <ath11k@archiver.kernel.org>; Tue, 30 Apr 2024 13:12:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52A1CC4345F
+	for <ath11k@archiver.kernel.org>; Tue, 30 Apr 2024 13:30:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=UdkiHokNv6ssCzl4HXoRnnfeHa+m85xCQnOk9v5A2Bo=; b=HUq6ffVJ5qATMEYgqXeCeH7cmK
-	PnCHQOxo4Pcr/fqqMG9u33CupJFy6YuVT/AY+8lltve17eWH8FHi6+SyazrfZaaYrN4tm3yc4Jukg
-	HXlhsXMD7KD1xBRun/uALORGpfFPKDsRnvG/4ojXAB0qEagxxw9gav0RAPzSqbaYveSKc4ROP1zav
-	jvQPZZ9qAT6cxkfbib597z3+qCNDCEBN5Tnu2QYyHPdDblZMGDesHUbImKhxAKySs1RJL4R6EZKBw
-	4TbbJtdceRHbXV/SjC8xdWS/gx4Jv4cXDh+0wFtAv82mQhLU3G5LAOBT7RBotV/N9wYWGuoNKf0dA
-	oddPfLUw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/N+KEWOlYNdnDE15usheC2AQQq2OILk3vqXwsDWUnv4=; b=xXmfB/yHZ2bzNgvO0Z23qk/8QC
+	nqKKF+SZglHIr5hZSCNfh8JuxxgcjCAzbiR0hQAXXKviZGZGf9wmSsiiqZ0SG1zwEiNixnCNa5Q3Z
+	T7pUH4+GcSe0ygAlqR1x7VIOU0ZtMAdkA2y80RVLd2G6Ol0jEUCnG5CmPjro9X55umi0dfSJnqee2
+	/+rQ1An3OCZyxkI0Iu7+XLSD76fxzs+ZYt0K18Ek0WPo3C+VIYK6JGT4hSV8LmKxYDuS+ksLKB2DG
+	YULKJmAQK3UJXBw/mRenBwfPH6Kfrx1+VbGiFBoyj6LjvQI9Yq8H7ifH7gFHhc+Qz0BJ2ntrG18GD
+	167cT3Ow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1nHE-00000006SYt-3FOm;
-	Tue, 30 Apr 2024 13:12:08 +0000
-Received: from mail-qk1-x729.google.com ([2607:f8b0:4864:20::729])
+	id 1s1nZA-00000006XYq-2wPJ;
+	Tue, 30 Apr 2024 13:30:40 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1nH9-00000006SXg-48KI
+	id 1s1nZ7-00000006XWD-2HOa
 	for ath11k@lists.infradead.org;
-	Tue, 30 Apr 2024 13:12:05 +0000
-Received: by mail-qk1-x729.google.com with SMTP id af79cd13be357-78f0440656eso353341785a.1
-        for <ath11k@lists.infradead.org>; Tue, 30 Apr 2024 06:11:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714482719; x=1715087519; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UdkiHokNv6ssCzl4HXoRnnfeHa+m85xCQnOk9v5A2Bo=;
-        b=LEKSdJO4RZEZlC7GPo9gEqQILHk1syJXItGRFuEKwyd8RCO+LWMx+d14IuMS0U1hec
-         sMntSsLuY1mp3DcLuTlO3shk8krlcjIJndJ3MABiAN0eZDepQUpaFCCI4tuzEPJtAZfz
-         czvxuEIw2DkSeQC+Qu76zCZk2Q/LV1rcS/cmjfutuJfst3YE+uUe/33bj6UU3Ukhh9rE
-         +Cp7h1YyLkxyX+MmMM9xtaPo35c5vcns5+NVpwKU4/asI6jo/wRN5CtJSEEKV14UlWDo
-         7qdB93nlyd4UD5u8sYmiP4LVPr/JdVWzYiIbjn8GTy1ugC5iCTdbAwoKD2zEMZz/Va/q
-         NzHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714482719; x=1715087519;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UdkiHokNv6ssCzl4HXoRnnfeHa+m85xCQnOk9v5A2Bo=;
-        b=h4dyXBX9k4JsCGAajPnC2AABlbZSHBvl5XopmoRHDQkdm13lHDAI04pAVrGZOHtinm
-         c2bl8CLnqehkUbeJrsMjRbEVIVEcsoPIect5qG6XFnfFpiPqYX7CEolMO8vq0Gz2YF5N
-         Ww0azKV+LxL06n/vEGAOMU7JR4Dey8iRrB39wy1MfURmYnaBL/+mfJ9PNSD93ycmuX24
-         XpQ4vBQ9ocQY40ofxUc+Bwrapty9tglaug4+ozkyFRzy6VdMV/dS2x8cZLCQGAdCrdXc
-         5VhDK23VEaiDL8hFdy0bCqGTIowijCzZg5UsPlPii0LejY54sAQy94fXGTwXuakSlUNR
-         ZR9w==
-X-Forwarded-Encrypted: i=1; AJvYcCXHT1k4t68/TnEho8VN8UYjtZg6WFO/k9vJVHCow9kgjqDHDZqrdvTn/wexMp/eo+KHL6dsHDuUUaShKgsGbCqyHs8+opeQF7eo6g==
-X-Gm-Message-State: AOJu0YwnHtqqu3VtIwyUQwCzkDJo2zK8pyhyeFyQvYZFUPIiMRM7DE2C
-	3s2Kg+pfwAg37gEq8KX8hdl/0ccn8MTyeEbEdmCnRTX2SmYTk2LuXUHNTA6rorM1CRMwTmEW++/
-	hLi0UdETrgv/sbq6a5sIFJBN7beI=
-X-Google-Smtp-Source: AGHT+IE61m7CQwcmd03csLy7g14kG9yH0+WXjr9kokWQjHFXEn/Ynk7OBcx4WY09t6FDwF8FHQxiapSna1G6evJuxsg=
-X-Received: by 2002:a05:6214:40e:b0:6a0:cd6b:63e1 with SMTP id
- z14-20020a056214040e00b006a0cd6b63e1mr2518695qvx.64.1714482718609; Tue, 30
- Apr 2024 06:11:58 -0700 (PDT)
+	Tue, 30 Apr 2024 13:30:39 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43UD8u6K013161;
+	Tue, 30 Apr 2024 13:30:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:date:subject:mime-version:content-type
+	:content-transfer-encoding:message-id:references:in-reply-to:to
+	:cc; s=qcppdkim1; bh=/N+KEWOlYNdnDE15usheC2AQQq2OILk3vqXwsDWUnv4
+	=; b=I8Bm+oH5dtp1koo6b2FXCmIbB5qcidZZK5YxfJKzFaaPhgphQvIJyZbpLjY
+	VG3ygfy/F/8hPI6ztrDs7PWpvDRESJeH0Hh0gDbyHGeNJlZWurJdJjGY/xdzQrMD
+	YZIVVdQpWSU6C4kvh27eOMU2I36zMMagrN5bYeNddQCOpoU3eOQp2Pf2kCK1hQjH
+	g3qr4Hkq+0vLPYinOJ1FV7hV0EhLOfHbDZ+4ejlbPk80uD4Vp9wxUyvs4CVkw0OG
+	puCRk3djQnliGliYY3Hu6FwPOKFQLJSfQtjaopURNiyrn6vPCHkQw1oatPt3KFbX
+	feYDJW78Livd+MXEdA/riOazclg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xu199018v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Apr 2024 13:30:28 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43UDURXY021835
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Apr 2024 13:30:27 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Apr
+ 2024 06:30:27 -0700
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Date: Tue, 30 Apr 2024 06:30:20 -0700
+Subject: [PATCH 1/2] wifi: ath11k: refactor CE remap & unmap
 MIME-Version: 1.0
-References: <48174971-4b30-4046-9710-2acb16990e07@westermo.com>
- <87ttlvjk6l.fsf@kernel.org> <87il00qpjp.fsf@kernel.org> <4889305.GXAFRqVoOG@bentobox>
- <CAOX2RU4+j0GG+RxKDOF2qFWFBOZEo1+nLZt8FwNqJ30Qo1jjLg@mail.gmail.com>
- <87plu7p77m.fsf@kernel.org> <CAOX2RU4wrz9WE01MuPaPShnK39O08__7k0xzYtdnC-1hTcVrzQ@mail.gmail.com>
- <87h6fjovfe.fsf@kernel.org>
-In-Reply-To: <87h6fjovfe.fsf@kernel.org>
-From: "Christian Marangi (Ansuel)" <ansuelsmth@gmail.com>
-Date: Tue, 30 Apr 2024 15:11:45 +0200
-Message-ID: <CA+_ehUxKa6CA2rgkP58dcPJ9hk1JbBgeb1qhRnQ855DMtRsZjw@mail.gmail.com>
-Subject: Re: Question to recent Qualcomm CVEs
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Robert Marko <robimarko@gmail.com>, Sven Eckelmann <sven@narfation.org>, 
-	Tanjeff Moos <Tanjeff.Moos@westermo.com>, openwrt-devel@lists.openwrt.org, 
-	Felix Fietkau <nbd@nbd.name>, ath11k@lists.infradead.org, 
-	Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240430-ce-unmap-v1-1-e468328f95d9@quicinc.com>
+References: <20240430-ce-unmap-v1-0-e468328f95d9@quicinc.com>
+In-Reply-To: <20240430-ce-unmap-v1-0-e468328f95d9@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>
+X-Mailer: b4 0.13.0
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ZUXB3rjOkBNFDaSdMamiSZyKj7rHutcr
+X-Proofpoint-GUID: ZUXB3rjOkBNFDaSdMamiSZyKj7rHutcr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-30_07,2024-04-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
+ lowpriorityscore=0 mlxscore=0 adultscore=0 bulkscore=0 phishscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 impostorscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404300095
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_061204_056039_EB71592F 
-X-CRM114-Status: GOOD (  27.00  )
+X-CRM114-CacheID: sfid-20240430_063037_781579_8A2EAE38 
+X-CRM114-Status: GOOD (  18.56  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,65 +98,98 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Il giorno mar 30 apr 2024 alle ore 15:04 Kalle Valo <kvalo@kernel.org>
-ha scritto:
->
-> Robert Marko <robimarko@gmail.com> writes:
->
-> > On Tue, 30 Apr 2024 at 10:48, Kalle Valo <kvalo@kernel.org> wrote:
-> >
-> >>
-> >> Robert Marko <robimarko@gmail.com> writes:
-> >>
-> >> > On Mon, 29 Apr 2024 at 15:37, Sven Eckelmann <sven@narfation.org> wrote:
-> >> >>
-> >> >> On Monday, 29 April 2024 15:14:18 CEST Kalle Valo wrote:
-> >> >> > It's quite strange that they updated 2.5.0.1 branch first but my
-> >> >> > understanding that there should be updates for the newer 2.7.0.1 branch
-> >> >> > as well (2.7.0.1 branch is also in linux-firmware).
-> >> >>
-> >> >> Yes, I also told them in the support ticket that this is from an older branch
-> >> >> than what is currently shipped in linux-firmware.git. But they told me
-> >> >> that they are working on newer versions (whatever that means) - but they
-> >> >> wanted to  handle first the update to ATH.11.4 (2.5.0.x) and then
-> >> >> step-by-step release it for newer firmware branches. It seem like that would be
-> >> >> up to 2.9.0.x - no idea why there is no (public) 2.10.x/2.11.x for the AP
-> >> >> SoCs.
-> >> >
-> >> > I would like to point out that IPQ6018 doesn't even have anything
-> >> > newer than 2.5.0.1 available publicly.
-> >>
-> >> But I do see WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1 for IPQ6018:
-> >>
-> >> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/tree/main/IPQ6018/hw1.0/2.7.0.1/WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1?ref_type=heads
-> >>
-> >> And that release seems to be also in linux-firmware:
-> >>
-> >> File: ath11k/IPQ6018/hw1.0/q6_fw.mdt
-> >> Version: WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> >>
-> >> Am I missing something? Or did you mean IPQ5018 which only has a release
-> >> from 2.6.0.1 branch?
-> >>
-> >> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/tree/main/IPQ5018/hw1.0?ref_type=heads
-> >
-> > Ah yes, sorry for the confusion, I meant to say newer than 2.5.0.1
-> > that actually works.
-> > All of the newer public FW than 2.5.0.1 that we tried in OpenWrt will
-> > just crash, we had the same issue with 2.6 and 2.7 FW on
-> > IPQ8074 and it was fixed in 2.9.0.1 but there is no 2.9.0.1 public for IPQ6018.
->
-> Ah, is the issue you are talking about this bug:
->
-> https://bugzilla.kernel.org/show_bug.cgi?id=216515
->
-> Or is this another issue?
->
+Currently the logic that handles hw_params->ce_remap is inline code,
+both for doing the remap and the unmap. An upcoming change needs to do
+the unmap in a second place, so refactor the unmap logic into a
+separate function. And although it is only called from one place,
+refactor the remap logic as well to have functional symmetry.
 
-Yes we wasted a good time on that and we concluded that
-2.6.0 and 2.7.0 introduced breaking change in how the BDF was parsed
-that were fixed in 2.9.0 restoring support for legacy BDF.
+No functional changes, compile tested only.
 
-I think almost all ipq60xx suffer from this... Only a Qnap 301 worked with
-2.6.0 - 2.7.0 (that was ipq807x)
+Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c | 52 +++++++++++++++++++++++------------
+ 1 file changed, 34 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 60b4c2800a33..aa62ed710090 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -949,6 +949,36 @@ static int ath11k_ahb_setup_msa_resources(struct ath11k_base *ab)
+ 	return 0;
+ }
+ 
++static int ath11k_ahb_ce_remap(struct ath11k_base *ab)
++{
++	const struct ce_remap *ce_remap = ab->hw_params.ce_remap;
++	struct platform_device *pdev = ab->pdev;
++
++	if (!ce_remap) {
++		/* no separate CE register space */
++		ab->mem_ce = ab->mem;
++		return 0;
++	}
++
++	/* ce register space is moved out of wcss unlike ipq8074 or ipq6018
++	 * and the space is not contiguous, hence remapping the CE registers
++	 * to a new space for accessing them.
++	 */
++	ab->mem_ce = ioremap(ce_remap->base, ce_remap->size);
++	if (!ab->mem_ce) {
++		dev_err(&pdev->dev, "ce ioremap error\n");
++		return -ENOMEM;
++	}
++
++	return 0;
++}
++
++static void ath11k_ahb_ce_unmap(struct ath11k_base *ab)
++{
++	if (ab->hw_params.ce_remap)
++		iounmap(ab->mem_ce);
++}
++
+ static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
+ {
+ 	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
+@@ -1141,21 +1171,9 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_core_free;
+ 
+-	ab->mem_ce = ab->mem;
+-
+-	if (ab->hw_params.ce_remap) {
+-		const struct ce_remap *ce_remap = ab->hw_params.ce_remap;
+-		/* ce register space is moved out of wcss unlike ipq8074 or ipq6018
+-		 * and the space is not contiguous, hence remapping the CE registers
+-		 * to a new space for accessing them.
+-		 */
+-		ab->mem_ce = ioremap(ce_remap->base, ce_remap->size);
+-		if (!ab->mem_ce) {
+-			dev_err(&pdev->dev, "ce ioremap error\n");
+-			ret = -ENOMEM;
+-			goto err_core_free;
+-		}
+-	}
++	ret = ath11k_ahb_ce_remap(ab);
++	if (ret)
++		goto err_core_free;
+ 
+ 	ret = ath11k_ahb_fw_resources_init(ab);
+ 	if (ret)
+@@ -1243,9 +1261,7 @@ static void ath11k_ahb_free_resources(struct ath11k_base *ab)
+ 	ath11k_ahb_release_smp2p_handle(ab);
+ 	ath11k_ahb_fw_resource_deinit(ab);
+ 	ath11k_ce_free_pipes(ab);
+-
+-	if (ab->hw_params.ce_remap)
+-		iounmap(ab->mem_ce);
++	ath11k_ahb_ce_unmap(ab);
+ 
+ 	ath11k_core_free(ab);
+ 	platform_set_drvdata(pdev, NULL);
+
+-- 
+2.42.0
+
 
