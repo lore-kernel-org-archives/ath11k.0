@@ -4,88 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96EEEC10F16
-	for <ath11k@archiver.kernel.org>; Tue, 30 Apr 2024 14:45:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7581AC4345F
+	for <ath11k@archiver.kernel.org>; Tue, 30 Apr 2024 15:14:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=iJ/iCYNZw53GeaZCBTYgmIqnPwEEmiM8LeOnCeGWci0=; b=wnpxU0MWwiR8X2
-	TjcJ55c8NefOBvxaN2c5Zs9PleKafD19SZ4v1HIVak3FXSKGrhMM/p/p28sWBYiDHN7jAoXej/njs
-	pFzlukjWJ5ifYWiTCQ6Bl2IoRvnz81e8b0vD8fnq5ClkH9VDdKPXLaSNoS4bHkv7LYwGHpqUclmpC
-	cVaK/Rel9Gw6zCteYnK6UO0H44QSdxrdu/Qj1OE2WU4Z9cte27rzDaHMDci56yLeGMXRlZU0eZaNK
-	EzfyQ4fJsgzPaMqDdUJcQiUvBq68hibECiUDuzxYb7o1Z9ANYVJUp7qEvgc6pZ5sH3iMq1ppDOYMl
-	bPe+DpFIq58wlWOwT/ZA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=BovKqYsHOlN/fkcFtWHYlqka+3aJqkEDksOokCh45lk=; b=kciH7zoGIZSadhedO23vL4Yk/B
+	DuAQv98Rgb4t3EZ8w5/lYyJ3V4cxNNHqu0VBkPNf+h9trS2K4k0JcLdLvbTmtPopF3V46b7gfO56N
+	HYRiw9rQYdMd9fJALLQr0TsfCNSyRjac/3wM+NW68wB0BdPhWkBVeMx80x5YBNKAuJ6TvoUeHq5mK
+	RTw7uOJc9jTVFt7V70Zq9Ii4/QDhYOiXb46M6auh+nhaJHH9mXYiHnz0qIFeIZL8bHSBVV3Bf7VR1
+	3Fj8jT2+zjgi0qnYwDx/N9fnEbg3rhDgFQsdcXh83nIw+iUWzx4w5Gm8vH8+IX46f0sEtd+DfcxAE
+	HPYsQVGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1oji-00000006uD8-10Wp;
-	Tue, 30 Apr 2024 14:45:38 +0000
+	id 1s1pBb-000000070Yi-0jLI;
+	Tue, 30 Apr 2024 15:14:27 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1nZ7-00000006XW6-2HFj
+	id 1s1pBY-000000070Xk-0GRa
 	for ath11k@lists.infradead.org;
-	Tue, 30 Apr 2024 13:30:40 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43U9WOlX020866;
-	Tue, 30 Apr 2024 13:30:29 GMT
+	Tue, 30 Apr 2024 15:14:25 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43UBLMxa005772;
+	Tue, 30 Apr 2024 15:14:19 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:subject:date:message-id:mime-version:content-type
-	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=iJ/iCYNZw53Gea
-	ZCBTYgmIqnPwEEmiM8LeOnCeGWci0=; b=d5vgrh8H8xrIqT9t0FhwNEHsrrMJqp
-	zfx6vSM+Z6RV7RcwmxyMyB3+KhCdAl6qgDpSkcCS14iV8CRrt3WebVGrmQLC/Gmy
-	tUX4XI8tLMnLrY79T1EwhO4k0yazmRCgdoY6Z3Q3rwt3jPE4lUJLjwqnwI2Ny1Ct
-	7RjI1SsW3oVnm5dwCWFmgQvtnrQH7R5V+XYJrqSQwmY1Z84vhLcUEdL7j3jmuRjO
-	1vB2Xl5Gz8vp4UAbAy3DyxQ1iKjRlXLqGPENgBJUTCC2+bFj8tVHLQr0tUzDjAFU
-	bx8kTaNUJ6L8AB8DP0XO9ZJRUgkhwC87Xhzbek7ZEBnJvtYt2H32lqgQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xtm3ujfva-1
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=BovKqYsHOlN/fkcFtWHYlqka+3aJqkEDksOokCh45lk=; b=BR
+	6UIp7lbR1KQMfhZi0aZL0FJ8e9ztQdBq1AzLJQ9MZ73aJKq6OduGePZZ8OTczBrX
+	39q2PXnoo2zIGjyDIBktVAX/hiWklssTGdO15UnO9Q9ktuV43hXbMFXF3Me49Sv8
+	aft7i+tliC5L0nZNYNbLKP44+bXqlFl7LaJSEfkfRuQPYoY475kSs1f6ILN4Z/ui
+	S6Uvr+dPT4fhSxwMfuUIPWGblgwrrbIg0a2j3y0lRnQxEZtZEjZi/31OsxpLUV4m
+	9z+/CmOiivBoeQQ9Hk5aC/bv2oSzyFr12uXnB14C/8yyFb3+UI3ySYTE9EeYZfGr
+	Gal58iGUYUmnr6cy4Jmw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xtyptgk4v-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 13:30:28 +0000 (GMT)
+	Tue, 30 Apr 2024 15:14:18 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43UDUR0Z021832
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43UFEHeG012880
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 13:30:27 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
+	Tue, 30 Apr 2024 15:14:17 GMT
+Received: from [10.110.13.147] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Apr
- 2024 06:30:27 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Subject: [PATCH 0/2] wifi: ath11k: fix ioremap() leak
-Date: Tue, 30 Apr 2024 06:30:19 -0700
-Message-ID: <20240430-ce-unmap-v1-0-e468328f95d9@quicinc.com>
+ 2024 08:14:17 -0700
+Message-ID: <4f9abe89-a004-45e8-b369-5c2b39bff440@quicinc.com>
+Date: Tue, 30 Apr 2024 08:14:16 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCHv5] wifi: ath11k: skip status ring entry processing
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>,
+        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        "Venkateswara
+ Naralasetty" <quic_vnaralas@quicinc.com>
+References: <20240429073624.736147-1-quic_tamizhr@quicinc.com>
+ <35f114c4-1ff7-4a4b-aadf-ed147f19e170@quicinc.com>
+ <87cyq7ota5.fsf@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <87cyq7ota5.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGvyMGYC/0WNQQ6CMBAAv0L27Jq2FCSe/Ifh0NZF9kDBFoiG8
- HdbEuNxksnMBpECU4RrsUGglSOPPoE8FeB645+E/EgMSigttLqgI1z8YCYsRSmobKyR1kLSp0A
- dv4/UvU1sTSS0wXjX58Bg4kwhiz3HeQyfY7nKrP/qzb++ShRIpLvKirqr6vr2Wtixd2c3DtDu+
- /4FcKC4U7sAAAA=
-To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jeff Johnson <quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.13.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5v578cXIOiMblMVsysOFuOUqx15A15z4
-X-Proofpoint-GUID: 5v578cXIOiMblMVsysOFuOUqx15A15z4
+X-Proofpoint-GUID: IxOl8azAW5fZFLpzJN6DJ9ThyKNjs4Nl
+X-Proofpoint-ORIG-GUID: IxOl8azAW5fZFLpzJN6DJ9ThyKNjs4Nl
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-30_07,2024-04-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 malwarescore=0 suspectscore=0 phishscore=0 spamscore=0
- priorityscore=1501 mlxlogscore=564 adultscore=0 mlxscore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404300094
+ definitions=2024-04-30_08,2024-04-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 adultscore=0 clxscore=1015 mlxscore=0 suspectscore=0
+ malwarescore=0 impostorscore=0 lowpriorityscore=0 mlxlogscore=910
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404300108
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_063037_792116_5BC08229 
-X-CRM114-Status: UNSURE (   6.93  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240430_081424_279349_01E9D005 
+X-CRM114-Status: GOOD (  23.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,22 +102,108 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-smatch flagged the following issue:
+On 4/30/2024 6:48 AM, Kalle Valo wrote:
+> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+> 
+>> On 4/29/2024 12:36 AM, Tamizh Chelvam Raja wrote:
+>>
+>>> From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+>>>
+>>> If STATUS_BUFFER_DONE is not set for a monitor status ring entry,
+>>> we don't process the status ring until STATUS_BUFFER_DONE set
+>>> for that status ring entry.
+>>>
+>>> During LMAC reset it may happen that hardware will not write
+>>> STATUS_BUFFER_DONE tlv in status buffer, in that case we end up
+>>> waiting for STATUS_BUFFER_DONE leading to backpressure on monitor
+>>> status ring.
+>>>
+>>> To fix the issue, when HP(Head Pointer) + 1 entry is peeked and if DMA
+>>> is not done and if HP + 2 entry's DMA done is set,
+>>> replenish HP + 1 entry and start processing in next interrupt.
+>>> If HP + 2 entry's DMA done is not set, poll onto HP + 1 entry DMA
+>>> done to be set.
+>>>
+>>> Also, during monitor attach HP points to the end of the ring and
+>>> TP(Tail Pointer) points to the start of the ring.
+>>> Using ath11k_hal_srng_src_peek() may result in processing invalid buffer
+>>> for the very first interrupt. Since, HW starts writing buffer from TP.
+>>>
+>>> To avoid this issue call ath11k_hal_srng_src_next_peek() instead of
+>>> calling ath11k_hal_srng_src_peek().
+>>>
+>>> Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
+>>>
+>>> Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+>>> Co-developed-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+>>> Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+>>
+>> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+>>
+>> however note...
+>>
+>>> +
+>>> +				/* If done status is missing:
+>>> +				 * 1. As per MAC team's suggestion,
+>>> +				 *    when HP + 1 entry is peeked and if DMA
+>>> +				 *    is not done and if HP + 2 entry's DMA done
+>>> +				 *    is set. skip HP + 1 entry and
+>>> +				 *    start processing in next interrupt.
+>>> +				 * 2. If HP + 2 entry's DMA done is not set,
+>>> +				 *    poll onto HP + 1 entry DMA done to be set.
+>>> +				 *    Check status for same buffer for next time
+>>> +				 *    dp_rx_mon_status_srng_process
+>>> +				 */
+>>> +
+>>> + reap_status = ath11k_dp_rx_mon_handle_status_buf_done(ab, srng,
+>>> + rx_ring);
+>>
+>> ath11k-check reports:
+>>
+>> drivers/net/wireless/ath/ath11k/dp_rx.c:3116: line length of 95 exceeds 90 columns
+>> drivers/net/wireless/ath/ath11k/dp_rx.c:3117: line length of 95 exceeds 90 columns
+> 
+> Tamizh, please ALWAYS run ath11k-check. We are wasting time for trivial
+> stuff like this.
+> 
+>> Kalle, in this case we may want to make an exception since I don't think there
+>> is a clean way to fix this other than refactoring.
+> 
+> The new function name looked quite long so I shortened it to
+> ath11k_dp_rx_mon_buf_done() and the warning is now gone. Does that look
+> reasonable name?
+> 
+> Also I removed one unrelated change and removed unnecessary else. Please
+> check my changes:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=6e88d559268779107715008c51e006f7a5f62045
 
-drivers/net/wireless/ath/ath11k/ahb.c:1218 ath11k_ahb_probe() warn: 'ab->mem_ce' from ioremap() not released on lines: 1218.
+So looking at the 'pending' change I have the observation that
+ath11k_dp_rx_mon_buf_done() only returns one of two values:
+DP_MON_STATUS_NO_DMA
+DP_MON_STATUS_REPLINISH
 
-Fix it by refactoring the ioremap and iounmap code and then calling the
-unmap in the ath11k_ahb_probe() error path.
+And the return value handling has explicit handling for those values, without
+any logic for other values:
++				if (reap_status == DP_MON_STATUS_NO_DMA)
++					continue;
++
++				if (reap_status == DP_MON_STATUS_REPLINISH) {
 
----
-Jeff Johnson (2):
-      wifi: ath11k: refactor CE remap & unmap
-      wifi: ath11k: unmap the CE in ath11k_ahb_probe() error path
+if we only expect these two values to ever be returned, then we could remove
+the testing for DP_MON_STATUS_REPLINISH since, it it isn't NO_DMA then it must
+be REPLINISH
 
- drivers/net/wireless/ath/ath11k/ahb.c | 57 +++++++++++++++++++++++------------
- 1 file changed, 38 insertions(+), 19 deletions(-)
----
-base-commit: bf99bc7423e18aa3475ef00a7a6fb773c31ce6df
-change-id: 20240427-ce-unmap-3030e38ba1bb
+Also after this patch is merged, can we have a spelling correcting patch:
+s/REPLINISH/REPLENISH/
+
++					ath11k_warn(ab, "mon status DONE not set %lx, buf_id %d\n",
++						    FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl),
++						    buf_id);
+
+I don't think we should log anything here. we already warn before calling the
+new function. if we get here it means the next buffer had DONE set so we can
+replenish the current buffer
+
 
 
