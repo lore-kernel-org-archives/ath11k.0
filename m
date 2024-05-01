@@ -4,90 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7581AC4345F
-	for <ath11k@archiver.kernel.org>; Tue, 30 Apr 2024 15:14:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96974C4345F
+	for <ath11k@archiver.kernel.org>; Wed,  1 May 2024 04:35:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=BovKqYsHOlN/fkcFtWHYlqka+3aJqkEDksOokCh45lk=; b=kciH7zoGIZSadhedO23vL4Yk/B
-	DuAQv98Rgb4t3EZ8w5/lYyJ3V4cxNNHqu0VBkPNf+h9trS2K4k0JcLdLvbTmtPopF3V46b7gfO56N
-	HYRiw9rQYdMd9fJALLQr0TsfCNSyRjac/3wM+NW68wB0BdPhWkBVeMx80x5YBNKAuJ6TvoUeHq5mK
-	RTw7uOJc9jTVFt7V70Zq9Ii4/QDhYOiXb46M6auh+nhaJHH9mXYiHnz0qIFeIZL8bHSBVV3Bf7VR1
-	3Fj8jT2+zjgi0qnYwDx/N9fnEbg3rhDgFQsdcXh83nIw+iUWzx4w5Gm8vH8+IX46f0sEtd+DfcxAE
-	HPYsQVGg==;
+	Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=nP0d9ZPQBQsFSlVx/oy1BB3GWNuBWXEjTH9+lDRSSeE=; b=zFKQ9SKpCU0VoAL7zTomdFplGB
+	MLrjtmh0q3LYowSa8uPlQXOhh6j1L17hhEbm3xngYqt511luF7M5SRTP3fJWBKSIpsMbjPIQRkPuA
+	WwCCN6TuTarz5rPqv5bmwlxuMXtrqcmWHnCEBL95Mk2juI6itv3p/qN3UiEjnA5xst6J5Cw2wP13G
+	E5UcK9yUjVwTigqDGjEMz7Ex+/iIi6nWo6jlMwqEffFZhyvctqfYMmw/5en4i61Pm+dkgrqU0NOnr
+	NFWcvDaLfS+FbGkJvTneLM3OhoF5lTKFSbO7JScJFrQ4gHhAh+ao7dw8u8Jya2Vrrzqq21sca2jka
+	XC4TmK3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1pBb-000000070Yi-0jLI;
-	Tue, 30 Apr 2024 15:14:27 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1s21gS-00000008YSm-2Qa5;
+	Wed, 01 May 2024 04:35:08 +0000
+Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s1pBY-000000070Xk-0GRa
+	id 1s21gH-00000008YRM-0xGi
 	for ath11k@lists.infradead.org;
-	Tue, 30 Apr 2024 15:14:25 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 43UBLMxa005772;
-	Tue, 30 Apr 2024 15:14:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=BovKqYsHOlN/fkcFtWHYlqka+3aJqkEDksOokCh45lk=; b=BR
-	6UIp7lbR1KQMfhZi0aZL0FJ8e9ztQdBq1AzLJQ9MZ73aJKq6OduGePZZ8OTczBrX
-	39q2PXnoo2zIGjyDIBktVAX/hiWklssTGdO15UnO9Q9ktuV43hXbMFXF3Me49Sv8
-	aft7i+tliC5L0nZNYNbLKP44+bXqlFl7LaJSEfkfRuQPYoY475kSs1f6ILN4Z/ui
-	S6Uvr+dPT4fhSxwMfuUIPWGblgwrrbIg0a2j3y0lRnQxEZtZEjZi/31OsxpLUV4m
-	9z+/CmOiivBoeQQ9Hk5aC/bv2oSzyFr12uXnB14C/8yyFb3+UI3ySYTE9EeYZfGr
-	Gal58iGUYUmnr6cy4Jmw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xtyptgk4v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 15:14:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 43UFEHeG012880
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Apr 2024 15:14:17 GMT
-Received: from [10.110.13.147] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Apr
- 2024 08:14:17 -0700
-Message-ID: <4f9abe89-a004-45e8-b369-5c2b39bff440@quicinc.com>
-Date: Tue, 30 Apr 2024 08:14:16 -0700
+	Wed, 01 May 2024 04:35:07 +0000
+Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-5f807d941c4so5063740a12.0
+        for <ath11k@lists.infradead.org>; Tue, 30 Apr 2024 21:34:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1714538095; x=1715142895; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nP0d9ZPQBQsFSlVx/oy1BB3GWNuBWXEjTH9+lDRSSeE=;
+        b=yjXGRwEgLBaFIawVJp014VrZO7OBDDTHNnnYGePMbws/3mo56GIFAm5V38lSVrNcW0
+         LjYctaDS2fiPZxTlxWhEtthdkr5MA7xNTQhOrGYk6I2UZ0Q5FQXrz0TEShRWcGLYNAkF
+         CWtgYxPqNDycVbLHUVBP5zJPLa9f4BRIUzgqheyJ3edAvauaZh7QwQxe452ubYCf+TLj
+         AVt4HfPb+RPyrBD6nAAPSGe4ARDfaWWbuqkJgYE1TTMhxTPmWxZ71S6DIVPz6xFJyeDR
+         Kni55ZbwCa11ZIZuZaPkdAUl/2l6rlnvop0F6AeAhJcSxa6hQGsUlLHJnSRWUbmEBTzz
+         lxqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714538095; x=1715142895;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nP0d9ZPQBQsFSlVx/oy1BB3GWNuBWXEjTH9+lDRSSeE=;
+        b=iKtdodxt6culpz83OLDJAStn8pG1BbwIp1V9ZEilgw5fUdU83+qoXmC4HWTOCCyJKD
+         7cX42WzPJ0wBuhzv5wkdWAZJ6lxD+lLCErZZmCgikRvqbQayjtAAUHFfVOX6kuPjcfqk
+         Be04QgDEuwagpnGRVmLeop0GazDQCIK3Usa3cHfcvQ7T50h3mkVp9MjzoSdidMHNieX8
+         K2D8oVrPvIQoDrhDUGbbLAMzXwyi0mUZzi7WvafB5QqcaVKkWMWKVbk+8T5DzO1lXAg1
+         D9Otsmr1mmN8/iQb2vKYXCdpWZTmYUHwPO7yXzYFfH97NukV2TdZC2uUpx7U+ql3AL3X
+         zB4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVGcQZav9fK2ywyZgKkvnHLoIANUNmyZ8qYTS4F9AU9ByuV7LDD80bIcqYuzmDa/5KZsDkk7YiUWgItAPqimyateiKZlY2Gz4miDw==
+X-Gm-Message-State: AOJu0YyAKamnjC5bzPaihbbYkA/JzADXEjfWXsnx2zCUs1G00+Dx7g4t
+	sOaBPwuDFsGh0mZZyp/6bsBnXh4O7or7qUDR6MTqZ6eGfJ0DzN+tFvzF4ie99R6bDblDRgB74Q4
+	=
+X-Google-Smtp-Source: AGHT+IFIWjgfOTINbS43h+bnyH5Hd0IRYKA3jbzKN8xbSIfBpy3Z/8d64GAs6wucSVbhak2mJn+3yg==
+X-Received: by 2002:a05:6a20:a12a:b0:1a7:2e17:efd3 with SMTP id q42-20020a056a20a12a00b001a72e17efd3mr2413924pzk.5.1714538095242;
+        Tue, 30 Apr 2024 21:34:55 -0700 (PDT)
+Received: from thinkpad ([220.158.156.193])
+        by smtp.gmail.com with ESMTPSA id ha24-20020a17090af3d800b002b1b1a3611dsm474389pjb.43.2024.04.30.21.34.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Apr 2024 21:34:54 -0700 (PDT)
+Date: Wed, 1 May 2024 10:04:50 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: gregkh@linuxfoundation.org
+Cc: mhi@lists.linux.dev, quic_bqiang@quicinc.com,
+	ath11k@lists.infradead.org, quic_qianyu@quicinc.com
+Subject: [GIT PULL] MHI changes for v6.10
+Message-ID: <20240501043450.GA5218@thinkpad>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv5] wifi: ath11k: skip status ring entry processing
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>,
-        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        "Venkateswara
- Naralasetty" <quic_vnaralas@quicinc.com>
-References: <20240429073624.736147-1-quic_tamizhr@quicinc.com>
- <35f114c4-1ff7-4a4b-aadf-ed147f19e170@quicinc.com>
- <87cyq7ota5.fsf@kernel.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <87cyq7ota5.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IxOl8azAW5fZFLpzJN6DJ9ThyKNjs4Nl
-X-Proofpoint-ORIG-GUID: IxOl8azAW5fZFLpzJN6DJ9ThyKNjs4Nl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-04-30_08,2024-04-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 adultscore=0 clxscore=1015 mlxscore=0 suspectscore=0
- malwarescore=0 impostorscore=0 lowpriorityscore=0 mlxlogscore=910
- spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2404300108
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240430_081424_279349_01E9D005 
-X-CRM114-Status: GOOD (  23.42  )
+X-CRM114-CacheID: sfid-20240430_213503_711569_D600B89C 
+X-CRM114-Status: GOOD (  11.91  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,108 +92,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/30/2024 6:48 AM, Kalle Valo wrote:
-> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
-> 
->> On 4/29/2024 12:36 AM, Tamizh Chelvam Raja wrote:
->>
->>> From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
->>>
->>> If STATUS_BUFFER_DONE is not set for a monitor status ring entry,
->>> we don't process the status ring until STATUS_BUFFER_DONE set
->>> for that status ring entry.
->>>
->>> During LMAC reset it may happen that hardware will not write
->>> STATUS_BUFFER_DONE tlv in status buffer, in that case we end up
->>> waiting for STATUS_BUFFER_DONE leading to backpressure on monitor
->>> status ring.
->>>
->>> To fix the issue, when HP(Head Pointer) + 1 entry is peeked and if DMA
->>> is not done and if HP + 2 entry's DMA done is set,
->>> replenish HP + 1 entry and start processing in next interrupt.
->>> If HP + 2 entry's DMA done is not set, poll onto HP + 1 entry DMA
->>> done to be set.
->>>
->>> Also, during monitor attach HP points to the end of the ring and
->>> TP(Tail Pointer) points to the start of the ring.
->>> Using ath11k_hal_srng_src_peek() may result in processing invalid buffer
->>> for the very first interrupt. Since, HW starts writing buffer from TP.
->>>
->>> To avoid this issue call ath11k_hal_srng_src_next_peek() instead of
->>> calling ath11k_hal_srng_src_peek().
->>>
->>> Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
->>>
->>> Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
->>> Co-developed-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
->>> Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
->>
->> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
->>
->> however note...
->>
->>> +
->>> +				/* If done status is missing:
->>> +				 * 1. As per MAC team's suggestion,
->>> +				 *    when HP + 1 entry is peeked and if DMA
->>> +				 *    is not done and if HP + 2 entry's DMA done
->>> +				 *    is set. skip HP + 1 entry and
->>> +				 *    start processing in next interrupt.
->>> +				 * 2. If HP + 2 entry's DMA done is not set,
->>> +				 *    poll onto HP + 1 entry DMA done to be set.
->>> +				 *    Check status for same buffer for next time
->>> +				 *    dp_rx_mon_status_srng_process
->>> +				 */
->>> +
->>> + reap_status = ath11k_dp_rx_mon_handle_status_buf_done(ab, srng,
->>> + rx_ring);
->>
->> ath11k-check reports:
->>
->> drivers/net/wireless/ath/ath11k/dp_rx.c:3116: line length of 95 exceeds 90 columns
->> drivers/net/wireless/ath/ath11k/dp_rx.c:3117: line length of 95 exceeds 90 columns
-> 
-> Tamizh, please ALWAYS run ath11k-check. We are wasting time for trivial
-> stuff like this.
-> 
->> Kalle, in this case we may want to make an exception since I don't think there
->> is a clean way to fix this other than refactoring.
-> 
-> The new function name looked quite long so I shortened it to
-> ath11k_dp_rx_mon_buf_done() and the warning is now gone. Does that look
-> reasonable name?
-> 
-> Also I removed one unrelated change and removed unnecessary else. Please
-> check my changes:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=6e88d559268779107715008c51e006f7a5f62045
+The following changes since commit 4cece764965020c22cff7665b18a012006359095:
 
-So looking at the 'pending' change I have the observation that
-ath11k_dp_rx_mon_buf_done() only returns one of two values:
-DP_MON_STATUS_NO_DMA
-DP_MON_STATUS_REPLINISH
+  Linux 6.9-rc1 (2024-03-24 14:10:05 -0700)
 
-And the return value handling has explicit handling for those values, without
-any logic for other values:
-+				if (reap_status == DP_MON_STATUS_NO_DMA)
-+					continue;
-+
-+				if (reap_status == DP_MON_STATUS_REPLINISH) {
+are available in the Git repository at:
 
-if we only expect these two values to ever be returned, then we could remove
-the testing for DP_MON_STATUS_REPLINISH since, it it isn't NO_DMA then it must
-be REPLINISH
+  git://git.kernel.org/pub/scm/linux/kernel/git/mani/mhi.git tags/mhi-for-6.10
 
-Also after this patch is merged, can we have a spelling correcting patch:
-s/REPLINISH/REPLENISH/
+for you to fetch changes up to 48f98496b1de132f2e056605b5330209136066dc:
 
-+					ath11k_warn(ab, "mon status DONE not set %lx, buf_id %d\n",
-+						    FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl),
-+						    buf_id);
+  bus: mhi: host: pci_generic: Add generic edl_trigger to allow devices to enter EDL mode (2024-04-25 20:25:45 +0530)
 
-I don't think we should log anything here. we already warn before calling the
-new function. if we get here it means the next buffer had DONE set so we can
-replenish the current buffer
+----------------------------------------------------------------
+MHI Host
+========
 
+- Added a new API mhi_power_down_keep_dev() to not destroy the struct dev
+  associated with the MHI channels during MHI power down. This is useful in
+  scenarios such as system suspend/hibernation where the probability of
+  channels coming back is very high. So the PM maintainer suggested not to
+  destroy the struct dev in those cases.
 
+  This API is introduced for fixing the failure reported in the ath11k driver
+  during resume from system suspend.
+
+  NOTE: Due to the API dependency, the patch adding the API is pushed to an
+  immutable branch (mhi-immutable) and merged into both mhi and ath trees. But
+  the merge commit is not visible in mhi tree due to git being smart with
+  'fast-forward'.
+
+- Added an optional sysfs entry to force the MHI devices to enter the Emergency
+  Download (EDL) mode to download the firmware from host.
+
+- Added EDL mode support for Qcom SDX75/65/55 modems as per the MHI spec v1.2,
+  Chapter 13.2. This involves writing a cookie to the EDL doorbell registers and
+  then triggering the device reset from host.
+
+----------------------------------------------------------------
+Baochen Qiang (1):
+      bus: mhi: host: Add mhi_power_down_keep_dev() API to support system suspend/hibernation
+
+Qiang Yu (3):
+      bus: mhi: host: Add sysfs entry to force device to enter EDL
+      bus: mhi: host: Add a new API for getting channel doorbell offset
+      bus: mhi: host: pci_generic: Add generic edl_trigger to allow devices to enter EDL mode
+
+ Documentation/ABI/stable/sysfs-bus-mhi | 13 +++++++++++++
+ drivers/bus/mhi/host/init.c            | 41 ++++++++++++++++++++++++++++++++++++-----
+ drivers/bus/mhi/host/internal.h        |  4 +++-
+ drivers/bus/mhi/host/main.c            | 16 ++++++++++++++++
+ drivers/bus/mhi/host/pci_generic.c     | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ drivers/bus/mhi/host/pm.c              | 42 ++++++++++++++++++++++++++++++++++++------
+ include/linux/mhi.h                    | 29 ++++++++++++++++++++++++++++-
+ 7 files changed, 177 insertions(+), 13 deletions(-)
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
