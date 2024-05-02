@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DCC5C4345F
-	for <ath11k@archiver.kernel.org>; Thu,  2 May 2024 07:25:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04F18C04FFE
+	for <ath11k@archiver.kernel.org>; Thu,  2 May 2024 16:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=579FziLzdVqZVaE2jgHgLPJEym1L02EMbBPSwan7Plo=; b=jQ+vxxsnE11c4CrU3qaRfMekan
-	nv7PG4Ruits9lT9fMsunafp3P6qjynTKj3JOhX7FqhzsX14Q9uG0yXj28fFWNkT8wTd6kVYpchcu9
-	YVjQONcN66bKOrsofzlYswydpRLIsIlHQdTk+2xAGZyzqIxsBeHdEhMIBBxo/NO9kfBxChhAink40
-	MD3UF3Tm+RVJSd/nxcs+BWkdzk0Sv6koYsSaWBRvo9RgQP2+HTiqdLsDZgDnTYhRIAsaJfR8qMvzE
-	wZgCUBP4TbK22rfyBuFPakIf4H2mjYTUO3ixT1yzXWWhhEjUSLvTqnERZIseCc5XxpQ1OBGO64Kmq
-	+3XziD1g==;
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=wxF0+16OjdVH6kLGprkSBAfjRiXPONhs+Z4m1yRrH2U=; b=2V3swqZNjRJ2MVI943GaEO2PM5
+	DRucbpAcmEQtL9tYiTRawZqrx3IaZSTWKBHnFmXjKTyg9eNvIzCsjG8GiWnsgZAIAKVWEpWkXom7g
+	mfDXrRbMmCTTBw8WbT6lRonMm0HLAoB+unWoUNFFxRPtkczGRkGFyZRcgy9GlP8izC4A4eeNTU59p
+	CJhbYMvtcfJ8bx4z7xGkj7RwPRZtIvi9TV/dW1aAn01fjY86jTMr1EWkBxUPOfSteL2aNoFzriOpv
+	/N/rumRxA6vnGq1BKVNV1qPuQtzD/KJ4+yxtuK/0WqO2psA7rtb4T5dpsRyQAdU26W0tUt/wBTLEr
+	VC10Wtrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2Qof-0000000BnSo-0Xrb;
-	Thu, 02 May 2024 07:25:17 +0000
-Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
+	id 1s2YsI-0000000DD0x-0tWc;
+	Thu, 02 May 2024 16:01:34 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2Qob-0000000BnQP-315z
-	for ath11k@lists.infradead.org;
-	Thu, 02 May 2024 07:25:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1714634709;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=579FziLzdVqZVaE2jgHgLPJEym1L02EMbBPSwan7Plo=;
-	b=DXqThiyPjRm7oT0Xst4JZlyLX3Jzs27g59GO9m0gUHcodbFU7dYKWWpfzH58JMsiW4fsk3
-	/NovEEffscqbgVJXWmFWw2jdlsJbz9p/VBdu+54I18rhebLGDS2My7yXzp+XNs52UTcyQx
-	71bis/f6zGyaKm8C0iyWSiWiOWR3J8M=
-From: Sven Eckelmann <sven@narfation.org>
-To: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
-Cc: Tanjeff Moos <Tanjeff.Moos@westermo.com>, openwrt-devel@lists.openwrt.org,
- Felix Fietkau <nbd@nbd.name>, ath11k@lists.infradead.org,
- Jeff Johnson <quic_jjohnson@quicinc.com>, Sven Eckelmann <sven@narfation.org>
-Subject: Re: Question to recent Qualcomm CVEs
-Date: Thu, 02 May 2024 09:25:03 +0200
-Message-ID: <13504833.uLZWGnKmhe@ripper>
-In-Reply-To: <4889305.GXAFRqVoOG@bentobox>
-References: <48174971-4b30-4046-9710-2acb16990e07@westermo.com>
- <87il00qpjp.fsf@kernel.org> <4889305.GXAFRqVoOG@bentobox>
+	id 1s2YsF-0000000DCz4-0ohd;
+	Thu, 02 May 2024 16:01:32 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 7A6B661B84;
+	Thu,  2 May 2024 16:01:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFBAAC113CC;
+	Thu,  2 May 2024 16:01:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714665690;
+	bh=mAkEKC+KPNUQKffUdp+OAqvjQHSIAy4Tm31PH1AZidw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=DzqLAwE89Woo7orI5OKHMbaUTLMLjmv4AE9rJuHIKSuhMewy0F/W0deXpEbNzU8mq
+	 wicYKRmk7nIzxq6oqedCJHhLWlbCN3CjcsBjClAsszQog6Ju8BGaXrCv2LEY/Uy1ii
+	 o6cL/WYuSYSL0lpAx4ABfdaocKZ++prQ9jFW/eNr4gDNB0hgOudFEJpep8VBI+ozeq
+	 qfZhg3pSb2ioIvSImNAO+Azge/OQ+deMCatjfUZlghM61Jy8ZtwDwt5E6wd+E12TGJ
+	 zqXrPoeiMduRdXfiuMX+nNOATW3M7Gx3fAXt/Z49NkctiJCLs2gVNw4b52oPwA/PI4
+	 xMcVTbAUD7uHg==
+From: Kalle Valo <kvalo@kernel.org>
+To: linux-wireless@vger.kernel.org
+Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, quic_jjohnson@quicinc.com
+Subject: pull-request: ath-next-20240502
+Date: Thu, 02 May 2024 19:01:26 +0300
+Message-ID: <87bk5onqy1.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2934772.e9J7NaK4W3";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240502_002513_982720_478566F5 
-X-CRM114-Status: GOOD (  15.26  )
+X-CRM114-CacheID: sfid-20240502_090131_362169_AFD890D5 
+X-CRM114-Status: GOOD (  13.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,64 +68,232 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---nextPart2934772.e9J7NaK4W3
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
-Subject: Re: Question to recent Qualcomm CVEs
-Date: Thu, 02 May 2024 09:25:03 +0200
-Message-ID: <13504833.uLZWGnKmhe@ripper>
-In-Reply-To: <4889305.GXAFRqVoOG@bentobox>
-MIME-Version: 1.0
+Hi,
 
-On Monday, 29 April 2024 15:36:47 CEST Sven Eckelmann wrote:
-> On Monday, 29 April 2024 15:14:18 CEST Kalle Valo wrote:
-> > It's quite strange that they updated 2.5.0.1 branch first but my
-> > understanding that there should be updates for the newer 2.7.0.1 branch
-> > as well (2.7.0.1 branch is also in linux-firmware).
-> 
-> Yes, I also told them in the support ticket that this is from an older branch 
-> than what is currently shipped in linux-firmware.git. But they told me 
-> that they are working on newer versions (whatever that means) - but they 
-> wanted to  handle first the update to ATH.11.4 (2.5.0.x) and then 
-> step-by-step release it for newer firmware branches. It seem like that would be 
-> up to 2.9.0.x - no idea why there is no (public) 2.10.x/2.11.x for the AP 
-> SoCs.
+Please pull, more information in the tag below.
 
-Just as info: The non-public QCA ticket was simply closed on Tuesday (without 
-having any upload which works for Robert and is from the same/newer branch 
-than what is currently in linux-firmware.git). So maybe we are actually out of 
-luck.
+Kalle
 
-Kind regards,
-	Sven
+The following changes since commit 57a03d83f229126b0aab6f305821358755c7b130:
 
+  Merge branch 'mlxsw-preparations-for-improving-performance' (2024-04-03 19:50:44 -0700)
 
---nextPart2934772.e9J7NaK4W3
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+are available in the Git repository at:
 
------BEGIN PGP SIGNATURE-----
+  git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git tags/ath-next-20240502
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmYzP88ACgkQXYcKB8Em
-e0aufBAA0g9c8U9sOeU65meF2XRVeLCZQboIErFQ9ER42608f/55VDj1rRawf/YW
-Nlk9NoX3k1PkrmGD+JrFXaCWkfnGI5vbH4kA2jPdUcXy7SfkqZ8zSdGG1SUUco1E
-D4ySzBQYPd+sHkY7p5zQZ+Fiixa3u4/MP08cUrGgb+w8FHVlzGMT0Bv4LH7BdaFA
-pbHVUgyfIHusyqOUQbuVsaDgRZqwD9x5Oi06FUPb4n5lKnPBZ9unLoUm0E2r9nbQ
-//O/RN9oyPHJ1APuRfcJGaRMmJ2C7cgpaSQ4V1WT0EKTjwx0sb2XjGP7PjncZa7Q
-2lmxAJvjkZxzehSu5dxU1KBiQzbaF6EvKxqcAlmfcAZrPFcQBebtBL2fQ9gTKrQP
-zMUPAwUnXjerch3JFYsX/kknshOjGpg8NW4defeczIhGQe6NA7/SIrM9iJBpB1gO
-Rr1Uynuz/TIW/ZujzHTQiP3K46MDhHL8Rr6i8J9qx7iW7XoeP8r6S3eJUIWIBWHC
-kdhqDef9gvVS91j3JJtM3WiTcy47qUnqdffwLp84KNNITPa7umkF3PgxGI9SWEOP
-5T2kQaJc3Z0IeCVN3a8207H2sucuh7roiftR6dQ8n+tzM8IRjOj1jNMpIcgkUTyd
-L0xL4en/Oo4vrmr//Z/ZjTuLmAfL+RA4ue49VRnN/z9n3N/r5bc=
-=KpLy
------END PGP SIGNATURE-----
+for you to fetch changes up to bf76b144fe53c7f0de9e294947d903fc7724776f:
 
---nextPart2934772.e9J7NaK4W3--
+  wifi: ath12k: fix the problem that down grade phy mode operation (2024-05-02 13:15:38 +0300)
 
+----------------------------------------------------------------
+ath.git patches for v6.10
 
+ath12k
 
+* debugfs support
+
+* dfs_simulate_radar debugfs file
+
+* disable Wireless Extensions
+
+* suspend and hibernation support
+
+* ACPI support
+
+* refactoring in preparation of multi-link support
+
+ath11k
+
+* support hibernation (required changes in qrtr and MHI subsystems)
+
+* ieee80211-freq-limit Device Tree property support
+
+ath10k
+
+* firmware-name Device Tree property support
+
+----------------------------------------------------------------
+Arnd Bergmann (2):
+      wifi: carl9170: re-fix fortified-memset warning
+      wifi: ath9k: work around memset overflow warning
+
+Baochen Qiang (16):
+      bus: mhi: host: Add mhi_power_down_keep_dev() API to support system suspend/hibernation
+      net: qrtr: support suspend/hibernation
+      wifi: ath11k: support hibernation
+      wifi: ath12k: fix kernel crash during resume
+      wifi: ath12k: rearrange IRQ enable/disable in reset path
+      wifi: ath12k: remove MHI LOOPBACK channels
+      wifi: ath12k: do not dump SRNG statistics during resume
+      wifi: ath12k: fix warning on DMA ring capabilities event
+      wifi: ath12k: decrease MHI channel buffer length to 8KB
+      wifi: ath12k: flush all packets before suspend
+      wifi: ath12k: no need to handle pktlog during suspend/resume
+      wifi: ath12k: avoid stopping mac80211 queues in ath12k_core_restart()
+      wifi: ath12k: support suspend/resume
+      wifi: ath12k: change supports_suspend to true for WCN7850
+      wifi: ath12k: check M3 buffer size as well whey trying to reuse it
+      wifi: ath12k: fix flush failure in recovery scenarios
+
+Christian Lamparter (2):
+      dt-bindings: net: wireless: ath11k: add ieee80211-freq-limit property
+      wifi: ath11k: add support DT ieee80211-freq-limit
+
+Christophe JAILLET (1):
+      wifi: ath11k: Fix error handling in ath11k_wmi_p2p_noa_event()
+
+Dmitry Baryshkov (5):
+      dt-bindings: net: wireless: ath10k: describe firmware-name property
+      wifi: ath10k: support board-specific firmware overrides
+      wifi: ath10k: populate board data for WCN3990
+      wifi: ath10k: drop chip-specific board data file name
+      wifi: ath10k: drop fw.eboard file name
+
+Gustavo A. R. Silva (2):
+      wifi: wil6210: cfg80211: Use __counted_by() in struct wmi_start_scan_cmd and avoid some -Wfamnae warnings
+      wifi: wil6210: wmi: Use __counted_by() in struct wmi_set_link_monitor_cmd and avoid -Wfamnae warning
+
+Jeff Johnson (3):
+      wifi: ath11k: fix hal_rx_buf_return_buf_manager documentation
+      wifi: ath12k: fix hal_rx_buf_return_buf_manager documentation
+      wifi: ath12k: don't use %pK in dmesg format strings
+
+Kalle Valo (2):
+      Merge branch 'mhi-immutable' of git://git.kernel.org/pub/scm/linux/kernel/git/mani/mhi into ath-next
+      wifi: ath12k: enable WIPHY_FLAG_DISABLE_WEXT
+
+Kang Yang (2):
+      wifi: ath12k: dynamically update peer puncturing bitmap for STA
+      wifi: ath12k: add support to handle beacon miss for WCN7850
+
+Karthikeyan Kathirvel (1):
+      wifi: ath12k: fix out-of-bound access of qmi_invoke_handler()
+
+Karthikeyan Periyasamy (9):
+      wifi: ath12k: extend the link capable flag
+      wifi: ath12k: fix link capable flags
+      wifi: ath12k: correct the capital word typo
+      wifi: ath12k: add multiple radio support in a single MAC HW un/register
+      wifi: ath12k: fix mac id extraction when MSDU spillover in rx error path
+      wifi: ath12k: avoid redundant code in Rx cookie conversion init
+      wifi: ath12k: Refactor the hardware cookie conversion init
+      wifi: ath12k: displace the Tx and Rx descriptor in cookie conversion table
+      wifi: ath12k: Refactor data path cmem init
+
+Krzysztof Kozlowski (1):
+      wifi: ath6kl: sdio: simplify module initialization
+
+Lingbo Kong (5):
+      wifi: ath12k: ACPI TAS support
+      wifi: ath12k: ACPI SAR support
+      wifi: ath12k: ACPI CCA threshold support
+      wifi: ath12k: ACPI band edge channel power support
+      wifi: ath12k: fix the problem that down grade phy mode operation
+
+Miaoqing Pan (1):
+      wifi: ath12k: fix missing endianness conversion in wmi_vdev_create_cmd()
+
+Nikita Zhandarovich (2):
+      wifi: carl9170: add a proper sanity check for endpoints
+      wifi: ar5523: enable proper endpoint verification
+
+Raj Kumar Bhagat (2):
+      wifi: ath12k: read single_chip_mlo_support parameter from QMI PHY capability
+      wifi: ath12k: set mlo_capable_flags based on QMI PHY capability
+
+Ramasamy Kaliappan (1):
+      wifi: ath12k: initial debugfs support
+
+Ramya Gnanasekar (1):
+      wifi: ath12k: debugfs: radar simulation support
+
+Sriram R (11):
+      wifi: ath12k: Modify add and remove chanctx ops for single wiphy support
+      wifi: ath12k: modify ath12k mac start/stop ops for single wiphy
+      wifi: ath12k: vdev statemachine changes for single wiphy
+      wifi: ath12k: scan statemachine changes for single wiphy
+      wifi: ath12k: fetch correct radio based on vdev status
+      wifi: ath12k: Cache vdev configs before vdev create
+      wifi: ath12k: Add additional checks for vif and sta iterators
+      wifi: ath12k: modify regulatory support for single wiphy architecture
+      wifi: ath12k: Modify set and get antenna mac ops for single wiphy
+      wifi: ath12k: Modify rts threshold mac op for single wiphy
+      wifi: ath12k: support get_survey mac op for single wiphy
+
+Su Hui (1):
+      wifi: ath10k: Fix an error code problem in ath10k_dbg_sta_write_peer_debug_trigger()
+
+Thiraviyam Mariyappan (1):
+      wifi: ath12k: enable service flag for survey dump stats
+
+ .../bindings/net/wireless/qcom,ath10k.yaml         |    6 +
+ .../bindings/net/wireless/qcom,ath11k.yaml         |    3 +
+ drivers/bus/mhi/host/internal.h                    |    4 +-
+ drivers/bus/mhi/host/pm.c                          |   42 +-
+ drivers/net/wireless/ath/ar5523/ar5523.c           |   14 +
+ drivers/net/wireless/ath/ath.h                     |    6 +-
+ drivers/net/wireless/ath/ath10k/core.c             |   43 +-
+ drivers/net/wireless/ath/ath10k/core.h             |    2 +
+ drivers/net/wireless/ath/ath10k/debugfs_sta.c      |    2 +-
+ drivers/net/wireless/ath/ath10k/hw.h               |   14 +-
+ drivers/net/wireless/ath/ath10k/pci.c              |   10 +-
+ drivers/net/wireless/ath/ath10k/snoc.c             |    3 +
+ drivers/net/wireless/ath/ath10k/targaddrs.h        |    3 +
+ drivers/net/wireless/ath/ath11k/ahb.c              |    6 +-
+ drivers/net/wireless/ath/ath11k/core.c             |  113 +-
+ drivers/net/wireless/ath/ath11k/core.h             |    6 +-
+ drivers/net/wireless/ath/ath11k/hal.h              |    2 +-
+ drivers/net/wireless/ath/ath11k/hif.h              |   14 +-
+ drivers/net/wireless/ath/ath11k/mac.c              |    1 +
+ drivers/net/wireless/ath/ath11k/mhi.c              |   12 +-
+ drivers/net/wireless/ath/ath11k/mhi.h              |    5 +-
+ drivers/net/wireless/ath/ath11k/pci.c              |   44 +-
+ drivers/net/wireless/ath/ath11k/qmi.c              |    2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c              |   18 +-
+ drivers/net/wireless/ath/ath12k/Kconfig            |    9 +
+ drivers/net/wireless/ath/ath12k/Makefile           |    2 +
+ drivers/net/wireless/ath/ath12k/acpi.c             |  394 +++++++
+ drivers/net/wireless/ath/ath12k/acpi.h             |   76 ++
+ drivers/net/wireless/ath/ath12k/core.c             |  123 ++-
+ drivers/net/wireless/ath/ath12k/core.h             |   95 +-
+ drivers/net/wireless/ath/ath12k/debugfs.c          |   90 ++
+ drivers/net/wireless/ath/ath12k/debugfs.h          |   30 +
+ drivers/net/wireless/ath/ath12k/dp.c               |   90 +-
+ drivers/net/wireless/ath/ath12k/dp.h               |    5 +-
+ drivers/net/wireless/ath/ath12k/dp_mon.c           |    6 +-
+ drivers/net/wireless/ath/ath12k/dp_rx.c            |  104 +-
+ drivers/net/wireless/ath/ath12k/dp_rx.h            |    4 +-
+ drivers/net/wireless/ath/ath12k/hal.h              |    2 +-
+ drivers/net/wireless/ath/ath12k/hif.h              |   14 +-
+ drivers/net/wireless/ath/ath12k/htc.c              |    4 +-
+ drivers/net/wireless/ath/ath12k/hw.c               |   12 +-
+ drivers/net/wireless/ath/ath12k/hw.h               |    4 +
+ drivers/net/wireless/ath/ath12k/mac.c              | 1147 ++++++++++++++++----
+ drivers/net/wireless/ath/ath12k/mac.h              |    4 +
+ drivers/net/wireless/ath/ath12k/mhi.c              |   92 +-
+ drivers/net/wireless/ath/ath12k/mhi.h              |    5 +-
+ drivers/net/wireless/ath/ath12k/p2p.c              |    3 +-
+ drivers/net/wireless/ath/ath12k/p2p.h              |    1 +
+ drivers/net/wireless/ath/ath12k/pci.c              |   43 +-
+ drivers/net/wireless/ath/ath12k/pci.h              |    2 +-
+ drivers/net/wireless/ath/ath12k/qmi.c              |  109 +-
+ drivers/net/wireless/ath/ath12k/qmi.h              |    4 +
+ drivers/net/wireless/ath/ath12k/reg.c              |   55 +-
+ drivers/net/wireless/ath/ath12k/wmi.c              |  195 +++-
+ drivers/net/wireless/ath/ath12k/wmi.h              |   67 +-
+ drivers/net/wireless/ath/ath6kl/sdio.c             |   20 +-
+ drivers/net/wireless/ath/ath9k/main.c              |    3 +-
+ drivers/net/wireless/ath/carl9170/tx.c             |    3 +-
+ drivers/net/wireless/ath/carl9170/usb.c            |   32 +
+ drivers/net/wireless/ath/wil6210/cfg80211.c        |   21 +-
+ drivers/net/wireless/ath/wil6210/wmi.c             |   19 +-
+ drivers/net/wireless/ath/wil6210/wmi.h             |    4 +-
+ include/linux/mhi.h                                |   18 +-
+ net/qrtr/mhi.c                                     |   46 +
+ 64 files changed, 2656 insertions(+), 676 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath12k/acpi.c
+ create mode 100644 drivers/net/wireless/ath/ath12k/acpi.h
+ create mode 100644 drivers/net/wireless/ath/ath12k/debugfs.c
+ create mode 100644 drivers/net/wireless/ath/ath12k/debugfs.h
 
