@@ -4,86 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F354C4345F
-	for <ath11k@archiver.kernel.org>; Wed,  1 May 2024 16:56:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04E8DC4345F
+	for <ath11k@archiver.kernel.org>; Thu,  2 May 2024 07:03:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zECWYs05JeHQyldYsuxmYeYOcdkDI5KRvYBTnkbeCqI=; b=UO2mqj6mPqK6UXzjRcNHuxBXuR
-	cjpad3lbWTa0zwEw6HC+awRT4c4zLmsTVKbt4klagpT8iyCKA8rjWgNDqR5HgCj4Q4Tgxh0VEuZVe
-	3eOB0C3ouOCITGlDGD/dSv427DmQjXmnwz8FU/9r2RAAya5NkEuFEm42IAvyICk1NoKjEm+RyqNrz
-	AQfqjhfaDzGP3duOvFrzSIyO6UVlFyE+OCOuVHpZDlynagerpTCrfeKag4HCoTBRy4O7DTnPjdlR3
-	Aj89CEI9rA0+llBJvBbArHwgwMIZRmqOYHzzF6RU00yBb1NehrhJqDPbEAlMdz40p58+/jaufIIrd
-	wYwWjbGA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=EDpu/v5BhRmVQSLD5XLGf9qnt2E51a3xCiqDEHzZick=; b=bZTegqUjJPwAj+NeA9jgcYEnkC
+	mabhQGwkrVB1b08H4xYBxc5xuEY9SqYPFLjeBwwlHUP/ls/mePbUbGzKda4c7DxffjidvUtTr5HxA
+	OB73wpFg9Ovf0/ydH4+MKd1LDPl2+BiFqHWVyikpQy5JvclNDAKY8aZhuP1eFefR8nHAv+8HDDMP3
+	cwOxyDwFAR78N1zoGgBSGm28HzimY5IRepfz65LGsFwFXOl8DgbNbbb7IilQqHfPr5jDhkj9HVVA0
+	tg6V+APTuxXkbm5zHaBkiXED14eB4+b5VjCzJgwGY9zVKKpRoxPGq7/zodEbjnpLrkAZ5QQVkWk/5
+	Mvs/g8yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2DFp-0000000AEcz-04Jn;
-	Wed, 01 May 2024 16:56:25 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1s2QTU-0000000BjeE-3ZSG;
+	Thu, 02 May 2024 07:03:24 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2DFm-0000000AEai-0aDy
+	id 1s2QTS-0000000Bjct-0uUA
 	for ath11k@lists.infradead.org;
-	Wed, 01 May 2024 16:56:23 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 441BTb9P013641;
-	Wed, 1 May 2024 16:56:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=zECWYs05JeHQyldYsuxmYeYOcdkDI5KRvYBTnkbeCqI=; b=en
-	psAi5zalBDvJgRF+vd1QJ1qOXBJzhUOU+VkXHQUqtWtWWB+Z030J/voa4wrny1yP
-	Af3twHk5XiyG5qJHtGd94JY8pmGP1t2oL6P9qnUA/2Ub7ae6SM3RhIXi1FxZdAZw
-	wnb3vM2+ohFJT5WQNJD1NYJ3QRzQ1gxqt2x1zMv4KshkVVNAhsr/iAqVTSuXJWPJ
-	QIZdVJliBDnazPocrrxomq29lXcrWJDWvClVUM+IJxOym0f0KtzZl1jNlPgSGWQI
-	cK8AZ5XmoqGKIHMFYJGTiULBius/6G1vIVjoRJhIciRM1e4y/WVuKm/XXV/1Y+hb
-	5c2aLRI14XVBHPibjh7g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xud769ekv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 May 2024 16:56:17 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 441GuG0B012422
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 1 May 2024 16:56:16 GMT
-Received: from [10.110.13.147] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 1 May 2024
- 09:56:15 -0700
-Message-ID: <6336ffc7-d8ae-4cfd-8b66-d6d91cb0d15e@quicinc.com>
-Date: Wed, 1 May 2024 09:56:15 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	Thu, 02 May 2024 07:03:24 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 63466CE13A0;
+	Thu,  2 May 2024 07:03:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44ECDC116B1;
+	Thu,  2 May 2024 07:03:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1714633395;
+	bh=eZHA6dycMEhndlQBEwkVSIH+8uMnPz6SrubKX8jZyiM=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=JVuQzr6mEr/MJO50qsI7l1mXlXYnodA4CvgsULnCDa8KchLuwMW0knDcr7zxRRMVE
+	 I0AdOqI6zxy5MRAipH9IBl/MBaISNGUCeTA63HmRKY/6CCpT5g+cVlcQuQUCO8Gmg5
+	 WHSO/CCH39RqdORWIOtWc90DbXVgun3Q87Ta9Y8HJjzFItcJgHK4SdkhexVaFxiT9S
+	 Wz80Srs9r1WaaZODKHlFMfZxeG22a0/W5jI66C/l1mY+QA9bVl6UTDV6nas/8lwK8O
+	 whcGVM+cId3hrxY8/fxC+4BDGiIp90d9ukPRLrDQuubzmpBfOIkAEUHabFz9Q2Txwp
+	 I865jPQt9MpLw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Larry Finger <Larry.Finger@lwfinger.net>
+Cc: Ziyang Huang <hzyitc@outlook.com>,  jjohnson@kernel.org,
+  linux-wireless@vger.kernel.org,  ath11k@lists.infradead.org,
+  linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] wifi: ath11k: fix remapped ce accessing issue on 64bit OS
-Content-Language: en-US
-To: Ziyang Huang <hzyitc@outlook.com>, <kvalo@kernel.org>
-CC: <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
 References: <TYZPR01MB55563B3A689D54D18179E5B4C9192@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <TYZPR01MB55563B3A689D54D18179E5B4C9192@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 38OiJVixgv5rWFUfIZneDCxNTfaV8S1z
-X-Proofpoint-GUID: 38OiJVixgv5rWFUfIZneDCxNTfaV8S1z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-01_16,2024-04-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- malwarescore=0 phishscore=0 spamscore=0 priorityscore=1501 impostorscore=0
- clxscore=1011 bulkscore=0 mlxscore=0 lowpriorityscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
- definitions=main-2405010119
+	<22b0713e-49f2-482a-b145-e460b5632a7c@lwfinger.net>
+Date: Thu, 02 May 2024 10:03:12 +0300
+In-Reply-To: <22b0713e-49f2-482a-b145-e460b5632a7c@lwfinger.net> (Larry
+	Finger's message of "Wed, 1 May 2024 11:55:08 -0500")
+Message-ID: <874jbgg0gf.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240501_095622_354215_FC2F14F5 
-X-CRM114-Status: GOOD (  24.76  )
+X-CRM114-CacheID: sfid-20240502_000322_545738_547DA92D 
+X-CRM114-Status: GOOD (  19.05  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,197 +74,51 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 5/1/2024 9:14 AM, Ziyang Huang wrote:
-> On 64bit OS, when ab->mem_ce is lower than or 4G far away from ab->mem,
-> u32 is not enough to store the offsets, which makes ath11k_ahb_read32()
-> and ath11k_ahb_write32() access incorrect address and causes Data Abort
-> Exception.
+Larry Finger <Larry.Finger@lwfinger.net> writes:
 
-Are you actually observing this issue?
-Or is this a hypothetical situation?
+> On 5/1/24 11:14 AM, Ziyang Huang wrote:
+>
+>> On 64bit OS, when ab->mem_ce is lower than or 4G far away from ab->mem,
+>> u32 is not enough to store the offsets, which makes ath11k_ahb_read32()
+>> and ath11k_ahb_write32() access incorrect address and causes Data Abort
+>> Exception.
+>> Let's use the high bits of offsets to decide where to access, which
+>> is
+>> similar as ath11k_pci_get_window_start() done. In the future, we can merge
+>> these functions for unified regs accessing.
+>> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
+>> ---
+>>   drivers/net/wireless/ath/ath11k/ahb.c | 34 ++++++++++++++++++++-------
+>>   drivers/net/wireless/ath/ath11k/hal.c | 17 +++++---------
+>>   drivers/net/wireless/ath/ath11k/hw.c  | 14 +++++------
+>>   drivers/net/wireless/ath/ath11k/hw.h  |  7 +++++-
+>>   4 files changed, 45 insertions(+), 27 deletions(-)
+>> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c
+>> b/drivers/net/wireless/ath/ath11k/ahb.c
+>> index 7c0a23517949..9e59b4de93a9 100644
+>> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+>> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+>> @@ -198,12 +198,30 @@ static const struct ath11k_pci_ops ath11k_ahb_pci_ops_wcn6750 = {
+>>     static inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32
+>> offset)
+>>   {
+>> -	return ioread32(ab->mem + offset);
+>> +	switch (offset & ATH11K_REG_TYPE_MASK) {
+>> +	case ATH11K_REG_TYPE_NORMAL:
+>> +		return ioread32(ab->mem + FIELD_GET(ATH11K_REG_OFFSET_MASK, offset));
+>> +	case ATH11K_REG_TYPE_CE:
+>> +		return ioread32(ab->mem_ce + FIELD_GET(ATH11K_REG_OFFSET_MASK, offset));
+>> +	default:
+>> +		BUG();
+>
+> Do you really want to crash the system here? A dev_warn() or something
+> similar would log the situation. I suspect this case is never taken,
+> but a system crash is not a good response if it is.
 
-> 
-> Let's use the high bits of offsets to decide where to access, which is
-> similar as ath11k_pci_get_window_start() done. In the future, we can merge
-> these functions for unified regs accessing.
+Correct, BUG() is more or less banned from all wireless code.
 
-Performing unnecessary tests and masking for every ioread/write operation will
-potentially impact performance.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-What other fixes were considered (i.e. did you consider making all the
-register addresses u64?)
-
-> 
-> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
-> ---
->  drivers/net/wireless/ath/ath11k/ahb.c | 34 ++++++++++++++++++++-------
->  drivers/net/wireless/ath/ath11k/hal.c | 17 +++++---------
->  drivers/net/wireless/ath/ath11k/hw.c  | 14 +++++------
->  drivers/net/wireless/ath/ath11k/hw.h  |  7 +++++-
->  4 files changed, 45 insertions(+), 27 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-> index 7c0a23517949..9e59b4de93a9 100644
-> --- a/drivers/net/wireless/ath/ath11k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-> @@ -198,12 +198,30 @@ static const struct ath11k_pci_ops ath11k_ahb_pci_ops_wcn6750 = {
->  
->  static inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 offset)
->  {
-> -	return ioread32(ab->mem + offset);
-> +	switch (offset & ATH11K_REG_TYPE_MASK) {
-> +	case ATH11K_REG_TYPE_NORMAL:
-> +		return ioread32(ab->mem + FIELD_GET(ATH11K_REG_OFFSET_MASK, offset));
-> +	case ATH11K_REG_TYPE_CE:
-> +		return ioread32(ab->mem_ce + FIELD_GET(ATH11K_REG_OFFSET_MASK, offset));
-> +	default:
-> +		BUG();
-
-you can WARN but you can't BUG (and even WARN is being discouraged)
-
-> +		return 0;
-> +	}
->  }
->  
->  static inline void ath11k_ahb_write32(struct ath11k_base *ab, u32 offset, u32 value)
->  {
-> -	iowrite32(value, ab->mem + offset);
-> +	switch (offset & ATH11K_REG_TYPE_MASK) {
-> +	case ATH11K_REG_TYPE_NORMAL:
-> +		iowrite32(value, ab->mem + FIELD_GET(ATH11K_REG_OFFSET_MASK, offset));
-> +		break;
-> +	case ATH11K_REG_TYPE_CE:
-> +		iowrite32(value, ab->mem_ce + FIELD_GET(ATH11K_REG_OFFSET_MASK, offset));
-> +		break;
-> +	default:
-> +		BUG();
-
-ditto
-
-> +		break;
-> +	}
->  }
->  
->  static void ath11k_ahb_kill_tasklets(struct ath11k_base *ab)
-> @@ -275,9 +293,9 @@ static void ath11k_ahb_ce_irq_enable(struct ath11k_base *ab, u16 ce_id)
->  	const struct ce_ie_addr *ce_ie_addr = ab->hw_params.ce_ie_addr;
->  	u32 ie1_reg_addr, ie2_reg_addr, ie3_reg_addr;
->  
-> -	ie1_reg_addr = ce_ie_addr->ie1_reg_addr + ATH11K_CE_OFFSET(ab);
-> -	ie2_reg_addr = ce_ie_addr->ie2_reg_addr + ATH11K_CE_OFFSET(ab);
-> -	ie3_reg_addr = ce_ie_addr->ie3_reg_addr + ATH11K_CE_OFFSET(ab);
-> +	ie1_reg_addr = ce_ie_addr->ie1_reg_addr;
-> +	ie2_reg_addr = ce_ie_addr->ie2_reg_addr;
-> +	ie3_reg_addr = ce_ie_addr->ie3_reg_addr;
->  
->  	ce_attr = &ab->hw_params.host_ce_config[ce_id];
->  	if (ce_attr->src_nentries)
-> @@ -296,9 +314,9 @@ static void ath11k_ahb_ce_irq_disable(struct ath11k_base *ab, u16 ce_id)
->  	const struct ce_ie_addr *ce_ie_addr = ab->hw_params.ce_ie_addr;
->  	u32 ie1_reg_addr, ie2_reg_addr, ie3_reg_addr;
->  
-> -	ie1_reg_addr = ce_ie_addr->ie1_reg_addr + ATH11K_CE_OFFSET(ab);
-> -	ie2_reg_addr = ce_ie_addr->ie2_reg_addr + ATH11K_CE_OFFSET(ab);
-> -	ie3_reg_addr = ce_ie_addr->ie3_reg_addr + ATH11K_CE_OFFSET(ab);
-> +	ie1_reg_addr = ce_ie_addr->ie1_reg_addr;
-> +	ie2_reg_addr = ce_ie_addr->ie2_reg_addr;
-> +	ie3_reg_addr = ce_ie_addr->ie3_reg_addr;
->  
->  	ce_attr = &ab->hw_params.host_ce_config[ce_id];
->  	if (ce_attr->src_nentries)
-> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-> index f3d04568c221..f9ba2f821108 100644
-> --- a/drivers/net/wireless/ath/ath11k/hal.c
-> +++ b/drivers/net/wireless/ath/ath11k/hal.c
-> @@ -1233,20 +1233,16 @@ static int ath11k_hal_srng_create_config(struct ath11k_base *ab)
->  	s->reg_start[1] = HAL_SEQ_WCSS_UMAC_TCL_REG + HAL_TCL_STATUS_RING_HP;
->  
->  	s = &hal->srng_config[HAL_CE_SRC];
-> -	s->reg_start[0] = HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab) + HAL_CE_DST_RING_BASE_LSB +
-> -		ATH11K_CE_OFFSET(ab);
-> -	s->reg_start[1] = HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab) + HAL_CE_DST_RING_HP +
-> -		ATH11K_CE_OFFSET(ab);
-> +	s->reg_start[0] = HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab) + HAL_CE_DST_RING_BASE_LSB;
-> +	s->reg_start[1] = HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab) + HAL_CE_DST_RING_HP;
->  	s->reg_size[0] = HAL_SEQ_WCSS_UMAC_CE1_SRC_REG(ab) -
->  		HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab);
->  	s->reg_size[1] = HAL_SEQ_WCSS_UMAC_CE1_SRC_REG(ab) -
->  		HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab);
->  
->  	s = &hal->srng_config[HAL_CE_DST];
-> -	s->reg_start[0] = HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab) + HAL_CE_DST_RING_BASE_LSB +
-> -		ATH11K_CE_OFFSET(ab);
-> -	s->reg_start[1] = HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab) + HAL_CE_DST_RING_HP +
-> -		ATH11K_CE_OFFSET(ab);
-> +	s->reg_start[0] = HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab) + HAL_CE_DST_RING_BASE_LSB;
-> +	s->reg_start[1] = HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab) + HAL_CE_DST_RING_HP;
->  	s->reg_size[0] = HAL_SEQ_WCSS_UMAC_CE1_DST_REG(ab) -
->  		HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab);
->  	s->reg_size[1] = HAL_SEQ_WCSS_UMAC_CE1_DST_REG(ab) -
-> @@ -1254,9 +1250,8 @@ static int ath11k_hal_srng_create_config(struct ath11k_base *ab)
->  
->  	s = &hal->srng_config[HAL_CE_DST_STATUS];
->  	s->reg_start[0] = HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab) +
-> -		HAL_CE_DST_STATUS_RING_BASE_LSB + ATH11K_CE_OFFSET(ab);
-> -	s->reg_start[1] = HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab) + HAL_CE_DST_STATUS_RING_HP +
-> -		ATH11K_CE_OFFSET(ab);
-> +		HAL_CE_DST_STATUS_RING_BASE_LSB;
-> +	s->reg_start[1] = HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab) + HAL_CE_DST_STATUS_RING_HP;
->  	s->reg_size[0] = HAL_SEQ_WCSS_UMAC_CE1_DST_REG(ab) -
->  		HAL_SEQ_WCSS_UMAC_CE0_DST_REG(ab);
->  	s->reg_size[1] = HAL_SEQ_WCSS_UMAC_CE1_DST_REG(ab) -
-> diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-> index caa6dc12a790..58f39a7eaa1c 100644
-> --- a/drivers/net/wireless/ath/ath11k/hw.c
-> +++ b/drivers/net/wireless/ath/ath11k/hw.c
-> @@ -2268,9 +2268,9 @@ const struct ce_ie_addr ath11k_ce_ie_addr_ipq8074 = {
->  };
->  
->  const struct ce_ie_addr ath11k_ce_ie_addr_ipq5018 = {
-> -	.ie1_reg_addr = CE_HOST_IPQ5018_IE_ADDRESS - HAL_IPQ5018_CE_WFSS_REG_BASE,
-> -	.ie2_reg_addr = CE_HOST_IPQ5018_IE_2_ADDRESS - HAL_IPQ5018_CE_WFSS_REG_BASE,
-> -	.ie3_reg_addr = CE_HOST_IPQ5018_IE_3_ADDRESS - HAL_IPQ5018_CE_WFSS_REG_BASE,
-> +	.ie1_reg_addr = ATH11K_REG_TYPE_CE + CE_HOST_IPQ5018_IE_ADDRESS - HAL_IPQ5018_CE_WFSS_REG_BASE,
-> +	.ie2_reg_addr = ATH11K_REG_TYPE_CE + CE_HOST_IPQ5018_IE_2_ADDRESS - HAL_IPQ5018_CE_WFSS_REG_BASE,
-> +	.ie3_reg_addr = ATH11K_REG_TYPE_CE + CE_HOST_IPQ5018_IE_3_ADDRESS - HAL_IPQ5018_CE_WFSS_REG_BASE,
->  };
->  
->  const struct ce_remap ath11k_ce_remap_ipq5018 = {
-> @@ -2801,13 +2801,13 @@ const struct ath11k_hw_regs ipq5018_regs = {
->  	.hal_reo_status_hp = 0x00003070,
->  
->  	/* WCSS relative address */
-> -	.hal_seq_wcss_umac_ce0_src_reg = 0x08400000
-> +	.hal_seq_wcss_umac_ce0_src_reg = ATH11K_REG_TYPE_CE + 0x08400000
->  		- HAL_IPQ5018_CE_WFSS_REG_BASE,
-> -	.hal_seq_wcss_umac_ce0_dst_reg = 0x08401000
-> +	.hal_seq_wcss_umac_ce0_dst_reg = ATH11K_REG_TYPE_CE + 0x08401000
->  		- HAL_IPQ5018_CE_WFSS_REG_BASE,
-> -	.hal_seq_wcss_umac_ce1_src_reg = 0x08402000
-> +	.hal_seq_wcss_umac_ce1_src_reg = ATH11K_REG_TYPE_CE + 0x08402000
->  		- HAL_IPQ5018_CE_WFSS_REG_BASE,
-> -	.hal_seq_wcss_umac_ce1_dst_reg = 0x08403000
-> +	.hal_seq_wcss_umac_ce1_dst_reg = ATH11K_REG_TYPE_CE + 0x08403000
->  		- HAL_IPQ5018_CE_WFSS_REG_BASE,
->  
->  	/* WBM Idle address */
-> diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-> index 14ef4eb48f80..44593b38fc85 100644
-> --- a/drivers/net/wireless/ath/ath11k/hw.h
-> +++ b/drivers/net/wireless/ath/ath11k/hw.h
-> @@ -81,7 +81,12 @@
->  #define ATH11K_M3_FILE			"m3.bin"
->  #define ATH11K_REGDB_FILE_NAME		"regdb.bin"
->  
-> -#define ATH11K_CE_OFFSET(ab)	(ab->mem_ce - ab->mem)
-> +#define ATH11K_REG_TYPE_MASK		GENMASK(31, 28)
-> +#define  ATH11K_REG_TYPE(x)		FIELD_PREP_CONST(ATH11K_REG_TYPE_MASK, x)
-> +#define  ATH11K_REG_TYPE_NORMAL		ATH11K_REG_TYPE(0)
-> +#define  ATH11K_REG_TYPE_DP		ATH11K_REG_TYPE(1)
-> +#define  ATH11K_REG_TYPE_CE		ATH11K_REG_TYPE(2)
-> +#define ATH11K_REG_OFFSET_MASK		GENMASK(27, 0)
->  
->  enum ath11k_hw_rate_cck {
->  	ATH11K_HW_RATE_CCK_LP_11M = 0,
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
