@@ -4,84 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA52FC4345F
-	for <ath11k@archiver.kernel.org>; Thu,  2 May 2024 19:27:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95BB7C4345F
+	for <ath11k@archiver.kernel.org>; Fri,  3 May 2024 07:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WtKJAto7Q3Nrk05RW97KRPIs8n7BxL20FUpybZ4BUYg=; b=ig0G8nWAPsyDgot8m8aHJgAyfI
-	ZIw5LOcg5HhlU10VifTNTk2HuBblyM6qtuYF5VaixW+uWn+HbAqgBNnOyYQ2nZNx9hbSfEtqCOfWR
-	n+mn8jEv8/B0iH0fq8O+34hoHWBBfE4WLWWHPGjlFLtoPBxGn1LFDDPE0IeBO+yPpupe5qKCuVVcR
-	d1baowU9wjRlr8upWr+/l4uU9A3bcIEGWyvQ4wLSBACPRtsm/H6RxBSpy81i7waXq6vd6G0rCbr4V
-	DxKvbm2Rs0C5CfA9+X8F5bHPaQHofnPQOYtNpGK/bQ3oMP27SCeV+IR+eoArW2xrbE8KCXnPpw0ZV
-	haV2h6lQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=BoXRNgV30CkWoOVG5gFVHWYrepvbzcL1AyRc14uCK/4=; b=gselz4kxXStgM4hnM1Lf6v3Ei0
+	0TU3VmcN3pP96Okzk3qbrMdv1yuBKJFyvDKbB67D942tMAGx/2PsY47hNi6jYL2Dom3BxzOKS7bmT
+	uL4YS5pL1ZXtMy4fCixvCue3dElDrzwxreWolyVncMWeQVY3ba82SdRPXi3btPA6kqtGicFCpGbBt
+	0MiXP5D3qzYH1kHLVee5RvhpWaadASUVbqPlsun2+i4id30vPzMTDcIjuORYUEWNpjVk1G4RZxPTa
+	6h9nn3euhteqyX3BPk/LN78S3LC88CXbQd3X0o1ofxs/8Nk8ek5Y3aBRpZ7G4vICT5SaopUBvEP3b
+	8ZE90hMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2c5P-0000000Dj0j-0jJh;
-	Thu, 02 May 2024 19:27:19 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1s2nYc-0000000FVkD-2vpU;
+	Fri, 03 May 2024 07:42:14 +0000
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s2c5M-0000000Dizw-0x6b
+	id 1s2nYZ-0000000FViB-40NV
 	for ath11k@lists.infradead.org;
-	Thu, 02 May 2024 19:27:17 +0000
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-51f036e9f4dso1581635e87.3
-        for <ath11k@lists.infradead.org>; Thu, 02 May 2024 12:27:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714678032; x=1715282832; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WtKJAto7Q3Nrk05RW97KRPIs8n7BxL20FUpybZ4BUYg=;
-        b=WNvjag/Z4HW+DHzRcHFlbl1pTxyXk/TdF0jRFQS4r7vLi4F8gLijNr4RyNAV+z598W
-         WndrDEW+ubxZT8UiB4UIanZllmyPF7MsiDkC4voTnKtg+se21L9bFAeUNKntTZwCAbbQ
-         L9kL9aWGvAGzt123S7EoccEHLPIbAnioKqKsp70/6C78fZ43TGrk/LgmHeiM0OfrQ4tk
-         3xhJLt+/iCnAO1IMGLQCDK23Jc5yDJo/Gbcbpw8zd7eho4L9iI7RMZtee0PDAx6fYWs+
-         Ec7PSxJ4k101HyNBa70a1ALAQD91wCFq8l2wk2BTQt/CPZPOvve1z8Nd+rHdPTuvrXFY
-         xGYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714678032; x=1715282832;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WtKJAto7Q3Nrk05RW97KRPIs8n7BxL20FUpybZ4BUYg=;
-        b=jxc5/LK+jbMalIkadT71rPjvg9iMmROjhyx0M72Y4K8BsDV1ETtGtBzNM/p4H1MOzH
-         3rrywHQQMMEt/pFvHVZV0LMFunatZ3q6bSvvz4t0U7yUMpzpV3hOSPWxMdfHNG6g7Kt7
-         cknIRYKGhMagTr6IlHIP5taMVDNOlMzVa1egVitbv/jIDc2z074W7Rt7WtS1JGmsyZ8N
-         GESOYYhtpRCV7nxjq6lR0/iF7Wbr2tgHrYbhgJcomr+3S+kG0kh1fIFN9/qFhGDhxI5D
-         CQpjbGdDOz3NZuLJRPH7lg8I6fYkRLed3UGT18J2ZmeuLfBUZ/j64hiXhVIl4B988JIT
-         HdIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXWke7yGxonpWzvk+0B7XNsBYIQ2KW8V52sxpZtYb0H+ZzPL0bDpiT2L2WQ4PyEl2jTK9FBp8kfUW9rfwTpmhMMQwtAsnJrk9Q16A==
-X-Gm-Message-State: AOJu0Yz82PxCvYwfDNd+VLOnI22hiqboq8YEAvTUOHiwSX2D8aIC1V+q
-	eTQO0usiZmJiOAbmiV8esrSbeWT9nC+7DpU4qShX0bgoWwh9o/uq
-X-Google-Smtp-Source: AGHT+IFFNDxSJm2KpR0fG5ZXjxpbPk+Pv4p9QZiBiaQUu/wqpNaZUPQ+qYlm5jagNz+nyDjmWHB11A==
-X-Received: by 2002:ac2:428a:0:b0:518:dfed:f021 with SMTP id m10-20020ac2428a000000b00518dfedf021mr494477lfh.24.1714678032304;
-        Thu, 02 May 2024 12:27:12 -0700 (PDT)
-Received: from [192.168.1.105] ([188.113.43.9])
-        by smtp.gmail.com with ESMTPSA id s12-20020a19ad4c000000b0051c5570f573sm277186lfd.23.2024.05.02.12.27.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 May 2024 12:27:11 -0700 (PDT)
-Message-ID: <b3999eec-e370-4c85-80b9-759f25ed98bf@gmail.com>
-Date: Thu, 2 May 2024 22:27:31 +0300
+	Fri, 03 May 2024 07:42:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1714722126;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BoXRNgV30CkWoOVG5gFVHWYrepvbzcL1AyRc14uCK/4=;
+	b=fSP31tvsiZlIl1+JSDw8JI2RK/Hw51zhmtK7tU9CZuEubwkDgNSqRHj9bDAmRq5ZpDW7tT
+	ilfipFs4cCA9UQ/vLIXIcDyOn3w05Z5Q+m/X+YrMCNUTSIDf3QbpIkolTtaA5PINn/Sype
+	dWbWLNLQSMQtF/bLimmmSldFj7i/vkQ=
+From: Sven Eckelmann <sven@narfation.org>
+To: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
+Cc: Tanjeff Moos <Tanjeff.Moos@westermo.com>, openwrt-devel@lists.openwrt.org,
+ Felix Fietkau <nbd@nbd.name>, ath11k@lists.infradead.org,
+ Jeff Johnson <quic_jjohnson@quicinc.com>
+Subject: Re: Question to recent Qualcomm CVEs
+Date: Fri, 03 May 2024 09:42:03 +0200
+Message-ID: <3561287.iIbC2pHGDl@ripper>
+In-Reply-To: <13504833.uLZWGnKmhe@ripper>
+References: <48174971-4b30-4046-9710-2acb16990e07@westermo.com>
+ <4889305.GXAFRqVoOG@bentobox> <13504833.uLZWGnKmhe@ripper>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: fix remapped ce accessing issue on 64bit OS
-To: Jeff Johnson <quic_jjohnson@quicinc.com>,
- Ziyang Huang <hzyitc@outlook.com>, kvalo@kernel.org
-Cc: jjohnson@kernel.org, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <TYZPR01MB55563B3A689D54D18179E5B4C9192@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <6336ffc7-d8ae-4cfd-8b66-d6d91cb0d15e@quicinc.com>
-Content-Language: en-US
-From: Sergey Ryazanov <ryazanov.s.a@gmail.com>
-In-Reply-To: <6336ffc7-d8ae-4cfd-8b66-d6d91cb0d15e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="nextPart9272541.CDJkKcVGEf";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240502_122716_301114_0D2D680C 
-X-CRM114-Status: GOOD (  14.75  )
+X-CRM114-CacheID: sfid-20240503_004212_228476_FDC8291F 
+X-CRM114-Status: GOOD (  20.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,38 +67,75 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Jeff,
+--nextPart9272541.CDJkKcVGEf
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
+Subject: Re: Question to recent Qualcomm CVEs
+Date: Fri, 03 May 2024 09:42:03 +0200
+Message-ID: <3561287.iIbC2pHGDl@ripper>
+In-Reply-To: <13504833.uLZWGnKmhe@ripper>
+MIME-Version: 1.0
 
-On 01.05.2024 19:56, Jeff Johnson wrote:
-> On 5/1/2024 9:14 AM, Ziyang Huang wrote:
->> On 64bit OS, when ab->mem_ce is lower than or 4G far away from ab->mem,
->> u32 is not enough to store the offsets, which makes ath11k_ahb_read32()
->> and ath11k_ahb_write32() access incorrect address and causes Data Abort
->> Exception.
+On Thursday, 2 May 2024 09:25:03 CEST Sven Eckelmann wrote:
+> On Monday, 29 April 2024 15:36:47 CEST Sven Eckelmann wrote:
+> > On Monday, 29 April 2024 15:14:18 CEST Kalle Valo wrote:
+> > > It's quite strange that they updated 2.5.0.1 branch first but my
+> > > understanding that there should be updates for the newer 2.7.0.1 branch
+> > > as well (2.7.0.1 branch is also in linux-firmware).
+> > 
+> > Yes, I also told them in the support ticket that this is from an older branch 
+> > than what is currently shipped in linux-firmware.git. But they told me 
+> > that they are working on newer versions (whatever that means) - but they 
+> > wanted to  handle first the update to ATH.11.4 (2.5.0.x) and then 
+> > step-by-step release it for newer firmware branches. It seem like that would be 
+> > up to 2.9.0.x - no idea why there is no (public) 2.10.x/2.11.x for the AP 
+> > SoCs.
 > 
-> Are you actually observing this issue?
-> Or is this a hypothetical situation?
+> Just as info: The non-public QCA ticket was simply closed on Tuesday (without 
+> having any upload which works for Robert and is from the same/newer branch 
+> than what is currently in linux-firmware.git). So maybe we are actually out of 
+> luck.
 
-Yep. This is the real issue. I faced it on IPQ5018 with 64bits kernel.
+Now they are (indirectly) claiming that WLAN.HK.2.9.0.1-* is for ath12k. You 
+can actually read the response like everything newer than WLAN.HK.2.5.0.1-* is 
+for ath12k. Maybe I missed something and somebody can point out my error. Btw. 
+their ATH.11.5 release already a newer version than WLAN.HK.2.5.0.1-*.
 
->> Let's use the high bits of offsets to decide where to access, which is
->> similar as ath11k_pci_get_window_start() done. In the future, we can merge
->> these functions for unified regs accessing.
-> 
-> Performing unnecessary tests and masking for every ioread/write operation will
-> potentially impact performance.
-> 
-> What other fixes were considered (i.e. did you consider making all the
-> register addresses u64?)
+And maybe someone else known why there is a WLAN.HK.2.11.0.1-* and 
+WLAN.HK.2.10.0.1-* [1] for IPQ9574 but not for any other 802.11ax HW. Maybe it 
+has to do with the fact that it is used together with 802.11be HW (PCIe, 
+QCN9274?) and is therefore still actively maintained?
 
-Probably, making argument u64 could also be too much. I/O address space 
-of this chip fits 4GB so u32 should be enough. I have a bit different 
-fix for this bug. It introduces an indirect call for the CE registers 
-access and a dedicated set of accessing functions for chips that has the 
-CE region outside the main I/O area. I am going to publish it in a 
-couple of weeks, when I will come from a trip. The patch still needs 
-some polishing.
+Kind regards,
+	Sven
 
---
-Sergey
+[1]  https://github.com/quic/upstream-wifi-fw/tree/main/ath11k-firmware/IPQ9574/hw1.0
+--nextPart9272541.CDJkKcVGEf
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmY0lUsACgkQXYcKB8Em
+e0YtsRAAlOQyCCMj2jHoir/WyTJFwP3Ag27NEHp8pYalvW0VafG7GE3BpKeiRuif
+JrLEq/NhGjoFBGhixD4gjPyta2GaiJmA4FCMmD2ruBhCcVPjzm8PNMWoWsuFmMna
+rr7PQ4KQOtT4U9rgGZNOgxvftIJ3qD6fCzK3OqqxcHI8ZBjHJpHrMlLbUjd+BEig
+6hQVv1BgvGDYlbtTxTudPXgar+AwR/wTDG0BSYDgUBUgBDWa3l/D1b3duTFqdjPG
+sR1Inv6TPMJvlya1R2keZGLfeflUKy35mbeGvSdwGodQcM86mbe/uKDjp8oGR3p7
+9h1qEzTQASJ6F3BxCeKtPBtZfV5cHVaO+8qd0L6mcWrxJufZTeH4Uri+2pQepYU/
+Vv6LXHvtQCdsUUksM6yho1F2ITYSZW1/Kn8vZDt077AXrZGKSTN2UMoysDFnjnxW
+yTcgste9hJ5694n7spxST/C9MJWftJJRgtJlfr7/GOmr2Kj8e8vlrcYmhfDw0igL
+lZviGSQqnoNMp92oEUdBzYqhw1Yn+MaxmGOtko7e6qpmrfjmeFFG9jlwtOJ90GJF
+efgfiXHqyNTf68RXOrNuqj6K88eslxiIFH3yN4S8tX6CJMkBkfyF7dc3L6lf6PV+
+hBy/0twKymPcFfvZ+x1olXy/6sBsGvUZlwquqX7LT+Eci9/yuBA=
+=vBko
+-----END PGP SIGNATURE-----
+
+--nextPart9272541.CDJkKcVGEf--
+
+
+
 
