@@ -4,88 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96934C4345F
-	for <ath11k@archiver.kernel.org>; Sat,  4 May 2024 21:36:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A5BEC25B4F
+	for <ath11k@archiver.kernel.org>; Tue,  7 May 2024 10:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:Message-ID:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=9sZ/GHLSwizHP2i5dEDasu3GrO1hp+EymMagi7diVIU=; b=412zSD3e7pif5YqaRwh7ojfnlj
-	05f/BAvgG7n+ydwiO07myPXKad672TekQiXwKM9q8LmNONPzPXeUbTgDTlsnmX10psEiMC1UZRa1F
-	M7v1t3WvbIsisSQjU8OG/A9h0CRG4obuLZp0sAZ1f4EqvUxbCHvq37B6iO5K6j7QIoIqrkolghG3c
-	+Q88DOXF1AmoyssrlfviFvi7yD9GCywFW5nKkKMqARi3H6A89cZ5eQkuLqCsjHMgmv3sOiKalmSTc
-	HDy87F9HzfOHAXUfHVT2I8/F2Vewy1+KWbeYrb/rH5RIfBSXQiXoiJhckOa4GlcQlcAV1lJM8o2Kd
-	pw6w+t+w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Xfs8N4U+vT2MI2nsmlNvcKvzNGT9xPUHbYLxWy/r4hs=; b=KeFrCoc8k9dB9eFZuyR0uUU6wP
+	Q9QgAwgmC17kp1+9sv3r0XjuCjh3XxQtdMZP7fr8aJJJtXfuYlyLQb9QFJe9Afy8elt31DbQajrjC
+	MDDuxO7b5+BO1K6kTCMhtuo/7EMB2DWuUvpbB8B2GFkuODaM3AVRkha/F8NFTVND+olUXBeDmuTBv
+	dEL+jLt3sY2h63UjGnrshPZ3P8PIKTOtJDevW4wpRxnL/jayVtAVAvFVRRi9N/mWKdExLTBKDDDAF
+	VAg9sjCHtG0fWpNmyXdnwRxT2xaCBJsXTqFnd2R9Yv+39OFX1LpOD2CUZHdiPm28XRIPRSAvUdHFC
+	yp/1Umxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s3N3n-00000002uET-2ty1;
-	Sat, 04 May 2024 21:36:47 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1s4HcX-0000000ARWL-0QLC;
+	Tue, 07 May 2024 10:00:25 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s3N3k-00000002uDr-2Ftl
+	id 1s4HcU-0000000ARVN-4544
 	for ath11k@lists.infradead.org;
-	Sat, 04 May 2024 21:36:46 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 444LEBaS020085;
-	Sat, 4 May 2024 21:36:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=9sZ
-	/GHLSwizHP2i5dEDasu3GrO1hp+EymMagi7diVIU=; b=nPGh4N+clp/+W1AWLkC
-	bDuETlZuK+5ppWCfE6BXuxTDA5/pDT2VHdhtoVi/HItL4sUdggYqfewSnn/LzMjJ
-	0R3fqtxSJOF8EaWD9ziDMPGBYkOzxN61wSi8q5huiN7qfbD3cPWhnaGmMEfUW0gW
-	ug6qehrlKMaVmn55zUcPHiT0vTkkRc1hQCLk9eIKxA3HDh6ixaaTDpPlSmLn+Co0
-	zPhunfTyNgvG8Uaw3Ji8TdzWvzeoZ/I2lR7iDtgMZchU0GaGt+Ha+UwEG+fyaU4n
-	f7WVzgUpmRrLld/dKH3lBi2VszS6LAjDYL36F0C3XCIg7Mk86wGD9QJFxp2ZBj39
-	ozg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xwacsh7v1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 04 May 2024 21:36:38 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 444Lab4Y008808
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 4 May 2024 21:36:37 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 4 May 2024
- 14:36:37 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Sat, 4 May 2024 14:36:35 -0700
-Subject: [PATCH] wifi: ath11k: fix misspelling of "dma" in
- num_rxmda_per_pdev
-MIME-Version: 1.0
+	Tue, 07 May 2024 10:00:24 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 4A94CCE1263;
+	Tue,  7 May 2024 10:00:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 606F0C2BBFC;
+	Tue,  7 May 2024 10:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715076018;
+	bh=OcSKTZStAaD9u1j/juI/j/X8r7AGIVvhSWiWUCvhUaA=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=o8MamacXrpNlPFoEPNXuwJC3ch1F7W7FNc//rfB4KfTBxilGqX/3ovdoirwA5/817
+	 TXRzwR7RX1eUBC5/SW0pgBfWn1gQOxMJTp/0hWtz2MojfA9C839czYOgBKMoGNaUYK
+	 PqDbWLsHpjleGnSrzsM0PKi8outTTKOMHFUUT5vTUA5v2xTTmVWuXLhPTO35sEVTR/
+	 9H5d/X/sZ32A7DiG8s+keYE/dYcEiOvG+pUrLynizeigt9N05r0wLeZbmrZQLAdjy/
+	 3ksw6PQuveMe1hdp9EbYpYTYHwwSsxcMLbNIBdyksqHBM88eA2IRNiL5RLW0vWpmm3
+	 VpxLFHyb16OmQ==
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240504-ath11k-num_rxmda_per_pdev-v1-1-7f97bced8495@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAGKqNmYC/42OQQ6DIBREr9KwLg1gNdpV79E0Bj7fQhrRghIb4
- 90L7rpz+ZKZN7OSgN5iILfTSjxGG+zgEvDziYCR7oXU6sREMHFlJeNUTobzN3Vz3/ql17Id0be
- jxkiZhqIWUCgARVJ/9NjZZXc/nomVDEiVlw5MNvYyTOhz0NgwDf67f4g8x4/MRU45rVSFXdWUt
- dTd/TNbsA4uMPQkD0Zx2CWSC5UqkbNGF7r+d23b9gOU0aznKQEAAA==
-To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.13.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qVFWYHbHTnq90FdkCtyKnm62DJOK1d0A
-X-Proofpoint-ORIG-GUID: qVFWYHbHTnq90FdkCtyKnm62DJOK1d0A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-04_17,2024-05-03_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- bulkscore=0 spamscore=0 phishscore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 lowpriorityscore=0 suspectscore=0 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2405040139
+Subject: Re: [PATCHv5] wifi: ath11k: skip status ring entry processing
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240429073624.736147-1-quic_tamizhr@quicinc.com>
+References: <20240429073624.736147-1-quic_tamizhr@quicinc.com>
+To: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Venkateswara Naralasetty
+	<quic_vnaralas@quicinc.com>, Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <171507601530.3751691.1245928656021241727.kvalo@kernel.org>
+Date: Tue,  7 May 2024 10:00:17 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240504_143644_835272_9A8D8D14 
-X-CRM114-Status: GOOD (  19.15  )
+X-CRM114-CacheID: sfid-20240507_030023_228455_8E80072E 
+X-CRM114-Status: GOOD (  10.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,412 +73,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The ath11k_hw_params member num_rxmda_per_pdev contains a misspelling
-of "dma" so fix it.
+Tamizh Chelvam Raja <quic_tamizhr@quicinc.com> wrote:
 
-No functional changes, compile tested only.
+> If STATUS_BUFFER_DONE is not set for a monitor status ring entry,
+> we don't process the status ring until STATUS_BUFFER_DONE set
+> for that status ring entry.
+> 
+> During LMAC reset it may happen that hardware will not write
+> STATUS_BUFFER_DONE tlv in status buffer, in that case we end up
+> waiting for STATUS_BUFFER_DONE leading to backpressure on monitor
+> status ring.
+> 
+> To fix the issue, when HP (Head Pointer) + 1 entry is peeked and if DMA is not
+> done and if HP + 2 entry's DMA done is set, replenish HP + 1 entry and start
+> processing in next interrupt. If HP + 2 entry's DMA done is not set, poll onto
+> HP + 1 entry DMA done to be set.
+> 
+> Also, during monitor attach HP points to the end of the ring and TP (Tail
+> Pointer) points to the start of the ring.  Using ath11k_hal_srng_src_peek() may
+> result in processing invalid buffer for the very first interrupt. Since, HW
+> starts writing buffer from TP.
+> 
+> To avoid this issue call ath11k_hal_srng_src_next_peek() instead of
+> calling ath11k_hal_srng_src_peek().
+> 
+> Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+> Co-developed-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+> Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
----
-Encountered this spelling issue while working on ath12k, and since it
-is also present in ath11k, fix it here as well.
----
- drivers/net/wireless/ath/ath11k/core.c    | 20 ++++++++++----------
- drivers/net/wireless/ath/ath11k/debugfs.c |  6 +++---
- drivers/net/wireless/ath/ath11k/dp.c      | 12 ++++++------
- drivers/net/wireless/ath/ath11k/dp_rx.c   | 24 ++++++++++++------------
- drivers/net/wireless/ath/ath11k/dp_tx.c   |  6 +++---
- drivers/net/wireless/ath/ath11k/hw.h      |  4 ++--
- drivers/net/wireless/ath/ath11k/mac.c     |  2 +-
- drivers/net/wireless/ath/ath11k/reg.c     |  4 ++--
- drivers/net/wireless/ath/ath11k/wmi.c     |  2 +-
- 9 files changed, 40 insertions(+), 40 deletions(-)
+Patch applied to ath-next branch of ath.git, thanks.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 3cc817a3b4a4..d4ef556852c2 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -62,7 +62,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
- 		.single_pdev_only = false,
- 		.rxdma1_enable = true,
--		.num_rxmda_per_pdev = 1,
-+		.num_rxdma_per_pdev = 1,
- 		.rx_mac_buf_ring = false,
- 		.vdev_start_delay = false,
- 		.htt_peer_map_v2 = true,
-@@ -148,7 +148,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
- 		.single_pdev_only = false,
- 		.rxdma1_enable = true,
--		.num_rxmda_per_pdev = 1,
-+		.num_rxdma_per_pdev = 1,
- 		.rx_mac_buf_ring = false,
- 		.vdev_start_delay = false,
- 		.htt_peer_map_v2 = true,
-@@ -232,7 +232,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
- 		.single_pdev_only = true,
- 		.rxdma1_enable = false,
--		.num_rxmda_per_pdev = 2,
-+		.num_rxdma_per_pdev = 2,
- 		.rx_mac_buf_ring = true,
- 		.vdev_start_delay = true,
- 		.htt_peer_map_v2 = false,
-@@ -320,7 +320,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.svc_to_ce_map_len = 18,
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
- 		.rxdma1_enable = true,
--		.num_rxmda_per_pdev = 1,
-+		.num_rxdma_per_pdev = 1,
- 		.rx_mac_buf_ring = false,
- 		.vdev_start_delay = false,
- 		.htt_peer_map_v2 = true,
-@@ -404,7 +404,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
- 		.single_pdev_only = true,
- 		.rxdma1_enable = false,
--		.num_rxmda_per_pdev = 2,
-+		.num_rxdma_per_pdev = 2,
- 		.rx_mac_buf_ring = true,
- 		.vdev_start_delay = true,
- 		.htt_peer_map_v2 = false,
-@@ -492,7 +492,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.svc_to_ce_map_len = 14,
- 		.single_pdev_only = true,
- 		.rxdma1_enable = false,
--		.num_rxmda_per_pdev = 2,
-+		.num_rxdma_per_pdev = 2,
- 		.rx_mac_buf_ring = true,
- 		.vdev_start_delay = true,
- 		.htt_peer_map_v2 = false,
-@@ -580,7 +580,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
- 		.single_pdev_only = true,
- 		.rxdma1_enable = false,
--		.num_rxmda_per_pdev = 1,
-+		.num_rxdma_per_pdev = 1,
- 		.rx_mac_buf_ring = true,
- 		.vdev_start_delay = true,
- 		.htt_peer_map_v2 = false,
-@@ -673,7 +673,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq5018,
- 		.ce_remap = &ath11k_ce_remap_ipq5018,
- 		.rxdma1_enable = true,
--		.num_rxmda_per_pdev = RXDMA_PER_PDEV_5018,
-+		.num_rxdma_per_pdev = RXDMA_PER_PDEV_5018,
- 		.rx_mac_buf_ring = false,
- 		.vdev_start_delay = false,
- 		.htt_peer_map_v2 = true,
-@@ -744,7 +744,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
- 		.single_pdev_only = true,
- 		.rxdma1_enable = false,
--		.num_rxmda_per_pdev = 2,
-+		.num_rxdma_per_pdev = 2,
- 		.rx_mac_buf_ring = true,
- 		.vdev_start_delay = true,
- 		.htt_peer_map_v2 = false,
-@@ -1801,7 +1801,7 @@ static int ath11k_core_start(struct ath11k_base *ab)
- 	}
- 
- 	/* put hardware to DBS mode */
--	if (ab->hw_params.single_pdev_only && ab->hw_params.num_rxmda_per_pdev > 1) {
-+	if (ab->hw_params.single_pdev_only && ab->hw_params.num_rxdma_per_pdev > 1) {
- 		ret = ath11k_wmi_set_hw_mode(ab, WMI_HOST_HW_MODE_DBS);
- 		if (ret) {
- 			ath11k_err(ab, "failed to send dbs mode: %d\n", ret);
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 414a5ce279f7..57281a135dd7 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -668,7 +668,7 @@ static ssize_t ath11k_write_extd_rx_stats(struct file *file,
- 
- 	ar->debug.rx_filter = tlv_filter.rx_filter;
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
- 		ret = ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id, ar->dp.mac_id,
- 						       HAL_RXDMA_MONITOR_STATUS,
-@@ -1112,7 +1112,7 @@ static ssize_t ath11k_write_pktlog_filter(struct file *file,
- 	}
- 
- 	/* Clear rx filter set for monitor mode and rx status */
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
- 		ret = ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id, ar->dp.mac_id,
- 						       HAL_RXDMA_MONITOR_STATUS,
-@@ -1171,7 +1171,7 @@ static ssize_t ath11k_write_pktlog_filter(struct file *file,
- 					       HTT_RX_FP_DATA_FILTER_FLASG3;
- 	}
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
- 		ret = ath11k_dp_tx_htt_rx_filter_setup(ab, ring_id,
- 						       ar->dp.mac_id + i,
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 1a62407e5a9f..fbf666d0ecf1 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <crypto/hash.h>
-@@ -830,8 +830,8 @@ int ath11k_dp_service_srng(struct ath11k_base *ab,
- 
- 	if (ab->hw_params.ring_mask->rx_mon_status[grp_id]) {
- 		for (i = 0; i < ab->num_radios; i++) {
--			for (j = 0; j < ab->hw_params.num_rxmda_per_pdev; j++) {
--				int id = i * ab->hw_params.num_rxmda_per_pdev + j;
-+			for (j = 0; j < ab->hw_params.num_rxdma_per_pdev; j++) {
-+				int id = i * ab->hw_params.num_rxdma_per_pdev + j;
- 
- 				if (ab->hw_params.ring_mask->rx_mon_status[grp_id] &
- 					BIT(id)) {
-@@ -853,8 +853,8 @@ int ath11k_dp_service_srng(struct ath11k_base *ab,
- 		ath11k_dp_process_reo_status(ab);
- 
- 	for (i = 0; i < ab->num_radios; i++) {
--		for (j = 0; j < ab->hw_params.num_rxmda_per_pdev; j++) {
--			int id = i * ab->hw_params.num_rxmda_per_pdev + j;
-+		for (j = 0; j < ab->hw_params.num_rxdma_per_pdev; j++) {
-+			int id = i * ab->hw_params.num_rxdma_per_pdev + j;
- 
- 			if (ab->hw_params.ring_mask->rxdma2host[grp_id] & BIT(id)) {
- 				work_done = ath11k_dp_process_rxdma_err(ab, id, budget);
-@@ -913,7 +913,7 @@ void ath11k_dp_pdev_pre_alloc(struct ath11k_base *ab)
- 		spin_lock_init(&dp->rx_refill_buf_ring.idr_lock);
- 		atomic_set(&dp->num_tx_pending, 0);
- 		init_waitqueue_head(&dp->tx_empty_waitq);
--		for (j = 0; j < ab->hw_params.num_rxmda_per_pdev; j++) {
-+		for (j = 0; j < ab->hw_params.num_rxdma_per_pdev; j++) {
- 			idr_init(&dp->rx_mon_status_refill_ring[j].bufs_idr);
- 			spin_lock_init(&dp->rx_mon_status_refill_ring[j].idr_lock);
- 		}
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index afd481f5858f..f2c055c50818 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/ieee80211.h>
-@@ -311,7 +311,7 @@ static void ath11k_dp_service_mon_ring(struct timer_list *t)
- 	struct ath11k_base *ab = from_timer(ab, t, mon_reap_timer);
- 	int i;
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++)
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++)
- 		ath11k_dp_rx_process_mon_rings(ab, i, NULL, DP_MON_SERVICE_BUDGET);
- 
- 	mod_timer(&ab->mon_reap_timer, jiffies +
-@@ -324,7 +324,7 @@ static int ath11k_dp_purge_mon_ring(struct ath11k_base *ab)
- 	unsigned long timeout = jiffies + msecs_to_jiffies(DP_MON_PURGE_TIMEOUT_MS);
- 
- 	do {
--		for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++)
-+		for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++)
- 			reaped += ath11k_dp_rx_process_mon_rings(ab, i,
- 								 NULL,
- 								 DP_MON_SERVICE_BUDGET);
-@@ -468,7 +468,7 @@ static int ath11k_dp_rxdma_pdev_buf_free(struct ath11k *ar)
- 	rx_ring = &dp->rxdma_mon_buf_ring;
- 	ath11k_dp_rxdma_buf_ring_free(ar, rx_ring);
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		rx_ring = &dp->rx_mon_status_refill_ring[i];
- 		ath11k_dp_rxdma_buf_ring_free(ar, rx_ring);
- 	}
-@@ -506,7 +506,7 @@ static int ath11k_dp_rxdma_pdev_buf_setup(struct ath11k *ar)
- 		ath11k_dp_rxdma_ring_buf_setup(ar, rx_ring, HAL_RXDMA_MONITOR_BUF);
- 	}
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		rx_ring = &dp->rx_mon_status_refill_ring[i];
- 		ath11k_dp_rxdma_ring_buf_setup(ar, rx_ring, HAL_RXDMA_MONITOR_STATUS);
- 	}
-@@ -522,7 +522,7 @@ static void ath11k_dp_rx_pdev_srng_free(struct ath11k *ar)
- 
- 	ath11k_dp_srng_cleanup(ab, &dp->rx_refill_buf_ring.refill_buf_ring);
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		if (ab->hw_params.rx_mac_buf_ring)
- 			ath11k_dp_srng_cleanup(ab, &dp->rx_mac_buf_ring[i]);
- 
-@@ -585,7 +585,7 @@ static int ath11k_dp_rx_pdev_srng_alloc(struct ath11k *ar)
- 	}
- 
- 	if (ar->ab->hw_params.rx_mac_buf_ring) {
--		for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+		for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 			ret = ath11k_dp_srng_setup(ar->ab,
- 						   &dp->rx_mac_buf_ring[i],
- 						   HAL_RXDMA_BUF, 1,
-@@ -598,7 +598,7 @@ static int ath11k_dp_rx_pdev_srng_alloc(struct ath11k *ar)
- 		}
- 	}
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ret = ath11k_dp_srng_setup(ar->ab, &dp->rxdma_err_dst_ring[i],
- 					   HAL_RXDMA_DST, 0, dp->mac_id + i,
- 					   DP_RXDMA_ERR_DST_RING_SIZE);
-@@ -608,7 +608,7 @@ static int ath11k_dp_rx_pdev_srng_alloc(struct ath11k *ar)
- 		}
- 	}
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		srng = &dp->rx_mon_status_refill_ring[i].refill_buf_ring;
- 		ret = ath11k_dp_srng_setup(ar->ab,
- 					   srng,
-@@ -4391,7 +4391,7 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
- 	}
- 
- 	if (ab->hw_params.rx_mac_buf_ring) {
--		for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+		for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 			ring_id = dp->rx_mac_buf_ring[i].ring_id;
- 			ret = ath11k_dp_tx_htt_srng_setup(ab, ring_id,
- 							  mac_id + i, HAL_RXDMA_BUF);
-@@ -4403,7 +4403,7 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
- 		}
- 	}
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ring_id = dp->rxdma_err_dst_ring[i].ring_id;
- 		ret = ath11k_dp_tx_htt_srng_setup(ab, ring_id,
- 						  mac_id + i, HAL_RXDMA_DST);
-@@ -4443,7 +4443,7 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
- 	}
- 
- config_refill_ring:
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ring_id = dp->rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
- 		ret = ath11k_dp_tx_htt_srng_setup(ab, ring_id, mac_id + i,
- 						  HAL_RXDMA_MONITOR_STATUS);
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 272b1c35f98d..21819b741701 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -1035,7 +1035,7 @@ int ath11k_dp_tx_htt_h2t_ppdu_stats_req(struct ath11k *ar, u32 mask)
- 	int ret;
- 	int i;
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		skb = ath11k_htc_alloc_skb(ab, len);
- 		if (!skb)
- 			return -ENOMEM;
-@@ -1218,7 +1218,7 @@ int ath11k_dp_tx_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
- 						       &tlv_filter);
- 	} else if (!reset) {
- 		/* set in monitor mode only */
--		for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+		for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 			ring_id = dp->rx_mac_buf_ring[i].ring_id;
- 			ret = ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id,
- 							       dp->mac_id + i,
-@@ -1231,7 +1231,7 @@ int ath11k_dp_tx_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
- 	if (ret)
- 		return ret;
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ring_id = dp->rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
- 		if (!reset) {
- 			tlv_filter.rx_filter =
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 14ef4eb48f80..300322535766 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -1,7 +1,7 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #ifndef ATH11K_HW_H
-@@ -167,7 +167,7 @@ struct ath11k_hw_params {
- 	bool single_pdev_only;
- 
- 	bool rxdma1_enable;
--	int num_rxmda_per_pdev;
-+	int num_rxdma_per_pdev;
- 	bool rx_mac_buf_ring;
- 	bool vdev_start_delay;
- 	bool htt_peer_map_v2;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a71195344288..17b06c0cd062 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6108,7 +6108,7 @@ static int ath11k_mac_config_mon_status_default(struct ath11k *ar, bool enable)
- 			tlv_filter.rx_filter = ath11k_debugfs_rx_filter(ar);
- 	}
- 
--	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
-+	for (i = 0; i < ab->hw_params.num_rxdma_per_pdev; i++) {
- 		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
- 		ret = ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id,
- 						       ar->dp.mac_id + i,
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 737fcd450d4b..4c3aefbbabbe 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- #include <linux/rtnetlink.h>
- 
-@@ -878,7 +878,7 @@ int ath11k_reg_handle_chan_list(struct ath11k_base *ab,
- 		ath11k_reg_reset_info(reg_info);
- 
- 		if (ab->hw_params.single_pdev_only &&
--		    pdev_idx < ab->hw_params.num_rxmda_per_pdev)
-+		    pdev_idx < ab->hw_params.num_rxdma_per_pdev)
- 			return 0;
- 		goto fallback;
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 6ff01c45f165..38f175dd1557 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -9082,7 +9082,7 @@ int ath11k_wmi_attach(struct ath11k_base *ab)
- 	ab->wmi_ab.preferred_hw_mode = WMI_HOST_HW_MODE_MAX;
- 
- 	/* It's overwritten when service_ext_ready is handled */
--	if (ab->hw_params.single_pdev_only && ab->hw_params.num_rxmda_per_pdev > 1)
-+	if (ab->hw_params.single_pdev_only && ab->hw_params.num_rxdma_per_pdev > 1)
- 		ab->wmi_ab.preferred_hw_mode = WMI_HOST_HW_MODE_SINGLE;
- 
- 	/* TODO: Init remaining wmi soc resources required */
+4c2b796be3a1 wifi: ath11k: skip status ring entry processing
 
----
-base-commit: 50971dc6694c0845fcddfe337ea39c5b723d5a92
-change-id: 20240501-ath11k-num_rxmda_per_pdev-0dc382c3bccb
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20240429073624.736147-1-quic_tamizhr@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
