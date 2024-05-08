@@ -4,61 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A5BEC25B4F
-	for <ath11k@archiver.kernel.org>; Tue,  7 May 2024 10:00:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D38C04FFE
+	for <ath11k@archiver.kernel.org>; Wed,  8 May 2024 18:59:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Xfs8N4U+vT2MI2nsmlNvcKvzNGT9xPUHbYLxWy/r4hs=; b=KeFrCoc8k9dB9eFZuyR0uUU6wP
-	Q9QgAwgmC17kp1+9sv3r0XjuCjh3XxQtdMZP7fr8aJJJtXfuYlyLQb9QFJe9Afy8elt31DbQajrjC
-	MDDuxO7b5+BO1K6kTCMhtuo/7EMB2DWuUvpbB8B2GFkuODaM3AVRkha/F8NFTVND+olUXBeDmuTBv
-	dEL+jLt3sY2h63UjGnrshPZ3P8PIKTOtJDevW4wpRxnL/jayVtAVAvFVRRi9N/mWKdExLTBKDDDAF
-	VAg9sjCHtG0fWpNmyXdnwRxT2xaCBJsXTqFnd2R9Yv+39OFX1LpOD2CUZHdiPm28XRIPRSAvUdHFC
-	yp/1Umxg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=eFrOIrDzTcMn622VateT75IhKFBfpAyCB1nXrmsjnHc=; b=Xq3ftSvMyt9NnA7xJ5qDjjxRZa
+	sdZnBFLwBkRu77qbKXU0aCjMdCv+CJmO0+q3cLCO73qCk9YF6KMYOkqU60IoBnuP9ZfpUF5f9hyIZ
+	HSvmC3+qWlGSXfkzEmN/ciUWlJF7EBpE/QCOVc2tavvW9YRXUrKxop2OrgEV6QLrCVXjst+4UamAd
+	uWJelev/I6nlpPhopuQ+j28/fB81nuZjVoXUPhiBSMMNxCmGLFmLwavdc0KXsMHMTIW0wfJxbof/X
+	aumFbQfrm0N8XvSmQKqelJFncHQefWk2IA+MIF8eU1sTBvm0ekFk4P5FeXXzd5SIfG6d7YjypvukQ
+	ozNujVtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s4HcX-0000000ARWL-0QLC;
-	Tue, 07 May 2024 10:00:25 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1s4mVv-0000000GdM6-041N;
+	Wed, 08 May 2024 18:59:39 +0000
+Received: from mail-ed1-f52.google.com ([209.85.208.52])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s4HcU-0000000ARVN-4544
+	id 1s4mVX-0000000GdBq-1u0n
 	for ath11k@lists.infradead.org;
-	Tue, 07 May 2024 10:00:24 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 4A94CCE1263;
-	Tue,  7 May 2024 10:00:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 606F0C2BBFC;
-	Tue,  7 May 2024 10:00:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715076018;
-	bh=OcSKTZStAaD9u1j/juI/j/X8r7AGIVvhSWiWUCvhUaA=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=o8MamacXrpNlPFoEPNXuwJC3ch1F7W7FNc//rfB4KfTBxilGqX/3ovdoirwA5/817
-	 TXRzwR7RX1eUBC5/SW0pgBfWn1gQOxMJTp/0hWtz2MojfA9C839czYOgBKMoGNaUYK
-	 PqDbWLsHpjleGnSrzsM0PKi8outTTKOMHFUUT5vTUA5v2xTTmVWuXLhPTO35sEVTR/
-	 9H5d/X/sZ32A7DiG8s+keYE/dYcEiOvG+pUrLynizeigt9N05r0wLeZbmrZQLAdjy/
-	 3ksw6PQuveMe1hdp9EbYpYTYHwwSsxcMLbNIBdyksqHBM88eA2IRNiL5RLW0vWpmm3
-	 VpxLFHyb16OmQ==
-Content-Type: text/plain; charset="utf-8"
+	Wed, 08 May 2024 18:59:35 +0000
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-572baf393ddso2002654a12.1
+        for <ath11k@lists.infradead.org>; Wed, 08 May 2024 11:59:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715194753; x=1715799553;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eFrOIrDzTcMn622VateT75IhKFBfpAyCB1nXrmsjnHc=;
+        b=YY/H2rY6Xdtkkl+lniPhtimd2qs4jsysl98JlHJeo3zg0aA6LH4cYulCa/B8DuLOnP
+         V4nNA2DDHhtgNXuhVRgZo8cj6gdNKJfFhvtykuwMa3lcht6xIQcLJODE8T/Wumx/1jhz
+         cKhwZgYAs6IPJnaNqIYzOkPkzKp4SZLjQsC0GkrP6Q1RQ89p5IahCP6Zw5+RLZC+5JkW
+         V9TkTHKFoaDGeRIligZiDE03svGMJmdUMBShftSUW7Kxfj763OjnkcTFDtv7c6dPQN27
+         XrRVinrPQKfngVHAYrU9rZOplS+5bgE0mBlGZYVX4YVAdh0XtviIqknPWNBuYu28hAMD
+         gTfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXROiCWsqVEa89WpsMGOlTgELoUe45MINtqpe7tkS+VW2tv+TJEklA+t/96ArT1vi6BnyC7WpMXCB8fuolHlmMZR0//2sZP2/aYLw==
+X-Gm-Message-State: AOJu0Yzei765bQCl+vbSHRdnS4lbRgLAbnDGXG2TnhCVMwXKJTuqno3m
+	v8vn56X08qwxYfqrJh/usXQ22dYcK3vhKH5VWEGtqQomnd/8m6k4
+X-Google-Smtp-Source: AGHT+IEK4RWsOUL+8o+nVUUM0654BVgn5v3VnQl5a8AzTg5iRjxacDUtx9DKydCnJGRbKSZJvyiVQA==
+X-Received: by 2002:a50:d50c:0:b0:572:3eaa:a637 with SMTP id 4fb4d7f45d1cf-573326dbfe0mr342070a12.2.1715194753099;
+        Wed, 08 May 2024 11:59:13 -0700 (PDT)
+Received: from localhost (fwdproxy-lla-006.fbsv.net. [2a03:2880:30ff:6::face:b00c])
+        by smtp.gmail.com with ESMTPSA id ee53-20020a056402293500b0056fede24155sm7890077edb.89.2024.05.08.11.59.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 May 2024 11:59:12 -0700 (PDT)
+From: Breno Leitao <leitao@debian.org>
+To: horms@kernel.org,
+	Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>
+Cc: netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org (open list:NETWORKING DRIVERS (WIRELESS)),
+	ath11k@lists.infradead.org (open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH wireless-next] ath11k: Fix error path in ath11k_pcic_ext_irq_config
+Date: Wed,  8 May 2024 11:59:01 -0700
+Message-ID: <20240508185902.70975-1-leitao@debian.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCHv5] wifi: ath11k: skip status ring entry processing
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240429073624.736147-1-quic_tamizhr@quicinc.com>
-References: <20240429073624.736147-1-quic_tamizhr@quicinc.com>
-To: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Venkateswara Naralasetty
-	<quic_vnaralas@quicinc.com>, Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <171507601530.3751691.1245928656021241727.kvalo@kernel.org>
-Date: Tue,  7 May 2024 10:00:17 +0000 (UTC)
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240507_030023_228455_8E80072E 
-X-CRM114-Status: GOOD (  10.95  )
+X-CRM114-CacheID: sfid-20240508_115915_571271_F928097C 
+X-CRM114-Status: GOOD (  13.91  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,44 +83,82 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Tamizh Chelvam Raja <quic_tamizhr@quicinc.com> wrote:
+If one of the dummy allocation fails in ath11k_pcic_ext_irq_config(),
+the previous allocated devices might leak due to returning without
+deallocating the devices.
 
-> If STATUS_BUFFER_DONE is not set for a monitor status ring entry,
-> we don't process the status ring until STATUS_BUFFER_DONE set
-> for that status ring entry.
-> 
-> During LMAC reset it may happen that hardware will not write
-> STATUS_BUFFER_DONE tlv in status buffer, in that case we end up
-> waiting for STATUS_BUFFER_DONE leading to backpressure on monitor
-> status ring.
-> 
-> To fix the issue, when HP (Head Pointer) + 1 entry is peeked and if DMA is not
-> done and if HP + 2 entry's DMA done is set, replenish HP + 1 entry and start
-> processing in next interrupt. If HP + 2 entry's DMA done is not set, poll onto
-> HP + 1 entry DMA done to be set.
-> 
-> Also, during monitor attach HP points to the end of the ring and TP (Tail
-> Pointer) points to the start of the ring.  Using ath11k_hal_srng_src_peek() may
-> result in processing invalid buffer for the very first interrupt. Since, HW
-> starts writing buffer from TP.
-> 
-> To avoid this issue call ath11k_hal_srng_src_next_peek() instead of
-> calling ath11k_hal_srng_src_peek().
-> 
-> Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-> Co-developed-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-> Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Instead of returning on the error path, deallocate all the previously
+allocated net_devices and then return.
 
-Patch applied to ath-next branch of ath.git, thanks.
+Fixes: bca592ead825 ("wifi: ath11k: allocate dummy net_device dynamically")
+Signed-off-by: Breno Leitao <leitao@debian.org>
+---
+ drivers/net/wireless/ath/ath11k/pcic.c | 25 +++++++++++++++++--------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
 
-4c2b796be3a1 wifi: ath11k: skip status ring entry processing
-
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index 79eb3f9c902f..debe7c5919ef 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -561,6 +561,7 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ {
+ 	int i, j, n, ret, num_vectors = 0;
+ 	u32 user_base_data = 0, base_vector = 0;
++	struct ath11k_ext_irq_grp *irq_grp;
+ 	unsigned long irq_flags;
+ 
+ 	ret = ath11k_pcic_get_user_msi_assignment(ab, "DP", &num_vectors,
+@@ -574,14 +575,16 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ 		irq_flags |= IRQF_NOBALANCING;
+ 
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+-		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
++		irq_grp = &ab->ext_irq_grp[i];
+ 		u32 num_irq = 0;
+ 
+ 		irq_grp->ab = ab;
+ 		irq_grp->grp_id = i;
+ 		irq_grp->napi_ndev = alloc_netdev_dummy(0);
+-		if (!irq_grp->napi_ndev)
+-			return -ENOMEM;
++		if (!irq_grp->napi_ndev) {
++			ret = -ENOMEM;
++			goto fail_allocate;
++		}
+ 
+ 		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
+ 			       ath11k_pcic_ext_grp_napi_poll);
+@@ -606,11 +609,8 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ 			int irq = ath11k_pcic_get_msi_irq(ab, vector);
+ 
+ 			if (irq < 0) {
+-				for (n = 0; n <= i; n++) {
+-					irq_grp = &ab->ext_irq_grp[n];
+-					free_netdev(irq_grp->napi_ndev);
+-				}
+-				return irq;
++				ret = irq;
++				goto fail_irq;
+ 			}
+ 
+ 			ab->irq_num[irq_idx] = irq;
+@@ -635,6 +635,15 @@ static int ath11k_pcic_ext_irq_config(struct ath11k_base *ab)
+ 	}
+ 
+ 	return 0;
++fail_irq:
++	/* i ->napi_ndev was properly allocated. Free it also */
++	i += 1;
++fail_allocate:
++	for (n = 0; n < i; n++) {
++		irq_grp = &ab->ext_irq_grp[n];
++		free_netdev(irq_grp->napi_ndev);
++	}
++	return ret;
+ }
+ 
+ int ath11k_pcic_config_irq(struct ath11k_base *ab)
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240429073624.736147-1-quic_tamizhr@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.43.0
 
 
