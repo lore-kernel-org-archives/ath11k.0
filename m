@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C710BC04FFE
-	for <ath11k@archiver.kernel.org>; Tue, 14 May 2024 13:52:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 710A4C25B74
+	for <ath11k@archiver.kernel.org>; Thu, 16 May 2024 11:42:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PENZCFomTm5tQGAsks9ufWO3m79aXAbeSJJHfZfEYbc=; b=kmcQ86TVliXSyy9MYKsvP/5gkr
-	ROv8n0wLqAKTAH+OL5vNSKpu3tqEt6p4eHT4k/Z97SzQqGStMMxMDQ1fCAsMmjufgzOPn6c+wGeNi
-	HjrvOJ3zWo0NC9b5T9TRtLb2fUZc/7FdlRRznzuFGvWauzgMm6dpBKVQtFItuXBe4lZ6//GQFgHtE
-	FPM6Tz+0CpFrho1p5ll8F8MFdeg/HJ9Ga7PZMTLDZ5qMmhBcQgAKn9HHHJYe6xTz4R9oWQMpo57rH
-	ZF0J594A3NoEBAzuEt+PLucfXlLkM9jR7X/RIp7HasOaOSbgB4PhKy3Qs3Tf55vQuG/JA7xxKZMP4
-	Xe7hJwVg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=CdaRdgRhRtmPhB95HwGxkR3KixTgzNdL+5gbgKKmgxM=; b=Gd2sUxpYgRxlUH
+	DFHyws2J2MYC+MNJQAGW0zSOmuK9W2ZCC1gFzHz5i5oUml8KtLHHBHb+oPxXTHc1zA+yel0DQOs1I
+	70V6ue0NtkcQ56teytBFxXJxiaWav5m4D3CT91upDeheOcXK02TjMYwJlECWib3ReG3v2UM4n75Gq
+	ypjNUkdldgg4IlcpXrQNTFdeHfdtk4Loawh+8o+5Ar0txg4ympMLHrn8zgWCcsDfSS4KVc23+7jMM
+	5xSJO3tuBM6hmbpRTig6HR6BKzwRVFV/U+AKknn05SqnnkiEj+NZwxqXxfDx06Zm4uPfvD0A3GwcO
+	fm+O9QiVvCSj4dYqfFXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6sZU-0000000G5iZ-3ok2;
-	Tue, 14 May 2024 13:52:00 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1s7ZVB-00000004egZ-0hXW;
+	Thu, 16 May 2024 11:42:25 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s6sZR-0000000G5ha-3Jkf
+	id 1s7ZV6-00000004ed6-2dLK
 	for ath11k@lists.infradead.org;
-	Tue, 14 May 2024 13:51:59 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id A5ED06126A;
-	Tue, 14 May 2024 13:51:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06CABC4AF12;
-	Tue, 14 May 2024 13:51:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715694714;
-	bh=R/1VExEKXdpSSpeOfIuEd1O0aNDvKIRCpBfTqbd15Mg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gSpTyays0LYY4ooZsyyyRrDaM7pkLb7GYKzJoNE+EAYveWtjpZjRAciUaikEOnK+8
-	 9WgIfyuiEDU3m8WY9ucvzuV0gd5Lsvgf71mEW7XMHdzKIntERMEoMbWshDz4QMA8kb
-	 /HITb97RmQnuPfok1H17zE9BhWNn8Dc1tUhZEbKFlzRZqrcum8I0EF7lHkLf0uQiMn
-	 sSF781Q5C0szFqPSq/CS2Tn8hGx/w1/pna8nNn1ePQ400JO42CyqysewadMNAr4B+u
-	 PBHePE0+rSsZ9o6jzCkpVRpEXxiTzMxWhTl+2lPitb3id1fD1Z25skmBF5NuuQdyrL
-	 wzo7UKSIeD0ug==
-Date: Tue, 14 May 2024 06:51:53 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Breno Leitao <leitao@debian.org>, horms@kernel.org, Jeff Johnson
- <jjohnson@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org (open
- list:NETWORKING DRIVERS (WIRELESS)), ath11k@lists.infradead.org (open
- list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER), linux-kernel@vger.kernel.org
- (open list)
-Subject: Re: [PATCH wireless-next] ath11k: Fix error path in
- ath11k_pcic_ext_irq_config
-Message-ID: <20240514065153.1320f47f@kernel.org>
-In-Reply-To: <171569306687.2017278.16792087877494747045.kvalo@kernel.org>
-References: <20240508185902.70975-1-leitao@debian.org>
-	<171569306687.2017278.16792087877494747045.kvalo@kernel.org>
+	Thu, 16 May 2024 11:42:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+	Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+	In-Reply-To:References; bh=CdaRdgRhRtmPhB95HwGxkR3KixTgzNdL+5gbgKKmgxM=;
+	t=1715859740; x=1716291740; b=G6prGEYwqZj5J+O/uF3CZsIu2oGAyfxmAqs3KN2qGb/BuCl
+	lxOoZSrlQyrw3VwmgvIYD/3cDG3XM79dZX5ej2TnuZcStHb/twXQTBwXILxoF4/VrnJDQZbfKhGwq
+	L9FdbPtqwgVZlNh+sIQFhZ4mRkDyqFFx6avwEKbtjMUfVWIrWcTXmct6BFroOlNyi9WDNGLPpsKgR
+	lzZmZkRzVwUerxjg5FmV1O90D9nNpU0MNq01qsfrbLHjKZvR8FhQepcW+C5RXdHiTpLvbBhwRTKuQ
+	pxOP7Wd/A/vq4HzOu5cjoyaHcQV6aaUa5qvQP5ruWuF81zlaekQJCRSkNuI91ZVw==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1s7ZUx-0001I0-JB; Thu, 16 May 2024 13:42:11 +0200
+Message-ID: <51aea1fb-ce72-4c94-a3dd-43e84763834b@leemhuis.info>
+Date: Thu, 16 May 2024 13:42:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] wifi: ath11k: move power type check to ASSOC stage
+ when connecting to 6 GHz AP
+To: Kalle Valo <kvalo@kernel.org>, Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ regressions@lists.linux.dev
+References: <20240424064019.4847-1-quic_bqiang@quicinc.com>
+ <87wmo0k71i.fsf@kernel.org>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <87wmo0k71i.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1715859740;72d0db49;
+X-HE-SMSGID: 1s7ZUx-0001I0-JB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240514_065157_912595_EC7457FD 
-X-CRM114-Status: GOOD (  10.83  )
+X-CRM114-CacheID: sfid-20240516_044220_879309_99B7E5F0 
+X-CRM114-Status: GOOD (  12.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,23 +74,44 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 14 May 2024 13:24:28 +0000 (UTC) Kalle Valo wrote:
-> > If one of the dummy allocation fails in ath11k_pcic_ext_irq_config(),
-> > the previous allocated devices might leak due to returning without
-> > deallocating the devices.
-> > 
-> > Instead of returning on the error path, deallocate all the previously
-> > allocated net_devices and then return.
-> > 
-> > Fixes: bca592ead825 ("wifi: ath11k: allocate dummy net_device dynamically")
-> > Signed-off-by: Breno Leitao <leitao@debian.org>
-> > Reviewed-by: Simon Horman <horms@kernel.org>  
+On 11.05.24 11:54, Kalle Valo wrote:
+> Baochen Qiang <quic_bqiang@quicinc.com> writes:
 > 
-> As commit bca592ead825 is in net-next I think this patch needs to go to v6.10, right?
+>> With commit bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
+>> ath11k fails to connect to 6 GHz AP.
+>>
+>> This is because currently ath11k checks AP's power type in
+>> ath11k_mac_op_assign_vif_chanctx() which would be called in AUTH stage.
+>> However with above commit power type is not available until ASSOC stage.
+>> As a result power type check fails and therefore connection fails.
+>>
+>> Fix this by moving power type check to ASSOC stage, also move regulatory
+>> rules update there because it depends on power type.
+>>
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>>
+>> Fixes: bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
+>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> 
+> Oh, this fell through the cracks. Commit bc8a0fac8677 was introduced in
+> v6.9-rc1 so I should have sent this to v6.9 but it's too late now. I'll
+> need to queue this for v6.10 via wireless tree.
 
-There's no rush, FWIW, we can pick up the conversion after the merge
-window.
+I might have missed something, but from here it looks like that hasn't
+happened yet. If I missed something or if you are busy with more
+critical stuff, feel free to ignore this mail; if it fell through the
+cracks again, consider this a friendly reminder that this is still
+waiting for processing.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
+
+#regzbot poke
 
