@@ -4,65 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B25B1C04FFE
-	for <ath11k@archiver.kernel.org>; Fri, 17 May 2024 06:55:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67704C04FFE
+	for <ath11k@archiver.kernel.org>; Fri, 17 May 2024 07:39:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gUq0dltKXljTT+k5BGcJEhu4T9Z0ON1mMfhMndXWQn0=; b=WhsMivsDjqILhKpcYYxTREaFhX
-	qzAZ2Yuiwpf6cIB0T5skDhUdDWhs+Vt36zWcHhRgiQE5zxE6hc4uHSsWQFdpxI3ztk29PAbyjis4S
-	HlQLfPex9hkb5Ey3vekmLdbPQ7Ro2/Sl5Wy2y9DjJKP7Fo1xk1vp2bf6ahTbOcTC6vvT9qwlGqcOz
-	ODHBjvPfiBpXf26pN+9ob5cSMvge8f/WT6EJn7yZsqqBnl+MnZI32Gqmg+fZKUusN49CXc3ZQPTEK
-	LhpKm61+58DcuBxbwAel9cREktbP6lH2rQLJyZyuokVQQD3s4C3Xg2DDel0PS4SSqEuvAjiXjIE93
-	eNo+5Iag==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=SdtMMQ8cQ2XYIb8lewjt4PyIj03+SAtUIDDQvcJbRD4=; b=B0ziUuFFNoWzcz7/tHajdBQ0b1
+	Uq/sfjLr8AiePprmxh966hsrX9qoAy8U0j6DYwI2z/6QVybfAtzK0oFZ2UorWUbBDT8rMaIG7mhjy
+	pCBdie7QwfzepJqszi19zdmP+jE2NYJymY6BLtDteBRxfUVfobrxfsyAahDP+E85E5oMnUEYd9i1H
+	FYN1r9krqm3cmw2paQdgAm2WWvAoy7uwHTy0uK2p4zZ5m6hXYNsfPmtupxYqoeXg9GK+g2WmYa8y5
+	Fj/FLMr0CRNBUTt8qwisoxQFMkszJvKbdupnFP5DbiP5Ugs1r1QwsT9yoH369YGH0Zn4uB5Q3B5ig
+	tOMFFbMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7rUn-00000006zkU-1Rsb;
-	Fri, 17 May 2024 06:55:13 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1s7sBc-000000075ET-3s4j;
+	Fri, 17 May 2024 07:39:28 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7rUk-00000006zk8-22iF
+	id 1s7sBY-000000075DO-2qQu
 	for ath11k@lists.infradead.org;
-	Fri, 17 May 2024 06:55:12 +0000
+	Fri, 17 May 2024 07:39:26 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 40191CE1371;
-	Fri, 17 May 2024 06:55:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA7AFC2BD10;
-	Fri, 17 May 2024 06:55:05 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 2B5B0CE1801;
+	Fri, 17 May 2024 07:39:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB02DC2BD10;
+	Fri, 17 May 2024 07:39:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715928907;
-	bh=SW3ZvHpjpz+gPQr9MPYdbKfCS55xJrzsHF5C2fLpP4A=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=Ekm0KA1N3po+VN2nl8FSMBex8fDe067oxg0wA6WvdlgUU58un+aV1gF21ycHzFrse
-	 eHk/2boT+e2eArMJguHCfklPoa6WgJZMabAf0T2arkdy2uwIkOX2n4cbz5stwQ8g34
-	 j4g9t1HYqnhFVvov+MxuBzN6hUg2JS0LM2bp5Xukj3RwBbjvWlltFkpXIoQlGp7nMU
-	 3k3RMri0gA+wPzyiPd7riO9xOkKMTD6CQMX7YrMjB9XA+iMK3lrSFrFyVXzD4mh6N8
-	 a0L0WeIXt0S4znk4ICduCdvMDTSenLJRPct99xMhXuIIZr38cMNaAsJlQ13q9bjxWs
-	 krm+GumiOio+w==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH wireless-next] ath11k: Fix error path in
- ath11k_pcic_ext_irq_config
+	s=k20201202; t=1715931559;
+	bh=tXV0yYKpvKn/RfGN/Y44iVcXp2iZr9dOA16KJTdqPm8=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=Kh54zjZqNXQhFKCFgh2n3rWBHho8Gk5KJ9BNVt4kvCLZHXt6ySYnGrIs2c5dEc16Z
+	 QOFUSo0SH7hs1Zcusgyre8dMkVfpj+hJL6B4GJl34nYG1lhqMY6W6PcX1BP7d4E6yE
+	 5itjmvJ0wo9su+l0+dG9cuVhqZGpqR6e0ta+enNMrPcS834lZeW1H/6smBUfBQqwRs
+	 X1sTvOHeB1XvAODlc9AqRU2fCXPrJpAkI2rtYIloqpr2erf92RDHWVp6CCVFK5wAh5
+	 JA1yQjX3A0z0lxmnlI+4qXO2d8CQ1u/QTgj5E+bffipWep4DO2aLnrYIArmYsl+ktZ
+	 f66ujMs4vVBUg==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240508185902.70975-1-leitao@debian.org>
-References: <20240508185902.70975-1-leitao@debian.org>
-To: Breno Leitao <leitao@debian.org>
-Cc: horms@kernel.org, Jeff Johnson <jjohnson@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org (open list:NETWORKING DRIVERS (WIRELESS)),
- ath11k@lists.infradead.org (open list:QUALCOMM ATHEROS ATH11K WIRELESS
- DRIVER), linux-kernel@vger.kernel.org (open list)
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <171592890381.3197586.18328283621008534575.kvalo@kernel.org>
-Date: Fri, 17 May 2024 06:55:05 +0000 (UTC)
+To: Thorsten Leemhuis <regressions@leemhuis.info>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  Linux regressions mailing
+ list <regressions@lists.linux.dev>,  Carl Huang
+ <quic_cjhuang@quicinc.com>,  Luca Weiss <luca.weiss@fairphone.com>,
+  ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
+Subject: Re: [PATCH 1/2] wifi: ath11k: supports 2 station interfaces
+References: <20230714023801.2621802-1-quic_cjhuang@quicinc.com>
+	<20230714023801.2621802-2-quic_cjhuang@quicinc.com>
+	<D15TIIDIIESY.D1EKKJLZINMA@fairphone.com> <87jzk2km0g.fsf@kernel.org>
+	<93c15c59-f24c-4472-ae7e-969fd1e3bfec@quicinc.com>
+	<871q69lqh5.fsf@kernel.org>
+	<4e21e556-527f-4d1e-aa29-cacec14155af@quicinc.com>
+	<a53e2188-b982-44b7-9dfe-f5dfd6b802ca@leemhuis.info>
+	<4d72f74a-b2eb-43d3-92a2-1311081ce72c@quicinc.com>
+	<87fruhggcw.fsf@kernel.org>
+	<613ecd58-9f65-4d03-98df-40f3959376d6@leemhuis.info>
+Date: Fri, 17 May 2024 10:39:15 +0300
+In-Reply-To: <613ecd58-9f65-4d03-98df-40f3959376d6@leemhuis.info> (Thorsten
+	Leemhuis's message of "Fri, 17 May 2024 08:04:26 +0200")
+Message-ID: <874jawhopo.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240516_235510_765128_FE826198 
-X-CRM114-Status: UNSURE (   7.53  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240517_003925_146205_016F91F0 
+X-CRM114-Status: GOOD (  19.43  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,27 +83,55 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Breno Leitao <leitao@debian.org> wrote:
+Thorsten Leemhuis <regressions@leemhuis.info> writes:
 
-> If one of the dummy allocation fails in ath11k_pcic_ext_irq_config(),
-> the previous allocated devices might leak due to returning without
-> deallocating the devices.
-> 
-> Instead of returning on the error path, deallocate all the previously
-> allocated net_devices and then return.
-> 
-> Fixes: bca592ead825 ("wifi: ath11k: allocate dummy net_device dynamically")
-> Signed-off-by: Breno Leitao <leitao@debian.org>
-> Reviewed-by: Simon Horman <horms@kernel.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> On 17.05.24 07:25, Kalle Valo wrote:
+>> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+>> 
+>>> On 5/16/2024 4:45 AM, Linux regression tracking (Thorsten Leemhuis) wrote:
+>>>> On 11.05.24 05:12, Carl Huang wrote:
+>>>>> I'll send out the formal patch next week.
+>>>>
+>>>> Hmmm, from here it looks like this did not happen. Did I miss something,
+>>>> is there some reason to reevaluate things again, or did this maybe
+>>>> simply fall through the cracks?
+>>>
+>>> Formal patch is still under internal review
+>> 
+>> BTW I'm also experimenting with regzbot to help me track regressions in
+>> wireless and to avoid missing important fixes.
+>
+> Not sure, but I tend to think that's still too early; better wait a few
+> more months.
 
-Patch applied to ath-current branch of ath.git, thanks.
+FWIW I have been pretty happy so far and would prefer to continue using
+it with wireless drivers regressions. But of course if it's better for
+you I'll stop for now.
 
-637c435f08ea wifi: ath11k: Fix error path in ath11k_pcic_ext_irq_config
+>> Thorsten, I don't know if you take wishes but it would be nice to have
+>> in regzbot some kind of filtering per subsystem or label. Maybe
+>> something like this:
+>> https://linux-regtracking.leemhuis.info/regzbot/mainline/?subsystem=wireless
+>> 
+>> And then a have command for regzbot setting the subsystem (or a label).
+>> That way I could easily see only the wireless related regressions, now
+>> it's harder to find them from the list.
+>
+> I listen to wishes, but in this case the idea is not new: exactly
+> something like this is pretty high on my todo list. But there are still
+> two other things on top of it and requires some major reworks; and I
+> currently also don't find much time to work on the code. :-/ But sooner
+> or later I'll get there!
+
+Trust me, I know how it is :) These are just wishlist stuff and low
+priority.
+
+One more to the wishlist: refreshing the HTML page once an hour or so. I
+now keep the regzbot page always open and it would be nice to have it
+up-to-date without pressing CTRL-R. Yes, I'm lazy :)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240508185902.70975-1-leitao@debian.org/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
