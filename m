@@ -4,60 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD583C04FFE
-	for <ath11k@archiver.kernel.org>; Fri, 17 May 2024 05:33:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A28B5C04FFE
+	for <ath11k@archiver.kernel.org>; Fri, 17 May 2024 05:58:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=LwxE1sfLhF9yF04JaFzu6Gjd0t8Y/jp3gr+BSTtWWxQ=; b=OL7+T0wwvuAqblIhRyO7A9cYIM
-	ljF6XQ6jjqaO+n17zvVZOz2FGVBBzS7Hel+mm3xP4Wsy5/PFFt3qIYdwMxXc8J2OPqwPz3Tcfvrp9
-	gY/QQkq2e27z2fWhextiBeMW3iVEJwftCmT4bgNrQM4Ij3fq3BwptYpW+elquDI6dAHJXvwxY6UMC
-	OoqYBCjZ9N/zA9yHtRA/78lNGtLDaICUrXVhQpDDvvAV8P7LJpxzznVNDfXfHZzPJjJg4iXCT0lR9
-	GGyb2rct91BtvILE8s15WO21drzGNbESmhrqZO6V3t3sMj9G4lSFND8hZtE+7TaDVV6/nlt9+lPKO
-	jjtYnwQg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=J6EW9+HknPjdDQE9CUXbc5grDyBLnEE1IdZiwV9lN7A=; b=xT3QW6xrg9UzEF
+	Qvoa4pXMHg00ZJzO9P/Fq5b9jE2N6lCKuQNCfi2qrNicXRAG5e8uo2kzQLYtr99Hf79dJC+wWSWRR
+	8HmBHKy4M1Du0Pc68j/5jX/VG1QE86vfc4v9Pz6DK94Gg61ZIpmH/6/MY0buRDnT0B4KUioo8Ltyk
+	QLF4yUAjUn/DrEAjswYBNz8zaYp40bPi5mcFMV4hLlmdfWHm0OcM/0SqeDGJYGhKj7J/1CYTNjMDM
+	J+wx+JGZFNctug8VwZJB2asm5zFWXfHUIzBktNS99VgQISvGRKq1LxQezN1E9+Ry7XdlUNApHfzdO
+	rcRD7aWsODiPOJc37LVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7qDH-00000006rPF-1Qxl;
-	Fri, 17 May 2024 05:33:03 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1s7qc9-00000006u0x-0sbc;
+	Fri, 17 May 2024 05:58:45 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s7qDD-00000006rOe-39fF;
-	Fri, 17 May 2024 05:33:01 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 85700CE1987;
-	Fri, 17 May 2024 05:32:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CADAC2BD10;
-	Fri, 17 May 2024 05:32:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715923975;
-	bh=gqa8WlcS1NTz0ZQsjr7949ZxTONjClfCieQGw/F7IFc=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=p3RMwNV3vjx92tTRehFV6Wv9uc4hoWsV8X3lpoR5M0sYvTjOWjQ5qx6ksgAV05Uyj
-	 tmp/nUc8LMM43AYanwoO5GhgljnQCy922ULiB+G5FYyNdmHeCAKAvy8SEou9vpzoZg
-	 m7szF/KN9zU7G49wJICp3Vh39Zwmnx5/+R4lRBKWsydKyEv7RzIOD+SatrRxuhmY44
-	 Niu0uBszPH2h6+TA9k+ll4KAW4AtATEFUSgcboFJJO2aFp+/SnKVyhXI6dqpT3XVAR
-	 MQU9NIt8VCSRv2DP0+hF+KOHm03VUyQUgt9z4jk+PtNUuaRBlV3LzJ4suHV5sBWrpL
-	 BiyI4Dorw900w==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: ath10k <ath10k@lists.infradead.org>,  ath11k
- <ath11k@lists.infradead.org>,  ath12k <ath12k@lists.infradead.org>,
-  linux-wireless <linux-wireless@vger.kernel.org>
-Subject: Re: New staging repos for ath1*k firmware
-References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
-Date: Fri, 17 May 2024 08:32:52 +0300
-In-Reply-To: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com> (Jeff
-	Johnson's message of "Wed, 6 Mar 2024 11:23:06 -0800")
-Message-ID: <878r09gfzv.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	id 1s7qc6-00000006tzq-1shj
+	for ath11k@lists.infradead.org;
+	Fri, 17 May 2024 05:58:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+	Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+	In-Reply-To:References; bh=J6EW9+HknPjdDQE9CUXbc5grDyBLnEE1IdZiwV9lN7A=;
+	t=1715925522; x=1716357522; b=pUz3RrZndZ/FMCGh1Hr3MiKyapUdzOMvAt4R+g+qEIi0h7+
+	wW7qVJK++oFvWt43CATzUcoKoTGmdToO3K2AB452LFQdAcUCYGfeBDXURahblLa+8jyLMFLBHOGSN
+	yKMQfTtTcEzZYRLVe6wQW+n4ffoKaLwh9uxywtpsZ1g7ZqJRzhmunIARA+49he0AooINYPC1Os6iC
+	r/X53VteevaB5/CLaAxd/wMWHuQQ1ZXqAoXzmOtZX0gdOhceoYcWSgiEOSqdAFw1cJ0RnXBS3oc56
+	7b8fcqq9Msj9juEyOThr+bY+HObSR53jLawlg0b2ZrutESc5t3YOAZ4O6wFlMgPQ==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1s7qc1-0006tf-5q; Fri, 17 May 2024 07:58:37 +0200
+Message-ID: <f433f7d4-a9c5-4077-a7d8-c858efebaa85@leemhuis.info>
+Date: Fri, 17 May 2024 07:58:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] wifi: ath11k: move power type check to ASSOC stage
+ when connecting to 6 GHz AP
+To: Baochen Qiang <quic_bqiang@quicinc.com>, Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ regressions@lists.linux.dev
+References: <20240424064019.4847-1-quic_bqiang@quicinc.com>
+ <87wmo0k71i.fsf@kernel.org>
+ <3dc28f34-45cc-4e14-b9ea-1f7b78a6a591@quicinc.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <3dc28f34-45cc-4e14-b9ea-1f7b78a6a591@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1715925522;e4777323;
+X-HE-SMSGID: 1s7qc1-0006tf-5q
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240516_223300_000931_1F35FD9A 
-X-CRM114-Status: GOOD (  16.11  )
+X-CRM114-CacheID: sfid-20240516_225842_726103_291ACC1B 
+X-CRM114-Status: GOOD (  16.76  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,41 +75,103 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+On 17.05.24 04:14, Baochen Qiang wrote:
+> On 5/11/2024 5:54 PM, Kalle Valo wrote:
+>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
+>>
+>>> With commit bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
+>>> ath11k fails to connect to 6 GHz AP.
+>>>
+>>> This is because currently ath11k checks AP's power type in
+>>> ath11k_mac_op_assign_vif_chanctx() which would be called in AUTH stage.
+>>> However with above commit power type is not available until ASSOC stage.
+>>> As a result power type check fails and therefore connection fails.
+>>>
+>>> Fix this by moving power type check to ASSOC stage, also move regulatory
+>>> rules update there because it depends on power type.
+>>>
+>>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>>>
+>>> Fixes: bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
+>>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
-> Historically, prior to being incorporated into the linux-firmware
-> project, firmware for kernel.org ath1*k drivers has been first published
-> to Kalle's GitHub:
-> https://github.com/kvalo/ath10k-firmware
-> https://github.com/kvalo/ath11k-firmware
-> (ath12k firmware was pushed to the ath11k-firmware repo on a temporary
-> basis in anticipation of this move)
->
-> But in order to have repos with multiple maintainers, as well as to have
-> a hosting platform with more control, we have moved to CodeLinaro:
-> https://git.codelinaro.org/clo/ath-firmware/ath10k-firmware
-> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
-> https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware
->
-> Note that most people should not care about this -- normally you should
-> use the firmware that is in the official linux-firmware repo:
-> https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/
->
-> You should only need to access the staging repos if you need a previous
-> version to work around an issue, or if you are testing new firmware that
-> is supposed to fix a problem that you've reported.
->
-> Please let Kalle & I know if you have any issues with these new repos!
+Quick question: how does the error actually look like? I noticed a bug
+report where someone complained problems connecting "to my Wifi 7 AP on
+6GHz band using my Lenovo P14s Gen 4 laptop" and wonder if it's the same
+or a different problem: https://bugzilla.kernel.org/show_bug.cgi?id=218838
 
-The final reminder that the github.com repositories will be deleted in
-two weeks. If someone is still using them switch to the new
-git.codelinaro.org location NOW.
+To quote part of it:
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+"""
+Sometimes when the connection fails the following appears on the logs
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+invalid HE MCS: bw:6, ru:6
+WARNING: CPU: 13 PID: 1242 at net/wireless/util.c:1551
+cfg80211_calculate_bitrate_he+0x1b7/0x3c0 [cfg80211]
+CPU: 13 PID: 1242 Comm: NetworkManager Not tainted
+6.9.0-0.rc7.20240510git448b3fe5a0ea.62.fc41.x86_64 #1
+Hardware name: LENOVO 21K5000DMX/21K5000DMX, BIOS R2FET56W (1.36 )
+03/13/2024
+RIP: 0010:cfg80211_calculate_bitrate_he+0x1b7/0x3c0 [cfg80211]
+Code: 00 40 80 fe 06 0f 84 a1 00 00 00 40 80 fe 03 0f 84 d6 00 00 00 40
+84 f6 0f 84 0b 01 00 00 48 c7 c7 41 33 96 c1 e8 59 cd 8d e8 <0f> 0b 31
+c0 eb 53 44 0f b6 e8 3c 02 0f 87 62 01 00 00 42 8b 44 ac
+RSP: 0018:ffffa5f2c6df7320 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: ffffa5f2c6df7518 RCX: 0000000000000027
+RDX: ffff9166df0a18c8 RSI: 0000000000000001 RDI: ffff9166df0a18c0
+RBP: 0000000000000002 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffffc196335e R11: 0000000000000001 R12: 0000000000000009
+R13: ffff91580eae0000 R14: ffff915b0ed33ef0 R15: ffff915a8b051b00
+FS:  00007f7d396cd580(0000) GS:ffff9166df080000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00003d7c6e07d000 CR3: 0000000137282000 CR4: 0000000000f50ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ ? cfg80211_calculate_bitrate_he+0x1b7/0x3c0 [cfg80211]
+ ? __warn.cold+0x8e/0xe8
+ ? cfg80211_calculate_bitrate_he+0x1b7/0x3c0 [cfg80211]
+ ? report_bug+0xff/0x140
+ ? handle_bug+0x3c/0x80
+ ? exc_invalid_op+0x17/0x70
+ ? asm_exc_invalid_op+0x1a/0x20
+ ? cfg80211_calculate_bitrate_he+0x1b7/0x3c0 [cfg80211]
+ nl80211_put_sta_rate+0x5b/0x4f0 [cfg80211]
+ nl80211_send_station+0x9f0/0x1060 [cfg80211]
+ nl80211_dump_station+0xef/0x280 [cfg80211]
+ genl_dumpit+0x33/0x90
+ netlink_dump+0x151/0x3b0
+[...]
+"""
+
+>> Oh, this fell through the cracks. Commit bc8a0fac8677 was introduced in
+>> v6.9-rc1 so I should have sent this to v6.9 but it's too late now. I'll
+>> need to queue this for v6.10 via wireless tree.
+>>
+>> Adding the regression also to regzbot:
+>>
+>> #regzbot introduced: bc8a0fac8677
+>> #regzbot title: ath11k: connection to 6 GHz AP fails
+>
+> Hi Kalle, with an upcoming patch this regression is expected to be fixed:
+> 
+> https://lore.kernel.org/all/20240506214536.310434f55f76.I6aca291ee06265e3f63e0f9024ba19a850b53a33@changeid/#t
+>
+> So here the ath11k fix would not be needed any more once above patch got merged.
+> 
+> But I don't have time to test this, so suggest keeping it pending. We could drop it once above analysis got verified.
+
+Thx for the update. If that's the way forward I wonder if that change
+should have Fixes: and Stable: tags to ensure it ends up in 6.9.y --
+ideally rather sooner than later if this is a regression users run into.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
 
