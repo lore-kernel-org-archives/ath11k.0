@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 171C6C04FFE
-	for <ath11k@archiver.kernel.org>; Mon, 20 May 2024 08:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1938C04FFE
+	for <ath11k@archiver.kernel.org>; Mon, 20 May 2024 10:22:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=YRRXO3jEu97VPQQgC6v1VliieJbhUvx3UFrtvEDC9os=; b=XQ3SNdWDnUz06XzxNYmz3bGbca
-	n/hDt/WURvcZ9GNsL9Av9zcIFDWrH4indE/6pUebaaQ13SR9dCRJxsoxK3GL1Shs7bO4zFvHgSAxV
-	WYQIWH6X5WIBk/W6QNP+3UrnmG8hdkfpgpSOq00l/VGVFdqG4T3bI54QO3CUPmY5EsXITggKH97Vw
-	D8U0eeCd9pxGa9eo+mWUPsDRgqrAKS9XKJbcXDfuuMf2520DiQKAQnVdMdAcV3iZSYzMf7c4RRX29
-	KZj3V+iso8FiwFh2qUEOwRuTKzcMBSUDIjojLci8nruSDuAdgtkKVy+q6MlUjJPd0yVeGW3C+ar7I
-	uhqCeAFg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=XatewDtRXNhmrlw8ampmdj1H5rkdliu36jgTcdQZkyg=; b=OAx+543log/vcNwp52i0y7pN1g
+	+pbb8q1eLKS08zBl8/PnJgn+dgzm9vu12J7wxMqMCDt/1M1aEuWLT21obxNkjgUewV7QzgccMNYLQ
+	aKB0MAZydAaIniPhMjkOGip5mx+zlxhA+dvGJRmilM1Wq5Q3Azsvi3YmL8XDFVeKqbCUaEf9h/0eH
+	puf3689LG23RjabHpVgjaKuS0fBHluw7QswGs0kSVD2J5rsjNk0H15YbHNJE9yu+yIebUAVOFw6Mi
+	hIUHqRo/QrwMG8M5AgY4AnUqT54mTEexdA9fF9QjsSw9NkhgFEvgqHziOigmM4KVED25Eyx3OTkl/
+	E6erJTDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s8y26-0000000Dpya-1u9h;
-	Mon, 20 May 2024 08:06:10 +0000
-Received: from mail.revolutionary.pl ([51.178.28.69])
+	id 1s909Z-0000000E7m8-1eeW;
+	Mon, 20 May 2024 10:22:01 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s8y1z-0000000DpwK-2uFk
+	id 1s909V-0000000E7l6-2AZn
 	for ath11k@lists.infradead.org;
-	Mon, 20 May 2024 08:06:08 +0000
-Received: by mail.revolutionary.pl (Postfix, from userid 1002)
-	id 294D3244CB; Mon, 20 May 2024 08:05:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=revolutionary.pl;
-	s=mail; t=1716192357;
-	bh=YRRXO3jEu97VPQQgC6v1VliieJbhUvx3UFrtvEDC9os=;
-	h=Date:From:To:Subject:From;
-	b=rIk1YGioOnE+reOtPnYyaU9UO20rWe2NxBdF7SliwJMht+B/2hgMtAyem/U1sohmu
-	 nN8XVOQdVJ1tZ6CYr8pOGQj6vWaumrunk2FtNk36ku4FMnO+AYPy0n6CLgHpk53pAy
-	 bLeuZgh8pR8NHK7Sh7+PVDD4OvB1nhrw+BprcQn+EU+A35//ni1Wf9hBzasGHrHpLB
-	 qK/IzkEQrNkBHqPDiNwDl2ty4pW0sHakbWm4Le0r0wkHkAHIHUx+gmfkLcgVdq/Mmg
-	 ExlpR6BIX9Dft10jeMC5/IuANmKwvhCSraVd+ykUusKi2YZsFvCWRHTnVhtW1uZo38
-	 TQ6FbQBJhvz9g==
-Received: by mail.revolutionary.pl for <ath11k@lists.infradead.org>; Mon, 20 May 2024 08:05:12 GMT
-Message-ID: <20240520064500-0.1.7.ekk.0.4rq7jizbje@revolutionary.pl>
-Date: Mon, 20 May 2024 08:05:12 GMT
-From: "Urszula Wasiak" <urszula.wasiak@revolutionary.pl>
-To: <ath11k@lists.infradead.org>
-Subject: Faktoring
-X-Mailer: mail.revolutionary.pl
+	Mon, 20 May 2024 10:21:59 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 986B8CE0A15;
+	Mon, 20 May 2024 10:21:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01BC7C2BD10;
+	Mon, 20 May 2024 10:21:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716200513;
+	bh=zC2W6mNzaliKrFGzIrSsedKoIL831idJS2uOmR58INg=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=q8ou7dxbY4z1Dcsg4w5X77GdiJxlKOKgUFkIhVB6PEowwmY/oH6vBaKbdLrlEccdm
+	 pdlrRJsiDvIWM2yqzHJo9J2uNNnOac5NMukh3+CZpNJUmo2RR6RVg8hRwpv+zqveBC
+	 0QfN5qfE1PC63AGMvDfIobM6E3EkcTvelUzhh8481qGGrSGQPw4pzF4aUAyGjYy1Mq
+	 tQqcVoWtNZIK5PlCFg/hsocy5lzz2xf+8d5acqpZdo96TXIqf9siQAKKNoCE/KZQwp
+	 S7gGqnfp39Bjpr85SVnl3DoV2Ko57ZEZbZygYwTE9YXfxNcH9J5r4prvFJIj/wMegE
+	 0/SMa3WLoiQqw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Matthew Schwartz <njtransit215@gmail.com>
+Cc: ath11k@lists.infradead.org,  cristian.ciocaltea@collabora.com
+Subject: Re: question regarding qca2066 and qca206x (Steam Deck
+ OLED/Galileo) on upstream kernels
+References: <CAFKu21ZKtKmf4Cze9JCRk750reKXxz+gMs+V1Dr8kUm-J1WWPg@mail.gmail.com>
+Date: Mon, 20 May 2024 13:21:50 +0300
+In-Reply-To: <CAFKu21ZKtKmf4Cze9JCRk750reKXxz+gMs+V1Dr8kUm-J1WWPg@mail.gmail.com>
+	(Matthew Schwartz's message of "Sun, 19 May 2024 15:14:44 -0700")
+Message-ID: <87le44eqbl.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240520_010604_466999_C1EA1A5E 
-X-CRM114-Status: UNSURE (   1.37  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240520_032157_959490_2C04950B 
+X-CRM114-Status: GOOD (  32.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,21 +72,91 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dzie=C5=84 dobry,
+Matthew Schwartz <njtransit215@gmail.com> writes:
 
-rozwa=C5=BCali Pa=C5=84stwo wyb=C3=B3r finansowania, kt=C3=B3re spe=C5=82=
-ni potrzeby firmy, zapewniaj=C4=85c natychmiastowy dost=C4=99p do got=C3=B3=
-wki, bez zb=C4=99dnych przestoj=C3=B3w?=20
+> Hello,
+>
+> I've been tinkering with my Steam Deck OLED (Galileo revision) quite a
+> bit since release, and I think I am finally running into some trouble
+> that I am unable to resolve regarding the use of the Galileo's
+> ath11k/qca2066 driver alongside other devices on an upstream Linux
+> kernel, specifically Linux 6.9.0 and later.
+>
+> When I try to use the upstream ath11k driver with my OLED Deck, it
+> ends up failing a direct firmware load for ath11k/QCA2066/amss.bin.
+> The upstream driver has never worked (to the best of my knowledge at
+> least), so that is not a regression. I've attached the dmesg from this
+> failure just as a reference. We used to get around this on kernels 6.6
+> -> 6.8 by adding in a separate QCA206X entry via kernel patch:
+> https://github.com/Nobara-Project/rpm-sources/blob/main/baseos/kernel/6.8.7/steamdeck-oled-wifi.patch
 
-Przygotowali=C5=9Bmy rozwi=C4=85zania faktoringowe dopasowane do Pa=C5=84=
-stwa bran=C5=BCy i wielko=C5=9Bci firmy, dzi=C4=99ki kt=C3=B3rym, nie mus=
-z=C4=85 Pa=C5=84stwo martwi=C4=87 si=C4=99 o niewyp=C5=82acalno=C5=9B=C4=87=
- kontrahent=C3=B3w, poniewa=C5=BC transakcje s=C4=85 zabezpieczone i posi=
-adaj=C4=85 gwarancj=C4=99 sp=C5=82aty.=20
+Ok, so that patch seems to add QCA2066 hw2.1 and WMI_COEX_CONFIG_CMDID
+support, but it also does some smaller changes like static_window_map
+and hacks. Unfortunately there's no Signed-off-by which makes it
+difficult to get that code to Linux.
 
-Chc=C4=85 Pa=C5=84stwo przeanalizowa=C4=87 dost=C4=99pne opcje?
+We already have QCA2066 hw2.1 support in upstream so that part of the
+patch should not be needed anymore. WMI_COEX_CONFIG_CMDID is not
+supported in upstream yet but that should not matter for initial
+bringup. I would assume you need it later once you start using Wi-Fi and
+BT together and want to optimise them working together.
 
+> along with the firmware from
+> https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-firmware-neptune-jupiter.20231113.1-1-any.pkg.tar.zst
 
-Pozdrawiam
-Urszula Wasiak
+Our recommendation is to use the firmware from our repositories as there
+are no guarentees that other firmware releases work with kernel.org
+driver. So try to use this one:
+
+https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
+
+The board file handling might be a challenge though as I don't know if
+we have the board file for Steam Deck in our board-2.bin, most likely
+not.
+
+> but I have not been able to rebase this onto Kernel 6.9 without a host
+> of compile failures in ath11k, which are unfortunately a bit beyond my
+> own knowledge level.
+>
+> The only way I've managed to get wifi working on the kernel has been
+> to use this one commit from Valve
+> https://gitlab.com/evlaV/linux-integration/-/commit/15dc5e42cac7240104b42443df8f4091721da5b1,
+
+Ok, so this just modifies the firmware location from QCA2066 to QCA206X.
+You could do same by just having a symlink in /lib/firmware/ath11k/.
+
+> along with the QCA206X firmware folder on top of upstream Linux 6.9.0.
+> Please correct me if I'm wrong here, but this is marked as
+> [NOT-FOR-UPSTREAM] because it will break devices using the proper
+> upstream ath11k firmware, right? Do you know if a solution is being
+> worked on to fix the upstream drivers for compatibility with the
+> Galileo specific hardware chip, or is this workaround going to be the
+> only way to get working wifi on new kernel releases?
+
+For me a major problem here is that there are several hacks and another
+firmware release used. My recommendation is to take a step back and do
+one thing at a time, for example something like this:
+
+1. Install linux 6.9 without any modifications.
+
+2. Remove the old ath11k firmware.
+
+3. Install new firmware from
+   https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
+
+4. Most likely our ath11k-firmware does not contain the correct board
+   file so that might need to be copied from the old firmware package.
+
+With good luck you will get the driver initialised so that you can run
+'ip link set wlan0 up' and then 'iw wlan0 scan'. If not, please report
+back.
+
+Please also read our instructions what to include in bug reports:
+
+https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
