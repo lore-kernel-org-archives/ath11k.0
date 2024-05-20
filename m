@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1938C04FFE
-	for <ath11k@archiver.kernel.org>; Mon, 20 May 2024 10:22:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85581C25B79
+	for <ath11k@archiver.kernel.org>; Mon, 20 May 2024 15:34:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=XatewDtRXNhmrlw8ampmdj1H5rkdliu36jgTcdQZkyg=; b=OAx+543log/vcNwp52i0y7pN1g
-	+pbb8q1eLKS08zBl8/PnJgn+dgzm9vu12J7wxMqMCDt/1M1aEuWLT21obxNkjgUewV7QzgccMNYLQ
-	aKB0MAZydAaIniPhMjkOGip5mx+zlxhA+dvGJRmilM1Wq5Q3Azsvi3YmL8XDFVeKqbCUaEf9h/0eH
-	puf3689LG23RjabHpVgjaKuS0fBHluw7QswGs0kSVD2J5rsjNk0H15YbHNJE9yu+yIebUAVOFw6Mi
-	hIUHqRo/QrwMG8M5AgY4AnUqT54mTEexdA9fF9QjsSw9NkhgFEvgqHziOigmM4KVED25Eyx3OTkl/
-	E6erJTDA==;
+	bh=fUC3K0FopgN75/hKia48R2a+UbLSZcvDavuSlPC6Nzc=; b=ZOeWq+kHgopHn+gARaoyDyjwlD
+	+aG1Y7O/Wk4tBYDb0S4Ocl2/Ya21GgA6B2EIhTnTWP80nBHxzicArpx3ACRMEL+563XWDoIARdQcn
+	uryB3kAfMiUK+VQctmgJmD3nP8H7+BQggOgqUOfhghPt8gHIAxbKMgVAMHjsDU8KK2QCxGnWsdsck
+	vHIoVmmC7ivllOnM0jzBX5I5q5OKE2IsUszAbAcuHhWNkJQ2WUPkHUKLH+tiHGodsdGjipwm1Lc7Z
+	JjaZvE+hHRV2SfJtRU+MinVkFp9vAQpY/OrtWHOjUy2NCbkg/vauV7Gj1vITn61ZJtyheq1nEOKud
+	oIfDu+8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s909Z-0000000E7m8-1eeW;
-	Mon, 20 May 2024 10:22:01 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1s952E-0000000ErM0-1gia;
+	Mon, 20 May 2024 15:34:46 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s909V-0000000E7l6-2AZn
+	id 1s952B-0000000ErKK-0mK4
 	for ath11k@lists.infradead.org;
-	Mon, 20 May 2024 10:21:59 +0000
+	Mon, 20 May 2024 15:34:44 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 986B8CE0A15;
-	Mon, 20 May 2024 10:21:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01BC7C2BD10;
-	Mon, 20 May 2024 10:21:52 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 6040D61A88;
+	Mon, 20 May 2024 15:34:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 164BAC32789;
+	Mon, 20 May 2024 15:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716200513;
-	bh=zC2W6mNzaliKrFGzIrSsedKoIL831idJS2uOmR58INg=;
+	s=k20201202; t=1716219282;
+	bh=Iql17hNOkntU/TEX70CbOa8Oc4J0CcgtLaFX5lJfHiU=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=q8ou7dxbY4z1Dcsg4w5X77GdiJxlKOKgUFkIhVB6PEowwmY/oH6vBaKbdLrlEccdm
-	 pdlrRJsiDvIWM2yqzHJo9J2uNNnOac5NMukh3+CZpNJUmo2RR6RVg8hRwpv+zqveBC
-	 0QfN5qfE1PC63AGMvDfIobM6E3EkcTvelUzhh8481qGGrSGQPw4pzF4aUAyGjYy1Mq
-	 tQqcVoWtNZIK5PlCFg/hsocy5lzz2xf+8d5acqpZdo96TXIqf9siQAKKNoCE/KZQwp
-	 S7gGqnfp39Bjpr85SVnl3DoV2Ko57ZEZbZygYwTE9YXfxNcH9J5r4prvFJIj/wMegE
-	 0/SMa3WLoiQqw==
+	b=XixFXTySIXU6MYB/gKzec07HMWEKKFYxZdSlTizu3cEEJboWHNEXIVMOH+N+I3nWd
+	 EN8AWqbYFYeNOrOZzbWf3RRHO2414UsH+e5knfZgrGjcMuQP1fRXJyKs+CuB0DrbJr
+	 6BnGqwdiFNFCIq54LQxiVXV7cIPAnhcGcwlFztw/9rdRrVkBr9F5yTM8dshmO/SsVe
+	 PD8dZ/zeE5s36XgEsS0ZvS6l99vKpyXJW6+GBaeOdUSHfaUasUQltQMzJCYGaIRGKy
+	 vq0rHaQq7vKo2XfDSnqPdQIWFkWOJQl9nl2WVal4dsjL5wtIbKU2ZCQ2HH/Ru3Zuc8
+	 43VWsc7lRk0LQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Matthew Schwartz <njtransit215@gmail.com>
-Cc: ath11k@lists.infradead.org,  cristian.ciocaltea@collabora.com
-Subject: Re: question regarding qca2066 and qca206x (Steam Deck
- OLED/Galileo) on upstream kernels
-References: <CAFKu21ZKtKmf4Cze9JCRk750reKXxz+gMs+V1Dr8kUm-J1WWPg@mail.gmail.com>
-Date: Mon, 20 May 2024 13:21:50 +0300
-In-Reply-To: <CAFKu21ZKtKmf4Cze9JCRk750reKXxz+gMs+V1Dr8kUm-J1WWPg@mail.gmail.com>
-	(Matthew Schwartz's message of "Sun, 19 May 2024 15:14:44 -0700")
-Message-ID: <87le44eqbl.fsf@kernel.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>,
+  <regressions@lists.linux.dev>
+Subject: Re: [PATCH v2] wifi: ath11k: move power type check to ASSOC stage
+ when connecting to 6 GHz AP
+References: <20240424064019.4847-1-quic_bqiang@quicinc.com>
+	<87wmo0k71i.fsf@kernel.org>
+	<3dc28f34-45cc-4e14-b9ea-1f7b78a6a591@quicinc.com>
+Date: Mon, 20 May 2024 18:34:39 +0300
+In-Reply-To: <3dc28f34-45cc-4e14-b9ea-1f7b78a6a591@quicinc.com> (Baochen
+	Qiang's message of "Fri, 17 May 2024 10:14:08 +0800")
+Message-ID: <87h6esebu8.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240520_032157_959490_2C04950B 
-X-CRM114-Status: GOOD (  32.68  )
+X-CRM114-CacheID: sfid-20240520_083443_357581_AD709BBE 
+X-CRM114-Status: GOOD (  14.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,88 +75,56 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Matthew Schwartz <njtransit215@gmail.com> writes:
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-> Hello,
+> On 5/11/2024 5:54 PM, Kalle Valo wrote:
+>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
+>> 
+>>> With commit bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
+>>> ath11k fails to connect to 6 GHz AP.
+>>>
+>>> This is because currently ath11k checks AP's power type in
+>>> ath11k_mac_op_assign_vif_chanctx() which would be called in AUTH stage.
+>>> However with above commit power type is not available until ASSOC stage.
+>>> As a result power type check fails and therefore connection fails.
+>>>
+>>> Fix this by moving power type check to ASSOC stage, also move regulatory
+>>> rules update there because it depends on power type.
+>>>
+>>> Tested-on: WCN6855 hw2.0 PCI
+>>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>>>
+>>> Fixes: bc8a0fac8677 ("wifi: mac80211: don't set bss_conf in parsing")
+>>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+>> 
+>> Oh, this fell through the cracks. Commit bc8a0fac8677 was introduced in
+>> v6.9-rc1 so I should have sent this to v6.9 but it's too late now. I'll
+>> need to queue this for v6.10 via wireless tree.
+>> 
+>> Adding the regression also to regzbot:
+>> 
+>> #regzbot introduced: bc8a0fac8677
+>> #regzbot title: ath11k: connection to 6 GHz AP fails
+>> 
+> Hi Kalle, with an upcoming patch this regression is expected to be fixed:
 >
-> I've been tinkering with my Steam Deck OLED (Galileo revision) quite a
-> bit since release, and I think I am finally running into some trouble
-> that I am unable to resolve regarding the use of the Galileo's
-> ath11k/qca2066 driver alongside other devices on an upstream Linux
-> kernel, specifically Linux 6.9.0 and later.
+> https://lore.kernel.org/all/20240506214536.310434f55f76.I6aca291ee06265e3f63e0f9024ba19a850b53a33@changeid/#t
 >
-> When I try to use the upstream ath11k driver with my OLED Deck, it
-> ends up failing a direct firmware load for ath11k/QCA2066/amss.bin.
-> The upstream driver has never worked (to the best of my knowledge at
-> least), so that is not a regression. I've attached the dmesg from this
-> failure just as a reference. We used to get around this on kernels 6.6
-> -> 6.8 by adding in a separate QCA206X entry via kernel patch:
-> https://github.com/Nobara-Project/rpm-sources/blob/main/baseos/kernel/6.8.7/steamdeck-oled-wifi.patch
+> So here the ath11k fix would not be needed any more once above patch got merged.
 
-Ok, so that patch seems to add QCA2066 hw2.1 and WMI_COEX_CONFIG_CMDID
-support, but it also does some smaller changes like static_window_map
-and hacks. Unfortunately there's no Signed-off-by which makes it
-difficult to get that code to Linux.
+What happens if we apply both patch 'wifi: ath11k: move power type check
+to ASSOC stage when connecting to 6 GHz AP' and patchset 'wifi:
+mac80211: build TPE handling'? In other words, do they conflict from
+functionality point of view?
 
-We already have QCA2066 hw2.1 support in upstream so that part of the
-patch should not be needed anymore. WMI_COEX_CONFIG_CMDID is not
-supported in upstream yet but that should not matter for initial
-bringup. I would assume you need it later once you start using Wi-Fi and
-BT together and want to optimise them working together.
+I ask because I suspect Johannes is planning to take patchset 'wifi:
+mac80211: build TPE handling' to v6.11 but we should fix the ath11k bug
+in v6.10.
 
-> along with the firmware from
-> https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/linux-firmware-neptune-jupiter.20231113.1-1-any.pkg.tar.zst
+> But I don't have time to test this, so suggest keeping it pending. We
+> could drop it once above analysis got verified.
 
-Our recommendation is to use the firmware from our repositories as there
-are no guarentees that other firmware releases work with kernel.org
-driver. So try to use this one:
-
-https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
-
-The board file handling might be a challenge though as I don't know if
-we have the board file for Steam Deck in our board-2.bin, most likely
-not.
-
-> but I have not been able to rebase this onto Kernel 6.9 without a host
-> of compile failures in ath11k, which are unfortunately a bit beyond my
-> own knowledge level.
->
-> The only way I've managed to get wifi working on the kernel has been
-> to use this one commit from Valve
-> https://gitlab.com/evlaV/linux-integration/-/commit/15dc5e42cac7240104b42443df8f4091721da5b1,
-
-Ok, so this just modifies the firmware location from QCA2066 to QCA206X.
-You could do same by just having a symlink in /lib/firmware/ath11k/.
-
-> along with the QCA206X firmware folder on top of upstream Linux 6.9.0.
-> Please correct me if I'm wrong here, but this is marked as
-> [NOT-FOR-UPSTREAM] because it will break devices using the proper
-> upstream ath11k firmware, right? Do you know if a solution is being
-> worked on to fix the upstream drivers for compatibility with the
-> Galileo specific hardware chip, or is this workaround going to be the
-> only way to get working wifi on new kernel releases?
-
-For me a major problem here is that there are several hacks and another
-firmware release used. My recommendation is to take a step back and do
-one thing at a time, for example something like this:
-
-1. Install linux 6.9 without any modifications.
-
-2. Remove the old ath11k firmware.
-
-3. Install new firmware from
-   https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
-
-4. Most likely our ath11k-firmware does not contain the correct board
-   file so that might need to be copied from the old firmware package.
-
-With good luck you will get the driver initialised so that you can run
-'ip link set wlan0 up' and then 'iw wlan0 scan'. If not, please report
-back.
-
-Please also read our instructions what to include in bug reports:
-
-https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
+BTW for some this patch wasn't in the pending branch but it's there now.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
