@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AADA4C25B75
-	for <ath11k@archiver.kernel.org>; Tue, 21 May 2024 11:33:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 865BBC25B75
+	for <ath11k@archiver.kernel.org>; Tue, 21 May 2024 11:49:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9c2mRCeR0sX/BSgg3opCmRnAMdCel7+WPhXtp9e2F0k=; b=qOhsBI+YT/f7n/vrwggcmcbVnI
-	2xlajAhsu6G+840Uq700ZLqLngjY82ae4LPKb/R4OpQftFFcKZVHXUiYXUSHOmrkuzUvyUUHCaFUa
-	AMEUR4HDzkbMndEYUkpCT/csH/oAi/WJRhI4vtde3Ac7/iRLRhB3czYoVDeiQH2Kjl4Qoekm4y7aj
-	cYC+/5JAkbSsCg9qya9gaVBXdUhIwlE424+seet/m7+oOIfLjD+f6D/n3J7JwIJbuHg2pH6O8PRhe
-	XBLsU40CEo17H/NI5H3YNyoRoJSsMgBSyKWSPo7QLXkAPDiHAn6hx70ibs8hzRGsGKbpmPu+8F916
-	iE3uYyjw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Wg5OKdWG4ZwbFWd8Vn7ix+gmunXqptX/Drudv+N+jFM=; b=Njo3GK3/D39RzW4N/1p4l2bNhm
+	qeQ+nftO3K14dFLISTwpgbYRRgOTINf7TvJ+HPkSDl7dTe++Ynil8Ue3+mZu7CYsCZ2SKV0Z9rwLJ
+	6C2pyMuN/K6C1T9IP6eRSQD+LaJo1u9h3F7HZZJ3FEsLna7tHs7lu0v9bCdJydpTmxvKCd9QU/jeR
+	Tudpj4qbKjiqPjpaOCOjJ1GTfwkM/sdPVWJStQc0YRR7I4p1d6vIX28MiDzsQcWeizQrUAm9fLoDV
+	4k7xaFNbSP/0/XSXykJ0fKmmOA2j/HgMWVj9jRja51a+keaxmvD1oieoaBI1XnAMaYlEnG71+Lglo
+	tGJXdAXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9NkX-0000000HIza-0Tsp;
-	Tue, 21 May 2024 11:33:45 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1s9NzS-0000000HKiI-0Eh6;
+	Tue, 21 May 2024 11:49:10 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1s9NkU-0000000HIz3-1cqk
+	id 1s9NzO-0000000HKfS-3bYc
 	for ath11k@lists.infradead.org;
-	Tue, 21 May 2024 11:33:44 +0000
+	Tue, 21 May 2024 11:49:09 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id B9EEBCE0E77;
-	Tue, 21 May 2024 11:33:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EFACC2BD11;
-	Tue, 21 May 2024 11:33:37 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 4D2756221A;
+	Tue, 21 May 2024 11:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DEA0C4AF14;
+	Tue, 21 May 2024 11:49:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716291219;
-	bh=8D/Er66icrzaGcztC3uikyl0vfzG0j1vaGuwaOxG0k0=;
+	s=k20201202; t=1716292146;
+	bh=TwjkO4RIn2h5ypR3QrQrEToUNfAlaecndvwSox/HHX8=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=hp4KuaZCSLhc2TkvbAdTg4SixQFvboEFWb2Kh2QullARF6TSPXWWdTsmQqPUf1Kq2
-	 RtSyuo41q3hUXdtAGfMuaB4lINWLi7dsgAhHf3agVONZhRxGTc9y2y2enA8sfW+m4P
-	 f1fJ3B9E1O7HZ/34/yv0KtUpkOzGuAvCpRhjdprP0uW0CQU/yYV8x5HI/VK+9IUj5X
-	 CxoUv8HLDoZotl5XAs+qXncmkEOAoMpgzyHvJDPpuDapl4DXUizPd42ZaPASfyvBww
-	 ZUGFyW8h4VMo0/UdKMm7T3fwAdbdJEBMbHpa+GHSni09VbVe/ALGg/UulZXeEtVz+W
-	 XmHcwFbVChByA==
+	b=S7dXORILRhRMoATFEymHafhhoeUsKMMUVxyRUHGbsrdLI5LMLdy5cZRyEjPyRJdtx
+	 TOjtoZuQofWEKum66hcP14B9RMNELZR3pWbtKlKKp6IhGDcZlp+6RlBm5ml2mQepBI
+	 vflVLWx/PV6+W9zKUPC1tpglBnA19D1+z4UfiGjFz9cYrK5ddB+tCqg+FoWhOPBfuj
+	 vctLrBpyz0kIa0GnxDb+voHV+jSdebNjzcylhqpFK0D9JhupaEeG4CvCnOqN2D9Css
+	 GVqM8raPo4Rn/Jnbk0/ieWbn/mOO+1SWme/oSrGeje5hJ71cLdfqnOnojoM8od2Rku
+	 NP8XaGXQTUtzg==
 From: Kalle Valo <kvalo@kernel.org>
 To: Matthew Schwartz <njtransit215@gmail.com>
 Cc: ath11k@lists.infradead.org,  cristian.ciocaltea@collabora.com
@@ -50,17 +50,17 @@ Subject: Re: question regarding qca2066 and qca206x (Steam Deck
 References: <CAFKu21ZKtKmf4Cze9JCRk750reKXxz+gMs+V1Dr8kUm-J1WWPg@mail.gmail.com>
 	<87le44eqbl.fsf@kernel.org>
 	<CAFKu21b_4fbP3Oku_CLBOYi7wfwmYWUXoG5H1gknvFit-wc4Rw@mail.gmail.com>
-Date: Tue, 21 May 2024 14:33:36 +0300
-In-Reply-To: <CAFKu21b_4fbP3Oku_CLBOYi7wfwmYWUXoG5H1gknvFit-wc4Rw@mail.gmail.com>
-	(Matthew Schwartz's message of "Mon, 20 May 2024 13:41:10 -0700")
-Message-ID: <874jarcsbz.fsf@kernel.org>
+	<CAFKu21aQjbf_vsyikhQqDa0s99WQpzepLa0dWmmhVo5yeWr=Gg@mail.gmail.com>
+Date: Tue, 21 May 2024 14:49:03 +0300
+In-Reply-To: <CAFKu21aQjbf_vsyikhQqDa0s99WQpzepLa0dWmmhVo5yeWr=Gg@mail.gmail.com>
+	(Matthew Schwartz's message of "Mon, 20 May 2024 13:52:02 -0700")
+Message-ID: <87zfsjbd1s.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240521_043343_093046_91D90AB7 
-X-CRM114-Status: GOOD (  18.94  )
+X-CRM114-CacheID: sfid-20240521_044907_030106_DCAD1EA6 
+X-CRM114-Status: GOOD (  14.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,103 +77,43 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Matthew Schwartz <njtransit215@gmail.com> writes:
 
-> On Mon, May 20, 2024 at 3:21=E2=80=AFAM Kalle Valo <kvalo@kernel.org> wro=
-te:
->
->> For me a major problem here is that there are several hacks and another
->> firmware release used. My recommendation is to take a step back and do
->> one thing at a time, for example something like this:
->>
->> 1. Install linux 6.9 without any modifications.
+>> Is the mismatch between file/directory structure for QCA2066 and the
+>> upstream QCA206X I had to add to the upstream ath11k firmware going to
+>> be an issue? Also, QCA206X seems to be missing Notice.txt. Will this
+>> cause any issues?
 >>
 >
-> Done, compiled the v6.9 release from git without any issues.
->
->> 2. Remove the old ath11k firmware.
->>
->
-> Easy, I ran sudo rm -r /lib/firmware/ath11k
->
->> 3. Install new firmware from
->>    https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
->>
->
-> For this step, this was my exact process:
-> copied QCA206X from my current kernel's firmware into the upstream
-> ath11k firmware folder retrieved from
-> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware
-> sudo cp -r /home/matt/Downloads/Warpinator/ath11k /lib/firmware/ath11k
+> Sorry there is a slight typo here. To clarify: Is the mismatch between
+> file/directory structure for upstream QCA2066 and the Valve QCA206X an
+> issue. I described the wrong folder as the upstream folder in my
+> original reply.
 
-I forgot to mention that you you need to use 'make install' to install
-the firmware or run ath11k-fw-repo manually. See README for more:
+So from what I have seen so far the situation seems to be this:
 
-https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/blob/main/REA=
-DME.md?ref_type=3Dheads
+Steam has some ath11k hack patches to add QCA2066 support to an older
+Linux kernel and they also have a separate firmware release. I do not
+know where they got them from.
 
-If you need to create symlinks or copy files manually then something is
-wrong in our installation process. Please do report if you see such cases.
+In Linux upstream ("kernel.org") we added initial QCA2066 support for
+ath11k in Linux v6.9. We also provided the firmware[1] which will be
+also submitted to linux-firmware.git in the near future.
 
->> 4. Most likely our ath11k-firmware does not contain the correct board
->>    file so that might need to be copied from the old firmware package.
->>
->
-> For this step, this was my exact process:
-> Rebooted after 6.9 kernel install
->
-> I get no wifi and this is my dmesg:
-> May 20 12:49:21 steamdeck-oled kernel: mhi mhi0: Direct firmware load
-> for ath11k/QCA2066/hw2.1/amss.bin failed with error -2
-> May 20 12:49:21 steamdeck-oled kernel: mhi mhi0: Error loading firmware: =
--2
-> May 20 12:49:21 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: failed
-> to power up mhi: -110
-> May 20 12:49:21 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: failed
-> to start mhi: -110
-> May 20 12:49:21 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: failed
-> to power up :-110
-> May 20 12:49:21 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: failed
-> to create soc core: -110
-> May 20 12:49:21 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: failed
-> to init core: -110
-> May 20 12:49:21 steamdeck-oled kernel: ------------[ cut here ]----------=
---
-> May 20 12:49:21 steamdeck-oled kernel: WARNING: CPU: 0 PID: 745 at
-> kernel/irq/manage.c:1925 free_irq+0x2d3/0x300
+The ath11k upstream version uses different directory structure as the
+hack patches, which is not uncommon. Basically using hack patches is at
+your own risk and no compatibility is guarenteed, of course. But once
+the support is in official Linux kernel we take backwards compatibility
+very seriously.
 
-Oh man, clearly ath11k is buggy if any firmware files are missing. I
-thought I fixed at some point but I guess it has regressed.
+I want to also mention that even if Steam's ath11k firmware version
+might work, I still recommend to use the firmware from our repo[1]. I do
+not know what changes Steam's firmware version has and it possible might
+be incompatible with kernel.org driver. In this mailing list we only
+support firmware releases from [1].
 
-> I rebooted one final time, and now I have functional Wi-Fi and this
-> dmesg:
->
-> matt@steamdeck-oled:/lib/firmware/ath11k$ journalctl -k -b | grep ath11k
-> May 20 12:58:15 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: BAR 0
-> [mem 0x80000000-0x801fffff 64bit]: assigned
-> May 20 12:58:15 steamdeck-oled kernel: ath11k_pci 0000:03:00.0:
-> enabling device (0000 -> 0002)
-> May 20 12:58:15 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: MSI vecto=
-rs: 1
-> May 20 12:58:15 steamdeck-oled kernel: ath11k_pci 0000:03:00.0: qca2066 h=
-w2.1
-> May 20 12:58:16 steamdeck-oled kernel: ath11k_pci 0000:03:00.0:
-> chip_id 0x2 chip_family 0xb board_id 0x309 soc_id 0x400c0210
-> May 20 12:58:16 steamdeck-oled kernel: ath11k_pci 0000:03:00.0:
-> fw_version 0x11058f56 fw_build_timestamp 2023-10-11 08:46 fw_build_id
-> CI_WLAN.HSP.1.1-03926.9.1-QCAHSPSWPL_V2_SILICON
-> Z_CE-15
-> May 20 12:58:16 steamdeck-oled kernel: ath11k_pci 0000:03:00.0:
-> leaving PCI ASPM disabled to avoid MHI M2 problems
-> May 20 12:58:17 steamdeck-oled kernel: ath11k_pci 0000:03:00.0 wlo1:
-> renamed from wlan0
+[1] https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/tree/main/QCA2066/hw2.1?ref_type=heads
 
-Nice. At least it looks like the ath11k firmware is booting which is
-most important. But based on the firmware string
-(CI_WLAN.HSP.1.1-03926.9.1-QCAHSPSWPL_V2_SILICONZ_CE-15) it looks like
-that this is not the firmware from ath11k-firmware.git.
-
---=20
+-- 
 https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
