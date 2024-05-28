@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1443BC25B7C
-	for <ath11k@archiver.kernel.org>; Tue, 28 May 2024 19:04:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33E43C25B7E
+	for <ath11k@archiver.kernel.org>; Tue, 28 May 2024 19:04:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0VDWyB/Vt2yrqLkBETRDxRFnPzrcfXm1ptbgVUZY5Cc=; b=U7ycv6UmkARp9XtKrW/cdVUaZb
-	uaYgHujN12jmkhgnsSoWvM9yL3BEENu5Fv6gaik+n9mP7R7CWmj3yZdvxXuBfftFQ8PfRdtToA3IG
-	HdFyGsdLkZ033O5Gw2zU9yMmXp758bXaO+VrKTR9WOH/3uON2bAZHPzDpnhC+Pn0OrFS87SaiUeDk
-	7HTCI+ssn3GejoaDBnYQR6hzw97SA3YASlrjgXOv8Q8liMTWfTURd+NzZnIk1PfRSLUTM0chzt4oZ
-	XftGQ8Q9ijvwrNQXkzXPsgTjvROZPJqAjy/3lfYJU9M3q9maGADI0XxFtpbZXs/MBtT55ZT2s00WB
-	ryM4GwjQ==;
+	bh=pOio7KxeuelYGQGCOPUzhDxltxXo0iSvEqTPnlEwle4=; b=LeTNg9FLeDGKUQv1wO5lq+LwZ5
+	DgsdhUE7SbidnZot6AshuyBf/O10wl6GStMlylmmLTW4DkCvjLHT9NqM9/45ci7qcnBIS+siKfTD7
+	nBUVazzv6Ma8RZO1/ni6tbTBrSuXHz9MH05NAzMBuwP6b4Su0qkJheC4Bd/0tS+GljGutImZslvPH
+	8CjfEJjGlenS0W3fL9o+q8BUQegyTOSAv3Uh2jVytTxxK7kX6Q2xamCKMZUDR5aP7zKB02EVWC/Mg
+	wXiIL459giASiJrCHKRtgV7/uV92NTNCbIzL5/PaI5fPftsyhphvmC6OlEPHXgyIYkPKmntD5mShT
+	j+ltG2SQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC27d-00000001kCZ-26nw;
-	Tue, 28 May 2024 19:04:33 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1sC27m-00000001kKI-1Yvt;
+	Tue, 28 May 2024 19:04:42 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC277-00000001jis-3SId
+	id 1sC27D-00000001jow-02F8
 	for ath11k@lists.infradead.org;
-	Tue, 28 May 2024 19:04:04 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-351da5838fcso1132702f8f.1
-        for <ath11k@lists.infradead.org>; Tue, 28 May 2024 12:03:59 -0700 (PDT)
+	Tue, 28 May 2024 19:04:12 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4211e42e362so10015525e9.1
+        for <ath11k@lists.infradead.org>; Tue, 28 May 2024 12:04:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923038; x=1717527838; darn=lists.infradead.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923045; x=1717527845; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0VDWyB/Vt2yrqLkBETRDxRFnPzrcfXm1ptbgVUZY5Cc=;
-        b=IKGyRsHGFpnKcacLE4s3aa3/53dZoP3Wf6T1hEv5lJnRjrMAkqr8ZfiTYm8xBhnsmR
-         13j6MDUnHj67eK7ZnvLdJJOxx0xASUt0GSnLLdM+5JYrRwdQI+7hxY6SC66hJQMPWbhk
-         NYpAbziecfz9XyK3SyZXva0+bM9jDZyUYL+wJW6ITWHiknm715+E5eGMD/PZOZKe800Z
-         fva5/tQu8sq4cmnLyhqrya6HgOW7GhBw+PzwyInORprTUUATLCHaQqlyrGAhBKnwu0J2
-         y8Sq4DLKOl83KVZnqRPC7eW+GAio/Pk6MpZiJadAykip1txMXQG8wJgCrDeqzbjRPBRz
-         ZhvA==
+        bh=pOio7KxeuelYGQGCOPUzhDxltxXo0iSvEqTPnlEwle4=;
+        b=f7uMSHUWLIppbgSlb/Y4WL+U4LMl3+A/LPcMzolyOQpU2w+HVF+B0Q6peJ9/wSU1IG
+         d9Pq7Y5nRItRniqecGcVt3LijupS8mpmp1jExNeYZkHOJlwhNII62LgOP5agflNDkNF+
+         /XHDGzI0lSMxhsx7ELC8mPmdhPeom83q/gx8a4OJ/V5dDmC5F9Q5iRGWgzz9p40LbWef
+         DsH8rlnNxUCguI3MJeID0mJLN2UNRS23T8rNScNZ67ylt8yP4zFsraWiJBh/1gTZYg9/
+         7j7y8MRJNo2QshJQtVPZaf36+F8pcyqHfzXhxjdBHKjPMf1LTDMI5A49AoSQd29V4C6G
+         +PhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716923038; x=1717527838;
+        d=1e100.net; s=20230601; t=1716923045; x=1717527845;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0VDWyB/Vt2yrqLkBETRDxRFnPzrcfXm1ptbgVUZY5Cc=;
-        b=TSSRak61kYFTt9lMZljAQOEUY7EyFsrnmaukkHh3IHHdxKPg0NqIHvHqNNRINXPEY+
-         jCDIHLkVwrdCxjEvVCJvq+UTH0HzGP/5KoZeTj4TLXNJQTZvP30s4LDLzy81vvjM7bSB
-         tHZOgZwkOI4K5W4lqimqdqb75apr8A9Sg4+MzFHu4227WGTa8YVHZduQKt8z6VgmIdTQ
-         +ufBeK1MIiUG2njPL3W1WgRtDzhpC+hWy9BsxeEg+gLZZph7E6WKSKUjTq/Y3qj5/UvA
-         z5IXwFYy+gSWQqFc+zc6VugKFZduWEQohMKHvrJBsCDlUGVin7fYomdxKqmT5oUGH81G
-         FepA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6wPoyKQfdLt1KM4MzN585QRb6A/hgmcsy1gK97mfmY1+XE5daX2l8E69ktU/GfUnzy2iiOhYNCzW/eaETETixy8bgESoMIAWKtA==
-X-Gm-Message-State: AOJu0YxTmUBxh2U8YraXtQSG8bnPunON7A2hI71+1joUbIPtnpz9ZPAP
-	6VWfVmcCRs2BwHJDiVjYdn1ekMY2a/T35er33bddN3UkUYC3aoJFYQWSnwkuw5o=
-X-Google-Smtp-Source: AGHT+IG9twxX4gmVpSWSmG7lOy0d9ZrPVsGdDc+r3+3Lc27UTT9Q1CmlcQrzBygReRw0K065n4Yd5w==
-X-Received: by 2002:a5d:4b02:0:b0:354:fafc:b8a0 with SMTP id ffacd0b85a97d-3552f4fc7a9mr8612295f8f.59.1716923038550;
-        Tue, 28 May 2024 12:03:58 -0700 (PDT)
+        bh=pOio7KxeuelYGQGCOPUzhDxltxXo0iSvEqTPnlEwle4=;
+        b=Z3/u07R9Hh5QPxgJJLqA4qilkj68K3bY7JyiSymZ+aG7GOAf18eRaJ9m4AR9WaEHLH
+         e4etrtlp/8ifyAnKdrgZP4aGV1yrSS9ZWnwiMFCy140SQpDmr0NzSprDW0b7pIX0gquE
+         tZcm9QXfchD9OkS4J+Vwnd4okS10fRRrSJh0MGCKu1LTw+o4WDP60kw97ifgDv0lXvZW
+         ZcRmE9AbqqsuLlGlGMNk6Un+tG14y4iCOV22UwDm9qtttR28e3YKQzu8rAwQaDJSUSRl
+         BHCo2JuZlSM5v85qUn6myVZUaTvZ1KO68hLpCYaylD2/Ic7qRag7wGWZ5EN4vEYTIf6O
+         RSzg==
+X-Forwarded-Encrypted: i=1; AJvYcCXMIthsq+NPHJX+I6DTXh45B7jRM9lLP0f7o7vmL2JKFMa159Ri3n808jCnil93DJ3afeH8sDzHJkw+NzZTT6lcsDz6nNSwR6ELWg==
+X-Gm-Message-State: AOJu0YzIuA1JTnQDn2/Dyz5+69blkAM1EmoeN6gR5cJ1Y3mWYFVKzNCj
+	dvkFNiM38AyMLpE8bubXwBSoRvAcV/iIPPi5cKS6958/OJ60oOKXGu4tST4sSaA=
+X-Google-Smtp-Source: AGHT+IFmkQU5z/NjNRbTvi69k9x+UO9H7tI5buIPv2H3GZSdzyYURPFjsjVaBq0Uz646z00KIwuhFA==
+X-Received: by 2002:a05:600c:63d5:b0:417:fbc2:caf8 with SMTP id 5b1f17b1804b1-42108a7a3c0mr101292595e9.23.1716923045541;
+        Tue, 28 May 2024 12:04:05 -0700 (PDT)
 Received: from [127.0.1.1] ([2a01:cb1d:75a:e000:93eb:927a:e851:8a2f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.03.57
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.04.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 12:03:58 -0700 (PDT)
+        Tue, 28 May 2024 12:04:05 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 28 May 2024 21:03:16 +0200
-Subject: [PATCH v8 08/17] arm64: dts: qcom: sm8650-hdk: add the Wifi node
+Date: Tue, 28 May 2024 21:03:21 +0200
+Subject: [PATCH v8 13/17] PCI/pwrctl: reuse the OF node for power
+ controlled devices
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240528-pwrseq-v8-8-d354d52b763c@linaro.org>
+Message-Id: <20240528-pwrseq-v8-13-d354d52b763c@linaro.org>
 References: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -95,28 +96,29 @@ Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
  ath11k@lists.infradead.org, Jeff Johnson <quic_jjohnson@quicinc.com>, 
  ath12k@lists.infradead.org, linux-pm@vger.kernel.org, 
  linux-pci@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com, 
+ Amit Pundir <amit.pundir@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3087;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1806;
  i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=GaOLcgqKs3ODvq3/O85YU+fUTNT/9BH1gk6I0XDm4C4=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqOxHFm5d147/MDXDrwmptWoxDAkiT5npxCb
- gY47vDCaTyJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqjgAKCRARpy6gFHHX
- cvP1D/wIgiQjjyJuS6U9yFSU+MJwzhaoKoc0oAiOUbxzKiS420zoqAtf73o/YAgjY8Yl2L8tkqT
- si1ZXxwSu3SMF4QkuIvgnl8TqhdpZQLDDefO+eTZPc30SrWAmneqprcoxSniaSqH88Gy+fmVdYD
- /tJOLoUlRCqhrO01qpEh5En7YlFZw5hIE69gBYYBUfymd1fL6M/qww9KTWl2+4VmA9T4BEojAMc
- OBUY7pkTCZh4pO5qnF344tnURP1fjnXYWCu/sqfNbcweD9qkKh7m4XGTRRIu3COhA1pftKIw17J
- 4r8e5cV/2krtZvM7+lk804+AQdJEt3eBHHSohpvztL4I8XYh+7Zen6VVvTQ4MCnjMgCJgtEIBbG
- z6jE1c3DkF6GoukSmD36VxeO8snL77G2P8Pp3EzHBhTYA2uo+TGaNYX+geEcpYaVPSTz9/F3VDw
- a0U0/PnXejrCtMSuNKGiP56dSU0w6iExXHuWYpbAJPCxnMfjH05oV0UOFTt+o4wVdIGYsaPyaIi
- NTqH4Bk8ZOnxZMtNZs7+UZ8ygv+ObJ/jaDsQnGMcLjlvX/qZa9eR0pIf6NReqsq4qaau6yKuQs9
- o9IkFdLwaEL9FW9hukAAXye3EWxSePyl05MMCTkTxbpuOBIVZFsWkTm2LFhtAiajJmX8bghkpZ0
- qLBJ0EahJamjp5A==
+ bh=Y7OeFprz/Vcrv+LqGfLVY2kADqOCusmg0pTxdfuWyrw=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqQlowqris4OXk74HDsTXkEu2fb7ceXtIZ3t
+ /1F4SawtlqJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqkAAKCRARpy6gFHHX
+ ciu+D/9gNcUh7shLnVNjWY/dgJjWjWqDorXUw/wX6sJBNrxubSO/gyKc9jr+AWug2lgBqlQOp+k
+ CdVkl6SrVCko/z9s5SrcQrVFUBVrWq1hC8w/GWKtZSHuzDKHab8s3sdzs3Y5pnLrak0kn25osA9
+ D1JYD3NDkY803OYw0RHiGx+GCXTuPj9I7Ld2/eYTJXL8rfJxhX5Yo7Iectb5BNvRaMhrveN0kJx
+ 52sOrp6To2YqkPkRo5zcBVdcs0gt2d2/yL7LcFe0z7hSzDDgYlae6zUPC4eDqPEoSdWimDfp5pe
+ kA9A5ci2MG7VwRP86OiKpcO8jcMX4+1Fz610EvQ8M7Z2adXIvzF1xrN9Qk0Cp+sQuD+w7WxWheC
+ lY0eFf9MpFqLS+lJIDGAvclGtlhP1fCT69UwRrY/Qo7ijTsj/R0eMwHWnKOxaLwtgvplTWT16sX
+ nZ3/83iFmyg4unCn8iYVrq650oBohZgiKMp8JePv/KInST3DHQ6HiCfgBcodc3GbX9P+Ja8OCVp
+ 8fM829/xJlqWbti0o9rRzYslm7y/ZvEH0VH0MxaN7giPt1WAxcMtSifoKQwdzcyNxuvHi3Btsim
+ e66eK6rvw6UD6V/avQlxkr+wgJ/DLZhAi0Zofr+BPGpvxgz9AEEMCZm5KQaxZj6S3mbgMlMBIl+
+ h5eAPbGFHqC6OQw==
 X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240528_120402_480431_9E27E81D 
-X-CRM114-Status: GOOD (  10.91  )
+X-CRM114-CacheID: sfid-20240528_120407_813632_9B7869FA 
+X-CRM114-Status: GOOD (  14.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,131 +133,66 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <neil.armstrong@linaro.org>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Describe the ath12k WLAN on-board the WCN7850 module present on the
-board.
+With PCI power control we deal with two struct device objects bound to
+two different drivers but consuming the same OF node. We must not bind
+the pinctrl twice. To that end: before setting the OF node of the newly
+instantiated PCI device, check if a platform device consuming the same
+OF node doesn't already exist on the platform bus and - if so - mark the
+PCI device as reusing the OF node.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Tested-by: Amit Pundir <amit.pundir@linaro.org>
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 89 +++++++++++++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
+ drivers/pci/of.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-index 7f2dbada63b5..b824b805ace2 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-@@ -266,6 +266,71 @@ wcd939x: audio-codec {
+diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+index 51e3dd0ea5ab..b908fe1ae951 100644
+--- a/drivers/pci/of.c
++++ b/drivers/pci/of.c
+@@ -6,6 +6,7 @@
+  */
+ #define pr_fmt(fmt)	"PCI: OF: " fmt
  
- 		#sound-dai-cells = <1>;
- 	};
-+
-+	wcn7850-pmu {
-+		compatible = "qcom,wcn7850-pmu";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wlan_en>;
-+
-+		wlan-enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-+		/*
-+		 * TODO Add bt-enable-gpios once the Bluetooth driver is
-+		 * converted to using the power sequencer.
-+		 */
-+
-+		vdd-supply = <&vreg_s4i_0p85>;
-+		vddio-supply = <&vreg_l15b_1p8>;
-+		vddio1p2-supply = <&vreg_l3c_1p2>;
-+		vddaon-supply = <&vreg_s2c_0p8>;
-+		vdddig-supply = <&vreg_s3c_0p9>;
-+		vddrfa1p2-supply = <&vreg_s1c_1p2>;
-+		vddrfa1p8-supply = <&vreg_s6c_1p8>;
-+
-+		clocks = <&rpmhcc RPMH_RF_CLK1>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
++#include <linux/cleanup.h>
+ #include <linux/irqdomain.h>
+ #include <linux/kernel.h>
+ #include <linux/pci.h>
+@@ -13,6 +14,7 @@
+ #include <linux/of_irq.h>
+ #include <linux/of_address.h>
+ #include <linux/of_pci.h>
++#include <linux/platform_device.h>
+ #include "pci.h"
  
- &apps_rsc {
-@@ -894,6 +959,23 @@ &pcie0 {
- 	status = "okay";
- };
+ #ifdef CONFIG_PCI
+@@ -25,16 +27,20 @@
+  */
+ int pci_set_of_node(struct pci_dev *dev)
+ {
+-	struct device_node *node;
+-
+ 	if (!dev->bus->dev.of_node)
+ 		return 0;
  
-+&pcieport0 {
-+	wifi@0 {
-+		compatible = "pci17cb,1107";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+	};
-+};
-+
- &pcie0_phy {
- 	vdda-phy-supply = <&vreg_l1i_0p88>;
- 	vdda-pll-supply = <&vreg_l3i_1p2>;
-@@ -1154,6 +1236,13 @@ wcd_default: wcd-reset-n-active-state {
- 		bias-disable;
- 		output-low;
- 	};
-+
-+	wlan_en: wlan-en-state {
-+		pins = "gpio16";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-down;
-+	};
- };
+-	node = of_pci_find_child_device(dev->bus->dev.of_node, dev->devfn);
++	struct device_node *node __free(device_node) =
++		of_pci_find_child_device(dev->bus->dev.of_node, dev->devfn);
+ 	if (!node)
+ 		return 0;
  
- &uart14 {
+-	device_set_node(&dev->dev, of_fwnode_handle(node));
++	struct device *pdev __free(put_device) =
++		bus_find_device_by_of_node(&platform_bus_type, node);
++	if (pdev)
++		dev->bus->dev.of_node_reused = true;
++
++	device_set_node(&dev->dev, of_fwnode_handle(no_free_ptr(node)));
+ 	return 0;
+ }
+ 
 
 -- 
 2.43.0
