@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC6C1C25B78
-	for <ath11k@archiver.kernel.org>; Tue, 28 May 2024 19:04:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F3D3C27C50
+	for <ath11k@archiver.kernel.org>; Tue, 28 May 2024 19:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=c/rfODploHDKXzqF5uZDj5HypMDi8GHx8C3gU75cfUM=; b=HSHyNYEHuW3zUIKFxJGcAgDHeu
-	PVjoM8/8cVKqCP//F+gc+/Uq35SyryrOnazSRXz/otiWeQiR3F18rxKGfl5NnCGG/YyBnIp0aP54W
-	8wl57tB9gXTYTLrkxM4qk2ge8Y4Wuer6PvtoB9z0KpmYvfQuLjF2m6Emq6tkWqDuZgQzNLNLK04sK
-	9N+VfvW3p8mZrv2/C2DGzlZu2scIcZ3UwOHgdZF7hAK2mE5Ys4rCpK/PsGsatP/HW2QEP/X329jGu
-	HdODxa/ayzgx3N52dKdD+NuLNI24lP6YOHQPVjZD7vvAjh59AGEdux04sUAtQaVfPj+mHki25H56X
-	HD8rVQfg==;
+	bh=FLB0YN7N63SKOKotZw1GpntJgaecWBJiaVtpBcrO/S0=; b=Hyyv1FOdICWP/Au5vlUWFArvlY
+	iUDYfVwALACYDjWKh4Mf4OyI5+HW1bOLOz9/hAgR34/U7exmoRoqIrU1vcAQtXUO9p1eyzA7AmxLB
+	v4SlpBd2KWqZ/Wfp+bcWJzlp8Nx1T26Lqf8uYSgXwVVdL1KKQdxbYdsoHdEU12dYJqpzzT9pHmlyc
+	PdCd8IXluTYAHLdr6u2ps9fFzF1dHbbU6jvJ7JX/B6phyx9zUUS5ib5CKhoXtTkcskyjZAq7d82LW
+	J/rBnUrKlkCxLmfZhBSSL1yuGsoV0LhWEivfqelOrkKCI6oIhzMBd5XyxFK6WUKTO/pj11YGa4mQx
+	6YKIn9UA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC276-00000001jjm-12Wt;
-	Tue, 28 May 2024 19:04:00 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1sC279-00000001jmN-2CZL;
+	Tue, 28 May 2024 19:04:03 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC26y-00000001jc2-08gg
+	id 1sC26z-00000001jcH-0xJ6
 	for ath11k@lists.infradead.org;
-	Tue, 28 May 2024 19:03:55 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-42120e3911eso6803915e9.0
-        for <ath11k@lists.infradead.org>; Tue, 28 May 2024 12:03:50 -0700 (PDT)
+	Tue, 28 May 2024 19:03:56 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-42108856c33so625585e9.1
+        for <ath11k@lists.infradead.org>; Tue, 28 May 2024 12:03:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923029; x=1717527829; darn=lists.infradead.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923030; x=1717527830; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=c/rfODploHDKXzqF5uZDj5HypMDi8GHx8C3gU75cfUM=;
-        b=Po64SRsl+ibzB42UZY1GsuUu/7CxIiAY+IiVrUIYIIAkcSdfnq9Q7csA+zuuYxvB0j
-         R1qB6OHkHBmse+3eDcril8ewK643+LB+ECUeAOWCo6SlzjGwpoeLOIYVQN+G+lBa7jkI
-         7qY9z8fLrrTSGFP+Y5woIBlXvViVV+mqMZnBcbdF/KO+KlEKvRm5lgijP1WovJOXoBJe
-         4kkSK3jTH16fLkxcIbt7tzC7L5UplSIjo2dQdRG0jlmY2on5QpPUh/6XDjJuEo4JavbV
-         p2Fp26pbprm9S87Lckxf/+5Ve9+0eTniGuIIdQc0ZN5/4tPWqcY82tyJcXmoVI1wfxD4
-         wVtA==
+        bh=FLB0YN7N63SKOKotZw1GpntJgaecWBJiaVtpBcrO/S0=;
+        b=LJSgyyseQPwfuqmuo3tVopS5hRMyZd7E4Gxp4Fn6YStktO+/5okxj5tgH0myOd//ev
+         k1n61vdvRcTWI5Xhs66BtoZOZEkiY2+s98Rj7ZjtZUYSEMU9wsHachmZU7droBW5K7Hz
+         WZ8zHw+SgZQSc3oVTLw3IwHTVzZJlYQdvEbnTeUyyarVUUyHsH4sOIgQ8oUy4RJoBU2Z
+         NXXRVjSDLSNL10gw14NW+O2WkF/5J9xaP8x3iO8ft3taSZWrc+w5UAQkL73P8nxJ2UEe
+         Kds2uwwypND8+M++8U7mtWCODKqDV4ng/IlY5wz2NKEw+AgV4VdZZP2ySEl42y9v2GqU
+         +M0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716923029; x=1717527829;
+        d=1e100.net; s=20230601; t=1716923030; x=1717527830;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=c/rfODploHDKXzqF5uZDj5HypMDi8GHx8C3gU75cfUM=;
-        b=dxXBd9e6ywpmqqAwgNihMkFRtXXIIm9b7SDHlj9YR2MlE4t3ZwBSvpz4IgC09G6Q3I
-         V13vIi6Dp0KC2b2x0yQucsud+7olpZ9uSOKeKnmEo3LctR2WTzd4w8E0N0dS4Jm3Emok
-         Ksx2OkznwC8RU6NDq5BANIsAU9Szfm47jRhi00CK6WOb20ZzYeaO74Zk11UKgT4soHYq
-         MiW7N+vo9C/KEhIyppjdJWYM6PP3tojAYBAHN6XfHYfplFmZUQ1aGvfpJHs8JASFNJum
-         wLvnfI3DdglRTC3di7GnnxwDC/jaOd4V7FKwCUnDI4OpVN6cP1TbE8xKvKQSj/miz45A
-         MxPw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9i1UuzdlRsz7eloDZVIT/QZKCDKjRXhjf37Hh5Hjmi4qEguWxRxuOMykZdkWWiV0PrT5224/UadfRzlCNCH9kZjMni1iosoSSvg==
-X-Gm-Message-State: AOJu0YwxEvD4yYiAblqkEUN3jD3FlnsXi8kPe47RGwHJOp0cytuSXFlw
-	Y97/4ysn5mgwKOuRCtX/kxPssGUqfhUY02fEDBz0V+QVjDdZ6f46EQFX7s9WUsA=
-X-Google-Smtp-Source: AGHT+IEZz3DaP8vDUiO7UYMRhD5/zIn2+KNYNHhCT2WPx1urmnhscLCNQt/r21FNScSTSxiCZ5ikxw==
-X-Received: by 2002:a05:600c:224e:b0:420:fb99:ed02 with SMTP id 5b1f17b1804b1-421089b2283mr120556495e9.6.1716923028845;
-        Tue, 28 May 2024 12:03:48 -0700 (PDT)
+        bh=FLB0YN7N63SKOKotZw1GpntJgaecWBJiaVtpBcrO/S0=;
+        b=VDlyw29T3Sl34xg+o+ctXPwJNxJxpXY79UlalhJyYNpMW9KevgO2t1THmsGgYKq7J0
+         Si7nLbIHu086oBzg1j/z0zVw8eiBHwvGSXvb5VgV+T+JBRHYh2/UVf5rVx3q/OC3CniL
+         PAPM/ZbruoSZpQx5fye8FxoTNoYVVzeWa+CCGOE3/LKbxPLggbNAz4KXqfTXmZlxPvVg
+         5HTbgWHLAfZ7OiV/B9u4JLw9vRFfN5TSEfV8s83LcAb/+/iowHAIMMAdVbwEZxQEt+uA
+         WNTSbmx8KamD0UfLiLUmMUYbRazpsY1tFW0laggcmB8jYMwke00ktZipPXdy1TA8tE8i
+         akvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVJmrACWSaw93VcEE2nA+zSWeaGDMTZzBHsUDAWEkgejFLA580FhdNA+Syzfh7crTgfKZJP5vBEmuna7rD5Sf0dIr7sRyUjeB3K+g==
+X-Gm-Message-State: AOJu0YwCy9sxQxUhmZD4oPtZS7NrHvosNFQXixhlQWmDQLHOzu8BKred
+	usHH7ZZ5oSRWz8BE3HDHYWuAD766PxYSe7JpMDBrEI8JHRABGPLTTPp3oSkPQbc=
+X-Google-Smtp-Source: AGHT+IGkTRJM5BqJwxMkgY3NJwBdsKQTISnjb7z3O7SzLivMCfj6/1CLTbKr3BOipAl3zMJM/jdDxQ==
+X-Received: by 2002:a05:6000:180a:b0:354:df9a:f99a with SMTP id ffacd0b85a97d-354f750f95fmr12748159f8f.11.1716923030222;
+        Tue, 28 May 2024 12:03:50 -0700 (PDT)
 Received: from [127.0.1.1] ([2a01:cb1d:75a:e000:93eb:927a:e851:8a2f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.03.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.03.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 12:03:48 -0700 (PDT)
+        Tue, 28 May 2024 12:03:49 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 28 May 2024 21:03:09 +0200
-Subject: [PATCH v8 01/17] regulator: dt-bindings: describe the PMU module
- of the QCA6390 package
+Date: Tue, 28 May 2024 21:03:10 +0200
+Subject: [PATCH v8 02/17] regulator: dt-bindings: describe the PMU module
+ of the WCN7850 package
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240528-pwrseq-v8-1-d354d52b763c@linaro.org>
+Message-Id: <20240528-pwrseq-v8-2-d354d52b763c@linaro.org>
 References: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -99,26 +99,26 @@ Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5018;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2562;
  i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=Qkeb9YORIDfkvwkp+GlKEgMos9lOvfcfa7/lVVyOAJo=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqMCQ/7vIZDzBIYID6EF7Nm5cHxYRr8KSj2h
- LnquCFgGt+JAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqjAAKCRARpy6gFHHX
- cihkD/0SSyWXBlx16ygZBVfA5mClNZjjlHCSb0a0oKurV28LhpE8Ywi7P/dafyU5VNjvLPsTGzW
- VzdDWjnAljTr21lVO2sU7RjDsL20cya9kwiFh9bWd8SKR3n9Wf9ZAkQQ2B3mEYrQB4HF8Jta66D
- orpfmCzzOusEyyX+NGHq+Bxwm0md4ba7VNzouizzBCZ1D9JIjQsXURxxKh99R/Mivhusckdlx9j
- sdsWzoHFCbb3rCRp2Jl9n9p5U0g5lN/cnoGZ0rVA8Jdz4/CY1Est956oKIYiIAV8Rp6Vv6a+UmT
- uw+oBs1iLjxTog/r4er2YKzTknHe/xlWf4/FCdAVac1Yno7ApdLLXtxP0YoCR89XeHC2VzErg2X
- ICz7ZGhPdo+47loMVwrA2XhI2GEmJkUjBmgCgXYHIc9KfrIl7bq5jGxD7f+q2eq14wQ52TLdaND
- +gf9RlbC7Y5f70cnBNG8JpWPPAVLIjgBCHRzAvenDd/TC8irL457L0WS1hGSo2tuY8u8XpbqO0n
- /QAJvHhTDNEDHUVs5vRIt1nugKXfzoay9uQ7jG4BpZODjQX46RbAfXtKpNYhw6XhojPhgfzVNeB
- 3cG9Is1qrCw00o788jXSrT/CU8jTcynrBXEUa5fwLPOx3rd68LzGtTLTVGVs9GNN5HTYxkGaolj
- cjFiCfxfmEZHUQw==
+ bh=nIq2ZrI+2J8wWzUlSGNJuD+/fuNY97wIAceF1yEhqMY=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqMCMh0XlDYXajqmjXXmuj8/4NW5g5yO6PrS
+ V94gVmLw5GJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqjAAKCRARpy6gFHHX
+ ckfyD/kBiPhd5RtEIWrboqOXgS0zbovWj36MTcHNi2ZlVV2hPQ+fx5L44A+Liypg3s8bKsIRZO6
+ iSJxOpQUKsND1M1eV76xNp5dwEwPOFXUvgvpXfoMNVmDqfHFisBAdPAuZgQWT7L/hbDJsMAlgfa
+ zL5p+YQE8cgFPjQ5g2AUOK6jxwTIN5gDrtwRWg7G7m67/jToqRPkk6wksPbbthckUZLJ1QMTjaV
+ bJzeuQBa3kDX8lPqD8WZHKwWyuBaiMShy2e8MIXJ4CPIzgwWQkgJ6omxkwFpJeeAd6qjrXOlE3D
+ DzjSvKpReD/tS7xfejwZwHwvS+HLUhzPMopsHkCRpznIDOVL4swvKYgaZrMnFe3IINMOnH+rhO8
+ zzzU97xT5cJhs9OfC5u4JwDCHFfJ6XGAG1RK/cZo4P0pA3P9rkA89gO2WQw/1IJgVh0x/4hSyZW
+ FnYn60tOGi7fe7m9CJ4q+VftA2JYfPbtbPk9GeJk8CG2OZbkbZkXeeZUpv+IKg+tihbArxm8Nl8
+ e+FdfSjVNGpKxQC2aVIRhfY34/xXrId9Ggqu7Ho4PF+Ki2lRwhbT1NoBBwjE3v4alEFd8uTnoWb
+ Gzr5/MEU8hfh05PMd7wOkQeigMrSinrGUCJnBhBChnPi8qIbq/URbJf0GM0YNqUIVNC2Ku5D/4a
+ 2xy+3VAujkLYrQA==
 X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240528_120352_252003_653D0E4F 
-X-CRM114-Status: GOOD (  11.81  )
+X-CRM114-CacheID: sfid-20240528_120353_376563_3B3713CA 
+X-CRM114-Status: GOOD (  10.28  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,174 +135,92 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
+The WCN7850 package contains discreet modules for WLAN and Bluetooth. They
 are powered by the Power Management Unit (PMU) that takes inputs from the
-host and provides LDO outputs. This document describes this module.
+host and provides LDO outputs. Extend the bindings for QCA6390 to also
+document this model.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Acked-by: Mark Brown <broonie@kernel.org>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/regulator/qcom,qca6390-pmu.yaml       | 151 +++++++++++++++++++++
- 1 file changed, 151 insertions(+)
+ .../bindings/regulator/qcom,qca6390-pmu.yaml       | 36 +++++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-new file mode 100644
-index 000000000000..9d39ff9a75fd
---- /dev/null
+index 9d39ff9a75fd..2e543661a1e2 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
 +++ b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-@@ -0,0 +1,151 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+@@ -16,20 +16,37 @@ description:
+ 
+ properties:
+   compatible:
+-    const: qcom,qca6390-pmu
++    enum:
++      - qcom,qca6390-pmu
++      - qcom,wcn7850-pmu
 +
-+title: Qualcomm Technologies, Inc. QCA6390 PMU Regulators
++  vdd-supply:
++    description: VDD supply regulator handle
+ 
+   vddaon-supply:
+     description: VDD_AON supply regulator handle
+ 
++  vdddig-supply:
++    description: VDD_DIG supply regulator handle
 +
-+maintainers:
-+  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+   vddpmu-supply:
+     description: VDD_PMU supply regulator handle
+ 
++  vddio1p2-supply:
++    description: VDD_IO_1P2 supply regulator handle
 +
-+description:
-+  The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
-+  are powered by the Power Management Unit (PMU) that takes inputs from the
-+  host and provides LDO outputs. This document describes this module.
+   vddrfa0p95-supply:
+     description: VDD_RFA_0P95 supply regulator handle
+ 
++  vddrfa1p2-supply:
++    description: VDD_RFA_1P2 supply regulator handle
 +
-+properties:
-+  compatible:
-+    const: qcom,qca6390-pmu
+   vddrfa1p3-supply:
+     description: VDD_RFA_1P3 supply regulator handle
+ 
++  vddrfa1p8-supply:
++    description: VDD_RFA_1P8 supply regulator handle
 +
-+  vddaon-supply:
-+    description: VDD_AON supply regulator handle
-+
-+  vddpmu-supply:
-+    description: VDD_PMU supply regulator handle
-+
-+  vddrfa0p95-supply:
-+    description: VDD_RFA_0P95 supply regulator handle
-+
-+  vddrfa1p3-supply:
-+    description: VDD_RFA_1P3 supply regulator handle
-+
-+  vddrfa1p9-supply:
-+    description: VDD_RFA_1P9 supply regulator handle
-+
-+  vddpcie1p3-supply:
-+    description: VDD_PCIE_1P3 supply regulator handle<S-Del>
-+
-+  vddpcie1p9-supply:
-+    description: VDD_PCIE_1P9 supply regulator handle
-+
-+  vddio-supply:
-+    description: VDD_IO supply regulator handle
-+
-+  wlan-enable-gpios:
+   vddrfa1p9-supply:
+     description: VDD_RFA_1P9 supply regulator handle
+ 
+@@ -50,6 +67,10 @@ properties:
+     maxItems: 1
+     description: GPIO line enabling the ATH11K Bluetooth module supplied by the PMU
+ 
++  clocks:
 +    maxItems: 1
-+    description: GPIO line enabling the ATH11K WLAN module supplied by the PMU
++    description: Reference clock handle
 +
-+  bt-enable-gpios:
-+    maxItems: 1
-+    description: GPIO line enabling the ATH11K Bluetooth module supplied by the PMU
-+
-+  regulators:
-+    type: object
-+    description:
-+      LDO outputs of the PMU
-+
-+    patternProperties:
-+      "^ldo[0-9]$":
-+        $ref: regulator.yaml#
-+        type: object
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - regulators
-+
-+allOf:
+   regulators:
+     type: object
+     description:
+@@ -83,6 +104,19 @@ allOf:
+         - vddpcie1p3-supply
+         - vddpcie1p9-supply
+         - vddio-supply
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
-+            const: qcom,qca6390-pmu
++            const: qcom,wcn7850-pmu
 +    then:
 +      required:
-+        - vddaon-supply
-+        - vddpmu-supply
-+        - vddrfa0p95-supply
-+        - vddrfa1p3-supply
-+        - vddrfa1p9-supply
-+        - vddpcie1p3-supply
-+        - vddpcie1p9-supply
++        - vdd-supply
 +        - vddio-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    pmu {
-+        compatible = "qcom,qca6390-pmu";
-+
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
-+
-+        vddaon-supply = <&vreg_s6a_0p95>;
-+        vddpmu-supply = <&vreg_s2f_0p95>;
-+        vddrfa0p95-supply = <&vreg_s2f_0p95>;
-+        vddrfa1p3-supply = <&vreg_s8c_1p3>;
-+        vddrfa1p9-supply = <&vreg_s5a_1p9>;
-+        vddpcie1p3-supply = <&vreg_s8c_1p3>;
-+        vddpcie1p9-supply = <&vreg_s5a_1p9>;
-+        vddio-supply = <&vreg_s4a_1p8>;
-+
-+        wlan-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-+        bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-+
-+        regulators {
-+            vreg_pmu_rfa_cmn: ldo0 {
-+                regulator-name = "vreg_pmu_rfa_cmn";
-+            };
-+
-+            vreg_pmu_aon_0p59: ldo1 {
-+                regulator-name = "vreg_pmu_aon_0p59";
-+            };
-+
-+            vreg_pmu_wlcx_0p8: ldo2 {
-+                regulator-name = "vreg_pmu_wlcx_0p8";
-+            };
-+
-+            vreg_pmu_wlmx_0p85: ldo3 {
-+                regulator-name = "vreg_pmu_wlmx_0p85";
-+            };
-+
-+            vreg_pmu_btcmx_0p85: ldo4 {
-+                regulator-name = "vreg_pmu_btcmx_0p85";
-+            };
-+
-+            vreg_pmu_rfa_0p8: ldo5 {
-+                regulator-name = "vreg_pmu_rfa_0p8";
-+            };
-+
-+            vreg_pmu_rfa_1p2: ldo6 {
-+                regulator-name = "vreg_pmu_rfa_1p2";
-+            };
-+
-+            vreg_pmu_rfa_1p7: ldo7 {
-+                regulator-name = "vreg_pmu_rfa_1p7";
-+            };
-+
-+            vreg_pmu_pcie_0p9: ldo8 {
-+                regulator-name = "vreg_pmu_pcie_0p9";
-+            };
-+
-+            vreg_pmu_pcie_1p8: ldo9 {
-+                regulator-name = "vreg_pmu_pcie_1p8";
-+            };
-+        };
-+    };
++        - vddaon-supply
++        - vdddig-supply
++        - vddrfa1p2-supply
++        - vddrfa1p8-supply
+ 
+ additionalProperties: false
+ 
 
 -- 
 2.43.0
