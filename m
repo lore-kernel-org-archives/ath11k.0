@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F96AC25B78
-	for <ath11k@archiver.kernel.org>; Tue, 28 May 2024 19:04:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66DEEC25B7E
+	for <ath11k@archiver.kernel.org>; Tue, 28 May 2024 19:04:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gFU0fFDLXBVTpEVhQ1putOMYxJzP0S29Lv1LacuJjZ8=; b=JuwsVLGjJo1eOOSmJseIu+zJD7
-	4XajFd6WK2fEkRCMioQDuojfP3gAE2vgGS44LnvFnaHv5U4ZgWhUWJHhbkM/cEN2Oc+xlt+kTCE/U
-	VmSfgC5pUa27RLncP8WiV2yLGaGaOkL/iXE8X6FjWoL7msGENWCcDkxpicv6CxG9IGBqkp4Q/tWu0
-	LcVfNbVccic258AJGUXyxDUCmWxX0+KfOV2ngacVl6QRB7hW/qCRI18qUaUt3KHmpbyrRbchqjsjx
-	/iUetZePCo0GePY/7DkcHFXE9dlQdk03oWDJ4T9TiMmK0judZ23V8LHW7RzPAqq358u01rP5a8b6Z
-	xO96Enmw==;
+	bh=ZIAqX/A7cyBOqcNtjCtgW6nW/To9B5cWPZdLS8273K0=; b=0ueCY1ph7mFP6afhp4ZBcfC6xO
+	iNJ9Xfzd3AF5tNauFBom0PQXrGPMWT9FAxwQUe9AZGqk3E2N38bFx8dNWVDJUkSRDZbbJdX0jBCN5
+	R143YiA4mB6MG/eVUNV+IYxHt/wg7D39nRamGnmy2XJJ2T2KtujZ+NFzqjiMF4hR3Rl38yh36p25A
+	uAuzvC93/1Nfj/+BUuZ2e2nbvwyQFg7yUSKi/uv+mUH2CZaQ8+2+nSENaYJYBIr3D8ZptAJfIEyuh
+	V1PhLQF4tTtCWjeylCkHRW3Se4PO1yw8laprFXd5EqHz/z7kkl37FoL8MOWcI+4HQVjgyPWzWtfxR
+	iDYPJssQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC27r-00000001kO4-1j6T;
-	Tue, 28 May 2024 19:04:47 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1sC27x-00000001kT5-3rw0;
+	Tue, 28 May 2024 19:04:53 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sC27D-00000001jnc-1fQf
+	id 1sC27E-00000001jpk-1i6C
 	for ath11k@lists.infradead.org;
-	Tue, 28 May 2024 19:04:14 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4210c9d1df6so10136525e9.2
-        for <ath11k@lists.infradead.org>; Tue, 28 May 2024 12:04:05 -0700 (PDT)
+	Tue, 28 May 2024 19:04:17 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-420180b5897so10012925e9.3
+        for <ath11k@lists.infradead.org>; Tue, 28 May 2024 12:04:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923044; x=1717527844; darn=lists.infradead.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923047; x=1717527847; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gFU0fFDLXBVTpEVhQ1putOMYxJzP0S29Lv1LacuJjZ8=;
-        b=xNklBJdNqHzwRcMlIs9MXOfebjS3V6pqaVbSkBbz5zxQADkucW0sK7/3loC5tgufZB
-         /fXCy2txXdpv//rppPKJ7ict9z451N7n4mDUVt9vpx2X2KgDMAFMDrCuWMlkVmvUKiCK
-         UczCj7W2OnsND4Zr7Pz8itGTtszfaRTm01w3LzDiaU6tQjsiu64NmY0eo2y2/qRjBR4y
-         Mxixv9/8lh/Jkp40hSYZo5keooXn56Bcv/Jq7bMOOU7regptoqRHUhTSf5MBY96QKxmm
-         ILbEDLpBAVZ6L4cZz1G3AmR4ZLEZSQrN5KhD+kX+vKuXYm4l2KrWkL63kq7fU48+70XU
-         7Jfw==
+        bh=ZIAqX/A7cyBOqcNtjCtgW6nW/To9B5cWPZdLS8273K0=;
+        b=Jv/XFrPCpbM8I0ITY7tmgyhPR71eeRGJNWl2038lOz0jM2R4VAtdtmpXv0mEQT8Ffo
+         w6yqAcWOdgvSXWQsAcItN/BsHaIeLS2fYRjyVQiIGb8T4zMeZ1FZNz4J/ZH0j+KJJjmL
+         fWItsExtc3puvTyYEDgnJ66emk37mAI64ZoQNx3cKqWRCCO2ugxB6xGR/atfd4CI4n0M
+         XSCWYdUPlMk10UoI1iZKSys5+NyE1O+annLrvRNZ6RpvEtt2RQmhOyEGTy/AUqWF7zfo
+         XzPLpg4Wth+1PQYYwtliojO1zYWTMDPr/BitBqKzgXXLOzyakKMvhIWeXsJeEYX7ri+h
+         2BTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716923044; x=1717527844;
+        d=1e100.net; s=20230601; t=1716923047; x=1717527847;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gFU0fFDLXBVTpEVhQ1putOMYxJzP0S29Lv1LacuJjZ8=;
-        b=qS+iWlwsqV6EvbhVlJzyPa2J3iynggYriQD3fAfoPZK5k4tipkfjyDK2+CVSdIAMdR
-         e2zZ7/lt0jP5H1+s/0C4yXImDFGvyCD2xM4qC2GF5nlXeqd28CQ5RbTGpqd9FxDAFgUa
-         JaII3PFE8Inry4VidhnIp0i0I1E4XOoolXGM9LD0nL896/YxYzP+9yJILD1fqxeqzwEk
-         NBYZzYlPXxG6gDLSfSDlIURY3QfEJt1fg+IL4tk9X1nfYOlYxTZgF6uTwH06K2NIvm13
-         39SBJ/345XQrkiDcWWWsHNF6zUm8XMILNiVjcg9RSySS7u2YXI0ghKMN0uC1f1tuImHY
-         MG4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXMizjZDfGvyKuFs/jEr7570GyDVg5sEzWBdJbUmrwZitfakMOf/iOXd5vwYl3/X7A6klvbB/d7ZYsCtpdfBAfBz6AbT5fzyktmQQ==
-X-Gm-Message-State: AOJu0Yy5DXOADYjRo7CpO4Di8PnkpUI305oN5fKqR/pZCK7syhTCM/Ok
-	CwNxH506vkulSlP0VVXQbNgNg0/QJYHbTO/EC5P1+WKDBubrRFxLBTT8Q7rg/zY=
-X-Google-Smtp-Source: AGHT+IG6B6kXReUvfOK7G13iUYw63mXLE+oQ5Xs7Zu/A92odTJ2Gt2f1pgs9Npx0RVH6n2yeZy3ueQ==
-X-Received: by 2002:a05:600c:5719:b0:420:173f:e1e9 with SMTP id 5b1f17b1804b1-421089e97bcmr91269195e9.21.1716923044209;
-        Tue, 28 May 2024 12:04:04 -0700 (PDT)
+        bh=ZIAqX/A7cyBOqcNtjCtgW6nW/To9B5cWPZdLS8273K0=;
+        b=Ei0e0iURGVzSBE41c3jbP15mfK6K3Jp4l8aZwluLq3JDgPI+2jrra+ngAV5bSVJDed
+         X6x907AWi+VgEKKH9M6yh5RTmihBvmZT9Wyi5sakxoN5zYfxxynplL72kvGWFFRIUsVr
+         bcGIayqbC3yqR6l3ov8NhcvV+S65usAmS9UROBU1tKrRep+p8TfzQ3te05MZEt61JYXU
+         zbrHevUYzd+trM21J9icL8OR4/6RzerR9MgdsQEIMSmsNr3IubV7poaFvgx/x1Y7Q9LB
+         mESJ+KCqFwchNXNtpE1Z9+ncG2i4HhFYepptRC6czhaZ/+fLTqFTiXgi7EtELy8zJDwl
+         8MDA==
+X-Forwarded-Encrypted: i=1; AJvYcCURNPvTpD5vYERTLwX3QjCNJRQlDADFn5JEgJgYAWg3Xc01rQILvGP2/xYxPEz7teBfBUprCc358JnCmZ0/cxSjRcNSYG8sIohAhg==
+X-Gm-Message-State: AOJu0YyZ9NfRdeIbPv8oE8YAbOLp0wo4n1CntjhU6becch9Sgu+in/wZ
+	vmHOzNzpnm+kH0gPq+JpJ9HRBHwKVaq3tucBUbdXx75NHDrTyqB1xgnUnjnBLQI=
+X-Google-Smtp-Source: AGHT+IHz0lkGSUV61P5eSq7TShjaoltPA0/QAdOG/j0o1z0ZCy0AcWo0waox12rHLA8DHj/vEX/Bzw==
+X-Received: by 2002:a05:600c:46c4:b0:41a:e995:b924 with SMTP id 5b1f17b1804b1-42108a0b91dmr82051805e9.33.1716923046905;
+        Tue, 28 May 2024 12:04:06 -0700 (PDT)
 Received: from [127.0.1.1] ([2a01:cb1d:75a:e000:93eb:927a:e851:8a2f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.04.03
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.04.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 12:04:03 -0700 (PDT)
+        Tue, 28 May 2024 12:04:06 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 28 May 2024 21:03:20 +0200
-Subject: [PATCH v8 12/17] PCI: hold the rescan mutex when scanning for the
- first time
+Date: Tue, 28 May 2024 21:03:22 +0200
+Subject: [PATCH v8 14/17] PCI/pwrctl: create platform devices for child OF
+ nodes of the port node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240528-pwrseq-v8-12-d354d52b763c@linaro.org>
+Message-Id: <20240528-pwrseq-v8-14-d354d52b763c@linaro.org>
 References: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -99,26 +99,26 @@ Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com, 
  Amit Pundir <amit.pundir@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=914;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2188;
  i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=kuyJTCA9fdYhUGDXvoePXqDSaNb9NruStgSbf5wa/1E=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqP/eY7rIuS/eQw4O3UlON8rwdGRoMGUP7rz
- yzNVdBe65WJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqjwAKCRARpy6gFHHX
- cvKjD/9WKJ6xrPFHjBRP7ktzwHOQmaTfICHaHJtV3PV0foF3NVt3xBjv/3MfTIoDHxKL/27sUbX
- AX0c1HDDrhyg+xUEwP3Ldeoi+bmJKHTPpBgTuLU0F9ax8+nQsFBoHyOQwaIFebtMFB0f8GE+xA0
- jsxo/VePbSMksuxs1v066MNDPpVjKPx/BS6ZmdWbZU/Fhw/PA83vcPyKHyS+gSwR+/a6naEoIDG
- /r4rQ1fIQMD+/LMFzTJYgTkk5dh96SRuGfQ0HgYSfbWr42EdZUbFyMDhgUiqQceMOBwexPlqd0J
- BOASeFIGFOYM7lyG+0RBjDGGbtg9P3D8EF5EbrI5IMHMJGEPlOdEEHydvZ3irbtN/FdyTQcps60
- W3h5F7J/GEci3w5eTef3u2+nLFBD7+v/IzE/U+e/ISniyUz+HOqEMZ2cfKGAqvzBXOFxzAONnzI
- GUn45522td18GWGJ2IQq6PWkohJhco7ANiMaK/pwgGkemTt34e2f56iqSkaw2hhTnzrI1oaIP7K
- SsLgff5wn0FMZqpU/xOqN1gUJ6dCL9fQiFa32Acmjqlhp9qs/MVZY6ri19ncKXCEPITAp6Qv/Rm
- AK96m/GOCFcx5h2BnodJx318PL5gOmyFiDLn7oaEdmqmPq2rpC9akype843qdeE5gZ0F8jt0z/I
- Tu7x3hngIac7MMA==
+ bh=JjTaqS3wTDZBLouvY0ZN3GdR/yNW7FaquCkQXG8PeWA=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqQjRkZ9uZOgI/9NbVSvh6khAK880XtupTre
+ fVqi1WIceiJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqkAAKCRARpy6gFHHX
+ cmNaEACVAeQ8jz+bWQVF+5dvErJuYBGMqjrtYZBxIdGU7EEGgixkfvwFd0AQFhVe8FqHHJWKs4M
+ N06NxP7um7vj/xY0SfElsVbf+NXxYsM/OsZkE5qf3kbBQLhacRowt34vhWGfcUsx5+XxzhS7Rpp
+ ZC/AmPx6sldLAcNvvUYEhb3WuryaMZO9/NLnNJN/zXoWSCAeQ4MkYMER3sGq/OCEL+BRb3yXK6L
+ +A/foR6+Bv4ztyECvXpNXmtr9ObiJT+48LDRaVfwS45XtSUXzS5GHthSGZdDwT0A1ZtqcXIKKmY
+ QSyNKVJtljr5mhnonYU/9zmEVtnqMieZAEtXNkgHGNaNeronuzQJX1sKQgB6Qndnq0YIM3asebV
+ xNjkBK1Rh0jpTCyCmiZvkJjPIc5oImwGBOemuaCf52tUlJliwsQeVRHE0L1ZFz/F+XHu0wIYpPQ
+ NTvkWV6EnUUhJnNGnFqu8fYCf/Fv8WNUhsV6dBrkdryH5PbhY2mXT6diVfTMtgqF20al/woinO6
+ tOD/o3bSvczc/u8MisHsUmc/Ld9q5YcMsEIMHkZoj8HGHfVzuQEIaRoHV9uux0vxqEHswcwN6xG
+ 3nwdBlbptcXMcK3gE/GtdGmeQHOFv2XgC1fQBmKkzyGQfTERVXvRfFnKII7vGfrEBNhWiqtTKwe
+ GoKcrXlo0l1BGgw==
 X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240528_120408_426870_E09EB851 
-X-CRM114-Status: GOOD (  10.55  )
+X-CRM114-CacheID: sfid-20240528_120408_940755_01925A41 
+X-CRM114-Status: GOOD (  15.10  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,31 +135,73 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-With the introduction of PCI device power control drivers that will be
-able to trigger the port rescan when probing, we need to hold the rescan
-mutex during the initial pci_host_probe() too or the two could get in
-each other's way.
+In preparation for introducing PCI device power control - a set of
+library functions that will allow powering-up of PCI devices before
+they're detected on the PCI bus - we need to populate the devices
+defined on the device-tree.
+
+We are reusing the platform bus as it provides us with all the
+infrastructure we need to match the pwrctl drivers against the
+compatibles from OF nodes.
+
+These platform devices will be probed by the driver core and bound to
+the PCI pwrctl drivers we'll introduce later.
 
 Tested-by: Amit Pundir <amit.pundir@linaro.org>
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- drivers/pci/probe.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/pci/bus.c    | 9 +++++++++
+ drivers/pci/remove.c | 3 ++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 8e696e547565..604fc96b1098 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -3072,7 +3072,9 @@ int pci_host_probe(struct pci_host_bridge *bridge)
- 	struct pci_bus *bus, *child;
- 	int ret;
+diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
+index 826b5016a101..3e3517567721 100644
+--- a/drivers/pci/bus.c
++++ b/drivers/pci/bus.c
+@@ -12,6 +12,7 @@
+ #include <linux/errno.h>
+ #include <linux/ioport.h>
+ #include <linux/of.h>
++#include <linux/of_platform.h>
+ #include <linux/proc_fs.h>
+ #include <linux/slab.h>
  
-+	pci_lock_rescan_remove();
- 	ret = pci_scan_root_bus_bridge(bridge);
-+	pci_unlock_rescan_remove();
- 	if (ret < 0) {
- 		dev_err(bridge->dev.parent, "Scanning root bridge failed");
- 		return ret;
+@@ -354,6 +355,14 @@ void pci_bus_add_device(struct pci_dev *dev)
+ 		pci_warn(dev, "device attach failed (%d)\n", retval);
+ 
+ 	pci_dev_assign_added(dev, true);
++
++	if (pci_is_bridge(dev)) {
++		retval = of_platform_populate(dev->dev.of_node, NULL, NULL,
++					      &dev->dev);
++		if (retval)
++			pci_err(dev, "failed to populate child OF nodes (%d)\n",
++				retval);
++	}
+ }
+ EXPORT_SYMBOL_GPL(pci_bus_add_device);
+ 
+diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
+index d749ea8250d6..910387e5bdbf 100644
+--- a/drivers/pci/remove.c
++++ b/drivers/pci/remove.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ #include <linux/pci.h>
+ #include <linux/module.h>
++#include <linux/of_platform.h>
+ #include "pci.h"
+ 
+ static void pci_free_resources(struct pci_dev *dev)
+@@ -18,7 +19,7 @@ static void pci_stop_dev(struct pci_dev *dev)
+ 	pci_pme_active(dev, false);
+ 
+ 	if (pci_dev_is_added(dev)) {
+-
++		of_platform_depopulate(&dev->dev);
+ 		device_release_driver(&dev->dev);
+ 		pci_proc_detach_device(dev);
+ 		pci_remove_sysfs_dev_files(dev);
 
 -- 
 2.43.0
