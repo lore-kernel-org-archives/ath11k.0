@@ -4,67 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 612EBC25B75
-	for <ath11k@archiver.kernel.org>; Wed, 29 May 2024 15:16:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFA89C25B75
+	for <ath11k@archiver.kernel.org>; Wed, 29 May 2024 15:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=d2TXSyatvCn81BU/vsxpojva3z19uCxL/E5qJNcAhcM=; b=TrlzjVbx3coO1vhorDVJvquJbF
-	zd0XYsUE/eHN0KEYHLPBveu1qScm7C5Ci6Pu+j6LRJfS9UgklD2xMxuwz/z81Yq/Ty5MfEQCBV8Zr
-	MmYpOF5BIheiOJA4IQKyjE8plOhRJxQ+i/vqtbEg9OGRNF75q/KFpFFLeFGIjB21+dpy3wxDWZOVY
-	Qw+Foc0h4J3Bxo/uvW5az6AlCt5omjkUQqa/YxPae3NBWoEvl1gSIsUTNlri2bo0yhrVoshBRSinL
-	m0rjp4hZrU5h/l6YnZQgtZkPlp88Gx6StlZNg8llKZcV7JSujOQA2Bd3TyrR6xvbTNCgmQVNpVLhV
-	VMgc2otw==;
+	bh=VARqXBFDwEMLKE6qIvB72ivW4EKZdIa/kyIpg1Ejg0s=; b=szUSqdFclmezks83Sx9+/NDC7a
+	s/LnEkxy1vSvO6NYl7V+VPkl5mei1wtEikGCyy5EV5mWjrQgWO9d9f9XzTBWocuBRymc3eL6Yciu+
+	ivu1Cs8nws+68W3UPuJSAo9ttdIkenmKnQsKVQVJVnG1aunk8iUeNJK9esU94MMqrLsJ/qD0KvjWr
+	ya3BzLfVTwlwJMfmMAWDDMQR/68Ku5FSOXLy5rdGvXOJ5cDBEgeQ0IgVeclsR7tFAu1hlAg5AjlWg
+	rpGrmdLjjRVknI3SwJ4B1W/xRYJ7USYFSvKCAqjK6ANa2TKZmoAn5ak5KPQh8XhLTMutNuWKk6/y9
+	J6INl67A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sCL22-00000004eCP-2vY4;
-	Wed, 29 May 2024 15:16:02 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1sCLhN-00000004nIY-1jfH;
+	Wed, 29 May 2024 15:58:45 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sCL1y-00000004eBk-27Hi
+	id 1sCLhJ-00000004nGp-1huT
 	for ath11k@lists.infradead.org;
-	Wed, 29 May 2024 15:16:00 +0000
+	Wed, 29 May 2024 15:58:43 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id B764CCE0AC8;
-	Wed, 29 May 2024 15:15:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0FFAC113CC;
-	Wed, 29 May 2024 15:15:53 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 19FCF60DB9;
+	Wed, 29 May 2024 15:58:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 491BCC113CC;
+	Wed, 29 May 2024 15:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716995754;
-	bh=eWUByR0VEiRUW96ijAZ5GiNZ6VAiv1wvv2G+yWAVIMc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m9RGkqp0sAdEZhLCuT0KAmONCe0N9V3i3TP9LujkWb1Peph3Bbpm59h01mNhvBp+y
-	 zSCtIFc52nB47iBl28g4GxQohnd9QDR1rhbJ7fEitzTvzu6MIWBJYj+gIYnkirIg0M
-	 K+c5FOIEaWmJbwRu8FDwktmVMql9TDHUteqS0py5Z066a9TEmj0LNXfuySFY2uXkya
-	 /Ry+iD6ktMlxGh23arxufMnZX+sZ+UPD4XqLX6cCB+9S1dCwLO99ssnHTlBqHqRuw9
-	 miQpI+h0GCjr8dp/+LJEdmk9pTcGjljxGDFxJNjlJRwPsqrpiVhbllhz+LD8HQcmsc
-	 at1XrTcYdKazQ==
-Date: Wed, 29 May 2024 10:15:52 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: wireless: ath11k: Drop
- "qcom,ipq8074-wcss-pil" from example
-Message-ID: <20240529151552.GA2525043-robh@kernel.org>
-References: <20240528134610.4075204-1-robh@kernel.org>
- <171697351470.2158278.1110328163301153386.kvalo@kernel.org>
+	s=k20201202; t=1716998319;
+	bh=ufyQbqT93SwSt4s4JqmoiAB/zHJa/FMuOgckZ/BR4TU=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=fypTA+JW2IV7pVP1qSfV1ol4Ja9TfGeBVVJx8MRhuBAJGIEN1e8OFOne5tbK7RN2a
+	 D0LvLXsB5H5+Gy+2++biOK246LPXm1vkQzR9dwUErgCpKivRZRfiAf8HPNiTGKX9pU
+	 oWErLgw+ObFGOiZhKOKrIKTl3UdfBp0zLwwvyhBPfMijoZcJ4GqJGbGRVpxLiXLuK3
+	 rlD365rHM/V9afV0i+oKhcXyHY2VXEmAZKWOS9YOv4s3qcmAjzDtAySsurpBtSy2FR
+	 KYwVbp/sbn1MbK0yr5b9F++Zx1/dfnPzTxAlo4T5Gd8s0DbfhjRb+ud079yR5zNYSX
+	 CxazeMz/4IGdw==
+From: Kalle Valo <kvalo@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org,  ath11k@lists.infradead.org,
+  regressions@lists.linux.dev,  Jeff Johnson <quic_jjohnson@quicinc.com>,
+ Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [regression] BUG: KASAN: use-after-free in
+ lockdep_register_key+0x755/0x8f0
+References: <87v82y6wvi.fsf@kernel.org>
+Date: Wed, 29 May 2024 18:58:36 +0300
+In-Reply-To: <87v82y6wvi.fsf@kernel.org> (Kalle Valo's message of "Tue, 28 May
+	2024 13:42:25 +0300")
+Message-ID: <87wmncwqxf.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <171697351470.2158278.1110328163301153386.kvalo@kernel.org>
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240529_081558_762695_F1F38707 
-X-CRM114-Status: GOOD (  10.53  )
+X-CRM114-CacheID: sfid-20240529_085841_785112_09C3263E 
+X-CRM114-Status: GOOD (  18.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,19 +74,101 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, May 29, 2024 at 09:05:16AM +0000, Kalle Valo wrote:
-> "Rob Herring (Arm)" <robh@kernel.org> wrote:
-> 
-> > Convention for examples is to only show what's covered by the binding,
-> > so drop the provider "qcom,ipq8074-wcss-pil". It is also not documented
-> > by a schema which caused a warning.
-> > 
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> I'll take this to our ath.git tree, ok?
+Kalle Valo <kvalo@kernel.org> writes:
 
-Yes, that's what I'm expecting.
+> Yesterday I run our ath11k regression tests with v6.10-rc1 and our
+> simple ath11k module reload stress started failing reliably with various
+> KASAN errors. The test removes and inserts ath11k and other wireless
+> modules in a loop. Usually I run it at least 100 times, some times even
+> more, and no issues until yesterday.
+>
+> I have verified that the last wireless-next pull request (tag
+> wireless-next-2024-05-08) works without issues and v6.10-rc1 fails
+> always, usually within 50 module reload loops. From this I'm _guessing_
+> that we have a regression outside wireless, most probably introduced
+> between v6.9 and v6.10-rc1. But of course I cannot be sure of anything
+> yet.
+>
+> I see different KASAN warnings and lockdep seems to be always visible in
+> the stack traces. I think I can reproduce the issue within 15 minutes or
+> so. Before I start bisecting has anyone else seen anything similar? Or
+> any suggestions how to debug this further?
+>
+> I have included some crash logs below, they are retrieved using
+> netconsole. Here's a summary of the errors:
+>
+> [ 159.970765] KASAN: maybe wild-memory-access in range
+> [0xbbbbbbbbbbbbbbb8-0xbbbbbbbbbbbbbbbf]
+> [  700.017632] BUG: KASAN: use-after-free in lockdep_register_key+0x755/0x8f0
+> [  224.695821] BUG: KASAN: slab-out-of-bounds in lockdep_register_key+0x755/0x8f0
+> [  259.666542] BUG: KASAN: slab-use-after-free in lockdep_register_key+0x755/0x8f0
 
-Rob
+I did a bisect and got this:
+
+cf29111d3e4a9ebe1cbe2b431274718506d69f10 is the first bad commit
+commit cf29111d3e4a9ebe1cbe2b431274718506d69f10
+Merge: ed11a28cb709 e6f7d27df5d2
+Author: Bjorn Helgaas <bhelgaas@google.com>
+Date:   Thu May 16 18:14:11 2024 -0500
+
+    Merge branch 'pci/of'
+    
+    - Check for kcalloc() failure and handle it gracefully (Duoming Zhou)
+    
+    * pci/of:
+      PCI: of_property: Return error for int_map allocation failure
+
+ drivers/pci/of_property.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+But that doesn't make any sense to me, I don't even have
+CONFIG_PCI_DYNAMIC_OF_NODES enabled in my .config. I guess I did a
+mistake during bisect, I'm now testing the parents (e6f7d27df5d2 and
+ed11a28cb709) and trying to pinpoint where I did it wrong.
+
+Adding Bjorn in case he has any ideas. This might be something PCI
+related based on my bisect log (but just guessing at this point):
+
+git bisect start
+# status: waiting for both good and bad commits
+# good: [a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6] Linux 6.9
+git bisect good a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
+# status: waiting for bad commit, 1 good commit known
+# good: [1d60eabb82694e58543e2b6366dae3e7465892a5] wifi: mwl8k: initialize cmd->addr[] properly
+git bisect good 1d60eabb82694e58543e2b6366dae3e7465892a5
+# status: waiting for bad commit, 2 good commits known
+# bad: [1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0] Linux 6.10-rc1
+git bisect bad 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+# good: [d34672777da3ea919e8adb0670ab91ddadf7dea0] Merge tag 'fbdev-for-6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev
+git bisect good d34672777da3ea919e8adb0670ab91ddadf7dea0
+# good: [a90f1cd105c6c5c246f07ca371d873d35b78c7d9] Merge tag 'turbostat-for-Linux-6.10-merge-window' of git://git.kernel.org/pub/scm/linux/kernel/git/lenb/linux
+git bisect good a90f1cd105c6c5c246f07ca371d873d35b78c7d9
+# bad: [29c73fc794c83505066ee6db893b2a83ac5fac63] Merge tag 'perf-tools-for-v6.10-1-2024-05-21' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
+git bisect bad 29c73fc794c83505066ee6db893b2a83ac5fac63
+# good: [30aec6e1bb617e1349d7fa5498898d7d4351d71e] Merge tag 'vfio-v6.10-rc1' of https://github.com/awilliam/linux-vfio
+git bisect good 30aec6e1bb617e1349d7fa5498898d7d4351d71e
+# bad: [8053d2ffc4502bbb50a78c805d964e65a6de1803] Merge tag 'phy-for-6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy
+git bisect bad 8053d2ffc4502bbb50a78c805d964e65a6de1803
+# bad: [f0bae243b2bcf2b160ae547463bf542762beef8f] Merge tag 'pci-v6.10-changes' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+git bisect bad f0bae243b2bcf2b160ae547463bf542762beef8f
+# good: [38da32ee70b876f5b8bea7c4135eff46339c18f2] Merge tag 'pull-bd_inode-1' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+git bisect good 38da32ee70b876f5b8bea7c4135eff46339c18f2
+# good: [ed11a28cb709a9ab69c4cd4e0669079a455f9a8d] Merge branch 'pci/msi'
+git bisect good ed11a28cb709a9ab69c4cd4e0669079a455f9a8d
+# bad: [102c69699b5b5d4aebfe8d15d5f91bde68dababd] Merge branch 'pci/controller/mt7621'
+git bisect bad 102c69699b5b5d4aebfe8d15d5f91bde68dababd
+# bad: [14680b252788675e2007fffde371e76a3a7a9b21] Merge branch 'pci/dt-bindings'
+git bisect bad 14680b252788675e2007fffde371e76a3a7a9b21
+# bad: [12ff1ef539c23cb7563bc3d894de9edd9469ea98] Merge branch 'pci/pm'
+git bisect bad 12ff1ef539c23cb7563bc3d894de9edd9469ea98
+# bad: [cf29111d3e4a9ebe1cbe2b431274718506d69f10] Merge branch 'pci/of'
+git bisect bad cf29111d3e4a9ebe1cbe2b431274718506d69f10
+# good: [e6f7d27df5d208b50cae817a91d128fb434bb12c] PCI: of_property: Return error for int_map allocation failure
+git bisect good e6f7d27df5d208b50cae817a91d128fb434bb12c
+# first bad commit: [cf29111d3e4a9ebe1cbe2b431274718506d69f10] Merge branch 'pci/of'
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
