@@ -4,62 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFA89C25B75
-	for <ath11k@archiver.kernel.org>; Wed, 29 May 2024 15:58:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81E1EC25B74
+	for <ath11k@archiver.kernel.org>; Thu, 30 May 2024 06:23:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VARqXBFDwEMLKE6qIvB72ivW4EKZdIa/kyIpg1Ejg0s=; b=szUSqdFclmezks83Sx9+/NDC7a
-	s/LnEkxy1vSvO6NYl7V+VPkl5mei1wtEikGCyy5EV5mWjrQgWO9d9f9XzTBWocuBRymc3eL6Yciu+
-	ivu1Cs8nws+68W3UPuJSAo9ttdIkenmKnQsKVQVJVnG1aunk8iUeNJK9esU94MMqrLsJ/qD0KvjWr
-	ya3BzLfVTwlwJMfmMAWDDMQR/68Ku5FSOXLy5rdGvXOJ5cDBEgeQ0IgVeclsR7tFAu1hlAg5AjlWg
-	rpGrmdLjjRVknI3SwJ4B1W/xRYJ7USYFSvKCAqjK6ANa2TKZmoAn5ak5KPQh8XhLTMutNuWKk6/y9
-	J6INl67A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=5WpJva/UfKszn14kM8O9sUFGcZzIvLNN3CRSXXUoWfk=; b=jiD+goIPcI3vtUrW+7zWd16CcQ
+	wxQzYMIxefaUgRdE2avlztRx7B14hWirxGYRDrwPUm7WgLGXUrZVaBnEoRo0NNbiRISxWBdhYdoWa
+	gH5dsPuMieIs3ZdArR6/WIBtZTIx2ONABfS0XuLwGiNSxz/XUTLDH6KeFPn83xpEOivg6X1C+NjH9
+	BqgKlphKA5jWPJlNEpZTyV79neeHoQx5EACX4U3U5qMX1yHisjcfimWUYvW9yAEqTopN/DPKw7Vbm
+	clELKNweuKU1VCX8a9zPm53kpHCazYm33EBUZmjY7bpS361CIMMko3QV6HrEDKy14t6aXtipqa91L
+	GW7FXREw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sCLhN-00000004nIY-1jfH;
-	Wed, 29 May 2024 15:58:45 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sCZCQ-00000006Q7j-41G3;
+	Thu, 30 May 2024 06:23:42 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sCLhJ-00000004nGp-1huT
+	id 1sCZCL-00000006Q5k-1xTI
 	for ath11k@lists.infradead.org;
-	Wed, 29 May 2024 15:58:43 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 19FCF60DB9;
-	Wed, 29 May 2024 15:58:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 491BCC113CC;
-	Wed, 29 May 2024 15:58:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716998319;
-	bh=ufyQbqT93SwSt4s4JqmoiAB/zHJa/FMuOgckZ/BR4TU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=fypTA+JW2IV7pVP1qSfV1ol4Ja9TfGeBVVJx8MRhuBAJGIEN1e8OFOne5tbK7RN2a
-	 D0LvLXsB5H5+Gy+2++biOK246LPXm1vkQzR9dwUErgCpKivRZRfiAf8HPNiTGKX9pU
-	 oWErLgw+ObFGOiZhKOKrIKTl3UdfBp0zLwwvyhBPfMijoZcJ4GqJGbGRVpxLiXLuK3
-	 rlD365rHM/V9afV0i+oKhcXyHY2VXEmAZKWOS9YOv4s3qcmAjzDtAySsurpBtSy2FR
-	 KYwVbp/sbn1MbK0yr5b9F++Zx1/dfnPzTxAlo4T5Gd8s0DbfhjRb+ud079yR5zNYSX
-	 CxazeMz/4IGdw==
-From: Kalle Valo <kvalo@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: linux-wireless@vger.kernel.org,  ath11k@lists.infradead.org,
-  regressions@lists.linux.dev,  Jeff Johnson <quic_jjohnson@quicinc.com>,
- Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [regression] BUG: KASAN: use-after-free in
- lockdep_register_key+0x755/0x8f0
-References: <87v82y6wvi.fsf@kernel.org>
-Date: Wed, 29 May 2024 18:58:36 +0300
-In-Reply-To: <87v82y6wvi.fsf@kernel.org> (Kalle Valo's message of "Tue, 28 May
-	2024 13:42:25 +0300")
-Message-ID: <87wmncwqxf.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 30 May 2024 06:23:39 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TMCSwL021170;
+	Thu, 30 May 2024 06:23:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5WpJva/UfKszn14kM8O9sUFGcZzIvLNN3CRSXXUoWfk=; b=Pf3514e8pUr0MdYH
+	tzTC3qEONTQva6YMKXrZJPIVJ/eO6xh/HV/tvLP3WHU2mVPQFmfYJEG7xe2ebFJt
+	eG1BKDGitVDrwr0W2DjMrgvmJV41NsuBCGZgIcF0BeRI9q5XTCNoRgUrkeAUsOjF
+	mgvrRItWW1tmk5DNFjNVw4+C1WEI849Hagr39mO+mzuwky7t46SchAnZW97w+OQp
+	HT7CAJdRdP9VqVx2PyWMCpgE7KUIAKOk+69tOSXZOgGO7rVn16Rd3EcJNwS4wVUa
+	C8/QSNM7hYLrNgdZvEmW55taDtL34dVIqYWvK3B4Ov5Us73Eh1dIj6nPKev3epUC
+	yggbZg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0pu1mv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 May 2024 06:23:24 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44U6NOJL021760
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 May 2024 06:23:24 GMT
+Received: from [10.253.79.103] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
+ 2024 23:23:23 -0700
+Message-ID: <6c8ca575-01b7-41ba-97d9-cfe28f69c1e6@quicinc.com>
+Date: Thu, 30 May 2024 14:23:20 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [bug report] wifi: ath11k: add P2P IE in beacon template
+To: Dan Carpenter <dan.carpenter@linaro.org>
+CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+References: <2d277abd-5e7b-4da0-80e0-52bd96337f6e@moroto.mountain>
+Content-Language: en-US
+From: Kang Yang <quic_kangyang@quicinc.com>
+In-Reply-To: <2d277abd-5e7b-4da0-80e0-52bd96337f6e@moroto.mountain>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: G59UKcIGKQm25Fl434O9Mmeg2O3cdHuo
+X-Proofpoint-GUID: G59UKcIGKQm25Fl434O9Mmeg2O3cdHuo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-30_03,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
+ suspectscore=0 clxscore=1011 lowpriorityscore=0 priorityscore=1501
+ mlxscore=0 spamscore=0 adultscore=0 phishscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405300045
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240529_085841_785112_09C3263E 
-X-CRM114-Status: GOOD (  18.08  )
+X-CRM114-CacheID: sfid-20240529_232337_640332_31A55A6F 
+X-CRM114-Status: GOOD (  12.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,101 +97,97 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
 
-> Yesterday I run our ath11k regression tests with v6.10-rc1 and our
-> simple ath11k module reload stress started failing reliably with various
-> KASAN errors. The test removes and inserts ath11k and other wireless
-> modules in a loop. Usually I run it at least 100 times, some times even
-> more, and no issues until yesterday.
->
-> I have verified that the last wireless-next pull request (tag
-> wireless-next-2024-05-08) works without issues and v6.10-rc1 fails
-> always, usually within 50 module reload loops. From this I'm _guessing_
-> that we have a regression outside wireless, most probably introduced
-> between v6.9 and v6.10-rc1. But of course I cannot be sure of anything
-> yet.
->
-> I see different KASAN warnings and lockdep seems to be always visible in
-> the stack traces. I think I can reproduce the issue within 15 minutes or
-> so. Before I start bisecting has anyone else seen anything similar? Or
-> any suggestions how to debug this further?
->
-> I have included some crash logs below, they are retrieved using
-> netconsole. Here's a summary of the errors:
->
-> [ 159.970765] KASAN: maybe wild-memory-access in range
-> [0xbbbbbbbbbbbbbbb8-0xbbbbbbbbbbbbbbbf]
-> [  700.017632] BUG: KASAN: use-after-free in lockdep_register_key+0x755/0x8f0
-> [  224.695821] BUG: KASAN: slab-out-of-bounds in lockdep_register_key+0x755/0x8f0
-> [  259.666542] BUG: KASAN: slab-use-after-free in lockdep_register_key+0x755/0x8f0
 
-I did a bisect and got this:
+On 5/29/2024 10:32 PM, Dan Carpenter wrote:
+> Hello Kang Yang,
+> 
+> Commit 3a415daa3e8b ("wifi: ath11k: add P2P IE in beacon template")
+> from Feb 28, 2024 (linux-next), leads to the following Smatch static
+> checker warning:
+> 
+> 	drivers/net/wireless/ath/ath11k/wmi.c:1742 ath11k_wmi_p2p_go_bcn_ie()
+> 	warn: sleeping in atomic context
+> 
+> drivers/net/wireless/ath/ath11k/wmi.c
+>      1712 int ath11k_wmi_p2p_go_bcn_ie(struct ath11k *ar, u32 vdev_id,
+>      1713                              const u8 *p2p_ie)
+>      1714 {
+>      1715         struct ath11k_pdev_wmi *wmi = ar->wmi;
+>      1716         struct wmi_p2p_go_set_beacon_ie_cmd *cmd;
+>      1717         size_t p2p_ie_len, aligned_len;
+>      1718         struct wmi_tlv *tlv;
+>      1719         struct sk_buff *skb;
+>      1720         int ret, len;
+>      1721
+>      1722         p2p_ie_len = p2p_ie[1] + 2;
+>      1723         aligned_len = roundup(p2p_ie_len, 4);
+>      1724
+>      1725         len = sizeof(*cmd) + TLV_HDR_SIZE + aligned_len;
+>      1726
+>      1727         skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
+>      1728         if (!skb)
+>      1729                 return -ENOMEM;
+>      1730
+>      1731         cmd = (struct wmi_p2p_go_set_beacon_ie_cmd *)skb->data;
+>      1732         cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_P2P_GO_SET_BEACON_IE) |
+>      1733                           FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+>      1734         cmd->vdev_id = vdev_id;
+>      1735         cmd->ie_buf_len = p2p_ie_len;
+>      1736
+>      1737         tlv = (struct wmi_tlv *)cmd->tlv;
+>      1738         tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_BYTE) |
+>      1739                       FIELD_PREP(WMI_TLV_LEN, aligned_len);
+>      1740         memcpy(tlv->value, p2p_ie, p2p_ie_len);
+>      1741
+> --> 1742         ret = ath11k_wmi_cmd_send(wmi, skb, WMI_P2P_GO_SET_BEACON_IE);
+>                         ^^^^^^^^^^^^^^^^^^^
+> This is a might_sleep() function.
+> 
+>      1743         if (ret) {
+>      1744                 ath11k_warn(ar->ab, "failed to send WMI_P2P_GO_SET_BEACON_IE\n");
+>      1745                 dev_kfree_skb(skb);
+>      1746         }
+>      1747
+>      1748         return ret;
+>      1749 }
+> 
+> The problematic call tree is:
+> 
+> ath11k_bcn_tx_status_event() <- disables preempt
+> -> ath11k_mac_bcn_tx_event()
+>     -> ath11k_mac_setup_bcn_tmpl()
+>        -> ath11k_mac_setup_bcn_tmpl_ema()
+>        -> ath11k_mac_setup_bcn_tmpl_mbssid()
+>           -> ath11k_mac_set_vif_params()
+>              -> ath11k_mac_setup_bcn_p2p_ie()
+>                 -> ath11k_wmi_p2p_go_bcn_ie()
+> 
+> The ath11k_bcn_tx_status_event() function takes rcu_read_lock() which
+> disables preemption.  I don't know the code well enough to say if this
+> is a real bug...  If it's a false positive, just ignore it.  These are
+> one time emails.
 
-cf29111d3e4a9ebe1cbe2b431274718506d69f10 is the first bad commit
-commit cf29111d3e4a9ebe1cbe2b431274718506d69f10
-Merge: ed11a28cb709 e6f7d27df5d2
-Author: Bjorn Helgaas <bhelgaas@google.com>
-Date:   Thu May 16 18:14:11 2024 -0500
 
-    Merge branch 'pci/of'
-    
-    - Check for kcalloc() failure and handle it gracefully (Duoming Zhou)
-    
-    * pci/of:
-      PCI: of_property: Return error for int_map allocation failure
+I also found:
 
- drivers/pci/of_property.c | 2 ++
- 1 file changed, 2 insertions(+)
+ath11k_bcn_tx_status_event() <- disables preempt
+-> ath11k_mac_bcn_tx_event()
+	-> ath11k_mac_setup_bcn_tmpl()
+		-> ath11k_mac_setup_bcn_tmpl_ema()
+		-> ath11k_mac_setup_bcn_tmpl_mbssid()
+			->ath11k_wmi_bcn_tmpl()
+				->ath11k_wmi_cmd_send()
 
-But that doesn't make any sense to me, I don't even have
-CONFIG_PCI_DYNAMIC_OF_NODES enabled in my .config. I guess I did a
-mistake during bisect, I'm now testing the parents (e6f7d27df5d2 and
-ed11a28cb709) and trying to pinpoint where I did it wrong.
 
-Adding Bjorn in case he has any ideas. This might be something PCI
-related based on my bisect log (but just guessing at this point):
+It seems this problem already exist even if without my patch.
 
-git bisect start
-# status: waiting for both good and bad commits
-# good: [a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6] Linux 6.9
-git bisect good a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
-# status: waiting for bad commit, 1 good commit known
-# good: [1d60eabb82694e58543e2b6366dae3e7465892a5] wifi: mwl8k: initialize cmd->addr[] properly
-git bisect good 1d60eabb82694e58543e2b6366dae3e7465892a5
-# status: waiting for bad commit, 2 good commits known
-# bad: [1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0] Linux 6.10-rc1
-git bisect bad 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-# good: [d34672777da3ea919e8adb0670ab91ddadf7dea0] Merge tag 'fbdev-for-6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev
-git bisect good d34672777da3ea919e8adb0670ab91ddadf7dea0
-# good: [a90f1cd105c6c5c246f07ca371d873d35b78c7d9] Merge tag 'turbostat-for-Linux-6.10-merge-window' of git://git.kernel.org/pub/scm/linux/kernel/git/lenb/linux
-git bisect good a90f1cd105c6c5c246f07ca371d873d35b78c7d9
-# bad: [29c73fc794c83505066ee6db893b2a83ac5fac63] Merge tag 'perf-tools-for-v6.10-1-2024-05-21' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
-git bisect bad 29c73fc794c83505066ee6db893b2a83ac5fac63
-# good: [30aec6e1bb617e1349d7fa5498898d7d4351d71e] Merge tag 'vfio-v6.10-rc1' of https://github.com/awilliam/linux-vfio
-git bisect good 30aec6e1bb617e1349d7fa5498898d7d4351d71e
-# bad: [8053d2ffc4502bbb50a78c805d964e65a6de1803] Merge tag 'phy-for-6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy
-git bisect bad 8053d2ffc4502bbb50a78c805d964e65a6de1803
-# bad: [f0bae243b2bcf2b160ae547463bf542762beef8f] Merge tag 'pci-v6.10-changes' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
-git bisect bad f0bae243b2bcf2b160ae547463bf542762beef8f
-# good: [38da32ee70b876f5b8bea7c4135eff46339c18f2] Merge tag 'pull-bd_inode-1' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
-git bisect good 38da32ee70b876f5b8bea7c4135eff46339c18f2
-# good: [ed11a28cb709a9ab69c4cd4e0669079a455f9a8d] Merge branch 'pci/msi'
-git bisect good ed11a28cb709a9ab69c4cd4e0669079a455f9a8d
-# bad: [102c69699b5b5d4aebfe8d15d5f91bde68dababd] Merge branch 'pci/controller/mt7621'
-git bisect bad 102c69699b5b5d4aebfe8d15d5f91bde68dababd
-# bad: [14680b252788675e2007fffde371e76a3a7a9b21] Merge branch 'pci/dt-bindings'
-git bisect bad 14680b252788675e2007fffde371e76a3a7a9b21
-# bad: [12ff1ef539c23cb7563bc3d894de9edd9469ea98] Merge branch 'pci/pm'
-git bisect bad 12ff1ef539c23cb7563bc3d894de9edd9469ea98
-# bad: [cf29111d3e4a9ebe1cbe2b431274718506d69f10] Merge branch 'pci/of'
-git bisect bad cf29111d3e4a9ebe1cbe2b431274718506d69f10
-# good: [e6f7d27df5d208b50cae817a91d128fb434bb12c] PCI: of_property: Return error for int_map allocation failure
-git bisect good e6f7d27df5d208b50cae817a91d128fb434bb12c
-# first bad commit: [cf29111d3e4a9ebe1cbe2b431274718506d69f10] Merge branch 'pci/of'
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Fine, i will find solution for this.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> 
+> See my blog for more details.
+> https://staticthinking.wordpress.com/2024/05/24/sleeping-in-atomic-warnings/
+>  > regards,
+> dan carpenter
 
