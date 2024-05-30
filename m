@@ -4,186 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F717C25B78
-	for <ath11k@archiver.kernel.org>; Thu, 30 May 2024 07:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4BE5C25B78
+	for <ath11k@archiver.kernel.org>; Thu, 30 May 2024 07:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=vu9u29B8gqfxfR+Lb97bh5PezNDz5Xp0N61UHzL3/bY=; b=uc1Phzg7R3QBF+bM+BgpRLuYuY
-	nqHJNnXqEeUNh8adAglQJYtC4QuA/eJ187F2sKnQaECkva5m8I1MTxj4qXdpvH+zkX1T77RSf7zyb
-	TTVL5KYEIRufixgckQN1z5bXoX9lAbeesfrAwY0oqW2M/u7hKUqBR/ye6R/E3QSUmcdoh/foALiCH
-	h5otCeT8kHF6qpbBRtgqai8e/QFcOgPAabjt86fwvIAvsExGqLRO41j09gLjVGSlmcOV51vBIjThb
-	XtVyC1AaYqKGbd4rl7hPAcRyAAgCAJcdf4Y0S59eCn8eiL1e5wrKZARu97WxBVP7JgZftxuFuvdJs
-	JyLNli0w==;
+	bh=cnzwdGI23KemHWcPj6PEvrNtcAc6pYJxSXZGSHRPhUE=; b=O5+2SOEDagmiTWLOJrjvOOpzBW
+	/Ai0we0/tBP8cK8VMdVZflTc5NW2C/Vr1oaZGa3PQ0C4fHNufEYrUHm0OlIGepPSl41/nB4zLcC8e
+	Qit11VAXojwXRGUs0ChEI3nCRKhISdQCBcwYE73eOfjdLJzxyQQfp9lWQ2HWhNrnW2FiRGtLF4pFW
+	BJk59AmzilRv3Rx5HKUFnFBJh/v14tnjIVPBlntiyo/Ld+IQyojg5KAExAYjRsX+mF8c8zB7+7CfB
+	kvu2lj80M3en5dWF2CJ4O8m3rWSX6tKDuNgwdzrw0el3bB9v5PjaYW1bQP6ScgHM/ixjwP6H6VJOa
+	2m/hZX5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sCaIo-00000006WdG-3NXl;
-	Thu, 30 May 2024 07:34:22 +0000
-Received: from mgamail.intel.com ([198.175.65.16])
+	id 1sCaWh-00000006Y4f-0ypG;
+	Thu, 30 May 2024 07:48:43 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sCaIm-00000006WcZ-2COU
+	id 1sCaWd-00000006Y3y-4560
 	for ath11k@lists.infradead.org;
-	Thu, 30 May 2024 07:34:22 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717054461; x=1748590461;
-  h=date:from:to:cc:subject:message-id:references:
-   in-reply-to:mime-version;
-  bh=0rOi/LHi+FN5ktzWjYIu//ejW8oEpHYjxJHciluiTWg=;
-  b=K7m1M+G3Nr34l8yDAz+1x0RiF0YXFtbgahAfCjjemDKngNq0D4+VG4VU
-   aFGyYz6B5Z0+Dz6I5ODWGEYR664ABuSAmy6Mqco57a1BrmKZtNBFXX6LX
-   8ldMkyhLJ7Zcg+yBe/kBYAXpfiFq5kVeLsLpJviKJqtkRSZIdYC2sSbh3
-   5hcZjsSuZuMHNO6sE5c5XMwx+iADSuuxRFWoMJD/kvEBRT2d0dRcXW97l
-   pXJCuqEO0CFk+rB4pVBwGheiK7MRrCQWTjDao/n4iVOE5x6EdKkahdMXA
-   S39DUZqHdWcA6AQgXX745lEwBvzMDdDgzR+DsDsOShJeXcZVGZ6PBOf1y
-   w==;
-X-CSE-ConnectionGUID: Odz0GGv/QQu1x8rmb1OzCw==
-X-CSE-MsgGUID: YT9luk/zTgSpGd+iiiVSLQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13639580"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
-   d="scan'208";a="13639580"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2024 00:34:16 -0700
-X-CSE-ConnectionGUID: qACT1QYSSoKBuaZJm/3c4Q==
-X-CSE-MsgGUID: 4GeHTZyXS86EZzOdQRBYcA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
-   d="scan'208";a="35660690"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
-  by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 30 May 2024 00:34:11 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 30 May 2024 00:34:11 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 30 May 2024 00:34:11 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 30 May 2024 00:34:11 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 30 May 2024 00:34:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=koLgvlgr9LV6h4bYZKcoXdmSbKJGwnMm8tss9VvDGQGZsGz2HUlExucFi7ax2DYy/FLZXC5abMn78pu4yeZ8tJ/I5Dna3M7eb4AUsUu44t3I2zFp3VOxRAdKxPc3e2dnlRErYAFc+BKpYauV1An1VSTeHGrNXYazWqqt/2sV22/7hswtfxwE4YxEMqMj1SyGpnDcEbgeeiupkvSrUDgYY32zUxCFHtSt58WKdnMJm1CR6f2ciA8WYAlpSavEWUnMV16NagDp01gpECvjOD0tvc5Xf3Fj+liNy4SaTF3TnSMgQWs0EaPrMFugFQU2DKJeP0B/VUhkGYJDGAzgWZUinA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vu9u29B8gqfxfR+Lb97bh5PezNDz5Xp0N61UHzL3/bY=;
- b=XCo5Xuqf1UgradigPPHAoUnDBNYaKHPpHEVLums7aILWv7/n6tc6l15uYVfSkXE9/tN2XRQv2DnEuqASy7pUgD8aSWWwT6ClZoZ+PRHYt2nH4biQ+e3/TiIAPi2cO3C1+uc5xBTiiK8JhcWQfLSf/GL3H9UaESdI8qz39wQX9rRGfwrW8XjxeA3O7Sy1xihAGwQmgnXPTtCoNgJ3XXpyp+ZdZ9ODvETxvU0pVO3KDNJ4o16XHqYVujNOsvA1Y/Y2xOLpOcbC7RCC9QUftj2IvTH7OaJdOoGqMsANcGfTJZGZgQLMrmULJpg68ui/Wlm5KpxEQhliwrhO5UViVneZ4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8107.namprd11.prod.outlook.com (2603:10b6:510:256::6)
- by CH3PR11MB8520.namprd11.prod.outlook.com (2603:10b6:610:1af::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Thu, 30 May
- 2024 07:34:09 +0000
-Received: from PH8PR11MB8107.namprd11.prod.outlook.com
- ([fe80::6b05:74cf:a304:ecd8]) by PH8PR11MB8107.namprd11.prod.outlook.com
- ([fe80::6b05:74cf:a304:ecd8%6]) with mapi id 15.20.7611.025; Thu, 30 May 2024
- 07:34:09 +0000
-Date: Thu, 30 May 2024 00:34:06 -0700
-From: Dan Williams <dan.j.williams@intel.com>
-To: Kalle Valo <kvalo@kernel.org>, Dave Jiang <dave.jiang@intel.com>, "Dan
- Williams" <dan.j.williams@intel.com>, Bjorn Helgaas <bhelgaas@google.com>
-CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
-	<regressions@lists.linux.dev>, Jeff Johnson <quic_jjohnson@quicinc.com>,
-	<linux-kernel@vger.kernel.org>, <linux-cxl@vger.kernel.org>,
-	<linux-pci@vger.kernel.org>
+	Thu, 30 May 2024 07:48:41 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 04438CE1754;
+	Thu, 30 May 2024 07:48:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4C5DC3277B;
+	Thu, 30 May 2024 07:48:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717055316;
+	bh=KrIXXGCyYoQepPvoPZ939b4c91CImdKHjnysOffQO0g=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=a7KT9rvZi8dNyYFnxxT7cmUPUzHD+e1+BG+wsH0h1+uBaZYeG+zU7+Aa58/0PfXLF
+	 zwExgtoyc41YtzO93xVOVvFBcnIB/XJ5QVn2nS+dBjb4fckSeit7HdYec88Aaipf5p
+	 wB3k4JOnV0a8QG30hGeKRFvKVPjidCZB6AEeEgWya57b/3aDHgI3+Krn3WqbHrAGs1
+	 A8mZoGQcmHtdOTSXzvojw7Ge63LZRYrKU8JkPcdrjPw8iCt23kMikf4m3jclJ6JAwv
+	 AegyuNCXdSqh9/vSretBA9Nun7b1g7ASPxr3SdDfcwQgts5SEhWpdgEYZQ6HWOwGWR
+	 yKPw4U52dAd3w==
+From: Kalle Valo <kvalo@kernel.org>
+To: Dan Williams <dan.j.williams@intel.com>
+Cc: Dave Jiang <dave.jiang@intel.com>,  Bjorn Helgaas <bhelgaas@google.com>,
+  <linux-wireless@vger.kernel.org>,  <ath11k@lists.infradead.org>,
+  <regressions@lists.linux.dev>,  Jeff Johnson <quic_jjohnson@quicinc.com>,
+  <linux-kernel@vger.kernel.org>,  <linux-cxl@vger.kernel.org>,
+  <linux-pci@vger.kernel.org>
 Subject: Re: [regression] BUG: KASAN: use-after-free in
  lockdep_register_key+0x755/0x8f0
-Message-ID: <66582bee45da8_6ec329496@dwillia2-mobl3.amr.corp.intel.com.notmuch>
-References: <87v82y6wvi.fsf@kernel.org>
- <87wmncwqxf.fsf@kernel.org>
- <87sexzx02f.fsf@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87sexzx02f.fsf@kernel.org>
-X-ClientProxiedBy: MW2PR16CA0072.namprd16.prod.outlook.com
- (2603:10b6:907:1::49) To PH8PR11MB8107.namprd11.prod.outlook.com
- (2603:10b6:510:256::6)
+References: <87v82y6wvi.fsf@kernel.org> <87wmncwqxf.fsf@kernel.org>
+	<87sexzx02f.fsf@kernel.org>
+	<66582bee45da8_6ec329496@dwillia2-mobl3.amr.corp.intel.com.notmuch>
+Date: Thu, 30 May 2024 10:48:32 +0300
+In-Reply-To: <66582bee45da8_6ec329496@dwillia2-mobl3.amr.corp.intel.com.notmuch>
+	(Dan Williams's message of "Thu, 30 May 2024 00:34:06 -0700")
+Message-ID: <87jzjbwxin.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8107:EE_|CH3PR11MB8520:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3436705-2a42-428a-6dd3-08dc807ae4ae
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?exkDl79hTq3PXdk1InmjYKZRTCr6MERlogK1KeZSHtRkiyZ4RqU4Em0aD5kT?=
- =?us-ascii?Q?/hfkVSAXbrn3QzHY+zhEMmvnProXTgz9gHjGIYIXr+6ojbrBEr7AV5iE18or?=
- =?us-ascii?Q?hsKfWEf7x5LGTVEDt89yx1KiqbGIiepn6Z/8rKd3jEtH84bHsTTok9bMHxX+?=
- =?us-ascii?Q?A7/IUSo8kKSnkWfpBjZuv9nzrIbLWG42W42Nz3xdw8PgE1ea7CXXOr8TWiNj?=
- =?us-ascii?Q?xQZXDyQOesGOYFW1+5vE3QhJC2g/PLMFnZQts+dGQOMcK0mP6U+GFrsx1WVO?=
- =?us-ascii?Q?nQ+QmwIpX8elHQeMqj6hD1T5bmlbnifWWBIdCFgqy+K/eAkxM/QN1pkFK25O?=
- =?us-ascii?Q?GPiQ4fex323z8fzswuKa2YOShpWAsqgm34lnOnhNxKCmQhZdwZOv4FPbKkoq?=
- =?us-ascii?Q?h0ygNr9FxIXUDSTBedA0RD0Iz8vbpAdv4FdcxjanMXSt+Y16LwFY0lA38zED?=
- =?us-ascii?Q?BKRELGnUUTcdUJMigzs5pBPlcx1P2i8PCcCNdkW8LWUFJnIZAXU+eDooB/Gv?=
- =?us-ascii?Q?BfF5N/rcKf5FVKCzWt1zDlRn39CCFc2ktqvnIZYqSbRp91bfK8y5xJOoRhtg?=
- =?us-ascii?Q?Nz1b5z2z52TLbnFky9DImQ1c8Ldp+F0q/CE8U9VZsQVwzPXwuXxYQWEH3zTF?=
- =?us-ascii?Q?HZx9F25gsokMkNkeBz/Iduj6kAjyLVepmULgS5X8qGVjcjIJVmV6TB2lfgPs?=
- =?us-ascii?Q?Q2Q1oO1dtzF3MBxBUa2NLMaKVvU95BnR5ITS10ahr1wcW7lsYokix58TcdJa?=
- =?us-ascii?Q?O4G41LfoT6sy4P0v97isV0882MTYSI/QjnQreeYRrUUdDmkjdonDGQdKV2CA?=
- =?us-ascii?Q?vTQlLfmD7xhYYJTlf4WlYTeovX0cLIBWZuK77ULVeW458WlFrQqLgSqgabIZ?=
- =?us-ascii?Q?eA+dXmUEHv6rxKh96/B5I3C5vkGi9zBJIKpjx33foTjGt2TpESgvqzpVVYaF?=
- =?us-ascii?Q?sENyRzkRBGW2K9qchRjHcxLz9+HNUHctDKi6uHHqud/jTgf7oN+mWx9itq5w?=
- =?us-ascii?Q?8OD4K/fnQR6vzr1aPEx9qIa/RPbk679EntfGA2ZmgRsSZ2FVKY4ymBNREKYH?=
- =?us-ascii?Q?cLeXCPT9Gkcjd9lgaRQ1SB2UivPe6hW/B8T5Vg8lU21JQ607si3YTheHxNLk?=
- =?us-ascii?Q?MH4DzTroHwjA3CEiAIn9A3bslDaviLrKYWHNaJFDGuJ4pvRywpNiu3i2ptGs?=
- =?us-ascii?Q?7SveyTHPKx8COC6c6ZUaSA2stRip53oaEawkNYWJf02ww2HOSUOOOaT7LgM?=
- =?us-ascii?Q?=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR11MB8107.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(376005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NZc4XMVkaODW0WWFatE1V77H9Ij9ZsfzND3SnE+1URd54tO7KZQDYuZIZV0h?=
- =?us-ascii?Q?fBdUvS48fL6rrfnaSQsDvJ80gQRB2rey8QLLVBc2iuQYpEur59IvL9FpCQ9z?=
- =?us-ascii?Q?wqBELn6sxsqK0TMxx7+C4Vm7wy6f/TI06JWHRanC+ZPaMHjEhrzZOv6ltxWz?=
- =?us-ascii?Q?eAFla2RUmIGtBiRU5wtip5Wlu8xXjDg5zVQ1aGj8E6pWM6oeuk1ESOPNrqpq?=
- =?us-ascii?Q?icNTbKQZ5LwzBfZcLxUIyiGbGiSQkQr/LkPfXjRPWlLqdPLc35idAmkOwQ5z?=
- =?us-ascii?Q?pTQu9iSH2Z0Z0LP48Nur4BIvFQJemIZrEi1EG15hxCwnhfufXQvj+PYgbMC5?=
- =?us-ascii?Q?ZkUyenNZHTu1K6wco/ObNLBIVHL+CMH+yjmr3Zk2aKyh2+6CLpHf+A8aJVSv?=
- =?us-ascii?Q?W+yaq95Ml8QsZfWHhIwlKZjEXm4X4RGnQlmuNXA0htSQBlx16wfvDF0Der4W?=
- =?us-ascii?Q?BpY/SwJ/0jhzw0uHJxwGWAWfYORuHne1Y5m8eXjA2LeUZoqcSZ0KKifeYNyr?=
- =?us-ascii?Q?zuxwFxyA98be7Qergy1i0MJ/znYpGBy0WeDYEF2Z6YfAK1b8LmG8Fuf20idZ?=
- =?us-ascii?Q?B74AxxJXLZY2BuSwDb3gcCDQHjEiHh5Mbqh94bo7KbVW/kkRGs4MfxR78pZy?=
- =?us-ascii?Q?9HRm9+JQh9ugbGWGfBjro4lwBuEXRvZE9EIOJ/3GBAOhfZ4NYb+wosju2yb5?=
- =?us-ascii?Q?a7VPYhU/rAZimFtRIM/5CkPYIKxHGNj4ZTSAblo1VFO4G0flo6/nsESxwBi0?=
- =?us-ascii?Q?EkYKHHwJB+wLPTOJ79bkhj2BsqRLwzqhkp6KqiTOWVMCdcaufCcAX+TgcIcv?=
- =?us-ascii?Q?7urRasFtRj3rHBhgoKKQaNDQ60Rvk1NuieiQkr5uVWSwWF31wRbdQBYnf8Ye?=
- =?us-ascii?Q?l2TLjXNBn/Bh7WgBxW4Mokgd9QyNNoKcTY9IBwk7+kHvnr99C3ncN/xRS2Dh?=
- =?us-ascii?Q?cOKow3KfuGzu4Bvm78LpoRasM5E/Hez5/N9d7rUVS097RB8ye65HOxDRymbM?=
- =?us-ascii?Q?BilHB0mMvy+1De8ABAOUDc4GmbMRCHEJqHezCdD7YVb67XeU+pU8u20Oz9+S?=
- =?us-ascii?Q?Dv1jkXZnPZ1gwhc5mUMa3RDLD2s0wz/fhtCuYMptSSBZseQZVp8bCexP5C2K?=
- =?us-ascii?Q?OrzmKTOmLzTpGW/1fsnWSakS3sOl3VtNdW/BlsrXLL/l2rKhNYWqAtZ7an0P?=
- =?us-ascii?Q?jcvS9im+qDg9QVKw6Wn4L1S12TKB8ZGIK+FPu6iVIW8SweUBnbkc5XfTZ5Ra?=
- =?us-ascii?Q?5Fd6CbsKSSOydXiGVDfEiuPmKShhRfgHXNHvebVURcE8qC9hD1Y352gm/dBp?=
- =?us-ascii?Q?xOZyaekLYjdUjyCLwPggWC16Hz8QmEFO5JmeIH5zdn7U2Og1IkNmVMoyIlKI?=
- =?us-ascii?Q?V+uVAAechXupePXX3KkgxpYfJ4p0y5YdpcL/PWhBmp3GLbWPJ/C3STdOMqNW?=
- =?us-ascii?Q?QG0PIni9DoM+poGyagEpNG1e+O4jZ2N8LQVvczg2HL2EfFfJ5vBV9DE/cmqQ?=
- =?us-ascii?Q?5RJV2YqMR3GEkERj7IMDQZM3sgQVo+lr2pbd5PsfepmcECyPxNgEqtZQn0LC?=
- =?us-ascii?Q?wZrJLvvfssMsiHwIN8cS0xqbrZ9zQe7bNFrrQvv3/CO6ygx6ZYTsBmF3KvZ8?=
- =?us-ascii?Q?QA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3436705-2a42-428a-6dd3-08dc807ae4ae
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8107.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 07:34:09.1613
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dQJUvQ1puUTLZ7T7oFUk0joz+x1NslXpJZQ1LcenMlL2uNLjxf1KpRl28RfR9WLTGBHU/wXrb+ZeQACy1Ps0LpS9zVtL89jSFWRJShn/8oc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8520
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240530_003420_638952_27C6F486 
-X-CRM114-Status: GOOD (  16.40  )
+X-CRM114-CacheID: sfid-20240530_004840_220189_D0C97C2D 
+X-CRM114-Status: GOOD (  15.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -198,39 +78,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo wrote:
-> Kalle Valo <kvalo@kernel.org> writes:
-> 
-> > Kalle Valo <kvalo@kernel.org> writes:
-> >
-> >> Yesterday I run our ath11k regression tests with v6.10-rc1 and our
-> >> simple ath11k module reload stress started failing reliably with various
-> >> KASAN errors. The test removes and inserts ath11k and other wireless
-> >> modules in a loop. Usually I run it at least 100 times, some times even
-> >> more, and no issues until yesterday.
-> >>
-> >> I have verified that the last wireless-next pull request (tag
-> >> wireless-next-2024-05-08) works without issues and v6.10-rc1 fails
-> >> always, usually within 50 module reload loops. From this I'm _guessing_
-> >> that we have a regression outside wireless, most probably introduced
-> >> between v6.9 and v6.10-rc1. But of course I cannot be sure of anything
-> >> yet.
-> >>
-> >> I see different KASAN warnings and lockdep seems to be always visible in
-> >> the stack traces. I think I can reproduce the issue within 15 minutes or
-> >> so. Before I start bisecting has anyone else seen anything similar? Or
-> >> any suggestions how to debug this further?
-> >>
-> >> I have included some crash logs below, they are retrieved using
-> >> netconsole. Here's a summary of the errors:
-> >>
-> >> [ 159.970765] KASAN: maybe wild-memory-access in range
-> >> [0xbbbbbbbbbbbbbbb8-0xbbbbbbbbbbbbbbbf]
-> >> [  700.017632] BUG: KASAN: use-after-free in lockdep_register_key+0x755/0x8f0
-> >> [  224.695821] BUG: KASAN: slab-out-of-bounds in lockdep_register_key+0x755/0x8f0
-> >> [  259.666542] BUG: KASAN: slab-use-after-free in lockdep_register_key+0x755/0x8f0
+Dan Williams <dan.j.williams@intel.com> writes:
 
-The proposed fix for that is here:
+> Kalle Valo wrote:
+>
+>> Kalle Valo <kvalo@kernel.org> writes:
+>> 
+>> > Kalle Valo <kvalo@kernel.org> writes:
+>> >
+>> >> Yesterday I run our ath11k regression tests with v6.10-rc1 and our
+>> >> simple ath11k module reload stress started failing reliably with various
+>> >> KASAN errors. The test removes and inserts ath11k and other wireless
+>> >> modules in a loop. Usually I run it at least 100 times, some times even
+>> >> more, and no issues until yesterday.
+>> >>
+>> >> I have verified that the last wireless-next pull request (tag
+>> >> wireless-next-2024-05-08) works without issues and v6.10-rc1 fails
+>> >> always, usually within 50 module reload loops. From this I'm _guessing_
+>> >> that we have a regression outside wireless, most probably introduced
+>> >> between v6.9 and v6.10-rc1. But of course I cannot be sure of anything
+>> >> yet.
+>> >>
+>> >> I see different KASAN warnings and lockdep seems to be always visible in
+>> >> the stack traces. I think I can reproduce the issue within 15 minutes or
+>> >> so. Before I start bisecting has anyone else seen anything similar? Or
+>> >> any suggestions how to debug this further?
+>> >>
+>> >> I have included some crash logs below, they are retrieved using
+>> >> netconsole. Here's a summary of the errors:
+>> >>
+>> >> [ 159.970765] KASAN: maybe wild-memory-access in range
+>> >> [0xbbbbbbbbbbbbbbb8-0xbbbbbbbbbbbbbbbf]
+>> >> [  700.017632] BUG: KASAN: use-after-free in lockdep_register_key+0x755/0x8f0
+>> >> [  224.695821] BUG: KASAN: slab-out-of-bounds in lockdep_register_key+0x755/0x8f0
+>> >> [ 259.666542] BUG: KASAN: slab-use-after-free in
+>> >> lockdep_register_key+0x755/0x8f0
+>
+> The proposed fix for that is here:
+>
+> http://lore.kernel.org/r/66560aa9dbedb_195e294b0@dwillia2-mobl3.amr.corp.intel.com.notmuch
 
-http://lore.kernel.org/r/66560aa9dbedb_195e294b0@dwillia2-mobl3.amr.corp.intel.com.notmuch
+I get "Not Found" from that link, is there a typo?
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
