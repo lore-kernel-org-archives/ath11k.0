@@ -4,63 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CA4AC25B76
-	for <ath11k@archiver.kernel.org>; Mon,  3 Jun 2024 09:15:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0960FC25B75
+	for <ath11k@archiver.kernel.org>; Mon,  3 Jun 2024 16:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=biXZIWD1v9hTZVKd+qm0AHfD0kwBeNtZ397Rf7lcyC4=; b=is0+eS/gxMlxZwE+BR3uhONq26
-	J484CM5Fw2eZJ5+0tx9V2rrEWJn7vpIb5Lb2rDkK4YcUn5DQyxsOVtohhklDJwkau6nXWQyZGRYEE
-	jleqpy24/pWdA/AljvXiQKlb9dE43tNURIPzjZJEQnKQxoYq5JXKDs+8v1K8GKOabeMJSxccZPuMy
-	EkoxwBYn8nj6P0C5MnzKV2/J4SJGRjg9Cm8KyRjaWAL+Hsoa8TQeTa83Ktxnb8btTfnYPDzf8dANV
-	7sT+dt8c9zoFva4xKwJ3cCqcynxkz32WLp1pnd0VXKsyqcR47faAyre2wIqp0I4yeQrsqkmrfVqwN
-	SmbFLSfg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=VfcFfPl6DzQuF6BImv7DyhUIKck0BlyAyHTdUvi/FU4=; b=UsJuRLe6Ake89G
+	Wz1NTWe/MKqwYfqBjByy3Qt+ofFqglvfDcksDb8mrJh5pvI2r7QkZWYGSX7W5mZk1QIPCEQYAMnys
+	YXK3UX6lf3pzWbACUFc3bgfXc1NQ6ZZeBr3Q2CqymTGwX6AcFxHo8XOIEzpM5A65sE78zfAd3O3aW
+	eCJDd5CVPMkKBGHyEHePUwjcVWHvbsZOTqhVco6iZzDcrilgcOonufniQpi7hMrTplPr8xYqtjGow
+	pDRlkhy5bJO3S0UVJx+3+pKkL1QMMRGyqL+I+lUJrIk07+hAhEfh/LHjjFik8ExKekWMUvKkw5mGS
+	IsRwMUnBnCg6IT+vawSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sE3nJ-0000000G9yd-2gVT;
-	Mon, 03 Jun 2024 09:15:57 +0000
-Received: from www.zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
+	id 1sEAwQ-0000000HQSr-1or9;
+	Mon, 03 Jun 2024 16:53:50 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sE3nG-0000000G9wr-46F8
+	id 1sEAwN-0000000HQRz-37fz
 	for ath11k@lists.infradead.org;
-	Mon, 03 Jun 2024 09:15:56 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=biXZIWD1v9hTZV
-	Kd+qm0AHfD0kwBeNtZ397Rf7lcyC4=; b=OP4bcj5RoXfNjl8GPh3Khtnfrfzu5S
-	2QsIL40M5PIr88oN1/isY8//G5RKCNgAhYgucx+9QEhBaWgOuippevPmHqXXjraE
-	/OJk8qFlP2ggcDCYLWktNqWS+xz1pWxZIMF1ZiPwjjSs7rL4FwU7FntDBWqPlcd4
-	WPH5xfhmGxZ48/Q64J9lHwI/oqtfjUqzyDdIP2YJUPjz7R6wCq52Yw1rHA4duWZX
-	zVyE/T/+9y+mJnSiDlDCqigDIWajYW77nIXTINX+5uw3aQEvbrX3ld82CM4xIQ/D
-	pw+HdhlhdlUiyqq0WvvBg1opzwcNKxZdAQ5suf+joYnbZYklmIUdF3ng==
-Received: (qmail 1899198 invoked from network); 3 Jun 2024 11:15:45 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Jun 2024 11:15:45 +0200
-X-UD-Smtp-Session: l3s3148p1@9Rsxx/gZ6oUgAwDPXzLGAH1eNELjOc3g
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-kernel@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Arend van Spriel <arend.vanspriel@broadcom.com>,
-	ath11k@lists.infradead.org,
-	brcm80211-dev-list.pdl@broadcom.com,
-	brcm80211@lists.linux.dev,
-	Christian Lamparter <chunkeey@googlemail.com>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	linux-wireless@vger.kernel.org,
-	Ping-Ke Shih <pkshih@realtek.com>
-Subject: [PATCH 0/6] net: use 'time_left' instead of 'timeout' with wait_*() functions
-Date: Mon,  3 Jun 2024 11:15:33 +0200
-Message-ID: <20240603091541.8367-1-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.43.0
+	Mon, 03 Jun 2024 16:53:49 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 9B9A860E04;
+	Mon,  3 Jun 2024 16:53:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CDF7C2BD10;
+	Mon,  3 Jun 2024 16:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717433624;
+	bh=DyH3gpgi4qx6wflc8epTRwqQEEkxiiw8EGl6bIf3LLo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=hgENSSJYgdOnCETWiJY9P2q8PiNLuQHrp3hEsrHgzQ0pKYOsoy1fMSyxc5gUiT4/0
+	 kt2eYRaUtxE9GsHNC7+/gjMM0RM/u6RQIc4eF9iHhxJ5BRAbWJKnpGqWAhezsLTw+C
+	 nHXjnjB8jNexooMWyr7gS8s8q3JJQbDN9FbF1QxQhhB+ulwxiYkY+MOpRzqxqZTgVl
+	 Gzcza1nHQ8D9zXVU0+IEe+vV2RFf9V9ARr6yffP4ZMcLvJWczK4XsWtjZTDzZ2vYr5
+	 bflHiaCnK4DHzs3TI9dG5Li2FfJoUHV4VaIYbGmG1jLDDAvLrJYuHQ2KzTnq+/d0oV
+	 /DqEeWnb+bfJA==
+Date: Mon, 3 Jun 2024 11:53:42 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Dan Williams <dan.j.williams@intel.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org, regressions@lists.linux.dev,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	linux-kernel@vger.kernel.org, linux-cxl@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [regression] BUG: KASAN: use-after-free in
+ lockdep_register_key+0x755/0x8f0
+Message-ID: <20240603165342.GA685076@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87a5k5ukew.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240603_021555_352304_1408C59D 
-X-CRM114-Status: UNSURE (   8.01  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240603_095347_873089_FF75A818 
+X-CRM114-Status: GOOD (  17.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,47 +76,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-There is a confusing pattern in the kernel to use a variable named 'timeout' to
-store the result of wait_*() functions causing patterns like:
+On Sat, Jun 01, 2024 at 11:39:03AM +0300, Kalle Valo wrote:
+> Kalle Valo <kvalo@kernel.org> writes:
+> 
+> > Dan Williams <dan.j.williams@intel.com> writes:
+> >
+> >> Kalle Valo wrote:
+> >> [..]
+> >>> >> The proposed fix for that is here:
+> >>> >>
+> >>> >> http://lore.kernel.org/r/66560aa9dbedb_195e294b0@dwillia2-mobl3.amr.corp.intel.com.notmuch
+> >>> >
+> >>> > I get "Not Found" from that link, is there a typo?
+> >>> 
+> >>> I found this fix from for-linus branch:
+> >>> 
+> >>> # PCI: Fix missing lockdep annotation for pci_cfg_access_trylock()for-linus
+> >>> https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=for-linus&id=f941b9182c54a885a9d5d4cfd97af66873c98560
+> >>> 
+> >>> But at least that doesn't fix my crash.
+> >>
+> >> Sorry for the broken link I mistakenly used a message-id from an
+> >> internal thread with the intel.com reporter. However, it is moot now
+> >> because the new direction is to revert the lockdep infrastructure:
+> >>
+> >> https://lore.kernel.org/r/171711745834.1628941.5259278474013108507.stgit@dwillia2-xfh.jf.intel.com
+> >>
+> >> (that link works...)
+> >
+> > Thanks, that links works :) I did a quick test with the three patches
+> > and I didn't see any crashes anymore. But to be confident I need to run
+> > overnight tests, I'll provide my Tested-by after that.
+> 
+> Ok, I'm now quite confident that the issues I saw are solved so:
+> 
+> Tested-by: Kalle Valo <kvalo@kernel.org>
 
-        timeout = wait_for_completion_timeout(...)
-        if (!timeout) return -ETIMEDOUT;
+Thanks for reporting the issue and testing the fix!  Can you please
+respond with your Tested-by to the actual patch(es) you tested?
 
-with all kinds of permutations. Use 'time_left' as a variable to make the code
-obvious and self explaining.
-
-This is part of a tree-wide series. The rest of the patches can be found here:
-
-git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git i2c/time_left
-
-Because these patches are generated, I audit them before sending. This is why I
-will send series step by step. Build bot is happy with these patches, though.
-No functional changes intended.
-
-
-Wolfram Sang (6):
-  wifi: ath11k: use 'time_left' variable with wait_event_timeout()
-  wifi: brcmfmac: use 'time_left' variable with wait_event_timeout()
-  wifi: mac80211: use 'time_left' variable with
-    wait_for_completion_timeout()
-  wifi: p54: use 'time_left' variable with
-    wait_for_completion_interruptible_timeout()
-  wifi: rtw89: use 'time_left' variable with
-    wait_for_completion_timeout()
-  wifi: zd1211rw: use 'time_left' variable with
-    wait_for_completion_timeout()
-
- drivers/net/wireless/ath/ath11k/qmi.c         | 20 +++++++++----------
- .../broadcom/brcm80211/brcmfmac/cfg80211.c    | 10 +++++-----
- drivers/net/wireless/intersil/p54/fwio.c      |  6 +++---
- drivers/net/wireless/intersil/p54/p54pci.c    |  8 ++++----
- drivers/net/wireless/intersil/p54/p54spi.c    | 10 +++++-----
- drivers/net/wireless/marvell/mwl8k.c          | 10 +++++-----
- drivers/net/wireless/realtek/rtw89/core.c     |  6 +++---
- drivers/net/wireless/zydas/zd1211rw/zd_usb.c  |  8 ++++----
- 8 files changed, 39 insertions(+), 39 deletions(-)
-
--- 
-2.43.0
-
+Bjorn
 
