@@ -4,66 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ABB3C25B75
-	for <ath11k@archiver.kernel.org>; Mon,  3 Jun 2024 22:42:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11EC5C25B75
+	for <ath11k@archiver.kernel.org>; Mon,  3 Jun 2024 22:57:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Vdz46IEtkWmC/nMGa3fMyLH+j2ZKNwQMSiUifjrCXe4=; b=2vfbJIQOBO/02Yx/dTuIN2K715
-	scCyrIa1x5qiGkk7fTfnOvsNLpe1t/U+HebpUIRwpYXE0WWNI7YNYsckT6RlM9iAMlwGJso85Rw0i
-	MloZwaAKjHVkrKy/PxoZcBEr6Z4oFdGgkPfp8baIhVJY9bQPEWl3hK7zkU0RXqsYl1k7oFyFe3EDa
-	q5BeoanKk0DmGSaeHdlJhCatZSSLVmG+vHP1wYLtUx0sV62fT58QHmpQxBgZJsiqnKjJpWiauKtMP
-	LapRydW5rZdZgU9Qp6QVbVFhiG9iYyV/I9sE3ZMrLvIhWfElcWux/hhtgh6LwZ4R63FVznIhpxbJN
-	kwJ9+jWg==;
+	bh=Y4QY+F1FJbsM/wDJgEBzeFcAgoh0auxhIr9S0zEFsxk=; b=WSc/IYAtcNPCbNun2cOxBvJoXV
+	dfojeFG7hOK3XSLiaSE4UEWSbzu40i7/cnc548Ni8jXuzJQ7DIUFKj/j6LmizIRMaI+o1EmbDdA50
+	EUxiN14mKzzOlg1hgWdLkAQdW7dOWW/HlPgd5kAzvRf4rePphGTYtywkkmEyCOr2HmFDvHOTUAvjy
+	awqh48PB2Lonl8lPuhcIc7U28B1bexsCg3G8FGgLNh9FQjtMyrikXb6IQ60dUb+1o6krAUuhVSvSR
+	P05uLnvILGhc50Kru0xIh10RXwZTddOzL4D4tlEMQVTNWQ4O96QjB8ISQehbQd4v+vbINi951ZzR8
+	H0TywoMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEGNK-00000000WUr-2dVU;
-	Mon, 03 Jun 2024 22:41:58 +0000
+	id 1sEGcZ-00000000Z3N-2i0V;
+	Mon, 03 Jun 2024 22:57:43 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEGNG-00000000WSM-40VN
+	id 1sEGcW-00000000Z1S-2JrW
 	for ath11k@lists.infradead.org;
-	Mon, 03 Jun 2024 22:41:56 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 453C1HKM014253;
-	Mon, 3 Jun 2024 22:41:53 GMT
+	Mon, 03 Jun 2024 22:57:42 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 453Bl8qM017816;
+	Mon, 3 Jun 2024 22:57:36 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Vdz46IEtkWmC/nMGa3fMyLH+j2ZKNwQMSiUifjrCXe4=; b=hGbGvyi39TLeO8iD
-	Sl0kHH6XtnnB+KwFzj4OjPjNU+oUqDM3nFiXk0ZcJyTNNHrRLcMpkd4TbaXhGeh8
-	tZRl1ATn/b8mglb9aevZpNKdnq4fxcP3dTgQfTd016qj1JqM7V8X4sPI81HGd0Y0
-	9UcU6+qsBOCFHtMiIVlIvfRglB2gJsV0IVgwAbSEm0XEjzaotouvaLA3Dx6PWkKa
-	RLX9+K1cM0Tg0xjPvFRgZtuUURyovyG5OsaZFO08EsgmYxYd7gcjBC/6d8cLlOqT
-	pY6sRY/agegu4vR8tS5gQFnBlni80QJiRaVvIENUpIMjq7Qt0Dl7HVIQ89zaEBsO
-	vBWUIw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw4d5b2d-1
+	Y4QY+F1FJbsM/wDJgEBzeFcAgoh0auxhIr9S0zEFsxk=; b=YYZMFLwxjWhT35F6
+	YBOKzW3GwNCoPchaIgQN2YgatIGOBj7Y3CFIM/b53d0mzsEQz9Mpw7jdAoAJ1I/F
+	IYilULFa9UP9NWGIPE3i3YVt/WYMvx2vjWPyysVvOTkIRB/PmgEQ7SKDypuJ7Cp5
+	Zr5dYxXrL3Xo258U2toVn/U8G7MJhlahlEFj9U8UjCVxZ3yf/fplopQPqjLj0lqb
+	0uPCYgzj2aD1o95bn3d7B2fdqWj5wtXr5eMbixFMlCJhQMUzLVngvX+snstvWrho
+	MZfUgCUEw95C97gqLJJpI0uNPABKiKrFFSwefio/9Q62DJj/5dJxsto907NGBgav
+	dCZ1Eg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw3r5e1q-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Jun 2024 22:41:53 +0000 (GMT)
+	Mon, 03 Jun 2024 22:57:36 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 453Mfqpi008544
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 453MvZjH001996
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Jun 2024 22:41:52 GMT
+	Mon, 3 Jun 2024 22:57:35 GMT
 Received: from [10.48.241.139] (10.49.16.6) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Jun 2024
- 15:41:51 -0700
-Message-ID: <0ab4a069-d728-4035-ace8-946a419da971@quicinc.com>
-Date: Mon, 3 Jun 2024 15:41:50 -0700
+ 15:57:28 -0700
+Message-ID: <47cc9455-6efb-4b1c-8743-c992e502633d@quicinc.com>
+Date: Mon, 3 Jun 2024 15:57:28 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: fix wrong handling of CCMP256 and GCMP
- ciphers
+Subject: Re: [PATCH 1/6] wifi: ath11k: use 'time_left' variable with
+ wait_event_timeout()
 Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240531021228.2846-1-quic_bqiang@quicinc.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        <linux-kernel@vger.kernel.org>
+CC: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+        <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+References: <20240603091541.8367-1-wsa+renesas@sang-engineering.com>
+ <20240603091541.8367-2-wsa+renesas@sang-engineering.com>
 From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240531021228.2846-1-quic_bqiang@quicinc.com>
+In-Reply-To: <20240603091541.8367-2-wsa+renesas@sang-engineering.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.49.16.6]
@@ -71,19 +74,19 @@ X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qjf91cpRFyQKz4sMbm2L5eOUy7pH3ZyU
-X-Proofpoint-GUID: qjf91cpRFyQKz4sMbm2L5eOUy7pH3ZyU
+X-Proofpoint-ORIG-GUID: gFeYGuRClnezr6hNISr4C3GIahKB3ZbI
+X-Proofpoint-GUID: gFeYGuRClnezr6hNISr4C3GIahKB3ZbI
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
  definitions=2024-06-03_17,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 mlxscore=0 adultscore=0 impostorscore=0 bulkscore=0
- spamscore=0 phishscore=0 clxscore=1015 mlxlogscore=944 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406030184
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
+ lowpriorityscore=0 suspectscore=0 adultscore=0 spamscore=0 mlxscore=0
+ clxscore=1011 priorityscore=1501 malwarescore=0 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406030186
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240603_154155_165258_48EBF498 
-X-CRM114-Status: GOOD (  10.21  )
+X-CRM114-CacheID: sfid-20240603_155740_830131_7DBA44E2 
+X-CRM114-Status: GOOD (  20.35  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,31 +101,78 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 5/30/2024 7:12 PM, Baochen Qiang wrote:
-> Currently for CCMP256, GCMP128 and GCMP256 ciphers, in ath11k_install_key()
-> IEEE80211_KEY_FLAG_GENERATE_IV_MGMT is not set. And in ath11k_mac_mgmt_tx_wmi()
-> a length of IEEE80211_CCMP_MIC_LEN is reserved for all ciphers.
+On 6/3/2024 2:15 AM, Wolfram Sang wrote:
+> There is a confusing pattern in the kernel to use a variable named 'timeout' to
+> store the result of wait_event_timeout() causing patterns like:
 > 
-> This results in unexpected management frame drop in case either of above 3 ciphers
-> is used. The reason is, without IEEE80211_KEY_FLAG_GENERATE_IV_MGMT set, mac80211
-> will not generate CCMP/GCMP headers in frame for ath11k. Also MIC length reserved
-> is wrong. Such frame is dropped later by hardware:
+> 	timeout = wait_event_timeout(...)
+> 	if (!timeout) return -ETIMEDOUT;
 > 
-> ath11k_pci 0000:5a:00.0: mac tx mgmt frame, buf id 0
-> ath11k_pci 0000:5a:00.0: mgmt tx compl ev pdev_id 1, desc_id 0, status 1
+> with all kinds of permutations. Use 'time_left' as a variable to make the code
+> self explaining.
 > 
-> From user point of view, we have observed very low throughput due to this issue:
-> action frames are all dropped so ADDBA response from DUT never reaches AP. AP
-> can not use aggregation thus throughput is low.
+> Fix to the proper variable type 'long' while here.
 > 
-> Fix this by setting IEEE80211_KEY_FLAG_GENERATE_IV_MGMT flag and by reserving proper
-> MIC length for those ciphers.
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/qmi.c | 20 ++++++++++----------
+>  1 file changed, 10 insertions(+), 10 deletions(-)
 > 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> 
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+> index d4a243b64f6c..2fe0ef660456 100644
+> --- a/drivers/net/wireless/ath/ath11k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
+> @@ -2859,7 +2859,7 @@ int ath11k_qmi_firmware_start(struct ath11k_base *ab,
+>  
+>  int ath11k_qmi_fwreset_from_cold_boot(struct ath11k_base *ab)
+>  {
+> -	int timeout;
+> +	long time_left;
+>  
+>  	if (!ath11k_core_coldboot_cal_support(ab) ||
+>  	    ab->hw_params.cbcal_restart_fw == 0)
+> @@ -2867,11 +2867,11 @@ int ath11k_qmi_fwreset_from_cold_boot(struct ath11k_base *ab)
+>  
+>  	ath11k_dbg(ab, ATH11K_DBG_QMI, "wait for cold boot done\n");
+>  
+> -	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
+> -				     (ab->qmi.cal_done == 1),
+> -				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
+> +	time_left = wait_event_timeout(ab->qmi.cold_boot_waitq,
+> +				       (ab->qmi.cal_done == 1),
+> +				       ATH11K_COLD_BOOT_FW_RESET_DELAY);
+>  
+> -	if (timeout <= 0) {
+> +	if (time_left <= 0) {
+>  		ath11k_warn(ab, "Coldboot Calibration timed out\n");
+>  		return -ETIMEDOUT;
+>  	}
+> @@ -2886,7 +2886,7 @@ EXPORT_SYMBOL(ath11k_qmi_fwreset_from_cold_boot);
+>  
+>  static int ath11k_qmi_process_coldboot_calibration(struct ath11k_base *ab)
+>  {
+> -	int timeout;
+> +	long time_left;
+>  	int ret;
+>  
+>  	ret = ath11k_qmi_wlanfw_mode_send(ab, ATH11K_FIRMWARE_MODE_COLD_BOOT);
+> @@ -2897,10 +2897,10 @@ static int ath11k_qmi_process_coldboot_calibration(struct ath11k_base *ab)
+>  
+>  	ath11k_dbg(ab, ATH11K_DBG_QMI, "Coldboot calibration wait started\n");
+>  
+> -	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
+> -				     (ab->qmi.cal_done  == 1),
+> -				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
+> -	if (timeout <= 0) {
+> +	time_left = wait_event_timeout(ab->qmi.cold_boot_waitq,
+> +				       (ab->qmi.cal_done  == 1),
+> +				       ATH11K_COLD_BOOT_FW_RESET_DELAY);
+> +	if (time_left <= 0) {
+>  		ath11k_warn(ab, "coldboot calibration timed out\n");
+>  		return 0;
+>  	}
 
+This looks ok to me, but note that changes to ath11k go through the ath tree,
+so, unless Kalle has a different opinion, this should be submitted separately
+from changes that go through the wireless tree.
 
