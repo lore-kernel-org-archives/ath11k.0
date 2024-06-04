@@ -4,84 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AB67C25B78
-	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 20:09:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9F64C27C54
+	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 23:23:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9bZhttX4fmcqJQHXacp2jwSZB4vJ6W3qLSAVsqkLGuw=; b=Vlf9XCKjtbYEx+7R6Ei0qR2bIv
-	0xtGWwHLW98OGDPdN2ZLF04VdGxDjgkOPaLqwwBmt6DWLFE0rXIdMgL7es0jHjgHUO2AVZ64hn8Kw
-	4PvAIDtsKNimCWhUKt/hhbKlw0+7fbv+Fl0BLIYCX1ogH36PzgU2C3pkK7aT3nsIx4NNAMzAndG98
-	/HkW2uNcPmClYs44Q3J2kZ+rynIgKV86UhfasqHEVWRGqJgkZpeNgTGdziIQhOFTSs8soxQDmZfQf
-	L09G87WNqO+2QMtLbAnMqZccCvyRHMtb1Ep8l2/79C2bAuqiOMTbTV3ahX3Zfo0WrgCBndc+Qtf9R
-	LfHvJ2+w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=ZtMqxBC20X1z0XvIi37HlJafdjrmxOUmyatDjBpBcrg=; b=A1BC05vUaIyrd1
+	CkeT7dBvQAIXbolNrWK3jAb8NLkKERfzB55eQQdwHkLUM1Y723t1JpOcjUnmgw9BtHVmI0Q4aqchw
+	HxgEpctIOBmvKM9QaqEc8obpUJpW3MAi3C8/KcsZAB5cUByUbmo9otfvwGXdNufpmQK5EOjW+OXCI
+	l5Af21Ct4pD9Tk86uTZVdGR88rifBzrQbH4PxU+hittV/HD3KG34t3hAsyn0RFlW3hjKrsrcBozq2
+	8QarOLnwJt/5w/vW6epubxQjPfmuebN0lF6VxvbeW27N5TkMRoRKnnF8hIcsm+JXmNTaW5soGAvsS
+	G3frvDDVe4NMiUG6PYMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEaTe-00000003giR-40IR;
-	Tue, 04 Jun 2024 20:09:50 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1sEdVR-00000004A4X-3QdG;
+	Tue, 04 Jun 2024 23:23:53 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEaTc-00000003gi3-1M5Q
-	for ath11k@lists.infradead.org;
-	Tue, 04 Jun 2024 20:09:50 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-52b7ffd9f6eso5973735e87.3
-        for <ath11k@lists.infradead.org>; Tue, 04 Jun 2024 13:09:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717531785; x=1718136585; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9bZhttX4fmcqJQHXacp2jwSZB4vJ6W3qLSAVsqkLGuw=;
-        b=lTNFM5yGqOWGhKpFWXkIIs892Jfy4RggrPB0J4CVQmcr9j7tJsJLvXz53pnk55Dfj/
-         bbP+zUIcQRuuMoKWdLiImGdEX8raJvR9vYgOz22NGB1oTqfM0m2GEDmIvFobesbKB86c
-         KIFDOp1MSgPiy7T9bFYOdiMuW2LwFtgzSyu+q64ZhH1iIyD1hpbXP+YiYLbaWl30l32Y
-         jJHqlDSciINJkg50VcUIIuCqwzwO2TaGTBxxzc+V25xkM9spprkXqW8VOGT/TpcLXu+y
-         4kj+PohGfscxjqTbchsIQ7F3A98qwhjrjeKj696q1eesX3Z/MmNuGTGJu+dRGleK+69F
-         YqSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717531785; x=1718136585;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9bZhttX4fmcqJQHXacp2jwSZB4vJ6W3qLSAVsqkLGuw=;
-        b=UP2QWdGD2p5MEmko5RkLxDmkRpsqhjH54/XQPGRx0tABlXUPB8RuYFQs5fKKIoUX4H
-         7XyrP4/sIpAUoT2oYmK6cKOe0I3BJXUeeaKbHEyzJUJz2RMgsffG9Mn30rlmPWCEgZcA
-         QRGiApCwIa42j6jmqsfJ2ybe1PFqTJK5oRgoS7Zf/oRBAwVQb6n/5RdQmWBT1idOyIoA
-         vj0hVeTUxmGcchTb6Q1vaZDlgLuPfTKEAC6fs3RviP5YKXivx91x65ewmq6piUxbHX7p
-         veCcBxPFAqOHUw5ln4JCNxYd+wspeLYsg8jqEdcYk/7xA802VpzoQLiN+Hg3ZBxh1DE0
-         UF6g==
-X-Forwarded-Encrypted: i=1; AJvYcCXhZ2ts/Eg9q/AMST6w0GUgww4iSBoviqS65rr9Ahk+Ysg/b/y8BHVyp1g66XNBl41Mf/nMtdq3f6nyOg+HeetuHgFVx42ng7JjTA==
-X-Gm-Message-State: AOJu0Yw+RmzH4P0EtNjJFpcwUDZ5KPsV707UXr3/tvSemU/wKS0O5HuQ
-	pdr2hTwdARhwLnKW333iuT1SNT8VQw36QSjp/V0B4lm5lkqBXdVRcdaA6/snXeEuCfHZS4U9WCf
-	QsvWJpRt/J7q/R/OTEIB+acRDMiw=
-X-Google-Smtp-Source: AGHT+IEWJ36mlfu6fdpnSf7dS50CWGpD/LgGfZqMiTZZUCAChYp/NdC2Sz6F5igQZZ0uzeKLXvl5R11sVXdb0Ifylkk=
-X-Received: by 2002:ac2:4884:0:b0:52b:79d3:6e87 with SMTP id
- 2adb3069b0e04-52bab4f448emr364887e87.47.1717531784841; Tue, 04 Jun 2024
- 13:09:44 -0700 (PDT)
+	id 1sEdVP-00000004A45-0sCT;
+	Tue, 04 Jun 2024 23:23:52 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 1875C61313;
+	Tue,  4 Jun 2024 23:23:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67E83C3277B;
+	Tue,  4 Jun 2024 23:23:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717543429;
+	bh=TcM91AOH5mARdOX+sC1EAXIn04cXXNDDk3iF8SmOPds=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=HLiPBDnKEroIafHmkKhjL6ZMtwQGyKIKNbO+TcKl/05kSJIwg0yO1zoMMQbmOFtv3
+	 BPwiExtk5Je89Q0RCvCcP3KlX4Gh/9Y/96+4Th9xJSJREAr9tGTnYtD0hKHOUVm8i0
+	 rjrBa1hjbTsB2cAxnsTkD0mIW0nAt1HupIBiC4A3ABFImA1myBc45JQ3fI68abpMiw
+	 FrSRmzcAkYkvGQ9Cux3ZCT6BXB2Q07caU5VI5TY6DxiGtNCxTfI+3q8uT3jeG6ugDG
+	 bMO4Zbad0NPDHHGrNKyQfl8QS8RH9L5uVpcBiiwcQRkGeBpZCcqKAFD5AbiCUxhYJc
+	 Hrn3BtBW16vpg==
+Date: Tue, 4 Jun 2024 18:23:47 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Elliot Berman <quic_eberman@quicinc.com>,
+	Caleb Connolly <caleb.connolly@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath12k@lists.infradead.org, linux-pm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	kernel@quicinc.com, Amit Pundir <amit.pundir@linaro.org>
+Subject: Re: [PATCH v8 16/17] PCI/pwrctl: add a PCI power control driver for
+ power sequenced devices
+Message-ID: <20240604232347.GA740032@bhelgaas>
 MIME-Version: 1.0
-References: <CADS+iDX5=JtJr0apAtAQ02WWBxgOFEv8G063vuGYwDTC8AVZaw@mail.gmail.com>
- <19778bfe-19ad-4ee4-8f3b-80e7b124571f@quicinc.com> <7cd963ba-e4b0-4714-a814-983434589059@quicinc.com>
- <CADS+iDWeb39_FQQg2j6bk05BV73pOU=Ck+uBadeg+3Nnc6sKiA@mail.gmail.com>
- <CADS+iDUr=kVumMdBAU-AcaE-Q9TPN4K3dCe1C4KW2tqs7ziBKw@mail.gmail.com>
- <f736206e-b3bf-4a78-8ad3-262f6e1f4507@quicinc.com> <CADS+iDW+urkeQDuZYYVDsEg=WNGoq5PomAmg1dRLPySPM=2SUg@mail.gmail.com>
- <6b439fca-01a3-4a00-b542-26552dd30874@quicinc.com> <CADS+iDU4gq5iCyYwcNX8DC8=FSyViK4=X+UJMuCtYtBP_-u_UA@mail.gmail.com>
- <87o78hta3a.fsf@kernel.org>
-In-Reply-To: <87o78hta3a.fsf@kernel.org>
-From: Yaroslav Isakov <yaroslav.isakov@gmail.com>
-Date: Tue, 4 Jun 2024 22:09:33 +0200
-Message-ID: <CADS+iDW7dEnpTxAQPuOPMB0Db7pTFBmLhV1WqqnSUSTadUW6zQ@mail.gmail.com>
-Subject: Re: wcn6855 2.1 - slow download speed on any pairwise cipher except CCMP
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>, Jeff Johnson <quic_jjohnson@quicinc.com>, 
-	ath11k@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240528-pwrseq-v8-16-d354d52b763c@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_130948_390471_B6679BE3 
-X-CRM114-Status: GOOD (  17.68  )
+X-CRM114-CacheID: sfid-20240604_162351_341574_AD3FBA53 
+X-CRM114-Status: GOOD (  14.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,49 +97,36 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello!
+On Tue, May 28, 2024 at 09:03:24PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Add a PCI power control driver that's capable of correctly powering up
+> devices using the power sequencing subsystem. The first users of this
+> driver are the ath11k module on QCA6390 and ath12k on WCN7850.
 
-On Tue, 4 Jun 2024, 09:56 Kalle Valo, <kvalo@kernel.org> wrote:
->
-> Yaroslav Isakov <yaroslav.isakov@gmail.com> writes:
->
-> > =D0=B2=D1=82, 4 =D0=B8=D1=8E=D0=BD. 2024=E2=80=AF=D0=B3. =D0=B2 03:55, =
-Baochen Qiang <quic_bqiang@quicinc.com>:
-> >
-> >> On 6/4/2024 5:29 AM, Yaroslav Isakov wrote:
-> >> > Hello! Thank you for patch! I tried to apply this patch on top of 6.=
-9.3,
-> >> > but it failed to apply - what kernel version should I use, to test i=
-t?
-> >> >
-> >> That patch is based on ath-202405301555 tag of Kalle's ath.git:
-> >>
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/
-> >>
-> >> but I suppose it could also be applied cleanly on ToT of ath.git.
-> >
-> > Actually, it seems that when I was copying patch from patchwork,
-> > something went wrong. I properly downloaded it, and it applied (with
-> > few hunks) on top of 6.9.3. After rebuilding currently running kernel,
-> > and reloading driver - GCMP-256 finally started showing same speeds on
-> > download as on upload! Looks like the issue is fixed, thank you a lot!
->
-> Great work, Baochen!
->
-> Yaroslav, would you mind providing your Tested-by tag?
+Can you add a little detail here about what benefit we will see from
+this driver?  E.g., something that doesn't work correctly now, but
+will work with this driver?
 
-Sure! Trying it for the first time, so
-Tested-by: Yaroslav Isakov <yaroslav.isakov@gmail.com>
+> +static const struct of_device_id pci_pwrctl_pwrseq_of_match[] = {
+> +	{
+> +		/* ATH11K in QCA6390 package. */
+> +		.compatible = "pci17cb,1101",
+> +		.data = "wlan",
+> +	},
+> +	{
+> +		/* ATH12K in WCN7850 package. */
+> +		.compatible = "pci17cb,1107",
+> +		.data = "wlan",
+> +	},
 
->
-> That way your
-> work is also properly attributed in the patch. This is of course
-> optional.
->
->
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpa=
-tches
+IIUC, "pci17cb,1101" and "pci17cb,1107" exist partly so we can check
+that a DTS conforms to the schema, e.g., a "pci17cb,1101" node
+contains all the required regulators.  For that use, we obviously need
+a very specific "compatible" string.
+
+Is there any opportunity to add a more generic "compatible" string in
+addition to those so this list doesn't have to be updated for every
+PMU?  The .data here is "wlan" in both cases, and for this purpose, we
+don't care whether it's "pci17cb,1101" or "pci17cb,1107".
 
