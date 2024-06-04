@@ -4,64 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01EBCC25B78
-	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 17:11:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5E9DC25B78
+	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 17:19:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5ulkRrmlSO7C2Gnp9b3ajPPDpKTSBYGgtHExF+oLHxk=; b=BoXy4EN8qbmF1SLTeU5hbg3mnu
-	kkoWw5Wb0btYThslRskNmmIVTyTRpCjWwHpYjef8qoU14xSlSVhhSprtvIebsmwvbBAGbc6icsmX2
-	flaUYGwix1IEEMTBj1wbryJRzh/4olVNwsBhfdvmEjgpw3PRVNx0PDLbm14rN6lS2nPLgFOn3DMUp
-	fnTuvRxgZuqlgfZqnacC7Fk+8ew0buLOAQxHubYua8iACsNRG8rQUNZOmHDrN62R9XgBBQMd/PyqB
-	GyDSc+LIxsdOmXhiQvlMu3o+bUl8FRQ0v7ZlpApLPZeaetpIne9vdg2iZrR3rjjb+eZlx/TSYkLoQ
-	Hg0OYZlg==;
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=0NVb3zaOJvIrNufQO1zCtKGZqjgMRLXWdNcF/N4dMzk=; b=1tlALgq5ME2m29
+	EZj5YeBSLeD2ctQBhLhIBL+YfrlMvnaUaTYzucJBUIjuvPH9jad0BqkAQv/7TPWOyOsc6g78FfNGE
+	P0Pj8I3HoMY98IPlQOyAOsuEwQ7oGW1rYKFLR8E9F+ADI4qlTV8sCe/XOzJP6fkIqyGZCtuqqUIZx
+	47HpYQrZKe7FmIRZebGAoIzzSw1mVaoYugi/TN9pb3iJS/+E4daLy0NKeJ9ozMjmDoGWX5XWVHclb
+	jHYYplBtsyBB2ri25Oeq+e7Fgq2g1Btei+VgFLNSDCLTYHN8CPnVO7V0o9lB8kN/qOnn6l//akZRV
+	KbyUsi5CbnGDrUkNrMiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEXgu-00000003G01-3p88;
-	Tue, 04 Jun 2024 17:11:20 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1sEXpF-00000003H0x-0gvC;
+	Tue, 04 Jun 2024 17:19:57 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEXgr-00000003Fyt-2Kgx
-	for ath11k@lists.infradead.org;
-	Tue, 04 Jun 2024 17:11:19 +0000
+	id 1sEXpC-00000003H0S-1MYJ;
+	Tue, 04 Jun 2024 17:19:55 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id AB694CE125D;
-	Tue,  4 Jun 2024 17:11:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48A18C2BBFC;
-	Tue,  4 Jun 2024 17:11:12 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id DDBB76122A;
+	Tue,  4 Jun 2024 17:19:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5358DC2BBFC;
+	Tue,  4 Jun 2024 17:19:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717521073;
-	bh=H8UiO5YVsMUV3dpcXaV7RJ4HXiezpq63ohVSu9LX0MU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=auWON5ekYAJi+KBpiWfiZcAvVuoLdEU+oVN93tpqLmMP34F4V6FUlsgO7O5eb785I
-	 QiKlG8awM4H06dXVJ5XyrV7nsWyhtThT1DenWN4wd3lO29xtF40fvAjijizyjASE4A
-	 RsZpKzEcfGAyrz0G/M2fn5sK8KNFz1JstwNN+2/h0+Zdom7B49aJMw58iOQTHLVTAG
-	 0MOBVFPMksW6hQlur91MSVRypj5eaClKAsQb1DA9of41jOGLRnaOYc4QyqmM5Cx785
-	 4A7V2qJeDFe4hym2soYM0d1g2CrLOmKQgHjIjTO4mCxLykpYbYzzG5/HLyloAGCQlx
-	 HhJYfvNwC7fHA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-  <linux-kernel@vger.kernel.org>,  Jeff Johnson <jjohnson@kernel.org>,
-  <linux-wireless@vger.kernel.org>,  <ath11k@lists.infradead.org>
-Subject: Re: [PATCH 1/6] wifi: ath11k: use 'time_left' variable with
- wait_event_timeout()
-References: <20240603091541.8367-1-wsa+renesas@sang-engineering.com>
-	<20240603091541.8367-2-wsa+renesas@sang-engineering.com>
-	<47cc9455-6efb-4b1c-8743-c992e502633d@quicinc.com>
-Date: Tue, 04 Jun 2024 20:11:10 +0300
-In-Reply-To: <47cc9455-6efb-4b1c-8743-c992e502633d@quicinc.com> (Jeff
-	Johnson's message of "Mon, 3 Jun 2024 15:57:28 -0700")
-Message-ID: <87r0dcskep.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1717521592;
+	bh=ahgtXc4qQiXa8mwemiBOfb1WhBE5WcSDQDlT80ff1yw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=BXk7AHJQZhWMGA5FR5N42VZ4YfP1FBB4v/UHDo/4Q2sz1BqFhtW9bOeDkoS7kyLjH
+	 RETUQsjJOPfZvJdgRglyAIUsdlwJRJGWB9leiecxMdfJp4QNKGQ/YxwEnru5aV421G
+	 OTHjZHQwph9R/p4Rt8KXAeI4/vjvIj/nHGfcalXJg0eG36v54xh0bx5HCNf+OGbldW
+	 w4djORfUXitP26HFUAa2Fp5HDu4Px3SXAjoTSMcRgXl3nKAcDGy1hc6DxDSQBP1/UA
+	 3VH9EXdVJL8B7uw7ZQQHBXO1hvWfi2DAwah0DrDoLQhxDHipKevtC/mAkKAEXA7u33
+	 98SvIYye8ALng==
+Date: Tue, 4 Jun 2024 12:19:50 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Elliot Berman <quic_eberman@quicinc.com>,
+	Caleb Connolly <caleb.connolly@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath12k@lists.infradead.org, linux-pm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	kernel@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Amit Pundir <amit.pundir@linaro.org>
+Subject: Re: [PATCH v8 00/17] power: sequencing: implement the subsystem and
+ add first users
+Message-ID: <20240604171950.GA731649@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_101117_992036_B8EA83F1 
-X-CRM114-Status: GOOD (  16.94  )
+X-CRM114-CacheID: sfid-20240604_101954_429861_7B064E0A 
+X-CRM114-Status: GOOD (  15.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,89 +99,26 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+On Tue, May 28, 2024 at 09:03:08PM +0200, Bartosz Golaszewski wrote:
+> Note: I am resending this series in its entirety once more for
+> discussions and reviews. If there won't be any major objections, I'll
+> then start sending individual bits and pieces to appropriate trees.
+> 
+> Merging strategy: The DT binding and DTS changes are a no-brainer, they
+> can go through the wireless, regulator and arm-msm trees separately. The
+> bluetooth and PCI changes have a build-time dependency on the power
+> sequencing code. The bluetooth changes also have a run-time dependency on
+> the PCI pwrctl part. In order to get it into next I plan to pick up the
+> power sequencing code into my own tree and maintain it. I can then
+> provide an immutable tag for the BT and PCI trees to pull. I wouldn't
+> stress about the BT runtime dependency as it will be fixed once all
+> changes are in next.
+> ...
 
-> On 6/3/2024 2:15 AM, Wolfram Sang wrote:
->
->> There is a confusing pattern in the kernel to use a variable named 'timeout' to
->> store the result of wait_event_timeout() causing patterns like:
->> 
->> 	timeout = wait_event_timeout(...)
->> 	if (!timeout) return -ETIMEDOUT;
->> 
->> with all kinds of permutations. Use 'time_left' as a variable to make the code
->> self explaining.
->> 
->> Fix to the proper variable type 'long' while here.
->> 
->> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->> ---
->>  drivers/net/wireless/ath/ath11k/qmi.c | 20 ++++++++++----------
->>  1 file changed, 10 insertions(+), 10 deletions(-)
->> 
->> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
->> index d4a243b64f6c..2fe0ef660456 100644
->> --- a/drivers/net/wireless/ath/ath11k/qmi.c
->> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
->> @@ -2859,7 +2859,7 @@ int ath11k_qmi_firmware_start(struct ath11k_base *ab,
->>  
->>  int ath11k_qmi_fwreset_from_cold_boot(struct ath11k_base *ab)
->>  {
->> -	int timeout;
->> +	long time_left;
->>  
->>  	if (!ath11k_core_coldboot_cal_support(ab) ||
->>  	    ab->hw_params.cbcal_restart_fw == 0)
->> @@ -2867,11 +2867,11 @@ int ath11k_qmi_fwreset_from_cold_boot(struct ath11k_base *ab)
->>  
->>  	ath11k_dbg(ab, ATH11K_DBG_QMI, "wait for cold boot done\n");
->>  
->> -	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
->> -				     (ab->qmi.cal_done == 1),
->> -				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
->> +	time_left = wait_event_timeout(ab->qmi.cold_boot_waitq,
->> +				       (ab->qmi.cal_done == 1),
->> +				       ATH11K_COLD_BOOT_FW_RESET_DELAY);
->>  
->> -	if (timeout <= 0) {
->> +	if (time_left <= 0) {
->>  		ath11k_warn(ab, "Coldboot Calibration timed out\n");
->>  		return -ETIMEDOUT;
->>  	}
->> @@ -2886,7 +2886,7 @@ EXPORT_SYMBOL(ath11k_qmi_fwreset_from_cold_boot);
->>  
->>  static int ath11k_qmi_process_coldboot_calibration(struct ath11k_base *ab)
->>  {
->> -	int timeout;
->> +	long time_left;
->>  	int ret;
->>  
->>  	ret = ath11k_qmi_wlanfw_mode_send(ab, ATH11K_FIRMWARE_MODE_COLD_BOOT);
->> @@ -2897,10 +2897,10 @@ static int ath11k_qmi_process_coldboot_calibration(struct ath11k_base *ab)
->>  
->>  	ath11k_dbg(ab, ATH11K_DBG_QMI, "Coldboot calibration wait started\n");
->>  
->> -	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
->> -				     (ab->qmi.cal_done  == 1),
->> -				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
->> -	if (timeout <= 0) {
->> +	time_left = wait_event_timeout(ab->qmi.cold_boot_waitq,
->> +				       (ab->qmi.cal_done  == 1),
->> +				       ATH11K_COLD_BOOT_FW_RESET_DELAY);
->> +	if (time_left <= 0) {
->>  		ath11k_warn(ab, "coldboot calibration timed out\n");
->>  		return 0;
->>  	}
->
-> This looks ok to me, but note that changes to ath11k go through the ath tree,
-> so, unless Kalle has a different opinion, this should be submitted separately
-> from changes that go through the wireless tree.
+> ---
+> base-commit: 6dc544b66971c7f9909ff038b62149105272d26a
+> change-id: 20240527-pwrseq-76fc025248a2
 
-As there are no dependencies to other patches I can take this directly
-to ath.git, so no need to resend because of this.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+What does this apply to?  I don't know what 6dc544b66971 is; it
+doesn't seem to be in upstream or linux-next.
 
