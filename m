@@ -4,70 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F02C25B7E
-	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 07:56:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1024C25B7E
+	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 08:09:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Qd0cadaoIS5SXjI7TTyWX+nfdP+T59PeEsVnDby0odM=; b=ecAveg8j+tBSzIBbvwEiahG0pI
-	VvsyaeJAWFb9mypyxbiTGYJEclA/H+UWCi5v5N5ZE0Uj36SkctYCBDcq1y7nSrzJLUMXh3VbWYzFc
-	w11TQ6tswP0MDOXthq1p1FIgX7VCRfpknR2twJ+wYykpCR/jDlbCVnW2ZYAkLdw246SXYXi8eEVSr
-	UicbRs6bHrSLvkgzUzLXwI45i7WWMoDes5g0b0hd+MCbnEhXd+ErErnUkPfQT/Fc5J/q9fDPV7fa9
-	xZJDFFcwMwDsTs66LFgDficLrEPq4FAOpGjRMvgVs9NpYJelnb8npmdm67FVmr7ZL67WvjrtklF1p
-	lhAlrJ7Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=A95+A41ypG9VZuiE5+JpoBQr9fcMdaNy3j1oaOnLKUc=; b=I+D1JTLTYXc37WzFL51QTa6Byz
+	XzdsP05ENor0WKznczJtybgm3EqL02GGrrV4PcM/Dlnx8foW4ILkBqxWdd7VK9lxv5im3R1M6gZaF
+	Mm6CtCbaLIupisRhHqXwqV1V8X21wxm+6+S4Z3zrMs1DnpUNyfI0NubNGTEmLdOcxpe5l0WTxTkWz
+	EDMWG6nvBNN0nRiAphaTLYS/y7VQ1NT834faWqzZGwjRKXZtlOtUXCx1LRwMI6LUD/aQbcxhkx8JK
+	BynbR3vMFFwYah1y/ZMgc7HWWVA0cyJTXNkGtTXE5h1tSLFUocMTbM+tuj1V28FE/eTBefRHvZF38
+	TrDhD4Ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEP21-00000001asI-2T6e;
-	Tue, 04 Jun 2024 07:56:33 +0000
+	id 1sEPEe-00000001chs-1Kwk;
+	Tue, 04 Jun 2024 08:09:36 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEP1x-00000001apt-1ocK
+	id 1sEPEa-00000001cfo-1s5d
 	for ath11k@lists.infradead.org;
-	Tue, 04 Jun 2024 07:56:31 +0000
+	Tue, 04 Jun 2024 08:09:34 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 96A3B61219;
-	Tue,  4 Jun 2024 07:56:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FD18C2BBFC;
-	Tue,  4 Jun 2024 07:56:27 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 15E9561122;
+	Tue,  4 Jun 2024 08:09:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B6ECC2BBFC;
+	Tue,  4 Jun 2024 08:09:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717487788;
-	bh=Qd0cadaoIS5SXjI7TTyWX+nfdP+T59PeEsVnDby0odM=;
+	s=k20201202; t=1717488570;
+	bh=Ks/5HXLLA3BlNGAruV2BQLpNqH2NplEnN5LmiJ/z4Cg=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=agLe36oPivV/JRQIp87oGeRdgd1TtE6xmjfXV5vCD2eH4shcZCQ4NRwnol6S2bWiu
-	 tBnFn51SDkgVwPCZ5Dh4+2zVCZKUwK0f0Wb9D+Hpymd1BWVJ+O8n8Fxpi9YB9YMKmd
-	 fdCtgHPXGomyE2jHGhVRNxSCiFlW9+wNtSycuAsJL/mTG9A62lM0KI+8PRv2v7hqpr
-	 62anxScZ2+3OcT8GiABuUsrQVa+xN4h/mV9HZPL2rcoESuQbS+9w7qDEwmnMnTHYkk
-	 4ER3mIhGU9EkZ+3HWXhtqQxhcQBW+hy5L3wXiiCQQFjMymGy4SpI4fdWMs7rA0BSVX
-	 Ia4aSE16DkVdQ==
+	b=o1MRxCEMsm/rvMeAAJBPCYWpYQyAFd8BIGgeQvMSn7f/STx63dNix0p3AdGHdZgHO
+	 VpJz0TOInXj39V5PtD1yEF+NaPIlHvxQyN6RxRjF55oj3yFnPSF6kAdy6xZoSDHHF8
+	 uFmfQLaIUcNUKv1NYmxjir4bIWQYSbjQb2VcekRvPSTuUmUGpobXBYYjpH/pVzZSO8
+	 5mj4vvnZes5pcoFC9qdoLII1gSie8vbQ6FVHKFbBDT3w6IZIgxBPY/CwY/WAR1Th7W
+	 PGtpqFlZXM5ZneNCb8ZcE0Ar/w4EbNdRtAHV6nqSQqZJm6gZrHzagtxpP5PSB2kX/I
+	 mykRDonmv/rmQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Yaroslav Isakov <yaroslav.isakov@gmail.com>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>,  ath11k@lists.infradead.org
-Subject: Re: wcn6855 2.1 - slow download speed on any pairwise cipher except
- CCMP
-References: <CADS+iDX5=JtJr0apAtAQ02WWBxgOFEv8G063vuGYwDTC8AVZaw@mail.gmail.com>
-	<19778bfe-19ad-4ee4-8f3b-80e7b124571f@quicinc.com>
-	<7cd963ba-e4b0-4714-a814-983434589059@quicinc.com>
-	<CADS+iDWeb39_FQQg2j6bk05BV73pOU=Ck+uBadeg+3Nnc6sKiA@mail.gmail.com>
-	<CADS+iDUr=kVumMdBAU-AcaE-Q9TPN4K3dCe1C4KW2tqs7ziBKw@mail.gmail.com>
-	<f736206e-b3bf-4a78-8ad3-262f6e1f4507@quicinc.com>
-	<CADS+iDW+urkeQDuZYYVDsEg=WNGoq5PomAmg1dRLPySPM=2SUg@mail.gmail.com>
-	<6b439fca-01a3-4a00-b542-26552dd30874@quicinc.com>
-	<CADS+iDU4gq5iCyYwcNX8DC8=FSyViK4=X+UJMuCtYtBP_-u_UA@mail.gmail.com>
-Date: Tue, 04 Jun 2024 10:56:25 +0300
-In-Reply-To: <CADS+iDU4gq5iCyYwcNX8DC8=FSyViK4=X+UJMuCtYtBP_-u_UA@mail.gmail.com>
-	(Yaroslav Isakov's message of "Tue, 4 Jun 2024 09:26:49 +0200")
-Message-ID: <87o78hta3a.fsf@kernel.org>
+To: Dan Williams <dan.j.williams@intel.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>,  Dave Jiang <dave.jiang@intel.com>,
+  Bjorn Helgaas <bhelgaas@google.com>,  <linux-wireless@vger.kernel.org>,
+  <ath11k@lists.infradead.org>,  <regressions@lists.linux.dev>,  Jeff
+ Johnson <quic_jjohnson@quicinc.com>,  <linux-kernel@vger.kernel.org>,
+  <linux-cxl@vger.kernel.org>,  <linux-pci@vger.kernel.org>
+Subject: Re: [regression] BUG: KASAN: use-after-free in
+ lockdep_register_key+0x755/0x8f0
+References: <20240603165342.GA685076@bhelgaas> <87wmn5ubfo.fsf@kernel.org>
+	<665e162ec4b2d_2a90e294c8@dwillia2-xfh.jf.intel.com.notmuch>
+Date: Tue, 04 Jun 2024 11:09:26 +0300
+In-Reply-To: <665e162ec4b2d_2a90e294c8@dwillia2-xfh.jf.intel.com.notmuch> (Dan
+	Williams's message of "Mon, 3 Jun 2024 12:14:54 -0700")
+Message-ID: <87cyoxt9hl.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_005629_598693_89736557 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20240604_010932_589371_154252FB 
+X-CRM114-Status: GOOD (  11.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,37 +77,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Yaroslav Isakov <yaroslav.isakov@gmail.com> writes:
+Dan Williams <dan.j.williams@intel.com> writes:
 
-> =D0=B2=D1=82, 4 =D0=B8=D1=8E=D0=BD. 2024=E2=80=AF=D0=B3. =D0=B2 03:55, Ba=
-ochen Qiang <quic_bqiang@quicinc.com>:
+> Kalle Valo wrote:
+> [..]
+>> > Thanks for reporting the issue and testing the fix!  Can you please
+>> > respond with your Tested-by to the actual patch(es) you tested?
+>> 
+>> Not easily as I'm not subscribed to linux-pci list and I haven't
+>> researched how to import mbox files to my mailer :) So feel free to
+>> ignore my Tested-by tag in this case.
 >
->> On 6/4/2024 5:29 AM, Yaroslav Isakov wrote:
->> > Hello! Thank you for patch! I tried to apply this patch on top of 6.9.=
-3,
->> > but it failed to apply - what kernel version should I use, to test it?
->> >
->> That patch is based on ath-202405301555 tag of Kalle's ath.git:
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/
->>
->> but I suppose it could also be applied cleanly on ToT of ath.git.
->
-> Actually, it seems that when I was copying patch from patchwork,
-> something went wrong. I properly downloaded it, and it applied (with
-> few hunks) on top of 6.9.3. After rebuilding currently running kernel,
-> and reloading driver - GCMP-256 finally started showing same speeds on
-> download as on upload! Looks like the issue is fixed, thank you a lot!
+> I have had success with "b4 mbox" and importing that into Evolution, but
+> your mileage may vary with your mailer setup.
 
-Great work, Baochen!
+Heh, I'm old school and don't use anything modern like Evolution :) But
+it was actually really easy with Gnus ('G f') and looks like I managed
+to do it succesfully now:
 
-Yaroslav, would you mind providing your Tested-by tag? That way your
-work is also properly attributed in the patch. This is of course
-optional.
+https://lore.kernel.org/all/87h6e9t9qt.fsf@kernel.org/
 
---=20
+-- 
 https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
