@@ -4,65 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1024C25B7E
-	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 08:09:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F0E8C27C53
+	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 08:19:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=A95+A41ypG9VZuiE5+JpoBQr9fcMdaNy3j1oaOnLKUc=; b=I+D1JTLTYXc37WzFL51QTa6Byz
-	XzdsP05ENor0WKznczJtybgm3EqL02GGrrV4PcM/Dlnx8foW4ILkBqxWdd7VK9lxv5im3R1M6gZaF
-	Mm6CtCbaLIupisRhHqXwqV1V8X21wxm+6+S4Z3zrMs1DnpUNyfI0NubNGTEmLdOcxpe5l0WTxTkWz
-	EDMWG6nvBNN0nRiAphaTLYS/y7VQ1NT834faWqzZGwjRKXZtlOtUXCx1LRwMI6LUD/aQbcxhkx8JK
-	BynbR3vMFFwYah1y/ZMgc7HWWVA0cyJTXNkGtTXE5h1tSLFUocMTbM+tuj1V28FE/eTBefRHvZF38
-	TrDhD4Ig==;
+	bh=jIxrG2rJLNev+S2sFVjSEfocW+02vTLboo8kBEkNTa8=; b=nd4r8xitcQHkq2pFXIlWHQzcXP
+	PNgfqTKvgHUwhiyVFIG64D6f4EemND5o+jdAfL5bun8CPtUv0deU/f7WIXXItoZBW6LAYKJkfQ/Km
+	FRQHcCbN12wtBQf0dq8eLrNxMNO0TQXLexcNkMF5002UNmYmgEPRvIrp4RQoPEElYhv5O4ZpLx5uE
+	F0bvF6meTsBse8CvvVQlZtn3VV5JUE655pE1f00qC+shUDybZhmj730UEiV0JIlZok2Uh1Jleys82
+	g4maNkwD8rlj1bMaYlmMSp0dvzLiExa94/XbdHWv596vtmW1mEkXBxufBI0x78nQHpKfEex+eJ/sa
+	QY1WGxtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEPEe-00000001chs-1Kwk;
-	Tue, 04 Jun 2024 08:09:36 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sEPOR-00000001eij-2ejj;
+	Tue, 04 Jun 2024 08:19:43 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEPEa-00000001cfo-1s5d
+	id 1sEPOP-00000001ei2-0C3N
 	for ath11k@lists.infradead.org;
-	Tue, 04 Jun 2024 08:09:34 +0000
+	Tue, 04 Jun 2024 08:19:42 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 15E9561122;
-	Tue,  4 Jun 2024 08:09:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B6ECC2BBFC;
-	Tue,  4 Jun 2024 08:09:28 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 8BBCFCE1087;
+	Tue,  4 Jun 2024 08:19:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 922FFC4AF0A;
+	Tue,  4 Jun 2024 08:19:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717488570;
-	bh=Ks/5HXLLA3BlNGAruV2BQLpNqH2NplEnN5LmiJ/z4Cg=;
+	s=k20201202; t=1717489177;
+	bh=Cl26qCxo2UX/Hr4fxo+oX7S1ymUZ9Z3ZTZcmorokdoI=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=o1MRxCEMsm/rvMeAAJBPCYWpYQyAFd8BIGgeQvMSn7f/STx63dNix0p3AdGHdZgHO
-	 VpJz0TOInXj39V5PtD1yEF+NaPIlHvxQyN6RxRjF55oj3yFnPSF6kAdy6xZoSDHHF8
-	 uFmfQLaIUcNUKv1NYmxjir4bIWQYSbjQb2VcekRvPSTuUmUGpobXBYYjpH/pVzZSO8
-	 5mj4vvnZes5pcoFC9qdoLII1gSie8vbQ6FVHKFbBDT3w6IZIgxBPY/CwY/WAR1Th7W
-	 PGtpqFlZXM5ZneNCb8ZcE0Ar/w4EbNdRtAHV6nqSQqZJm6gZrHzagtxpP5PSB2kX/I
-	 mykRDonmv/rmQ==
+	b=gwSFn6Tebpx2FbyOPMGfXWm/Mu5F0chYv9oPxGYovid46Ggp4OhKt4lT+8wmWVGwZ
+	 bcSDSm3H+mOWpVCDwB+geWnkEcpvwZ12PaV9T7Kd/iceMQtXOQC+U1G1jzlBFszzgZ
+	 G2/yEUs619rFYWz0RU3p3kwmh7rmFm9UBxZ1RMfR9To7jTcp4dW4iaK77fhWhPwGBu
+	 Uh8ckP5yo3H6bMK8EXyKN6QsSAfNDn7Ue5UJkeH2pNe5M3VpFHRlt08g6N6AgIjupy
+	 A14Ws1BJ3YArVaqOrjOCwf85nHtxgxueN1dRTSS8LOwU/h2kSBXuI60MLEwcV2eW2Y
+	 K+lqvi8NWzRIg==
 From: Kalle Valo <kvalo@kernel.org>
-To: Dan Williams <dan.j.williams@intel.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>,  Dave Jiang <dave.jiang@intel.com>,
-  Bjorn Helgaas <bhelgaas@google.com>,  <linux-wireless@vger.kernel.org>,
-  <ath11k@lists.infradead.org>,  <regressions@lists.linux.dev>,  Jeff
- Johnson <quic_jjohnson@quicinc.com>,  <linux-kernel@vger.kernel.org>,
-  <linux-cxl@vger.kernel.org>,  <linux-pci@vger.kernel.org>
-Subject: Re: [regression] BUG: KASAN: use-after-free in
- lockdep_register_key+0x755/0x8f0
-References: <20240603165342.GA685076@bhelgaas> <87wmn5ubfo.fsf@kernel.org>
-	<665e162ec4b2d_2a90e294c8@dwillia2-xfh.jf.intel.com.notmuch>
-Date: Tue, 04 Jun 2024 11:09:26 +0300
-In-Reply-To: <665e162ec4b2d_2a90e294c8@dwillia2-xfh.jf.intel.com.notmuch> (Dan
-	Williams's message of "Mon, 3 Jun 2024 12:14:54 -0700")
-Message-ID: <87cyoxt9hl.fsf@kernel.org>
+To: Lu Baolu <baolu.lu@linux.intel.com>
+Cc: Joerg Roedel <joro@8bytes.org>,  Will Deacon <will@kernel.org>,  Robin
+ Murphy <robin.murphy@arm.com>,  Jason Gunthorpe <jgg@ziepe.ca>,  Kevin
+ Tian <kevin.tian@intel.com>,  Yi Liu <yi.l.liu@intel.com>,  David Airlie
+ <airlied@gmail.com>,  Daniel Vetter <daniel@ffwll.ch>,  Bjorn Andersson
+ <andersson@kernel.org>,  Mathieu Poirier <mathieu.poirier@linaro.org>,
+  Alex Williamson <alex.williamson@redhat.com>,  mst@redhat.com,  Jason
+ Wang <jasowang@redhat.com>,  Thierry Reding <thierry.reding@gmail.com>,
+  Jonathan Hunter <jonathanh@nvidia.com>,  Mikko Perttunen
+ <mperttunen@nvidia.com>,  iommu@lists.linux.dev,
+  dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
+    Jeff Johnson <quic_jjohnson@quicinc.com>, ath11k@lists.infradead.org
+Subject: Re: [PATCH v2 12/22] wifi: ath11k: Use iommu_paging_domain_alloc()
+References: <20240604015134.164206-1-baolu.lu@linux.intel.com>
+	<20240604015134.164206-13-baolu.lu@linux.intel.com>
+Date: Tue, 04 Jun 2024 11:19:30 +0300
+In-Reply-To: <20240604015134.164206-13-baolu.lu@linux.intel.com> (Lu Baolu's
+	message of "Tue, 4 Jun 2024 09:51:24 +0800")
+Message-ID: <874ja9t90t.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_010932_589371_154252FB 
-X-CRM114-Status: GOOD (  11.16  )
+X-CRM114-CacheID: sfid-20240604_011941_285049_751C76D1 
+X-CRM114-Status: GOOD (  15.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,25 +82,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dan Williams <dan.j.williams@intel.com> writes:
+Lu Baolu <baolu.lu@linux.intel.com> writes:
 
-> Kalle Valo wrote:
-> [..]
->> > Thanks for reporting the issue and testing the fix!  Can you please
->> > respond with your Tested-by to the actual patch(es) you tested?
->> 
->> Not easily as I'm not subscribed to linux-pci list and I haven't
->> researched how to import mbox files to my mailer :) So feel free to
->> ignore my Tested-by tag in this case.
+> An iommu domain is allocated in ath11k_ahb_fw_resources_init() and is
+> attached to ab_ahb->fw.dev in the same function.
 >
-> I have had success with "b4 mbox" and importing that into Evolution, but
-> your mileage may vary with your mailer setup.
+> Use iommu_paging_domain_alloc() to make it explicit.
+>
+> Signed-off-by: Lu Baolu <baolu.lu@linux.intel.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/ahb.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+> index ca0f17ddebba..a469647719f9 100644
+> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+> @@ -1001,10 +1001,10 @@ static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
+>  
+>  	ab_ahb->fw.dev = &pdev->dev;
+>  
+> -	iommu_dom = iommu_domain_alloc(&platform_bus_type);
+> -	if (!iommu_dom) {
+> +	iommu_dom = iommu_paging_domain_alloc(ab_ahb->fw.dev);
+> +	if (IS_ERR(iommu_dom)) {
+>  		ath11k_err(ab, "failed to allocate iommu domain\n");
+> -		ret = -ENOMEM;
+> +		ret = PTR_ERR(iommu_dom);
+>  		goto err_unregister;
+>  	}
 
-Heh, I'm old school and don't use anything modern like Evolution :) But
-it was actually really easy with Gnus ('G f') and looks like I managed
-to do it succesfully now:
-
-https://lore.kernel.org/all/87h6e9t9qt.fsf@kernel.org/
+Adding Jeff and ath11k list so that they can review this as well.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
