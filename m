@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD55DC25B78
-	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 17:30:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DA56C25B78
+	for <ath11k@archiver.kernel.org>; Tue,  4 Jun 2024 17:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=EQlrPHDDXQUzPADkAYVT6+V3iLzv9Sd6chxCRGLI8/Q=; b=IFNHr5+hfina8g
-	YNZac+DqokLaMWPmO5LnomXNomIFmDw3NFiCMBKl/0QIohN7O6e4j69LVR2JZ+tR4dNlfQMZKr3Au
-	xKUzEGu3Jxja3Tqy0kwYpVLPtCeb65nFa9hTtFoHKSKJg5Upjp0Pj4xFe6pPPc6t6NnRz3UR96D+3
-	mcqRA10mWqAmCzdTHLgi01ndRYxb7TzK1Nk2eyximlWdqc/oOn1nqo9zdswE4mHYPmoDw//dWie4/
-	ef1FTvmDs89Dv4+RX265bOBgdbzXvurprjZI5Nnod2JnRK6+Mqt09f+mk3g5SCngFhpNmZupAW4CM
-	DU08i8hjRnAm3r5uKVvg==;
+	List-Owner; bh=wUy80PZLGIzw8w84ATAX9AOJriFZZeJymgNTOAxSSKI=; b=cdRapWxIXdcjGJ
+	qi74ajPd5TyAmevEDS55iKzoqqHXxAzCGiyF3M0w6070aQr8QgTmlPf/AjziwTQOE+E5pAKAjzR3S
+	mknm9vhBqa6tcwHRn2pmSWRmDCN8YUmhUoKymDltA3+tgxY/wXPLJBqdGR5TlNPMJOziAcxB65wiX
+	UjHixfzt3MG/yvk/NIBy3asExKYhPigTgZryjDFnexpzE0JKK+JRQtmo4Bmxd/eB2V/rGUx1A6kT7
+	wh5Soxq1KSxQBDBlmNQ/p3MoglUieI1q///9CHTsU6kJg4AtPv9ntP3oGr/FoiuiWN/HtKisqu1Sd
+	ce4+v/Jxx43UqEs+5irA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEXzS-00000003JKd-2waj;
-	Tue, 04 Jun 2024 17:30:30 +0000
+	id 1sEY09-00000003JjS-0e7x;
+	Tue, 04 Jun 2024 17:31:13 +0000
 Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEXzO-00000003JHR-1uk4;
-	Tue, 04 Jun 2024 17:30:28 +0000
+	id 1sEY06-00000003Jhr-0FNw;
+	Tue, 04 Jun 2024 17:31:11 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 31D26CE0FD1;
-	Tue,  4 Jun 2024 17:30:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2066AC2BBFC;
-	Tue,  4 Jun 2024 17:30:23 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 1BDFDCE1269;
+	Tue,  4 Jun 2024 17:31:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1568DC32786;
+	Tue,  4 Jun 2024 17:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717522223;
-	bh=kqXj1o9Fsay7aIOaaJ/crMyXrglXA8LEVq/ukbMHfR4=;
+	s=k20201202; t=1717522267;
+	bh=MQO9fA2pjCBtJWAIS8fIzWfvpeJKsZKwiMGN9E5r8N4=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=F6kbkbrya+2QdXaJJxhMiNJEmPq6RWdGsdKv5Wt8MKfQPpRWECv0VxJIXccPoTR9K
-	 JBP4aE+hxN7XKqav4/IiGnpp8KCM5EJVVVBq9b/OovAlL62hMnzOBnNDerMmKONKcy
-	 45i9TGTWAO2jQ4cKDpSLbIlaiNIC1JLFgvUV4aZ9jOyh/xBQmRvMaXEqmF5m3yIyDJ
-	 oE2X/FaMRR0V8QHBtM/DxaLSeFdn1lMIj6ckCem+zUxamxNWjVNe0jEmdnj3ETnWDL
-	 ddlBOn4kunY2LkQjfLUOTc8cE42hWGoap49ZsdowxT92uOERhNiWaFrQgkTpuaYljK
-	 +SJVeajyY0vSA==
-Date: Tue, 4 Jun 2024 12:30:21 -0500
+	b=HAqA3qqt2r3b3JsPPw2jdEIKryGHIeu0iRwJU0O404+aOi10JvyzwHhJhqM7TZAGx
+	 CbYd/Iy6HwXXNrWPdf/kgTxVWTbqcPNElqm4BliZpQZMRgnscmSEcmYL6IClroZw2z
+	 +jAI4Rael4VhgPwNzw3XE01TH6aSWn8HjU81u3lAMq0Oblx+YoIBSz+zdowwYjtEhZ
+	 7owGBmyP86kadTlqZWJDA8FGWqpdmW/Lniw/xDo5S5LLRf/yHPr08S+zi7eB8sxEPs
+	 Rcmc7ELlwop/d5XKuVELtcZoKr70m2S3t8sdTo7GU5TmN646i7EAeHXDHdXLCAZjNB
+	 lsAQJaGMh+ahg==
+Date: Tue, 4 Jun 2024 12:31:05 -0500
 From: Bjorn Helgaas <helgaas@kernel.org>
 To: Bartosz Golaszewski <brgl@bgdev.pl>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -74,16 +74,16 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
 	kernel@quicinc.com,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v8 01/17] regulator: dt-bindings: describe the PMU module
- of the QCA6390 package
-Message-ID: <20240604173021.GA732838@bhelgaas>
+Subject: Re: [PATCH v8 02/17] regulator: dt-bindings: describe the PMU module
+ of the WCN7850 package
+Message-ID: <20240604173105.GA733043@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240528-pwrseq-v8-1-d354d52b763c@linaro.org>
+In-Reply-To: <20240528-pwrseq-v8-2-d354d52b763c@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_103026_880481_DAFC513C 
-X-CRM114-Status: UNSURE (   8.71  )
+X-CRM114-CacheID: sfid-20240604_103110_312270_A94816C6 
+X-CRM114-Status: UNSURE (   6.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,30 +99,10 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, May 28, 2024 at 09:03:09PM +0200, Bartosz Golaszewski wrote:
+On Tue, May 28, 2024 at 09:03:10PM +0200, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
+> The WCN7850 package contains discreet modules for WLAN and Bluetooth. They
 
 s/discreet/discrete/
-
-> are powered by the Power Management Unit (PMU) that takes inputs from the
-> host and provides LDO outputs. This document describes this module.
-
-LDO?  Again below, but maybe this is obvious to everybody.
-
-"This document describes this module" seems possibly unnecessary.
-
-> +description:
-> +  The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
-
-s/discreet/discrete/
-
-> +  are powered by the Power Management Unit (PMU) that takes inputs from the
-> +  host and provides LDO outputs. This document describes this module.
-
-> +  vddpcie1p3-supply:
-> +    description: VDD_PCIE_1P3 supply regulator handle<S-Del>
-
-s/<S-Del>// ?
 
