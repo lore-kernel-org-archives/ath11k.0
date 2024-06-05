@@ -4,83 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AC58C25B76
-	for <ath11k@archiver.kernel.org>; Wed,  5 Jun 2024 03:47:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 227FAC27C52
+	for <ath11k@archiver.kernel.org>; Wed,  5 Jun 2024 06:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=mRe6qDwQUyb6ARzWiaWLFMk2YpHxaI5n5AhOXxygJpc=; b=QmOYhSPU6uQeSV2v58f+6tU8sN
-	PFdr8fgIq7DjP4S0Q+8RDpP2sgLJTu76IMU31gBQa9YkDnUsvkIV1kj1a+O+2nu/JSArPZsIrDhls
-	obMXoIjh2gBp1RbtsbCygV9mZYJKt5F9OZY4wQhkh/x8wIkQSiwEIMIMjLPKemQey6hwDfyAHdhlF
-	1NoJ9VUeOA0OM2vsB/yz6bSSwOqO1itaZRWfwau8IsEg/uTmLG4bw6YRsSdFj3c641Hy0yiSdWHxm
-	byzh+t5UKuw4jOyoGqPt2bQdMFDJv4PV4zx0QT76DJIl9F4XKqMX/Ss/tgP1bJaP9rf3Sol1wHpUe
-	GzVfgo9w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=TETFWkQC3O48rg20M9mDGPFWtBDifIvqBD+1Fgvl8M0=; b=eeh+w7AbPidmGWQ2cIv/V94MIy
+	RbKjdSRdyro+h4hqQQHnDpWpkVHh3YVrs9tipAQRflyKGwcmBCIwQUiZElicYG31C1hDb0Yq4xuwA
+	Cp2EuOv5v4zRcQyFciC45EfFnT+KxpuBHa87rdLW1A1z7VKL6iBN2fTwVo4rTOrZj2Hu305LkHi5+
+	HbiBADeCNfFIvX/Scypa1HmWV/PoN7lC06j6LBER1GOlZcNwY6gmKSHvjYUa53GrlxUs9sOQaPPBM
+	f1iNuEEcz/2Vy/xMZHdjHGVl8/X5z8QyqCrEe99YEcHMDIsS/1MQP8PZpcHJzz4wBoDGKzlFfwQEW
+	PHdTEJ9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEhcI-00000004Yon-2Z7W;
-	Wed, 05 Jun 2024 03:47:14 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1sEkWP-00000004sQ8-2BE6;
+	Wed, 05 Jun 2024 06:53:21 +0000
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEhcE-00000004YoT-3x4B
-	for ath11k@lists.infradead.org;
-	Wed, 05 Jun 2024 03:47:13 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 454IIAuL006633;
-	Wed, 5 Jun 2024 03:47:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=mRe6qDwQUyb6ARzWiaWLFM
-	k2YpHxaI5n5AhOXxygJpc=; b=pvjA+xishnHwtRGzOMCxJI7/QJfVWvCVtlcsqS
-	SxaKpWeUyx8QYEqAwhdKbRbuMuM5yBbo/QhAJ66YBf8vB618qQPV1gOGB64Wvzoc
-	jp3xX4b9+5z7fQkAkkI6A4ggH9gsk7a9qE4+X+4Yt1ioEOA7mIC7vT5vkmXulefq
-	+JN2S/mWQYFaK5bMu41+WD9nEnAslwiFiknpOigrA/ibdPiTWy5378Nu3Dfyx2Eh
-	93UzaJ4XJjruORsfhqKrQ/m/v1PkiqkF5Ptkj+1urJKRleYbH8eTyiMWz9Sn4sYM
-	S6Evzb6R+CP+EhkQ0wZWE2lEOHqetzV6r9L1sVSZsk1RlTrw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yj8300x8w-1
+	id 1sEkWK-00000004sNl-15bQ;
+	Wed, 05 Jun 2024 06:53:19 +0000
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 454LBQIM003926;
+	Tue, 4 Jun 2024 23:52:58 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pfpt0220; bh=TETFWkQC3O48rg20M9mDGPFWt
+	BDifIvqBD+1Fgvl8M0=; b=GYYskoFTTVG4aTxX5MyD6SbeMcfBS40+d+3sxaufg
+	mJQvs1IjRKvUhSkPIFuLC3Ybnuec8qglo+1JHYQyJntcMxPt1yjSYGgeobS1rbJe
+	+pvF1Y0O/6hfvPsXEpq3jiDFsF5KAAWn7+/je6LB44hGgJzNfpSX0ckOuJIoNcT1
+	to+HfTKkN+zC0lI3pxIRfBKZPRO/+qhfh/k3KmL8xKcQg8BLVX+Iuc8XwZsiVwIi
+	evaadzx7ORS+3X847CSb49jyK82Z1oHvwtHypHBFJdxUul+rdIv9El/U0gjLgUjA
+	eKWb5E9ZSdcJJ9uNTzJS3HjFy9OnRl6dTwhYPg7jPvesg==
+Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3yj167c703-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Jun 2024 03:47:00 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4553kx1v030413
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Jun 2024 03:46:59 GMT
-Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+	Tue, 04 Jun 2024 23:52:58 -0700 (PDT)
+Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
+ DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 4 Jun 2024 20:46:57 -0700
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-To: <kvalo@kernel.org>
-CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>,
-        Miaoqing Pan <quic_miaoqing@quicinc.com>
-Subject: [PATCH v2] wifi: ath11k: Add firmware coredump collection support
-Date: Wed, 5 Jun 2024 11:46:39 +0800
-Message-ID: <20240605034639.3942219-1-quic_miaoqing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+ 15.2.1544.4; Tue, 4 Jun 2024 23:52:57 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
+ (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Tue, 4 Jun 2024 23:52:57 -0700
+Received: from maili.marvell.com (unknown [10.28.36.165])
+	by maili.marvell.com (Postfix) with SMTP id 6D92C3F70A5;
+	Tue,  4 Jun 2024 23:52:46 -0700 (PDT)
+Date: Wed, 5 Jun 2024 12:22:45 +0530
+From: Ratheesh Kannoth <rkannoth@marvell.com>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz
+ Augusto von Dentz <luiz.dentz@gmail.com>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Balakrishna Godavarthi
+	<quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo
+	<kvalo@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn
+ Helgaas <bhelgaas@google.com>,
+        Srini Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-bluetooth@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
+        Jeff Johnson
+	<quic_jjohnson@quicinc.com>,
+        <ath12k@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        <kernel@quicinc.com>, Amit Pundir
+	<amit.pundir@linaro.org>
+Subject: Re: [PATCH v8 10/17] power: sequencing: implement the pwrseq core
+Message-ID: <20240605065245.GB3452034@maili.marvell.com>
+References: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
+ <20240528-pwrseq-v8-10-d354d52b763c@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hlgSpu3XyJkeWfudk6JjTWORodA8jPj7
-X-Proofpoint-ORIG-GUID: hlgSpu3XyJkeWfudk6JjTWORodA8jPj7
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240528-pwrseq-v8-10-d354d52b763c@linaro.org>
+X-Proofpoint-ORIG-GUID: r6srh0fYNMTipoydFjNqZ7ug-atWmd4q
+X-Proofpoint-GUID: r6srh0fYNMTipoydFjNqZ7ug-atWmd4q
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-04_11,2024-06-04_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
- impostorscore=0 adultscore=0 mlxlogscore=999 mlxscore=0 spamscore=0
- malwarescore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2405170001 definitions=main-2406050028
+ definitions=2024-06-04_11,2024-06-05_01,2024-05-17_01
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240604_204711_104953_63A60178 
-X-CRM114-Status: GOOD (  27.61  )
+X-CRM114-CacheID: sfid-20240604_235316_597812_43A35478 
+X-CRM114-Status: GOOD (  42.41  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,670 +128,1355 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In case of firmware assert snapshot of firmware memory is essential for
-debugging. Add firmware coredump collection support for PCI bus.
-Collect RDDM and firmware paging dumps from MHI and pack them in TLV
-format and also pack various memory shared during QMI phase in separate
-TLVs.  Add necessary header and share the dumps to user space using dev
-coredump framework. Coredump collection is disabled by default and can
-be enabled using menuconfig. Dump collected for a radio is 55 MB
-approximately.
+On 2024-05-29 at 00:33:18, Bartosz Golaszewski (brgl@bgdev.pl) wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> Implement the power sequencing subsystem allowing devices to share
+> complex powering-up and down procedures. It's split into the consumer
+> and provider parts but does not implement any new DT bindings so that
+> the actual power sequencing is never revealed in the DT representation.
+>
+> Tested-by: Amit Pundir <amit.pundir@linaro.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  MAINTAINERS                       |    8 +
+>  drivers/power/Kconfig             |    1 +
+>  drivers/power/Makefile            |    1 +
+>  drivers/power/sequencing/Kconfig  |   12 +
+>  drivers/power/sequencing/Makefile |    4 +
+>  drivers/power/sequencing/core.c   | 1105 +++++++++++++++++++++++++++++++++++++
+>  include/linux/pwrseq/consumer.h   |   56 ++
+>  include/linux/pwrseq/provider.h   |   75 +++
+>  8 files changed, 1262 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index dbc5d9ec3d20..dd129735e7c6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17893,6 +17893,14 @@ F:	include/linux/pm_*
+>  F:	include/linux/powercap.h
+>  F:	kernel/configs/nopm.config
+>
+> +POWER SEQUENCING
+> +M:	Bartosz Golaszewski <brgl@bgdev.pl>
+> +L:	linux-pm@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
+> +F:	drivers/power/sequencing/
+> +F:	include/linux/pwrseq/
+> +
+>  POWER STATE COORDINATION INTERFACE (PSCI)
+>  M:	Mark Rutland <mark.rutland@arm.com>
+>  M:	Lorenzo Pieralisi <lpieralisi@kernel.org>
+> diff --git a/drivers/power/Kconfig b/drivers/power/Kconfig
+> index 696bf77a7042..9a8e44ca9ae4 100644
+> --- a/drivers/power/Kconfig
+> +++ b/drivers/power/Kconfig
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  source "drivers/power/reset/Kconfig"
+> +source "drivers/power/sequencing/Kconfig"
+>  source "drivers/power/supply/Kconfig"
+> diff --git a/drivers/power/Makefile b/drivers/power/Makefile
+> index effbf0377f32..962a2cd30a51 100644
+> --- a/drivers/power/Makefile
+> +++ b/drivers/power/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_POWER_RESET)	+= reset/
+> +obj-$(CONFIG_POWER_SEQUENCING)	+= sequencing/
+>  obj-$(CONFIG_POWER_SUPPLY)	+= supply/
+> diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
+> new file mode 100644
+> index 000000000000..ba5732b1dbf8
+> --- /dev/null
+> +++ b/drivers/power/sequencing/Kconfig
+> @@ -0,0 +1,12 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +menuconfig POWER_SEQUENCING
+> +	tristate "Power Sequencing support"
+> +	help
+> +	  Say Y here to enable the Power Sequencing subsystem.
+> +
+> +	  This subsystem is designed to control power to devices that share
+> +	  complex resources and/or require specific power sequences to be run
+> +	  during power-up.
+> +
+> +	  If unsure, say no.
+> diff --git a/drivers/power/sequencing/Makefile b/drivers/power/sequencing/Makefile
+> new file mode 100644
+> index 000000000000..dcdf8c0c159e
+> --- /dev/null
+> +++ b/drivers/power/sequencing/Makefile
+> @@ -0,0 +1,4 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +obj-$(CONFIG_POWER_SEQUENCING)		+= pwrseq-core.o
+> +pwrseq-core-y				:= core.o
+> diff --git a/drivers/power/sequencing/core.c b/drivers/power/sequencing/core.c
+> new file mode 100644
+> index 000000000000..e07037ea5be0
+> --- /dev/null
+> +++ b/drivers/power/sequencing/core.c
+> @@ -0,0 +1,1105 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2024 Linaro Ltd.
+> + */
+> +
+> +#include <linux/bug.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/debugfs.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/export.h>
+> +#include <linux/idr.h>
+> +#include <linux/kernel.h>
+> +#include <linux/kref.h>
+> +#include <linux/list.h>
+> +#include <linux/lockdep.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/pwrseq/consumer.h>
+> +#include <linux/pwrseq/provider.h>
+> +#include <linux/radix-tree.h>
+> +#include <linux/rwsem.h>
+> +#include <linux/slab.h>
+> +
+> +/*
+> + * Power-sequencing framework for linux.
+> + *
+> + * This subsystem allows power sequence providers to register a set of targets
+> + * that consumers may request and power-up/down.
+> + *
+> + * Glossary:
+> + *
+> + * Unit - a unit is a discreet chunk of a power sequence. For instance one unit
+> + * may enable a set of regulators, another may enable a specific GPIO. Units
+> + * can define dependencies in the form of other units that must be enabled
+> + * before it itself can be.
+> + *
+> + * Target - a target is a set of units (composed of the "final" unit and its
+> + * dependencies) that a consumer selects by its name when requesting a handle
+> + * to the power sequencer. Via the dependency system, multiple targets may
+> + * share the same parts of a power sequence but ignore parts that are
+> + * irrelevant.
+> + *
+> + * Descriptor - a handle passed by the pwrseq core to every consumer that
+> + * serves as the entry point to the provider layer. It ensures coherence
+> + * between different users and keeps reference counting consistent.
+> + *
+> + * Each provider must define a .match() callback whose role is to determine
+> + * whether a potential consumer is in fact associated with this sequencer.
+> + * This allows creating abstraction layers on top of regular device-tree
+> + * resources like regulators, clocks and other nodes connected to the consumer
+> + * via phandle.
+> + */
+> +
+> +static DEFINE_IDA(pwrseq_ida);
+> +
+> +/*
+> + * Protects the device list on the pwrseq bus from concurrent modifications
+> + * but allows simultaneous read-only access.
+> + */
+> +static DECLARE_RWSEM(pwrseq_sem);
+> +
+> +/**
+> + * struct pwrseq_unit - Private power-sequence unit data.
+> + * @ref: Reference count for this object. When it goes to 0, the object is
+> + *       destroyed.
+> + * @name: Name of this target.
+> + * @list: Link to siblings on the list of all units of a single sequencer.
+> + * @deps: List of units on which this unit depends.
+> + * @enable: Callback running the part of the power-on sequence provided by
+> + *          this unit.
+> + * @disable: Callback running the part of the power-off sequence provided
+> + *           by this unit.
+> + * @enable_count: Current number of users that enabled this unit. May be the
+> + *                consumer of the power sequencer or other units that depend
+> + *                on this one.
+> + */
+> +struct pwrseq_unit {
+> +	struct kref ref;
+> +	const char *name;
+> +	struct list_head list;
+> +	struct list_head deps;
+> +	pwrseq_power_state_func enable;
+> +	pwrseq_power_state_func disable;
+> +	unsigned int enable_count;
+> +};
+> +
+> +static struct pwrseq_unit *pwrseq_unit_new(const struct pwrseq_unit_data *data)
+> +{
+> +	struct pwrseq_unit *unit;
+> +
+> +	unit = kzalloc(sizeof(*unit), GFP_KERNEL);
+> +	if (!unit)
+> +		return NULL;
+> +
+> +	unit->name = kstrdup_const(data->name, GFP_KERNEL);
+> +	if (!unit->name) {
+> +		kfree(unit);
+> +		return NULL;
+> +	}
+> +
+> +	kref_init(&unit->ref);
+> +	INIT_LIST_HEAD(&unit->deps);
+> +	unit->enable = data->enable;
+> +	unit->disable = data->disable;
+> +
+> +	return unit;
+> +}
+> +
+> +static struct pwrseq_unit *pwrseq_unit_incref(struct pwrseq_unit *unit)
+> +{
+> +	kref_get(&unit->ref);
+> +
+> +	return unit;
+> +}
+> +
+> +static void pwrseq_unit_release(struct kref *ref);
+> +
+> +static void pwrseq_unit_decref(struct pwrseq_unit *unit)
+> +{
+> +	kref_put(&unit->ref, pwrseq_unit_release);
+> +}
+> +
+> +/**
+> + * struct pwrseq_unit_dep - Wrapper around a reference to the unit structure
+> + *                          allowing to keep it on multiple dependency lists
+> + *                          in different units.
+> + * @list: Siblings on the list.
+> + * @unit: Address of the referenced unit.
+> + */
+> +struct pwrseq_unit_dep {
+> +	struct list_head list;
+> +	struct pwrseq_unit *unit;
+> +};
+> +
+> +static struct pwrseq_unit_dep *pwrseq_unit_dep_new(struct pwrseq_unit *unit)
+nit. pwrseq_unit_dep_alloc/create rhymes well with pwrseq_unit_dep_free(),
+> +{
+> +	struct pwrseq_unit_dep *dep;
+> +
+> +	dep = kzalloc(sizeof(*dep), GFP_KERNEL);
+> +	if (!dep)
+> +		return NULL;
+> +
+> +	dep->unit = unit;
+> +
+> +	return dep;
+> +}
+> +
+> +static void pwrseq_unit_dep_free(struct pwrseq_unit_dep *ref)
+> +{
+> +	pwrseq_unit_decref(ref->unit);
+> +	kfree(ref);
+> +}
+> +
+> +static void pwrseq_unit_free_deps(struct list_head *list)
+> +{
+> +	struct pwrseq_unit_dep *dep, *next;
+> +
+> +	list_for_each_entry_safe(dep, next, list, list) {
+no need of 'locks' to protect against simutaneous 'add' ?
+> +		list_del(&dep->list);
+> +		pwrseq_unit_dep_free(dep);
+> +	}
+> +}
+> +
+> +static void pwrseq_unit_release(struct kref *ref)
+> +{
+> +	struct pwrseq_unit *unit = container_of(ref, struct pwrseq_unit, ref);
+> +
+> +	pwrseq_unit_free_deps(&unit->deps);
+> +	list_del(&unit->list);
+> +	kfree_const(unit->name);
+> +	kfree(unit);
+> +}
+> +
+> +/**
+> + * struct pwrseq_target - Private power-sequence target data.
+> + * @list: Siblings on the list of all targets exposed by a power sequencer.
+> + * @name: Name of the target.
+> + * @unit: Final unit for this target.
+> + * @post_enable: Callback run after the target unit has been enabled, *after*
+> + *               the state lock has been released. It's useful for implementing
+> + *               boot-up delays without blocking other users from powering up
+> + *               using the same power sequencer.
+> + */
+> +struct pwrseq_target {
+> +	struct list_head list;
+> +	const char *name;
+> +	struct pwrseq_unit *unit;
+> +	pwrseq_power_state_func post_enable;
+> +};
+> +
+> +static struct pwrseq_target *
+> +pwrseq_target_new(const struct pwrseq_target_data *data)
+> +{
+> +	struct pwrseq_target *target;
+> +
+> +	target = kzalloc(sizeof(*target), GFP_KERNEL);
+> +	if (!target)
+> +		return NULL;
+> +
+> +	target->name = kstrdup_const(data->name, GFP_KERNEL);
+> +	if (!target->name) {
+> +		kfree(target);
+> +		return NULL;
+> +	}
+> +
+> +	target->post_enable = data->post_enable;
+> +
+> +	return target;
+> +}
+> +
+> +static void pwrseq_target_free(struct pwrseq_target *target)
+> +{
+> +	pwrseq_unit_decref(target->unit);
+> +	kfree_const(target->name);
+> +	kfree(target);
+> +}
+> +
+> +/**
+> + * struct pwrseq_device - Private power sequencing data.
+> + * @dev: Device struct associated with this sequencer.
+> + * @id: Device ID.
+> + * @owner: Prevents removal of active power sequencing providers.
+> + * @rw_lock: Protects the device from being unregistered while in use.
+> + * @state_lock: Prevents multiple users running the power sequence at the same
+> + *              time.
+> + * @match: Power sequencer matching callback.
+> + * @targets: List of targets exposed by this sequencer.
+> + * @units: List of all units supported by this sequencer.
+> + */
+> +struct pwrseq_device {
+> +	struct device dev;
+> +	int id;
+> +	struct module *owner;
+> +	struct rw_semaphore rw_lock;
+> +	struct mutex state_lock;
+> +	pwrseq_match_func match;
+> +	struct list_head targets;
+> +	struct list_head units;
+> +};
+> +
+> +static struct pwrseq_device *to_pwrseq_device(struct device *dev)
+> +{
+> +	return container_of(dev, struct pwrseq_device, dev);
+> +}
+> +
+> +static struct pwrseq_device *pwrseq_device_get(struct pwrseq_device *pwrseq)
+> +{
+> +	get_device(&pwrseq->dev);
+> +
+> +	return pwrseq;
+> +}
+> +
+> +static void pwrseq_device_put(struct pwrseq_device *pwrseq)
+> +{
+> +	put_device(&pwrseq->dev);
+> +}
+> +
+> +/**
+> + * struct pwrseq_desc - Wraps access to the pwrseq_device and ensures that one
+> + *                      user cannot break the reference counting for others.
+> + * @pwrseq: Reference to the power sequencing device.
+> + * @target: Reference to the target this descriptor allows to control.
+> + * @powered_on: Power state set by the holder of the descriptor (not necessarily
+> + * corresponding to the actual power state of the device).
+> + */
+> +struct pwrseq_desc {
+> +	struct pwrseq_device *pwrseq;
+> +	struct pwrseq_target *target;
+> +	bool powered_on;
+> +};
+> +
+> +static const struct bus_type pwrseq_bus = {
+> +	.name = "pwrseq",
+> +};
+> +
+> +static void pwrseq_release(struct device *dev)
+> +{
+> +	struct pwrseq_device *pwrseq = to_pwrseq_device(dev);
+> +	struct pwrseq_target *target, *pos;
+> +
+> +	list_for_each_entry_safe(target, pos, &pwrseq->targets, list) {
+> +		list_del(&target->list);
+> +		pwrseq_target_free(target);
+> +	}
+> +
+> +	mutex_destroy(&pwrseq->state_lock);
+> +	ida_free(&pwrseq_ida, pwrseq->id);
+> +	kfree(pwrseq);
+> +}
+> +
+> +static const struct device_type pwrseq_device_type = {
+> +	.name = "power_sequencer",
+> +	.release = pwrseq_release,
+> +};
+> +
+> +static int pwrseq_check_unit_deps(const struct pwrseq_unit_data *data,
+> +				  struct radix_tree_root *visited_units)
+> +{
+> +	const struct pwrseq_unit_data *tmp, **cur;
+> +	int ret;
+> +
+> +	ret = radix_tree_insert(visited_units, (unsigned long)data,
+> +				(void *)data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (cur = data->deps; cur && *cur; cur++) {
+> +		tmp = radix_tree_lookup(visited_units, (unsigned long)*cur);
+> +		if (tmp) {
+> +			WARN(1, "Circular dependency in power sequencing flow detected!\n");
+> +			return -EINVAL;
+> +		}
+> +
+> +		ret = pwrseq_check_unit_deps(*cur, visited_units);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwrseq_check_target_deps(const struct pwrseq_target_data *data)
+> +{
+> +	struct radix_tree_root visited_units;
+> +	struct radix_tree_iter iter;
+> +	void __rcu **slot;
+> +	int ret;
+> +
+> +	if (!data->unit)
+> +		return -EINVAL;
+> +
+> +	INIT_RADIX_TREE(&visited_units, GFP_KERNEL);
+> +	ret = pwrseq_check_unit_deps(data->unit, &visited_units);
+> +	radix_tree_for_each_slot(slot, &visited_units, &iter, 0)
+> +		radix_tree_delete(&visited_units, iter.index);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pwrseq_unit_setup_deps(const struct pwrseq_unit_data **data,
+> +				  struct list_head *dep_list,
+> +				  struct list_head *unit_list,
+> +				  struct radix_tree_root *processed_units);
+> +
+> +static struct pwrseq_unit *
+> +pwrseq_unit_setup(const struct pwrseq_unit_data *data,
+> +		  struct list_head *unit_list,
+> +		  struct radix_tree_root *processed_units)
+> +{
+> +	struct pwrseq_unit *unit;
+> +	int ret;
+> +
+> +	unit = radix_tree_lookup(processed_units, (unsigned long)data);
+> +	if (unit)
+> +		return pwrseq_unit_incref(unit);
+> +
+> +	unit = pwrseq_unit_new(data);
+> +	if (!unit)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	if (data->deps) {
+> +		ret = pwrseq_unit_setup_deps(data->deps, &unit->deps,
+> +					     unit_list, processed_units);
+> +		if (ret) {
+> +			pwrseq_unit_decref(unit);
+> +			return ERR_PTR(ret);
+> +		}
+> +	}
+> +
+> +	ret = radix_tree_insert(processed_units, (unsigned long)data, unit);
+> +	if (ret) {
+> +		pwrseq_unit_decref(unit);
+> +		return ERR_PTR(ret);
+> +	}
+> +
+> +	list_add_tail(&unit->list, unit_list);
+> +
+> +	return unit;
+> +}
+> +
+> +static int pwrseq_unit_setup_deps(const struct pwrseq_unit_data **data,
+> +				  struct list_head *dep_list,
+> +				  struct list_head *unit_list,
+> +				  struct radix_tree_root *processed_units)
+> +{
+> +	const struct pwrseq_unit_data *pos;
+> +	struct pwrseq_unit_dep *dep;
+> +	struct pwrseq_unit *unit;
+> +	int i;
+> +
+> +	for (i = 0; data[i]; i++) {
+Can we add range for i ? just depending on data[i] to be zero looks to be risky.
 
-The changeset is mostly copied from:
-https://lore.kernel.org/all/20240325183414.4016663-1-quic_ssreeela@quicinc.com/.
-
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04358-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-
-Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
----
-v2: fix implicit declaration of function 'vzalloc'.
-
- drivers/net/wireless/ath/ath11k/Kconfig    |  11 ++
- drivers/net/wireless/ath/ath11k/Makefile   |   1 +
- drivers/net/wireless/ath/ath11k/core.c     |   2 +
- drivers/net/wireless/ath/ath11k/core.h     |   5 +
- drivers/net/wireless/ath/ath11k/coredump.c |  52 ++++++
- drivers/net/wireless/ath/ath11k/coredump.h |  79 +++++++++
- drivers/net/wireless/ath/ath11k/hif.h      |   7 +
- drivers/net/wireless/ath/ath11k/mhi.c      |   5 +
- drivers/net/wireless/ath/ath11k/mhi.h      |   1 +
- drivers/net/wireless/ath/ath11k/pci.c      | 191 +++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/qmi.c      |  45 ++---
- drivers/net/wireless/ath/ath11k/qmi.h      |   9 +-
- 12 files changed, 384 insertions(+), 24 deletions(-)
- create mode 100644 drivers/net/wireless/ath/ath11k/coredump.c
- create mode 100644 drivers/net/wireless/ath/ath11k/coredump.h
-
-diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
-index 27f0523bf967..bb91da0098b4 100644
---- a/drivers/net/wireless/ath/ath11k/Kconfig
-+++ b/drivers/net/wireless/ath/ath11k/Kconfig
-@@ -57,3 +57,14 @@ config ATH11K_SPECTRAL
- 	  Enable ath11k spectral scan support
- 
- 	  Say Y to enable access to the FFT/spectral data via debugfs.
-+
-+config ATH11K_COREDUMP
-+	bool "ath11k coredump"
-+	depends on ATH11K
-+	select WANT_DEV_COREDUMP
-+	help
-+	  Enable ath11k coredump collection
-+
-+	  If unsure, say Y to make it easier to debug problems. But if
-+	  dump collection not required choose N.
-+
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index 43d2d8ddcdc0..685341dd28fa 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -27,6 +27,7 @@ ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
- ath11k-$(CONFIG_THERMAL) += thermal.o
- ath11k-$(CONFIG_ATH11K_SPECTRAL) += spectral.o
- ath11k-$(CONFIG_PM) += wow.o
-+ath11k-$(CONFIG_ATH11K_COREDUMP) += coredump.o
- 
- obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
- ath11k_ahb-y += ahb.o
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 03187df26000..56a7195bddef 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2177,6 +2177,7 @@ static void ath11k_core_reset(struct work_struct *work)
- 	reinit_completion(&ab->recovery_start);
- 	atomic_set(&ab->recovery_start_count, 0);
- 
-+	ath11k_coredump_collect(ab);
- 	ath11k_core_pre_reconfigure_recovery(ab);
- 
- 	reinit_completion(&ab->reconfigure_complete);
-@@ -2313,6 +2314,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
- 	INIT_WORK(&ab->update_11d_work, ath11k_update_11d);
- 	INIT_WORK(&ab->reset_work, ath11k_core_reset);
-+	INIT_WORK(&ab->dump_work, ath11k_coredump_upload);
- 	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
- 	init_completion(&ab->htc_suspend);
- 	init_completion(&ab->wow.wakeup_completed);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 205f40ee6b66..978ec9bdf868 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -32,6 +32,7 @@
- #include "spectral.h"
- #include "wow.h"
- #include "fw.h"
-+#include "coredump.h"
- 
- #define SM(_v, _f) (((_v) << _f##_LSB) & _f##_MASK)
- 
-@@ -892,6 +893,10 @@ struct ath11k_base {
- 	/* HW channel counters frequency value in hertz common to all MACs */
- 	u32 cc_freq_hz;
- 
-+	struct ath11k_dump_file_data *dump_data;
-+	size_t ath11k_coredump_len;
-+	struct work_struct dump_work;
-+
- 	struct ath11k_htc htc;
- 
- 	struct ath11k_dp dp;
-diff --git a/drivers/net/wireless/ath/ath11k/coredump.c b/drivers/net/wireless/ath/ath11k/coredump.c
-new file mode 100644
-index 000000000000..b8bad358cebe
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/coredump.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+#include <linux/devcoredump.h>
-+#include "hif.h"
-+#include "coredump.h"
-+#include "debug.h"
-+
-+enum
-+ath11k_fw_crash_dump_type ath11k_coredump_get_dump_type(int type)
-+{
-+	enum ath11k_fw_crash_dump_type dump_type;
-+
-+	switch (type) {
-+	case HOST_DDR_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_REMOTE_MEM_DATA;
-+		break;
-+	case M3_DUMP_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_M3_DUMP;
-+		break;
-+	case PAGEABLE_MEM_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_PAGEABLE_DATA;
-+		break;
-+	case BDF_MEM_REGION_TYPE:
-+	case CALDB_MEM_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_NONE;
-+		break;
-+	default:
-+		dump_type = FW_CRASH_DUMP_TYPE_MAX;
-+		break;
-+	}
-+
-+	return dump_type;
-+}
-+EXPORT_SYMBOL(ath11k_coredump_get_dump_type);
-+
-+void ath11k_coredump_upload(struct work_struct *work)
-+{
-+	struct ath11k_base *ab = container_of(work, struct ath11k_base, dump_work);
-+
-+	ath11k_info(ab, "Uploading coredump\n");
-+	/* dev_coredumpv() takes ownership of the buffer */
-+	dev_coredumpv(ab->dev, ab->dump_data, ab->ath11k_coredump_len, GFP_KERNEL);
-+	ab->dump_data = NULL;
-+}
-+
-+void ath11k_coredump_collect(struct ath11k_base *ab)
-+{
-+	ath11k_hif_coredump_download(ab);
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/coredump.h b/drivers/net/wireless/ath/ath11k/coredump.h
-new file mode 100644
-index 000000000000..b9ea5e4de939
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/coredump.h
-@@ -0,0 +1,79 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear */
-+/*
-+ * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+#ifndef _ATH11K_COREDUMP_H_
-+#define _ATH11K_COREDUMP_H_
-+
-+#define ATH11K_FW_CRASH_DUMP_V2      2
-+
-+enum ath11k_fw_crash_dump_type {
-+	FW_CRASH_DUMP_PAGING_DATA,
-+	FW_CRASH_DUMP_RDDM_DATA,
-+	FW_CRASH_DUMP_REMOTE_MEM_DATA,
-+	FW_CRASH_DUMP_PAGEABLE_DATA,
-+	FW_CRASH_DUMP_M3_DUMP,
-+	FW_CRASH_DUMP_NONE,
-+
-+	/* keep last */
-+	FW_CRASH_DUMP_TYPE_MAX,
-+};
-+
-+#define COREDUMP_TLV_HDR_SIZE 8
-+
-+struct ath11k_tlv_dump_data {
-+	/* see ath11k_fw_crash_dump_type above */
-+	__le32 type;
-+
-+	/* in bytes */
-+	__le32 tlv_len;
-+
-+	/* pad to 32-bit boundaries as needed */
-+	u8 tlv_data[];
-+} __packed;
-+
-+struct ath11k_dump_file_data {
-+	/* "ATH11K-FW-DUMP" */
-+	char df_magic[16];
-+	/* total dump len in bytes */
-+	__le32 len;
-+	/* file dump version */
-+	__le32 version;
-+	/* pci device id */
-+	__le32 chip_id;
-+	/* qrtr instance id */
-+	__le32 qrtr_id;
-+	/* pci domain id */
-+	__le32 bus_id;
-+	guid_t guid;
-+	/* time-of-day stamp */
-+	__le64 tv_sec;
-+	/* time-of-day stamp, nano-seconds */
-+	__le64 tv_nsec;
-+	/* room for growth w/out changing binary format */
-+	u8 unused[128];
-+	u8 data[];
-+} __packed;
-+
-+#ifdef CONFIG_ATH11K_COREDUMP
-+enum ath11k_fw_crash_dump_type ath11k_coredump_get_dump_type(int type);
-+void ath11k_coredump_upload(struct work_struct *work);
-+void ath11k_coredump_collect(struct ath11k_base *ab);
-+#else
-+static inline enum
-+ath11k_fw_crash_dump_type ath11k_coredump_get_dump_type(int type)
-+{
-+	return FW_CRASH_DUMP_TYPE_MAX;
-+}
-+
-+static inline void ath11k_coredump_upload(struct work_struct *work)
-+{
-+}
-+
-+static inline void ath11k_coredump_collect(struct ath11k_base *ab)
-+{
-+}
-+#endif
-+
-+#endif
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index c4c6cc09c7c1..762db7c95ad8 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -31,6 +31,7 @@ struct ath11k_hif_ops {
- 	void (*ce_irq_enable)(struct ath11k_base *ab);
- 	void (*ce_irq_disable)(struct ath11k_base *ab);
- 	void (*get_ce_msi_idx)(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
-+	void (*coredump_download)(struct ath11k_base *ab);
- };
- 
- static inline void ath11k_hif_ce_irq_enable(struct ath11k_base *ab)
-@@ -152,4 +153,10 @@ static inline void ath11k_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id,
- 		*msi_data_idx = ce_id;
- }
- 
-+static inline void ath11k_hif_coredump_download(struct ath11k_base *ab)
-+{
-+	if (ab->hif.ops->coredump_download)
-+		ab->hif.ops->coredump_download(ab);
-+}
-+
- #endif /* _HIF_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index ab182690aed3..db23a82a0c0f 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -498,3 +498,8 @@ int ath11k_mhi_resume(struct ath11k_pci *ab_pci)
- 
- 	return 0;
- }
-+
-+void ath11k_mhi_coredump(struct mhi_controller *mhi_ctrl, bool in_panic)
-+{
-+	mhi_download_rddm_image(mhi_ctrl, in_panic);
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.h b/drivers/net/wireless/ath/ath11k/mhi.h
-index 2d567705e732..4a7e20da3c7d 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.h
-+++ b/drivers/net/wireless/ath/ath11k/mhi.h
-@@ -26,4 +26,5 @@ void ath11k_mhi_clear_vector(struct ath11k_base *ab);
- 
- int ath11k_mhi_suspend(struct ath11k_pci *ar_pci);
- int ath11k_mhi_resume(struct ath11k_pci *ar_pci);
-+void ath11k_mhi_coredump(struct mhi_controller *mhi_ctrl, bool in_panic);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 8d63b84d1261..088669c59697 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -8,6 +8,8 @@
- #include <linux/msi.h>
- #include <linux/pci.h>
- #include <linux/of.h>
-+#include <linux/time.h>
-+#include <linux/vmalloc.h>
- 
- #include "pci.h"
- #include "core.h"
-@@ -610,6 +612,190 @@ static void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci)
- 						   PCI_EXP_LNKCTL_ASPMC);
- }
- 
-+#ifdef CONFIG_ATH11K_COREDUMP
-+static int ath11k_pci_coredump_calculate_size(struct ath11k_base *ab, u32 *dump_seg_sz)
-+{
-+	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-+	struct mhi_controller *mhi_ctrl = ab_pci->mhi_ctrl;
-+	struct image_info *rddm_img, *fw_img;
-+	struct ath11k_tlv_dump_data *dump_tlv;
-+	enum ath11k_fw_crash_dump_type mem_type;
-+	u32 len = 0, rddm_tlv_sz = 0, paging_tlv_sz = 0;
-+	struct ath11k_dump_file_data *file_data;
-+	int i;
-+
-+	rddm_img = mhi_ctrl->rddm_image;
-+	if (!rddm_img) {
-+		ath11k_err(ab, "No RDDM dump found\n");
-+		return 0;
-+	}
-+
-+	fw_img = mhi_ctrl->fbc_image;
-+
-+	for (i = 0; i < fw_img->entries ; i++) {
-+		if (!fw_img->mhi_buf[i].buf)
-+			continue;
-+
-+		paging_tlv_sz += fw_img->mhi_buf[i].len;
-+	}
-+	dump_seg_sz[FW_CRASH_DUMP_PAGING_DATA] = paging_tlv_sz;
-+
-+	for (i = 0; i < rddm_img->entries; i++) {
-+		if (!rddm_img->mhi_buf[i].buf)
-+			continue;
-+
-+		rddm_tlv_sz += rddm_img->mhi_buf[i].len;
-+	}
-+	dump_seg_sz[FW_CRASH_DUMP_RDDM_DATA] = rddm_tlv_sz;
-+
-+	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+		mem_type = ath11k_coredump_get_dump_type(ab->qmi.target_mem[i].type);
-+
-+		if (mem_type == FW_CRASH_DUMP_NONE)
-+			continue;
-+
-+		if (mem_type == FW_CRASH_DUMP_TYPE_MAX) {
-+			ath11k_dbg(ab, ATH11K_DBG_PCI,
-+				   "target mem region type %d not supported",
-+				   ab->qmi.target_mem[i].type);
-+			continue;
-+		}
-+
-+		if (!ab->qmi.target_mem[i].v.iaddr)
-+			continue;
-+
-+		dump_seg_sz[mem_type] += ab->qmi.target_mem[i].size;
-+	}
-+
-+	for (i = 0; i < FW_CRASH_DUMP_TYPE_MAX; i++) {
-+		if (!dump_seg_sz[i])
-+			continue;
-+
-+		len += sizeof(*dump_tlv) + dump_seg_sz[i];
-+	}
-+
-+	if (len)
-+		len += sizeof(*file_data);
-+
-+	return len;
-+}
-+
-+static void ath11k_pci_coredump_download(struct ath11k_base *ab)
-+{
-+	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-+	struct mhi_controller *mhi_ctrl = ab_pci->mhi_ctrl;
-+	struct image_info *rddm_img, *fw_img;
-+	struct timespec64 timestamp;
-+	int i, len, mem_idx;
-+	enum ath11k_fw_crash_dump_type mem_type;
-+	struct ath11k_dump_file_data *file_data;
-+	struct ath11k_tlv_dump_data *dump_tlv;
-+	size_t hdr_len = sizeof(*file_data);
-+	void *buf;
-+	u32 dump_seg_sz[FW_CRASH_DUMP_TYPE_MAX] = { 0 };
-+
-+	ath11k_mhi_coredump(mhi_ctrl, false);
-+
-+	len = ath11k_pci_coredump_calculate_size(ab, dump_seg_sz);
-+	if (!len) {
-+		ath11k_warn(ab, "No crash dump data found for devcoredump");
-+		return;
-+	}
-+
-+	rddm_img = mhi_ctrl->rddm_image;
-+	fw_img = mhi_ctrl->fbc_image;
-+
-+	/* dev_coredumpv() requires vmalloc data */
-+	buf = vzalloc(len);
-+	if (!buf)
-+		return;
-+
-+	ab->dump_data = buf;
-+	ab->ath11k_coredump_len = len;
-+	file_data = ab->dump_data;
-+	strscpy(file_data->df_magic, "ATH11K-FW-DUMP", sizeof(file_data->df_magic));
-+	file_data->len = cpu_to_le32(len);
-+	file_data->version = cpu_to_le32(ATH11K_FW_CRASH_DUMP_V2);
-+	file_data->chip_id = cpu_to_le32(ab_pci->dev_id);
-+	file_data->qrtr_id = cpu_to_le32(ab_pci->ab->qmi.service_ins_id);
-+	file_data->bus_id = cpu_to_le32(pci_domain_nr(ab_pci->pdev->bus));
-+	guid_gen(&file_data->guid);
-+	ktime_get_real_ts64(&timestamp);
-+	file_data->tv_sec = cpu_to_le64(timestamp.tv_sec);
-+	file_data->tv_nsec = cpu_to_le64(timestamp.tv_nsec);
-+	buf += hdr_len;
-+	dump_tlv = buf;
-+	dump_tlv->type = cpu_to_le32(FW_CRASH_DUMP_PAGING_DATA);
-+	dump_tlv->tlv_len = cpu_to_le32(dump_seg_sz[FW_CRASH_DUMP_PAGING_DATA]);
-+	buf += COREDUMP_TLV_HDR_SIZE;
-+
-+	/* append all segments together as they are all part of a single contiguous
-+	 * block of memory
-+	 */
-+	for (i = 0; i < fw_img->entries ; i++) {
-+		if (!fw_img->mhi_buf[i].buf)
-+			continue;
-+
-+		memcpy_fromio(buf, (void const __iomem *)fw_img->mhi_buf[i].buf,
-+			      fw_img->mhi_buf[i].len);
-+		buf += fw_img->mhi_buf[i].len;
-+	}
-+
-+	dump_tlv = buf;
-+	dump_tlv->type = cpu_to_le32(FW_CRASH_DUMP_RDDM_DATA);
-+	dump_tlv->tlv_len = cpu_to_le32(dump_seg_sz[FW_CRASH_DUMP_RDDM_DATA]);
-+	buf += COREDUMP_TLV_HDR_SIZE;
-+
-+	/* append all segments together as they are all part of a single contiguous
-+	 * block of memory
-+	 */
-+	for (i = 0; i < rddm_img->entries; i++) {
-+		if (!rddm_img->mhi_buf[i].buf)
-+			continue;
-+
-+		memcpy_fromio(buf, (void const __iomem *)rddm_img->mhi_buf[i].buf,
-+			      rddm_img->mhi_buf[i].len);
-+		buf += rddm_img->mhi_buf[i].len;
-+	}
-+
-+	mem_idx = FW_CRASH_DUMP_REMOTE_MEM_DATA;
-+	for (; mem_idx < FW_CRASH_DUMP_TYPE_MAX; mem_idx++) {
-+		if (mem_idx == FW_CRASH_DUMP_NONE)
-+			continue;
-+
-+		dump_tlv = buf;
-+		dump_tlv->type = cpu_to_le32(mem_idx);
-+		dump_tlv->tlv_len = cpu_to_le32(dump_seg_sz[mem_idx]);
-+		buf += COREDUMP_TLV_HDR_SIZE;
-+
-+		if (!dump_tlv->tlv_len)
-+			continue;
-+
-+		for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+			mem_type = ath11k_coredump_get_dump_type
-+						(ab->qmi.target_mem[i].type);
-+
-+			if (mem_type != mem_idx)
-+				continue;
-+
-+			if (!ab->qmi.target_mem[i].v.iaddr) {
-+				ath11k_dbg(ab, ATH11K_DBG_PCI,
-+					   "Skipping mem region type %d",
-+					   ab->qmi.target_mem[i].type);
-+				continue;
-+			}
-+
-+			memcpy_fromio(buf, ab->qmi.target_mem[i].v.iaddr,
-+				      ab->qmi.target_mem[i].size);
-+
-+			buf += ab->qmi.target_mem[i].size;
-+		}
-+	}
-+
-+	queue_work(ab->workqueue, &ab->dump_work);
-+}
-+#endif
-+
- static int ath11k_pci_power_up(struct ath11k_base *ab)
- {
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-@@ -713,6 +899,9 @@ static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
- 	.ce_irq_enable = ath11k_pci_hif_ce_irq_enable,
- 	.ce_irq_disable = ath11k_pci_hif_ce_irq_disable,
- 	.get_ce_msi_idx = ath11k_pcic_get_ce_msi_idx,
-+#ifdef CONFIG_ATH11K_COREDUMP
-+	.coredump_download = ath11k_pci_coredump_download,
-+#endif
- };
- 
- static void ath11k_pci_read_hw_version(struct ath11k_base *ab, u32 *major, u32 *minor)
-@@ -978,6 +1167,8 @@ static void ath11k_pci_remove(struct pci_dev *pdev)
- 
- 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
- 
-+	cancel_work_sync(&ab->reset_work);
-+	cancel_work_sync(&ab->dump_work);
- 	ath11k_core_deinit(ab);
- 
- qmi_fail:
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index aa160e6fe24f..37619ba8502e 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1955,19 +1955,21 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
- 	int i;
- 
- 	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
--		if ((ab->hw_params.fixed_mem_region ||
--		     test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
--		     ab->qmi.target_mem[i].iaddr)
--			iounmap(ab->qmi.target_mem[i].iaddr);
-+		if (!ab->qmi.target_mem[i].v.iaddr)
-+			continue;
- 
--		if (!ab->qmi.target_mem[i].vaddr)
-+		if (ab->hw_params.fixed_mem_region ||
-+		    test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
-+			iounmap(ab->qmi.target_mem[i].v.iaddr);
-+			ab->qmi.target_mem[i].v.iaddr = NULL;
- 			continue;
-+		}
- 
- 		dma_free_coherent(ab->dev,
- 				  ab->qmi.target_mem[i].prev_size,
--				  ab->qmi.target_mem[i].vaddr,
-+				  ab->qmi.target_mem[i].v.vaddr,
- 				  ab->qmi.target_mem[i].paddr);
--		ab->qmi.target_mem[i].vaddr = NULL;
-+		ab->qmi.target_mem[i].v.vaddr = NULL;
- 	}
- }
- 
-@@ -1984,22 +1986,22 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 		/* Firmware reloads in coldboot/firmware recovery.
- 		 * in such case, no need to allocate memory for FW again.
- 		 */
--		if (chunk->vaddr) {
-+		if (chunk->v.vaddr) {
- 			if (chunk->prev_type == chunk->type &&
- 			    chunk->prev_size == chunk->size)
- 				continue;
- 
- 			/* cannot reuse the existing chunk */
- 			dma_free_coherent(ab->dev, chunk->prev_size,
--					  chunk->vaddr, chunk->paddr);
--			chunk->vaddr = NULL;
-+					  chunk->v.vaddr, chunk->paddr);
-+			chunk->v.vaddr = NULL;
- 		}
- 
--		chunk->vaddr = dma_alloc_coherent(ab->dev,
--						  chunk->size,
--						  &chunk->paddr,
--						  GFP_KERNEL | __GFP_NOWARN);
--		if (!chunk->vaddr) {
-+		chunk->v.vaddr = dma_alloc_coherent(ab->dev,
-+						    chunk->size,
-+						    &chunk->paddr,
-+						    GFP_KERNEL | __GFP_NOWARN);
-+		if (!chunk->v.vaddr) {
- 			if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
- 				ath11k_dbg(ab, ATH11K_DBG_QMI,
- 					   "dma allocation failed (%d B type %u), will try later with small size\n",
-@@ -2055,10 +2057,10 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- 			}
- 
- 			ab->qmi.target_mem[idx].paddr = res.start;
--			ab->qmi.target_mem[idx].iaddr =
-+			ab->qmi.target_mem[idx].v.iaddr =
- 				ioremap(ab->qmi.target_mem[idx].paddr,
- 					ab->qmi.target_mem[i].size);
--			if (!ab->qmi.target_mem[idx].iaddr)
-+			if (!ab->qmi.target_mem[idx].v.iaddr)
- 				return -EIO;
- 
- 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
-@@ -2068,7 +2070,7 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- 			break;
- 		case BDF_MEM_REGION_TYPE:
- 			ab->qmi.target_mem[idx].paddr = ab->hw_params.bdf_addr;
--			ab->qmi.target_mem[idx].vaddr = NULL;
-+			ab->qmi.target_mem[idx].v.vaddr = NULL;
- 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
- 			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
- 			idx++;
-@@ -2083,18 +2085,19 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- 				if (hremote_node) {
- 					ab->qmi.target_mem[idx].paddr =
- 							res.start + host_ddr_sz;
--					ab->qmi.target_mem[idx].iaddr =
-+					ab->qmi.target_mem[idx].v.iaddr =
- 						ioremap(ab->qmi.target_mem[idx].paddr,
- 							ab->qmi.target_mem[i].size);
--					if (!ab->qmi.target_mem[idx].iaddr)
-+					if (!ab->qmi.target_mem[idx].v.iaddr)
- 						return -EIO;
- 				} else {
- 					ab->qmi.target_mem[idx].paddr =
- 						ATH11K_QMI_CALDB_ADDRESS;
-+					ab->qmi.target_mem[idx].v.vaddr = NULL;
- 				}
- 			} else {
- 				ab->qmi.target_mem[idx].paddr = 0;
--				ab->qmi.target_mem[idx].vaddr = NULL;
-+				ab->qmi.target_mem[idx].v.vaddr = NULL;
- 			}
- 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
- 			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 7e06d100af57..016e04f9e898 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -1,7 +1,7 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #ifndef ATH11K_QMI_H
-@@ -102,8 +102,10 @@ struct target_mem_chunk {
- 	u32 prev_size;
- 	u32 prev_type;
- 	dma_addr_t paddr;
--	u32 *vaddr;
--	void __iomem *iaddr;
-+	union {
-+		u32 *vaddr;
-+		void __iomem *iaddr;
-+	} v;
- };
- 
- struct target_info {
-@@ -154,6 +156,7 @@ struct ath11k_qmi {
- #define BDF_MEM_REGION_TYPE				0x2
- #define M3_DUMP_REGION_TYPE				0x3
- #define CALDB_MEM_REGION_TYPE				0x4
-+#define PAGEABLE_MEM_REGION_TYPE			0x9
- 
- struct qmi_wlanfw_host_cap_req_msg_v01 {
- 	u8 num_clients_valid;
--- 
-2.25.1
-
+> +		pos = data[i];
+> +
+> +		unit = pwrseq_unit_setup(pos, unit_list, processed_units);
+> +		if (IS_ERR(unit))
+> +			return PTR_ERR(unit);
+> +
+> +		dep = pwrseq_unit_dep_new(unit);
+> +		if (!dep) {
+> +			pwrseq_unit_decref(unit);
+This frees only one 'unit'. is there any chance for multiple 'unit', then better clean
+up here ?
+> +			return -ENOMEM;
+> +		}
+> +
+> +		list_add_tail(&dep->list, dep_list);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwrseq_do_setup_targets(const struct pwrseq_target_data **data,
+> +				   struct pwrseq_device *pwrseq,
+> +				   struct radix_tree_root *processed_units)
+> +{
+> +	const struct pwrseq_target_data *pos;
+> +	struct pwrseq_target *target;
+> +	int ret, i;
+> +
+> +	for (i = 0; data[i]; i++) {
+> +		pos = data[i];
+> +
+> +		ret = pwrseq_check_target_deps(pos);
+> +		if (ret)
+> +			return ret;
+> +
+> +		target = pwrseq_target_new(pos);
+> +		if (!target)
+> +			return -ENOMEM;
+> +
+> +		target->unit = pwrseq_unit_setup(pos->unit, &pwrseq->units,
+> +						 processed_units);
+> +		if (IS_ERR(target->unit)) {
+> +			ret = PTR_ERR(target->unit);
+> +			pwrseq_target_free(target);
+> +			return ret;
+> +		}
+> +
+> +		list_add_tail(&target->list, &pwrseq->targets);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwrseq_setup_targets(const struct pwrseq_target_data **targets,
+> +				struct pwrseq_device *pwrseq)
+> +{
+> +	struct radix_tree_root processed_units;
+> +	struct radix_tree_iter iter;
+> +	void __rcu **slot;
+> +	int ret;
+> +
+> +	INIT_RADIX_TREE(&processed_units, GFP_KERNEL);
+> +	ret = pwrseq_do_setup_targets(targets, pwrseq, &processed_units);
+> +	radix_tree_for_each_slot(slot, &processed_units, &iter, 0)
+> +		radix_tree_delete(&processed_units, iter.index);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * pwrseq_device_register() - Register a new power sequencer.
+> + * @config: Configuration of the new power sequencing device.
+> + *
+> + * The config structure is only used during the call and can be freed after
+> + * the function returns. The config structure *must* have the parent device
+> + * as well as the match() callback and at least one target set.
+> + *
+> + * Returns:
+> + * Returns the address of the new pwrseq device or ERR_PTR() on failure.
+> + */
+> +struct pwrseq_device *
+> +pwrseq_device_register(const struct pwrseq_config *config)
+> +{
+> +	struct pwrseq_device *pwrseq;
+> +	int ret, id;
+> +
+> +	if (!config->parent || !config->match || !config->targets ||
+> +	    !config->targets[0])
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	pwrseq = kzalloc(sizeof(*pwrseq), GFP_KERNEL);
+> +	if (!pwrseq)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	pwrseq->dev.type = &pwrseq_device_type;
+> +	pwrseq->dev.bus = &pwrseq_bus;
+> +	pwrseq->dev.parent = config->parent;
+> +	device_set_node(&pwrseq->dev, dev_fwnode(config->parent));
+> +	dev_set_drvdata(&pwrseq->dev, config->drvdata);
+> +
+> +	id = ida_alloc(&pwrseq_ida, GFP_KERNEL);
+> +	if (id < 0) {
+> +		kfree(pwrseq);
+> +		return ERR_PTR(id);
+> +	}
+> +
+> +	pwrseq->id = id;
+> +
+> +	/*
+> +	 * From this point onwards the device's release() callback is
+> +	 * responsible for freeing resources.
+> +	 */
+> +	device_initialize(&pwrseq->dev);
+> +
+> +	ret = dev_set_name(&pwrseq->dev, "pwrseq.%d", pwrseq->id);
+> +	if (ret)
+> +		goto err_put_pwrseq;
+> +
+> +	pwrseq->owner = config->owner ?: THIS_MODULE;
+> +	pwrseq->match = config->match;
+> +
+> +	init_rwsem(&pwrseq->rw_lock);
+> +	mutex_init(&pwrseq->state_lock);
+> +	INIT_LIST_HEAD(&pwrseq->targets);
+> +	INIT_LIST_HEAD(&pwrseq->units);
+> +
+> +	ret = pwrseq_setup_targets(config->targets, pwrseq);
+> +	if (ret)
+> +		goto err_put_pwrseq;
+> +
+> +	scoped_guard(rwsem_write, &pwrseq_sem) {
+> +		ret = device_add(&pwrseq->dev);
+> +		if (ret)
+> +			goto err_put_pwrseq;
+> +	}
+> +
+> +	return pwrseq;
+> +
+> +err_put_pwrseq:
+no need to kfree(pwrseq) ?
+> +	pwrseq_device_put(pwrseq);
+> +	return ERR_PTR(ret);
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_device_register);
+> +
+> +/**
+> + * pwrseq_device_unregister() - Unregister the power sequencer.
+> + * @pwrseq: Power sequencer to unregister.
+> + */
+> +void pwrseq_device_unregister(struct pwrseq_device *pwrseq)
+> +{
+> +	struct device *dev = &pwrseq->dev;
+> +	struct pwrseq_target *target;
+> +
+> +	scoped_guard(mutex, &pwrseq->state_lock) {
+> +		guard(rwsem_write)(&pwrseq->rw_lock);
+> +
+> +		list_for_each_entry(target, &pwrseq->targets, list)
+> +			WARN_ONCE(target->unit->enable_count,
+> +				  "REMOVING POWER SEQUENCER WITH ACTIVE USERS\n");
+> +
+> +		guard(rwsem_write)(&pwrseq_sem);
+> +
+> +		device_del(dev);
+> +	}
+> +
+> +	pwrseq_device_put(pwrseq);
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_device_unregister);
+> +
+> +static void devm_pwrseq_device_unregister(void *data)
+> +{
+> +	struct pwrseq_device *pwrseq = data;
+> +
+> +	pwrseq_device_unregister(pwrseq);
+> +}
+> +
+> +/**
+> + * devm_pwrseq_device_register() - Managed variant of pwrseq_device_register().
+> + * @dev: Managing device.
+> + * @config: Configuration of the new power sequencing device.
+> + *
+> + * Returns:
+> + * Returns the address of the new pwrseq device or ERR_PTR() on failure.
+> + */
+> +struct pwrseq_device *
+> +devm_pwrseq_device_register(struct device *dev,
+> +			    const struct pwrseq_config *config)
+> +{
+> +	struct pwrseq_device *pwrseq;
+> +	int ret;
+> +
+> +	pwrseq = pwrseq_device_register(config);
+> +	if (IS_ERR(pwrseq))
+> +		return pwrseq;
+> +
+> +	ret = devm_add_action_or_reset(dev, devm_pwrseq_device_unregister,
+> +				       pwrseq);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	return pwrseq;
+> +}
+> +EXPORT_SYMBOL_GPL(devm_pwrseq_device_register);
+> +
+> +/**
+> + * pwrseq_device_get_drvdata() - Get the driver private data associated with
+> + *                               this sequencer.
+> + * @pwrseq: Power sequencer object.
+> + *
+> + * Returns:
+> + * Address of the private driver data.
+> + */
+> +void *pwrseq_device_get_drvdata(struct pwrseq_device *pwrseq)
+> +{
+> +	return dev_get_drvdata(&pwrseq->dev);
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_device_get_drvdata);
+> +
+> +struct pwrseq_match_data {
+> +	struct pwrseq_desc *desc;
+> +	struct device *dev;
+> +	const char *target;
+> +};
+> +
+> +static int pwrseq_match_device(struct device *pwrseq_dev, void *data)
+> +{
+> +	struct pwrseq_device *pwrseq = to_pwrseq_device(pwrseq_dev);
+> +	struct pwrseq_match_data *match_data = data;
+> +	struct pwrseq_target *target;
+> +	int ret;
+> +
+> +	lockdep_assert_held_read(&pwrseq_sem);
+> +
+> +	guard(rwsem_read)(&pwrseq->rw_lock);
+> +	if (!device_is_registered(&pwrseq->dev))
+> +		return 0;
+> +
+> +	ret = pwrseq->match(pwrseq, match_data->dev);
+> +	if (ret <= 0)
+> +		return ret;
+> +
+> +	/* We got the matching device, let's find the right target. */
+> +	list_for_each_entry(target, &pwrseq->targets, list) {
+> +		if (strcmp(target->name, match_data->target))
+> +			continue;
+> +
+> +		match_data->desc->target = target;
+> +	}
+> +
+> +	/*
+> +	 * This device does not have this target. No point in deferring as it
+> +	 * will not get a new target dynamically later.
+> +	 */
+> +	if (!match_data->desc->target)
+> +		return -ENOENT;
+> +
+> +	if (!try_module_get(pwrseq->owner))
+> +		return -EPROBE_DEFER;
+> +
+> +	match_data->desc->pwrseq = pwrseq_device_get(pwrseq);
+> +
+> +	return 1;
+> +}
+> +
+> +/**
+> + * pwrseq_get() - Get the power sequencer associated with this device.
+> + * @dev: Device for which to get the sequencer.
+> + * @target: Name of the target exposed by the sequencer this device wants to
+> + *          reach.
+> + *
+> + * Returns:
+> + * New power sequencer descriptor for use by the consumer driver or ERR_PTR()
+> + * on failure.
+> + */
+> +struct pwrseq_desc *pwrseq_get(struct device *dev, const char *target)
+> +{
+> +	struct pwrseq_match_data match_data;
+> +	int ret;
+> +
+> +	struct pwrseq_desc *desc __free(kfree) = kzalloc(sizeof(*desc),
+> +							 GFP_KERNEL);
+> +	if (!desc)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	match_data.desc = desc;
+> +	match_data.dev = dev;
+> +	match_data.target = target;
+> +
+> +	guard(rwsem_read)(&pwrseq_sem);
+> +
+> +	ret = bus_for_each_dev(&pwrseq_bus, NULL, &match_data,
+> +			       pwrseq_match_device);
+> +	if (ret < 0)
+> +		return ERR_PTR(ret);
+> +	if (ret == 0)
+> +		/* No device matched. */
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	return no_free_ptr(desc);
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_get);
+> +
+> +/**
+> + * pwrseq_put() - Release the power sequencer descriptor.
+> + * @desc: Descriptor to release.
+> + */
+> +void pwrseq_put(struct pwrseq_desc *desc)
+> +{
+> +	struct pwrseq_device *pwrseq;
+> +
+> +	if (!desc)
+> +		return;
+> +
+> +	pwrseq = desc->pwrseq;
+> +
+> +	if (desc->powered_on)
+> +		pwrseq_power_off(desc);
+> +
+> +	kfree(desc);
+> +	module_put(pwrseq->owner);
+> +	pwrseq_device_put(pwrseq);
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_put);
+> +
+> +static void devm_pwrseq_put(void *data)
+> +{
+> +	struct pwrseq_desc *desc = data;
+> +
+> +	pwrseq_put(desc);
+> +}
+> +
+> +/**
+> + * devm_pwrseq_get() - Managed variant of pwrseq_get().
+> + * @dev: Device for which to get the sequencer and which also manages its
+> + *       lifetime.
+> + * @target: Name of the target exposed by the sequencer this device wants to
+> + *          reach.
+> + *
+> + * Returns:
+> + * New power sequencer descriptor for use by the consumer driver or ERR_PTR()
+> + * on failure.
+> + */
+> +struct pwrseq_desc *devm_pwrseq_get(struct device *dev, const char *target)
+> +{
+> +	struct pwrseq_desc *desc;
+> +	int ret;
+> +
+> +	desc = pwrseq_get(dev, target);
+> +	if (IS_ERR(desc))
+> +		return desc;
+> +
+> +	ret = devm_add_action_or_reset(dev, devm_pwrseq_put, desc);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	return desc;
+> +}
+> +EXPORT_SYMBOL_GPL(devm_pwrseq_get);
+> +
+> +static int pwrseq_unit_enable(struct pwrseq_device *pwrseq,
+> +			      struct pwrseq_unit *target);
+> +static int pwrseq_unit_disable(struct pwrseq_device *pwrseq,
+> +			       struct pwrseq_unit *target);
+> +
+> +static int pwrseq_unit_enable_deps(struct pwrseq_device *pwrseq,
+> +				   struct list_head *list)
+> +{
+> +	struct pwrseq_unit_dep *pos;
+> +	int ret = 0;
+> +
+> +	list_for_each_entry(pos, list, list) {
+> +		ret = pwrseq_unit_enable(pwrseq, pos->unit);
+> +		if (ret) {
+> +			list_for_each_entry_continue_reverse(pos, list, list)
+> +				pwrseq_unit_disable(pwrseq, pos->unit);
+> +			break;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int pwrseq_unit_disable_deps(struct pwrseq_device *pwrseq,
+> +				    struct list_head *list)
+> +{
+> +	struct pwrseq_unit_dep *pos;
+> +	int ret = 0;
+> +
+> +	list_for_each_entry_reverse(pos, list, list) {
+> +		ret = pwrseq_unit_disable(pwrseq, pos->unit);
+> +		if (ret) {
+> +			list_for_each_entry_continue(pos, list, list)
+> +				pwrseq_unit_enable(pwrseq, pos->unit);
+> +			break;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int pwrseq_unit_enable(struct pwrseq_device *pwrseq,
+> +			      struct pwrseq_unit *unit)
+> +{
+> +	int ret;
+> +
+> +	lockdep_assert_held_read(&pwrseq->rw_lock);
+> +	lockdep_assert_held(&pwrseq->state_lock);
+> +
+> +	if (unit->enable_count != 0) {
+> +		unit->enable_count++;
+> +		return 0;
+> +	}
+> +
+> +	ret = pwrseq_unit_enable_deps(pwrseq, &unit->deps);
+> +	if (ret) {
+> +		dev_err(&pwrseq->dev,
+> +			"Failed to enable dependencies before power-on for target '%s': %d\n",
+> +			unit->name, ret);
+> +		return ret;
+> +	}
+> +
+> +	if (unit->enable) {
+> +		ret = unit->enable(pwrseq);
+> +		if (ret) {
+> +			dev_err(&pwrseq->dev,
+> +				"Failed to enable target '%s': %d\n",
+> +				unit->name, ret);
+> +			pwrseq_unit_disable_deps(pwrseq, &unit->deps);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	unit->enable_count++;
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwrseq_unit_disable(struct pwrseq_device *pwrseq,
+> +			       struct pwrseq_unit *unit)
+> +{
+> +	int ret;
+> +
+> +	lockdep_assert_held_read(&pwrseq->rw_lock);
+> +	lockdep_assert_held(&pwrseq->state_lock);
+> +
+> +	if (unit->enable_count == 0) {
+> +		WARN_ONCE(1, "Unmatched power-off for target '%s'\n",
+> +			  unit->name);
+> +		return -EBUSY;
+> +	}
+> +
+> +	if (unit->enable_count != 1) {
+> +		unit->enable_count--;
+> +		return 0;
+> +	}
+> +
+> +	if (unit->disable) {
+> +		ret = unit->disable(pwrseq);
+> +		if (ret) {
+> +			dev_err(&pwrseq->dev,
+> +				"Failed to disable target '%s': %d\n",
+> +				unit->name, ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	ret = pwrseq_unit_disable_deps(pwrseq, &unit->deps);
+> +	if (ret) {
+> +		dev_err(&pwrseq->dev,
+> +			"Failed to disable dependencies after power-off for target '%s': %d\n",
+> +			unit->name, ret);
+> +		if (unit->enable)
+> +			unit->enable(pwrseq);
+> +		return ret;
+> +	}
+> +
+> +	unit->enable_count--;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * pwrseq_power_on() - Issue a power-on request on behalf of the consumer
+> + *                     device.
+> + * @desc: Descriptor referencing the power sequencer.
+> + *
+> + * This function tells the power sequencer that the consumer wants to be
+> + * powered-up. The sequencer may already have powered-up the device in which
+> + * case the function returns 0. If the power-up sequence is already in
+> + * progress, the function will block until it's done and return 0. If this is
+> + * the first request, the device will be powered up.
+> + *
+> + * Returns:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int pwrseq_power_on(struct pwrseq_desc *desc)
+> +{
+> +	struct pwrseq_device *pwrseq;
+> +	struct pwrseq_target *target;
+> +	struct pwrseq_unit *unit;
+> +	int ret;
+> +
+> +	might_sleep();
+> +
+> +	if (!desc || desc->powered_on)
+> +		return 0;
+> +
+> +	pwrseq = desc->pwrseq;
+> +	target = desc->target;
+> +	unit = target->unit;
+> +
+> +	guard(rwsem_read)(&pwrseq->rw_lock);
+> +	if (!device_is_registered(&pwrseq->dev))
+> +		return -ENODEV;
+> +
+> +	scoped_guard(mutex, &pwrseq->state_lock) {
+> +		ret = pwrseq_unit_enable(pwrseq, unit);
+> +		if (!ret)
+> +			desc->powered_on = true;
+> +	}
+> +
+> +	if (target->post_enable) {
+> +		ret = target->post_enable(pwrseq);
+> +		if (ret) {
+> +			pwrseq_unit_disable(pwrseq, unit);
+> +			desc->powered_on = false;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_power_on);
+> +
+> +/**
+> + * pwrseq_power_off() - Issue a power-off request on behalf of the consumer
+> + *                      device.
+> + * @desc: Descriptor referencing the power sequencer.
+> + *
+> + * This undoes the effects of pwrseq_power_on(). It issues a power-off request
+> + * on behalf of the consumer and when the last remaining user does so, the
+> + * power-down sequence will be started. If one is in progress, the function
+> + * will block until it's complete and then return.
+> + *
+> + * Returns:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int pwrseq_power_off(struct pwrseq_desc *desc)
+> +{
+> +	struct pwrseq_device *pwrseq;
+> +	struct pwrseq_unit *unit;
+> +	int ret;
+> +
+> +	might_sleep();
+> +
+> +	if (!desc || !desc->powered_on)
+> +		return 0;
+> +
+> +	pwrseq = desc->pwrseq;
+> +	unit = desc->target->unit;
+> +
+> +	guard(rwsem_read)(&pwrseq->rw_lock);
+> +	if (!device_is_registered(&pwrseq->dev))
+> +		return -ENODEV;
+> +
+> +	guard(mutex)(&pwrseq->state_lock);
+> +
+> +	ret = pwrseq_unit_disable(pwrseq, unit);
+> +	if (!ret)
+> +		desc->powered_on = false;
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_power_off);
+> +
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +
+> +struct pwrseq_debugfs_count_ctx {
+> +	struct device *dev;
+> +	loff_t index;
+> +};
+> +
+> +static int pwrseq_debugfs_seq_count(struct device *dev, void *data)
+> +{
+> +	struct pwrseq_debugfs_count_ctx *ctx = data;
+> +
+> +	ctx->dev = dev;
+> +
+> +	return ctx->index-- ? 0 : 1;
+> +}
+> +
+> +static void *pwrseq_debugfs_seq_start(struct seq_file *seq, loff_t *pos)
+> +{
+> +	struct pwrseq_debugfs_count_ctx ctx;
+> +
+> +	ctx.dev = NULL;
+> +	ctx.index = *pos;
+> +
+> +	/*
+> +	 * We're holding the lock for the entire printout so no need to fiddle
+> +	 * with device reference count.
+> +	 */
+> +	down_read(&pwrseq_sem);
+> +
+> +	bus_for_each_dev(&pwrseq_bus, NULL, &ctx, pwrseq_debugfs_seq_count);
+> +	if (!ctx.index)
+> +		return NULL;
+> +
+> +	return ctx.dev;
+> +}
+> +
+> +static void *pwrseq_debugfs_seq_next(struct seq_file *seq, void *data,
+> +				     loff_t *pos)
+> +{
+> +	struct device *curr = data;
+> +
+> +	++*pos;
+> +
+> +	struct device *next __free(put_device) =
+> +			bus_find_next_device(&pwrseq_bus, curr);
+> +	return next;
+> +}
+> +
+> +static void pwrseq_debugfs_seq_show_target(struct seq_file *seq,
+> +					   struct pwrseq_target *target)
+> +{
+> +	seq_printf(seq, "    target: [%s] (target unit: [%s])\n",
+> +		   target->name, target->unit->name);
+> +}
+> +
+> +static void pwrseq_debugfs_seq_show_unit(struct seq_file *seq,
+> +					 struct pwrseq_unit *unit)
+> +{
+> +	struct pwrseq_unit_dep *ref;
+> +
+> +	seq_printf(seq, "    unit: [%s] - enable count: %u\n",
+> +		   unit->name, unit->enable_count);
+> +
+> +	if (list_empty(&unit->deps))
+> +		return;
+> +
+> +	seq_puts(seq, "      dependencies:\n");
+> +	list_for_each_entry(ref, &unit->deps, list)
+> +		seq_printf(seq, "        [%s]\n", ref->unit->name);
+> +}
+> +
+> +static int pwrseq_debugfs_seq_show(struct seq_file *seq, void *data)
+> +{
+> +	struct device *dev = data;
+> +	struct pwrseq_device *pwrseq = to_pwrseq_device(dev);
+> +	struct pwrseq_target *target;
+> +	struct pwrseq_unit *unit;
+> +
+> +	seq_printf(seq, "%s:\n", dev_name(dev));
+> +
+> +	seq_puts(seq, "  targets:\n");
+> +	list_for_each_entry(target, &pwrseq->targets, list)
+> +		pwrseq_debugfs_seq_show_target(seq, target);
+> +
+> +	seq_puts(seq, "  units:\n");
+> +	list_for_each_entry(unit, &pwrseq->units, list)
+> +		pwrseq_debugfs_seq_show_unit(seq, unit);
+> +
+> +	return 0;
+> +}
+> +
+> +static void pwrseq_debugfs_seq_stop(struct seq_file *seq, void *data)
+> +{
+> +	up_read(&pwrseq_sem);
+> +}
+> +
+> +static const struct seq_operations pwrseq_debugfs_sops = {
+> +	.start = pwrseq_debugfs_seq_start,
+> +	.next = pwrseq_debugfs_seq_next,
+> +	.show = pwrseq_debugfs_seq_show,
+> +	.stop = pwrseq_debugfs_seq_stop,
+> +};
+> +DEFINE_SEQ_ATTRIBUTE(pwrseq_debugfs);
+> +
+> +static struct dentry *pwrseq_debugfs_dentry;
+> +
+> +#endif /* CONFIG_DEBUG_FS */
+> +
+> +static int __init pwrseq_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = bus_register(&pwrseq_bus);
+> +	if (ret) {
+> +		pr_err("Failed to register the power sequencer bus\n");
+> +		return ret;
+> +	}
+> +
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +	pwrseq_debugfs_dentry = debugfs_create_file("pwrseq", 0444, NULL, NULL,
+> +						    &pwrseq_debugfs_fops);
+> +#endif  /* CONFIG_DEBUG_FS */
+> +
+> +	return 0;
+> +}
+> +subsys_initcall(pwrseq_init);
+> +
+> +static void __exit pwrseq_exit(void)
+> +{
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +	debugfs_remove_recursive(pwrseq_debugfs_dentry);
+> +#endif  /* CONFIG_DEBUG_FS */
+> +
+> +	bus_unregister(&pwrseq_bus);
+> +}
+> +module_exit(pwrseq_exit);
+> +
+> +MODULE_AUTHOR("Bartosz Golaszewski <bartosz.golaszewski@linaro.org>");
+> +MODULE_DESCRIPTION("Power Sequencing subsystem core");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/pwrseq/consumer.h b/include/linux/pwrseq/consumer.h
+> new file mode 100644
+> index 000000000000..7d583b4f266e
+> --- /dev/null
+> +++ b/include/linux/pwrseq/consumer.h
+> @@ -0,0 +1,56 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2024 Linaro Ltd.
+> + */
+> +
+> +#ifndef __POWER_SEQUENCING_CONSUMER_H__
+> +#define __POWER_SEQUENCING_CONSUMER_H__
+> +
+> +#include <linux/err.h>
+> +
+> +struct device;
+> +struct pwrseq_desc;
+> +
+> +#if IS_ENABLED(CONFIG_POWER_SEQUENCING)
+> +
+> +struct pwrseq_desc * __must_check
+> +pwrseq_get(struct device *dev, const char *target);
+> +void pwrseq_put(struct pwrseq_desc *desc);
+> +
+> +struct pwrseq_desc * __must_check
+> +devm_pwrseq_get(struct device *dev, const char *target);
+> +
+> +int pwrseq_power_on(struct pwrseq_desc *desc);
+> +int pwrseq_power_off(struct pwrseq_desc *desc);
+> +
+> +#else /* CONFIG_POWER_SEQUENCING */
+> +
+> +static inline struct pwrseq_desc * __must_check
+> +pwrseq_get(struct device *dev, const char *target)
+> +{
+> +	return ERR_PTR(-ENOSYS);
+> +}
+> +
+> +static inline void pwrseq_put(struct pwrseq_desc *desc)
+> +{
+> +}
+> +
+> +static inline struct pwrseq_desc * __must_check
+> +devm_pwrseq_get(struct device *dev, const char *target)
+> +{
+> +	return ERR_PTR(-ENOSYS);
+> +}
+> +
+> +static inline int pwrseq_power_on(struct pwrseq_desc *desc)
+> +{
+> +	return -ENOSYS;
+> +}
+> +
+> +static inline int pwrseq_power_off(struct pwrseq_desc *desc)
+> +{
+> +	return -ENOSYS;
+> +}
+> +
+> +#endif /* CONFIG_POWER_SEQUENCING */
+> +
+> +#endif /* __POWER_SEQUENCING_CONSUMER_H__ */
+> diff --git a/include/linux/pwrseq/provider.h b/include/linux/pwrseq/provider.h
+> new file mode 100644
+> index 000000000000..e627ed2f4d91
+> --- /dev/null
+> +++ b/include/linux/pwrseq/provider.h
+> @@ -0,0 +1,75 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2024 Linaro Ltd.
+> + */
+> +
+> +#ifndef __POWER_SEQUENCING_PROVIDER_H__
+> +#define __POWER_SEQUENCING_PROVIDER_H__
+> +
+> +struct device;
+> +struct module;
+> +struct pwrseq_device;
+> +
+> +typedef int (*pwrseq_power_state_func)(struct pwrseq_device *);
+> +typedef int (*pwrseq_match_func)(struct pwrseq_device *, struct device *);
+> +
+> +/**
+> + * struct pwrseq_unit_data - Configuration of a single power sequencing
+> + *                           unit.
+> + * @name: Name of the unit.
+> + * @deps: Units that must be enabled before this one and disabled after it
+> + *        in the order they come in this array.
+> + * @enable: Callback running the part of the power-on sequence provided by
+> + *          this unit.
+> + * @disable: Callback running the part of the power-off sequence provided
+> + *           by this unit.
+> + */
+> +struct pwrseq_unit_data {
+> +	const char *name;
+> +	const struct pwrseq_unit_data **deps;
+> +	pwrseq_power_state_func enable;
+> +	pwrseq_power_state_func disable;
+> +};
+> +
+> +/**
+> + * struct pwrseq_target_data - Configuration of a power sequencing target.
+> + * @name: Name of the target.
+> + * @unit: Final unit that this target must reach in order to be considered
+> + *        enabled.
+> + * @post_enable: Callback run after the target unit has been enabled, *after*
+> + *               the state lock has been released. It's useful for implementing
+> + *               boot-up delays without blocking other users from powering up
+> + *               using the same power sequencer.
+> + */
+> +struct pwrseq_target_data {
+> +	const char *name;
+> +	const struct pwrseq_unit_data *unit;
+> +	pwrseq_power_state_func post_enable;
+> +};
+> +
+> +/**
+> + * struct pwrseq_config - Configuration used for registering a new provider.
+> + * @parent: Parent device for the sequencer. Must be set.
+> + * @owner: Module providing this device.
+> + * @drvdata: Private driver data.
+> + * @match: Provider callback used to match the consumer device to the sequencer.
+> + * @targets: Array of targets for this power sequencer. Must be NULL-terminated.
+> + */
+> +struct pwrseq_config {
+> +	struct device *parent;
+> +	struct module *owner;
+> +	void *drvdata;
+> +	pwrseq_match_func match;
+> +	const struct pwrseq_target_data **targets;
+> +};
+> +
+> +struct pwrseq_device *
+> +pwrseq_device_register(const struct pwrseq_config *config);
+> +void pwrseq_device_unregister(struct pwrseq_device *pwrseq);
+> +struct pwrseq_device *
+> +devm_pwrseq_device_register(struct device *dev,
+> +			    const struct pwrseq_config *config);
+> +
+> +void *pwrseq_device_get_drvdata(struct pwrseq_device *pwrseq);
+> +
+> +#endif /* __POWER_SEQUENCING_PROVIDER_H__ */
+>
+> --
+> 2.43.0
+>
 
