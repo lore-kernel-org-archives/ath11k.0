@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21104C25B76
-	for <ath11k@archiver.kernel.org>; Wed,  5 Jun 2024 12:21:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1158EC25B76
+	for <ath11k@archiver.kernel.org>; Wed,  5 Jun 2024 12:21:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ucQO5tSR+UUnqX3BARACo1yN9MzAT61u2WtozQUoIJg=; b=jRsiV8cjkRJC9mV1GL0MMR4fHp
-	vqe8fg/Cgn5tGCLjYKmzK2v0NLK7/KUFr1UzMUD7311kUkA3G7HZUPi+LUWccJyd9UartxB7eN4kQ
-	7SoKWCQs6BrOEFF0Jbj/S8pULhDOYMQXFRgM58GU0tLSU03gBXNzKyb8shdalQrEj4E62+rLa+Llt
-	HIksPSBZq6bPr/p6vDz5fWxyZd/eW6qk96fZrd66oB725guYX/9PK0WGABiPUtHetwuKyGE4wKSwo
-	hw9TRUuHwpCv8KNWuldGh+QZONICMWzZOVMNBkRpZdCGgs1j1HWyVkn5rxhULMEp/7m8mFdDnNHeU
-	O+lUY2vw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=G+Nvyhb30jMRTp5MAcBR0DPyo3QQwWDlaTstXDQ5DSE=; b=O7fZU+0KUei/aba7NDKrUFYYYt
+	sYHtdKboJ6Skbg3wyUZKtnjYe3x0o2T3sdLm/5d64J1GVLmnPKEwAATDJvdtBwW5lvEz+LU3Z8kLp
+	VNNCoSJzLv6OG5QVoDHaaSWyp6YuYHLuTEzsQcArrnwh/icwpcD18yJg5e7quW8IuMOUIMI3bXKTR
+	6+w+Hel7EjcjN6MBxNIWjdp7XLqRc9uE+ghSOGHRaXbm4QM8eOlluCKIVuhJF2M2dqbyDuhFW57Az
+	P0ueS93CiFYcI2yzrRb9HPsnQ5MCRM1UCBMfbVuM7RP2Wrq7qj8d6aa4jmJpRc/sAX8D+XnVq9t76
+	L7wsa6tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEpdt-00000005xYZ-3sDS;
-	Wed, 05 Jun 2024 12:21:25 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1sEpdy-00000005xb7-2kN2;
+	Wed, 05 Jun 2024 12:21:30 +0000
+Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEpdr-00000005xWp-1eLY
+	id 1sEpdv-00000005xVF-2ask
 	for ath11k@lists.infradead.org;
-	Wed, 05 Jun 2024 12:21:24 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4210aa012e5so21172125e9.0
-        for <ath11k@lists.infradead.org>; Wed, 05 Jun 2024 05:21:22 -0700 (PDT)
+	Wed, 05 Jun 2024 12:21:29 +0000
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2e73359b979so67102411fa.1
+        for <ath11k@lists.infradead.org>; Wed, 05 Jun 2024 05:21:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717590081; x=1718194881; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ucQO5tSR+UUnqX3BARACo1yN9MzAT61u2WtozQUoIJg=;
-        b=LJiCy0JAovA6LNGeMEYd49Ij3EFsJBFG/ICxSsIbGGQ8EbNXIOkq8xubhvccFOFbo4
-         lV6p03peGi2nSWfS3AasMGNO3YQ+D8ZrnYN0blwdaWLKVAs1/5FMGhXTULHZu01zqPmR
-         A85BRhrOQ8oqeiMBbqVLB4z8LIDn4sgWCSFEPO1H4qHna6f+eHv+RCEokzvoHJTsUcQ5
-         9b6WzaQjlM3asit7BxTcK4tPf6SqhTrvw+XsM6YlKj4P7wA6GVH1HuDre33O+uR6PqCW
-         uKRcmyCloN4IzDG3cs8hUbdxLcC0oRudvlNr1X9gS2LCGUJLw/NhLpKlwjZaSteRDOCd
-         g0Uw==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717590076; x=1718194876; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G+Nvyhb30jMRTp5MAcBR0DPyo3QQwWDlaTstXDQ5DSE=;
+        b=RChSFh8wuxJjTeRhtzsnPB/gwRnsee1C/eY9AGBMdTaroI3GHZlx1+nACdlg1YbyXd
+         C1d/d/N/fJq1tVhjs5HFBYNGj1dAF6A9OrtQIgQqQ6kJGpXuADgCw3rSF6owxRt2uM2M
+         +pqNpV5hXjNe1SAsgCfXCiTNe+P7PycT5T1YBGE0wgFXQ3CKq9iDcwwQYoDXveN/pNcd
+         qz7SfTd1q1dTvjst5iSQoa2JZbv/AQBdqY5vzYeFhOhEw5gENFrn/ivqRHo3RGHqlny3
+         CVDiBHJqvEkn6P9wF5uDA6HdPdAUocsP07OLjQSLVcawiTCLKZ7GFt8w2C09IQNxIfsW
+         j3Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717590081; x=1718194881;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ucQO5tSR+UUnqX3BARACo1yN9MzAT61u2WtozQUoIJg=;
-        b=vEkGXy+4V4a7Y8YC+crfQAxbGg+7C/xE5sFOdRCjgdz30cgnlbNsiODG2mmTRMZI1T
-         epMf5Cv9e5+Va4TrWqP49NJBnx1oSjD27Nl9GU23zkmjtMwQd+OdACM+Thexarf0L/u5
-         NepHBPln2Jm0bkJ8OxTIlau7rsmxGaFefYXLOQY8HvcFm9UYxZzhZ2buAjfr75c/qugU
-         qqhiBVK7+yw2p5bVs4mCIpNd+3T6jlTmfEXpTqVIEZS4k2zTAcMiYdWzZhJlAKZinL3x
-         Zyd3T7uljbtFEfFze0iotDj3rB202KQjt3JOhqFIfWPSu/Lfacn/3J0uE3HFkm8+AeJD
-         RjVg==
-X-Forwarded-Encrypted: i=1; AJvYcCVtlIZnwnskFoTHFqtZE+Q89FCUZdbh0lxWOSsi42F/0c9brWckV0PGKhqDttsZvRzYiiodPA+wOqGgowHptMmmjFnGKH1smzybOw==
-X-Gm-Message-State: AOJu0Ywg58Dt6FTRMAta4YWB4CtOhRKJLgLIQWCo8MXlfCFoKUo0Rc4F
-	/PCRa50dPaiqYRongmJRqXNPygG+L3DfTNjyO1KIZWSmcYooXOSJZ8p3QevgRVk=
-X-Google-Smtp-Source: AGHT+IEzV4+qPAdbvBIVSDh25Kg43lXFdrbrVxygpt/spQBQn6auoyHk/Hs/OfBTW0kfE6X67LA+9A==
-X-Received: by 2002:a05:600c:46c4:b0:41f:b0e7:f299 with SMTP id 5b1f17b1804b1-421562cc205mr18573495e9.9.1717590081264;
-        Wed, 05 Jun 2024 05:21:21 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717590076; x=1718194876;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G+Nvyhb30jMRTp5MAcBR0DPyo3QQwWDlaTstXDQ5DSE=;
+        b=rz9CBcssawZ3nZPKA7LQAywmsK7RpY6qqt3rl+KdOdBr2LUN2an5ySLpAWxZKJn/26
+         742FlE5rbDujledrK1EoGKpd1qdp3mnxSf5eFbREmujxi5Nd6pJKC2WqRuzFMP8/o/um
+         iQy/SzhxN2hxcofNOfpMw1pdol3gfjUWBpVqE+GUyDMy3DAWrEEMm6yya26ag65pGJEf
+         EZbiIwRYkngeZVxQnLtTHuj/lrlNNeVt536446+x7OSW+kE4XDtQmlfzcEgCeKaAjLXu
+         xhoeghzb6gAX7dNlw4MaM01ynDkNeTXm/c2PItbAQFguRjtBkZAq10hez2MBIeybV/YE
+         46Pg==
+X-Forwarded-Encrypted: i=1; AJvYcCVRJ1G4Rbtfa6gnG6A/6x8oeRAlfoVpGCRaDBYeI+M7vpxaik0aQSUzh6zVDhmXUlSwMhEXWf1/IolzVJvpmlzp3PfAt43l8sLDCA==
+X-Gm-Message-State: AOJu0Yy5V+ijYKln3vj0waaeSQE1wQhbe7XOYqr4+VDemSu0Ykzs1/r4
+	m2QCSK55OWtS5+WNqX9Tc0yc34r/YUz9+oS3qT+gf9UYseldxoiebMKfoQcydyw=
+X-Google-Smtp-Source: AGHT+IE21RURyt0kYC+Jz489gsL7lhhTmR21aXYTlyuWI/0yvyEIMAOFWs8jF25IHJtn2FVRLjKUsQ==
+X-Received: by 2002:a2e:7c0b:0:b0:2ea:772a:ddb4 with SMTP id 38308e7fff4ca-2eac7a526f0mr14280681fa.34.1717590075844;
+        Wed, 05 Jun 2024 05:21:15 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:75a:e000:d3dd:423:e1eb:d88b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215813ce64sm19634485e9.44.2024.06.05.05.21.19
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215813ce64sm19634485e9.44.2024.06.05.05.21.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 05:21:19 -0700 (PDT)
+        Wed, 05 Jun 2024 05:21:15 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
 To: Kalle Valo <kvalo@kernel.org>,
 	"David S . Miller" <davem@davemloft.net>,
@@ -79,19 +78,16 @@ Cc: linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	ath12k@lists.infradead.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v9 2/2] dt-bindings: net: wireless: describe the ath12k PCI module
-Date: Wed,  5 Jun 2024 14:21:05 +0200
-Message-ID: <20240605122106.23818-3-brgl@bgdev.pl>
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v9 0/2] dt-bindings: describe the ath1X modules on QCom BT/WLAN chipsets
+Date: Wed,  5 Jun 2024 14:21:03 +0200
+Message-ID: <20240605122106.23818-1-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240605122106.23818-1-brgl@bgdev.pl>
-References: <20240605122106.23818-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_052123_506691_12489B24 
-X-CRM114-Status: GOOD (  10.69  )
+X-CRM114-CacheID: sfid-20240605_052127_706051_6B1FEDA8 
+X-CRM114-Status: GOOD (  14.34  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,121 +104,84 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add device-tree bindings for the ATH12K module found in the WCN7850
-package.
+Here are the two dt-binding patches from the power-sequencing series
+targeting the wireless subsystem. To keep the cover-letter short, I
+won't repeat all the details, they can be found in the cover-letter for
+v8. Please consider picking them up into your tree, they were reviewed
+by Krzysztof earlier.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
+Changelog:
+
+Since v8:
+- split out the wireless bindings into their own series
+- Link to v8: https://lore.kernel.org/r/20240528-pwrseq-v8-0-d354d52b763c@linaro.org
+
+Since v7:
+- added DTS changes for sm8650-hdk
+- added circular dependency detection for pwrseq units
+- fixed a KASAN reported use-after-free error in remove path
+- improve Kconfig descriptions
+- fix typos in bindings and Kconfig
+- fixed issues reported by smatch
+- fix the unbind path in PCI pwrctl
+- lots of minor improvements to the pwrseq core
+
+Since v6:
+- kernel doc fixes
+- drop myself from the DT bindings maintainers list for ath12k
+- wait until the PCI bridge device is fully added before creating the
+  PCI pwrctl platform devices for its sub-nodes, otherwise we may see
+  sysfs and procfs attribute failures (due to duplication, we're
+  basically trying to probe the same device twice at the same time)
+- I kept the regulators for QCA6390's ath11k as required as they only
+  apply to this specific Qualcomm package
+
+Since v5:
+- unify the approach to modelling the WCN WLAN/BT chips by always exposing
+  the PMU node on the device tree and making the WLAN and BT nodes become
+  consumers of its power outputs; this includes a major rework of the DT
+  sources, bindings and driver code; there's no more a separate PCI
+  pwrctl driver for WCN7850, instead its power-up sequence was moved
+  into the pwrseq driver common for all WCN chips
+- don't set load_uA from new regulator consumers
+- fix reported kerneldoc issues
+- drop voltage ranges for PMU outputs from DT
+- many minor tweaks and reworks
+
+v1: Original RFC:
+
+https://lore.kernel.org/lkml/20240104130123.37115-1-brgl@bgdev.pl/T/
+
+v2: First real patch series (should have been PATCH v2) adding what I
+    referred to back then as PCI power sequencing:
+
+https://lore.kernel.org/linux-arm-kernel/2024021413-grumbling-unlivable-c145@gregkh/T/
+
+v3: RFC for the DT representation of the PMU supplying the WLAN and BT
+    modules inside the QCA6391 package (was largely separate from the
+    series but probably should have been called PATCH or RFC v3):
+
+https://lore.kernel.org/all/CAMRc=Mc+GNoi57eTQg71DXkQKjdaoAmCpB=h2ndEpGnmdhVV-Q@mail.gmail.com/T/
+
+v4: Second attempt at the full series with changed scope (introduction of
+    the pwrseq subsystem, should have been RFC v4)
+
+https://lore.kernel.org/lkml/20240201155532.49707-1-brgl@bgdev.pl/T/
+
+v5: Two different ways of handling QCA6390 and WCN7850:
+
+https://lore.kernel.org/lkml/20240216203215.40870-1-brgl@bgdev.pl/
+
+Bartosz Golaszewski (2):
+  dt-bindings: net: wireless: qcom,ath11k: describe the ath11k on
+    QCA6390
+  dt-bindings: net: wireless: describe the ath12k PCI module
+
+ .../net/wireless/qcom,ath11k-pci.yaml         | 46 +++++++++
  .../bindings/net/wireless/qcom,ath12k.yaml    | 99 +++++++++++++++++++
- 1 file changed, 99 insertions(+)
+ 2 files changed, 145 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-new file mode 100644
-index 000000000000..1b5884015b15
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2024 Linaro Limited
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/qcom,ath12k.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Technologies ath12k wireless devices (PCIe)
-+
-+maintainers:
-+  - Jeff Johnson <quic_jjohnson@quicinc.com>
-+  - Kalle Valo <kvalo@kernel.org>
-+
-+description:
-+  Qualcomm Technologies IEEE 802.11be PCIe devices.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - pci17cb,1107  # WCN7850
-+
-+  reg:
-+    maxItems: 1
-+
-+  vddaon-supply:
-+    description: VDD_AON supply regulator handle
-+
-+  vddwlcx-supply:
-+    description: VDD_WLCX supply regulator handle
-+
-+  vddwlmx-supply:
-+    description: VDD_WLMX supply regulator handle
-+
-+  vddrfacmn-supply:
-+    description: VDD_RFA_CMN supply regulator handle
-+
-+  vddrfa0p8-supply:
-+    description: VDD_RFA_0P8 supply regulator handle
-+
-+  vddrfa1p2-supply:
-+    description: VDD_RFA_1P2 supply regulator handle
-+
-+  vddrfa1p8-supply:
-+    description: VDD_RFA_1P8 supply regulator handle
-+
-+  vddpcie0p9-supply:
-+    description: VDD_PCIE_0P9 supply regulator handle
-+
-+  vddpcie1p8-supply:
-+    description: VDD_PCIE_1P8 supply regulator handle
-+
-+required:
-+  - compatible
-+  - reg
-+  - vddaon-supply
-+  - vddwlcx-supply
-+  - vddwlmx-supply
-+  - vddrfacmn-supply
-+  - vddrfa0p8-supply
-+  - vddrfa1p2-supply
-+  - vddrfa1p8-supply
-+  - vddpcie0p9-supply
-+  - vddpcie1p8-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    pcie {
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+
-+        pcie@0 {
-+            device_type = "pci";
-+            reg = <0x0 0x0 0x0 0x0 0x0>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            ranges;
-+
-+            bus-range = <0x01 0xff>;
-+
-+            wifi@0 {
-+                compatible = "pci17cb,1107";
-+                reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+                vddaon-supply = <&vreg_pmu_aon_0p59>;
-+                vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+                vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+                vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+                vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+                vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+                vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+                vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+                vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+            };
-+        };
-+    };
 -- 
 2.40.1
 
