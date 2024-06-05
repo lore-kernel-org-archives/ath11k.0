@@ -4,95 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74EB3C27C53
-	for <ath11k@archiver.kernel.org>; Wed,  5 Jun 2024 12:21:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8877CC27C53
+	for <ath11k@archiver.kernel.org>; Wed,  5 Jun 2024 16:15:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=JtrY9AQ1HMviMtXqdGs5v4k8JWTeW8ioeVqyYswS7I4=; b=I6Vt2eGCJYyxELZ4iaMM5qFHUt
-	DH3jtX9Y92jsRZeRSD8HimFQTwwgR9n0WBc5o6T+V5cfKAqR1lIGxlBnwZjKnYDNs1Ash7Wh3EKLG
-	gOLKth1aKrm26a/5hC8tdmEdpstdZlzGKtyuRpFvj1bQj5/359p4b7Ywg1/2R/PbVX3vRFPQ9XoJq
-	n5Q24zyN0aBUpVi9vtIf0U4YDZUg+RgsZ/ng8nN6Z9kExX+8CKLe0UAfQ7dh/I4cDkuutcudfMBWP
-	zfVbUI6+Vz6YxncaRppj1fizbEKjRmGtjmK2J5Ma4c1BM5zntkUs/OcwGy5hgQViSIZOHBMhiro1r
-	HHWaQYuA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=2ObX+tgYocjdYqKyue+ls78bzx5lCofMW2JrEfEQrw8=; b=x42goaF7gRdL6Qy1LpnqICfCZz
+	p36gfrIR4xTXPkzUybIDVpBjj8tu5SKM6xi+u7GvkGiVY0irLi8ZgWDVudswsUSVddaqout+yPjcy
+	DKH3WbWuRgZfq9UBSYeSrG7QPBNp0OpMu+vrq8OAhplPMEvxoLPBrkqV/+YGxIfZywmCKNDWf1G3C
+	5l1rR1k/yWLUWIrkL7TlUIqZdV1ew/vKMUL/SRZGJZLvjzR8CH5YJBL4ZPdZMA/m/XgSJb48a9pGs
+	y7he7EQMfx3SYU1W1PFaczvxpsabwOD8h6f8wC2U4x/bY59aojVLtawWSTIxwbLMbyKA6Sn5x6Gs2
+	NbtjXzrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEpe0-00000005xcq-2dLT;
-	Wed, 05 Jun 2024 12:21:32 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1sEtIX-00000006oHt-3LMy;
+	Wed, 05 Jun 2024 16:15:37 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sEpdv-00000005xWG-4AJL
-	for ath11k@lists.infradead.org;
-	Wed, 05 Jun 2024 12:21:30 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4213870aafdso35034135e9.2
-        for <ath11k@lists.infradead.org>; Wed, 05 Jun 2024 05:21:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717590079; x=1718194879; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JtrY9AQ1HMviMtXqdGs5v4k8JWTeW8ioeVqyYswS7I4=;
-        b=3UvkypQRRGKDqkUeyzpPHY1YLqa3xQcSc6ID34ZGONX80cffRPd+i5Y5UyIypt3FN6
-         9oJSETBCsE9HQIEAw9uNRoqAYd8NWBiBmFFs1z4AGpe1TdL8IEeYQBFmLN/Rjo1WYs6R
-         8kMzkd7LTYEgQXbLliYtcaG2N9dV5DGXmvf6ik7OiGgS1fZA0NeuiRxVPTMi2FNsXbYU
-         xIt7B6zcS2AjEIsq72nIscvlcgVCkNaSGObdz0bKK/8vS8rik7HN9svHVuvXh3xhZO6x
-         zwEh6NkXc8fX0+nnGLVYIWAyd0fssf9CgsydxOKsWcvpO+LQRYJkPVbURbGvJFOuf5VE
-         d4RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717590079; x=1718194879;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JtrY9AQ1HMviMtXqdGs5v4k8JWTeW8ioeVqyYswS7I4=;
-        b=U8lGqqw9D4+WcV76shydePIA3ql3IbRPfXagRaL23Vp0nv+BWieZ5toE8gFfzB6ANs
-         bfbqMvQrJpXpwlZz0vQ9pTdxy4VFvy3FsxFEFIK+Ydi2wta2dIEAMc2N9bKkSRE4ETWk
-         j5NjgGPMt1AqAvkHAghO31l9CyK0pNehiAxKN6I83ccgbnJcQRumwhjDXjlt0nQ5T6pA
-         t3uQ5uv/CGEN9DKsxta3NXGHXJebtAQXCnNwmOMeByPc+4SuQUW0LTU89A3o4tRyaI0c
-         Y9x9f2D6MvYU2UcPy7DJurN3e6AdGRH9sG7xXQcXJYneyx3d3CCgOgUrTuoiUy/HcfKT
-         OdNw==
-X-Forwarded-Encrypted: i=1; AJvYcCXuzoLRGpngCwi1HYIIHX8tf7S7UfOGDgsi06ojrkLwTpmEHIejOFFoOvyiFmfUbSQQVV0K13d+kQMzYrgPFHFfnO7xx393tbzz4A==
-X-Gm-Message-State: AOJu0YxTIwUvbEr/VIICMPIXY01r9rkxCaPP7im9aL56QbVJwlPSavw9
-	F/Mrjpwn2ueF5o4g+EvCt8U/2FndnzX1Pq3f9s+tp7S4WrBYnh8Jy/XUVH09sjQ=
-X-Google-Smtp-Source: AGHT+IHX0hwMEdRN5Wsfn67SdyNgnl9018bU7fki5GYdi8OUdKMJ4OUu2nbQIpjUAkYySA+jeO1imQ==
-X-Received: by 2002:a05:600c:1e02:b0:421:2abe:54e3 with SMTP id 5b1f17b1804b1-421562cf532mr18320735e9.2.1717590079340;
-        Wed, 05 Jun 2024 05:21:19 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:75a:e000:d3dd:423:e1eb:d88b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215813ce64sm19634485e9.44.2024.06.05.05.21.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 05:21:19 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Kalle Valo <kvalo@kernel.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ath12k@lists.infradead.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe the ath11k on QCA6390
-Date: Wed,  5 Jun 2024 14:21:04 +0200
-Message-ID: <20240605122106.23818-2-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240605122106.23818-1-brgl@bgdev.pl>
-References: <20240605122106.23818-1-brgl@bgdev.pl>
+	id 1sEtIR-00000006oEI-0HFP;
+	Wed, 05 Jun 2024 16:15:34 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 6ACCCCE187E;
+	Wed,  5 Jun 2024 16:15:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BA86C2BD11;
+	Wed,  5 Jun 2024 16:15:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717604128;
+	bh=AKu8alGE4B1zDHsWit33Pxkpgw2ZgsNllpJTVYD/7Vo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cLNO/fxY8L3LaaZagCYUvtBOdYW1IDM03bzwHsCPMzRh51QSoVe3AY6UqLwJTEd5g
+	 H6ZzP3kc6mnCNF6Y9eaRBmp8Gb5Z/DNFF5KjXLeBBLM8R5GS3EyMOx30+aPlD5k3lO
+	 8nswPBJ4uA9XBWX37UkuxU+DBjfkEfeNlnz4Gij6FDiALC8G82hXNjm7C6fzRf2ifW
+	 5IM5g7x8wLaMjvlWPlnRV4ZYqDvLNwEgPV02kPaOYuwNBwszA9PQPbKFT2+Nsa+m8b
+	 ZYpupDpq2YEQys19HGbziYSMbv+w4LyT6TD1DcxpcVNDyMAtvAdd66qroHbCqdxfsy
+	 JJ1JBkzhPP0qA==
+From: Kalle Valo <kvalo@kernel.org>
+To: linux-wireless@vger.kernel.org
+Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, quic_jjohnson@quicinc.com
+Subject: pull-request: ath-next-20240605
+Date: Wed, 05 Jun 2024 19:15:25 +0300
+Message-ID: <87a5jzs6w2.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240605_052128_254916_A11CC9C0 
-X-CRM114-Status: UNSURE (   8.12  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240605_091531_505552_85D3E291 
+X-CRM114-Status: GOOD (  13.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,86 +68,213 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi,
 
-Add a PCI compatible for the ATH11K module on QCA6390 and describe the
-power inputs from the PMU that it consumes.
+Please pull, more information in the tag below.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../net/wireless/qcom,ath11k-pci.yaml         | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Kalle
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-index 41d023797d7d..8675d7d0215c 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-@@ -17,6 +17,7 @@ description: |
- properties:
-   compatible:
-     enum:
-+      - pci17cb,1101  # QCA6390
-       - pci17cb,1103  # WCN6855
- 
-   reg:
-@@ -28,10 +29,55 @@ properties:
-       string to uniquely identify variant of the calibration data for designs
-       with colliding bus and device ids
- 
-+  vddrfacmn-supply:
-+    description: VDD_RFA_CMN supply regulator handle
-+
-+  vddaon-supply:
-+    description: VDD_AON supply regulator handle
-+
-+  vddwlcx-supply:
-+    description: VDD_WL_CX supply regulator handle
-+
-+  vddwlmx-supply:
-+    description: VDD_WL_MX supply regulator handle
-+
-+  vddrfa0p8-supply:
-+    description: VDD_RFA_0P8 supply regulator handle
-+
-+  vddrfa1p2-supply:
-+    description: VDD_RFA_1P2 supply regulator handle
-+
-+  vddrfa1p7-supply:
-+    description: VDD_RFA_1P7 supply regulator handle
-+
-+  vddpcie0p9-supply:
-+    description: VDD_PCIE_0P9 supply regulator handle
-+
-+  vddpcie1p8-supply:
-+    description: VDD_PCIE_1P8 supply regulator handle
-+
- required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: pci17cb,1101
-+    then:
-+      required:
-+        - vddrfacmn-supply
-+        - vddaon-supply
-+        - vddwlcx-supply
-+        - vddwlmx-supply
-+        - vddrfa0p8-supply
-+        - vddrfa1p2-supply
-+        - vddrfa1p7-supply
-+        - vddpcie0p9-supply
-+        - vddpcie1p8-supply
-+
- additionalProperties: false
- 
- examples:
--- 
-2.40.1
+The following changes since commit f1c26960b6afb9c38a4019ad36392c654db6e20e:
 
+  Merge tag 'ath-next-20240502' of git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath (2024-05-03 13:30:19 +0300)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git tags/ath-next-20240605
+
+for you to fetch changes up to 22767241e64427bbcffea2e2d51531ab467bc4ef:
+
+  wifi: ath12k: add hw_link_id in ath12k_pdev (2024-06-03 16:15:50 +0300)
+
+----------------------------------------------------------------
+ath.git patches for v6.11
+
+ath12k
+
+* remove unsupported tx monitor handling
+
+* channel 2 in 6 GHz band support
+
+* Spatial Multiplexing Power Save (SMPS) in 6 GHz band support
+
+* multiple BSSID (MBSSID) and Enhanced Multi-BSSID Advertisements (EMA) support
+
+* dynamic VLAN support
+
+* add panic handler for resetting the firmware state
+
+ath10k
+
+* add qcom,no-msa-ready-indicator Device Tree property
+
+* LED support for various chipsets
+
+----------------------------------------------------------------
+Aloka Dixit (9):
+      wifi: ath12k: advertise driver capabilities for MBSSID and EMA
+      wifi: ath12k: configure MBSSID params in vdev create/start
+      wifi: ath12k: rename MBSSID fields in wmi_vdev_up_cmd
+      wifi: ath12k: create a structure for WMI vdev up parameters
+      wifi: ath12k: configure MBSSID parameters in AP mode
+      wifi: ath12k: refactor arvif security parameter configuration
+      wifi: ath12k: add MBSSID beacon support
+      wifi: ath12k: add EMA beacon support
+      wifi: ath12k: skip sending vdev down for channel switch
+
+Baochen Qiang (9):
+      wifi: ath12k: fix Smatch warnings on ath12k_core_suspend()
+      wifi: ath11k: refactor setting country code logic
+      wifi: ath11k: restore country code during resume
+      wifi: ath11k: fix wrong definition of CE ring's base address
+      wifi: ath12k: fix race due to setting ATH12K_FLAG_EXT_IRQ_ENABLED too early
+      wifi: ath12k: fix wrong definition of CE ring's base address
+      wifi: ath12k: fix memory leak in ath12k_dp_rx_peer_frag_setup()
+      wifi: ath12k: do not process consecutive RDDM event
+      wifi: ath12k: add panic handler
+
+Breno Leitao (2):
+      wifi: wil6210: Do not use embedded netdev in wil6210_priv
+      wifi: ath12k: allocate dummy net_device dynamically
+
+Jeff Johnson (8):
+      wifi: ath11k: refactor CE remap & unmap
+      wifi: ath11k: unmap the CE in ath11k_ahb_probe() error path
+      wifi: ath12k: initialize 'ret' in ath12k_qmi_load_file_target_mem()
+      wifi: ath11k: initialize 'ret' in ath11k_qmi_load_file_target_mem()
+      wifi: ath11k: fix misspelling of "dma" in num_rxmda_per_pdev
+      wifi: ath12k: fix misspelling of "dma" in num_rxmda_per_pdev
+      wifi: ath12k: initialize 'ret' in ath12k_dp_rxdma_ring_sel_config_wcn7850()
+      wifi: ath12k: Fix devmem address prefix when logging
+
+Kalle Valo (1):
+      wifi: ath11k: ath11k_mac_op_ipv6_changed(): use list_for_each_entry()
+
+Kang Yang (5):
+      wifi: ath12k: remove unused variable monitor_flags
+      wifi: ath12k: avoid duplicated vdev stop
+      wifi: ath12k: avoid duplicated vdev down
+      wifi: ath12k: remove invalid peer create logic
+      wifi: ath12k: remove redundant peer delete for WCN7850
+
+Karthikeyan Kathirvel (1):
+      wifi: ath12k: drop failed transmitted frames from metric calculation.
+
+Karthikeyan Periyasamy (13):
+      wifi: ath12k: Refactor the hardware recovery procedure
+      wifi: ath12k: Refactor the hardware state
+      wifi: ath12k: Add lock to protect the hardware state
+      wifi: ath12k: Replace "chip" with "device" in hal Rx return buffer manager
+      wifi: ath12k: Refactor idle ring descriptor setup
+      wifi: ath12k: Introduce device index
+      wifi: ath12k: add multi device support for WBM idle ring buffer setup
+      wifi: ath12k: avoid double SW2HW_MACID conversion
+      wifi: ath12k: remove duplicate definition of MAX_RADIOS
+      wifi: ath12k: use correct MAX_RADIOS
+      wifi: ath12k: refactor rx descriptor CMEM configuration
+      wifi: ath12k: improve the rx descriptor error information
+      wifi: ath12k: add hw_link_id in ath12k_pdev
+
+Lingbo Kong (1):
+      wifi: ath12k: fix ack signal strength calculation
+
+Marc Gonzalez (2):
+      dt-bindings: net: wireless: ath10k: add qcom,no-msa-ready-indicator prop
+      wifi: ath10k: do not always wait for MSA_READY indicator
+
+Muna Sinada (1):
+      wifi: ath12k: dynamic VLAN support
+
+Nithyanantham Paramasivam (1):
+      wifi: ath12k: Fix tx completion ring (WBM2SW) setup failure
+
+P Praneesh (3):
+      wifi: ath12k: change DMA direction while mapping reinjected packets
+      wifi: ath12k: fix invalid memory access while processing fragmented packets
+      wifi: ath12k: fix firmware crash during reo reinject
+
+Pradeep Kumar Chitrapu (6):
+      wifi: ath12k: add channel 2 into 6 GHz channel list
+      wifi: ath12k: Correct 6 GHz frequency value in rx status
+      wifi: ath12k: fix survey dump collection in 6 GHz
+      wifi: ath12k: add 6 GHz params in peer assoc command
+      wifi: ath12k: refactor SMPS configuration
+      wifi: ath12k: support SMPS configuration for 6 GHz
+
+Rob Herring (Arm) (1):
+      dt-bindings: net: wireless: ath11k: Drop "qcom,ipq8074-wcss-pil" from example
+
+Sebastian Gottschall (1):
+      wifi: ath10k: add LED and GPIO controlling support for various chipsets
+
+Sven Eckelmann (1):
+      wifi: ath12k: Don't drop tx_status in failure case
+
+Tamizh Chelvam Raja (3):
+      wifi: ath12k: fix calling correct function for rx monitor mode
+      wifi: ath12k: Remove unsupported tx monitor handling
+      wifi: ath12k: Remove unused tcl_*_ring configuration
+
+Venkateswara Naralasetty (1):
+      wifi: ath11k: skip status ring entry processing
+
+ .../bindings/net/wireless/qcom,ath10k.yaml         |   5 +
+ .../bindings/net/wireless/qcom,ath11k.yaml         |   9 -
+ drivers/net/wireless/ath/ath10k/Kconfig            |   6 +
+ drivers/net/wireless/ath/ath10k/Makefile           |   1 +
+ drivers/net/wireless/ath/ath10k/core.c             |  32 ++
+ drivers/net/wireless/ath/ath10k/core.h             |   8 +
+ drivers/net/wireless/ath/ath10k/hw.h               |   1 +
+ drivers/net/wireless/ath/ath10k/leds.c             |  90 ++++
+ drivers/net/wireless/ath/ath10k/leds.h             |  34 ++
+ drivers/net/wireless/ath/ath10k/mac.c              |   1 +
+ drivers/net/wireless/ath/ath10k/qmi.c              |  11 +
+ drivers/net/wireless/ath/ath10k/qmi.h              |   1 +
+ drivers/net/wireless/ath/ath10k/wmi-ops.h          |  32 ++
+ drivers/net/wireless/ath/ath10k/wmi-tlv.c          |   2 +
+ drivers/net/wireless/ath/ath10k/wmi.c              |  54 ++
+ drivers/net/wireless/ath/ath10k/wmi.h              |  35 ++
+ drivers/net/wireless/ath/ath11k/ahb.c              |  57 +-
+ drivers/net/wireless/ath/ath11k/ce.h               |   6 +-
+ drivers/net/wireless/ath/ath11k/core.c             |  49 +-
+ drivers/net/wireless/ath/ath11k/debugfs.c          |   6 +-
+ drivers/net/wireless/ath/ath11k/dp.c               |  12 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c            | 104 +++-
+ drivers/net/wireless/ath/ath11k/dp_tx.c            |   6 +-
+ drivers/net/wireless/ath/ath11k/hal.c              |  16 +-
+ drivers/net/wireless/ath/ath11k/hal.h              |   2 +
+ drivers/net/wireless/ath/ath11k/hw.h               |   4 +-
+ drivers/net/wireless/ath/ath11k/mac.c              |  19 +-
+ drivers/net/wireless/ath/ath11k/qmi.c              |   2 +-
+ drivers/net/wireless/ath/ath11k/reg.c              |  18 +-
+ drivers/net/wireless/ath/ath11k/reg.h              |   4 +-
+ drivers/net/wireless/ath/ath11k/wmi.c              |   2 +-
+ drivers/net/wireless/ath/ath12k/ce.h               |   6 +-
+ drivers/net/wireless/ath/ath12k/core.c             | 144 ++++--
+ drivers/net/wireless/ath/ath12k/core.h             |  44 +-
+ drivers/net/wireless/ath/ath12k/dp.c               |  83 +--
+ drivers/net/wireless/ath/ath12k/dp.h               |   4 +-
+ drivers/net/wireless/ath/ath12k/dp_mon.c           |  40 +-
+ drivers/net/wireless/ath/ath12k/dp_rx.c            | 115 ++---
+ drivers/net/wireless/ath/ath12k/dp_tx.c            | 165 +++---
+ drivers/net/wireless/ath/ath12k/dp_tx.h            |   5 +-
+ drivers/net/wireless/ath/ath12k/hal.c              |   5 +-
+ drivers/net/wireless/ath/ath12k/hal.h              |  21 +-
+ drivers/net/wireless/ath/ath12k/hal_desc.h         |  47 +-
+ drivers/net/wireless/ath/ath12k/hal_tx.h           |   4 +-
+ drivers/net/wireless/ath/ath12k/hif.h              |   9 +
+ drivers/net/wireless/ath/ath12k/hw.c               |  23 +-
+ drivers/net/wireless/ath/ath12k/hw.h               |   4 +-
+ drivers/net/wireless/ath/ath12k/mac.c              | 574 ++++++++++++++++-----
+ drivers/net/wireless/ath/ath12k/mhi.c              |  11 +
+ drivers/net/wireless/ath/ath12k/pci.c              |  39 +-
+ drivers/net/wireless/ath/ath12k/pci.h              |   1 +
+ drivers/net/wireless/ath/ath12k/qmi.c              |   8 +-
+ drivers/net/wireless/ath/ath12k/reg.c              |  19 +-
+ drivers/net/wireless/ath/ath12k/wmi.c              |  55 +-
+ drivers/net/wireless/ath/ath12k/wmi.h              |  48 +-
+ drivers/net/wireless/ath/wil6210/netdev.c          |  21 +-
+ drivers/net/wireless/ath/wil6210/wil6210.h         |   2 +-
+ 57 files changed, 1516 insertions(+), 610 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath10k/leds.c
+ create mode 100644 drivers/net/wireless/ath/ath10k/leds.h
 
