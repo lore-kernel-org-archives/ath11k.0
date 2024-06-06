@@ -4,87 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12FCCC25B75
-	for <ath11k@archiver.kernel.org>; Thu,  6 Jun 2024 13:37:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFF75C25B75
+	for <ath11k@archiver.kernel.org>; Thu,  6 Jun 2024 14:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/BoBiv/oTzAdR1lIG+yWj+SGvl2JhVkHcJoQ9lqvUrc=; b=KTZwiTnZ09jOH+G38wKXlpZdE+
-	p4fIvNFo464/lLJz6xWubfEfCwoaKWInT6OlTwipsT5BFlLpyFdnqJ/3Adb0RHfEqVEtKEBxoXpaF
-	2StvAM356dFq4qyk8VBWaUvXL02nXGzF+Gc0yJoQCkvQ01GvBiPgKJAb/4MPeKSQ99swTTFvKmgsr
-	eP8SAoy1WbXPpx929UZdZ8nzcsiEkLlrND0zk+i5HinEo4VoWB0dj+D/3XJHamiXXSXohT5XXuCfg
-	r1mMII5bjnvbqdtvBg2ev+zJCMP0STx2V+g0qVfTTg83VZ2lAMbFwFOQGPkwtC+VWv6RL2Rb9bGc1
-	H0QgSBqw==;
+	bh=Exqth/+k9FmA2UDmjf7oc1trllf1KrAhidtEnW+PkAk=; b=c28+bXobAkR4gjTioS3pM3acWK
+	yxo+MsTdv0QEjnTA1YzInyflU2zJPQT5BfCTg/2sjoDU/6vKVQ/lbUngq4VFWZy8XB2UopxNtIrMy
+	w7wXehJJn2v0GU7xAJwQiITbD6a5vOmLUK9XXzuJWW3+hJe8fNs19JOgi3g/Qn8Gnq8XSIPUuf8iD
+	RJ/YNfqFGYS9XsBaQapfkU6yEo+MzuS4sI4p4YJtbeVNWSmC5uAGoVXZ3ylXHEZVaQarnyl4+ovCQ
+	qprNjeeWIFzk0dAsLGu7WqV1M6fIR0V2MU269i77GXmjrYjlkj6zjRCXBzdmG0ZdtGdD6jHnKZ3Rg
+	UDE1bVaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFDJT-00000009w5g-2pKb;
-	Thu, 06 Jun 2024 13:37:55 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
+	id 1sFDgt-00000009zJ5-1mv3;
+	Thu, 06 Jun 2024 14:02:07 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sFDJQ-00000009w3S-1wQe
-	for ath11k@lists.infradead.org;
-	Thu, 06 Jun 2024 13:37:54 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2e73359b900so10894021fa.2
-        for <ath11k@lists.infradead.org>; Thu, 06 Jun 2024 06:37:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717681070; x=1718285870; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/BoBiv/oTzAdR1lIG+yWj+SGvl2JhVkHcJoQ9lqvUrc=;
-        b=cNwC1UBFIyTaCuZg6pP4pBtbXLMdFXibK5lNd3f6GUXYK9qYSZBpGxk9SROqAbnW2s
-         +Zpe3KQyH3XyqAlrWCccl6Pa0E532Vp+dlKPb8qr5WaeZ7hWcau8pIiZstA5+wP6zlmj
-         pNUOWmyJCZuz+jZ708suYsaY1HGvG96gQblVkj2MM8SvSorshnerMFU3LhDAbxIViUEH
-         MMHgbkDIZnRx3km8Lrs1QF0JWbXOvPmu+U3A8DloNWsdvps7hZLmMcXGGk42fdhNpSSq
-         /TjGp8jiMtYEPCoPrP4bCXCazA8f8F4flTrL86IhRgMv8Y9s+lBrntH7OLLX/XPKduFf
-         Yz+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717681070; x=1718285870;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/BoBiv/oTzAdR1lIG+yWj+SGvl2JhVkHcJoQ9lqvUrc=;
-        b=q9sZBYEkxWdzPeureY+mUc5yL2iptljS6pFhdpOJu7eeNCgX1Rtbnk4Gv5Tbvl0mWf
-         la9c0jzueR7lPf1WfsbO03HA1w22cWzwrBrL4e/Bwmsf9xCsSTldwvGHaz5JPydGOm36
-         uMVy0kC/QH3fKKF+xuApqL3lJz9wnMGhdEDJRyMe2eXR7I9a3nQcYJtj1eQOHo2YNGLg
-         sUOo35S1Wq3amGnx4kfxr/r8FJv1dqrOlj2h6ToXDCpJHI5lGGRkOL97/nFtgv2cOVff
-         8otzP0j/7uOsCozWUiaFkRGhMuSFMGDTvtendXuKjEpGq5qwwy6dy2jwTAeFsmrBwdG5
-         LGFg==
-X-Forwarded-Encrypted: i=1; AJvYcCVqossGI5xzSDIqi2LrsnACJ6gRNCK37qMYuaklwZdRnDvf1nTjS4WOnVtIwlbCXxeAhvWnXUxO8Tq8L7DxZvpTGvIpib1F2BeLPQ==
-X-Gm-Message-State: AOJu0YzMPN1C5LVdU8mlF1iUdBZoCIepoCaQf9zDm1WUFOO324cIM5iU
-	8UzaNwAZ6VkTBfZ2DSR5x2dCE6ItU7p7xqmN/PvFt8vF2epPmBDWe64+B05A/I4I5iuR719r4Cn
-	CPNOkezpmTN+yfK/tRrC4Ji3OlyN3s/AT4/w2LA==
-X-Google-Smtp-Source: AGHT+IGVi6SdXyjqLuNgspGsS7QS0koHqoI5qU5RsxFMIyqlWHAi0Sgl3JgDM1tnD4UfWiI8Hjt8tIufJO2+Xkfj3E4=
-X-Received: by 2002:a2e:8802:0:b0:2e5:67bc:739 with SMTP id
- 38308e7fff4ca-2eac79f22cbmr31439811fa.2.1717681070058; Thu, 06 Jun 2024
- 06:37:50 -0700 (PDT)
+	id 1sFDgq-00000009zHx-2HMR;
+	Thu, 06 Jun 2024 14:02:06 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 2F02061DE2;
+	Thu,  6 Jun 2024 14:02:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55343C2BD10;
+	Thu,  6 Jun 2024 14:01:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717682522;
+	bh=ivsf4NbZZPAamDEi3OCHaSjrBCmG4UqHfSgu3HZ5PWY=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=uGSpgk2S9Q99QsCDrnFKgKraNdbOOhYSONYIIH2BHVK2ycaCv0j+dmU4CbWH9oBsl
+	 /J8x10c81VUUGgH+F+o5iFK8iJ1N3/hdDgSJpOL1eMQ64ggEw7IYNBeyUIg1QS0kuY
+	 Lym15z8f+QhlPxGLzLuxIEHUmDvZAvWyIa8AQ9O+MCJ4+iA9TEZTreiq6kGUHPKhy2
+	 l5LxMFSLbsqNE1sagCmLT/7GMCy/HoZtA3CTZiOAwK5tf6EVyW4/g5jr+XaV5B9ReZ
+	 7Bsrq9LThBfrwDEkz9kIRyRY1w8DCgbIRo9Vfe2lwE9W2LSIGgnws/KaPOes7FDA1J
+	 YXpduBI7BQwFA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: "David S . Miller" <davem@davemloft.net>,  Eric Dumazet
+ <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
+ <pabeni@redhat.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Jeff Johnson
+ <jjohnson@kernel.org>,  linux-wireless@vger.kernel.org,
+  netdev@vger.kernel.org,  devicetree@vger.kernel.org,
+  ath11k@lists.infradead.org,  linux-kernel@vger.kernel.org,
+  ath12k@lists.infradead.org,  Bartosz Golaszewski
+ <bartosz.golaszewski@linaro.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k:
+ describe the ath11k on QCA6390
+References: <20240605122106.23818-1-brgl@bgdev.pl>
+	<20240605122106.23818-2-brgl@bgdev.pl> <87h6e6qjuh.fsf@kernel.org>
+	<CAMRc=MdiKxtnN+g92RUTXdOydaPV5M2u5iUdKyE2SNvDkdXAjg@mail.gmail.com>
+Date: Thu, 06 Jun 2024 17:01:57 +0300
+In-Reply-To: <CAMRc=MdiKxtnN+g92RUTXdOydaPV5M2u5iUdKyE2SNvDkdXAjg@mail.gmail.com>
+	(Bartosz Golaszewski's message of "Thu, 6 Jun 2024 15:35:47 +0200")
+Message-ID: <871q5aqiei.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-References: <20240605122106.23818-1-brgl@bgdev.pl> <20240605122106.23818-3-brgl@bgdev.pl>
- <87cyouqjou.fsf@kernel.org>
-In-Reply-To: <87cyouqjou.fsf@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 6 Jun 2024 15:37:39 +0200
-Message-ID: <CAMRc=Mdpu=1GFR-KraxCVn4oZr5TwM3ptbY25OHNkGepcsWdcQ@mail.gmail.com>
-Subject: Re: [PATCH v9 2/2] dt-bindings: net: wireless: describe the ath12k
- PCI module
-To: Kalle Valo <kvalo@kernel.org>
-Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	ath12k@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240606_063752_594810_95A1E1B3 
-X-CRM114-Status: GOOD (  16.63  )
+X-CRM114-CacheID: sfid-20240606_070204_741194_622CBD22 
+X-CRM114-Status: GOOD (  22.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,107 +83,82 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jun 6, 2024 at 3:34=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrote:
->
-> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add device-tree bindings for the ATH12K module found in the WCN7850
-> > package.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  .../bindings/net/wireless/qcom,ath12k.yaml    | 99 +++++++++++++++++++
-> >  1 file changed, 99 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom=
-,ath12k.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k=
-.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-> > new file mode 100644
-> > index 000000000000..1b5884015b15
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-> > @@ -0,0 +1,99 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (c) 2024 Linaro Limited
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/wireless/qcom,ath12k.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Technologies ath12k wireless devices (PCIe)
-> > +
-> > +maintainers:
-> > +  - Jeff Johnson <quic_jjohnson@quicinc.com>
-> > +  - Kalle Valo <kvalo@kernel.org>
-> > +
-> > +description:
-> > +  Qualcomm Technologies IEEE 802.11be PCIe devices.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - pci17cb,1107  # WCN7850
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  vddaon-supply:
-> > +    description: VDD_AON supply regulator handle
-> > +
-> > +  vddwlcx-supply:
-> > +    description: VDD_WLCX supply regulator handle
-> > +
-> > +  vddwlmx-supply:
-> > +    description: VDD_WLMX supply regulator handle
-> > +
-> > +  vddrfacmn-supply:
-> > +    description: VDD_RFA_CMN supply regulator handle
-> > +
-> > +  vddrfa0p8-supply:
-> > +    description: VDD_RFA_0P8 supply regulator handle
-> > +
-> > +  vddrfa1p2-supply:
-> > +    description: VDD_RFA_1P2 supply regulator handle
-> > +
-> > +  vddrfa1p8-supply:
-> > +    description: VDD_RFA_1P8 supply regulator handle
-> > +
-> > +  vddpcie0p9-supply:
-> > +    description: VDD_PCIE_0P9 supply regulator handle
-> > +
-> > +  vddpcie1p8-supply:
-> > +    description: VDD_PCIE_1P8 supply regulator handle
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - vddaon-supply
-> > +  - vddwlcx-supply
-> > +  - vddwlmx-supply
-> > +  - vddrfacmn-supply
-> > +  - vddrfa0p8-supply
-> > +  - vddrfa1p2-supply
-> > +  - vddrfa1p8-supply
-> > +  - vddpcie0p9-supply
-> > +  - vddpcie1p8-supply
->
-> Same comment here. To my understanding there are ath12k PCI devices
-> which do not need the supplies. But I guess we change this to optional
-> later?
->
+Bartosz Golaszewski <brgl@bgdev.pl> writes:
 
-Sure we can. But "pci17cb,1107" refers to a QCom variant and it always
-comes powered by a PMU so these supplies really are required.
-
-Bart
-
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
+> On Thu, Jun 6, 2024 at 3:30=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrot=
+e:
 >
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpa=
-tches
+>>
+>> Bartosz Golaszewski <brgl@bgdev.pl> writes:
+>>
+>> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> >
+>> > Add a PCI compatible for the ATH11K module on QCA6390 and describe the
+>> > power inputs from the PMU that it consumes.
+>> >
+>> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>
+>> [...]
+>>
+>> > +allOf:
+>> > +  - if:
+>> > +      properties:
+>> > +        compatible:
+>> > +          contains:
+>> > +            const: pci17cb,1101
+>> > +    then:
+>> > +      required:
+>> > +        - vddrfacmn-supply
+>> > +        - vddaon-supply
+>> > +        - vddwlcx-supply
+>> > +        - vddwlmx-supply
+>> > +        - vddrfa0p8-supply
+>> > +        - vddrfa1p2-supply
+>> > +        - vddrfa1p7-supply
+>> > +        - vddpcie0p9-supply
+>> > +        - vddpcie1p8-supply
+>>
+>> Not sure if we discussed this before, but based on this I understand
+>> that there can't be an DT entry for device pci17cb,1101 without all the
+>> supply properties? But there are QCA6390 devices with PCI id 17cb:1101
+>> which do not need these supplies and already work. For example, my Dell
+>> XPS 13 x86 laptop is one. Or anyone who manually installs QCA6390 board
+>> to their PCI slot and some of them might want to use DT, for example
+>> setting qcom,ath11k-calibration-variant.
+>>
+>> This is not a blocker for me, just making sure that we are not breaking
+>> any existing setups.
+>>
+>
+> If they are already powered up without the need for the PCI pwrctl
+> driver to do it, then they will work alright. Bindings don't affect
+> functionality.
+
+Sure, I'm not worried about functionality. I'm worried that if I
+there's, for example, an ARM based setup which uses DT and wants to use
+a similar QCA6390 board that I have, and set
+qcom,ath11k-calibration-variant in DT. In other words, I'm worried if
+you are looking at this only for Snapdragon family of boards?
+
+Again, I don't see this as a blocker. I just want to understand how this
+should work for all types of devices there are out there.
+
+> But if you have a QCA6390 then you have its PMU too and the bindings
+> model the real-world hardware.
+>
+> IOW: your laptop should be alright but the supplies are really there
+> which warrants adding them to the bindings.
+
+Sorry, not following here. Can you clarify your comment "the supplies
+are really there"? You mean inside the PCI board? But that's not visible
+to the kernel in anyway, the PCI board just works after I plug it in.
+It's like a regular PCI device. So I don't understand why that should be
+visible in DT, but I can very well be missing something.
+
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
 
