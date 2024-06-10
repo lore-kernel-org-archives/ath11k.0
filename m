@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A50CC27C5E
-	for <ath11k@archiver.kernel.org>; Mon, 10 Jun 2024 10:02:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92A74C27C6E
+	for <ath11k@archiver.kernel.org>; Mon, 10 Jun 2024 10:02:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Ap6c4IUnejCX6LN2RXmfplNrXwUiUrx9CE7MWr+mWwE=; b=QrXDHtq1PS7Vki7e0wOHdTH8A+
-	FgJuQfGMNAF/7mXdZPSh7p1Ht90fOa8EGMGBF9V95bM9FVJ6mASmqqzlHdXQbrjZrRz+baXK0TFa8
-	Pz7NZAI4V/tgI5aQrleBjzF3fumsbVjvN4kGUfjx/AVtfv7wGQ8wyrz3rboz798+mgOliF8ONIXwn
-	27Z1Kn1c+t7OGzaedJDXV7rZ7JwNlNn7k2zpQwuzoVEzOO5tz1K/OgRnM9ONPglqqQ2WyvSBU/DQU
-	++jKLNAOsd0itVRqDNO6ad7fJKSVN6roOap0+Yz1TSHVylrckpkXyWkkwiFVyZL3l7JAq81WbqrZ8
-	85KQudMQ==;
+	bh=B8xo9fI7Hnp8L4pRiYaelnAUj51huFWgQRALBrrxqcU=; b=pEVcf+u+hl+zbjp4WBCj5rq4Z0
+	1nboEpDX9OSJVYJNZEOhE5mJcUSy2gC6J6wMsR0jZ3Ft9MHrnSr79J97ahDcCAIN5xvFR/gKLqZwW
+	pj2T5v8a1EKqW3WjN0XtmKMonUP3KJmuy2iihUYgtm1+R0bpaWgUhq6HZLiHbAc6hgpHg+QsZCdM/
+	s/lMYTJroxDbQxHDEfQlumjqAzO1HTnzmKDME6kcU7C83O79s9SL/mrFHoB7pwIU38Zdy7394UZEk
+	vWnpujTwmRcWpDT5J2fFLpVELUi2873873fl4kLy0GWEItJnmC1b9trwAw3elIe9CZ/2vLoB0PzNF
+	j9dCERIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGbrH-00000004Y2a-0C7a;
-	Mon, 10 Jun 2024 10:02:35 +0000
+	id 1sGbrI-00000004Y3c-0sXz;
+	Mon, 10 Jun 2024 10:02:36 +0000
 Received: from mgamail.intel.com ([192.198.163.13])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sGasO-00000004Ku8-3qLM;
-	Mon, 10 Jun 2024 08:59:53 +0000
+	id 1sGasg-00000004Kn7-37Gq;
+	Mon, 10 Jun 2024 09:00:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718009981; x=1749545981;
+  t=1718009998; x=1749545998;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=v9ajyqSmZ+fyr4zUzek4FxHLrUQ5pgq0PnnoHeKwwEA=;
-  b=DJyCd1dcvcmGdiNXAQlXkK7s2cB+tnLSr7LihVYbrwzzkg8ZSqdrJhA/
-   ELDVoGNzaUtg+7PYnjvNUaeB0GOrf7fuHGvPYUv7JN4bOwLKKAz+qXXnJ
-   40rALsli6j/LobF2z9Uz2rKqzqIxkM+l6LWxbZIbOXI1L5EQflNcSYtVT
-   KXIzx//AtWojFssz6uCDN/hKh5604O/bvbH61V/chiZ+9G0RCSVG+uZdC
-   ujxdYmLXBpzFWZS4Z3OSz6BwjEfDwvkxlG9xgd1g/i5iyFJPciXSGuwKL
-   NdExjVIuYddtRAM7DPCypNBkRwO/fazV7FTNncYPQK4xRVoHezl71ZnJb
+  bh=2RzKLZKa9aMbeh8zX7gRXSDK8Hv/vXOsjqYlhYXqS5Y=;
+  b=dHDMhZMXWNR9KLZt6Zqr6NaxC4rArybsP0fnXU3JZkQbSQOs2cBHxyE7
+   VGj2ESxn5CKJKz1nAqH22uVY9QoaIa07iJndUFKa+VbMPNhkM6fNxQB1B
+   4Dxi23dluAuuEfuWWJsl5+lCbI36/fB5cL/YeVcF6atFSGHo2bGhqne59
+   toG229dnbRfsFRar8bUh1hZ1Zru5hTlVoIk7ndQUe/kOVVqLbwxSr5RlT
+   0jO61iynUbn+U3JRaxFLNhln90lBgjSZI1RV2T1KWkvbOsPcerJtEtyrV
+   byHgJDfZnMJwynDUpPjgS4/+KTYeJpmaJBhyEm9VT3z1SBmamsOsMrlnr
    A==;
-X-CSE-ConnectionGUID: bMGVxhGYSi2nhxqR5xJT+w==
-X-CSE-MsgGUID: Pcm8AK8xRs24lcvG1Xa0AA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="17581851"
+X-CSE-ConnectionGUID: Ps+6rMfCS4mm8dU359C3jg==
+X-CSE-MsgGUID: iZK+hmBKQoC7wzOuzbjScA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="17581965"
 X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; 
-   d="scan'208";a="17581851"
+   d="scan'208";a="17581965"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2024 01:59:29 -0700
-X-CSE-ConnectionGUID: GkBRboXmTSyQf4zFvmmGBw==
-X-CSE-MsgGUID: c0ivZk7UTYCnDo9fVTczuQ==
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2024 01:59:49 -0700
+X-CSE-ConnectionGUID: QxgTd28SQrGRjUA9euRVfg==
+X-CSE-MsgGUID: gs8aoJhZQmubGCpSr1nBLw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; 
-   d="scan'208";a="43432808"
+   d="scan'208";a="43433021"
 Received: from unknown (HELO allen-box.sh.intel.com) ([10.239.159.127])
-  by fmviesa003.fm.intel.com with ESMTP; 10 Jun 2024 01:59:24 -0700
+  by fmviesa003.fm.intel.com with ESMTP; 10 Jun 2024 01:59:45 -0700
 From: Lu Baolu <baolu.lu@linux.intel.com>
 To: Joerg Roedel <joro@8bytes.org>,
 	Will Deacon <will@kernel.org>,
@@ -77,21 +77,18 @@ Cc: Yi Liu <yi.l.liu@intel.com>,
 	iommu@lists.linux.dev,
 	dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Jason Gunthorpe <jgg@nvidia.com>
-Subject: [PATCH v3 14/21] RDMA/usnic: Use iommu_paging_domain_alloc()
-Date: Mon, 10 Jun 2024 16:55:48 +0800
-Message-Id: <20240610085555.88197-15-baolu.lu@linux.intel.com>
+	Lu Baolu <baolu.lu@linux.intel.com>
+Subject: [PATCH v3 18/21] drm/rockchip: Use iommu_paging_domain_alloc()
+Date: Mon, 10 Jun 2024 16:55:52 +0800
+Message-Id: <20240610085555.88197-19-baolu.lu@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240610085555.88197-1-baolu.lu@linux.intel.com>
 References: <20240610085555.88197-1-baolu.lu@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240610_015941_404853_6AAB9773 
-X-CRM114-Status: UNSURE (   9.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240610_015959_422177_A815060F 
+X-CRM114-Status: GOOD (  10.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,36 +103,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-usnic_uiom_alloc_pd() allocates a paging domain for a given device.
-In this case, iommu_domain_alloc(dev->bus) is equivalent to 
-iommu_paging_domain_alloc(dev). Replace it as iommu_domain_alloc()
-has been deprecated.
+Commit <421be3ee36a4> ("drm/rockchip: Refactor IOMMU initialisation") has
+refactored rockchip_drm_init_iommu() to pass a device that the domain is
+allocated for. Replace iommu_domain_alloc() with
+iommu_paging_domain_alloc() to retire the former.
 
 Signed-off-by: Lu Baolu <baolu.lu@linux.intel.com>
-Acked-by: Jason Gunthorpe <jgg@nvidia.com>
 ---
- drivers/infiniband/hw/usnic/usnic_uiom.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/infiniband/hw/usnic/usnic_uiom.c b/drivers/infiniband/hw/usnic/usnic_uiom.c
-index 84e0f41e7dfa..f948b76f984d 100644
---- a/drivers/infiniband/hw/usnic/usnic_uiom.c
-+++ b/drivers/infiniband/hw/usnic/usnic_uiom.c
-@@ -443,11 +443,11 @@ struct usnic_uiom_pd *usnic_uiom_alloc_pd(struct device *dev)
- 	if (!pd)
- 		return ERR_PTR(-ENOMEM);
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+index ab55d7132550..52126ffb9280 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+@@ -103,13 +103,17 @@ static int rockchip_drm_init_iommu(struct drm_device *drm_dev)
+ 	struct rockchip_drm_private *private = drm_dev->dev_private;
+ 	struct iommu_domain_geometry *geometry;
+ 	u64 start, end;
++	int ret;
  
--	pd->domain = domain = iommu_domain_alloc(dev->bus);
--	if (!domain) {
-+	pd->domain = domain = iommu_paging_domain_alloc(dev);
-+	if (IS_ERR(domain)) {
- 		usnic_err("Failed to allocate IOMMU domain");
- 		kfree(pd);
--		return ERR_PTR(-ENOMEM);
-+		return ERR_CAST(domain);
- 	}
+ 	if (IS_ERR_OR_NULL(private->iommu_dev))
+ 		return 0;
  
- 	iommu_set_fault_handler(pd->domain, usnic_uiom_dma_fault, NULL);
+-	private->domain = iommu_domain_alloc(private->iommu_dev->bus);
+-	if (!private->domain)
+-		return -ENOMEM;
++	private->domain = iommu_paging_domain_alloc(private->iommu_dev);
++	if (IS_ERR(private->domain)) {
++		ret = PTR_ERR(private->domain);
++		private->domain = NULL;
++		return ret;
++	}
+ 
+ 	geometry = &private->domain->geometry;
+ 	start = geometry->aperture_start;
 -- 
 2.34.1
 
