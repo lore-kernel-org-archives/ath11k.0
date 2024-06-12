@@ -4,91 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77960C41513
-	for <ath11k@archiver.kernel.org>; Wed, 12 Jun 2024 12:52:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C24CFC27C77
+	for <ath11k@archiver.kernel.org>; Wed, 12 Jun 2024 15:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=w4GwlwGfBQlnNfyaS5mrHYpZ8wLq2fCIW70IywjAOXI=; b=b6x9EZzWrM7/GO9qzf36SSz+N+
-	3q1tQU0pBlejaNZ07wE+9ttWA/SeSydTGRdRIPI8GMZ58nlfUrWV85A3lsXMqM/ibokqtf7+OUhVs
-	InVJ5kk4RC8WHLeFlvQUSqJ7MYZs+qbcB/lsq8wt3PXNIaicT1ndSBIAiqPxsGeob8xXluFK7EJ7H
-	y13N1ew2QM7n5DbsIWGNssnFjElOzhCJsueHaGYo6tYyO29AKMpKfS/AUlpG50W2Di6k6J7n2piN5
-	RIVNDyq0F/CYHSBRkdsNv3UfuQFMaUMvQwlUKyMsPxXmtkgK3A+VNb0bGIv9a5LNF9VTX7IbXb24q
-	/GwaVW8A==;
+	bh=u4ZRYpyRksJXAC7eqQUrubX0WAADsS963fxbHZmjvRY=; b=l3bQs5IdX48PdIrM+HOsekd0Ne
+	LaWw08tzmlWDjLxM+wBlpyZ6syp1M1lH8gjrtlwORLj5/d48bxqXK8jgUiZHURTNKBrDMjL9vNEXC
+	qOxeLvTwHZi9IWCT2maQubMB10JTLXT9KuI71EZv/zQlkJ9U/mdbpgPtWWgqGF0Ztnr8/rb6VFBQo
+	Jl7U7et3hI+xrJ5iIpZcQ9PfYxPeRTWReggsvXP9yNnsjLqq80lcBRusJLxNwvfjSLJFMQ7kBaDJi
+	kweJfsjOssglmL2dbW6dzOTZwzbViOMEVAly4gupKBCUvlpdWVbPeSLlvOSDuxiK3qWGKPcZzKx0r
+	gbF+qRGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHNT0-0000000Cdpv-0ZSc;
-	Wed, 12 Jun 2024 12:52:42 +0000
-Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
+	id 1sHQKS-0000000DG5b-2rGa;
+	Wed, 12 Jun 2024 15:56:04 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sHNSv-0000000CdoU-3wii
-	for ath11k@lists.infradead.org;
-	Wed, 12 Jun 2024 12:52:40 +0000
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-52c82101407so7175292e87.3
-        for <ath11k@lists.infradead.org>; Wed, 12 Jun 2024 05:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718196755; x=1718801555; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w4GwlwGfBQlnNfyaS5mrHYpZ8wLq2fCIW70IywjAOXI=;
-        b=s1AS7hdLSJHji3Oy7HPtQQAzRhMqbc+EAgEyfC9PVFJA42c/7gRbopue1d8ozlDBVL
-         1uxgGfQ0ZxpiEuwP2bu/pPDS9ymqgKG3+BRXm7x3aNjqlNF55qQla1mjutmnDhIFLzoH
-         iZO1f61aZLD10+FPnZhKkcGIbnN/h3OIsHMhPibUfvCk3suyZ+hMYoDH3z2FjRzGkdoF
-         HMUcFIMhPU7deSBAejPPNi5P+0DNL7abiewBx6izRJAMdzrReQSoc3fTdpth/OIqbcD/
-         4Rwwm+En4WH/WLNzGk6ChUwaH3NJcUv/wOuD72A/la9F76hAcGb0qet25y/U5HMXqqwg
-         jZZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718196755; x=1718801555;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w4GwlwGfBQlnNfyaS5mrHYpZ8wLq2fCIW70IywjAOXI=;
-        b=b2rS442QxmZ3X98wd845Ti/qsTu9OJlvU+hEsRa5b3XM9AUho+CFkz9CjyJJ8DH38U
-         263ou247xnmPlpZw9Yy+K71FzGaXoGsYdQgdgQD48bmr5c4qE/0XfswQESkmp1gajz7w
-         RuwezCoROIwLqubHi3RmcdrqhBKRlofVWqkiO2pT8LuLynvTFyQct6tUDIpQH7DRXdI+
-         cZqNuxChpi6wRF9PNh2MGQFi7v1AXkLfVVVjxhuzdPTMH4yg8zUyKXb81PWjtoE3kYcx
-         GCQnZWOF5nl3S1FS+qDWHKkOt/N4Tspv0g3v9MGtg4EBtExZLadNxEFY8ooIT6hNdAL+
-         yzjw==
-X-Forwarded-Encrypted: i=1; AJvYcCX4Urhf0XnPBCrrhqyj9wX0zPFQVrY8NapWj7kaO3TmcG5et4VcX87mj+05Qbu2eSLT28uE/lJHcur5vBt82dPhToX4eygXRGi2sg==
-X-Gm-Message-State: AOJu0YzEOfCK+f6ox4xFNEjPjBf0g+fngmQM7S+TrRv8R8JaTM0ME6gj
-	5R+dJ+aeQaZUUyh+ZS6rhFfcXuWejaQmoiU6zNgZ9ZIToMQlCkKjTX0Pk/zUCZ6e/CNKrN7VMoQ
-	sYzusOMAiABggAHN6V/54pqXHgeDM3JJYSHNVgw==
-X-Google-Smtp-Source: AGHT+IFe+r6yKhsmufEY9zI0E5nEG73VhIrL6yR6XIX0JzQBh8t8vS1gVMACOhRz3PdyyC7pIpNTDk6MWfIpHIDS9y8=
-X-Received: by 2002:ac2:46d3:0:b0:52c:9877:71b7 with SMTP id
- 2adb3069b0e04-52c9a40b1e1mr1287628e87.59.1718196754793; Wed, 12 Jun 2024
- 05:52:34 -0700 (PDT)
+	id 1sHQKO-0000000DG3L-1X3O;
+	Wed, 12 Jun 2024 15:56:02 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id ADF7F614E9;
+	Wed, 12 Jun 2024 15:55:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7AEC7C4DDE4;
+	Wed, 12 Jun 2024 15:55:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718207757;
+	bh=OGohKvk0MjWf9+Q8+mvrBX+1BAlKKRyUXLbfH75xyb4=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=kYWVzenO6v46dav7m+6VeeBQvWtkfZ2ijSROLzZNF2xhVox8NT4g6D7nEQ7Yr1CvD
+	 QbMqbzoNwKvtHxN4oOUSJGsdzFSOiqxLCA02gKqMCQ7TCsZzzusBONx5M/RWdCVpV3
+	 EiLccKqgRHfAnZUsG10WiKCsIr5ffuOoIqg1qhcsU6IhDG8FGsX5pkowWNVMy10FlC
+	 cn2EJB/8N7UtSBq02dCqRuSQs3PZ1MDiLAg7XtxdpzyjShLg11I47hWenlonizyvmL
+	 MeVPPNyid+I2VhiIZBpPj5WbK56sRWz78MH6UY8PKtaaCMSFrdgOOixPo+5vEX+bSG
+	 8/iqEXeUVgsUQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 61107C43618;
+	Wed, 12 Jun 2024 15:55:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20240605122106.23818-1-brgl@bgdev.pl> <20240605122106.23818-2-brgl@bgdev.pl>
- <87h6e6qjuh.fsf@kernel.org> <CAMRc=MdiKxtnN+g92RUTXdOydaPV5M2u5iUdKyE2SNvDkdXAjg@mail.gmail.com>
- <871q5aqiei.fsf@kernel.org> <CAMRc=McacZMP-51hjH+d8=PVe+Wgw4a8xWcv0sRPLJKL_gP=KQ@mail.gmail.com>
- <87sexqoxm9.fsf@kernel.org> <CAMRc=McYAbhL5M1geYtf8LbgJG5x_+ZUFKXRuo7Vff_8ssNoUA@mail.gmail.com>
- <8db01c97-1cb2-4a86-abff-55176449e264@kernel.org> <CAMRc=Mer2HpuBLGiabNtSgSRduzrrtT1AtGoDXeHgYqavWXdrA@mail.gmail.com>
- <87ikyenx5c.fsf@kernel.org>
-In-Reply-To: <87ikyenx5c.fsf@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 12 Jun 2024 14:52:23 +0200
-Message-ID: <CAMRc=MdPQu-r4aaeag9apYP1-FoQ2-_GAk_qnHqDz-jWibRDFQ@mail.gmail.com>
-Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe
- the ath11k on QCA6390
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	ath12k@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: Re: [f2fs-dev] [PATCH] tracing/treewide: Remove second parameter of
+ __assign_str()
+From: patchwork-bot+f2fs@kernel.org
+Message-Id: <171820775738.32393.13116890369510221266.git-patchwork-notify@kernel.org>
+Date: Wed, 12 Jun 2024 15:55:57 +0000
+References: <20240516133454.681ba6a0@rorschach.local.home>
+In-Reply-To: <20240516133454.681ba6a0@rorschach.local.home>
+To: Steven Rostedt <rostedt@goodmis.org>
+Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, kvm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, ath10k@lists.infradead.org,
+ Julia.Lawall@inria.fr, linux-s390@vger.kernel.org, dev@openvswitch.org,
+ linux-cifs@vger.kernel.org, linux-bcachefs@vger.kernel.org,
+ linux-rdma@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ io-uring@vger.kernel.org, torvalds@linux-foundation.org,
+ iommu@lists.linux.dev, ath11k@lists.infradead.org,
+ linux-media@vger.kernel.org, linux-wpan@vger.kernel.org,
+ linux-pm@vger.kernel.org, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-erofs@lists.ozlabs.org, virtualization@lists.linux.dev,
+ linux-sound@vger.kernel.org, linux-block@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, mathieu.desnoyers@efficios.com,
+ linux-cxl@vger.kernel.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, linux-edac@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+ linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev,
+ linux-f2fs-devel@lists.sourceforge.net, linux-xfs@vger.kernel.org,
+ ath12k@lists.infradead.org, tipc-discussion@lists.sourceforge.net,
+ mhiramat@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-nfs@vger.kernel.org,
+ linux-btrfs@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240612_055238_158676_5B3AD8B2 
-X-CRM114-Status: GOOD (  19.92  )
+X-CRM114-CacheID: sfid-20240612_085600_484220_5A6FC0DF 
+X-CRM114-Status: UNSURE (   8.17  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,53 +97,30 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 12, 2024 at 2:49=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrote=
-:
->
-> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->
-> >> >> Sure, I don't need DT but that's not my point. My point is why requ=
-ire
-> >> >> these supplies for _all_ devices having PCI id 17cb:1101 (ie. QCA63=
-90)
-> >> >> then clearly there are such devices which don't need it? To me that=
-'s
-> >> >> bad design and, if I'm understanding correctly, prevents use of
-> >> >> qcom,ath11k-calibration-variant property. To me having the supplies
-> >> >> optional in DT is more approriate.
-> >> >>
-> >> >
-> >> > We require them because *they are physically there*.
-> >>
-> >> I understand that for all known DT QCA6390 hardware, the supplies shou=
-ld
-> >> be provided thus they should be required. If in the future we have
-> >> different design or we represent some pluggable PCI card, then:
-> >> 1. Probably that PCI card does not need power sequencing, thus no DT
-> >> description,
-> >> 2. If still needs power sequencing, you can always amend bindings and
-> >> un-require the supplies.
-> >>
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> >
-> > Kalle, does the above answer your questions? Are these bindings good to=
- go?
->
-> To me most important is that we are on the same page that in some cases
-> (eg. with M.2 boards) the supplies can be optional and we can update the
-> bindings doc once such need arises (but we don't make any changes right
-> now). Based on point 2 from Krzysztof I think we all agree, right?
->
-> Just making sure: if we later change the supplies optional does that
-> create any problems with backwards compatibility? It's important that
-> updates go smoothly.
+Hello:
 
-No, you can always relax the requirements alright. It's only when you
-make them more strict that you'll run into backward compatibility
-issues.
+This patch was applied to jaegeuk/f2fs.git (dev)
+by Steven Rostedt (Google) <rostedt@goodmis.org>:
 
-Bart
+On Thu, 16 May 2024 13:34:54 -0400 you wrote:
+> From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
+> 
+> [
+>    This is a treewide change. I will likely re-create this patch again in
+>    the second week of the merge window of v6.10 and submit it then. Hoping
+>    to keep the conflicts that it will cause to a minimum.
+> ]
+> 
+> [...]
+
+Here is the summary with links:
+  - [f2fs-dev] tracing/treewide: Remove second parameter of __assign_str()
+    https://git.kernel.org/jaegeuk/f2fs/c/2c92ca849fcc
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
