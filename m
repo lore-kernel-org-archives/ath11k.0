@@ -4,54 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF35C27C6E
-	for <ath11k@archiver.kernel.org>; Mon, 17 Jun 2024 08:06:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A75EC27C77
+	for <ath11k@archiver.kernel.org>; Mon, 17 Jun 2024 09:09:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=; b=orxxa9cQG1aXLOL5j90lOPKSNN
-	pc2B+kpVKHs0+4WNmn/F7pLWtBgRfz6VAyDMbP3oGQNryUSJKEKGCvp2uuzOxa9tRi3Dmbvy5LCGH
-	lCwufL89mW76G3ZimThTOPxVQfYxqY8bA6iOWFYbNUAJWEH/axyP9kHWvfthjCiV0uhSGoGVwENtn
-	LwXVDI8WWxBywRDhP4GnEZLR4XlM1jgbbBHPdM6WZLyJeDApJTW6R3eC+IM5tFuX9FiaHojaMYuuA
-	tCbZSFXLZmAhJkKfmWG2NNojiahWbMUXc3VSDu/fYkqQicD1Z5PXTkQ2xDBKkQ/tgH5uYHdFLRTD3
-	qpYqkB1Q==;
+	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=CFsb4JRR8B7+LNbbg/vD4+mfvHSBhr5GHHr0I+YW3Zc=; b=2uqb5twtlEbQTXM5UX5RO4suov
+	DQtgAy8TrdBfH6VnoqqHy5eOIFFjrBJTt/IduZ0HSqSfsnj3qWUg60uVr2XCh/5iZcAzYb1oAMApQ
+	0V02D22rZs6Rr0xbKwRq8lRJH1IMhNKjPnDLJ1GfIPu5DtPrGoPyIiaQRX3q4EZ2K4rGnP2zX6sDU
+	Y9+kjuV3rlm+r8fxYiYIuucQkeZp+xDvpY0vGslfKLQe8Zf4/0J/mFV+076bQ9ANDawUYg6KXzZWi
+	GbRyrg/UwDPXlGBGIV0uoFxOZ5Xw5AiUQb9lxh64XL4L9VZKKgTaGt9W7K08v0UwNrpSUMr+aO5pW
+	TAMMC3Ag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJ7Ns-00000009nCU-1B47;
-	Mon, 17 Jun 2024 08:06:36 +0000
-Received: from mail.suavjarvi.pl ([195.231.81.125])
+	id 1sJ8My-00000009xqK-0DJS;
+	Mon, 17 Jun 2024 09:09:44 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJ7Np-00000009nAn-1hnC
-	for ath11k@lists.infradead.org;
-	Mon, 17 Jun 2024 08:06:35 +0000
-Received: by mail.suavjarvi.pl (Postfix, from userid 1002)
-	id 22CAB829C9; Mon, 17 Jun 2024 10:06:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=suavjarvi.pl; s=mail;
-	t=1718611590; bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=;
-	h=Date:From:To:Subject:From;
-	b=mMckCUQQCsH9sQS2zr0ldXwtrQTzbJJl9+AUnUWllUdztRD9ZoSDzb2pDrq3Zztjm
-	 /j+cDGvF/+MB9KC2Yh2MLB9Ni99l29mE+3xOkbWiMIVFhAwZZgSvhiLQ9xJgm7DtXH
-	 1o5pmMAk8F4dqWZ7qbcCY9bDNjsYxLF/akqm1OaKfi9dH9dCzPMjT8mBcjE8BPh2UE
-	 ke+xkHo4GWmyGEbp7LaZckFNjJLo8693tT0Loprp+J2heLdRNpeDQNbyxMzNVQ7Abc
-	 TW9oICqse0tke96KxxZrn21UCJgObzIB6DRYWtfVSELx7RxhyRAg+azqiBlmv4WoXD
-	 rg9TbJccdhzLA==
-Received: by mail.suavjarvi.pl for <ath11k@lists.infradead.org>; Mon, 17 Jun 2024 08:05:36 GMT
-Message-ID: <20240617084500-0.1.46.aj8p.0.i2guz8ci9f@suavjarvi.pl>
-Date: Mon, 17 Jun 2024 08:05:36 GMT
-From: "Kamil Tralewski" <kamil.tralewski@suavjarvi.pl>
-To: <ath11k@lists.infradead.org>
-Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.suavjarvi.pl
+	id 1sJ8Mv-00000009xpf-1zoa;
+	Mon, 17 Jun 2024 09:09:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id D66E2CE0BA2;
+	Mon, 17 Jun 2024 09:09:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5C68C3277B;
+	Mon, 17 Jun 2024 09:09:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718615379;
+	bh=CFsb4JRR8B7+LNbbg/vD4+mfvHSBhr5GHHr0I+YW3Zc=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=G1c5oIuTePKfG2RzKc8tjI5+qJyx22PFYRthWIJb40HJGySFJR02dRUwTKxt8qCdV
+	 QvMWlvTPpO/998/8121SGDWwPusP7s+ExTE/Mk20ukPkEnUI+aoPe4tZHRTQGmerON
+	 WqyW5MrPNbTFAdSkUk+XoRj/xih/OjLlaE/Ve5bbghMw2lUdh6S9P2XvmRJ5QTNAoE
+	 CjoOzYnL4feeyss7uNmDJom8g7ut1HyCz6Dx7KdAH23aRkzj6r+9nvearD04vM9mjd
+	 nOVkiXu/A70y1Bsye0WO/tO+wrzx3cUmIHjPmDTTrL4ZL9hgwCUSg85SwE+tcqewxk
+	 5+y7QOzLvi2gg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,  "David S . Miller"
+ <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
+ Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Jeff Johnson <jjohnson@kernel.org>,
+  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
+  devicetree@vger.kernel.org,  ath11k@lists.infradead.org,
+  linux-kernel@vger.kernel.org,  ath12k@lists.infradead.org,  Bartosz
+ Golaszewski <bartosz.golaszewski@linaro.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k:
+ describe the ath11k on QCA6390
+References: <20240605122106.23818-1-brgl@bgdev.pl>
+	<20240605122106.23818-2-brgl@bgdev.pl> <87h6e6qjuh.fsf@kernel.org>
+	<CAMRc=MdiKxtnN+g92RUTXdOydaPV5M2u5iUdKyE2SNvDkdXAjg@mail.gmail.com>
+	<871q5aqiei.fsf@kernel.org>
+	<CAMRc=McacZMP-51hjH+d8=PVe+Wgw4a8xWcv0sRPLJKL_gP=KQ@mail.gmail.com>
+	<87sexqoxm9.fsf@kernel.org>
+	<CAMRc=McYAbhL5M1geYtf8LbgJG5x_+ZUFKXRuo7Vff_8ssNoUA@mail.gmail.com>
+	<8db01c97-1cb2-4a86-abff-55176449e264@kernel.org>
+	<CAMRc=Mer2HpuBLGiabNtSgSRduzrrtT1AtGoDXeHgYqavWXdrA@mail.gmail.com>
+	<87ikyenx5c.fsf@kernel.org>
+	<CAMRc=MdPQu-r4aaeag9apYP1-FoQ2-_GAk_qnHqDz-jWibRDFQ@mail.gmail.com>
+	<CAMRc=Mfsqnfy-Q++QyZNmsYoV72hUoNFEDCW6KZ0H_MEHEe5Rw@mail.gmail.com>
+Date: Mon, 17 Jun 2024 12:09:33 +0300
+In-Reply-To: <CAMRc=Mfsqnfy-Q++QyZNmsYoV72hUoNFEDCW6KZ0H_MEHEe5Rw@mail.gmail.com>
+	(Bartosz Golaszewski's message of "Fri, 14 Jun 2024 09:18:14 +0200")
+Message-ID: <878qz4kkaa.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240617_010633_638746_6DCE237E 
-X-CRM114-Status: UNSURE (  -0.03  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240617_020941_996993_6C0A7445 
+X-CRM114-Status: GOOD (  23.39  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,20 +92,75 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dzie=C5=84 dobry,
+Bartosz Golaszewski <brgl@bgdev.pl> writes:
 
-zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
-=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
-o dalszych rozm=C3=B3w.=20
+> On Wed, Jun 12, 2024 at 2:52=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.p=
+l> wrote:
+>>
+>> On Wed, Jun 12, 2024 at 2:49=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wr=
+ote:
+>> >
+>> > Bartosz Golaszewski <brgl@bgdev.pl> writes:
+>> >
+>> > >> >> Sure, I don't need DT but that's not my point. My point is why r=
+equire
+>> > >> >> these supplies for _all_ devices having PCI id 17cb:1101 (ie. QC=
+A6390)
+>> > >> >> then clearly there are such devices which don't need it? To me t=
+hat's
+>> > >> >> bad design and, if I'm understanding correctly, prevents use of
+>> > >> >> qcom,ath11k-calibration-variant property. To me having the suppl=
+ies
+>> > >> >> optional in DT is more approriate.
+>> > >> >>
+>> > >> >
+>> > >> > We require them because *they are physically there*.
+>> > >>
+>> > >> I understand that for all known DT QCA6390 hardware, the supplies s=
+hould
+>> > >> be provided thus they should be required. If in the future we have
+>> > >> different design or we represent some pluggable PCI card, then:
+>> > >> 1. Probably that PCI card does not need power sequencing, thus no DT
+>> > >> description,
+>> > >> 2. If still needs power sequencing, you can always amend bindings a=
+nd
+>> > >> un-require the supplies.
+>> > >>
+>> > >>
+>> > >> Best regards,
+>> > >> Krzysztof
+>> > >>
+>> > >
+>> > > Kalle, does the above answer your questions? Are these bindings good=
+ to go?
+>> >
+>> > To me most important is that we are on the same page that in some cases
+>> > (eg. with M.2 boards) the supplies can be optional and we can update t=
+he
+>> > bindings doc once such need arises (but we don't make any changes right
+>> > now). Based on point 2 from Krzysztof I think we all agree, right?
+>> >
+>> > Just making sure: if we later change the supplies optional does that
+>> > create any problems with backwards compatibility? It's important that
+>> > updates go smoothly.
+>>
+>> No, you can always relax the requirements alright. It's only when you
+>> make them more strict that you'll run into backward compatibility
+>> issues.
+>>
+>> Bart
+>
+> Kalle,
+>
+> Is that ok with you? Can we get that queued to avoid the new
+> check_dtbs warnings in next when the DTS changes land?
 
-Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
-=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
-=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
-strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
+Yes, this patchset is already on our pending branch and should be
+applied soon. I was on a long weekend hence the delay.
 
-Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-
-Pozdrawiam
-Kamil Tralewski
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
 
