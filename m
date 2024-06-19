@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E98DFC27C53
-	for <ath11k@archiver.kernel.org>; Wed, 19 Jun 2024 15:14:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F9CC27C53
+	for <ath11k@archiver.kernel.org>; Wed, 19 Jun 2024 15:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FK6SjWXdq6bSAPX1rh4xTRaTP0djMJZM1guOyU6PPog=; b=gZJ9g2wAF1Mb8pdpa9tbeu+f67
-	bS5XCuAX5y0tBfuJ2RClqLcnQndBRPnclMvZzgeeRNfizsut768qJzcKfS7VbulrJ7zzzSo0cZmbo
-	g+2B9ctllmt/zwRxElGzjR2wVNfWvdMWZ8uedKyMPZDRBWRanXqWdr8LVh0E985kEZDk7CbyzD+KE
-	S+xHzVENSIWsZ+zBp4DfErcfMG/IgrNgILQFQ9vRUN6kLUu/8F0OInM5Ix1WrWHS42A0GbUuvlETt
-	QawrWP3z+LDeJ+FkbKVHE9asQT5P11UaBxdvTghL0X6l/JDvVXCcJr4LnMUdTJ4wWG5DHxivIMP+P
-	UdtLRhuA==;
+	bh=mOCumefnCWAh/IoBUZ2rq796M41BHPnroxPN1L782is=; b=OI2l3tM6uV92lHG17z0SDm/CPp
+	lJ3FKmM89qq/jgpZubQP7+TSeerVWCoQpnylw1aYQ5G5++rYoKWF7BeMk31EHoy/ZMpnzQlawE4ig
+	CuJC2Ydy+C7FXt66+ERbiEkc/FvMPL6OMgNDzmKRYul6QxRIvBQ8cPrR6Q9xX4ZjJjHnpNzBJT2OA
+	urfaIsC1dUH8Je+xt1bGDcEkztCowt1R2cQwfVnanNT3ytzCTAMk9DhsRa2r9ZHCvTnIlaF/s3wsc
+	bi8JLjBV9XDPUnUDuWnznPKO+XgfLgOGjeTdWugR1qg/ukiQ+iGjHZNE24OHdekCL9lnpngfmOZ7+
+	Hal/uxjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJx1E-00000001lEq-21up;
-	Wed, 19 Jun 2024 15:14:40 +0000
-Received: from mail-oo1-xc29.google.com ([2607:f8b0:4864:20::c29])
+	id 1sJx1Q-00000001lNA-1DnA;
+	Wed, 19 Jun 2024 15:14:52 +0000
+Received: from mail-oo1-xc35.google.com ([2607:f8b0:4864:20::c35])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sJx1A-00000001l9x-1qc5
+	id 1sJx1M-00000001lJ5-14XU
 	for ath11k@lists.infradead.org;
-	Wed, 19 Jun 2024 15:14:38 +0000
-Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-5bacd59e562so3338155eaf.2
-        for <ath11k@lists.infradead.org>; Wed, 19 Jun 2024 08:14:36 -0700 (PDT)
+	Wed, 19 Jun 2024 15:14:49 +0000
+Received: by mail-oo1-xc35.google.com with SMTP id 006d021491bc7-5b97539a4a5so3666473eaf.2
+        for <ath11k@lists.infradead.org>; Wed, 19 Jun 2024 08:14:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1718810073; x=1719414873; darn=lists.infradead.org;
+        d=ziepe.ca; s=google; t=1718810087; x=1719414887; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FK6SjWXdq6bSAPX1rh4xTRaTP0djMJZM1guOyU6PPog=;
-        b=Z+4v9S8HRvo+aDyN2N9oZD+/VolQGHMW1Cc3ppOev2Wr39zemKo4UB9S1lZEOFDV2T
-         3y5DevpxW0vkJ6YoN8t+98PeH7unL5569lxplx4Ki2XNkBCcejpwWBK2BYJNHpblAgbw
-         0a5QWhD+zCHBX1nKwKM/68raMaqIEnx30lRo/uskBVPhqWEtynTdIjIHVfxR4CItIJbE
-         0bpSUF8UvF+eAMQOpTMfvbs6KRdfIut007/MVEPDK1TAPdsxisWo6IVvc/X8ZO9dzJQC
-         yIC5TYy8U1GHLwzaTSx7dyc9aJ1hg3VkXIEThXL6nG2KBRcj72ceLoXVs2HCH7HzIQ4d
-         ivOA==
+        bh=mOCumefnCWAh/IoBUZ2rq796M41BHPnroxPN1L782is=;
+        b=o2kCjgD9SOQbnZgOqVhMWYu6EcnVhkwss+6pqKdXHTRt+7ehVvHFsMYumfKP2DJ9Wz
+         kg+Px6giFdNo+KlKEM0N3RSzP/tgdf/LqpxAJiRmjTMCvvwfZdxm1pmS0cOeWzUWbtVv
+         PMGtlVnzdjvdlgCPBWA9Bh8ffJuLiqP2HEiAoRF/gn4EGhPa8dyK9BHgm09SdbNHxyfK
+         guzRxzHAYzEBPMc/VRK/u1GHtMlPcbIKaAe7XXDx8IwpsECRaPwwb5jkVZs57AKe1Rs0
+         /bKbIwlH+3ptxDfYe35rFFkvyyMp2CQMH8+jah8Xeppre1lBzxGZLjhAtrkQvNd+HGUX
+         Wv9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718810073; x=1719414873;
+        d=1e100.net; s=20230601; t=1718810087; x=1719414887;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FK6SjWXdq6bSAPX1rh4xTRaTP0djMJZM1guOyU6PPog=;
-        b=hBoG8huqq8vGTmPzEu6nIrR4Q4Cu7c/MJjldV+wZhzF1ZfV+5U98ZMZD8mdfpfaOTv
-         rf2IS/57gtgv3b6+YuXrPuCQ4TnzhruHYdPvtqTtK2dCeLjebNJbsW7H88IvfbD/CSO9
-         HIo74XblpeFnSMCpiApwNe89Mhrl2nRo4V/3wO4ZLHOmXAooRmiJCxxjIh2FjFW1WtLn
-         Psa4o0RiYkWOGlUekobFNn2lWB3Ntt0R92fFy8FB08xTuXxatukWaYfDWnzzOttPzygc
-         1Ih8JAPVYiZFkuIbeWvUq/9alSbCseu6o1zZHNmWbIAENrpct2ydDcAp7r5HjTaVU3E4
-         mCIw==
-X-Forwarded-Encrypted: i=1; AJvYcCW3KKHwLf7rxsPeNDhwjq/U1QEVIdr3DCEnZrfnUai3dhpeg1SV4m/5fUZRCqFDksgLDt51FXpauZ65ZAqj96IrV/yZamHAcgMw2Q==
-X-Gm-Message-State: AOJu0YyWd3zsZExD4hURK+3BUb9gysNwnw9NPr644KtMRNLRlFOU08sJ
-	HsF1SLO/GpEZuIYa4cwawna+pFn/bV/tLk7tCQpYqhb9shWhsXCgZyKmZ6u2524=
-X-Google-Smtp-Source: AGHT+IEfWtO517AiTmrP1W6dPNlAON8bn6xv/7Wv+S6voiPx4xyrmyITXKPZjbJGoypZCOWemcF1Kw==
-X-Received: by 2002:a05:6358:6f11:b0:1a1:cb05:243c with SMTP id e5c5f4694b2df-1a1fd5cdffcmr360413155d.25.1718810073496;
-        Wed, 19 Jun 2024 08:14:33 -0700 (PDT)
+        bh=mOCumefnCWAh/IoBUZ2rq796M41BHPnroxPN1L782is=;
+        b=Ig/nGaL1KKrRRGDn2t+lPpIgx8g6SMlwQi/TQ/4OoIldI72hLe+g5D3bZAcPZUaeSk
+         GLj0ViEHY1UKXdv9PMs9j3A5m8hBuaepD49abeYlowBKB2ngUg0g2xIZevtzRo5cKhX5
+         CLqMr1BMgZFmyF7ffdHFTbzKPpJU9oviVwvbWiSmTw0Pix36LwxNpo3kGyVaTfVwZvaN
+         2RxAvgRNaLQ4sIx0UQ1Nq14EEawH3QjNud0McUN2hHUviyO4QlWIsM9lz71PwlZxPqLv
+         /tEUfnN7n6iKtGD6hnliV4KVV903lZysOm4K9QJw50kJaEzcptXNpqC1s8gOd93eoLi0
+         KPYg==
+X-Forwarded-Encrypted: i=1; AJvYcCVpD+yadj4jLqhhU50rzfnoqXKNBuvSTe8FIHEIMsQxqAdsY/e2Y2UAzUm3pZXC5OZwG4js44i+V3psVc40xHLhgqLMfuQj3TaWSg==
+X-Gm-Message-State: AOJu0YxVkK22kS8xYjJOirHDlWOEB6QQ/kSWFqSQqtKN8B0otjLqVotY
+	Q1/kSkni6caqqBvVq6NghNVgsHHISxvBVgUZA+E57l8pfRVejZpailiGpQJjlVo=
+X-Google-Smtp-Source: AGHT+IFVFHsVlQMiH0Fbhd4tc40tCEx10K+gMkRqXAjqGDO2L2x5wkknywHxXN6ff9bLZXfNrK0Jmg==
+X-Received: by 2002:a05:6358:9886:b0:19f:1644:d45e with SMTP id e5c5f4694b2df-1a1fd470d73mr300419055d.8.1718810086999;
+        Wed, 19 Jun 2024 08:14:46 -0700 (PDT)
 Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-798aaecc068sm613342485a.34.2024.06.19.08.14.32
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-798abe47ce5sm614900285a.103.2024.06.19.08.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jun 2024 08:14:32 -0700 (PDT)
+        Wed, 19 Jun 2024 08:14:45 -0700 (PDT)
 Received: from jgg by wakko with local (Exim 4.95)
 	(envelope-from <jgg@ziepe.ca>)
-	id 1sJx15-004nig-UU;
-	Wed, 19 Jun 2024 12:14:31 -0300
-Date: Wed, 19 Jun 2024 12:14:31 -0300
+	id 1sJx1I-004nmY-NX;
+	Wed, 19 Jun 2024 12:14:44 -0300
+Date: Wed, 19 Jun 2024 12:14:44 -0300
 From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Lu Baolu <baolu.lu@linux.intel.com>
 Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -85,17 +85,17 @@ Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
 	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
 	iommu@lists.linux.dev, dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 20/21] iommu: Remove iommu_present()
-Message-ID: <20240619151431.GL1091770@ziepe.ca>
+Subject: Re: [PATCH v3 21/21] iommu: Remove iommu_domain_alloc()
+Message-ID: <20240619151444.GM1091770@ziepe.ca>
 References: <20240610085555.88197-1-baolu.lu@linux.intel.com>
- <20240610085555.88197-21-baolu.lu@linux.intel.com>
+ <20240610085555.88197-22-baolu.lu@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240610085555.88197-21-baolu.lu@linux.intel.com>
+In-Reply-To: <20240610085555.88197-22-baolu.lu@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240619_081436_614047_332B1700 
-X-CRM114-Status: GOOD (  10.07  )
+X-CRM114-CacheID: sfid-20240619_081448_355860_03AFC03E 
+X-CRM114-Status: GOOD (  11.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,15 +110,18 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 10, 2024 at 04:55:54PM +0800, Lu Baolu wrote:
-> The iommu_present() interface is no longer used in the tree anymore.
+On Mon, Jun 10, 2024 at 04:55:55PM +0800, Lu Baolu wrote:
+> The iommu_domain_alloc() interface is no longer used in the tree anymore.
 > Remove it to avoid dead code.
+> 
+> There is increasing demand for supporting multiple IOMMU drivers, and this
+> is the last bus-based thing standing in the way of that.
 > 
 > Signed-off-by: Lu Baolu <baolu.lu@linux.intel.com>
 > ---
 >  include/linux/iommu.h |  6 ------
->  drivers/iommu/iommu.c | 25 -------------------------
->  2 files changed, 31 deletions(-)
+>  drivers/iommu/iommu.c | 36 ------------------------------------
+>  2 files changed, 42 deletions(-)
 
 Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
