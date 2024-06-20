@@ -4,85 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A266DC2BBCA
-	for <ath11k@archiver.kernel.org>; Thu, 20 Jun 2024 01:17:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3573FC2BA1A
+	for <ath11k@archiver.kernel.org>; Thu, 20 Jun 2024 14:30:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=LM8Jbsxciqb5f7yGy4N7aYIswmToBHm/OC14p7bDwqA=; b=kCpt9ZN21fyl1aV/EGkkI3s0cS
-	Z7YYoY46w9eGi/U9tBrMtROr9wVvkU4AmQkcwCGcsp506rfSzyI2DIlo890TuQ/mJ2k8Ij25N0ZCc
-	KFXhdumzGnqGPK1gYmdNuGsjG8GWmfzR/2ADoJi4wp2sWnV3JLgOjrk++D2xeFq94tABOZi8x39Fx
-	M4GA9QCKrimxxj2qDwlIfNRXjbcKItm/KAgamCqpU+tsi5xhSwapHUXiAkhtWyXBY2AqKmeIxjovN
-	fFHlOSnAYzTeBp9q/Xg05zykNPP/LHYwKtikwnY4hc/XzdaMnVPKuw05P7dblPE44JJd3ngegC/Yg
-	YPkIQq8A==;
+	bh=K/8F6EwNwQcG3yU/Kbwf8OIaW1KdmtgE0Iw3cobe324=; b=i/bQlhoAkhkV/IbMkU+eHXlmAa
+	9gRnf3BJvg8NIN8bZtcwNaKsEwqAgd+V4SP5eFUvJlOzLffN/MUmaLIsm+7GtJT0thxJYQZazpCtH
+	IYr1+uGh4wF/R4hwogBOi43f8cxBb/aBH3RFSmF5qdKoy3QWsGx8XzhBXRWtsjMS7YhLOx9qnK+Jp
+	e4zMhoP/yBIUm2vsweQPSh4k6XNcTybKBzcuKHGHBGrG2+t9e5teLdIJwG/dKV4nV3t/1OvVYcJGJ
+	mMf7WkuVFk0ofH6cLlOTWiq9+dxy8FRHo45ljeXLGG/I5GXqgriud/YJZJPLyxwDK49i0HdwaCwVt
+	XlJWa+nA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sK6QB-00000003EG1-0RZk;
-	Thu, 20 Jun 2024 01:17:03 +0000
-Received: from mgamail.intel.com ([192.198.163.13])
+	id 1sKIoR-00000005SlJ-1erv;
+	Thu, 20 Jun 2024 14:30:55 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sK6Q6-00000003EEy-3BBA;
-	Thu, 20 Jun 2024 01:17:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718846219; x=1750382219;
-  h=message-id:date:mime-version:cc:subject:to:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=eiW/MHJ0UdJLO8lrujvSRMTbc/MZOUzVpzfOqp/fsrc=;
-  b=S10A8DW6i4YGmQ8CNxFiO6S+b5d4JEIi2Hl2ICZihUmFxkhgZnQwtZxF
-   Qu0zUGRoNt+vhELZEIq+8IkbyXBLJFNL2Y7YQJDVnBwKiWEYAKuzvEIqY
-   N8l5IYO4l9+B+VOcAU5PEATxxoymHy2wJzp1f++zyPclZORzdtNA0AT8E
-   NymEg377k1tj4YAxdTEVO48i4EKfqlm1QLJJWkRtOR/6NsW3avjJHz3i5
-   BfVfgvmCI8/IBlLcwj/prYzVxAn7lhb4t1SGK5MFxsDmvRZug0i3Iohum
-   CvDC2mwjNi/ZrIgWaEPoxyZ/jQIZVPdkZOCDCxPIPAzJmjTZlX6X6Gwbh
-   A==;
-X-CSE-ConnectionGUID: mehzVKw8TgylsEottieYtA==
-X-CSE-MsgGUID: gd1mBe7gTLGMajiFgbhzzw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="18715948"
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
-   d="scan'208";a="18715948"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jun 2024 18:16:57 -0700
-X-CSE-ConnectionGUID: DcNvoBqKR3Cd0EDhpcHZ6A==
-X-CSE-MsgGUID: koFwvhFKTT2QQL91tyJqgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
-   d="scan'208";a="73272079"
-Received: from unknown (HELO [10.239.159.127]) ([10.239.159.127])
-  by fmviesa001.fm.intel.com with ESMTP; 19 Jun 2024 18:16:52 -0700
-Message-ID: <d4cfdc8f-12a4-44d1-85ee-ce05dd88b3e3@linux.intel.com>
-Date: Thu, 20 Jun 2024 09:14:24 +0800
+	id 1sKIoO-00000005Sjw-2BnF;
+	Thu, 20 Jun 2024 14:30:53 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 366CD621CD;
+	Thu, 20 Jun 2024 14:30:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7E671C4AF0B;
+	Thu, 20 Jun 2024 14:30:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718893850;
+	bh=lFnvmyEqgdYMJeF8dWD9Fuq9BZ+u9+Ev069om7FPMpQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=AutipYDt61pdZCchXMSoqgfIdvPa6FKNlhIbdWjsyMmefRUobYSzMDwsaDlyod2kv
+	 sCAqR265rGA6cmHjiRX/iqw4Iqk36RSjWfZ+3ySyVatuPBKp2M1wRPmwzFf9XLTH9E
+	 GoDQGMn/l7y4tHjhFyNij9Esy2NciNDerQmXvuJphkNx9mAlyMqlJcLFNj2qgKPy7E
+	 FRFInMLlYQDRf8ye/ThTL3pQ8O3zaPnYVU22bzjphx0K2SuSbdId/iapNsodUAx523
+	 +K3J38wVFzunMlN5qEtbaf17DADoKcPKWbXk0aRxVztFFunpGHuyDmDb1WhazTy3I/
+	 4QAhhUTNKrDaA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 67D0FC39563;
+	Thu, 20 Jun 2024 14:30:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Kevin Tian <kevin.tian@intel.com>, Yi Liu <yi.l.liu@intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Kalle Valo <kvalo@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Alex Williamson <alex.williamson@redhat.com>, mst@redhat.com,
- Jason Wang <jasowang@redhat.com>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org, iommu@lists.linux.dev,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 15/21] iommu/vt-d: Add helper to allocate paging domain
-To: Jason Gunthorpe <jgg@ziepe.ca>
-References: <20240610085555.88197-1-baolu.lu@linux.intel.com>
- <20240610085555.88197-16-baolu.lu@linux.intel.com>
- <20240619151254.GI1091770@ziepe.ca>
-Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <20240619151254.GI1091770@ziepe.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v8 00/17] power: sequencing: implement the subsystem and
+ add first users
+From: patchwork-bot+bluetooth@kernel.org
+Message-Id: <171889385042.4585.381673079448841277.git-patchwork-notify@kernel.org>
+Date: Thu, 20 Jun 2024 14:30:50 +0000
+References: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
+In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcel@holtmann.org,
+ luiz.dentz@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, quic_bgodavar@quicinc.com,
+ quic_rjliao@quicinc.com, kvalo@kernel.org, jjohnson@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, bhelgaas@google.com,
+ srinivas.kandagatla@linaro.org, quic_eberman@quicinc.com,
+ caleb.connolly@linaro.org, neil.armstrong@linaro.org,
+ dmitry.baryshkov@linaro.org, elder@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ quic_jjohnson@quicinc.com, ath12k@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-pci@vger.kernel.org,
+ bartosz.golaszewski@linaro.org, kernel@quicinc.com,
+ krzysztof.kozlowski@linaro.org, amit.pundir@linaro.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240619_181659_095310_C4175870 
-X-CRM114-Status: GOOD (  20.18  )
+X-CRM114-CacheID: sfid-20240620_073052_706864_65C37048 
+X-CRM114-Status: GOOD (  14.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,86 +88,68 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 6/19/24 11:12 PM, Jason Gunthorpe wrote:
-> On Mon, Jun 10, 2024 at 04:55:49PM +0800, Lu Baolu wrote:
->> The domain_alloc_user operation is currently implemented by allocating a
->> paging domain using iommu_domain_alloc(). This is because it needs to fully
->> initialize the domain before return. Add a helper to do this to avoid using
->> iommu_domain_alloc().
->>
->> Signed-off-by: Lu Baolu<baolu.lu@linux.intel.com>
->> ---
->>   drivers/iommu/intel/iommu.c | 87 +++++++++++++++++++++++++++++++++----
->>   1 file changed, 78 insertions(+), 9 deletions(-)
-> It seems Ok, but I have some small thoughts
-> 
-> Reviewed-by: Jason Gunthorpe<jgg@nvidia.com>
-> 
->> diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
->> index 2e9811bf2a4e..ccde5f5972e4 100644
->> --- a/drivers/iommu/intel/iommu.c
->> +++ b/drivers/iommu/intel/iommu.c
->> @@ -3633,6 +3633,79 @@ static struct iommu_domain blocking_domain = {
->>   	}
->>   };
->>   
->> +static int iommu_superpage_capability(struct intel_iommu *iommu, bool first_stage)
->> +{
->> +	if (!intel_iommu_superpage)
->> +		return 0;
->> +
->> +	if (first_stage)
->> +		return cap_fl1gp_support(iommu->cap) ? 2 : 1;
->> +
->> +	return fls(cap_super_page_val(iommu->cap));
->> +}
->> +
->> +static struct dmar_domain *paging_domain_alloc(struct device *dev, bool first_stage)
->> +{
->> +	struct device_domain_info *info = dev_iommu_priv_get(dev);
->> +	struct intel_iommu *iommu = info->iommu;
->> +	struct dmar_domain *domain;
->> +	int addr_width;
->> +
->> +	domain = kzalloc(sizeof(*domain), GFP_KERNEL);
->> +	if (!domain)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	INIT_LIST_HEAD(&domain->devices);
->> +	INIT_LIST_HEAD(&domain->dev_pasids);
->> +	INIT_LIST_HEAD(&domain->cache_tags);
->> +	spin_lock_init(&domain->lock);
->> +	spin_lock_init(&domain->cache_lock);
->> +	xa_init(&domain->iommu_array);
-> You should probably split more, with an 'alloc struct dmar_domain'
-> function that can be used by SVA and others too.
-> 
->> +	domain->nid = dev_to_node(dev);
->> +	domain->has_iotlb_device = info->ats_enabled;
->> +	domain->use_first_level = first_stage;
->> +
->> +	/* calculate the address width */
->> +	addr_width = agaw_to_width(iommu->agaw);
->> +	if (addr_width > cap_mgaw(iommu->cap))
->> +		addr_width = cap_mgaw(iommu->cap);
->> +	domain->gaw = addr_width;
->> +	domain->agaw = iommu->agaw;
->> +	domain->max_addr = __DOMAIN_MAX_ADDR(addr_width);
->> +
->> +	/* iommu memory access coherency */
->> +	domain->iommu_coherency = iommu_paging_structure_coherency(iommu);
->> +
->> +	/* pagesize bitmap */
->> +	domain->domain.pgsize_bitmap = SZ_4K;
->> +	domain->iommu_superpage = iommu_superpage_capability(iommu, first_stage);
->> +	domain->domain.pgsize_bitmap |= domain_super_pgsize_bitmap(domain);
-> Then some of this stuff is really just paging only. Like
-> SVA/identity/etc don't have pgszie and other things.
+Hello:
 
-Yeah, good suggestion. I could do this in this series if it needs a new
-version or in my next series which will add domain_alloc_paging for the
-intel driver.
+This series was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
 
-Best regards,
-baolu
+On Tue, 28 May 2024 21:03:08 +0200 you wrote:
+> Note: I am resending this series in its entirety once more for
+> discussions and reviews. If there won't be any major objections, I'll
+> then start sending individual bits and pieces to appropriate trees.
+> 
+> Merging strategy: The DT binding and DTS changes are a no-brainer, they
+> can go through the wireless, regulator and arm-msm trees separately. The
+> bluetooth and PCI changes have a build-time dependency on the power
+> sequencing code. The bluetooth changes also have a run-time dependency on
+> the PCI pwrctl part. In order to get it into next I plan to pick up the
+> power sequencing code into my own tree and maintain it. I can then
+> provide an immutable tag for the BT and PCI trees to pull. I wouldn't
+> stress about the BT runtime dependency as it will be fixed once all
+> changes are in next.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v8,01/17] regulator: dt-bindings: describe the PMU module of the QCA6390 package
+    (no matching commit)
+  - [v8,02/17] regulator: dt-bindings: describe the PMU module of the WCN7850 package
+    (no matching commit)
+  - [v8,03/17] dt-bindings: net: bluetooth: qualcomm: describe regulators for QCA6390
+    https://git.kernel.org/bluetooth/bluetooth-next/c/251180e6dba5
+  - [v8,04/17] dt-bindings: net: wireless: qcom,ath11k: describe the ath11k on QCA6390
+    (no matching commit)
+  - [v8,05/17] dt-bindings: net: wireless: describe the ath12k PCI module
+    (no matching commit)
+  - [v8,06/17] arm64: dts: qcom: sm8550-qrd: add the Wifi node
+    (no matching commit)
+  - [v8,07/17] arm64: dts: qcom: sm8650-qrd: add the Wifi node
+    (no matching commit)
+  - [v8,08/17] arm64: dts: qcom: sm8650-hdk: add the Wifi node
+    (no matching commit)
+  - [v8,09/17] arm64: dts: qcom: qrb5165-rb5: add the Wifi node
+    (no matching commit)
+  - [v8,10/17] power: sequencing: implement the pwrseq core
+    (no matching commit)
+  - [v8,11/17] power: pwrseq: add a driver for the PMU module on the QCom WCN chipsets
+    (no matching commit)
+  - [v8,12/17] PCI: hold the rescan mutex when scanning for the first time
+    (no matching commit)
+  - [v8,13/17] PCI/pwrctl: reuse the OF node for power controlled devices
+    (no matching commit)
+  - [v8,14/17] PCI/pwrctl: create platform devices for child OF nodes of the port node
+    (no matching commit)
+  - [v8,15/17] PCI/pwrctl: add PCI power control core code
+    (no matching commit)
+  - [v8,16/17] PCI/pwrctl: add a PCI power control driver for power sequenced devices
+    (no matching commit)
+  - [v8,17/17] Bluetooth: qca: use the power sequencer for QCA6390
+    https://git.kernel.org/bluetooth/bluetooth-next/c/4029dba6b6f1
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
