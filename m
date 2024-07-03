@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33CAFC2BD09
-	for <ath11k@archiver.kernel.org>; Wed,  3 Jul 2024 07:14:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F266C30653
+	for <ath11k@archiver.kernel.org>; Wed,  3 Jul 2024 13:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gCaQlshmePyQDB6ovrNsJ5/VaZp8xkilWo/C5ufKmIY=; b=lora9K5G+CoNwY4rKOzvjHjlcl
-	msOrMvg5Jof7nz1JOfN2QiGdXpnP2LgWjswFRzIeabaTl3j9H9DAcVU41Rej+n39rWyWEv0cErIt7
-	4+vHiFilAwBLXUBxh4auqm8ELvuLQ9arw7xnUvgcEOlgu4I5nioCMpvDl76G1VA9bVJXu8nt4/ruu
-	V5N3g7bA4kVC2JxuV+kHBDfaYa0vxe7GKgswhQxSWj3d2pKsOG8xxOTJntz0jIKXhZJ71ObQAnCDr
-	EK3FU3gmUbB8JP+D8/q0tWfTBKpNKNTjVAv0S3e1R50NN69PjQF+8cEziU8xugRA9uaTwlbjffbpR
-	bWkeAoCw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=uIIt7UxsMutUGFGlmTLTXp4QmO6Uexc1k0fzGyd2Sz4=; b=JUcYYmYUrIv1zXYx/JBaWxegvF
+	ASx6PozYhH3nNEYiJKRmETPmLw76QYWd4Huq32nQyErtvGxb/407JI29sJ/gFPBr3TLKNVzaUYl0p
+	Dyn0TVIa0FLhuy6Z91oiI2zh9TP9+5mJjo62I4sQMAvw5xGOQIx0jkFmEVujbOd5EZEc7TUBgPseN
+	qFw8AeJS+Xfa/L6Px5lflRdS/QeaIh3QX88LLCRuLe4/3hD53F0i+kFGizEzvfmwNqkPezzWDTszh
+	Z65mAHilM3ApdsEvhF6Znr8XHp0yNWbRYVKy3nX9kDN681gFZTX2p5IuHjMzQD//5By9o5mEuIG69
+	q7L/slMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOuCP-00000009J5o-3n20;
-	Wed, 03 Jul 2024 07:14:41 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1sP0Ud-0000000ANgr-1ErM;
+	Wed, 03 Jul 2024 13:57:55 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sOuCL-00000009J4p-3wTO;
-	Wed, 03 Jul 2024 07:14:39 +0000
+	id 1sP0UQ-0000000ANe3-42EI;
+	Wed, 03 Jul 2024 13:57:44 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 1168CCE1D4E;
-	Wed,  3 Jul 2024 07:14:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF794C2BD10;
-	Wed,  3 Jul 2024 07:14:33 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id DA6C361E00;
+	Wed,  3 Jul 2024 13:57:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D36ABC2BD10;
+	Wed,  3 Jul 2024 13:57:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719990875;
-	bh=x+1Z0OH2iTgkOWjPo7qguUcayPfUY6MxGUvlYB4Er9U=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=Ekvw+WdQ2FH0lUhpQUPwlryZvnC0zVEx3AVCDmPFolSc0F6dnzOq5U1MvgtGXpsSY
-	 NFRAdF24djUA2rpP8DlBk/4H/lJWEGtQfCxuRDuDpcKZlhDT27chfOvhYy2VsJ7s6P
-	 4qhTirqvwSNnyeC1liCyanoUmx7ls76ySdL7DcsElc69Hxw4UlsNndkYHGXExA6yLY
-	 il5YAIPK+85e+g20b5/cPoyDAgH0McKmfcNjxQ/j6PqS/aa93rOxH1auwrjRhXtfic
-	 CefBDu8i9Rl53pYHjisFxmOHqtC1Hzq2yYnQnVeeniLLOWBm3stV2Y0CRnB4jzCkht
-	 304GsGKjOkWdA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: <linux-wireless@vger.kernel.org>,  <ath10k@lists.infradead.org>,
-  <ath11k@lists.infradead.org>,  <ath12k@lists.infradead.org>,
-  <quic_kvalo@quicinc.com>,  Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>
-Subject: Re: pull-request: ath-next-20240702
-References: <812acd8a-fc26-4611-8a7a-c3a1d6197d00@quicinc.com>
-	<87zfqzdkgh.fsf@kernel.org>
-Date: Wed, 03 Jul 2024 10:14:32 +0300
-In-Reply-To: <87zfqzdkgh.fsf@kernel.org> (Kalle Valo's message of "Wed, 03 Jul
-	2024 10:05:18 +0300")
-Message-ID: <87v81ndk13.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1720015061;
+	bh=0ghaEkln6muWfC3OI81no2MWCwPisboChG+ZgTv+5GY=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=RuauIKrGtL3QwP+hft0nomDS/ic+9Y4AFfMW0vgfjnVF3DGiY1QpQfEJs+Gl8r1C3
+	 8Q3IL4RlW1QS6021izmkr08dRqXBWKH0w36slu4onjSLV/TvgbQdZgZN2162wEtB3x
+	 xNLVIOxxXg13s1qo2YDsQMey3jqbTWliRsCS5qnywUo2B2/PgguJYVxHVg2ynkcb7W
+	 InDnXORbQzku7sJ1isWn3eYL4Olksqv0MpfSPe3PSRUzoffn+8ObBF52WeAbqjLpn0
+	 7NO6AYN4ymnrZvGWfcTUclpQibamNDNs7io1MGERJ/BvVXWSl6rrjuryQ0k8v0g8dJ
+	 X353rxOyqAmog==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: Re: pull-request: ath-next-20240702
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <812acd8a-fc26-4611-8a7a-c3a1d6197d00@quicinc.com>
+References: <812acd8a-fc26-4611-8a7a-c3a1d6197d00@quicinc.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: <linux-wireless@vger.kernel.org>, <ath10k@lists.infradead.org>,
+ <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>,
+ <quic_jjohnson@quicinc.com>, <quic_kvalo@quicinc.com>, Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <172001505815.3343449.10854537825180902753.kvalo@kernel.org>
+Date: Wed,  3 Jul 2024 13:57:39 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240703_001438_177944_796D3242 
-X-CRM114-Status: GOOD (  12.61  )
+X-CRM114-CacheID: sfid-20240703_065743_144383_D67673B1 
+X-CRM114-Status: GOOD (  16.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,66 +73,153 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
 
-> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
->
->> The following changes since commit bb678f01804ccaa861b012b2b9426d69673d8a84:
->>
->>   Merge branch 'intel-wired-lan-driver-updates-2024-06-03'
->> (2024-06-10 19:52:50 -0700)
->>
->> are available in the Git repository at:
->>
->>   git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-next-20240702
->>
->> for you to fetch changes up to 5344fc76f8944249026884157f846f88489edfc0:
->>
->>   wifi: ath12k: Support TQM stats (2024-07-01 21:57:28 +0300)
->>
->> ----------------------------------------------------------------
->> ath.git patches for v6.11
->>
->> We have moved to a new group-managed repo, and this is the first pull
->> request from that repo, and from me. Fingers crossed...
->>
->> We have some new features in ath12k along with some cleanups in ath11k
->> and ath12k. Also notable are some device-tree changes to allow certain
->> ath11k and ath12k devices to work with a new power sequencing
->> subsystem.
->>
->> Major changes:
->>
->> ath12k
->>
->> * DebugFS support for datapath statistics
->> * WCN7850: support for WoW (Wake on WLAN)
->> * WCN7850: device-tree bindings
->>
->> ath11k
->>
->> * QCA6390: device-tree bindings
->>
->> ----------------------------------------------------------------
->
-> I see a weird warning from gpg which I have never seen before:
->
-> merged tag 'ath-next-20240702'
-> gpg: Signature made Tue 02 Jul 2024 05:55:42 PM EEST
-> gpg:                using EDDSA key 3F9AD487CCF522D7A21F0C492C15BBA0898CCB7B
-> gpg:                issuer "jjohnson@kernel.org"
-> gpg: Good signature from "Jeff Johnson <quic_jjohnson@quicinc.com>" [full]
-> gpg: WARNING: We do NOT trust this key!
-> gpg:          The signature is probably a FORGERY.
->
-> It first says that the signature is good and then claims it's a forgery,
-> odd. Is this a problem between using different email addresses or what?
+> The following changes since commit bb678f01804ccaa861b012b2b9426d69673d8a84:
+> 
+>   Merge branch 'intel-wired-lan-driver-updates-2024-06-03' (2024-06-10 19:52:50 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-next-20240702
+> 
+> for you to fetch changes up to 5344fc76f8944249026884157f846f88489edfc0:
+> 
+>   wifi: ath12k: Support TQM stats (2024-07-01 21:57:28 +0300)
+> 
+> ----------------------------------------------------------------
+> ath.git patches for v6.11
+> 
+> We have moved to a new group-managed repo, and this is the first pull
+> request from that repo, and from me. Fingers crossed...
+> 
+> We have some new features in ath12k along with some cleanups in ath11k
+> and ath12k. Also notable are some device-tree changes to allow certain
+> ath11k and ath12k devices to work with a new power sequencing
+> subsystem.
+> 
+> Major changes:
+> 
+> ath12k
+> 
+> * DebugFS support for datapath statistics
+> * WCN7850: support for WoW (Wake on WLAN)
+> * WCN7850: device-tree bindings
+> 
+> ath11k
+> 
+> * QCA6390: device-tree bindings
+> 
+> ----------------------------------------------------------------
+> Aaradhana Sahu (3):
+>       wifi: ath12k: Fix WARN_ON during firmware crash in split-phy
+>       wifi: ath12k: fix NULL pointer access in ath12k_mac_op_get_survey()
+>       wifi: ath12k: fix uninitialize symbol error on ath12k_peer_assoc_h_he()
+> 
+> Aditya Kumar Singh (3):
+>       wifi: ath12k: fix per pdev debugfs registration
+>       wifi: ath12k: unregister per pdev debugfs
+>       wifi: ath12k: handle symlink cleanup for per pdev debugfs dentry
+> 
+> Ajith C (1):
+>       wifi: ath12k: fix firmware crash due to invalid peer nss
+> 
+> Baochen Qiang (11):
+>       wifi: ath12k: fix ACPI warning when resume
+>       wifi: ath11k: fix RCU documentation in ath11k_mac_op_ipv6_changed()
+>       wifi: ath11k: fix wrong handling of CCMP256 and GCMP ciphers
+>       wifi: ath12k: add ATH12K_DBG_WOW log level
+>       wifi: ath12k: implement WoW enable and wakeup commands
+>       wifi: ath12k: add basic WoW functionalities
+>       wifi: ath12k: add WoW net-detect functionality
+>       wifi: ath12k: implement hardware data filter
+>       wifi: ath12k: support ARP and NS offload
+>       wifi: ath12k: support GTK rekey offload
+>       wifi: ath12k: handle keepalive during WoWLAN suspend and resume
+> 
+> Bartosz Golaszewski (2):
+>       dt-bindings: net: wireless: qcom,ath11k: describe the ath11k on QCA6390
+>       dt-bindings: net: wireless: describe the ath12k PCI module
+> 
+> Dinesh Karthikeyan (6):
+>       wifi: ath12k: Add support to enable debugfs_htt_stats
+>       wifi: ath12k: Add htt_stats_dump file ops support
+>       wifi: ath12k: Add support to parse requested stats_type
+>       wifi: ath12k: Support Transmit Scheduler stats
+>       wifi: ath12k: Support pdev error stats
+>       wifi: ath12k: Support TQM stats
+> 
+> Harshitha Prem (1):
+>       wifi: ath12k: Remove unused ath12k_base from ath12k_hw
+> 
+> Karthikeyan Periyasamy (3):
+>       wifi: ath12k: avoid unnecessary MSDU drop in the Rx error process
+>       wifi: ath12k: fix mbssid max interface advertisement
+>       wifi: ath12k: fix peer metadata parsing
+> 
+> Lingbo Kong (3):
+>       wifi: ath11k: fix ack signal strength calculation
+>       wifi: ath11k: modify the calculation of the average signal strength in station mode
+>       wifi: ath12k: Fix pdev id sent to firmware for single phy devices
+> 
+> Pradeep Kumar Chitrapu (1):
+>       wifi: ath12k: fix legacy peer association due to missing HT or 6 GHz capabilities
+> 
+> Rameshkumar Sundaram (2):
+>       wifi: ath12k: modify remain on channel for single wiphy
+>       wifi: ath12k: fix driver initialization for WoW unsupported devices
+> 
+> Ramya Gnanasekar (1):
+>       wifi: ath12k: Dump additional Tx PDEV HTT stats
+> 
+> Wolfram Sang (1):
+>       wifi: ath11k: use 'time_left' variable with wait_event_timeout()
+> 
+>  .../bindings/net/wireless/qcom,ath11k-pci.yaml     |   46 +
+>  .../bindings/net/wireless/qcom,ath12k.yaml         |   99 ++
+>  drivers/net/wireless/ath/ath11k/dp_rx.c            |    3 +-
+>  drivers/net/wireless/ath/ath11k/dp_rx.h            |    3 +
+>  drivers/net/wireless/ath/ath11k/dp_tx.c            |   16 +-
+>  drivers/net/wireless/ath/ath11k/dp_tx.h            |    4 +-
+>  drivers/net/wireless/ath/ath11k/hal_tx.h           |    4 +-
+>  drivers/net/wireless/ath/ath11k/mac.c              |   29 +-
+>  drivers/net/wireless/ath/ath11k/qmi.c              |   20 +-
+>  drivers/net/wireless/ath/ath12k/Makefile           |    3 +-
+>  drivers/net/wireless/ath/ath12k/acpi.c             |    2 +
+>  drivers/net/wireless/ath/ath12k/core.c             |   71 +-
+>  drivers/net/wireless/ath/ath12k/core.h             |   34 +-
+>  drivers/net/wireless/ath/ath12k/debug.h            |    3 +-
+>  drivers/net/wireless/ath/ath12k/debugfs.c          |   19 +-
+>  drivers/net/wireless/ath/ath12k/debugfs.h          |    6 +-
+>  .../net/wireless/ath/ath12k/debugfs_htt_stats.c    | 1540 ++++++++++++++++++++
+>  .../net/wireless/ath/ath12k/debugfs_htt_stats.h    |  567 +++++++
+>  drivers/net/wireless/ath/ath12k/dp.h               |    1 +
+>  drivers/net/wireless/ath/ath12k/dp_rx.c            |   54 +-
+>  drivers/net/wireless/ath/ath12k/dp_rx.h            |    4 +
+>  drivers/net/wireless/ath/ath12k/dp_tx.c            |    4 +-
+>  drivers/net/wireless/ath/ath12k/hal_desc.h         |   26 +-
+>  drivers/net/wireless/ath/ath12k/htc.c              |    6 +
+>  drivers/net/wireless/ath/ath12k/hw.h               |    2 -
+>  drivers/net/wireless/ath/ath12k/mac.c              |  302 +++-
+>  drivers/net/wireless/ath/ath12k/mac.h              |    5 +
+>  drivers/net/wireless/ath/ath12k/wmi.c              |  728 ++++++++-
+>  drivers/net/wireless/ath/ath12k/wmi.h              |  586 +++++++-
+>  drivers/net/wireless/ath/ath12k/wow.c              | 1026 +++++++++++++
+>  drivers/net/wireless/ath/ath12k/wow.h              |   62 +
+>  31 files changed, 5156 insertions(+), 119 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
+>  create mode 100644 drivers/net/wireless/ath/ath12k/debugfs_htt_stats.c
+>  create mode 100644 drivers/net/wireless/ath/ath12k/debugfs_htt_stats.h
+>  create mode 100644 drivers/net/wireless/ath/ath12k/wow.c
+>  create mode 100644 drivers/net/wireless/ath/ath12k/wow.h
 
-I did 'gpg --refresh-keys', now your key contains your kernel.org
-address and I don't see the warning anymore.
+Pulled, thanks.
+
+c1cacb01f355 Merge tag 'ath-next-20240702' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/812acd8a-fc26-4611-8a7a-c3a1d6197d00@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
