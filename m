@@ -4,99 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B79C9C3271E
-	for <ath11k@archiver.kernel.org>; Mon,  8 Jul 2024 16:34:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2697DC3271E
+	for <ath11k@archiver.kernel.org>; Mon,  8 Jul 2024 23:32:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=RFoxv2StTkAy81FUVFoM8zRGh/jhofwCwoDeHKUmFcQ=; b=Zzc2pqeogv38YCrvIAok3WKzcQ
-	36PAfXWjsBYlkR1Wwz9bX9Lo+bm3eyZzEaFLGagbwaSffjISBM0XDdy7H9RviRqHRlASgGfHeIrxV
-	ZzKhOvO5oTjJO4/+Pftu6MBq0slbTJaSdCUO+IWSHXeU6Z1W/us1SF3vVzv2k4J8NqnvWBfaY4Yur
-	GFlUpY1Yu5TWWfZU3tVLSp2Rq74ob800gothx50PssalnV2DFV6PbmgHDP/iaBlJvAo+M4RZ9DyHC
-	ooYQ7OF7wbmx9hk+RRX9p5aucEZLkBgc8hH3Afu1s1CfVTHSCww6vXuwYMimGybhRDiEAZFrcilG3
-	WhMgVn7A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Z6OLQNNv3wHhoZl68PLjnz9+Sa2EoPBOEpp8cRmc3e4=; b=UWOtPOZF5zNF78rp6uwBWnsbky
+	ycR2ke4GZP2lVREA+PGDUSVzJ+wn12nQBkrDnH7XCB9Osv/4CA7wLpELfTqRWmpYfnx/7vTuYBoXp
+	XBlpmXobDcRFXiXbji7P7rVZH5FfZO4fMgkh90+y4zw1234yd+fQfEukSD+AqpVXmOfShgSx9gKlT
+	i3r76L0MLPEDvXvpP9u5H+/3YkFmHdnFe0ADLbmByDf1ZVpfiX4NXUEWEUwGy2UY9ekr744lL0liF
+	oXsRI6Bqzf0dYBhnLVQ1PTooUhvmGJLXXZ3lLLB6nu0R6LxVtHcHGzlmS80szPLigJYbCJm3d7Gqn
+	KQCLynuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQrJc-00000004S3H-0SFv;
-	Mon, 08 Jul 2024 16:34:12 +0000
-Received: from mail-ot1-x335.google.com ([2607:f8b0:4864:20::335])
+	id 1sQxqn-00000005KhV-2YyV;
+	Mon, 08 Jul 2024 23:32:53 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQrJa-00000004S2K-15xS
-	for ath11k@lists.infradead.org;
-	Mon, 08 Jul 2024 16:34:11 +0000
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-70211abf4cbso2891009a34.3
-        for <ath11k@lists.infradead.org>; Mon, 08 Jul 2024 09:34:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1720456449; x=1721061249; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RFoxv2StTkAy81FUVFoM8zRGh/jhofwCwoDeHKUmFcQ=;
-        b=c8f9EWfokgFC2WlvZPFWp3Qgb8fFhycfOui/Q++eodqfyVaZ0PTod/tRI6p6sW1GoK
-         deqPLXFH6jQwz4RCcfsMM2V7LnwNA+Z90PDXTvp1VsaHcE0D2YMprCyS7dgwvk9aAmQX
-         n9YxMc+toDtD38zeG6iJqGbvKzXpTNPa3xrOb8vre0Vkr3Gkv6aBxo8EyEtX8deDi5YC
-         Y3Ss023STA9V63ZIZcSd43V4EtUroJLhFezlzFW6K1WM9DT89cwpmInxLZFjTlYsBQs7
-         PwPuZr7agQ4sQ80c8/OPFn6w4UPIGF7wELqcsx8MOSQXBtw/WJlIIV+C95/gvLjuvJZL
-         Ov2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720456449; x=1721061249;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RFoxv2StTkAy81FUVFoM8zRGh/jhofwCwoDeHKUmFcQ=;
-        b=KsWqkS0a3OLcGuO60GBNziDCefz8iWlptmXwmeYMEw2v1PjXP8Fcdu9RZ5a6qHzUEw
-         ulj2hczA9GCShVaKy8lmPJlT1eRYMqAFjXlvcntpweS/So758IFQZl1sLBVsU/ES/yZB
-         Scm0Iyo3mOKvenHXeOoN92mAvAnsW0Ggu/6c3H5iVfPif84fMouNOBIviB8O2B3X6vOv
-         aFMDPLT7C+Lob/bObo2L1pGjC1AtAmBC+QY4BOlhhgb12NwIqm5E/iZrpcbn5eUHZQ5c
-         ubVGVuexfyyEC+tc5jQ7eGzoXc2JBTQEO+eq553FYv/eEoX6XUNMJBxzCcmRptJNEwnx
-         1Zcg==
-X-Forwarded-Encrypted: i=1; AJvYcCVT5YnGQMgCwuwkBi2QdZusuvQaQvGLDzAxOsb27/a/Ztk8YpARyoaOn56yVh9Irv6Ur6hbIRANdxWAZjrz+4hEy/LNqkn7D+SIjg==
-X-Gm-Message-State: AOJu0YwSqT0Pagd86CS4WJvpvcNzPLIWkCc/7CMc7CY+cFLdE9AptR0/
-	MH1xbPdhL4DxTVumX3sObxRvhFIVU0aXEbmsHejirJ4pz2K2b3JuXB41iKqJfMc=
-X-Google-Smtp-Source: AGHT+IH+SY7z9YUcEZHvm3NIhA2HWB3anmidOCwHHCYQdqIO1Nns+4jOSBLNnwnl/BLk4XULUJpMlg==
-X-Received: by 2002:a9d:7996:0:b0:703:60b7:5de6 with SMTP id 46e09a7af769-70360b761b0mr6939936a34.27.1720456448709;
-        Mon, 08 Jul 2024 09:34:08 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-79f1900f2bcsm7175785a.32.2024.07.08.09.34.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jul 2024 09:34:08 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1sQrJX-000TAF-N5;
-	Mon, 08 Jul 2024 13:34:07 -0300
-Date: Mon, 8 Jul 2024 13:34:07 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Will Deacon <will@kernel.org>
-Cc: Joerg Roedel <joro@8bytes.org>, Robin Murphy <robin.murphy@arm.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Lu Baolu <baolu.lu@linux.intel.com>, catalin.marinas@arm.com,
-	kernel-team@android.com, Yi Liu <yi.l.liu@intel.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Alex Williamson <alex.williamson@redhat.com>, mst@redhat.com,
-	Jason Wang <jasowang@redhat.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-	iommu@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/21] iommu: Refactoring domain allocation interface
-Message-ID: <20240708163407.GC14050@ziepe.ca>
-References: <20240610085555.88197-1-baolu.lu@linux.intel.com>
- <172009858593.2049787.5200500337719932334.b4-ty@kernel.org>
+	id 1sQxqk-00000005Kgt-2RSn;
+	Mon, 08 Jul 2024 23:32:51 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 468Meowd012208;
+	Mon, 8 Jul 2024 23:32:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Z6OLQNNv3wHhoZl68PLjnz9+Sa2EoPBOEpp8cRmc3e4=; b=IyELS522y2ARgBFC
+	BOJFDE0yN61pMk+2/JcSS1Uj8GAsq8WDs1REkvMjMr5MxNwL3CFC3uvTDY0meB3D
+	scZlThy5MjuxfSp1cjldFcz7qoSJBwg8Ein/gGfvA2Avpr++Im0NmoW81HDsT69l
+	v+4zbCpsZeOHJVN9AGSwvlaf61k35S94VOF7C3/o/6LKAAvaTh6HN9dnobZhn+xQ
+	TU9XeRXnOTM+Lr+M6iNx+zUbXtlFNN7TikV+8BhXQYXrq4rYotKGW1u6qko+r4Wr
+	XpJc0JxS7HIDjrQCs+ZJuezlic5BqnpZll698U1p3eUu5rB0RkL4Nlj6Iy9VY3M9
+	AGXwtA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406wg3vywc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jul 2024 23:32:48 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 468NWmxl031113
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jul 2024 23:32:48 GMT
+Received: from [10.48.245.228] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 8 Jul 2024
+ 16:32:47 -0700
+Message-ID: <c5219b32-bc58-4581-abb7-7bae22090bcd@quicinc.com>
+Date: Mon, 8 Jul 2024 16:32:47 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <172009858593.2049787.5200500337719932334.b4-ty@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] wifi: ath12k: fix array out-of-bound access in SoC
+ stats
+Content-Language: en-US
+To: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
+        <ath12k@lists.infradead.org>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240704070811.4186543-1-quic_periyasa@quicinc.com>
+ <20240704070811.4186543-2-quic_periyasa@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240704070811.4186543-2-quic_periyasa@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: TL5DFtv7WgFfmjlgDIoumhcX_kk4Ditg
+X-Proofpoint-GUID: TL5DFtv7WgFfmjlgDIoumhcX_kk4Ditg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-08_13,2024-07-05_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=776 clxscore=1015 impostorscore=0 malwarescore=0 mlxscore=0
+ bulkscore=0 spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407080175
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240708_093410_324638_675296BE 
-X-CRM114-Status: GOOD (  14.07  )
+X-CRM114-CacheID: sfid-20240708_163250_660591_F67031B2 
+X-CRM114-Status: UNSURE (   8.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,46 +100,18 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jul 04, 2024 at 03:18:56PM +0100, Will Deacon wrote:
-> On Mon, 10 Jun 2024 16:55:34 +0800, Lu Baolu wrote:
-> > The IOMMU subsystem has undergone some changes, including the removal
-> > of iommu_ops from the bus structure. Consequently, the existing domain
-> > allocation interface, which relies on a bus type argument, is no longer
-> > relevant:
-> >
-> >     struct iommu_domain *iommu_domain_alloc(struct bus_type *bus)
-> >
-> > [...]
+On 7/4/2024 12:08 AM, Karthikeyan Periyasamy wrote:
+> Currently, the ath12k_soc_dp_stats::hal_reo_error array is defined with a
+> maximum size of DP_REO_DST_RING_MAX. However, the ath12k_dp_rx_process()
+> function access ath12k_soc_dp_stats::hal_reo_error using the REO
+> destination SRNG ring ID, which is incorrect. SRNG ring ID differ from
+> normal ring ID, and this usage leads to out-of-bounds array access. To
+> fix this issue, modify ath12k_dp_rx_process() to use the normal ring ID
+> directly instead of the SRNG ring ID to avoid out-of-bounds array access.
 > 
-> Applied a few of these to iommu (iommufd/paging-domain-alloc), thanks!
+> Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.0.1-00029-QCAHKSWPL_SILICONZ-1
 > 
-> [01/21] iommu: Add iommu_paging_domain_alloc() interface
->         https://git.kernel.org/iommu/c/a27bf2743cb8
-> [02/21] iommufd: Use iommu_paging_domain_alloc()
->         https://git.kernel.org/iommu/c/26a581606fab
-> [03/21] vfio/type1: Use iommu_paging_domain_alloc()
->         https://git.kernel.org/iommu/c/60ffc4501722
-> [04/21] vhost-vdpa: Use iommu_paging_domain_alloc()
->         https://git.kernel.org/iommu/c/9c159f6de1ae
-> [05/21] drm/msm: Use iommu_paging_domain_alloc()
->         https://git.kernel.org/iommu/c/45acf35af200
-> 
-> [10/21] wifi: ath10k: Use iommu_paging_domain_alloc()
->         https://git.kernel.org/iommu/c/d5b7485588df
-> [11/21] wifi: ath11k: Use iommu_paging_domain_alloc()
->         https://git.kernel.org/iommu/c/ef50d41fbf1c
-> 
-> [14/21] RDMA/usnic: Use iommu_paging_domain_alloc()
->         https://git.kernel.org/iommu/c/3b10f25704be
-> [15/21] iommu/vt-d: Add helper to allocate paging domain
->         https://git.kernel.org/iommu/c/9e9ba576c259
+> Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
-Great, Lu can you please split the remaining by subsystem and try to
-get them to go through subsystem trees? Joerg can take the leftovers
-at rc6/7 or something like that so we can finish this.
-
-I think this is enough that Intel and AMD could now assert that dev is
-non-null?
-
-Jason
 
