@@ -4,75 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0E41C38150
-	for <ath11k@archiver.kernel.org>; Thu,  4 Jul 2024 14:34:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEAA1C3271E
+	for <ath11k@archiver.kernel.org>; Mon,  8 Jul 2024 07:55:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ODwI17qSE2twGhPNyXj/kKa5tmg35shGk49G9znQA24=; b=VvwvZJvkS6SsL/07Kr5lYDYZjU
-	KJtjrrm1842/4lhF7mAWz7TR54eG8xlX/Ruzi+ZZa/+V+8Yrhmn2iQ2GJRSNpl9BVsuWz/rCs8dOJ
-	1C+jbmQK69pQaot68nuT3r4jHbmfHkvTsXQY4tHzfQ8aEUQuzctO5Z6AjPaysg47h+LJkhy8GHVNI
-	/p0X/wL/DRNfdo3lI2phuGlmC8kog8RT6Hg/K1OUSzfnH/BGL+GSrNCzlC3Akv/ttsmGuMT7gWirx
-	hgusMIvL/96IJc1WumnO+mKoZjQiAWmJzQ04NaSQ/sUl2jh3VxoK+IoeRuqEBBW2iNJDKEk79/YWr
-	3uxOJMJw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=; b=T7+y2e7Km5zTP6xy2K8oherEef
+	T+YtfisTea6YDQcsVVn4yOoS/qKkak+xDViKBJrC5OHf1FHNXqQRZT0c6C7pz9BcREHik5CvnUzb8
+	FJs+siBnXHctWuiejgvcGM4oVUW0rkF3qYKxAGynQM8Uogut1VhD81WsRiYkfCn3LJQyHaCWnnLyv
+	RDUAu5giX3+c48gYDIx/qXnTn6SiDc16XYn88lUQrJVsxWvi4ySS5nTImsqudWPNYCDzjkgnUNvsV
+	YrXaesMUhEVbco4CLFtqd5fb9iJ/CfDIcJZQBBzMck/5xfUPOOo77RmCVg82/FKQXSrj0BEFukO9M
+	3PE8XtjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sPNXP-0000000DTt2-2tRS;
-	Thu, 04 Jul 2024 14:34:19 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sQjDm-000000036AF-2pm5;
+	Mon, 08 Jul 2024 07:55:38 +0000
+Received: from mail.interestingperspective.pl ([217.61.97.94])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sPNXM-0000000DTrp-1zsw;
-	Thu, 04 Jul 2024 14:34:18 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id D31C1627A4;
-	Thu,  4 Jul 2024 14:34:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3739DC3277B;
-	Thu,  4 Jul 2024 14:34:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720103655;
-	bh=mQ26XuKNbwYsAasmtsn6uZeQsrB0KeCZEr54v5bxmwk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IPESSHGT/s4FuGQk/uME6Qr6CIcUCFaXglWtxoxQhPNVROozdqJmGOJgv1gXNtAYw
-	 anCv6CPGr3TK7rWm29/7pMqyXuSLyp3c9nW2PFi2lAxVULdnBDWXZxBCXnVshpPsGx
-	 K8zEEK/uYH5boR7hO66R7bwcJ/9s+WjtFxAOtDaLC5OTJsfjcDDR+jhUNzbzlILahS
-	 Bxb3wIq40PA1HUxutwJfUS/tlPiHFlPMDWuk2dn8efa5iG59EJUsQwX46gdTV4A/Qc
-	 KCAAJtDkl2XLALvX2RvIvdFJw8kjBAY3xcw8WgH7VgDa1COJ+VWSJR+RcBjXtGbvA2
-	 TvG6WoKAJCrhQ==
-Date: Thu, 4 Jul 2024 15:34:07 +0100
-From: Will Deacon <will@kernel.org>
-To: Baolu Lu <baolu.lu@linux.intel.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Robin Murphy <robin.murphy@arm.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
-	catalin.marinas@arm.com, kernel-team@android.com,
-	Yi Liu <yi.l.liu@intel.com>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>, Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Alex Williamson <alex.williamson@redhat.com>, mst@redhat.com,
-	Jason Wang <jasowang@redhat.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-	iommu@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/21] iommu: Refactoring domain allocation interface
-Message-ID: <20240704143407.GA8211@willie-the-truck>
-References: <20240610085555.88197-1-baolu.lu@linux.intel.com>
- <172009858593.2049787.5200500337719932334.b4-ty@kernel.org>
- <f273615a-ebbd-488c-a301-e5cefc0715b1@linux.intel.com>
+	id 1sQjDj-0000000369j-310x
+	for ath11k@lists.infradead.org;
+	Mon, 08 Jul 2024 07:55:37 +0000
+Received: by mail.interestingperspective.pl (Postfix, from userid 1001)
+	id 9B09E84256; Mon,  8 Jul 2024 08:55:32 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=interestingperspective.pl; s=mail; t=1720425333;
+	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=;
+	h=Date:From:To:Subject:From;
+	b=ROW6YxQibDsTdvxHWOWLK2ZRuRXVAW6ilEnVQHg6OU3pOgPXpN1DX8XRCeDxSu2Kb
+	 rPiMTLl0jy5rYHmVtE0J/Ci91poMt13oJXQlvSPluQdOhaQqLhhAGsnNzcS6R1smOj
+	 Tc005KodI2Imq60eQefW/VNEB3+jj79VfxTVGQG7WFweB4XM6ySDDVwjJ9HOql5mxf
+	 mBacv8SmBS6nx4jcoZFK8gYIjZkzFwYUbR7sxbJJC+sles8t59JjdIy54FERFRM7uG
+	 smqmBPGYRhL3f77g6jCUONwMcbgy5iWgztrWIKvPqAXGca9RvzllptJFTyLDlA6TFR
+	 sjd8ocy6H4yEw==
+Received: by mail.interestingperspective.pl for <ath11k@lists.infradead.org>; Mon,  8 Jul 2024 07:55:16 GMT
+Message-ID: <20240708074501-0.1.dt.1exo5.0.kczo7ayh36@interestingperspective.pl>
+Date: Mon,  8 Jul 2024 07:55:16 GMT
+From: "Kamil Tralewski" <kamil.tralewski@interestingperspective.pl>
+To: <ath11k@lists.infradead.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.interestingperspective.pl
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f273615a-ebbd-488c-a301-e5cefc0715b1@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240704_073416_634481_C33850F6 
-X-CRM114-Status: GOOD (  15.12  )
+X-CRM114-CacheID: sfid-20240708_005535_909114_3549FAD5 
+X-CRM114-Status: UNSURE (   1.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,49 +67,20 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jul 04, 2024 at 10:24:52PM +0800, Baolu Lu wrote:
-> On 2024/7/4 22:18, Will Deacon wrote:
-> > On Mon, 10 Jun 2024 16:55:34 +0800, Lu Baolu wrote:
-> > > The IOMMU subsystem has undergone some changes, including the removal
-> > > of iommu_ops from the bus structure. Consequently, the existing domain
-> > > allocation interface, which relies on a bus type argument, is no longer
-> > > relevant:
-> > > 
-> > >      struct iommu_domain *iommu_domain_alloc(struct bus_type *bus)
-> > > 
-> > > [...]
-> > Applied a few of these to iommu (iommufd/paging-domain-alloc), thanks!
-> > 
-> > [01/21] iommu: Add iommu_paging_domain_alloc() interface
-> >          https://git.kernel.org/iommu/c/a27bf2743cb8
-> > [02/21] iommufd: Use iommu_paging_domain_alloc()
-> >          https://git.kernel.org/iommu/c/26a581606fab
-> > [03/21] vfio/type1: Use iommu_paging_domain_alloc()
-> >          https://git.kernel.org/iommu/c/60ffc4501722
-> > [04/21] vhost-vdpa: Use iommu_paging_domain_alloc()
-> >          https://git.kernel.org/iommu/c/9c159f6de1ae
-> > [05/21] drm/msm: Use iommu_paging_domain_alloc()
-> >          https://git.kernel.org/iommu/c/45acf35af200
-> > 
-> > [10/21] wifi: ath10k: Use iommu_paging_domain_alloc()
-> >          https://git.kernel.org/iommu/c/d5b7485588df
-> > [11/21] wifi: ath11k: Use iommu_paging_domain_alloc()
-> >          https://git.kernel.org/iommu/c/ef50d41fbf1c
-> > 
-> > [14/21] RDMA/usnic: Use iommu_paging_domain_alloc()
-> >          https://git.kernel.org/iommu/c/3b10f25704be
-> > [15/21] iommu/vt-d: Add helper to allocate paging domain
-> >          https://git.kernel.org/iommu/c/9e9ba576c259
-> 
-> Will, the patch [15/21] has already been included in my VT-d update pull
-> request. I have also addressed Yi's comment in that patch. So can you
-> please remove it from this branch?
+Dzie=C5=84 dobry,
 
-Heh, was just about to say the same thing as I noticed when I was
-re-creating 'next'. Yes, I'll drop it now. Since it's on the end, the
-other SHAs will remain the same.
+zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
+=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
+o dalszych rozm=C3=B3w.=20
 
-Sorry about that,
+Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
+=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
+=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
+strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
 
-Will
+Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
+
+
+Pozdrawiam
+Kamil Tralewski
 
