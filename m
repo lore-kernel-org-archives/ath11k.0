@@ -4,59 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C37C8C3DA42
-	for <ath11k@archiver.kernel.org>; Mon,  8 Jul 2024 15:24:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B79C9C3271E
+	for <ath11k@archiver.kernel.org>; Mon,  8 Jul 2024 16:34:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2LJa1GdtDb96XX+9mAWXvil1M4ztqoI6o7e4s4IL0I4=; b=3pnSDRZI084SDjR0ZXA6t0rWH7
-	FEQJ7So8nFEcYYcSXJJR/LVALJQ8e/6xTJQSiDEdC47xb+Rd2woT4c62r2rzzCqpkqT18QWW8dR6x
-	iFVoOoTbemi8cLP92PVqB4iwtQixv7vyPoRJww6U3WzRxueNshAdY3W0zJZl0RCWir7saX1CfMuzV
-	KzeCpbcNTLRJ+R2max0xeqK/b1gRFmjwPmxqpkCAeq3g7/dhf+7gtaSHAveE44JXj9DAU3nRDfWB6
-	KixI1yi0DS4dirC1Kbhlfjy91fqPrwzHKTb3U2Bvqua8ZwvAuLpUeAQo8eTRwm6YkeQsxWYaDG7mo
-	AvFvaVqQ==;
+	bh=RFoxv2StTkAy81FUVFoM8zRGh/jhofwCwoDeHKUmFcQ=; b=Zzc2pqeogv38YCrvIAok3WKzcQ
+	36PAfXWjsBYlkR1Wwz9bX9Lo+bm3eyZzEaFLGagbwaSffjISBM0XDdy7H9RviRqHRlASgGfHeIrxV
+	ZzKhOvO5oTjJO4/+Pftu6MBq0slbTJaSdCUO+IWSHXeU6Z1W/us1SF3vVzv2k4J8NqnvWBfaY4Yur
+	GFlUpY1Yu5TWWfZU3tVLSp2Rq74ob800gothx50PssalnV2DFV6PbmgHDP/iaBlJvAo+M4RZ9DyHC
+	ooYQ7OF7wbmx9hk+RRX9p5aucEZLkBgc8hH3Afu1s1CfVTHSCww6vXuwYMimGybhRDiEAZFrcilG3
+	WhMgVn7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQqEF-00000004Cj4-35ls;
-	Mon, 08 Jul 2024 15:24:35 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sQrJc-00000004S3H-0SFv;
+	Mon, 08 Jul 2024 16:34:12 +0000
+Received: from mail-ot1-x335.google.com ([2607:f8b0:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sQqEC-00000004Ch9-09Jy
+	id 1sQrJa-00000004S2K-15xS
 	for ath11k@lists.infradead.org;
-	Mon, 08 Jul 2024 15:24:34 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 51F1C60EAA;
-	Mon,  8 Jul 2024 15:24:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E8B4C116B1;
-	Mon,  8 Jul 2024 15:24:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720452271;
-	bh=RtdMnG2g1v23/KHylu9IMpwhqd2M5PX8r18qm4q0trU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=Ec1m7TBNL8CC5nd6cvzARmoeXpap+luakqyUbi0iw82CGwYijgXkly2EEYRy5/rJP
-	 QfmXsnv1OdWYnrPXjkUoOFNFapKVuTI1g14GX/IdNRJovm3qH8aWFiHNCXk36a3PIB
-	 wsfM05Qke31lsgDDUfJcAZNamBz27yHT59uKFqPCjnJOJU1miMUY4KMAm38icT4FfN
-	 7qPof4U1of1epgKEn2A2YnF+SCDuTf+fppP/1ff0NghDJSsqrHLCZ+3q6Nt5f0XmtP
-	 s0Aljo3rHk4adGjlScP/uSLPI2y5aIeS3Xie3a8BwJLGzwMSA6yz69Mmd3rQIWnFCR
-	 t0M0imDBQOiOg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Stefan Zegenhagen <stefan.zegenhagen@azg-tech.com>
-Cc: ath11k@lists.infradead.org
-Subject: Re: ath11k: IPQ6018: support for 802.11s MESH
-References: <3581dfd05dd3468d97b3fd06072d206732da9482.camel@azg-tech.com>
-Date: Mon, 08 Jul 2024 18:24:28 +0300
-In-Reply-To: <3581dfd05dd3468d97b3fd06072d206732da9482.camel@azg-tech.com>
-	(Stefan Zegenhagen's message of "Mon, 08 Jul 2024 14:44:34 +0200")
-Message-ID: <87frsjdhzn.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Mon, 08 Jul 2024 16:34:11 +0000
+Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-70211abf4cbso2891009a34.3
+        for <ath11k@lists.infradead.org>; Mon, 08 Jul 2024 09:34:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1720456449; x=1721061249; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RFoxv2StTkAy81FUVFoM8zRGh/jhofwCwoDeHKUmFcQ=;
+        b=c8f9EWfokgFC2WlvZPFWp3Qgb8fFhycfOui/Q++eodqfyVaZ0PTod/tRI6p6sW1GoK
+         deqPLXFH6jQwz4RCcfsMM2V7LnwNA+Z90PDXTvp1VsaHcE0D2YMprCyS7dgwvk9aAmQX
+         n9YxMc+toDtD38zeG6iJqGbvKzXpTNPa3xrOb8vre0Vkr3Gkv6aBxo8EyEtX8deDi5YC
+         Y3Ss023STA9V63ZIZcSd43V4EtUroJLhFezlzFW6K1WM9DT89cwpmInxLZFjTlYsBQs7
+         PwPuZr7agQ4sQ80c8/OPFn6w4UPIGF7wELqcsx8MOSQXBtw/WJlIIV+C95/gvLjuvJZL
+         Ov2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720456449; x=1721061249;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RFoxv2StTkAy81FUVFoM8zRGh/jhofwCwoDeHKUmFcQ=;
+        b=KsWqkS0a3OLcGuO60GBNziDCefz8iWlptmXwmeYMEw2v1PjXP8Fcdu9RZ5a6qHzUEw
+         ulj2hczA9GCShVaKy8lmPJlT1eRYMqAFjXlvcntpweS/So758IFQZl1sLBVsU/ES/yZB
+         Scm0Iyo3mOKvenHXeOoN92mAvAnsW0Ggu/6c3H5iVfPif84fMouNOBIviB8O2B3X6vOv
+         aFMDPLT7C+Lob/bObo2L1pGjC1AtAmBC+QY4BOlhhgb12NwIqm5E/iZrpcbn5eUHZQ5c
+         ubVGVuexfyyEC+tc5jQ7eGzoXc2JBTQEO+eq553FYv/eEoX6XUNMJBxzCcmRptJNEwnx
+         1Zcg==
+X-Forwarded-Encrypted: i=1; AJvYcCVT5YnGQMgCwuwkBi2QdZusuvQaQvGLDzAxOsb27/a/Ztk8YpARyoaOn56yVh9Irv6Ur6hbIRANdxWAZjrz+4hEy/LNqkn7D+SIjg==
+X-Gm-Message-State: AOJu0YwSqT0Pagd86CS4WJvpvcNzPLIWkCc/7CMc7CY+cFLdE9AptR0/
+	MH1xbPdhL4DxTVumX3sObxRvhFIVU0aXEbmsHejirJ4pz2K2b3JuXB41iKqJfMc=
+X-Google-Smtp-Source: AGHT+IH+SY7z9YUcEZHvm3NIhA2HWB3anmidOCwHHCYQdqIO1Nns+4jOSBLNnwnl/BLk4XULUJpMlg==
+X-Received: by 2002:a9d:7996:0:b0:703:60b7:5de6 with SMTP id 46e09a7af769-70360b761b0mr6939936a34.27.1720456448709;
+        Mon, 08 Jul 2024 09:34:08 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-79f1900f2bcsm7175785a.32.2024.07.08.09.34.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 09:34:08 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1sQrJX-000TAF-N5;
+	Mon, 08 Jul 2024 13:34:07 -0300
+Date: Mon, 8 Jul 2024 13:34:07 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Will Deacon <will@kernel.org>
+Cc: Joerg Roedel <joro@8bytes.org>, Robin Murphy <robin.murphy@arm.com>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Lu Baolu <baolu.lu@linux.intel.com>, catalin.marinas@arm.com,
+	kernel-team@android.com, Yi Liu <yi.l.liu@intel.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Kalle Valo <kvalo@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Alex Williamson <alex.williamson@redhat.com>, mst@redhat.com,
+	Jason Wang <jasowang@redhat.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+	iommu@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/21] iommu: Refactoring domain allocation interface
+Message-ID: <20240708163407.GC14050@ziepe.ca>
+References: <20240610085555.88197-1-baolu.lu@linux.intel.com>
+ <172009858593.2049787.5200500337719932334.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <172009858593.2049787.5200500337719932334.b4-ty@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240708_082432_303049_015BDD0D 
-X-CRM114-Status: GOOD (  12.85  )
+X-CRM114-CacheID: sfid-20240708_093410_324638_675296BE 
+X-CRM114-Status: GOOD (  14.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,32 +111,46 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Stefan Zegenhagen <stefan.zegenhagen@azg-tech.com> writes:
+On Thu, Jul 04, 2024 at 03:18:56PM +0100, Will Deacon wrote:
+> On Mon, 10 Jun 2024 16:55:34 +0800, Lu Baolu wrote:
+> > The IOMMU subsystem has undergone some changes, including the removal
+> > of iommu_ops from the bus structure. Consequently, the existing domain
+> > allocation interface, which relies on a bus type argument, is no longer
+> > relevant:
+> >
+> >     struct iommu_domain *iommu_domain_alloc(struct bus_type *bus)
+> >
+> > [...]
+> 
+> Applied a few of these to iommu (iommufd/paging-domain-alloc), thanks!
+> 
+> [01/21] iommu: Add iommu_paging_domain_alloc() interface
+>         https://git.kernel.org/iommu/c/a27bf2743cb8
+> [02/21] iommufd: Use iommu_paging_domain_alloc()
+>         https://git.kernel.org/iommu/c/26a581606fab
+> [03/21] vfio/type1: Use iommu_paging_domain_alloc()
+>         https://git.kernel.org/iommu/c/60ffc4501722
+> [04/21] vhost-vdpa: Use iommu_paging_domain_alloc()
+>         https://git.kernel.org/iommu/c/9c159f6de1ae
+> [05/21] drm/msm: Use iommu_paging_domain_alloc()
+>         https://git.kernel.org/iommu/c/45acf35af200
+> 
+> [10/21] wifi: ath10k: Use iommu_paging_domain_alloc()
+>         https://git.kernel.org/iommu/c/d5b7485588df
+> [11/21] wifi: ath11k: Use iommu_paging_domain_alloc()
+>         https://git.kernel.org/iommu/c/ef50d41fbf1c
+> 
+> [14/21] RDMA/usnic: Use iommu_paging_domain_alloc()
+>         https://git.kernel.org/iommu/c/3b10f25704be
+> [15/21] iommu/vt-d: Add helper to allocate paging domain
+>         https://git.kernel.org/iommu/c/9e9ba576c259
 
-> Dear all,
->
-> I've got an 8devices Mango board here with an IPQ6018 WiFi6 built-in
-> via AHB and running kernel 6.6.35 with OpenWRT patches and firmware
-> WLAN.HK.2.5.0.1-03982-QCAHKSWPL_SILICONZ-3.
->
-> Somehow I can't get mesh support running as it should. Tried loading
-> ath11k with frame_mode=1 which leads to association via MGMT frames
-> working fine but afterwards no more frames are received and associated
-> peers time out.
->
-> When loading ath11k with frame_mode=0 (raw), association works well and
-> afterwards I'm able to transmit frames with sufficient rates, but RX
-> hardly works and spews loads of kernel messages.
->
-> Is mesh supposed to be working at all with ath11k cards? (See below for
-> more info.)
+Great, Lu can you please split the remaining by subsystem and try to
+get them to go through subsystem trees? Joerg can take the leftovers
+at rc6/7 or something like that so we can finish this.
 
-We can't give distro support, we only support kernel.org. If you are
-using OpenWrt patches you should ask them, we don't know what changes
-there are.
+I think this is enough that Intel and AMD could now assert that dev is
+non-null?
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Jason
 
