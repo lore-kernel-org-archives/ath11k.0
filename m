@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D5FCC3DA42
-	for <ath11k@archiver.kernel.org>; Wed, 10 Jul 2024 16:25:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDFFBC3DA41
+	for <ath11k@archiver.kernel.org>; Wed, 10 Jul 2024 16:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
 	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9mJkUPt4UJ3Y4ns7HzhFquauADMdAVRbeVW9YGGaYiI=; b=oxOpXkmmItsW7kUipE7u5FHcoc
-	3BlgM/BfwNNOv1++kNtElrlvGsR0rSS37ZgKMpTtUmy4PQGJ7F2H6vVSU3sJQGe9Jezlb1QSf00r2
-	VXOsD/BG0UaBgeqLPds4R2hVzQQxxVQml++GBiSZhQ5HY3v8nqVxxI2evYHO9VVmkgv7wK+bgOjQH
-	MrbRBXrpjAShRcUTpE99+FcYDMfJ808FDqL38yhFpL1dWoeNcvME/BCE/e/yueeLEK0CCnTqurCMv
-	OOZazVwsVvp2RRpq+OWOivBsQ0XUCW2X9sL91EuKyT9Y+FNCvWWyTi1TVYFuDfWmyAb5IoYfCciWt
-	9aAULbxw==;
+	bh=q6Rn/bJCuLHmyP71FdbZN2E5X2MK6Vg0AP2VOTXKTGc=; b=AehulWElHGCb/OVYeVzQmj2BIT
+	BD+WzfWlGGsGS33fBuBKn386q+qbZxDgwL42xsC+SZaX4AoQiJdu/9dSaPrxK2gzD1gInKFHD3fJD
+	SbuHHNz7E+npd0kGtNGP6PJ+IXzuxIzpCGR1mRIwJXMSMkvPKwipexKJsBWox9XgQEnpwv+Yb9IO/
+	2s6zTyDOZrmcDIEk5GICwftp7ygJ8gLAFbi37DrsN+QnZXRn/BbtZdsml09A+fne+Sn0GZIbfcEom
+	hcGlO2c9g6zoINBH/RILPnSCPqfckuW81AXviFPxLOoPNNuyRGCv49nQFHviD3Dxwk5MkS2j6844b
+	ReITmjxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRa8D-0000000B8cX-05b4;
-	Wed, 10 Jul 2024 16:25:25 +0000
+	id 1sRaBk-0000000B9sH-0vn1;
+	Wed, 10 Jul 2024 16:29:04 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sRa8A-0000000B8cB-0VVb
-	for ath11k@lists.infradead.org;
-	Wed, 10 Jul 2024 16:25:23 +0000
+	id 1sRaBS-0000000B9kW-17gx;
+	Wed, 10 Jul 2024 16:29:03 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 6444761A47;
-	Wed, 10 Jul 2024 16:25:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA77C32781;
-	Wed, 10 Jul 2024 16:25:19 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 8D45561489;
+	Wed, 10 Jul 2024 16:28:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2294FC32786;
+	Wed, 10 Jul 2024 16:28:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720628721;
-	bh=I89m5qBk5w3SDf6qsuZSZrcga7EqvfjuLokGSkIuM7E=;
+	s=k20201202; t=1720628925;
+	bh=EgdzbU+3yPs9BQQAdZ0RzeqYD2FW6i/xT6qw+amuVHo=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=L+g+T2M+WYqA26K1VE/ll5FF9JdGR9goUO4OLDh3kImzxIqs4IW+qtmxIVxJjX5aI
-	 DkBLhgvJl0j4yZVhdSj6m9w5XukdjUNObSpHuTyQtAQ7EP8XWUcteRXZONlFViOhc2
-	 q46W+cndtzRbHrhA3HUTgJkhXz+irQS5uIcySnPLGcava0gc5QC1tiD6bOFK8xNqgc
-	 kcZm5lp/P6jsE3CbZ/Mv5h9BFDhvwVIXeY0XaHD4Ucvw1VKClUaNwQ6vHDCowAN7Uc
-	 cNaWDj0GWW9eZageoy0zrquDhodNcgITxt+CGrV64Q6bFgcrAnrNSv/0abwZbjYdgL
-	 yDLY7OahgWuRA==
+	b=oi9/eEpaRAr5Vfg+21ANwLl8HQbTTFLz2DGjObapagXWPGGZWdXCWDc6KBqVOOLUK
+	 poGhOkpOY4Yjvjt8oS+hZPEGWyDuYl7MdlsX5EYqSl/VGSylOs4wGVYPGK5pzLKXMp
+	 wV3Wim0rNsssrtKBJVLSKmNKt073dbr6Lcx553BO8OkHG2ybPhlpbzOWLRuwD/65WV
+	 AliNsL6HAKgkU/bonY4ofnhmoVOr9j1y3V59b4V+CXGXD8CH7h40ctukG4PWLfRVY9
+	 M8HxIT+Z+ztSADWLRHBSb2+bxSk4QQSIHrIQhRFwjV/MqdI2nds0pS0obB8N4Ozjhu
+	 MXCdY0R/AQHLw==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] wifi: ath11k: use work queue to process beacon tx event
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] wifi: ath12k: fix array out-of-bound access in SoC
+ stats
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240626053543.1946-1-quic_kangyang@quicinc.com>
-References: <20240626053543.1946-1-quic_kangyang@quicinc.com>
-To: Kang Yang <quic_kangyang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_kangyang@quicinc.com>
+In-Reply-To: <20240704070811.4186543-2-quic_periyasa@quicinc.com>
+References: <20240704070811.4186543-2-quic_periyasa@quicinc.com>
+To: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+Cc: <ath12k@lists.infradead.org>, <ath11k@lists.infradead.org>,
+ <linux-wireless@vger.kernel.org>, Karthikeyan Periyasamy
+	<quic_periyasa@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <172062871821.1204645.1268185092465319877.kvalo@kernel.org>
-Date: Wed, 10 Jul 2024 16:25:19 +0000 (UTC)
+Message-ID: <172062892254.1204645.1517943007872278005.kvalo@kernel.org>
+Date: Wed, 10 Jul 2024 16:28:43 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240710_092522_249067_A8E6B9D9 
-X-CRM114-Status: UNSURE (   8.96  )
+X-CRM114-CacheID: sfid-20240710_092847_209712_A30DB240 
+X-CRM114-Status: UNSURE (   7.17  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,53 +74,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kang Yang <quic_kangyang@quicinc.com> wrote:
+Karthikeyan Periyasamy <quic_periyasa@quicinc.com> wrote:
 
-> Commit 3a415daa3e8b ("wifi: ath11k: add P2P IE in beacon template")
-> from Feb 28, 2024 (linux-next), leads to the following Smatch static
-> checker warning:
+> Currently, the ath12k_soc_dp_stats::hal_reo_error array is defined with a
+> maximum size of DP_REO_DST_RING_MAX. However, the ath12k_dp_rx_process()
+> function access ath12k_soc_dp_stats::hal_reo_error using the REO
+> destination SRNG ring ID, which is incorrect. SRNG ring ID differ from
+> normal ring ID, and this usage leads to out-of-bounds array access. To
+> fix this issue, modify ath12k_dp_rx_process() to use the normal ring ID
+> directly instead of the SRNG ring ID to avoid out-of-bounds array access.
 > 
-> drivers/net/wireless/ath/ath11k/wmi.c:1742 ath11k_wmi_p2p_go_bcn_ie()
-> warn: sleeping in atomic context
+> Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.0.1-00029-QCAHKSWPL_SILICONZ-1
 > 
-> The reason is that ath11k_bcn_tx_status_event() will directly call might
-> sleep function ath11k_wmi_cmd_send() during RCU read-side critical
-> sections. The call trace is like:
-> 
-> ath11k_bcn_tx_status_event()
-> -> rcu_read_lock()
-> -> ath11k_mac_bcn_tx_event()
->         -> ath11k_mac_setup_bcn_tmpl()
->         ……
->                 -> ath11k_wmi_bcn_tmpl()
->                         -> ath11k_wmi_cmd_send()
-> -> rcu_read_unlock()
-> 
-> Commit 886433a98425 ("ath11k: add support for BSS color change") added the
-> ath11k_mac_bcn_tx_event(), commit 01e782c89108 ("ath11k: fix warning
-> of RCU usage for ath11k_mac_get_arvif_by_vdev_id()") added the RCU lock
-> to avoid warning but also introduced this BUG.
-> 
-> Use work queue to avoid directly calling ath11k_mac_bcn_tx_event()
-> during RCU critical sections. No need to worry about the deletion of vif
-> because cancel_work_sync() will drop the work if it doesn't start or
-> block vif deletion until the running work is done.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> 
-> Fixes: 3a415daa3e8b ("wifi: ath11k: add P2P IE in beacon template")
-> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> Closes: https://lore.kernel.org/all/2d277abd-5e7b-4da0-80e0-52bd96337f6e@moroto.mountain/
-> Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
+2 patches applied to ath-next branch of ath.git, thanks.
 
-177b49dbf9c1 wifi: ath11k: use work queue to process beacon tx event
+e106b7ad13c1 wifi: ath12k: fix array out-of-bound access in SoC stats
+69f253e46af9 wifi: ath11k: fix array out-of-bound access in SoC stats
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240626053543.1946-1-quic_kangyang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20240704070811.4186543-2-quic_periyasa@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
