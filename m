@@ -4,109 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90ADFC3DA59
-	for <ath11k@archiver.kernel.org>; Tue, 16 Jul 2024 02:50:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CCAFC3DA4B
+	for <ath11k@archiver.kernel.org>; Wed, 17 Jul 2024 14:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=P/mNpNZGpIAFzV8lcrI5lpAvdsHULBdYqcZbPE1xBIo=; b=kPO2EE5jYI4Lle7OZGGU8cEEdT
-	5XMhDE/hhephnx8W68H8IRGCgCfceB/OiCoKXktiIo1BbaWPrieO1PsNXon6WCi48MolM+zoXJ9Os
-	FCZ5jX3sUKVi0NHcw3Kg9CHoAvC5bWwxbPCjkqCLp1fUfA2kAI1wt0ID7bJEYJZtxF8HVbmexx1qZ
-	haBDaPqV/qUWlZ85dWszr2Z6hcyHUvSiJheDNWJZUrkgf9AU+uIbHT2NZHzMsIhQ3Nk2z3S0jbB6T
-	JgJS3rNbM+MkzNH8EMQxPmfZQne5gQNanyj+Luv+1COT8teO9rbBiaEKmNWgU/BNgcUXONV5xfyW5
-	Oux2j6TA==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=dQK8yMvfNSGnf1p8xmBjaXGXDPSD2BgTqAqf2SxlXE0=; b=xTCB55XxDP9y+QbRLi1NdHMyee
+	3mo132nOH0RdGyjssunfh5w5r9EwEgbasSKFeU0wiG0vXkwqIIb47D7//KExM4CMY2NLBomiWNaI6
+	l/ZfKTzaZ+6vOQCRxPrrr+35EnU72dNPQ3xMoaEhXhqgRhBvjNxEYS9djIV6gag6sSq+QfWLkUJys
+	0dPD0WjLv1VaMNEbQaotA4T/TS0dKodcrYu/B1ZL1aJwe33CATTZVa4p9eUBux+N3jvbCJFYls8T0
+	4F9LDvNlACiEiGsbEZKGK2TCV5XhOq5sX/srHualGTAuqQUDBm3gSM9NV3rNst9+6p103rfngvSPd
+	2olhXLzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTYGU-000000096Vj-0ehY;
-	Tue, 16 Jul 2024 02:50:06 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1sU5ds-0000000E2HQ-2fMr;
+	Wed, 17 Jul 2024 14:28:28 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sTYGQ-000000096TW-1YD0
+	id 1sU5do-0000000E2G5-0LMq
 	for ath11k@lists.infradead.org;
-	Tue, 16 Jul 2024 02:50:04 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:42954 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1sTYGK-000000006ZN-0feA;
-	Tue, 16 Jul 2024 04:49:56 +0200
-X-SASI-Hits: BODY_SIZE_6000_6999 0.000000, BODY_SIZE_7000_LESS 0.000000,
-	CTE_7BIT 0.000000, DKIM_ALIGNS 0.000000, DKIM_SIGNATURE 0.000000,
-	HTML_00_01 0.050000, HTML_00_10 0.050000, INFO_TLD 0.000000,
-	IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000,
-	MSGID_SAMEAS_FROM_HEX_844412 0.100000, MSG_THREAD 0.000000,
-	MULTIPLE_REAL_RCPTS 0.000000, NO_FUR_HEADER 0.000000, OUTBOUND 0.000000,
-	OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000, SENDER_NO_AUTH 0.000000,
-	SINGLE_URI_IN_BODY 0.000000, SUSP_DH_NEG 0.000000,
-	URI_WITH_PATH_ONLY 0.000000, USER_AGENT 0.000000, __ANY_URI 0.000000,
-	__BODY_NO_MAILTO 0.000000, __BOUNCE_CHALLENGE_SUBJ 0.000000,
-	__BOUNCE_NDR_SUBJ_EXEMPT 0.000000, __BULK_NEGATE 0.000000,
-	__CP_URI_IN_BODY 0.000000, __CT 0.000000, __CTE 0.000000,
-	__CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000, __DKIM_ALIGNS_2 0.000000,
-	__DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000,
-	__FORWARDED_MSG 0.000000, __FRAUD_BODY_WEBMAIL 0.000000,
-	__FRAUD_WEBMAIL 0.000000, __FROM_DOMAIN_NOT_IN_BODY 0.000000,
-	__FROM_NAME_NOT_IN_BODY 0.000000, __FUR_RDNS_SOPHOS 0.000000,
-	__HAS_CC_HDR 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
-	__HAS_REFERENCES 0.000000, __HEADER_ORDER_FROM 0.000000,
-	__HTTPS_URI 0.000000, __INVOICE_MULTILINGUAL 0.000000, __IN_REP_TO 0.000000,
-	__MAIL_CHAIN 0.000000, __MAIL_CHAIN_OLD 0.000000,
-	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
-	__MULTIPLE_RCPTS_TO_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PASSWORD_IN_BODY 0.000000,
-	__PHISH_SPEAR_REASONS 0.000000, __PHISH_SPEAR_REASONS1 0.000000,
-	__PHISH_SPEAR_SUBJECT 0.000000, __PHISH_SPEAR_SUBJ_ALERT 0.000000,
-	__PHISH_SPEAR_SUBJ_PREDICATE 0.000000, __RCVD_PASS 0.000000,
-	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
-	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
-	__SCAN_D_NEG_HEUR2 0.000000, __SINGLE_URI_TEXT 0.000000,
-	__SUBJ_ALPHA_END 0.000000, __SUBJ_ALPHA_NEGATE 0.000000,
-	__SUBJ_REPLY 0.000000, __TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
-	__URI_IN_BODY 0.000000, __URI_MAILTO 0.000000, __URI_NOT_IMG 0.000000,
-	__URI_NO_WWW 0.000000, __URI_NS 0.000000, __URI_WITH_PATH 0.000000,
-	__USER_AGENT 0.000000, __X_MAILSCANNER 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2024.7.16.21520
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=P/mNpNZGpIAFzV8lcrI5lpAvdsHULBdYqcZbPE1xBIo=;
-	b=TBDbV1JhZJZ6JUWvmR9y3T1huWPPYu3S2zabZDAZk7eTy3CzPd/CfP5VCrTf/fKKbsn0jWIg8iKC6Bmo4YQ81DdKZPSa1JMWf9gSdTTsO8rcvIKcpQwYn9/+KV8tsk7A1U5k9lW3OcxPIhMLGl5kwe7/KNegjApVKKWH5PcPey4=;
-Message-ID: <420ae7cf-7b7a-4350-9dbb-00f00485acb8@dd-wrt.com>
-Date: Tue, 16 Jul 2024 04:49:29 +0200
+	Wed, 17 Jul 2024 14:28:26 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-59f9f59b88cso2292513a12.3
+        for <ath11k@lists.infradead.org>; Wed, 17 Jul 2024 07:28:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1721226502; x=1721831302; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dQK8yMvfNSGnf1p8xmBjaXGXDPSD2BgTqAqf2SxlXE0=;
+        b=A+Ci+fsxDK2nTLewouy4O+0TH8Fr8CQbmo3vQokaw2NtrndRviNh9gak9vD2XPf+HC
+         CiBGOdN6GSX4zukToQX9oij3t9Y5T7cji5W0fVtIbBY8kSBubQsvyu/bNKVfdFtTtj3A
+         sIq8mY5wWWrUR8sXqQTfMTx1GgU9l5aZvPH2lt7/01yibFxdteD56SxreQFrndM3mf9d
+         Na3V96O9Es+R38TBt1rCINXntXfJRmqNHAp37ngUu6xwuDziSTI26oC2ml1FK8pQ8do2
+         3tAnyrOsfOnusAsNGOITpgvlkQorbxrfkM+GcPaHkaQ6xnzCIUoq3w9ifn7jtSQNCboR
+         PeAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721226502; x=1721831302;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dQK8yMvfNSGnf1p8xmBjaXGXDPSD2BgTqAqf2SxlXE0=;
+        b=U6bZTOCRvgIek2780KnCFxs1wtjj+GS82ZMhndemPa6pYe/n6jR1pIiVWEiIsV6hSY
+         Yv5//hrwHEefljxOF1ZC5G0SJfOE6hrBh08ZeNEv4EePg8cE5KBn0UNuy6TY2hk9n+PJ
+         9KGNkOG/t+M2CmbySA8sb0M+FyCsmJQJ+eKM0Q/ZcxdHY/SVUIgca7SibR17NVDNgeaa
+         AUgd9nq68Q0VSccDgl/HW5a89vYXEUKemLgNCozQ4k2bxIb4tinUJ9E6sDElFVwSS+WL
+         g0DKBeI+91QrlrAL2lMrY9Nx1H//rkjLTdoWCw1E7xxt1SO+y9g4LIhRslFG48ouFeRJ
+         QeBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVxpVhbvZhH7bsnm21MnxqdKPsyUhFKeYoa51yD7PqaAi1EKRQexvwUfwZFc+Dsi/5P/P7v0L5fgkZ6EUZCcsupBoRaZSAqQvZYeA==
+X-Gm-Message-State: AOJu0YzGjUMBzBa0N82rgGPjG8NIccOpfiTwGvX1RYKUgKzi+5/fLtQC
+	lkAD8fYEgTAhf8N0S/2JqGcyX2BHYDPxBydQWUunYyFPmdcQniEp4nhKwTR48u4=
+X-Google-Smtp-Source: AGHT+IEK/bN6IEN43Wu/w+EWQWY6ZbHG9Yf5L4yiFAlZ6pQdzhejiqRLZguK2GdSYUetyx0LtYORFA==
+X-Received: by 2002:a50:aad2:0:b0:57d:3791:e8e4 with SMTP id 4fb4d7f45d1cf-5a05ce11c1emr1053460a12.32.1721226501700;
+        Wed, 17 Jul 2024 07:28:21 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:6724:3f6f:5a36:d95d])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b268a276bsm7011640a12.62.2024.07.17.07.28.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jul 2024 07:28:21 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Linus Torvalds <torvalds@linux-foundation.org>
+Subject: [PATCH v2] Kconfig: reduce the amount of power sequencing noise
+Date: Wed, 17 Jul 2024 16:28:03 +0200
+Message-ID: <20240717142803.53248-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [RFC PATCH] ath11k: fix peer addition/deletion error on sta band
- migration
-To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>,
- ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <20220603164559.27769-1-ansuelsmth@gmail.com>
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-In-Reply-To: <20220603164559.27769-1-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1sTYFx-000EWf-B3
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost.localdomain ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1sTYFx-000EWf-B3; Tue, 16 Jul 2024 04:49:33 +0200
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240715_195002_619647_4E43F654 
-X-CRM114-Status: GOOD (  51.10  )
+X-CRM114-CacheID: sfid-20240717_072824_418324_EC7DDE4C 
+X-CRM114-Status: GOOD (  13.76  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,147 +100,104 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Am 03.06.2022 um 18:45 schrieb Christian 'Ansuel' Marangi:
-> This patch try to fix the following error.
->
-> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.561227] ath11k c000000.wifi: peer already added vdev id 0 req, vdev id 1 present
-> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.561282] ath11k c000000.wifi: Failed to add peer: 28:c2:1f:xx:xx:xx for VDEV: 0
-> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.568053] ath11k c000000.wifi: Failed to add station: 28:c2:1f:xx:xx:xx for VDEV: 0
-> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan2: STA 28:c2:1f:xx:xx:xx IEEE 802.11: Could not add STA to kernel driver
-> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan2: STA 28:c2:1f:xx:xx:xx IEEE 802.11: did not acknowledge authentication response
-> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan1: AP-STA-DISCONNECTED 28:c2:1f:xx:xx:xx
-> Wed Jun  1 22:19:31 2022 daemon.info hostapd: wlan1: STA 28:c2:1f:xx:xx:xx IEEE 802.11: disassociated due to inactivity
-> Wed Jun  1 22:19:32 2022 daemon.info hostapd: wlan1: STA 28:c2:1f:xx:xx:xx IEEE 802.11: deauthenticated due to inactivity (timer DEAUTH/REMOVE)
->
-> To repro this:
-> - Have 2 Wifi with the same bssid and pass on different band (2.4 and
-> 5GHz)
-> - Enable 802.11r Fast Transaction with same mobility domain
-> - FT Protocol: FT over the Air
->  From a openwrt system issue the command (with the correct mac)
-> ubus call hostapd.wlan1 wnm_disassoc_imminent '{"addr":"28:C2:1F:xx:xx:xx"}'
-> Notice the log printing the errors.
->
-> The cause of this error has been investigated and we found that this is
-> related to the WiFi Fast Transaction feature. We observed that this is
-> triggered when the router tells the device to change band. In this case
-> the device first auth to the other band and then the disconnect path
-> from the prev band is triggered.
-> This is problematic with the current rhash implementation since the
-> addrs is used as key and the logic of "adding first, delete later"
-> conflicts with the rhash logic.
-> In fact peer addition will fail since the peer is already added and with
-> that fixed a peer deletion will cause unitended effect by removing the
-> peer just added.
->
-> Current solution to this is to add additional logic to the peer delete,
-> make sure we are deleting the correct peer taken from the rhash
-> table (and fallback to the peer list) and for the peer add logic delete
-> the peer entry for the rhash list before adding the new one (counting as
-> an error only when a peer with the same vlan_id is asked to be added).
->
-> With this change, a sta can correctly transition from 2.4GHz and 5GHZ
-> with no drop and no error are printed.
->
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
->
-> Fixes: 7b0c70d92a43 ("ath11k: Add peer rhash table support")
-> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
-> ---
->
-> Some additional comments external to this patch.
-> I tried to find different way to fix this...
-> One of them would be mod the logic of the rhash and using as a key both
-> the vlan_id and the addr but this is problematic for the function
-> where ath11k_peer_find_by_addr is used as vlan_id is not always available.
->
-> I honestly think a correct solution would be have a rhash list per vdev_id
-> or per mac_id but again this is problematic for some function that just handles
-> data and have only the addr as a way to identify the peer.
->
-> So unless some change are done to the firmware to provide the vlan_id in the
-> msdu data this to me seems to be the only solution to correctly handle this case.
->
-> Another solution I tried was to add to the peer some additional info and put
-> the rhash addition in the peer delete logic by passing the "to-be-added peer" to
-> the peer to delete but I notice that it's unreliable since it can happent that
-> the new peer hasn't been mapped at the time the peer delete is called.
->
-> So this is really how to handle the rhash table in this corner case.
-> Considering how peer are handled in theory it should never happen to have
-> dangling peer that are not deleted.
->
-> Hoping this is not too much of an hack and we find a good solution for this
-> problem.
->
->   drivers/net/wireless/ath/ath11k/peer.c | 30 ++++++++++++++++++++++----
->   1 file changed, 26 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
-> index 9e22aaf34b88..1ae7af02c364 100644
-> --- a/drivers/net/wireless/ath/ath11k/peer.c
-> +++ b/drivers/net/wireless/ath/ath11k/peer.c
-> @@ -302,6 +302,21 @@ static int __ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, const u8 *addr)
->   	spin_lock_bh(&ab->base_lock);
->   
->   	peer = ath11k_peer_find_by_addr(ab, addr);
-> +	/* Check if the found peer is what we want to remove.
-> +	 * While the sta is transitioning to another band we may
-> +	 * have 2 peer with the same addr assigned to different
-> +	 * vdev_id. Make sure we are deleting the correct peer.
-> +	 */
-> +	if (peer && peer->vdev_id == vdev_id)
-> +		ath11k_peer_rhash_delete(ab, peer);
-> +
-> +	/* Fallback to peer list search if the correct peer can't be found.
-> +	 * Skip the deletion of the peer from the rhash since it has already
-> +	 * been deleted in peer add.
-> +	 */
-> +	if (!peer)
-> +		peer = ath11k_peer_find(ab, vdev_id, addr);
-> +
->   	if (!peer) {
->   		spin_unlock_bh(&ab->base_lock);
->   		mutex_unlock(&ab->tbl_mtx_lock);
-> @@ -312,8 +327,6 @@ static int __ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, const u8 *addr)
->   		return -EINVAL;
->   	}
->   
-> -	ath11k_peer_rhash_delete(ab, peer);
-> -
->   	spin_unlock_bh(&ab->base_lock);
->   	mutex_unlock(&ab->tbl_mtx_lock);
->   
-> @@ -372,8 +385,17 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
->   	spin_lock_bh(&ar->ab->base_lock);
->   	peer = ath11k_peer_find_by_addr(ar->ab, param->peer_addr);
->   	if (peer) {
-> -		spin_unlock_bh(&ar->ab->base_lock);
-> -		return -EINVAL;
-> +		if (peer->vdev_id == param->vdev_id) {
-> +			spin_unlock_bh(&ar->ab->base_lock);
-> +			return -EINVAL;
-> +		}
-> +
-> +		/* Assume sta is transitioning to another band.
-> +		 * Remove here the peer from rhash.
-> +		 */
-> +		mutex_lock(&ar->ab->tbl_mtx_lock);
-> +		ath11k_peer_rhash_delete(ar->ab, peer);
-> +		mutex_unlock(&ar->ab->tbl_mtx_lock);
->   	}
->   	spin_unlock_bh(&ar->ab->base_lock);
->   
+Kconfig will ask the user twice about power sequencing: once for the QCom
+WCN power sequencing driver and then again for the PCI power control
+driver using it.
 
-after doing some research for finding a weired ath11k firmware crash i 
-found out that this patch is the source for the problem
-it seems that in case that multiple bssid's are in use (not for roaming 
-purpose) the wifi crashes on peer delete under some circumstances
-originally this issue was discovered by another party. so please check 
-the following link for more details and logs 
-https://github.com/openwrt/openwrt/issues/14693
+Let's automate the selection of PCI_PWRCTL by introducing a new hidden
+symbol: HAVE_PWRCTL which should be selected by all platforms that have
+the need to include PCI power control code (right now: only ARCH_QCOM).
 
-Sebastian
+The pwrseq-based PCI pwrctl driver itself will then be selected by the
+drivers binding to devices that may require external handling of the
+power-up sequence (currently: ath11k and ath12k) based on the value
+of HAVE_PWRCTL.
+
+Make all PCI pwrctl Kconfig symbols hidden so that no questions are
+asked during configuration.
+
+Fixes: 4565d2652a37 ("PCI/pwrctl: Add PCI power control core code")
+Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
+Closes: https://lore.kernel.org/lkml/CAHk-=wjWc5dzcj2O1tEgNHY1rnQW63JwtuZi_vAZPqy6wqpoUQ@mail.gmail.com/
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+I'm sending it as a single patch for more clarity as it most likely will
+end up being picked up by Linus directly.
+
+Changes in v2:
+- introduce new HAVE_PWRCTL symbol and select it from ARCH_QCOM
+- select PCI_PWRCTL from the relevant drivers
+
+ arch/arm64/Kconfig.platforms            |  1 +
+ drivers/net/wireless/ath/ath11k/Kconfig |  1 +
+ drivers/net/wireless/ath/ath12k/Kconfig |  1 +
+ drivers/pci/pwrctl/Kconfig              | 11 +++--------
+ 4 files changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index d1461335e78f..53d9f4bfd6fe 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -266,6 +266,7 @@ config ARCH_QCOM
+ 	bool "Qualcomm Platforms"
+ 	select GPIOLIB
+ 	select PINCTRL
++	select HAVE_PWRCTL
+ 	help
+ 	  This enables support for the ARMv8 based Qualcomm chipsets.
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index 27f0523bf967..2e935d381b6b 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -24,6 +24,7 @@ config ATH11K_PCI
+ 	select MHI_BUS
+ 	select QRTR
+ 	select QRTR_MHI
++	select PCI_PWRCTL_PWRSEQ if HAVE_PWRCTL
+ 	help
+ 	  This module adds support for PCIE bus
+ 
+diff --git a/drivers/net/wireless/ath/ath12k/Kconfig b/drivers/net/wireless/ath/ath12k/Kconfig
+index eceab9153e98..f64e7c322216 100644
+--- a/drivers/net/wireless/ath/ath12k/Kconfig
++++ b/drivers/net/wireless/ath/ath12k/Kconfig
+@@ -7,6 +7,7 @@ config ATH12K
+ 	select MHI_BUS
+ 	select QRTR
+ 	select QRTR_MHI
++	select PCI_PWRCTL_PWRSEQ if HAVE_PWRCTL
+ 	help
+ 	  Enable support for Qualcomm Technologies Wi-Fi 7 (IEEE
+ 	  802.11be) family of chipsets, for example WCN7850 and
+diff --git a/drivers/pci/pwrctl/Kconfig b/drivers/pci/pwrctl/Kconfig
+index f1b824955d4b..54589bb2403b 100644
+--- a/drivers/pci/pwrctl/Kconfig
++++ b/drivers/pci/pwrctl/Kconfig
+@@ -1,17 +1,12 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ 
+-menu "PCI Power control drivers"
++config HAVE_PWRCTL
++	bool
+ 
+ config PCI_PWRCTL
+ 	tristate
+ 
+ config PCI_PWRCTL_PWRSEQ
+-	tristate "PCI Power Control driver using the Power Sequencing subsystem"
++	tristate
+ 	select POWER_SEQUENCING
+ 	select PCI_PWRCTL
+-	default m if ((ATH11K_PCI || ATH12K) && ARCH_QCOM)
+-	help
+-	  Enable support for the PCI power control driver for device
+-	  drivers using the Power Sequencing subsystem.
+-
+-endmenu
+-- 
+2.43.0
 
 
