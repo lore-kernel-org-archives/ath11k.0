@@ -4,87 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C5A8C3DA60
-	for <ath11k@archiver.kernel.org>; Wed, 17 Jul 2024 20:29:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DF77C3DA49
+	for <ath11k@archiver.kernel.org>; Thu, 18 Jul 2024 11:58:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=BvMOdXxPx7FQVfR+b1ORo9g1/OmWkFB/985dirZ0xhw=; b=Pkw/jXJHo3jkN2QwZy5RIv2f7m
-	6gov3YHOIHWLJK9svbBc9+C/CCV05ecccHfLC/1pGRBWIrUC+cWKUY62pTMkScfnT0y4dhSDWyGeu
-	FPIG+J+nA8l8fecb2j0qxciwUMRtAxpBAuXeUT8DVQrxkN7pdfBYCUO0eEIIST8dJyDudSMltFQGb
-	pSFxmJUF6B1dZ6l5yilwhVzZy94+ANyqkOM2XkGUn2He2AwtIwanymptK3+EYis6uVj2atb6j/086
-	QRixOs3mM0poBTJLpsUDSninPzT8463p82GZqEWXSpHlSS1QJ7XHKXhLEnvjUifvu89jh1KeMMSt6
-	PwoR33Zg==;
+	bh=eT3/r8iq9vh5IHb+laarDBOv4FqNaSgzXd7Frm5ubA4=; b=HTK1BBbBLPPmQnFX9W7mxJ+9nZ
+	I4GFV37Hatkk4M1bRcmxG/cK6dsm5P7we7s9YoNyRITDfQOCkSGQ+Wek7/4bpo3wwdyiKzuB4wJHZ
+	s3Omg5Bc2nEDYxN6KE9GslJbcHI6g6w/95N0at0Dy/DThjgYjqq+iDTUeXZb3xCqYiz2/cUlnl0yX
+	VNVRiexsTMee1pspHhBQo1gsPJBTFfEcNyy9BYk2jxpyjU5g4RNmAx9jJnJbomCgmx5bsl0CKjcG9
+	hWOFSJrMbDNUPo3DPLkm/Vg+uF1JbSlxURtfqH7GZ9MoNcxzHyWIKlOr4S4UkUbBMFkExikeTn1dq
+	eZNYDZIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUBHL-0000000Eqfa-2E3J;
-	Wed, 17 Jul 2024 20:29:35 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1sUPmL-0000000Gu92-3ZM5;
+	Thu, 18 Jul 2024 11:58:33 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUBHI-0000000Eqdz-3rbu
+	id 1sUPmJ-0000000Gu8B-19fp
 	for ath11k@lists.infradead.org;
-	Wed, 17 Jul 2024 20:29:34 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46HFq1rK028343;
-	Wed, 17 Jul 2024 20:29:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BvMOdXxPx7FQVfR+b1ORo9g1/OmWkFB/985dirZ0xhw=; b=GBsuSi1+USXJT3fI
-	eQOQkWFVvvrwzJg+Iqi6pi0uCToyYJYHe2VDVW3qcxSQFqkdL//NljIPlBezh30j
-	N2+5EKQeuGZi/sWFQz/8l8NnU6teSsdZJJ1IDXoO3tkwPCjuP+FF/RpmtZ3D/70k
-	6lkDuh46v6KLQTi7cLAK1NOvzWJtXnj70qt/lwN9WTQ113sAfYheV6IPv+4PRs6s
-	hxgwYf0t7R8jAb5eQvbvVzKtleC+Wo30UfnXDJZJiH4s+Ngi6qsXgDNb171Cbqhq
-	hFRE5HYRitUyrY5CGqh9DaiiZPEadVCwdKRsTf2SDuIPdvFLHdbhyu1ZU+VOmciC
-	O4ZikQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwfpkn33-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jul 2024 20:29:29 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46HKTSiJ022091
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jul 2024 20:29:28 GMT
-Received: from [10.48.247.102] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 17 Jul
- 2024 13:29:27 -0700
-Message-ID: <89c39516-38b5-4085-9aa0-42b9dd0c0d89@quicinc.com>
-Date: Wed, 17 Jul 2024 13:29:27 -0700
+	Thu, 18 Jul 2024 11:58:32 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-426717a2d12so1669015e9.0
+        for <ath11k@lists.infradead.org>; Thu, 18 Jul 2024 04:58:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1721303909; x=1721908709; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eT3/r8iq9vh5IHb+laarDBOv4FqNaSgzXd7Frm5ubA4=;
+        b=STk0tuknfpd66z9mnNll+aZ0+Dizs7w8N0BGy5C3YQ8ZJhzqUoUBcCTlPhhnFFc07a
+         nmVf9Z0wgrcvv2CHUnEtqluj5f+dPQU6hO2kV6IcpPmfuKoixm5lvzpBP2s32a3gYU/e
+         I3T4tIFl8Dvc5UmyHHT5uPRXJaGcFdCE50bj5PnYBBlHMmu9zbV9Phk815hP4UPj7rLw
+         GHTFfd1uy6F7afxswfmMCPAfkyVPuwVF6qJvGOWnuafq81insMW1Cj5K+x3ADwqccD5U
+         c4B8BAo9QG0pHKT55gsSHNWuYix8pjKwtAard59367CpS4T+mIc+J+hFlA5yhdLpkEVb
+         FUWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721303909; x=1721908709;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eT3/r8iq9vh5IHb+laarDBOv4FqNaSgzXd7Frm5ubA4=;
+        b=DGGhTAP5x7/yoYcoVDjJJMNbw3u2iudFKEpO2cM9+HrDsWdp95b34PG7HpgTMhy45J
+         cen3naAccQ2Fn874QyZVOHhf3v1GPTCMOk/qOjx4rgSyBEpKubnpc6lfTwuB1l5dXDit
+         qdRNDAFfAccu2lst379jHI79aFw8Or/8zEcooo6pF3UuLEijRKF5fsEOhL2C14qlIWnA
+         IA1ZGao2c0wLq+XVPioN3/nFwmGOZLLuEmwYTrDhReR2xMwj8dw9cX+pFN3ZXTWrOZHB
+         043nuULe0Nn1MtOrDp88eGfocMO6XEDO1SIymsjUEmNE+j7ruqkpO59F1q28rgm64enf
+         WNJw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKV/kSyjHdGnRZNL8C0jFGauXFvdhbtvN3C50+fqfo9VqI4Wf6I+NbbXHIxUxFnNhs3gRYpmfJrisHzGlL9viMoPKMu9ahkulg4A==
+X-Gm-Message-State: AOJu0Ywq6Sgf4ZeArvpq0LnMWFz/Vmy3B9rsFI1m/hJ0PilBzsAEfhq5
+	6VxwyNJojZIYfFPTusdBdkF1TuzdqMafjbsIqjmzVImySxNpWaui+gNjQc9EM7Y=
+X-Google-Smtp-Source: AGHT+IHpOFhVVOR50WDCPfi6DXrjDJkGmwaqmpgdsmAo5+FCsTxtL42b6u3Rfj/yngP1z/p7fq9EnA==
+X-Received: by 2002:a05:600c:4751:b0:426:5cc7:82f with SMTP id 5b1f17b1804b1-427d2b527demr5295885e9.13.1721303909431;
+        Thu, 18 Jul 2024 04:58:29 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:58d4:2f84:5fcd:8259])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-368467a34dcsm2258703f8f.109.2024.07.18.04.58.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jul 2024 04:58:29 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Linus Torvalds <torvalds@linux-foundation.org>
+Subject: Re: [PATCH v2] Kconfig: reduce the amount of power sequencing noise
+Date: Thu, 18 Jul 2024 13:58:27 +0200
+Message-ID: <172130382340.64067.7765392027721457700.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240717142803.53248-1-brgl@bgdev.pl>
+References: <20240717142803.53248-1-brgl@bgdev.pl>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] wifi: ath11k: Add firmware coredump collection support
-Content-Language: en-US
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>, Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20240605034639.3942219-1-quic_miaoqing@quicinc.com>
- <874j8xb4m5.fsf@kernel.org>
- <870d1749-6f6c-4ca9-b852-7a511e70103e@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <870d1749-6f6c-4ca9-b852-7a511e70103e@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: l993qM9sCa9qbK9el2OnnVlutYhDjVTW
-X-Proofpoint-GUID: l993qM9sCa9qbK9el2OnnVlutYhDjVTW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-17_15,2024-07-17_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 clxscore=1015 bulkscore=0 mlxscore=0
- adultscore=0 phishscore=0 spamscore=0 malwarescore=0 mlxlogscore=963
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407170154
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240717_132933_250121_C7D61D69 
-X-CRM114-Status: GOOD (  12.45  )
+X-CRM114-CacheID: sfid-20240718_045831_342087_93D890A3 
+X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,33 +105,30 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 7/12/2024 2:38 AM, Miaoqing Pan wrote:
-> On 7/11/2024 12:20 AM, Kalle Valo wrote:
->> Miaoqing Pan <quic_miaoqing@quicinc.com> writes:
->> I feel that the QMI changes should be in a separat patch and explaining
->> in detail what they are about. Didn't review those now as there's no
->> explanation.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+
+On Wed, 17 Jul 2024 16:28:03 +0200, Bartosz Golaszewski wrote:
+> Kconfig will ask the user twice about power sequencing: once for the QCom
+> WCN power sequencing driver and then again for the PCI power control
+> driver using it.
 > 
-> Minor changes for updating 'iaddr' definition. IMO, don't need a 
-> separate patch.
-> struct target_mem_chunk {
->          u32 prev_size;
->          u32 prev_type;
->          dma_addr_t paddr;
-> -       u32 *vaddr;
-> -       void __iomem *iaddr;
-> +       union {
-> +               u32 *vaddr;
-> +               void __iomem *iaddr;
-> +       } v;
->   };
+> Let's automate the selection of PCI_PWRCTL by introducing a new hidden
+> symbol: HAVE_PWRCTL which should be selected by all platforms that have
+> the need to include PCI power control code (right now: only ARCH_QCOM).
+> 
+> [...]
 
-Putting something into a union isn't minor.
-You should justify the reason for doing it and defend why it is safe to do it.
+I'm picking this up into my pwrseq/for-current branch. I'll be off next week
+so I want to give the autobuilders the chance to play with this and I'll send
+a PR to Linus with another pwrseq fix I have queued tomorrow evening.
 
-And note that if you make it an anonymous union then most, if not all, of the
-code changes are unnecessary.
+Let me know if there are any objections.
 
-/jeff
+[1/1] Kconfig: reduce the amount of power sequencing noise
+      commit: ed70aaac7c359540d3d8332827fa60b6a45e15f2
 
+Best regards,
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
