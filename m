@@ -4,54 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FB88C3DA59
-	for <ath11k@archiver.kernel.org>; Fri, 19 Jul 2024 07:56:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6034C3DA59
+	for <ath11k@archiver.kernel.org>; Mon, 22 Jul 2024 08:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=; b=DACiCm4GloecRRvi8iUde6dogY
-	dRrPiSSSGGX/7DW+ylIwgSZvxJ8lOQTRrh5AEqsuN5tJ9XtTUQqjaIePYlOFDRJbDElO/AjJTiyhK
-	bwLtsbQ1QTh8DTu5DnvLDnJHVzzXdRwu3C4q24YnLezEfElOvksn8gpDqvktfTZwQie+KM1lWZWcw
-	m3lLw3+fj4jEHyW3/CrSlJL/utcKqKy2aiOkUUk5MsTt83+wsB9XJQzHjs2y17J9+EW4/qYMqLlzX
-	R6ylz5HfayOfl1/5ff6eL0N7wDB6gLFggvCPATfpSsc+l5wFk9DH4uJCKcYfcRzlSGPn5K3yVxxux
-	l1JcJy+Q==;
+	bh=ChscJKp3Om3FoG8SjFzTAmp7diEPSUZN/W3lUPFw6JM=; b=eqe4LFAwy6mQNCQCMmp/KhO9rP
+	HFXSgrbUyIBXkS+pNigcmcN7nks4liSpJ8bouiPKXKdxbjiBbf3/OBIchmgoyZW1CH0VpGzQcO6eQ
+	w8Ri4o8fn/6TJIF84FWeMTHiKGEVLcjDLU6z2QDQhUGiD8GLotfMYTy0QvpIx0FroVBv275QGJznr
+	Q294OXvw0cldo4nJ55kdJ2kG0OKL5/8Z37AJwS8yf+ExA+an3Df1YgGPkw/sjnroY0v9jKBfGnZHn
+	UNm6ci9EqwQJpi+Q59KS0LvQDk4C79WlljSGxN0qBtGY6FgssHL+d/EJ+Fl37E+mw5H0glaFM2YtE
+	pipfpO+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUiTZ-00000001yTY-3LXL;
-	Fri, 19 Jul 2024 07:56:25 +0000
-Received: from mail.originateinc.pl ([217.61.97.94])
+	id 1sVnyQ-00000008nAi-0Xnu;
+	Mon, 22 Jul 2024 08:00:46 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sUiTG-00000001yPv-2bIp
+	id 1sVnyO-00000008n9v-0fT4
+	for ath11k@bombadil.infradead.org;
+	Mon, 22 Jul 2024 08:00:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=ChscJKp3Om3FoG8SjFzTAmp7diEPSUZN/W3lUPFw6JM=; b=DcgiBS6PDapiAkUWLIweSg10e6
+	TWN0I1ueCcwvi4tPRFJSKFWczABwyi6qSUTv7VvsIoyteWNTTXeuYwptU/Og3MRcvk/aL5frI3ueP
+	3fXsltsQgk8ADBf20Wqav04MkeT+C5IB+cd+nK1rFV9ZBAr5YUtLGllWTZfPp426rr/R66pH2cRfR
+	8YJQBDW56Y/wbBkUsz9yf3lPVO4ALqJEAoitZ0fCSI8FMNmQXP/sudJDIxSvhjLznf9ru1kVIEsWC
+	r1eSzJvusKueR6za0M0lGAC9dMIirKrdjURx/ylcCUvMmuneSdXMFrRC02kd60oLJ93eHYbcZE4JY
+	wbuQNVqQ==;
+Received: from mail.creationavenue.pl ([217.61.16.184])
+	by casper.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sVnyK-00000005d0t-2YUn
 	for ath11k@lists.infradead.org;
-	Fri, 19 Jul 2024 07:56:24 +0000
-Received: by mail.OriginateInc.pl (Postfix, from userid 1001)
-	id 6A833865BE; Fri, 19 Jul 2024 08:55:57 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=OriginateInc.pl;
-	s=mail; t=1721375764;
-	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=;
+	Mon, 22 Jul 2024 08:00:42 +0000
+Received: by mail.creationavenue.pl (Postfix, from userid 1002)
+	id A134783B3B; Mon, 22 Jul 2024 09:57:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=creationavenue.pl;
+	s=mail; t=1721635077;
+	bh=ChscJKp3Om3FoG8SjFzTAmp7diEPSUZN/W3lUPFw6JM=;
 	h=Date:From:To:Subject:From;
-	b=En3h0IjAbXbSya4O0JNcAr9HFOnQ+ObXyDOSkhrKfa2JxInUq846SQptQ5znRbRc+
-	 eiSy898P0+tztr+A3ZMYkgYpvE5JVhsT5ny1m08KYtzcrzLuPNfY4ZWOfZ0mxhBFFG
-	 c12P3h6qRxOyuI9vB2pvH2Z0B77UxifkM+c8F2iUAkvOxEBU+5INoMUHjvANWkr+Q4
-	 GG8Fr4tLXBpBZMcn6Ar8TE6oE080JxRGhknG5Vi+CCzJAZyKJliQ5RugHd9ApxopvC
-	 bjQUDSGDovnxyGi466HX/aO5707sd1GlvrACRVQtMZ1iz+eFKFRvqT3YOENLVRM8KQ
-	 Vd6Y6v6tzkWzg==
-Received: by mail.OriginateInc.pl for <ath11k@lists.infradead.org>; Fri, 19 Jul 2024 07:55:42 GMT
-Message-ID: <20240719074502-0.1.e2.1exo5.0.qrzzceaiah@OriginateInc.pl>
-Date: Fri, 19 Jul 2024 07:55:42 GMT
-From: "Kamil Tralewski" <kamil.tralewski@originateinc.pl>
+	b=VvzC9VfgAnmKd1+75dvf+nb9fcjdNR+AUVig3l0oJUfI+lV9v5nw2zibHbI7bSlbu
+	 1uIjXHsZ3JPszEp/ncppe4qTWZVtp+GY8Rwl80l3yrGpP0sSLBK0ZF1i6gCXOJpHJG
+	 UWNM1ssHfBHXcm1MCI3M8FxYZKhCxVg1nfNCjuckNPOhtB7dDAvir/8nPkrCPtq31l
+	 7uTJR21ONrlpQDbi2WjCzEasFB3rtDzwkVrmAqkBV7c/F90ORv/2wIYDwCf6PXJxLH
+	 MsN6lKO+wMYsCxGci5w5suM130OdDPDm5ytiQ/paGQLw/TwMaIjElCQulwtXabaPuI
+	 jweiB/M+TgHBQ==
+Received: by mail.creationavenue.pl for <ath11k@lists.infradead.org>; Mon, 22 Jul 2024 07:56:03 GMT
+Message-ID: <20240722084501-0.1.4x.prhx.0.k3vmzml5rc@creationavenue.pl>
+Date: Mon, 22 Jul 2024 07:56:03 GMT
+From: "Karol Winiarski" <karol.winiarski@creationavenue.pl>
 To: <ath11k@lists.infradead.org>
 Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.OriginateInc.pl
+X-Mailer: mail.creationavenue.pl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240719_005606_808236_1633C2FE 
-X-CRM114-Status: UNSURE (   1.76  )
+X-CRM114-CacheID: sfid-20240722_090041_010831_9617A36F 
+X-CRM114-Status: UNSURE (   0.03  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,5 +97,5 @@ Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
 
 
 Pozdrawiam
-Kamil Tralewski
+Karol Winiarski
 
