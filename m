@@ -4,85 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9235CC3DA5D
-	for <ath11k@archiver.kernel.org>; Tue, 23 Jul 2024 00:11:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C44DC3DA61
+	for <ath11k@archiver.kernel.org>; Sat, 27 Jul 2024 10:00:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Xc/7c8EyA7NuKLSZkl8JnxYlf9iDnVc1uk3+MRq8y+I=; b=vQFC2VN2E3zjCwTEsUKFiZYWGv
-	NYH6JHaa2YHCudmp9/drMTbbx3LGEDCs9wglr247shdz1y8ESPaM41VyltXiukA/VKrqT9G1TOWx7
-	pzeoA24iixSnBr7xNzjr9tZrJHZY3qRMkf2GHEb5czjgrO+5fv/x2xdsclUoqrcnsy0g2MBbNeVLf
-	W4vZ879yJKs5ks1vyHPTZF4Z688MewvPFlihKs8Ek/clRvEsXNtj3DII63v/ud+BzgafsMYG96uKm
-	TlhnvOCDDSCenc7qBQY9yYVwTvePCWqIW1zynCczcNDTknifLvI4BzAnj4sp/zxU7enRVOYBLxRJA
-	pkXIRePw==;
+	bh=OFbtf2rb8LQbBQsG+YxU/GYv6bh3Zq86eK1TSFfuEV8=; b=SOgzPSXZOMz8QZNgws7yE6f7Eb
+	WG1ljdmZEpX3jw5Xumrc7OVrduymiIcKOYXOXmhjra0UmyEQokoK+72fr6oLH2YbNQQu+5DM1vNTK
+	07V5qspv6GiDODa6A/RnawL/Ft6GrddED+GuaRR7mL1xMjq4qpSmbefH3ojuAEEx/yR4K4umnpoZR
+	SK75ywjLdYk4zXxD2KrrI3eHAMz/AnZhifl+nFDc7wwpFwN+te/c7+pbvpo2ioFqd9VBjA9Tr9U9U
+	Z/0AorfRE81M2YhzFFw/1u57DbbIknFbpRkkscdwELC+ifrkpGzisY3rAZg0R41Ulye+ltHwIr028
+	G9Lu0F9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sW37P-0000000AvpO-0YE3;
-	Tue, 23 Jul 2024 00:11:03 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1sXeDp-00000006SY0-1lYn;
+	Sat, 27 Jul 2024 10:00:17 +0000
+Received: from mail.as201155.net ([185.84.6.188])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sW37M-0000000Avou-14tX
+	id 1sXeDm-00000006SX2-0o8S
 	for ath11k@lists.infradead.org;
-	Tue, 23 Jul 2024 00:11:02 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46MAn9Xd003255;
-	Tue, 23 Jul 2024 00:10:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Xc/7c8EyA7NuKLSZkl8JnxYlf9iDnVc1uk3+MRq8y+I=; b=G3BrmQYFihRgqY4g
-	jF3xyP/BZVHC+GHIwCoz6vSHvZOxyBuKqtvCWQeZ7yf7PveybPwdn0qvSlQ1Fhg4
-	qkObnfZ8Mn6dIzqfm+2N1Hkl4dKJiGJh9y2vEukf76iLX7cbvDxF0r4QNEjbRIcK
-	c9OSFL/XcXoc/Od1r9QvmjIldUlJG+mIFY37ihf8d6zgUY8vKmMgu6oMRJFjkvCq
-	vHUkERYjwo6vqkBnaFRz/uE0XOHKmE7ouqDEfB0B5MI5TblcJxq+nOywBbrAGbDe
-	xisjaW43357ghY/XYto9n/34vhxoj5Fv2cKTP5KgK1LK6ESC4Y1MuaJkuckidbKx
-	dQ8VLQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40g6h8w0re-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jul 2024 00:10:57 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46N0Auep008278
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jul 2024 00:10:56 GMT
-Received: from [10.111.176.36] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 22 Jul
- 2024 17:10:56 -0700
-Message-ID: <a1ed48fb-8b90-4cfb-81b9-dc2c5cc49cde@quicinc.com>
-Date: Mon, 22 Jul 2024 17:10:55 -0700
+	Sat, 27 Jul 2024 10:00:16 +0000
+Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:48362 helo=webmail.newmedia-net.de)
+	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
+	(Exim 4.97.1)
+	(envelope-from <s.gottschall@dd-wrt.com>)
+	id 1sXeDa-000000000zF-1wpG;
+	Sat, 27 Jul 2024 12:00:03 +0200
+X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_1000_LESS 0.000000,
+	BODY_SIZE_2000_LESS 0.000000, BODY_SIZE_5000_LESS 0.000000,
+	BODY_SIZE_500_599 0.000000, BODY_SIZE_7000_LESS 0.000000, CTE_7BIT 0.000000,
+	DKIM_ALIGNS 0.000000, DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000,
+	HTML_00_10 0.050000, IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000,
+	MSGID_SAMEAS_FROM_HEX_844412 0.100000, MSG_THREAD 0.000000,
+	MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_FOUND 0.000000,
+	NO_CTA_URI_FOUND 0.000000, NO_FUR_HEADER 0.000000, NO_URI_HTTPS 0.000000,
+	OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000,
+	SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000, USER_AGENT 0.000000,
+	__ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
+	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
+	__BULK_NEGATE 0.000000, __CT 0.000000, __CTE 0.000000,
+	__CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000, __DKIM_ALIGNS_2 0.000000,
+	__DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000,
+	__FORWARDED_MSG 0.000000, __FROM_DOMAIN_NOT_IN_BODY 0.000000,
+	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
+	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000,
+	__HEADER_ORDER_FROM 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
+	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
+	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
+	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
+	__MULTIPLE_RCPTS_TO_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
+	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
+	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_SPEAR_SUBJECT 0.000000,
+	__PHISH_SPEAR_SUBJ_ALERT 0.000000, __PHISH_SPEAR_SUBJ_PREDICATE 0.000000,
+	__RCVD_PASS 0.000000, __REFERENCES 0.000000, __SANE_MSGID 0.000000,
+	__SCAN_D_NEG 0.000000, __SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
+	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_END 0.000000,
+	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
+	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
+	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
+	__URI_NO_MAILTO 0.000000, __URI_NO_WWW 0.000000, __USER_AGENT 0.000000,
+	__X_MAILSCANNER 0.000000
+X-SASI-Probability: 8%
+X-SASI-RCODE: 200
+X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2024.7.27.92417
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:Message-ID; bh=OFbtf2rb8LQbBQsG+YxU/GYv6bh3Zq86eK1TSFfuEV8=;
+	b=sijTrzUrD8D+ASeNn+hlf4rrR6aU6OxQuJUQvaoPg+EnExZGDlIA2JeJ4tnWbB4FrezhAu5JNGLrT0Tg2GHXiu+QkMPqdElxVWyI+U0bi9uk04BNODFt2j7uzVIq7dsj3Kkur/YX4L6Xo9/q9Sgp235Ir3Esoc2F23CF8thhkOw=;
+Message-ID: <dd2e9f4b-2cc8-486d-a6cc-2f7f77217109@dd-wrt.com>
+Date: Sat, 27 Jul 2024 11:59:40 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] wifi: ath11k: Add firmware coredump collection support
-Content-Language: en-US
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>, <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20240712100442.1790499-1-quic_miaoqing@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240712100442.1790499-1-quic_miaoqing@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [RFC PATCH] ath11k: fix peer addition/deletion error on sta band
+ migration
+From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
+To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>,
+ ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+References: <20220603164559.27769-1-ansuelsmth@gmail.com>
+ <420ae7cf-7b7a-4350-9dbb-00f00485acb8@dd-wrt.com>
+In-Reply-To: <420ae7cf-7b7a-4350-9dbb-00f00485acb8@dd-wrt.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: JTaYKtg2sEg5Bqa1UpTrFS591zcvPtRM
-X-Proofpoint-GUID: JTaYKtg2sEg5Bqa1UpTrFS591zcvPtRM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-22_17,2024-07-22_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 mlxscore=0 malwarescore=0 phishscore=0 bulkscore=0
- mlxlogscore=999 suspectscore=0 lowpriorityscore=0 clxscore=1015
- impostorscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2407220180
+Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
+X-SA-Exim-Connect-IP: 127.0.0.1
+X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
+X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
+X-NMN-MailScanner-Information: Please contact the ISP for more information
+X-NMN-MailScanner-ID: 1sXeDH-000FWd-Uw
+X-NMN-MailScanner: Found to be clean
+X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
+X-Received: from localhost.localdomain ([127.0.0.1] helo=webmail.newmedia-net.de)
+	by webmail.newmedia-net.de with esmtp (Exim 4.72)
+	(envelope-from <s.gottschall@dd-wrt.com>)
+	id 1sXeDH-000FWd-Uw; Sat, 27 Jul 2024 11:59:44 +0200
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240722_171100_338300_CF6B7731 
-X-CRM114-Status: GOOD (  18.73  )
+X-CRM114-CacheID: sfid-20240727_030014_417744_C8898297 
+X-CRM114-Status: UNSURE (   7.35  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,59 +118,19 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 7/12/2024 3:04 AM, Miaoqing Pan wrote:
-> In case of firmware assert snapshot of firmware memory is essential for
-> debugging. Add firmware coredump collection support for PCI bus.
-> Collect RDDM and firmware paging dumps from MHI and pack them in TLV
-> format and also pack various memory shared during QMI phase in separate
-> TLVs.  Add necessary header and share the dumps to user space using dev
-> coredump framework. Coredump collection is disabled by default and can
-> be enabled using menuconfig. Dump collected for a radio is 55 MB
-> approximately.
-> 
-> The changeset is mostly copied from:
-> https://lore.kernel.org/all/20240325183414.4016663-1-quic_ssreeela@quicinc.com/.
-> 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04358-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> 
-> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
-> ---
-> v2: fix implicit declaration of function 'vzalloc'.
-> v3: fix vmalloc-out-of-bounds and remove CONFIG_ATH11K_COREDUMP.
-...
-> @@ -102,8 +102,10 @@ struct target_mem_chunk {
->  	u32 prev_size;
->  	u32 prev_type;
->  	dma_addr_t paddr;
-> -	u32 *vaddr;
-> -	void __iomem *iaddr;
-> +	union {
-> +		u32 *vaddr;
-> +		void __iomem *iaddr;
-> +	} v;
->  };
 
-replicating late-arriving v2 comments here:
-
-On 7/12/2024 2:38 AM, Miaoqing Pan wrote:
-> On 7/11/2024 12:20 AM, Kalle Valo wrote:
->> Miaoqing Pan <quic_miaoqing@quicinc.com> writes:
->> I feel that the QMI changes should be in a separat patch and explaining
->> in detail what they are about. Didn't review those now as there's no
->> explanation.
->
-> Minor changes for updating 'iaddr' definition. IMO, don't need a
-> separate patch.
-
-Putting something into a union isn't minor.
-You should justify the reason for doing it and defend why it is safe to do it.
-
-And note that if you make it an anonymous union then most, if not all, of the
-code changes are unnecessary.
-
-/jeff
+Am 16.07.2024 um 04:49 schrieb Sebastian Gottschall:
+> I honestly think a correct solution would be have a rhash list per 
+> vdev_id
+> or per mac_id but again this is problematic for some function that 
+> just handles
+> data and have only the addr as a way to identify the peer. 
 
 
-
+regarding this comment. i made a patch which exactly does that thing and 
+solves the problem. there are just 2 functions which
+have the problem. but both can be handled in a easy way. these are wmi 
+events for kick station etc. in such a case i just kick them from all
+mac's
 
 
