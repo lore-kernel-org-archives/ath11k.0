@@ -4,106 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C44DC3DA61
-	for <ath11k@archiver.kernel.org>; Sat, 27 Jul 2024 10:00:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3C9FC3DA61
+	for <ath11k@archiver.kernel.org>; Tue, 30 Jul 2024 04:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OFbtf2rb8LQbBQsG+YxU/GYv6bh3Zq86eK1TSFfuEV8=; b=SOgzPSXZOMz8QZNgws7yE6f7Eb
-	WG1ljdmZEpX3jw5Xumrc7OVrduymiIcKOYXOXmhjra0UmyEQokoK+72fr6oLH2YbNQQu+5DM1vNTK
-	07V5qspv6GiDODa6A/RnawL/Ft6GrddED+GuaRR7mL1xMjq4qpSmbefH3ojuAEEx/yR4K4umnpoZR
-	SK75ywjLdYk4zXxD2KrrI3eHAMz/AnZhifl+nFDc7wwpFwN+te/c7+pbvpo2ioFqd9VBjA9Tr9U9U
-	Z/0AorfRE81M2YhzFFw/1u57DbbIknFbpRkkscdwELC+ifrkpGzisY3rAZg0R41Ulye+ltHwIr028
-	G9Lu0F9Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=jtjUJSY//tY8yqrRByjjGVRQLK/zybmFE3xgYTPWH+U=; b=vjHO/VTTvuYPjesZj7lH+spU6O
+	SGhwuI/gLV1j0UcaIM3hB7immAeDXBNrKMmtOrKaCdSHKMvBn41Rk+Kdizshh1NxkWvYGrPCpb3D6
+	NB6+xzxDol+mbJLBbK3xqjtnkBV8pYtl3tdKIVFFSjd58RPS+1BnDT2UFPT0Swc0/M1J/hiDUpIsr
+	RlFc0uR5yPqrwkYTTLwaTaU2Oc7dWfe9dGc8n0FdXunGNHiOzg8B4abjGrSf0xJ4Jt3cvvzOtv9No
+	1rJCdkp4iBlv+p3bNN39/UHlW83fwxzzBCz8hG1pyAnDnY8BZ5WkCrDwlSYN/KHNISLfDZUSxfSV7
+	/uMcsllQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sXeDp-00000006SY0-1lYn;
-	Sat, 27 Jul 2024 10:00:17 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1sYe24-0000000DX65-0RsR;
+	Tue, 30 Jul 2024 04:00:16 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sXeDm-00000006SX2-0o8S
+	id 1sYe21-0000000DX4O-038q
 	for ath11k@lists.infradead.org;
-	Sat, 27 Jul 2024 10:00:16 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:48362 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1sXeDa-000000000zF-1wpG;
-	Sat, 27 Jul 2024 12:00:03 +0200
-X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_1000_LESS 0.000000,
-	BODY_SIZE_2000_LESS 0.000000, BODY_SIZE_5000_LESS 0.000000,
-	BODY_SIZE_500_599 0.000000, BODY_SIZE_7000_LESS 0.000000, CTE_7BIT 0.000000,
-	DKIM_ALIGNS 0.000000, DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000,
-	HTML_00_10 0.050000, IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000,
-	MSGID_SAMEAS_FROM_HEX_844412 0.100000, MSG_THREAD 0.000000,
-	MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_FOUND 0.000000,
-	NO_CTA_URI_FOUND 0.000000, NO_FUR_HEADER 0.000000, NO_URI_HTTPS 0.000000,
-	OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000,
-	SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000, USER_AGENT 0.000000,
-	__ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
-	__BULK_NEGATE 0.000000, __CT 0.000000, __CTE 0.000000,
-	__CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000, __DKIM_ALIGNS_2 0.000000,
-	__DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000,
-	__FORWARDED_MSG 0.000000, __FROM_DOMAIN_NOT_IN_BODY 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
-	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000,
-	__HEADER_ORDER_FROM 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
-	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
-	__MULTIPLE_RCPTS_TO_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_SPEAR_SUBJECT 0.000000,
-	__PHISH_SPEAR_SUBJ_ALERT 0.000000, __PHISH_SPEAR_SUBJ_PREDICATE 0.000000,
-	__RCVD_PASS 0.000000, __REFERENCES 0.000000, __SANE_MSGID 0.000000,
-	__SCAN_D_NEG 0.000000, __SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
-	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_END 0.000000,
-	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
-	__URI_NO_MAILTO 0.000000, __URI_NO_WWW 0.000000, __USER_AGENT 0.000000,
-	__X_MAILSCANNER 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2024.7.27.92417
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:Message-ID; bh=OFbtf2rb8LQbBQsG+YxU/GYv6bh3Zq86eK1TSFfuEV8=;
-	b=sijTrzUrD8D+ASeNn+hlf4rrR6aU6OxQuJUQvaoPg+EnExZGDlIA2JeJ4tnWbB4FrezhAu5JNGLrT0Tg2GHXiu+QkMPqdElxVWyI+U0bi9uk04BNODFt2j7uzVIq7dsj3Kkur/YX4L6Xo9/q9Sgp235Ir3Esoc2F23CF8thhkOw=;
-Message-ID: <dd2e9f4b-2cc8-486d-a6cc-2f7f77217109@dd-wrt.com>
-Date: Sat, 27 Jul 2024 11:59:40 +0200
+	Tue, 30 Jul 2024 04:00:14 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46TLh3Hx023699;
+	Tue, 30 Jul 2024 04:00:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=jtjUJSY//tY8yqrRByjjGV
+	RQLK/zybmFE3xgYTPWH+U=; b=G14Xk6/3QBCI9f3nT1Jc/jMuq0TGAfQqKrMnho
+	VftCW78FmQhH2ES1QDzyTHWXFv9+c3sI7ydS5GlD4aFlJA67sgsSZRnNqzNardx9
+	8GJonjzmtd3ejftrrpEqohX0vhyRyr+t8gq2/6f96AXJ32Nrn1nBvWHK5w82wCBz
+	wNO8YYhvmHBYz7M2xqpEsD1CX77Gf75wBw+I8BYh0Rjmtpf+N0PDk+rMLTTvOwxO
+	9aXRV7MHLMidpC0kDIWCM2zQBOfGnWVmUpyjdOwrDQVRjIvGWskKuiaqOQ3+vA6x
+	lWYNqetxv9UIMsdN1UXGWE57334M7YZ4Y4A+Vge54nDSxBbQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mrytx3yk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jul 2024 04:00:08 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46U4071M006891
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jul 2024 04:00:07 GMT
+Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 29 Jul 2024 21:00:05 -0700
+From: Miaoqing Pan <quic_miaoqing@quicinc.com>
+To: <kvalo@kernel.org>
+CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
+Subject: [PATCH v4 1/2] wifi: ath11k: use union for vaddr and iaddr in target_mem_chunk
+Date: Tue, 30 Jul 2024 11:59:54 +0800
+Message-ID: <20240730035955.788768-1-quic_miaoqing@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [RFC PATCH] ath11k: fix peer addition/deletion error on sta band
- migration
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>,
- ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <20220603164559.27769-1-ansuelsmth@gmail.com>
- <420ae7cf-7b7a-4350-9dbb-00f00485acb8@dd-wrt.com>
-In-Reply-To: <420ae7cf-7b7a-4350-9dbb-00f00485acb8@dd-wrt.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1sXeDH-000FWd-Uw
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost.localdomain ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1sXeDH-000FWd-Uw; Sat, 27 Jul 2024 11:59:44 +0200
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MSwph4o5w9D1A3uw5jJxcj-bhJEiFGe7
+X-Proofpoint-GUID: MSwph4o5w9D1A3uw5jJxcj-bhJEiFGe7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-30_03,2024-07-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 suspectscore=0 bulkscore=0 adultscore=0 spamscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=999
+ mlxscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407300027
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240727_030014_417744_C8898297 
-X-CRM114-Status: UNSURE (   7.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240729_210013_211164_5D57BA90 
+X-CRM114-Status: GOOD (  19.99  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,19 +95,155 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+The value of 'ab->hw_params.fixed_mem_region' determins that
+only one variable 'vaddr' or 'iaddr' is used in target_mem_chunk.
+So use union instead, easy to check whether the memory is set
+or not.
 
-Am 16.07.2024 um 04:49 schrieb Sebastian Gottschall:
-> I honestly think a correct solution would be have a rhash list per 
-> vdev_id
-> or per mac_id but again this is problematic for some function that 
-> just handles
-> data and have only the addr as a way to identify the peer. 
+Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04358-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
+Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/qmi.c | 45 ++++++++++++++-------------
+ drivers/net/wireless/ath/ath11k/qmi.h |  8 +++--
+ 2 files changed, 29 insertions(+), 24 deletions(-)
 
-regarding this comment. i made a patch which exactly does that thing and 
-solves the problem. there are just 2 functions which
-have the problem. but both can be handled in a easy way. these are wmi 
-events for kick station etc. in such a case i just kick them from all
-mac's
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 1bc648920ab6..ee32027badcf 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1955,19 +1955,21 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
+ 	int i;
+ 
+ 	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
+-		if ((ab->hw_params.fixed_mem_region ||
+-		     test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
+-		     ab->qmi.target_mem[i].iaddr)
+-			iounmap(ab->qmi.target_mem[i].iaddr);
++		if (!ab->qmi.target_mem[i].v.iaddr)
++			continue;
+ 
+-		if (!ab->qmi.target_mem[i].vaddr)
++		if (ab->hw_params.fixed_mem_region ||
++		    test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
++			iounmap(ab->qmi.target_mem[i].v.iaddr);
++			ab->qmi.target_mem[i].v.iaddr = NULL;
+ 			continue;
++		}
+ 
+ 		dma_free_coherent(ab->dev,
+ 				  ab->qmi.target_mem[i].prev_size,
+-				  ab->qmi.target_mem[i].vaddr,
++				  ab->qmi.target_mem[i].v.vaddr,
+ 				  ab->qmi.target_mem[i].paddr);
+-		ab->qmi.target_mem[i].vaddr = NULL;
++		ab->qmi.target_mem[i].v.vaddr = NULL;
+ 	}
+ }
+ 
+@@ -1984,22 +1986,22 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
+ 		/* Firmware reloads in coldboot/firmware recovery.
+ 		 * in such case, no need to allocate memory for FW again.
+ 		 */
+-		if (chunk->vaddr) {
++		if (chunk->v.vaddr) {
+ 			if (chunk->prev_type == chunk->type &&
+ 			    chunk->prev_size == chunk->size)
+ 				continue;
+ 
+ 			/* cannot reuse the existing chunk */
+ 			dma_free_coherent(ab->dev, chunk->prev_size,
+-					  chunk->vaddr, chunk->paddr);
+-			chunk->vaddr = NULL;
++					  chunk->v.vaddr, chunk->paddr);
++			chunk->v.vaddr = NULL;
+ 		}
+ 
+-		chunk->vaddr = dma_alloc_coherent(ab->dev,
+-						  chunk->size,
+-						  &chunk->paddr,
+-						  GFP_KERNEL | __GFP_NOWARN);
+-		if (!chunk->vaddr) {
++		chunk->v.vaddr = dma_alloc_coherent(ab->dev,
++						    chunk->size,
++						    &chunk->paddr,
++						    GFP_KERNEL | __GFP_NOWARN);
++		if (!chunk->v.vaddr) {
+ 			if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
+ 				ath11k_dbg(ab, ATH11K_DBG_QMI,
+ 					   "dma allocation failed (%d B type %u), will try later with small size\n",
+@@ -2055,10 +2057,10 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
+ 			}
+ 
+ 			ab->qmi.target_mem[idx].paddr = res.start;
+-			ab->qmi.target_mem[idx].iaddr =
++			ab->qmi.target_mem[idx].v.iaddr =
+ 				ioremap(ab->qmi.target_mem[idx].paddr,
+ 					ab->qmi.target_mem[i].size);
+-			if (!ab->qmi.target_mem[idx].iaddr)
++			if (!ab->qmi.target_mem[idx].v.iaddr)
+ 				return -EIO;
+ 
+ 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
+@@ -2068,7 +2070,7 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
+ 			break;
+ 		case BDF_MEM_REGION_TYPE:
+ 			ab->qmi.target_mem[idx].paddr = ab->hw_params.bdf_addr;
+-			ab->qmi.target_mem[idx].vaddr = NULL;
++			ab->qmi.target_mem[idx].v.iaddr = NULL;
+ 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
+ 			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
+ 			idx++;
+@@ -2083,18 +2085,19 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
+ 				if (hremote_node) {
+ 					ab->qmi.target_mem[idx].paddr =
+ 							res.start + host_ddr_sz;
+-					ab->qmi.target_mem[idx].iaddr =
++					ab->qmi.target_mem[idx].v.iaddr =
+ 						ioremap(ab->qmi.target_mem[idx].paddr,
+ 							ab->qmi.target_mem[i].size);
+-					if (!ab->qmi.target_mem[idx].iaddr)
++					if (!ab->qmi.target_mem[idx].v.iaddr)
+ 						return -EIO;
+ 				} else {
+ 					ab->qmi.target_mem[idx].paddr =
+ 						ATH11K_QMI_CALDB_ADDRESS;
++					ab->qmi.target_mem[idx].v.iaddr = NULL;
+ 				}
+ 			} else {
+ 				ab->qmi.target_mem[idx].paddr = 0;
+-				ab->qmi.target_mem[idx].vaddr = NULL;
++				ab->qmi.target_mem[idx].v.iaddr = NULL;
+ 			}
+ 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
+ 			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
+index 7e06d100af57..63c957a7075e 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.h
++++ b/drivers/net/wireless/ath/ath11k/qmi.h
+@@ -1,7 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #ifndef ATH11K_QMI_H
+@@ -102,8 +102,10 @@ struct target_mem_chunk {
+ 	u32 prev_size;
+ 	u32 prev_type;
+ 	dma_addr_t paddr;
+-	u32 *vaddr;
+-	void __iomem *iaddr;
++	union {
++		u32 *vaddr;
++		void __iomem *iaddr;
++	} v;
+ };
+ 
+ struct target_info {
+-- 
+2.25.1
 
 
