@@ -4,61 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD133C52D6D
-	for <ath11k@archiver.kernel.org>; Tue,  6 Aug 2024 07:47:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D024C3DA64
+	for <ath11k@archiver.kernel.org>; Tue,  6 Aug 2024 07:48:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
 	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Ni30t3dPOIHgEm9AFGeqlMLDzh2J3uxy9boU8a3n8PY=; b=AqN5POTsjxjqZf1r8UboK9yRCP
-	nzKgf9ODXNUprRHRC7DXcqtp2uq5e+fq7K1z866r8mmGycldwXr+Wd6AxTzwdaVHVDbS+5+ep4D/G
-	hC83xgdOSPDFEXV5eq2zy0iRmw5IVqtaH4Pcz+ADvEV5uQLlr9O2FZccyXRfEq/ej4tfNGQ+qBBul
-	13tQpUM9Lx/dqFqJZp3ppDukgxTDpvpNywHxGpKXAGqgm+m4WlAPl0Gb9p2OKvp0NrLvS7aWxT1QI
-	VfVEvBnK9Mum1kVGRy3T957sc0fjq0hDTLwD/g8QFtblcaCKtiz7f5y3dSQ0EWShpalx+Bg5nEM25
-	R12g2e1Q==;
+	bh=tvvDVASg/0q/Cq3qOgamxdXOSxn6nAzGZHMcTBZzwzg=; b=XzQ1Rz1Mzzr+nuC4L8wxozvMTw
+	2akMdrgrKS8q5ZE1Ao7WFzG6KCcoDfEkMhw8Nh2StjMvu2/OEzJi95BGtz6vdmTnFj59IW+EFwe+y
+	n0RRFLwY2sdaX2NKYH/+5Dx4DZhEjBMZGp+tktbhuUyEROUdU1vphxKsHi75nGODXeMACzkZClRKU
+	ORPh1PH6h0o9x6MrCNCvKIutUvD7pB93gNfHgu9pVowTEGyGKIH9G6F7cJCgAYYvNKHbXY4zjOAE8
+	dLue/HaRyU6qhYsRZcPrpNeoZFEYpCqZfbwAXKkUS0Zw/LZc+DuHu2Y+Hz4Pvk1QGEq3srgbytHg2
+	d1UDr9XA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbEv7-00000000pvG-1xMX;
-	Tue, 06 Aug 2024 07:47:49 +0000
+	id 1sbEvQ-00000000pz2-2jvh;
+	Tue, 06 Aug 2024 07:48:08 +0000
 Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbEv3-00000000pua-0eV2
+	id 1sbEvN-00000000pyF-36N6
 	for ath11k@lists.infradead.org;
-	Tue, 06 Aug 2024 07:47:47 +0000
+	Tue, 06 Aug 2024 07:48:07 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 03EDECE0E03;
-	Tue,  6 Aug 2024 07:47:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31EC1C32786;
-	Tue,  6 Aug 2024 07:47:41 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 0CB64CE0B2E;
+	Tue,  6 Aug 2024 07:48:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E777C32786;
+	Tue,  6 Aug 2024 07:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722930462;
-	bh=1UbbIFrv0mSiqPTE1GE0Op9VJp8q3naA0OnSJVR7moY=;
+	s=k20201202; t=1722930483;
+	bh=1wCvb7Ty0PMbbRUTsNPREmzlyJkTiNLHPiiOiYmJ0e4=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=BK+lr9354AvBISUEwphTDYVGIpSbPOz1Ux+by7a8qyHDDnGsgWB4Aox77Jh+OuhoQ
-	 ASeWcKFprBZTAp/subGlK3Nb3nARr+XWp0Cck6BUGsibw3w5Vzkw5aJWN/VhJ9OK4S
-	 dXRptJ/bjX1KQPJF36kQEN+/CPn2fLXpo6/KJb9f4QepJ2tbXnVHDf/2xrD0XDAWA9
-	 e2HOfLzAdrjO8EExvh24rEaybpODu7bfULz6mJ4mEXReLHdS+r+pp2gI3gF+mmgcm/
-	 UhK4LiI74YzDKFVV9tfZsfdO6KBnh+uxecRZg7VBHTm+4y99YW3gjS5zDN3hk9UM/O
-	 d33AvQdA1qqgw==
+	b=UIc1fxWYeE3WRm1AuMFVKhGwfZJRBMbdVClAlpyORtAvjQDGjoi8Kv4feoXH/sEx2
+	 xTA+JaImWXem+BtgocM5gNwNOWc7dn5WLMv2GN3HltoE/OkU9E4pXEb8DCGoZd/G9L
+	 O3J1KEdw8CnOjs4XtP52PvI4U/etl87NF/BeDIE5cwGchU23He0j3yROk1PTsFjlxx
+	 7OgxQfCMvFPMLfTuvMfIi5zKwY+evEYpM+/jG+/77fJ/G37KJ/PZko8lqYXh1W4cEX
+	 AkZd81zyyHcN3/+lInBkkmKM+zzZ3ycF3LOQp+McaAV44aXnrMXKr4WMe/nti4cEg6
+	 +4/2d0O1diWTg==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2] wifi: ath11k: add tx delay to TSF
+Subject: Re: [PATCH] wifi: ath11k: support HTT extended receive rate debug
+ stats
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1686636183-1026-1-git-send-email-quic_haric@quicinc.com>
-References: <1686636183-1026-1-git-send-email-quic_haric@quicinc.com>
-To: Hari Chandrakanthan <quic_haric@quicinc.com>
-Cc: <quic_kvalo@quicinc.com>, <ath11k@lists.infradead.org>,
- <linux-wireless@vger.kernel.org>,
- Hari Chandrakanthan <quic_haric@quicinc.com>
+In-Reply-To: <20230613071212.22180-1-quic_karm@quicinc.com>
+References: <20230613071212.22180-1-quic_karm@quicinc.com>
+To: Karthik M <quic_karm@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Karthik M <quic_karm@quicinc.com>,
+ Sathishkumar Muruganandam <quic_murugana@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <172293045918.3540390.14108368692909594030.kvalo@kernel.org>
-Date: Tue,  6 Aug 2024 07:47:41 +0000 (UTC)
+Message-ID: <172293048067.3540390.7860114421698371244.kvalo@kernel.org>
+Date: Tue,  6 Aug 2024 07:48:02 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240806_004745_395911_A845C09A 
-X-CRM114-Status: GOOD (  12.55  )
+X-CRM114-CacheID: sfid-20240806_004806_164742_C4663BD9 
+X-CRM114-Status: UNSURE (   4.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,55 +75,63 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hari Chandrakanthan <quic_haric@quicinc.com> wrote:
+Karthik M <quic_karm@quicinc.com> wrote:
 
-> In ath11k AP, the TSF timestamp mod the beacon interval does not vary
-> and is close to 0.
-> It is expected to be around 384us for 2 GHz and  54us for 5 GHz/6 GHz.
+> ATH11K_DBG_HTT_EXT_STATS_PDEV_RX_RATE_EXT  =  30
 > 
-> The value of the TSF timer at TBTT is a multiple of the beacon interval,
-> while the value of the TSF timestamp in the beacon accounts for medium access
-> delay and physical implementation-specific delays through the PHY,
-> which could cause the value of the TSF timestamp mod the beacon interval
-> to vary.
+> HTT stats, HTT_RX_PDEV_RATE_EXT_STATS has the rx stats info of
+> the extended 80MHz, mainly 80+80 and 160MHz modes.
 > 
-> An AP sending a beacon frame shall set the value of the beacon frame’s
-> timestamp so that it equals the value of the STA’s TSF timer at the
-> time that the data symbol containing the first bit of the timestamp
-> is transmitted to the PHY plus the transmitting STA’s delays through
-> its local PHY from the MAC-PHY interface to its interface with the WM.
+> Usage:
+> echo 30 > /sys/kernel/debug/ieee80211/phyx/ath11k/htt_stats_type
+> cat /sys/kernel/debug/ieee80211/phyx/ath11k/htt_stats
 > 
-> In ath11k the physical implementation-specific delays were not accounted
-> for TSF timer and it resulted in incorrent TSF timer values.
+> HTT_RX_PDEV_RATE_EXT_STATS_TLV:
+> rssi_mcast = -70
+> rssi_mgmt = 6
+> rssi_chain_ext[0] =  0:128, 1:128, 2:128, 3:128,
+> rssi_chain_ext[1] =  0:128, 1:128, 2:128, 3:128,
+> rssi_chain_ext[2] =  0:128, 1:128, 2:128, 3:128,
+> rssi_chain_ext[3] =  0:128, 1:128, 2:128, 3:128,
+> rssi_chain_ext[4] =  0:128, 1:128, 2:128, 3:128,
+> rssi_chain_ext[5] =  0:128, 1:128, 2:128, 3:128,
+> rssi_chain_ext[6] =  0:128, 1:128, 2:128, 3:128,
+> rssi_chain_ext[7] =  0:128, 1:128, 2:128, 3:128,
 > 
-> Add the physical implementation-specific delays in the TSF of beacon
-> template and probe response, so that the TSF holds proper values in the
-> beacon and probe response.
+> rx_per_chain_rssi_ext_in_dbm[0] =  0:0, 1:0, 2:0, 3:0,
+> rx_per_chain_rssi_ext_in_dbm[1] =  0:0, 1:0, 2:0, 3:0,
+> rx_per_chain_rssi_ext_in_dbm[2] =  0:0, 1:0, 2:0, 3:0,
+> rx_per_chain_rssi_ext_in_dbm[3] =  0:0, 1:0, 2:0, 3:0,
+> rx_per_chain_rssi_ext_in_dbm[4] =  0:-128, 1:-128, 2:-128, 3:-128,
+> rx_per_chain_rssi_ext_in_dbm[5] =  0:-128, 1:-128, 2:-128, 3:-128,
+> rx_per_chain_rssi_ext_in_dbm[6] =  0:-128, 1:-128, 2:-128, 3:-128,
+> rx_per_chain_rssi_ext_in_dbm[7] =  0:-128, 1:-128, 2:-128, 3:-128,
+> rx_mcs_ext =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_stbc_ext =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_gi_ext[0] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_gi_ext[1] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_gi_ext[2] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_gi_ext[3] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> ul_ofdma_rx_mcs_ext =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> ul_ofdma_rx_gi_ext[0] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> ul_ofdma_rx_gi_ext[1] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> ul_ofdma_rx_gi_ext[2] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> ul_ofdma_rx_gi_ext[3] =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_11ax_su_txbf_mcs_ext =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_11ax_mu_txbf_mcs_ext =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
+> rx_11ax_dl_ofdma_mcs_ext =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0, 13:0,
 > 
-> tx delay for 5 GHz/6 GHz:
-> 20(lsig)+2(service)+32(6mbps, 24 bytes) = 54us + 2us(MAC/BB DELAY)
-> tx delay for 2.4 GHz:
-> 144 us (LPREAMBLE) + 48 (PLCP Header) + 192 (1Mbps, 24 bytes)
-> = 384 us + 2us(MAC/BB DELAY)
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-01184-QCAHKSWPL_SILICONZ-1
 > 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Hari Chandrakanthan <quic_haric@quicinc.com>
+> Signed-off-by: Sathishkumar Muruganandam <quic_murugana@quicinc.com>
+> Signed-off-by: Karthik M <quic_karm@quicinc.com>
 
 Dropping this, please rebase if still needed.
-
-error: patch failed: drivers/net/wireless/ath/ath11k/core.h:365
-error: drivers/net/wireless/ath/ath11k/core.h: patch does not apply
-error: patch failed: drivers/net/wireless/ath/ath11k/mac.c:1437
-error: drivers/net/wireless/ath/ath11k/mac.c: patch does not apply
-error: patch failed: drivers/net/wireless/ath/ath11k/wmi.c:8627
-error: drivers/net/wireless/ath/ath11k/wmi.c: patch does not apply
-stg import: Diff does not apply cleanly
 
 Patch set to Changes Requested.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1686636183-1026-1-git-send-email-quic_haric@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230613071212.22180-1-quic_karm@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
