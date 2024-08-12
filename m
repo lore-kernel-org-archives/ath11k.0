@@ -4,99 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3EFBC3DA4A
-	for <ath11k@archiver.kernel.org>; Sat, 10 Aug 2024 15:41:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 552C5C3DA7F
+	for <ath11k@archiver.kernel.org>; Mon, 12 Aug 2024 15:07:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=14Lw9ijUqufXCJHVSEUKjfux6K/+0xEy2ibtU/QVJd8=; b=DfNqhE95PuPgdk711YRPiPic5+
-	Y0U1/B4nAB41Ba8pu3IAUZZxlUGxr3dTedKLXB3fLcq/82ugFVMEC7AinCXRTh+bROdLa0PFvOUd9
-	dN8KwE2jX0WdIL4LMXy2obe37pMZjVvYONJLMAxV/EHfUPs0X5Qnn1uQYidOcOru/ew0CGQM8Zy5u
-	dIFbIRV2EnbU2ekxndW3zlHI8wOFC26mzKaiTstlTvNqIY+yeCizmMEywveWF5oTIsb5da/5Hp1L/
-	a5UQ8u8xfMjRXcUR876sioCtxWrRx+8EvN6AQXwGLC85lKJSWymVd2/u4cGzZt00j3g6z+JzucIHG
-	sKVC1KtA==;
+	Content-Type:Subject:CC:To:From:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=GvMLIUxd1sWR5SI1wQrmBcATK5sUWrvbdeu4Db5BmhQ=; b=CSOFxwQgIWyL3m5nlpGjZbFiw6
+	w2KFHTZEEXoZNyVmQOCbu+eASJ5g5KHWgfvLMzMGc1aOED8tN+s3FSWzVVF0TyZz/vViVYYDfG+H7
+	cc/+9rezB6Pd+X4dDPlSCvzXvB/nyOyil0aeHNT/pBCe5iHvjtMfl74s9v/aC/dai+5zx2ejPLIaW
+	y+9EtCI0tN48dYDQxzj06gOdRSfuvyr+4+Qtbc9KCPSkgKlI7vPiRyGW2InwWiAKB2qZTlNXBFyUS
+	TwDXGB0tMD99VLUKdBirSzu60QGXzS/njX0tJCIBUUGxpFaKcMCRqfmStRKyzev5g71UPqyGOlw6k
+	YP4jqr9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1scoE4-0000000EJVt-0a4U;
-	Sat, 10 Aug 2024 15:41:52 +0000
-Received: from omta36.uswest2.a.cloudfilter.net ([35.89.44.35])
+	id 1sdWe8-00000000geL-0Ebx;
+	Mon, 12 Aug 2024 15:07:44 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1scoE1-0000000EJV3-36A4
-	for ath11k@lists.infradead.org;
-	Sat, 10 Aug 2024 15:41:51 +0000
-Received: from eig-obgw-6004a.ext.cloudfilter.net ([10.0.30.197])
-	by cmsmtp with ESMTPS
-	id cezas7oT9jnP5coDps0bYx; Sat, 10 Aug 2024 15:41:37 +0000
-Received: from gator4166.hostgator.com ([108.167.133.22])
-	by cmsmtp with ESMTPS
-	id coDos0Zulks1PcoDosb82H; Sat, 10 Aug 2024 15:41:36 +0000
-X-Authority-Analysis: v=2.4 cv=Ud+aS7SN c=1 sm=1 tr=0 ts=66b78a30
- a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=frY+GlAHrI6frpeK1MvySw==:17
- a=IkcTkHD0fZMA:10 a=yoJbH4e0A30A:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=oKrQ66Li5qe5zRcEOgYA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
- a=TjNXssC_j7lpFel5tvFf:22 a=Xt_RvD8W3m28Mn_h3AK8:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=14Lw9ijUqufXCJHVSEUKjfux6K/+0xEy2ibtU/QVJd8=; b=F2HFU5946l41S5Ql/lZv+emjHf
-	ihq/ln7mxZ3Ajr7RrEC1PZqsp/JTcThniZQYIlTcFNjZoKfLOVAD8aAvRuIl7SYlBRXSTZ6GYZsw8
-	hyCCR6F9wdJyNpkJpehoNtFGNMaOX7I1mLUXXndfIuIrbD+pHwalT8NR6tbxJgLH/20UHucLJKghI
-	NEqSTKA4YcQUDnO3Cdi+yriIdP6bzIXaOPTOKqRYswV2vwybfuFJtTPINxRtREZHWBWwzNLm7SCZM
-	R0Mu4OIC7w+57NpqRUbpqee03nO2sXMe1+ykVCwacuboFak6O+bvUk2xCLDsm1034geEwOQmOnbTU
-	9vA7XxSQ==;
-Received: from [201.172.173.139] (port=52890 helo=[192.168.15.5])
-	by gator4166.hostgator.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <gustavo@embeddedor.com>)
-	id 1scoDm-0032aY-2q;
-	Sat, 10 Aug 2024 10:41:35 -0500
-Message-ID: <0070b332-b617-4454-ac7b-85b1d78fef68@embeddedor.com>
-Date: Sat, 10 Aug 2024 09:41:29 -0600
+	id 1sdWe3-00000000gdO-24Cr;
+	Mon, 12 Aug 2024 15:07:41 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47CDSTT2001043;
+	Mon, 12 Aug 2024 15:07:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=GvMLIUxd1sWR5SI1wQrmBc
+	ATK5sUWrvbdeu4Db5BmhQ=; b=EE4PL0PyKCR+C1zTJ7wC6vvZDVNW+PzrOgagKW
+	Ld+CsWHRqkRFyCmnG/Rc4TfgGaN5Pw7mRdNArtNEl4Dht4sEVJkxQv9di/45v8QX
+	g/dSkuBkJDikF5dDgKxW8awWEcFGWCkN1BulSwWMYwl3lA9CCIj6Kx9pd0nKopyE
+	5r4Tpk5rQVd8DJ+pyJyrh0QEU073dmNmf1SVUchVdRvVIJCO0WC00d9f5cM2qbF8
+	MbQ+nxtkG7kJ6B4MHThRkTb2dLaOaX9vUaz2Drjg8WqzuO9yhBnxno6hql6y+zRB
+	9CwVcN/fmFhT9o03tXrYI5oepPsLFPmQKRSYd+dinxMqurOg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x3et4g57-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 15:07:36 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47CF7ZIC022449
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 15:07:35 GMT
+Received: from [10.111.178.117] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 12 Aug
+ 2024 08:07:34 -0700
+Message-ID: <7c3b295d-3d5e-40ee-ac33-c92669f29d51@quicinc.com>
+Date: Mon, 12 Aug 2024 08:07:34 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH][next] wifi: ath11k: Avoid -Wflex-array-member-not-at-end
- warnings
-To: Jeff Johnson <quic_jjohnson@quicinc.com>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, Kalle Valo
- <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <ZrZB3Rjswe0ZXtug@cute>
- <8d31adac-fd43-4cf9-8fc8-655b359a573c@quicinc.com>
 Content-Language: en-US
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <8d31adac-fd43-4cf9-8fc8-655b359a573c@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+To: <linux-wireless@vger.kernel.org>
+CC: <ath10k@lists.infradead.org>, <ath11k@lists.infradead.org>,
+        <ath12k@lists.infradead.org>, <quic_jjohnson@quicinc.com>,
+        <quic_kvalo@quicinc.com>
+Subject: pull-request: ath-current-20240812
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 201.172.173.139
-X-Source-L: No
-X-Exim-ID: 1scoDm-0032aY-2q
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.15.5]) [201.172.173.139]:52890
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 3
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfEXgFxxEIBdWtHKqTkTAbfkZiv9pVWhqv8ImhYcxZgE1KKigGupOPWzdcYiPcuL+y4wMUyVIvPzLGlEGJVVXPaCZ1YTd3CjHaVgEf3As+9XIPHZYMBDf
- XhCKYw+E42JcffuQFDiPnTJsuS/qEVSTpQsb4GW0aJZg/iK5/PlkH+LhIxvoR4mXpmX+NbXSaDHzLAq+B7NuhRA3SDGhQLR0dmiIqSUNWD6ATqxrUlSTUId6
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9weQVwKyogkPxWi5uiLK3LvEWgaKtSJ7
+X-Proofpoint-ORIG-GUID: 9weQVwKyogkPxWi5uiLK3LvEWgaKtSJ7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-12_04,2024-08-12_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ suspectscore=0 impostorscore=0 phishscore=0 clxscore=1011 mlxlogscore=580
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408120112
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240810_084149_885159_9FB60842 
-X-CRM114-Status: GOOD (  17.22  )
+X-CRM114-CacheID: sfid-20240812_080739_748593_94A6D034 
+X-CRM114-Status: UNSURE (   8.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,122 +96,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+The following changes since commit de9c2c66ad8e787abec7c9d7eff4f8c3cdd28aed:
 
+  Linux 6.11-rc2 (2024-08-04 13:50:53 -0700)
 
-On 09/08/24 20:21, Jeff Johnson wrote:
-> On 8/9/2024 9:20 AM, Gustavo A. R. Silva wrote:
->> -Wflex-array-member-not-at-end was introduced in GCC-14, and we are
->> getting ready to enable it, globally.
->>
->> Move the conflicting declaration to the end of the structure. Notice
->> that `struct ieee80211_chanctx_conf` is a flexible structure --a
->> structure that contains a flexible-array member.
->>
->> Also, remove a couple of unused structures.
->>
->> Fix the following warnings:
->> drivers/net/wireless/ath/ath11k/core.h:409:39: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
->> drivers/net/wireless/ath/ath11k/dp.h:1309:24: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
->> drivers/net/wireless/ath/ath11k/dp.h:1368:24: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
->>
->> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
->> ---
->>   drivers/net/wireless/ath/ath11k/core.h |  4 +++-
->>   drivers/net/wireless/ath/ath11k/dp.h   | 23 -----------------------
->>   2 files changed, 3 insertions(+), 24 deletions(-)
->>
->> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
->> index df24f0e409af..e283415dccf3 100644
->> --- a/drivers/net/wireless/ath/ath11k/core.h
->> +++ b/drivers/net/wireless/ath/ath11k/core.h
->> @@ -406,11 +406,13 @@ struct ath11k_vif {
->>   	bool wpaie_present;
->>   	bool bcca_zero_sent;
->>   	bool do_not_send_tmpl;
->> -	struct ieee80211_chanctx_conf chanctx;
->>   	struct ath11k_arp_ns_offload arp_ns_offload;
->>   	struct ath11k_rekey_data rekey_data;
->>   
->>   	struct ath11k_reg_tpc_power_info reg_tpc_info;
->> +
->> +	/* Must be last - ends in a flexible-array member. */
->> +	struct ieee80211_chanctx_conf chanctx;
-> 
-> there is something illogical about this since the vif is allocated using
-> sizeof() and hence there will never be memory allocated for the flexible
-> array, and it is assigned using either struct assignment or memcpy using the
-> struct size which (fortunately) would not transfer the flexible array contents:
-> 		arvif->chanctx = *ctx;
-> 
-> 		memcpy(&arvif->chanctx, ctx, sizeof(*ctx));
+are available in the Git repository at:
 
-Yes; this is why I didn't include a 'Fixes' tag.
+  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git
+tags/ath-current-20240812
 
-In any case, middle-flex-arrays are deprecated and should either be
-removed/refactored[1][2] or placed at the very bottom in any nested
-structures. :)
+for you to fetch changes up to 38055789d15155109b41602ad719d770af507030:
 
-> 
-> since ath11k doesn't actually use the drv_priv[] I guess this change is OK, it
-> is just strange to me.
-> 
-> also makes me wonder why ath11k keeps a copy of the chanctx instead of just
-> getting it from the underlying ieee80211_link_data. but that is outside the
-> scope of this discussion.
-> 
->>   };
->>   
->>   struct ath11k_vif_iter {
->> diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
->> index 2f6dd69d3be2..65d2bc0687c8 100644
->> --- a/drivers/net/wireless/ath/ath11k/dp.h
->> +++ b/drivers/net/wireless/ath/ath11k/dp.h
->> @@ -1305,18 +1305,6 @@ struct htt_ppdu_stats_user_rate {
->>   #define HTT_TX_INFO_PEERID(_flags) \
->>   			FIELD_GET(HTT_PPDU_STATS_TX_INFO_FLAGS_PEERID_M, _flags)
->>   
->> -struct htt_tx_ppdu_stats_info {
->> -	struct htt_tlv tlv_hdr;
->> -	u32 tx_success_bytes;
->> -	u32 tx_retry_bytes;
->> -	u32 tx_failed_bytes;
->> -	u32 flags; /* %HTT_PPDU_STATS_TX_INFO_FLAGS_ */
->> -	u16 tx_success_msdus;
->> -	u16 tx_retry_msdus;
->> -	u16 tx_failed_msdus;
->> -	u16 tx_duration; /* united in us */
->> -} __packed;
->> -
->>   enum  htt_ppdu_stats_usr_compln_status {
->>   	HTT_PPDU_STATS_USER_STATUS_OK,
->>   	HTT_PPDU_STATS_USER_STATUS_FILTERED,
->> @@ -1364,17 +1352,6 @@ struct htt_ppdu_stats_usr_cmpltn_ack_ba_status {
->>   	u32 success_bytes;
->>   } __packed;
->>   
->> -struct htt_ppdu_stats_usr_cmn_array {
->> -	struct htt_tlv tlv_hdr;
->> -	u32 num_ppdu_stats;
->> -	/* tx_ppdu_stats_info is filled by multiple struct htt_tx_ppdu_stats_info
->> -	 * elements.
->> -	 * tx_ppdu_stats_info is variable length, with length =
->> -	 *     number_of_ppdu_stats * sizeof (struct htt_tx_ppdu_stats_info)
->> -	 */
->> -	struct htt_tx_ppdu_stats_info tx_ppdu_info[];
->> -} __packed;
->> -
->>   struct htt_ppdu_user_stats {
->>   	u16 peer_id;
->>   	u32 tlv_flags;
-> 
-> the second part if definitely ok.
-> 
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+  wifi: ath12k: use 128 bytes aligned iova in transmit path for WCN7850
+(2024-08-05 12:28:07 +0300)
 
-Thanks
---
-Gustavo
+----------------------------------------------------------------
+ath.git patch for v6.11
 
-[1] https://lore.kernel.org/linux-hardening/ZrOQa2gew5yadyt3@cute/
-[2] https://lore.kernel.org/linux-hardening/ZrJqtUpCI+uCeb4D@cute/
+We have a single patch for the next 6.11-rc which introduces a
+workaround to ath12k which addresses a WCN7850 hardware issue that
+prevents proper operation with unaligned transmit buffers.
+
+----------------------------------------------------------------
+Baochen Qiang (1):
+      wifi: ath12k: use 128 bytes aligned iova in transmit path for WCN7850
+
+ drivers/net/wireless/ath/ath12k/dp_tx.c | 72 +++++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath12k/hw.c    |  6 +++
+ drivers/net/wireless/ath/ath12k/hw.h    |  4 ++
+ drivers/net/wireless/ath/ath12k/mac.c   |  1 +
+ 4 files changed, 83 insertions(+)
 
