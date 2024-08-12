@@ -4,84 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 552C5C3DA7F
-	for <ath11k@archiver.kernel.org>; Mon, 12 Aug 2024 15:07:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F7B3C52D7C
+	for <ath11k@archiver.kernel.org>; Mon, 12 Aug 2024 17:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:CC:To:From:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=GvMLIUxd1sWR5SI1wQrmBcATK5sUWrvbdeu4Db5BmhQ=; b=CSOFxwQgIWyL3m5nlpGjZbFiw6
-	w2KFHTZEEXoZNyVmQOCbu+eASJ5g5KHWgfvLMzMGc1aOED8tN+s3FSWzVVF0TyZz/vViVYYDfG+H7
-	cc/+9rezB6Pd+X4dDPlSCvzXvB/nyOyil0aeHNT/pBCe5iHvjtMfl74s9v/aC/dai+5zx2ejPLIaW
-	y+9EtCI0tN48dYDQxzj06gOdRSfuvyr+4+Qtbc9KCPSkgKlI7vPiRyGW2InwWiAKB2qZTlNXBFyUS
-	TwDXGB0tMD99VLUKdBirSzu60QGXzS/njX0tJCIBUUGxpFaKcMCRqfmStRKyzev5g71UPqyGOlw6k
-	YP4jqr9A==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=71IkH4m84vmxtomePZ8JturrXjrRqWvm/AOWe4rNFpA=; b=caHnnbXkXKrDgY0eEw9SrIa6UK
+	+sAPVgXfPqecPc7F4NMNKmDB2TXjPPQB82cyu3T4VicJtPB8R+aSD9dKXY+Wi4bRMw0jzhUhAMjV0
+	TW1+ahd7MYwZOmpUyeUp/OGQTOQvFaMGzIY2+n9Q3kOAVu3ajkw4FM130+71DabvSmr80T4m9Uwyp
+	xtv2AsRVm1PJRluboKWEp8l4UqFv0HsjRjrc5yx9ZZGNubizHoGK/OHpvSi4AquNA6Vfaf6jpRhzo
+	w3gUGeHpr4lNepRFlr4Bx+glQf3K5VM3VmAVCczrm/nYkqB3NJ3Q4r+Dsur6+RmWq4C48+YnzYXwg
+	1tfVd38g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdWe8-00000000geL-0Ebx;
-	Mon, 12 Aug 2024 15:07:44 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1sdYPY-00000000yEc-0wa4;
+	Mon, 12 Aug 2024 17:00:48 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdWe3-00000000gdO-24Cr;
-	Mon, 12 Aug 2024 15:07:41 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47CDSTT2001043;
-	Mon, 12 Aug 2024 15:07:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=GvMLIUxd1sWR5SI1wQrmBc
-	ATK5sUWrvbdeu4Db5BmhQ=; b=EE4PL0PyKCR+C1zTJ7wC6vvZDVNW+PzrOgagKW
-	Ld+CsWHRqkRFyCmnG/Rc4TfgGaN5Pw7mRdNArtNEl4Dht4sEVJkxQv9di/45v8QX
-	g/dSkuBkJDikF5dDgKxW8awWEcFGWCkN1BulSwWMYwl3lA9CCIj6Kx9pd0nKopyE
-	5r4Tpk5rQVd8DJ+pyJyrh0QEU073dmNmf1SVUchVdRvVIJCO0WC00d9f5cM2qbF8
-	MbQ+nxtkG7kJ6B4MHThRkTb2dLaOaX9vUaz2Drjg8WqzuO9yhBnxno6hql6y+zRB
-	9CwVcN/fmFhT9o03tXrYI5oepPsLFPmQKRSYd+dinxMqurOg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x3et4g57-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Aug 2024 15:07:36 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47CF7ZIC022449
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Aug 2024 15:07:35 GMT
-Received: from [10.111.178.117] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 12 Aug
- 2024 08:07:34 -0700
-Message-ID: <7c3b295d-3d5e-40ee-ac33-c92669f29d51@quicinc.com>
-Date: Mon, 12 Aug 2024 08:07:34 -0700
+	id 1sdYPU-00000000yDa-2rrf
+	for ath11k@lists.infradead.org;
+	Mon, 12 Aug 2024 17:00:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1723482041;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=71IkH4m84vmxtomePZ8JturrXjrRqWvm/AOWe4rNFpA=;
+	b=IQfsaRxjsji/DHQjwSk0s3MUgCbEXO/BEyw0hQnBcox1zVT28h2Ap66Zio/0LtmUkZOVi/
+	+qL2MNijnusebVcZBQtT0W63C9woSA+78KIMhl0yln2xFKEJWuFgpSB0pG2cPwEi+NAkQt
+	/wKgNGvHESVEa05yW+yUiC/VS0sUDh4=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-663-ZMo_5AAdPfet8y4Ek6JJYw-1; Mon,
+ 12 Aug 2024 13:00:37 -0400
+X-MC-Unique: ZMo_5AAdPfet8y4Ek6JJYw-1
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 8018B1954225;
+	Mon, 12 Aug 2024 17:00:34 +0000 (UTC)
+Received: from omen.home.shazbot.org (unknown [10.22.16.191])
+	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 01C8719373D7;
+	Mon, 12 Aug 2024 17:00:29 +0000 (UTC)
+From: Alex Williamson <alex.williamson@redhat.com>
+To: kvm@vger.kernel.org
+Cc: Alex Williamson <alex.williamson@redhat.com>,
+	quic_bqiang@quicinc.com,
+	kvalo@kernel.org,
+	prestwoj@gmail.com,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	dwmw2@infradead.org,
+	iommu@lists.linux.dev,
+	jgg@ziepe.ca,
+	kernel@quicinc.com,
+	johannes@sipsolutions.net,
+	jtornosm@redhat.com
+Subject: [PATCH RFC/RFT] vfio/pci: Create feature to disable MSI virtualization
+Date: Mon, 12 Aug 2024 10:59:12 -0600
+Message-ID: <20240812170014.1583783-1-alex.williamson@redhat.com>
+In-Reply-To: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-To: <linux-wireless@vger.kernel.org>
-CC: <ath10k@lists.infradead.org>, <ath11k@lists.infradead.org>,
-        <ath12k@lists.infradead.org>, <quic_jjohnson@quicinc.com>,
-        <quic_kvalo@quicinc.com>
-Subject: pull-request: ath-current-20240812
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9weQVwKyogkPxWi5uiLK3LvEWgaKtSJ7
-X-Proofpoint-ORIG-GUID: 9weQVwKyogkPxWi5uiLK3LvEWgaKtSJ7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-12_04,2024-08-12_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- suspectscore=0 impostorscore=0 phishscore=0 clxscore=1011 mlxlogscore=580
- lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408120112
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240812_080739_748593_94A6D034 
-X-CRM114-Status: UNSURE (   8.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240812_100044_821459_4F522553 
+X-CRM114-Status: GOOD (  18.61  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,34 +91,143 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The following changes since commit de9c2c66ad8e787abec7c9d7eff4f8c3cdd28aed:
+vfio-pci has always virtualized the MSI address and data registers as
+MSI programming is performed through the SET_IRQS ioctl.  Often this
+virtualization is not used, and in specific cases can be unhelpful.
 
-  Linux 6.11-rc2 (2024-08-04 13:50:53 -0700)
+One such case where the virtualization is a hinderance is when the
+device contains an onboard interrupt controller programmed by the guest
+driver.  Userspace VMMs have a chance to quirk this programming,
+injecting the host physical MSI information, but only if the userspace
+driver can get access to the host physical address and data registers.
 
-are available in the Git repository at:
+This introduces a device feature which allows the userspace driver to
+disable virtualization of the MSI capability address and data registers
+in order to provide read-only access the the physical values.
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git
-tags/ath-current-20240812
+Link: https://bugzilla.kernel.org/show_bug.cgi?id=216055
+Signed-off-by: Alex Williamson <alex.williamson@redhat.com>
+---
+ drivers/vfio/pci/vfio_pci_config.c | 26 ++++++++++++++++++++++++++
+ drivers/vfio/pci/vfio_pci_core.c   | 21 +++++++++++++++++++++
+ drivers/vfio/pci/vfio_pci_priv.h   |  1 +
+ include/uapi/linux/vfio.h          | 14 ++++++++++++++
+ 4 files changed, 62 insertions(+)
 
-for you to fetch changes up to 38055789d15155109b41602ad719d770af507030:
+diff --git a/drivers/vfio/pci/vfio_pci_config.c b/drivers/vfio/pci/vfio_pci_config.c
+index 97422aafaa7b..5f86e75ea6ca 100644
+--- a/drivers/vfio/pci/vfio_pci_config.c
++++ b/drivers/vfio/pci/vfio_pci_config.c
+@@ -1259,6 +1259,32 @@ static int vfio_msi_cap_len(struct vfio_pci_core_device *vdev, u8 pos)
+ 	return len;
+ }
+ 
++/* Disable virtualization of the MSI address and data fields */
++int vfio_pci_msi_novirt(struct vfio_pci_core_device *vdev)
++{
++	struct pci_dev *pdev = vdev->pdev;
++	struct perm_bits *perm = vdev->msi_perm;
++	u16 flags;
++	int ret;
++
++	if (!perm)
++		return -EINVAL;
++
++	ret = pci_read_config_word(pdev, pdev->msi_cap + PCI_MSI_FLAGS, &flags);
++	if (ret)
++		return pcibios_err_to_errno(ret);
++
++	p_setd(perm, PCI_MSI_ADDRESS_LO, NO_VIRT, NO_WRITE);
++	if (flags & PCI_MSI_FLAGS_64BIT) {
++		p_setd(perm, PCI_MSI_ADDRESS_HI, NO_VIRT, NO_WRITE);
++		p_setw(perm, PCI_MSI_DATA_64, (u16)NO_VIRT, (u16)NO_WRITE);
++	} else {
++		p_setw(perm, PCI_MSI_DATA_32, (u16)NO_VIRT, (u16)NO_WRITE);
++	}
++
++	return 0;
++}
++
+ /* Determine extended capability length for VC (2 & 9) and MFVC */
+ static int vfio_vc_cap_len(struct vfio_pci_core_device *vdev, u16 pos)
+ {
+diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+index ba0ce0075b2f..acdced212be2 100644
+--- a/drivers/vfio/pci/vfio_pci_core.c
++++ b/drivers/vfio/pci/vfio_pci_core.c
+@@ -1518,6 +1518,24 @@ static int vfio_pci_core_feature_token(struct vfio_device *device, u32 flags,
+ 	return 0;
+ }
+ 
++static int vfio_pci_core_feature_msi_novirt(struct vfio_device *device,
++					    u32 flags, void __user *arg,
++					    size_t argsz)
++{
++	struct vfio_pci_core_device *vdev =
++		container_of(device, struct vfio_pci_core_device, vdev);
++	int ret;
++
++	if (!vdev->msi_perm)
++		return -ENOTTY;
++
++	ret = vfio_check_feature(flags, argsz, VFIO_DEVICE_FEATURE_SET, 0);
++	if (ret != 1)
++		return ret;
++
++	return vfio_pci_msi_novirt(vdev);
++}
++
+ int vfio_pci_core_ioctl_feature(struct vfio_device *device, u32 flags,
+ 				void __user *arg, size_t argsz)
+ {
+@@ -1531,6 +1549,9 @@ int vfio_pci_core_ioctl_feature(struct vfio_device *device, u32 flags,
+ 		return vfio_pci_core_pm_exit(device, flags, arg, argsz);
+ 	case VFIO_DEVICE_FEATURE_PCI_VF_TOKEN:
+ 		return vfio_pci_core_feature_token(device, flags, arg, argsz);
++	case VFIO_DEVICE_FEATURE_PCI_MSI_NOVIRT:
++		return vfio_pci_core_feature_msi_novirt(device, flags,
++							arg, argsz);
+ 	default:
+ 		return -ENOTTY;
+ 	}
+diff --git a/drivers/vfio/pci/vfio_pci_priv.h b/drivers/vfio/pci/vfio_pci_priv.h
+index 5e4fa69aee16..6e6cc74c6579 100644
+--- a/drivers/vfio/pci/vfio_pci_priv.h
++++ b/drivers/vfio/pci/vfio_pci_priv.h
+@@ -53,6 +53,7 @@ int vfio_pci_ioeventfd(struct vfio_pci_core_device *vdev, loff_t offset,
+ 
+ int vfio_pci_init_perm_bits(void);
+ void vfio_pci_uninit_perm_bits(void);
++int vfio_pci_msi_novirt(struct vfio_pci_core_device *vdev);
+ 
+ int vfio_config_init(struct vfio_pci_core_device *vdev);
+ void vfio_config_free(struct vfio_pci_core_device *vdev);
+diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+index 2b68e6cdf190..ddf5dd9245fb 100644
+--- a/include/uapi/linux/vfio.h
++++ b/include/uapi/linux/vfio.h
+@@ -1458,6 +1458,20 @@ struct vfio_device_feature_bus_master {
+ };
+ #define VFIO_DEVICE_FEATURE_BUS_MASTER 10
+ 
++/**
++ * Toggle virtualization of PCI MSI address and data fields off.  By default
++ * vfio-pci-core based drivers virtualize the MSI address and data fields of
++ * the MSI capability to emulate direct access to the device, ie. writes are
++ * allowed and buffered where subsequent reads return the buffered data.
++ * VMMs often virtualize these registers anyway and there are cases in user-
++ * space where having access to the host MSI fields can be useful, such as
++ * quirking an embedded interrupt controller on the device to generate physical
++ * MSI interrupts.  Upon VFIO_DEVICE_FEATURE_SET of the PCI_MSI_NOVIRT feature
++ * this virtualization is disabled, reads of the MSI address and data fields
++ * will return the physical values and writes are dropped.
++ */
++#define VFIO_DEVICE_FEATURE_PCI_MSI_NOVIRT 11
++
+ /* -------- API for Type1 VFIO IOMMU -------- */
+ 
+ /**
+-- 
+2.45.2
 
-  wifi: ath12k: use 128 bytes aligned iova in transmit path for WCN7850
-(2024-08-05 12:28:07 +0300)
-
-----------------------------------------------------------------
-ath.git patch for v6.11
-
-We have a single patch for the next 6.11-rc which introduces a
-workaround to ath12k which addresses a WCN7850 hardware issue that
-prevents proper operation with unaligned transmit buffers.
-
-----------------------------------------------------------------
-Baochen Qiang (1):
-      wifi: ath12k: use 128 bytes aligned iova in transmit path for WCN7850
-
- drivers/net/wireless/ath/ath12k/dp_tx.c | 72 +++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath12k/hw.c    |  6 +++
- drivers/net/wireless/ath/ath12k/hw.h    |  4 ++
- drivers/net/wireless/ath/ath12k/mac.c   |  1 +
- 4 files changed, 83 insertions(+)
 
