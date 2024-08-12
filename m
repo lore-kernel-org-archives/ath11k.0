@@ -4,80 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EC8EC3DA7F
-	for <ath11k@archiver.kernel.org>; Mon, 12 Aug 2024 17:03:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB37AC3DA7F
+	for <ath11k@archiver.kernel.org>; Mon, 12 Aug 2024 17:59:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=txjL7gyTCaBaIS2b7VHNdB5sZhpJ5otOJCWiL+k/cBM=; b=Mohb80uBOPoWfP6QhBtZMOnmgn
-	j9IUcpCNQ1LalCz4sA8K76y/55fi3JfGcLro53eJsXvvWO3ZWJjEsparpPUc6ih5OdIUgqjS7Nv73
-	WLi6p/jq0a3xW3CahkXDj1i6xuSVjHgd9NVTHD3hwcxFiI3q2OlJc4fDEQssABjOYgf9CC47D5q0l
-	Y+nSZ7sFoYF8MwkGP4zUDSQaQkcDKlfXi71dh+Ds5ifDLyJaBpb/eVQG/SLz3a6aQJRPbcEQjm8Ef
-	L9I1Wim5jlH6Gn5d1HZBizLbrrkegwQE0AJK8Od/XUOuT0T+gISkQyC7LphqhEAmBBNCr5yL2UTLx
-	N8OQe5KA==;
+	Content-Type:Subject:CC:To:From:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=wUz2FIX5UUY+h6DUG+CmyhL4KEOUH3lMPGJGgeZOyPY=; b=cPFjQozqTfUY3aqlaJzxkzjebJ
+	iMPNkiCdO92J8UIQfiwYQxvwD70pAHHsrLyYLDL9S6rHuSMrtvLHO5pg5GwKmMLIH+OMB3Odw+LLw
+	ptjJKcnIdNivUMgst/JQBomE5VDCefEDXQFrLc89RYtGnJFys3K8MXIFjyMg8P1iVN++GNmS5VOWH
+	aVKnoUpQ9H2W3x+Zj/ePqBAkApb2BsSRdOhfcTVIP//kxx0ZoB+1s6RNKiF/A3CWSnKaP18mqpGWl
+	SuPOZttXBzqWnPMEzcOE1hdUyGEtMhuzkU0jXqxjYHpad2+9yiVtBT1iuANu8nwK7mqvVZ6qbYEyQ
+	DdaEzBKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdYRm-00000000yi0-0MCA;
-	Mon, 12 Aug 2024 17:03:06 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1sdZK1-000000017Ap-0l9Z;
+	Mon, 12 Aug 2024 17:59:09 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdYRi-00000000yh4-3VYP
-	for ath11k@lists.infradead.org;
-	Mon, 12 Aug 2024 17:03:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1723482181;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=txjL7gyTCaBaIS2b7VHNdB5sZhpJ5otOJCWiL+k/cBM=;
-	b=V4HubAVUdv6vP+a16GpM4T9+rI19uKK7+Wxr8moixZBKPDXGw8JTIxg+mkWFI6SC/GqjI4
-	jlef33oz4mT26daOpLljt/YBuojVwapL0kb3slhoAlJZcNz5ggkXDYkXPRnV8zTsDELNyo
-	lwCS0ldPExhTqgCE7c62wply/nZL8kg=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-460-PpkfIwlEMKW7XZqOtDniFA-1; Mon,
- 12 Aug 2024 13:01:06 -0400
-X-MC-Unique: PpkfIwlEMKW7XZqOtDniFA-1
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 28C17195609E;
-	Mon, 12 Aug 2024 17:01:03 +0000 (UTC)
-Received: from omen.home.shazbot.org (unknown [10.22.16.191])
-	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 2982219560A3;
-	Mon, 12 Aug 2024 17:00:56 +0000 (UTC)
-From: Alex Williamson <alex.williamson@redhat.com>
-To: qemu-devel@nongnu.org,
-	kvm@vger.kernel.org
-Cc: Alex Williamson <alex.williamson@redhat.com>,
-	quic_bqiang@quicinc.com,
-	kvalo@kernel.org,
-	prestwoj@gmail.com,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	dwmw2@infradead.org,
-	iommu@lists.linux.dev,
-	jgg@ziepe.ca,
-	kernel@quicinc.com,
-	johannes@sipsolutions.net,
-	jtornosm@redhat.com
-Subject: [PATCH RFC/RFT] vfio/pci-quirks: Quirk for ath wireless
-Date: Mon, 12 Aug 2024 11:00:40 -0600
-Message-ID: <20240812170045.1584000-1-alex.williamson@redhat.com>
-In-Reply-To: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
-References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+	id 1sdZJx-0000000179i-2loY;
+	Mon, 12 Aug 2024 17:59:07 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47CDScQo016336;
+	Mon, 12 Aug 2024 17:59:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wUz2FIX5UUY+h6DUG+Cmyh
+	L4KEOUH3lMPGJGgeZOyPY=; b=ELKTB661Qy51LQR0+8rqiN6nAm9q53u7XTglER
+	5E9hKNyh5cHmwPC96e7kY+rKv96MyQUR1XBrYg7tfb8uTGtqfpMCiDSiYC69W+Xs
+	bx1O49M6sE/9SPy2+aHS9bEabaZ7zkIqklGrN/sKHkOCemQ6K10jmvZF5YvzLufA
+	6QIulhWJc9U29UMzoEzJPS2wumKvN7vl7otI/usaX6pN3P5YpHNv3RHBST/p883p
+	TocpTYss5L0uSbWkwHuEiZqytN07t0K40OmnzYdNRUh7IZooWpWz6sjkTfiicBBz
+	7a30wl7H8lskxx4yP6daHqnBHoC1APj9OcwDsdyKGq+iZCbA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x1chn08x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 17:59:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47CHx4hJ028312
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 17:59:04 GMT
+Received: from [10.111.178.117] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 12 Aug
+ 2024 10:59:03 -0700
+Message-ID: <9ee38166-782b-409d-a2df-e2cee6e2ae21@quicinc.com>
+Date: Mon, 12 Aug 2024 10:59:02 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+To: linux-wireless <linux-wireless@vger.kernel.org>
+CC: <ath10k@lists.infradead.org>, <ath11k@lists.infradead.org>,
+        <ath12k@lists.infradead.org>, <quic_jjohnson@quicinc.com>,
+        <quic_kvalo@quicinc.com>
+Subject: pull-request: ath-next-20240812
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: l5OIy6VUHr5cJlGyn1YBqDOUdMrxCW7C
+X-Proofpoint-ORIG-GUID: l5OIy6VUHr5cJlGyn1YBqDOUdMrxCW7C
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-12_11,2024-08-12_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0 adultscore=0
+ phishscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0 suspectscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408120133
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240812_100303_088312_C031DF41 
-X-CRM114-Status: GOOD (  27.97  )
+X-CRM114-CacheID: sfid-20240812_105905_729878_53AB358D 
+X-CRM114-Status: GOOD (  10.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,304 +95,97 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-These devices have an embedded interrupt controller which is programmed
-with guest physical MSI address/data, which doesn't work.  We need
-vfio-pci kernel support to provide a device feature which disables
-virtualization of the MSI capability registers.  Then we can do brute
-force testing for writes matching the MSI address, from which we can
-infer writes of the MSI data, replacing each with host physical values.
+The following changes since commit c1cacb01f35589bd41360cdb7535afc792c08a7c:
 
-This has only been tested on ath11k (0x1103), ath12k support is
-speculative and requires testing.  Note that Windows guest drivers make
-use of multi-vector MSI which requires interrupt remapping support in
-the host.
+  Merge tag 'ath-next-20240702' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath (2024-07-03 16:57:16 +0300)
 
-NB. The #define for the new vfio feature is temporary for RFC/RFT, a
-formal proposal will include a proper linux-headers update.
+are available in the Git repository at:
 
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=216055
-Signed-off-by: Alex Williamson <alex.williamson@redhat.com>
----
- hw/vfio/pci-quirks.c | 236 +++++++++++++++++++++++++++++++++++++++++++
- hw/vfio/trace-events |   3 +
- 2 files changed, 239 insertions(+)
+  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-next-20240812
 
-diff --git a/hw/vfio/pci-quirks.c b/hw/vfio/pci-quirks.c
-index 39dae72497e0..5ba37bee3b36 100644
---- a/hw/vfio/pci-quirks.c
-+++ b/hw/vfio/pci-quirks.c
-@@ -23,6 +23,7 @@
- #include "qapi/visitor.h"
- #include <sys/ioctl.h>
- #include "hw/nvram/fw_cfg.h"
-+#include "hw/pci/msi.h"
- #include "hw/qdev-properties.h"
- #include "pci.h"
- #include "trace.h"
-@@ -1159,6 +1160,240 @@ static void vfio_probe_rtl8168_bar2_quirk(VFIOPCIDevice *vdev, int nr)
-     trace_vfio_quirk_rtl8168_probe(vdev->vbasedev.name);
- }
- 
-+#define PCI_VENDOR_ID_QCOM 0x17cb
-+
-+/*
-+ * ath11k wireless adapters do not support INTx and appear to have an interrupt
-+ * controller embedded into the hardware.  By default the interrupt controller
-+ * is programmed with the MSI guest physical address, which doesn't work.
-+ * Instead we need to trap and insert the host physical address and data.
-+ *
-+ * By default vfio-pci virtualizes the MSI address and data registers, providing
-+ * a writable buffer, where reads simply return the buffer.  QEMU writes
-+ * everything through to hardware, so this only holds the guest MSI address.
-+ * Therefore we first need to invoke a device feature that disables this
-+ * emulation of the MSI address and data registers, allowing access to the host
-+ * physical address and data.
-+ *
-+ * Next, where do these values get written?  If we disable mmap support and
-+ * trace accesses, we get this:
-+ *
-+ * # grep -A2 region0.*0xfee00000 typescript
-+ * vfio_region_write  (0000:01:00.0:region0+0x80048, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8004c, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x80050, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x83048, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8304c, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x83050, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x830a0, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x830a4, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x830a8, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x85048, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8504c, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x85050, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x850a0, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x850a4, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x850a8, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x86048, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8604c, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x86050, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x8b048, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8b04c, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8b050, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x8b0a0, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8b0a4, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8b0a8, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0x8e048, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8e04c, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0x8e050, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0xb4968, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb496c, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb4970, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0xb4a70, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb4a74, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb4a78, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0xb849c, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb84a0, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb84a4, 0x21, 4)
-+ * --
-+ * vfio_region_write  (0000:01:00.0:region0+0xb85a4, 0xfee00000, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb85a8, 0x100, 4)
-+ * vfio_region_write  (0000:01:00.0:region0+0xb85ac, 0x21, 4)
-+ *
-+ * We can find in this example trace that the MSI capability is programmed as:
-+ *
-+ * vfio_pci_write_config  (0000:01:00.0, @0x54, 0xfee00000, len=0x4)
-+ * vfio_pci_write_config  (0000:01:00.0, @0x58, 0x21, len=0x2)
-+ *
-+ * This is a 32-bit MSI capability based at 0x50, so the MSI address is
-+ * 0xfee00000 with data 0x21.  So we see writes of the MSI address, followed
-+ * 8-bytes later by what appears to be the MSI data.  There's no obvious
-+ * pattern in the device address where these are being written.
-+ *
-+ * We therefore come up with a really crude quirk that looks for values
-+ * written to the ATH11K_PCI_WINDOW (defined in Linux driver as starting at
-+ * 0x80000 with an 18-bit mask, ie. 256k) that match the guest MSI address.
-+ * When found we replace the data with the host physical address and set a
-+ * cookie to match the MSI data write, again replacing with the host value and
-+ * clearing the cookie.
-+ *
-+ * Amazingly, this seems sufficient to work, and the trapped window only seems
-+ * to be used during initialization, so this should introduce minimal overhead.
-+ *
-+ * The Windows driver makes use of multi-vector MSI, where our sanity test
-+ * of the MSI data value must then mask off the vector offset for comparison
-+ * and add it back to the host base data value on write.
-+ *
-+ * Only 4- and 8-byte accesses are observed to the PCI window, and MSI access
-+ * are only observed with 4-byte width.
-+ */
-+
-+// Temporary, include updated Linux headers
-+#define VFIO_DEVICE_FEATURE_PCI_MSI_NOVIRT 11
-+
-+typedef struct VFIOQAthQuirk {
-+    VFIOPCIDevice *vdev;
-+    uint32_t pci_window_base;
-+    uint32_t msi_data_addr;
-+} VFIOQAthQuirk;
-+
-+static uint64_t vfio_ath_quirk_read(void *opaque, hwaddr addr, unsigned size)
-+{
-+    VFIOQAthQuirk *ath = opaque;
-+    VFIOPCIDevice *vdev = ath->vdev;
-+
-+    return vfio_region_read(&vdev->bars[0].region,
-+                            addr + ath->pci_window_base, size);
-+}
-+
-+static void vfio_ath_quirk_write(void *opaque, hwaddr addr,
-+                                 uint64_t data, unsigned size)
-+{
-+    VFIOQAthQuirk *ath = opaque;
-+    VFIOPCIDevice *vdev = ath->vdev;
-+
-+    if (size == 4 && msi_enabled(&vdev->pdev)) {
-+        uint32_t phys = 0;
-+
-+        if (data == pci_get_long(vdev->pdev.config +
-+                                 vdev->pdev.msi_cap + PCI_MSI_ADDRESS_LO)) {
-+            pread(vdev->vbasedev.fd, &phys, 4, vdev->config_offset +
-+                  vdev->pdev.msi_cap + PCI_MSI_ADDRESS_LO);
-+            trace_vfio_quirk_ath_write_address(vdev->vbasedev.name,
-+                                               addr + ath->pci_window_base,
-+                                               data, phys);
-+            data = phys;
-+            ath->msi_data_addr = addr + 8;
-+        } else if (ath->msi_data_addr && ath->msi_data_addr == addr) {
-+            uint32_t mask = msi_nr_vectors_allocated(&vdev->pdev) - 1;
-+            uint32_t nr = data & mask;
-+
-+            if ((data & ~mask) == pci_get_word(vdev->pdev.config +
-+                                               vdev->pdev.msi_cap +
-+                                               PCI_MSI_DATA_32)) {
-+                pread(vdev->vbasedev.fd, &phys, 2, vdev->config_offset +
-+                      vdev->pdev.msi_cap + PCI_MSI_DATA_32);
-+                phys += nr;
-+                trace_vfio_quirk_ath_write_data(vdev->vbasedev.name,
-+                                                addr + ath->pci_window_base,
-+                                                data, phys);
-+                data = phys;
-+            }
-+            ath->msi_data_addr = 0;
-+        }
-+    }
-+
-+    vfio_region_write(&vdev->bars[0].region, addr + ath->pci_window_base,
-+                      data, size);
-+}
-+
-+static const MemoryRegionOps vfio_ath_quirk = {
-+    .read = vfio_ath_quirk_read,
-+    .write = vfio_ath_quirk_write,
-+    .valid = {
-+        .min_access_size = 4,
-+        .max_access_size = 8,
-+        .unaligned = false,
-+    },
-+    .endianness = DEVICE_LITTLE_ENDIAN,
-+};
-+
-+static bool vfio_pci_msi_novirt(VFIOPCIDevice *vdev)
-+{
-+    uint64_t buf[DIV_ROUND_UP(sizeof(struct vfio_device_feature),
-+                              sizeof(uint64_t))] = {};
-+    struct vfio_device_feature *feature = (struct vfio_device_feature *)buf;
-+
-+    feature->argsz = sizeof(buf);
-+    feature->flags = VFIO_DEVICE_FEATURE_SET |
-+                     VFIO_DEVICE_FEATURE_PCI_MSI_NOVIRT;
-+
-+    return !ioctl(vdev->vbasedev.fd, VFIO_DEVICE_FEATURE, feature);
-+}
-+
-+static void vfio_probe_ath_bar0_quirk(VFIOPCIDevice *vdev, int nr)
-+{
-+    VFIOQuirk *quirk;
-+    VFIOQAthQuirk *ath;
-+    uint32_t pci_window_base, pci_window_size;
-+
-+    if (nr != 0 ||
-+        vdev->vendor_id != PCI_VENDOR_ID_QCOM || !msi_present(&vdev->pdev)) {
-+        return;
-+    }
-+
-+    switch (vdev->device_id) {
-+    case 0x1101: /* Untested */
-+    case 0x1103:
-+    case 0x1104: /* Untested */
-+        /* Devices claimed by ath11k_pci_id_table in Linux driver as of v6.10 */
-+        pci_window_base = 0x80000; /* ATH11K_PCI_WINDOW_START */
-+        pci_window_size = 0x40000; /* ATH11K_PCI_WINDOW_RANGE_MASK (256k)*/
-+        break;
-+    case 0x1107: /* Untested */
-+    case 0x1109: /* Untested */
-+        /* Devices claimed by ath12k_pci_id_table in Linux driver as of v6.10 */
-+        pci_window_base = 0x1e00000; /* PCI_BAR_WINDOW0_BASE */
-+        pci_window_size = 0x80000; /* ~PCI_BAR_WINDOW0_END (512k) */
-+        break;
-+    default:
-+        return;
-+    }
-+
-+    if (!vfio_pci_msi_novirt(vdev)) {
-+        warn_report("Found device matching Atheros wireless quirk, but host "
-+                    "does not support vfio device feature required for quirk. "
-+                    "Device is known not to work with device assignment "
-+                    "without this quirk.  Please update host kernel.");
-+        return;
-+    }
-+
-+    quirk = vfio_quirk_alloc(1);
-+    quirk->data = ath = g_malloc0(sizeof(*ath));
-+    ath->vdev = vdev;
-+    ath->pci_window_base = pci_window_base;
-+
-+    memory_region_init_io(&quirk->mem[0], OBJECT(vdev), &vfio_ath_quirk,
-+                          ath, "vfio-ath-quirk", pci_window_size);
-+    memory_region_add_subregion_overlap(vdev->bars[nr].region.mem,
-+                                        pci_window_base, &quirk->mem[0], 1);
-+
-+    QLIST_INSERT_HEAD(&vdev->bars[nr].quirks, quirk, next);
-+
-+    trace_vfio_quirk_ath_bar0_probe(vdev->vbasedev.name);
-+}
-+
- #define IGD_ASLS 0xfc /* ASL Storage Register */
- 
- /*
-@@ -1261,6 +1496,7 @@ void vfio_bar_quirk_setup(VFIOPCIDevice *vdev, int nr)
- #ifdef CONFIG_VFIO_IGD
-     vfio_probe_igd_bar4_quirk(vdev, nr);
- #endif
-+    vfio_probe_ath_bar0_quirk(vdev, nr);
- }
- 
- void vfio_bar_quirk_exit(VFIOPCIDevice *vdev, int nr)
-diff --git a/hw/vfio/trace-events b/hw/vfio/trace-events
-index 98bd4dcceadc..3d1154785157 100644
---- a/hw/vfio/trace-events
-+++ b/hw/vfio/trace-events
-@@ -82,6 +82,9 @@ vfio_ioeventfd_exit(const char *name, uint64_t addr, unsigned size, uint64_t dat
- vfio_ioeventfd_handler(const char *name, uint64_t addr, unsigned size, uint64_t data) "%s+0x%"PRIx64"[%d] -> 0x%"PRIx64
- vfio_ioeventfd_init(const char *name, uint64_t addr, unsigned size, uint64_t data, bool vfio) "%s+0x%"PRIx64"[%d]:0x%"PRIx64" vfio:%d"
- vfio_pci_igd_opregion_enabled(const char *name) "%s"
-+vfio_quirk_ath_bar0_probe(const char *name) "%s"
-+vfio_quirk_ath_write_address(const char *name, uint64_t addr, uint64_t data, uint32_t phys) "%s[0x%"PRIx64"]: Replacing MSI address 0x%"PRIx64" with value 0x%x"
-+vfio_quirk_ath_write_data(const char *name, uint64_t addr, uint64_t data, uint32_t phys) "%s[0x%"PRIx64"]: Replacing MSI data 0x%"PRIx64" with value 0x%x"
- 
- # igd.c
- vfio_pci_igd_bar4_write(const char *name, uint32_t index, uint32_t data, uint32_t base) "%s [0x%03x] 0x%08x -> 0x%08x"
--- 
-2.45.2
+for you to fetch changes up to 89fbe672bd0e5e5c39600fcc7a3bca0b8a212d23:
 
+  Revert "wifi: ath9k: use devm for request_irq()" (2024-08-10 10:21:58 +0300)
+
+----------------------------------------------------------------
+ath.git patches for v6.12
+
+This is a fairly light pull request since ath12k is still working on
+MLO-related changes, and the other drivers are mostly in maintenance
+mode with a few cleanups and bug fixes.
+
+Major changes:
+
+ath12k
+
+* DebugFS support for transmit DE stats
+* Make ASPM support hardware-dependent
+* Align BSS Channel information command and message with firmware
+
+ath11k
+
+* Use work queue for beacon tx events
+
+ath9k
+
+* Use devm for gpio_request_one
+* Use unmanaged PCI functions in ath9k_pci_owl_loader()
+
+----------------------------------------------------------------
+Aditya Kumar Singh (1):
+      wifi: ath12k: restore ASPM for supported hardwares only
+
+Baochen Qiang (1):
+      wifi: ath12k: fix invalid AMPDU factor calculation in ath12k_peer_assoc_h_he()
+
+Dinesh Karthikeyan (1):
+      wifi: ath12k: Support Transmit DE stats
+
+Dmitry Kandybka (1):
+      wifi: ath9k: fix possible integer overflow in ath9k_get_et_stats()
+
+Heiner Kallweit (1):
+      wifi: ath9k: use unmanaged PCI functions in ath9k_pci_owl_loader
+
+Kang Yang (1):
+      wifi: ath11k: use work queue to process beacon tx event
+
+Karthikeyan Periyasamy (2):
+      wifi: ath12k: fix array out-of-bound access in SoC stats
+      wifi: ath11k: fix array out-of-bound access in SoC stats
+
+P Praneesh (2):
+      wifi: ath12k: fix BSS chan info request WMI command
+      wifi: ath12k: match WMI BSS chan info structure with firmware definition
+
+Rosen Penev (2):
+      wifi: ath9k: use devm for request_irq()
+      wifi: ath9k: use devm for gpio_request_one()
+
+Thorsten Blum (1):
+      wifi: ath9k: Use swap() to improve ath9k_hw_get_nf_hist_mid()
+
+Toke Høiland-Jørgensen (2):
+      wifi: ath9k: Remove error checks when creating debugfs entries
+      Revert "wifi: ath9k: use devm for request_irq()"
+
+ drivers/net/wireless/ath/ath11k/core.h             |   1 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c            |   2 +-
+ drivers/net/wireless/ath/ath11k/mac.c              |  12 +
+ drivers/net/wireless/ath/ath11k/wmi.c              |   4 +-
+ .../net/wireless/ath/ath12k/debugfs_htt_stats.c    | 354 +++++++++++++++++++++
+ .../net/wireless/ath/ath12k/debugfs_htt_stats.h    | 126 ++++++++
+ drivers/net/wireless/ath/ath12k/dp_rx.c            |   2 +-
+ drivers/net/wireless/ath/ath12k/hw.c               |   6 +
+ drivers/net/wireless/ath/ath12k/hw.h               |   1 +
+ drivers/net/wireless/ath/ath12k/mac.c              |   5 +-
+ drivers/net/wireless/ath/ath12k/pci.c              |   3 +-
+ drivers/net/wireless/ath/ath12k/wmi.c              |   1 +
+ drivers/net/wireless/ath/ath12k/wmi.h              |   3 +-
+ .../net/wireless/ath/ath9k/ath9k_pci_owl_loader.c  |   8 +-
+ drivers/net/wireless/ath/ath9k/calib.c             |   7 +-
+ drivers/net/wireless/ath/ath9k/debug.c             |   6 +-
+ drivers/net/wireless/ath/ath9k/htc_drv_debug.c     |   2 -
+ drivers/net/wireless/ath/ath9k/hw.c                |   6 +-
+ 18 files changed, 521 insertions(+), 28 deletions(-)
 
