@@ -4,58 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1542CC52D7B
-	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 16:44:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4662DC52D7B
+	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 17:30:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=vedtT6Chhe///2lfmmvo2ALtWT6s8iqXDAfNOl1f85o=; b=as5wYzh3Gcs2uYBQwrSVpmYH8K
-	N3l/AUghKkpbzUNB6gfJ5xKWIPJc4jZn9RtFrnF9C8N0zwwyYOAlaeZcG3jP/Ru6NShMAwbuVPjA4
-	Ja5QkDrVsHdWYu94lzB9kZ4CH4l47FptCggQ4i91nb4VLOJQM3XFwEztYz5k93q8O8owAgKUDcP+r
-	pC0EoDnAWXhB7LDECLhIPc610enofhu8oe3K57vdTr5yqkeGIBEsEBaFKReSvYFkPEYZdILiZK1Xj
-	6mNCYsULkLb1h0O+I5Dmex84at0SJn17NaRMwmAW2FqFbvamYct/g3aHex4yECuU50iBEJpu4lRdu
-	ZmE2RwIA==;
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=nLYNakiS7XZO9BB9N7Fyevs65e05aWL1XGxAXFuVTVk=; b=EO0Nkd/FpV4OFDF97QtnYX3g/G
+	+ln2V/k0zN/QueOTRuJB+uEslNfzxm1x5CPdqB65FBbwv3Lc9zw3zDyATYGZxsP26p9eW0yHWOOzf
+	XcfqbT/BlhZjYLQKOFQJQaQun2ULGWZhd4hidjGnuW2Big4tidv4MX+OZSuYEIRDXg39iWdVNmynr
+	SZJ5XlQVHBIbtNedT6l4Qj8oa4y4DeSmr2dWL04/ReWaEvdPylhoI4YG84nZpd+KtrdRRCyOLqFy9
+	kqMQayYRyiLdAeDA0WZvKMulOcA7QbMk7kjhV9H2kzLbnkKG+2xzV3HP7fSjIazmxTyQFdlSRAGVj
+	npPXfJkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdud4-00000004OrS-2zr5;
-	Tue, 13 Aug 2024 16:44:14 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1sdvMC-00000004Vqv-1oRh;
+	Tue, 13 Aug 2024 17:30:52 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdud1-00000004OpD-1EZQ;
-	Tue, 13 Aug 2024 16:44:12 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 9A031CE138D;
-	Tue, 13 Aug 2024 16:44:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FF08C4AF0B;
-	Tue, 13 Aug 2024 16:44:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723567448;
-	bh=xYyT1jdZW9+VRI9b3mmRuSwMQCc/AU1cbEeq1xxXdqI=;
-	h=From:List-Id:To:Cc:Subject:Date:From;
-	b=qgWj1/f45FsiBjyvxVIsvfiyZWbOjDa2zUWIhvZ8wCjDognaZpO446u7f0K2jaE9l
-	 Fc9Q2Kt4IZK424bqFSkFOKwOrN7s8DLNUZfanTCnqgzYP/XKdl5aFSljtqWuEEssiK
-	 V01sE5wu4vA/8BuHln3NO22OcPbDgjj1Wiun485ZEsBsuDU/YGkXi1DOTcjKvCX2t2
-	 Dp/YTovZxaUpcoOiYKV9xqcfASuhBfRDftzakYDNqJJ+QkVf+2EX+av4AEFQ+/IXE7
-	 6u0AjyjyQB4OQllQA9L0z5yHXfjnLnLcncNEHWrPFEIcIwdJRrv9CkE2IF5TQ0Fgqb
-	 HdnueSfdk/v/w==
-From: Kalle Valo <kvalo@kernel.org>
-To: linux-firmware@kernel.org
-Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org, ath12k@lists.infradead.org,
-    Jeff Johnson <quic_jjohnson@quicinc.com>
-Subject: [PULL linux-firmware] ath11k and ath12k firmware 20240813
-Date: Tue, 13 Aug 2024 19:44:05 +0300
-Message-ID: <87cymc1iga.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	id 1sdvM5-00000004Vld-02qp
+	for ath11k@lists.infradead.org;
+	Tue, 13 Aug 2024 17:30:49 +0000
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1723570241;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nLYNakiS7XZO9BB9N7Fyevs65e05aWL1XGxAXFuVTVk=;
+	b=Mt41DhNpxne5dyvSWgRTV6r+1D1ctf2j+254poZWoREb4GDghU04Y2szQGHLkI3gN7t4kM
+	v6wEkhb2pXN7567WzcsGBuMdCtGXkJwAmFVkrHczTaZuaDXITsJfa20vPfdyK0kksWotLb
+	c8Khw3bmVQBOyfxb/Qx5CnNyyZwU0Jl6DrVXgq5G//8pgMvoSFPBeDntPX/Sq1bqmLAfFi
+	3uc9S/l86hXzj0IgNLXdAD3y/0sl6+VKbknoEx/OnamdPsNtVl227kKLOgMbIKDWedXBPD
+	N2871RW+cIpw9nXcr5qrvIkzDDnToTwCEya6tLvbvzJdNnpGI4+cSYznQXAAsQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1723570241;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nLYNakiS7XZO9BB9N7Fyevs65e05aWL1XGxAXFuVTVk=;
+	b=UUeC+kSbV/jkQoPN5g2XCYL6IeWXke547KIvgCJIkeRYW1M/RBV5YV7R8JmQCcz7gS6exg
+	20LAmw5r7AVtNzCg==
+To: Jason Gunthorpe <jgg@ziepe.ca>, Alex Williamson
+ <alex.williamson@redhat.com>
+Cc: kvm@vger.kernel.org, quic_bqiang@quicinc.com, kvalo@kernel.org,
+ prestwoj@gmail.com, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, dwmw2@infradead.org, iommu@lists.linux.dev,
+ kernel@quicinc.com, johannes@sipsolutions.net, jtornosm@redhat.com
+Subject: Re: [PATCH RFC/RFT] vfio/pci: Create feature to disable MSI
+ virtualization
+In-Reply-To: <20240813163053.GK1985367@ziepe.ca>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+ <20240812170014.1583783-1-alex.williamson@redhat.com>
+ <20240813163053.GK1985367@ziepe.ca>
+Date: Tue, 13 Aug 2024 19:30:41 +0200
+Message-ID: <87r0aspby6.ffs@tglx>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240813_094411_703549_3FF0B46B 
-X-CRM114-Status: UNSURE (   9.03  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240813_103045_210954_143FE8E3 
+X-CRM114-Status: GOOD (  18.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,61 +80,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Tue, Aug 13 2024 at 13:30, Jason Gunthorpe wrote:
+> On Mon, Aug 12, 2024 at 10:59:12AM -0600, Alex Williamson wrote:
+>> vfio-pci has always virtualized the MSI address and data registers as
+>> MSI programming is performed through the SET_IRQS ioctl.  Often this
+>> virtualization is not used, and in specific cases can be unhelpful.
+>> 
+>> One such case where the virtualization is a hinderance is when the
+>> device contains an onboard interrupt controller programmed by the guest
+>> driver.  Userspace VMMs have a chance to quirk this programming,
+>> injecting the host physical MSI information, but only if the userspace
+>> driver can get access to the host physical address and data registers.
+>> 
+>> This introduces a device feature which allows the userspace driver to
+>> disable virtualization of the MSI capability address and data registers
+>> in order to provide read-only access the the physical values.
+>
+> Personally, I very much dislike this. Encouraging such hacky driver
+> use of the interrupt subsystem is not a good direction. Enabling this
+> in VMs will further complicate fixing the IRQ usages in these drivers
+> over the long run.
+>
+> If the device has it's own interrupt sources then the device needs to
+> create an irq_chip and related and hook them up properly. Not hackily
+> read the MSI-X registers and write them someplace else.
+>
+> Thomas Gleixner has done alot of great work recently to clean this up.
+>
+> So if you imagine the driver is fixed, then this is not necessary.
 
-Here's a pull request for ath11k and ath12k. We have new ath11k hardware
-QCA2066 hw2.1 and usual smaller updates.
+Yes. I looked at the at11k driver when I was reworking the PCI/MSI
+subsystem and that's a perfect candidate for a proper device specific
+interrupt domain to replace the horrible MSI hackery it has.
 
-Please let me know if there are any problems.
+> Howver, it will still not work in a VM. Making IMS and non-MSI
+> interrupt controlers work within VMs is still something that needs to
+> be done.
 
-Kalle
+Sure, but we really want to do that in a generic way and not based on ad
+hoc workarounds.
 
-The following changes since commit 594600762910b4bbe8a88d0dc6495521366c880c:
+Did the debate around this go anywhere?
 
-  Merge branch 'vpu' into 'main' (2024-08-09 13:02:09 +0000)
+Thanks,
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git ath-20240813
-
-for you to fetch changes up to 82318c966fd1af87044299d34611751c76f70927:
-
-  ath12k: WCN7850 hw2.0: update board-2.bin (2024-08-13 19:36:13 +0300)
-
-----------------------------------------------------------------
-Kalle Valo (6):
-      ath11k: IPQ5018 hw1.0: update to WLAN.HK.2.6.0.1-01291-QCAHKSWPL_SILICONZ-1
-      ath11k: QCA2066 hw2.1: add board-2.bin
-      ath11k: QCA2066 hw2.1: add to WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.3
-      ath11k: WCN6855 hw2.0: update board-2.bin
-      ath11k: WCN6855 hw2.0: update to WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
-      ath12k: WCN7850 hw2.0: update board-2.bin
-
- WHENCE                           |    9 +-
- ath11k/IPQ5018/hw1.0/m3_fw.b01   |  Bin 136 -> 136 bytes
- ath11k/IPQ5018/hw1.0/m3_fw.b02   |  Bin 262144 -> 262144 bytes
- ath11k/IPQ5018/hw1.0/m3_fw.mdt   |  Bin 284 -> 284 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b00   |  Bin 532 -> 532 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b01   |  Bin 520 -> 520 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b02   |  Bin 7552 -> 7552 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b04   |  Bin 86788 -> 86788 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b08   |  Bin 4096 -> 4096 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b09   |  Bin 2330624 -> 2334720 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b10   |  Bin 269028 -> 269220 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b11   |  Bin 99436 -> 99456 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b13   |  Bin 7024 -> 7072 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.mdt   |  Bin 1052 -> 1052 bytes
- ath11k/QCA2066/hw2.1/Notice.txt  | 3658 ++++++++++++++++++++++++++++++++++++++
- ath11k/QCA2066/hw2.1/amss.bin    |  Bin 0 -> 5349376 bytes
- ath11k/QCA2066/hw2.1/board-2.bin |  Bin 0 -> 685144 bytes
- ath11k/QCA2066/hw2.1/m3.bin      |  Bin 0 -> 266684 bytes
- ath11k/WCN6855/hw2.0/amss.bin    |  Bin 4988928 -> 4988928 bytes
- ath11k/WCN6855/hw2.0/board-2.bin |  Bin 6308684 -> 6429240 bytes
- ath11k/WCN6855/hw2.0/m3.bin      |  Bin 266684 -> 266684 bytes
- ath12k/WCN7850/hw2.0/board-2.bin |  Bin 382856 -> 1897968 bytes
- 22 files changed, 3665 insertions(+), 2 deletions(-)
- create mode 100644 ath11k/QCA2066/hw2.1/Notice.txt
- create mode 100644 ath11k/QCA2066/hw2.1/amss.bin
- create mode 100644 ath11k/QCA2066/hw2.1/board-2.bin
- create mode 100644 ath11k/QCA2066/hw2.1/m3.bin
+        tglx
 
