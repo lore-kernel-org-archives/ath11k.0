@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093C7C52D7C
-	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 21:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2187C52D7C
+	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 21:14:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
 	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1UOf/e3HcQ+l94OWXrCwdSK3TbHtvFPHwqfrVahjAnI=; b=Rglg4gBmU9f+Y6olkCWBCmd6x5
-	e+EanlcaiKjx0XuYKm1Oox/VgAKcimrXHM0i7FwobqlqdFqbeZUWCJdRaHJekxkY8bSWdCM70bjPr
-	qD5KLTMvZLWTOKWqA65ecNgBTCjrdmm13WEpgz39D6QCmPp9Mcqk2ZzIYSIl+Cvo8h3SStZHuhDPq
-	Sx7lrdgwdS6o2ic5M3eJ4nENep3FSljJBI9SuJHbvqYlgPpAPWO42eR6+ohGo3y+vegSvEpdExr23
-	YnUf/9b8Z8YhUIfjkf0YZ6NTBQ7pI73JpHfa65py0M4STdMhiIrc9hVYyPMi4P72lF351OfvXkTp2
-	nXfATDAg==;
+	bh=RLndxOVhMGnGk0ZQ33snLsOErJZzv8Txl/Ym94gCWEQ=; b=rCnzBtMJvPjyzNhvu4Pn66J7lz
+	FTTR0kSZDe7DWQv0U1FifmgjBudb4yFmjBLvlXNIMg9x9rJ3ulGOL9RpOpqpDzVLUD18KCltxMDwd
+	YFWb3ULDnzx8BVbhTdxPOTAo28wYJHUd3lZFf89JSNHM3iw10HMgkr93/4rp3D9hZA7zA01I+bhLA
+	Z+YWbTMMMOXjB3LOnphGWOlYJwpiwlQ00L2neXvWE1KiXuBO/9wD01zRXjjnp8iS8iux4b/ZM/RsQ
+	FwoL+qZl8nxUqNQPmKyXaS21WKoydLZDJEw3o3LDvdkIRRcJxwsUn+5JruwniUCMxCYM/1nhAoVU6
+	135ACBDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdyg0-00000004waw-0ivE;
-	Tue, 13 Aug 2024 21:03:32 +0000
+	id 1sdyqH-00000004xvs-1hQN;
+	Tue, 13 Aug 2024 21:14:09 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdyfw-00000004wa5-3x7x
+	id 1sdyqE-00000004xta-1got
 	for ath11k@lists.infradead.org;
-	Tue, 13 Aug 2024 21:03:30 +0000
+	Tue, 13 Aug 2024 21:14:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1723583005;
+	s=mimecast20190719; t=1723583645;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=1UOf/e3HcQ+l94OWXrCwdSK3TbHtvFPHwqfrVahjAnI=;
-	b=HzZPKLdmzl9SfUMMYWJITFd9JXtrdorv7WolYXcogxGZTwKSAKv1H2cpdHiss7rLBprePA
-	1JTkHWGsRIi5aHPMmcZjtdmIqmRHxcf2q85Eq7cXSu8UktEGheGfJtU92WgydJzbp6OTWc
-	vtTpEUgoVarlN/HBi/pu73aIU06I6yU=
-Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
- [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=RLndxOVhMGnGk0ZQ33snLsOErJZzv8Txl/Ym94gCWEQ=;
+	b=cZnIOvirxhfADjqx3lB2xCkA5PYNgM8hWW4AR4ME7J9PJPQVHbyo96E8Qvkz3zo6GVTbiG
+	soVVW2W5pLB7/7L5C0XXih2c4a+aaqmnRyk5GkCbkPkzTnOOPlggbyaeeWLhDvg5LeiFEs
+	U++0aLk8+NMvGRTpTuC4OuuJJTHznng=
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
+ [209.85.166.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-645-L6AjgXfVN1Wudd48J9kzkw-1; Tue, 13 Aug 2024 17:03:24 -0400
-X-MC-Unique: L6AjgXfVN1Wudd48J9kzkw-1
-Received: by mail-io1-f71.google.com with SMTP id ca18e2360f4ac-82237e575f7so753474539f.3
-        for <ath11k@lists.infradead.org>; Tue, 13 Aug 2024 14:03:24 -0700 (PDT)
+ us-mta-683-tz4SC_sBPv-w3sEBqdBL6w-1; Tue, 13 Aug 2024 17:14:04 -0400
+X-MC-Unique: tz4SC_sBPv-w3sEBqdBL6w-1
+Received: by mail-il1-f198.google.com with SMTP id e9e14a558f8ab-39b3245b20eso2771285ab.1
+        for <ath11k@lists.infradead.org>; Tue, 13 Aug 2024 14:14:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723583004; x=1724187804;
+        d=1e100.net; s=20230601; t=1723583643; x=1724188443;
         h=content-transfer-encoding:mime-version:organization:references
          :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1UOf/e3HcQ+l94OWXrCwdSK3TbHtvFPHwqfrVahjAnI=;
-        b=qzCZNzO76s0Yiezsi1yERdI18QWPtnpWz7r7zxQChIV44udSABoZz77daj1Iqi6Vuk
-         HOFYDHF8jUOTOazDhQHGQCGRXd+6hcMxANsgqWZO1CZRIFCKQQTmPEKcthY01f1g6oh8
-         V4Kh7YaTV0fzoMyGbjS8bHfiyPhs5HHSs+XiG/p51hi2XfehmZHyFE29O0cfTIqkhwaH
-         KXla7lQE7szzrsJ7hs+8JGJQ4eeHDqY/3WkEVdvCH98xvbSto3lkXTeqdo45qR2T8iO7
-         5End5HXxnZGaaBfBLVOw8jnQisg4DNexZo4ac4i7Yg0aEHZPJgK7UeeJjXEMQIgszAfr
-         ZKiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3pCmMKbH5nA+l2Djh/HFKzL3i9+lfwhSh/gIkYM8OL+E+JsJZmeUtsygpVHmOKacsoNVwQPF+VnZLsEUZlK95WdItOiLaLRB/VA==
-X-Gm-Message-State: AOJu0Yzc+ScwwaSj95HfVLd0OZPuFlnSA0pmAvLIZBXKxUlaRe4xeYSM
-	kjLMwbtDnERDkeLOeVAvWsP5YVMuGSjigQML+Xm/t3XC7gxiM1TFmIQqMlpf0IOVB7TYmoHtKrg
-	DwpTfQdLLZ3Y5aQQ9fiF3rdnLRaTeFNmiE95BTB8sQ+VG08TcvDBxCPt0WcB6CyCKOq0=
-X-Received: by 2002:a05:6602:14d2:b0:804:9972:2f8c with SMTP id ca18e2360f4ac-824dad04265mr122543939f.8.1723583003655;
-        Tue, 13 Aug 2024 14:03:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGUG+Ra/4MLDKrpbcdWTsiFMgCKM25UlSCbFVfALG5nTggblaB3Mjb05rv1rYcf1nGj/+3LVA==
-X-Received: by 2002:a05:6602:14d2:b0:804:9972:2f8c with SMTP id ca18e2360f4ac-824dad04265mr122539339f.8.1723583003274;
-        Tue, 13 Aug 2024 14:03:23 -0700 (PDT)
+        bh=RLndxOVhMGnGk0ZQ33snLsOErJZzv8Txl/Ym94gCWEQ=;
+        b=tcwv+OMd9SN2h0JGjmu8LZs6EvYPlYBQiCaioYHPbwgE5RLUVOSOAoe1W1m5HNfTEt
+         MJVnhXsTnbxCAX4bbMCeb0bhTtkUsL3QiajSmMFG5MfgjomiFJIhaSSYjCSuKaHOmruD
+         VJ2gHRQ0cA5lSiBDuv0yAzUN3jTr3GCh9lRdiP90fLU/+4y5RTkgewRDv7HXtULffUO8
+         Dh2OmbBb8ZbAxANd0d0HqZyE3aDj7EFptmjBcMySsi+gNo6LM/yRoVEhOl5ScYQfVL/o
+         0gHlwWCZSvGYtLwUOdwvx9L6EAr3kbhSU3YVT/35gfuLaZKtzUpxqAnG654Nmd+Iz9Q1
+         EG2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUPrDmwBCRwJhpogRVF6p0AyRJrSDeoB7DUPpAwN1NKHF5tkxEYDUwgx5mJt6igUmmSSOmX0Z3CjCRhA8eZxZz5V69wYb3ljXBvUQ==
+X-Gm-Message-State: AOJu0YxMlpz10iigK5mnRBFMnDdguLqDpwXrEl12Z00bix9td3UbuOY0
+	695Ly4kPWZ/i6d+wUoyqLWNrixDQVzAPRYljI6+9vWGOpv0Z1HINfdMedC0nJpTiKHUt/3MXoE6
+	YeTplXCZ+6zUBeuO4hE6j1LuRs41kD7WHhgBlhxVHqSpecZvfcli04DXGv5fVTh+kxYg=
+X-Received: by 2002:a05:6e02:1c48:b0:399:4525:c2bc with SMTP id e9e14a558f8ab-39c48dccd95mr35434745ab.10.1723583643362;
+        Tue, 13 Aug 2024 14:14:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG80cLRVSOvRn9w9qz+VrLxVLNgcf2C34EALlspiOzLOxMt0M7/SH6xPKbhukHFZiTHKZOB1A==
+X-Received: by 2002:a05:6e02:1c48:b0:399:4525:c2bc with SMTP id e9e14a558f8ab-39c48dccd95mr35434605ab.10.1723583642975;
+        Tue, 13 Aug 2024 14:14:02 -0700 (PDT)
 Received: from redhat.com ([38.15.36.11])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ca76910393sm2733107173.7.2024.08.13.14.03.21
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ca769102d4sm2731540173.36.2024.08.13.14.14.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 14:03:22 -0700 (PDT)
-Date: Tue, 13 Aug 2024 15:03:20 -0600
+        Tue, 13 Aug 2024 14:14:02 -0700 (PDT)
+Date: Tue, 13 Aug 2024 15:14:01 -0600
 From: Alex Williamson <alex.williamson@redhat.com>
 To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: qemu-devel@nongnu.org, kvm@vger.kernel.org, quic_bqiang@quicinc.com,
- kvalo@kernel.org, prestwoj@gmail.com, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, dwmw2@infradead.org, iommu@lists.linux.dev,
- kernel@quicinc.com, johannes@sipsolutions.net, jtornosm@redhat.com
-Subject: Re: [PATCH RFC/RFT] vfio/pci-quirks: Quirk for ath wireless
-Message-ID: <20240813150320.73df43d7.alex.williamson@redhat.com>
-In-Reply-To: <20240813164341.GL1985367@ziepe.ca>
+Cc: Thomas Gleixner <tglx@linutronix.de>, kvm@vger.kernel.org,
+ quic_bqiang@quicinc.com, kvalo@kernel.org, prestwoj@gmail.com,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ dwmw2@infradead.org, iommu@lists.linux.dev, kernel@quicinc.com,
+ johannes@sipsolutions.net, jtornosm@redhat.com
+Subject: Re: [PATCH RFC/RFT] vfio/pci: Create feature to disable MSI
+ virtualization
+Message-ID: <20240813151401.789c578f.alex.williamson@redhat.com>
+In-Reply-To: <20240813163053.GK1985367@ziepe.ca>
 References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
-	<20240812170045.1584000-1-alex.williamson@redhat.com>
-	<20240813164341.GL1985367@ziepe.ca>
+	<20240812170014.1583783-1-alex.williamson@redhat.com>
+	<20240813163053.GK1985367@ziepe.ca>
 Organization: Red Hat
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
@@ -89,8 +91,8 @@ X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240813_140329_093795_D653CFF2 
-X-CRM114-Status: GOOD (  34.39  )
+X-CRM114-CacheID: sfid-20240813_141406_557826_255EDADD 
+X-CRM114-Status: GOOD (  27.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,72 +107,55 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 13 Aug 2024 13:43:41 -0300
+On Tue, 13 Aug 2024 13:30:53 -0300
 Jason Gunthorpe <jgg@ziepe.ca> wrote:
 
-> On Mon, Aug 12, 2024 at 11:00:40AM -0600, Alex Williamson wrote:
-> > These devices have an embedded interrupt controller which is programmed
-> > with guest physical MSI address/data, which doesn't work.  We need
-> > vfio-pci kernel support to provide a device feature which disables
-> > virtualization of the MSI capability registers.  Then we can do brute
-> > force testing for writes matching the MSI address, from which we can
-> > infer writes of the MSI data, replacing each with host physical values.
+> On Mon, Aug 12, 2024 at 10:59:12AM -0600, Alex Williamson wrote:
+> > vfio-pci has always virtualized the MSI address and data registers as
+> > MSI programming is performed through the SET_IRQS ioctl.  Often this
+> > virtualization is not used, and in specific cases can be unhelpful.
 > > 
-> > This has only been tested on ath11k (0x1103), ath12k support is
-> > speculative and requires testing.  Note that Windows guest drivers make
-> > use of multi-vector MSI which requires interrupt remapping support in
-> > the host.  
+> > One such case where the virtualization is a hinderance is when the
+> > device contains an onboard interrupt controller programmed by the guest
+> > driver.  Userspace VMMs have a chance to quirk this programming,
+> > injecting the host physical MSI information, but only if the userspace
+> > driver can get access to the host physical address and data registers.
+> > 
+> > This introduces a device feature which allows the userspace driver to
+> > disable virtualization of the MSI capability address and data registers
+> > in order to provide read-only access the the physical values.  
 > 
-> The way it is really supposed to work, is that the guest itself
-> controls/knows the MSI addr/data pairs and the interrupt remapping HW
-> makes that delegation safe since all the interrupt processing will be
-> qualified by the RID.
+> Personally, I very much dislike this. Encouraging such hacky driver
+> use of the interrupt subsystem is not a good direction. Enabling this
+> in VMs will further complicate fixing the IRQ usages in these drivers
+> over the long run.
+
+Clearly these _guest_ drivers are doing this regardless of the
+interfaces provided by vfio, so I don't see how we're encouraging hacky
+driver behavior, especially when it comes to Windows guest drivers.
+
+> If the device has it's own interrupt sources then the device needs to
+> create an irq_chip and related and hook them up properly. Not hackily
+> read the MSI-X registers and write them someplace else.
+
+This is how the hardware works, regardless of whether the guest driver
+represents the hardware using an irq_chip.
+
+> Thomas Gleixner has done alot of great work recently to clean this up.
 > 
-> Then the guest can make up the unique interrupts for MSI and any
-> internal "IMS" sources and we just let the guest directly write the
-> MSI/MSI-X and any IMS values however it wants.
-> 
-> This hackery to capture and substitute the IMS programming is neat and
-> will solve this one device, but there are more IMS style devices in
-> the pipeline than will really need a full solution.
+> So if you imagine the driver is fixed, then this is not necessary.
 
-How does the guest know to write a remappable vector format?  How does
-the guest know the host interrupt architecture?  For example why would
-an aarch64 guest program an MSI vector of 0xfee... if the host is x86?
+How so?  Regardless of the guest driver structure, something is writing
+the MSI address and data values elsewhere in the device.  AFAICT the
+only way to avoid needing to fixup those values is to give the guest
+ownership of the address space as you suggested in the other patch.
+That also seems to have a pile of issues though.
 
-The idea of guest owning the physical MSI address space sounds great,
-but is it practical?  Is it something that would be accomplished while
-this device is still relevant?
+> Howver, it will still not work in a VM. Making IMS and non-MSI
+> interrupt controlers work within VMs is still something that needs to
+> be done.
 
-> > + * The Windows driver makes use of multi-vector MSI, where our sanity test
-> > + * of the MSI data value must then mask off the vector offset for comparison
-> > + * and add it back to the host base data value on write.  
-> 
-> But is that really enough? If the vector offset is newly created then
-> that means the VM built a new interrupt that needs setup to be routed
-> into the VM?? Is that why you say it "requires interrupt remapping
-> support" because that setup is happening implicitly on x86?
-> 
-> It looks like Windows is acting as I said Linux should, with a
-> "irq_chip" and so on to get the unique interrupt source a proper
-> unique addr/data pair...
-
-The Windows driver is just programming the MSI capability to use 16
-vectors.  We configure those vectors on the host at the time the
-capability is written.  Whereas the Linux driver is only using a single
-vector and therefore writing the same MSI address and data at the
-locations noted in the trace, the Windows driver is writing different
-data values at different locations to make use of those vectors.  This
-note is simply describing that we can't directly write the physical
-data value into the device, we need to determine which vector offset
-the guest is using and provide the same offset from the host data
-register value.
-
-I don't know that interrupt remapping is specifically required, but the
-MSI domain needs to support MSI_FLAG_MULTI_PCI_MSI and AFAIK that's
-only available with interrupt remapping on x86, ie.
-pci_alloc_irq_vectors() with max_vecs >1 and PCI_IRQ_MSI flags needs to
-work on the host to mirror the guest MSI configuration.  Thanks,
+Making it work in a VM is sort of the point here.  Thanks,
 
 Alex
 
