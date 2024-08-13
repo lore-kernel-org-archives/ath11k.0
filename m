@@ -4,67 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14700C52D7B
-	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 20:59:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093C7C52D7C
+	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 21:03:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:
-	References:In-Reply-To:Cc:To:From:MIME-Version:Content-Transfer-Encoding:
-	Content-Type:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VcuSb0ZjqENTc4SCKaE2Qdpwgkterp863mMHrQVlKQE=; b=EGAMllx/F3IJeU0Mdyiux3AtpE
-	zqIc2ne37BGywD1/jFp6jsav3U0kKfjt8KStbXmEvnuy4q21Ql0CtMbW+pO5XYKp5IDETuMyrVH6w
-	fhmkmIBtXO0uKVgP+xRybmjam7yL8RyRWGdhtoQ9eyf14ofLZXTJYGQy1WhcMrXpEQcrM9GV7jf6Z
-	EU2CEE4YkuxvrUW2pvlZeFvZxluViMWfyy9jZoJQpxfgjDHto8OvUI5fKl7Msi0FQwOI7RApdgvqJ
-	VMDsyirjnSHyt479lmJ+eZJODJi0W2lkvyNK0X4pPtkEbVgy5cyaO4wP4/1a8rNRTsTtLbdGvN5/r
-	4aLfWdAQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=1UOf/e3HcQ+l94OWXrCwdSK3TbHtvFPHwqfrVahjAnI=; b=Rglg4gBmU9f+Y6olkCWBCmd6x5
+	e+EanlcaiKjx0XuYKm1Oox/VgAKcimrXHM0i7FwobqlqdFqbeZUWCJdRaHJekxkY8bSWdCM70bjPr
+	qD5KLTMvZLWTOKWqA65ecNgBTCjrdmm13WEpgz39D6QCmPp9Mcqk2ZzIYSIl+Cvo8h3SStZHuhDPq
+	Sx7lrdgwdS6o2ic5M3eJ4nENep3FSljJBI9SuJHbvqYlgPpAPWO42eR6+ohGo3y+vegSvEpdExr23
+	YnUf/9b8Z8YhUIfjkf0YZ6NTBQ7pI73JpHfa65py0M4STdMhiIrc9hVYyPMi4P72lF351OfvXkTp2
+	nXfATDAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdycI-00000004w4f-04HQ;
-	Tue, 13 Aug 2024 20:59:42 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1sdyg0-00000004waw-0ivE;
+	Tue, 13 Aug 2024 21:03:32 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdycE-00000004w44-2p2f
+	id 1sdyfw-00000004wa5-3x7x
 	for ath11k@lists.infradead.org;
-	Tue, 13 Aug 2024 20:59:40 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id 4B454CE17D5;
-	Tue, 13 Aug 2024 20:59:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16CD4C32782;
-	Tue, 13 Aug 2024 20:59:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723582775;
-	bh=n9dg36LXmN2upFJapMn9PpdzfL1juCkf2K9+76G+g80=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=NzFBZ6YbcMhvmgf7XIZ2DzmarlbrWhFmaDDbK97NoCOsjcPVuoabA2tAGqCPSNXyr
-	 RYbEj6H/qTw36+dVpoEkPVD82k/KRXLkfMSUEsZBBYwAWgyGCBRsIPS43oPRw++9l8
-	 kcYPGTN/HaOsDM164QtRaHiyZr7VSez2LjyjHiXxa7loxO2maFhTGSzb4QxVNGRwRR
-	 Tlk/tIUXJ0FRLiM/l93r/cZtQo6iJdOEd94Ys/klshVHxgLOQkgF0i0mWS8TTfcuNY
-	 dLd7sB42vcETMjCWuQO3/vF0e2lITU8fLY/1QgD+t4KxqGTybDOvo0adFSSRrdT84d
-	 WJIPrhQYf2zVg==
-Date: Tue, 13 Aug 2024 14:59:33 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Tue, 13 Aug 2024 21:03:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1723583005;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1UOf/e3HcQ+l94OWXrCwdSK3TbHtvFPHwqfrVahjAnI=;
+	b=HzZPKLdmzl9SfUMMYWJITFd9JXtrdorv7WolYXcogxGZTwKSAKv1H2cpdHiss7rLBprePA
+	1JTkHWGsRIi5aHPMmcZjtdmIqmRHxcf2q85Eq7cXSu8UktEGheGfJtU92WgydJzbp6OTWc
+	vtTpEUgoVarlN/HBi/pu73aIU06I6yU=
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-645-L6AjgXfVN1Wudd48J9kzkw-1; Tue, 13 Aug 2024 17:03:24 -0400
+X-MC-Unique: L6AjgXfVN1Wudd48J9kzkw-1
+Received: by mail-io1-f71.google.com with SMTP id ca18e2360f4ac-82237e575f7so753474539f.3
+        for <ath11k@lists.infradead.org>; Tue, 13 Aug 2024 14:03:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723583004; x=1724187804;
+        h=content-transfer-encoding:mime-version:organization:references
+         :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1UOf/e3HcQ+l94OWXrCwdSK3TbHtvFPHwqfrVahjAnI=;
+        b=qzCZNzO76s0Yiezsi1yERdI18QWPtnpWz7r7zxQChIV44udSABoZz77daj1Iqi6Vuk
+         HOFYDHF8jUOTOazDhQHGQCGRXd+6hcMxANsgqWZO1CZRIFCKQQTmPEKcthY01f1g6oh8
+         V4Kh7YaTV0fzoMyGbjS8bHfiyPhs5HHSs+XiG/p51hi2XfehmZHyFE29O0cfTIqkhwaH
+         KXla7lQE7szzrsJ7hs+8JGJQ4eeHDqY/3WkEVdvCH98xvbSto3lkXTeqdo45qR2T8iO7
+         5End5HXxnZGaaBfBLVOw8jnQisg4DNexZo4ac4i7Yg0aEHZPJgK7UeeJjXEMQIgszAfr
+         ZKiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX3pCmMKbH5nA+l2Djh/HFKzL3i9+lfwhSh/gIkYM8OL+E+JsJZmeUtsygpVHmOKacsoNVwQPF+VnZLsEUZlK95WdItOiLaLRB/VA==
+X-Gm-Message-State: AOJu0Yzc+ScwwaSj95HfVLd0OZPuFlnSA0pmAvLIZBXKxUlaRe4xeYSM
+	kjLMwbtDnERDkeLOeVAvWsP5YVMuGSjigQML+Xm/t3XC7gxiM1TFmIQqMlpf0IOVB7TYmoHtKrg
+	DwpTfQdLLZ3Y5aQQ9fiF3rdnLRaTeFNmiE95BTB8sQ+VG08TcvDBxCPt0WcB6CyCKOq0=
+X-Received: by 2002:a05:6602:14d2:b0:804:9972:2f8c with SMTP id ca18e2360f4ac-824dad04265mr122543939f.8.1723583003655;
+        Tue, 13 Aug 2024 14:03:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGUG+Ra/4MLDKrpbcdWTsiFMgCKM25UlSCbFVfALG5nTggblaB3Mjb05rv1rYcf1nGj/+3LVA==
+X-Received: by 2002:a05:6602:14d2:b0:804:9972:2f8c with SMTP id ca18e2360f4ac-824dad04265mr122539339f.8.1723583003274;
+        Tue, 13 Aug 2024 14:03:23 -0700 (PDT)
+Received: from redhat.com ([38.15.36.11])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ca76910393sm2733107173.7.2024.08.13.14.03.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Aug 2024 14:03:22 -0700 (PDT)
+Date: Tue, 13 Aug 2024 15:03:20 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: qemu-devel@nongnu.org, kvm@vger.kernel.org, quic_bqiang@quicinc.com,
+ kvalo@kernel.org, prestwoj@gmail.com, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, dwmw2@infradead.org, iommu@lists.linux.dev,
+ kernel@quicinc.com, johannes@sipsolutions.net, jtornosm@redhat.com
+Subject: Re: [PATCH RFC/RFT] vfio/pci-quirks: Quirk for ath wireless
+Message-ID: <20240813150320.73df43d7.alex.williamson@redhat.com>
+In-Reply-To: <20240813164341.GL1985367@ziepe.ca>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+	<20240812170045.1584000-1-alex.williamson@redhat.com>
+	<20240813164341.GL1985367@ziepe.ca>
+Organization: Red Hat
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- "David S . Miller" <davem@davemloft.net>, Kalle Valo <kvalo@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>, 
- Jeff Johnson <jjohnson@kernel.org>, Eric Dumazet <edumazet@google.com>, 
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
- Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20240813190306.154943-1-brgl@bgdev.pl>
-References: <20240813190306.154943-1-brgl@bgdev.pl>
-Message-Id: <172358277338.2007176.5717215982820920385.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: ath11k: document the inputs of the
- ath11k on WCN6855
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240813_135939_078381_05BDDE4D 
-X-CRM114-Status: UNSURE (   9.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240813_140329_093795_D653CFF2 
+X-CRM114-Status: GOOD (  34.39  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,57 +105,73 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Tue, 13 Aug 2024 13:43:41 -0300
+Jason Gunthorpe <jgg@ziepe.ca> wrote:
 
-On Tue, 13 Aug 2024 21:03:05 +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> On Mon, Aug 12, 2024 at 11:00:40AM -0600, Alex Williamson wrote:
+> > These devices have an embedded interrupt controller which is programmed
+> > with guest physical MSI address/data, which doesn't work.  We need
+> > vfio-pci kernel support to provide a device feature which disables
+> > virtualization of the MSI capability registers.  Then we can do brute
+> > force testing for writes matching the MSI address, from which we can
+> > infer writes of the MSI data, replacing each with host physical values.
+> > 
+> > This has only been tested on ath11k (0x1103), ath12k support is
+> > speculative and requires testing.  Note that Windows guest drivers make
+> > use of multi-vector MSI which requires interrupt remapping support in
+> > the host.  
 > 
-> Describe the inputs from the PMU of the ath11k module on WCN6855.
+> The way it is really supposed to work, is that the guest itself
+> controls/knows the MSI addr/data pairs and the interrupt remapping HW
+> makes that delegation safe since all the interrupt processing will be
+> qualified by the RID.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  .../net/wireless/qcom,ath11k-pci.yaml         | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> Then the guest can make up the unique interrupts for MSI and any
+> internal "IMS" sources and we just let the guest directly write the
+> MSI/MSI-X and any IMS values however it wants.
 > 
+> This hackery to capture and substitute the IMS programming is neat and
+> will solve this one device, but there are more IMS style devices in
+> the pipeline than will really need a full solution.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+How does the guest know to write a remappable vector format?  How does
+the guest know the host interrupt architecture?  For example why would
+an aarch64 guest program an MSI vector of 0xfee... if the host is x86?
 
-yamllint warnings/errors:
+The idea of guest owning the physical MSI address space sounds great,
+but is it practical?  Is it something that would be accomplished while
+this device is still relevant?
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddrfacmn-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddaon-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddwlcx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddwlmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddrfa0p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddrfa1p2-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddrfa1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddpcie0p9-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.example.dtb: wifi@0: 'vddpcie1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
+> > + * The Windows driver makes use of multi-vector MSI, where our sanity test
+> > + * of the MSI data value must then mask off the vector offset for comparison
+> > + * and add it back to the host base data value on write.  
+> 
+> But is that really enough? If the vector offset is newly created then
+> that means the VM built a new interrupt that needs setup to be routed
+> into the VM?? Is that why you say it "requires interrupt remapping
+> support" because that setup is happening implicitly on x86?
+> 
+> It looks like Windows is acting as I said Linux should, with a
+> "irq_chip" and so on to get the unique interrupt source a proper
+> unique addr/data pair...
 
-doc reference errors (make refcheckdocs):
+The Windows driver is just programming the MSI capability to use 16
+vectors.  We configure those vectors on the host at the time the
+capability is written.  Whereas the Linux driver is only using a single
+vector and therefore writing the same MSI address and data at the
+locations noted in the trace, the Windows driver is writing different
+data values at different locations to make use of those vectors.  This
+note is simply describing that we can't directly write the physical
+data value into the device, we need to determine which vector offset
+the guest is using and provide the same offset from the host data
+register value.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240813190306.154943-1-brgl@bgdev.pl
+I don't know that interrupt remapping is specifically required, but the
+MSI domain needs to support MSI_FLAG_MULTI_PCI_MSI and AFAIK that's
+only available with interrupt remapping on x86, ie.
+pci_alloc_irq_vectors() with max_vecs >1 and PCI_IRQ_MSI flags needs to
+work on the host to mirror the guest MSI configuration.  Thanks,
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Alex
 
 
