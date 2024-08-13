@@ -4,89 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8566C52D7D
-	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 19:03:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24695C52D7B
+	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 19:08:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=fpSg/3y828Pw97blr6HDnxsdU+5aKQgCf2MNnTGXTPg=; b=HUJ4axl1W+gblSz4lPUiAwCkAR
-	CuS2qksic03nbVIorVaBbEcUSlM+yoOCiqXEju8Ha/aEnS72Xk9+piQp3aDCio+PXmX1S1OsrSCeF
-	49zQ0iQKT/OIHBXuxjCrQIRow8gdYNYQIARgMcoFvhrE/zSJgkDW5s+IHo4mmZWZ/orySz31j3nnu
-	U1Em6btjwQoXaKRGiwVjs+WUqR6WnZ3Qm+hDNuD8M62qVB4cL/kV9exeK6XArbfG0D0Ful9COeCXJ
-	iMd5iwrC6GuL5AOk3ocUeTjwczFWVKmbBJwq2VZ8tmNBANABk70wcwALQ2bTwtOS/PxvG34EtHg+5
-	C+0r8ucA==;
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=0xlYExBQNqeO5jOeV1R+EJgCWyPDMyof71a0kXqDUFg=; b=pRdekK0jFfnkkHx2tGmA9HoWej
+	hoQkldU2fkAEBEikdoL5RLPNDEA92fDkNPM4zgr5getERbef1a/b5QXFYYJ9kJm/fhfjZYnbyDAlO
+	hw9MfwASCFRXqKwLyxdRoKzeWPtEWDXhszz/0sFCVcLILdBmz4zEwpYv4RY+oIuf+Nk/zML9ggmxD
+	+b5lLztUYvEEwxawt6pBkcOgNhKXBeY/MKdNeI/j05bm4jLmlVRowxuyOV4lYdk5dQB55emHiRi+x
+	ErBHjl7enzhi+VEV+doz8qq/MQCHbHmr6mKBTXbdQ8dXtxWXWwWGI5n9oGXwvcB/gcsO1g0+9+XbX
+	B6cfT97A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdwnf-00000004haE-31Au;
-	Tue, 13 Aug 2024 19:03:19 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1sdwt5-00000004iKD-27nR;
+	Tue, 13 Aug 2024 19:08:55 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdwnc-00000004hZX-3y3m
+	id 1sdwt2-00000004iJe-1sE9
 	for ath11k@lists.infradead.org;
-	Tue, 13 Aug 2024 19:03:18 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-52efd08e6d9so7415611e87.1
-        for <ath11k@lists.infradead.org>; Tue, 13 Aug 2024 12:03:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723575794; x=1724180594; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fpSg/3y828Pw97blr6HDnxsdU+5aKQgCf2MNnTGXTPg=;
-        b=GahqNc2CzNOT968Z6WcDPVE/EkJa3vZv5VJB2PH+vnbKAgl4+LRK5YgwOMQ3AaAwm6
-         msj87Z9owJ/tA53JIdFVOedHy/QlhcQVuGYfOlvzBP1v/rItqKxgOSf2FqpUFL0r8oTr
-         uzJVug9Dd//E5ZJHvDUZh6ThH254dE3ZP4PIaZWXfFa2OPG9dBv+2Ai/932e/oYnbkWh
-         nN/vqptNKzN14L+JNtq24H1gsRb1fJXDKRROx332b9KNzUjelFAOHP9md0gJZki4h8CO
-         BEP3TEyYCvVFZYMVxpFk+ShzXLVLsRZUUc98Fs52U5DzfwUTiiDZK8+mp6HQSBN0W31P
-         u8fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723575794; x=1724180594;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fpSg/3y828Pw97blr6HDnxsdU+5aKQgCf2MNnTGXTPg=;
-        b=P0G4bAd7JCGwOu7c3o4XstPmeh5nUhdL4l6egLgK+G4sGlwy7VnCFPaeiookoqyjyz
-         pY+tmYCMvcWd+U1E6zHbaUxRRj1FHZbuB3wiD+URwRaDTBkUcEh0WRwseOIvAUfuBRaf
-         l9swkI8x2+sYYlQRmIRoxEQK2ruTQOxKsLqL+34a/575JkahKPmnuCIj8FCRcqp/aqZv
-         1ul1Gwf9/WyBiDiN5iHqg6LKCLUQb2EVPeLnS3/egA6JNjry6uIzJIBzWSmN1RekELDe
-         SnJMUw6QYip3m68uU/6BLMx7/hFJ3R2HOz0ipWqbaRFKAyBSwHoKAoUQJxzBPTy5kqtG
-         524g==
-X-Forwarded-Encrypted: i=1; AJvYcCXCeKHLDNVmMzyzWEypy5JXG342QTrGfx+Ezc0Yhl0QCPq3DEScr8YwaAScTOjJl68R7GTGKUFjOVU4TKjRCD2QDLej9my52redqg==
-X-Gm-Message-State: AOJu0YzVjn6R9t97rV0I1UeYfK+dO+tO6yrlqZa9RXZ0INmt+Zm4E2VP
-	3v4ECIuDDu1KLQ5I2WkljledcUv03DKsMN5CA6F1YfCnETHQD2fupfsP3RhhK/4=
-X-Google-Smtp-Source: AGHT+IH+VagueuQIXMxGnIX0w5CylWhKwU2nLQR+DMf+tI3DEgtgkMQnem1H9OyA00MT+ZbTBm902g==
-X-Received: by 2002:a05:6512:2351:b0:52c:b479:902d with SMTP id 2adb3069b0e04-532eda5b0famr222373e87.4.1723575794356;
-        Tue, 13 Aug 2024 12:03:14 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:3979:ff54:1b42:968a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4290c72d8ffsm229487185e9.7.2024.08.13.12.03.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 12:03:14 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Kalle Valo <kvalo@kernel.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH] dt-bindings: net: ath11k: document the inputs of the ath11k on WCN6855
-Date: Tue, 13 Aug 2024 21:03:05 +0200
-Message-ID: <20240813190306.154943-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.43.0
+	Tue, 13 Aug 2024 19:08:53 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47DD6FMU031392;
+	Tue, 13 Aug 2024 19:08:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0xlYExBQNqeO5jOeV1R+EJgCWyPDMyof71a0kXqDUFg=; b=d3qwccqa6G5H/Wn1
+	x6dE+HfEbB6sphdW27Lf9ZPuVu6j1irOg/omZRc/UHHsTkIOxIJSxmgHTAS0ZgmY
+	65DPVZ/BRQavHUF26XxWtB8enRBOlI7LTAW8rRmc+pK+yhpDrBGHMclPj8/ofJ7H
+	4OxXLqbGqGq/SiGAZB68GnsT2RElFKJW4Qy0d8KQvmzBPI+DcV4blJzHKZKeO4Fn
+	SWGAP0lAdA8bBIXjejKD41Yp1hvYAYYKINle5z8MirdGziO8SdXsmOGJxxCpJ4sD
+	awVCs5YAlkcdlvBtgPqFAmg8I+Jlfmw5mPnh205W4tqtIATE5+bx//1vBE2asl/c
+	+IZPYw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41082wh07j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Aug 2024 19:08:51 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47DJ8pWk026369
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Aug 2024 19:08:51 GMT
+Received: from [10.111.178.117] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 13 Aug
+ 2024 12:08:50 -0700
+Message-ID: <79eb8270-4109-4bb8-9890-e5c59765f848@quicinc.com>
+Date: Tue, 13 Aug 2024 12:08:49 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] wifi: ath11k: use union for vaddr and iaddr in
+ target_mem_chunk
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20240813013028.2708111-1-quic_miaoqing@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20240813013028.2708111-1-quic_miaoqing@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MckKw8YHozQ_xg9awsV2amtYBCIm2_go
+X-Proofpoint-GUID: MckKw8YHozQ_xg9awsV2amtYBCIm2_go
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-13_09,2024-08-13_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 bulkscore=0 mlxlogscore=668 clxscore=1015 mlxscore=0
+ spamscore=0 priorityscore=1501 suspectscore=0 phishscore=0 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408130138
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240813_120317_009625_97AC9185 
-X-CRM114-Status: UNSURE (   6.99  )
+X-CRM114-CacheID: sfid-20240813_120852_527670_DEF266D5 
+X-CRM114-Status: UNSURE (   8.57  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,53 +99,15 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-
-Describe the inputs from the PMU of the ath11k module on WCN6855.
-
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../net/wireless/qcom,ath11k-pci.yaml         | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-index 8675d7d0215c..404974d77826 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-@@ -50,6 +50,9 @@ properties:
-   vddrfa1p7-supply:
-     description: VDD_RFA_1P7 supply regulator handle
- 
-+  vddrfa1p8-supply:
-+    description: VDD_RFA_1P8 supply regulator handle
-+
-   vddpcie0p9-supply:
-     description: VDD_PCIE_0P9 supply regulator handle
- 
-@@ -77,6 +80,22 @@ allOf:
-         - vddrfa1p7-supply
-         - vddpcie0p9-supply
-         - vddpcie1p8-supply
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: pci17cb,1103
-+    then:
-+      required:
-+        - vddrfacmn-supply
-+        - vddaon-supply
-+        - vddwlcx-supply
-+        - vddwlmx-supply
-+        - vddrfa0p8-supply
-+        - vddrfa1p2-supply
-+        - vddrfa1p8-supply
-+        - vddpcie0p9-supply
-+        - vddpcie1p8-supply
- 
- additionalProperties: false
- 
--- 
-2.43.0
+On 8/12/2024 6:30 PM, Miaoqing Pan wrote:
+> The value of 'ab->hw_params.fixed_mem_region' determines that
+> only one variable 'vaddr' or 'iaddr' is used in target_mem_chunk.
+> So use an anonymous union instead, easy to check whether the
+> memory is set or not.
+> 
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04358-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> 
+> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
 
