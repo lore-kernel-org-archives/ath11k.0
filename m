@@ -4,65 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82E0CC3DA7F
-	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 01:31:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55722C52D7C
+	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 08:39:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iuPdQqnFXXFwOA9tJqNUxfbAmwzJdDyLxKF3optFzlk=; b=bSDJGCjSg2fPtRyw5z9cOPv5Ia
-	zz4S24phCCuAAPItzjCf9jpkvC8Uz5wACh0Vv3zjlRRyLLjAqLqGBHdsxIhSJW/ouT6TEQihDSnSj
-	LD1hF9RIMjrUM/AnXkD7cXdjXhFwP9uu67MfxuhB2EszxWfO7YxbmVcyLnQWjJ5266zleRYYyBo5D
-	bcYkMfv+aBmV5noQBtNbrBcyTIFHjokMuYzC9ue/jtxR4zrqVEyxArAhorTqWj4BCRo2IJjz/tOiB
-	vd5U3vK/jKOFXWndpw07WShSzGxIidbDYainPWf/UHXFvTKCRPOFWVN7bxivj2wQiissVGw3sj5Zd
-	bDujk2Jw==;
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=I8wIVfjXOOTwLUjPgTAScnKaFhW7VjbjyVT+ndBv61A=; b=dGceHXsTUHqwcV+V3tK+KonHH+
+	bI001OibtDUucHyYYDx6s4A6YCzcaMRRq7tMaEXRNF8HV97nPAr+ksY1FbWruonGz7gJWY4qSLjtM
+	I+aV/PwxcKJKNE6uJuVmUPizwQGV5UdCbIMjQXlcnnRNNh/lH3u/Hp5Bq7F97czQh8Cc65boJyGRx
+	sIRHkZp6Qow1zixbi8BHsOCqnrKpuQ3RMu0QRNAbSxjQv6KHTdVLnB6Yd3lOol5k9JHM02YT5Lvkg
+	FIPNO4yWlBp0RIlvUeuZFJn9nbHlohoHCyDd82VQuoeoVNNcBCgcV8vX2oSomZN4S8XLzNjwaBy2y
+	4eMiTnvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdgNM-00000001zMq-0O73;
-	Tue, 13 Aug 2024 01:31:04 +0000
+	id 1sdn3W-00000002wCG-0m6s;
+	Tue, 13 Aug 2024 08:39:02 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdgNJ-00000001zMJ-1ymu
+	id 1sdn2u-00000002w5C-1R7a
 	for ath11k@lists.infradead.org;
-	Tue, 13 Aug 2024 01:31:03 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47CDSVUd024955;
-	Tue, 13 Aug 2024 01:30:59 GMT
+	Tue, 13 Aug 2024 08:38:26 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47D3tprC003693;
+	Tue, 13 Aug 2024 08:38:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iuPdQqnFXXFwOA9tJqNUxfbAmwzJdDyLxKF3optFzlk=; b=Nt+s9CX2DLhMRBUN
-	yrzdrBJjtXOHlsEZl0so8JVAiJd232wWlcr9C1flSyD94sjo8faePk6pSCtC8NH6
-	8/8iZMCN9uLSGCeahtNUs5Jq+cNpx16wMNg24vEaRS3G8RH3naMYmCxXsFxeT8DH
-	agRoMz7zbPwRJ7r4LBYg84fFF9/hJQQzAI90KDPC1AR1ShIYLFHJ4qftegGcc2m8
-	3iETfSHMZcHg7Ff3CyzetG7WWzEm3hf6xgiWgg3aQ+LCQZ2aAiuj+LF8BYom8s7C
-	tLej8DKmDn4Uk5wBSzqI/7H9BlvMa2nsKtR5PJuUIZK+INEE2WK6so8bD2dFyFy4
-	0YdlaA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x16s5upa-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=I8wIVfjXOOTwLUjPgTAScn
+	KaFhW7VjbjyVT+ndBv61A=; b=SnNYeaPal24E2YYgrwl+juK4IhkWRif1dRSlAp
+	NnXPNvkxMT+d9Qs5rDD38f9rt40kA6VpzT+qL6wKknEM6RH+kxVFtbOc2S9jmqKy
+	U8Q9lS7rvHQbweFtugSUjwYNz9uEPkPXDvPI1x92oNTzr1BCvQeLKguwmVPoRAlB
+	aYXWsXX6tw0VMaGMwu+QTknJd8l/FC3ot69HcY/hTWxuTUf15uqmJSe7zDjuFnnl
+	M1+9HvGmszRccrPGAAwDBVwZgXhXfWbB26/XWKYw98YS6bSTTAXYJw6+z/zbXQGY
+	vhwRC22Jrcl89TfnO3sxTUQrmajolyI7lMZ76qAYzF0TstxQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x17sewhj-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Aug 2024 01:30:58 +0000 (GMT)
+	Tue, 13 Aug 2024 08:38:21 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47D1UwD5015690
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47D8cLxB007036
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Aug 2024 01:30:58 GMT
-Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 12 Aug 2024 18:30:56 -0700
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-To: <kvalo@kernel.org>
-CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>,
-        Miaoqing Pan <quic_miaoqing@quicinc.com>
-Subject: [PATCH v6 2/2] wifi: ath11k: Add firmware coredump collection support
-Date: Tue, 13 Aug 2024 09:30:28 +0800
-Message-ID: <20240813013028.2708111-2-quic_miaoqing@quicinc.com>
+	Tue, 13 Aug 2024 08:38:21 GMT
+Received: from bqiang-SFF.lan (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 13 Aug
+ 2024 01:38:19 -0700
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
+Subject: [PATCH ath-current] wifi: ath11k: fix NULL pointer dereference in ath11k_mac_get_eirp_power()
+Date: Tue, 13 Aug 2024 16:38:08 +0800
+Message-ID: <20240813083808.9224-1-quic_bqiang@quicinc.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240813013028.2708111-1-quic_miaoqing@quicinc.com>
-References: <20240813013028.2708111-1-quic_miaoqing@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -71,19 +66,19 @@ X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: scQ2578tLj7fcVgEeCw9Cjhw4h_FW4Fe
-X-Proofpoint-ORIG-GUID: scQ2578tLj7fcVgEeCw9Cjhw4h_FW4Fe
+X-Proofpoint-GUID: pYwA4Wm6ejphJ6t_sV8NHhjZoMggwEFf
+X-Proofpoint-ORIG-GUID: pYwA4Wm6ejphJ6t_sV8NHhjZoMggwEFf
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-12_12,2024-08-12_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- mlxscore=0 adultscore=0 impostorscore=0 suspectscore=0 priorityscore=1501
- spamscore=0 lowpriorityscore=0 mlxlogscore=999 phishscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408130008
+ definitions=2024-08-13_01,2024-08-13_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxscore=0 phishscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ spamscore=0 clxscore=1011 priorityscore=1501 lowpriorityscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408130061
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240812_183101_552441_7FD0F76F 
-X-CRM114-Status: GOOD (  27.53  )
+X-CRM114-CacheID: sfid-20240813_013824_422448_799E0A73 
+X-CRM114-Status: GOOD (  12.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,517 +93,63 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In case of firmware assert snapshot of firmware memory is essential for
-debugging. Add firmware coredump collection support for PCI bus.
-Collect RDDM and firmware paging dumps from MHI and pack them in TLV
-format and also pack various memory shared during QMI phase in separate
-TLVs.  Add necessary header and share the dumps to user space using dev
-coredump framework. Coredump collection is controlled by
-CONFIG_DEV_COREDUMP. Dump collected for a radio is 55 MB approximately.
+Commit 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers") breaks
+ath11k, leading to kernel crash:
 
-The changeset is mostly copied from:
-https://lore.kernel.org/all/20240325183414.4016663-1-quic_ssreeela@quicinc.com/.
+BUG: kernel NULL pointer dereference, address: 0000000000000018
+RIP: 0010:ath11k_mac_get_eirp_power.isra.0+0x5b/0x80 [ath11k]
+Call Trace:
+ <TASK>
+ ath11k_mac_fill_reg_tpc_info+0x3d6/0x800 [ath11k]
+ ath11k_mac_vdev_start_restart+0x412/0x4d0 [ath11k]
+ ath11k_mac_op_sta_state+0x7bc/0xbb0 [ath11k]
+ drv_sta_state+0xf1/0x5f0 [mac80211]
+ sta_info_insert_rcu+0x28d/0x530 [mac80211]
+ sta_info_insert+0xf/0x20 [mac80211]
+ ieee80211_prep_connection+0x3b4/0x4c0 [mac80211]
+ ieee80211_mgd_auth+0x363/0x600 [mac80211]
 
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04358-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+The issue scenario is, AP advertises power spectral density (PSD) values in its
+transmit power envelope (TPE) IE and supports 160 MHz bandwidth in 6 GHz. When
+connecting to this AP, in ath11k_mac_parse_tx_pwr_env(), the local variable
+psd is true and then reg_tpc_info.num_pwr_levels is set to 8 due to 160 MHz
+bandwidth. Note here ath11k fails to set reg_tpc_info.is_psd_power as TRUE due
+to above commit. Then in ath11k_mac_fill_reg_tpc_info(), for each of the 8
+power levels, for a PSD channel, ath11k_mac_get_psd_channel() is expected to
+be called to get required information. However due to invalid
+reg_tpc_info.is_psd_power, it is ath11k_mac_get_eirp_power() that gets called
+and passed with pwr_lvl_idx as one of the arguments. Note this function
+implicitly requires pwr_lvl_idx to be no more than 3. So when pwr_lvl_idx is
+larger than that ath11k_mac_get_seg_freq() returns invalid center frequency,
+with which as the input ieee80211_get_channel() returns NULL, then kernel
+crashes due to NULL pointer dereference.
 
-Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Fix it by setting reg_tpc_info.is_psd_power properly.
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+
+Fixes: 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers")
+Reported-by: Mikko Tiihonen <mikko.tiihonen@iki.fi>
+Closes: https://bugzilla.kernel.org/show_bug.cgi?id=219131
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 ---
-v2: fix implicit declaration of function 'vzalloc'.
-v3: fix vmalloc-out-of-bounds and remove CONFIG_ATH11K_COREDUMP.
-v4: put QMI changes to a separate patch. 
-v5: use an anonymous union for iaddr and vaddr in target_mem_chunk.
-v6: update commit message.
----
- drivers/net/wireless/ath/ath11k/Makefile   |   1 +
- drivers/net/wireless/ath/ath11k/core.c     |   2 +
- drivers/net/wireless/ath/ath11k/core.h     |   5 +
- drivers/net/wireless/ath/ath11k/coredump.c |  52 ++++++
- drivers/net/wireless/ath/ath11k/coredump.h |  79 +++++++++
- drivers/net/wireless/ath/ath11k/hif.h      |   7 +
- drivers/net/wireless/ath/ath11k/mhi.c      |   5 +
- drivers/net/wireless/ath/ath11k/mhi.h      |   1 +
- drivers/net/wireless/ath/ath11k/pci.c      | 188 +++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/qmi.h      |   1 +
- 10 files changed, 341 insertions(+)
- create mode 100644 drivers/net/wireless/ath/ath11k/coredump.c
- create mode 100644 drivers/net/wireless/ath/ath11k/coredump.h
+ drivers/net/wireless/ath/ath11k/mac.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index 43d2d8ddcdc0..d9092414b362 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -27,6 +27,7 @@ ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
- ath11k-$(CONFIG_THERMAL) += thermal.o
- ath11k-$(CONFIG_ATH11K_SPECTRAL) += spectral.o
- ath11k-$(CONFIG_PM) += wow.o
-+ath11k-$(CONFIG_DEV_COREDUMP) += coredump.o
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 71ef89be823b..f8068d2e848c 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7912,6 +7912,7 @@ static void ath11k_mac_parse_tx_pwr_env(struct ath11k *ar,
+ 	}
  
- obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
- ath11k_ahb-y += ahb.o
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 03187df26000..56a7195bddef 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2177,6 +2177,7 @@ static void ath11k_core_reset(struct work_struct *work)
- 	reinit_completion(&ab->recovery_start);
- 	atomic_set(&ab->recovery_start_count, 0);
+ 	if (psd) {
++		arvif->reg_tpc_info.is_psd_power = true;
+ 		arvif->reg_tpc_info.num_pwr_levels = psd->count;
  
-+	ath11k_coredump_collect(ab);
- 	ath11k_core_pre_reconfigure_recovery(ab);
- 
- 	reinit_completion(&ab->reconfigure_complete);
-@@ -2313,6 +2314,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
- 	INIT_WORK(&ab->update_11d_work, ath11k_update_11d);
- 	INIT_WORK(&ab->reset_work, ath11k_core_reset);
-+	INIT_WORK(&ab->dump_work, ath11k_coredump_upload);
- 	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
- 	init_completion(&ab->htc_suspend);
- 	init_completion(&ab->wow.wakeup_completed);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 7122176dd91e..b0e55e78b5ff 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -32,6 +32,7 @@
- #include "spectral.h"
- #include "wow.h"
- #include "fw.h"
-+#include "coredump.h"
- 
- #define SM(_v, _f) (((_v) << _f##_LSB) & _f##_MASK)
- 
-@@ -896,6 +897,10 @@ struct ath11k_base {
- 	/* HW channel counters frequency value in hertz common to all MACs */
- 	u32 cc_freq_hz;
- 
-+	struct ath11k_dump_file_data *dump_data;
-+	size_t ath11k_coredump_len;
-+	struct work_struct dump_work;
-+
- 	struct ath11k_htc htc;
- 
- 	struct ath11k_dp dp;
-diff --git a/drivers/net/wireless/ath/ath11k/coredump.c b/drivers/net/wireless/ath/ath11k/coredump.c
-new file mode 100644
-index 000000000000..b8bad358cebe
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/coredump.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+#include <linux/devcoredump.h>
-+#include "hif.h"
-+#include "coredump.h"
-+#include "debug.h"
-+
-+enum
-+ath11k_fw_crash_dump_type ath11k_coredump_get_dump_type(int type)
-+{
-+	enum ath11k_fw_crash_dump_type dump_type;
-+
-+	switch (type) {
-+	case HOST_DDR_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_REMOTE_MEM_DATA;
-+		break;
-+	case M3_DUMP_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_M3_DUMP;
-+		break;
-+	case PAGEABLE_MEM_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_PAGEABLE_DATA;
-+		break;
-+	case BDF_MEM_REGION_TYPE:
-+	case CALDB_MEM_REGION_TYPE:
-+		dump_type = FW_CRASH_DUMP_NONE;
-+		break;
-+	default:
-+		dump_type = FW_CRASH_DUMP_TYPE_MAX;
-+		break;
-+	}
-+
-+	return dump_type;
-+}
-+EXPORT_SYMBOL(ath11k_coredump_get_dump_type);
-+
-+void ath11k_coredump_upload(struct work_struct *work)
-+{
-+	struct ath11k_base *ab = container_of(work, struct ath11k_base, dump_work);
-+
-+	ath11k_info(ab, "Uploading coredump\n");
-+	/* dev_coredumpv() takes ownership of the buffer */
-+	dev_coredumpv(ab->dev, ab->dump_data, ab->ath11k_coredump_len, GFP_KERNEL);
-+	ab->dump_data = NULL;
-+}
-+
-+void ath11k_coredump_collect(struct ath11k_base *ab)
-+{
-+	ath11k_hif_coredump_download(ab);
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/coredump.h b/drivers/net/wireless/ath/ath11k/coredump.h
-new file mode 100644
-index 000000000000..3960d9385261
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/coredump.h
-@@ -0,0 +1,79 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear */
-+/*
-+ * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+#ifndef _ATH11K_COREDUMP_H_
-+#define _ATH11K_COREDUMP_H_
-+
-+#define ATH11K_FW_CRASH_DUMP_V2      2
-+
-+enum ath11k_fw_crash_dump_type {
-+	FW_CRASH_DUMP_PAGING_DATA,
-+	FW_CRASH_DUMP_RDDM_DATA,
-+	FW_CRASH_DUMP_REMOTE_MEM_DATA,
-+	FW_CRASH_DUMP_PAGEABLE_DATA,
-+	FW_CRASH_DUMP_M3_DUMP,
-+	FW_CRASH_DUMP_NONE,
-+
-+	/* keep last */
-+	FW_CRASH_DUMP_TYPE_MAX,
-+};
-+
-+#define COREDUMP_TLV_HDR_SIZE 8
-+
-+struct ath11k_tlv_dump_data {
-+	/* see ath11k_fw_crash_dump_type above */
-+	__le32 type;
-+
-+	/* in bytes */
-+	__le32 tlv_len;
-+
-+	/* pad to 32-bit boundaries as needed */
-+	u8 tlv_data[];
-+} __packed;
-+
-+struct ath11k_dump_file_data {
-+	/* "ATH11K-FW-DUMP" */
-+	char df_magic[16];
-+	/* total dump len in bytes */
-+	__le32 len;
-+	/* file dump version */
-+	__le32 version;
-+	/* pci device id */
-+	__le32 chip_id;
-+	/* qrtr instance id */
-+	__le32 qrtr_id;
-+	/* pci domain id */
-+	__le32 bus_id;
-+	guid_t guid;
-+	/* time-of-day stamp */
-+	__le64 tv_sec;
-+	/* time-of-day stamp, nano-seconds */
-+	__le64 tv_nsec;
-+	/* room for growth w/out changing binary format */
-+	u8 unused[128];
-+	u8 data[];
-+} __packed;
-+
-+#ifdef CONFIG_DEV_COREDUMP
-+enum ath11k_fw_crash_dump_type ath11k_coredump_get_dump_type(int type);
-+void ath11k_coredump_upload(struct work_struct *work);
-+void ath11k_coredump_collect(struct ath11k_base *ab);
-+#else
-+static inline enum
-+ath11k_fw_crash_dump_type ath11k_coredump_get_dump_type(int type)
-+{
-+	return FW_CRASH_DUMP_TYPE_MAX;
-+}
-+
-+static inline void ath11k_coredump_upload(struct work_struct *work)
-+{
-+}
-+
-+static inline void ath11k_coredump_collect(struct ath11k_base *ab)
-+{
-+}
-+#endif
-+
-+#endif
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index c4c6cc09c7c1..762db7c95ad8 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -31,6 +31,7 @@ struct ath11k_hif_ops {
- 	void (*ce_irq_enable)(struct ath11k_base *ab);
- 	void (*ce_irq_disable)(struct ath11k_base *ab);
- 	void (*get_ce_msi_idx)(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
-+	void (*coredump_download)(struct ath11k_base *ab);
- };
- 
- static inline void ath11k_hif_ce_irq_enable(struct ath11k_base *ab)
-@@ -152,4 +153,10 @@ static inline void ath11k_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id,
- 		*msi_data_idx = ce_id;
- }
- 
-+static inline void ath11k_hif_coredump_download(struct ath11k_base *ab)
-+{
-+	if (ab->hif.ops->coredump_download)
-+		ab->hif.ops->coredump_download(ab);
-+}
-+
- #endif /* _HIF_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index ab182690aed3..db23a82a0c0f 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -498,3 +498,8 @@ int ath11k_mhi_resume(struct ath11k_pci *ab_pci)
- 
- 	return 0;
- }
-+
-+void ath11k_mhi_coredump(struct mhi_controller *mhi_ctrl, bool in_panic)
-+{
-+	mhi_download_rddm_image(mhi_ctrl, in_panic);
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.h b/drivers/net/wireless/ath/ath11k/mhi.h
-index 2d567705e732..4a7e20da3c7d 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.h
-+++ b/drivers/net/wireless/ath/ath11k/mhi.h
-@@ -26,4 +26,5 @@ void ath11k_mhi_clear_vector(struct ath11k_base *ab);
- 
- int ath11k_mhi_suspend(struct ath11k_pci *ar_pci);
- int ath11k_mhi_resume(struct ath11k_pci *ar_pci);
-+void ath11k_mhi_coredump(struct mhi_controller *mhi_ctrl, bool in_panic);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 8d63b84d1261..9a7ea6356607 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -8,6 +8,8 @@
- #include <linux/msi.h>
- #include <linux/pci.h>
- #include <linux/of.h>
-+#include <linux/time.h>
-+#include <linux/vmalloc.h>
- 
- #include "pci.h"
- #include "core.h"
-@@ -610,6 +612,187 @@ static void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci)
- 						   PCI_EXP_LNKCTL_ASPMC);
- }
- 
-+#ifdef CONFIG_DEV_COREDUMP
-+static int ath11k_pci_coredump_calculate_size(struct ath11k_base *ab, u32 *dump_seg_sz)
-+{
-+	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-+	struct mhi_controller *mhi_ctrl = ab_pci->mhi_ctrl;
-+	struct image_info *rddm_img, *fw_img;
-+	struct ath11k_tlv_dump_data *dump_tlv;
-+	enum ath11k_fw_crash_dump_type mem_type;
-+	u32 len = 0, rddm_tlv_sz = 0, paging_tlv_sz = 0;
-+	struct ath11k_dump_file_data *file_data;
-+	int i;
-+
-+	rddm_img = mhi_ctrl->rddm_image;
-+	if (!rddm_img) {
-+		ath11k_err(ab, "No RDDM dump found\n");
-+		return 0;
-+	}
-+
-+	fw_img = mhi_ctrl->fbc_image;
-+
-+	for (i = 0; i < fw_img->entries ; i++) {
-+		if (!fw_img->mhi_buf[i].buf)
-+			continue;
-+
-+		paging_tlv_sz += fw_img->mhi_buf[i].len;
-+	}
-+	dump_seg_sz[FW_CRASH_DUMP_PAGING_DATA] = paging_tlv_sz;
-+
-+	for (i = 0; i < rddm_img->entries; i++) {
-+		if (!rddm_img->mhi_buf[i].buf)
-+			continue;
-+
-+		rddm_tlv_sz += rddm_img->mhi_buf[i].len;
-+	}
-+	dump_seg_sz[FW_CRASH_DUMP_RDDM_DATA] = rddm_tlv_sz;
-+
-+	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+		mem_type = ath11k_coredump_get_dump_type(ab->qmi.target_mem[i].type);
-+
-+		if (mem_type == FW_CRASH_DUMP_NONE)
-+			continue;
-+
-+		if (mem_type == FW_CRASH_DUMP_TYPE_MAX) {
-+			ath11k_dbg(ab, ATH11K_DBG_PCI,
-+				   "target mem region type %d not supported",
-+				   ab->qmi.target_mem[i].type);
-+			continue;
-+		}
-+
-+		if (!ab->qmi.target_mem[i].anyaddr)
-+			continue;
-+
-+		dump_seg_sz[mem_type] += ab->qmi.target_mem[i].size;
-+	}
-+
-+	for (i = 0; i < FW_CRASH_DUMP_TYPE_MAX; i++) {
-+		if (!dump_seg_sz[i])
-+			continue;
-+
-+		len += sizeof(*dump_tlv) + dump_seg_sz[i];
-+	}
-+
-+	if (len)
-+		len += sizeof(*file_data);
-+
-+	return len;
-+}
-+
-+static void ath11k_pci_coredump_download(struct ath11k_base *ab)
-+{
-+	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-+	struct mhi_controller *mhi_ctrl = ab_pci->mhi_ctrl;
-+	struct image_info *rddm_img, *fw_img;
-+	struct timespec64 timestamp;
-+	int i, len, mem_idx;
-+	enum ath11k_fw_crash_dump_type mem_type;
-+	struct ath11k_dump_file_data *file_data;
-+	struct ath11k_tlv_dump_data *dump_tlv;
-+	size_t hdr_len = sizeof(*file_data);
-+	void *buf;
-+	u32 dump_seg_sz[FW_CRASH_DUMP_TYPE_MAX] = { 0 };
-+
-+	ath11k_mhi_coredump(mhi_ctrl, false);
-+
-+	len = ath11k_pci_coredump_calculate_size(ab, dump_seg_sz);
-+	if (!len) {
-+		ath11k_warn(ab, "No crash dump data found for devcoredump");
-+		return;
-+	}
-+
-+	rddm_img = mhi_ctrl->rddm_image;
-+	fw_img = mhi_ctrl->fbc_image;
-+
-+	/* dev_coredumpv() requires vmalloc data */
-+	buf = vzalloc(len);
-+	if (!buf)
-+		return;
-+
-+	ab->dump_data = buf;
-+	ab->ath11k_coredump_len = len;
-+	file_data = ab->dump_data;
-+	strscpy(file_data->df_magic, "ATH11K-FW-DUMP", sizeof(file_data->df_magic));
-+	file_data->len = cpu_to_le32(len);
-+	file_data->version = cpu_to_le32(ATH11K_FW_CRASH_DUMP_V2);
-+	file_data->chip_id = cpu_to_le32(ab_pci->dev_id);
-+	file_data->qrtr_id = cpu_to_le32(ab_pci->ab->qmi.service_ins_id);
-+	file_data->bus_id = cpu_to_le32(pci_domain_nr(ab_pci->pdev->bus));
-+	guid_gen(&file_data->guid);
-+	ktime_get_real_ts64(&timestamp);
-+	file_data->tv_sec = cpu_to_le64(timestamp.tv_sec);
-+	file_data->tv_nsec = cpu_to_le64(timestamp.tv_nsec);
-+	buf += hdr_len;
-+	dump_tlv = buf;
-+	dump_tlv->type = cpu_to_le32(FW_CRASH_DUMP_PAGING_DATA);
-+	dump_tlv->tlv_len = cpu_to_le32(dump_seg_sz[FW_CRASH_DUMP_PAGING_DATA]);
-+	buf += COREDUMP_TLV_HDR_SIZE;
-+
-+	/* append all segments together as they are all part of a single contiguous
-+	 * block of memory
-+	 */
-+	for (i = 0; i < fw_img->entries ; i++) {
-+		if (!fw_img->mhi_buf[i].buf)
-+			continue;
-+
-+		memcpy_fromio(buf, (void const __iomem *)fw_img->mhi_buf[i].buf,
-+			      fw_img->mhi_buf[i].len);
-+		buf += fw_img->mhi_buf[i].len;
-+	}
-+
-+	dump_tlv = buf;
-+	dump_tlv->type = cpu_to_le32(FW_CRASH_DUMP_RDDM_DATA);
-+	dump_tlv->tlv_len = cpu_to_le32(dump_seg_sz[FW_CRASH_DUMP_RDDM_DATA]);
-+	buf += COREDUMP_TLV_HDR_SIZE;
-+
-+	/* append all segments together as they are all part of a single contiguous
-+	 * block of memory
-+	 */
-+	for (i = 0; i < rddm_img->entries; i++) {
-+		if (!rddm_img->mhi_buf[i].buf)
-+			continue;
-+
-+		memcpy_fromio(buf, (void const __iomem *)rddm_img->mhi_buf[i].buf,
-+			      rddm_img->mhi_buf[i].len);
-+		buf += rddm_img->mhi_buf[i].len;
-+	}
-+
-+	mem_idx = FW_CRASH_DUMP_REMOTE_MEM_DATA;
-+	for (; mem_idx < FW_CRASH_DUMP_TYPE_MAX; mem_idx++) {
-+		if (mem_idx == FW_CRASH_DUMP_NONE)
-+			continue;
-+
-+		for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+			mem_type = ath11k_coredump_get_dump_type
-+						(ab->qmi.target_mem[i].type);
-+
-+			if (mem_type != mem_idx)
-+				continue;
-+
-+			if (!ab->qmi.target_mem[i].anyaddr) {
-+				ath11k_dbg(ab, ATH11K_DBG_PCI,
-+					   "Skipping mem region type %d",
-+					   ab->qmi.target_mem[i].type);
-+				continue;
-+			}
-+
-+			dump_tlv = buf;
-+			dump_tlv->type = cpu_to_le32(mem_idx);
-+			dump_tlv->tlv_len = cpu_to_le32(dump_seg_sz[mem_idx]);
-+			buf += COREDUMP_TLV_HDR_SIZE;
-+
-+			memcpy_fromio(buf, ab->qmi.target_mem[i].iaddr,
-+				      ab->qmi.target_mem[i].size);
-+
-+			buf += ab->qmi.target_mem[i].size;
-+		}
-+	}
-+
-+	queue_work(ab->workqueue, &ab->dump_work);
-+}
-+#endif
-+
- static int ath11k_pci_power_up(struct ath11k_base *ab)
- {
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-@@ -713,6 +896,9 @@ static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
- 	.ce_irq_enable = ath11k_pci_hif_ce_irq_enable,
- 	.ce_irq_disable = ath11k_pci_hif_ce_irq_disable,
- 	.get_ce_msi_idx = ath11k_pcic_get_ce_msi_idx,
-+#ifdef CONFIG_DEV_COREDUMP
-+	.coredump_download = ath11k_pci_coredump_download,
-+#endif
- };
- 
- static void ath11k_pci_read_hw_version(struct ath11k_base *ab, u32 *major, u32 *minor)
-@@ -978,6 +1164,8 @@ static void ath11k_pci_remove(struct pci_dev *pdev)
- 
- 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
- 
-+	cancel_work_sync(&ab->reset_work);
-+	cancel_work_sync(&ab->dump_work);
- 	ath11k_core_deinit(ab);
- 
- qmi_fail:
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index fdf9b5f8c19f..7968ab122b65 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -157,6 +157,7 @@ struct ath11k_qmi {
- #define BDF_MEM_REGION_TYPE				0x2
- #define M3_DUMP_REGION_TYPE				0x3
- #define CALDB_MEM_REGION_TYPE				0x4
-+#define PAGEABLE_MEM_REGION_TYPE			0x9
- 
- struct qmi_wlanfw_host_cap_req_msg_v01 {
- 	u8 num_clients_valid;
+ 		for (i = 0; i < arvif->reg_tpc_info.num_pwr_levels; i++) {
+
+base-commit: 1462e8e1c93ecb96b5820ec28f7cbbb8a5aeb732
 -- 
 2.25.1
 
