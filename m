@@ -4,90 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FB16C52D7B
-	for <ath11k@archiver.kernel.org>; Tue, 13 Aug 2024 23:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1588EC3DA4A
+	for <ath11k@archiver.kernel.org>; Wed, 14 Aug 2024 08:23:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=98OTBv0aioFqa8eP+pfN2QrHRSjQQBWkH6KFwlgEV7s=; b=b6t+hXbcD8zKpIQGu909NPOD3w
-	q9hBUjfy3HJjB5o5nrEIlkba4VbefAeAtAxPDFtvY3KxBGMWTw5TiZdqPvKmxLnnMmB/zbMYimllb
-	WC0fRTd8JPVaDvJLrah9TNFOI6ipK9VcQMc6wpXDn5xKMzgfYC1igpXJc79d9rReSpuR5LhClsLP0
-	7VnKAWU3h9V6weZSXtpbCkjrB5RVmYk6li0XXJjnfWeXXn9L0itp/xXqJ2218jY/EPaXVE+kNbiNX
-	KMJ8CQpuE6h9xrVCzxnO+3k8i9qXWq9BJzp4vzeSIlw4W0NeBRwSpAtDxfHcd69LDsf+3V0/rg4c1
-	vuXUTIcg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Yid80DCBncovH6jR5spdivR69CuAKWTUFwGxvj0edc8=; b=kWeBuGO2gn/v3N7pYfjUCFspsF
+	HipD75ACY43PgigeNMi6KXQmG7CqMOzaX9hNuFVvqeoQkGuOa+GQxNgFDYbDy+Xgu5r9vresBo45+
+	3cpYaPBTiYM1X0NqXMAlBZDe9ky0D+GD1q5n/nwKdH7KEv2tlChirLrierIPC1N59g/NgL0FSQ3ix
+	HvXRpn2uq51GudPVElZSsaeVlAtATT9oxKwm/fO8KcHh8eRhcKGyPw2nwfgKoroiJ2nNtk023GZBh
+	U1kml/X1CQ5USl1tLJCZIRWOHQ292bw+cfkexl5FeMIlwCMd8XC2X/8/UDOCpOhxT11YLdzPhK7ru
+	we8Y4imQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1se17A-00000005CiQ-2uxA;
-	Tue, 13 Aug 2024 23:39:44 +0000
-Received: from mail-ua1-x934.google.com ([2607:f8b0:4864:20::934])
+	id 1se9Hi-00000006EH0-2Ryk;
+	Wed, 14 Aug 2024 08:23:10 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1se177-00000005Chb-0bqG
+	id 1se9Hf-00000006EGd-1jND
 	for ath11k@lists.infradead.org;
-	Tue, 13 Aug 2024 23:39:42 +0000
-Received: by mail-ua1-x934.google.com with SMTP id a1e0cc1a2514c-823423e3accso1888564241.2
-        for <ath11k@lists.infradead.org>; Tue, 13 Aug 2024 16:39:40 -0700 (PDT)
+	Wed, 14 Aug 2024 08:23:08 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-52f04b4abdcso8672972e87.2
+        for <ath11k@lists.infradead.org>; Wed, 14 Aug 2024 01:23:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1723592380; x=1724197180; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=98OTBv0aioFqa8eP+pfN2QrHRSjQQBWkH6KFwlgEV7s=;
-        b=LKVxxe4FxJXai1rF/OQ0Sj0pEK8dB7vu83L+5mdqBvGK8dndGyRqD0XIn9+eNHqtjn
-         KxQTHZ1HjelghBuMNE8Tc1XjLNpD7c8GFO5pfVxNQfnI5BZFEcvyQ6Z/So+8KjyBP18g
-         sPyaQLFdZymq+yOIm+fVzPJnOEjk+7HLWzOM2AUagib0yqY3UPS6Og7zXIzHqbgx2A1/
-         Ffx14u4IBt+XF2VU3HTPnD4Xh+Nj4AalADz/jXhlVplcqJEjBhuLL8IoB5ggRFxylgDa
-         wN3FF26YvqeMhoesSMm/PUYl4d5TwKKF/fWVyNBXtECG8nSfWmRavQv2HTkbHvmDdkFp
-         D15A==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723623785; x=1724228585; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yid80DCBncovH6jR5spdivR69CuAKWTUFwGxvj0edc8=;
+        b=ixh8ZxpZQ+214HOS7BZIXV6yrkzMvDrn4RCOHw9QaUSEBv5wWQv3Q4L3w2avMWY4W5
+         kzyrBzTppW7710y8yowAbOozwXqnh/QLCbAlqLGYe6sNQF43pwbHoFktQTcz5Woirq//
+         45Rq8K/zgPpPPPYNKFIGj+IuUyedy4WFFhu4XQovFDEtGYVnQTZo80Et/IrD84MecLpn
+         cdZFf6nP2CmOnh1BrDtUQCitgLTwdCiIBSY3AmDJ3djhyBGoUWPexp35J9llgttVx9rB
+         kBz402TZfSIL+1WM+QYhktoMKHaVQ+zcWwCDVWOb2EmmltmnyGlgsihHKeGQedy5pSWW
+         e6aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723592380; x=1724197180;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=98OTBv0aioFqa8eP+pfN2QrHRSjQQBWkH6KFwlgEV7s=;
-        b=pDvaXr6up8B7eKijwPPbS1rtg0dM+wOI3wJTN58GrjRFc4AzcrLW9pidgufNT9/SxD
-         YFUivdDKxSYB5QFWV4oCZaRti3JWekqnvN4t2m16rh5+GTiNcYyzmqKDJP8QYPytUuLh
-         j1T+bPDdVun8rA1Gnk71iJFR7vvjSW3LZ8INQlSJjH0iRzsru1bpLv25NbAp/gyEHnrw
-         JjOISkIengoW9mmo2dCpIHnbXe6v7IgDQCMEoOUGKTCAL2A3T4HxWM60aUE2WkODofim
-         H52kvSwjoYixvNdPpMoItPgkf35N8L9+cBof5xIu00Pm4A86vT3ZEDZGnITwIWocF7Dg
-         ZIDw==
-X-Forwarded-Encrypted: i=1; AJvYcCW6zWAY6TQcQwEqIYKkpSZgIyiz71sRoN/e1jsZOkKNxOGB4YzrOJ0+sl8oGl7F6YP8MV2lrYl2fTOKaucA2buqriaBc84G59OWQw==
-X-Gm-Message-State: AOJu0YyXJujsweY2fSor+V24DZPs/I7kTQOTqb6Upv7Y6wtKuVdT3iTF
-	DzGkz4QV5m8EK58g1n2kAHh7r+nOV4s7mq0tOKlxUhyOe4BvBsSn/0kClilrGv4=
-X-Google-Smtp-Source: AGHT+IE48TPAx7DnvwgaTUAY+Kff+tTrcpLLhWszaW51zZJR6kZlFg0WGCb5G5Fvkt7muunVnyyQLw==
-X-Received: by 2002:a05:6102:6ce:b0:48f:df47:a4a8 with SMTP id ada2fe7eead31-497599e66c9mr1595703137.29.1723592379937;
-        Tue, 13 Aug 2024 16:39:39 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bd82ca1ab5sm37630276d6.62.2024.08.13.16.39.39
+        d=1e100.net; s=20230601; t=1723623785; x=1724228585;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yid80DCBncovH6jR5spdivR69CuAKWTUFwGxvj0edc8=;
+        b=AXtzK14asG4ORbIuvI7ESefxxpJluhM/lb0pAuoiUWeYu/hqyizxke0wG5L21TRNqq
+         n2O/AmCmJP106ISnHIkWtKhn/75MTiwwIYaa2OZhWvvqGewAs/tOOW6bIBMs8KJpD5Ai
+         pZPyk44Fh4e+jEDVw7gu7swCfDG21xtuwKnMF0ZNu+0pPldgJG8y0AAkesxo/cJt4lQi
+         yU16YEWq4yVrV6R00URznsfeIXWffAOYAINjHDGON0ceH1sseoKIetKAyyLlBKmg7O/P
+         SIgWUePHvUHbZ9N5lRxtokho4oUlwIJ1eU4HffsPrxn4F3S9o8kUSA9miJf5e9ULTYVg
+         0EDA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWaTQ6ZxtL9dUS8/7vWL5mMXoUemswylMHw4t6KNCwEqk7tmtk1GyoeMoDIsyjxoRaWvPQXEY=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy/EHMdCQcIj8w1qELYDB3iv2xJAn697Zg34Z2vFjMu4ZFf2RIW
+	gfJbI2JC5fc/ZQxw/Po3TyyWQ+QnSt/ODzLzbhJ/8N5aQMAzPP6wR1aVUoxD7V4=
+X-Google-Smtp-Source: AGHT+IFPWXB9dUnt/qnGZpgUiPgGFQ/Gcyv7ImyYRoukKJSYr8Bd88c9u6QJYgrVy7BunlV81DHiLA==
+X-Received: by 2002:a05:6512:3c89:b0:52b:c27c:ea1f with SMTP id 2adb3069b0e04-532edbcdb37mr1268165e87.55.1723623784986;
+        Wed, 14 Aug 2024 01:23:04 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:9e78:fb96:21f1:335c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded3cd99sm12606325e9.25.2024.08.14.01.23.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 16:39:39 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1se175-00AOnT-0P;
-	Tue, 13 Aug 2024 20:39:39 -0300
-Date: Tue, 13 Aug 2024 20:39:39 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Alex Williamson <alex.williamson@redhat.com>, kvm@vger.kernel.org,
-	quic_bqiang@quicinc.com, kvalo@kernel.org, prestwoj@gmail.com,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	dwmw2@infradead.org, iommu@lists.linux.dev, kernel@quicinc.com,
-	johannes@sipsolutions.net, jtornosm@redhat.com
-Subject: Re: [PATCH RFC/RFT] vfio/pci: Create feature to disable MSI
- virtualization
-Message-ID: <20240813233939.GT1985367@ziepe.ca>
-References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
- <20240812170014.1583783-1-alex.williamson@redhat.com>
- <20240813163053.GK1985367@ziepe.ca>
- <87r0aspby6.ffs@tglx>
+        Wed, 14 Aug 2024 01:23:04 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Kalle Valo <kvalo@kernel.org>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs of the ath11k on WCN6855
+Date: Wed, 14 Aug 2024 10:23:01 +0200
+Message-ID: <20240814082301.8091-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87r0aspby6.ffs@tglx>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240813_163941_206416_CF44DF1B 
-X-CRM114-Status: GOOD (  14.85  )
+X-CRM114-CacheID: sfid-20240814_012307_481738_CAD36D80 
+X-CRM114-Status: UNSURE (   7.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,26 +102,73 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Aug 13, 2024 at 07:30:41PM +0200, Thomas Gleixner wrote:
-> > Howver, it will still not work in a VM. Making IMS and non-MSI
-> > interrupt controlers work within VMs is still something that needs to
-> > be done.
-> 
-> Sure, but we really want to do that in a generic way and not based on ad
-> hoc workarounds.
->
-> Did the debate around this go anywhere?
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-No, it got stuck on the impossible situation that there is no existing
-way for the VM to have any idea if IMS will work or is broken. Recall
-Intel was planning to "solve" this by sticking a DVSEC in their
-virtual config space that said to turn off IMS :\
+Describe the inputs from the PMU of the ath11k module on WCN6855.
 
-So using IMS in the real world looked impractical and interest faded a
-bit.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+v1 -> v2:
+- update the example
 
-But the underlying reasons for IMS haven't gone away and more work is
-coming that will bring it up again...
+ .../net/wireless/qcom,ath11k-pci.yaml         | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-Jason
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+index 8675d7d0215c..a71fdf05bc1e 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+@@ -50,6 +50,9 @@ properties:
+   vddrfa1p7-supply:
+     description: VDD_RFA_1P7 supply regulator handle
+ 
++  vddrfa1p8-supply:
++    description: VDD_RFA_1P8 supply regulator handle
++
+   vddpcie0p9-supply:
+     description: VDD_PCIE_0P9 supply regulator handle
+ 
+@@ -77,6 +80,22 @@ allOf:
+         - vddrfa1p7-supply
+         - vddpcie0p9-supply
+         - vddpcie1p8-supply
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: pci17cb,1103
++    then:
++      required:
++        - vddrfacmn-supply
++        - vddaon-supply
++        - vddwlcx-supply
++        - vddwlmx-supply
++        - vddrfa0p8-supply
++        - vddrfa1p2-supply
++        - vddrfa1p8-supply
++        - vddpcie0p9-supply
++        - vddpcie1p8-supply
+ 
+ additionalProperties: false
+ 
+@@ -99,6 +118,16 @@ examples:
+                 compatible = "pci17cb,1103";
+                 reg = <0x10000 0x0 0x0 0x0 0x0>;
+ 
++                vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
++                vddaon-supply = <&vreg_pmu_aon_0p8>;
++                vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++                vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
++                vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++                vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++                vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++                vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++                vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
++
+                 qcom,ath11k-calibration-variant = "LE_X13S";
+             };
+         };
+-- 
+2.43.0
+
 
