@@ -4,84 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6FE1C531DC
-	for <ath11k@archiver.kernel.org>; Fri, 16 Aug 2024 09:10:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDF77C3DA4A
+	for <ath11k@archiver.kernel.org>; Mon, 19 Aug 2024 07:48:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=I+OEH4A1p3/H1CuxcdmLsuPBbfALhVq7kSh25EJu5bk=; b=f0oOKhaMRrwrtEKg07J7Pk1Zyn
-	u7fSq60vWjZodg/Z3I5TKfhAte/2FG4yV69ier+NgK3hnROjhA6vavnhRK7yq8MtJ8HKTn7WNHYIg
-	FAp/eY6KwKQ+eG655Up3PT1S7tI+ft1T3fECNZM8hAVk54pXe3aXGMgT0/u8p/U7yLe+db3yqlI+3
-	2zWY27qoSq3/lhgLtfrLBjTjJSc4oiMsx94sblkQrzP4CR/gGdr2VEvgsZjDzNpr2YqwW64buSvcU
-	LiqRzNqxEA5HWS9CBP1vFKOOEDJeIcQLznXwwFjPRaVBicfeyJkqtfagl3Gg2QxfByw4lff0qIF49
-	ErpS0Pvg==;
+	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=HDodNtmiQ0oQNph7sp+h4NRbkxw8d1NmRLmJ4HyiCoQ=; b=Lb0X+209arfikKuNCklSbso3f1
+	rh+OeS/ThdAp15pTYgwyPscAlc9oT3YCggkVEj6oLHUFnIcM2JBlkY2+qQzieorex2q/PzCjc6tkN
+	f7E8QpXGrKEN+Y841CJe0JVtH2Enb68iPPrO2QmR6Jn02Gj8g/CIIFozEVfG8M70WHlilBrdl4kIW
+	FBUhZ/5TxrX8znpDNwD+SaIFfySZp5udWl5xk+MH5JUsryUkKOJa3CVpXYBBw5cuV1jj9q2rHaz6K
+	IulU2L/2qoHRZQ9Bh+Nq6eCvDcpX18VAkPsm9ZLl20Jqgptul2UqIoVgSYaJLe5DCU3SY+uWlMCLw
+	D14FpFog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sesyQ-0000000CN4o-2s6N;
-	Fri, 16 Aug 2024 09:10:18 +0000
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
+	id 1sfx7V-00000000gQX-0LD2;
+	Mon, 19 Aug 2024 07:48:05 +0000
+Received: from mail.originatepro.pl ([162.19.155.125])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sesyN-0000000CN40-1VcR
+	id 1sfx7R-00000000gPx-2VCw
 	for ath11k@lists.infradead.org;
-	Fri, 16 Aug 2024 09:10:17 +0000
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-530e22878cfso1779140e87.2
-        for <ath11k@lists.infradead.org>; Fri, 16 Aug 2024 02:10:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723799412; x=1724404212; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I+OEH4A1p3/H1CuxcdmLsuPBbfALhVq7kSh25EJu5bk=;
-        b=laILrjDPu9Mrh8DQ4hUjdYsJ8yOmYvXfiPzUG4CKCL7GKgTDmWbORak/RyTxSQdGlj
-         liieOUdjjgu84TWr28aES/y4NAG4gVZbKlDA0iPewUAk+VLwCppgibIzDHiKcYpoKETw
-         jRkYzNaGvj2JUbKpGa+hESl/5GVP8Oqvo/firwQOywVdlM6Mh3wNFg8MPM1hzUkwzvpV
-         fn3jI0Lnlcy9VJxC6j35ZN2KMRS/QmfYPY+BANX2m3JFaanqLmn8fExH6U2Q3hmh+6w0
-         YdG3MJ3zniw4r2Xw8KTWw313Famik0i7oY0hg5wX93kjrMt0RDupz7r5GlHIe4JtcVgG
-         73CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723799412; x=1724404212;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I+OEH4A1p3/H1CuxcdmLsuPBbfALhVq7kSh25EJu5bk=;
-        b=U+T1lPEzlgaO4TS3m/KQebcw839WMDVm0nUVr3R+VxIGB4Ps+5iEa5/CHXwG0NlPnN
-         8UfO8Per/kqL62CXFHN7b0nT2G9EQY6oZKB8QaYRmB5jcv8nhQ3Hw13ZqikiwtMZkZNR
-         F0QJP2hbE+pqrcijIdzQeHy6oflvuNp+ZB9hVX/NG+6idWi+ls+E8e9AqbSscab9SvBJ
-         MribK4R8O/cqWw3fnjKBI+NyqRcRtN1pVutKMWtcvjGu0PoS/kTx0IAB1COMGNOd7bf2
-         s90EBbtOVa++jeX8s0fdwftV7A9kIadYo+7/QF77xxL2Vsg48QW6On6Z5lmIiHEqnHk7
-         PyVw==
-X-Forwarded-Encrypted: i=1; AJvYcCXzJ9T/5lq1WdWY3AtkI1eQ5LChGXkYmADVCQpYmmJ6zqO4b/+6m+GJTz4ZvciXASQBxlg0mBkgHyc+q6EDQLEdMzDduZjOixhrjQ==
-X-Gm-Message-State: AOJu0Yx4o+ZI7h/Vx3xWionC2A3pasj8zWtcv43xAbht6srePYXxmrpp
-	Bn0oaNAaTDSAn95ybRy3qlX94xDDfnrSxp9TDADVjfVJbGWkJRmvH3uTbhf3mhXW05sxMB64Rph
-	vJCMXx3UcS38Oqcmyxr//epvLivVJfAyGHJMgDg==
-X-Google-Smtp-Source: AGHT+IFB3aIW7Bm+lnja7PhaLnwXaRYjuWrHIHMzFAXmCtoDzMvBJ6bByky6rPgRVOj2x6JwSAi/BLj6VPI7F5SZiP8=
-X-Received: by 2002:a05:6512:2806:b0:530:ae0a:ab7a with SMTP id
- 2adb3069b0e04-5331c6975abmr1399845e87.17.1723799411703; Fri, 16 Aug 2024
- 02:10:11 -0700 (PDT)
+	Mon, 19 Aug 2024 07:48:03 +0000
+Received: by mail.OriginatePro.pl (Postfix, from userid 1002)
+	id 1EDEC232C8; Mon, 19 Aug 2024 09:47:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=OriginatePro.pl;
+	s=mail; t=1724053675;
+	bh=HDodNtmiQ0oQNph7sp+h4NRbkxw8d1NmRLmJ4HyiCoQ=;
+	h=Date:From:To:Subject:From;
+	b=VEOSicPfCoobBUQGpcZkvt7cDzQghcU4QrXfZtpJnSd1L493Grz3p9i8eor5AYeFy
+	 vDrTrDryL50zYHw8OKeB79PbzGSw2wEjez01sXdMoPZL9OEkNTFj9em/uLdgealYyf
+	 SVFSf7e5EPmug4hMUNX/151us6GGSYJN9zAHC31xOtu63Pe2bXaZe9AbSMvRQ/LeWr
+	 GIo178p5TWblpJv7HY9+ZHArs7h7RPGMWJrfcx56bHxcCsrZx5AvxtDr918xsjZ3bC
+	 J5Nh+Ag0K1abkzUW4+6lj/lB/uU6SHTi2gtf7FU9/FlZ7lf2iXi/XcSZoqKW2lAg35
+	 26KVI2GGF88Eg==
+Received: by mail.OriginatePro.pl for <ath11k@lists.infradead.org>; Mon, 19 Aug 2024 07:46:03 GMT
+Message-ID: <20240819084500-0.1.dh.1uj8g.0.ppk1m4664g@OriginatePro.pl>
+Date: Mon, 19 Aug 2024 07:46:03 GMT
+From: "Marcin Wojciechowski" <marcin.wojciechowski@originatepro.pl>
+To: <ath11k@lists.infradead.org>
+Subject: =?UTF-8?Q?Zam=C3=B3wienie_?=
+X-Mailer: mail.OriginatePro.pl
 MIME-Version: 1.0
-References: <20240814082301.8091-1-brgl@bgdev.pl> <87a5hcyite.fsf@kernel.org>
-In-Reply-To: <87a5hcyite.fsf@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 16 Aug 2024 11:10:00 +0200
-Message-ID: <CAMRc=Mcr7E0dxG09_gYPxg57gYAS4j2+-3x9GCS3wOcM46O=NQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240816_021015_690367_3555953E 
-X-CRM114-Status: GOOD (  15.91  )
+X-CRM114-CacheID: sfid-20240819_004802_334582_A117516E 
+X-CRM114-Status: UNSURE (   0.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,77 +67,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Aug 16, 2024 at 10:26=E2=80=AFAM Kalle Valo <kvalo@kernel.org> wrot=
-e:
->
-> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Describe the inputs from the PMU of the ath11k module on WCN6855.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> > v1 -> v2:
-> > - update the example
-> >
-> >  .../net/wireless/qcom,ath11k-pci.yaml         | 29 +++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
->
-> This goes to ath-next, not net-next.
->
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k=
--pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.=
-yaml
-> > index 8675d7d0215c..a71fdf05bc1e 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.ya=
-ml
-> > @@ -50,6 +50,9 @@ properties:
-> >    vddrfa1p7-supply:
-> >      description: VDD_RFA_1P7 supply regulator handle
-> >
-> > +  vddrfa1p8-supply:
-> > +    description: VDD_RFA_1P8 supply regulator handle
-> > +
-> >    vddpcie0p9-supply:
-> >      description: VDD_PCIE_0P9 supply regulator handle
-> >
-> > @@ -77,6 +80,22 @@ allOf:
-> >          - vddrfa1p7-supply
-> >          - vddpcie0p9-supply
-> >          - vddpcie1p8-supply
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: pci17cb,1103
-> > +    then:
-> > +      required:
-> > +        - vddrfacmn-supply
-> > +        - vddaon-supply
-> > +        - vddwlcx-supply
-> > +        - vddwlmx-supply
-> > +        - vddrfa0p8-supply
-> > +        - vddrfa1p2-supply
-> > +        - vddrfa1p8-supply
-> > +        - vddpcie0p9-supply
-> > +        - vddpcie1p8-supply
->
-> Like we discussed before, shouldn't these supplies be optional as not
-> all modules need them?
->
+Witam,
 
-The answer is still the same: the ATH11K inside a WCN6855 does - in
-fact - always need them. The fact that the X13s doesn't define them is
-bad representation of HW and I'm fixing it in a subsequent DTS patch.
+Czy potrzebuj=C4=85 Pa=C5=84stwo aktualnie nowych klient=C3=B3w B2B?
 
-Bart
+Od 10 lat pomagamy pozyskiwa=C4=87 nowych partner=C3=B3w biznesowych w Po=
+lsce oraz za granic=C4=85.
 
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpa=
-tches
+Ponad 3000 zrealizowanych projekt=C3=B3w zar=C3=B3wno dla najwi=C4=99kszy=
+ch globalnych korporacji, polskich sp=C3=B3=C5=82ek gie=C5=82dowych czy t=
+e=C5=BC niewielkich dzia=C5=82alno=C5=9Bci gospodarczych sprawia, =C5=BCe=
+ jeste=C5=9Bmy jednym z lider=C3=B3w bran=C5=BCy.
+
+Z wieloma firmami wsp=C3=B3=C5=82pracujemy nieprzerwanie od wielu lat, ge=
+neruj=C4=85c stopy zwrot=C3=B3w si=C4=99gaj=C4=85ce tysi=C4=99cy punkt=C3=
+=B3w procentowych, pomagaj=C4=85c jednocze=C5=9Bnie w spos=C3=B3b powtarz=
+alny oraz policzalny poszerza=C4=87 portfele klient=C3=B3w biznesowych.
+
+Je=C5=9Bli maj=C4=85 Pa=C5=84stwo przestrze=C5=84 na obs=C5=82ug=C4=99 no=
+wych klient=C3=B3w, zapraszam do kontaktu zwrotnego. =20
+
+
+Pozdrawiam
+Marcin Wojciechowski
 
