@@ -4,60 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46DA3C531DC
-	for <ath11k@archiver.kernel.org>; Tue, 20 Aug 2024 17:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10882C3DA4A
+	for <ath11k@archiver.kernel.org>; Tue, 20 Aug 2024 19:05:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=agjyGsAx/M7LKSN3iuQw/j8QR3+ZuM6NKxmMWaF7nBg=; b=JYgqezSl73q6Z7NdPGy/zumTwr
-	cCwon/Vcj5heEqghh4ePCxNYB+0Yf542XSIY/aPqc1cxErCGq/asO1RpU1f6UmckQn/+KJxmn0dsC
-	NwCZsxpMdMnXcOQl7LSz4A2TdpF/NROJDhI+TazXMeQOWIlqrI3LEEWfoDozx8h7Ou0MMUERwOwaQ
-	VuBCv2gzwwu/jm4tCGTf1Dh/Hep57OH4xcFCFlodkvIEZasJQnNPIN3aTg45itD1Y/i6CmZkxyUdu
-	KBSTxS9Ohq0WoptMzQYblpLPlwFCPQ40YHfiYAS1KYeDCNfl2CpZuJhALHEO2RfdpTTGu3nzQEcWH
-	U6egb/1w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=iLic+AT+//cVj0cZOJRFLjyIWDzxE52raEf6fUVZQ1U=; b=NIl/4dukKSPU66BUcAd+z0WPyQ
+	HGbit9x54DOKCwCtha38wSUPQVFqFWgkEeUiNkUkoy7LuvfRIFKx/rBeB30OBjKio+QjoaPbBb3Tx
+	9TKsNG6Y1WHSX5FaTbYsPzzkD9TVfwMHIy/Qs5ynjEeBtuIaU8vBCdKmFHfllCXAJof6KRcEA4x9j
+	JV54YCCCCWRoVDBFu30lRyYOE9aGXX9fRCbbnegBzTpmuX0oieltd+TJzN2IVg6YIKlFMWBhg+sBo
+	KxjVv05/ac31qRMdNnYduINtNReVblDcc+7cDP7Hzhbl3oHb1zfOTv51rNjHHAwBuP8bCONvh2nap
+	fH0prHgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgSvn-00000006E0t-2k01;
-	Tue, 20 Aug 2024 17:46:07 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1sgUAs-00000006PdK-3gGm;
+	Tue, 20 Aug 2024 19:05:46 +0000
+Received: from mail-qk1-x730.google.com ([2607:f8b0:4864:20::730])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgSvk-00000006DzR-3yJi
+	id 1sgUAP-00000006PXf-2WDO
 	for ath11k@lists.infradead.org;
-	Tue, 20 Aug 2024 17:46:06 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id A3610CE0B7E;
-	Tue, 20 Aug 2024 17:46:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14C39C4AF0B;
-	Tue, 20 Aug 2024 17:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724175961;
-	bh=hU+bLAc95/LPfVm78qGUD1RNuIZJfdCNMrpWlh++Bd4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=qr6Pm9oBzfw37F2jjD7n6iUIpthVAiDGqyEsbo3SeWxoThoGDXoBwzJSZRUTvtKlY
-	 ErRmUdvpigwWtOtu3feZfSUCzWK297bQorSa5/TfgQjEb88Yl1Rqh+XAE3h47SX2dK
-	 zdGVX5fRyRo9QE1afen2OGc6LktGYzi0Ak8KSiOkvSABF/qdwbB/CvGTvepgLl5mEi
-	 F6IECBgGec4yjUarg1BvkRa1QoTfh0DKp5rtf6g4R75F7ZPGSrg36+jLTYPuLI0goY
-	 uynOXIF8SJemPQIc7sNZA4CBpfs11LDgnTo7aSyp1Y13c4T2+DE5s+6etTlDXbYoHp
-	 TJgelwFbKaAbw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH ath-current] wifi: ath11k: fix NULL pointer dereference
- in ath11k_mac_get_eirp_power()
-References: <20240813083808.9224-1-quic_bqiang@quicinc.com>
-Date: Tue, 20 Aug 2024 20:45:59 +0300
-In-Reply-To: <20240813083808.9224-1-quic_bqiang@quicinc.com> (Baochen Qiang's
-	message of "Tue, 13 Aug 2024 16:38:08 +0800")
-Message-ID: <87jzgbw0iw.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Tue, 20 Aug 2024 19:05:19 +0000
+Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-7a1dea79e1aso350393685a.1
+        for <ath11k@lists.infradead.org>; Tue, 20 Aug 2024 12:05:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724180716; x=1724785516; darn=lists.infradead.org;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iLic+AT+//cVj0cZOJRFLjyIWDzxE52raEf6fUVZQ1U=;
+        b=AsQa1NiN3dHnDgapxHxOdGG7hVaM9Qt64jNMKlt1qApAKX9HLkjmUW49ZdJCADmn3L
+         Y3qudOIZ8Hx7u8nQdDWVIhF4ZgxYAOqCouD6MCMGsISWeqqcYVdl30ljwm9hkxyf1BgI
+         NHRkjlT8p1sMgm7EtDxywU/MjXjJb1YpGA4D8GqDFjftagF1LokKH3B6gCRnTT3MSWCG
+         hT/xRBmrU6QfmziH1BeZ+xSV0PYXlXJEj7/D26meh3tTcUsy33067JA0RCsc40kluG7F
+         +8LIDhi3KvLthWaLOTZMpcCu1hiqvjXjFm7GLpHQTXOk6DSIgUgyDKjZwxc+QGSejC1C
+         qphg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724180716; x=1724785516;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iLic+AT+//cVj0cZOJRFLjyIWDzxE52raEf6fUVZQ1U=;
+        b=CJt8NasU1xjICso3TQvO8Kq3jS3z87irGB33rqmgULC9rhut2gPADdmWIUhwvYhlCS
+         eOmBuqcLa60Ky000uxZBsTWy4SYjwYlfGtbvzeUFqpq38Q6LUuQAGvmjQ5agbC+IzS5c
+         TlcADkl9OVmpH1nHkXlL/NlU9Yy3Yk+08dDcT48M2LrKOMuWVInH5Y5gJT84YoVHrSeu
+         KygoPGnEhCNk+JoXXXWS8PMzcgVmKX7dYnZR5VjFcncPeJ8Sq0KtbbdvmgWWAzujn+cd
+         /kng32/l9jwKZ21YcZnfWWlMMbZbKtEhbZXKYOZFSvnSdayw7KqodhV2+OUd2oWV325n
+         4i1g==
+X-Gm-Message-State: AOJu0YxWLj29MpH76ezl/dqBPEP5G7jwbsWXg1OVkHyLIIYOXqVN5vMg
+	CiGTHlHO1Z1TWYgg5hJuhCqVexHGILD3IAhxo8SjbJ0u1JQi5UxFm3x9dQ==
+X-Google-Smtp-Source: AGHT+IE4EUSb0Q54nr+ylscpyjsdf9T/AVwpMTaCxRlWZGgJBcK/tPJJZhFk7ZB+5X9uk8/QX23xjg==
+X-Received: by 2002:a05:620a:470b:b0:7a3:7889:4af0 with SMTP id af79cd13be357-7a6748f824bmr8297285a.28.1724180715517;
+        Tue, 20 Aug 2024 12:05:15 -0700 (PDT)
+Received: from [10.100.121.195] ([152.193.78.90])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a4ff0e555asm551681085a.79.2024.08.20.12.05.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Aug 2024 12:05:15 -0700 (PDT)
+Message-ID: <3b8c7d73-3e2e-471a-8434-61322a5746fa@gmail.com>
+Date: Tue, 20 Aug 2024 12:05:12 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
+ <linux-wireless@vger.kernel.org>
+Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+From: James Prestwood <prestwoj@gmail.com>
+Subject: ath11k WCN6855 seems to have incorrect regulatory info for US DFS-FCC
+ (no 6ghz)
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240820_104605_180878_DCCA46CC 
-X-CRM114-Status: GOOD (  13.10  )
+X-CRM114-CacheID: sfid-20240820_120517_694568_5637BB50 
+X-CRM114-Status: UNSURE (   6.23  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,54 +93,36 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> writes:
+Hi,
 
-> Commit 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers") breaks
-> ath11k, leading to kernel crash:
->
-> BUG: kernel NULL pointer dereference, address: 0000000000000018
-> RIP: 0010:ath11k_mac_get_eirp_power.isra.0+0x5b/0x80 [ath11k]
-> Call Trace:
->  <TASK>
->  ath11k_mac_fill_reg_tpc_info+0x3d6/0x800 [ath11k]
->  ath11k_mac_vdev_start_restart+0x412/0x4d0 [ath11k]
->  ath11k_mac_op_sta_state+0x7bc/0xbb0 [ath11k]
->  drv_sta_state+0xf1/0x5f0 [mac80211]
->  sta_info_insert_rcu+0x28d/0x530 [mac80211]
->  sta_info_insert+0xf/0x20 [mac80211]
->  ieee80211_prep_connection+0x3b4/0x4c0 [mac80211]
->  ieee80211_mgd_auth+0x363/0x600 [mac80211]
->
-> The issue scenario is, AP advertises power spectral density (PSD) values in its
-> transmit power envelope (TPE) IE and supports 160 MHz bandwidth in 6 GHz. When
-> connecting to this AP, in ath11k_mac_parse_tx_pwr_env(), the local variable
-> psd is true and then reg_tpc_info.num_pwr_levels is set to 8 due to 160 MHz
-> bandwidth. Note here ath11k fails to set reg_tpc_info.is_psd_power as TRUE due
-> to above commit. Then in ath11k_mac_fill_reg_tpc_info(), for each of the 8
-> power levels, for a PSD channel, ath11k_mac_get_psd_channel() is expected to
-> be called to get required information. However due to invalid
-> reg_tpc_info.is_psd_power, it is ath11k_mac_get_eirp_power() that gets called
-> and passed with pwr_lvl_idx as one of the arguments. Note this function
-> implicitly requires pwr_lvl_idx to be no more than 3. So when pwr_lvl_idx is
-> larger than that ath11k_mac_get_seg_freq() returns invalid center frequency,
-> with which as the input ieee80211_get_channel() returns NULL, then kernel
-> crashes due to NULL pointer dereference.
->
-> Fix it by setting reg_tpc_info.is_psd_power properly.
->
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
->
-> Fixes: 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers")
-> Reported-by: Mikko Tiihonen <mikko.tiihonen@iki.fi>
-> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=219131
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+I'm using the latest firmware for ath11k [1], WCN6855 hw2.1, and so far 
+I guess we've been lucky that the regdom has always been set to 00, 
+which apparently allows 6ghz. But recently we have seen the regdom get 
+set to US and it then has 6ghz disabled:
 
-The reporter confirmed that this fixes the issue and asked to add:
+phy#0 (self-managed)
+country US: DFS-FCC
+     (2402 - 2472 @ 40), (6, 30), (N/A)
+     (5170 - 5250 @ 80), (6, 24), (N/A), AUTO-BW
+     (5250 - 5330 @ 80), (6, 24), (0 ms), DFS, AUTO-BW
+     (5490 - 5730 @ 160), (6, 24), (0 ms), DFS, AUTO-BW
+     (5735 - 5855 @ 80), (6, 30), (N/A), AUTO-BW
+     (5855 - 5925 @ 40), (6, 30), (N/A), NO-OUTDOOR, AUTO-BW
 
-Tested-by: Mikko Tiihonen <mikko.tiihonen@iki.fi>
+I have updated the regulatory.db from wireless-regdb.git as well, and 
+updated all the firmware (including regdb.bin) to the latest available. 
+According to the wireless-regdb tree, US: DFS-FCC _should_ allow 6ghz [2]:
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Is there something I'm missing here?
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Thanks,
+
+James
+
+[1] 
+https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/tree/main/WCN6855?ref_type=heads
+
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/wens/wireless-regdb.git/tree/db.txt#n1895
+
 
