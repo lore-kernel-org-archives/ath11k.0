@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDF77C3DA4A
-	for <ath11k@archiver.kernel.org>; Mon, 19 Aug 2024 07:48:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46DA3C531DC
+	for <ath11k@archiver.kernel.org>; Tue, 20 Aug 2024 17:46:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=HDodNtmiQ0oQNph7sp+h4NRbkxw8d1NmRLmJ4HyiCoQ=; b=Lb0X+209arfikKuNCklSbso3f1
-	rh+OeS/ThdAp15pTYgwyPscAlc9oT3YCggkVEj6oLHUFnIcM2JBlkY2+qQzieorex2q/PzCjc6tkN
-	f7E8QpXGrKEN+Y841CJe0JVtH2Enb68iPPrO2QmR6Jn02Gj8g/CIIFozEVfG8M70WHlilBrdl4kIW
-	FBUhZ/5TxrX8znpDNwD+SaIFfySZp5udWl5xk+MH5JUsryUkKOJa3CVpXYBBw5cuV1jj9q2rHaz6K
-	IulU2L/2qoHRZQ9Bh+Nq6eCvDcpX18VAkPsm9ZLl20Jqgptul2UqIoVgSYaJLe5DCU3SY+uWlMCLw
-	D14FpFog==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=agjyGsAx/M7LKSN3iuQw/j8QR3+ZuM6NKxmMWaF7nBg=; b=JYgqezSl73q6Z7NdPGy/zumTwr
+	cCwon/Vcj5heEqghh4ePCxNYB+0Yf542XSIY/aPqc1cxErCGq/asO1RpU1f6UmckQn/+KJxmn0dsC
+	NwCZsxpMdMnXcOQl7LSz4A2TdpF/NROJDhI+TazXMeQOWIlqrI3LEEWfoDozx8h7Ou0MMUERwOwaQ
+	VuBCv2gzwwu/jm4tCGTf1Dh/Hep57OH4xcFCFlodkvIEZasJQnNPIN3aTg45itD1Y/i6CmZkxyUdu
+	KBSTxS9Ohq0WoptMzQYblpLPlwFCPQ40YHfiYAS1KYeDCNfl2CpZuJhALHEO2RfdpTTGu3nzQEcWH
+	U6egb/1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sfx7V-00000000gQX-0LD2;
-	Mon, 19 Aug 2024 07:48:05 +0000
-Received: from mail.originatepro.pl ([162.19.155.125])
+	id 1sgSvn-00000006E0t-2k01;
+	Tue, 20 Aug 2024 17:46:07 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sfx7R-00000000gPx-2VCw
+	id 1sgSvk-00000006DzR-3yJi
 	for ath11k@lists.infradead.org;
-	Mon, 19 Aug 2024 07:48:03 +0000
-Received: by mail.OriginatePro.pl (Postfix, from userid 1002)
-	id 1EDEC232C8; Mon, 19 Aug 2024 09:47:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=OriginatePro.pl;
-	s=mail; t=1724053675;
-	bh=HDodNtmiQ0oQNph7sp+h4NRbkxw8d1NmRLmJ4HyiCoQ=;
-	h=Date:From:To:Subject:From;
-	b=VEOSicPfCoobBUQGpcZkvt7cDzQghcU4QrXfZtpJnSd1L493Grz3p9i8eor5AYeFy
-	 vDrTrDryL50zYHw8OKeB79PbzGSw2wEjez01sXdMoPZL9OEkNTFj9em/uLdgealYyf
-	 SVFSf7e5EPmug4hMUNX/151us6GGSYJN9zAHC31xOtu63Pe2bXaZe9AbSMvRQ/LeWr
-	 GIo178p5TWblpJv7HY9+ZHArs7h7RPGMWJrfcx56bHxcCsrZx5AvxtDr918xsjZ3bC
-	 J5Nh+Ag0K1abkzUW4+6lj/lB/uU6SHTi2gtf7FU9/FlZ7lf2iXi/XcSZoqKW2lAg35
-	 26KVI2GGF88Eg==
-Received: by mail.OriginatePro.pl for <ath11k@lists.infradead.org>; Mon, 19 Aug 2024 07:46:03 GMT
-Message-ID: <20240819084500-0.1.dh.1uj8g.0.ppk1m4664g@OriginatePro.pl>
-Date: Mon, 19 Aug 2024 07:46:03 GMT
-From: "Marcin Wojciechowski" <marcin.wojciechowski@originatepro.pl>
-To: <ath11k@lists.infradead.org>
-Subject: =?UTF-8?Q?Zam=C3=B3wienie_?=
-X-Mailer: mail.OriginatePro.pl
+	Tue, 20 Aug 2024 17:46:06 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id A3610CE0B7E;
+	Tue, 20 Aug 2024 17:46:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14C39C4AF0B;
+	Tue, 20 Aug 2024 17:46:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724175961;
+	bh=hU+bLAc95/LPfVm78qGUD1RNuIZJfdCNMrpWlh++Bd4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=qr6Pm9oBzfw37F2jjD7n6iUIpthVAiDGqyEsbo3SeWxoThoGDXoBwzJSZRUTvtKlY
+	 ErRmUdvpigwWtOtu3feZfSUCzWK297bQorSa5/TfgQjEb88Yl1Rqh+XAE3h47SX2dK
+	 zdGVX5fRyRo9QE1afen2OGc6LktGYzi0Ak8KSiOkvSABF/qdwbB/CvGTvepgLl5mEi
+	 F6IECBgGec4yjUarg1BvkRa1QoTfh0DKp5rtf6g4R75F7ZPGSrg36+jLTYPuLI0goY
+	 uynOXIF8SJemPQIc7sNZA4CBpfs11LDgnTo7aSyp1Y13c4T2+DE5s+6etTlDXbYoHp
+	 TJgelwFbKaAbw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH ath-current] wifi: ath11k: fix NULL pointer dereference
+ in ath11k_mac_get_eirp_power()
+References: <20240813083808.9224-1-quic_bqiang@quicinc.com>
+Date: Tue, 20 Aug 2024 20:45:59 +0300
+In-Reply-To: <20240813083808.9224-1-quic_bqiang@quicinc.com> (Baochen Qiang's
+	message of "Tue, 13 Aug 2024 16:38:08 +0800")
+Message-ID: <87jzgbw0iw.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240819_004802_334582_A117516E 
-X-CRM114-Status: UNSURE (   0.82  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240820_104605_180878_DCCA46CC 
+X-CRM114-Status: GOOD (  13.10  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,27 +72,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Witam,
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-Czy potrzebuj=C4=85 Pa=C5=84stwo aktualnie nowych klient=C3=B3w B2B?
+> Commit 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers") breaks
+> ath11k, leading to kernel crash:
+>
+> BUG: kernel NULL pointer dereference, address: 0000000000000018
+> RIP: 0010:ath11k_mac_get_eirp_power.isra.0+0x5b/0x80 [ath11k]
+> Call Trace:
+>  <TASK>
+>  ath11k_mac_fill_reg_tpc_info+0x3d6/0x800 [ath11k]
+>  ath11k_mac_vdev_start_restart+0x412/0x4d0 [ath11k]
+>  ath11k_mac_op_sta_state+0x7bc/0xbb0 [ath11k]
+>  drv_sta_state+0xf1/0x5f0 [mac80211]
+>  sta_info_insert_rcu+0x28d/0x530 [mac80211]
+>  sta_info_insert+0xf/0x20 [mac80211]
+>  ieee80211_prep_connection+0x3b4/0x4c0 [mac80211]
+>  ieee80211_mgd_auth+0x363/0x600 [mac80211]
+>
+> The issue scenario is, AP advertises power spectral density (PSD) values in its
+> transmit power envelope (TPE) IE and supports 160 MHz bandwidth in 6 GHz. When
+> connecting to this AP, in ath11k_mac_parse_tx_pwr_env(), the local variable
+> psd is true and then reg_tpc_info.num_pwr_levels is set to 8 due to 160 MHz
+> bandwidth. Note here ath11k fails to set reg_tpc_info.is_psd_power as TRUE due
+> to above commit. Then in ath11k_mac_fill_reg_tpc_info(), for each of the 8
+> power levels, for a PSD channel, ath11k_mac_get_psd_channel() is expected to
+> be called to get required information. However due to invalid
+> reg_tpc_info.is_psd_power, it is ath11k_mac_get_eirp_power() that gets called
+> and passed with pwr_lvl_idx as one of the arguments. Note this function
+> implicitly requires pwr_lvl_idx to be no more than 3. So when pwr_lvl_idx is
+> larger than that ath11k_mac_get_seg_freq() returns invalid center frequency,
+> with which as the input ieee80211_get_channel() returns NULL, then kernel
+> crashes due to NULL pointer dereference.
+>
+> Fix it by setting reg_tpc_info.is_psd_power properly.
+>
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>
+> Fixes: 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers")
+> Reported-by: Mikko Tiihonen <mikko.tiihonen@iki.fi>
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=219131
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
-Od 10 lat pomagamy pozyskiwa=C4=87 nowych partner=C3=B3w biznesowych w Po=
-lsce oraz za granic=C4=85.
+The reporter confirmed that this fixes the issue and asked to add:
 
-Ponad 3000 zrealizowanych projekt=C3=B3w zar=C3=B3wno dla najwi=C4=99kszy=
-ch globalnych korporacji, polskich sp=C3=B3=C5=82ek gie=C5=82dowych czy t=
-e=C5=BC niewielkich dzia=C5=82alno=C5=9Bci gospodarczych sprawia, =C5=BCe=
- jeste=C5=9Bmy jednym z lider=C3=B3w bran=C5=BCy.
+Tested-by: Mikko Tiihonen <mikko.tiihonen@iki.fi>
 
-Z wieloma firmami wsp=C3=B3=C5=82pracujemy nieprzerwanie od wielu lat, ge=
-neruj=C4=85c stopy zwrot=C3=B3w si=C4=99gaj=C4=85ce tysi=C4=99cy punkt=C3=
-=B3w procentowych, pomagaj=C4=85c jednocze=C5=9Bnie w spos=C3=B3b powtarz=
-alny oraz policzalny poszerza=C4=87 portfele klient=C3=B3w biznesowych.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Je=C5=9Bli maj=C4=85 Pa=C5=84stwo przestrze=C5=84 na obs=C5=82ug=C4=99 no=
-wych klient=C3=B3w, zapraszam do kontaktu zwrotnego. =20
-
-
-Pozdrawiam
-Marcin Wojciechowski
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
