@@ -4,82 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77DFBC52D7C
-	for <ath11k@archiver.kernel.org>; Wed, 21 Aug 2024 17:05:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE41BC52D7C
+	for <ath11k@archiver.kernel.org>; Thu, 22 Aug 2024 11:17:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=F8DQru6UN8dJs60jykvyzxdgZb0RXRlNWrUteqGq0t4=; b=jja0aH18yuj0QUbZ0LY0uYHuEL
-	kcMMw1G8EyTyGz3acjQ327YT1FOPkNPa5Mnn1tfcu3pI6F1DTDZVy2jUbDHzYVVNIjA7DAWQqqB6h
-	3Lop0O6rvKiyYqSdsDYy5etZR91/tRMJIuYt8ueaUSQMrnZwu9UQA6KxCLmqshFmP7PQhnCJOCVBf
-	qsnkkCeZi+6Lu0YjAWybLs4okWJwH4bPd6iJCsWbA0iI+goS23RJ971QD9OIYuovRElzEfFtNxKuZ
-	JzB+ejVX0hvLavW23Z25PfChnQg6fRH/0y2YxwUiWQFbhi3k7Br60OEtbNLbDxdTzK5wG0RcEzS8q
-	j/JK8sKg==;
+	bh=2nTjowvDhOTUyB4F0H0n2xGGFmLYWxSeGI86EXZL8Ys=; b=IoZE1wcts8MMFgB0emHjSQSYNK
+	eXqoQV1fZCJjLTtwNFNjNELZp1btdpA1ozxPg7S4sZr015yq91D6deSfkdVRRtM9GJ6axthDytqYw
+	9zS20SKEFpP9U8lOUauR94/elsEXwKL4zKrYjjANTMCkmO60+B+Jj39B5SFnPMzXiAaquzlS1qKQd
+	gcM04Gv4Jp3BgDHnIHZegW82nEQ/hOUw/UaTo8AWgGSoepinjBas3QlF1FlSCixuMbufIqG7BRRq7
+	JQ0GkViUoMDJPQtJDVw/qZPZ/BuDYs25YTjV6icc6vmwfqns27wClRz2OLYT16wl5icjZcabHWLeX
+	apWrJ1xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgomQ-00000009rlc-0glq;
-	Wed, 21 Aug 2024 17:05:54 +0000
-Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	id 1sh5oq-0000000CY0X-0jrq;
+	Thu, 22 Aug 2024 11:17:32 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgomN-00000009rl7-0NcX
+	id 1sh5od-0000000CXvd-0r9I
 	for ath11k@lists.infradead.org;
-	Wed, 21 Aug 2024 17:05:52 +0000
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-201e64607a5so48222625ad.2
-        for <ath11k@lists.infradead.org>; Wed, 21 Aug 2024 10:05:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724259950; x=1724864750; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=F8DQru6UN8dJs60jykvyzxdgZb0RXRlNWrUteqGq0t4=;
-        b=QT5JPRht/nWHSeESF/RnU3i22gHnPU2CD5ASszPRE2Dreq2LcE8BAVSzoqLbWSTOQQ
-         tnBQBwFI1qgIjsulCKHlUNC8aat5YjS3uyn8JoVSyYAhq4cj38wbxUNKCG3sBRtIYaZY
-         wvzQB0JsJhO5PC54vTkbsI2IKOiQk2hoaDEZ8jNvGaKqjDyhhMZeO6HCo3VcUuwDj8vO
-         UMEMRchiamn3Adkb23Nr64E511nUOjIx/L4cilZG3wL82hiW37dVlA+z7tGSdWqNNFEx
-         9jqgwWBXmYRSIj5SBmb0b7zazSTNy/Z3CxszjZwHtcCst24YUzSGvuK2CY3WNTOWZRHe
-         WDqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724259950; x=1724864750;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F8DQru6UN8dJs60jykvyzxdgZb0RXRlNWrUteqGq0t4=;
-        b=WsINjbHuh5fGHpDUTRH67ueRhmbRUvZMmWyEezU+0N99FqA5RPvfTmkd13yPXoU6So
-         Zmt41dAFO4dMY/M+2hD5wBKNHKx4N+RiGI1v44OxW2PBNdNOL5ga+dOYzuvLJ03zUdA4
-         SyyxUSKVmZdhL33KsSNLCqM7yt9ZFrllyi5yAZ6WjOcoTk88NFrjTHiDe7/7aI8hjsiv
-         TrcE8CNTDQY9z1zqzVt9XbuUbGvOCcouuY0zX9/0gj1tRnDgdL4bC9k66wqXIHUMTCCx
-         hOmmt4L5TPEBMdw1rN2ASRNjS2fIvwv11vtMc8FsxqE/+EkdQ2FXvP2oWAsgA4Jj9NT5
-         sgtw==
-X-Gm-Message-State: AOJu0Yz1njMZLkFmvbywRdqmKS5EAL2vAZC298lB2BYFKE6xP+83mKsX
-	a1ZF0PIKs2k4Nunkbc1I45waFjCy6LVLRE0VaT6vuu4802iDScJ+
-X-Google-Smtp-Source: AGHT+IEU75GWPV4RspaE673U+0qloLAUcZdlAdfIsvIszG9477jSA7GQmXkyDPRT3LwXfbtcmYgLzA==
-X-Received: by 2002:a17:902:ecd0:b0:202:20bf:461c with SMTP id d9443c01a7336-20367d3b7ffmr34862695ad.31.1724259949927;
-        Wed, 21 Aug 2024 10:05:49 -0700 (PDT)
-Received: from [10.100.121.195] ([152.193.78.90])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201f03756ebsm96099035ad.158.2024.08.21.10.05.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Aug 2024 10:05:49 -0700 (PDT)
-Message-ID: <45445d1b-7e0c-4c6e-b8c7-17098586d861@gmail.com>
-Date: Wed, 21 Aug 2024 10:05:46 -0700
+	Thu, 22 Aug 2024 11:17:21 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 55AC6CE0B8A;
+	Thu, 22 Aug 2024 11:17:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C4B9C32782;
+	Thu, 22 Aug 2024 11:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724325436;
+	bh=q6nA+xULn1IKnQ25AEemK++PTuEK3oiJ89ePjZL2ASY=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=THJbabcw7PmRrS6KFY8aT4EY4FpcJukzShgbi2Q5qMHZg592AblJqaLRgb17hIodQ
+	 5IhJwsLToIXs6nKLmL478qiP32fQe3nzLqrQ7FL4LC5KPWtnXhC0EpKQa2XOrGV/UX
+	 5FZZ4M5ci/SfvkjoV8uRyrMYFtpK6sL02jgVsatgQRucZPdQorTCEv5uJoopqF5fFT
+	 glo2mitgtGO8KJ6ieQZ34JfMpmCiY+BAEHQppFN7CP44aVzNSMbsr9ycQ79K+zXhEv
+	 S5wU+Cjx3j7phQnJ9pkg9uqgFS/+cg27S9d1ZTuPxu3VigD6jHURa/FcL7zPQR/ABk
+	 piEnIznB8pqXA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k WCN6855 seems to have incorrect regulatory info for US
- DFS-FCC (no 6ghz)
-From: James Prestwood <prestwoj@gmail.com>
-To: "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
- <linux-wireless@vger.kernel.org>
-Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-References: <3b8c7d73-3e2e-471a-8434-61322a5746fa@gmail.com>
-Content-Language: en-US
-In-Reply-To: <3b8c7d73-3e2e-471a-8434-61322a5746fa@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH ath-current] wifi: ath11k: fix NULL pointer dereference in
+ ath11k_mac_get_eirp_power()
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240813083808.9224-1-quic_bqiang@quicinc.com>
+References: <20240813083808.9224-1-quic_bqiang@quicinc.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_bqiang@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <172432543412.2365229.4521966986927365757.kvalo@kernel.org>
+Date: Thu, 22 Aug 2024 11:17:15 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240821_100551_154519_39D74F77 
-X-CRM114-Status: GOOD (  14.33  )
+X-CRM114-CacheID: sfid-20240822_041719_669088_54E47021 
+X-CRM114-Status: GOOD (  11.38  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,58 +73,59 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 8/20/24 12:05 PM, James Prestwood wrote:
-> Hi,
->
-> I'm using the latest firmware for ath11k [1], WCN6855 hw2.1, and so 
-> far I guess we've been lucky that the regdom has always been set to 
-> 00, which apparently allows 6ghz. But recently we have seen the regdom 
-> get set to US and it then has 6ghz disabled:
->
-> phy#0 (self-managed)
-> country US: DFS-FCC
->     (2402 - 2472 @ 40), (6, 30), (N/A)
->     (5170 - 5250 @ 80), (6, 24), (N/A), AUTO-BW
->     (5250 - 5330 @ 80), (6, 24), (0 ms), DFS, AUTO-BW
->     (5490 - 5730 @ 160), (6, 24), (0 ms), DFS, AUTO-BW
->     (5735 - 5855 @ 80), (6, 30), (N/A), AUTO-BW
->     (5855 - 5925 @ 40), (6, 30), (N/A), NO-OUTDOOR, AUTO-BW
->
-> I have updated the regulatory.db from wireless-regdb.git as well, and 
-> updated all the firmware (including regdb.bin) to the latest 
-> available. According to the wireless-regdb tree, US: DFS-FCC _should_ 
-> allow 6ghz [2]:
->
-> Is there something I'm missing here?
->
-> Thanks,
->
-> James
->
-> [1] 
-> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/tree/main/WCN6855?ref_type=heads
->
-> [2] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/wens/wireless-regdb.git/tree/db.txt#n1895
->
-It appears the issue was actually at the driver level. Updating to 
-kernel 6.8 seems to reflect the correct regulatory domain rules, at 
-least with US: DFS-FCC. Might have something to do a commit [1], which 
-was sent a few months after 6.2 was released, which is what I've been 
-using prior.
+Baochen Qiang <quic_bqiang@quicinc.com> wrote:
 
-I now see the expected frequency ranges for US: DFS-FCC:
+> Commit 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers") breaks
+> ath11k, leading to kernel crash:
+> 
+> BUG: kernel NULL pointer dereference, address: 0000000000000018
+> RIP: 0010:ath11k_mac_get_eirp_power.isra.0+0x5b/0x80 [ath11k]
+> Call Trace:
+>  <TASK>
+>  ath11k_mac_fill_reg_tpc_info+0x3d6/0x800 [ath11k]
+>  ath11k_mac_vdev_start_restart+0x412/0x4d0 [ath11k]
+>  ath11k_mac_op_sta_state+0x7bc/0xbb0 [ath11k]
+>  drv_sta_state+0xf1/0x5f0 [mac80211]
+>  sta_info_insert_rcu+0x28d/0x530 [mac80211]
+>  sta_info_insert+0xf/0x20 [mac80211]
+>  ieee80211_prep_connection+0x3b4/0x4c0 [mac80211]
+>  ieee80211_mgd_auth+0x363/0x600 [mac80211]
+> 
+> The issue scenario is, AP advertises power spectral density (PSD) values in its
+> transmit power envelope (TPE) IE and supports 160 MHz bandwidth in 6 GHz. When
+> connecting to this AP, in ath11k_mac_parse_tx_pwr_env(), the local variable
+> psd is true and then reg_tpc_info.num_pwr_levels is set to 8 due to 160 MHz
+> bandwidth. Note here ath11k fails to set reg_tpc_info.is_psd_power as TRUE due
+> to above commit. Then in ath11k_mac_fill_reg_tpc_info(), for each of the 8
+> power levels, for a PSD channel, ath11k_mac_get_psd_channel() is expected to
+> be called to get required information. However due to invalid
+> reg_tpc_info.is_psd_power, it is ath11k_mac_get_eirp_power() that gets called
+> and passed with pwr_lvl_idx as one of the arguments. Note this function
+> implicitly requires pwr_lvl_idx to be no more than 3. So when pwr_lvl_idx is
+> larger than that ath11k_mac_get_seg_freq() returns invalid center frequency,
+> with which as the input ieee80211_get_channel() returns NULL, then kernel
+> crashes due to NULL pointer dereference.
+> 
+> Fix it by setting reg_tpc_info.is_psd_power properly.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+> 
+> Fixes: 39dc8b8ea387 ("wifi: mac80211: pass parsed TPE data to drivers")
+> Reported-by: Mikko Tiihonen <mikko.tiihonen@iki.fi>
+> Tested-by: Mikko Tiihonen <mikko.tiihonen@iki.fi>
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=219131
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-phy#0 (self-managed)
-country US: DFS-FCC
-     (2402 - 2472 @ 40), (6, 30), (N/A)
-     (5170 - 5250 @ 80), (6, 24), (N/A), AUTO-BW
-     (5250 - 5330 @ 80), (6, 24), (0 ms), DFS, AUTO-BW
-     (5490 - 5730 @ 160), (6, 24), (0 ms), DFS, AUTO-BW
-     (5735 - 5855 @ 80), (6, 30), (N/A), AUTO-BW
-     (5855 - 5925 @ 40), (6, 30), (N/A), NO-OUTDOOR, AUTO-BW
-     (5925 - 7125 @ 160), (N/A, 24), (N/A), NO-OUTDOOR, AUTO-BW
+Patch applied to ath-current branch of ath.git, thanks.
 
-[1] https://www.spinics.net/lists/linux-wireless/msg236203.html
+9abf199943a6 wifi: ath11k: fix NULL pointer dereference in ath11k_mac_get_eirp_power()
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20240813083808.9224-1-quic_bqiang@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+https://docs.kernel.org/process/submitting-patches.html
 
 
