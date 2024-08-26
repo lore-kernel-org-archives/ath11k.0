@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 469C3C5320E
-	for <ath11k@archiver.kernel.org>; Mon, 26 Aug 2024 01:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3BDFC5321E
+	for <ath11k@archiver.kernel.org>; Mon, 26 Aug 2024 01:50:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=yzA8JSeNjFP7XSu/UCIW+OkfVBkGyPITHBjSdUsewMc=; b=P3vS3fGR/AIbUOaeXFyxtMzIzN
-	vwy4JEpHOis3JCKqT0PvS9toCP2e7O6Fifw4e1+3vK8TN4jeO9s3EXN+CdhgRlYdj6N7/oUXCkk8y
-	oy61VwK9+DA5tcSR7n4GIoWk1AlstZTvF6thE7mvhq4ELy8bcQZ8nt6ONtPYIr9ZqJ2zw3hDOJnGv
-	dGq6xxYfQ1sepbYgdbk/PeG3TiCZ66qHJrGI+2qZCPylGs/qfjhH1d5GbbP2GCq+qkzD2BxagXlBe
-	ERcuHePpK7/y6AKByoaFQZgcqbK2K6y4va8oLjFi2aP/iDHyavntP0z6s4Z4tEifh9OPDjM505t2n
-	nef/ZlwQ==;
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=t5XnTu9WHctTVDM9Hsq5utV513c/jZ+IWuBCLoKB+CE=; b=Wu0GPr8kx3Y0S8SSS7mnwgGlBO
+	/uuINxmMUyyeNc3tiEO/4/ss2tQWNArDdxG0x6R69CO3dkmGIYzinoIcMp2OfrqSD+vq8iOcXPhgv
+	eDqg3d5RtSjHtdrXMubcmuCrhQ4+sqc/1hmO0fdDuV7BEQF7J/116JyqVYFb3OgENdFW3EGiy8zhL
+	psS373sjU0An9iy1T+9VmzlC3669ahvaA2xW9k/ut9SPtkWrKhTYBNoTduudg6kyhZo/3sEaFLyBT
+	4O+WeXhrDWmKACqAePtkL5CFRDe/QnsTZS9WwdEBazW30IKmyhGtF3XDRFh1J8geMgCm29gG6DkvR
+	I5YFrNrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1siOrx-00000005TYZ-0TgE;
-	Mon, 26 Aug 2024 01:50:09 +0000
+	id 1siOs0-00000005TZQ-2WeL;
+	Mon, 26 Aug 2024 01:50:12 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1siOru-00000005TXC-1U9U
+	id 1siOrv-00000005TXL-1Tf0
 	for ath11k@lists.infradead.org;
 	Mon, 26 Aug 2024 01:50:08 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47PMVqbM031820;
-	Mon, 26 Aug 2024 01:50:04 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47PNKPTK028932;
+	Mon, 26 Aug 2024 01:50:05 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=yzA8JSeNjFP7XSu/UCIW+O
-	kfVBkGyPITHBjSdUsewMc=; b=LBrriOwTsKUgpEj+snAXw4c0HHzPlKr20O6SqO
-	Kgvs3zQ81vi3oFDx5atuUGVTJB8nJGPrlbgNazlq4PW6j5PCRnxfXOfa5itINGD7
-	2Epn26ELfVPv1NW23XpZ6OApgrw3zvA1n+Iba2FoKtAqSYoNtp7GK/CArOu92znj
-	KkrQE1Dr+skkkTomHqgXliTEhPjuEANCCNKULonjivMbRaqI9vDjaoO4cfYTTU4u
-	m5yvYZOSd9n+uGWUqVQqx9y/FVD+3JEoNFiFyqNfNFjvC4ZSOk9p/olIkWpr4aRu
-	rUKsuWJ8G3m4B5pS2N2eK5PwsvPA2IX+P9XeBJ2JPbz1bGRw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41798et679-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	t5XnTu9WHctTVDM9Hsq5utV513c/jZ+IWuBCLoKB+CE=; b=T/+5yZxBOPUqQDN7
+	bSr5FJ70vqn2mgE3xsFdwUOtwUpyAVcf4wVGKftIDtZEuzqRVNx/bIDX3r/wOuYj
+	vCcvAZDeuFsoHeFEna5KpGUMp94pYXnny6TiCTnjFA2zHGhX9EKik3lFUx160AA3
+	8qorXbOXZ6ZTbKJdGDjTVa9aMeV48aZYuT+yYczE/2IimWOR0TPeH1SqHk5KjHHo
+	elNcOvSAiiOZMrwQfstLUSwKB4764pXoQzyI5Pt8XyCJInBTlqrsSXpn/DHSMkH3
+	SRNHsiYYdKd45DqLPsMTO+3jbzn8NFFqQlY+yoJKR0YSBJC30gL+cQuNt6GJ0Ecf
+	i6qfFw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 417976t645-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 26 Aug 2024 01:50:03 +0000 (GMT)
+	Mon, 26 Aug 2024 01:50:05 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47Q1o2PH030244
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47Q1o4PR018690
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 26 Aug 2024 01:50:02 GMT
+	Mon, 26 Aug 2024 01:50:04 GMT
 Received: from bqiang-SFF.lan (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 25 Aug
- 2024 18:50:01 -0700
+ 2024 18:50:02 -0700
 From: Baochen Qiang <quic_bqiang@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH 0/3] wifi: ath11k: fix memory leak in reset scenario
-Date: Mon, 26 Aug 2024 09:49:39 +0800
-Message-ID: <20240826014942.87783-1-quic_bqiang@quicinc.com>
+Subject: [PATCH 1/3] wifi: ath11k: refactor ath11k_dp_peer_cleanup()
+Date: Mon, 26 Aug 2024 09:49:40 +0800
+Message-ID: <20240826014942.87783-2-quic_bqiang@quicinc.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240826014942.87783-1-quic_bqiang@quicinc.com>
+References: <20240826014942.87783-1-quic_bqiang@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,20 +69,19 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: UNgOCNQ_JFhg_wwcXhjxz_PDjvvkIuw9
-X-Proofpoint-ORIG-GUID: UNgOCNQ_JFhg_wwcXhjxz_PDjvvkIuw9
+X-Proofpoint-ORIG-GUID: 8wBh7Z_CCgyluAcsUFxjjUNUTSam2v9j
+X-Proofpoint-GUID: 8wBh7Z_CCgyluAcsUFxjjUNUTSam2v9j
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-08-25_20,2024-08-23_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 suspectscore=0 mlxscore=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 mlxlogscore=665
- impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408260012
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 malwarescore=0 clxscore=1015 impostorscore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 suspectscore=0 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408260012
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240825_185006_541716_203BD447 
-X-CRM114-Status: UNSURE (   7.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240825_185007_536766_087B1CD0 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,22 +96,67 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k_peer::tfm_mmic and ath11k_sta::rx_stats/tx_stats are leaked
-in reset scenario, fix them.
+Currently ath11k_dp_peer_cleanup() acquires ab->base_lock inside itself. This is
+working because it is only called in below context where that lock is not held:
 
-Baochen Qiang (3):
-  wifi: ath11k: refactor ath11k_dp_peer_cleanup()
-  wifi: ath11k: fix leaking peer->tfm_mmic in reset scenario
-  wifi: ath11k: fix leaking station RX/TX stats in reset scenario
+	ath11k_mac_op_sta_state() --> ath11k_mac_station_remove()
 
- drivers/net/wireless/ath/ath11k/core.c |  1 +
- drivers/net/wireless/ath/ath11k/dp.c   |  5 ++---
- drivers/net/wireless/ath/ath11k/mac.c  | 31 +++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/mac.h  |  3 ++-
- 4 files changed, 30 insertions(+), 10 deletions(-)
+In a upcoming patch that fixes memory leak in reset scenario, we need to do the
+same job as ath11k_dp_peer_cleanup(). However ab->base_lock is already held there
+so we can not directly call it.
 
+So the decision is to move lock/unlock outside of ath11k_dp_peer_cleanup() such
+that we won't get deadlock in a context where the lock is already held. In order
+to make sure it is called with lock held, add LOCKDEP assertion there.
 
-base-commit: 8fb3b2b8d6d489416a7ff8a28cd4083340ad9e55
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dp.c  | 5 ++---
+ drivers/net/wireless/ath/ath11k/mac.c | 2 ++
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index fbf666d0ecf1..58f57dd8858f 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -26,19 +26,18 @@ void ath11k_dp_peer_cleanup(struct ath11k *ar, int vdev_id, const u8 *addr)
+ 
+ 	/* TODO: Any other peer specific DP cleanup */
+ 
+-	spin_lock_bh(&ab->base_lock);
++	lockdep_assert_held(&ab->base_lock);
++
+ 	peer = ath11k_peer_find(ab, vdev_id, addr);
+ 	if (!peer) {
+ 		ath11k_warn(ab, "failed to lookup peer %pM on vdev %d\n",
+ 			    addr, vdev_id);
+-		spin_unlock_bh(&ab->base_lock);
+ 		return;
+ 	}
+ 
+ 	ath11k_peer_rx_tid_cleanup(ar, peer);
+ 	peer->dp_setup_done = false;
+ 	crypto_free_shash(peer->tfm_mmic);
+-	spin_unlock_bh(&ab->base_lock);
+ }
+ 
+ int ath11k_dp_peer_setup(struct ath11k *ar, int vdev_id, const u8 *addr)
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index f8068d2e848c..f1dff26bc237 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -9531,7 +9531,9 @@ static int ath11k_mac_station_remove(struct ath11k *ar,
+ 		}
+ 	}
+ 
++	spin_lock_bh(&ab->base_lock);
+ 	ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
++	spin_unlock_bh(&ab->base_lock);
+ 
+ 	ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
+ 	if (ret)
 -- 
 2.25.1
 
