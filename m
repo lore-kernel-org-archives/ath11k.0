@@ -4,64 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80462C52D7C
-	for <ath11k@archiver.kernel.org>; Thu, 22 Aug 2024 16:50:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 469C3C5320E
+	for <ath11k@archiver.kernel.org>; Mon, 26 Aug 2024 01:50:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ADJ9JPy12I9F571KjrBoKcZrdx2pDDNKEnKu86lcRsc=; b=r4KPYGUhA/jlXARFNptZplNrxY
-	2JaDPDNPvcr5wSzT9Xz/EMXC8h8rz1lR2mYGpfho8NQSaIDVz19wn4rNIruy5Lmr4Fy4fH8rFywd8
-	5sWOJjIUDd/B2HzR3BvPPSf3bNuwQ02mjNcPYQ9bJmlqIC/w0g908L0sBKymK19yh1nEGxw6bQkJU
-	ePG8ai1UfKBNoQLqRQC0SwGAwM+jXxoUiyVsKecLo96nh1764D3uO9K6e1niFMat0aNcOIkseaET1
-	oVuxGPCnwoom0cwZC0VkaBzHYPaQVfGmVA/S2ns5olrzZnfUv8l7nkHcMDjobI1O5MNYvrfj0gzNb
-	BIhxWm4A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=yzA8JSeNjFP7XSu/UCIW+OkfVBkGyPITHBjSdUsewMc=; b=P3vS3fGR/AIbUOaeXFyxtMzIzN
+	vwy4JEpHOis3JCKqT0PvS9toCP2e7O6Fifw4e1+3vK8TN4jeO9s3EXN+CdhgRlYdj6N7/oUXCkk8y
+	oy61VwK9+DA5tcSR7n4GIoWk1AlstZTvF6thE7mvhq4ELy8bcQZ8nt6ONtPYIr9ZqJ2zw3hDOJnGv
+	dGq6xxYfQ1sepbYgdbk/PeG3TiCZ66qHJrGI+2qZCPylGs/qfjhH1d5GbbP2GCq+qkzD2BxagXlBe
+	ERcuHePpK7/y6AKByoaFQZgcqbK2K6y4va8oLjFi2aP/iDHyavntP0z6s4Z4tEifh9OPDjM505t2n
+	nef/ZlwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1shB0s-0000000Dfpk-3DXM;
-	Thu, 22 Aug 2024 16:50:18 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1siOrx-00000005TYZ-0TgE;
+	Mon, 26 Aug 2024 01:50:09 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1shB0p-0000000DfnX-30u3
+	id 1siOru-00000005TXC-1U9U
 	for ath11k@lists.infradead.org;
-	Thu, 22 Aug 2024 16:50:17 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 4C515A407F4;
-	Thu, 22 Aug 2024 16:50:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD69CC4AF0F;
-	Thu, 22 Aug 2024 16:50:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724345413;
-	bh=+fNrTItCT2YwGN+dojlHcg8wSI5mEQWYNR8QSA6wH8A=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=C4K59aSinf7Nds94klrGvAj7XbveK9nhD9+YPIZcrhQt0XDARKVvYbm8YycxSTcRz
-	 dlkkFQqwGUlsIHD8w1CpiOQuAIYOwxedeMXs+SeWyklLe10NDOOp39VXZ5YEyt4G/9
-	 nK839XUKK3IW8Fx3sp53XeLPsOQAu/Y6bPI3gYmSgfuytNHmHQkEXcK817VWeWb3ct
-	 ZFSuKCR54xd78exXaX+y6+z+ds0dpZq9tqpal1lMrvRAZQeiPt1/A0kAoFQjKEfSLg
-	 gNtQLNrkR8Cr+k5dA3ODvt760gkncNUeO5VGOgmLU6kYzTDrmqpi5Np64pd+7q4YoP
-	 bcNPc8qA/TOIw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>,  Jeff Johnson
- <jjohnson@kernel.org>,  <linux-wireless@vger.kernel.org>,
-  <ath11k@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
-  <linux-hardening@vger.kernel.org>
-Subject: Re: [PATCH][next] wifi: ath11k: Avoid
- -Wflex-array-member-not-at-end warnings
-References: <ZrZB3Rjswe0ZXtug@cute>
-	<8d31adac-fd43-4cf9-8fc8-655b359a573c@quicinc.com>
-Date: Thu, 22 Aug 2024 19:50:09 +0300
-In-Reply-To: <8d31adac-fd43-4cf9-8fc8-655b359a573c@quicinc.com> (Jeff
-	Johnson's message of "Fri, 9 Aug 2024 19:21:10 -0700")
-Message-ID: <871q2gwlha.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Mon, 26 Aug 2024 01:50:08 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47PMVqbM031820;
+	Mon, 26 Aug 2024 01:50:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=yzA8JSeNjFP7XSu/UCIW+O
+	kfVBkGyPITHBjSdUsewMc=; b=LBrriOwTsKUgpEj+snAXw4c0HHzPlKr20O6SqO
+	Kgvs3zQ81vi3oFDx5atuUGVTJB8nJGPrlbgNazlq4PW6j5PCRnxfXOfa5itINGD7
+	2Epn26ELfVPv1NW23XpZ6OApgrw3zvA1n+Iba2FoKtAqSYoNtp7GK/CArOu92znj
+	KkrQE1Dr+skkkTomHqgXliTEhPjuEANCCNKULonjivMbRaqI9vDjaoO4cfYTTU4u
+	m5yvYZOSd9n+uGWUqVQqx9y/FVD+3JEoNFiFyqNfNFjvC4ZSOk9p/olIkWpr4aRu
+	rUKsuWJ8G3m4B5pS2N2eK5PwsvPA2IX+P9XeBJ2JPbz1bGRw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41798et679-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 Aug 2024 01:50:03 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47Q1o2PH030244
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 Aug 2024 01:50:02 GMT
+Received: from bqiang-SFF.lan (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 25 Aug
+ 2024 18:50:01 -0700
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
+Subject: [PATCH 0/3] wifi: ath11k: fix memory leak in reset scenario
+Date: Mon, 26 Aug 2024 09:49:39 +0800
+Message-ID: <20240826014942.87783-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UNgOCNQ_JFhg_wwcXhjxz_PDjvvkIuw9
+X-Proofpoint-ORIG-GUID: UNgOCNQ_JFhg_wwcXhjxz_PDjvvkIuw9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-25_20,2024-08-23_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 suspectscore=0 mlxscore=0 malwarescore=0 adultscore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 mlxlogscore=665
+ impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2407110000 definitions=main-2408260012
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240822_095015_992781_B58DDF7B 
-X-CRM114-Status: GOOD (  21.58  )
+X-CRM114-CacheID: sfid-20240825_185006_541716_203BD447 
+X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,75 +94,23 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+ath11k_peer::tfm_mmic and ath11k_sta::rx_stats/tx_stats are leaked
+in reset scenario, fix them.
 
-> On 8/9/2024 9:20 AM, Gustavo A. R. Silva wrote:
->
->> -Wflex-array-member-not-at-end was introduced in GCC-14, and we are
->> getting ready to enable it, globally.
->> 
->> Move the conflicting declaration to the end of the structure. Notice
->> that `struct ieee80211_chanctx_conf` is a flexible structure --a
->> structure that contains a flexible-array member.
->> 
->> Also, remove a couple of unused structures.
->> 
->> Fix the following warnings:
->> drivers/net/wireless/ath/ath11k/core.h:409:39: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
->> drivers/net/wireless/ath/ath11k/dp.h:1309:24: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
->> drivers/net/wireless/ath/ath11k/dp.h:1368:24: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
->> 
->> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
->> ---
->>  drivers/net/wireless/ath/ath11k/core.h |  4 +++-
->>  drivers/net/wireless/ath/ath11k/dp.h   | 23 -----------------------
->>  2 files changed, 3 insertions(+), 24 deletions(-)
->> 
->> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
->> index df24f0e409af..e283415dccf3 100644
->> --- a/drivers/net/wireless/ath/ath11k/core.h
->> +++ b/drivers/net/wireless/ath/ath11k/core.h
->> @@ -406,11 +406,13 @@ struct ath11k_vif {
->>  	bool wpaie_present;
->>  	bool bcca_zero_sent;
->>  	bool do_not_send_tmpl;
->> -	struct ieee80211_chanctx_conf chanctx;
->>  	struct ath11k_arp_ns_offload arp_ns_offload;
->>  	struct ath11k_rekey_data rekey_data;
->>  
->>  	struct ath11k_reg_tpc_power_info reg_tpc_info;
->> +
->> +	/* Must be last - ends in a flexible-array member. */
->> +	struct ieee80211_chanctx_conf chanctx;
->
-> there is something illogical about this since the vif is allocated using
-> sizeof() and hence there will never be memory allocated for the flexible
-> array, and it is assigned using either struct assignment or memcpy using the
-> struct size which (fortunately) would not transfer the flexible array contents:
-> 		arvif->chanctx = *ctx;
->
-> 		memcpy(&arvif->chanctx, ctx, sizeof(*ctx));
->
-> since ath11k doesn't actually use the drv_priv[] I guess this change is OK, it
-> is just strange to me.
->
-> also makes me wonder why ath11k keeps a copy of the chanctx instead of just
-> getting it from the underlying ieee80211_link_data. but that is outside the
-> scope of this discussion.
+Baochen Qiang (3):
+  wifi: ath11k: refactor ath11k_dp_peer_cleanup()
+  wifi: ath11k: fix leaking peer->tfm_mmic in reset scenario
+  wifi: ath11k: fix leaking station RX/TX stats in reset scenario
 
-Yeah, this doesn't look right. I don't think a driver should be copying
-struct ieee80211_chanctx_conf like that. I think I'll add a comment
-about this to the code:
+ drivers/net/wireless/ath/ath11k/core.c |  1 +
+ drivers/net/wireless/ath/ath11k/dp.c   |  5 ++---
+ drivers/net/wireless/ath/ath11k/mac.c  | 31 +++++++++++++++++++++-----
+ drivers/net/wireless/ath/ath11k/mac.h  |  3 ++-
+ 4 files changed, 30 insertions(+), 10 deletions(-)
 
-/* FIXME: Driver should not copy struct ieee80211_chanctx_conf,
- * especially because it has a flexible array. Find a better way.
- */
 
-Thoughts?
-
+base-commit: 8fb3b2b8d6d489416a7ff8a28cd4083340ad9e55
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.25.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-https://docs.kernel.org/process/submitting-patches.html
 
