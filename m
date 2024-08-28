@@ -4,55 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1376BC5472D
-	for <ath11k@archiver.kernel.org>; Wed, 28 Aug 2024 07:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FB2C54E93
+	for <ath11k@archiver.kernel.org>; Wed, 28 Aug 2024 10:31:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=; b=eu1nHyaa2yzqQ50S8BxZXqzJMv
-	UbN0MDL2T029oOwUe63B2bM1b17mK0lVRfyoIqGCPyhUBNU6thXjWGzPTAIQHJqzUqBJ7wzVgq8AT
-	ZogxAMkzKZ21Fcc9tKxE+CvxISWpmWJLcaYlfrIeiJ7lnXwBEXs+T85Ny5l63kBxogDdX0TKA2U5n
-	kMVA3JRguji5E37+a7YiHT7lbjxFSfU0rO3v/Nt2eVbCstAsr7q55AOadMxWN17YW+P0/9KX7D2f7
-	poqXOcJ3pOzHN/MAE8Kw0D3fNdwmHguAY/VpegRMoD1/WROUvOF4PBVBnDIKEoW7G382agdyVXyHM
-	NNyUdMLw==;
+	bh=9EeD85IakjAuYppGv5vgPSKu6GDWaXAcXSCdg/hNl18=; b=dy/e1Jrbz+YUWfoXNgqGZj7l3Y
+	FlmsyYEbHQtdOrdz3mVj50BhhIIVbaBS8gMs/yHqmPbRvPsFS6H2ci8l/Cni63Uy8q8ez7JEsNPHd
+	BF70FobUErDDxqDC9aqFWGMmazMVuuUHT0k0uCsmDQLBShgzUAwaytWu0ymqp7VW4I/oEcTwE2cdH
+	m7E4zyEYc1wVUcgZPzv2EC9ND5nZEtcZlobMPRSaEf3zvFBPtdpSXFuvUflshO1TlCUfC7BxTOQfJ
+	3T8qSAF+l8iOFCGrZoVOi4trOUaG+M3r0mQv4moIfQVyuhY8nACGih1t5MFRN/YT6XB2TqEyI8lKE
+	pNKoDV4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sjDBH-0000000EJ0P-1kI0;
-	Wed, 28 Aug 2024 07:33:27 +0000
-Received: from mail.originateinc.pl ([217.61.97.94])
+	id 1sjFxr-0000000ExzS-3Lkj;
+	Wed, 28 Aug 2024 10:31:47 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sjD9S-0000000EIhn-3650
+	id 1sjFxp-0000000ExyI-0g2x
 	for ath11k@lists.infradead.org;
-	Wed, 28 Aug 2024 07:31:37 +0000
-Received: by mail.OriginateInc.pl (Postfix, from userid 1001)
-	id A43C78375C; Wed, 28 Aug 2024 08:31:25 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=OriginateInc.pl;
-	s=mail; t=1724830287;
-	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=;
-	h=Date:From:To:Subject:From;
-	b=ucxCtkKNqGFYxC9P7nLEZm1o/Mmaxlzn1aw9xaf7ioD/dJsixEWgsfwRi3jjhFHBj
-	 RGsZ9hvSNGwLsjGFxfWLg/vhEe+sZlFOMyAVs5J2pWAScxlc7g0pfpEm+qsNs5nCTA
-	 EssLwR22aAqcMgtNzWvp7jedCCp+umID0tdojuOEqEUeyGNPPC90wF9xDEyDADP8bz
-	 Uakdb+B0neGWcCZEHSfLb7FTGDRWnPcoWubwArR2d9m0pr77EL0KPh9vP2Sh5o+pjI
-	 vRWxMdRTLA8INd0PdfySSs+VSGMTnPslFNqsP1oKUUpZTRKYSnaAIwaE2X/JmbmBcP
-	 9uZ1avkHRbIsg==
-Received: by mail.OriginateInc.pl for <ath11k@lists.infradead.org>; Wed, 28 Aug 2024 07:31:16 GMT
-Message-ID: <20240828074503-0.1.et.1lm7k.0.svrpk03q5i@OriginateInc.pl>
-Date: Wed, 28 Aug 2024 07:31:16 GMT
-From: "Kamil Tralewski" <kamil.tralewski@originateinc.pl>
+	Wed, 28 Aug 2024 10:31:46 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RLaJkI018472;
+	Wed, 28 Aug 2024 10:31:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=9EeD85IakjAuYppGv5vgPSKu6GDWaXAcXSCdg/hNl18=; b=m6
+	Az41GlC1QjlOT1/VsgTNEMi9hrA7FXZ7ANuumlAHfpRPuI0N+Qs1PJqjCTHoRJa4
+	uXHwDRNqRwJ/V6hCb0iupQ/gvPVtHi9uqpcqqLNo8zklRnRJkBCIYZDdG+Y4wf5s
+	4SzcujyoWcGW70UsO0JZwxlGm3WyYekbaEImEWif2x7Z4ZC2V4R+K0tFKstMGfFJ
+	ZZafK40BPiwoWVyzUHTdrzgz7FEbdgEj90bMGuoVLcT0tdJ5NdCPb/Odh6V8zmVd
+	d1V780su+bMYXgvBIviAzuFCzJS8m5OOh9ENZTOcLKZrySR3v2sqKxbNDyeRGFSY
+	EyuPU9I0BVUVzPrKVX2g==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv09f51-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 10:31:42 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47SAVfb2010730
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 10:31:41 GMT
+Received: from hu-bpothuno-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 28 Aug 2024 03:31:39 -0700
+From: Balaji Pothunoori <quic_bpothuno@quicinc.com>
 To: <ath11k@lists.infradead.org>
-Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.OriginateInc.pl
+CC: <linux-wireless@vger.kernel.org>,
+        Balaji Pothunoori
+	<quic_bpothuno@quicinc.com>
+Subject: [PATCH] wifi: ath11k: enable fw_wmi_diag_event hw param for WCN6750
+Date: Wed, 28 Aug 2024 16:00:43 +0530
+Message-ID: <20240828103043.2413-1-quic_bpothuno@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OMN3aDhdVyyOnRX_lvAiDf15JW1-cdJ_
+X-Proofpoint-ORIG-GUID: OMN3aDhdVyyOnRX_lvAiDf15JW1-cdJ_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_03,2024-08-27_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408280075
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240828_003135_467894_4D65645D 
-X-CRM114-Status: UNSURE (   1.48  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240828_033145_431073_4E131B94 
+X-CRM114-Status: GOOD (  13.43  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,20 +94,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dzie=C5=84 dobry,
+WCN6750 firmware sends the log messages via WMI_DIAG_EVENTID only
+when the host driver enables the same via QMI_WLANFW_WLAN_INI_REQ_V01
+QMI message. This is further controlled via fw_wmi_diag_event.
+Hence set this flag to true for the firmware to send the logs.
+These logs are further collected in the user space through
+the trace infrastructure.
 
-zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
-=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
-o dalszych rozm=C3=B3w.=20
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.2.0.c2-00233-QCAMSLSWPLZ-1
 
-Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
-=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
-=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
-strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
+Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 03187df26000..6bc10cbb493e 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -616,7 +616,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+ 		.supports_rssi_stats = true,
+-		.fw_wmi_diag_event = false,
++		.fw_wmi_diag_event = true,
+ 		.current_cc_support = true,
+ 		.dbr_debug_support = false,
+ 		.global_reset = false,
+-- 
+2.17.1
 
-
-Pozdrawiam
-Kamil Tralewski
 
