@@ -4,88 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE16CC54746
-	for <ath11k@archiver.kernel.org>; Wed, 28 Aug 2024 00:33:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1376BC5472D
+	for <ath11k@archiver.kernel.org>; Wed, 28 Aug 2024 07:33:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ATOW2cAiXB+zlcZ6JGqBGQWBqhQJLeBPqYeGIGhH/FE=; b=oz8ZXO3NU8jMXcRFuXcVMgmgbr
-	h3q3AliwCpwfSA/vf9Yw4do7kafKVhAUCQ1Ca5InaxWC7F3yeYHcyiFsTDeRr91YZprUsGGIchwWx
-	EKfO/aPUSxkxHTbhLVNHjuteEarxTF4eHiXeOM4hYwafrxI2KWCDGeLtEI9AFnnKv9KhHMdzkNa8e
-	uE6wSiY/VEJbAiB3Stbvx6DAskQiN9bCeK7ooSY0rTWAgl28wtVfCf9UBe+idRmKQV5oIhQ+CI6hr
-	NV8mEptyz40fVDgLFBlDQ3De3yXWZAJJ33wmpjwfaU4XEgJ57HkbIpX1ABXXrKmmdHzIZmSEuZuU9
-	S4nY5XCA==;
+	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=; b=eu1nHyaa2yzqQ50S8BxZXqzJMv
+	UbN0MDL2T029oOwUe63B2bM1b17mK0lVRfyoIqGCPyhUBNU6thXjWGzPTAIQHJqzUqBJ7wzVgq8AT
+	ZogxAMkzKZ21Fcc9tKxE+CvxISWpmWJLcaYlfrIeiJ7lnXwBEXs+T85Ny5l63kBxogDdX0TKA2U5n
+	kMVA3JRguji5E37+a7YiHT7lbjxFSfU0rO3v/Nt2eVbCstAsr7q55AOadMxWN17YW+P0/9KX7D2f7
+	poqXOcJ3pOzHN/MAE8Kw0D3fNdwmHguAY/VpegRMoD1/WROUvOF4PBVBnDIKEoW7G382agdyVXyHM
+	NNyUdMLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sj6co-0000000DFmr-0yf3;
-	Wed, 28 Aug 2024 00:33:26 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1sjDBH-0000000EJ0P-1kI0;
+	Wed, 28 Aug 2024 07:33:27 +0000
+Received: from mail.originateinc.pl ([217.61.97.94])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sj6ck-0000000DFmA-3lB1
+	id 1sjD9S-0000000EIhn-3650
 	for ath11k@lists.infradead.org;
-	Wed, 28 Aug 2024 00:33:25 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RLbSGh020336;
-	Wed, 28 Aug 2024 00:33:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ATOW2cAiXB+zlcZ6JGqBGQWBqhQJLeBPqYeGIGhH/FE=; b=py0s1UBs0a0Xcf22
-	P+xS784UFgiqXBaLwiviCpIYysDcXhz8R1aL9zTaNxivA+ZC9bW5flITrs4NzSn2
-	VPthwK3NzZ1XKD368T7SnQ151eTwxPu0P4mFM6S5no4bsY2Y8FnAJ1h97WzQNZfb
-	YF+igVzo1odjbbhB/Lsh6JqL+v+vG76TUSRgbd0xXQw0W9MHVuAC+TyP/PFCOwF9
-	PBI33bU6QFxe2iT3J1afQjXeYqYLpT5ovAhhVNiVidMKl1sZSeGMD2u24fH8566F
-	6e97RLYwNs7B+i3OC+0Oi1lvqS4xZxHO6OlU8r+0c3Kcr6/rhAzuMYxFfcTtpa/h
-	GoORIg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419putr8jy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 00:33:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47S0XKhR026038
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 00:33:20 GMT
-Received: from [10.50.17.66] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 27 Aug
- 2024 17:33:18 -0700
-Message-ID: <d64f87fa-aad2-bc76-7de6-3e5056e2e637@quicinc.com>
-Date: Wed, 28 Aug 2024 06:03:01 +0530
+	Wed, 28 Aug 2024 07:31:37 +0000
+Received: by mail.OriginateInc.pl (Postfix, from userid 1001)
+	id A43C78375C; Wed, 28 Aug 2024 08:31:25 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=OriginateInc.pl;
+	s=mail; t=1724830287;
+	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=;
+	h=Date:From:To:Subject:From;
+	b=ucxCtkKNqGFYxC9P7nLEZm1o/Mmaxlzn1aw9xaf7ioD/dJsixEWgsfwRi3jjhFHBj
+	 RGsZ9hvSNGwLsjGFxfWLg/vhEe+sZlFOMyAVs5J2pWAScxlc7g0pfpEm+qsNs5nCTA
+	 EssLwR22aAqcMgtNzWvp7jedCCp+umID0tdojuOEqEUeyGNPPC90wF9xDEyDADP8bz
+	 Uakdb+B0neGWcCZEHSfLb7FTGDRWnPcoWubwArR2d9m0pr77EL0KPh9vP2Sh5o+pjI
+	 vRWxMdRTLA8INd0PdfySSs+VSGMTnPslFNqsP1oKUUpZTRKYSnaAIwaE2X/JmbmBcP
+	 9uZ1avkHRbIsg==
+Received: by mail.OriginateInc.pl for <ath11k@lists.infradead.org>; Wed, 28 Aug 2024 07:31:16 GMT
+Message-ID: <20240828074503-0.1.et.1lm7k.0.svrpk03q5i@OriginateInc.pl>
+Date: Wed, 28 Aug 2024 07:31:16 GMT
+From: "Kamil Tralewski" <kamil.tralewski@originateinc.pl>
+To: <ath11k@lists.infradead.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.OriginateInc.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/3] wifi: ath11k: fix leaking peer->tfm_mmic in reset
- scenario
-To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20240826014942.87783-1-quic_bqiang@quicinc.com>
- <20240826014942.87783-3-quic_bqiang@quicinc.com>
-Content-Language: en-US
-From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-In-Reply-To: <20240826014942.87783-3-quic_bqiang@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: jbwV-x31QbMA-xKbfJRHg0gG0d1OVcv1
-X-Proofpoint-GUID: jbwV-x31QbMA-xKbfJRHg0gG0d1OVcv1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-27_10,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=999 suspectscore=0 phishscore=0 spamscore=0 bulkscore=0
- clxscore=1011 mlxscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408280001
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240827_173323_032801_E3DD4677 
-X-CRM114-Status: GOOD (  17.22  )
+X-CRM114-CacheID: sfid-20240828_003135_467894_4D65645D 
+X-CRM114-Status: UNSURE (   1.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,62 +67,20 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Dzie=C5=84 dobry,
+
+zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
+=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
+o dalszych rozm=C3=B3w.=20
+
+Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
+=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
+=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
+strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
+
+Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
 
 
-On 8/26/2024 7:19 AM, Baochen Qiang wrote:
-> Currently peer->tfm_mmic would only get freed, by ath11k_dp_peer_cleanup(),
-> when the corresponding station transit from NONE to NOTEXIST state within
-> ath11k_mac_op_sta_state(). However in reset scenario, there is no chance for
-> it to go through such transition. Further, during reset, we call
-> ath11k_mac_peer_cleanup_all() where peer is freed, thus leak peer->tfm_mmic:
-> 
-> Kmemleak reports:
-> unreferenced object 0xffff9a3ca7828d00 (size 64):
->    backtrace (crc 4a016586):
->      __kmalloc_node_noprof+0x38f/0x480
->      crypto_alloc_tfmmem.isra.0+0x2e/0x60
->      crypto_create_tfm_node+0x29/0xe0
->      crypto_alloc_tfm_node+0x5d/0x130
->      ath11k_peer_rx_frag_setup+0x2c/0x150 [ath11k]
->      ath11k_dp_peer_setup+0x82/0x160 [ath11k]
->      ath11k_mac_op_sta_state+0x26f/0xca0 [ath11k]
->      drv_sta_state+0x11e/0x9c0 [mac80211]
->      sta_info_insert_rcu+0x469/0x880 [mac80211]
->      sta_info_insert+0x10/0x80 [mac80211]
->      ieee80211_prep_connection+0x295/0x950 [mac80211]
->      ieee80211_mgd_auth+0x230/0x5a0 [mac80211]
->      cfg80211_mlme_auth+0xeb/0x2a0 [cfg80211]
-> 
-> In order to fix it we need to call crypto_free_shash() as well in
-> ath11k_mac_peer_cleanup_all(). Considering ath11k_peer_rx_tid_cleanup() is
-> also called there, we can simply replace it with ath11k_dp_peer_cleanup().
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> 
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> ---
->   drivers/net/wireless/ath/ath11k/mac.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> index f1dff26bc237..f21d37cefb65 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -883,7 +883,7 @@ void ath11k_mac_peer_cleanup_all(struct ath11k *ar)
->   	mutex_lock(&ab->tbl_mtx_lock);
->   	spin_lock_bh(&ab->base_lock);
->   	list_for_each_entry_safe(peer, tmp, &ab->peers, list) {
-> -		ath11k_peer_rx_tid_cleanup(ar, peer);
-> +		ath11k_dp_peer_cleanup(ar, peer->vdev_id, peer->sta->addr);
-
-peer->tfm_mmic is allocated in ath11k_peer_rx_frag_setup() but its not 
-cleanup in ath11k_dp_rx_frags_cleanup(), which is not symmetric now. 
-Instead its freed in ath11k_dp_peer_cleanup(). can you refactor 
-allocation/deallocation symmetric funcs ?
-
--- 
-Karthikeyan Periyasamy
---
-கார்த்திகேயன் பெரியசாமி
+Pozdrawiam
+Kamil Tralewski
 
