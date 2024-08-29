@@ -4,56 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17757CA0EC0
-	for <ath11k@archiver.kernel.org>; Thu, 29 Aug 2024 21:33:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24258CA0EC6
+	for <ath11k@archiver.kernel.org>; Thu, 29 Aug 2024 22:13:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:References:In-Reply-To:Subject:To:From:
-	Date:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oeaSN8E3w6ydL8vyCtJZsthyAtOM1e6v6sqoYgfqL+o=; b=OwjsQ4zFZ9bshua6c51hM8/Fzp
-	KwyZqLNaipWJlRscxCj8Cdzcdhu/bJP7crFkgaoz8jjyYwtdlMGvNAAR4sh9Il2P1Sf/dG8AREN0i
-	T7tH3patpKL0k095ENDU0ZkMrw+Wj4BguSk2iwf35kzMCJjPkJbJdbxE/82aJnG5ke1KCPZhDVk5a
-	FZ03/+voq43R1mTs9nCjAxCpr01aTsgiU98gObvNSCT8tcVBO8wpjWqZ4/HOnJEor1tHdh7oMlMrO
-	T0C4Lopa0/pcebvZdCDJiD23MKgKWoIk4wG4VNaMca76Mo0k5HXDTPv4NmOeV1VbpwqI1sELQzqWI
-	sPDoqBfw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	To:From:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=tTRq17I1sWyyW0gSaEWVjbx/zk6WWu+63R0LchEfaDs=; b=zu7QlxS2pZzWLN
+	hFMtgpsHCz9AIap3IsIwtiFIW84DUgLXZsVXvcD7UpuR+py6D4bpUGgN+woTIhhlTkCwAWTgtTkPe
+	KJys6mElJGY5IyHVB5rcn9Fhapz0qN7R+rrvsNINsIVrDAaGpiUOkgej/XRqowfoxCL3cOcJSNB8I
+	b0L1dn1QCQIxW6GlxzAYqJFiBPtJccEYfKJf+ORHl981Pl7ws9ZH3oKXiADCDR1y06/z6p1As81wN
+	b/qJylnvIkXo+XSL3JWWG8vqsHznc6LWZuvIesWjb6d4bzPMhlt+qdakkpdUcE3BpAKrWNFPXsENx
+	ZtyNtC/9pCY47li9Pgrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sjmlJ-00000003hqd-108a;
-	Thu, 29 Aug 2024 21:33:01 +0000
-Received: from mail11.truemail.it ([2001:4b7e:0:8::81])
+	id 1sjnOr-00000003p9V-3UaJ;
+	Thu, 29 Aug 2024 22:13:53 +0000
+Received: from hz-hc-03.sysprovider.com ([185.250.202.102])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sjmlF-00000003hp1-1H7W
+	id 1sjnOo-00000003p7E-06CS
 	for ath11k@lists.infradead.org;
-	Thu, 29 Aug 2024 21:32:59 +0000
-Received: from [127.0.0.1] (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 97A6520A9C;
-	Thu, 29 Aug 2024 23:32:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1724967172;
-	bh=oeaSN8E3w6ydL8vyCtJZsthyAtOM1e6v6sqoYgfqL+o=; h=From:To:Subject;
-	b=KVLCNsFsqG6GZGK6MxiLcqa1OeX3auhWCS2ZQzwiIX1S55Tc1KuqjxFQQZ7CZodYb
-	 GRX7NA5hoVm10YgU3E+F6LD2rH+QC4ynpXVYKH0gR1IssC4NuCBn889ZNmGUTOaNd9
-	 Y0UNsz5CApqv+oZ1UWy2vxfG5qhC1zzfX7ZOuPmmjRtpKjdkk3Mrv0ONX2hfscQKXY
-	 lQtQqtCfQkDcLUc8NF4Jts03ANpOnIJNhsIDeF5lG+nNj3yBX3qIFMWOcHluZzetQD
-	 encIfp4AuOYp+dV4mloIyr7lwaTxKDVSqhz74G1Z57/wRLxZ48y5kfAArFpisbnnD1
-	 /7JFExadYKidg==
-Date: Thu, 29 Aug 2024 23:32:50 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: ath11k@lists.infradead.org, kvalo@kernel.org
-Subject: Re: Silex SX-PCEAX BDF
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20240829120037.GB30406@francesco-nb>
-References: <20240829120037.GB30406@francesco-nb>
-Message-ID: <E612F5BB-74F8-4B84-9127-55AF533DE89C@dolcini.it>
+	Thu, 29 Aug 2024 22:13:51 +0000
+Received: from [178.215.236.220]
+	by hz-hc-03.sysprovider.com with esmtp (Exim 4.96-58-g4e9ed49f8)
+	(envelope-from <m-nishimura@suntechno.co.jp>)
+	id 1sjnOm-0002FB-1J
+	for ath11k@lists.infradead.org;
+	Fri, 30 Aug 2024 00:13:48 +0200
+From: Roy Kessier  <jonathan.capeluto@neteris.com>
+To: ath11k@lists.infradead.org
+Subject: =?UTF-8?B?SW50ZXJuYXRpb25hbGUgV8OkaHJ1bmdzZm9uZHMgKElXRik=?=
+Date: 29 Aug 2024 15:13:48 -0700
+Message-ID: <20240829151348.9201B0017B8D1C7C@neteris.com>
 MIME-Version: 1.0
 Content-Type: text/plain;
- charset=utf-8
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240829_143258_266062_818408B5 
-X-CRM114-Status: UNSURE (   2.96  )
+X-CRM114-CacheID: sfid-20240829_151350_294047_74BBCD4A 
+X-CRM114-Status: UNSURE (   0.24  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -66,17 +57,46 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: info@elibertytrust.us
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Il 29 agosto 2024 14:00:38 CEST, Francesco Dolcini <francesco@dolcini=2Eit>=
- ha scritto:
->I am using a Silex SX-PCEAX wireless module (QCA2066), and I would
->like to understand how to get the board file merged into the wireless
->repository
+Sehr geehrter Empf=C3=A4nger:
 
-I mean the linux-firmware repository=2E=2E=2E
+Die Europ=C3=A4ische Investitionsbank in Luxemburg und der=20
+Internationale W=C3=A4hrungsfonds (IWF) haben uns beauftragt, die=20
+Ursache f=C3=BCr die Verz=C3=B6gerung bei der Auszahlung ihrer gesetzlich=
+=20
+genehmigten Mittel zu untersuchen.
 
->
+Unsere Untersuchung ergab, dass seine Zahlung aufgrund korrupter=20
+Bankangestellte verz=C3=B6gert wurde, die versuchten, sein Geld auf=20
+seine Privatkonten bei ABANCA umzuleiten. Um diese Art von=20
+betr=C3=BCgerischen Aktivit=C3=A4ten zu verhindern, haben wir eine=20
+Vereinbarung mit der Europ=C3=A4ischen Investitionsbank und dem IWF=20
+zur Verwaltung und =C3=9Cberwachung Ihrer Zahlung. F=C3=BCr Ihre Zahlung=20=
 
+haben wir daher von MFY eine unwiderrufliche Zahlungsgarantie=20
+erhalten.
+
+Wir freuen uns, Ihnen mitteilen zu k=C3=B6nnen, dass die Europ=C3=A4ische=
+=20
+Investitionsbank beschlossen hat, Ihnen den Betrag von=20
+3.500.000,00 EUR zur=C3=BCckzuerstatten und ihn per Bank=C3=BCberweisung=20=
+
+direkt auf Ihr Bankkonto zu =C3=BCberweisen.
+
+Um einen reibungslosen und problemlosen Zahlungsvorgang zu=20
+gew=C3=A4hrleisten, kontaktieren Sie bitte unseren Vertreter, Herrn=20
+Roy Kessier, unter der folgenden E-Mail-Adresse:
+E-Mail: info@elibertytrust.us
+
+Bitte teilen Sie uns auch Ihre WhatsApp-Nummer mit, um die=20
+Kommunikation zu erleichtern.
+
+Vielen Dank f=C3=BCr Ihre Aufmerksamkeit in dieser Angelegenheit.
+
+Aufrichtig,
+Herr Roy Kessier
+info@elibertytrust.us
 
