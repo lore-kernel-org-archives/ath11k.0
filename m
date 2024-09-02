@@ -4,62 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95E31CD13CF
-	for <ath11k@archiver.kernel.org>; Mon,  2 Sep 2024 16:34:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1446C54FC6
+	for <ath11k@archiver.kernel.org>; Mon,  2 Sep 2024 23:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=39BO5qVfmiJKIS+zvSbvu7px0pXsPIdr+AhYzPy7LP0=; b=AbK0xgqXGvLC1nJBzL+aolkRzV
-	Geiy6g5tXWgpKWDL5a+IxntRuLBF4CQ1lHwEdy1BXeQ59K84VHLNbFaioi2wBCr4FT8ierQSEDnYY
-	xxBGCYwKbSuhqGlH7rXQQthRjlXYo7csj7QWgqWw+y38X8MtWQuQVcKYxvEddQWZBtKvvGMwNIPx/
-	vVQcSoShvUQLy4TjpUWbI19r1HKovsC6ni31YohrlAIqkCrwu9m8ogdFbHAwrmKFquCoJvmTGdS4J
-	qnSBP0Mu2X7VqfJITwucZS2vm3Rdd/Y3QtM0PDl2B1hoRCFP5xPwUioqBhrot5Gl6IMNPNPitRCXI
-	yD2B6beQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=BpyggXBbenDbJc1bquQc/ZQ5jBTNJbug3nLOeKJCoHg=; b=osamAg+xwY/OcFXb6CClPZzmMB
+	za5nGFF26B0lQpSVzwsQATVODrb/BQ8S87wFPs8L9Y++KJtRWMnCF5WRulf/0/lWov2JwAfMkOcIv
+	rQoQKarYeujWcc8wwAFjliJri5bPmte2dfi2HOmC2VzL+neU9XpLw3CtiiG8BpbmRheypW5ScTpLo
+	mmPqt5iEppe55EcGGejPyG+Rd/J+2/Nh5tV0hy/6dNlDod2aZZwGNslUny9ecFUbTQ+FzPuoefDaI
+	cIDSISPPhi11q6yJvm/SP9R0F4oFa5jWG2Enk5ceAzFp8ekHHO0x8fY6TddRpAm6mWEm5pIZrcf8w
+	d1tQz7Jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slA0F-0000000F2A7-0JRs;
-	Mon, 02 Sep 2024 16:34:07 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1slG21-0000000FjTj-38qb;
+	Mon, 02 Sep 2024 23:00:21 +0000
+Received: from mail11.truemail.it ([217.194.8.81])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slA0C-0000000F29e-2BvM
+	id 1slG1c-0000000FjL3-0Dpn
 	for ath11k@lists.infradead.org;
-	Mon, 02 Sep 2024 16:34:05 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 330C25C57C9;
-	Mon,  2 Sep 2024 16:34:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54C47C4CEC2;
-	Mon,  2 Sep 2024 16:34:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725294843;
-	bh=R99Yspo7qOwlFSyFpIa+UsYtg9P68MkPvx+vhVddyws=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=f9pS7vGJ/o/s1cQulEoXL3o+oUI2L7M6W3+CweuibcTxV2k7ON+o7FwXFmy7TMwFk
-	 Cn08IGWPbsGtf5VVx0ufHpny0cB668whEkyVHF3T5YBAocajKN7kf4i25ScnzU5b/G
-	 ibrO5z3dCFYSHy71wOXACL2tVpfGR2ZXCxMETdxhBTpKooncRBuRk8qDJ38ORpP55V
-	 KU/SzGvz76ThAO9fYUOnKykSbsZ875dMLR5FX2zuEc5MV9KsG2lai2Tp18c51+CPbh
-	 bk/F8j+VrMFxDDU86JKvxO/UDx+6zCtnBpoojf81zKVtUWsjmvBfAEgNgsSs2P7Kl5
-	 Zm2gY1PYVVLiw==
-Content-Type: text/plain; charset="utf-8"
+	Mon, 02 Sep 2024 22:59:58 +0000
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 49CDB1FA4F;
+	Tue,  3 Sep 2024 00:59:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1725317990;
+	bh=BpyggXBbenDbJc1bquQc/ZQ5jBTNJbug3nLOeKJCoHg=;
+	h=Received:From:To:Subject;
+	b=pQAVd2a5arUAxhbrKzalYYsxQ8Uj6dto/4WGz9NZ1UFXUvtrwrXecn6xHcS2R83mC
+	 EOWcW3uftRZt3VCTaDFxmKZTAtdfePJA56eSpoAuZ46/k2+eKaGn3OZr8qrYFHi2+g
+	 /ukgoVPKSKuy3dify30r9XfVPbmrxdUuYKylozo1RsOOrgCj9Nvlw3SF6ka6U2OZLu
+	 b4oiWAAcujM80Jz5+P4SktcGB45G394Bt6pkx3rJYNDNjFc4F46ig0SBPC1EdWLZHT
+	 LMduxGknytzcD4tmLmD32RSlRQeJXJPW/IS+M2YkIM6fzd4OMnF6g65FiQU3a2RXnV
+	 HTaVjNtEv4UJQ==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id F2B5B7F82A; Tue,  3 Sep 2024 00:59:49 +0200 (CEST)
+Date: Tue, 3 Sep 2024 00:59:49 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>, ath11k@lists.infradead.org
+Subject: Re: Silex SX-PCEAX BDF
+Message-ID: <ZtZDZXY04PEYiuCj@gaggiata.pivistrello.it>
+References: <20240829120037.GB30406@francesco-nb>
+ <87ikvekoww.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH ath-current 2/2] Revert "wifi: ath11k: support
- hibernation"
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240830073420.5790-3-quic_bqiang@quicinc.com>
-References: <20240830073420.5790-3-quic_bqiang@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_bqiang@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <172529484025.723394.135704024474690225.kvalo@kernel.org>
-Date: Mon,  2 Sep 2024 16:34:02 +0000 (UTC)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87ikvekoww.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240902_093404_662820_76397EA8 
-X-CRM114-Status: UNSURE (   6.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240902_155957_001241_6AC7DC86 
+X-CRM114-Status: GOOD (  17.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,30 +71,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> wrote:
-
-> This reverts commit 166a490f59ac10340ee5330e51c15188ce2a7f8f.
+On Mon, Sep 02, 2024 at 07:20:47PM +0300, Kalle Valo wrote:
+> Francesco Dolcini <francesco@dolcini.it> writes:
+> > I am using a Silex SX-PCEAX wireless module (QCA2066), and I would
+> > like to understand how to get the board file merged into the wireless
+> > repository so that this module can just work with ath11k driver.
+> >
+> > I have some files I received from Silex, but they do not look suitable
+> > for integration as they are (board-2_US_EU_JP.bin).
+> >
+> > Can you help? What should I do?
 > 
-> There are several reports that this commit breaks system suspend on some specific
-> Lenovo platforms. Since there is no fix available, for now revert this commit
-> to make suspend work again on those platforms.
+> Board files are tricky, we should write some documentation about that.
+
+If you have anything available, even if this is not polished, feel free to
+share.
+
+> But for starters I recommend filing a new bug to bugzilla:
 > 
-> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=219196
-> Closes: https://bugzilla.redhat.com/show_bug.cgi?id=2301921
-> Cc: <stable@vger.kernel.org> # 6.10.x: d3e154d7776b: Revert "wifi: ath11k: restore country code during resume"
-> Cc: <stable@vger.kernel.org> # 6.10.x
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
+> 
+> Also include output of these commands:
+> 
+> strings board-2_US_EU_JP.bin | head -1
+> ls -l board-2_US_EU_JP.bin
 
-Patch applied to ath-current branch of ath.git, thanks.
+There was already a bug report opened for what looked like the exact device,
+I did update https://bugzilla.kernel.org/show_bug.cgi?id=217509#c9
 
-2f833e8948d6 Revert "wifi: ath11k: support hibernation"
+Please let me know whatever else is needed to make this progress.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240830073420.5790-3-quic_bqiang@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-https://docs.kernel.org/process/submitting-patches.html
+Thanks,
+Francesco
 
 
