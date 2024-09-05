@@ -4,75 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06E2ECD98FE
-	for <ath11k@archiver.kernel.org>; Thu,  5 Sep 2024 18:41:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34E91CE7A81
+	for <ath11k@archiver.kernel.org>; Thu,  5 Sep 2024 19:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=o4KCutAn8pHOhjQZt0UEL9gY+OQJLOU1nwZw/m4eQRE=; b=dROOj09Kf6mV8F6OnRjYVVjia0
-	grzzTJQf3234p0/1EncxRusIPRVD9mp8wHaFcRfP87FYcQrOV+CYnvf52/KwioXsMVSn304S8YFgx
-	nihF+cH5NkFGNON8mcDKs7dZvNskZkVP3VT7hoBioYdJrEALTZeKEz626Rn2IcXUos7jcKpR9wuvi
-	8SI65NcVuXEB7DQXyD0Ofaauh2tsUSw5mejHoHG3Z1xf9DWZ1mLTZPoOzuCGJnssplm1La/SCUvvK
-	4JUYWiuogzahgvrP39hXEoSXPNYep1G+6rIaUfgTAZRlxhx8ZjyHiGsYt4YSa1Z2DJdzhoKJWkDcR
-	NFomtSTg==;
+	bh=MreSWIopOkGn6EXsT68UNWvpiaoIjbL8rbO9kYe3e4c=; b=rPo9GrPsmFVs+f4s9uhZkkFZrZ
+	8SxkPoA0MVjEJFI5gT9ZsiPjYiXmKvrbnTxcG3SctYeZTK0kYS8uyCkYNbinsNu9h6U57iA0IhXGx
+	Z3jy4qiIOfQCCDOL2IQmQ1yETPHVVlFqTNGXsCMF3lI7QLQb7hHRG2licyQF2386pPOmzfuHDOYhR
+	ueZq50yCIYHVYhqZnFiXcSdbT9hv/QrAwh5UalUUE43CFKCQn6OZXnFwx913HGhj0kKRtgRK9PpOj
+	sOC/a/D0Rksa8wGkNq/i7uM8Z8Z4VWdSqfzIXOPF1Bcg5Sr/ceJWfBNleX6WJuNwBmj7zDAcaTeAT
+	pXsbWJBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smHQY-00000009TWR-0Gbv;
-	Thu, 05 Sep 2024 18:41:54 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1smHlD-00000009XPq-3Ozm;
+	Thu, 05 Sep 2024 19:03:15 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smHQU-00000009TVx-2MAu
+	id 1smHi0-00000009WbZ-2xCP
 	for ath11k@lists.infradead.org;
-	Thu, 05 Sep 2024 18:41:51 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 367C9A44ED0;
-	Thu,  5 Sep 2024 18:41:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33397C4CEC3;
-	Thu,  5 Sep 2024 18:41:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725561709;
-	bh=o9v6tfiHjwh1ItvVQA7QxJ59GhaJ+30hamTD7fOplT8=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=EV7haNi4o6VN3Sv+POQLZunJzxyqb0jbJNFTM36W6Y027zpPGoXAF74Tj/pdZ0kR8
-	 H6DRhMJX7kUcHB0b2JnHENE+lb0elboyCMZkE5//ooqk55pvv3VVjwyLBshyB3Ryo+
-	 p/YO0LjM9b9lorsPtZRofCZ4OkdMLCfZ0yvd6W00ufrFC++BMziq9owzSvQdjhSQM8
-	 o/0rw9CmrGrHqDMNBTQh+QbJFnSJdiMcojyXIOOaaXjUxGKNR8itL7xgsyrPlzIChe
-	 SJDoZu89a4didcjg5QZNqTqLMLa7wn+Xw9SgRFWFSi5nyUREgoCtg7mHb2zJJZ5wig
-	 v8pDzyseDzcmw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,  Dmitry Baryshkov
- <dbaryshkov@gmail.com>,  Johan Hovold <johan@kernel.org>,  Dmitry
- Baryshkov <dmitry.baryshkov@linaro.org>,  Bjorn Andersson
- <andersson@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-arm-msm@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>,
-    ath11k@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc8280xp-crd: model the PMU of
- the on-board wcn6855
-References: <20240905122023.47251-1-brgl@bgdev.pl>
-	<20240905122023.47251-2-brgl@bgdev.pl>
-	<6vikrqhdnkefzpahhhtz2hpi62jvcwnzclm7touwtnpxdzvgrf@uc7r6a7bbjek>
-	<CAMRc=MeijX2by+MS_vq_OVx25JO6z=zNfymta35h11mbm=vmtQ@mail.gmail.com>
-	<CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
-	<CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
-	<d6d5a943-ab29-4034-b465-b62d9d1efa61@kernel.org>
-Date: Thu, 05 Sep 2024 21:41:44 +0300
-In-Reply-To: <d6d5a943-ab29-4034-b465-b62d9d1efa61@kernel.org> (Konrad
-	Dybcio's message of "Thu, 5 Sep 2024 15:13:45 +0200")
-Message-ID: <87v7zagcyf.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 05 Sep 2024 18:59:58 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IVGPV025101;
+	Thu, 5 Sep 2024 18:59:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MreSWIopOkGn6EXsT68UNWvpiaoIjbL8rbO9kYe3e4c=; b=Vzc3Yw1iD53cKG0W
+	11VCMvwCji5YI2ecD9F7ck41VVXZJdPe2GlBbT2uxBhYvXTiKrCLa0/o38H1PpIh
+	sUDPtC7PfiJnqwivN5uptwJPMgOH2umFfxXgN72vSQAyYQg3sEElNjHCDjG4dvI1
+	kfEFHTat8MbPWOyOg5vkjYezYNg7t5Ql9yPwuxL56D44J4+1AdutnBGB/eMG4UiE
+	2Dk/vtWlXwmtaRORF0uyGIlg+qWLgUY0tEg4y3Lycs7p67DjBjBZeWHQo1OHm7qc
+	sSSMwHoHfO7ooC/JNcp1+rKLvq6+73FCL/sA8JtufoG2nPpGboWp/ZmB5fMi6z2P
+	5WWHlQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fj09r1n4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Sep 2024 18:59:53 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485IxprK005524
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Sep 2024 18:59:51 GMT
+Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Sep 2024
+ 11:59:51 -0700
+Message-ID: <1e53e441-7539-4db3-89f2-3563667e2cff@quicinc.com>
+Date: Thu, 5 Sep 2024 11:59:50 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: support DBS and DFS compatibility
+To: "Yu Zhang(Yuriy)" <quic_yuzha@quicinc.com>, <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20240829064420.3074140-1-quic_yuzha@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20240829064420.3074140-1-quic_yuzha@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cRTdCG9qOlVR3JOeJ3QwPRnDkvVojV2r
+X-Proofpoint-ORIG-GUID: cRTdCG9qOlVR3JOeJ3QwPRnDkvVojV2r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_13,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=530
+ impostorscore=0 malwarescore=0 mlxscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409050141
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240905_114150_692158_21C934BE 
-X-CRM114-Status: GOOD (  15.48  )
+X-CRM114-CacheID: sfid-20240905_115956_953047_C5CF38B9 
+X-CRM114-Status: GOOD (  11.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,48 +97,40 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Konrad Dybcio <konradybcio@kernel.org> writes:
+On 8/28/2024 11:44 PM, Yu Zhang(Yuriy) wrote:
+> Now some chips which support 'support_dual_stations' will enable DBS,
+> but will disable DFS. Restructure the ath11k_mac_setup_iface_combinations
+> function to support DBS and DFS compatibility.
+> 
+> About 'support_dual_station' feature can refer:
+> https://msgid.link/20230714023801.2621802-2-quic_cjhuang@quicinc.com
+> 
+> Add a ieee80211_iface_combination to support DBS and DFS compatibility,
+> one combination can support DFS(same with non dual sta), another
+> combination can support DBS. When running different scenarios that will
+> use different ieee80211_iface_combination due to mac80211 will go through
+> all of possible interface combinations.
+> 
+> In addition, maximum number of interfaces of these types should be total
+> allowed in this group.
+> 
+> The chips affected are:
+> 
+>  QCA6390 hw2.0
+>  WCN6855 hw2.0
+>  WCN6855 hw2.1
+> 
+> Other chips are not affected.
+> 
+> Tested-on: WCN6855 WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1.
 
-> On 5.09.2024 3:00 PM, Bartosz Golaszewski wrote:
->> On Thu, Sep 5, 2024 at 2:56=E2=80=AFPM Dmitry Baryshkov <dbaryshkov@gmai=
-l.com> wrote:
->>>
->>>>>
->>>>> As you are going to post another revision, please also add
->>>>>
->>>>> qcom,ath11k-calibration-variant
->>>>>
->>>>
->>>> I had it in earlier revisions. The only one we could add here would be
->>>> the one from X13s as QCom has not yet released the data for the CRD.
->>>> Johan and Konrad were against adding this here if it doesn't refer to
->>>> the correct one so I dropped it.
->>>
->>> As Kalle usually merges data with some delay it's not infrequent to
->>> have DTS which names calibration variant, but board-2.bin doesn't have
->>> corresponding data. The driver safely falls back to the data without
->>> variant if it can find it. Als  usually it's us who supply the
->>> calibration name.
->>>
->>=20
->> Johan, Konrad,
->>=20
->> What do you think? Do we know the exact name and should I add it or
->> should we wait until it's in board-2.bin?
->
-> If we can agree on the string identifier with Kalle in advance, we can
-> add it even before the boardfile drops
+nit: should include the hw type tested on, see:
+<https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches#tested-on_tag>
 
-There have not been really any naming rules for the variant string, it
-just needs to be unique so that it doesn't conflict with other variant
-strings. What have you been thinking?
+if you can reply with that, Kalle can update the patch in the pending branch
 
-But please Cc the ath11k list for anything ath11k related, adding it
-now.
+> 
+> Signed-off-by: Yu Zhang(Yuriy) <quic_yuzha@quicinc.com>
+Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
 
