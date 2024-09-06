@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC22CE7AA5
-	for <ath11k@archiver.kernel.org>; Fri,  6 Sep 2024 00:49:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D85CE7AA6
+	for <ath11k@archiver.kernel.org>; Fri,  6 Sep 2024 02:09:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AmfjfcKndugulugA7EAwTHkPQhPDlb23XTWYgaDDGF0=; b=juDaZL26z1fzRgSkXm5HSdk4iD
-	aEu0iZLTqs1BJsFebt4sXfpNDq3RZEON2B5XgEAjEbzxFBKGZfs+xElM4Bn4ZBHfup656lTcZsB/7
-	RN0RD1P6lHa8Et0ZpXHaTN5pgcJpehxU+NIQA6p9durDJ44XqCkfCVwCi6KivzUjQcTFRpJ4iQ/MH
-	BPI1ESJQiTPSBzcHbh5U3gIflocIFQq/OJuMhx331k2AlMFBXPnBUt/Jbj7GX5ZAQGt+Vwjr3MdH4
-	IS06H2IRuQNagjq03+SiNopYJgwaA0VpxbHboVTpFCZN9m7CwCOiYxt1u6lwHIxpNpoiRahDHufI7
-	OUiVZl9Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=9ByX8dWgLyyDLB0irOMULjt7eqTDhlWWdMhSFOnG2Ms=; b=1TBSpG9vpx3S+WcZboHYOJ/VFy
+	G6Wi6AckA6/flsrhZNCUeURcOxdeqOn1Z6V7hP6g6yX2n2TXt+Ev2rLrFTIgBcPKwjxd9fUTxV6uR
+	QYR83+XD4Lxn35FCr08MwVkb6F2rK2mE4q4bKjcCKbsYeHxv0CUoNr55cBwJ0BAz2b/ENHKJNt7Tz
+	ufNUkstnMMJeyUhgLUfICEekrWEBGO3EWlkdPyGDCZb6P88e9UvVFC17PLrm1mylCWFAJ4t5JP453
+	VrxH/984Tp2VDe9/tQu/EvRCYsznBGDukAEUIWse9qMkfsHsB/DSNactmdaezoRVO9a1PTYCqK7/h
+	UQWm4JXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smNA1-0000000AE7X-3TZl;
-	Fri, 06 Sep 2024 00:49:13 +0000
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	id 1smOPd-0000000ALlK-2Dz4;
+	Fri, 06 Sep 2024 02:09:25 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smN9z-0000000AE75-2Txe
+	id 1smOP4-0000000ALgO-0MfW
 	for ath11k@lists.infradead.org;
-	Fri, 06 Sep 2024 00:49:13 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-52f01b8738dso1015727e87.1
-        for <ath11k@lists.infradead.org>; Thu, 05 Sep 2024 17:49:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725583750; x=1726188550; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AmfjfcKndugulugA7EAwTHkPQhPDlb23XTWYgaDDGF0=;
-        b=Z9QfNexULHXpfYWFGr/FYWxeWD7Lyi87Hnj+pTvrIJO34fLTsj0ROnL5v6ZgpehwGA
-         eIjFI1jdY0BfsrS4jIrlHGXZFKY3by3msblg8NpGWHYjfKRNT2D5youxXwQeryXJOLNM
-         kE0qUted05XAzBV1449QddtTCEynY3dKr8EpcqUzc1yPTWBqx7wkuXjKRBai4SJcryoU
-         oV2s6nMys9hHjhzAUQwHBbwdqPdId2AHbgybFkjUNaGJ3DTW+47tNWXr9SdCsM3pe31F
-         rlr4F1MiDqg35qRjBY3Q+P5qHsyb6T85ryZ3yfyfRDH3lu/sigPZYt5zhypfyX+3m/mC
-         HSLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725583750; x=1726188550;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AmfjfcKndugulugA7EAwTHkPQhPDlb23XTWYgaDDGF0=;
-        b=SSfcGLf49VUN2YgIcWyGkWMn5Ta5r5qzOzo92BVKfmLGmkB+IEBb83EVCTUWFa8Zj4
-         SfXDkrhyG0qQ3YzOVNuCqixNDfOh51GthaoZQMaMNfN0A4lmAM787PHFkCdKmqLoEoHV
-         zDSCGd3X0iBHaFOUIXpnh2H1Qs3PyYDGcKLQ+ias5Uh6JctWRFVwzNPVyXekgkHzdImn
-         y4lLhzD4sACIJUjruWS8naDTPWJyex9GddtmBeEZrzwqKEfJCgi/6Wsc3g5LJXdOyH8r
-         9tcdEte461LsGvuVoEiRZ6B5nB95tY1JmOeqHvt8CevYWGL7KzIYOmbnCsCTSkaAgnyH
-         J6nw==
-X-Forwarded-Encrypted: i=1; AJvYcCU86JHn3TFl53Hd2PpylJ6Lf3p1leVgAhVyGD8ieoGh2rucDWkYFIB4gDiYIqz8EJCA34uKlGE=@lists.infradead.org
-X-Gm-Message-State: AOJu0YygMXoUDIMY/0J0jlfu9TYGED3AqfVKLe2vYRU4Nj5ChuBtEb5D
-	oug5KY91OHioDnTJLXIf5+H/Qdr0aEQSxHycxtX/NxEgf5TDSQxgcm7J1+TMmS0EZEf7IXrpD94
-	w
-X-Google-Smtp-Source: AGHT+IHIffC63U9mjEj2zVgbFJlFMy6oAWzMOiRekHkT67HeuZh2MpHA/BdRyQn6y5VmaPvlk2BXQg==
-X-Received: by 2002:a05:6512:3ba1:b0:530:ae4a:58d0 with SMTP id 2adb3069b0e04-536587a40c6mr385814e87.8.1725583748976;
-        Thu, 05 Sep 2024 17:49:08 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53568959814sm544349e87.251.2024.09.05.17.49.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 17:49:08 -0700 (PDT)
-Date: Fri, 6 Sep 2024 03:49:06 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>, ath11k@lists.infradead.org
-Cc: Dmitry Baryshkov <dbaryshkov@gmail.com>, linux-arm-msm@vger.kernel.org, 
-	linux-media@vger.kernel.org, agross@kernel.org, andersson@kernel.org, 
-	linux-kernel@vger.kernel.org, konrad.dybcio@linaro.org, mchehab@kernel.org, 
-	quic_vgarodia@quicinc.com, stanimir.k.varbanov@gmail.com, Kalle Valo <kvalo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p-ride: add WiFi/BT nodes
-Message-ID: <6to5p2dgsu6pvebkmkliojv5kfhnairigd46tmbraimxij7ddu@h6ziv7uwjeeq>
-References: <20240905064817.3885953-1-quic_miaoqing@quicinc.com>
- <d6mt6i4a6xa3juvn4gzytuhsot2kx7dn4wmm3kmgwywfj2hcau@leecyxx36wql>
- <87a1a50f-f485-4a4f-91fc-34fa19312519@quicinc.com>
+	Fri, 06 Sep 2024 02:08:52 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IQlpB008896;
+	Fri, 6 Sep 2024 02:08:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9ByX8dWgLyyDLB0irOMULjt7eqTDhlWWdMhSFOnG2Ms=; b=aSYVqzDB8Cb+DTsb
+	aTkHiJvIow4jlYJJOJHV6579P5LIeH40dMyC0AQQE4BdujEaeYTmk/Nbrle/qzAr
+	d4fEg6RjcmDO2rtUmXDSgItkgWt3r47qr4uyAm7ldA2d9BFJv8OmseRMUW79+qsw
+	JnqPo2mv/k1IUcNi3MrPKSRt6Klq769Cd/kqHXOe5xpsIO2WAtHkxtbyLRoFivre
+	GI+osPGtSyA7v7NvUP5cbEu0lhmSuouCzQwjzNd1GgQc6TJMgdx8UsZFWQX1hUxJ
+	rl8btsG5qczecTH55bcGxPecgzJsnJtb2ClbRqchcU4WLICP5tyYKQfbrHv0Syjy
+	77hBoQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhx20sm9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Sep 2024 02:08:45 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48628i7I016868
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Sep 2024 02:08:44 GMT
+Received: from [10.231.194.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Sep 2024
+ 19:08:42 -0700
+Message-ID: <0daaf053-0b27-43ab-bd3b-634b25b40f25@quicinc.com>
+Date: Fri, 6 Sep 2024 10:08:37 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87a1a50f-f485-4a4f-91fc-34fa19312519@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: support DBS and DFS compatibility
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20240829064420.3074140-1-quic_yuzha@quicinc.com>
+ <1e53e441-7539-4db3-89f2-3563667e2cff@quicinc.com>
+Content-Language: en-US
+From: "Yu Zhang (Yuriy)" <quic_yuzha@quicinc.com>
+In-Reply-To: <1e53e441-7539-4db3-89f2-3563667e2cff@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Q7JkPU3aBGJjUFeVOqku8OJ5mkz3Wd1k
+X-Proofpoint-GUID: Q7JkPU3aBGJjUFeVOqku8OJ5mkz3Wd1k
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_17,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 spamscore=0 bulkscore=0
+ suspectscore=0 mlxlogscore=554 priorityscore=1501 mlxscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409060015
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240905_174911_663686_598380C5 
-X-CRM114-Status: GOOD (  16.42  )
+X-CRM114-CacheID: sfid-20240905_190850_370242_BC161F99 
+X-CRM114-Status: GOOD (  10.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,53 +98,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 06, 2024 at 08:19:28AM GMT, Miaoqing Pan wrote:
-> 
-> 
-> On 9/5/2024 8:49 PM, Dmitry Baryshkov wrote:
-> > On Thu, Sep 05, 2024 at 02:48:17PM GMT, Miaoqing Pan wrote:
-> > > Add a node for the PMU module of the WCN6855 present on the sa8775p-ride
-> > > board. Assign its LDO power outputs to the existing WiFi/Bluetooth module.
-> > > 
-> > > Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 119 +++++++++++++++++++++
-> > >   arch/arm64/boot/dts/qcom/sa8775p.dtsi      |   2 +-
-> > >   2 files changed, 120 insertions(+), 1 deletion(-)
-> > > 
-> > > @@ -837,3 +939,20 @@ &usb_2_hsphy {
-> > >   &xo_board_clk {
-> > >   	clock-frequency = <38400000>;
-> > >   };
-> > > +
-> > > +&pcieport0 {
-> > > +	wifi@0 {
-> > > +		compatible = "pci17cb,1101";
-> > > +		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> > > +
-> > > +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> > > +		vddaon-supply = <&vreg_pmu_aon_0p59>;
-> > > +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> > > +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> > > +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-> > > +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-> > > +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-> > > +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-> > > +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-> > 
-> > Please add
-> > 
-> > qcom,ath11k-calibration-variant = "name";
-> 
-> No need, here the WiFi node is for 'drivers/pci/pwrctl', not ath11k driver.
 
-NAK, nodes describe hardware, not drivers. And we have had enough issues
-with the WCN wifi having collisions on the board-id / chip-id / etc.
 
-Maybe we should make calibration-data required for the DT-based systems?
-Kalle, WDYT?
+On 9/6/2024 2:59 AM, Jeff Johnson wrote:
+> On 8/28/2024 11:44 PM, Yu Zhang(Yuriy) wrote:
+>> Now some chips which support 'support_dual_stations' will enable DBS,
+>> but will disable DFS. Restructure the ath11k_mac_setup_iface_combinations
+>> function to support DBS and DFS compatibility.
+>>
+>> About 'support_dual_station' feature can refer:
+>> https://msgid.link/20230714023801.2621802-2-quic_cjhuang@quicinc.com
+>>
+>> Add a ieee80211_iface_combination to support DBS and DFS compatibility,
+>> one combination can support DFS(same with non dual sta), another
+>> combination can support DBS. When running different scenarios that will
+>> use different ieee80211_iface_combination due to mac80211 will go through
+>> all of possible interface combinations.
+>>
+>> In addition, maximum number of interfaces of these types should be total
+>> allowed in this group.
+>>
+>> The chips affected are:
+>>
+>>   QCA6390 hw2.0
+>>   WCN6855 hw2.0
+>>   WCN6855 hw2.1
+>>
+>> Other chips are not affected.
+>>
+>> Tested-on: WCN6855 WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1.
+> 
+> nit: should include the hw type tested on, see:
+> <https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches#tested-on_tag>
+> 
+> if you can reply with that, Kalle can update the patch in the pending branch
+> 
 
--- 
-With best wishes
-Dmitry
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-00410-QCAHKSWPL_SILICONZ-2
+Tested-on: IPQ6018 hw1.0 AHB WLAN.HK.2.1.0.1-01161-QCAHKSWPL_SILICONZ-1
+Tested-on: WCN6855 WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+
 
