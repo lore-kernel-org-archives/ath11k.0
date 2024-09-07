@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F36F9EB64CF
-	for <ath11k@archiver.kernel.org>; Sat,  7 Sep 2024 18:49:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1B93EB64CF
+	for <ath11k@archiver.kernel.org>; Sat,  7 Sep 2024 18:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Bp2f3Cd3xUZZx5mV8or2w5DKaQxEUtdkX4okocf5JKQ=; b=Vj8XLiET7ck5Mz
-	k4Uc5V8cJDsd2gWMmhHcGy1n0RFMIm79q2RVoGRCsOhu51zN7wCXafRQO02QZF+Vj25VED0OpvrqJ
-	EksEXD7gJn3AU8AIX1gxEuidh7jPIKt9Q3N67c0qJeLR81mAb0SNKWcy7Ag/l/JuyaUuCcfIoRP9F
-	i26eo4tMRBglw0PuJICCEoY75UuEsUmLV3QL7H4NymyGp4ic2v4KT2R892uhfotnSKY4Lu4rfthfs
-	iy1oCurDwUHVQpR162sJ3mQR9WnAAbwjkKtY68lcDg2vFKNtOZLfiS5a5C2r9Arnq7ROBDonbSOty
-	v7p/KzAFy9ikaIEGEX3w==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=wa6fMV9tZ2Snsz6tr/dYASfgwbJ2HTPtEyRdc5RFNjI=; b=D2ekljfNYSnpUfCA2Qdh2PSBnG
+	vWF2oeoIAJzI0wU/oSfje3O1y1621vd/iiFkbLBsxWSNhN5FQGKL/+sHJxQkWGUw1uZZthkPNSHoS
+	iko5yG65swrMgOZvZDRHGp1X703qNDnWxlQMnMLCrTX9Upc3YvfmjiD59GqiLf89aPtpOWOYwpLFC
+	idTTR4jGHzRUf71LdwJ1UjlwRaYc6s8YQ8DqZVNrx4jRC0Nl56UyqC6kXgVa3nOH5gjp+QfF7WZkL
+	2Tijnl9m840xEw2VQ/XD5pthHlB//+OU8U54mMu34yAGtudjH906PAVu0YRj0At9hyqpmw2/sz04X
+	SrCbcTRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sn0Uw-0000000FTuJ-1gfG;
-	Sat, 07 Sep 2024 18:49:26 +0000
-Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	id 1sn0be-0000000FUvH-1rMW;
+	Sat, 07 Sep 2024 18:56:22 +0000
+Received: from mail-lj1-x230.google.com ([2a00:1450:4864:20::230])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sn0Tu-0000000FTZZ-0WJP
+	id 1sn0Ty-0000000FTbw-1Mq7
 	for ath11k@lists.infradead.org;
-	Sat, 07 Sep 2024 18:48:24 +0000
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2f75c6ed397so6384861fa.2
-        for <ath11k@lists.infradead.org>; Sat, 07 Sep 2024 11:48:21 -0700 (PDT)
+	Sat, 07 Sep 2024 18:48:27 +0000
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2f75de9a503so5165711fa.0
+        for <ath11k@lists.infradead.org>; Sat, 07 Sep 2024 11:48:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725734900; x=1726339700; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bp2f3Cd3xUZZx5mV8or2w5DKaQxEUtdkX4okocf5JKQ=;
-        b=A0RJ09ZYHEmQIZSN7WAoTkgP2j6vDwCWUZUrfI0x5k7ypoxU3+UhJHgD2OSh8eVcq8
-         JsuuYUNwauYULtFN7mg2fBb2shRts6O1k/TKN9L+x4fvmge3vcJdpefO46LiA3FTIRC0
-         e2sCJxvfEQv3j1OC1kCWr/VqSGC4K4/hcy8PLUV40AQs3K6rwOTZEtkPTTZmoxq96dol
-         E5yU/P3MrWEfAhiOrm1Vk6uu5oZFabS4QAOeUm/Rp7UK1XeTi6Njky+8iRik95VmSjUh
-         LlnNDV63gAoxWTntvup8S8VfKVYV32cGNRsW8makEAFv8tklEm14CsuKZIYZPXgWJE/3
-         LEqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725734900; x=1726339700;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1725734905; x=1726339705; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Bp2f3Cd3xUZZx5mV8or2w5DKaQxEUtdkX4okocf5JKQ=;
-        b=vGFpeczau4WpBxXF0dkj0qRtgkUhBZtIY9Jvd0zEdERt1Uapkk2oIRi6QV9l8Boay1
-         M5D39uwTjRAoU5fE9x12ZFuhlVYuenEVAdyQP1aNkbrho6qOpYMe4QLLNuCpSkMSb/Ah
-         1AM33+XHGSKKUywJmrrz3NOg8C6BkCjaC5/6UcSZ5uMWIo7ZqSv7InmsTncb8geU30/5
-         pCGtYpDh+7PWC+wtsTgunCI9GlmaUKAv0h8QybdVd2a7i6RUGomNKdSfy8Y3ZpIFVyCE
-         K0I9zCAGCq3NfEJG0UXj2mWHJ+iwAE9DULbwHLS+u7W0G/RHILKRnqcu3noyN99/G4X2
-         +upw==
-X-Forwarded-Encrypted: i=1; AJvYcCUm+MJAu+waFxVcbDy56Pj9ULJyDF2lXBs1LFr65UPX5E30PjH+OIzTQjm3pfZuWQSf6vUvlK0=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxmCHDaQDBetO7BtYM/gHDEGNNUpmljGzrZLVbLtEgexOjAEgH7
-	xIngkfwDpYiTKOFccQnlknbmvGuho/Zn2xUGEbO387L4O8ZcL5FKbFDZLgl4BqQ=
-X-Google-Smtp-Source: AGHT+IGO0WNu0PFOcRrTUtNd5FKi2izDYAt1p3P/Gtjx0bVcVZuQjc3v0I9yiOFDdx9qV8/gFlWDQg==
-X-Received: by 2002:a2e:4c19:0:b0:2ef:2c0f:283e with SMTP id 38308e7fff4ca-2f751ec89bamr35682181fa.12.1725734899190;
-        Sat, 07 Sep 2024 11:48:19 -0700 (PDT)
+        bh=wa6fMV9tZ2Snsz6tr/dYASfgwbJ2HTPtEyRdc5RFNjI=;
+        b=aYgPMDOLiQJL0k0KczR7f83eUMOxWlrc0vYsN0Yh+mAeJYZMWXF5I2zjhzZI8gIIxt
+         6YCgS+BQ+lKl4y2ChxMFLkTlKew+Xq/w9FVEk0cpLnF6z3NfcUKtWp40Vcf5lJObR13z
+         SQHeJjCBZcu+MUfb+6kD1nj4uxD4m2fR6Fstjd2CQvnbD4p5otEBClB8FMaXiX+g8HLc
+         d+1+71yfnnJQ0nU0ho4l/429e74J3aWTfDDFTQ/aAYUurXHxWljwWkvAAfd9P+ZgrjjA
+         c+N82SaDLdW6SCJXj+78FYky2lCN0e+9chSmOx0VkQXGe4ECm3VIiQ4nag+6yQzmXwLQ
+         9IVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725734905; x=1726339705;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wa6fMV9tZ2Snsz6tr/dYASfgwbJ2HTPtEyRdc5RFNjI=;
+        b=dFarVhxVALHBWJMCIb6h7yE2PX2XI6l495iIFgkGJOh9kP2QThjQSPkIMBv0og82pv
+         AsdUqGlK3kUt66VWUlBRi3ESCg6QMEjOBfW+sGVRi+X+m5s3b7/RKDsNCEcRddQg4Xb5
+         Xuk4KYbuxR86mBzVd5vIlJ5ObYwwDSu3+h0Vw82yAUW7/BKX9duNixycDOw0dWu/ZItE
+         6fTB04CvAx5Ysn5MuV+3+hI0nN7+bDiimq5pMHmYpfWyI/TkGkNfl8lOehpGMFUz/SiW
+         UHxRMLgDyIDZCLcnWVowOejHUqKLoHQvYwqWFCHw5Rj3ny4K8vxLc1pia870Wd4T3Giw
+         Ec3w==
+X-Forwarded-Encrypted: i=1; AJvYcCVhrQFSdEmjpBNxNahen2TpV/Fkk0qpBMs919CGIPQ6pHwy9/92okDaWW4gkAfqnhwjrDieOgA=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzdo0G16sC9+aPyIchHWF/0h53t/1/1rkwAqLdfzirJ993t1W7x
+	NO1JueHJImviNnKZaVN2gebsftCXjxO968CReAYwudHUL/xsESGv/SjFsolR+A4=
+X-Google-Smtp-Source: AGHT+IHSIoknUKa0V2bIajtq0UbQnlrrMTwcNCvk0Cm0DK+8zJifYj/tq+SFZ349vHrP4HPAC7liRw==
+X-Received: by 2002:a2e:bc13:0:b0:2f7:5c58:cc7c with SMTP id 38308e7fff4ca-2f75c58cd06mr15833141fa.44.1725734904516;
+        Sat, 07 Sep 2024 11:48:24 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.18
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Sep 2024 11:48:18 -0700 (PDT)
+        Sat, 07 Sep 2024 11:48:24 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH 0/7] arm64: qcom: sda660-ifc6560: enable GPU and WiFi
- support
-Date: Sat, 07 Sep 2024 21:48:11 +0300
-Message-Id: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+Date: Sat, 07 Sep 2024 21:48:18 +0300
+Subject: [PATCH 7/7] arm64: dts: qcom: sda660-ifc6560: enable mDSP and WiFi
+ devices
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOuf3GYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDEwNj3eKUXDMzA93yzLRM3URTi1QL8ySLNPMUQyWgjoKi1LTMCrBp0bG
- 1tQAf8W+jXQAAAA==
+Message-Id: <20240907-sdm660-wifi-v1-7-e316055142f8@linaro.org>
+References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
  Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
  AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, 
@@ -85,21 +85,21 @@ Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, ath11k@lists.infradead.org, 
  Kalle Valo <kvalo@kernel.org>
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1756;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2512;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=j2MGhLcuLoVLWg4I2MuE84ebYpICQobwJaU/0pV8mPM=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/s3aD3giiWStxq0Uq71R3ZAHngRAI9exh4S
- gvabAQfWrKJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf7AAKCRCLPIo+Aiko
- 1WpICAClKoPTaFjA24SOWFpGheQP76MScFD8h1Cc7JoNZyGlm/c9t3JtblTAopntkVLPeWJ3e/R
- weoly+63q++LVTgHBNDieyj/sKCanLvE/GbQdmsaQfZUhorPpYC2nivqtNLjxEduVwDZNQ0Oivd
- e2g9mjU/97PGn+LIx9M4O8IzAYqd5z125QWqX2An9MwNmzZZkfYd1NsuKzQMFqXSPl0oSU8CnfQ
- RdgDEKYZJQfPFWInCTMpMc6D68DYCBhrkvC/z0jyFvcOeuXdAGl2xFzObLWF4eK4cWmETcQseuC
- NgOMqyDQ4aXXsSqhzTnVB0VWFvFE5f7tVAq6VeA9Z2nrxz51
+ bh=XTnySTBdd5sawEDE4jiRSfy1oa5Ctl+YWAAqUv4joIg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/yWVPTASuqwGf6KgTFf9lHvriPxuej/lwbV
+ aZEbLvM9JWJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8gAKCRCLPIo+Aiko
+ 1ZEqB/4/aeZwm+BdnM4GZPBXDOBNORRCXxR7ErRiln3e5RdBCf4xXCE6iQvmGFXEXS/LrebtK/X
+ FNMW65S93BZFnkwxHn6UQ+EHAFGW27njCs/KvrkXnGPtjv50v4+JiV2Kp1cUWTb3w21MJAnJSU5
+ 5TP4gUddxWWFBAqPeK0Khdh4ojgcQcxkbJZg49A+fkAl1eQ2+Muneg+woHbjtFa51jJYnvX0SWE
+ /Xu+uP5bMQ3+J+0Y+lS2f+HdM6ZAKIvLcVs4cEzVqh4+fljZ6NUrrfM4P/TAlLZ3Q6M0gheBeJV
+ 4PQ81KBAp7c2Opqwvn3clTZnknpVaurmdvLR2aBlgRtUjDU5
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240907_114822_171853_A2E9D640 
-X-CRM114-Status: UNSURE (   8.06  )
+X-CRM114-CacheID: sfid-20240907_114826_403924_D3F603E1 
+X-CRM114-Status: UNSURE (   8.96  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,42 +115,76 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Follow the MSM8998 example and limit num_context_banks on SDM630 /
-SDM660 platforms. This allows Linux to make use of the A2NOC and KGSL
-SMMU, making it possible to enable GPU and WiFi on those platforms, and,
-in particular, Inforce IFC6560 SBC.
+Enable the onboard WiFi device present on the Inforce IFC6560 SBC.
+Pretty much like MSM8998 this device also doesn't generate the
+MSA_READY_IND indication.
 
-Note, while WiFI starts up and can work for a short amount of time, MSS
-starts crashing with the following message:
+For the reference:
 
-qcom-q6v5-mss 4080000.remoteproc: fatal error received: dog_hb.c:266:Task starvation: diag, ping: 4, triage with owner(d.dump 0xde5825
-
-Note2: DTS changes should be applied only after IOMMU chages get merged.
-If it is not possible to get IOMMU changes into 6.12 in its last days of
-the merge window, I'd kindly ask for the immutable branch from the iommu
-subsys to be submerged into MSM tree.
+ath10k_snoc 18800000.wifi: qmi chip_id 0x30214 chip_family 0x4001 board_id 0xff soc_id 0x40050000
+ath10k_snoc 18800000.wifi: qmi fw_version 0x101d01da fw_build_timestamp 2018-07-26 21:42 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.1.0.1.c2-00474-QCAHLSWMTPLZ-1
+ath10k_snoc 18800000.wifi: qmi not waiting for msa_ready indicator
+ath10k_snoc 18800000.wifi: wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
+ath10k_snoc 18800000.wifi: kconfig debug 1 debugfs 0 tracing 0 dfs 0 testmode 0
+ath10k_snoc 18800000.wifi: firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi crc32 b3d4b790
+ath10k_snoc 18800000.wifi: htt-ver 3.54 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
+ath10k_snoc 18800000.wifi: invalid MAC address; choosing random
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
-Dmitry Baryshkov (7):
-      iommu/arm-smmu-qcom: apply num_context_bank fixes for SDM630 / SDM660
-      arm64: dts: qcom: sdm630: enable GPU SMMU and GPUCC
-      arm64: dts: qcom: sda660-ifc6560: enable GPU
-      arm64: dts: qcom: sda660-ifc6560: fix l10a voltage ranges
-      arm64: dts: qcom: sdm630: enable A2NOC and LPASS SMMU
-      arm64: dts: qcom: sdm630: add WiFI device node
-      arm64: dts: qcom: sda660-ifc6560: enable mDSP and WiFi devices
 
- .../arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 32 +++++++++++++++++-
- arch/arm64/boot/dts/qcom/sdm630.dtsi               | 38 ++++++++++++++++++----
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c         | 11 +++++++
- 3 files changed, 73 insertions(+), 8 deletions(-)
 ---
-base-commit: f70cb2e8ce3f8883a526a28f93b7744d1a1a9ce0
-change-id: 20240403-sdm660-wifi-a58e87b8f7d1
+Cc: ath11k@lists.infradead.org
+Cc: Kalle Valo <kvalo@kernel.org>
+---
+ .../arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-Best regards,
+diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+index 09bc010ce56a..7948c8f6ab64 100644
+--- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
++++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+@@ -252,6 +252,11 @@ &qusb2phy1 {
+ 	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
+ };
+ 
++&remoteproc_mss {
++	firmware-name = "qcom/sda660/mba.mbn", "qcom/sda660/modem.mbn";
++	status = "okay";
++};
++
+ &rpm_requests {
+ 	regulators-0 {
+ 		compatible = "qcom,rpm-pm660-regulators";
+@@ -291,6 +296,11 @@ vreg_l1a_1p225: l1 {
+ 			regulator-allow-set-load;
+ 		};
+ 
++		vreg_l5a_0p8: l5 {
++			regulator-min-microvolt = <848000>;
++			regulator-max-microvolt = <848000>;
++		};
++
+ 		vreg_l6a_1p3: l6 {
+ 			regulator-min-microvolt = <1304000>;
+ 			regulator-max-microvolt = <1368000>;
+@@ -489,3 +499,15 @@ &usb3_qmpphy {
+ 	vdda-pll-supply = <&vreg_l10a_1p8>;
+ 	status = "okay";
+ };
++
++&wifi {
++	status = "okay";
++
++	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
++	vdd-1.8-xo-supply = <&vreg_l9a_1p8>;
++	vdd-1.3-rfa-supply = <&vreg_l6a_1p3>;
++	vdd-3.3-ch0-supply = <&vreg_l19a_3p3>;
++	vdd-3.3-ch1-supply = <&vreg_l8b_3p3>;
++
++	qcom,ath10k-calibration-variant = "Inforce_IFC6560";
++};
+
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.39.2
 
 
