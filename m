@@ -4,78 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8208EECE579
-	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 12:47:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 006B7ECE57A
+	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 12:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fizaTSEXyuljg6z99BiS3/Mrs+MIVr7UUib2+wXCqrI=; b=dd98fsl/n77QuJIlWzgxN0g/bW
-	ZgGGb7tMhPHl5A3xVO1m2i/yLI0GaLbYcBP8j9kk0Jg612IJvljxamj1J/kBm4+sbNvSl+ybGaASa
-	DqNZaDVwAfAJWaC9JfQiIHNUCHnSlNXJ54OgJ6Y9DKE/oLiQ9yTqE8TszxSG+m4pKDQO8l0GvOReE
-	mv07EkZLjqWIlPr/nnIT62HTYO1a/GlnPO5YE5xBIBNmGNMLjrgcW2Qffb+dYi9O+MydP0fQarmN4
-	23dp9cs16xf240I3dHY/kUha+Lq4nAwCcWrpMTVug5rpIaHaxpkbCVjluZFpUoblKjgJz9QYB0SWq
-	G6J2wIPw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/6NYj9i34XFFFsVywwCZazd72p+ROr7Wc2hDGbg7Y1I=; b=4L3KpLuWBwhl5CgzmmWPtflZJT
+	auURhf5tP67hplSJaQ2Ax+qXZUGYwiwg/IBI95/4lC/k9eC0F2iXuM/JoDRRPkZpnou3qJffWvxfa
+	QSNkNird8ju3gjHd2tibbGlhlG0rSQ+C7g2/d3tKXff9eKsh+Gby8UHaaib9AMTOTH/3jnQhfloyV
+	DQel7md8gCa7HuRdIBdrPpAetdUvVj3E3BIMI7/hJ1Ckhcx0yCiLeQPxIGmcXtplhdm2+LDmLK6VO
+	VXTxRtmBhgyDSBuWMq+U1VihjjR7ubxaDXi+5E4UIFndy8pjjsWcIOlXUvyTlOgbtcAz2lArUc+WO
+	4qkM1a2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sndni-00000001uQp-317U;
-	Mon, 09 Sep 2024 12:47:26 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sndns-00000001uZl-1m5O;
+	Mon, 09 Sep 2024 12:47:36 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sncQC-00000001da0-3buz
+	id 1snccU-00000001gHG-1mxJ
 	for ath11k@lists.infradead.org;
-	Mon, 09 Sep 2024 11:19:06 +0000
+	Mon, 09 Sep 2024 11:31:48 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id ADB8F5C578D;
-	Mon,  9 Sep 2024 11:19:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01F4BC4CEC5;
-	Mon,  9 Sep 2024 11:19:00 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 19015A43389;
+	Mon,  9 Sep 2024 11:31:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B566C4CEC5;
+	Mon,  9 Sep 2024 11:31:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725880743;
-	bh=fizaTSEXyuljg6z99BiS3/Mrs+MIVr7UUib2+wXCqrI=;
+	s=k20201202; t=1725881505;
+	bh=HvvAyacZkn5TCe7k5z6EOZtDMR/W7YSYa3SHtYybxLo=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=llMRU4jBH0AM1JdyNXEFRiRfhyjHedUj/nkSh699MZuJ3A/blM8Vsm2qf3DZrzIz+
-	 OHQJUh+l9E798zfPbXgRbT5koeL5Z0FEVfUk41otCyKI4nWEKNkyPabVpcCgohK2nq
-	 6rMBtYFYAr/l/EK/sJglmJssL8J2gQQwPJEDSoAt0Bh/5NZMND4GdtJQchi/Ue9TxE
-	 J5xy5q7X5FJ0aS+FqUxXpAgurHlYYiRUE944dR+SVE+3pMBsWmttqnkFVGY0pxPW+W
-	 aErRF1PNM2HhvRHA6jNcW00VCmAE8+I8ghfIL8NOUMYrFhpuPRNIbvp+86C3lkhVAA
-	 rSnG1DcI3vWQg==
+	b=bJSU0K86tbXHFaOETav+onIb6a0vugOVYhnP9TM7CttSHk09o+CorYU+LcsSuV/aY
+	 UDCK5svUr7dYXv+030BfKYZ2XQ4TginIqotHIseX2nsgzpGJe7g+9XbUQAo52sxhFB
+	 +2DNKfgSWJQV259lHyOPmPIMmTC8k3odbhd0iApQuF8lvm+3A0bjMwdWvkrQhF9F2Y
+	 oyBPHUkMaF9eM3FKqFTPcjWSJ9lpMJlQc8YZjWQMO0ddh4Tw4k0rSpmbHshajO4yLE
+	 MR/dcYsZyW4rk6MoUv1LlGlmrzitOY1uhR7t8J5YPmNBb3vW7zrn4NANCGv9/t8LNU
+	 d9Qv7Mx95seCA==
 From: Kalle Valo <kvalo@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,  Konrad Dybcio
- <konradybcio@kernel.org>,  Dmitry Baryshkov <dbaryshkov@gmail.com>,  Johan
- Hovold <johan@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,  Rob
- Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  linux-arm-msm@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,  Bartosz
- Golaszewski <bartosz.golaszewski@linaro.org>,  ath11k@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc8280xp-crd: model the PMU of
- the on-board wcn6855
-References: <20240905122023.47251-1-brgl@bgdev.pl>
-	<20240905122023.47251-2-brgl@bgdev.pl>
-	<6vikrqhdnkefzpahhhtz2hpi62jvcwnzclm7touwtnpxdzvgrf@uc7r6a7bbjek>
-	<CAMRc=MeijX2by+MS_vq_OVx25JO6z=zNfymta35h11mbm=vmtQ@mail.gmail.com>
-	<CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
-	<CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
-	<d6d5a943-ab29-4034-b465-b62d9d1efa61@kernel.org>
-	<87v7zagcyf.fsf@kernel.org>
-	<ywn7bq6j6jgokwmm3vsumkuwijplezmery5tr6z5yeblnpyjh7@djkwdbt4sl3q>
-	<CAMRc=Mfj3gpgV0N__oB8kF5pk4PrDwP1CqeUgUbvTwyo7p=7bQ@mail.gmail.com>
-	<CAA8EJppi5Zy82=ZUZ67DW-40Qm7aMerNLu_Mzh3HiUBWqPiHVw@mail.gmail.com>
-	<CAMRc=Mf--M9d-awzQcs=W8frBwNfkjyvyCrmHAc3MofQo-qp1Q@mail.gmail.com>
-Date: Mon, 09 Sep 2024 14:18:58 +0300
-In-Reply-To: <CAMRc=Mf--M9d-awzQcs=W8frBwNfkjyvyCrmHAc3MofQo-qp1Q@mail.gmail.com>
-	(Bartosz Golaszewski's message of "Fri, 6 Sep 2024 11:45:39 +0200")
-Message-ID: <875xr5gjml.fsf@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,  ath11k@lists.infradead.org,
+  Dmitry Baryshkov <dbaryshkov@gmail.com>,  linux-arm-msm@vger.kernel.org,
+  linux-media@vger.kernel.org,  agross@kernel.org,  andersson@kernel.org,
+  linux-kernel@vger.kernel.org,  konrad.dybcio@linaro.org,
+  mchehab@kernel.org,  quic_vgarodia@quicinc.com,
+  stanimir.k.varbanov@gmail.com
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p-ride: add WiFi/BT nodes
+References: <20240905064817.3885953-1-quic_miaoqing@quicinc.com>
+	<d6mt6i4a6xa3juvn4gzytuhsot2kx7dn4wmm3kmgwywfj2hcau@leecyxx36wql>
+	<87a1a50f-f485-4a4f-91fc-34fa19312519@quicinc.com>
+	<6to5p2dgsu6pvebkmkliojv5kfhnairigd46tmbraimxij7ddu@h6ziv7uwjeeq>
+Date: Mon, 09 Sep 2024 14:31:40 +0300
+In-Reply-To: <6to5p2dgsu6pvebkmkliojv5kfhnairigd46tmbraimxij7ddu@h6ziv7uwjeeq>
+	(Dmitry Baryshkov's message of "Fri, 6 Sep 2024 03:49:06 +0300")
+Message-ID: <871q1tgj1f.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240909_041904_968361_DC6DAB4E 
-X-CRM114-Status: GOOD (  13.98  )
+X-CRM114-CacheID: sfid-20240909_043146_612355_97A5970F 
+X-CRM114-Status: GOOD (  25.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,37 +79,72 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Bartosz Golaszewski <brgl@bgdev.pl> writes:
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
 
-> On Fri, Sep 6, 2024 at 11:37=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
+> On Fri, Sep 06, 2024 at 08:19:28AM GMT, Miaoqing Pan wrote:
 >
->>
->> On Fri, 6 Sept 2024 at 10:45, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->> >
->> > On Thu, Sep 5, 2024 at 9:26=E2=80=AFPM Dmitry Baryshkov
->> > <dmitry.baryshkov@linaro.org> wrote:
->> > >
->> > > QC_8380_CRD (following DMI / Windows name) or QC_X1E80100_CRD (follo=
-wing
->> > > marketing name). Or maybe QTI_ instead of QC_. WDYT?
->> > >
->> >
->> > Is there any central authority listing these names? Or are they just
->> > agreed upon on the mailing list? I honestly don't know where they come
->> > from.
->>
->> I think on ath12k these names come from ACPI tables. On all previous
->> devices it is just being agreed upon. Kalle is the central authority.
->>
+>> 
+>> 
+>> On 9/5/2024 8:49 PM, Dmitry Baryshkov wrote:
+>> > On Thu, Sep 05, 2024 at 02:48:17PM GMT, Miaoqing Pan wrote:
+>> > > Add a node for the PMU module of the WCN6855 present on the sa8775p-ride
+>> > > board. Assign its LDO power outputs to the existing WiFi/Bluetooth module.
+>> > > 
+>> > > Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+>> > > ---
+>> > >   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 119 +++++++++++++++++++++
+>> > >   arch/arm64/boot/dts/qcom/sa8775p.dtsi      |   2 +-
+>> > >   2 files changed, 120 insertions(+), 1 deletion(-)
+>> > > 
+>> > > @@ -837,3 +939,20 @@ &usb_2_hsphy {
+>> > >   &xo_board_clk {
+>> > >   	clock-frequency = <38400000>;
+>> > >   };
+>> > > +
+>> > > +&pcieport0 {
+>> > > +	wifi@0 {
+>> > > +		compatible = "pci17cb,1101";
+>> > > +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+>> > > +
+>> > > +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+>> > > +		vddaon-supply = <&vreg_pmu_aon_0p59>;
+>> > > +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+>> > > +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+>> > > +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+>> > > +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+>> > > +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+>> > > +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+>> > > +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+>> > 
+>> > Please add
+>> > 
+>> > qcom,ath11k-calibration-variant = "name";
+>> 
+>> No need, here the WiFi node is for 'drivers/pci/pwrctl', not ath11k driver.
 >
-> Kalle: is "QC_8280XP_CRD" fine for you for a board called sc8280xp-crd?
+> NAK, nodes describe hardware, not drivers. And we have had enough issues
+> with the WCN wifi having collisions on the board-id / chip-id / etc.
+>
+> Maybe we should make calibration-data required for the DT-based systems?
+> Kalle, WDYT?
 
-Yes.
+I don't know exactly what hardware you are referring so this is just a
+quick and vague answer, take all this as grain of salt.
 
---=20
+I don't have any numbers but I'm assuming most of the
+ath10k/ath11k/ath12k devices have the calibration data stored in OTP
+inside the chip. There are also devices which store the calibration
+outside the chip, for example in DT, but my understanding is that they
+are a minority.
+
+If we were to require that the calibration data needs to be in DT, and
+not use OTP at all, that would limit the on types of devices ath11k can
+be used. And I don't even know how we could easily extract the
+calibration data from OTP and it would be extra work for everyone.
+Honestly I don't really see any benefits from this, only negatives.
+
+-- 
 https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
