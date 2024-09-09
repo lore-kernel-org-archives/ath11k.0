@@ -4,67 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 006B7ECE57A
-	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 12:47:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EDE2ECE579
+	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 12:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/6NYj9i34XFFFsVywwCZazd72p+ROr7Wc2hDGbg7Y1I=; b=4L3KpLuWBwhl5CgzmmWPtflZJT
-	auURhf5tP67hplSJaQ2Ax+qXZUGYwiwg/IBI95/4lC/k9eC0F2iXuM/JoDRRPkZpnou3qJffWvxfa
-	QSNkNird8ju3gjHd2tibbGlhlG0rSQ+C7g2/d3tKXff9eKsh+Gby8UHaaib9AMTOTH/3jnQhfloyV
-	DQel7md8gCa7HuRdIBdrPpAetdUvVj3E3BIMI7/hJ1Ckhcx0yCiLeQPxIGmcXtplhdm2+LDmLK6VO
-	VXTxRtmBhgyDSBuWMq+U1VihjjR7ubxaDXi+5E4UIFndy8pjjsWcIOlXUvyTlOgbtcAz2lArUc+WO
-	4qkM1a2Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YXJCrO0epHpJ1iy0XddMQ9otDwVzDUd3JArSPp1p7Qs=; b=yR294WyvQcxgQIefEZG1dKhHx1
+	9Kx/Ycw5kh0snxcFPG0wVWu7258mxzhokbQmjILz1TCwbeqMlXmkamMCci/oJjJr7NtY6bIH2ZSQD
+	R7vt2TvCy8uU//4dPzzMUgJerKqpUgcXYxS8ZFm5/NZQiqLeW7jgjFo6E6VEmlJ152e+F27vb96Vh
+	WNamfRhP2T5qb6MFAWMGdp0A10KzCHcr2sfOMaLwe8SStljaDFFkem38Hmq46fx/BRkfckZi02Bsf
+	9c8csK/1e3Sb+kO1Od+8XZQ21PxiMUwAVYsGSnFgVV/s1gaOHxYpuGzzaHxrvBnjOeaDu93+l6fk8
+	YsjT2uag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sndns-00000001uZl-1m5O;
-	Mon, 09 Sep 2024 12:47:36 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1sndo5-00000001ukQ-0lSZ;
+	Mon, 09 Sep 2024 12:47:49 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snccU-00000001gHG-1mxJ
-	for ath11k@lists.infradead.org;
-	Mon, 09 Sep 2024 11:31:48 +0000
+	id 1sncl7-00000001iUg-1MZc;
+	Mon, 09 Sep 2024 11:40:52 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 19015A43389;
-	Mon,  9 Sep 2024 11:31:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B566C4CEC5;
-	Mon,  9 Sep 2024 11:31:42 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 1F743A4363A;
+	Mon,  9 Sep 2024 11:40:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA43AC4CEC5;
+	Mon,  9 Sep 2024 11:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725881505;
-	bh=HvvAyacZkn5TCe7k5z6EOZtDMR/W7YSYa3SHtYybxLo=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=bJSU0K86tbXHFaOETav+onIb6a0vugOVYhnP9TM7CttSHk09o+CorYU+LcsSuV/aY
-	 UDCK5svUr7dYXv+030BfKYZ2XQ4TginIqotHIseX2nsgzpGJe7g+9XbUQAo52sxhFB
-	 +2DNKfgSWJQV259lHyOPmPIMmTC8k3odbhd0iApQuF8lvm+3A0bjMwdWvkrQhF9F2Y
-	 oyBPHUkMaF9eM3FKqFTPcjWSJ9lpMJlQc8YZjWQMO0ddh4Tw4k0rSpmbHshajO4yLE
-	 MR/dcYsZyW4rk6MoUv1LlGlmrzitOY1uhR7t8J5YPmNBb3vW7zrn4NANCGv9/t8LNU
-	 d9Qv7Mx95seCA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,  ath11k@lists.infradead.org,
-  Dmitry Baryshkov <dbaryshkov@gmail.com>,  linux-arm-msm@vger.kernel.org,
-  linux-media@vger.kernel.org,  agross@kernel.org,  andersson@kernel.org,
-  linux-kernel@vger.kernel.org,  konrad.dybcio@linaro.org,
-  mchehab@kernel.org,  quic_vgarodia@quicinc.com,
-  stanimir.k.varbanov@gmail.com
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p-ride: add WiFi/BT nodes
-References: <20240905064817.3885953-1-quic_miaoqing@quicinc.com>
-	<d6mt6i4a6xa3juvn4gzytuhsot2kx7dn4wmm3kmgwywfj2hcau@leecyxx36wql>
-	<87a1a50f-f485-4a4f-91fc-34fa19312519@quicinc.com>
-	<6to5p2dgsu6pvebkmkliojv5kfhnairigd46tmbraimxij7ddu@h6ziv7uwjeeq>
-Date: Mon, 09 Sep 2024 14:31:40 +0300
-In-Reply-To: <6to5p2dgsu6pvebkmkliojv5kfhnairigd46tmbraimxij7ddu@h6ziv7uwjeeq>
-	(Dmitry Baryshkov's message of "Fri, 6 Sep 2024 03:49:06 +0300")
-Message-ID: <871q1tgj1f.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1725882040;
+	bh=FECvUa62XYAhauGPX0bNJRvN06psBjXU5Mu1nsIE7S4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uP3Mdw9xbCJOrYpy52XRlxODeyAu4atg8NQTX01qHHZGqtjf/155APDqsWqB3uEbX
+	 b5rtUTC1y/WDL7ksLzmsXvzKOAnwRICxVc2lWNyWbPwo5ZmzMFLLZNBAZmICcJs4Ql
+	 OZqnmCDYXp/4/MHpPEzjZ6sS+VNzY8H/ZOAZVugYN/V93X1EfXhoZ/EZfWAj+r0PW0
+	 Fgi9kIrtamOqmMGgzxEpIxKSc0R4FUtngtHre3Sf1BCnZ6qQDcrtJLBwUwAI8d4qzC
+	 8MEO4EfoZcsWqfxOFC+hlxkso/EHQRJJafFAjd3yPkVFt9miDJs89lGDHirnlcmvrG
+	 UDvpuPH10H7tQ==
+Message-ID: <be9460a4-0f19-4acb-9b81-5a3d61eeb28f@kernel.org>
+Date: Mon, 9 Sep 2024 13:40:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sda660-ifc6560: enable mDSP and
+ WiFi devices
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, ath11k@lists.infradead.org,
+ Kalle Valo <kvalo@kernel.org>
+References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+ <20240907-sdm660-wifi-v1-7-e316055142f8@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240907-sdm660-wifi-v1-7-e316055142f8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240909_043146_612355_97A5970F 
-X-CRM114-Status: GOOD (  25.64  )
+X-CRM114-CacheID: sfid-20240909_044041_537451_275A356D 
+X-CRM114-Status: GOOD (  13.82  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,72 +82,74 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+On 7.09.2024 8:48 PM, Dmitry Baryshkov wrote:
+> Enable the onboard WiFi device present on the Inforce IFC6560 SBC.
+> Pretty much like MSM8998 this device also doesn't generate the
+> MSA_READY_IND indication.
+> 
+> For the reference:
+> 
+> ath10k_snoc 18800000.wifi: qmi chip_id 0x30214 chip_family 0x4001 board_id 0xff soc_id 0x40050000
+> ath10k_snoc 18800000.wifi: qmi fw_version 0x101d01da fw_build_timestamp 2018-07-26 21:42 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.1.0.1.c2-00474-QCAHLSWMTPLZ-1
+> ath10k_snoc 18800000.wifi: qmi not waiting for msa_ready indicator
+> ath10k_snoc 18800000.wifi: wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
+> ath10k_snoc 18800000.wifi: kconfig debug 1 debugfs 0 tracing 0 dfs 0 testmode 0
+> ath10k_snoc 18800000.wifi: firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi crc32 b3d4b790
+> ath10k_snoc 18800000.wifi: htt-ver 3.54 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
+> ath10k_snoc 18800000.wifi: invalid MAC address; choosing random
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> ---
+> Cc: ath11k@lists.infradead.org
+> Cc: Kalle Valo <kvalo@kernel.org>
+> ---
+>  .../arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+> index 09bc010ce56a..7948c8f6ab64 100644
+> --- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+> +++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+> @@ -252,6 +252,11 @@ &qusb2phy1 {
+>  	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
+>  };
+>  
+> +&remoteproc_mss {
+> +	firmware-name = "qcom/sda660/mba.mbn", "qcom/sda660/modem.mbn";
+> +	status = "okay";
+> +};
+> +
+>  &rpm_requests {
+>  	regulators-0 {
+>  		compatible = "qcom,rpm-pm660-regulators";
+> @@ -291,6 +296,11 @@ vreg_l1a_1p225: l1 {
+>  			regulator-allow-set-load;
+>  		};
+>  
+> +		vreg_l5a_0p8: l5 {
+> +			regulator-min-microvolt = <848000>;
+> +			regulator-max-microvolt = <848000>;
+> +		};
+> +
+>  		vreg_l6a_1p3: l6 {
+>  			regulator-min-microvolt = <1304000>;
+>  			regulator-max-microvolt = <1368000>;
+> @@ -489,3 +499,15 @@ &usb3_qmpphy {
+>  	vdda-pll-supply = <&vreg_l10a_1p8>;
+>  	status = "okay";
+>  };
+> +
+> +&wifi {
+> +	status = "okay";
 
-> On Fri, Sep 06, 2024 at 08:19:28AM GMT, Miaoqing Pan wrote:
->
->> 
->> 
->> On 9/5/2024 8:49 PM, Dmitry Baryshkov wrote:
->> > On Thu, Sep 05, 2024 at 02:48:17PM GMT, Miaoqing Pan wrote:
->> > > Add a node for the PMU module of the WCN6855 present on the sa8775p-ride
->> > > board. Assign its LDO power outputs to the existing WiFi/Bluetooth module.
->> > > 
->> > > Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
->> > > ---
->> > >   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 119 +++++++++++++++++++++
->> > >   arch/arm64/boot/dts/qcom/sa8775p.dtsi      |   2 +-
->> > >   2 files changed, 120 insertions(+), 1 deletion(-)
->> > > 
->> > > @@ -837,3 +939,20 @@ &usb_2_hsphy {
->> > >   &xo_board_clk {
->> > >   	clock-frequency = <38400000>;
->> > >   };
->> > > +
->> > > +&pcieport0 {
->> > > +	wifi@0 {
->> > > +		compatible = "pci17cb,1101";
->> > > +		reg = <0x10000 0x0 0x0 0x0 0x0>;
->> > > +
->> > > +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
->> > > +		vddaon-supply = <&vreg_pmu_aon_0p59>;
->> > > +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
->> > > +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
->> > > +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
->> > > +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
->> > > +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
->> > > +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
->> > > +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
->> > 
->> > Please add
->> > 
->> > qcom,ath11k-calibration-variant = "name";
->> 
->> No need, here the WiFi node is for 'drivers/pci/pwrctl', not ath11k driver.
->
-> NAK, nodes describe hardware, not drivers. And we have had enough issues
-> with the WCN wifi having collisions on the board-id / chip-id / etc.
->
-> Maybe we should make calibration-data required for the DT-based systems?
-> Kalle, WDYT?
+You placed status last in the addition above but not here :P
 
-I don't know exactly what hardware you are referring so this is just a
-quick and vague answer, take all this as grain of salt.
+with that fixed:
 
-I don't have any numbers but I'm assuming most of the
-ath10k/ath11k/ath12k devices have the calibration data stored in OTP
-inside the chip. There are also devices which store the calibration
-outside the chip, for example in DT, but my understanding is that they
-are a minority.
 
-If we were to require that the calibration data needs to be in DT, and
-not use OTP at all, that would limit the on types of devices ath11k can
-be used. And I don't even know how we could easily extract the
-calibration data from OTP and it would be extra work for everyone.
-Honestly I don't really see any benefits from this, only negatives.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Reviewed-by: Konrad Dybcio <konradybcio@kernel.org>
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Konrad
 
