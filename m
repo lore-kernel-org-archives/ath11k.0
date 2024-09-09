@@ -4,88 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B5AFCD4F4C
-	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 03:48:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86AE7ECE57E
+	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 08:20:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WzHz7THkziQEgqXPCjnx7uCmkZMMyuMMpkTozuIadsw=; b=AT+kSXlWlywB/qiwxcHZsED9iB
-	c0KaYTYJDe3ClAbofN/3/iLPrjyDlYCZQ7DZ5y2XeLw9QaVkrdgaBH9ineT85Mf6SVkKGqmzOY+t6
-	7jVaSnFY6OUKcOUA7+5f1T/rHL2Q+TsHY7K8InZ4xBTkdKeNdaRIoBnQI/HFbSV3oyLM6JCiQSUUT
-	UmVVlHacWgXR4yHcdvYRuiQ/UMXYpEqKBJSLup0M8gQadOmEYLDKV/TFBBHxS2clCu2H2sZSjTosj
-	QpNb2i6gIbTs163A8HH3JPWgXK7vw7OVixoIO6nhkspxntwmkhdWONo6gMroZpENf4CJjkVkpcXw+
-	qdvqvWcw==;
+	bh=nK4KanhWlRZSYU1GucfWC16J4+koH/HjKOEGZSUcp98=; b=pzpTbqFD2KoH/S6zfS5D3FLpA2
+	1nQiWQNQB75CERWkGlzIaW/72qH7NO3663DrOkLUi+Y/T0ciUDBcaFH8oCO4KqoSUdVtqhKUmTqMF
+	q/cAtrBJViqHLqMzcFy5B1pDMtbYsF4C2RfJ4pOC/4kzXQYjTlXsVIKR2jzNoHVBGYfbQ1WHgvF6b
+	eUL0q/TEbZ6RzYQEz/IlBdPdTNXeavlyK/JnHujib/UdBC/WQT7sleJBu17Xpnu40VNKqUq2WJkpR
+	X4L3PiCXCiEySEn2szC0jmpYBqcb4O7ASKsWmL2ShHcuO7r4JAR/rCY6s6tE+YP2SFa3cHqa8hOAq
+	zm+KlAsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snVOG-00000000Ofn-2buR;
-	Mon, 09 Sep 2024 03:48:36 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1snZdH-000000013Og-0Zng;
+	Mon, 09 Sep 2024 08:20:23 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snVNy-00000000OeK-0di4
+	id 1snZcu-000000013Cq-2zAf
 	for ath11k@lists.infradead.org;
-	Mon, 09 Sep 2024 03:48:19 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 488NhjLc013350;
-	Mon, 9 Sep 2024 03:48:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WzHz7THkziQEgqXPCjnx7uCmkZMMyuMMpkTozuIadsw=; b=WsHefuyQynjnRl7p
-	Kn7S8F6bRyA5O+mVylAeQPnamc3iMoz/lwsA/YLk/UKwy2n5/JKHBH45ulo0y7aX
-	e6WR19ZrlRiLFIIQXjrVyG5ojqSh5z+Ut2lwM/FKx6Qv8dVa3ZiqGHJN6dlwORGN
-	OxPX1iWiM7yexX1v4/PyVlnKo61foaa4q3BG4ETJnnERZdVB8tTNa8jYe3WSoL5x
-	O8d/7LRboCrWiPp+aNH+YC6niqXIYOC27u7Q9sJFUjoL4kT/pVvhFmmqY74FyQHc
-	XhbaHhoBX5dCaoNAi+2xh0LvvMLmZLIcXqa+NDeRiOPTFcw2/axC/kVGJla8ptiA
-	Aq0Qig==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy59sm1f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Sep 2024 03:48:13 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4893mCvw003283
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Sep 2024 03:48:13 GMT
-Received: from [10.151.41.25] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Sep 2024
- 20:48:10 -0700
-Message-ID: <44a7d182-154e-49b2-afb6-c1289d472513@quicinc.com>
-Date: Mon, 9 Sep 2024 09:18:07 +0530
+	Mon, 09 Sep 2024 08:20:02 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2f752d9ab62so34336151fa.3
+        for <ath11k@lists.infradead.org>; Mon, 09 Sep 2024 01:19:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725869997; x=1726474797; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nK4KanhWlRZSYU1GucfWC16J4+koH/HjKOEGZSUcp98=;
+        b=h06R6Hpe493S6fvJt8lmFypo1V96t0y9AauRry6cD6+OA3YfuTB015+s8WLZ86FD4G
+         vNa8woIhNHPu9CL8OjlOccWP7CLsIMAl4a/hnAtzLMt7f8XabubZPlziJRYfrSUL3g+i
+         K9XozgwTZW+USOW7WPLl90gR9U6nWYTJtIa/LgfTcPmfpgI//UHcZoZ9suH0ycGx7YsF
+         JI1ZwYZuMRAJEk88Y5RD1B5tZG+0SNLhHOuqySvM2LQhpsOlXOQaN0D9KTuBPwi5KZkn
+         yjwQD4oo/Q7TiEiSR5MaHW5xElD/lkuczNOuZl7kHpYcJmk/TmDimZNOGfAWDWOV5KlL
+         UjKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725869997; x=1726474797;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nK4KanhWlRZSYU1GucfWC16J4+koH/HjKOEGZSUcp98=;
+        b=ZKGlKAaJCGmuIN4VQq0dx58/PlW0bZ2pik7DkgInL0RaosdUGk4fmldYvN/TYhrxxZ
+         Kz7gIoezWbaC5DVbZ5wl4y8bB7a0vMBSxQq6GhyPeFws7wWUzEtUhpp0bcXljC/PHnjT
+         0ek+ZDp5ln2/n4+p4dge1uWoiucuIjOOgkKzv4aZU55BTRLcbq9X4xJwWAc0U4dZw1gE
+         SZxpFleF5lVKju0L1BC6O3ExLgL0zSuaJZzL2q/4/VDXzP1xBEw2BWZZEnJijEedlnTN
+         tUI+wkQMVOIgBejL8LP0t2hU0EE7iG/atj90v29xAJQTe2IrS9nEQOHonZl+tF3mNf+o
+         mXwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVkqIRQ0m6gtZyR3X3VqWqAGXOTGPx/UcnVuOfWrfYIJZXls9mS93IfFuLRhPTMFDrNN96sCg=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yww82LRukrY1LokX4PdVLS4jo/nfpemoFX3es5SGGI/ZGbiIKJd
+	n1PBdy+rBQTZiNfsh2qGZqxmD2u626gbLM3GEWz8PcjOqyGRHvjRINgPAyOdL9sdWkZLyoSmsFW
+	/UgGC9tHQnH4+MZPN4kTImAFOYF2iUIuEOdJ0fg==
+X-Google-Smtp-Source: AGHT+IHxT+bODhO8JSo/tiDz8IhrsZj4aQ7sUddKJwKAAWcGwi3uMKWPvMrXkLnRaBJd7bYB8HRQme7uZiCnsN4k1KI=
+X-Received: by 2002:a05:6512:4023:b0:535:6b9e:bcdd with SMTP id
+ 2adb3069b0e04-536587c73f8mr7930705e87.33.1725869996139; Mon, 09 Sep 2024
+ 01:19:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ath11k: allow missing memory-regions
-To: Caleb Connolly <caleb.connolly@linaro.org>,
-        Jeff Johnson
-	<jjohnson@kernel.org>, Kalle Valo <kvalo@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>
-References: <20240904095815.1572186-2-caleb.connolly@linaro.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <20240904095815.1572186-2-caleb.connolly@linaro.org>
+References: <20240814082301.8091-1-brgl@bgdev.pl> <87a5hcyite.fsf@kernel.org>
+ <CAMRc=Mcr7E0dxG09_gYPxg57gYAS4j2+-3x9GCS3wOcM46O=NQ@mail.gmail.com>
+ <87y146ayrm.fsf@kernel.org> <CAMRc=Mfes+=59WP8dcMsiUApqjsFrY9iVFEdKU6FbTKAFP1k_A@mail.gmail.com>
+ <878qw6hs4s.fsf@kernel.org> <CAMRc=Mc_Qy6-Rgsw_uOweUXtoiZGMR0D22Ou9nXUJDDdPCZqLw@mail.gmail.com>
+ <1e77b503-36ff-4a97-993b-f87d658c9970@quicinc.com>
+In-Reply-To: <1e77b503-36ff-4a97-993b-f87d658c9970@quicinc.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 9 Sep 2024 10:19:44 +0200
+Message-ID: <CAMRc=Mc9kzC6PLZM2-kmuC-FtzdM8P9e-YRVxWjg28tAc7BRgg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
+ of the ath11k on WCN6855
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zuhaROB0NlZvzXhCjy-nVXHPpVfdopI-
-X-Proofpoint-ORIG-GUID: zuhaROB0NlZvzXhCjy-nVXHPpVfdopI-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- bulkscore=0 mlxlogscore=793 phishscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 clxscore=1015 adultscore=0 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409090029
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240908_204818_231741_5B437857 
-X-CRM114-Status: GOOD (  10.90  )
+X-CRM114-CacheID: sfid-20240909_012000_932752_219FD72D 
+X-CRM114-Status: GOOD (  24.55  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,20 +100,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/4/2024 3:27 PM, Caleb Connolly wrote:
-> On SC7280 platforms which are running with TrustZone, it is not
-> necessary to manually map the memory regions used by the wifi hardware.
-> However, ath11k will currently fail to load unless both memory regions
-> are specified.
-> 
-> This breaks wifi on the rb3gen2 which only specifies the firmware memory
-> region and does not use the CE region.
-> 
-> Adjust the order of operations in ath11k_ahb_fw_resources_init() to
-> check for the wifi-firmware subnode before attempting to parse the
-> memory regions.
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+On Fri, Sep 6, 2024 at 8:38=E2=80=AFPM Jeff Johnson <quic_jjohnson@quicinc.=
+com> wrote:
+>
+> On 9/6/2024 12:44 AM, Bartosz Golaszewski wrote:
+> > For upstream - if you're using the WCN6855, you must specify the
+> > inputs for the WLAN module so it's only fair they be described as
+> > "required". For out-of-tree DTS I couldn't care less.
+> >
+> > You are not correct saying that "M.2 boards don't need these" because
+> > as a matter of fact: the WLAN module on your M.2 card takes these
+> > inputs from the PMU inside the WCN6855 package.
+>
+> Let me start by saying that DT is one area where I'm a newbie, so I hope =
+I can
+> get some education.
+>
+> I'd like to start with an observation: I've used both WCN6855 with ath11k=
+ and
+> WCN7850 with ath12k on an x86 laptop without any device tree, so from tha=
+t
+> perspective none of the device tree stuff is "required" -- these modules =
+"just
+> work".
+>
 
-Reviewed-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Yes. This is what I refer to as "fully dynamic" M.2 cards, where the
+card typically has an on-board PMIC that handles the power-up of the
+device, respecting all timings etc. No custom pins are used. You don't
+need device-tree. DT bindings don't concern this case. Even it this
+was an ARM, DT-based platform, you wouldn't need the DT entry.
+
+> However I also realize that when these are installed on Qualcomm ARM plat=
+forms
+> that there are GPIO pins that control things like XO clock, WLAN enable &
+> Bluetooth enable, as well as voltage regulators, and the device is
+> non-functional without those configured, so the device tree items are req=
+uired
+> in that environment.
+>
+> So just from that perspective saying something is "required" is confusing=
+ when
+> there are platforms where it isn't required. And perhaps that is what is
+> confusing Kalle as well?
+>
+
+The properties are required IF you have a DT representation. Because
+if you're modeling the physical package, this is what it looks like.
+The one on your "fully dynamic" M.2 card is the same - it also has the
+same internal inputs and outputs but you're not modeling the external
+package in the first place so you don't need to care about them. But
+if you do represent the chipset and not as a black box WCN6855 in its
+entirety but its WLAN, BT and PMU modules separately then it warrants
+making the true inputs of the WLAN module mandatory in the schema.
+
+Please let me know if this is enough of an explanation.
+
+Bart
 
