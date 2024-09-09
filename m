@@ -4,57 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3213BCD4F4C
-	for <ath11k@archiver.kernel.org>; Sun,  8 Sep 2024 11:00:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B5AFCD4F4C
+	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 03:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=0kBS0uMS51fqOSg289Upex9nDOrhbYN43LRBR5RsYQU=; b=YYI03iETpFgK2oEUYoHZf9hAS4
-	0arceUsOxHDNKZl58QubwG2VHyViECj/vxV0+TdubPfz3/mkV9dTcHcktynhWoTQW4MdZ3TUUy0js
-	DXk19BfDS5wOueEZHbyIXmkyR9h2kyhf5/fDEJRE0O9WZv8Tzp/90FvNVCJWZP5ebrkxIHjTEKOUU
-	/wqk+uL1dAmUEt4B1nSFTD6wEv/Jh4uZVQJrbEJOZKSdk3Uve70sd2iEx52smYou90cOMwMHFit8r
-	+akAOFoMrm42oQho7IEpqIaVg5jWeB3ufb6ly0zKIWMj1+nXV6h7uVzW8KDP8KZLncqQ74emxreYC
-	jl3IyQdA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=WzHz7THkziQEgqXPCjnx7uCmkZMMyuMMpkTozuIadsw=; b=AT+kSXlWlywB/qiwxcHZsED9iB
+	c0KaYTYJDe3ClAbofN/3/iLPrjyDlYCZQ7DZ5y2XeLw9QaVkrdgaBH9ineT85Mf6SVkKGqmzOY+t6
+	7jVaSnFY6OUKcOUA7+5f1T/rHL2Q+TsHY7K8InZ4xBTkdKeNdaRIoBnQI/HFbSV3oyLM6JCiQSUUT
+	UmVVlHacWgXR4yHcdvYRuiQ/UMXYpEqKBJSLup0M8gQadOmEYLDKV/TFBBHxS2clCu2H2sZSjTosj
+	QpNb2i6gIbTs163A8HH3JPWgXK7vw7OVixoIO6nhkspxntwmkhdWONo6gMroZpENf4CJjkVkpcXw+
+	qdvqvWcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snFeh-0000000Gdm2-13Ja;
-	Sun, 08 Sep 2024 11:00:31 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1snVOG-00000000Ofn-2buR;
+	Mon, 09 Sep 2024 03:48:36 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snFee-0000000Gdlf-0mmF
+	id 1snVNy-00000000OeK-0di4
 	for ath11k@lists.infradead.org;
-	Sun, 08 Sep 2024 11:00:29 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id C10DDA400FB
-	for <ath11k@lists.infradead.org>; Sun,  8 Sep 2024 11:00:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28BFCC4CEC3;
-	Sun,  8 Sep 2024 11:00:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725793226;
-	bh=0kBS0uMS51fqOSg289Upex9nDOrhbYN43LRBR5RsYQU=;
-	h=Date:From:To:Cc:Subject:From;
-	b=rqfkXhuJ+yUTilcMyHbD7X2hGph2Cmcfe9e5AQXmbvu0gRxB0CldTz/gqHOajlRYA
-	 SZyn1UP3yqqlXwZ46KssrOrRkxhaoM5raBwCLZTo9pKFluTciI/tw2HUDBvX9bChX/
-	 uzeoQMnIREIMYg07VfdECFLZbeBQqtl3PvyEOnyyQu6WHmp3YhI3a5ys+wPNORW6Ox
-	 4/JvhxawqMVz/xQazPok2FemBaswZmVzNGARuoYPIaUVK1XYRm7/aTaCRXDyyVuWOH
-	 zP9mPSHUe7E7S5Gq1VZORdlqrki/2bLic1E0vip8adF+cALCeZoozEtoy8YpRB+9OQ
-	 /1SVnVp0cf1aQ==
-Date: Sun, 8 Sep 2024 13:00:23 +0200
-From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-To: ath11k@lists.infradead.org
-Cc: Kalle Valo <kvalo@kernel.org>
-Subject: board.bin file for IPQ9574
-Message-ID: <t4kb7ljvau3ycvfr66kkidjqy2iim5ln2jobzrv5x6glb5cfwi@ybjrfbrogxwg>
+	Mon, 09 Sep 2024 03:48:19 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 488NhjLc013350;
+	Mon, 9 Sep 2024 03:48:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	WzHz7THkziQEgqXPCjnx7uCmkZMMyuMMpkTozuIadsw=; b=WsHefuyQynjnRl7p
+	Kn7S8F6bRyA5O+mVylAeQPnamc3iMoz/lwsA/YLk/UKwy2n5/JKHBH45ulo0y7aX
+	e6WR19ZrlRiLFIIQXjrVyG5ojqSh5z+Ut2lwM/FKx6Qv8dVa3ZiqGHJN6dlwORGN
+	OxPX1iWiM7yexX1v4/PyVlnKo61foaa4q3BG4ETJnnERZdVB8tTNa8jYe3WSoL5x
+	O8d/7LRboCrWiPp+aNH+YC6niqXIYOC27u7Q9sJFUjoL4kT/pVvhFmmqY74FyQHc
+	XhbaHhoBX5dCaoNAi+2xh0LvvMLmZLIcXqa+NDeRiOPTFcw2/axC/kVGJla8ptiA
+	Aq0Qig==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy59sm1f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Sep 2024 03:48:13 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4893mCvw003283
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Sep 2024 03:48:13 GMT
+Received: from [10.151.41.25] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Sep 2024
+ 20:48:10 -0700
+Message-ID: <44a7d182-154e-49b2-afb6-c1289d472513@quicinc.com>
+Date: Mon, 9 Sep 2024 09:18:07 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ath11k: allow missing memory-regions
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+        Jeff Johnson
+	<jjohnson@kernel.org>, Kalle Valo <kvalo@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>
+References: <20240904095815.1572186-2-caleb.connolly@linaro.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <20240904095815.1572186-2-caleb.connolly@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zuhaROB0NlZvzXhCjy-nVXHPpVfdopI-
+X-Proofpoint-ORIG-GUID: zuhaROB0NlZvzXhCjy-nVXHPpVfdopI-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ bulkscore=0 mlxlogscore=793 phishscore=0 impostorscore=0 mlxscore=0
+ priorityscore=1501 clxscore=1015 adultscore=0 lowpriorityscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409090029
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240908_040028_314908_22E9A152 
-X-CRM114-Status: UNSURE (   6.63  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240908_204818_231741_5B437857 
+X-CRM114-Status: GOOD (  10.90  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,23 +100,20 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle and linux-wireless,
+On 9/4/2024 3:27 PM, Caleb Connolly wrote:
+> On SC7280 platforms which are running with TrustZone, it is not
+> necessary to manually map the memory regions used by the wifi hardware.
+> However, ath11k will currently fail to load unless both memory regions
+> are specified.
+> 
+> This breaks wifi on the rb3gen2 which only specifies the firmware memory
+> region and does not use the CE region.
+> 
+> Adjust the order of operations in ath11k_ahb_fw_resources_init() to
+> check for the wifi-firmware subnode before attempting to parse the
+> memory regions.
+> 
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 
-I am trying to bring up a IPQ9574 prototype board with QCN5124 chip.
-
-I am stuck with the ath11k driver requesting board.bin file, which I
-seem to be unable to find anywhere. There is such a file (board-2.bin)
-for example for the IPQ8074 SoC in linux-firmware [1].
-
-There is IPQ9574 folder in https://github.com/quic/upstream-wifi-fw but
-it does not contain no board.bin, only other files that kernel
-requested.
-
-What is happening? Why isn't this file available anywhere?
-
-Thanks.
-
-Marek
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/ath11k/IPQ8074/hw2.0
+Reviewed-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 
