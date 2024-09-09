@@ -4,78 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E809ECE579
-	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 15:10:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C817BECE57A
+	for <ath11k@archiver.kernel.org>; Mon,  9 Sep 2024 15:12:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-Type:Subject:CC:To:From:MIME-Version:Date:Message-ID:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=qSyQ4pSfZEnrTREXFvnropqxg0UKjf2Lm16mH1Y1mlc=; b=Jx3BeV9DJc2c99VZ79DQgBPRNc
-	Newz3lAwKXmyFf00TC64HsKWtGOVUOtNPsBKHR4R+SABSKt4ttGEz4VWck9ELaQUciPg8NFCxa+pR
-	YmXMuX8a5nAOW+U537AieAFfYhuWIQ8Ja9zsYXa7AyfGao0gBo/3rUGIIY59hw3uIW7KHxaN2fjfa
-	Uf+pGS284C8RtiUk9M4TMogbbrwqA9krobBWhgNpB8Rj6NgQMd8VbspkZT22khkYz9Is/wlpnBRA6
-	9ySSkTIFlUCfIFmzdvGyH6Wudcaco19APgPnZfjNchH+hytru6zMIX9skIon1ymZQGSl7rxh67LG7
-	N6od+QjA==;
+	bh=A7QaaZrrEyCSWOUzDG1W4t46JElHBefqJS0I36xNoKA=; b=SV2H/7/EQRPa5/yvjHFYJxo7db
+	KREi7DO3q3ehP60RaPFv/m1iK0hYPJuiXib90poPu2gEHS9rFMR3ukwZgEl4FKdmLiRTB4X7hi/0F
+	rhTtdcr9uHbc8z3dA9WpqbMfS1VXxmJGa7OdXjHdNqk8uwCms3H2o2W15wyg22w0o1ZmyBVa/wiMC
+	dwO3iF/jlNayrKviF1o04eygQ6EYeEoCuubJoNjKjWedETAZSx1YYnzir5VXNr/zvdXN0RHRkVJ20
+	ueD6Z2V+fCZ5mSSEMNi+uCtn15dUm+m+TmemjPu57lBWdGkXAc+V1aEGnSe+MhUWEyt/rcoA1V5yF
+	5V7M5xtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sng2J-00000002P5K-2R1X;
-	Mon, 09 Sep 2024 15:10:39 +0000
-Received: from mail.rosalinux.ru ([195.19.76.54])
+	id 1sng4E-00000002POU-2Hsf;
+	Mon, 09 Sep 2024 15:12:38 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sng1a-00000002OsL-1Odg
-	for ath11k@lists.infradead.org;
-	Mon, 09 Sep 2024 15:09:56 +0000
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rosalinux.ru (Postfix) with ESMTP id DE719F96D6A8A;
-	Mon,  9 Sep 2024 18:09:41 +0300 (MSK)
-Received: from mail.rosalinux.ru ([127.0.0.1])
-	by localhost (mail.rosalinux.ru [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id UotMJwDW5c-o; Mon,  9 Sep 2024 18:09:41 +0300 (MSK)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rosalinux.ru (Postfix) with ESMTP id B1366F96D6A8E;
-	Mon,  9 Sep 2024 18:09:41 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rosalinux.ru B1366F96D6A8E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosalinux.ru;
-	s=1D4BB666-A0F1-11EB-A1A2-F53579C7F503; t=1725894581;
-	bh=qSyQ4pSfZEnrTREXFvnropqxg0UKjf2Lm16mH1Y1mlc=;
-	h=From:To:Date:Message-ID:MIME-Version;
-	b=kVoQM5LIZeuKaFX+8V0CIgPFP8tp6Xzg+KdSRB5Ws0aZAx7HkpIX6ksZMyyM3sQ0N
-	 FaXsOHy+WWpe+pK7oNnI9IT2qF2wmX13bRQL9my6D5QuosNnuo2X/Xyh7k9XYwfEbS
-	 6+7HTgEX/G8A7e1QR3WpI8zE8MtMjFX37puTP7TSCrhKK93PMK0Nhsdy2SPCPF11i+
-	 ZM3r67zof3Md0EoqlXvVVCO0HaujJ9gKcjx8EP3qwkWr5/b3SPIxWcVNyLdpUaBynh
-	 ItlN9woC0zk9vr4WvyauXBPOumvz0Cm0pz9tUlvo8QWaX8z+AS8so5AgWJ1ZrGsEqT
-	 YuWjoJe2lW5iQ==
-X-Virus-Scanned: amavisd-new at rosalinux.ru
-Received: from mail.rosalinux.ru ([127.0.0.1])
-	by localhost (mail.rosalinux.ru [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id IhIZLQJ360Z7; Mon,  9 Sep 2024 18:09:41 +0300 (MSK)
-Received: from localhost.localdomain (unknown [213.87.137.230])
-	by mail.rosalinux.ru (Postfix) with ESMTPSA id D52C1F96D6A8A;
-	Mon,  9 Sep 2024 18:09:40 +0300 (MSK)
-From: Mikhail Lobanov <m.lobanov@rosalinux.ru>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Mikhail Lobanov <m.lobanov@rosalinux.ru>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Govindaraj Saminathan <quic_gsamin@quicinc.com>,
-	Miles Hu <milehu@codeaurora.org>,
-	Sven Eckelmann <seckelmann@datto.com>,
-	Rajkumar Manoharan <rmanohar@codeaurora.org>,
-	John Crispin <john@phrozen.org>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	lvc-project@linuxtesting.org
-Subject: [PATCH] ath11k: modify null check logic in ath11k_ce_rx_post_pipe()
-Date: Mon,  9 Sep 2024 11:08:20 -0400
-Message-ID: <20240909150824.28195-1-m.lobanov@rosalinux.ru>
-X-Mailer: git-send-email 2.43.0
+	id 1sng4B-00000002PNf-3eZi;
+	Mon, 09 Sep 2024 15:12:37 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 489DRRC1024766;
+	Mon, 9 Sep 2024 15:12:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=A7QaaZrrEyCSWOUzDG1W4t
+	46JElHBefqJS0I36xNoKA=; b=kKLesKZ73051ALJNzYuZoA3bre0Pb+bwvBKspy
+	16LTdaoBxbOkYjMD+2KTTq/TTejqtdWi61bRYukuPfQukCdsFieZRAhUIHiZL0ce
+	TX5loq/2dmd3iyFKj8r21Bt2rTd7SlQQsxeZ30203Ms+Qnu7kZoVc8+f/aaIC61X
+	vNwEvnXKP2/9L6FEG8QAygSYwVZ12Z2u+WfCJm3P6woc6yvUXvQSnHBsFqkqZQcS
+	RZLKMg977OACUEAcpOUsxNntaNPP9la1qvddb0JXEH91OF6bjv1zTWsshex0Fvxv
+	VIrCONalwPpwhXwfP5JYFLtyMnxf4jYtKWLmWpi/0wZvo6tg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy5rb480-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Sep 2024 15:12:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 489FCLdn028693
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Sep 2024 15:12:21 GMT
+Received: from [10.111.181.163] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Sep 2024
+ 08:12:20 -0700
+Message-ID: <13914e4d-92d4-4ccd-a7d5-86c5a17426e8@quicinc.com>
+Date: Mon, 9 Sep 2024 08:12:19 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+To: <linux-wireless@vger.kernel.org>
+CC: <ath10k@lists.infradead.org>, <ath11k@lists.infradead.org>,
+        <ath12k@lists.infradead.org>, <quic_jjohnson@quicinc.com>,
+        <quic_kvalo@quicinc.com>
+Subject: pull-request: ath-next-20240909
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 5QM2Emhz1KwsWLxtp7a-Hz-PKffyJOfl
+X-Proofpoint-ORIG-GUID: 5QM2Emhz1KwsWLxtp7a-Hz-PKffyJOfl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ clxscore=1015 malwarescore=0 bulkscore=0 lowpriorityscore=0 adultscore=0
+ mlxscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=798 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
+ definitions=main-2409090120
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240909_080954_893968_BD1D89E2 
-X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-CacheID: sfid-20240909_081236_062906_16B4CEDE 
+X-CRM114-Status: UNSURE (   8.53  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,39 +96,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The previous logic in ath11k_ce_rx_post_pipe() incorrectly required both=20
-dest_ring and status_ring to be NULL in order to exit the function.=20
-This caused the function to continue even if only one of the pointers=20
-was NULL, potentially leading to null pointer dereferences in=20
-ath11k_ce_rx_buf_enqueue_pipe().
+The following changes since commit ae98f5c9fd8ba84cd408b41faa77e65bf1b4cdfa:
 
-Fix the condition by modifying the logic so that the function returns=20
-early if either dest_ring or status_ring is NULL.
+  Merge tag 'ath-next-20240812' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath (2024-08-13 12:58:32 +0300)
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+are available in the Git repository at:
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Mikhail Lobanov <m.lobanov@rosalinux.ru>
----
- drivers/net/wireless/ath/ath11k/ce.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-next-20240909
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/=
-ath/ath11k/ce.c
-index e66e86bdec20..9d4246d65d68 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -324,7 +324,7 @@ static int ath11k_ce_rx_post_pipe(struct ath11k_ce_pi=
-pe *pipe)
- 	dma_addr_t paddr;
- 	int ret =3D 0;
-=20
--	if (!(pipe->dest_ring || pipe->status_ring))
-+	if (!pipe->dest_ring || !pipe->status_ring)
- 		return 0;
-=20
- 	spin_lock_bh(&ab->ce.ce_lock);
---=20
-2.43.0
+for you to fetch changes up to 02f454f9aa6255d99611d6a4e37edd08812878df:
 
+  wifi: ath12k: Avoid -Wflex-array-member-not-at-end warnings (2024-09-05 19:20:21 +0300)
+
+----------------------------------------------------------------
+ath.git patches for v6.12
+
+This is once again a fairly light pull request since ath12k is still
+working on MLO-related changes, and the other drivers are mostly in
+maintenance mode.
+
+ath12k
+
+* Fix a frame-larger-than warning seen with debug builds
+* Fix flex-array-member-not-at-end warnings
+
+ath11k
+
+* Fix flex-array-member-not-at-end warnings
+
+ath9k
+
+* Fix a syzbot-reported issue on USB-based devices
+
+----------------------------------------------------------------
+Gustavo A. R. Silva (2):
+      wifi: ath11k: Avoid -Wflex-array-member-not-at-end warnings
+      wifi: ath12k: Avoid -Wflex-array-member-not-at-end warnings
+
+Miaoqing Pan (1):
+      wifi: ath12k: fix the stack frame size warning in ath12k_mac_op_hw_scan
+
+Toke Høiland-Jørgensen (1):
+      wifi: ath9k_htc: Use __skb_set_length() for resetting urb before resubmit
+
+ drivers/net/wireless/ath/ath11k/core.h   |  8 ++++-
+ drivers/net/wireless/ath/ath11k/dp.h     | 23 --------------
+ drivers/net/wireless/ath/ath12k/core.h   |  8 ++++-
+ drivers/net/wireless/ath/ath12k/dp.h     | 12 -------
+ drivers/net/wireless/ath/ath12k/mac.c    | 54 ++++++++++++++++++--------------
+ drivers/net/wireless/ath/ath9k/hif_usb.c |  6 ++--
+ 6 files changed, 46 insertions(+), 65 deletions(-)
 
