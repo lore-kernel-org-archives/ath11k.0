@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C681EECE564
-	for <ath11k@archiver.kernel.org>; Tue, 10 Sep 2024 09:23:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55A31EB64DE
+	for <ath11k@archiver.kernel.org>; Tue, 10 Sep 2024 11:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=N+D2N4NNRNCNnzK8mRYnIJP0q1WJ66VO1GMusWXG6K0=; b=fTqFMRy3QTgPlG4OYQajPPF+De
-	mqdKd8Hcivr1znzqfVUIiL5i5NZngN7SYU4T2XAt7avKCJygg6SMV0nJyMofXgTJBj7K8XaGQMObA
-	Z1yfEs5N0ngN2+BORhOkDjaTQ5cZaAglNU9sLdPlZwyJX1bqkdbhLJbX32QEH7h7T5iwwzu6EMl1R
-	Gm8vPnJKvH33FHSiQSxB9chbkdnBAFEx7dLBM/o/k7KGBvCj4KN8tSsfO2UYA9upam/F2y3WhATg0
-	KiHNHt0r8VlueJXi4ovMvkyQ2kffLY+nce+0BRF36akTzPwoYdW0Wfs7BcsnvQI4mgPEUxkdPEq60
-	pvJC/RSw==;
+	bh=NXq+ZcFe+uGF0qCrxYiYGxfjiCAC1RobJ6ZdNP4DdEY=; b=xhm/owAd8FNU7ZnSLDo0naoXGm
+	6UjYpAniRXu8n/GMJxIJmIcGau/mDX5WUfQN8wmaySNjBPejrrDfvQ5Bo357Lms0bDV2Bfgf8PccG
+	HQGGpr/4RSLOkp1mIDNY+bxoUxCjr8J2Rh2mQr0cvwDQ6NgTSlI9N5BtcIRL/MZi/6u600eJCG4Yc
+	t2G1VgT/139d3b/G4zZfauA121GfAxEW/lW4h0xdQrQ4NcKFIwIAiwwaijp4L9HpFbE1Xqhws1n6l
+	Q0dVj1rRGNAcqoYRNKbhQahbhqr3MoLC9T+XmmzLqYIb4HPDlP89xLi3RWFUrTEHQjYuxp53pspCC
+	grUVELjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snx6H-0000000504T-1Mku;
-	Tue, 10 Sep 2024 09:23:53 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1snzDn-00000005Q76-372p;
+	Tue, 10 Sep 2024 11:39:47 +0000
+Received: from dvalin.narfation.org ([213.160.73.56])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snx6D-0000000503j-3OoM;
-	Tue, 10 Sep 2024 09:23:51 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 2EA68A443AA;
-	Tue, 10 Sep 2024 09:23:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7670C4CEC3;
-	Tue, 10 Sep 2024 09:23:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725960228;
-	bh=tJP9GHCMCIAfr4hsxjN4iN1wAuceXtlv1/bK0SLhwJE=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=L9oS43ThCEcb8eQF0g8LE/Fhr0uKEWS3EQtrWaSQKrBQrgxUtjC8QWiMQ+tYTsQu3
-	 rurft+KIjLgnVgl4llTBSugBuo26vMMPUPaFoHO59JU8QlV8QmXmgrp7kD2QZ6sUz9
-	 ssCYJGNLbdq6dwg/zg6CKQqLviY8/xLoh+ifOh1N3l/WptFOT3+4tmfEG3ttWFTewn
-	 pNjB5K6oTFl9Lr/bmIe11L77vll+6GIKNV9Vu8qi4BiNl/MRWUgFARcP+JLzu3OKUo
-	 5MqnqnbkoCs5oGScZXXXntKbam8c7vhfgqkyLNbY8G1JAozGG9fdwWcBnNX0Rxi4wy
-	 eiZgbVHpErhaA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Sven Eckelmann <sven@narfation.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath11k@lists.infradead.org,
-  ath10k <ath10k@lists.infradead.org>,  ath12k
- <ath12k@lists.infradead.org>,  linux-wireless
- <linux-wireless@vger.kernel.org>, Robert Marko <robert.marko@sartura.hr>
+	id 1snzDk-00000005Q5v-1bWn;
+	Tue, 10 Sep 2024 11:39:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1725968381;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NXq+ZcFe+uGF0qCrxYiYGxfjiCAC1RobJ6ZdNP4DdEY=;
+	b=o+Fo7BfDSVouUSQY03qg/6AK+OlXK3bfrIHp1yKtYB7K8ErGjrCXk31FwDVBJnMle/PugM
+	0dn+8zS/4GAoqnfkWr1/JMmfUp8hebpCreiu7nZy9iVej8EeJ8AaiqX/CLlfEzhoHqyJCm
+	zckQNnWNXsc51WacwLyPsHgPPCO0fgA=
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, ath11k@lists.infradead.org,
+ ath10k <ath10k@lists.infradead.org>, ath12k <ath12k@lists.infradead.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ Robert Marko <robert.marko@sartura.hr>, Kalle Valo <kvalo@kernel.org>
 Subject: Re: New staging repos for ath1*k firmware
+Date: Tue, 10 Sep 2024 13:39:36 +0200
+Message-ID: <2248097.72vocr9iq0@ripper>
+In-Reply-To: <87h6ang8v3.fsf@kernel.org>
 References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
-	<CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
-	<3772134.MHq7AAxBmi@ripper>
-Date: Tue, 10 Sep 2024 12:23:44 +0300
-In-Reply-To: <3772134.MHq7AAxBmi@ripper> (Sven Eckelmann's message of "Tue, 10
-	Sep 2024 11:00:52 +0200")
-Message-ID: <87h6ang8v3.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+ <3772134.MHq7AAxBmi@ripper> <87h6ang8v3.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; boundary="nextPart2659000.7s5MMGUR32";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240910_022349_933557_1ADAF8C4 
-X-CRM114-Status: GOOD (  13.13  )
+X-CRM114-CacheID: sfid-20240910_043944_593090_0F418338 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,29 +67,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Sven Eckelmann <sven@narfation.org> writes:
+--nextPart2659000.7s5MMGUR32
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org
+Subject: Re: New staging repos for ath1*k firmware
+Date: Tue, 10 Sep 2024 13:39:36 +0200
+Message-ID: <2248097.72vocr9iq0@ripper>
+In-Reply-To: <87h6ang8v3.fsf@kernel.org>
+MIME-Version: 1.0
 
-> On Thursday, 7 March 2024 09:39:26 CEST Robert Marko wrote:
->> Can I please ask for IPQ6018 firmware to be updated to 2.9.0.1 as well?
->> 
->
-> I've asked them via their support platform. They closed the ticket after Jeff 
-> uploaded the 2.7.0.1 firmware (which was given to him by the firmware team).
->
-> I will ask again...
->
-> (Btw. thanks to Jeff and Kalle for managing the new firmware repositories - I 
-> just hope that you get better input from the firmware teams)
+On Tuesday, 10 September 2024 11:23:44 CEST Kalle Valo wrote:
+> As there are so many different branches I have lost track, do you have a
+> list of missing firmware updates? We could try to push for updates on
+> our own end as well.
 
-Thanks, this is not easy but we are trying to improve. It's just that
-the progress is so slow that it's really frustrating.
+Afaik, ath10k is missing various security updates - but I don't know the 
+firmware version which has these security updates.
 
-As there are so many different branches I have lost track, do you have a
-list of missing firmware updates? We could try to push for updates on
-our own end as well.
+ath11k is missing the 2.9.0.1 release - which seems to be still required to 
+get various APs working correctly (without a crash). Maybe Robert Marko has 
+the newest firmware version (not the file - the version) somewhere.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Afaik, there are even newer ath11k versions - for example for IPQ9574 (which 
+is completely missing at the moment in the repositories).
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+For the completely missing ones, I've submitted following list to QCA:
+
+* ath11k/IPQ5018_QCN6122 (that might be rather complicated due to the way how 
+  QCA designed this)
+* ath11k/IPQ5018_QCN6122_QCN6122 (that might be rather complicated due to the 
+  way how QCA designed this)
+* ath11k/IPQ9574
+* ath12k/IPQ5322
+* ath12k/IPQ5322_QCN6432_QCN6432 (sounds a little bit like the QCN6122 
+  situation)
+* ath12k/QCN9274
+
+Kind regards,
+	Sven
+--nextPart2659000.7s5MMGUR32
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCZuAv+AAKCRBND3cr0xT1
+yzNMAP4vOWz42pBBdfOi7bFUKqGG5FMHqf+B0fLQbv2d2diGhgEAkyF9prdNC8k0
+RX1aJrl/aoFbyY944ujcUZwra+h5ew4=
+=2o8c
+-----END PGP SIGNATURE-----
+
+--nextPart2659000.7s5MMGUR32--
+
+
+
 
