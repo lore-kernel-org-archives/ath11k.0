@@ -4,56 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC5DECE564
-	for <ath11k@archiver.kernel.org>; Tue, 10 Sep 2024 09:01:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C681EECE564
+	for <ath11k@archiver.kernel.org>; Tue, 10 Sep 2024 09:23:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=sM+7PPwYWN07NlwtJn7Vg3Kbt0LlTirc1KeW5XQhyvw=; b=N2tkJwFaM/QJndoxu4o/bXhenm
-	3RAsJkOUBWbOFhKyU6JkduflnvDOX54LxUGbOR0dpjv9UUf3tCkYApLR2hDNz8ug9onfoRHomyeve
-	SpxIoGOJtgnZPB2l8eo1pOWwhwiNQLl0KdeznBWoM4EPkU7zFP+S/430ptULF0WrVtP/tkAYXmTPF
-	HfZpXk+4FjX0TLTQicAy/EOc4YXck8tybz/XoJAQwZG9pecrkcoNI4tUZ5Qkd4ETThKobUsDAEu6b
-	MEwGQnaTHNN9Ai+T4B6dKxfdflkFcKJytl2+YXZ0faGzsEFcFRWgo25n/IcJGDot/YBqsT9vzQMQ2
-	BY38VNRQ==;
+	bh=N+D2N4NNRNCNnzK8mRYnIJP0q1WJ66VO1GMusWXG6K0=; b=fTqFMRy3QTgPlG4OYQajPPF+De
+	mqdKd8Hcivr1znzqfVUIiL5i5NZngN7SYU4T2XAt7avKCJygg6SMV0nJyMofXgTJBj7K8XaGQMObA
+	Z1yfEs5N0ngN2+BORhOkDjaTQ5cZaAglNU9sLdPlZwyJX1bqkdbhLJbX32QEH7h7T5iwwzu6EMl1R
+	Gm8vPnJKvH33FHSiQSxB9chbkdnBAFEx7dLBM/o/k7KGBvCj4KN8tSsfO2UYA9upam/F2y3WhATg0
+	KiHNHt0r8VlueJXi4ovMvkyQ2kffLY+nce+0BRF36akTzPwoYdW0Wfs7BcsnvQI4mgPEUxkdPEq60
+	pvJC/RSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snwko-00000004uh0-2804;
-	Tue, 10 Sep 2024 09:01:42 +0000
-Received: from dvalin.narfation.org ([213.160.73.56])
+	id 1snx6H-0000000504T-1Mku;
+	Tue, 10 Sep 2024 09:23:53 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snwkE-00000004uVC-0z1T;
-	Tue, 10 Sep 2024 09:01:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1725958858;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sM+7PPwYWN07NlwtJn7Vg3Kbt0LlTirc1KeW5XQhyvw=;
-	b=BSOBTfkcS6PsWA+UZr7YHUMUdR7mx3phmN6MaayXimpKGNiHCMIayJnWSpnqeiDsqo3riA
-	mVWPOJHvLQ5kRj/XXsldlPJdbc2mzwHzEv/N+UEWIOCvfD/8AviIh+u75RFW8690nBlw5g
-	xoXRyBWOgAiDTIEME0KUmyk1TKxi9/8=
-From: Sven Eckelmann <sven@narfation.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, ath11k@lists.infradead.org
-Cc: ath10k <ath10k@lists.infradead.org>, ath11k <ath11k@lists.infradead.org>,
- ath12k <ath12k@lists.infradead.org>,
- linux-wireless <linux-wireless@vger.kernel.org>,
- Kalle Valo <quic_kvalo@quicinc.com>, Robert Marko <robert.marko@sartura.hr>
+	id 1snx6D-0000000503j-3OoM;
+	Tue, 10 Sep 2024 09:23:51 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 2EA68A443AA;
+	Tue, 10 Sep 2024 09:23:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7670C4CEC3;
+	Tue, 10 Sep 2024 09:23:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725960228;
+	bh=tJP9GHCMCIAfr4hsxjN4iN1wAuceXtlv1/bK0SLhwJE=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=L9oS43ThCEcb8eQF0g8LE/Fhr0uKEWS3EQtrWaSQKrBQrgxUtjC8QWiMQ+tYTsQu3
+	 rurft+KIjLgnVgl4llTBSugBuo26vMMPUPaFoHO59JU8QlV8QmXmgrp7kD2QZ6sUz9
+	 ssCYJGNLbdq6dwg/zg6CKQqLviY8/xLoh+ifOh1N3l/WptFOT3+4tmfEG3ttWFTewn
+	 pNjB5K6oTFl9Lr/bmIe11L77vll+6GIKNV9Vu8qi4BiNl/MRWUgFARcP+JLzu3OKUo
+	 5MqnqnbkoCs5oGScZXXXntKbam8c7vhfgqkyLNbY8G1JAozGG9fdwWcBnNX0Rxi4wy
+	 eiZgbVHpErhaA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath11k@lists.infradead.org,
+  ath10k <ath10k@lists.infradead.org>,  ath12k
+ <ath12k@lists.infradead.org>,  linux-wireless
+ <linux-wireless@vger.kernel.org>, Robert Marko <robert.marko@sartura.hr>
 Subject: Re: New staging repos for ath1*k firmware
-Date: Tue, 10 Sep 2024 11:00:52 +0200
-Message-ID: <3772134.MHq7AAxBmi@ripper>
-In-Reply-To: <CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
 References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
- <CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
+	<CA+HBbNFQ+25u_PK2j3vYtiCZwv+shVAVeAHKqQCwhyCopORt4Q@mail.gmail.com>
+	<3772134.MHq7AAxBmi@ripper>
+Date: Tue, 10 Sep 2024 12:23:44 +0300
+In-Reply-To: <3772134.MHq7AAxBmi@ripper> (Sven Eckelmann's message of "Tue, 10
+	Sep 2024 11:00:52 +0200")
+Message-ID: <87h6ang8v3.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1945126.taCxCBeP46";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240910_020106_986282_49EB5A0C 
-X-CRM114-Status: UNSURE (   7.63  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240910_022349_933557_1ADAF8C4 
+X-CRM114-Status: GOOD (  13.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,44 +75,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---nextPart1945126.taCxCBeP46
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Re: New staging repos for ath1*k firmware
-Date: Tue, 10 Sep 2024 11:00:52 +0200
-Message-ID: <3772134.MHq7AAxBmi@ripper>
-MIME-Version: 1.0
+Sven Eckelmann <sven@narfation.org> writes:
 
-On Thursday, 7 March 2024 09:39:26 CEST Robert Marko wrote:
-> Can I please ask for IPQ6018 firmware to be updated to 2.9.0.1 as well?
-> 
+> On Thursday, 7 March 2024 09:39:26 CEST Robert Marko wrote:
+>> Can I please ask for IPQ6018 firmware to be updated to 2.9.0.1 as well?
+>> 
+>
+> I've asked them via their support platform. They closed the ticket after Jeff 
+> uploaded the 2.7.0.1 firmware (which was given to him by the firmware team).
+>
+> I will ask again...
+>
+> (Btw. thanks to Jeff and Kalle for managing the new firmware repositories - I 
+> just hope that you get better input from the firmware teams)
 
-I've asked them via their support platform. They closed the ticket after Jeff 
-uploaded the 2.7.0.1 firmware (which was given to him by the firmware team).
+Thanks, this is not easy but we are trying to improve. It's just that
+the progress is so slow that it's really frustrating.
 
-I will ask again...
+As there are so many different branches I have lost track, do you have a
+list of missing firmware updates? We could try to push for updates on
+our own end as well.
 
-(Btw. thanks to Jeff and Kalle for managing the new firmware repositories - I 
-just hope that you get better input from the firmware teams)
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Kind regards,
-	Sven
---nextPart1945126.taCxCBeP46
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCZuAKxAAKCRBND3cr0xT1
-y8lKAPwNsSwdxLSmTikf4A4zjnUCpxxZhriK+7u8hhJ+kTvhrQD+K4pV0rseDTTc
-JqCq029XRTiTr4WcIPL8mUWrOeGZTww=
-=7gwb
------END PGP SIGNATURE-----
-
---nextPart1945126.taCxCBeP46--
-
-
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
