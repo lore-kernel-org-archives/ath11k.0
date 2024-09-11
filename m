@@ -4,70 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD10DEDE9AC
-	for <ath11k@archiver.kernel.org>; Tue, 10 Sep 2024 17:23:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 326E2EE499C
+	for <ath11k@archiver.kernel.org>; Wed, 11 Sep 2024 19:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VfJ8wb4O4Tq9av+TrYlaEUakefTcKBqU6Pk6HQH4mDE=; b=LuuK+QehQmXX6V43nZXKOQUsLx
-	H/NszPXSi+hmtqaYvGhzwim/4uYSfFuDf8+Yb68tu7Szju85X/f1KDJPLBdJt4njj6cKaWx34mJmQ
-	Bj3uGyoWid7vlUZ9jJb0AYeTCSw05Mc5umsj1UcsRlm8oaS4Kj4aLXD0z8IYr59rY7bIORclUFAFM
-	uJaHwTKs99zQTNCvD3JZtiO3MVtSDAW1gQvdfbuPygNhzYGv0jspcz+Bbyd1c4qM4Uah0IgyaO4Ei
-	wDOhaoScO0fujMTYoPphzHka12mH87GsleODOxnpjSpvR4s8sqI3cutwYaxXGN3DDTCYlY4hxpk0c
-	z16haekA==;
+	bh=x0fFCbqLviOcKIuRISyLtYIUYll/QaQPmbfvi4zhJKU=; b=LUmVG0RgxDSyvPOieRd0F9ts7l
+	uP//KpJPALeDMN2jVafLQ/XRTI6w0myT/Is6JiXDZ61HyiYWYgn6SSHmtPlScxXWEaSB7wyZcT9sU
+	gr5TUSySv4AvsxEfx+FxGQuXNBNsm2h9pSXI/2padWbpynnNkfkKX2CZS3k2gP5t7zt7JYna++0za
+	H4hjeo0q+dD20CmTyiwED/GbymWdhI1c0dLTzp/+YXEvmImVn7q4BpjGEucaQG7zv6kK0UKxjCXth
+	PQIfAiCL0ICU604HIfFYxk0SAGNN3dBs2SKJ7VkDj1yVYI/2KXhgHF5xsdFV3RiLj3lzvDuKO7NQ1
+	rwXA9MyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1so4ah-00000006XKm-20VR;
-	Tue, 10 Sep 2024 17:23:47 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1soSrg-0000000Ajej-2ZCP;
+	Wed, 11 Sep 2024 19:18:56 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1so4Zl-00000006WzV-2GJD
-	for ath11k@lists.infradead.org;
-	Tue, 10 Sep 2024 17:22:51 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 246FAA44AEA;
-	Tue, 10 Sep 2024 17:22:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E111C4CEC4;
-	Tue, 10 Sep 2024 17:22:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725988968;
-	bh=Cj+QOyImgiVgaityzLKNeNzJTMHwLD4SZFxnYezKIyw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=V13Oi17BJDwrBwGAGHBLOV0EE4s8XKIH6XnlfWHcvhnnKPt+JlIbADrokXeWoF8hZ
-	 cSxmhtXj+2NuaqBI3bEE3X/0lYtmm730F2syBM9DT67zL/BY4eWzI2S3EuUPIjDlkt
-	 16zw071nG02MT7nhAJG/YT4bZs/3mMmMY1hS4v/Rh5voMKfhHjVP2vx1FJc94jBLau
-	 Gr1PWcYpSUYqrlOFXFwh3j5Qd3vwM36lqPeWUNPVaKOW5xHLBuFFRyRYjjAHtOCFGw
-	 ACGfV4Jr4/NpAbUPNo3+vjwoLasRDWN4vpPq70q4AUFLcVxN6IwAtkR+obfQyCihOY
-	 Lj3tCvO6Wkagg==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	Kalle Valo <quic_kvalo@quicinc.com>,
-	Sasha Levin <sashal@kernel.org>,
-	kvalo@kernel.org,
-	jjohnson@kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.10 15/18] Revert "wifi: ath11k: restore country code during resume"
-Date: Tue, 10 Sep 2024 13:22:00 -0400
-Message-ID: <20240910172214.2415568-15-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240910172214.2415568-1-sashal@kernel.org>
-References: <20240910172214.2415568-1-sashal@kernel.org>
+	id 1soSrd-0000000Ajdp-2K1q;
+	Wed, 11 Sep 2024 19:18:55 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48BEltaX008643;
+	Wed, 11 Sep 2024 19:18:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	x0fFCbqLviOcKIuRISyLtYIUYll/QaQPmbfvi4zhJKU=; b=BryHhaZToImmG/gb
+	HJAm5FnFef0ukKuxnvi3WUKJTTpK/sJeYtBLEt4fe/XhsWvVE+tEEshor2nBn4uC
+	9xMChjZgywR+lCyYvS3RH4j00w+u35cJjWc0wdpoYsoYl73Hm2ynGzHJ07MN7B1v
+	9IIBwTH7pCbNfTfgsz07OSn0Gb+60UBVhuyevFFILOdEkns8f47mpOQNGaf30Cer
+	3jZzlPnmSfda9bKqiQCzdDlbo1xs8Hv3skuhaK4u8YtvfnZko1XnCVQPtvA8x7WG
+	vvCnG8GfPxQX+VJ7WGDqmM+OluFoVsINl+vPVAlK3xdOzCjtlRFU6ejM5Uh98+m9
+	p2ZpWw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41he5e20x3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 19:18:46 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48BJIgKj005145
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 19:18:42 GMT
+Received: from [10.111.181.177] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Sep
+ 2024 12:18:41 -0700
+Message-ID: <4dd46a07-4896-433f-8e03-2cea28c255c2@quicinc.com>
+Date: Wed, 11 Sep 2024 12:18:41 -0700
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.10.9
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: New staging repos for ath1*k firmware
+To: Sven Eckelmann <sven@narfation.org>, <ath11k@lists.infradead.org>
+CC: ath10k <ath10k@lists.infradead.org>, ath12k <ath12k@lists.infradead.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        Robert Marko
+	<robert.marko@sartura.hr>, Kalle Valo <kvalo@kernel.org>
+References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
+ <3772134.MHq7AAxBmi@ripper> <87h6ang8v3.fsf@kernel.org>
+ <2248097.72vocr9iq0@ripper>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <2248097.72vocr9iq0@ripper>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: wf7W8AIzynEdZL5L1inQIZoIK3ucZgp6
+X-Proofpoint-GUID: wf7W8AIzynEdZL5L1inQIZoIK3ucZgp6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
+ malwarescore=0 mlxscore=0 phishscore=0 bulkscore=0 adultscore=0
+ mlxlogscore=885 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409110148
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240910_102249_724375_C0A0B891 
-X-CRM114-Status: UNSURE (   8.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240911_121853_637744_5B211069 
+X-CRM114-Status: GOOD (  10.99  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,47 +101,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Baochen Qiang <quic_bqiang@quicinc.com>
+On 9/10/2024 4:39 AM, Sven Eckelmann wrote:
+...
+> For the completely missing ones, I've submitted following list to QCA:
+> 
+> * ath11k/IPQ5018_QCN6122 (that might be rather complicated due to the way how 
+>   QCA designed this)
+> * ath11k/IPQ5018_QCN6122_QCN6122 (that might be rather complicated due to the 
+>   way how QCA designed this)
+> * ath11k/IPQ9574
+> * ath12k/IPQ5322
+> * ath12k/IPQ5322_QCN6432_QCN6432 (sounds a little bit like the QCN6122 
+>   situation)
 
-[ Upstream commit d3e154d7776ba57ab679fb816fb87b627fba21c9 ]
+I'm looking into the above. For the ath12k ones I suspect we are actually
+waiting for the platform support to land in the upstream kernel, which has
+some dependencies. See the current IPQ5322 RFC:
 
-This reverts commit 7f0343b7b8710436c1e6355c71782d32ada47e0c.
+https://lore.kernel.org/all/20240814094323.3927603-1-quic_rajkbhag@quicinc.com/
 
-We are going to revert commit 166a490f59ac ("wifi: ath11k: support hibernation"), on
-which this commit depends. With that commit reverted, this one is not needed any
-more, so revert this commit first.
+> * ath12k/QCN9274
 
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://patch.msgid.link/20240830073420.5790-2-quic_bqiang@quicinc.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/wireless/ath/ath11k/core.c | 10 ----------
- 1 file changed, 10 deletions(-)
+Does this help:
+https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware/-/commit/5d154d1a7f1059bf96b1127573e5b87f68538df8
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 47554c361963..a14d0c65000a 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1009,16 +1009,6 @@ int ath11k_core_resume(struct ath11k_base *ab)
- 		return -ETIMEDOUT;
- 	}
- 
--	if (ab->hw_params.current_cc_support &&
--	    ar->alpha2[0] != 0 && ar->alpha2[1] != 0) {
--		ret = ath11k_reg_set_cc(ar);
--		if (ret) {
--			ath11k_warn(ab, "failed to set country code during resume: %d\n",
--				    ret);
--			return ret;
--		}
--	}
--
- 	ret = ath11k_dp_rx_pktlog_start(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to start rx pktlog during resume: %d\n",
--- 
-2.43.0
-
+/jeff
 
