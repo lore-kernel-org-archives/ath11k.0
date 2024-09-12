@@ -4,89 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 326E2EE499C
-	for <ath11k@archiver.kernel.org>; Wed, 11 Sep 2024 19:18:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D13EEB56F
+	for <ath11k@archiver.kernel.org>; Thu, 12 Sep 2024 09:25:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=x0fFCbqLviOcKIuRISyLtYIUYll/QaQPmbfvi4zhJKU=; b=LUmVG0RgxDSyvPOieRd0F9ts7l
-	uP//KpJPALeDMN2jVafLQ/XRTI6w0myT/Is6JiXDZ61HyiYWYgn6SSHmtPlScxXWEaSB7wyZcT9sU
-	gr5TUSySv4AvsxEfx+FxGQuXNBNsm2h9pSXI/2padWbpynnNkfkKX2CZS3k2gP5t7zt7JYna++0za
-	H4hjeo0q+dD20CmTyiwED/GbymWdhI1c0dLTzp/+YXEvmImVn7q4BpjGEucaQG7zv6kK0UKxjCXth
-	PQIfAiCL0ICU604HIfFYxk0SAGNN3dBs2SKJ7VkDj1yVYI/2KXhgHF5xsdFV3RiLj3lzvDuKO7NQ1
-	rwXA9MyQ==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=GpopKbBFXAHhWa9QLLG1ddO0QWw2hR2VGF0Wh9AlkY4=; b=h5qS0qQe2O+GkeEIofjBOKnhAV
+	UqIJUqrKDh/DdsqoY0efgVrEg2sDVII0GY86d7ivcWOocqjrOQMqoN7c/ng0qintBjeR8Z/hQIsXi
+	lX1uwd597YlTPp/Xojj8bKOA8wntLErwF+hNLUPp3T7U7WfV2K3jC1pSDG/ZwSaYJQHdXtKHliO9H
+	9rmWRVhIxIc0i/6Bp187yzWBqYBqsblmGrGtROnJrcx3eE1HCArz9FXaHyB6kDhBGM3WZ1vGOOUbT
+	es29NQO/NCFhJ73Cz8iIMzoML34/uU63TJ7ifCjzXL4sUSjPlPpqm8WLx/myq4yf+becyoQfiylZf
+	odGBIJOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soSrg-0000000Ajej-2ZCP;
-	Wed, 11 Sep 2024 19:18:56 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1sog4W-0000000CW33-0maY;
+	Thu, 12 Sep 2024 09:25:04 +0000
+Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soSrd-0000000Ajdp-2K1q;
-	Wed, 11 Sep 2024 19:18:55 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48BEltaX008643;
-	Wed, 11 Sep 2024 19:18:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	x0fFCbqLviOcKIuRISyLtYIUYll/QaQPmbfvi4zhJKU=; b=BryHhaZToImmG/gb
-	HJAm5FnFef0ukKuxnvi3WUKJTTpK/sJeYtBLEt4fe/XhsWvVE+tEEshor2nBn4uC
-	9xMChjZgywR+lCyYvS3RH4j00w+u35cJjWc0wdpoYsoYl73Hm2ynGzHJ07MN7B1v
-	9IIBwTH7pCbNfTfgsz07OSn0Gb+60UBVhuyevFFILOdEkns8f47mpOQNGaf30Cer
-	3jZzlPnmSfda9bKqiQCzdDlbo1xs8Hv3skuhaK4u8YtvfnZko1XnCVQPtvA8x7WG
-	vvCnG8GfPxQX+VJ7WGDqmM+OluFoVsINl+vPVAlK3xdOzCjtlRFU6ejM5Uh98+m9
-	p2ZpWw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41he5e20x3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 19:18:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48BJIgKj005145
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 19:18:42 GMT
-Received: from [10.111.181.177] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Sep
- 2024 12:18:41 -0700
-Message-ID: <4dd46a07-4896-433f-8e03-2cea28c255c2@quicinc.com>
-Date: Wed, 11 Sep 2024 12:18:41 -0700
+	id 1sog4T-0000000CW1S-0Di2
+	for ath11k@lists.infradead.org;
+	Thu, 12 Sep 2024 09:25:02 +0000
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-5365928acd0so899539e87.2
+        for <ath11k@lists.infradead.org>; Thu, 12 Sep 2024 02:25:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726133099; x=1726737899; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GpopKbBFXAHhWa9QLLG1ddO0QWw2hR2VGF0Wh9AlkY4=;
+        b=c+7jYXCyGjmXf5jd0WFSOpgXL21lcWANHPqcD3ioUMV7Q6czHGyDXtAH0pWs87xnO6
+         TDVHd1TRCNzrfOoECde8oTV9V8zCqzACT5SCNULk9y4GpLuQdZ06jFLhdgDRQdqCe32A
+         x4gU6qX/aCTqX4vmjGqyCN3ISdPqUo28KGVOpOhKrdNyHNcA2xMcUA4yKVCUps0l3+Ht
+         9aAomGB0tomlZ7yKIxwSLslZVJEtXlQli5V/5wVs3Ur1VuTNLVLLqzVouhY9NSE5WE3G
+         qwtS4vTHF5yL+1BzCB5+4Qphw+RwwNTYRhpwm8bik6acdhfnYdsDvSpTa31CEnWKkiAT
+         zZMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726133099; x=1726737899;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GpopKbBFXAHhWa9QLLG1ddO0QWw2hR2VGF0Wh9AlkY4=;
+        b=eT1gxCCvybHzpUZJes37eGcjhXb3nMQ6u2f6zekUIOPeYlpUv+kJWwVUYBeogajL0Q
+         7GXsDNNpLp024rSfIMwx5Xo4qLn/YwOXqpRvsQ4DDco6uEGmT+1RNCLzQKGN35wNiM39
+         C7A1nfoRw0nsggZ7OPBH0YuZdUTTj7fcxZwI6KXMGN7HL2wAlBuyz/HwQmDzEAvUJRQp
+         IjgAnIBN752uiMe2IJfUy7CHNWdI8pLLbPMKm+8sEMVK8YH50aVLS86M8ukPhUdpanEc
+         ni2iGmg9O/t99aDOtYLfKTH69oPFrdcx1Ncvaf8hKr2u3H6qF6Ad+t79ECLhVJVdK1iP
+         xalA==
+X-Gm-Message-State: AOJu0YwntmR5MbddySBY6NGbYgwJ9esWjxDQ7yThBV/EzrychXUnstmA
+	r6klN+90YjeduhC0d4oehMzJHJqI/3SC5/EV3+FTSAXQScKmMgi/WmQun1imkMF7H3Q4Q4g7JmX
+	j
+X-Google-Smtp-Source: AGHT+IG82jMyQ7wL5C8tk96NqAby3fRz9Y6tWyh4WnCQ6s7pnhi/1ZVHnnYOHdN50DZ+iFs8EdxxAQ==
+X-Received: by 2002:a05:6512:a87:b0:52c:d626:77aa with SMTP id 2adb3069b0e04-53678ff4d11mr1182482e87.58.1726133097994;
+        Thu, 12 Sep 2024 02:24:57 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.90])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f903bfasm1866919e87.206.2024.09.12.02.24.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Sep 2024 02:24:57 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org
+Subject: [RFC] Qualcomm RB3 Gen2 WiFi firmware pull
+Date: Thu, 12 Sep 2024 12:24:57 +0300
+Message-Id: <20240912092457.1887906-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: New staging repos for ath1*k firmware
-To: Sven Eckelmann <sven@narfation.org>, <ath11k@lists.infradead.org>
-CC: ath10k <ath10k@lists.infradead.org>, ath12k <ath12k@lists.infradead.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        Robert Marko
-	<robert.marko@sartura.hr>, Kalle Valo <kvalo@kernel.org>
-References: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
- <3772134.MHq7AAxBmi@ripper> <87h6ang8v3.fsf@kernel.org>
- <2248097.72vocr9iq0@ripper>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <2248097.72vocr9iq0@ripper>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wf7W8AIzynEdZL5L1inQIZoIK3ucZgp6
-X-Proofpoint-GUID: wf7W8AIzynEdZL5L1inQIZoIK3ucZgp6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
- malwarescore=0 mlxscore=0 phishscore=0 bulkscore=0 adultscore=0
- mlxlogscore=885 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409110148
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240911_121853_637744_5B211069 
-X-CRM114-Status: GOOD (  10.99  )
+X-CRM114-CacheID: sfid-20240912_022501_126562_FF06782E 
+X-CRM114-Status: GOOD (  15.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,29 +91,72 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/10/2024 4:39 AM, Sven Eckelmann wrote:
-...
-> For the completely missing ones, I've submitted following list to QCA:
-> 
-> * ath11k/IPQ5018_QCN6122 (that might be rather complicated due to the way how 
->   QCA designed this)
-> * ath11k/IPQ5018_QCN6122_QCN6122 (that might be rather complicated due to the 
->   way how QCA designed this)
-> * ath11k/IPQ9574
-> * ath12k/IPQ5322
-> * ath12k/IPQ5322_QCN6432_QCN6432 (sounds a little bit like the QCN6122 
->   situation)
+Hello,
 
-I'm looking into the above. For the ath12k ones I suspect we are actually
-waiting for the platform support to land in the upstream kernel, which has
-some dependencies. See the current IPQ5322 RFC:
+I'm planning to send the following pull request to linux-firmware, adding WiFi
+DSP firmware for the RB3 Gen2 board. However before doing that I wanted to
+check if it's fine with all affected maintainers.
 
-https://lore.kernel.org/all/20240814094323.3927603-1-quic_rajkbhag@quicinc.com/
+Qualcomm RB3 Gen2 board resets if it's used with the existing WCN6750 firmware,
+most likely because of the differences in the TZ setup. This pull request adds
+firmware specific to the qcm6490 / qcs6490 SoC family.
 
-> * ath12k/QCN9274
 
-Does this help:
-https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware/-/commit/5d154d1a7f1059bf96b1127573e5b87f68538df8
+@Kalle, I understand that you cannot and won't fully support this firmware set.
+As a preparation to adding these files I moved existing files to the sc7280/
+subdir and pil-squashed them.  It is a generic preference to use a single MBN
+file instead of MDT + Bnn files. The mdt_loader detects the format without
+using the extension, handles the differences internally and doesn't require any
+changes to the driver or to the DT.  Could you please ack such a change?
 
-/jeff
+
+@Bjorn, @Konrad in the past we have pushed all WPSS / WiFi firmware to ath10k
+and ath11k even if gets executed on the host.  I should have caught this while
+reviewing DT changes.  This branch uses firmware name that isn't compatible
+with the existing DT files.  Would you insist on adding compatibility symlink
+or we'd better fix the DT files?
+
+---
+
+The following changes since commit 4a0367b33aeaa7fe1255a920d0e39f825b6985c1:
+
+  Merge branch 'rtl8852b' into 'main' (2024-09-11 11:00:41 +0000)
+
+are available in the Git repository at:
+
+  https://gitlab.com/lumag/linux-firmware rb3gen2-wpss
+
+for you to fetch changes up to fb8c67987c89b6f33fb787dfc6ff6e5e0f317f6d:
+
+  ath11k: add device-specific firmware for QCM6490 boards (2024-09-12 11:58:57 +0300)
+
+----------------------------------------------------------------
+Dmitry Baryshkov (2):
+      ath11k: move WCN6750 firmware to the device-specific subdir
+      ath11k: add device-specific firmware for QCM6490 boards
+
+ WHENCE                                             |  18 ++++++++----------
+ ath11k/WCN6750/hw1.0/qcm6490/wpss.mbn              | Bin 0 -> 7734064 bytes
+ ath11k/WCN6750/hw1.0/{wpss.b04 => sc7280/wpss.mbn} | Bin 5819999 -> 7463728 bytes
+ ath11k/WCN6750/hw1.0/wpss.b00                      | Bin 340 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b01                      | Bin 6848 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b02                      | Bin 10300 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b03                      | Bin 4096 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b05                      | Bin 164332 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b06                      | Bin 266684 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b07                      | Bin 1176368 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b08                      |   0
+ ath11k/WCN6750/hw1.0/wpss.mdt                      | Bin 7188 -> 0 bytes
+ 12 files changed, 8 insertions(+), 10 deletions(-)
+ create mode 100644 ath11k/WCN6750/hw1.0/qcm6490/wpss.mbn
+ rename ath11k/WCN6750/hw1.0/{wpss.b04 => sc7280/wpss.mbn} (77%)
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b00
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b01
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b02
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b03
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b05
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b06
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b07
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b08
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.mdt
 
