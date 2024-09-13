@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 602ACFA373C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73062FA373B
 	for <ath11k@archiver.kernel.org>; Fri, 13 Sep 2024 10:08:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=iXUNVmeaFT0h/18epsogM6Zum1NUrf14kSHlNYHMCnA=; b=FKx5lAKkvQ+IFIWJyaDQe0PLjX
-	ExHcaXDGk24cuQHsLxWl5qUj+iAFRfPdf24HTVb+mUqTXB63keY99dEAkkWPJOWYmi+83bX2WqjqO
-	CHC6mKwN8qloOdjUuQXtUqRbJT2BNt2tuNVKGd2gXLhg9mv+gjGAEWtHXfJS9fGoAxmZvANnSI2HX
-	AkM8dAeJBOwinLsbvutIC+pr05BoIuD1qWf162JzFOzR3ibbHxxetyQM8IWm1Jf69tTmlyuz2fe+G
-	TgDeKyOiLGrHO5WI0y6uLFsHOjVEq6Yc7PzuLZtqovkC0KcjxSkvABTHiZEdbvdxJv62Jq+bDAqv/
-	vv7184og==;
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gnwrLws4OWHxlaLvGkPQBd0E6bbarIwfSrfrfFxvOF0=; b=XQAEQJWsSC2yb+gaCGNx/5OP6G
+	ehu/aAevsPED4fHQ0OqBJfjSPoELCofty0MT8TtzsQ/FnwRPqy0jZ6+VA8+QPdUTNAos1LvSkrukc
+	9/KT7/ICH93GpGSTSFbWnrg024kT+ZrZ7n0O2fObX0vXcU+/GGALIHmDHf/NYDLgwIfxzLJNsMi81
+	VjLyvoRG8vINoeoCDy7o2L8aImbULSMIXEXNLT+vf7F5UHQURNqkJliZo6WnN8yLwulZb0AAA3Esf
+	188UcGjrekl0v2u2dng5dNKD26cWTuVxusgf07OL+1GHGn9OHy+Lp/cpVZROY+IvwMeTD2+U60S4E
+	lrqvuXYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sp3E9-0000000FZQf-2Gau;
-	Fri, 13 Sep 2024 10:08:33 +0000
+	id 1sp3EA-0000000FZRH-10wq;
+	Fri, 13 Sep 2024 10:08:34 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sp3DN-0000000FZKC-1nSS
+	id 1sp3DO-0000000FZKX-1gFQ
 	for ath11k@lists.infradead.org;
 	Fri, 13 Sep 2024 10:07:47 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48D9iJgK004004;
-	Fri, 13 Sep 2024 10:07:43 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48DA4Bo3005742;
+	Fri, 13 Sep 2024 10:07:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=iXUNVmeaFT0h/18epsogM6
-	Zum1NUrf14kSHlNYHMCnA=; b=E75AKj5b0mfSOy35nuYxREsOmzCJR1AjeCw+YU
-	ElrmJmcp03Ee0zDbadKnHp93m0+zkiqoB56iZE1jpi9krZO+FTpLj6fbZVdKB5Ib
-	5yDQznaO927Y2YQc+Hw6azizy4sWbkCZW/Nkn0tMJcVdAb5XYkRz/74R5XO6AFjk
-	oWkuZ3vdkNkyJWYZIbPqdo5qjMqoWR/7yaA9JCWryE6Z709aIlObraHMoYg4uPVg
-	35F3EV7Vzqoxjy6mEqL60++Krff/jVzf+AQ8S6G2zDCs8t6xtVBzPDyxQk5iWH6x
-	AtQyQjdIRIYEGL7BCG4fkiey+Q7xpsgy7GmIzYETr4ufo+pw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41kvma3yb7-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gnwrLws4OWHxlaLvGkPQBd0E6bbarIwfSrfrfFxvOF0=; b=Zx8b4t4lYYGkvnDt
+	qt3vgPW7d/zQZUARDRyKhOBe7T1HzCNkYcy4TlVPXDTH791bHIytuYAAbwhrkY/b
+	++3ph4OtA8Jc2/PLGLd13coHeHMd567rAppSBj8PActYxuIPYAaPFRfC7W+6RCCq
+	vBV4PN6jSaK59AwvrRzNvsxWqAPK4VJnuBrDLQ8ev88a0h4DmrcsHaYSpGXVRTUd
+	ql05o/HJ8d6s6vHx3/belMCNjNmNIeqRUNuek4ipiZnx0neTFeUn4oQ+zIdgK+Lh
+	E7jZTPI93X5+bp5jmC1U5eYceU9Vb3PJQrLnwuKuVc/gnifm87trGVrSgs6Q0ICZ
+	M5rfPg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy738fjs-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Sep 2024 10:07:43 +0000 (GMT)
+	Fri, 13 Sep 2024 10:07:45 +0000 (GMT)
 Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48DA7gev016199
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48DA7iur014310
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Sep 2024 10:07:42 GMT
+	Fri, 13 Sep 2024 10:07:44 GMT
 Received: from kangyang.ap.qualcomm.com (10.80.80.8) by
  nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 13 Sep 2024 03:07:40 -0700
+ 15.2.1544.9; Fri, 13 Sep 2024 03:07:42 -0700
 From: Kang Yang <quic_kangyang@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_kangyang@quicinc.com>
-Subject: [PATCH 0/2] wifi: ath11k: fix full monitor mode
-Date: Fri, 13 Sep 2024 18:07:06 +0800
-Message-ID: <20240913100708.756-1-quic_kangyang@quicinc.com>
+Subject: [PATCH 1/2] wifi: ath11k: fix RCU stall while reaping monitor destination ring
+Date: Fri, 13 Sep 2024 18:07:07 +0800
+Message-ID: <20240913100708.756-2-quic_kangyang@quicinc.com>
 X-Mailer: git-send-email 2.34.1.windows.1
+In-Reply-To: <20240913100708.756-1-quic_kangyang@quicinc.com>
+References: <20240913100708.756-1-quic_kangyang@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
@@ -66,20 +69,19 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: mR92xQyFFtEWQHuRBfRV4SMuaq5tOd-8
-X-Proofpoint-GUID: mR92xQyFFtEWQHuRBfRV4SMuaq5tOd-8
+X-Proofpoint-ORIG-GUID: O1kOXUH-ZqdQh2aydVVKE14EMN5-HArg
+X-Proofpoint-GUID: O1kOXUH-ZqdQh2aydVVKE14EMN5-HArg
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- phishscore=0 mlxlogscore=723 bulkscore=0 priorityscore=1501 adultscore=0
- mlxscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409130070
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
+ malwarescore=0 adultscore=0 mlxlogscore=999 suspectscore=0
+ priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409130070
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240913_030745_608050_58E5386B 
-X-CRM114-Status: UNSURE (   7.08  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240913_030746_585937_16CB4E17 
+X-CRM114-Status: GOOD (  13.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,20 +96,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Fix a warning and a bug for full monitor mode. With these two fixes,
-full monitor mode can work properly to capture packets.
+From: P Praneesh <quic_ppranees@quicinc.com>
 
-Kang Yang (1):
-  wifi: ath11k: add srng->lock for ath11k_hal_srng_* in monitor mode
+While processing the monitor destination ring, MSDUs are reaped from the
+link descriptor based on the corresponding buf_id.
 
-P Praneesh (1):
-  wifi: ath11k: fix RCU stall while reaping monitor destination ring
+However, sometimes the driver cannot obtain a valid buffer corresponding
+to the buf_id received from the hardware. This causes an infinite loop
+in the  the link descriptor based on the corresponding buf_id. However,
+sometimes the driver cannot obtain a valid buffer corresponding to the
+buf_id received from the hardware. This causes an infinite loop in the
+destination processing, resulting in a kernel crash.
 
- drivers/net/wireless/ath/ath11k/dp_rx.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+kernel log:
+ath11k_pci 0000:58:00.0: data msdu_pop: invalid buf_id 309
+ath11k_pci 0000:58:00.0: data dp_rx_monitor_link_desc_return failed
+ath11k_pci 0000:58:00.0: data msdu_pop: invalid buf_id 309
+ath11k_pci 0000:58:00.0: data dp_rx_monitor_link_desc_return failed
+……
 
+Fix this by skipping the problematic buf_id and reaping the next entry,
+replacing the break with the next MSDU processing.
 
-base-commit: 0606024b89d4ba59586cc7023d361a22065da8fa
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index c087d8a0f5b2..072963d3396c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -4781,7 +4781,7 @@ ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
+ 			if (!msdu) {
+ 				ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
+ 					   "msdu_pop: invalid buf_id %d\n", buf_id);
+-				break;
++				goto next_msdu;
+ 			}
+ 			rxcb = ATH11K_SKB_RXCB(msdu);
+ 			if (!rxcb->unmapped) {
+@@ -5405,7 +5405,7 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
+ 					   "full mon msdu_pop: invalid buf_id %d\n",
+ 					    buf_id);
+ 				spin_unlock_bh(&rx_ring->idr_lock);
+-				break;
++				goto next_msdu;
+ 			}
+ 			idr_remove(&rx_ring->bufs_idr, buf_id);
+ 			spin_unlock_bh(&rx_ring->idr_lock);
 -- 
 2.34.1
 
