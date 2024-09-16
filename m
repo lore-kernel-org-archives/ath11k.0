@@ -4,79 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D34AC021AA
-	for <ath11k@archiver.kernel.org>; Sat, 14 Sep 2024 19:01:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA6B1C3ABB2
+	for <ath11k@archiver.kernel.org>; Mon, 16 Sep 2024 06:57:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=szRf8lRJKxbqD9O4+nb1t2XKlx3NHKTDlt8GQW7inAc=; b=DElvLP7Gn3owD0JMzoFoP4zv/b
-	jpG5Y6/LRUXpWOhoOzD0MSruJ7+LWSiRqHtn5lmIUZdLwQVyU/aIprdyXS+p76Ez/9fbP5vA8StED
-	TXx1Wz0zGorHuqQnqO+FCqKVi26YYi40V1I13j+Dq8jQsJzSLKf+KcSHIztTIkT1EBhMJm4VYFWQD
-	9MrpUtAGRbR5toQ+I4UF6zajH4diWwfXjJQquCPVmxYYdqqVxqgQUv0L9gDkG5l3ErsOfOgfKGLi+
-	zgCoIKV8w19Q80oXPspmKimzeIAIswE2mA2CXSD8w4nST3tXdaK9t8zvXJwxtPG5MgrhzltqenfSM
-	dkrQJP0g==;
+	bh=dAs7HfiH92+MdPBIp+e0uUraw1yRewCYQMuTSB6qBYI=; b=G8OQygdW+BidL4xqC/l7h2Y/rF
+	4MK3yNIkKahvYQILUIAljoSaY1pOiSZNztxcG9f0E6T0K+BOSEkFoQWs8dPgWG7bsqVh0EVLyV6ln
+	6IDdexPKFK/n9zoz4d4922KWBHvPJq96KF4A8OQyBCks0QBf7KvRkQ5/HAiOvq9tRqktck+85elw5
+	kg7YZvJQDss/4ZsPwc+IyK6tssPGcPjtorLWw/ZV+g88TjKB7kloDaFPzFIZplebYslfyCgBBgQRi
+	I8akZpe8OvOehOJovI8I2lhPeum2JICF6ZVJulepB8IK/bClR89Y1fnXHNNSNJrH+2l+KqbfQs4pp
+	A0ZQ+Mqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1spY1e-000000018hX-2U70;
-	Sat, 14 Sep 2024 19:01:42 +0000
-Received: from mail-yw1-x112d.google.com ([2607:f8b0:4864:20::112d])
+	id 1sq5g3-00000003FZg-1YbC;
+	Mon, 16 Sep 2024 06:57:39 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1spY1G-000000018ec-2j6R
+	id 1sq5fL-00000003FFJ-0Tp5
 	for ath11k@lists.infradead.org;
-	Sat, 14 Sep 2024 19:01:20 +0000
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-6db449f274fso15054857b3.2
-        for <ath11k@lists.infradead.org>; Sat, 14 Sep 2024 12:01:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726340477; x=1726945277; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=szRf8lRJKxbqD9O4+nb1t2XKlx3NHKTDlt8GQW7inAc=;
-        b=vcoL2kwc0GcGDLVCejnBeFsjuNniHW6BiYTmC2IJmY1DZpmZsdzo4UVOxPRYSzhPJd
-         yiJyT57edb4oddgaD0kU/vCvXs59c+kvBBGb1+NBbRKI9ExTbDU23R6C3IUOHvSIfBsx
-         oh5wIU5U/P9CKdb7G+yOej4wlDEVtCLAFPqw8xIxBZ/8vD4PGgDhmECnluIfApI19/PG
-         MlG/ed2vIWX87C4wCSr+sOrY8HMNvXPpCat7/GpwsJY3vyfhzGqgkai9V9FZ+Oe5k6Z4
-         nCs7nhEB6fWiOxc7coYCl9wA0z22XX3MqWw/oPE+XQreamlO8BS8RU1YNUKLfEWwzGy0
-         Pl+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726340477; x=1726945277;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=szRf8lRJKxbqD9O4+nb1t2XKlx3NHKTDlt8GQW7inAc=;
-        b=PqNzWWLm2Ghz9tqcWWt1ALeovJ8yo41tXYT16iV1J2V/lIiXZ4XCJ1uZUq9Z3nunQJ
-         yRUxEMYVkxU5wkh1bUlRp7MLY7OwAcNaSE3F9mGMdoWX6lr3j12QybnvFflnCEUT+Hbw
-         Tu2huSPDfKrO2KTwQzvJjrkgVQSYNL25eq2Y8tulyS4Tg/xPljP6mbgBCVgXZn5h1Qd1
-         SIAEOfpanm7MGsowhGOqfjE0iq6neu9FJqup2hRq8RoD3L4vImPmGKatUCaq3iUaCz9G
-         c/Ub93EVg72RPeZAW7lxgNw/Ltez6hm7l5LMNWZXfw9z7jLg0dpUfVvJq3zeWbq3VEQl
-         lfTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXUjJSPgq4gkR6dV1H1L1B+ue804dJvf95HdfwFbBnQI0EJs1x4Yb6t7avW2zEJuRVsPpD6SsQ=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwVzv2m+T3wE2e6UEUGtWDwIgQ2Z1V570RAFZkq/HOvzdcEGkYN
-	mg1H/m4tPR1OBOgC0ltmlXmhUEcHGMr0p45PeOSMlUZ/xExEDnvfwSYdXvhoA0ArlInw4RJALTv
-	TI46xI41Fqaw6ZBu5OZZf5MVzyHMOZjnfpftrqA==
-X-Google-Smtp-Source: AGHT+IEyYeRFoGFg+PQZzdMQWmRZS+OsYYPvqZS7eTZ0rRViLSlHvcgnUvYkbOyRGTduKJNxJdxfW0EtWNYfbuIuVIY=
-X-Received: by 2002:a05:690c:7404:b0:6d6:3cd6:cddc with SMTP id
- 00721157ae682-6dbcc59c056mr52949537b3.45.1726340477171; Sat, 14 Sep 2024
- 12:01:17 -0700 (PDT)
+	Mon, 16 Sep 2024 06:56:56 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 36F3F5C563A;
+	Mon, 16 Sep 2024 06:56:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C67F0C4CEC4;
+	Mon, 16 Sep 2024 06:56:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726469813;
+	bh=gjW+uEwPpRURu/Ef6KeECNDjwMQxU0zhPnnwdbOTLlo=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=M/Nm8smynC0/BDjJb3Zv67xRRF1IfrGOO0l4IGvaFfi9FTDtKYGTZ0Nu5fkSBLUGu
+	 T+2svb8cUWLLEB3OJWp74fu4YLxEUmYxnDtSEQbgoXERU+MFLWooQMFI6GSydrinNF
+	 /sYBdm33Nf6Au9E/uxAmY6SOLvvGdgcL72/xr7LGP6EmiOL/i6nLsgK/A8HWFlIhPX
+	 zy75RIOkSm9aLRVIgd4S8J/1+fw/EQKLgVJ91eYRgviy6YwXDPHEqJTK5xyJ3NyFqA
+	 kjCs3HxQ/FyrCu7JSZCaY6AJ7zrgc07cUNevkqoD4hxqhjJ8XiqZYUbWLOieGbJShI
+	 8Xml5PkbPsj3w==
+From: Kalle Valo <kvalo@kernel.org>
+To: Kang Yang <quic_kangyang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH 0/2] wifi: ath11k: fix full monitor mode
+References: <20240913100708.756-1-quic_kangyang@quicinc.com>
+Date: Mon, 16 Sep 2024 09:56:50 +0300
+In-Reply-To: <20240913100708.756-1-quic_kangyang@quicinc.com> (Kang Yang's
+	message of "Fri, 13 Sep 2024 18:07:06 +0800")
+Message-ID: <87ed5kaxxp.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-References: <20240912092457.1887906-1-dmitry.baryshkov@linaro.org>
- <ZuOnz1QcNZUVYPZZ@hu-bjorande-lv.qualcomm.com> <CAA8EJprNbt1FE-rqL_R+KVyVWHzZekTwfSYnedJYrODFtS6qbQ@mail.gmail.com>
- <ZuRcRVsEI1D7Cg8h@hu-bjorande-lv.qualcomm.com>
-In-Reply-To: <ZuRcRVsEI1D7Cg8h@hu-bjorande-lv.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 14 Sep 2024 22:01:06 +0300
-Message-ID: <CAA8EJppEWR6pXgucAXAfMrND_87wHRiYg9v3K94M+16XXTZtNA@mail.gmail.com>
-Subject: Re: [RFC] Qualcomm RB3 Gen2 WiFi firmware pull
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Doug Anderson <dianders@chromium.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240914_120118_741489_1B9FA7E0 
-X-CRM114-Status: GOOD (  37.94  )
+X-CRM114-CacheID: sfid-20240915_235655_214440_F7D43C74 
+X-CRM114-Status: UNSURE (   5.85  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,97 +72,15 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, 13 Sept 2024 at 18:37, Bjorn Andersson
-<quic_bjorande@quicinc.com> wrote:
->
-> On Fri, Sep 13, 2024 at 07:12:58AM +0300, Dmitry Baryshkov wrote:
-> > On Fri, 13 Sept 2024 at 05:48, Bjorn Andersson
-> > <quic_bjorande@quicinc.com> wrote:
-> > >
-> > > On Thu, Sep 12, 2024 at 12:24:57PM +0300, Dmitry Baryshkov wrote:
-> > > > Hello,
-> > > >
-> > > > I'm planning to send the following pull request to linux-firmware, adding WiFi
-> > > > DSP firmware for the RB3 Gen2 board. However before doing that I wanted to
-> > > > check if it's fine with all affected maintainers.
-> > > >
-> > > > Qualcomm RB3 Gen2 board resets if it's used with the existing WCN6750 firmware,
-> > > > most likely because of the differences in the TZ setup. This pull request adds
-> > > > firmware specific to the qcm6490 / qcs6490 SoC family.
-> > > >
-> > >
-> > > Given that this firmware runs on the SoC, isn't it device specific? Does
-> > > it make sense to carry this under ath11k/, when it's expected to have
-> > > the same form and distribution as the other remoteproc firmware?
-> >
-> > This is an interesting question. I think that having all WiFi-related
-> > firmware under athNk makes sense. For example wlanmdsp.mbn files are
-> > also stored under ath10k/WCN3990/ subdirs.
-> > So do q6 and m3 firmware files under ath11k/IPQ*/.
-> >
->
-> I was under the impression that wlanmdsp.mbn (as being run in a
-> protection domain) had lower security/signature requirements than the
-> wpss.mbn.
->
-> If wpss.mbn is not vendor-signed (in a real product...) then I have no
-> concerns with keeping it under ath11k/
+Kang Yang <quic_kangyang@quicinc.com> writes:
 
-I think both are vendor-signed. On Pixel phones wlanmdsp.mbn is signed
-with the Google certificates:
+> Fix a warning and a bug for full monitor mode. With these two fixes,
+> full monitor mode can work properly to capture packets.
 
-Certificate: C=US,STATEORPROVINCENAME=CA,L=Mountain View,O=Google\,
-Inc.,OU=Android,CN=PixelRoot,EMAIL=android-cert@google.com
-    Certificate: C=US,STATEORPROVINCENAME=CA,L=Mountain
-View,OU=Android,O=Google Inc.,CN=Pixel2018CA
+On what hardware versions?
 
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
->
-> > >
-> > > >
-> > > > @Kalle, I understand that you cannot and won't fully support this firmware set.
-> > > > As a preparation to adding these files I moved existing files to the sc7280/
-> > > > subdir and pil-squashed them.  It is a generic preference to use a single MBN
-> > > > file instead of MDT + Bnn files. The mdt_loader detects the format without
-> > > > using the extension, handles the differences internally and doesn't require any
-> > > > changes to the driver or to the DT.  Could you please ack such a change?
-> > > >
-> > >
-> > > I much prefer that we switch this to the single-file version, so I'm
-> > > onboard with this.
-> > >
-> > > >
-> > > > @Bjorn, @Konrad in the past we have pushed all WPSS / WiFi firmware to ath10k
-> > > > and ath11k even if gets executed on the host.  I should have caught this while
-> > > > reviewing DT changes.  This branch uses firmware name that isn't compatible
-> > > > with the existing DT files.  Would you insist on adding compatibility symlink
-> > > > or we'd better fix the DT files?
-> > > >
-> > >
-> > > I think we have a limited user base of sc7280-chrome-common, so we
-> > > should be able to fix up the DeviceTree, and avoid the symlink.
-> >
-> > I think we should keep the ath11k/WCN6750/hw1.0/wpss.mdt symlink,
-> > that's fine. I was talking about adding the qcom/qcm6490/wpss.mbn ->
-> > ath11k/WCN6750/hw1.0/wpss.mbn and the same for qcs6490 (just for the
-> > sake of existing DT files) or it's fine to fix the DT files instead
-> > and omit the symlink.
-> >
->
-> Perhaps I'm mistaken, but does WiFi work on those boards today? I'm
-> inclined to just have us fix up the DT and avoid sprinkling the symlinks
-> all over the place.
->
->
-> I guess this shows that I need to start holding back on future
-> firmware-name entries until the linux-firmware structure is known.
-
-Maybe just for the cases where we don't have established practice.
-
-
-
-
---
-With best wishes
-Dmitry
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
