@@ -4,115 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0B29CE8D68
-	for <ath11k@archiver.kernel.org>; Thu, 19 Sep 2024 10:02:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C164CAC5B5
+	for <ath11k@archiver.kernel.org>; Thu, 19 Sep 2024 12:21:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=i4k2hoei2F2pud8eD/dR78Z31aJVpkxp9lbnGaK9Xv8=; b=04d4dE8Eq4L91o/YOYpOM+2PgD
-	ivgnS8f65KeksSWq5En0ZtIK1Sj6po0QNe0ViJqOhfJly6E4+gJnraonFMgYZ0bC4fqhzD+dSXnPo
-	yu84sIslcu6uTC3pYMUrsxDXJRPUo4QUYIqRh24rbzFqBj01nV8jQ/WqbtiF+qdpIEtu4PBX3EDv4
-	3CdjyDbfufRoQcA0pyzQzy9eRBcb3W0dypSJIOoIBUZSSO9mwLxRax89JGsWPJfTpu5vbnMmipxjt
-	AWMI/YzXPjMHwadGSNkhyXaBGcTyOTdu1xUm6KlOAxLxrU1r1lUh84k67zRBl0ZuAgA8M6terfR9h
-	DDI3F21A==;
+	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=/aPinBNpEQJmGkGlD8UKbnq3igt9GLhQ1nJTLZCt2t8=; b=4bKo6INGaJIDIJICRfY9KNtr5D
+	QXFddUTLtryjQF9eXnK3yFXA/tAwr51ScjgQwgYI2+W10EeUT8+Pzklc3CclHcF4lckNBHP0158ZP
+	3Q03QJxk0TbeT+GgZOBMyL97GKfTMLkUbC7b6yGW7B9qYAVPiohFBy346eQoJ8Ogf+crrEuC5sPye
+	xROyjVDrUDuaOqkcaJlBrVmBmwM9oKU/T54PDXUrm7MfN0/ph6Wmz50izEie7KjKRCtpSlUzQr6fk
+	kKeh8KGaJW/iL2zUFNfUA7f+xEDkW2NF3gvLfnZVCtvSTQcjPMFyv/1YV4q9ayCDvkHFlIMiUSTKC
+	OqeOhQ8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1srDzA-0000000A0Pb-24Nq;
-	Thu, 19 Sep 2024 10:02:04 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1srGAT-0000000AE4m-1E8z;
+	Thu, 19 Sep 2024 12:21:53 +0000
+Received: from mail-qk1-x733.google.com ([2607:f8b0:4864:20::733])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1srDy8-0000000A0Hz-38Pu
+	id 1srGAQ-0000000AE4G-0iYi
 	for ath11k@lists.infradead.org;
-	Thu, 19 Sep 2024 10:01:05 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id AB2035C5824;
-	Thu, 19 Sep 2024 10:00:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66565C4CECD;
-	Thu, 19 Sep 2024 10:00:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726740059;
-	bh=vXvW7MnCo/+EZQZ4PbmZTj1XR3D+SwmpjrH1EkwAtfA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZvIStKvSsi8xJ4NDi52MPo4ITXf6GKYOh9DaDih954gI0FtCLAifkRiInvGSfy5mr
-	 atHot5+8ljM52in3XRxvUSCkSz3T2EauvLekm/Y/OBm+wNMhGGby8+TGUOEYEj0pZv
-	 td8PZH46EEsBX8GaGQlt1bydSxD/2Zx+ZQXRvcTWAb3ZO7aTwJ8U3LQRP0zh2cFX9G
-	 YokszxY0G3ri9cgFJbfAPiRxCF0x+zSbr/wkf7zvdqlNPy4Et/6536wwJR9XE5Sn9b
-	 +ExNnqmY9+yMh4CERNaMg80doU49qObvhw75DecrTZ4xtdkFcGuiwRUPb4AHGqk33g
-	 qwvPlDpjNJDWA==
-Message-ID: <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org>
-Date: Thu, 19 Sep 2024 12:00:53 +0200
+	Thu, 19 Sep 2024 12:21:51 +0000
+Received: by mail-qk1-x733.google.com with SMTP id af79cd13be357-7a9a30a0490so80634885a.3
+        for <ath11k@lists.infradead.org>; Thu, 19 Sep 2024 05:21:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726748508; x=1727353308; darn=lists.infradead.org;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/aPinBNpEQJmGkGlD8UKbnq3igt9GLhQ1nJTLZCt2t8=;
+        b=Y5MpZ1/ZV1HxsWovqP9p2CEJ4ax55BunRHQMUQxdurAqSQnGxt9Y/UNuubm7zOUwnP
+         WAA/TaRkbXXTowpR8hU9ggT8Q/BPyIAV6kai455WUQEzW//8aNqK3TxeeAM+2obNo8ME
+         4wunXTYSAodYYOBMxrMxaEWu492MkuR+46W2wdl9Sl7+q3igoEFAkILFzrU0VYpzC4P0
+         BOr9XGdP71X13un3pnUI8xhicpgC+eBimoDD7bYyqdXqsZV7TXetPa8GMkST2zYXom7t
+         aooNBxq+eeN5R3F6a0JpbS+XSd8UUt4X1vJ1s0eowiyVLuWRV1dYvLPWuXKQbDzlkVdS
+         X2Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726748508; x=1727353308;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/aPinBNpEQJmGkGlD8UKbnq3igt9GLhQ1nJTLZCt2t8=;
+        b=QP/YDGlfVz2K4/uhzGvZacJeyR1+qhP48Cla/hlYUnl0iIIgBDyHOTPcgqLWti1+OI
+         vbscfuyhK/9V6Q1BtweRHuOm1+5+z+hCnF3cSUpNEbal9FUeWI7bP1tRLqG0eczsifcs
+         mSJyCECrlWudmEhKeZTcpmR+Rh8Ki1BM8jaOg2dg6YjeCMp3FLvBObQ9kr1h5UB865DZ
+         cvu6WNRsoUwC4X88xXwlIP5rE1I7KhUo9MNbrDlHriZUFaLXB1JNVh/NQGWytMIOHpCW
+         XMO/WUajncHfY0LjagnzU917oaHPO+gtMgPNVjnD7sfccS+rtgKgc1PoEYgoR3xAF6NQ
+         Xe+Q==
+X-Gm-Message-State: AOJu0YyBU1MTYYt89V5qImVgmiWtCB1A3vGT5IUjihkqNDVNlJi8hijW
+	1EL8Kspf0tb5gMgqqdBF4Uhes5MY6SZd39s8NLcqNC0iPEQjxmXi+f9iLw==
+X-Google-Smtp-Source: AGHT+IHmlJqFsWyU2FsvDsYsWVtepRrCPdLBdyxSiSA3TMcqUitL7XYEPTVYs6LXteGXk1D3u0Vg2w==
+X-Received: by 2002:a05:6214:4a89:b0:6c7:5e3c:ed4 with SMTP id 6a1803df08f44-6c75e3c0f9dmr38936096d6.32.1726748508322;
+        Thu, 19 Sep 2024 05:21:48 -0700 (PDT)
+Received: from [10.100.121.195] ([152.193.78.90])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45b1786961asm7059851cf.6.2024.09.19.05.21.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Sep 2024 05:21:47 -0700 (PDT)
+Message-ID: <eb41d8ec-c4f1-474e-a938-099f27aa94e3@gmail.com>
+Date: Thu, 19 Sep 2024 05:21:45 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240814082301.8091-1-brgl@bgdev.pl>
- <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> <87msk49j8m.fsf@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <87msk49j8m.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+To: "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
+ <linux-wireless@vger.kernel.org>
+Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+From: James Prestwood <prestwoj@gmail.com>
+Subject: ath11k/WCN6855 neighbor report request made immediately after
+ connection gets no response (with MFP)
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240919_030100_976133_C32D0CBC 
-X-CRM114-Status: UNSURE (   9.42  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240919_052150_245324_7F47962A 
+X-CRM114-Status: GOOD (  11.05  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,31 +92,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 19/09/2024 09:48, Kalle Valo wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> writes:
-> 
->> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> Describe the inputs from the PMU of the ath11k module on WCN6855.
->>>
->>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>> ---
->>> v1 -> v2:
->>> - update the example
->>
->> I don't understand why this patch is no being picked up. The code
->> correct represents the piece of hardware. The supplies should be
->> required, because this one particular device - the one described in this
->> binding - cannot work without them.
-> 
-> I have already explained the situation. With supplies changed to
-> optional I'm happy take the patch.
+Hi,
 
-You did not provide any relevant argument to this case. Your concerns
-described quite different case and are no applicable to DT based platforms.
+I noticed an issue when we started putting ath11k clients on a WPA3 
+network which seems to be related to the fact that management frame 
+protection is enabled (works fine on WPA2 no MFP). Immediately after an 
+initial association a neighbor report request goes out and we get no 
+response from the AP. After getting a PCAP in one case we noticed the 
+neighbor report request went out unencrypted, though still had the CCMP 
+IV parameter. The content of the request was the unencrypted request, 
+and something like 15 bytes of 0x00 padding. I will say, this initial 
+PCAP was made through the AP vendor so perhaps it automatically added 
+the right keys to decrypt the frame, this could be a red herring. I 
+tried on my home network and it was hit or miss, sometimes I would get a 
+response but sometimes I wouldn't, but I did see the frame was always 
+encrypted in my home network case though when adding the PMK directly in 
+wireshark I couldn't decrypt it, where on other hardware like iwlwifi I 
+could.
 
-Best regards,
-Krzysztof
+Some time after the connection neighbor reports work fine. I'm not sure 
+of a time frame or delay required that gets them working, but it makes 
+me suspect that ath11k doesn't have the keys fully added in the firmware 
+before userspace gets signaled as "connected". Running the same scenario 
+on ath10k or iwlwifi has no issues. This neighbor report request 
+immediately after connecting is IWD's default behavior, so its 
+relatively easy to test by just restarting IWD.
+
+Since the neighbor reports work fine after some time its not really a 
+critical issue but I wanted to bring it up just in case.
+
+Thanks,
+
+James
 
 
