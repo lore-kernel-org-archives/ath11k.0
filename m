@@ -4,61 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2BBDCF3963
-	for <ath11k@archiver.kernel.org>; Thu, 19 Sep 2024 19:48:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAE0CF58D4
+	for <ath11k@archiver.kernel.org>; Fri, 20 Sep 2024 06:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AEKAY1fV01EqWFMerL06owwH98kKOIUb2OCtA2k5J+s=; b=glB4VpaBDQmgJoB2LBSrd43o9c
-	sG+XrotjXFg53cRmWs+GiDrtaliOIj9YO91jrZYW6kToEiFPYfFKZd8OBsR68Yb/Jvyox33zl07kP
-	5E6womoUuVRJMGIR8wZpphyEOOzc96VYciqtg4AxuwekYpTT8IdonWTiS098uMf2VE8KJ0I0ZsZz+
-	TsKP2Uz6XDjArn0Ba0RLty56FyXkkdkjfoZbVwuMbBottB8qN2eYgkOkm/n5m9YYuQtw8qokVjfDF
-	en1ub7REDqvlTGDjGhGMIwwya3lOgb5ambr9EBHr43pFwJds20YUaFKhQrBAjNypwKCjvBbswNtv5
-	zfvXobFw==;
+	bh=jm++1wuc71B/T2jWb5Fdgn/TpZ0XkahTOAAPZlHXgMU=; b=cbbcVI3TttsNXLPBmYj3rzR1+o
+	9u1NcqPZUPIwFIUyz1kN35Ij5+ynPH+/STPGYB6UrqzELaXjWrfSOolWf5UOjguAolvbmDMWx7eSJ
+	08mDThVaiQrEApAd1HY2HozeJfdUJ/+/gzy9k24981/B9R+HtTwdrXjs68pQoStl48EhzAEenMKwM
+	/HHVVHXEWYh5o+ft4f3dy4VPE/gULZRjW4QidMfMpDscs8XDS+mVwxRd3RloQw8K408VInNp3jODJ
+	MWPQcpn56kb5dgNJlwvj+qIaDt/hYR/OznPJ7OCkKUDTS+/Awzxi7MGfEbKamqXUgI4gJOxzAogWZ
+	VkLIuVUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1srN8r-0000000Avt1-13G4;
-	Thu, 19 Sep 2024 19:48:41 +0000
+	id 1srX2A-0000000BX5z-2fRX;
+	Fri, 20 Sep 2024 06:22:26 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1srN8o-0000000Avsc-2Pcc
+	id 1srX27-0000000BX5Y-1Wou
 	for ath11k@lists.infradead.org;
-	Thu, 19 Sep 2024 19:48:39 +0000
+	Fri, 20 Sep 2024 06:22:24 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 9AD2F5C593B;
-	Thu, 19 Sep 2024 19:48:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78FB2C4CEC4;
-	Thu, 19 Sep 2024 19:48:36 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 4C01F5C5CB5;
+	Fri, 20 Sep 2024 06:22:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36798C4CEC3;
+	Fri, 20 Sep 2024 06:22:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726775317;
-	bh=cglVa2inwgOVL4Sj7zocIVqvJ4rKwOX/A+cKT+kSPH8=;
+	s=k20201202; t=1726813341;
+	bh=+jAirL1/oeAkkDpgdQtrPbO8kpNl79De0V9vN6W6MbM=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=W8IfyXPI0tiZ7wknMmNGaSVn5ItYfBsBsC1VyCX0a1ZL4yELyqF9K9dEJgVyt0Mgy
-	 1hGOwuH3+kZVUCTfAkKr3ol+eNsrA7qMPTwhmztDW1bjo+IGDvJ5XrQPIYKqyBNf03
-	 CZliANI8z/KU/Eb21xs+gJXf5qqfQ3oLAVP7BWLHGoQphN/a/GSUlvl4N9T6myYeSj
-	 BoiHxY+RfsQBNJH0Fay+86dilY80X1RM8huPkOCX+LOgslduCYt8BYTbpleFVfsYIh
-	 efkttbpC6XcKN/vjIzzMggyow3NBxwF7LOJdrTp1YrnNbOe1begK16qEAo6LUL7qOY
-	 8Xl6EXTjThPeA==
+	b=b5fVjqgBli9C8jpCq2u03zWPjW/REQgQXeNkVT/QXCSqO2Ith8qnm+/Zz9eKOyAfC
+	 4a42udKV8uWCIrB4IRBUO/3qJDMSnadIqgDKZk/BF21eZCoA2jiZNAnvBava0QydWJ
+	 3LRcNz/Z0siGhNYFQibbhDnUzJaly8rsGt4GeI7ar+DeGupHMJqCm+vjAw7aJxlWc2
+	 AeaM+Q0N06b5lOFgN8yZRLeLLSEBH22mwbNEXTUVthgBgPRtEvzVzBb+Z5u/33PO1+
+	 6/jjt+FxTJC/bIfMUBVKAwFZ1zmxGLyctrX3gcg1xRZcAKClsE07C7lf0jH7YRRsmV
+	 8U7i25yy2cBIA==
 From: Kalle Valo <kvalo@kernel.org>
-To: Drew G <gottagit@pm.me>
-Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: Missing hw2.1 symlink for WCN6855 in the kernel.org
- linux-firmware repo.
-References: <Wfrop8a7fA9t_i7gKRGWjgRBFd5f33ZojAUWrpnEEj6lhw0ciTgw6uOgXSGBR79ni2LaRvKMnU0FgPRxLum6jlssu-M71_67G1s1afnlmPs=@pm.me>
-Date: Thu, 19 Sep 2024 22:48:34 +0300
-In-Reply-To: <Wfrop8a7fA9t_i7gKRGWjgRBFd5f33ZojAUWrpnEEj6lhw0ciTgw6uOgXSGBR79ni2LaRvKMnU0FgPRxLum6jlssu-M71_67G1s1afnlmPs=@pm.me>
-	(Drew G.'s message of "Thu, 19 Sep 2024 18:54:45 +0000")
-Message-ID: <87o74jbf1p.fsf@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Arnd Bergmann <arnd@arndb.de>,  "David S . Miller"
+ <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
+ Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Jeff Johnson <jjohnson@kernel.org>,
+  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
+  devicetree@vger.kernel.org,  ath11k@lists.infradead.org,
+  linux-kernel@vger.kernel.org,  Bartosz Golaszewski
+ <bartosz.golaszewski@linaro.org>,  Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the
+ inputs of the ath11k on WCN6855
+References: <20240814082301.8091-1-brgl@bgdev.pl>
+	<83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org>
+	<87msk49j8m.fsf@kernel.org>
+	<CAMRc=McEWWm8N++4a5LMCAa0GWsQdi0KuSpj3ZuS_he=H0LP+w@mail.gmail.com>
+Date: Fri, 20 Sep 2024 09:22:16 +0300
+In-Reply-To: <CAMRc=McEWWm8N++4a5LMCAa0GWsQdi0KuSpj3ZuS_he=H0LP+w@mail.gmail.com>
+	(Bartosz Golaszewski's message of "Thu, 19 Sep 2024 03:59:17 -0500")
+Message-ID: <87ed5ec09z.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240919_124838_700237_85E58923 
-X-CRM114-Status: UNSURE (   9.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240919_232223_561348_61E1B10E 
+X-CRM114-Status: GOOD (  21.91  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,25 +83,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Drew G <gottagit@pm.me> writes:
+Bartosz Golaszewski <brgl@bgdev.pl> writes:
 
-> This simple symlink was added over 2 years ago but still hasn't made
-> it into the upstream linux-firmware.git in kernel.org? What is the
-> process to make this happen as it means WiFi is broken for people who
-> use regularly update from the kernel.org repo? How often are these
-> upstream files updated with the latest blobs in this codelinaro repo?
-> Thanks
+> On Thu, 19 Sep 2024 09:48:41 +0200, Kalle Valo <kvalo@kernel.org> said:
+>> Krzysztof Kozlowski <krzk@kernel.org> writes:
+>>
+>>> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
+>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>
+>>>> Describe the inputs from the PMU of the ath11k module on WCN6855.
+>>>>
+>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>> ---
+>>>> v1 -> v2:
+>>>> - update the example
+>>>
+>>> I don't understand why this patch is no being picked up. The code
+>>> correct represents the piece of hardware. The supplies should be
+>>> required, because this one particular device - the one described in this
+>>> binding - cannot work without them.
+>>
+>> I have already explained the situation. With supplies changed to
+>> optional I'm happy take the patch.
+>>
 >
-> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/commit/c90fbaf6224b73aaebd523e102fe7c78f6a542ad
+> No, silent NAKing and needless stalling is what you're doing. I responded to
+> your last email with extensive clarifications. You're being told by the
+> experts on the subject matter (Krzysztof and Conor) that the change is correct.
+>
+> The change has no functional impact on the driver code.
 
-In linux-firmware the links are created from WHENCE file:
+Until now it was possible to use qcom,ath11k-calibration-variant DT
+property with M.2 devices. If your patch is applied that's not possible
+anymore.
 
-Link: ath11k/WCN6855/hw2.1/regdb.bin -> ../hw2.0/regdb.bin
-Link: ath11k/WCN6855/hw2.1/board-2.bin -> ../hw2.0/board-2.bin
-Link: ath11k/WCN6855/hw2.1/amss.bin -> ../hw2.0/amss.bin
-Link: ath11k/WCN6855/hw2.1/m3.bin -> ../hw2.0/m3.bin
+> It's also in line with commit 71839a929d9e ("dt-bindings: net:
+> wireless: qcom,ath11k: describe the ath11k on QCA6390") under which we
+> had literally the same discussion and that you ended up picking up
+> after all.
 
-So when you do 'make install' it should create the symlinks.
+I don't care about QCA6390 as it's not really used anywhere anymore. I
+picked up 71839a929d9e, even though I considered it to be wrong, so that
+your pwrseq subsystem is not delayed. But WCN6855 is a different matter
+as it's more widely used.
+
+> Arnd: I've added you here to bring this to your attention because it's somewhat
+> related to what we discussed yesterday. It's a change that is very much
+> SoC-specific, that has trouble getting upstream due to the driver's maintainer
+> unwilingness to accept it. Is this a case where a change to DT bindings should
+> go through the SoC rather than the driver tree?
+
+Like I have said, I'm happy to take the patch if the supplies are
+optional. Why can't we do that?
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
