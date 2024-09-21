@@ -4,88 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE2BDCF9C68
-	for <ath11k@archiver.kernel.org>; Sat, 21 Sep 2024 04:56:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21273CF9C5B
+	for <ath11k@archiver.kernel.org>; Sat, 21 Sep 2024 14:43:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Hn4fReQotENKNmRSfo2n2nLfnja9kCI0SETHuXmadRw=; b=4i9ecvY6LDzkvODvRaU4lLibgw
-	C9+DOjj8u6smtPuViZqZgkijBRXAfrCpEMNib/luzu5he3CPh+Ue3HHESMjXzV+mNTTJgZMEGSyqB
-	7s5bwgBdNgpqEn5JWocluMbpfK+0ip2NCtLrmf58g/EZlFjk97D/Jr19aeVTlznZTqgVGg5PFHJ2P
-	W58+k/i3SGN005eD3f7n1HjxB2uA7hG5fTyHVV1yXvPckCE3n3WDaGLjN92lDKUiXtEdpHoJZXM9E
-	dLEh02r/vWkXbFImK7ukqJj4aKh7NYgjO7fZtHksYoVpp4jMmhwgBFCINj2D5cOWS0umIS8pach4P
-	aFaerCgQ==;
+	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Ze5CkP7MQHmwCuO1XBfTk19h4/iqKy8mgsPeFXpqRQg=; b=tmRoI+bHG2AUBmTUkUW9goRxf4
+	aLz/hT8YAIpcdJlhaGhR7ul5fUOHOazmr3DHbHftqYbzr3PGZZ2vA0d7AL29Uooo0ULH/pcpPdiB6
+	2g7Zwjmja6ClNSwDYz7oGNmlLIMJFJ3vC3QIsq/YaNdFI/Zxz35Kt7sIoEvgAwy8VF/ApOiwzhwM5
+	ZMH0fktFJF3gExy5XObX07lQiQ1/GhaWDto/MpsWmIj7JfSbFZ/g3NBp0zUc0MfrudTa3vncMIHK4
+	9Ut2IKjn9YE54ZOWp8gKlqo/CQ5N0Yy9xJRGGooZyE4t6bMRF3Jorcqr7ESZO2ega+caVYgdnjWBo
+	0FwiN6mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1srsAS-0000000DIjC-0QcS;
-	Sat, 21 Sep 2024 04:56:24 +0000
-Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
+	id 1ss1Kc-0000000Dnlr-1oJa;
+	Sat, 21 Sep 2024 14:43:30 +0000
+Received: from mout.web.de ([212.227.15.4])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1srsAO-0000000DIid-0gGS
-	for ath11k@lists.infradead.org;
-	Sat, 21 Sep 2024 04:56:22 +0000
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-53655b9bbcdso3196414e87.2
-        for <ath11k@lists.infradead.org>; Fri, 20 Sep 2024 21:56:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1726894577; x=1727499377; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Hn4fReQotENKNmRSfo2n2nLfnja9kCI0SETHuXmadRw=;
-        b=O+gop/W7D1x2CbRiu0bZ9/JRHHkIimF2Ht9RBa36Xq+nUmWWinxwHr65XKlNLXvLJN
-         F7BJs8XdLnbGIBQp1dSI7ERoV4NtXwqSidb4VAmxuL5qLkp2eXPwTBOTExbgMOP5Faba
-         n4Q15IonYBN3LzWOkRqYpV2PqAUs/Qmsm8Xq0HjCbLKTBaHgPpSuXkmxsTp6Kk63sG0f
-         2xcsB2D/UNirQ0yXUfdO5ZiHVqssLI+qB5cZnbtYHcBlKHgj14TAMGhzQMEi8/PYnsmB
-         N5JR9tg49VcyutZLvaEPdmjPRYK+cdNKWTOreQxb6m0rdXUk/ywYBT/ExvdNlYe1IjgD
-         Is0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726894577; x=1727499377;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Hn4fReQotENKNmRSfo2n2nLfnja9kCI0SETHuXmadRw=;
-        b=mNGijnCQrgl6H5kMPm/MJJi1Fq2TDxd5DxwzhaySF5J/bytoPiBC/zkQxBYk51vWHN
-         2i7YvJExE5Aba9Rsgdb0kAhLAi/PUlHrBRq/aFcWplzaDIDkn0ZgDziKYnRATL1/DHjR
-         47lXOY8BNgCC2wyJ4l+1W+uyjq8UJIZUm/MbfHd1dvYlsN3+4G5EPw3bP7vBoTemJFQ0
-         oX14wDPuqRYPnIS0dusF1JmZ8fzmlQGQo+eUkN7Nd7Wf5uHTvt+vBa+OyqHqL+pfW1Hm
-         s0o/yFvljIMkqR6sFBbpJU2f77miOQQi5fUuD5Hl8OZ5YXSKYnEqlnAji5Vrmq0oOosl
-         hDgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXlup/hBRa98yoHVqnKs5WNBV/G12FTApmVhrYswN0gCSnk8pZ8YNCSBskFagM4cFlZv26dpOY=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwGwSmkAqOhbt2CFozG8ZmgH6frgYeDeM88AVAiZL9bt570FCBm
-	QQSUc+HaZs968JkOBgKtzjxGYT3MU1/7p7x1fjmhOdCMKQeJ4F9ZTt6kEynssffwyyKxcNaFrDH
-	GIU0HbFwWf5PX8Se1fcLNTNID8ewTSFRylQusOg==
-X-Google-Smtp-Source: AGHT+IGA+v7LGeKCraVVm2W3WnYjYpCsEiYRqZiZBxxc6iUgx4AERJeZIH1YVuoDb+oq4aKfLjDqUP1XyHd4Vib/la0=
-X-Received: by 2002:a05:6512:158e:b0:52e:fdeb:9381 with SMTP id
- 2adb3069b0e04-536ad3d72c9mr2962459e87.43.1726894576446; Fri, 20 Sep 2024
- 21:56:16 -0700 (PDT)
+	id 1ss1KZ-0000000Dnky-3SHo;
+	Sat, 21 Sep 2024 14:43:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1726929801; x=1727534601; i=markus.elfring@web.de;
+	bh=Ze5CkP7MQHmwCuO1XBfTk19h4/iqKy8mgsPeFXpqRQg=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
+	 Subject:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=G5drAkqfR3T4Lzq/W+k4zvI48iRxKH9NhGenbapWZpTC+mRt3vs9RdVJcssk9Vk2
+	 u2kS4OSLTf8WNfhBPqoGf4VWPd3OWMXh34CrdaRs8TqyT37myKPPj2OM4OGgKPONM
+	 2+mjN73NJobh2mubr4SIZcvwj/9KK9PDDCTs9Kjk7ytbg4TbXGEuHGPvmHq5gp1lh
+	 8RxqzGLgSf2cKLnnXtzEhn/iI7AYjS05ub2B4wlpxj53vUsalO7Hy3VO4aID24YQC
+	 TgvLoaGMclKcymfy1SJHW+zPZHMgtJcLpy3arOot/FSx9J57l8voTfSjuv7A/kHd8
+	 4/NcLCjPtpgX6tGbMg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MtPre-1rxA3C3fcE-014EHH; Sat, 21
+ Sep 2024 16:43:20 +0200
+Message-ID: <6658a046-9d4e-4f18-8405-f5dadcf410ee@web.de>
+Date: Sat, 21 Sep 2024 16:43:20 +0200
 MIME-Version: 1.0
-References: <20240814082301.8091-1-brgl@bgdev.pl> <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org>
- <87msk49j8m.fsf@kernel.org> <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org>
- <87a5g2bz6j.fsf@kernel.org> <CAMRc=MeLick_+Czy5MhkX=SxVvR4WCmUZ8CQ5hQBVTe2fscCPg@mail.gmail.com>
- <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
-In-Reply-To: <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Sat, 21 Sep 2024 06:56:05 +0200
-Message-ID: <CAMRc=Mc2sbTrORZr4K4NgdyofNTipR1-QEqNK9mmNT=sd1myHQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Kalle Valo <kvalo@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+To: ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, Jeff Johnson <jjohnson@kernel.org>,
+ Kalle Valo <kvalo@kernel.org>
+Content-Language: en-GB
+Cc: LKML <linux-kernel@vger.kernel.org>, Julia Lawall <julia.lawall@inria.fr>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] wifi: ath: Use dev_kfree_skb_any(skb) call only once in three
+ functions
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:y0mbzl/D0kDzSIz9D2uwsK9cknnXkWfSJZHPGL5XJMRJJAIdscy
+ +8DFodCZeGr6Wqe7bh7idUQQpYUkJhOR2atAs/O0QSaeUF8eg87hnkzt945WatRXdo1lzFW
+ hxGVI0XOwZnVnSWOl8Piok6njIJVA/QPmn5ZOL70Dxzw1D2Js+hET8+H5Ll1DCV8ojMUQje
+ hiC/6o05XlXklUeT5k14g==
+UI-OutboundReport: notjunk:1;M01:P0:2UyM1PGgl5E=;0iXHIZBz4wWxEax5Cnp5LoA5N3L
+ ig9vOrQ27CnYRQczpkylS0WkR9ZigT+00f2fqrRj3Igps62vsdCdEvJ8fFYOBMSXuVAbYnb1O
+ ZbphnlosBXm3ZENoWjHQe/Q1B698OHtFjQ43OZJ7X5kEWJUGt0C5xA8pD2UHjyAFxpHc5LD+7
+ y5lYpprn72gOJAuURoMFo9p9XByK/2YGDPs8HL9rBtZ9vR1gbwCNpMqVDtPV6WVHQee1suBBG
+ DVWjKmTEeU3pz28r6ZsYOk8UAxw9n8uoD171QPtgvGv5K03Rmo5IqkQ2klJvQm2x3w24ad/hF
+ bBKaxp2HJW5jn1gClzdI1xnAlcfNKWVqrJZnPMkHqG+/vZvIyvGCmJNjHmJmMvoIAAuLet6vR
+ CHGuFM69WsvUGaC5iIK2PCMVIQe29R83TFr0F80QnbzXtJ0lE/5mAD9Ii4wYkjAt109/+MPa0
+ gYCCgSf4evynNpmrIswOSZb1izL8MGrGjxd79BZyQS5W1zso+nmOqAxTUYMg+DUri58vPOxch
+ YFo69Fe76byWPGJPklWs1hz2Q5Xx4YWeYU75f+jMIv2FrQqI2W3pPIElpwApW/fYh855c9lhe
+ hFXwtaDRzpOhdwE7Ukguq60UGeaIF9PQnU+ZRf0SiwIKxli2Vttj5JuvEWAYdHKExwGMNQ5ad
+ J3xOJkTsOrzhQQ4nTje15miz+mSMG6OVNfMNMgndEJ2tjbvJ/hxkxD9NoQkeS8Bo3skbwyqSm
+ elIvE5mxY2amLC20Sj6vpLL8SamElNcYSd9RJ31JhjTReDkvVnOW+2RUbxFL0xN8WnAKiBxZe
+ XF3/1GseKFM4oIS6S/WQdwjw==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240920_215620_497666_E1BE8F4F 
-X-CRM114-Status: GOOD (  14.77  )
+X-CRM114-CacheID: sfid-20240921_074328_256551_F323F851 
+X-CRM114-Status: UNSURE (   8.70  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,38 +92,88 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 20, 2024 at 11:02=E2=80=AFPM Jeff Johnson <quic_jjohnson@quicin=
-c.com> wrote:
->
-> >
-> > Let me give you an analogy: we don't really need to have always-on, fix=
-ed
-> > regulators in DTS. The drivers don't really need them. We do it for
-> > completeness of the HW description.
->
-> Again, since I'm a DT n00b:
-> Just to make sure I understand, you are saying that with this change any
-> existing .dts/.dtb files will still work with an updated driver, so the n=
-ew
-> properties are not required to be populated on existing devices.
->
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Sat, 21 Sep 2024 16:32:09 +0200
 
-There are no driver updates. No functional change.
+A dev_kfree_skb_any(skb) call was immediately used after a return code
+check in three function implementations.
+Thus use such a function call only once instead directly before the checks=
+.
 
-> However a new driver with support for these properties will utilize them =
-when
-> they are present, and the current ath11k .dts files will need to be updat=
-ed to
-> include these properties for pci17cb,1103, i.e. the following needs updat=
-ing:
-> arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+This issue was transformed by using the Coccinelle software.
 
-What new driver? The dts is being updated in a separate series[1]. It
-makes this platform use the new power sequencing subsystem for
-wcn6855. All other changes required to make it work are already
-upstream. There's no change to ath11k.
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/net/wireless/ath/ath11k/dp_rx.c  | 6 ++----
+ drivers/net/wireless/ath/ath12k/dp_mon.c | 4 +---
+ drivers/net/wireless/ath/ath12k/dp_rx.c  | 6 ++----
+ 3 files changed, 5 insertions(+), 11 deletions(-)
 
-Bart
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireles=
+s/ath/ath11k/dp_rx.c
+index c087d8a0f5b2..eb8e5fbdd77a 100644
+=2D-- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1808,11 +1808,9 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k=
+ *ar,
+ 		/* Free up all buffers of the MSDU */
+ 		while ((skb =3D __skb_dequeue(msdu_list)) !=3D NULL) {
+ 			rxcb =3D ATH11K_SKB_RXCB(skb);
+-			if (!rxcb->is_continuation) {
+-				dev_kfree_skb_any(skb);
+-				break;
+-			}
+ 			dev_kfree_skb_any(skb);
++			if (!rxcb->is_continuation)
++				break;
+ 		}
+ 		return -ENOMEM;
+ 	}
+diff --git a/drivers/net/wireless/ath/ath12k/dp_mon.c b/drivers/net/wirele=
+ss/ath/ath12k/dp_mon.c
+index 5c6749bc4039..21780f06b4ae 100644
+=2D-- a/drivers/net/wireless/ath/ath12k/dp_mon.c
++++ b/drivers/net/wireless/ath/ath12k/dp_mon.c
+@@ -2102,16 +2102,14 @@ int ath12k_dp_mon_srng_process(struct ath12k *ar, =
+int mac_id, int *budget,
+ 								  skb, napi, ppdu_id);
 
-[1] https://lore.kernel.org/all/20240905122023.47251-1-brgl@bgdev.pl/
+ 			peer =3D ath12k_peer_find_by_id(ab, ppdu_info->peer_id);
+-
++			dev_kfree_skb_any(skb);
+ 			if (!peer || !peer->sta) {
+ 				ath12k_dbg(ab, ATH12K_DBG_DATA,
+ 					   "failed to find the peer with peer_id %d\n",
+ 					   ppdu_info->peer_id);
+-				dev_kfree_skb_any(skb);
+ 				continue;
+ 			}
+
+-			dev_kfree_skb_any(skb);
+ 			pmon->dest_skb_q[i] =3D NULL;
+ 		}
+
+diff --git a/drivers/net/wireless/ath/ath12k/dp_rx.c b/drivers/net/wireles=
+s/ath/ath12k/dp_rx.c
+index 91e3393f7b5f..c0b59ac247bf 100644
+=2D-- a/drivers/net/wireless/ath/ath12k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath12k/dp_rx.c
+@@ -1804,11 +1804,9 @@ static int ath12k_dp_rx_msdu_coalesce(struct ath12k=
+ *ar,
+ 		/* Free up all buffers of the MSDU */
+ 		while ((skb =3D __skb_dequeue(msdu_list)) !=3D NULL) {
+ 			rxcb =3D ATH12K_SKB_RXCB(skb);
+-			if (!rxcb->is_continuation) {
+-				dev_kfree_skb_any(skb);
+-				break;
+-			}
+ 			dev_kfree_skb_any(skb);
++			if (!rxcb->is_continuation)
++				break;
+ 		}
+ 		return -ENOMEM;
+ 	}
+=2D-
+2.46.0
+
 
