@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59D27CF9C6B
-	for <ath11k@archiver.kernel.org>; Tue, 24 Sep 2024 08:05:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A62C7CF9C71
+	for <ath11k@archiver.kernel.org>; Tue, 24 Sep 2024 08:07:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=KPmXytplu7EqILVP8ftE5giinAYUgCu6+Jcf/8kiXj8=; b=AK8FXTkfCCvmJx9s0pHo1NX1R9
-	EzPSlnT7P1O8wMZZAuP3tWa7t0gwW3GPCthcz56KBgwaWN/PH11B7R5N2185C0bXFlJAx0neS1zdF
-	2hXVZjkuqedSYQXD2GB2qkTMYEa70D6m5uu2Rnx60iMfhwi1R46XlDEN8cbfK11IgrsU69Rq2tK0A
-	sx0R6HFp09AKpIIy156Lg1bEv00NLuytJbrsPmE0kyfjTbSWu11HMjl2jrHKpqgKukb/dxHb/IyPB
-	0iCm7TqQhhEo41ekPYOCpLQtxrq+vnST3i11NcUQIWhUbBDPEHMudXB3usBphIFCnyhE2Xe4O+I8q
-	cW5Dn6Lg==;
+	bh=Y/VcXvFe7bjoPdy68OibFgRl9/0Yc5ZqfQd8s6DnopQ=; b=ykIlR124A+VbDKJwpGCvbi0dXS
+	86evXHziPhVlmYWU9QrLI/PtKe9nc5gMWKLFQcrJ2i4fcNWfgxz0ur96bMswov53HdBwGkyX/Y6Bp
+	FKVUT2shTcBH4QVcu7G/jchZei7Qaodb3PGskVPPKanL1TimaIdkBN2sPLDGAvz9ehVnFLR7/ypWV
+	/LZSpFKx5h1DVTh9F125mO/mxjSbnphTAlTFOLXvmHrTA8+MITpkuAksBAS2EO9z9y6vRPilvIoXE
+	3ajeKLG1b+xN3JSFN1gqjG6sZ1Uc5/U25l9rj90TSg/LZrWGpbFShXUXWQkkVj+s3xR7udpQuW9Rt
+	Ng28YjXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1st0Xo-00000001WaR-01mp;
-	Tue, 24 Sep 2024 08:05:12 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1st0Zi-00000001WyW-1bfF;
+	Tue, 24 Sep 2024 08:07:10 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1st0Xl-00000001WYk-0kas
+	id 1st0Zg-00000001Wy3-1GEQ
 	for ath11k@lists.infradead.org;
-	Tue, 24 Sep 2024 08:05:10 +0000
+	Tue, 24 Sep 2024 08:07:09 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 398CBA4349C;
-	Tue, 24 Sep 2024 08:05:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02752C4CEC4;
-	Tue, 24 Sep 2024 08:05:01 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id DD82F5C5856;
+	Tue, 24 Sep 2024 08:07:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3692C4CEC4;
+	Tue, 24 Sep 2024 08:07:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727165107;
-	bh=1EwgglGXwlkwiwtIMUzxMIDqN0gt1tBgWfIzBlpe2lA=;
+	s=k20201202; t=1727165227;
+	bh=a2Dn3WT4VdIDoop+yzc4TcQvYYUfuBFPswfp8kYSdlM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EUEx97dUaotLlMRw8KwfNBJopRUoho5wEaBvi6LmCLwuEyV7gTcgjtNiv03MxuOKX
-	 TNI9dNPOabbLB/mpH6QFp+ySjGPASZ8vA0lkjDA/EdJ4Nh5l1GfiY1PhB3yOFawUtY
-	 IohkZNm7qTCuYad5/YTMCC/E+nZXiozbFr4KSHD0DvLYzJJBQjq8bv52RcG47Z0vim
-	 RKtTILvPuKEYdRXT2FPuI2wyAqJPJu0rMZ8UHdCP5wCRF74kPekAhCHkYuVv3PG8B6
-	 JVeEycjg8V4btMW6i9ZMEoiuaYjRQrc+ZwtlEFGykRtxng9NTPIW/tLhxF/EjqojHa
-	 u+bw7wi8mGk3w==
-Message-ID: <3ba2ce52-4da3-4066-baf0-5bab1a9f872a@kernel.org>
-Date: Tue, 24 Sep 2024 10:04:59 +0200
+	b=tNRhIx7khdwOILljzAB+UM3PQR51e0nrat4kCTr+65whkR5G7kBGajI7YJGcF/MRL
+	 kub2U8oNm5D3HToJhHR6GY1noDz7Uj1DIvO02N4MYbHLVV9DuLImufkyKRGl44yi45
+	 dEBWJTQf/ROLveFllr6TyRWgyJrPjLEhl3wYrUB8/nmyEuv3jYIrIHuAkM2AOSoyPy
+	 5bl2LwqKRVOXqEKH1S2fnNtapiP1GUX6VwC7lS/WMzF9BlTTJ8DGsYHu5HYBH4lYRI
+	 i5kKPORLKnjp3MWLCnyIT9nWqWAQGx+qdH0qks8d0tuvPpob9z1SFhLOvMDhz2BUKO
+	 KRO6K76Y85icQ==
+Message-ID: <1e79d94e-2f83-4762-b126-ed865142f1ed@kernel.org>
+Date: Tue, 24 Sep 2024 10:06:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
  of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+To: Jeff Johnson <quic_jjohnson@quicinc.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
  Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
@@ -63,6 +63,8 @@ Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
 References: <20240814082301.8091-1-brgl@bgdev.pl>
  <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> <87msk49j8m.fsf@kernel.org>
  <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org> <87a5g2bz6j.fsf@kernel.org>
+ <CAMRc=MeLick_+Czy5MhkX=SxVvR4WCmUZ8CQ5hQBVTe2fscCPg@mail.gmail.com>
+ <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,12 +110,12 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <87a5g2bz6j.fsf@kernel.org>
+In-Reply-To: <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240924_010509_397754_43FA1AA2 
-X-CRM114-Status: GOOD (  21.72  )
+X-CRM114-CacheID: sfid-20240924_010708_466311_B17D16F6 
+X-CRM114-Status: GOOD (  29.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,77 +130,133 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 20/09/2024 08:45, Kalle Valo wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> writes:
-> 
->> On 19/09/2024 09:48, Kalle Valo wrote:
+On 20/09/2024 23:02, Jeff Johnson wrote:
+> On 9/20/2024 1:22 AM, Bartosz Golaszewski wrote:
+>> On Fri, 20 Sep 2024 08:45:56 +0200, Kalle Valo <kvalo@kernel.org> said:
 >>> Krzysztof Kozlowski <krzk@kernel.org> writes:
 >>>
->>>> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
->>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>> On 19/09/2024 09:48, Kalle Valo wrote:
+>>>>> Krzysztof Kozlowski <krzk@kernel.org> writes:
 >>>>>
->>>>> Describe the inputs from the PMU of the ath11k module on WCN6855.
+>>>>>> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
+>>>>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>>>>
+>>>>>>> Describe the inputs from the PMU of the ath11k module on WCN6855.
+>>>>>>>
+>>>>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>>>> ---
+>>>>>>> v1 -> v2:
+>>>>>>> - update the example
+>>>>>>
+>>>>>> I don't understand why this patch is no being picked up. The code
+>>>>>> correct represents the piece of hardware. The supplies should be
+>>>>>> required, because this one particular device - the one described in this
+>>>>>> binding - cannot work without them.
 >>>>>
->>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>> ---
->>>>> v1 -> v2:
->>>>> - update the example
+>>>>> I have already explained the situation. With supplies changed to
+>>>>> optional I'm happy take the patch.
 >>>>
->>>> I don't understand why this patch is no being picked up. The code
->>>> correct represents the piece of hardware. The supplies should be
->>>> required, because this one particular device - the one described in this
->>>> binding - cannot work without them.
+>>>> You did not provide any relevant argument to this case. Your concerns
+>>>> described quite different case and are no applicable to DT based platforms.
 >>>
->>> I have already explained the situation. With supplies changed to
->>> optional I'm happy take the patch.
+>>> Ok, I'll try to explain my concerns one more time. I'll try to be
+>>> thorough so will be a longer mail.
+>>>
+>>> In ath11k we have board files, it's basically board/product specific
+>>> calibration data which is combined with the calibration data from chip's
+>>> OTP. Choosing the correct board file is essential as otherwise the
+>>> performance can be bad or the device doesn't work at all.
+>>>
+>>> The board files are stored in board-2.bin file in /lib/firmware. ath11k
+>>> chooses the correct board file based on the information provided by the
+>>> ath11k firmware and then transfers the board file to firmware. From
+>>> board-2.bin the correct board file is search based on strings like this:
+>>>
+>>> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255
+>>> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255,variant=HO_BNM
+>>>
+>>> But the firmware does not always provide unique enough information for
+>>> choosing the correct board file and that's why we added the variant
+>>> property (the second example above). This variant property gives us the
+>>> means to name the board files uniquely and not have any conflicts. In
+>>> x86 systems we retrieve it from SMBIOS and in DT systems using
+>>> qcom,ath11k-calibration-variant property.
+>>>
 >>
->> You did not provide any relevant argument to this case. Your concerns
->> described quite different case and are no applicable to DT based platforms.
+>> No issues here.
+>>
+>>> If WCN6855 supplies are marked as required, it means that we cannot use
+>>> qcom,ath11k-calibration-variant DT property anymore with WCN6855 M.2
+>>> boards. So if we have devices which don't provide unique information
+>>> then for those devices it's impossible to automatically to choose the
+>>> correct board file.
+>>>
+>>
+>> What you're really trying to say is: we cannot use the following snippet of
+>> DTS anymore:
+>>
+>> 	&pcie4_port0 {
+>> 		wifi@0 {
+>> 			compatible = "pci17cb,1103";
+>> 			reg = <0x10000 0x0 0x0 0x0 0x0>;
+>>
+>> 			qcom,ath11k-calibration-variant = "LE_X13S";
+>> 		};
+>> 	};
+>>
+>> First: it's not true. We are not allowed to break existing device-tree sources
+>> and a change to the schema has no power to do so anyway. You will however no
+>> longer be able to upstream just this as it will not pass make dtbs_check
+>> anymore.
+>>
+>> Second: this bit is incomplete even if the WCN6855 package is on a detachable
+>> M.2 card. When a DT property is defined as optional in schema, it doesn't
+>> mean: "the driver will work fine without it". It means: "the *hardware* does
+>> not actually need it to function". That's a huge difference. DTS is not a
+>> configuration file for your convenience.
+>>
+>>> So based on this, to me the correct solution here is to make the
+>>> supplies optional so that qcom,ath11k-calibration-variant DT property
+>>> can continue to be used with WCN6855 M.2 boards.
+>>>
+>>
+>> No, this is the convenient solution. The *correct* solution is to say how the
+>> ath11k inside the WCN6855 package is really supplied. The dt-bindings should
+>> define the correct representation, not the convenient one.
+>>
+>> Let me give you an analogy: we don't really need to have always-on, fixed
+>> regulators in DTS. The drivers don't really need them. We do it for
+>> completeness of the HW description.
 > 
-> Ok, I'll try to explain my concerns one more time. I'll try to be
-> thorough so will be a longer mail.
-> 
-> In ath11k we have board files, it's basically board/product specific
-> calibration data which is combined with the calibration data from chip's
-> OTP. Choosing the correct board file is essential as otherwise the
-> performance can be bad or the device doesn't work at all.
-> 
-> The board files are stored in board-2.bin file in /lib/firmware. ath11k
-> chooses the correct board file based on the information provided by the
-> ath11k firmware and then transfers the board file to firmware. From
-> board-2.bin the correct board file is search based on strings like this:
-> 
-> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255
-> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255,variant=HO_BNM
-> 
-> But the firmware does not always provide unique enough information for
-> choosing the correct board file and that's why we added the variant
-> property (the second example above). This variant property gives us the
-> means to name the board files uniquely and not have any conflicts. In
-> x86 systems we retrieve it from SMBIOS and in DT systems using
-> qcom,ath11k-calibration-variant property.
-> 
-> If WCN6855 supplies are marked as required, it means that we cannot use
-> qcom,ath11k-calibration-variant DT property anymore with WCN6855 M.2
-> boards. So if we have devices which don't provide unique information
+> Again, since I'm a DT n00b:
+> Just to make sure I understand, you are saying that with this change any
+> existing .dts/.dtb files will still work with an updated driver, so the new
+> properties are not required to be populated on existing devices.
 
-No, it does not mean that.
-
-> then for those devices it's impossible to automatically to choose the
-> correct board file.
-
-Anyway, only this device must be fully described, because you cannot
-have pci17cb,1103 without these supplies. It's just electrically not
-possible, according to our investigation.
+Did you folks rejected patches acked by DT maintainers on basis of not
+understanding DT at all?
 
 > 
-> So based on this, to me the correct solution here is to make the
-> supplies optional so that qcom,ath11k-calibration-variant DT property
-> can continue to be used with WCN6855 M.2 boards.
+> However a new driver with support for these properties will utilize them when
+> they are present, and the current ath11k .dts files will need to be updated to
 
-WCN6855 can still do whatever they want. They are not restricted, not
-limited. pci17cb,1103 must provide suppplies, because pci17cb,1103
-cannot work without them.
+It is not related to drivers at all. Nothing in this thread is related
+to drivers.
+
+Can we entirely drop the drivers from the discussion?
+
+> include these properties for pci17cb,1103, i.e. the following needs updating:
+> arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> &pcie4_port0 {
+> 	wifi@0 {
+> 		compatible = "pci17cb,1103";
+> 		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> 
+> 		qcom,ath11k-calibration-variant = "LE_X13S";
+> 	};
+> };
+> 
+> 
 
 Best regards,
 Krzysztof
