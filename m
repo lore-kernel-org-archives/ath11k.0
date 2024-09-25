@@ -4,83 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB669C369D0
-	for <ath11k@archiver.kernel.org>; Wed, 25 Sep 2024 11:33:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAFAAC369D4
+	for <ath11k@archiver.kernel.org>; Wed, 25 Sep 2024 11:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
-	Cc:To:Subject:MIME-Version:Date:Message-ID:Content-Type:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tc8uqoCNRNdrD17ZB4QzB7ejHnXWxueD1dikRRayNIA=; b=qTkr1ivuzxkUFUGowMlz+id3wF
-	o/RdQi5JdfB8HW2sU67WOj9ENCqgcjfO7KwP1lsKjX2OMNc8Pvgs8j2mt5XUD51QmHC7y7jO8znep
-	EoJjxu7AL8W9LHUSIPI/bgnBCi4HzGGrnBGxEI+1VVYYj0YcNwrvX3k4XUL/7BBmtHzCROzgP/OAP
-	1Bpwgl+7usSJvIJ6/oFK3uiGx95D+MfJHJgxUwGozwZucWHR4gkESbT5K0r0107+JAp/x2stSOZ4L
-	215HfEIkVd65x62FfO8PNd0KvLdfshntX+Jsq/51re43WRv6kPm4wBw6eVaDTIj9n5bcFggkwno20
-	zNE+J3sg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=q6KdOJSjRyp5J8C5AuVmq2sv4W8UtzKmuRD9MdxDgm0=; b=lGdX0EldCiWYetoRH54/ogwEPm
+	Uw5bEq/O3A2CCk8HlUDZUnGKX9bAZqLrE2x+UhY2JDwCSyNkX29XjKLJPfjoC0Yvy80/NAwc0ao8b
+	Mx/1lDhvovAsgLO69unhLzOpX9QUIoF6TbKayEtMOK9+ghgXzIRHkeKTVK01yi0cGW8WbFQJfQVgh
+	b/2kWPoj8DWDu6DuH93R6mP0zdtmLm9ybnHBytj2aYY6LDdhLniBZOK1X2wqmubYUP1SBr2g0x7Hq
+	XJf7COIZE/Gpeyk+kvGtycUfiRT4DJDFU/NaevcbWrXq1JRNfNG2Nc0rmimFcLH166vGOYIU4iX5p
+	LwU6DDvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1stQGh-00000004szi-1vNY;
-	Wed, 25 Sep 2024 11:33:15 +0000
-Received: from mail-io1-xd36.google.com ([2607:f8b0:4864:20::d36])
+	id 1stQMC-00000004u1U-1wne;
+	Wed, 25 Sep 2024 11:38:56 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1stQGe-00000004sz5-0onE
+	id 1stQLD-00000004tlC-0Q8O
 	for ath11k@lists.infradead.org;
-	Wed, 25 Sep 2024 11:33:13 +0000
-Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-8324124a172so84864139f.2
-        for <ath11k@lists.infradead.org>; Wed, 25 Sep 2024 04:33:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727263991; x=1727868791; darn=lists.infradead.org;
-        h=in-reply-to:from:content-language:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tc8uqoCNRNdrD17ZB4QzB7ejHnXWxueD1dikRRayNIA=;
-        b=axU9wXbqx3blsrpZB0LFezYYjkFD2bVlrqGoqghpeOzk0B7ysLNzyclCVZWrwLweXy
-         7K6PXArTz2Gu9F8LDmbb+cRPWKRDKdQqD0bV6/tnbTIkSiLB2mX/a5lmJgCam53lHV6D
-         s/V4BP1UgQQLO/X4BYxLw9lXh7xgAvVeqn98vwKFLNiWqtpX6aAEhZkSbuQh/P77sYm5
-         GerJRWRPVQHuJ6nLsAXXFTfuyFhllNxQZLitHvaxSLG1DUYh2aOuMN6jlqhF2+nAc+kH
-         aAzQIvzdygGcUt/mcA7BRGRCBSNJTu+eFqHZaIvCsUqDKGBBraLPX2wgEEanc8xxVaa7
-         A0cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727263991; x=1727868791;
-        h=in-reply-to:from:content-language:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tc8uqoCNRNdrD17ZB4QzB7ejHnXWxueD1dikRRayNIA=;
-        b=FNL9Sa/DoDOQligH5KNfTQpIMIZ8B82Wodxv4u/Oq/t10k9ZUs+0XNxJ7naWBTJVxa
-         NViVWNh0UqRLJ6Gy2zbK/HiSESFGV5IlMpZnG/PxPyGQIlmL6IhK4MiEWMmx5/HQdO+4
-         4F9N9mMc+SDq6tm1AVDDgJpGmgK1RJCnZu/IjuSibPDGK/ncQ+nTZRNCFhu8SKaNrvw6
-         SC4GhX4omD6PjY20Ln7av3HuxMApejDmM2wB7/KIliBUzElF02MTglN+y2PKtdWqPYd/
-         xc0EY1qtT+4mbrlXGio9yDUPEKRRzJvQhhIBKOTIlx0U8p/R2ONVRRgGwLG5iki70Gmk
-         dBEw==
-X-Gm-Message-State: AOJu0Yy+8quIj5xSGRBV8HoEic8GEPQZILYDIdlFsnXPZfrFiKmAzIvf
-	c/3jlwQVYZy5kHVQiEsDOY+GzJ59nJG/X2kpnZ4jvLFWSDenbOoj
-X-Google-Smtp-Source: AGHT+IHYHRWH8mBWxmgeETnntNhbzxDj98PIYcEbLrgqoXhejrC12/4mSvk/PAlAQKZ3evNhvlxTFA==
-X-Received: by 2002:a05:6602:1694:b0:82d:3c2:9118 with SMTP id ca18e2360f4ac-83247f89baemr302888339f.16.1727263990549;
-        Wed, 25 Sep 2024 04:33:10 -0700 (PDT)
-Received: from [10.163.199.22] ([64.125.133.166])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4d40f0e92ddsm991918173.24.2024.09.25.04.33.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Sep 2024 04:33:09 -0700 (PDT)
-Content-Type: multipart/mixed; boundary="------------VLjyUQCgADLx2t4IVYMshR58"
-Message-ID: <0d1dab88-66a0-48c1-bdbe-777d07c3132e@gmail.com>
-Date: Wed, 25 Sep 2024 04:33:05 -0700
+	Wed, 25 Sep 2024 11:37:56 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id AC33B5C579A;
+	Wed, 25 Sep 2024 11:37:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D50CC4CEC7;
+	Wed, 25 Sep 2024 11:37:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727264274;
+	bh=M11uQTPBU5ZL24Jv+F5OqrjNly3Hfh2tgF3zc2gCn3k=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=mcokz9g4gHee/J6FOO4ltGc6WvrbMPqXVZ8tpePilzY0GBi0q+rro5BL1i/+SbyJJ
+	 0CJWtD4aUn+CE1DfVe33ONuAarDGjXq+su3KetuIUXa9yIUPKX3dinLY3L+/pkOSoM
+	 botzcdvXCoiuxa1ViA4qx5QMBBx6flTVHv+Lz9YwcoqiMQXKNQRfCQ1NEGvnIj7VUF
+	 hxaUDQMnYcXEQUT8iXh4u+2k64rPYDhUsD5/KOz6rB308TFRpxF9sYUiWE8kVREeJo
+	 +xc9BL3HTEdGhoOIgzLgwePZZKpBBgtLgoQZA+r0H6vd62vFfS2K8X6jc61a6SrovA
+	 MEahTXH2N299A==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
+	Kalle Valo <quic_kvalo@quicinc.com>,
+	Sasha Levin <sashal@kernel.org>,
+	kvalo@kernel.org,
+	jjohnson@kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.11 034/244] wifi: ath11k: fix array out-of-bound access in SoC stats
+Date: Wed, 25 Sep 2024 07:24:15 -0400
+Message-ID: <20240925113641.1297102-34-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240925113641.1297102-1-sashal@kernel.org>
+References: <20240925113641.1297102-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k/WCN6855 neighbor report request made immediately after
- connection gets no response (with MFP)
-To: Baochen Qiang <quic_bqiang@quicinc.com>,
- "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
- <linux-wireless@vger.kernel.org>
-Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-References: <eb41d8ec-c4f1-474e-a938-099f27aa94e3@gmail.com>
- <fd90d471-503b-4f58-ae11-bae2afab08c7@quicinc.com>
-Content-Language: en-US
-From: James Prestwood <prestwoj@gmail.com>
-In-Reply-To: <fd90d471-503b-4f58-ae11-bae2afab08c7@quicinc.com>
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.11
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240925_043312_273645_DE8271E8 
-X-CRM114-Status: GOOD (  22.97  )
+X-CRM114-CacheID: sfid-20240925_043755_226617_99884B92 
+X-CRM114-Status: GOOD (  10.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,76 +80,42 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is a multi-part message in MIME format.
---------------VLjyUQCgADLx2t4IVYMshR58
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
 
-SGkgQmFvY2hlbiwNCg0KT24gOS8yNS8yNCAzOjA3IEFNLCBCYW9jaGVuIFFpYW5nIHdyb3Rl
-Og0KPg0KPiBPbiA5LzE5LzIwMjQgODoyMSBQTSwgSmFtZXMgUHJlc3R3b29kIHdyb3RlOg0K
-Pj4gSGksDQo+Pg0KPj4gSSBub3RpY2VkIGFuIGlzc3VlIHdoZW4gd2Ugc3RhcnRlZCBwdXR0
-aW5nIGF0aDExayBjbGllbnRzIG9uIGEgV1BBMyBuZXR3b3JrIHdoaWNoIHNlZW1zIHRvIGJl
-IHJlbGF0ZWQgdG8gdGhlIGZhY3QgdGhhdCBtYW5hZ2VtZW50IGZyYW1lIHByb3RlY3Rpb24g
-aXMgZW5hYmxlZCAod29ya3MgZmluZSBvbiBXUEEyIG5vIE1GUCkuIEltbWVkaWF0ZWx5IGFm
-dGVyIGFuIGluaXRpYWwgYXNzb2NpYXRpb24gYSBuZWlnaGJvciByZXBvcnQgcmVxdWVzdCBn
-b2VzIG91dCBhbmQgd2UgZ2V0IG5vIHJlc3BvbnNlIGZyb20gdGhlIEFQLiBBZnRlciBnZXR0
-aW5nIGEgUENBUCBpbiBvbmUgY2FzZSB3ZSBub3RpY2VkIHRoZSBuZWlnaGJvciByZXBvcnQg
-cmVxdWVzdCB3ZW50IG91dCB1bmVuY3J5cHRlZCwgdGhvdWdoIHN0aWxsIGhhZCB0aGUgQ0NN
-UCBJViBwYXJhbWV0ZXIuIFRoZSBjb250ZW50IG9mIHRoZSByZXF1ZXN0IHdhcyB0aGUgdW5l
-bmNyeXB0ZWQgcmVxdWVzdCwgYW5kIHNvbWV0aGluZyBsaWtlIDE1IGJ5dGVzIG9mIDB4MDAg
-cGFkZGluZy4gSSB3aWxsIHNheSwgdGhpcyBpbml0aWFsIFBDQVAgd2FzIG1hZGUgdGhyb3Vn
-aCB0aGUgQVAgdmVuZG9yIHNvIHBlcmhhcHMgaXQgYXV0b21hdGljYWxseSBhZGRlZCB0aGUg
-cmlnaHQga2V5cyB0byBkZWNyeXB0IHRoZSBmcmFtZSwgdGhpcyBjb3VsZCBiZSBhIHJlZCBo
-ZXJyaW5nLiBJIHRyaWVkIG9uIG15IGhvbWUgbmV0d29yayBhbmQgaXQgd2FzIGhpdCBvciBt
-aXNzLCBzb21ldGltZXMgSSB3b3VsZCBnZXQgYSByZXNwb25zZSBidXQgc29tZXRpbWVzIEkg
-d291bGRuJ3QsIGJ1dCBJIGRpZCBzZWUgdGhlIGZyYW1lIHdhcyBhbHdheXMgZW5jcnlwdGVk
-IGluIG15IGhvbWUgbmV0d29yayBjYXNlIHRob3VnaCB3aGVuIGFkZGluZyB0aGUgUE1LIGRp
-cmVjdGx5IGluIHdpcmVzaGFyayBJIGNvdWxkbid0IGRlY3J5cHQgaXQsIHdoZXJlIG9uIG90
-aGVyIGhhcmR3YXJlIGxpa2UgaXdsd2lmaSBJIGNvdWxkLg0KPiBpcyB5b3VyIGhvbWUgbmV0
-d29yayBhbHNvIFdQQTM/DQo+DQo+IGFuZCBob3cgZGlkIHlvdSBnZXQgdGhlIFBNSz8gaXMg
-aXQgZ2VuZXJhdGVkIGJ5IElXRCBhbmQgcHJpbnRlZCBhcyBkZWJ1ZyBtZXNzYWdlPw0KDQpJ
-IGFjdHVhbGx5IGhhZCB0byBtb2RpZnkgSVdEIHRvIHByaW50IG91dCB0aGUgUE1LIGFmdGVy
-IGl0IGRlcml2ZWQgaXQuIA0KV1BBMyBtYWtlcyB0aGlzIGEgaHVnZSBwYWluIHNpbmNlIHRo
-ZSBQTUsgZGlmZmVycyBiZXR3ZWVuIFNBRSBleGNoYW5nZXMuDQoNCkkndmUgYXR0YWNoZWQg
-YW4gSVdEIGRpZmYgdGhhdCBwcmludHMgb3V0IHRoZSBQTUssIHdoaWNoIGNhbiBiZSBhZGRl
-ZCB0byANCndpcmVzaGFyayBpZiB0aGF0IGhlbHBzLg0KDQo+DQo+PiBTb21lIHRpbWUgYWZ0
-ZXIgdGhlIGNvbm5lY3Rpb24gbmVpZ2hib3IgcmVwb3J0cyB3b3JrIGZpbmUuIEknbSBub3Qg
-c3VyZSBvZiBhIHRpbWUgZnJhbWUgb3IgZGVsYXkgcmVxdWlyZWQgdGhhdCBnZXRzIHRoZW0g
-d29ya2luZywgYnV0IGl0IG1ha2VzIG1lIHN1c3BlY3QgdGhhdCBhdGgxMWsgZG9lc24ndCBo
-YXZlIHRoZSBrZXlzIGZ1bGx5IGFkZGVkIGluIHRoZSBmaXJtd2FyZSBiZWZvcmUgdXNlcnNw
-YWNlIGdldHMgc2lnbmFsZWQgYXMgImNvbm5lY3RlZCIuIFJ1bm5pbmcgdGhlIHNhbWUgc2Nl
-bmFyaW8gb24gYXRoMTBrIG9yIGl3bHdpZmkgaGFzIG5vIGlzc3Vlcy4gVGhpcyBuZWlnaGJv
-ciByZXBvcnQgcmVxdWVzdCBpbW1lZGlhdGVseSBhZnRlciBjb25uZWN0aW5nIGlzIElXRCdz
-IGRlZmF1bHQgYmVoYXZpb3IsIHNvIGl0cyByZWxhdGl2ZWx5IGVhc3kgdG8gdGVzdCBieSBq
-dXN0IHJlc3RhcnRpbmcgSVdELg0KPiBJIGNhcHR1cmVkIGEgV1BBMyBTQUUgUENBUCB0b28s
-IGJ1dCBvbmx5IGNhbiBmaW5kIHNvbWUgdW5lbmNyeXB0ZWQgQUREQkEgcmVxL3Jlc3AgZnJh
-bWVzLiBmb3IgdGhvc2UgZW5jcnlwdGVkIGFjdGlvbiBmcmFtZXMgSSBhbSBzdGlsbCBzdHJ1
-Z2dsaW5nIHRvIGRlY3J5cHQgdGhlbQ0KPg0KPj4gU2luY2UgdGhlIG5laWdoYm9yIHJlcG9y
-dHMgd29yayBmaW5lIGFmdGVyIHNvbWUgdGltZSBpdHMgbm90IHJlYWxseSBhIGNyaXRpY2Fs
-IGlzc3VlIGJ1dCBJIHdhbnRlZCB0byBicmluZyBpdCB1cCBqdXN0IGluIGNhc2UuDQo+Pg0K
-Pj4gVGhhbmtzLA0KPj4NCj4+IEphbWVzDQo+Pg0K
---------------VLjyUQCgADLx2t4IVYMshR58
-Content-Type: text/x-patch; charset=UTF-8; name="print-pmk.patch"
-Content-Disposition: attachment; filename="print-pmk.patch"
-Content-Transfer-Encoding: base64
+[ Upstream commit 69f253e46af98af17e3efa3e5dfa72fcb7d1983d ]
 
-ZGlmZiAtLWdpdCBhL3NyYy9zYWUuYyBiL3NyYy9zYWUuYwppbmRleCA5N2MwYWYwNS4uZjJj
-ZWJlMDkgMTAwNjQ0Ci0tLSBhL3NyYy9zYWUuYworKysgYi9zcmMvc2FlLmMKQEAgLTg1Nyw2
-ICs4NTcsMjAgQEAgc3RhdGljIGJvb2wgc2FlX3ZlcmlmeV9jb25maXJtKHN0cnVjdCBzYWVf
-c20gKnNtLCBjb25zdCB1aW50OF90ICpmcmFtZSkKICAgICAgICByZXR1cm4gdHJ1ZTsKIH0K
-IAorI2luY2x1ZGUgPHN0ZGlvLmg+CisKK3N0YXRpYyB2b2lkIHByaW50X3Btayh1aW50OF90
-ICpwbWspCit7CisgICAgICAgdW5zaWduZWQgaW50IGk7CisKKyAgICAgICBwcmludGYoIlBN
-SzogIik7CisKKyAgICAgICBmb3IgKGkgPSAwOyBpIDwgMzI7IGkrKykKKyAgICAgICAgICAg
-ICAgIHByaW50ZigiJTAyeCIsIHBta1tpXSk7CisKKyAgICAgICBwcmludGYoIlxuIik7Cit9
-CisKIHN0YXRpYyBpbnQgc2FlX3Byb2Nlc3NfY29uZmlybShzdHJ1Y3Qgc2FlX3NtICpzbSwg
-Y29uc3QgdWludDhfdCAqZnJvbSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBj
-b25zdCB1aW50OF90ICpmcmFtZSwgc2l6ZV90IGxlbikKIHsKQEAgLTg4MCw2ICs4OTQsOCBA
-QCBzdGF0aWMgaW50IHNhZV9wcm9jZXNzX2NvbmZpcm0oc3RydWN0IHNhZV9zbSAqc20sIGNv
-bnN0IHVpbnQ4X3QgKmZyb20sCiAgICAgICAgaGFuZHNoYWtlX3N0YXRlX3NldF9wbWtpZChz
-bS0+aGFuZHNoYWtlLCBzbS0+cG1raWQpOwogICAgICAgIGhhbmRzaGFrZV9zdGF0ZV9zZXRf
-cG1rKHNtLT5oYW5kc2hha2UsIHNtLT5wbWssIDMyKTsKIAorICAgICAgIHByaW50X3Btayhz
-bS0+cG1rKTsKKwogICAgICAgIHNtLT5zdGF0ZSA9IFNBRV9TVEFURV9BQ0NFUFRFRDsKIAog
-ICAgICAgIGlmICghc20tPmhhbmRzaGFrZS0+YXV0aGVudGljYXRvcikgewoK
+Currently, the ath11k_soc_dp_stats::hal_reo_error array is defined with a
+maximum size of DP_REO_DST_RING_MAX. However, the ath11k_dp_process_rx()
+function access ath11k_soc_dp_stats::hal_reo_error using the REO
+destination SRNG ring ID, which is incorrect. SRNG ring ID differ from
+normal ring ID, and this usage leads to out-of-bounds array access. To fix
+this issue, modify ath11k_dp_process_rx() to use the normal ring ID
+directly instead of the SRNG ring ID to avoid out-of-bounds array access.
 
---------------VLjyUQCgADLx2t4IVYMshR58--
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://patch.msgid.link/20240704070811.4186543-3-quic_periyasa@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 86485580dd895..c087d8a0f5b25 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2697,7 +2697,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 		if (unlikely(push_reason !=
+ 			     HAL_REO_DEST_RING_PUSH_REASON_ROUTING_INSTRUCTION)) {
+ 			dev_kfree_skb_any(msdu);
+-			ab->soc_stats.hal_reo_error[dp->reo_dst_ring[ring_id].ring_id]++;
++			ab->soc_stats.hal_reo_error[ring_id]++;
+ 			continue;
+ 		}
+ 
+-- 
+2.43.0
+
 
