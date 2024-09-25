@@ -4,117 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E17A5C369A0
-	for <ath11k@archiver.kernel.org>; Wed, 25 Sep 2024 07:11:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 464D7C369C4
+	for <ath11k@archiver.kernel.org>; Wed, 25 Sep 2024 10:08:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gU1vc+rL1enARxyGDPCUumNcG8XLJV4UDrLM5inDjZ8=; b=V11+2ub5kw1haXBsPp5TILmmBM
-	QU66uiyBm9QRGZEMpVfssTb1ZvHeBOUJ62DO5bYt5xnyXM22CQ1jq3qm9Ks0oPHkbIGsOuT2OC6gU
-	vO2hvdkgl9FQqCg4/FMAAL8Y1suvnOq60qNYd79fKeM/W1lYQg+9tTZfLMnLew++h/Kp9NGMXAAFy
-	JRPjk0FFpHcWfjiQjOaR9j5VEp6OvadmzmVhrIwyz2geuWrydTF6dWmT8BZnnLYbZ/sIO+B5PfaT/
-	BbaKIMuA1ENren52iyTMBWLAX9ynMkK5aNMiM9o8Q1W13vQyFha70IluDzBh8WbA20roQ74+SlbSG
-	1nEASy2A==;
+	bh=+38GOmygiW9XUvstBAjolEL2L0r0UfsO4V78w/iowXc=; b=f32XkfHsPPwbAM+Xpqec9PFM4d
+	6FQI86v+zrknWG9CfpAwr5cZbFZUK2fV/RfhKj13nHqiLmjA6W1ybVd3Ip7MvVSAvkDlhJxVybBPi
+	5Mdk+Ha2h48pww6JGUQR+Dd8dinqoLXsLK4Dr+J6tMjm2lzQdPT2XE80OE/81QRDC1x63zd0E0ECt
+	3WGB4YJxBTjZ4gBVeDtYFp72YXyDoHbzGcXY1rKQEv/KJaulAwwoAPEBDWx6j2Z73atc14hHm0Mh2
+	wbN0gHq/RY1lF+pAVaCA/iAOBus8Tyx3vXrQkT8ZIQe/v5kd1z7Vz+BWoY03ye7yH5So8qb5ecq5c
+	Dsaa1IXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1stMBF-00000004Get-2c40;
-	Wed, 25 Sep 2024 07:11:21 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1stOwC-00000004hxP-1u4o;
+	Wed, 25 Sep 2024 10:08:00 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1stMAI-00000004GYg-0CZY
+	id 1stOw9-00000004hwz-0fnJ
 	for ath11k@lists.infradead.org;
-	Wed, 25 Sep 2024 07:10:23 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 634165C0220;
-	Wed, 25 Sep 2024 07:10:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF976C4CEC3;
-	Wed, 25 Sep 2024 07:10:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727248221;
-	bh=wykQV2o1lX+mZwLiNc+DAJYf+A3aFAUYe3LRR6OMPsQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Vs8FW5YsSY5YXTYivLUIxGiuR9d78FN6XL1p4gP/jP/T8Xdli8m4ZsifEJ/rpP+km
-	 DaZRGbVcY3D8Ay2KKM7Of+LzxTr2JNFwgPxYdQWpcMdqxy+gndEgqTtjRvljP0ff2q
-	 V2Ycf3VuUg8eynn8Du+t3KSqcx+nVP+KKmYZGQ0BKxZgRMi1jdj2ZlvBtmHMardtBx
-	 b5YcbIugEPGSEY6O6ThPHycDjQRRlBRqh1VdQJaMEwZEszMtOoDWu/jIYX+c4JPB3y
-	 tBSNhWe5GxrQI6VIIBlJcRZsceP5lIJK3FS6RpQZHRtIizDMLwBRzCq3T8c0RJ/b6T
-	 CGZ8hOhqJRdnQ==
-Message-ID: <04fc202a-ac1c-44c9-ba67-8809e45ef940@kernel.org>
-Date: Wed, 25 Sep 2024 09:10:13 +0200
+	Wed, 25 Sep 2024 10:07:58 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48P8kIXw031702;
+	Wed, 25 Sep 2024 10:07:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+38GOmygiW9XUvstBAjolEL2L0r0UfsO4V78w/iowXc=; b=aLclYhixJFdzp2l6
+	+84y8J0zjgp9vX8HotS6Qrxxv4Dtl4TxcgD8DwOuB4ii+xsJoK3ihhUBVTU1Claq
+	EOG2y6RFa01QACSsK6yn93NvYuzQXVO4uq0bLy6al14y1c+u8Ali/76tZjLmqwen
+	8Rp7VdJ7io3ukHI+aujVw4+pHXZ/towcwzKucdLdFL7KEGr/hWcRjPA0krmrvy59
+	IhTKrduCOsLhXYEgQq3wJ0SyxEeadXdXlhIQ71o2WGkPnN+JQJaQhjKu6I9qJ+qr
+	afKwqq/bh+DUJM82mTdqXfageoP/I4UJI0DW1C9yW/EEBnXG5ZA14Umb1CqENMcW
+	KvW8Mg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sph6utx7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 10:07:54 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48PA7ruh012546
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 10:07:53 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Sep
+ 2024 03:07:52 -0700
+Message-ID: <fd90d471-503b-4f58-ae11-bae2afab08c7@quicinc.com>
+Date: Wed, 25 Sep 2024 18:07:50 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Arnd Bergmann <arnd@arndb.de>
-References: <20240814082301.8091-1-brgl@bgdev.pl>
- <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> <87msk49j8m.fsf@kernel.org>
- <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org> <87a5g2bz6j.fsf@kernel.org>
- <3ba2ce52-4da3-4066-baf0-5bab1a9f872a@kernel.org> <87zfnw8eb2.fsf@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: ath11k/WCN6855 neighbor report request made immediately after
+ connection gets no response (with MFP)
+To: James Prestwood <prestwoj@gmail.com>,
+        "open list:MEDIATEK MT76 WIRELESS
+ LAN DRIVER" <linux-wireless@vger.kernel.org>
+CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+References: <eb41d8ec-c4f1-474e-a938-099f27aa94e3@gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <87zfnw8eb2.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <eb41d8ec-c4f1-474e-a938-099f27aa94e3@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kZUCtKEp1hFLA3jxvBaUhA7splbbZ8qG
+X-Proofpoint-ORIG-GUID: kZUCtKEp1hFLA3jxvBaUhA7splbbZ8qG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 bulkscore=0 spamscore=0 clxscore=1011 mlxlogscore=999
+ mlxscore=0 adultscore=0 phishscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409250069
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240925_001022_211340_0A79FC24 
-X-CRM114-Status: GOOD (  24.09  )
+X-CRM114-CacheID: sfid-20240925_030757_349254_86FAB9CA 
+X-CRM114-Status: GOOD (  17.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,124 +100,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 25/09/2024 07:58, Kalle Valo wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> writes:
-> 
->> On 20/09/2024 08:45, Kalle Valo wrote:
->>
->>> Krzysztof Kozlowski <krzk@kernel.org> writes:
->>>
->>>> On 19/09/2024 09:48, Kalle Valo wrote:
->>>>> Krzysztof Kozlowski <krzk@kernel.org> writes:
->>>>>
->>>>>> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
->>>>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>>>>
->>>>>>> Describe the inputs from the PMU of the ath11k module on WCN6855.
->>>>>>>
->>>>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>>>> ---
->>>>>>> v1 -> v2:
->>>>>>> - update the example
->>>>>>
->>>>>> I don't understand why this patch is no being picked up. The code
->>>>>> correct represents the piece of hardware. The supplies should be
->>>>>> required, because this one particular device - the one described in this
->>>>>> binding - cannot work without them.
->>>>>
->>>>> I have already explained the situation. With supplies changed to
->>>>> optional I'm happy take the patch.
->>>>
->>>> You did not provide any relevant argument to this case. Your concerns
->>>> described quite different case and are no applicable to DT based platforms.
->>>
->>> Ok, I'll try to explain my concerns one more time. I'll try to be
->>> thorough so will be a longer mail.
->>>
->>> In ath11k we have board files, it's basically board/product specific
->>> calibration data which is combined with the calibration data from chip's
->>> OTP. Choosing the correct board file is essential as otherwise the
->>> performance can be bad or the device doesn't work at all.
->>>
->>> The board files are stored in board-2.bin file in /lib/firmware. ath11k
->>> chooses the correct board file based on the information provided by the
->>> ath11k firmware and then transfers the board file to firmware. From
->>> board-2.bin the correct board file is search based on strings like this:
->>>
->>> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255
->>> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255,variant=HO_BNM
->>>
->>> But the firmware does not always provide unique enough information for
->>> choosing the correct board file and that's why we added the variant
->>> property (the second example above). This variant property gives us the
->>> means to name the board files uniquely and not have any conflicts. In
->>> x86 systems we retrieve it from SMBIOS and in DT systems using
->>> qcom,ath11k-calibration-variant property.
->>>
->>> If WCN6855 supplies are marked as required, it means that we cannot use
->>> qcom,ath11k-calibration-variant DT property anymore with WCN6855 M.2
->>> boards. So if we have devices which don't provide unique information
->>
->> No, it does not mean that.
->>
->>> then for those devices it's impossible to automatically to choose the
->>> correct board file.
->>
->> Anyway, only this device must be fully described, because you cannot
->> have pci17cb,1103 without these supplies. It's just electrically not
->> possible, according to our investigation.
-> 
-> Yeah, you have been telling that all along. But on the contrary I have
-> WCN6855 (pci17cb,1103) M.2 board which I installed to my NUC and they
-> haven't needed any supplies (unless BIOS does something automatically).
 
-That's a ACPI system, so ACPI and complex drivers handle this.
 
-> Also I have QCA6390 and WCN7850 M.2 boards, both which you claim needs
-> the supplies, and they just work out-of-box as well. So I have a hard
+On 9/19/2024 8:21 PM, James Prestwood wrote:
+> Hi,
+>=20
+> I noticed an issue when we started putting ath11k clients on a WPA3 net=
+work which seems to be related to the fact that management frame protecti=
+on is enabled (works fine on WPA2 no MFP). Immediately after an initial a=
+ssociation a neighbor report request goes out and we get no response from=
+ the AP. After getting a PCAP in one case we noticed the neighbor report =
+request went out unencrypted, though still had the CCMP IV parameter. The=
+ content of the request was the unencrypted request, and something like 1=
+5 bytes of 0x00 padding. I will say, this initial PCAP was made through t=
+he AP vendor so perhaps it automatically added the right keys to decrypt =
+the frame, this could be a red herring. I tried on my home network and it=
+ was hit or miss, sometimes I would get a response but sometimes I wouldn=
+'t, but I did see the frame was always encrypted in my home network case =
+though when adding the PMK directly in wireshark I couldn't decrypt it, w=
+here on other hardware like iwlwifi I could.
+is your home network also WPA3?
 
-On DT platform they work by coincidence or "work mostly". Ppwer
-sequencing work fixes it.
+and how did you get the PMK? is it generated by IWD and printed as debug =
+message?
 
-> time trusting your spec and believing it's the ultimate authority. To me
-> if reality and spec doesn't match, reality wins.
+>=20
+> Some time after the connection neighbor reports work fine. I'm not sure=
+ of a time frame or delay required that gets them working, but it makes m=
+e suspect that ath11k doesn't have the keys fully added in the firmware b=
+efore userspace gets signaled as "connected". Running the same scenario o=
+n ath10k or iwlwifi has no issues. This neighbor report request immediate=
+ly after connecting is IWD's default behavior, so its relatively easy to =
+test by just restarting IWD.
+I captured a WPA3 SAE PCAP too, but only can find some unencrypted ADDBA =
+req/resp frames. for those encrypted action frames I am still struggling =
+to decrypt them
 
-You miss concepts of DT. Really.
-
-You can skip in DT many regulator supplies, which are enabled by default
-(e.g. by bootloader). And what? Everything will work fine even if Linux
-kernel requires them. Driver will probe fine, hardware "will work".
-
-Still the regulators *are required* by DT rules and we have been telling
-you this so many times already.
-
-That's not a difference case here.
-
-> 
->>> So based on this, to me the correct solution here is to make the
->>> supplies optional so that qcom,ath11k-calibration-variant DT property
->>> can continue to be used with WCN6855 M.2 boards.
->>
->> WCN6855 can still do whatever they want. They are not restricted, not
->> limited. pci17cb,1103 must provide suppplies, because pci17cb,1103
->> cannot work without them.
-> 
-> Claiming that WCN6885 can still do whatever they want is confusing to me
-> because WCN6855 is pci17cb,1103, there are no other ids. See
-> ath11k/pci.c:
-> 
-> #define WCN6855_DEVICE_ID		0x1103
-> 
-> { PCI_VDEVICE(QCOM, WCN6855_DEVICE_ID) },
-> 
-> But this discussion is going circles and honestly is waste of time. I
-> don't think the patch is right but I'll apply it anyway, let's deal with
-> the problems if/when they come up.
-
-For me, there could be different WCN6885 chips, flavors or PCI cards.
-The binding speaks only about given PCI device.
-
-Best regards,
-Krzysztof
+>=20
+> Since the neighbor reports work fine after some time its not really a c=
+ritical issue but I wanted to bring it up just in case.
+>=20
+> Thanks,
+>=20
+> James
+>=20
 
 
