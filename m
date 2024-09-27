@@ -4,82 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E83BCEBF8A
-	for <ath11k@archiver.kernel.org>; Fri, 27 Sep 2024 09:59:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B63ECEBF9D
+	for <ath11k@archiver.kernel.org>; Fri, 27 Sep 2024 11:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=5d6JzPqE7gzqY+R7mcOMWOu2p5ukRlph0CT314VSWU0=; b=PlvqYwyiXNe7LLD/FussQIFWfp
-	hCmmEYTSdUUMMCjFY3FXcnX6liSSGaC6af0WxO64Gn1jXUod17rGWpIxJ6SkLwJ5CGIGK02jViZY2
-	NEPkR6zkLo+kxxT+y2/REPXP0M1SWFlp8HtAU1lxoxv8vZzh/Xo2uCPL6bK7Upf89NYmZrsyYh06x
-	JLfIa70FA+XRvWw7Jrzc36rp8y+lSjdrJBeAMRwaDE+pma2mvf4uHrIZc3wgKNESEfp41GxPHjo9s
-	x8A+dDnGjeoD16Eh6tmKYB9j2o5wx5zSjAe18agCSZN7D9SCQVu1gqfjtuHpo0gg/RdbVxxPsBVoM
-	azdTm+eg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=AWJVUU70D/KDWBudNPb5zBWCBs0ORCb7v+FRCsH7Kig=; b=ilYE8XCOqyg9KeksoZyn9VxEd8
+	XU28+hBcxnkQjFhFMFu+IRclMp/tX+Wbu7wnTMxav7S4H5CLY/wuwm08mi35GPjS7pmR81NaLEtJO
+	bxdG0Z31YUt2u4E8ZUu/pgb1XOKVI6M7l8uzzmYSaCxQmBw8bODiBw1VDCSlOgi6MqOCz7upfsOyH
+	wBMTDbQeCvOx2BtQHE88fsCSZD9Jj1hxOtI096HrJo8ueGPy4P5rXjFzBPWxc8oNnyrVLUmX8i8TL
+	+pxXodO7t9+uBgW9gsD77tSE1JQ7wykUrkvBYr4aaDdBglfY6ThvBJUcKozRl2qx1t5OujzBEEtBy
+	PQxgOTkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1su7l3-0000000Akzx-32Dd;
-	Fri, 27 Sep 2024 09:59:29 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1su9Yf-0000000AzCH-2CIC;
+	Fri, 27 Sep 2024 11:54:49 +0000
+Received: from mail-qk1-x731.google.com ([2607:f8b0:4864:20::731])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1su7ka-0000000Akue-1K7u
+	id 1su9Xi-0000000Az7W-386a
 	for ath11k@lists.infradead.org;
-	Fri, 27 Sep 2024 09:59:01 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48R6ZkBf000977;
-	Fri, 27 Sep 2024 09:58:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	qcppdkim1; bh=5d6JzPqE7gzqY+R7mcOMWOu2p5ukRlph0CT314VSWU0=; b=IJ
-	nQTiefOi4jk9lZ1BJ3eQ7DxN1Je6flQNKgFMrqWR5F+iSUoaLDHxdGh1qm3RbRTV
-	sJR2FVSj1y8t1AMItZW8vowxt8ZM1c/HP4v3tTMkgp01Nqoj6wvHJm4QPjfGFZt0
-	GK2NCMkdxS15HiJKUse0LF1JMB4Kvk1MJWR5rQOqPDzyCIBiIeKMtU8OunUYS/t5
-	1VU8+kMnEV9ivY160g2ubs79y+EL9R34v4/HWl8D/AJYuV22yltc2yQsQo+xNtMu
-	GUmuVsXc/IxfBX2KaXN6DSTkEFA4J18BTYafqg0BmN/5vK9mSu0e1rlciK3Q5/rR
-	oWvcH/EaHZh0dQ7V7lpg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sn3sjg81-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Sep 2024 09:58:59 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48R9wwo6025947
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Sep 2024 09:58:58 GMT
-Received: from hu-bpothuno-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 27 Sep 2024 02:58:56 -0700
-From: Balaji Pothunoori <quic_bpothuno@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Balaji Pothunoori
-	<quic_bpothuno@quicinc.com>
-Subject: [PATCH] wifi: ath11k: Fix CE offset address calculation for WCN6750 in SSR
-Date: Fri, 27 Sep 2024 15:28:25 +0530
-Message-ID: <20240927095825.22317-1-quic_bpothuno@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	Fri, 27 Sep 2024 11:53:52 +0000
+Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-7a9ac0092d9so198502085a.1
+        for <ath11k@lists.infradead.org>; Fri, 27 Sep 2024 04:53:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727438029; x=1728042829; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AWJVUU70D/KDWBudNPb5zBWCBs0ORCb7v+FRCsH7Kig=;
+        b=OgqWj7YNk10PXIrINrPiEgfZEnNRggTd3EDWMNH3AeFW8RhavYK3T/KoKdV9A0LjMM
+         6gR/CWVJtJKmSmUSWVZpNWgpw7woiGY/nxFGP2uY8s6Pdf63lQYBOs8ng1L9JQvc8/1U
+         n8iZISlYYd56c5I9/2je5j1So6wKMW4Xntx38NC0i8L9iGfo8ilIAv+x2Erzsf3+fdUp
+         m6JaSiNmSNs9Eg6H9agZ1JAg5DAoYdJmKkjhACdNe7RSAjg60XXMylKQQomcdv2O4+S8
+         c8RjdRWt9FNx8PYehDmmBuei+Ceu9c6/AEUYt3/eN3qDc9PnEdvy9iqfbDDFBQtKxNzq
+         whaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727438029; x=1728042829;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AWJVUU70D/KDWBudNPb5zBWCBs0ORCb7v+FRCsH7Kig=;
+        b=FiHbsMhsKJ6NKUBcd00zpjcEtBnWQl7PUyeESejn+sv9cULe9++qI9jaC4w3V7O2wG
+         Mn1Goee3gMv0yuZQG8HZGB8QpQ44JkzkidBDGR/bDoSKqiUZd2MjRtEfxB9LncauUHfJ
+         HHCYx/32gNpBsNNr2nEvChivp8Urlw0K1McubBpHhBLxwJ2EoY8XqDJvT2lCxovSV58A
+         cva4pwK3hU5NDLSQeWU4o4ikQfMaqnUSuetlT/vQQL4t8d8wj97xQHoaFx6KnVlUPc71
+         vlAjnhY+ybUg9fRKxztX+2OY92xVs6bn2gDZyE5jUnrIeULBHYoJ1jYSCqk1FDJ7H2pS
+         jZWw==
+X-Gm-Message-State: AOJu0Yw1yf9QPSdcJluvx30zY2MgoqpBGcWUPuTYke6DxuOng7jjqRd0
+	y0j4nu1ySj/+bXOd4VEvL1NMD+cNsnegPcerVJxZ3aZmo+LOS2T+
+X-Google-Smtp-Source: AGHT+IEE7JLeSI3B2+BaNE5hnyXLCVl6rzR29xUe6+pyEEx0p0sATrUexiG3bAAs5Ic/8j1Ajmdhfg==
+X-Received: by 2002:a05:620a:4309:b0:7ac:e257:3b44 with SMTP id af79cd13be357-7ae37824064mr562846885a.13.1727438028658;
+        Fri, 27 Sep 2024 04:53:48 -0700 (PDT)
+Received: from [10.100.121.195] ([152.193.78.90])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ae377bd791sm77535085a.24.2024.09.27.04.53.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Sep 2024 04:53:48 -0700 (PDT)
+Message-ID: <f65b609c-0813-414b-885d-24257e76e6d0@gmail.com>
+Date: Fri, 27 Sep 2024 04:53:46 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RMmcXQuV6ig9KZ-eXzZg1rQMVo29R_9B
-X-Proofpoint-ORIG-GUID: RMmcXQuV6ig9KZ-eXzZg1rQMVo29R_9B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- mlxscore=0 impostorscore=0 spamscore=0 malwarescore=0 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 clxscore=1011
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409270070
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k/WCN6855 neighbor report request made immediately after
+ connection gets no response (with MFP)
+To: Baochen Qiang <quic_bqiang@quicinc.com>,
+ "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
+ <linux-wireless@vger.kernel.org>
+Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+References: <eb41d8ec-c4f1-474e-a938-099f27aa94e3@gmail.com>
+ <fd90d471-503b-4f58-ae11-bae2afab08c7@quicinc.com>
+ <0d1dab88-66a0-48c1-bdbe-777d07c3132e@gmail.com>
+ <70567137-dfb9-4896-9e6c-6c02a97228cb@quicinc.com>
+ <15c909da-f01e-43ee-b486-f9b6d5bcc29c@gmail.com>
+ <26302980-4cd8-466a-8de1-4be10a42536a@quicinc.com>
+Content-Language: en-US
+From: James Prestwood <prestwoj@gmail.com>
+In-Reply-To: <26302980-4cd8-466a-8de1-4be10a42536a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240927_025900_388293_4350615E 
-X-CRM114-Status: GOOD (  13.12  )
+X-CRM114-CacheID: sfid-20240927_045350_825294_74947772 
+X-CRM114-Status: GOOD (  35.35  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,54 +100,97 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, mem_ce and mem iomem addresses are used to calculate the
-CE offset address. mem_ce is initialized with mem address, and for
-targets where ce_remap is needed, mem_ce is remapped to a new address
-space during AHB probe.
 
-For targets such as WCN6750 in which CE address space is same as WCSS
-address space (i.e. "ce_remap" hw_param is set to false), mem_ce and
-mem iomem addresses are same. In the initial SRNG setup for such targets,
-the CE offset address and hence CE register base addresses are
-calculated correctly in ath11k_hal_srng_init() as both mem and mem_ce
-are initialized with same iomem address.
+On 9/26/24 10:59 PM, Baochen Qiang wrote:
+>
+> On 9/26/2024 8:31 PM, James Prestwood wrote:
+>> Hi,
+>>
+>> On 9/25/24 8:16 PM, Baochen Qiang wrote:
+>>> On 9/25/2024 7:33 PM, James Prestwood wrote:
+>>>> Hi Baochen,
+>>>>
+>>>> On 9/25/24 3:07 AM, Baochen Qiang wrote:
+>>>>> On 9/19/2024 8:21 PM, James Prestwood wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> I noticed an issue when we started putting ath11k clients on a WPA3 network which seems to be related to the fact that management frame protection is enabled (works fine on WPA2 no MFP). Immediately after an initial association a neighbor report request goes out and we get no response from the AP. After getting a PCAP in one case we noticed the neighbor report request went out unencrypted, though still had the CCMP IV parameter. The content of the request was the unencrypted request, and something like 15 bytes of 0x00 padding. I will say, this initial PCAP was made through the AP vendor so perhaps it
+> how do you tell if the 'neighbor report request' was unencrypted? did you check the 'protected' flag in sniffer?
+>
+> automatically added the right keys to decrypt the frame, this could be a red herring. I tried on my home network and it was hit or miss, sometimes I would get a response but sometimes I wouldn't, but I did see the frame was always encrypted in my home network case though when adding the PMK directly in wireshark I couldn't decrypt it, where on other hardware like iwlwifi I
+> and how do you tell if it is always encrypted?
 
-Later, after the firmware download, mem is initialized with BAR address
-received in qmi_wlanfw_device_info_resp_msg_v01 QMI message, while mem_ce
-is not updated.
+I think what I saw here was because the capture was done through the AP 
+vendor was automatically decrypted or something. The frame was still 
+marked as protected, but I never had to add the PMK to get wireshark to 
+parse it correctly.
 
-After initial setup success, during Subsystem Restart (SSR), as part
-of reinitialization, ath11k_hal_srng_init() will be called again,
-and CE offset address will be calculated incorrectly this time as mem_ce
-address was not updated. Due to the incorrect CE offset address,
-APPS accesses an invalid CE register address which leads to improper
-behavior in firmware after SSR is triggered.
+On my home network when I was referring to "always encrypted" it was 
+because the frames always had the CCMP IV and the content of the frame 
+itself was not visibly a neighbor report/request, just a string of hex 
+values. Once I added the PMK and decrypted it wireshark could parse it.
 
-To fix the above issue, update mem_ce to mem iomem address in
-ath11k_qmi_request_device_info() for targets which do not support
-ce_remap feature.
-
-Fixes: b42b3678c91f("wifi: ath11k: remap ce register space for IPQ5018")
-Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/qmi.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index f477afd325de..7a22483b35cd 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2180,6 +2180,9 @@ static int ath11k_qmi_request_device_info(struct ath11k_base *ab)
- 	ab->mem = bar_addr_va;
- 	ab->mem_len = resp.bar_size;
- 
-+	if (!ab->hw_params.ce_remap)
-+		ab->mem_ce = ab->mem;
-+
- 	return 0;
- out:
- 	return ret;
--- 
-2.17.1
-
+>
+>
+>>>>>> could.
+>>>>> is your home network also WPA3?
+>>> any comment on this query?
+>> Yes, my home network is WPA3.
+>>>>> and how did you get the PMK? is it generated by IWD and printed as debug message?
+>>>> I actually had to modify IWD to print out the PMK after it derived it. WPA3 makes this a huge pain since the PMK differs between SAE exchanges.
+>>>>
+>>>> I've attached an IWD diff that prints out the PMK, which can be added to wireshark if that helps.
+>>> Thanks, I found another way to do the decryption.
+>> Out of curiosity how did you do this? I couldn't find any other way to decrypt WPA3 connections in wireshark except adding the PMK directly, even when capturing the 4-way handshake.
+> I dumped the TK:
+>
+> 	@@ -2055,6 +2062,8 @@ static void netdev_set_tk(struct handshake_state *hs, uint8_t key_index,
+> 	        if (!netdev_copy_tk(tk_buf, tk, cipher, hs->authenticator))
+> 	                goto invalid_key;
+> 	
+> 	+       l_util_hexdump(false, tk_buf, 16, do_debug, "tk: ");
+> 	+
+> 	        msg = nl80211_build_new_key_pairwise(netdev->index, cipher, addr,
+> 	                                        tk_buf, crypto_cipher_key_len(cipher),
+>                                          key_index);
+>
+>>>>>> Some time after the connection neighbor reports work fine. I'm not sure of a time frame or delay required that gets them working, but it makes me suspect that ath11k doesn't have the keys fully added in the firmware before userspace gets signaled as "connected". Running the same scenario on ath10k or iwlwifi has no issues. This neighbor report request immediately after connecting is IWD's default behavior, so its relatively easy to test by just restarting IWD.
+>>>>> I captured a WPA3 SAE PCAP too, but only can find some unencrypted ADDBA req/resp frames. for those encrypted action frames I am still struggling to decrypt them
+>>> I checked all the action frames after decrypt the PCAP, but still not able to find a 'neighbor report' frame. next will study IWD code to understand how such a frame is triggered.
+>>>
+>>> and again, if not possible to share the complete PCAP, can you share the individual 'neighbor report request' frame ? you can simply copy it in wireshark.
+>> Immediately after connecting you should see one of two possibilities.
+>>
+>> 1. If IWD did not receive a response you would see:
+>>
+>> iwd[694]: src/station.c:station_early_neighbor_report_cb() ifindex: 6, error: -110(Connection timed out)
+>>
+>> 2. If a neighbor report was sent back by the AP you would see:
+>>
+>> src/station.c:station_early_neighbor_report_cb() ifindex: 13, error: 0()
+>> src/station.c:parse_neighbor_report() Neighbor report received for xx:xx:xx:xx:xx:xx ch 44 (oper class 22), MD not set
+>>
+>> I just re-ran the test and now, for some reason, I am entirely unable to see the actual request go out. In the case of both ath11k and ath10k I see no request and but I do sometimes see a response. For iwlwifi I was able to capture a request/response but for the most part I don't see any request either, but always a response. Maybe the request is going out at some other data rate that my monitor card is unable to capture reliably? Not sure on that one.
+>>
+>> So as far as seeing a request from ath11k, I'm unable to get one at least on my home network. Getting a capture on the corporate network may take me some more time.
+> here is the sequence I saw in sniffer:
+> #1 AP send M3
+> #2 station send 'neighbor report request' without encryption, though 'protected' flag is set
+> #3 station send out M4
+>
+> is this the same with what you saw?
+When I was able to capture the neighbor report request (rarely) it was 
+after M4, not before. If you're seeing it prior to M4 that seems 
+strange, unless the kernel/ath11k is doing some odd queuing?
+>
+>> Thanks,
+>>
+>> James
+>>
+>>>>>> Since the neighbor reports work fine after some time its not really a critical issue but I wanted to bring it up just in case.
+>>>>>>
+>>>>>> Thanks,
+>>>>>>
+>>>>>> James
+>>>>>>
 
