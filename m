@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4534CF6493
-	for <ath11k@archiver.kernel.org>; Sat, 28 Sep 2024 09:16:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 121DECF6495
+	for <ath11k@archiver.kernel.org>; Sat, 28 Sep 2024 09:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
 	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xYhmmACLT3gysI2JXjOAohL9tutjqjKwIVgONRCejQM=; b=Ot1imVby9tnIg11ulHxPnt78P4
-	k52XF46qZ9tlahICBbfxDRGwS1OqhAk9DkeAxm54PF+nCxt9d+4LzFslj4dj/YZazLt8/6j2TOtnJ
-	FOla1NdqMdcVQmnSqu3n77eGDsZOLPT2JNZgRvAU43iSkysz0QSYWXh2w8XrMM5BdoYbsZZPzE81+
-	B1RpUhzoDysB7P2LxQFpl08QNBRJaz+rs91YNiBLdU5oZ48X3kJjq1HQs1mP1ncZJkV/6xDkAy2pf
-	13MlICpYhqH/aczlJflPdM3MowuZJ8o3tqk/yZswxvLGBnXlQwRCUIOjfr0Na2/PaZbknYeYmg6DA
-	kLW2h85A==;
+	bh=OEliKup3qwGXHuDEQNI7For6xLoTCKZGveiSgoIBOhU=; b=dxNkOa7lTvfhTO3eFSoTaE1D+v
+	tpMvvwmrU8FIywfpP4C6g8ewkprzkskTOW6TETJ/d5UyuX90jI/s5wrnajiwWqQc1ycBq70YYQmBf
+	gVeqhWZ6fuKQlzqVvO+k7Gqr73Jt/ETpNYh61e0NZRpokUwN8tkZLyYm3QWAlKgLdhibynYHGojRA
+	eCYF1wnY33uE1VYE51p5h0Ja6llZ5V6iLFZo4H6osy0/Allpj4PeC8cRk/bB7v92i13mBqC9eITH5
+	MVf9Sm8x6entv3V0SbFITVflJQNWCw9u02GLGIYIdz65hANk4dQ+iP5BOqoWFoj2vpdq1I8+R6HL8
+	2uKFRv8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1suTYj-0000000Cs1N-1wsC;
-	Sat, 28 Sep 2024 09:16:13 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1suTZC-0000000Cs4W-2dbD;
+	Sat, 28 Sep 2024 09:16:42 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1suTYh-0000000Cs0u-1EHa
+	id 1suTZA-0000000Cs4E-0ReC
 	for ath11k@lists.infradead.org;
-	Sat, 28 Sep 2024 09:16:12 +0000
+	Sat, 28 Sep 2024 09:16:41 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 1CDF5A4018C;
-	Sat, 28 Sep 2024 09:16:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4281C4CEC3;
-	Sat, 28 Sep 2024 09:16:08 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 1CD20A4018C;
+	Sat, 28 Sep 2024 09:16:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8F8BC4CEC3;
+	Sat, 28 Sep 2024 09:16:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727514969;
-	bh=nSS8/Mp4RwqYI3+lY1xNHCPSdP62FLumSgms12QSo3g=;
+	s=k20201202; t=1727514999;
+	bh=LOBf+j+tR+3OBDo0e9/2ULDyl7cpXfdowranANYZDg8=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=vG7FpMYcfh44DGZMLQuobAViD7RYHLjUf4X+h/1E4yG5GNROTbdJwfOlZPc+BSJml
-	 hRMRT8fiTMwoe+K8m4fG5GlJVtLh3/r/r6iChOMkL4HVEbSwtFp52jKicctVeTP075
-	 k9G3hqhxpSYARdzKEWQiB148cRzmJ1P9DgCIMu0Lmj7+/NgVJ6l2/Cg37eE3T9xXpA
-	 4wPJ1oVmhZoXFKwkZsTolPBTLYEPmBKyXBAqNZk0pXlCOxtUVw51QkrfI5iTBYTQkB
-	 sK6nAYXyeEjTCJYxgJHWD7Ne6ujNwHSy8wmoRK2zG7TAHbidEXH/dyBXHgEanJr7VX
-	 EzbUgp5Om5+DA==
+	b=cY8cWr6F+7+z/2dWiQWuMop9VkNdNfqEW5gzdJ1r0R+00lu5lHodYH+T9O9Bj9tRt
+	 rXxIQp5DJqeJBHf/TxuMHHmqbF1F/I8qPJgoqjV/PNRkUyvecsMFFCLgHUbfEkAwUA
+	 BgoTaSi2QIkiPVFtYWSnI4HCzZ17daMrHenGxEH6ZTftAlBaKa8GsWFpXEmOaah3X6
+	 hEo/HfT1YtmS5iUnMguJ3bbyeXPLkhfMJWopbm9aOJPpQdfIr7so5vS4vk0XzAvGxh
+	 MjVAzdrKTESpeHvlvO4qqejZz6wqoPIPPddx3D9IqWIORLy9yU/br1NpwIpuzHu+dZ
+	 o8Yx5FJ1wDafA==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] wifi: ath11k: enable fw_wmi_diag_event hw param for
- WCN6750
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] wifi: ath11k: fix the stack frame size warning in
+ ath11k_vif_wow_set_wakeups
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240828103043.2413-1-quic_bpothuno@quicinc.com>
-References: <20240828103043.2413-1-quic_bpothuno@quicinc.com>
-To: Balaji Pothunoori <quic_bpothuno@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Balaji Pothunoori
-	<quic_bpothuno@quicinc.com>
+In-Reply-To: <20240829075253.657667-1-quic_miaoqing@quicinc.com>
+References: <20240829075253.657667-1-quic_miaoqing@quicinc.com>
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
+ <linux-wireless@vger.kernel.org>, Miaoqing Pan <quic_miaoqing@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <172751496718.2249584.7164352924972001237.kvalo@kernel.org>
-Date: Sat, 28 Sep 2024 09:16:08 +0000 (UTC)
+Message-ID: <172751499620.2249584.15547291626292372736.kvalo@kernel.org>
+Date: Sat, 28 Sep 2024 09:16:37 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240928_021611_450991_07ED4A52 
-X-CRM114-Status: UNSURE (   7.28  )
+X-CRM114-CacheID: sfid-20240928_021640_230579_BE5C924C 
+X-CRM114-Status: UNSURE (   5.29  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,27 +74,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Balaji Pothunoori <quic_bpothuno@quicinc.com> wrote:
+Miaoqing Pan <quic_miaoqing@quicinc.com> wrote:
 
-> WCN6750 firmware sends the log messages via WMI_DIAG_EVENTID only
-> when the host driver enables the same via QMI_WLANFW_WLAN_INI_REQ_V01
-> QMI message. This is further controlled via fw_wmi_diag_event.
-> Hence set this flag to true for the firmware to send the logs.
-> These logs are further collected in the user space through
-> the trace infrastructure.
+> Fix the following W=1 kernel build warning:
 > 
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.2.0.c2-00233-QCAMSLSWPLZ-1
+> drivers/net/wireless/ath/ath11k/wow.c: In function ‘ath11k_vif_wow_set_wakeups’:
+> drivers/net/wireless/ath/ath11k/wow.c:461:1: warning: the frame size of 1352 bytes is larger than 1024 bytes [-Wframe-larger-than=]
 > 
-> Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+> Remove the nonessential variable 'struct cfg80211_pkt_pattern
+> old_pattern' by relocating bitmask to bytemask conversion into
+> ath11k_wow_convert_8023_to_80211().
+> 
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04358-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> 
+> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
 > Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-c9c6a4f1be1f wifi: ath11k: enable fw_wmi_diag_event hw param for WCN6750
+6f15937833d8 wifi: ath11k: fix the stack frame size warning in ath11k_vif_wow_set_wakeups
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240828103043.2413-1-quic_bpothuno@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20240829075253.657667-1-quic_miaoqing@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 https://docs.kernel.org/process/submitting-patches.html
