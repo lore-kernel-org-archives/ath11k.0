@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D45C9CEB2E6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AE9ECEB2E5
 	for <ath11k@archiver.kernel.org>; Tue,  1 Oct 2024 03:45:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,55 +12,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FQMEVX0dqad/HEWEyybScIJiZF9i2wSYdOXNnOgONmQ=; b=A3DH99q0dF5vnCsplsT5UMujq9
-	tHhG9EGyLwubdpQRkoMgznUEi55mqdtvGH+/dIp1xxPnnUB3VXKmyLfMeZ14txuIPzlaEwRdAqDce
-	B5qn7rGdm7foWoh4hccglZA7NdNnLbs9yGhutLgPguk4DQw3KAHImJXpDCLUR5xpb1lbFczqhGEzC
-	EYA7asZdRrXms4k44hIPiGiFR7PbUpdZphsmtLm4lVrsPobs7huoxpnEoOWO/tYYpIZLBKyxUbzj/
-	rEvXJHyWweA2mBoaIpi1B6wcIhOwr1TCq9gm0MdhLJKW523Bl/rPYPCk8BUrNWwIdJoB6djB8HG7r
-	k+B9jGPQ==;
+	bh=inn6pO+Fjh05RegTl6KsvviU/A4xm8resPRjG9kBF58=; b=L563kHR5j8YLJfsug9FC/RZl8d
+	ZD6MggB3iHuw5UjpnVWi/IuMs1cWzTFUAPi+fAPHTYqmRhzMgHSXVYXBT7/kKCol8Q1XGLH1G/H59
+	T8RoPjQiEPV1A3ScDerIhccWg9fEzx51sv/8TVKDFx17U9CaRTWmPWtigEVzbMsqXUm8U7ctvWA1x
+	69EsMR3ULdcc2RfD5Zy5UWp62yvl7hgN43D9XvK83WjcmGAhLkfF1XLa31QcGtIMARf5Aok43bejp
+	72SHqVaBbabb12GBp8M+0OP8T9XfvD4IXNkuWzp4KGnj8YUd1eeyqi5ByTcLx2tlkn+dY2X0YKqiv
+	xqYzV88w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svTou-00000001VpW-2GAa;
+	id 1svTou-00000001VpC-0Pw3;
 	Tue, 01 Oct 2024 03:45:04 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svTbl-00000001U24-47ul
+	id 1svTbh-00000001U1S-2pHA
 	for ath11k@lists.infradead.org;
-	Tue, 01 Oct 2024 03:31:31 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4910HM5O025075;
-	Tue, 1 Oct 2024 03:31:26 GMT
+	Tue, 01 Oct 2024 03:31:27 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48UGkxGm014835;
+	Tue, 1 Oct 2024 03:31:23 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FQMEVX0dqad/HEWEyybScIJiZF9i2wSYdOXNnOgONmQ=; b=BiNSUds+ofd72VJt
-	kt3CoGXpPTlSdrROGFj/jBJVYWy2tB6IZ/+kQC+c1FrVKZIrL3W0/QhU3JhbMkd6
-	BPLf8TIJThNBii1fY0mxd6WH40N5aUpcvXvFCdZkjVBF9TnF/1g9v33vqRp85l/D
-	+eczeIX5Ea48McODKCQdWw3BoGebXSCBKNv74GPbuTxMPwg5WyOeIr/Ax8Z6EUps
-	wNDbQefFfmjLviD8fikkvIIg/vEPudEcdNLwh5X8hy+PdMx/FoHN2ya5897MzEgg
-	iirqJxYyn9ucQ25CRpvfzjZDZDzXP+AoLAzcDHNV6wg7Jfeknk+MBOYDTarXSylN
-	KxLCmg==
+	inn6pO+Fjh05RegTl6KsvviU/A4xm8resPRjG9kBF58=; b=WICDhprrcU9Auxw4
+	sGlO5MrBqhn+xrxUg81fNWPYGW1WFyTV0N72O1bL+tB9O/QQ6c/dtmEGyhLyqIpY
+	qwdG5eR1HbwmrGFAziZSmxq6mNphG9hzlZx9EoYk3kwG3pU4j8LdjoZQTEyNdrb1
+	HW8cADWzDsCl4p4CwgBCQ7/lXUcu3ie0oK/pHiIXPzPjwuaQ3WafXN5ZsZ5Q0m9c
+	lz1IxCOAjp4euDwsXHFc4jQXvnCmCUJKVkyYYXNJR5pGTobHwwAxd+6FvvwGeWy/
+	MCe52BTgBIN6mhBHY1DtzxYGySgHA3G9eOqW28/Skh8714L+1wsI/Gsz/HijX8UC
+	+2t3gA==
 Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41x8t6pw5g-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41yprak25c-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Oct 2024 03:31:26 +0000 (GMT)
+	Tue, 01 Oct 2024 03:31:23 +0000 (GMT)
 Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4913VOS4026738
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4913VMuQ026727
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 1 Oct 2024 03:31:24 GMT
+	Tue, 1 Oct 2024 03:31:22 GMT
 Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
  nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 30 Sep 2024 20:31:22 -0700
+ 15.2.1544.9; Mon, 30 Sep 2024 20:31:20 -0700
 From: Miaoqing Pan <quic_miaoqing@quicinc.com>
 To: <kvalo@kernel.org>
 CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
         <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         Miaoqing Pan <quic_miaoqing@quicinc.com>
-Subject: [PATCH 2/2] wifi: ath11k: add firmware-name device tree property
-Date: Tue, 1 Oct 2024 11:30:52 +0800
-Message-ID: <20241001033053.2084360-3-quic_miaoqing@quicinc.com>
+Subject: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add firmware-name property
+Date: Tue, 1 Oct 2024 11:30:51 +0800
+Message-ID: <20241001033053.2084360-2-quic_miaoqing@quicinc.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
 References: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
@@ -72,19 +72,19 @@ X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jZC0mlPbWnQtrFdVUijQy7YKQBsBzvWh
-X-Proofpoint-ORIG-GUID: jZC0mlPbWnQtrFdVUijQy7YKQBsBzvWh
+X-Proofpoint-GUID: xbHNDaSRKO9rD-P8OLQtQMDG3-S5MqDX
+X-Proofpoint-ORIG-GUID: xbHNDaSRKO9rD-P8OLQtQMDG3-S5MqDX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- impostorscore=0 lowpriorityscore=0 mlxlogscore=999 bulkscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 adultscore=0 spamscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 mlxscore=0 phishscore=0 impostorscore=0
+ clxscore=1015 adultscore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2408220000 definitions=main-2410010023
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240930_203130_167207_C2E87492 
-X-CRM114-Status: GOOD (  12.41  )
+X-CRM114-CacheID: sfid-20240930_203125_755947_CD5B49DE 
+X-CRM114-Status: GOOD (  11.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,77 +99,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-QCA6698AQ uses different firmware/bdf/regdb with existing WCN6855
-firmware, which is customized for IoE platforms. And the 'pci-device-id +
-soc-hw-version + soc-hw-sub-version' may not be enough to identify the
-correct firmware directory path.
-
-The device tree allows "firmware-name" to define the firmware path,
-    wifi@c000000 {
-        firmware-name = "QCA6698AQ";
-        status = "okay";
-    };
-
-Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+This is the same optional property that defined in qcom,ath10k.yaml. It's
+useful for the platform / board to specify firmware through device-tree.
 
 Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 12 ++++++++++++
- drivers/net/wireless/ath/ath11k/core.h | 11 +++--------
- 2 files changed, 15 insertions(+), 8 deletions(-)
+ .../devicetree/bindings/net/wireless/qcom,ath11k.yaml      | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index be67382c00f6..7720f467b11b 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1178,6 +1178,18 @@ static int ath11k_core_create_chip_id_board_name(struct ath11k_base *ab, char *n
- 					       ATH11K_BDF_NAME_CHIP_ID);
- }
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index ff5763dc66a8..2f9fa96cbed1 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -1,5 +1,6 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k.yaml#
+@@ -61,6 +62,12 @@ properties:
  
-+void ath11k_core_create_firmware_path(struct ath11k_base *ab,
-+				      const char *filename,
-+				      void *buf, size_t buf_len)
-+{	const char *variant = NULL;
+   ieee80211-freq-limit: true
+ 
++  firmware-name:
++    maxItems: 1
++    description:
++      If present, a board or platform specific string used to lookup firmware
++      files for the device.
 +
-+	of_property_read_string(ab->dev->of_node, "firmware-name", &variant);
-+
-+	snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
-+		 variant ? : ab->hw_params.fw.dir, filename);
-+}
-+EXPORT_SYMBOL(ath11k_core_create_firmware_path);
-+
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *file)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 09c37e19a168..ce4102cfed4d 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -1249,6 +1249,9 @@ bool ath11k_core_coldboot_cal_support(struct ath11k_base *ab);
- 
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *filename);
-+void ath11k_core_create_firmware_path(struct ath11k_base *ab,
-+				      const char *filename,
-+				      void *buf, size_t buf_len);
- 
- static inline const char *ath11k_scan_state_str(enum ath11k_scan_state state)
- {
-@@ -1295,14 +1298,6 @@ static inline struct ath11k *ath11k_ab_to_ar(struct ath11k_base *ab,
- 	return ab->pdevs[ath11k_hw_mac_id_to_pdev_id(&ab->hw_params, mac_id)].ar;
- }
- 
--static inline void ath11k_core_create_firmware_path(struct ath11k_base *ab,
--						    const char *filename,
--						    void *buf, size_t buf_len)
--{
--	snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
--		 ab->hw_params.fw.dir, filename);
--}
--
- static inline const char *ath11k_bus_str(enum ath11k_bus bus)
- {
- 	switch (bus) {
+   wifi-firmware:
+     type: object
+     description: |
 -- 
 2.25.1
 
