@@ -4,79 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48BBCCEACF8
-	for <ath11k@archiver.kernel.org>; Tue,  1 Oct 2024 18:46:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B126CF8853
+	for <ath11k@archiver.kernel.org>; Fri,  4 Oct 2024 17:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qywIPYHuVPGlOQUUJe1oYrly+X7OJ96HoqCYKutu3Pk=; b=c+6SwcpChFto9Lv9LsshJybQk4
-	fSr1pr/HnlpCL4rHcFSqWZE5BfGjKmn5krDrBeKOZEJ4F8/hAuRLqa1JJV5YTYCJ9C2LImXJqESdo
-	oDaZZljnji54urncDhrejXrq7xytogLo9jr+UVHHkW9nK7iidD6rebnVoWfNGVYuzwFj8dn0fxn+5
-	f7qainNcIkXRuwQA4IhlhF8kDD/k/W/jkmhGPBDHeY37+TS8V2byeU5f1CawLN97Mkh5g3neu9Yrb
-	5lcJq56MILmRa7uoFkA7RZmnrepgiLeMb4GsN+YS0UhYFQs+uviwSuKYw2O4PjX/hnld4/MfZCUPm
-	nlaFc80w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=0IDXKvHiiMKFVRpUotWikxBR65niyfjG6UUhlpbZnmk=; b=SdJ0RHI+Ecg8vgsv+dGkA3LhJA
+	e+AXms9eqITWDFDZSUGpfbqibtHgL94dZz4sWs4l6xYzJ9xpWFsHY7AAkKiWUg/Jfg2GobYPSQa8Z
+	3keGPUB4HwpUhCWLGO26TM7kKAWfdnORjk/3KfK5XAAbWux3xfDM42CmpXrcGI5a0jgCTlGGCNUXH
+	SBWQGPoiO2vkUbqXwA5IPFD2Ewit42mRQ84C6Al178vLBsEbHuWBu9tc4mFeXvoEKVby4PI63/T09
+	LkAijRztBY8OVye4mkVVqOSofjHE3o5huzSRhzTWdfpf1ctSyk9Pw23uQS/pYNnziLrhPmZzVjfCC
+	I6zsS76A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svhtO-00000003o8H-3cRZ;
-	Tue, 01 Oct 2024 18:46:38 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1swls3-0000000DTKC-3HiR;
+	Fri, 04 Oct 2024 17:13:39 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svflc-00000003YoU-3M1p
-	for ath11k@bombadil.infradead.org;
-	Tue, 01 Oct 2024 16:30:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=qywIPYHuVPGlOQUUJe1oYrly+X7OJ96HoqCYKutu3Pk=; b=EgPDKxp9xV5vxtGwvhvQR6GFA0
-	vlaKJBIY+DnQwkhe9V6jMlab9sEd65fQDncy2mNwBsk3lq3BVL9cUkw7WxImsT5YERdh0WUC4+5a+
-	qZ3vIaLrWYNVdq1pyEKsAC2+anhPrFC8fsWQV19lH5vM1wPe/HMk3e/YJZNmih4hAN5GC/lora1Xv
-	NxvtI3HnIqwYEI915J3+/C9+ew8k+zZKmgaJqQeyA8SIcMU7FXN6Q7+Qzg6Odv/Y05540+PRt6RxJ
-	7Dbrf9UH5/ljRBeQpKWamGXIwm/oUJkShKrWg8M3xbMVlAYkJjWGCj+u3Eg58XVtNLQRN9oisY0in
-	vzXig69g==;
-Received: from dfw.source.kernel.org ([139.178.84.217])
-	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svflZ-00000003DQo-2BBV
+	id 1swlPq-0000000DJmG-26tV
 	for ath11k@lists.infradead.org;
-	Tue, 01 Oct 2024 16:30:27 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 8696A5C0FD6;
-	Tue,  1 Oct 2024 16:30:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE946C4CEC6;
-	Tue,  1 Oct 2024 16:30:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727800223;
-	bh=qywIPYHuVPGlOQUUJe1oYrly+X7OJ96HoqCYKutu3Pk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nzHpNUTcOCjxUgmmwdf0fAX9FusKgOjcml52YETXn2k/+at7tKtbM7h9dxYUxKdGA
-	 WLepTw9R7IHWMiZw7JGLHRLqRTeA3+aseqjtzYgyc7K6N4IzHgUhG+T8bEhNqu+XEy
-	 EbeNz3aoNU9I4bsEzjwqdhrVbT8Odh32U8Sd3EWQPH2xLcXqU4v8wCtSfwMmfezxPY
-	 nbHYJd0fgVpg5QoQ9mufTLgR/1e/CMsY096oB2ZvaQDLiq2IIRXJlJiKrLNFttYnQ4
-	 9Xi+oSS3CDj24RiygnASEqV2p3UkcINU8ozB1+GoJs0KQI37ywG/YTaOCtRsr9l3vV
-	 yLe12E96+0mNQ==
-Date: Tue, 1 Oct 2024 17:30:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>
-Cc: kvalo@kernel.org, quic_jjohnson@quicinc.com, ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add
- firmware-name property
-Message-ID: <20241001-stratus-aerospace-93a8fcc20daf@spud>
-References: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
- <20241001033053.2084360-2-quic_miaoqing@quicinc.com>
+	Fri, 04 Oct 2024 16:44:32 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 494ACDRa021335;
+	Fri, 4 Oct 2024 16:44:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0IDXKvHiiMKFVRpUotWikxBR65niyfjG6UUhlpbZnmk=; b=N9bG6iZfQQBhgZMW
+	Yglb4fPEL6w3uH6shomBkQJh0JdjdPq6bIXJp7vl+R4q/qFqstC/SbtqTEtaBAiM
+	tfO1W40u6CWFKSfX2398N94hBwJZmceVwowYautl9e6g9LIROIqNMD0E8bPxPBun
+	XQL+obf5a+SbwFUxwtckS8eaSeCprXS7ISF8GbuJvmmivJmOWoVsxbuF4jGyvjEk
+	yEa0SV/s54m/7pD7HpY/3oM/j5crIgJlHpa0uL49vyDzvNKbc3fHvD39C0a5F1Vh
+	C3X8BS50wjE3s4DnnpOjq5BLAw/wih0NiKGDR99LJ3snt9ZaKjKnRpcNpNVNDGrw
+	n2mN4A==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42205parbn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Oct 2024 16:44:28 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 494GiRFc017070
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 4 Oct 2024 16:44:27 GMT
+Received: from [10.111.183.136] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 4 Oct 2024
+ 09:44:27 -0700
+Message-ID: <892bc362-9faf-45d8-ac8a-994e8c4bd19c@quicinc.com>
+Date: Fri, 4 Oct 2024 09:44:26 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Tf8btgzQbpXwk8UC"
-Content-Disposition: inline
-In-Reply-To: <20241001033053.2084360-2-quic_miaoqing@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: Fix CE offset address calculation for
+ WCN6750 in SSR
+To: Balaji Pothunoori <quic_bpothuno@quicinc.com>,
+        <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20240927095825.22317-1-quic_bpothuno@quicinc.com>
+Content-Language: en-US
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240927095825.22317-1-quic_bpothuno@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vop3Qs5sqe1Aof_SYKq_sAP29wqORJ8z
+X-Proofpoint-ORIG-GUID: vop3Qs5sqe1Aof_SYKq_sAP29wqORJ8z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ impostorscore=0 adultscore=0 lowpriorityscore=0 phishscore=0
+ malwarescore=0 mlxlogscore=999 priorityscore=1501 bulkscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410040116
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241001_173025_929208_C36C8B26 
-X-CRM114-Status: UNSURE (   8.52  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241004_094430_706349_6066FF67 
+X-CRM114-Status: GOOD (  23.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,30 +99,69 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On 9/27/2024 2:58 AM, Balaji Pothunoori wrote:
+> Currently, mem_ce and mem iomem addresses are used to calculate the
+> CE offset address. mem_ce is initialized with mem address, and for
+> targets where ce_remap is needed, mem_ce is remapped to a new address
+> space during AHB probe.
+> 
+> For targets such as WCN6750 in which CE address space is same as WCSS
+> address space (i.e. "ce_remap" hw_param is set to false), mem_ce and
+> mem iomem addresses are same. In the initial SRNG setup for such targets,
+> the CE offset address and hence CE register base addresses are
+> calculated correctly in ath11k_hal_srng_init() as both mem and mem_ce
+> are initialized with same iomem address.
+> 
+> Later, after the firmware download, mem is initialized with BAR address
+> received in qmi_wlanfw_device_info_resp_msg_v01 QMI message, while mem_ce
+> is not updated.
+> 
+> After initial setup success, during Subsystem Restart (SSR), as part
+> of reinitialization, ath11k_hal_srng_init() will be called again,
+> and CE offset address will be calculated incorrectly this time as mem_ce
+> address was not updated. Due to the incorrect CE offset address,
+> APPS accesses an invalid CE register address which leads to improper
+> behavior in firmware after SSR is triggered.
+> 
+> To fix the above issue, update mem_ce to mem iomem address in
+> ath11k_qmi_request_device_info() for targets which do not support
+> ce_remap feature.
+> 
+> Fixes: b42b3678c91f("wifi: ath11k: remap ce register space for IPQ5018")
 
---Tf8btgzQbpXwk8UC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Not quite correct, missing space after the hash. Should be:
+Fixes: b42b3678c91f ("wifi: ath11k: remap ce register space for IPQ5018")
 
-On Tue, Oct 01, 2024 at 11:30:51AM +0800, Miaoqing Pan wrote:
-> This is the same optional property that defined in qcom,ath10k.yaml. It's
-> useful for the platform / board to specify firmware through device-tree.
->=20
-> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+hint: if you add the following to your git config file, you can issue the
+command "git fixes <hash>" and it will emit the correct Fixes: tag.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+[alias]
+        fixes = show -q --format=fixes
+[pretty]
+        fixes = Fixes: %h (\"%s\")
+[core]
+        abbrev = 12
 
---Tf8btgzQbpXwk8UC
-Content-Type: application/pgp-signature; name="signature.asc"
+No need to resend to fix this -- I'll fix it in the pending branch
 
------BEGIN PGP SIGNATURE-----
+> Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/qmi.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+> index f477afd325de..7a22483b35cd 100644
+> --- a/drivers/net/wireless/ath/ath11k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
+> @@ -2180,6 +2180,9 @@ static int ath11k_qmi_request_device_info(struct ath11k_base *ab)
+>  	ab->mem = bar_addr_va;
+>  	ab->mem_len = resp.bar_size;
+>  
+> +	if (!ab->hw_params.ce_remap)
+> +		ab->mem_ce = ab->mem;
+> +
+>  	return 0;
+>  out:
+>  	return ret;
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvwjmwAKCRB4tDGHoIJi
-0o52AQCaUZULOWA6elXQcLGkgs4ST3BsPJraPCN54wNg+3YamwEAsMgfVrAw86v/
-fi6B55JrfAIf+klnNqxLloy/QQQxYwg=
-=EUhw
------END PGP SIGNATURE-----
-
---Tf8btgzQbpXwk8UC--
 
