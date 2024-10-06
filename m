@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDB0CCF8855
-	for <ath11k@archiver.kernel.org>; Fri,  4 Oct 2024 19:19:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EA37CFB43C
+	for <ath11k@archiver.kernel.org>; Sun,  6 Oct 2024 01:55:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=4NR8cdtjLVf6SxCtdUlKwQ/jcTuvblwcyuv2K09YRrQ=; b=HhIYlCkiptzXsF5p0Aqt1AEv23
-	7toifS7ijRya7f+QQOLhhvPdTJ7W+ydlAjHW9LCq5CTd3LtO2TFO0STm+566z9Lk3oROvV1HuWpYu
-	cxCvAPXnko83oEKIR4oYM1qhy2ZV+7llxjvsJc/sLVRsx4Rd+kWyvNvY9+e1s/L2wngUo//LAtOFT
-	zsZpZprmJJkH/IOLQ4ty5FIHaGztXKjTYRQMwNj9tjgwtGUCyI/kp2Uxy8Jyg8GG50Tgd+8OAWvkg
-	WIPCid4x+vSzi7RZsf6graPsSQ5GbfaZvJ0DWhLLQYBt3YgxJVesiq4EaS///E3VDXdcySaCxu87D
-	OSoQZjyQ==;
+	bh=16q9Y86sg7YtLV/VdQV+wY+5IqRr33tmSw72N/NgBR4=; b=lUBRAfpTL8g0l7v12TZvdwjInI
+	E8G0x+dY2XR1cLjmWg82n+Bo5Ks4wzgtmG9JPiW3fN0U5TlV/pRW6cYQfb5QTNNttRw/W4A4J59zz
+	pu2obqzylJWCLmEQ7TIrYnLbxRBOLvZEJewZnjUcqQZ8gmt96HMhVa3ZmVfCSA+ZIIDRCxOol+JV7
+	W/po5kvRyNklWJRhdV1D0kmc6SYF6ChJjGqOsgwkf6dGIATAoKaxG/5Ph/87ncAJt+jLtH5QhzPIO
+	9BnTyjlP8nw9cVFJ+xzs9l4YMlyNp9+Ex+ZV+doCZhfBq3zlC8kkdUvBPS0NbShfcfG6MouKsCWvx
+	0d67/0xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1swnpN-0000000Ds77-05Jt;
-	Fri, 04 Oct 2024 19:19:01 +0000
-Received: from dispatch1-us1.ppe-hosted.com ([148.163.129.48])
+	id 1sxGUr-0000000GPJk-2mTs;
+	Sun, 06 Oct 2024 01:55:45 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1swnpJ-0000000Ds6R-3AWl
+	id 1sxGUo-0000000GPIP-3Bz6
 	for ath11k@lists.infradead.org;
-	Fri, 04 Oct 2024 19:18:59 +0000
-X-Virus-Scanned: Proofpoint Essentials engine
-Received: from mail3.candelatech.com (mail.candelatech.com [208.74.158.173])
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id 46AA034006F;
-	Fri,  4 Oct 2024 19:18:55 +0000 (UTC)
-Received: from [192.168.100.159] (unknown [50.251.239.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail3.candelatech.com (Postfix) with ESMTPSA id AB32913C2B0;
-	Fri,  4 Oct 2024 12:18:54 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail3.candelatech.com AB32913C2B0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=candelatech.com;
-	s=default; t=1728069534;
-	bh=I6dS25FZ6+z7FaVOKobmQQ+yIGb8HYVDKgWBNaLgutk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VI3TTj1uWI/r3iz0u/wzVd3uLGxDghzj5V3Jeq8FbC37fKXL5Sa3U8qikFx/UshbV
-	 PhQyGTvcDrd1dXj9J4ycW0RRdd3iergp5YeE+iP7o8sE76/V4IqnJeeec4PI6/oYLZ
-	 24p0K90Dy6Mhlvnzx9nlSE3OhhnrCQoyimeiJEs4=
-Message-ID: <d1e75a08-047d-7947-d51a-2e486efead77@candelatech.com>
-Date: Fri, 4 Oct 2024 12:18:54 -0700
+	Sun, 06 Oct 2024 01:55:44 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 166275C4B6E;
+	Sun,  6 Oct 2024 01:55:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7561BC4CEC2;
+	Sun,  6 Oct 2024 01:55:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728179740;
+	bh=RWOCv59/jmqYqMEm9L4v3SqGjoHGtg6ZPwB9geWYaR0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=UGKu6XAWHUyGDq9rdnKgYGfw4NFbGg+riDbD1agxOqhvW3grSwkIZLdDEGapsUY/j
+	 MIWb/hxVp9Hy0KiKSMufyJ0Fs1MFSPfIWZE9xUq1yi2DshBKVIB/kNQtqG7K1xlCck
+	 Ax1O/VyAYqmnyy0dOeehIGRf3+yZg/dr9hcAU1hpEOn2mwIMMx7pMeXXVswXaZZeGp
+	 A79jqZ53UfFFrJGVIbpoywbol1+AvU5RcNcYWy5qLjERiro8mSRrzTgKFoaKj8aZiA
+	 zkVqtA9pBYCu7yZMv1uMFr+A+97nW0NS4KZgISDHJHva7X7d1svpBk2jwVXNWwFkCu
+	 wFALGV3t1vTKA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Komal Bajaj <quic_kbajaj@quicinc.com>,
+	cros-qcom-dts-watchers@chromium.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	Kalle Valo <kvalo@kernel.org>
+Subject: Re: [PATCH 0/4] arm64: dts: qcom: qcs6490-rb3gen2: several small fixes
+Date: Sat,  5 Oct 2024 20:55:32 -0500
+Message-ID: <172817973328.398361.98827973777969222.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240907-rb3g2-fixes-v1-0-eb9da98e9f80@linaro.org>
+References: <20240907-rb3g2-fixes-v1-0-eb9da98e9f80@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: Missing scan results with SCAN_FLAG_COLOCATED_6GHZ set
- (Ath11k/WCN6855)
-Content-Language: en-US
-To: James Prestwood <prestwoj@gmail.com>,
- "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
- <linux-wireless@vger.kernel.org>
-Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-References: <cfb00919-678f-408d-9fb9-83fc24fee197@gmail.com>
-From: Ben Greear <greearb@candelatech.com>
-Organization: Candela Technologies
-In-Reply-To: <cfb00919-678f-408d-9fb9-83fc24fee197@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MDID: 1728069536-ex0oB6e5GI3J
-X-MDID-O: us5;ut7;1728069536;ex0oB6e5GI3J;<greearb@candelatech.com>;aae89045ff394e1bf2215a139f564027
-X-PPE-TRUSTED: V=1;DIR=OUT;
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241004_121857_865697_6953FFA4 
-X-CRM114-Status: GOOD (  26.33  )
+X-CRM114-CacheID: sfid-20241005_185542_870134_D967329B 
+X-CRM114-Status: UNSURE (   5.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,47 +82,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 10/4/24 11:46, James Prestwood wrote:
-> Hi,
-> 
-> I've noticed that when setting the colocated flag much of the scan results are not appearing when they should be. This was seen in a large warehouse where our 
-> network/SSID was using only the 6ghz band. There were other networks on 2.4/5ghz though, which maybe is having some effect, but those networks are not 
-> broadcasting on 6ghz.
-> 
-> This first came to my attention when the majority of our clients were experiencing horrible signal quality. Upon looking at the logs and nl80211 messages to the 
-> kernel IWD was issuing both limited 6ghz scans as well as full spectrum scans and only showing a few 6ghz results, like 1-2 BSS's which should not have been the 
-> case. I was able to scan manually using "iw scan" and I saw all the expected BSS's. I isolated it to the fact that IWD was setting the SCAN_FLAG_COLOCATED_6GHZ 
-> and removing that flag resulted in all the BSS's showing up in scan results. Note, that with or without the flag all the 2.4/5ghz BSS's were showing up without 
-> a problem, it seems completely isolated to the 6ghz band.
-> 
-> The NEW_SCAN_RESULTS event was indicating the kernel had scanned all the expected frequencies we were asking to scan, but the results were mostly empty for 
-> 6ghz. Only ever the connected BSS would show up and _sometimes_ another BSS, but generally not.
-> 
-> I'm trying to read through the code associated with the COLOCATED flag, but its not exactly intuitive (to me at least). I'm not sure if this is something with 
-> mac80211 or at the driver level. I really don't have anything to compare it to as ath11k is the only hardware available at this warehouse with many APs around.
-> 
-> I'm looking for some guidance on if this is expected behavior with the colocated flag, and if there is any concern with including it unconditionally on every 
-> scan. If it has unintended consequences like this, generally, across multiple drivers I'd like to re-think its use in IWD.
 
-I had some similar issues using hostap, and hacked it to do every 4th or so scan with that
-flag set differently.  Hopefully that lets the 'fast' scan work when it can, but still lets one
-scan the hard way...
-
-Possibly there are driver concerns too, I was using Intel be200 when debugging this.
-
-Thanks,
-Ben
-
-> 
-> Thanks,
-> 
-> James
+On Sat, 07 Sep 2024 15:51:23 +0300, Dmitry Baryshkov wrote:
+> - use modem.mbn instead of modem.mdt
+> - make GPU disabled by default
+> - specifiy ZAP blobs
+> - enable WiFi devices
 > 
 > 
 
+Applied, thanks!
+
+[1/4] arm64: dts: qcom: qcs6390-rb3gen2: use modem.mbn for modem DSP
+      commit: 6317aad0e1525f3e3609d9a0fea762a37799943a
+[2/4] arm64: dts: qcom: sc7280: don't enable GPU on unsupported devices
+      commit: 94d5ffab9d5ebc9caeab310f9d2eb36a65d7d3a9
+[3/4] arm64: dts: qcom: qcm6490-idp: enable WiFi
+      commit: afa11181fa506709857ebbdd17b4d76f2587e802
+[4/4] arm64: dts: qcom: qcm6490-rb3gen2: enable WiFi
+      commit: 0f6c6ae2e9d1cfafe62fed9ca0a07d241d3d8b79
+
+Best regards,
 -- 
-Ben Greear <greearb@candelatech.com>
-Candela Technologies Inc  http://www.candelatech.com
-
-
+Bjorn Andersson <andersson@kernel.org>
 
