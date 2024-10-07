@@ -4,87 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2E1DCFB443
-	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 13:23:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEB47CFB43F
+	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 14:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=wl8n/9TAPqgHKrSdwENGKR05xh35YHjoavZofuJF+rs=; b=XCwHEdX8k9GQ8patQZwJNqhf7O
-	lJ1aXqQqI131sukACAAb/8s1Vp6ipsUTZ/V7xD5arVJcZOl7Zuqqld8kvZFizJuR8eHSE3ZdjHKma
-	H5uIdoQxIc362VqU/z7gsO1dqQU5DLXPIJEpDcQF03PNMUsWlcjjT47FbUiG9tZOqqVqY92COMaXy
-	RRltetxdV5P4Z4oSeqELrwbBBTAz1C9QY2AIIVrzmK+tMz8vB28sujsHWfEHEAFPymuSrWmoNe8ub
-	2RorNYuKPru0m1m2eztKnDk296bs7QPNA8ogLNNGK5Z8KsxyAXWjQF7P6YxXpujoAAas8/esQVIhA
-	iAx35epw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=WWen1NhQzHtIaGJ4wRxojwp6g1EynruN6BWTwP/qJBA=; b=ktOs465zEf66mAyKw+jWy5eoun
+	sc0z1ujYRkKWOp+cFcb8y38x44+buSrdRos/7VuXKvQ/J6MW9m2kQACWdq1SZ27thUr7XMDOxAN5+
+	+gJWbFSvQ0xYHLiM3XNbwAtadvDoIOfUT/LOX0pCiGMljE+NLe55HtJhPXCzzf722RQxFO5E2OY4g
+	AycHyLEYBaXLJW9RmA7oA3suIHj7WqiV9zcsTE5zOOPqBGi+rIljAG+PV/abOQb2DwJjugRZKfx/9
+	b+mUn5rMTNO96Zs6bJkGET4Y9ns2ZBHEP94DU1mGD7IoGZ/ckjq+RBSIZZcQ+LTTkXdPNRWF97phh
+	3GiHA5Fw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxnhX-00000002Urw-1GOT;
-	Mon, 07 Oct 2024 13:23:03 +0000
-Received: from mail-pj1-x1036.google.com ([2607:f8b0:4864:20::1036])
+	id 1sxop9-00000002kdj-1uHT;
+	Mon, 07 Oct 2024 14:34:59 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxnV5-00000002S7I-38pB
-	for ath11k@lists.infradead.org;
-	Mon, 07 Oct 2024 13:10:12 +0000
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-2e09d9f2021so2994604a91.0
-        for <ath11k@lists.infradead.org>; Mon, 07 Oct 2024 06:10:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728306610; x=1728911410; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wl8n/9TAPqgHKrSdwENGKR05xh35YHjoavZofuJF+rs=;
-        b=iav+rHV2GgtZfxjFNGipDUz4vFbiV4KjaIA0rxXbeDCUsem9OOQbvDIrBm2l1+P077
-         h3NXwumMMTFNeCFaY4aqmBFWkR3sjW8nV9/DSrfWGTbX2+XE/KkCo74LadtWBakkmoaP
-         zhFp7h0FFCFoZclLsrreyv0mB6ReAq78lz23hFMdTSgzQJY5fDmFv2oGe8Mlk6+Vwdxz
-         SHSB+Xs1gbM68KZwjXK2euix4wNcFuSwV79xLkWiVFAvdec59Hw6ZIp4lheWw9UGONoh
-         FbQamiOWZW3lv4GFxIxpVxkxHiF/K5XhJcuZIyX0oR77gLH19ZmcBf9tRRCRNroyA5oA
-         W20g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728306610; x=1728911410;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wl8n/9TAPqgHKrSdwENGKR05xh35YHjoavZofuJF+rs=;
-        b=Rpnsz8QD9feO8BtXfVFbUv2WGHImwxrpdmrxTSrik1TLvek+kDM/kPiGQd0LnkBac4
-         FxpYHEjDwulmNazvsHq9ptS4ZRxVIBju1BJ+gALaVWPSWliGh82WIn2d0q1JOaHl6MYZ
-         LY7qzkUKejHyqikxocE0A2KhshR6+fHeszY7z9uhd0HzcvbrpvQYJUECNM3sHwP/EyKu
-         M3aIIxscBdsMafOTj8BRj84d+bDDqRn3TelYot6XbBXvNUy7E26nDYwerfbpvchLdg2p
-         KryIFvUnOGQhxdJhZ/a+VTxBltcr5htnGlpRkNE1UEM0vky/ZcDaU27zU/qmE/MYd0FM
-         JMUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYVaAADd5pZlRhNynNnDS06sbbD4eQhnmpwmWbf8c+v3cbDTmBSHKztmo7Z2GbnKG+asDyti8=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwQpzSGqHbzi33T80TsueJw0Eic73Hf7echCAhxlP4J75GX0tHz
-	C5sBPK+7cHiit9wqRZ7KhEg1kfO97o48KLUkfP+OBv7dpLj3tjQ4
-X-Google-Smtp-Source: AGHT+IH6dkdmoCABOb5rzM+ePQDA5F0ivfidowVx++O9LwE8IbPiZigqZNzfL+ryQGYC2Bfr1FfH2Q==
-X-Received: by 2002:a17:90a:c393:b0:2d3:ba42:775c with SMTP id 98e67ed59e1d1-2e1e620eb83mr14850209a91.1.1728306610132;
-        Mon, 07 Oct 2024 06:10:10 -0700 (PDT)
-Received: from localhost.localdomain ([103.149.249.231])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e85c99c3sm7018643a91.23.2024.10.07.06.10.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 06:10:09 -0700 (PDT)
-Date: Mon, 7 Oct 2024 21:10:27 +0800
-From: Jianhua Lu <lujianhua000@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
+	id 1sxogl-00000002iKT-0LKV;
+	Mon, 07 Oct 2024 14:26:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 784B7A40E26;
+	Mon,  7 Oct 2024 14:26:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88F93C4CEC6;
+	Mon,  7 Oct 2024 14:26:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728311177;
+	bh=wH8KEy7pERDiB2b1ro+1rgsenhn5KPrm+1++yqJVkcw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=arhisDDG6McfndQojURs3dX0GDLhGHwrO412kzpciXBXJAD/MkXkTqruytoU+Smtk
+	 VtZcrI1xqrOXcRkSqX69G6lhvaVJP7v4cqOlyCk4t2Z6jngTlxL1QtsTi8KKSGzL6U
+	 PFQV2oSGJl4pDd1c0ZphsJupkyyPBWXSAVf99ZZwL5WeiA9UMus1LynkX0Z7of7Zmr
+	 bVTiJwOfh/xRa7zuCCwF6xJgG4vGulf12p/0LwjJBuk/TnYcjGimqKoeksAkEiG3SS
+	 48PoZN14gPnFOJSeKOuv/Z5/u4tWdRB1PPdTAoJQM5zlZ6hXkdlOjp9OPXXsWpd+2K
+	 WfXAkSfKUsQQA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Rob Clark <robdclark@gmail.com>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
 	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi
- node
-Message-ID: <ZwPdw-O-LnohVV0Z@localhost.localdomain>
-References: <20241007130251.125022-1-lujianhua000@gmail.com>
- <20241007130251.125022-2-lujianhua000@gmail.com>
+Cc: iommu@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	Kalle Valo <kvalo@kernel.org>
+Subject: Re: (subset) [PATCH 0/7] arm64: qcom: sda660-ifc6560: enable GPU and WiFi support
+Date: Mon,  7 Oct 2024 09:25:51 -0500
+Message-ID: <172831116181.468342.15853869019266363418.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007130251.125022-2-lujianhua000@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_061011_811114_AA2833C3 
-X-CRM114-Status: GOOD (  15.19  )
+X-CRM114-CacheID: sfid-20241007_072619_204771_15679C92 
+X-CRM114-Status: UNSURE (   7.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,58 +86,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-sorry, I forget to CC Dmitry Baryshkov.
 
-On Mon, Oct 07, 2024 at 09:02:50PM +0800, Jianhua Lu wrote:
-> Add wifi node and this wifi module is connected to pice port.
-> The following is qca6390 probe message:
->   ath11k_pci 0000:01:00.0: Adding to iommu group 12
->   ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x604fffff 64bit]: assigned
->   ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
->   ath11k_pci 0000:01:00.0: MSI vectors: 32
->   ath11k_pci 0000:01:00.0: qca6390 hw2.0
->   ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
->   ath11k_pci 0000:01:00.0: fw_version 0x10121492 fw_build_timestamp 2021-11-04 11:23 fw_build_id
+On Sat, 07 Sep 2024 21:48:11 +0300, Dmitry Baryshkov wrote:
+> Follow the MSM8998 example and limit num_context_banks on SDM630 /
+> SDM660 platforms. This allows Linux to make use of the A2NOC and KGSL
+> SMMU, making it possible to enable GPU and WiFi on those platforms, and,
+> in particular, Inforce IFC6560 SBC.
 > 
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> ---
-> changes in v2:
-> 1. add ath11k-calibration-variant property.
+> Note, while WiFI starts up and can work for a short amount of time, MSS
+> starts crashing with the following message:
 > 
->  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> index ebea283f56ea..7a55e271c3ac 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> @@ -680,6 +680,25 @@ &pcie0_phy {
->  	status = "okay";
->  };
->  
-> +&pcieport0 {
-> +	wifi@0 {
-> +		compatible = "pci17cb,1101";
-> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> +
-> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
-> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-> +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-> +
-> +		qcom,ath11k-calibration-variant = "Xiaomi_Pad_5Pro";
-> +	};
-> +};
-> +
->  &pm8150_gpios {
->  	vol_up_n: vol-up-n-state {
->  		pins = "gpio6";
-> -- 
-> 2.46.0
-> 
+> [...]
+
+Applied, thanks!
+
+[2/7] arm64: dts: qcom: sdm630: enable GPU SMMU and GPUCC
+      commit: 166b955a8d60b38d4fbbb9a18994a49e607ab17e
+[3/7] arm64: dts: qcom: sda660-ifc6560: enable GPU
+      commit: deac51aedd1e1e5ba0d46f23ef0012a8754e4871
+[4/7] arm64: dts: qcom: sda660-ifc6560: fix l10a voltage ranges
+      commit: 1dd7d9d41dedf8d42e04c0f2febd4dbe5a062d4a
+[5/7] arm64: dts: qcom: sdm630: enable A2NOC and LPASS SMMU
+      commit: 41caaf517014d11c17b2e6f3b057f7b6c9507cb0
+[6/7] arm64: dts: qcom: sdm630: add WiFI device node
+      commit: d7e67846c08f46974da26c54af7793d47037d452
+[7/7] arm64: dts: qcom: sda660-ifc6560: enable mDSP and WiFi devices
+      commit: 04d8ed02cb9b86a0e231ae0271527fbbfb411695
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
