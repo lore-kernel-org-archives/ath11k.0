@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF17BCFB443
-	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 13:22:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23195CFB445
+	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 13:22:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6CwQatre7HDmPEfiwWXMhAxTYd1eDybO1wBnpMYOLMc=; b=YM4Ls6C01KfZoruOkRLxBc5yyx
-	bWzFs3EQZCoqbPWA/OvcnYznrGTS02gOziG0Vwfx98WGWlSB4LBJ4yDAZzANccOsk7/Jn0+kqO+hA
-	t8NgDK+Vz1a4ku7W/t/aC3gXRW3koQIOQ1sQZQSQdPm/UlSEpCZrx5wQtQuh/2ufa8We14RxV0mMO
-	9d/WK0jXv0OtIVnIKXv/r8V2TMLkZ9r/+ZTkITbgVjXsz+xDrmcXcTOj9IcyC5KD29ILXbOpgYgFH
-	Ifr7pfIgkVs9w7LF+SfWRVbLqmfATFHUXegTh5b2ttaMDqziomHPAUxgL1wxLWaArDNa4T561fQiY
-	T6TrG4XA==;
+	bh=Rqykl1jSbR3Xf0wddDtKRGArfsd/LgQPVty+FehECcE=; b=Vc1AOKKnP1LjCoFDJZz89MmXNG
+	K0+Xe+GXgkxLima+CISMfCOXEW8HP2fQkT9Ml/McuaEkM/OSxY0AyFq/lsH6s2LuwlJ0GcxwYEKrz
+	uyLeT/CDGZxNrOyanSsT8waFf0WNvtbA6L1VT59VgH6w9GbAGJ4Cz1FOYNqCvptYb16KNhau6V+Kq
+	Ix3x1RXAJHRnbab7+GUtSKh9G/ErkteKinDgZeV8GV+ZmVlkI7Z8dg2V3nknfQFF2BxWVzez+RHgg
+	y4K9PdyG94ckwxvHtRDyQupX0iYGc5SGfu0oZnN3dulCIS+BFSqw+/Gvi1reIqax69ELiLYv+OYdi
+	7+NoGgVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxnhL-00000002Uk2-1IDs;
-	Mon, 07 Oct 2024 13:22:51 +0000
-Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
+	id 1sxnhK-00000002Ujc-3VFZ;
+	Mon, 07 Oct 2024 13:22:50 +0000
+Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxnNz-00000002QyI-0ktp
+	id 1sxnNs-00000002QxN-1cJp
 	for ath11k@lists.infradead.org;
-	Mon, 07 Oct 2024 13:02:52 +0000
-Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-2e075ceebdaso3114769a91.2
-        for <ath11k@lists.infradead.org>; Mon, 07 Oct 2024 06:02:49 -0700 (PDT)
+	Mon, 07 Oct 2024 13:02:45 +0000
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-207115e3056so39564055ad.2
+        for <ath11k@lists.infradead.org>; Mon, 07 Oct 2024 06:02:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728306169; x=1728910969; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1728306164; x=1728910964; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6CwQatre7HDmPEfiwWXMhAxTYd1eDybO1wBnpMYOLMc=;
-        b=B2Iie2ZHHRfrNhvliDtgkAX3FE9z2HjiuqVISAzUhWw2PtvG6ya+thLJKAcUh5r5pO
-         WtpltuRacXcSKP+9ALuFYEVkMamYXA7qApDTEzOIXEsEywrr71QrezGbV82g+ApfK4vt
-         NrASvUzaxHoOGh0kqoRGoWUjX11DTARjAhXEjM9jYHGNYzXfyJ1ej4e1P/3LxrIcxCei
-         /KUgZxVR8jbt+pfGrFvel3WiBCsKBi2Nb8cMs8cjJ08tzWvb/nUtB1B03LQUfbBqM+Y8
-         nl+oc9ydTx9T4qYaPfkAyhXbQhDnFvdQ5Pka7PPrZ/tHTuInb9+uAYHnpUebvbcCh2Qg
-         7Y0Q==
+        bh=Rqykl1jSbR3Xf0wddDtKRGArfsd/LgQPVty+FehECcE=;
+        b=hBvm26biLWOSENRgDOypSUNeuSH1iE/LJfn8whon5ExGjWmr3WDKsZdyfPmL+IZkOM
+         /aEi4rvwuwRBzCcbXopGWvwr3pJdBLXyP0aHVrCyHh0SmaldKjTUFkknN+iYR9leJvDT
+         KGeZBQXTuk5R2cUMjsQ7UKs6MZpnp3IZ+lk8oFjBzQkpk9/yQI0oWLlynPpixiImgf6m
+         cWpDuW7TsK9rQJcTVwTXwBXbR4c0E95Ke/axOKTl61k0MgtO8VwrHdRHKf7BLZJ/zZs5
+         7Ig+WL5syIaNb/zI/iDw5D/U3DhucCezRZqrzgYCVXA9HfAC6qp7lS2kbjMVCZcPVCEc
+         k5nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728306169; x=1728910969;
+        d=1e100.net; s=20230601; t=1728306164; x=1728910964;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6CwQatre7HDmPEfiwWXMhAxTYd1eDybO1wBnpMYOLMc=;
-        b=ZPnnKXjeNZsGhv4KzyjT+m2cjNLW3zBBtqhT7x6Twkhbnr/QVVEgOFdBJiWve3h3P0
-         er8Nw8fH5t6G/WHL9tj/yF8RpEyStgw6rO1mKRDImYabflyfMbkBSevP5M+JxhpX7MEY
-         qWFOVpNxpmD73wm19m2/Ak3flS188lb9uHaBCRWEkuQ9RUAs8Xf89T0DOpJbqWr7Ahei
-         nGL2xapFPVoPfoMnQH9MvusTkVKMBC6Z7VNdq3oA88/Xoq1vOhoABHn0It9pT+xUz9vr
-         rUUNfW/RLQtJlFCUISnAQWzR11q/utv2+xVQbjIQDrxwcCPbMtsoOM8X8IcAhERhQCdr
-         bn3A==
-X-Forwarded-Encrypted: i=1; AJvYcCWhUrGKZWCCkxHuuu1ViPqQEuAut0L7DK6h+y7EGZXkctrugAPfYePHjnlqysjhWUBVMmCws7M=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyq5T1Xv5WPUGCpwSfBHqGuNPkCW1IcRQOf+P4hi9Xe9atE9cxq
-	qkqaOtNRRQ9aJaZmxSa86wgFp66W1JxLzEm0o0xchMNL8Bmj3i8E
-X-Google-Smtp-Source: AGHT+IHphNi8wQvW0Re22UFHYUWUX4stPnQdkVdx94eKxUrXesf/TgfdflxgAcmdcunP3HnAr5R2+g==
-X-Received: by 2002:a17:90a:db87:b0:2d1:bf48:e767 with SMTP id 98e67ed59e1d1-2e1e631e7a5mr12276086a91.29.1728306168961;
-        Mon, 07 Oct 2024 06:02:48 -0700 (PDT)
+        bh=Rqykl1jSbR3Xf0wddDtKRGArfsd/LgQPVty+FehECcE=;
+        b=YY2ZCv/cMqiWNFYBaMDHGeDhhjDuavS2Ojyb5jSzN6OkDxFAWGE7sd49oke33/xdaa
+         FX9MhFpnNGpJFoWUKhgPpQAWmoOUaglTeH57u8cVwk8o7NxK+KM5tN66cm/Hg1E1Rrl2
+         NLwptT/0o5LxMdDiUV/kMGPxxKyNDhBdsAZ47ckwU4baiIZJYNaw6yKKVSZ+DchpVuX5
+         kmS3aQ8Y1gavFQIOUj4qhIe+Po/Pgr2qcf+fMZ4+rw1YLGoA0+THwm9TqZ1b5n2iEUw6
+         fsUxK8TEixfrW5DE3eB0BexnliyB0CZMePEERUrK6k13ZDJZE5aof3lwA4wUvaMhr054
+         Afpg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCROH+BkSMWDZMKTJjipwrOQPKG6T5qBA1HuAx+Yk7b/MaHm/zcrANhPRB0L8OpHW1PntwCgw=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwlSKNeoUvRE06Ib8NwTPzTtE1Ztt3gzw/7jsdClqMALzGmHHBS
+	lvq2Elb3w0IKoHdxoUPtCIWkWZnCXCGjw+IN5m/ZHt9OyNaox5Iz
+X-Google-Smtp-Source: AGHT+IHgj18A/vjl7cwbS7J5GjAsyapY1A8uAmSx9GKN/DSCI14RjjrVWvOelKONI7gJCiAOxdqTIQ==
+X-Received: by 2002:a17:903:41c2:b0:20b:c1e4:2d5d with SMTP id d9443c01a7336-20bfe494d53mr158699775ad.34.1728306163666;
+        Mon, 07 Oct 2024 06:02:43 -0700 (PDT)
 Received: from localhost.localdomain ([103.149.249.231])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e20b128847sm5306654a91.49.2024.10.07.06.02.45
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e20b128847sm5306654a91.49.2024.10.07.06.02.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 06:02:48 -0700 (PDT)
+        Mon, 07 Oct 2024 06:02:43 -0700 (PDT)
 From: Jianhua Lu <lujianhua000@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -75,19 +75,18 @@ Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	ath11k@lists.infradead.org,
-	Jianhua Lu <lujianhua000@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add bluetooth node
-Date: Mon,  7 Oct 2024 21:02:51 +0800
-Message-ID: <20241007130251.125022-3-lujianhua000@gmail.com>
+	Jianhua Lu <lujianhua000@gmail.com>
+Subject: [PATCH v2 2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi node
+Date: Mon,  7 Oct 2024 21:02:50 +0800
+Message-ID: <20241007130251.125022-2-lujianhua000@gmail.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241007130251.125022-1-lujianhua000@gmail.com>
 References: <20241007130251.125022-1-lujianhua000@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_060251_237712_A94C4AA0 
-X-CRM114-Status: UNSURE (   9.53  )
+X-CRM114-CacheID: sfid-20241007_060244_445416_F7824C52 
+X-CRM114-Status: UNSURE (   8.47  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,54 +102,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add bluetooth node and this bluetooth module is connected to uart.
+Add wifi node and this wifi module is connected to pice port.
+The following is qca6390 probe message:
+  ath11k_pci 0000:01:00.0: Adding to iommu group 12
+  ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x604fffff 64bit]: assigned
+  ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+  ath11k_pci 0000:01:00.0: MSI vectors: 32
+  ath11k_pci 0000:01:00.0: qca6390 hw2.0
+  ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+  ath11k_pci 0000:01:00.0: fw_version 0x10121492 fw_build_timestamp 2021-11-04 11:23 fw_build_id
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 ---
 changes in v2:
-1. pick up Dmitry Baryshkov's Reviewed-by
+1. add ath11k-calibration-variant property.
 
  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 19 +++++++++++++++++++
  1 file changed, 19 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-index 7a55e271c3ac..100607da42ad 100644
+index ebea283f56ea..7a55e271c3ac 100644
 --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-@@ -30,6 +30,10 @@ / {
- 	qcom,msm-id = <QCOM_ID_SM8250 0x20001>; /* SM8250 v2.1 */
- 	qcom,board-id = <0x10008 0>;
- 
-+	aliases {
-+		serial0 = &uart6;
-+	};
-+
- 	chosen {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -799,6 +803,21 @@ wlan_en_state: wlan-default-state {
- 	};
+@@ -680,6 +680,25 @@ &pcie0_phy {
+ 	status = "okay";
  };
  
-+&uart6 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,qca6390-bt";
++&pcieport0 {
++	wifi@0 {
++		compatible = "pci17cb,1101";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
 +
 +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
 +		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
 +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
 +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
 +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
++		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++
++		qcom,ath11k-calibration-variant = "Xiaomi_Pad_5Pro";
 +	};
 +};
 +
- &usb_1 {
- 	/* USB 2.0 only */
- 	qcom,select-utmi-as-pipe-clk;
+ &pm8150_gpios {
+ 	vol_up_n: vol-up-n-state {
+ 		pins = "gpio6";
 -- 
 2.46.0
 
