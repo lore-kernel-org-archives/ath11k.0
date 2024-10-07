@@ -4,84 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB7E4CFB43F
-	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 13:23:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2E1DCFB443
+	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 13:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PVbc7x7qGxvPs4q2XtOSLgTK7eiawW+8HJ7G1mC5t0I=; b=GyMc3eY036ZiUSy9iFuBgTGX6n
-	t+7T4s5JXuDtT/rAGV3YKBV8lNsGbBYdO9BBbAxQaisIJelpgM+GUsOQLsbVNRKW5Je2O/46IO7Gs
-	flEWfdcCHtNYf0nEaDaK85QOIrtMSR/p10vMkAVF7J2gZjLklmyUmARQWgxU8KPaXbyD+SBcl6z6K
-	MEK4dzKO2Ox2baQSgpJkeB69xiCMidQXMAV2F16jKMo7Vtl/t80HStVVtjER7HvbOFPZHVP+Bx89R
-	7HZNbRx2Z+P3+W8AjWPE1ISahuIYW1M+6V0G4Ml67PVw6jxDjKnEsJKJm3s5/yWWsWx4uY9ZhWzkD
-	8tLEn3nw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=wl8n/9TAPqgHKrSdwENGKR05xh35YHjoavZofuJF+rs=; b=XCwHEdX8k9GQ8patQZwJNqhf7O
+	lJ1aXqQqI131sukACAAb/8s1Vp6ipsUTZ/V7xD5arVJcZOl7Zuqqld8kvZFizJuR8eHSE3ZdjHKma
+	H5uIdoQxIc362VqU/z7gsO1dqQU5DLXPIJEpDcQF03PNMUsWlcjjT47FbUiG9tZOqqVqY92COMaXy
+	RRltetxdV5P4Z4oSeqELrwbBBTAz1C9QY2AIIVrzmK+tMz8vB28sujsHWfEHEAFPymuSrWmoNe8ub
+	2RorNYuKPru0m1m2eztKnDk296bs7QPNA8ogLNNGK5Z8KsxyAXWjQF7P6YxXpujoAAas8/esQVIhA
+	iAx35epw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxnhV-00000002UqO-1clm;
-	Mon, 07 Oct 2024 13:23:01 +0000
-Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
+	id 1sxnhX-00000002Urw-1GOT;
+	Mon, 07 Oct 2024 13:23:03 +0000
+Received: from mail-pj1-x1036.google.com ([2607:f8b0:4864:20::1036])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxnRD-00000002RXK-0xFM
+	id 1sxnV5-00000002S7I-38pB
 	for ath11k@lists.infradead.org;
-	Mon, 07 Oct 2024 13:06:12 +0000
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-71dff3b3c66so704008b3a.0
-        for <ath11k@lists.infradead.org>; Mon, 07 Oct 2024 06:06:10 -0700 (PDT)
+	Mon, 07 Oct 2024 13:10:12 +0000
+Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-2e09d9f2021so2994604a91.0
+        for <ath11k@lists.infradead.org>; Mon, 07 Oct 2024 06:10:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728306369; x=1728911169; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PVbc7x7qGxvPs4q2XtOSLgTK7eiawW+8HJ7G1mC5t0I=;
-        b=fz7dB8+Zp2daPTFJ36zATUdUrdLO+uzD5Eyg/a1rGRKPDZwDyXxvXQ86iPcrTdU7GP
-         XaU2znDf0Az2jNEm12kPaWiVCxkuiq8tFKPpjc3BBSO3IGGryUC3XLyuJpc0/y5Ep7Qr
-         6GQylH3SFId5ZePNOscIhTkOpzacM1NUnIT18+AY5OoDypi+Wkkr+lQ+67jp9EOPZqqn
-         WUBtR/S6xc3eHIulHNpVz5o2W7a1e8PIsPtcNmAQlp7WbcnGNzzKcVZyz1qZfQO2yLke
-         aPBSKSK66iZ4MHJqUayDzCPH1hX0IYpQKLkEJD9Xs9BjLmvM7UxTq+ZwZegAwE8kVz81
-         B14A==
+        d=gmail.com; s=20230601; t=1728306610; x=1728911410; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wl8n/9TAPqgHKrSdwENGKR05xh35YHjoavZofuJF+rs=;
+        b=iav+rHV2GgtZfxjFNGipDUz4vFbiV4KjaIA0rxXbeDCUsem9OOQbvDIrBm2l1+P077
+         h3NXwumMMTFNeCFaY4aqmBFWkR3sjW8nV9/DSrfWGTbX2+XE/KkCo74LadtWBakkmoaP
+         zhFp7h0FFCFoZclLsrreyv0mB6ReAq78lz23hFMdTSgzQJY5fDmFv2oGe8Mlk6+Vwdxz
+         SHSB+Xs1gbM68KZwjXK2euix4wNcFuSwV79xLkWiVFAvdec59Hw6ZIp4lheWw9UGONoh
+         FbQamiOWZW3lv4GFxIxpVxkxHiF/K5XhJcuZIyX0oR77gLH19ZmcBf9tRRCRNroyA5oA
+         W20g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728306369; x=1728911169;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PVbc7x7qGxvPs4q2XtOSLgTK7eiawW+8HJ7G1mC5t0I=;
-        b=OjDyPgHCu6b6fxmbZoMxugogXWfK43L8Egyh5l8pfobIU1Upmk+pPfMh1JhgZg0LYV
-         7EL61/YY0ST6Oa9Yv9GbIft95xUGZpDJGc5upxsXqQwCsXFgJuFbCK/1/OKEcQTtA9CH
-         vCRqnOuOycjEhYL/UcysUb6M8dgzEpCFyeUCDGWszwJPgv+5IZCqNjw37TSrGBTFtCJR
-         oQzLRUWqHALjTOc+zJUYMnz7emr6ePYKmbBfpq9qnEguMpXMZc251b/1xtHm8krX2DJj
-         klVJMGOo9aRGpEr2jqFscOX2VwuuVGo1ShXR49FFh+azM5ax01OwdvkGRakPObcD3CSD
-         7nfQ==
-X-Gm-Message-State: AOJu0YwH3W0R+MBXaGw9Y/KYl0kKtzZLRENxYxKBTTCv+mqEXxcG7TFB
-	VbwTvaNWxnCpkkIeEhilrJPBerPSoBtdbnX9mhiPMBX8bo87CUx3
-X-Google-Smtp-Source: AGHT+IEBokp742xlJXBM+MooOnnuVX8tXk84A4LTmcw9Fd7Zmd5xB+kiCRAuVzfGh9bR6h1QzdaIRQ==
-X-Received: by 2002:a05:6a00:1893:b0:71d:f510:b791 with SMTP id d2e1a72fcca58-71df510bbdfmr1864578b3a.12.1728306369364;
-        Mon, 07 Oct 2024 06:06:09 -0700 (PDT)
-Received: from [192.168.1.164] (h69-130-12-20.bendor.broadband.dynamic.tds.net. [69.130.12.20])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e9f681f1e8sm4197232a12.28.2024.10.07.06.06.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 06:06:08 -0700 (PDT)
-Message-ID: <4ce007ef-5a5e-4403-b53e-fe13513f21b5@gmail.com>
-Date: Mon, 7 Oct 2024 06:06:08 -0700
+        d=1e100.net; s=20230601; t=1728306610; x=1728911410;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wl8n/9TAPqgHKrSdwENGKR05xh35YHjoavZofuJF+rs=;
+        b=Rpnsz8QD9feO8BtXfVFbUv2WGHImwxrpdmrxTSrik1TLvek+kDM/kPiGQd0LnkBac4
+         FxpYHEjDwulmNazvsHq9ptS4ZRxVIBju1BJ+gALaVWPSWliGh82WIn2d0q1JOaHl6MYZ
+         LY7qzkUKejHyqikxocE0A2KhshR6+fHeszY7z9uhd0HzcvbrpvQYJUECNM3sHwP/EyKu
+         M3aIIxscBdsMafOTj8BRj84d+bDDqRn3TelYot6XbBXvNUy7E26nDYwerfbpvchLdg2p
+         KryIFvUnOGQhxdJhZ/a+VTxBltcr5htnGlpRkNE1UEM0vky/ZcDaU27zU/qmE/MYd0FM
+         JMUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYVaAADd5pZlRhNynNnDS06sbbD4eQhnmpwmWbf8c+v3cbDTmBSHKztmo7Z2GbnKG+asDyti8=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwQpzSGqHbzi33T80TsueJw0Eic73Hf7echCAhxlP4J75GX0tHz
+	C5sBPK+7cHiit9wqRZ7KhEg1kfO97o48KLUkfP+OBv7dpLj3tjQ4
+X-Google-Smtp-Source: AGHT+IH6dkdmoCABOb5rzM+ePQDA5F0ivfidowVx++O9LwE8IbPiZigqZNzfL+ryQGYC2Bfr1FfH2Q==
+X-Received: by 2002:a17:90a:c393:b0:2d3:ba42:775c with SMTP id 98e67ed59e1d1-2e1e620eb83mr14850209a91.1.1728306610132;
+        Mon, 07 Oct 2024 06:10:10 -0700 (PDT)
+Received: from localhost.localdomain ([103.149.249.231])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e85c99c3sm7018643a91.23.2024.10.07.06.10.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2024 06:10:09 -0700 (PDT)
+Date: Mon, 7 Oct 2024 21:10:27 +0800
+From: Jianhua Lu <lujianhua000@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi
+ node
+Message-ID: <ZwPdw-O-LnohVV0Z@localhost.localdomain>
+References: <20241007130251.125022-1-lujianhua000@gmail.com>
+ <20241007130251.125022-2-lujianhua000@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Missing scan results with SCAN_FLAG_COLOCATED_6GHZ set
- (Ath11k/WCN6855)
-To: Ben Greear <greearb@candelatech.com>,
- "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
- <linux-wireless@vger.kernel.org>
-Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-References: <cfb00919-678f-408d-9fb9-83fc24fee197@gmail.com>
- <d1e75a08-047d-7947-d51a-2e486efead77@candelatech.com>
-Content-Language: en-US
-From: James Prestwood <prestwoj@gmail.com>
-In-Reply-To: <d1e75a08-047d-7947-d51a-2e486efead77@candelatech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007130251.125022-2-lujianhua000@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_060611_288759_7F156067 
-X-CRM114-Status: GOOD (  24.73  )
+X-CRM114-CacheID: sfid-20241007_061011_811114_AA2833C3 
+X-CRM114-Status: GOOD (  15.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,62 +99,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Ben,
+sorry, I forget to CC Dmitry Baryshkov.
 
-On 10/4/24 12:18 PM, Ben Greear wrote:
-> On 10/4/24 11:46, James Prestwood wrote:
->> Hi,
->>
->> I've noticed that when setting the colocated flag much of the scan 
->> results are not appearing when they should be. This was seen in a 
->> large warehouse where our network/SSID was using only the 6ghz band. 
->> There were other networks on 2.4/5ghz though, which maybe is having 
->> some effect, but those networks are not broadcasting on 6ghz.
->>
->> This first came to my attention when the majority of our clients were 
->> experiencing horrible signal quality. Upon looking at the logs and 
->> nl80211 messages to the kernel IWD was issuing both limited 6ghz 
->> scans as well as full spectrum scans and only showing a few 6ghz 
->> results, like 1-2 BSS's which should not have been the case. I was 
->> able to scan manually using "iw scan" and I saw all the expected 
->> BSS's. I isolated it to the fact that IWD was setting the 
->> SCAN_FLAG_COLOCATED_6GHZ and removing that flag resulted in all the 
->> BSS's showing up in scan results. Note, that with or without the flag 
->> all the 2.4/5ghz BSS's were showing up without a problem, it seems 
->> completely isolated to the 6ghz band.
->>
->> The NEW_SCAN_RESULTS event was indicating the kernel had scanned all 
->> the expected frequencies we were asking to scan, but the results were 
->> mostly empty for 6ghz. Only ever the connected BSS would show up and 
->> _sometimes_ another BSS, but generally not.
->>
->> I'm trying to read through the code associated with the COLOCATED 
->> flag, but its not exactly intuitive (to me at least). I'm not sure if 
->> this is something with mac80211 or at the driver level. I really 
->> don't have anything to compare it to as ath11k is the only hardware 
->> available at this warehouse with many APs around.
->>
->> I'm looking for some guidance on if this is expected behavior with 
->> the colocated flag, and if there is any concern with including it 
->> unconditionally on every scan. If it has unintended consequences like 
->> this, generally, across multiple drivers I'd like to re-think its use 
->> in IWD.
->
-> I had some similar issues using hostap, and hacked it to do every 4th 
-> or so scan with that
-> flag set differently.  Hopefully that lets the 'fast' scan work when 
-> it can, but still lets one
-> scan the hard way...
->
-> Possibly there are driver concerns too, I was using Intel be200 when 
-> debugging this.
-
-Thanks for the extra info. Seems like a mac80211 quirk if its also on an 
-Intel card. Long term I may just parse RNR elements in userspace and 
-issue extra scans if needed.
-
-Thanks,
-
-James
-
+On Mon, Oct 07, 2024 at 09:02:50PM +0800, Jianhua Lu wrote:
+> Add wifi node and this wifi module is connected to pice port.
+> The following is qca6390 probe message:
+>   ath11k_pci 0000:01:00.0: Adding to iommu group 12
+>   ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x604fffff 64bit]: assigned
+>   ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+>   ath11k_pci 0000:01:00.0: MSI vectors: 32
+>   ath11k_pci 0000:01:00.0: qca6390 hw2.0
+>   ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+>   ath11k_pci 0000:01:00.0: fw_version 0x10121492 fw_build_timestamp 2021-11-04 11:23 fw_build_id
+> 
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+> changes in v2:
+> 1. add ath11k-calibration-variant property.
+> 
+>  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> index ebea283f56ea..7a55e271c3ac 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> @@ -680,6 +680,25 @@ &pcie0_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pcieport0 {
+> +	wifi@0 {
+> +		compatible = "pci17cb,1101";
+> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
+> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+> +
+> +		qcom,ath11k-calibration-variant = "Xiaomi_Pad_5Pro";
+> +	};
+> +};
+> +
+>  &pm8150_gpios {
+>  	vol_up_n: vol-up-n-state {
+>  		pins = "gpio6";
+> -- 
+> 2.46.0
+> 
 
