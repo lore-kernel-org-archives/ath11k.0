@@ -4,74 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEB47CFB43F
-	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 14:35:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60210CFB452
+	for <ath11k@archiver.kernel.org>; Mon,  7 Oct 2024 18:41:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WWen1NhQzHtIaGJ4wRxojwp6g1EynruN6BWTwP/qJBA=; b=ktOs465zEf66mAyKw+jWy5eoun
-	sc0z1ujYRkKWOp+cFcb8y38x44+buSrdRos/7VuXKvQ/J6MW9m2kQACWdq1SZ27thUr7XMDOxAN5+
-	+gJWbFSvQ0xYHLiM3XNbwAtadvDoIOfUT/LOX0pCiGMljE+NLe55HtJhPXCzzf722RQxFO5E2OY4g
-	AycHyLEYBaXLJW9RmA7oA3suIHj7WqiV9zcsTE5zOOPqBGi+rIljAG+PV/abOQb2DwJjugRZKfx/9
-	b+mUn5rMTNO96Zs6bJkGET4Y9ns2ZBHEP94DU1mGD7IoGZ/ckjq+RBSIZZcQ+LTTkXdPNRWF97phh
-	3GiHA5Fw==;
+	bh=1z49RmxWVvAfa3H8uEeVzv87z4AY+nkNY6y36+t7HPw=; b=ZZHAtVyw887RPAmqlqoz+MT1Pe
+	Dckw7He3V4i8dvD00sZ7IiKcbC9RzWmlM0b04YjOcv3aZsO8194rTJJzXt1zRzSd7kzS/wu0lwftp
+	9OZXAbDQYzBW5kuc5ajJO3/w5KX15mSv7pQuBA+MBbJF2HxMYUwBELH/W5tP7Kqx69FW2Q4cLhas3
+	XpWRrbwk/6n86tMnGYzxOWsdMh2dTEVxBQ6VlvNIB6PZktpyXlwTwlsI9qFLlZXEKXJLzUFbb+GD9
+	L8ywq4qt3QWu8fOBLqHKKQoGUhrg5bkmRwGVmYkSdECxrjgfpgJTls9dSKAfBVK+xjlImKrwMEWdn
+	dEvEroFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxop9-00000002kdj-1uHT;
-	Mon, 07 Oct 2024 14:34:59 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1sxsfC-00000003VbB-3rZw;
+	Mon, 07 Oct 2024 18:40:58 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxogl-00000002iKT-0LKV;
-	Mon, 07 Oct 2024 14:26:20 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 784B7A40E26;
-	Mon,  7 Oct 2024 14:26:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88F93C4CEC6;
-	Mon,  7 Oct 2024 14:26:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728311177;
-	bh=wH8KEy7pERDiB2b1ro+1rgsenhn5KPrm+1++yqJVkcw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=arhisDDG6McfndQojURs3dX0GDLhGHwrO412kzpciXBXJAD/MkXkTqruytoU+Smtk
-	 VtZcrI1xqrOXcRkSqX69G6lhvaVJP7v4cqOlyCk4t2Z6jngTlxL1QtsTi8KKSGzL6U
-	 PFQV2oSGJl4pDd1c0ZphsJupkyyPBWXSAVf99ZZwL5WeiA9UMus1LynkX0Z7of7Zmr
-	 bVTiJwOfh/xRa7zuCCwF6xJgG4vGulf12p/0LwjJBuk/TnYcjGimqKoeksAkEiG3SS
-	 48PoZN14gPnFOJSeKOuv/Z5/u4tWdRB1PPdTAoJQM5zlZ6hXkdlOjp9OPXXsWpd+2K
-	 WfXAkSfKUsQQA==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: iommu@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	Kalle Valo <kvalo@kernel.org>
-Subject: Re: (subset) [PATCH 0/7] arm64: qcom: sda660-ifc6560: enable GPU and WiFi support
-Date: Mon,  7 Oct 2024 09:25:51 -0500
-Message-ID: <172831116181.468342.15853869019266363418.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
-References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+	id 1sxsfA-00000003VaQ-0tFS
+	for ath11k@lists.infradead.org;
+	Mon, 07 Oct 2024 18:40:57 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497F4I4Y032224;
+	Mon, 7 Oct 2024 18:40:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1z49RmxWVvAfa3H8uEeVzv87z4AY+nkNY6y36+t7HPw=; b=LkpzLiRCq9RxnFsG
+	3vQQYne1N9ZX6HRfQTd3mE3N+TKa5rmCHmwrLSue7o7kCPsQ+WJ2aeTw/jqU1VKz
+	3ngT4bG5cLT7INwhX8sZa0M1DgdKaZ/a+widhFz7xtOfcp2QlrWnqtXgwanrqkIJ
+	0WGoSmZg5ncod8q1lh10Y4LDCscyFgS3NPc/qsNAVQMaNeXkhNSoUTzA8G/DLVdx
+	xkjKU7sDYvcJbHwQZOCbCWIkBo2b5DzYBYz0nJ2DrtHNnx/uqBpSorzgZysT6w9L
+	drxOg5RcdWK9BI4L6pwbDIW5pl0piLITsfDdsfFCQmJrCsGdRgv+pws4DloQEOOn
+	ZC2v6g==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xv8d21w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 07 Oct 2024 18:40:50 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 497Ieo8n004317
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 7 Oct 2024 18:40:50 GMT
+Received: from [10.48.240.101] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 7 Oct 2024
+ 11:40:49 -0700
+Message-ID: <181d03f6-9a1d-449f-a8af-b4d0fcc8b188@quicinc.com>
+Date: Mon, 7 Oct 2024 11:40:48 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi
+ node
+To: Jianhua Lu <lujianhua000@gmail.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        Jeff Johnson
+	<jjohnson@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <ath11k@lists.infradead.org>,
+        Dmitry
+ Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20241007130251.125022-1-lujianhua000@gmail.com>
+ <20241007130251.125022-2-lujianhua000@gmail.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20241007130251.125022-2-lujianhua000@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kYVQmj8-8toMxFjiJ-mLdgXf-4suP_9w
+X-Proofpoint-GUID: kYVQmj8-8toMxFjiJ-mLdgXf-4suP_9w
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0 bulkscore=0
+ spamscore=0 mlxlogscore=999 adultscore=0 clxscore=1011 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410070129
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_072619_204771_15679C92 
-X-CRM114-Status: UNSURE (   7.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241007_114056_304815_DDE36A15 
+X-CRM114-Status: GOOD (  15.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,34 +111,59 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On 10/7/2024 6:02 AM, Jianhua Lu wrote:
+> Add wifi node and this wifi module is connected to pice port.
 
-On Sat, 07 Sep 2024 21:48:11 +0300, Dmitry Baryshkov wrote:
-> Follow the MSM8998 example and limit num_context_banks on SDM630 /
-> SDM660 platforms. This allows Linux to make use of the A2NOC and KGSL
-> SMMU, making it possible to enable GPU and WiFi on those platforms, and,
-> in particular, Inforce IFC6560 SBC.
+s/pici/pcie/ (or perhaps better: PCIe)
+
+> The following is qca6390 probe message:
+>   ath11k_pci 0000:01:00.0: Adding to iommu group 12
+>   ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x604fffff 64bit]: assigned
+>   ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+>   ath11k_pci 0000:01:00.0: MSI vectors: 32
+>   ath11k_pci 0000:01:00.0: qca6390 hw2.0
+>   ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+>   ath11k_pci 0000:01:00.0: fw_version 0x10121492 fw_build_timestamp 2021-11-04 11:23 fw_build_id
 > 
-> Note, while WiFI starts up and can work for a short amount of time, MSS
-> starts crashing with the following message:
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+> changes in v2:
+> 1. add ath11k-calibration-variant property.
 > 
-> [...]
+>  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> index ebea283f56ea..7a55e271c3ac 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> @@ -680,6 +680,25 @@ &pcie0_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pcieport0 {
+> +	wifi@0 {
+> +		compatible = "pci17cb,1101";
+> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
+> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+> +
+> +		qcom,ath11k-calibration-variant = "Xiaomi_Pad_5Pro";
 
-Applied, thanks!
+Are you going to submit the board file per the guidance Dmitry provided?
 
-[2/7] arm64: dts: qcom: sdm630: enable GPU SMMU and GPUCC
-      commit: 166b955a8d60b38d4fbbb9a18994a49e607ab17e
-[3/7] arm64: dts: qcom: sda660-ifc6560: enable GPU
-      commit: deac51aedd1e1e5ba0d46f23ef0012a8754e4871
-[4/7] arm64: dts: qcom: sda660-ifc6560: fix l10a voltage ranges
-      commit: 1dd7d9d41dedf8d42e04c0f2febd4dbe5a062d4a
-[5/7] arm64: dts: qcom: sdm630: enable A2NOC and LPASS SMMU
-      commit: 41caaf517014d11c17b2e6f3b057f7b6c9507cb0
-[6/7] arm64: dts: qcom: sdm630: add WiFI device node
-      commit: d7e67846c08f46974da26c54af7793d47037d452
-[7/7] arm64: dts: qcom: sda660-ifc6560: enable mDSP and WiFi devices
-      commit: 04d8ed02cb9b86a0e231ae0271527fbbfb411695
+Note that I am not up to speed on the firmware/board maintenance procedures so
+we'll need to wait for Kalle to have bandwidth to handle the request (and show
+me how he handles it).
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+/jeff
+
 
