@@ -4,84 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C96C8CED268
-	for <ath11k@archiver.kernel.org>; Tue,  8 Oct 2024 05:38:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 979F4CF043B
+	for <ath11k@archiver.kernel.org>; Wed,  9 Oct 2024 04:16:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=k25j2vyaCYq4zv1VznFbTj5uLEMXLTsU/hNwmU3iGRQ=; b=Dnrr0L1bJUVtA+t4jSdytyZPl+
-	GwEwY7CtWXjsXGxkXI4XBZ5+fHHayiiGKCGCIyRCU94MFv6p0xtq+cfr25kVe/t4HVJLC7OoutBZI
-	P7iQpwKrYPCQQxhK9cttl3TvS/pk6jGTlOQMlAtHM7kXEb0tbxt/7Ezz3soarzpLMP6M/3zeJe+98
-	sFBpAGUvnB7y3eswubWytnK1aFYP1ch+CX+lA0LsgeyLNgvmWOzlAvrzN613dWKSv++uVN/FbLtFv
-	sWux6EtoKudDWWG3mhEvSEobf0K3F80r1ID1a8jD6jy0T72t4/thsv3JopRHCL6tB0b2clcl5T6fR
-	GWmsoLcw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=AxHEzRI40/d0mhE2KKq1xKvFrEaObS6WWCaOaOn5Vfg=; b=Y6M2Ki1hILQnB74v1cWY9YOYlV
+	oY1Cr98AzC58k06Hvi+6MFIFffYEmhVKMlHTWhnhYtpHPoKISQgiLgxToV/mw9TFlfP2wxGt4g3/6
+	HZ3KpbPiSg7xGH6CqfkSA5gz0eBRuUPRe9RyLlDERQA8s7ZzuqcY1WgOfjZoA6W0j7NF7y+IOUK7K
+	5HQillaj/3AIMbr5XJiOhQhNi+5Ko/BLMFw07uOgieysecL7ac9DmXUzu+ASVy0SUgOzoJdh3Cx/x
+	9WYRVCp2ZV90e4RFntmUmrwfH5IzB/8fIuQecPUWxVIO7LNGqtT9oyHkSvqexQ70+QSnlyVUWHdwN
+	oST/Q1aQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sy2vZ-00000004ZVA-2Aff;
-	Tue, 08 Oct 2024 05:38:33 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1syO7r-00000007qkU-0vZS;
+	Wed, 09 Oct 2024 04:16:39 +0000
+Received: from mgamail.intel.com ([192.198.163.7])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sy2vV-00000004ZTJ-2vrF
-	for ath11k@lists.infradead.org;
-	Tue, 08 Oct 2024 05:38:30 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497F8LYV026503;
-	Tue, 8 Oct 2024 05:38:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	k25j2vyaCYq4zv1VznFbTj5uLEMXLTsU/hNwmU3iGRQ=; b=JzTomAOWVPDlBZEg
-	GlyiYjM5eMRVfLxoMuLjuBotnSFeVFlEJ8zDSkn3gnq7ACbcn8uPdmvt0JQZ/Cx1
-	T8ZtDXh/tqkob8KJAE4VRa/45SgdYo6joCnsq4ia4cBu7CnbvKrXSjY1UcDDODZs
-	YAXIpkG8gQeJXMwl0xCZEhBwOs7hfQuT8AgaTIQJaLM5qfP4fgtNIHJUzn6PG1nB
-	5APrGB9ulLyA3ASSfk4Pbqsc+Q5/teWkozbIEfAFVybJp9tzQv6frTfen8cjXN49
-	tW/Z+wT28geFtLiZMnyFAJo3YS9XVjyjPYH/fOeUDRzB9/sIk04IGE6RqwaBHnQ7
-	9DtBOQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xs8685v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Oct 2024 05:38:29 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4985cSO3025721
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 8 Oct 2024 05:38:28 GMT
-Received: from kangyang.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 7 Oct 2024 22:38:27 -0700
-From: Kang Yang <quic_kangyang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_kangyang@quicinc.com>
-Subject: [PATCH v3 2/2] wifi: ath11k: add srng->lock for ath11k_hal_srng_* in monitor mode
-Date: Tue, 8 Oct 2024 13:37:44 +0800
-Message-ID: <20241008053744.1070-3-quic_kangyang@quicinc.com>
-X-Mailer: git-send-email 2.34.1.windows.1
-In-Reply-To: <20241008053744.1070-1-quic_kangyang@quicinc.com>
-References: <20241008053744.1070-1-quic_kangyang@quicinc.com>
+	id 1syO7o-00000007qjE-1I92;
+	Wed, 09 Oct 2024 04:16:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728447396; x=1759983396;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=FpKlHHeM/6cKsSb3+hXN3Hii4hdbUz8GYyXvQvDxPug=;
+  b=PzZTvHMnW6bxkpcUyDINBNkVIvsKEOsnk9KoIZzOrcakHz61O81nwLpU
+   jYjrhFY9gvKnU0WdJ4M5ZmhxR4lYoGPNTqqiOrSRyBd/Az9MuEpOPyiVZ
+   f9LhIuPNCJS3R991EAUQlymixHvtxhkwxGkLPHY9hQgOaJMw+Sv8RtGdm
+   BNwC28l9ZKqh32x1uhyY2CGI7hGRJbepwn9+eBPXtpscBJrhA1Ez3xY0Q
+   3o3mzT1WHTcPoK1uv1kgulLhv512ATDuDvgnb8T62wcu3i16hiSQIEtfR
+   2nHGFCoUh7Y2fNC32msk82sPS/dAM3xAL/ahlW4zgvrEIMbZ5rLaE0w37
+   Q==;
+X-CSE-ConnectionGUID: uEk0fMjLTDS060u3dZOJGQ==
+X-CSE-MsgGUID: 9FepnE7xSSS/tS96jRnw9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="53126984"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; 
+   d="scan'208";a="53126984"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2024 21:16:36 -0700
+X-CSE-ConnectionGUID: gBR1ztROQv6F5nsORJFsxQ==
+X-CSE-MsgGUID: IuHfSUqBTXCGAYv8AkG3CQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; 
+   d="scan'208";a="80095696"
+Received: from allen-box.sh.intel.com ([10.239.159.127])
+  by fmviesa003.fm.intel.com with ESMTP; 08 Oct 2024 21:16:30 -0700
+From: Lu Baolu <baolu.lu@linux.intel.com>
+To: Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Kevin Tian <kevin.tian@intel.com>
+Cc: Yi Liu <yi.l.liu@intel.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Kalle Valo <kvalo@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Alex Williamson <alex.williamson@redhat.com>,
+	mst@redhat.com,
+	Jason Wang <jasowang@redhat.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath10k@lists.infradead.org,
+	ath11k@lists.infradead.org,
+	Lyude Paul <lyude@redhat.com>,
+	Beleswar Padhi <b-padhi@ti.com>,
+	iommu@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Jason Gunthorpe <jgg@nvidia.com>
+Subject: [PATCH v4 1/4] remoteproc: Use iommu_paging_domain_alloc()
+Date: Wed,  9 Oct 2024 12:11:44 +0800
+Message-ID: <20241009041147.28391-2-baolu.lu@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241009041147.28391-1-baolu.lu@linux.intel.com>
+References: <20241009041147.28391-1-baolu.lu@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: GM6Ku6X57MYSLCnJo0jVrP0kilHDA-mD
-X-Proofpoint-ORIG-GUID: GM6Ku6X57MYSLCnJo0jVrP0kilHDA-mD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
- priorityscore=1501 phishscore=0 mlxlogscore=793 clxscore=1015
- impostorscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410080035
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_223829_772726_7BCB7B9E 
-X-CRM114-Status: GOOD (  12.70  )
+X-CRM114-CacheID: sfid-20241008_211636_380553_B76E8091 
+X-CRM114-Status: UNSURE (   9.20  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,92 +106,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k_hal_srng_* should be used with srng->lock to protect srng data.
+An iommu domain is allocated in rproc_enable_iommu() and is attached to
+rproc->dev.parent in the same function.
 
-For ath11k_dp_rx_mon_dest_process() and ath11k_dp_full_mon_process_rx(),
-they use ath11k_hal_srng_* for many times but never call srng->lock.
+Use iommu_paging_domain_alloc() to make it explicit.
 
-So when running (full) monitor mode, warning will occur:
-RIP: 0010:ath11k_hal_srng_dst_peek+0x18/0x30 [ath11k]
-Call Trace:
- ? ath11k_hal_srng_dst_peek+0x18/0x30 [ath11k]
- ath11k_dp_rx_process_mon_status+0xc45/0x1190 [ath11k]
- ? idr_alloc_u32+0x97/0xd0
- ath11k_dp_rx_process_mon_rings+0x32a/0x550 [ath11k]
- ath11k_dp_service_srng+0x289/0x5a0 [ath11k]
- ath11k_pcic_ext_grp_napi_poll+0x30/0xd0 [ath11k]
- __napi_poll+0x30/0x1f0
- net_rx_action+0x198/0x320
- __do_softirq+0xdd/0x319
-
-So add srng->lock for them to avoid such warnings.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
+Signed-off-by: Lu Baolu <baolu.lu@linux.intel.com>
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+Acked-by: Beleswar Padhi <b-padhi@ti.com>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/remoteproc/remoteproc_core.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 072963d3396c..5fd681b5df2e 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -5146,7 +5146,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
- 	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
- 	const struct ath11k_hw_hal_params *hal_params;
- 	void *ring_entry;
--	void *mon_dst_srng;
-+	struct hal_srng *mon_dst_srng;
- 	u32 ppdu_id;
- 	u32 rx_bufs_used;
- 	u32 ring_id;
-@@ -5163,6 +5163,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
- 
- 	spin_lock_bh(&pmon->mon_lock);
- 
-+	spin_lock_bh(&mon_dst_srng->lock);
- 	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
- 
- 	ppdu_id = pmon->mon_ppdu_info.ppdu_id;
-@@ -5221,6 +5222,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
- 								mon_dst_srng);
- 	}
- 	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
-+	spin_unlock_bh(&mon_dst_srng->lock);
- 
- 	spin_unlock_bh(&pmon->mon_lock);
- 
-@@ -5607,7 +5609,7 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
- 	struct hal_sw_mon_ring_entries *sw_mon_entries;
- 	struct ath11k_pdev_mon_stats *rx_mon_stats;
- 	struct sk_buff *head_msdu, *tail_msdu;
--	void *mon_dst_srng = &ar->ab->hal.srng_list[dp->rxdma_mon_dst_ring.ring_id];
-+	struct hal_srng *mon_dst_srng;
- 	void *ring_entry;
- 	u32 rx_bufs_used = 0, mpdu_rx_bufs_used;
- 	int quota = 0, ret;
-@@ -5623,6 +5625,9 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
- 		goto reap_status_ring;
+diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+index f276956f2c5c..eb66f78ec8b7 100644
+--- a/drivers/remoteproc/remoteproc_core.c
++++ b/drivers/remoteproc/remoteproc_core.c
+@@ -109,10 +109,10 @@ static int rproc_enable_iommu(struct rproc *rproc)
+ 		return 0;
  	}
  
-+	mon_dst_srng = &ar->ab->hal.srng_list[dp->rxdma_mon_dst_ring.ring_id];
-+	spin_lock_bh(&mon_dst_srng->lock);
-+
- 	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
- 	while ((ring_entry = ath11k_hal_srng_dst_peek(ar->ab, mon_dst_srng))) {
- 		head_msdu = NULL;
-@@ -5666,6 +5671,7 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
+-	domain = iommu_domain_alloc(dev->bus);
+-	if (!domain) {
++	domain = iommu_paging_domain_alloc(dev);
++	if (IS_ERR(domain)) {
+ 		dev_err(dev, "can't alloc iommu domain\n");
+-		return -ENOMEM;
++		return PTR_ERR(domain);
  	}
  
- 	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
-+	spin_unlock_bh(&mon_dst_srng->lock);
- 	spin_unlock_bh(&pmon->mon_lock);
- 
- 	if (rx_bufs_used) {
+ 	iommu_set_fault_handler(domain, rproc_iommu_fault, rproc);
 -- 
-2.34.1
+2.43.0
 
 
