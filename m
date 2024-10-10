@@ -4,84 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A834CF11FC
-	for <ath11k@archiver.kernel.org>; Thu, 10 Oct 2024 15:17:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59104CF11FE
+	for <ath11k@archiver.kernel.org>; Thu, 10 Oct 2024 15:43:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1mtk3swPKSpsu2qGiM0596EX3cWtxyHnGiYTHhFIO7M=; b=mW6obq1fBTsyLnYeb747p2SgqP
-	g9BgUQrMyX816bPJLaVGER3ocy6qLiAHSrnnMehrqwAwAKwKropmiSdIxja/ByDttWchG7o4PdKj4
-	/hnltYARlx+SKxO2NpA9q1cEuFW2W/yUY9McRniEWmSg6SDnLkYAQ28lLBV8fuV9iHkR/R86oqy15
-	Ka9RaPO+q79YWL0uRf5gJbvwsSwU6qn+7iadjarHCRbkN9LPb9R6Ii3HPswE0tr7YfP5dHEjQhpJg
-	7pQGHLSLRLX8CZWMXlw9Os1nvOiLrUefAl1dN9rxXh6ZimqZY9m0zzM97YC51EmwE7Ss4FwQTiHOX
-	lx9OhCFg==;
+	bh=OOD5DwUqAaTqFWYMU+ma6xf+DD2ITHdyJRhnL7XRons=; b=lL/UxXmdHFkt73jYv5HV360D4y
+	02km2Kga9ad5AHpr3iuu/DxLV29pDOv8uxbCHMYbIxQi8UkebegXh4lqZ3ET5MuxbYzGTtuRp1+JG
+	wV6d/Xdsdq1vj0LUb5+Yx5M0V0/gfCs5Ngf9X875BlXZZxNlhR6ycyTdCsBnj/Wu0cyzW45WQAMpS
+	0YIkVU4D8kFDXDnI3nCaOKBnqWhasdITOYt1ZwAoK3zsvnlPhwhHg2+Qpb4InVM/YsvmBNhbHD11+
+	6IPmQkBQYEjfp3r0k570cHES21jvAHmQG+fG4IfmxholqQYOLey5399msK3SSUdHzREo9r78c/pOc
+	SW03lg/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1syuuo-0000000DHvN-1Dgz;
-	Thu, 10 Oct 2024 15:17:22 +0000
-Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
+	id 1syvK5-0000000DNuf-39dg;
+	Thu, 10 Oct 2024 15:43:29 +0000
+Received: from mail-lj1-x22e.google.com ([2a00:1450:4864:20::22e])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1syuLW-0000000D9M4-2BgX
+	id 1syv0b-0000000DJN4-1U7T
 	for ath11k@lists.infradead.org;
-	Thu, 10 Oct 2024 14:40:55 +0000
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5398e4ae9efso1354324e87.1
-        for <ath11k@lists.infradead.org>; Thu, 10 Oct 2024 07:40:53 -0700 (PDT)
+	Thu, 10 Oct 2024 15:23:22 +0000
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2fadb636abaso10088871fa.3
+        for <ath11k@lists.infradead.org>; Thu, 10 Oct 2024 08:23:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728571252; x=1729176052; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1728573798; x=1729178598; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1mtk3swPKSpsu2qGiM0596EX3cWtxyHnGiYTHhFIO7M=;
-        b=GOkxG75lQ6XmfVb/eYY8vYPvoxy/rbVSowa5nbWyUTaOE8PjRJKBZh1OSPbI7KV2nX
-         RO2K5iSfHlyC5WW9nbT6+tGRbvmwFQ0ZU7uC+JIVCrOq76AzmubRGPKE0qT3bXa7SldX
-         UUBnqhYB0/aMlsE/9L6lrYIMJh2USIfb2PNgTHL4CWO36Oi4ZDmw2LZ265elpr2kKoI2
-         7hgd47dOlseUkTLKZSs57rUcTYUhkP4AHMkZkwLD+kBVuZhzWZwpGxhDSs7Xn/Ujmt7Y
-         xe3sBRMFE5+rqUC4uA1/icB6eQZi0wyeeGe9C8zARF9EnKc9LE6xIOBjuNi4qLG7Nljr
-         RW7g==
+        bh=OOD5DwUqAaTqFWYMU+ma6xf+DD2ITHdyJRhnL7XRons=;
+        b=X816AbrETipiPzeznuqJvUq/vO7Yj+uyafgxglLwBMTHHAFtQOlvx9F6cpZ1gK3qOf
+         fKomAqkfdpF5pNtMqMeHYt/lZe4+frHOiPppCJlYHJqmxzWPgcDgYKEiMXnxpwzRgcGc
+         DJAfkLJSAeo3VNsn43awhdlKPHyX3EJQjUa80rVIaTm/GO8/R49odgtYHUE97EdFW92w
+         Uv/bZqy/o8S3MJ0TadPO0rohk5T7T+m2sXC9KXY0Hwnhgyk0T/ITatEsfDvIk0egDPLS
+         p0JZVxlOpYXi1b5wuwwLtpYoZdX14tN/3q5vWm4rqxgy96qPN6Bnl/eyZZ+CEUx2RCR+
+         f0uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728571252; x=1729176052;
+        d=1e100.net; s=20230601; t=1728573798; x=1729178598;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1mtk3swPKSpsu2qGiM0596EX3cWtxyHnGiYTHhFIO7M=;
-        b=ri43njccmmi+lMg1199KEWjXne3t3D4pLpOUKW9drJPMUP29e3Xi2jQR6a7wNnndgo
-         lQWj6rW9dzq/jXX9jfq6BR16Xge6D/hmC9qmeR8NzdImDa3hQTj60qOa7OQcDRmOebiX
-         GPNVa1JEDS4Yr8J5DZ2aWuwn7//0lV7AVdNwKda3W3PYZ7cxudRWL7U+k06FQ5b7snfy
-         gRxFudi4tityavL0gPYlL4NZ5YRRVl4zyrUOPgaK238J5w7Ik72EtNhzNVOl4/OEmOqY
-         m1SjXbdaCEOIe9mHbMkoKXFR+usninisF8+Kfp53JbnRTTjLPcVrjp84uvah7anfJyti
-         diEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgTzK9uqXswTS5M5Wn2y6GHZb3V1i3YpdcPWsuGZKhLBNaj68Vl+WeXzQzuySJlWapF0gJPQQ=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxO4gFLkheh+An6OIpDuAJkAc8ByNGpLw8z5FV68XAPFOfGc6Tj
-	/stPO2vqQ0WxUM3LURZDFnzwQQf2iYaPg4ZKUbkqSdYVWIqAUK4Kx1CLEmJiqd8=
-X-Google-Smtp-Source: AGHT+IFUFKq0lYxlNzsXXq0fVnKrrxCKW8Nx3h/E3Xc0xNLj22cjL5q4txAh0aZwNXPW20/Wr1C2qg==
-X-Received: by 2002:a05:6512:2348:b0:52e:9b9e:a6cb with SMTP id 2adb3069b0e04-539c4899755mr4276741e87.15.1728571252194;
-        Thu, 10 Oct 2024 07:40:52 -0700 (PDT)
+        bh=OOD5DwUqAaTqFWYMU+ma6xf+DD2ITHdyJRhnL7XRons=;
+        b=gi6vXgFW4X381SQZkarG1ycNGFsLfF0xQ1VGQ6GYnF3CKvICFooCfZzUz4Bx0Gifvf
+         06DMoAEeI791MEwtg96HFA5UcPDEMxm1a6H0zte7TSlXavP2OrKr0oR18F+ntu/Zi6DU
+         6O6r2Dk9QsUK6zHLQLajNU5b5dsZlC8AlirdrgRhrfVlCPdTeSoQZpCZHlzZlBqF+7eE
+         wpYhPHLXs5Od4bGJK3/O5bPrYtK0lujiQUBlmcotSIw3wiJWAVLym/NncvYrLPCEXSWl
+         N1gLG9aM9gZitxTI0H+qP0q+c49s5KKHe+ruEK+d6cgLbfFmDb08IWFN+bqETJT3jQuj
+         AwvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUEXfzVvXX4BFbDQFz9HKsM/TZDMH9fo6/JC26B0+nRpflhgWd80ka22EOR7RV/mmA1aLS2EzI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzL9VornLDbSTwwrujnfhaHn+1xgkHcGzgTP8WnhmrJsM2roCPr
+	1W74Np1IKGAGudlPyLicj41JwPWuB+FqHuOBeiGlXRyThAaeG9NKeCJfPIWQLd4=
+X-Google-Smtp-Source: AGHT+IEa5hpavgqgZqGFwEHuAsxoJBx3cVv/1siI/qnLJ973fo+Si2V4A3zYjPXD22esXxAAbTEQUg==
+X-Received: by 2002:a05:651c:1992:b0:2f5:2ba:2c99 with SMTP id 38308e7fff4ca-2fb187121d1mr44544341fa.9.1728573797764;
+        Thu, 10 Oct 2024 08:23:17 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539cb6c8a54sm273302e87.115.2024.10.10.07.40.49
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb2470646dsm2329581fa.85.2024.10.10.08.23.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 07:40:49 -0700 (PDT)
-Date: Thu, 10 Oct 2024 17:40:47 +0300
+        Thu, 10 Oct 2024 08:23:16 -0700 (PDT)
+Date: Thu, 10 Oct 2024 18:23:13 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
-	agross@kernel.org, andersson@kernel.org, linux-kernel@vger.kernel.org, 
-	konrad.dybcio@linaro.org, mchehab@kernel.org, quic_vgarodia@quicinc.com, 
-	stanimir.k.varbanov@gmail.com, kvalo@kernel.org, quic_jjohnson@quicinc.com, 
+To: Jianhua Lu <lujianhua000@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	ath11k@lists.infradead.org
-Subject: Re: [PATCH v4] arm64: dts: qcom: sa8775p-ride: add WiFi/BT nodes
-Message-ID: <3giotvkrwailt75gndhup7xhqvlc3vdowdoypi5vaeebuojp45@vkqxbtjsbksf>
-References: <20241010132902.2882939-1-quic_miaoqing@quicinc.com>
- <asvhh4kzq6s6yz3wrqfmuolcnlonoobogoh45pnq4zdr44lpxs@zgarzpduk2sk>
- <cc8358b1-2442-4a40-8eb3-0912423db554@quicinc.com>
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi
+ node
+Message-ID: <pbsooimr6l65hgyxezyp6ha3zqibgdlphmeb7vtghgy2wti66b@fsmptbss2zvi>
+References: <20241010072243.10227-1-lujianhua000@gmail.com>
+ <20241010072243.10227-2-lujianhua000@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cc8358b1-2442-4a40-8eb3-0912423db554@quicinc.com>
+In-Reply-To: <20241010072243.10227-2-lujianhua000@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241010_074054_620170_F13025A7 
-X-CRM114-Status: GOOD (  19.56  )
+X-CRM114-CacheID: sfid-20241010_082321_427829_6ECD012B 
+X-CRM114-Status: GOOD (  14.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,53 +97,70 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Oct 10, 2024 at 09:59:11PM GMT, Miaoqing Pan wrote:
+On Thu, Oct 10, 2024 at 03:22:42PM GMT, Jianhua Lu wrote:
+> Add wifi node and this wifi module is connected to PCIe port.
+> The following is qca6390 probe message:
+>   ath11k_pci 0000:01:00.0: Adding to iommu group 12
+>   ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x604fffff 64bit]: assigned
+>   ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+>   ath11k_pci 0000:01:00.0: MSI vectors: 32
+>   ath11k_pci 0000:01:00.0: qca6390 hw2.0
+>   ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+>   ath11k_pci 0000:01:00.0: fw_version 0x10121492 fw_build_timestamp 2021-11-04 11:23 fw_build_id
 > 
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+> changes in v3:
+> 1. fix commit message typo (pice -> PCIe).
 > 
-> On 10/10/2024 9:47 PM, Dmitry Baryshkov wrote:
-> > On Thu, Oct 10, 2024 at 09:29:02PM GMT, Miaoqing Pan wrote:
-> > > Add a node for the PMU module of the WCN6855 present on the sa8775p-ride
-> > > board. Assign its LDO power outputs to the existing WiFi/Bluetooth module.
-> > > 
-> > > Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
-> > > ---
-> > > v2:
-> > >    - fix wcn6855-pmu compatible to "qcom,wcn6855-pmu".
-> > >    - relocate pcieport0 node in alphabetical order.
-> > > v3:
-> > >    - add 'qcom,ath11k-calibration-variant = "SA8775P"'.
-> > > v4:
-> > >    - update 'ath11k-calibration-variant' to "Ride".
-> > 
-> > What exactly is Ride? Is there just one Ride board? I thought it's a
-> > board family name.
+> changes in v2:
+> 1. add qcom,ath11k-calibration-variant property.
 > 
-> I just follow the existing boards, 'Ride' is a board name. Both 'Ride' and
-> 'Ride r3' boards are attached with WCN6855 WLAN chip.
+>  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
-> arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts:1112:
-> qcom,ath11k-calibration-variant = "Fairphone_5";
-> arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts:958:
-> qcom,ath11k-calibration-variant = "SHIFTphone_8";
-> arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts:879:	
-> qcom,ath11k-calibration-variant = "LE_X13S";
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> index ebea283f56ea..7a55e271c3ac 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> @@ -680,6 +680,25 @@ &pcie0_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pcieport0 {
+> +	wifi@0 {
+> +		compatible = "pci17cb,1101";
+> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
+> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+> +
+> +		qcom,ath11k-calibration-variant = "Xiaomi_Pad_5Pro";
 
-There definitely are other Ride boards. I see patches related to
-qcs8300-ride. Does that board use the same BDF file?  If not,
-Qualcomm_SA8775P_Ride or QC_SA8775P_Ride sounds like a better approach.
+Let's wait for Kalle's response.
 
-> > 
-> > Also, could you please extend the commit message with messages from the
-> > ath11k driver, showing the chip_id / board_id ?
-> 
-> The board-id is non 0xff, do you still think we need to add
-> 'qcom,ath11k-calibration-variant', following is the WLAN chip board data
-> info,
-> 
-> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=519.bin
+Nevertheless,
 
-I'd ask Kalle / Jeff to answer this question. Are we sure that this
-board-id won't be reused by any else device?
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+
+> +	};
+> +};
+> +
+>  &pm8150_gpios {
+>  	vol_up_n: vol-up-n-state {
+>  		pins = "gpio6";
+> -- 
+> 2.46.1
+> 
 
 -- 
 With best wishes
