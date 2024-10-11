@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C99AD24468
-	for <ath11k@archiver.kernel.org>; Fri, 11 Oct 2024 03:08:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32968D2446C
+	for <ath11k@archiver.kernel.org>; Fri, 11 Oct 2024 04:20:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=dRboePwXKGLUTBGbWr5cufVJ4O8k6LsI8p1I57NNJyw=; b=URfW5zDwaNWxCRg0yWxcm6NlqU
-	ed/MKROToDW8lS78RVyWHC5OVflUg9gUZt8QP0TZU4eA/RJamz0tY7NGR+BiO9ReQuo5apf1U6V0Q
-	8V3le9iBg9klZhuweZgo+fwrKSogi2aOyltCIdFSDvCiVRVkeWZiSpM8/91Rpyh9Z2KyiwgGBDtn9
-	YLvGlfBkO1Mgv/tKNx7LZcAuSqgwd5QfTvsegYaRiL7J4vaj6Zl1/5q6IN359DS+XVcHHGGjvPFyy
-	GBsi8/dsTJ6H/MknaY3nhRK5teyi+hW9oahaa3ybKPRmSXtyrwg9ChVXF+AmMFFhuNzcO0Ux0F1xv
-	yDd+EwCg==;
+	bh=lzQ0ZGJzWIBkUvd+V01ET8BEJiVcXr067zuonqJreI4=; b=Sa9TeHeSn7A/ILFpXAtl93f61l
+	6MOtC9TF9jJ1tfNivicccEbOiVfM6QAMENjj1cE3VOI2V8Lk8VrqIw4DJbqVxh8OOhIsyc3AcCSkN
+	+YVyNJlgjA5BJDEUx25r6rPgkFewcmYbbIr391YSZXFfWbo/lHzHAmMr6pE9eOz9auIDhWOZIcyJT
+	tY3fSZFCKMx51iZT5jPji2Uoe5YZL4cAP0J3aYQCfHMH6mxh7QlzhtfSOT8Pn7Wau3/vtj7Iz/Hw5
+	aDUJSCXy9vEmjUMY16BmKR2WXsNFY2pvXB1PkJl0pbHtOLgjCeHtX+oT2lohExUKEAmH94UQg3tgK
+	c0bURo6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sz60c-0000000F7IA-2hz3;
-	Fri, 11 Oct 2024 03:08:06 +0000
+	id 1sz78H-0000000FDS2-1mSk;
+	Fri, 11 Oct 2024 04:20:05 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sz60Z-0000000F7Gd-24ZP
+	id 1sz78F-0000000FDPy-0QAS
 	for ath11k@lists.infradead.org;
-	Fri, 11 Oct 2024 03:08:05 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B2eeUU028022;
-	Fri, 11 Oct 2024 03:07:58 GMT
+	Fri, 11 Oct 2024 04:20:04 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49AD8kST027038;
+	Fri, 11 Oct 2024 04:19:57 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=dRboePwXKGLUTBGbWr5cuf
-	VJ4O8k6LsI8p1I57NNJyw=; b=LzmBBDBdcg+/Qvmk4Ni/ruTxnG28pHWh+WY9hf
-	M9A5O2mZaeVtwWYyoQYoUPB7GwX8e30qROR78j/HSXHPGxFVUvr7/A3A++E3TjvZ
-	+Cc9+t5jdduyEdmHsxXJ8WfdY7MN+Z5XMKJilEWOYXCICtAb8lyW0SJFI686+g1S
-	d/r45YAkmSGQrgQd6OZD9iRSNSTqyrWkds7UMUxd74l0PCvalRzYKw/Fb9SmXS8y
-	d0v1fNb4tzeC0S3WqraFzXiUbVBFf+cIVsgGIf5IODPPt6hQMv0/4v28td6sHdeZ
-	D8k2rrQgZwbc32u9jibwGM1ArhaZXHwnT8fVmvdIi1TR5usA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 425c8qyrk3-1
+	:mime-version:subject:to; s=qcppdkim1; bh=lzQ0ZGJzWIBkUvd+V01ET8
+	BEJiVcXr067zuonqJreI4=; b=FIytLTbRTW3pkqGSBXpT+SBC2/8uEDCgALe8He
+	ZXxrv5ais0lUmsqA+FpcidlNhsy7QnCmry1U/pmD6WF7COxbr7s9LZhsetkjLZvm
+	GlLrXl3pda2WCEZ5VXy8GjZ1TSi/hM1cWnAI5E7lllHWm3FXY8XmeUGXl1CyuJeV
+	FAdKHJ/D1fdedQMl4EjSfTdKAaJXL9JKN95hQwip2/y9vdeqqu8jK7vwJJkPmBnW
+	oWIUdfG0SFIh1SaiRcew5Io38eYaOb5RzWOXwZrsmcK/qKsmyQPLXe7IUxxzlr0E
+	P1UtqhWQXaFNBiUc6pBg3yGHMgdV0L3BBOd+WjDpEBWkSqVQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426fj6sysv-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 03:07:58 +0000 (GMT)
+	Fri, 11 Oct 2024 04:19:57 +0000 (GMT)
 Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49B37vaG021192
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49B4JuCD015893
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 03:07:57 GMT
+	Fri, 11 Oct 2024 04:19:56 GMT
 Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
  nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 10 Oct 2024 20:07:53 -0700
+ 15.2.1544.9; Thu, 10 Oct 2024 21:19:52 -0700
 From: Miaoqing Pan <quic_miaoqing@quicinc.com>
 To: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
         <agross@kernel.org>, <andersson@kernel.org>
@@ -60,31 +60,31 @@ CC: <linux-kernel@vger.kernel.org>, <konrad.dybcio@linaro.org>,
         <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
         <dmitry.baryshkov@linaro.org>,
         Miaoqing Pan <quic_miaoqing@quicinc.com>
-Subject: [PATCH v6] arm64: dts: qcom: sa8775p-ride: add WiFi/BT nodes
-Date: Fri, 11 Oct 2024 11:07:33 +0800
-Message-ID: <20241011030733.2915321-1-quic_miaoqing@quicinc.com>
+Subject: [PATCH v7] arm64: dts: qcom: sa8775p-ride: add WiFi/BT nodes
+Date: Fri, 11 Oct 2024 12:19:39 +0800
+Message-ID: <20241011041939.2916179-1-quic_miaoqing@quicinc.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: s_NgsNilO_Mgr8-wi4w8wJ4Fa2TZb-Kx
-X-Proofpoint-ORIG-GUID: s_NgsNilO_Mgr8-wi4w8wJ4Fa2TZb-Kx
+X-Proofpoint-GUID: _ViuUgzEGnVsU-SbQ4xJ4yildsZawutT
+X-Proofpoint-ORIG-GUID: _ViuUgzEGnVsU-SbQ4xJ4yildsZawutT
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 spamscore=0 phishscore=0 clxscore=1015
- bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410110017
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
+ lowpriorityscore=0 spamscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ clxscore=1015 mlxscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410110025
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241010_200803_671919_5EB7B762 
-X-CRM114-Status: GOOD (  13.09  )
+X-CRM114-CacheID: sfid-20241010_212003_299027_A70991D5 
+X-CRM114-Status: GOOD (  12.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,13 +115,15 @@ v5:
   - update 'Ride' to 'QC_SA8775P_Ride'.
 v6:
   - no code change, fix patch version.
+v7:
+  - update 'Ride' to 'QC_SA8775P_Ride'.
 ---
  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 121 +++++++++++++++++++++
  arch/arm64/boot/dts/qcom/sa8775p.dtsi      |   2 +-
  2 files changed, 122 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-index 0c1b21def4b6..c41fac1eb6c2 100644
+index 0c1b21def4b6..3fc62e123689 100644
 --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
 @@ -27,6 +27,83 @@ aliases {
@@ -238,7 +240,7 @@ index 0c1b21def4b6..c41fac1eb6c2 100644
 +		compatible = "pci17cb,1101";
 +		reg = <0x10000 0x0 0x0 0x0 0x0>;
 +
-+		qcom,ath11k-calibration-variant = "Ride";
++		qcom,ath11k-calibration-variant = "QC_SA8775P_Ride";
 +
 +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
 +		vddaon-supply = <&vreg_pmu_aon_0p59>;
