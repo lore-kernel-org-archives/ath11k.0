@@ -4,87 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32968D2446C
-	for <ath11k@archiver.kernel.org>; Fri, 11 Oct 2024 04:20:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F176D2447F
+	for <ath11k@archiver.kernel.org>; Fri, 11 Oct 2024 06:16:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=lzQ0ZGJzWIBkUvd+V01ET8BEJiVcXr067zuonqJreI4=; b=Sa9TeHeSn7A/ILFpXAtl93f61l
-	6MOtC9TF9jJ1tfNivicccEbOiVfM6QAMENjj1cE3VOI2V8Lk8VrqIw4DJbqVxh8OOhIsyc3AcCSkN
-	+YVyNJlgjA5BJDEUx25r6rPgkFewcmYbbIr391YSZXFfWbo/lHzHAmMr6pE9eOz9auIDhWOZIcyJT
-	tY3fSZFCKMx51iZT5jPji2Uoe5YZL4cAP0J3aYQCfHMH6mxh7QlzhtfSOT8Pn7Wau3/vtj7Iz/Hw5
-	aDUJSCXy9vEmjUMY16BmKR2WXsNFY2pvXB1PkJl0pbHtOLgjCeHtX+oT2lohExUKEAmH94UQg3tgK
-	c0bURo6g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=+zztn8OGm5T9Dev73bEcKrvo8yczZXjOdvebFEeUvOQ=; b=Am6Kpgu3183bx5M0I0SAlMsNa2
+	h5ULyY1HJ3PlpdJPCqepRtS4chtYRwTb5st69QOTokf2K2DtKS3umbb91ITXlvwEPdUbdeFmbDZHz
+	CkbU5UejxdF+Q3OJ64cZvH+NqukD2hQE3zSBPtB52jKVZVdVLPKa4joja6l/yVw4WwImTBXsRTAyv
+	LBaMS7ALhcAq5G4QH5D/F+UQbLH6j2dv7uFjY0Ils2SQ7DYE6SjcUI1K/Iq2pLRgkhSPZ/pt63e2j
+	gSgE9gg1i1SfukT+Y/fvnjGmf+1FBmBqN5MzaU0tjyqfv6H7yYQ3JiRsyOI5WcLvY7GUhNOdSzcVZ
+	4I4wv46w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sz78H-0000000FDS2-1mSk;
-	Fri, 11 Oct 2024 04:20:05 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1sz8wh-0000000FN77-3ZjM;
+	Fri, 11 Oct 2024 06:16:15 +0000
+Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sz78F-0000000FDPy-0QAS
+	id 1sz8we-0000000FN6i-1S3i
 	for ath11k@lists.infradead.org;
-	Fri, 11 Oct 2024 04:20:04 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49AD8kST027038;
-	Fri, 11 Oct 2024 04:19:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=lzQ0ZGJzWIBkUvd+V01ET8
-	BEJiVcXr067zuonqJreI4=; b=FIytLTbRTW3pkqGSBXpT+SBC2/8uEDCgALe8He
-	ZXxrv5ais0lUmsqA+FpcidlNhsy7QnCmry1U/pmD6WF7COxbr7s9LZhsetkjLZvm
-	GlLrXl3pda2WCEZ5VXy8GjZ1TSi/hM1cWnAI5E7lllHWm3FXY8XmeUGXl1CyuJeV
-	FAdKHJ/D1fdedQMl4EjSfTdKAaJXL9JKN95hQwip2/y9vdeqqu8jK7vwJJkPmBnW
-	oWIUdfG0SFIh1SaiRcew5Io38eYaOb5RzWOXwZrsmcK/qKsmyQPLXe7IUxxzlr0E
-	P1UtqhWQXaFNBiUc6pBg3yGHMgdV0L3BBOd+WjDpEBWkSqVQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426fj6sysv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 04:19:57 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49B4JuCD015893
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 04:19:56 GMT
-Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 10 Oct 2024 21:19:52 -0700
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-To: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <konrad.dybcio@linaro.org>,
-        <mchehab@kernel.org>, <quic_vgarodia@quicinc.com>,
-        <stanimir.k.varbanov@gmail.com>, <kvalo@kernel.org>,
-        <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
-        <dmitry.baryshkov@linaro.org>,
-        Miaoqing Pan <quic_miaoqing@quicinc.com>
-Subject: [PATCH v7] arm64: dts: qcom: sa8775p-ride: add WiFi/BT nodes
-Date: Fri, 11 Oct 2024 12:19:39 +0800
-Message-ID: <20241011041939.2916179-1-quic_miaoqing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	Fri, 11 Oct 2024 06:16:14 +0000
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-539e08149efso125350e87.1
+        for <ath11k@lists.infradead.org>; Thu, 10 Oct 2024 23:16:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728627370; x=1729232170; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+zztn8OGm5T9Dev73bEcKrvo8yczZXjOdvebFEeUvOQ=;
+        b=OfnQZNATPRZhwD7fFjfJ6E25k5L440kJQO+B/JkE5+mAbj+I6gaZuZWpeXVVlllCY3
+         rlC2ydbr6W3uU4omoLxCWt0KxAyAUnlYEdehZP0UYuu98O1/06jrxAceV27eCX/u4HG9
+         UxRnr8TgtaGdrDPJH2pszSrtNPso1Cxf5VSKxzILIamqUEQ/gI2dNpwKOmUC3V0A1+4u
+         3P2DMyooQQOCHFVvTXaDXs/OE0c+q+UzWWoCGoIdD1/0XLZWRyqEEtlVH1IwGcbu3MDh
+         fxlm6m4/PG53ivRyvwL3puf8qIBoD1yEhLr3VmUWCw1+S7FXSfLTFb0oExErV+s42wic
+         PQaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728627370; x=1729232170;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+zztn8OGm5T9Dev73bEcKrvo8yczZXjOdvebFEeUvOQ=;
+        b=voHNOIzsFJQsTRDw2/X7aQEa9TZjwByepr2XGpGDzHxb9zx9876l0vPBWHqZDanv+F
+         JHySYWMHLOp+gl0eTVrrD90CGnMrVBG6UszaHT0VBP9CiEPkghIMbZVle3jjZePSrK9n
+         dFS/iKP3AiulC9Shj/DGag6Tt4PyUVl2Qpw9fdXqmnUzf2GSG14m+ITr4+IjJjvWV2ri
+         KopSKA+rFt4vkKsj1I+0zGUKlVFrpVxex1OuRHCpZzhEZRSPRFCatFZRPPkMr748f+8i
+         kJP3eSCIogVRbv6GtcMXpL1bi3ny3vZJVghmepcppk5n7yGUbIAcTFKnejCcHzi+9Gjv
+         /DhA==
+X-Gm-Message-State: AOJu0YyUv0IVxAn5gQMSSBld2cRowRevodrhHiaqmyqIeFShEHXpQ1e7
+	ErJ0/qiwXA3kA0WxfZQT4AO2vkGdElACDrQrcqhODhvyRra5BY/yvhEzRoDYKjs=
+X-Google-Smtp-Source: AGHT+IGc7gwTinuZHuGbc8LwJ5A7daFk3nc9VI9bk/hUTAkqi5rsZF98BxeF52XkN+XPoNa2N5quuA==
+X-Received: by 2002:a05:6512:3a96:b0:536:7ba7:496d with SMTP id 2adb3069b0e04-539d6e555efmr477576e87.11.1728627369655;
+        Thu, 10 Oct 2024 23:16:09 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.90])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539cb6c8613sm496309e87.74.2024.10.10.23.16.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 23:16:07 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-firmware@kernel.org
+Cc: ath11k@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org
+Subject: [RFC PULL] ath11k: move WCN6750 firmware to the device-specific subdir
+Date: Fri, 11 Oct 2024 09:16:06 +0300
+Message-Id: <20241011061606.1612918-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _ViuUgzEGnVsU-SbQ4xJ4yildsZawutT
-X-Proofpoint-ORIG-GUID: _ViuUgzEGnVsU-SbQ4xJ4yildsZawutT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- lowpriorityscore=0 spamscore=0 malwarescore=0 adultscore=0 suspectscore=0
- clxscore=1015 mlxscore=0 impostorscore=0 priorityscore=1501 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410110025
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241010_212003_299027_A70991D5 
-X-CRM114-Status: GOOD (  12.94  )
+X-CRM114-CacheID: sfid-20241010_231612_440705_879B1654 
+X-CRM114-Status: UNSURE (   9.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,196 +93,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add a node for the PMU module of the WCN6855 present on the sa8775p-ride
-board. Assign its LDO power outputs to the existing WiFi/Bluetooth module.
+The firmware under ath11k/WCN6750 can not be utilized on other devices using
+WCN6750 to provide WiFi (e.g. on the Qualcomm RB3 gen2 board).  This is an
+attempt to propose a solution by moving the file into device-specifig subdir.
+Other platforms can place firmware files in other subdirs, depending on the
+SoC.
 
-Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
----
-v2:
-  - fix wcn6855-pmu compatible to "qcom,wcn6855-pmu".
-  - relocate pcieport0 node in alphabetical order.
-v3:
-  - add 'qcom,ath11k-calibration-variant = "SA8775P"'.
-v4:
-  - update 'ath11k-calibration-variant' to "Ride".
-v5:
-  - update 'Ride' to 'QC_SA8775P_Ride'.
-v6:
-  - no code change, fix patch version.
-v7:
-  - update 'Ride' to 'QC_SA8775P_Ride'.
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 121 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sa8775p.dtsi      |   2 +-
- 2 files changed, 122 insertions(+), 1 deletion(-)
+Note, while performing the move I also propose squashing the firmware file.
+This is the practice recommended by the msm platform maintainers for the DSP
+firmware (not to mention that it also saves us from the extra symlinks). If
+Kalle, ath11k maintainer, objects, I will keep the firmware in the split form.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-index 0c1b21def4b6..3fc62e123689 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-@@ -27,6 +27,83 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	vreg_conn_1p8: vreg_conn_1p8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_conn_1p8";
-+		startup-delay-us = <4000>;
-+		enable-active-high;
-+		gpio = <&pmm8654au_1_gpios 4 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vreg_conn_pa: vreg_conn_pa {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_conn_pa";
-+		startup-delay-us = <4000>;
-+		enable-active-high;
-+		gpio = <&pmm8654au_1_gpios 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	wcn6855-pmu {
-+		compatible = "qcom,wcn6855-pmu";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
-+
-+		vddio-supply = <&vreg_conn_pa>;
-+		vddaon-supply = <&vreg_l2c>;
-+		vddpmu-supply = <&vreg_conn_1p8>;
-+		vddrfa0p95-supply = <&vreg_l2c>;
-+		vddrfa1p3-supply = <&vreg_l6e>;
-+		vddrfa1p9-supply = <&vreg_s5a>;
-+		vddpcie1p3-supply = <&vreg_l6e>;
-+		vddpcie1p9-supply = <&vreg_s5a>;
-+
-+		bt-enable-gpios = <&pmm8654au_1_gpios 8 GPIO_ACTIVE_HIGH>;
-+		wlan-enable-gpios = <&pmm8654au_1_gpios 7 GPIO_ACTIVE_HIGH>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p7: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p7";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -453,6 +530,20 @@ &pmm8654au_1_gpios {
- 			  "USB2_PWR_EN",
- 			  "USB2_FAULT";
- 
-+	wlan_en_state: wlan-en-state {
-+		pins = "gpio7";
-+		function = "normal";
-+		output-low;
-+		bias-pull-down;
-+	};
-+
-+	bt_en_state: bt-en-state {
-+		pins = "gpio8";
-+		function = "normal";
-+		output-low;
-+		bias-pull-down;
-+	};
-+
- 	usb2_en_state: usb2-en-state {
- 		pins = "gpio9";
- 		function = "normal";
-@@ -702,6 +793,25 @@ &pcie1_phy {
- 	status = "okay";
- };
- 
-+&pcieport0 {
-+	wifi@0 {
-+		compatible = "pci17cb,1101";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		qcom,ath11k-calibration-variant = "QC_SA8775P_Ride";
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+	};
-+};
-+
- &remoteproc_adsp {
- 	firmware-name = "qcom/sa8775p/adsp.mbn";
- 	status = "okay";
-@@ -744,6 +854,17 @@ &uart17 {
- 	pinctrl-0 = <&qup_uart17_default>;
- 	pinctrl-names = "default";
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn6855-bt";
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-+	};
- };
- 
- &ufs_mem_hc {
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index e8dbc8d820a6..8d42b5e9c7d6 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -5570,7 +5570,7 @@ pcie0: pcie@1c00000 {
- 
- 		status = "disabled";
- 
--		pcie@0 {
-+		pcieport0: pcie@0 {
- 			device_type = "pci";
- 			reg = <0x0 0x0 0x0 0x0 0x0>;
- 			bus-range = <0x01 0xff>;
--- 
-2.25.1
+For now this is an RFC in order to gather opinion form respective platform and
+driver maintainers.
 
+----------------------------------------------------------------
+
+The following changes since commit d55315295cccf8ce5dc288a74d75cf09b8063cfc:
+
+  Merge branch 'superm1/qci-patches' into 'main' (2024-10-10 19:11:13 +0000)
+
+are available in the Git repository at:
+
+  https://gitlab.com/lumag/linux-firmware wcn6750-device-specific
+
+for you to fetch changes up to abe8c109a2b4c422b627335d124473734c8790d8:
+
+  ath11k: move WCN6750 firmware to the device-specific subdir (2024-10-10 22:26:20 +0300)
+
+----------------------------------------------------------------
+Dmitry Baryshkov (1):
+      ath11k: move WCN6750 firmware to the device-specific subdir
+
+ WHENCE                                             |  12 ++----------
+ ath11k/WCN6750/hw1.0/{wpss.b04 => sc7280/wpss.mbn} | Bin 5819999 -> 7463728 bytes
+ ath11k/WCN6750/hw1.0/wpss.b00                      | Bin 340 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b01                      | Bin 6848 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b02                      | Bin 10300 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b03                      | Bin 4096 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b05                      | Bin 164332 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b06                      | Bin 266684 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b07                      | Bin 1176368 -> 0 bytes
+ ath11k/WCN6750/hw1.0/wpss.b08                      |   0
+ ath11k/WCN6750/hw1.0/wpss.mdt                      | Bin 7188 -> 0 bytes
+ 11 files changed, 2 insertions(+), 10 deletions(-)
+ rename ath11k/WCN6750/hw1.0/{wpss.b04 => sc7280/wpss.mbn} (77%)
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b00
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b01
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b02
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b03
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b05
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b06
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b07
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b08
+ delete mode 100644 ath11k/WCN6750/hw1.0/wpss.mdt
 
