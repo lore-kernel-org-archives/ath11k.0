@@ -4,86 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D96CD15DA5
-	for <ath11k@archiver.kernel.org>; Mon, 21 Oct 2024 14:55:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF8CCD15DA5
+	for <ath11k@archiver.kernel.org>; Mon, 21 Oct 2024 14:58:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jLpQ6qjyi/TBr/tyOKj/ngg9W8JrmIpwmjcHBe9zq8c=; b=BKly3vQ96LwNnbjJqPbPKO7pOa
-	QfhmDlWqObzyOosvPxvd06kovRVaebZTUOtJTlHeLz1i6MoY5HXaSgm2a0YRDFI69o47JNI3dcxGn
-	CdlSro8hkupaLCVU8zG2hKWMOnwpN0aWmhQaspU2bAwooDzVQgaiI2aGh3SCl5rG+7iB/RnjlMNsC
-	pBnsBsH9uuydAmAE9l8i4X0RzIzHgRJ6/AdoZXa6m4g4DPpA0AYmMUDP8oJBpYqR5vmGAWg0Ie0Al
-	MQT95QzxmR3lC6PqLmIylsj+7wNxZAM31xPMQAn28OZm7Hlt1RBZWoGmky7jVOqlyL5XM/V/bMtnY
-	AgK24sYA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=xXcNGCx8R/h6DnznmoiuyzzGuU08XBAyXTEE1fx+zDs=; b=q8USzfak4YnGP6YGvulJKTcanw
+	ffGKwYt4NUtbyDDyk0af6XNMqwcx80/9lJnUEFzU4+auP9H6FVqyVL3YQFTkVpGO/etmKVu/5ieam
+	wj/UbhEAVbptKR//E44o84q5IfOqLU15oRx5vvQgA+KkKwtft5rdIhQaYjKGEqfvKr3l3q+fi/cYN
+	e0YqVsHWcqG2C/CoWej8qxwVedaeBVLV5U4cNiXQw1kqcYYO/xeuJAgqDsg5tz9tK3/NJAOlN8BE3
+	O3f9AB/u0RRyctj776djXwOhQsGEfr3DspSbV4qaW/RlgXtfcHLOOjDM38ANwryUupdR6X3speqXJ
+	1zjM3idA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t2ton-00000007h35-3oA7;
-	Mon, 21 Oct 2024 14:55:37 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1t2trw-00000007hXt-3Z3h;
+	Mon, 21 Oct 2024 14:58:52 +0000
+Received: from mail-pl1-x630.google.com ([2607:f8b0:4864:20::630])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t2tKF-00000007bf1-1zme
+	id 1t2tTO-00000007dCF-2uvd
 	for ath11k@lists.infradead.org;
-	Mon, 21 Oct 2024 14:24:05 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LA80r6029714;
-	Mon, 21 Oct 2024 14:24:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jLpQ6qjyi/TBr/tyOKj/ngg9W8JrmIpwmjcHBe9zq8c=; b=jxH9UHgVl//hUtY4
-	uS3Ji6dUHKUAKo/+G2GCgL80GcOR0CPYr+pFsnG2KiuFvJDly+GXWBFHZ6C46iHu
-	sV58a4N6hFkwEitBlW5MMfwPABThBChLFDNbjTyqzoZFXmRKcPCbH5ONdq29wR1G
-	xtChuOAFhOeQnYx2KjHNmik23avvM1I03zwUf3vEL/1TjlYq7AbektuAZn0pYmu2
-	PCLPt6+HWjB/oKnQ1oOHwD3BKqk/wnoy8u8JugkTp1yuoj0vflZh+Xf40zVp4NIG
-	c4hanbBemxc9yIB02oxz9p7oOzn6nxZ1w1c5bJsnVfDhGqZLqWBxPwaBWbZu1cQn
-	OyesMg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6vuw1ya-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Oct 2024 14:24:01 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49LEO0uc024954
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Oct 2024 14:24:00 GMT
-Received: from [10.48.241.209] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Oct
- 2024 07:24:00 -0700
-Message-ID: <dc92b42f-a71d-4ca9-bde2-92c3ed30718a@quicinc.com>
-Date: Mon, 21 Oct 2024 07:23:59 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	Mon, 21 Oct 2024 14:33:32 +0000
+Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-20cd76c513cso38105625ad.3
+        for <ath11k@lists.infradead.org>; Mon, 21 Oct 2024 07:33:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729521209; x=1730126009; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xXcNGCx8R/h6DnznmoiuyzzGuU08XBAyXTEE1fx+zDs=;
+        b=lF2El4s4UKv1/lnTLBIjEMYZRMfTH1RiyuoFgl7AS4XZNW/Hdy+9NlwIz0AcC+HSXJ
+         XxVUqEkA4RDPv5lbQ3wI7+Rvk49GERXiPmG3ROxcO2zRbvnfrL2nRDx/3TCWq5YnZv5Z
+         eRFf/AX4HWYa0fDzq6MQTRoimaxxXW/tixoZb1Y9v+uVHz7Dyb6vcaZ1Sev5XDebYVTR
+         5jrEfUEDFxfeybSzupPM2raSj6+aJngvmIYlwerdCOoCooCRJQY5Y9kSdUcuiwO94MYQ
+         zPQEsTVL+ftUTkJtEmKvSXtuQe1R3ZhXIL6ykHko2/p8vThzydOWFUQygm0Y8NqWwaRX
+         ksSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729521209; x=1730126009;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xXcNGCx8R/h6DnznmoiuyzzGuU08XBAyXTEE1fx+zDs=;
+        b=G6cxOPcB3xsIyGEY13xdrhUhVhWjDsiYLtQxehgBTIW3CTko0r85byigI+moGpZ2mk
+         FNCihHOXv/da8D3Oy5BIzwgLO8Z9XcpYhOmbZ3vNKsP3kapHTVq3C5Bb+8GpIzz5wCi1
+         Oixjo7Yfo8C1Igk7MV/pNqZnffsJbEKrIaF7CqiePH4l/bVByqaxGHfXbl6OaXEOUXbw
+         ncJBgUg2n7ly0/NB4vpD6rlfnxfhiSy5DGacfciVa397v5vgvKh3JaZ9IOrpW4cIV0la
+         7ysnrnhN8l3vJ2LufOPSE3r808DH7ONbnLdgSQvIROk9AoR/zy49r3VwKhDiYvWD738m
+         QlXA==
+X-Gm-Message-State: AOJu0YzFUY8CW0leQ7UHAwCQ+K4wI4YuCP9iOkhyC46qJ59BEsdkGPy6
+	Hru+l1NQSLOCUgB7IDmO0yDsLgSmRcf392ygsctLCsZv0UZ1pHuQQ20o0j6E
+X-Google-Smtp-Source: AGHT+IERko4J5g3Y5FtrovF6cjPJHBQn4RMxKj0/W17G1UwZDrfbNyImPvvVaXIFrVV4lt0+B1NWsA==
+X-Received: by 2002:a17:902:d50c:b0:20c:5533:36da with SMTP id d9443c01a7336-20e9492fc14mr2005185ad.42.1729521209120;
+        Mon, 21 Oct 2024 07:33:29 -0700 (PDT)
+Received: from localhost.localdomain ([103.149.249.231])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7eee62c2sm26680625ad.20.2024.10.21.07.33.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 07:33:28 -0700 (PDT)
+Date: Mon, 21 Oct 2024 22:33:28 +0800
+From: Jianhua Lu <lujianhua000@gmail.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: ath11k@lists.infradead.org,
+	linux-wireless <linux-wireless@vger.kernel.org>
 Subject: Re: ath11k-firmware: QCA6390 hw2.0: Add bdf for Xiaomi Pad 5 Pro
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-To: Jianhua Lu <lujianhua000@gmail.com>, <ath11k@lists.infradead.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>
+Message-ID: <ZxZmODYOgdQ3CHUG@localhost.localdomain>
 References: <ZwR1hu-B0bGe4zG7@localhost.localdomain>
  <bba049d4-39f2-491b-a5e5-ebae0a77fe45@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <bba049d4-39f2-491b-a5e5-ebae0a77fe45@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tonQVbf-0XB0t-E0HiY9rae1vdcpTaWs
-X-Proofpoint-GUID: tonQVbf-0XB0t-E0HiY9rae1vdcpTaWs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- mlxlogscore=834 bulkscore=0 spamscore=0 mlxscore=0 clxscore=1015
- suspectscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410210103
+ <dc92b42f-a71d-4ca9-bde2-92c3ed30718a@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc92b42f-a71d-4ca9-bde2-92c3ed30718a@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241021_072403_673159_CC165198 
-X-CRM114-Status: GOOD (  13.30  )
+X-CRM114-CacheID: sfid-20241021_073330_754885_4B8A7413 
+X-CRM114-Status: UNSURE (   7.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,38 +93,12 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 10/21/2024 7:21 AM, Jeff Johnson wrote:
-> On 10/7/2024 4:57 PM, Jianhua Lu wrote:
->> Add bdf for Xiaomi Pad 5 Pro, which running mainline kernel.
->>
->> * description for what hardware this is:
->>
->>   - it is a SM8250 based board
->>   - it use QCA6390 as wlan module
->>
->> * origin of the board file (did you create it yourself or where you
->>   downloaded)
->>
->>   - taken from stock firmware image
->>
->> * ids to be used with the board file (ATH10K_BD_IE_BOARD_NAME in ath10k)
->>
->>   - QCA6390 hw2.0
->>
->>     + bus=pci,qmi-chip-id=0,qmi-board-id=255,variant=Xiaomi_Pad_5Pro
->>       sha256sum:
->> 	  a5c99867d398b4e8773d106100e8575e1b3c29b8e18921dae50029b1253eac06
->>
->> * attach the actual board file (board.bin)
->>
->>   - The name of the files are equal to the id string in the board-2.bin
->>     (minus the ".bin")
-> 
-> This has been staged:
-> 
-> https://git.codelinaro.org/clo/ath-firmware/ath12k-firmware/-/commit/4c8ae2fb2b78d5b0bebed63fe8b0f348f9fbc33e
+On Mon, Oct 21, 2024 at 07:23:59AM -0700, Jeff Johnson wrote:
+> On 10/21/2024 7:21 AM, Jeff Johnson wrote:
+> > On 10/7/2024 4:57 PM, Jianhua Lu wrote:
+[..] 
+> sigh, correct link:
+> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/commit/4c8ae2fb2b78d5b0bebed63fe8b0f348f9fbc33e
 
-sigh, correct link:
-https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/commit/4c8ae2fb2b78d5b0bebed63fe8b0f348f9fbc33e
-
+Thank you!
 
