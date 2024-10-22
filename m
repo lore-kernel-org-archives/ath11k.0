@@ -4,79 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52A2FD2C559
-	for <ath11k@archiver.kernel.org>; Tue, 22 Oct 2024 14:05:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07365D2CDFA
+	for <ath11k@archiver.kernel.org>; Tue, 22 Oct 2024 15:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=cDLtvhMz6PcWfZhVz6kUWAuewo8GBV/2rwOJwr5Q+iQ=; b=Tp+pjaGr3PE9aROgXgRVa5mhxh
-	wE/3dHtcCRfIjNdvyPQX/Wi+v1Wzs7iu7ic56bgr5ODgBIyq6pZ/jXr1eIFJgdqyA8k1XvTc+tllq
-	PtR5sAGyYGmUbZ7ipC0ZgzTmfE3QYn8bLObxG6LS9TSuOobifag9zhFt9Tqan5g2112HYR4yvoxtj
-	1jTPGBJv2YBQ8wv9ZNbhnV9uqi/WpDVes82QuEC5vaPBBSmFpNeMiNsFkvVJg6BSIY7TX6Odcp4Je
-	0XWSWG9JQIUj6Po6FOvLsRtJ6UP/VKihFgQlBBXX/MxpekZlmMqtgk4Zv5Ylt015SL+rpHSS6vfVZ
-	/XW6i3Jw==;
+	bh=2smzVPm4+QZVvNeqgZ9J1sILSVzFs7f9d1zxoh2CEqQ=; b=oUWXKyyENkX7HoSdsg0+tMBfiO
+	h+7QSm0i8K4V8CuoT7aMUb+1mdA1cazHJIk4JuJZ0hughCXfBZ91Vk/mwjmodEheLYcr0vAToRuzx
+	KWoBfm0j3/Rb0H6n4UnCnDe0MCBlcoA242IGo8HnBb6w7BIwG+7QohD34lFrak0si1hsJIrYKGDzo
+	uU+Va4Y5FOt54KVDY+z1y/PBeFXzuVLFQFetpCEdsjRgkUcOe/RWwXWhBDwogYOEmynfLNkR4GYPt
+	94Pd9HhXDwappe3Y1oLUx2TtM7VDjT+dlTTMkGIPDSY8NpaHehoiQGG/KeKiAvwBDl75Ezm3j2Yjv
+	zGoi3SVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3FVs-0000000B2tw-2lBo;
-	Tue, 22 Oct 2024 14:05:32 +0000
-Received: from mail-io1-xd2e.google.com ([2607:f8b0:4864:20::d2e])
+	id 1t3HHi-0000000BLIU-2AA3;
+	Tue, 22 Oct 2024 15:59:02 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3FVq-0000000B2tT-2hzv
+	id 1t3HHf-0000000BLHu-0oFC
 	for ath11k@lists.infradead.org;
-	Tue, 22 Oct 2024 14:05:31 +0000
-Received: by mail-io1-xd2e.google.com with SMTP id ca18e2360f4ac-82cd93a6617so214023039f.3
-        for <ath11k@lists.infradead.org>; Tue, 22 Oct 2024 07:05:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729605928; x=1730210728; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cDLtvhMz6PcWfZhVz6kUWAuewo8GBV/2rwOJwr5Q+iQ=;
-        b=HK0s2UnSuCz0ocdKTEzc7+MmefO54sZqJ6oswszzzxeWqdaFTDrHJ6tPVv+GPMIlbe
-         2f2Hlt4KhCJs6PPzyGBJE8E8u82F7B3vxzdb2QDjFLkMQr/nEiOs16IMsoBLaVcLLcWy
-         2HJlUdrsjWKlnWfGRwqUw8yFcExEa/W+oZdo51pKi9wTggD71DOooFr+zm7EpRmNZl07
-         ZCaFynUkLo7+xldhhuOl0nsG727i6fwhO+/Vd88sqjau4T0Bvey1YxspE9Uh0wD4m5Wm
-         BBseLRGl+qpayRfw/uprWfr149hP/45gP0EWIHl3Vslk+CVH2gVHajvBtNmeGJzWsr3M
-         tfLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729605928; x=1730210728;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cDLtvhMz6PcWfZhVz6kUWAuewo8GBV/2rwOJwr5Q+iQ=;
-        b=EDJz6zpncUgWzrTZhUu55mYtaFOqMx2b6kdh/DcTUJ7GLoj15GETtIECn29tNndjmh
-         fgZTdubk/Iov+Mdy7HTrqpjgF4Q6EhY/Tbd0+7dMGaDn/M6sbUTHLxcOCi1/uETUEjj/
-         J+yqYVNFtBZZE5jcor7tGD84hCyS+eWGQo15N7V3zybnXmqsmMh8RY3ObGbxfPPU02eO
-         gWqTPUkvF+puxEmDRWntcIJ9SnppZp93eW7gB+m6CWrLqw6I9FIsF6IF4v8NSlgRh8UZ
-         YctFGZt+gwCiUqZFAOpld/YKbDsljD6Q0USwgYrupxHghr62qeg9hSRnredchRjzc4kd
-         v3/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWvJoX+jLhQ3R7WsbBPdkwxV1XOFsvxeYGN5zH3lporJ16bu1QLie+hCeWk4AQqhLLyWjv2TNo=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwGdpBBSfWzPCRjvej35s/vZQD9k0sUn7C8AOwM6omb4WYqt9Ow
-	pvIUh1QIhj7q6tTyqGLkziuE9rOsulgK+cr0jtEkKCfz+JozXZb8fr/RsnglRjtsbOjBhDD919J
-	it8kd1Gid4TzBl6jCyPSMaPNo0xJnlFlcmOpY+zhd40LJNIMh
-X-Google-Smtp-Source: AGHT+IFpmhM2z2KDin6GRhjxZIQ5R+mLzT187UDQAB/1orWo3bN3jQ1rEzWwIZFAogs3JWkBJ+YU+ZNAkgJe/aJbZl0=
-X-Received: by 2002:a05:690c:f8f:b0:6d3:f9a6:e29c with SMTP id
- 00721157ae682-6e5bf9a0846mr144026337b3.12.1729605366851; Tue, 22 Oct 2024
- 06:56:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
- <20241001033053.2084360-3-quic_miaoqing@quicinc.com> <smgbishqbin4kcpshqvue3ivvfko2l6rj2w4ikwydosbkq6kde@pdbzhklj7znm>
- <1c5f5c93-db06-4490-af2e-bbce2d184c94@quicinc.com>
-In-Reply-To: <1c5f5c93-db06-4490-af2e-bbce2d184c94@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 22 Oct 2024 16:55:56 +0300
-Message-ID: <CAA8EJporsVmyhvYV4QDnTJPh82A-JZz3u1RkChe=MumGidmLSQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] wifi: ath11k: add firmware-name device tree property
+	Tue, 22 Oct 2024 15:59:00 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 9F8C35C5D29;
+	Tue, 22 Oct 2024 15:58:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 554D6C4CEC3;
+	Tue, 22 Oct 2024 15:58:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729612737;
+	bh=u7X7plqkp/9v6wNfXVOJrFtOm4tT8rm/aCvTWXXbSto=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=AspX8KV3W7y+CPHHYvlAnMWXh8T/2zUCEqAZRcHn5f4474HiLQKiz22JIry6GiOOm
+	 zsQfWc7hhNh7Ot4a0BSr8xglApKye7szdZmjpf7azWfXuXrh9P3+WQT/RayTL/J2gL
+	 pnkoLzdonbb4r3KnrzhmCRPJoZKZOmQ4D1YHZgLvVsZq9fd9v4C9GCyKjOSdY0IXnK
+	 gsSiT4I7cK+rFF50p7GdijoXLLrxP2GDuBcDZT/7A5GLpPnUMN0LrnZeccwcGT/TER
+	 0+SpKJUCx8gWr56ELXTO8ilXenaWWZ/G40ELUuW3Z352zsd5fxY1c3rA/43lxCnJzh
+	 5UvbFgJ5JlExw==
+From: Kalle Valo <kvalo@kernel.org>
 To: Miaoqing Pan <quic_miaoqing@quicinc.com>
-Cc: kvalo@kernel.org, quic_jjohnson@quicinc.com, ath11k@lists.infradead.org, 
-	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+  <quic_jjohnson@quicinc.com>,  <ath11k@lists.infradead.org>,
+  <linux-wireless@vger.kernel.org>,  <devicetree@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] wifi: ath11k: add firmware-name device tree property
+References: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
+	<20241001033053.2084360-3-quic_miaoqing@quicinc.com>
+	<smgbishqbin4kcpshqvue3ivvfko2l6rj2w4ikwydosbkq6kde@pdbzhklj7znm>
+	<1c5f5c93-db06-4490-af2e-bbce2d184c94@quicinc.com>
+Date: Tue, 22 Oct 2024 18:58:54 +0300
+In-Reply-To: <1c5f5c93-db06-4490-af2e-bbce2d184c94@quicinc.com> (Miaoqing
+	Pan's message of "Tue, 22 Oct 2024 18:20:50 +0800")
+Message-ID: <87cyjsnn7l.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241022_070530_713283_5FC9A44A 
-X-CRM114-Status: GOOD (  26.21  )
+X-CRM114-CacheID: sfid-20241022_085859_296823_377DFE50 
+X-CRM114-Status: GOOD (  10.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,76 +77,26 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 22 Oct 2024 at 13:20, Miaoqing Pan <quic_miaoqing@quicinc.com> wrote:
->
->
->
+Miaoqing Pan <quic_miaoqing@quicinc.com> writes:
+
 > On 10/22/2024 5:57 PM, Dmitry Baryshkov wrote:
-> > On Tue, Oct 01, 2024 at 11:30:52AM +0800, Miaoqing Pan wrote:
-> >> QCA6698AQ uses different firmware/bdf/regdb with existing WCN6855
-> >> firmware, which is customized for IoE platforms. And the 'pci-device-id +
-> >> soc-hw-version + soc-hw-sub-version' may not be enough to identify the
-> >> correct firmware directory path.
-> >
-> > Why is it so? What makes it so different from the existing platforms
-> > that you can not use WCN6855 firmware?
+>> On Tue, Oct 01, 2024 at 11:30:52AM +0800, Miaoqing Pan wrote:
+>>> QCA6698AQ uses different firmware/bdf/regdb with existing WCN6855
+>>> firmware, which is customized for IoE platforms. And the 'pci-device-id +
+>>> soc-hw-version + soc-hw-sub-version' may not be enough to identify the
+>>> correct firmware directory path.
+>> Why is it so? What makes it so different from the existing platforms
+>> that you can not use WCN6855 firmware?
 >
 > Just as I said, a new customized firmware for IoE devices.
 
-This answers the "what" question, not "why". Please provide a reason
-and a description. Can the hardware work with the default firmware?
-Does your custom firmware provide additional features? Is it just
-signed for a different SoC? Is there anything else?
-
-> >> The device tree allows "firmware-name" to define the firmware path,
-> >>      wifi@c000000 {
-> >
-> > You are describing platform node, while the commit message talks about
-> > the PCIe devices. Could you please clarify, whether it is a PCIe device
-> > or an AHB device?
->
-> PCIe device. The change is for sa8775p/qcs8300 those non-AHB boards.
-
-Then why are you patching the AHB schema and why are you providing a
-platform-based example? It makes it harder to follow your arguments.
-
->
-> >
-> >>          firmware-name = "QCA6698AQ";
-> >
-> > Could we please follow the approach that has been defined in the commit
-> > 5abf259772df ("wifi: ath10k: support board-specific firmware
-> > overrides")? In other words, instead of creating another directory under
-> > ath11k, create a subdir under the WCN6855/hwN.M/ which contains your
-> > device-specific data.
->
-> Sure, thanks, will update.
->
-> >
-> >>          status = "okay";
-> >>      };
-> >>
-> >> Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
-> >>
-> >> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
-> >
-> > P.S. please CC linux-arm-msm for future respins of this series or for
-> > all other submissions that concern board-specific DT data on MSM
-> > platforms.
->
-> ok.
->
-> >
-> >> ---
-> >>   drivers/net/wireless/ath/ath11k/core.c | 12 ++++++++++++
-> >>   drivers/net/wireless/ath/ath11k/core.h | 11 +++--------
-> >>   2 files changed, 15 insertions(+), 8 deletions(-)
-> >>
-> >
->
-
+I know in Qualcomm it's common practise to fork the firmware multiple
+times per project and what not, but in the community the preference is
+to have one mainline branch. Having different firmware forks/branches is
+a lot more difficult to maintain.
 
 -- 
-With best wishes
-Dmitry
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
