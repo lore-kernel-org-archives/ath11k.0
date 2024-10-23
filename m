@@ -4,55 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C26BD2E015
-	for <ath11k@archiver.kernel.org>; Wed, 23 Oct 2024 05:17:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8C91D2E01E
+	for <ath11k@archiver.kernel.org>; Wed, 23 Oct 2024 07:35:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Date:Subject:To:From:Message-ID:Reply-To:Cc:Content-Transfer-Encoding:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=nuR9CzPcfpMQfzJtjJhhz5feviAcnxz8STk+4BBvAAY=; b=R6itMzYL6cQOB7DuWm30FlF1f5
-	Q8S3r9E5PQ1+S7xt9w2T7dLeNiTOE/Ab+ybYXuNk0UChzrIv6Ia6sLJB25T52VFOKPW5i2Efj0/Eb
-	WgUgmOw7xumrqdtTRVIdVE1Od3xaWPK2FVnif9KUM3VHaF4jp9nxI6Aoxs1FkuVvz3o7P9DKhvJnV
-	FtaJfqLBpdzUCR1MBHjxgXHHm3W4ZoGjtLopCvtS0Tw9rsbDQwEiY43vg1S+BwG1dsPK6SYCfgUzD
-	JxJznppYbmh/ss1jU9dELFtM8A2TnJvn/KrhYNmGCN7TGzXtz1PtTc5XPemmQeMh4h1TXh0bUuYiG
-	Ypl/z4yA==;
+	bh=pRJ+GZAFwtn0kOSMat8djdxy5/xbVF1GRGV31Fs/Szs=; b=cWrqWTeUriINhlPAO5jLgvHKcq
+	RVY2FV0s3J8DW0o7R6LqisXRbgTSkR1nWy36OkQQglfA1nYQI7s13qwsRp2orX53ExagX/eLxymtz
+	Ohbe1O+EYEBMSFUPEE91U4aX4yOCBQxPEiS2mJL0VSMXbmRFI3c50QEVQFNKY0woI42NtZeSVcuE6
+	jJNnsPWAakkD3SZL1WD8VteELVF7ChlRkqGvXvSiykmTjXa0yx8Hki4zje1N4pi3t/0pHemE/DD/T
+	EOH0s510vgIKDaTl/gjcb8EXycPFvubk0wzVEHlBfpI8MPcUio35IbX9AUQGc7zb2RUZM1UaJ48GB
+	hEqqELqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3Tk4-0000000D1Kv-3caJ;
-	Wed, 23 Oct 2024 05:17:08 +0000
-Received: from mail.adityaniwas.com ([160.251.233.111] helo=vm-4a4be56b-ae)
+	id 1t3Vtc-0000000DPIe-0GS5;
+	Wed, 23 Oct 2024 07:35:08 +0000
+Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3TVC-0000000CzDj-2UXD
+	id 1t3VZl-0000000DLPW-194U
 	for ath11k@lists.infradead.org;
-	Wed, 23 Oct 2024 05:01:48 +0000
-DKIM-Filter: OpenDKIM Filter v2.11.0 vm-4a4be56b-ae 545D9FAB8A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=adityaniwas.com;
-	s=default; t=1729658414;
-	bh=nuR9CzPcfpMQfzJtjJhhz5feviAcnxz8STk+4BBvAAY=;
-	h=From:To:Subject:Date:From;
-	b=oRlpKuMPw+9Q6/nLXXodz6wBek7tygq/fKJNZfW4utAS0aVGFv2vsq9+g9T9oCHL2
-	 r1EeXrsRdu55y1l+3fwUMljGt4OrLRjlazzi7f2BWlEfj4c2E3H3booEMzYg7lbvMc
-	 BCqFK8f+xv83q6xTmx/1EKnkdrAK2GoywJ5EXhZs=
-Received: from pzwjnckm.ru (unknown [45.77.176.251])
-	by vm-4a4be56b-ae (Postfix) with ESMTPA id 545D9FAB8A
-	for <ath11k@lists.infradead.org>; Wed, 23 Oct 2024 13:40:14 +0900 (JST)
-Message-ID: <7572b573cc5eba23ff4d0573314ba8f2@adityaniwas.com>
-From: =?utf-8?B?5L2P5L+hU0JJ44ON44OD44OI6YqA6KGM?= <notification@adityaniwas.com>
-To: ath11k <ath11k@lists.infradead.org>
-Subject: =?utf-8?B?44CQ6YeN6KaB4oGk44CR5Luj6KGo4oGk5Y+j5bqn5YaG5pmu?=
-	=?utf-8?B?6YCa77iJ6aCQ6YeR5Yip77iJ55So5YGc5q2i77iJ44Gu44GK55+l44KJ?=
-	=?utf-8?B?4oGk44Gb?=
-Date: Wed, 23 Oct 2024 13:40:12 +0900
-X-Priority: 3
-X-Mailer: Stnoola Wnuezoawi 2.8
+	Wed, 23 Oct 2024 07:14:38 +0000
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-2e2a999b287so4969492a91.0
+        for <ath11k@lists.infradead.org>; Wed, 23 Oct 2024 00:14:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1729667676; x=1730272476; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pRJ+GZAFwtn0kOSMat8djdxy5/xbVF1GRGV31Fs/Szs=;
+        b=OiZuMp9+VisALQZDP2WnMnsaok6lB/HInhRY0NLXcMLfoCyzWiDnrrSdkBgUyerzQe
+         d9wwwkQezejqbJZADt3tgqxrHyeS0a7FTFNoInqf1BF9REhIqvyijrXH2NCunTEAuAAm
+         b2LvqTcgD1BKFEwTuU8hPW1SgGwNBF9egEU6c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729667676; x=1730272476;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pRJ+GZAFwtn0kOSMat8djdxy5/xbVF1GRGV31Fs/Szs=;
+        b=bVR/lIURYsE5YZthuOmXAt2FYoIBr+6tgZ74W5ahIF+N0vQ5Ok7aSpVE0+ImP3eQl/
+         jDhZXcW0E9/dxjsH8RdRKsLTyOCHfGnTPm5vM4zSYF1QyHgY4YnJaoXeTp9Bny0Dr4hq
+         cJ0mTcYSIDDXtJ+Nyhx6h7CcqW8wTh/6DaMd4vookO/SznxIq727f1mkI6JJZJyRf51D
+         ldgt3xATjQXMA4eeXTTTUHvt4nJU2VvnRPuk0yDCpcVyDP7Xe7V/6uy3Lhu1i3jol9qF
+         slrsjC3E7aYzOqx8BwwAIEdh601U72xiXUqcH82xYEe9Z+q0gkiHSAr02uZ0T850WYm6
+         JL+g==
+X-Forwarded-Encrypted: i=1; AJvYcCVJAHQnNg7+5z8aU0EaR2gRDmCTlSW/yrQmdB3u8GOEgN0OGTeIF22d/QTe4A4309N/O/ANxzQ=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxVFe+4IJdJSKqGnssOENN7SvHAQSEUAI89fjwSYAIRtqqQlQoG
+	tvpXN0qSl8Y2c48fkipWmIHoQoSxRVVtKrP9fh7+OL0TqyqyMReQJY82U8OhvRKue/Vz9miRS75
+	yYIuo5SIwq0xqtoUDimgsGtvmWzw9PRP1855g4g==
+X-Google-Smtp-Source: AGHT+IHqoz5Q36gQyrAvK8SX4cX+RPO+EX7ZovOrR0jzMjiF+ZHWDFdkTc2ecsYzD01ehe9Oze4H1hAqq851/7V/Wf4=
+X-Received: by 2002:a17:90a:7347:b0:2d8:7561:db71 with SMTP id
+ 98e67ed59e1d1-2e76b6e80edmr1585422a91.25.1729667675570; Wed, 23 Oct 2024
+ 00:14:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
-	boundary="----=_001_NextPart361719946206_=----"
+From: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date: Wed, 23 Oct 2024 09:14:23 +0200
+Message-ID: <CAOf5uwmxXvHNwycaOECkX5v7+zwHtpuvCKs3pJofuJJNe2Rwyw@mail.gmail.com>
+Subject: ath11k_pci. wifi stop to work after long laptop suspend
+To: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
+Cc: Jeff Johnson <jjohnson@kernel.org>, 
+	"open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241022_220146_777932_85E134E4 
-X-CRM114-Status: UNSURE (   0.70  )
+X-CRM114-CacheID: sfid-20241023_001437_348490_0437F324 
+X-CRM114-Status: UNSURE (   4.65  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -68,53 +83,129 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is a multi-part message in MIME format.
+Hi all
 
-------=_001_NextPart361719946206_=----
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+I found this problem on several linux version and I will like to have
+some hint to debug or fix:
 
-=E3=81=8A=E5=AE=A2=E6=A7=98=E3=81=AE=E4=BB=A3=E8=A1=A8=E2=81=A4=E5=8F=A3=E5=
-=BA=A7=E2=81=A4=E3=81=AE=E5=88=A9=E7=94=A8=E3=81=8C=E5=88=B6=E9=99=90=E3=81=
-=95=E3=82=8C=E3=81=A6=E3=81=84=E2=81=A1=E3=82=8B=E3=81=93=E3=81=A8=E2=81=A4=
-=E3=81=AE=E3=81=8A=E7=9F=A5=E3=82=89=E3=81=9B=E3=81=A7=E3=81=99=0D=0A=0D=0A=
-=E5=8F=A3=E5=BA=A7=E3=81=AE=E8=B3=87=E9=87=91=E5=AE=89=E5=85=A8=E3=82=92=E2=
-=81=A1=E7=A2=BA=E4=BF=9D=E3=81=99=E2=81=A1=E3=82=8B=E3=81=9F=E3=82=81=EF=B8=
-=89=E3=81=AB=E3=82=BB=E3=82=AD=E3=83=A5=E3=83=AA=E3=83=86=E2=81=A1=E3=82=A3=
-=E5=BC=B7=E5=8C=96=E3=80=81=E3=82=AD=E3=83=A3=E3=83=83=E3=82=B7=E3=83=A5=E2=
-=81=A1=E3=82=AB=E3=83=BC=E3=83=89=EF=B8=89=E2=97=8F=E4=BB=A3=E8=A1=A8=E5=8F=
-=A3=E5=BA=A7=E4=B8=80=E6=99=82=EF=B8=89=E5=88=A9=E7=94=A8=E5=81=9C=E6=AD=A2=
-=E3=80=82=0D=0A=0D=0A=E2=96=BD=E4=B8=8B=E8=A8=98URL=E3=82=92=E3=82=AF=EF=B8=
-=89=E3=83=AA=E3=83=83=E3=82=AF=E3=81=97=E3=81=A6=E3=83=AD=E3=82=B0=E3=82=A4=
-=E3=83=B3=E8=A8=AD=E2=81=A1=E5=AE=9A=E3=82=92=E3=81=8A=E9=A1=98=E3=81=84=E3=
-=81=97=E3=81=BE=E3=81=99=E2=81=A1(=E8=A8=AD=E2=81=A4=E5=AE=9A=E5=BE=8C=E3=
-=81=AB=E3=82=A2=E3=82=AB=E3=82=A6=E3=83=B3=E3=83=88=E5=88=B6=E9=99=90=EF=B8=
-=89=E3=82=92=E8=A7=A3=E9=99=A4)=E3=80=82=0D=0Ahttps://netbk.jp.tekpartnersb=
-i.com/?dM5nfN2z=3D6TSIuIX&token=3Dm4fueLkmeK4=0D=0A=0D=0A=E6=9C=AC=E3=83=A1=
-=E3=83=BC=E3=83=AB=E3=81=AF=E9=80=81=E4=BF=A1=E5=B0=82=EF=B8=89=E7=94=A8=E3=
-=81=AE=E3=81=9F=E3=82=81=E3=80=81=E8=BF=94=E2=81=A4=E4=BF=A1=E3=81=A7=E3=81=
-=8D=E3=81=BE=E3=81=9B=E3=82=93=E3=80=82=0D=0A=0D=0A=E3=81=94=E4=B8=8D=E6=98=
-=8E=E3=81=AA=E7=82=B9=E3=81=AB=E3=81=A4=E3=81=84=E3=81=A6=E2=81=A1=E3=81=AF=
-=E3=80=81=E5=BD=93=E7=A4=BE=E3=82=B5=E3=82=A4=E3=83=88=EF=B8=89=E3=81=AE=E3=
-=80=8C=E3=81=8A=E5=95=8F=EF=B8=89=E5=90=88=E3=81=9B=E3=83=BB=E3=81=94=E2=81=
-=A1=E6=A1=88=E5=86=85=E3=80=8D=E3=82=88=E3=82=8A=E3=81=8A=E5=95=8F=E3=81=84=
-=E5=90=88=E2=81=A4=E3=82=8F=E3=81=9B=E3=81=84=E3=81=9F=E3=81=A0=E3=81=8F=E3=
-=81=8B=E3=80=81Q&=E2=81=A4A=E3=82=92=E3=81=94=E5=8F=82=E7=85=A7=E3=81=8F=E3=
-=81=A0=E3=81=95=E3=81=84=E3=81=BE=E2=81=A4=E3=81=99=E3=82=88=E3=81=86=E3=81=
-=8A=E9=A1=98=E3=81=84=E3=81=84=E3=81=9F=E3=81=97=E2=81=A1=E3=81=BE=E3=81=99=
-=E3=80=82=0D=0A=0D=0Ahttps://netbk.jp.tekpartnersbi.com/?dM5nfN2z=3DkdEsz&t=
-oken=3DcIOY40Z4R07zR2A08e=0D=0A=0D=0A=EF=BC=9C=E7=99=BA=E8=A1=8C=EF=BC=9E=
-=E4=BD=8F=E4=BF=A1SBI=E2=81=A1=E3=83=8D=E3=83=83=E2=81=A4=E3=83=88=E9=8A=80=
-=E8=A1=8C=E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE
-------=_001_NextPart361719946206_=----
-Content-Type: text/html;
-	name="Attachment.html"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
-	filename="Attachment.html"
+[  205.690214] ath11k_pci 0000:02:00.0: fw_version 0x1106196e
+fw_build_timestamp 2024-01-12 11:30 fw_build_id
+WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
+[  205.745065] ath11k_pci 0000:02:00.0: Last interrupt received for each CE:
+[  205.745074] ath11k_pci 0000:02:00.0: CE_id 0 pipe_num 0 54750ms before
+[  205.745078] ath11k_pci 0000:02:00.0: CE_id 1 pipe_num 1 36959ms before
+[  205.745081] ath11k_pci 0000:02:00.0: CE_id 2 pipe_num 2 36912ms before
+[  205.745084] ath11k_pci 0000:02:00.0: CE_id 3 pipe_num 3 36912ms before
+[  205.745087] ath11k_pci 0000:02:00.0: CE_id 5 pipe_num 5 4294872919ms before
+[  205.745091] ath11k_pci 0000:02:00.0: CE_id 7 pipe_num 7 4294872919ms before
+[  205.745094] ath11k_pci 0000:02:00.0: CE_id 8 pipe_num 8 4294872919ms before
+[  205.745097] ath11k_pci 0000:02:00.0:
+               Last interrupt received for each group:
+[  205.745099] ath11k_pci 0000:02:00.0: group_id 0 4294872919ms before
+[  205.745103] ath11k_pci 0000:02:00.0: group_id 1 4294872919ms before
+[  205.745106] ath11k_pci 0000:02:00.0: group_id 2 4294872919ms before
+[  205.745109] ath11k_pci 0000:02:00.0: group_id 3 4294872919ms before
+[  205.745112] ath11k_pci 0000:02:00.0: group_id 4 45367ms before
+[  205.745115] ath11k_pci 0000:02:00.0: group_id 5 45367ms before
+[  205.745118] ath11k_pci 0000:02:00.0: group_id 6 4294872919ms before
+[  205.745121] ath11k_pci 0000:02:00.0: group_id 7 4294872919ms before
+[  205.745124] ath11k_pci 0000:02:00.0: group_id 8 4294872919ms before
+[  205.745127] ath11k_pci 0000:02:00.0: group_id 9 4294872919ms before
+[  205.745129] ath11k_pci 0000:02:00.0: group_id 10 4294872919ms before
+[  205.745133] ath11k_pci 0000:02:00.0: dst srng id 0 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745137] ath11k_pci 0000:02:00.0: dst srng id 1 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745140] ath11k_pci 0000:02:00.0: dst srng id 2 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745143] ath11k_pci 0000:02:00.0: dst srng id 3 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745147] ath11k_pci 0000:02:00.0: dst srng id 4 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745150] ath11k_pci 0000:02:00.0: src srng id 5 hp 0, reap_hp
+248, cur tp 0, cached tp 0 last tp 0 napi processed before
+4294872919ms
+[  205.745154] ath11k_pci 0000:02:00.0: src srng id 8 hp 170, reap_hp
+170, cur tp 0, cached tp 0 last tp 0 napi processed before 21825ms
+[  205.745158] ath11k_pci 0000:02:00.0: dst srng id 9 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745161] ath11k_pci 0000:02:00.0: src srng id 16 hp 0, reap_hp
+4088, cur tp 0, cached tp 0 last tp 0 napi processed before
+4294872919ms
+[  205.745165] ath11k_pci 0000:02:00.0: src srng id 24 hp 0, reap_hp
+248, cur tp 0, cached tp 0 last tp 0 napi processed before
+4294872919ms
+[  205.745169] ath11k_pci 0000:02:00.0: dst srng id 25 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745172] ath11k_pci 0000:02:00.0: src srng id 32 hp 12, reap_hp
+8, cur tp 12, cached tp 12 last tp 8 napi processed before 54750ms
+[  205.745176] ath11k_pci 0000:02:00.0: src srng id 35 hp 120, reap_hp
+116, cur tp 120, cached tp 120 last tp 116 napi processed before
+36912ms
+[  205.745180] ath11k_pci 0000:02:00.0: src srng id 36 hp 48, reap_hp
+44, cur tp 48, cached tp 48 last tp 40 napi processed before 45394ms
+[  205.745184] ath11k_pci 0000:02:00.0: src srng id 39 hp 0, reap_hp
+124, cur tp 0, cached tp 0 last tp 0 napi processed before
+4294872919ms
+[  205.745188] ath11k_pci 0000:02:00.0: src srng id 57 hp 0, reap_hp
+0, cur tp 4, cached tp 4 last tp 4 napi processed before 36959ms
+[  205.745191] ath11k_pci 0000:02:00.0: src srng id 58 hp 160, reap_hp
+160, cur tp 164, cached tp 164 last tp 164 napi processed before
+36912ms
+[  205.745195] ath11k_pci 0000:02:00.0: src srng id 61 hp 1020,
+reap_hp 1020, cur tp 0, cached tp 0 last tp 0 napi processed before
+54751ms
+[  205.745199] ath11k_pci 0000:02:00.0: dst srng id 81 tp 8, cur hp 8,
+cached hp 8 last hp 8 napi processed before 36959ms
+[  205.745202] ath11k_pci 0000:02:00.0: dst srng id 82 tp 328, cur hp
+328, cached hp 328 last hp 328 napi processed before 36912ms
+[  205.745206] ath11k_pci 0000:02:00.0: dst srng id 85 tp 0, cur hp 0,
+cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745210] ath11k_pci 0000:02:00.0: src srng id 104 hp 65532,
+reap_hp 65532, cur tp 0, cached tp 0 last tp 0 napi processed before
+54753ms
+[  205.745213] ath11k_pci 0000:02:00.0: src srng id 105 hp 0, reap_hp
+504, cur tp 0, cached tp 0 last tp 0 napi processed before
+4294872919ms
+[  205.745217] ath11k_pci 0000:02:00.0: dst srng id 106 tp 0, cur hp
+0, cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745220] ath11k_pci 0000:02:00.0: dst srng id 109 tp 0, cur hp
+0, cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745224] ath11k_pci 0000:02:00.0: src srng id 128 hp 8190,
+reap_hp 8190, cur tp 4156, cached tp 0 last tp 0 napi processed before
+54500ms
+[  205.745228] ath11k_pci 0000:02:00.0: src srng id 129 hp 0, reap_hp
+2046, cur tp 0, cached tp 0 last tp 0 napi processed before
+4294872919ms
+[  205.745232] ath11k_pci 0000:02:00.0: src srng id 132 hp 20, reap_hp
+20, cur tp 22, cached tp 22 last tp 22 napi processed before 6ms
+[  205.745235] ath11k_pci 0000:02:00.0: dst srng id 133 tp 0, cur hp
+0, cached hp 0 last hp 0 napi processed before 4294872919ms
+[  205.745239] ath11k_pci 0000:02:00.0: src srng id 144 hp 0, reap_hp
+2046, cur tp 0, cached tp 0 last tp 0 napi processed before
+4294872919ms
+[  205.745242] ath11k_pci 0000:02:00.0: src srng id 147 hp 4, reap_hp
+4, cur tp 6, cached tp 6 last tp 6 napi processed before 6ms
+[  205.745246] ath11k_pci 0000:02:00.0: dst srng id 148 tp 0, cur hp
+0, cached hp 0 last hp 0 napi processed before 4294872919ms
 
-5L2P5L+hU0JJ44ON44OD44OI6YqA6KGM5qCq5byP5Lya56S+
-------=_001_NextPart361719946206_=------
+This happens for now on some specific access point but after it
+happens the only way to reconnect is restart the access point.
 
+Any hint?
+
+Michael
+
+--
+Michael Nazzareno Trimarchi
+Co-Founder & Chief Executive Officer
+M. +39 347 913 2170
+michael@amarulasolutions.com
+__________________________________
+
+Amarula Solutions BV
+Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+T. +31 (0)85 111 9172
+info@amarulasolutions.com
+www.amarulasolutions.com
 
