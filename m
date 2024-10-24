@@ -4,63 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6288DD0BB4E
-	for <ath11k@archiver.kernel.org>; Thu, 24 Oct 2024 02:12:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAAEDD0BB63
+	for <ath11k@archiver.kernel.org>; Thu, 24 Oct 2024 06:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:References:To:From:
-	Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3RnvCPRIlDzhyxhVgTs7f5ZbDkNkfHcIT+uqcRxnIYg=; b=RRqs3cgRHbQ5UJtANybXzWmQzN
-	Q7pOt7HzB8e/Ob6FAa2N45Lesp0sjxDTh5SGWXkPRBGn1sWWpFuRJBFNvlsE/TgwbTpud9pzvfRz1
-	BAdZXw5/G4pjRxefjja8b5zcxqggcOoLdX7m1w1nA1/vgGcsQbhOXAWq8E2+8Tk6z+cIWqNw6ua7t
-	IV9t735xDdyT3tUXvrKMXhtoR3bmRGU/INNWHDoXDbVjKeKlLICfqfLWRfo7DZuk/bUem7l4POztY
-	/MFVcjGUDcivOtswqUFe2ignrNLjwbNV/G13mYgI7v+c0V3YAg6W69sRLmwjLcKzluWBGy805doa9
-	y0oW6c0A==;
+	bh=7NmQ13CbkSKdOe5dNeLx/wXmfDQsi0uer+2gaNH17NY=; b=IkslkWqmIG3YKqZxAWQQhhz63x
+	aUS6xuBSf7MyDg0ik2otknv41l/JC1W/StCpRWWiFaqnNBAuJ4Xn8HdxwcmM6vtOqoS3LkBWB9RTO
+	isxlfdtW1k6ZtqjUeJfV2dZhOfc7y0yW1Mn0cq1AxetNazRh3Bjy7YzluNjW9Ryglf50U+sp1vnT0
+	NPnOpqxNfYcGtOPOCBIrW+CohAFOcK6s1uCAiGyq7jn0v2NpIrvhB5yo+DkvzA+MAEh0BpfPUXODb
+	mBhuWTbmygiMaGnh1jlQxTbrWJaIATqwZcy/im6LRQ+xdIstyxBqm9tYhzvwTxOtmGwTGd+8r/Q0H
+	X6V4ggKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3nLO-0000000GUU9-1APc;
-	Thu, 24 Oct 2024 02:12:58 +0000
-Received: from szxga03-in.huawei.com ([45.249.212.189])
+	id 1t3rZL-0000000GxHH-3IG1;
+	Thu, 24 Oct 2024 06:43:39 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3nLL-0000000GUTi-1JRA
+	id 1t3rZI-0000000GxFX-18Mg
 	for ath11k@lists.infradead.org;
-	Thu, 24 Oct 2024 02:12:57 +0000
-Received: from mail.maildlp.com (unknown [172.19.162.254])
-	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4XYqDB4PjMzQs05;
-	Thu, 24 Oct 2024 10:11:54 +0800 (CST)
-Received: from dggpemf100006.china.huawei.com (unknown [7.185.36.228])
-	by mail.maildlp.com (Postfix) with ESMTPS id 4B212180103;
-	Thu, 24 Oct 2024 10:12:47 +0800 (CST)
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemf100006.china.huawei.com (7.185.36.228) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Thu, 24 Oct 2024 10:12:46 +0800
-Subject: Re: [PATCH 1/1] ath11k: fix return value check in
- ath11k_spectral_debug_register()
-From: "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
-	<ath11k@lists.infradead.org>
-References: <20241023074051.309-1-thunder.leizhen@huawei.com>
- <f8e6901a-0f68-44e1-81e6-729539693fa4@quicinc.com>
- <f4d17e48-6a25-75c5-976a-4d0c14743276@huawei.com>
-Message-ID: <f7a7ad6f-426c-535e-bde4-90f3b036ae2b@huawei.com>
-Date: Thu, 24 Oct 2024 10:12:46 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+	Thu, 24 Oct 2024 06:43:37 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 2E908A45100;
+	Thu, 24 Oct 2024 06:43:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F16C4CEC7;
+	Thu, 24 Oct 2024 06:43:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729752215;
+	bh=+q8InVq2dJazQdq21aaONgOiPhX3HW8Nj+5dzHDxHsg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n5IyibcincV5kXos4gLNr6NtM/AhnA/loXieVzKXOkg/R6QLCxixvk4ApkflrxNBq
+	 Ja6iCe2sEyyOKxVRPxrFpEXvAwpaze8RjWYT7vkLLi2kw2Wjmzx3QpujMmq/T8+IKj
+	 DOBVmAim8lvF4mSyHm/Y/PqNnjLY8TPcyGXlKH6+cfjjPEAE1vtQwEvmh82BEMNxIN
+	 LZXf7WfpFk1FszhwLOejnwjy3DfrHTECd8HGKZXz7cOXP9bOPXxkldWGKTzv5WO22H
+	 GZm+2MTUkdDi6I+CNnt/jNsdW/exWmwZ/qMNnUtCl7izK2vM2VJQB3o0Rg7hcgB9sH
+	 HGkzUFbK047WA==
+Message-ID: <fd98c29c-d7f0-4ddf-b7d9-e4904b43e1bd@kernel.org>
+Date: Thu, 24 Oct 2024 08:43:29 +0200
 MIME-Version: 1.0
-In-Reply-To: <f4d17e48-6a25-75c5-976a-4d0c14743276@huawei.com>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: wireless: ath11k-pci: add
+ firmware-name property
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>, kvalo@kernel.org
+Cc: quic_jjohnson@quicinc.com, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, dmitry.baryshkov@linaro.org,
+ linux-arm-msm@vger.kernel.org
+References: <20241024002514.92290-1-quic_miaoqing@quicinc.com>
+ <20241024002514.92290-2-quic_miaoqing@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241024002514.92290-2-quic_miaoqing@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemf100006.china.huawei.com (7.185.36.228)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241023_191255_704007_960268C2 
-X-CRM114-Status: GOOD (  17.97  )
+X-CRM114-CacheID: sfid-20241023_234336_474766_C9EC6677 
+X-CRM114-Status: GOOD (  10.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,79 +119,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On 24/10/2024 02:25, Miaoqing Pan wrote:
+> This is the same optional property that defined in qcom,ath10k.yaml. It's
+> useful for the platform / board to specify firmware through device-tree.
 
+Wasn't this rejected already?
 
-On 2024/10/24 9:30, Leizhen (ThunderTown) wrote:
+Anyway NAK for the reasons below.
 > 
-> 
-> On 2024/10/23 22:02, Jeff Johnson wrote:
->> On 10/23/2024 12:40 AM, Zhen Lei wrote:
->>> Fix the incorrect return value check for debugfs_create_file(), which
->>> returns ERR_PTR(-ERROR) instead of NULL when it fails.
->>
->> Based upon the commit text this change is incorrect.
->>
->>  * NOTE: it's expected that most callers should _ignore_ the errors returned
->>  * by this function. Other debugfs functions handle the fact that the "dentry"
->>  * passed to them could be an error and they don't crash in that case.
->>  * Drivers should generally work fine even if debugfs fails to init anyway.
->>
->> So ath11k should not be checking the return value at all, and definitely
->> should not be returning -EINVAL since the driver should still operate even if
->> creating a debugfs file fails.
-> 
-> OK, so that members such as scan_ctl in struct ath11k_spectral can be removed.
-
-Sorry, the ath11k driver code is more complex than I think. I just went through
-the code, and those members still need to be kept.
-
-> I will update accordingly in v2.>
->>
->>>
->>> Fixes: 9d11b7bff950 ("ath11k: add support for spectral scan")
->>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>> ---
->>>  drivers/net/wireless/ath/ath11k/spectral.c | 6 +++---
->>>  1 file changed, 3 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
->>> index 79e091134515b43..4c545231292142a 100644
->>> --- a/drivers/net/wireless/ath/ath11k/spectral.c
->>> +++ b/drivers/net/wireless/ath/ath11k/spectral.c
->>> @@ -942,7 +942,7 @@ static inline int ath11k_spectral_debug_register(struct ath11k *ar)
->>>  						    0600,
->>>  						    ar->debug.debugfs_pdev, ar,
->>>  						    &fops_scan_ctl);
->>> -	if (!ar->spectral.scan_ctl) {
->>> +	if (IS_ERR(ar->spectral.scan_ctl)) {
->>>  		ath11k_warn(ar->ab, "failed to open debugfs in pdev %d\n",
->>>  			    ar->pdev_idx);
->>>  		ret = -EINVAL;
->>> @@ -953,7 +953,7 @@ static inline int ath11k_spectral_debug_register(struct ath11k *ar)
->>>  						      0600,
->>>  						      ar->debug.debugfs_pdev, ar,
->>>  						      &fops_scan_count);
->>> -	if (!ar->spectral.scan_count) {
->>> +	if (IS_ERR(ar->spectral.scan_count)) {
->>>  		ath11k_warn(ar->ab, "failed to open debugfs in pdev %d\n",
->>>  			    ar->pdev_idx);
->>>  		ret = -EINVAL;
->>> @@ -964,7 +964,7 @@ static inline int ath11k_spectral_debug_register(struct ath11k *ar)
->>>  						     0600,
->>>  						     ar->debug.debugfs_pdev, ar,
->>>  						     &fops_scan_bins);
->>> -	if (!ar->spectral.scan_bins) {
->>> +	if (IS_ERR(ar->spectral.scan_bins)) {
->>>  		ath11k_warn(ar->ab, "failed to open debugfs in pdev %d\n",
->>>  			    ar->pdev_idx);
->>>  		ret = -EINVAL;
->>
->>
->> .
->>
+> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+> ---
+>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml  | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
--- 
-Regards,
-  Zhen Lei
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC. It might happen, that command when run on an older
+kernel, gives you outdated entries. Therefore please be sure you base
+your patches on recent Linux kernel.
+
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+
+You missed at least devicetree list (maybe more), so this won't be
+tested by automated tooling. Performing review on untested code might be
+a waste of time.
+
+Please kindly resend and include all necessary To/Cc entries.
+</form letter>
+
+Best regards,
+Krzysztof
+
 
