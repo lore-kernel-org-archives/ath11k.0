@@ -4,90 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91769D116E0
-	for <ath11k@archiver.kernel.org>; Fri, 25 Oct 2024 02:56:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8838FD116F6
+	for <ath11k@archiver.kernel.org>; Fri, 25 Oct 2024 06:01:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rrH8i8krQX+X1bfQxJ+5HWA5Ak+mxQl4+BbXyfftuC0=; b=RA0OVjwFljonhTWW41YBgsZuR6
-	EFwpyBKSW/u09YoakPaa35M8AUmA1q+NarQiROS6uEDrrFM3jB5CC7t6WnFpHrj+26nvKwXJf8YET
-	koyvzox6pvMyrBDIiJ4H+0872NimrVvQQElRKq2Afctu7zV7D8F59uCmuuy/QjhsvVtGVW7k8DjG2
-	13lDSY/OXJe9LLkPCsqnJA0b1o4IoqCSFcYqqePfVwMTJ1Ml+lE+L3fx02E9wL4KBkZGvdo6tOLmx
-	Gac8a7V/RB863td0Xba1U1wkmp8iOeZRbvwyMXHfK9tBimifEnPBPofv2tOuGYKM6himrurZW3qLw
-	C9QP67Jg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=MjbBsCeAyf+Le8MeXbzRgLV61MN2s8vLHiDSyQGZHGc=; b=w808GEtKC3i9CFaAx+yhMOKyz3
+	UD16lv6CdwU0nQ7/EEnKQ/J8UKj0q2DIJDKDlN7ik92ZVnwLRYcuB9xBAEyz0ov4kKeIH6z7uJzLk
+	5/gzEq3vX75VL5KJaCqtZ2xt6otjF9RoaLDa92eaizPNktHimmr8GZdviQr9Lt2UA98vZigYGTfD2
+	xGXIpwUKML90pKMKPG1zsMMBETMvkSZsynP6mB9K5n0PQ+wLKv+JbDRdcvIRiCpUp7WOM+ciDbioU
+	G0vCaNt2t9Uy7hnaa1EDI6qDWncaj6tGfYu8eZ0vfya3Sfg1ZLWiR1AWoHT31LUbTub8DY4/XECG/
+	jspvuDlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t4AUs-00000002KHa-46II;
-	Fri, 25 Oct 2024 02:56:18 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1t4DNp-00000002cx4-2NDX;
+	Fri, 25 Oct 2024 06:01:13 +0000
+Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t4AUp-00000002KHD-0LWp
+	id 1t4DNj-00000002cvo-3qdE
 	for ath11k@lists.infradead.org;
-	Fri, 25 Oct 2024 02:56:17 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49OKjNIj018287;
-	Fri, 25 Oct 2024 02:56:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rrH8i8krQX+X1bfQxJ+5HWA5Ak+mxQl4+BbXyfftuC0=; b=M4F10/175BxJg82R
-	dq+P4GCV0qvHuiZi9jXAz6523mzAt472I11yz/csRjOBknDnJsPGFool6qphFFkU
-	6oQZH3CPcYO8kz+wcmda4Hk85CDDKhN+scms1VypCKvHH+s5zX7318UUEAX/S4ES
-	F4yzsY4sdzrOimGFfpSasYeXZtl6T7S+DG8N6EKbGPkrjUKOFwcjWRFBIhXLho6U
-	hUWMPd6QeAV9hhxOKNfoXaIx/BmQQl0xjuTzkkwZINfl4+g9yTuFT6ttU1dFgQcG
-	WsS+7WE9lj5Kq/o0FcJY7szgyHslpvLw1TBGcs3Wjhoz22C7HbLNGA2XtJE5KAD1
-	6jGd5A==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3wfhfh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Oct 2024 02:56:08 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49P2u6kn010138
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Oct 2024 02:56:06 GMT
-Received: from [10.231.216.207] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 24 Oct
- 2024 19:56:05 -0700
-Message-ID: <bc3c06eb-1cb2-4cbb-aaad-95c09223f0cc@quicinc.com>
-Date: Fri, 25 Oct 2024 10:56:02 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	Fri, 25 Oct 2024 06:01:11 +0000
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-53b13ea6b78so2754576e87.2
+        for <ath11k@lists.infradead.org>; Thu, 24 Oct 2024 23:01:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729836066; x=1730440866; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MjbBsCeAyf+Le8MeXbzRgLV61MN2s8vLHiDSyQGZHGc=;
+        b=Y2IFrDrIOusPaBx+fql9cSuaDJtVwkm+10akrVy1wLfvDbslG1T6T2Eq1WjWu2tbT0
+         /H4SqBi1Bkw1Nfjc9AyHInV4VEcg6O7MOSk1XjO0stfQA2ajAKzkblKOqG2YLTYTzfyg
+         bGHvYACochSc8CCM5JWQzs1zF3jultUovewJTuSDhq6dd3uny+JibcmFIW3h9XBHiDdR
+         GXNw0cLl5SqCCWTxQQIdpSEqmzi5eoj7IZqP4Gc1j8kEyib4sofA3kL2ca+NsKLxoe98
+         PTHJmLKcgM5AA49yT431lKq70Sqz16zgwsMa/GZwALGc+bZEOFAvy4PYZPf5chz+rpQC
+         eiOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729836066; x=1730440866;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MjbBsCeAyf+Le8MeXbzRgLV61MN2s8vLHiDSyQGZHGc=;
+        b=ZS3YOnfbEBzU0qQ3Sko+Tr69aMxqZkPJnX84rBZCS990P7Wjnku5Ntw6m+Ruo66+oZ
+         rrj9EMxmHzcBrP0Dg3ezEcw6o/qt0i6SGE6tgayTsBENukyIFiJKOx0WV3CmyxAcZuet
+         jGTQLQzf3Zbtf+TeEED2qhUlKkNTUDEFq+tvmIsIlYFVDCDhrkb9f83v8Znx0YtDvWVH
+         93XRvhX4DDNwkcF1moSnSOrliaewLHoZNpD9EUeZyvSBLuRKuVMMioJbN1S3YLGQo6Zf
+         USrLSqZHAwK3YZdeLdS5Tr+EIs0akLpqpX7zJedQ/KD2OEX8+PJwlyMcZ6HbVXOzEWh5
+         5uqg==
+X-Forwarded-Encrypted: i=1; AJvYcCXyxRk17JRQsXB9E6h8SLKlSDZdyyg67UfNdv/nBZZK2C3AOXWyehedH7fS0sZ3wp6e9Hi252k=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwjoeqvT619JbXgd+/qwdWVayhSxaOkLt8FpDo+fjjItpQ2U/pH
+	ISQwSLFyvEJ4do15mkforRnlxkSqq0Q0doY1p9L0k3y3iiAUutPzKJh7b86bE+s=
+X-Google-Smtp-Source: AGHT+IGW0DGFqF4GXZuZDbx8GIO1iTPAdVwiNcEj3OF5vaunDtCPGMMbC7oqaGNUsFQF9eF0TfXlpQ==
+X-Received: by 2002:a05:6512:1282:b0:533:4785:82ab with SMTP id 2adb3069b0e04-53b1a315e50mr8487448e87.1.1729836065876;
+        Thu, 24 Oct 2024 23:01:05 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e1df2dcsm63515e87.243.2024.10.24.23.01.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Oct 2024 23:01:04 -0700 (PDT)
+Date: Fri, 25 Oct 2024 09:01:03 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: kvalo@kernel.org, quic_jjohnson@quicinc.com, 
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Subject: Re: [PATCH v2 2/2] wifi: ath11k: support board-specific firmware
  overrides
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <kvalo@kernel.org>, <quic_jjohnson@quicinc.com>,
-        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
+Message-ID: <ig3m3sgmnkgfmwrlglundhqif6rygzl7uh7rzoemrz3yxgvfpc@35a323mw2wbt>
 References: <20241024002514.92290-1-quic_miaoqing@quicinc.com>
  <20241024002514.92290-3-quic_miaoqing@quicinc.com>
  <pdjhyrjoreiykv2tquvufjw3rkti5sxrjvpmkjhvkfasq7zbo4@xxntxdmhhyg5>
-Content-Language: en-US
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <pdjhyrjoreiykv2tquvufjw3rkti5sxrjvpmkjhvkfasq7zbo4@xxntxdmhhyg5>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: u9IowL7hR9eMDbwM72mpVeR3QhH9MLQF
-X-Proofpoint-ORIG-GUID: u9IowL7hR9eMDbwM72mpVeR3QhH9MLQF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- mlxscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=999 suspectscore=0 bulkscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410250020
+ <bc3c06eb-1cb2-4cbb-aaad-95c09223f0cc@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bc3c06eb-1cb2-4cbb-aaad-95c09223f0cc@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241024_195615_312344_83717B0D 
-X-CRM114-Status: GOOD (  31.83  )
+X-CRM114-CacheID: sfid-20241024_230107_995028_843B7202 
+X-CRM114-Status: GOOD (  32.24  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,154 +95,84 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 10/25/2024 3:39 AM, Dmitry Baryshkov wrote:
-> On Thu, Oct 24, 2024 at 08:25:14AM +0800, Miaoqing Pan wrote:
->> QCA6698AQ IP core is the same as WCN6855 hw2.1, but it has different RF,
->> IPA, thermal, RAM size and etc, so new firmware files used. This change
->> allows board DT files to override the subdir of the firmware directory
->> used to lookup the amss.bin and m3.bin.
+On Fri, Oct 25, 2024 at 10:56:02AM +0800, Miaoqing Pan wrote:
 > 
-> I have slight concerns regarding the _board_ DT files overriding the
-> subdir. This opens a can of worms, allowing per-board firmware sets,
-> which (as far as I understand) is far from being what driver maintainers
-> would like to see. This was required for ath10k-snoc devices, since
-> firmware for those platforms is signed by the vendor keys and it is
-> limited to a particular SoC or SoC family. For ath11k-pci there is no
-> such limitation.
 > 
-> Would it be possible to use PCI subvendor / subdev to identify affected
-> cards? PCI Revision? Any other way to identify the device?  Please
-> provide lspci -nnvv for the affected device kind. Is there a way to
-> identify the RF part somehow?
-
-It's rather difficult, for WCN685x, there are multiple evolved subseries 
-for customized products. e.g.
-
-QCA6698AQ/hw2.1
-QCA2066/hw2.1
-WCN6855/hw2.0/hw2.1
-WCN6856/hw2.1
-
-They have the same PCIe ID (17cb:1103), the commit 5dc9d1a55e95 ("wifi: 
-ath11k: add support for QCA2066") reads TCSR_SOC_HW_SUB_VER to enumerate 
-all QCA2066 cards, it lacks of flexibility, as the list will become 
-longer and longer. But it's the only choice for QCA2066, as it's 
-customized for X86 platform which without DT files.
-
-So for MSM those have DT file platforms, like SA8775P-RIDE/QCS8300-RIDE 
-both attached to QCA6698AQ, we can specify the correct firmware to 
-'ath11k/WCN6855/hw2.1/qca6698aq', so it's not per-board firmware, it 
-depends on the type of the products(x86 windows, IoT products or AUTO).
-
-
-0000:01:00.0 Network controller [0280]: Qualcomm QCNFA765 Wireless 
-Network Adapter [17cb:1103] (rev 01)
-	Subsystem: Qualcomm QCNFA765 Wireless Network Adapter [17cb:0108]
-	Device tree node: /sys/firmware/devicetree/base/pci@1c00000/pcie@0/wifi@0
-
-
+> On 10/25/2024 3:39 AM, Dmitry Baryshkov wrote:
+> > On Thu, Oct 24, 2024 at 08:25:14AM +0800, Miaoqing Pan wrote:
+> > > QCA6698AQ IP core is the same as WCN6855 hw2.1, but it has different RF,
+> > > IPA, thermal, RAM size and etc, so new firmware files used. This change
+> > > allows board DT files to override the subdir of the firmware directory
+> > > used to lookup the amss.bin and m3.bin.
+> > 
+> > I have slight concerns regarding the _board_ DT files overriding the
+> > subdir. This opens a can of worms, allowing per-board firmware sets,
+> > which (as far as I understand) is far from being what driver maintainers
+> > would like to see. This was required for ath10k-snoc devices, since
+> > firmware for those platforms is signed by the vendor keys and it is
+> > limited to a particular SoC or SoC family. For ath11k-pci there is no
+> > such limitation.
+> > 
+> > Would it be possible to use PCI subvendor / subdev to identify affected
+> > cards? PCI Revision? Any other way to identify the device?  Please
+> > provide lspci -nnvv for the affected device kind. Is there a way to
+> > identify the RF part somehow?
 > 
-> Could you possibly clarify, how this situation is handled in Windows
-> world?
+> It's rather difficult, for WCN685x, there are multiple evolved subseries for
+> customized products. e.g.
+> 
+> QCA6698AQ/hw2.1
+> QCA2066/hw2.1
+> WCN6855/hw2.0/hw2.1
+> WCN6856/hw2.1
+> 
+> They have the same PCIe ID (17cb:1103), the commit 5dc9d1a55e95 ("wifi:
+> ath11k: add support for QCA2066") reads TCSR_SOC_HW_SUB_VER to enumerate all
+> QCA2066 cards, it lacks of flexibility, as the list will become longer and
+> longer. But it's the only choice for QCA2066, as it's customized for X86
+> platform which without DT files.
 
-X86 platforms use standard m.2 PCIe card, and it will only use the 
-default main firmware files, as they without DT files.
+I guess, this is closer to Kalle's expectations: being able to detect
+the hardware instead of adding DT properties.
 
-> 
->>
->> For example:
->>
->> - ath11k/WCN6855/hw2.1/amss.bin,
->>    ath11k/WCN6855/hw2.1/m3.bin: main firmware files, used by default
->>
->> - ath11k/WCN6855/hw2.1/qca6698aq/amss.bin,
->>    ath11k/WCN6855/hw2.1/qca6698aq/m3.bin
-> 
-> This approach looks good to me, thank you.
-> 
->>
->> Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
->>
->> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
->> ---
->>   drivers/net/wireless/ath/ath11k/core.c | 16 ++++++++++++++++
->>   drivers/net/wireless/ath/ath11k/core.h | 11 +++--------
->>   2 files changed, 19 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
->> index be67382c00f6..775e48551522 100644
->> --- a/drivers/net/wireless/ath/ath11k/core.c
->> +++ b/drivers/net/wireless/ath/ath11k/core.c
->> @@ -1178,6 +1178,22 @@ static int ath11k_core_create_chip_id_board_name(struct ath11k_base *ab, char *n
->>   					       ATH11K_BDF_NAME_CHIP_ID);
->>   }
->>   
->> +void ath11k_core_create_firmware_path(struct ath11k_base *ab,
->> +				      const char *filename,
->> +				      void *buf, size_t buf_len)
->> +{	const char *board_name = NULL;
->> +
->> +	of_property_read_string(ab->dev->of_node, "firmware-name", &board_name);
-> 
-> soc_name rather than board_name, please. Or just fw_name.
+> So for MSM those have DT file platforms, like SA8775P-RIDE/QCS8300-RIDE both
+> attached to QCA6698AQ, we can specify the correct firmware to
+> 'ath11k/WCN6855/hw2.1/qca6698aq', so it's not per-board firmware, it depends
+> on the type of the products(x86 windows, IoT products or AUTO).
 
-Will update to 'fw_name'.
+No-no-no and no. The firmware used must not be specific to the product
+type.  This is what everybody here is trying to avoid. Please try
+following the QCA2066 approach instead. And note that it could use new
+TLD as it perfectly shows itself as a different hardware kind.
+
+> 0000:01:00.0 Network controller [0280]: Qualcomm QCNFA765 Wireless Network
+> Adapter [17cb:1103] (rev 01)
+> 	Subsystem: Qualcomm QCNFA765 Wireless Network Adapter [17cb:0108]
+> 	Device tree node: /sys/firmware/devicetree/base/pci@1c00000/pcie@0/wifi@0
+> 
+> 
+> > 
+> > Could you possibly clarify, how this situation is handled in Windows
+> > world?
+> 
+> X86 platforms use standard m.2 PCIe card, and it will only use the default
+> main firmware files, as they without DT files.
+
+So QCA6698AQ cannot appear on an M.2 PCIe card?
 
 > 
->> +
->> +	if (board_name)
->> +		snprintf(buf, buf_len, "%s/%s/%s/%s", ATH11K_FW_DIR,
->> +			 ab->hw_params.fw.dir, board_name, filename);
->> +	else
->> +		snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
->> +			 ab->hw_params.fw.dir, filename);
->> +}
->> +EXPORT_SYMBOL(ath11k_core_create_firmware_path);
->> +
->>   const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
->>   						    const char *file)
->>   {
->> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
->> index 09c37e19a168..ce4102cfed4d 100644
->> --- a/drivers/net/wireless/ath/ath11k/core.h
->> +++ b/drivers/net/wireless/ath/ath11k/core.h
->> @@ -1249,6 +1249,9 @@ bool ath11k_core_coldboot_cal_support(struct ath11k_base *ab);
->>   
->>   const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
->>   						    const char *filename);
->> +void ath11k_core_create_firmware_path(struct ath11k_base *ab,
->> +				      const char *filename,
->> +				      void *buf, size_t buf_len);
->>   
->>   static inline const char *ath11k_scan_state_str(enum ath11k_scan_state state)
->>   {
->> @@ -1295,14 +1298,6 @@ static inline struct ath11k *ath11k_ab_to_ar(struct ath11k_base *ab,
->>   	return ab->pdevs[ath11k_hw_mac_id_to_pdev_id(&ab->hw_params, mac_id)].ar;
->>   }
->>   
->> -static inline void ath11k_core_create_firmware_path(struct ath11k_base *ab,
->> -						    const char *filename,
->> -						    void *buf, size_t buf_len)
->> -{
->> -	snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
->> -		 ab->hw_params.fw.dir, filename);
-> 
-> It could have perfectly lived here. Is there any reason to move the
-> function?
+> > 
+> > > 
+> > > For example:
+> > > 
+> > > - ath11k/WCN6855/hw2.1/amss.bin,
+> > >    ath11k/WCN6855/hw2.1/m3.bin: main firmware files, used by default
+> > > 
+> > > - ath11k/WCN6855/hw2.1/qca6698aq/amss.bin,
+> > >    ath11k/WCN6855/hw2.1/qca6698aq/m3.bin
+> > 
 
-Will update.
-
-> 
->> -}
->> -
->>   static inline const char *ath11k_bus_str(enum ath11k_bus bus)
->>   {
->>   	switch (bus) {
->> -- 
->> 2.25.1
->>
-> 
-
+-- 
+With best wishes
+Dmitry
 
