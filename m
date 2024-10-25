@@ -4,92 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65700D11704
-	for <ath11k@archiver.kernel.org>; Fri, 25 Oct 2024 07:23:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6E44D0C5F4
+	for <ath11k@archiver.kernel.org>; Fri, 25 Oct 2024 09:24:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3fGhefmJFrI68WA5TIXt8nAew1p7nkACWVJKgZe3/9w=; b=mLllghDSiEj7pTmUCqGKRtnb7w
-	LaOzeEjM/7RAVYJqY387GifBllJ4P6Yg5QnuyD6LpgY+HoAb6+FdQyKn/YW6zOH1kiYHRVuC4qKwG
-	bUfc+jg9XYpwN+a+RDyFsQPJo00jjvCFKsl2xOhmZOr0YsKTVWqJUJQOiZju1p/b24G/dUbyc9Y0P
-	G4SCPEpUpUBXDDH9eFZ/3SVWEghfGGbMZpb/mIDwNgZ5/cMc77T+lJz3xVfwhE+eLB7nLGAkUnNSJ
-	YihhnyJm2thqsC65SBaFySIScBpZvvwTDLNFmKA3MNowwOdvJcPEiqTeiTOjQv9J0Fk/TY7ha/qXi
-	etC1Ze7Q==;
+	Content-Type:MIME-Version:Subject:Message-ID:To:From:Date:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=zx4rS994+52QgjDFKp6HcNDGGadUJCetWnImp7GoXTM=; b=KDVqZWLRec8jBublrMlHKP69e6
+	UhRLA8GorLD+D6vT+SaM3WVcjvPXrCUoW+QqRbvjzQgPUXeOBiuaG5mbFFTMT6/G/hUM569/bPfkn
+	qMctiXSv/lL8U0v5MWZaE7e9Roh8wThCdsDxwSWoqkTKYrPpt4VoPvWxyBdX22X/l+WziA+ERfx1C
+	+6mLBS9nZyBvuWAZZwVUJ6vkLJRZbl3u03SiKfFSqBAI5QhxEAxqDeF2hmpwmLzNLbcd5TU9nWWyX
+	3/ERsyAkGvzEW+m0bRvRc+uhlTUtQJw5lyzP+owTg4u3T6YVEqGZe1FD/FebzLpytx+xXeFNblWgp
+	2nDPDFZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t4Ef5-00000002ndM-03yX;
-	Fri, 25 Oct 2024 07:23:07 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1t4GYi-00000003AKS-2epm;
+	Fri, 25 Oct 2024 09:24:40 +0000
+Received: from resdmta-c2p-566137.sys.comcast.net ([2001:558:fd00:56::c])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t4Ef1-00000002ncp-3NcU
+	id 1t4GYf-00000003AJX-3wn6
 	for ath11k@lists.infradead.org;
-	Fri, 25 Oct 2024 07:23:05 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49P62Nt4011872;
-	Fri, 25 Oct 2024 07:22:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3fGhefmJFrI68WA5TIXt8nAew1p7nkACWVJKgZe3/9w=; b=aRmCfi8+i7JnmKbA
-	nh0AgbjpXD9d9szwNFN5AVut/wwDplRCt1jQYv4BNhpEa9oDOUb4mOgMoYBFOLVX
-	oPcbKooS2yoPUDx/voY0TR5H03urcKKv+IkwS3slEeaeByNGVHpKwKJueFnViv8Z
-	tHVeiAGpcw5H+Ij60fefvbrRljKQoD1AoDBwIJHl579Lh4AaeRs5fqrvBixdDCTJ
-	jzbDz57yRvCaVAev3XkwcPZQTqcbuP0WqirXDDLKeRQVdBsdHPlqPQe/Au/fri5R
-	z7ymgS/kvtHbWSBaCYcpvSHIekKzQSFvtdre37koiigeWnw/mGW280xsJREtuDV9
-	731ucw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42g5q80601-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Oct 2024 07:22:59 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49P7MwgK004582
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Oct 2024 07:22:58 GMT
-Received: from [10.231.216.207] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Oct
- 2024 00:22:56 -0700
-Message-ID: <46de0bfe-ebdd-4b37-a957-3c64e30a1376@quicinc.com>
-Date: Fri, 25 Oct 2024 15:22:54 +0800
+	Fri, 25 Oct 2024 09:24:39 +0000
+Received: from resomta-c2p-555954.sys.comcast.net ([96.102.18.234])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resdmta-c2p-566137.sys.comcast.net with ESMTPS
+	id 4GYRtpWHKz35p4GYXtVlyf; Fri, 25 Oct 2024 09:24:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1729848269;
+	bh=zx4rS994+52QgjDFKp6HcNDGGadUJCetWnImp7GoXTM=;
+	h=Received:Received:Date:From:To:Message-ID:Subject:MIME-Version:
+	 Content-Type:Xfinity-Spam-Result;
+	b=bdvoZxe9nUUx81KH/ae39XgsZ+yPKFO5fbSI4TZBeAfShk5MGvTF9JxDKpAPbHbGg
+	 UlgwetmIcps8uYtSSkWFNf0Gr51zgeNDNCIGcA2LBFUYvhaycptpIDrWDja8hd9QKC
+	 zmB32+1o/kiGqQtSnIwvadr+lw3roIDgV6hCl2mfQctJPD+yFfMix3smf2PtonS8jE
+	 D6Z/o9FRyDbM9y3y8nn6Itim2MUr1qzuX0Y9QtIJwZWTnRBLvZ24sUBVXJCX1thXgo
+	 fsncrVZ4eXQ25HnZsBgmnmPNSxb/xiG9WHthObkj+vApedDrY7WRBC3zw3N0wU7PhX
+	 du4wAFDMQe/3Q==
+Received: from boobie.home ([73.69.89.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 256/256 bits)
+	(Client did not present a certificate)
+	by resomta-c2p-555954.sys.comcast.net with ESMTPSA
+	id 4GYAtSeYmSjQd4GYAt7jPH; Fri, 25 Oct 2024 09:24:08 +0000
+Date: Fri, 25 Oct 2024 05:24:06 -0400 (EDT)
+From: Ameer Antar <ameerantar@comcast.net>
+To: ath11k@lists.infradead.org
+Message-ID: <2102926591.3.1729848246704@boobie.home>
+Subject: Is it possible to use multiple QCN9074 devices on the same system?
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] wifi: ath11k: support board-specific firmware
- overrides
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <kvalo@kernel.org>, <quic_jjohnson@quicinc.com>,
-        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20241024002514.92290-1-quic_miaoqing@quicinc.com>
- <20241024002514.92290-3-quic_miaoqing@quicinc.com>
- <pdjhyrjoreiykv2tquvufjw3rkti5sxrjvpmkjhvkfasq7zbo4@xxntxdmhhyg5>
- <bc3c06eb-1cb2-4cbb-aaad-95c09223f0cc@quicinc.com>
- <ig3m3sgmnkgfmwrlglundhqif6rygzl7uh7rzoemrz3yxgvfpc@35a323mw2wbt>
-Content-Language: en-US
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <ig3m3sgmnkgfmwrlglundhqif6rygzl7uh7rzoemrz3yxgvfpc@35a323mw2wbt>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: vLY0gUNKwtSfUmcadLkU2VtZiE56iv5q
-X-Proofpoint-GUID: vLY0gUNKwtSfUmcadLkU2VtZiE56iv5q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- impostorscore=0 priorityscore=1501 mlxlogscore=970 bulkscore=0
- lowpriorityscore=0 spamscore=0 phishscore=0 malwarescore=0 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410250056
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-CMAE-Envelope: MS4xfGHQerAwqF4FtsjSk9tFbTyaJiZttay/qAqqJE9bHh+cxlvHAfXA0pgvzC3W28zDNLxbEL9rlQ6e4QzIE2zbIaUZN7Ldv3UyyBMItSa6JoxB6OyFa4K7
+ uKbHGoTPvxnVJYbm3Do0YFLR8S/AjhqY7PPtQkdmdpFDv427x9BLs2iIYvCmn4hDZDwLWbf+j01DGg==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241025_002303_908699_9D3376C8 
-X-CRM114-Status: GOOD (  28.41  )
+X-CRM114-CacheID: sfid-20241025_022438_055742_3C662822 
+X-CRM114-Status: UNSURE (   9.12  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,101 +76,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+I would like to know if there is a way to use multiple QCN9074 boards using
+ath11k. I have several boards which use different radio spectrums, e.g. 5 a=
+nd
+6GHz. Unfortunately all these boards are unfused and map to board id 255. I=
+ can
+get either one working by updating the board-2.bin file using ath11k-bdenco=
+der,
+but it looks like both radio versions have the same exact identifying info,
+'chip_id 0x0 chip_family 0x0 board_id 0xff soc_id 0xffffffff' ->
+'bus=3Dpci,qmi-chip-id=3D0,qmi-board-id=3D255'. The only differentiating pr=
+operty I
+could find seems to be the pci bus slot info, ie. bus/device number. Is the=
+re
+any way to override the board id per device based on either the pci slot in=
+fo
+or even the network interface name?
 
+I also suspect there is another issue beyond this regarding having multiple
+QCN9074 boards [1][2] which I'm not sure is resolved or if it will be.
+Unfortunately now I have to always use devices which use separate drivers f=
+or
+the different spectrums, but this is far from ideal. For many devices, AP
+discovery requires a neighbor report rather than PSC, so in most setups hav=
+ing
+a 6GHz radio requires at least another radio to function properly.
 
-On 10/25/2024 2:01 PM, Dmitry Baryshkov wrote:
-> On Fri, Oct 25, 2024 at 10:56:02AM +0800, Miaoqing Pan wrote:
->>
->>
->> On 10/25/2024 3:39 AM, Dmitry Baryshkov wrote:
->>> On Thu, Oct 24, 2024 at 08:25:14AM +0800, Miaoqing Pan wrote:
->>>> QCA6698AQ IP core is the same as WCN6855 hw2.1, but it has different RF,
->>>> IPA, thermal, RAM size and etc, so new firmware files used. This change
->>>> allows board DT files to override the subdir of the firmware directory
->>>> used to lookup the amss.bin and m3.bin.
->>>
->>> I have slight concerns regarding the _board_ DT files overriding the
->>> subdir. This opens a can of worms, allowing per-board firmware sets,
->>> which (as far as I understand) is far from being what driver maintainers
->>> would like to see. This was required for ath10k-snoc devices, since
->>> firmware for those platforms is signed by the vendor keys and it is
->>> limited to a particular SoC or SoC family. For ath11k-pci there is no
->>> such limitation.
->>>
->>> Would it be possible to use PCI subvendor / subdev to identify affected
->>> cards? PCI Revision? Any other way to identify the device?  Please
->>> provide lspci -nnvv for the affected device kind. Is there a way to
->>> identify the RF part somehow?
->>
->> It's rather difficult, for WCN685x, there are multiple evolved subseries for
->> customized products. e.g.
->>
->> QCA6698AQ/hw2.1
->> QCA2066/hw2.1
->> WCN6855/hw2.0/hw2.1
->> WCN6856/hw2.1
->>
->> They have the same PCIe ID (17cb:1103), the commit 5dc9d1a55e95 ("wifi:
->> ath11k: add support for QCA2066") reads TCSR_SOC_HW_SUB_VER to enumerate all
->> QCA2066 cards, it lacks of flexibility, as the list will become longer and
->> longer. But it's the only choice for QCA2066, as it's customized for X86
->> platform which without DT files.
-> 
-> I guess, this is closer to Kalle's expectations: being able to detect
-> the hardware instead of adding DT properties.
-> 
->> So for MSM those have DT file platforms, like SA8775P-RIDE/QCS8300-RIDE both
->> attached to QCA6698AQ, we can specify the correct firmware to
->> 'ath11k/WCN6855/hw2.1/qca6698aq', so it's not per-board firmware, it depends
->> on the type of the products(x86 windows, IoT products or AUTO).
-> 
-> No-no-no and no. The firmware used must not be specific to the product
-> type.  This is what everybody here is trying to avoid. Please try
-> following the QCA2066 approach instead. And note that it could use new
-> TLD as it perfectly shows itself as a different hardware kind.
+Any advice/comments much appreciated.
 
-Actually, TCSR_SOC_HW_SUB_VER is not SOC register, it's a TLMM hw 
-revision register in BAR0 space, it's hard to maintain the list.
-
-We're going to have another problem to enable NFA765 m.2 card for IoT 
-platforms, which has different feature sets with X86 platform, so also 
-new firmware should be used. In this case, QCA2066 approach not works. 
-Seems DT approach is only choice.
-
-Could you advice ?
-
-
-> 
->> 0000:01:00.0 Network controller [0280]: Qualcomm QCNFA765 Wireless Network
->> Adapter [17cb:1103] (rev 01)
->> 	Subsystem: Qualcomm QCNFA765 Wireless Network Adapter [17cb:0108]
->> 	Device tree node: /sys/firmware/devicetree/base/pci@1c00000/pcie@0/wifi@0
->>
->>
->>>
->>> Could you possibly clarify, how this situation is handled in Windows
->>> world?
->>
->> X86 platforms use standard m.2 PCIe card, and it will only use the default
->> main firmware files, as they without DT files.
-> 
-> So QCA6698AQ cannot appear on an M.2 PCIe card?
-
-No, but no m.2 PCIe card so far. It depends on power sequencing module 
-to do power up.
-
-> 
->>
->>>
->>>>
->>>> For example:
->>>>
->>>> - ath11k/WCN6855/hw2.1/amss.bin,
->>>>     ath11k/WCN6855/hw2.1/m3.bin: main firmware files, used by default
->>>>
->>>> - ath11k/WCN6855/hw2.1/qca6698aq/amss.bin,
->>>>     ath11k/WCN6855/hw2.1/qca6698aq/m3.bin
->>>
-> 
-
+[1]
+https://patchwork.kernel.org/project/linux-wireless/patch/20221105194943.82=
+6847-2-robimarko@gmail.com/
+[2]
+https://patchwork.kernel.org/project/linux-wireless/patch/1614160542-27882-=
+1-git-send-email-akolli@codeaurora.org/
 
