@@ -4,88 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29E31D33994
-	for <ath11k@archiver.kernel.org>; Mon, 28 Oct 2024 15:03:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60887D339A9
+	for <ath11k@archiver.kernel.org>; Mon, 28 Oct 2024 17:37:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=NkgN6yHum3km5DKM98053u7B7jwLeEKzV9U+VnqB+JM=; b=ASBXCxJo+hKdPLUl8ZL3rg71Bt
-	vOtsKgATedsz5bWapEOvhP2CKnmrGLaGAWASWMN2zigzn0AC+enPLX0SNwn6/xYHAMI6XGP4HPq8H
-	Rqr/SbztWHjkF/vyW9ewGn5dzjLTakMNohKgyvC5n1IulpLYXkMkliWC/WttY+CN52umTwlI/DM0C
-	ewg9xBMyoBN8LkvaPV5W+BTsGIarvLilT2wCz1v4dnHX3Zuqu0dyYEj5wq8UNLniahM0x1Kgtpwp+
-	xNf62UD0XXUfhoXG8q1eVeUP32z8Q+kz3oYR+nnyUz/ldfYIwQ33oQqxGNc6JO8zRIRKHcMUu/Hvo
-	3d84NCeQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JlfdtHMVwDWpdlVbYkGk/zHZ1chnfh2I7xrrHmqirXA=; b=BQI4bFH5DQxVIQ9c8CknjB90o6
+	CsTdvqmvclUZtOiVdw0ZMbrNHLXumoxeBHTg8OERE4fkeJUXv0ZRlJZLAXQ7f7E13r8JvcnxHmor3
+	Xwuyi1VBa5uehR49ThCeJ7SgMSpsqiTKR+eHRQrlgVXHo382mlboZXWCvNd5Px8sRjI1S54s4wrNo
+	m5E90OXM1iRuGdhUpc9MwifqvAYKv2WJsHa9yqXuSaCK4sxj8RFvAx2jVto8LDF3tf2Sm4WuqvmWA
+	K/hUWTigdtFNakDxUQmYE1ALCaaWQx6OBgk/khAcyB6Tcc44ItSZptZn1c28AFc4L2X1fS1YJS5z4
+	W1Ii6RkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t5RHf-0000000BEaK-2Fpf;
-	Mon, 28 Oct 2024 15:03:55 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1t5Tfx-0000000Bfl2-3Z7Y;
+	Mon, 28 Oct 2024 17:37:09 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t5QlL-0000000B7zG-2B2R
+	id 1t5Tfu-0000000BfkI-23d3
 	for ath11k@lists.infradead.org;
-	Mon, 28 Oct 2024 14:30:32 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SB0oqS008480;
-	Mon, 28 Oct 2024 14:30:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NkgN6yHum3km5DKM98053u7B7jwLeEKzV9U+VnqB+JM=; b=MI6hQssPOZvmxHKT
-	bdqHpZ+6NDCebKnNiGFbUIQxEYVJvnLA/vEsb1QbiBZnjVhFM3lolWIqYlw5ox36
-	C5oybBH4GcGjBYu3v1Sxqynps0jYBRJw8wa7NaScRt7LGd2oK1ffFEgC4kTb8cNa
-	XxgIMhRSDiauFC7E7NVJKCyKKjrtDNRs4qFJAzWIkx28lPCUPIR8mlO+xWimu0JL
-	WyBie4t/tWltOoua4qMYz/dVsCvZ/6uWqGCxR2PsSqGEaXkjw+qyY40aPjzOoyZA
-	ZMWWs21GaOAZ3PnY3Ixq+BWCPuJmfRUtOU/WfGA32mgS1j8eFuPImWovJMzaX5pe
-	9pUvUg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqrgn8k8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 14:30:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49SEUHmw032369
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Oct 2024 14:30:17 GMT
-Received: from [10.48.242.156] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
- 2024 07:30:17 -0700
-Message-ID: <ff8c3443-3651-480e-956e-81c7d592099d@quicinc.com>
-Date: Mon, 28 Oct 2024 07:30:16 -0700
+	Mon, 28 Oct 2024 17:37:08 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id C876F5C5B9E;
+	Mon, 28 Oct 2024 17:36:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE9CDC4CEC3;
+	Mon, 28 Oct 2024 17:37:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730137025;
+	bh=WhZ8MSqqpL1fOhdN4WCI07mV5UW8J/yJa87MLuIn3Io=;
+	h=From:To:List-Id:Cc:Subject:References:Date:In-Reply-To:From;
+	b=MxYUvxaWCbgBkGN1MONGgBW9Wpe0Jrjby99QI9X5m38naKgrxGFAgwDiRNRnMVZa1
+	 AAaDP1H2oEh2517Q4YPYVLxOicTGgyDRC7RihzPLY2+AL/E7atiJtlZOwR33KBIZqK
+	 VsPiLxtEZsskDEapH0MMRF+tkuaC3U7TjpR8eS+GQRU8hRPSnYWnf0w4oGZ74HfxLl
+	 1WzWYtPNWzCTypMgJhna+0sW/S8UJTUbsNNbROCDriPh5fOQVVmoUC0nY9+ZdkfxMa
+	 AJsURge5mH1nLp32ARHj2iPOSmY/esDVpGfc0QgYGzISIX52IbZ2DLgA0FjSBUGg+U
+	 1ynLq3bauAp7Q==
+From: Kalle Valo <kvalo@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  Jeff Johnson
+ <jjohnson@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,  Konrad
+ Dybcio <konradybcio@kernel.org>,  linux-firmware@kernel.org,
+  ath11k@lists.infradead.org,  linux-arm-msm@vger.kernel.org
+Subject: Re: [RFC PULL] ath11k: move WCN6750 firmware to the device-specific
+ subdir
+References: <20241011061606.1612918-1-dmitry.baryshkov@linaro.org>
+	<379780f5-bf30-4452-aa9e-f1b6915b6389@quicinc.com>
+	<87plntnwon.fsf@kernel.org>
+	<CAA8EJppAiktoPk9hZnDdj5igZ9-D0229WRfwg08y8CPnwerx-g@mail.gmail.com>
+Date: Mon, 28 Oct 2024 19:37:01 +0200
+In-Reply-To: <CAA8EJppAiktoPk9hZnDdj5igZ9-D0229WRfwg08y8CPnwerx-g@mail.gmail.com>
+	(Dmitry Baryshkov's message of "Mon, 21 Oct 2024 21:34:27 +0300")
+Message-ID: <87iktcgmde.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ath11k: remove error checking for
- debugfs_create_file()
-To: Kalle Valo <kvalo@kernel.org>, Zhen Lei <thunder.leizhen@huawei.com>
-CC: Jeff Johnson <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>
-References: <20241025064235.382-1-thunder.leizhen@huawei.com>
- <87v7xcgwb0.fsf@kernel.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <87v7xcgwb0.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PVzzkdQOpIUoQHp8BqQ53taOHAqwAPY4
-X-Proofpoint-GUID: PVzzkdQOpIUoQHp8BqQ53taOHAqwAPY4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- clxscore=1015 impostorscore=0 suspectscore=0 spamscore=0 mlxscore=0
- adultscore=0 priorityscore=1501 mlxlogscore=920 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410280116
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241028_073031_792643_6C4ED0EB 
-X-CRM114-Status: GOOD (  12.64  )
+X-CRM114-CacheID: sfid-20241028_103706_638510_FC307D69 
+X-CRM114-Status: GOOD (  21.69  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,39 +78,81 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 10/28/2024 7:02 AM, Kalle Valo wrote:
-> Zhen Lei <thunder.leizhen@huawei.com> writes:
-> 
->> Driver ath11k can work fine even if the debugfs files fail to be created.
->> Therefore, the return value check of debugfs_create_file() should be
->> ignored, as it says.
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+
+> On Mon, 21 Oct 2024 at 21:22, Kalle Valo <kvalo@kernel.org> wrote:
+>
 >>
->> Suggested-by: Jeff Johnson <quic_jjohnson@quicinc.com>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> 
-> Are you just guessing or did you confirm on a real device that ath11k
-> spectral really works without debugfs?
+>> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+>>
+>> >> Dmitry Baryshkov (1):
+>> >>       ath11k: move WCN6750 firmware to the device-specific subdir
+>> >>
+>> >>  WHENCE                                             |  12 ++----------
+>> >>  ath11k/WCN6750/hw1.0/{wpss.b04 => sc7280/wpss.mbn} | Bin 5819999 -> 7463728 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b00                      | Bin 340 -> 0 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b01                      | Bin 6848 -> 0 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b02                      | Bin 10300 -> 0 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b03                      | Bin 4096 -> 0 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b05                      | Bin 164332 -> 0 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b06                      | Bin 266684 -> 0 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b07                      | Bin 1176368 -> 0 bytes
+>> >>  ath11k/WCN6750/hw1.0/wpss.b08                      |   0
+>> >>  ath11k/WCN6750/hw1.0/wpss.mdt                      | Bin 7188 -> 0 bytes
+>> >>  11 files changed, 2 insertions(+), 10 deletions(-)
+>> >>  rename ath11k/WCN6750/hw1.0/{wpss.b04 => sc7280/wpss.mbn} (77%)
+>>
+>> So this follow basically the same directory hierarchy as you Dmitry
+>> implemented for ath10k in commit 5abf259772df ("wifi: ath10k: support
+>> board-specific firmware overrides"), right? Just making sure we are on
+>> the same page. I think ath10k/ath11k/ath12k drivers should follow the
+>> same design as much as possible.
+>
+> Yes, that was my goal. Having subdirs under the main dir.
 
-The debugfs_create_file() documentation tells us:
- * NOTE: it's expected that most callers should _ignore_ the errors returned
- * by this function. Other debugfs functions handle the fact that the "dentry"
- * passed to them could be an error and they don't crash in that case.
- * Drivers should generally work fine even if debugfs fails to init anyway.
+Very good.
 
-The caveat is that any driver functionality that relies upon debugfs obviously
-won't work if the underlying file isn't created. Hence the language that the
-driver "should generally work fine" since all functionality that isn't tied to
-debugfs will still be available.
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b00
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b01
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b02
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b03
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b05
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b06
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b07
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.b08
+>> >>  delete mode 100644 ath11k/WCN6750/hw1.0/wpss.mdt
+>> >
+>> > I'm waiting for Kalle to respond, but at a minimum I suspect our internal
+>> > firmware tooling would be impacted by this change.
+>>
+>> Yeah, most likely we need to update our tools. But we would have to do
+>> it anyway so I'm not concerned about that.
+>
+> Ok. If there are no concerns from your side, could you possibly
+> respond with Acked-by? Then we can unblock and merge this.
 
-Since the relayfs functionality that spectral scan uses is dependent upon
-debugfs, this functionality won't work if the debugfs operation fails. So the
-question is, if that fails, do you continue running the driver that generally
-works fine supporting all other wifi operations, or do you return an error,
-and as part of the error handling, not init the driver and hence have no wifi
-operation?
+Sure:
 
-The one thing I didn't check is that although the documentation tells us that
-debugfs functions handle an "error" dentry, I didn't check if relayfs handles it.
+Acked-by: Kalle Valo <kvalo@kernel.org>
 
-/jeff
+>> > Kalle, do you have concerns or suggestions on how to handle this issue?
+>>
+>> Looks good to me.
+>>
+>> Dmitry, if you have the time please take a look at this:
+>>
+>> https://patchwork.kernel.org/project/linux-wireless/cover/20241001033053.2084360-1-quic_miaoqing@quicinc.com/
+>>
+>> Based on a quick look it seems to do things differently and not really a
+>> fan of that.
+>
+> Yes, I'd prefer a subdir rather than this implementation. I'll respond
+> either today or tomorrow.
+
+Thanks a lot, I appreciate you helping us.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
