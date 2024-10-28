@@ -4,61 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E5BAD33982
-	for <ath11k@archiver.kernel.org>; Mon, 28 Oct 2024 14:03:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29E31D33994
+	for <ath11k@archiver.kernel.org>; Mon, 28 Oct 2024 15:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fUhiEf6+l5tKArqT26cgpTT4p+imM0xL0rvlkqK0FBE=; b=ASvgtr9aRdvM9/kbMl/OiFgn0e
-	JnhXj6xeqK5SqHDnAQImhuTIs1J+Bf5NUKbvveNNMGmxLGVLjpSMm0a3oh/dqx8fOvFgc+CQLmt94
-	kqElyDdtfr5MRw6ivvdRW9bp+y9XrTmIbvGpRMV1ZhB5FHWTt+EKqUZ1vYpAiQRCFOs2AC/0M2Q0h
-	gfu9rD29XNm0/kHPycOKLWVa0LAz23mcTTFa3krjYHgTtT4HMfAXu4DAte+OGpeD6/ouDNzU1k8fO
-	/INsVSbtGPlKnGo1j99ooJ1riyw/yvKpBRkDeuRuGkIpF8hJ9hn4PzAVOrdarHIaPM1HbLA/VVZpe
-	5ufxC9Dw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NkgN6yHum3km5DKM98053u7B7jwLeEKzV9U+VnqB+JM=; b=ASBXCxJo+hKdPLUl8ZL3rg71Bt
+	vOtsKgATedsz5bWapEOvhP2CKnmrGLaGAWASWMN2zigzn0AC+enPLX0SNwn6/xYHAMI6XGP4HPq8H
+	Rqr/SbztWHjkF/vyW9ewGn5dzjLTakMNohKgyvC5n1IulpLYXkMkliWC/WttY+CN52umTwlI/DM0C
+	ewg9xBMyoBN8LkvaPV5W+BTsGIarvLilT2wCz1v4dnHX3Zuqu0dyYEj5wq8UNLniahM0x1Kgtpwp+
+	xNf62UD0XXUfhoXG8q1eVeUP32z8Q+kz3oYR+nnyUz/ldfYIwQ33oQqxGNc6JO8zRIRKHcMUu/Hvo
+	3d84NCeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t5QLc-0000000B1vo-0wL3;
-	Mon, 28 Oct 2024 14:03:56 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1t5RHf-0000000BEaK-2Fpf;
+	Mon, 28 Oct 2024 15:03:55 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t5QKF-0000000B1cB-3tNB
+	id 1t5QlL-0000000B7zG-2B2R
 	for ath11k@lists.infradead.org;
-	Mon, 28 Oct 2024 14:02:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 1F60F5C59AD;
-	Mon, 28 Oct 2024 14:01:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B84F8C4CECD;
-	Mon, 28 Oct 2024 14:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730124150;
-	bh=/sTP+2WN1c6C61ayQbhYvOxsF1O045VWiiHAmCmxdRg=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=vLZTdCt/SmyMqGbyieps+jmn3HmTfqbkIvQWC5aAXlIVh9Cc0Ac2lM8rAozGLiPMn
-	 y6bH6K+N6XGReOyXKlQMmklXUjQTF8JVksK/6LOSGjC9gtgfXbHjLYSTDLVA+YcaAC
-	 Wnx3Q1mLQB+j/gw51jia2B12CfA+/mc7cB7d5DyDgjnVgIw5SPM2XRIuXTXY/iJcJs
-	 xEBsi1r8nqx0BigafejlIYsL9jHygbnvOMPXTCZSFmVm0UQjYkC2vyUmyIqRQRWpRC
-	 pVL3xqe2AObh7h4gSdj3JRstxen20AOMnq5k4Z7uoe1kkY7MAItN/jfVNPQPb0ARVi
-	 S6W5dJvsLnXaw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Zhen Lei <thunder.leizhen@huawei.com>
-Cc: Jeff Johnson <jjohnson@kernel.org>,  <linux-wireless@vger.kernel.org>,
-  <ath11k@lists.infradead.org>,  Jeff Johnson <quic_jjohnson@quicinc.com>
-Subject: Re: [PATCH v2] ath11k: remove error checking for debugfs_create_file()
-References: <20241025064235.382-1-thunder.leizhen@huawei.com>
-Date: Mon, 28 Oct 2024 16:02:27 +0200
-In-Reply-To: <20241025064235.382-1-thunder.leizhen@huawei.com> (Zhen Lei's
-	message of "Fri, 25 Oct 2024 14:42:35 +0800")
-Message-ID: <87v7xcgwb0.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Mon, 28 Oct 2024 14:30:32 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SB0oqS008480;
+	Mon, 28 Oct 2024 14:30:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NkgN6yHum3km5DKM98053u7B7jwLeEKzV9U+VnqB+JM=; b=MI6hQssPOZvmxHKT
+	bdqHpZ+6NDCebKnNiGFbUIQxEYVJvnLA/vEsb1QbiBZnjVhFM3lolWIqYlw5ox36
+	C5oybBH4GcGjBYu3v1Sxqynps0jYBRJw8wa7NaScRt7LGd2oK1ffFEgC4kTb8cNa
+	XxgIMhRSDiauFC7E7NVJKCyKKjrtDNRs4qFJAzWIkx28lPCUPIR8mlO+xWimu0JL
+	WyBie4t/tWltOoua4qMYz/dVsCvZ/6uWqGCxR2PsSqGEaXkjw+qyY40aPjzOoyZA
+	ZMWWs21GaOAZ3PnY3Ixq+BWCPuJmfRUtOU/WfGA32mgS1j8eFuPImWovJMzaX5pe
+	9pUvUg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqrgn8k8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 14:30:18 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49SEUHmw032369
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Oct 2024 14:30:17 GMT
+Received: from [10.48.242.156] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Oct
+ 2024 07:30:17 -0700
+Message-ID: <ff8c3443-3651-480e-956e-81c7d592099d@quicinc.com>
+Date: Mon, 28 Oct 2024 07:30:16 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ath11k: remove error checking for
+ debugfs_create_file()
+To: Kalle Valo <kvalo@kernel.org>, Zhen Lei <thunder.leizhen@huawei.com>
+CC: Jeff Johnson <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>
+References: <20241025064235.382-1-thunder.leizhen@huawei.com>
+ <87v7xcgwb0.fsf@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <87v7xcgwb0.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: PVzzkdQOpIUoQHp8BqQ53taOHAqwAPY4
+X-Proofpoint-GUID: PVzzkdQOpIUoQHp8BqQ53taOHAqwAPY4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ clxscore=1015 impostorscore=0 suspectscore=0 spamscore=0 mlxscore=0
+ adultscore=0 priorityscore=1501 mlxlogscore=920 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410280116
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241028_070232_036757_DA29F739 
-X-CRM114-Status: UNSURE (   8.60  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241028_073031_792643_6C4ED0EB 
+X-CRM114-Status: GOOD (  12.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,20 +100,39 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Zhen Lei <thunder.leizhen@huawei.com> writes:
+On 10/28/2024 7:02 AM, Kalle Valo wrote:
+> Zhen Lei <thunder.leizhen@huawei.com> writes:
+> 
+>> Driver ath11k can work fine even if the debugfs files fail to be created.
+>> Therefore, the return value check of debugfs_create_file() should be
+>> ignored, as it says.
+>>
+>> Suggested-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> 
+> Are you just guessing or did you confirm on a real device that ath11k
+> spectral really works without debugfs?
 
-> Driver ath11k can work fine even if the debugfs files fail to be created.
-> Therefore, the return value check of debugfs_create_file() should be
-> ignored, as it says.
->
-> Suggested-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+The debugfs_create_file() documentation tells us:
+ * NOTE: it's expected that most callers should _ignore_ the errors returned
+ * by this function. Other debugfs functions handle the fact that the "dentry"
+ * passed to them could be an error and they don't crash in that case.
+ * Drivers should generally work fine even if debugfs fails to init anyway.
 
-Are you just guessing or did you confirm on a real device that ath11k
-spectral really works without debugfs?
+The caveat is that any driver functionality that relies upon debugfs obviously
+won't work if the underlying file isn't created. Hence the language that the
+driver "should generally work fine" since all functionality that isn't tied to
+debugfs will still be available.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Since the relayfs functionality that spectral scan uses is dependent upon
+debugfs, this functionality won't work if the debugfs operation fails. So the
+question is, if that fails, do you continue running the driver that generally
+works fine supporting all other wifi operations, or do you return an error,
+and as part of the error handling, not init the driver and hence have no wifi
+operation?
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+The one thing I didn't check is that although the documentation tells us that
+debugfs functions handle an "error" dentry, I didn't check if relayfs handles it.
+
+/jeff
 
