@@ -4,80 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E951AD5B870
-	for <ath11k@archiver.kernel.org>; Tue, 29 Oct 2024 03:41:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97027D5B16B
+	for <ath11k@archiver.kernel.org>; Tue, 29 Oct 2024 08:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=LBfFGJMsVjfPvoFpdWSsuaLfc0Q9vD4A1u3MqdAmId8=; b=3c/Tstx2j0BxIyX4K5dS8ydhT9
-	Qv4ePtNAUo7oKuPkTDE4SiRtNFq2ewXlKz+CJEMvF4wGZ8zc+3H8Cp9KoaF1hjYLbeFXgkhe3jQPH
-	PfZvVY9SYvapUovRkjfKq+2oAovywduNZBw41JuAeVtX7tMZOv3tsATQka+BE9qX1bU815QRHpX+G
-	F18hII3KIMdmIY5FMwkyzkNOKxtH6qudMqbksY5j+8QHgTF5Pp7HI7xV9QBb0RaqlcMUBPP2rq7Ue
-	Si9ldY5O8rHA/bFrBEluvUy66WR+4k2IfAqSPFc88ZXpcXhKs3D/Eff1PiMT4PNceWl4xNpele+Zd
-	Q2oRPX3A==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=ND7P14RGUCa/3njBpgO0LodGoDDkZ/lSdMMfyom5wfM=; b=NMLP8QzexQk7DWrY4sfBb5yq6W
+	ONzdwJinPTDZUyorC1ORBNP7xFTXPqUHDYR4f6/Ea5AnvbZ786KPdFEuc6ztE+K2wKu0xK49RpInD
+	0glTSnWiHF9myCWd0Yq5R6CxACO4l41SvFVQYe9ktU1QnHnF1Gg+votLiie77dEd3/4OlvwzMIPBQ
+	XHRaI4+mUwZctwZePCLBVbG/8bNvFjK+jq0Q4j944ugEPsklERiRLyjRb+yklkP9SS4wFdCLVZp0O
+	sBa2isf+AUoEHE4Bca136d2kNkWBKb5dCXhdyzP/6M2DIdyFnuNdTv00e40BpupRKMXI44nggt/t7
+	9kVZJd9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t5d7F-0000000D6y8-106A;
-	Tue, 29 Oct 2024 03:41:57 +0000
-Received: from mail-qv1-xf2c.google.com ([2607:f8b0:4864:20::f2c])
+	id 1t5hrf-0000000DkNA-3b1n;
+	Tue, 29 Oct 2024 08:46:11 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t5d7B-0000000D6xK-3HUy
+	id 1t5hfl-0000000DhNU-26at
 	for ath11k@lists.infradead.org;
-	Tue, 29 Oct 2024 03:41:55 +0000
-Received: by mail-qv1-xf2c.google.com with SMTP id 6a1803df08f44-6cbcc2bd800so45194086d6.0
-        for <ath11k@lists.infradead.org>; Mon, 28 Oct 2024 20:41:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730173312; x=1730778112; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LBfFGJMsVjfPvoFpdWSsuaLfc0Q9vD4A1u3MqdAmId8=;
-        b=VqMUH15emD3Q/uibCbjXYHJxmXYJiBkZ0zo2BIVaRB4Q0kLhGSNL2e397pQS2NIxsW
-         B04ewNDLu7IwilPgnqAYOR2bLcGSPiSOlHG8ZhyfdckaPx3QQCBZbiFKX0Lsq9dsyoNB
-         vUJLf1AyvQo/GFOTJFN3oSA0ZL8J53pcg1njSjMT2xB5k7FFi6gmdHsvDOzeOEwT2c8I
-         ffphBHeaNLUzhTDbHW/B8JUB9vQxYSh9rQYYH/bX6viY7ISuNGel8bX3kufo/E/VVi2P
-         dPLEPmvCE1QPPZ3xCTD+MQiBumxkbUcGiZ//HPkyX4myHs9zVexweR+2zOIXe4Tdv+cD
-         01Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730173312; x=1730778112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LBfFGJMsVjfPvoFpdWSsuaLfc0Q9vD4A1u3MqdAmId8=;
-        b=nnLanY4fhyQhNxro2Ie87UdWdNh+F4BQ54FTQBHQvMN4pQTSe07CALQyB3YJDKmzwD
-         UVFyR29o7XbyR2nYcmTyHG53Kp8OSGtzDNtdePzdWDsndPlgEGqitiusqSNZ/8hNIXu9
-         vG1QOPCVUyYNC8U7PwtkaIKxPs0eFthW8W5N5gV7tgPGEa74mVikM8fJTV792QA3PZQl
-         fWVwVRLaeMHbHVnC1N3fIHrKY2KDVoBh0xzgKgUqdL6viNnnKSjx5ZS0NuPWnWm9ei3n
-         POrWqMa56m3qDSx6vQAOKpT6HcWmfL2AYKko7v9UbjFkcw53/YYpBnZtN82iruIqHa5b
-         VBRA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRFhImYjdCxPvJ46IdQ9lL66jZQBRZy0nV5LbSedE0qoKTnddH5L31BMpBuwVHwuViJD4HCcY=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzkEz5+B7xrcEfP5Bnto/Rtd5ZivpyEgYTlTuOnNQaKUuuEK5sU
-	u3U7jVdDSRt5hy09zzt1GAS7yyxr04inFyHBlOGfwoglAeHh19Gbe3pq/yZsrS+AwRz8Xjuk4lH
-	vyRIY5JbLL0LFvYo48qJ3+WmwnNc=
-X-Google-Smtp-Source: AGHT+IHlI6ic5+01DV2onimsBwZ66nvHEC6/lv3DtvmwpAC/1xXkqiCP2cH9Y4lhWd/7b7QShnSJMIyoGj7Aw6U0ZuM=
-X-Received: by 2002:a05:6214:4508:b0:6cb:f077:f2f7 with SMTP id
- 6a1803df08f44-6d2f63df3d5mr8946856d6.25.1730173311971; Mon, 28 Oct 2024
- 20:41:51 -0700 (PDT)
+	Tue, 29 Oct 2024 08:33:55 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49SKYPkG012047;
+	Tue, 29 Oct 2024 08:33:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=ND7P14RGUCa/3njBpgO0LodGoDDkZ/lSdMM
+	fyom5wfM=; b=BvKhgSSqCsAl0YzUAj0gW9Xw3KcLV07EgCLb/XoW7OGXS1XDM47
+	4JMcZowBdQY8WgmV3vbjsojEnd16OzXxIhv+BpsqXz4m2LFyHyTMKmvfNTD1t5NE
+	6kUB/tebAQZVULoynoOjIxFEZaGxOIjDikOvANrv5p/LqTuEJUjOovwV9CMQjTHN
+	4cJdVAhKHngr4UjOktqaaV5uwlDVsUCKm1wjN0pP2sHK7YDpmCXZ1DoWHgM7Qt9M
+	jhbf6wBHKY0oVEUFAxP0l33zUhXwIq861urO0mv3FVdf+BwY3RNVBOfO14a3aR1C
+	NF4c5+4UcixYHBw6fcpmYeFIJgALiSbI6KA==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gp4dyxy5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 08:33:51 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 49T8Xmd9008331;
+	Tue, 29 Oct 2024 08:33:48 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 42gsgkvtk3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 08:33:48 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 49T8Xmel008325;
+	Tue, 29 Oct 2024 08:33:48 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.93])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 49T8Xlne008323
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Oct 2024 08:33:47 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 460767)
+	id 055964A8; Tue, 29 Oct 2024 14:03:47 +0530 (+0530)
+From: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,
+        Balaji Pothunoori <quic_bpothuno@quicinc.com>
+Subject: [PATCH] wifi: ath11k: Suspend hardware before firmware mode off for WCN6750
+Date: Tue, 29 Oct 2024 14:03:40 +0530
+Message-Id: <20241029083340.3010798-1-quic_bpothuno@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20241025064235.382-1-thunder.leizhen@huawei.com>
- <87v7xcgwb0.fsf@kernel.org> <ff8c3443-3651-480e-956e-81c7d592099d@quicinc.com>
-In-Reply-To: <ff8c3443-3651-480e-956e-81c7d592099d@quicinc.com>
-From: Julian Calaby <julian.calaby@gmail.com>
-Date: Tue, 29 Oct 2024 14:41:40 +1100
-Message-ID: <CAGRGNgUmdKfWxOSPyj9Ofk8ULyPX0j61Qnrd_ckLAy-a0RhdKg@mail.gmail.com>
-Subject: Re: [PATCH v2] ath11k: remove error checking for debugfs_create_file()
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Kalle Valo <kvalo@kernel.org>, Zhen Lei <thunder.leizhen@huawei.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	ath11k@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _onm_X5DIw0JJ4VfGMo2aKwI7XeYTKBK
+X-Proofpoint-GUID: _onm_X5DIw0JJ4VfGMo2aKwI7XeYTKBK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 mlxlogscore=999 clxscore=1011 spamscore=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 adultscore=0 phishscore=0
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410290067
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241028_204153_842719_4DD94CBE 
-X-CRM114-Status: GOOD (  20.91  )
+X-CRM114-CacheID: sfid-20241029_013353_584821_61E5044F 
+X-CRM114-Status: GOOD (  18.15  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,71 +100,165 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Jeff,
+During rmmod, the ath11k host driver sends a QMI MODE OFF command
+to firmware.
+As part of this command, firmware initiates WLAN de-initialization
+and accesses certain UMAC registers during this process.
+Currently, on WCN6750 WLAN hardware, the system is in a sleep state when
+firmware receives the QMI MODE OFF command.
+This results in a firmware/hardware reset while accessing the UMAC hardware
+registers during sleep state.
 
-On Tue, Oct 29, 2024 at 1:37=E2=80=AFAM Jeff Johnson <quic_jjohnson@quicinc=
-.com> wrote:
->
-> On 10/28/2024 7:02 AM, Kalle Valo wrote:
-> > Zhen Lei <thunder.leizhen@huawei.com> writes:
-> >
-> >> Driver ath11k can work fine even if the debugfs files fail to be creat=
-ed.
-> >> Therefore, the return value check of debugfs_create_file() should be
-> >> ignored, as it says.
-> >>
-> >> Suggested-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> >
-> > Are you just guessing or did you confirm on a real device that ath11k
-> > spectral really works without debugfs?
->
-> The debugfs_create_file() documentation tells us:
->  * NOTE: it's expected that most callers should _ignore_ the errors retur=
-ned
->  * by this function. Other debugfs functions handle the fact that the "de=
-ntry"
->  * passed to them could be an error and they don't crash in that case.
->  * Drivers should generally work fine even if debugfs fails to init anywa=
-y.
->
-> The caveat is that any driver functionality that relies upon debugfs obvi=
-ously
-> won't work if the underlying file isn't created. Hence the language that =
-the
-> driver "should generally work fine" since all functionality that isn't ti=
-ed to
-> debugfs will still be available.
+To avoid this, add logic to send WCN6750 hardware specific
+WMI_PDEV_SUSPEND_AND_DISABLE_INTR command to firmware prior to sending
+the QMI MODE OFF command.
+This will cause firmware to cease all activities and put the device in
+a powered-on state that prevents access to registers which have been
+powered off.
 
-The big question for me is this:
+Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 45 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ 2 files changed, 46 insertions(+)
 
-> Since the relayfs functionality that spectral scan uses is dependent upon
-> debugfs
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index be67382c00f6..a9aefb1a705d 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -123,6 +123,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
+ 		.support_dual_stations = false,
++		.pdev_suspend = false,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -207,6 +208,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = false,
+ 		.support_dual_stations = false,
++		.pdev_suspend = false,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -296,6 +298,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = true,
+ 		.support_dual_stations = true,
++		.pdev_suspend = false,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -379,6 +382,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = false,
+ 		.support_dual_stations = false,
++		.pdev_suspend = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -468,6 +472,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = true,
+ 		.support_dual_stations = true,
++		.pdev_suspend = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.1",
+@@ -555,6 +560,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = true,
+ 		.support_dual_stations = true,
++		.pdev_suspend = false,
+ 	},
+ 	{
+ 		.name = "wcn6750 hw1.0",
+@@ -637,6 +643,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = true,
+ 		.support_fw_mac_sequence = true,
+ 		.support_dual_stations = false,
++		.pdev_suspend = true,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ5018_HW10,
+@@ -719,6 +726,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = false,
+ 		.support_dual_stations = false,
++		.pdev_suspend = false,
+ 	},
+ 	{
+ 		.name = "qca2066 hw2.1",
+@@ -808,6 +816,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = true,
+ 		.support_dual_stations = true,
++		.pdev_suspend = false,
+ 	},
+ };
+ 
+@@ -1669,11 +1678,47 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
+ 	return ret;
+ }
+ 
++static void ath11k_core_pdev_suspend_target(struct ath11k_base *ab)
++{
++	struct ath11k *ar;
++	struct ath11k_pdev *pdev;
++	unsigned long time_left;
++	int ret;
++	int i;
++
++	if (!ab->hw_params.pdev_suspend)
++		return;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		ar = pdev->ar;
++
++		reinit_completion(&ab->htc_suspend);
++
++		ret = ath11k_wmi_pdev_suspend(ar, WMI_PDEV_SUSPEND_AND_DISABLE_INTR,
++					      pdev->pdev_id);
++		if (ret) {
++			ath11k_warn(ab, "could not suspend target :%d\n", ret);
++			/* pointless to try other pdevs */
++			return;
++		}
++
++		time_left = wait_for_completion_timeout(&ab->htc_suspend, 3 * HZ);
++
++		if (!time_left) {
++			ath11k_warn(ab, "suspend timed out - target pause event never came\n");
++			/* pointless to try other pdevs */
++			return;
++		}
++	}
++}
++
+ static void ath11k_core_pdev_destroy(struct ath11k_base *ab)
+ {
+ 	ath11k_spectral_deinit(ab);
+ 	ath11k_thermal_unregister(ab);
+ 	ath11k_mac_unregister(ab);
++	ath11k_core_pdev_suspend_target(ab);
+ 	ath11k_hif_irq_disable(ab);
+ 	ath11k_dp_pdev_free(ab);
+ 	ath11k_debugfs_pdev_destroy(ab);
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 300322535766..52d9f4c13b13 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -227,6 +227,7 @@ struct ath11k_hw_params {
+ 	bool smp2p_wow_exit;
+ 	bool support_fw_mac_sequence;
+ 	bool support_dual_stations;
++	bool pdev_suspend;
+ };
+ 
+ struct ath11k_hw_ops {
+-- 
+2.34.1
 
-Why?
-
-This seems to go against the general guidance that debugfs should
-essentially be "fire and forget" and return values shouldn't be
-checked.
-
-IMHO it comes down to one of two outcomes here:
-
-1. Spectral scan isn't necessary for normal operation so we shouldn't
-initialise that functionality if we can't use debugfs, which violates
-the "don't check return values" guidance
-2. We should break that dependency
-
-I can envisage a lot of people making the sensible assumption that a
-non-debug kernel doesn't need debugfs and therefore disabling it on
-their thing, but also it seems to be enabled everywhere I have access
-to: Debian Stable, WSL and Bazzite. So I could be completely missing
-the point here.
-
-Thanks,
-
---=20
-Julian Calaby
-
-Email: julian.calaby@gmail.com
-Profile: http://www.google.com/profiles/julian.calaby/
 
