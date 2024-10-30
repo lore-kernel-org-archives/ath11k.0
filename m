@@ -4,88 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BFBCD5CCA0
-	for <ath11k@archiver.kernel.org>; Wed, 30 Oct 2024 11:55:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0616D5CC9F
+	for <ath11k@archiver.kernel.org>; Wed, 30 Oct 2024 11:57:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=JFhnX9S46RIZBGUfFUIlb49bWJSRoCWYTVPUJ8avtN4=; b=VTE7EXp3v2IYOkuRc4YD+mK0+R
-	/tQOogJ9m8LktTFSNO4GsQdDFG/vrQhznYsrbZmvZ327pd2FkddKkGxB1F6xQSE8qjvNFmrgluPLo
-	ksW8apDd0cT/oPDypMXt/qxSCQYf6/UY4MUHhWcXAFkZXYSc5mvwvKZNW+qmMQI8y/LTaXOGWbU15
-	fl00evuLV/M8cx3IWZb1P9JofmLCRBsx4RVUGg0kXjAnDZn1rdf4B8ZEU5IbeN5WlhD/ZxCj7arWG
-	JQC2qBhQSEqwy75/28D2k/JPkc5yH6ocIyPHBQ7++oQtkMF395++AuRUOPMCAfUWkkUhUA9/b4EwJ
-	Fos5pogw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JbuZLEq7vQaYUmIhGec8BBDdbFRDmIKWFU6VUpdZRzw=; b=SUOfEDOZG4hfPXJA7O4JTEJ8N+
+	Kdza1E8aTOlP6SXzzjw65O2SwZ8sbDNBgezTHSglZpsf+TbXSZZGZI1KF/KkrES/0J70G5piFFng1
+	kkSmN8tFsww9pTqFD2EjoivxZ8y541JEOYJKkMKFP9MmkMJ56VsYZRC1V5PsOxrRGuzOMs85vu0fq
+	Nc7odxHY1AFlDUSKZWA47rXTqIKHW0Es0OAhxfEDISz32CguFB6CQRNPSxV1/DXCXaLGS4gP8Un/0
+	yNYV+tdaJa6iODjKjJz776kK1vZTmZgjrRNMMOJwVRux9DocBQ+gOJAs4YlFSS2pGxEc+i2A6vjkP
+	+zrC7Qig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t67IN-00000000EeX-47q2;
-	Wed, 30 Oct 2024 11:55:27 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1t67K2-00000000F29-1RIE;
+	Wed, 30 Oct 2024 11:57:10 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t679r-00000000CUS-3PAG
+	id 1t67Bj-00000000DBW-1v39
 	for ath11k@lists.infradead.org;
-	Wed, 30 Oct 2024 11:46:41 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49U90pWx017964;
-	Wed, 30 Oct 2024 11:46:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=JFhnX9S46RIZBGUfFUIlb49bWJSRoCWYTVP
-	UJ8avtN4=; b=mTzSNZ29rKRZdaGHrgGe3dbiiHJTbjP5nrnmkpjWyy50fJ5S83o
-	qxPYjeoVOAub8xLP427CcZyni8MZfHVOX/dLUDUoT/1K2DIwUHJNEHofWjrN4Jub
-	H+swv9ka3MuRSGpazmm1Kxk2IMV8XPlJoosh3ED+4X5R/y95YAL+wtZA1CeuZCUp
-	3dCq8BYZ87QEz8cbmbKBLjrJbQpU49fQFGPAiFYprM5/EBOPLDNQnZMcyytTwBR3
-	9oheHyd7B+cwcHnCuOVsf2TUC4zXsh0FYAIRI1UrO0GOZIWSDrir9PXul3uPvSjg
-	hEQu2VObhNrwUKlE1gx1TedQs/gwo8lRLvQ==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42grn53w9w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 11:46:36 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 49UBkXsc021870;
-	Wed, 30 Oct 2024 11:46:33 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 42gsgm07mf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 11:46:33 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 49UBkWuo021863;
-	Wed, 30 Oct 2024 11:46:32 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.93])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 49UBkW2K021862
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Oct 2024 11:46:32 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 460767)
-	id B00A4515; Wed, 30 Oct 2024 17:16:31 +0530 (+0530)
-From: Balaji Pothunoori <quic_bpothuno@quicinc.com>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-        Balaji Pothunoori <quic_bpothuno@quicinc.com>
-Subject: [PATCH] wifi: ath11k: Fix unexpected return buffer manager error for WCN6750/WCN6855
-Date: Wed, 30 Oct 2024 17:16:25 +0530
-Message-Id: <20241030114625.2416942-1-quic_bpothuno@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	Wed, 30 Oct 2024 11:48:37 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id C8F2E5C5D9E;
+	Wed, 30 Oct 2024 11:47:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 166A6C4CEE5;
+	Wed, 30 Oct 2024 11:48:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730288914;
+	bh=vQdaZWTismRSR1RwA+QoQPnrWdtdxnycqAXlRNG5AkE=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=fSBOKeT4rskvYGzrKk+t6aHGUIJ025NhddV3on3sW/l4LJ1ggN/M7zjLk3W8RThkW
+	 cJz3xCqdANv6RQDLv0VNZAxvMQ21OjgR7WI7M5WtfKbh8X6hNS2lghtxoJqwq1f+4t
+	 AfpLrauefNC2u0a4C2yDnR+rtBKk5SCOwK/ForLraNhHLxDgi/WTk7Cb9AsTE6AQdf
+	 KGDM/jv1OeqR8+nkZ+RRIMez5KmRBoqtQlEgpX5cOulMcwU7y0ax6zPAgI/Rpczl/4
+	 gRfK8E9qLuM+p41dVyCGsKQSiOVSEgWDyLLCO79QEpHSHgb9HS+Jc68X9Zlk1t9UEl
+	 vAGgUOmXH0ocQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Jens Glathe via B4 Relay
+ <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,  Konrad Dybcio
+ <konradybcio@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  jens.glathe@oldschoolsolutions.biz,  linux-arm-msm@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,  Merck Hung
+ <merckhung@gmail.com>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>,
+    ath11k@lists.infradead.org
+Subject: Re: [PATCH v6 0/3] arm64: dts: qcom: sc8280xp-blackrock: dt
+ definition for Windows Dev Kit 2023
+References: <20241030-jg-blackrock-for-upstream-v6-0-7cd7f7d8d97c@oldschoolsolutions.biz>
+Date: Wed, 30 Oct 2024 13:48:30 +0200
+In-Reply-To: <20241030-jg-blackrock-for-upstream-v6-0-7cd7f7d8d97c@oldschoolsolutions.biz>
+	(Jens Glathe via's message of "Wed, 30 Oct 2024 12:02:00 +0100")
+Message-ID: <87r07xzu9d.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vwH7Q0ZNUKpWh58_hFIAYwL09eaj5lv2
-X-Proofpoint-ORIG-GUID: vwH7Q0ZNUKpWh58_hFIAYwL09eaj5lv2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 mlxlogscore=766
- malwarescore=0 clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410300092
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241030_044639_877251_B130AA66 
-X-CRM114-Status: GOOD (  12.01  )
+X-CRM114-CacheID: sfid-20241030_044835_605583_6AD31344 
+X-CRM114-Status: GOOD (  15.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,58 +80,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The following error messages were encountered while parsing fragmented RX
-packets for WCN6750/WCN6855:
+Jens Glathe via B4 Relay
+<devnull+jens.glathe.oldschoolsolutions.biz@kernel.org> writes:
 
-ath11k 17a10040.wifi: invalid return buffer manager 4
+> "Microsoft Windows Dev Kit 2023" aka "Blackrock" aka "Project Volterra"
+>
+> Device tree for the Microsoft Windows Dev Kit 2023. This work
+> is based on the initial work of Merck Hung <merckhung@gmail.com>.
+>
+> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
+> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+>
+> Supported features:
+> - USB type-c and type-a ports
+> - minidp connector
+> - built-in r8152 Ethernet adapter
+> - PCIe devices
+> - nvme
+> - ath11k WiFi (WCN6855)
+> - WCN6855 Bluetooth
+> - A690 GPU
+> - ADSP and CDSP
+> - GPIO keys
+> - Audio definition (works via USB)
+>
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>
+> Original work: https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
+>
+> This dt is more or less deducted from the Thinkpad X13s.
+> It contains a lot of guesswork, and also a lot of research on
+> what works with the Windows Dev Kit.
+>
+> The WiFi definition references qcom,ath11k-calibration-variant = "MS_Volterra"
+> which is unfortunately not yet in the linux-firmware. The ath11k driver finds
+> the default one for 
+> "bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2|18,qmi-board-id=255"
+> when the entry with the variant is not found which is quite sub-optimal. I 
+> have placed a pr on github/qca-swiss-army-knife:
+> https://github.com/qca/qca-swiss-army-knife/pull/9 that provides an amended 
+> board-2.bin and a board-2.json to generate it. 
 
-This issue arose due to a hardcoded check for HAL_RX_BUF_RBM_SW3_BM
-introduced in 'commit 71c748b5e01e ("ath11k: Fix unexpected return buffer
-manager error for QCA6390")'
+qca-swiss-army-knife is only for scripts or similar, not for board
+files. For ath11k board files it's best to file a bug in bugzilla:
 
-For WCN6750 and WCN6855, the return buffer manager ID should be
-HAL_RX_BUF_RBM_SW1_BM. The incorrect conditional check caused fragmented
-packets to be dropped, resulting in the above error log.
+https://wireless.docs.kernel.org/en/latest/en/users/drivers/ath11k/bugreport.html
 
-Fix this by adding a check for HAL_RX_BUF_RBM_SW1_BM.
+For ath11k discussions we have a mailing list, adding it now:
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.2.0.c2-00258-QCAMSLSWPL-1
-Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-04479-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+https://wireless.docs.kernel.org/en/latest/en/users/drivers/ath11k/mailinglist.html
 
-Fixes: 71c748b5e01e ("ath11k: Fix unexpected return buffer manager error for QCA6390")
-Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c  | 1 +
- drivers/net/wireless/ath/ath11k/hal_rx.c | 3 ++-
- 2 files changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 40088e62572e..40b52d12b432 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -3872,6 +3872,7 @@ int ath11k_dp_process_rx_err(struct ath11k_base *ab, struct napi_struct *napi,
- 		ath11k_hal_rx_msdu_link_info_get(link_desc_va, &num_msdus, msdu_cookies,
- 						 &rbm);
- 		if (rbm != HAL_RX_BUF_RBM_WBM_IDLE_DESC_LIST &&
-+		    rbm != HAL_RX_BUF_RBM_SW1_BM &&
- 		    rbm != HAL_RX_BUF_RBM_SW3_BM) {
- 			ab->soc_stats.invalid_rbm++;
- 			ath11k_warn(ab, "invalid return buffer manager %d\n", rbm);
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 8f7dd43dc1bd..753bd93f0212 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -372,7 +372,8 @@ int ath11k_hal_wbm_desc_parse_err(struct ath11k_base *ab, void *desc,
- 
- 	ret_buf_mgr = FIELD_GET(BUFFER_ADDR_INFO1_RET_BUF_MGR,
- 				wbm_desc->buf_addr_info.info1);
--	if (ret_buf_mgr != HAL_RX_BUF_RBM_SW3_BM) {
-+	if (ret_buf_mgr != HAL_RX_BUF_RBM_SW1_BM &&
-+	    ret_buf_mgr != HAL_RX_BUF_RBM_SW3_BM) {
- 		ab->soc_stats.invalid_rbm++;
- 		return -EINVAL;
- 	}
 -- 
-2.34.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
