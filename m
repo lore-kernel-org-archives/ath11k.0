@@ -4,98 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D27CE67493
-	for <ath11k@archiver.kernel.org>; Fri,  1 Nov 2024 01:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1236FE6F06F
+	for <ath11k@archiver.kernel.org>; Fri,  1 Nov 2024 17:05:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PevRws9lWahN3nDSBG5OMAd+WeRoNqqEizhnVsb/dHc=; b=Y+xQ6BLjpiOfWs/ZxIqgvvO8lO
-	T/+c1JybNKgg+3XMta/Sl0DaOYTO6qKvVa80PaIv2/1V3pa/ub2bMmblt75TEtPGTtHcV5enS4yJ4
-	mX3XjtjEHkztUDoF7iRxl4+q1tDFj7zq07+zkVVvL//5fqXkaKH6VbRa0CSZQ2o+XOonjFrIy161/
-	JwmsHv52dtwGvM8DzTrDsu3Ytr7KMxHm/4qQFqiM6w/uO6nRl5UZ+B2gT5oMj0V7ODPEBWTThBtA7
-	gVqko7vNHGf7VoAf5iSb62VEHNjr1W/YAP/hs/XuS18L8yG91Sadz/05BaQyVpbC+6ikwrx3dzo+6
-	lAJUVDVA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:Subject:From
+	:MIME-Version:Date:Message-ID:Reply-To:Cc:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=LBFXvtix+QX0jVzv0EWywfuffsmKdLD8CixdVkArwXs=; b=pqZuLZgrO8TOFmGXtS0uW2Frwi
+	4qMzW32jRhQW8xO7WtJ0oW4PVFYHeNsFGGI6hecHbw5mc1heVLOXnmWX+2l9qyuuYFk7rTwgcvMQq
+	tdgh4NlorlB68VKEZx1g8EDcNkXxNg1Jy/e4k3Y1KhX5f6OzOvKqqhEkGJY8pRYedO0/vkI9B6jEr
+	YZS615asm8l2oJm9V2gy5lz4Tc7y7MCWbISYWArtZC+q2oCf77aMhRWKb+ivvds2S6DFTF4wbyH+P
+	297a4x8NqwZ0QHrQnA+13NLXIeJxsUQU3KTlHsXkm4LhH1uM8XZgK4/Y2ZGWLrn6gmxDgJqcQLyIs
+	7albFRnA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6gX2-00000005Qpq-1qek;
-	Fri, 01 Nov 2024 01:32:56 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1t6v5f-00000007nM7-28BM;
+	Fri, 01 Nov 2024 17:05:39 +0000
+Received: from ionic.de ([2001:41d0:700:3394:1::2] helo=mail.ionic.de)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6gWy-00000005Qoa-2MDB
+	id 1t6v5b-00000007nLR-1bWF
 	for ath11k@lists.infradead.org;
-	Fri, 01 Nov 2024 01:32:54 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49VCk51U003883;
-	Fri, 1 Nov 2024 01:32:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PevRws9lWahN3nDSBG5OMAd+WeRoNqqEizhnVsb/dHc=; b=C2/EUBvVqtZ1U91E
-	kJzn2opTY8m9h1Wj0CZmuvq2qEDe78acaSLpVQwIMnzEtJ4t2QBkGzyo93lpEIlo
-	hqhMcVd0Y4p+vq28/ud2wkrcK+n+Nu79lBR8/vzWAP7ZYl0fawONBFwCHRDL9go0
-	hsHOl5NxMv/PyYUKMsAYWJnaWXpGuQMJfftLAL2QYsH8rni19IWureBauVNRGIUf
-	ZzGGV4eq/KLetFkYr1Qa4cRLj3aj/szefDZ5jpzXZgj2TvhhMrrteE7HryUvTPnT
-	QWiUb1Axhl4EZwRPjwPkGey4Kz7huaHMxR2/yyR32uDoaBq+jVazC088ofzP78/7
-	iARvfA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42kns3n9s5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Nov 2024 01:32:42 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4A11Wf3F021935
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Nov 2024 01:32:41 GMT
-Received: from [10.231.216.207] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 31 Oct
- 2024 18:32:39 -0700
-Message-ID: <3dd897cb-5cc3-409d-a310-66e71847d58f@quicinc.com>
-Date: Fri, 1 Nov 2024 09:32:37 +0800
+	Fri, 01 Nov 2024 17:05:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
+	t=1730480729; bh=LBFXvtix+QX0jVzv0EWywfuffsmKdLD8CixdVkArwXs=;
+	h=Date:From:Subject:To:From;
+	b=HM677mgdWSOWDL4sGT73ydRJ7HOX8urD5V0IHbCRnHp/TBuvtmQtTFQypt3owv8+I
+	 cUG+lb16lW7pTj3xccqMZl06Jz5OXtXjhinO1o9cuo8X59xjJLYFmvfzpW5G3J9X0Q
+	 Pv7lwg3bx8AmG32hKkbtD57SHUCL9Z9Of1Yt068A=
+Received: from [172.22.111.213] (185.102.219.38.adsl.inet-telecom.org [185.102.219.38])
+	by mail.ionic.de (Postfix) with ESMTPSA id 8426C148867B
+	for <ath11k@lists.infradead.org>; Fri, 01 Nov 2024 18:05:29 +0100 (CET)
+Message-ID: <a8874554-e618-48e8-8092-81bc2abb743a@ionic.de>
+Date: Fri, 1 Nov 2024 18:05:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] wifi: ath11k: support board-specific firmware
- overrides
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <kvalo@kernel.org>, <quic_jjohnson@quicinc.com>,
-        <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_zhichen@quicinc.com>
-References: <46de0bfe-ebdd-4b37-a957-3c64e30a1376@quicinc.com>
- <CAA8EJpr4zgV4Sa4sPdCToQWs+CFJu6Xz6CPcPyHDhDczmuzj=g@mail.gmail.com>
- <06ff37ef-dfda-470f-80f7-0f54bae25686@quicinc.com>
- <CAA8EJppFCXeUAZax+jv42JrKYgLmaPQNpXhn-06q_K_uB9JZLQ@mail.gmail.com>
- <46b18b39-9e88-42f8-aa88-5b527fc92a9f@quicinc.com>
- <xp5j6kkpggfhxvzuozqcvs2ugon5xexjgzl24zjlen7kggdaju@vd3okew4vcsy>
- <49313be4-b0e2-4ec4-8663-bd4daf20f78a@quicinc.com>
- <ksyukz7oouw2ilxxpx5nhnshu3zmnd5rtgeloea2vykzzn6ii5@unvpx26neirt>
- <590b729b-a921-4ed7-af2d-326cf596ae1f@quicinc.com>
- <73916bc3-f3c8-4ef9-ab8b-d1497f228d13@quicinc.com>
- <csqlwll36viejkp7k57r3jdejpt2kkttmzawq6y6q7i7qs25ht@n3mazu6owblv>
+From: Mihai Moldovan <ionic@ionic.de>
+Subject: Re: State of multiple PCI(e) modules since 2022
+To: ath11k@lists.infradead.org
 Content-Language: en-US
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <csqlwll36viejkp7k57r3jdejpt2kkttmzawq6y6q7i7qs25ht@n3mazu6owblv>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PoiHM9QdpBOLbAxERmVTpj8U4bo0ifsT
-X-Proofpoint-ORIG-GUID: PoiHM9QdpBOLbAxERmVTpj8U4bo0ifsT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- adultscore=0 spamscore=0 phishscore=0 mlxlogscore=863 malwarescore=0
- bulkscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411010009
+Autocrypt: addr=ionic@ionic.de; keydata=
+ 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
+ S0VlnF9z
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------4cXXyE1iqoaEisXL3NnN0zAD"
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241031_183252_639323_5181B819 
-X-CRM114-Status: GOOD (  28.79  )
+X-CRM114-CacheID: sfid-20241101_100535_948149_DFD7217B 
+X-CRM114-Status: GOOD (  17.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,200 +109,86 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------4cXXyE1iqoaEisXL3NnN0zAD
+Content-Type: multipart/mixed; boundary="------------MFRWWxSWcFdrbXHFZO6AsVbU";
+ protected-headers="v1"
+From: Mihai Moldovan <ionic@ionic.de>
+To: ath11k@lists.infradead.org
+Message-ID: <a8874554-e618-48e8-8092-81bc2abb743a@ionic.de>
+Subject: Re: State of multiple PCI(e) modules since 2022
 
+--------------MFRWWxSWcFdrbXHFZO6AsVbU
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-On 10/28/2024 9:45 PM, Dmitry Baryshkov wrote:
-> On Mon, Oct 28, 2024 at 06:32:58PM +0800, Miaoqing Pan wrote:
->>
->>
->> On 10/26/2024 10:31 AM, Miaoqing Pan wrote:
->>>
->>>
->>> On 10/25/2024 11:27 PM, Dmitry Baryshkov wrote:
->>>> On Fri, Oct 25, 2024 at 10:23:45PM +0800, Miaoqing Pan wrote:
->>>>>
->>>>>
->>>>> On 10/25/2024 10:01 PM, Dmitry Baryshkov wrote:
->>>>>> On Fri, Oct 25, 2024 at 09:43:04PM +0800, Miaoqing Pan wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 10/25/2024 8:21 PM, Dmitry Baryshkov wrote:
->>>>>>>> On Fri, 25 Oct 2024 at 15:03, Miaoqing Pan
->>>>>>>> <quic_miaoqing@quicinc.com> wrote:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On 10/25/2024 6:20 PM, Dmitry Baryshkov wrote:
->>>>>>>>>> On Fri, 25 Oct 2024 at 10:23, Miaoqing Pan
->>>>>>>>>> <quic_miaoqing@quicinc.com> wrote:
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> On 10/25/2024 2:01 PM, Dmitry Baryshkov wrote:
->>>>>>>>>>>> On Fri, Oct 25, 2024 at 10:56:02AM +0800, Miaoqing Pan wrote:
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>> On 10/25/2024 3:39 AM, Dmitry Baryshkov wrote:
->>>>>>>>>>>>>> On Thu, Oct 24, 2024 at 08:25:14AM +0800, Miaoqing Pan wrote:
->>>>>>>>>>>>>>> QCA6698AQ IP core is the
->>>>>>>>>>>>>>> same as WCN6855 hw2.1,
->>>>>>>>>>>>>>> but it has different RF,
->>>>>>>>>>>>>>> IPA, thermal, RAM size
->>>>>>>>>>>>>>> and etc, so new firmware
->>>>>>>>>>>>>>> files used. This change
->>>>>>>>>>>>>>> allows board DT files to
->>>>>>>>>>>>>>> override the subdir of
->>>>>>>>>>>>>>> the firmware directory
->>>>>>>>>>>>>>> used to lookup the amss.bin and m3.bin.
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> I have slight concerns
->>>>>>>>>>>>>> regarding the _board_ DT
->>>>>>>>>>>>>> files overriding the
->>>>>>>>>>>>>> subdir. This opens a can of
->>>>>>>>>>>>>> worms, allowing per-board
->>>>>>>>>>>>>> firmware sets,
->>>>>>>>>>>>>> which (as far as I
->>>>>>>>>>>>>> understand) is far from
->>>>>>>>>>>>>> being what driver
->>>>>>>>>>>>>> maintainers
->>>>>>>>>>>>>> would like to see. This was
->>>>>>>>>>>>>> required for ath10k-snoc
->>>>>>>>>>>>>> devices, since
->>>>>>>>>>>>>> firmware for those platforms
->>>>>>>>>>>>>> is signed by the vendor keys
->>>>>>>>>>>>>> and it is
->>>>>>>>>>>>>> limited to a particular SoC
->>>>>>>>>>>>>> or SoC family. For
->>>>>>>>>>>>>> ath11k-pci there is no
->>>>>>>>>>>>>> such limitation.
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> Would it be possible to use
->>>>>>>>>>>>>> PCI subvendor / subdev to
->>>>>>>>>>>>>> identify affected
->>>>>>>>>>>>>> cards? PCI Revision? Any
->>>>>>>>>>>>>> other way to identify the
->>>>>>>>>>>>>> device?  Please
->>>>>>>>>>>>>> provide lspci -nnvv for the
->>>>>>>>>>>>>> affected device kind. Is
->>>>>>>>>>>>>> there a way to
->>>>>>>>>>>>>> identify the RF part somehow?
->>>>>>>>>>>>>
->>>>>>>>>>>>> It's rather difficult, for
->>>>>>>>>>>>> WCN685x, there are multiple
->>>>>>>>>>>>> evolved subseries for
->>>>>>>>>>>>> customized products. e.g.
->>>>>>>>>>>>>
->>>>>>>>>>>>> QCA6698AQ/hw2.1
->>>>>>>>>>>>> QCA2066/hw2.1
->>>>>>>>>>>>> WCN6855/hw2.0/hw2.1
->>>>>>>>>>>>> WCN6856/hw2.1
->>>>>>>>>>>>>
->>>>>>>>>>>>> They have the same PCIe ID
->>>>>>>>>>>>> (17cb:1103), the commit
->>>>>>>>>>>>> 5dc9d1a55e95 ("wifi:
->>>>>>>>>>>>> ath11k: add support for
->>>>>>>>>>>>> QCA2066") reads
->>>>>>>>>>>>> TCSR_SOC_HW_SUB_VER to enumerate
->>>>>>>>>>>>> all
->>>>>>>>>>>>> QCA2066 cards, it lacks of
->>>>>>>>>>>>> flexibility, as the list will
->>>>>>>>>>>>> become longer and
->>>>>>>>>>>>> longer. But it's the only choice
->>>>>>>>>>>>> for QCA2066, as it's customized
->>>>>>>>>>>>> for X86
->>>>>>>>>>>>> platform which without DT files.
->>>>>>>>>>>>
->>>>>>>>>>>> I guess, this is closer to Kalle's
->>>>>>>>>>>> expectations: being able to detect
->>>>>>>>>>>> the hardware instead of adding DT properties.
->>>>>>>>>>>>
->>>>>>>>>>>>> So for MSM those have DT file
->>>>>>>>>>>>> platforms, like SA8775P-RIDE/
->>>>>>>>>>>>> QCS8300-RIDE both
->>>>>>>>>>>>> attached to QCA6698AQ, we can specify the correct firmware to
->>>>>>>>>>>>> 'ath11k/WCN6855/hw2.1/qca6698aq',
->>>>>>>>>>>>> so it's not per-board firmware,
->>>>>>>>>>>>> it depends
->>>>>>>>>>>>> on the type of the products(x86 windows, IoT products or AUTO).
->>>>>>>>>>>>
->>>>>>>>>>>> No-no-no and no. The firmware used
->>>>>>>>>>>> must not be specific to the product
->>>>>>>>>>>> type.  This is what everybody here is trying to avoid. Please try
->>>>>>>>>>>> following the QCA2066 approach
->>>>>>>>>>>> instead. And note that it could use
->>>>>>>>>>>> new
->>>>>>>>>>>> TLD as it perfectly shows itself as a different hardware kind.
->>>>>>>>>>>
->>>>>>>>>>> Actually, TCSR_SOC_HW_SUB_VER is not SOC register, it's a TLMM hw
->>>>>>>>>>> revision register in BAR0 space, it's hard to maintain the list.
->>>>>>>>>>
->>>>>>>>>> How is it so?
->>>>>>>>>
->>>>>>>>> I think QCA2066 approach is just a workaround.
->>>>>>>>> Different batches of chip
->>>>>>>>> manufacture has different value in TCSR_SOC_HW_SUB_VER.
->>>>>>>>
->>>>>>>> Ok. So, subvendor / subdevice?
->>>>>>>
->>>>>>> The 'subvendor' is fixed to 0x17cb, so it's useless. And
->>>>>>> I don't have enough
->>>>>>> samples to decide to use 'subdevice', it's a risk for
->>>>>>> existing devices.
->>>>>>
->>>>>> What kind of risk? If subvendor is fixed, then it's Qualcomm who
->>>>>> enumerates subdevices.
->>>>>
->>>>> It's risk for there is not enough sample card to verify.
->>>>> Subdevice is never
->>>>> used by ath1xk drivers.
->>>>
->>>> Oh, so it's just about development. I'd say, please discuss such risks
->>>> with your management, unless Kalle or Jeff disagree with using the
->>>> subdevice for identification.
->>>
->>> Kalle & Jeff, any idea to introduce subdevice ?
->>>
->>>
->>
->> Whether 'QCA2066 approach' or 'subdevice approach', all need to introduce
->> lots of redundant code, as they share the same IP code.
->>
->> 'DT approach' only needs minor change, brings great flexibility. It's only
->> for Snapdragon boards, will not affect default firmware for X86 platforms.
->>
->>>>
->>>>>
->>>>>>
->>>>>> I'm really reluctant to bringing more DT usage into the PCIe space.
->>>>>> Especially if the user is able to swap cards.
->>>>>
->>>>> Understand your concern, automatic adaptation is always the best
->>>>> choice. But
->>>>> it may not work for MSM boards, the PCIe card (non m.2) is
->>>>> customized, which
->>>>> has special PMU control. User can't swap cards. And that's why power
->>>>> sequencing module was introduced.
->>>>
->>>> I know. Still, it's better to have less unnecessary data there for
->>>> autodiscoverable devices.
->>>
->>
->> We discussed internally, we have no other choice to enable NFA765 for non
->> X86 boards. Could you please approve this 'DT' approach ?
-> 
-> If you can't use subdevice approach for some reason, then we have no
-> other choice that I can imagine.
-> 
+KiBPbiAxMC8yOS8yNCAxNzozOSwgRGVuaXMgS2VuemlvciB3cm90ZToNCj4gVGhpcyBSRkMg
+bWlnaHQgYmUgb2YgaW50ZXJlc3QgdGhlbjoNCj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
+YWxsLzIwMjQxMDE4MTgxODQyLjEzNjgzOTQtMS1kZW5rZW56QGdtYWlsLmNvbS8NCg0KV293
+LCB0aGFuayB5b3UhDQoNCkkndmUgdHJpZWQgYXBwbHlpbmcgS2FsbGUncyBSRkMgdG8gYXRo
+MTFrIChhbmQgbm90aWNlZCB0aGF0IGl0IGFscmVhZHkgaXMgcGFydCANCm9mIGF0aDEyayks
+IGZvcmNlLWVuYWJsZWQgaXQgYW5kIG5vdGljZWQgdGhhdCBuZWl0aGVyIFFDQTYzOTAgbm9y
+IFdOQzc4NTAgaG9ub3IgDQp0aGUgdmFsdWUgd3JpdHRlbiB0byB0aGUgbWFnaWMgcmVnaXN0
+ZXIuIFNpbmNlIHRoZSBpbml0aWFsIGZpcm13YXJlL2Jvb3Rsb2FkZXIgDQpjYW4ndCBiZSBl
+YXNpbHkgdXBkYXRlZCwgdGhhdCBhcHByb2FjaCBpc24ndCBnb2luZyB0byB3b3JrIGZvciBh
+bGwgc3VwcG9ydGVkIA0KaGFyZHdhcmUuDQoNCk15IGlkZWEgd2FzIHRvIGltcGxlbWVudCBh
+biBvcHRpb25hbCBwcm94eSBtb2RlIGludG8gcXJ0ciwgd2hpY2ggaWRlbnRpZmllcyANCm1l
+c3NhZ2VzIGZyb20gc3BlY2lmaWMgY2FyZHMgYmFzZWQgb24gdGhlaXIgUENJIGRvbWFpbiBh
+bmQgYnVzIG51bWJlciAod2hpY2ggDQpzaG91bGQgd29yayBhdCBsZWFzdCBmb3IgTUhJLCBu
+byBpZGVhIGFib3V0IEFIQiksIGFuZCB1c2VzIG9uZSBzb2NrZXQgdG8gDQpjb21tdW5pY2F0
+ZSB3aXRoIHRoZSBkZXZpY2UgZGlyZWN0bHksIGFuZCBhbm90aGVyIHNvY2tldCB0aGF0IGNh
+biBiZSB1c2VkIGFzIGEgDQpwcm94eSBzb2NrZXQgd2hpY2ggcmVhZHMgZnJvbSB0aGUgIm5v
+cm1hbCIgc29ja2V0IGFuZCBtb2RpZmllcyBtZXNzYWdlcyBiYXNlZCBvbiANCnRoZSBQQ0kg
+ZGF0YSB0byByZXBsYWNlIHRoZSBpbnN0YW5jZSBJRCAoYW5kIHZpY2UgdmVyc2EgZnJvbSBk
+cml2ZXIgYmFjayB0byB0aGUgDQpjYXJkL01ISSBpbnRlcmZhY2UpLg0KDQoNCllvdXIgYXBw
+cm9hY2ggb2YgdXNpbmcgYXV4aWxpYXJ5IGRhdGEgbG9va3Mgd2F5IGVhc2llciwgY2xlYW5l
+ciBhbmQgZ2VuZXJhbGx5IA0KYmV0dGVyIGFuZCBtb3JlIHByb21pc2luZy4NCg0KSSd2ZSBh
+cHBsaWVkIHlvdXIgcGF0Y2ggc2V0IGFuZCB0cmllZCB0byByZXNvbHZlIG1vc3Qgbml0cyB0
+aGF0IGNhbWUgdXAgLSANCmFsdGhvdWdoIEkndmUgbmVpdGhlciB1bmRlcnN0b29kIHdoYXQg
+dG8gY2hhbmdlIHRvIHVzZSB7V1JJVEUsUkVBRH1fT05DQ0Ugb3IgDQp3aGVyZSB0byByZW1v
+dmUgbG9ja2luZywgYmVjYXVzZSB0aGUgY29kZSByZWZlcnJlZCB0byAoQklORF9FTkRQT0lO
+VCkgZG9lc24ndCANCmV2ZW4gdXNlIGxvY2tpbmcuIEFsdGhvdWdoIEkgZXNzZW50aWFsbHkg
+dGVzdGVkIFYxLjUsIGZlZWwgZnJlZSB0byBhZGQgYSBtZSBhcyANClRlc3RlZC1CeS4gSXQn
+cyBzdWNjZXNzZnVsbHkgZG9pbmcgd2hhdCBpdCBzYXlzIGl0IGRvZXMuDQoNCg0KT2J2aW91
+c2x5IHRoYXQgd29uJ3Qgd29yayBvdXQgb2YgdGhlIGJveCBmb3IgYXRoMTFrLCBiZWNhdXNl
+IHFtaV9oZWxwZXJzIGlzIA0Kc3RpbGwgdXNpbmcgdGhlICJvbGQiIEFQSSB0aGF0IGRvZXNu
+J3QgdXNlIHNwZWNpZmljIGVuZHBvaW50IGJpbmRpbmcuIEknbSBoYXZpbmcgDQphIGhhcmQg
+dGltZSBmaW5kaW5nIGEgd2F5IHRvIG1ha2UgdXNlIG9mIHRoaXMgZmVhdHVyZSBpbiBhdGgx
+MWssIHRob3VnaC4gV2UncmUgDQphdCB0aGUgIndyb25nIiBzaWRlIG9mIHRoZSBzb2NrZXQg
+aW4gYXRoMTFrL3FtaV9oZWxwZXJzLCBzbyBjYW4ndCBhY2Nlc3MgYW55IA0KcXJ0ciBpbnRl
+cm5hbHMgdGhlcmUuIHN0cnVjdCBtaGlfZGV2aWNlIGlzIGFjY2Vzc2libGUgZnJvbSBib3Ro
+IGVuZHMsIHNvIEkgY291bGQgDQp3cml0ZSB0aGUgUVJUUiBlbmRwb2ludCBpZCBpbnRvIGl0
+cyBkcml2ZXIgZGF0YSwgcmVhZCBpdCBpbiBhdGgxMWsgYW5kIHBhc3MgaXQgDQpkb3duIHRv
+IHFtaV9oZWxwZXJzIHRvIGJpbmQgdG8gdGhlIHNwZWNpZmljIGVuZHBvaW50LiBUaGF0IGNl
+cnRhaW5seSBkb2Vzbid0IA0Kc291bmQgZWxlZ2FudCBhbmQgaXQncyBoYXJkIHRvIGFyZ3Vl
+IHdoeSBRUlRSIGRhdGEgc2hvdWxkIGJlIHBhcnQgb2Ygc3RydWN0IA0KbWhpX2RldmljZSwg
+YW5kIHRoZXJlIGlzIHNvbWUgcG90ZW50aWFsIGZvciBicmVha2FnZSBiZWNhdXNlIGl0IHdv
+dWxkIG9ubHkgYmUgDQphdmFpbGFibGUgYWZ0ZXIgdGhlIHFydHItbWhpIGludGVyZmFjZSB3
+YXMgaW5pdGlhbGl6ZWQvcHJvYmVkLCBidXQgdGhhdCdzIHRoZSANCm9ubHkgY29tbW9uIGdy
+b3VuZCBJIHNlZS4NCg0KDQoNCk1paGFpDQo=
 
-A new patch was submitted: 
-https://lore.kernel.org/linux-wireless/20241031000541.3331606-1-quic_miaoqing@quicinc.com/. 
-This patch will add QCA6698AQ support, which follows the approach done 
-in commit 5dc9d1a55e95 ("wifi: ath11k: add support for QCA2066"), 
-enumerates the subversion number to identify the specific card.
+--------------MFRWWxSWcFdrbXHFZO6AsVbU--
 
-But there is still a problem enabling NFA765 m.2 card for IoT platforms, 
-which requires ath11k to support board-specific firmware overrides.
+--------------4cXXyE1iqoaEisXL3NnN0zAD
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEEbhHQj3UzgcdE8cg8H9Yu2W4lOocFAmclClgFAwAAAAAACgkQH9Yu2W4lOoew
+CQ/+JQnGgcxK1hlmblJ0AFg2mF0/7TDTCm1yEnmKwifzx+hhZSiyE1VJNdt3dp+zMCH5pdneA+ip
+zC2fppESswEkPUZu1r884mXogn45hisPIlERBNqC0L/r55DnMut48yE1ydeixlnrSt6OgFuazX+W
+1mEh/t7QeEiw4LLGBxjatGS7/z3JbHgz5k+k0K4TC/sUYsepxX6zpwwOrctU8dkLI+mp3ErVJRsB
+kQBs9FvcqX0ygQmaltLD4tAFxCgSEkH77uMnyvehQ2LmgbuXGLhwS2D/ka5pmhWKEnFQNVCn2QP1
+QkCGcifgGBpxnAQL4JLT+a6Gm9C8KZFIrCXfG79EVnqjM3AzVXiprdweUR3F2GaPuqWjiSgJ9/TY
+oDk0ZWpBkS67DpRu606pH9WWZwZTX1HAfLxfXuWP+sbERjtNpXumHFV6xhahTo/lWELSkAogZcQx
+UFpawtexGUwxuoI4RJIpjAi18qvJi6Lrr1US/ibf8kcq1wY4AICn+rLJvsDu5sxSSn6xOpx3Pl9V
+k3FtG9616iAYrPvzfJ2t8pKujUN7J6lGXLFMOga0BhUSAsJ9z6hye0YePN0Xh1Hgq4ORFBKA4kU8
+6fzEbmEtlaPEV6OfVtr0lI3MyudeKej5KbhU3eRUY73/dfEFaqyid97i8NyIDFVU6riAw6GegpXG
+FaA=
+=lR+7
+-----END PGP SIGNATURE-----
 
+--------------4cXXyE1iqoaEisXL3NnN0zAD--
 
