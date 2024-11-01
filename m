@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1236FE6F06F
-	for <ath11k@archiver.kernel.org>; Fri,  1 Nov 2024 17:05:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58C4BE6F06F
+	for <ath11k@archiver.kernel.org>; Fri,  1 Nov 2024 17:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:Subject:From
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:From:To:Subject
 	:MIME-Version:Date:Message-ID:Reply-To:Cc:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=LBFXvtix+QX0jVzv0EWywfuffsmKdLD8CixdVkArwXs=; b=pqZuLZgrO8TOFmGXtS0uW2Frwi
-	4qMzW32jRhQW8xO7WtJ0oW4PVFYHeNsFGGI6hecHbw5mc1heVLOXnmWX+2l9qyuuYFk7rTwgcvMQq
-	tdgh4NlorlB68VKEZx1g8EDcNkXxNg1Jy/e4k3Y1KhX5f6OzOvKqqhEkGJY8pRYedO0/vkI9B6jEr
-	YZS615asm8l2oJm9V2gy5lz4Tc7y7MCWbISYWArtZC+q2oCf77aMhRWKb+ivvds2S6DFTF4wbyH+P
-	297a4x8NqwZ0QHrQnA+13NLXIeJxsUQU3KTlHsXkm4LhH1uM8XZgK4/Y2ZGWLrn6gmxDgJqcQLyIs
-	7albFRnA==;
+	bh=9rVr+ovZYGdSgX0rEl7IOOIL1OZFgSIUZHUL1YV/j9c=; b=q1e+IbBnWrqLEyujVMnOlyLKmV
+	71EzK7upe4PoUckvh7toAZGp4rcfQmug2shMnC0Xspbj7Gb1hqoBtS+aEAm1dewJx0zeZXFdFPoQs
+	pvTXar11p68ZanjOGBF7JB4f0V9VbOLV6edEPXThsPkCsDbxDfsOz1y29EeeoJKeVSCGvf4kq17L8
+	EwjX+BY4+19eYfge2fZXDKSYjYRkTm0ceWclcHQtzlIIsBvxQSWJNgrzEcqxGcGLf+gGCY9Da5j8p
+	vTY8WUW8k++wlZdy9bYFrFWog5WcaJ3zgpNnn+0AB9VSGD+frpSPuDP+G82qX37gl4zWUdpJRMcFA
+	FAS/TOQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6v5f-00000007nM7-28BM;
-	Fri, 01 Nov 2024 17:05:39 +0000
+	id 1t6vHD-00000007oaR-32GT;
+	Fri, 01 Nov 2024 17:17:35 +0000
 Received: from ionic.de ([2001:41d0:700:3394:1::2] helo=mail.ionic.de)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6v5b-00000007nLR-1bWF
+	id 1t6vHA-00000007oZc-2RgP
 	for ath11k@lists.infradead.org;
-	Fri, 01 Nov 2024 17:05:37 +0000
+	Fri, 01 Nov 2024 17:17:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
-	t=1730480729; bh=LBFXvtix+QX0jVzv0EWywfuffsmKdLD8CixdVkArwXs=;
-	h=Date:From:Subject:To:From;
-	b=HM677mgdWSOWDL4sGT73ydRJ7HOX8urD5V0IHbCRnHp/TBuvtmQtTFQypt3owv8+I
-	 cUG+lb16lW7pTj3xccqMZl06Jz5OXtXjhinO1o9cuo8X59xjJLYFmvfzpW5G3J9X0Q
-	 Pv7lwg3bx8AmG32hKkbtD57SHUCL9Z9Of1Yt068A=
+	t=1730481451; bh=9rVr+ovZYGdSgX0rEl7IOOIL1OZFgSIUZHUL1YV/j9c=;
+	h=Date:Subject:To:From:From;
+	b=tH9NNp9wj8SYnRHXaHKQ3Oyzse10GYQbegwuGYSUKfPr7HaUPk00VoD6ofHFgoatp
+	 O/SmF09VaXPDWIpD+RxPFEP14anaKLmaEWeet0kmLrg20ZyIxZhdgXqs5Tyc3fvHiY
+	 dIJERUUdpyZJOT2xXtxUGwh5VNyQxbTTV5Hj530Q=
 Received: from [172.22.111.213] (185.102.219.38.adsl.inet-telecom.org [185.102.219.38])
-	by mail.ionic.de (Postfix) with ESMTPSA id 8426C148867B
-	for <ath11k@lists.infradead.org>; Fri, 01 Nov 2024 18:05:29 +0100 (CET)
-Message-ID: <a8874554-e618-48e8-8092-81bc2abb743a@ionic.de>
-Date: Fri, 1 Nov 2024 18:05:28 +0100
+	by mail.ionic.de (Postfix) with ESMTPSA id F2321148867B
+	for <ath11k@lists.infradead.org>; Fri, 01 Nov 2024 18:17:30 +0100 (CET)
+Message-ID: <a7954fb4-4f3f-4923-8d50-a04891037d3f@ionic.de>
+Date: Fri, 1 Nov 2024 18:17:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Mihai Moldovan <ionic@ionic.de>
 Subject: Re: State of multiple PCI(e) modules since 2022
 To: ath11k@lists.infradead.org
 Content-Language: en-US
+From: Mihai Moldovan <ionic@ionic.de>
 Autocrypt: addr=ionic@ionic.de; keydata=
  xsFNBEjok5sBEADlDP0MwtucH6BJN2pUuvLLuRgVo2rBG2TsE/Ijht8/C4QZ6v91pXEs02m0
  y/q3L/FzDSdcKddY6mWqplOiCAbT6F83e08ioF5+AqBs9PsI5XwohW9DPjtRApYlUiQgofe9
@@ -90,11 +90,12 @@ Autocrypt: addr=ionic@ionic.de; keydata=
  S0VlnF9z
 Content-Type: multipart/signed; micalg=pgp-sha256;
  protocol="application/pgp-signature";
- boundary="------------4cXXyE1iqoaEisXL3NnN0zAD"
+ boundary="------------G1M1dOqNFfGv9tr60Q94StQf"
 X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241101_100535_948149_DFD7217B 
-X-CRM114-Status: GOOD (  17.47  )
+X-CRM114-CacheID: sfid-20241101_101732_809326_143D5728 
+X-CRM114-Status: UNSURE (   5.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,85 +111,52 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------4cXXyE1iqoaEisXL3NnN0zAD
-Content-Type: multipart/mixed; boundary="------------MFRWWxSWcFdrbXHFZO6AsVbU";
+--------------G1M1dOqNFfGv9tr60Q94StQf
+Content-Type: multipart/mixed; boundary="------------NkiY4FmmYw6zz0TYbkB0yI4y";
  protected-headers="v1"
 From: Mihai Moldovan <ionic@ionic.de>
 To: ath11k@lists.infradead.org
-Message-ID: <a8874554-e618-48e8-8092-81bc2abb743a@ionic.de>
+Message-ID: <a7954fb4-4f3f-4923-8d50-a04891037d3f@ionic.de>
 Subject: Re: State of multiple PCI(e) modules since 2022
 
---------------MFRWWxSWcFdrbXHFZO6AsVbU
+--------------NkiY4FmmYw6zz0TYbkB0yI4y
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: base64
 
-KiBPbiAxMC8yOS8yNCAxNzozOSwgRGVuaXMgS2VuemlvciB3cm90ZToNCj4gVGhpcyBSRkMg
-bWlnaHQgYmUgb2YgaW50ZXJlc3QgdGhlbjoNCj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-YWxsLzIwMjQxMDE4MTgxODQyLjEzNjgzOTQtMS1kZW5rZW56QGdtYWlsLmNvbS8NCg0KV293
-LCB0aGFuayB5b3UhDQoNCkkndmUgdHJpZWQgYXBwbHlpbmcgS2FsbGUncyBSRkMgdG8gYXRo
-MTFrIChhbmQgbm90aWNlZCB0aGF0IGl0IGFscmVhZHkgaXMgcGFydCANCm9mIGF0aDEyayks
-IGZvcmNlLWVuYWJsZWQgaXQgYW5kIG5vdGljZWQgdGhhdCBuZWl0aGVyIFFDQTYzOTAgbm9y
-IFdOQzc4NTAgaG9ub3IgDQp0aGUgdmFsdWUgd3JpdHRlbiB0byB0aGUgbWFnaWMgcmVnaXN0
-ZXIuIFNpbmNlIHRoZSBpbml0aWFsIGZpcm13YXJlL2Jvb3Rsb2FkZXIgDQpjYW4ndCBiZSBl
-YXNpbHkgdXBkYXRlZCwgdGhhdCBhcHByb2FjaCBpc24ndCBnb2luZyB0byB3b3JrIGZvciBh
-bGwgc3VwcG9ydGVkIA0KaGFyZHdhcmUuDQoNCk15IGlkZWEgd2FzIHRvIGltcGxlbWVudCBh
-biBvcHRpb25hbCBwcm94eSBtb2RlIGludG8gcXJ0ciwgd2hpY2ggaWRlbnRpZmllcyANCm1l
-c3NhZ2VzIGZyb20gc3BlY2lmaWMgY2FyZHMgYmFzZWQgb24gdGhlaXIgUENJIGRvbWFpbiBh
-bmQgYnVzIG51bWJlciAod2hpY2ggDQpzaG91bGQgd29yayBhdCBsZWFzdCBmb3IgTUhJLCBu
-byBpZGVhIGFib3V0IEFIQiksIGFuZCB1c2VzIG9uZSBzb2NrZXQgdG8gDQpjb21tdW5pY2F0
-ZSB3aXRoIHRoZSBkZXZpY2UgZGlyZWN0bHksIGFuZCBhbm90aGVyIHNvY2tldCB0aGF0IGNh
-biBiZSB1c2VkIGFzIGEgDQpwcm94eSBzb2NrZXQgd2hpY2ggcmVhZHMgZnJvbSB0aGUgIm5v
-cm1hbCIgc29ja2V0IGFuZCBtb2RpZmllcyBtZXNzYWdlcyBiYXNlZCBvbiANCnRoZSBQQ0kg
-ZGF0YSB0byByZXBsYWNlIHRoZSBpbnN0YW5jZSBJRCAoYW5kIHZpY2UgdmVyc2EgZnJvbSBk
-cml2ZXIgYmFjayB0byB0aGUgDQpjYXJkL01ISSBpbnRlcmZhY2UpLg0KDQoNCllvdXIgYXBw
-cm9hY2ggb2YgdXNpbmcgYXV4aWxpYXJ5IGRhdGEgbG9va3Mgd2F5IGVhc2llciwgY2xlYW5l
-ciBhbmQgZ2VuZXJhbGx5IA0KYmV0dGVyIGFuZCBtb3JlIHByb21pc2luZy4NCg0KSSd2ZSBh
-cHBsaWVkIHlvdXIgcGF0Y2ggc2V0IGFuZCB0cmllZCB0byByZXNvbHZlIG1vc3Qgbml0cyB0
-aGF0IGNhbWUgdXAgLSANCmFsdGhvdWdoIEkndmUgbmVpdGhlciB1bmRlcnN0b29kIHdoYXQg
-dG8gY2hhbmdlIHRvIHVzZSB7V1JJVEUsUkVBRH1fT05DQ0Ugb3IgDQp3aGVyZSB0byByZW1v
-dmUgbG9ja2luZywgYmVjYXVzZSB0aGUgY29kZSByZWZlcnJlZCB0byAoQklORF9FTkRQT0lO
-VCkgZG9lc24ndCANCmV2ZW4gdXNlIGxvY2tpbmcuIEFsdGhvdWdoIEkgZXNzZW50aWFsbHkg
-dGVzdGVkIFYxLjUsIGZlZWwgZnJlZSB0byBhZGQgYSBtZSBhcyANClRlc3RlZC1CeS4gSXQn
-cyBzdWNjZXNzZnVsbHkgZG9pbmcgd2hhdCBpdCBzYXlzIGl0IGRvZXMuDQoNCg0KT2J2aW91
-c2x5IHRoYXQgd29uJ3Qgd29yayBvdXQgb2YgdGhlIGJveCBmb3IgYXRoMTFrLCBiZWNhdXNl
-IHFtaV9oZWxwZXJzIGlzIA0Kc3RpbGwgdXNpbmcgdGhlICJvbGQiIEFQSSB0aGF0IGRvZXNu
-J3QgdXNlIHNwZWNpZmljIGVuZHBvaW50IGJpbmRpbmcuIEknbSBoYXZpbmcgDQphIGhhcmQg
-dGltZSBmaW5kaW5nIGEgd2F5IHRvIG1ha2UgdXNlIG9mIHRoaXMgZmVhdHVyZSBpbiBhdGgx
-MWssIHRob3VnaC4gV2UncmUgDQphdCB0aGUgIndyb25nIiBzaWRlIG9mIHRoZSBzb2NrZXQg
-aW4gYXRoMTFrL3FtaV9oZWxwZXJzLCBzbyBjYW4ndCBhY2Nlc3MgYW55IA0KcXJ0ciBpbnRl
-cm5hbHMgdGhlcmUuIHN0cnVjdCBtaGlfZGV2aWNlIGlzIGFjY2Vzc2libGUgZnJvbSBib3Ro
-IGVuZHMsIHNvIEkgY291bGQgDQp3cml0ZSB0aGUgUVJUUiBlbmRwb2ludCBpZCBpbnRvIGl0
-cyBkcml2ZXIgZGF0YSwgcmVhZCBpdCBpbiBhdGgxMWsgYW5kIHBhc3MgaXQgDQpkb3duIHRv
-IHFtaV9oZWxwZXJzIHRvIGJpbmQgdG8gdGhlIHNwZWNpZmljIGVuZHBvaW50LiBUaGF0IGNl
-cnRhaW5seSBkb2Vzbid0IA0Kc291bmQgZWxlZ2FudCBhbmQgaXQncyBoYXJkIHRvIGFyZ3Vl
-IHdoeSBRUlRSIGRhdGEgc2hvdWxkIGJlIHBhcnQgb2Ygc3RydWN0IA0KbWhpX2RldmljZSwg
-YW5kIHRoZXJlIGlzIHNvbWUgcG90ZW50aWFsIGZvciBicmVha2FnZSBiZWNhdXNlIGl0IHdv
-dWxkIG9ubHkgYmUgDQphdmFpbGFibGUgYWZ0ZXIgdGhlIHFydHItbWhpIGludGVyZmFjZSB3
-YXMgaW5pdGlhbGl6ZWQvcHJvYmVkLCBidXQgdGhhdCdzIHRoZSANCm9ubHkgY29tbW9uIGdy
-b3VuZCBJIHNlZS4NCg0KDQoNCk1paGFpDQo=
+KiBPbiAxMS8xLzI0IDE4OjA1LCBNaWhhaSBNb2xkb3ZhbiB3cm90ZToNCiA+IFsuLi5dDQoN
+ClNvcnJ5LCBteSBtYWlsIGNsaWVudCBjcmFzaGVkIHdoaWxlIGNvbXBvc2luZyB0aGUgbWVz
+c2FnZSBhbmQgY29udGludWluZyB0aGUgDQpkcmFmdCBkaWRuJ3QgYXV0b21hdGljYWxseSBp
+bmNsdWRlIHRoZSBJbi1SZXBseS1UbyBvciBSZWZlcmVuY2VzIGhlYWRlcnMuIA0KVW5mb3J0
+dW5hdGVseSBJIG9ubHkgbm90aWNlZCB0aGF0IGFmdGVyIHJlY2VpdmluZyBhIGNvcHkgb2Yg
+bXkgbWVzc2FnZSBiYWNrIGZyb20gDQp0aGUgbGlzdC4gSSBkaWRuJ3QgaW50ZW5kIHRvIGJy
+ZWFrIHRoZSBvcmlnaW5hbCB0aHJlYWQuIEknbSBhd2FyZSB0aGF0IHRoaXMgaXMgDQpoaWdo
+bHkgYW5ub3lpbmcuDQoNCkknbGwgYmUgbW9yZSBjYXJlZnVsIGluIHRoZSBmdXR1cmUgYW5k
+IHdpbGwgbWFudWFsbHkgc3VwcGx5IGFuIEluLVJlcGx5LVRvIA0KaGVhZGVyIG5vdyB0aGF0
+IEknbSBhd2FyZSBvZiB0aGUgaXNzdWVzIHdpdGggY29udGludWluZyBhIGRyYWZ0IG1lc3Nh
+Z2UuDQoNCg0KDQpNaWhhaQ0K
 
---------------MFRWWxSWcFdrbXHFZO6AsVbU--
+--------------NkiY4FmmYw6zz0TYbkB0yI4y--
 
---------------4cXXyE1iqoaEisXL3NnN0zAD
+--------------G1M1dOqNFfGv9tr60Q94StQf
 Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-wsF5BAABCAAjFiEEbhHQj3UzgcdE8cg8H9Yu2W4lOocFAmclClgFAwAAAAAACgkQH9Yu2W4lOoew
-CQ/+JQnGgcxK1hlmblJ0AFg2mF0/7TDTCm1yEnmKwifzx+hhZSiyE1VJNdt3dp+zMCH5pdneA+ip
-zC2fppESswEkPUZu1r884mXogn45hisPIlERBNqC0L/r55DnMut48yE1ydeixlnrSt6OgFuazX+W
-1mEh/t7QeEiw4LLGBxjatGS7/z3JbHgz5k+k0K4TC/sUYsepxX6zpwwOrctU8dkLI+mp3ErVJRsB
-kQBs9FvcqX0ygQmaltLD4tAFxCgSEkH77uMnyvehQ2LmgbuXGLhwS2D/ka5pmhWKEnFQNVCn2QP1
-QkCGcifgGBpxnAQL4JLT+a6Gm9C8KZFIrCXfG79EVnqjM3AzVXiprdweUR3F2GaPuqWjiSgJ9/TY
-oDk0ZWpBkS67DpRu606pH9WWZwZTX1HAfLxfXuWP+sbERjtNpXumHFV6xhahTo/lWELSkAogZcQx
-UFpawtexGUwxuoI4RJIpjAi18qvJi6Lrr1US/ibf8kcq1wY4AICn+rLJvsDu5sxSSn6xOpx3Pl9V
-k3FtG9616iAYrPvzfJ2t8pKujUN7J6lGXLFMOga0BhUSAsJ9z6hye0YePN0Xh1Hgq4ORFBKA4kU8
-6fzEbmEtlaPEV6OfVtr0lI3MyudeKej5KbhU3eRUY73/dfEFaqyid97i8NyIDFVU6riAw6GegpXG
-FaA=
-=lR+7
+wsF5BAABCAAjFiEEbhHQj3UzgcdE8cg8H9Yu2W4lOocFAmclDSoFAwAAAAAACgkQH9Yu2W4lOodu
+xxAA1CJXG2aLOI4iLF97WAIBIrWt1FcDuU/myxdluYp7eGfXfqNcoKkwRrIKDa+mg2cM+J2QscKs
+uA7JwXZJbbaGDSSPCLc5U1RV0rK+pxPB+YHJJOynIPSIV7WzKhBoS61ktz9ESkKEqkSZE3FhBehH
+pRHMeCQV8WXY9pScDa7Bi/cHLO9RlpKMTHnadIvZc+SMGU19smPxhsF0AsmH8suPuHR0AJ5nn1J9
+DAR/g+UqcRyzgeNosSIz45qrC1toOYYre1AzP4J8p+9oWo9rifOq7nUeKtvNwTm3tEg3WkdsfHBc
+x/NY1sFdq683Tlqf47xBwyI/9nVvDVR5nYutzh23dwh1y+/4HLSyuLq7xQN9DKz/OG1rKAmA4wZA
+2guwWvUQ/7YHk586RgqESbx/rMaZQy2RwSIfKjLr7P1VHykJiu9iVmeAwrMmdeb8buQgdsMb/uB0
+CfBACff9Rg6PlC5xWX4oLFONc6LHO/1bendxuZHDADqelNo/ZPuL1b+dAJMSJygWMifdLRgcXRLy
+pOn/v5BfRWszGELgDxMwH5WNMbsdd6F8GNX+AV8NyyNCMePOE1ZX4uA6BW2ObTslBikTPC0TG7G7
+zU+QCWLABSbNnOzIp+bxmUPCBSDsnXf1y6UvCw/AS5XFKerq143iyBQmDkv2N6Uup9gvTxDQoWu2
+2Dk=
+=pkHg
 -----END PGP SIGNATURE-----
 
---------------4cXXyE1iqoaEisXL3NnN0zAD--
+--------------G1M1dOqNFfGv9tr60Q94StQf--
 
