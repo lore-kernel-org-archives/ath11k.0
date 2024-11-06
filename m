@@ -4,67 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96AB2D12663
-	for <ath11k@archiver.kernel.org>; Tue,  5 Nov 2024 08:16:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD4F9D59F53
+	for <ath11k@archiver.kernel.org>; Wed,  6 Nov 2024 17:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qCmJoUidPx4N3HfbgdYK9IweQkLydvR+8kCRyOkcnWs=; b=Jn6mSjsxNEEga2NEshp6f/FkMo
-	FrRsa0baS7xghIdezxdUwcg0Qex+qE3lsvR/ra8VXD1WH7UFtGpshYDmZCGL5tnrvfJqby8Hee4k0
-	HpdMBQGt4fk6wGJajosotOOZm1TFJrgo02famN6ALtCdUcc04NJgCH7bYELhBd6FGIXMsA2Br/BRE
-	9z3X99S2ie/bHL+b0Et7m8ecpoHLKW1QsC0IFsDNqfheZ1dwEbEZIDHJ34SiRAWoiGF5p4ArK7i4E
-	1Xn4CQMLz50q/sQO3PKSlAuhUBsT/XZLohNE5yTPzQLYg6zsK0O1zIBbTzMs3wzL1hIeYIiSYvJTD
-	GN1MSpEA==;
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=XHM9QeNlhOTneChj4bKhI5LC9ZZcmDxqXuZBfNBpX+4=; b=BV+JfwogBaOCmG0FyUmA8c5vJI
+	YmPg+0YyX31mjk3NGnNrCnp1ZjrcA9GBd8bnjhPTAvWorGrXUPynQ66GKLKtTLyIVvL+rbxjK50kw
+	G42l2OrH/spdUdow+xQHx+r3uwW25ehNzc0loCqEoC66MeiS5j9fBymIqyhR3AVPQN+trI+Ljy/UK
+	5bjSgjytHHzJwuplBCiXQAqpI8ZNmdJjN9i/O+kyLg3yaGnwzhDtupB1ZLa2k9ozhd7QMqfF86O02
+	gCm9UDRfDn4Va0rpWYzSL4QZ5AG13TUoSwAthnjBG9rtJYF8HUW3/TmJMexCiqNf+tqy9fhV/JCxc
+	KOBVrDJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8Ejb-0000000GJ0t-4BSf;
-	Tue, 05 Nov 2024 08:16:20 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1t8jbL-000000049w4-1G5B;
+	Wed, 06 Nov 2024 17:13:51 +0000
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8DfQ-0000000G9ci-280F
-	for ath11k@bombadil.infradead.org;
-	Tue, 05 Nov 2024 07:07:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=qCmJoUidPx4N3HfbgdYK9IweQkLydvR+8kCRyOkcnWs=; b=VL3cqKvaviNPBMW1GIurH4GlKY
-	KCgdyobYr9663h5HYWHTG9iIFYaNiKQY7XQ6GwEko/4Irxs67vrcUv+c1+cjs8zxEu7/cYVqr5djN
-	UA1X1AnMMxChcWnhwbHxKckXiMyJemoqsKbePLe3k3/6Kfc21TGfbwvi7UTGzmFba8zOrVLG2XShb
-	RQfAaS5gSsAs39ZZCMsRv9q8UyhR0dxa9bxQzG3tFjFo5TAz39VmeBd0cyHIylXVN5x7Vk3QUy3H+
-	0BMB63qsFZR/ZbZGBHu1I3BVlEeV4bDzfnz2cf5liIaymXPjt3TXfQrmDhSJb213bf73Grwi4XojP
-	toPwwrjg==;
-Received: from ionic.de ([2001:41d0:700:3394:1::2] helo=mail.ionic.de)
-	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8DfL-0000000BgbP-2OYG
+	id 1t8jV6-000000048d0-2CVY
 	for ath11k@lists.infradead.org;
-	Tue, 05 Nov 2024 07:07:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
-	t=1730790464; bh=ScpSXg/0FiF7Ex9C0udBuI29VQhQBPAQMP+q9EuYLR0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HTr9hqDETJQXFuGhHLt+qeXnzkCRIc51tVBfF+MitVHrHvv7SSkZQUgRdMHAVAdcC
-	 w2WgYRRAJyjIjk3eKQjtInJ1EGNoqASaNj9gwwELRR8dQPoaOTABMvt37OZhXCexAn
-	 e4OEB+AHU3Za4KDuJiO8C89ZMANIAS/NYz4zb2+o=
-Received: from grml.local.home.ionic.de (unknown [IPv6:2a00:11:fb41:7a00:21b:21ff:fe5e:dddc])
-	by mail.ionic.de (Postfix) with ESMTPSA id F3606148928E;
-	Tue, 05 Nov 2024 08:07:43 +0100 (CET)
-From: Mihai Moldovan <ionic@ionic.de>
-To: ath11k@lists.infradead.org
-Cc: Mihai Moldovan <ionic@ionic.de>
-Subject: [DONOTMERGE] [NOTEVENRFC] [PATCH 11/11] wifi: ath12k: bind to QRTR endpoint ID in ath12k_qmi_ops_new_server
-Date: Tue,  5 Nov 2024 08:06:25 +0100
-Message-ID: <ddf328610f626b23737ec52af3e8a5931beac29f.1730790063.git.ionic@ionic.de>
+	Wed, 06 Nov 2024 17:07:27 +0000
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-539fb49c64aso9792618e87.0
+        for <ath11k@lists.infradead.org>; Wed, 06 Nov 2024 09:07:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730912842; x=1731517642; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XHM9QeNlhOTneChj4bKhI5LC9ZZcmDxqXuZBfNBpX+4=;
+        b=TCeown8tjcwWCBXA9HHUYyK5VtQabd7Em/nIFvbzC4+ZuFG/QyDcqPW9/n0o3pdSug
+         hksYQWWyr394/ZjVhWhtuNyAZEKnN2gSMb80FwAjeVildFnYFnzmmVeFi3Kpu351Z2Bg
+         NIZR95qgEHp0FbgPgna8UUo6Lq6lMQvg17e0vM9+cOV9qvBL/e38oa2iqHV7X3gnhZic
+         8eKTYYjapRF2G7xUsKTT828dNiO0CBnVQ+XSWfLWIjbH7I2/PH6uUuyysXTQCpE+ZTsR
+         ruVcGRpV9ReZmm1Ag7tJQ3tmg8/fxn9f2chgIkCED5PC4X0wBSi3yz24dbBcaJO5SKyN
+         KVdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730912842; x=1731517642;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XHM9QeNlhOTneChj4bKhI5LC9ZZcmDxqXuZBfNBpX+4=;
+        b=vClrri3UHvKbZxL8iLA6jkxWb82DLqyXb8vErsUCOTmzyvzv6DZLvVokI5+/PszHYy
+         a9B75GOhRR0NjDcU9ThrV8zrtm8d0aB3uya2DpJlJhg45F2ex1Sk6yoxV2IYulm99cDL
+         dUqg9lMetzU1YHfE0GI2f183wQ00Yw1Iyq4QbxXorY7m4I4tTVLcyZO76mQ7X9INrYZ3
+         MNdRMK75CTR3/8E6xh0+t9/Luo85gEQOICJU2ZAXxyhVqBtLFrrsiGm8gGfYhY3yzCV7
+         /F/NwLUTunM4RHLxSK6B3Xt/MNYbG4mH/EwtoXKvhIuDyd86gfkJazmmPDTkyWxPIw56
+         pbFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVawCzqtHTs1NiTETV70rQ3iu5Akp6XId7g3iotrHnGF2MdGd6s5kXFokagp4xNYxjO+7XsB+w=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzennGCyb8s3IQHOJFpLyLlt6dzyqQhIC3728mRW5JTpLTVaQx7
+	JxLfMKQdpEzXcYRAPDft3GHzrvwjY63J2WT0MMiO9VvQm1aXRcZ7QzQioDCweWs=
+X-Google-Smtp-Source: AGHT+IGhBvl6PJej/erZYenNszqbzeKKntvkwDvg4ctncTyHT7L1mvB9FrEIevg7TtOD7POmTVj7AQ==
+X-Received: by 2002:a05:6512:e9b:b0:535:6951:9e1c with SMTP id 2adb3069b0e04-53d65de3305mr15940463e87.15.1730912841533;
+        Wed, 06 Nov 2024 09:07:21 -0800 (PST)
+Received: from localhost (p200300f65f28bb0063ffae39110fa2df.dip0.t-ipconnect.de. [2003:f6:5f28:bb00:63ff:ae39:110f:a2df])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9eb16daf14sm303710566b.80.2024.11.06.09.07.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Nov 2024 09:07:21 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <jjohnson@kernel.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Nick Kossifidis <mickflemm@gmail.com>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	=?utf-8?q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
+	Loic Poulain <loic.poulain@linaro.org>,
+	Arend van Spriel <arend.vanspriel@broadcom.com>,
+	Felix Fietkau <nbd@nbd.name>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Shayne Chen <shayne.chen@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Peter Chiu <chui-hao.chiu@mediatek.com>,
+	Breno Leitao <leitao@debian.org>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	linux-wireless@vger.kernel.org,
+	ath10k@lists.infradead.org,
+	ath11k@lists.infradead.org,
+	wcn36xx@lists.infradead.org,
+	brcm80211@lists.linux.dev,
+	brcm80211-dev-list.pdl@broadcom.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH] wifi: Switch back to struct platform_driver::remove()
+Date: Wed,  6 Nov 2024 18:07:06 +0100
+Message-ID: <20241106170706.38922-2-u.kleine-koenig@baylibre.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <cover.1730790058.git.ionic@ionic.de>
-References: <cover.1730790058.git.ionic@ionic.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9551; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=KMwi4wYhZdlHLCX2G2Q9HUhUPG50WPecsWOZ3KoLi9k=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnK6I7k3QwBHx4LDlthAT30A0zDc9WSJ6yBQ3NF 4O0KVmRJ9aJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZyuiOwAKCRCPgPtYfRL+ ThLbB/wNHseXuNO6BSs0X7tJr80GSCYLop1HgRzFN6qlnsLebiHcY7/fxrQIk4qvEabG2PB6fW1 7hZIqip47uQZYg+b+djnq7b1LAvKA+1hMzBs2MDcmIZbgfVtcmbBPt3UbZDo8krGzBj80RcVoJ7 3glArVF/Hp0VNmM+6IWIzxLKKWUr5lEPQk2lUPBd/9O8pbSrizA4gRnMP2Rif6goEFsYwWDgmZF yOTyIGlVcWgm86js57VuSJ+x+ys3kUiz2O67dCQEQiXLzRlCFyi7TKysdToW9E/jMTucq28WmUh J1zg5EM/JY/sa9jMUt7vzYlpMFHU8LP1xFH7gzizoH34q0Ts
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241105_070753_385547_FB272843 
-X-CRM114-Status: GOOD (  16.64  )
+X-CRM114-CacheID: sfid-20241106_090724_804415_3DE8DFAA 
+X-CRM114-Status: GOOD (  21.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,117 +116,258 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-If possible, fetch the QRTR endpoint ID in ath12k_qmi_ops_new_server,
-which should be late enough for all initializations to already have
-happened, and bind to this endpoint ID if fetching it worked.
+After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
+return void") .remove() is (again) the right callback to implement for
+platform drivers.
 
-This finally allows using multiple ath12k-based cards with the same QRTR
-node/port combination to work simultanenous (and, for that matter, at
-all), including combinations of ath11k-based and ath12k-based cards.
+Convert all platform drivers below drivers/net/wireless to use
+.remove(), with the eventual goal to drop struct
+platform_driver::remove_new(). As .remove() and .remove_new() have the
+same prototypes, conversion is done by just changing the structure
+member name in the driver initializer.
 
-Caveat: it would be better to actually bind to the correct QRTR endpoint
-ID right at socket creation time (i.e., when qmi_handle_init is called).
-However, we cannot do this, because the socket creation is the part that
-actually kicks off qrtr-mhi probing and initialization.
-ath12k_qmi_ops_new_server is "early enough" in that it should work
-mostly fine, but obviously, there is a time in which messages for other
-endpoints can be coming in as well before we actually bound to the
-endpoint ID we are interested in.
+En passant several whitespace changes are done to make indentation
+consistent in the struct initializers.
 
-Unfortunately, I have no idea how to avoid this and properly get the
-QRTR endpoint ID before actually creating the socket.
-
-Signed-off-by: Mihai Moldovan <ionic@ionic.de>
-Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
 ---
- drivers/net/wireless/ath/ath12k/qmi.c | 49 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath12k/qmi.h |  1 +
- 2 files changed, 50 insertions(+)
+Hello,
 
-diff --git a/drivers/net/wireless/ath/ath12k/qmi.c b/drivers/net/wireless/ath/ath12k/qmi.c
-index d2d9d03c7a28..96bc0a3cb86f 100644
---- a/drivers/net/wireless/ath/ath12k/qmi.c
-+++ b/drivers/net/wireless/ath/ath12k/qmi.c
-@@ -9,8 +9,10 @@
- #include "qmi.h"
- #include "core.h"
- #include "debug.h"
-+#include "hif.h"
- #include <linux/of.h>
- #include <linux/firmware.h>
-+#include <net/sock.h>
- 
- #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
- #define HOST_CSTATE_BIT			0x04
-@@ -3264,6 +3266,21 @@ static int ath12k_qmi_ops_new_server(struct qmi_handle *qmi_hdl,
- 	struct sockaddr_qrtr *sq = &qmi->sq;
- 	int ret;
- 
-+	ret = ath12k_hif_set_qrtr_endpoint_id(ab);
-+	if (ret)
-+		ath12k_warn(ab, "failed to set QRTR endpoint ID: %d\n", ret);
-+	else {
-+		ret = ath12k_qmi_bind_endpoint_id(ab);
-+
-+		if (ret)
-+			ath12k_warn(ab, "failed to bind to QRTR endpoint ID: "
-+					"%d\n", ret);
-+	}
-+
-+	if (ret)
-+		ath12k_warn(ab, "continuing without, but only one device per "
-+				"system will be supported\n");
-+
- 	sq->sq_family = AF_QIPCRTR;
- 	sq->sq_node = service->node;
- 	sq->sq_port = service->port;
-@@ -3414,3 +3431,35 @@ void ath12k_qmi_free_resource(struct ath12k_base *ab)
- 	ath12k_qmi_free_target_mem_chunk(ab);
- 	ath12k_qmi_m3_free(ab);
+I did a single patch for all of drivers/net/wireless. While I usually
+prefer to do one logical change per patch, this seems to be
+overengineering here as the individual changes are really trivial and
+shouldn't be much in the way for stable backports. But I'll happily
+split the patch if you prefer it split. Also if you object the
+indentation stuff, I can rework that.
+
+This is based on today's next, if conflicts arise when you apply it at
+some later time and don't want to resolve them, feel free to just drop
+the changes to the conflicting files. I'll notice and followup at a
+later time then. Or ask me for a fixed resend. (Having said that, I
+recommend b4 am -3 + git am -3 which should resolve most conflicts just
+fine.)
+
+Best regards
+Uwe
+
+ drivers/net/wireless/ath/ath10k/ahb.c                  |  8 ++++----
+ drivers/net/wireless/ath/ath10k/snoc.c                 |  6 +++---
+ drivers/net/wireless/ath/ath11k/ahb.c                  |  8 ++++----
+ drivers/net/wireless/ath/ath5k/ahb.c                   |  8 ++++----
+ drivers/net/wireless/ath/ath9k/ahb.c                   | 10 +++++-----
+ drivers/net/wireless/ath/wcn36xx/main.c                |  8 ++++----
+ .../net/wireless/broadcom/brcm80211/brcmfmac/common.c  |  2 +-
+ drivers/net/wireless/mediatek/mt76/mt7603/soc.c        |  2 +-
+ drivers/net/wireless/mediatek/mt76/mt7615/soc.c        |  2 +-
+ drivers/net/wireless/mediatek/mt76/mt7915/soc.c        |  2 +-
+ drivers/net/wireless/ti/wl12xx/main.c                  |  2 +-
+ drivers/net/wireless/ti/wl18xx/main.c                  |  4 ++--
+ 12 files changed, 31 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath10k/ahb.c b/drivers/net/wireless/ath/ath10k/ahb.c
+index f0441b3d7dcb..db9f9ebcb62d 100644
+--- a/drivers/net/wireless/ath/ath10k/ahb.c
++++ b/drivers/net/wireless/ath/ath10k/ahb.c
+@@ -837,12 +837,12 @@ static void ath10k_ahb_remove(struct platform_device *pdev)
  }
-+
-+int ath12k_qmi_bind_endpoint_id(struct ath12k_base *ab)
-+{
-+	struct ath12k_qmi *qmi = NULL;
-+	struct qmi_handle *handle = NULL;
-+	const struct proto_ops *ops = NULL;
-+	int ret;
-+
-+	if (!ab)
-+		return -EINVAL;
-+
-+	qmi = &ab->qmi;
-+	handle = &qmi->handle;
-+
-+	if (!handle->sock)
-+		return -ENODEV;
-+
-+	ops = READ_ONCE(handle->sock->ops);
-+
-+	if (!ops)
-+		return -ENODEV;
-+
-+	if (!ops->setsockopt)
-+		return -ENXIO;
-+
-+	ath12k_dbg(ab, ATH12K_DBG_QMI, "calling ops->setsockopt...\n");
-+	ret = ops->setsockopt(handle->sock, SOL_QRTR, QRTR_BIND_ENDPOINT,
-+			      KERNEL_SOCKPTR(&handle->endpoint_id),
-+			      sizeof(handle->endpoint_id));
-+
-+	return ret;
-+}
-diff --git a/drivers/net/wireless/ath/ath12k/qmi.h b/drivers/net/wireless/ath/ath12k/qmi.h
-index 0dfcbd8cb59b..6358f75475cf 100644
---- a/drivers/net/wireless/ath/ath12k/qmi.h
-+++ b/drivers/net/wireless/ath/ath12k/qmi.h
-@@ -600,5 +600,6 @@ void ath12k_qmi_firmware_stop(struct ath12k_base *ab);
- void ath12k_qmi_deinit_service(struct ath12k_base *ab);
- int ath12k_qmi_init_service(struct ath12k_base *ab);
- void ath12k_qmi_free_resource(struct ath12k_base *ab);
-+int ath12k_qmi_bind_endpoint_id(struct ath12k_base *ab);
  
- #endif
+ static struct platform_driver ath10k_ahb_driver = {
+-	.driver         = {
+-		.name   = "ath10k_ahb",
++	.driver = {
++		.name = "ath10k_ahb",
+ 		.of_match_table = ath10k_ahb_of_match,
+ 	},
+-	.probe  = ath10k_ahb_probe,
+-	.remove_new = ath10k_ahb_remove,
++	.probe = ath10k_ahb_probe,
++	.remove = ath10k_ahb_remove,
+ };
+ 
+ int ath10k_ahb_init(void)
+diff --git a/drivers/net/wireless/ath/ath10k/snoc.c b/drivers/net/wireless/ath/ath10k/snoc.c
+index 0fe47d51013c..d436a874cd5a 100644
+--- a/drivers/net/wireless/ath/ath10k/snoc.c
++++ b/drivers/net/wireless/ath/ath10k/snoc.c
+@@ -1885,11 +1885,11 @@ static void ath10k_snoc_shutdown(struct platform_device *pdev)
+ }
+ 
+ static struct platform_driver ath10k_snoc_driver = {
+-	.probe  = ath10k_snoc_probe,
+-	.remove_new = ath10k_snoc_remove,
++	.probe = ath10k_snoc_probe,
++	.remove = ath10k_snoc_remove,
+ 	.shutdown = ath10k_snoc_shutdown,
+ 	.driver = {
+-		.name   = "ath10k_snoc",
++		.name = "ath10k_snoc",
+ 		.of_match_table = ath10k_snoc_dt_match,
+ 	},
+ };
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 916402ad06b8..f2fc04596d48 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -1313,12 +1313,12 @@ static void ath11k_ahb_shutdown(struct platform_device *pdev)
+ }
+ 
+ static struct platform_driver ath11k_ahb_driver = {
+-	.driver         = {
+-		.name   = "ath11k",
++	.driver = {
++		.name = "ath11k",
+ 		.of_match_table = ath11k_ahb_of_match,
+ 	},
+-	.probe  = ath11k_ahb_probe,
+-	.remove_new = ath11k_ahb_remove,
++	.probe = ath11k_ahb_probe,
++	.remove = ath11k_ahb_remove,
+ 	.shutdown = ath11k_ahb_shutdown,
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath5k/ahb.c b/drivers/net/wireless/ath/ath5k/ahb.c
+index f27308ccb2f1..cb3e891ee1bd 100644
+--- a/drivers/net/wireless/ath/ath5k/ahb.c
++++ b/drivers/net/wireless/ath/ath5k/ahb.c
+@@ -218,10 +218,10 @@ static void ath_ahb_remove(struct platform_device *pdev)
+ }
+ 
+ static struct platform_driver ath_ahb_driver = {
+-	.probe      = ath_ahb_probe,
+-	.remove_new = ath_ahb_remove,
+-	.driver		= {
+-		.name	= "ar231x-wmac",
++	.probe = ath_ahb_probe,
++	.remove = ath_ahb_remove,
++	.driver = {
++		.name = "ar231x-wmac",
+ 	},
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath9k/ahb.c b/drivers/net/wireless/ath/ath9k/ahb.c
+index 1a6697b6e3b4..d4805e02b927 100644
+--- a/drivers/net/wireless/ath/ath9k/ahb.c
++++ b/drivers/net/wireless/ath/ath9k/ahb.c
+@@ -158,12 +158,12 @@ static void ath_ahb_remove(struct platform_device *pdev)
+ }
+ 
+ static struct platform_driver ath_ahb_driver = {
+-	.probe      = ath_ahb_probe,
+-	.remove_new = ath_ahb_remove,
+-	.driver		= {
+-		.name	= "ath9k",
++	.probe = ath_ahb_probe,
++	.remove = ath_ahb_remove,
++	.driver = {
++		.name = "ath9k",
+ 	},
+-	.id_table    = ath9k_platform_id_table,
++	.id_table = ath9k_platform_id_table,
+ };
+ 
+ MODULE_DEVICE_TABLE(platform, ath9k_platform_id_table);
+diff --git a/drivers/net/wireless/ath/wcn36xx/main.c b/drivers/net/wireless/ath/wcn36xx/main.c
+index 408776562a7e..8557d4826a46 100644
+--- a/drivers/net/wireless/ath/wcn36xx/main.c
++++ b/drivers/net/wireless/ath/wcn36xx/main.c
+@@ -1679,10 +1679,10 @@ static const struct of_device_id wcn36xx_of_match[] = {
+ MODULE_DEVICE_TABLE(of, wcn36xx_of_match);
+ 
+ static struct platform_driver wcn36xx_driver = {
+-	.probe      = wcn36xx_probe,
+-	.remove_new = wcn36xx_remove,
+-	.driver         = {
+-		.name   = "wcn36xx",
++	.probe = wcn36xx_probe,
++	.remove = wcn36xx_remove,
++	.driver = {
++		.name = "wcn36xx",
+ 		.of_match_table = wcn36xx_of_match,
+ 	},
+ };
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+index 58d50918dd17..cfcf01eb0daa 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+@@ -594,7 +594,7 @@ static void brcmf_common_pd_remove(struct platform_device *pdev)
+ }
+ 
+ static struct platform_driver brcmf_pd = {
+-	.remove_new	= brcmf_common_pd_remove,
++	.remove		= brcmf_common_pd_remove,
+ 	.driver		= {
+ 		.name	= BRCMFMAC_PDATA_NAME,
+ 	}
+diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/soc.c b/drivers/net/wireless/mediatek/mt76/mt7603/soc.c
+index ec02148a7f1f..08590aa68356 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt7603/soc.c
++++ b/drivers/net/wireless/mediatek/mt76/mt7603/soc.c
+@@ -71,7 +71,7 @@ MODULE_FIRMWARE(MT7628_FIRMWARE_E2);
+ 
+ struct platform_driver mt76_wmac_driver = {
+ 	.probe		= mt76_wmac_probe,
+-	.remove_new	= mt76_wmac_remove,
++	.remove		= mt76_wmac_remove,
+ 	.driver = {
+ 		.name = "mt76_wmac",
+ 		.of_match_table = of_wmac_match,
+diff --git a/drivers/net/wireless/mediatek/mt76/mt7615/soc.c b/drivers/net/wireless/mediatek/mt76/mt7615/soc.c
+index 12e3e4a91d27..06a0f2a141e8 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt7615/soc.c
++++ b/drivers/net/wireless/mediatek/mt76/mt7615/soc.c
+@@ -63,7 +63,7 @@ struct platform_driver mt7622_wmac_driver = {
+ 		.of_match_table = mt7622_wmac_of_match,
+ 	},
+ 	.probe = mt7622_wmac_probe,
+-	.remove_new = mt7622_wmac_remove,
++	.remove = mt7622_wmac_remove,
+ };
+ 
+ MODULE_FIRMWARE(MT7622_FIRMWARE_N9);
+diff --git a/drivers/net/wireless/mediatek/mt76/mt7915/soc.c b/drivers/net/wireless/mediatek/mt76/mt7915/soc.c
+index 90a6f61d1089..c823a7554a3a 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt7915/soc.c
++++ b/drivers/net/wireless/mediatek/mt76/mt7915/soc.c
+@@ -1303,7 +1303,7 @@ struct platform_driver mt798x_wmac_driver = {
+ 		.of_match_table = mt798x_wmac_of_match,
+ 	},
+ 	.probe = mt798x_wmac_probe,
+-	.remove_new = mt798x_wmac_remove,
++	.remove = mt798x_wmac_remove,
+ };
+ 
+ MODULE_FIRMWARE(MT7986_FIRMWARE_WA);
+diff --git a/drivers/net/wireless/ti/wl12xx/main.c b/drivers/net/wireless/ti/wl12xx/main.c
+index b26d42b4e3cc..ffbf54776330 100644
+--- a/drivers/net/wireless/ti/wl12xx/main.c
++++ b/drivers/net/wireless/ti/wl12xx/main.c
+@@ -1939,7 +1939,7 @@ MODULE_DEVICE_TABLE(platform, wl12xx_id_table);
+ 
+ static struct platform_driver wl12xx_driver = {
+ 	.probe		= wl12xx_probe,
+-	.remove_new	= wl12xx_remove,
++	.remove		= wl12xx_remove,
+ 	.id_table	= wl12xx_id_table,
+ 	.driver = {
+ 		.name	= "wl12xx_driver",
+diff --git a/drivers/net/wireless/ti/wl18xx/main.c b/drivers/net/wireless/ti/wl18xx/main.c
+index 39d8eebb9b6e..4be1110bac88 100644
+--- a/drivers/net/wireless/ti/wl18xx/main.c
++++ b/drivers/net/wireless/ti/wl18xx/main.c
+@@ -2097,9 +2097,9 @@ MODULE_DEVICE_TABLE(platform, wl18xx_id_table);
+ 
+ static struct platform_driver wl18xx_driver = {
+ 	.probe		= wl18xx_probe,
+-	.remove_new	= wlcore_remove,
++	.remove		= wlcore_remove,
+ 	.id_table	= wl18xx_id_table,
+-	.driver = {
++	.driver		= {
+ 		.name	= "wl18xx_driver",
+ 	}
+ };
+
+base-commit: 5b913f5d7d7fe0f567dea8605f21da6eaa1735fb
 -- 
 2.45.2
 
