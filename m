@@ -4,85 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D6FED12D5C
-	for <ath11k@archiver.kernel.org>; Mon, 11 Nov 2024 00:37:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A3ED12D79
+	for <ath11k@archiver.kernel.org>; Mon, 11 Nov 2024 07:04:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TXXIVsMXYea9lQ1h7IVhigDwnLn4QfTWicGWnzptcvo=; b=p57KowfGY9Fz3EsCsY7Zc6QSjr
-	GT8HuwUX0f6Vrs973PyVMzBLLWvKHPD+kSAMCIqDZyVicyc55HfcC+leZsCOLMYiHdlaDsu/w78Ra
-	OSM2JN6BlBl1VXlUa8Hg4DpGCN4U3G6SeGU7rir8ORUbluOz16w/Di0gsOuWioQqKLI2u0NOG9ioG
-	0uU/Pg3BFDzY4eSQ5BNvFb0xPCU4Gr1D17s99yY2afK4VbauL7GV4h7z7oAN3Yr49yN+CFl5FWwy3
-	bmezoGQGYKcNg5j5j+8CnCaU83Uzmm5mT4fB64dedLvUoRXnqR8kYwVJXrN/TgFKwzOGH4or/TlZy
-	dZgSYWFA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fb9xSrcUwXm5GaYavX8s9M756oY8Tq+2xHCr4k5NO4k=; b=uLDH66Y2HYcsRqt7DEmFyO7D6F
+	OxzpX4Wi4KI85aSpSXS3osOAbb3vVgO5/5PHOzngj34OVolEXDLq7EkOKSef7voRlO1h5G87vKZiT
+	TecsdKjJtbG39cvVYtRAQ2rX0VUagUp6M5qZV6e80uBhBaSlpXeLz43RAiAJxvjbsTj1Zm35vemdm
+	4K9D8GiyDc/Wngn7w4pSZJ9lzp0ej2l0K3WRz588Y7PocYBlA1h4LdxufJ3B6CMavZh6how5nF0nS
+	nNnwASHa/Ry/dSDjlWRaWEcwzN1RkIWbTTSGD2J/PHn4gotxnOCzi+jPeMgxuk1E3OxokIOCgNlkb
+	EJZpNN2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAIQj-0000000FwT5-2VZY;
-	Mon, 11 Nov 2024 00:37:21 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tAOTm-0000000GYtQ-0Adw;
+	Mon, 11 Nov 2024 07:04:54 +0000
+Received: from forward100a.mail.yandex.net ([178.154.239.83])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAIQg-0000000FwSZ-1HsO
+	id 1tAORA-0000000GYS7-1hDf
 	for ath11k@lists.infradead.org;
-	Mon, 11 Nov 2024 00:37:20 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AALwWTm015590;
-	Mon, 11 Nov 2024 00:37:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TXXIVsMXYea9lQ1h7IVhigDwnLn4QfTWicGWnzptcvo=; b=ME5rrMJjI1ywIf1a
-	iLGMPf2rMnoMMCysYRkwy+2eySzWDuidfftKuCTXQk/lfSG3EsYx8rIzmvwV6OF1
-	XqMfchTlIYkCNxNZ9V/vwEM0mi4NSFvyZL38VnL7jFZREmlIaDXrp3v+M8k5AKxg
-	htl/bVEwPiXmVY1L+avTLTR8Io61QnVWmktFIFulvyvkkcBkPJmcrNM9v8ySTreb
-	94QDdtCqSVKV0lVRvGL6mFErFx2jfqD6kvCh9WXdD2beQEMO4i1dllDyFO3fjPIn
-	laj/R+Bt/nf5qfC3gy3CkoEEjNtCsvaMNYTENrMJbsfr/O0rAh2vgBEj8wVG7e4W
-	0XCvzw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42sxr5tufp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Nov 2024 00:37:12 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AB0bBmG018341
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Nov 2024 00:37:11 GMT
-Received: from [10.253.12.250] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 10 Nov
- 2024 16:37:10 -0800
-Message-ID: <394e8fa6-7da7-4fad-ab14-e1927f868d38@quicinc.com>
-Date: Mon, 11 Nov 2024 08:37:08 +0800
+	Mon, 11 Nov 2024 07:02:15 +0000
+Received: from mail-nwsmtp-smtp-production-main-31.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-31.vla.yp-c.yandex.net [IPv6:2a02:6b8:c0f:26bf:0:640:efa0:0])
+	by forward100a.mail.yandex.net (Yandex) with ESMTPS id 37B0F471EC;
+	Mon, 11 Nov 2024 10:02:04 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-31.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 22g22h1xFKo0-qN6QcCb0;
+	Mon, 11 Nov 2024 10:02:03 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+	t=1731308523; bh=fb9xSrcUwXm5GaYavX8s9M756oY8Tq+2xHCr4k5NO4k=;
+	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
+	b=sW+ztbsgSdXpw1rB/foQbUUFFBqzMA15B2puelvr4dIARa7o3NBl/l/f95/7A2QVi
+	 fQ24iKQq5kIYFM7BgHnBuQKmifnUF+sK7qQ1IKbomlMeVIL/Dad5XBAH5J/ApewCC/
+	 k3GY58fyYlfo7o1q0dN49mtag4qrGZoXq8knKs6k=
+Authentication-Results: mail-nwsmtp-smtp-production-main-31.vla.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
+From: Dmitry Antipov <dmantipov@yandex.ru>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: [PATCH v2 2/4] wifi: ath11k: cleanup struct ath11k_reg_tpc_power_info
+Date: Mon, 11 Nov 2024 10:01:50 +0300
+Message-ID: <20241111070152.85140-2-dmantipov@yandex.ru>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241111070152.85140-1-dmantipov@yandex.ru>
+References: <20241111070152.85140-1-dmantipov@yandex.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: hot busy loop inside ath11k
-To: <ath11k@lists.infradead.org>, Kalle Valo <kvalo@kernel.org>
-References: <7324ac7a-8b7a-42a5-aa19-de52138ff638@app.fastmail.com>
- <87a5eb5cw5.fsf@kernel.org>
-Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <87a5eb5cw5.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wovZUQxWJ9d-kZmzjy9MoEiJ2k5nhZ3P
-X-Proofpoint-GUID: wovZUQxWJ9d-kZmzjy9MoEiJ2k5nhZ3P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- mlxscore=0 malwarescore=0 priorityscore=1501 spamscore=0
- lowpriorityscore=0 impostorscore=0 suspectscore=0 adultscore=0
- mlxlogscore=999 clxscore=1011 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411110003
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241110_163718_567156_179AAE52 
-X-CRM114-Status: GOOD (  16.01  )
+X-CRM114-CacheID: sfid-20241110_230213_006497_1DFF4466 
+X-CRM114-Status: UNSURE (   7.28  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,103 +72,39 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Remove unused 'ap_constraint_power' field of 'struct
+ath11k_reg_tpc_power_info' and adjust related comment.
+Compile tested only.
 
+Fixes: 6f4e235be655 ("wifi: ath11k: add parse of transmit power envelope element")
+Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
+---
+v2: join the series
+---
+ drivers/net/wireless/ath/ath11k/core.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-On 11/7/2024 10:36 PM, Kalle Valo wrote:
-> "Yury Vostrikov" <mon@unformed.ru> writes:
-> 
->> Hi Kalle,
->>
->> It seems there is problem with busy wait inside
->> ath11k_debugfs_fw_stats_request. I have a laptop with QCNFA765 WiFi
->> controller. It is running vanilla v6.11.4 with the following fw:
->>
->>> [    3.934078] ath11k_pci 0000:01:00.0: wcn6855 hw2.1
->>> [    4.801624] ath11k_pci 0000:01:00.0: chip_id 0x12 chip_family 0xb board_id 0xff soc_id 0x400c1211
->>> [    4.802469] ath11k_pci 0000:01:00.0: fw_version 0x11088c35 fw_build_timestamp 2024-04-17 08:34 fw_build_id WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
->>
->> Sometimes after device wakes up, the system becomes
->> sluggish and burns CPU. A assume it is because of a firmware bug, but driver
->> should not waste CPU regardless.
->>
->> According to perf, the most time is spent in busy waitin inside  ath11k_debugfs_fw_stats_request:
->>
->> 94.60%     0.00%  i3status         [kernel.kallsyms]                 [k] do_syscall_64
->>         |
->>          --94.60%--do_syscall_64
->>                    |
->>                     --94.55%--__sys_sendmsg
->>                               ___sys_sendmsg
->>                               ____sys_sendmsg
->>                               netlink_sendmsg
->>                               netlink_unicast
->>                               genl_rcv
->>                               netlink_rcv_skb
->>                               genl_rcv_msg
->>                               |
->>                                --94.55%--genl_family_rcv_msg_dumpit
->>                                          __netlink_dump_start
->>                                          netlink_dump
->>                                          genl_dumpit
->>                                          nl80211_dump_station
->>                                          |
->>                                           --94.55%--ieee80211_dump_station
->>                                                     sta_set_sinfo
->>                                                     |
->>                                                      --94.55%--ath11k_mac_op_sta_statistics
->>                                                                ath11k_debugfs_get_fw_stats
->>                                                                |
->>                                                                 --94.55%--ath11k_debugfs_fw_stats_request
->>                                                                           |
->>                                                                           |--41.73%--_raw_spin_lock_bh
->>                                                                           |
->>                                                                           |--22.74%--__local_bh_enable_ip
->>                                                                           |
->>                                                                           |--9.22%--_raw_spin_unlock_bh
->>                                                                           |
->>                                                                            --6.66%--srso_alias_safe_ret
->>
->> If I'm reading the code correctly, then ath11k_debugfs_fw_stats_request has 3 second timeout:
->>
->>> timeout = jiffies + msecs_to_jiffies(3 * 1000);
->>
->> however, it only waits for 1 second:
->>
->>> time_left = wait_for_completion_timeout(&ar->fw_stats_complete, 1 * HZ);
->>
->> the rest (2 seconds) is spent inside busy loop
->>
->>> 	for (;;) {
->>> 		if (time_after(jiffies, timeout))
->>> 			break;
->>>
->>> 		spin_lock_bh(&ar->data_lock);
->>> 		if (ar->fw_stats_done) {
->>> 			spin_unlock_bh(&ar->data_lock);
->>> 			break;
->>> 		}
->>> 		spin_unlock_bh(&ar->data_lock);
->>> 	}
->>
->>
->> spinning  for 2 seconds seems excessive to me. What do you think?
-> 
-> Oh wow, excessive is an understatement :) That's horrible, I don't know
-> how we missed that. And an unlimited loop like that is a big no-no in
-> kernel, every loop should have a some kind of maximum limit. Can someone
-> send a patch?
-Hi Kalle, I already sent an internal patch to fix this.
-
-> 
->> Also, if you happen to know how & where to report firmware bugs, I'd
->> appreciate any pointers.
-> 
-> I recommend filing to bugzilla:
-> 
-> https://wireless.docs.kernel.org/en/latest/en/users/drivers/ath11k/bugreport.html
-> 
-> Though we are overwhelmed with everything right now so don't expect a
-> quick response :/
-> 
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 5ab1fdd21144..b1440a70a886 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -340,7 +340,6 @@ struct ath11k_chan_power_info {
+  * @ap_power_type: type of power (SP/LPI/VLP)
+  * @num_pwr_levels: number of power levels
+  * @reg_max: Array of maximum TX power (dBm) per PSD value
+- * @ap_constraint_power: AP constraint power (dBm)
+  * @tpe: TPE values processed from TPE IE
+  * @chan_power_info: power info to send to firmware
+  */
+@@ -350,7 +349,6 @@ struct ath11k_reg_tpc_power_info {
+ 	enum wmi_reg_6ghz_ap_type ap_power_type;
+ 	u8 num_pwr_levels;
+ 	u8 reg_max[ATH11K_NUM_PWR_LEVELS];
+-	u8 ap_constraint_power;
+ 	s8 tpe[ATH11K_NUM_PWR_LEVELS];
+ 	struct ath11k_chan_power_info chan_power_info[ATH11K_NUM_PWR_LEVELS];
+ };
+-- 
+2.47.0
 
 
