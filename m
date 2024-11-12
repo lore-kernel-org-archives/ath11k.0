@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BFFCD32D75
-	for <ath11k@archiver.kernel.org>; Tue, 12 Nov 2024 10:27:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F1BAD42B85
+	for <ath11k@archiver.kernel.org>; Tue, 12 Nov 2024 15:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Lst636w5r6ghzD3cK6XSoFPqB2w6WUODgKoCLr5Vh14=; b=qPQvE7Ccv3qY2YbyMuDpBbSvqo
-	n2GTwADxCkTAvByL2ds33rjpmOu0YXUenKcD1MmIR2ZsbMg2WU36bBA7suZ2W2yF+enqcfwJChZQ1
-	ndwnXcZ3Q+8gVVZTsvWYR7Wp58/zDcczmBRMSSifoNyifmZxU4xZeQm9TAKeIBLTFMWv5lGC1JK7F
-	pJA6Dc3Ej6q8Hx9vjsJBD4oIM3AEe/Mu4N0fexLVXkWG7A5s8XQomwTb+U1LTbJ/Uge7ae0BogRxy
-	rOoowyQJy7eCRTVRPA1AIj0d77VvQrdpGiP+51CQxXvqraiDEcQmSEWOcfqiLP/Ii59qlWerPE9lI
-	IhPdzeIw==;
+	bh=xmcODCsojbWGjJFKsbT4a01JFjeIDpZtodbn/lpIjwk=; b=Bn2ABVqdKP2x/k4SCqH5aryMzi
+	I9PyrKV0S6oOLWpWo4XUFZiQhoGMZIKis5TUsea20WWhUHbFC+bDOAzGgdpAqMzSrTQfyXIyBFsOZ
+	vFIaTZQ7vaBYHr9v2Jm2yQghtFPQ7cYUc9o2G4NrsAut7qfNo1ZEhRJ98DijPGN2k/orrov/Pq3yQ
+	RqAfXoo1ZZl6Dvfwvq4bY+Z16I5HM5poUzBnTxCkgWV8sC6OMxRZQNEBzEh2GBN4mAFVDSImA9eJ9
+	INPrkisv8feYiGL5NjRhLGGuTPxMmXrWbi3o7pzUiQJcneHKQdGNbvVfxDnA+TLR4EbTO1WXC1VJF
+	zgrm3jbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAo7p-000000032oh-41kz;
-	Tue, 12 Nov 2024 10:27:57 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tAsO9-00000003rjR-2btr;
+	Tue, 12 Nov 2024 15:01:05 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAnxi-000000030UJ-1lzj
+	id 1tAsMG-00000003rFI-1Elx
 	for ath11k@lists.infradead.org;
-	Tue, 12 Nov 2024 10:17:32 +0000
+	Tue, 12 Nov 2024 14:59:09 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 99AAD5C4B00;
-	Tue, 12 Nov 2024 10:16:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6985C4CECD;
-	Tue, 12 Nov 2024 10:17:28 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 5AEB55C569E;
+	Tue, 12 Nov 2024 14:58:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DA7EC4CECD;
+	Tue, 12 Nov 2024 14:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731406649;
-	bh=XWmn24pqEPofhFjs8lrl+hPSdZSxeKaJt9Se7NbgBW0=;
+	s=k20201202; t=1731423546;
+	bh=DpsWLJxtohQJudxgWo/V7PQCzAkmAY48E5oG2OuDKmo=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=cKKDas/zpQdOak9itVtHzqbH6UTuJHMPoHop8sWlodS2g9ZCWIFMQ2H34TtOyfjzk
-	 wdZ4XROZG0+L4ewXHcC+dyT80+50EEJ62/0uOOLYWSrxIzshlm+1w7gHOhuf2YA6Js
-	 6pUCCA+o4Ndq3nhxv3xutYG98I5j//X3lIn/WI6zQr0gRytC5TREai1awliy5Vk5av
-	 k/g9HS87SeZ6Hma449Xke1KtczVBsK5i6VHdb+ITXSq2wTUEskwLjeV4h3OFTAxVeb
-	 Ixekeme0Ea6mGMESDgmvLRDkfdH4r8QPy0nKyg5kyIcDYyHr/AXYWSfszIcIF5JNiP
-	 zOLYYJ4c7IzpA==
+	b=RCshjeoyuwM7Ojxw0bPmH++yRLgJ26P7Wvhx9yYlTWvW8W+bLZoX2imjVLgBxnDcZ
+	 LGtXQB07WTs+77RVdXCjW3yBuWsJ+UkQveevGNzSGKgJYVdjcRzjayDmbgfKKCGXrl
+	 RnJMMYQNBDbC8so7O/SLc0VNkmeUDocgeLWvgZFBskqzbE6FGipM5SlrhGY1SKbe2r
+	 Z5MQi8WyFI0zWIXQbHGgncM51EVaYxEtcifejjYhKRr39v4VUT4NGbDBekvbxBGBr/
+	 euuhNHbwuewtf9jBN6sevXh+tPHWFpecj5BW9L5jqJ9w7uO/jvygp4ZL6Oiy1m00Fp
+	 9ji/0/uIBVdGw==
 From: Kalle Valo <kvalo@kernel.org>
-To: Balaji Pothunoori <quic_bpothuno@quicinc.com>
-Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH] wifi: ath11k: Fix unexpected return buffer manager
- error for WCN6750/WCN6855
-References: <20241030114625.2416942-1-quic_bpothuno@quicinc.com>
-Date: Tue, 12 Nov 2024 12:17:27 +0200
-In-Reply-To: <20241030114625.2416942-1-quic_bpothuno@quicinc.com> (Balaji
-	Pothunoori's message of "Wed, 30 Oct 2024 17:16:25 +0530")
-Message-ID: <87bjykwybs.fsf@kernel.org>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,  <ath11k@lists.infradead.org>,
+  <linux-wireless@vger.kernel.org>,  <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] wifi: ath11k: add support for QCA6698AQ
+References: <20241031000541.3331606-1-quic_miaoqing@quicinc.com>
+	<bb1c77cb-7efc-4c85-a946-5394b9105416@quicinc.com>
+Date: Tue, 12 Nov 2024 16:59:03 +0200
+In-Reply-To: <bb1c77cb-7efc-4c85-a946-5394b9105416@quicinc.com> (Jeff
+	Johnson's message of "Thu, 31 Oct 2024 07:58:56 -0700")
+Message-ID: <87o72k4hxk.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241112_021730_520347_ACDFF0B3 
-X-CRM114-Status: GOOD (  10.21  )
+X-CRM114-CacheID: sfid-20241112_065908_397265_62A0C1BC 
+X-CRM114-Status: GOOD (  15.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,30 +73,33 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Balaji Pothunoori <quic_bpothuno@quicinc.com> writes:
+Jeff Johnson <quic_jjohnson@quicinc.com> writes:
 
-> The following error messages were encountered while parsing fragmented RX
-> packets for WCN6750/WCN6855:
+> On 10/30/2024 5:05 PM, Miaoqing Pan wrote:
+>> QCA6698AQ IP core is the same as WCN6855 hw2.1, they share the same
+>> PCI device ID, the same major and minor version numbers, the same
+>> register address, and same HAL descriptors, etc. The most significant
+>> difference is that QCA6698AQ has different RF, IPA, thermal, etc.
+>> 
+>> Follow the approach done in commit 5dc9d1a55e95 ("wifi: ath11k: add
+>> support for QCA2066"), enumerate the subversion number to identify the
+>> specific card.
+>> 
+>> Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04479-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+>> 
+>> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
 >
-> ath11k 17a10040.wifi: invalid return buffer manager 4
+> Am I correct that this satisfies at least a subset of the devices you were
+> trying to support with the following?
+> https://lore.kernel.org/all/20241024002514.92290-1-quic_miaoqing@quicinc.com/
 >
-> This issue arose due to a hardcoded check for HAL_RX_BUF_RBM_SW3_BM
-> introduced in 'commit 71c748b5e01e ("ath11k: Fix unexpected return buffer
-> manager error for QCA6390")'
->
-> For WCN6750 and WCN6855, the return buffer manager ID should be
-> HAL_RX_BUF_RBM_SW1_BM. The incorrect conditional check caused fragmented
-> packets to be dropped, resulting in the above error log.
->
-> Fix this by adding a check for HAL_RX_BUF_RBM_SW1_BM.
->
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.2.0.c2-00258-QCAMSLSWPL-1
-> Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-04479-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
->
-> Fixes: 71c748b5e01e ("ath11k: Fix unexpected return buffer manager error for QCA6390")
-> Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+> If so, can you reply to that thread, pointing to this new patch, and elaborate
+> on what is now supported and what still requires ath11k to support
+> board-specific firmware overrides?
 
-Acked-by: Kalle Valo <kvalo@kernel.org>
+That question is still open but otherwise this patch looks good to me.
+But I'll give an Acked-by only after I understand what's that "NFA765
+m.2 card for IoT platforms" mentioned in the other thread is.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
