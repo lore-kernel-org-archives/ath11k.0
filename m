@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E0C3D68BDE
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:26:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5D10D68BE0
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:27:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uwqJCSe3GXdPjGHghPvDBfnEwZdT0uYA3z4HTDFu1hA=; b=Qvi/uqwByYVeV7fvejE44zPxyJ
-	4ssUutMZ8L76DT7IAvF85YEjTriKlc4JGedsVymuAFyedoYQH2GmPoc8Fi6kEL3cC3WwlkWu06iu0
-	DoJV/P34YQS1B3TRcsZ/TgLY2xMNEdUYtn8t+hH7Ei5+A4bgFgsZ7zYNlqe4TzPf/AwlLMbIDOMmz
-	Zy5L8t+zqz+JtSWe6lAWhWr54h/mqugEjS4UqhkF84CS6nZaIz0B82a9VKJmtsS5b9p0SvxPK5O2n
-	jswB0NMBHvQjnfY2v6zm24nyssBSFK3RdShZ66wzWKsQOb88+tHLQJm1/+ggUoMwpTlpFTaOFBQId
-	mc2dmxHw==;
+	bh=QYs6jKNkSqRMwxas8zTGS0f9EDen03tWxmE1GsbmPvQ=; b=L4sZITV5yeq00ucnfuE+4EUwrH
+	ZPPalA2fXTCgyzsbEAvTAQs5JkPiTEZQ8xdOX6o6kFiBFoo5Lj8kWFhzff7OGH1VXz/BaZF55f5HP
+	Xfz1FrgsVdYS1yTuAd+sw0DgnUTakyQtE99ivt/XSkUHvGciDmsjFxgFCsiaCERDaibCWNNIQKXrQ
+	MUq5fmncIZmQqm8IXuN86+jsmiStDuIpJ1gM1kohUHo/frh38dTShB1k1NTsZUt9GQ7nLXgsb2XKV
+	j6FqTtcYpbMkSwrk2v8Dxowoip9TCZ5au4HAfpgoEq9Gl97rpKvlQwVapuvPlPPmG2C5LrnrkZVFo
+	aRTSztNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3qB-00000004Cje-0xYE;
-	Fri, 15 Nov 2024 21:26:55 +0000
+	id 1tC3qG-00000004Ct3-14yO;
+	Fri, 15 Nov 2024 21:27:00 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3q0-00000004CNz-07H0;
-	Fri, 15 Nov 2024 21:26:45 +0000
+	id 1tC3q0-00000004CNR-4C1i;
+	Fri, 15 Nov 2024 21:26:46 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 2B4EB206BCFA;
+	by linux.microsoft.com (Postfix) with ESMTPSA id 9A64C206BCFC;
 	Fri, 15 Nov 2024 13:26:42 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 2B4EB206BCFA
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9A64C206BCFC
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1731706002;
-	bh=uwqJCSe3GXdPjGHghPvDBfnEwZdT0uYA3z4HTDFu1hA=;
+	bh=QYs6jKNkSqRMwxas8zTGS0f9EDen03tWxmE1GsbmPvQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=L5h+l6RmonxJ2az0g4MEjFj1mZrgP6QcCu4emVFVPsXRGSbOqO7anS7hNG7T+pDPJ
-	 RufyF3X+SQAP7OBNi9L4oof0Mf/N1pw5KpaxKZGsx9C6BQjH2p+gXUlgOVsy2nu8Ns
-	 vF3R0Is+PXb/IIvu2e2kzQ8Cg4xNfFZKq8iVxdGc=
+	b=Fqjuy5eSiRbnXSL2o0v7YwMA9fZ674Q/Gd+25Z4rP4RwCiu11at2Mv7W7PGMuqY5d
+	 K4P8ORik82r/04knqALaANam5+D1reZvHHMZxADzcYp9l2s2TYV6JJ/Elj8BYsGqr3
+	 W1hOklHhhwD9HLzPgJ9aKxBAHgaV0sBNYgQwU9cU=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:26:22 +0000
-Subject: [PATCH v2 05/21] powerpc/papr_scm: Convert timeouts to
+Date: Fri, 15 Nov 2024 21:26:24 +0000
+Subject: [PATCH v2 07/21] accel/habanalabs: Convert timeouts to
  secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v2-5-911fb7595e79@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v2-7-911fb7595e79@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +114,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132644_151669_C0963545 
-X-CRM114-Status: GOOD (  13.36  )
+X-CRM114-CacheID: sfid-20241115_132645_144607_EDAE816A 
+X-CRM114-Status: GOOD (  13.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,22 +144,37 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- arch/powerpc/platforms/pseries/papr_scm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/accel/habanalabs/common/device.c         | 2 +-
+ drivers/accel/habanalabs/common/habanalabs_drv.c | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/arch/powerpc/platforms/pseries/papr_scm.c b/arch/powerpc/platforms/pseries/papr_scm.c
-index 9e297f88adc5d97d4dc7b267b0bfebd58e5cf193..9e8086ec66e0f0e555ac27933854c06cfcf91a04 100644
---- a/arch/powerpc/platforms/pseries/papr_scm.c
-+++ b/arch/powerpc/platforms/pseries/papr_scm.c
-@@ -543,7 +543,7 @@ static int drc_pmem_query_health(struct papr_scm_priv *p)
+diff --git a/drivers/accel/habanalabs/common/device.c b/drivers/accel/habanalabs/common/device.c
+index e0cf3b4343bb081638430f2552ed27431b488ff9..30277ae410d4b742ffb7bddc35498564ff96fe62 100644
+--- a/drivers/accel/habanalabs/common/device.c
++++ b/drivers/accel/habanalabs/common/device.c
+@@ -817,7 +817,7 @@ static void device_hard_reset_pending(struct work_struct *work)
+ 		}
  
- 	/* Jiffies offset for which the health data is assumed to be same */
- 	cache_timeout = p->lasthealth_jiffies +
--		msecs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL * 1000);
-+		secs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL);
+ 		queue_delayed_work(hdev->reset_wq, &device_reset_work->reset_work,
+-					msecs_to_jiffies(HL_PENDING_RESET_PER_SEC * 1000));
++					secs_to_jiffies(HL_PENDING_RESET_PER_SEC));
+ 	}
+ }
  
- 	/* Fetch new health info is its older than MIN_HEALTH_QUERY_INTERVAL */
- 	if (time_after(jiffies, cache_timeout))
+diff --git a/drivers/accel/habanalabs/common/habanalabs_drv.c b/drivers/accel/habanalabs/common/habanalabs_drv.c
+index 708dfd10f39c584a6221c29015f4b0323574145a..5ec13f3a46f915e75b04582b28d51ba8bb50be78 100644
+--- a/drivers/accel/habanalabs/common/habanalabs_drv.c
++++ b/drivers/accel/habanalabs/common/habanalabs_drv.c
+@@ -362,8 +362,7 @@ static void fixup_device_params_per_asic(struct hl_device *hdev, int timeout)
+ 		 * a different default timeout for Gaudi
+ 		 */
+ 		if (timeout == HL_DEFAULT_TIMEOUT_LOCKED)
+-			hdev->timeout_jiffies = msecs_to_jiffies(GAUDI_DEFAULT_TIMEOUT_LOCKED *
+-										MSEC_PER_SEC);
++			hdev->timeout_jiffies = secs_to_jiffies(GAUDI_DEFAULT_TIMEOUT_LOCKED);
+ 
+ 		hdev->reset_upon_device_release = 0;
+ 		break;
 
 -- 
 2.34.1
