@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B10BD68BD9
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:27:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F753D68BD8
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=94UWkQUgIE+TIBJCr3TB9bjXju243wFFlCrw1pjugTo=; b=gqUGclEAV28zLD7KQf0oB+dExd
-	5Fg/QCrmjniS92RIoxEVYGAyqJluedHfsD2XQV5WTW9w3olUngkex3Ht29S9XFXErXntqS3DIa17C
-	Ia8pcN5NGgFpXrlcUmZ49akRdSkSKCoQjRA+FhX/JQKC2/zDpY5I9/8CZdyXUkHgoAP9SaBOpjbQV
-	XXu632lAaN9wSFsaGL8v9cJEOJI0ZIOu/iNSzZBwlh7oQ6sTGb6zAJ2Ce+gZZaA/A1ZtNV7jD+M4n
-	805p0qhIUNpwS6atttKVnO9bUL+d+qu9tZQYw2tQXZfcMl9m4Sc3dDn36LEW05tdkFinyiQF/Vd+c
-	6hAboTrg==;
+	bh=C//qZdfJfhN40N7nu/AQ5wmq+hj+onzvFzX2KrlsiOc=; b=G4iwM8AGXLY/VJcq1wRisJpElU
+	n0B19GvWDw7qRuz21W47cWAy2ETBu9D/NZ8wq2/ATfMYYeds/Sp1PZmcW2CnJh/SPzfvP+um8zKCs
+	86o8zC44VRVgtuPVYFPCBYCToZDTbAFcGHlU8LPjeaiWtew6xYT84buKXNHt8i1JjQXdPdFBKegUE
+	M7W3rs9vANQiTc0FAtl0R4SVBfveTsw6DDUSDFVZ4N2rzISizozE+9LiPQ+nCJlXO4saWaVgtMZQ7
+	d4vPE/JkNFhHrpzbDtDVj2Xekz0xNdfsVzfSJmERhm1pqBhhkTZLVEbW+X2OTLq+fEFr+atYkRwfL
+	sDKsHQFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3qU-00000004DL6-2KYm;
-	Fri, 15 Nov 2024 21:27:14 +0000
+	id 1tC3qV-00000004DN1-3IIU;
+	Fri, 15 Nov 2024 21:27:15 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3q8-00000004Cec-1dyX;
-	Fri, 15 Nov 2024 21:26:56 +0000
+	id 1tC3q8-00000004COu-3epv;
+	Fri, 15 Nov 2024 21:26:57 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 956492064AE3;
+	by linux.microsoft.com (Postfix) with ESMTPSA id CCEDA2064AE4;
 	Fri, 15 Nov 2024 13:26:45 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 956492064AE3
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CCEDA2064AE4
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1731706005;
-	bh=94UWkQUgIE+TIBJCr3TB9bjXju243wFFlCrw1pjugTo=;
+	bh=C//qZdfJfhN40N7nu/AQ5wmq+hj+onzvFzX2KrlsiOc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=mNHdIox58am1vKiSlapYyQSd/IB/puFk5Gi1H5FYHJ3c7VwmewWXtYwpq8qZgM5VC
-	 FsoAzIfa/5Dmw/g1Wnz5pM6x92x9pSsv8KUjV1VC6j6e14jtQDSlKdd0OQNegI9M/0
-	 o4hIDKt2X5QgI0I8DrdvAcv+VpyUUXxnbDtHt4Jg=
+	b=HJAgH8LJ0t02ke9L/fBSseVg4mPwyzRUYKkcIBNh0PXg4ks/yx3FEqq7Ab8V80mCx
+	 twfijyV8trWsX1EHtCAISl/otYzpQq+n69SN9Jzv1KZ/q2FjsSm6OPzwLcdwZ6tTZp
+	 t/rVqrGYFsKA1powLrxYtcm95fdENEeogYK2qDWs=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:26:37 +0000
-Subject: [PATCH v2 20/21] ALSA: line6: Convert timeouts to
- secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:26:38 +0000
+Subject: [PATCH v2 21/21] nfp: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v2-20-911fb7595e79@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v2-21-911fb7595e79@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +113,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132652_558917_B6AA2066 
-X-CRM114-Status: GOOD (  12.74  )
+X-CRM114-CacheID: sfid-20241115_132653_049940_127C6C3F 
+X-CRM114-Status: GOOD (  13.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,22 +143,22 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- sound/usb/line6/toneport.c | 2 +-
+ drivers/net/ethernet/netronome/nfp/nfp_net_common.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/usb/line6/toneport.c b/sound/usb/line6/toneport.c
-index ca2c6f5de407ece21ab69a39ed603e3f10069039..c073b38cd6738176fc6a276d05ed553526573341 100644
---- a/sound/usb/line6/toneport.c
-+++ b/sound/usb/line6/toneport.c
-@@ -386,7 +386,7 @@ static int toneport_setup(struct usb_line6_toneport *toneport)
- 		toneport_update_led(toneport);
+diff --git a/drivers/net/ethernet/netronome/nfp/nfp_net_common.c b/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
+index 6e0929af0f725b2b3855c69bbe894e6626c566b3..6925ad985fc9e2d5641feea41ff277107a8dee9c 100644
+--- a/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
++++ b/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
+@@ -2779,7 +2779,7 @@ static void nfp_net_netdev_init(struct nfp_net *nn)
+ 		break;
+ 	}
  
- 	schedule_delayed_work(&toneport->line6.startup_work,
--			      msecs_to_jiffies(TONEPORT_PCM_DELAY * 1000));
-+			      secs_to_jiffies(TONEPORT_PCM_DELAY));
- 	return 0;
- }
+-	netdev->watchdog_timeo = msecs_to_jiffies(5 * 1000);
++	netdev->watchdog_timeo = secs_to_jiffies(5);
  
+ 	/* MTU range: 68 - hw-specific max */
+ 	netdev->min_mtu = ETH_MIN_MTU;
 
 -- 
 2.34.1
