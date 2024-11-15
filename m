@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B59CCD68BEC
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE413D68BDB
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uwqJCSe3GXdPjGHghPvDBfnEwZdT0uYA3z4HTDFu1hA=; b=tVPGZpjQVqtfFzD8xbAKOZ5X4a
-	4DD0qxxjgN8Olu22SJCsAeLuU684AzlFnGkTj9RMpSPKDO8aoVtZFUiV3cUpynZpEyIbDaSPkfiQl
-	1h69mYuV8pVMAgEXNkwyt2w3vuhEahoJxzUb5CuXFMgi3ZmTFazYKfe2mYYHuaaB8G2rTAbRv0rgq
-	PZimuq2OsnkxN/5YpKKTGCe8J25m7odkgGs8iMoZUvDUrpiZBvMcpicmGtmk4FT2VsJBJnxqdzPb0
-	61lGC6C+/EOqYFSgh8+Jcq6+aqVz8AAKARgugmQ0MZxysgnYcfJxonkmcqZeh2JA1x/iIYi13JyTh
-	fR7QnhKg==;
+	bh=cDb5q9ey4rgvzuTMFsMkjW3R4ZHiX3a+lRd3JDjV6+Q=; b=BViL0wvouUMGvxrueTN+x6BbLQ
+	UY4om3575cVXjNnmpLSiKHAaUHJuQJKDCitIQlmfgXTJP07e7Ml1v0tE6USyA/tj9y6v/y/YALU3c
+	TzGaXrNmdix4EGIqc0t72l9Y2bzGxAKOZGw/UgdHlmQqmtctsY24eySW1nY72Ol3Wv7U4UtIVWJjY
+	9+cwRyAYEZgRuInwqq8KiTfNpnY5ubT6/hdEcx5bTs4TtBb/REDA+H/MmBCWCtdqKNvDArS3SisHK
+	nOCVZ9MKByjcap0wgDkjkiPDS6QWlYHWSjsvO+2aYWU6jfCGT2VIPv9BmPjF1XAbG7P0TjGdtdJdb
+	IMXNCTIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mL-00000004AVM-2ZuP;
-	Fri, 15 Nov 2024 21:22:57 +0000
+	id 1tC3mR-00000004AfA-0fLh;
+	Fri, 15 Nov 2024 21:23:03 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3m9-00000004A8B-2vqu;
-	Fri, 15 Nov 2024 21:22:46 +0000
+	id 1tC3mA-00000004A7c-2X2x;
+	Fri, 15 Nov 2024 21:22:47 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id E451D206BCE8;
-	Fri, 15 Nov 2024 13:22:42 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E451D206BCE8
+	by linux.microsoft.com (Postfix) with ESMTPSA id 256D9206BCE9;
+	Fri, 15 Nov 2024 13:22:43 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 256D9206BCE9
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1731705763;
-	bh=uwqJCSe3GXdPjGHghPvDBfnEwZdT0uYA3z4HTDFu1hA=;
+	bh=cDb5q9ey4rgvzuTMFsMkjW3R4ZHiX3a+lRd3JDjV6+Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=RVx2emb342NEz2mst6RfMUiki8VYrjbKedjHqPNNNkb4BXhLdZgldqHGBRr6S5V4l
-	 ot1jj3ag+tv5arCezMBNlcZVolqJ/kVXCKfLQi6UufSSi9gPBN5Z2YR5EAMTqKRljK
-	 uRWcAwELTERtWaAvz5gx5fAH4KPOOU/VcBtZ4kx8=
+	b=imd3kVk/tJhJYNa/xeixDhpAwYPvx4IlSinPbk/21FlgSBXFMaFV4APntdnbxA1fq
+	 WRyS0aWoUlD4yY9/jG3e/ehoXMMrIljBVBgBQNEO519W/APj0YYahRFp6DV4wrhONm
+	 8XT+qK7qOCSuyxWBlS/5K7TjbCkS44CjtifGQlCE=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:35 +0000
-Subject: [PATCH 05/22] powerpc/papr_scm: Convert timeouts to
- secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:22:36 +0000
+Subject: [PATCH 06/22] mm: kmemleak: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-5-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-6-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +113,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132245_800182_C3CD07E2 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20241115_132246_734247_05DCC142 
+X-CRM114-Status: GOOD (  14.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,22 +143,31 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- arch/powerpc/platforms/pseries/papr_scm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ mm/kmemleak.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/powerpc/platforms/pseries/papr_scm.c b/arch/powerpc/platforms/pseries/papr_scm.c
-index 9e297f88adc5d97d4dc7b267b0bfebd58e5cf193..9e8086ec66e0f0e555ac27933854c06cfcf91a04 100644
---- a/arch/powerpc/platforms/pseries/papr_scm.c
-+++ b/arch/powerpc/platforms/pseries/papr_scm.c
-@@ -543,7 +543,7 @@ static int drc_pmem_query_health(struct papr_scm_priv *p)
+diff --git a/mm/kmemleak.c b/mm/kmemleak.c
+index 0400f5e8ac60de555f43d85f1d36f67e48b4ebed..2c099d0819b1896390b842af76069a46bffabc23 100644
+--- a/mm/kmemleak.c
++++ b/mm/kmemleak.c
+@@ -1816,7 +1816,7 @@ static int kmemleak_scan_thread(void *arg)
+ 	 * Wait before the first scan to allow the system to fully initialize.
+ 	 */
+ 	if (first_run) {
+-		signed long timeout = msecs_to_jiffies(SECS_FIRST_SCAN * 1000);
++		signed long timeout = secs_to_jiffies(SECS_FIRST_SCAN);
+ 		first_run = 0;
+ 		while (timeout && !kthread_should_stop())
+ 			timeout = schedule_timeout_interruptible(timeout);
+@@ -2202,7 +2202,7 @@ void __init kmemleak_init(void)
+ 		return;
  
- 	/* Jiffies offset for which the health data is assumed to be same */
- 	cache_timeout = p->lasthealth_jiffies +
--		msecs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL * 1000);
-+		secs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL);
+ 	jiffies_min_age = msecs_to_jiffies(MSECS_MIN_AGE);
+-	jiffies_scan_wait = msecs_to_jiffies(SECS_SCAN_WAIT * 1000);
++	jiffies_scan_wait = secs_to_jiffies(SECS_SCAN_WAIT);
  
- 	/* Fetch new health info is its older than MIN_HEALTH_QUERY_INTERVAL */
- 	if (time_after(jiffies, cache_timeout))
+ 	object_cache = KMEM_CACHE(kmemleak_object, SLAB_NOLEAKTRACE);
+ 	scan_area_cache = KMEM_CACHE(kmemleak_scan_area, SLAB_NOLEAKTRACE);
 
 -- 
 2.34.1
