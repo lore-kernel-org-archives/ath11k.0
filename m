@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56001D68BD8
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:23:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D28E6D68BDF
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:23:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=C//qZdfJfhN40N7nu/AQ5wmq+hj+onzvFzX2KrlsiOc=; b=X1YSBQN0sP7lVG9Iy+cgOvGMo0
-	bepDIpgdoROmYPdLYjlIHxlP/OIm9yRI++p+MOjkjFqYwtWpbOX5vfEKZkjrHH1p2hMeWbW+5DG9s
-	6tU2cstbrBoTSLo0GG56uugALGm8eq9pgSVqUoBV49SdxdFOzxtiHUHxo0IS13KDb88FRbXWOAVIb
-	nT9fU1E+prEgZrMIuOAevyAQtPctIj9x5oXXsFo11qpqAOPBcFGl8oBoqA2sgAseZfpZT4x2z+CRE
-	mDO1VE1pQEkNMFUNDTVsoTCLm8GEh/AtehDhcBlLuAnlXEHm/vgIgSbZJt0VjAjd96KADw7EJTT7r
-	/9WOxGZQ==;
+	bh=8an4FgjBOt1s+5Gzupd7mugSuJBcUUHR7ha3x9HR0Ag=; b=z8iuSKys+v15pgF3AagWo5jsJ4
+	p8/rg++BvRI3pnPajJxU9AS4xiSJ+7CqcLzkwKfHecB4LHVXy+C7COFIOUZiADqJnAELd52fdr2CZ
+	k/Ky5EDQHFluTULxyc9tW0aGeVhXqlVXUYUPxUaaDCpGMoWok6+HK9RKbqys4rrPWqTpK8eOOo9/O
+	YzZTjZ+s6SSf0jUevJ+8bs+YEZfznnXm3mFywuZnrMUGbkBjl2Iwa6VKstvQrBZJ+7B72+nQMa8ME
+	OVWdTNL3GejIMYKcSY5/lbi0Ftj/TWeLaqi8USRBQdhCjhgfC1+QGkq/hW9PBzvpRovVSc+WpujDO
+	CarYFAsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mm-00000004BGg-04fd;
-	Fri, 15 Nov 2024 21:23:24 +0000
+	id 1tC3mn-00000004BIp-20mx;
+	Fri, 15 Nov 2024 21:23:25 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mJ-00000004A8B-3CPA;
-	Fri, 15 Nov 2024 21:22:59 +0000
+	id 1tC3mK-00000004AM6-26Sb;
+	Fri, 15 Nov 2024 21:23:00 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 6D0F7206BCEF;
+	by linux.microsoft.com (Postfix) with ESMTPSA id A22AA206BCEE;
 	Fri, 15 Nov 2024 13:22:46 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6D0F7206BCEF
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A22AA206BCEE
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1731705766;
-	bh=C//qZdfJfhN40N7nu/AQ5wmq+hj+onzvFzX2KrlsiOc=;
+	bh=8an4FgjBOt1s+5Gzupd7mugSuJBcUUHR7ha3x9HR0Ag=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=PgOujrsxbS3CIW2HtLS/dd5ya7VtRG8QHhCZQdBAsTM3cx+kDkUAOUPnWwMnerztw
-	 8X+Y81upKcxyh16cr7IomUwsyHP2XT7qOxm2nnfHsDBJOEcmEz0gtoHQc1mKP3Fi67
-	 1u154eT7RN/hsmnSsi2wJWAYt//zpJk5MiSg9/YM=
+	b=iplUk1Nduoh9asilHgzn6HQycVN1VFv/mFBOdW0Mpd4aq8sOOirOgItcWBMTidM3Q
+	 FvxfPpyBxEWdptBjBV3AGgplTOjNGMgWDICXRk9fFUvguk5wrwqFw5sjChgX9PZPt7
+	 /h1a1SkEI1LPNYXASotI6c+cUqHfSyHVemxnfBAU=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:51 +0000
-Subject: [PATCH 21/22] nfp: Convert timeouts to secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:22:52 +0000
+Subject: [PATCH 22/22] jiffies: Define secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-21-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-22-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -110,11 +110,13 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  etnaviv@lists.freedesktop.org, oss-drivers@corigine.com, 
  linuxppc-dev@lists.ozlabs.org, 
  Anna-Maria Behnsen <anna-maria@linutronix.de>, 
- Easwar Hariharan <eahariha@linux.microsoft.com>
+ Easwar Hariharan <eahariha@linux.microsoft.com>, 
+ Michael Kelley <mhklinux@outlook.com>, Thomas Gleixner <tglx@linutronix.de>, 
+ Luiz Augusto von Dentz <luiz.von.dentz@intel.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132255_930332_7F06BF22 
-X-CRM114-Status: GOOD (  12.98  )
+X-CRM114-CacheID: sfid-20241115_132256_703090_77002895 
+X-CRM114-Status: GOOD (  16.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,36 +131,65 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Changes made with the following Coccinelle rules:
+secs_to_jiffies() is defined in hci_event.c and cannot be reused by
+other call sites. Hoist it into the core code to allow conversion of the
+~1150 usages of msecs_to_jiffies() that either:
 
-@@ constant C; @@
+ - use a multiplier value of 1000 or equivalently MSEC_PER_SEC, or
+ - have timeouts that are denominated in seconds (i.e. end in 000)
 
-- msecs_to_jiffies(C * 1000)
-+ secs_to_jiffies(C)
+It's implemented as a macro to allow usage in static initializers.
 
-@@ constant C; @@
+This will also allow conversion of yet more sites that use (sec * HZ)
+directly, and improve their readability.
 
-- msecs_to_jiffies(C * MSEC_PER_SEC)
-+ secs_to_jiffies(C)
-
+Suggested-by: Michael Kelley <mhklinux@outlook.com>
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Reviewed-by: Luiz Augusto von Dentz <luiz.von.dentz@intel.com>
+Link: https://lore.kernel.org/all/20241030-open-coded-timeouts-v3-1-9ba123facf88@linux.microsoft.com
 ---
- drivers/net/ethernet/netronome/nfp/nfp_net_common.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/linux/jiffies.h   | 13 +++++++++++++
+ net/bluetooth/hci_event.c |  2 --
+ 2 files changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/netronome/nfp/nfp_net_common.c b/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
-index 6e0929af0f725b2b3855c69bbe894e6626c566b3..6925ad985fc9e2d5641feea41ff277107a8dee9c 100644
---- a/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
-+++ b/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
-@@ -2779,7 +2779,7 @@ static void nfp_net_netdev_init(struct nfp_net *nn)
- 		break;
+diff --git a/include/linux/jiffies.h b/include/linux/jiffies.h
+index 1220f0fbe5bf9fb6c559b4efd603db3e97db9b65..0a7382753c6b636fe285599953e314fb7479ea01 100644
+--- a/include/linux/jiffies.h
++++ b/include/linux/jiffies.h
+@@ -526,6 +526,19 @@ static __always_inline unsigned long msecs_to_jiffies(const unsigned int m)
  	}
+ }
  
--	netdev->watchdog_timeo = msecs_to_jiffies(5 * 1000);
-+	netdev->watchdog_timeo = secs_to_jiffies(5);
++/**
++ * secs_to_jiffies: - convert seconds to jiffies
++ * @_secs: time in seconds
++ *
++ * Conversion is done by simple multiplication with HZ
++ *
++ * secs_to_jiffies() is defined as a macro rather than a static inline
++ * function so it can be used in static initializers.
++ *
++ * Return: jiffies value
++ */
++#define secs_to_jiffies(_secs) ((_secs) * HZ)
++
+ extern unsigned long __usecs_to_jiffies(const unsigned int u);
+ #if !(USEC_PER_SEC % HZ)
+ static inline unsigned long _usecs_to_jiffies(const unsigned int u)
+diff --git a/net/bluetooth/hci_event.c b/net/bluetooth/hci_event.c
+index 0bbad90ddd6f87e87c03859bae48a7901d39b634..7b35c58bbbeb79f2b50a02212771fb283ba5643d 100644
+--- a/net/bluetooth/hci_event.c
++++ b/net/bluetooth/hci_event.c
+@@ -42,8 +42,6 @@
+ #define ZERO_KEY "\x00\x00\x00\x00\x00\x00\x00\x00" \
+ 		 "\x00\x00\x00\x00\x00\x00\x00\x00"
  
- 	/* MTU range: 68 - hw-specific max */
- 	netdev->min_mtu = ETH_MIN_MTU;
+-#define secs_to_jiffies(_secs) msecs_to_jiffies((_secs) * 1000)
+-
+ /* Handle HCI Event packets */
+ 
+ static void *hci_ev_skb_pull(struct hci_dev *hdev, struct sk_buff *skb,
 
 -- 
 2.34.1
