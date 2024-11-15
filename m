@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 895E0D68BDD
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 22:30:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44E2CD68BDE
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 22:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=cDb5q9ey4rgvzuTMFsMkjW3R4ZHiX3a+lRd3JDjV6+Q=; b=cnJYXHHhIWb8KHgOZ5CGscifcO
-	JFw50S20FmJOACygKfQxOUiMpDh1g3fzssYfjICY4gfOrwKjU8zBzFFUZlJgiA3kS73Qh4wAJxTGe
-	+juZubMHuPFMq0Jdpm/fn1Yv0h388Bc5ik/PpNvRaRtMCNZivsojbFOJsjRWHD8LTHn1aD1to5cMC
-	6gGDKcEANk6KqpAdLChSzZSA+KrjwSF5eOe2BxSdJCL+bwdoOY1sg7ms56fxygD40nR5RtFduPhvL
-	kTEJ35/lsFyjHnmkwLIPooOYhKtZSx66fSe71NDtTwDPeb/Fl6hM5aEjkFdpw+xh0qXPQ3D48FfIG
-	hJ0itvLA==;
+	bh=GmA2v8FrQkDc3PawrRu1NLBJUu3qRf/naCkvRhlPz0Q=; b=fvA/wgxFdB3lz/JaKTt8L4ZwQK
+	pNLH80iNqmoHTaSaefU2HLVAFQm6KNCcCKuw+t7/pej54Yc1Dy6Nar00cffIPT2nPJ1BUsrTjWPIK
+	CGDyEdXeaMLScJxIOGuxHCwkO/fXsWVge+My+qPfCv+GP10ejKReYnZ4mr1l2iHqCNUW9tkmiGP1s
+	CO8oWn8gF8eTe1jBIcb+YYXY5kc4hSxKvDD2uDIedpamAPBleePItshfPUtI8oA0UOE/xkHqp+yj5
+	hH+BJf5lP5l1KL3q7mNpJYGvygW/8l8cei4f42oeR350BfazcXnLqpqAMQDulsDFeF5xqrM9ycFX2
+	9o8+mwzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC4pw-00000004Q4g-1GrN;
-	Fri, 15 Nov 2024 22:30:44 +0000
+	id 1tC4px-00000004Q5L-05AF;
+	Fri, 15 Nov 2024 22:30:45 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3q0-00000004COu-2Cgr;
-	Fri, 15 Nov 2024 21:26:45 +0000
+	id 1tC3q1-00000004CNz-28V9;
+	Fri, 15 Nov 2024 21:26:47 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 5DA5E206BCFB;
+	by linux.microsoft.com (Postfix) with ESMTPSA id D434E206BCFD;
 	Fri, 15 Nov 2024 13:26:42 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 5DA5E206BCFB
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D434E206BCFD
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1731706002;
-	bh=cDb5q9ey4rgvzuTMFsMkjW3R4ZHiX3a+lRd3JDjV6+Q=;
+	s=default; t=1731706003;
+	bh=GmA2v8FrQkDc3PawrRu1NLBJUu3qRf/naCkvRhlPz0Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=NO84SskjrWC/WFvKvGdiMiujlTtBQUCv9VY6UYFsNxghNS3m5K63jnaoGusNsUnee
-	 5tLTM7woyBZaUNuUFMB3oWVBMOozS3J1y7PPugpo3cvaz/QXUdeGix3ePT8vCN2oIN
-	 gQ1ZKgfEKCkg+XmnS+/V2pj/LNnJYminStxSf4BY=
+	b=PLg1Ut3pMX8AIAjCAjy4bw02khMtlTmOdJICyDZ1qYDkIIeJUIA/Jl8Ax7qK0nzXA
+	 69WpHciXaLS10XUYziHT/1hEXLH04lMhVot2lJeh/b4MNSDj4bBTIfL48/xVYbcOQX
+	 4FHRZuPnT+9sZJ5HuVZVrIr57njKWIxmoNEf7/uw=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:26:23 +0000
-Subject: [PATCH v2 06/21] mm: kmemleak: Convert timeouts to
- secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:26:25 +0000
+Subject: [PATCH v2 08/21] drm/xe: Convert timeout to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v2-6-911fb7595e79@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v2-8-911fb7595e79@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +113,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132644_626407_ED6A967B 
-X-CRM114-Status: GOOD (  14.33  )
+X-CRM114-CacheID: sfid-20241115_132645_663026_1F085EAB 
+X-CRM114-Status: GOOD (  13.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,31 +143,22 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- mm/kmemleak.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/mm/kmemleak.c b/mm/kmemleak.c
-index 0400f5e8ac60de555f43d85f1d36f67e48b4ebed..2c099d0819b1896390b842af76069a46bffabc23 100644
---- a/mm/kmemleak.c
-+++ b/mm/kmemleak.c
-@@ -1816,7 +1816,7 @@ static int kmemleak_scan_thread(void *arg)
- 	 * Wait before the first scan to allow the system to fully initialize.
- 	 */
- 	if (first_run) {
--		signed long timeout = msecs_to_jiffies(SECS_FIRST_SCAN * 1000);
-+		signed long timeout = secs_to_jiffies(SECS_FIRST_SCAN);
- 		first_run = 0;
- 		while (timeout && !kthread_should_stop())
- 			timeout = schedule_timeout_interruptible(timeout);
-@@ -2202,7 +2202,7 @@ void __init kmemleak_init(void)
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index a1987b554a8d2aa42b29301f2853edddfda7fda5..bb3338ef4191e76128611eeb9531c9d2089db85a 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -502,7 +502,7 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+ 	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
  
- 	jiffies_min_age = msecs_to_jiffies(MSECS_MIN_AGE);
--	jiffies_scan_wait = msecs_to_jiffies(SECS_SCAN_WAIT * 1000);
-+	jiffies_scan_wait = secs_to_jiffies(SECS_SCAN_WAIT);
+ 	start = jiffies;
+-	timeout = start + msecs_to_jiffies(60 * 1000); /* 60 sec! */
++	timeout = start + secs_to_jiffies(60); /* 60 sec! */
  
- 	object_cache = KMEM_CACHE(kmemleak_object, SLAB_NOLEAKTRACE);
- 	scan_area_cache = KMEM_CACHE(kmemleak_scan_area, SLAB_NOLEAKTRACE);
+ 	do {
+ 		if (signal_pending(current))
 
 -- 
 2.34.1
