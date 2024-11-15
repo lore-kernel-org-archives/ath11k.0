@@ -4,76 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60DEDD6DDE0
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 07:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D5EDD68BDC
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=54+25EjLq0hNb3xuFLRlZur8gY9OKjhNExloSKR8JN8=; b=eoMvam1hZmdp8gGKp978ln5xUd
-	rYlv3c2rFQIwdUBxi6bAiDgzlILTHZUKVVNk7hmvtpLZJ+dEY5JpQ7cC3tL62W4KMPt96k5sU3Pm6
-	eCkd8GpEhb2ipBcB/LwWpCD3pkDco+EtgCX5AeenJ1JWqeXZA6mQ9JR3aa3ckuIMdtXsPYzZKfxHB
-	e1F3XM4Ev1Etsh9lAL5dLsGmfz4UXUkoCNwRdrN+rdLcs2cEfgPFO0iqVfgdKecAm6HUpiYIcvsKH
-	pDanWgD+Eg0Y6QkZvWygwR0vfeWRxJLsUPW2m0AIAYy++hgQe16qgCekxhxe+SiIdB2sGEwwjfMGV
-	R4KK7+jw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Q64Lap8gGilYnZS8wBYuXVtg6CkDWFgIDR5hpRb/qKY=; b=Gq9JvCL7cYnkXnKjDr2E07CMCZ
+	nOwFoTVRp0lQalT7ZCxLaAFvmYkzPYNUtKYnIVNkq9Gwsgg2zS7uJVr0/ll6W7xnOOZIjL1HEgp4u
+	ha8lCla3Hdnh4PCcdxQzzlmDBJTL/B1kUzOzuu6XsylF9wvnKjfIQDHOfZXn/oGqgNHCj7Yop32kP
+	YMGkbbDqk19d8hUuKz1GUOpchhasICN0ScnnyXN5fj1qsihk1DidjZBc85IswPm05Ych7eTYEb7s9
+	FSh4TAe2jDhqW3dQe2f9dESC1snx9j/nuK8Aaot/YBx0V1gbaR7YaGUTvWShPC7ycIJFakverZY1F
+	6R0y5jpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBqrq-00000001wBj-3sUw;
-	Fri, 15 Nov 2024 07:35:46 +0000
-Received: from mout.web.de ([212.227.15.4])
-	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBqrn-00000001wB4-2Uy5
-	for ath11k@lists.infradead.org;
-	Fri, 15 Nov 2024 07:35:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1731656139; x=1732260939; i=jwollrath@web.de;
-	bh=54+25EjLq0hNb3xuFLRlZur8gY9OKjhNExloSKR8JN8=;
-	h=X-UI-Sender-Class:Date:From:To:Subject:Message-ID:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=k0fMcZGeFjXCNViTvk0xUDALXebNGaFu/5G8j/05jxQfHA9kw+fGMSC6k1sO9t+n
-	 9ImCv+HAePKYChDc8s8FB5/SqCk24GGXUHWb9W68N0YlBNq7H0Kqq++qM1K+DbT+c
-	 8mOYNgi3oEp8BR75Kf7Ge8OFuo4HX/OY2HgDCgfv/bW4XpinkO8ruqplGH++G7JRf
-	 ik49bilFLGndIcMQW9aYkob8jUEwiF5g4w+HqJGNTdkdXbAUJ/atEIDz7E+NfjaFl
-	 GVGtLeGhGiLZDShFKRphzDV7lD7JWV3bzwzVE6YcucgYF75Pyyao9zqINhz9SXK1Q
-	 Ab2/xqduzrKdym7JCQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from mayene ([194.12.155.5]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MGxMN-1syKLo2DGl-00CGLV for
- <ath11k@lists.infradead.org>; Fri, 15 Nov 2024 08:35:39 +0100
-Date: Fri, 15 Nov 2024 08:35:37 +0100
-From: Julian Wollrath <jwollrath@web.de>
-To: ath11k@lists.infradead.org
-Subject: ath11k hibernation broken since v6.11
-Message-ID: <20241115083537.6a5681ad@mayene>
+	id 1tC3m9-00000004A8a-44IT;
+	Fri, 15 Nov 2024 21:22:45 +0000
+Received: from linux.microsoft.com ([13.77.154.182])
+	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
+	id 1tC3m7-00000004A6I-1NKu;
+	Fri, 15 Nov 2024 21:22:44 +0000
+Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 1682D206BCE4;
+	Fri, 15 Nov 2024 13:22:42 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1682D206BCE4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1731705762;
+	bh=Q64Lap8gGilYnZS8wBYuXVtg6CkDWFgIDR5hpRb/qKY=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=TpPSBC6Q0pyCMIPKcOfsvZX/wWIHu4+ejmKY8xw+0GecDvIAUfgwshz01AoOkZ0WD
+	 k4gHIei/egZSo7W0NlMAlHYHatQ5bzRsbZtX1NOQvIcE9aFKMDcUHtqmglM484AIGB
+	 /3Fdhfw7EN1qT/zCvUp8095p9P9VmicZ+TZgDM0I=
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+Date: Fri, 15 Nov 2024 21:22:31 +0000
+Subject: [PATCH 01/22] netfilter: conntrack: Cleanup timeout definitions
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:pwyqY3e1MhscOhAPtxpOu0sY4CrEDca80mRkLI0uTcwj8mE8yR1
- HgbKSZfFEPhekrbvn6X+r52tVE8xaAPU/2l+sbEl8WASKM+g/wnzN/R/Wt7bFtKK7baVQxc
- oIOTGcO6vvESiOUa5qzqpB+4dEjUDBNYlFyU2F7dmYeO3BQ6uTANOdMfaywsIwCNbL7nSv/
- LhVnaop9kLpi2h0tWK4uw==
-UI-OutboundReport: notjunk:1;M01:P0:xzJGK+1nOXc=;WhWSyv2puPw1QdjeHqcI3LLnkik
- PR3UDwXyPxLzngnOs63DG1hMAeinlnHWVX/Clq3Va+iQYVgpMyh9d4Bv+dOEy+ujYD6UQwXPN
- D5viYcTMpQBMC6+zbE0OAKu8Ydnh05hZZ/IrlnUByrB67R8QaMXswDNFrgLKjhlwZBWl8YEIz
- UotoI0S9dXnxeOC64xIww0a83EKa4IAIxhn7h9sm4A32SGhR9oPvm4JAEehwQaXjiFkJuO6ks
- OzaaL47/RtRBEu0jP5AAQODBSz70ZFEqW1Xy3LPA+7DGgJiYEdTN4ndRp4FW2/1rZhHvs1Scg
- w+wdvmMWnixxxfZyfgrYBSePzm4nlI83UCNiDToec8U7Lu5j3Fu/ZtTls+KSaGNBVFbbBM/OD
- UwwisqH1Gxo41isjrFNbrNcD4HL4en4+JEVThnFU+xYbwJtKG2Kce96xs1AuwjxbAKlBvlkV/
- o8E+IY5y4L/utlKjrjedCcVi7eo0/kB7JnYJcCS0NAmEA25QL57tjfdrS5Ltkv4Fdu/l6yhVo
- w50FMFroEI5eVyxcxLwKHomFSqXZU3s/WnuBzRdeJGKophxBLp1Pcd9sLcCb88M917uWCqRBd
- jFLf1BkTYHzVzhSDNQDKVXWszYC7fVV1UWXYARAZh1UhjV+VnRiU5FJ4K60wmI8wsgekYt9Cu
- D9ohiZqFOhONx47wN3rHq0nnW7oBRwwC8/Gv5Eh3U9mMphrTp+y48rbTuRKQ0rWDCPgL2TGoG
- qxbHqaPD4a17gFyf3IxJBmLIXeMA+e9SVg9ucBWVHonj0/s6DgADHWwerxJLHk7JCBmjk1YfK
- 0WkBRfYK9Bq/46TqtlE2LQKMZHdAJHyX2a5usChiBhchD6oGgAYuCJEa28+w/Ua3VStFZbQNj
- I5Mygi4S/TZoAwhm/KDt3yM7oIL7OifgW914=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241115-converge-secs-to-jiffies-v1-1-19aadc34941b@linux.microsoft.com>
+References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
+To: Pablo Neira Ayuso <pablo@netfilter.org>, 
+ Jozsef Kadlecsik <kadlec@netfilter.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Simon Horman <horms@kernel.org>, Julia Lawall <Julia.Lawall@inria.fr>, 
+ Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>, 
+ Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Russell King <linux@armlinux.org.uk>, Heiko Carstens <hca@linux.ibm.com>, 
+ Vasily Gorbik <gor@linux.ibm.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Christian Borntraeger <borntraeger@linux.ibm.com>, 
+ Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>, 
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Jeroen de Borst <jeroendb@google.com>, 
+ Praveen Kaligineedi <pkaligineedi@google.com>, 
+ Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ James Smart <james.smart@broadcom.com>, 
+ Dick Kennedy <dick.kennedy@broadcom.com>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ =?utf-8?q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>, 
+ Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>, 
+ Jeff Johnson <jjohnson@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Jack Wang <jinpu.wang@cloud.ionos.com>, 
+ Marcel Holtmann <marcel@holtmann.org>, 
+ Johan Hedberg <johan.hedberg@gmail.com>, 
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>, 
+ Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+ Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>, 
+ Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Lucas Stach <l.stach@pengutronix.de>, 
+ Russell King <linux+etnaviv@armlinux.org.uk>, 
+ Christian Gmeiner <christian.gmeiner@gmail.com>, 
+ Louis Peens <louis.peens@corigine.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>
+Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org, 
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, cocci@inria.fr, 
+ linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org, 
+ linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ ath11k@lists.infradead.org, linux-mm@kvack.org, 
+ linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev, 
+ linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org, 
+ live-patching@vger.kernel.org, linux-sound@vger.kernel.org, 
+ etnaviv@lists.freedesktop.org, oss-drivers@corigine.com, 
+ linuxppc-dev@lists.ozlabs.org, 
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Easwar Hariharan <eahariha@linux.microsoft.com>
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241114_233543_994415_37ACD5F2 
-X-CRM114-Status: UNSURE (   3.19  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241115_132243_417719_C42FE418 
+X-CRM114-Status: GOOD (  11.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,24 +129,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dear maintainers,
+None of the higher order definitions are used anymore, so remove
+definitions for minutes, hours, and days timeouts. Convert the seconds
+denominated timeouts to secs_to_jiffies()
 
-it seems for v6.11 the patch making hibernation possible with ath11k
-was reverted again (in commit 2f833e8948). This broke hibernation for
-me. Is there a plan to re-introduce it? With reverting the revert on
-top of v6.12-rc7 hibernation works fine for me with a
+Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+---
+ net/netfilter/nf_conntrack_proto_sctp.c | 21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
 
-$ lspci -nn
-02:00.0 Network controller [0280]: Qualcomm Technologies, Inc QCNFA765
-Wireless Network Adapter [17cb:1103] (rev 01)
+diff --git a/net/netfilter/nf_conntrack_proto_sctp.c b/net/netfilter/nf_conntrack_proto_sctp.c
+index 4cc97f971264ed779434ab4597dd0162586b3736..6c95ac96fa42a39acafb5b88a7cf8898010e911c 100644
+--- a/net/netfilter/nf_conntrack_proto_sctp.c
++++ b/net/netfilter/nf_conntrack_proto_sctp.c
+@@ -39,20 +39,15 @@ static const char *const sctp_conntrack_names[] = {
+ 	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= "HEARTBEAT_SENT",
+ };
+ 
+-#define SECS  * HZ
+-#define MINS  * 60 SECS
+-#define HOURS * 60 MINS
+-#define DAYS  * 24 HOURS
+-
+ static const unsigned int sctp_timeouts[SCTP_CONNTRACK_MAX] = {
+-	[SCTP_CONNTRACK_CLOSED]			= 10 SECS,
+-	[SCTP_CONNTRACK_COOKIE_WAIT]		= 3 SECS,
+-	[SCTP_CONNTRACK_COOKIE_ECHOED]		= 3 SECS,
+-	[SCTP_CONNTRACK_ESTABLISHED]		= 210 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= 3 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= 3 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= 3 SECS,
+-	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= 30 SECS,
++	[SCTP_CONNTRACK_CLOSED]			= secs_to_jiffies(10),
++	[SCTP_CONNTRACK_COOKIE_WAIT]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_COOKIE_ECHOED]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_ESTABLISHED]		= secs_to_jiffies(210),
++	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= secs_to_jiffies(3),
+ };
+ 
+ #define	SCTP_FLAG_HEARTBEAT_VTAG_FAILED	1
 
-in a Thinkpad T14 G4.
+-- 
+2.34.1
 
-
-Best regards,
-Julian Wollrath
-
-=2D-
- ()  ascii ribbon campaign - against html e-mail
- /\                        - against proprietary attachments
 
