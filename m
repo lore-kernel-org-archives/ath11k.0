@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44898D68BE6
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:23:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD4CD68BDD
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:23:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DChbJW+DaqGHGWE0sMF41tmxT4FReQ1FKA/KDyHL32Y=; b=ZBSoEs6+O8wIEE5oxtOWjvtu6n
-	EfRKwAyBrxRv++AmWy++LMCxXGu2GNy87YX53JNqUXPKanPqgtoo6oqWuaRJ9CEKs83HYXmCq4Wuy
-	N1RkZmtv8Ubv9NlPEo/AUqEBlXu+Pq/I45yp3VCI2+ABfTvbf9AH72MjUFTPiN+NE8JIQJBtb7dSl
-	EwcT5IsDTfNm9QkJ2zwh4QRmBqAyQOeQIowhG0huz9h7SqUTLzW6KWKG1amk5nH4bqlwcsQsn+2Lx
-	2Duy7l63U4V+l2Z1ZLasGT32P2uUvbMflwtzRKBjAVENgGFthRK5FOVOosy9/O2GYTe5KPgQw16sa
-	p4Mi+XzQ==;
+	bh=94UWkQUgIE+TIBJCr3TB9bjXju243wFFlCrw1pjugTo=; b=IcXZNjU6AbIIO896TtYaTQUUiX
+	DuudGt1F7jLZ2BlIFJDQU+xnOKZO8TshVXAUiIocJzDkc93vhAfBC1KgmNUoL94phgHioWc1QXse+
+	IuKk69RvAXuHW1SBfk08A5Be0KkCMzUN0gyBTTWNypG/WwV5bEZZMILiBBF+LEZWRD5LRW3TIV3vY
+	85yVg5yd3VO3H7/a8qzvDEsJe3IlNvzlY9xtZuqXciSZ0UEOWECy4iO80R56jej3gg1iW5wJZsLDi
+	rYlArR2DgsKQyQicdouqbgQQlTndGnsQ+0KAs5nnq6AZFi4D6xd5ua1fVSh9nhmsOTGLII/Cxg5Zx
+	QeYQF0Cg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mh-00000004B9r-3Nl1;
-	Fri, 15 Nov 2024 21:23:19 +0000
+	id 1tC3mk-00000004BEi-2562;
+	Fri, 15 Nov 2024 21:23:22 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mI-00000004ACt-1fPP;
-	Fri, 15 Nov 2024 21:22:57 +0000
+	id 1tC3mJ-00000004A9b-1Gqs;
+	Fri, 15 Nov 2024 21:22:59 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 06C52206BCEC;
+	by linux.microsoft.com (Postfix) with ESMTPSA id 391A4206BCED;
 	Fri, 15 Nov 2024 13:22:46 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 06C52206BCEC
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 391A4206BCED
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1731705766;
-	bh=DChbJW+DaqGHGWE0sMF41tmxT4FReQ1FKA/KDyHL32Y=;
+	bh=94UWkQUgIE+TIBJCr3TB9bjXju243wFFlCrw1pjugTo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=hyUr4x0SmruhyF9c/vR8v3QoqKPaKNqXRHaN80CQA/ABgyerOHG1uC/FlE1BJG1ZJ
-	 CRMPkjTTeOQg/xepSHO+SvOjz7TT6Fsw5oiwX3exTqn3S8Lu3Gz0gW082RgBKg6fy9
-	 2WD2Rqjpa40SDuhEDGd3pTV1EDPYLPZRKnHzJ7/U=
+	b=SFgsUzV2pr+7sgkN9ckclI41KlvZ5rbgTJNvcYfQiJkXt/zfibxMELK/nTIaeiHDO
+	 ea+s5uVXRp6XFAaIO7MmvRCgTW3Xe5hl6IpUNHPKOVjiYfv0tTkJJCNkRHRjEL8vOu
+	 pgAUpMsv2jfhmvY7krwkZWjWRsRmTp18YKKkcVMM=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:49 +0000
-Subject: [PATCH 19/22] livepatch: Convert timeouts to secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:22:50 +0000
+Subject: [PATCH 20/22] ALSA: line6: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-19-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-20-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -113,8 +113,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132254_600155_33D3CECC 
-X-CRM114-Status: GOOD (  14.00  )
+X-CRM114-CacheID: sfid-20241115_132255_581151_8C5D8BF9 
+X-CRM114-Status: GOOD (  12.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,78 +143,22 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- samples/livepatch/livepatch-callbacks-busymod.c |  2 +-
- samples/livepatch/livepatch-shadow-fix1.c       |  2 +-
- samples/livepatch/livepatch-shadow-mod.c        | 10 +++++-----
- 3 files changed, 7 insertions(+), 7 deletions(-)
+ sound/usb/line6/toneport.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/samples/livepatch/livepatch-callbacks-busymod.c b/samples/livepatch/livepatch-callbacks-busymod.c
-index 378e2d40271a9717d09eff51d3d3612c679736fc..d0fd801a7c21b7d7939c29d83f9d993badcc9aba 100644
---- a/samples/livepatch/livepatch-callbacks-busymod.c
-+++ b/samples/livepatch/livepatch-callbacks-busymod.c
-@@ -45,7 +45,7 @@ static int livepatch_callbacks_mod_init(void)
- {
- 	pr_info("%s\n", __func__);
- 	schedule_delayed_work(&work,
--		msecs_to_jiffies(1000 * 0));
-+		secs_to_jiffies(0));
+diff --git a/sound/usb/line6/toneport.c b/sound/usb/line6/toneport.c
+index ca2c6f5de407ece21ab69a39ed603e3f10069039..c073b38cd6738176fc6a276d05ed553526573341 100644
+--- a/sound/usb/line6/toneport.c
++++ b/sound/usb/line6/toneport.c
+@@ -386,7 +386,7 @@ static int toneport_setup(struct usb_line6_toneport *toneport)
+ 		toneport_update_led(toneport);
+ 
+ 	schedule_delayed_work(&toneport->line6.startup_work,
+-			      msecs_to_jiffies(TONEPORT_PCM_DELAY * 1000));
++			      secs_to_jiffies(TONEPORT_PCM_DELAY));
  	return 0;
  }
  
-diff --git a/samples/livepatch/livepatch-shadow-fix1.c b/samples/livepatch/livepatch-shadow-fix1.c
-index 6701641bf12d454a770e49abeeb0dea92560e55e..948ea1f5760fed2fa27baf478c97cf98ad5c99a8 100644
---- a/samples/livepatch/livepatch-shadow-fix1.c
-+++ b/samples/livepatch/livepatch-shadow-fix1.c
-@@ -73,7 +73,7 @@ static struct dummy *livepatch_fix1_dummy_alloc(void)
- 		return NULL;
- 
- 	d->jiffies_expire = jiffies +
--		msecs_to_jiffies(1000 * EXPIRE_PERIOD);
-+		secs_to_jiffies(EXPIRE_PERIOD);
- 
- 	/*
- 	 * Patch: save the extra memory location into a SV_LEAK shadow
-diff --git a/samples/livepatch/livepatch-shadow-mod.c b/samples/livepatch/livepatch-shadow-mod.c
-index 7e753b0d2fa611524c9e2adbe02c8fa3e9b6015e..79296e6ccb119f521e86a121623855d841c9fc5e 100644
---- a/samples/livepatch/livepatch-shadow-mod.c
-+++ b/samples/livepatch/livepatch-shadow-mod.c
-@@ -102,7 +102,7 @@ static __used noinline struct dummy *dummy_alloc(void)
- 		return NULL;
- 
- 	d->jiffies_expire = jiffies +
--		msecs_to_jiffies(1000 * EXPIRE_PERIOD);
-+		secs_to_jiffies(EXPIRE_PERIOD);
- 
- 	/* Oops, forgot to save leak! */
- 	leak = kzalloc(sizeof(*leak), GFP_KERNEL);
-@@ -153,7 +153,7 @@ static void alloc_work_func(struct work_struct *work)
- 	mutex_unlock(&dummy_list_mutex);
- 
- 	schedule_delayed_work(&alloc_dwork,
--		msecs_to_jiffies(1000 * ALLOC_PERIOD));
-+		secs_to_jiffies(ALLOC_PERIOD));
- }
- 
- /*
-@@ -185,15 +185,15 @@ static void cleanup_work_func(struct work_struct *work)
- 	mutex_unlock(&dummy_list_mutex);
- 
- 	schedule_delayed_work(&cleanup_dwork,
--		msecs_to_jiffies(1000 * CLEANUP_PERIOD));
-+		secs_to_jiffies(CLEANUP_PERIOD));
- }
- 
- static int livepatch_shadow_mod_init(void)
- {
- 	schedule_delayed_work(&alloc_dwork,
--		msecs_to_jiffies(1000 * ALLOC_PERIOD));
-+		secs_to_jiffies(ALLOC_PERIOD));
- 	schedule_delayed_work(&cleanup_dwork,
--		msecs_to_jiffies(1000 * CLEANUP_PERIOD));
-+		secs_to_jiffies(CLEANUP_PERIOD));
- 
- 	return 0;
- }
 
 -- 
 2.34.1
