@@ -4,89 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB85FD6A223
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 01:46:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60DEDD6DDE0
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 07:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=q9Fz3HBPIyx05z4I6SuREAeYSEoayi9WTKBak/CTD9A=; b=ZfHdtf9Sc6Mh1uM5smHkiuG1gh
-	6/qCrBoy1La+PSvx0t9ZCzaJpazRiD8Ym6COhSpree1yd8UXE2gyAx3xmQldtNGPqV6xLIdICgYCL
-	5SoYU57QJ7QpQfrR8Cm2L0efifX81WgFaNpFE/XyjM2mwQUJ1nsEH+otjO4q3ByQrrJBST2CqmQUH
-	H5ycfjV4LE6DvCK5Hrsaxww0fOtTMBzl/3IhBnw5wbObFCejTUdjCqhkVCzJVBKxEpmidK4bu/O3q
-	0yVhmn3TDs7jXxSe0WaO+kwyS+OCzgRHREzYX46zzlcn+KcaLGfsDk2CgXr3r9EOjukJe2qNM4HJi
-	ZBFdEcAg==;
+	Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=54+25EjLq0hNb3xuFLRlZur8gY9OKjhNExloSKR8JN8=; b=eoMvam1hZmdp8gGKp978ln5xUd
+	rYlv3c2rFQIwdUBxi6bAiDgzlILTHZUKVVNk7hmvtpLZJ+dEY5JpQ7cC3tL62W4KMPt96k5sU3Pm6
+	eCkd8GpEhb2ipBcB/LwWpCD3pkDco+EtgCX5AeenJ1JWqeXZA6mQ9JR3aa3ckuIMdtXsPYzZKfxHB
+	e1F3XM4Ev1Etsh9lAL5dLsGmfz4UXUkoCNwRdrN+rdLcs2cEfgPFO0iqVfgdKecAm6HUpiYIcvsKH
+	pDanWgD+Eg0Y6QkZvWygwR0vfeWRxJLsUPW2m0AIAYy++hgQe16qgCekxhxe+SiIdB2sGEwwjfMGV
+	R4KK7+jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBlPy-00000001Kub-2Zdm;
-	Fri, 15 Nov 2024 01:46:38 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tBqrq-00000001wBj-3sUw;
+	Fri, 15 Nov 2024 07:35:46 +0000
+Received: from mout.web.de ([212.227.15.4])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBlPZ-00000001KqF-0Qa2
+	id 1tBqrn-00000001wB4-2Uy5
 	for ath11k@lists.infradead.org;
-	Fri, 15 Nov 2024 01:46:14 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF1hwNp017656;
-	Fri, 15 Nov 2024 01:46:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	q9Fz3HBPIyx05z4I6SuREAeYSEoayi9WTKBak/CTD9A=; b=IqesY7QKswFXwAms
-	uxf29/Z6h8BYV2LXrM2sy8Tz/xXWHX4MFCM+F/qCnJVYHqixlzwoKSjhXAtwXMsJ
-	lCRzZmvjFWSfg9EMsLtrvwfCPYCOh7nbkSnmW9nMyCiqtj1xiCZX4IO/xbyrXYLq
-	lDqq+bQdkAUUuElmnARprUlb2tnoWy22Yb5mBbGUKzuqaDtFX3SPUy3ze9NGFA3H
-	cWhVPliSSH0pd8wIAIr5+tKoFWlHPP6rON9z7Mk4YCXn9nZg+wa2nrOY93+haEfY
-	o52RksvxbAIvZFsVMTABizcY5H4qiw/EaNZtYQJRHTXFkwf9iJsDVr7W2bLX5bi8
-	AHx8mw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42wvw2g0db-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 01:46:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AF1k8Sm017830
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 01:46:08 GMT
-Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 14 Nov
- 2024 17:46:07 -0800
-Message-ID: <b64fdc5d-3c58-4976-b9e8-a51870f89e4c@quicinc.com>
-Date: Fri, 15 Nov 2024 09:46:06 +0800
+	Fri, 15 Nov 2024 07:35:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1731656139; x=1732260939; i=jwollrath@web.de;
+	bh=54+25EjLq0hNb3xuFLRlZur8gY9OKjhNExloSKR8JN8=;
+	h=X-UI-Sender-Class:Date:From:To:Subject:Message-ID:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=k0fMcZGeFjXCNViTvk0xUDALXebNGaFu/5G8j/05jxQfHA9kw+fGMSC6k1sO9t+n
+	 9ImCv+HAePKYChDc8s8FB5/SqCk24GGXUHWb9W68N0YlBNq7H0Kqq++qM1K+DbT+c
+	 8mOYNgi3oEp8BR75Kf7Ge8OFuo4HX/OY2HgDCgfv/bW4XpinkO8ruqplGH++G7JRf
+	 ik49bilFLGndIcMQW9aYkob8jUEwiF5g4w+HqJGNTdkdXbAUJ/atEIDz7E+NfjaFl
+	 GVGtLeGhGiLZDShFKRphzDV7lD7JWV3bzwzVE6YcucgYF75Pyyao9zqINhz9SXK1Q
+	 Ab2/xqduzrKdym7JCQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from mayene ([194.12.155.5]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MGxMN-1syKLo2DGl-00CGLV for
+ <ath11k@lists.infradead.org>; Fri, 15 Nov 2024 08:35:39 +0100
+Date: Fri, 15 Nov 2024 08:35:37 +0100
+From: Julian Wollrath <jwollrath@web.de>
+To: ath11k@lists.infradead.org
+Subject: ath11k hibernation broken since v6.11
+Message-ID: <20241115083537.6a5681ad@mayene>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] wifi: ath11k: move some firmware stats related
- functions outside of debugfs
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20241113015631.3105-1-quic_bqiang@quicinc.com>
- <20241113015631.3105-4-quic_bqiang@quicinc.com> <8734jv2xnd.fsf@kernel.org>
- <7917a344-82aa-4ef8-9558-554743c5dd15@quicinc.com>
- <878qtm1236.fsf@kernel.org>
-Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <878qtm1236.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -moXrxo143oR4Ohtf3HD70tc9FkfdSPy
-X-Proofpoint-GUID: -moXrxo143oR4Ohtf3HD70tc9FkfdSPy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=872
- malwarescore=0 adultscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 phishscore=0 bulkscore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411150013
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:pwyqY3e1MhscOhAPtxpOu0sY4CrEDca80mRkLI0uTcwj8mE8yR1
+ HgbKSZfFEPhekrbvn6X+r52tVE8xaAPU/2l+sbEl8WASKM+g/wnzN/R/Wt7bFtKK7baVQxc
+ oIOTGcO6vvESiOUa5qzqpB+4dEjUDBNYlFyU2F7dmYeO3BQ6uTANOdMfaywsIwCNbL7nSv/
+ LhVnaop9kLpi2h0tWK4uw==
+UI-OutboundReport: notjunk:1;M01:P0:xzJGK+1nOXc=;WhWSyv2puPw1QdjeHqcI3LLnkik
+ PR3UDwXyPxLzngnOs63DG1hMAeinlnHWVX/Clq3Va+iQYVgpMyh9d4Bv+dOEy+ujYD6UQwXPN
+ D5viYcTMpQBMC6+zbE0OAKu8Ydnh05hZZ/IrlnUByrB67R8QaMXswDNFrgLKjhlwZBWl8YEIz
+ UotoI0S9dXnxeOC64xIww0a83EKa4IAIxhn7h9sm4A32SGhR9oPvm4JAEehwQaXjiFkJuO6ks
+ OzaaL47/RtRBEu0jP5AAQODBSz70ZFEqW1Xy3LPA+7DGgJiYEdTN4ndRp4FW2/1rZhHvs1Scg
+ w+wdvmMWnixxxfZyfgrYBSePzm4nlI83UCNiDToec8U7Lu5j3Fu/ZtTls+KSaGNBVFbbBM/OD
+ UwwisqH1Gxo41isjrFNbrNcD4HL4en4+JEVThnFU+xYbwJtKG2Kce96xs1AuwjxbAKlBvlkV/
+ o8E+IY5y4L/utlKjrjedCcVi7eo0/kB7JnYJcCS0NAmEA25QL57tjfdrS5Ltkv4Fdu/l6yhVo
+ w50FMFroEI5eVyxcxLwKHomFSqXZU3s/WnuBzRdeJGKophxBLp1Pcd9sLcCb88M917uWCqRBd
+ jFLf1BkTYHzVzhSDNQDKVXWszYC7fVV1UWXYARAZh1UhjV+VnRiU5FJ4K60wmI8wsgekYt9Cu
+ D9ohiZqFOhONx47wN3rHq0nnW7oBRwwC8/Gv5Eh3U9mMphrTp+y48rbTuRKQ0rWDCPgL2TGoG
+ qxbHqaPD4a17gFyf3IxJBmLIXeMA+e9SVg9ucBWVHonj0/s6DgADHWwerxJLHk7JCBmjk1YfK
+ 0WkBRfYK9Bq/46TqtlE2LQKMZHdAJHyX2a5usChiBhchD6oGgAYuCJEa28+w/Ua3VStFZbQNj
+ I5Mygi4S/TZoAwhm/KDt3yM7oIL7OifgW914=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241114_174613_267942_5968BFBD 
-X-CRM114-Status: GOOD (  11.31  )
+X-CRM114-CacheID: sfid-20241114_233543_994415_37ACD5F2 
+X-CRM114-Status: UNSURE (   3.19  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,35 +88,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Dear maintainers,
+
+it seems for v6.11 the patch making hibernation possible with ath11k
+was reverted again (in commit 2f833e8948). This broke hibernation for
+me. Is there a plan to re-introduce it? With reverting the revert on
+top of v6.12-rc7 hibernation works fine for me with a
+
+$ lspci -nn
+02:00.0 Network controller [0280]: Qualcomm Technologies, Inc QCNFA765
+Wireless Network Adapter [17cb:1103] (rev 01)
+
+in a Thinkpad T14 G4.
 
 
-On 11/14/2024 7:34 PM, Kalle Valo wrote:
-> Baochen Qiang <quic_bqiang@quicinc.com> writes:
-> 
->> On 11/13/2024 7:14 PM, Kalle Valo wrote:
->>> Baochen Qiang <quic_bqiang@quicinc.com> writes:
->>>
->>>> Commit b488c766442f ("ath11k: report rssi of each chain to mac80211 for QCA6390/WCN6855")
->>>> and commit c3b39553fc77 ("ath11k: add signal report to mac80211 for QCA6390 and WCN6855")
->>>> call debugfs functions in mac ops. Those functions are no-ops if CONFIG_ATH11K_DEBUGFS is
->>>> not enabled, thus cause wrong status reported.
->>>
->>> What do you mean exactly with wrong status reported?
->>
->> ah, thanks for pointing that. actually no wrong values reported, since
->> we are not even reporting anything in that case. will be accurate.
->>
->>>
->>> mac.c is quite large already, making it even bigger is something I would
->>> like to avoid.
->>
->> then can you suggest any other place?
-> 
-> I first need to understand the issue we are fixing. Is it ath11k does
-> not report rssi and signal via ath11k_mac_op_sta_statistics() when
-> CONFIG_ATH11K_DEBUGFS is disabled?
-Yes, Kalle. If CONFIG_ATH11K_DEBUGFS is disabled, ath11k_debugfs_get_fw_stats() is a no-ops, so no WMI command sent to firmware, thus no WMI event and therefore ath11k does not report them.
+Best regards,
+Julian Wollrath
 
-> 
-
+=2D-
+ ()  ascii ribbon campaign - against html e-mail
+ /\                        - against proprietary attachments
 
