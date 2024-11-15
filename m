@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1824ED68BE8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECF69D68BE2
 	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:23:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,39 +12,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kyIMdoD81WSCHIuRs3t1IxAuP6vGJ5R59VD+r/6KKK0=; b=urpLFioDz9dpywsw6AC8EYUrUg
-	kiHmX54ZB829rqyMpndB5fIRqaw3EM3bYKXQr03QdQWr2QwUQtxFCBFd59g4vbUkYEtHUHKSYTAT5
-	7g74EG3pr+VFYCzjnQzWM7zu58bLwfCG+vgapBjpQthGY3YKaqO9iUAgqmTuuvxt/EVncQInxkWlR
-	G5Ypi4uCPdvj2xNDDA7oLuEyA8eRC5knBdCbg3xW7Auo2JoO4IZlLbFVDnAWz5HdqjlSZYUM6QEFN
-	6g0RjGercNo245sgcZmq2ris04plyJ4vDPM4Fe/cwgn3NEUIVh5EhhZ5AUbwAjDKYLZjJBSHjHPmT
-	HTeV8CmA==;
+	bh=7RgevXzVOF2wd0QHaqg8sKSXBh3tNnxEZNLAJYHO4/0=; b=f0YT5MkXifzN1QyfafLYVZSz1s
+	3zGugJIc7KAWOXzpSQWCnuZofL++V88/ewO86R00fceT89motjTkLIAoH316oKM8YqWtsyKdF+lLQ
+	Sb3EbUpllmeud8TArpfnpviYzUiWcObaAo/T8IdD+Y4ldKErS8SmjwmxMmQrvkcs60ssl9pvHhm6e
+	+mcBebFoV2weJ8EgkP7Hu0gNbDJPjRqVs/ZXH+sMyAKmEwwyAnrc64h6pHTzNNStXD8chIVOHFMwe
+	c9D8P0JMvZIfZ5B9gvcUDUDmnVRTl9AUwfZZFH2W6F3hM/9KG6t+Hn9GWoo6e6yt0/n21wtzmoxAF
+	NMzeNZEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mf-00000004B5z-3M1B;
-	Fri, 15 Nov 2024 21:23:17 +0000
+	id 1tC3mg-00000004B7R-2Ahx;
+	Fri, 15 Nov 2024 21:23:18 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mH-00000004AM6-1wjm;
-	Fri, 15 Nov 2024 21:22:55 +0000
+	id 1tC3mH-00000004A7c-32Mm;
+	Fri, 15 Nov 2024 21:22:56 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 88E5C20BEBD8;
+	by linux.microsoft.com (Postfix) with ESMTPSA id C5D5B20BEBF7;
 	Fri, 15 Nov 2024 13:22:45 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 88E5C20BEBD8
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C5D5B20BEBF7
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1731705765;
-	bh=kyIMdoD81WSCHIuRs3t1IxAuP6vGJ5R59VD+r/6KKK0=;
+	bh=7RgevXzVOF2wd0QHaqg8sKSXBh3tNnxEZNLAJYHO4/0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=hCMeIw/D2+NTRMQJ3FRDpZj2qT/7FbCaDMS9+XIuVvW9RIzS37PIUIxd4jF3sKpOq
-	 ONruuQqONZh6MCBIYTovcefPeKanNMMCVBGfAbtnor6PdXfG/kDS1Iyd6np+7CKiaV
-	 BV9SmXmoDsx8kPuPU+1F4sBj6APCWtu0lORTDJ94=
+	b=LFvj1omrNM0zZtGffox7sgW5nc9dJZdVTA81Dj/wcPv/4s/wuIVOvUvfZbveDvw4y
+	 FuotwM7kePQ1S+NtqBMYs5hCFuKfxjTKCfLm2hLOBes2vr8zw1wp6TV7hkDlej16jx
+	 Fb+baeYINJlZ9BwwcItDzf5jhfC0bccWbyd+vUuI=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:47 +0000
-Subject: [PATCH 17/22] staging: vc04_services: Convert timeouts to
- secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:22:48 +0000
+Subject: [PATCH 18/22] ceph: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-17-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-18-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +113,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132253_644303_B219EF00 
-X-CRM114-Status: GOOD (  12.61  )
+X-CRM114-CacheID: sfid-20241115_132253_904137_E7472CA6 
+X-CRM114-Status: GOOD (  13.40  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,22 +143,22 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c | 2 +-
+ fs/ceph/quota.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c b/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-index 133ed15f3dbcc07dc353c22d8522e11a08ee6f46..6bb2562e071c4e623e51852860c682e047f823df 100644
---- a/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-+++ b/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-@@ -59,7 +59,7 @@ static int bcm2835_audio_send_msg_locked(struct bcm2835_audio_instance *instance
- 
- 	if (wait) {
- 		if (!wait_for_completion_timeout(&instance->msg_avail_comp,
--						 msecs_to_jiffies(10 * 1000))) {
-+						 secs_to_jiffies(10))) {
- 			dev_err(instance->dev,
- 				"vchi message timeout, msg=%d\n", m->type);
- 			return -ETIMEDOUT;
+diff --git a/fs/ceph/quota.c b/fs/ceph/quota.c
+index 06ee397e0c3a6172592e62dba95cd267cfff0db1..d90eda19bcc4618f98bfed833c10a6071cf2e2ac 100644
+--- a/fs/ceph/quota.c
++++ b/fs/ceph/quota.c
+@@ -166,7 +166,7 @@ static struct inode *lookup_quotarealm_inode(struct ceph_mds_client *mdsc,
+ 	if (IS_ERR(in)) {
+ 		doutc(cl, "Can't lookup inode %llx (err: %ld)\n", realm->ino,
+ 		      PTR_ERR(in));
+-		qri->timeout = jiffies + msecs_to_jiffies(60 * 1000); /* XXX */
++		qri->timeout = jiffies + secs_to_jiffies(60); /* XXX */
+ 	} else {
+ 		qri->timeout = 0;
+ 		qri->inode = in;
 
 -- 
 2.34.1
