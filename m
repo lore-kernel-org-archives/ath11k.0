@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD0CBD68BE6
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B59CCD68BEC
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:22:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2qNmVTIUPIQHjxG6U+oz3oOJorUpDTvltiEua1kgDGM=; b=kwBsH3/tWpwrjDrVkTgI7xVYm/
-	CPGl+im94dOLNbcgkEEyUepn7qxDwYgG0X4df7mWmuVOB1PG9bcHXCWcvEYHcHVEbKcJEUC7Jye5U
-	EKZr77moRQJQ9JXicygxzxkrymh0AJTPtiw25kHfkoXtRhk9ZUL4QLribn7AfHV/WePHBchCfVT8m
-	uOwUavdAiZojNqDLsQfO+ac1rFm7vIGQ3DQt0zWhye6shVeysqYFT64JyBiTQi3WyES/yI79y0EWu
-	02PpR7gAEEqgDLlsIwS/TXYPwUKx6+6hxXBBi63iCkyxd38jmeAZnoNnCgxoOAqfzEOoZTO+viLPi
-	9lbAf3pA==;
+	bh=uwqJCSe3GXdPjGHghPvDBfnEwZdT0uYA3z4HTDFu1hA=; b=tVPGZpjQVqtfFzD8xbAKOZ5X4a
+	4DD0qxxjgN8Olu22SJCsAeLuU684AzlFnGkTj9RMpSPKDO8aoVtZFUiV3cUpynZpEyIbDaSPkfiQl
+	1h69mYuV8pVMAgEXNkwyt2w3vuhEahoJxzUb5CuXFMgi3ZmTFazYKfe2mYYHuaaB8G2rTAbRv0rgq
+	PZimuq2OsnkxN/5YpKKTGCe8J25m7odkgGs8iMoZUvDUrpiZBvMcpicmGtmk4FT2VsJBJnxqdzPb0
+	61lGC6C+/EOqYFSgh8+Jcq6+aqVz8AAKARgugmQ0MZxysgnYcfJxonkmcqZeh2JA1x/iIYi13JyTh
+	fR7QnhKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mH-00000004ANM-43Jv;
-	Fri, 15 Nov 2024 21:22:53 +0000
+	id 1tC3mL-00000004AVM-2ZuP;
+	Fri, 15 Nov 2024 21:22:57 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3m9-00000004A7c-0onM;
+	id 1tC3m9-00000004A8B-2vqu;
 	Fri, 15 Nov 2024 21:22:46 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id ADD5A206BCE7;
+	by linux.microsoft.com (Postfix) with ESMTPSA id E451D206BCE8;
 	Fri, 15 Nov 2024 13:22:42 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com ADD5A206BCE7
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E451D206BCE8
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1731705762;
-	bh=2qNmVTIUPIQHjxG6U+oz3oOJorUpDTvltiEua1kgDGM=;
+	s=default; t=1731705763;
+	bh=uwqJCSe3GXdPjGHghPvDBfnEwZdT0uYA3z4HTDFu1hA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=jwtdE59vuxdQNE0RiS/g1dZX+uqTWG/w9IblshEquJbSzhtkY3Zk6fbDpk+PaYqJ3
-	 QDyNOhOWd9ZJoQqLoj3N42Lk4lBijUYlMVpBY8G/XYg13FKv7CiQTz5tjAvkJe5Ryj
-	 q0FRAVEgJKXl2OZRO71N5d2wqJQesfADXbZgbw84=
+	b=RVx2emb342NEz2mst6RfMUiki8VYrjbKedjHqPNNNkb4BXhLdZgldqHGBRr6S5V4l
+	 ot1jj3ag+tv5arCezMBNlcZVolqJ/kVXCKfLQi6UufSSi9gPBN5Z2YR5EAMTqKRljK
+	 uRWcAwELTERtWaAvz5gx5fAH4KPOOU/VcBtZ4kx8=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:34 +0000
-Subject: [PATCH 04/22] s390: kernel: Convert timeouts to use
+Date: Fri, 15 Nov 2024 21:22:35 +0000
+Subject: [PATCH 05/22] powerpc/papr_scm: Convert timeouts to
  secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-4-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v1-5-19aadc34941b@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +114,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132245_289104_6E1C481D 
-X-CRM114-Status: GOOD (  14.72  )
+X-CRM114-CacheID: sfid-20241115_132245_800182_C3CD07E2 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,57 +144,22 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- arch/s390/kernel/lgr.c      | 3 ++-
- arch/s390/kernel/time.c     | 4 ++--
- arch/s390/kernel/topology.c | 2 +-
- 3 files changed, 5 insertions(+), 4 deletions(-)
+ arch/powerpc/platforms/pseries/papr_scm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/s390/kernel/lgr.c b/arch/s390/kernel/lgr.c
-index 6652e54cf3db9fbdd8cfb06f8a0dc1d4c05ae7d7..68021cb38574b122bbe3d9f70e9168305360017b 100644
---- a/arch/s390/kernel/lgr.c
-+++ b/arch/s390/kernel/lgr.c
-@@ -166,7 +166,8 @@ static struct timer_list lgr_timer;
-  */
- static void lgr_timer_set(void)
- {
--	mod_timer(&lgr_timer, jiffies + msecs_to_jiffies(LGR_TIMER_INTERVAL_SECS * MSEC_PER_SEC));
-+	mod_timer(&lgr_timer,
-+		  jiffies + secs_to_jiffies(LGR_TIMER_INTERVAL_SECS));
- }
+diff --git a/arch/powerpc/platforms/pseries/papr_scm.c b/arch/powerpc/platforms/pseries/papr_scm.c
+index 9e297f88adc5d97d4dc7b267b0bfebd58e5cf193..9e8086ec66e0f0e555ac27933854c06cfcf91a04 100644
+--- a/arch/powerpc/platforms/pseries/papr_scm.c
++++ b/arch/powerpc/platforms/pseries/papr_scm.c
+@@ -543,7 +543,7 @@ static int drc_pmem_query_health(struct papr_scm_priv *p)
  
- /*
-diff --git a/arch/s390/kernel/time.c b/arch/s390/kernel/time.c
-index b713effe057967623f64da8297314fcc42ff1af2..e28c61d39d27c6e89f490e779ff674ba2fe21d3e 100644
---- a/arch/s390/kernel/time.c
-+++ b/arch/s390/kernel/time.c
-@@ -656,12 +656,12 @@ static void stp_check_leap(void)
- 		if (ret < 0)
- 			pr_err("failed to set leap second flags\n");
- 		/* arm Timer to clear leap second flags */
--		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(14400 * MSEC_PER_SEC));
-+		mod_timer(&stp_timer, jiffies + secs_to_jiffies(14400));
- 	} else {
- 		/* The day the leap second is scheduled for hasn't been reached. Retry
- 		 * in one hour.
- 		 */
--		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(3600 * MSEC_PER_SEC));
-+		mod_timer(&stp_timer, jiffies + secs_to_jiffies(3600));
- 	}
- }
+ 	/* Jiffies offset for which the health data is assumed to be same */
+ 	cache_timeout = p->lasthealth_jiffies +
+-		msecs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL * 1000);
++		secs_to_jiffies(MIN_HEALTH_QUERY_INTERVAL);
  
-diff --git a/arch/s390/kernel/topology.c b/arch/s390/kernel/topology.c
-index 813e5da9a9737e05ec3ef85a495fe38cbb40c49b..99095ff3897c1b5337f7e2abcf10f3fe8219ad7c 100644
---- a/arch/s390/kernel/topology.c
-+++ b/arch/s390/kernel/topology.c
-@@ -370,7 +370,7 @@ static void set_topology_timer(void)
- 	if (atomic_add_unless(&topology_poll, -1, 0))
- 		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(100));
- 	else
--		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(60 * MSEC_PER_SEC));
-+		mod_timer(&topology_timer, jiffies + secs_to_jiffies(60));
- }
- 
- void topology_expect_change(void)
+ 	/* Fetch new health info is its older than MIN_HEALTH_QUERY_INTERVAL */
+ 	if (time_after(jiffies, cache_timeout))
 
 -- 
 2.34.1
