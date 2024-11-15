@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59612D68BDC
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 22:30:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3163D68BDF
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 22:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=z5d0KiQ+mxHfS/dtMsbc4ttBd/lyUqPHYPOKqCM1B/M=; b=0jutWJRPdI9c8AHOBBaN+4aj4Q
-	uNoIdvulhVmTP+muwG9iMmVB62GTBrbvU2wo2tmH72LOR94xfepITBZ5cm52gy0CcikyvK5Pte31m
-	Cit3fGuJTEily/BTwA0OiH0GzVX0odBRB3FO2ak62Mce3WxtQLyicJnLTjz3dKimk97L0xymLXHlF
-	9ouyBPSJHhHTucTmADn8zuUZIHHnaotWhN51usnd9XmKKENkTzVPMKBSiBYmwy3VqaJPX1+AA1MSA
-	SWZF3SsBJUnNCicq1RszjRIkHO6I5ddZtU88CiitCMwB3V/mYj0BSUvOfydv181u7j+bkAlxlThNB
-	LlnaEEiw==;
+	bh=z5d0KiQ+mxHfS/dtMsbc4ttBd/lyUqPHYPOKqCM1B/M=; b=vOZGOmrmUqDZ0fJx7/+QYaHJhv
+	+JvHGFutm9yh13YmvnURAIBbWOJatDPPUQhKOiSS1JejXT00xkMaNMpnpsMvma5v9UVAJES89ZHOK
+	6NeLAQzrdBmbw43jVR9+iPWguFtdXzV4rwLQTS0ZBNBSIhE1ZS8YVAroZQzZXGrZx1WkmfgZCA0Nm
+	MKvWFcLZlzZscXGhRlruMk4eb0dxupWmW3B6syP/PD+9D43HNXP55+s7bilRPsrcAKm/AdS2d6uz+
+	RsG3lLgG5fesHN/xsvo87PWeRMPgHRRuhkI5HM4TVYcMzL1bCyCJe5G2OFtlriCtnvvtYWMAw1MGg
+	OnjFy7gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC4pw-00000004Q4Q-0GXK;
-	Fri, 15 Nov 2024 22:30:44 +0000
+	id 1tC4px-00000004Q5w-1pMg;
+	Fri, 15 Nov 2024 22:30:45 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3mC-00000004A7c-2BpH;
-	Fri, 15 Nov 2024 21:22:49 +0000
+	id 1tC3q2-00000004COu-0gnA;
+	Fri, 15 Nov 2024 21:26:48 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id C16E420BEBD0;
-	Fri, 15 Nov 2024 13:22:43 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C16E420BEBD0
+	by linux.microsoft.com (Postfix) with ESMTPSA id 17E88206BCFE;
+	Fri, 15 Nov 2024 13:26:43 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 17E88206BCFE
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1731705763;
+	s=default; t=1731706003;
 	bh=z5d0KiQ+mxHfS/dtMsbc4ttBd/lyUqPHYPOKqCM1B/M=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=VBP5tE+91MUeXr01PKBwol/kwfSOvrGFcon5R6GLvth1r2SEL/vDLGmoM3VztkA/D
-	 HDCC8H4UjO/VDL4my3JCQHRpPk1aNqcxHWoN43qx7hLXlHFWnlfQU1gMcNN2K2LO5S
-	 3qBHgiY0qCMM5wc+rwKNzT/8mVMznrFpdjl06mtQ=
+	b=Qzjy8jhTqEhPkpbtMzhjO4pQ41WosaCc3rHXK7isQANvdHykkDrpnsXw2iEyDYrKZ
+	 bivctPWn2ufOhidk0VIZ+JFuRb3AziKQEhYq/E0XKlSC0nh99MCwSAdmHtPz39M16d
+	 mbtSMAjjgTqYd5iB3/X8WKQ1SIjBJafcvQ4z4Hts=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:22:39 +0000
-Subject: [PATCH 09/22] drm/etnaviv: Convert timeouts to secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:26:26 +0000
+Subject: [PATCH v2 09/21] drm/etnaviv: Convert timeouts to
+ secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v1-9-19aadc34941b@linux.microsoft.com>
-References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
-In-Reply-To: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v2-9-911fb7595e79@linux.microsoft.com>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
  Jozsef Kadlecsik <kadlec@netfilter.org>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
@@ -113,8 +114,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132248_656136_2C7C5456 
-X-CRM114-Status: GOOD (  12.10  )
+X-CRM114-CacheID: sfid-20241115_132646_327547_705CFEDB 
+X-CRM114-Status: GOOD (  12.32  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
