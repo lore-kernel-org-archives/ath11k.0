@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04695D68BF0
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:27:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D9DD68BE7
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:27:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kyIMdoD81WSCHIuRs3t1IxAuP6vGJ5R59VD+r/6KKK0=; b=do+g8HyR/gmf2ReHGFYftdvt0z
-	tzY2PqmGNQbME4Aq+44lLj/anEHXRyg2tsdPxJ4dg7XX0BCX0/RY+gtRm0jk5PyeqSHIC5rvBOFMI
-	6FU2n04PmG6YtLQwJUa0g7MecqwoGzSaw0STXEHhy7S8cKUXAu2bpq0yxslZQhXzWXQkLn+Ou35VB
-	KQGTCWpKNn0hJuTseHSDbfCtgWxpxoVmjw1JHtsHXSZf1Dv8dFDHgvqzJbIIWzRCRFt9vkNvonXUA
-	S3mgbYzMoZappce/a4JPRPQu6SCrLoR/Qq3FvuEUNt9/prZNg6L42QD9uViToNvUSVRKZh3GuYnFB
-	1wEWCwQw==;
+	bh=YTcGWD0h0ZDgyuZTU2DPl12ZGyATdibDkhzA92Hlf6s=; b=JuVOu8K/HtUW2NO5RzvmLg2oRj
+	wOeqHphOtzDZfSzrC9FoLE8aMv7oFrmA7vOC/QcJUvLsGa7YhQUFbBOgoAOg7fICnAN+1nB2vq1CJ
+	+FZNGdboSZSO3ZTqPIx228wuMxG6j+90tStM31W6Tc8cFF3wCVkrc+fN/DNi9fyY3LMWAXQ9uFnAQ
+	XgoSSFAU9yOSI5RXuf76GGfLeyEAnpes7rFR4Top3po3wp0vP7vFPCGcqD5VdeBASQndpKel9Vv1Z
+	VZZ+4ltoOtxd6vLEv3vjOc0r+yNX7SJVU1laYiKjGdEXSnfAIODS9J3AHG7TficfWFFDNTXNggaem
+	Z/vlgl1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3qJ-00000004Czf-2VHR;
-	Fri, 15 Nov 2024 21:27:03 +0000
+	id 1tC3qI-00000004CxM-2bd5;
+	Fri, 15 Nov 2024 21:27:02 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3q6-00000004CNR-2MVh;
-	Fri, 15 Nov 2024 21:26:54 +0000
+	id 1tC3q4-00000004COu-2X4j;
+	Fri, 15 Nov 2024 21:26:52 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id E068E2064AE1;
+	by linux.microsoft.com (Postfix) with ESMTPSA id 3D67F23834C7;
 	Fri, 15 Nov 2024 13:26:44 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E068E2064AE1
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 3D67F23834C7
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1731706005;
-	bh=kyIMdoD81WSCHIuRs3t1IxAuP6vGJ5R59VD+r/6KKK0=;
+	s=default; t=1731706004;
+	bh=YTcGWD0h0ZDgyuZTU2DPl12ZGyATdibDkhzA92Hlf6s=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=OvSN4ExTI3ztYwv8z22+okCfYqet5Vamjrrd8DLniE8bXBLrrqlExhm9XqqhqVQAv
-	 K9X4eAD6Lklhy7dtiZRCgteR1YNNFWOyXJy0qOlBw+SNmEx9GYlOniMke213AVuk1H
-	 UgCfCoB89XARJTc4CqTz96UEBf2hkM8Effwv9vsg=
+	b=kgi+n57xgjrI+4Gqepq6GlPnqUO2pihV1Dud4yQ2c1OZjf2P0xDWwr3M3tR1eBq1a
+	 vDVbKDgW5iQn+Dgdp88SCgfK7MyuioOzZEhii+W9EEl6/VO7bUxJqfEKNKtLWDwsua
+	 4MilbVg5zRzDEtFWaobQFW22HSHuxVekSW69j0Ag=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:26:34 +0000
-Subject: [PATCH v2 17/21] staging: vc04_services: Convert timeouts to
- secs_to_jiffies()
+Date: Fri, 15 Nov 2024 21:26:31 +0000
+Subject: [PATCH v2 14/21] gve: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v2-17-911fb7595e79@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v2-14-911fb7595e79@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +113,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132650_781973_D104B7A3 
-X-CRM114-Status: GOOD (  12.83  )
+X-CRM114-CacheID: sfid-20241115_132648_749591_2E296A92 
+X-CRM114-Status: GOOD (  12.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,22 +143,33 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/ethernet/google/gve/gve_tx_dqo.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c b/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-index 133ed15f3dbcc07dc353c22d8522e11a08ee6f46..6bb2562e071c4e623e51852860c682e047f823df 100644
---- a/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-+++ b/drivers/staging/vc04_services/bcm2835-audio/bcm2835-vchiq.c
-@@ -59,7 +59,7 @@ static int bcm2835_audio_send_msg_locked(struct bcm2835_audio_instance *instance
+diff --git a/drivers/net/ethernet/google/gve/gve_tx_dqo.c b/drivers/net/ethernet/google/gve/gve_tx_dqo.c
+index f879426cb5523a7e150f363b5e57b9d472b5817c..394debc62268aadf2579f9b516e045cb48287e7c 100644
+--- a/drivers/net/ethernet/google/gve/gve_tx_dqo.c
++++ b/drivers/net/ethernet/google/gve/gve_tx_dqo.c
+@@ -1146,8 +1146,7 @@ static void gve_handle_miss_completion(struct gve_priv *priv,
+ 	/* jiffies can wraparound but time comparisons can handle overflows. */
+ 	pending_packet->timeout_jiffies =
+ 			jiffies +
+-			msecs_to_jiffies(GVE_REINJECT_COMPL_TIMEOUT *
+-					 MSEC_PER_SEC);
++			secs_to_jiffies(GVE_REINJECT_COMPL_TIMEOUT);
+ 	add_to_list(tx, &tx->dqo_compl.miss_completions, pending_packet);
  
- 	if (wait) {
- 		if (!wait_for_completion_timeout(&instance->msg_avail_comp,
--						 msecs_to_jiffies(10 * 1000))) {
-+						 secs_to_jiffies(10))) {
- 			dev_err(instance->dev,
- 				"vchi message timeout, msg=%d\n", m->type);
- 			return -ETIMEDOUT;
+ 	*bytes += pending_packet->skb->len;
+@@ -1191,8 +1190,7 @@ static void remove_miss_completions(struct gve_priv *priv,
+ 		pending_packet->state = GVE_PACKET_STATE_TIMED_OUT_COMPL;
+ 		pending_packet->timeout_jiffies =
+ 				jiffies +
+-				msecs_to_jiffies(GVE_DEALLOCATE_COMPL_TIMEOUT *
+-						 MSEC_PER_SEC);
++				secs_to_jiffies(GVE_DEALLOCATE_COMPL_TIMEOUT);
+ 		/* Maintain pending packet in another list so the packet can be
+ 		 * unallocated at a later time.
+ 		 */
 
 -- 
 2.34.1
