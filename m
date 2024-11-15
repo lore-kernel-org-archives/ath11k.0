@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BE84D68BDA
-	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:26:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4830ED68BDE
+	for <ath11k@archiver.kernel.org>; Fri, 15 Nov 2024 21:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3U0Zq8t5krsiKxal+ZZuXq1UdnH4Ui7697JSzYEOhjI=; b=TTXA37uXQUHsosoCajSJtD+xuq
-	5H23+ZMhueyvUZuXniE/e8n9gJX83mQ6mRvkc4QM3is9QNSXaC5ijdQKeihLwNswsnTVaahg3g4oF
-	onaWGkX7BuOqUho/bUZ0jjNlx673DYO2W+ugouwGTSLBlWqQVLEooj+EKMk5QJ02rKkPsK0ajsrem
-	nYId1mtbRo4F/p4zZpAs2RB/jWs/U0rBkQcE43hwHoybQwKOky0ffd7bDhoa5gAD00CwRc3JuZOz+
-	9n5+0wNbCU5hdI1Z94L2lRuUTC5VrFWOsmbspssUwcrL/D5NDVYJb5GnmojORJR/sxrHq76WJosW7
-	SO5IqKZw==;
+	bh=2qNmVTIUPIQHjxG6U+oz3oOJorUpDTvltiEua1kgDGM=; b=yNGWP5CygV1fwzN7bABzZZxXLO
+	z5MgORbfE24GDUTw6l4OZIFkgdoKO3VKI3QsJ+dd0RknYGFYvw5181/RKlHR7pE5LkCV2MIVA46yF
+	hv5kEROe/bUnmjgLULGpszDoMiicIb3sJnkbyePMriMhNHuYgLVAemuVMFNZt7ejA7hnh2xfpTQUK
+	YqVav6ZjJhLkyBLtdSsk/opj4yM2vyZXO7JR1saeh86iAT3pygiOIs4DQhBlbQRLpZZaVJoZOozEm
+	28ChigQuE1Itju6dFcN9kVYaA8nRHXj83jnBBsHCS5uqDncK6YL4/6wCUa868Ur8rnoxR467J7wN3
+	JsbYZzgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3q3-00000004CVA-30rV;
-	Fri, 15 Nov 2024 21:26:47 +0000
+	id 1tC3q6-00000004CaS-27HY;
+	Fri, 15 Nov 2024 21:26:50 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC3py-00000004CMj-3pWe;
+	id 1tC3pz-00000004CNR-1sBx;
 	Fri, 15 Nov 2024 21:26:44 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 9987D206BCF6;
+	by linux.microsoft.com (Postfix) with ESMTPSA id CEC70206BCF9;
 	Fri, 15 Nov 2024 13:26:41 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9987D206BCF6
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CEC70206BCF9
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1731706001;
-	bh=3U0Zq8t5krsiKxal+ZZuXq1UdnH4Ui7697JSzYEOhjI=;
+	s=default; t=1731706002;
+	bh=2qNmVTIUPIQHjxG6U+oz3oOJorUpDTvltiEua1kgDGM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=pxyipjBG4pPbUUX4B02FM3/ZsXqd5TTFM1LiraDNsXkdoszGq2MjH9IQsJybMvID+
-	 4YKAHyn2fCEWP25moqNhPglaJ0cda8qqzueRkUNy6p2auJAmaCiugYo3dL3clU9ruD
-	 egDpjyzKcS59GHsuj7I2I/nCPTxfw5Z4JYIS26Qg=
+	b=iVvLyPnzqMDnIVqCr8TaID7h6/EcvZ4uGITdugla/Mpc21N0a+zSOXosYGRpfd2vu
+	 d1MyMoy9U+Z9sd1VeqqtG/myJ7CKMnsPLRLQ8NuKd0YjVEIqU9hZB6KsELpQ9xGs8R
+	 v7zo22n2+S5uyzdobRgvEalMR5SyEYAxTB4IIGU8=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 21:26:20 +0000
-Subject: [PATCH v2 03/21] arm: pxa: Convert timeouts to use
+Date: Fri, 15 Nov 2024 21:26:21 +0000
+Subject: [PATCH v2 04/21] s390: kernel: Convert timeouts to use
  secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-converge-secs-to-jiffies-v2-3-911fb7595e79@linux.microsoft.com>
+Message-Id: <20241115-converge-secs-to-jiffies-v2-4-911fb7595e79@linux.microsoft.com>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -114,8 +114,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_132642_992731_FA793C5D 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20241115_132643_558413_B41FC7D0 
+X-CRM114-Status: GOOD (  14.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,26 +144,57 @@ Changes made with the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- arch/arm/mach-pxa/sharpsl_pm.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/s390/kernel/lgr.c      | 3 ++-
+ arch/s390/kernel/time.c     | 4 ++--
+ arch/s390/kernel/topology.c | 2 +-
+ 3 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/mach-pxa/sharpsl_pm.c b/arch/arm/mach-pxa/sharpsl_pm.c
-index 72fa2e3fd35318e5a63c121ed7990a56a56b134c..bbbd06bc79bbb94fb258562e5a382acaf3c277b3 100644
---- a/arch/arm/mach-pxa/sharpsl_pm.c
-+++ b/arch/arm/mach-pxa/sharpsl_pm.c
-@@ -31,9 +31,9 @@
- /*
-  * Constants
+diff --git a/arch/s390/kernel/lgr.c b/arch/s390/kernel/lgr.c
+index 6652e54cf3db9fbdd8cfb06f8a0dc1d4c05ae7d7..68021cb38574b122bbe3d9f70e9168305360017b 100644
+--- a/arch/s390/kernel/lgr.c
++++ b/arch/s390/kernel/lgr.c
+@@ -166,7 +166,8 @@ static struct timer_list lgr_timer;
   */
--#define SHARPSL_CHARGE_ON_TIME_INTERVAL        (msecs_to_jiffies(1*60*1000))  /* 1 min */
--#define SHARPSL_CHARGE_FINISH_TIME             (msecs_to_jiffies(10*60*1000)) /* 10 min */
--#define SHARPSL_BATCHK_TIME                    (msecs_to_jiffies(15*1000))    /* 15 sec */
-+#define SHARPSL_CHARGE_ON_TIME_INTERVAL        (secs_to_jiffies(60))  /* 1 min */
-+#define SHARPSL_CHARGE_FINISH_TIME             (secs_to_jiffies(10*60)) /* 10 min */
-+#define SHARPSL_BATCHK_TIME                    (secs_to_jiffies(15))    /* 15 sec */
- #define SHARPSL_BATCHK_TIME_SUSPEND            (60*10)                        /* 10 min */
+ static void lgr_timer_set(void)
+ {
+-	mod_timer(&lgr_timer, jiffies + msecs_to_jiffies(LGR_TIMER_INTERVAL_SECS * MSEC_PER_SEC));
++	mod_timer(&lgr_timer,
++		  jiffies + secs_to_jiffies(LGR_TIMER_INTERVAL_SECS));
+ }
  
- #define SHARPSL_WAIT_CO_TIME                   15  /* 15 sec */
+ /*
+diff --git a/arch/s390/kernel/time.c b/arch/s390/kernel/time.c
+index b713effe057967623f64da8297314fcc42ff1af2..e28c61d39d27c6e89f490e779ff674ba2fe21d3e 100644
+--- a/arch/s390/kernel/time.c
++++ b/arch/s390/kernel/time.c
+@@ -656,12 +656,12 @@ static void stp_check_leap(void)
+ 		if (ret < 0)
+ 			pr_err("failed to set leap second flags\n");
+ 		/* arm Timer to clear leap second flags */
+-		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(14400 * MSEC_PER_SEC));
++		mod_timer(&stp_timer, jiffies + secs_to_jiffies(14400));
+ 	} else {
+ 		/* The day the leap second is scheduled for hasn't been reached. Retry
+ 		 * in one hour.
+ 		 */
+-		mod_timer(&stp_timer, jiffies + msecs_to_jiffies(3600 * MSEC_PER_SEC));
++		mod_timer(&stp_timer, jiffies + secs_to_jiffies(3600));
+ 	}
+ }
+ 
+diff --git a/arch/s390/kernel/topology.c b/arch/s390/kernel/topology.c
+index 813e5da9a9737e05ec3ef85a495fe38cbb40c49b..99095ff3897c1b5337f7e2abcf10f3fe8219ad7c 100644
+--- a/arch/s390/kernel/topology.c
++++ b/arch/s390/kernel/topology.c
+@@ -370,7 +370,7 @@ static void set_topology_timer(void)
+ 	if (atomic_add_unless(&topology_poll, -1, 0))
+ 		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(100));
+ 	else
+-		mod_timer(&topology_timer, jiffies + msecs_to_jiffies(60 * MSEC_PER_SEC));
++		mod_timer(&topology_timer, jiffies + secs_to_jiffies(60));
+ }
+ 
+ void topology_expect_change(void)
 
 -- 
 2.34.1
