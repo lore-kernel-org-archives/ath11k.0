@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9AD2D68BE8
-	for <ath11k@archiver.kernel.org>; Sat, 16 Nov 2024 10:11:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29B0BD68BEA
+	for <ath11k@archiver.kernel.org>; Sat, 16 Nov 2024 10:13:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Z/h9Fo8qzxX+vwj/gnHe49MO7XxCnXAh2+BwoWgtDC0=; b=3Yon8xt/+QKRBSfYgjVFNPqGWd
-	DQH7dq3+/gYWNTIdPaqlawT8i81pJiPRu6sFasRNEAyeL/Ug6uT35cAOztRes1Zr/8Whxg3S+PQAO
-	1TlOdZvSOTDIUdrReScw64YLnCqr6ovUKGVKci6cVrf8Iz2SDmiS9IzZsGtjRiAb8fAqihU/OeROL
-	18KGVtZWl1a7uuZr1sIlm/CcuuafQF/FnGSZQv+iqU2maEZjP240l4D07vA2s/T7YEqDbr2I0ON95
-	pHXFnKNOlnDDuYKK3nEV2HpyUFRZxKXar9a1RpbcqDDMfxJWVFBX6fmo4OAfLNXPTddfRxfeT32Vg
-	9xufM1Nw==;
+	bh=agrWh4a1c02Ln/4ieq2OSCQsDoWRwZEB12hKkLZZ+VY=; b=DiZ1jrRWiWs/bDYRfZ2Y9iozcC
+	oLzMgGaLhuq6Bv+3UPXEi/p7l10+dHC21KPFydh/0s0i+GKSB0DIBvXxsn6e9Cs/m/Xm8SCYZWbWt
+	jva6rV1RkJSkkcE31ryZ3ms1o6Mp0QMVvA5mlZdVzOMSeqvbffYn4PPhFDIXyAuz5L0DprpMtULeE
+	o5xyR6rah3XiSOZ9egxRr3ucIRjTbPhgI1PQrvNX5fOI/NzCqF03DeeRjwU7+JqKPr7Fg1mZ6HJVl
+	UUdW2G2glyWkwKFD2oDrYMRDfGVSVGKV4In7UJLTtfkkeqr2U74JweDWas8JeXsNkMGVzIOz9mvdB
+	q4b6FLtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCFle-00000005Mt1-13in;
-	Sat, 16 Nov 2024 10:11:02 +0000
+	id 1tCFo5-00000005NKz-2bFc;
+	Sat, 16 Nov 2024 10:13:33 +0000
 Received: from pegase2.c-s.fr ([93.17.235.10])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCFlb-00000005MsT-2tQ2;
-	Sat, 16 Nov 2024 10:11:01 +0000
+	id 1tCFo2-00000005NJe-3zoD;
+	Sat, 16 Nov 2024 10:13:32 +0000
 Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4Xr8mL1R16z9sSd;
-	Sat, 16 Nov 2024 11:10:58 +0100 (CET)
+	by localhost (Postfix) with ESMTP id 4Xr8qF0vthz9sSf;
+	Sat, 16 Nov 2024 11:13:29 +0100 (CET)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from pegase2.c-s.fr ([172.26.127.65])
 	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id sS8O0LnxtKc7; Sat, 16 Nov 2024 11:10:58 +0100 (CET)
+	with ESMTP id 4K41Giz9LXFN; Sat, 16 Nov 2024 11:13:29 +0100 (CET)
 Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4Xr8mJ5rw4z9sSb;
-	Sat, 16 Nov 2024 11:10:56 +0100 (CET)
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4Xr8qD52brz9sSg;
+	Sat, 16 Nov 2024 11:13:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id ABE338B7A0;
-	Sat, 16 Nov 2024 11:10:56 +0100 (CET)
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 85CD28B7A0;
+	Sat, 16 Nov 2024 11:13:28 +0100 (CET)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from messagerie.si.c-s.fr ([127.0.0.1])
 	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id F1qWTVabQRIL; Sat, 16 Nov 2024 11:10:56 +0100 (CET)
+	with ESMTP id 3ibo8LhEmkVk; Sat, 16 Nov 2024 11:13:28 +0100 (CET)
 Received: from [192.168.232.159] (POS169858.IDSI0.si.c-s.fr [192.168.232.159])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 35D3D8B763;
-	Sat, 16 Nov 2024 11:10:53 +0100 (CET)
-Message-ID: <718febc4-59ee-4701-ad62-8b7a8fa7a910@csgroup.eu>
-Date: Sat, 16 Nov 2024 11:10:52 +0100
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id DD3108B763;
+	Sat, 16 Nov 2024 11:13:24 +0100 (CET)
+Message-ID: <76fe994b-b9b9-49e0-8224-df48db48f1e5@csgroup.eu>
+Date: Sat, 16 Nov 2024 11:13:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 19/21] livepatch: Convert timeouts to secs_to_jiffies()
+Subject: Re: [PATCH v2 21/21] nfp: Convert timeouts to secs_to_jiffies()
 To: Easwar Hariharan <eahariha@linux.microsoft.com>,
  Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>,
@@ -113,15 +113,15 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
  linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v2-19-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-21-911fb7595e79@linux.microsoft.com>
 Content-Language: fr-FR
 From: Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <20241115-converge-secs-to-jiffies-v2-19-911fb7595e79@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-21-911fb7595e79@linux.microsoft.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241116_021059_890649_68B53C08 
-X-CRM114-Status: GOOD (  17.02  )
+X-CRM114-CacheID: sfid-20241116_021331_157252_D017A157 
+X-CRM114-Status: GOOD (  15.60  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,10 +136,15 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
 Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
 > [Vous ne recevez pas souvent de courriers de eahariha@linux.microsoft.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+
+As you plan to get those merged independant in each tree, I guess it 
+should be sent to netdev list targetting net-next tree in the subject 
+line as per netdev rules.
+
+
+
 > 
 > Changes made with the following Coccinelle rules:
 > 
@@ -155,101 +160,22 @@ Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
 > 
 > Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 > ---
->   samples/livepatch/livepatch-callbacks-busymod.c |  2 +-
->   samples/livepatch/livepatch-shadow-fix1.c       |  2 +-
->   samples/livepatch/livepatch-shadow-mod.c        | 10 +++++-----
->   3 files changed, 7 insertions(+), 7 deletions(-)
+>   drivers/net/ethernet/netronome/nfp/nfp_net_common.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/samples/livepatch/livepatch-callbacks-busymod.c b/samples/livepatch/livepatch-callbacks-busymod.c
-> index 378e2d40271a9717d09eff51d3d3612c679736fc..d0fd801a7c21b7d7939c29d83f9d993badcc9aba 100644
-> --- a/samples/livepatch/livepatch-callbacks-busymod.c
-> +++ b/samples/livepatch/livepatch-callbacks-busymod.c
-> @@ -45,7 +45,7 @@ static int livepatch_callbacks_mod_init(void)
->   {
->          pr_info("%s\n", __func__);
->          schedule_delayed_work(&work,
-> -               msecs_to_jiffies(1000 * 0));
-> +               secs_to_jiffies(0));
-
-Using secs_to_jiffies() is pointless, 0 is universal, should become 
-schedule_delayed_work(&work, 0);
-
->          return 0;
->   }
+> diff --git a/drivers/net/ethernet/netronome/nfp/nfp_net_common.c b/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
+> index 6e0929af0f725b2b3855c69bbe894e6626c566b3..6925ad985fc9e2d5641feea41ff277107a8dee9c 100644
+> --- a/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
+> +++ b/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
+> @@ -2779,7 +2779,7 @@ static void nfp_net_netdev_init(struct nfp_net *nn)
+>                  break;
+>          }
 > 
-> diff --git a/samples/livepatch/livepatch-shadow-fix1.c b/samples/livepatch/livepatch-shadow-fix1.c
-> index 6701641bf12d454a770e49abeeb0dea92560e55e..948ea1f5760fed2fa27baf478c97cf98ad5c99a8 100644
-> --- a/samples/livepatch/livepatch-shadow-fix1.c
-> +++ b/samples/livepatch/livepatch-shadow-fix1.c
-> @@ -73,7 +73,7 @@ static struct dummy *livepatch_fix1_dummy_alloc(void)
->                  return NULL;
+> -       netdev->watchdog_timeo = msecs_to_jiffies(5 * 1000);
+> +       netdev->watchdog_timeo = secs_to_jiffies(5);
 > 
->          d->jiffies_expire = jiffies +
-> -               msecs_to_jiffies(1000 * EXPIRE_PERIOD);
-> +               secs_to_jiffies(EXPIRE_PERIOD);
-> 
->          /*
->           * Patch: save the extra memory location into a SV_LEAK shadow
-> diff --git a/samples/livepatch/livepatch-shadow-mod.c b/samples/livepatch/livepatch-shadow-mod.c
-> index 7e753b0d2fa611524c9e2adbe02c8fa3e9b6015e..79296e6ccb119f521e86a121623855d841c9fc5e 100644
-> --- a/samples/livepatch/livepatch-shadow-mod.c
-> +++ b/samples/livepatch/livepatch-shadow-mod.c
-> @@ -102,7 +102,7 @@ static __used noinline struct dummy *dummy_alloc(void)
->                  return NULL;
-> 
->          d->jiffies_expire = jiffies +
-> -               msecs_to_jiffies(1000 * EXPIRE_PERIOD);
-> +               secs_to_jiffies(EXPIRE_PERIOD);
-
-Should fit on a single line, avoid multiple lines when possible.
-
-> 
->          /* Oops, forgot to save leak! */
->          leak = kzalloc(sizeof(*leak), GFP_KERNEL);
-> @@ -153,7 +153,7 @@ static void alloc_work_func(struct work_struct *work)
->          mutex_unlock(&dummy_list_mutex);
-> 
->          schedule_delayed_work(&alloc_dwork,
-> -               msecs_to_jiffies(1000 * ALLOC_PERIOD));
-> +               secs_to_jiffies(ALLOC_PERIOD));
-
-Should fit on a single line, avoid multiple lines when possible.
-
-
->   }
-> 
->   /*
-> @@ -185,15 +185,15 @@ static void cleanup_work_func(struct work_struct *work)
->          mutex_unlock(&dummy_list_mutex);
-> 
->          schedule_delayed_work(&cleanup_dwork,
-> -               msecs_to_jiffies(1000 * CLEANUP_PERIOD));
-> +               secs_to_jiffies(CLEANUP_PERIOD));
-
-Should fit on a single line, avoid multiple lines when possible.
-
-
->   }
-> 
->   static int livepatch_shadow_mod_init(void)
->   {
->          schedule_delayed_work(&alloc_dwork,
-> -               msecs_to_jiffies(1000 * ALLOC_PERIOD));
-> +               secs_to_jiffies(ALLOC_PERIOD));
-
-Should fit on a single line, avoid multiple lines when possible.
-
-
->          schedule_delayed_work(&cleanup_dwork,
-> -               msecs_to_jiffies(1000 * CLEANUP_PERIOD));
-> +               secs_to_jiffies(CLEANUP_PERIOD));
-
-Should fit on a single line, avoid multiple lines when possible.
-
-
-> 
->          return 0;
->   }
+>          /* MTU range: 68 - hw-specific max */
+>          netdev->min_mtu = ETH_MIN_MTU;
 > 
 > --
 > 2.34.1
