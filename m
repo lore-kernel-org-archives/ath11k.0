@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED14ED68BE9
-	for <ath11k@archiver.kernel.org>; Sat, 16 Nov 2024 09:40:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 000D8D68BD2
+	for <ath11k@archiver.kernel.org>; Sat, 16 Nov 2024 09:52:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VPdyc30iNLh1F/YcS88wqEE6MNTecDdE0d2dBEGzlFA=; b=tlFwvSVhcRcPdTWuk4TvdP54/I
-	8vbPyRnlTa8UwXBD7fK4OHiFwc9h/r6K175dspc8fHVRZcL2HC+9dO7lhtsPJROtq2ypm+cMKV82V
-	XZ8oZNZkhBNebJ4GNaPVkk3IAQcWptdHqXJFd7vf98GxmKNqCCrqaQtNDq6Ds5DoDtl1sGRDqqCvd
-	ap05yW3vPPG0osQ5hI3ddgzxftnCRc8WeHcceq/xKrfEMDDu0rWdTI9kq80jYvncyBfn6LdCj+38m
-	xK6UXwP2V2b7YZ8+37sepAjIoxYIbf53omM+GEbwfPTSt/qD4fHzs/46SQeh8JUEt4GsOWLVVTx16
-	Gzm0b5hA==;
+	bh=cZulbchHoB1m9w53hyTEIrwqdZiac1q3ss+KyydoHrc=; b=16ESktZS/yLY9FweFbTQiRmgUa
+	1+fXeWrMA8iFwoAdmeU4uOTr6Sj2l5/psmLoqMZ9++iMEjps76IomJxflalVKh0I5lZUU33Vpl8KH
+	VP28BS5+wQFTeoQZG65gVIjjk0UC29EJWeSQpalW0ibXOPy/tlBCERDd9cajz1+f2bVxXR9SXDKpE
+	jF3KwrREQTMIDQQkpOe6oLunZE5id6gYwkP9NxhGb5Np8D6zxsL1bTWKr3CBPGJJ5HQcKDBkkH3P3
+	AfACSoQXzM88BMwlEvSPiHQy069+YPWrn7NmnauZDaIsALa0y54uUzryYQ54YniqmSHDz2IIjim/x
+	X7O5uShg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCFIN-00000005Jwl-3w5q;
-	Sat, 16 Nov 2024 09:40:47 +0000
+	id 1tCFU1-00000005KzR-0MHY;
+	Sat, 16 Nov 2024 09:52:49 +0000
 Received: from pegase2.c-s.fr ([93.17.235.10])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCFIL-00000005JvT-1Jgd;
-	Sat, 16 Nov 2024 09:40:46 +0000
+	id 1tCFTx-00000005Kye-38dO;
+	Sat, 16 Nov 2024 09:52:47 +0000
 Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4Xr85N5Gv6z9sSR;
-	Sat, 16 Nov 2024 10:40:40 +0100 (CET)
+	by localhost (Postfix) with ESMTP id 4Xr8MH6ncRz9sSR;
+	Sat, 16 Nov 2024 10:52:43 +0100 (CET)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from pegase2.c-s.fr ([172.26.127.65])
 	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RSlaypuNxNm4; Sat, 16 Nov 2024 10:40:40 +0100 (CET)
+	with ESMTP id E3CmhOEn1WPt; Sat, 16 Nov 2024 10:52:43 +0100 (CET)
 Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4Xr85N41fnz9sSL;
-	Sat, 16 Nov 2024 10:40:40 +0100 (CET)
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4Xr8MH5YmWz9sSL;
+	Sat, 16 Nov 2024 10:52:43 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 6B8F18B7A0;
-	Sat, 16 Nov 2024 10:40:40 +0100 (CET)
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id A3BAA8B7A0;
+	Sat, 16 Nov 2024 10:52:43 +0100 (CET)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from messagerie.si.c-s.fr ([127.0.0.1])
 	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id 9RKIVUrbVgoj; Sat, 16 Nov 2024 10:40:40 +0100 (CET)
+	with ESMTP id 8Dr9hsGaspCW; Sat, 16 Nov 2024 10:52:43 +0100 (CET)
 Received: from [192.168.232.159] (POS169858.IDSI0.si.c-s.fr [192.168.232.159])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id EDBE28B763;
-	Sat, 16 Nov 2024 10:40:36 +0100 (CET)
-Message-ID: <b370e8d0-2f87-4819-8f30-1181946295d9@csgroup.eu>
-Date: Sat, 16 Nov 2024 10:40:36 +0100
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 278CE8B763;
+	Sat, 16 Nov 2024 10:52:40 +0100 (CET)
+Message-ID: <c07de369-9363-4e1d-9ccc-2db6dff79595@csgroup.eu>
+Date: Sat, 16 Nov 2024 10:52:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/21] netfilter: conntrack: Cleanup timeout
- definitions
+Subject: Re: [PATCH v2 02/21] coccinelle: misc: Add secs_to_jiffies script
 To: Easwar Hariharan <eahariha@linux.microsoft.com>,
  Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>,
@@ -114,15 +113,15 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
  linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v2-1-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-2-911fb7595e79@linux.microsoft.com>
 Content-Language: fr-FR
 From: Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <20241115-converge-secs-to-jiffies-v2-1-911fb7595e79@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-2-911fb7595e79@linux.microsoft.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241116_014045_519647_9DC67076 
-X-CRM114-Status: GOOD (  16.14  )
+X-CRM114-CacheID: sfid-20241116_015245_944836_04654CFD 
+X-CRM114-Status: GOOD (  13.23  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,61 +141,45 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
 > [Vous ne recevez pas souvent de courriers de eahariha@linux.microsoft.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
 > 
-> None of the higher order definitions are used anymore, so remove
-> definitions for minutes, hours, and days timeouts. Convert the seconds
-> denominated timeouts to secs_to_jiffies()
 
-There is very similar things with tcp_timeouts[] in 
-nf_conntrack_proto_tcp.c, why not convert it as well ?
+There should be some explaination in the commit message, what the script 
+does for instance.
 
-> 
+> Suggested-by: Anna-Maria Behnsen <anna-maria@linutronix.de>
 > Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 > ---
->   net/netfilter/nf_conntrack_proto_sctp.c | 21 ++++++++-------------
->   1 file changed, 8 insertions(+), 13 deletions(-)
+>   scripts/coccinelle/misc/secs_to_jiffies.cocci | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
 > 
-> diff --git a/net/netfilter/nf_conntrack_proto_sctp.c b/net/netfilter/nf_conntrack_proto_sctp.c
-> index 4cc97f971264ed779434ab4597dd0162586b3736..6c95ac96fa42a39acafb5b88a7cf8898010e911c 100644
-> --- a/net/netfilter/nf_conntrack_proto_sctp.c
-> +++ b/net/netfilter/nf_conntrack_proto_sctp.c
-> @@ -39,20 +39,15 @@ static const char *const sctp_conntrack_names[] = {
->          [SCTP_CONNTRACK_HEARTBEAT_SENT]         = "HEARTBEAT_SENT",
->   };
-> 
-> -#define SECS  * HZ
-> -#define MINS  * 60 SECS
-> -#define HOURS * 60 MINS
-> -#define DAYS  * 24 HOURS
-> -
->   static const unsigned int sctp_timeouts[SCTP_CONNTRACK_MAX] = {
-> -       [SCTP_CONNTRACK_CLOSED]                 = 10 SECS,
-> -       [SCTP_CONNTRACK_COOKIE_WAIT]            = 3 SECS,
-> -       [SCTP_CONNTRACK_COOKIE_ECHOED]          = 3 SECS,
-> -       [SCTP_CONNTRACK_ESTABLISHED]            = 210 SECS,
-> -       [SCTP_CONNTRACK_SHUTDOWN_SENT]          = 3 SECS,
-> -       [SCTP_CONNTRACK_SHUTDOWN_RECD]          = 3 SECS,
-> -       [SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]      = 3 SECS,
-> -       [SCTP_CONNTRACK_HEARTBEAT_SENT]         = 30 SECS,
-> +       [SCTP_CONNTRACK_CLOSED]                 = secs_to_jiffies(10),
-> +       [SCTP_CONNTRACK_COOKIE_WAIT]            = secs_to_jiffies(3),
-> +       [SCTP_CONNTRACK_COOKIE_ECHOED]          = secs_to_jiffies(3),
-> +       [SCTP_CONNTRACK_ESTABLISHED]            = secs_to_jiffies(210),
-> +       [SCTP_CONNTRACK_SHUTDOWN_SENT]          = secs_to_jiffies(3),
-> +       [SCTP_CONNTRACK_SHUTDOWN_RECD]          = secs_to_jiffies(3),
-> +       [SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]      = secs_to_jiffies(3),
-> +       [SCTP_CONNTRACK_HEARTBEAT_SENT]         = secs_to_jiffies(3),
-
-Was 30 before, if you think it must be changed to 3 you must explain it 
-in the commit message, or maybe do another patch for that change.
-
->   };
-> 
->   #define        SCTP_FLAG_HEARTBEAT_VTAG_FAILED 1
+> diff --git a/scripts/coccinelle/misc/secs_to_jiffies.cocci b/scripts/coccinelle/misc/secs_to_jiffies.cocci
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..af762b1c0aac8f044f21150bfaafd9efc834ee87
+> --- /dev/null
+> +++ b/scripts/coccinelle/misc/secs_to_jiffies.cocci
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +///
+> +/// Find usages of:
+> +/// - msecs_to_jiffies(value*1000)
+> +/// - msecs_to_jiffies(value*MSEC_PER_SEC)
+> +///
+> +// Confidence: High
+> +// Copyright: (C) 2024 Easwar Hariharan Microsoft
+> +//
+> +// Keywords: secs, seconds, jiffies
+> +//
+> +
+> +@@ constant C; @@
+> +
+> +- msecs_to_jiffies(C * 1000)
+> ++ secs_to_jiffies(C)
+> +
+> +@@ constant C; @@
+> +
+> +- msecs_to_jiffies(C * MSEC_PER_SEC)
+> ++ secs_to_jiffies(C)
 > 
 > --
 > 2.34.1
 > 
-
-Christophe
-
 
