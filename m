@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 929E8D68BDA
-	for <ath11k@archiver.kernel.org>; Sat, 16 Nov 2024 00:12:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82E26D68BDF
+	for <ath11k@archiver.kernel.org>; Sat, 16 Nov 2024 00:13:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xpBEojaRNmZLcf0UaP4ux3dQkOORS/leVLfy1gAywiE=; b=qyQvvRkopmsJHaDVV9AabScjGa
-	d5dNIBdalRo2yBLsV0iBgXsmy9Bwpp8XLZYB2NKQOkTvUAuLIk1xkSxuV4QE+mF1MuoHQdDcv/6ZT
-	5GPaSOjRMso6BJ9BGIkrfUFLFdvV3+HNY3wY8hrMaUUAtbka4vYVKpZWRVAExgCCDS/xAboeEiUgU
-	oJh0KqwVmABR84nLUGK+v+7zlnsdTQYxTRoWOfrjk9gqWnMRKglcpSwrHGkHOiPCJ3dSuOuFFDUj6
-	anQQeGBgE3cqE/3vVwIiM/ybs1pbuVQ3MkWTObXnlDC4k9xpnQQZeaHLj93pX3Dw4CYdZOGcx/Z+c
-	wbUxVgig==;
+	bh=8aWsE6KsHqgZAR/UTPX2BOaIFAyMPoSLG9xpC4Hm8PA=; b=X3PpyiLpMm9e+7WXCvSd88Dt/e
+	UEghMMLg4PwKXZrxLCoMqq5sDXpfGs7WNukuUX/N2zTp0nZR7paG6jXuMpk+w7HPn2zTZG3qgTv42
+	RUIZPLzSrZnjFoPf0ZqgQ2pkkZvOSsOHmvgam74ZyHek5LL0bIecFq6FWvDx4QfBvo4Z+NNona8sq
+	SWvsDirJ7zKtAc21UzklcUEbFq/bDBNVe3uheVekmZ87j3KW3AfUIQgTTYsxInUov3Z1Dbgk1OkLu
+	LbLx/unU0vP9HE5xObXj9yePJdtCTga/kiiFm8tzsgmJQzR/bbsDXgXA0MXvdfR9PVHkqHrqMLUe8
+	6tW0aqyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC6QY-00000004cTV-3FR7;
-	Sat, 16 Nov 2024 00:12:38 +0000
+	id 1tC6RF-00000004cgM-0erT;
+	Sat, 16 Nov 2024 00:13:21 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tC6QV-00000004cSm-21cg;
-	Sat, 16 Nov 2024 00:12:36 +0000
+	id 1tC6RC-00000004cfJ-105C;
+	Sat, 16 Nov 2024 00:13:19 +0000
 Received: from [192.168.35.166] (c-73-118-245-227.hsd1.wa.comcast.net [73.118.245.227])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 1600B2064AEE;
-	Fri, 15 Nov 2024 16:12:32 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1600B2064AEE
+	by linux.microsoft.com (Postfix) with ESMTPSA id 95E342064AF0;
+	Fri, 15 Nov 2024 16:13:13 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 95E342064AF0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1731715954;
-	bh=xpBEojaRNmZLcf0UaP4ux3dQkOORS/leVLfy1gAywiE=;
+	s=default; t=1731715997;
+	bh=8aWsE6KsHqgZAR/UTPX2BOaIFAyMPoSLG9xpC4Hm8PA=;
 	h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
-	b=Pq2k2Nni3cFBRk9EH3pyxgnDw6ECvdbg1vXWXgUrnZTvujbQOLePABt8LVR+E9JSZ
-	 k4WoN+iIfUxQpiMRt/FU+pwGNrKJBo/0Q2+4KvxqDSAbq0u3pnKwVj+6aACG5ZF/KB
-	 j3wJy4AhuvO/DGvU623x7nThkWYs37o8kaDAxg9k=
-Message-ID: <68331eb9-545f-48a4-9c49-1a3637b3d918@linux.microsoft.com>
-Date: Fri, 15 Nov 2024 16:12:31 -0800
+	b=juHtZTV0RDh+wTFwjvF/I5Cbue56gEXjd0kD3znUPuWXx2wtRwF3SiJZ6HWwI5inJ
+	 TBVBD9vnbAv41iOqcNYfHcjXy0Jo4vpPQnYC829Cp+vZARPfhAL4M9phLDROf5akb8
+	 KGqyHrYITaajwfOdtt56+uCdzgps3Ezs57MjrN0w=
+Message-ID: <0b4bbd38-f6aa-4091-b7db-8b87572ad83a@linux.microsoft.com>
+Date: Fri, 15 Nov 2024 16:13:13 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Cc: eahariha@linux.microsoft.com, Pablo Neira Ayuso <pablo@netfilter.org>,
@@ -102,19 +102,20 @@ Cc: eahariha@linux.microsoft.com, Pablo Neira Ayuso <pablo@netfilter.org>,
  live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
  etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
  linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen <anna-maria@linutronix.de>
-Subject: Re: [PATCH 03/22] arm: pxa: Convert timeouts to use secs_to_jiffies()
+Subject: Re: [PATCH v2 01/21] netfilter: conntrack: Cleanup timeout
+ definitions
 To: Stephen Rothwell <sfr@canb.auug.org.au>
-References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v1-3-19aadc34941b@linux.microsoft.com>
- <20241116093815.5d37eb43@canb.auug.org.au>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-1-911fb7595e79@linux.microsoft.com>
+ <20241116093458.4aa19a0e@canb.auug.org.au>
 Content-Language: en-US
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <20241116093815.5d37eb43@canb.auug.org.au>
+In-Reply-To: <20241116093458.4aa19a0e@canb.auug.org.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_161235_573633_67DC0AED 
-X-CRM114-Status: GOOD (  11.32  )
+X-CRM114-CacheID: sfid-20241115_161318_323759_1296F839 
+X-CRM114-Status: GOOD (  11.89  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,19 +130,31 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/15/2024 2:38 PM, Stephen Rothwell wrote:
+On 11/15/2024 2:34 PM, Stephen Rothwell wrote:
 > Hi Easwar,
 > 
-> On Fri, 15 Nov 2024 21:22:33 +0000 Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
+> On Fri, 15 Nov 2024 21:26:18 +0000 Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
 >>
->> -#define SHARPSL_CHARGE_ON_TIME_INTERVAL        (msecs_to_jiffies(1*60*1000))  /* 1 min */
->> -#define SHARPSL_CHARGE_FINISH_TIME             (msecs_to_jiffies(10*60*1000)) /* 10 min */
->> -#define SHARPSL_BATCHK_TIME                    (msecs_to_jiffies(15*1000))    /* 15 sec */
->> +#define SHARPSL_CHARGE_ON_TIME_INTERVAL        (secs_to_jiffies(60))  /* 1 min */
->> +#define SHARPSL_CHARGE_FINISH_TIME             (secs_to_jiffies(10*60)) /* 10 min */
->> +#define SHARPSL_BATCHK_TIME                    (secs_to_jiffies(15))    /* 15 sec */
+>>  static const unsigned int sctp_timeouts[SCTP_CONNTRACK_MAX] = {
+>> -	[SCTP_CONNTRACK_CLOSED]			= 10 SECS,
+>> -	[SCTP_CONNTRACK_COOKIE_WAIT]		= 3 SECS,
+>> -	[SCTP_CONNTRACK_COOKIE_ECHOED]		= 3 SECS,
+>> -	[SCTP_CONNTRACK_ESTABLISHED]		= 210 SECS,
+>> -	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= 3 SECS,
+>> -	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= 3 SECS,
+>> -	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= 3 SECS,
+>> -	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= 30 SECS,
+>> +	[SCTP_CONNTRACK_CLOSED]			= secs_to_jiffies(10),
+>> +	[SCTP_CONNTRACK_COOKIE_WAIT]		= secs_to_jiffies(3),
+>> +	[SCTP_CONNTRACK_COOKIE_ECHOED]		= secs_to_jiffies(3),
+>> +	[SCTP_CONNTRACK_ESTABLISHED]		= secs_to_jiffies(210),
+>> +	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= secs_to_jiffies(3),
+>> +	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= secs_to_jiffies(3),
+>> +	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= secs_to_jiffies(3),
+>> +	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= secs_to_jiffies(3),
 > 
-> It might be nice to keep the alignment of the comments here.
+> You have changed this last timeout from 30 seconds to 3 (presumably
+> just a copy and paste error).
 > 
 
 Will fix in v3.
