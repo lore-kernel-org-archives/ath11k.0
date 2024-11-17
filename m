@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3F27D68BEF
-	for <ath11k@archiver.kernel.org>; Sun, 17 Nov 2024 16:07:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E76DFD6DDF9
+	for <ath11k@archiver.kernel.org>; Sun, 17 Nov 2024 16:07:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From:Reply-To:
 	Cc:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=brwuPL47toQb5coGGmvqXQtmXlmTQQm/vQCPztzwe90=; b=XX2g9VQDai69/KQJQxQfUKAocY
-	Y2I8YFUvqFZE06iYle/gPqCnHplJevPvzff2UauB50pPaZL5/TE0dyV+LQCwsffgKsxvEqsQ3MTBQ
-	9m4hqgjBytCFbjH5Nygrm7xuV04Q5LKZ9k9fQoxv+apzwdmNmBbpRtWpFsnSUKwZwlNhbEj8K7u4a
-	OU+LKGpUL94dhE4qCteb90s9ljQGDBnHxsayOwNm5H3t2M35g/tg7WxmqvNs6ntZPMrgS9+DAPQsl
-	txYkVIgELiZzW8+b041nyX7DtKfi06OmWqXUAtgtQ1hwljFs4G3VdGyrm8+EdCjh68hP8f/aPxKe7
-	9Lcsf8UA==;
+	bh=4ZBFpfMAxEc3iDN83dDGcQrDlarlTxPLO/VIWYe/840=; b=fb6paj4EVNSHQYgrNADOCm7+LY
+	/Mm0HXnSHLC8iSmTVqomccYatMBCFYPXSE7C5tI+o+55j7t+hUoqy0UL+gUh2nVpESn1zygoMpGOG
+	lQs9d+tInvqtyzVcpXcbOQS92zslIPmGvwwR90T1GDvZ4ozSgqeLEIau/wE6UF/eibTE3G2wR+Jjk
+	EKm0qudfUdtfhPJh/SnqFlvMM6WnQAasa+DmBAbvJZtn3OW23QluKUQywGH+fLBXlCzTvagDqzRF5
+	fCzXqTw+BrjG4ekXWNH4URviCYoD2Rb1I1VYhHCkjz1bKnQE8YOjZWO5lJtiV5Gd/pSZMaPXUBBF7
+	9tPSzU1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCho2-00000007XPB-2rWG;
-	Sun, 17 Nov 2024 16:07:22 +0000
-Received: from ionic.de ([2001:41d0:700:3394:1::2] helo=mail.ionic.de)
+	id 1tCho5-00000007XSK-2Xz5;
+	Sun, 17 Nov 2024 16:07:25 +0000
+Received: from ionic.de ([145.239.234.145] helo=mail.ionic.de)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tChnz-00000007XN5-4439
+	id 1tChnz-00000007XN3-3wF4
 	for ath11k@lists.infradead.org;
-	Sun, 17 Nov 2024 16:07:21 +0000
+	Sun, 17 Nov 2024 16:07:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
-	t=1731859634; bh=7QSLgipwvpNix2RzZJNlMHtn1/pzfskUDepBYEUCBOc=;
+	t=1731859634; bh=3yCjE5tdSxEAWWiNtIYYOrdwsDaWqbpFW99BaTLk7HE=;
 	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=M5Jckyc4dp7hjVNPITd/v9q87xXQRE9lilIrY0GQdqGHuaIFbv9cj3y0I246XIVNI
-	 ioLryxbRuT1/zKjX96aByhXj82wHAr7HRsK4Wr2FrGJ7338UzY6snFlTquUioPZTct
-	 OvkPasr9sv2zHyzTS4oNKk23kzF/xKutpfaMNM9g=
+	b=Xpuv0TZboXUWg07BJBLOkbPu6/O19dgGIZmQ+3SOy1MUX2/12/1xvSih3GgwrjnX8
+	 M7kbmfZV77r15Qz7e+efKIgNZMNOQMJY/Qi2qlMzNWm5hoEc9uIJmPf4PEE0rW42w+
+	 9SFu5YSJKWNxaB5O1LI7ae76wrfJSWcVH/Eo/V/g=
 Received: from grml.local.home.ionic.de (unknown [IPv6:2a00:11:fb41:7a00:21b:21ff:fe5e:dddc])
-	by mail.ionic.de (Postfix) with ESMTPSA id 9902A14886C9
+	by mail.ionic.de (Postfix) with ESMTPSA id 7CF39148850A
 	for <ath11k@lists.infradead.org>; Sun, 17 Nov 2024 17:07:14 +0100 (CET)
 From: Mihai Moldovan <ionic@ionic.de>
 To: ath11k@lists.infradead.org
-Subject: [RFC] [PATCH 03/13] net: qrtr: smd: register rpmsg_device as endpoint-specific data
-Date: Sun, 17 Nov 2024 17:06:02 +0100
-Message-ID: <088a84589c1c21b848b75715d2507d2572756547.1731858974.git.ionic@ionic.de>
+Subject: [RFC] [PATCH 02/13] net: qrtr: mhi: register mhi_controller as endpoint-specific data
+Date: Sun, 17 Nov 2024 17:06:01 +0100
+Message-ID: <d9662f81a96cdcdd62d9b1fcc0030ccc771c4826.1731858974.git.ionic@ionic.de>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <cover.1731858971.git.ionic@ionic.de>
 References: <cover.1731858971.git.ionic@ionic.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241117_080720_473778_654B1E75 
-X-CRM114-Status: UNSURE (   6.16  )
+X-CRM114-CacheID: sfid-20241117_080720_484477_13D46E86 
+X-CRM114-Status: UNSURE (   6.33  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -64,25 +64,30 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-For the SMD backend, we will use the rpmsg_device pointer as the endpoint-specific data.
+For the MHI backend, we will use the mhi_controller pointer as the
+endpoint-specific data.
+
+This means that we can only have one endpoint ID per MHI controller, but
+since the MHI controller is the bus master in charge of the physical
+link, this is probably okay.
 
 Signed-off-by: Mihai Moldovan <ionic@ionic.de>
 ---
- net/qrtr/smd.c | 1 +
+ net/qrtr/mhi.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/net/qrtr/smd.c b/net/qrtr/smd.c
-index c91bf030fbc7..cb3eeb6835ca 100644
---- a/net/qrtr/smd.c
-+++ b/net/qrtr/smd.c
-@@ -68,6 +68,7 @@ static int qcom_smd_qrtr_probe(struct rpmsg_device *rpdev)
- 	qdev->channel = rpdev->ept;
- 	qdev->dev = &rpdev->dev;
- 	qdev->ep.xmit = qcom_smd_qrtr_send;
-+	qdev->ep.endpoint_data = rpdev;
+diff --git a/net/qrtr/mhi.c b/net/qrtr/mhi.c
+index 9a23c888e234..fc6869c3a7ec 100644
+--- a/net/qrtr/mhi.c
++++ b/net/qrtr/mhi.c
+@@ -95,6 +95,7 @@ static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
+ 	qdev->mhi_dev = mhi_dev;
+ 	qdev->dev = &mhi_dev->dev;
+ 	qdev->ep.xmit = qcom_mhi_qrtr_send;
++	qdev->ep.endpoint_data = mhi_dev->mhi_cntrl;
  
+ 	dev_set_drvdata(&mhi_dev->dev, qdev);
  	rc = qrtr_endpoint_register(&qdev->ep, QRTR_EP_NID_AUTO);
- 	if (rc)
 -- 
 2.45.2
 
