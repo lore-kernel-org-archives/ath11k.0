@@ -4,99 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F35D10F24
-	for <ath11k@archiver.kernel.org>; Sun, 17 Nov 2024 17:02:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98DBAD43FEC
+	for <ath11k@archiver.kernel.org>; Mon, 18 Nov 2024 08:26:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
-	From:References:To:Subject:MIME-Version:Date:Message-ID:Reply-To:Cc:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iOWSsB50h92bNKbaofF9mxw1QTrQ7tS0erITrfPfNik=; b=H6PudLQYeUyJ/jvCY+ooiM3L/o
-	M75CpfdnhzgpmkSW8GUT9Gm5Ig218yC7FcG1M1MTmkXtuTQE5jSFr5r0OKneVpzq8DzkTFT+hNyE0
-	IS0LFOryBbUncAxdBlNESJlo4KiPehBW7HRe0IBs3MLu35olJa3/RteZR/SLwW1Mju0esXGh79f8G
-	W2zu21eGuTiyvyYmvo4FUrg+v5EGAn7BJaVRqAbLw45m5p9vhcZDMc21a076b87SFc72h5RTawDAp
-	1juBV4alQugceKjKWmo0ABCo3AVKTajQbcul7MpZX3cyVzguS6YUJYBwxR2/WEd+VZWH+qICZSXrn
-	vq+Ci+nA==;
+	bh=pofVBIDpbmPXxKdXBZzlW6SKJ1mpQg5f+nyOC0P54ZU=; b=36vFEXjnrTJopLGnlVoWBfR9r6
+	r4LBSSYNElUlRbq94HqQhQRT9iC8c8fTxS7ThQ1xgwvCN7sEEz63+zDLbl49/ScgAPi2sI1TbcTDe
+	NNps0+wDv70kG02Lltlu7ofKJeaUoOGcNqnPmluHVcDvGlNhomhhiyvx9cZKGZuY8YZiJYz1F9rcU
+	5dYLaQB54DRjK6jtUViL63dlb9JpGemUwiQq/8Ccr6tFUZqSWPZr6njj1+7aEf1b+xRcObia2EGub
+	RPI4vFFBvetpnP5UjXu1cdYs2spiISEmdUYoTF5+6Ay1BO1W98qsZxgklbc85m9Ffjgumvaz4Cl33
+	PMUBKj+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCifb-00000007ais-2GOK;
-	Sun, 17 Nov 2024 17:02:43 +0000
-Received: from ionic.de ([2001:41d0:700:3394:1::2] helo=mail.ionic.de)
+	id 1tCx5s-00000008lcL-3Je0;
+	Mon, 18 Nov 2024 08:26:48 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCicZ-00000007aMP-44Z6
-	for ath11k@lists.infradead.org;
-	Sun, 17 Nov 2024 16:59:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
-	t=1731862774; bh=iOWSsB50h92bNKbaofF9mxw1QTrQ7tS0erITrfPfNik=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=quZMDf1M9DYJmC+0+oiQA9AD2TdFO/Sl/6tDe4RahKD0l2oZ1CxpRsBFn+OJ+BGGz
-	 MvSNn2FiF4TKX5Ete5UZ4Yni0WgT0aZ2JnkLoHP4ZcAdrSInmwI5H3Ojw3yU/L32yI
-	 IZeT4IRvXQ3rGAxsDYK8watbjx51hzz+saMMQF+8=
-Received: from [172.22.111.213] (185.102.219.38.adsl.inet-telecom.org [185.102.219.38])
-	by mail.ionic.de (Postfix) with ESMTPSA id 69DE21480CDE
-	for <ath11k@lists.infradead.org>; Sun, 17 Nov 2024 17:59:34 +0100 (CET)
-Message-ID: <4c5a9c95-13a3-440a-9947-a11209876c0b@ionic.de>
-Date: Sun, 17 Nov 2024 17:59:33 +0100
+	id 1tCx5p-00000008lar-2wPc;
+	Mon, 18 Nov 2024 08:26:46 +0000
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AHJiO3Y023687;
+	Mon, 18 Nov 2024 08:26:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pp1; bh=pofVBIDpbmPXxKdXBZzlW6SKJ1mpQg
+	5f+nyOC0P54ZU=; b=pVJ5a4SbiQLc7KmL6NMVUat1TeAb+E4P6v1BT086o1mEhk
+	asPz+d9pnH3oUetVu+XCwbjmIJgCChQ2Yg76ElBtpMc3MPIe4GEIJkdBOh3EDOTs
+	BshLlGoNMECAtRDAXjrNjk0/DJ4p9T1LW6K46OwdwtMNuLDXUx7tw7C0oS59z+J9
+	QShMh32WGNHKvTgEgpik3EK5hVK4TsghRPVpOZt4uDmXgH2LYgfrkGGFgYTal2qH
+	dz0ScnJgPbYohwDb0fe9yXNM0o6w8EzUNqyOgMmUN0w1gT6xXC0tgw+yBkjkz/Fh
+	q242Ut9KG7OxmdBC6tktol2tQuFTw331MM4YUGlg==
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42xgtt0eh7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Nov 2024 08:26:15 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AI73j1E030931;
+	Mon, 18 Nov 2024 08:26:14 GMT
+Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 42y63y27mu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Nov 2024 08:26:14 +0000
+Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
+	by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4AI8QAR549479982
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 18 Nov 2024 08:26:10 GMT
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id BD6AD20043;
+	Mon, 18 Nov 2024 08:26:10 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A867E20040;
+	Mon, 18 Nov 2024 08:26:06 +0000 (GMT)
+Received: from osiris (unknown [9.171.77.223])
+	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Mon, 18 Nov 2024 08:26:06 +0000 (GMT)
+Date: Mon, 18 Nov 2024 09:26:05 +0100
+From: Heiko Carstens <hca@linux.ibm.com>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Pablo Neira Ayuso <pablo@netfilter.org>,
+        Jozsef Kadlecsik <kadlec@netfilter.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Julia Lawall <Julia.Lawall@inria.fr>,
+        Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Russell King <linux@armlinux.org.uk>,
+        Vasily Gorbik <gor@linux.ibm.com>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Christian Borntraeger <borntraeger@linux.ibm.com>,
+        Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>,
+        Oded Gabbay <ogabbay@kernel.org>,
+        Lucas De Marchi <lucas.demarchi@intel.com>,
+        Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jeroen de Borst <jeroendb@google.com>,
+        Praveen Kaligineedi <pkaligineedi@google.com>,
+        Shailend Chand <shailend@google.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        James Smart <james.smart@broadcom.com>,
+        Dick Kennedy <dick.kennedy@broadcom.com>,
+        "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Roger Pau =?iso-8859-1?Q?Monn=E9?= <roger.pau@citrix.com>,
+        Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Jack Wang <jinpu.wang@cloud.ionos.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+        Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
+        Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+        Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>,
+        Joe Lawrence <joe.lawrence@redhat.com>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Louis Peens <louis.peens@corigine.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Naveen N Rao <naveen@kernel.org>,
+        Madhavan Srinivasan <maddy@linux.ibm.com>,
+        netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org, cocci@inria.fr,
+        linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+        linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
+        linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, linux-mm@kvack.org,
+        linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
+        linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
+        live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
+        etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
+        linuxppc-dev@lists.ozlabs.org,
+        Anna-Maria Behnsen <anna-maria@linutronix.de>
+Subject: Re: [PATCH v2 04/21] s390: kernel: Convert timeouts to use
+ secs_to_jiffies()
+Message-ID: <20241118082605.17002-A-hca@linux.ibm.com>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-4-911fb7595e79@linux.microsoft.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] [PATCH 00/13] ath1{1,2}k: support multiple PCI devices in
- one system
-To: ath11k@lists.infradead.org
-References: <cover.1731858971.git.ionic@ionic.de>
-Content-Language: en-US
-From: Mihai Moldovan <ionic@ionic.de>
-Autocrypt: addr=ionic@ionic.de; keydata=
- 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
- S0VlnF9z
-In-Reply-To: <cover.1731858971.git.ionic@ionic.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------bQDqGKs6kin0hPmTKkYRbuYh"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-4-911fb7595e79@linux.microsoft.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: QBYvLy3JNa8evFseixOVfcUMyMppMmNG
+X-Proofpoint-ORIG-GUID: QBYvLy3JNa8evFseixOVfcUMyMppMmNG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
+ mlxscore=0 malwarescore=0 mlxlogscore=858 adultscore=0 priorityscore=1501
+ bulkscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411180066
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241117_085936_191770_A823E33D 
-X-CRM114-Status: GOOD (  10.15  )
+X-CRM114-CacheID: sfid-20241118_002645_856938_561DFBB8 
+X-CRM114-Status: GOOD (  22.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,61 +172,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------bQDqGKs6kin0hPmTKkYRbuYh
-Content-Type: multipart/mixed; boundary="------------aSE8T2ChtCRsZ0ZOZz7uH1jF";
- protected-headers="v1"
-From: Mihai Moldovan <ionic@ionic.de>
-To: ath11k@lists.infradead.org
-Message-ID: <4c5a9c95-13a3-440a-9947-a11209876c0b@ionic.de>
-Subject: Re: [RFC] [PATCH 00/13] ath1{1,2}k: support multiple PCI devices in
- one system
-References: <cover.1731858971.git.ionic@ionic.de>
-In-Reply-To: <cover.1731858971.git.ionic@ionic.de>
+On Fri, Nov 15, 2024 at 09:26:21PM +0000, Easwar Hariharan wrote:
+> Changes made with the following Coccinelle rules:
+> 
+> @@ constant C; @@
+> 
+> - msecs_to_jiffies(C * 1000)
+> + secs_to_jiffies(C)
+> 
+> @@ constant C; @@
+> 
+> - msecs_to_jiffies(C * MSEC_PER_SEC)
+> + secs_to_jiffies(C)
+> 
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> ---
+>  arch/s390/kernel/lgr.c      | 3 ++-
+>  arch/s390/kernel/time.c     | 4 ++--
+>  arch/s390/kernel/topology.c | 2 +-
+>  3 files changed, 5 insertions(+), 4 deletions(-)
 
---------------aSE8T2ChtCRsZ0ZOZz7uH1jF
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+...
 
-SnVzdCBzb21lIHNwZWxsaW5nIGZpeGVzIEknbGwgc3RhZ2UgZm9yIGEgdjIsIHNpbmNlIG1p
-c3Rha2VzIG5hdHVyYWxseSBvbmx5IA0KYmVjb21lIG9idmlvdXMgYWZ0ZXIgcmVhZGluZyB3
-aGF0IHdhcyBzZW50IG91dC4uLg0KDQoNCiogT24gMTEvMTcvMjQgMTc6MDUsIE1paGFpIE1v
-bGRvdmFuIHdyb3RlOg0KPiBbLi4uXQ0KPiBzb2NrZXQgYW5kIGJvdW5kIHRvIGZvciBjbGll
-bnQgc29ja2V0cywgd2hpY2ggd2lsbCBhdXRvbWF0aWNhbGx5IGZpbHRlcg0KPiBtZXNzYWdl
-cyBmcm9tIG90aGVyIGVuZHBvaW50cyBhbmQgYWxzbyBtYWtlIHN1cmUgdGhhdCBtZXNzYWdl
-cyBjbGllbnRzDQo+IHNlbmQgYXJlIHJvdXRlZCB0byB0aGUgY29ycmVjdCBlbmRwb2ludC4N
-Cg0KWy4uLl0gYW5kIGFsc28gbWFrZSBzdXJlIHRoYXQgY2xpZW50IG1lc3NhZ2VzIGFyZSBy
-b3V0ZWQgdG8gdGhlIGNvcnJlY3QgZW5kcG9pbnQuDQoNCg0KPiBbLi4uXQ0KPiBhbmQgYWRk
-aXRpb25hbGx5IG5ldyBBUEkgaXMgaW50cm9kdWNlZCBzbyB0aGF0IG90aGVyIHBhcnRzIGlu
-IHRoZSBrZXJuZWwNCj4gY2FuIGVpdGhlciBnZXQgYW4gZW5kcG9pbnQgSUQgZm9yIGdpdmVu
-IGVuZHBvaW50LXNwZWNpZmljIGRhdGEgb3IgZXZlbg0KPiByZWdpc3RlciBlbmRwb2ludC1z
-cGVjaWZpYyB3aXRoIGEgbmV3IGVuZHBvaW50IElEIHRoYXQgaXMgZ2VuZXJhdGVkIGJ5DQo+
-IHRoZSBRUlRSIGRyaXZlci4gWy4uLl0NCg0KWy4uLl0gb3IgZXZlbiBhdHRhY2ggZW5kcG9p
-bnQtc3BlY2lmaWMgZGF0YSB0byBhIG5ldyBlbmRwb2ludCBJRCBnZW5lcmF0ZWQgYnkgDQp0
-aGUgUVJUUiBkcml2ZXIuDQoNCg0KDQpNaWhhaQ0K
+> diff --git a/arch/s390/kernel/lgr.c b/arch/s390/kernel/lgr.c
+> index 6652e54cf3db9fbdd8cfb06f8a0dc1d4c05ae7d7..68021cb38574b122bbe3d9f70e9168305360017b 100644
+> --- a/arch/s390/kernel/lgr.c
+> +++ b/arch/s390/kernel/lgr.c
+> @@ -166,7 +166,8 @@ static struct timer_list lgr_timer;
+>   */
+>  static void lgr_timer_set(void)
+>  {
+> -	mod_timer(&lgr_timer, jiffies + msecs_to_jiffies(LGR_TIMER_INTERVAL_SECS * MSEC_PER_SEC));
+> +	mod_timer(&lgr_timer,
+> +		  jiffies + secs_to_jiffies(LGR_TIMER_INTERVAL_SECS));
+>  }
 
---------------aSE8T2ChtCRsZ0ZOZz7uH1jF--
-
---------------bQDqGKs6kin0hPmTKkYRbuYh
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEEbhHQj3UzgcdE8cg8H9Yu2W4lOocFAmc6IPUFAwAAAAAACgkQH9Yu2W4lOodi
-thAAxjDY8GPI2FN4QNsJNAMtY/3g/DicaGJ+sju5cGzrFIVmWeqBJxb7ErkWLkGgDd6S0sPbJa9X
-jd68gtQoKaIGLE7PXqf4i2tyCQ9vRzeUkgF5Z8tVA0BgDYBPOjtvmT13PLgthM9G7w2t3Y/a0z2A
-V1yMiLEHU/eMNJsuYju2QpEX7zJhmHTD4vSoLb1E13q8AeSDkcV6A0vZyzl7N5HdeqTWa/C3k/4j
-8vMws7BkM6+KxWMI4Q4TeSf+v4K7Z+IpRk/QB0LMqA6cDV7YUZ0yb1LTsEdu9OKFDFXVdgzoXhuR
-1EQlZxpQR8t8NwXJ60I6tsO1pCeShJKqCIMH8mKVZPtL3B8/zZcJYHmMszwSVIigq+17CsR/Btj8
-9ezU86vJCzHT2RpjHJi7+5Q8lrRwO7/8TPBLsT/9gR1XdXZIdFjpwHtYTT0wpKTl4Jsz7tGHnu49
-Ra8Za3b2Sov+L8f0LMfXZ742dXUooi9k4nlWU20ijbTqmw5LB7woa9uLj8vMkczt9ecqTqGHut/y
-lXEHzRd1svUlMeiyWDLFFgOu5HCi1I3XQEvG4WhCL6viUFkUHOgO//mohrAP2eNrk7IroloV7zPl
-xEAykzigkSKy+m7Nm97jGEYIncoP1hDS+Lhn2TSyYY2M9JFADWP/NbcpSfIldPBobE5u2AzbnLWF
-+FM=
-=XlgZ
------END PGP SIGNATURE-----
-
---------------bQDqGKs6kin0hPmTKkYRbuYh--
+Please don't add a new line break, especially not if the new line
+would be shorter than the old one.
 
