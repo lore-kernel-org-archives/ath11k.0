@@ -4,160 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98DBAD43FEC
-	for <ath11k@archiver.kernel.org>; Mon, 18 Nov 2024 08:26:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95751D4920C
+	for <ath11k@archiver.kernel.org>; Mon, 18 Nov 2024 11:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pofVBIDpbmPXxKdXBZzlW6SKJ1mpQg5f+nyOC0P54ZU=; b=36vFEXjnrTJopLGnlVoWBfR9r6
-	r4LBSSYNElUlRbq94HqQhQRT9iC8c8fTxS7ThQ1xgwvCN7sEEz63+zDLbl49/ScgAPi2sI1TbcTDe
-	NNps0+wDv70kG02Lltlu7ofKJeaUoOGcNqnPmluHVcDvGlNhomhhiyvx9cZKGZuY8YZiJYz1F9rcU
-	5dYLaQB54DRjK6jtUViL63dlb9JpGemUwiQq/8Ccr6tFUZqSWPZr6njj1+7aEf1b+xRcObia2EGub
-	RPI4vFFBvetpnP5UjXu1cdYs2spiISEmdUYoTF5+6Ay1BO1W98qsZxgklbc85m9Ffjgumvaz4Cl33
-	PMUBKj+w==;
+	bh=Q4K7ZFgLQYJQlGAzpq8RK54g3EqKOomWWOR+yhsr1qw=; b=pbNzLIX/usTDtpgJZ73p5thC2+
+	bbu7NfI4lBInxXGmCLPI/YG0xINgft82kOjTVudmagzos0G+eN6lwj/Cwn7U/tIT/y9m1v4iH0/rd
+	B5OC7FoOimBd2cL0E8r6teFe2MFGC+pOcKYdj6HFz0miUNjAebKQ1tzlVA1eJ0qTWcUMNeUGNHnA8
+	FhsCf4Bs1CXOGP57AgGi+7OpWRNHSOTrXSXTxyf1uOZLwKEn53ozxdixtzIyXtL54aTLYwm9eZ8oj
+	C1Px0wKpMVMyPE4EKYpMIBoA+1PQgJRTWEVBpEPa0vMv7054hYi+VseJXaz3/DXAs++SgWME/g89i
+	4WgNt53g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCx5s-00000008lcL-3Je0;
-	Mon, 18 Nov 2024 08:26:48 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1tCzai-00000009CXw-3t3f;
+	Mon, 18 Nov 2024 11:06:48 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tCx5p-00000008lar-2wPc;
-	Mon, 18 Nov 2024 08:26:46 +0000
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AHJiO3Y023687;
-	Mon, 18 Nov 2024 08:26:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pp1; bh=pofVBIDpbmPXxKdXBZzlW6SKJ1mpQg
-	5f+nyOC0P54ZU=; b=pVJ5a4SbiQLc7KmL6NMVUat1TeAb+E4P6v1BT086o1mEhk
-	asPz+d9pnH3oUetVu+XCwbjmIJgCChQ2Yg76ElBtpMc3MPIe4GEIJkdBOh3EDOTs
-	BshLlGoNMECAtRDAXjrNjk0/DJ4p9T1LW6K46OwdwtMNuLDXUx7tw7C0oS59z+J9
-	QShMh32WGNHKvTgEgpik3EK5hVK4TsghRPVpOZt4uDmXgH2LYgfrkGGFgYTal2qH
-	dz0ScnJgPbYohwDb0fe9yXNM0o6w8EzUNqyOgMmUN0w1gT6xXC0tgw+yBkjkz/Fh
-	q242Ut9KG7OxmdBC6tktol2tQuFTw331MM4YUGlg==
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42xgtt0eh7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Nov 2024 08:26:15 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AI73j1E030931;
-	Mon, 18 Nov 2024 08:26:14 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 42y63y27mu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Nov 2024 08:26:14 +0000
-Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
-	by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4AI8QAR549479982
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 18 Nov 2024 08:26:10 GMT
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id BD6AD20043;
-	Mon, 18 Nov 2024 08:26:10 +0000 (GMT)
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id A867E20040;
-	Mon, 18 Nov 2024 08:26:06 +0000 (GMT)
-Received: from osiris (unknown [9.171.77.223])
-	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Mon, 18 Nov 2024 08:26:06 +0000 (GMT)
-Date: Mon, 18 Nov 2024 09:26:05 +0100
-From: Heiko Carstens <hca@linux.ibm.com>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Pablo Neira Ayuso <pablo@netfilter.org>,
-        Jozsef Kadlecsik <kadlec@netfilter.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
-        Julia Lawall <Julia.Lawall@inria.fr>,
-        Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Russell King <linux@armlinux.org.uk>,
-        Vasily Gorbik <gor@linux.ibm.com>,
-        Alexander Gordeev <agordeev@linux.ibm.com>,
-        Christian Borntraeger <borntraeger@linux.ibm.com>,
-        Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>,
-        Oded Gabbay <ogabbay@kernel.org>,
-        Lucas De Marchi <lucas.demarchi@intel.com>,
-        Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jeroen de Borst <jeroendb@google.com>,
-        Praveen Kaligineedi <pkaligineedi@google.com>,
-        Shailend Chand <shailend@google.com>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        James Smart <james.smart@broadcom.com>,
-        Dick Kennedy <dick.kennedy@broadcom.com>,
-        "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Roger Pau =?iso-8859-1?Q?Monn=E9?= <roger.pau@citrix.com>,
-        Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Jack Wang <jinpu.wang@cloud.ionos.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-        Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
-        Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-        Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>,
-        Joe Lawrence <joe.lawrence@redhat.com>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Louis Peens <louis.peens@corigine.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Naveen N Rao <naveen@kernel.org>,
-        Madhavan Srinivasan <maddy@linux.ibm.com>,
-        netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org, cocci@inria.fr,
-        linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
-        linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org,
-        linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, linux-mm@kvack.org,
-        linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev,
-        linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
-        live-patching@vger.kernel.org, linux-sound@vger.kernel.org,
-        etnaviv@lists.freedesktop.org, oss-drivers@corigine.com,
-        linuxppc-dev@lists.ozlabs.org,
-        Anna-Maria Behnsen <anna-maria@linutronix.de>
-Subject: Re: [PATCH v2 04/21] s390: kernel: Convert timeouts to use
- secs_to_jiffies()
-Message-ID: <20241118082605.17002-A-hca@linux.ibm.com>
+	id 1tCzae-00000009CVH-3RBT
+	for ath11k@lists.infradead.org;
+	Mon, 18 Nov 2024 11:06:47 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-382423e1f7aso761725f8f.2
+        for <ath11k@lists.infradead.org>; Mon, 18 Nov 2024 03:06:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1731928002; x=1732532802; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Q4K7ZFgLQYJQlGAzpq8RK54g3EqKOomWWOR+yhsr1qw=;
+        b=R7xo6iFD/danXNwoBiO7gtgmmPIFmwOwn/BZYkB8RfgM35ej8oK+q+m7tiTuCPR5m+
+         ZHUtdw8k6UEEy5RSGKUjPQUqQkkPTpvxw3eIUvkkubrrZafUmArNJaMHHpD4wt9IsdNT
+         a73wOZhbuRf0aELhZ054bkdj63DmuvPPsaJAl84vHf4UKGyDDl9etj7OZDfoNzaR1fVG
+         xvtWx+tCf/ektyxKRlgRX+UNfCXW05gsFm6T0TWb2Hlgh0Ul+IFILLJK15uxZsbhkQJL
+         RcVM/B2uDk7I86CkP5SmsMeArLn5jkhvCpZytKEfceLpVyfD9HrW8WQKj2xTFmPNGiT8
+         IhpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731928002; x=1732532802;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q4K7ZFgLQYJQlGAzpq8RK54g3EqKOomWWOR+yhsr1qw=;
+        b=MFYJJAetffiCFWea/BMk62LxU4dOK9Uk6G2WEF/5mBYwqptrCsSE/8rpvq1m367SKW
+         vQhXlntBREgqmiLuWteE4XQm2pLinftp8YGg2us6YxmbL8FFTC5kUScDsbotfSdoMLsE
+         CTlqYWC6zziRTM4YHvORYkRCRb3pDcxFhQADg2AbWwttq+B1Kh5U+W66LSZIPQBDs95p
+         lgWF8Tc5Iy/nnbYlvDcvbEWMXjWahxHzmZuWfTCjj6IUGbJymHIXS6fFPNAJDYPxqenZ
+         gS1kT+I+fXdodHm4zHCF8u5NB2smx87RfLxqeKrmJn/T6ccNhBwsCIVleaaa/1ZN3RJy
+         eXRw==
+X-Forwarded-Encrypted: i=1; AJvYcCVOvJc0DpS0R+pVB/OjCnr0/hLy0DSoB9RL6A4cVuN43sEGgwhv6xBVkpqnnpNyn0RlAo+aQFI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YywRAC8xWMe2E0hkPEUW+IYO3xQC5uGSAZlU2wR9lNlLJYnpzED
+	Skp4JHUjcDa47WSegwpVq0+EpQcr9oIvXtwq5edm5oOPAsbU9B5OFWfLqteptwA=
+X-Google-Smtp-Source: AGHT+IEHvVmgRYFNhCs4UC7E5RjVk5JwGYVdnUZOYcUXsiEIWSohYFEZO8cTVp2lMrq4C8xPl0BQ1Q==
+X-Received: by 2002:a05:6000:18af:b0:37d:4ef1:1820 with SMTP id ffacd0b85a97d-38225a91e80mr10392779f8f.40.1731928002298;
+        Mon, 18 Nov 2024 03:06:42 -0800 (PST)
+Received: from pathway.suse.cz ([176.114.240.50])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38242eef982sm4319340f8f.8.2024.11.18.03.06.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2024 03:06:41 -0800 (PST)
+Date: Mon, 18 Nov 2024 12:06:34 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: Easwar Hariharan <eahariha@linux.microsoft.com>,
+	Pablo Neira Ayuso <pablo@netfilter.org>,
+	Jozsef Kadlecsik <kadlec@netfilter.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Julia Lawall <Julia.Lawall@inria.fr>,
+	Nicolas Palix <nicolas.palix@imag.fr>,
+	Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Russell King <linux@armlinux.org.uk>,
+	Heiko Carstens <hca@linux.ibm.com>,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Sven Schnelle <svens@linux.ibm.com>,
+	Ofir Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>,
+	Lucas De Marchi <lucas.demarchi@intel.com>,
+	Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+	Rodrigo Vivi <rodrigo.vivi@intel.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Jeroen de Borst <jeroendb@google.com>,
+	Praveen Kaligineedi <pkaligineedi@google.com>,
+	Shailend Chand <shailend@google.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	James Smart <james.smart@broadcom.com>,
+	Dick Kennedy <dick.kennedy@broadcom.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Roger Pau =?iso-8859-1?Q?Monn=E9?= <roger.pau@citrix.com>,
+	Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Jack Wang <jinpu.wang@cloud.ionos.com>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
+	Josh Poimboeuf <jpoimboe@kernel.org>,
+	Jiri Kosina <jikos@kernel.org>, Miroslav Benes <mbenes@suse.cz>,
+	Joe Lawrence <joe.lawrence@redhat.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Russell King <linux+etnaviv@armlinux.org.uk>,
+	Christian Gmeiner <christian.gmeiner@gmail.com>,
+	Louis Peens <louis.peens@corigine.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	cocci@inria.fr, linux-arm-kernel@lists.infradead.org,
+	linux-s390@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org, linux-scsi@vger.kernel.org,
+	xen-devel@lists.xenproject.org, linux-block@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	linux-mm@kvack.org, linux-bluetooth@vger.kernel.org,
+	linux-staging@lists.linux.dev, linux-rpi-kernel@lists.infradead.org,
+	ceph-devel@vger.kernel.org, live-patching@vger.kernel.org,
+	linux-sound@vger.kernel.org, etnaviv@lists.freedesktop.org,
+	oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org,
+	Anna-Maria Behnsen <anna-maria@linutronix.de>
+Subject: Re: [PATCH v2 19/21] livepatch: Convert timeouts to secs_to_jiffies()
+Message-ID: <Zzsfuuv3AVomkMxn@pathway.suse.cz>
 References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v2-4-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-19-911fb7595e79@linux.microsoft.com>
+ <718febc4-59ee-4701-ad62-8b7a8fa7a910@csgroup.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20241115-converge-secs-to-jiffies-v2-4-911fb7595e79@linux.microsoft.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: QBYvLy3JNa8evFseixOVfcUMyMppMmNG
-X-Proofpoint-ORIG-GUID: QBYvLy3JNa8evFseixOVfcUMyMppMmNG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
- mlxscore=0 malwarescore=0 mlxlogscore=858 adultscore=0 priorityscore=1501
- bulkscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411180066
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <718febc4-59ee-4701-ad62-8b7a8fa7a910@csgroup.eu>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241118_002645_856938_561DFBB8 
-X-CRM114-Status: GOOD (  22.95  )
+X-CRM114-CacheID: sfid-20241118_030644_850590_FB1112EE 
+X-CRM114-Status: GOOD (  18.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -172,41 +166,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Nov 15, 2024 at 09:26:21PM +0000, Easwar Hariharan wrote:
-> Changes made with the following Coccinelle rules:
+On Sat 2024-11-16 11:10:52, Christophe Leroy wrote:
 > 
-> @@ constant C; @@
 > 
-> - msecs_to_jiffies(C * 1000)
-> + secs_to_jiffies(C)
+> Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
+> > [Vous ne recevez pas souvent de courriers de eahariha@linux.microsoft.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+> > 
+> > Changes made with the following Coccinelle rules:
+> > 
+> > @@ constant C; @@
+> > 
+> > - msecs_to_jiffies(C * 1000)
+> > + secs_to_jiffies(C)
+> > 
+> > @@ constant C; @@
+> > 
+> > - msecs_to_jiffies(C * MSEC_PER_SEC)
+> > + secs_to_jiffies(C)
+> > 
+> > Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> > ---
+> >   samples/livepatch/livepatch-callbacks-busymod.c |  2 +-
+> >   samples/livepatch/livepatch-shadow-fix1.c       |  2 +-
+> >   samples/livepatch/livepatch-shadow-mod.c        | 10 +++++-----
+> >   3 files changed, 7 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/samples/livepatch/livepatch-callbacks-busymod.c b/samples/livepatch/livepatch-callbacks-busymod.c
+> > index 378e2d40271a9717d09eff51d3d3612c679736fc..d0fd801a7c21b7d7939c29d83f9d993badcc9aba 100644
+> > --- a/samples/livepatch/livepatch-callbacks-busymod.c
+> > +++ b/samples/livepatch/livepatch-callbacks-busymod.c
+> > @@ -45,7 +45,7 @@ static int livepatch_callbacks_mod_init(void)
+> >   {
+> >          pr_info("%s\n", __func__);
+> >          schedule_delayed_work(&work,
+> > -               msecs_to_jiffies(1000 * 0));
+> > +               secs_to_jiffies(0));
 > 
-> @@ constant C; @@
-> 
-> - msecs_to_jiffies(C * MSEC_PER_SEC)
-> + secs_to_jiffies(C)
-> 
-> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> ---
->  arch/s390/kernel/lgr.c      | 3 ++-
->  arch/s390/kernel/time.c     | 4 ++--
->  arch/s390/kernel/topology.c | 2 +-
->  3 files changed, 5 insertions(+), 4 deletions(-)
+> Using secs_to_jiffies() is pointless, 0 is universal, should become
+> schedule_delayed_work(&work, 0);
 
-...
+Yes, schedule_delayed_work(&work, 0) looks like the right solution.
 
-> diff --git a/arch/s390/kernel/lgr.c b/arch/s390/kernel/lgr.c
-> index 6652e54cf3db9fbdd8cfb06f8a0dc1d4c05ae7d7..68021cb38574b122bbe3d9f70e9168305360017b 100644
-> --- a/arch/s390/kernel/lgr.c
-> +++ b/arch/s390/kernel/lgr.c
-> @@ -166,7 +166,8 @@ static struct timer_list lgr_timer;
->   */
->  static void lgr_timer_set(void)
->  {
-> -	mod_timer(&lgr_timer, jiffies + msecs_to_jiffies(LGR_TIMER_INTERVAL_SECS * MSEC_PER_SEC));
-> +	mod_timer(&lgr_timer,
-> +		  jiffies + secs_to_jiffies(LGR_TIMER_INTERVAL_SECS));
->  }
+Or even better, it seems that the delayed work might get replaced by
+a normal workqueue work.
 
-Please don't add a new line break, especially not if the new line
-would be shorter than the old one.
+Anyway, I am working on a patchset which would remove this sample
+module. There is no need to put much effort into the clean up
+of this particular module. Do whatever is easiest for you.
+
+Best Regards,
+Petr
 
