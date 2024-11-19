@@ -4,156 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36044D60074
-	for <ath11k@archiver.kernel.org>; Tue, 19 Nov 2024 08:53:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4406ED62041
+	for <ath11k@archiver.kernel.org>; Tue, 19 Nov 2024 09:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-ID:Content-Type:
+	MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qaBG3Z7R9DOuiOybc185RSD4M8rIPEBBhrkZgjFmOxU=; b=m9fliMUwy0n5OwN1muePE5edek
-	kH979dIT1C6QhThX05QhqUrwV4Jha9JQSPHPlJkIrVaUfOaLWWIhDou0u6XYobcg/YuxZFGdVoKE6
-	sRfp8KGU8JTWzbQT0YmfpQsOcTIphFNPNDyP2BI5h+eHHGvGiIVMAC0xOEIdzETqBrEKxtueEWXAw
-	5B2zRBWMZee5gvY76GYu8yHBNKyMmYnRQsEBxN+bF69yigZWMw2Q5uqCnqh2cprbQRw3Cpn8w3f1Y
-	PzFw+Rj9cm8/Lfz/hRqZ9XhT2351CKmRX5Y4qyAum/6lIEv+/fPiH0Yz5SHTA9DEFHB8yyhEVi4Da
-	fvRzsvVw==;
+	bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=; b=hS7Ecd3f0fezKtmeKaOgTa73HH
+	cpAkyxx7BtdqD1H0JEcMFLrbE+EuI04yEH8wRW7M2ToK7aO6YzSD6ITLRWzUALwMjRrLlNlggFRjD
+	8xK4oFVTANVmCXiB3N2mlThYZ7SJ/UlQjyfNl5bMN+B3yIitZ46hjybimfUAiZzd60x7VKp2cUTQp
+	FDzmuXcAZT2fyYKlrRKsqxKPRoGjSTA/TIzj9+9alwt+lWk5JKuxT+QFFseatxBMudotmtvZ1kVTa
+	1cjIq9v8WKlPZqUffgoOJ5zz+e8vDQS0EsZihrbq4qkQJYspeZ1ye0oUNFSFRkMWwYfEJnT3IWSix
+	VdaUcKuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tDJym-0000000Bo9k-0qYP;
-	Tue, 19 Nov 2024 08:53:00 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1tDKFF-0000000BqPJ-2ego;
+	Tue, 19 Nov 2024 09:10:01 +0000
+Received: from smtp-out1.suse.de ([2a07:de40:b251:101:10:150:64:1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tDJyi-0000000Bo7Z-1lLq
-	for ath11k@lists.infradead.org;
-	Tue, 19 Nov 2024 08:52:58 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so5644735e9.3
-        for <ath11k@lists.infradead.org>; Tue, 19 Nov 2024 00:52:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1732006375; x=1732611175; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qaBG3Z7R9DOuiOybc185RSD4M8rIPEBBhrkZgjFmOxU=;
-        b=CGfMTHF5zn/pl5H58XWCG3Zgdtra4XVQzzM133mqi+kj6IATfFOhpXKqvNMpR7rfSi
-         r7H6qwj3ePMOWRgZLzmimqtPAcH6orQCDXZAIvapm3gJLWguz8Wm6Z24Qa04pEmN7CtP
-         OvPgTsCZdC6g61vXGBdSlqWXLzkeKHyzZeGJdJG2PvQiMRWyDYXLWoMCmbwKy4eKyl16
-         kFDTmLpNj5FvjjI9fXGl5OiHZ5f4TE9ELKuom0FxmQ07TY1GoJS+r7IyPFVgF6N+0hY4
-         9ycvHyPDnlvfr4d4OjUsTofHK3p9w03kCtC7kiSPWcT+E+N6lEMQ2SBYa6zNdLCf5m5+
-         a7yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732006375; x=1732611175;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qaBG3Z7R9DOuiOybc185RSD4M8rIPEBBhrkZgjFmOxU=;
-        b=nYtWHC2CjwE95/YVwXzvJQj+aD0Q9QunPLjrqV5pqlp8jm5dgRHl8emfybHVpncw5k
-         kI6yvtHysqljRSWlfFQTbsddpunZtOxtJLdBBJ+T8x6HEBBxfsWQqJhbat6H64G1jHFI
-         eQRoHy3g6clBK7WHLg46DcSRD7oqV0xEdJJoc7ipUMUfSLLJwGbnSTrB6IClmCCirhKL
-         0l8+IfN3PcrDCF8vL6seRgpUAB8ktq3SOEBtTsjq6eX2oZNG42KA1amYA3R3qZ/9H0Nn
-         3RHoc+1RNRIfgpIvjXuad0woQqOt266cnaKbJbNzZh4iTlkAZ0m49PcgiVCrVJkykzC3
-         jd8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXNXS/wVQsLerl8cHPUPJoxQrAzU+a0fvA//+3LhrgidUSMeJsP6qF3NKcxN4sNroYfncRHjv4=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzYsrCyF77sH5vFpSgx7Y0heXWmTI6yKDFgcUKFkxRzv4iQsPGn
-	K9kW0zhJ2bKkDOXZ+RJavB8AplsfvH7oxmTlP8yVTfJ4vMfeqjb9mbMZHYWZ9Ks=
-X-Google-Smtp-Source: AGHT+IHrqP9nC2rPwknktgIKbjWoIt1yh0m5e2N0IUvcTBAuP3H8V/AdHOWp2OIw94YWQU//ijQi/A==
-X-Received: by 2002:a5d:6d0f:0:b0:382:2492:3218 with SMTP id ffacd0b85a97d-38225aaee39mr12773115f8f.47.1732006374705;
-        Tue, 19 Nov 2024 00:52:54 -0800 (PST)
-Received: from pathway.suse.cz ([176.114.240.50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3824a8109a7sm3705943f8f.104.2024.11.19.00.52.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Nov 2024 00:52:54 -0800 (PST)
-Date: Tue, 19 Nov 2024 09:52:46 +0100
-From: Petr Mladek <pmladek@suse.com>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Pablo Neira Ayuso <pablo@netfilter.org>,
-	Jozsef Kadlecsik <kadlec@netfilter.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Julia Lawall <Julia.Lawall@inria.fr>,
-	Nicolas Palix <nicolas.palix@imag.fr>,
-	Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Russell King <linux@armlinux.org.uk>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Vasily Gorbik <gor@linux.ibm.com>,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	Sven Schnelle <svens@linux.ibm.com>,
-	Ofir Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>,
-	Lucas De Marchi <lucas.demarchi@intel.com>,
-	Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Jeroen de Borst <jeroendb@google.com>,
-	Praveen Kaligineedi <pkaligineedi@google.com>,
-	Shailend Chand <shailend@google.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	James Smart <james.smart@broadcom.com>,
-	Dick Kennedy <dick.kennedy@broadcom.com>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Roger Pau =?iso-8859-1?Q?Monn=E9?= <roger.pau@citrix.com>,
-	Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Jack Wang <jinpu.wang@cloud.ionos.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Johan Hedberg <johan.hedberg@gmail.com>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
-	Josh Poimboeuf <jpoimboe@kernel.org>,
-	Jiri Kosina <jikos@kernel.org>, Miroslav Benes <mbenes@suse.cz>,
-	Joe Lawrence <joe.lawrence@redhat.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Russell King <linux+etnaviv@armlinux.org.uk>,
-	Christian Gmeiner <christian.gmeiner@gmail.com>,
-	Louis Peens <louis.peens@corigine.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Naveen N Rao <naveen@kernel.org>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	cocci@inria.fr, linux-arm-kernel@lists.infradead.org,
-	linux-s390@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org, linux-scsi@vger.kernel.org,
-	xen-devel@lists.xenproject.org, linux-block@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	linux-mm@kvack.org, linux-bluetooth@vger.kernel.org,
-	linux-staging@lists.linux.dev, linux-rpi-kernel@lists.infradead.org,
-	ceph-devel@vger.kernel.org, live-patching@vger.kernel.org,
-	linux-sound@vger.kernel.org, etnaviv@lists.freedesktop.org,
-	oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org,
-	Anna-Maria Behnsen <anna-maria@linutronix.de>
-Subject: Re: [PATCH v2 19/21] livepatch: Convert timeouts to secs_to_jiffies()
-Message-ID: <ZzxR3uAcWFEPUIUK@pathway.suse.cz>
-References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v2-19-911fb7595e79@linux.microsoft.com>
- <718febc4-59ee-4701-ad62-8b7a8fa7a910@csgroup.eu>
- <Zzsfuuv3AVomkMxn@pathway.suse.cz>
- <96f3b51b-c28c-4ea8-b61e-a4982196215f@linux.microsoft.com>
+	id 1tDKFD-0000000BqOQ-0s2i;
+	Tue, 19 Nov 2024 09:10:00 +0000
+Received: from pobox.suse.cz (unknown [10.100.2.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id D475321901;
+	Tue, 19 Nov 2024 09:09:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+	t=1732007396; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
+	b=SIRiPqohnfZsfiR8rWfugglV6kBt9WZNkpsbbr+OOaRL3B/gLbNYdP82bjB0S/Sjpyp4Dh
+	6DaUo1iD8tvsOcOGm8MLnAkvlYyhNoN/BKk+Nu5/yLAfPrF9/Eu//yrmX3tKwCADYf1zxx
+	7juTShWa4+8m5I6ysJKabU6DZBznQQA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+	s=susede2_ed25519; t=1732007396;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
+	b=eLQee8Kl//Z+uAJMSQ8O/3uMhn0cIi08Nnfcslit1gjRhYGbaqZ6swdcVqziESyeoUyf0K
+	N0AZng7gJdnO9PAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+	t=1732007396; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
+	b=SIRiPqohnfZsfiR8rWfugglV6kBt9WZNkpsbbr+OOaRL3B/gLbNYdP82bjB0S/Sjpyp4Dh
+	6DaUo1iD8tvsOcOGm8MLnAkvlYyhNoN/BKk+Nu5/yLAfPrF9/Eu//yrmX3tKwCADYf1zxx
+	7juTShWa4+8m5I6ysJKabU6DZBznQQA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+	s=susede2_ed25519; t=1732007396;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=d3ZUiM0v/u9S5PwB6Ydqo1vhiAlHB49FGA/7ikHpEDE=;
+	b=eLQee8Kl//Z+uAJMSQ8O/3uMhn0cIi08Nnfcslit1gjRhYGbaqZ6swdcVqziESyeoUyf0K
+	N0AZng7gJdnO9PAg==
+Date: Tue, 19 Nov 2024 10:09:55 +0100 (CET)
+From: Miroslav Benes <mbenes@suse.cz>
+To: Petr Mladek <pmladek@suse.com>
+cc: Easwar Hariharan <eahariha@linux.microsoft.com>, 
+    Christophe Leroy <christophe.leroy@csgroup.eu>, 
+    Pablo Neira Ayuso <pablo@netfilter.org>, 
+    Jozsef Kadlecsik <kadlec@netfilter.org>, 
+    "David S. Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+    Julia Lawall <Julia.Lawall@inria.fr>, 
+    Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>, 
+    Haojian Zhuang <haojian.zhuang@gmail.com>, 
+    Robert Jarzmik <robert.jarzmik@free.fr>, 
+    Russell King <linux@armlinux.org.uk>, Heiko Carstens <hca@linux.ibm.com>, 
+    Vasily Gorbik <gor@linux.ibm.com>, 
+    Alexander Gordeev <agordeev@linux.ibm.com>, 
+    Christian Borntraeger <borntraeger@linux.ibm.com>, 
+    Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>, 
+    Oded Gabbay <ogabbay@kernel.org>, 
+    Lucas De Marchi <lucas.demarchi@intel.com>, 
+    =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+    Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+    Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+    Maxime Ripard <mripard@kernel.org>, 
+    Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+    Simona Vetter <simona@ffwll.ch>, Jeroen de Borst <jeroendb@google.com>, 
+    Praveen Kaligineedi <pkaligineedi@google.com>, 
+    Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+    James Smart <james.smart@broadcom.com>, 
+    Dick Kennedy <dick.kennedy@broadcom.com>, 
+    "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+    "Martin K. Petersen" <martin.petersen@oracle.com>, 
+    =?ISO-8859-15?Q?Roger_Pau_Monn=E9?= <roger.pau@citrix.com>, 
+    Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>, 
+    Jeff Johnson <jjohnson@kernel.org>, 
+    Catalin Marinas <catalin.marinas@arm.com>, 
+    Andrew Morton <akpm@linux-foundation.org>, 
+    Jack Wang <jinpu.wang@cloud.ionos.com>, 
+    Marcel Holtmann <marcel@holtmann.org>, 
+    Johan Hedberg <johan.hedberg@gmail.com>, 
+    Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Florian Fainelli <florian.fainelli@broadcom.com>, 
+    Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+    Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+    Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>, 
+    Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+    Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>, 
+    Takashi Iwai <tiwai@suse.com>, Lucas Stach <l.stach@pengutronix.de>, 
+    Russell King <linux+etnaviv@armlinux.org.uk>, 
+    Christian Gmeiner <christian.gmeiner@gmail.com>, 
+    Louis Peens <louis.peens@corigine.com>, 
+    Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+    Naveen N Rao <naveen@kernel.org>, 
+    Madhavan Srinivasan <maddy@linux.ibm.com>, netfilter-devel@vger.kernel.org, 
+    coreteam@netfilter.org, netdev@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, cocci@inria.fr, 
+    linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org, 
+    dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+    linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org, 
+    linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
+    ath11k@lists.infradead.org, linux-mm@kvack.org, 
+    linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev, 
+    linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org, 
+    live-patching@vger.kernel.org, linux-sound@vger.kernel.org, 
+    etnaviv@lists.freedesktop.org, oss-drivers@corigine.com, 
+    linuxppc-dev@lists.ozlabs.org, 
+    Anna-Maria Behnsen <anna-maria@linutronix.de>
+Subject: Re: [PATCH v2 19/21] livepatch: Convert timeouts to
+ secs_to_jiffies()
+In-Reply-To: <ZzxR3uAcWFEPUIUK@pathway.suse.cz>
+Message-ID: <alpine.LSU.2.21.2411191006340.15289@pobox.suse.cz>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com> <20241115-converge-secs-to-jiffies-v2-19-911fb7595e79@linux.microsoft.com> <718febc4-59ee-4701-ad62-8b7a8fa7a910@csgroup.eu> <Zzsfuuv3AVomkMxn@pathway.suse.cz>
+ <96f3b51b-c28c-4ea8-b61e-a4982196215f@linux.microsoft.com> <ZzxR3uAcWFEPUIUK@pathway.suse.cz>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <96f3b51b-c28c-4ea8-b61e-a4982196215f@linux.microsoft.com>
+Content-Type: multipart/mixed; BOUNDARY="1678380546-1247530484-1732007229=:15289"
+Content-ID: <alpine.LSU.2.21.2411191007130.15289@pobox.suse.cz>
+X-Spamd-Result: default: False [-5.80 / 50.00];
+	REPLY(-4.00)[];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-0.998];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	FROM_EQ_ENVFROM(0.00)[];
+	ARC_NA(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linux.microsoft.com,csgroup.eu,netfilter.org,davemloft.net,google.com,kernel.org,redhat.com,inria.fr,imag.fr,zonque.org,gmail.com,free.fr,armlinux.org.uk,linux.ibm.com,habana.ai,intel.com,linux.intel.com,suse.de,ffwll.ch,lunn.ch,broadcom.com,hansenpartnership.com,oracle.com,citrix.com,kernel.dk,arm.com,linux-foundation.org,cloud.ionos.com,holtmann.org,linuxfoundation.org,perex.cz,suse.com,pengutronix.de,corigine.com,ellerman.id.au,vger.kernel.org,lists.infradead.org,lists.freedesktop.org,lists.xenproject.org,kvack.org,lists.linux.dev,lists.ozlabs.org,linutronix.de];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+];
+	TO_MATCH_ENVRCPT_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[netdev,etnaviv];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[94];
+	RCVD_COUNT_ZERO(0.00)[0];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	R_RATELIMIT(0.00)[to_ip_from(RLst1ywfnn8h7y4sspo7cfrpds)];
+	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com,free.fr]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241119_005256_464856_B68896E4 
-X-CRM114-Status: GOOD (  27.41  )
+X-CRM114-CacheID: sfid-20241119_010959_403027_61240079 
+X-CRM114-Status: GOOD (  35.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -168,78 +185,94 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon 2024-11-18 10:18:49, Easwar Hariharan wrote:
-> On 11/18/2024 3:06 AM, Petr Mladek wrote:
-> > On Sat 2024-11-16 11:10:52, Christophe Leroy wrote:
-> >>
-> >>
-> >> Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
-> >>> [Vous ne recevez pas souvent de courriers de eahariha@linux.microsoft.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
-> >>>
-> >>> Changes made with the following Coccinelle rules:
-> >>>
-> >>> @@ constant C; @@
-> >>>
-> >>> - msecs_to_jiffies(C * 1000)
-> >>> + secs_to_jiffies(C)
-> >>>
-> >>> @@ constant C; @@
-> >>>
-> >>> - msecs_to_jiffies(C * MSEC_PER_SEC)
-> >>> + secs_to_jiffies(C)
-> >>>
-> >>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> >>> ---
-> >>>   samples/livepatch/livepatch-callbacks-busymod.c |  2 +-
-> >>>   samples/livepatch/livepatch-shadow-fix1.c       |  2 +-
-> >>>   samples/livepatch/livepatch-shadow-mod.c        | 10 +++++-----
-> >>>   3 files changed, 7 insertions(+), 7 deletions(-)
-> >>>
-> >>> diff --git a/samples/livepatch/livepatch-callbacks-busymod.c b/samples/livepatch/livepatch-callbacks-busymod.c
-> >>> index 378e2d40271a9717d09eff51d3d3612c679736fc..d0fd801a7c21b7d7939c29d83f9d993badcc9aba 100644
-> >>> --- a/samples/livepatch/livepatch-callbacks-busymod.c
-> >>> +++ b/samples/livepatch/livepatch-callbacks-busymod.c
-> >>> @@ -45,7 +45,7 @@ static int livepatch_callbacks_mod_init(void)
-> >>>   {
-> >>>          pr_info("%s\n", __func__);
-> >>>          schedule_delayed_work(&work,
-> >>> -               msecs_to_jiffies(1000 * 0));
-> >>> +               secs_to_jiffies(0));
-> >>
-> >> Using secs_to_jiffies() is pointless, 0 is universal, should become
-> >> schedule_delayed_work(&work, 0);
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--1678380546-1247530484-1732007229=:15289
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+Content-ID: <alpine.LSU.2.21.2411191007131.15289@pobox.suse.cz>
+
+On Tue, 19 Nov 2024, Petr Mladek wrote:
+
+> On Mon 2024-11-18 10:18:49, Easwar Hariharan wrote:
+> > On 11/18/2024 3:06 AM, Petr Mladek wrote:
+> > > On Sat 2024-11-16 11:10:52, Christophe Leroy wrote:
+> > >>
+> > >>
+> > >> Le 15/11/2024 à 22:26, Easwar Hariharan a écrit :
+> > >>> [Vous ne recevez pas souvent de courriers de eahariha@linux.microsoft.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+> > >>>
+> > >>> Changes made with the following Coccinelle rules:
+> > >>>
+> > >>> @@ constant C; @@
+> > >>>
+> > >>> - msecs_to_jiffies(C * 1000)
+> > >>> + secs_to_jiffies(C)
+> > >>>
+> > >>> @@ constant C; @@
+> > >>>
+> > >>> - msecs_to_jiffies(C * MSEC_PER_SEC)
+> > >>> + secs_to_jiffies(C)
+> > >>>
+> > >>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> > >>> ---
+> > >>>   samples/livepatch/livepatch-callbacks-busymod.c |  2 +-
+> > >>>   samples/livepatch/livepatch-shadow-fix1.c       |  2 +-
+> > >>>   samples/livepatch/livepatch-shadow-mod.c        | 10 +++++-----
+> > >>>   3 files changed, 7 insertions(+), 7 deletions(-)
+> > >>>
+> > >>> diff --git a/samples/livepatch/livepatch-callbacks-busymod.c b/samples/livepatch/livepatch-callbacks-busymod.c
+> > >>> index 378e2d40271a9717d09eff51d3d3612c679736fc..d0fd801a7c21b7d7939c29d83f9d993badcc9aba 100644
+> > >>> --- a/samples/livepatch/livepatch-callbacks-busymod.c
+> > >>> +++ b/samples/livepatch/livepatch-callbacks-busymod.c
+> > >>> @@ -45,7 +45,7 @@ static int livepatch_callbacks_mod_init(void)
+> > >>>   {
+> > >>>          pr_info("%s\n", __func__);
+> > >>>          schedule_delayed_work(&work,
+> > >>> -               msecs_to_jiffies(1000 * 0));
+> > >>> +               secs_to_jiffies(0));
+> > >>
+> > >> Using secs_to_jiffies() is pointless, 0 is universal, should become
+> > >> schedule_delayed_work(&work, 0);
+> > > 
+> > > Yes, schedule_delayed_work(&work, 0) looks like the right solution.
+> > > 
+> > > Or even better, it seems that the delayed work might get replaced by
+> > > a normal workqueue work.
+> > > 
+> > > Anyway, I am working on a patchset which would remove this sample
+> > > module. There is no need to put much effort into the clean up
+> > > of this particular module. Do whatever is easiest for you.
+> > > 
+> > > Best Regards,
+> > > Petr
 > > 
-> > Yes, schedule_delayed_work(&work, 0) looks like the right solution.
-> > 
-> > Or even better, it seems that the delayed work might get replaced by
-> > a normal workqueue work.
-> > 
-> > Anyway, I am working on a patchset which would remove this sample
-> > module. There is no need to put much effort into the clean up
-> > of this particular module. Do whatever is easiest for you.
-> > 
-> > Best Regards,
-> > Petr
+> > If we're removing the module, I'll drop it from the series. Just to
+> > clarify, do you mean to remove all of samples/livepatch/* or some
+> > particular file(s)?
 > 
-> If we're removing the module, I'll drop it from the series. Just to
-> clarify, do you mean to remove all of samples/livepatch/* or some
-> particular file(s)?
+> To be precise, I am going to replace:
+> 
+> 	samples/livepatch/livepatch-callbacks-demo.c
+> 	samples/livepatch/livepatch-callbacks-mod.c
+> 	samples/livepatch/livepatch-callbacks-busymod.c
+> 
+> with a completely different modules because I am reworking the
+> callbacks API.
+> 
+> All other sample modules are going to stay.
+> 
+> Feel free to remove livepatch-callbacks-busymod.c from the patchset.
+> But also feel free to keep it. The API rework goes slowly. I am not
+> sure if it would be ready for 6.14.
 
-To be precise, I am going to replace:
+I would propose that Easwar goes on with his work and prepares an updated 
+version of the patch based on Christophe's feedback. That is, disregarding 
+Petr's rework for now. The patch set has a higher chance to be merged 
+sooner. Petr can then easily rebase. If there is a conflict, we will 
+handle it as usual. What do you think?
 
-	samples/livepatch/livepatch-callbacks-demo.c
-	samples/livepatch/livepatch-callbacks-mod.c
-	samples/livepatch/livepatch-callbacks-busymod.c
-
-with a completely different modules because I am reworking the
-callbacks API.
-
-All other sample modules are going to stay.
-
-Feel free to remove livepatch-callbacks-busymod.c from the patchset.
-But also feel free to keep it. The API rework goes slowly. I am not
-sure if it would be ready for 6.14.
-
-Best Regards,
-Petr
+Miroslav
+--1678380546-1247530484-1732007229=:15289--
 
