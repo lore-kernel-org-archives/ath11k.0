@@ -4,94 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DD1AD4417C
-	for <ath11k@archiver.kernel.org>; Tue, 19 Nov 2024 15:47:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D810FD6C291
+	for <ath11k@archiver.kernel.org>; Tue, 19 Nov 2024 20:16:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
-	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EGSwUJHgOxgr1HMRtCMrkYZZWmUpYkPwRq8EfT9qEz8=; b=hWe7WMSirkqz0mLMqhdvwshvVS
-	Xq5+1W7pKVIFqv4xWFlxAZRPrFO6y4zz0XRAX+24pGlrSMPyZnjbDqUn5oEhpHI4067Hv1SWdcUAj
-	XTTdK9q41l/eLpRNvRuKskWNRiBE5lPg9Mg/00eJ2mCmTZAy59jVOezpxQYtVyvvNtWvbb9bLN1f+
-	knBuBlItS5BvZanCImiX5nzEXohEVr4JSQ/mOzo/zA3RG8i5lH9KrnNw1SpMVoOE8JmylHmmwbwXH
-	arEawqMUTez/BoiK/gccSI8yBvX7thEb2rkD2QJnKEml6erPPgODpiCMxl4X69h9zr0pZg6mWKkDl
-	JYFsOp5Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Cc:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=KgWpOKHATV4YeR+Un0eRHbRg2ztCrtw2oUnFHzweI6Y=; b=QW81g1f+5K2DPe6FpWTSZrkSUM
+	AU/0c2l4m4sO9F6JzFb8tQsIPDyXFcHCCXbCrgO5/iaPvNyHoKmxeCISSRhZpmSPI8lC2a3RaspZv
+	jzZZNvkjYELbl/I9MgQ0EnHhZNytBSWxnLIxXb71fhUqj79EhONCAxbRglZhoNw6FT1nidO/vdATl
+	blvD4R4BaPoBMQsWVpgsW7bGtEY/h61z3r8YWgDXRNXpJGF3GqmoyDVRBGCQMZMPGpU4oSE6gI12j
+	Ru6DoG4vyRLv8Y8yv9hs5vBz9wL6m/TiYhZIBxv8msuH6rX3lCzfG/7np7zjTW2JPy/NR4ppvwmg/
+	EwFDIrqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tDQSL-0000000Cuxf-48Ii;
-	Tue, 19 Nov 2024 15:47:57 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tDUe0-0000000DfCY-0NnQ;
+	Tue, 19 Nov 2024 20:16:16 +0000
+Received: from mail-yb1-xb32.google.com ([2607:f8b0:4864:20::b32])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tDQSI-0000000Cuvv-03OZ
+	id 1tDUdx-0000000DfB5-2N0X
 	for ath11k@lists.infradead.org;
-	Tue, 19 Nov 2024 15:47:55 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AJ7tQpF028408;
-	Tue, 19 Nov 2024 15:47:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EGSwUJHgOxgr1HMRtCMrkYZZWmUpYkPwRq8EfT9qEz8=; b=B0fvycUA0nLOys3S
-	UPpBXpI1keFd54UqrIBn/4S2iX8LWPwAAyh0H/XjEHJPAIZcK3g3453AXG+kB4HD
-	+/Cr6D11HbJ4DHgNbSaj62uwoeIZw1OceUfdYkXeO5/FJkmIRAZ4nmR7Kdxq1FOm
-	AihAtaoNAnOQSCMjFXu4VeadzJELGT6iBfZKcMggyj5cZPwLWl3FY9ph6Be5P825
-	QMmqmE9BKwzXpAC0n1HoFFJ76Y0OjhM5ayFoJKsfXGyUWWdr4X7vgFdc+oi48qaP
-	4Xol05RTUQr1+jVGLA/ikGFOG3jURyPUqW+RsjctTuQCGZAFoE8C4Gz5iUUddHm0
-	+FM56g==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y5tyqu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Nov 2024 15:47:45 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AJFljga008291
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Nov 2024 15:47:45 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 19 Nov
- 2024 07:47:45 -0800
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Tue, 19 Nov 2024 07:47:39 -0800
-Subject: [PATCH 2/3] wifi: ath11k: mark ath11k_dp_rx_mon_mpdu_pop() as
- noinline
+	Tue, 19 Nov 2024 20:16:14 +0000
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-e38b2d868c8so1795997276.1
+        for <ath11k@lists.infradead.org>; Tue, 19 Nov 2024 12:16:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks.com; s=google; t=1732047371; x=1732652171; darn=lists.infradead.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=KgWpOKHATV4YeR+Un0eRHbRg2ztCrtw2oUnFHzweI6Y=;
+        b=QJ8aP0BMktzk3r/BwHxhCwnDjoHKG9GzENCXaPEkKhQfmHlVg8e9+bZuvnJfT8VodM
+         T2JfbofG9mBQEEV0YTdVxykMcNhGksLNcObFi10qhGiK8QGCNhcaUAYzt6N/1NmCu6vi
+         WOwEUKjAz/rbCMHK+u8Me73ksN01UR6AWBZNXA9h+v+ALQO/UoGpbAghUX1wNRcv1VKY
+         oCH0ZK71YXarA7s9SyepxCRy5ugDTKKuqdNjDyxz7q+YbGKfDUWLDqhaY6J/NGJkbDIA
+         Om1F1Q1vlIjCLNT6aF+0cHHTI8XvgtRyKHI3+1bwLlZFYqptcbBnrTALLaWzYapOL42W
+         iW3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732047371; x=1732652171;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KgWpOKHATV4YeR+Un0eRHbRg2ztCrtw2oUnFHzweI6Y=;
+        b=Sd1zqxD9CTV34ALCUKIRgCSXyBd8tMPbcfxd3xI5mwXT8Cy1ecwQ2X4qvuAk2EX9n4
+         Q5nZGyTYoXSzV7GVNI5T1X6hFaV7uHprJOiPGZyJ7tg2UEo9ZarAL7NuAzk1Gg8XFJY+
+         +Hl0PPfGy27d8/V/+1h7DxzQO1MbnxO4uagJ2A/1rukeW2KDaAP+vWcrQr4Rjsx3Qg1F
+         NDpbrZ+cDT+sAhyyfxu5g33No6FKWCgydpgwKC9ai9+VEP/0Dil8UVkxu8JMeG2WqNmQ
+         nqe84GgDGt2+CcwJ02m9/fk/PKgUfSFEat+UoDLQJkPQ2KSSaaITfkr6lVBaJEwaMrMz
+         1kSQ==
+X-Gm-Message-State: AOJu0YzgxXWNEh9vk3A2csJCVAh7YeyJAofsGW8mHEOLotxJHOSiNyX0
+	UD7wsJeQ2+lLtyVuRY9L3z9XRlsPwYkYPDTtg2SvuORGH+DQsssYwFpExFLzNkEh1TyOGmRBFPq
+	KPdnXxCneDo+iAeq55fj8XwHdgVgo34NEMq/5/WFPk+npDHvGm58=
+X-Google-Smtp-Source: AGHT+IFIGoS5c0Sgz4TtH9ip/vT18yheZrm4GNWm5kgq7Tyare9DQG7i5JIN9B5P7dc9QHZDKavFxMYENugU59McLDw=
+X-Received: by 2002:a05:690c:9a8c:b0:6ee:5cf9:f893 with SMTP id
+ 00721157ae682-6eebd0e61b4mr3481347b3.2.1732047371675; Tue, 19 Nov 2024
+ 12:16:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241119-ath11k-noinline-v1-2-4ec0a8aa30b2@quicinc.com>
-References: <20241119-ath11k-noinline-v1-0-4ec0a8aa30b2@quicinc.com>
-In-Reply-To: <20241119-ath11k-noinline-v1-0-4ec0a8aa30b2@quicinc.com>
-To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        "Nathan
- Chancellor" <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Bill Wendling <morbo@google.com>,
-        Justin Stitt <justinstitt@google.com>,
-        "Arnd Bergmann" <arnd@kernel.org>
-CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <llvm@lists.linux.dev>,
-        Jeff Johnson
-	<quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.14.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sw7WdpPCnlm3rNfk5s6_Gdlp0txLOK8r
-X-Proofpoint-ORIG-GUID: sw7WdpPCnlm3rNfk5s6_Gdlp0txLOK8r
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 suspectscore=0 malwarescore=0 mlxscore=0 adultscore=0
- clxscore=1015 spamscore=0 impostorscore=0 priorityscore=1501
- mlxlogscore=926 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411190117
+From: Tim Harvey <tharvey@gateworks.com>
+Date: Tue, 19 Nov 2024 12:16:00 -0800
+Message-ID: <CAJ+vNU0dCV7-2gFDPTiOjAV-HCeHZ3H1DjGdqYKo+MGadfrSbA@mail.gmail.com>
+Subject: ath11k swiotlb buffer is full
+To: ath11k@lists.infradead.org, 
+	linux-wireless <linux-wireless@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241119_074754_059643_C3040988 
-X-CRM114-Status: GOOD (  12.89  )
+X-CRM114-CacheID: sfid-20241119_121613_695131_EA96FDDF 
+X-CRM114-Status: UNSURE (   9.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,64 +84,55 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When compiling the ath11k driver using clang with KASAN enabled, the
-following warning is observed:
+Greetings,
 
-drivers/net/wireless/ath/ath11k/dp_rx.c:5244:5: warning: stack frame size (1304) exceeds limit (1024) in 'ath11k_dp_rx_process_mon_status' [-Wframe-larger-than]
+I've got an ath11k card that is failing to init on an IMX8MM system
+with 4GB of DRAM:
+[    7.551582] ath11k_pci 0000:01:00.0: BAR 0 [mem
+0x18000000-0x181fffff 64bit]: assigned
+[    7.551713] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    7.552401] ath11k_pci 0000:01:00.0: MSI vectors: 16
+[    7.552440] ath11k_pci 0000:01:00.0: qcn9074 hw1.0
+[    7.887186] mhi mhi0: Loaded FW: ath11k/QCN9074/hw1.0/amss.bin,
+sha256: 5ee1b7b204541b5f99984f21d694ececaec08fbce1b520ffe6fe740b02a4afd7
+[    8.435964] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0x0
+board_id 0xff soc_id 0xffffffff
+[    8.435991] ath11k_pci 0000:01:00.0: fw_version 0x270206d0
+fw_build_timestamp 2022-08-04 12:48 fw_build_id
+WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+[    8.441700] ath11k_pci 0000:01:00.0: Loaded FW:
+ath11k/QCN9074/hw1.0/board-2.bin, sha256:
+dbf0ca14aa1229eccd48f26f1026901b9718b143bd30b51b8ea67c84ba6207f1
+[    9.753764] ath11k_pci 0000:01:00.0: Loaded FW:
+ath11k/QCN9074/hw1.0/m3.bin, sha256:
+b6d957f335073a15a8de809398e1506f0200a08747eaf7189c843cf519ffc1de
+[    9.789791] ath11k_pci 0000:01:00.0: swiotlb buffer is full (sz:
+1048583 bytes), total 32768 (slots), used 2528 (slots)
+[    9.789853] ath11k_pci 0000:01:00.0: failed to set up tcl_comp ring (0) :-12
+[    9.790238] ath11k_pci 0000:01:00.0: failed to init DP: -12
+root@noble-venice:~# cat /proc/cmdline
+console=ttymxc1,115200 earlycon=ec_imx6q,0x30890000,115200
+root=PARTUUID=5cdde84f-01 rootwait net.ifnames=0 cma=196M
 
-This is similar to the issue found in ath12k/qmi.c that was discussed
-in [1] and fixed with [2]. The issue is that clang inlining can
-explode stack usage.
+The IMX8MM's DRAM base is at 1GB so anything above 3GB hits the 32bit
+address boundary. If I pass in a mem=3096M the device registers just
+fine.
 
-ath11k_dp_rx_process_mon_status() itself is a pretty
-lightweight function, but it dispatches to several other functions
-which do the real work:
+I found this to be the case with modern kernels however I found
+differing behavior with older kernels:
+- 6.6 and 6.1 the device registers with 4GB DRAM but crashes on client connect
+- 5.15 devices registers with 4GB DRAM and appears to work just fine
 
-ath11k_dp_rx_process_mon_status()
-	ath11k_dp_rx_reap_mon_status_ring()
-	ath11k_dp_rx_mon_dest_process()
-		ath11k_dp_rx_mon_mpdu_pop() *
-		ath11k_dp_rx_mon_deliver()
-			ath11k_dp_rx_mon_merg_msdus()
-			ath11k_dp_rx_deliver_msdu()
-	ath11k_dp_rx_update_peer_stats()
+Could anyone explain what is going on here? Obviously there have been
+changes at some point to start using swiotlb which I believe was all
+about avoiding 32bit DMA limitations but I'm not clear how I should be
+configuring this for IMX8MM with 4GB DRAM. Maybe my kernel IOMMU
+configuration is incorrect somehow?
 
-Of these, only ath11k_dp_rx_mon_mpdu_pop() has non-trivial stack
-usage, so mark that function as 'noinline_for_stack' to prevent it
-from being inlined in ath11k_dp_rx_process_mon_status(), thereby
-eliminating the excessive stack usage.
+I'm also unclear why there was no apparent problem with older kernels
+such as 5.15.
 
-Link: https://msgid.link/bc214795-1c51-4cb7-922f-67d6ef98bff2@quicinc.com # [1]
-Link: https://patch.msgid.link/20241028-ath12k_qmi_driver_event_work-v1-1-0d532eb593fa@quicinc.com # [2]
-Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+Best Regards,
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 40088e62572e..f253fac116bc 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -4690,11 +4690,12 @@ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
- 	}
- }
- 
--static u32
--ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
--			  void *ring_entry, struct sk_buff **head_msdu,
--			  struct sk_buff **tail_msdu, u32 *npackets,
--			  u32 *ppdu_id)
-+/* clang stack usage explodes if this is inlined */
-+static noinline_for_stack
-+u32 ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
-+			      void *ring_entry, struct sk_buff **head_msdu,
-+			      struct sk_buff **tail_msdu, u32 *npackets,
-+			      u32 *ppdu_id)
- {
- 	struct ath11k_pdev_dp *dp = &ar->dp;
- 	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
-
--- 
-2.42.0
-
+Tim
 
