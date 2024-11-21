@@ -4,93 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E766D6ED38
-	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 13:45:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2144D6ED34
+	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 13:45:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=NT/7zt7QuEV/Kk3sqVlQKDW1L0Pc67ql8yTEx8ufbxs=; b=zAZ4WCr/QnpmnkpFFWTELtGNWv
-	zuz9OqL1Uo2GKz9uf73L9ish4KyGO8MJO78B5OyV0MLp+MYqJ2Xh48juvjr/moqsX0OPr64ueatp9
-	/FbAXNZLnrVv3L42f3C9JgwWUUoGlUPL9agPYMcdqHUwSKdtAMjoQNx20VwiZo+nBto7VLGCre5mY
-	NsPdErlbT2yAfa0/g1i3MlsFivun7Xq0DqP3iyXxlyGPoIgUfP6V+uTwj8c6x9XtMeCCFpMGwHMZX
-	HQ3S95RUoPkzCTn/Gojzg7q/eKsa/o8JMoEod5fSsKEz7ylj+05ErEwcSS3Wb+mcPF2EOZYLVjqAW
-	eBc//JdA==;
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=bbRBs8q66HqeYJcUez1cWy2sUETyMii7rRRyXVFNBfU=; b=sTasX7Yc3UKuI+CbWVvpRPJ+1E
+	pORtt82d8MpWfVuPogwtmKMevepUeQmhkn4oaqUyXpB8kbJfOI5fqu2TjnuePPmaOgjw0FMLCXc85
+	WPyQftV0DQzQ4jUscQgB0FKALyXsrp9l92BRj7B/0XxN4O59235lb5RGVY38FE4nemA3zxjA4dq4/
+	y6pyHQNeDLmimq2H0gaVcrIhhcXCCXvo4+pXIyRHSWfw8z1BZK/FHzdeYy2/mRB+9voyyvqUCOvXN
+	Y6FpWgQEEutuWkJT+StzPa6OGXpQXleh417I2rIgYiMFMywZwbAGkEw1OIfZJ82cBOTv+xxxhWyPj
+	SJ/FYKIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE7UZ-000000008jc-1BxC;
-	Thu, 21 Nov 2024 13:45:07 +0000
-Received: from fout-a6-smtp.messagingengine.com ([103.168.172.149])
+	id 1tE7Uc-000000008lo-2oWr;
+	Thu, 21 Nov 2024 13:45:10 +0000
+Received: from fhigh-a1-smtp.messagingengine.com ([103.168.172.152])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE7UV-000000008ia-2zif
+	id 1tE7Ua-000000008ja-17OH
 	for ath11k@lists.infradead.org;
-	Thu, 21 Nov 2024 13:45:06 +0000
-Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
-	by mailfout.phl.internal (Postfix) with ESMTP id C31A813801B5;
-	Thu, 21 Nov 2024 08:44:59 -0500 (EST)
+	Thu, 21 Nov 2024 13:45:09 +0000
+Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id A2C7D1140193;
+	Thu, 21 Nov 2024 08:45:06 -0500 (EST)
 Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-08.internal (MEProxy); Thu, 21 Nov 2024 08:44:59 -0500
+  by phl-compute-01.internal (MEProxy); Thu, 21 Nov 2024 08:45:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unformed.ru; h=
 	cc:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to; s=fm2; t=1732196699; x=1732283099; bh=NT/7zt7QuEV/Kk3sqVlQK
-	DW1L0Pc67ql8yTEx8ufbxs=; b=LnT/4y1dpAyWGwKdJg3cclbXXHPUE5Q+VhVqj
-	Pa21s1fVFWxdmJL026FjMAMeOVtaW3T9Ofg+riTzrdioubVLIlneP6cxXOA2XVU8
-	kkCvF60jdOkzKxu9GWZboD3Jt9vjfESLyGp6hTse5YiNKaRadvEYo1CZ3hDTDS6q
-	l7g3Kq04tL/rVzHvo5+Ji22MLKCgIvfnbrV4EJrko7eDZ3Jp6i+CQsdLp1ovv99w
-	7zqIjhwp5BH4Xa9u9CRIACJB8J0N+JM+24BDJlJX8w3hRksY6L76WGKdCNs2lf1a
-	eaMOHWS8gmYldaPCYwVISdlnSLpubOzoXNhYRZDfqhddYZSUw==
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1732196706; x=
+	1732283106; bh=bbRBs8q66HqeYJcUez1cWy2sUETyMii7rRRyXVFNBfU=; b=l
+	jQzGDJboBZP75wGPKgOgqN/iodAWpKDcvOr9vNn9YOec9DmTIQ38Tclx5DPbCPAJ
+	dFPZdotBXVw9wFFeRtn/MlpkQ9XfZsyXGlfK5L628Tsb8C+KKXNpDXvvo2CBFrPR
+	A5PihGnQzITo7LgWT74Xmz+v/veOMInvIOUGSFWCndwFmhxSmT2SLNOo/lfNgYwr
+	Oaz305IG5ubJs/kMWqjcKCxLv0j7lqqWolDZWRNgsqI9sgB1qhemdyrMU2Y8UIML
+	CyDpCRjMk/KXwazxbYJ4lC5NprF8qajlKNpX+UwqhP7az4P49omADgp0mmMlOIwG
+	NeBOXI1BtK4TDTN7e/qcw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1732196699; x=1732283099; bh=NT/7zt7QuEV/Kk3sqVlQKDW1L0Pc67ql8yT
-	Ex8ufbxs=; b=sK/jKw2q4qLNNwp0YDJJk9ypJALM+qsfmkZEOhgwxfr6sOTG989
-	9ASU3buVguRGsRaToRH1stjhEyTZlgCo0tTv/O9hYOv9yQ9U3g4LpV14NBNeNnIx
-	63lES9EMWX+BubTb7Pe66irw0spZPP8VUO7RZXeEEPq4SLoksEN4AvQAC6MFVPpz
-	RZIVa8KCPZ2y4GXTZpMQkIEeCwxqZuLu1+J4kM5xgDL7qI69ecsI8I8Rs1U/V0zU
-	dIRI+sLstVb5ao9hlPV78RcJxZ4hUfQz3t5ogYLCWWrork6YqtjksuBa8H87kmjL
-	zxnCjCjkENfe/CLVDZpmR9SnCr7f5+dgdJg==
-X-ME-Sender: <xms:Wjk_Z0rjlyy8tpVR_daxMpr6Rhp3hKuOAxk_-1Kb0GcY0iCg7I0zZQ>
-    <xme:Wjk_Z6peDm_baMJBMR5yWF0kfNPITUOYUK5ON8Ud4dZh-oztQwbM3IXA4IwOU-_IV
-    jKTU_v9I7MaYgPazSc>
-X-ME-Received: <xmr:Wjk_Z5NiQ9ooXtoOxU3vfqR-tSHKnjKC31I3XKzCF2e2246nXWbSa0PFnKD2uWWPPmDV2DDrj7IDFm4gSD2koBFsgoNMV_pa-YknMeskZwLen34>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrfeeigdehgecutefuodetggdotefrodftvf
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; t=1732196706; x=1732283106; bh=b
+	bRBs8q66HqeYJcUez1cWy2sUETyMii7rRRyXVFNBfU=; b=3b5CZIY7OPBCWNy94
+	juU8itl+vO4t8irxs3dythBsuPCimUxSO4DH6HQrpyl5ReS0Ajd+1A+dqzMnxt+I
+	6FBac+MMNtA1H2IBW8q5uqBqjPwue/JzqrxOEcJTvQANQHf/9BNf5Q5PjvdLfTik
+	kzBZH82MVbEymn+vKXckSQe1CvVTRfz39Et+XfN9X4SEYvCVANSTJg76835jmA95
+	d3W4Cw5bYB+MosFSfDAhEDhJMkByz5keeJWLZEeUKN1GCmYwshcGfXjRVCWsUFip
+	yD1JUOSAuiqReYjYrTIdX0XWsSk2NTVe8ukYx0JyatAHDpky0+OjlPJrY8/4pyI7
+	wXcGQ==
+X-ME-Sender: <xms:Yjk_Z8Hud1tYQZSnRaWwavW85tRzyxq-LD9rTcKPPRYe2L-1LmqsWg>
+    <xme:Yjk_Z1UqdHIsUF8DkACQymRcPEDR1qziAo8ipKHAYtj9uFU1Cq3Lny5xUn-YDBVea
+    PeHF1hDV8kGQkIXpsk>
+X-ME-Received: <xmr:Yjk_Z2K8Os0wvZf8jqGGhjIvGNquGdyROLtSR5VxM8NHckn_4YRmS7jmxPCLgsOpvZl3nbU2eGr_Ac0fFNe0i8Tfdvd_9U6bDt__3DxDFnHXh1U>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrfeeigdehhecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
     tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
-    hsucdlqddutddtmdenucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhr
-    ohhmpegjuhhrhicugghoshhtrhhikhhovhcuoehmohhnsehunhhfohhrmhgvugdrrhhuqe
-    enucggtffrrghtthgvrhhnpedugeeifedutefhhedttddvheeujeevgfevkeffffduleei
-    teefueekiedujeetveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
-    hlfhhrohhmpehmohhnsehunhhfohhrmhgvugdrrhhupdhnsggprhgtphhtthhopeefpdhm
-    ohguvgepshhmthhpohhuthdprhgtphhtthhopehkvhgrlhhosehkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopegrthhhuddukheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdp
-    rhgtphhtthhopehmohhnsehunhhfohhrmhgvugdrrhhu
-X-ME-Proxy: <xmx:Wjk_Z752qBeO0-qO4KwAX82PMKwGCbrifVfyCQcNTE0pRJ4lYhR2Vg>
-    <xmx:Wjk_Zz4H1eSilinfm4o0S2lr1SC-nGcu4ZgOmtNHFp1wF2O49sJegw>
-    <xmx:Wjk_Z7hlRMWsL9cTHnTqH8WmOQ0U9QkuIJ0EORFbQGe8KVXn9kAI1A>
-    <xmx:Wjk_Z94wwDkTpfQOYtr0KkPQXGolaAkesfvPk3qdWB_X2oz4bayxyg>
-    <xmx:Wzk_Z1nKPsoUB84xLRKULCHsN3OfuuV-Hc9i7WqK_YRgwZIKiwu2itat>
+    hsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecu
+    hfhrohhmpegjuhhrhicugghoshhtrhhikhhovhcuoehmohhnsehunhhfohhrmhgvugdrrh
+    huqeenucggtffrrghtthgvrhhnpefhgfevueevteduhffgveffkeejtdevffduueevvdeh
+    ffdvfeefgeeuuefgueejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+    grihhlfhhrohhmpehmohhnsehunhhfohhrmhgvugdrrhhupdhnsggprhgtphhtthhopeef
+    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehkvhgrlhhosehkvghrnhgvlhdroh
+    hrghdprhgtphhtthhopegrthhhuddukheslhhishhtshdrihhnfhhrrgguvggrugdrohhr
+    ghdprhgtphhtthhopehmohhnsehunhhfohhrmhgvugdrrhhu
+X-ME-Proxy: <xmx:Yjk_Z-GtfRLpe2Bv0Lm19BdaOvR34wwzn9eDnMBJmSJSkQ7uip0NIA>
+    <xmx:Yjk_ZyXzam8NQt10vN9eQfEuLT1iaWBpxT2eZyvy88mJ5bC7tgM8FQ>
+    <xmx:Yjk_ZxNh_0NWHa6H22d8pkDh__i8s6XS33HahwiUpru4IDARLz24dw>
+    <xmx:Yjk_Z534FM_kMTjZXOJxF3HMm1sII5J3hPg4VIu_WH70UBnr9ZY4EA>
+    <xmx:Yjk_ZxS2nRtvOVX1pP_8EcFgtgROglNXeCJZjhlCUxg3cWeCnc8TKAwW>
 Feedback-ID: i2649496d:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 21 Nov 2024 08:44:57 -0500 (EST)
+ 21 Nov 2024 08:45:05 -0500 (EST)
 From: Yury Vostrikov <mon@unformed.ru>
 To: Kalle Valo <kvalo@kernel.org>
 Cc: ath11k@lists.infradead.org,
 	Yury Vostrikov <mon@unformed.ru>
-Subject: [PATCH 1/2] wifi: ath11k: Fix 2 second busywait during stats request
-Date: Thu, 21 Nov 2024 14:44:23 +0100
-Message-Id: <20241121134424.31006-1-mon@unformed.ru>
+Subject: [PATCH 2/2] wifi: ath11k: Fix race condition during stats processing
+Date: Thu, 21 Nov 2024 14:44:24 +0100
+Message-Id: <20241121134424.31006-2-mon@unformed.ru>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20241121134424.31006-1-mon@unformed.ru>
+References: <20241121134424.31006-1-mon@unformed.ru>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241121_054505_229033_E797E198 
-X-CRM114-Status: UNSURE (   9.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241121_054508_368625_E36296F0 
+X-CRM114-Status: GOOD (  10.00  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,69 +108,48 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This diff fixes a 2-second busy loop inside
-the ath11k_debugfs_fw_stats_request function. The code in question was
-added during the initial import of the ath11 driver. While the ath11 code
-is based on ath10, the latter doesn't have this bug. This diffs changes
-the wait loop to be similar to the ath10 driver. It also adds an explicit
-delay before retrying. An explicit delay avoids spamming FW with stats
-requests.
+This diff fixes the race condition in stats processing. This race
+condition results in an unbounded loop of stats requests. The loop
+results in poor network performance because FW is busy with those
+extra requests. The timeout of ath11k_debugfs_fw_stats_request
+should be the upper bound of how long the driver retries stats.
+However, sometimes some other code keeps calling failing
+ath11k_debugfs_fw_stats_request, repeating a vicious cycle
+indefinitely.
+
+ath11k_debugfs_fw_stats_process assumes that num_vdev is always
+less or equal to total_vdevs_started. This is not true. I've
+captured the state of num_vdev and total_vdev_started during the
+re-association request:
+
+ath11k_pci 0000:01:00.0: wmi num_vdev:1 total_vdevs_started:0
+ath11k_pci 0000:01:00.0: wmi num_vdev:2 total_vdevs_started:0
+ath11k_pci 0000:01:00.0: wmi num_vdev:3 total_vdevs_started:1
+ath11k_pci 0000:01:00.0: wmi num_vdev:4 total_vdevs_started:1
+[...]
+ath11k_pci 0000:01:00.0: wmi num_vdev:116 total_vdevs_started:1
+[...]
+
+This diff fixes the check to account for this and also adds a warning.
 ---
- drivers/net/wireless/ath/ath11k/debugfs.c | 33 +++++++++++------------
- 1 file changed, 16 insertions(+), 17 deletions(-)
+ drivers/net/wireless/ath/ath11k/debugfs.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 57281a135dd7..436197113ced 100644
+index 436197113ced..ec4683695e73 100644
 --- a/drivers/net/wireless/ath/ath11k/debugfs.c
 +++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -182,24 +182,22 @@ static int ath11k_debugfs_fw_stats_request(struct ath11k *ar,
- 
- 	ath11k_debugfs_fw_stats_reset(ar);
- 
--	reinit_completion(&ar->fw_stats_complete);
--
--	ret = ath11k_wmi_send_stats_request_cmd(ar, req_param);
--
--	if (ret) {
--		ath11k_warn(ab, "could not request fw stats (%d)\n",
--			    ret);
--		return ret;
--	}
--
--	time_left = wait_for_completion_timeout(&ar->fw_stats_complete, 1 * HZ);
--
--	if (!time_left)
--		return -ETIMEDOUT;
--
- 	for (;;) {
--		if (time_after(jiffies, timeout))
--			break;
-+		if (time_after(jiffies, timeout)) {
-+			ath11k_warn(ab, "could not request fw stats, timeout\n");
-+			return -ETIMEDOUT;
-+		}
-+
-+		reinit_completion(&ar->fw_stats_complete);
-+
-+		ret = ath11k_wmi_send_stats_request_cmd(ar, req_param);
-+		if (ret) {
-+			ath11k_warn(ab, "could not request fw stats (%d)\n",
-+				    ret);
-+			return ret;
-+		}
-+
-+		time_left = wait_for_completion_timeout(&ar->fw_stats_complete, 1 * HZ);
- 
- 		spin_lock_bh(&ar->data_lock);
- 		if (ar->fw_stats_done) {
-@@ -207,6 +205,7 @@ static int ath11k_debugfs_fw_stats_request(struct ath11k *ar,
- 			break;
+@@ -132,7 +132,9 @@ void ath11k_debugfs_fw_stats_process(struct ath11k *ar, struct ath11k_fw_stats *
+ 				total_vdevs_started += ar->num_started_vdevs;
  		}
- 		spin_unlock_bh(&ar->data_lock);
-+		msleep(200);
- 	}
- 	return 0;
- }
+ 
+-		is_end = ((++num_vdev) == total_vdevs_started);
++		is_end = ((++num_vdev) >= total_vdevs_started);
++		if (num_vdev > total_vdevs_started)
++			ath11k_warn(ab, "spurious stats");
+ 
+ 		list_splice_tail_init(&stats->vdevs,
+ 				      &ar->fw_stats.vdevs);
 -- 
 2.39.5
 
