@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63B83D6ED02
-	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 11:00:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB4CBD6ED01
+	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 11:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GBBlfv+S3yWtewY6awKnjeUpW6jVDu/hz0Z2fnAyke4=; b=UHWNQ6nlk13rF5SClWnSEAyDMb
-	mesWm1Fepo07242sxzTQYXJmsbOftZCDO2CIbieL677baAiQq5AKujOvcnHR6gQtAnvj1wFk6GN5y
-	Ptk3349X+EQJf3tIWo48ZGjLGc48QSaex2y/f5IchSe5ntBWM7vYuTe1vzAT1ayVEOetA2zG2lSFx
-	nt/xQQ3IxBe9NhZUJ8EinLNEkjreHRnrwq3C5OdCOwoc8Z+WE/ZT/9F/ik6tip7MTLBLRWMWS2fs8
-	WUwwrMfzs1SX5+P7SR7r/wIIxU254LIE8XJ7OMhd8SFqtOkfBF1xCTEwpURmkdtLAl2UkyAne5/Hd
-	zSflwG6w==;
+	bh=ovMgl7ny9VshYV+DQLhxWPBMjubV3Hzau69h7Ocp8Lw=; b=TC1G70P0Zmemjv7WglIp0myUuD
+	FYhXgtMm13sygeUjUIDoFWwxEvzJgh9LkPZZpgANaczMSlnYzAAGJ3+R7HsvBRkmWa4TxkbQ2ryhi
+	RSERqdK27YqnxpyuWvJIhLsU3+ZsmF7M2bzZkTWLB+pXYtYqMmVJnfUlRFnQkpKj3TC8EXbxzD12j
+	futy+4wYsPKQ+4a54QsS/CbKLHXehADgFyD3Mr7M3ZTDmH+/Ersfp5I9RRanqXZZTP62XkQ/CllDP
+	qZMbvl400UA9XuyvdQlAZn3mCX6ZyjfR16Cc6qkwV/sfpPjmYDuTAQmEdCgiID6W588lP0+yYVVZh
+	UqZe/KJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE4us-0000000HPm6-3Miv;
-	Thu, 21 Nov 2024 11:00:06 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tE4vf-0000000HPw0-1z1S;
+	Thu, 21 Nov 2024 11:00:55 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE4ur-0000000HPla-09bp
+	id 1tE4vc-0000000HPuV-2Q3A
 	for ath11k@lists.infradead.org;
-	Thu, 21 Nov 2024 11:00:06 +0000
+	Thu, 21 Nov 2024 11:00:53 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id EE919A402F3;
-	Thu, 21 Nov 2024 10:58:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E161C4CECC;
-	Thu, 21 Nov 2024 11:00:02 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 1B1E95C56AE;
+	Thu, 21 Nov 2024 11:00:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB14EC4CECC;
+	Thu, 21 Nov 2024 11:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732186804;
-	bh=f/43QzehujPcbsQhIGSMhRy+9gJFgqsbw5YlCcBeeZQ=;
+	s=k20201202; t=1732186851;
+	bh=vkK7dhEzDZlHSoKxdWBYT5h9qXJXR4t0Gs/plAHsc+4=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=pzxKa/PeUVNJRXke5bX1N35Tc7GXlJdj+1k3xidUNpFiSYK6ZOC/F78ktAZ+gNgSJ
-	 fOlFAbuuGeyu9kyModEsYIQ6RfOr8Ww5QHKseKnozr6r9InYcX0mn32JcHEhqJqtYG
-	 VsoE14XXYmG+csGyVAJd7MTLeOV+sGhVUwvRXzJfLHTxaikBhQSvQEC37F0yagjaGT
-	 E4APCuSc7CF5SkHDnYidwOdVKAlYbgbQGtM0Nvj1pjFOP+uKyo3QDaKf+STTfLjBNR
-	 fICZNZByq+eN21DNHQ/D7l/RNP2mMU7WqDMWaqwFFwWWBBorr1jG9U39JzIZljPj8o
-	 irZmaMw4+3I6g==
+	b=JaNOzGy68FJSCeakcLg0/xTX7H5o1PLXCVEsE0Eq0C1wZKyxCKnHz/cn99/FZtg++
+	 8dtR+FWGXRMit3tCvbY0fvKtbc1G+MQGI3XQp+pGRrV9tOT0GE7ftjU1UYZ3OZv33n
+	 8ATdjxdF0/zmF3QP2ADVGz8wIpS4UO5DELiEYvosMtsLZ+lHh6AAWZqeStcnmNS5wx
+	 e5kzJOr4gOR8WiXgVgm78FThBaJaHS2emnHWSTmcJiQUb1TuGbXbrPjy0ykMXNbRyO
+	 i+9SDjAp6scaLh1vrNaq94uoX0HIo5iOab7RKv9JbUDg5eHOifrrdu3dfxmQJQz1j7
+	 uKwFCFKNXwWig==
 From: Kalle Valo <kvalo@kernel.org>
 To: Dmitry Antipov <dmantipov@yandex.ru>
 Cc: Jeff Johnson <jjohnson@kernel.org>,  ath11k@lists.infradead.org,
   linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] wifi: ath11k: cleanup struct ath11k_mon_data
+Subject: Re: [PATCH v2 4/4] wifi: ath11k: miscellaneous spelling fixes
 References: <20241111070152.85140-1-dmantipov@yandex.ru>
-	<20241111070152.85140-3-dmantipov@yandex.ru>
-Date: Thu, 21 Nov 2024 13:00:01 +0200
-In-Reply-To: <20241111070152.85140-3-dmantipov@yandex.ru> (Dmitry Antipov's
-	message of "Mon, 11 Nov 2024 10:01:51 +0300")
-Message-ID: <87frnkyhqm.fsf@kernel.org>
+	<20241111070152.85140-4-dmantipov@yandex.ru>
+Date: Thu, 21 Nov 2024 13:00:49 +0200
+In-Reply-To: <20241111070152.85140-4-dmantipov@yandex.ru> (Dmitry Antipov's
+	message of "Mon, 11 Nov 2024 10:01:52 +0300")
+Message-ID: <87bjy8yhpa.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241121_030005_142298_3443BE5C 
-X-CRM114-Status: UNSURE (   6.84  )
+X-CRM114-CacheID: sfid-20241121_030052_654107_C199E0B6 
+X-CRM114-Status: UNSURE (   6.44  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,11 +76,8 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Dmitry Antipov <dmantipov@yandex.ru> writes:
 
-> Remove initialized but otherwise unused 'rx_status_q' member of
-> 'struct ath11k_mon_data' and adjust 'ath11k_dp_rx_pdev_mon_status_attach'
-> accordingly. Compile tested only.
+> Correct spelling here and there as suggested by codespell.
 >
-> Fixes: 67a9d399fcb0 ("ath11k: enable RX PPDU stats in monitor co-exist mode")
 > Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
 
 Acked-by: Kalle Valo <kvalo@kernel.org>
