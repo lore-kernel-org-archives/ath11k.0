@@ -4,66 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04871D6ED04
-	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 11:20:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E766D6ED38
+	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 13:45:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=IA//c55dlkYzyi5gb2SuOsamA25SXLdOFWy12IJhr7s=; b=qs+xDxC//FPWx9xWRM5uQEdp1I
-	dvE+twwWmflYDuzFEmFzKhKGcldSorvtrp1iJ9cWentcroW85AyiExvys0mEytOGAPxTUt+b9Fc1O
-	Iy7u8wg9PPXAeA8CGdlgGezzNVqpbQcJeWLNL0xn4+Sni/5wBtZQB3KCcR5DS/ZhXtq6v9uocG8Oe
-	diCymwGhWTs+SXwxNbUjZ3M/CSnZ0Nyof9ULtqLB8pNvUwaLDJ7LdRh76EkWoS3fuemk7UyBgidyF
-	7jzbRFCjMnOZh+Pi5xV21gY55iKZtnWkO/Xcr0npC/PhhQSVtcwoj9pzk2R13eS0AGkhbUi0775Dc
-	g1efOmIw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=NT/7zt7QuEV/Kk3sqVlQKDW1L0Pc67ql8yTEx8ufbxs=; b=zAZ4WCr/QnpmnkpFFWTELtGNWv
+	zuz9OqL1Uo2GKz9uf73L9ish4KyGO8MJO78B5OyV0MLp+MYqJ2Xh48juvjr/moqsX0OPr64ueatp9
+	/FbAXNZLnrVv3L42f3C9JgwWUUoGlUPL9agPYMcdqHUwSKdtAMjoQNx20VwiZo+nBto7VLGCre5mY
+	NsPdErlbT2yAfa0/g1i3MlsFivun7Xq0DqP3iyXxlyGPoIgUfP6V+uTwj8c6x9XtMeCCFpMGwHMZX
+	HQ3S95RUoPkzCTn/Gojzg7q/eKsa/o8JMoEod5fSsKEz7ylj+05ErEwcSS3Wb+mcPF2EOZYLVjqAW
+	eBc//JdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE5Ew-0000000HS6q-2tBO;
-	Thu, 21 Nov 2024 11:20:50 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tE7UZ-000000008jc-1BxC;
+	Thu, 21 Nov 2024 13:45:07 +0000
+Received: from fout-a6-smtp.messagingengine.com ([103.168.172.149])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE5Eu-0000000HS5a-1PVK
+	id 1tE7UV-000000008ia-2zif
 	for ath11k@lists.infradead.org;
-	Thu, 21 Nov 2024 11:20:49 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id D380D5C573F;
-	Thu, 21 Nov 2024 11:20:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E5FEC4CECC;
-	Thu, 21 Nov 2024 11:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732188047;
-	bh=V1qwmYpUnP1CiJot/3EBrHXVUBv8JOAa6S7kT+VjG8M=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=HAp+d4bVQao54y/cn2DsJqZy9Yb14gtl7gGMwhxXfbV26TwD7zGxFVlX86SoLzAoP
-	 AWJ1CVS3QD9B3lZGgOOvGpLtIbRyRhdCVxr3k1pF42aRFCoTsfAr5iCQwZcCpJ1cMK
-	 2VIU4X1uR2iQUj055G2YcsfFotF3WZK9XNVnWw/ZnS2QQob915sBVMpxpeAglEaCSz
-	 KY77A1Mv9lR3KwElj0G9LBb/AWeo9vmLThlaRMnv98rb9RPQ7aPbFeFWMiTwHZytpC
-	 Ici219Mz2XWVLuB9R7tkcPmD/k5W/MMHuXRSGTVeLMl8X5Jq2kx+UrQMfo1eEviU9s
-	 Gblr7G0UBxW5A==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Jeff Johnson <jjohnson@kernel.org>,  "Nathan Chancellor"
- <nathan@kernel.org>,  Nick Desaulniers <ndesaulniers@google.com>,  Bill
- Wendling <morbo@google.com>,  Justin Stitt <justinstitt@google.com>,
-  "Arnd Bergmann" <arnd@kernel.org>,  <linux-wireless@vger.kernel.org>,
-  <ath11k@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
-  <llvm@lists.linux.dev>
-Subject: Re: [PATCH 3/3] wifi: ath11k: mark
- ath11k_wow_convert_8023_to_80211() as noinline
-References: <20241119-ath11k-noinline-v1-0-4ec0a8aa30b2@quicinc.com>
-	<20241119-ath11k-noinline-v1-3-4ec0a8aa30b2@quicinc.com>
-Date: Thu, 21 Nov 2024 13:20:43 +0200
-In-Reply-To: <20241119-ath11k-noinline-v1-3-4ec0a8aa30b2@quicinc.com> (Jeff
-	Johnson's message of "Tue, 19 Nov 2024 07:47:40 -0800")
-Message-ID: <87plmox27o.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	Thu, 21 Nov 2024 13:45:06 +0000
+Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
+	by mailfout.phl.internal (Postfix) with ESMTP id C31A813801B5;
+	Thu, 21 Nov 2024 08:44:59 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-08.internal (MEProxy); Thu, 21 Nov 2024 08:44:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unformed.ru; h=
+	cc:cc:content-transfer-encoding:content-type:date:date:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=fm2; t=1732196699; x=1732283099; bh=NT/7zt7QuEV/Kk3sqVlQK
+	DW1L0Pc67ql8yTEx8ufbxs=; b=LnT/4y1dpAyWGwKdJg3cclbXXHPUE5Q+VhVqj
+	Pa21s1fVFWxdmJL026FjMAMeOVtaW3T9Ofg+riTzrdioubVLIlneP6cxXOA2XVU8
+	kkCvF60jdOkzKxu9GWZboD3Jt9vjfESLyGp6hTse5YiNKaRadvEYo1CZ3hDTDS6q
+	l7g3Kq04tL/rVzHvo5+Ji22MLKCgIvfnbrV4EJrko7eDZ3Jp6i+CQsdLp1ovv99w
+	7zqIjhwp5BH4Xa9u9CRIACJB8J0N+JM+24BDJlJX8w3hRksY6L76WGKdCNs2lf1a
+	eaMOHWS8gmYldaPCYwVISdlnSLpubOzoXNhYRZDfqhddYZSUw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1732196699; x=1732283099; bh=NT/7zt7QuEV/Kk3sqVlQKDW1L0Pc67ql8yT
+	Ex8ufbxs=; b=sK/jKw2q4qLNNwp0YDJJk9ypJALM+qsfmkZEOhgwxfr6sOTG989
+	9ASU3buVguRGsRaToRH1stjhEyTZlgCo0tTv/O9hYOv9yQ9U3g4LpV14NBNeNnIx
+	63lES9EMWX+BubTb7Pe66irw0spZPP8VUO7RZXeEEPq4SLoksEN4AvQAC6MFVPpz
+	RZIVa8KCPZ2y4GXTZpMQkIEeCwxqZuLu1+J4kM5xgDL7qI69ecsI8I8Rs1U/V0zU
+	dIRI+sLstVb5ao9hlPV78RcJxZ4hUfQz3t5ogYLCWWrork6YqtjksuBa8H87kmjL
+	zxnCjCjkENfe/CLVDZpmR9SnCr7f5+dgdJg==
+X-ME-Sender: <xms:Wjk_Z0rjlyy8tpVR_daxMpr6Rhp3hKuOAxk_-1Kb0GcY0iCg7I0zZQ>
+    <xme:Wjk_Z6peDm_baMJBMR5yWF0kfNPITUOYUK5ON8Ud4dZh-oztQwbM3IXA4IwOU-_IV
+    jKTU_v9I7MaYgPazSc>
+X-ME-Received: <xmr:Wjk_Z5NiQ9ooXtoOxU3vfqR-tSHKnjKC31I3XKzCF2e2246nXWbSa0PFnKD2uWWPPmDV2DDrj7IDFm4gSD2koBFsgoNMV_pa-YknMeskZwLen34>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrfeeigdehgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
+    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
+    hsucdlqddutddtmdenucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhr
+    ohhmpegjuhhrhicugghoshhtrhhikhhovhcuoehmohhnsehunhhfohhrmhgvugdrrhhuqe
+    enucggtffrrghtthgvrhhnpedugeeifedutefhhedttddvheeujeevgfevkeffffduleei
+    teefueekiedujeetveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
+    hlfhhrohhmpehmohhnsehunhhfohhrmhgvugdrrhhupdhnsggprhgtphhtthhopeefpdhm
+    ohguvgepshhmthhpohhuthdprhgtphhtthhopehkvhgrlhhosehkvghrnhgvlhdrohhrgh
+    dprhgtphhtthhopegrthhhuddukheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdp
+    rhgtphhtthhopehmohhnsehunhhfohhrmhgvugdrrhhu
+X-ME-Proxy: <xmx:Wjk_Z752qBeO0-qO4KwAX82PMKwGCbrifVfyCQcNTE0pRJ4lYhR2Vg>
+    <xmx:Wjk_Zz4H1eSilinfm4o0S2lr1SC-nGcu4ZgOmtNHFp1wF2O49sJegw>
+    <xmx:Wjk_Z7hlRMWsL9cTHnTqH8WmOQ0U9QkuIJ0EORFbQGe8KVXn9kAI1A>
+    <xmx:Wjk_Z94wwDkTpfQOYtr0KkPQXGolaAkesfvPk3qdWB_X2oz4bayxyg>
+    <xmx:Wzk_Z1nKPsoUB84xLRKULCHsN3OfuuV-Hc9i7WqK_YRgwZIKiwu2itat>
+Feedback-ID: i2649496d:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 21 Nov 2024 08:44:57 -0500 (EST)
+From: Yury Vostrikov <mon@unformed.ru>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org,
+	Yury Vostrikov <mon@unformed.ru>
+Subject: [PATCH 1/2] wifi: ath11k: Fix 2 second busywait during stats request
+Date: Thu, 21 Nov 2024 14:44:23 +0100
+Message-Id: <20241121134424.31006-1-mon@unformed.ru>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241121_032048_416921_40817B03 
-X-CRM114-Status: GOOD (  10.31  )
+X-CRM114-CacheID: sfid-20241121_054505_229033_E797E198 
+X-CRM114-Status: UNSURE (   9.81  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,39 +105,70 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+This diff fixes a 2-second busy loop inside
+the ath11k_debugfs_fw_stats_request function. The code in question was
+added during the initial import of the ath11 driver. While the ath11 code
+is based on ath10, the latter doesn't have this bug. This diffs changes
+the wait loop to be similar to the ath10 driver. It also adds an explicit
+delay before retrying. An explicit delay avoids spamming FW with stats
+requests.
+---
+ drivers/net/wireless/ath/ath11k/debugfs.c | 33 +++++++++++------------
+ 1 file changed, 16 insertions(+), 17 deletions(-)
 
-> When compiling the ath11k driver using clang with KASAN enabled, the
-> following warning is observed:
->
-> drivers/net/wireless/ath/ath11k/wow.c:672:5: warning: stack frame size (1336) exceeds limit (1024) in 'ath11k_wow_op_suspend' [-Wframe-larger-than]
->
-> This is similar to the issue found in ath12k/qmi.c that was discussed
-> in [1] and fixed with [2]. The issue is that clang inlining can
-> explode stack usage.
->
-> ath11k_wow_op_suspend() itself is a pretty lightweight function, but
-> it dispatches to several other functions which do the real work. One
-> path in particular is:
->
-> ath11k_wow_op_suspend()
-> 	ath11k_wow_set_wakeups()
-> 		ath11k_vif_wow_set_wakeups()
-> 			ath11k_wow_convert_8023_to_80211()
->
-> Of these, ath11k_wow_convert_8023_to_80211() has non-trivial stack
-> usage, so mark it as 'noinline_for_stack' to prevent it from being
-> inlined in ath11k_wow_op_suspend(), thereby eliminating the excessive
-> stack usage.
->
-> Link: https://msgid.link/bc214795-1c51-4cb7-922f-67d6ef98bff2@quicinc.com # [1]
-> Link: https://patch.msgid.link/20241028-ath12k_qmi_driver_event_work-v1-1-0d532eb593fa@quicinc.com # [2]
-> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-
-Acked-by: Kalle Valo <kvalo@kernel.org>
-
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 57281a135dd7..436197113ced 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -182,24 +182,22 @@ static int ath11k_debugfs_fw_stats_request(struct ath11k *ar,
+ 
+ 	ath11k_debugfs_fw_stats_reset(ar);
+ 
+-	reinit_completion(&ar->fw_stats_complete);
+-
+-	ret = ath11k_wmi_send_stats_request_cmd(ar, req_param);
+-
+-	if (ret) {
+-		ath11k_warn(ab, "could not request fw stats (%d)\n",
+-			    ret);
+-		return ret;
+-	}
+-
+-	time_left = wait_for_completion_timeout(&ar->fw_stats_complete, 1 * HZ);
+-
+-	if (!time_left)
+-		return -ETIMEDOUT;
+-
+ 	for (;;) {
+-		if (time_after(jiffies, timeout))
+-			break;
++		if (time_after(jiffies, timeout)) {
++			ath11k_warn(ab, "could not request fw stats, timeout\n");
++			return -ETIMEDOUT;
++		}
++
++		reinit_completion(&ar->fw_stats_complete);
++
++		ret = ath11k_wmi_send_stats_request_cmd(ar, req_param);
++		if (ret) {
++			ath11k_warn(ab, "could not request fw stats (%d)\n",
++				    ret);
++			return ret;
++		}
++
++		time_left = wait_for_completion_timeout(&ar->fw_stats_complete, 1 * HZ);
+ 
+ 		spin_lock_bh(&ar->data_lock);
+ 		if (ar->fw_stats_done) {
+@@ -207,6 +205,7 @@ static int ath11k_debugfs_fw_stats_request(struct ath11k *ar,
+ 			break;
+ 		}
+ 		spin_unlock_bh(&ar->data_lock);
++		msleep(200);
+ 	}
+ 	return 0;
+ }
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.39.5
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
