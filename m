@@ -4,62 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B5F4D6ED04
-	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 11:05:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 171E1D6ED04
+	for <ath11k@archiver.kernel.org>; Thu, 21 Nov 2024 11:20:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=lF1XvwoHBZpxEAMx2O7edfdyYo0w9Q7PC4dbTVMeGs4=; b=TRHHzeFE92b+m7hRijtDTmV7F7
-	RrW+2N2GgG4yL/ttsBfURzuEhwVHM9Pe1RqcA8Im+ZpvWIu9e4xaqghXiy2B3YCL0Bx7PO7gKfdsc
-	QhyuGkT5gKTPiBjWa5sGhZt/L5RgQY+IT+l84HpTB2D5gVfM/rmTwS4cxvT5axwuW0eitH7ngX0Fe
-	MrWoaIK544f9WFCEGwZmz1JZAxItRUxuo8SkBJbCj9UG8olqYN+x252BklheW4fuVX+ILNj6RCn9Q
-	qxYroNmyiuHyt3XpbZFJoTZH+rv2QiRo9wt9b2NwqL+x8E21k7qGvEVBjtcVZgp2JMu4DoLj7Po0l
-	x7WH/MEA==;
+	bh=Q/oNEz8wjE904MYAiSPNNWhNnTXZYinOn8l57s/PDho=; b=j7f/Jx9vXnlWc51pJ096NPU0xi
+	jYHl2p1UzegpR7S8BQ1jNcXCvws4labZErFxduhsO4mw6tLZrqa+zSzoaPbVvqq98TP/Gh15Wqg3J
+	bbmkCwdDyk2P73eyv7iXZny1OuDI0MVn1inJDYFphsYJnysZ+kCZtARolbZmgpDJRFhaXM9C1SvEk
+	xkeRAJjza0QR35/7ileD+UopFRpBpPDYhUbiSL9Vghe/zo+GjJRL7mjHn0msLWETnSXfMYC4tKfFv
+	llFAOeIzjjHgmjIDNa1Ty+favKlAG+GZZaLn2AbEMnTVXn7hybQJDEU6WfcWOZa6BNCRwADp4yRl5
+	afCGTKXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE504-0000000HQVZ-2Nz3;
-	Thu, 21 Nov 2024 11:05:28 +0000
+	id 1tE5EG-0000000HRw8-2fEs;
+	Thu, 21 Nov 2024 11:20:08 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tE502-0000000HQVC-18yK
+	id 1tE5ED-0000000HRvm-3HF3
 	for ath11k@lists.infradead.org;
-	Thu, 21 Nov 2024 11:05:27 +0000
+	Thu, 21 Nov 2024 11:20:07 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id DBE1E5C55DC;
-	Thu, 21 Nov 2024 11:04:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50339C4CECC;
-	Thu, 21 Nov 2024 11:05:24 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 6AE7A5C4D91;
+	Thu, 21 Nov 2024 11:19:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5983C4CECC;
+	Thu, 21 Nov 2024 11:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732187125;
-	bh=AGvZ1bo3QHRClGESY5fZrGfulh5ci0G55GUsSOsJW/0=;
+	s=k20201202; t=1732188005;
+	bh=mWqhOi5kNRqEpp8ydItF5JLam0/fEY56MYBvK355DRg=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=fRD2Xue4Xe8kLpjImXWNySN6VFB4vwlhRNmaIIzFG+J/AmjGSi1XkwyVCSBYY7Ftr
-	 m8QOCcdySMJY8jQMPNm0BmdfVHoUjxpw2VIqwKgde/502FfxjuVRkxwzxDCmfPLiTx
-	 OJ+dixkc6BMlkbaTtVgtYCQ5YqzjQ66omikQn6JXQDlvQ/29yclCpwsPlirPT2Tjj3
-	 eTUjYrXNeIiRvK3pR6UstKtSa9GR04SRqs7oA7KVpCFowTW1o7Oh/U0E0hAGafUCCk
-	 cH5+V6co5+86F4u/ot/RsrO7ber5Faii9f4FQIrLJ+0lfghC/CxrazN1+KpjxH51jQ
-	 3STOPPNMBveJQ==
+	b=OoPYRGfK33eEaj4TSOXurZ1ficEBLcmADw14Aac2la9G0MyZyQ375x8K1RdrJng9w
+	 gvDLnOIIwSfsC/WN0YSVXjOn56IlonUH7Quu/Yqqv8Rl1y+0Sx9shmrKXg1nrL8wkx
+	 61V5xhKOsls5pPBShmdFWoKrc9zi1bHnaUnNNveKAqr9JILozoQyOHkgnSYJdSdS+q
+	 Q/8boiWrZv9wpK6aXpwSRpmw8bU/Nx3BB0SQYbTzY8MXFU9epoiQAI3RhTLYK5j5vx
+	 1eyFMBObvNI+AlAFfZF+Rh2c6T/Yz/OwyxQkRr/eE7dW6owOrC2qzF9V9g57Dh/Mxf
+	 4gG53Bg4agTqg==
 From: Kalle Valo <kvalo@kernel.org>
 To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,  <ath11k@lists.infradead.org>,
-  <linux-wireless@vger.kernel.org>,  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] wifi: ath11k: add support for QCA6698AQ
-References: <20241031000541.3331606-1-quic_miaoqing@quicinc.com>
-	<bb1c77cb-7efc-4c85-a946-5394b9105416@quicinc.com>
-	<87o72k4hxk.fsf@kernel.org>
-Date: Thu, 21 Nov 2024 13:05:22 +0200
-In-Reply-To: <87o72k4hxk.fsf@kernel.org> (Kalle Valo's message of "Tue, 12 Nov
-	2024 16:59:03 +0200")
-Message-ID: <8734jkyhhp.fsf@kernel.org>
+Cc: Jeff Johnson <jjohnson@kernel.org>,  "Nathan Chancellor"
+ <nathan@kernel.org>,  Nick Desaulniers <ndesaulniers@google.com>,  Bill
+ Wendling <morbo@google.com>,  Justin Stitt <justinstitt@google.com>,
+  "Arnd Bergmann" <arnd@kernel.org>,  <linux-wireless@vger.kernel.org>,
+  <ath11k@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
+  <llvm@lists.linux.dev>
+Subject: Re: [PATCH 1/3] wifi: ath11k: mark some QMI driver event helpers as
+ noinline
+References: <20241119-ath11k-noinline-v1-0-4ec0a8aa30b2@quicinc.com>
+	<20241119-ath11k-noinline-v1-1-4ec0a8aa30b2@quicinc.com>
+Date: Thu, 21 Nov 2024 13:20:01 +0200
+In-Reply-To: <20241119-ath11k-noinline-v1-1-4ec0a8aa30b2@quicinc.com> (Jeff
+	Johnson's message of "Tue, 19 Nov 2024 07:47:38 -0800")
+Message-ID: <87y11cx28u.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241121_030526_353948_D4FFDECE 
-X-CRM114-Status: GOOD (  14.00  )
+X-CRM114-CacheID: sfid-20241121_032005_868674_280DF177 
+X-CRM114-Status: GOOD (  12.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,37 +78,45 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+Jeff Johnson <quic_jjohnson@quicinc.com> writes:
 
-> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+> When compiling the ath11k driver using clang with KASAN enabled, the
+> following warning is observed:
 >
->> On 10/30/2024 5:05 PM, Miaoqing Pan wrote:
->>> QCA6698AQ IP core is the same as WCN6855 hw2.1, they share the same
->>> PCI device ID, the same major and minor version numbers, the same
->>> register address, and same HAL descriptors, etc. The most significant
->>> difference is that QCA6698AQ has different RF, IPA, thermal, etc.
->>> 
->>> Follow the approach done in commit 5dc9d1a55e95 ("wifi: ath11k: add
->>> support for QCA2066"), enumerate the subversion number to identify the
->>> specific card.
->>> 
->>> Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04479-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
->>> 
->>> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
->>
->> Am I correct that this satisfies at least a subset of the devices you were
->> trying to support with the following?
->> https://lore.kernel.org/all/20241024002514.92290-1-quic_miaoqing@quicinc.com/
->>
->> If so, can you reply to that thread, pointing to this new patch, and elaborate
->> on what is now supported and what still requires ath11k to support
->> board-specific firmware overrides?
+> drivers/net/wireless/ath/ath11k/qmi.c:3199:13: warning: stack frame size (1560) exceeds limit (1024) in 'ath11k_qmi_driver_event_work' [-Wframe-larger-than]
 >
-> That question is still open but otherwise this patch looks good to me.
-> But I'll give an Acked-by only after I understand what's that "NFA765
-> m.2 card for IoT platforms" mentioned in the other thread is.
-
-Miaoqing provided the info offlist so:
+> This is similar to the issue found in ath12k/qmi.c that was discussed
+> in [1] and fixed with [2]. The issue is that clang inlining can
+> explode stack usage.
+>
+> Just as in ath12k, ath11k_qmi_driver_event_work() itself is a pretty
+> lightweight function, but it dispatches to several other functions
+> which do the real work:
+>
+> ath11k_qmi_driver_event_work()
+> 	ath11k_qmi_event_server_arrive()
+> 		ath11k_qmi_fw_ind_register_send()
+> 		ath11k_qmi_host_cap_send() *
+> 		ath11k_qmi_event_load_bdf()
+> 	ath11k_qmi_event_mem_request()
+> 		ath11k_qmi_respond_fw_mem_request()
+> 	ath11k_qmi_event_load_bdf()
+> 	ath11k_qmi_wlanfw_m3_info_send() *
+> 		ath11k_qmi_m3_load()
+> 	ath11k_qmi_process_coldboot_calibration()
+>
+> Of these, the two marked with * have non-trivial stack usage. Mark
+> those functions as 'noinline_for_stack' to prevent them from being
+> inlined in ath12k_qmi_driver_event_work(), thereby eliminating the
+> excessive stack usage.
+>
+> Note that this approach is a bit more "surgical" than the ath12k
+> approach as only the two functions with the largest stack usage are
+> modified.
+>
+> Link: https://msgid.link/bc214795-1c51-4cb7-922f-67d6ef98bff2@quicinc.com # [1]
+> Link: https://patch.msgid.link/20241028-ath12k_qmi_driver_event_work-v1-1-0d532eb593fa@quicinc.com # [2]
+> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
 Acked-by: Kalle Valo <kvalo@kernel.org>
 
