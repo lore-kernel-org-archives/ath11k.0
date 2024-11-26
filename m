@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25510D5A6F9
-	for <ath11k@archiver.kernel.org>; Tue, 26 Nov 2024 08:14:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B50F9D3B98F
+	for <ath11k@archiver.kernel.org>; Tue, 26 Nov 2024 13:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ieQIQcSD1s/suoarC7a7OhIQJzw3wBSvD9UoY9+DS6s=; b=UC0BrGHumdU7dDOVdEN+ZF8IKQ
-	orFKfEkt0AyzzAVdxsWn7YOJ2sYhUkhfkUfIPZJgbx0dq4QHX78WV6aM89hVUKnCW5WHlGILvbJ8N
-	MhAogUo3NzlCsTQdEZRBC/kp1UGS/Gv540L7nDEcE64cB07tAOtfE8C1pEIW6+WqflQorj+sjkTss
-	jHF14kp/9I4Of/ihcrmg/Tf5IVR42Xvx4xXzlm3bzlZSlnpvz2/Ju8yb6wSTCVU63Za36dhSsVzMM
-	IKO6SZODEbhxCBiv5bgBp71uOpzdS5bh+PZmsGsCwJuj810hBOQnjug4X1a3QeoyRl61KgURrWLIf
-	m5U1wKTQ==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=S+3lhfowuHUDjDqZ7fevoqD7+4vMhYt2ikMvfvG4nUA=; b=prkJrnGea2e3v2n3ROIOhdcPZI
+	KVcyEw8Nw5Rg7cMvNRw+ChzO7uD2rvv9IZArt4UT+2mf0ZGKA5HufWkeQXXRiBbyM7YvITjN69vS0
+	RaYnqZc5jwvN8LBzyig2MtyCHUZvQpbqCxxDPd06x9dbksPWvvp6eOIHDI6DJgDPiytnJ+MoQHg8O
+	fbKmXMO3v2QSqAmDWPGNLeEBrm6NVyALEs846CCzOFo4RREbcoqNPvvciGa5hQk+jjuyirPUS9SpL
+	qokAO3RW5pLOR8u+Sny8MOd+a71v8eFolUpty46O5213IGa3RwSQYuG/guWonUomwxmgemM9TG844
+	/BviO8Rg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tFqiB-00000009wPh-34lE;
-	Tue, 26 Nov 2024 08:14:19 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tFvs2-0000000AllH-15D5;
+	Tue, 26 Nov 2024 13:44:50 +0000
+Received: from mout.web.de ([217.72.192.78])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tFqi9-00000009wPB-2Ol6
+	id 1tFvrz-0000000AljY-1WOD
 	for ath11k@lists.infradead.org;
-	Tue, 26 Nov 2024 08:14:18 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4APJcfYW020756;
-	Tue, 26 Nov 2024 08:14:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ieQIQcSD1s/suoarC7a7OhIQJzw3wBSvD9UoY9+DS6s=; b=XRXGqcPjWABEIlwT
-	N0HfK8vywNPSg6vqv/YiTGFDdiE8DmnD9LYnRz02TknSiHoQMFHBY+pQNbxU1oPC
-	Niu9RL8sl1JxJlXqhJaFS+LgH+VbQEuNgmHbMP07QhFKVWqSHVEggv2HKGVN0IEg
-	ZVxP1cBJ1JLCVZ8eOn7ATnVkod6Yh1IOhWiFTyea3T7vaImj/kq7AuXZ8ntVPtEx
-	Gn6lhhTWeIJsysaa68KVr4TyEEguyzyAwbk1AsHnZ8dtzR6h/8W6Sck7nz3I3i32
-	dXuRdat3CYhFblwbD9MINtG4jshlQmdb7/43CXOXFAq0gNGxQ1jXWRz4ZcXrQOFW
-	qXKxMw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43374sycws-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 08:14:13 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQ8ECkT026481
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 08:14:12 GMT
-Received: from [10.231.194.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 26 Nov
- 2024 00:14:11 -0800
-Message-ID: <ed719ad2-dc79-4883-8484-05e615ae211e@quicinc.com>
-Date: Tue, 26 Nov 2024 16:14:08 +0800
+	Tue, 26 Nov 2024 13:44:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1732628682; x=1733233482; i=markus.elfring@web.de;
+	bh=S+3lhfowuHUDjDqZ7fevoqD7+4vMhYt2ikMvfvG4nUA=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=Pyp7gdG4nFptFLC2iJZlXEA9JqWF9Uha5mAVWQ6PIa42RuLQGCA/qcoBa5AtfOKm
+	 995Z1wk9oA0Pan03QvcMBDA/R3XmmBfjiIPqIVMHFkKWHiq9zjBbgC5usbxhV0djh
+	 D19Yj/iZuC6aaA5oSMgz2byloViAquMmGoHLdSAP6eCm4ACgeqH16yUoTEG9RMp+H
+	 luLyJiJrEs4AILw2CyMfNWaG9Vxywg8Cvdrr+UCgNsvm3HIs07WvmiYyJ8xrcQSJ4
+	 mkQosjx02gkuHvjnboZvWpMlwzxiOtnEgAWd671pV2fsmUrzb3zYnBkzxX12s4fmV
+	 oXajm7h0f0uycxh/TQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MoNV4-1u4Pv02MlE-00ozsu; Tue, 26
+ Nov 2024 14:44:42 +0100
+Message-ID: <a9ccc947-20b2-4322-84e5-c96aaa604e63@web.de>
+Date: Tue, 26 Nov 2024 14:44:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] wifi: ath11k: support DBS and DFS compatibility
-To: Mihai Moldovan <ionic@ionic.de>, <ath11k@lists.infradead.org>
-References: <20241125100508.3458594-1-quic_yuzha@quicinc.com>
- <90c806db-9d75-4c25-88f5-252da80b5d40@ionic.de>
-Content-Language: en-US
-From: "Yu Zhang (Yuriy)" <quic_yuzha@quicinc.com>
-In-Reply-To: <90c806db-9d75-4c25-88f5-252da80b5d40@ionic.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ryGDagac56UFz3dQ-aGrad0aqsdMo_UU
-X-Proofpoint-ORIG-GUID: ryGDagac56UFz3dQ-aGrad0aqsdMo_UU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- lowpriorityscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0 adultscore=0
- priorityscore=1501 spamscore=0 mlxscore=0 impostorscore=0 phishscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411260065
+Subject: Re: [PATCH] wifi: ath11k: Fix NULL pointer check in
+ ath11k_ce_rx_post_pipe()
+To: Baichuan Qi <zghbqbc@gmail.com>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+References: <4b1b5c12-3f81-4004-8eb4-44a9fbcc7223@web.de>
+ <20241126023349.46421-1-zghbqbc@gmail.com>
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20241126023349.46421-1-zghbqbc@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:xb09GLcy7iN1LTFduA2WL60gcNOz8k/VgMDjmiDYpH8s1JlYBEM
+ F45rME3zaiWi3qpRliexFTq0e9R4Uh6zb4jO/OEc9zW+o+QnxdbDk/uQ93sdFogN/hQp8Y3
+ ef99SrtJQ2gTvxYKgxGwNV7KGBULMMJ7vMnedy1xbqRckZosFgG6wSePVrkoPzRXLkpNE2Z
+ gC2laZgpGwoLFXSDPSO1Q==
+UI-OutboundReport: notjunk:1;M01:P0:2l3Gn42M+Zs=;+gf0qVuRTnfaDwbr6tIlNLetJ23
+ DuTN6W7pT9Uldu+dE6BpRy6x5nfudDHl5cCwcCHxtlb651vzgDJfcRj5r0NgfYLUxSk2/D7v1
+ 2t/1hxKMSjZqAmp4IKDyR5wav0gp9L6BbA4PvdtoVxYEsDMVLQNj5zRgvJaSI5QfpO1srd7cZ
+ Wj7T5niqjE3F1/yJscEEQ/Bf1Xk2PqXvzbab9YgDrkt9aiPoSIo9lmA/lhYhfgVqvtYMnq8n4
+ 41wxYkuxOWXoRsREOavSHUzQk3PIqehrvSOSOop/7jZ73CsIrpKqOYCSMJPKuq2aRc9AnSPSS
+ quSkZC9AFV7Kjwt02ol182vihslDiY5flyw+kUo74djBmYqqudByObdJYEwPcmNXKpe064nut
+ ijx+VyIB7FOrgY4D8wyaWadf7vvdz+BX/f1cIrRSqeolcglg2HNP5BUYmtsXnlF1cnjscFdtO
+ +E4oHyF6Q+P87j24GVu7fO1C068IGCB4F3gOuAlpHQXw2BQ0tCaRdfpUGZNDqYBa3nfJ1iFxB
+ znjNUlzA+9QiYCjuLCMuWk4YJRS6zNwggOzx0lyjdMmxl9NRbEg4y14M358r/00aNwtWkr4dy
+ 3qauRRssOkpk0GpLJLx1nRSgv2naSiQBkFdKG3ghN7Q7zFGLYDMLf4D96G3bC44t5IrfAUrlh
+ LIFjlIivDboGbk2iRYPp0UIJo9l7RutbeJdFv9F42YYcOWk9nVGzZGwghSEdbLs5diJ+IyZer
+ SnBlWb23Xx3K7zAB1Ju2fJ+N6LBHS5GnEcHsNGJZVQJrKSU5ZeWkwBl+kiCczkKNfQxTUzXlx
+ v3tN9TwfLOIDf1Z3cTz1cl+bacftXf5F+jmZA7qP6FrZEOoN3kKc8kcagV2aUZVUeJdzAMA4V
+ FG29w5mDgC1nyNwpGhNb7uS+kO8B8HOrgirvxiMyCaEUuWIa0vf8ITAeH
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241126_001417_740995_DD684E58 
-X-CRM114-Status: GOOD (  11.57  )
+X-CRM114-CacheID: sfid-20241126_054447_688602_153763D1 
+X-CRM114-Status: UNSURE (   7.72  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,82 +97,35 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+> Change the OR to AND.
+> The previous code =E2=80=A6
+
+I would appreciate further improvements for the change description.
+
+* How do you think about to add any tags (like =E2=80=9CFixes=E2=80=9D and=
+ =E2=80=9CCc=E2=80=9D) accordingly?
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
+Documentation/process/submitting-patches.rst?h=3Dv6.12#n145
+
+* See also:
+  https://lore.kernel.org/all/?q=3D%22This+looks+like+a+new+version+of+a+p=
+reviously+submitted+patch%22
 
 
-On 11/26/2024 2:09 PM, Mihai Moldovan wrote:
-> * On 11/25/24 11:05, Yu Zhang(Yuriy) wrote:
->> Add a ieee80211_iface_combination to support DBS and DFS compatibility,
->> one combination can support DFS(same with non dual sta), another
->> combination can support DBS. When running different scenarios that will
->> use different ieee80211_iface_combination due to mac80211 will go through
->> all of possible interface combinations.
-> 
-> Are DFS and DBS mutually exclusive features? I can imagine that ISM 
-> clashes with DBS, but wonder if this is a hardware limitation, a 
-> firmware limitation or merely an implementation limitation so far that 
-> might eventually be lifted.
-> 
-You mean when run dfs channel why only support one interface, right? 
-Your can refer to wiphy_verify_combinations().
-> 
->> The chips affected are:
->>
->>   QCA6390 hw2.0
-> 
-> Tested-by: Mihai Moldovan <ionic@ionic.de>
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
-> 
-Thanks your tested-on QCA6390. I will update with adding this.
-> 
-> These were the tested configurations:
-> 
->    - 5 GHz on DFS channel:
-> 
->          Interface wifiax
->                  ifindex 6
->                  wdev 0x1
->                  addr 20:57:9e:2d:04:1e
->                  ssid WRTKA05
->                  type AP
->                  channel 100 (5500 MHz), width: 80 MHz, center1: 5530 MHz
->                  txpower 20.00 dBm
->                  multicast TXQ:
->                          qsz-byt qsz-pkt flows   drops   marks   overlmt 
-> hashcol tx-bytes        tx-packets
->                          0       0       454     0       0       0       
-> 0 61456           454
-> 
->    - 5 GHz on non-DFS channel + 2.4 GHz (DBS):
-> 
->          Interface wifiax24
->                  ifindex 7
->                  wdev 0x2
->                  addr 22:57:9e:2d:04:1e
->                  ssid WRTKA06-Tasmota
->                  type AP
->                  channel 7 (2442 MHz), width: 40 MHz, center1: 2452 MHz
->                  txpower 20.00 dBm
->                  multicast TXQ:
->                          qsz-byt qsz-pkt flows   drops   marks   overlmt 
-> hashcol tx-bytes        tx-packets
->                          0       0       61      0       0       0       
-> 0 8562            61
->          Interface wifiax
->                  ifindex 6
->                  wdev 0x1
->                  addr 20:57:9e:2d:04:1e
->                  ssid WRTKA05
->                  type AP
->                  channel 40 (5200 MHz), width: 80 MHz, center1: 5210 MHz
->                  txpower 20.00 dBm
->                  multicast TXQ:
->                          qsz-byt qsz-pkt flows   drops   marks   overlmt 
-> hashcol tx-bytes        tx-packets
->                          0       0       69      0       0       0       
-> 0 10032           69
-> 
-> 
-> 
-> Mihai
+=E2=80=A6
+> +++ b/drivers/net/wireless/ath/ath11k/ce.c
+> @@ -324,7 +324,7 @@ static int ath11k_ce_rx_post_pipe(struct ath11k_ce_p=
+ipe *pipe)
+>  	dma_addr_t paddr;
+>  	int ret =3D 0;
+>
+> -	if (!(pipe->dest_ring || pipe->status_ring))
+> +	if (!(pipe->dest_ring && pipe->status_ring))
+>  		return 0;
+=E2=80=A6
 
+Is there a need to reconsider also such a return value?
+
+Regards,
+Markus
 
