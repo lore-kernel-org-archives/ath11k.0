@@ -4,85 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51D5DD609BA
-	for <ath11k@archiver.kernel.org>; Wed, 27 Nov 2024 09:06:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A2C5D609C1
+	for <ath11k@archiver.kernel.org>; Wed, 27 Nov 2024 09:44:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=r2N93lXlkkWmnK3QygTnOg7BE1lU6KCWvJYDtF78mQU=; b=UQyKbmrOZBogC0YnS8nZI2Cvai
-	CX81mznl9OWdN87sTrsxuYZFXW1hSNV2jmltfiu+KwvwGtOay1yYJgCGZYvh4SMqiyd5KFtjwocyr
-	kvnD7g1SYrtr3I7jq5uZDe9w3Dr/96jW47oh+vPlr0wn5olP9lKdFLIm/ai003oZJ6sYdxgTAYGLN
-	5w3oIuj/LT9nDW+bTQHnZpqc23vCUjEBATaIwpxH76tZOLEgDlJoLtT4kfck/1ySXaY1+GRo8gRxb
-	9RT8C6cvvqY6dGPs+n+KtvJ/mWPwRXN80B5tML4jw/W6NAWdDfLMkZEY9xnNN/dnMmMG26fOzBphY
-	8FTzeUAg==;
+	bh=xoFcqYTJpQSjF6BsiEup/tHDY+g9XJsfXL/ccQA2FU8=; b=igi+VKZyI7QnNysiY0jDfbryJS
+	TuLBijzvGsP7WZIrxQsYZr+8CIaWorDXMEYaHwwH/ZXmDN9guuRogcaUjq8TfcKWcVhTkF2hbfirp
+	0gxjYXl2Bg/LG/PlUkc03AB/Th1pmGfKiNBaqBWz0WfOoZLTctve5UOxIRqXqqM/mx5F3Ei034/KH
+	9LLSDMMaT+D0o2GOWm7uL/P3jU4+5chp+POZS3oLdhlxHk4q710ZpAe3VjYO0pSHpt/o+MFloUcNO
+	dFhkWfT2xCSTk9l+LkmL4KJahn8IFzq3jw5BMgwsiRatVz6mO3Okcp0ZtyIBX/DrAoQ3ShRR9viSr
+	JLJC7zNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGDzu-0000000Cf0d-3eJE;
-	Wed, 27 Nov 2024 09:06:10 +0000
-Received: from mout.web.de ([217.72.192.78])
+	id 1tGEaq-0000000Cj9T-0Cq4;
+	Wed, 27 Nov 2024 09:44:20 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGDzr-0000000CezS-3Fw8
+	id 1tGEaX-0000000Cj6e-2aVi
 	for ath11k@lists.infradead.org;
-	Wed, 27 Nov 2024 09:06:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1732698365; x=1733303165; i=markus.elfring@web.de;
-	bh=r2N93lXlkkWmnK3QygTnOg7BE1lU6KCWvJYDtF78mQU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=O3/1brLODTDDwNzbukpTD33n5fgI9xMf8dXNgVSljawzRpd4vk+DR4ULEHVEAnyc
-	 1K56PtvWD1QmXziLcE2x/uawTINAYmmodzOCy8m639NrPXs3KIx+THcryL+FNt2aP
-	 KgGHFzTekmd5wFJcfvWhgRIJA+oDv7D3NDCs3S2k/ygRdmUZOm1JR8l1W0y4HfhBK
-	 0VoozSHNTtdgo7e60CRpTHiPU/x0Sxo+A34uPhbI+8dGudlm4oihMXUTYmwb15L+h
-	 g3Etxnq084K8vddaeGwXSl8PnvlZxrllqV+BMyNg3HDIlHsJ93NC917UVy1KsfxvC
-	 4C4YM42EmkC4IgU3lQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MT7aP-1t8A9j3mRz-00UQDP; Wed, 27
- Nov 2024 10:06:04 +0100
-Message-ID: <a77fe99d-079b-4ef3-a1ce-6aea10256860@web.de>
-Date: Wed, 27 Nov 2024 10:05:51 +0100
+	Wed, 27 Nov 2024 09:44:02 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-2ee173d0480so146118a91.0
+        for <ath11k@lists.infradead.org>; Wed, 27 Nov 2024 01:44:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732700640; x=1733305440; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xoFcqYTJpQSjF6BsiEup/tHDY+g9XJsfXL/ccQA2FU8=;
+        b=Y8nPOpoUntQhKy4/Fmi+SpwZCB1qp5OQp6N9MV64/EtU+elUl/iD2DxXeFd6clpdvV
+         SzCZRxt9HSJB/red3ZW0ZjEOKB7hG/k2fKbDIKFa3ygE3ZPWIh/thIY6BEx+h2C1HqbZ
+         yIOtK1k9J4knXZb4FupsQZa8QVJVqLKOCh13h0c/RwegQv+jSzPLAaaVw//e/pd7wpLz
+         KVlom1MCVS7vdOfdRc/6jQ/edFC+LTXRH/eQLU2lgzTO9nUFOLBsrDD6lMcydHoaCU6R
+         UJf888CWsDaGINh+XfUuu1nJIvC9iqseq+D0FS+8Q1GGklX1VPS4MLXeHN3RBHd4CHeQ
+         np5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732700640; x=1733305440;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xoFcqYTJpQSjF6BsiEup/tHDY+g9XJsfXL/ccQA2FU8=;
+        b=iveX4sffFxOTXYrPd4mc0cUkzOJ3GBxDgBkvAnf2AstIEC/nmIfybyJIZObomO4Z7y
+         lFld0RoPbCKdAlERk8delbEnklm7jxQqJ7JmoJhLdzhYB9K19qEFuLrfN0e+547FAAvs
+         83nclu0MLUZTIcQH3maMnQCLHwT0undT7UTESDqgvI48xX47lPWw+LQ5yBz7hIKmnKha
+         PDwGN/H3ber9cjeCYVz8SoLPJxJNCgtZdLeXbf7Y8D9TWtXYfnKv7t7WBnusT3DCE5EN
+         FBDAfRPJzSjvRz2LMlbpDwlE0821+5azVZCzSagaylI2ceChAemK4IKq7vWYr+7kfZ5l
+         kk+g==
+X-Gm-Message-State: AOJu0Ywy4O16TnQxM9hzTuo4F1u7d2CNDIOyA8mG0GkV2x4IBFET8Cz7
+	u0yJdxvC+umrK+ZRB/GhaQg4NYW7bnN/pMMO1f/sroW1BJSayR6o
+X-Gm-Gg: ASbGncu7P+43mR7+zAWBaigW62xcQv9126m1oM7Y26yDwpEwK4eE0UlrYZ2/qXpXdTt
+	DYg7cm8W0/GAytvrfgvGAlM9T1wGc0p9EIIlK8x6vK/2wjT5LrS3OzfoyMwvXL8I23geT/mPzZ5
+	Jj7Au9DMbHSZBRrgHUWogmL0UFSFvPE3mWf4EZXK3bSnnyXLvE+ZKXvMOH1m1MnNW2qVHhRSN8t
+	spYYowZuGqIgd+8bvGxtQOCJdR/dWIKyLlenklupzR/LnDGpXnEAguk/Tw=
+X-Google-Smtp-Source: AGHT+IF4YBQ5R2ogJZut7ke432SKKHDz7Ixuem5LWStg75TNRXhrr46Ou1TuK+emhmQ7woHGw9l4Eg==
+X-Received: by 2002:a17:90b:1b51:b0:2ea:5054:6c44 with SMTP id 98e67ed59e1d1-2ee097e51b4mr3265400a91.31.1732700640197;
+        Wed, 27 Nov 2024 01:44:00 -0800 (PST)
+Received: from LAPTOP-SQ5KB8RN.lan ([222.249.179.118])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ee0fa41f7fsm1155250a91.11.2024.11.27.01.43.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 01:43:59 -0800 (PST)
+From: Baichuan Qi <zghbqbc@gmail.com>
+To: markus.elfring@web.de
+Cc: ath11k@lists.infradead.org,
+	jjohnson@kernel.org,
+	kvalo@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	zghbqbc@gmail.com
+Subject: [PATCH v3] wifi: ath11k: Fix NULL pointer check in ath11k_ce_rx_post_pipe()
+Date: Wed, 27 Nov 2024 17:43:17 +0800
+Message-Id: <20241127094317.303815-1-zghbqbc@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <a77fe99d-079b-4ef3-a1ce-6aea10256860@web.de>
+References: <a77fe99d-079b-4ef3-a1ce-6aea10256860@web.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4?] wifi: ath11k: Fix NULL pointer check in
- ath11k_ce_rx_post_pipe()
-To: Baichuan Qi <zghbqbc@gmail.com>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-References: <a9ccc947-20b2-4322-84e5-c96aaa604e63@web.de>
- <20241127033241.60478-1-zghbqbc@gmail.com>
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20241127033241.60478-1-zghbqbc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:ZCgGeWswJhW4qQl74iKNQqJJsw3uVk6d6t2h0sBzF1JJbAf7EfF
- CKyNdwyRYFEtZBlR9tB30prKCqhEf0mppZXgepJHTirdA0k6IlnRltNUoueVyLQ/rovSqFv
- VGsg/rAob0P642Bel9DBGlS4t+c4n+eKY/GRIG7Gu+n5dZKb/aD62befocNMV5RB916abVJ
- 6g0sAtU7b49OCMm5n8rDA==
-UI-OutboundReport: notjunk:1;M01:P0:8RNY/ZCRYK4=;H+R6xGo8OAVw+2fkqDaS6mMHccv
- n7CfkWqidCE697R4smazxW3hprt/iCth6rNITrVuLhnfjBWbH8Tiq/My94oQnUxDaTnPg5H2n
- kPsc+d3D4QWZbSgAJju+pVxNMVaeCkLBwmh6LPl9/dED+9D90H8EpdP5XzlDTIGu7CbXW2pln
- Ly4Q1kkVY80lKJR897e6hivuQerNxg4K42CXFKqew428gP1H/R62ZYPujp9oqzjjhbmkKHVuL
- fjk+V9FhaZ/bjewWNeosSsKUaYYzSlYZ8dQfuZIF0dKMRBaryl6VSkCvT/q5mSQDdmn40f9ix
- 0Mx1HEgA0H2a4EdK2z6+z6n80X7ahYr+1EbWZ74sISXb5D1BoNE/KaZqE4sRcLsMrGewOo85K
- H53ayriDILFhx82RtpkZRrhLVOlHI/qtGQS5w859GvDYXr72ODmt02ZpwDPDbOMFBB3fDo+mu
- PdO4xs3Gfq8mbkjGiu6HznqEP6IXcrEFHPWW00Q4yrjwO0wa+h9LFh4xHgKe2S2gt1ieOIe7c
- POBc2w2iPO20oZbPQGpwpJTx0wx2MSgNsjxXvVkaXYgIXaD4BC4uBEpx60NLDdJR2GyS0q40k
- o0s+FJtGm4MRS3AZcHA8QY67kLFQNMMtFPTB2e379Zc/JERHsGwJ/e6PRx2yoefJHv4cAA8+X
- p3r2pOdRy6/oQVg8NJEhfDAnaSo13rsYNbepQCsqrajqu4bqkEN+SAookz2MsFlCintg2qgRZ
- 3UOt3GAXwPuyHgCzKfqO4JV9h5MdXHmSlF+pENS1EwFp9aCuQMcCbORYJiOOiQKnza+9vY7HO
- sAdrB26XKdCQJVl+CTc0wc+XbYpwgXnHD5T4UQ1upSnx8XBnizoXNU4y9h0SlJcKzdC7dsoUO
- prKh8ijN+At6SdmFZ5ToKPAZADxAtX3H5sDLdez0UhL4lPcOkLK9QQeYT
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241127_010608_185684_8B589F70 
-X-CRM114-Status: UNSURE (   4.12  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241127_014401_654955_76DF674A 
+X-CRM114-Status: GOOD (  12.40  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,22 +99,40 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-> This patch fixes the NON-NULL check by =E2=80=A6
+Fix the NON-NULL check by changing the OR (||) to AND (&&),
+ensuring that the function only proceeds when both `dest_ring`
+and `status_ring` are NON-NULL.
 
-> ---
->  drivers/net/wireless/ath/ath11k/ce.c | 2 +-
-=E2=80=A6
+The current implementation of `ath11k_ce_rx_post_pipe` checks for
+NON-NULL of either `dest_ring` or `status_ring` using a
+logical OR (||). However, both rings, especially `dest_ring`,
+should be ensured to be NON-NULL in this function.
+If only one of the rings is valid, such as `dest_ring` is NULL
+and `status_ring` is NON-NULL, the subsequent call to
+`ath11k_ce_rx_buf_enqueue_pipe()` will access the NULL pointer,
+resulting in a driver crash.
 
-Did you overlook any guidance once more?
+Link: https://lore.kernel.org/ath11k/a9ccc947-20b2-4322-84e5-c96aaa604e63@web.de
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Baichuan Qi <zghbqbc@gmail.com>
+---
+ drivers/net/wireless/ath/ath11k/ce.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-See also:
-* https://lore.kernel.org/all/?q=3D%22This+looks+like+a+new+version+of+a+p=
-reviously+submitted+patch%22
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+index e66e86bdec20..cc9ad014d800 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -324,7 +324,7 @@ static int ath11k_ce_rx_post_pipe(struct ath11k_ce_pipe *pipe)
+ 	dma_addr_t paddr;
+ 	int ret = 0;
+ 
+-	if (!(pipe->dest_ring || pipe->status_ring))
++	if (!(pipe->dest_ring && pipe->status_ring))
+ 		return 0;
+ 
+ 	spin_lock_bh(&ab->ce.ce_lock);
+-- 
+2.34.1
 
-* https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
-Documentation/process/submitting-patches.rst?h=3Dv6.12#n94
-
-
-Regards,
-Markus
 
