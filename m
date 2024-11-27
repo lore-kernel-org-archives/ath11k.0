@@ -4,85 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B50F9D3B98F
-	for <ath11k@archiver.kernel.org>; Tue, 26 Nov 2024 13:44:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5753AD66BAA
+	for <ath11k@archiver.kernel.org>; Wed, 27 Nov 2024 02:28:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=S+3lhfowuHUDjDqZ7fevoqD7+4vMhYt2ikMvfvG4nUA=; b=prkJrnGea2e3v2n3ROIOhdcPZI
-	KVcyEw8Nw5Rg7cMvNRw+ChzO7uD2rvv9IZArt4UT+2mf0ZGKA5HufWkeQXXRiBbyM7YvITjN69vS0
-	RaYnqZc5jwvN8LBzyig2MtyCHUZvQpbqCxxDPd06x9dbksPWvvp6eOIHDI6DJgDPiytnJ+MoQHg8O
-	fbKmXMO3v2QSqAmDWPGNLeEBrm6NVyALEs846CCzOFo4RREbcoqNPvvciGa5hQk+jjuyirPUS9SpL
-	qokAO3RW5pLOR8u+Sny8MOd+a71v8eFolUpty46O5213IGa3RwSQYuG/guWonUomwxmgemM9TG844
-	/BviO8Rg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=qC4SGT9DFDAwSW9hYNzONlYrXnRIro+hC0CFg7X7Ut4=; b=ZIMicKGFjhtr40lrRqtGbiuh9T
+	91UUVhfNK/pdrGG0j0IEwY5XrBhm0ecQpR/bPQfHJIDAgCCoMb10rPfXyJsiiUaDg5NnBziAf1wSl
+	qkq+ncOTKGQKft2+zWym8quJiLFN8oZShCv4xFBtM25Zju2RExhD7A+6aIYZsG1pv/V75OSTuir/R
+	D1gfvEiKXjH3utMnd9FfFsZCJNiflRbTNxfvEotlXE5SwWxm6D603t7bLxyr6oGPcr3zo6Nd7Qzms
+	rfEYa9zrhj28BuFwUrUHBng8JjwZB4HJGCVBILTIRwo9xOd0VKQZ5myoKnMWH7yL2Ct2PLi1xJ0b5
+	/PwLb+iQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tFvs2-0000000AllH-15D5;
-	Tue, 26 Nov 2024 13:44:50 +0000
-Received: from mout.web.de ([217.72.192.78])
+	id 1tG7mi-0000000C4di-1GD0;
+	Wed, 27 Nov 2024 02:28:08 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tFvrz-0000000AljY-1WOD
+	id 1tG7mf-0000000C4dH-31h2
 	for ath11k@lists.infradead.org;
-	Tue, 26 Nov 2024 13:44:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1732628682; x=1733233482; i=markus.elfring@web.de;
-	bh=S+3lhfowuHUDjDqZ7fevoqD7+4vMhYt2ikMvfvG4nUA=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=Pyp7gdG4nFptFLC2iJZlXEA9JqWF9Uha5mAVWQ6PIa42RuLQGCA/qcoBa5AtfOKm
-	 995Z1wk9oA0Pan03QvcMBDA/R3XmmBfjiIPqIVMHFkKWHiq9zjBbgC5usbxhV0djh
-	 D19Yj/iZuC6aaA5oSMgz2byloViAquMmGoHLdSAP6eCm4ACgeqH16yUoTEG9RMp+H
-	 luLyJiJrEs4AILw2CyMfNWaG9Vxywg8Cvdrr+UCgNsvm3HIs07WvmiYyJ8xrcQSJ4
-	 mkQosjx02gkuHvjnboZvWpMlwzxiOtnEgAWd671pV2fsmUrzb3zYnBkzxX12s4fmV
-	 oXajm7h0f0uycxh/TQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MoNV4-1u4Pv02MlE-00ozsu; Tue, 26
- Nov 2024 14:44:42 +0100
-Message-ID: <a9ccc947-20b2-4322-84e5-c96aaa604e63@web.de>
-Date: Tue, 26 Nov 2024 14:44:41 +0100
+	Wed, 27 Nov 2024 02:28:07 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQKLXWf006763;
+	Wed, 27 Nov 2024 02:27:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=qC4SGT9DFDAwSW9hYNzONl
+	YrXnRIro+hC0CFg7X7Ut4=; b=XUdEDOXnaBZi0dzNrXMrrKphAMssqgaVcwS6hG
+	RipxkE2PG6QAy9rZBSuMuXL47Zcf2pHWSIrd5neq1fCeRo4GOKtv0zxnM1q6lgNY
+	NumF8JTQvW6rPZHJBw3joTRyiAE2Q35ziSlpz0ShXXGLlCeDM2GtbZIcJOfds19n
+	nnro5s8pJr+UKNg9Ib3Tx/TTWTDlro2A2CsI9qWiHYN5x7icLKjfMbrIyZ+PzsVj
+	tLXbCgoCHQ9V92G9lJvhA60pXcD7WIIpqSvZ0QBGgOKjJT5ilbv7p22vtDcPrnlW
+	QGRZkgg8Q/9aVvEQd0pLsnQ1hO/Z0a83Xx6gGsZuxx8OZ46w==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 434ts1mwqp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 02:27:58 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AR2RvqI001477
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 02:27:57 GMT
+Received: from yuzha-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 26 Nov 2024 18:27:56 -0800
+From: "Yu Zhang(Yuriy)" <quic_yuzha@quicinc.com>
+To: <kvalo@kernel.org>
+CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>, Mihai Moldovan <ionic@ionic.de>
+Subject: [PATCH v3] wifi: ath11k: support DBS and DFS compatibility
+Date: Wed, 27 Nov 2024 10:27:42 +0800
+Message-ID: <20241127022742.4016870-1-quic_yuzha@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: Fix NULL pointer check in
- ath11k_ce_rx_post_pipe()
-To: Baichuan Qi <zghbqbc@gmail.com>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-References: <4b1b5c12-3f81-4004-8eb4-44a9fbcc7223@web.de>
- <20241126023349.46421-1-zghbqbc@gmail.com>
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20241126023349.46421-1-zghbqbc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:xb09GLcy7iN1LTFduA2WL60gcNOz8k/VgMDjmiDYpH8s1JlYBEM
- F45rME3zaiWi3qpRliexFTq0e9R4Uh6zb4jO/OEc9zW+o+QnxdbDk/uQ93sdFogN/hQp8Y3
- ef99SrtJQ2gTvxYKgxGwNV7KGBULMMJ7vMnedy1xbqRckZosFgG6wSePVrkoPzRXLkpNE2Z
- gC2laZgpGwoLFXSDPSO1Q==
-UI-OutboundReport: notjunk:1;M01:P0:2l3Gn42M+Zs=;+gf0qVuRTnfaDwbr6tIlNLetJ23
- DuTN6W7pT9Uldu+dE6BpRy6x5nfudDHl5cCwcCHxtlb651vzgDJfcRj5r0NgfYLUxSk2/D7v1
- 2t/1hxKMSjZqAmp4IKDyR5wav0gp9L6BbA4PvdtoVxYEsDMVLQNj5zRgvJaSI5QfpO1srd7cZ
- Wj7T5niqjE3F1/yJscEEQ/Bf1Xk2PqXvzbab9YgDrkt9aiPoSIo9lmA/lhYhfgVqvtYMnq8n4
- 41wxYkuxOWXoRsREOavSHUzQk3PIqehrvSOSOop/7jZ73CsIrpKqOYCSMJPKuq2aRc9AnSPSS
- quSkZC9AFV7Kjwt02ol182vihslDiY5flyw+kUo74djBmYqqudByObdJYEwPcmNXKpe064nut
- ijx+VyIB7FOrgY4D8wyaWadf7vvdz+BX/f1cIrRSqeolcglg2HNP5BUYmtsXnlF1cnjscFdtO
- +E4oHyF6Q+P87j24GVu7fO1C068IGCB4F3gOuAlpHQXw2BQ0tCaRdfpUGZNDqYBa3nfJ1iFxB
- znjNUlzA+9QiYCjuLCMuWk4YJRS6zNwggOzx0lyjdMmxl9NRbEg4y14M358r/00aNwtWkr4dy
- 3qauRRssOkpk0GpLJLx1nRSgv2naSiQBkFdKG3ghN7Q7zFGLYDMLf4D96G3bC44t5IrfAUrlh
- LIFjlIivDboGbk2iRYPp0UIJo9l7RutbeJdFv9F42YYcOWk9nVGzZGwghSEdbLs5diJ+IyZer
- SnBlWb23Xx3K7zAB1Ju2fJ+N6LBHS5GnEcHsNGJZVQJrKSU5ZeWkwBl+kiCczkKNfQxTUzXlx
- v3tN9TwfLOIDf1Z3cTz1cl+bacftXf5F+jmZA7qP6FrZEOoN3kKc8kcagV2aUZVUeJdzAMA4V
- FG29w5mDgC1nyNwpGhNb7uS+kO8B8HOrgirvxiMyCaEUuWIa0vf8ITAeH
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -Zk1Y3FxWH-qfoG1CbNRlGfqNFf8oDp_
+X-Proofpoint-ORIG-GUID: -Zk1Y3FxWH-qfoG1CbNRlGfqNFf8oDp_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 mlxlogscore=999 spamscore=0 adultscore=0 malwarescore=0
+ impostorscore=0 phishscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411270020
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241126_054447_688602_153763D1 
-X-CRM114-Status: UNSURE (   7.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241126_182805_771739_ED30615E 
+X-CRM114-Status: GOOD (  12.55  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,35 +94,130 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-> Change the OR to AND.
-> The previous code =E2=80=A6
+Now some chips which support 'support_dual_stations' will enable DBS,
+but will disable DFS. Restructure the ath11k_mac_setup_iface_combinations
+function to support DBS and DFS compatibility.
 
-I would appreciate further improvements for the change description.
+About 'support_dual_station' feature can refer:
+https://msgid.link/20230714023801.2621802-2-quic_cjhuang@quicinc.com
 
-* How do you think about to add any tags (like =E2=80=9CFixes=E2=80=9D and=
- =E2=80=9CCc=E2=80=9D) accordingly?
-  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
-Documentation/process/submitting-patches.rst?h=3Dv6.12#n145
+Add a ieee80211_iface_combination to support DBS and DFS compatibility,
+one combination can support DFS(same with non dual sta), another
+combination can support DBS. When running different scenarios that will
+use different ieee80211_iface_combination due to mac80211 will go through
+all of possible interface combinations.
 
-* See also:
-  https://lore.kernel.org/all/?q=3D%22This+looks+like+a+new+version+of+a+p=
-reviously+submitted+patch%22
+In addition, maximum number of interfaces of these types should be total
+allowed in this group.
 
+The chips affected are:
 
-=E2=80=A6
-> +++ b/drivers/net/wireless/ath/ath11k/ce.c
-> @@ -324,7 +324,7 @@ static int ath11k_ce_rx_post_pipe(struct ath11k_ce_p=
-ipe *pipe)
->  	dma_addr_t paddr;
->  	int ret =3D 0;
->
-> -	if (!(pipe->dest_ring || pipe->status_ring))
-> +	if (!(pipe->dest_ring && pipe->status_ring))
->  		return 0;
-=E2=80=A6
+ QCA6390 hw2.0
+ WCN6855 hw2.0
+ WCN6855 hw2.1
 
-Is there a need to reconsider also such a return value?
+Other chips are not affected.
 
-Regards,
-Markus
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-00410-QCAHKSWPL_SILICONZ-2
+Tested-on: IPQ6018 hw1.0 AHB WLAN.HK.2.1.0.1-01161-QCAHKSWPL_SILICONZ-1
+Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1.
+Tested-by: Mihai Moldovan <ionic@ionic.de>
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
+
+Signed-off-by: Yu Zhang(Yuriy) <quic_yuzha@quicinc.com>
+---
+v2:
+ - Add tested-on IPQ8074 and IPQ6018.
+v3:
+ - Add tested-on QCA6390.  
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 42 +++++++++++++++------------
+ 1 file changed, 24 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 31ae9b384a29..aa63f5e20f2b 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -9911,12 +9911,17 @@ static int ath11k_mac_setup_iface_combinations(struct ath11k *ar)
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct ieee80211_iface_combination *combinations;
+ 	struct ieee80211_iface_limit *limits;
+-	int n_limits;
++	int n_limits, n_combos;
+ 	bool p2p;
+ 
+ 	p2p = ab->hw_params.interface_modes & BIT(NL80211_IFTYPE_P2P_DEVICE);
+ 
+-	combinations = kzalloc(sizeof(*combinations), GFP_KERNEL);
++	if (ab->hw_params.support_dual_stations)
++		n_combos = 2;
++	else
++		n_combos = 1;
++
++	combinations = kcalloc(n_combos, sizeof(*combinations), GFP_KERNEL);
+ 	if (!combinations)
+ 		return -ENOMEM;
+ 
+@@ -9931,7 +9936,9 @@ static int ath11k_mac_setup_iface_combinations(struct ath11k *ar)
+ 		return -ENOMEM;
+ 	}
+ 
++	limits[0].max = 1;
+ 	limits[0].types |= BIT(NL80211_IFTYPE_STATION);
++	limits[1].max = 16;
+ 	limits[1].types |= BIT(NL80211_IFTYPE_AP);
+ 	if (IS_ENABLED(CONFIG_MAC80211_MESH) &&
+ 	    ab->hw_params.interface_modes & BIT(NL80211_IFTYPE_MESH_POINT))
+@@ -9941,25 +9948,24 @@ static int ath11k_mac_setup_iface_combinations(struct ath11k *ar)
+ 	combinations[0].n_limits = n_limits;
+ 	combinations[0].beacon_int_infra_match = true;
+ 	combinations[0].beacon_int_min_gcd = 100;
++	combinations[0].max_interfaces = 16;
++	combinations[0].num_different_channels = 1;
++	combinations[0].radar_detect_widths = BIT(NL80211_CHAN_WIDTH_20_NOHT) |
++						BIT(NL80211_CHAN_WIDTH_20) |
++						BIT(NL80211_CHAN_WIDTH_40) |
++						BIT(NL80211_CHAN_WIDTH_80) |
++						BIT(NL80211_CHAN_WIDTH_80P80) |
++						BIT(NL80211_CHAN_WIDTH_160);
+ 
+ 	if (ab->hw_params.support_dual_stations) {
+ 		limits[0].max = 2;
+-		limits[1].max = 1;
+-
+-		combinations[0].max_interfaces = ab->hw_params.num_vdevs;
+-		combinations[0].num_different_channels = 2;
+-	} else {
+-		limits[0].max = 1;
+-		limits[1].max = 16;
+ 
+-		combinations[0].max_interfaces = 16;
+-		combinations[0].num_different_channels = 1;
+-		combinations[0].radar_detect_widths = BIT(NL80211_CHAN_WIDTH_20_NOHT) |
+-							BIT(NL80211_CHAN_WIDTH_20) |
+-							BIT(NL80211_CHAN_WIDTH_40) |
+-							BIT(NL80211_CHAN_WIDTH_80) |
+-							BIT(NL80211_CHAN_WIDTH_80P80) |
+-							BIT(NL80211_CHAN_WIDTH_160);
++		combinations[1].limits = limits;
++		combinations[1].n_limits = n_limits;
++		combinations[1].beacon_int_infra_match = true;
++		combinations[1].beacon_int_min_gcd = 100;
++		combinations[1].max_interfaces = ab->hw_params.num_vdevs;
++		combinations[1].num_different_channels = 2;
+ 	}
+ 
+ 	if (p2p) {
+@@ -9970,7 +9976,7 @@ static int ath11k_mac_setup_iface_combinations(struct ath11k *ar)
+ 	}
+ 
+ 	ar->hw->wiphy->iface_combinations = combinations;
+-	ar->hw->wiphy->n_iface_combinations = 1;
++	ar->hw->wiphy->n_iface_combinations = n_combos;
+ 
+ 	return 0;
+ }
+-- 
+2.34.1
+
 
