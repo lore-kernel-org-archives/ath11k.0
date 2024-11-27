@@ -4,89 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE350D609CF
-	for <ath11k@archiver.kernel.org>; Wed, 27 Nov 2024 10:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EEFFD609CE
+	for <ath11k@archiver.kernel.org>; Wed, 27 Nov 2024 10:41:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=aqdcIm1htWFFascJevOmAsV6FIpg5ooOxh9zwCuY9LY=; b=Vt5T6lwTfNfFzBKqGAcCnYOL/B
-	uvF5a2v9AlJHr28P3AuezKiEhg+glYe82Pe6ptOdGrTThuSKV6sCMpKGnSkd6njGAnnyckQNLEdUx
-	9U+j84aTjDf7NSh1VKtRHyMr2O7Y5pY45vjqevaJvMTcTASfpbk8ljaLKvXzLPVzODX3to0RYalVX
-	AnTAmE2N5k1SjQwFKV0/3adBPjqET/4v7KWnvZeCSLJkgaaxPFol6zI83896ZQz5myBNinsXH2AgM
-	adur4niixpFRZpnGqxp7U6iU+VQh9UXF7stilTeeikcUD1nbD1A6+zneBELaW9EbvUTJq2N+sUIUR
-	p7MfV7Fw==;
+	bh=TmYabh9bIkIqigNzwGNBZx27RPDTRniJlyb8xtwhRCQ=; b=v+aLhSofRJh7U7cO1nawLyp+Mw
+	R84TrZAlMU7kP1zdJgnI/ZTXgtlQnFrge3ZRZblDSSk1AOLpbmRmO6CeJyUodYpdQ36ulicoW50yF
+	B0RkzKmd46flZkRH6Waa6o6HI4MVjOVXQ2AJ3XSd3k9ucNbNTq5lKvP6v5tZJ7JbWVr1bu+nNh/7A
+	vRXTq9uws4SKoIgEPHo6CG7+jQ8AhwslOaLdrJJPfI+u1y5jxgn1jyVl+LVbMOK19hYFcOpOAsYNa
+	hTLvL60o9sgP2xYroekZoWn/GpZgChFFbsGg0mx6UkHhLG9q6MEunZfkjYA/M/v/cLC2gOsZBG9Ug
+	Sut4uNpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGFKn-0000000CrBC-1n7L;
-	Wed, 27 Nov 2024 10:31:49 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tGFUG-0000000Ct1b-0UAY;
+	Wed, 27 Nov 2024 10:41:36 +0000
+Received: from mout.web.de ([212.227.17.12])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGFJW-0000000CqkA-1hTs
+	id 1tGFPI-0000000CsA8-3MZc
 	for ath11k@lists.infradead.org;
-	Wed, 27 Nov 2024 10:30:31 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR93mMJ007146;
-	Wed, 27 Nov 2024 10:30:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aqdcIm1htWFFascJevOmAsV6FIpg5ooOxh9zwCuY9LY=; b=UP5geYxFuWVC+4Ep
-	MluKXWgZVcSE0d0TSgCS0gvynmOQec0mFhMjrUR8RfAW3++Cc3MtM0yPwAnLkaZs
-	aMEiykU/VtSRKCkYcuW2wFdoulIL8yhlEPBnM1xTD4eGUkcaUiac+JTYpR2xxSTO
-	eFVg8CYUpXODbZuRrf4Jrd1/c6NyGc8WR6Fu7E6y3g5/tt9rjjGQICyRZQkyVbiC
-	Llpd0AtQojqh2f9SXGWu9UktDdSTo7ISVyLUEz+jEskQY0tztPJHMak7dct38Jok
-	X8s2dTj0OoxgO17zXt/TCQOs4nL1NBAYQtEYHlr0wPFurY+bl3UqSTj7gzLrJ4iw
-	eBQdAw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 434sw9ec76-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 10:30:25 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ARAUOQQ013304
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 10:30:24 GMT
-Received: from [10.253.78.253] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 27 Nov
- 2024 02:30:18 -0800
-Message-ID: <6f4037b4-8084-4e1d-b339-274e25f6d317@quicinc.com>
-Date: Wed, 27 Nov 2024 18:30:15 +0800
+	Wed, 27 Nov 2024 10:36:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1732703786; x=1733308586; i=markus.elfring@web.de;
+	bh=TmYabh9bIkIqigNzwGNBZx27RPDTRniJlyb8xtwhRCQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=QAdUcBC0zKYJ0m5e9Iimdf7z/gGuiIFpwQINi/whCC5uf9NKwwvLUl24y9zqJn6U
+	 hDfHX+z47ODQgpVyO2HCqDex+TtjDnwtnwb8Csh0YkUEJuCGAsNpbxMhtAYSTtFbE
+	 m9nrt2TUKCGRyG4IDTfMG9SoqojpQFA99Ln+KTR63UWEfm2/Wbt1KwbvyQ/H4/7uD
+	 M8TJw77odM1dp65cqr9PakENtC2YoNB2zkfnjH7AgnEiW4o/GMDXHFppERwBDT2lS
+	 24ifynlJcaQT8uuAIOZX5VOz0DU9WCKHzjKkCP5dw+8mUV7S31GdZpaoueEZ3LtXO
+	 jxZFzSyoc1ZqWIdJIw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MWzCt-1tEDDM3Wnp-00XC30; Wed, 27
+ Nov 2024 11:36:25 +0100
+Message-ID: <64d7fa52-b96c-4bff-b90c-98f0b1d15ac5@web.de>
+Date: Wed, 27 Nov 2024 11:36:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] wifi: ath11k: Fix NULL pointer check in
+Subject: Re: [PATCH v4?] wifi: ath11k: Fix NULL pointer check in
  ath11k_ce_rx_post_pipe()
-To: Baichuan Qi <zghbqbc@gmail.com>, <markus.elfring@web.de>
-CC: <ath11k@lists.infradead.org>, <jjohnson@kernel.org>, <kvalo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-wireless@vger.kernel.org>
+To: Baichuan Qi <zghbqbc@gmail.com>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Jeff Johnson <jjohnson@kernel.org>
 References: <a77fe99d-079b-4ef3-a1ce-6aea10256860@web.de>
  <20241127094317.303815-1-zghbqbc@gmail.com>
-Content-Language: en-US
-From: Kang Yang <quic_kangyang@quicinc.com>
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
 In-Reply-To: <20241127094317.303815-1-zghbqbc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6CjFbIR4pvu_Y28EpLLVjOMYNRZreN9J
-X-Proofpoint-ORIG-GUID: 6CjFbIR4pvu_Y28EpLLVjOMYNRZreN9J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=808 adultscore=0 spamscore=0 impostorscore=0
- priorityscore=1501 phishscore=0 clxscore=1011 mlxscore=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411270086
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Py1c9kYazIOa97Bl2d5McnNdohl31kJr34k0xDQ15O+y6nlbgR8
+ TkkQ/CWVDJvhg2ysptEWlnxDa+lzxLWBaXhM+2U5TvgEnPgjf3juhLIzUvmqf6BE6eIetei
+ KvjXJ/S8m9UeGx1WeBsBFXWCAA1UcUqy68rBGpE/LG4B1eCS4R7z7b4+/tIQtJjYckqmYxY
+ iywyvxayCWpA8pNpS6WDg==
+UI-OutboundReport: notjunk:1;M01:P0:hORuV1YLnf0=;WUqF6ybSNBXeLmjb3Kxfr7OM+X9
+ mWgiW/9ePL1dLqAsFTznkBZnZu3/CjJOkPqYe8L10PGSI3E+nKicsPCGoQaQcBreNPt9G8Mmi
+ gDEV4uJTpyTIPbqH61LICPlwAdN9gXoFBOR03EGNRP+MH03I3qmSj9Y893nRUa0MkjqAZc48j
+ Z86G7FA09bxhI/suwcLd24JGo1+PfZI7tJX87zQWffKe1JsrgZGzC//agUGfDjdIaAFeaekFp
+ SxMarSWeuhReCnfw2M3o9vT0HWN7OnKhyoaNdeKS9toaiOOwj2CrVzQUzQ33FZ0AWhoL1dLdc
+ xM9n5+n5ktmNOigA4bROY9oJSKCStdT+x5CZgdZRBavb/Bke1wa8OLsnaWgzcMr1c4Rewv9ve
+ PJ9sRUcRgAnkAJzgyjLQ46KdX36tXyc/5yAq/BqMnjK0UKlFq5SDhyS6OT1Vhyv4/4EDOXhMv
+ avLAUtZSmDSwDqK5dlcoP4Nu+GI1NlcPTF/wzw+OZeT5wjSDPqbfBsHeyAFcZbXiKRt/c3r5B
+ ITfrCFPFfs2Lu6zkSYjYUpLVBPKKe055Dl4I0m/AMWbf7vDQ8m3mOxne7sR+Jch7sMznk434m
+ NJC3JVfCTvms0xuBMFhJQazDgp50O5T3rrtY+moDJCqBlnPbxYl2QktinfS4SjG9PmRWjAmCj
+ D4DbB4ScbmxoHktxdwlO+VW0ubfZNZBzLLV0Wv3tYtDbvR1LWe6jkaJwCM2wnevZVkcEAkORk
+ Rija1hFOhuJrQk1jEpr0DEnLDFAXkAZkzN97PJJ7zftDBMDxXB6pwHM3iD9CmU4JSKNckKhTM
+ vhooEJd1XrY3slNSdcRyBQqUDirY8v7hfI3Xcoq1y2W8iTvOfIqjG81Fw4JIK7oe/3ycsNZ9J
+ 8lUttXBaAif96txnij/59AD0gbHsHEMk72JcMgMTcyjpzFQDuOgj8Sfhd
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241127_023030_446682_27A08BB1 
-X-CRM114-Status: GOOD (  19.69  )
+X-CRM114-CacheID: sfid-20241127_023629_204812_475D2281 
+X-CRM114-Status: UNSURE (   4.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,50 +97,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+> Fix the NON-NULL check by =E2=80=A6
+
+How do you think about to reorder any information from paragraphs?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/submitting-patches.rst?h=3Dv6.12#n45
 
 
-On 11/27/2024 5:43 PM, Baichuan Qi wrote:
-> Fix the NON-NULL check by changing the OR (||) to AND (&&),
-> ensuring that the function only proceeds when both `dest_ring`
-> and `status_ring` are NON-NULL.
-> 
-> The current implementation of `ath11k_ce_rx_post_pipe` checks for
-> NON-NULL of either `dest_ring` or `status_ring` using a
-> logical OR (||). However, both rings, especially `dest_ring`,
-> should be ensured to be NON-NULL in this function.
-> If only one of the rings is valid, such as `dest_ring` is NULL
-> and `status_ring` is NON-NULL, the subsequent call to
-> `ath11k_ce_rx_buf_enqueue_pipe()` will access the NULL pointer,
-> resulting in a driver crash.
-> 
-> Link: https://lore.kernel.org/ath11k/a9ccc947-20b2-4322-84e5-c96aaa604e63@web.de
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Baichuan Qi <zghbqbc@gmail.com>
+=E2=80=A6
 > ---
+>  drivers/net/wireless/ath/ath11k/ce.c | 2 +-
+=E2=80=A6
 
-So this is version 3, please remember adding you version change here🙂:
+Will you become more familiar with patch version descriptions?
+https://lore.kernel.org/all/?q=3D%22This+looks+like+a+new+version+of+a+pre=
+viously+submitted+patch%22
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/submitting-patches.rst?h=3Dv6.12#n310
 
-v3: add link URL.
-v2: rewrite commit message, add fix tag.
-
----
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#backtraces-in-commit-messages
-
->   drivers/net/wireless/ath/ath11k/ce.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-> index e66e86bdec20..cc9ad014d800 100644
-> --- a/drivers/net/wireless/ath/ath11k/ce.c
-> +++ b/drivers/net/wireless/ath/ath11k/ce.c
-> @@ -324,7 +324,7 @@ static int ath11k_ce_rx_post_pipe(struct ath11k_ce_pipe *pipe)
->   	dma_addr_t paddr;
->   	int ret = 0;
->   
-> -	if (!(pipe->dest_ring || pipe->status_ring))
-> +	if (!(pipe->dest_ring && pipe->status_ring))
->   		return 0;
->   
->   	spin_lock_bh(&ab->ce.ce_lock);
-
+Regards,
+Markus
 
