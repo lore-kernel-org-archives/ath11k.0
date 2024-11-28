@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7743AD69105
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1EF1D69107
 	for <ath11k@archiver.kernel.org>; Thu, 28 Nov 2024 12:32:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,72 +12,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0Nxf6CkGK3NslY+JLgqPcTLt32q1OCumzkrHYUKQkbE=; b=GsbADvJ1iol3lBsyM9B8X6B3Fb
-	w7kgIBggWZHuI0UM2VlLKSKyWAVrzF55kK4WrJ0hGp5ezAfBcbms4ReqznKB8EqbllMUVXUsYQESU
-	LzWrSO+ii2iQKSjIkIjNf4NpaSYoMRyUCH6iyao3qmigEi3Aj1Iv0szeE4nFsALiuseThDN2K4WXR
-	+Xut0CNCoSW+cDR2jnAP7sNIydXifrAArqVhTVV0azoyNiugl6Re/TxIWrX0G0A/k/i/+XwyVRaUP
-	Y2QeBHQgPgTmeSqT/na6+HcRb/wml6cYnKpF8BgV5wGQdh3WJPY5ZuZ76+8TU+ELtuLHfajcsubfy
-	+QT46ELg==;
+	bh=ZACMslqIaF7iVtmlx12c8LPoSlN7TzLegXngDuX2z78=; b=zHWQY7uamq7FTGMfHLEjezra3R
+	RpJtQjyQBd8GXXdOkUwEBxvQUH/CiSPbEeVAfUf59ruHoT0LXH2SiyCH1cufPjLlVRR8x2Ld6+zgk
+	1ONaTtUtn2tyL/Ro5ckxU0n896nSo677RZrOh3e9IDZPD+Lp6T+EHE4O12CO9tNE7r489BXCKtlCH
+	s8lQO5PL26HjDgfQ7IA3dXNq0ctchjgMxsCbvEwMzem6mTsoJ0ROa2kXXZwy++oYFM6io8cgRJrRv
+	IMNhQA6ch7PppfV4vYoGNkvwveXX2iqiohHqeb1zlJcFxywZvv+QMF1LRIW8VlL3wcVt0gzMqwdeo
+	tCX0ZJ6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGdha-0000000FUON-3h9i;
+	id 1tGdha-0000000FUO5-0B1t;
 	Thu, 28 Nov 2024 12:32:58 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGdfj-0000000FU3T-0tDe
+	id 1tGdfM-0000000FTwD-0tve
 	for ath11k@lists.infradead.org;
-	Thu, 28 Nov 2024 12:31:05 +0000
+	Thu, 28 Nov 2024 12:30:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1732797062;
+	s=mimecast20190719; t=1732797038;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=0Nxf6CkGK3NslY+JLgqPcTLt32q1OCumzkrHYUKQkbE=;
-	b=PpY1ookJiPxgrR04PCZq5EgBMvBHthpneGQZUvPuaNTUgOESW28RINKJtkAMj0VJD2WlwS
-	C6yO0YKqDJnOXSR/ZHG+KVXUxO/swwDkgjzm/MUqyWr0c6hzR6CB+HTT3GDwKZm6a7lAIQ
-	1m3y45r9/gFa1ERkejZIBJalhtXFFLU=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=ZACMslqIaF7iVtmlx12c8LPoSlN7TzLegXngDuX2z78=;
+	b=FMEkDoL5vkg6hrC+o49OIJRmmpbraMIPXjbapcUdvFd5SUeQYA9uatIZEV+tF6uKz3NTd7
+	iAvFCknk6q63CTLVKrnjnscFg0fiYNpip77hKv1j6pHw7i7MjeNijhalVo2XzDTmUp+dOW
+	HBJyXrfU6wbYLr1TvvgucUSJ6gDcKWM=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-111-BxKKcCgONkKak5EK7aoRrA-1; Thu, 28 Nov 2024 07:29:13 -0500
-X-MC-Unique: BxKKcCgONkKak5EK7aoRrA-1
-X-Mimecast-MFC-AGG-ID: BxKKcCgONkKak5EK7aoRrA
-Received: by mail-ed1-f72.google.com with SMTP id 4fb4d7f45d1cf-5cfba4f3c6dso527196a12.0
-        for <ath11k@lists.infradead.org>; Thu, 28 Nov 2024 04:29:13 -0800 (PST)
+ us-mta-663-mSlVHdX6P4a6Zk64pqn8zA-1; Thu, 28 Nov 2024 07:28:53 -0500
+X-MC-Unique: mSlVHdX6P4a6Zk64pqn8zA-1
+X-Mimecast-MFC-AGG-ID: mSlVHdX6P4a6Zk64pqn8zA
+Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-385d6ee042eso94042f8f.0
+        for <ath11k@lists.infradead.org>; Thu, 28 Nov 2024 04:28:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732796952; x=1733401752;
+        d=1e100.net; s=20230601; t=1732796932; x=1733401732;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0Nxf6CkGK3NslY+JLgqPcTLt32q1OCumzkrHYUKQkbE=;
-        b=liaAxF54P/ozRL6rVhksyV00LrcdH24Czm8/pVea1MLTT3bXtTxyT1eZDAmaoHJ7Ow
-         rrtuZZJPNY6i9I9R2cU9k/szQMfGzjdbEmwRExqAOlzciqVqD6br/IRYay2uPFiVRea1
-         VcbIBxwHwc0+Nac5hrxD9wf0pav3HWdFDlvBQDxIhyX8vCpNmtJzPQaCXvWXNt1u4a1D
-         k/7AXy1RlFSeU/yJFEQ4PpJgN5Xqg+CX0dp7U81+H7amKS2NjQfNniqPRpLs4RFa971u
-         m7eNvi/hr6yjQMNItXdnHfgtmCJO0ewJ9IbgbLVucZlOPqRej1xUHUepAwnDtIkZKMvP
-         MUIg==
-X-Forwarded-Encrypted: i=1; AJvYcCXEN0vuVzHH4ux3oX7pse33cSbV9aoWeKmlc8CvgGAJG1qyM8Zs791sG5kirA8d0tphXtVS558=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy+PubG5aP4HGYNxYwdrEQK1EPXSTU51bGge0osrk/uj3f0gY/5
-	aZZ+ZjKRRV+VGAildF4hbTHezEj1nv1afsu26xCMpvgJI0EcgOxFpyipUQij++wBYnL84POlxx/
-	dSDPwitojTmHrNp4pgLJBwFa03LDhDcvqNgy9WEn1711t6vtbPIV2isnfw1jZWFWzkZALuMRibt
-	i5aPhj3+i5YNr2GlBIV8Xue0kC6bkYrXY5LA==
-X-Gm-Gg: ASbGnctafEJkinwV/khxPmMXWPJfp9UaSqtDlycCMblUw2Rco0JsgPPu7x7uQi+R4Py
-	+iTK+BFycsbvZuvqPXlIsrXoDWY4TKkY=
-X-Received: by 2002:a05:6402:5243:b0:5cf:e26b:9797 with SMTP id 4fb4d7f45d1cf-5d080c604fcmr5605175a12.29.1732796951986;
-        Thu, 28 Nov 2024 04:29:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGuE0zkJ6zJza+fGet7qX+06h7Jmet7/bu0xRwgqC9A06SMAgod8PaoQJd1k5pY7KRDfw0cJAGqmNIglvOyUZo=
-X-Received: by 2002:a05:6402:5243:b0:5cf:e26b:9797 with SMTP id
- 4fb4d7f45d1cf-5d080c604fcmr5605060a12.29.1732796951475; Thu, 28 Nov 2024
- 04:29:11 -0800 (PST)
+        bh=ZACMslqIaF7iVtmlx12c8LPoSlN7TzLegXngDuX2z78=;
+        b=pzzRtEOfim16mgdXpoaYBOTq/7i3YRnoY6S/kunOL/Uec4lACOY27aaYKnF5NntrkZ
+         OpzACA1iKHeFwCvC7Gb0l5wVwkbk5FyP/8/PZAxjJXFJdMaHaUdjt054Q8AF9sEjiopY
+         bmz4/fL5FipHwIHnRJXYRvP0ugsNMCz1KoAa82qVNeuzOEd5afeDRZaALxwNngFd52qH
+         HRV9jzy7IxNis+Kz7+JtzmIbL58ngG4lrG/MDBZoHKB9L6jMiNKk9JcfEdY3kHDygfJe
+         E2bZxunRXvrYK9hrJxNHeatUun+RAIavJhE0Nxy9WVEn9tiFLbUZe+5zjjYnbYEQa9i6
+         l/eg==
+X-Forwarded-Encrypted: i=1; AJvYcCWv6ZDBB2Gb2qbV4ZogaA1Cn6+RbiCNmMdeguyamMSXjUcMT2kJG9LYsPNtLN8MGp5pyuwyEYQ=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx9X6x3SaNCoLdiAEa9sCjpZ2xr4YMsYbwKL3plgJxN703U4jz+
+	jdF8eRJx3STo4TS6h5zprA27Orkf7s8YnkDaHffRM/SrM0B8o+PzLUUg6moxTASguh7axFVUNtT
+	hOuYar7uCK8Yzgqq8+bUm9Y0HLxqKEQatBenv8MDl3el14aKoY+GvkulycbIyOUYitPr7lz7jDZ
+	Bf8PjLht0SDsoJ4lNtB0QVdjW+QLbamgoIjg==
+X-Gm-Gg: ASbGnctzxEWaI9nny78k2KuT0XxZuH7fruC2ALS0gCpaNe2mXZtV+Mjf26qpKwQsGw2
+	4SBbbrGc4YqZwIa8RZ5TYVpS2yKl70nE=
+X-Received: by 2002:a05:6000:18ac:b0:382:4a27:1319 with SMTP id ffacd0b85a97d-385c6eb5840mr5776165f8f.6.1732796932011;
+        Thu, 28 Nov 2024 04:28:52 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGGOqoP8tsZ6KQpRsoqtGa6KHF61EJ3NUmj3Aw3MlprtODTvHQ/TDY7uTpa3Nw0Vy2Is2RlK3QrcXMwzmVV8rU=
+X-Received: by 2002:a05:6000:18ac:b0:382:4a27:1319 with SMTP id
+ ffacd0b85a97d-385c6eb5840mr5776067f8f.6.1732796931576; Thu, 28 Nov 2024
+ 04:28:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com>
- <20241115-converge-secs-to-jiffies-v1-18-19aadc34941b@linux.microsoft.com>
-In-Reply-To: <20241115-converge-secs-to-jiffies-v1-18-19aadc34941b@linux.microsoft.com>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-18-911fb7595e79@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-18-911fb7595e79@linux.microsoft.com>
 From: Alex Markuze <amarkuze@redhat.com>
-Date: Thu, 28 Nov 2024 14:29:00 +0200
-Message-ID: <CAO8a2SjKS2nWWVkAcqXkZhR+Q1TocULkwRk09ABf8XQjjzwJPQ@mail.gmail.com>
-Subject: Re: [PATCH 18/22] ceph: Convert timeouts to secs_to_jiffies()
+Date: Thu, 28 Nov 2024 14:28:40 +0200
+Message-ID: <CAO8a2SgQ-==SjhDFZpi2s3r9FUGA96jwuJL7kTDwE=Hw4UcgUg@mail.gmail.com>
+Subject: Re: [PATCH v2 18/21] ceph: Convert timeouts to secs_to_jiffies()
 To: Easwar Hariharan <eahariha@linux.microsoft.com>
 Cc: Pablo Neira Ayuso <pablo@netfilter.org>, Jozsef Kadlecsik <kadlec@netfilter.org>, 
 	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
@@ -127,13 +127,13 @@ Cc: Pablo Neira Ayuso <pablo@netfilter.org>, Jozsef Kadlecsik <kadlec@netfilter.
 	oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, 
 	Anna-Maria Behnsen <anna-maria@linutronix.de>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: RI3X-sqDB3PvD8nM0MkMYqqUeJHdgBVVrduy8EjnvPQ_1732796952
+X-Mimecast-MFC-PROC-ID: J9UHcINsw7SRxDy1k5FznGYga2BkWf_YlngfoqVtAOQ_1732796932
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241128_043103_364103_CA48B9F1 
-X-CRM114-Status: GOOD (  18.20  )
+X-CRM114-CacheID: sfid-20241128_043040_318762_C82966B7 
+X-CRM114-Status: GOOD (  18.27  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,7 +150,7 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 looks good
 
-On Fri, Nov 15, 2024 at 11:35=E2=80=AFPM Easwar Hariharan
+On Sat, Nov 16, 2024 at 12:32=E2=80=AFAM Easwar Hariharan
 <eahariha@linux.microsoft.com> wrote:
 >
 > Changes made with the following Coccinelle rules:
