@@ -4,84 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0BC6D6EBE4
-	for <ath11k@archiver.kernel.org>; Fri, 29 Nov 2024 07:07:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24724D6EBFE
+	for <ath11k@archiver.kernel.org>; Fri, 29 Nov 2024 10:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
+	From:References:To:Subject:MIME-Version:Date:Message-ID:Reply-To:Cc:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=s6TRipWxEAsot0oabh/vmYokg5LTx9TksDliUoALJiU=; b=Zaj+UBUGB8NyenpjjZZ8sBmqrX
-	WHDoaMVgDvn7dP41/FYKEGqIXybgvW6ydlg/aZVRf6l/lg2w09Nao043VQe3ivWbKqMn5MQ8NDb1J
-	GDT9d3ZSuWluDeQS8zcImYOsTw63X71Grrg3YwQdG82hz/BsIGSa9c07AUyMxoID8JOfMOTYRfG3j
-	wNBzoDIsU3HFxaPFlMOKaIVG1+t6iG2K7QpZnmOvKOvIBiFOBI0soAb1aASdM0Rt+lqWAwTrc8bXH
-	qdCq6Zv4LgdyUpcd05dTZ/U8Gj0r+XOvN6GCZfplNhMVHl9I1mGKe/eIa6PZmDdoMZSYvmRxxrAsn
-	Hs2oafvw==;
+	bh=6bltB50E5PPMoIMVEZyJhtV3eOObuF0OiTvrPYqg7Kc=; b=Qet0AO1hqs32PhQJ8eqB46OVwQ
+	USCdhK+W22dJIjRSWB3HcrtU0o854acFfBpBJxa+OwBJRmTU47xVKiN8LiVjIMTX77GD/u+Pp0Mbh
+	bk8R6ZhoUhgKm6qVP+P/GjKeqbqnZ4G/hynU5corXVmVDbFaH7c24LlGpiNeALarry6iCqSXr7Lsc
+	P6GTHA+lNtq7kqCR+EtPIhfNaUJBlWDlCd6LRJCLbsqsadLRfkuGW5fRI89QYGfIOEhkDWvIDukhw
+	t3YXFytowll+Jl4U5l0eB6YmR1HcgQracVF7RDbq47HeXdhgIGWXWYjYLtiKD7npm4IMavaqd+ZtW
+	+wZFtAUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGv6R-0000000H2za-1fd4;
-	Fri, 29 Nov 2024 07:07:47 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tGyVA-0000000HSsK-2sl2;
+	Fri, 29 Nov 2024 10:45:32 +0000
+Received: from ionic.de ([145.239.234.145] helo=mail.ionic.de)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGv6P-0000000H2yc-19wZ
+	id 1tGyV7-0000000HSrh-49e9
 	for ath11k@lists.infradead.org;
-	Fri, 29 Nov 2024 07:07:46 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ASNVVaL005944;
-	Fri, 29 Nov 2024 07:07:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	s6TRipWxEAsot0oabh/vmYokg5LTx9TksDliUoALJiU=; b=naJ6Qa3HTEosXwwD
-	tlXoJcDl+iRr3DzZD7SkG01AyZsGAFCHqlHy5Rlrsp4FYNzxoLzXEc/l8Wf/3eUv
-	be1S9Oo0r0IbmiR5mXyRsSvi6wkgAnyAriQUqqFD/Zu0QIEfT8VhP4Ax68TfjjN5
-	VfhiargqilE1zmfXlpk/yBWRFdGCijQCvT6ExdE3LTx+k35rLW+O4cUkyDsnQKRo
-	1F3aog2KugUa9gaYMT97s8xiy8ZxD/GVSjljiDA3lJbdPRyTi9jiG9lVulMrkVEK
-	CVlfjyVLdGYFaDlHBsoq7cG5Rgu03zbdFSzWe/ErENCoWTdRhYD1/zG5OsVGjRbZ
-	OQVJHw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 436h2mkdjh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Nov 2024 07:07:44 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AT77hja004881
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Nov 2024 07:07:43 GMT
-Received: from kangyang.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 28 Nov 2024 23:07:41 -0800
-From: Kang Yang <quic_kangyang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_kangyang@quicinc.com>
-Subject: [PATCH v3 2/2] wifi: ath11k: move update channel list to worker for wait flag
-Date: Fri, 29 Nov 2024 15:07:14 +0800
-Message-ID: <20241129070714.226-3-quic_kangyang@quicinc.com>
-X-Mailer: git-send-email 2.34.1.windows.1
-In-Reply-To: <20241129070714.226-1-quic_kangyang@quicinc.com>
-References: <20241129070714.226-1-quic_kangyang@quicinc.com>
+	Fri, 29 Nov 2024 10:45:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
+	t=1732877124; bh=6bltB50E5PPMoIMVEZyJhtV3eOObuF0OiTvrPYqg7Kc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=QvHQ0Zj6q5lV3guuA7j/I6hrnD0GysOdqy38SZ+vvIXQliji2c36CgLQlux/r+eBl
+	 isWgyOk/O8Vb0k1IIzxpZgA9IJHdKPeVi/SZFNgoRSuf+JHD839ictLqZZ6yhwLDDs
+	 Jz3rJZkjxd10wwe/tBvOwTsiWbJzU96Kq+jb4Gfg=
+Received: from [172.22.111.213] (185.102.219.38.adsl.inet-telecom.org [185.102.219.38])
+	by mail.ionic.de (Postfix) with ESMTPSA id 14A5B14886E3;
+	Fri, 29 Nov 2024 11:45:24 +0100 (CET)
+Message-ID: <1c643b65-6aff-4ce8-84e1-1b4a117a0bb8@ionic.de>
+Date: Fri, 29 Nov 2024 11:45:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: svaxKgqNHb4yRtYPoqpCsI_-0Kb3mWdy
-X-Proofpoint-ORIG-GUID: svaxKgqNHb4yRtYPoqpCsI_-0Kb3mWdy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 malwarescore=0 phishscore=0 suspectscore=0 adultscore=0
- spamscore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0 clxscore=1011
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2411290057
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k hibernation broken since v6.11
+To: Julian Wollrath <jwollrath@web.de>, ath11k@lists.infradead.org
+References: <20241115083537.6a5681ad@mayene>
+Content-Language: en-US
+From: Mihai Moldovan <ionic@ionic.de>
+Autocrypt: addr=ionic@ionic.de; keydata=
+ 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
+ S0VlnF9z
+In-Reply-To: <20241115083537.6a5681ad@mayene>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------cPPQtFR0ozzC7na0OcJidyz6"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241128_230745_436902_ECCB7038 
-X-CRM114-Status: GOOD (  20.83  )
+X-CRM114-CacheID: sfid-20241129_024530_500533_EA9D1200 
+X-CRM114-Status: UNSURE (   8.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,258 +111,60 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Wen Gong <quic_wgong@quicinc.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------cPPQtFR0ozzC7na0OcJidyz6
+Content-Type: multipart/mixed; boundary="------------0AuDKR0n7T6Zf6aTYuv75MXp";
+ protected-headers="v1"
+From: Mihai Moldovan <ionic@ionic.de>
+To: Julian Wollrath <jwollrath@web.de>, ath11k@lists.infradead.org
+Message-ID: <1c643b65-6aff-4ce8-84e1-1b4a117a0bb8@ionic.de>
+Subject: Re: ath11k hibernation broken since v6.11
+References: <20241115083537.6a5681ad@mayene>
+In-Reply-To: <20241115083537.6a5681ad@mayene>
 
-When wait flag is set for ath11k_reg_update_chan_list(), it will wait
-the completion of 11d/hw scan if 11d/hw scan is running.
+--------------0AuDKR0n7T6Zf6aTYuv75MXp
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-With the previous patch "wifi: ath11k: move update channel list from
-update reg worker to reg notifier", ath11k_reg_update_chan_list() will
-be called when reg_work is running. The global lock rtnl_lock will be
-held by reg_work in the meantime. If the wait_for_completion_timeout()
-is called due to 11d/hw scan is running, the occupation time of
-rtnl_lock will increase. This will increase blocking time for other
-threads if they want to use rtnl_lock.
+KiBPbiAxMS8xNS8yNCAwODozNSwgSnVsaWFuIFdvbGxyYXRoIHdyb3RlOg0KPiBpdCBzZWVt
+cyBmb3IgdjYuMTEgdGhlIHBhdGNoIG1ha2luZyBoaWJlcm5hdGlvbiBwb3NzaWJsZSB3aXRo
+IGF0aDExaw0KPiB3YXMgcmV2ZXJ0ZWQgYWdhaW4gKGluIGNvbW1pdCAyZjgzM2U4OTQ4KS4g
+VGhpcyBicm9rZSBoaWJlcm5hdGlvbiBmb3INCj4gbWUuIElzIHRoZXJlIGEgcGxhbiB0byBy
+ZS1pbnRyb2R1Y2UgaXQ/DQoNClVuZm9ydHVuYXRlbHksIHRoZSBjb21taXQgbWVzc2FnZSBt
+ZW50aW9ucyB0aGF0IG5vIGFsdGVybmF0aXZlIGZpeCBpcyBhdmFpbGFibGUsIA0Kc28gSSB3
+b3VsZG4ndCBob2xkIG15IGJyZWF0aC4NCg0KQXMgYSBmZWxsb3cgUUNORkE3NjUgdXNlciBp
+biBhIG5vbi1MZW5vdm8gbWFjaGluZSwgcHJldmlvdXNseSBvbiA2LjkuMSB3aGljaCANCmRp
+ZG4ndCBpbmNsdWRlIHRoZSBoaWJlcm5hdGlvbiBwYXRjaCwgSSByZXNvcnRlZCB0byBhIHdv
+cmthcm91bmQgb2Ygc3RvcHBpbmcgdGhlIA0Kd2lmaSBpbnRlcmZhY2UsIHJlbW92aW5nIHJl
+bGV2YW50IG1vZHVsZXMgKG1vZHByb2JlIC1yICdhdGgxMWtfcGNpJyAnYXRoMTFrJyANCidx
+bWlfaGVscGVycycpIG9uIHN1c3BlbmQvaGliZXJuYXRlIGFuZCByZS1pbnNlcnRpbmcgYXRo
+MTFrX3BjaSBvbiByZXN1bWUgdmlhIA0KZWxvZ2luZCBzeXN0ZW0tc2xlZXAgaG9va3MuIFRo
+aXMgaXMgZWFzaWx5IHBvcnRhYmxlIHRvIGEgc3lzdGVtZC1iYXNlZCBzZXR1cC4NCg0KVGhp
+cyBzaWRlc3RlcHBlZCBhbnkgaGliZXJuYXRpb24gaXNzdWVzIHJlbGF0ZWQgdG8gdGhlIG1v
+ZHVsZS4NCg0KDQoNCk1paGFpDQo=
 
-Move update channel list operation in ath11k_reg_update_chan_list() to
-a new worker, then the wait of completion of 11d/hw scan will not
-happen in reg_work and not increase the occupation time of the rtnl_lock.
+--------------0AuDKR0n7T6Zf6aTYuv75MXp--
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+--------------cPPQtFR0ozzC7na0OcJidyz6
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-Co-developed-by: Kang Yang <quic_kangyang@quicinc.com>
-Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c |  1 +
- drivers/net/wireless/ath/ath11k/core.h |  4 ++
- drivers/net/wireless/ath/ath11k/mac.c  | 15 +++++
- drivers/net/wireless/ath/ath11k/reg.c  | 90 ++++++++++++++++++--------
- drivers/net/wireless/ath/ath11k/reg.h  |  1 +
- drivers/net/wireless/ath/ath11k/wmi.h  |  1 +
- 6 files changed, 84 insertions(+), 28 deletions(-)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index c576bbba52bf..e4db3cdecf29 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2056,6 +2056,7 @@ void ath11k_core_halt(struct ath11k *ar)
- 	ath11k_mac_scan_finish(ar);
- 	ath11k_mac_peer_cleanup_all(ar);
- 	cancel_delayed_work_sync(&ar->scan.timeout);
-+	cancel_work_sync(&ar->channel_update_work);
- 	cancel_work_sync(&ar->regd_update_work);
- 	cancel_work_sync(&ab->update_11d_work);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a9dc7fe7765a..b4bcfe0b98d2 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -743,6 +743,10 @@ struct ath11k {
- 	struct completion bss_survey_done;
- 
- 	struct work_struct regd_update_work;
-+	struct work_struct channel_update_work;
-+	struct list_head channel_update_queue;
-+	/* protects channel_update_queue data */
-+	spinlock_t channel_update_lock;
- 
- 	struct work_struct wmi_mgmt_tx_work;
- 	struct sk_buff_head wmi_mgmt_tx_queue;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 31ae9b384a29..958997b51e41 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6288,6 +6288,7 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw, bool suspend)
- {
- 	struct ath11k *ar = hw->priv;
- 	struct htt_ppdu_stats_info *ppdu_stats, *tmp;
-+	struct scan_chan_list_params *params;
- 	int ret;
- 
- 	ath11k_mac_drain_tx(ar);
-@@ -6303,6 +6304,7 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw, bool suspend)
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	cancel_delayed_work_sync(&ar->scan.timeout);
-+	cancel_work_sync(&ar->channel_update_work);
- 	cancel_work_sync(&ar->regd_update_work);
- 	cancel_work_sync(&ar->ab->update_11d_work);
- 
-@@ -6318,6 +6320,15 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw, bool suspend)
- 	}
- 	spin_unlock_bh(&ar->data_lock);
- 
-+	spin_lock_bh(&ar->channel_update_lock);
-+	while ((params = list_first_entry_or_null(&ar->channel_update_queue,
-+						  struct scan_chan_list_params,
-+						  list))) {
-+		list_del(&params->list);
-+		kfree(params);
-+	}
-+	spin_unlock_bh(&ar->channel_update_lock);
-+
- 	rcu_assign_pointer(ar->ab->pdevs_active[ar->pdev_idx], NULL);
- 
- 	synchronize_rcu();
-@@ -10018,6 +10029,7 @@ static const struct wiphy_iftype_ext_capab ath11k_iftypes_ext_capa[] = {
- 
- static void __ath11k_mac_unregister(struct ath11k *ar)
- {
-+	cancel_work_sync(&ar->channel_update_work);
- 	cancel_work_sync(&ar->regd_update_work);
- 
- 	ieee80211_unregister_hw(ar->hw);
-@@ -10417,6 +10429,9 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
- 		init_completion(&ar->thermal.wmi_sync);
- 
- 		INIT_DELAYED_WORK(&ar->scan.timeout, ath11k_scan_timeout_work);
-+		INIT_WORK(&ar->channel_update_work, ath11k_regd_update_chan_list_work);
-+		INIT_LIST_HEAD(&ar->channel_update_queue);
-+		spin_lock_init(&ar->channel_update_lock);
- 		INIT_WORK(&ar->regd_update_work, ath11k_regd_update_work);
- 
- 		INIT_WORK(&ar->wmi_mgmt_tx_work, ath11k_mgmt_over_wmi_tx_work);
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index cb2cf9b63d18..8df7503997db 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -124,32 +124,7 @@ int ath11k_reg_update_chan_list(struct ath11k *ar, bool wait)
- 	struct channel_param *ch;
- 	enum nl80211_band band;
- 	int num_channels = 0;
--	int i, ret, left;
--
--	if (wait && ar->state_11d != ATH11K_11D_IDLE) {
--		left = wait_for_completion_timeout(&ar->completed_11d_scan,
--						   ATH11K_SCAN_TIMEOUT_HZ);
--		if (!left) {
--			ath11k_dbg(ar->ab, ATH11K_DBG_REG,
--				   "failed to receive 11d scan complete: timed out\n");
--			ar->state_11d = ATH11K_11D_IDLE;
--		}
--		ath11k_dbg(ar->ab, ATH11K_DBG_REG,
--			   "11d scan wait left time %d\n", left);
--	}
--
--	if (wait &&
--	    (ar->scan.state == ATH11K_SCAN_STARTING ||
--	    ar->scan.state == ATH11K_SCAN_RUNNING)) {
--		left = wait_for_completion_timeout(&ar->scan.completed,
--						   ATH11K_SCAN_TIMEOUT_HZ);
--		if (!left)
--			ath11k_dbg(ar->ab, ATH11K_DBG_REG,
--				   "failed to receive hw scan complete: timed out\n");
--
--		ath11k_dbg(ar->ab, ATH11K_DBG_REG,
--			   "hw scan wait left time %d\n", left);
--	}
-+	int i, ret = 0;
- 
- 	if (ar->state == ATH11K_STATE_RESTARTING)
- 		return 0;
-@@ -231,8 +206,15 @@ int ath11k_reg_update_chan_list(struct ath11k *ar, bool wait)
- 		}
- 	}
- 
--	ret = ath11k_wmi_send_scan_chan_list_cmd(ar, params);
--	kfree(params);
-+	if (wait) {
-+		spin_lock_bh(&ar->channel_update_lock);
-+		list_add_tail(&params->list, &ar->channel_update_queue);
-+		spin_unlock_bh(&ar->channel_update_lock);
-+		queue_work(ar->ab->workqueue, &ar->channel_update_work);
-+	} else {
-+		ret = ath11k_wmi_send_scan_chan_list_cmd(ar, params);
-+		kfree(params);
-+	}
- 
- 	return ret;
- }
-@@ -811,6 +793,58 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
- 	return new_regd;
- }
- 
-+void ath11k_regd_update_chan_list_work(struct work_struct *work)
-+{
-+	struct ath11k *ar = container_of(work, struct ath11k,
-+					 channel_update_work);
-+	struct scan_chan_list_params *params;
-+	struct list_head local_update_list;
-+	int left;
-+
-+	INIT_LIST_HEAD(&local_update_list);
-+
-+	spin_lock_bh(&ar->channel_update_lock);
-+	while ((params = list_first_entry_or_null(&ar->channel_update_queue,
-+						  struct scan_chan_list_params,
-+						  list))) {
-+		list_del(&params->list);
-+		list_add_tail(&params->list, &local_update_list);
-+	}
-+	spin_unlock_bh(&ar->channel_update_lock);
-+
-+	while ((params = list_first_entry_or_null(&local_update_list,
-+						  struct scan_chan_list_params,
-+						  list))) {
-+		if (ar->state_11d != ATH11K_11D_IDLE) {
-+			left = wait_for_completion_timeout(&ar->completed_11d_scan,
-+							   ATH11K_SCAN_TIMEOUT_HZ);
-+			if (!left) {
-+				ath11k_dbg(ar->ab, ATH11K_DBG_REG,
-+					   "failed to receive 11d scan complete: timed out\n");
-+				ar->state_11d = ATH11K_11D_IDLE;
-+			}
-+			ath11k_dbg(ar->ab, ATH11K_DBG_REG,
-+				   "reg 11d scan wait left time %d\n", left);
-+		}
-+
-+		if ((ar->scan.state == ATH11K_SCAN_STARTING ||
-+		     ar->scan.state == ATH11K_SCAN_RUNNING)) {
-+			left = wait_for_completion_timeout(&ar->scan.completed,
-+							   ATH11K_SCAN_TIMEOUT_HZ);
-+			if (!left)
-+				ath11k_dbg(ar->ab, ATH11K_DBG_REG,
-+					   "failed to receive hw scan complete: timed out\n");
-+
-+			ath11k_dbg(ar->ab, ATH11K_DBG_REG,
-+				   "reg hw scan wait left time %d\n", left);
-+		}
-+
-+		ath11k_wmi_send_scan_chan_list_cmd(ar, params);
-+		list_del(&params->list);
-+		kfree(params);
-+	}
-+}
-+
- static bool ath11k_reg_is_world_alpha(char *alpha)
- {
- 	if (alpha[0] == '0' && alpha[1] == '0')
-diff --git a/drivers/net/wireless/ath/ath11k/reg.h b/drivers/net/wireless/ath/ath11k/reg.h
-index 263ea9061948..0d5e10bb5730 100644
---- a/drivers/net/wireless/ath/ath11k/reg.h
-+++ b/drivers/net/wireless/ath/ath11k/reg.h
-@@ -33,6 +33,7 @@ void ath11k_reg_init(struct ath11k *ar);
- void ath11k_reg_reset_info(struct cur_regulatory_info *reg_info);
- void ath11k_reg_free(struct ath11k_base *ab);
- void ath11k_regd_update_work(struct work_struct *work);
-+void ath11k_regd_update_chan_list_work(struct work_struct *work);
- struct ieee80211_regdomain *
- ath11k_reg_build_regd(struct ath11k_base *ab,
- 		      struct cur_regulatory_info *reg_info, bool intersect,
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 8982b909c821..30b4b0c17682 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3817,6 +3817,7 @@ struct wmi_stop_scan_cmd {
- };
- 
- struct scan_chan_list_params {
-+	struct list_head list;
- 	u32 pdev_id;
- 	u16 nallchans;
- 	struct channel_param ch_param[];
--- 
-2.34.1
+wsF5BAABCAAjFiEEbhHQj3UzgcdE8cg8H9Yu2W4lOocFAmdJm0MFAwAAAAAACgkQH9Yu2W4lOoeU
+jhAAxOECcni9K3L1qWVYWVU0+5azFcv02sRRa31KxontXrOuh6txDy/72K+ldZ8qVhm2mRSUFZsN
+hyJyqR83dvj7xvFfWkvG9k4VQCBe7CRARudwT+8G8pSwD0EHR6Jd8oXzOyOfHYThALVAbB86YWIE
+sqJ7N0vJdWtS4CMbGoRQZFxbQWsUS0zI+79K1bLQYlTa++ae3dYrUMfeGYtmLYXFmIZ57E0Y20vn
+EVXGET5r5rgyJtdBhvEYeXLYFM9ciYki93e2Jc+xpZYIM1e0C2xzltYm2SvmD6zSwY84jfC+8Lhc
+1pKeWOCK4m2pMr+OlA9SdIQ6C9aKEm+4euziNcABi1ne4Z5qtEqZ3hBT45AEXSoRekESIzvC4W57
+poq6yJ9aAZA3LBpBHsRC8Ui+j5jHYICOrFlKWCLzxxYpl9DtHh+zuZuWKsGOGPIf3UdFbW/8RSSu
+HnyNYMc2xqv8KFAdvAGZnqT04Cdjeyd3WX3PSwEQkN2nShIowslIXZlyRkg0W/79dc/hGEYdIYoH
+rBHHLoYqSoytqufjBPeUSPJHeUGtwqBoqfa5hPNad6/fTArRnWjLLdI8/qA05GomqvDpYMy+Lb+5
+LZUDibv1wnj4UD0Ts1+EsmnGKVsVwJNiJlBxVWK4KkZFG+5EMs+S68VS0Y1rKBv8Qox0OQjozPGG
+lTA=
+=8Nqo
+-----END PGP SIGNATURE-----
 
+--------------cPPQtFR0ozzC7na0OcJidyz6--
 
