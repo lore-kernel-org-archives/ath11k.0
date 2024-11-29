@@ -4,99 +4,205 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24724D6EBFE
-	for <ath11k@archiver.kernel.org>; Fri, 29 Nov 2024 10:45:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F8A4D6EC05
+	for <ath11k@archiver.kernel.org>; Fri, 29 Nov 2024 12:59:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
-	From:References:To:Subject:MIME-Version:Date:Message-ID:Reply-To:Cc:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6bltB50E5PPMoIMVEZyJhtV3eOObuF0OiTvrPYqg7Kc=; b=Qet0AO1hqs32PhQJ8eqB46OVwQ
-	USCdhK+W22dJIjRSWB3HcrtU0o854acFfBpBJxa+OwBJRmTU47xVKiN8LiVjIMTX77GD/u+Pp0Mbh
-	bk8R6ZhoUhgKm6qVP+P/GjKeqbqnZ4G/hynU5corXVmVDbFaH7c24LlGpiNeALarry6iCqSXr7Lsc
-	P6GTHA+lNtq7kqCR+EtPIhfNaUJBlWDlCd6LRJCLbsqsadLRfkuGW5fRI89QYGfIOEhkDWvIDukhw
-	t3YXFytowll+Jl4U5l0eB6YmR1HcgQracVF7RDbq47HeXdhgIGWXWYjYLtiKD7npm4IMavaqd+ZtW
-	+wZFtAUw==;
+	bh=SV+OufASk8xBhFc+yWg6QA9nU9jS1Mod881QXXOOPQA=; b=S4Y05uiFwcBKnEb/jZEUzYc/oz
+	47SjlLQ24alDbKO5hWi5xBRctApLY2trv1eIqnrwhNHMvxv30FW8PGtEQzSDDwL0bh0j+f3tK1wOb
+	YdafXrqUas8nmXMgfUj2aDTI6ooSO3KZuChDtjI/mmDf7jW7QKL0HTCOsjQ3A/kR54DBF2Pkv6WFm
+	4gtS2njMz2pH1MzL5GwHGzl1fBpH55BBt1YHQx4S4nSEvwi5uRDxx5hMhwWxpVcU++0bdSHIawzBK
+	wxqUvYNPc3ozdqbQQJTqrI1JLnXvMe8ZWFUXuJEEV61PfNAQvnQUGknOHNdbgJqIwuMCmlDkY+Lcz
+	x+GfJ/kw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGyVA-0000000HSsK-2sl2;
-	Fri, 29 Nov 2024 10:45:32 +0000
-Received: from ionic.de ([145.239.234.145] helo=mail.ionic.de)
+	id 1tH0aS-0000000082k-0EYh;
+	Fri, 29 Nov 2024 12:59:08 +0000
+Received: from mgamail.intel.com ([198.175.65.21])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGyV7-0000000HSrh-49e9
-	for ath11k@lists.infradead.org;
-	Fri, 29 Nov 2024 10:45:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
-	t=1732877124; bh=6bltB50E5PPMoIMVEZyJhtV3eOObuF0OiTvrPYqg7Kc=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=QvHQ0Zj6q5lV3guuA7j/I6hrnD0GysOdqy38SZ+vvIXQliji2c36CgLQlux/r+eBl
-	 isWgyOk/O8Vb0k1IIzxpZgA9IJHdKPeVi/SZFNgoRSuf+JHD839ictLqZZ6yhwLDDs
-	 Jz3rJZkjxd10wwe/tBvOwTsiWbJzU96Kq+jb4Gfg=
-Received: from [172.22.111.213] (185.102.219.38.adsl.inet-telecom.org [185.102.219.38])
-	by mail.ionic.de (Postfix) with ESMTPSA id 14A5B14886E3;
-	Fri, 29 Nov 2024 11:45:24 +0100 (CET)
-Message-ID: <1c643b65-6aff-4ce8-84e1-1b4a117a0bb8@ionic.de>
-Date: Fri, 29 Nov 2024 11:45:22 +0100
-MIME-Version: 1.0
+	id 1tH0ZR-000000007lP-0IcL;
+	Fri, 29 Nov 2024 12:58:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732885085; x=1764421085;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=weL3piMTjoNujiNid4RDogwwA/DCEKj+1u5pMzDG49k=;
+  b=DrqPX+P6X3NsY7ypKV2FpuiOmzLtwxgt2GhrtxstqneGLWdKZXT9ZrEo
+   9eV+JJeAi73tIxtjfXJ1UC8swOXxbDdzfPa7eyNMR0imJoqBk7Zv/E0IQ
+   t5qDD65NMaXVVYKMkomw8EpfG74ZcVBT7TjPIsgUGpwVvLPkw9RRKNni4
+   OY0lcSh2PbHY6kvEGUpgz8Z7tHVE75955qDHLP7wZWZCPWD8fGPQlBnCS
+   hHmzzV2a5zN4DWs19289j6aULqniU1vtQDUJOKhJdhofHvUiFMiQ0DVVY
+   kA9+XxkS+2Oz+4wRqIBT1lJvklF81dUpcF0G0rETuRF+qDdn6jctuTvey
+   Q==;
+X-CSE-ConnectionGUID: 2CVo+EhgTKqFtacGOi1CZQ==
+X-CSE-MsgGUID: 9JT1Bp7jT+O9Q3vnY4kY6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="33054657"
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
+   d="scan'208";a="33054657"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2024 04:58:04 -0800
+X-CSE-ConnectionGUID: HAvQQNW/RNWOl4aOfrc//Q==
+X-CSE-MsgGUID: QKzxRDpsRp2+YRSgSDDPkg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
+   d="scan'208";a="92593314"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+  by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 29 Nov 2024 04:58:04 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 29 Nov 2024 04:58:03 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 29 Nov 2024 04:58:03 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 29 Nov 2024 04:58:02 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=quCbtJ24tWPmPATmSXI/wOXpATuCaCo0hIr9k7ZcwEZewHb/EuBWyTInctB5QwhSROxmEXN3PiwxGX687e7QwCYxAlBFD70gzdNI5a8r7uNBpjJWZqy9uxCqXKbkTFYWqlm7HzQFc2+yE9/f2BbXDBXPre1STezTtXrVQpV2vaJOZ/1nNyvtn+PSE/1JAAqbG/bkxJG+ApYSq82+VTLWjkX1PcITcSpGlfM0J8Rl0y6X35x1eEQM7RI77zmYQHh5gixrXJqrvrpBxim9bIJUMU28zFs1eWDnsxbKwG0fhFcgSoOfMvE+Ro/5A5OsQ5rKCZr4/tJg2yF1pLgVvvEmcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SV+OufASk8xBhFc+yWg6QA9nU9jS1Mod881QXXOOPQA=;
+ b=lJRjYzW7QtP0TJ254CvUOkjztPHqGJmr37Wdd1gmdGN7C2dILYcW7EJsd+41ncfJ1q1qHgmJaGY941JBQJOQiPEGlP9tIexdimvDINiV0Wrm9lg+1ZXYDtdx3QnJPejJ6MA6mxT5sbz+WQthSO56tiBrHYLkVhwJtZCB1Go351VQJcKLR/tCNEfmn1rGlmykc/coPhXRCHztsFeZMPpe4kLsXEYN1OWauVRPxDYj+UxE45GOZm1+E7DFSGg2TStYKLnOVDNTSSgr9W/BUx+7vo9kkTrBXxAW5PDSt5fcnRAJo/tfwcjW+AUjbhXBZ/MC4Yhl76E8g8JFTWGgqYCT+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN6PR11MB8102.namprd11.prod.outlook.com (2603:10b6:208:46d::9)
+ by SA2PR11MB5147.namprd11.prod.outlook.com (2603:10b6:806:118::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.15; Fri, 29 Nov
+ 2024 12:58:00 +0000
+Received: from MN6PR11MB8102.namprd11.prod.outlook.com
+ ([fe80::15b2:ee05:2ae7:cfd6]) by MN6PR11MB8102.namprd11.prod.outlook.com
+ ([fe80::15b2:ee05:2ae7:cfd6%4]) with mapi id 15.20.8207.010; Fri, 29 Nov 2024
+ 12:58:00 +0000
+Message-ID: <b9fcb12a-b7a4-4c33-836e-67109ce07deb@intel.com>
+Date: Fri, 29 Nov 2024 13:57:52 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k hibernation broken since v6.11
-To: Julian Wollrath <jwollrath@web.de>, ath11k@lists.infradead.org
-References: <20241115083537.6a5681ad@mayene>
+Subject: Re: [PATCH v2 00/21] Converge on using secs_to_jiffies()
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+CC: <netfilter-devel@vger.kernel.org>, <coreteam@netfilter.org>,
+	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <cocci@inria.fr>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-s390@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+	<linux-scsi@vger.kernel.org>, <xen-devel@lists.xenproject.org>,
+	<linux-block@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
+	<ath11k@lists.infradead.org>, <linux-mm@kvack.org>,
+	<linux-bluetooth@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+	<linux-rpi-kernel@lists.infradead.org>, <ceph-devel@vger.kernel.org>,
+	<live-patching@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+	<etnaviv@lists.freedesktop.org>, <oss-drivers@corigine.com>,
+	<linuxppc-dev@lists.ozlabs.org>, Anna-Maria Behnsen
+	<anna-maria@linutronix.de>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+From: Przemek Kitszel <przemyslaw.kitszel@intel.com>
 Content-Language: en-US
-From: Mihai Moldovan <ionic@ionic.de>
-Autocrypt: addr=ionic@ionic.de; keydata=
- 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
- S0VlnF9z
-In-Reply-To: <20241115083537.6a5681ad@mayene>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------cPPQtFR0ozzC7na0OcJidyz6"
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA2P291CA0045.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::19) To MN6PR11MB8102.namprd11.prod.outlook.com
+ (2603:10b6:208:46d::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN6PR11MB8102:EE_|SA2PR11MB5147:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67d5165e-3df9-44c0-490c-08dd10757449
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dkxVcnZ6ZG1sM1ZPYjdBekZPRHhJMzJOVDlWdVc4Lzg3T254OEFXSFVEbEV1?=
+ =?utf-8?B?bitJLy9YVHdIeHB5Q1o4QjZVSzJZcDFHem5rTXcyMnF1VTFvU3RiQ3BUNVhy?=
+ =?utf-8?B?TlZhckMvZm1GSXNaVm1ra2JjWklJM3MwWUQ2eEhSbENQa1ZSa3VXMUN2QUhl?=
+ =?utf-8?B?aXIxZWdpejRINDMvb1dwM0Z1UllBQUNad3lzMEliTGRva2lOUFV3WjZrNjN2?=
+ =?utf-8?B?Y1V2dmtWVmV0ejBzazAxcnFBcHpCSXpzcE9Vam1UUkEyQTRRM1pVeGYrbDJS?=
+ =?utf-8?B?RkpOSEgrMEhLNklaMXJJazdSbUVFWEVoSWdsaHluQkNRWVd0Um81ODB3WS9O?=
+ =?utf-8?B?N3c1a1FEejgyWkVyemxrU1VXMkdWMmF2RGtFTFpoNjNObFpMdVAzaytNU1RL?=
+ =?utf-8?B?OUZwd3ZBVTk5RG1BdHNKOUFEV2JPSXVuVGdMOVY3Q0NJQmZPTTNGdUpzRkZV?=
+ =?utf-8?B?NFpCTnJndkNSRkdNNzc1NzhkVzN2Z1poaGtBcmVkdElHOGpSVHA5UFlCKzlG?=
+ =?utf-8?B?M3pjMUovRkxnZ2wySlFteHRqTWRhRFBHUzBiazJCcnJZZ0xSQmNPdDlQcWlz?=
+ =?utf-8?B?ZWFMb0tkYU9lcFRQTjVJN2ZuZmIwb3R6K2sxTW5HeEg5RGFMUzFraXhKZVJP?=
+ =?utf-8?B?bFl6WkkyU0NOL1g2OFBTVUUrNEhJc2d4YTZnRHl2em9kVHZNZkRFQnVQSFRX?=
+ =?utf-8?B?bDNjM2NndjB3WkhITmtMb2w4U3NNSjZRdE1XRUNMQjNVejEyQkdhaUtnUWRk?=
+ =?utf-8?B?Vndia0hpeFFUaERTWUtjYWdZK0c5d0NHelZPNFRpVWNmd0ZpVmVUNk5wSUx0?=
+ =?utf-8?B?QW5DN2xLREVFaXRlZWJ1Tnp1RDMwYS8yN0ZZempwbXhudzNJUE5vczhuZ2N4?=
+ =?utf-8?B?UTJya0tlYWcrM1ZNdWI3UFo5WHo5QTE2bUhvVi9ITXpSOHdlczREY1FodStv?=
+ =?utf-8?B?QXR6RDdheE9NSmNHTVhJV1RMNk10djE4anhhL0I2dnhveFZLNkhuZWw0ZndJ?=
+ =?utf-8?B?OEhNK3Z4SGtDVHZHeCt2NU9SRjdIMEl2MWRBVGFpV2NpWlpIMmY5ZktTdlY5?=
+ =?utf-8?B?L0RHL0tTdkNGRUl2alA5VW1ROUlLWnRUSTdNMXB2YkVVa3NIUDZKckNaWG1I?=
+ =?utf-8?B?cmdvaEJYVWYvdWFIYVYyMCtKeGY4RGpVb3hjbDVqblVHTU1mQVd2djNCaGFV?=
+ =?utf-8?B?QnZTaDlSWGtyVjJTL0pvQVRjc282VFpMdG0xVVUzb05PUit3VG1SVWN3T0tP?=
+ =?utf-8?B?VldMMG4zdk1BZGhUVjZNZ3YvVVZaNFRIZkx4MHk4YXF2QTg4U2pUWlRXdS94?=
+ =?utf-8?B?VHp1VFFXNEU1elUzQVJZbWNTcS9YOWlLcUwySzhZWDd6aWRRcUMvTVpzL1Bq?=
+ =?utf-8?B?ZEN2anZzNEJVMmQ5Q0xpbW15cFdLa2NiM2RGYnZvZU4zSmQyaTNkS1VxMENx?=
+ =?utf-8?B?WWprTEpoVkg1WEJrQ3Z2SlpEOVA5dXdkY3p4NnBWNmhBYlpnZXFWS3V4dmVy?=
+ =?utf-8?B?RDlyQ2ZrZ3B5VlR2TkFOUWVqb0NJT05UazByRlRoUnJIbmNYNi8xTk1WM0Zt?=
+ =?utf-8?B?cExlWS85VWJiU0MwaDNPQnBXMTc1ZStybFY5SkNWSitvUXh0cUFObE04R2pa?=
+ =?utf-8?B?NlZMalFXWURBaDgvdFpISm9yVHFGaStaUHlHckJWNmpxVUhObVMrcnV1NTU1?=
+ =?utf-8?B?anloQTgzZllIUFVLYmZnYjJYV3kvMUJqSlJ1M3BtQ2orbnlsRzFIK2hMN0or?=
+ =?utf-8?Q?kqlUCgrkXGW14PGqqE=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN6PR11MB8102.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzBicjlHQkRsSklUZGpsMVBLRW9WOUVoUUxVMTZLREpncm9KZGhPN2hKa0cx?=
+ =?utf-8?B?S1NHZHNaKzJjM1ZleElOVjVPSkh0eklmRFY1enpxWk9TUFlnbkoxeGdzMXNn?=
+ =?utf-8?B?NFVjTks5ZjZCRndhR05rTzBQQmdaM2FBaWNGK29wOTZmc2gyS1JWdlczQzZo?=
+ =?utf-8?B?OFlSd0FUQVBtaGNzak1nbHQ4cFZVRDNvbDB2Qm54RURlOEZEL01xN1JTMFRk?=
+ =?utf-8?B?U1NOSDE5UTdiUWl0TjlKSG96eUtPQ1lPL2Z0Q2dUSFRBQUNTeWdkSHY5YTBh?=
+ =?utf-8?B?cVNRZys3RXVTbmJkdm01VExFV0tKaW1NbUdDUDhUZzk1VWVWTkZEcWo1aU1o?=
+ =?utf-8?B?cGVJY1VuMmdZbmtxaHQ2UC94OFBhVzRBOGJCbzk0b0FCcDd6UlliQnFBaXB4?=
+ =?utf-8?B?ZUhRb21KZ2VlNG9FTjIvUGxxb3BvUnM0Tk00NUlsQzN1NVFIcHFZaUxHVGtG?=
+ =?utf-8?B?ZitGeGtHR05mMzd0M1Y5QlpPLzlqTlFMR2xrbjhjTW5OdndkL3lGM0lQNkhP?=
+ =?utf-8?B?MEdwZ2FPTnc5Sm85Vm5pOFRmTTl0akdlRFhIR2h2bktZTFBFeHdsQ0dNUlI4?=
+ =?utf-8?B?S3dDUWJUM0xoRVZ5R21TaUMwelozRGdkVzVzemhTTFBTOWxnNTUwSjdVcUtj?=
+ =?utf-8?B?Q2VQOVZEWXYzQWJpd0ViQnpwR3I2MWVkVkMweWc1Nm4vWkhBVzhxQmFzczA1?=
+ =?utf-8?B?VTJ6NVdoeGVuZ2dOQzlWQzFYQ1c5UStNWHVhRmlzbGlGS0lERVFaSFFxUUpI?=
+ =?utf-8?B?cURYMEs3RStNbCtMZmlJNDhzVjlhTjFwRHdzZjlrYlR1S0I5RkVYUDhKbXk5?=
+ =?utf-8?B?Tm41ZUhiMnlQZnhER0w0NU1GM01FWGxJSHFUeURaUis2Tng1T1Z5a04wdUJM?=
+ =?utf-8?B?MWxVbCszdk42UUpZM1pVMWVZQTFzc3pySUlzOG5WN2tXZm11cHZmUG9Ddkx1?=
+ =?utf-8?B?SmdmbFVJMnljR1RQam1xR3BSd29oYmJjcGZNVU5qL3hzYUtMWTN2UHBrMlJ4?=
+ =?utf-8?B?d1ZoSmFrVU5GQXc0N1J5Rm1HeVRwSXVHUGhXOHhIWW1lMkYwNTFudFlwMUlz?=
+ =?utf-8?B?bzlzcENOblQ4U2k1NTRLeGoySW9pdmJZZjIyL3dwQTdvaGk1cnUzUE5yeUdr?=
+ =?utf-8?B?OVRSWDNIZUgwMkd0UmZ4TFZnNzhpSitJSm8xRjB4TUcxbVl3cmxscDhZNzRI?=
+ =?utf-8?B?cEtYLytwY0h4RGJOY1d6U01PYVI0cUh3Vm0zOEhsV2paN2U3VTZ5TTNwS2F0?=
+ =?utf-8?B?Q1I4OFlpMnY3UjV0NXVVSmJiYzF3bklpVlJOMW1Wc21NZVc3ZXdTbzBBUHp1?=
+ =?utf-8?B?KzluVlN4UnFPem9PZEZhODI0L05BNWVZRnBkbVZCU1Bkb2JYQWZVRTZObGcx?=
+ =?utf-8?B?ZFpTNzVZZXdBVEtSc2o4YzdXdXRnY2p0b0tLTzFVR296cEg3ZkFlYVAwMXc0?=
+ =?utf-8?B?Z1lka1lNQjNHZDdISXNCQTFXRkRiWkNFWk9SbmhvRkJSSlRLWWRGaWFtTllq?=
+ =?utf-8?B?c3plVkVtRTB6ZGYrSG9KbjkwOXB4a3h6cnNVc0FZWDhNVUV3ZDVGcVRsRW40?=
+ =?utf-8?B?YjhQeThqMkYwQzE5dHpWUDg5cmVObE1DRGlGL0IyMWZCR1ZrYU1SYmY2eUUy?=
+ =?utf-8?B?VVZNTmpRUzRnc2FnSEVIbEJidmFGdEVEblExcVJIV1RnR3VEOFpxTEJoZmlk?=
+ =?utf-8?B?NnJXTmZOWXFVV244ZzFhSHhQUGtKaHUvcUptdzJ1ZXRTRlM2djdxaHFwZndM?=
+ =?utf-8?B?VUlMTjJBUS90ME9EQUhVU2tHcVdrTFYrWjVWNkZsWGNyRjAyc2JSUUYxY0tj?=
+ =?utf-8?B?c3RKZ1pFenJ3RjZwWUJtbXpKQmhxWXBpUlRIR3ZXUnVqWDVVVlplbmtUZTN3?=
+ =?utf-8?B?WHZld1VzY2pQWnNyeldBV3FHM2xobmpiTC9rM29IS29yaVJYYWJScnQwdHNY?=
+ =?utf-8?B?SVFXa1czanVTdlg3Ny9leFlURnRqUGVDZHg5U0Vrb1c3TUdwVGlWdFlYS1Z2?=
+ =?utf-8?B?RFVSZzlOMk91N0ZrU2F6RGQ0ZkRvdjJzRmdIRVZMeUd4ZUQxRHp2NXl4d1pU?=
+ =?utf-8?B?YXdBaXFGUGUvR3BNOUF4c0pGOE1FQ005eWd1Q2ZaR1FxYkFLc1krYWFtTjk5?=
+ =?utf-8?B?anFqOG5TNWNyRlZJR3N5UGY4bmtsVHRNRjA2S1pvbzRtNVhqYmNvNUVRNkhn?=
+ =?utf-8?B?T0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67d5165e-3df9-44c0-490c-08dd10757449
+X-MS-Exchange-CrossTenant-AuthSource: MN6PR11MB8102.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2024 12:58:00.6662
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7oJDD6qW2ylePjbQiFLukqf725XNvKEjJdGC96Qc7GsdtHc8H4mr0M/UZyhXA11t6B6X2TWAYoqh/Ueo1h3WJ/GmLtyX9JwWT9WrZpqkg70=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5147
+X-OriginatorOrg: intel.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241129_024530_500533_EA9D1200 
-X-CRM114-Status: UNSURE (   8.18  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241129_045805_209796_9381A551 
+X-CRM114-Status: GOOD (  15.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,60 +217,106 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------cPPQtFR0ozzC7na0OcJidyz6
-Content-Type: multipart/mixed; boundary="------------0AuDKR0n7T6Zf6aTYuv75MXp";
- protected-headers="v1"
-From: Mihai Moldovan <ionic@ionic.de>
-To: Julian Wollrath <jwollrath@web.de>, ath11k@lists.infradead.org
-Message-ID: <1c643b65-6aff-4ce8-84e1-1b4a117a0bb8@ionic.de>
-Subject: Re: ath11k hibernation broken since v6.11
-References: <20241115083537.6a5681ad@mayene>
-In-Reply-To: <20241115083537.6a5681ad@mayene>
 
---------------0AuDKR0n7T6Zf6aTYuv75MXp
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+[removed most non-list recipients, it's just too much]
 
-KiBPbiAxMS8xNS8yNCAwODozNSwgSnVsaWFuIFdvbGxyYXRoIHdyb3RlOg0KPiBpdCBzZWVt
-cyBmb3IgdjYuMTEgdGhlIHBhdGNoIG1ha2luZyBoaWJlcm5hdGlvbiBwb3NzaWJsZSB3aXRo
-IGF0aDExaw0KPiB3YXMgcmV2ZXJ0ZWQgYWdhaW4gKGluIGNvbW1pdCAyZjgzM2U4OTQ4KS4g
-VGhpcyBicm9rZSBoaWJlcm5hdGlvbiBmb3INCj4gbWUuIElzIHRoZXJlIGEgcGxhbiB0byBy
-ZS1pbnRyb2R1Y2UgaXQ/DQoNClVuZm9ydHVuYXRlbHksIHRoZSBjb21taXQgbWVzc2FnZSBt
-ZW50aW9ucyB0aGF0IG5vIGFsdGVybmF0aXZlIGZpeCBpcyBhdmFpbGFibGUsIA0Kc28gSSB3
-b3VsZG4ndCBob2xkIG15IGJyZWF0aC4NCg0KQXMgYSBmZWxsb3cgUUNORkE3NjUgdXNlciBp
-biBhIG5vbi1MZW5vdm8gbWFjaGluZSwgcHJldmlvdXNseSBvbiA2LjkuMSB3aGljaCANCmRp
-ZG4ndCBpbmNsdWRlIHRoZSBoaWJlcm5hdGlvbiBwYXRjaCwgSSByZXNvcnRlZCB0byBhIHdv
-cmthcm91bmQgb2Ygc3RvcHBpbmcgdGhlIA0Kd2lmaSBpbnRlcmZhY2UsIHJlbW92aW5nIHJl
-bGV2YW50IG1vZHVsZXMgKG1vZHByb2JlIC1yICdhdGgxMWtfcGNpJyAnYXRoMTFrJyANCidx
-bWlfaGVscGVycycpIG9uIHN1c3BlbmQvaGliZXJuYXRlIGFuZCByZS1pbnNlcnRpbmcgYXRo
-MTFrX3BjaSBvbiByZXN1bWUgdmlhIA0KZWxvZ2luZCBzeXN0ZW0tc2xlZXAgaG9va3MuIFRo
-aXMgaXMgZWFzaWx5IHBvcnRhYmxlIHRvIGEgc3lzdGVtZC1iYXNlZCBzZXR1cC4NCg0KVGhp
-cyBzaWRlc3RlcHBlZCBhbnkgaGliZXJuYXRpb24gaXNzdWVzIHJlbGF0ZWQgdG8gdGhlIG1v
-ZHVsZS4NCg0KDQoNCk1paGFpDQo=
+On 11/15/24 10:26 PM, Easwar Hariharan wrote:
+> This is a series that follows up on my previous series to introduce
+> secs_to_jiffies() and convert a few initial users.[1] In the review for
+> that series, Anna-Maria requested converting other users with
+> Coccinelle. This is part 1 that converts users of msecs_to_jiffies()
+> that use the multiply pattern of either of:
+> - msecs_to_jiffies(N*1000), or
+> - msecs_to_jiffies(N*MSEC_PER_SEC)
+> 
+> The entire conversion is made with Coccinelle in the script added in
+> patch 2. Some changes suggested by Coccinelle have been deferred to
+> later parts that will address other possible variant patterns.
+> 
+> CC: Anna-Maria Behnsen <anna-maria@linutronix.de>
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> 
+> [1] https://lore.kernel.org/all/20241030-open-coded-timeouts-v3-0-9ba123facf88@linux.microsoft.com/
+> [2] https://lore.kernel.org/all/8734kngfni.fsf@somnus/
+> 
+> ---
+> Changes in v2:
+> - EDITME: describe what is new in this series revision.
+> - EDITME: use bulletpoints and terse descriptions.
+> - Link to v1: https://lore.kernel.org/r/20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com
 
---------------0AuDKR0n7T6Zf6aTYuv75MXp--
+that is not a proper changelog, you were supposed to edit those
+placeholder entries; please look around for examples
 
---------------cPPQtFR0ozzC7na0OcJidyz6
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+There is also just too much recipients. Please split up your patches
+into smaller pieces. You will also learn the process on a smaller
+sample.
 
------BEGIN PGP SIGNATURE-----
+And definitively please wait for 48h before reposting such big series.
 
-wsF5BAABCAAjFiEEbhHQj3UzgcdE8cg8H9Yu2W4lOocFAmdJm0MFAwAAAAAACgkQH9Yu2W4lOoeU
-jhAAxOECcni9K3L1qWVYWVU0+5azFcv02sRRa31KxontXrOuh6txDy/72K+ldZ8qVhm2mRSUFZsN
-hyJyqR83dvj7xvFfWkvG9k4VQCBe7CRARudwT+8G8pSwD0EHR6Jd8oXzOyOfHYThALVAbB86YWIE
-sqJ7N0vJdWtS4CMbGoRQZFxbQWsUS0zI+79K1bLQYlTa++ae3dYrUMfeGYtmLYXFmIZ57E0Y20vn
-EVXGET5r5rgyJtdBhvEYeXLYFM9ciYki93e2Jc+xpZYIM1e0C2xzltYm2SvmD6zSwY84jfC+8Lhc
-1pKeWOCK4m2pMr+OlA9SdIQ6C9aKEm+4euziNcABi1ne4Z5qtEqZ3hBT45AEXSoRekESIzvC4W57
-poq6yJ9aAZA3LBpBHsRC8Ui+j5jHYICOrFlKWCLzxxYpl9DtHh+zuZuWKsGOGPIf3UdFbW/8RSSu
-HnyNYMc2xqv8KFAdvAGZnqT04Cdjeyd3WX3PSwEQkN2nShIowslIXZlyRkg0W/79dc/hGEYdIYoH
-rBHHLoYqSoytqufjBPeUSPJHeUGtwqBoqfa5hPNad6/fTArRnWjLLdI8/qA05GomqvDpYMy+Lb+5
-LZUDibv1wnj4UD0Ts1+EsmnGKVsVwJNiJlBxVWK4KkZFG+5EMs+S68VS0Y1rKBv8Qox0OQjozPGG
-lTA=
-=8Nqo
------END PGP SIGNATURE-----
+Regarding code - you could also convert msecs_to_jiffies(const * HZ),
+there are 10 that are greppable.
 
---------------cPPQtFR0ozzC7na0OcJidyz6--
+> 
+> ---
+> Easwar Hariharan (21):
+>        netfilter: conntrack: Cleanup timeout definitions
+>        coccinelle: misc: Add secs_to_jiffies script
+>        arm: pxa: Convert timeouts to use secs_to_jiffies()
+>        s390: kernel: Convert timeouts to use secs_to_jiffies()
+>        powerpc/papr_scm: Convert timeouts to secs_to_jiffies()
+>        mm: kmemleak: Convert timeouts to secs_to_jiffies()
+>        accel/habanalabs: Convert timeouts to secs_to_jiffies()
+>        drm/xe: Convert timeout to secs_to_jiffies()
+>        drm/etnaviv: Convert timeouts to secs_to_jiffies()
+>        scsi: lpfc: Convert timeouts to secs_to_jiffies()
+>        scsi: arcmsr: Convert timeouts to secs_to_jiffies()
+>        scsi: pm8001: Convert timeouts to secs_to_jiffies()
+>        xen/blkback: Convert timeouts to secs_to_jiffies()
+>        gve: Convert timeouts to secs_to_jiffies()
+>        wifi: ath11k: Convert timeouts to secs_to_jiffies()
+>        Bluetooth: MGMT: Convert timeouts to secs_to_jiffies()
+>        staging: vc04_services: Convert timeouts to secs_to_jiffies()
+>        ceph: Convert timeouts to secs_to_jiffies()
+>        livepatch: Convert timeouts to secs_to_jiffies()
+>        ALSA: line6: Convert timeouts to secs_to_jiffies()
+>        nfp: Convert timeouts to secs_to_jiffies()
+> 
+>   arch/arm/mach-pxa/sharpsl_pm.c                      |  6 +++---
+>   arch/powerpc/platforms/pseries/papr_scm.c           |  2 +-
+>   arch/s390/kernel/lgr.c                              |  3 ++-
+>   arch/s390/kernel/time.c                             |  4 ++--
+>   arch/s390/kernel/topology.c                         |  2 +-
+>   drivers/accel/habanalabs/common/device.c            |  2 +-
+>   drivers/accel/habanalabs/common/habanalabs_drv.c    |  3 +--
+>   drivers/block/xen-blkback/blkback.c                 |  2 +-
+>   drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c            |  2 +-
+>   drivers/gpu/drm/xe/xe_device.c                      |  2 +-
+>   drivers/net/ethernet/google/gve/gve_tx_dqo.c        |  6 ++----
+>   drivers/net/ethernet/netronome/nfp/nfp_net_common.c |  2 +-
+>   drivers/net/wireless/ath/ath11k/debugfs.c           |  2 +-
+>   drivers/scsi/arcmsr/arcmsr_hba.c                    |  2 +-
+>   drivers/scsi/lpfc/lpfc_init.c                       | 18 +++++++++---------
+>   drivers/scsi/lpfc/lpfc_nportdisc.c                  |  8 ++++----
+>   drivers/scsi/lpfc/lpfc_nvme.c                       |  2 +-
+>   drivers/scsi/lpfc/lpfc_sli.c                        |  4 ++--
+>   drivers/scsi/lpfc/lpfc_vmid.c                       |  2 +-
+>   drivers/scsi/pm8001/pm8001_init.c                   |  2 +-
+>   .../vc04_services/bcm2835-audio/bcm2835-vchiq.c     |  2 +-
+>   fs/ceph/quota.c                                     |  2 +-
+>   mm/kmemleak.c                                       |  4 ++--
+>   net/bluetooth/mgmt.c                                |  2 +-
+>   net/netfilter/nf_conntrack_proto_sctp.c             | 21 ++++++++-------------
+>   samples/livepatch/livepatch-callbacks-busymod.c     |  2 +-
+>   samples/livepatch/livepatch-shadow-fix1.c           |  2 +-
+>   samples/livepatch/livepatch-shadow-mod.c            | 10 +++++-----
+>   scripts/coccinelle/misc/secs_to_jiffies.cocci       | 21 +++++++++++++++++++++
+>   sound/usb/line6/toneport.c                          |  2 +-
+>   30 files changed, 79 insertions(+), 65 deletions(-)
+> ---
+> base-commit: 2d5404caa8c7bb5c4e0435f94b28834ae5456623
+> change-id: 20241112-converge-secs-to-jiffies-d99d1016bd11
+> 
+> Best regards,
+
 
