@@ -4,73 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C744D10DDD
-	for <ath11k@archiver.kernel.org>; Mon,  2 Dec 2024 09:21:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35FCAE69E95
+	for <ath11k@archiver.kernel.org>; Mon,  2 Dec 2024 21:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=pJLX/DjPT3GcTzak124rApB1YA2PHiuhhYQM4Pn37+U=; b=3F2bd+K23rBLfebPiNQUMPdayl
-	coyyD3ZVoiZxXYV7jgvf1Rlltg815F9Z7YTg4yt2uAEp35zmpNEIkWfU8MEpAkO7IdjJfeSMVIvz7
-	vhrQjzCaP+XJaglUPsLWIdAIL6O6hyNjEUe8WsMZZnTpyYq8uQmZrzTa2Hnkvp/eZwR16cGSpkb2P
-	E2fJEFSNuLKozB/I6eGACFTMYT3nvhQI4YYTZcLj0OomavVUJCU8mDZ+B/iI7cRKCtlMRlL+MSE7m
-	XsNNo8t2PDi1xX3ms61DO7VbCAS3t01iOSllpPI8Si1m1RjmLh5EXQ3+f7XaaIC7ZGK0owm7onB9I
-	v+p+yZvg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=FZHtDSci4mxW9uObrOpyGXF4tVtVRk+OAevn+2+RUUc=; b=zGHAynksz6+CoBCeLtIZt2Y5qX
+	jwvoQZoaaa+piIwXWF2olI1LrVp1FATTGxVsPglKiZ6V+x+arFy3WM9FrAMGl/QPTfb11O2TRHYqF
+	566qyOMOHiZ4Mt5bCYBzCsBKSbMASaEQjiJSRWTjlE7sLVifCmFkw4hNjafoH6PbeV1+BYY7VU9Dd
+	Q2HrCxT/BlLD33QeCoYES6FncZGxIVkS2AWxX13khHPVEqYwlCk75CZLG5duVaelaT5/qzqQtLC6T
+	+DM2QTwKynGKWfljluBYpvaXLmXn8X8fudaggJMGO38PxUoUx+LiKUzu7xbJ1SByPhRXDYROO9w4y
+	APvr8tqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tI2c6-00000005XdM-1hxV;
-	Mon, 02 Dec 2024 09:21:06 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1tIDn3-00000007Uwg-3WYD;
+	Mon, 02 Dec 2024 21:17:09 +0000
+Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tI2c2-00000005XcH-3uxT
-	for ath11k@lists.infradead.org;
-	Mon, 02 Dec 2024 09:21:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1733131260;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=pJLX/DjPT3GcTzak124rApB1YA2PHiuhhYQM4Pn37+U=;
-	b=Zk6w9y+XNXw1hwy2btzwYtZ/j8XZjOyyYeHHY8qRPzw+W/bdSTkDJgkEkgujydOQGWoOXO
-	1AkOdyjZC/9pXdRMXOuPVmUZ/Z32NpNbHacxNcNPO8VskPgq/hltShQUbEwszdNUNltKIl
-	5GHxboQBixVmnedAbAlEcS0gYquQD2Q=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-424-rQ6mmeXWP1Wn6wQRCo4ZFQ-1; Mon,
- 02 Dec 2024 04:19:17 -0500
-X-MC-Unique: rQ6mmeXWP1Wn6wQRCo4ZFQ-1
-X-Mimecast-MFC-AGG-ID: rQ6mmeXWP1Wn6wQRCo4ZFQ
-Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id ADA5A1955D8D;
-	Mon,  2 Dec 2024 09:19:13 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.39.192.188])
-	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 7F3151956089;
-	Mon,  2 Dec 2024 09:19:10 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: kvalo@kernel.org,
-	jjohnson@kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: quic_cjhuang@quicinc.com,
-	jtornosm@redhat.com,
-	Vladimir Benes <vbenes@redhat.com>
-Subject: [PATCH] wifi: ath11k: allow APs combination when dual stations are supported
-Date: Mon,  2 Dec 2024 10:18:30 +0100
-Message-ID: <20241202091858.200773-1-jtornosm@redhat.com>
+	id 1tIDn0-00000007Uvr-2nXP;
+	Mon, 02 Dec 2024 21:17:07 +0000
+Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-7fccc26ad01so1428078a12.2;
+        Mon, 02 Dec 2024 13:17:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733174225; x=1733779025; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FZHtDSci4mxW9uObrOpyGXF4tVtVRk+OAevn+2+RUUc=;
+        b=HPmlN00S3xQ6IxZkvj/ATv9T4Mxb0FgXaxtx5VxHMDEyeT74TgKOlOZhaBi3Xv3IF8
+         i2BHURX7nKI2ccJGBnT02e6Hu5h+R1Q0axE51vOP6UdA4LprJd4MFl/HmmfUYKVfJf7x
+         FjghxC5lZasfulbKuVD+EyHqHplSJp8rp57DMj9RCqBc4im8sRhVE+5SqEe7oD7sCCYd
+         Dj0luugurWhTmqEg+MIfr3s46GpGVgrVp+xcjL11E4fhpkNxCeuXayIbQpDBKP23mXOs
+         gNXkJPeg09x/otbZHnC13OQm0SZ/Pt+iFgNaypoOHs4d7YI8259QeEt4NCkHALqZAxLP
+         Yy2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733174225; x=1733779025;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FZHtDSci4mxW9uObrOpyGXF4tVtVRk+OAevn+2+RUUc=;
+        b=neCBimVR0HpgqUoNN7w++J9Qnc6QNBS5JIQIFisROv7v5fxyLSvrQLq/Dlyw32qJTo
+         bjetzrfvkCqamvrr+yrcq6Mauma9Rz6zwhwJ1ZS6ZAa5FV2olIIpz52IxSpgcr+ijWc4
+         lW8JK5NMUroLtY1pPfllYfPtqZSHmNvC165PcVJYlFfonSqpH5RE4Qp8p4BUgWSFzQ38
+         aQ9Jg1cYq3OYuoutKwrTJKtbT5898HpNxFlWAJBp+6N+N6TyJrBAgEwdEhxLDMa21BeB
+         VB661eytwlW1FnVknmmbXB0Nal32KFInUdg2+xHgO8sdUk7VbAJg5cE2F0DFkzED8fDP
+         FqNg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhvgSTzHlv8SqnQpkAjVyfAJAC4E0YGhQlXGMfa7Bun7t12jg+ouG076S+YLvkwA7GiF+6FL3YwRYgkqETt/o3aQ==@lists.infradead.org, AJvYcCVQkZly9ZEHIRrzwry0WL/SLOOMeQFD04C7zVkO5tGhnMxIhzmB+tCMckF4qy2SuOTBqcIoKk0=@lists.infradead.org, AJvYcCXgpado7NnKwkRUMYkZq86xNddelLzcI9HtIDR12FwwhmSn8c1mQi7mMRy+9EBEuKB7hEMQEGFWIW+/OnFlBN9qkg==@lists.infradead.org
+X-Gm-Message-State: AOJu0YwBEHAzISQdrSy/pefIJCGM1tTRVwNYXGbNkxKPsE/O7qaCpbPP
+	HJjQSOiF+3kq6X5DgCCMjV8B97L8zt4HwadJKBRlrK/cbbyAXoFLgrnBuac1EbRKs2aiekA2CtR
+	wgxC67kHcKJWHoP71qnLPBot+CKY=
+X-Gm-Gg: ASbGncv5LQ8o837Pe+/0pie8/+7GC4YVrx5pIlZfWLBdU/KJVd6JQe/KuTZy5hu0y1N
+	uowA9YrDg0n/Q2kyMkOhhq9UAUyXgxA==
+X-Google-Smtp-Source: AGHT+IFDh1yb6d6zM40EzPJelJu2iVMH0WClLwmjysRWgfnYNSB8awfS5UuhO/EqqMc0eH1dffTLKgwFM99xaAmy4L8=
+X-Received: by 2002:a17:90b:1c09:b0:2ee:3cc1:793a with SMTP id
+ 98e67ed59e1d1-2ef0124c720mr32029a91.29.1733174224966; Mon, 02 Dec 2024
+ 13:17:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+ <20241115-converge-secs-to-jiffies-v2-9-911fb7595e79@linux.microsoft.com>
+In-Reply-To: <20241115-converge-secs-to-jiffies-v2-9-911fb7595e79@linux.microsoft.com>
+From: Christian Gmeiner <christian.gmeiner@gmail.com>
+Date: Mon, 2 Dec 2024 22:16:53 +0100
+Message-ID: <CAH9NwWdjXKH-AcKa-prwdqj2JqWLYVp1qM+0kxtQYSwo1J1c7g@mail.gmail.com>
+Subject: Re: [PATCH v2 09/21] drm/etnaviv: Convert timeouts to secs_to_jiffies()
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Pablo Neira Ayuso <pablo@netfilter.org>, Jozsef Kadlecsik <kadlec@netfilter.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+	Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>, 
+	Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, 
+	Robert Jarzmik <robert.jarzmik@free.fr>, Russell King <linux@armlinux.org.uk>, 
+	Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+	Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger <borntraeger@linux.ibm.com>, 
+	Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>, 
+	Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>, 
+	=?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+	Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Jeroen de Borst <jeroendb@google.com>, Praveen Kaligineedi <pkaligineedi@google.com>, 
+	Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	James Smart <james.smart@broadcom.com>, Dick Kennedy <dick.kennedy@broadcom.com>, 
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+	"Martin K. Petersen" <martin.petersen@oracle.com>, =?UTF-8?Q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>, 
+	Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel Holtmann <marcel@holtmann.org>, 
+	Johan Hedberg <johan.hedberg@gmail.com>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Xiubo Li <xiubli@redhat.com>, 
+	Ilya Dryomov <idryomov@gmail.com>, Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+	Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>, 
+	Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Lucas Stach <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>, 
+	Louis Peens <louis.peens@corigine.com>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Nicholas Piggin <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, 
+	Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, netfilter-devel@vger.kernel.org, 
+	coreteam@netfilter.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	cocci@inria.fr, linux-arm-kernel@lists.infradead.org, 
+	linux-s390@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	intel-xe@lists.freedesktop.org, linux-scsi@vger.kernel.org, 
+	xen-devel@lists.xenproject.org, linux-block@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	linux-mm@kvack.org, linux-bluetooth@vger.kernel.org, 
+	linux-staging@lists.linux.dev, linux-rpi-kernel@lists.infradead.org, 
+	ceph-devel@vger.kernel.org, live-patching@vger.kernel.org, 
+	linux-sound@vger.kernel.org, etnaviv@lists.freedesktop.org, 
+	oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, 
+	Anna-Maria Behnsen <anna-maria@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241202_012103_099317_1F6E9F30 
-X-CRM114-Status: UNSURE (   8.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241202_131706_701978_80A1B211 
+X-CRM114-Status: GOOD (  17.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,48 +134,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Since commit f019f4dff2e4 ("wifi: ath11k: support 2 station interfaces"),
-if dual stations are supported for a device, we can not configure more that
-one AP and/or DFS cannot be enabled.
+>
+> Changes made with the following Coccinelle rules:
+>
+> @@ constant C; @@
+>
+> - msecs_to_jiffies(C * 1000)
+> + secs_to_jiffies(C)
+>
+> @@ constant C; @@
+>
+> - msecs_to_jiffies(C * MSEC_PER_SEC)
+> + secs_to_jiffies(C)
+>
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 
-Enable this by creating a new parameter (ignore_support_dual_stations) to
-ignore this feature if it is convenient. Default behavior is to support
-dual stations if possible.
+Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com>
 
-Reported-by: Vladimir Benes <vbenes@redhat.com>
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> ---
+>  drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c b/drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c
+> index 721d633aece9d4c81f0019e4c55884f26ee61c60..0f5a2c885d0ab7029c7248e15d6ea3c31823b782 100644
+> --- a/drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c
+> +++ b/drivers/gpu/drm/etnaviv/etnaviv_cmdbuf.c
+> @@ -100,7 +100,7 @@ int etnaviv_cmdbuf_init(struct etnaviv_cmdbuf_suballoc *suballoc,
+>                 mutex_unlock(&suballoc->lock);
+>                 ret = wait_event_interruptible_timeout(suballoc->free_event,
+>                                                        suballoc->free_space,
+> -                                                      msecs_to_jiffies(10 * 1000));
+> +                                                      secs_to_jiffies(10));
+>                 if (!ret) {
+>                         dev_err(suballoc->dev,
+>                                 "Timeout waiting for cmdbuf space\n");
+>
+> --
+> 2.34.1
+>
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index be67382c00f6..55c7a55d85ff 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -37,6 +37,12 @@ bool ath11k_ftm_mode;
- module_param_named(ftm_mode, ath11k_ftm_mode, bool, 0444);
- MODULE_PARM_DESC(ftm_mode, "Boots up in factory test mode");
- 
-+static bool ath11k_ignore_support_dual_stations;
-+module_param_named(ignore_support_dual_stations,
-+		   ath11k_ignore_support_dual_stations, bool, 0644);
-+MODULE_PARM_DESC(ignore_support_dual_stations,
-+		 "Ignore the support for dual stations to support other combinations");
-+
- static const struct ath11k_hw_params ath11k_hw_params[] = {
- 	{
- 		.hw_rev = ATH11K_HW_IPQ8074,
-@@ -2162,6 +2168,9 @@ static int ath11k_init_hw_params(struct ath11k_base *ab)
- 	}
- 
- 	ab->hw_params = *hw_params;
-+	if (ab->hw_params.support_dual_stations &&
-+	    ath11k_ignore_support_dual_stations)
-+		ab->hw_params.support_dual_stations  = false;
- 
- 	ath11k_info(ab, "%s\n", ab->hw_params.name);
- 
+
 -- 
-2.47.0
+greets
+--
+Christian Gmeiner, MSc
 
+https://christian-gmeiner.info/privacypolicy
 
