@@ -4,77 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7F2FE6C616
-	for <ath11k@archiver.kernel.org>; Tue,  3 Dec 2024 08:10:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54C06E6C617
+	for <ath11k@archiver.kernel.org>; Tue,  3 Dec 2024 08:28:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EUnucm2fTy2CjmZdyCADxmI4mKYutrlWNpBYbKjw3IA=; b=o+V4Qjt6E8uch4SKjTNjMvRG5F
-	qrSRMSV/4lg98k144fo6jKXm6IWndWFv/d+c61BOA0F17XJebOaBNMT/8kbqYqNxkdhl8dJiDfdZu
-	3j5FtVSeMCBVaGWqEyC00fi35pBzE+Rh+dt2MB/R7G8BOkh/frZ5iAJGPlkGxEDKq3NyA26f3E73m
-	Zvgvngzd65vr5PPgVk/AMr0mr45L0P/30VqRAQJgP+eU2NP5lNsxjm6sBWZTflrpvqoCwfaptrsAk
-	H9QVZRKSfqCFZgxtqYY76p6WBgGhmkBCM9Iq64ULaCE5HzBWP5zAqFbqB/bNX2dsusT6+8P4H887/
-	OYiqqiyA==;
+	bh=PoxayZ/Ep75tbDRlcroT8T9ljKtekUwd8MzgGdd+9u0=; b=ltEEN632pcvF3KtWamwH9sgrR0
+	8j1CE8/DSlbereKNmjvx9ZDD5aA7bW4Kx2hKdthIDpf0p3UgtwWX7tINSZZ1SKpBEgaUv9RDuctab
+	fKi6R+T0aJBKegC8VmCBJLkMN3KnzjCUBe6cvZqVCZisrdo/KzRAovRcBiZx+vDlgIIr3Rk11drrK
+	X2b3QGkeFr0SKwEgggcp+qX258sBN91f9xIOWTOV9qhFkgZ2l0dDmKjrl94yTmn+w8fKFBUiHSfZa
+	cm73jYQ8l9PKh7Srjg69XKrmhQpuW7TGqmr7B+4hn2szd1Ow6YG92V8KW2fMuAxyDHuLpSRTZk/6i
+	kUt7ilig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tINz4-00000008e90-1qcu;
-	Tue, 03 Dec 2024 08:10:14 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1tIOHB-00000008hQ6-2gbu;
+	Tue, 03 Dec 2024 08:28:57 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tINtK-00000008cog-0hEL
+	id 1tIOH8-00000008hPY-3UmO
 	for ath11k@lists.infradead.org;
-	Tue, 03 Dec 2024 08:04:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1733213056;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EUnucm2fTy2CjmZdyCADxmI4mKYutrlWNpBYbKjw3IA=;
-	b=CocK+nXNqNwyo2RQR+Q0uPW+J3JepyD//TQE36K4UNk69UIVSxCu8XBYpKsZB2DMXEMXkl
-	EqA82jX3BqqfxeaKkD81DCqcmHPX6JAnEnVAaWbw/qFTqLKpJ4UxRiUzwlItsfLZbiUyZg
-	wQ09JPLRyYEGHjUDhdu7+4wW+V5j4dQ=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-425-AYhAh3tjOcC4wCg3CCkrFg-1; Tue,
- 03 Dec 2024 03:04:14 -0500
-X-MC-Unique: AYhAh3tjOcC4wCg3CCkrFg-1
-X-Mimecast-MFC-AGG-ID: AYhAh3tjOcC4wCg3CCkrFg
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 3E6FD19560BC;
-	Tue,  3 Dec 2024 08:04:13 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.39.192.136])
-	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 3C10E1956054;
-	Tue,  3 Dec 2024 08:04:08 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: quic_yuzha@quicinc.com
-Cc: ath11k@lists.infradead.org,
-	jjohnson@kernel.org,
-	jtornosm@redhat.com,
-	kvalo@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	quic_cjhuang@quicinc.com,
-	vbenes@redhat.com
-Subject: Re: [PATCH] wifi: ath11k: allow APs combination when dual stations are supported
-Date: Tue,  3 Dec 2024 09:04:07 +0100
-Message-ID: <20241203080407.100913-1-jtornosm@redhat.com>
-In-Reply-To: <7ccd4b98-9557-4a8b-b493-e01b157c71e2@quicinc.com>
-References: <7ccd4b98-9557-4a8b-b493-e01b157c71e2@quicinc.com>
+	Tue, 03 Dec 2024 08:28:56 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B36N3Zv024524;
+	Tue, 3 Dec 2024 08:28:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PoxayZ/Ep75tbDRlcroT8T9ljKtekUwd8MzgGdd+9u0=; b=hBGiVZPboZVEnVFT
+	yxe8bJpA2pUXW9qve7Dwdg2OgzcIRmuxiAqW7QJGPaOW5LyZozbISL5EteC2gV7U
+	htPY0ERvwnMnIAAq95lLzdDCvBU/SRCtc35JLRV6OnXCI9AZ1rnc9eHQLPTZoBJn
+	3zda3tgjJwT4zmOQZWrUHwbQ//gXbzP20pQcoee+bK24POVU/zMYYZsZGUGuk/Sa
+	UWaMLHso+0DPwCUBa1ugzZozHCaXNAI4aANhd9fqf4h9zz8V6rIZBK9ZZw7R0Nw3
+	h65AJp7pM/oR1huRFKYhSPLw7AXwGL/peLLvsYZ762o5zDV0v4cGIGyVlvoP/S/G
+	WqcmGg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439vnyrabb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Dec 2024 08:28:51 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B38SoE7012996
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Dec 2024 08:28:50 GMT
+Received: from [10.231.194.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
+ 00:28:48 -0800
+Message-ID: <20bf2693-ce53-48e9-8b54-7e3273815033@quicinc.com>
+Date: Tue, 3 Dec 2024 16:28:45 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: allow APs combination when dual stations
+ are supported
+To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+CC: <ath11k@lists.infradead.org>, <jjohnson@kernel.org>, <kvalo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
+        <quic_cjhuang@quicinc.com>, <vbenes@redhat.com>
+References: <7ccd4b98-9557-4a8b-b493-e01b157c71e2@quicinc.com>
+ <20241203080407.100913-1-jtornosm@redhat.com>
+Content-Language: en-US
+From: "Yu Zhang (Yuriy)" <quic_yuzha@quicinc.com>
+In-Reply-To: <20241203080407.100913-1-jtornosm@redhat.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: h59Aat92eRQXnNWi4cuVL5_TvCZWWJhC
+X-Proofpoint-GUID: h59Aat92eRQXnNWi4cuVL5_TvCZWWJhC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ mlxlogscore=813 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412030072
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241203_000418_277130_2BB4171A 
-X-CRM114-Status: UNSURE (   5.69  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241203_002854_988738_A06F9D11 
+X-CRM114-Status: GOOD (  11.01  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,16 +101,62 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Sorry, but your solution is not working for me.
-We need to be able to setup 2 APs, as it was possible before, and with your
-interface combinations it is not possible either.
-I was trying to create a second interface combination to recover the old
-scenario as well, but I couldn't, that is the reason why I have implemented
-this parameter.
 
-Thanks
 
-Best regards
-Jose Ignacio
+On 12/3/2024 4:04 PM, Jose Ignacio Tornos Martinez wrote:
+> Sorry, but your solution is not working for me.
+> We need to be able to setup 2 APs, as it was possible before, and with your
+> interface combinations it is not possible either.
+> I was trying to create a second interface combination to recover the old
+> scenario as well, but I couldn't, that is the reason why I have implemented
+> this parameter.
+> 
+> Thanks
+> 
+> Best regards
+> Jose Ignacio
+> 
+Which chip do you use?
 
+I can't be sure about your scenario, but based on your description, I 
+tried it on the 6855 and it works:
+sh-5.1# iw dev
+phy#0
+         Interface wlan2
+                 ifindex 6
+                 wdev 0x3
+                 addr 12:03:7f:21:84:11
+                 ssid QSoftAP2
+                 type AP
+                 channel 149 (5745 MHz), width: 20 MHz, center1: 5745 MHz
+                 txpower 18.00 dBm
+                 multicast TXQ:
+                         qsz-byt qsz-pkt flows   drops   marks   overlmt 
+hashcol tx-bytes        tx-packets
+                         0       0       0       0       0       0 
+0       0               0
+         Interface wlan1
+                 ifindex 5
+                 wdev 0x2
+                 addr 02:03:7f:21:84:11
+                 ssid QSoftAP1
+                 type AP
+                 channel 36 (5180 MHz), width: 20 MHz, center1: 5180 MHz
+                 txpower 5.00 dBm
+                 multicast TXQ:
+                         qsz-byt qsz-pkt flows   drops   marks   overlmt 
+hashcol tx-bytes        tx-packets
+                         0       0       0       0       0       0 
+0       0               0
+         Interface wlan0
+                 ifindex 4
+                 wdev 0x1
+                 addr 00:03:7f:21:84:11
+                 type managed
+                 txpower 18.00 dBm
+                 multicast TXQ:
+                         qsz-byt qsz-pkt flows   drops   marks   overlmt 
+hashcol tx-bytes        tx-packets
+                         0       0       0       0       0       0 
+0       0               0
 
