@@ -4,89 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC843E77173
-	for <ath11k@archiver.kernel.org>; Mon,  9 Dec 2024 08:34:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25FB9E7717D
+	for <ath11k@archiver.kernel.org>; Mon,  9 Dec 2024 10:49:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Wy5JiN4iK/NB5DS6NwLdv5SpBYGQjC81RwRdjZEYyMc=; b=yAnVXWL86KOjtF9GjcDJoxN/AT
-	210mFBgA2YxP1amK3dLTgIsaYBFtbelMSYHvxuMjI1lzuVa+PWHtL9BjL5tj8vM+p4ssFt6pLh0vH
-	hcCd5arw/vkR58z5JmFjt+yWKMpP6zpy1976GB1ex0kAHitCQU+TEBLNOVBmLD64eXrqEjWSvUi4s
-	3B/+5aKTk4cV4oJszwEIVHB/4jBujQwN1YzXCwyfXO+zTMeP9Nod6E1No2nrEKEF5oTi7aVr+7yoS
-	ceIMezXMHdRkAmZeOU2Ti8oSw+1j4hKORNSC2pKjmhEUAuVhudbbdeaZIhWDBCAcJfP/jK7KHIQGe
-	QKczdgog==;
+	bh=cimsqdyKXamBbNAmx4P+hTJb+SLCsb+4nwG/p6uKdbc=; b=nHNq+z3HfP9+vSdkBpqklJySzc
+	uomYhzkujhMXB9dk7bvZZLuAwAb+2BPDLvM4kA5f43EAwusDAH0mW4ZfDP0bJyslGytvkNrObrlAK
+	xdpGZx+eKxPDjeyZ1Vn68qUVHpim5XueUuCEW3IPYO+YMQeRGIJcMIn0OUzQ4BmoL/g/mssIiPmbC
+	zn/Ao9Z6Bx/R8fXrJbtIkIkBN4AQRVqEvQFIK6U9Bfg4EbALwT9RhKzU8d89raF4r1EFU/0V81Ndu
+	Z6HwZsa7O/ZetY6nDiNF8MFdh9wOwOXZZzR14cd+Bk4CCNHvwETQr79/ZiJgKBNRPSYXdtftAJ4gi
+	GEDNgJiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKZDq-00000006wWy-24rm;
-	Mon, 09 Dec 2024 08:34:30 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
-	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKZCy-00000006wCF-0I7g
+	id 1tKbKv-00000007NRM-2gVY;
+	Mon, 09 Dec 2024 10:49:57 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
+	id 1tKbKs-00000007NQg-0kMH
 	for ath11k@lists.infradead.org;
-	Mon, 09 Dec 2024 08:33:37 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B8Nb9K2020900;
-	Mon, 9 Dec 2024 08:33:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Wy5JiN4iK/NB5DS6NwLdv5SpBYGQjC81RwRdjZEYyMc=; b=HPt8TGyYGv7XPvQi
-	VpVVFKSrmeqPFLhuEUzcA+73fGmnt8BP4otnb2xJsLKimNJmzEZNhZO9MYvkP8zo
-	Bhu0bkD3Sk6dzxhNUwjV/A/qyLuOkakUGjC8ZPwt48tp4hbuvtG1hxxY+NUUPgsw
-	/Yu4HUcQb8YMUz0s545WMxjrM4K7KbMTNDb3P9nUZ2pizj1yGxv8MVtc/n/uVDrx
-	zAIMyKV/k+C9IYl4Xdsul7xCJDfIXHqK+bCcC8Tdjr56ZlrD/E06hJJiCQyGaS0k
-	bK2a8FI7tEoKaJWNvsrfB0NFKUHPEfMvqSGhjKCuxwO8wuDQUqNa4qNJEoPIRwuL
-	k94BgQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cf4e3tmt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Dec 2024 08:33:32 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B98XVNW016642
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Dec 2024 08:33:31 GMT
-Received: from [10.253.9.59] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Dec 2024
- 00:33:27 -0800
-Message-ID: <db61f998-2524-4623-8b0f-143661507e38@quicinc.com>
-Date: Mon, 9 Dec 2024 16:33:24 +0800
+	Mon, 09 Dec 2024 10:49:56 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23CE0113E;
+	Mon,  9 Dec 2024 02:50:20 -0800 (PST)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 27C9D3F5A1;
+	Mon,  9 Dec 2024 02:49:51 -0800 (PST)
+Message-ID: <593c0d63-d8fd-4439-a57a-97340212c197@arm.com>
+Date: Mon, 9 Dec 2024 10:49:49 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: allow APs combination when dual stations
- are supported
-To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-CC: <ath11k@lists.infradead.org>, <jjohnson@kernel.org>, <kvalo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
-        <quic_cjhuang@quicinc.com>, <vbenes@redhat.com>
-References: <1123551c-1a6d-4d0d-b3c7-f65c15509280@quicinc.com>
- <20241209080334.5989-1-jtornosm@redhat.com>
-Content-Language: en-US
-From: "Yu Zhang (Yuriy)" <quic_yuzha@quicinc.com>
-In-Reply-To: <20241209080334.5989-1-jtornosm@redhat.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: ath11k swiotlb buffer is full (on IMX8M with 4GiB DRAM)
+To: Christoph Hellwig <hch@lst.de>, Tim Harvey <tharvey@gateworks.com>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>, ath11k@lists.infradead.org,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ Fabio Estevam <festevam@gmail.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, iommu@lists.linux.dev
+References: <CAJ+vNU0EL3T+GyNAbVbGqYYQ5NM3h7cgAwqxxBMuZjh+-YQ3bA@mail.gmail.com>
+ <1b2ea8b2-6fbe-4118-b6c6-742c8f0be476@quicinc.com>
+ <CAJ+vNU1-OZ3y4p2L+zf64AiVtUv70yZNqkT20jTxyE0_gJb6Jg@mail.gmail.com>
+ <0282be95-9094-4d49-b79e-4f7c976dad00@quicinc.com>
+ <CAJ+vNU32EMHjtchJRb1sODBrUKG2vZW4ZEu1_F0+dCCEjCn7Dg@mail.gmail.com>
+ <20241209081714.GA25363@lst.de>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20241209081714.GA25363@lst.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ggIUJ-0qEaolru1NlmEDIsvhnHUWBZrq
-X-Proofpoint-ORIG-GUID: ggIUJ-0qEaolru1NlmEDIsvhnHUWBZrq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 mlxlogscore=870 clxscore=1015 impostorscore=0
- spamscore=0 priorityscore=1501 mlxscore=0 adultscore=0 phishscore=0
- bulkscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412090065
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241209_003336_113454_ABA8F29F 
-X-CRM114-Status: UNSURE (   9.75  )
+X-CRM114-CacheID: sfid-20241209_024954_265094_60E11B53 
+X-CRM114-Status: UNSURE (   4.90  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,25 +72,16 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On 09/12/2024 8:17 am, Christoph Hellwig wrote:
+> I scrolled three pages before giving up as it was just quotes over
+> quotas.  Can you please write an email that contains whatever you're
+> trying to tell instead of just quotes?  Same for the person replying.
 
+TBH I'm hesitant to look too closely since everything those Atheros WiFi 
+drivers do with DMA tends to be sketchy, but from what I could make out 
+from skimming until I also gave up, I think it might be an attempt to 
+reinvent dma_alloc_pages(), or possibly dma_alloc_noncoherent().
 
-On 12/9/2024 4:03 PM, Jose Ignacio Tornos Martinez wrote:
->> So you can't up with ap type or can't up with managed interface?
-> Please, let's go to focus and not repeat the same, due to the reasons
-> that I commented before, I can't up my scenario with aps using your
-> proposed inteface configuration.
-Yes, Can you pls share the complete steps and commands?
-> I am going to remark again, I can do it with the old configuration
-> previous to the commit f019f4dff2e4 ("wifi: ath11k: support 2 station
-> interfaces").
-> Thanks to my patch after 019f4dff2e4 ("wifi: ath11k: support 2 station
-> interfaces") by means of a parameter I can do it too.
-> And that's all.
-> 
-> Thanks
-> 
-> Best regards
-> Jose Ignacio
-> 
-
+Cheers,
+Robin.
 
