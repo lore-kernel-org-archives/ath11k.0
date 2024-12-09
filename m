@@ -4,59 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91176E7717D
-	for <ath11k@archiver.kernel.org>; Mon,  9 Dec 2024 18:42:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43741E7717D
+	for <ath11k@archiver.kernel.org>; Mon,  9 Dec 2024 19:15:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CKluJuNX+BDc6OfBUNMI/MO63VJGx50/v47JY+F/IWg=; b=eGjcB12KMnBan0NxdGmUayeLBR
-	NHcb2pq3HK2ZPrRw2lFuDqQzffshJDt4+aC3llqOTnRtcRAOdIJTBaRgWwBJtu5/wgcmSvXfC9e1q
-	CAH8k4vDIlYzooHCgQGRPsLkfojNAA6kSYMWLs6AvAKZqndPbytW4HBigwyAf4kLBkwcGiUXL3RA5
-	dUlzkx+6+3xLEVE7+H/voyz6aFH3oK7RhLwW6KiBG0vDasHglpeTdO0ODsEAJGSHctWz3SqpOGABD
-	TbruiFFHU9Y+p4wNBQbdA1JAjpTsHsAPfU+/tSsooEsW0qYyQzFODN9zTeWjKxlnWEo7Mo88sVZWo
-	P8IkpgOw==;
+	bh=2kLjgnxaHMn5y0gTT+3dvOLNzEd5yWQ0Er4eRA/5e+Q=; b=AL57FvctFsvfHqjXMfV6Jc5foZ
+	n81zKwJJ43LE8anaXbANHXpBgKZTg2mzJG8RUg8hYoLPV8aU+yuhs6NPMJ99ar5/vDtjqMGLnKB3J
+	oKZxVTAheqsh5cJRR+ppiC1lhw0lWlIe1OELjFXAWCiqVKhueODN4cbuYGIIzhZ2tcsfKQMim+iIj
+	AKGMbTD7o0MLFki0unVUhlNe4UmJqesPJvs2JFdkTHlkx5+m2TnoyCMI/4IwOw87At5NiiFcKbE9L
+	UDJGaLnoD3ywfZZ2nq3AgHBNHJiZvSX6HX8UcHaDsOEifbNMRHjSn9dG6YgOBk3eormQGrPpnrZtM
+	qu/RmQWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKiiA-00000008uTr-0IqQ;
-	Mon, 09 Dec 2024 18:42:26 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tKjDy-0000000915N-26vl;
+	Mon, 09 Dec 2024 19:15:18 +0000
+Received: from mail-yb1-xb2a.google.com ([2607:f8b0:4864:20::b2a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKii6-00000008uT7-3o5I;
-	Mon, 09 Dec 2024 18:42:24 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id B11245C5C73;
-	Mon,  9 Dec 2024 18:41:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF36C4CED1;
-	Mon,  9 Dec 2024 18:42:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733769742;
-	bh=F/HSU2BYTDz8trksjoa/V+FrgF4MM9/MBGwtQDsbwhA=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=Vqc3wKfAVOaXZBpYmdlhOr78itfPAB4qc/xqw+fUnNzRu28fazkIAC8AeHMPov2z5
-	 N8ZovavjZVVvH5tN7MmMNzM07db6FivpwR0zOz9iakLJpbJJSPcUV/ma0BDxPCypUa
-	 ZwQZCkdSYPqmBpSeG28rjApdqtB4QfPm+sHtgfEgHvf92sWTA6Ip5judPirEt4CC1R
-	 uUD5fSaqv/KoCpxXG7Rovwl+mnTsKy41be9w6tnNoXNreal/n51PYsQPw1ZExBWPFq
-	 1yPcVJme96/Ymf789/5Axqa7pGuLrm57ivna/YOnswBYJmAZtzRViG28VQKIzo3Kw5
-	 MNCEegwdE7ODQ==
-Content-Type: text/plain; charset="utf-8"
+	id 1tKjDv-0000000914r-3esK
+	for ath11k@lists.infradead.org;
+	Mon, 09 Dec 2024 19:15:17 +0000
+Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-e3983426f80so3791285276.1
+        for <ath11k@lists.infradead.org>; Mon, 09 Dec 2024 11:15:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks.com; s=google; t=1733771714; x=1734376514; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2kLjgnxaHMn5y0gTT+3dvOLNzEd5yWQ0Er4eRA/5e+Q=;
+        b=FSdQ5x9SgogEW47Kadvm+KXwJRRbSNInGL0DGdgXGYdZGXHRs/n7wFM8lYGj2fV9js
+         78drkcWQZaasiOITt7ZHEJ2PAKyaaQpTSres4uL1TvtnurST49uCgVSlIO2JWnR6MBrO
+         u5oqby5FxZ5BGgxrgRQ/qH7F7CB8TTYl4tWvClZK7851NMvhq1Xcwy3RJzp8OmX6AtIX
+         s2jKt5eS4yt6OZmbhB3PBXJFomzPTEck0p7q+pKgnVgKF3aAVsSP/numvyKVYeOseRxg
+         KxvmErTgqQU5xnffJfRqAsd21QRr+Ys/WbyrfyfRfQaM8Ur2CYAD/DOkyLpKn1+hgUFa
+         4mCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733771714; x=1734376514;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2kLjgnxaHMn5y0gTT+3dvOLNzEd5yWQ0Er4eRA/5e+Q=;
+        b=te+fJl0x1yBBc1cG2CH+WI4Jf5EWCbqupzjM3r5ItWkoBHnPtS9elLVe6eZneuwfbu
+         H3rYbwHSOCquGSsVYb+boWFpVD6EUezSxcn4V0d1VDTfzpwI2j+m7rBm/PuMC6NHMKR/
+         iji/yIdCA5llgvADrdNW5NXLRhwZ1D9Otqo5vZ8Z3QK/eaSQXnWn767A586SZWjkHxok
+         GtLmWEiEYCnngWA4Ir8FbYx56zgAEkR4Pk77OzTmqhySb7wBT+De5vThizYXaM6OoFlC
+         49BJC3/yShsBy97k7ApQzG13LOSjZpFtv2Z3Ls8IkteFbQNz97ZwuRm5uKGaetiqBtim
+         dhUA==
+X-Forwarded-Encrypted: i=1; AJvYcCWC8EWR/zTtSUF3xZilJiM4+wi1vfk9kq272f5FbDpcYdf/r/kFLfV/EwplxoBINPmcJuV7+bA=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzs3Mg5qt/67/odm4QLgR0g8FWMwP0vL97/1cZQBdmo3E7dOLLr
+	l15OXx8iqPF6D33B+fU3pzBqN1z6PNXhDWSCn3ISxlaQse9UvW+hsM/VIfRpAX3We0o/BREscOE
+	AgSgSLHhzkzj0/D9hr9MB94qd5UTdulnqkzoyJA==
+X-Gm-Gg: ASbGnct48jJtSNSOBjP6LEALtUA4MiZmdz083mJNysfqK6TDf8936augPVUxrjkpR0K
+	lbfOu3IjLm77Ng/Dlg7F6xTTa/u9e/M0=
+X-Google-Smtp-Source: AGHT+IGEl64T8fh4w41xF5QeO5D03WN4PRl4tWrD5C7XLi4pHuR/6CFrIf/3ED6k/l9Dz+t1Bywo3Kx6XChWXHllhco=
+X-Received: by 2002:a05:6902:124b:b0:e3a:32a9:82cc with SMTP id
+ 3f1490d57ef6-e3a59bade21mr1582408276.36.1733771714002; Mon, 09 Dec 2024
+ 11:15:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: pull-request: ath-next-20241209
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1bcdaf98-6078-4f79-a989-2e5db9400585@oss.qualcomm.com>
-References: <1bcdaf98-6078-4f79-a989-2e5db9400585@oss.qualcomm.com>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org, ath12k@lists.infradead.org, jjohnson@kernel.org
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <173376973868.347288.14583872593159043067.kvalo@kernel.org>
-Date: Mon,  9 Dec 2024 18:42:20 +0000 (UTC)
+References: <CAJ+vNU0EL3T+GyNAbVbGqYYQ5NM3h7cgAwqxxBMuZjh+-YQ3bA@mail.gmail.com>
+ <1b2ea8b2-6fbe-4118-b6c6-742c8f0be476@quicinc.com> <CAJ+vNU1-OZ3y4p2L+zf64AiVtUv70yZNqkT20jTxyE0_gJb6Jg@mail.gmail.com>
+ <0282be95-9094-4d49-b79e-4f7c976dad00@quicinc.com> <CAJ+vNU32EMHjtchJRb1sODBrUKG2vZW4ZEu1_F0+dCCEjCn7Dg@mail.gmail.com>
+ <20241209081714.GA25363@lst.de> <593c0d63-d8fd-4439-a57a-97340212c197@arm.com>
+In-Reply-To: <593c0d63-d8fd-4439-a57a-97340212c197@arm.com>
+From: Tim Harvey <tharvey@gateworks.com>
+Date: Mon, 9 Dec 2024 11:15:02 -0800
+Message-ID: <CAJ+vNU2ypE_Mn_6iKCmf5LYk9Sth=ryWXyewc5MhOKK8VoAKCA@mail.gmail.com>
+Subject: Re: ath11k swiotlb buffer is full (on IMX8M with 4GiB DRAM)
+To: Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>, ath11k@lists.infradead.org, 
+	linux-wireless <linux-wireless@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, iommu@lists.linux.dev, 
+	P Praneesh <ppranees@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241209_104223_041058_A1E579C1 
-X-CRM114-Status: GOOD (  17.46  )
+X-CRM114-CacheID: sfid-20241209_111515_913800_5049DF59 
+X-CRM114-Status: GOOD (  22.05  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,186 +97,93 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <jeff.johnson@oss.qualcomm.com> wrote:
+On Mon, Dec 9, 2024 at 2:49=E2=80=AFAM Robin Murphy <robin.murphy@arm.com> =
+wrote:
+>
+> On 09/12/2024 8:17 am, Christoph Hellwig wrote:
+> > I scrolled three pages before giving up as it was just quotes over
+> > quotas.  Can you please write an email that contains whatever you're
+> > trying to tell instead of just quotes?  Same for the person replying.
+>
 
-> The following changes since commit 2b94751626a6d49bbe42a19cc1503bd391016bd5:
-> 
->   wifi: cw1200: Fix potential NULL dereference (2024-10-31 16:20:02 +0200)
-> 
-> are available in the Git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-next-20241209
-> 
-> for you to fetch changes up to da8656797ae10b524a7a0c3d5eeb6237fa3ddd70:
-> 
->   wifi: ath12k: introduce mlo_capable flag for device group (2024-12-05 14:34:10 -0800)
-> 
-> ----------------------------------------------------------------
-> ath.git patches for v6.14
-> 
-> This development cycle featured multiple patchsets to ath12k to
-> support the new 802.11be MLO feature, although the feature is still
-> incomplete. Also in ath12k, there were other feature patches.  In
-> ath11k, support was added for QCA6698AQ. And there was the usual set
-> of bug fixes and cleanups across most drivers, notable being the
-> addition of "noinline_for_stack" to some functions to avoid "stack
-> frame size" warnings when compiling with clang.
-> 
-> ----------------------------------------------------------------
-> Aditya Kumar Singh (2):
->       wifi: ath12k: ath12k_bss_assoc(): MLO support
->       wifi: ath12k: rename mlo_capable_flags to single_chip_mlo_supp
-> 
-> Balaji Pothunoori (2):
->       wifi: ath11k: Suspend hardware before firmware mode off for WCN6750
->       wifi: ath11k: Fix unexpected return buffer manager error for WCN6750/WCN6855
-> 
-> Barnabás Czémán (1):
->       wifi: wcn36xx: fix channel survey memory allocation size
-> 
-> Dinesh Karthikeyan (4):
->       wifi: ath12k: Support Downlink Pager Stats
->       wifi: ath12k: Support phy counter and TPC stats
->       wifi: ath12k: Support SoC Common Stats
->       wifi: ath12k: Support Transmit PER Rate Stats
-> 
-> Dmitry Antipov (5):
->       wifi: ath9k: miscellaneous spelling fixes
->       wifi: ath11k: cleanup struct ath11k_vif
->       wifi: ath11k: cleanup struct ath11k_reg_tpc_power_info
->       wifi: ath11k: cleanup struct ath11k_mon_data
->       wifi: ath11k: miscellaneous spelling fixes
-> 
-> Jeff Johnson (4):
->       wifi: ath12k: mark QMI driver event helpers as noinline
->       wifi: ath11k: mark some QMI driver event helpers as noinline
->       wifi: ath11k: mark ath11k_dp_rx_mon_mpdu_pop() as noinline
->       wifi: ath11k: mark ath11k_wow_convert_8023_to_80211() as noinline
-> 
-> Kalle Valo (5):
->       wifi: ath12k: ath12k_mac_vdev_create(): use goto for error handling
->       wifi: ath12k: introduce ath12k_hw_warn()
->       wifi: ath12k: convert struct ath12k::wmi_mgmt_tx_work to struct wiphy_work
->       wifi: ath12k: ath12k_mac_op_set_key(): fix uninitialized symbol 'ret'
->       wifi: ath12k: ath12k_mac_op_sta_rc_update(): use mac80211 provided link id
-> 
-> Karol Przybylski (1):
->       wifi: ath12k: Fix for out-of bound access error
-> 
-> Karthikeyan Periyasamy (10):
->       wifi: ath12k: Refactor core startup
->       wifi: ath12k: add ath12k_ab_to_ah() and ath12k_ab_set_ah()
->       wifi: ath12k: add ath12k_get_num_hw()
->       wifi: ath12k: introduce QMI firmware ready flag
->       wifi: ath12k: move ATH12K_FLAG_REGISTERED handling to ath12k_mac_register()
->       wifi: ath12k: introduce device group abstraction
->       wifi: ath12k: refactor core start based on hardware group
->       wifi: ath12k: move struct ath12k_hw from per device to group
->       wifi: ath12k: send QMI host capability after device group is ready
->       wifi: ath12k: introduce mlo_capable flag for device group
-> 
-> Miaoqing Pan (1):
->       wifi: ath11k: add support for QCA6698AQ
-> 
-> P Praneesh (1):
->       wifi: ath12k: Fix endianness issue in struct hal_tlv_64_hdr
-> 
-> Rameshkumar Sundaram (4):
->       wifi: ath12k: add reo queue lookup table for ML peers
->       wifi: ath12k: modify chanctx iterators for MLO
->       wifi: ath12k: ath12k_mac_station_add(): fix potential rx_stats leak
->       wifi: ath12k: defer vdev creation for MLO
-> 
-> Roopni Devanathan (1):
->       wifi: ath12k: Fix inappropriate use of print_array_to_buf_index()
-> 
-> Sidhanta Sahu (1):
->       wifi: ath12k: Support MBSSID Control Frame Stats
-> 
-> Sriram R (16):
->       wifi: ath12k: MLO vdev bringup changes
->       wifi: ath12k: Refactor sta state machine
->       wifi: ath12k: Add helpers for multi link peer creation and deletion
->       wifi: ath12k: add multi-link flag in peer create command
->       wifi: ath12k: add helper to find multi-link station
->       wifi: ath12k: Add MLO peer assoc command support
->       wifi: ath12k: Add MLO station state change handling
->       wifi: ath12k: support change_sta_links() mac80211 op
->       wifi: ath12k: add primary link for data path operations
->       wifi: ath12k: use arsta instead of sta
->       wifi: ath12k: Use mac80211 vif's link_conf instead of bss_conf
->       wifi: ath12k: Use mac80211 sta's link_sta instead of deflink
->       wifi: ath12k: ath12k_mac_op_tx(): MLO support
->       wifi: ath12k: ath12k_mac_op_flush(): MLO support
->       wifi: ath12k: ath12k_mac_op_ampdu_action(): MLO support
->       wifi: ath12k: do not return invalid link id for scan link
-> 
-> Toke Høiland-Jørgensen (1):
->       wifi: ath9k: Add RX inactivity detection and reset chip when it occurs
-> 
->  drivers/net/wireless/ath/ath11k/core.c             |  132 ++
->  drivers/net/wireless/ath/ath11k/core.h             |    4 +-
->  drivers/net/wireless/ath/ath11k/dp.h               |    1 -
->  drivers/net/wireless/ath/ath11k/dp_rx.c            |   14 +-
->  drivers/net/wireless/ath/ath11k/hal.h              |    6 +-
->  drivers/net/wireless/ath/ath11k/hal_rx.c           |    3 +-
->  drivers/net/wireless/ath/ath11k/hw.h               |    1 +
->  drivers/net/wireless/ath/ath11k/mac.c              |    6 +-
->  drivers/net/wireless/ath/ath11k/mhi.c              |    1 +
->  drivers/net/wireless/ath/ath11k/pci.c              |    3 +
->  drivers/net/wireless/ath/ath11k/pcic.c             |   13 +-
->  drivers/net/wireless/ath/ath11k/qmi.c              |    8 +-
->  drivers/net/wireless/ath/ath11k/wow.c              |    6 +-
->  drivers/net/wireless/ath/ath12k/core.c             |  482 ++++-
->  drivers/net/wireless/ath/ath12k/core.h             |  134 +-
->  drivers/net/wireless/ath/ath12k/debug.c            |    6 +-
->  drivers/net/wireless/ath/ath12k/debug.h            |    5 +-
->  .../net/wireless/ath/ath12k/debugfs_htt_stats.c    |  681 ++++++-
->  .../net/wireless/ath/ath12k/debugfs_htt_stats.h    |  218 ++-
->  drivers/net/wireless/ath/ath12k/dp.c               |   70 +-
->  drivers/net/wireless/ath/ath12k/dp.h               |    3 +-
->  drivers/net/wireless/ath/ath12k/dp_rx.c            |   96 +-
->  drivers/net/wireless/ath/ath12k/dp_rx.h            |    6 +-
->  drivers/net/wireless/ath/ath12k/hal_desc.h         |    2 +-
->  drivers/net/wireless/ath/ath12k/hal_rx.c           |   12 +-
->  drivers/net/wireless/ath/ath12k/mac.c              | 2003 +++++++++++++++-----
->  drivers/net/wireless/ath/ath12k/mac.h              |   16 +-
->  drivers/net/wireless/ath/ath12k/pci.c              |   10 +
->  drivers/net/wireless/ath/ath12k/peer.c             |  223 ++-
->  drivers/net/wireless/ath/ath12k/peer.h             |   23 +-
->  drivers/net/wireless/ath/ath12k/qmi.c              |  167 +-
->  drivers/net/wireless/ath/ath12k/qmi.h              |   20 +
->  drivers/net/wireless/ath/ath12k/wmi.c              |  207 +-
->  drivers/net/wireless/ath/ath12k/wmi.h              |  115 ++
->  drivers/net/wireless/ath/ath9k/antenna.c           |    2 +-
->  drivers/net/wireless/ath/ath9k/ar9002_hw.c         |    2 +-
->  drivers/net/wireless/ath/ath9k/ar9003_hw.c         |    2 +-
->  drivers/net/wireless/ath/ath9k/ar9003_mci.c        |    4 +-
->  drivers/net/wireless/ath/ath9k/ar9003_phy.h        |    2 +-
->  drivers/net/wireless/ath/ath9k/ath9k.h             |    2 +
->  drivers/net/wireless/ath/ath9k/channel.c           |    2 +-
->  drivers/net/wireless/ath/ath9k/common-spectral.c   |    2 +-
->  drivers/net/wireless/ath/ath9k/debug.c             |    1 +
->  drivers/net/wireless/ath/ath9k/debug.h             |    1 +
->  drivers/net/wireless/ath/ath9k/dfs.c               |    2 +-
->  drivers/net/wireless/ath/ath9k/hif_usb.c           |    2 +-
->  drivers/net/wireless/ath/ath9k/hw.c                |    4 +-
->  drivers/net/wireless/ath/ath9k/hw.h                |    2 +-
->  drivers/net/wireless/ath/ath9k/link.c              |   33 +-
->  drivers/net/wireless/ath/ath9k/mac.h               |    2 +-
->  drivers/net/wireless/ath/ath9k/main.c              |    3 +-
->  drivers/net/wireless/ath/ath9k/wow.c               |    6 +-
->  drivers/net/wireless/ath/ath9k/xmit.c              |    2 +-
->  drivers/net/wireless/ath/wcn36xx/main.c            |    5 +-
->  54 files changed, 4042 insertions(+), 736 deletions(-)
+Christoph,
 
-Pulled, thanks.
+Understood; there was a lot of back and forth and likely some
+misinformation from my early replies. Let me recap here.
 
-b20821248e26 Merge tag 'ath-next-20241209' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath
+The issue I run into is that with Linux 6.9 and beyond on an IMX8M
+Mini SoC (no IMOMMU) with >3GiB DRAM (which requires more than 32 bits
+of address due to IMX8M's DRAM base being at 0x40000000) the ath11k
+driver will fail to register a netdev and errors out with 'ath11k
+swiotlb buffer is full':
+[    8.057077] ath11k_pci 0000:04:00.0: BAR 0 [mem
+0x18200000-0x183fffff 64bit]: assigned
+[    8.057151] ath11k_pci 0000:04:00.0: enabling device (0000 -> 0002)
+[    8.091920] ath11k_pci 0000:04:00.0: MSI vectors: 16
+[    8.091960] ath11k_pci 0000:04:00.0: qcn9074 hw1.0
+[    8.832924] ath11k_pci 0000:04:00.0: chip_id 0x0 chip_family 0x0
+board_id 0xff soc_id 0xffffffff
+[    8.832951] ath11k_pci 0000:04:00.0: fw_version 0x270206d0
+fw_build_timestamp 2022-08-04 12:48 fw_build_id
+WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+[   10.194343] ath11k_pci 0000:04:00.0: swiotlb buffer is full (sz:
+1048583 bytes), total 32768 (slots), used 2529 (slots)
+[   10.194406] ath11k_pci 0000:04:00.0: failed to set up tcl_comp ring (0) =
+:-12
+[   10.194781] ath11k_pci 0000:04:00.0: failed to init DP: -12
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1bcdaf98-6078-4f79-a989-2e5db9400585@oss.qualcomm.com/
+After a lot of back and forth and investigation this is due to the
+IMX8M SoC's not having an IOMMU thus swiotlb is being used and ath11k
+is requesting some buffers that are too large for swiotlb to provide.
+There is a specific patch which added the HAL_WBM2SW_RELEASE buffers
+to cacheable memory that could be reverted to fix this but the concern
+was that it would impact performance moving those buffers to
+non-cacheable memory (there are three ~1MiB buffers being allocated):
+commit d0e2523bfa9cb ("ath11k: allocate HAL_WBM2SW_RELEASE ring from
+cacheable memory").
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> TBH I'm hesitant to look too closely since everything those Atheros WiFi
+> drivers do with DMA tends to be sketchy, but from what I could make out
+> from skimming until I also gave up, I think it might be an attempt to
+> reinvent dma_alloc_pages(), or possibly dma_alloc_noncoherent().
 
+Robin,
+
+Agreed - I'm not sure how much attention, review, or testing these
+ath11k patches originally got due to the fact that there appears to be
+breakage for a couple of years here.
+
+The chain of events as best I can tell are:
+
+commit 6452f0a3d565 ("ath11k: allocate dst ring descriptors from
+cacheable memory")
+- Nov 12 2021 (made it into Linux 5.17)
+- changes allocation of reo_dst rings to cacheable memory to allow
+cached descriptor access to optimize CPU usage
+- this is flawed because it uses virt_to_phys() to allocate cacheable
+memory which does not work on systems with an IOMMU enabled or using
+software IOMMU (swiotlb); this causes a kernel crash on client
+association
+
+commit d0e2523bfa9c ("ath11k: allocate HAL_WBM2SW_RELEASE ring from
+cacheable memory)
+- Nov 12 2021 (made it into Linux Linux 5.17)
+- furthers the previous patch by also including the WBM2SW buffers in
+cacheable memory which are about 1MiB in size
+
+commit aaf244141ed7 ("wifi: ath11k: fix IOMMU errors on buffer rings")
+- Dec 20 2023 (made it into Linux 6.9)
+- resolves the issue from commit 6452f0a3d565 (but missing a Fixes
+tag) by changing the virt_to_phys calls to dma_map_single() but on
+systems that need software IOMMUC (IMX8MM > 3GiB) this exposes the
+'swiotlb buffer is full' limitation due to commit d0e2523bfa9c which
+allocates buffers exceeding the 256KiB limit imposed by swiotlb
+
+Therefore in the case of an IOMMU'less system with DMA address
+limitations of 32bit and >3GiB DRAM (as many IMX8M boards have) the
+ath11k driver has been broken since 5.17.
+
+Best Regards,
+
+Tim
 
