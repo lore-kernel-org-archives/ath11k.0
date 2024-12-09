@@ -4,83 +4,208 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57094E7717D
-	for <ath11k@archiver.kernel.org>; Mon,  9 Dec 2024 11:24:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3C27E7717D
+	for <ath11k@archiver.kernel.org>; Mon,  9 Dec 2024 12:03:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qf+IKqMd4jWP7PDOCpVWhE6CrZFz+9D4Dw7c3vH6cEo=; b=WQka5qRltY4lCzzOkMrpr8ZdBx
-	7rXKJzVufeqaMdeyVVz3NKwfLjWdk2/leMqXLZ7ZLFC0sKI5EX7T/YVhkdwR/sYly1TDO8UGLH+1Z
-	vlYoJnUqSPdmfOcfbCVJphB504v4bjwbnYlf3jn/0YmHNK1OAgBBMuL0R5gSj2JUc5orCrymmFQU6
-	acLHBh9guAsmHgixoN2LXeRIDls1q53BfgYIKivUeElMoDlkoutE9CLEmU0unJyK9FeiDBzak90Jj
-	v//OqNkMHYFmVOniKmNlBZuqXImsgWWVLOjHE+jmXWTUqohZzb128wFh20/q9FUoJnwMXjswgwWEj
-	X92Fx3mQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=cWO1vtST2RvN31AcCbA6YitT4GKod8x9EcWhSGYpNW4=; b=o6Y48ucpA5nvQttvfDkK7ypJ1l
+	Umi0WjwAphlIytxPFg3Vv0/uRPcWuUU7sn4T9UGIKGsL46rjPDc9RwgpAzn2BUdRjwHl7O//nwtq5
+	xVys2ei1u4jqIEtmL7d8iERyHUuOqmjOynGsIClpqLcXCDBbvrpxP2gXcZ+miYeyddJ67LhxfqndD
+	zEa2CgapueWlbbKlZ9+OCDVQAnpTAKNy+2vROyXD8zrp1PRGF2Pd9tpxoqnWw+B43xvNRRV8gF1OX
+	71jUdaPliW57g1tGSrXb5wtNhnPUIA9CFmVSXoD1iEyVvvTf9iogciqxcNbSM7payPJVHdu6LU67Y
+	l/xeiEvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKbsT-00000007U1I-3ToI;
-	Mon, 09 Dec 2024 11:24:37 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1tKcUH-00000007c48-1gp0;
+	Mon, 09 Dec 2024 12:03:41 +0000
+Received: from mgamail.intel.com ([192.198.163.19])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKbrc-00000007Ttq-33AL
-	for ath11k@lists.infradead.org;
-	Mon, 09 Dec 2024 11:23:45 +0000
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5d3e8f64d5dso2326560a12.3
-        for <ath11k@lists.infradead.org>; Mon, 09 Dec 2024 03:23:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733743423; x=1734348223; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qf+IKqMd4jWP7PDOCpVWhE6CrZFz+9D4Dw7c3vH6cEo=;
-        b=cdP0L9GC547VSwFNh/bMGf3om40VhkWiKjFkE4+l51TvSvON8/75I0fimeb+s1BduN
-         meM98EDBRWEt4FkcEKc45DPkXp1W/zfdbWp5CzXMFrwWJz2tshImzm6Lfet18KNwxBCQ
-         W3laXwGZP6VUDjWkrzLpZJSZRX1Hqj/vtpuF0TAjkmm3s386LrewFN6UbiLMtuxl4+QA
-         md58wopkUGsV4anbGQe/Q+3WO+XfAcagoQX8J117+VFSJmqE+fh5dI7j7RCfo+Lj46aG
-         cgABcbslrJ75vpj3K/QMHpuXF4BIAAQilz6qhIDn7waeKmzUfz8d80WNXJS/F0OU21YH
-         0nSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733743423; x=1734348223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qf+IKqMd4jWP7PDOCpVWhE6CrZFz+9D4Dw7c3vH6cEo=;
-        b=q+9sNGYZl6JFZZhGDhJBLX1CKoIbNfkYh2dVHeoi4Hhinuu2BBmjxd1+vINnD2OZPB
-         J+FS8NrXWWA53cLyHSiCM81gznyT6/S7XKGbS4/H86oz4Nb7S5WuFuRXW/izDKjv65Ec
-         W+Do1YeVNxQn8vTWaAukNCWPnhBTb3g51+35ySgnUnHKVg+zuDhWUc+205brOYxuUYix
-         /F/PTQLT7BvdUYBB5qkvS9MghpPfHrNsF5PU8yMMej1jVpuQSBuUkG5H/F++q894jZO0
-         ynUdWXPg5N+c1l6xv5zf0WkMOoNSJte12HcayfoHjuUMSXQfunzgtM1urwkhdfH3wTbz
-         xdrw==
-X-Forwarded-Encrypted: i=1; AJvYcCX5c2Hwhho7gqc+/bAVSo2tNmJ29pv7LBRFkjVMRs4QTOaUDqwow2X17uelkDMnONlyRBKO7tU=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxtWr44SCr+NbvIhJr/DbTEaIXIaRJY9iNoTW0Ze/4KttUM7B3h
-	na2rR+mwrmEbhGh95/SwVrg6unPZgEScS1G+9bmRe+S2dRVaqLJkQwzVBSmHTYCOTatHGvg7lMv
-	fQov4KciV2DmbFyp52QeiUn3y4lE+K5SA
-X-Gm-Gg: ASbGncvKGIuwTsncdLJQAVp5thxllaPeh+UnjHU/nZY2x6FwkTGbsl9572l+rrm5AA6
-	kY5/dv1WmNUhUL/SJ8ZtmTfa9T7RKuFv7qQ==
-X-Google-Smtp-Source: AGHT+IH2cTojVaNjg6f1XOAo3y7FAUwBnB3zsEJ0j7YM43+fRPIRPXFJpkVI999WVguOEAF19y8Qup5SYSTPKeqAtOg=
-X-Received: by 2002:a05:6402:51cb:b0:5d3:baa3:28a with SMTP id
- 4fb4d7f45d1cf-5d3be65a53fmr10464855a12.1.1733743423083; Mon, 09 Dec 2024
- 03:23:43 -0800 (PST)
+	id 1tKcSj-00000007bhq-2CgS;
+	Mon, 09 Dec 2024 12:02:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733745725; x=1765281725;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=UyA0/Mw9n5WUzPQkDFh1rV7dTtFuvIKnJus0jafUjv8=;
+  b=bpTDTkU6y+g5w5qdb/WCWeSUmYGV6en+zxuN4IrBQl6BxIeGcH1GGrYk
+   ve6tHTOzLah1kzBlVdWWIOhsjOc88WUUrW2Z2B1i8xd0HUOHZuUQSZm4j
+   xQVnpb40jU4SsvE/R7USvWgd1qGWBWQ7hFMbO2UQ3CUXJwjP4zUR4DrR9
+   mREY+IIX4UgpU5YbSMSfGqg5J4QuSDeM7dcecOkFTJF0JGLq+0zvF69p3
+   53Pu0won0twuX/k6MCQ3tMMXb+p8lM+8THbz/uDsQ6VMqAX/i6wCo+OqN
+   tVri83ZwEt3lZgcxeqWrAdbmPHNhPaAc9NtvIkDn69cHtL4lT+o5OgtlP
+   Q==;
+X-CSE-ConnectionGUID: G8Z3pcfOSHmSuH/iWT8fdw==
+X-CSE-MsgGUID: n48DdACBS0KbHSiOBjkYlw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="33376454"
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; 
+   d="scan'208";a="33376454"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Dec 2024 04:02:04 -0800
+X-CSE-ConnectionGUID: RuB61iplQoa4buHZ6hF5iw==
+X-CSE-MsgGUID: HmL+y8muTr+ymH9yB2HFNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,219,1728975600"; 
+   d="scan'208";a="118291933"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 09 Dec 2024 04:02:03 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 9 Dec 2024 04:02:01 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 9 Dec 2024 04:02:01 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 9 Dec 2024 04:02:00 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uS+kjXWsgzoZdqSj/eSL5XfkfVfYq2cuSQRl6UEybBLULwbTmEJspFMDdwMArIfetvy4gYcDsuM4cqohT8R4TeOc8bsA48rDaCvAEqTFWn8nkGeUFJ9fVxLIEDzeFbHXhAR5WDHEBHCkJqbgHrphRZz8iNWQyfucmDPSXTq6bFAY7IP9iHDa+agBJFZ7fh4vfN0V8ruZ1jHj9aPaNXNfHPkAC1yW2/F4yT2ChxPpsBsbwc1799X8+RbJOLF3kcBnJRgN7dbK4tlBVJqg7+3pGAb2guhUk/KskQhz+9X/vLe/RosoqV8BvuwBKD1AC1yL/QitAEENUvcrg/5OuZaGmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cWO1vtST2RvN31AcCbA6YitT4GKod8x9EcWhSGYpNW4=;
+ b=ANH8q43m/VKi3HisBqbPcLFAbHYlpaCn3rzQRLsHmO3482tc5Rwfwto41iHvFLw68zOiJ7zbZ47XSyoNddedhUlfTnupYAdArYW7cMguiTkY7nP9FfFc3eTKcuI4zYrlp+bVPvzs6G4CGhgvWEZUEgl3FpbBTDGGgMyYa+ItpquHoB/386C37g9Vk9F/pm9y7xBaM2Cr4Y3kfIY4xfaDlpDqYhNnE2FoYS+Bu4wAMeUNjS6Jgpo5K12GldF9o4pesXEwX+9ifVVuKbuGZSP081eJTtc56nD0Hot9bfDCkK/ncyQ/94MbMBgk0yN3e16g1yDNqZp4+Vf348elxgxKJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN6PR11MB8102.namprd11.prod.outlook.com (2603:10b6:208:46d::9)
+ by SA3PR11MB7416.namprd11.prod.outlook.com (2603:10b6:806:316::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.17; Mon, 9 Dec
+ 2024 12:01:50 +0000
+Received: from MN6PR11MB8102.namprd11.prod.outlook.com
+ ([fe80::15b2:ee05:2ae7:cfd6]) by MN6PR11MB8102.namprd11.prod.outlook.com
+ ([fe80::15b2:ee05:2ae7:cfd6%4]) with mapi id 15.20.8230.010; Mon, 9 Dec 2024
+ 12:01:50 +0000
+Message-ID: <72c8eb66-eb67-4f8b-b0c0-13f1aa001698@intel.com>
+Date: Mon, 9 Dec 2024 13:01:42 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/21] Converge on using secs_to_jiffies()
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+CC: <netfilter-devel@vger.kernel.org>, <coreteam@netfilter.org>,
+	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <cocci@inria.fr>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-s390@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+	<linux-scsi@vger.kernel.org>, <xen-devel@lists.xenproject.org>,
+	<linux-block@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
+	<ath11k@lists.infradead.org>, <linux-mm@kvack.org>,
+	<linux-bluetooth@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+	<linux-rpi-kernel@lists.infradead.org>, <ceph-devel@vger.kernel.org>,
+	<live-patching@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+	<etnaviv@lists.freedesktop.org>, <oss-drivers@corigine.com>,
+	<linuxppc-dev@lists.ozlabs.org>, Anna-Maria Behnsen
+	<anna-maria@linutronix.de>
+References: <20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com>
+ <b9fcb12a-b7a4-4c33-836e-67109ce07deb@intel.com>
+ <dab77729-682f-4182-9fb2-cd522ac29b5f@linux.microsoft.com>
+From: Przemek Kitszel <przemyslaw.kitszel@intel.com>
+Content-Language: en-US
+In-Reply-To: <dab77729-682f-4182-9fb2-cd522ac29b5f@linux.microsoft.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0221.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:6a::29) To MN6PR11MB8102.namprd11.prod.outlook.com
+ (2603:10b6:208:46d::9)
 MIME-Version: 1.0
-References: <20bf2693-ce53-48e9-8b54-7e3273815033@quicinc.com>
- <20241203094820.106225-1-jtornosm@redhat.com> <99359cc4-2279-4a8a-80a1-d5475fd5208d@quicinc.com>
-In-Reply-To: <99359cc4-2279-4a8a-80a1-d5475fd5208d@quicinc.com>
-From: Janusz Dziedzic <janusz.dziedzic@gmail.com>
-Date: Mon, 9 Dec 2024 12:23:32 +0100
-Message-ID: <CAFED-jk--dXAoXJ9ijpnUDeD=WiW4ZeoLb45WXiVpzPvkgX12A@mail.gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: allow APs combination when dual stations
- are supported
-To: "Yu Zhang (Yuriy)" <quic_yuzha@quicinc.com>
-Cc: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>, ath11k@lists.infradead.org, jjohnson@kernel.org, 
-	kvalo@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, quic_cjhuang@quicinc.com, vbenes@redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN6PR11MB8102:EE_|SA3PR11MB7416:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbc1c36e-1946-4347-72cf-08dd18494368
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?YWRaWVBuaVhybkhDN05KMFRwYUpmcjVnbStIR2hkVTg4cTI1T0JpWkNla1dM?=
+ =?utf-8?B?Z0kzUy9jY0dENGFSWE1nVTVURmpWcjFGMWtvN2hZaGQzNVFCNDI1YTduM05a?=
+ =?utf-8?B?b0JNZHZjZmh3S25PdjdiSDkvUWxYbHJtQVJoK1o1cW5Ic2FUVTN3YW1pZmNC?=
+ =?utf-8?B?Sjl1UXpZU2N3ZCtEZkFlRjBQT0pZdHFjVWl4R0hRbDZBQmNBQnk4VHkwbXhC?=
+ =?utf-8?B?ZzR3TWV6S1paSGpiemlJTDVKTjMyT1dHZ09zR2xFbE1jZkd1YTJuMUl2RGxp?=
+ =?utf-8?B?OUxGY3ZaeWRRSnpqMU5jbWlHVGoybjYxd3NQWTVFZXFBa3JEdWpIbHF6ZDVN?=
+ =?utf-8?B?K052M2xlNTZUMDJ4QmNvTEEzUURPNGxJR0VJV1dRNmQveGhCKysrVTRHNjcx?=
+ =?utf-8?B?ZnVhUXpoNjJYWGdEMml0endxOTUxRTR0bUxZNVErd2NEZUNBZnhpMyttZlph?=
+ =?utf-8?B?djd2bEdVVERYZzVpUFNIaVRmTC9wMzYxaGZSd0tvYkJaYXN0a1FOOGllK1BG?=
+ =?utf-8?B?WmhRRWE5bTN2Y3RnUXU0ZFIrMStEYm1ONk1TMWhpR2Fwa1FaMzJXTzVHdUlH?=
+ =?utf-8?B?OUMwZDZ0QVlxSjdocmVWWlJucUhsVE9uK01sK3VxWG9uRHQvSTRUanEwQ2NH?=
+ =?utf-8?B?K3gwZVlHSWtVK2R0Um1wREZVbUkwTG1wWGVmN3ZCTnk3Sk1sMjYxbnZOVDRz?=
+ =?utf-8?B?Y0ZYaE1yRFVaSWxaek1XM3hPOWNRbUtkaFM2Mm4wSnJpbjR3cEdlazNFLzVU?=
+ =?utf-8?B?NkZGcU5pYkcyclNFYU1sMW1heXRzK0RjNnFyTlZKbGxqVjJhRW1MSlZXYTF2?=
+ =?utf-8?B?bFhjSTJ5SG1TSEE5Uk5tVEN4WmxmeGQ3c3YxYloyZHUzODdEZDdqdnlmQk14?=
+ =?utf-8?B?MEVPeXdSNmg5RXZTZVNFdjFmWlNobXJWdEQ3T0dzOXBFTklSL3BWakZhVWdm?=
+ =?utf-8?B?ZTEyaDVJbVlNN2EzNUkwb0tyUG5WUjllWC92QjlTdVZrbWZUYTdlZnlSYUNh?=
+ =?utf-8?B?NWVZOFo0bVRyd1BJK2Z1ZGZEL2cvRGZkV2ovdTFYaDFyeU80VzFjdDJnZkJJ?=
+ =?utf-8?B?anpOcmh5SHZUOUhsbDFuTmR0WVJYSU5TUGVHY0YybEVtakdKT2lmMlErSHVs?=
+ =?utf-8?B?VjV3MitiUFU3QitJdUtDMUl1YWxzamxMQldTSkVTVkZRcEt1TDdIOVY2Qzlw?=
+ =?utf-8?B?Y21HQXBVZlJMMGlURUdxNHJ5L0MxQkFWVHM3Z3NpT1RUR1A3SGoxRVR2RndP?=
+ =?utf-8?B?VVNPRkt1alhwd2dtcTJuQXRCZjZkZzljdjltdVIyV2RydjNwK0lxNE4rby9j?=
+ =?utf-8?B?NFZZVWZwYW9uRHpGUElRdXdoNjBEV2t5MU1oaElnWVBiUXdBVnovNVViMy9z?=
+ =?utf-8?B?aGtKU0VLcG5Gc04xVVFpZVhkZm1GaUJYNW9rd1FSc1pZNmFnVWFhQ0RBS0Vx?=
+ =?utf-8?B?REQ4WFMzN0pNZi9HVEtMQVpJYWxtZXF1L3FZZ0tEdHg2Tk1ET1htMGVxQzA5?=
+ =?utf-8?B?aExTblJJVTFyd04xT3dIeFJHV08xOHE2WWlSK3pDL2hhZ1Z5Q2hXRTV1NG5p?=
+ =?utf-8?B?S3hSOGRIamdTR2t1ZFNvTGxONHhaYXp1MjQzNEZhM29nbkFIN2ovOWdDSmlp?=
+ =?utf-8?B?OEhEbmk3YnR2TUNFNWxNUkliRDE3L2lhOGswOG1helkyVkpiS0FJM3pGNGt0?=
+ =?utf-8?B?ODJSYXF4Y2p4YmVFaHpxM0RVNVlzelhEczZYS1BSc240b0R5ZnZDWjdUTllN?=
+ =?utf-8?B?Rm5ZZUl2OHk3N1ZnTkVIQUZuRmpPUE1ramNyL0ZwOHBIVGpTTGE0c1NTbXp4?=
+ =?utf-8?B?SjJxajJYSWNDR3dMODNkdz09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN6PR11MB8102.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NTl2cUxMSWdXZWwzUWFBcnM3d2J0cTMxWlVDVldrajRnenBxakp0cDJpK2FB?=
+ =?utf-8?B?eCtSeG5sdUFCV3BMY1F4Und2YVloKzlEUzBSWmlGSjNRNkw2amlnVjdkZDZ5?=
+ =?utf-8?B?eGVWN1lRMUpjdStZUnZYWGNmb3o4QXozTE5ZaUYxd2UxaHFNS1BwenZicGhn?=
+ =?utf-8?B?eTZkTkNLdzVSc3pydW1FK3Y4ZUZGSmFXeW5pS3QwZ1A4RmpiSTVMam9oM25Y?=
+ =?utf-8?B?dGpkbVBUNTRMWTVRRXNHUFozUnRFUTA4dVpJcWsxOXZTeHhISW9CeE9mZ1Z4?=
+ =?utf-8?B?N0FHV0NabUhYNDB2ZjhISGlEQ2pEZXNWdklzdDNPTUtRUnlsRTBEaWx3eHY2?=
+ =?utf-8?B?RG5tZDNRR1I0alJITHA2N3VxN0QzOVBGR2NuNXVrNWtKTlIzMUdIYUNMbkVJ?=
+ =?utf-8?B?aUhPaTRKdFQwdm1QZzNIT2YyQXpKL0tyU0d6SXh1RGl6dExmOGFFVE4vUCtt?=
+ =?utf-8?B?ZUpEZmJwRis4WVF1bjkrUE5PTTNqWU5NdUV0RUdqaEZTQm81TER3UTJNNVl6?=
+ =?utf-8?B?WGpHajF6enM2blFkQVFia1hDdnIvamk2S0txdG1Teld4Qk1IVjVpWENSSjR4?=
+ =?utf-8?B?UHZVZzk3TWttVTlFTmxOR0t1R1BLMkZyTGNaZjAvVVRkSk9iZUZYMi9VN0Rq?=
+ =?utf-8?B?aHdwZzBMcnNkVzFhVzZ0bys0Szc3TC9xZHBzY2NkS2ZLamhhTmM0Ryt5djVU?=
+ =?utf-8?B?YWl2OHc3VGpvL1dJamtRSlFkN1dhSHpuNzBTa1ZPUTVlait4NGxoRkhhWFhC?=
+ =?utf-8?B?eG9QTEpSZGJtenUxNVpYRUdicElVM1RHYlJJNTIwSWQ1emtiWkJaSVdoU0Zv?=
+ =?utf-8?B?L2JoRUU4allJZXhmL1JBa1lyVTRCbDkzUUE3RDhmL2V2aEZYMnRzZmtwWmFz?=
+ =?utf-8?B?SFZOSzB0clNVa0dpcmY5c3V3SkhtaG5TYWVYOHNwT3czUFdPSGw5bUpLa2lX?=
+ =?utf-8?B?d0g4ODN6blFMNzFoL1VBWUtSVnIyMXloeFN5dlExWEowa1U2MWJnWDMvaFFU?=
+ =?utf-8?B?VWluOCtNNi9oWHpWc29TOEFoekJlQjM0SHNETk5XVlFrcTI5TTNGVk5lRDFO?=
+ =?utf-8?B?Y2lFMHBQZ2ZhYzdFNmxGTUhuVEE0eUpzUXkzM2c4WjdBSlU0RjhMNW9VeWl5?=
+ =?utf-8?B?ZDNhZU9EUzE2VmdRMldRMUpCVmNQb0VuOGdPZDFLVTdJSnUrL0FMRnB1bm0v?=
+ =?utf-8?B?L1NEWjl1MkFDdW1WcXdwZVdRLzZxZElvOVEwNnl4NHNFdUdhcFFQSEZWMEtl?=
+ =?utf-8?B?NUxGT25ucDdZUllFbkd6OVduaFJLMm5kNlIySjI1djRTWjY4YmpDS056TXlU?=
+ =?utf-8?B?SEVrcEwyV0JVeVpUQmFJZ0E2UmVNMkEyVXBrNThtcm9sWTMyT2s4cm9NNHdn?=
+ =?utf-8?B?VkJJdkNFNUpBNkVEdmJkWjZnSlNldW10SVhWNHk3VHkwQSt2Nkk2U1Bvajli?=
+ =?utf-8?B?SFVzOEg1VHg1QkEzdlhaYW5WZjhWQlFGVnk3czF5OWhRd3hLZC9qbm5uZ2g0?=
+ =?utf-8?B?cVdYOGMxVFVzZ3MrUUxSSXZ1b2JucjRzekNzaHBrclVlbHptRTYveEtrN0Nu?=
+ =?utf-8?B?VmZnSGlxQmN2b0RpZ0lKZ01qbEVJTWEyR2lYUWFremtaOGJ6TmF6ZHltZVhn?=
+ =?utf-8?B?S0tDQXlMKzVPVU00KzNkOHlrbTZFVGNaWkIwNHRyVHA0WW1BVG1wb0o0c1Az?=
+ =?utf-8?B?akRITDhPMUswY2hjTzFlcTNTN2cybnF1OE1Mc3pKNUhOMHp6MXV4R2J0Qnp4?=
+ =?utf-8?B?Y1VISFRTUFVOZ3JCdms1d2xENkl6NHc4MGoxVjN4YTlRcVRzSjZpcGVjNTlu?=
+ =?utf-8?B?NFFKMXIzSmhRQmI0VFB4dVFMNTgxdHQxVHNDQ3BzSlREeXU5Z0xnWm0wdkZK?=
+ =?utf-8?B?WlJHSnpZZ1ZyT1hCaFRwZ0VHZHBlcHA3MnIvR0d1V3BTcGc1Rzd4b01rcGZJ?=
+ =?utf-8?B?NVQxemhHclF4M2NJeUQwNXpZdDhXRmlOV3V6SzFtMlJ6a0ZCM091bXNFVUdy?=
+ =?utf-8?B?R05iblBITWpVMGZ5U29nQlZNSWc4eTlZYm9pUEpsMzBXcUNFSkFvNlVGcmFH?=
+ =?utf-8?B?TkFnN0R5ZklyVEoxQm94NTh6dzVYV1AzOStyUVo0SlA2TG1vZCtnMXA5M21K?=
+ =?utf-8?B?blMweFNMRHRTbVQ5UGhjYUVWdWpkZ3NjL2ZmN1d4dGV1NnRZTUp1cjI1R1RW?=
+ =?utf-8?B?UHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbc1c36e-1946-4347-72cf-08dd18494368
+X-MS-Exchange-CrossTenant-AuthSource: MN6PR11MB8102.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2024 12:01:50.0336
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 90RppGftVpk3FnymRpMqElEbYRGNrvoy9BAT6DroNtYjNKooFKLbkYJkbD2fkW+MuR4qzs1oYqLeiuNTTK8T1TE04fQVC07aiB1zb/08NYs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7416
+X-OriginatorOrg: intel.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241209_032344_772351_6E53F59C 
-X-CRM114-Status: GOOD (  19.39  )
+X-CRM114-CacheID: sfid-20241209_040205_579307_C7106ED6 
+X-CRM114-Status: GOOD (  15.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,203 +220,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-wt., 3 gru 2024 o 11:57 Yu Zhang (Yuriy) <quic_yuzha@quicinc.com> napisa=C5=
-=82(a):
->
->
->
-> On 12/3/2024 5:48 PM, Jose Ignacio Tornos Martinez wrote:
-> >> Which chip do you use?
-> > Since I am not totally sure about the useful information, let me show y=
-ou
-> > the kernel logs:
-> > $ dmesg | grep ath11k
-> > [    3.659388] ath11k_pci 0000:01:00.0: BAR 0 [mem 0x84200000-0x843ffff=
-f 64bit]: assigned
-> > [    3.659405] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
-> > [    3.659649] ath11k_pci 0000:01:00.0: MSI vectors: 32
-> > [    3.659653] ath11k_pci 0000:01:00.0: wcn6855 hw2.1
-> > [    4.871571] ath11k_pci 0000:01:00.0: chip_id 0x2 chip_family 0xb boa=
-rd_id 0xff soc_id 0x400c0210
-> > [    4.871586] ath11k_pci 0000:01:00.0: fw_version 0x11088c35 fw_build_=
-timestamp 2024-04-17 08:34 fw_build_id WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_=
-SILICONZ_LITE-3.6510.41
-> > [    5.241485] ath11k_pci 0000:01:00.0 wlp1s0: renamed from wlan0
-> >
-> yes, you also use wcn6855 hw2.1.
-> > If I try to setup 2 APs with your interface combination I get this:
-> > # iw list | grep -A6 "valid interface combinations:"
-> >       valid interface combinations:
-> >                * #{ managed } <=3D 2, #{ AP, P2P-client, P2P-GO } <=3D =
-16, #{ P2P-device } <=3D 1,
-> >                  total <=3D 16, #channels <=3D 1, STA/AP BI must match,=
- radar detect widths: { 20 MHz (no HT), 20 MHz, 40 MHz, 80 MHz, 80+80 MHz, =
-160 MHz }
-> >
-> >                * #{ managed } <=3D 2, #{ AP, P2P-client, P2P-GO } <=3D =
-16, #{ P2P-device } <=3D 1,
-> >                  total <=3D 3, #channels <=3D 2, STA/AP BI must match
-> >       HT Capability overrides:
-> 2 combinations are to support DBS and DFS.
-> Combinations is correct. channels=3D2, max interfaces=3D3.
->
-Small question from my side. If phyX will support 3 bands (2.4/5/6)
-what this channes<=3D2 limitation mean here for APs?
- a) can I setup APs on 2412 and 5180
- b) or even can setup APs on 2412 and 2462?
- c) or setup APs on 5180 and 6055?
-How could I know a or b or c is allowed?
+On 12/6/24 9:58 PM, Easwar Hariharan wrote:
+> On 11/29/2024 4:57 AM, Przemek Kitszel wrote:
+>>
+>> [removed most non-list recipients, it's just too much]
+>>
+>> On 11/15/24 10:26 PM, Easwar Hariharan wrote:
+> <snip>
 
-BTW, do you plan to share same firmware (with 2 possible APs) for
-ath12k and WCN7850?
+>>
+>> Regarding code - you could also convert msecs_to_jiffies(const * HZ),
+>> there are 10 that are greppable.
+>>
+> 
+> Those seem to be mistakes. const*HZ is a seconds-denominated timeout,
+> being passed to msecs_to_jiffies() which will treat it as a
+> millisecond-denominated timeout resulting in an excessively long
+> timeout. I suppose that's better than a too-short timeout, and
+> apparently it's been working fine all along since hardware responds
+> before the too-long timeout expires. Half of them are in
+> drivers/scsi/arcmsr/arcmsr_hba.c and the pattern has apparently been
+> there since 2010.
 
-BR
-Janusz
+my point was that, the default value of HZ is 1000, and most of the code
+that is just `$value*HZ` was meant as "$value seconds, in ms unit".
 
-> And you want setup sta + sap + sap, right?
-> When up the second sap will meet error? Could you pls share the error log=
-s?
->
-> I'm not very sure if you add all interface with managed type, and do
-> "ifconfig xxx up" before running hostapd.
->
-> You can try add second and third interface with
-> "iw dev xx interface add xx type __ap".
->
->
-> > # iw dev
-> > phy#0
-> >       Interface wlp1s0_1
-> >               ifindex 6
-> >               wdev 0x4
-> >               addr a2:42:d2:1e:89:a3
-> >               type managed
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >       Interface wlp1s0_0
-> >               ifindex 5
-> >               wdev 0x3
-> >               addr 52:e9:be:33:6a:61
-> >               ssid test-qe-wpa2-psk
-> >               type AP
-> >               channel 13 (2472 MHz), width: 20 MHz, center1: 2472 MHz
-> >               txpower 14.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >       Interface wlp1s0
-> >               ifindex 3
-> >               wdev 0x1
-> >               addr c8:94:02:b5:fe:fb
-> >               type managed
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> > Or even this with no AP up:
-> > # iw dev
-> > phy#0
-> >       Interface wlp1s0_1
-> >               ifindex 6
-> >               wdev 0x4
-> >               addr ca:e5:84:22:10:ec
-> >               type managed
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >       Interface wlp1s0_0
-> >               ifindex 5
-> >               wdev 0x3
-> >               addr 9e:4e:c5:ea:4c:e9
-> >               type AP
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >       Interface wlp1s0
-> >               ifindex 3
-> >               wdev 0x1
-> >               addr c8:94:02:b5:fe:fb
-> >               type managed
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >
-> > If I use the parameter to ignore the feature and configure the interfac=
-e combination as before:
-> > # iw list | grep -A4 "valid interface combinations:"
-> >       valid interface combinations:
-> >                * #{ managed } <=3D 1, #{ AP, P2P-client, P2P-GO } <=3D =
-16, #{ P2P-device } <=3D 1,
-> >                  total <=3D 16, #channels <=3D 1, STA/AP BI must match,=
- radar detect widths: { 20 MHz (no HT), 20 MHz, 40 MHz, 80 MHz }
-> >
-> >       HT Capability overrides:
-> > # iw dev
-> > phy#1
-> >       Interface wlp1s0_1
-> >               ifindex 7
-> >               wdev 0x100000004
-> >               addr 82:90:89:90:c1:37
-> >               ssid test-qe-wpa3-psk
-> >               type AP
-> >               channel 13 (2472 MHz), width: 20 MHz, center1: 2472 MHz
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >       Interface wlp1s0_0
-> >               ifindex 6
-> >               wdev 0x100000003
-> >               addr 6a:ef:d0:db:10:f0
-> >               ssid test-qe-wpa2-psk
-> >               type AP
-> >               channel 13 (2472 MHz), width: 20 MHz, center1: 2472 MHz
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >       Interface wlp1s0
-> >               ifindex 4
-> >               wdev 0x100000001
-> >               addr c8:94:02:b5:fe:fb
-> >               type managed
-> >               txpower 16.00 dBm
-> >               multicast TXQ:
-> >                       qsz-byt qsz-pkt flows   drops   marks   overlmt h=
-ashcol tx-bytes        tx-packets
-> >                       0       0       0       0       0       0       0=
-       0               0
-> >
-> > Thanks
-> >
-> > Best regards
-> > Jose Ignacio
-> >
->
->
+Same for HZ/const, HZ/2 being 500ms.
 
+HZ is awful in that it is not 1s but 1/s, but it was easy to abuse the
+value in simple context.
 
---=20
-Janusz Dziedzic
+If you happen to touch this, please do in a separate series, to get more
+attention from drivers owners.
+
+> 
+> Thanks,
+> Easwar
+
 
