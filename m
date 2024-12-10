@@ -4,51 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF6FE7718A
-	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E8B9E77186
+	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=3tkOAM1zqG9JeFOtral7Lfs9u46U15/2RBF6sWmMcg4=; b=KcTIGjzNV9Hl21
-	JSNuLs92FPoclI+1luqCZ1lfBpiwb9WAiAPtDjJI5NAYo8mLiM2TcAMm4Mh5idJlYlQkqoa80GfNG
-	wond5SKQsFhCT7xnvZds4ByP9MKFT3mjE3htrNvYrCtJbU+LgmOueBrI0/ObxYfoDUhcZUbS7Zpks
-	BqFsz/FpERhU57czXF39P+nbpaLB+Hn1p+AHzExDgp9wvig7Po/naYUOSru+jkpEZEDo31E8Hi7zX
-	+lwVvH16ORNOaDbsfWv9w3yNkwJpo6mbMATbnrcPvm7J5OO1QhjkoUBG2ZyAH/DawXzukchmS2zFF
-	GFZC7j/rqLuMIXR7jJag==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oAoRcxFx6r3qiWDnRBBsiLzbuwo4yEAyTzO1K822O7I=; b=JiLddYtTXqkEODXeGGXkZKuToD
+	HaQ5ilA12hTDOFby7MBSrk9l5fuVSgAbKTGLoCTGrRIez3YGl3KIkW3wz0+4Z4tIsaY4kh2BFXhSL
+	xqMphP+wQeMzBpNKTwwzeoscdpX+RcRuSU1G6EPCKJk79HTYRODS+y/aPojR8dOsxfkb4Rld5OvBr
+	M9v4lzxH4oDZ6vMJ7JdFdlr/knCs4tw8AyZJrORDUErCr0itYg+ypySjsVVlAq/LIx02phN+g05kl
+	IzoMYdrEE/CxbNCR5774VDsGcGoS8gpYlfyOIPmIZ+pHHuo+2cM2YNwc9JZbYjbATak8INWnykU4N
+	f3t2bVXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8JY-0000000CtUC-1UTt;
-	Tue, 10 Dec 2024 22:02:44 +0000
+	id 1tL8Ja-0000000CtYG-2rEw;
+	Tue, 10 Dec 2024 22:02:46 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8JT-0000000CtMg-0Rjp;
-	Tue, 10 Dec 2024 22:02:41 +0000
+	id 1tL8JT-0000000CtMh-17sq;
+	Tue, 10 Dec 2024 22:02:42 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 5C8092047227;
+	by linux.microsoft.com (Postfix) with ESMTPSA id 8EC1F2047228;
 	Tue, 10 Dec 2024 14:02:36 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 5C8092047227
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8EC1F2047228
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1733868156;
-	bh=3tkOAM1zqG9JeFOtral7Lfs9u46U15/2RBF6sWmMcg4=;
-	h=From:Subject:Date:To:Cc:From;
-	b=Q4SOEP0Y7h5zO78UBiHUhYnGicCTwnpmdGyeJ2NXra3aSgp4pliiNVajI48sltiC5
-	 krxOdne8IbeYxRwBBWcjRMbkm4dRwXWKZALmzr8Eqfc6Ado8XqXrVleqMCFQbV/jTu
-	 DEly4DyEWnbV/UU33Q7NVotbdGyJFxTE5SxdsOl8=
+	bh=oAoRcxFx6r3qiWDnRBBsiLzbuwo4yEAyTzO1K822O7I=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=U3VeWMEj1NoccyfU44IlXr+eH+dIb+Y1FX88FHYXU4q03PECflKzMMc2KhmQfWdxA
+	 2LtcSsTBowp5J1k4JjK8tQOvB5yIwMjDbVNHxvHTREwcCEJZMCYyv+0rZVYLLCY+lW
+	 lVwyzMWVt2MunqqkcT6KDTr1TpTutKDRbWdkcUjw=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Subject: [PATCH v3 00/19] Converge on using secs_to_jiffies()
-Date: Tue, 10 Dec 2024 22:02:31 +0000
-Message-Id: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
+Date: Tue, 10 Dec 2024 22:02:32 +0000
+Subject: [PATCH v3 01/19] netfilter: conntrack: Cleanup timeout definitions
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAHe6WGcC/42NwQ6CMBAFf4X0bAlbQFJP/ofxAO1W1ijVFhoM4
- d8tGONFE49vkjczMY+O0LNdMjGHgTzZLo58kzDV1t0JOem4mchEAQCCK9sFdJF7VJ73lp/JmGj
- gWkoNGWwbDcDi/ebQ0LiqD8fXdngfYqH/wJZ8b91jzQdY6LtU/i4F4BkHWdda5YUsoNlfqBvG9
- ErKWW9Nnyp7ZYs+iH+VIiolgGmqUpZYye/KeZ6fTjplmTIBAAA=
-X-Change-ID: 20241112-converge-secs-to-jiffies-d99d1016bd11
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241210-converge-secs-to-jiffies-v3-1-ddfefd7e9f2a@linux.microsoft.com>
+References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
+In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
  Jozsef Kadlecsik <kadlec@netfilter.org>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
@@ -109,12 +106,11 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  live-patching@vger.kernel.org, linux-sound@vger.kernel.org, 
  oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, 
  Anna-Maria Behnsen <anna-maria@linutronix.de>, 
- Easwar Hariharan <eahariha@linux.microsoft.com>, 
- Jeff Johnson <quic_jjohnson@quicinc.com>
+ Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_140239_194960_F6AB49EF 
-X-CRM114-Status: GOOD (  13.73  )
+X-CRM114-CacheID: sfid-20241210_140239_356504_2A110328 
+X-CRM114-Status: GOOD (  10.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,103 +125,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is a series that follows up on my previous series to introduce
-secs_to_jiffies() and convert a few initial users.[1] In the review for
-that series, Anna-Maria requested converting other users with
-Coccinelle. [2] This is part 1 that converts users of msecs_to_jiffies()
-that use the multiply pattern of either of:
-- msecs_to_jiffies(N*1000), or
-- msecs_to_jiffies(N*MSEC_PER_SEC)
+None of the higher order definitions are used anymore, so remove
+definitions for minutes, hours, and days timeouts. Convert the seconds
+denominated timeouts to secs_to_jiffies()
 
-where N is a constant, to avoid the multiplication.
-
-The entire conversion is made with Coccinelle in the script added in
-patch 2. Some changes suggested by Coccinelle have been deferred to
-later parts that will address other possible variant patterns.
-
-CC: Anna-Maria Behnsen <anna-maria@linutronix.de>
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-
-[1] https://lore.kernel.org/all/20241030-open-coded-timeouts-v3-0-9ba123facf88@linux.microsoft.com/
-[2] https://lore.kernel.org/all/8734kngfni.fsf@somnus/
-
 ---
-Changes in v3:
-- Rebase on next-20241210
-- Fix typo'ed timeout in net/netfilter/nf_conntrack_proto_sctp.c (Stephen Rothwell)
-- Use Coccinelle operation modes for Coccinelle script (Markus Elfring)
-- Remove redundant comments in arch/arm/mach-pxa/sharpsl_pm.c
-  (Christophe Leroy)
-- Remove excess line breaks (Heiko Carstens, Christophe Leroy)
-- Add more detail into the commit messages throughout (Christophe Leroy)
-- Pick up Reviewed-by Thomas Hellström for drm/xe
-- Drop drm/etnaviv patch already queued into etnaviv/next
-- Replace call to [m]secs_to_jiffies(0) with just 0 for livepatch (Dan
-  Carpenter, Christophe Leroy)
-- Split out nfp patch to send to net-next (Christophe Leroy)
-- Pick up Acked-by from Jeff Johnson for ath11k
-- Link to v2: https://lore.kernel.org/r/20241115-converge-secs-to-jiffies-v2-0-911fb7595e79@linux.microsoft.com
-Changes in v2:
-- Exclude already accepted patch adding secs_to_jiffies() https://git.kernel.org/tip/b35108a51cf7bab58d7eace1267d7965978bcdb8
-- Link to v1: https://lore.kernel.org/r/20241115-converge-secs-to-jiffies-v1-0-19aadc34941b@linux.microsoft.com
+ net/netfilter/nf_conntrack_proto_sctp.c | 21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
 
----
-Easwar Hariharan (19):
-      netfilter: conntrack: Cleanup timeout definitions
-      coccinelle: misc: Add secs_to_jiffies script
-      arm: pxa: Convert timeouts to use secs_to_jiffies()
-      s390: kernel: Convert timeouts to use secs_to_jiffies()
-      powerpc/papr_scm: Convert timeouts to secs_to_jiffies()
-      mm: kmemleak: Convert timeouts to secs_to_jiffies()
-      accel/habanalabs: Convert timeouts to secs_to_jiffies()
-      drm/xe: Convert timeout to secs_to_jiffies()
-      scsi: lpfc: Convert timeouts to secs_to_jiffies()
-      scsi: arcmsr: Convert timeouts to secs_to_jiffies()
-      scsi: pm8001: Convert timeouts to secs_to_jiffies()
-      xen/blkback: Convert timeouts to secs_to_jiffies()
-      gve: Convert timeouts to secs_to_jiffies()
-      wifi: ath11k: Convert timeouts to secs_to_jiffies()
-      Bluetooth: MGMT: Convert timeouts to secs_to_jiffies()
-      staging: vc04_services: Convert timeouts to secs_to_jiffies()
-      ceph: Convert timeouts to secs_to_jiffies()
-      livepatch: Convert timeouts to secs_to_jiffies()
-      ALSA: line6: Convert timeouts to secs_to_jiffies()
+diff --git a/net/netfilter/nf_conntrack_proto_sctp.c b/net/netfilter/nf_conntrack_proto_sctp.c
+index 4cc97f971264ed779434ab4597dd0162586b3736..7c6f7c9f73320dd208bd0940f539bd9e662e62d0 100644
+--- a/net/netfilter/nf_conntrack_proto_sctp.c
++++ b/net/netfilter/nf_conntrack_proto_sctp.c
+@@ -39,20 +39,15 @@ static const char *const sctp_conntrack_names[] = {
+ 	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= "HEARTBEAT_SENT",
+ };
+ 
+-#define SECS  * HZ
+-#define MINS  * 60 SECS
+-#define HOURS * 60 MINS
+-#define DAYS  * 24 HOURS
+-
+ static const unsigned int sctp_timeouts[SCTP_CONNTRACK_MAX] = {
+-	[SCTP_CONNTRACK_CLOSED]			= 10 SECS,
+-	[SCTP_CONNTRACK_COOKIE_WAIT]		= 3 SECS,
+-	[SCTP_CONNTRACK_COOKIE_ECHOED]		= 3 SECS,
+-	[SCTP_CONNTRACK_ESTABLISHED]		= 210 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= 3 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= 3 SECS,
+-	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= 3 SECS,
+-	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= 30 SECS,
++	[SCTP_CONNTRACK_CLOSED]			= secs_to_jiffies(10),
++	[SCTP_CONNTRACK_COOKIE_WAIT]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_COOKIE_ECHOED]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_ESTABLISHED]		= secs_to_jiffies(210),
++	[SCTP_CONNTRACK_SHUTDOWN_SENT]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_SHUTDOWN_RECD]		= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_SHUTDOWN_ACK_SENT]	= secs_to_jiffies(3),
++	[SCTP_CONNTRACK_HEARTBEAT_SENT]		= secs_to_jiffies(30),
+ };
+ 
+ #define	SCTP_FLAG_HEARTBEAT_VTAG_FAILED	1
 
- arch/arm/mach-pxa/sharpsl_pm.c                     |  8 ++++----
- arch/powerpc/platforms/pseries/papr_scm.c          |  2 +-
- arch/s390/kernel/lgr.c                             |  2 +-
- arch/s390/kernel/time.c                            |  4 ++--
- arch/s390/kernel/topology.c                        |  2 +-
- drivers/accel/habanalabs/common/device.c           |  2 +-
- drivers/accel/habanalabs/common/habanalabs_drv.c   |  3 +--
- drivers/block/xen-blkback/blkback.c                |  2 +-
- drivers/gpu/drm/xe/xe_device.c                     |  2 +-
- drivers/net/ethernet/google/gve/gve_tx_dqo.c       |  6 ++----
- drivers/net/wireless/ath/ath11k/debugfs.c          |  2 +-
- drivers/scsi/arcmsr/arcmsr_hba.c                   |  2 +-
- drivers/scsi/lpfc/lpfc_init.c                      | 18 +++++++++---------
- drivers/scsi/lpfc/lpfc_nportdisc.c                 |  8 ++++----
- drivers/scsi/lpfc/lpfc_nvme.c                      |  2 +-
- drivers/scsi/lpfc/lpfc_sli.c                       |  4 ++--
- drivers/scsi/lpfc/lpfc_vmid.c                      |  2 +-
- drivers/scsi/pm8001/pm8001_init.c                  |  2 +-
- .../vc04_services/bcm2835-audio/bcm2835-vchiq.c    |  2 +-
- fs/ceph/quota.c                                    |  2 +-
- mm/kmemleak.c                                      |  4 ++--
- net/bluetooth/mgmt.c                               |  2 +-
- net/netfilter/nf_conntrack_proto_sctp.c            | 21 ++++++++-------------
- samples/livepatch/livepatch-callbacks-busymod.c    |  3 +--
- samples/livepatch/livepatch-shadow-fix1.c          |  3 +--
- samples/livepatch/livepatch-shadow-mod.c           | 15 +++++----------
- scripts/coccinelle/misc/secs_to_jiffies.cocci      | 22 ++++++++++++++++++++++
- sound/usb/line6/toneport.c                         |  2 +-
- 28 files changed, 78 insertions(+), 71 deletions(-)
----
-base-commit: 1b2ab8149928c1cea2d7eca30cd35bb7fe014053
-change-id: 20241112-converge-secs-to-jiffies-d99d1016bd11
-
-Best regards,
 -- 
-Easwar Hariharan <eahariha@linux.microsoft.com>
+2.43.0
 
 
