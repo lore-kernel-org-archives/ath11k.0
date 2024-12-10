@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F550E7717F
-	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4673FE77183
+	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:03:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gKZLAOaJwfAP+6Kmm8Uoact7ay9fLs6b2uIK/ai8VsE=; b=YhOQF++Fz6vQSvXCBNJ9AukHT8
-	lllat35KdxeXYaNDzhr2BGEHLs8Wp9NU2vwJjS0+4nh2/xgaTPA/TtwOLplPv1pZob29Kw+ku2KQE
-	7WfjMOLWPlrzXDsprfXUe+uynUeIKfOoTkIWRZW/H3uh3fDxIzsLz2w0BGTf7cwgUqYQ0MWcHG9B4
-	9emfH2xQLfngEP+6D/ukGgzvNWNJxvsVh9ejb/1Xj6S5YJBCNi7A7WbkHTvy5Q9NsENAZI2Fln8Yk
-	Ot+PXXbDDHMevCCcDhA7hOowTe+56Bgf0QzUf/rIQYzi9gZvr6f2pm0I98+ZyC//t4E2MqwUKsULv
-	x41TmQsw==;
+	bh=4PsoF6SsPfbe/epEx07m/H71eMXFwTragWU3TWb95lc=; b=t9Ob2JcNyyzWU+wV3++rk0PjtF
+	aZ53CnOxYPTgihgHNWR+6XCMzN/ai1Zw+NkevNOS2zsEAGjIHqJ9r7t1R5iUlFSV3Ekc+9ttNcjel
+	/CVeulH+C46KRkJcY54TKvr1KwRickMof6BDNUd9O4pBvrR5oerY+fDu79LLds8Hgj1WGCClwz0ot
+	LFX3ia2QOwzQqu9BCdDmdbeORVwU/DO4twZXzbZg65/wzPO5h3YMLGJ2eGvWzisEgvD6h739jRnmv
+	xj8lyIOnN2JRPTGeBKMFsxJRzrrrIOuI93sQS/WV4vn1GqdcVzk01IlxL5nBTWIS21IE7zdT8CcAY
+	Dzfh5Eew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8Jv-0000000Cu8v-2rRW;
-	Tue, 10 Dec 2024 22:03:07 +0000
+	id 1tL8Jp-0000000Ctyl-3Cll;
+	Tue, 10 Dec 2024 22:03:01 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8JY-0000000CtQQ-3d8I;
-	Tue, 10 Dec 2024 22:02:47 +0000
+	id 1tL8JX-0000000CtOj-0lMk;
+	Tue, 10 Dec 2024 22:02:46 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 9DC932047231;
+	by linux.microsoft.com (Postfix) with ESMTPSA id 102E5204722E;
 	Tue, 10 Dec 2024 14:02:38 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9DC932047231
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 102E5204722E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1733868158;
-	bh=gKZLAOaJwfAP+6Kmm8Uoact7ay9fLs6b2uIK/ai8VsE=;
+	bh=4PsoF6SsPfbe/epEx07m/H71eMXFwTragWU3TWb95lc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=svAtqGWUfwwxhkPtOsHM9wFpOe5H7V37CPLpc1efEJB+hZDbAOkD4T5b6sfMzxhZ+
-	 yP7ZIp8mBgs9llSr4qUZT5sBXpDyffL9kReLgTxKKh0F7Rks+AtMLKTRz+ik8N0b4l
-	 Co5R1xYnpZA/XZN3kdMilWWEgRejdEMkmjUvT5B4=
+	b=h7xNg+CJMXTd5DQ9X3jMinLoN7vSFDg8Wc8ctVRvzEZXRU6zr2IuGvATvzcH5C5mv
+	 8tZpWnxa3guMlnaHImjL8p97Vyif6Q4iPn6nrKcU0WRTq12Y7YJw/78q0d2IIYZwV/
+	 HU4b3GuDdaH6l3YJ/3viq/heQZ5TTvrnm5sB3x44=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:43 +0000
-Subject: [PATCH v3 12/19] xen/blkback: Convert timeouts to
- secs_to_jiffies()
+Date: Tue, 10 Dec 2024 22:02:40 +0000
+Subject: [PATCH v3 09/19] scsi: lpfc: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-12-ddfefd7e9f2a@linux.microsoft.com>
+Message-Id: <20241210-converge-secs-to-jiffies-v3-9-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -110,8 +109,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_140245_063238_865B48A4 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20241210_140243_351154_EFE3B76B 
+X-CRM114-Status: GOOD (  17.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,22 +144,178 @@ the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/block/xen-blkback/blkback.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/scsi/lpfc/lpfc_init.c      | 18 +++++++++---------
+ drivers/scsi/lpfc/lpfc_nportdisc.c |  8 ++++----
+ drivers/scsi/lpfc/lpfc_nvme.c      |  2 +-
+ drivers/scsi/lpfc/lpfc_sli.c       |  4 ++--
+ drivers/scsi/lpfc/lpfc_vmid.c      |  2 +-
+ 5 files changed, 17 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/block/xen-blkback/blkback.c b/drivers/block/xen-blkback/blkback.c
-index 838064593f62b75f3d937c0c041ea78dedbbaf84..a7c2b04ab943de9cbd69b596aad177a0534f7762 100644
---- a/drivers/block/xen-blkback/blkback.c
-+++ b/drivers/block/xen-blkback/blkback.c
-@@ -544,7 +544,7 @@ static void print_stats(struct xen_blkif_ring *ring)
- 		 ring->st_rd_req, ring->st_wr_req,
- 		 ring->st_f_req, ring->st_ds_req,
- 		 ring->persistent_gnt_c, max_pgrants);
--	ring->st_print = jiffies + msecs_to_jiffies(10 * 1000);
-+	ring->st_print = jiffies + secs_to_jiffies(10);
- 	ring->st_rd_req = 0;
- 	ring->st_wr_req = 0;
- 	ring->st_oo_req = 0;
+diff --git a/drivers/scsi/lpfc/lpfc_init.c b/drivers/scsi/lpfc/lpfc_init.c
+index 7f57397d91a90d8fea689a6d095c30c974fd63f6..4fed2e1243e05896c7e67902b6a9924bed1a5ea9 100644
+--- a/drivers/scsi/lpfc/lpfc_init.c
++++ b/drivers/scsi/lpfc/lpfc_init.c
+@@ -598,7 +598,7 @@ lpfc_config_port_post(struct lpfc_hba *phba)
+ 		  jiffies + msecs_to_jiffies(1000 * timeout));
+ 	/* Set up heart beat (HB) timer */
+ 	mod_timer(&phba->hb_tmofunc,
+-		  jiffies + msecs_to_jiffies(1000 * LPFC_HB_MBOX_INTERVAL));
++		  jiffies + secs_to_jiffies(LPFC_HB_MBOX_INTERVAL));
+ 	clear_bit(HBA_HBEAT_INP, &phba->hba_flag);
+ 	clear_bit(HBA_HBEAT_TMO, &phba->hba_flag);
+ 	phba->last_completion_time = jiffies;
+@@ -1267,7 +1267,7 @@ lpfc_hb_mbox_cmpl(struct lpfc_hba * phba, LPFC_MBOXQ_t * pmboxq)
+ 	    !test_bit(FC_UNLOADING, &phba->pport->load_flag))
+ 		mod_timer(&phba->hb_tmofunc,
+ 			  jiffies +
+-			  msecs_to_jiffies(1000 * LPFC_HB_MBOX_INTERVAL));
++			  secs_to_jiffies(LPFC_HB_MBOX_INTERVAL));
+ 	return;
+ }
+ 
+@@ -1555,7 +1555,7 @@ lpfc_hb_timeout_handler(struct lpfc_hba *phba)
+ 		/* If IOs are completing, no need to issue a MBX_HEARTBEAT */
+ 		spin_lock_irq(&phba->pport->work_port_lock);
+ 		if (time_after(phba->last_completion_time +
+-				msecs_to_jiffies(1000 * LPFC_HB_MBOX_INTERVAL),
++				secs_to_jiffies(LPFC_HB_MBOX_INTERVAL),
+ 				jiffies)) {
+ 			spin_unlock_irq(&phba->pport->work_port_lock);
+ 			if (test_bit(HBA_HBEAT_INP, &phba->hba_flag))
+@@ -3354,7 +3354,7 @@ lpfc_block_mgmt_io(struct lpfc_hba *phba, int mbx_action)
+ 	spin_unlock_irqrestore(&phba->hbalock, iflag);
+ 	if (mbx_action == LPFC_MBX_NO_WAIT)
+ 		return;
+-	timeout = msecs_to_jiffies(LPFC_MBOX_TMO * 1000) + jiffies;
++	timeout = secs_to_jiffies(LPFC_MBOX_TMO) + jiffies;
+ 	spin_lock_irqsave(&phba->hbalock, iflag);
+ 	if (phba->sli.mbox_active) {
+ 		actcmd = phba->sli.mbox_active->u.mb.mbxCommand;
+@@ -4924,14 +4924,14 @@ int lpfc_scan_finished(struct Scsi_Host *shost, unsigned long time)
+ 		stat = 1;
+ 		goto finished;
+ 	}
+-	if (time >= msecs_to_jiffies(30 * 1000)) {
++	if (time >= secs_to_jiffies(30)) {
+ 		lpfc_printf_log(phba, KERN_INFO, LOG_INIT,
+ 				"0461 Scanning longer than 30 "
+ 				"seconds.  Continuing initialization\n");
+ 		stat = 1;
+ 		goto finished;
+ 	}
+-	if (time >= msecs_to_jiffies(15 * 1000) &&
++	if (time >= secs_to_jiffies(15) &&
+ 	    phba->link_state <= LPFC_LINK_DOWN) {
+ 		lpfc_printf_log(phba, KERN_INFO, LOG_INIT,
+ 				"0465 Link down longer than 15 "
+@@ -4945,7 +4945,7 @@ int lpfc_scan_finished(struct Scsi_Host *shost, unsigned long time)
+ 	if (vport->num_disc_nodes || vport->fc_prli_sent)
+ 		goto finished;
+ 	if (!atomic_read(&vport->fc_map_cnt) &&
+-	    time < msecs_to_jiffies(2 * 1000))
++	    time < secs_to_jiffies(2))
+ 		goto finished;
+ 	if ((phba->sli.sli_flag & LPFC_SLI_MBOX_ACTIVE) != 0)
+ 		goto finished;
+@@ -5179,8 +5179,8 @@ lpfc_vmid_poll(struct timer_list *t)
+ 		lpfc_worker_wake_up(phba);
+ 
+ 	/* restart the timer for the next iteration */
+-	mod_timer(&phba->inactive_vmid_poll, jiffies + msecs_to_jiffies(1000 *
+-							LPFC_VMID_TIMER));
++	mod_timer(&phba->inactive_vmid_poll,
++		  jiffies + secs_to_jiffies(LPFC_VMID_TIMER));
+ }
+ 
+ /**
+diff --git a/drivers/scsi/lpfc/lpfc_nportdisc.c b/drivers/scsi/lpfc/lpfc_nportdisc.c
+index 4d88cfe71caed398d376030c9ae06d3aad6ae00c..08a7f5c6157ff984d6e37751ca5398adbf80b607 100644
+--- a/drivers/scsi/lpfc/lpfc_nportdisc.c
++++ b/drivers/scsi/lpfc/lpfc_nportdisc.c
+@@ -906,7 +906,7 @@ lpfc_rcv_logo(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
+ 		    (ndlp->nlp_state >= NLP_STE_ADISC_ISSUE ||
+ 		     ndlp->nlp_state <= NLP_STE_PRLI_ISSUE)) {
+ 			mod_timer(&ndlp->nlp_delayfunc,
+-				  jiffies + msecs_to_jiffies(1000 * 1));
++				  jiffies + secs_to_jiffies(1));
+ 			set_bit(NLP_DELAY_TMO, &ndlp->nlp_flag);
+ 			ndlp->nlp_last_elscmd = ELS_CMD_PLOGI;
+ 			lpfc_printf_vlog(vport, KERN_INFO,
+@@ -1332,7 +1332,7 @@ lpfc_rcv_els_plogi_issue(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
+ 	}
+ 
+ 	/* Put ndlp in npr state set plogi timer for 1 sec */
+-	mod_timer(&ndlp->nlp_delayfunc, jiffies + msecs_to_jiffies(1000 * 1));
++	mod_timer(&ndlp->nlp_delayfunc, jiffies + secs_to_jiffies(1));
+ 	set_bit(NLP_DELAY_TMO, &ndlp->nlp_flag);
+ 	ndlp->nlp_last_elscmd = ELS_CMD_PLOGI;
+ 	ndlp->nlp_prev_state = NLP_STE_PLOGI_ISSUE;
+@@ -1936,7 +1936,7 @@ lpfc_cmpl_reglogin_reglogin_issue(struct lpfc_vport *vport,
+ 
+ 		/* Put ndlp in npr state set plogi timer for 1 sec */
+ 		mod_timer(&ndlp->nlp_delayfunc,
+-			  jiffies + msecs_to_jiffies(1000 * 1));
++			  jiffies + secs_to_jiffies(1));
+ 		set_bit(NLP_DELAY_TMO, &ndlp->nlp_flag);
+ 		ndlp->nlp_last_elscmd = ELS_CMD_PLOGI;
+ 
+@@ -2743,7 +2743,7 @@ lpfc_rcv_prlo_npr_node(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
+ 
+ 	if (!test_bit(NLP_DELAY_TMO, &ndlp->nlp_flag)) {
+ 		mod_timer(&ndlp->nlp_delayfunc,
+-			  jiffies + msecs_to_jiffies(1000 * 1));
++			  jiffies + secs_to_jiffies(1));
+ 		set_bit(NLP_DELAY_TMO, &ndlp->nlp_flag);
+ 		clear_bit(NLP_NPR_ADISC, &ndlp->nlp_flag);
+ 		ndlp->nlp_last_elscmd = ELS_CMD_PLOGI;
+diff --git a/drivers/scsi/lpfc/lpfc_nvme.c b/drivers/scsi/lpfc/lpfc_nvme.c
+index 43dc1da4a1567c05d6ac5f8bda19032737998e64..b1adb9f59097d083a3ae24f4ddf6413350a0368d 100644
+--- a/drivers/scsi/lpfc/lpfc_nvme.c
++++ b/drivers/scsi/lpfc/lpfc_nvme.c
+@@ -2237,7 +2237,7 @@ lpfc_nvme_lport_unreg_wait(struct lpfc_vport *vport,
+ 	 * wait. Print a message if a 10 second wait expires and renew the
+ 	 * wait. This is unexpected.
+ 	 */
+-	wait_tmo = msecs_to_jiffies(LPFC_NVME_WAIT_TMO * 1000);
++	wait_tmo = secs_to_jiffies(LPFC_NVME_WAIT_TMO);
+ 	while (true) {
+ 		ret = wait_for_completion_timeout(lport_unreg_cmp, wait_tmo);
+ 		if (unlikely(!ret)) {
+diff --git a/drivers/scsi/lpfc/lpfc_sli.c b/drivers/scsi/lpfc/lpfc_sli.c
+index 874644b31a3ebd815d5bf55bc4b3464c94d9cfa6..3fd9723cd271c8a024b6f34e583668e973404e6f 100644
+--- a/drivers/scsi/lpfc/lpfc_sli.c
++++ b/drivers/scsi/lpfc/lpfc_sli.c
+@@ -9012,7 +9012,7 @@ lpfc_sli4_hba_setup(struct lpfc_hba *phba)
+ 
+ 	/* Start heart beat timer */
+ 	mod_timer(&phba->hb_tmofunc,
+-		  jiffies + msecs_to_jiffies(1000 * LPFC_HB_MBOX_INTERVAL));
++		  jiffies + secs_to_jiffies(LPFC_HB_MBOX_INTERVAL));
+ 	clear_bit(HBA_HBEAT_INP, &phba->hba_flag);
+ 	clear_bit(HBA_HBEAT_TMO, &phba->hba_flag);
+ 	phba->last_completion_time = jiffies;
+@@ -13323,7 +13323,7 @@ lpfc_sli_mbox_sys_shutdown(struct lpfc_hba *phba, int mbx_action)
+ 		lpfc_sli_mbox_sys_flush(phba);
+ 		return;
+ 	}
+-	timeout = msecs_to_jiffies(LPFC_MBOX_TMO * 1000) + jiffies;
++	timeout = secs_to_jiffies(LPFC_MBOX_TMO) + jiffies;
+ 
+ 	/* Disable softirqs, including timers from obtaining phba->hbalock */
+ 	local_bh_disable();
+diff --git a/drivers/scsi/lpfc/lpfc_vmid.c b/drivers/scsi/lpfc/lpfc_vmid.c
+index cc3e4736f2fe29e1fd4afe221c9c7c40ecf382d4..14dbfe954e423acc47d1b1c80160ff193783f500 100644
+--- a/drivers/scsi/lpfc/lpfc_vmid.c
++++ b/drivers/scsi/lpfc/lpfc_vmid.c
+@@ -278,7 +278,7 @@ int lpfc_vmid_get_appid(struct lpfc_vport *vport, char *uuid,
+ 		if (!(vport->phba->pport->vmid_flag & LPFC_VMID_TIMER_ENBLD)) {
+ 			mod_timer(&vport->phba->inactive_vmid_poll,
+ 				  jiffies +
+-				  msecs_to_jiffies(1000 * LPFC_VMID_TIMER));
++				  secs_to_jiffies(LPFC_VMID_TIMER));
+ 			vport->phba->pport->vmid_flag |= LPFC_VMID_TIMER_ENBLD;
+ 		}
+ 	}
 
 -- 
 2.43.0
