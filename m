@@ -4,95 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02CD5E7717D
-	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 02:38:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 436E6E7717F
+	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 04:11:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GXzvNzx05NSvSGxrZei66rwZlGrKkS52BmFkcznQQ5E=; b=gOq9Z0MHYHzalDUsTEs7tvxria
-	0gygQZ4t40SvtUyblnwMbx19vgUji78XoX8WJP/jl6VeUhyaN+G+Obud0kcM5QNhFSW3nYObsoM45
-	HWQOvHpwUP0C7DQln04D3QG7J4yJl0xoWze+dHHwyoPwus8JQNeSSPcim6HP/bNq6pzFmZXjp8dym
-	XzkZa7+yC9xRj4l3wG3DjyY5OqEqxsg8/Z09ayWxPxxkgNLy00bF7Pl4GTxpyCQCaZGs9BMNn4KqP
-	uOOXXHRBT/rJB7JG7Ocm2fwqfoRtFEZ6hoC/SjsP8CKLSU8n/mBGUAytWak5/yrkJWR8kOWoa0JNN
-	CpvEe72g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=lhWEOMYkkktpW0W1n07VbgnbFMQPxaVKbb9htPEnhWY=; b=ttoX9VJdQ5kbxdoaDl76Mgivve
+	0j39rXj2UmuTeMq7Iwt6AcYTBhLN9adC2TupJWXGnymHrr5dtajMFjK2CPUB2u1vweMoG/wI5ABX2
+	jOnse4XwtKDf7yTOC/N29z6hkQVmPZCSkGAFJDfx6stDkGPbj4Cmlz5W1CvidAdwyHvE1dzNFDwJp
+	sMLcG638UQhUanBt8DcmgCr7R1jCMlxK8PglxiJZ9L279jTPe6RlbPXSe9a946rJgjUD/G4DxTvCl
+	jWWDot6CT6dfmUh+lxpDdNuPuXoEjf+B9g82kOCe1iT3S11Hu//D0ODbDJORrbGr2+dmSOKrHWJ1d
+	tMbd6nyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKq8R-00000009z28-1qVR;
-	Tue, 10 Dec 2024 02:38:03 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tKrb4-0000000AAc7-0DKT;
+	Tue, 10 Dec 2024 04:11:42 +0000
+Received: from verein.lst.de ([213.95.11.211])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKq8L-00000009yzo-0zqL
+	id 1tKrb1-0000000AAbZ-1nqZ
 	for ath11k@lists.infradead.org;
-	Tue, 10 Dec 2024 02:38:01 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9FdCJq014037;
-	Tue, 10 Dec 2024 02:37:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GXzvNzx05NSvSGxrZei66rwZlGrKkS52BmFkcznQQ5E=; b=U+w3bmb0UkMr9obN
-	b8O67aSOCCkfJLONzlAP4zkJb4k03ebTzWVcwGYVlUobC2OSI1x5gnIJf+05hmMS
-	qVGyUpWxY+V2AXe2fpc+8w5WItvWhFs9fK4Bd30AAlIJ5dRigUQJEzwHy74GYoQJ
-	h3TZr/HsOiWVxDWsh7mTU6MADO4X3uSd4FaIT8mP/WkFREJe30aPVCGfO/sdDArw
-	CbokgMAtvaV/7cK9ar+N3zYAy7soKDS9L204Z7geKxU/GX5ZlSIlLFE6nP6eUYWX
-	fkfyxuBC9yNyDXTcoRmFu5rBKD7SrTlFXBUpC5+FM+RwsM0/STdcLPKE7ZlDogF3
-	Y4Ng1A==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dvyak1rv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 02:37:52 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BA2bpCG012407
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 02:37:51 GMT
-Received: from [10.231.194.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Dec 2024
- 18:37:46 -0800
-Message-ID: <fd8dd19a-a15b-48a3-ab14-9c63e617ed10@quicinc.com>
-Date: Tue, 10 Dec 2024 10:37:44 +0800
+	Tue, 10 Dec 2024 04:11:41 +0000
+Received: by verein.lst.de (Postfix, from userid 2407)
+	id 845B168C4E; Tue, 10 Dec 2024 05:11:33 +0100 (CET)
+Date: Tue, 10 Dec 2024 05:11:33 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Tim Harvey <tharvey@gateworks.com>
+Cc: Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
+	Baochen Qiang <quic_bqiang@quicinc.com>, ath11k@lists.infradead.org,
+	linux-wireless <linux-wireless@vger.kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>, iommu@lists.linux.dev,
+	P Praneesh <ppranees@codeaurora.org>
+Subject: Re: ath11k swiotlb buffer is full (on IMX8M with 4GiB DRAM)
+Message-ID: <20241210041133.GA17116@lst.de>
+References: <CAJ+vNU0EL3T+GyNAbVbGqYYQ5NM3h7cgAwqxxBMuZjh+-YQ3bA@mail.gmail.com> <1b2ea8b2-6fbe-4118-b6c6-742c8f0be476@quicinc.com> <CAJ+vNU1-OZ3y4p2L+zf64AiVtUv70yZNqkT20jTxyE0_gJb6Jg@mail.gmail.com> <0282be95-9094-4d49-b79e-4f7c976dad00@quicinc.com> <CAJ+vNU32EMHjtchJRb1sODBrUKG2vZW4ZEu1_F0+dCCEjCn7Dg@mail.gmail.com> <20241209081714.GA25363@lst.de> <593c0d63-d8fd-4439-a57a-97340212c197@arm.com> <CAJ+vNU2ypE_Mn_6iKCmf5LYk9Sth=ryWXyewc5MhOKK8VoAKCA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: qcs615: add WiFi/BT nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <agross@kernel.org>, <ath11k@lists.infradead.org>,
-        <dmitry.baryshkov@linaro.org>, <konradybcio@kernel.org>,
-        <kvalo@kernel.org>, <linux-media@vger.kernel.org>,
-        <mchehab@kernel.org>, <quic_jjohnson@quicinc.com>,
-        <quic_miaoqing@quicinc.com>, <quic_vgarodia@quicinc.com>,
-        <stanimir.k.varbanov@gmail.com>, <quic_jiaymao@quicinc.com>
-References: <20241203060318.1750927-1-quic_yuzha@quicinc.com>
- <1ca062dd-8910-4caf-a133-0e5717b43540@oss.qualcomm.com>
- <649dc6c0-f0e1-4dca-8f93-d0f81803cd70@quicinc.com>
- <7107275e-1ccf-4f09-ada3-e082833d9364@oss.qualcomm.com>
-Content-Language: en-US
-From: "Yu Zhang (Yuriy)" <quic_yuzha@quicinc.com>
-In-Reply-To: <7107275e-1ccf-4f09-ada3-e082833d9364@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tYWoVYZk6l9OiMLMSvoq3Jpo26fiH5zt
-X-Proofpoint-ORIG-GUID: tYWoVYZk6l9OiMLMSvoq3Jpo26fiH5zt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
- mlxlogscore=821 mlxscore=0 priorityscore=1501 suspectscore=0 clxscore=1015
- malwarescore=0 impostorscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412100017
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJ+vNU2ypE_Mn_6iKCmf5LYk9Sth=ryWXyewc5MhOKK8VoAKCA@mail.gmail.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241209_183757_390762_987A98F2 
-X-CRM114-Status: GOOD (  11.35  )
+X-CRM114-CacheID: sfid-20241209_201139_607518_EC6E422B 
+X-CRM114-Status: GOOD (  20.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,53 +63,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Mon, Dec 09, 2024 at 11:15:02AM -0800, Tim Harvey wrote:
+> After a lot of back and forth and investigation this is due to the
+> IMX8M SoC's not having an IOMMU thus swiotlb is being used and ath11k
+> is requesting some buffers that are too large for swiotlb to provide.
+> There is a specific patch which added the HAL_WBM2SW_RELEASE buffers
+> to cacheable memory that could be reverted to fix this but the concern
+> was that it would impact performance moving those buffers to
+> non-cacheable memory (there are three ~1MiB buffers being allocated):
+> commit d0e2523bfa9cb ("ath11k: allocate HAL_WBM2SW_RELEASE ring from
+> cacheable memory").
 
+The combination of "buffers" and "swiotlb" sounds like Robin was right
+below. 
 
-On 12/6/2024 8:16 PM, Konrad Dybcio wrote:
-> On 6.12.2024 4:22 AM, Yu Zhang (Yuriy) wrote:
->>
->>
->> On 12/6/2024 1:14 AM, Konrad Dybcio wrote:
->>> On 3.12.2024 7:03 AM, Yu Zhang(Yuriy) wrote:
->>>> Add a node for the PMU module of the WCN6855 present on the qcs615
->>>> board. Assign its LDO power outputs to the existing WiFi/BT module.
->>>>
->>>
->>> subject:
->>>
->>> arm64: dts: qcom: qcs615-ride: ....
->>>
->>> [...]
->>>
->>>> +
->>>> +    vreg_conn_1p8: vreg_conn_1p8 {
->>>> +        compatible = "regulator-fixed";
->>>> +        regulator-name = "vreg_conn_1p8";
->>>> +        startup-delay-us = <4000>;
->>>> +        enable-active-high;
->>>> +        gpio = <&pm8150_gpios 1 GPIO_ACTIVE_HIGH>;
->>>> +    };
->>>> +
->>>> +    vreg_conn_pa: vreg_conn_pa {
->>>> +        compatible = "regulator-fixed";
->>>> +        regulator-name = "vreg_conn_pa";
->>>> +        startup-delay-us = <4000>;
->>>> +        enable-active-high;
->>>> +        gpio = <&pm8150_gpios 6 GPIO_ACTIVE_HIGH>;
->>>> +    };
->>>
->>> Are any of these boot-on?
->>>
->> Yes, these are used wcn6855-pmu：
->>       vddio-supply = <&vreg_conn_pa>;
->>       vddpmu-supply = <&vreg_conn_1p8>;
+> The chain of events as best I can tell are:
 > 
-> What i meant is, whether these regulators are enabled at boot
-> time (i.e. without software intervention). If that's the case,
-> `regulator-boot-on;` should be added
-> 
-No need regulator-boot-on, it was triggered by the 
-software(pci_pwrctl_pwrseq_driver).
-> Konrad
-Yu
+> commit 6452f0a3d565 ("ath11k: allocate dst ring descriptors from
+> cacheable memory")
+> - Nov 12 2021 (made it into Linux 5.17)
+> - changes allocation of reo_dst rings to cacheable memory to allow
+> cached descriptor access to optimize CPU usage
+> - this is flawed because it uses virt_to_phys() to allocate cacheable
+> memory which does not work on systems with an IOMMU enabled or using
+> software IOMMU (swiotlb); this causes a kernel crash on client
+> association
+
+And this is where it started to take a wrong turn, that everyhing
+later basically made worse.  If you have long living and potentially
+large DMA allocations, you need to use dma_alloc_* interfaces.
+
+5.17 already had dma_alloc_pages for quite a while which was and still is
+the proper interface to use.  For much older kernel you'd be stuck
+with dma_alloc_noncoherent or dma_alloc_attrs with the right flag,
+but even that would have been much better.
 
