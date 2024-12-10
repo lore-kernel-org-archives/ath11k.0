@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2904E77195
-	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04232C02183
+	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:03:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=BGnsC+198VTSc2YUOR+tnnzodlQEmbpaf1xRkHMeOLA=; b=BUaVBT4necyvRFX3HmW11PipS9
-	q5BEGCXWrQIRzz82PnU44zkpSHH+c4puv5uzWbKoKHHuoroWM914gGcjp6iusDwO1+C4fDBtv1FLV
-	9e97vnIOOyE1ky1gf5Q6eNgmigLkOei4RwCbBnmyKHM3amwU/gVr5OugqWHAusHekx9keCSCp+Ams
-	qLCXiz7aiq/kWJpP/KfB/BvnBX8siwNVVO127yid/WRPQEyBIgmgJvf1jU9yG5nqBdlSvT16zW5Iz
-	tbc1NG1qpAANqNvVBZPQOoiSqkboNuATRYa8ce6K3ru47of0l0OeoOy8gaBDQOjk+HoNbkhJQhnh3
-	HeOVrgBA==;
+	bh=U++D0WKRUcBPTXKKmA8ay83+fBnoO24djfuDhPxnmd0=; b=G5tDR+HfLUoK83LPn8EMBmtsJ2
+	3tDyozXTVXpCuZHw197URJhYpPDdKq+KW6iIEBRq2jEbHKC/h/TTjjUKGdgoKzdiZ/huTSWBZRKyi
+	WhQDy31wg+I19T7qmf9Rxy2/wzDbz9/fE/c5EmrYolj2LoaG6aVl9PAm3B9W96qnlIy00he2aIGEm
+	34C5r95ti9z0LTweKN2wifrs61wv8s49oMHQ5n0VSA6xLUS8iPFmBzQDzM2GFxXs5oGj/1EXD4uE3
+	cVya1RCmgwxKb/IN1ndEB2huEpiskBcP+KD6IfWfmDTwX1e54hrFN2TZYhdhEb97v2wef8j0oLHHa
+	NcpV5utQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8Jm-0000000Ctrh-1C7r;
-	Tue, 10 Dec 2024 22:02:58 +0000
+	id 1tL8Jo-0000000Ctwh-2SNU;
+	Tue, 10 Dec 2024 22:03:00 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8JX-0000000CtOb-2cJG;
-	Tue, 10 Dec 2024 22:02:45 +0000
+	id 1tL8JY-0000000CtPM-0AmX;
+	Tue, 10 Dec 2024 22:02:46 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 40433204722F;
+	by linux.microsoft.com (Postfix) with ESMTPSA id 6FF4C2047230;
 	Tue, 10 Dec 2024 14:02:38 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 40433204722F
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6FF4C2047230
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1733868158;
-	bh=BGnsC+198VTSc2YUOR+tnnzodlQEmbpaf1xRkHMeOLA=;
+	bh=U++D0WKRUcBPTXKKmA8ay83+fBnoO24djfuDhPxnmd0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=f8FLrazoOSnG7X8aDWVI3nVNlHmQntetz0EU8Jiq9ArRSLgklxjGdYHhwJFkuGOqx
-	 IH/VjuOQp54aRZNV03h5piA8Q49loXnKOX2ThzuLLFf9IwCIw5oEVNJs8TgQ/6gM17
-	 zOuBTvw2xYfRYO0jrQtMw2wpWhKIeaajYB7zt3gs=
+	b=i9DsTNH+sl/IoEAtSjlSJHTOE30TcOTSfxv7yvCJsXzsKYC64wXa+LBK94U2wED8+
+	 6hMcKIbUoHeurUTa3oCFtWHdRYvf3LnrkdYUlQGzEUBgp5Wh7dgkbASpnSVSuIShxl
+	 Qe59P7FSrX+a5TC/+UUUxnQ63OeNqL5idRg6Tx5c=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:41 +0000
-Subject: [PATCH v3 10/19] scsi: arcmsr: Convert timeouts to
+Date: Tue, 10 Dec 2024 22:02:42 +0000
+Subject: [PATCH v3 11/19] scsi: pm8001: Convert timeouts to
  secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-10-ddfefd7e9f2a@linux.microsoft.com>
+Message-Id: <20241210-converge-secs-to-jiffies-v3-11-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -110,8 +110,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_140243_744929_6D37EADC 
-X-CRM114-Status: GOOD (  12.87  )
+X-CRM114-CacheID: sfid-20241210_140244_224748_B01F4895 
+X-CRM114-Status: GOOD (  12.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,22 +145,22 @@ the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/scsi/arcmsr/arcmsr_hba.c | 2 +-
+ drivers/scsi/pm8001/pm8001_init.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/scsi/arcmsr/arcmsr_hba.c b/drivers/scsi/arcmsr/arcmsr_hba.c
-index 6a32e3e0d516881fd87a56a394607930582644ee..fe7de7705b7e2c84324f1a493f7825343d6476c6 100644
---- a/drivers/scsi/arcmsr/arcmsr_hba.c
-+++ b/drivers/scsi/arcmsr/arcmsr_hba.c
-@@ -1045,7 +1045,7 @@ static void arcmsr_init_get_devmap_timer(struct AdapterControlBlock *pacb)
- static void arcmsr_init_set_datetime_timer(struct AdapterControlBlock *pacb)
- {
- 	timer_setup(&pacb->refresh_timer, arcmsr_set_iop_datetime, 0);
--	pacb->refresh_timer.expires = jiffies + msecs_to_jiffies(60 * 1000);
-+	pacb->refresh_timer.expires = jiffies + secs_to_jiffies(60);
- 	add_timer(&pacb->refresh_timer);
- }
- 
+diff --git a/drivers/scsi/pm8001/pm8001_init.c b/drivers/scsi/pm8001/pm8001_init.c
+index f8c81e53e93f7849bbe7fe9cbc861f22b964bc39..22e0e79e88ab0a60965ff3809de116eb4a6851e2 100644
+--- a/drivers/scsi/pm8001/pm8001_init.c
++++ b/drivers/scsi/pm8001/pm8001_init.c
+@@ -736,7 +736,7 @@ static int pm8001_init_sas_add(struct pm8001_hba_info *pm8001_ha)
+ 		return -EIO;
+ 	}
+ 	time_remaining = wait_for_completion_timeout(&completion,
+-				msecs_to_jiffies(60*1000)); // 1 min
++				secs_to_jiffies(60)); // 1 min
+ 	if (!time_remaining) {
+ 		kfree(payload.func_specific);
+ 		pm8001_dbg(pm8001_ha, FAIL, "get_nvmd_req timeout\n");
 
 -- 
 2.43.0
