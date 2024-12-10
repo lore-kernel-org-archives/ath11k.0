@@ -4,77 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1C96E7717F
-	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 08:45:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60B2E77188
+	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VvGth1QLNyFinm1dsOjrasK+ZrrCmJs8ywoSm1iafao=; b=QG+XQPsIEgvpfjmoNotBY7rxvO
-	Tnn3wqx3ROIBMLaAvOKsBlPwPk9cnXXj4YWwegKHjgvuCVi43ySHlcEQ9bMIBjuybgF51LhX1b28t
-	6a4E+Qv88CiMJZfXblHpwK9X9fU1VMQFp6fUsz5IivO2okdRefjF3j78abAjF+zHGU3geKuRw40ZB
-	ODhbgIBH5ryKPtviuZmILQYq7XSBpykWC5iB6BBM7+XgwYdqJP3pLz1FWzt9+4rnL7hp72jzPX8vr
-	DOCnzKbpR4IbIW4nv2XuJ1HxK7SvLQyDD7rB44qR2Xc9vtyBh/r89tjiCN6gV8xdGELCi21bbq5WP
-	GurF+0wg==;
+	bh=p+8g58BSBlt5b8YhFCU18nddw3DZx2oHU0RyK/mdTxg=; b=jcXRnEZAncvB2/eFhBmi01eaV2
+	wcE+m00KNNYJw9VoR+Eo4hKaHl291PzuB0Bqa5GvxxidCYMmsVodr6ELoF0gd3Byf6sj+w9OU1XdZ
+	iFJRr1bIVQnfkffuh25h7/hqEZ37CsjY8CxZS13IZrfyRhAYc3VUtL4uuXlvO5rdO21TUCnG/8GNh
+	GbrBswJbfUdZDjRpgtRg+7bnWvFCXjqaTTGQlEZn8VKiRJ0LsZuhXEWCgRUPp6pEit05RbFyjqseE
+	fkT97SBd1lHyKfdrWp14a0+qD1poyyyZQ9W2Xp3AIGOoxGsdn8FqRD1cbrjoOB9I99OFcv5CaHty7
+	oMMHJGeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKvs8-0000000Al4i-3CvN;
-	Tue, 10 Dec 2024 08:45:36 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
-	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKvr6-0000000AkmV-3vgy
-	for ath11k@lists.infradead.org;
-	Tue, 10 Dec 2024 08:44:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1733820270;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VvGth1QLNyFinm1dsOjrasK+ZrrCmJs8ywoSm1iafao=;
-	b=AGtXbCzRNyxI5m450HKEwPuKkzrFQEfrJawGwcUMISdZH11O6OycnZgdogr9Dd/WyWitQq
-	WsPsSww8UMKRUlk/ofSAw62Eulbyh3PjNONUzSF1b4Q7TLlmyuWnKMFRusfelJFqs0VHQe
-	8PmTrEDFrAjSSAsq+D+ghPicZMVbh0o=
-Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-92-0M-iex6MM0ayGOvsxPLKug-1; Tue,
- 10 Dec 2024 03:44:26 -0500
-X-MC-Unique: 0M-iex6MM0ayGOvsxPLKug-1
-X-Mimecast-MFC-AGG-ID: 0M-iex6MM0ayGOvsxPLKug
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7E77B19560A1;
-	Tue, 10 Dec 2024 08:44:24 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.39.192.222])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 05FE419560A2;
-	Tue, 10 Dec 2024 08:44:20 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: quic_yuzha@quicinc.com
-Cc: ath11k@lists.infradead.org,
-	jjohnson@kernel.org,
-	jtornosm@redhat.com,
-	kvalo@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	quic_cjhuang@quicinc.com,
-	vbenes@redhat.com
-Subject: Re: [PATCH] wifi: ath11k: allow APs combination when dual stations are supported
-Date: Tue, 10 Dec 2024 09:44:19 +0100
-Message-ID: <20241210084419.126723-1-jtornosm@redhat.com>
-In-Reply-To: <db61f998-2524-4623-8b0f-143661507e38@quicinc.com>
-References: <db61f998-2524-4623-8b0f-143661507e38@quicinc.com>
+	id 1tL8JV-0000000CtPk-3mE3;
+	Tue, 10 Dec 2024 22:02:41 +0000
+Received: from linux.microsoft.com ([13.77.154.182])
+	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
+	id 1tL8JT-0000000CtMi-0vdR;
+	Tue, 10 Dec 2024 22:02:40 +0000
+Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
+	by linux.microsoft.com (Postfix) with ESMTPSA id B8E722047229;
+	Tue, 10 Dec 2024 14:02:36 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B8E722047229
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1733868156;
+	bh=p+8g58BSBlt5b8YhFCU18nddw3DZx2oHU0RyK/mdTxg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=D0ztEAtB7CqvQGSZsYp+tRN4xkI1U+Pf0qGPT6ILcEXORWxv5WkL8NhY8sec+1ep2
+	 o0YIUC89qlYyBwdj7sp7PypSXEaSKBYajv+HMKS2o/OP0mphIdTsuM5S4VkeWurXmd
+	 SYBz6bHa118hfuIgWOgwAoVQLPZwu51P6o2dfTvU=
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+Date: Tue, 10 Dec 2024 22:02:33 +0000
+Subject: [PATCH v3 02/19] coccinelle: misc: Add secs_to_jiffies script
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241210-converge-secs-to-jiffies-v3-2-ddfefd7e9f2a@linux.microsoft.com>
+References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
+In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
+To: Pablo Neira Ayuso <pablo@netfilter.org>, 
+ Jozsef Kadlecsik <kadlec@netfilter.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Simon Horman <horms@kernel.org>, Julia Lawall <Julia.Lawall@inria.fr>, 
+ Nicolas Palix <nicolas.palix@imag.fr>, Daniel Mack <daniel@zonque.org>, 
+ Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Russell King <linux@armlinux.org.uk>, Heiko Carstens <hca@linux.ibm.com>, 
+ Vasily Gorbik <gor@linux.ibm.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Christian Borntraeger <borntraeger@linux.ibm.com>, 
+ Sven Schnelle <svens@linux.ibm.com>, Ofir Bitton <obitton@habana.ai>, 
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Jeroen de Borst <jeroendb@google.com>, 
+ Praveen Kaligineedi <pkaligineedi@google.com>, 
+ Shailend Chand <shailend@google.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ James Smart <james.smart@broadcom.com>, 
+ Dick Kennedy <dick.kennedy@broadcom.com>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ =?utf-8?q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>, 
+ Jens Axboe <axboe@kernel.dk>, Kalle Valo <kvalo@kernel.org>, 
+ Jeff Johnson <jjohnson@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Jack Wang <jinpu.wang@cloud.ionos.com>, 
+ Marcel Holtmann <marcel@holtmann.org>, 
+ Johan Hedberg <johan.hedberg@gmail.com>, 
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>, 
+ Josh Poimboeuf <jpoimboe@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+ Miroslav Benes <mbenes@suse.cz>, Petr Mladek <pmladek@suse.com>, 
+ Joe Lawrence <joe.lawrence@redhat.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Louis Peens <louis.peens@corigine.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>
+Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org, 
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, cocci@inria.fr, 
+ linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-scsi@vger.kernel.org, xen-devel@lists.xenproject.org, 
+ linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ ath11k@lists.infradead.org, linux-mm@kvack.org, 
+ linux-bluetooth@vger.kernel.org, linux-staging@lists.linux.dev, 
+ linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org, 
+ live-patching@vger.kernel.org, linux-sound@vger.kernel.org, 
+ oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, 
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Easwar Hariharan <eahariha@linux.microsoft.com>
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_004433_045710_1D5B99BF 
-X-CRM114-Status: UNSURE (   8.33  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241210_140239_306314_757B75FF 
+X-CRM114-Status: GOOD (  11.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,53 +125,46 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-> Yes, Can you pls share the complete steps and commands?
-Sure, I offered it before.
+This script finds and suggests conversions of timeout patterns that
+result in seconds-denominated timeouts to use the new secs_to_jiffies()
+API in include/linux/jiffies.h for better readability.
 
-You need NetworkManager and of course NetworkManager-wifi packages installed
-and working.
-We are using Fedora/rhel with the default configuration and you can configure,
-before the next steps, the wifi interface as sta from NetworkManager or not
-(with no wifi configuration the same result happens) because it is going to
-be unmanaged.
+Suggested-by: Anna-Maria Behnsen <anna-maria@linutronix.de>
+Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+---
+ scripts/coccinelle/misc/secs_to_jiffies.cocci | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-After booting (wlp1s0 is the wifi interface for ath11k and there are no other
-wifi cards in the system), here the necessary steps with our network
-configuration:
-# nmcli  device set wlp1s0 managed off
-# ip link set wlp1s0 up
-# ip link add name wifi_br0 type bridge
-# ip addr add 192.168.254.1/24 dev wifi_br0
-# ip link set wifi_br0 up
-# iw dev wlp1s0 interface add wlp1s0_0 type __ap
-# iw dev wlp1s0 interface add wlp1s0_1 type __ap
-# systemd-run --unit hostapd1 hostapd -dd /tmp/hostapd1.conf
-# systemd-run --unit hostapd2 hostapd -dd /tmp/hostapd2.conf
-# dnsmasq \
-    --pid-file=/tmp/dnsmasq_wireless.pid \
-    --port=63 \
-    --no-hosts \
-    --interface=wifi_br0 \
-    --bind-interfaces \
-    --dhcp-range=192.168.254.2,192.168.254.205,60m \
-    --dhcp-option=option:router,192.168.254.1 \
-    --dhcp-leasefile=/var/lib/dnsmasq/hostapd.leases \
-    --dhcp-lease-max=200
+diff --git a/scripts/coccinelle/misc/secs_to_jiffies.cocci b/scripts/coccinelle/misc/secs_to_jiffies.cocci
+new file mode 100644
+index 0000000000000000000000000000000000000000..8bbb2884ea5db939c63fd4513cf5ca8c977aa8cb
+--- /dev/null
++++ b/scripts/coccinelle/misc/secs_to_jiffies.cocci
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: GPL-2.0-only
++///
++/// Find usages of:
++/// - msecs_to_jiffies(value*1000)
++/// - msecs_to_jiffies(value*MSEC_PER_SEC)
++///
++// Confidence: High
++// Copyright: (C) 2024 Easwar Hariharan, Microsoft
++// Keywords: secs, seconds, jiffies
++//
++
++virtual patch
++
++@depends on patch@ constant C; @@
++
++- msecs_to_jiffies(C * 1000)
+++ secs_to_jiffies(C)
++
++@depends on patch@ constant C; @@
++
++- msecs_to_jiffies(C * MSEC_PER_SEC)
+++ secs_to_jiffies(C)
 
-After booting I get the same issue just doing:
-# nmcli  device set wlp1s0 managed off
-# ip link set wlp1s0 up
-And the step that you commented in a previous answer:
-# iw dev wlp1s0 interface add wlp1s0_0 type __ap
-# iw dev wlp1s0 interface add wlp1s0_1 type __ap
-# hostapd hostapd1.conf &
-# hostapd hostapd2.conf &
-
-You can use whatever hostapd configuration (with the suitable interface name).
-
-Thanks
-
-Best regards
-Jose Ignacio
+-- 
+2.43.0
 
 
