@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F66E7718B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F084BE7718D
 	for <ath11k@archiver.kernel.org>; Tue, 10 Dec 2024 22:03:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,38 +12,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2Yxce1Hb0/0P5cE6q+zb1yt8qEYqdCG+5Hx3X7W7CLE=; b=ANwjjsmd0Sxl0qQffRKoth1y/X
-	xNpHa64zWYqmu1HA71Sxd7gHPakfxxgzkqavUC1YVLGYrqfb0kuqQCFDr7GhRCxhxqMkqVV4hFrkW
-	XrGPL6JdkzR8+uqJoIf13UbGjKlkLrJUrkUcxLkrywAar5n9DEKMYbDiYy8ND9qtBmGM41koH2ZIo
-	sgoCEnRTRQl6r1ybse5B7jlbbklw+MChMUhgccMHxYQtM9wrEXbQ7Hr+dMpKM0NzlOvBUHcNnaqdi
-	Pf854M4gwPoo5RVnasDt/w3LZilMmb++Sw5rLVZ4hdooxl/BVMblqv0Y1kvKdIMmKvKe8bWHvVmRA
-	F3uGORGQ==;
+	bh=RbQWNnMSFMFriUk4NuHYTwiGcsEx+EnrYdZ9JaogvX4=; b=HfUliYYjvL9DWugj8MWyB/pdOH
+	mU13eWpute3fcsMBRL12LHVbhOyWmO4hGC1DhaO6uP9VYDuDc4g080IJ4ZgRgtDNpEVDTboEonPB/
+	d7f0buPOGYsAG2GDM8P8DbwAk342BQqaoe/32/iyyxs9QRMYr/LXGfgsmYg8APaTnfEUGGh9n4vk0
+	tjXT/5RAKxf7uyMSS/xQ8MHtn/w9GFy1peBZVUzo4NphH8k3bItMci62+ExDCAyJA7yHrhHwsosBT
+	5pRKXq2QO8FaxRyo7lRQpEery8uIrVZaP5tJByhGAl/uWyIyNcHnWvPhKdTLhCEMJanZ4gF7atI1B
+	xBeg1osw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8Jy-0000000CuDZ-0nSh;
+	id 1tL8Jy-0000000CuES-2jeb;
 	Tue, 10 Dec 2024 22:03:10 +0000
 Received: from linux.microsoft.com ([13.77.154.182])
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tL8Jc-0000000CtOj-00Xl;
-	Tue, 10 Dec 2024 22:02:53 +0000
+	id 1tL8Jc-0000000CtQQ-2jOi;
+	Tue, 10 Dec 2024 22:02:54 +0000
 Received: from eahariha-devbox.internal.cloudapp.net (unknown [40.91.112.99])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 93EFE20ACD6D;
+	by linux.microsoft.com (Postfix) with ESMTPSA id C173C20ACD6E;
 	Tue, 10 Dec 2024 14:02:39 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 93EFE20ACD6D
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C173C20ACD6E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
 	s=default; t=1733868159;
-	bh=2Yxce1Hb0/0P5cE6q+zb1yt8qEYqdCG+5Hx3X7W7CLE=;
+	bh=RbQWNnMSFMFriUk4NuHYTwiGcsEx+EnrYdZ9JaogvX4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=VsljeNAYadFajIAeGJ9FMKFBGspy6ozrhBqU582XvcWkNMj13LfQdRwOadXZG5Pxf
-	 Argps4EtZvFIc7JynbCTgqDrOVF3u5K7Ah2l9+nekqV0coL2L+cEZsIcBHPG5GDao7
-	 B4HNxmwT4io4VbogtubQ+pF0xj14MXNsqvxe10Z0=
+	b=e/J9gwCA4uBKGknzsmiO3oet8slWv1kdiClhfZ9LTUvDcAr8km71ONqn/wjRdmpri
+	 4EyHjbbYG4CKX/8T2eN5ATCPWVrLNipH5jKYYefAMdH+qlSBTJn1LIV6HX/UxzfdGn
+	 9DHlxQpHUKnw1xm9c/b/XukYCVTGP1/9SF9qgehM=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-Date: Tue, 10 Dec 2024 22:02:48 +0000
-Subject: [PATCH v3 17/19] ceph: Convert timeouts to secs_to_jiffies()
+Date: Tue, 10 Dec 2024 22:02:49 +0000
+Subject: [PATCH v3 18/19] livepatch: Convert timeouts to secs_to_jiffies()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-converge-secs-to-jiffies-v3-17-ddfefd7e9f2a@linux.microsoft.com>
+Message-Id: <20241210-converge-secs-to-jiffies-v3-18-ddfefd7e9f2a@linux.microsoft.com>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 In-Reply-To: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 To: Pablo Neira Ayuso <pablo@netfilter.org>, 
@@ -109,8 +109,8 @@ Cc: netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
  Easwar Hariharan <eahariha@linux.microsoft.com>
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_140248_164372_C1D2C9FD 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20241210_140248_807288_8CA187A0 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,22 +144,83 @@ the following Coccinelle rules:
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- fs/ceph/quota.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ samples/livepatch/livepatch-callbacks-busymod.c |  3 +--
+ samples/livepatch/livepatch-shadow-fix1.c       |  3 +--
+ samples/livepatch/livepatch-shadow-mod.c        | 15 +++++----------
+ 3 files changed, 7 insertions(+), 14 deletions(-)
 
-diff --git a/fs/ceph/quota.c b/fs/ceph/quota.c
-index 06ee397e0c3a6172592e62dba95cd267cfff0db1..d90eda19bcc4618f98bfed833c10a6071cf2e2ac 100644
---- a/fs/ceph/quota.c
-+++ b/fs/ceph/quota.c
-@@ -166,7 +166,7 @@ static struct inode *lookup_quotarealm_inode(struct ceph_mds_client *mdsc,
- 	if (IS_ERR(in)) {
- 		doutc(cl, "Can't lookup inode %llx (err: %ld)\n", realm->ino,
- 		      PTR_ERR(in));
--		qri->timeout = jiffies + msecs_to_jiffies(60 * 1000); /* XXX */
-+		qri->timeout = jiffies + secs_to_jiffies(60); /* XXX */
- 	} else {
- 		qri->timeout = 0;
- 		qri->inode = in;
+diff --git a/samples/livepatch/livepatch-callbacks-busymod.c b/samples/livepatch/livepatch-callbacks-busymod.c
+index 378e2d40271a9717d09eff51d3d3612c679736fc..69105596e72e6826aa2815cb2599eea56a0055ba 100644
+--- a/samples/livepatch/livepatch-callbacks-busymod.c
++++ b/samples/livepatch/livepatch-callbacks-busymod.c
+@@ -44,8 +44,7 @@ static void busymod_work_func(struct work_struct *work)
+ static int livepatch_callbacks_mod_init(void)
+ {
+ 	pr_info("%s\n", __func__);
+-	schedule_delayed_work(&work,
+-		msecs_to_jiffies(1000 * 0));
++	schedule_delayed_work(&work, 0);
+ 	return 0;
+ }
+ 
+diff --git a/samples/livepatch/livepatch-shadow-fix1.c b/samples/livepatch/livepatch-shadow-fix1.c
+index 6701641bf12d454a770e49abeeb0dea92560e55e..f3f153895d6ce751fc91ae1224d91b220cba3e37 100644
+--- a/samples/livepatch/livepatch-shadow-fix1.c
++++ b/samples/livepatch/livepatch-shadow-fix1.c
+@@ -72,8 +72,7 @@ static struct dummy *livepatch_fix1_dummy_alloc(void)
+ 	if (!d)
+ 		return NULL;
+ 
+-	d->jiffies_expire = jiffies +
+-		msecs_to_jiffies(1000 * EXPIRE_PERIOD);
++	d->jiffies_expire = jiffies + secs_to_jiffies(EXPIRE_PERIOD);
+ 
+ 	/*
+ 	 * Patch: save the extra memory location into a SV_LEAK shadow
+diff --git a/samples/livepatch/livepatch-shadow-mod.c b/samples/livepatch/livepatch-shadow-mod.c
+index 7e753b0d2fa611524c9e2adbe02c8fa3e9b6015e..5d83ad5a8118dbbac897dfcbb92e6d5f399d1dc3 100644
+--- a/samples/livepatch/livepatch-shadow-mod.c
++++ b/samples/livepatch/livepatch-shadow-mod.c
+@@ -101,8 +101,7 @@ static __used noinline struct dummy *dummy_alloc(void)
+ 	if (!d)
+ 		return NULL;
+ 
+-	d->jiffies_expire = jiffies +
+-		msecs_to_jiffies(1000 * EXPIRE_PERIOD);
++	d->jiffies_expire = jiffies + secs_to_jiffies(EXPIRE_PERIOD);
+ 
+ 	/* Oops, forgot to save leak! */
+ 	leak = kzalloc(sizeof(*leak), GFP_KERNEL);
+@@ -152,8 +151,7 @@ static void alloc_work_func(struct work_struct *work)
+ 	list_add(&d->list, &dummy_list);
+ 	mutex_unlock(&dummy_list_mutex);
+ 
+-	schedule_delayed_work(&alloc_dwork,
+-		msecs_to_jiffies(1000 * ALLOC_PERIOD));
++	schedule_delayed_work(&alloc_dwork, secs_to_jiffies(ALLOC_PERIOD));
+ }
+ 
+ /*
+@@ -184,16 +182,13 @@ static void cleanup_work_func(struct work_struct *work)
+ 	}
+ 	mutex_unlock(&dummy_list_mutex);
+ 
+-	schedule_delayed_work(&cleanup_dwork,
+-		msecs_to_jiffies(1000 * CLEANUP_PERIOD));
++	schedule_delayed_work(&cleanup_dwork, secs_to_jiffies(CLEANUP_PERIOD));
+ }
+ 
+ static int livepatch_shadow_mod_init(void)
+ {
+-	schedule_delayed_work(&alloc_dwork,
+-		msecs_to_jiffies(1000 * ALLOC_PERIOD));
+-	schedule_delayed_work(&cleanup_dwork,
+-		msecs_to_jiffies(1000 * CLEANUP_PERIOD));
++	schedule_delayed_work(&alloc_dwork, secs_to_jiffies(ALLOC_PERIOD));
++	schedule_delayed_work(&cleanup_dwork, secs_to_jiffies(CLEANUP_PERIOD));
+ 
+ 	return 0;
+ }
 
 -- 
 2.43.0
