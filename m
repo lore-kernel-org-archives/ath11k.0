@@ -4,43 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48E51E77183
-	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 02:50:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE4E3E77182
+	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 03:01:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Mime-Version:References:In-Reply-To:Message-Id:Subject:Cc:To:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
 	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=N26vas4GEiufvz52cgMnt3IU547A62BqTHy/82WNU3w=; b=UUA4b6X5bGRCqribrL6RdMS04P
-	wN+ww/JjLI94Ws6lQoOcfRW8yYBc9ScCpXpdbWjm/gm0AjdIOcDZx4v9eO5B/1udhMn7pv+vSsEMl
-	LASum03yFkw7yaBYbgsq8HAnQJsswjho608wy1VcfiNoahqCJcq5AEh5J7W32wYtc5+7LZ4pXb5sr
-	04KHI5kei6syB+dqshKKtHHsuafI+jy7lf8mEhyH23uRIb6s4N9FGoFNir8995kFbXF+4/TKhuZXM
-	zbZoUEgkNZhtuUnQhRvXMfUz0WXxfLb9QufeSIHcThrtjFIZwL4JqRV58adFREcdTHsTTP39vFSAB
-	oZoEjIWw==;
+	bh=gxw7xNAURnoIfNlmqntyDrwCjAAkB0Aboi19WVNOC6M=; b=hCKp59x00MvWyRHKQkHVf3qRbP
+	pEFLbZmeO70ayX37D2ziZ+Yrf3Xz5zrYvsyiRsZ0e7aa4M4vURNsWjU/BXH9PNWVkKGimpkDg/52U
+	ryQjbbfwfCuBdLaboHdqzfehD8waEmSj3+1JQhxS3nzKAYcYctkhAogi7HfHRuzLt9D/sj2f7XHsC
+	1nvSFcY2btQF/cdx78rOteTwOTHwVWIkDgnbCogg3jC/EwkhEzwVp6yLxw8nnoR1MFIW+1mp4j1C4
+	CC44SG5KXkN8wmVUrbrLLzc1mDxT+fLmfySViBM7RwH5UNZmGNxYjhQ1jo53kWUth4nQgI5jLiATU
+	zFWPTb4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLCoJ-0000000DXxT-3pWj;
-	Wed, 11 Dec 2024 02:50:47 +0000
+	id 1tLCyr-0000000DZfZ-28ER;
+	Wed, 11 Dec 2024 03:01:41 +0000
 Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLCoH-0000000DXvv-1rnV;
-	Wed, 11 Dec 2024 02:50:46 +0000
+	id 1tLCyo-0000000DZf0-45K7;
+	Wed, 11 Dec 2024 03:01:40 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 8E954A41B57;
-	Wed, 11 Dec 2024 02:48:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2F66C4CEDF;
-	Wed, 11 Dec 2024 02:50:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
-	s=korg; t=1733885443;
-	bh=C1p1Ur5QCo63c2pabe6pdtPHc4DXD/edWuUg2c5W1rI=;
+	by nyc.source.kernel.org (Postfix) with ESMTP id C7872A41D8E;
+	Wed, 11 Dec 2024 02:59:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 097C6C4CED6;
+	Wed, 11 Dec 2024 03:01:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733886097;
+	bh=08Gv+rg+muCd4b+QXxh4lSp3ciy5sU1jyZsQ2rNGCQs=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=u5fZ/gpW5jFRGO7MUBQaaZ7EgRL5SbKSrvY7yk4XgnrXQ7iTXlQdgNQuxkXW8XsEU
-	 DrSY2RvgO3myem+8+0r+fPnEVkJ622gxoAvBGZmHq1GHcjqcIgbi0UiHZMQHG1FvHq
-	 abSWtb/hxC5Xk4n2V4Wr5FYMY7W0R77+cgVDL+GA=
-Date: Tue, 10 Dec 2024 18:50:40 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Jakub Kicinski <kuba@kernel.org>
+	b=EmcE4/ljfCRY3RJanBjxtPhT62/nJjxk7ELO0ZGNbc2mhHWfd391knNb2HOuZGhSx
+	 1e9fTFNcZABywOnqpoRKAEZbgjlix3qU4Qd2lcLQX3AgcLKJ4vrIgfKpyVm37bJMAM
+	 wiwQScSc5AP2YRJa64ls0Q4PrRlmeIvzeFuzlqiXSS0E4b38+g1f5LgHQjP+e4bxxF
+	 EWfJBUd/sx64BPsSVOGtlrnzPfoqLHGXyBoBKFxBYI5CCDVF2OYRXR0K/LPrQzVMJu
+	 IZkEdyC65OkC/1hbUFTVO1xckc1Src7rjo3nhww+SaTgc+dkPD8qefo1Jh9IYKWx27
+	 gFWQHpinQ+82w==
+Date: Tue, 10 Dec 2024 19:01:33 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Andrew Morton <akpm@linux-foundation.org>
 Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  <jeff.johnson@oss.qualcomm.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>, "David S. Miller"
@@ -53,7 +56,7 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
  <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Ofir
  Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
  <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
  <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
@@ -63,7 +66,7 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  James Smart <james.smart@broadcom.com>, Dick Kennedy
  <dick.kennedy@broadcom.com>, "James E.J. Bottomley"
  <James.Bottomley@HansenPartnership.com>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Roger Pau =?ISO-8859-1?Q?Monn=E9?=
+ <martin.petersen@oracle.com>, Roger Pau =?UTF-8?B?TW9ubsOp?=
  <roger.pau@citrix.com>, Jens Axboe <axboe@kernel.dk>, Kalle Valo
  <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
  <catalin.marinas@arm.com>, Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel
@@ -94,21 +97,21 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen
  <anna-maria@linutronix.de>
 Subject: Re: [PATCH v3 00/19] Converge on using secs_to_jiffies()
-Message-Id: <20241210185040.96c81a25f098f59191223c9f@linux-foundation.org>
-In-Reply-To: <20241210184129.41aaf371@kernel.org>
+Message-ID: <20241210190133.44818a76@kernel.org>
+In-Reply-To: <20241210185040.96c81a25f098f59191223c9f@linux-foundation.org>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 	<315e9178-5b10-4de0-bdcf-7243e0e355bb@oss.qualcomm.com>
 	<20241210153604.cf99699f264f12740ffce5c7@linux-foundation.org>
 	<20241210173548.5d32efe0@kernel.org>
 	<20241210183130.81111d05148c41278a299aad@linux-foundation.org>
 	<20241210184129.41aaf371@kernel.org>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
+	<20241210185040.96c81a25f098f59191223c9f@linux-foundation.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_185045_612997_9C15C4A9 
-X-CRM114-Status: GOOD (  13.61  )
+X-CRM114-CacheID: sfid-20241210_190139_142244_6B9D431C 
+X-CRM114-Status: GOOD (  12.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,21 +126,17 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 10 Dec 2024 18:41:29 -0800 Jakub Kicinski <kuba@kernel.org> wrote:
-
-> On Tue, 10 Dec 2024 18:31:30 -0800 Andrew Morton wrote:
-> > > > I'll just grab everything and see if anyone complains ;)  
-> > > 
-> > > I may, if this leads to a conflict :(  
+On Tue, 10 Dec 2024 18:50:40 -0800 Andrew Morton wrote:
+> > > Very unlikely, and any such conflict will be trivial.  
 > > 
-> > Very unlikely, and any such conflict will be trivial.
+> > Agreed, mainly I don't understand why we'd make an exception
+> > and take the patchset via a special tree.  
 > 
-> Agreed, mainly I don't understand why we'd make an exception
-> and take the patchset via a special tree.
+> It saves work for everyone?
+> 
+> The patches are super-simple.  If a maintainer chooses to merge one of
+> them, Stephen tells us and I drop the mm.git copy.  It's all so easy.
 
-It saves work for everyone?
-
-The patches are super-simple.  If a maintainer chooses to merge one of
-them, Stephen tells us and I drop the mm.git copy.  It's all so easy.
-
+If it's just to save work - we're fine.
+Please don't apply the networking changes.
 
