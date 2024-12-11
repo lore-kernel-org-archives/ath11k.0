@@ -4,46 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70751E77183
-	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 02:41:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48E51E77183
+	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 02:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	Content-Type:Mime-Version:References:In-Reply-To:Message-Id:Subject:Cc:To:
 	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7CBb7hjH4xh1oj/7iU6E/LdGW+K5cpcHxcxXfa7bm7I=; b=vd3EZhRNs5PH9UIA8iXDfs1LQl
-	zmAGDhLJztNuuRp0LQnlif21p55kvca7OzihI66OIzty2OS08dqQYWkMGOrAUOisL/kF/3+U+DQcO
-	wZvVFIceC+wJLNXrIT14XHJoAST/GAEhL3ahg8tArTUO3o114MxQDe8Rk7mbQN6Li0hzBWsQ+WmbB
-	UUpetnyjwIenLHnnhEARsqAxve+AZhHrCmJn8YItH/v92jNCEj3nrJYmLx5CkrfduZAKoOnnuo1Pa
-	nMaK2QtiNILIHdNsgVQYtEf0Yg8HeXnY66YYT3mEVYBa8liFxawBfzHgDf8tCf0UOs+B9QmBwsRi7
-	fHWCG5PA==;
+	bh=N26vas4GEiufvz52cgMnt3IU547A62BqTHy/82WNU3w=; b=UUA4b6X5bGRCqribrL6RdMS04P
+	wN+ww/JjLI94Ws6lQoOcfRW8yYBc9ScCpXpdbWjm/gm0AjdIOcDZx4v9eO5B/1udhMn7pv+vSsEMl
+	LASum03yFkw7yaBYbgsq8HAnQJsswjho608wy1VcfiNoahqCJcq5AEh5J7W32wYtc5+7LZ4pXb5sr
+	04KHI5kei6syB+dqshKKtHHsuafI+jy7lf8mEhyH23uRIb6s4N9FGoFNir8995kFbXF+4/TKhuZXM
+	zbZoUEgkNZhtuUnQhRvXMfUz0WXxfLb9QufeSIHcThrtjFIZwL4JqRV58adFREcdTHsTTP39vFSAB
+	oZoEjIWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLCfR-0000000DX2d-3Rh8;
-	Wed, 11 Dec 2024 02:41:37 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tLCoJ-0000000DXxT-3pWj;
+	Wed, 11 Dec 2024 02:50:47 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLCfP-0000000DX26-2L58;
-	Wed, 11 Dec 2024 02:41:36 +0000
+	id 1tLCoH-0000000DXvv-1rnV;
+	Wed, 11 Dec 2024 02:50:46 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 6B6E7A41D8D;
-	Wed, 11 Dec 2024 02:39:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2728C4CED6;
-	Wed, 11 Dec 2024 02:41:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733884894;
-	bh=00K8MMiI4zi+Ut/RW/eta+vMQomu0Giei3szpffQQOQ=;
+	by nyc.source.kernel.org (Postfix) with ESMTP id 8E954A41B57;
+	Wed, 11 Dec 2024 02:48:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2F66C4CEDF;
+	Wed, 11 Dec 2024 02:50:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1733885443;
+	bh=C1p1Ur5QCo63c2pabe6pdtPHc4DXD/edWuUg2c5W1rI=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Da4qREKhLmCm8yz23HYMcnYhvUPIhwEMSq3e2xy5eHqmd+lk3xFCqCL8gMV2d1qZM
-	 OX/nYhIL+8FVEAH5j2G8jreOCn4t5aDyk2A67ZSa2Mkyc9Pdlwt9HWePiQrPKYupQD
-	 HqnoKIQmX31F4DdpsyABbQ15F6Ui5dY/VyDtBpBstL8y1jhriA+kdAfBMPTAXFbWnS
-	 63C0vjQwg5Lmz+BJiiuG775DcGC4erU4pOGbFjbFCfGrajmvqQlFUpggTSjU+aLgVs
-	 HKqzofl4MBLxzwaLLU/QjjetYigVK4WMW1awwyb5uskvci+1KuE5L5PLpPOgzSWNQz
-	 YP2aWNyh8AjbA==
-Date: Tue, 10 Dec 2024 18:41:29 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Andrew Morton <akpm@linux-foundation.org>
+	b=u5fZ/gpW5jFRGO7MUBQaaZ7EgRL5SbKSrvY7yk4XgnrXQ7iTXlQdgNQuxkXW8XsEU
+	 DrSY2RvgO3myem+8+0r+fPnEVkJ622gxoAvBGZmHq1GHcjqcIgbi0UiHZMQHG1FvHq
+	 abSWtb/hxC5Xk4n2V4Wr5FYMY7W0R77+cgVDL+GA=
+Date: Tue, 10 Dec 2024 18:50:40 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Jakub Kicinski <kuba@kernel.org>
 Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  <jeff.johnson@oss.qualcomm.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>, "David S. Miller"
@@ -56,7 +53,7 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
  <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Ofir
  Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
  <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
  <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
@@ -66,7 +63,7 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  James Smart <james.smart@broadcom.com>, Dick Kennedy
  <dick.kennedy@broadcom.com>, "James E.J. Bottomley"
  <James.Bottomley@HansenPartnership.com>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Roger Pau =?UTF-8?B?TW9ubsOp?=
+ <martin.petersen@oracle.com>, Roger Pau =?ISO-8859-1?Q?Monn=E9?=
  <roger.pau@citrix.com>, Jens Axboe <axboe@kernel.dk>, Kalle Valo
  <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, Catalin Marinas
  <catalin.marinas@arm.com>, Jack Wang <jinpu.wang@cloud.ionos.com>, Marcel
@@ -97,19 +94,21 @@ Cc: Easwar Hariharan <eahariha@linux.microsoft.com>, Jeff Johnson
  oss-drivers@corigine.com, linuxppc-dev@lists.ozlabs.org, Anna-Maria Behnsen
  <anna-maria@linutronix.de>
 Subject: Re: [PATCH v3 00/19] Converge on using secs_to_jiffies()
-Message-ID: <20241210184129.41aaf371@kernel.org>
-In-Reply-To: <20241210183130.81111d05148c41278a299aad@linux-foundation.org>
+Message-Id: <20241210185040.96c81a25f098f59191223c9f@linux-foundation.org>
+In-Reply-To: <20241210184129.41aaf371@kernel.org>
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 	<315e9178-5b10-4de0-bdcf-7243e0e355bb@oss.qualcomm.com>
 	<20241210153604.cf99699f264f12740ffce5c7@linux-foundation.org>
 	<20241210173548.5d32efe0@kernel.org>
 	<20241210183130.81111d05148c41278a299aad@linux-foundation.org>
-MIME-Version: 1.0
+	<20241210184129.41aaf371@kernel.org>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_184135_747441_85029770 
-X-CRM114-Status: GOOD (  11.11  )
+X-CRM114-CacheID: sfid-20241210_185045_612997_9C15C4A9 
+X-CRM114-Status: GOOD (  13.61  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,23 +123,21 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 10 Dec 2024 18:31:30 -0800 Andrew Morton wrote:
-> > > I'll just grab everything and see if anyone complains ;)  
+On Tue, 10 Dec 2024 18:41:29 -0800 Jakub Kicinski <kuba@kernel.org> wrote:
+
+> On Tue, 10 Dec 2024 18:31:30 -0800 Andrew Morton wrote:
+> > > > I'll just grab everything and see if anyone complains ;)  
+> > > 
+> > > I may, if this leads to a conflict :(  
 > > 
-> > I may, if this leads to a conflict :(  
+> > Very unlikely, and any such conflict will be trivial.
 > 
-> Very unlikely, and any such conflict will be trivial.
+> Agreed, mainly I don't understand why we'd make an exception
+> and take the patchset via a special tree.
 
-Agreed, mainly I don't understand why we'd make an exception
-and take the patchset via a special tree.
+It saves work for everyone?
 
-> > Easwar, please break this up per subsystem.  
-> 
-> The series is already one-patch-per-changed-file.
+The patches are super-simple.  If a maintainer chooses to merge one of
+them, Stephen tells us and I drop the mm.git copy.  It's all so easy.
 
-More confusingly still, they did send one standalone patch for 
-an Ethernet driver:
-https://lore.kernel.org/all/20241210-converge-secs-to-jiffies-v3-20-59479891e658@linux.microsoft.com/
-And yet another Ethernet driver (drivers/net/ethernet/google/gve/) 
-is converted in this series.
 
