@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E9B1E77180
-	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 07:42:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B36FE77182
+	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 07:45:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=JkNVVFFGbFo9FbSw2XPZzS8G5YLDR8er2AkrPtCRzJ8=; b=WbDF0+CJfg8ROXVQznK81DS98K
-	64ka33UpEZRDOULwbxThvkAbIZkC11zPTlckm4v4voRB62HdHBs8sjzFdiv8XAOQcWIU/l6NMZ5bB
-	pqsKj4/OSsM6wO4mnVPGC5bPYHCf8b/tErKgB3WhX03eE1phyoXNaCca9FJLztDZNg1bOtApw58Sa
-	ZrwZFByhKNB1HFYkNygAgWUxA1utfOCiiYET3yU3MG7hKi1G/akhhvRTeoPOElf7vruJoGudFtMGg
-	CVwp3XN5ohpDddrk+CuBGgOM+ci2jRuZ1zP0hUKUQUhmERdSA/Hs2cJJxdwLYR3XniNENeQUSNzv+
-	39+zfDWg==;
+	bh=RNMFGkjaVVePSgh7GtbXoA+T3WPlMdrO90sFFhilL3E=; b=uDYXox3arSNtAukwn5OV6AMWtF
+	4+IkWtcs3TscZP2gNzB5+RPzgxU3pvzgKN8j/18UOWVT8AlqR5gmimkfXLmeHcxUk2uMoHhRBLq9s
+	TTff75xq7GDDwFZjIKvoVdQ7MJ20ECHnloN80HqqtE8tl56sicxYbdvzf0h1Yfi/xzRmT2+KOEadM
+	13uBmaQbCcWpS8/Jqv7NtQ5wpNoDS6wxB7VWbi81sPfmpNGElFrATMydGDDFn7AccMkMBXbYLx5kT
+	dboc19Yld/0mRh/meAt64ZLC3Gho7jZ4kQDBovtNTeuFQZgYKhTs8Dr4IbhhCEGvNA06UwdeRCaH3
+	5N1dF9MQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLHMr-0000000E5IC-0Gh0;
-	Wed, 11 Dec 2024 07:42:45 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tLHPn-0000000E5yP-0Obu;
+	Wed, 11 Dec 2024 07:45:47 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLHMe-0000000E5DQ-29Rs;
-	Wed, 11 Dec 2024 07:42:33 +0000
+	id 1tLHPk-0000000E5xk-3kHm;
+	Wed, 11 Dec 2024 07:45:46 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 0D3F25C5531;
-	Wed, 11 Dec 2024 07:41:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6363CC4CED2;
-	Wed, 11 Dec 2024 07:42:13 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 7D087A41F45;
+	Wed, 11 Dec 2024 07:43:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8A77C4CED2;
+	Wed, 11 Dec 2024 07:45:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733902951;
-	bh=2uMUDx+CZ3m3qrGORQssIpf9SkBZEr5sXYGVq8CLbbk=;
+	s=k20201202; t=1733903143;
+	bh=KM5Of7mM53fIwBBiaYiiUQ9BfxtVrpykBzubAzmUdlE=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=lzCs9W07TRdYy9JWVA19UEcEu4CvACr8Yh0wQYYSfGHV9Xmm3k/fpbGlRqmHhrV+4
-	 m+NXNTf0ojEsKvo2HABNezvu0E3y4f8qwtj50O+Tpecim7ilciV/YQzBLNsRpBxgh2
-	 kFcAO8hw1xQeAKLLWrzRXln1VFfP4BsLZkJYWlflCYYKj1xjZBYezOsESJaMXsh8Tr
-	 hQ+/FOtWX9XeTV7X9iJbxMRHo8S8Byh7AJhYOGIti6Ul764xlpsl746ormGsN6d2KW
-	 ZfV5twBXO7B+t0Fxemw7h0pYOWhdCFQdt/A+Rzvz9BButSX+3CHe4CYkaTdr1ABqIe
-	 IMFDpd1/B9rEg==
+	b=ZaN44YyjhRMRn1ZZ+GmTOS40UgIRbhL4wBsfJy8XjSPG4QXarlwE2h8LLmlSyCwwE
+	 mhsyVMxQDuDVaxW28PxQeU8er7lMNhKnh1DPb1k4CbIDr8a5tkumkBV/uTN9xwnFYp
+	 h1HNwJmQE+rv8LC4BNlfDvTcPd5XXQGZmdVG4PmZqn4aLOwa4oWj50GSY3CEXVAf2K
+	 4s9JO62HtV4AyzHzBTTKIyxerUXbJDme/tcsfk9nrdzoiXAN6SWU/JWU3UcTsBRxgt
+	 rxzg89ETMye2AN+BOVUz+OAR29EzCnQNdPIoMqWIY7xMbpGfvp3pWcUv4qGp3pyh75
+	 7MY47GTKlC4gQ==
 From: Kalle Valo <kvalo@kernel.org>
 To: Easwar Hariharan <eahariha@linux.microsoft.com>
 Cc: Pablo Neira Ayuso <pablo@netfilter.org>,  Jozsef Kadlecsik
@@ -102,16 +102,17 @@ Subject: Re: [PATCH v3 14/19] wifi: ath11k: Convert timeouts to
  secs_to_jiffies()
 References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
 	<20241210-converge-secs-to-jiffies-v3-14-ddfefd7e9f2a@linux.microsoft.com>
-Date: Wed, 11 Dec 2024 09:42:11 +0200
-In-Reply-To: <20241210-converge-secs-to-jiffies-v3-14-ddfefd7e9f2a@linux.microsoft.com>
-	(Easwar Hariharan's message of "Tue, 10 Dec 2024 22:02:45 +0000")
-Message-ID: <87sequr7ho.fsf@kernel.org>
+	<87sequr7ho.fsf@kernel.org>
+Date: Wed, 11 Dec 2024 09:45:24 +0200
+In-Reply-To: <87sequr7ho.fsf@kernel.org> (Kalle Valo's message of "Wed, 11 Dec
+	2024 09:42:11 +0200")
+Message-ID: <87o71ir7cb.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_234232_636580_7A0C69B0 
-X-CRM114-Status: GOOD (  15.39  )
+X-CRM114-CacheID: sfid-20241210_234545_063519_45FDD28F 
+X-CRM114-Status: GOOD (  16.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,33 +127,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Easwar Hariharan <eahariha@linux.microsoft.com> writes:
+Kalle Valo <kvalo@kernel.org> writes:
 
-> Commit b35108a51cf7 ("jiffies: Define secs_to_jiffies()") introduced
-> secs_to_jiffies(). As the value here is a multiple of 1000, use
-> secs_to_jiffies() instead of msecs_to_jiffies to avoid the multiplication.
+> Easwar Hariharan <eahariha@linux.microsoft.com> writes:
 >
-> This is converted using scripts/coccinelle/misc/secs_to_jiffies.cocci with
-> the following Coccinelle rules:
+>> Commit b35108a51cf7 ("jiffies: Define secs_to_jiffies()") introduced
+>> secs_to_jiffies(). As the value here is a multiple of 1000, use
+>> secs_to_jiffies() instead of msecs_to_jiffies to avoid the multiplication.
+>>
+>> This is converted using scripts/coccinelle/misc/secs_to_jiffies.cocci with
+>> the following Coccinelle rules:
+>>
+>> @@ constant C; @@
+>>
+>> - msecs_to_jiffies(C * 1000)
+>> + secs_to_jiffies(C)
+>>
+>> @@ constant C; @@
+>>
+>> - msecs_to_jiffies(C * MSEC_PER_SEC)
+>> + secs_to_jiffies(C)
+>>
+>> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+>> ---
+>>  drivers/net/wireless/ath/ath11k/debugfs.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> @@ constant C; @@
->
-> - msecs_to_jiffies(C * 1000)
-> + secs_to_jiffies(C)
->
-> @@ constant C; @@
->
-> - msecs_to_jiffies(C * MSEC_PER_SEC)
-> + secs_to_jiffies(C)
->
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> ---
->  drivers/net/wireless/ath/ath11k/debugfs.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> I assume we can take this to our ath.git tree, please let us know if
+> that's not the case.
 
-I assume we can take this to our ath.git tree, please let us know if
-that's not the case.
+Nevermind, I now saw the discussion in the cover letter and assume that
+this patch will be sent separately.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
