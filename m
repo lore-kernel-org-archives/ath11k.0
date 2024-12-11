@@ -4,65 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13CAFE7717D
-	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 13:45:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78937E7717D
+	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 17:42:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ylV9jx3eTINYUnZTkfSRbimJsZ0dS5puv/EC0+T5UkY=; b=aZDsK8hb/rgn8440baaTvE2+mZ
-	JPRvefmnMFg9vq0BVtlCSJsn/istQtd4oFdcM9Jv99oYr/I71gG4snCD5R4rYWpvB+TB1wzQEeVE8
-	QtbXQU13bPXNJ6DmV4gVHUV0UPhuvQbRFiApQqgWA7zHfxcyEeJmm4J9CZBe6fkNj9nBZeoopIBhp
-	UKTWQh7q68buyv7s10uuiSQzaeeF0j/GCkxF7TbqlwAoMGlzRYln878unyfFpwa+SbaUMtQQZNCMr
-	y9j1AM4JQR3Fvp8+nqnHSJ6WTr3Pvc7/EcxuTja2oHJ7R8QRFK6N7P6CHkZj4LGMjW+I8YIFJ8+VR
-	Igq9m2eg==;
+	bh=qXu8dTjdB54vg2eNS9OB9yQqJWpu/QszOFjUbU7yuXI=; b=08xzYfTFhfJm9LvFgel7O96sP0
+	F9s+Fd/hoXYU4xqy9C7ZjWob6i3bHNd4ZAcRn3jbWgTfN+N6eE9i/UgzDvhBVKdgHwrMczCAUHzks
+	ew/oE5Ppz+V3CekK22UjjpPeLj/PJN2KnBAzF5g4hsX/yhzZMprj054k0TNn0Agi2CTct+gSyYWzj
+	szw1PWuuMZVdcldD8v2OjjNogxIQc+04cYwM7Ea7PmKp3MA2Las8mK7rGQmtyt/eN6HMTcVB3QDYL
+	B2zsIudEhulgFmhuCzLHCNDh9YgLr+ywGlHUubZEMjVd11UFsLOZ9jFiqfKyjmemp+yNGn30aqkuM
+	oz1V2LrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLN1S-0000000F1co-329Y;
-	Wed, 11 Dec 2024 13:45:02 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLN1Q-0000000F1aW-25q5
+	id 1tLQiw-0000000FdpN-1DoP;
+	Wed, 11 Dec 2024 17:42:10 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1tLQiu-0000000Fdok-1XBb
 	for ath11k@lists.infradead.org;
-	Wed, 11 Dec 2024 13:45:01 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40B6D1063;
-	Wed, 11 Dec 2024 05:45:25 -0800 (PST)
-Received: from [10.1.30.25] (010265703453.arm.com [10.1.30.25])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9152F3F720;
-	Wed, 11 Dec 2024 05:44:55 -0800 (PST)
-Message-ID: <9b2e8ffa-ba2c-46da-a478-eb1fb44b693e@arm.com>
-Date: Wed, 11 Dec 2024 13:44:53 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k swiotlb buffer is full (on IMX8M with 4GiB DRAM)
-To: Baochen Qiang <quic_bqiang@quicinc.com>,
- Tim Harvey <tharvey@gateworks.com>, Christoph Hellwig <hch@lst.de>
+	Wed, 11 Dec 2024 17:42:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1733938926;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qXu8dTjdB54vg2eNS9OB9yQqJWpu/QszOFjUbU7yuXI=;
+	b=bmX054zXFU9f+vJgJfE/h9WS30fZs9LPw/T9R8eXUKSyBJhlng/YQc3Awfo/xyKc/2KLZ2
+	mDbqzGtTHT7mpE8Mvi5JoAgiV29LGdS0F3KbPheQ4gUhOPCmYmfsL8v44FTPxcbCJo6e8t
+	IkTHIl19EWNmy13xnJeSKEmI7L5wTfc=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-313-uJzm67B0MeOQ3jz9N9ZhFA-1; Wed,
+ 11 Dec 2024 12:42:03 -0500
+X-MC-Unique: uJzm67B0MeOQ3jz9N9ZhFA-1
+X-Mimecast-MFC-AGG-ID: uJzm67B0MeOQ3jz9N9ZhFA
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D1BD71955F28;
+	Wed, 11 Dec 2024 17:42:01 +0000 (UTC)
+Received: from fedora.redhat.com (unknown [10.39.192.126])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 202C719560AA;
+	Wed, 11 Dec 2024 17:41:56 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: quic_yuzha@quicinc.com
 Cc: ath11k@lists.infradead.org,
- linux-wireless <linux-wireless@vger.kernel.org>,
- Fabio Estevam <festevam@gmail.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, iommu@lists.linux.dev
-References: <CAJ+vNU0EL3T+GyNAbVbGqYYQ5NM3h7cgAwqxxBMuZjh+-YQ3bA@mail.gmail.com>
- <1b2ea8b2-6fbe-4118-b6c6-742c8f0be476@quicinc.com>
- <CAJ+vNU1-OZ3y4p2L+zf64AiVtUv70yZNqkT20jTxyE0_gJb6Jg@mail.gmail.com>
- <0282be95-9094-4d49-b79e-4f7c976dad00@quicinc.com>
- <CAJ+vNU32EMHjtchJRb1sODBrUKG2vZW4ZEu1_F0+dCCEjCn7Dg@mail.gmail.com>
- <20241209081714.GA25363@lst.de>
- <593c0d63-d8fd-4439-a57a-97340212c197@arm.com>
- <CAJ+vNU2ypE_Mn_6iKCmf5LYk9Sth=ryWXyewc5MhOKK8VoAKCA@mail.gmail.com>
- <20241210041133.GA17116@lst.de>
- <CAJ+vNU03Cqsc+O5anwmvJW8Wfd-06LbDMVHjxVFdixf01ZLczQ@mail.gmail.com>
- <5fe372df-ae51-4a8b-9fa3-a4a0ea2d33e3@quicinc.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <5fe372df-ae51-4a8b-9fa3-a4a0ea2d33e3@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+	jjohnson@kernel.org,
+	jtornosm@redhat.com,
+	kvalo@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	quic_cjhuang@quicinc.com,
+	vbenes@redhat.com
+Subject: Re: [PATCH] wifi: ath11k: allow APs combination when dual stations are supported
+Date: Wed, 11 Dec 2024 18:41:55 +0100
+Message-ID: <20241211174155.30782-1-jtornosm@redhat.com>
+In-Reply-To: <d8705140-e335-47e0-ac70-47d8592fb18c@quicinc.com>
+References: <d8705140-e335-47e0-ac70-47d8592fb18c@quicinc.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241211_054500_627120_746F902E 
-X-CRM114-Status: GOOD (  18.22  )
+X-CRM114-CacheID: sfid-20241211_094208_471798_FD75FFFC 
+X-CRM114-Status: UNSURE (   7.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,63 +89,22 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2024-12-11 2:31 am, Baochen Qiang wrote:
-> 
-> 
-> On 12/11/2024 7:06 AM, Tim Harvey wrote:
->> On Mon, Dec 9, 2024 at 8:11 PM Christoph Hellwig <hch@lst.de> wrote:
->>>
->>> On Mon, Dec 09, 2024 at 11:15:02AM -0800, Tim Harvey wrote:
->>>> After a lot of back and forth and investigation this is due to the
->>>> IMX8M SoC's not having an IOMMU thus swiotlb is being used and ath11k
->>>> is requesting some buffers that are too large for swiotlb to provide.
->>>> There is a specific patch which added the HAL_WBM2SW_RELEASE buffers
->>>> to cacheable memory that could be reverted to fix this but the concern
->>>> was that it would impact performance moving those buffers to
->>>> non-cacheable memory (there are three ~1MiB buffers being allocated):
->>>> commit d0e2523bfa9cb ("ath11k: allocate HAL_WBM2SW_RELEASE ring from
->>>> cacheable memory").
->>>
->>> The combination of "buffers" and "swiotlb" sounds like Robin was right
->>> below.
->>>
->>>> The chain of events as best I can tell are:
->>>>
->>>> commit 6452f0a3d565 ("ath11k: allocate dst ring descriptors from
->>>> cacheable memory")
->>>> - Nov 12 2021 (made it into Linux 5.17)
->>>> - changes allocation of reo_dst rings to cacheable memory to allow
->>>> cached descriptor access to optimize CPU usage
->>>> - this is flawed because it uses virt_to_phys() to allocate cacheable
->>>> memory which does not work on systems with an IOMMU enabled or using
->>>> software IOMMU (swiotlb); this causes a kernel crash on client
->>>> association
->>>
->>> And this is where it started to take a wrong turn, that everyhing
->>> later basically made worse.  If you have long living and potentially
->>> large DMA allocations, you need to use dma_alloc_* interfaces.
->>>
->>> 5.17 already had dma_alloc_pages for quite a while which was and still is
->>> the proper interface to use.  For much older kernel you'd be stuck
->>> with dma_alloc_noncoherent or dma_alloc_attrs with the right flag,
->>> but even that would have been much better.
->>
->> Christoph,
->>
->> I'm not clear what you are suggesting be done here. Are you suggesting
->> that ath11k has been using the wrong mechanism by calling
->> dma_map_single for cached DMA buffers? I'm not all that familiar with
->> ath11k so I can't tell what buffers are considered long living.
-> 
-> those buffers are allocated when driver load and freed when driver unload, so IMO they are
-> long living.
+> Got it, you use Networkmanager, so that the add interface type will
+> always be managed. But it's still work fine in my device that I use
+> "hostapd hostapd2.conf" to up the second ap.
+Yes, it works for you because you don't have a manager and/or your initial
+situation was clean and/or without other needs/services.
 
-The point is that if this driver wants a notion of "cached DMA buffers", 
-then it should allocate such buffers the proper way, not try to reinvent 
-it badly. That means using dma_alloc_pages(), or modern 
-dma_alloc_noncoherent() which is essentially the same thing but with the 
-dma_map_page() call automatically done for you as well.
+For us it was enough to be able to come back to the initial interface
+combination, but it seems that you prefer to have a common configuration
+for everything.
+So, since I think it is your final intention, please, go ahead with your
+proposed interface combination and then I will debug myself to try complete
+and/or reuse in some way.
 
-Thanks,
-Robin.
+Thanks
+
+Best regards
+Jose Ignacio
+
 
