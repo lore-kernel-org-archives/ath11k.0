@@ -4,115 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B36FE77182
-	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 07:45:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13CAFE7717D
+	for <ath11k@archiver.kernel.org>; Wed, 11 Dec 2024 13:45:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=RNMFGkjaVVePSgh7GtbXoA+T3WPlMdrO90sFFhilL3E=; b=uDYXox3arSNtAukwn5OV6AMWtF
-	4+IkWtcs3TscZP2gNzB5+RPzgxU3pvzgKN8j/18UOWVT8AlqR5gmimkfXLmeHcxUk2uMoHhRBLq9s
-	TTff75xq7GDDwFZjIKvoVdQ7MJ20ECHnloN80HqqtE8tl56sicxYbdvzf0h1Yfi/xzRmT2+KOEadM
-	13uBmaQbCcWpS8/Jqv7NtQ5wpNoDS6wxB7VWbi81sPfmpNGElFrATMydGDDFn7AccMkMBXbYLx5kT
-	dboc19Yld/0mRh/meAt64ZLC3Gho7jZ4kQDBovtNTeuFQZgYKhTs8Dr4IbhhCEGvNA06UwdeRCaH3
-	5N1dF9MQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ylV9jx3eTINYUnZTkfSRbimJsZ0dS5puv/EC0+T5UkY=; b=aZDsK8hb/rgn8440baaTvE2+mZ
+	JPRvefmnMFg9vq0BVtlCSJsn/istQtd4oFdcM9Jv99oYr/I71gG4snCD5R4rYWpvB+TB1wzQEeVE8
+	QtbXQU13bPXNJ6DmV4gVHUV0UPhuvQbRFiApQqgWA7zHfxcyEeJmm4J9CZBe6fkNj9nBZeoopIBhp
+	UKTWQh7q68buyv7s10uuiSQzaeeF0j/GCkxF7TbqlwAoMGlzRYln878unyfFpwa+SbaUMtQQZNCMr
+	y9j1AM4JQR3Fvp8+nqnHSJ6WTr3Pvc7/EcxuTja2oHJ7R8QRFK6N7P6CHkZj4LGMjW+I8YIFJ8+VR
+	Igq9m2eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLHPn-0000000E5yP-0Obu;
-	Wed, 11 Dec 2024 07:45:47 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
-	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLHPk-0000000E5xk-3kHm;
-	Wed, 11 Dec 2024 07:45:46 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 7D087A41F45;
-	Wed, 11 Dec 2024 07:43:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8A77C4CED2;
-	Wed, 11 Dec 2024 07:45:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733903143;
-	bh=KM5Of7mM53fIwBBiaYiiUQ9BfxtVrpykBzubAzmUdlE=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=ZaN44YyjhRMRn1ZZ+GmTOS40UgIRbhL4wBsfJy8XjSPG4QXarlwE2h8LLmlSyCwwE
-	 mhsyVMxQDuDVaxW28PxQeU8er7lMNhKnh1DPb1k4CbIDr8a5tkumkBV/uTN9xwnFYp
-	 h1HNwJmQE+rv8LC4BNlfDvTcPd5XXQGZmdVG4PmZqn4aLOwa4oWj50GSY3CEXVAf2K
-	 4s9JO62HtV4AyzHzBTTKIyxerUXbJDme/tcsfk9nrdzoiXAN6SWU/JWU3UcTsBRxgt
-	 rxzg89ETMye2AN+BOVUz+OAR29EzCnQNdPIoMqWIY7xMbpGfvp3pWcUv4qGp3pyh75
-	 7MY47GTKlC4gQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Pablo Neira Ayuso <pablo@netfilter.org>,  Jozsef Kadlecsik
- <kadlec@netfilter.org>,  "David S. Miller" <davem@davemloft.net>,  Eric
- Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo
- Abeni <pabeni@redhat.com>,  Simon Horman <horms@kernel.org>,  Julia Lawall
- <Julia.Lawall@inria.fr>,  Nicolas Palix <nicolas.palix@imag.fr>,  Daniel
- Mack <daniel@zonque.org>,  Haojian Zhuang <haojian.zhuang@gmail.com>,
-  Robert Jarzmik <robert.jarzmik@free.fr>,  Russell King
- <linux@armlinux.org.uk>,  Heiko Carstens <hca@linux.ibm.com>,  Vasily
- Gorbik <gor@linux.ibm.com>,  Alexander Gordeev <agordeev@linux.ibm.com>,
-  Christian Borntraeger <borntraeger@linux.ibm.com>,  Sven Schnelle
- <svens@linux.ibm.com>,  Ofir Bitton <obitton@habana.ai>,  Oded Gabbay
- <ogabbay@kernel.org>,  Lucas De Marchi <lucas.demarchi@intel.com>,  Thomas
- =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,  Rodrigo
- Vivi
- <rodrigo.vivi@intel.com>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
-  Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
- <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Jeroen de Borst
- <jeroendb@google.com>,  Praveen Kaligineedi <pkaligineedi@google.com>,
-  Shailend Chand <shailend@google.com>,  Andrew Lunn
- <andrew+netdev@lunn.ch>,  James Smart <james.smart@broadcom.com>,  Dick
- Kennedy <dick.kennedy@broadcom.com>,  "James E.J. Bottomley"
- <James.Bottomley@HansenPartnership.com>,  "Martin K. Petersen"
- <martin.petersen@oracle.com>,  Roger Pau =?utf-8?Q?Monn=C3=A9?=
- <roger.pau@citrix.com>,
-  Jens Axboe <axboe@kernel.dk>,  Jeff Johnson <jjohnson@kernel.org>,
-  Catalin Marinas <catalin.marinas@arm.com>,  Andrew Morton
- <akpm@linux-foundation.org>,  Jack Wang <jinpu.wang@cloud.ionos.com>,
-  Marcel Holtmann <marcel@holtmann.org>,  Johan Hedberg
- <johan.hedberg@gmail.com>,  Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,  Florian Fainelli
- <florian.fainelli@broadcom.com>,  Ray Jui <rjui@broadcom.com>,  Scott
- Branden <sbranden@broadcom.com>,  Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,  Xiubo Li <xiubli@redhat.com>,
-  Ilya Dryomov <idryomov@gmail.com>,  Josh Poimboeuf <jpoimboe@kernel.org>,
-  Jiri Kosina <jikos@kernel.org>,  Miroslav Benes <mbenes@suse.cz>,  Petr
- Mladek <pmladek@suse.com>,  Joe Lawrence <joe.lawrence@redhat.com>,
-  Jaroslav Kysela <perex@perex.cz>,  Takashi Iwai <tiwai@suse.com>,  Louis
- Peens <louis.peens@corigine.com>,  Michael Ellerman <mpe@ellerman.id.au>,
-  Nicholas Piggin <npiggin@gmail.com>,  Christophe Leroy
- <christophe.leroy@csgroup.eu>,  Naveen N Rao <naveen@kernel.org>,
-  Madhavan Srinivasan <maddy@linux.ibm.com>,
-  netfilter-devel@vger.kernel.org,  coreteam@netfilter.org,
-  netdev@vger.kernel.org,  linux-kernel@vger.kernel.org,  cocci@inria.fr,
-  linux-arm-kernel@lists.infradead.org,  linux-s390@vger.kernel.org,
-  dri-devel@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,
-  linux-scsi@vger.kernel.org,  xen-devel@lists.xenproject.org,
-  linux-block@vger.kernel.org,  linux-wireless@vger.kernel.org,
-  ath11k@lists.infradead.org,  linux-mm@kvack.org,
-  linux-bluetooth@vger.kernel.org,  linux-staging@lists.linux.dev,
-  linux-rpi-kernel@lists.infradead.org,  ceph-devel@vger.kernel.org,
-  live-patching@vger.kernel.org,  linux-sound@vger.kernel.org,
-  oss-drivers@corigine.com,  linuxppc-dev@lists.ozlabs.org,  Anna-Maria
- Behnsen <anna-maria@linutronix.de>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>
-Subject: Re: [PATCH v3 14/19] wifi: ath11k: Convert timeouts to
- secs_to_jiffies()
-References: <20241210-converge-secs-to-jiffies-v3-0-ddfefd7e9f2a@linux.microsoft.com>
-	<20241210-converge-secs-to-jiffies-v3-14-ddfefd7e9f2a@linux.microsoft.com>
-	<87sequr7ho.fsf@kernel.org>
-Date: Wed, 11 Dec 2024 09:45:24 +0200
-In-Reply-To: <87sequr7ho.fsf@kernel.org> (Kalle Valo's message of "Wed, 11 Dec
-	2024 09:42:11 +0200")
-Message-ID: <87o71ir7cb.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	id 1tLN1S-0000000F1co-329Y;
+	Wed, 11 Dec 2024 13:45:02 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
+	id 1tLN1Q-0000000F1aW-25q5
+	for ath11k@lists.infradead.org;
+	Wed, 11 Dec 2024 13:45:01 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40B6D1063;
+	Wed, 11 Dec 2024 05:45:25 -0800 (PST)
+Received: from [10.1.30.25] (010265703453.arm.com [10.1.30.25])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9152F3F720;
+	Wed, 11 Dec 2024 05:44:55 -0800 (PST)
+Message-ID: <9b2e8ffa-ba2c-46da-a478-eb1fb44b693e@arm.com>
+Date: Wed, 11 Dec 2024 13:44:53 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: ath11k swiotlb buffer is full (on IMX8M with 4GiB DRAM)
+To: Baochen Qiang <quic_bqiang@quicinc.com>,
+ Tim Harvey <tharvey@gateworks.com>, Christoph Hellwig <hch@lst.de>
+Cc: ath11k@lists.infradead.org,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ Fabio Estevam <festevam@gmail.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, iommu@lists.linux.dev
+References: <CAJ+vNU0EL3T+GyNAbVbGqYYQ5NM3h7cgAwqxxBMuZjh+-YQ3bA@mail.gmail.com>
+ <1b2ea8b2-6fbe-4118-b6c6-742c8f0be476@quicinc.com>
+ <CAJ+vNU1-OZ3y4p2L+zf64AiVtUv70yZNqkT20jTxyE0_gJb6Jg@mail.gmail.com>
+ <0282be95-9094-4d49-b79e-4f7c976dad00@quicinc.com>
+ <CAJ+vNU32EMHjtchJRb1sODBrUKG2vZW4ZEu1_F0+dCCEjCn7Dg@mail.gmail.com>
+ <20241209081714.GA25363@lst.de>
+ <593c0d63-d8fd-4439-a57a-97340212c197@arm.com>
+ <CAJ+vNU2ypE_Mn_6iKCmf5LYk9Sth=ryWXyewc5MhOKK8VoAKCA@mail.gmail.com>
+ <20241210041133.GA17116@lst.de>
+ <CAJ+vNU03Cqsc+O5anwmvJW8Wfd-06LbDMVHjxVFdixf01ZLczQ@mail.gmail.com>
+ <5fe372df-ae51-4a8b-9fa3-a4a0ea2d33e3@quicinc.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <5fe372df-ae51-4a8b-9fa3-a4a0ea2d33e3@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_234545_063519_45FDD28F 
-X-CRM114-Status: GOOD (  16.25  )
+X-CRM114-CacheID: sfid-20241211_054500_627120_746F902E 
+X-CRM114-Status: GOOD (  18.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,41 +77,63 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+On 2024-12-11 2:31 am, Baochen Qiang wrote:
+> 
+> 
+> On 12/11/2024 7:06 AM, Tim Harvey wrote:
+>> On Mon, Dec 9, 2024 at 8:11 PM Christoph Hellwig <hch@lst.de> wrote:
+>>>
+>>> On Mon, Dec 09, 2024 at 11:15:02AM -0800, Tim Harvey wrote:
+>>>> After a lot of back and forth and investigation this is due to the
+>>>> IMX8M SoC's not having an IOMMU thus swiotlb is being used and ath11k
+>>>> is requesting some buffers that are too large for swiotlb to provide.
+>>>> There is a specific patch which added the HAL_WBM2SW_RELEASE buffers
+>>>> to cacheable memory that could be reverted to fix this but the concern
+>>>> was that it would impact performance moving those buffers to
+>>>> non-cacheable memory (there are three ~1MiB buffers being allocated):
+>>>> commit d0e2523bfa9cb ("ath11k: allocate HAL_WBM2SW_RELEASE ring from
+>>>> cacheable memory").
+>>>
+>>> The combination of "buffers" and "swiotlb" sounds like Robin was right
+>>> below.
+>>>
+>>>> The chain of events as best I can tell are:
+>>>>
+>>>> commit 6452f0a3d565 ("ath11k: allocate dst ring descriptors from
+>>>> cacheable memory")
+>>>> - Nov 12 2021 (made it into Linux 5.17)
+>>>> - changes allocation of reo_dst rings to cacheable memory to allow
+>>>> cached descriptor access to optimize CPU usage
+>>>> - this is flawed because it uses virt_to_phys() to allocate cacheable
+>>>> memory which does not work on systems with an IOMMU enabled or using
+>>>> software IOMMU (swiotlb); this causes a kernel crash on client
+>>>> association
+>>>
+>>> And this is where it started to take a wrong turn, that everyhing
+>>> later basically made worse.  If you have long living and potentially
+>>> large DMA allocations, you need to use dma_alloc_* interfaces.
+>>>
+>>> 5.17 already had dma_alloc_pages for quite a while which was and still is
+>>> the proper interface to use.  For much older kernel you'd be stuck
+>>> with dma_alloc_noncoherent or dma_alloc_attrs with the right flag,
+>>> but even that would have been much better.
+>>
+>> Christoph,
+>>
+>> I'm not clear what you are suggesting be done here. Are you suggesting
+>> that ath11k has been using the wrong mechanism by calling
+>> dma_map_single for cached DMA buffers? I'm not all that familiar with
+>> ath11k so I can't tell what buffers are considered long living.
+> 
+> those buffers are allocated when driver load and freed when driver unload, so IMO they are
+> long living.
 
-> Easwar Hariharan <eahariha@linux.microsoft.com> writes:
->
->> Commit b35108a51cf7 ("jiffies: Define secs_to_jiffies()") introduced
->> secs_to_jiffies(). As the value here is a multiple of 1000, use
->> secs_to_jiffies() instead of msecs_to_jiffies to avoid the multiplication.
->>
->> This is converted using scripts/coccinelle/misc/secs_to_jiffies.cocci with
->> the following Coccinelle rules:
->>
->> @@ constant C; @@
->>
->> - msecs_to_jiffies(C * 1000)
->> + secs_to_jiffies(C)
->>
->> @@ constant C; @@
->>
->> - msecs_to_jiffies(C * MSEC_PER_SEC)
->> + secs_to_jiffies(C)
->>
->> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
->> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
->> ---
->>  drivers/net/wireless/ath/ath11k/debugfs.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> I assume we can take this to our ath.git tree, please let us know if
-> that's not the case.
+The point is that if this driver wants a notion of "cached DMA buffers", 
+then it should allocate such buffers the proper way, not try to reinvent 
+it badly. That means using dma_alloc_pages(), or modern 
+dma_alloc_noncoherent() which is essentially the same thing but with the 
+dma_map_page() call automatically done for you as well.
 
-Nevermind, I now saw the discussion in the cover letter and assume that
-this patch will be sent separately.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Thanks,
+Robin.
 
