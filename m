@@ -4,116 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CACC8E7717F
-	for <ath11k@archiver.kernel.org>; Thu, 12 Dec 2024 17:51:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57501E77180
+	for <ath11k@archiver.kernel.org>; Thu, 12 Dec 2024 19:16:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=d/Jv1vc2gsYsMdlLp4D9+fe7WyEROnGpSv61ypMLHJU=; b=3GZ8hM968BBnyYFfOlcDPHiHc5
-	ePsV5BEFt6gpmFlfgljfELKnhVt+bVBvglLOsxJ6IqAQf+tF0U5KPW2j6cahFmH++b4npVeFbvGIR
-	urbPU7I+v/dMQWNrmJ+YLROAgggzf1hnx48PKkNwvNnwrAY8TLE0iGd7MNHzbWlI1FPVmbjPQMxPu
-	eQ3wArAVCdK3yfWUnCvVGqgFcIpWR/fqsSB47q32WuitLP4/mbkeM9zFAbvLszOcOxdbGG4HaL4bc
-	G4V9bARyy2SMbUViipPFi0JCIOJeG5G7WgUcjq+7sx6XN2WsoDCV9TRm2oxLmPphNzU5KjfnY3jE6
-	r8oQFF1w==;
+	bh=cKRHSSkFO/9qxXnX4VdFN+ENGR4IipewyVU2OtOSgwE=; b=DvPdMUaZ5Pp/uhL90YyanNV7PQ
+	gHSc5+Psxc4s1HujTD/ECGNwXmIKximVJTWGXHt8mrDNjwZfxZNtMle2dZ5PdoB6KcGkgJNOEgIJm
+	MM9NSnBjDT2PTyMhyMHoA6C2eW6UgSqZOtYJ/w+IO2jly7OpzUX373S4dCD5uRQ1bS0Ivl+iiFpAH
+	Y0hcgJl7Yd8Y6dCK0BOXo1VFfw84ejhoMMAznzuEyEOaKEKOpSDJ2kEMxHvuKVdYtGV3bIAJLfncd
+	huiPW8WtLAi+fW25bBhg+bwbkK0S7VImJx5t4WZDZeLtBhShQEmJtq1iSBdWdJrUmAid+L1m/5fql
+	KaZr648A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLnLG-00000001HMK-1tE0;
-	Thu, 12 Dec 2024 17:51:14 +0000
+	id 1tLofQ-00000001aFo-49ZK;
+	Thu, 12 Dec 2024 19:16:08 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLnLD-00000001HLi-3dCG
+	id 1tLnbm-00000001Kgd-3Evc
 	for ath11k@lists.infradead.org;
-	Thu, 12 Dec 2024 17:51:13 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCHJ53x027257
-	for <ath11k@lists.infradead.org>; Thu, 12 Dec 2024 17:51:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	Thu, 12 Dec 2024 18:08:20 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC7qAOE032186;
+	Thu, 12 Dec 2024 18:08:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d/Jv1vc2gsYsMdlLp4D9+fe7WyEROnGpSv61ypMLHJU=; b=i+pX6Nr2rHHvGCjY
-	YACfCl2LsNuc2GnZTGOCmHIozkPsA/Qf8SHgiUXO0guJVyt+Rwz+8f/Q7LJ+ORLP
-	Bb9JQkhBkK6vRfGylByUwSniJCt6lqENh48Lt7OWKsCaQ7V/2Ztym5g+WhDSfsBT
-	/P1+N2bhHal9kqRmhnXYmDBYssX3fIDGVnJOGHnCXmVZ2FNbukFduXOuvaxq06IR
-	WC9saJQX1pgRnn8jQABiaUfy3K+9VC7iG3xY/2tYE/2mLAIQ7NMCDcaLfv9Q7w9p
-	BkoaQQKP+fGx2FZg60d0frkoEfDk7FD2wVuUkjKGu8iWAys0ZOF+PBqvnaAKnm6z
-	XAY5lg==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43etn8y2bs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 12 Dec 2024 17:51:10 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2163a2a1ec2so13047785ad.1
-        for <ath11k@lists.infradead.org>; Thu, 12 Dec 2024 09:51:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734025869; x=1734630669;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d/Jv1vc2gsYsMdlLp4D9+fe7WyEROnGpSv61ypMLHJU=;
-        b=wXQ6zpVCvu2bQ8Bcn/Z42Ag5C69rmvHARshkSZNu54mvgNiKPDgE/sgE03DK6qWpei
-         xlHzyWzV8k6eNOhUiYepbc7r9SMo4JtIazkiH/4WbWzHVc9xRu3BkrjiZWE5Byguilsf
-         hf7zRJNt6neyqy++dCd1amMPzHO8mOoJuGDu7mOwx4xy/5ZFUVSYeNCidiIs3MrY1elj
-         CY4hP77vEDRNNYbNvvXU9s20sag1EMht4Z6F5eefcRSCvJ7boiNb9K6+g/npPYxNOGnr
-         I57NFkBGpHptWdZLYMMwokTMC8zw2HgHscUnLSKsnhpmVshhn/NcXqN7IcyT7RFmebAW
-         VXaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVzTgjip5EHLw0tDrjLAVg97jlDgx+II0ciT7qFB3VujzZJ8knsPVXdOHGofc2zsLx425UzGUA=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyVJ1CJ/tyuK8uXiRTdLqkxHAVlU+EU/4pAjqAl1L40rg7m0q0e
-	8WJHp3fQCzXAxBsVMt47QDObE0T/iXf70SI3KWZ8DkINeVyjVHcJ0lrf7VR4FmUY8MKR2KmamGD
-	teSY2BDYZ8c9gB0aiawgp0q8f3hvYBbYRSSmqvUD3XA8x3S09yHznwGVQbLpR
-X-Gm-Gg: ASbGncvOma7ybLznLZ+eSvBv/nTi6VagKfDb0dfvY+tRe1O/o7qXoQwmXx0lNaYWD0P
-	4wEGplZYqZF1wKuM7pXoszJvKkFSn5NhXHmqLZ0mnmmjJVhFZ0JzwNKxRZhOpjkVv5UmUS7/KiJ
-	JIzuIBF22y0sfcr0HgpO+CHOpt67WBLu7rOqEyG7oEU7VstcvchBBxIo1FkW4bZmUl5b6mAoHWO
-	LoDoptvxvO3pxc9bsSZdR8eyZlWk3tq+Ag7XzccbcM0I6x5ZYx1N809YAf5qo0DHXBrssSocBvm
-	QMA2Ex9kxWgVWnfYw5Le66LMMG/PksbMUUUNYuPsIQy2szRM3A==
-X-Received: by 2002:a17:902:e882:b0:216:6c77:7bbb with SMTP id d9443c01a7336-2178ae6fb8fmr66257435ad.17.1734025869203;
-        Thu, 12 Dec 2024 09:51:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEsfTRZMlR3OeCYRFbEgDdM7Wjv4fWBG376wW6arwrK9P4ZUwOmufNbI8IvLWEqo6PfdZNr0w==
-X-Received: by 2002:a17:902:e882:b0:216:6c77:7bbb with SMTP id d9443c01a7336-2178ae6fb8fmr66257235ad.17.1734025868877;
-        Thu, 12 Dec 2024 09:51:08 -0800 (PST)
-Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215f8e3f0b5sm125923045ad.20.2024.12.12.09.51.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 09:51:08 -0800 (PST)
-Message-ID: <27cc63e7-1a63-4ba5-8c7a-12a78ad6d9fa@oss.qualcomm.com>
-Date: Thu, 12 Dec 2024 09:51:06 -0800
+	cKRHSSkFO/9qxXnX4VdFN+ENGR4IipewyVU2OtOSgwE=; b=pwkZGxdzRXJ2Gniw
+	egccIPPzOALI1zJcCjw5zl0F7E4zSWN7FXq6aBopmGg2igmA1nQEXl0TTn8NzO+u
+	5O75YYwy2FbnCHyPjFzFlZ15611kxQfrfwXQDFnmkRdLmUahptn5OJeOSuG1MYp5
+	qvF77DYJbYa6psPR8h0a+nHNOZM8DdNXL014A2275bagC+eElqhsb2PR4AVwvoGC
+	uQJnmAxN5wNbCoiAGuj9Tuf2feVtgxrptgmDEvWngD26TyoNN9MVRQ4Xsg4975WD
+	OTQuLayy4DOIhXVKWA+5OWfgQ6GC0yU9ac5WtsMbzTFZFNswirZuphDKeEr0Pa+O
+	BvcHNg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43f6tfd390-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 18:08:13 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BCI8Caa025893
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 18:08:12 GMT
+Received: from [10.111.178.2] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Dec
+ 2024 10:08:11 -0800
+Message-ID: <ecbd70dd-9274-42b6-9673-9c6d82c4e763@quicinc.com>
+Date: Thu, 12 Dec 2024 10:08:10 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 2/2] wifi: ath11k: Convert timeouts to
- secs_to_jiffies()
-To: Easwar Hariharan <eahariha@linux.microsoft.com>,
-        Jeroen de Borst <jeroendb@google.com>,
-        Praveen Kaligineedi <pkaligineedi@google.com>,
-        Shailend Chand <shailend@google.com>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Kalle Valo <kvalo@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-References: <20241212-netdev-converge-secs-to-jiffies-v4-0-6dac97a6d6ab@linux.microsoft.com>
- <20241212-netdev-converge-secs-to-jiffies-v4-2-6dac97a6d6ab@linux.microsoft.com>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Subject: Re: ath11k swiotlb buffer is full (on IMX8M with 4GiB DRAM)
+To: Christoph Hellwig <hch@lst.de>, Baochen Qiang <quic_bqiang@quicinc.com>
+CC: Robin Murphy <robin.murphy@arm.com>, Tim Harvey <tharvey@gateworks.com>,
+        <ath11k@lists.infradead.org>,
+        linux-wireless
+	<linux-wireless@vger.kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        "Marek
+ Szyprowski" <m.szyprowski@samsung.com>,
+        <iommu@lists.linux.dev>
+References: <0282be95-9094-4d49-b79e-4f7c976dad00@quicinc.com>
+ <CAJ+vNU32EMHjtchJRb1sODBrUKG2vZW4ZEu1_F0+dCCEjCn7Dg@mail.gmail.com>
+ <20241209081714.GA25363@lst.de>
+ <593c0d63-d8fd-4439-a57a-97340212c197@arm.com>
+ <CAJ+vNU2ypE_Mn_6iKCmf5LYk9Sth=ryWXyewc5MhOKK8VoAKCA@mail.gmail.com>
+ <20241210041133.GA17116@lst.de>
+ <CAJ+vNU03Cqsc+O5anwmvJW8Wfd-06LbDMVHjxVFdixf01ZLczQ@mail.gmail.com>
+ <5fe372df-ae51-4a8b-9fa3-a4a0ea2d33e3@quicinc.com>
+ <9b2e8ffa-ba2c-46da-a478-eb1fb44b693e@arm.com>
+ <80992ae5-e329-4a34-94c8-9345b2e8a9a0@quicinc.com>
+ <20241212071848.GB6638@lst.de>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
 Content-Language: en-US
-In-Reply-To: <20241212-netdev-converge-secs-to-jiffies-v4-2-6dac97a6d6ab@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20241212071848.GB6638@lst.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: IIhn92AKPxqojKxvZIi6YlP8PEtiKXuu
-X-Proofpoint-GUID: IIhn92AKPxqojKxvZIi6YlP8PEtiKXuu
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PhVrHVHMthQseaX3U30Djw5Jr8uC55Ie
+X-Proofpoint-ORIG-GUID: PhVrHVHMthQseaX3U30Djw5Jr8uC55Ie
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 spamscore=0 impostorscore=0 adultscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 malwarescore=0 phishscore=0 mlxscore=0
- mlxlogscore=848 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412120128
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ mlxlogscore=924 malwarescore=0 spamscore=0 lowpriorityscore=0
+ impostorscore=0 adultscore=0 bulkscore=0 phishscore=0 priorityscore=1501
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412120129
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241212_095111_911817_9994F8F8 
-X-CRM114-Status: UNSURE (   9.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241212_100818_854319_CA08641A 
+X-CRM114-Status: GOOD (  12.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,23 +114,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 12/12/2024 9:33 AM, Easwar Hariharan wrote:
-> Commit b35108a51cf7 ("jiffies: Define secs_to_jiffies()") introduced
+On 12/11/2024 11:18 PM, Christoph Hellwig wrote:
+> On Thu, Dec 12, 2024 at 01:24:45PM +0800, Baochen Qiang wrote:
+>> yeah, you are right, Robin. didn't know there are convenient interfaces
+>> like these already.
 > 
-> secs_to_jiffies(). As the value here is a multiple of 1000, use
-> 
-> secs_to_jiffies() instead of msecs_to_jiffies to avoid the multiplication.
-> 
-> 
-> 
+> FYI, the DMA-API documentation says pretty straight forward to not
+> use the streaming API and documents these interfaces.  But maybe it's
+> not clear enough, so I'm open to suggestions on how to make it more
+> obvious.
 
-something is wrong with your patch since it introduces a blank line after each
-line.
+This is probably less of a documentation issue and more of an issue with the
+fact that each instance of the ath driver is based upon the prior instance,
+and hence it inherits any usage of legacy APIs. So unless someone notices
+there is a better API, or proactively adds the usage of the new API for us,
+the ath drivers will continue to use legacy APIs.
 
-Also if you want the ath11k patch to be taken separately, it goes through the
-ath tree, not the net tree.
+So it is appreciated that light has been shed on this issue.
 
 /jeff
-
 
 
