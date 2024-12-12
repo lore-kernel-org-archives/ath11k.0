@@ -4,102 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07D30E7717F
-	for <ath11k@archiver.kernel.org>; Thu, 12 Dec 2024 05:25:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBFA2E7717F
+	for <ath11k@archiver.kernel.org>; Thu, 12 Dec 2024 06:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=da2ob7paYwwBsbs1CjtgSbAnN/c4QPrRkJNL3VpquTM=; b=KkAx0DBGaWx74g4hIZVQvGkp1V
-	wERpj0MuDEwqjXXEokK4n+aGQw1DU5dvTnajdgFDnna44GW8DN6MRI/5f7tqUzc2U6tMXH9xk+in0
-	3Mz+GhmQ5MgTDPbh87NhZhHNyLf+rX6hHgZix5wGAjneUaBvg/i1rYgJSMW0GZeA7ubZLrWSX/FL4
-	A+8TyZ5iw68Cycvj1tCvDKBt9ZUeraxlZ2peHzOpanZpX2Hcq98pyI6NlPJhKh/3KvyPs+NN2pBcs
-	IYK9N4V85p+1LmHOlrhr6dK2kfZtktmVjLeLybSmyz56aY7Kr6zJwR5mKjvRzqiJItQQRHQv0/Lal
-	Sg28PQhA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
+	From:References:To:Subject:MIME-Version:Date:Message-ID:Reply-To:Cc:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=n1G3vuoy7tNVTEz+v9qQSvSEkW+b4VR/HN7rUd/bfVE=; b=0Jbbu6oUFOWMhb5XNGBazJEVJs
+	fxezU1kCUuZHgbCQwonhAYDmOOcRPWbLZdw5IeSge28qbogCdC43SVZyJ28qqupL/RIYsrpFsQ1jj
+	OL2mw6xxGYo9sQqYyYwr+9nlZxphMu9aLIIC5iIPaaUWRu9jzuukmNu3uu7iHG36/5+X5fyYjkHcb
+	EAc6A2G4Ngeyp6aN5EnuI5gJmEIxHq9tcrQxEH0rb7nA4Av8oG+Ll14oIvRXfB6YsJdVT4thDvYbD
+	ieMeAFe8R6bjlVIo8I49wmA7bc0/roM9M/c5N05r1lJvHFirorvwlh8kOV6SQCsVDxBlkxIVr8cNq
+	qBbPabMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLbh6-0000000Gx2a-2nPW;
-	Thu, 12 Dec 2024 05:25:00 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tLcn6-0000000H3kI-1rPa;
+	Thu, 12 Dec 2024 06:35:16 +0000
+Received: from ionic.de ([2001:41d0:700:3394:1::2] helo=mail.ionic.de)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLbh4-0000000Gx1v-1IVL
+	id 1tLcn3-0000000H3jV-2i55
 	for ath11k@lists.infradead.org;
-	Thu, 12 Dec 2024 05:24:59 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BBHjejI018816;
-	Thu, 12 Dec 2024 05:24:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	da2ob7paYwwBsbs1CjtgSbAnN/c4QPrRkJNL3VpquTM=; b=nxfPyYprQk2QPr3U
-	m3Y1tuYNnUe/2HEobbRJ1j/XebBlBlcG9ntpMlpn1BEwX322ddV8v1Bvkf2YasMO
-	4fdh7rnk+KCqmqFgT6Nk1uS8P/ydWQNh23Gqgv1c82o7cAES5mIdpQFpV9uxOhAU
-	eDpbFKo7yxcFTr4PTEtQ6UVQ/qmCw2j/WxfxQPkHg6q01T2p/H7za+nU1gfoTbrm
-	g+1J9vnF/7MTTp+4rUzzH8j7dQ7l4/45Ing9Vti/xHcNJBu5Q/J9IEFYeB7W3fD/
-	jhiLBnnH78w6/0GEeEUW/EqHPoARigWDIxm9jv5NGNMrLKVxypsQrWrcjSbf23UI
-	moD04Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ffdysc71-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 05:24:50 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BC5Onfh028162
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 05:24:49 GMT
-Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Dec
- 2024 21:24:47 -0800
-Message-ID: <80992ae5-e329-4a34-94c8-9345b2e8a9a0@quicinc.com>
-Date: Thu, 12 Dec 2024 13:24:45 +0800
+	Thu, 12 Dec 2024 06:35:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
+	t=1733985308; bh=n1G3vuoy7tNVTEz+v9qQSvSEkW+b4VR/HN7rUd/bfVE=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=A8qwgqHvfAWXdCIcdzF9dpksqpQAevHTfV73HUU1JHsV1W5EpI7O7u58HJ/I8RNAB
+	 giueXtXO6T3Y0dYSqA8SxqXL4d+qPb40MGQ64UEckh7RCQUrPtC+Q3QL6+0KhWegkV
+	 0gObupji5yaswPaqyUIj9h5y9m49i2gosI2uwKVw=
+Received: from [172.22.111.213] (185.102.219.38.adsl.inet-telecom.org [185.102.219.38])
+	by mail.ionic.de (Postfix) with ESMTPSA id B61081480CE0;
+	Thu, 12 Dec 2024 07:35:08 +0100 (CET)
+Message-ID: <c0fc2c17-2836-43c1-b888-459b8e71b6c0@ionic.de>
+Date: Thu, 12 Dec 2024 07:35:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k swiotlb buffer is full (on IMX8M with 4GiB DRAM)
-To: Robin Murphy <robin.murphy@arm.com>, Tim Harvey <tharvey@gateworks.com>,
-        Christoph Hellwig <hch@lst.de>
-CC: <ath11k@lists.infradead.org>,
-        linux-wireless
-	<linux-wireless@vger.kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>, <iommu@lists.linux.dev>
-References: <CAJ+vNU0EL3T+GyNAbVbGqYYQ5NM3h7cgAwqxxBMuZjh+-YQ3bA@mail.gmail.com>
- <1b2ea8b2-6fbe-4118-b6c6-742c8f0be476@quicinc.com>
- <CAJ+vNU1-OZ3y4p2L+zf64AiVtUv70yZNqkT20jTxyE0_gJb6Jg@mail.gmail.com>
- <0282be95-9094-4d49-b79e-4f7c976dad00@quicinc.com>
- <CAJ+vNU32EMHjtchJRb1sODBrUKG2vZW4ZEu1_F0+dCCEjCn7Dg@mail.gmail.com>
- <20241209081714.GA25363@lst.de>
- <593c0d63-d8fd-4439-a57a-97340212c197@arm.com>
- <CAJ+vNU2ypE_Mn_6iKCmf5LYk9Sth=ryWXyewc5MhOKK8VoAKCA@mail.gmail.com>
- <20241210041133.GA17116@lst.de>
- <CAJ+vNU03Cqsc+O5anwmvJW8Wfd-06LbDMVHjxVFdixf01ZLczQ@mail.gmail.com>
- <5fe372df-ae51-4a8b-9fa3-a4a0ea2d33e3@quicinc.com>
- <9b2e8ffa-ba2c-46da-a478-eb1fb44b693e@arm.com>
+Subject: Re: ath11k for QCA6391
+To: wang chaozheng <ultwcz1997@outlook.com>,
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+References: <12ce6ea00fd34e919527021ab17da92cOSZPR01MB6597F2FD7B51B0E5E8BEA5DBD93F2@OSZPR01MB6597.jpnprd01.prod.outlook.com>
 Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <9b2e8ffa-ba2c-46da-a478-eb1fb44b693e@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: MyCwuV5Xo1usK8DSR4uY-XEznIn5o22C
-X-Proofpoint-GUID: MyCwuV5Xo1usK8DSR4uY-XEznIn5o22C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- phishscore=0 mlxlogscore=906 lowpriorityscore=0 mlxscore=0 adultscore=0
- spamscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412120034
+From: Mihai Moldovan <ionic@ionic.de>
+Autocrypt: addr=ionic@ionic.de; keydata=
+ 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
+ S0VlnF9z
+In-Reply-To: <12ce6ea00fd34e919527021ab17da92cOSZPR01MB6597F2FD7B51B0E5E8BEA5DBD93F2@OSZPR01MB6597.jpnprd01.prod.outlook.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------Mksffof45FCogvjAhJ30nQpF"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241211_212458_361751_9E321CA9 
-X-CRM114-Status: GOOD (  21.49  )
+X-CRM114-CacheID: sfid-20241211_223514_180012_77A85549 
+X-CRM114-Status: UNSURE (   7.04  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,71 +112,55 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------Mksffof45FCogvjAhJ30nQpF
+Content-Type: multipart/mixed; boundary="------------pdHJCoFQgg7HDLOFXdW1wB0i";
+ protected-headers="v1"
+From: Mihai Moldovan <ionic@ionic.de>
+To: wang chaozheng <ultwcz1997@outlook.com>,
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Message-ID: <c0fc2c17-2836-43c1-b888-459b8e71b6c0@ionic.de>
+Subject: Re: ath11k for QCA6391
+References: <12ce6ea00fd34e919527021ab17da92cOSZPR01MB6597F2FD7B51B0E5E8BEA5DBD93F2@OSZPR01MB6597.jpnprd01.prod.outlook.com>
+In-Reply-To: <12ce6ea00fd34e919527021ab17da92cOSZPR01MB6597F2FD7B51B0E5E8BEA5DBD93F2@OSZPR01MB6597.jpnprd01.prod.outlook.com>
 
+--------------pdHJCoFQgg7HDLOFXdW1wB0i
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-On 12/11/2024 9:44 PM, Robin Murphy wrote:
-> On 2024-12-11 2:31 am, Baochen Qiang wrote:
->>
->>
->> On 12/11/2024 7:06 AM, Tim Harvey wrote:
->>> On Mon, Dec 9, 2024 at 8:11 PM Christoph Hellwig <hch@lst.de> wrote:
->>>>
->>>> On Mon, Dec 09, 2024 at 11:15:02AM -0800, Tim Harvey wrote:
->>>>> After a lot of back and forth and investigation this is due to the
->>>>> IMX8M SoC's not having an IOMMU thus swiotlb is being used and ath11k
->>>>> is requesting some buffers that are too large for swiotlb to provide.
->>>>> There is a specific patch which added the HAL_WBM2SW_RELEASE buffers
->>>>> to cacheable memory that could be reverted to fix this but the concern
->>>>> was that it would impact performance moving those buffers to
->>>>> non-cacheable memory (there are three ~1MiB buffers being allocated):
->>>>> commit d0e2523bfa9cb ("ath11k: allocate HAL_WBM2SW_RELEASE ring from
->>>>> cacheable memory").
->>>>
->>>> The combination of "buffers" and "swiotlb" sounds like Robin was right
->>>> below.
->>>>
->>>>> The chain of events as best I can tell are:
->>>>>
->>>>> commit 6452f0a3d565 ("ath11k: allocate dst ring descriptors from
->>>>> cacheable memory")
->>>>> - Nov 12 2021 (made it into Linux 5.17)
->>>>> - changes allocation of reo_dst rings to cacheable memory to allow
->>>>> cached descriptor access to optimize CPU usage
->>>>> - this is flawed because it uses virt_to_phys() to allocate cacheable
->>>>> memory which does not work on systems with an IOMMU enabled or using
->>>>> software IOMMU (swiotlb); this causes a kernel crash on client
->>>>> association
->>>>
->>>> And this is where it started to take a wrong turn, that everyhing
->>>> later basically made worse.  If you have long living and potentially
->>>> large DMA allocations, you need to use dma_alloc_* interfaces.
->>>>
->>>> 5.17 already had dma_alloc_pages for quite a while which was and still is
->>>> the proper interface to use.  For much older kernel you'd be stuck
->>>> with dma_alloc_noncoherent or dma_alloc_attrs with the right flag,
->>>> but even that would have been much better.
->>>
->>> Christoph,
->>>
->>> I'm not clear what you are suggesting be done here. Are you suggesting
->>> that ath11k has been using the wrong mechanism by calling
->>> dma_map_single for cached DMA buffers? I'm not all that familiar with
->>> ath11k so I can't tell what buffers are considered long living.
->>
->> those buffers are allocated when driver load and freed when driver unload, so IMO they are
->> long living.
-> 
-> The point is that if this driver wants a notion of "cached DMA buffers", then it should
-> allocate such buffers the proper way, not try to reinvent it badly. That means using
-> dma_alloc_pages(), or modern dma_alloc_noncoherent() which is essentially the same thing
-> but with the dma_map_page() call automatically done for you as well.
+KiBPbiAxMi8xMi8yNCAwNDo1MSwgd2FuZyBjaGFvemhlbmcgd3JvdGU6DQo+IEJUVywgb3Ro
+ZXIgaW5mb3JtYXRpb24NCj4gJCB1bmFtZSAtcg0KPiA1LjEwLjEwNA0KDQpZb3VyIGtlcm5l
+bCBpcyB2ZXJ5IG9sZC4gV2hpbGUgYmVpbmcgTFRTIGFuZCBzaGlwcGluZyBhIGxvdCBvZiBi
+YWNrcG9ydHMsIHRoYXQgDQp0eXBpY2FsbHkgaXMgbm90IHRoZSBjYXNlIGZvciBuZXcgZmVh
+dHVyZXMuIEFkZGl0aW9uYWxseSwgZXZlbiBmb3IgTFRTIA0Kc3RhbmRhcmRzLCB0aGlzIHZl
+cnNpb24gaXMgYW50aXF1ZSAoYy5mLjogY3VycmVudCB2ZXJzaW9uIG9mIHRoZSA1LjEwIGxp
+bmUgaXMgDQo1LjEwLjIzMCkuDQoNClFDQTYzOTEgc3VwcG9ydCByZWFsbHkgY2FtZSB3aXRo
+IDUuMTUgb3Igc29tZXRoaW5nIGFsb25nIHRob3NlIGxpbmVzLg0KDQoNCkRvIHlvdXJzZWxm
+IGEgZmF2b3IgYW5kIHJldGVzdCB3aXRoIHRoZSBtYWlubGluZSBrZXJuZWwgdmVyc2lvbiwg
+cGxlYXNlLg0KDQoNCg0KTWloYWkNCg==
 
-yeah, you are right, Robin. didn't know there are convenient interfaces like these already.
+--------------pdHJCoFQgg7HDLOFXdW1wB0i--
 
-Tim, can you work out a patch then?
+--------------Mksffof45FCogvjAhJ30nQpF
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-> 
-> Thanks,
-> Robin.
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEEbhHQj3UzgcdE8cg8H9Yu2W4lOocFAmdahBsFAwAAAAAACgkQH9Yu2W4lOoc2
++A//ayjNeYVrUldTQi3k9XhTR+2951iV8fmEe1DRU2KpbtYuVB6hzQbyrLAj7DZoUCV0SwBZelSx
+fg+n4Sf6G6DNBzHC7oL2sg+SAYz4SplQyss2NBxuJPL7XkvSdavk3V5l0XvVmpxtH2OcoxkUmcnj
+TOEJsYi81uoeG8SD/rZ7SaNkyvjxXcJps/Du5Q6ezNOS8/4jahgZnZnQ5trgC84rr4vn/DaFebBz
+jAvie40eIssE+KbYrLPcEQlDVUbWMDCcG4Qb7B4DbJANSBC4eyvJlkYGHt5nwrBlpDVFsAqqHOau
+9GGX4LsVEU7TN9JW43xJBG6lIqEGSWdiTXfAkSm3k/LMRMB7oYLGL1qzauilMjpmLhn6RAb6mUCe
+K1nOETrvrQ1ubdC3OypU1LToPAfpwG1eRgXlcFTW/PXVPF8JwE9rrpykBdKX1RZib3Cg+thwG+Pz
+i8OHr/w4sNkVS3bFUtrgk6MqUKZXtENaMNKJdYmUXr+WrvxIKcyk4b6bXbRYNzEbQwjDNX3pHu6S
+tmqpLPhn4gEf7/pGlXzdrUk1RjxFk+eP/+pAjzBRf0KOzpr5UpXnJIQ9Fz1W/844nODlgp3aeh6f
+C24fBhpyFq03w0uLlvxxKCpeF8N/avZttq1qWxLj6NE+GXIrOicQFFfM9IUTEY7aQC/NWLfWB7pu
+iRw=
+=dZW/
+-----END PGP SIGNATURE-----
+
+--------------Mksffof45FCogvjAhJ30nQpF--
 
