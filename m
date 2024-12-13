@@ -4,87 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19E82E77180
-	for <ath11k@archiver.kernel.org>; Fri, 13 Dec 2024 06:46:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EC5EE7717D
+	for <ath11k@archiver.kernel.org>; Fri, 13 Dec 2024 09:10:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7oqBkIztTMd+a0ITaA1ANvdOI20jM+UGGbXNGNgQhu0=; b=u7JUEHhvacNrbKNy+4jMKoI6GO
-	eFeHDzKqzMUzS49Z2iNyVChf6aialMXMzCYjnBW6XspB2dUj4brXvFVgYfasvVgBETgcF4I6kgsuZ
-	TgOGKi4Ym40yleaS4Ki5IimYiIFvuobi9gpg8w9JqVyFPAzNtQB1kX1G5nGTASUt4v1E6G1P5tM/J
-	ffbcoKKSREKikRnKnRFY0GH5+yja1nYuqp4V20Tw2AcqD5pwG+f/bu6U3sK415deYv3pDD+cu2Pom
-	TstXYeL2Xib+bfYOE7gGOPn+oCLJBO+xhYB9Gp6CP6CFXRIfm8zAjMfBJLQupcKm3g3P9zFXG596g
-	ehbYakMQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=5QjshT1kSQNb+d5xZagQUJgjhAK9XGaWIc3Aawfto9s=; b=f9mzzcnefVYZ+ZAi9YU/siqpZ+
+	Gg6lDouNNMzKtSLPs1b2LhWRYp0mJ16qcGCwI9DxHnwA0sMwX/9SJOyAatgiu2mbyM/3ySo2o/P/S
+	9SC3OxT0uIT22j7El+A5Uv3j8tFTQdOlU8wWnpyWPQ+1EnM1pZHS8ewpCHKtPGc/IbaoNCVFJ5+1Z
+	cRYmI1/rGEbzgVoNYnnkPbZpEhtGVDkRYdk5XXsFTBcOyZAiUyM6iFVAbxKRaEu6pQyUpu5A/uGlI
+	78jNwuVvNBGderOxfFDOIRsqSdH/mI0PzKYRbEHF3FL5FD+Io4Ik9MmyAHwQiaVwjDnZ5f18wA5sR
+	sW0M3WRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLzRT-00000002tZe-2vsF;
-	Fri, 13 Dec 2024 06:46:29 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tM1gy-00000003C5k-3uaO;
+	Fri, 13 Dec 2024 09:10:36 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLzRQ-00000002tYo-1HIo
-	for ath11k@lists.infradead.org;
-	Fri, 13 Dec 2024 06:46:25 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD6MD6b026852;
-	Fri, 13 Dec 2024 06:46:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7oqBkIztTMd+a0ITaA1ANvdOI20jM+UGGbXNGNgQhu0=; b=hnMcZSQKNlMaUmqb
-	68B0wLDENaGA1jU9xaQYA0YNf8YLX+Cp+7f7YGPPQEB8oJlOMVH8FX8F7xT3FiaC
-	X/oYponx0ILdrKJnWHaSas8YtfEcJ/koJGRrbxITyNQLtzqD/zsBv/fK1R7rF3nU
-	/Og0mcetwU22GqwLux5HdpOKh+r0DutQrzvSSQ/4uMm6TD8sHn+FKyEVvJDlR+L9
-	jiY6fFqrHKAKYx8n5f2FM7oCva9u0iDCVrujTZF3v8jGEb3nLCz2ZgYyxPdOiyAG
-	AIP/G7CiePI/GwzSfP4SxZtMEnAmKhzD8yCCj/mxXy1vhVNUxIGpkbDXCAi+pbVH
-	kvCeHQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fd40nbes-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 06:46:18 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BD6kDgb026577
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 06:46:13 GMT
-Received: from [10.110.46.166] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Dec
- 2024 22:46:12 -0800
-Message-ID: <07734404-b737-4a8c-ae24-f8b0b8c16e58@quicinc.com>
-Date: Fri, 13 Dec 2024 14:46:10 +0800
+	id 1tM1gx-00000003C5H-0vZ3
+	for ath11k@bombadil.infradead.org;
+	Fri, 13 Dec 2024 09:10:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=5QjshT1kSQNb+d5xZagQUJgjhAK9XGaWIc3Aawfto9s=; b=n/KB6BU7c6BqcUWbA74deLF+90
+	U1ZMTS9kWm6aEk74qaEUtIFuCmQzN2hahDWR1OITBxg8DkD1MSbXbjo06+ogKK1o84KLxGkrA0xOk
+	cpC6TnnO0WCfmKhG5NAkbsvMiPMilTgoW4wryT1o5YUJzZbOXTk2m0w6wfBZ8Kf7GsvfmwsEwqa4O
+	gkkCNmSLK+9xiSQJDX0E1Zf227tlrc36End4popnDHfXx3qzb7k0cZdG3CfYT4fXihs0w7zcxz/i/
+	eAx27TbZVKgdzHqqh9oRWHvgmE4Fa+9CmD71tx2n51zk5veYAeAD9PoVpuns1+Tw0evex6KQotSGI
+	E7KQtugA==;
+Received: from 54-240-197-239.amazon.com ([54.240.197.239] helo=u09cd745991455d.ant.amazon.com)
+	by casper.infradead.org with esmtpsa (Exim 4.98 #2 (Red Hat Linux))
+	id 1tM1gt-0000000Bm7y-3hXY;
+	Fri, 13 Dec 2024 09:10:32 +0000
+Message-ID: <03fdfde8dc05ecce1f1edececf0800d8cb919ac1.camel@infradead.org>
+Subject: Re: [PATCH RFC/RFT] vfio/pci: Create feature to disable MSI
+ virtualization
+From: David Woodhouse <dwmw2@infradead.org>
+To: Thomas Gleixner <tglx@linutronix.de>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ Alex Williamson <alex.williamson@redhat.com>
+Cc: kvm@vger.kernel.org, quic_bqiang@quicinc.com, kvalo@kernel.org, 
+ prestwoj@gmail.com, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org,  iommu@lists.linux.dev, kernel@quicinc.com,
+ johannes@sipsolutions.net,  jtornosm@redhat.com
+Date: Fri, 13 Dec 2024 09:10:30 +0000
+In-Reply-To: <87r0aspby6.ffs@tglx>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+	 <20240812170014.1583783-1-alex.williamson@redhat.com>
+	 <20240813163053.GK1985367@ziepe.ca> <87r0aspby6.ffs@tglx>
+Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
+	boundary="=-O3PVYpsJyRduYaSqOF94"
+User-Agent: Evolution 3.52.3-0ubuntu1 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] wifi: ath11k: move update channel list to worker
- for wait flag
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20241129070714.226-1-quic_kangyang@quicinc.com>
- <20241129070714.226-3-quic_kangyang@quicinc.com> <87y10lngf1.fsf@kernel.org>
-Content-Language: en-US
-From: Kang Yang <quic_kangyang@quicinc.com>
-In-Reply-To: <87y10lngf1.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VrB9COWG6suFogTu1dDNCpfIni3U88Bx
-X-Proofpoint-ORIG-GUID: VrB9COWG6suFogTu1dDNCpfIni3U88Bx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- suspectscore=0 impostorscore=0 phishscore=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130047
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241212_224624_713226_044C9C2B 
-X-CRM114-Status: GOOD (  21.75  )
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by casper.infradead.org. See http://www.infradead.org/rpr.html
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,114 +76,219 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
+--=-O3PVYpsJyRduYaSqOF94
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/12/2024 10:07 PM, Kalle Valo wrote:
-> Kang Yang <quic_kangyang@quicinc.com> writes:
-> 
->> From: Wen Gong <quic_wgong@quicinc.com>
->>
->> When wait flag is set for ath11k_reg_update_chan_list(), it will wait
->> the completion of 11d/hw scan if 11d/hw scan is running.
->>
->> With the previous patch "wifi: ath11k: move update channel list from
->> update reg worker to reg notifier", ath11k_reg_update_chan_list() will
->> be called when reg_work is running. The global lock rtnl_lock will be
->> held by reg_work in the meantime. If the wait_for_completion_timeout()
->> is called due to 11d/hw scan is running, the occupation time of
->> rtnl_lock will increase. This will increase blocking time for other
->> threads if they want to use rtnl_lock.
->>
->> Move update channel list operation in ath11k_reg_update_chan_list() to
->> a new worker, then the wait of completion of 11d/hw scan will not
->> happen in reg_work and not increase the occupation time of the rtnl_lock.
->>
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
->>
->> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
->> Co-developed-by: Kang Yang <quic_kangyang@quicinc.com>
->> Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
-> 
-> Same here, I think the commit message should be more or less rewritten.
-> 
->> --- a/drivers/net/wireless/ath/ath11k/core.h
->> +++ b/drivers/net/wireless/ath/ath11k/core.h
->> @@ -743,6 +743,10 @@ struct ath11k {
->>   	struct completion bss_survey_done;
->>   
->>   	struct work_struct regd_update_work;
->> +	struct work_struct channel_update_work;
->> +	struct list_head channel_update_queue;
->> +	/* protects channel_update_queue data */
->> +	spinlock_t channel_update_lock;
-> 
-> Do you really need a new lock? Why not use data_lock?
+On Tue, 2024-08-13 at 19:30 +0200, Thomas Gleixner wrote:
+> On Tue, Aug 13 2024 at 13:30, Jason Gunthorpe wrote:
+> > On Mon, Aug 12, 2024 at 10:59:12AM -0600, Alex Williamson wrote:
+> > > vfio-pci has always virtualized the MSI address and data registers as
+> > > MSI programming is performed through the SET_IRQS ioctl.=C2=A0 Often =
+this
+> > > virtualization is not used, and in specific cases can be unhelpful.
+> > >=20
+> > > One such case where the virtualization is a hinderance is when the
+> > > device contains an onboard interrupt controller programmed by the gue=
+st
+> > > driver.=C2=A0 Userspace VMMs have a chance to quirk this programming,
+> > > injecting the host physical MSI information, but only if the userspac=
+e
+> > > driver can get access to the host physical address and data registers=
+.
+> > >=20
+> > > This introduces a device feature which allows the userspace driver to
+> > > disable virtualization of the MSI capability address and data registe=
+rs
+> > > in order to provide read-only access the the physical values.
+> >=20
+> > Personally, I very much dislike this. Encouraging such hacky driver
+> > use of the interrupt subsystem is not a good direction. Enabling this
+> > in VMs will further complicate fixing the IRQ usages in these drivers
+> > over the long run.
+> >=20
+> > If the device has it's own interrupt sources then the device needs to
+> > create an irq_chip and related and hook them up properly. Not hackily
+> > read the MSI-X registers and write them someplace else.
+> >=20
+> > Thomas Gleixner has done alot of great work recently to clean this up.
+> >=20
+> > So if you imagine the driver is fixed, then this is not necessary.
+>=20
+> Yes. I looked at the at11k driver when I was reworking the PCI/MSI
+> subsystem and that's a perfect candidate for a proper device specific
+> interrupt domain to replace the horrible MSI hackery it has.
 
-Seems data_lock is OK, will change in next version.
+The ath11k hacks may be awful, but in their defence, that's because the
+whole way the hardware works is awful.
 
-> 
->> @@ -6318,6 +6320,15 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw, bool suspend)
->>   	}
->>   	spin_unlock_bh(&ar->data_lock);
->>   
->> +	spin_lock_bh(&ar->channel_update_lock);
-> 
-> Empty line here, please.
-> 
->> +	while ((params = list_first_entry_or_null(&ar->channel_update_queue,
->> +						  struct scan_chan_list_params,
->> +						  list))) {
->> +		list_del(&params->list);
->> +		kfree(params);
->> +	}
-> 
-> Here also empty line.
-> 
->> +	spin_unlock_bh(&ar->channel_update_lock);
->> +
->>   	rcu_assign_pointer(ar->ab->pdevs_active[ar->pdev_idx], NULL);
->>   
->>   	synchronize_rcu();
-> 
-> [...]
-> 
->> +void ath11k_regd_update_chan_list_work(struct work_struct *work)
->> +{
->> +	struct ath11k *ar = container_of(work, struct ath11k,
->> +					 channel_update_work);
->> +	struct scan_chan_list_params *params;
->> +	struct list_head local_update_list;
->> +	int left;
->> +
->> +	INIT_LIST_HEAD(&local_update_list);
->> +
->> +	spin_lock_bh(&ar->channel_update_lock);
->> +	while ((params = list_first_entry_or_null(&ar->channel_update_queue,
->> +						  struct scan_chan_list_params,
->> +						  list))) {
->> +		list_del(&params->list);
->> +		list_add_tail(&params->list, &local_update_list);
->> +	}
->> +	spin_unlock_bh(&ar->channel_update_lock);
-> 
-> What about list_splice_tail_init() or similar?
+Q: With PCI passthrough to a guest, how does the guest OS tell the
+device where to do DMA?
 
-Seems list_splice_tail_init() is better. The time complexity is O(1).👍
+A: The guest OS just hands the device a guest physical address and the
+IOMMU does the rest. Nothing 'intercedes' between the guest and the
+device to mess with that address.
 
-> 
->> +
->> +	while ((params = list_first_entry_or_null(&local_update_list,
->> +						  struct scan_chan_list_params,
->> +						  list))) {
->> +		if (ar->state_11d != ATH11K_11D_IDLE) {
->> +			left = wait_for_completion_timeout(&ar->completed_11d_scan,
->> +							   ATH11K_SCAN_TIMEOUT_HZ);
->> +			if (!left) {
->> +				ath11k_dbg(ar->ab, ATH11K_DBG_REG,
->> +					   "failed to receive 11d scan complete: timed out\n");
->> +				ar->state_11d = ATH11K_11D_IDLE;
->> +			}
-> 
-> Empty line here.
-> 
+Q: MSIs are just DMA. So with PCI passthrough to a guest, how does the
+guest OS configure the device's MSIs?=20
 
+<fantasy>
+A: The guest OS just hands the device a standard MSI message encoding
+the target guest APIC ID and vector (etc.), and the IOMMU does the
+rest. Nothing 'intercedes' between the guest and the device to mess
+with that MSI message.
+
+And thus ath11k didn't need to do *any* hacks to work around a stupid
+hardware design with the VMM snooping on stuff it ideally shouldn't
+have had any business touching in the first place.
+
+Posted interrupts are almost the *default* because the IOMMU receives a
+<source-id, vCPU APIC ID, vector> tuple on the bus. If receiving an
+interrupt for a vCPU which isn't currently running, that's when the
+IOMMU sets a bit in a table somewhere and notifies the host OS.
+
+All that special case MSI handling and routing code that I had
+nightmares about because it fell through a wormhole from a parallel
+universe, doesn't exist.
+
+And look, DPDK drivers which run in polling mode and 'abuse' MSIs by
+using real memory addresses and asking the device to "write <these> 32
+bits to <this> structure if you want attention" just work nicely in
+virtual machines too, just as they do on real hardware.
+</fantasy>
+
+/me wakes up...
+
+Shit.
+
+And we have to enable this Interrupt Remapping crap even to address
+more than 255 CPUs *without* virtualization? Even a *guest* has to see
+a virtual IOMMU and enable Interrupt Remapping to be able to use more
+than 255 vCPUs? Even though there were a metric shitload of spare bits
+in the MSI message we could have used=C2=B9.
+
+Wait, so that means we have to offer an IOMMU with *DMA* remapping to
+guests, which means 2-stage translations and/or massive overhead, just
+for that guest to be able to use >255 vCPUs?
+
+Screw you all, I'm going back to bed.
+
+
+
+=C2=B9 And *should* use, if we ever do something similar like, say, expand
+  the vector# space past 8 bits. Intel and AMD take note.=20
+
+--=-O3PVYpsJyRduYaSqOF94
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCEkQw
+ggYQMIID+KADAgECAhBNlCwQ1DvglAnFgS06KwZPMA0GCSqGSIb3DQEBDAUAMIGIMQswCQYDVQQG
+EwJVUzETMBEGA1UECBMKTmV3IEplcnNleTEUMBIGA1UEBxMLSmVyc2V5IENpdHkxHjAcBgNVBAoT
+FVRoZSBVU0VSVFJVU1QgTmV0d29yazEuMCwGA1UEAxMlVVNFUlRydXN0IFJTQSBDZXJ0aWZpY2F0
+aW9uIEF1dGhvcml0eTAeFw0xODExMDIwMDAwMDBaFw0zMDEyMzEyMzU5NTlaMIGWMQswCQYDVQQG
+EwJHQjEbMBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRgwFgYD
+VQQKEw9TZWN0aWdvIExpbWl0ZWQxPjA8BgNVBAMTNVNlY3RpZ28gUlNBIENsaWVudCBBdXRoZW50
+aWNhdGlvbiBhbmQgU2VjdXJlIEVtYWlsIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+AQEAyjztlApB/975Rrno1jvm2pK/KxBOqhq8gr2+JhwpKirSzZxQgT9tlC7zl6hn1fXjSo5MqXUf
+ItMltrMaXqcESJuK8dtK56NCSrq4iDKaKq9NxOXFmqXX2zN8HHGjQ2b2Xv0v1L5Nk1MQPKA19xeW
+QcpGEGFUUd0kN+oHox+L9aV1rjfNiCj3bJk6kJaOPabPi2503nn/ITX5e8WfPnGw4VuZ79Khj1YB
+rf24k5Ee1sLTHsLtpiK9OjG4iQRBdq6Z/TlVx/hGAez5h36bBJMxqdHLpdwIUkTqT8se3ed0PewD
+ch/8kHPo5fZl5u1B0ecpq/sDN/5sCG52Ds+QU5O5EwIDAQABo4IBZDCCAWAwHwYDVR0jBBgwFoAU
+U3m/WqorSs9UgOHYm8Cd8rIDZsswHQYDVR0OBBYEFAnA8vwL2pTbX/4r36iZQs/J4K0AMA4GA1Ud
+DwEB/wQEAwIBhjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEF
+BQcDBDARBgNVHSAECjAIMAYGBFUdIAAwUAYDVR0fBEkwRzBFoEOgQYY/aHR0cDovL2NybC51c2Vy
+dHJ1c3QuY29tL1VTRVJUcnVzdFJTQUNlcnRpZmljYXRpb25BdXRob3JpdHkuY3JsMHYGCCsGAQUF
+BwEBBGowaDA/BggrBgEFBQcwAoYzaHR0cDovL2NydC51c2VydHJ1c3QuY29tL1VTRVJUcnVzdFJT
+QUFkZFRydXN0Q0EuY3J0MCUGCCsGAQUFBzABhhlodHRwOi8vb2NzcC51c2VydHJ1c3QuY29tMA0G
+CSqGSIb3DQEBDAUAA4ICAQBBRHUAqznCFfXejpVtMnFojADdF9d6HBA4kMjjsb0XMZHztuOCtKF+
+xswhh2GqkW5JQrM8zVlU+A2VP72Ky2nlRA1GwmIPgou74TZ/XTarHG8zdMSgaDrkVYzz1g3nIVO9
+IHk96VwsacIvBF8JfqIs+8aWH2PfSUrNxP6Ys7U0sZYx4rXD6+cqFq/ZW5BUfClN/rhk2ddQXyn7
+kkmka2RQb9d90nmNHdgKrwfQ49mQ2hWQNDkJJIXwKjYA6VUR/fZUFeCUisdDe/0ABLTI+jheXUV1
+eoYV7lNwNBKpeHdNuO6Aacb533JlfeUHxvBz9OfYWUiXu09sMAviM11Q0DuMZ5760CdO2VnpsXP4
+KxaYIhvqPqUMWqRdWyn7crItNkZeroXaecG03i3mM7dkiPaCkgocBg0EBYsbZDZ8bsG3a08LwEsL
+1Ygz3SBsyECa0waq4hOf/Z85F2w2ZpXfP+w8q4ifwO90SGZZV+HR/Jh6rEaVPDRF/CEGVqR1hiuQ
+OZ1YL5ezMTX0ZSLwrymUE0pwi/KDaiYB15uswgeIAcA6JzPFf9pLkAFFWs1QNyN++niFhsM47qod
+x/PL+5jR87myx5uYdBEQkkDc+lKB1Wct6ucXqm2EmsaQ0M95QjTmy+rDWjkDYdw3Ms6mSWE3Bn7i
+5ZgtwCLXgAIe5W8mybM2JzCCBhQwggT8oAMCAQICEQDGvhmWZ0DEAx0oURL6O6l+MA0GCSqGSIb3
+DQEBCwUAMIGWMQswCQYDVQQGEwJHQjEbMBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYD
+VQQHEwdTYWxmb3JkMRgwFgYDVQQKEw9TZWN0aWdvIExpbWl0ZWQxPjA8BgNVBAMTNVNlY3RpZ28g
+UlNBIENsaWVudCBBdXRoZW50aWNhdGlvbiBhbmQgU2VjdXJlIEVtYWlsIENBMB4XDTIyMDEwNzAw
+MDAwMFoXDTI1MDEwNjIzNTk1OVowJDEiMCAGCSqGSIb3DQEJARYTZHdtdzJAaW5mcmFkZWFkLm9y
+ZzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBALQ3GpC2bomUqk+91wLYBzDMcCj5C9m6
+oZaHwvmIdXftOgTbCJXADo6G9T7BBAebw2JV38EINgKpy/ZHh7htyAkWYVoFsFPrwHounto8xTsy
+SSePMiPlmIdQ10BcVSXMUJ3Juu16GlWOnAMJY2oYfEzmE7uT9YgcBqKCo65pTFmOnR/VVbjJk4K2
+xE34GC2nAdUQkPFuyaFisicc6HRMOYXPuF0DuwITEKnjxgNjP+qDrh0db7PAjO1D4d5ftfrsf+kd
+RR4gKVGSk8Tz2WwvtLAroJM4nXjNPIBJNT4w/FWWc/5qPHJy2U+eITZ5LLE5s45mX2oPFknWqxBo
+bQZ8a9dsZ3dSPZBvE9ZrmtFLrVrN4eo1jsXgAp1+p7bkfqd3BgBEmfsYWlBXO8rVXfvPgLs32VdV
+NZxb/CDWPqBsiYv0Hv3HPsz07j5b+/cVoWqyHDKzkaVbxfq/7auNVRmPB3v5SWEsH8xi4Bez2V9U
+KxfYCnqsjp8RaC2/khxKt0A552Eaxnz/4ly/2C7wkwTQnBmdlFYhAflWKQ03Ufiu8t3iBE3VJbc2
+5oMrglj7TRZrmKq3CkbFnX0fyulB+kHimrt6PIWn7kgyl9aelIl6vtbhMA+l0nfrsORMa4kobqQ5
+C5rveVgmcIad67EDa+UqEKy/GltUwlSh6xy+TrK1tzDvAgMBAAGjggHMMIIByDAfBgNVHSMEGDAW
+gBQJwPL8C9qU21/+K9+omULPyeCtADAdBgNVHQ4EFgQUzMeDMcimo0oz8o1R1Nver3ZVpSkwDgYD
+VR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwQGCCsGAQUFBwMC
+MEAGA1UdIAQ5MDcwNQYMKwYBBAGyMQECAQEBMCUwIwYIKwYBBQUHAgEWF2h0dHBzOi8vc2VjdGln
+by5jb20vQ1BTMFoGA1UdHwRTMFEwT6BNoEuGSWh0dHA6Ly9jcmwuc2VjdGlnby5jb20vU2VjdGln
+b1JTQUNsaWVudEF1dGhlbnRpY2F0aW9uYW5kU2VjdXJlRW1haWxDQS5jcmwwgYoGCCsGAQUFBwEB
+BH4wfDBVBggrBgEFBQcwAoZJaHR0cDovL2NydC5zZWN0aWdvLmNvbS9TZWN0aWdvUlNBQ2xpZW50
+QXV0aGVudGljYXRpb25hbmRTZWN1cmVFbWFpbENBLmNydDAjBggrBgEFBQcwAYYXaHR0cDovL29j
+c3Auc2VjdGlnby5jb20wHgYDVR0RBBcwFYETZHdtdzJAaW5mcmFkZWFkLm9yZzANBgkqhkiG9w0B
+AQsFAAOCAQEAyW6MUir5dm495teKqAQjDJwuFCi35h4xgnQvQ/fzPXmtR9t54rpmI2TfyvcKgOXp
+qa7BGXNFfh1JsqexVkIqZP9uWB2J+uVMD+XZEs/KYNNX2PvIlSPrzIB4Z2wyIGQpaPLlYflrrVFK
+v9CjT2zdqvy2maK7HKOQRt3BiJbVG5lRiwbbygldcALEV9ChWFfgSXvrWDZspnU3Gjw/rMHrGnql
+Htlyebp3pf3fSS9kzQ1FVtVIDrL6eqhTwJxe+pXSMMqFiN0whpBtXdyDjzBtQTaZJ7zTT/vlehc/
+tDuqZwGHm/YJy883Ll+GP3NvOkgaRGWEuYWJJ6hFCkXYjyR9IzCCBhQwggT8oAMCAQICEQDGvhmW
+Z0DEAx0oURL6O6l+MA0GCSqGSIb3DQEBCwUAMIGWMQswCQYDVQQGEwJHQjEbMBkGA1UECBMSR3Jl
+YXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRgwFgYDVQQKEw9TZWN0aWdvIExpbWl0
+ZWQxPjA8BgNVBAMTNVNlY3RpZ28gUlNBIENsaWVudCBBdXRoZW50aWNhdGlvbiBhbmQgU2VjdXJl
+IEVtYWlsIENBMB4XDTIyMDEwNzAwMDAwMFoXDTI1MDEwNjIzNTk1OVowJDEiMCAGCSqGSIb3DQEJ
+ARYTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBALQ3
+GpC2bomUqk+91wLYBzDMcCj5C9m6oZaHwvmIdXftOgTbCJXADo6G9T7BBAebw2JV38EINgKpy/ZH
+h7htyAkWYVoFsFPrwHounto8xTsySSePMiPlmIdQ10BcVSXMUJ3Juu16GlWOnAMJY2oYfEzmE7uT
+9YgcBqKCo65pTFmOnR/VVbjJk4K2xE34GC2nAdUQkPFuyaFisicc6HRMOYXPuF0DuwITEKnjxgNj
+P+qDrh0db7PAjO1D4d5ftfrsf+kdRR4gKVGSk8Tz2WwvtLAroJM4nXjNPIBJNT4w/FWWc/5qPHJy
+2U+eITZ5LLE5s45mX2oPFknWqxBobQZ8a9dsZ3dSPZBvE9ZrmtFLrVrN4eo1jsXgAp1+p7bkfqd3
+BgBEmfsYWlBXO8rVXfvPgLs32VdVNZxb/CDWPqBsiYv0Hv3HPsz07j5b+/cVoWqyHDKzkaVbxfq/
+7auNVRmPB3v5SWEsH8xi4Bez2V9UKxfYCnqsjp8RaC2/khxKt0A552Eaxnz/4ly/2C7wkwTQnBmd
+lFYhAflWKQ03Ufiu8t3iBE3VJbc25oMrglj7TRZrmKq3CkbFnX0fyulB+kHimrt6PIWn7kgyl9ae
+lIl6vtbhMA+l0nfrsORMa4kobqQ5C5rveVgmcIad67EDa+UqEKy/GltUwlSh6xy+TrK1tzDvAgMB
+AAGjggHMMIIByDAfBgNVHSMEGDAWgBQJwPL8C9qU21/+K9+omULPyeCtADAdBgNVHQ4EFgQUzMeD
+Mcimo0oz8o1R1Nver3ZVpSkwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYDVR0lBBYw
+FAYIKwYBBQUHAwQGCCsGAQUFBwMCMEAGA1UdIAQ5MDcwNQYMKwYBBAGyMQECAQEBMCUwIwYIKwYB
+BQUHAgEWF2h0dHBzOi8vc2VjdGlnby5jb20vQ1BTMFoGA1UdHwRTMFEwT6BNoEuGSWh0dHA6Ly9j
+cmwuc2VjdGlnby5jb20vU2VjdGlnb1JTQUNsaWVudEF1dGhlbnRpY2F0aW9uYW5kU2VjdXJlRW1h
+aWxDQS5jcmwwgYoGCCsGAQUFBwEBBH4wfDBVBggrBgEFBQcwAoZJaHR0cDovL2NydC5zZWN0aWdv
+LmNvbS9TZWN0aWdvUlNBQ2xpZW50QXV0aGVudGljYXRpb25hbmRTZWN1cmVFbWFpbENBLmNydDAj
+BggrBgEFBQcwAYYXaHR0cDovL29jc3Auc2VjdGlnby5jb20wHgYDVR0RBBcwFYETZHdtdzJAaW5m
+cmFkZWFkLm9yZzANBgkqhkiG9w0BAQsFAAOCAQEAyW6MUir5dm495teKqAQjDJwuFCi35h4xgnQv
+Q/fzPXmtR9t54rpmI2TfyvcKgOXpqa7BGXNFfh1JsqexVkIqZP9uWB2J+uVMD+XZEs/KYNNX2PvI
+lSPrzIB4Z2wyIGQpaPLlYflrrVFKv9CjT2zdqvy2maK7HKOQRt3BiJbVG5lRiwbbygldcALEV9Ch
+WFfgSXvrWDZspnU3Gjw/rMHrGnqlHtlyebp3pf3fSS9kzQ1FVtVIDrL6eqhTwJxe+pXSMMqFiN0w
+hpBtXdyDjzBtQTaZJ7zTT/vlehc/tDuqZwGHm/YJy883Ll+GP3NvOkgaRGWEuYWJJ6hFCkXYjyR9
+IzGCBMcwggTDAgEBMIGsMIGWMQswCQYDVQQGEwJHQjEbMBkGA1UECBMSR3JlYXRlciBNYW5jaGVz
+dGVyMRAwDgYDVQQHEwdTYWxmb3JkMRgwFgYDVQQKEw9TZWN0aWdvIExpbWl0ZWQxPjA8BgNVBAMT
+NVNlY3RpZ28gUlNBIENsaWVudCBBdXRoZW50aWNhdGlvbiBhbmQgU2VjdXJlIEVtYWlsIENBAhEA
+xr4ZlmdAxAMdKFES+jupfjANBglghkgBZQMEAgEFAKCCAeswGAYJKoZIhvcNAQkDMQsGCSqGSIb3
+DQEHATAcBgkqhkiG9w0BCQUxDxcNMjQxMjEzMDkxMDMwWjAvBgkqhkiG9w0BCQQxIgQg0WSLOk8Y
+lLFf6pnuUymSLAt1AAwcYu15/13SHDRah3Iwgb0GCSsGAQQBgjcQBDGBrzCBrDCBljELMAkGA1UE
+BhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEYMBYG
+A1UEChMPU2VjdGlnbyBMaW1pdGVkMT4wPAYDVQQDEzVTZWN0aWdvIFJTQSBDbGllbnQgQXV0aGVu
+dGljYXRpb24gYW5kIFNlY3VyZSBFbWFpbCBDQQIRAMa+GZZnQMQDHShREvo7qX4wgb8GCyqGSIb3
+DQEJEAILMYGvoIGsMIGWMQswCQYDVQQGEwJHQjEbMBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVy
+MRAwDgYDVQQHEwdTYWxmb3JkMRgwFgYDVQQKEw9TZWN0aWdvIExpbWl0ZWQxPjA8BgNVBAMTNVNl
+Y3RpZ28gUlNBIENsaWVudCBBdXRoZW50aWNhdGlvbiBhbmQgU2VjdXJlIEVtYWlsIENBAhEAxr4Z
+lmdAxAMdKFES+jupfjANBgkqhkiG9w0BAQEFAASCAgAp96cI12y5CujllDvWtNf1SADc+SR6ilZk
+S6NQe8K7HPT5KLqFtESRpJ6ZY/IqwzewKDeqMK1MEGoLBY/IjmF4k9tfg62ommCZCwWe/IgVms/z
+9OrkR7dO6AI1RjQMXLOaZ6/5auWGZGZMHtlFsCaxThwXeaXH96Ks273xDqMSGLxQCvgPD9Hnx5nY
+EcXc7C40IUWpnYL7irZK97/u6bR6iCl1udgDN736N8/84P6cKDocCPXEHaSUQkcQlltbxMwk9U82
+b5AshEzYmMYUM63AoMAqbWVZYYJhFz6mqXi14x3kJgP2WuQXxlF27tTI3yhzfV2crSB53vpydiLj
+CM8LjWoBBp26keTOJ4DwkjzeQRHS9Ucu17yDBzA3+GPXXx7AaS7toZStFhunLHu28lnbtwR001+l
+kK8a9z3fzkUapw0dxXtcCUR4ycExhatfixTB1gq1yMZSrlngV+mbmmL32ZIf08gQ2Csqf58tI9eh
+Ep0f1wnNV63ltnGr1mtn4oBJ4etMGaSy9DpYzVPdT/zhUj6ifxypkiFDl2pn2YHELbF3L5PHSX1x
+4TzgS4gJSDt358bVhxvp4O/lm04aQo/WxhBrrPGEfv/7hlgzOIpvxoasIZzG5MR6T4Qn7iUUqTHD
+lrzmVsFHPmAUOVA9lYeWwkFK3EjdPsLEOdxDH5VB7QAAAAAAAA==
+
+
+--=-O3PVYpsJyRduYaSqOF94--
 
