@@ -4,66 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E3F1E7717F
-	for <ath11k@archiver.kernel.org>; Tue, 17 Dec 2024 13:50:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC0E5E77184
+	for <ath11k@archiver.kernel.org>; Tue, 17 Dec 2024 14:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=L6ro/dPVM1xIIqywePkia8CAEFjRHPddQMMlHewnsSA=; b=he8+YdglpxOu5DYdqksNY8EYr6
-	fhoNiZrz7bfwn9vx8AjEwYs0uWP4ONmjXLOqQUUqf15kCNzfGjOTHD9rxGwqJhdG8pXGJky0uonJy
-	QWyDvw4jHZh++ZiQQ8yaEhXW6HIFHaf4jV+RoCIknSQ7JJv9+6MGgKizwXNJ8/jlOHIGJmIeaZg/u
-	ugbAXm6cAGcitnRiO3t4+S+nPKKA7QDI86nNJaT1f4BrAeS8jg818RF/x86gCGLu4Rign/mqxd06A
-	T2NQIXYXYTEvGm4Ew694IUET3sRyv2d773Af5bBKTDariKaus0kS8hCyAe+zvUx+7jIWeHQ+Em7Lx
-	BT7ra6Gg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=F1DBwzVsolSUhrei5QahZ4bEvU7Y0xBPFO/xvdm+okI=; b=bjn/gt1ZOFF+pA70pROsfYSc/l
+	107yxTqbp95neTnMX/3TSQEyd4FEcbD8r6vTYOrawNU/Guai+3Gw/ualDVt2fV7Xzq3q9Mvfkf1e7
+	DEqcE8rwnrxrTh8Zl9uhPkAbRCkxpaxza94nZw5+YK7MDnAZhZzp+BZKBx/ntntN6YLx4zGS0Vbz9
+	JqIAULfijTQmym/aKHM4bq710DTDa3sqETZ4UZozU/r8qV/yxi8JkHh4xqqU+Hjz9xRPog08cHVIK
+	gKg//2KMwTPV5ExoPUGdROKGI4mJosPbgSxG/U/aZUBqk2y1FiZwdgweypj4NCNM+qJg+Cluoe/FV
+	Go+fm7Hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNXy3-0000000Ddl0-3O4w;
-	Tue, 17 Dec 2024 13:50:31 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1tNYqV-0000000DopP-1n40;
+	Tue, 17 Dec 2024 14:46:47 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNXy0-0000000DdkN-3LvR
+	id 1tNYpo-0000000DoiE-0JXu
 	for ath11k@lists.infradead.org;
-	Tue, 17 Dec 2024 13:50:30 +0000
+	Tue, 17 Dec 2024 14:46:05 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 29B09A41737;
-	Tue, 17 Dec 2024 13:48:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2641C4CED3;
-	Tue, 17 Dec 2024 13:50:26 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 76F505C60EF;
+	Tue, 17 Dec 2024 14:45:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90348C4CED4;
+	Tue, 17 Dec 2024 14:46:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734443427;
-	bh=L6ro/dPVM1xIIqywePkia8CAEFjRHPddQMMlHewnsSA=;
+	s=k20201202; t=1734446763;
+	bh=pOoZRHsdKE7v2ECFsEVSpOwoH9Mz2gzKsGXQgVL/M/4=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=jS/IKLraMi3i3HojpHryX2WTGxWyEFN4KPK58gUZ5PLwotaw/LjLBTLQ7RkrdXqzs
-	 6GuSe+Ve2umXcL9k/7GCzz39KrSqf6W1dTGs5tJ7ZtKwQQglZEAs9qlZIsuMcAffUo
-	 UIxDoPSRvaYZnnLorxwN7yvDVtxb9SD9EGMPNDLIqH/YFj2IRwJjJ5xxlwHDNDi5Uk
-	 SWid9FtRdwxwJ4b0WlA4vpyBTYdUifc93azKOcFFyVkJRFXDAxyDx+TYPV7CK7xeym
-	 q+8tzLPUc2srRAhGhOZH3I9IZ4ub4O9MdNhfKTa5P1N/NZkrOtcXpx7FmD2dn8n4/N
-	 rNue1qismul2Q==
+	b=p62oys+WEA21wxHLd1fk3m6T8Xhp5dfIPRF1njFgqLUL8kGyZMzaMw8Km823iOx2r
+	 fBRZNjwfL4zPvATmF1LQAr23O/HM9+DuRpJRZKmSfnNqfXSXNU58toASWN0y/suL+s
+	 iTOCZrKyFFRS7IJSdfpDVodPm5QQ8iqG2cH+ULcgkF+Rmoanb9KMhO0uoTh8rEtWvl
+	 MnuiEQBQXzSy0uXL3hs9aFVMQ8Ar97zHPQQp0cvp/4UPx6cKw68fexD3JFkCkQaI/N
+	 Y/hOXF+mf0752uYNIxRVorgYpy+gk/6IIIWMEOcbc+XTqPX8AI5/MYeQ3h/pt/sEiT
+	 1+a+3g2Fn2k7A==
 From: Kalle Valo <kvalo@kernel.org>
 To: Kang Yang <quic_kangyang@quicinc.com>
 Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] wifi: ath11k: add srng->lock for
- ath11k_hal_srng_* in monitor mode
-References: <20241008053744.1070-1-quic_kangyang@quicinc.com>
-	<20241008053744.1070-3-quic_kangyang@quicinc.com>
-	<87ttb9nea6.fsf@kernel.org>
-	<79910df2-a7fd-4880-bd32-4f2927341654@quicinc.com>
-	<e0d2d1ce-0443-4eea-b3c3-ed7423875d11@quicinc.com>
-Date: Tue, 17 Dec 2024 15:50:24 +0200
-In-Reply-To: <e0d2d1ce-0443-4eea-b3c3-ed7423875d11@quicinc.com> (Kang Yang's
-	message of "Fri, 13 Dec 2024 17:41:41 +0800")
-Message-ID: <87a5cus9jz.fsf@kernel.org>
+Subject: Re: [PATCH v4 1/2] wifi: ath11k: move update channel list from
+ update reg worker to reg notifier
+References: <20241213093909.629-1-quic_kangyang@quicinc.com>
+	<20241213093909.629-2-quic_kangyang@quicinc.com>
+Date: Tue, 17 Dec 2024 16:46:00 +0200
+In-Reply-To: <20241213093909.629-2-quic_kangyang@quicinc.com> (Kang Yang's
+	message of "Fri, 13 Dec 2024 17:39:08 +0800")
+Message-ID: <87frmmmkpj.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241217_055028_911473_8F700F0C 
-X-CRM114-Status: UNSURE (   8.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241217_064604_153699_DC8B8315 
+X-CRM114-Status: GOOD (  14.01  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,35 +75,54 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Kang Yang <quic_kangyang@quicinc.com> writes:
 
->>>> @@ -5623,6 +5625,9 @@ static int
->>>> ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto reap_statu=
-s_ring;
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>>> +=C2=A0=C2=A0=C2=A0 mon_dst_srng =3D &ar->ab->hal.srng_list[dp-
->>>> >rxdma_mon_dst_ring.ring_id];
->>>> +=C2=A0=C2=A0=C2=A0 spin_lock_bh(&mon_dst_srng->lock);
->>>
->>> Why initialise mon_dst_srng differently? The commit message mentions
->>> nothing about this change.
->> Because need to fetch spin lock inside 'struct hal_srng'. If still
->> use 'void *mon_dst_srng', need to perform a variable type cast.
->> Bur 'struct hal_srng' will make this line too long:
->> 'struct hal_srng *mon_dst_srng =3D &ar->ab->hal.srng_list[dp-
->> >rxdma_mon_dst_ring.ring_id];'
->> So I separated the definition and initialization.
->> ath11k_dp_rx_reap_mon_status_ring()/ath11k_dp_process_rx and others
->> ring process function is the same.
->>=20
+> From: Wen Gong <quic_wgong@quicinc.com>
 >
-> Do i need to send a new version for this?
+> Currently when ath11k gets new channel list, it will mainly do two things
+> in ath11k_regd_update():
+> 1. update channel list to cfg80211 by reg_work.
+> 2. update cfg80211's channel list to firmware by
+> ath11k_reg_update_chan_list().
+>
+> Flow:
+> ath11k_regd_update
+> ->regulatory_set_wiphy_regd
+>         -> schedule_work(&reg_work)
+>                 ->reg_work->reg_process_self_managed_hint
+>                         ->handle_band_custom(update to cfg80211)
+> -> ath11k_reg_update_chan_list(update to firmware)
+>
+> But ath11k_reg_update_chan_list() is immediately called after reg_work
+> is queued. They are running in different threads. At this time,
+> ath11k_reg_update_chan_list() may use a wrong channel list because
+> handle_band_custom() may not be finished.
+> This may result in out-of-bounds write errors:
+> BUG: KASAN: slab-out-of-bounds in ath11k_reg_update_chan_list
+> Call Trace:
+>     ath11k_reg_update_chan_list+0xbfe/0xfe0 [ath11k]
+>     kfree+0x109/0x3a0
+>     ath11k_regd_update+0x1cf/0x350 [ath11k]
+>     ath11k_regd_update_work+0x14/0x20 [ath11k]
+>     process_one_work+0xe35/0x14c0
+>
+> So should make sure ath11k_reg_update_chan_list() is called after
+> handle_band_custom() is finished.
+>
+> reg_process_self_managed_hint() will call reg_call_notifier() after
+> handle_band_custom(). This function will call ath11k_reg_notifier(), so
+> move ath11k_reg_update_chan_list() to ath11k_reg_notifier(). Then
+> ath11k can update correct channel list to firmware.
+>
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+>
+> Fixes: f45cb6b29cd3 ("wifi: ath11k: avoid deadlock during regulatory update in ath11k_regd_update()")
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
 
-Yeah, please mention in the commit message why you mon_dst_srng
-initialisation.
+I think the commit message should be completely rewritten, the idea here
+is not to list functions and their call orders.
 
---=20
+-- 
 https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
