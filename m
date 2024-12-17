@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC0E5E77184
-	for <ath11k@archiver.kernel.org>; Tue, 17 Dec 2024 14:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EEB1E7717F
+	for <ath11k@archiver.kernel.org>; Tue, 17 Dec 2024 14:54:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
 	Message-ID:In-Reply-To:Date:References:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=F1DBwzVsolSUhrei5QahZ4bEvU7Y0xBPFO/xvdm+okI=; b=bjn/gt1ZOFF+pA70pROsfYSc/l
-	107yxTqbp95neTnMX/3TSQEyd4FEcbD8r6vTYOrawNU/Guai+3Gw/ualDVt2fV7Xzq3q9Mvfkf1e7
-	DEqcE8rwnrxrTh8Zl9uhPkAbRCkxpaxza94nZw5+YK7MDnAZhZzp+BZKBx/ntntN6YLx4zGS0Vbz9
-	JqIAULfijTQmym/aKHM4bq710DTDa3sqETZ4UZozU/r8qV/yxi8JkHh4xqqU+Hjz9xRPog08cHVIK
-	gKg//2KMwTPV5ExoPUGdROKGI4mJosPbgSxG/U/aZUBqk2y1FiZwdgweypj4NCNM+qJg+Cluoe/FV
-	Go+fm7Hg==;
+	bh=vyXrmgqcogEQln9iS5HJ5qfVturYJU9CXItnIOyfttg=; b=Nw6GNB4krhNVf9FUZaSyXty79q
+	sz4gFJekHiqpOWDQeC0r8mGodvNhvA7CmAHAbNJnuQTIlHR0jsppnf6D6sGFt26GHayB1yfVp+MUe
+	mhbweJfYXjxCGs7vQmyhUT5kVl3nQAw47PXW9eACnd+hWxZn0+ScXY6L2ql+g63s7pm5+bAExO6en
+	6ZJsugrd1FZna7g0oy5fv8XgvjqOjcNW40u8qPqmCrG/yK1NpAAuIRyvPaYP8C1KeUfbQACL6VSOa
+	glGQ4Vf/Jz/Xfw8f81jB/xRqZAABHKrP8FwcR1bO/Z44fWCLg/A43+6na/jkAbbwPRDAd3J6zIhzR
+	OtgRiJlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNYqV-0000000DopP-1n40;
-	Tue, 17 Dec 2024 14:46:47 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tNYyE-0000000DqLy-3OAG;
+	Tue, 17 Dec 2024 14:54:46 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNYpo-0000000DoiE-0JXu
+	id 1tNYwk-0000000Dq1X-3Cdp
 	for ath11k@lists.infradead.org;
-	Tue, 17 Dec 2024 14:46:05 +0000
+	Tue, 17 Dec 2024 14:53:16 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 76F505C60EF;
-	Tue, 17 Dec 2024 14:45:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90348C4CED4;
-	Tue, 17 Dec 2024 14:46:02 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 45891A4016C;
+	Tue, 17 Dec 2024 14:51:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD638C4CED4;
+	Tue, 17 Dec 2024 14:53:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734446763;
-	bh=pOoZRHsdKE7v2ECFsEVSpOwoH9Mz2gzKsGXQgVL/M/4=;
+	s=k20201202; t=1734447193;
+	bh=+F90y8yls9W+2OroXzCpT7EdDHjsL2jMmqwYVQ7bUCw=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=p62oys+WEA21wxHLd1fk3m6T8Xhp5dfIPRF1njFgqLUL8kGyZMzaMw8Km823iOx2r
-	 fBRZNjwfL4zPvATmF1LQAr23O/HM9+DuRpJRZKmSfnNqfXSXNU58toASWN0y/suL+s
-	 iTOCZrKyFFRS7IJSdfpDVodPm5QQ8iqG2cH+ULcgkF+Rmoanb9KMhO0uoTh8rEtWvl
-	 MnuiEQBQXzSy0uXL3hs9aFVMQ8Ar97zHPQQp0cvp/4UPx6cKw68fexD3JFkCkQaI/N
-	 Y/hOXF+mf0752uYNIxRVorgYpy+gk/6IIIWMEOcbc+XTqPX8AI5/MYeQ3h/pt/sEiT
-	 1+a+3g2Fn2k7A==
+	b=OuAZVrqJXJn9gY7aiJM1N53OFgO7gnCfUrxldRA4Xfs/4NDkEq5MwQt2Bir94mQs8
+	 jAvqKz+cWBHpsEpDSVtSrw+NVnnVMkA2qTFTYxuHMZmWtT3rLaMGbRY5ufEAoonJr2
+	 5bIOW3VoJvK95r1c66aRHG2XsKYZnEZT3plxm8p6NKsEhmmWT2MTXHqkJEa+4kTCBp
+	 2Xb/NuUJzObkrpqTbbDW0tV0mcVd7989okmPt9WneX5zyL7pis86Cmx+hPwPpqiHVZ
+	 OdH0hJ0DaOILF0TM4NOy/pzN6NDILo82AP4xmJYxcfLdTRFOeaTsu2/SNAPj9rfa5J
+	 Lxwpw1yE9cNFw==
 From: Kalle Valo <kvalo@kernel.org>
 To: Kang Yang <quic_kangyang@quicinc.com>
 Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v4 1/2] wifi: ath11k: move update channel list from
- update reg worker to reg notifier
+Subject: Re: [PATCH v4 2/2] wifi: ath11k: move update channel list to worker
+ when wait flag is set
 References: <20241213093909.629-1-quic_kangyang@quicinc.com>
-	<20241213093909.629-2-quic_kangyang@quicinc.com>
-Date: Tue, 17 Dec 2024 16:46:00 +0200
-In-Reply-To: <20241213093909.629-2-quic_kangyang@quicinc.com> (Kang Yang's
-	message of "Fri, 13 Dec 2024 17:39:08 +0800")
-Message-ID: <87frmmmkpj.fsf@kernel.org>
+	<20241213093909.629-3-quic_kangyang@quicinc.com>
+Date: Tue, 17 Dec 2024 16:53:11 +0200
+In-Reply-To: <20241213093909.629-3-quic_kangyang@quicinc.com> (Kang Yang's
+	message of "Fri, 13 Dec 2024 17:39:09 +0800")
+Message-ID: <87bjxamkdk.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241217_064604_153699_DC8B8315 
-X-CRM114-Status: GOOD (  14.01  )
+X-CRM114-CacheID: sfid-20241217_065314_928744_70806B0A 
+X-CRM114-Status: GOOD (  19.04  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,49 +77,82 @@ Kang Yang <quic_kangyang@quicinc.com> writes:
 
 > From: Wen Gong <quic_wgong@quicinc.com>
 >
-> Currently when ath11k gets new channel list, it will mainly do two things
-> in ath11k_regd_update():
-> 1. update channel list to cfg80211 by reg_work.
-> 2. update cfg80211's channel list to firmware by
-> ath11k_reg_update_chan_list().
+> With previous patch "wifi: ath11k: move update channel list from update
+> reg worker to reg notifier", ath11k_reg_update_chan_list() will be
+> called during reg_process_self_managed_hint().
 >
-> Flow:
-> ath11k_regd_update
-> ->regulatory_set_wiphy_regd
->         -> schedule_work(&reg_work)
->                 ->reg_work->reg_process_self_managed_hint
->                         ->handle_band_custom(update to cfg80211)
-> -> ath11k_reg_update_chan_list(update to firmware)
+> reg_process_self_managed_hint() will hold rtnl_lock all the time.
+> But ath11k_reg_update_chan_list() may increase the occupation time of
+> rtnl_lock, because wait flag is set and wait_for_completion_timeout()
+> will be called when 11d/hw scan is running.
 >
-> But ath11k_reg_update_chan_list() is immediately called after reg_work
-> is queued. They are running in different threads. At this time,
-> ath11k_reg_update_chan_list() may use a wrong channel list because
-> handle_band_custom() may not be finished.
-> This may result in out-of-bounds write errors:
-> BUG: KASAN: slab-out-of-bounds in ath11k_reg_update_chan_list
-> Call Trace:
->     ath11k_reg_update_chan_list+0xbfe/0xfe0 [ath11k]
->     kfree+0x109/0x3a0
->     ath11k_regd_update+0x1cf/0x350 [ath11k]
->     ath11k_regd_update_work+0x14/0x20 [ath11k]
->     process_one_work+0xe35/0x14c0
+> Should minimize the occupation time of rtnl_lock as much as possible.
 >
-> So should make sure ath11k_reg_update_chan_list() is called after
-> handle_band_custom() is finished.
->
-> reg_process_self_managed_hint() will call reg_call_notifier() after
-> handle_band_custom(). This function will call ath11k_reg_notifier(), so
-> move ath11k_reg_update_chan_list() to ath11k_reg_notifier(). Then
-> ath11k can update correct channel list to firmware.
->
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
->
-> Fixes: f45cb6b29cd3 ("wifi: ath11k: avoid deadlock during regulatory update in ath11k_regd_update()")
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
+> Move update channel list operation to a new worker, so that
+> wait_for_completion_timeout() won't be called and will not increase the
+> occupation time of rtnl_lock.
 
-I think the commit message should be completely rewritten, the idea here
-is not to list functions and their call orders.
+Maybe the last two paragraphs could be merged (and edited) like this:
+
+We should minimize the occupation time of rtnl_lock as much as possible
+to avoid interfering with rest of the system. So move the update channel
+list operation to a new worker, so that wait_for_completion_timeout()
+won't be called and will not increase the occupation time of rtnl_lock.
+
+> --- a/drivers/net/wireless/ath/ath11k/core.h
+> +++ b/drivers/net/wireless/ath/ath11k/core.h
+> @@ -685,7 +685,7 @@ struct ath11k {
+>  	struct mutex conf_mutex;
+>  	/* protects the radio specific data like debug stats, ppdu_stats_info stats,
+>  	 * vdev_stop_status info, scan data, ath11k_sta info, ath11k_vif info,
+> -	 * channel context data, survey info, test mode data.
+> +	 * channel context data, survey info, test mode data, channel_update_queue.
+>  	 */
+>  	spinlock_t data_lock;
+
+Usually is best to add a comment the data you are protecting, in this
+case the new fields in struct ath11k.
+
+> @@ -743,6 +743,8 @@ struct ath11k {
+>  	struct completion bss_survey_done;
+>  
+>  	struct work_struct regd_update_work;
+> +	struct work_struct channel_update_work;
+> +	struct list_head channel_update_queue;
+
+So here add '/* protected with data_lock */' or similar before channel_update_queue.
+
+> @@ -231,8 +206,16 @@ int ath11k_reg_update_chan_list(struct ath11k *ar, bool wait)
+>  		}
+>  	}
+>  
+> -	ret = ath11k_wmi_send_scan_chan_list_cmd(ar, params);
+> -	kfree(params);
+> +	if (wait) {
+> +		spin_lock_bh(&ar->data_lock);
+> +		list_add_tail(&params->list, &ar->channel_update_queue);
+> +		spin_unlock_bh(&ar->data_lock);
+> +
+> +		queue_work(ar->ab->workqueue, &ar->channel_update_work);
+> +	} else {
+> +		ret = ath11k_wmi_send_scan_chan_list_cmd(ar, params);
+> +		kfree(params);
+> +	}
+
+You can avoid the else branch like this:
+
+if (wait) {
+	spin_lock_bh(&ar->data_lock);
+	list_add_tail(&params->list, &ar->channel_update_queue);
+	spin_unlock_bh(&ar->data_lock);
+
+	queue_work(ar->ab->workqueue, &ar->channel_update_work);
+
+        return 0;
+}
+
+ret = ath11k_wmi_send_scan_chan_list_cmd(ar, params);
+kfree(params);
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
