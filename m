@@ -4,104 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E742E7718B
-	for <ath11k@archiver.kernel.org>; Fri, 20 Dec 2024 17:23:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81282E77188
+	for <ath11k@archiver.kernel.org>; Thu, 26 Dec 2024 18:27:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tdv9e/Jt/cPRciMakOMf1qco3ohYpd0DydId7EL4h5w=; b=MyWTURANzmuGY3ybN6LMOScl/d
-	5NFnQN/fNsdGzovndPbbGTQt9F7aLNJRzrWEZDQI+NKR8PVLrZlt28W2kdmZLFlPvCx/92tlC06if
-	aPBzWb6vclDZscddmjM3YbSiwrj4KKF8tGEt0QId43Q9/kT9A5XUx0U/XifohH2yRiKTV+cS2MALr
-	4DSgb3a+rK+vwB8mbKgdaV9eaiLVluPckecDlyxG2rh/7iTeW9T0RQusO/cl3Ddym/wj0DsqMeJvy
-	YPqYc5pGqBORuq16X65xspIFhNI3NltLQnPW0UMZ3+1oXwqXHyZThwL3V9STKB78zwndwKET1oCyv
-	L/HMZO5A==;
+	bh=D5EVoV75IkUvB1HUP4nuL/I5CZ3S0LzNOPFFgI5Ea1s=; b=B5R9Wxd/tw8zLDp6dezK8VC20r
+	ahVOw56QPIn33lcB6F3Ugcqmv5SbrdXqyN8rMKNj9LonvdlQXTbjteFr27LTTfAfIY5SGkrKDc7jo
+	muuxAwpG0cXWvmTx+0gOF96B1bmDwCJNNcIX3VxEi7UkoXi2QVa5desT+wg3R+7LUrwjkfQSo7FPU
+	nJ+9OEZsk+WHW0Jm454AYlZVA1etjh+C+gZUQM/5rnaW4sO+lk08Z1v0eBljUQUFO+fNoEWv8Slth
+	B5IBzcuLeP1cisRoBpwg2CZ3F+Dk8kOLt5qRCpBbsazO1J8rCvTNJj8YHL/GrBlS0PHKmJ217GPs8
+	nf/V5bxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tOgiy-00000005cnu-3Sek;
-	Fri, 20 Dec 2024 17:23:40 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1tQsa4-0000000GCln-40zh;
+	Thu, 26 Dec 2024 18:27:32 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tOgFh-00000005WKs-0iNN
+	id 1tQsa2-0000000GCkr-47K6
 	for ath11k@lists.infradead.org;
-	Fri, 20 Dec 2024 16:53:26 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:56196 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1tOgFY-000000003pU-0l0R;
-	Fri, 20 Dec 2024 17:53:16 +0100
-X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_1500_1599 0.000000,
-	BODY_SIZE_2000_LESS 0.000000, BODY_SIZE_5000_LESS 0.000000,
-	BODY_SIZE_7000_LESS 0.000000, CTE_8BIT 0.000000, DKIM_ALIGNS 0.000000,
-	DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
-	IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000,
-	MSGID_SAMEAS_FROM_HEX_844412 0.100000, MSG_THREAD 0.000000,
-	MULTIPLE_RCPTS 0.100000, MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_FOUND 0.000000,
-	NO_CTA_URI_FOUND 0.000000, NO_FUR_HEADER 0.000000, NO_URI_HTTPS 0.000000,
-	OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000,
-	SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000, USER_AGENT 0.000000,
-	__ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
-	__BULK_NEGATE 0.000000, __COURIER_PHRASE 0.000000, __CT 0.000000,
-	__CTE 0.000000, __CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000,
-	__DKIM_ALIGNS_2 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
-	__DQ_NEG_IP 0.000000, __FORWARDED_MSG 0.000000, __FRAUD_URGENCY 0.000000,
-	__FROM_DOMAIN_NOT_IN_BODY 0.000000, __FROM_NAME_NOT_IN_BODY 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
-	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000,
-	__HEADER_ORDER_FROM 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
-	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
-	__MULTIPLE_RCPTS_CC_X2 0.000000, __MULTIPLE_RCPTS_TO_X2 0.000000,
-	__NO_HTML_TAG_RAW 0.000000, __OUTBOUND_SOPHOS_FUR 0.000000,
-	__OUTBOUND_SOPHOS_FUR_IP 0.000000, __OUTBOUND_SOPHOS_FUR_RDNS 0.000000,
-	__PHISH_SPEAR_SUBJ_ALERT 0.000000, __RCVD_PASS 0.000000,
-	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
-	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
-	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_NEGATE 0.000000,
-	__SUBJ_REPLY 0.000000, __TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
-	__URI_NO_MAILTO 0.000000, __URI_NO_WWW 0.000000, __USER_AGENT 0.000000,
-	__X_MAILSCANNER 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2024.12.20.161246
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=tdv9e/Jt/cPRciMakOMf1qco3ohYpd0DydId7EL4h5w=;
-	b=Ap3Xr1wJbBrM2QVb37Ic73N4t4MFBbTNyVUR9pF4j4LXtm97k8LbJlv9ofcrOc1/eBwpEC/a5NqrQYfdQ96izJpwvMf+WbP0DPFGYGJYS8wSVTkkQTZovA0P0xko4/tumV9GAkdgrmtTJm/JPEj0lBtePO1hwSCD1RIXMD4NhFk=;
-Message-ID: <12798910-71aa-46da-b7b4-139669abfdb0@dd-wrt.com>
-Date: Fri, 20 Dec 2024 17:52:56 +0100
+	Thu, 26 Dec 2024 18:27:32 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 573515C60DD;
+	Thu, 26 Dec 2024 18:26:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2BA5C4CEDE;
+	Thu, 26 Dec 2024 18:27:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735237649;
+	bh=93mqOe0JB42YZvJDC+jXPRbp/QekRho4fXl3FDDBODM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=LAx9DVSwNbfNaCgKDp4s13vW/9JlRmRRG5ky9fETSn/U/j5Ns1DSUyVr2pb6/tjq4
+	 J2+mvYIVaJWKHRez0VePkPwD/FSqg1IZmgrW+sZyrmZbWU5bikdYjKN3vorC7bOpu8
+	 Lge56knJq9KI56M8eMHEavtKJd4KbN1Xlkmf9uk0RZQjkI0R2nEAsY2v8vTCXhSuGT
+	 gmD4+YOOw+s5xQ0TmGffa3zMe0nlSQb4MLUQL3L0vsq9F3puBs6lZI1YrPJ7nGXYUS
+	 YxxjaN5ipTbxHe2I+m+gq2zRhVWR3iGsLdTUEY9EQ/ECqD504qqreSZTTgKVeHIhsy
+	 cwr9w6gOeyzBA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Jianhua Lu <lujianhua000@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: (subset) [PATCH v4 1/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add qca6390-pmu node
+Date: Thu, 26 Dec 2024 12:26:47 -0600
+Message-ID: <173523761395.1412574.10662186854294667989.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20241201135716.141691-1-lujianhua000@gmail.com>
+References: <20241201135716.141691-1-lujianhua000@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: Potential Broadcast Issues After GTK Key Exchange on ath11k with
- IPQ8072A (QCN5024/QCN5054)
-To: Remi Pommarel <repk@triplefau.lt>, Steffen Moser <lists@steffen-moser.de>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-References: <c6366409-9928-4dd7-bf7b-ba7fcf20eabf@steffen-moser.de>
- <Z2Q9POuV-6MIdzRf@pilgrim>
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-In-Reply-To: <Z2Q9POuV-6MIdzRf@pilgrim>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1tOgFG-000DFv-9R
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost.localdomain ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1tOgFG-000DFv-9R; Fri, 20 Dec 2024 17:52:58 +0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241220_085325_351511_B0A491C3 
-X-CRM114-Status: GOOD (  12.94  )
+X-CRM114-CacheID: sfid-20241226_102731_066301_66BD059F 
+X-CRM114-Status: UNSURE (   5.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,44 +82,23 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Remi
 
-Am 19.12.2024 um 16:35 schrieb Remi Pommarel:
-> Hi Steffen.
->
-> On Thu, Dec 19, 2024 at 04:02:30PM +0100, Steffen Moser wrote:
->> Hello everyone,
->>
->> I've encountered a possible issue in a DD-WRT [1] setup where broadcast
->> packets stop being delivered after a GTK (Group Temporal Key) exchange. This
->> issue occurs on a system with the following hardware:
->>
->>      Access Point Hardware: DynaLink DL-WRX36
->>      Router Software: DD-WRT v3.0-r58819 std (12/13/24)
->>      CPU: Qualcomm IPQ8072A
->>      WiFi Chips: Qualcomm QCN5024 and Qualcomm QCN5054
->>      WiFi Driver: ath11k
->>      Firmware: WLAN.HK.2.12-01460-QCAHKSWPL_SILICONZ-1
->>      NSS FW version: NSS.FW.12.5-210-HK.R
->>      Kernel: Linux WL-AP-EG 6.6.64-rt29 #1791 SMP Thu Dec 12 16:41:51 +07
->> 2024 aarch64 DD-WRT
->>
->> The behavior is such that after a GTK exchange, the AP can get into a "weird
->> state". When being there, broadcast frames like ARP or mDNS are no longer
->> reliably delivered to connected clients while unicasts come still through.
->> In this "weird state", the channel quality (active time vs. busy time) goes
->> down and latencies to the still reachable WIFI clients rise.
-> This looks a lot like an issue we hit a while back. There is this patch
-> [0] from Qualcomm's wlan-open repository. It is a revert of [1]. Using
-> that the issue was never reproduced. Maybe this can help.
->
-> Also adding ath11k list.
->
-> Regards.
+On Sun, 01 Dec 2024 21:57:14 +0800, Jianhua Lu wrote:
+> Add qca6390-pmu node, which is used to manage power supply sequence for wifi and
+> bluetooth on sm8250 soc based devices.
+> 
+> 
 
-thank you for that hint. i  will integrate it into dd-wrt asap
+Applied, thanks!
 
-Sebastian
+[1/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add qca6390-pmu node
+      commit: 6e4ec5f6940d8ae38ffe23c7f2f7da9de57d0cc1
+[2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi node
+      commit: 1993f0255347c98b133d90e4150a4ce5f32646c4
+[3/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add bluetooth node
+      commit: 8b14c0648673439fb736b68096804314b934653b
 
->
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
