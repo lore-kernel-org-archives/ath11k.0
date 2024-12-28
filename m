@@ -4,70 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81282E77188
-	for <ath11k@archiver.kernel.org>; Thu, 26 Dec 2024 18:27:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40E11E77188
+	for <ath11k@archiver.kernel.org>; Sat, 28 Dec 2024 10:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=D5EVoV75IkUvB1HUP4nuL/I5CZ3S0LzNOPFFgI5Ea1s=; b=B5R9Wxd/tw8zLDp6dezK8VC20r
-	ahVOw56QPIn33lcB6F3Ugcqmv5SbrdXqyN8rMKNj9LonvdlQXTbjteFr27LTTfAfIY5SGkrKDc7jo
-	muuxAwpG0cXWvmTx+0gOF96B1bmDwCJNNcIX3VxEi7UkoXi2QVa5desT+wg3R+7LUrwjkfQSo7FPU
-	nJ+9OEZsk+WHW0Jm454AYlZVA1etjh+C+gZUQM/5rnaW4sO+lk08Z1v0eBljUQUFO+fNoEWv8Slth
-	B5IBzcuLeP1cisRoBpwg2CZ3F+Dk8kOLt5qRCpBbsazO1J8rCvTNJj8YHL/GrBlS0PHKmJ217GPs8
-	nf/V5bxw==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=XS3W6Nm33y8lf/E3f46CoorgvUQmeVLhar9Ww+z/EqE=; b=Fli94mSsJvojqGTmPcmonztL05
+	b0gkYRQooHEUfFN5PYRcsSrXUEToOKLaMTaBdU3fcHYb9v6BiQFos/jvHA4+bcVCUNcL07hLlx9Hj
+	QqNWI65zswNQZLsGGXN+jHiMqnNeCscbu3fkN3JFgA/o6ky73YkQncO8edI1q7ivHR7ZofKU24Szo
+	rFwKa8AJ4dg4bL7PqJmjsAgq+nzsSNp8MYuoc/oPqbbKAapm2tXHW/x6ILbHoae6hgqwEqbHZ0QEu
+	8Fj/zED5jCMzfeVpOFdp+zKW8HhdCUkHj3kTy75gJGmPtNtEpFGXhwTJB6khoqTBXsAOfANBAAD/k
+	pmv0R0UA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQsa4-0000000GCln-40zh;
-	Thu, 26 Dec 2024 18:27:32 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tRTpZ-00000001iOk-3krs;
+	Sat, 28 Dec 2024 10:14:01 +0000
+Received: from dd54106.kasserver.com ([85.13.166.165])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQsa2-0000000GCkr-47K6
+	id 1tRTpW-00000001iO0-0HsE
 	for ath11k@lists.infradead.org;
-	Thu, 26 Dec 2024 18:27:32 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 573515C60DD;
-	Thu, 26 Dec 2024 18:26:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2BA5C4CEDE;
-	Thu, 26 Dec 2024 18:27:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735237649;
-	bh=93mqOe0JB42YZvJDC+jXPRbp/QekRho4fXl3FDDBODM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LAx9DVSwNbfNaCgKDp4s13vW/9JlRmRRG5ky9fETSn/U/j5Ns1DSUyVr2pb6/tjq4
-	 J2+mvYIVaJWKHRez0VePkPwD/FSqg1IZmgrW+sZyrmZbWU5bikdYjKN3vorC7bOpu8
-	 Lge56knJq9KI56M8eMHEavtKJd4KbN1Xlkmf9uk0RZQjkI0R2nEAsY2v8vTCXhSuGT
-	 gmD4+YOOw+s5xQ0TmGffa3zMe0nlSQb4MLUQL3L0vsq9F3puBs6lZI1YrPJ7nGXYUS
-	 YxxjaN5ipTbxHe2I+m+gq2zRhVWR3iGsLdTUEY9EQ/ECqD504qqreSZTTgKVeHIhsy
-	 cwr9w6gOeyzBA==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Jianhua Lu <lujianhua000@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: (subset) [PATCH v4 1/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add qca6390-pmu node
-Date: Thu, 26 Dec 2024 12:26:47 -0600
-Message-ID: <173523761395.1412574.10662186854294667989.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241201135716.141691-1-lujianhua000@gmail.com>
-References: <20241201135716.141691-1-lujianhua000@gmail.com>
+	Sat, 28 Dec 2024 10:14:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=steffen-moser.de;
+	s=kas202408292216; t=1735380831;
+	bh=XS3W6Nm33y8lf/E3f46CoorgvUQmeVLhar9Ww+z/EqE=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=gzWNowYv4YlvX3VoF4Fql17e30OHgBgj2ZutUcoIIbq+3up32DNEKJA7xlLZEx/kw
+	 oTEox7nMrN88SGmuRuj9J+aU4DUlbSSzgejmUmvsapM8K9OJLIAuTfCbIwKQBWi7pe
+	 H4sjJ2ymS20JA5GCyLV3ZO1L39UOhRdAfAa9PC2A/qtM9C2ldqOq1ubj8QAx0kYE5y
+	 qVKCYMP6hARUJu4i75HU/5BDN8DV5FoxqHnk0Chl9jGfkjCKzae4kQd0qGucpC5L8N
+	 Fhvfxah4v+M/nofu1Jgp0Qj2hiwI6T4a/z5WYi4Ui1msGcR+yMjBSNqQeSNGAH3yoP
+	 OWaqUKu0KfI2Q==
+Received: from [192.168.1.101] (p54a3711d.dip0.t-ipconnect.de [84.163.113.29])
+	by dd54106.kasserver.com (Postfix) with ESMTPSA id 39B85E4A034A;
+	Sat, 28 Dec 2024 11:13:51 +0100 (CET)
+Message-ID: <b18ede18-0c33-4d14-a7c5-0066cbec39c9@steffen-moser.de>
+Date: Sat, 28 Dec 2024 11:13:50 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: Potential Broadcast Issues After GTK Key Exchange on ath11k with
+ IPQ8072A (QCN5024/QCN5054)
+To: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+References: <c6366409-9928-4dd7-bf7b-ba7fcf20eabf@steffen-moser.de>
+ <Z2Q9POuV-6MIdzRf@pilgrim>
+Content-Language: de-DE, en-US
+From: Steffen Moser <lists@steffen-moser.de>
+In-Reply-To: <Z2Q9POuV-6MIdzRf@pilgrim>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Spamd-Bar: /
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241226_102731_066301_66BD059F 
-X-CRM114-Status: UNSURE (   5.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241228_021358_555503_DA0BB441 
+X-CRM114-Status: GOOD (  13.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,23 +72,56 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Dear Remi,
 
-On Sun, 01 Dec 2024 21:57:14 +0800, Jianhua Lu wrote:
-> Add qca6390-pmu node, which is used to manage power supply sequence for wifi and
-> bluetooth on sm8250 soc based devices.
+thank you very much for the pointer to the patch. Sebastian integrated 
+it into DD-WRT. Now the DynaLink DL-WRX36 runs absolutely smoothly, the 
+WLAN links are stable, the packet loss is gone. No weird states anymore, 
+independent from the group key exchange interval:
+
+https://data.saps.uni-ulm.de/index.php/s/NLNpWqjc8iGsaEM
+
+So your idea was a direct hit! Thank you very, very much. Several months 
+of debugging have come to an end...
+
+Thank you very much and all the best for 2025!
+
+Kind regards,
+Steffen
+
+On 19.12.24 4:35 PM, Remi Pommarel wrote:
+> Hi Steffen.
 > 
+> On Thu, Dec 19, 2024 at 04:02:30PM +0100, Steffen Moser wrote:
+>> Hello everyone,
+>> 
+>> I've encountered a possible issue in a DD-WRT [1] setup where broadcast
+>> packets stop being delivered after a GTK (Group Temporal Key) exchange. This
+>> issue occurs on a system with the following hardware:
+>> 
+>>     Access Point Hardware: DynaLink DL-WRX36
+>>     Router Software: DD-WRT v3.0-r58819 std (12/13/24)
+>>     CPU: Qualcomm IPQ8072A
+>>     WiFi Chips: Qualcomm QCN5024 and Qualcomm QCN5054
+>>     WiFi Driver: ath11k
+>>     Firmware: WLAN.HK.2.12-01460-QCAHKSWPL_SILICONZ-1
+>>     NSS FW version: NSS.FW.12.5-210-HK.R
+>>     Kernel: Linux WL-AP-EG 6.6.64-rt29 #1791 SMP Thu Dec 12 16:41:51 +07
+>> 2024 aarch64 DD-WRT
+>> 
+>> The behavior is such that after a GTK exchange, the AP can get into a "weird
+>> state". When being there, broadcast frames like ARP or mDNS are no longer
+>> reliably delivered to connected clients while unicasts come still through.
+>> In this "weird state", the channel quality (active time vs. busy time) goes
+>> down and latencies to the still reachable WIFI clients rise.
+> 
+> This looks a lot like an issue we hit a while back. There is this patch
+> [0] from Qualcomm's wlan-open repository. It is a revert of [1]. Using
+> that the issue was never reproduced. Maybe this can help.
+> 
+> Also adding ath11k list.
+> 
+> Regards.
 > 
 
-Applied, thanks!
-
-[1/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add qca6390-pmu node
-      commit: 6e4ec5f6940d8ae38ffe23c7f2f7da9de57d0cc1
-[2/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi node
-      commit: 1993f0255347c98b133d90e4150a4ce5f32646c4
-[3/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add bluetooth node
-      commit: 8b14c0648673439fb736b68096804314b934653b
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
 
