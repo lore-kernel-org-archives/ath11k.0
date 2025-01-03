@@ -4,60 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40E11E77188
-	for <ath11k@archiver.kernel.org>; Sat, 28 Dec 2024 10:14:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F2A2E77188
+	for <ath11k@archiver.kernel.org>; Fri,  3 Jan 2025 14:31:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=XS3W6Nm33y8lf/E3f46CoorgvUQmeVLhar9Ww+z/EqE=; b=Fli94mSsJvojqGTmPcmonztL05
-	b0gkYRQooHEUfFN5PYRcsSrXUEToOKLaMTaBdU3fcHYb9v6BiQFos/jvHA4+bcVCUNcL07hLlx9Hj
-	QqNWI65zswNQZLsGGXN+jHiMqnNeCscbu3fkN3JFgA/o6ky73YkQncO8edI1q7ivHR7ZofKU24Szo
-	rFwKa8AJ4dg4bL7PqJmjsAgq+nzsSNp8MYuoc/oPqbbKAapm2tXHW/x6ILbHoae6hgqwEqbHZ0QEu
-	8Fj/zED5jCMzfeVpOFdp+zKW8HhdCUkHj3kTy75gJGmPtNtEpFGXhwTJB6khoqTBXsAOfANBAAD/k
-	pmv0R0UA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=KZz1gAr6AH9VZR9mcSijrSsgtvQXf/lr7rOewXx+J4E=; b=dqIde797YwCJ/uy6Ty+p87tvyd
+	qXXRlBUTq1lsnEwi3HJfl4cvRu/K8gNQYFs3TZf6gsPodRBLEitCl+lL3Jlx5JP23wRn16LgjzrPB
+	LQ+nqHDUQY2eGs2DeTW4q2BcZHR3Uu4x05z4akwJhZzLm/tS1GoHsKd8WVlRqvxJAa22W6oDmPtwV
+	0S2GYnot89pLBe9fSRuWKMPIY1M+Om0JmsI02NeU1RfOLrGsdZroUw5glhJQ7XC9fcDzvjS0VuckY
+	VSUToxSHj6fYV5asupslTRsO8GbtpZ7zCIiH9iwHhI80xFF6BZVQJ8pNLTiyrfyuA+gY+LBN55UuS
+	yBhQAgww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tRTpZ-00000001iOk-3krs;
-	Sat, 28 Dec 2024 10:14:01 +0000
-Received: from dd54106.kasserver.com ([85.13.166.165])
+	id 1tTiiH-0000000D7ON-1cZ7;
+	Fri, 03 Jan 2025 14:31:45 +0000
+Received: from mail-qt1-x834.google.com ([2607:f8b0:4864:20::834])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tRTpW-00000001iO0-0HsE
+	id 1tTiiE-0000000D7Nk-2Z60
 	for ath11k@lists.infradead.org;
-	Sat, 28 Dec 2024 10:14:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=steffen-moser.de;
-	s=kas202408292216; t=1735380831;
-	bh=XS3W6Nm33y8lf/E3f46CoorgvUQmeVLhar9Ww+z/EqE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=gzWNowYv4YlvX3VoF4Fql17e30OHgBgj2ZutUcoIIbq+3up32DNEKJA7xlLZEx/kw
-	 oTEox7nMrN88SGmuRuj9J+aU4DUlbSSzgejmUmvsapM8K9OJLIAuTfCbIwKQBWi7pe
-	 H4sjJ2ymS20JA5GCyLV3ZO1L39UOhRdAfAa9PC2A/qtM9C2ldqOq1ubj8QAx0kYE5y
-	 qVKCYMP6hARUJu4i75HU/5BDN8DV5FoxqHnk0Chl9jGfkjCKzae4kQd0qGucpC5L8N
-	 Fhvfxah4v+M/nofu1Jgp0Qj2hiwI6T4a/z5WYi4Ui1msGcR+yMjBSNqQeSNGAH3yoP
-	 OWaqUKu0KfI2Q==
-Received: from [192.168.1.101] (p54a3711d.dip0.t-ipconnect.de [84.163.113.29])
-	by dd54106.kasserver.com (Postfix) with ESMTPSA id 39B85E4A034A;
-	Sat, 28 Dec 2024 11:13:51 +0100 (CET)
-Message-ID: <b18ede18-0c33-4d14-a7c5-0066cbec39c9@steffen-moser.de>
-Date: Sat, 28 Dec 2024 11:13:50 +0100
+	Fri, 03 Jan 2025 14:31:43 +0000
+Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-467a3c85e11so77885561cf.2
+        for <ath11k@lists.infradead.org>; Fri, 03 Jan 2025 06:31:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1735914701; x=1736519501; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KZz1gAr6AH9VZR9mcSijrSsgtvQXf/lr7rOewXx+J4E=;
+        b=f4wz4mRsrUqte/TuzSODBZ+zBiC3EDhKOyXaoE2m2pKuJ7DGPLAumuOIXO27W8Wv5i
+         tEHjWVMHQe1FJSJ8SoZG2tgdznMQxyvAxKNNZHFEzP3UZqhouORsLEgKP/K5hiKkPONr
+         Yz32kxK/XH3CAhEsTzlBzi8pY+ciDh7VwK9EYOM4A/HySvxC0q2FEtbC8+oaX5MIYmu+
+         SOPvn/G3kAuijiPIgZYRxaLsI3lkAowvmFGsgSl0nbjmiJwy4hZAVWzDwvHGQK/PZiqS
+         asncSFtK2HSQZVo8uRO5SAhALVIrIhEVqirjLtuOGPHSdoa6vkpgnC97RnaHZCtQvMJG
+         shrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735914701; x=1736519501;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KZz1gAr6AH9VZR9mcSijrSsgtvQXf/lr7rOewXx+J4E=;
+        b=oVM8HRgRTL0eI4sUB9UFYhqTJfVIK31Ds1Glj6T92yMH8/d8UoM4ZenH7iAPQ3EECJ
+         8wLdjbbTL8f07DAIAAbk3Ol87iY6jAfbDkmbleUx215WAI9hy3AJprqwp89CSEN8zNG9
+         dUleNn99EVNJnemtVp6L2U+0sFD8EjCljJWMpt7qNbADtswGxFCQ7SGXaA3DfF+I33dx
+         QVobixZqU3fQZRDkwz7iOKm/XkiprA3p4Q/iYPE48uqrrSFlWPAWBBZAQfOhcwFcXW5O
+         DgkdFTc0Erf4zMTG11NPNLpWKuo8ZSWv3Ir8bivM336SepDn8yVdr1lEw06O7DjWmvLG
+         JpPg==
+X-Forwarded-Encrypted: i=1; AJvYcCV4Qrkauht2utIk9RDHyhMQjbL7nZABbfShGrIWNooH+TpPM0gtsh9yuLMBQ2EqXMpArASGlrI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzyDIoJmVnwRQOBLYKJf5T7l5Uptott7O0HLMUWaKE5hgyTwO2b
+	XqpMAyiuubuhEDSW1YKo2Xvl6YlHnVKP3d/0On9lR21VvcporWp+zS4x8BBr4RE=
+X-Gm-Gg: ASbGncsVYhgPJ18dzgPc7yCfqrqM8gITQnYOLApFr/63dbyynfYFLNVnrEys5Upu4Dd
+	4RJvNnv/32up8O6W3swatTfkpQ/wt6HHIhkg3za0y/7JAAWUtAvU7QGaN1h9iiYeKxELd4WKJuf
+	2qp1sqy8iMbx8cAHidJ+CAIjc7ux6NrD90IKDpNzZtoR6lRg2JWBfKeIB3YRpP6XUu11usrupdB
+	Y1cD5W2h9ixlmv8+UnTZPymy2mVGASlmZW8hlDBKA2X/F/J5XdzWVjlAW5HHJjR1fFOrDv8bO98
+	sU9qBxkt6+vM91Pt3fo/r7KemLT1Dw==
+X-Google-Smtp-Source: AGHT+IGiZCm/3QIaBTSxT82414Bd+tcXwlZF1XMVW0fnnGbWf0zxnCHe0OPTUe/2fE3HXHDT4SXs4g==
+X-Received: by 2002:a05:622a:10c:b0:467:68a2:cb55 with SMTP id d75a77b69052e-46a4a8eb7eemr795329811cf.28.1735914701493;
+        Fri, 03 Jan 2025 06:31:41 -0800 (PST)
+Received: from ziepe.ca (hlfxns017vw-142-68-128-5.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.128.5])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46a3e64cf47sm146147721cf.3.2025.01.03.06.31.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jan 2025 06:31:39 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1tTiiA-00000000iUS-1wLH;
+	Fri, 03 Jan 2025 10:31:38 -0400
+Date: Fri, 3 Jan 2025 10:31:38 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Alex Williamson <alex.williamson@redhat.com>, kvm@vger.kernel.org,
+	quic_bqiang@quicinc.com, kvalo@kernel.org, prestwoj@gmail.com,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	iommu@lists.linux.dev, kernel@quicinc.com,
+	johannes@sipsolutions.net, jtornosm@redhat.com
+Subject: Re: [PATCH RFC/RFT] vfio/pci: Create feature to disable MSI
+ virtualization
+Message-ID: <20250103143138.GC26854@ziepe.ca>
+References: <adcb785e-4dc7-4c4a-b341-d53b72e13467@gmail.com>
+ <20240812170014.1583783-1-alex.williamson@redhat.com>
+ <20240813163053.GK1985367@ziepe.ca>
+ <87r0aspby6.ffs@tglx>
+ <03fdfde8dc05ecce1f1edececf0800d8cb919ac1.camel@infradead.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Potential Broadcast Issues After GTK Key Exchange on ath11k with
- IPQ8072A (QCN5024/QCN5054)
-To: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-References: <c6366409-9928-4dd7-bf7b-ba7fcf20eabf@steffen-moser.de>
- <Z2Q9POuV-6MIdzRf@pilgrim>
-Content-Language: de-DE, en-US
-From: Steffen Moser <lists@steffen-moser.de>
-In-Reply-To: <Z2Q9POuV-6MIdzRf@pilgrim>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: /
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <03fdfde8dc05ecce1f1edececf0800d8cb919ac1.camel@infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241228_021358_555503_DA0BB441 
-X-CRM114-Status: GOOD (  13.77  )
+X-CRM114-CacheID: sfid-20250103_063142_802551_034BD5BC 
+X-CRM114-Status: GOOD (  10.35  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,56 +109,26 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dear Remi,
+On Fri, Dec 13, 2024 at 09:10:30AM +0000, David Woodhouse wrote:
 
-thank you very much for the pointer to the patch. Sebastian integrated 
-it into DD-WRT. Now the DynaLink DL-WRX36 runs absolutely smoothly, the 
-WLAN links are stable, the packet loss is gone. No weird states anymore, 
-independent from the group key exchange interval:
+> <fantasy>
+> A: The guest OS just hands the device a standard MSI message encoding
+> the target guest APIC ID and vector (etc.), and the IOMMU does the
+> rest. Nothing 'intercedes' between the guest and the device to mess
+> with that MSI message.
+ 
+> /me wakes up...
 
-https://data.saps.uni-ulm.de/index.php/s/NLNpWqjc8iGsaEM
+Well, I share your dream at least. :\
 
-So your idea was a direct hit! Thank you very, very much. Several months 
-of debugging have come to an end...
+Have the VMM shadow the virtual interrupt remapping tables and assign
+it to the phyiscal remapping so that the physical addr/data pair
+doesn't change. Driving interrupt routing fully via the remapping HW
+and not via MSI interception.
 
-Thank you very much and all the best for 2025!
+IIRC Alex had a patch series for qemu to capture and rewrite the ath
+non-standard MSI locations, so virtualization worries should not block
+moving ath to use the device-specific MSI..
 
-Kind regards,
-Steffen
-
-On 19.12.24 4:35 PM, Remi Pommarel wrote:
-> Hi Steffen.
-> 
-> On Thu, Dec 19, 2024 at 04:02:30PM +0100, Steffen Moser wrote:
->> Hello everyone,
->> 
->> I've encountered a possible issue in a DD-WRT [1] setup where broadcast
->> packets stop being delivered after a GTK (Group Temporal Key) exchange. This
->> issue occurs on a system with the following hardware:
->> 
->>     Access Point Hardware: DynaLink DL-WRX36
->>     Router Software: DD-WRT v3.0-r58819 std (12/13/24)
->>     CPU: Qualcomm IPQ8072A
->>     WiFi Chips: Qualcomm QCN5024 and Qualcomm QCN5054
->>     WiFi Driver: ath11k
->>     Firmware: WLAN.HK.2.12-01460-QCAHKSWPL_SILICONZ-1
->>     NSS FW version: NSS.FW.12.5-210-HK.R
->>     Kernel: Linux WL-AP-EG 6.6.64-rt29 #1791 SMP Thu Dec 12 16:41:51 +07
->> 2024 aarch64 DD-WRT
->> 
->> The behavior is such that after a GTK exchange, the AP can get into a "weird
->> state". When being there, broadcast frames like ARP or mDNS are no longer
->> reliably delivered to connected clients while unicasts come still through.
->> In this "weird state", the channel quality (active time vs. busy time) goes
->> down and latencies to the still reachable WIFI clients rise.
-> 
-> This looks a lot like an issue we hit a while back. There is this patch
-> [0] from Qualcomm's wlan-open repository. It is a revert of [1]. Using
-> that the issue was never reproduced. Maybe this can help.
-> 
-> Also adding ath11k list.
-> 
-> Regards.
-> 
-
+Jason
 
