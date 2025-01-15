@@ -4,77 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C9F1C02180
-	for <ath11k@archiver.kernel.org>; Wed, 15 Jan 2025 13:05:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7061EC02180
+	for <ath11k@archiver.kernel.org>; Wed, 15 Jan 2025 16:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=BIPi0LYR4jbUUm2a/97wNZOq6LKVgEAqIZ8/607KDYQ=; b=H6G0vOOeOWQWo6pPlgYy/TlawJ
-	MWKp7keIXJcX3HXGltI3dwwRCD6nTImlM6BRQsmujwBKQcVIAO+2s1GANXtsqV99ZKMomAsNKgGp5
-	lnW2mHuCKQcCK0C/mPmQ6QwdkhvZMiLHK5TAEgMvYoxquqdIgTDQkQPPHWTuLXmaBqQa82YyMOZcy
-	HqQBZjOTl5yTPMFDd9ZoonSlKaE0nIQ5WzE7RKFRMMGtgpjb6iKEYjZTonaWYmvgqef+Lzo2HNSPq
-	3qREsVX9BGnSc+GnVEediwjm2i4IFMfbYPyNnNqLoT214jHYkq5MLnXSEqHxA70YqBmtKeIXAQi0t
-	IYRhu4Wg==;
+	bh=o+nMIrx7GI6Wq/enFH6h0cY3PgemW8qoQlpnO11YKD0=; b=XKEDv9pgGbkZ30tCblfz3CfOtX
+	S5DmYj/QC+RcYul3v7SPpI8pvKxGVGzqyqKoNBXcfwbUws+utjtJteK7vi+X16CfO+wbDKEzNz9fg
+	LNR5+fFFF0c8W53Tr0HZAvilPmW/H6EgVSHHGPjrpeF4cxqAE+RB5bwo56YzB5eP56wp8m8T+gPep
+	h+xC+3moXAmxgU1Z5mwsLvvfl3ui69HzCHR8yzSyiPRgJpE9JYnEW8QxE2izB//+vOSepE8ClOfxX
+	06uruDbj53FRVjkj/Ko9wZLC8MrHs9K/wEwihKfqtv+eiHuk09GJMFkI2DOo7P5++tTe1IdM3dT1a
+	RDh/Qmfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tY35N-0000000BvUF-0WL7;
-	Wed, 15 Jan 2025 13:05:29 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1tY6eL-0000000CVdl-3tOo;
+	Wed, 15 Jan 2025 16:53:49 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tY346-0000000BvGm-34UB
-	for ath11k@lists.infradead.org;
-	Wed, 15 Jan 2025 13:04:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1736946249;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BIPi0LYR4jbUUm2a/97wNZOq6LKVgEAqIZ8/607KDYQ=;
-	b=I6oaixEvRjahjyBdCwXDgUm16Uq+1oHBCM0XvuKN/T0ui9E0ZYGS8LWQsROzkJA2IZOA7H
-	+cRWnM80CjsapPtP0JeS4kj1WvzZr7JKxz1ZAxrTfwMfgIH1m0XXyfdFfWGnum7XkYHqmV
-	8FMPA+XiV9FJlTfsLI5HyTJRTQdumfE=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-404-WqJCVVQ5PvuGuwyK2Q3izQ-1; Wed,
- 15 Jan 2025 08:04:06 -0500
-X-MC-Unique: WqJCVVQ5PvuGuwyK2Q3izQ-1
-X-Mimecast-MFC-AGG-ID: WqJCVVQ5PvuGuwyK2Q3izQ
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 6EE321978CA2;
-	Wed, 15 Jan 2025 13:04:04 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.39.192.171])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id C084919560A3;
-	Wed, 15 Jan 2025 13:04:00 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: quic_yuzha@quicinc.com
-Cc: ath11k@lists.infradead.org,
-	jjohnson@kernel.org,
-	jtornosm@redhat.com,
-	kvalo@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	quic_cjhuang@quicinc.com,
-	vbenes@redhat.com
-Subject: Re: [PATCH] wifi: ath11k: allow APs combination when dual stations are supported
-Date: Wed, 15 Jan 2025 14:03:59 +0100
-Message-ID: <20250115130359.138890-1-jtornosm@redhat.com>
-In-Reply-To: <d410576f-2fc7-4de1-af51-29fbe8b14948@quicinc.com>
-References: <d410576f-2fc7-4de1-af51-29fbe8b14948@quicinc.com>
+	id 1tY6dk-0000000CVYm-2YlU;
+	Wed, 15 Jan 2025 16:53:13 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 3C6025C54EB;
+	Wed, 15 Jan 2025 16:52:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 679DFC4CED1;
+	Wed, 15 Jan 2025 16:53:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736959991;
+	bh=rsK0TYLVfCwP4ZECsZmPRCQlRRo1EHuSBWdx4ZFPdak=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=SotcUx15Orfo7zB3Ib8U4pRYFhpiRRl/NuSo0qsIdVWIY7wBlbtkhgdfpBxWcCjRi
+	 71QIQOS5BnQsq5TuyrNADEMpRlSFkzr1FiRRYauMIVdX+SYtNCo/q1ucMB8t6EDA8c
+	 57s1Mp4ADJaPeUf9oAfiwZ65pWO/h0U+XRrkj5YI++HkBn8CqZh2Y6RDktS42gnIl9
+	 68CgeTYTXoirtGv2VHUe7+l89bhOU550lJ66VF91v9b6j1Brw99CfEYYq8OfDT8THu
+	 I7XGnJ0QTdJqKEy0pcOk8PL18ShvMyTgGQN2Yg6lxNZjYbFg4GSshXnzC4C++FXWXU
+	 Hw3xuL+3C7fNA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+Content-Transfer-Encoding: 7bit
+Subject: Re: pull-request: ath-next-20250114
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <b03d2e2c-3f11-427d-a156-eaa0be48078c@oss.qualcomm.com>
+References: <b03d2e2c-3f11-427d-a156-eaa0be48078c@oss.qualcomm.com>
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org, jjohnson@kernel.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <173695998878.529858.9751725465026344775.kvalo@kernel.org>
+Date: Wed, 15 Jan 2025 16:53:10 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250115_050410_843287_678ABE7B 
-X-CRM114-Status: UNSURE (   5.06  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250115_085312_740928_AB9566E6 
+X-CRM114-Status: GOOD (  19.14  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,18 +71,168 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello Yuriy,
+Jeff Johnson <jeff.johnson@oss.qualcomm.com> wrote:
 
-Thank you for the information.
-My platform, as you said, is just wcn6855 hw2.1, but using NetworkManager
-with the default configuration.
-If this is the only stopper, you can skip and not consider as a wrong case,
-because (sorry for repeating) it is just a matter of the number of available
-resources that can be adjusted after some research from us.
+> The following changes since commit b20821248e262a7d16882137419460030c1aead6:
+> 
+>   Merge tag 'ath-next-20241209' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath (2024-12-09 20:41:20 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-next-20250114
+> 
+> for you to fetch changes up to 336097d74c284a7c928b723ce8690f28912da03d:
+> 
+>   wifi: ath12k: fix key cache handling (2025-01-14 12:53:01 -0800)
+> 
+> ----------------------------------------------------------------
+> ath.git patches for v6.14
+> 
+> This development cycle again featured multiple patchsets to ath12k to
+> support the new 802.11be MLO feature, this time including the device
+> grouping infrastructure, and the advertisement of MLO support to the
+> wireless core. However the MLO feature is still considered to be
+> incomplete.
+> 
+> In addition, there was the usual set of bug fixes and cleanups, mostly
+> in ath12k, but also in ath9k.
+> 
+> ----------------------------------------------------------------
+> Aditya Kumar Singh (14):
+>       wifi: ath12k: fix read pointer after free in ath12k_mac_assign_vif_to_vdev()
+>       wifi: ath12k: fix ath12k_qmi_alloc_chunk() to handle too large allocations
+>       wifi: ath12k: fix ar->supports_6ghz usage during hw register
+>       wifi: ath12k: pass link ID during MLO while delivering skb
+>       wifi: ath12k: symmetrize scan vdev creation and deletion during HW scan
+>       wifi: ath12k: add can_activate_links mac operation
+>       wifi: ath12k: add no-op without debug print in WMI Rx event
+>       wifi: ath12k: remove warning print in htt mlo offset event message
+>       wifi: ath12k: add ATH12K_FW_FEATURE_MLO capability firmware feature
+>       wifi: ath12k: assign unique hardware link IDs during QMI host cap
+>       wifi: ath12k: rename CAC_RUNNING flag
+>       wifi: ath12k: fix CAC running state during virtual interface start
+>       wifi: ath12k: handle radar detection with MLO
+>       wifi: ath12k: fix key cache handling
+> 
+> Baochen Qiang (1):
+>       wifi: ath12k: fix leaking michael_mic for non-primary links
+> 
+> Bhagavathi Perumal S (1):
+>       wifi: ath12k: Add MLO WMI setup and teardown functions
+> 
+> Colin Ian King (1):
+>       wifi: ath12k: Fix spelling mistake "requestted" -> "requested"
+> 
+> Dan Carpenter (1):
+>       wifi: ath12k: Off by one in ath12k_wmi_process_csa_switch_count_event()
+> 
+> Dmitry Antipov (4):
+>       wifi: ath9k: cleanup ath_txq_skb_done()
+>       wifi: ath9k: cleanup a few (mostly) TX-related routines
+>       wifi: ath9k: simplify internal time management
+>       wifi: ath9k: cleanup ath9k_hw_get_nf_hist_mid()
+> 
+> Jeff Johnson (4):
+>       wifi: ath12k: Decrease ath12k_mac_op_remain_on_channel() stack usage
+>       wifi: ath12k: Decrease ath12k_bss_assoc() stack usage
+>       wifi: ath12k: Decrease ath12k_sta_rc_update_wk() stack usage
+>       wifi: ath12k: Decrease ath12k_mac_station_assoc() stack usage
+> 
+> Karthikeyan Periyasamy (23):
+>       wifi: ath12k: send partner device details in QMI MLO capability
+>       wifi: ath12k: refactor ath12k_qmi_alloc_target_mem_chunk()
+>       wifi: ath12k: add support to allocate MLO global memory region
+>       wifi: ath12k: enable MLO setup and teardown from core
+>       wifi: ath12k: avoid redundant code in DP Rx error process
+>       wifi: ath12k: move to HW link id based receive handling
+>       wifi: ath12k: add partner device buffer support in receive data path
+>       wifi: ath12k: add helper function to init partner cmem configuration
+>       wifi: ath12k: introduce interface combination cleanup helper
+>       wifi: ath12k: Refactor radio frequency information
+>       wifi: ath12k: advertise multi device interface combination
+>       wifi: ath12k: Add documentation HTT_H2T_MSG_TYPE_RX_RING_SELECTION_CFG
+>       wifi: ath12k: Refactor monitor status TLV structure
+>       wifi: ath12k: cleanup Rx peer statistics structure
+>       wifi: ath12k: Fix the misspelled of hal TLV tag HAL_PHYRX_GENERICHT_SIG
+>       wifi: ath12k: fix incorrect TID updation in DP monitor status path
+>       wifi: ath12k: Remove unused HAL Rx mask in DP monitor path
+>       wifi: ath12k: Change the Tx monitor SRNG ring ID
+>       wifi: ath12k: Avoid explicit type cast in monitor status parse handler
+>       wifi: ath12k: Refactor ath12k_hw set helper function argument
+>       wifi: ath12k: Refactor the ath12k_hw get helper function argument
+>       wifi: ath12k: Remove ath12k_get_num_hw() helper function
+>       wifi: ath12k: Fix uninitialized variable access in ath12k_mac_allocate() function
+> 
+> P Praneesh (1):
+>       wifi: ath12k: Add support for parsing 64-bit TLVs
+> 
+> Pradeep Kumar Chitrapu (2):
+>       wifi: ath12k: Support Transmit Rate Buffer Stats
+>       wifi: ath12k: Support Transmit Buffer OFDMA Stats
+> 
+> Raj Kumar Bhagat (3):
+>       dt-bindings: net: wireless: Describe ath12k PCI module with WSI
+>       wifi: ath12k: parse multiple device information from Device Tree
+>       wifi: ath12k: Include MLO memory in firmware coredump collection
+> 
+> Rajat Soni (1):
+>       wifi: ath12k: Support pdev Puncture Stats
+> 
+> Rameshkumar Sundaram (1):
+>       wifi: ath12k: advertise MLO support and capabilities
+> 
+> Ramya Gnanasekar (1):
+>       wifi: ath12k: set flag for mgmt no-ack frames in Tx completion
+> 
+> Roopni Devanathan (1):
+>       wifi: ath12k: Support AST Entry Stats
+> 
+> Sathishkumar Muruganandam (1):
+>       wifi: ath12k: fix tx power, max reg power update to firmware
+> 
+>  .../bindings/net/wireless/qcom,ath12k-wsi.yaml     | 204 ++++++
+>  drivers/net/wireless/ath/ath12k/core.c             | 315 +++++++-
+>  drivers/net/wireless/ath/ath12k/core.h             |  63 +-
+>  drivers/net/wireless/ath/ath12k/coredump.c         |   3 +
+>  drivers/net/wireless/ath/ath12k/coredump.h         |   1 +
+>  .../net/wireless/ath/ath12k/debugfs_htt_stats.c    | 502 +++++++++++++
+>  .../net/wireless/ath/ath12k/debugfs_htt_stats.h    | 155 ++++
+>  drivers/net/wireless/ath/ath12k/dp.c               |  14 +
+>  drivers/net/wireless/ath/ath12k/dp.h               |  30 +-
+>  drivers/net/wireless/ath/ath12k/dp_mon.c           | 156 ++--
+>  drivers/net/wireless/ath/ath12k/dp_rx.c            | 231 ++++--
+>  drivers/net/wireless/ath/ath12k/fw.h               |   3 +
+>  drivers/net/wireless/ath/ath12k/hal.c              |   2 +-
+>  drivers/net/wireless/ath/ath12k/hal.h              |   2 +-
+>  drivers/net/wireless/ath/ath12k/hal_desc.h         |   4 +-
+>  drivers/net/wireless/ath/ath12k/hal_rx.h           |  14 +-
+>  drivers/net/wireless/ath/ath12k/mac.c              | 794 ++++++++++++++++-----
+>  drivers/net/wireless/ath/ath12k/mac.h              |  11 +
+>  drivers/net/wireless/ath/ath12k/peer.c             |   2 +
+>  drivers/net/wireless/ath/ath12k/peer.h             |   3 +
+>  drivers/net/wireless/ath/ath12k/qmi.c              | 324 +++++++--
+>  drivers/net/wireless/ath/ath12k/qmi.h              |   1 +
+>  drivers/net/wireless/ath/ath12k/wmi.c              | 225 +++++-
+>  drivers/net/wireless/ath/ath12k/wmi.h              |  56 ++
+>  drivers/net/wireless/ath/ath9k/ath9k.h             |   8 +-
+>  drivers/net/wireless/ath/ath9k/beacon.c            |   2 +-
+>  drivers/net/wireless/ath/ath9k/calib.c             |  24 +-
+>  drivers/net/wireless/ath/ath9k/channel.c           |  29 +-
+>  drivers/net/wireless/ath/ath9k/hw.c                |  25 +-
+>  drivers/net/wireless/ath/ath9k/hw.h                |   2 +-
+>  drivers/net/wireless/ath/ath9k/main.c              |   9 +-
+>  drivers/net/wireless/ath/ath9k/recv.c              |   4 +-
+>  drivers/net/wireless/ath/ath9k/xmit.c              |  52 +-
+>  33 files changed, 2723 insertions(+), 547 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-wsi.yaml
 
-Thanks
+Pulled, thanks.
 
-Best regards
-Jose Ignacio
+89d62bcd2501 Merge tag 'ath-next-20250114' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/b03d2e2c-3f11-427d-a156-eaa0be48078c@oss.qualcomm.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
