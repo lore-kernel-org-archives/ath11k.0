@@ -4,89 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 452B6C02183
-	for <ath11k@archiver.kernel.org>; Sat, 18 Jan 2025 00:44:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C748C02185
+	for <ath11k@archiver.kernel.org>; Sat, 18 Jan 2025 10:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=QF2bHQkiOJedjeVzAo/ItEPrbadxV22ywrLQQWgxw3Y=; b=KAQz/1yU0F66YNsfczcleTFatw
-	kPbBNqSVa2zlDprmfZ/dh+jVshPYzcdr5mgnNnWukzmTxk2cFRrhA2VRAiaTUVPMda6/x3QTjvoH/
-	PMK7zc88PKT99KHRuHrCT1vaMf4coTA25e5jfF7upYa3EwEUgmslGDbxld4rgmgSX7PiX30otLo76
-	cPxyvTnI6Gp+OCMIlgNLKuXpIzAqdonJRUZfn91EbPKZ0wTC96PeL/ODVDZEisOiAsptoPEIaa1sD
-	O1P57rUCCiPE1FaFcJTaxqJo+MZUXaXz5Tih/HP8T9JLIOW3PEf5OVuwKVvS6GL57AAsK9iRe5E3F
-	Y9D6FDFg==;
+	bh=Mke5AJzDyr2LS0CcFgm6BfOCAPPezOVDYVQFwn1RjOs=; b=gXIx9l9JGnFsxajfhcfMa/7WGo
+	LhMoHpm5+MOltDs6kdxwlRFQ/TfwmbABU7YeVHgryfVFRo8nbYtbyIS7GeBxfa/Olrr+leMoAfkRx
+	79q3p3cMmAfO7pZanwKYHRycYUCD5cE5CVy0XLEeO3AfKbYBlKDBC9AvA3y4PMuwHRyDMM7fpn0Fq
+	Qd8ZE9d9Q9tcs48IGTtepyhS9TQ8uB9dBLraI79F1iGNmJ0F/qO2SJedoIX5jb7ypOcWF9P7wlKVK
+	LqYoWtr/sci4ABSOJso5H1VMAYqzl2mqevlx4xZZy5q/pTqaxNvI5kjGmhaa1/LZ/NAZARJqh+OF7
+	dSwDnLjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tYwwu-00000001clf-2hFP;
-	Sat, 18 Jan 2025 00:44:28 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tZ667-00000002C6E-1b7p;
+	Sat, 18 Jan 2025 10:30:35 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tYwws-00000001clD-0tna;
-	Sat, 18 Jan 2025 00:44:27 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50HH3uAD021752;
-	Sat, 18 Jan 2025 00:44:25 GMT
+	id 1tZ659-00000002C1X-0m0h
+	for ath11k@lists.infradead.org;
+	Sat, 18 Jan 2025 10:29:36 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50I33GVc016772;
+	Sat, 18 Jan 2025 10:29:33 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QF2bHQkiOJedjeVzAo/ItEPrbadxV22ywrLQQWgxw3Y=; b=jyAe+l27A3X92pvz
-	iToghRmUBMu5UnR3OzG9ul5tTFBSKgLrm3V69qBNh5/LMry22yWU+nT8B1De6Tfp
-	DpI5igha+AjVtOWnF1+bPzyXov2KIzD1VODUIj3kEFyk+UPeOFiJx6InH0DF27Ae
-	CN5QBilSeNzNSDDWdlBheaebIccTxBTjKnb7zSv+dZHEpeKxbBha7egbd+xHgirl
-	KNrh9GjWjK1wh6l9G2AtBA9nwMRGiOln/2HujAsMzckvktnvWjHTZ4sh6hbFDWz7
-	Wcrx7TUcugPlOaiTS3hATK7SVue1Kj+lPmiTG+5AjCeFoVXqBwZMKlk7MBfNkBnu
-	ejM+Fw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 447u9b0t5v-1
+	Mke5AJzDyr2LS0CcFgm6BfOCAPPezOVDYVQFwn1RjOs=; b=GOVzrLw5OeBwEM9r
+	c7SBkpcNIKs4XXvcjPvRiIimvKtYW4QtwwoeprVFQAvLvlPIXxNnPHQ/+QqlqPbW
+	PktG12ZhsQqRR3l/8O7Rq9AxVTD51quT9cC964nRnJtk3dMjmuqx1sPQErPvhFVF
+	d0baZCd/eXp0XGHZP75AZqWjNnQomsc6IUMYl/+xKmyY6miy9NNgf31CfiKXYcPz
+	w4lJCT+sl0oW2sYkj43aQhCuLHYRVnMoAJmBQclgugLgJ5MSw9t9RB0ejAgMLm/c
+	/fE8CFXK5l52GlNySDWdNCcpT/JYdrSlxpkiTp3SCcvkDafPeTcY+q9YGgBxIZvM
+	OkZcmQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4483a60jhn-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Jan 2025 00:44:25 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50I0iO9R016152
+	Sat, 18 Jan 2025 10:29:32 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50IATViN024452
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 18 Jan 2025 00:44:24 GMT
-Received: from [10.110.0.90] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 17 Jan
- 2025 16:44:24 -0800
-Message-ID: <6cf46e51-ed6d-4081-ae05-2ccc15704dc6@quicinc.com>
-Date: Fri, 17 Jan 2025 16:44:23 -0800
+	Sat, 18 Jan 2025 10:29:31 GMT
+Received: from [10.216.41.16] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 18 Jan
+ 2025 02:29:28 -0800
+Message-ID: <20e0a239-3d23-473b-5bc8-41bc25a64088@quicinc.com>
+Date: Sat, 18 Jan 2025 15:59:24 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] wifi: ath11k: refactor transmitted arvif retrieval
-To: Aloka Dixit <quic_alokad@quicinc.com>
-CC: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>
-References: <20250114223612.2979310-1-quic_alokad@quicinc.com>
- <20250114223612.2979310-2-quic_alokad@quicinc.com>
- <1df1e6b4-cb25-4abb-a6eb-1abaeeb5f588@quicinc.com>
- <8a265410-4aaf-411d-a9c1-c215ef9ff412@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] Revert "ath11k: clear the keys properly via DISABLE_KEY"
+To: Nicolas Escande <nico.escande@gmail.com>, <ath11k@lists.infradead.org>,
+        Sven Eckelmann <se@simonwunderlich.de>
+CC: <linux-wireless@vger.kernel.org>, Steffen Moser <lists@steffen-moser.de>
+References: <20250117191455.3395145-1-nico.escande@gmail.com>
 Content-Language: en-US
-From: Sidhanta Sahu <quic_sidhanta@quicinc.com>
-In-Reply-To: <8a265410-4aaf-411d-a9c1-c215ef9ff412@quicinc.com>
+From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
+In-Reply-To: <20250117191455.3395145-1-nico.escande@gmail.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2939ams5uX9T02bLI-RUuFmfLvHAr772
-X-Proofpoint-ORIG-GUID: 2939ams5uX9T02bLI-RUuFmfLvHAr772
+X-Proofpoint-GUID: jC-Ar-GjEnRJO1decWX4a_QZDseqzk8i
+X-Proofpoint-ORIG-GUID: jC-Ar-GjEnRJO1decWX4a_QZDseqzk8i
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-17_08,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- adultscore=0 phishscore=0 bulkscore=0 impostorscore=0 priorityscore=1501
- spamscore=0 suspectscore=0 lowpriorityscore=0 mlxlogscore=748
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501180003
+ definitions=2025-01-18_03,2025-01-16_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 mlxlogscore=531 malwarescore=0 phishscore=0
+ impostorscore=0 spamscore=0 mlxscore=0 adultscore=0 bulkscore=0
+ lowpriorityscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2501180083
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250117_164426_261237_B4AE7F03 
-X-CRM114-Status: UNSURE (   8.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250118_022935_362637_E17B37D6 
+X-CRM114-Status: GOOD (  10.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,44 +99,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi Nicolas,
 
+On 1/18/2025 12:44 AM, Nicolas Escande wrote:
+> This reverts commit 436a4e88659842a7cf634d7cc088c8f2cc94ebf5.
+> 
+> This as been reported by multiple people [0] that with this commit,
+> broadcast packets were not being delivered after GTK exchange.
+> Qualcomm seems to have a similar patch [1] confirming the issue.
+> 
 
-On 1/17/2025 4:36 PM, Aloka Dixit wrote:
-> 
-> On 1/15/2025 11:36 AM, Sidhanta Sahu wrote:
->>
->>>   +static struct ath11k_vif *ath11k_mac_get_tx_arvif(struct 
->>> ath11k_vif *arvif)
->>> +{
->>> +    if (arvif->vif->mbssid_tx_vif)
->>> +        return ath11k_vif_to_arvif(arvif->vif->mbssid_tx_vif);
->>> +
->>> +    return NULL;
->>> +}
->>> +
->>>   static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif)
->>>   {
->>>       struct ath11k_vif *tx_arvif;
->>> @@ -1538,7 +1546,7 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct 
->>> ath11k_vif *arvif)
->>>       u32 params = 0;
->>>       u8 i = 0;
->>>   -    tx_arvif = ath11k_vif_to_arvif(arvif->vif->mbssid_tx_vif);
->>> +    tx_arvif = ath11k_mac_get_tx_arvif(arvif);
->>
->> ath11k_mac_get_tx_arvif can return NULL, below, we are accessing 
->> tx_arvif without a NULL check. Shouldn't we add a null check wherever 
->> applicable to prevent potential issues?
->>
->>>         beacons = 
->>> ieee80211_beacon_get_template_ema_list(tx_arvif->ar->hw,
->>>                                tx_arvif->vif, 0);
-> 
-> ath11k_mac_setup_bcn_tmpl_ema() gets called only when tx_arvif is non-NULL.
+This will re-open https://www.spinics.net/lists/hostap/msg08921.html
+reported by Sven. The recommended ath firmware ABI during GTK re-keying
+is SET_KEY instead of current DEL_KEY followed by SET_KEY. We are looking
+at other options like some marking by mac80211 for the driver to be able
+to identify if the received DEL_KEY is for re-keying. Also I'm curious
+if roaming between secure and non-secure mode is a critical use case.
+If not, we can probably go ahead with this revert as temporary WAR,
+@Sven?
 
-If tx_arvif is not NULL (and known already), Is it still required to 
-call `ath11k_mac_get_tx_arvif` under `ath11k_mac_setup_bcn_tmpl_ema`?
-
-> 
-> 
+Vasanth
 
