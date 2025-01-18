@@ -4,88 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AECDC02183
-	for <ath11k@archiver.kernel.org>; Fri, 17 Jan 2025 19:17:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33E0DC02188
+	for <ath11k@archiver.kernel.org>; Sat, 18 Jan 2025 00:36:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9cxvKQU5tEuWef2ZR6szSgBQXshTqPB/bp6pTKZegRY=; b=Hlj2K2bgWAm9DxMX/wu/W/7W5P
-	2W2Cq5T4gik9CKHAM5sB02u8/H6uAsyHkAxgzS/cFH+A44z3KFdco1nKUni9J0hUtNuDB1qawgnTT
-	ryQI50HxrezO6yfrHB7IKppPmUfqq0dJCbko0VY/yuoC3xNn0puf95pYZumGbXycnZQXl1m0y+4m1
-	/lZhFbat2lyywYpKp5AEXQiGx/4g4F3pVWmOF3PslhV6sf8uJXZU1vnkRtJPgZxtlxyrzKwo6qAL3
-	xYun8xVwxKqSIWRkZCT9co0xIUndSsZ4TXHryJzuDkcZkc82NMKhGJ69+b/AR7SgGu1v30EnV0Uvj
-	OXt0mbPw==;
+	bh=Lc58J9OB4PPRCWzPGXLTFxIIepsxQWHkofi1oIavTOY=; b=b/LJ8A5NmYj5+p2SSb5nLG+SYA
+	hZih+0VCMtPc44ZuoNFKRAjBJIzJJp2q9YK1IBlNNBrWFqXftcMvmNKvI0N2uRHoWMiIsXAaIual1
+	Rg+JGnGdTvaibaVCVZWJfJbENX5IyqfOlK4Oktb0JYyecjNkMrZHsCwKw7d2ZtlyofKaB1ywpozJv
+	hBDeSDzXe44BacyCJBPNKDR5wkykpeJO8TT4R7jXNlNPIphoIsyPf5TGqHEqqFppdspNP6QEVoQuf
+	I76+9VXIUCmpj5BpQiaL+kKya09r3ETnFLjjgNMocQTu99D11rSjusKva5tTVsPWeuKzoxjmqLK7N
+	CCdfdk0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tYrqU-00000001DgB-3hMr;
-	Fri, 17 Jan 2025 19:17:30 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1tYwoy-00000001cBy-18ex;
+	Sat, 18 Jan 2025 00:36:16 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tYrq5-00000001Df0-3lUy
-	for ath11k@lists.infradead.org;
-	Fri, 17 Jan 2025 19:17:07 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4361dc6322fso16814685e9.3
-        for <ath11k@lists.infradead.org>; Fri, 17 Jan 2025 11:17:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737141424; x=1737746224; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9cxvKQU5tEuWef2ZR6szSgBQXshTqPB/bp6pTKZegRY=;
-        b=Lxo8n7df7mWMd6Imbb+F8bmYQq5OYCDskBoE8N+JVZxY2qYKqnpqoiUAiKVw+UUhJ4
-         Fw0w0aX0tO0xG/mljryW4S9ciOcPw6YNsJkR5gRJXWnki1uLSiRt/b826XSbB602zlN/
-         tE7LhNJir1PZzUjFD1Z4PC6fK0MYtJHfnoBlwKseI/V2V/KHOF0/RM1ohbgktUknmhFB
-         1hlcimZVZatwiWp8DUiSFtq6i5AccSr6wrhJHFFNFCdoo8Kas/hNCMP8kQy92IyERiXu
-         FUQX89lCxL0VYeXvV6xz0E/dHZTI0r2haQhICgmowhL/lX3EfJfnNDUA+A2GQN+o29j8
-         SCcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737141424; x=1737746224;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9cxvKQU5tEuWef2ZR6szSgBQXshTqPB/bp6pTKZegRY=;
-        b=pS67cqtHhUQZjXuJVfu3V8yPUG8ZkVWNDdLhvrld8gkhIdp3f0RP8No2f1jwHYjbHy
-         NUfFBg/RHXcnCQKMgYDc6kyWzkZVIkJ9qy2OpjVGItrE4wh5ouHwcUXo8r8zGlnZz5EX
-         ++J/o58RYQp21zaKSixtAmzgbYTjb8pSLYI0UWMgp7IZY4R0dMhVH7Z+6+2lzIDfhe+5
-         d6umY6p54yCfZ5rK28qXg4rqiphXt5t8LX1iuORDz0yq9gyBGs5fUKys8d/2gnfeZHH7
-         cFPzV0ge091O8Ei1u+boGr/VXnwjVvaLWgg/KBzC9OqatgOs3AgWsS6MBHkZoBlsahwT
-         vl+g==
-X-Gm-Message-State: AOJu0YyUR00kz8fa1bIiobFNHvwZQ6qIUQCZDyR++JlWHCi6j1nxBUvF
-	gtLcaEvcCb3hQ9d4fTyOXuHqwqMTAsRorMcFNUZa2+B3/Zn+lPy8
-X-Gm-Gg: ASbGncupC0+i8cfAbenf01peM06VmLv2Hv8aEsUpdGTkoAURW4aLkNbJjT/tCUEcRec
-	Y+lDc9TqWaiCXPYsTNnPhClHeEmBwCugME2OdEDQK4DuMOCGmpsaqtobdpDcnllMsFQM/5zR+sB
-	QtUdL03KjC9a3g4y6p5jWIvN6vniMYA65mHfl04LRPMBgsVEPFIqBP0G++N3NINEfSG30JgUQEs
-	Mpjct8bDlYzmpMq9HYDPglYXEbZQYqQ4AzgXXxDL+tj2nSh/Ml3BCCpaeCTpEx8LI/DEXmCZiQ=
-X-Google-Smtp-Source: AGHT+IF/3Pew53rNIqs/RtMzp/qLGa4PToXW9cQ2P+5l0NX7kQf1/hu+Lld54hUYFKG/9d7bC+IZDA==
-X-Received: by 2002:a05:600c:3b29:b0:434:fe4b:be18 with SMTP id 5b1f17b1804b1-438913ef951mr41355125e9.18.1737141423938;
-        Fri, 17 Jan 2025 11:17:03 -0800 (PST)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4389041fec5sm43798465e9.19.2025.01.17.11.17.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jan 2025 11:17:02 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 17 Jan 2025 20:17:01 +0100
-Message-Id: <D74L8O64EGM3.2CXM7VKQA8O92@gmail.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>, "Steffen
- Moser" <lists@steffen-moser.de>
-Subject: Re: Potential Broadcast Issues After GTK Key Exchange on ath11k
- with IPQ8072A (QCN5024/QCN5054)
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Kalle Valo" <kvalo@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <c6366409-9928-4dd7-bf7b-ba7fcf20eabf@steffen-moser.de>
- <Z2Q9POuV-6MIdzRf@pilgrim>
- <b18ede18-0c33-4d14-a7c5-0066cbec39c9@steffen-moser.de>
- <D6VX7M6MGZQB.3LU3FBYJK6CZH@gmail.com> <878qrkdsr7.fsf@kernel.org>
-In-Reply-To: <878qrkdsr7.fsf@kernel.org>
+	id 1tYwov-00000001cB7-31Qt;
+	Sat, 18 Jan 2025 00:36:14 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50HH49oE022007;
+	Sat, 18 Jan 2025 00:36:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Lc58J9OB4PPRCWzPGXLTFxIIepsxQWHkofi1oIavTOY=; b=jtH0GsqySXK4nI46
+	8iWf5e7M8lDC89yULrsBIBv07vjEOlkDGv8BE7wYSMPOCvwrQBOh9wmUx9z3Wck2
+	j6gQOdiuCe6Xkg/SJy/1iypVDT1542aKIsyWUMWIGk9yB92kfofplC7LTjpkMQqp
+	XFLPdVLUn4MYz/Llkm1K8uhcQCYCbKVF8mw5BPLaxmaT5/0jI0NEsKkIh4uUHPUR
+	fjTV4KlBWjVbq4TX3kB33nVPH7ws/w+zghyFrTUr0tJkf1g2oAfEywV5SCwOfZ7b
+	tLr6ve22I/NOonNxixPDVTmWIpByba4U0Lm/2CQkarTeDBCTU4vbb3RMTjUejVBh
+	P4we/Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 447u9b0sqt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 18 Jan 2025 00:36:12 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50I0aBAK021105
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 18 Jan 2025 00:36:11 GMT
+Received: from [10.38.243.19] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 17 Jan
+ 2025 16:36:10 -0800
+Message-ID: <8a265410-4aaf-411d-a9c1-c215ef9ff412@quicinc.com>
+Date: Fri, 17 Jan 2025 16:36:07 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] wifi: ath11k: refactor transmitted arvif retrieval
+To: Sidhanta Sahu <quic_sidhanta@quicinc.com>
+CC: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>
+References: <20250114223612.2979310-1-quic_alokad@quicinc.com>
+ <20250114223612.2979310-2-quic_alokad@quicinc.com>
+ <1df1e6b4-cb25-4abb-a6eb-1abaeeb5f588@quicinc.com>
+Content-Language: en-US
+From: Aloka Dixit <quic_alokad@quicinc.com>
+In-Reply-To: <1df1e6b4-cb25-4abb-a6eb-1abaeeb5f588@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8r8aK7HHBJHvHuaB5LHJFnD-COw5ADq2
+X-Proofpoint-ORIG-GUID: 8r8aK7HHBJHvHuaB5LHJFnD-COw5ADq2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-17_08,2025-01-16_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ adultscore=0 phishscore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ spamscore=0 suspectscore=0 lowpriorityscore=0 mlxlogscore=723
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501180002
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250117_111705_937311_15453F13 
-X-CRM114-Status: GOOD (  19.20  )
+X-CRM114-CacheID: sfid-20250117_163613_767470_2060CBDD 
+X-CRM114-Status: UNSURE (   8.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,45 +100,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu Jan 9, 2025 at 2:25 PM CET, Kalle Valo wrote:
-> "Nicolas Escande" <nico.escande@gmail.com> writes:
->
-> > On Sat Dec 28, 2024 at 11:13 AM CET, Steffen Moser wrote:
-> >> Dear Remi,
-> >>
-> >> thank you very much for the pointer to the patch. Sebastian integrated=
-=20
-> >> it into DD-WRT. Now the DynaLink DL-WRX36 runs absolutely smoothly, th=
-e=20
-> >> WLAN links are stable, the packet loss is gone. No weird states anymor=
-e,=20
-> >> independent from the group key exchange interval:
-> >>
-> >> https://data.saps.uni-ulm.de/index.php/s/NLNpWqjc8iGsaEM
-> >>
-> >> So your idea was a direct hit! Thank you very, very much. Several mont=
-hs=20
-> >> of debugging have come to an end...
-> >
-> > So this is at least the second time this commit breaks a setup.
-> > =20
-> > @ath11k why isn't this pushed to mainline ?
-> > This seems to be a clear regression, so even if there is no need to rus=
-h things
-> > in the long run this still needs to to reverted mainline right ?
->
-> Good question, I don't have an answer to that. Could someone (also
-> outside of Qualcomm) send a proper patch ASAP so that we can solve this?
-> And it's good ot include the link to this discussion and describe the
-> symptoms the revert is fixing.
->
-> This is the patch in question:
->
-> https://git.codelinaro.org/clo/qsdk/oss/system/feeds/wlan-open/-/blob/win=
-.wlan_host_opensource.3.0.r24/patches/ath11k/350-ath11k-Revert-clear-the-ke=
-ys-properly-when-DISABLE_K.patch
 
-Not sure if I did it the right way but it at least is here :
-https://lore.kernel.org/linux-wireless/20250117191455.3395145-1-nico.escand=
-e@gmail.com/
+On 1/15/2025 11:36 AM, Sidhanta Sahu wrote:
+>
+>>   +static struct ath11k_vif *ath11k_mac_get_tx_arvif(struct 
+>> ath11k_vif *arvif)
+>> +{
+>> +    if (arvif->vif->mbssid_tx_vif)
+>> +        return ath11k_vif_to_arvif(arvif->vif->mbssid_tx_vif);
+>> +
+>> +    return NULL;
+>> +}
+>> +
+>>   static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif)
+>>   {
+>>       struct ath11k_vif *tx_arvif;
+>> @@ -1538,7 +1546,7 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct 
+>> ath11k_vif *arvif)
+>>       u32 params = 0;
+>>       u8 i = 0;
+>>   -    tx_arvif = ath11k_vif_to_arvif(arvif->vif->mbssid_tx_vif);
+>> +    tx_arvif = ath11k_mac_get_tx_arvif(arvif);
+>
+> ath11k_mac_get_tx_arvif can return NULL, below, we are accessing 
+> tx_arvif without a NULL check. Shouldn't we add a null check wherever 
+> applicable to prevent potential issues?
+>
+>>         beacons = 
+>> ieee80211_beacon_get_template_ema_list(tx_arvif->ar->hw,
+>>                                tx_arvif->vif, 0);
+
+ath11k_mac_setup_bcn_tmpl_ema() gets called only when tx_arvif is non-NULL.
+
+
 
