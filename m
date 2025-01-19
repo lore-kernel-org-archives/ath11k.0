@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEA09C02187
-	for <ath11k@archiver.kernel.org>; Sun, 19 Jan 2025 16:42:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60CE4C0218A
+	for <ath11k@archiver.kernel.org>; Sun, 19 Jan 2025 16:42:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OnnbpKLwE1nEORIer3GMIiZLIUPUq/TLj/ybv3zgOZE=; b=t5s/7FkKRYV8qmY4/HAhXczTXf
-	kU4VgyfmaFvCYdP7OXTdX7colzz+j8A/Vba5NgylUQa44MdFu7+XAihK6fJFSMJdSeiX3M4Xbn0nJ
-	Lpf5wnBlDMfbXgs8jajdkSr/bu5bMMKGrCFAJPXMgVHglEjZCN/02DNaQTlEiEvdPjDsE7IfKk0y4
-	4nBZmqU5mnUiIGXuy430AlutUaMOFXfu+a2keMFGVwCDFAx+l9nwCYvbMU8id4mL9GRtJQoCYfiYo
-	kwgVoup5GA6W1tl+NuxjBZbHaO+oPWGgluTnpXJ3Kdz1/HVLggCo16F1lLrYnQCjwX5NnHRkBwY46
-	QVCqOXNw==;
+	bh=LlrWNP3BbshYBEIa0YuI3QnO5+kX2e2wBKFTqsg8Qgo=; b=L+NtWmVFwYj1cUgLtJ8mZ99Mlv
+	uEOAuUjb0EI+D4hhXMn192foiRFT3zANW3R/mfOKvKOvF1OQpY4kPyXo6ofH71FM2L6Xp6NQL9Wlx
+	4dk12QXD8TvBo+WonhGEL4O/6t5LK/MHzPcHNKoTOj36uUr9ijAA8sWDBSmeugvX8mgSf7hWmNNQa
+	Ari6zoigigvTC7bxjE4ylCHCE+kORACPMaGr6lvbOA8rIHj50NNJZZ1nEOPO1gKnEtATWVDck3YAK
+	PQ/d13xdMeqfXrdHFBA3cMbGoX8mlmw40pcjEJJHZE3Xfq8JkOLigke8QLnkL/S4cTi2ABV+FKYKI
+	iy9FRAmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tZYNi-000000048MG-21df;
-	Sun, 19 Jan 2025 16:42:38 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tZYNk-000000048N9-0Z4p;
+	Sun, 19 Jan 2025 16:42:40 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tZYNf-000000048L9-2gcB
+	id 1tZYNh-000000048Lk-1lIU
 	for ath11k@lists.infradead.org;
-	Sun, 19 Jan 2025 16:42:37 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50JGarMr027683;
-	Sun, 19 Jan 2025 16:42:33 GMT
+	Sun, 19 Jan 2025 16:42:38 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50JGISCj026073;
+	Sun, 19 Jan 2025 16:42:36 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OnnbpKLwE1nEORIer3GMIiZLIUPUq/TLj/ybv3zgOZE=; b=cY5L9FedaW4aL6Rw
-	OUm0vb/bU3iAx8jvBq+6nRqlGhBbasK6OEgLSfOHAnWD3q4IY8Anmvnip8kHIzJs
-	DpvUGdw7xxSihMoiS0pWqZ0Bw10C4u5LECj4cakxSfy+t7YXz1d+DhxyxbW3HWJW
-	NL+UKv4To5/r5xDegdtfsE1OhLCN6eH679GadWlyrqstarahY+G7BgHne9sZEc8X
-	1mGw3jLqgZWN3fw1DqJuaJ6xg8nCWD5fLsuvgHSrxCNnJi1eoJr2EbaDxiWZq7/O
-	x30K5Wfwg/q1fFr7PPrIyC6zwR770b9uuYJqrDAoEreLXvgaoNVtDcuiZ+zMRq+9
-	GL6tgg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44852d26vq-1
+	LlrWNP3BbshYBEIa0YuI3QnO5+kX2e2wBKFTqsg8Qgo=; b=BV6oYhx6BhubPLdp
+	YmbNq2HZy4AsgLT7WP9o5cPckf4DA+Ktek03y7aj2IxfUkiU7TmKfzm5b4OIEsWg
+	osHBGD8PmBbJeEGMKnx5u78ArlXkfauHlE2PdSLyNme0vemacLfLKe1+tTLgJ0oH
+	UXPhqmJOYsuIBqn/RyvmS3WMS41Nr3+TKxF6jniSRX05HfNHsg4fQ3NDm17LXt+b
+	NWhoF6VQT9EEAUWSVx1WZD0J/Q5JYLnyg1tyT5HXTjfoLcuK/DvJ3MGlPL51DNoa
+	FR37m4E1EjvFMcJZJz7oxM3HeQLHAsLupgh531EboQ2RR/dpumVLDXgjuwzvd9yH
+	SsTiMA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4492tg855x-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 19 Jan 2025 16:42:33 +0000 (GMT)
+	Sun, 19 Jan 2025 16:42:35 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50JGgWCe013168
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50JGgYWp024702
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 19 Jan 2025 16:42:32 GMT
+	Sun, 19 Jan 2025 16:42:34 GMT
 Received: from hu-ppranees-blr.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 19 Jan 2025 08:42:31 -0800
+ 15.2.1544.9; Sun, 19 Jan 2025 08:42:33 -0800
 From: P Praneesh <quic_ppranees@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <tharvey@gateworks.com>
-Subject: [PATCH 1/2] wifi: ath11k: Fix DMA buffer allocation to resolve SWIOTLB issues
-Date: Sun, 19 Jan 2025 22:12:18 +0530
-Message-ID: <20250119164219.647059-2-quic_ppranees@quicinc.com>
+Subject: [PATCH 2/2] wifi: ath11k: Use dma_alloc_noncoherent for rx_tid buffer allocation
+Date: Sun, 19 Jan 2025 22:12:19 +0530
+Message-ID: <20250119164219.647059-3-quic_ppranees@quicinc.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250119164219.647059-1-quic_ppranees@quicinc.com>
 References: <20250119164219.647059-1-quic_ppranees@quicinc.com>
@@ -69,19 +69,19 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: r4QCx1_bmAGo1vfNaBsW5zDFemrBTwEE
-X-Proofpoint-GUID: r4QCx1_bmAGo1vfNaBsW5zDFemrBTwEE
+X-Proofpoint-GUID: p2CA1US7RBUgP5I3vhT2Ble9FEnR7iww
+X-Proofpoint-ORIG-GUID: p2CA1US7RBUgP5I3vhT2Ble9FEnR7iww
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-19_03,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- clxscore=1011 bulkscore=0 mlxscore=0 phishscore=0 mlxlogscore=999
- impostorscore=0 priorityscore=1501 suspectscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 clxscore=1011 mlxscore=0 adultscore=0 phishscore=0
+ mlxlogscore=978 priorityscore=1501 impostorscore=0 spamscore=0
+ malwarescore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2411120000 definitions=main-2501190131
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250119_084235_686172_DF821EC5 
-X-CRM114-Status: GOOD (  15.11  )
+X-CRM114-CacheID: sfid-20250119_084237_583181_FA8A630B 
+X-CRM114-Status: GOOD (  19.38  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,39 +96,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, the driver allocates cacheable DMA buffers for rings like
-HAL_REO_DST and HAL_WBM2SW_RELEASE. The buffers for HAL_WBM2SW_RELEASE
-are large (1024 KiB), exceeding the SWIOTLB slot size of 256 KiB. This
-leads to "swiotlb buffer is full" error messages on systems without an
-IOMMU that use SWIOTLB, causing driver initialization failures. The driver
-calls dma_map_single() with these large buffers obtained from kzalloc(),
-resulting in ring initialization errors on systems without an IOMMU that
-use SWIOTLB.
-
-To address these issues, replace the flawed buffer allocation mechanism
-with the appropriate DMA API. Specifically, use dma_alloc_noncoherent()
-for cacheable DMA buffers, ensuring proper freeing of buffers with
-dma_free_noncoherent().
-
-Error log:
-[   10.194343] ath11k_pci 0000:04:00.0: swiotlb buffer is full (sz:1048583 bytes), total 32768 (slots), used 2529 (slots)
-[   10.194406] ath11k_pci 0000:04:00.0: failed to set up tcl_comp ring (0) :-12
-[   10.194781] ath11k_pci 0000:04:00.0: failed to init DP: -12
+Currently, the driver allocates cacheable DMA buffers for the rx_tid
+structure using kzalloc() and dma_map_single(). These buffers are
+long-lived and can persist for the lifetime of the peer, which is not
+advisable. Instead of using kzalloc() and dma_map_single() for allocating
+cacheable DMA buffers, utilize the dma_alloc_noncoherent() helper for the
+allocation of long-lived cacheable DMA buffers, such as the peer's rx_tid.
+Since dma_alloc_noncoherent() returns unaligned physical and virtual
+addresses, align them internally before use within the driver. This
+ensures proper allocation of non-coherent memory through the kernel
+helper.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
 
-Reported-by: Tim Harvey <tharvey@gateworks.com>
-Closes: https://lore.kernel.org/all/20241210041133.GA17116@lst.de/
 Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/dp.c | 35 +++++++++-------------------
- 1 file changed, 11 insertions(+), 24 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.h    |   6 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 117 +++++++++++-------------
+ 2 files changed, 58 insertions(+), 65 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index fbf666d0ecf1..f124b7329e1a 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index f777314db8b3..7a55afd33be8 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1,7 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2021-2023, 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #ifndef ATH11K_DP_H
+@@ -20,7 +20,6 @@ struct ath11k_ext_irq_grp;
+ 
+ struct dp_rx_tid {
+ 	u8 tid;
+-	u32 *vaddr;
+ 	dma_addr_t paddr;
+ 	u32 size;
+ 	u32 ba_win_sz;
+@@ -37,6 +36,9 @@ struct dp_rx_tid {
+ 	/* Timer info related to fragments */
+ 	struct timer_list frag_timer;
+ 	struct ath11k_base *ab;
++	u32 *vaddr_unaligned;
++	dma_addr_t paddr_unaligned;
++	u32 unaligned_size;
+ };
+ 
+ #define DP_REO_DESC_FREE_THRESHOLD  64
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 029ecf51c9ef..5e71e5d9ecb7 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
 @@ -1,7 +1,7 @@
  // SPDX-License-Identifier: BSD-3-Clause-Clear
  /*
@@ -137,58 +159,204 @@ index fbf666d0ecf1..f124b7329e1a 100644
 + * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights reserved.
   */
  
- #include <crypto/hash.h>
-@@ -104,14 +104,12 @@ void ath11k_dp_srng_cleanup(struct ath11k_base *ab, struct dp_srng *ring)
- 	if (!ring->vaddr_unaligned)
- 		return;
- 
--	if (ring->cached) {
--		dma_unmap_single(ab->dev, ring->paddr_unaligned, ring->size,
--				 DMA_FROM_DEVICE);
--		kfree(ring->vaddr_unaligned);
--	} else {
-+	if (ring->cached)
-+		dma_free_noncoherent(ab->dev, ring->size, ring->vaddr_unaligned,
-+				     ring->paddr_unaligned, DMA_FROM_DEVICE);
-+	else
- 		dma_free_coherent(ab->dev, ring->size, ring->vaddr_unaligned,
- 				  ring->paddr_unaligned);
--	}
- 
- 	ring->vaddr_unaligned = NULL;
- }
-@@ -249,25 +247,14 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, struct dp_srng *ring,
- 		default:
- 			cached = false;
+ #include <linux/ieee80211.h>
+@@ -675,11 +675,11 @@ void ath11k_dp_reo_cmd_list_cleanup(struct ath11k_base *ab)
+ 	list_for_each_entry_safe(cmd, tmp, &dp->reo_cmd_list, list) {
+ 		list_del(&cmd->list);
+ 		rx_tid = &cmd->data;
+-		if (rx_tid->vaddr) {
+-			dma_unmap_single(ab->dev, rx_tid->paddr,
+-					 rx_tid->size, DMA_BIDIRECTIONAL);
+-			kfree(rx_tid->vaddr);
+-			rx_tid->vaddr = NULL;
++		if (rx_tid->vaddr_unaligned) {
++			dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
++					     rx_tid->vaddr_unaligned,
++					     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
++			rx_tid->vaddr_unaligned = NULL;
  		}
--
--		if (cached) {
--			ring->vaddr_unaligned = kzalloc(ring->size, GFP_KERNEL);
--			if (!ring->vaddr_unaligned)
--				return -ENOMEM;
--
--			ring->paddr_unaligned = dma_map_single(ab->dev,
--							       ring->vaddr_unaligned,
--							       ring->size,
--							       DMA_FROM_DEVICE);
--			if (dma_mapping_error(ab->dev, ring->paddr_unaligned)) {
--				kfree(ring->vaddr_unaligned);
--				ring->vaddr_unaligned = NULL;
--				return -ENOMEM;
--			}
--		}
+ 		kfree(cmd);
+ 	}
+@@ -689,11 +689,11 @@ void ath11k_dp_reo_cmd_list_cleanup(struct ath11k_base *ab)
+ 		list_del(&cmd_cache->list);
+ 		dp->reo_cmd_cache_flush_count--;
+ 		rx_tid = &cmd_cache->data;
+-		if (rx_tid->vaddr) {
+-			dma_unmap_single(ab->dev, rx_tid->paddr,
+-					 rx_tid->size, DMA_BIDIRECTIONAL);
+-			kfree(rx_tid->vaddr);
+-			rx_tid->vaddr = NULL;
++		if (rx_tid->vaddr_unaligned) {
++			dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
++					     rx_tid->vaddr_unaligned,
++					     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
++			rx_tid->vaddr_unaligned = NULL;
+ 		}
+ 		kfree(cmd_cache);
+ 	}
+@@ -708,11 +708,11 @@ static void ath11k_dp_reo_cmd_free(struct ath11k_dp *dp, void *ctx,
+ 	if (status != HAL_REO_CMD_SUCCESS)
+ 		ath11k_warn(dp->ab, "failed to flush rx tid hw desc, tid %d status %d\n",
+ 			    rx_tid->tid, status);
+-	if (rx_tid->vaddr) {
+-		dma_unmap_single(dp->ab->dev, rx_tid->paddr, rx_tid->size,
+-				 DMA_BIDIRECTIONAL);
+-		kfree(rx_tid->vaddr);
+-		rx_tid->vaddr = NULL;
++	if (rx_tid->vaddr_unaligned) {
++		dma_free_noncoherent(dp->ab->dev, rx_tid->unaligned_size,
++				     rx_tid->vaddr_unaligned,
++				     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
++		rx_tid->vaddr_unaligned = NULL;
+ 	}
+ }
+ 
+@@ -749,10 +749,10 @@ static void ath11k_dp_reo_cache_flush(struct ath11k_base *ab,
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to send HAL_REO_CMD_FLUSH_CACHE cmd, tid %d (%d)\n",
+ 			   rx_tid->tid, ret);
+-		dma_unmap_single(ab->dev, rx_tid->paddr, rx_tid->size,
+-				 DMA_BIDIRECTIONAL);
+-		kfree(rx_tid->vaddr);
+-		rx_tid->vaddr = NULL;
++		dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
++				     rx_tid->vaddr_unaligned,
++				     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
++		rx_tid->vaddr_unaligned = NULL;
+ 	}
+ }
+ 
+@@ -802,10 +802,10 @@ static void ath11k_dp_rx_tid_del_func(struct ath11k_dp *dp, void *ctx,
+ 
+ 	return;
+ free_desc:
+-	dma_unmap_single(ab->dev, rx_tid->paddr, rx_tid->size,
+-			 DMA_BIDIRECTIONAL);
+-	kfree(rx_tid->vaddr);
+-	rx_tid->vaddr = NULL;
++	dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
++			     rx_tid->vaddr_unaligned,
++			     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
++	rx_tid->vaddr_unaligned = NULL;
+ }
+ 
+ void ath11k_peer_rx_tid_delete(struct ath11k *ar,
+@@ -831,14 +831,16 @@ void ath11k_peer_rx_tid_delete(struct ath11k *ar,
+ 		if (ret != -ESHUTDOWN)
+ 			ath11k_err(ar->ab, "failed to send HAL_REO_CMD_UPDATE_RX_QUEUE cmd, tid %d (%d)\n",
+ 				   tid, ret);
+-		dma_unmap_single(ar->ab->dev, rx_tid->paddr, rx_tid->size,
+-				 DMA_BIDIRECTIONAL);
+-		kfree(rx_tid->vaddr);
+-		rx_tid->vaddr = NULL;
++		dma_free_noncoherent(ar->ab->dev, rx_tid->unaligned_size,
++				     rx_tid->vaddr_unaligned,
++				     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
++		rx_tid->vaddr_unaligned = NULL;
  	}
  
--	if (!cached)
-+	if (cached)
-+		ring->vaddr_unaligned = dma_alloc_noncoherent(ab->dev, ring->size,
-+							      &ring->paddr_unaligned,
-+							      DMA_FROM_DEVICE,
-+							      GFP_KERNEL);
-+	else
- 		ring->vaddr_unaligned = dma_alloc_coherent(ab->dev, ring->size,
- 							   &ring->paddr_unaligned,
- 							   GFP_KERNEL);
+ 	rx_tid->paddr = 0;
++	rx_tid->paddr_unaligned = 0;
+ 	rx_tid->size = 0;
++	rx_tid->unaligned_size = 0;
+ }
+ 
+ static int ath11k_dp_rx_link_desc_return(struct ath11k_base *ab,
+@@ -982,10 +984,9 @@ static void ath11k_dp_rx_tid_mem_free(struct ath11k_base *ab,
+ 	if (!rx_tid->active)
+ 		goto unlock_exit;
+ 
+-	dma_unmap_single(ab->dev, rx_tid->paddr, rx_tid->size,
+-			 DMA_BIDIRECTIONAL);
+-	kfree(rx_tid->vaddr);
+-	rx_tid->vaddr = NULL;
++	dma_free_noncoherent(ab->dev, rx_tid->unaligned_size, rx_tid->vaddr_unaligned,
++			     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
++	rx_tid->vaddr_unaligned = NULL;
+ 
+ 	rx_tid->active = false;
+ 
+@@ -1000,9 +1001,8 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct ath11k_peer *peer;
+ 	struct dp_rx_tid *rx_tid;
+-	u32 hw_desc_sz;
+-	u32 *addr_aligned;
+-	void *vaddr;
++	u32 hw_desc_sz, *vaddr;
++	void *vaddr_unaligned;
+ 	dma_addr_t paddr;
+ 	int ret;
+ 
+@@ -1050,49 +1050,40 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
+ 	else
+ 		hw_desc_sz = ath11k_hal_reo_qdesc_size(DP_BA_WIN_SZ_MAX, tid);
+ 
+-	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_ATOMIC);
+-	if (!vaddr) {
++	rx_tid->unaligned_size = hw_desc_sz + HAL_LINK_DESC_ALIGN - 1;
++	vaddr_unaligned = dma_alloc_noncoherent(ab->dev, rx_tid->unaligned_size, &paddr,
++						DMA_BIDIRECTIONAL, GFP_ATOMIC);
++	if (!vaddr_unaligned) {
+ 		spin_unlock_bh(&ab->base_lock);
+ 		return -ENOMEM;
+ 	}
+ 
+-	addr_aligned = PTR_ALIGN(vaddr, HAL_LINK_DESC_ALIGN);
+-
+-	ath11k_hal_reo_qdesc_setup(addr_aligned, tid, ba_win_sz,
+-				   ssn, pn_type);
+-
+-	paddr = dma_map_single(ab->dev, addr_aligned, hw_desc_sz,
+-			       DMA_BIDIRECTIONAL);
+-
+-	ret = dma_mapping_error(ab->dev, paddr);
+-	if (ret) {
+-		spin_unlock_bh(&ab->base_lock);
+-		ath11k_warn(ab, "failed to setup dma map for peer %pM rx tid %d: %d\n",
+-			    peer_mac, tid, ret);
+-		goto err_mem_free;
+-	}
+-
+-	rx_tid->vaddr = vaddr;
+-	rx_tid->paddr = paddr;
++	rx_tid->vaddr_unaligned = vaddr_unaligned;
++	vaddr = PTR_ALIGN(vaddr_unaligned, HAL_LINK_DESC_ALIGN);
++	rx_tid->paddr_unaligned = paddr;
++	rx_tid->paddr = rx_tid->paddr_unaligned + ((unsigned long)vaddr -
++			(unsigned long)rx_tid->vaddr_unaligned);
++	ath11k_hal_reo_qdesc_setup(vaddr, tid, ba_win_sz, ssn, pn_type);
+ 	rx_tid->size = hw_desc_sz;
+ 	rx_tid->active = true;
+ 
++	/* After dma_alloc_noncoherent, vaddr is being modified for reo qdesc setup.
++	 * Since these changes are not reflected in the device, driver now needs to
++	 * explicitly call dma_sync_single_for_device.
++	 */
++	dma_sync_single_for_device(ab->dev, rx_tid->paddr,
++				   rx_tid->size,
++				   DMA_TO_DEVICE);
+ 	spin_unlock_bh(&ab->base_lock);
+ 
+-	ret = ath11k_wmi_peer_rx_reorder_queue_setup(ar, vdev_id, peer_mac,
+-						     paddr, tid, 1, ba_win_sz);
++	ret = ath11k_wmi_peer_rx_reorder_queue_setup(ar, vdev_id, peer_mac, rx_tid->paddr,
++						     tid, 1, ba_win_sz);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to setup rx reorder queue for peer %pM tid %d: %d\n",
+ 			    peer_mac, tid, ret);
+ 		ath11k_dp_rx_tid_mem_free(ab, peer_mac, vdev_id, tid);
+ 	}
+ 
+-	return ret;
+-
+-err_mem_free:
+-	kfree(rx_tid->vaddr);
+-	rx_tid->vaddr = NULL;
+-
+ 	return ret;
+ }
+ 
 -- 
 2.34.1
 
