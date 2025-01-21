@@ -4,80 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F65BC02182
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3BF0C0218D
 	for <ath11k@archiver.kernel.org>; Tue, 21 Jan 2025 17:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=cZp+12xKP21ZFL3cBiPy0Qk2QS0v25Vmx1pqZJpeMtM=; b=hzegE83Bfo/ZVUsZmGurFn1SR7
-	QwakXyogXHU5llArHHg/f+62OZ5JehUXB5NXpc2prVlxTludxR9lcN1XlYlorqDEfhf5tivVlahX7
-	cFdqUkN2+KO5Unrx8q331Cu09nfFP1P045XTrgxJyk181nnxgF6zXy+SwUe3UHvLM5ceZ4NDafMxL
-	DFQsD8n1hs2iec8Xhg9i8P6bB7bZbm0iJ4fq1Gtn7A+StTsv1Sl/aHTDk6gpXlvJnRch/OpVmlQnF
-	A9PspWdPDnLZ6KfUJVbpf1tGxO/qPR/hosoHWBfDllhOibZAMYK8HBCR8FqcGhloTOOx+LSOT7WwK
-	M6DzRWug==;
+	bh=xFyn+vIA68bXfr8/8e+p43567yde9skhLsXNicoGWx8=; b=YqpyW0MEhQp2YYTGRjimobHyd1
+	LJOVrQI0xOs2DlsVJuKG/XYPt4ZIKu7blMNeEuL07eidBSc2/VUM7EIVdpw4WZO0i9HMar/13yPhV
+	KqW3TeZL41cF2Shrn5Vs9FI2nwUECrTSvBqsOjlgrY5RN5nCm8TyySqgkDLC3gY94L0WJFtw0QAqe
+	zYY49LNxvBZBSjEv8YtyqGA5ifKQoZb2FzabhJlU5HuP72mzG2Ao4QSsMFztVungajiU6KXI66DVB
+	XrpblhLvTwf2fvPw8L6PYsYad63Nhxgsj060sSphx3XqpUNU27045y+wxc4mGGIPi7SHfeDtiOwog
+	EUGMvrwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1taI2Z-00000008TS3-4AHq;
-	Tue, 21 Jan 2025 17:27:51 +0000
-Received: from mail-yb1-xb2a.google.com ([2607:f8b0:4864:20::b2a])
+	id 1taI2a-00000008TSG-1aro;
+	Tue, 21 Jan 2025 17:27:52 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1taI0k-00000008TFN-3N2u
+	id 1taI1B-00000008TG3-2SD0
 	for ath11k@lists.infradead.org;
-	Tue, 21 Jan 2025 17:26:00 +0000
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-e455bf1f4d3so8144971276.2
-        for <ath11k@lists.infradead.org>; Tue, 21 Jan 2025 09:25:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks.com; s=google; t=1737480358; x=1738085158; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cZp+12xKP21ZFL3cBiPy0Qk2QS0v25Vmx1pqZJpeMtM=;
-        b=RJB1SMiRW9xpZZDMgZUmSfNEtGoiUKACBqW2E3QgL0rOw6BEkOMQBkmBq5twaa5G/U
-         cURfQz6ylvEWAk8XJoJp4HhA3eu2WwWHMHRoi3Vn0gfGsPkWnz5fxnPUq2glxNLMvUh/
-         eVvl/8bMLfaCb7wJDcvkqbcb7DJ9O77J9gJAuGvXvcPgwnn27b34G8tpeCRY0vgsMayj
-         uQUxoEMZfub8kVnZN4cWdQR1jhmq4h8uy1E8DVZcGs3hiw+Ja9NpTwe3bEQ8Ojz+YgD0
-         z8/L0AnZvmf8ITR+WIsogepQKGsPO4YAqame7gILGQnwTRLBUcCN8HjQbpAgldPa3JmL
-         vbcA==
+	Tue, 21 Jan 2025 17:26:26 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50LC2siB021110
+	for <ath11k@lists.infradead.org>; Tue, 21 Jan 2025 17:26:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xFyn+vIA68bXfr8/8e+p43567yde9skhLsXNicoGWx8=; b=SkhktG12cJ51tEwz
+	f+Wr+gHSZQYIFvBDFIVdam4qEjwYJFoBwkUCp4xrYtGdshP7DN4eX1fLKE3E97GC
+	Oj7xzsSacXMGTNuqSrGId4FvZXIbB3Fb/JjhnaaShOr2JeLXuwqpMEfn77fZcLNi
+	GAUFN9jpPG6L0Sun4E0rGO/GaL/8io3jf43sufCBAP4wnjtT1LT6MVaf11w+bJ36
+	cJcDKXeQYh1qsFV+dtumQTcvx5AAZEf+2jaXv10s9DurbKqhm3Cyksol6zdnXj2T
+	of3u5wb7+aK1uSvKvdmMjbBk0Mnkvmswm9zcEpXJd7pWujVlbS06h9Faik83n7VO
+	yZsqXw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ab888w84-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Tue, 21 Jan 2025 17:26:24 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2166855029eso115268575ad.0
+        for <ath11k@lists.infradead.org>; Tue, 21 Jan 2025 09:26:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737480358; x=1738085158;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cZp+12xKP21ZFL3cBiPy0Qk2QS0v25Vmx1pqZJpeMtM=;
-        b=TJ5utd13f+Sp5IBXi40u3TXQC3v7F07SAJrjRi7oyFmjaJxw3myDl4lSc4KU/4ndzY
-         l0jyEj4VeL1FgoQ246B4EchVp3pynaXof/NjhfoOx+LY57P15mdwERDeIytPptNXLzgy
-         OgTy+UqUUlg4p2AX+KmksXzkmBDA8tvZSMd4XSxeYBJtlPMmQ6IbvLCb96lthUQNrLym
-         1g2BGFq7Vaau9xSzqpnexEw1yEJrz+J8618/RlLB60F/DyesStLc8AKLzXFE1hNtH2xq
-         xWYj0IX9iKk3321ZxSUZKzWRzFmLn477L0h/5GgHZ84c5dyrMGgCPORWiHer2eRt+ikd
-         7+2g==
-X-Gm-Message-State: AOJu0YzP9c34FPBbAMg8pBbPCB27NSJh1Gb8Ox3N/0NirsvpyK4IUgzs
-	+LDSXrdgI6mkHHO0DYUhq4tHbTx7rqK/Xjahq2IAFfLiU0hCEY2uD6EkAlh/g4JJS2KmZWZ8dZ5
-	z0L7kvH8v/vTFWSOQgZZB1zEyeic5utyJQqAZqRVqNHChfmJi/xs=
-X-Gm-Gg: ASbGnct2D3k2DqtMbM8/GFGQkB7R4DeavrNdKq2yPrJYrRWiy4QJ04vgOjKjd80mRQg
-	8br+woAL646uO/N8atC0defiul1XaTXNwTnT30GzCVlt8pnMmZmw=
-X-Google-Smtp-Source: AGHT+IEX1pKh9G84uwoaF3TqQpxgmY7OnnF45ZehTheO7LEqcZCsVe/VzASXMGnKB75TYtJraGnR5I94fz1agsyNSdc=
-X-Received: by 2002:a05:690c:4b12:b0:6f6:7ef2:fe6c with SMTP id
- 00721157ae682-6f6eb93f6f7mr150917467b3.37.1737480357673; Tue, 21 Jan 2025
- 09:25:57 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737480383; x=1738085183;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xFyn+vIA68bXfr8/8e+p43567yde9skhLsXNicoGWx8=;
+        b=wUbb4hrMS16PY9yJAkWuc38opO7LqPC2wSn6xnhoFCL5dSrWWn9fdaGnvSrj5/OQZP
+         DEBhfwrWpYoX4XmN4wkDgkJdwEhPaJQJ2hEa1gxnG3KogWX2z/qdWQpiKOdXSybHKFmw
+         zOMqRrwZpG5qXEbgk1efcuMhEcI9bYYRe6Kwe4d8rPzu80dZGcLlZKV0OGMBJRgLp1Nx
+         UanaALFPqqKxM4SdIVIQZvYyleTpniLCcg3K7Xl7vkd381EjtFQPEPo47/Xs0Q0FaY1o
+         k+Pzkaw1Cn2JYJKLVmb7agTzdCJte/dbqNC4+04PQHY6MNgh2yWFzPKkCrb2gsrLf3QH
+         lcsA==
+X-Forwarded-Encrypted: i=1; AJvYcCV+B3kqvDge9Ft1HQB6ui0KfPoQeVR0PeGPfV+4NLuRxCEJdZVt08GSmWXMp/wsYjBkCY/1A+s=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzFhjndEnOw6alY73oY2UgOwE6ulRm5dkXoJQcislJiGisb/Akf
+	vzYHngJ0gpKhfWLpOfShPgIZ7QK14rdlzU3BKw44XED7TmYNIjakE5RQPPDkWxkrSFtfTjHXufe
+	wHTDamIbO1xhgsEKMqSDNDz5jd6h3XAmW5zZzZjV+KEiEhjWsB4XDmj96fmOy
+X-Gm-Gg: ASbGncujw4U3pm+qbkPE60+myaXQCF1PNI6sAMdt4iD9Wfk9OhyNmDGxtpac7zget+R
+	IAZ0rwDjJumlJet6YpKruT5N9W9LhSMJZGJADycy2C1ryE+FG/VZhnal9rjmT7xRLRUfw6DCLv7
+	6NwRWclRUqLwKlX0VV9bGS67jbTsGQzQHDvwMD9Z8PRNkWBYekHT2FPrlXM2pGx7dja/3K2vVyk
+	QKPkZir4OB00Z94jxVnNMKH792qZ9jPynu0ExkyERt7u9nKqRc53ZRskafikdiig02YZKGjcAcP
+	YepuYcN+kbzvPq3bphGTVD4H4Y7nSV0wYKGpr/OF9ycY/Vt5ew==
+X-Received: by 2002:a17:903:2a88:b0:215:9894:5679 with SMTP id d9443c01a7336-21c34ccef5fmr268666595ad.0.1737480383396;
+        Tue, 21 Jan 2025 09:26:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHebtlpbe2fjGTEr6g5IQsgumqvYjR2tRkHVlpjK0XAFtKdFaHaz7u47zr4G4o0OeZNi4LZCw==
+X-Received: by 2002:a17:903:2a88:b0:215:9894:5679 with SMTP id d9443c01a7336-21c34ccef5fmr268666395ad.0.1737480382986;
+        Tue, 21 Jan 2025 09:26:22 -0800 (PST)
+Received: from [10.227.110.203] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcc3232a4sm9137633a12.30.2025.01.21.09.26.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jan 2025 09:26:22 -0800 (PST)
+Message-ID: <0ab6d084-9fb7-4e8f-b0b7-71812a1492d6@oss.qualcomm.com>
+Date: Tue, 21 Jan 2025 09:26:21 -0800
 MIME-Version: 1.0
-References: <20250119164219.647059-1-quic_ppranees@quicinc.com> <20250119164219.647059-2-quic_ppranees@quicinc.com>
-In-Reply-To: <20250119164219.647059-2-quic_ppranees@quicinc.com>
-From: Tim Harvey <tharvey@gateworks.com>
-Date: Tue, 21 Jan 2025 09:25:46 -0800
-X-Gm-Features: AbW1kvZt9ZPqjB0BdpQkRL5KgHpWGtbyJj2SAQ_Ua2QqTrkqbigoGJLir67evL4
-Message-ID: <CAJ+vNU01rQM8uvZxSDuMP91nLFovtNZXRvCPpunt2MrjK+8uRA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] wifi: ath11k: Fix DMA buffer allocation to resolve
- SWIOTLB issues
-To: P Praneesh <quic_ppranees@quicinc.com>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/4] wifi: ath12k: Factory test mode support
+To: Aaradhana Sahu <quic_aarasahu@quicinc.com>, ath12k@lists.infradead.org,
+        "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Cc: linux-wireless@vger.kernel.org
+References: <20250119083657.1937557-1-quic_aarasahu@quicinc.com>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20250119083657.1937557-1-quic_aarasahu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: vr-6nqjddZDAb8AFVeyx2-tHCdaxarPB
+X-Proofpoint-GUID: vr-6nqjddZDAb8AFVeyx2-tHCdaxarPB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-21_07,2025-01-21_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ mlxlogscore=999 adultscore=0 phishscore=0 bulkscore=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 mlxscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501210140
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250121_092558_843617_04F70A60 
-X-CRM114-Status: GOOD (  21.44  )
+X-CRM114-CacheID: sfid-20250121_092625_637021_5CA1F403 
+X-CRM114-Status: GOOD (  16.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,137 +117,73 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jan 19, 2025 at 8:42=E2=80=AFAM P Praneesh <quic_ppranees@quicinc.c=
-om> wrote:
->
-> Currently, the driver allocates cacheable DMA buffers for rings like
-> HAL_REO_DST and HAL_WBM2SW_RELEASE. The buffers for HAL_WBM2SW_RELEASE
-> are large (1024 KiB), exceeding the SWIOTLB slot size of 256 KiB. This
-> leads to "swiotlb buffer is full" error messages on systems without an
-> IOMMU that use SWIOTLB, causing driver initialization failures. The drive=
-r
-> calls dma_map_single() with these large buffers obtained from kzalloc(),
-> resulting in ring initialization errors on systems without an IOMMU that
-> use SWIOTLB.
->
-> To address these issues, replace the flawed buffer allocation mechanism
-> with the appropriate DMA API. Specifically, use dma_alloc_noncoherent()
-> for cacheable DMA buffers, ensuring proper freeing of buffers with
-> dma_free_noncoherent().
->
-> Error log:
-> [   10.194343] ath11k_pci 0000:04:00.0: swiotlb buffer is full (sz:104858=
-3 bytes), total 32768 (slots), used 2529 (slots)
-> [   10.194406] ath11k_pci 0000:04:00.0: failed to set up tcl_comp ring (0=
-) :-12
-> [   10.194781] ath11k_pci 0000:04:00.0: failed to init DP: -12
->
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ=
-_LITE-3
->
-> Reported-by: Tim Harvey <tharvey@gateworks.com>
-> Closes: https://lore.kernel.org/all/20241210041133.GA17116@lst.de/
-> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
++ath11k list since it is also modified (but no functional change)
+
+On 1/19/2025 12:36 AM, Aaradhana Sahu wrote:
+> Device is booted in factory test mode for calibration.
+> The commands are sent from userspace application, which
+> is sent to firmware using wmi commands. Firmware sends
+> the response to driver as wmi events and driver sends
+> these events to the application via netlink message.
+> 
+> Also added changes related to correct pdev id access for
+> fw test cmd.
+> 
+> Aaradhana Sahu (4):
+>   wifi: ath: create common testmode_i.h file for ath drivers
+>   wifi: ath12k: export ath12k_wmi_tlv_hdr for testmode
+>   wifi: ath12k: add factory test mode support
+>   wifi: ath12k: Disable MLO in Factory Test Mode
+> 
 > ---
->  drivers/net/wireless/ath/ath11k/dp.c | 35 +++++++++-------------------
->  1 file changed, 11 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/=
-ath/ath11k/dp.c
-> index fbf666d0ecf1..f124b7329e1a 100644
-> --- a/drivers/net/wireless/ath/ath11k/dp.c
-> +++ b/drivers/net/wireless/ath/ath11k/dp.c
-> @@ -1,7 +1,7 @@
->  // SPDX-License-Identifier: BSD-3-Clause-Clear
->  /*
->   * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-> - * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights r=
-eserved.
-> + * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights r=
-eserved.
->   */
->
->  #include <crypto/hash.h>
-> @@ -104,14 +104,12 @@ void ath11k_dp_srng_cleanup(struct ath11k_base *ab,=
- struct dp_srng *ring)
->         if (!ring->vaddr_unaligned)
->                 return;
->
-> -       if (ring->cached) {
-> -               dma_unmap_single(ab->dev, ring->paddr_unaligned, ring->si=
-ze,
-> -                                DMA_FROM_DEVICE);
-> -               kfree(ring->vaddr_unaligned);
-> -       } else {
-> +       if (ring->cached)
-> +               dma_free_noncoherent(ab->dev, ring->size, ring->vaddr_una=
-ligned,
-> +                                    ring->paddr_unaligned, DMA_FROM_DEVI=
-CE);
-> +       else
->                 dma_free_coherent(ab->dev, ring->size, ring->vaddr_unalig=
-ned,
->                                   ring->paddr_unaligned);
-> -       }
->
->         ring->vaddr_unaligned =3D NULL;
->  }
-> @@ -249,25 +247,14 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, st=
-ruct dp_srng *ring,
->                 default:
->                         cached =3D false;
->                 }
-> -
-> -               if (cached) {
-> -                       ring->vaddr_unaligned =3D kzalloc(ring->size, GFP=
-_KERNEL);
-> -                       if (!ring->vaddr_unaligned)
-> -                               return -ENOMEM;
-> -
-> -                       ring->paddr_unaligned =3D dma_map_single(ab->dev,
-> -                                                              ring->vadd=
-r_unaligned,
-> -                                                              ring->size=
-,
-> -                                                              DMA_FROM_D=
-EVICE);
-> -                       if (dma_mapping_error(ab->dev, ring->paddr_unalig=
-ned)) {
-> -                               kfree(ring->vaddr_unaligned);
-> -                               ring->vaddr_unaligned =3D NULL;
-> -                               return -ENOMEM;
-> -                       }
-> -               }
->         }
->
-> -       if (!cached)
-> +       if (cached)
-> +               ring->vaddr_unaligned =3D dma_alloc_noncoherent(ab->dev, =
-ring->size,
-> +                                                             &ring->padd=
-r_unaligned,
-> +                                                             DMA_FROM_DE=
-VICE,
-> +                                                             GFP_KERNEL)=
-;
-> +       else
->                 ring->vaddr_unaligned =3D dma_alloc_coherent(ab->dev, rin=
-g->size,
->                                                            &ring->paddr_u=
-naligned,
->                                                            GFP_KERNEL);
-> --
-> 2.34.1
->
+> v10:
+>   -Combined patch[4/5] with patch[3/5]
+> v9:
+>   -Rebased on master-pending
+> v8:
+>   -Included change for assigning seg_hdr.pdev_id.
+>   -Moved if block to start of ath12k_core_hw_group_set_mlo_capable()
+> v7:
+>   -Updated copyright
+>   -Moved ath12k_ftm_check in ath12k_core_hw_group_set_mlo_capable()
+> v6:
+>   -Rebased on ToT
+>   -Updated copyright
+>   -Added patch[5/5]
+> v5:
+>   -Updated copyright
+>   -Fixed line length within 90 char
+> v4:
+>   -Rebased on latest ToT
+> v3:
+>   -Rebased on latest ToT
+>   -Updated Tested-on Tag
+>   -Removed second parameter of ath12k_core_start()
+>   -Updated copyright
+> v2:
+>   -Rebased on latest ath ToT
+> ---
+> 
+>  drivers/net/wireless/ath/ath11k/testmode.c    |  80 ++--
+>  drivers/net/wireless/ath/ath12k/Makefile      |   1 +
+>  drivers/net/wireless/ath/ath12k/core.c        |  28 +-
+>  drivers/net/wireless/ath/ath12k/core.h        |  11 +
+>  drivers/net/wireless/ath/ath12k/debug.h       |   3 +-
+>  drivers/net/wireless/ath/ath12k/dp.c          |   5 +-
+>  drivers/net/wireless/ath/ath12k/mac.c         |  15 +-
+>  drivers/net/wireless/ath/ath12k/pci.c         |   3 +-
+>  drivers/net/wireless/ath/ath12k/testmode.c    | 395 ++++++++++++++++++
+>  drivers/net/wireless/ath/ath12k/testmode.h    |  40 ++
+>  drivers/net/wireless/ath/ath12k/wmi.c         |  41 +-
+>  drivers/net/wireless/ath/ath12k/wmi.h         |  23 +-
+>  drivers/net/wireless/ath/ath12k/wow.c         |   3 +-
+>  .../wireless/ath/{ath11k => }/testmode_i.h    |  54 +--
+>  14 files changed, 620 insertions(+), 82 deletions(-)
+>  create mode 100644 drivers/net/wireless/ath/ath12k/testmode.c
+>  create mode 100644 drivers/net/wireless/ath/ath12k/testmode.h
+>  rename drivers/net/wireless/ath/{ath11k => }/testmode_i.h (50%)
+> 
+> 
+> base-commit: 0f5fcb566e7e6c1154540280d334fc71f7cbeb63
 
-Thanks, this resolves the issue I reported. I tested this with qcn9074
-on an imx8mm (no iommu) with 4GiB DRAM and verified swiotlb was not
-being used and infrastructure mode worked fine.
-
-Tested-By: Tim Harvey <tharvey@gateworks.com>
-
-Best regards,
-
-Tim
 
