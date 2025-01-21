@@ -4,89 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E683DC02181
-	for <ath11k@archiver.kernel.org>; Mon, 20 Jan 2025 15:30:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABAF1C02182
+	for <ath11k@archiver.kernel.org>; Tue, 21 Jan 2025 08:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EwM8vHrZfCJAlWd3az/ynReLWW6B1QyqxoDvOuugtXw=; b=X5IVdWU7oVN+xfuwWn3oSy7q7O
-	gCgxi+X+khsrpDZlHYuSgUCN/ZWwCoSWBJlC2oEknmnkFbWQKjUCMdZD6uqyuuGQ/0SmrjeFRf29L
-	cNylC7qVCT/jXpAvA+PC+cMwRSkHV9onztgip44c3SjcirxajbBt25X4JwbzH8OwevpQ3ANsebyYo
-	Ukn9qma/rJqC+tjiuM+6NEs5f8MOdCmCe1XmiISienDnSZJALzsXF/KGZOa1l9jpt0PoBNpE0iAzu
-	/CjWrbydY0G/hCh6eEtxZYjtFeofwHBMIec72ycq80Fik3KD3HM6je9pVgcKJA5xkY1HxZRU0MGXD
-	QQ2hFU0g==;
+	bh=pxpKycdt7jDHWX7yNXRM9b6Ji6UXb6uxS2e0r6fhCuo=; b=OTr9Gs+uxXqtCxTYQsd4gJYrhh
+	QUxFkimpq0KxMmWuixwj6c6Sk0gidT3XCXQYRYPKfF3ZL+d2IVBB8unFPJ4aO67fZPrJMAl41wC4U
+	0bwJc9GmKNx7B+XN69Z77RXWElbHdWMsO0HVdFlm0T8hjV/bNoFaNwq1FDX3GaO1rZlBXk+tmC2zc
+	95bapjI8BXPop8I9EG2vPqOlj/gpYl4xV/draYqaAde3bAFbvpWU3WDeIA4yxv+svG7C1dzxm7+z/
+	SA1csbZ1DOAF6s/gZRWzTP2OqLNcFWP3tQemQez74032Pu/7Ux4lQSRwBvgXB+lMzzh/72mFtqzMw
+	KZ4/ZvSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tZtjZ-00000005tJ9-0zVE;
-	Mon, 20 Jan 2025 15:30:37 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1ta9HH-00000007CxB-0meU;
+	Tue, 21 Jan 2025 08:06:27 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tZtjW-00000005tIW-3GxI
+	id 1ta9Bc-00000007CD4-2N8T
 	for ath11k@lists.infradead.org;
-	Mon, 20 Jan 2025 15:30:36 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4362f61757fso47318355e9.2
-        for <ath11k@lists.infradead.org>; Mon, 20 Jan 2025 07:30:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737387033; x=1737991833; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EwM8vHrZfCJAlWd3az/ynReLWW6B1QyqxoDvOuugtXw=;
-        b=P2Dr0JOKxGLnl+C9sNmQziAgam8X3SjJQUXKYUNCz2K/o9GR8xYBJvtoLNeN36pFE3
-         sBgifKEUX+/gJJ7o1PhdyJHd1fCtpiTTBdNdpkzOGL03QdnmBwTt/6myjf2WKolLGxTG
-         +6RnsJA52VCOj/0d/K9rg4PXpCYSGZa/VFy9u+MIPGDjuTzKgYVAZiWewsXr4GlEGrew
-         enKCnJF9vGXVaUp+EFmr32Xo8gW8HK6yrtz3kRy+myfdxmyd5nYzWqw17oVWJO3WTg3i
-         0qL9D4Kd9ZjcXzN2cnF/vra4N0jZb9hDFKDMJB52WihKZnfV8xhYA0lOzZDC+wYGSsMM
-         Mutw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737387033; x=1737991833;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=EwM8vHrZfCJAlWd3az/ynReLWW6B1QyqxoDvOuugtXw=;
-        b=rr4eJzmW25gPJ7R1pcvQJ5K0lpB2G2uiyaWkImJOjCIKiy2FfeVYcIs68DgsXDILNP
-         9+l+x0hp9DXB5a0PQ3BklPT5H0rjtLeRZR+kc9k2laC0kFV7pJ/VEtDkS3dprH/9FxKY
-         gmws4ARa5o7cnTTvpuGzaQ0d1KrXtGM8VXD3kB2C9PfUpfDvXOTcr7iaNq+NPQYmbU/n
-         QVKLKYvN583C7vJqXvj/+Gx43a5DBa68jQZ5gNiope/Q1PaX+jRnq7T0LKnFSXlFkbQi
-         HYyaef4llBe386/p8AkkhuHRxY4hq52ijjBpXAen+mDxDoTd/TYPI+KutSmZ7k0D+Zfu
-         Y14g==
-X-Forwarded-Encrypted: i=1; AJvYcCVd+LYFbPHBf9xUxGrTp7p1mN+gIoov99FOQqN5tb8d6ugK8jLaDwxvLbSZmWNsyFqZbHQKTiA=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwtsmAoEv02c1SNfgQRqMxz47Gv9IxJfLd3CLu6yoSEd3Zo3BxD
-	R5EBgigAMlknSkFaL4EwMh6rpzOQdIn4hW2P/kbfsyW8ZhmiebgS
-X-Gm-Gg: ASbGncuIGia0az6FFpUCV11IJFZmCnpCWj6o17Ujhal9fx1DXYtyBswAne0+6k0aElx
-	0WwNYLzwvC4j1/XCSTYy70dkBBXFTvVJ+hA+ovlUJB3dL2vxBZ8Ilb2uSJsq6pDJdpnVvJ7wVK/
-	UmQStVMgN66F7XYuGYfSU2EvNojs8NL5f7ICD5VPcG4Yq4CnZqz6ZY69fzyFWJJH/zYRQZtkeUn
-	4ZjN8xLLqJEnphLubPx7O7qWYe1p71qsmgdo2azcYHfdjitL8TjYGaXO/+c14k7AMHOq99FW0Vh
-	Sd0ilMfzu5cp
-X-Google-Smtp-Source: AGHT+IHlyS8zLwt9rBRW+YcPDUyrHptF0iC0oVkb9na2U+vQHP3IKrzOIXgQ21MR6UbQ2DPnb1DKAg==
-X-Received: by 2002:a05:600c:1da1:b0:434:a815:2b57 with SMTP id 5b1f17b1804b1-4389141c4ebmr106120285e9.20.1737387032338;
-        Mon, 20 Jan 2025 07:30:32 -0800 (PST)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c74c6ceasm204514095e9.24.2025.01.20.07.30.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jan 2025 07:30:31 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 20 Jan 2025 16:30:31 +0100
-Message-Id: <D770AVPQZXIW.26SXMNNQTQ1PZ@gmail.com>
-Cc: <linux-wireless@vger.kernel.org>, "Steffen Moser"
- <lists@steffen-moser.de>
-Subject: Re: [PATCH] Revert "ath11k: clear the keys properly via
- DISABLE_KEY"
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Vasanthakumar Thiagarajan" <quic_vthiagar@quicinc.com>,
- <ath11k@lists.infradead.org>, "Sven Eckelmann" <se@simonwunderlich.de>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250117191455.3395145-1-nico.escande@gmail.com>
- <20e0a239-3d23-473b-5bc8-41bc25a64088@quicinc.com>
-In-Reply-To: <20e0a239-3d23-473b-5bc8-41bc25a64088@quicinc.com>
+	Tue, 21 Jan 2025 08:00:37 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50L7GK7j027236;
+	Tue, 21 Jan 2025 08:00:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pxpKycdt7jDHWX7yNXRM9b6Ji6UXb6uxS2e0r6fhCuo=; b=J21IpahKjR9WgEtw
+	QFvKVBZZ8TWL70XfWYOpIs1DRVY9sSPgJe42y4WAnqZIdvLMsEBLvvaBdXVrch8p
+	BfjVfOx0NSctzuFjgoFY8X82nNZqfnFJ1Yxiv3MCDyn7g0x3u12CxQn7Ga25cjl1
+	ol2hwHlLkPrnLtkeMSULTOb6vRqDANU+MijvzUlI5ll05mXw/PcfGf4Zpy+c/E9c
+	bJ+SOYcWNZogPycb+C3swwUtTAV+x4XS3xvnJIH8PxXSwrhh2dTW3kTJjTCS7prH
+	tef5KxRL9OV7g6Nf2s1sZPxCtvc+d4T/zCPiOKPsaUSia5Jqdz8an3Xh9VjURSOw
+	fz/zvw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44a71nr3bh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 08:00:35 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50L80YD5016586
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 08:00:34 GMT
+Received: from [10.253.36.159] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 21 Jan
+ 2025 00:00:32 -0800
+Message-ID: <12fad7bd-86cd-4c93-8fa2-35ec7b10f5e7@quicinc.com>
+Date: Tue, 21 Jan 2025 16:00:29 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/2] wifi: ath11k: fix data out of sync for channel
+ list for reg update
+To: <ath11k@lists.infradead.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+        Aditya Kumar Singh <quic_adisi@quicinc.com>,
+        Vasanthakumar Thiagarajan
+	<quic_vthiagar@quicinc.com>
+CC: <linux-wireless@vger.kernel.org>
+References: <20250117061737.1921-1-quic_kangyang@quicinc.com>
+Content-Language: en-US
+From: Kang Yang <quic_kangyang@quicinc.com>
+In-Reply-To: <20250117061737.1921-1-quic_kangyang@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EzpMOBbqkz_UmGZec5mUAb-wWhqGXE0a
+X-Proofpoint-ORIG-GUID: EzpMOBbqkz_UmGZec5mUAb-wWhqGXE0a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-21_04,2025-01-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ mlxscore=0 clxscore=1015 phishscore=0 mlxlogscore=999 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501210065
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250120_073034_824106_113ACB03 
-X-CRM114-Status: GOOD (  18.09  )
+X-CRM114-CacheID: sfid-20250121_000036_615076_53B6C974 
+X-CRM114-Status: GOOD (  15.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,44 +101,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sat Jan 18, 2025 at 11:29 AM CET, Vasanthakumar Thiagarajan wrote:
-> Hi Nicolas,
->
-> On 1/18/2025 12:44 AM, Nicolas Escande wrote:
-> > This reverts commit 436a4e88659842a7cf634d7cc088c8f2cc94ebf5.
-> >=20
-> > This as been reported by multiple people [0] that with this commit,
-> > broadcast packets were not being delivered after GTK exchange.
-> > Qualcomm seems to have a similar patch [1] confirming the issue.
-> >=20
->
-> This will re-open https://www.spinics.net/lists/hostap/msg08921.html
-> reported by Sven. The recommended ath firmware ABI during GTK re-keying
-> is SET_KEY instead of current DEL_KEY followed by SET_KEY. We are looking
-> at other options like some marking by mac80211 for the driver to be able
-> to identify if the received DEL_KEY is for re-keying. Also I'm curious
-> if roaming between secure and non-secure mode is a critical use case.
-> If not, we can probably go ahead with this revert as temporary WAR,
-> @Sven?
->
-> Vasanth
 
-Yes, indeed it will make the original problem appear once again.
 
-But from my standpoint, switching from encrypted to unencrypted traffic wit=
-h a
-config reload (without an interface restart) is not so frequent of a usecas=
-e.
+On 1/17/2025 2:17 PM, Kang Yang wrote:
+> Currently there are two threads to updating/fetch data of channel
+> list, and there are no synchronization for the data, it leads data out
+> of sync for channel list when doing reg update.
+> 
+> So change the call flow to make sure the fetch data running after the
+> update data finished, then data of channel list become synchronization.
+> 
+> Note: This patch-set is an old patch-set in public review written by
+> Wen Gong. Just continue sending it for him.
+> Link: https://lore.kernel.org/linux-wireless/20230329091235.19500-1-quic_wgong@quicinc.com/
+> 
+> v5:
+>      1. rewrite commit message in patch#1.
+>      2. update copyright in patch#1, #2.
+> v4:
+>      1. rewrite commit message in patch#1, #2.
+>      2. use list_splice_tail_init() to move list entry.
+>      3. use data_lock instead of adding a new lock.
+> v3:
+>      1. rebase on tag ath-202411251703.
+>      2. add KASAN BUG report in patch #1.
+> v2:
+>      1. rewrite commit message for patch #1 and #2.
+>      2. use a local list without the spinlock held for patch #2.
+> 
 
-On the otherhand, GTK rekeying is much more frequent. Like once per day wit=
-h
-hostapd's default parameters. And from our tests it fails around 1/4 of the=
- time
-with ath11k. So for every 4 days of operations of an AP running the unrever=
-ted
-code, you won't have broadcast working for one of them...
+Hi, jeff, aditya, vasanth, any comments on this patch-set?
 
-I would really like a proper fix from QCA, but in the meantime it seems bes=
-t to
-revert it IMHO.
+
+
 
