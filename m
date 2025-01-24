@@ -4,81 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BF8EC0218C
-	for <ath11k@archiver.kernel.org>; Fri, 24 Jan 2025 08:01:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A04D9C02181
+	for <ath11k@archiver.kernel.org>; Fri, 24 Jan 2025 19:34:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Reply-To:
+	Content-Type:From:Subject:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=b2EHa9JrxW3sCx6X5boYK1RU8gHGNRBzTmwtvVn0ZhM=; b=gf6sqWhqC9LklboZacDGFlLDJM
-	+BySE2slJdJ3uJ8gputZ0BdF6wTCVWBEmxXg70QjUmy7PDJ3HnNOZSq2HEDQXP5XHzsamoPzFdANM
-	Clyvoaas8ac8qE11k7o045+TQdCbSaDVp+e+ueHyKQpkY2oZsuSdiHONV1vivn68sAco+iqX5ioXx
-	X/fOrSWIuC4hsRt/lnjMep0VSokedSgdxwlxLEYPEwMtnpjoM0hi9YK3WDZ2jUHDNGotTMtx9J8Eb
-	YeLm2zpD1MYut9SH4GAwJGmiJVCjQfBIx+QZgvQjPJYDGVnIe426Kw3BfHt+WZPOhbXAAjzQtpgKN
-	4/8nuOsQ==;
+	bh=GBgzsddn1AaQ6ApTxidChvIRA2JVHU72+jsfbcvmvuY=; b=2xf6FS8Yzc708jVaF1yDiRi7EW
+	nVwK1FMYV7V/sc8vDJM2u6VbHImmeSCVTiWEU3EDz2gM4u5yk5AGL3L3mfVJXtei7ijHelyDWUT4O
+	SXENpVI8wfvvX2fVKKK+Ddb5JhFIwRdbop7SMsmKYLIUXxUub7UEbrhwV+335+whQ+UwBRBNvzCEO
+	eJiW2DnzacOVf7QtL2L9K+xPOpkQ16WBOvYvY1emvWAgJ18LKdyhcYEJvOuF+DHUUFtrpww3NgnLS
+	ytX6L7R3zboEmIEOyPCiGPrKAeQAxGJWBxR3pxXvrRXSq1jbE4vlajOV6nVuUmkwALCc4dlNYjY8E
+	1budVoGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tbEdC-0000000EBMX-3HYQ;
-	Fri, 24 Jan 2025 08:01:34 +0000
+	id 1tbPS5-0000000FOkS-2pKd;
+	Fri, 24 Jan 2025 19:34:49 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tbEc3-0000000EBHA-2Oz7
+	id 1tbPS3-0000000FOjJ-3shf
 	for ath11k@lists.infradead.org;
-	Fri, 24 Jan 2025 08:00:24 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50O5O8Tv029935;
-	Fri, 24 Jan 2025 08:00:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	Fri, 24 Jan 2025 19:34:49 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50OAlu0n031256
+	for <ath11k@lists.infradead.org>; Fri, 24 Jan 2025 19:34:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=b2EHa9JrxW3sCx6X5boYK1
-	RU8gHGNRBzTmwtvVn0ZhM=; b=kmXHm3GiqyONZUSQGc9u2WZNluYe4vglIopcZx
-	TSO5kx6GI4H8rwoCPQVkebtOg6t2oSyU6q85UYtVkjQ/Ho50CXV3vfOqKLz+r7AY
-	OtQOlgg0U6DS4+/HtMV2t3iNftyyCg6aGWCFvnOgfA3tcbY+9zjqZo5xqWw6oJyb
-	HZKhPWCxtTnLLsFpvK46qZsJtMj1xXcBNFnYR1KlmEkqi584UDm/3kb4TuMKbb2j
-	EXdkwmBDUHQl3Hi1lgOxCyesDgcqUzItS7RPlusIAwsr4bPU0tonizNrf/gncpxc
-	jJ0oz07xkdhNtfTAEeK87MpBDyWnPelX98Ox1Kmzo2I4BQkg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44c4p5gac8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 Jan 2025 08:00:22 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50O80LvX004636
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 Jan 2025 08:00:21 GMT
-Received: from yuzha-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 24 Jan 2025 00:00:19 -0800
-From: "Yu Zhang(Yuriy)" <quic_yuzha@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_yuzha@quicinc.com>
-Subject: [PATCH] wifi: ath11k: fix wrong overriding for VHT Beamformee STS Capability
-Date: Fri, 24 Jan 2025 15:59:53 +0800
-Message-ID: <20250124075953.2282354-1-quic_yuzha@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	:mime-version:subject:to; s=qcppdkim1; bh=GBgzsddn1AaQ6ApTxidChv
+	IRA2JVHU72+jsfbcvmvuY=; b=Q9B3c2MHUslsCS7b/mUwsXl1s1CZoNMmHtk5CW
+	eyfoxW6WbU+8htqeZDJrWsFrtmWX44cdjGrKvFGOK35qjHD30DNmEbUbh20C5ZZn
+	yasf/SlG+ctYUqtodF0vQcqtdUX73ZOckul9ZQJyWvjdYqYudzYIYuNKUsa23uue
+	Ou3bbxy3jrNpij3A9uTi0g95/R4wp+Ip0P6upFWvdmex+LTxX4/QPwUXKH9yPhwC
+	V0JR1RlzKI9HyXTE/dU9HLBIldZ1Jj0JHoVKF69B9pBKCYguNqYI/xq1kuZJHGYN
+	XKEvVsLMFoR6SF9udJgYWV/gqEsbdbEeUpjYYolod9O8PFYA==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44c9e217sm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Fri, 24 Jan 2025 19:34:45 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2165433e229so48472665ad.1
+        for <ath11k@lists.infradead.org>; Fri, 24 Jan 2025 11:34:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737747284; x=1738352084;
+        h=content-transfer-encoding:from:content-language:subject:cc:to
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GBgzsddn1AaQ6ApTxidChvIRA2JVHU72+jsfbcvmvuY=;
+        b=IKRLRdcgxnwzVEkon/T/QR6bbEsP9N5rnGaQ67Jx4AmMCY5GP9E/e68r7nn+xAJ5fR
+         n/WQodUj8PJJHogqnB34v1/ntCac6V+qZrzESuhTNif9/l7oFX9MCJaXFWSG9IRrVH50
+         odih72nsI6I5nbxZru0MMA4r+ebLgnc+pC9YxsFKeyQBZGUuxEmoc1CV6+rmISxNmPK6
+         k0OqXX4FPUuc49qq5tEa1X8V0J3WX2COuCxVRZtMHTLkuFIGGDiyBDvhfiOhXJ36Bu+Z
+         GtOlWxgWnIC2gDgpA65J1DzzDEx/PIPDtywv/NYc/pjwiKAx5th7TKtxrMIxQpIgT5FR
+         prWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUsC8qmvUNv5ZxAEP6Fj31IFbWoKaa7on/vxzmT3XOwi+bCJljxa3q8NFKQVkJtbfteDNJwre8=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyLsreey4lq/Kue8Rl33jiavn72i5wieTier9gCzcpfJLB64Bdm
+	Wjy3nJqqqRnpuTTtn9aSjuGkCkQaT1mYm/ligm6wmq+5vcjeWEkWlq5bmltNLC4ujeINEfpVywo
+	rXPxQQaGnAnsVrGfy2vXkliDXzWZJIr9830JJWO6cPA5lvqkd7eiTnsvInTkX
+X-Gm-Gg: ASbGncvBl3TjKxNADjjds/AJY94wtI8tvMltnEF0USfCoy47ylc8rCsznln+ZAqcIVL
+	roXaE1nwAGYam0aeTkrggqLpXkJvNgXiKPkNESb2dWtN3ixTjFeNQ3Ep3KhnY6Vx4atO+MoOrr1
+	y6BNL9FDKqoDPhHJmuv9n0USrIxHue8MxXzEEf5WDDeQHznqQ6+YGVIKfBcqzIyCInebccA0Xqt
+	FSf3gHC2Rt2EklT6nzL5ahpJFszethrXF25EwGaBFc+IcdvbGBVm8VT+yJI1rDuJVG49uSnCc5S
+	go9Vbp8Eu4gGcctSNz3FRrrlL85uir8=
+X-Received: by 2002:a05:6a20:2d2a:b0:1eb:3623:5a13 with SMTP id adf61e73a8af0-1eb36235af0mr42494884637.8.1737747284131;
+        Fri, 24 Jan 2025 11:34:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGSJA+1ljjIJRHkf0iGymCofgHmiawKyhAgfKNlM81XtiY2GY7mfJyGWC+MmnJGoRYnSLZeyA==
+X-Received: by 2002:a05:6a20:2d2a:b0:1eb:3623:5a13 with SMTP id adf61e73a8af0-1eb36235af0mr42494861637.8.1737747283801;
+        Fri, 24 Jan 2025 11:34:43 -0800 (PST)
+Received: from [10.81.24.74] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72f8a78ee97sm2264332b3a.166.2025.01.24.11.34.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jan 2025 11:34:43 -0800 (PST)
+Message-ID: <3311fea1-c7c0-4929-b92c-16ab933de33c@oss.qualcomm.com>
+Date: Fri, 24 Jan 2025 11:34:42 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YGsqUMJ013QKos6EkZQKxxckOeQLn9Bi
-X-Proofpoint-ORIG-GUID: YGsqUMJ013QKos6EkZQKxxckOeQLn9Bi
+User-Agent: Mozilla Thunderbird
+To: linux-wireless@vger.kernel.org
+Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        ath12k@lists.infradead.org, jjohnson@kernel.org, kvalo@kernel.org
+Subject: pull-request: ath-current-20250124
+Content-Language: en-US
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: JehPFMscJMnDQ1AdzQueT5xr5XCePga4
+X-Proofpoint-ORIG-GUID: JehPFMscJMnDQ1AdzQueT5xr5XCePga4
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-24_03,2025-01-23_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- spamscore=0 mlxlogscore=918 impostorscore=0 bulkscore=0 malwarescore=0
- mlxscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501240056
+ definitions=2025-01-24_08,2025-01-23_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0 impostorscore=0
+ clxscore=1015 suspectscore=0 bulkscore=0 lowpriorityscore=0
+ mlxlogscore=972 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501240134
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250124_000023_724799_AB2D73F1 
-X-CRM114-Status: GOOD (  13.40  )
+X-CRM114-CacheID: sfid-20250124_113448_088413_350B9B9D 
+X-CRM114-Status: UNSURE (   7.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,55 +115,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Current code in ath11k_mac_set_txbf_conf overrides nsts, which is
-incorrect as it confuses nss and nsts. nss is Number of Spatial
-Streams，nsts is Number of Space-Time Streams.
+The following changes since commit 146b6057e1fd28fb1a38d300bf76a38dfba7f9fb:
 
-As mentioned in Fixes: 55b5ee3357d7, the nss used when acting as a
-beamformee in VHT mode should be reported by the firmware and should not
-be greater than the number of receiving antennas - 1. The num_rx_chains
-related nss rather than nsts.
+  wifi: cw1200: Fix potential NULL dereference (2024-12-18 19:58:27 +0200)
 
-If STBC is enabled, nsts is greater than nss. About nss are mapped to
-nsts, refer to IEEE Std 802.11-2020: 19.3.11.9.2 Space-time block coding
-(STBC), Table 19-18—Constellation mapper output to spatial mapper input
-for STBC.
+are available in the Git repository at:
 
-Remove wrong overriding for nsts of VHT Beamformee STS Capability,
-acting DL MU-MIMO in VHT mode is working properly.
+  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-current-20250124
 
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04479-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+for you to fetch changes up to 64a1ba4072b34af1b76bf15fca5c2075b8cc4d64:
 
-Fixes: 55b5ee3357d7 ("wifi: ath11k: fix number of VHT beamformee spatial streams")
-Signed-off-by: Yu Zhang(Yuriy) <quic_yuzha@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 5 -----
- 1 file changed, 5 deletions(-)
+  wifi: ath12k: fix handling of 6 GHz rules (2025-01-24 10:32:44 -0800)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index f8068d2e848c..b375b4c06790 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5337,8 +5337,6 @@ static int ath11k_mac_set_txbf_conf(struct ath11k_vif *arvif)
- 	if (vht_cap & (IEEE80211_VHT_CAP_SU_BEAMFORMEE_CAPABLE)) {
- 		nsts = vht_cap & IEEE80211_VHT_CAP_BEAMFORMEE_STS_MASK;
- 		nsts >>= IEEE80211_VHT_CAP_BEAMFORMEE_STS_SHIFT;
--		if (nsts > (ar->num_rx_chains - 1))
--			nsts = ar->num_rx_chains - 1;
- 		value |= SM(nsts, WMI_TXBF_STS_CAP_OFFSET);
- 	}
- 
-@@ -5422,9 +5420,6 @@ static void ath11k_set_vht_txbf_cap(struct ath11k *ar, u32 *vht_cap)
- 
- 	/* Enable Beamformee STS Field only if SU BF is enabled */
- 	if (subfee) {
--		if (nsts > (ar->num_rx_chains - 1))
--			nsts = ar->num_rx_chains - 1;
--
- 		nsts <<= IEEE80211_VHT_CAP_BEAMFORMEE_STS_SHIFT;
- 		nsts &=  IEEE80211_VHT_CAP_BEAMFORMEE_STS_MASK;
- 		*vht_cap |= nsts;
--- 
-2.34.1
+----------------------------------------------------------------
+ath.git patch for v6.14-rc
 
+Fix an issue in the ath12k driver where 6 GHz operation no longer
+works with new firmware.
+
+----------------------------------------------------------------
+Aditya Kumar Singh (1):
+      wifi: ath12k: fix handling of 6 GHz rules
+
+ drivers/net/wireless/ath/ath12k/wmi.c | 61 ++++++++++++++++++++++++++---------
+ drivers/net/wireless/ath/ath12k/wmi.h |  1 -
+ 2 files changed, 45 insertions(+), 17 deletions(-)
 
