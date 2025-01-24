@@ -4,104 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53C55C02182
-	for <ath11k@archiver.kernel.org>; Thu, 23 Jan 2025 09:13:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2434BC02182
+	for <ath11k@archiver.kernel.org>; Fri, 24 Jan 2025 00:06:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8a4tOQ3adXhs+ywDF4eT+OTWG23DfBFoG6sF5Oz3mNk=; b=3I1TdnZDb4f6/ezTQRzscdY0mr
-	h0tTcHuv7BHJb6GmM4RET+J7ubmB3dOF7NQqR7cKdTLXWUya28m8KS8gp9kailB+FAQAe1exEkgpN
-	bsQTSNJYfwxak535p4SbICk8SPltUUyns5Hv2Rn9/aVIAE5WVJu52hZTd8vF/+rA1y2AzpB7XFQtK
-	if7Hf+xVcNSjE14ne2rN2vPH/8xdogXt1X+7tuaNTPpGUkMf0tuRSnTz3Rmd56jljWeXaGc6iUrD5
-	H17JTO1+CbwE15Fa3UoSNaZ17bXQhj8l1ol44t8zTE99JclkZlTia1p3U5/ALxHkvUpwUPdiZklVO
-	YU0TIeeA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	To:From:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=jTXMQLYLnzzl4tMhcmVu4eyUgjcdCEZafbd/djhgyDc=; b=XqRxAaBRFixaZi
+	JlDi8NGY2//EbOyTIxpdqGNlHad7Q1DEnGP7anZaxlZVnKOTdIYc9V9mzeaYojiBRT3c+mBQTT7si
+	DjLTcoeZSC3PZre9NW4uVc3h84mlFuyCf9PDY7/eobyYfLrDgHvDcAaiyMARk3TddfjjqIUH/Quh6
+	nVnuMsDJjTVLlVh6F6EkD7AyOKrx4OUOVMRJZlLzKEpN++fCVAnmogOs227ER89dKf2yFz/ns7rTS
+	WeLRwKOPEenFbMTr4slHJMrskSxpwLxN5EKccs1yQM3mRwE4x9+IcLxik4UgaJTHRrNfzLdhuGXJU
+	hvov3gameJdk9M8ztZRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tatGo-0000000C4Ys-47mO;
-	Thu, 23 Jan 2025 09:13:02 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tb7DC-0000000DYgH-2mzE;
+	Fri, 24 Jan 2025 00:06:14 +0000
+Received: from [38.43.111.254] (helo=mail.grupoarka.pe)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tatGm-0000000C4YF-0GZH
+	id 1tb7DB-0000000DYfq-0j2T
 	for ath11k@lists.infradead.org;
-	Thu, 23 Jan 2025 09:13:01 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50N6ViPq008795
-	for <ath11k@lists.infradead.org>; Thu, 23 Jan 2025 09:12:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8a4tOQ3adXhs+ywDF4eT+OTWG23DfBFoG6sF5Oz3mNk=; b=H4yF4hHGS5XGAaHa
-	eXbaqTmu1UoifyfrZMDHgcHun72I0pMM7DTY8fIcFasuzOyP/ZPOjZyr75SxhZLE
-	QlwDcf0/UJwoIGVIIn2SfY6PWp43qygvj5daTG184OKWgpEYO0VfEArDL6YkTlh5
-	CgS9dx9sVc3fs0JzGl5KS8K3mNDZ2tBPOa6mgyzx6BXT8oYd92ss63KSHexpqrAS
-	xfWdii5hFPoEVAB51Jj2LxVeFmg8T6B/eGKLkIHN1QfrGxyluqEMmU/gC1K2Ujxw
-	kuUBUA0vcbWQ00G3eJ48mZHl2D+UrDNU4U8SCNRFsuHLujmK+g38pxZZWXhZz5gW
-	rmBavQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44bgk1gbhh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 23 Jan 2025 09:12:59 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2163a2a1ec2so24055465ad.1
-        for <ath11k@lists.infradead.org>; Thu, 23 Jan 2025 01:12:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737623578; x=1738228378;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8a4tOQ3adXhs+ywDF4eT+OTWG23DfBFoG6sF5Oz3mNk=;
-        b=RZZNCnlVrkyFiSbvfywnIYyn3CJ1eqizzGTxIi+u5reeCoDjK9WarAmMlQDup4I1vh
-         E/mDKy2B0OrMc8uvtZB6uxotjLu5QiLLyt2JM0xsR38Vb2gii9h09KiGDF/UhTv1Ck35
-         1jUGr7UUC+1JeCEv85wTOBj4KUSSp7sfSriHBQ0pWLnlYuctlCLMK2drTNYWRWGiuMoE
-         LgGF9D3x4I7pq9bCnZjxVFraamtTCV6nKcbDDwvwblHOSxnT9L+WzyOOKo/Ob0aMC6RN
-         yeiC3h/N7S6B0IBR4Ts5POKc1HqRGWxH6y4oDhH/OjTiOqUX9qm6PTSEO7ipiuLde1Sr
-         rihA==
-X-Gm-Message-State: AOJu0YwNlss62VSDz0q43cZr83RdmGia7w3YpdaxwvZ9ZbQWOb/sk/E0
-	hSrJwQJTvtVKedBlibY8mi4E9LEw6FADlpedtd++HLWu2KVqdXWA+Yxj3zYzhW7u0iirx1HTSrO
-	N1HB0oQatNb88Pth7rye58+8y6JLmIZrx6MdyvMfR6QDXL131kEZXAosc/lJOwpKIrTON
-X-Gm-Gg: ASbGncvLRxcAS0abqplsynVzIMsEi2pSbGTIyiH44kYLiLFjdGne4zkmzKF9AOqPfYy
-	xj5JZsT8nhpLgJu/wgEjRbkBWqpw2SmbB+LPIw8zdbbxzIr8E7Tydd0wN+7Sb8eUiKX4ekbGzse
-	YdjJOey6BsxYYh8VfkOQTgMfgQdzwCZgoLOlVoZ0Tc/uwrFkpPOKXPDIiTnbXpMavM9UcOyfJ+G
-	WSQShVHHju4zXi9J2H7h0Lm6rmBFrvEFxAXxGPNnieIAlY8rVT3enGHA871X186iw6ldOu20K96
-	DVurFOtmutHFQskcXwRubPATnfXP
-X-Received: by 2002:a05:6a20:6a07:b0:1e1:aef4:9cd0 with SMTP id adf61e73a8af0-1eb2144d77emr42096864637.3.1737623578442;
-        Thu, 23 Jan 2025 01:12:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEE2hs/awa9LugQFA7OEJciPPr5uR5wwYgai2qpVEyLiso45KDH5OanzCXu5yBVvj7dW7Jj2Q==
-X-Received: by 2002:a05:6a20:6a07:b0:1e1:aef4:9cd0 with SMTP id adf61e73a8af0-1eb2144d77emr42096837637.3.1737623578055;
-        Thu, 23 Jan 2025 01:12:58 -0800 (PST)
-Received: from [10.152.202.18] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ab13c2769b6sm6198546a12.31.2025.01.23.01.12.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jan 2025 01:12:57 -0800 (PST)
-Message-ID: <305ea8dc-7754-4ad1-8b34-151efbe38bda@oss.qualcomm.com>
-Date: Thu, 23 Jan 2025 14:42:53 +0530
+	Fri, 24 Jan 2025 00:06:14 +0000
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.grupoarka.pe (Postfix) with ESMTP id 1629C1099AE63
+	for <ath11k@lists.infradead.org>; Thu, 23 Jan 2025 18:40:29 -0500 (-05)
+Received: from mail.grupoarka.pe ([127.0.0.1])
+ by localhost (mail.grupoarka.pe [127.0.0.1]) (amavis, port 10032) with ESMTP
+ id 4zVf-QkFuPJd for <ath11k@lists.infradead.org>;
+ Thu, 23 Jan 2025 18:40:28 -0500 (-05)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.grupoarka.pe (Postfix) with ESMTP id 5522610A43DED
+	for <ath11k@lists.infradead.org>; Thu, 23 Jan 2025 18:17:18 -0500 (-05)
+X-Virus-Scanned: amavis at grupoarka.pe
+Received: from mail.grupoarka.pe ([127.0.0.1])
+ by localhost (mail.grupoarka.pe [127.0.0.1]) (amavis, port 10026) with ESMTP
+ id z41sKKXzwVdr for <ath11k@lists.infradead.org>;
+ Thu, 23 Jan 2025 18:17:18 -0500 (-05)
+Received: from gosfordukfinanceltd.com (gateway [172.27.225.126])
+	by mail.grupoarka.pe (Postfix) with ESMTP id 2348C10A03A17
+	for <ath11k@lists.infradead.org>; Thu, 23 Jan 2025 17:58:50 -0500 (-05)
+From: Mr Simon <simon@gosfordukfinanceltd.com>
+To: ath11k@lists.infradead.org
+Subject: RE: RE: NEW BUSINESS PLAN
+Date: 23 Jan 2025 23:56:03 -0800
+Message-ID: <20250123235603.062EFBB670BDA5D3@gosfordukfinanceltd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] wifi: ath11k: fix memory leak in ath11k_xxx_remove()
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>, kvalo@kernel.org,
-        quic_jjohnson@quicinc.com
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-References: <20250123084948.1124357-1-quic_miaoqing@quicinc.com>
-From: Aditya Kumar Singh <aditya.kumar.singh@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20250123084948.1124357-1-quic_miaoqing@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: vCT7XhOcqucBszBhfbyXGWXbmEcidwyN
-X-Proofpoint-ORIG-GUID: vCT7XhOcqucBszBhfbyXGWXbmEcidwyN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-23_04,2025-01-22_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=746
- phishscore=0 spamscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
- clxscore=1011 suspectscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501230069
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250123_011300_107740_34C6A232 
-X-CRM114-Status: UNSURE (   9.65  )
+X-CRM114-CacheID: sfid-20250123_160613_342102_EB977E66 
+X-CRM114-Status: UNSURE (  -0.80  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,26 +70,26 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: ritchie@gosfordukfinance.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/23/25 14:19, Miaoqing Pan wrote:
-> The firmware memory was allocated in ath11k_pci_probe() or
-> ath11k_ahb_probe(), but not freed in ath11k_xxx_remove() in case
-> ATH11K_FLAG_QMI_FAIL bit is set. So call ath11k_fw_destroy() to
-> free the memory.
-> 
-> Found while fixing the same problem in ath12k:
-> https://lore.kernel.org/linux-wireless/20240314012746.2729101-1- 
-> quic_miaoqing@quicinc.com
-> 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04546-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
-> 
-> Signed-off-by: Miaoqing Pan<quic_miaoqing@quicinc.com>
-> ---
+Greetings,
 
-Reviewed-by: Aditya Kumar Singh <aditya.kumar.singh@oss.qualcomm.com>
+The GOSFORD FINANCE & LOANS LTD (UK) invites you to partner with=20
+us and benefit from our new Loan and Project funding program. We
+offer loans and funding for various good projects. This is=20
+however in the form of a partnership.
 
--- 
-Aditya
+Do you have projects and businesses that require funding? We are=20
+ready to give out Loans (big or small), at just 2% per annum for
+15 years. If you're interested in any of our proposals, then send=20
+me your mobile phone number so that I can write to you or give
+you a call for more details on our Loan Investment Funding Plan.
+
+I look forward to your response
+
+Mr Simon
+GOSFORD FINANCE &
+LOANS LTD
 
