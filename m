@@ -4,83 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C3F3C02192
-	for <ath11k@archiver.kernel.org>; Tue, 28 Jan 2025 15:33:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01420C02192
+	for <ath11k@archiver.kernel.org>; Tue, 28 Jan 2025 18:20:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
+	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=u3i0cNBwpceh1IScb1q0q5cjagdTOOAVxRkSUFaKaQo=; b=3PsNuNMxkMLCkX0b3T8PUuyUdq
-	+6jTwuMngl+I/KzBtvJAe2cJS4BQLKXdQb+dTLfmjAQjTwXDJ1vv0fWfd7lCJvk7gMwJEXUuaVNbO
-	qcjxYs/Gopaz6t3uYSlNgAL8tevLHNgAxVa43R/YS8aW1cDQZmIQQaAWo4szuWaiwg6hdTLwOgwlL
-	M6OVaB6589BZ5sf0MiAm87XnulX5gxtXUTrq2FtKJxg0MSY6ixFdgBL8HgXpjGSPjP4aQVQtyXc2O
-	DO9NjR7gJjF9/XuNl96P4mivy1+4B4w+TFCy+bmnBwoOP+5T4CTKlb5w7zY7551fqwA9G5CdNtiiW
-	mwWD6jqQ==;
+	bh=y0FSPDmkhR5E9SecqlPKheoWuTMfPr9YV9XShY2LJ2c=; b=QzVgw1AzNWj7J9kX4+ye2q9h8X
+	ajstTx1QLLsmcLt0+GUNOf0YLQ0zMe1GRmww+DsfJT/r19GpkbjKjNp8LF/V5HN2Kn2vvS3a25ZKB
+	kJhN3sRC/QUbrkZZN33zlyF2KvJ1WXYnDITevrNh8Rmwk2reavHiyZ3PhiXUuyRLGUrDm/zuQoiE8
+	FwSYrcWvFYZXy5T2xlfcvdhSRH7v6qoH3j6sQ8D5VDiuzuDLPmlFUgqlMsL1rKVyjroHQTjbf7JcK
+	t7UB6KENb3mW5baKFy7eQzfTgS4VnUoBl/rVqZHWrqTGuwDqLSer4ca/loGRRfs9tTZhJPAMbeeeQ
+	U/JP6jxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcnaV-000000059Vj-1xfG;
-	Tue, 28 Jan 2025 15:33:15 +0000
-Received: from mail-oi1-x230.google.com ([2607:f8b0:4864:20::230])
+	id 1tcqBv-00000005Yfx-2PjF;
+	Tue, 28 Jan 2025 18:20:03 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcnaT-000000059V9-1Jsy;
-	Tue, 28 Jan 2025 15:33:14 +0000
-Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3eba559611aso1579823b6e.0;
-        Tue, 28 Jan 2025 07:33:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738078391; x=1738683191; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u3i0cNBwpceh1IScb1q0q5cjagdTOOAVxRkSUFaKaQo=;
-        b=l7Nmca7x7SoBCXRqPrToWUbZZei90ubW0wDL7wUfi4MNB2rFlgq0yPXUoBl0j8C13L
-         H+ZfybjyEYHHxGIfMOrgvVcAWJsoKIg694v1nXMT8ixvXDU++ur4dGG7akDnDwkv2uVb
-         WgcM0D8AhuZVw/WjDsTnG/ju0KQqUOty5PkJo6c+POtfocC65jp7WGNwa3ysvP5+X1mX
-         55p634gBS8rvcXVr/nSda6uFT8edKp4A/Rypt0QbMKF84w9DtA8mEpVeln5/xIVSB7zj
-         kcYX9hbAPzhIOa/FnUk1ZQys0iGIIsRFyUH/vorV+hmdq3ex5HznCOIK4nbSMEpq10we
-         ORLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738078391; x=1738683191;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u3i0cNBwpceh1IScb1q0q5cjagdTOOAVxRkSUFaKaQo=;
-        b=RjqpTC/AzHdQRPuFU1zHdKsy59MGWc4c0JR6DFuHlF9xGioynhYi+fB8FaAZV+g81f
-         vIvY0o+JubF/wAZqEXega09LAO90YYxiObGRu/Q6yCbEzHByZ1Nlq1z2RWbjNVHE7ltU
-         SGkgHrY68rTF51CrCITAr4zZjLND+MBMceSc5dEiHNnegkrFpiLuKHp3/qj0INAf6mtR
-         0N/+YKRGwL/5Vo9L7/C2Q7GM/O7NCpB6u2TJYp+px8hZkP3wzAcWBcHpt2gaRsgl6pZm
-         KvWrh3m4qnNyUQRIg0iQRd59qeAdN8doAgjWHCy9BkeFpBLpuEYeqSU1cc+1N2lu4yXG
-         BW9w==
-X-Forwarded-Encrypted: i=1; AJvYcCVaRjfvMFIZKH6/6E2D6LBPuM5nIm8z0JMR8BDnek2OJd/IZj3cDLEB2KDayHzZoxWOAl2zAMdN@lists.infradead.org, AJvYcCWFGhEGy7EKtKR5GmM9SGr8PS0jIB7UPB++OIao38nTZDGS+/GL26FFwcdGjyz+b/GjGcMi454=@lists.infradead.org, AJvYcCWWjf3VVxP1HyfR49I+n6GQj5rfnGTZ8DAO18R/3lZdYHnXfNEFJr3vS1wUUqbhpDMFq8ZfzE70@lists.infradead.org
-X-Gm-Message-State: AOJu0Ywon9tBg3JYX+PKvKlZolU3eTgt+tQ03d+cr1gf0xI7AQH3uzpf
-	9HB9bF6ovL4yet6tDZ6E6X/LmZW2MIjMFNq6iH+ErgLG1bB6s+/Cqsqb/uE3J62D+6uzg40nTha
-	k0CxAcHWEG48zqhC4TkYPDoEoZ/Y=
-X-Gm-Gg: ASbGncsIgdTtLCDr66iS6O8EJmiVtm4CkH/uCXvxa2dxYoPBQVHQ9Z1/aQ7KisGwk0k
-	M594z+b11amPG5S5ffX0c872aPWXHKth12Y4EJwcoE7OJKI5ZOOLcZOxLmprcZ/ye8jdNVRkBZJ
-	S3oQ6gIJdWsisnwdzleCJ43pNQN83fiw==
-X-Google-Smtp-Source: AGHT+IFVgUHgBoQ+P1RHpThk6E7tuYE2c27FpSojYlMmoJXQ9+b1GOH73A4mh7zQsm6lyLw50vEzJQhYrxAYXKrTNO0=
-X-Received: by 2002:a05:6871:a4c7:b0:29e:6547:bffa with SMTP id
- 586e51a60fabf-2b1c0ac9ac3mr24384623fac.21.1738078390683; Tue, 28 Jan 2025
- 07:33:10 -0800 (PST)
+	id 1tcqBr-00000005Yex-2tpt;
+	Tue, 28 Jan 2025 18:20:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 18661A40D99;
+	Tue, 28 Jan 2025 18:18:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52162C4CED3;
+	Tue, 28 Jan 2025 18:19:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738088398;
+	bh=IJ4s4wbxmvi7WlbVja1PWuObnoO89o4CJKiawUCQvz8=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=HilBwh4WeFTUFHEmit/Mtn0GULsgGNjf02f2Otr0gm/p0PhwvGQtsKmz+KGpZB8TL
+	 lZkRs6lrmOFBmR7sbKXgRFhbwC7hCKkQecwzOTEw9fHau9MnZWA0HHTxUdiWMnQJG1
+	 v7azmU736wBqlw25+pBrTn+6+AqH+gKVXooxb1uWwtAHH2Cc1GZy/elILpxdVnQu/i
+	 Hh4dVhb5JrL/X1BXIauWV3uPNIBxir6B3fJYywT0dnSK3d/jhzP/cC3iVmNOT6XDVB
+	 9Z+F2Ove635aEWc+hLsJa6kdSbAISfTWEbDZAXH/fjVeSWsPy3Ms7Foc8o71VDIjr9
+	 f0EiYkPbKy1VA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <87wmefguqt.fsf@kernel.org> <e64c416a975d8fcc4e245db78f31b0daef358e89.camel@tuxdriver.com>
-In-Reply-To: <e64c416a975d8fcc4e245db78f31b0daef358e89.camel@tuxdriver.com>
-From: Dave Taht <dave.taht@gmail.com>
-Date: Tue, 28 Jan 2025 07:32:58 -0800
-X-Gm-Features: AWEUYZk8T3Rc6w2pDYe87v7mGJwmiOTftIhyMvPxPpZ53niVOGUcaBFs4HcjLik
-Message-ID: <CAA93jw7wA2SAnBYfWBVHJQPA_T5+TOQ=vpr+rC64p1=OxbuuRw@mail.gmail.com>
-Subject: Re: Stepping down as maintainer
-To: "John W. Linville" <linville@tuxdriver.com>
-Cc: Kalle Valo <kvalo@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, ath12k@lists.infradead.org, 
-	ath11k@lists.infradead.org, ath10k@lists.infradead.org, 
-	Johannes Berg <johannes@sipsolutions.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: Re: pull-request: ath-current-20250124
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <3311fea1-c7c0-4929-b92c-16ab933de33c@oss.qualcomm.com>
+References: <3311fea1-c7c0-4929-b92c-16ab933de33c@oss.qualcomm.com>
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org, jjohnson@kernel.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <173808839535.1321818.16289363523697290711.kvalo@kernel.org>
+Date: Tue, 28 Jan 2025 18:19:57 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250128_073313_351547_563CAAE5 
-X-CRM114-Status: GOOD (  17.46  )
+X-CRM114-CacheID: sfid-20250128_101959_799439_E8C59BC9 
+X-CRM114-Status: UNSURE (   9.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,43 +72,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 28, 2025 at 7:18=E2=80=AFAM John W. Linville <linville@tuxdrive=
-r.com> wrote:
->
-> On Tue, 2025-01-28 at 11:20 +0200, Kalle Valo wrote:
-> > Hi everyone,
-> >
-> > I'm stepping down from all my maintainer roles. My first commit
->
-> Well, my friend, I suppose the time has come for you to move on to
-> something else? I truly hope that something exciting and rewarding
-> awaits you!
+Jeff Johnson <jeff.johnson@oss.qualcomm.com> wrote:
 
-I didn=C2=B4t know John was still on the list! Hi John! I have enjoyed your
-return to retro-computing elsewhere.
+> The following changes since commit 146b6057e1fd28fb1a38d300bf76a38dfba7f9fb:
+> 
+>   wifi: cw1200: Fix potential NULL dereference (2024-12-18 19:58:27 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-current-20250124
+> 
+> for you to fetch changes up to 64a1ba4072b34af1b76bf15fca5c2075b8cc4d64:
+> 
+>   wifi: ath12k: fix handling of 6 GHz rules (2025-01-24 10:32:44 -0800)
+> 
+> ----------------------------------------------------------------
+> ath.git patch for v6.14-rc
+> 
+> Fix an issue in the ath12k driver where 6 GHz operation no longer
+> works with new firmware.
+> 
+> ----------------------------------------------------------------
+> Aditya Kumar Singh (1):
+>       wifi: ath12k: fix handling of 6 GHz rules
+> 
+>  drivers/net/wireless/ath/ath12k/wmi.c | 61 ++++++++++++++++++++++++++---------
+>  drivers/net/wireless/ath/ath12k/wmi.h |  1 -
+>  2 files changed, 45 insertions(+), 17 deletions(-)
 
->
-> You have done a great job in this maintainer role, and I am very
-> certain that you will be missed. Few people realize how thankless such
-> a role can be, but I do. I hope you will now have some some time to
-> enjoy your sauna as you consider what comes next for you.
+Pulled, thanks.
 
-I too, thank you for your service in this role, and hope you find
-something rewarding to do.
+3319569bf9d8 Merge tag 'ath-current-20250124' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath
 
->
-> Thanks for the job you have done.
->
-> Terveisin!
->
-> John
-> --
-> John W. Linville        Someday the world will need a hero, and you
-> linville@tuxdriver.com          might be all we have.  Be ready.
->
->
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/3311fea1-c7c0-4929-b92c-16ab933de33c@oss.qualcomm.com/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
---=20
-Dave T=C3=A4ht CSO, LibreQos
 
