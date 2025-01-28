@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01420C02192
-	for <ath11k@archiver.kernel.org>; Tue, 28 Jan 2025 18:20:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B9D4C02193
+	for <ath11k@archiver.kernel.org>; Tue, 28 Jan 2025 22:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:
-	References:In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=y0FSPDmkhR5E9SecqlPKheoWuTMfPr9YV9XShY2LJ2c=; b=QzVgw1AzNWj7J9kX4+ye2q9h8X
-	ajstTx1QLLsmcLt0+GUNOf0YLQ0zMe1GRmww+DsfJT/r19GpkbjKjNp8LF/V5HN2Kn2vvS3a25ZKB
-	kJhN3sRC/QUbrkZZN33zlyF2KvJ1WXYnDITevrNh8Rmwk2reavHiyZ3PhiXUuyRLGUrDm/zuQoiE8
-	FwSYrcWvFYZXy5T2xlfcvdhSRH7v6qoH3j6sQ8D5VDiuzuDLPmlFUgqlMsL1rKVyjroHQTjbf7JcK
-	t7UB6KENb3mW5baKFy7eQzfTgS4VnUoBl/rVqZHWrqTGuwDqLSer4ca/loGRRfs9tTZhJPAMbeeeQ
-	U/JP6jxg==;
+	bh=N8M8lrf8noK+Ne0YHkld4BpzCrLtpOos1EWzqxeT/r8=; b=yl4DMAocXfqEa2nF7H9NDQHaSb
+	lBFGsx+Jw2bDTaJuTTAGKMoA8d1921CMyCG6993uu2uWTmgn6xGdVjHHhF9uEqYuHJDLkNIULE55h
+	z4wosts2hkXs8mIne+1y3j/gHqyc9GMKFZ1W0mRpX4Xsu0VCc0+Pc3kKe/YJcyWQSCaP2hqxG2wQ+
+	ziIQAipICVFfs1T9sxsn505vxgfxps+vygjWpZrJfz6V5YNPNeXyu+j5BCEdckKwBywHHAu6cDIOb
+	Ok246Foxpfob6l6LbBPgzJHXkuHymze7AeaubBsEWoosp2rFrdYsqalhRb0ExPTvzh2qVHc+WxTKG
+	zTboPEvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcqBv-00000005Yfx-2PjF;
-	Tue, 28 Jan 2025 18:20:03 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1tcu0J-00000005vRg-0yrM;
+	Tue, 28 Jan 2025 22:24:19 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcqBr-00000005Yex-2tpt;
-	Tue, 28 Jan 2025 18:20:01 +0000
+	id 1tcu0F-00000005vQi-45OR;
+	Tue, 28 Jan 2025 22:24:17 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 18661A40D99;
-	Tue, 28 Jan 2025 18:18:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52162C4CED3;
-	Tue, 28 Jan 2025 18:19:57 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 07CF0A4134E;
+	Tue, 28 Jan 2025 22:22:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EC1EC4CED3;
+	Tue, 28 Jan 2025 22:24:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738088398;
-	bh=IJ4s4wbxmvi7WlbVja1PWuObnoO89o4CJKiawUCQvz8=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=HilBwh4WeFTUFHEmit/Mtn0GULsgGNjf02f2Otr0gm/p0PhwvGQtsKmz+KGpZB8TL
-	 lZkRs6lrmOFBmR7sbKXgRFhbwC7hCKkQecwzOTEw9fHau9MnZWA0HHTxUdiWMnQJG1
-	 v7azmU736wBqlw25+pBrTn+6+AqH+gKVXooxb1uWwtAHH2Cc1GZy/elILpxdVnQu/i
-	 Hh4dVhb5JrL/X1BXIauWV3uPNIBxir6B3fJYywT0dnSK3d/jhzP/cC3iVmNOT6XDVB
-	 9Z+F2Ove635aEWc+hLsJa6kdSbAISfTWEbDZAXH/fjVeSWsPy3Ms7Foc8o71VDIjr9
-	 f0EiYkPbKy1VA==
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1738103054;
+	bh=WEytLMAl7cwCDJw/5DRZVkqcz9UySDzwuhOZNmFaZTs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=upPXOBtFrPxgXwmb7BJKBgHroVTxe4QEsdbSuLn7DexDjFoeMtlnPE79wU4LFs3Uc
+	 7BcQbtvsc/ZDUiwi/yv4h19+0XeYKCdCCvj1M55FMF1+OXse+WA5Llbn7RfcE2ecOm
+	 omrMJeFFTupyJRMfm0+9DzmDatGzptrKL8bQuBvAy9mQaeldC+va9foKb06x+OOY0+
+	 BuuYf4v+HaTf2NNUj31WN7DXonSqQiNbM3evFN0BHfHETZhD2AlpCOKzeFCPVRDjp9
+	 g5MDn2D6aLJQE0PAN3Oo9qZEYwstcs2ZekRLsWbo7CbVTwcjSzmjl54BYPE/rnJLpj
+	 BfXuNublVg8kg==
+Date: Tue, 28 Jan 2025 14:24:13 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ ath12k@lists.infradead.org, ath11k@lists.infradead.org,
+ ath10k@lists.infradead.org, Johannes Berg <johannes@sipsolutions.net>
+Subject: Re: Stepping down as maintainer
+Message-ID: <20250128142413.3a86418e@kernel.org>
+In-Reply-To: <87wmefguqt.fsf@kernel.org>
+References: <87wmefguqt.fsf@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: pull-request: ath-current-20250124
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <3311fea1-c7c0-4929-b92c-16ab933de33c@oss.qualcomm.com>
-References: <3311fea1-c7c0-4929-b92c-16ab933de33c@oss.qualcomm.com>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org, ath12k@lists.infradead.org, jjohnson@kernel.org
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <173808839535.1321818.16289363523697290711.kvalo@kernel.org>
-Date: Tue, 28 Jan 2025 18:19:57 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250128_101959_799439_E8C59BC9 
-X-CRM114-Status: UNSURE (   9.37  )
+X-CRM114-CacheID: sfid-20250128_142416_078208_A70C1623 
+X-CRM114-Status: UNSURE (   6.92  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -72,41 +72,15 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jeff Johnson <jeff.johnson@oss.qualcomm.com> wrote:
+On Tue, 28 Jan 2025 11:20:26 +0200 Kalle Valo wrote:
+> Hi everyone,
+> 
+> I'm stepping down from all my maintainer roles. My first commit
+> feed9bab7b14 ("spi: omap2_mcspi PIO RX fix") to the kernel was back in
+> 2008 for v2.6.24 so I have been here for a long time. Thank you everyone
+> who I have worked with, there are too many to list here.
 
-> The following changes since commit 146b6057e1fd28fb1a38d300bf76a38dfba7f9fb:
-> 
->   wifi: cw1200: Fix potential NULL dereference (2024-12-18 19:58:27 +0200)
-> 
-> are available in the Git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-current-20250124
-> 
-> for you to fetch changes up to 64a1ba4072b34af1b76bf15fca5c2075b8cc4d64:
-> 
->   wifi: ath12k: fix handling of 6 GHz rules (2025-01-24 10:32:44 -0800)
-> 
-> ----------------------------------------------------------------
-> ath.git patch for v6.14-rc
-> 
-> Fix an issue in the ath12k driver where 6 GHz operation no longer
-> works with new firmware.
-> 
-> ----------------------------------------------------------------
-> Aditya Kumar Singh (1):
->       wifi: ath12k: fix handling of 6 GHz rules
-> 
->  drivers/net/wireless/ath/ath12k/wmi.c | 61 ++++++++++++++++++++++++++---------
->  drivers/net/wireless/ath/ath12k/wmi.h |  1 -
->  2 files changed, 45 insertions(+), 17 deletions(-)
+Thank you for all the hard work over the years, Kalle!
 
-Pulled, thanks.
-
-3319569bf9d8 Merge tag 'ath-current-20250124' of git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/3311fea1-c7c0-4929-b92c-16ab933de33c@oss.qualcomm.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+You will certainly be missed
 
