@@ -4,87 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2E6BC0218D
-	for <ath11k@archiver.kernel.org>; Wed, 29 Jan 2025 09:24:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF61CC0218D
+	for <ath11k@archiver.kernel.org>; Wed, 29 Jan 2025 17:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To
-	:From:Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=lihPpJHFlhu1T9GX5rKbX3/sLgkFoYvwNag8T5iMjEQ=; b=WKvhWvsfzo2PC7HR+ThtlKIuV/
-	AaMhBpg79SxZxGqv6apk779La2jb0BsZeM0JIurvFmvDeECLfK07mjml+nVkQLcJWZ0/sOi6t6/L5
-	xwtfSGkBCS3OGIPKZ17yG9AAcUUEr1iXu0pC+KWKBE4D+xhRIVwD+xK8rniYbhfwcRAqKinu5D9Jw
-	EkqlmA14hFjqe25WqtVKjWpM4NnOos76FB7wKR74QKmGyUaM9DCd8s2Z3XjHglcjQTC5UzK5Lxe7A
-	/G0m+Yy3KYBaXS4mlkv9qBunSk01xs65SLb4gFvDDn2UnKsWvCI4xN41T1CTyV8cJqG0beD5z6+AR
-	xfaPR9QA==;
+	bh=CAK5AYU2DDiO34LL96EmarD63aQQ31iXDXG5ZFzJuwE=; b=KYTUIgsjDUMl4MK7rch2wqlzpK
+	8ZqZrg390hgbl96RcxmmvdY8gA/8ELBNesL5u8u4bXIH/cDhHQtd9rd4Sw5S6Vy1H/j/CQtia5w+A
+	iJiWOBuHGUcqrSqDsKXtlv4stEMJgcojRcnjElM/5CZvQKjs8M7ouI5Mx7ipav2U5wuc6Q4iNZ4NY
+	Yw0WOVMhg2VYZMVnoDhh/+n/S9pUL69pe+mfX1xFHnZ4MfeTk6ee/MFR/alREnMkRKc2ndBYc27G1
+	P8IacOu+o1vJfWRtVbZLnvoobzhFJJG9vYzLk2YuWUd3oKzsTcwlkWcrtPH2CTy2Iji2j0vnYpgY7
+	6M0FBnhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1td4Io-00000006e18-21DQ;
-	Wed, 29 Jan 2025 09:24:06 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1tdBTu-00000007S1l-2rl6;
+	Wed, 29 Jan 2025 17:04:02 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1td4Im-00000006dzr-1rwr
+	id 1tdBTt-00000007S0t-03J5
 	for ath11k@lists.infradead.org;
-	Wed, 29 Jan 2025 09:24:05 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-38be3bfb045so323914f8f.0
-        for <ath11k@lists.infradead.org>; Wed, 29 Jan 2025 01:24:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738142643; x=1738747443; darn=lists.infradead.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lihPpJHFlhu1T9GX5rKbX3/sLgkFoYvwNag8T5iMjEQ=;
-        b=BducrVIhdqAA8nenKzus0OUDUD8BicjAVja4VMzfgOdeIBi676W8tDL8RWizLMn/AF
-         h8drh1kpFWLRrwD4ZsfhuCgb6ArkEGcJFMN//WqR7Mc0hv0KOgn16s8vJWFkM1xBEKRJ
-         Ok2lN95ovU2S8lUQ22dtFOje9WlJxnurKohf3JbBAF1qQG0rcUzaLgPIs0uquuL0sTd1
-         5jESOLEZWCD2+e20W7G41hXRU9dOi1JE4O43Dp1zFWTUzpvCpdsN6sRMGsnQSSRPymvO
-         mXmKISV+jZnGE9mxlbPPtLsXwpR9exhT2fQn/SpFbOE14PhKDEwIFK2yct1Vsx38eG+f
-         Wq8g==
+	Wed, 29 Jan 2025 17:04:02 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50TGrsRD013771
+	for <ath11k@lists.infradead.org>; Wed, 29 Jan 2025 17:03:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	CAK5AYU2DDiO34LL96EmarD63aQQ31iXDXG5ZFzJuwE=; b=ZlurnVUudc0Zqe8j
+	c8uwC77wvubduvQ1oYYqpXVOTNBifmsCFZNFbwhjbcrwsVXZcaiepmWuA3tDiHdE
+	Q+/4ncDqehEnBsRCyzaEmb9vPe6ngeh9kQoLf6nvh0gTAVjNwBtYpCBz5S/Qs3x7
+	noFw7OgY8fs8q1R0JL079Xcoc+e68yOSnV0rQF8CmprNcWVjxkxVWZybtiqXUhLQ
+	finVU1/C5WBEhGaTRL3UNBZfhQbt8H7jnO3XgytASXz4+eXSr6S7yj/8RBTMEd/J
+	Z1vgsvNIox/u+3B7yiodvoL9ku6afkeHsOODOQccX3j3wca5R5mHpuTuvnx07mpF
+	RfEGBg==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44fr8kg0tf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Wed, 29 Jan 2025 17:03:59 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-2ef35de8901so13094441a91.3
+        for <ath11k@lists.infradead.org>; Wed, 29 Jan 2025 09:03:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738142643; x=1738747443;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lihPpJHFlhu1T9GX5rKbX3/sLgkFoYvwNag8T5iMjEQ=;
-        b=BOnOsbm1T5lRA9NbXL8a41Oh+UU4h25H+v8DnnhWpDviOVeUtT5I+ngtWTc4uoy226
-         Hng3AwwWtJ/POeIzhsHfAPctWbRn4C+1t5KHJxuNtuCK4ML26AERJYAiCA59vC8RJqui
-         0oddXGlR6/v51Kxter0U7d4xUtWigwmctvwVwBbr24A8cIxLWa6SY9xG0FckT5BVa/gn
-         8f4TB+1bXXhh3/asUBhHGzONN/BGxilEdRgbiTbRKv9BiyEbpKsZQPdE3z5ceqxptr9K
-         4hnk7wl7vOhlL5yrpOYvrOd9QwRERMqDY3eSKBSmEfu39dsuA2k3ttDdcmUopSwHde/x
-         w/ew==
-X-Forwarded-Encrypted: i=1; AJvYcCUSXStRVxFukSyrylSvAK3dhbmrbR7h32769cqEYdVL4H/qYO5X5gowo2gsmem6GoV/PXeyRm4=@lists.infradead.org
-X-Gm-Message-State: AOJu0YychKmfMrBFrPUzUyi1RZ0jMwvIVOS+9Uwtjwoq/iA/EHJZ099J
-	Z9EQcdojzSu5JiNbqwSiN+Apr/0lfjSw6RuP5AzzIf2YgzDZn5Uz
-X-Gm-Gg: ASbGncv5qGR+6TI4E+Lum7CMsP6xzow053HdfiuqaA+MsJS+ZK7L8PhBC1jJnnQfTz0
-	rFWLijm3HSIldLqsyqaudEi4TlpLVuH3/o4ICpe4VeaFAWMxQDmzufKfQklRTFn0ncgbLDDWtRi
-	BHMwNXdGrMaHfecaEgaGQuyiczD0haAUtCxRM2kR2zRhr3pn0beWElZsEf1CgVaHOU01dl3MaZb
-	lf3mCALL1rwXzHb81O5DoLEmMUq17fbJ86WfB80eqSFaIiLM4VS/WdXj5nGZBAlYJOIR66Hpydm
-	ETm9vvhiP3ST/rFhsnesGmQqdIVrJAveFw==
-X-Google-Smtp-Source: AGHT+IH4Y4nWWV0fiFq9wMrFsPxfI+tlpUXenEohsMWeQWv89IPcCB4aUODTmHi762tZVXXaRACUYA==
-X-Received: by 2002:a5d:5982:0:b0:386:3afc:14a7 with SMTP id ffacd0b85a97d-38c49a26177mr5242204f8f.7.1738142642823;
-        Wed, 29 Jan 2025 01:24:02 -0800 (PST)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438dcc2a96dsm15705645e9.19.2025.01.29.01.24.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jan 2025 01:24:02 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 29 Jan 2025 10:24:01 +0100
-Message-Id: <D7EG56E1I0SX.3BZRTM7N6CQ44@gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: remove peer extra rssi update
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Jeff Johnson" <jeff.johnson@oss.qualcomm.com>,
- <ath11k@lists.infradead.org>
-Cc: <linux-wireless@vger.kernel.org>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+        d=1e100.net; s=20230601; t=1738170238; x=1738775038;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CAK5AYU2DDiO34LL96EmarD63aQQ31iXDXG5ZFzJuwE=;
+        b=LfyrhdmdKeK/mnEO4Tm2C1Xdh/Xa3Jj8JbzzbsEY9FJ303LNWwBwVjQ3pgQ0e5aqHl
+         +ll5uulrpHUJYoGylErz/o6UsgMjTudyPOwBundjbuOaLx95if9tXNZZ4rnDFhEakFbj
+         0MpBDGt97rHYhpjhHHjbbJKYMB4TrRuJilr9AI/y1nzOAp843VhshUJ/3hpiI+e4EAfD
+         bl5s7bj9I9zmrUUjgWlHk8wl3YONmJG4Vj14gMXgPHbTzRRGW5NNHvdLwcEVFW6ZQPzF
+         UCwDdQTH8+rLftoGVx57sJj+9LfteOMY8lhUHLWUKaIwKVJZEb9XABgG7HlGgBWL3Mqg
+         cA0A==
+X-Gm-Message-State: AOJu0YwDFcZMJdulbUz3aF2XN+Alt56DHh6m7G274nX0aJPyYjGRULgd
+	Uo6Q73A7WjOdeFDNAIDudh/q4QvAc9CeB49IYlzm7GWONdRw5kOviV2CtteFAlWN1P1IzbgGAtp
+	TXARjq9aA+x3cVwODguOfb8KllDk3fjuT1vHe0IzNLlhD7yPVcra40/Wt0bBr
+X-Gm-Gg: ASbGnctCs8umbffwkk3EkJMFDfMEVBNYf42JaPj01mFSS9VXgxU9V50Q6fEaDPj5Z9p
+	39mY+vUIRyfieQDAvQV2y+oVplHy+MhHMqdmsDQu6UL6W+5pbJr5+4w/Gw5mppS9Qaxu9dWPNj1
+	RXOxwlcuwOqlNxF+iufuzhFW7PH0g/rkdkbahDFYjol1RdS3lg4wPaBk3dSgquPGO1vJH/RVD94
+	IHNpdsde0oeOBhdbDqeGH6HcW6M8W5wqr4VDHHW5XIdnD7J51rebP0szGUZcFpbQP9KfI86/vdI
+	nLQq4rEtTXoYg4u7vK6EJBHivqhZLTMx3Th5ZWBncw==
+X-Received: by 2002:a17:90b:280c:b0:2ee:741c:e9f4 with SMTP id 98e67ed59e1d1-2f83abb8dd5mr6017608a91.11.1738170238411;
+        Wed, 29 Jan 2025 09:03:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFg6cb6j47+6W/XghU3MY/1geDUu11NiKBdSmfkh2S7dK3AUQGJDRMumaRzJ36rF68pka8dPA==
+X-Received: by 2002:a17:90b:280c:b0:2ee:741c:e9f4 with SMTP id 98e67ed59e1d1-2f83abb8dd5mr6017578a91.11.1738170238078;
+        Wed, 29 Jan 2025 09:03:58 -0800 (PST)
+Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f83be3622bsm1988366a91.46.2025.01.29.09.03.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 09:03:57 -0800 (PST)
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+To: ath11k@lists.infradead.org, Nicolas Escande <nico.escande@gmail.com>
+Cc: linux-wireless@vger.kernel.org
+In-Reply-To: <20250117181953.3375273-1-nico.escande@gmail.com>
 References: <20250117181953.3375273-1-nico.escande@gmail.com>
- <d5eda793-c7e9-453f-9dbc-07e5df73c47d@oss.qualcomm.com>
-In-Reply-To: <d5eda793-c7e9-453f-9dbc-07e5df73c47d@oss.qualcomm.com>
+Subject: Re: [PATCH] wifi: ath11k: remove peer extra rssi update
+Message-Id: <173817023736.726123.12379675127279342671.b4-ty@oss.qualcomm.com>
+Date: Wed, 29 Jan 2025 09:03:57 -0800
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.0
+X-Proofpoint-ORIG-GUID: j0lrhICx7tYlXYYlbmKIf6kdPvVRHNtU
+X-Proofpoint-GUID: j0lrhICx7tYlXYYlbmKIf6kdPvVRHNtU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-29_03,2025-01-29_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ mlxscore=0 bulkscore=0 lowpriorityscore=0 mlxlogscore=807
+ priorityscore=1501 spamscore=0 phishscore=0 suspectscore=0 impostorscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501290136
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250129_012404_481287_C9483F79 
-X-CRM114-Status: UNSURE (   9.62  )
+X-CRM114-CacheID: sfid-20250129_090401_176129_1939A960 
+X-CRM114-Status: UNSURE (   9.87  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,33 +115,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue Jan 28, 2025 at 11:29 PM CET, Jeff Johnson wrote:
-> On 1/17/2025 10:19 AM, Nicolas Escande wrote:
->> Commit b205ce4c266c (ath11k: support avg signal in station dump) added a=
-n
->
-> I'll fixup this reference to address the checkpatch error:
-> ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+=
- chars of sha1> ("<title line>")' - ie: 'Commit b205ce4c266c ("ath11k: supp=
-ort avg signal in station dump")'
-> total: 1 errors, 0 warnings, 0 checks, 8 lines checked
 
-Arf I can see that the commit format is wrong but I wonder why checkpatch d=
-idn't=20
-arn me. Do I need more options set on the cmdline ?
+On Fri, 17 Jan 2025 19:19:53 +0100, Nicolas Escande wrote:
+> Commit b205ce4c266c (ath11k: support avg signal in station dump) added an
+> extra assignment of arsta->rssi_comb in ath11k_dp_rx_update_peer_stats
+> when it added the average rssi support. So lets keeps only one by removing
+> the legacy assignment so the two statements about rssi stay next to each
+> other. Compile tested only.
+> 
+> 
+> [...]
 
-	scripts/checkpatch.pl mail/0001-wifi-ath11k-remove-extra-rssi-update-in-at=
-h11k_dp_rx.patch
-	total: 0 errors, 0 warnings, 0 checks, 8 lines checked
+Applied, thanks!
 
-	mail/0001-wifi-ath11k-remove-extra-rssi-update-in-ath11k_dp_rx.patch has n=
-o obvious style problems and is ready for submission.
->
->> extra assignment of arsta->rssi_comb in ath11k_dp_rx_update_peer_stats
->> when it added the average rssi support. So lets keeps only one by removi=
-ng
->> the legacy assignment so the two statements about rssi stay next to each
->> other. Compile tested only.
->>=20
->> Signed-off-by: Nicolas Escande <nico.escande@gmail.com>
+[1/1] wifi: ath11k: remove peer extra rssi update
+      commit: bee577165a0a375a1d47d8ddef1c321e0f7dd6c8
+
+Best regards,
+-- 
+Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+
 
