@@ -4,83 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB412C02192
-	for <ath11k@archiver.kernel.org>; Wed, 29 Jan 2025 09:23:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2E6BC0218D
+	for <ath11k@archiver.kernel.org>; Wed, 29 Jan 2025 09:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To
+	:From:Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=dkVtFYf2MVcLNdpgF/1FM6AyzPrPgahv/4qNthU6GjE=; b=YEGscvSno4w281ibqi/RPyKEqc
-	Nr6R/7PngM9sg67iUk0fGLlFaKoA9cqygAFTsnj/vTfcaVBpWQEI3YBCH98VyUqut3NUv3etW0lc2
-	0upQFtncA94LG/u4pAAJ9Vlc1l7Bn/zMxHT0lMv1VVBHtsVYn8M/UNstWXRi9xBluHGQFYiyQUCFC
-	SaXfCwn/glLLaWKlV5xQEY6tmbUsLcvxWCpG3GgtN8imfz4SKb9iKnHm0i5CqFSK8QMccABfcoWYX
-	P4+My/TXhXYBC0qyjncBc7+3p0ICWk9wt4+LbQyUMeGAfqVZIDxytC3/OM/Je4GNzKSnae8FFZpv3
-	pYYeaA6A==;
+	bh=lihPpJHFlhu1T9GX5rKbX3/sLgkFoYvwNag8T5iMjEQ=; b=WKvhWvsfzo2PC7HR+ThtlKIuV/
+	AaMhBpg79SxZxGqv6apk779La2jb0BsZeM0JIurvFmvDeECLfK07mjml+nVkQLcJWZ0/sOi6t6/L5
+	xwtfSGkBCS3OGIPKZ17yG9AAcUUEr1iXu0pC+KWKBE4D+xhRIVwD+xK8rniYbhfwcRAqKinu5D9Jw
+	EkqlmA14hFjqe25WqtVKjWpM4NnOos76FB7wKR74QKmGyUaM9DCd8s2Z3XjHglcjQTC5UzK5Lxe7A
+	/G0m+Yy3KYBaXS4mlkv9qBunSk01xs65SLb4gFvDDn2UnKsWvCI4xN41T1CTyV8cJqG0beD5z6+AR
+	xfaPR9QA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1td4IT-00000006duF-1Obb;
-	Wed, 29 Jan 2025 09:23:45 +0000
-Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
+	id 1td4Io-00000006e18-21DQ;
+	Wed, 29 Jan 2025 09:24:06 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1td4IQ-00000006dtg-3LgP;
-	Wed, 29 Jan 2025 09:23:43 +0000
-Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-2f83a8afcbbso762916a91.1;
-        Wed, 29 Jan 2025 01:23:42 -0800 (PST)
+	id 1td4Im-00000006dzr-1rwr
+	for ath11k@lists.infradead.org;
+	Wed, 29 Jan 2025 09:24:05 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-38be3bfb045so323914f8f.0
+        for <ath11k@lists.infradead.org>; Wed, 29 Jan 2025 01:24:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738142621; x=1738747421; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1738142643; x=1738747443; darn=lists.infradead.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dkVtFYf2MVcLNdpgF/1FM6AyzPrPgahv/4qNthU6GjE=;
-        b=AKZMAamtjrv/SfKOySuy3Aq+DCsnzn9/6GDH/ZmwtrDANck6lK+HBbMbYHjb0PHnvK
-         fgD+kNH+d+yeBMBbOjYpSd3LRoAv5pMhCTJh5SOIrPAovNRj1TA5jaXTc2uKj6xFDj9Q
-         cVFQuUNu5yVcULGEMEu4T8dIvITAq3BPufVggoK5luW5c/8lXMYEnbuKZWW9tv/BQBn2
-         GYZVuZ9O5yEv1qYK9DLRYgo6WTF+VTtPJgLa1Raje7tpR04DnDw3bPqOjvVcccut38D0
-         5JiE5fbVEaeCYHts7++oY9jJ86/lkXZaFSJvjZu4+An0d8Td827dbrOjugQSS0NAv5QP
-         QS2A==
+        bh=lihPpJHFlhu1T9GX5rKbX3/sLgkFoYvwNag8T5iMjEQ=;
+        b=BducrVIhdqAA8nenKzus0OUDUD8BicjAVja4VMzfgOdeIBi676W8tDL8RWizLMn/AF
+         h8drh1kpFWLRrwD4ZsfhuCgb6ArkEGcJFMN//WqR7Mc0hv0KOgn16s8vJWFkM1xBEKRJ
+         Ok2lN95ovU2S8lUQ22dtFOje9WlJxnurKohf3JbBAF1qQG0rcUzaLgPIs0uquuL0sTd1
+         5jESOLEZWCD2+e20W7G41hXRU9dOi1JE4O43Dp1zFWTUzpvCpdsN6sRMGsnQSSRPymvO
+         mXmKISV+jZnGE9mxlbPPtLsXwpR9exhT2fQn/SpFbOE14PhKDEwIFK2yct1Vsx38eG+f
+         Wq8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738142621; x=1738747421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dkVtFYf2MVcLNdpgF/1FM6AyzPrPgahv/4qNthU6GjE=;
-        b=uDHhPqng/sdoyYrBU4eUWyqKRt3DmjHSpNFfxzAdXHeCRVo+dFcPGQSUJbf6/PllDp
-         UuxnqLYyuh8NYXVlbVtTQnN9S//iI8Se27SlwVPB8fgXZYsRCNTPdmAEbdyBW76u17J2
-         HZnjxLlDbH0iNepjr8x2b4GXK0Kl2N5W6kJljUNl9VNmzLfNHXL25vGT5B/AYHYfTN9C
-         ptHr5WvF4vRx7nRt043NkI+gAwpXYASHjI7tmcLwsYa4sIN/INDTy67NTBItUX674yI8
-         bu/FDqspPos2C2n7PdV5w7re/w9Cy7Csc6ov6gO5009iKviFT2zorhuRf4McpHddZP8R
-         JOjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPTQO8aQVvaFicJpn/nsH1bLFB9qjuQb7JVYyCx+ec2/JKrdHegHdVqgDZBWs857CSyufFknwc@lists.infradead.org, AJvYcCUPWAQva46aFWYjtGJ0qid9Yb1E9rJLc1KBhAXIbXIhps/ZGonOUs+CDjdj52/AUGnyAn44Wy8=@lists.infradead.org, AJvYcCXJRI23Z/zJPR75UTcK3Ehxds6YYHZy0Kdm+XO1Q8e0KKJ8i3FigWtzK3CgbWYeJrFtWAxFiLjI@lists.infradead.org
-X-Gm-Message-State: AOJu0YzWdWesTbTQAjh2P6VxYTVxHWHz42oU/ApDt45xcAmuiCQrZOw5
-	3/ktlVGUzBE4WCE0u89fcRQCJcHTUNTH6ZKcW9X6Zzr+9+m5VcZyBGWYxSaEXfUl5vWd8S+UsMU
-	6G22ycI/gIFGqRuR1GeTrb7ZqnEv2IXwH
-X-Gm-Gg: ASbGncv7ZpciLxfx4Q3V7Rx7xZhUK+elqdYkjoTLT4S51Osx0IM95IqVafgg/zDWJaU
-	WnOH5OcDZ0Dn9vs/9cC1ueqXJo5SnUxFwkjS4IIPvP00PX8P52tX5AK6wfhHOtR64fVyFDgoewA
-	==
-X-Google-Smtp-Source: AGHT+IG0NT5+Ebjs5FpztVqBT9QwuXSYNyzgvElMDH+2iRgo6k0KnderKKdowGTHlRb3LEKlUYgj7jqgzgwCWWUfrYM=
-X-Received: by 2002:a17:90b:4ecf:b0:2ee:5c9b:35c0 with SMTP id
- 98e67ed59e1d1-2f83a05c569mr3598722a91.9.1738142621531; Wed, 29 Jan 2025
- 01:23:41 -0800 (PST)
-MIME-Version: 1.0
-References: <87wmefguqt.fsf@kernel.org> <e64c416a975d8fcc4e245db78f31b0daef358e89.camel@tuxdriver.com>
-In-Reply-To: <e64c416a975d8fcc4e245db78f31b0daef358e89.camel@tuxdriver.com>
-From: Emmanuel Grumbach <egrumbach@gmail.com>
-Date: Wed, 29 Jan 2025 11:23:30 +0200
-X-Gm-Features: AWEUYZnYaDjc0TciMfJF2gwFNzQ1rD_qqkGo6wdKEgYfWf7G52X1E5mNencBTLo
-Message-ID: <CANUX_P3Z2qQC1+SwqqczrQx-9_EOBwDnh-KtvkGFf0heJ81AXw@mail.gmail.com>
-Subject: Re: Stepping down as maintainer
-To: "John W. Linville" <linville@tuxdriver.com>
-Cc: Kalle Valo <kvalo@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, ath12k@lists.infradead.org, 
-	ath11k@lists.infradead.org, ath10k@lists.infradead.org, 
-	Johannes Berg <johannes@sipsolutions.net>
-Content-Type: text/plain; charset="UTF-8"
+        d=1e100.net; s=20230601; t=1738142643; x=1738747443;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lihPpJHFlhu1T9GX5rKbX3/sLgkFoYvwNag8T5iMjEQ=;
+        b=BOnOsbm1T5lRA9NbXL8a41Oh+UU4h25H+v8DnnhWpDviOVeUtT5I+ngtWTc4uoy226
+         Hng3AwwWtJ/POeIzhsHfAPctWbRn4C+1t5KHJxuNtuCK4ML26AERJYAiCA59vC8RJqui
+         0oddXGlR6/v51Kxter0U7d4xUtWigwmctvwVwBbr24A8cIxLWa6SY9xG0FckT5BVa/gn
+         8f4TB+1bXXhh3/asUBhHGzONN/BGxilEdRgbiTbRKv9BiyEbpKsZQPdE3z5ceqxptr9K
+         4hnk7wl7vOhlL5yrpOYvrOd9QwRERMqDY3eSKBSmEfu39dsuA2k3ttDdcmUopSwHde/x
+         w/ew==
+X-Forwarded-Encrypted: i=1; AJvYcCUSXStRVxFukSyrylSvAK3dhbmrbR7h32769cqEYdVL4H/qYO5X5gowo2gsmem6GoV/PXeyRm4=@lists.infradead.org
+X-Gm-Message-State: AOJu0YychKmfMrBFrPUzUyi1RZ0jMwvIVOS+9Uwtjwoq/iA/EHJZ099J
+	Z9EQcdojzSu5JiNbqwSiN+Apr/0lfjSw6RuP5AzzIf2YgzDZn5Uz
+X-Gm-Gg: ASbGncv5qGR+6TI4E+Lum7CMsP6xzow053HdfiuqaA+MsJS+ZK7L8PhBC1jJnnQfTz0
+	rFWLijm3HSIldLqsyqaudEi4TlpLVuH3/o4ICpe4VeaFAWMxQDmzufKfQklRTFn0ncgbLDDWtRi
+	BHMwNXdGrMaHfecaEgaGQuyiczD0haAUtCxRM2kR2zRhr3pn0beWElZsEf1CgVaHOU01dl3MaZb
+	lf3mCALL1rwXzHb81O5DoLEmMUq17fbJ86WfB80eqSFaIiLM4VS/WdXj5nGZBAlYJOIR66Hpydm
+	ETm9vvhiP3ST/rFhsnesGmQqdIVrJAveFw==
+X-Google-Smtp-Source: AGHT+IH4Y4nWWV0fiFq9wMrFsPxfI+tlpUXenEohsMWeQWv89IPcCB4aUODTmHi762tZVXXaRACUYA==
+X-Received: by 2002:a5d:5982:0:b0:386:3afc:14a7 with SMTP id ffacd0b85a97d-38c49a26177mr5242204f8f.7.1738142642823;
+        Wed, 29 Jan 2025 01:24:02 -0800 (PST)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438dcc2a96dsm15705645e9.19.2025.01.29.01.24.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jan 2025 01:24:02 -0800 (PST)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 29 Jan 2025 10:24:01 +0100
+Message-Id: <D7EG56E1I0SX.3BZRTM7N6CQ44@gmail.com>
+Subject: Re: [PATCH] wifi: ath11k: remove peer extra rssi update
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: "Jeff Johnson" <jeff.johnson@oss.qualcomm.com>,
+ <ath11k@lists.infradead.org>
+Cc: <linux-wireless@vger.kernel.org>
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250117181953.3375273-1-nico.escande@gmail.com>
+ <d5eda793-c7e9-453f-9dbc-07e5df73c47d@oss.qualcomm.com>
+In-Reply-To: <d5eda793-c7e9-453f-9dbc-07e5df73c47d@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250129_012342_835564_67D3796B 
-X-CRM114-Status: GOOD (  15.22  )
+X-CRM114-CacheID: sfid-20250129_012404_481287_C9483F79 
+X-CRM114-Status: UNSURE (   9.62  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,41 +100,33 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
-
-On Tue, Jan 28, 2025 at 5:18=E2=80=AFPM John W. Linville <linville@tuxdrive=
-r.com> wrote:
+On Tue Jan 28, 2025 at 11:29 PM CET, Jeff Johnson wrote:
+> On 1/17/2025 10:19 AM, Nicolas Escande wrote:
+>> Commit b205ce4c266c (ath11k: support avg signal in station dump) added a=
+n
 >
-> On Tue, 2025-01-28 at 11:20 +0200, Kalle Valo wrote:
-> > Hi everyone,
-> >
-> > I'm stepping down from all my maintainer roles. My first commit
->
-> Well, my friend, I suppose the time has come for you to move on to
-> something else? I truly hope that something exciting and rewarding
-> awaits you!
->
-> You have done a great job in this maintainer role, and I am very
-> certain that you will be missed. Few people realize how thankless such
-> a role can be, but I do. I hope you will now have some some time to
-> enjoy your sauna as you consider what comes next for you.
->
-> Thanks for the job you have done.
->
+> I'll fixup this reference to address the checkpatch error:
+> ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+=
+ chars of sha1> ("<title line>")' - ie: 'Commit b205ce4c266c ("ath11k: supp=
+ort avg signal in station dump")'
+> total: 1 errors, 0 warnings, 0 checks, 8 lines checked
 
-I think we met only once in Seville in ... 2016..
+Arf I can see that the commit format is wrong but I wonder why checkpatch d=
+idn't=20
+arn me. Do I need more options set on the cmdline ?
 
-I also would like to take a few moments to thank you for the work you've
-done for us all. Just like for many areas in life, we take things for grant=
-ed
-and only when there is a change we sometimes become more attentive to
-what people have done for so many years without being recognized enough.
+	scripts/checkpatch.pl mail/0001-wifi-ath11k-remove-extra-rssi-update-in-at=
+h11k_dp_rx.patch
+	total: 0 errors, 0 warnings, 0 checks, 8 lines checked
 
-Good luck and I hope you'll enjoy the ride of your next adventure!
-
-John, I think the last mail I got from you was when you stepped down... I a=
-ssume
-that the equipment that was considered then state of the art is now under h=
-eavy
-development as part of your vintage hobby? ;)
+	mail/0001-wifi-ath11k-remove-extra-rssi-update-in-ath11k_dp_rx.patch has n=
+o obvious style problems and is ready for submission.
+>
+>> extra assignment of arsta->rssi_comb in ath11k_dp_rx_update_peer_stats
+>> when it added the average rssi support. So lets keeps only one by removi=
+ng
+>> the legacy assignment so the two statements about rssi stay next to each
+>> other. Compile tested only.
+>>=20
+>> Signed-off-by: Nicolas Escande <nico.escande@gmail.com>
 
