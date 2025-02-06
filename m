@@ -4,80 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19853C02192
-	for <ath11k@archiver.kernel.org>; Wed,  5 Feb 2025 22:19:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26DC5C02192
+	for <ath11k@archiver.kernel.org>; Thu,  6 Feb 2025 00:16:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Z7QtXsxVavLUFWgY/AN/K9Qycf6vg7WLQZg/R82r5mY=; b=p87BjD0p5ly8OOntQgADIWg3rD
-	5gtRsgI9vCbd5DCE71rmhrRICli+OCWKEPfLJYFs5I6yY5davvfTNBPzLx9iXx+qNn3/YIPQWVkNE
-	ZGLtItXBm3xwhJoChD6NXAdfGTP6KanwhrKhGYN3kRz5cihazhu0AmQ3jJMem4B6azWit9nAS4Wk/
-	Ppauf+a6IrmatIGaeF63dct7g8iQfDr5NfUVrcCT+Dg0nejkgVjMWUiXqIjcl5vzd+1PBzhAxYx5x
-	tF0h7Jp0PdcYA4Q4whCVSG0e1teh4FqrOpqrZM37VKzYVQHJWeZG+F7D07HDWQ0d2de9pjC4jQz//
-	m3S2Cu5g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=iTxg7nKuffcT4iD2zKX1r6AOCSGMFdncbWDtotDGgbg=; b=at6YcYt4xNnR+iptZmLl0LvIgL
+	lbkdR+7zEsOvV3rA6UgRLw4c2KP2C5Nj57CXwDUCOyoK3YvSXFK65HAh66y+lClpYHIvpmXwk/Mf1
+	ZbhB6dsvlakjFHNh1rmzD3g1ppbY0of5+TpkbsRr/O1qzHAzmHUbfBrEvwGq4kK8Sj2SeyXUsTNqk
+	ZfCE/zJ6aR54Eav+jlTElgVeXTvdabkBZ0B8CDIBlcKP4JKPJ8CcJ/sk1ixzSOefvB1NPMrjxgrU2
+	66lcZ0EsZ/mT3EDp1YfkMs5/px3/QjdcqPN5AJytDYFK5Y6S2eZ6svCtUNtZwrW6vWUiil7eDO3gF
+	BcYFfrWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tfnjq-00000004iEy-2VMb;
-	Wed, 05 Feb 2025 22:19:18 +0000
-Received: from mail-yw1-x112d.google.com ([2607:f8b0:4864:20::112d])
+	id 1tfpZd-00000004uXK-2wl8;
+	Thu, 06 Feb 2025 00:16:53 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tfndO-00000004hLg-3OVs
+	id 1tfpZb-00000004uWj-0E2X
 	for ath11k@lists.infradead.org;
-	Wed, 05 Feb 2025 22:12:40 +0000
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-6f6ca9a3425so2615397b3.2
-        for <ath11k@lists.infradead.org>; Wed, 05 Feb 2025 14:12:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738793557; x=1739398357; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z7QtXsxVavLUFWgY/AN/K9Qycf6vg7WLQZg/R82r5mY=;
-        b=Uunzp/UUrHp0VYaCEFCLF9+VujD1sE4TKkqa3wKkuxy53CGuFFHnbSYTEEgSG0iKue
-         4ZcSXpJeKXGjHPkwlg3PoQP/EI/L9igy//Q1gzlcpQaNAOFVMvbF6yR6BeFyPiZK3rq/
-         5ZgagmN/J2p+A08dznSJXd01H7aSp/alVzogRiWfe99E35hpl4QTskxJFA+m9iR6O4LE
-         kj5FLA7JT1gmuGXBucWyMS1h23V03Udv1niP5bX/pJoRSkhKij6O8h9Zzz3BaZLIVe0Y
-         Cit32pyLm6ZAC7I/tQgukPpa3jVTYIZHL/ZSYvuYY2oOsjC+JMhC8cudQEjJJxLe6ZEG
-         G7QA==
+	Thu, 06 Feb 2025 00:16:52 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 515BOaIW024533
+	for <ath11k@lists.infradead.org>; Thu, 6 Feb 2025 00:16:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iTxg7nKuffcT4iD2zKX1r6AOCSGMFdncbWDtotDGgbg=; b=Nlwf+sxLd5iS47mm
+	RcHJW35NF7mbdEHB5SEJSv3hepYDejIi1eFeoHH7UN5CMZpjyKKxzkikpgCnIXWM
+	LIoiFxBaVr5KzxJ9+fclU2YES1tJxlabjjaoL78raIg75GmvB59Irnzaj2HmM0NF
+	eXix7PPHHdVBPj+apG2qR9nKEoYhTIXbM8868VsXlhZpAUnFVs467h2WrZjKk0Ys
+	F8+bx0yNLgwSsw4sbTZtyOt2G7yDhLvJ3Pz5HtvEX6jdR1ozic1RJBMcI/sQCnYM
+	xjkDHaMc6tWDIIelPS8mF/+OTpjE6eHf/vdkiTLMrEtDA/6xgAH/b0yV7a0Yh9wF
+	I/XQiw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44m73b9pvb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 06 Feb 2025 00:16:50 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-216387ddda8so7798915ad.3
+        for <ath11k@lists.infradead.org>; Wed, 05 Feb 2025 16:16:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738793557; x=1739398357;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z7QtXsxVavLUFWgY/AN/K9Qycf6vg7WLQZg/R82r5mY=;
-        b=uYLtpE2RIS4XYhrFlzaUf9YOOjJ8GIFe4R45VirHExLzpMJBq9Y2hxdiD2Ea05W9t8
-         V643FwXt/ZsZs6XOnKaL1KHtD3QzidIuENxVfS+nRG22YEgGbsxjygyYdfF2mFqQyvt2
-         LTfPmHVZpXBxIAxHTlPG97Na3rsiUN5s9Ytz079syc2Y/aSP9O09C9U7ScuZW20bKciI
-         8DH5yfnz9OykHzRoipLzc6RaV8xzX39OrULkpe2nlQsG2Q3K6rtuSk/LG4wgUYRQmjZH
-         JkRJNFZs1ysrWRqrzeZlFTMyh7n0pFSR7iW6XyeuOdCiFGE+hUpC960jhtgCADwst50W
-         4OGQ==
-X-Gm-Message-State: AOJu0YzMOzr/j8ES9UqRuwV3meuEX7hAnMY1+Dm3JiWNi9rG2RStLb51
-	LHD4HSq1b+FHmm5VaQmBpgxoqWmW8uEkw08ITCIZc6MM3JsJbTKhcfgB4so9EGKY7UQvwhUAW/0
-	ftYwdfKM7G3Bi8UxfVVrZ4up30Ngu0So8WwG2eZTKXG3pBrLUxV4=
-X-Gm-Gg: ASbGnctoNfvXspZWTveAH0lbyqokNzDHhle4wUNhK/XLpwrzpUWxtB6x5P401TmOSha
-	NEfp7/z0n9WapUreKeOj3wB0e/PNcfS6hXef626VOLBEWK5i1T0FDC4iwjUzbubHFRIgunHE=
-X-Google-Smtp-Source: AGHT+IFhAhS10+zrWdih03o2CEn3V2QZhNOqn9ZUKMdukpqWd+ZlfDyf4YPbIkwfMsg+f4i0a/66NxkBMlOJLtTiWgY=
-X-Received: by 2002:a05:690c:48c3:b0:6f6:cad0:9ddd with SMTP id
- 00721157ae682-6f989ee68bbmr44089747b3.18.1738793557654; Wed, 05 Feb 2025
- 14:12:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1738801009; x=1739405809;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iTxg7nKuffcT4iD2zKX1r6AOCSGMFdncbWDtotDGgbg=;
+        b=oCctEmA5vnz6X0o9RklsvAIfnKFMuDetzh7fayrnFfCJFIGm8zELNaEUJ3x9t6kKtj
+         UYmFwVpNmIeav1yTOIz5aSysAWa1rJhQ4EVM9bsK9PGDtvnUWiyKDlL2emGpeNkUCiY+
+         fsOkue+fdBdzw3hwB6nGBPwFP8NQGBJkJ33wYhWl9UT//dbRoZrxjsZp76mMSL9k/lVm
+         c06wabNDCkInwJOnGxGGeHBiK0qdI0BtwaOgaJJwH9fPb0L8eFC85vhPxqayv2Cef75m
+         Q8fSZKnmySNBz4EyWtDNZBnItQRu2jouOIjOMRnX3JiOTYVqUmUKIJjxg5yYvQFI1qzU
+         WAGw==
+X-Gm-Message-State: AOJu0Yzxbtci6UgeJsapY/FUywfJmHR6xfoL3BcFzn+FcCUXTzTKDUFv
+	IZM+vwdaOCj3iWHqXDomYXMiSuMV6iErDbqwA9IbnWBLguyxnHIGX8ywkMxZL9f3jMBV2pU4CAl
+	x/Z+8qRzwslBbWZ6jEUORNqrn9NlHtLF3QNUMhXYjw/Trsw9V27IwP+qQGa3rm9b4K0Ce
+X-Gm-Gg: ASbGncvn5QsTnN6stcTkxCXWvJANSWzJt96Tj4OFZ8o+StORuMGF4fa2sJ4GwrM5DFQ
+	3FOyCO14vn3O6LIJW1rG96nv+sAXP1kt3EaTCLDPFhDfbOmPW17n+iawY9+7zI1H6NTyhG6UhOg
+	8GzbdFOQpTqY/QRyqmIwnzlOlw57Hhnwh1bEBg3XiQILr6NzcGngx4BykWuG1xEJcTi6GhrTGFw
+	Dot8pt800RK42N+Xsq5it6yaVCiy+dT6dtk0UBPxyeDaLyGTbK2/cYw7G850HhJHkbULzMWV+38
+	F+/A1S8cmEGJp6iH+NRMqWS8845bSHngeRch6iIfpA==
+X-Received: by 2002:a17:902:ce03:b0:21f:78f:c17a with SMTP id d9443c01a7336-21f17e4ce67mr81713435ad.20.1738801009030;
+        Wed, 05 Feb 2025 16:16:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEJ/QvgK5grrKymF4ubh6+iClejBycX3N8Bto30t1untzbWq0H34PSSoTDqIHX96ZFYWY52sw==
+X-Received: by 2002:a17:902:ce03:b0:21f:78f:c17a with SMTP id d9443c01a7336-21f17e4ce67mr81713055ad.20.1738801008595;
+        Wed, 05 Feb 2025 16:16:48 -0800 (PST)
+Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f0463e770sm39641685ad.165.2025.02.05.16.16.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Feb 2025 16:16:48 -0800 (PST)
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+To: ath11k@lists.infradead.org, Kang Yang <quic_kangyang@quicinc.com>
+Cc: linux-wireless@vger.kernel.org
+In-Reply-To: <20250117061737.1921-1-quic_kangyang@quicinc.com>
+References: <20250117061737.1921-1-quic_kangyang@quicinc.com>
+Subject: Re: [PATCH v5 0/2] wifi: ath11k: fix data out of sync for channel
+ list for reg update
+Message-Id: <173880100793.1503921.12113647130337572024.b4-ty@oss.qualcomm.com>
+Date: Wed, 05 Feb 2025 16:16:47 -0800
 MIME-Version: 1.0
-References: <CAA8EJpq=QRbWe6KTxcmHkHp20rgEgLZeGYV7+Hy2Qkfo_MyV1g@mail.gmail.com>
- <f7818536-4aff-4320-a9eb-9d755b86d6d8@oss.qualcomm.com>
-In-Reply-To: <f7818536-4aff-4320-a9eb-9d755b86d6d8@oss.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 6 Feb 2025 00:12:28 +0200
-X-Gm-Features: AWEUYZm56HWZv5UIHjCax8T-rZJreFLb0juXHGJzpSx4_VuWMdfATxczjYbKKdc
-Message-ID: <CAA8EJpoEpbtEDU1kC8xMEM8dxGzG31vSf3wFsaG8+CZky4sanA@mail.gmail.com>
-Subject: Re: ath11k-firmware: WCN6750: hw1.0: Qualcomm Robotics RB3gen2 BDF, v2
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: ath11k@lists.infradead.org, Jeff Johnson <jjohnson@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, 
-	"open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.0
+X-Proofpoint-ORIG-GUID: gT9BswYjL5PdAt7tCA6icoKbRbuyTBDL
+X-Proofpoint-GUID: gT9BswYjL5PdAt7tCA6icoKbRbuyTBDL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-05_08,2025-02-05_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=999
+ priorityscore=1501 mlxscore=0 suspectscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502060000
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250205_141238_867324_B6A5D2EA 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20250205_161651_105963_34ACB4A2 
+X-CRM114-Status: GOOD (  12.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,42 +115,26 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 5 Feb 2025 at 20:46, Jeff Johnson <jeff.johnson@oss.qualcomm.com> wrote:
->
-> On 2/4/2025 3:05 PM, Dmitry Baryshkov wrote:
-> > Hello,
-> >
-> > With the hopes of getting this into the February linux-firmware release:
-> > Please add the following BDF file to the archive.
-> >
-> > Changes since v1: added regdb from the same archive
-> >
-> > * description for what hardware this is
-> >   - Qualcomm Robotics RB3 gen2 platform
-> >   - WCN6750 WiFi/BT chip controlled via the remoteproc (DSP)
-> > * origin of the board file
-> >   - It has been provided by Qualcomm as a part of the RB3gen2 firmware
-> > release, licenced under LICENSE.qcom
-> > * ids to be used with the board file
-> >   - WCN6750 / hw 1.0
-> >      bus=ahb,qmi-chip-id=1,qmi-board-id=25,variant=Qualcomm_rb3gen2
-> > * md5sum of each new board file to add
-> >
-> > 39b270f43cb6d733cde607bf2b23e2be
-> > bus=ahb,qmi-chip-id=1,qmi-board-id=25,variant=Qualcomm_rb3gen2.bin
-> > bfbd247fe961dffc4e7fb413703fb284
-> > regdb-bus=ahb,qmi-chip-id=1,qmi-board-id=25,variant=Qualcomm_rb3gen2.bin
-> >
-> >
->
-> staged...
-> https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/commit/ae4407c02a434534590dec3e0ef26b371fd7888b
 
-It's proably not worth it now, but it might be nice to have a
-changelog of any kind. Like 'added BDF for Foo Bar' / 'updated BDF for
-Foo Baz'. If that's not too troublesome ;-)
+On Fri, 17 Jan 2025 14:17:35 +0800, Kang Yang wrote:
+> Currently there are two threads to updating/fetch data of channel
+> list, and there are no synchronization for the data, it leads data out
+> of sync for channel list when doing reg update.
+> 
+> So change the call flow to make sure the fetch data running after the
+> update data finished, then data of channel list become synchronization.
+> 
+> [...]
 
+Applied, thanks!
+
+[1/2] wifi: ath11k: update channel list in reg notifier instead reg worker
+      commit: 933ab187e679e6fbdeea1835ae39efcc59c022d2
+[2/2] wifi: ath11k: update channel list in worker when wait flag is set
+      commit: 02aae8e2f957adc1b15b6b8055316f8a154ac3f5
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+
 
