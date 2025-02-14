@@ -4,103 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FF03C021A6
-	for <ath11k@archiver.kernel.org>; Thu, 13 Feb 2025 23:56:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34829C02198
+	for <ath11k@archiver.kernel.org>; Fri, 14 Feb 2025 07:07:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=p6grw8wuFGe/gguOVhEpgEpd6veb5fHEaE9GwGP73BM=; b=BQpXKhbDk/EhhhU6XQq+55P0sF
-	3PFnwX9yML567lsT0f3NlAzwrlBAJz7E4d0KiKHFh9dgUbe8xxmLco5dx5zPQwiG0CYx9Jefrl9sa
-	yyfn0oewzP+uxwWyiYmOrewbXUFES9lxQbMipnmUtEOZrdTEDiqHZypPJq2RNSeBEPPBRVNZ3TrlP
-	w2o8cBekEvubeWcZ5IJCq912fgzv4Pfa2DEIRzCCo6o1iA3oe/Y9HVq3Sf85cDKQxnP47pUewrkHh
-	Xj/UMArqhFTlfm8AP76+LuYAEJ7tFW1ubnZxem8z48SWN6lr7fWxBS3ESLov+o6FYcTi/udL77c4v
-	NE5rlpkg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=P0N0X3RdIUpKTp5bovKhP0i6D22WIPGqOlaqXbJdgtw=; b=0+WJQHylYrFiOLEE7Pdfwq+WO3
+	QGkGuAfpR/gSK+0TTN7e2NpgUO25csnoGflEibhxNzoeMA9kP8RNP28frPwvq/zHlGqHYFJyPemXV
+	AfQkqIGeO3YmCVNulWiqp2c2A+o+9rprUto3yc4lYzkeRfAxqVfeJRpMl8gnnlcaKzs4Fjtqbcsjn
+	9ytCnHRpwaIRpx/d0AB2FO/zg36h5MeAsqA1FzeDLX6TzF/zrCiU+rrIczHR8gZ+tPNLnMMD+AQe2
+	CrJQSoHnfJwL+FAW2a1syuhQLpttae6qf16E4bld05syUG2Gb/tcrgJ9/CIrjOLtk/HpKdEC/cfT1
+	2ETrRdsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tij48-0000000D09S-3FXi;
-	Thu, 13 Feb 2025 23:56:20 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tipna-0000000Dudd-2frG;
+	Fri, 14 Feb 2025 07:07:42 +0000
+Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tii2e-0000000CrqF-36YJ
+	id 1tipkt-0000000Du1u-2nLv
 	for ath11k@lists.infradead.org;
-	Thu, 13 Feb 2025 22:50:46 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51DKDBsb027801
-	for <ath11k@lists.infradead.org>; Thu, 13 Feb 2025 22:50:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=p6grw8wuFGe
-	/gguOVhEpgEpd6veb5fHEaE9GwGP73BM=; b=Oc83GJrrP3tiTxtzl4TPWGI3C25
-	EQF8QaZPD/DPPMF4PBwigrfn1vuu2KMVrrNhw2LFSwktsFoZXfiWsQ8coLS0FzUW
-	GDlLwflXjZqmZUoykBqhHqGWaLjdf2/nZzTFAoIYPr1r5x/G5fEA0Py3SzA043Cy
-	xXOCIMW+4xSMm8ijPvd/hCQSKSWipOslFOCL0WI4rlkRwCvkvSwEUHlOxUxv/3U0
-	slrJ1xwf6LMb5rYUWGHH5jYdK2/FmhQctJBNGsMl1fbwocgKjcPO/0EBO+1HcxP5
-	E5lLq1497PwJHtadLdD6fTtQoJO4qlvVJ7Nz+kAzmqNYnEUoJmSymDvMIpw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44sebn9wtc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 13 Feb 2025 22:50:43 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-220ec5c16e9so5359725ad.1
-        for <ath11k@lists.infradead.org>; Thu, 13 Feb 2025 14:50:43 -0800 (PST)
+	Fri, 14 Feb 2025 07:04:56 +0000
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-21f44e7eae4so31627555ad.2
+        for <ath11k@lists.infradead.org>; Thu, 13 Feb 2025 23:04:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739516695; x=1740121495; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=P0N0X3RdIUpKTp5bovKhP0i6D22WIPGqOlaqXbJdgtw=;
+        b=cqfEE7jAwceJoYXvvVjWb1gOGwI9lRsJyxaYiict64OEF3r9bAqdNzolG592tZsbSJ
+         zJRBxLsl8W8C+JCTctPg7FuKFXu1Acm9toigy6XD4LN5holDpPiw2u0NH92UmpYi8+k1
+         NJfK/DBe6DZ0lwe8jYUjIAMSfk5JUfC2wqCzMVYLuxxTqLz4+4uCTmt6+pFEEORr4ljn
+         6QwEqMLrlVqANc2zh4N6xype9gSV5qCxpjpVygNgbW4eDR2XikzJ3oSlsMJR5uf4HSG7
+         uMeGDRwEpAKn66TR/j/3+RET+ojUxjXJbjU2IdZUz7eQO9wmPcrRpX4CAve4zfx3WRxK
+         XKGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739487042; x=1740091842;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p6grw8wuFGe/gguOVhEpgEpd6veb5fHEaE9GwGP73BM=;
-        b=v6MhtjMyl6JNQUQp+xtKCa10ed5rKL/x4SN2waSVWw1v9IqoX2vEBy83tx4iMZCAuW
-         92KACdmNNtqE5P51Jr8dZbvv2J5fSE10D+dOtNvMC3Wi6RXzPirVIYoFsWZu9wAeFIXY
-         kQ63JvewXKALhs6TSnSIDu5bsWmo6HPrL/aaYHum8Ej2veVvJquN4IOPJ5NFpAyryavv
-         OFwT/QM0Y96hYvXiB1GAXFI0yEqCrn3QpEbQBMBjFwkMmV13G+7+UVqQMP/oiBouUuip
-         1IVxRaRpYY/+uF35NGxlME2brGcCSPXMsVlRQ10hH5cYvh0CKjsehPVl1TqPuY4h958u
-         Sn9Q==
-X-Gm-Message-State: AOJu0YwJ2H0348pq9Oa+uIsmy59K4S/P7RbjB/wJa46nJZvddwPNlrwG
-	HdRm88dYJB/WAgaY094BaqBNme/3uZF4mWtHR5HqH5dkwMpQZYIS5TQqOVgaEUDOCbMT1KwWKUM
-	LG2ELrTuk3qXMMyM78VBDT/wvkD12K1xZ3Dy1r3Qun9tAt5s9Q20ojpJVtK8np1cLqZJj
-X-Gm-Gg: ASbGnctfqFMlL9z/gAJuK892VD7mKbbhvvB+1WvZK0ffsOgSKcHi0Iy0m0DmXpaMFZ+
-	AoKzssp1An63tGGxmVgfgNBvAVR1KbYeDrLOMl+W1nVWyhFe+wtHyqYvoz0yG+UI3BGhcskIcYL
-	WBvSQcYuAYrIcDmMWe3tQj3VPoXHvhK+CTN8qOqJ0DH5KRO+hXLIXbStvuTducSSx9bS+n5gdJT
-	zTCPLph5O+2FUFBQ4RoARHTzz21rRmoosLl9QHsud36I0tgIPWOHjVRBRqXbC3gHpGOu4A9CHlr
-	uzJMwghw6FrliA6nc1ZUKGCQSzGFI0ZCNQYq3rwSv6/3rZ4Rq8AMLF1oBxzf
-X-Received: by 2002:a17:902:c402:b0:220:d7f9:9ea8 with SMTP id d9443c01a7336-220d7f99fc9mr51790595ad.26.1739487042410;
-        Thu, 13 Feb 2025 14:50:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEbl+ByEJmGsoi3MIiBDk9HO865Pptlkod6xeE/FgmeLuvCEu8A5fRJ/bY82qQD4lJfd4D3bA==
-X-Received: by 2002:a17:902:c402:b0:220:d7f9:9ea8 with SMTP id d9443c01a7336-220d7f99fc9mr51790315ad.26.1739487042011;
-        Thu, 13 Feb 2025 14:50:42 -0800 (PST)
-Received: from alokad-linux.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d55916c7sm17571665ad.243.2025.02.13.14.50.41
+        d=1e100.net; s=20230601; t=1739516695; x=1740121495;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P0N0X3RdIUpKTp5bovKhP0i6D22WIPGqOlaqXbJdgtw=;
+        b=XY0P5Con/QGE+k8Qz/9zFrGTDVrb9zzTZiRx94xJ1gdoeZM7l9Q8H5DpKGLIq3Odk/
+         qvvUp/ctLXH0PAy8Ghton4uWX+7AuGVvnN9/L1OL4iK/tbc77HWotb02FeCxDxtq6XuO
+         W9PDvWr3aQQ2/UIxg+1Su5FF4cq9ggrD4AQAPFPTsD4OIvQhw44ShXn7sGgM6xN9Lvf0
+         2Hzx/2+aznFf1PVb+ns1D5LrziyFIHMRRn87i/qH3T6lele4Y0sLFprld1ubcn+pyFTY
+         g4jnPWiHDw27c+Tng/i5tHZUKCVwovJ1isfEpUmdnJTEHXZDbffOPE4bnwijKfV6CVOg
+         LlrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXKHJZoRNe/jzjFZmOiDrbDD3tH6JN29fasaLMvANzBjrdxbabzuO0Z9rKIBVrELvaPysjuiV4=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx6MkbtOPVUpHv19jf5IpPRyQKYeu5Xfii2lqJ1ZNn8TamEb5vp
+	43onAyb2ta2xC93f2oaRupx9AYWNV7PZuR8FMgUAvDPLCdh4R9czeb2vi1rbrg==
+X-Gm-Gg: ASbGncs3EQZSncQM3xb9Xdoi/LxBY6xqs4UJcSZ4jHXgarTgK1qrrQa3VEwlS8NPq+X
+	lKnWmUTJRr8dyKK3p1aKnb91ciQlqrFxplFxtQ2FGgyRIu/3X1atEtx4ig3l8osdCoQbs07b4ap
+	KbWNghl9w9nEwhVts+9MqitDAxgZ2y1kA4zqK3MviSpUvve9gMogCvD74C0wZySNXNFtLfAn6+b
+	5fhcjVjx2BziQjbC/TL+Wc7JAibvWPXSCTaOwzsQgz1Q2V/em0vgpexQlGecBtb7e2TtJKFpZ0v
+	dMtSEoVLmINII3Fo7lXRoQhwvyC4loE=
+X-Google-Smtp-Source: AGHT+IGuqMZgZlagRCyTIKxDvOSsuvPGqcUxE8dosYx3w84r1nGN21q6LfaA+OlbApLZ3lRcHCSUbA==
+X-Received: by 2002:a17:903:950:b0:220:e63c:5b08 with SMTP id d9443c01a7336-220e63c5e07mr59800745ad.11.1739516694826;
+        Thu, 13 Feb 2025 23:04:54 -0800 (PST)
+Received: from thinkpad ([2409:40f4:304f:ad8a:8cb7:72db:3a5e:1287])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d537ca99sm22711205ad.106.2025.02.13.23.04.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 14:50:41 -0800 (PST)
-From: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
-To: ath11k@lists.infradead.org, ath12k@lists.infradead.org,
-        linux-wireless@vger.kernel.org
-Cc: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
-        Muna Sinada <muna.sinada@oss.qualcomm.com>,
-        Aloka Dixit <aloka.dixit@oss.qualcomm.com>
-Subject: [PATCH v3 1/3] wifi: nl80211: add link id of transmitted profile for MLO MBSSID
-Date: Thu, 13 Feb 2025 14:50:34 -0800
-Message-Id: <20250213225036.3118133-2-aloka.dixit@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250213225036.3118133-1-aloka.dixit@oss.qualcomm.com>
-References: <20250213225036.3118133-1-aloka.dixit@oss.qualcomm.com>
+        Thu, 13 Feb 2025 23:04:54 -0800 (PST)
+Date: Fri, 14 Feb 2025 12:34:47 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Muhammad Usama Anjum <Usama.Anjum@collabora.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Johan Hovold <johan@kernel.org>,
+	Loic Poulain <loic.poulain@linaro.org>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+	kernel@collabora.com, ath11k@lists.infradead.org,
+	jjohnson@kernel.org
+Subject: Re: [BUG REPORT] MHI's resume from hibernate is broken
+Message-ID: <20250214070447.scs6lpytjtecz3ko@thinkpad>
+References: <59c036b6-a3d6-403b-8bb0-566a17f72abc@collabora.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: pC8Y1Er_c_y7lzUQqNsuKPTf7IBiKOez
-X-Proofpoint-ORIG-GUID: pC8Y1Er_c_y7lzUQqNsuKPTf7IBiKOez
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-13_08,2025-02-13_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 mlxlogscore=999 phishscore=0
- suspectscore=0 malwarescore=0 priorityscore=1501 adultscore=0 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502130160
+In-Reply-To: <59c036b6-a3d6-403b-8bb0-566a17f72abc@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250213_145044_800645_EBC3055F 
-X-CRM114-Status: GOOD (  19.19  )
+X-CRM114-CacheID: sfid-20250213_230455_713859_43725E32 
+X-CRM114-Status: GOOD (  22.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,101 +105,60 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
+Hi,
 
-During non-transmitted (nontx) profile configuration, interface
-index of the transmitted (tx) profile is used to retrieve the
-wireless device (wdev) associated with it. With MLO, this 'wdev'
-may be part of an MLD with more than one link, hence only
-interface index is not sufficient anymore to retrieve the correct
-tx profile. Add a new attribute to configure link id of tx profile.
++ ath11k list and Jeff
 
-Signed-off-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-Co-developed-by: Muna Sinada <muna.sinada@oss.qualcomm.com>
-Signed-off-by: Muna Sinada <muna.sinada@oss.qualcomm.com>
-Co-developed-by: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
-Signed-off-by: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
----
- include/net/cfg80211.h       |  2 ++
- include/uapi/linux/nl80211.h |  6 ++++++
- net/wireless/nl80211.c       | 14 ++++++++++++++
- 3 files changed, 22 insertions(+)
+On Tue, Feb 11, 2025 at 01:15:55PM +0500, Muhammad Usama Anjum wrote:
+> Hi,
+> 
+> I've been digging in the MHI code to find the reason behind broken
+> resume from hibernation for MHI. The same resume function is used
+> for both resume from suspend and resume from hibernation. The resume
+> from suspend works fine because at resume time the state of MHI is 
+> MHI_STATE_M3. On the other hand, the state is MHI_STATE_RESET when
+> we resume from hibernation.
+> 
+> It seems resume from MHI_STATE_RESET state isn't correctly supported.
+> The channel state is MHI_CH_STATE_ENABLED at this point. We get error
+> while switching channel state from MHI_CH_STATE_ENABLE to
+> MHI_CH_STATE_RUNNING. Hence, channel state change fails and later mhi
+> resume fails as well. 
+> 
+> I've put some debug prints to understand the issue. These may be
+> helpful:
+> 
+> [  669.032683] mhi_update_channel_state: switch to MHI_CH_STATE_TYPE_START[2] channel state not possible cuzof channel current state[1]. mhi state: [0] Return -EINVAL
+> [  669.032685] mhi_prepare_channel: mhi_update_channel_state to MHI_CH_STATE_TYPE_START[2] returned -22
+> [  669.032693] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
+> 
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index a72e7eb7027f..d0e5e146704e 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -1286,11 +1286,13 @@ struct cfg80211_crypto_settings {
-  * struct cfg80211_mbssid_config - AP settings for multi bssid
-  *
-  * @tx_wdev: pointer to the transmitted interface in the MBSSID set
-+ * @tx_link_id: link ID of the transmitted profile in an MLD, default is 0.
-  * @index: index of this AP in the multi bssid group.
-  * @ema: set to true if the beacons should be sent out in EMA mode.
-  */
- struct cfg80211_mbssid_config {
- 	struct wireless_dev *tx_wdev;
-+	u8 tx_link_id;
- 	u8 index;
- 	bool ema;
- };
-diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-index 9d8ecf20ef0d..ed2a181a2557 100644
---- a/include/uapi/linux/nl80211.h
-+++ b/include/uapi/linux/nl80211.h
-@@ -8022,6 +8022,11 @@ enum nl80211_sar_specs_attrs {
-  *	Setting this flag is permitted only if the driver advertises EMA support
-  *	by setting wiphy->ema_max_profile_periodicity to non-zero.
-  *
-+ * @NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID: Link ID of the transmitted profile.
-+ *	This parameter is mandatory if the transmitted profile is part of an MLD
-+ *	and the interface getting configured is a non-transmitted profile. For all
-+ *	other cases it will be ignored.
-+ *
-  * @__NL80211_MBSSID_CONFIG_ATTR_LAST: Internal
-  * @NL80211_MBSSID_CONFIG_ATTR_MAX: highest attribute
-  */
-@@ -8033,6 +8038,7 @@ enum nl80211_mbssid_config_attributes {
- 	NL80211_MBSSID_CONFIG_ATTR_INDEX,
- 	NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX,
- 	NL80211_MBSSID_CONFIG_ATTR_EMA,
-+	NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID,
- 
- 	/* keep last */
- 	__NL80211_MBSSID_CONFIG_ATTR_LAST,
-diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
-index 8bd09110d393..13fc03858474 100644
---- a/net/wireless/nl80211.c
-+++ b/net/wireless/nl80211.c
-@@ -469,6 +469,8 @@ nl80211_mbssid_config_policy[NL80211_MBSSID_CONFIG_ATTR_MAX + 1] = {
- 	[NL80211_MBSSID_CONFIG_ATTR_INDEX] = { .type = NLA_U8 },
- 	[NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX] = { .type = NLA_U32 },
- 	[NL80211_MBSSID_CONFIG_ATTR_EMA] = { .type = NLA_FLAG },
-+	[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID] =
-+		NLA_POLICY_MAX(NLA_U8, IEEE80211_MLD_MAX_NUM_LINKS),
- };
- 
- static const struct nla_policy
-@@ -5561,6 +5563,18 @@ static int nl80211_parse_mbssid_config(struct wiphy *wiphy,
- 			}
- 
- 			config->tx_wdev = tx_netdev->ieee80211_ptr;
-+
-+			if (config->tx_wdev->valid_links) {
-+				if (!tb[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID])
-+					return -ENOLINK;
-+
-+				config->tx_link_id =
-+					nla_get_u8(tb[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID]);
-+
-+				if (!(config->tx_wdev->valid_links &
-+				      BIT(config->tx_link_id)))
-+					return -ENOLINK;
-+			}
- 		} else {
- 			config->tx_wdev = dev->ieee80211_ptr;
- 		}
+Thanks for the report!
+
+Could you please enable the MHI and ath11k debug logs and share the full dmesg
+to help us understand the issue better?
+
+> This same error has been reported on some fix patches [1] [2]. Are there
+> any patches which I should test? 
+> 
+> Is officially hibernation use case supported at all?
+> 
+
+Yes. The hibernation support was tested with x86 host machine for both MHI
+modems and WLAN chipsets (especially ath11k devices).
+
+> In my view, this path may not have gotten tested and can be fixed easily
+> as we need to perform, more or less the same steps which were performed
+> at init time. But I've not found much documentation around MHI protocol
+> and its state machine, how is mhi state related to mhi channels support.
+> 
+
+During hibernation, the power to the device could be lost. But it should be
+handled by the ath11k driver. Maybe the debug logs could help us know what is
+going wrong.
+
+- Mani
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
