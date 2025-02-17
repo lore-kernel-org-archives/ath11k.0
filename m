@@ -4,93 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34829C02198
-	for <ath11k@archiver.kernel.org>; Fri, 14 Feb 2025 07:07:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1162CC021A0
+	for <ath11k@archiver.kernel.org>; Mon, 17 Feb 2025 06:34:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=P0N0X3RdIUpKTp5bovKhP0i6D22WIPGqOlaqXbJdgtw=; b=0+WJQHylYrFiOLEE7Pdfwq+WO3
-	QGkGuAfpR/gSK+0TTN7e2NpgUO25csnoGflEibhxNzoeMA9kP8RNP28frPwvq/zHlGqHYFJyPemXV
-	AfQkqIGeO3YmCVNulWiqp2c2A+o+9rprUto3yc4lYzkeRfAxqVfeJRpMl8gnnlcaKzs4Fjtqbcsjn
-	9ytCnHRpwaIRpx/d0AB2FO/zg36h5MeAsqA1FzeDLX6TzF/zrCiU+rrIczHR8gZ+tPNLnMMD+AQe2
-	CrJQSoHnfJwL+FAW2a1syuhQLpttae6qf16E4bld05syUG2Gb/tcrgJ9/CIrjOLtk/HpKdEC/cfT1
-	2ETrRdsA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=iQXoj8H5b3looSrGKhddD/8Lrybt4a5ABYSR1D4Re5s=; b=g1JvnFV6gArXFV
+	5IaqTFY/uQRO2USUo4vnIB1dB1kWtZ7T4/S+suioXz0JeEX1qmO9ClKeRVi2VjCep7MlZcMHg9HVO
+	7xCPrrhr02M1xeYfHTH/h53DNCVBPTwudGJGN89Y/f3i1DZ7cTHXrjB+nQZY3BFP5B91R+keR7x8B
+	xQJ2p/9U9m7xV7lh19knIBiVDGlCWugEYj9gLLtOvQQ0iuT6flk+SfgbY4o/NtmwVhdyXlfcFVqx1
+	miueOVxDVE4SpspGTeHj5/e6tXp0AXTYGDQD294csrno6llOrBR3b5jp7+xejdvmfjV4/Cg/t4POp
+	PK/4vJk5cYrMlEqOBjlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tipna-0000000Dudd-2frG;
-	Fri, 14 Feb 2025 07:07:42 +0000
-Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
+	id 1tjuhx-00000003Ua0-1GdF;
+	Mon, 17 Feb 2025 06:34:22 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tipkt-0000000Du1u-2nLv
+	id 1tjuhu-00000003UYP-3DJn
 	for ath11k@lists.infradead.org;
-	Fri, 14 Feb 2025 07:04:56 +0000
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-21f44e7eae4so31627555ad.2
-        for <ath11k@lists.infradead.org>; Thu, 13 Feb 2025 23:04:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739516695; x=1740121495; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=P0N0X3RdIUpKTp5bovKhP0i6D22WIPGqOlaqXbJdgtw=;
-        b=cqfEE7jAwceJoYXvvVjWb1gOGwI9lRsJyxaYiict64OEF3r9bAqdNzolG592tZsbSJ
-         zJRBxLsl8W8C+JCTctPg7FuKFXu1Acm9toigy6XD4LN5holDpPiw2u0NH92UmpYi8+k1
-         NJfK/DBe6DZ0lwe8jYUjIAMSfk5JUfC2wqCzMVYLuxxTqLz4+4uCTmt6+pFEEORr4ljn
-         6QwEqMLrlVqANc2zh4N6xype9gSV5qCxpjpVygNgbW4eDR2XikzJ3oSlsMJR5uf4HSG7
-         uMeGDRwEpAKn66TR/j/3+RET+ojUxjXJbjU2IdZUz7eQO9wmPcrRpX4CAve4zfx3WRxK
-         XKGg==
+	Mon, 17 Feb 2025 06:34:20 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51H04nbb024167
+	for <ath11k@lists.infradead.org>; Mon, 17 Feb 2025 06:34:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=iQXoj8H5b3looSrGKhddD/
+	8Lrybt4a5ABYSR1D4Re5s=; b=FwzWUHRI6EyRImOKj+nGoAp8kj49VXCHa604rW
+	Gh9LJ7xKrLtbgz+R/mgxm+uC54lbriqnET3Z7DEwMvlc61KJiEXwYKv4pM7XvsKd
+	OapR+Wx2ya2te819xvoAkK9/yN1vrSbCZftLCiwu5elm3S321vVv6yibjzUk0+dd
+	/vLhSZPtN3+U/ZOnyT0RcGJM9DR1DBv7oIha91ILQd4BiEHaxt0TaGWNSGX/cEqK
+	9NrtYHhIgusfPrhfp4eYJFfqSqi8dU6fsGiddPlWbbwd2e1MrhVGpEWGic6kcyNA
+	nUwIkDxdynDiXkQAYuWzs+bj209rBi8bqBojNjJz13IMt0Jg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ut7u8ppd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 17 Feb 2025 06:34:17 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-220c86e46ebso59096775ad.0
+        for <ath11k@lists.infradead.org>; Sun, 16 Feb 2025 22:34:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739516695; x=1740121495;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P0N0X3RdIUpKTp5bovKhP0i6D22WIPGqOlaqXbJdgtw=;
-        b=XY0P5Con/QGE+k8Qz/9zFrGTDVrb9zzTZiRx94xJ1gdoeZM7l9Q8H5DpKGLIq3Odk/
-         qvvUp/ctLXH0PAy8Ghton4uWX+7AuGVvnN9/L1OL4iK/tbc77HWotb02FeCxDxtq6XuO
-         W9PDvWr3aQQ2/UIxg+1Su5FF4cq9ggrD4AQAPFPTsD4OIvQhw44ShXn7sGgM6xN9Lvf0
-         2Hzx/2+aznFf1PVb+ns1D5LrziyFIHMRRn87i/qH3T6lele4Y0sLFprld1ubcn+pyFTY
-         g4jnPWiHDw27c+Tng/i5tHZUKCVwovJ1isfEpUmdnJTEHXZDbffOPE4bnwijKfV6CVOg
-         LlrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXKHJZoRNe/jzjFZmOiDrbDD3tH6JN29fasaLMvANzBjrdxbabzuO0Z9rKIBVrELvaPysjuiV4=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx6MkbtOPVUpHv19jf5IpPRyQKYeu5Xfii2lqJ1ZNn8TamEb5vp
-	43onAyb2ta2xC93f2oaRupx9AYWNV7PZuR8FMgUAvDPLCdh4R9czeb2vi1rbrg==
-X-Gm-Gg: ASbGncs3EQZSncQM3xb9Xdoi/LxBY6xqs4UJcSZ4jHXgarTgK1qrrQa3VEwlS8NPq+X
-	lKnWmUTJRr8dyKK3p1aKnb91ciQlqrFxplFxtQ2FGgyRIu/3X1atEtx4ig3l8osdCoQbs07b4ap
-	KbWNghl9w9nEwhVts+9MqitDAxgZ2y1kA4zqK3MviSpUvve9gMogCvD74C0wZySNXNFtLfAn6+b
-	5fhcjVjx2BziQjbC/TL+Wc7JAibvWPXSCTaOwzsQgz1Q2V/em0vgpexQlGecBtb7e2TtJKFpZ0v
-	dMtSEoVLmINII3Fo7lXRoQhwvyC4loE=
-X-Google-Smtp-Source: AGHT+IGuqMZgZlagRCyTIKxDvOSsuvPGqcUxE8dosYx3w84r1nGN21q6LfaA+OlbApLZ3lRcHCSUbA==
-X-Received: by 2002:a17:903:950:b0:220:e63c:5b08 with SMTP id d9443c01a7336-220e63c5e07mr59800745ad.11.1739516694826;
-        Thu, 13 Feb 2025 23:04:54 -0800 (PST)
-Received: from thinkpad ([2409:40f4:304f:ad8a:8cb7:72db:3a5e:1287])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d537ca99sm22711205ad.106.2025.02.13.23.04.49
+        d=1e100.net; s=20230601; t=1739774057; x=1740378857;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iQXoj8H5b3looSrGKhddD/8Lrybt4a5ABYSR1D4Re5s=;
+        b=vQitfXNa9IQcoifGx571fEcKianoQOhLdN4lrnlML9F3HWWHtWPRW5skw91M7R/QRM
+         7xMth8TX7FxGNKgpIwC52aPOnocpc83jBCw6X1aDYqhXnQ3+K0Aran9qMUHD8En/4ave
+         84uJUFvJcL+Qf/T6ghTeTz7liCfqC8jmaUt8mqmeLeLAcORihVMxdfqpVslkdPBpCr5e
+         /+iUe6MtnjtSw9y8Q3OsL87nb/CYgWL15euYCsdS93EC9fGa9g1/olF+Q1qq0gkoI3XG
+         y+VqefCVQYuIgTmtnFsEIWcmDbzJa/6B9EOj43wZbQIMYPWQfy3gei1n9euRAKhq9UXS
+         Wuiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWBlfwg411K9unIQpqodXRGInwNPMjAkBDOnsN6P39Tw/gf7WVY9fU7KOPOnwpdFe5dz7PyiM=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx92m1bFibQcyevEm7nPTQLZH0T4f0pMGA778QkGt9234YfNP37
+	Tq6Gyn8hRs4GYsnp3JOdVAfnGkvAN0/b3P4DZUcfjS5D5tLoU3GK22O6T+MukR7KBvsEkx1eGti
+	ZLnpv0bvaFntdLltKB8vUTKIQfeotXL+8P1gukbN50Uh46my8RfdGqPdKJ/mV
+X-Gm-Gg: ASbGnctEQ+drNoV2Hglip3yVKtzLs8mk50JtdisEhnpfOjunzCvpcliedHaW0uObyee
+	7eZ/VwtwSu6Z+b+jN7UMaDheDOZwEliYZyLRZxAEnYx7uui5bnoDCoXC7MrT+zINBqrVBACSloo
+	T3OnUxqtaN98enmcXT86DkcbypIyBH2XbEsXnvvEedBCbEAo+4w97/LhZMPrP8wcIJD1HZ6Y0py
+	DB4MBtZBCm7BWnFfWUg2sR5SW2hxK97LOQSQDvp3TO3ejw2yL9xMrexJ9EfQSFTPX17Lr2o9LQ4
+	e2ZWqFTTtQodrOiAT0O9nZ0OEKCZBWU9WcBcGSO4
+X-Received: by 2002:a05:6a20:734c:b0:1ee:7ea6:8e0c with SMTP id adf61e73a8af0-1ee8cac55c9mr18266087637.8.1739774056609;
+        Sun, 16 Feb 2025 22:34:16 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG1648r3e9k3f7j/0JUKAhKP4VZHlpB+D2ION+yxkiLqbGo7Uymf7YvEB+nmMyv3aO5xRKwhA==
+X-Received: by 2002:a05:6a20:734c:b0:1ee:7ea6:8e0c with SMTP id adf61e73a8af0-1ee8cac55c9mr18266034637.8.1739774056186;
+        Sun, 16 Feb 2025 22:34:16 -0800 (PST)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73263b79287sm3771800b3a.29.2025.02.16.22.34.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 23:04:54 -0800 (PST)
-Date: Fri, 14 Feb 2025 12:34:47 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Muhammad Usama Anjum <Usama.Anjum@collabora.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Johan Hovold <johan@kernel.org>,
-	Loic Poulain <loic.poulain@linaro.org>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
-	kernel@collabora.com, ath11k@lists.infradead.org,
-	jjohnson@kernel.org
-Subject: Re: [BUG REPORT] MHI's resume from hibernate is broken
-Message-ID: <20250214070447.scs6lpytjtecz3ko@thinkpad>
-References: <59c036b6-a3d6-403b-8bb0-566a17f72abc@collabora.com>
+        Sun, 16 Feb 2025 22:34:15 -0800 (PST)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: [PATCH 0/8] bus: mhi: host: Add support for mhi bus bw
+Date: Mon, 17 Feb 2025 12:04:07 +0530
+Message-Id: <20250217-mhi_bw_up-v1-0-9bad1e42bdb1@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <59c036b6-a3d6-403b-8bb0-566a17f72abc@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF/YsmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDI0Nz3dyMzPik8vjSAt00Y0NjA7NEUzNjwyQloPqCotS0zAqwWdGxtbU
+ AtPwk3FsAAAA=
+To: Bjorn Helgaas <bhelgaas@google.com>,
+        =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        quic_jjohnson@quicinc.com, quic_pyarlaga@quicinc.com,
+        quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com,
+        quic_mrana@quicinc.com,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739774050; l=4167;
+ i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
+ bh=30TEJAABnUpwa1kh8H5tuBGWqBc57PSEMyTn4o46Oe8=;
+ b=vG+PKK75gdfNitdrSzZxvdfDkylUvvuDHb5LhND5dvYUjy4b7le09Q4AB1LGAes3zdqMUKfKk
+ TVbD5AtySEcDUbKMf/G6dkUnLGx09o2ZlvM5F6/WQFsMiBJXAPG03rI
+X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-Proofpoint-GUID: E_iTeia9LAxXcuiLt5SRzeFlgQrkSYrA
+X-Proofpoint-ORIG-GUID: E_iTeia9LAxXcuiLt5SRzeFlgQrkSYrA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-17_03,2025-02-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0
+ priorityscore=1501 phishscore=0 clxscore=1011 bulkscore=0 adultscore=0
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502170056
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250213_230455_713859_43725E32 
-X-CRM114-Status: GOOD (  22.53  )
+X-CRM114-CacheID: sfid-20250216_223418_822491_8E7ADC82 
+X-CRM114-Status: GOOD (  20.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,60 +137,89 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+As per MHI spec sec 14, MHI supports bandwidth scaling to reduce power
+consumption. MHI bandwidth scaling is advertised in devices that contain
+the bandwidth scaling capability registers. If enabled, the device
+aggregates bandwidth requirements and sends them to the host in the form
+of an event. After the host performs the bandwidth switch, it sends an
+acknowledgment by ringing a doorbell.
 
-+ ath11k list and Jeff
+if the host supports bandwidth scaling events, then it must set
+BW_CFG.ENABLED bit, set BW_CFG.DB_CHAN_ID to the channel ID to the
+doorbell that will be used by the host to communicate the bandwidth
+scaling status and BW_CFG.ER_INDEX to the index for the event ring
+to which the device should send bandwidth scaling request in the
+bandwidth scaling capability register.
 
-On Tue, Feb 11, 2025 at 01:15:55PM +0500, Muhammad Usama Anjum wrote:
-> Hi,
-> 
-> I've been digging in the MHI code to find the reason behind broken
-> resume from hibernation for MHI. The same resume function is used
-> for both resume from suspend and resume from hibernation. The resume
-> from suspend works fine because at resume time the state of MHI is 
-> MHI_STATE_M3. On the other hand, the state is MHI_STATE_RESET when
-> we resume from hibernation.
-> 
-> It seems resume from MHI_STATE_RESET state isn't correctly supported.
-> The channel state is MHI_CH_STATE_ENABLED at this point. We get error
-> while switching channel state from MHI_CH_STATE_ENABLE to
-> MHI_CH_STATE_RUNNING. Hence, channel state change fails and later mhi
-> resume fails as well. 
-> 
-> I've put some debug prints to understand the issue. These may be
-> helpful:
-> 
-> [  669.032683] mhi_update_channel_state: switch to MHI_CH_STATE_TYPE_START[2] channel state not possible cuzof channel current state[1]. mhi state: [0] Return -EINVAL
-> [  669.032685] mhi_prepare_channel: mhi_update_channel_state to MHI_CH_STATE_TYPE_START[2] returned -22
-> [  669.032693] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
-> 
+As part of mmio init check if the bw scale capability is present or not,
+if present advertise host supports bw scale by setting all the required
+fields.
 
-Thanks for the report!
+MHI layer will only forward the bw scaling request to the controller
+driver, it is responsibility of the controller driver to do actual bw
+scaling and then pass status to the MHI. MHI will response back to the
+device based up on the status of the bw scale received.
 
-Could you please enable the MHI and ath11k debug logs and share the full dmesg
-to help us understand the issue better?
+Add a new get_misc_doorbell() to get doorbell for misc capabilities to
+use the doorbell with mhi events like MHI BW scale etc.
 
-> This same error has been reported on some fix patches [1] [2]. Are there
-> any patches which I should test? 
-> 
-> Is officially hibernation use case supported at all?
-> 
+Use workqueue & mutex for the bw scale events as the pci_set_target_speed()
+which will called by the mhi controller driver can sleep.
 
-Yes. The hibernation support was tested with x86 host machine for both MHI
-modems and WLAN chipsets (especially ath11k devices).
+If the driver want to move higher data rate/speed then the current data
+rate/speed then the controller driver may need to change certain votes
+so that link may come up in requested data rate/speed like QCOM PCIe
+controllers need to change their RPMh (Resource Power Manager-hardened)
+state. And also once link retraining is done controller drivers needs
+to adjust their votes based on the final data rate/speed.
 
-> In my view, this path may not have gotten tested and can be fixed easily
-> as we need to perform, more or less the same steps which were performed
-> at init time. But I've not found much documentation around MHI protocol
-> and its state machine, how is mhi state related to mhi channels support.
-> 
+Some controllers also may need to update their bandwidth voting like
+ICC bw votings etc.
 
-During hibernation, the power to the device could be lost. But it should be
-handled by the ath11k driver. Maybe the debug logs could help us know what is
-going wrong.
+So, add pre_scale_bus_bw() & post_scale_bus_bw() op to call before & after
+the link re-train.
 
-- Mani
+In case of PCIe switch, if there is a request to change target speed for a
+downstream port then no need to call these function ops as these are
+outside the scope of the controller drivers.
 
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+---
+Krishna Chaitanya Chundru (6):
+      PCI: update current bus speed as part of pci_bus_add_devices()
+      PCI/bwctrl: Add support to scale bandwidth before & after link re-training
+      PCI: dwc: Implement .pre_scale_bus_bw() & .post_scale_bus_bw hook
+      PCI: dwc: qcom: Update ICC & OPP votes based upon the requested speed
+      bus: mhi: host: Add support for Bandwidth scale
+      PCI: Make pcie_link_speed variable public & export pci_set_target_speed()
+
+Miaoqing Pan (1):
+      wifi: ath11k: add support for MHI bandwidth scaling
+
+Vivek Pernamitta (1):
+      bus: mhi: host: Add support to read MHI capabilities
+
+ drivers/bus/mhi/common.h                          |  18 ++++
+ drivers/bus/mhi/host/init.c                       |  93 ++++++++++++++++++-
+ drivers/bus/mhi/host/internal.h                   |   7 +-
+ drivers/bus/mhi/host/main.c                       | 102 ++++++++++++++++++++-
+ drivers/bus/mhi/host/pm.c                         |  10 ++-
+ drivers/net/wireless/ath/ath11k/mhi.c             |  41 +++++++++
+ drivers/pci/bus.c                                 |   3 +
+ drivers/pci/controller/dwc/pcie-designware-host.c |  21 +++++
+ drivers/pci/controller/dwc/pcie-designware.h      |   2 +
+ drivers/pci/controller/dwc/pcie-qcom.c            | 105 ++++++++++++++++------
+ drivers/pci/pci.h                                 |   1 -
+ drivers/pci/pcie/bwctrl.c                         |  16 ++++
+ include/linux/mhi.h                               |  13 +++
+ include/linux/pci.h                               |   3 +
+ 14 files changed, 402 insertions(+), 33 deletions(-)
+---
+base-commit: 0ad2507d5d93f39619fc42372c347d6006b64319
+change-id: 20250217-mhi_bw_up-f31306a5631b
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+
 
