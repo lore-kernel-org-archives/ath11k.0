@@ -4,71 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDDCEC021AA
-	for <ath11k@archiver.kernel.org>; Wed, 19 Feb 2025 18:28:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96D6EC021AD
+	for <ath11k@archiver.kernel.org>; Thu, 20 Feb 2025 07:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=hUfRF/9dSTrKR8PGuEgD33owCC+QawYNihvsUbTs4mc=; b=N80oVqMFRGcIlk
-	7d+GsO4Wr7KxepNNOpiQHnjdlrsnXSZAEn55EqwA0Lq4AGcGiNqNikWngH4oibJhFqUfSiPfRcT5q
-	NnIVn6zQqYhA27oWVXlrz/6pYO/P+WGtOX/njRYQcpXwmYwMW8ZzH5lCnM4h6EM2QmD1dmUbMzphx
-	YSyiJ9PH6NTHfpApVOwdYxXbzyZrZBnYdfN/jq0tTm1s8O2ib2lB7Ofe5wk1uKBBF/CMdqGbXhwpC
-	zBIs2H4yogIjGHxlNDeXgjgYAZ4Z6h0FrCsfTC8VE5DEJmYFCqwQqdktGvb+jOfLfGBrPcioDaP8O
-	RY0BFwyM7g4aOAp1/bhw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=UV17Nt5yQKcSGgNfItNKNUGGyGE4aHh1b+X0vkMI1kU=; b=fU030TVIMApa4qdlTdgotkMzY6
+	kcLyP9/loYNOdauqtSAOc6T8u/RRORiT6p3LbjFJGfxDm0NRno14gEWWMdHuIvtk1DvBtC15Uxutj
+	DKwHIGz1rFVE/hVsx9EIKae00j0HLHyqoWVL8UYf1PtBru99gpMd/yJr12sCtvpyvqyV9QOrWsk2Y
+	APDca1rfHP1Y+9cTjyKn+RzKYEbmxTplF/Pa4DeQlvp20CNq53LI71dMc775pzBf4qysH/y1fs23p
+	T8myOyrNnSiD6IcJte6I3OPIERM6HJx6kyHcaObNjMYfulYAoPNLmY//QXG96rUESm72hSdNY5T+H
+	PjVsdyQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkooF-0000000EMQ5-2NSk;
-	Wed, 19 Feb 2025 18:28:35 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tl1KW-0000000HEqk-3XtF;
+	Thu, 20 Feb 2025 07:50:44 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkonW-0000000EM82-4B6F
+	id 1tl1KU-0000000HEqH-2Bu9
 	for ath11k@lists.infradead.org;
-	Wed, 19 Feb 2025 18:27:52 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 325585C5BCB;
-	Wed, 19 Feb 2025 18:27:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2B6FC4CED1;
-	Wed, 19 Feb 2025 18:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739989670;
-	bh=UIoAHLKhxXMvwRVPNUAgVWM1OzHt8bv2gL9HuSb4s8g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=oM/7VpTzi/qHrQlMXfwp1C2byH05D8tZNakXeSfti2tjiRVCusvRpVWuFJUofaKjZ
-	 n2MkVMuuW4wNzNLERxr0VDX6bPR6a91Lo8/ONo9SmrsqvFChLUO1MTM4VwTLopoYB3
-	 23XJT+Dnbarq/Ci0AYvXIPn2vNFu/a9FdcLD/KdzwdcAeeCyylSLoMe5mRLVctMfO1
-	 QCcvib6Am/JwMH7sZvNuQHgfNTSfJmwSwGUsHD2UUvPIQEhRIVT0s11Iy4/93TksRK
-	 2XMkZ3frjmXUteUMicgESwd8+nYmUp9e7fd7V6lZL8Ex/9otJIxLJ0DBtoVa5wtW/o
-	 fIVXvX6Pk78jA==
-Date: Wed, 19 Feb 2025 12:27:46 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	mhi@lists.linux.dev, linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org, quic_jjohnson@quicinc.com,
-	quic_pyarlaga@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_vpernami@quicinc.com, quic_mrana@quicinc.com
-Subject: Re: [PATCH 4/8] PCI: dwc: qcom: Update ICC & OPP votes based upon
- the requested speed
-Message-ID: <20250219182746.GA226108@bhelgaas>
+	Thu, 20 Feb 2025 07:50:43 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-221050f3f00so11524635ad.2
+        for <ath11k@lists.infradead.org>; Wed, 19 Feb 2025 23:50:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740037841; x=1740642641; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=UV17Nt5yQKcSGgNfItNKNUGGyGE4aHh1b+X0vkMI1kU=;
+        b=sA6wdJNrKky+71tsyU+vxHdmsclPHkuzXFbfPU+N5HB+CHcHBjTbHLsQOIhxeThQaY
+         M2JVnjc0A+iEhueTRe2mU+7CV6AV+/eaHQPpyejVOQI1VdrfDHU/RuFh6AV06GpgpTPU
+         qV7mtHF4cfuWFd2svs+d8eVkAI86H3aFB6oZhK+5U2ubzIuuZkBW797csD0nggzlTZzs
+         6/iZrOQqnlkTHyAvISGq0kKamSjubI0n0irA6xHty8sZXK/Ty6+B+dKc33R4+O3r+ZDk
+         s+xNNuDQrMEnfgPM+xLIK/nyUxxyl4yCHLXfcFGFVSR47qMofVHnZNIwCuLc1uvkSPVv
+         DtBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740037841; x=1740642641;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UV17Nt5yQKcSGgNfItNKNUGGyGE4aHh1b+X0vkMI1kU=;
+        b=eiLSi/4JcSpzXPlh0QYlMs2CIG34q8tP1YcG4APkFjT2zNQeYp/9tSPFeKCDgfmPDz
+         fxVwKQxIO2zRSUqLlnC3jrW69gVlZ69nJmShAb3R21vymsWEu+k7m2eOE/I/C+SqrUes
+         yXFzdRsYSIASsCfagrlv2U/Wjp8yt8Hn4PYcIiUir2SRUmNpWB+xvl2yYBm6Hz79W2rv
+         /Rdkmlab3BgjaN8DjysPQ3uJeuvByVXuFY0pIVqkRvgvBbAfqwMogk3eq0Dhicjf0MxA
+         XMDqBIENAEyeZLuXSUP/7/z3Qxhb/DoVFvHyFbvQvOFDXB50GTgwDFlReZiMFNBB11Ae
+         uPUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVym/6qzRgXu1DLnzfV8fFCJBrVODCTSYQRBkco7nmGPsRqJgPZjfmZmxYSsb++/avv80cv7A=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw148hFW0PFsYnAmpAi7U/gdAmGJZFkQ3j5FnbtSBp8lWoUNPhQ
+	jQGeyMRfOALlGZFmjVyUHC85uOOParL+CvADZsnS2FB6mtBo06DKxh8BDN8wlA==
+X-Gm-Gg: ASbGncsERpK1Je9/zwCmY6vH6vHqwZDDPjpDpj1KEx62NXbm48m9rcplHzYHZOqu0qb
+	JtL61IVOZC9xTcni/Yiw8SBD1ziaIlikAmDK44cnDDtu9QR64aJIis6Ot/OBXAytSeoPvSnoEAJ
+	ngFtJq22aGPfy78kHrDmCk7J/sAjwb5ksxzQnAWup0AITdqnYo/qeS7vt+g8GCqWoRKFJGWCZUc
+	qQhbBgqs3LY+SkWHrSxtHulTuRf75hThJ1N9A8J1i1tmE7ev/LuUFCpmvsqi3dGR3DQN/KFyqgV
+	QrRSNExsU55ZrMuJCZJNFc7GEA==
+X-Google-Smtp-Source: AGHT+IFSN9+iiUzXPMS/UScQ00TgdpnN4eGzxEYaWLUw7fx9CjEDSYnibRHaiiO0jYuYJiu+yQKyaA==
+X-Received: by 2002:a05:6a00:2e82:b0:730:9567:c3d5 with SMTP id d2e1a72fcca58-7326177cbccmr34361814b3a.4.1740037841234;
+        Wed, 19 Feb 2025 23:50:41 -0800 (PST)
+Received: from thinkpad ([120.60.70.244])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73258b985c9sm10741321b3a.84.2025.02.19.23.50.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2025 23:50:40 -0800 (PST)
+Date: Thu, 20 Feb 2025 13:20:34 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Muhammad Usama Anjum <Usama.Anjum@collabora.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Johan Hovold <johan@kernel.org>,
+	Loic Poulain <loic.poulain@linaro.org>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+	kernel@collabora.com, ath11k@lists.infradead.org,
+	jjohnson@kernel.org
+Subject: Re: [BUG REPORT] MHI's resume from hibernate is broken
+Message-ID: <20250220075034.unsd5cq7xkip2by6@thinkpad>
+References: <59c036b6-a3d6-403b-8bb0-566a17f72abc@collabora.com>
+ <20250214070447.scs6lpytjtecz3ko@thinkpad>
+ <1cd4a1ed-f4e7-4c7b-a19f-f79afddbe310@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f0e5efb7-8ea0-a064-21e4-6d7596b1a9ae@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1cd4a1ed-f4e7-4c7b-a19f-f79afddbe310@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250219_102751_088443_B15D2E46 
-X-CRM114-Status: GOOD (  14.56  )
+X-CRM114-CacheID: sfid-20250219_235042_566677_0FB1F490 
+X-CRM114-Status: GOOD (  25.91  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,29 +107,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Feb 19, 2025 at 11:28:47PM +0530, Krishna Chaitanya Chundru wrote:
-> On 2/19/2025 3:37 AM, Bjorn Helgaas wrote:
-> > On Mon, Feb 17, 2025 at 12:04:11PM +0530, Krishna Chaitanya Chundru wrote:
-> > > QCOM PCIe controllers needs to disable ASPM before initiating link
-> > > re-train. So as part of pre_bw_scale() disable ASPM and as part of
-> > > post_scale_bus_bw() enable ASPM back.
+On Mon, Feb 17, 2025 at 07:35:50PM +0500, Muhammad Usama Anjum wrote:
+> On 2/14/25 12:04 PM, Manivannan Sadhasivam wrote:
+> > Hi,
+> Thank you so much for replying.
+> 
 > > 
-> > s/needs/need/
+> > + ath11k list and Jeff
 > > 
-> > Why does Qcom need to disable ASPM?  Is there a PCIe spec restriction
-> > about this that should be applied to all PCIe host bridges?  Or is
-> > this a Qcom defect?
+> > On Tue, Feb 11, 2025 at 01:15:55PM +0500, Muhammad Usama Anjum wrote:
+> >> Hi,
+> >>
+> >> I've been digging in the MHI code to find the reason behind broken
+> >> resume from hibernation for MHI. The same resume function is used
+> >> for both resume from suspend and resume from hibernation. The resume
+> >> from suspend works fine because at resume time the state of MHI is 
+> >> MHI_STATE_M3. On the other hand, the state is MHI_STATE_RESET when
+> >> we resume from hibernation.
+> >>
+> >> It seems resume from MHI_STATE_RESET state isn't correctly supported.
+> >> The channel state is MHI_CH_STATE_ENABLED at this point. We get error
+> >> while switching channel state from MHI_CH_STATE_ENABLE to
+> >> MHI_CH_STATE_RUNNING. Hence, channel state change fails and later mhi
+> >> resume fails as well. 
+> >>
+> >> I've put some debug prints to understand the issue. These may be
+> >> helpful:
+> >>
+> >> [  669.032683] mhi_update_channel_state: switch to MHI_CH_STATE_TYPE_START[2] channel state not possible cuzof channel current state[1]. mhi state: [0] Return -EINVAL
+> >> [  669.032685] mhi_prepare_channel: mhi_update_channel_state to MHI_CH_STATE_TYPE_START[2] returned -22
+> >> [  669.032693] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
+> >>
 > > 
-> It is QCOM controller issue, PCIe spec doesn't mention to disable ASPM.
+> > Thanks for the report!
+> > 
+> > Could you please enable the MHI and ath11k debug logs and share the full dmesg
+> > to help us understand the issue better?
+> The ath11k debug was already enabled. CONFIG_MHI_BUS_DEBUG wasn't enabled. 
 
-OK.  I'm a little concerned that disabling/enabling
-PCIE_LINK_STATE_ALL might clobber preferences set by drivers of
-downstream devices, but I guess ...
+Sorry for not being clear. I asked you to enable the dev_dbg() logs in the MHI
+driver. But it is not required. See below.
 
-Maybe we could add a comment in the code about this being done to work
-around some Qcom issue so that browsers of
-pci_enable_link_state_locked() don't get the idea that this needs to
-be done generically.
+> I've
+> enabled it and now the hibernate is working without any issue. It is very strange
+> how can CONFIG_MHI_BUS_DEBUG make any difference. I don't have much background on
+> how it is helping.
+> 
 
-Bjorn
+Probably some timing issue. But enabling the MHI debug logs could also hide the
+issue. So you should disable the CONFIG_MHI_BUS_DEBUG option and collect the MHI
+trace logs that we recently added.
+
+Hope it will shed some light.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
