@@ -4,88 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C81FAC021BE
-	for <ath11k@archiver.kernel.org>; Tue, 25 Feb 2025 05:35:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1505C021B2
+	for <ath11k@archiver.kernel.org>; Tue, 25 Feb 2025 06:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AYmnWqCfl4BTw5dpDwtuCHljGqr5uXG7tQyflbiZ1TI=; b=AMxkZyYvlwrp6KdiZ6hyLDoDos
-	x7/WyF3YVZnPrWnsrT4Dd1DsoQMGh5uZ1phfSSzUi2a3Iacsvwuue5M36SjPTlSsx73ohv3P0U1vi
-	1VTuR51x7TgSAizRQC30IhjJYgkUDmhuBx2xrFj2N7aTtSx0p8tMlKt1jZXk+5MC//r7mk3HV+es1
-	9+xDngZBRBd+NEX8SKjgGLpkkQF6P9JC/WEQpxo4C3EVWFDvIJscxrvYk9lUvQPHhHJc9EbO9WALF
-	utCttbsUJ0pgmCvO5Ayk6IZzufcuEsEzU9NnFw4AUI1rIlIaVnKwReEAuS05Sy+tBgXaFI0oef7e9
-	RSm92vVA==;
+	bh=zlGJk/boTTi46WwLjRxSuU692UCYhuz4KWqBVlpFD2s=; b=j3mafZzV7/c2fGmugZhMerEb40
+	a307nQSwGaprbL6wgtWHrfutlbf0y1eBae+l0SV09bTbCVvUXHSiFoua7JFA8KT7OQJ5dLHUzK7fY
+	hJUnyqn9xwBKp98yzncybZmy3WofSO8uqHzonwxHKOWpfHm+LkuWvnZe4BUplDz2NeKuQfz56uIng
+	YdaxdQ5LhrsXxw9E85b33h+aS9UsUC0aOXvE/qh/zN4ZWIW5ZeMdJCXhTrtmzvWFkTskto+ZsnYeD
+	b0kR/oE1zKYcg5GwqsaUbT0myqRlCKnMN/AjcNS90PoswVhanGwO/O3rJoc/qUWRw/WUJ0U0eFeQA
+	jPimlVkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmnaz-0000000G0wk-2OU2;
-	Tue, 25 Feb 2025 05:35:05 +0000
-Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	id 1tmo9H-0000000G3hN-0q7B;
+	Tue, 25 Feb 2025 06:10:31 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmnax-0000000G0uJ-19hl
+	id 1tmo8c-0000000G3bs-2jQD
 	for ath11k@lists.infradead.org;
-	Tue, 25 Feb 2025 05:35:04 +0000
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-221050f3f00so117108635ad.2
-        for <ath11k@lists.infradead.org>; Mon, 24 Feb 2025 21:35:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740461702; x=1741066502; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AYmnWqCfl4BTw5dpDwtuCHljGqr5uXG7tQyflbiZ1TI=;
-        b=b14wgRUN5fjZBH7AzcNpO2TL+assjFzdRiIoFUGRjVRnewwmIzqodtMsv8zP7BeCDq
-         YwtzXxOzpqYmLYslygukDS0/OeVCtt/732ghnklzCIcELyXUAg57wpDYFwEd7ZVfR1Nm
-         7q/1J3q3WGIoFqA43nrjWuKZK6r1GmX1ZjxAr+7bancsXvZ0yer2i+4xCPvU5mY72h9m
-         Luv6xymEEu0giNqbzvuKBYQCu1+Yw7GViferKmcqJtvbpf6EondXHs7RBLd1IX0xF8l1
-         Zf0TCSbr0pvSATtEKjCU8jmkkaIibT1V85Edef1dtjiiaEzBdYVxGYpYUqZkD5wX3BVM
-         oMHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740461702; x=1741066502;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AYmnWqCfl4BTw5dpDwtuCHljGqr5uXG7tQyflbiZ1TI=;
-        b=onIfK1bOA5SHjju3LkBk77uxwXkF9r9v8xu5tYxTq7JasF/pA7IdXpZ4cx+JUVZgSi
-         MxwgBZgQ8ovwBGKiQnhkL/B4SUaQu8B8IIIUONGTeZxLFjoEu1eUYOkUKJ6xBGfeq/aU
-         zmn01F00teVHH2lpyLLRR7fiC7KNtUW7FwPKjw6hPGJVARhxHwFBD/1NKDbHgn3yOSmA
-         rC2wxeJqo/KIRW9TjZufcbFajQEA96UjmRC/R/DkFXqkwMk4bKlvyQ+o2orb4POQRqtz
-         irAcljVs8ohBzp8whJyedgzeHs/2fAX6+OVFq3r6a3j3SiD69Ou/jdV4XXr01HNAcS2T
-         ewcA==
-X-Forwarded-Encrypted: i=1; AJvYcCV7tUguzeVbJLNBtnN+nKTHpursz5SJxif4SuoDSJeWJAMF3ZZJErynib2OgCXkSAENSY3Ra7U=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx5aIIt2oI3h2vy9EPZToOb1mj7CbOoiwrEj1EFHGMPmAQav1kt
-	FOxit1PJ4E2MwgpYREopdkhhhf2ifwCiMcP0Cu2/OZ1ZEBaatkRI3xlLM5ED0w==
-X-Gm-Gg: ASbGnctNcsayFfsdFa8sAn+F1qyDZfPY6qSx7M0RGm2zBmp69BfzxBC4rBxmoRBLjYe
-	3UU4S7OAFy8t9lIUieeMH2NPQliBAZnHUjqoreYzG8VnhQyLq4lYaJA0u38CkXKRw+lWnWK/eBE
-	QqwtRAC/3XEZHSmcXna6lLW4PdD+qg5IYji52yh5bBcrK0zVg9HgJZeqjGmNpQciKU58NGi8wxc
-	V8X6s0bOtBQICE5Hm95d3C5oOTy4khcHPwN4x+kIZQyV8hGlrWiMG5whz+u1Gdod6RbVGY5BoIU
-	kC+shHZSUm7a/yi3GCIoqhjJgd+/Rf8BSVjh1JdOEPgu8OZbnS03MA==
-X-Google-Smtp-Source: AGHT+IEHljzwJD36eza1aeKcaU2dWlFSTtvnEQrg+fmzOtR5w21SUg7QvbAbtZaZAXH1YQPPhdGwlg==
-X-Received: by 2002:a05:6a00:2e9c:b0:730:8526:5db4 with SMTP id d2e1a72fcca58-734790f8cfemr3218117b3a.13.1740461702511;
-        Mon, 24 Feb 2025 21:35:02 -0800 (PST)
-Received: from localhost.localdomain ([36.255.17.214])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7347a7f9af3sm582101b3a.110.2025.02.24.21.35.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Feb 2025 21:35:02 -0800 (PST)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: jjohnson@kernel.org
-Cc: linux-wireless@vger.kernel.org,
-	ath12k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 3/3] wifi: ath11k/ath12k: Replace irq_set_affinity_hint() with irq_set_affinity_and_hint()
-Date: Tue, 25 Feb 2025 11:04:47 +0530
-Message-Id: <20250225053447.16824-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250225053447.16824-1-manivannan.sadhasivam@linaro.org>
-References: <20250225053447.16824-1-manivannan.sadhasivam@linaro.org>
+	Tue, 25 Feb 2025 06:09:51 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1740463767; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=MoxhigzgjKJZtjuMmmxtmjfd2B95WHy56Is1CRIbfGaDh5fXMdDFuTpf1hlCX1QvilcJ9Nyk582gyDVWQc58QhMk/SpRxfOhEQye4UJVl+VfUpv4Nrj5tnYUrGuOGMaKtaMrOX3+eRIt14XzgyLFXXazgnkQR9KqKn7cYRWSZbw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1740463767; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=zlGJk/boTTi46WwLjRxSuU692UCYhuz4KWqBVlpFD2s=; 
+	b=E77T+47VTEpF9m5gWxnlb58MjXvuDgg52KvKgXSiFJxPvMKdCxqrD9zimoSZGjm+/cpZNcId17F8Z91szlW+0Ok7jZFYONkasLf2znA+KhMdf6AjF1s7iuQiDqjxbLnR0fpq7sCLkbL8VIzBL4CJwxKap3JjPf3fvAWFEfmj1GQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=Usama.Anjum@collabora.com;
+	dmarc=pass header.from=<Usama.Anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740463767;
+	s=zohomail; d=collabora.com; i=Usama.Anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Cc:Cc:Subject:Subject:To:To:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=zlGJk/boTTi46WwLjRxSuU692UCYhuz4KWqBVlpFD2s=;
+	b=XrVUEkmOoIzAxB8edEvVsTnEK14wqXdy3pGXFAylllaIlyWVgeyugUziAX+W/F9J
+	0Gke1Fh1EnBhDUJyGynb1WLxCfy9lPUTnYD7K77Ya1b32qOxaVdCxt0ei7oJW9FNXW9
+	sYBv1atwcZ4x4ru0xyrftIZQIR+Ij3yNovzfvOOg=
+Received: by mx.zohomail.com with SMTPS id 1740463764036975.0626584461274;
+	Mon, 24 Feb 2025 22:09:24 -0800 (PST)
+Message-ID: <b3540615-0dc1-41f8-bb8f-99f01f909b36@collabora.com>
+Date: Tue, 25 Feb 2025 11:10:00 +0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Cc: Usama.Anjum@collabora.com, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Johan Hovold <johan@kernel.org>,
+ Loic Poulain <loic.poulain@linaro.org>, linux-arm-msm@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+ kernel@collabora.com, ath11k@lists.infradead.org, jjohnson@kernel.org
+Subject: Re: [BUG REPORT] MHI's resume from hibernate is broken
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <59c036b6-a3d6-403b-8bb0-566a17f72abc@collabora.com>
+ <20250214070447.scs6lpytjtecz3ko@thinkpad>
+ <1cd4a1ed-f4e7-4c7b-a19f-f79afddbe310@collabora.com>
+ <20250220075034.unsd5cq7xkip2by6@thinkpad>
+ <ec8a01a3-5eaf-4fba-bb85-e7a677877e5f@collabora.com>
+ <20250224164400.w3lpzxxwfbrj5lb6@thinkpad>
+Content-Language: en-US
+From: Muhammad Usama Anjum <Usama.Anjum@collabora.com>
+In-Reply-To: <20250224164400.w3lpzxxwfbrj5lb6@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250224_213503_318569_00DB6321 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20250224_220950_775673_D6FDFFE7 
+X-CRM114-Status: GOOD (  21.32  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,44 +88,95 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-irq_set_affinity_hint() API is deprecated now, so let's use the recommended
-equivalent irq_set_affinity_and_hint().
+On 2/24/25 9:44 PM, Manivannan Sadhasivam wrote:
+> On Thu, Feb 20, 2025 at 05:34:06PM +0500, Muhammad Usama Anjum wrote:
+>> On 2/20/25 12:50 PM, Manivannan Sadhasivam wrote:
+>>> On Mon, Feb 17, 2025 at 07:35:50PM +0500, Muhammad Usama Anjum wrote:
+>>>> On 2/14/25 12:04 PM, Manivannan Sadhasivam wrote:
+>>>>> Hi,
+>>>> Thank you so much for replying.
+>>>>
+>>>>>
+>>>>> + ath11k list and Jeff
+>>>>>
+>>>>> On Tue, Feb 11, 2025 at 01:15:55PM +0500, Muhammad Usama Anjum wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> I've been digging in the MHI code to find the reason behind broken
+>>>>>> resume from hibernation for MHI. The same resume function is used
+>>>>>> for both resume from suspend and resume from hibernation. The resume
+>>>>>> from suspend works fine because at resume time the state of MHI is 
+>>>>>> MHI_STATE_M3. On the other hand, the state is MHI_STATE_RESET when
+>>>>>> we resume from hibernation.
+>>>>>>
+>>>>>> It seems resume from MHI_STATE_RESET state isn't correctly supported.
+>>>>>> The channel state is MHI_CH_STATE_ENABLED at this point. We get error
+>>>>>> while switching channel state from MHI_CH_STATE_ENABLE to
+>>>>>> MHI_CH_STATE_RUNNING. Hence, channel state change fails and later mhi
+>>>>>> resume fails as well. 
+>>>>>>
+>>>>>> I've put some debug prints to understand the issue. These may be
+>>>>>> helpful:
+>>>>>>
+>>>>>> [  669.032683] mhi_update_channel_state: switch to MHI_CH_STATE_TYPE_START[2] channel state not possible cuzof channel current state[1]. mhi state: [0] Return -EINVAL
+>>>>>> [  669.032685] mhi_prepare_channel: mhi_update_channel_state to MHI_CH_STATE_TYPE_START[2] returned -22
+>>>>>> [  669.032693] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
+>>>>>>
+>>>>>
+>>>>> Thanks for the report!
+>>>>>
+>>>>> Could you please enable the MHI and ath11k debug logs and share the full dmesg
+>>>>> to help us understand the issue better?
+>>>> The ath11k debug was already enabled. CONFIG_MHI_BUS_DEBUG wasn't enabled. 
+>>>
+>>> Sorry for not being clear. I asked you to enable the dev_dbg() logs in the MHI
+>>> driver. But it is not required. See below.
+>> I've disabled the MHI_BUG_DEBUG. It only enables some files. Ideally if those files
+>> being used, there shouldn't be any difference. But they are definitely changing the
+>> timings.
+>>
+>>>
+>>>> I've
+>>>> enabled it and now the hibernate is working without any issue. It is very strange
+>>>> how can CONFIG_MHI_BUS_DEBUG make any difference. I don't have much background on
+>>>> how it is helping.
+>>>>
+>>>
+>>> Probably some timing issue. But enabling the MHI debug logs could also hide the
+>>> issue. So you should disable the CONFIG_MHI_BUS_DEBUG option and collect the MHI
+>>> trace logs that we recently added.
+>> Disabled the MHI_BUS_DEBUG and collected logs by Dynamic debug:
+>> [  584.040189] mhi mhi0: Allowing M3 transition
+>> [  584.040202] mhi mhi0: Waiting for M3 completion
+>> [  584.040480] mhi mhi0: State change event to state: M3
+>> ..
+>> [  584.535478] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
+>> [  584.535482] qcom_mhi_qrtr mhi0_IPCR: PM: dpm_run_callback(): qcom_mhi_qrtr_pm_resume_early [qrtr_mhi] returns -22
+>> [  584.535490] qcom_mhi_qrtr mhi0_IPCR: PM: failed to restore early: error -22
+>> [  584.831583] mhi mhi0: Entered with PM state: M3, MHI state: M3
+>>
+>> It seems like the state save was success at hibernate time. The error is originating
+>> at resume from hibernation.
+>>
+> 
+> I just tried hibernation on my RB5 board featuring QCA6390 WLAN chip which makes
+> use of ath11k driver. I did encounter the resume failure, but the error log was
+> slightly different. Then looking at the ath11k driver made me realize that they
+> reverted the hibernation support due to suspend issue reported on some Lenovo
+> platforms: 2f833e8948d6 ("Revert "wifi: ath11k: support hibernation"").
+> 
+> So that explained the resume failure. I reverted the revert and that allowed me
+> to resume properly from hibernation. So please try to do the same and see if it
+> helps you.
+On my side, I've reverted this. But it didn't create any difference. This commit is
+reverting hibernation for ath11k. It isn't changing anything in MHI. 
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
+On my side, it seems there is some timing issue on MHI side. I'll try to dig more in
+MHI.
+>> [  584.535478] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
+>> [  584.535482] qcom_mhi_qrtr mhi0_IPCR: PM: dpm_run_callback(): qcom_mhi_qrtr_pm_resume_early [qrtr_mhi] returns -22
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/net/wireless/ath/ath11k/pci.c | 2 +-
- drivers/net/wireless/ath/ath12k/pci.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index eaac9eabcc70..be2791cd79d5 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -735,7 +735,7 @@ static int ath11k_pci_set_irq_affinity_hint(struct ath11k_pci *ab_pci,
- 	if (test_bit(ATH11K_FLAG_MULTI_MSI_VECTORS, &ab_pci->ab->dev_flags))
- 		return 0;
- 
--	return irq_set_affinity_hint(ab_pci->pdev->irq, m);
-+	return irq_set_affinity_and_hint(ab_pci->pdev->irq, m);
- }
- 
- static int ath11k_pci_probe(struct pci_dev *pdev,
-diff --git a/drivers/net/wireless/ath/ath12k/pci.c b/drivers/net/wireless/ath/ath12k/pci.c
-index 2851f6944b86..9883cb2de548 100644
---- a/drivers/net/wireless/ath/ath12k/pci.c
-+++ b/drivers/net/wireless/ath/ath12k/pci.c
-@@ -646,7 +646,7 @@ static int ath12k_pci_set_irq_affinity_hint(struct ath12k_pci *ab_pci,
- 	if (test_bit(ATH12K_PCI_FLAG_MULTI_MSI_VECTORS, &ab_pci->flags))
- 		return 0;
- 
--	return irq_set_affinity_hint(ab_pci->pdev->irq, m);
-+	return irq_set_affinity_and_hint(ab_pci->pdev->irq, m);
- }
- 
- static int ath12k_pci_config_irq(struct ath12k_base *ab)
 -- 
-2.25.1
-
+BR,
+Muhammad Usama Anjum
 
