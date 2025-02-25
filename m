@@ -4,82 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 850C6C021BC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E651C021B8
 	for <ath11k@archiver.kernel.org>; Tue, 25 Feb 2025 09:37:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=pUUlyd7n/V07DcfsSYjPFFab+d4+yvvoCEwUK+Z2ilg=; b=PDqIHWdh4R4AAI
-	2h3m6ggLJq91XVHPqEiVO8+UaThtq7kYA4zsIyg+xk9nFHcOZY6vI4DRKoV30hSI2Zg4k9Vxzgfns
-	i7ZRnwY01CEKbujQ2eh37duhTfK2KZyL/nG03wLjgVODwIZppfT6tDk3VG9Md8n+RrqUBJKaudz8w
-	/vt7wKhX2tmhZJoH51++5z2NGS862W5RTiQdejt47R2edg/srfX2R5D6F3pqIfZa0HTCzAirNJ0D2
-	QbYKGLI+KP3rZxaq0MgWCrqmR3w46r1Dd3lNZfsOdG2dIj+xJFtOYhuZJzIIv6rLvh2uFhbap/5GU
-	0mj/LiKm5YE2ajLpHixQ==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fY0h+JkzJEPC+Fr2bSYHihmywLYc/knwfAjtuNnsAeo=; b=YedQTyFJD/90NZ1DGLupWDHc4D
+	gJe9Aj8zfKsls/oAMpBwFpdZIiDH5mXVK37GPKGgP493+94DZMVpbsqjSUADT0UJXV82HcLjJgaCm
+	6o8bnBxGqGbzdZKsk8hy3M+7Vn6i6aj+K5BLF55QB1dDo3YS8fuXVG+IOuTY+qNQ+t+hBFZLzYZ7w
+	W/TtdEKIHxTNfrNSJlFo3sM7e14t7N9kCf4A+ekfE+gPOo7Xf9evdHQ3ATQbCfENF1Tg8FilTCqrg
+	JLUEfZx9VBnKHIFq+xW3u0+IwnqkQvGi1Kat69hQhF7iTVQ8LA4pExJ1aYHhObWEe/vl8Q5g+lXeQ
+	4rJTekeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmrNj-0000000GcLG-1mSZ;
-	Tue, 25 Feb 2025 09:37:39 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1tmrNl-0000000GcNE-3fOg;
+	Tue, 25 Feb 2025 09:37:41 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmqsq-0000000GVd4-3T0L
+	id 1tmqst-0000000GVfo-0p01
 	for ath11k@lists.infradead.org;
-	Tue, 25 Feb 2025 09:05:46 +0000
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-abb4944fa73so78955566b.3
-        for <ath11k@lists.infradead.org>; Tue, 25 Feb 2025 01:05:44 -0800 (PST)
+	Tue, 25 Feb 2025 09:05:48 +0000
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-abc28af1ba4so46397466b.1
+        for <ath11k@lists.infradead.org>; Tue, 25 Feb 2025 01:05:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740474343; x=1741079143; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pUUlyd7n/V07DcfsSYjPFFab+d4+yvvoCEwUK+Z2ilg=;
-        b=RFWSFgaaLEBpcX3B9soFJB1hIEI5nACLUHOevOrnkVOchYLskJ28voM/eHZx1aWmSe
-         DenisYtrmtrDF51Od2qGLMJd4RxQy4Jv2hdpqLa/2ZiMFo5x9qGPr+VK8d+h17YqGWbi
-         7vg/67cHHqVqTHJivRRyrLcKeXGfoAoPstQK3kyO39q+eByvMMzspqSfcwbOF7NjKuIg
-         5DisZDhX3TkHuClTqTwHSUwxQIzIFhiQJarnGPTZz85/qUNqE7vz8oKd3hkkfiJLV9f6
-         N6ahlcw503hRpCu+aabMGbk7G9IvSNxHrfbBQsCn9paBxNg33dnonkiImSxlLYK4rfgs
-         d1NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740474343; x=1741079143;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1740474346; x=1741079146; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pUUlyd7n/V07DcfsSYjPFFab+d4+yvvoCEwUK+Z2ilg=;
-        b=fVsL9+B4Pfx8dwHjc+fmPqe6HXkhiW8nBD4zUzTWVY1e91TMyp48hzO/lO7aSqc0bg
-         O6gC54Cn6NZ4Xh4RZ3jzppXARNJXvc9MIyc6R+3NapVR81F51sMvmGW8rB1aBC4F9h2C
-         N8aRzxUj4E4ttoJWBE5ghzfQW00FmCZi0S+RXqfAKqL9p3OR5sWGRkunqUYGSO3oc0Th
-         1JsnHrKhPKgtVvaj5rLtimvWgShRRf7u7LJfnTG/A324OMMTSnIfjx0zV3nRd0kaEBQc
-         4I2jdJGzc2gV4IjuAzyWU6s7tuqUhFeE3HtFiwktQN3Wnxry8V+RGv7+lG+wY4D50gMV
-         VJIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWY5vdCaPMjCEmsiZ2rPK62tEcTXY+Zwnrn9sKWRPX0j8zP9gpU2k58e4vCnpBBKXV7AkuDViU=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxFXts9xNp1MC7KmnGd9OEiRtems3V+tjYKI6edQbILJDBxzJlf
-	kvjLVvgX0DWurzMkTOgiBeVpQswgomRwJiZlqy6SaJV9+3I835T6pNflmKwFeq8=
-X-Gm-Gg: ASbGncuUr58DfCST+LmNPHnL+7qBUqQLifhDFwxL/76AQpWEvbCsKuWDzuI1WZe5lMt
-	+5OxufRwmm60/zpBUQif1aXunRAxgGmAvsNFDQ9U0o5vfQ9r9y7JMBgGCTQiS7iqD2zBBNWKd3r
-	+Mbe74lMe2jgQoj7QFVANUj3E0jNfcTI/TAfYKUJECwIGial7fvQhexFq70AiNohy3shf3Mhd8c
-	NI8yjkwjqJpC80Sgj3R6q4o2lF/d8j6OCBXAj8oNM/vfWcvXjjPMIVFh9SxjCovSDi9OIgmPI7k
-	+siV78Dspv1FXY1a7OkhPdIuaz6G9lDpHXsHuI9SYztbW+2ii10ZPVlji11pqsr93hq6JSzXtX2
-	c
-X-Google-Smtp-Source: AGHT+IGeX5QyzoBAu4IpQoqciAgBU5d16IJe/4mHV6mquagEmf3K6CXUzjJ3IjzzzFJVhCmX/1OpWw==
-X-Received: by 2002:a17:906:4fd0:b0:aae:e684:cc75 with SMTP id a640c23a62f3a-abc09e5e43emr589617266b.13.1740474342685;
-        Tue, 25 Feb 2025 01:05:42 -0800 (PST)
+        bh=fY0h+JkzJEPC+Fr2bSYHihmywLYc/knwfAjtuNnsAeo=;
+        b=vBiYPPIHpj+qKQvYSesEBjRXl5NY9EXCsPhPXepaQNHLeoK6GAkecgYgRQHRodK5PM
+         eKC1u1E25tYJ1mcYqFVozDxh/n8SZVKhbmH8NZkMk2YVHNJwFqWHChZkQl1m30j5V8n5
+         MvjuVBd4mV1bRwiPzvNzAhlM0Mrp6hYbwlh49jKXx1+5JvKjjc2HJj1b1DrhCf2p+uJs
+         nIm1kqBYYn3w5H84AIsSGEoZPjKETvOUnbALDBAV5VxYsKxYGB2DHkZhxCJdXq7wIW4n
+         OCwU8u5KG1DW4UgPoZYRBTrxtAo6LtrFo5k65zkk4HwzU4Gvkm7eCi+Gb9TvurlQPGnb
+         7W1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740474346; x=1741079146;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fY0h+JkzJEPC+Fr2bSYHihmywLYc/knwfAjtuNnsAeo=;
+        b=DHSSWg3qWcJ8KQCeUKBANAnAVnNh1eSTXR3N6s3avX/Plql6vDjfLI5fACTRT5wH2H
+         dNe7jQeq/GNvZhm63HeFNbwAqfw0PpZvD8eZn4DRxoof2Hy1H6aw1apbJP/xOY4PAQO7
+         U1kYbL0fiLcq2oxWO/PdAwqoe6JIyT6Htv45UKYt/iITvryff/NLy9INP9NpJJ9YfM6z
+         84RkU+GnY6RDWwDWm+4zhahAc12fn/qUWYifBfzEIeFlvLJLsL8GpDw58ADPhgkRJpaR
+         2dd9yPFJ4/QvY7OfieOEgHfn/VDPIUtkYxIODFs/eGfQeiZPU/9C6kA5baGzxbJ9hFXo
+         jBuA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKxCJWACqn3zWuhiapmiuSHYKHF5wMhy9WO0EK+JlpdHlF9lUaDDHiBkvZ/TOC0gdlniHgPB4=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy4Cu26g3qiP6YK0hcvQbT2MDREitfRmuGy0vWcwS5N/lgSCAzU
+	jsKw8pRW9T0LHwFCKyrNHNdS7L28cFdg2eIdIX2U/tTK2EFewjeD3dB+ShGSM4E=
+X-Gm-Gg: ASbGncs1hKNAqULmUmf05c6VrvDAxRRZMMXUvmoSrXhDQi6UsACdyvluqvH/biWg+8L
+	BPhUVnaAwVHL3vkTUFnqjxdkive/sQ8CrKKHOvhQaz16gYL4aJXkf2Hey5BgdnKTJdezTxnVQQe
+	Ir+AEuVuQGdmyx8kBKw4SSGmyqC9F9sqwQrBiMgPnDDulfEJfR5LHiuUTbxE/jKzNAuBVD13OuN
+	dbk0k002vfp9F/8EV4bL8atA/mVEM1v2VZJ4fL5YMTiLoEqJ4z03ohgGcG7LCtPKYQ2v5oXtqTd
+	syLOBx61FkS7gz5hdw/olaPvhfAS8w3g6LwLaat5RLKSRfsHKwFNh8yqp6o+vYECvgjoGKRCY6/
+	E
+X-Google-Smtp-Source: AGHT+IGkqhINat7Gxz1iDEnab5crobr9JPjoaawiIMmvU8LrPtIbqlI6khHbhhpw1r11PcRLe2kLUA==
+X-Received: by 2002:a17:907:3d8e:b0:ab3:2719:ca30 with SMTP id a640c23a62f3a-abc09bcce60mr682984466b.10.1740474345817;
+        Tue, 25 Feb 2025 01:05:45 -0800 (PST)
 Received: from [127.0.1.1] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed2054d58sm106681566b.148.2025.02.25.01.05.41
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed2054d58sm106681566b.148.2025.02.25.01.05.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 01:05:42 -0800 (PST)
+        Tue, 25 Feb 2025 01:05:45 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 0/5] wifi: ath10k/ath11k/ath12k: Strip device prefix from
- calibration properties
-Date: Tue, 25 Feb 2025 10:05:31 +0100
-Message-Id: <20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org>
+Date: Tue, 25 Feb 2025 10:05:33 +0100
+Subject: [PATCH 2/5] dt-bindings: wireless: ath11k: Strip ath11k prefix
+ from calibration property
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANuHvWcC/x2NQQqDQAwAvyI5N7ANbCF+pfQQ19gG6tpmRQXx7
- y4e5zAzOxR10wJts4PrYsWmXOF+ayB9JL8Vra8MFCgGoogdrjYY/tM0YpKvdS5zdXARN8kzMkk
- g5qjMD6iVn+tg23V4vo7jBHe5XeRxAAAA
-X-Change-ID: 20250225-b-wifi-qcom-calibration-variant-92a02995e996
+Message-Id: <20250225-b-wifi-qcom-calibration-variant-v1-2-3b2aa3f89c53@linaro.org>
+References: <20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org>
+In-Reply-To: <20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org>
 To: Johannes Berg <johannes@sipsolutions.net>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
@@ -88,27 +87,26 @@ Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
  ath11k@lists.infradead.org, ath12k@lists.infradead.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1744;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2961;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=YEERJeZoPF997TVwE+PlqQLy35gdriCa6KvLbtYzMiM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnvYfd8TmILlw+MFwINOy/nLQUmg2zl8km+Ln7c
- J3+lOtybQCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ72H3QAKCRDBN2bmhouD
- 1zsnD/44e3cUCbRaHwvp+ij8S6BrUfCtAMxyq3lq23DWCpFKr+HPO8RmeoZqRn/0w7dPIkv9Y9s
- ywZHeRGxqbGMzGv5zUzMzY04LiLnD1IhQpp6LPojhMARGGu4tDCdegip8Ut8LbEbQezpcMferxi
- z7eZVy73tmFcV/SFF1nhsRPnRPTaETfiWCiy93zDtQKJtcJd2O1OrLZsY0zohJz3nuY3jj3f0CD
- Bf3RvMIyuw6SZDEY2NsnT2ax67OpG8KWIXW3vKqxwNqolqYU7LLnXvmoK8BMls/FJ5YKcYCR3BO
- zotiCPXpnaIYJfe/kkYNdF7Bq8kZ1qFMrFVOMN+YRd+MB1iYt6n/WeY16EusBHJulhCdvkkTCVe
- D29D30MSi7QTx/dSphQ5W/xyvqtKu21tHN4Xo0fCOuhitHEsxZ49QvNuvTcUpJ09+UeG0duKJLB
- bIDX7T8qwfUtU/HoJ2+dVjWFugek1Z4YTuPYEiFI/yNn58rUWmWmtX9p3Df1YSKMa8+QWHyggTi
- lDWC18zd4lzUlLQW/ERgTR7PreqjqopNrkgnPY71ylb4k9YhJaSXy1sorvI+enukYvIe25iMFDV
- xW55Ao+KZwoQ7pwiG1ZMgpmslqXlK5rrZLH39Es5y27stOf4FRovJvA3BAqWnOjxdG7KCK7Ash/
- 1duSTx28oN/UydQ==
+ bh=8usnTAEFm1Piu5Yd2wL1LXpPE1HGz8E+rmzlqa0grM8=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnvYfh6CpkJd8c70kQJfWzDAjgLHF01wrk68d68
+ hSc3oJt3RyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ72H4QAKCRDBN2bmhouD
+ 11UmD/wNk1W++Osvh3b2yso4MtXvuq3PwwRO5Yiz8g4FfR+ea8vdj3Um0ZQ6m48tUIyZ+JMX9St
+ URu3XSQHi//YmHCI9eyHnkTUvxjvVLjgee37/OiwUTVMXN4xN6cKjHE1+mGQDP0JzPQGkdTDlIK
+ TxSazB/bESJwr2RzDNB9MQIRwUDiWjAJ9oTP6661PQsMlRW0XF+H2OSJ+JDe1lPAbF7/wK4D9uL
+ C1IG0uzI2RPu39ZzHnyo9uvdnE8SRQ+Xd+Dbzz4TH8zzEKXaVJljrMLWVF/A/oNGbsZxmRvi5Q6
+ VDPw7Xfz5PIY/P++793HL5UFBlqQtl43wRKIOKFMaaUE6z60LM4a1YyMErH3vVXD5bcdeT/WE1q
+ Ph+mzNZANDXPdL7CpefayVOEFupDOR5aijsD+z5gOF6pHSxk1HLL0jMRXW90/8PkxsyK5iQI47/
+ ZMCrjf0D+KHE+V0sWqazBQyizUIfEDnvImMIrWx3YyPcza/apucuDYzppT4nD+/k4TKUZVBlaC+
+ fAhFxaRn3YR9/2+0cbJAi3lyAfLdBTahyMEvV6OA2c83nf+a/jLiCyXikoVwOOrSzlIMJcXhEdd
+ c+qjpbafFiIf04McwHGosxH8vkeAkYvgojJ4K+LDDM5tBGfmHfZpLsB3RdhAu3u2nFVm6w3VfMt
+ cHMvTQ/ajd2nsBA==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250225_010544_884323_B3D26737 
-X-CRM114-Status: UNSURE (   6.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250225_010547_257152_853573AC 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,42 +124,69 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 Devicetree properties describing exactly the same thing should be
 reusable between device bindings.  All Qualcomm Atheros WiFi chips needs
 certain calibration data, so properties should not be prefixed with
-device family (ath10k).
+device family (ath11k).
 
-Deprecate qcom,ath10k-calibration-variant and alike, so we gradually
+Deprecate qcom,ath11k-calibration-variant and alike, so we gradually
 switch to a common property.  This will also allow moving these
 properties to common schema, if desired.
 
-Why? Because people add qcom,ath12k-calibration-data and probably they
-will add qcom,ath13k-calibration-data, qcom,ath14k-calibration-data and
-so on.
-
-I will fix DTS in separate series.
-
-Best regards,
-Krzysztof
-
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Krzysztof Kozlowski (5):
-      dt-bindings: wireless: ath10k: Strip ath10k prefix from calibration properties
-      dt-bindings: wireless: ath11k: Strip ath11k prefix from calibration property
-      dt-bindings: wireless: ath12k: Strip ath12k prefix from calibration property
-      wifi: ath10k: Deprecate qcom,ath10k-calibration-variant properties
-      wifi: ath11k: Deprecate qcom,ath11k-calibration-variant properties
+ .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 9 ++++++++-
+ Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml  | 7 +++++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
 
- .../bindings/net/wireless/qcom,ath10k.yaml         | 25 ++++++++++++++++++++--
- .../bindings/net/wireless/qcom,ath11k-pci.yaml     |  9 +++++++-
- .../bindings/net/wireless/qcom,ath11k.yaml         |  7 ++++++
- .../bindings/net/wireless/qcom,ath12k-wsi.yaml     | 13 ++++++++---
- drivers/net/wireless/ath/ath10k/core.c             | 13 ++++++++---
- drivers/net/wireless/ath/ath11k/core.c             |  5 ++++-
- 6 files changed, 62 insertions(+), 10 deletions(-)
----
-base-commit: 8936cec5cb6e27649b86fabf383d7ce4113bba49
-change-id: 20250225-b-wifi-qcom-calibration-variant-92a02995e996
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+index a4425cf196aba58e4181e690a0448236aee15e50..653b319fee880ef0944d8e35c545890b60611756 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+@@ -22,8 +22,15 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  qcom,calibration-variant:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: |
++      string to uniquely identify variant of the calibration data for designs
++      with colliding bus and device ids
++
+   qcom,ath11k-calibration-variant:
+     $ref: /schemas/types.yaml#/definitions/string
++    deprecated: true
+     description: |
+       string to uniquely identify variant of the calibration data for designs
+       with colliding bus and device ids
+@@ -127,7 +134,7 @@ examples:
+                 vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+                 vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
+ 
+-                qcom,ath11k-calibration-variant = "LE_X13S";
++                qcom,calibration-variant = "LE_X13S";
+             };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index a69ffb7b3cb884a4eeb51064cc1c8136b433f285..c089677702cf17f3016b054d21494d2a7706ce5d 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -41,8 +41,15 @@ properties:
+         * reg
+         * reg-names
+ 
++  qcom,calibration-variant:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      string to uniquely identify variant of the calibration data in the
++      board-2.bin for designs with colliding bus and device specific ids
++
+   qcom,ath11k-calibration-variant:
+     $ref: /schemas/types.yaml#/definitions/string
++    deprecated: true
+     description:
+       string to uniquely identify variant of the calibration data in the
+       board-2.bin for designs with colliding bus and device specific ids
 
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.43.0
 
 
