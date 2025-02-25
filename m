@@ -4,97 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD5B8C021A4
-	for <ath11k@archiver.kernel.org>; Mon, 24 Feb 2025 16:44:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D114C021BC
+	for <ath11k@archiver.kernel.org>; Tue, 25 Feb 2025 05:34:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6d5XSfEwRqWaYFLWfE4Y4ohPqjDkgrU++dRrHmEqq/c=; b=qvcePGAc4uNDnMfYMO5z4lGoBs
-	LZV0ToCzjHcm+sn+VXIXK+pnQ8hLrtnrtzdXsO/4aAiz5aC1nFEKB+ZIK3KMfU9IwF2ey2V/UGgDb
-	3tK7TWEdn8JNW3AWdqcGy1eg4KftS7wQPrQ2Nx4cYTjsofs2KQPIcPxqhOxWvzH7K69bOtX+bwgX8
-	BpFj8SdBaKZw8n0JrARr+2FAddseeYvLozJ0WMu9rNXR/+sTfSKcPJR0d65f6Po4aj3SDiNJqFOvw
-	5BqfS8L+h99b6aONRIdFW0l49qUiH3BzRU/hUbNrjZ/40z3oW02apUW20vhJpeTcj5NuggZ0EeEUj
-	I38vglRg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=COFBXMHPskIsoIit0YmVND2fstaviJl+t/pdbf0Dt6Q=; b=J4Qh3neY+ZOrY9c2p5OWxRaqhv
+	d02GRGfjI6EQ4wu66I20Ygg5XCNWodTTyIQY9KB1mDVsdzP/Q0KhcMEV6Flfn+jQELQ69GKLttadR
+	xJwnGfNZPw2DctQQbaJunJH/9Px8ftsZci5qFvKKGucgog8wBRnKO51SE8CfTMFL+pcRbMT4rptFw
+	+vErXhOFLq09ClPmXdWlfw+hwS8CfjqkuDW9CcnqBjQ2LpsGkB0EMFLnI4pTmMUfXpe79P/XJcmBX
+	GrIBt6ZtBntEn2MxYR0tF2o/j92++PLEc6kPyH4fz2YWLTmx45jeL3LyyaWgEMpttkEgF4UoFxnZ4
+	OD4zQkCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmbYx-0000000ETtT-0uCk;
-	Mon, 24 Feb 2025 16:44:11 +0000
-Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
+	id 1tmnas-0000000G0qN-0PA6;
+	Tue, 25 Feb 2025 05:34:58 +0000
+Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmbYu-0000000ETsp-36KI
+	id 1tmnap-0000000G0pU-1zg8
 	for ath11k@lists.infradead.org;
-	Mon, 24 Feb 2025 16:44:09 +0000
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-220c665ef4cso80456585ad.3
-        for <ath11k@lists.infradead.org>; Mon, 24 Feb 2025 08:44:08 -0800 (PST)
+	Tue, 25 Feb 2025 05:34:56 +0000
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-2211cd4463cso104061425ad.2
+        for <ath11k@lists.infradead.org>; Mon, 24 Feb 2025 21:34:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740415448; x=1741020248; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6d5XSfEwRqWaYFLWfE4Y4ohPqjDkgrU++dRrHmEqq/c=;
-        b=VLSygA/0lBLSaOyx5PIidc0zmMMoIP/PnXQ60p0CMx6UCRkCtZfprVtAEJR/EpRTTD
-         vhp+ck+X6zkGsio1oIqa3Qc2snZ6G2sMxbbonuKDPexyD+HCdp6LENVb01QbxTTbX11T
-         NkzBMnciysKmnSoIU1u9wkILPd5kMui3tDRybYQfogeTJZ+mTZUGtmO0wViFHpaa85hy
-         jVzAF8ybVq7QRRgfdCkCsPntVCUb+QU6jJtZweA0tpYA6PDttkxUbfxGGdszLomaECWr
-         vkXJ39fJNoieR/I+u7EvRhzueuRaAEjOUIOvkVdvFQZKj1OZ2Hy72F2hUsFbvMq1jiE2
-         85PQ==
+        d=linaro.org; s=google; t=1740461695; x=1741066495; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=COFBXMHPskIsoIit0YmVND2fstaviJl+t/pdbf0Dt6Q=;
+        b=p2GozwPnVzcxWq1rZZ75WSjlhBl1hCKYXY9e7L32bDCqfykvdNlZN7WxVcVqZRNEZP
+         OXfaI9zVsZQ9M4/cxQB1U0B1NMcSsjl7aDEvVXK85gnj53ZbKBHJfeV3wu/lTZ6l2YBH
+         dhV6lwH/fkS2Tx7CAlGUd96s3/4i+8WX9b8AszQkSJg+XmiDpXRclcD7t6lTRXfkbTkR
+         rAX+TnHUNCITEP2MdciqB8XNFrO0YkFmaAUZes9qKrcjRVTBVj+ttmcg6a7dxGZtfEec
+         +BOngwAg9wQxkfNolg5Q7y72vlHuxMIPCCQNTS27hhcQJKwZf/ah/GD/9BW+j5akLmzG
+         iL2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740415448; x=1741020248;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6d5XSfEwRqWaYFLWfE4Y4ohPqjDkgrU++dRrHmEqq/c=;
-        b=gV/v/2jVWZrI9W8Ng4OrPM5MJBJb4S50kwRkfFXVz/R6+Rp600095pTSdVtX+8Mr10
-         J3toBYnRvIS6hyaTmPLt0Pt2IunbxruJN9nThGl+vHHzQ9ca5m4Vm1ig9Of02iOmG+7G
-         +OAaZWv3ulXpJaeVY8yMQJAc/+7sY8nr227spfmlKf2KcoE3MTAC7W/Z44rBJc8ch1V7
-         Yx59GUOTqu4qdC0HbyM8gB0TGL7MyzE0lskh+TERN/xAf66BA2xb324h86cJXuE82JhS
-         L1eJFmrb2me7zuRgpIx4JK/OqtoOoOMiFRvqXnS7nsXo1H6GPZanM9Kv+qP7o0mKqMJk
-         KduA==
-X-Forwarded-Encrypted: i=1; AJvYcCWHpkFXzbP94EtXt7SQzkVfQcvyPUmvcNRkKDO+3JFMxY7TEXNPDGnsAz+U8TlAnUGAa6Huegk=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyDuxeVvgWwTLXbQtbBtkAYjRAfuDTUjlY6GQpC3Iq4fFKtWP/L
-	UEBA8hjYuqlXc+eEJrtOlyMPvC7OqODpJjlhEOATF6v1o3VD8VT83OWZAqKFgA==
-X-Gm-Gg: ASbGncs2OkgZM98lOhoYtbQpxq1gkdzZZWDlpBBr2RFpu6zEj/HeNN5kNVdxYfOEdBW
-	xpl/Z2WAN2uPKmK9qqWhRP+T5W+mEEt0qSacp6aj6sgaHfsEkRyXaMLqWydIJzX9BSv9zwAkV4i
-	FIjS2WJtcagNLPpbG0PPUiMlcT3pNQa6LEcuYf6xvrNHpoHpHlfxjD9FT++q7fnFhqtcJsCuVU9
-	V5ssZF4B1eZ8LXcZ0pmbPxiAKP/cy2EB9TYgUyvBjKUH3hNSbvMu3xQsxydP8deyGGKZC1ktwwi
-	AX5m/ckm1Yunt5VrjOjttgYK7ddhN769YUQd
-X-Google-Smtp-Source: AGHT+IFG1lGtUN3MM7H9ZJAba5MymArVGS0ryXDNHwp0DEkpN0qPAZv5NG2dk7v/JN0eP4aRNmsZlw==
-X-Received: by 2002:a17:903:2f43:b0:215:89a0:416f with SMTP id d9443c01a7336-2219ffc2dcbmr207030045ad.30.1740415447841;
-        Mon, 24 Feb 2025 08:44:07 -0800 (PST)
-Received: from thinkpad ([36.255.17.202])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d545c9casm183409845ad.130.2025.02.24.08.44.03
+        d=1e100.net; s=20230601; t=1740461695; x=1741066495;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=COFBXMHPskIsoIit0YmVND2fstaviJl+t/pdbf0Dt6Q=;
+        b=XEodgw9llIRPmiFc6hxni/q3m/oACuDTNtUYZKRGIK3zBI22saqmB7Gq8VA8mZciKN
+         wC141Ox3OXVU95YrBR6mcyJ13/jL5o0KTgffSdBlaWuIzs+KIGG2F6t2fm7qd0tAuVKQ
+         qlZ3LEmudW74FCwGtme5Q6crRtJX4Bp1KiyQlDHu9dCCWW01MNTjbAMA0Oj9ic234yNc
+         L7QhdId3ceL5Ic4Dj7X47Xq/hhrFXMq/GcoUcxEmAhqJhK0zJGnpS1bPIfRu1L5IAxuh
+         qshUT0dfV+usxALHtju0xVX38XyPO4wO4Kf2QhSbO7bVi4Fy5SI5vvMlfybduHdH7Jvn
+         1nIA==
+X-Forwarded-Encrypted: i=1; AJvYcCXe0F05BBy3ZCOpBL+cBT7q7RBhv5IQbB1UWmm9Eg8FclGmyUgN1mqs2T+tBy3mmOxMU8zsf/0=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxkf7tLSw8xQF4Kk9xN9q8D5LLLujgffgCZa89UI85dx5i+ObET
+	hoWKyziPPZ8hiRdAgIZZEcsNwSv5CPrEGFDRsNcN0i5NT8Rkt/joYkPK9gGt0A==
+X-Gm-Gg: ASbGnctIcImroq+4UonteDO06gdkCsoVGcNPWbldw9onOpR4P0XCazuakQ4TZ9slcF7
+	vDt1DhVJaleYb/3zQhetd6Ttubnhp09WTtkjOBG40hFrECtmDS6L8Hu0MsTOnwAGwS/tac/+yzs
+	to9McbjyfdV6Xy93cOYyRULwEzssRz/XUXfbITek7iggwOhwFW8Mnh68vEVW3ss8+EiitM8xqUu
+	OQCbBU0HKxp7HNGEvWc7/GbOMBpDF0pMi/8OMrL9ODur/ADO5EwTnV6fS1FJNA7e7QvD+WF7Vrr
+	5otWf0TWYdQDennB2bEwTCXsYFt9AmSit6+LsTrropAOM5fsaHq3Yw==
+X-Google-Smtp-Source: AGHT+IEcKJ/dXx95j55XEtJ2Yr2v+/ULOkI6H8gKJVMhyZk/j4JRz3SW0id9uRnQMpLfQLa1g1/udg==
+X-Received: by 2002:a05:6a00:228c:b0:730:8ad5:90c1 with SMTP id d2e1a72fcca58-73479101286mr3756467b3a.14.1740461694618;
+        Mon, 24 Feb 2025 21:34:54 -0800 (PST)
+Received: from localhost.localdomain ([36.255.17.214])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7347a7f9af3sm582101b3a.110.2025.02.24.21.34.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Feb 2025 08:44:07 -0800 (PST)
-Date: Mon, 24 Feb 2025 22:14:00 +0530
+        Mon, 24 Feb 2025 21:34:54 -0800 (PST)
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Muhammad Usama Anjum <Usama.Anjum@collabora.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Johan Hovold <johan@kernel.org>,
-	Loic Poulain <loic.poulain@linaro.org>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
-	kernel@collabora.com, ath11k@lists.infradead.org,
-	jjohnson@kernel.org
-Subject: Re: [BUG REPORT] MHI's resume from hibernate is broken
-Message-ID: <20250224164400.w3lpzxxwfbrj5lb6@thinkpad>
-References: <59c036b6-a3d6-403b-8bb0-566a17f72abc@collabora.com>
- <20250214070447.scs6lpytjtecz3ko@thinkpad>
- <1cd4a1ed-f4e7-4c7b-a19f-f79afddbe310@collabora.com>
- <20250220075034.unsd5cq7xkip2by6@thinkpad>
- <ec8a01a3-5eaf-4fba-bb85-e7a677877e5f@collabora.com>
+To: jjohnson@kernel.org
+Cc: linux-wireless@vger.kernel.org,
+	ath12k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 0/3] wifi: ath11k/ath12k: IRQ affinity fixes
+Date: Tue, 25 Feb 2025 11:04:44 +0530
+Message-Id: <20250225053447.16824-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ec8a01a3-5eaf-4fba-bb85-e7a677877e5f@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250224_084408_785054_D0285962 
-X-CRM114-Status: GOOD (  30.53  )
+X-CRM114-CacheID: sfid-20250224_213455_525109_EE746782 
+X-CRM114-Status: GOOD (  10.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,88 +97,36 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Feb 20, 2025 at 05:34:06PM +0500, Muhammad Usama Anjum wrote:
-> On 2/20/25 12:50 PM, Manivannan Sadhasivam wrote:
-> > On Mon, Feb 17, 2025 at 07:35:50PM +0500, Muhammad Usama Anjum wrote:
-> >> On 2/14/25 12:04 PM, Manivannan Sadhasivam wrote:
-> >>> Hi,
-> >> Thank you so much for replying.
-> >>
-> >>>
-> >>> + ath11k list and Jeff
-> >>>
-> >>> On Tue, Feb 11, 2025 at 01:15:55PM +0500, Muhammad Usama Anjum wrote:
-> >>>> Hi,
-> >>>>
-> >>>> I've been digging in the MHI code to find the reason behind broken
-> >>>> resume from hibernation for MHI. The same resume function is used
-> >>>> for both resume from suspend and resume from hibernation. The resume
-> >>>> from suspend works fine because at resume time the state of MHI is 
-> >>>> MHI_STATE_M3. On the other hand, the state is MHI_STATE_RESET when
-> >>>> we resume from hibernation.
-> >>>>
-> >>>> It seems resume from MHI_STATE_RESET state isn't correctly supported.
-> >>>> The channel state is MHI_CH_STATE_ENABLED at this point. We get error
-> >>>> while switching channel state from MHI_CH_STATE_ENABLE to
-> >>>> MHI_CH_STATE_RUNNING. Hence, channel state change fails and later mhi
-> >>>> resume fails as well. 
-> >>>>
-> >>>> I've put some debug prints to understand the issue. These may be
-> >>>> helpful:
-> >>>>
-> >>>> [  669.032683] mhi_update_channel_state: switch to MHI_CH_STATE_TYPE_START[2] channel state not possible cuzof channel current state[1]. mhi state: [0] Return -EINVAL
-> >>>> [  669.032685] mhi_prepare_channel: mhi_update_channel_state to MHI_CH_STATE_TYPE_START[2] returned -22
-> >>>> [  669.032693] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
-> >>>>
-> >>>
-> >>> Thanks for the report!
-> >>>
-> >>> Could you please enable the MHI and ath11k debug logs and share the full dmesg
-> >>> to help us understand the issue better?
-> >> The ath11k debug was already enabled. CONFIG_MHI_BUS_DEBUG wasn't enabled. 
-> > 
-> > Sorry for not being clear. I asked you to enable the dev_dbg() logs in the MHI
-> > driver. But it is not required. See below.
-> I've disabled the MHI_BUG_DEBUG. It only enables some files. Ideally if those files
-> being used, there shouldn't be any difference. But they are definitely changing the
-> timings.
-> 
-> > 
-> >> I've
-> >> enabled it and now the hibernate is working without any issue. It is very strange
-> >> how can CONFIG_MHI_BUS_DEBUG make any difference. I don't have much background on
-> >> how it is helping.
-> >>
-> > 
-> > Probably some timing issue. But enabling the MHI debug logs could also hide the
-> > issue. So you should disable the CONFIG_MHI_BUS_DEBUG option and collect the MHI
-> > trace logs that we recently added.
-> Disabled the MHI_BUS_DEBUG and collected logs by Dynamic debug:
-> [  584.040189] mhi mhi0: Allowing M3 transition
-> [  584.040202] mhi mhi0: Waiting for M3 completion
-> [  584.040480] mhi mhi0: State change event to state: M3
-> ..
-> [  584.535478] qcom_mhi_qrtr mhi0_IPCR: failed to prepare for autoqueue transfer -22
-> [  584.535482] qcom_mhi_qrtr mhi0_IPCR: PM: dpm_run_callback(): qcom_mhi_qrtr_pm_resume_early [qrtr_mhi] returns -22
-> [  584.535490] qcom_mhi_qrtr mhi0_IPCR: PM: failed to restore early: error -22
-> [  584.831583] mhi mhi0: Entered with PM state: M3, MHI state: M3
-> 
-> It seems like the state save was success at hibernate time. The error is originating
-> at resume from hibernation.
-> 
+Hi,
 
-I just tried hibernation on my RB5 board featuring QCA6390 WLAN chip which makes
-use of ath11k driver. I did encounter the resume failure, but the error log was
-slightly different. Then looking at the ath11k driver made me realize that they
-reverted the hibernation support due to suspend issue reported on some Lenovo
-platforms: 2f833e8948d6 ("Revert "wifi: ath11k: support hibernation"").
+This series fixes a warning from kernel IRQ core that gets triggered in the
+error path of QCA6390 probe. While fixing that I also noticed the same issue in
+the ath12k driver, so added an untested patch for the same.
 
-So that explained the resume failure. I reverted the revert and that allowed me
-to resume properly from hibernation. So please try to do the same and see if it
-helps you.
+Finally, updated the irq_set_affinity_hint() API in both drivers as it was
+deprecated.
 
 - Mani
 
+Changes in v2:
+
+- Instead of moving the affinity setting, cleared the affinity hint in the error
+  path before freeing the IRQs
+- Rebased on top of v6.14-rc1
+
+Manivannan Sadhasivam (3):
+  wifi: ath11k: Clear affinity hint before calling
+    ath11k_pcic_free_irq() in error path
+  wifi: ath12k: Clear affinity hint before calling ath12k_pci_free_irq()
+    in error path
+  wifi: ath11k/ath12k: Replace irq_set_affinity_hint() with
+    irq_set_affinity_and_hint()
+
+ drivers/net/wireless/ath/ath11k/pci.c | 4 +++-
+ drivers/net/wireless/ath/ath12k/pci.c | 4 +++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
 -- 
-மணிவண்ணன் சதாசிவம்
+2.25.1
+
 
