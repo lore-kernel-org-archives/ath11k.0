@@ -4,67 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7038C021B2
-	for <ath11k@archiver.kernel.org>; Tue, 25 Feb 2025 11:15:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 567C6C021B8
+	for <ath11k@archiver.kernel.org>; Tue, 25 Feb 2025 17:19:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6vZ0UnkDQVhxe/jilj97rLlCm947XTF5OIjtkH6W5mQ=; b=rbhreBg88V2gH2c00orrtwnp9m
-	RJg9ORjE+CrFz8grx6rfwjysn+ZfloFXmV7l+150yzzuSmFnKiCyYk6jly0TDyrwknyGN8FbQY8eq
-	wetgk7SfRcymDT6OBS9UyP8HU/D90o0uc5WdfOmgDA0Xrm+L3tDfqH/EllM/omm+yvp67+rbYJQpr
-	1o5ZIhnIiNCXteNhvkfhF7lv1rQ+Cp+RB1x4+kv9QhPIEnlN2eh81BG2RbquTTE5c9ateDRU/LK5Z
-	cSOEE9wGpjcDMGnaz3/gzJnkhcjE16mBL7NfG3+QTNcUxr6LeOSzQgumVFPcco+3yHE4Xc6+OencO
-	pXuMB0yg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Qy+0APQiRYBidt6TGL+wUHVYtFCZn9mwlvKkPx69zrk=; b=rMkoxiUdAAO4uekgKnKZUDNafH
+	siuijuXR26rB+WRB1rwUr3ja5AROGGI4+kMS/aW7ZHE9fEp6Y2yK1xKX3sS/yN6VL7CGVDlOTV+pq
+	VT3MWnEssK8VZkc1updwiFANsf/w+YNYUyZExPbE66gT0499pMkUipC/mua5SyMy3HKioVFRWFdJ7
+	XWnFu07BCEQsgilFEbvRsSmBHS07ZyPlxcK9En9gqsko1YjY+4lxMmVkoM72Vmmomf8KZ0/pjD2xu
+	K4dLGIVctUX8GdosA9EtDeF0/T9yTmXqR+VBzLg8CUWHHCGHwDUMhk2ue1SgZjx7K4PqrdJibFwHA
+	QISfSBVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmsu8-0000000GzUA-2P4N;
-	Tue, 25 Feb 2025 11:15:12 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1tmyaF-00000000akA-3tbP;
+	Tue, 25 Feb 2025 17:19:03 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmsEb-0000000GqEH-1PHS;
-	Tue, 25 Feb 2025 10:32:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740479535;
-	bh=+OCR+GIe5xLZeikUC6PfXnk5joRi3BkvxLM8KgsPD/I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D1LUvCjJ/Lp9/MzZCTPHnFDrM/RaVCl63na+WpzXRc258xsAnex+V63/K8eHEI9AZ
-	 S07lTsMu1yM1M7uoFWiTkDQPHXgvb0L8Zf9gs5NUCWOxrz0ukXyAR9xqEGDJdBt/9B
-	 KyHuEc5Hsfoiy2d3Iuk52Ns0Fr9tMh5G2gJCFMkd4sHRPgR8vOi3P6QX8xWHOArICs
-	 8AQ4dbE3VSVzfoqGqYG3C5W1R2kI/sVsT3wJLYqUrya5tiO/phtTFyC0CWuSLl3flo
-	 Ul8m6a1ivzYJ6wVyaaXEskD9gTVokV0snqchY1o+eeu6fPQhEzwpb3awOlo2uhh2xO
-	 EHSLXkmPxIEbA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0881917E0B64;
-	Tue, 25 Feb 2025 11:32:14 +0100 (CET)
-Message-ID: <184de5d2-ad02-4387-b850-b45b615cf164@collabora.com>
-Date: Tue, 25 Feb 2025 11:32:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] wifi: ath10k/ath11k/ath12k: Strip device prefix from
- calibration properties
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- ath10k@lists.infradead.org, linux-kernel@vger.kernel.org,
- ath11k@lists.infradead.org, ath12k@lists.infradead.org
+	id 1tmyWi-00000000ZTn-07Xf;
+	Tue, 25 Feb 2025 17:15:24 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8AAAB6129B;
+	Tue, 25 Feb 2025 17:15:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00476C4CEDD;
+	Tue, 25 Feb 2025 17:15:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740503723;
+	bh=7KeqBFol8pGLRVvFbeuC+puSXOYFlCJdGV7zPxksw7s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D/GPGZXeAlGWSiKVMN9ABMI1yaVWrR4V2oHRRwyBLXzcOuX9hCCjYJwcq1Fb0XZ9Y
+	 MjqnURj4wK5tFnqZfYta9/djn513hXYNQm3d8f+2joPI/Z058C4v04Li2/eZOvbUSn
+	 7A9v12Jj0k3zH68ZKxsZtTErDRqvJZ9vj/A7agSVQgu29nyuFNWaTeEuab747g7rCw
+	 HKBbsgEZFQcEAXD7OWNS2yn2JyLpWwo6hp0EtVbQnad1lvWwVIHJ06jpU4KtDsIFZL
+	 Tl9V1QFJiCsPLa52hVSQ0C79t3Pw2Nvsbyt6pPR81f2Lpns12SogMGwZ59znC/2T1X
+	 3a3hjT1YO/H0w==
+Date: Tue, 25 Feb 2025 11:15:21 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jeff Johnson <jjohnson@kernel.org>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+	ath10k@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: wireless: ath11k: Strip ath11k prefix
+ from calibration property
+Message-ID: <174050372078.2716032.16014648484871048536.robh@kernel.org>
 References: <20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250225_023217_525506_2084D898 
-X-CRM114-Status: GOOD (  11.64  )
+ <20250225-b-wifi-qcom-calibration-variant-v1-2-3b2aa3f89c53@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250225-b-wifi-qcom-calibration-variant-v1-2-3b2aa3f89c53@linaro.org>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,49 +74,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Il 25/02/25 10:05, Krzysztof Kozlowski ha scritto:
+
+On Tue, 25 Feb 2025 10:05:33 +0100, Krzysztof Kozlowski wrote:
 > Devicetree properties describing exactly the same thing should be
 > reusable between device bindings.  All Qualcomm Atheros WiFi chips needs
 > certain calibration data, so properties should not be prefixed with
-> device family (ath10k).
+> device family (ath11k).
 > 
-> Deprecate qcom,ath10k-calibration-variant and alike, so we gradually
+> Deprecate qcom,ath11k-calibration-variant and alike, so we gradually
 > switch to a common property.  This will also allow moving these
 > properties to common schema, if desired.
 > 
-> Why? Because people add qcom,ath12k-calibration-data and probably they
-> will add qcom,ath13k-calibration-data, qcom,ath14k-calibration-data and
-> so on.
-> 
-> I will fix DTS in separate series.
-> 
-
-For the whole series
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-> Best regards,
-> Krzysztof
-> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> Krzysztof Kozlowski (5):
->        dt-bindings: wireless: ath10k: Strip ath10k prefix from calibration properties
->        dt-bindings: wireless: ath11k: Strip ath11k prefix from calibration property
->        dt-bindings: wireless: ath12k: Strip ath12k prefix from calibration property
->        wifi: ath10k: Deprecate qcom,ath10k-calibration-variant properties
->        wifi: ath11k: Deprecate qcom,ath11k-calibration-variant properties
+>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 9 ++++++++-
+>  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml  | 7 +++++++
+>  2 files changed, 15 insertions(+), 1 deletion(-)
 > 
->   .../bindings/net/wireless/qcom,ath10k.yaml         | 25 ++++++++++++++++++++--
->   .../bindings/net/wireless/qcom,ath11k-pci.yaml     |  9 +++++++-
->   .../bindings/net/wireless/qcom,ath11k.yaml         |  7 ++++++
->   .../bindings/net/wireless/qcom,ath12k-wsi.yaml     | 13 ++++++++---
->   drivers/net/wireless/ath/ath10k/core.c             | 13 ++++++++---
->   drivers/net/wireless/ath/ath11k/core.c             |  5 ++++-
->   6 files changed, 62 insertions(+), 10 deletions(-)
-> ---
-> base-commit: 8936cec5cb6e27649b86fabf383d7ce4113bba49
-> change-id: 20250225-b-wifi-qcom-calibration-variant-92a02995e996
-> 
-> Best regards,
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
