@@ -4,61 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE59C021B2
-	for <ath11k@archiver.kernel.org>; Tue, 25 Feb 2025 18:22:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F08D0C021BF
+	for <ath11k@archiver.kernel.org>; Wed, 26 Feb 2025 01:57:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PAQ82yK5UpCLLGpY1gtp1DngWGZpOzlQyB3rP4mRIik=; b=wWdw7dChZHZ48ntG0SCMfXnYMG
-	HOQkqCmlE5sDOFDWYbZX+CAA3EUBcbd6ILH+1nuMrIAHFXa9J3esWAWHLQrynpRalIghuHzIEH/pP
-	hOtOfcWAJAk/pUPaoGOik5032/Vn/DJhra4uzmidTaKpAEoahowmUCGqnc3BW47FibllDB3CBby4m
-	dHMlm83he/a7Ie45aJdTZuYfEeZFMVvI8+aLj+//Cew3ksRvMqBNncJhsx9VI7gZGqtNLcFDQzCWk
-	eCaqg3LDHNWQiEMw/G3QhQsmyY4aDShQ/a8ep6jGbyc48nqMHcNnUlko1hPLWO/V2fnlBy7MLO4uZ
-	ys+aYcng==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=nkdabU7qyv7CkhotreBergtJRVj196HcN164i5DlU2Y=; b=FZd31NVY4mlLcMmEW/njlEk+Wx
+	myWNJ4vHp+7s7OhFO+nR9E52vrnE2nGRvVPtpYlKJquels73Pfnx1tVNvuLnDNTLOGs/1HPwBd8tJ
+	Am0elMb0OOZ8Sri9f+5iag/0hh5Z3Dx+rVEBDOHplj/YK37c+IGtpAuBAbrgjYlhpsyll/hYoJGYO
+	677QDMmhf8TKFAZeIaeKI9g1re2HmONRpnCpl3Meuj0KV1YtXseT9o9iZ9Nnp8kryxY5TmwIwXO8X
+	LljEAGu6eOVeCRtdYZ2rqs/4KJhfYGpq5zF70aNbKISiRIL4kAlLeBwMpRU+DEs+LmmiCuqTYfcBd
+	7d7RX8lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmza5-00000000uSm-1E1X;
-	Tue, 25 Feb 2025 18:22:57 +0000
-Received: from tor.source.kernel.org ([2600:3c04::f03c:95ff:fe5e:7468])
+	id 1tn6fu-000000023lK-2bYo;
+	Wed, 26 Feb 2025 01:57:26 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmyUU-00000000YxT-1857;
-	Tue, 25 Feb 2025 17:13:06 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 67FF46129B;
-	Tue, 25 Feb 2025 17:12:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFFDAC4CEDD;
-	Tue, 25 Feb 2025 17:13:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740503585;
-	bh=BX69y1ANjPvnVIyBiB7P24k5Cj6FcQsBECZ68cv6mf4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vhuyi1T7ESRLApERLkzkFWy0Yz52Ys0tSw5GRFbkhaCcoGkKO5Pw/QHqC3myPk7Kj
-	 1OLVtR2mPq+xUtimvS3VUCep+s4F112qgFo4tAesCPKI9OOxh2cyLLKxyrzUTxM/Qb
-	 u5mmBFRWfu7Ui975CP7ERxb/aoZP54qLgp5caxj6hbxo4GOAFuak7cpnM8zD9XptaB
-	 LX7OLarJMnWEqz5JepBsho0A+VRj3mYn9G8meozrgzkjQCU621aNVHIyARDmo4J437
-	 bHKqaXgebTdiKwdSD0UKMQEv6EjJ0R87NpXTRDP9wselJkbdbpNjk/gbzQleQtESw7
-	 ryBtdQ0YsMFyw==
-Date: Tue, 25 Feb 2025 11:13:03 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-kernel@vger.kernel.org, Jeff Johnson <jjohnson@kernel.org>,
-	ath10k@lists.infradead.org, ath12k@lists.infradead.org,
-	ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-wireless@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindings: wireless: ath10k: Strip ath10k prefix
- from calibration properties
-Message-ID: <174050358243.2711030.9886778077090867092.robh@kernel.org>
-References: <20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org>
- <20250225-b-wifi-qcom-calibration-variant-v1-1-3b2aa3f89c53@linaro.org>
+	id 1tn6f9-000000023e5-3ULV;
+	Wed, 26 Feb 2025 01:56:41 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PMWsHa007454;
+	Wed, 26 Feb 2025 01:56:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nkdabU7qyv7CkhotreBergtJRVj196HcN164i5DlU2Y=; b=ejyXS7gx//NQ4YlP
+	9Cb0QEg2ijEMzP6lez9JUGuR1RJ0QTvk6lppYWmzwKlHUPaY6gjlgGxlYvtLM00K
+	Jg80ixPGJJS16w/NunOjQcW9ZjVyTyUziSU7PexqjjxU+Xh9DzKWtmjjbdo6H86F
+	z8GshDInsbHY4EVsBhULi6rw1bGzh1OPOmwxMDOvrocrVC9E2pXnjSAD07pcNkuT
+	eYpNS9QIS2e9M5imf2C+KGWW4ry9I8L30+ddF74/p1u0hapql2E71uOS5gPjdtVB
+	BCoikG+4YH2JAoAWG8XUUv1G93V3640eIpAi47h55L5KL5Wx2EMVSINE773qYdIV
+	NXeNlQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prmrbyq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 01:56:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51Q1uaG6030767
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 01:56:36 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 25 Feb
+ 2025 17:56:34 -0800
+Message-ID: <8579334b-7b95-4b2a-b022-b121422cc48b@quicinc.com>
+Date: Wed, 26 Feb 2025 09:56:30 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250225-b-wifi-qcom-calibration-variant-v1-1-3b2aa3f89c53@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] wifi: ath11k: Clear affinity hint before calling
+ ath11k_pcic_free_irq() in error path
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <jjohnson@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <ath12k@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <ath11k@lists.infradead.org>
+References: <20250225053447.16824-1-manivannan.sadhasivam@linaro.org>
+ <20250225053447.16824-2-manivannan.sadhasivam@linaro.org>
+Content-Language: en-US
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20250225053447.16824-2-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 2VlwqJ6MmK0YVPmeXe0ZPEaz9OPJk6NG
+X-Proofpoint-ORIG-GUID: 2VlwqJ6MmK0YVPmeXe0ZPEaz9OPJk6NG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_08,2025-02-25_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 impostorscore=0 mlxlogscore=999
+ phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0 bulkscore=0
+ adultscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2502260012
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250225_175639_894178_71C6C6C7 
+X-CRM114-Status: GOOD (  19.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,28 +101,52 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
-On Tue, 25 Feb 2025 10:05:32 +0100, Krzysztof Kozlowski wrote:
-> Devicetree properties describing exactly the same thing should be
-> reusable between device bindings.  All Qualcomm Atheros WiFi chips needs
-> certain calibration data, so properties should not be prefixed with
-> device family (ath10k).
-> 
-> Deprecate qcom,ath10k-calibration-variant and alike, so we gradually
-> switch to a common property.  This will also allow moving these
-> properties to common schema, if desired.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Why? Because people add qcom,ath12k-calibration-data and probably they
-> will add qcom,ath13k-calibration-data, qcom,ath14k-calibration-data and
-> so on.
-> ---
->  .../bindings/net/wireless/qcom,ath10k.yaml         | 25 ++++++++++++++++++++--
->  1 file changed, 23 insertions(+), 2 deletions(-)
-> 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+On 2/25/2025 1:34 PM, Manivannan Sadhasivam wrote:
+> If a shared IRQ is used by the driver due to platform limitation, then the
+> IRQ affinity hint is set right after the allocation of IRQ vectors in
+> ath11k_pci_alloc_msi(). This does no harm unless one of the functions
+> requesting the IRQ fails and attempt to free the IRQ. This results in the
+> below warning:
+> 
+> WARNING: CPU: 7 PID: 349 at kernel/irq/manage.c:1929 free_irq+0x278/0x29c
+> Call trace:
+>  free_irq+0x278/0x29c
+>  ath11k_pcic_free_irq+0x70/0x10c [ath11k]
+>  ath11k_pci_probe+0x800/0x820 [ath11k_pci]
+>  local_pci_probe+0x40/0xbc
+> 
+> The warning is due to not clearing the affinity hint before freeing the
+> IRQs.
+> 
+> So to fix this issue, clear the IRQ affinity hint before calling
+> ath11k_pcic_free_irq() in the error path. The affinity will be cleared once
+> again further down the error path due to code organization, but that does
+> no harm.
+> 
+> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
+> 
+> Cc: Baochen Qiang <quic_bqiang@quicinc.com>
+> Fixes: 39564b475ac5 ("wifi: ath11k: fix boot failure with one MSI vector")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/net/wireless/ath/ath11k/pci.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+> index b93f04973ad7..eaac9eabcc70 100644
+> --- a/drivers/net/wireless/ath/ath11k/pci.c
+> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+> @@ -939,6 +939,8 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+>  	return 0;
+>  
+>  err_free_irq:
+> +	/* __free_irq() expects the caller to have cleared the affinity hint */
+> +	ath11k_pci_set_irq_affinity_hint(ab_pci, NULL);
+>  	ath11k_pcic_free_irq(ab);
+>  
+>  err_ce_free:
+
+Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
 
