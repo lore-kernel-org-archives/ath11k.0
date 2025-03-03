@@ -4,82 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 878AEC282C5
-	for <ath11k@archiver.kernel.org>; Mon,  3 Mar 2025 08:09:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84AFFC282C5
+	for <ath11k@archiver.kernel.org>; Mon,  3 Mar 2025 08:56:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
 	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:CC:To:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=GXCR2/qllsmPA+9VDf1WpC/D25nO4d0B9V4QL8xXBpM=; b=uUWWvW4VaKfF0TS4swk5TG8D8k
-	jvzyVZWyPSQGHwqmfYwF9Ewvzcb7HVswJKMW/6pm/M/Na1RJLMrcnSHBlOd57zeXstyWXKsK2c1d8
-	Juwy6iGWcI1F8znKmd9YgusBANFEKZHfo8YozJImL7hcpKpIBvzIVjZcGrBjMVj75N9iJ4LFF+WmN
-	t+yMLkU70E+4htM0f8SN0+Y+DQep2mlMwmzwRKbuO56Z+pmuToLojDlXoH/Elyk6l0DJephzbtdq2
-	uTsaWRVPsuw6NEmzn8hEsTUZ3V1JexmWiaQyCFBkRO2JJY3iM8syH+I62XgtcTF8ZQWP6i9A0/2PZ
-	L9Vphwug==;
+	bh=GXCR2/qllsmPA+9VDf1WpC/D25nO4d0B9V4QL8xXBpM=; b=x8iNqG5+mlKC8KDbMVvMBWkg+O
+	YPxdX1uWzvAw+oFGOZO7V+dQZKgZN1tiGeQKFMJS5GI4OuzSW+TPu1Qno2JcxhZHpIH8c1r23RPqq
+	6+LWvfG1TV0D1g+LbmvtoRtprlDdIxo1R+fkLfm10WX6fLgumViQciqg1E6decbLuFkYi5PqXY2/Y
+	2p69Hmm49EKCAGOH3SMZcVkvypXV6d9mrBSgYj+Aoer6XiGEszzNRCDa6kQSMK3kRkOnmBxJEJAiT
+	vo+NgFg+Cj7HrNl837Toug5Sp8EGOiWyDcyxUXOgNOuw1bQm1N3gDVGBinu6A63IAdcPHKdPRebvu
+	U96D4w2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tp0ra-0000000HU1A-2qm5;
-	Mon, 03 Mar 2025 08:09:22 +0000
-Received: from mail1.crpt.ru ([91.236.205.1] helo=mail.crpt.ru)
+	id 1tp1bP-000000001Ct-0fz8;
+	Mon, 03 Mar 2025 08:56:43 +0000
+Received: from mail.crpt.ru ([91.236.205.1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tp0rW-0000000HU0k-3jbF
+	id 1tp1Tj-0000000Hace-1xD7
 	for ath11k@lists.infradead.org;
-	Mon, 03 Mar 2025 08:09:21 +0000
-Received: from mail.crpt.ru ([192.168.60.3])
-	by mail.crpt.ru  with ESMTP id 52388PGD020784-52388PGF020784
+	Mon, 03 Mar 2025 08:48:49 +0000
+Received: from mail.crpt.ru ([192.168.60.4])
+	by mail.crpt.ru  with ESMTP id 5238mbWO013501-5238mbWQ013501
 	(version=TLSv1.2 cipher=AES256-SHA256 bits=256 verify=OK);
-	Mon, 3 Mar 2025 11:08:25 +0300
-Received: from EX1.crpt.local (192.168.60.3) by ex1.crpt.local (192.168.60.3)
+	Mon, 3 Mar 2025 11:48:37 +0300
+Received: from EX1.crpt.local (192.168.60.3) by ex2.crpt.local (192.168.60.4)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Mon, 3 Mar
- 2025 11:08:25 +0300
+ 2025 11:48:36 +0300
 Received: from EX1.crpt.local ([192.168.60.3]) by EX1.crpt.local
- ([192.168.60.3]) with mapi id 15.01.2507.044; Mon, 3 Mar 2025 11:08:25 +0300
+ ([192.168.60.3]) with mapi id 15.01.2507.044; Mon, 3 Mar 2025 11:48:36 +0300
 From: =?koi8-r?B?98HUz9LP0MnOIOHOxNLFyg==?= <a.vatoropin@crpt.ru>
 To: Johannes Berg <johannes@sipsolutions.net>
 CC: =?koi8-r?B?98HUz9LP0MnOIOHOxNLFyg==?= <a.vatoropin@crpt.ru>, Jeff Johnson
 	<jjohnson@kernel.org>, Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
 	Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>, Govindaraj Saminathan
-	<quic_gsamin@quicinc.com>, Bhagavathi Perumal S <bperumal@codeaurora.org>,
-	Rajkumar Manoharan <rmanohar@codeaurora.org>,
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"lvc-project@linuxtesting.org" <lvc-project@linuxtesting.org>
+	<quic_gsamin@quicinc.com>, "linux-wireless@vger.kernel.org"
+	<linux-wireless@vger.kernel.org>, "ath11k@lists.infradead.org"
+	<ath11k@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "lvc-project@linuxtesting.org"
+	<lvc-project@linuxtesting.org>
 Subject: [PATCH] ath11k: fix overflow in tx stats calculation
 Thread-Topic: [PATCH] ath11k: fix overflow in tx stats calculation
-Thread-Index: AQHbjBNwlu6FEnv6mkuda429t7F2NQ==
-Date: Mon, 3 Mar 2025 08:08:25 +0000
-Message-ID: <20250303080819.48872-1-a.vatoropin@crpt.ru>
+Thread-Index: AQHbjBkN1hoxjWOKr0amjmSVfS9ptA==
+Date: Mon, 3 Mar 2025 08:48:36 +0000
+Message-ID: <20250303084831.61876-1-a.vatoropin@crpt.ru>
 Accept-Language: ru-RU, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.200.60.21]
-x-kse-serverinfo: EX1.crpt.local, 9
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: Clean, bases: 2/17/2025 9:52:00 AM
-x-kse-attachment-filter-triggered-rules: Clean
-x-kse-attachment-filter-triggered-filters: Clean
-x-kse-bulkmessagesfiltering-scan-result: protection disabled
 Content-Type: text/plain; charset="koi8-r"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-FEAS-Client-IP: 192.168.60.3
+X-FEAS-Client-IP: 192.168.60.4
 X-FE-Policy-ID: 2:4:0:SYSTEM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=crpt.ru; s=crpt.ru; c=relaxed/relaxed;
  h=from:to:cc:subject:date:message-id:content-type:mime-version;
  bh=GXCR2/qllsmPA+9VDf1WpC/D25nO4d0B9V4QL8xXBpM=;
- b=cVRnCZE2yRwZueFBHy4v+SikDM43pylMgfh911GYqPN0IIt3BSzNGN8ZlKb4vq/dq6CY2qpD4sfg
-	8kRyBybkjfO93Vpxt0HV5zMAGEIcdTOmls/gMqxjyK9DRaPFWd8FWIq+bAPIMDLC72Pq0ZafQrM/
-	xkJKWHQtjde+9Y/OdG/WYtLulJ6X7ojMB1n/zUWXkKLUcTvhw0XU4H6EdBz9kmGEvuV5vTpSZH0Y
-	/8kTPSblVtkLGX1AiybAcIR7naqN66Q8716J6HMQGkYdY7HPAzKtmKWHaS7Fy3/hb18+hHkhSGsA
-	qTQuNNn92yGO2ALB9srRBlcPXvw5W4B2bqxLzg==
+ b=XI8SQK7gVFOwGxTsYVEGbivOvCizx/6U/Qwcox6F8Zbuq9xSWNt/b+EZaxDRoROTS3cGZgX/Vnd2
+	B2ehybR+dUFKd3Yvy/L2h9t3BD2LUsiFSqA3JGZGlpvrOkNDbq7j0TOxreJ1xem6/SXbMmpvO4xy
+	OrF/dT56ewIB6smBikaPuXWac3mfxgAqrMdqdsbZqiLga/osIpPmOMVnToH9gzM+L1lDxroPtHLj
+	DwXgBhAwhfLidHW/9cs4gvq+KOmqcaK3Rby2BiAPwuAHJvcX7mas6mHoWZUGPRBL16BPK9C8UjM8
+	C8xkwcx1Pa3cEZXehsh9HzH+zesrkQXhXkvX0w==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250303_000919_802855_569B3EB5 
-X-CRM114-Status: UNSURE (   7.63  )
+X-CRM114-CacheID: sfid-20250303_004848_365346_DDEBDD8A 
+X-CRM114-Status: UNSURE (   7.58  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
