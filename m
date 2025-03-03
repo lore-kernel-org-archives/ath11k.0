@@ -4,110 +4,131 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69672C282CD
-	for <ath11k@archiver.kernel.org>; Mon,  3 Mar 2025 16:14:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B31A7C282CD
+	for <ath11k@archiver.kernel.org>; Mon,  3 Mar 2025 16:21:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xjaEGavEZhaf/n/BWdL16Lx6yvyWPHtzKIlO2g0w1kc=; b=FTXz6ZVH7ajeGWk/K0uA0mve67
-	GRYXpFBmjXb0YBXhl7e6B2urtnf5AmO6BlCDrzJj0SZ98mdwf8bmUcne8WoNEx4JxQQLN+4KouOvW
-	vNaLj9nXW0h3+LR1qcxzF1YVwToXD3MnJ9Kw51F1DGndgi4490ra3TmkP4KxsjSqen+NYlCkUlSEO
-	VKbKoCI8iS74a9N1eLDQd3+3xbhH6QPoAZJqxeuVC5Yb8Ue/XZyKeittXWMTsx8oMv67kN54vigOE
-	POLPf3/WEZarUnR4fST+DZmBzM24HfxExF8u9lhVnsCLzAtJVGN55z6SfOUm+lD/GDK3HE0TlzLDm
-	ZK3BThDQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=cpkRGsQHcCBEiKXsWS8f+MivbmNog39ckQjepJMOmdE=; b=iAjsjwKZnghO0iyZFAK6NWaFSk
+	FhymcmUhbYxZzXxRJTseUacgN9VFPq3Uqu1acULi62/2wM/xrmqv9UaLQi9t77IFRyFcFTcjzdUb1
+	ypaqKTkjXgrjbo/CxQ3rVQwLv383eb7g4RqMps+r91tvlvrj552ONh6kN2W2ZuyO3pg+nXyunAiSR
+	BRxePqTQXUeBzAcbSkgUkmTkcP9b9DKNo13nxncXuc41LjMn3Q8cBKtr6GI9/ckKenHxslsA1pEjo
+	Ca97w0Ot0FG5ruuybWrwhGy8uhWvfl68gdDrHAxZoYr7du+gCfj78ZdVdswiSOZEN4s6+NxQMW8FO
+	fVLRFAug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tp8R6-00000001StO-0EOV;
-	Mon, 03 Mar 2025 16:14:32 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tp8Xn-00000001Uoy-3RA8;
+	Mon, 03 Mar 2025 16:21:27 +0000
+Received: from mail-psaapc01olkn20816.outbound.protection.outlook.com ([2a01:111:f403:2809::816] helo=APC01-PSA-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tp8Eh-00000001PtT-0wwi
+	id 1tp8Xl-00000001Unr-00cZ
 	for ath11k@lists.infradead.org;
-	Mon, 03 Mar 2025 16:01:44 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523ALRDE032039
-	for <ath11k@lists.infradead.org>; Mon, 3 Mar 2025 16:01:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xjaEGavEZhaf/n/BWdL16Lx6yvyWPHtzKIlO2g0w1kc=; b=FGwuvb7fPeCdUYmt
-	kSEV+tNt2exVNAVOVU5hX26IERHMoo9UNVgLlvIpctgCziJsB3TAnNYrv80c6wY4
-	qLkEGYNmMZ+3bbVGLkD/J5X2+gYwmQgbHjY+SXhE0UMgV6VDdQFWkKAQg3CoQuZP
-	04Hvo2JICh4Y8BSk90bxpKmLNPuWcxbZQRnQiqMXnOg9KADvtuDne/5x9zmJfVxF
-	JpHEAZInTpXaqZMeqDl0VioKXJijBoA5tbOyfe9tO5uXSqGViZZU/uCgVvV4Zlij
-	rAx+wUzKOsj8bXHWXE4/zTqtM0XMxTw3v9iHqxtwk4vJuUuLOpPsUjr8N3epnCD1
-	tc0V8g==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453t95weab-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 03 Mar 2025 16:01:40 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-2fe8c5dbdb0so9088725a91.3
-        for <ath11k@lists.infradead.org>; Mon, 03 Mar 2025 08:01:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741017699; x=1741622499;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xjaEGavEZhaf/n/BWdL16Lx6yvyWPHtzKIlO2g0w1kc=;
-        b=o6h9+hCvv0sykuqRGExXmCLQkqAzf5k4uuN6YwcE6Dp6nf0kg9opqMsiChU/wowLk3
-         uU7oeTKiZnzcXxLZB71MjGks4zCrXebem+QMc8EJ+EfFacsHPUDQNxU2QNiMPwD7kQTT
-         F2ITDvW486Ty2qoX3Y/ikWkEkP+p9bRodmC+qz86i0ryLqKWheY7i86E4QFtMjaS9WuL
-         uGSWKX+KN6eo87PVlSUbIUoNMo2+CbOUv1g1gwEw6egwtjbd/Rht2cXTyFiNBFxdtxlu
-         I7SO77uRwzQoCKgFX4KndhYEe8TNpwCGHmzgf/wdMfLrGcdtHk0GBpN6mlCSqWGdlJWn
-         Rycg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0ZG210hYVWi7hEKawKyB7jfKVcL9ku/ePn7bK7LkE8cD665ta89X6EppjeAuXI0u8oC5q+Zw=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzAKDVVBD3xmHQWU+2VXXWCJtUoEDpqj51pfDK5+MHd5dxKSac2
-	pgEstmw7BRXbdCy4Y7y6qlz4SJeNumQlIOb71ZG4czVXJ9Hk6cizy/qsaXJyowK8lPF8kZGIn9F
-	0R56bVWnm1H4pPTghw3U3xMhcxkHGerFhe7CaYNzmehR6RYUNWgQ6pyVXqpF5lOXYFd1n
-X-Gm-Gg: ASbGncuFjfivxZWVH3h1W/laUzgFhvXSiCNiHR6J4bKhEdWIrFw01ffKpPeRWiAXJ2f
-	mBQ2O1awPw0IyRh/qqLiRy794Z/VOExuFfxG2lO2x+DusiMY3vDKtR42quYm4u/KrnjdleExD3h
-	9dzt2nT3qLjOpf34nHKvO8tHur9HuNxsTlbsamakINzUggqPfcpgoIZhdYWrJcZNWBXERi/Wc+/
-	OaTY6WfzZ3PG6gVlSG1JpIlSMLhDg12tAm1CQpB2EPKmcXnyajdBUCL36QOurlwEAnlCSmojxvG
-	3Kp3Pg6l+3QPxHw3eolBTeiOju4cOgdiT21eG+VY5+OIhq5KtLgXMXkDYMPB59Y9R3tJBZ00fcL
-	IZhxJZyJZ
-X-Received: by 2002:a05:6a21:4613:b0:1ee:cfaa:f174 with SMTP id adf61e73a8af0-1f2f4e4c89emr22116734637.42.1741017698941;
-        Mon, 03 Mar 2025 08:01:38 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGQ7lQhwdPu7F1bK4GZ8FGaLSacV4bEWANJf/oaDv1AOnK27gH8LHesKf32x0Ct88uuBV+zUA==
-X-Received: by 2002:a05:6a21:4613:b0:1ee:cfaa:f174 with SMTP id adf61e73a8af0-1f2f4e4c89emr22116685637.42.1741017698472;
-        Mon, 03 Mar 2025 08:01:38 -0800 (PST)
-Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-aee7ddf29f4sm8326270a12.11.2025.03.03.08.01.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Mar 2025 08:01:38 -0800 (PST)
-Message-ID: <0d92ca31-c22b-4798-aa60-5feb66def31b@oss.qualcomm.com>
-Date: Mon, 3 Mar 2025 08:01:37 -0800
+	Mon, 03 Mar 2025 16:21:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Luzc64WernD5gPsJDEpG0Z6gPJ0RM8iNyG9itG1NdhijbYCV0wCzfTi6znXvYkhFKxMJxt+WSRwwLZjqrPQpy1SeUDr5IyNeCas5IFCxQZo0E1vwEUPwna51diD3sQXlY7KkLz43cPVajJbeV/iEK4Yq/v2aJLleRjqz7sOoTddVJ+EYj3G/XHOjX9sXcyl8RUBE6uf2YVmFVNn9IpDhRc/MQcINGE/c9wrO8B1Ew5NZz8I3C74j7UVIkyDo0pdyxElMXtKvvptsccdAEyNY2NAZMjyZ9+nz5p4utT8sk7GO3FDEdWSaEqpZ/RWXHXpLxKtF4sqoKvn+JzLGqbDnQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cpkRGsQHcCBEiKXsWS8f+MivbmNog39ckQjepJMOmdE=;
+ b=bU7v5bKDu9jLAQ9aEAtf8/XVymtb1WuxIZrOHgpWnLL/4PrsraGjpWEaOrmU+/DzIWGipSNWFSuo64VA9ha015UFkbVTpOI29AWqTuCk2l+Hc2/bByc2ogojA5am6Vwm6nHFsrUOFgAFqhj4uV3k/GBuyWQ9sIHI0Y+SYOVdmKUvDabFOG2+uGeDgcinzstM6mjdlgGuxTP5Xbbsha4jqmBBeC2onkSo/KEXfx4f4vVdu5lFR4n5CzXyPV0/wmTFH8HbS6TQ2dMjHzBoLylzRhR4VncYBOPw976dkXLPYBnB7lM9dB/nd71oNvAecF79TIWzC1qR450mD3NypX0YaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cpkRGsQHcCBEiKXsWS8f+MivbmNog39ckQjepJMOmdE=;
+ b=oWOhDyHsnoJujuOJvWDF1mc0ybrGgtvlg1TZAMdCrs7A+R2nMhzRlPufw627k4Me2ttkFoCDYS7/QAjtzZMoCNPThuTcTgfK2uSYUBeRbRKB3CgqmkNjJKM/0usExWMobZMjgM33Mhi90Lwn9HLNGmlQKYJ7ibbk6mfiYK4CB26x8fJ2+crXCvYkc+nHFWK0I8dZMs1v22vU2XxIeIkIHpyLOXjWgKjARX6NG8iRSYBWMAzAhJdrNIh+fUolEtWkrpX9P7n2Gh29I0LSaRKbchI1IdX1fwU7Xontvw2+9Wn9Tptz9Af/OPBLTxpKcPRIJXy2mf/rocaei6WcKYox/w==
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9) by TY2PPFDD0B528A9.apcprd01.prod.exchangelabs.com
+ (2603:1096:408::3d7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.25; Mon, 3 Mar
+ 2025 16:21:07 +0000
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::3641:305b:41e2:6094]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::3641:305b:41e2:6094%5]) with mapi id 15.20.8489.025; Mon, 3 Mar 2025
+ 16:21:07 +0000
+From: Ziyang Huang <hzyitc@outlook.com>
+To: johannes@sipsolutions.net
+Cc: jjohnson@kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Ziyang Huang <hzyitc@outlook.com>
+Subject: [PATCH 1/1] wifi: ath11k: pcic: make memory access more readable
+Date: Tue,  4 Mar 2025 00:20:59 +0800
+Message-ID: <TYZPR01MB55566065525ADA7F71F516D4C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+X-Mailer: git-send-email 2.40.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0065.apcprd02.prod.outlook.com
+ (2603:1096:4:54::29) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9)
+X-Microsoft-Original-Message-ID: <20250303162059.13432-1-hzyitc@outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: ath11k: WCN6855: possible ring buffer corruption
-To: Johan Hovold <johan@kernel.org>
-Cc: Jeff Johnson <jjohnson@kernel.org>, ath11k@lists.infradead.org,
-        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kalle Valo <kvalo@kernel.org>
-References: <Zh6b-38tGGXo-ee7@hovoldconsulting.com>
- <Z8Gr-IMD-UZTU-X5@hovoldconsulting.com>
- <1f8fa248-c18a-4bb9-b995-0961f7f3fa37@oss.qualcomm.com>
- <Z8VWAWl5UdZQYGgr@hovoldconsulting.com>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <Z8VWAWl5UdZQYGgr@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: UeqQQZoyjcAUwAgRtWYE6BGQod2v1O_A
-X-Proofpoint-GUID: UeqQQZoyjcAUwAgRtWYE6BGQod2v1O_A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-03_07,2025-03-03_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- phishscore=0 mlxlogscore=999 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 spamscore=0 malwarescore=0 suspectscore=0 adultscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503030122
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|TY2PPFDD0B528A9:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36922519-a1db-4784-ad72-08dd5a6f66b8
+X-Microsoft-Antispam: BCL:0;ARA:14566002|15080799006|5062599005|461199028|5072599009|19110799003|8060799006|3412199025|440099028|41001999003|1710799026;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JWpCE5jbUTSREUUuVqXsaE2J5stwPiaOtLP5MI4VFwnM8kHTcOTx06TZ85lG?=
+ =?us-ascii?Q?8QmjOuame+2quqorM5e7FB4Imstv8+HLKMEZ+kSMdb7ZDLHy5NuhS8YDnqoj?=
+ =?us-ascii?Q?GyHQjXISaQgi/r806sHJIoe3c8B1RnnNS5ilD9kEwszhp1yQWtiZddB0MB0B?=
+ =?us-ascii?Q?dm5FmY+1YN1kbyoljc37H9zqk3/xTWA0zI4UNDrM6Ay+nxQx/iSQXFEcHReh?=
+ =?us-ascii?Q?k2MubED3vyR8PRXtd3EZQhzxkn+pTHxjqDdBUDAcLxVgSeEhuPEj5xjESoxw?=
+ =?us-ascii?Q?LLPk25jMbt4aXjAojAPqsgOVgWleta7aU7vHjsBc0HB4aqAUkudr/3i8KsX5?=
+ =?us-ascii?Q?liYtn0R1/B1oFu5p+TMbOGg/zn3M6GEJb7lh8HCNUf4eJDmw3TQLCuRkgKY8?=
+ =?us-ascii?Q?WmqMObfp0Ot9qAzhBM7Xib1n3Je6zYYldrb1Dlqu1Ghvo3cKHHY96SoK8rpC?=
+ =?us-ascii?Q?Ygqf7LOZuas6xTdHBigkQCauh24P82rsuMAribaMBaHL0JhRaMba4JJhwIlR?=
+ =?us-ascii?Q?tSBnBHaoXU8qUI4xgu1V6A+dPldgn1oo/iY3xyK81whVf+Ut9k58OhL6eVXu?=
+ =?us-ascii?Q?aOSbfjV9PJXYUfg8/uLf45Vea7okPEXMD23Mreny2maz0KOY/0Oj1iapaZRY?=
+ =?us-ascii?Q?GiyVVxkQ5llSuMUkN6bD2AcReP9N3xFH2d7oeCdAwaZKzgRBcKNtzj5nEbka?=
+ =?us-ascii?Q?31txhcRkYFFJDI0icJcqxOvbYP3wPUN/knBTGcHLuy/Ekobplihyvia1ozke?=
+ =?us-ascii?Q?mwZa65xcvO91AUFHLpcU2H0fOn+uTJp9FQDQ4gxFwJDWBbYPRvmV59VQmyEe?=
+ =?us-ascii?Q?B/8lLWUl1rObhPYS4Qxo2RG5wTWmR3Epi37lxh966AAd0Ovi/fCezjH1XM98?=
+ =?us-ascii?Q?UmC2Y7TUJKKpt96VTnvsM4j1veuBSWAhpYhX4EDj2WMcBclT499jdHsEQA1d?=
+ =?us-ascii?Q?xYIyyVp1Gv60kFoywk3UnRnA+ojFPLeCoNmnX85EDEnIIeYHBIVIEwinJMfN?=
+ =?us-ascii?Q?WkVs6kuQcUBvKrN39LXNNRevD+KBKApbN8kHlMwny7wgXlOMsltdE4yt/rkC?=
+ =?us-ascii?Q?pWZnrewFzcLZ2pZXjpfBMuYocHTTJ2iAlxMbVDd3yh5VV07BaSn8NaF9n/Je?=
+ =?us-ascii?Q?+CnqRv4S81vl2c1FAoc6cGAa5Ea/Q20OxA=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wA+Z8QIvfkYpgpbZtmJBCNWMncZ0DhJA67JtWwDgzXRKRyT1+CT3DnXtJp1b?=
+ =?us-ascii?Q?1B27QU1+BXSl7NUELBfgrUYC7UQMeXJVHt5XKm19nYa19pwe308UaO6z2TCl?=
+ =?us-ascii?Q?jHW0CxBb7Gz6dJ3KgDTq5NE8xF4i90PaAfuJSPRUy30BnyEzdKeiqtxLJfZx?=
+ =?us-ascii?Q?XxCt/WPLuvy2Hf1Y2/BzkCEgdqU329rZnSglRbdKqqF0qsIaP62TxamAOyM2?=
+ =?us-ascii?Q?NfCJhKuUc5yndZlQSXGhbZ3VHPUXy96/ppnsu/g+SYeUk+lIzejGPc9Etk7I?=
+ =?us-ascii?Q?+lf3UUUfiBrwzIzH3/MQmvEnf1GmM08tcHwF5swHn6TYMrCUkm0pfLAEr6sx?=
+ =?us-ascii?Q?VgDghqXq6YmoIVunHk9vv+DOm92o71dYYbMoIGNtLokyJHy26UjIMJU+xmuH?=
+ =?us-ascii?Q?C/SQc4gQxbZRgvO6IUx8iTQ/VY9USou6DUrMzHtoKUuK2Gi2Gpr/l59cPYRM?=
+ =?us-ascii?Q?V0K9myseD7G+c/xAPMmGoLizJxt2E84SOPUIMPz7FmW4uu4e3CYt8sDS1wtG?=
+ =?us-ascii?Q?2rKQQeMRhkDYiH95CtBbXiQwGJRW5Zv69gpZMrrxNrXobKKK/uPgi/DbPEk8?=
+ =?us-ascii?Q?T3P1B6bS0+O50VMiE7CyEZHoqdDQ4+iNecr1z2VmiYiwbj+jHY7agSbfNSMH?=
+ =?us-ascii?Q?vubwI4TC0ouYTN6x5CTVHRJfu1zTE/XcS3+5VLI9L1d/iKFhR7rRXU+qvEjN?=
+ =?us-ascii?Q?HjDKYOnxSIQt1qg6A4jE7hSfJG/6Ej5IA6tBHocfDA2LtWe16qzvOobdTBxo?=
+ =?us-ascii?Q?5/pbgVQKgVeknvOCc74q5cWyA7ZyQJVdaR8KPs4RATwWbNN//nr5E5fEnHno?=
+ =?us-ascii?Q?oZ0ppp12Iv7m6lRPhPVUOak+AztDHg5doOrHhB45TD/z+HLBPTx/BagiQaZu?=
+ =?us-ascii?Q?MjVSg/BfeyEoqR46XjYNvxxSE6zx25GqB8muJlqzOx9BZvutVqLKu+mIbGwe?=
+ =?us-ascii?Q?Elenx/x6aJ2pJepyCd5uyC4xyDBYges0AEeDI5bV1m3Q57p8ZGEbqGR5M/ZQ?=
+ =?us-ascii?Q?1o5/B1OQ0PVHUPVI84aGX+eORftHtBjGgOHy7oHEzWf0omXgcTm3PUjeOCyn?=
+ =?us-ascii?Q?YtMx+a12anW4tcErqIZHuDgBa+edrmicV2P2P0W4RkjGQqU2xljHw216AQuw?=
+ =?us-ascii?Q?iF/vpVE8ayfmUYfLqzVS6MeoKm3k28Y+NFw2+bu9eg/V6stc+jGKXhu+uVCx?=
+ =?us-ascii?Q?+R7XwyKNFeW6ID07+GDRVE2UdgjPNp3eXE1d18EfZXvFwoaRTFJMXg0g1as?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36922519-a1db-4784-ad72-08dd5a6f66b8
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2025 16:21:07.0436
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PPFDD0B528A9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250303_080143_396970_5DEF8933 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20250303_082125_177045_562D2046 
+X-CRM114-Status: GOOD (  14.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,21 +143,322 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/2/2025 11:10 PM, Johan Hovold wrote:
-> On Fri, Feb 28, 2025 at 09:07:32AM -0800, Jeff Johnson wrote:
->> On 2/28/2025 4:28 AM, Johan Hovold wrote:
-> 
->>> The ath11k ring-buffer corruption issue is hurting some users of the
->>> Lenovo ThinkPad X13s quite bad so I promised to try to escalate this
->>> with you and Qualcomm.
->>
->> I've escalated this with the development team.
-> 
-> Thanks, Jeff. Just let me know if you need any help with testing patches
-> or firmware updates. We have a couple of users that can reproduce this
-> very easily and that are also able to test patches.
+The BAR memory access model is a type of paging.
+So let's spilt the BAR addresses into two parts: window and offset.
+And split the register addresses into two parts: page and offset.
+The window is used to map page.
+Window 0 is always map to page 0.
+Windows 1, 2 and 3 can be configured by ATH11K_PCI_WINDOW_CONFIG.
 
-There is a patch under development -- you should see it this week.
+Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c  | 38 ++++++-----
+ drivers/net/wireless/ath/ath11k/pci.c  | 95 +++++++++++++-------------
+ drivers/net/wireless/ath/ath11k/pci.h  |  4 +-
+ drivers/net/wireless/ath/ath11k/pcic.c |  4 +-
+ drivers/net/wireless/ath/ath11k/pcic.h | 29 ++++++--
+ 5 files changed, 97 insertions(+), 73 deletions(-)
 
-/jeff
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index f2fc04596d48..6d7e45792927 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -148,43 +148,45 @@ ath11k_ahb_get_msi_irq_wcn6750(struct ath11k_base *ab, unsigned int vector)
+ }
+ 
+ static inline u32
+-ath11k_ahb_get_window_start_wcn6750(struct ath11k_base *ab, u32 offset)
++ath11k_ahb_get_window_wcn6750(struct ath11k_base *ab, u32 regaddr)
+ {
+-	u32 window_start = 0;
++	u32 page = ATH11K_PCI_REGADDR_PAGE(regaddr);
++	u32 window = 0;
+ 
+ 	/* If offset lies within DP register range, use 1st window */
+-	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
+-		window_start = ATH11K_PCI_WINDOW_START;
++	if (page == ATH11K_PCI_REGADDR_PAGE(HAL_SEQ_WCSS_UMAC_OFFSET))
++		window = 1;
+ 	/* If offset lies within CE register range, use 2nd window */
+-	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
+-		 ATH11K_PCI_WINDOW_RANGE_MASK)
+-		window_start = 2 * ATH11K_PCI_WINDOW_START;
++	else if (page == ATH11K_PCI_REGADDR_PAGE(HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)))
++		window = 2;
++	else
++		WARN_ON(1);
+ 
+-	return window_start;
++	return window;
+ }
+ 
+ static void
+-ath11k_ahb_window_write32_wcn6750(struct ath11k_base *ab, u32 offset, u32 value)
++ath11k_ahb_window_write32_wcn6750(struct ath11k_base *ab, u32 regaddr, u32 value)
+ {
+-	u32 window_start;
++	u32 window, offset;
+ 
+ 	/* WCN6750 uses static window based register access*/
+-	window_start = ath11k_ahb_get_window_start_wcn6750(ab, offset);
++	window = ath11k_ahb_get_window_wcn6750(ab, regaddr);
++	offset = ATH11K_PCI_REGADDR_OFFSET(regaddr);
+ 
+-	iowrite32(value, ab->mem + window_start +
+-		  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
++	iowrite32(value, ATH11K_PCI_BARADDR(ab, window, offset));
+ }
+ 
+-static u32 ath11k_ahb_window_read32_wcn6750(struct ath11k_base *ab, u32 offset)
++static u32 ath11k_ahb_window_read32_wcn6750(struct ath11k_base *ab, u32 regaddr)
+ {
+-	u32 window_start;
++	u32 window, offset;
+ 	u32 val;
+ 
+ 	/* WCN6750 uses static window based register access */
+-	window_start = ath11k_ahb_get_window_start_wcn6750(ab, offset);
++	window = ath11k_ahb_get_window_wcn6750(ab, regaddr);
++	offset = ATH11K_PCI_REGADDR_OFFSET(regaddr);
+ 
+-	val = ioread32(ab->mem + window_start +
+-		       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
++	val = ioread32(ATH11K_PCI_BARADDR(ab, window, offset));
+ 	return val;
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index b93f04973ad7..22478d19872f 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -54,74 +54,77 @@ static void ath11k_pci_bus_release(struct ath11k_base *ab)
+ 	mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ }
+ 
+-static u32 ath11k_pci_get_window_start(struct ath11k_base *ab, u32 offset)
++static u32 ath11k_pci_get_window(struct ath11k_base *ab, u32 regaddr)
+ {
++	u32 page = ATH11K_PCI_REGADDR_PAGE(regaddr);
++
+ 	if (!ab->hw_params.static_window_map)
+-		return ATH11K_PCI_WINDOW_START;
+-
+-	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
+-		/* if offset lies within DP register range, use 3rd window */
+-		return 3 * ATH11K_PCI_WINDOW_START;
+-	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
+-		 ATH11K_PCI_WINDOW_RANGE_MASK)
+-		 /* if offset lies within CE register range, use 2nd window */
+-		return 2 * ATH11K_PCI_WINDOW_START;
+-	else
+-		return ATH11K_PCI_WINDOW_START;
++		return 1;
++
++	/* If offset lies within DP register range, use 3rd window */
++	if (page == ATH11K_PCI_REGADDR_PAGE(HAL_SEQ_WCSS_UMAC_OFFSET))
++		return 3;
++	/* If offset lies within CE register range, use 2nd window */
++	else if (page == ATH11K_PCI_REGADDR_PAGE(HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)))
++		return 2;
++	else {
++		WARN_ON(1); /* In current code, we don't access any other page. */
++		return 1;
++	}
+ }
+ 
+-static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offset)
++static inline void ath11k_pci_window1_select(struct ath11k_pci *ab_pci, u32 regaddr)
+ {
+ 	struct ath11k_base *ab = ab_pci->ab;
+ 
+-	u32 window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, offset);
++	u32 page = ATH11K_PCI_REGADDR_PAGE(regaddr);
+ 
+ 	lockdep_assert_held(&ab_pci->window_lock);
+ 
+-	if (window != ab_pci->register_window) {
+-		iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
+-			  ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
+-		ioread32(ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
+-		ab_pci->register_window = window;
++	if (page != ab_pci->window1_page) {
++		iowrite32((ATH11K_PCI_WINDOW_CONFIG_ENABLE |
++			   ATH11K_PCI_WINDOW_MAP(1, page)),
++			  (ab->mem + ATH11K_PCI_WINDOW_CONFIG));
++		ioread32(ab->mem + ATH11K_PCI_WINDOW_CONFIG);
++		ab_pci->window1_page = page;
+ 	}
+ }
+ 
+ static void
+-ath11k_pci_window_write32(struct ath11k_base *ab, u32 offset, u32 value)
++ath11k_pci_window_write32(struct ath11k_base *ab, u32 regaddr, u32 value)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+-	u32 window_start;
++	u32 window, offset;
+ 
+-	window_start = ath11k_pci_get_window_start(ab, offset);
++	window = ath11k_pci_get_window(ab, regaddr);
++	offset = ATH11K_PCI_REGADDR_OFFSET(regaddr);
+ 
+-	if (window_start == ATH11K_PCI_WINDOW_START) {
++	if (window == 1) {
+ 		spin_lock_bh(&ab_pci->window_lock);
+-		ath11k_pci_select_window(ab_pci, offset);
+-		iowrite32(value, ab->mem + window_start +
+-			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
++		ath11k_pci_window1_select(ab_pci, regaddr);
++		iowrite32(value, ATH11K_PCI_BARADDR(ab, 1, offset));
+ 		spin_unlock_bh(&ab_pci->window_lock);
+ 	} else {
+-		iowrite32(value, ab->mem + window_start +
+-			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
++		iowrite32(value, ATH11K_PCI_BARADDR(ab, window, offset));
+ 	}
+ }
+ 
+-static u32 ath11k_pci_window_read32(struct ath11k_base *ab, u32 offset)
++static u32 ath11k_pci_window_read32(struct ath11k_base *ab, u32 regaddr)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+-	u32 window_start, val;
++	u32 window, offset;
++	u32 val;
+ 
+-	window_start = ath11k_pci_get_window_start(ab, offset);
++	window = ath11k_pci_get_window(ab, regaddr);
++	offset = ATH11K_PCI_REGADDR_OFFSET(regaddr);
+ 
+-	if (window_start == ATH11K_PCI_WINDOW_START) {
++	if (window == 1) {
+ 		spin_lock_bh(&ab_pci->window_lock);
+-		ath11k_pci_select_window(ab_pci, offset);
+-		val = ioread32(ab->mem + window_start +
+-			       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
++		ath11k_pci_window1_select(ab_pci, offset);
++		val = ioread32(ATH11K_PCI_BARADDR(ab, 1, offset));
+ 		spin_unlock_bh(&ab_pci->window_lock);
+ 	} else {
+-		val = ioread32(ab->mem + window_start +
+-			       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
++		val = ioread32(ATH11K_PCI_BARADDR(ab, window, offset));
+ 	}
+ 
+ 	return val;
+@@ -163,16 +166,16 @@ static const struct ath11k_msi_config msi_config_one_msi = {
+ 
+ static inline void ath11k_pci_select_static_window(struct ath11k_pci *ab_pci)
+ {
+-	u32 umac_window;
+-	u32 ce_window;
+-	u32 window;
++	u32 umac_page;
++	u32 ce_page;
+ 
+-	umac_window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, HAL_SEQ_WCSS_UMAC_OFFSET);
+-	ce_window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, HAL_CE_WFSS_CE_REG_BASE);
+-	window = (umac_window << 12) | (ce_window << 6);
++	umac_page = ATH11K_PCI_REGADDR_PAGE(HAL_SEQ_WCSS_UMAC_OFFSET);
++	ce_page = ATH11K_PCI_REGADDR_PAGE(HAL_CE_WFSS_CE_REG_BASE);
+ 
+-	iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
+-		  ab_pci->ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
++	iowrite32((ATH11K_PCI_WINDOW_CONFIG_ENABLE |
++		   ATH11K_PCI_WINDOW_MAP(2, ce_page) |
++		   ATH11K_PCI_WINDOW_MAP(3, umac_page)),
++		  (ab_pci->ab->mem + ATH11K_PCI_WINDOW_CONFIG));
+ }
+ 
+ static void ath11k_pci_soc_global_reset(struct ath11k_base *ab)
+@@ -615,7 +618,7 @@ static int ath11k_pci_power_up(struct ath11k_base *ab)
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 	int ret;
+ 
+-	ab_pci->register_window = 0;
++	ab_pci->window1_page = 0;
+ 	clear_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags);
+ 	ath11k_pci_sw_reset(ab_pci->ab, true);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
+index c33c7865145c..90e6ae55192f 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.h
++++ b/drivers/net/wireless/ath/ath11k/pci.h
+@@ -65,9 +65,9 @@ struct ath11k_pci {
+ 	struct mhi_controller *mhi_ctrl;
+ 	const struct ath11k_msi_config *msi_config;
+ 	enum mhi_callback mhi_pre_cb;
+-	u32 register_window;
++	u32 window1_page;
+ 
+-	/* protects register_window above */
++	/* protects window1_page above */
+ 	spinlock_t window_lock;
+ 
+ 	/* enum ath11k_pci_flags */
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index 3fe77310c71f..d65b5cb6f986 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -164,7 +164,7 @@ EXPORT_SYMBOL(ath11k_pcic_init_msi_config);
+ 
+ static void __ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ {
+-	if (offset < ATH11K_PCI_WINDOW_START)
++	if (ATH11K_PCI_REGADDR_PAGE(offset) == 0)
+ 		iowrite32(value, ab->mem  + offset);
+ 	else
+ 		ab->pci.ops->window_write32(ab, offset, value);
+@@ -194,7 +194,7 @@ static u32 __ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
+ {
+ 	u32 val;
+ 
+-	if (offset < ATH11K_PCI_WINDOW_START)
++	if (ATH11K_PCI_REGADDR_PAGE(offset) == 0)
+ 		val = ioread32(ab->mem + offset);
+ 	else
+ 		val = ab->pci.ops->window_read32(ab, offset);
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.h b/drivers/net/wireless/ath/ath11k/pcic.h
+index ac012e88bf6d..b1b8db3e382f 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.h
++++ b/drivers/net/wireless/ath/ath11k/pcic.h
+@@ -14,11 +14,30 @@
+ 
+ #define ATH11K_PCI_CE_WAKE_IRQ	2
+ 
+-#define ATH11K_PCI_WINDOW_ENABLE_BIT		0x40000000
+-#define ATH11K_PCI_WINDOW_REG_ADDRESS		0x310c
+-#define ATH11K_PCI_WINDOW_VALUE_MASK		GENMASK(24, 19)
+-#define ATH11K_PCI_WINDOW_START			0x80000
+-#define ATH11K_PCI_WINDOW_RANGE_MASK		GENMASK(18, 0)
++/* The BAR memory access model is a type of paging.
++ * So let's spilt the BAR addresses into two parts: window and offset.
++ * And split the register addresses into two parts: page and offset.
++ * The window is used to map page.
++ * Window 0 is always map to page 0.
++ * Windows 1, 2 and 3 can be configuarable by ATH11K_PCI_WINDOW_CONFIG.
++ */
++
++#define ATH11K_PCI_REGADDR_PAGE_MASK		GENMASK(24, 19)
++#define  ATH11K_PCI_REGADDR_PAGE(x)		FIELD_GET(ATH11K_PCI_REGADDR_PAGE_MASK, (x))
++#define ATH11K_PCI_REGADDR_OFFSET_MASK		GENMASK(18, 0)
++#define  ATH11K_PCI_REGADDR_OFFSET(x)		FIELD_GET(ATH11K_PCI_REGADDR_OFFSET_MASK, (x))
++
++#define  ATH11K_PCI_BARADDR_WINDOW_MASK	GENMASK(20, 19)
++#define  ATH11K_PCI_BARADDR_OFFSET_MASK	GENMASK(18, 0)
++#define ATH11K_PCI_BARADDR(ab, window, offset) \
++	((ab)->mem + \
++	 FIELD_PREP(ATH11K_PCI_BARADDR_WINDOW_MASK, window) + \
++	 FIELD_PREP(ATH11K_PCI_BARADDR_OFFSET_MASK, offset))
++
++#define ATH11K_PCI_WINDOW_CONFIG		0x310c
++#define  ATH11K_PCI_WINDOW_CONFIG_ENABLE	BIT(30)
++#define  ATH11K_PCI_WINDOW_MAP_MASK(i)		(GENMASK(5, 0) << (6 * ((i) - 1)))
++#define   ATH11K_PCI_WINDOW_MAP(i, page)	FIELD_PREP(ATH11K_PCI_WINDOW_MAP_MASK(i), (page))
+ 
+ /* BAR0 + 4k is always accessible, and no
+  * need to force wakeup.
+-- 
+2.40.1
+
 
