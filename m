@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE706C282D1
-	for <ath11k@archiver.kernel.org>; Thu,  6 Mar 2025 08:40:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C329C282D0
+	for <ath11k@archiver.kernel.org>; Fri,  7 Mar 2025 04:41:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=; b=DA3DFGCk13B0b488+xdfUFk9KP
-	HkNu4NJd7cvDT8K9ThBZVPe7sk+PDsYlUOIKfk/pGsXQ4Xsv5nFI04H5669k1cF1CmKpzKfyAf8GO
-	DCfpdydpswgd/zZah8gcSV8f5ASexq/50WbI/8IpMTQ9k2Q0faDrRjbZi4AmPOq06/1p0tbMbCOYE
-	cvcBIv3Tx2fQ7kryvxbDP0ehjYNEisd2mfap/fnSrJz8IZTLewK27HuXPuzqIrtZufrH/Vv1L7yt+
-	wsEtGLdos/TwS8JuEl8HgRai0Es1L9NMTZ5NIgkoCVDbPQeEsbwWZitOfq/bLTAOB4aV3FzVSabxr
-	hI3ZU9xQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=3myaz05gJUsn4Trep8ooUM0g2cG7uUv7yvGPvMB7amE=; b=S4Ai1ILbW1b9CKnRO3/auKHQt7
+	7x7BIr/N1VNszYrtqh9Cth6xbrgfiyexp/Oa+YztWdKgzd5K/nEsB1somrPr/XOLKXTUtIdyNEyZk
+	RWg3d2XaQtOQN9zG17Jn28IZCeaTZ3XFXjMUNeh/ii9Hail/Ygxe8q0c4eIK6EdSSrDEO3Purn3GN
+	vf1/384M+9gllyhPvUaVj34gJYBv7dG/ml8qwYKs/4cUz/FIaLR3BV6QweqO1TjtxXJKb7MDL2zay
+	uZG0Nl0ZtQjAlVQ0/XeCqIkBB4IYM56bwW8J5TmLuozHg18Wm2HpTGfB9pxgcidXB77WKc4FRlDmG
+	TnAeWBHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tq6mQ-0000000AMiY-1jyA;
-	Thu, 06 Mar 2025 08:40:34 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1tqPWv-0000000D8xU-2uAW;
+	Fri, 07 Mar 2025 04:41:49 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tq6kj-0000000AMPY-1286
-	for ath11k@bombadil.infradead.org;
-	Thu, 06 Mar 2025 08:38:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=; b=wObQL/w+GVXo2OO4BW3oMC9gCp
-	S4dVtJqPESmauI9gaH3Gcf80SxLSKPPqF3orenQxi5FlF7tEUCe136eMskfHQ74gqqL76HaaFxAAc
-	S2ZJkmRy25/K2tE9GIT1h3fA1EvaJRnmy8LuihNRHi+sO4K38YOCGnaYsr+5OMdyzUoHYve2FLy3l
-	am84RWOQh7gtwRX9mTFNwzoAJTzRfRi4PVIavZp0PRZc+uK12qwNNCDwV/VvjW0ImSAekfEItM9JO
-	v4WKEVkTS+pI1PHpxfa3p6gS4QOgkMxCUIPjBOXXq/UKPWvjoiHOyNTVpbanZ8Hhn1EKgayCOUKqK
-	X700FSOg==;
-Received: from mail.grablo.pl ([51.77.231.136])
-	by casper.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tq6kf-000000075iG-1tRq
+	id 1tqP1R-0000000D5FZ-1nSg
 	for ath11k@lists.infradead.org;
-	Thu, 06 Mar 2025 08:38:47 +0000
-Authentication-Results: grablo.pl; arc=none smtp.remote-ip=127.0.0.1
-ARC-Seal: i=1; d=grablo.pl; s=default; a=rsa-sha256; cv=none; t=1741250319;
-	b=RUtVZtaEWq3J+kx0QEzaCytdNg5xjxLK0+ySJHJMKfm850ZFZjkYnry3HbuZfcg2IeSl
-	 G/OoHmqAlCXmxm20rzAwoyHVZFTV45PDLd+FXBAjfYFW2OtbY3sT6mPxq6ajJ7hM/mrbg
-	 FA3VNSDvbkE06svX/7Y1TgkfbksUBdNki9dHLU7ICrCWuQ63mVitr7/eDg2O4bHci845b
-	 KLPr5ImjjnA80Llu/6e5qFAlWo70TNhelSQYEM5h+E+D3rCuqXp+A+4uAYJW00gH6ZKx1
-	 MGKhcRWr0Hae7x1mKYIIFYydJxdVHOdBjuPrTEgqAh18jpUeGljvkJNjawhVuZBmAeQ==
-ARC-Message-Signature: i=1; d=grablo.pl; s=default; a=rsa-sha256;
-	c=relaxed/simple; t=1741250319;
-	h=Message-ID:Date:From:Subject:From;
-	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=;
-	b=kVM8XyBxAzHbm11OdX1LOPCR0Vp7Rw1YRyh32u5kJxf/wqOSUJ5DR2xuDv6/YhD9MqbL
-	 8t9V/jqNy/2p5kCaaZiZIEF6qxCggQLfpeESfoddN6KAUcNCJYBjLa2MXI8oSYWMx8IC2
-	 5/FWSG/qMi0zZmH7hi5q4ifC2pw+xNzJ/y26FYxtR47nh3j/YDYdN1Uxo8OdaCelT6Ryt
-	 X67eo2eCYeGxBwou14h0LyKq5A3dnATznlmyGXfN6L5isN2PfcWLpn6qRSE3+zi4XqZBP
-	 7qX8MTiizllG9P/ezziFetfKnt+r17DaGUsfiWKcgZbbZ7JdvpBedPgEt5vuMZ6lfAg==
-ARC-Authentication-Results: i=1; grablo.pl; arc=none smtp.remote-ip=127.0.0.1
-Received: by mail.grablo.pl (Postfix, from userid 1002)
-	id D73E024117; Thu,  6 Mar 2025 08:36:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=grablo.pl; s=mail;
-	t=1741250319; bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=;
-	h=Date:From:To:Subject:From;
-	b=e3wXu4bRdeOe+CK0D3KYxvwkk+vEyg/5zof7QRlUmkmg9ldWkqqc14zHnqZsTzgZH
-	 UL8Z4nB7iah5Sj+rcl01s7HxCMWr5WkDbceXX8pPc7DTZnWqjWT0kvZ9N7aPAazaNm
-	 01jaQ6TtjSztPafnAmFw8rJF0A7TiWoy+Ho/4MFgvt0piAu4OpLKoOlmNl6gP8N+iN
-	 Zy9W2NNnuCiOmh9u1L/VZUqDNM6m0EaXbPUwqVQykF5bp62O3Bg+MKUZVMScsye/Iv
-	 9v8fptl8qW/Wh5hx1vDni7DJZx8cNECUlwzT1Ag7NCy7an8lVhjejft0ygQZvXFltO
-	 6Bb7qppm4XQwg==
-Received: by mail.grablo.pl for <ath11k@lists.infradead.org>; Thu,  6 Mar 2025 08:36:05 GMT
-Message-ID: <20250306074500-0.1.13.amki.0.j918kii7fc@grablo.pl>
-Date: Thu,  6 Mar 2025 08:36:05 GMT
-From: "Tomasz Biegun" <tomasz.biegun@grablo.pl>
-To: <ath11k@lists.infradead.org>
-Subject: =?UTF-8?Q?Wsp=C3=B3=C5=82praca?=
-X-Mailer: mail.grablo.pl
+	Fri, 07 Mar 2025 04:09:19 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 526LFcm5019600;
+	Fri, 7 Mar 2025 04:09:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=3myaz05gJUsn4Trep8ooUM
+	0g2cG7uUv7yvGPvMB7amE=; b=ZHAlsoVggCn7tpJS85kKQm4U8GwJhD4V17zsK6
+	ArgUy/cKolbYv1DpgTKXpFCI/VJTW/X60VcjpcYnHsKz4lnTZ6BAKnWqv+qSFZR5
+	edngswx1nDHRxzURyBly5ZIUg0MGgw1Uu8C5QBl7eG4qb+62LQ4AEpMibN1dVteO
+	27AjCet4lqiPrFFRkcg3DxaahklTaPHiQ3RLUJ7tgIYrQzvYfBkgKwI9H40ZQ7pu
+	K/8xpPwSiapYCqk1hkEqb0nVmvT+OkxdGVM3pFDwyqbKslkAntVvpO1EC3csk3/c
+	9uK0K8A3+mNxDsZl4Gp01nR7+o6OG+QFhvDraLdlTJyJv3sQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 457kfbgtrr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Mar 2025 04:09:15 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52749E7l008764
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 7 Mar 2025 04:09:14 GMT
+Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 6 Mar 2025 20:09:12 -0800
+From: Miaoqing Pan <quic_miaoqing@quicinc.com>
+To: <quic_jjohnson@quicinc.com>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
+Subject: [PATCH ath-next 0/2] wifi: ath11k: fix HTC rx insufficient length
+Date: Fri, 7 Mar 2025 12:08:46 +0800
+Message-ID: <20250307040848.3822788-1-quic_miaoqing@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: mVe9xauhExAEdFDTJ0TbcDPp49n6uBCj
+X-Authority-Analysis: v=2.4 cv=D/e9KuRj c=1 sm=1 tr=0 ts=67ca716b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=G9Sqsl_jvRD_TnvheR8A:9
+X-Proofpoint-GUID: mVe9xauhExAEdFDTJ0TbcDPp49n6uBCj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-07_01,2025-03-06_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 lowpriorityscore=0 spamscore=0 mlxscore=0 clxscore=1011
+ malwarescore=0 impostorscore=0 suspectscore=0 adultscore=0 bulkscore=0
+ mlxlogscore=649 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503070025
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250306_083845_861796_AA165949 
-X-CRM114-Status: UNSURE (   0.65  )
+X-CRM114-CacheID: sfid-20250306_200917_609879_8C87AC67 
+X-CRM114-Status: UNSURE (   8.15  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,20 +98,25 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dzie=C5=84 dobry,=20
+This series of patches is to address the issue reported in
+https://bugzilla.kernel.org/show_bug.cgi?id=218623.
 
-Czy interesuje Pa=C5=84stwa pozyskanie nowych klient=C3=B3w?
+ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1488, expected 1492
+ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, expected 1484
 
-Zajmujemy si=C4=99 profesjonalnie wsparciem firm w tym zakresie.=20
+Miaoqing Pan (2):
+  wifi: ath11k: add function to get next srng desc
+  wifi: ath11k: fix HTC rx insufficient length
 
-Nasi partnerzy zyskuj=C4=85 sta=C5=82y nap=C5=82yw nowych zlece=C5=84 ora=
-z zam=C3=B3wie=C5=84, a tym samym zwi=C4=99kszaj=C4=85 swoje wyniki sprze=
-da=C5=BCy.
+ drivers/net/wireless/ath/ath11k/ce.c   | 32 ++++++++++++++++++++------
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/hal.c  | 24 +++++++++++--------
+ drivers/net/wireless/ath/ath11k/hal.h  |  3 ++-
+ 4 files changed, 42 insertions(+), 18 deletions(-)
 
-Czy mo=C5=BCemy przedstawi=C4=87 szczeg=C3=B3=C5=82y dotycz=C4=85ce zasad=
- i mo=C5=BCliwo=C5=9Bci wsp=C3=B3=C5=82pracy?
 
+base-commit: 3148fc3cf193dbbd2e14eee59468a510a38bf604
+-- 
+2.25.1
 
-Pozdrawiam
-Tomasz Biegun
 
