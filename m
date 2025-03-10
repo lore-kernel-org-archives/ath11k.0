@@ -4,90 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 415D0C2BA1B
-	for <ath11k@archiver.kernel.org>; Mon, 10 Mar 2025 01:02:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEDF0C28B2E
+	for <ath11k@archiver.kernel.org>; Mon, 10 Mar 2025 10:19:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=c+Bnz5MXFNxyk70QqOJh4tmnrisC9p1l21NoG0whgJw=; b=Ocv9VTUmz+moTNH9OZKacnb/P5
-	GEuTIr7352fy696f2gXet0V5tDE5/7FcAY/xI1xP3xWCckXPFcS4JvcaoFeNnI/hJRbppviAeySND
-	P7lFpuYWdHsQkaeEMFqq/qJAU1hyPZjtaw67muUdIAyFvuLvaHTKcYq/FVquw00ir9Md+q7sboptx
-	4qK2kuUvX7AyPh19iaHW+msj4boPtIzCE3qYbydiNV76sj0fWYk4/J480zCoeRpkIuom5Rel1xjP6
-	WNXzpt47pOzdkGnO503JeEcSlhbL/iFIIL5ic97viIEjAysYXlGaKTQdjdgpL8VOBsoTuzgDj18D0
-	0Avsclwg==;
+	bh=4vfCMpGAaIinc2L27soT/gCFxu1Ut6sglGjPmIPuvko=; b=WuJ9dceCe7yJrJ/zsnGUBBI2m5
+	qRCe/s0bh/Ji6HHtrN0/b5C6Pohlz+cqOK/6NNw3Kh/vOhb7GgesvXlJb/csyweLPhH86LqlNbmhW
+	V3HfAibBDpDfKP8/KYxqAxITm7u3oD9EhstNbRWM2RWvl5COl5c/PkZYSlJbGcHTVMuLHnbD1Ry/B
+	a/fwWHwiq7DsV0+e9g6RFOty07eMp74BADySHADaZ+BRCrigiPu5/afVnwUxdxcsidlCcUDOSvcG0
+	JOxxFar/lq10ri1Ev12LMsFNg4+i5idadEj/ZrCYUk8oOug494qL5CoDWPsC/BRYZB8Hv95HmU0pD
+	i4DOwWhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trRXc-00000001MGj-3pC0;
-	Mon, 10 Mar 2025 01:02:48 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1traDq-00000002Eer-3Vl9;
+	Mon, 10 Mar 2025 10:18:58 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trRXY-00000001MEy-26gl
+	id 1tra5A-00000002D7R-0LDW
 	for ath11k@lists.infradead.org;
-	Mon, 10 Mar 2025 01:02:46 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529Ko9Kd017510;
-	Mon, 10 Mar 2025 01:02:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c+Bnz5MXFNxyk70QqOJh4tmnrisC9p1l21NoG0whgJw=; b=ohpoggXTgLWDaHDW
-	xlDLn4AlNbXmmU3s2O5mCz890HI0h6ZzwgCsd27VLGpOUMx6rsPk2ABdxKJJa+K0
-	XNrPsJ/6i/EWLSjDeTbIKZKw65fyECz/aHSQFH8K+poGheVNNzk4GnGGVoSJN12U
-	Zc9pJ1Q7J4rB76CmMzS4u3lgUlNC5Uyo+Wlo5rU6UlkK06LrwnzdX768bDBN9oSs
-	NkDyjaoDn9QeylxUQ0RmZ3HM8C6uOWkmYmks5eovLVn3g9PdOERCAupiEce88X/V
-	zbY/Pr54QGlP5gc5DIcrSZx+nk+3wThvMA7MPiBEuOWudrIPDlKLXYdSdtEKzQbd
-	a7MkgQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eyt31w1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 01:02:34 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52A12XPk017208
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 01:02:33 GMT
-Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 9 Mar 2025 18:02:31 -0700
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-To: <quic_jjohnson@quicinc.com>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <johan+linaro@kernel.org>,
-        Miaoqing Pan
-	<quic_miaoqing@quicinc.com>
-Subject: [PATCH v2 ath-next 2/2] wifi: ath11k: fix HTC rx insufficient length
-Date: Mon, 10 Mar 2025 09:02:17 +0800
-Message-ID: <20250310010217.3845141-3-quic_miaoqing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250310010217.3845141-1-quic_miaoqing@quicinc.com>
+	Mon, 10 Mar 2025 10:10:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 28EF05C0295;
+	Mon, 10 Mar 2025 10:07:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D14FC4CEE5;
+	Mon, 10 Mar 2025 10:09:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741601397;
+	bh=lfgb+4yconhWI0GihEGvBTzUmrfm3IiGF84oD4PW/BI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t4Y00iF/XZiFLpxSZjMhOXUB3swUXhsjOtQn11daJRKHt/bIiWQSILaMpudvcGeTT
+	 kF4YXcjvEQOj5xrMM5VbsNBimcQvXmc0cdk9dHbiQrJSI3LDy5zcfMjPNBBKQGz6C/
+	 3YfkL3pnsQrek9w0uvkFGJflrKFjQcWH82XHXOYr1L5zjOD5eYC3AzWc0ieIiQXMKW
+	 xbc2b9xRgmbaQYEG6PiMKIH8wcJs09Cz1hMeq5Muxx6zHn1wPGa6fxDQtJfdD+NjyJ
+	 BqIoLzPvbnShbwYYEtlFuKOqW50LyMG0fZKyEGQsN7I6QREtJiES1tad6fhf8nV435
+	 BoVFCe9UC99tQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tra52-000000006bM-3NnW;
+	Mon, 10 Mar 2025 11:09:52 +0100
+Date: Mon, 10 Mar 2025 11:09:52 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: quic_jjohnson@quicinc.com, ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+	johan+linaro@kernel.org
+Subject: Re: [PATCH v2 ath-next 2/2] wifi: ath11k: fix HTC rx insufficient
+ length
+Message-ID: <Z866cCj8SWyZjCoP@hovoldconsulting.com>
 References: <20250310010217.3845141-1-quic_miaoqing@quicinc.com>
+ <20250310010217.3845141-3-quic_miaoqing@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0LH8pJNppikRHyfsPGizh3ulDdqu111o
-X-Authority-Analysis: v=2.4 cv=CupFcm4D c=1 sm=1 tr=0 ts=67ce3a2a cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=oICLHHyMo7b6fcdoYYIA:9 a=RVmHIydaz68A:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 0LH8pJNppikRHyfsPGizh3ulDdqu111o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-09_09,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1011
- suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
- bulkscore=0 spamscore=0 mlxlogscore=999 lowpriorityscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100005
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250310010217.3845141-3-quic_miaoqing@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250309_180244_700568_5A92A895 
-X-CRM114-Status: GOOD (  20.00  )
+X-CRM114-CacheID: sfid-20250310_031000_249877_BBADBEB5 
+X-CRM114-Status: GOOD (  22.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,111 +78,74 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-A relatively unusual race condition occurs between host software
-and hardware, where the host sees the updated destination ring head
-pointer before the hardware updates the corresponding descriptor.
-When this situation occurs, the length of the descriptor returns 0.
+On Mon, Mar 10, 2025 at 09:02:17AM +0800, Miaoqing Pan wrote:
+> A relatively unusual race condition occurs between host software
+> and hardware, where the host sees the updated destination ring head
+> pointer before the hardware updates the corresponding descriptor.
+> When this situation occurs, the length of the descriptor returns 0.
 
-The current error handling method is to increment descriptor tail
-pointer by 1, but 'sw_index' is not updated, causing descriptor and
-skb to not correspond one-to-one, resulting in the following error:
+I still think this description is too vague and it doesn't explain how
+this race is even possible. It sounds like there's a bug somewhere in
+the driver or firmware, but if this really is an indication the hardware
+is broken as your reply here seems to suggest:
 
-ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1488, expected 1492
-ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, expected 1484
+	https://lore.kernel.org/lkml/bc187777-588c-4fa0-ba8c-847e91c78d43@quicinc.com/
 
-To address this problem, temporarily skip processing the current
-descriptor and handle it again next time. However, to prevent this
-descriptor from continuously returning 0, use skb cb to set a flag.
-If the length returns 0 again, this descriptor will be discarded.
+then that too should be highlighted in the commit message (e.g. by
+describing this as "working around broken hardware").
 
-Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04546-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+> The current error handling method is to increment descriptor tail
+> pointer by 1, but 'sw_index' is not updated, causing descriptor and
+> skb to not correspond one-to-one, resulting in the following error:
+> 
+> ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1488, expected 1492
+> ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, expected 1484
+> 
+> To address this problem, temporarily skip processing the current
+> descriptor and handle it again next time. However, to prevent this
+> descriptor from continuously returning 0, use skb cb to set a flag.
+> If the length returns 0 again, this descriptor will be discarded.
 
-Reported-by: Johan Hovold <johan+linaro@kernel.org>
-Closes: https://bugzilla.kernel.org/show_bug.cgi?id=218623
-Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/ce.c   | 32 ++++++++++++++++++++------
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- 2 files changed, 26 insertions(+), 7 deletions(-)
+The ath12k ring-buffer handling looks very similar. Do you need a
+corresponding workaround in ath12k_ce_completed_recv_next()? Or are you
+sure that this (hardware) bug only affects ath11k devices?
+ 
+>  	*nbytes = ath11k_hal_ce_dst_status_get_length(desc);
+> -	if (*nbytes == 0) {
+> -		ret = -EIO;
+> -		goto err;
+> +	if (unlikely(*nbytes == 0)) {
+> +		struct ath11k_skb_rxcb *rxcb =
+> +			ATH11K_SKB_RXCB(pipe->dest_ring->skb[sw_index]);
+> +
+> +		/* A relatively unusual race condition occurs between host
+> +		 * software and hardware, where the host sees the updated
+> +		 * destination ring head pointer before the hardware updates
+> +		 * the corresponding descriptor.
+> +		 *
+> +		 * Temporarily skip processing the current descriptor and handle
+> +		 * it again next time. However, to prevent this descriptor from
+> +		 * continuously returning 0, set 'is_desc_len0' flag. If the
+> +		 * length returns 0 again, this descriptor will be discarded.
+> +		 */
+> +		if (!rxcb->is_desc_len0) {
+> +			rxcb->is_desc_len0 = true;
+> +			ret = -EIO;
+> +			goto err;
+> +		}
+>  	}
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index e66e86bdec20..2573f8c7a994 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2023, 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include "dp_rx.h"
-@@ -387,18 +387,36 @@ static int ath11k_ce_completed_recv_next(struct ath11k_ce_pipe *pipe,
- 
- 	ath11k_hal_srng_access_begin(ab, srng);
- 
--	desc = ath11k_hal_srng_dst_get_next_entry(ab, srng);
-+	desc = ath11k_hal_srng_dst_peek(ab, srng);
- 	if (!desc) {
- 		ret = -EIO;
- 		goto err;
- 	}
- 
- 	*nbytes = ath11k_hal_ce_dst_status_get_length(desc);
--	if (*nbytes == 0) {
--		ret = -EIO;
--		goto err;
-+	if (unlikely(*nbytes == 0)) {
-+		struct ath11k_skb_rxcb *rxcb =
-+			ATH11K_SKB_RXCB(pipe->dest_ring->skb[sw_index]);
-+
-+		/* A relatively unusual race condition occurs between host
-+		 * software and hardware, where the host sees the updated
-+		 * destination ring head pointer before the hardware updates
-+		 * the corresponding descriptor.
-+		 *
-+		 * Temporarily skip processing the current descriptor and handle
-+		 * it again next time. However, to prevent this descriptor from
-+		 * continuously returning 0, set 'is_desc_len0' flag. If the
-+		 * length returns 0 again, this descriptor will be discarded.
-+		 */
-+		if (!rxcb->is_desc_len0) {
-+			rxcb->is_desc_len0 = true;
-+			ret = -EIO;
-+			goto err;
-+		}
- 	}
- 
-+	ath11k_hal_srng_dst_next(ab, srng);
-+
- 	*skb = pipe->dest_ring->skb[sw_index];
- 	pipe->dest_ring->skb[sw_index] = NULL;
- 
-@@ -430,8 +448,8 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
- 		dma_unmap_single(ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
- 				 max_nbytes, DMA_FROM_DEVICE);
- 
--		if (unlikely(max_nbytes < nbytes)) {
--			ath11k_warn(ab, "rxed more than expected (nbytes %d, max %d)",
-+		if (unlikely(max_nbytes < nbytes || !nbytes)) {
-+			ath11k_warn(ab, "rxed invalid length (nbytes %d, max %d)",
- 				    nbytes, max_nbytes);
- 			dev_kfree_skb_any(skb);
- 			continue;
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 1a3d0de4afde..c8614c5c6493 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -128,6 +128,7 @@ struct ath11k_skb_rxcb {
- 	bool is_continuation;
- 	bool is_mcbc;
- 	bool is_eapol;
-+	bool is_desc_len0;
- 	struct hal_rx_desc *rx_desc;
- 	u8 err_rel_src;
- 	u8 err_code;
--- 
-2.25.1
+I'm still waiting for feedback from one user that can reproduce the
+ring-buffer corruption very easily, but another user mentioned seeing
+multiple zero-length descriptor warnings over the weekend when running
+with this patch:
 
+	ath11k_pci 0006:01:00.0: rxed invalid length (nbytes 0, max 2048)
+
+Are there ever any valid reasons for seeing a zero-length descriptor
+(i.e. unrelated to the race at hand)? IIUC the warning would only be
+printed when processing such descriptors a second time (i.e. when
+is_desc_len0 is set).
+
+Johan
 
