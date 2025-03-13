@@ -4,85 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 640E7C28B2E
-	for <ath11k@archiver.kernel.org>; Thu, 13 Mar 2025 11:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96C4BC282DE
+	for <ath11k@archiver.kernel.org>; Thu, 13 Mar 2025 11:47:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7U8id8ArYEi1+ZljKtUgJ8X5ow69hRe1y8N7s/OB7Dg=; b=C1jmSlb+ofrdPDK2MpXEG7uQ7L
-	oHkESnzOlm9rn3mZDVP/VUMte1ViKfaNQok3W29uLPjCzQ5zNuMU/wKeZoWuid0i13xr50jEfKlTu
-	9XRf5u/3VfEp06gplJqtnVacfIbf0y43haSsvtz3pCQCPUCOCpbTiySTcmXHccYjrtMdShzRw8vuH
-	qYeebJ4R+PhVw5au2ibgcM03wkN8l77GruGLf08Mu/STomOePESbsOik/8JKqnyFICLeciwtzOjvl
-	JpDBDOYlyB2SZND29D9Hn4ujzqPeHWCm93ZSWrO/VB1DjeFMPulUL3WUbbXknzPgzAzE6RT6uH/xG
-	NUC5rENw==;
+	bh=6csxGEooemVwhVCZXPAno/xD7GGqltefCOv7rH6G52E=; b=Flr9rPndLKqD3cPi1f7OSGPFVN
+	SxRGwYvf5rUvGA7nT/T79Aywjn9H+zNQGvzrzeQkrzCzs4RA99E7QXZ7DdpcLzB/+FlDuzWnVulwU
+	rN5Ux1CxgsSMJf9PamKPKMPoEhv7PbU+05nbhdP8ioGG3oKI0RIoMEp/7PMUscxeGDUV2vO3giySd
+	qGfpbBFRHfTvXo0imgcfKiXlpNnkRPCCOzI7MBBCma0gOUCQP1USRiQYM1QWQJ1R5fMoPEibdbhQl
+	hiWTdlVqJo1CkaeckMg5CuegdJVBnM8FH5W4w5+8jdCriqiZO7VbNK2Y4/SssapSR/CHZJUCxAPQw
+	ZnCLiM8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tsh2O-0000000B6MJ-2aBg;
-	Thu, 13 Mar 2025 11:47:44 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tsh2P-0000000B6NX-2PqD;
+	Thu, 13 Mar 2025 11:47:45 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tsgwJ-0000000B4d7-0IvM
+	id 1tsgwV-0000000B4gu-1mBj
 	for ath11k@lists.infradead.org;
-	Thu, 13 Mar 2025 11:41:28 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52DAZYhP005526
-	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 11:41:26 GMT
+	Thu, 13 Mar 2025 11:41:40 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52D9A5Q5018566
+	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 11:41:38 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7U8id8ArYEi1+ZljKtUgJ8X5ow69hRe1y8N7s/OB7Dg=; b=QQI1Eq40e1U/SSe/
-	WfTiX7fUIuNzeDrqFTPFqa5Pr1ypoUCJd9FXvDlixiaYcwZTkPT4FV3xB6RxgHcU
-	0hjD6nMb2+TpBi15vSaroyjiglMmbV1R27YpD/neYAyn1Z6raZwXBPzXavS9eIT4
-	QUHgCeBEa0xADgSS++4kinfJAAWkOsPVcwAqclPx0m4/XpVqokCkmcPoJVwEibV0
-	wd/nd7lDs7TBmZ4S8EFQFj+Bh0HcYke9pBgFVvr7NSSf43rpn2vCluC1Qul17+hp
-	47BiIg/0urXFEqjDAqZQs7DZiFDHRT0rw8smoawDRtVhSBcb/Q5WJJKMnikdevrQ
-	ZMu2Bw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45b96ybkc9-1
+	6csxGEooemVwhVCZXPAno/xD7GGqltefCOv7rH6G52E=; b=EVEq33vx9yuK88OJ
+	7jNNxLMvNyDzkk86pb2QlSDH9SQcw8BWIchhNFiWLi/cZbGdwPHC3U0+T11I4FeS
+	D0732izuKp3qV41qcrmhIkuP2jGrxpSSdqA8C0w4pV3cdELSeJ+b3tsFuE38fHzy
+	skY0zVfKNn/YjaWg9+5Hb3W0dWinwf4MfinLPONKJsC/WZw6RCxIPA5Xc5JJbX2s
+	iD4n51F4INZhPgBdkeXEgVOVsiIWnnTlFrV/WPn1ag6ZTRDXyxhU/YgzlX5ZK13B
+	otFrH9JgdfJBq7z4Ug7+JIMsog/Lq2w18j1OusVIDTDeQ0yIIEGllen3YUvO3hzL
+	YJBbJw==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2nwr72-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 11:41:26 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3011cfa31f6so1632210a91.3
-        for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 04:41:26 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 11:41:38 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff69646218so2503589a91.3
+        for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 04:41:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741866086; x=1742470886;
+        d=1e100.net; s=20230601; t=1741866097; x=1742470897;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7U8id8ArYEi1+ZljKtUgJ8X5ow69hRe1y8N7s/OB7Dg=;
-        b=lhAZjzVFRIT70yQw1XQdiQWhIBMAAqkTFhb2DVwK3dclXDIb4mDx+5l7MLRM6YjoaX
-         eO5vog/aFCUXTcQolSKU9LQRwkc1lNQilRiqK9WN99g92tgTcHFjUjrVPpOGub2Ke7K7
-         P8qVtCxLCgwuVMU2iS/0F5e36nOsgLWdHIfVBJo13Wfk2AbLVYDDUgZMjNdHZ1kXpscQ
-         BoBP95Sv5S9ZfFkTUlOMVk2VvZFNmVgukPOAtuaBO9WA2M+1sMy+cTlaiwm9VvcjmzOB
-         Uc9rGDrxFdLAAirCWKxgl7yI/rJHKDrnsvkjS9Q1ua72GRUI2ULOaUr4Xk8H+ZYqyQ3B
-         Okjg==
-X-Forwarded-Encrypted: i=1; AJvYcCWJONdPZ40ACpHeRcFqxj4SdsSv54pUZ19CguGCuLvv6B5g+eez6BZgR/7tT2j3+TFF74qQeOc=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyhHc2fnAbruEwIMF14XwVPRaltIA0XwcU8l5rjo+xQG9MBhKXf
-	zX0K+oSYA+rlW/78viHEq7Sk/HINsaeNV5zDTGrNxlBzTOt6u7w6TPTgQvSLFn1WB6+Zx9dlLdw
-	dHd58lTtoeXL35hu/SUcCZC/vkL9AVESnU3j7HJV89y/dt0B2cGoKSHXtvovi
-X-Gm-Gg: ASbGnctSxhBb5l07v/lX5Gu+9vMJptwJdjSNdCKpGdWHFBbbgatXD4Ek6ZiFqGwdecr
-	DJ6KtaBNjj2QWiL75iI+iYqhhCEZXR/ym3f47pOAVhEzCiuC+NKiVagkqp4BKVAe/5VNyU91Xnn
-	pC9gzde7r7DIcIApN6ytdpnQbJarzDjqlrPOwdDvz31ipfbYR1ceyC+hwrmwVLDl6Ipt9jWW7/q
-	OvzN8kLeikfO+5oh4oM/dplgtJdB3ls4PJdxriMyp5uN4Rf/bHu9mX4Hd3i3yXzvzfRVZL40BW8
-	HhJK/ofWOGv0od5ESDCGhL+MevxDdZOYcW7R99gmMYU24jCd1WI=
-X-Received: by 2002:a05:6a21:3986:b0:1f5:6d6f:28e with SMTP id adf61e73a8af0-1f56d6f0a57mr25199693637.42.1741866085419;
-        Thu, 13 Mar 2025 04:41:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEdu71Za2ZIZUx6nw1zhHEdLpi1bIhp4FzCqFkiIftAJo4YOptEIDabzzSpcA9fncM47Xposw==
-X-Received: by 2002:a05:6a21:3986:b0:1f5:6d6f:28e with SMTP id adf61e73a8af0-1f56d6f0a57mr25199651637.42.1741866084978;
-        Thu, 13 Mar 2025 04:41:24 -0700 (PDT)
+        bh=6csxGEooemVwhVCZXPAno/xD7GGqltefCOv7rH6G52E=;
+        b=do77gcnSWjiXM7EDqevqkwDaQvWycqVytX70njr4BdrvNJ5XLxEzRjr8xAbnZL+oKm
+         ItcVhSDRWb73wzCOCDbiN7+ZtSaGf7SyEVfB5zeGmeAtrOlEIU5rdT/1gEFdVdCyXCc5
+         sxRy4+Bmtnqf9+njLHRJb+CCZDaOwxO7+DY/8B9/bEFSv5kquSLOx3ZtZHNOnaXyAAZR
+         CYBdt8E3JpRpvl9LtDhoyRc2itjugRl6lsUqIKmmjcEoWTT62ZIFt7P0ox7G7QOf+QC7
+         pH4sSF1itGeNkAI+XPBL7foPXkEisnW45ssZCitQx9I5PGbT2tDrvy3pF9RDvAN1NPbQ
+         JLag==
+X-Forwarded-Encrypted: i=1; AJvYcCU5C559H7X2jhiqeg110QswiXmG8kocwOUbW5E3jyQHH6IXRfzHUj+IksXLrR+8QRyHtYI99gw=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwCLH7m9Va5KVSlpXJl0nvUzX9lEDTMwM/LheMGoudpvTqrB+gb
+	fGYK/xJ1dg4XNMKItW0i4n8q6047wWDhpT8crgXwTDYjabxSYFEFV2iDhc7VFp0M960JURHoVYc
+	mIZ1LDYBP39Cxs9Cmcs1a7SDaUzr2v3Zr+90nDjujqQLyxNCTaE1lOTg/3GED
+X-Gm-Gg: ASbGnctLxI3+Jgdn+/hbaiyG5mamF5oWaWrnPsucI72OTxxbZOwVFQR9OUxBrV9o/tL
+	FIFqHoQShYcWpNr7BlAy4bswz6Tt0otQVqLGLY38WBc/Jc+xNUHQwsUri85m23Er3AAVgn2kAKa
+	z9bWTPXoDhlOGhfcAk/A+vJWZc2xp2L1zqwpZu16TobYja03AXvud8U/C4EE7jLD50wPK1WMDWE
+	69E6dh9w2lcd7RX+9EC2sc/1KFNUoiyh5W5EZRV9N7l4JiU3x7KlFTdR7/NMfrZ4hGqxPbUxzPn
+	e2z+dTNfq/fFeE3tYR7O9g0EeYE7OIfRVTVtwLwBda6tHJndTYE=
+X-Received: by 2002:a05:6a21:516:b0:1f5:709d:e0c6 with SMTP id adf61e73a8af0-1f5709de3e1mr24106485637.42.1741866097055;
+        Thu, 13 Mar 2025 04:41:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGO+VZsMHm3zLtB84wJpH9RObZO6+qVAnGGVqwEYlnPvnXu3mMtC1TTdcKCjIwnGlhmgp426g==
+X-Received: by 2002:a05:6a21:516:b0:1f5:709d:e0c6 with SMTP id adf61e73a8af0-1f5709de3e1mr24106444637.42.1741866096735;
+        Thu, 13 Mar 2025 04:41:36 -0700 (PDT)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af56ea964e3sm1063219a12.76.2025.03.13.04.41.19
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af56ea964e3sm1063219a12.76.2025.03.13.04.41.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Mar 2025 04:41:24 -0700 (PDT)
+        Thu, 13 Mar 2025 04:41:36 -0700 (PDT)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Thu, 13 Mar 2025 17:10:14 +0530
-Subject: [PATCH v2 07/10] bus: mhi: host: Add support for Bandwidth scale
+Date: Thu, 13 Mar 2025 17:10:16 +0530
+Subject: [PATCH v2 09/10] PCI: Add function to convert lnkctl2speed to
+ pci_bus_speed
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250313-mhi_bw_up-v2-7-869ca32170bf@oss.qualcomm.com>
+Message-Id: <20250313-mhi_bw_up-v2-9-869ca32170bf@oss.qualcomm.com>
 References: <20250313-mhi_bw_up-v2-0-869ca32170bf@oss.qualcomm.com>
 In-Reply-To: <20250313-mhi_bw_up-v2-0-869ca32170bf@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -102,29 +103,29 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
         Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741866038; l=14880;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741866038; l=1512;
  i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=Rkq9qxZem1xtKkroWEWyT6QgQtmiODnW7a2FMBFIv28=;
- b=yOPEIt8vuzQ8aa0EY3Y0GsWv9/o7mKsPchWc407vhO5cpSBLpEBXxrBKr2RYr2oMJg8rl32BR
- aEj1dx3KqQeCcW4++BEC5Xo5X+kzIUNdKEpAUrbQ51KjUZuaiFmhnqQ
+ bh=8h6iYqT9QgxKQ7chsjPReDkmLMBOz+R1kQyF7lNPqNQ=;
+ b=gNFMqlJS4PqDCxPL2OtSQ6eC/PtryQoUwiUm6/NuGn6xNnLkYCte4RpeEygA+SWaLg737Q1XU
+ MERgI9pKC7DArMKbUXJJttHUPva7o7L2vUckaXu6sD9dwPouLJ3V5cj
 X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-ORIG-GUID: p3qtk2rHScxuG4hjINgyQEmcPLZx7FZl
-X-Authority-Analysis: v=2.4 cv=I+llRMgg c=1 sm=1 tr=0 ts=67d2c466 cx=c_pps a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=DYpYOybAal_UZhkPskYA:9 a=QEXdDO2ut3YA:10
- a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-GUID: p3qtk2rHScxuG4hjINgyQEmcPLZx7FZl
+X-Proofpoint-GUID: X-7ygllUd5HjeweCYyOoVOIcWS72G9lZ
+X-Authority-Analysis: v=2.4 cv=Q4XS452a c=1 sm=1 tr=0 ts=67d2c472 cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=rcts_Xg4tTJKaDXoMsUA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: X-7ygllUd5HjeweCYyOoVOIcWS72G9lZ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-13_05,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 adultscore=0 clxscore=1015 impostorscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 mlxscore=0 suspectscore=0
- phishscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ lowpriorityscore=0 mlxscore=0 clxscore=1015 phishscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
  definitions=main-2503130092
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250313_044127_129754_EFE6352D 
-X-CRM114-Status: GOOD (  29.49  )
+X-CRM114-CacheID: sfid-20250313_044139_584916_10BEBA9E 
+X-CRM114-Status: GOOD (  11.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -139,418 +140,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-As per MHI spec sec 14, MHI supports bandwidth scaling to reduce power
-consumption. MHI bandwidth scaling is advertised in devices that contain
-the bandwidth scaling capability registers. If enabled, the device
-aggregates bandwidth requirements and sends them to the host in the form
-of an event. After the host performs the bandwidth switch, it sends an
-acknowledgment by ringing a doorbell.
-
-if the host supports bandwidth scaling events, then it must set
-BW_CFG.ENABLED bit, set BW_CFG.DB_CHAN_ID to the channel ID to the
-doorbell that will be used by the host to communicate the bandwidth
-scaling status and BW_CFG.ER_INDEX to the index for the event ring
-to which the device should send bandwidth scaling request in the
-bandwidth scaling capability register.
-
-As part of mmio init check if the bw scale capability is present or not,
-if present advertise host supports bw scale by setting all the required
-fields.
-
-MHI layer will only forward the bw scaling request to the controller
-driver, it is responsibility of the controller driver to do actual bw
-scaling and then pass status to the MHI. MHI will response back to the
-device based up on the status of the bw scale received.
-
-Add a new get_misc_doorbell() to get doorbell for misc capabilities to
-use the doorbell with mhi events like MHI BW scale etc.
-
-Use workqueue & mutex for the bw scale events as the pci_set_target_speed()
-which will called by the mhi controller driver can sleep.
+Add a exported function to convert lnkctl2speed to enum pci_bus_speed,
+so that other kernel drivers can use it.
 
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
- drivers/bus/mhi/common.h        |  16 +++++++
- drivers/bus/mhi/host/init.c     |  64 ++++++++++++++++++++++++-
- drivers/bus/mhi/host/internal.h |   7 ++-
- drivers/bus/mhi/host/main.c     | 101 +++++++++++++++++++++++++++++++++++++++-
- drivers/bus/mhi/host/pm.c       |  10 +++-
- include/linux/mhi.h             |  13 ++++++
- 6 files changed, 205 insertions(+), 6 deletions(-)
+ drivers/pci/pci.c   | 12 ++++++++++++
+ include/linux/pci.h |  1 +
+ 2 files changed, 13 insertions(+)
 
-diff --git a/drivers/bus/mhi/common.h b/drivers/bus/mhi/common.h
-index eedac801b800..0a02acee709a 100644
---- a/drivers/bus/mhi/common.h
-+++ b/drivers/bus/mhi/common.h
-@@ -208,6 +208,22 @@
- #define MHI_RSCTRE_DATA_DWORD1		cpu_to_le32(FIELD_PREP(GENMASK(23, 16), \
- 							       MHI_PKT_TYPE_COALESCING))
- 
-+/* MHI Bandwidth scaling offsets */
-+#define MHI_BW_SCALE_CFG_OFFSET		0x4
-+#define MHI_BW_SCALE_CAP_ID		(3)
-+
-+#define MHI_BW_SCALE_ENABLE(bw_scale_db, er_index)	cpu_to_le32(FIELD_PREP(GENMASK(31, 25), \
-+							bw_scale_db) |				\
-+							FIELD_PREP(GENMASK(23, 19), er_index) |	\
-+							BIT(24))
-+
-+#define MHI_TRE_GET_EV_BW_REQ_SEQ(tre)	FIELD_GET(GENMASK(15, 8), (MHI_TRE_GET_DWORD(tre, 0)))
-+#define MHI_BW_SCALE_DB_ID(er_index)	FIELD_PREP(GENMASK(31, 25), er_index)
-+
-+#define MHI_BW_SCALE_RESULT(status, seq)	cpu_to_le32(FIELD_PREP(GENMASK(11, 8), status) | \
-+						FIELD_PREP(GENMASK(7, 0), seq))
-+#define MHI_BW_SCALE_NACK			0xF
-+
- enum mhi_pkt_type {
- 	MHI_PKT_TYPE_INVALID = 0x0,
- 	MHI_PKT_TYPE_NOOP_CMD = 0x1,
-diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
-index 0b14b665ed15..71abe02f5726 100644
---- a/drivers/bus/mhi/host/init.c
-+++ b/drivers/bus/mhi/host/init.c
-@@ -496,10 +496,56 @@ static int mhi_get_capability_offset(struct mhi_controller *mhi_cntrl, u32 capab
- 	return -ENXIO;
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index 869d204a70a3..75505437a9c9 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -6011,6 +6011,18 @@ int pcie_link_speed_mbps(struct pci_dev *pdev)
  }
+ EXPORT_SYMBOL(pcie_link_speed_mbps);
  
-+/* to be used only if a single event ring with the type is present */
-+static int mhi_get_er_index(struct mhi_controller *mhi_cntrl,
-+			    enum mhi_er_data_type type)
++/**
++ * pci_lnkctl2_bus_speed - converts lnkctl2 speed to pci_bus_speed
++ * @speed: LNKCAP2 SLS value
++ *
++ * Returns pci_bus_speed
++ */
++enum pci_bus_speed pci_lnkctl2_bus_speed(int speed)
 +{
-+	struct mhi_event *mhi_event = mhi_cntrl->mhi_event;
-+	int i;
-+
-+	/* find event ring for requested type */
-+	for (i = 0; i < mhi_cntrl->total_ev_rings; i++, mhi_event++) {
-+		if (mhi_event->data_type == type)
-+			return mhi_event->er_index;
-+	}
-+
-+	return -ENOENT;
++	return pcie_link_speed[speed];
 +}
++EXPORT_SYMBOL(pci_lnkctl2_bus_speed);
 +
-+static int mhi_init_bw_scale(struct mhi_controller *mhi_cntrl,
-+			     int bw_scale_db)
-+{
-+	struct device *dev = &mhi_cntrl->mhi_dev->dev;
-+	u32 bw_cfg_offset, val = 0;
-+	int ret, er_index;
-+
-+	ret = mhi_get_capability_offset(mhi_cntrl, MHI_BW_SCALE_CAP_ID,
-+					&bw_cfg_offset);
-+	if (ret)
-+		return ret;
-+
-+	/* No ER configured to support BW scale */
-+	er_index = mhi_get_er_index(mhi_cntrl, MHI_ER_BW_SCALE);
-+	if (er_index < 0)
-+		return er_index;
-+
-+	bw_cfg_offset += MHI_BW_SCALE_CFG_OFFSET;
-+
-+	/* advertise host support */
-+	val = MHI_BW_SCALE_ENABLE(bw_scale_db, er_index);
-+
-+	mhi_write_reg(mhi_cntrl, mhi_cntrl->regs, bw_cfg_offset, val);
-+
-+	dev_dbg(dev, "Bandwidth scaling setup complete. Event ring:%d\n",
-+		er_index);
-+
-+	return 0;
-+}
-+
- int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
- {
- 	u32 val;
--	int i, ret;
-+	int i, ret, doorbell = 0;
- 	struct mhi_chan *mhi_chan;
- 	struct mhi_event *mhi_event;
- 	void __iomem *base = mhi_cntrl->regs;
-@@ -633,6 +679,16 @@ int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
- 		return ret;
- 	}
- 
-+	if (mhi_cntrl->get_misc_doorbell)
-+		doorbell = mhi_cntrl->get_misc_doorbell(mhi_cntrl, MHI_ER_BW_SCALE);
-+
-+	if (doorbell > 0) {
-+		ret = mhi_init_bw_scale(mhi_cntrl, doorbell);
-+		if (!ret)
-+			mhi_cntrl->bw_scale_db = base + val + (8 * doorbell);
-+		else
-+			dev_warn(dev, "BW scale setup failure\n");
-+	}
- 	return 0;
- }
- 
-@@ -778,6 +834,9 @@ static int parse_ev_cfg(struct mhi_controller *mhi_cntrl,
- 		case MHI_ER_CTRL:
- 			mhi_event->process_event = mhi_process_ctrl_ev_ring;
- 			break;
-+		case MHI_ER_BW_SCALE:
-+			mhi_event->process_event = mhi_process_bw_scale_ev_ring;
-+			break;
- 		default:
- 			dev_err(dev, "Event Ring type not supported\n");
- 			goto error_ev_cfg;
-@@ -1012,9 +1071,12 @@ int mhi_register_controller(struct mhi_controller *mhi_cntrl,
- 
- 		mhi_event->mhi_cntrl = mhi_cntrl;
- 		spin_lock_init(&mhi_event->lock);
-+		mutex_init(&mhi_event->mutex);
- 		if (mhi_event->data_type == MHI_ER_CTRL)
- 			tasklet_init(&mhi_event->task, mhi_ctrl_ev_task,
- 				     (ulong)mhi_event);
-+		else if (mhi_event->data_type == MHI_ER_BW_SCALE)
-+			INIT_WORK(&mhi_event->work, mhi_process_ev_work);
- 		else
- 			tasklet_init(&mhi_event->task, mhi_ev_task,
- 				     (ulong)mhi_event);
-diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
-index 3134f111be35..bf7c6a7c9383 100644
---- a/drivers/bus/mhi/host/internal.h
-+++ b/drivers/bus/mhi/host/internal.h
-@@ -241,6 +241,8 @@ struct mhi_event {
- 	struct mhi_ring ring;
- 	struct db_cfg db_cfg;
- 	struct tasklet_struct task;
-+	struct work_struct work;
-+	struct mutex mutex;
- 	spinlock_t lock;
- 	int (*process_event)(struct mhi_controller *mhi_cntrl,
- 			     struct mhi_event *mhi_event,
-@@ -403,7 +405,8 @@ int mhi_process_data_event_ring(struct mhi_controller *mhi_cntrl,
- 				struct mhi_event *mhi_event, u32 event_quota);
- int mhi_process_ctrl_ev_ring(struct mhi_controller *mhi_cntrl,
- 			     struct mhi_event *mhi_event, u32 event_quota);
--
-+int mhi_process_bw_scale_ev_ring(struct mhi_controller *mhi_cntrl,
-+				 struct mhi_event *mhi_event, u32 event_quota);
- /* ISR handlers */
- irqreturn_t mhi_irq_handler(int irq_number, void *dev);
- irqreturn_t mhi_intvec_threaded_handler(int irq_number, void *dev);
-@@ -419,5 +422,5 @@ void mhi_unmap_single_no_bb(struct mhi_controller *mhi_cntrl,
- 			    struct mhi_buf_info *buf_info);
- void mhi_unmap_single_use_bb(struct mhi_controller *mhi_cntrl,
- 			     struct mhi_buf_info *buf_info);
--
-+void mhi_process_ev_work(struct work_struct *work);
- #endif /* _MHI_INT_H */
-diff --git a/drivers/bus/mhi/host/main.c b/drivers/bus/mhi/host/main.c
-index 4de75674f193..967563d86aec 100644
---- a/drivers/bus/mhi/host/main.c
-+++ b/drivers/bus/mhi/host/main.c
-@@ -472,7 +472,10 @@ irqreturn_t mhi_irq_handler(int irq_number, void *dev)
- 		if (mhi_dev)
- 			mhi_notify(mhi_dev, MHI_CB_PENDING_DATA);
- 	} else {
--		tasklet_schedule(&mhi_event->task);
-+		if (mhi_event->data_type == MHI_ER_BW_SCALE)
-+			queue_work(mhi_cntrl->hiprio_wq, &mhi_event->work);
-+		else
-+			tasklet_schedule(&mhi_event->task);
- 	}
- 
- 	return IRQ_HANDLED;
-@@ -1049,6 +1052,102 @@ int mhi_process_data_event_ring(struct mhi_controller *mhi_cntrl,
- 	return count;
- }
- 
-+/* dedicated bw scale event ring processing */
-+int mhi_process_bw_scale_ev_ring(struct mhi_controller *mhi_cntrl,
-+				 struct mhi_event *mhi_event, u32 event_quota)
-+{
-+	struct mhi_event_ctxt *er_ctxt = &mhi_cntrl->mhi_ctxt->er_ctxt[mhi_event->er_index];
-+	struct device *dev = &mhi_cntrl->mhi_dev->dev;
-+	struct mhi_ring *ev_ring = &mhi_event->ring;
-+	dma_addr_t ptr = le64_to_cpu(er_ctxt->rp);
-+	u32 response = MHI_BW_SCALE_NACK;
-+	struct mhi_ring_element *dev_rp;
-+	struct mhi_link_info link_info;
-+	int ret = -EINVAL;
-+
-+	if (unlikely(MHI_EVENT_ACCESS_INVALID(mhi_cntrl->pm_state))) {
-+		ret =  -EIO;
-+		goto exit_bw_scale_process;
-+	}
-+
-+	if (!MHI_IN_MISSION_MODE(mhi_cntrl->ee))
-+		goto exit_bw_scale_process;
-+
-+	if (!is_valid_ring_ptr(ev_ring, ptr)) {
-+		dev_err(dev,
-+			"Event ring rp points outside of the event ring\n");
-+		ret =  -EIO;
-+		goto exit_bw_scale_process;
-+	}
-+
-+	dev_rp = mhi_to_virtual(ev_ring, ptr);
-+
-+	/* if rp points to base, we need to wrap it around */
-+	if (dev_rp == ev_ring->base)
-+		dev_rp = ev_ring->base + ev_ring->len;
-+	dev_rp--;
-+
-+	/* fast forward to currently processed element and recycle er */
-+	ev_ring->rp = dev_rp;
-+	ev_ring->wp = dev_rp - 1;
-+	if (ev_ring->wp < ev_ring->base)
-+		ev_ring->wp = ev_ring->base + ev_ring->len - ev_ring->el_size;
-+	mhi_recycle_ev_ring_element(mhi_cntrl, ev_ring);
-+
-+	if (WARN_ON(MHI_TRE_GET_EV_TYPE(dev_rp) != MHI_PKT_TYPE_BW_REQ_EVENT)) {
-+		dev_err(dev, "!BW SCALE REQ event\n");
-+		goto exit_bw_scale_process;
-+	}
-+
-+	link_info.target_link_speed = MHI_TRE_GET_EV_LINKSPEED(dev_rp);
-+	link_info.target_link_width = MHI_TRE_GET_EV_LINKWIDTH(dev_rp);
-+	link_info.sequence_num = MHI_TRE_GET_EV_BW_REQ_SEQ(dev_rp);
-+
-+	dev_info(dev, "Received BW_REQ with seq:%d link speed:0x%x width:0x%x\n",
-+		 link_info.sequence_num,
-+		 link_info.target_link_speed,
-+		 link_info.target_link_width);
-+
-+	/* bring host and device out of suspended states */
-+	ret = mhi_device_get_sync(mhi_cntrl->mhi_dev);
-+	if (ret)
-+		goto exit_bw_scale_process;
-+
-+	mhi_cntrl->runtime_get(mhi_cntrl);
-+
-+	ret = mhi_cntrl->bw_scale(mhi_cntrl, &link_info);
-+	if (!ret)
-+		response = 0;
-+
-+	response = MHI_BW_SCALE_RESULT(response, link_info.sequence_num);
-+
-+	write_lock_bh(&mhi_cntrl->pm_lock);
-+	mhi_write_reg(mhi_cntrl, mhi_cntrl->bw_scale_db, 0, response);
-+	write_unlock_bh(&mhi_cntrl->pm_lock);
-+
-+	mhi_cntrl->runtime_put(mhi_cntrl);
-+	mhi_device_put(mhi_cntrl->mhi_dev);
-+
-+exit_bw_scale_process:
-+	dev_dbg(dev, "exit er_index:%u ret:%d\n", mhi_event->er_index, ret);
-+
-+	return ret;
-+}
-+
-+void mhi_process_ev_work(struct work_struct *work)
-+{
-+	struct mhi_event *mhi_event = container_of(work, struct mhi_event,
-+						   work);
-+
-+	struct mhi_controller *mhi_cntrl = mhi_event->mhi_cntrl;
-+
-+	if (unlikely(MHI_EVENT_ACCESS_INVALID(mhi_cntrl->pm_state)))
-+		return;
-+
-+	guard(mutex)(&mhi_event->mutex);
-+	mhi_event->process_event(mhi_cntrl, mhi_event, U32_MAX);
-+}
-+
- void mhi_ev_task(unsigned long data)
- {
- 	struct mhi_event *mhi_event = (struct mhi_event *)data;
-diff --git a/drivers/bus/mhi/host/pm.c b/drivers/bus/mhi/host/pm.c
-index 11c0e751f223..9c848ca582f0 100644
---- a/drivers/bus/mhi/host/pm.c
-+++ b/drivers/bus/mhi/host/pm.c
-@@ -523,7 +523,10 @@ static void mhi_pm_disable_transition(struct mhi_controller *mhi_cntrl,
- 		if (mhi_event->offload_ev)
- 			continue;
- 		disable_irq(mhi_cntrl->irq[mhi_event->irq]);
--		tasklet_kill(&mhi_event->task);
-+		if (mhi_event->data_type == MHI_ER_BW_SCALE)
-+			cancel_work_sync(&mhi_event->work);
-+		else
-+			tasklet_kill(&mhi_event->task);
- 	}
- 
- 	/* Release lock and wait for all pending threads to complete */
-@@ -670,7 +673,10 @@ static void mhi_pm_sys_error_transition(struct mhi_controller *mhi_cntrl)
- 	for (i = 0; i < mhi_cntrl->total_ev_rings; i++, mhi_event++) {
- 		if (mhi_event->offload_ev)
- 			continue;
--		tasklet_kill(&mhi_event->task);
-+		if (mhi_event->data_type == MHI_ER_BW_SCALE)
-+			cancel_work_sync(&mhi_event->work);
-+		else
-+			tasklet_kill(&mhi_event->task);
- 	}
- 
- 	/* Release lock and wait for all pending threads to complete */
-diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-index 059dc94d20bb..d9bf88c35d14 100644
---- a/include/linux/mhi.h
-+++ b/include/linux/mhi.h
-@@ -102,10 +102,12 @@ struct image_info {
-  * struct mhi_link_info - BW requirement
-  * target_link_speed - Link speed as defined by TLS bits in LinkControl reg
-  * target_link_width - Link width as defined by NLW bits in LinkStatus reg
-+ * sequence_num - used by device to track bw requests sent to host
-  */
- struct mhi_link_info {
- 	unsigned int target_link_speed;
- 	unsigned int target_link_width;
-+	int sequence_num;
- };
- 
  /**
-@@ -183,10 +185,12 @@ enum mhi_ch_ee_mask {
-  * enum mhi_er_data_type - Event ring data types
-  * @MHI_ER_DATA: Only client data over this ring
-  * @MHI_ER_CTRL: MHI control data and client data
-+ * @MHI_ER_BW_SCALE: MHI controller bandwidth scale functionality
-  */
- enum mhi_er_data_type {
- 	MHI_ER_DATA,
- 	MHI_ER_CTRL,
-+	MHI_ER_BW_SCALE,
- };
+  * pcie_bandwidth_available - determine minimum link settings of a PCIe
+  *			      device and its bandwidth limitation
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index 9ae199c1e698..b84473f228c8 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -1653,6 +1653,7 @@ unsigned char pci_bus_max_busnr(struct pci_bus *bus);
+ void pci_setup_bridge(struct pci_bus *bus);
+ resource_size_t pcibios_window_alignment(struct pci_bus *bus,
+ 					 unsigned long type);
++enum pci_bus_speed pci_lnkctl2_bus_speed(int speed);
  
- /**
-@@ -299,6 +303,7 @@ struct mhi_controller_config {
-  * @bhi: Points to base of MHI BHI register space
-  * @bhie: Points to base of MHI BHIe register space
-  * @wake_db: MHI WAKE doorbell register address
-+ * @wake_db: MHI BW_SCALE doorbell register address
-  * @iova_start: IOMMU starting address for data (required)
-  * @iova_stop: IOMMU stop address for data (required)
-  * @fw_image: Firmware image name for normal booting (optional)
-@@ -355,6 +360,8 @@ struct mhi_controller_config {
-  * @write_reg: Write a MHI register via the physical link (required)
-  * @reset: Controller specific reset function (optional)
-  * @edl_trigger: CB function to trigger EDL mode (optional)
-+ * @get_misc_doobell: function to get doorbell used for MISC feature like BW scale etc (optional)
-+ * @bw_scale: CB function for passing BW scale info (optional)
-  * @buffer_len: Bounce buffer length
-  * @index: Index of the MHI controller instance
-  * @bounce_buf: Use of bounce buffer
-@@ -376,6 +383,7 @@ struct mhi_controller {
- 	void __iomem *bhi;
- 	void __iomem *bhie;
- 	void __iomem *wake_db;
-+	void __iomem *bw_scale_db;
- 
- 	dma_addr_t iova_start;
- 	dma_addr_t iova_stop;
-@@ -440,6 +448,11 @@ struct mhi_controller {
- 	void (*reset)(struct mhi_controller *mhi_cntrl);
- 	int (*edl_trigger)(struct mhi_controller *mhi_cntrl);
- 
-+	int (*get_misc_doorbell)(struct mhi_controller *mhi_cntrl,
-+				 enum mhi_er_data_type type);
-+	int (*bw_scale)(struct mhi_controller *mhi_cntrl,
-+			struct mhi_link_info *link_info);
-+
- 	size_t buffer_len;
- 	int index;
- 	bool bounce_buf;
+ #define PCI_VGA_STATE_CHANGE_BRIDGE (1 << 0)
+ #define PCI_VGA_STATE_CHANGE_DECODES (1 << 1)
 
 -- 
 2.34.1
