@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3381DC282DE
-	for <ath11k@archiver.kernel.org>; Thu, 13 Mar 2025 17:16:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50668C28B28
+	for <ath11k@archiver.kernel.org>; Thu, 13 Mar 2025 18:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=cxKmF1qlTT+Hkg0NTayu+8URRP0hQXDcuwTRAD7/pqY=; b=CpB1FrL5SqkVzc
-	GfugcmYB6/tPdUUq3iPGRUK7diYUQpAd6oUztwVcj9Pkemcg3cVMfEjkKVI59eTN3tMBszUI0Fttb
-	WNISitt6YsWRmTz7jACwUSl0J2ZzEioeqHNSmYWftgU+tXpkypHFN45urA8dK+s3GR2X5Kw6nbuyc
-	0vGUHUqu9jADG3oNirdd3HbUfBo8Y3+UGQGUl6HcpkVG3r+3ATBzeC/qKhrdZDbf3x8UNJ8iCUqOn
-	t73H7ElzrO1eEqKAnaW2tcU0RSvUdSvuEy7RCpwp3JEcVTDHthrME+2VvlOomYZRnTFMnVtnZSSzF
-	b5q9S9b8dk4aXMNOIwHg==;
+	List-Owner; bh=Xw3VpMz8C52VCmdIMX7o+gE7nhbLrip8BqtYuyGvv3Q=; b=bDi5LWXmiw/xN/
+	WTdnriUul0dNC8tF27Na0e0lYZxYnd+RRXNuvxD2CpNaCF5cFDZAOncdx5vg/IEH2JhOaz8E5RMM0
+	T4Aia+SXLCX3OEM77b1+FXL5Nad5wwnexrJWPb1RwkfCW4uUis14N3zzD5vKbE/xcmoFKWz05Dizl
+	/2c+jaEpNGZiFEZjhz4QWB3Cq3AC893qw0kxSkNRXEyMqDwhJzGC/JihrANDL7te3pU2lBsByU+JT
+	wrHnvyMoX+8ml9gX/IXlh/B2NHlgbE8oOf0MU2b7sgMnyo8zUtFUrJIW3g1l0FPDrCP6dTxUIBPRW
+	UGGlxHp/cSQr66dDKwjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tsmAk-0000000C09t-1Rj9;
-	Thu, 13 Mar 2025 17:16:42 +0000
+	id 1tsmu1-0000000C6Qu-05ZN;
+	Thu, 13 Mar 2025 18:03:29 +0000
 Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tsmAi-0000000C087-1wfy
+	id 1tsmMB-0000000C2cT-1nRi
 	for ath11k@lists.infradead.org;
-	Thu, 13 Mar 2025 17:16:41 +0000
+	Thu, 13 Mar 2025 17:28:33 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id A7047A4781B;
-	Thu, 13 Mar 2025 17:11:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DD82C4CEDD;
-	Thu, 13 Mar 2025 17:16:38 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id B922BA464EE;
+	Thu, 13 Mar 2025 17:23:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20167C4CEDD;
+	Thu, 13 Mar 2025 17:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741886199;
-	bh=zWvKTNAKlfaKyLmnxPyqzWeB+4hJOUxXXjAo9PVxwlw=;
+	s=k20201202; t=1741886910;
+	bh=ysZJy/pStSvMTNKpMrLF6jzCLOYDpj1uIdVrASzzEoY=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=pLb1BgxlqzOdfw15QvV14UuHOIGAwS0A0KCRTc/zF4KFJ7WyCwHGxUQIcnFJAKREH
-	 K9p9N6lwlw4tnSxiEogbx+3fsQUSRRuqWPIaBKn7WeUAjzZxR6oL+s7ZiCgBUbDMdp
-	 q4ekXP7Ufa8kTZ7QrGo9tILd3LPsGdUe7+NLVD81D4IAfAGQDFNL+j3Yz1C3vPqZvg
-	 wmIEzGBxozhlPGNvcRAaLdJZehx8vOqsUfWBRVdrSuIZy2BYykPdMdQPB0qBm8sDvZ
-	 7ktxPUB+rmqCKWUyjY6BJ8Jg5ZRBv6995rtd7Nxsb9pRKIt0tPnAsWvnTL+Wt9m5xH
-	 0lDyuwxydXp4w==
-Date: Thu, 13 Mar 2025 12:16:37 -0500
+	b=dQ2DxQ6sIpOoITZl4zyHIxnBnbZyOGDZNCdr6pjx83cxo7HKyABB0MY5WSzJPQMiy
+	 3ol/5oSMjL14PA0/ckuboggAjr77NDLlyW/cF4PCSVOSERWtWivHsQYmquJI5Reogs
+	 HM7bSJ5Xii3T05scdfAqplAxvpe8MfMcdZoOUm1paIPCyvWEzJO3msis1SJCp4K1cu
+	 ccxcBkbSQ0hqb0svtmMvC8pQ8gomopQTsJ6IY3MkcJ50NnDR9gbOoogZ29hSAaGpyo
+	 C7Z1Z+K13kh2VAUFqfC76Fp9gcjIaawMMPBmhHRhM7iyhlimU3im7nE91MoZikvLpk
+	 ZsUdRxHkoL0iA==
+Date: Thu, 13 Mar 2025 12:28:28 -0500
 From: Bjorn Helgaas <helgaas@kernel.org>
 To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>,
@@ -59,17 +59,18 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>,
 	ath11k@lists.infradead.org, quic_pyarlaga@quicinc.com,
 	quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com,
 	quic_mrana@quicinc.com,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Subject: Re: [PATCH v2 09/10] PCI: Add function to convert lnkctl2speed to
- pci_bus_speed
-Message-ID: <20250313171637.GA739165@bhelgaas>
+	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+	Miaoqing Pan <quic_miaoqing@quicinc.com>
+Subject: Re: [PATCH v2 10/10] wifi: ath11k: add support for MHI bandwidth
+ scaling
+Message-ID: <20250313172828.GA740705@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250313-mhi_bw_up-v2-9-869ca32170bf@oss.qualcomm.com>
+In-Reply-To: <20250313-mhi_bw_up-v2-10-869ca32170bf@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250313_101640_572711_DBC00406 
-X-CRM114-Status: GOOD (  13.69  )
+X-CRM114-CacheID: sfid-20250313_102831_611533_7DA22F3A 
+X-CRM114-Status: GOOD (  21.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,36 +85,117 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Mar 13, 2025 at 05:10:16PM +0530, Krishna Chaitanya Chundru wrote:
-> Add a exported function to convert lnkctl2speed to enum pci_bus_speed,
-> so that other kernel drivers can use it.
+On Thu, Mar 13, 2025 at 05:10:17PM +0530, Krishna Chaitanya Chundru wrote:
+> From: Miaoqing Pan <quic_miaoqing@quicinc.com>
 > 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> Add support for MHI bandwidth scaling, which will reduce power consumption
+> if WLAN operates with lower bandwidth. This feature is only enabled for
+> QCA6390.
+
+What is the event that initiates bandwidth scaling or reduces power
+consumption?  Is there any kind of user interface like a sysfs knob
+an administrator can use?
+
+Does this happen based on ath11k usage?  Battery or thermal status?  
+
+I guess reducing power consumption or reducing heat is probably the
+driving factor since we would always use max performance if power and
+heat were not issues?
+
+Some hints here would be useful.
+
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04546-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
 > ---
->  drivers/pci/pci.c   | 12 ++++++++++++
->  include/linux/pci.h |  1 +
->  2 files changed, 13 insertions(+)
+>  drivers/net/wireless/ath/ath11k/mhi.c | 41 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 > 
-> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> index 869d204a70a3..75505437a9c9 100644
-> --- a/drivers/pci/pci.c
-> +++ b/drivers/pci/pci.c
-> @@ -6011,6 +6011,18 @@ int pcie_link_speed_mbps(struct pci_dev *pdev)
->  }
->  EXPORT_SYMBOL(pcie_link_speed_mbps);
+> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+> index 6e45f464a429..74769c0993ae 100644
+> --- a/drivers/net/wireless/ath/ath11k/mhi.c
+> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
+> @@ -20,6 +20,7 @@
+>  #define MHI_TIMEOUT_DEFAULT_MS	20000
+>  #define RDDM_DUMP_SIZE	0x420000
+>  #define MHI_CB_INVALID	0xff
+> +#define MHI_BW_SCALE_CHAN_DB 126
 >  
-> +/**
-> + * pci_lnkctl2_bus_speed - converts lnkctl2 speed to pci_bus_speed
+>  static const struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
+>  	{
+> @@ -73,6 +74,17 @@ static struct mhi_event_config ath11k_mhi_events_qca6390[] = {
+>  		.client_managed = false,
+>  		.offload_channel = false,
+>  	},
+> +	{
+> +		.num_elements = 8,
+> +		.irq_moderation_ms = 0,
+> +		.irq = 1,
+> +		.mode = MHI_DB_BRST_DISABLE,
+> +		.data_type = MHI_ER_BW_SCALE,
+> +		.priority = 2,
+> +		.hardware_event = false,
+> +		.client_managed = false,
+> +		.offload_channel = false,
+> +	},
+>  };
+>  
+>  static const struct mhi_controller_config ath11k_mhi_config_qca6390 = {
+> @@ -313,6 +325,33 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
+>  	writel(val, addr);
+>  }
+>  
+> +static int ath11k_mhi_op_get_misc_doorbell(struct mhi_controller *mhi_cntrl,
+> +					   enum mhi_er_data_type type)
+> +{
+> +	if (type == MHI_ER_BW_SCALE)
+> +		return MHI_BW_SCALE_CHAN_DB;
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ath11k_mhi_op_bw_scale(struct mhi_controller *mhi_cntrl,
+> +				  struct mhi_link_info *link_info)
+> +{
+> +	enum pci_bus_speed speed = pci_lnkctl2_bus_speed(link_info->target_link_speed);
+> +	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
+> +	struct pci_dev *pci_dev = to_pci_dev(ab->dev);
+> +	struct pci_dev *pdev;
+> +
+> +	if (!pci_dev)
+> +		return -EINVAL;
+> +
+> +	pdev = pci_upstream_bridge(pci_dev);
+> +	if (!pdev)
+> +		return -ENODEV;
+> +
+> +	return pcie_set_target_speed(pdev, speed, true);
 
-I try to use imperative mood ("convert lnkctl2") to match commit log
-style.
+Seems kind of unfortunate that:
 
-> + * @speed: LNKCAP2 SLS value
-> + *
-> + * Returns pci_bus_speed
+  1) The endpoint driver needs to be involved here, even though it
+  does nothing that is endpoint-specific, and
 
-Not sure how strict kernel-doc is about this, but I've been told
-it wants "Return:" with a colon here:
+  2) The endpoint driver twiddles something in *another* device (the
+  upstream bridge).  There's a potential locking issue here and
+  potential conflict with any other devices that may be below that
+  bridge.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/doc-guide/kernel-doc.rst?id=v6.13#n142
+> +}
+> +
+>  static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
+>  {
+>  	struct device_node *np;
+> @@ -389,6 +428,8 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+>  	mhi_ctrl->status_cb = ath11k_mhi_op_status_cb;
+>  	mhi_ctrl->read_reg = ath11k_mhi_op_read_reg;
+>  	mhi_ctrl->write_reg = ath11k_mhi_op_write_reg;
+> +	mhi_ctrl->bw_scale = ath11k_mhi_op_bw_scale;
+> +	mhi_ctrl->get_misc_doorbell = ath11k_mhi_op_get_misc_doorbell;
+>  
+>  	switch (ab->hw_rev) {
+>  	case ATH11K_HW_QCN9074_HW10:
+> 
+> -- 
+> 2.34.1
+> 
 
