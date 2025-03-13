@@ -4,111 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7B66C282DE
-	for <ath11k@archiver.kernel.org>; Thu, 13 Mar 2025 22:59:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF93C282DE
+	for <ath11k@archiver.kernel.org>; Thu, 13 Mar 2025 23:48:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DlscsM8kt3jhJKPPI6WK1DrD4tGRZlDapuFyYmG6mcg=; b=eBC67tmojFkVkUj71DVrx/6hrz
-	4xpjdhl/CLtCYNXg5EMtSjeiIBWCaNwHu652SGVRHBCCSqX7U24RXub+yHu0NTvEkPgZ/i8NTlUNy
-	+3FhPEX8c4cUViCNE9990DTn3lOPPfF2AzjiTRezin/ycMOBXjP3vcAVnCY/rH5pOcrcCc5Hli32V
-	AHGNmQACScSoHmV7Hk6aJxHMCb1I22AAeq6QosWIMqm7O3NmXqKdTjX6fSHAXsAFJQ/vaO9eP8fDC
-	uvPuE1S5vev9Ctu2rfQmhC5Pg+71RXMRZRAG7u206RCKy3Bsq843ok5EVN/qRpOM6eVuiJ40opncT
-	Z6y31W3g==;
+	bh=Zkd/Jggqn86Uyh/5JzZQRlmlyi5xVymwBZ1NTqzN0CE=; b=C8HjKMaGiGW3i3W0LKEhjFta6M
+	gK6BSwQmPE0a3IqCG53Q4Je4B86OF06sTU/OsjOD7xYqZXsPRrV13fANYl+i4C2Yv5ZfPEk6oZWpb
+	RFclTQ95/nsgRTGaCWCWfut5pmBmoh3AlJWDE6llNk+6xOUZfvF4N3Ne4VKg4AaW5+Dsr110rhRis
+	8GamJp/+6yArf2oF6qHj7NzSdFqG4C8oY6Ev5l9Uzu4Bf9ZgkWs8l7/sb+AvI0ndk98ATcxPbtePD
+	g1DV42TkyTZ3k2e3N0LleBBJEnNgBksoL99qRzaHPtrlInpLCIymE00DumDW8KXx+6xnkJN04rUPc
+	tYbtLyyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tsrWO-0000000CfSh-2t8E;
-	Thu, 13 Mar 2025 22:59:24 +0000
+	id 1tssIF-0000000Cl4s-47A1;
+	Thu, 13 Mar 2025 23:48:51 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tsrWM-0000000CfRf-22wN
+	id 1tssIC-0000000Cl3s-3kPL
 	for ath11k@lists.infradead.org;
-	Thu, 13 Mar 2025 22:59:23 +0000
+	Thu, 13 Mar 2025 23:48:50 +0000
 Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52DLEHn9027307
-	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 22:59:20 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52DLEHpf027307
+	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 23:48:48 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DlscsM8kt3jhJKPPI6WK1DrD4tGRZlDapuFyYmG6mcg=; b=b8CMSaYBktavQErc
-	gzusZSPvMwScqKoW3tctXMTYLyd4gcn2OOieGcI6SL/mRyT4xG0+Slv54X9a10/b
-	/N8QcUdtGMV9bnNoc8pSRuXMP6enZu4Be9umNz3O4+xit/f5KIff4kRw+HWSe0Fh
-	TBalFKphubh2sVN72QtDCdJ/7cKOWqd64OSdazkE35xxo9adt5J5BdlTL7K+Uoau
-	Ow8regM880z1csbIkMIaKIAdKhQaTTR/XDChREwF2P1mZjNF06ncWPFD3ZHV7UOG
-	aQ4m2bRbKj3OOnWIK8LQiH4/IBvVc6h1ZB3peYTO6UvIglweINVPtJJsawIptu+t
-	h/Lg/Q==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2pybyj-1
+	Zkd/Jggqn86Uyh/5JzZQRlmlyi5xVymwBZ1NTqzN0CE=; b=dwGqZGNB2o/W1vhD
+	lMvadEKnxYanIo9kqSUDcDRjzYmf0TZceWIIFAN5IMf9GLnu0vKfBl3PmMir/KAk
+	WlP/r2ERc2k4tD8cZEiRtt8U6GhiW/3HsZAfKDfDxREL6QCLQJZumrxiCZoUrobj
+	pPSJMo/CUvLm3P7FqRGHPp/lUzAaaD0iIqgbxHEUd4/4JGcTN2GOIwGJM+Pw/Y24
+	/IjsOyMx6/5dwvtNvPO93+76BHj4j8w1KpQldr2S6nNQXj5cvMNNm1fjqL3bhgOJ
+	7VUI9ZyZbtkc0yR2cfQX6LW2QF7I3TlWpXNfCgJDt7E7kXr0g2A23DXmkNyrdAsY
+	oWs4Hg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2pyeq0-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 22:59:20 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-223d86b4df0so13653565ad.3
-        for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 15:59:20 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 23:48:47 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-22410053005so40756375ad.1
+        for <ath11k@lists.infradead.org>; Thu, 13 Mar 2025 16:48:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741906759; x=1742511559;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1741909727; x=1742514527;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DlscsM8kt3jhJKPPI6WK1DrD4tGRZlDapuFyYmG6mcg=;
-        b=pcs8nOzqQOZ3qOqulQaJpf5eSwaGwwly4Ub4A/bEfVkzMJB68/2YL5q/GzdV5YFwhZ
-         hddePLEdWQi8YOHWyu2MxcnnlKF5UsJ430LlqRU+2c+G59wBLH8I7Agrsfz1JLeRcNOH
-         Xtwzj42+RGB6JdIavT0P/x8ivUdGNxpvIu6B1HqmU/H415DqmBMxTEYYKjyokSANQZMv
-         RHWCZRYBg94KiY4ZM35uftYpUo9Bmvw/B+PPH4DL+AOKODjQv8nep//thzVjl4zRq6QH
-         OKy6sQrnqjg+MkAgwhtUVErddkl29mZqu2y8j8+bzpViv0YpbJoK0jbKc5eROMv3tY3Q
-         zWsw==
-X-Forwarded-Encrypted: i=1; AJvYcCWD0Q+5OfSzRnA+Az1szXwt1RgCzLcNjUp/zRWYV/QKjxQv3X4vnnWfiI+HmgIdaYll7WPPoyc=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxVey5IIcpIfElPgYAE+IeO3msTwIvMub8yV+TNC2YBIeQfTqnP
-	sDNgoYxG+WWeuPKZvN3R4SdZ17MGG4MtmCBbMuSdnAX6v0Ke2hZh7XweM4frFB55Z4wPqTLN1Kg
-	V/F0k2hV3RhqL+n/VK7WyTzFamE5ncX4k8AdvPk01PSmlKXfAVxrr2l8VaWBU
-X-Gm-Gg: ASbGncvZBR3wh4+r5zLsk+IYkS9nYvEGpucI0afGUcAO8jjxJWse+yZROcwp7OiQwxW
-	WGPIqOyTYUT0OJX/FeYnroMBOmWn5jXy8MO6/P93yeWb8svcD+qSwGl32y7gcWKWK9kr3pgfvZq
-	vXAPqGULLlru27+5wNPUYoHwP4AfHFXtEy3Y+xbLfsg7KyM52LyxEictpkpWdN6Y6y/EHH8qg6D
-	qFOL5XcyMX261HIRf2kBILS/dSrdTScqTvJemc11JB4cEhEfO5cuakHaB/p8Mh5KNi8aMRW+wgj
-	6KToJSc11B34moOeRX5czFMU6/vfdJ+MVTMnHoqDW3CwwMXppYHyx+FA1BdhxbTpD99VooSt
-X-Received: by 2002:a05:6a00:a27:b0:736:4644:86ee with SMTP id d2e1a72fcca58-7372235af19mr315815b3a.14.1741906759451;
-        Thu, 13 Mar 2025 15:59:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFy3xVoqb3anhbGk6RmIqiQdZbFPhRI7ciTb9mdlxU62/8hh2eKyhDOtWNxtwvEg4Z7wcZKAA==
-X-Received: by 2002:a05:6a00:a27:b0:736:4644:86ee with SMTP id d2e1a72fcca58-7372235af19mr315798b3a.14.1741906759009;
-        Thu, 13 Mar 2025 15:59:19 -0700 (PDT)
-Received: from [10.227.89.219] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7371155077fsm1897725b3a.37.2025.03.13.15.59.18
+        bh=Zkd/Jggqn86Uyh/5JzZQRlmlyi5xVymwBZ1NTqzN0CE=;
+        b=aOCx8lbgNi1P3aAYxfPlMcXz8FYkwREdqwbNSpJN2tWLZf2YZXY/YvUWVNa6Ps5p1M
+         DGfXV+m1nXN7HE3sq01APVlchCAGCf1HLXO+2H53SpzVmlOdtWP4so58lXTVLDJRT9pq
+         Ymw/7Udx0hFKzFWPAUMmJ5Cy9XkCwihIo0sUXPIqH/i0XCPyexj7Dix9mnnqgMEN7TW4
+         PU2uhYnElHdrcR8SZBrEA2e/21mDZGY+zfrvF+UoIm1B4ecOq+9VlXSSiBsqrE4bUL3F
+         KTF8Ve9XLeBqRwV+glHToAKWZQdiO0Ips1N5Pnk6tncmuYfzCxxfh5PT2feDMpEWpMn7
+         Yjlg==
+X-Forwarded-Encrypted: i=1; AJvYcCWSpbsymIJNu0XgJjrhEQqc/a2hi3DBFzKAuRtKOlpTivGcr1WE2dUDT32Zqcwvk3Dtq0auzmM=@lists.infradead.org
+X-Gm-Message-State: AOJu0YytYo3GQOt0JAAFHZ34kCOyU9WE6mooojNDI2NupF7XswhIYVY8
+	P3briqRy6ThjrthPTb9y8WOcCraJ6NJ43d6VJ546CiR8vl3MXpOuZZt5k4+thgNT6faeu8gARJU
+	Bqit+TVD7x39IFn7jzF5qYGNLzQsxfoLRy3PMjVmxDX3citv5JszgmKpJKovf
+X-Gm-Gg: ASbGncscpYxN9WmNsIkYF4Fp5MHkqxdlp4IJ6ILr9NDh1qXFrxfmIUXun/EQfzCiyCM
+	zIpN4KyoY65uYCELsdmU2ynKjSXS/XgnTln5HK2OXqkdN/ydIXFlFVOBxZhfUUvGu20u00zLpwI
+	1ZzMd51yqq9P3cJL4DmUuffgGuno39sWYOjApUQHQw+g7LQXlqoCtI1I1Rotx1wJ0gihxc5VUEy
+	4uNqkVLb7yv7tzYrPBONrHxCpFcrbv9uOyN9kRk4iBSNHUJX8kWy+4Kl/t8A61X8jW9AloKBBiw
+	6csbFEpWx1jnCQKM/XGZE9E5yfZ4zCVFPkAt4/iqYdjybdoAzmivajMKfVxyz5XLBOmPmVzALZ7
+	ubSiePMoi
+X-Received: by 2002:a17:902:ecc5:b0:223:f7ec:f834 with SMTP id d9443c01a7336-225e0a840camr4625945ad.31.1741909727060;
+        Thu, 13 Mar 2025 16:48:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHcphUQ8UCrGDx8Md02DmjuseFiFZVhQ2qPU88RhdsaxrxfnuW+c53+Y3w5UiXV4O9t74jPcQ==
+X-Received: by 2002:a17:902:ecc5:b0:223:f7ec:f834 with SMTP id d9443c01a7336-225e0a840camr4625785ad.31.1741909726725;
+        Thu, 13 Mar 2025 16:48:46 -0700 (PDT)
+Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c68887fcsm19356845ad.39.2025.03.13.16.48.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Mar 2025 15:59:18 -0700 (PDT)
-Message-ID: <4e4e4737-6040-4ec2-a3be-3fe1aba7b7cf@oss.qualcomm.com>
-Date: Thu, 13 Mar 2025 15:59:17 -0700
+        Thu, 13 Mar 2025 16:48:46 -0700 (PDT)
+Message-ID: <2654f986-eb8b-430d-b962-8e77d9e11826@oss.qualcomm.com>
+Date: Thu, 13 Mar 2025 16:48:44 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] wifi: nl80211: add link id of transmitted profile
- for MLO MBSSID
-To: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org,
-        ath12k@lists.infradead.org, ath11k@lists.infradead.org
-Cc: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
-        Muna Sinada <muna.sinada@oss.qualcomm.com>
-References: <20250310200237.652950-1-aloka.dixit@oss.qualcomm.com>
- <20250310200237.652950-2-aloka.dixit@oss.qualcomm.com>
- <52beaa2c05c91590797cc1f53b779fca085c8850.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 09/10] PCI: Add function to convert lnkctl2speed to
+ pci_bus_speed
+To: Bjorn Helgaas <helgaas@kernel.org>,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        mhi@lists.linux.dev, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, quic_pyarlaga@quicinc.com,
+        quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com,
+        quic_mrana@quicinc.com
+References: <20250313171637.GA739165@bhelgaas>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Content-Language: en-US
-From: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
-In-Reply-To: <52beaa2c05c91590797cc1f53b779fca085c8850.camel@sipsolutions.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20250313171637.GA739165@bhelgaas>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=P506hjAu c=1 sm=1 tr=0 ts=67d36348 cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=0-u4nmc4IinrO2lHwEAA:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-GUID: Iorcyzo5OGCBvHiApuXWvySv7c2GLW70
-X-Proofpoint-ORIG-GUID: Iorcyzo5OGCBvHiApuXWvySv7c2GLW70
+X-Authority-Analysis: v=2.4 cv=P506hjAu c=1 sm=1 tr=0 ts=67d36edf cx=c_pps a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=e70TP3dOR9hTogukJ0528Q==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=wUlHnouiQKlN4MMnk_oA:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: P5ylt-YcXxcEDVoxsDP_VxBg1T4dnXZJ
+X-Proofpoint-ORIG-GUID: P5ylt-YcXxcEDVoxsDP_VxBg1T4dnXZJ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-13_10,2025-03-13_01,2024-11-22_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
  mlxscore=0 spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
- suspectscore=0 malwarescore=0 mlxlogscore=999 lowpriorityscore=0
+ suspectscore=0 malwarescore=0 mlxlogscore=796 lowpriorityscore=0
  adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
  adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503130175
+ definitions=main-2503130181
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250313_155922_524772_DC6F76AC 
-X-CRM114-Status: GOOD (  20.68  )
+X-CRM114-CacheID: sfid-20250313_164848_940996_C879D536 
+X-CRM114-Status: GOOD (  11.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,57 +135,22 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/12/2025 1:55 AM, Johannes Berg wrote:
-> Hi Aloka, all,
+On 3/13/2025 10:16 AM, Bjorn Helgaas wrote:
+> On Thu, Mar 13, 2025 at 05:10:16PM +0530, Krishna Chaitanya Chundru wrote:
+>> + * @speed: LNKCAP2 SLS value
+>> + *
+>> + * Returns pci_bus_speed
 > 
->> + * @NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID: Link ID of the transmitted profile.
->> + *	This parameter is mandatory if the transmitted profile is part of an MLD
->> + *	and the interface getting configured is a non-transmitted profile. For all
->> + *	other cases it will be ignored.
+> Not sure how strict kernel-doc is about this, but I've been told
+> it wants "Return:" with a colon here:
 > 
-> So I guess it's a question of what "the interface getting configured"
-> means, but I guess you could set up the transmitting interface?
-> 
-Right, if the interface getting configured is the transmitted profile 
-the link_id is ignored.
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/doc-guide/kernel-doc.rst?id=v6.13#n142
 
->> @@ -5561,6 +5563,18 @@ static int nl80211_parse_mbssid_config(struct wiphy *wiphy,
->>   			}
->>   
->>   			config->tx_wdev = tx_netdev->ieee80211_ptr;
->> +
->> +			if (config->tx_wdev->valid_links) {
->> +				if (!tb[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID])
->> +					return -ENOLINK;
->> +
->> +				config->tx_link_id =
->> +					nla_get_u8(tb[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID]);
->> +
->> +				if (!(config->tx_wdev->valid_links &
->> +				      BIT(config->tx_link_id)))
->> +					return -ENOLINK;
->> +			}
->>   		} else {
->>   			config->tx_wdev = dev->ieee80211_ptr;
->>   		}
-> 
-> So shouldn't that be one layer out, so the link ID can also apply if no
-> interface index was given, i.e. we took the else branch? Seems like that
-> should be applicable, or is there a specific reason not to apply in that
-> case?
+Yes, patchwork is flagging kernel-doc issues in this series.
+However, there are numerous pre-existing kdoc issues in the MHI and PCI files
+being modified in this series. Just look at the patches with errors being
+flagged in patchwork (including build errors with 06/10):
 
-The 'else' case in the highlighted snippet above is the same scenario as 
-the 'else' case you referred to, which is one layer out: "else if 
-(!config->index) {".
+https://patchwork.kernel.org/project/linux-wireless/list/?series=943497
 
-Both are executed when the interface getting configured is the 
-transmitting interface. The difference between these two 'else's is that 
-in one case userspace explicitly provides 
-"NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX" and in other it hasn't.
-
-Similarly, for MLO, mac80211 does not need the link_id of the tx 
-interface because it already has the link_conf for it as part of basic 
-AP configuration parameters, hence link_id is ignored in both 'else's.
-
-Thanks.
 
