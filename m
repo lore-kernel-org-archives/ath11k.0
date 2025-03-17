@@ -4,100 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D02DEC282EC
-	for <ath11k@archiver.kernel.org>; Mon, 17 Mar 2025 05:52:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D75EC282EC
+	for <ath11k@archiver.kernel.org>; Mon, 17 Mar 2025 07:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=4R1eIwxiRxMtcN9+AHntN2eapU0Zrflx3kSs14ZDR74=; b=i/H02MLQqk7xdSytaEezegTsyQ
-	mcaXljl1AHgFrLH5oeAUZXGJrnm9kBLglAXv3+rctRfYZItb8lcqHUy3daZCkGb2LPeALt8Vy7YAx
-	474xJmTt0bCNrXdrhiP8unuzmtqUyc5VTAHL6yzBzJkaYM4x3k/HHvFIAfAYA+U2HH1DJ/9mOEU6e
-	RN8Ze9qXs93Vs9Eg37buRT7Tz7w2xZFfp3beBVQCAGRMDbxus1WRHMHBH4kREv9L4gFt3Z9v5KSsp
-	a+lByetI4lzP7Fo08ir6fDTRnlmvRVAKgqw0UOwbzr6PLkUmXTkm7tlPNWi/+vR2LhzkKOBse6mHE
-	A/SRIeDA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Zqf7o/zOSVOymj+dOZ4eU7eGH7z4Hu5sUf59UxuLG9o=; b=WwTl9oXFm3eR8VOAxVl0mZswgo
+	CNJuBUVqZDtHsZg9fmmB0+ViLXYdvx94Rs3o7yf7VTiJbij4h7jjBB5IB/5e2eivXe1o20UaC5BrS
+	FfkDBO5aoj/f7k0xEJMKVMT8Oi/68yypPkW21D8YDe/2zIC0r3rIRDkOA3dKv0q6ZTkVhAX5MoCFp
+	9tdqaZUcNFfWx7gsSueIb3/ZgLssANhBneEmISgwc7L0EePoEumaWj29hJ+KD4PjiYnQQoboixJUA
+	Ea03MmxYF2MOfxs/QqmWSV07RcPzGTmfcVh6WObGexrKA/202tq5wz5llHPRAgBOvy7CbUJ5iZelj
+	T8kkglmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tu3Ou-00000001JDu-2Kev;
-	Mon, 17 Mar 2025 05:52:36 +0000
+	id 1tu4vn-00000001aGr-1BUh;
+	Mon, 17 Mar 2025 07:30:39 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tu3Or-00000001JCF-3ub2
+	id 1tu4mO-00000001XnY-0wT4
 	for ath11k@lists.infradead.org;
-	Mon, 17 Mar 2025 05:52:35 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52H0o1sP023826;
-	Mon, 17 Mar 2025 05:52:20 GMT
+	Mon, 17 Mar 2025 07:20:57 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52GMbtPn026060;
+	Mon, 17 Mar 2025 07:20:52 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4R1eIwxiRxMtcN9+AHntN2eapU0Zrflx3kSs14ZDR74=; b=dC9c3j7YMLAtb5v+
-	LM76vpWNUjVABgU6jLEuFGtcS8Nq3xA0TxWv/xj0u89mzjQCp2o9TLzc1oSiCCSv
-	dU6Aj52pXOTtKVs+mqSiztkGXaGtC3QgktnliVpk9GO3q7ejwJS9Pq9OcqMy6lk0
-	JEe0Box1sNkZM2vApC4wFAmJFLhezHoSc2IUZg48VBMVcD1hgb6UF822gYPzI1pG
-	xsYYucPz/VI2yJh7DTqAN5tIxF8z64DALeTGioWObvjdOKSvX4CHGHB3bqmfmRfa
-	ygJpsUYkkcai6RNbn35SCvZ/isn4KKbxQdCTFfuVawy1YrxY8kVWinHkJlDdaPEv
-	csVLSw==
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Zqf7o/zOSVOymj+dOZ4eU7
+	eGH7z4Hu5sUf59UxuLG9o=; b=cFjpXA/vckO1zjV1i/jttAl6wOZIhM0L+GDv0a
+	V3hlKuK0cnJK2To4zM17fJUjijXoOSSOn9PbqusUCZuh8aWB1R/D7up9IdmxngAb
+	/zHe5XR3VqYa/T4fybVm/vJRbV7HZrYFhYbtFqz/y7e3fI7QMGxYCpUBSTTqGWGJ
+	C1BNrBXEx52l2bNgl2qVjY6bsg5e+rljzS7UE3ex8C2rOOfkmgsbpIfJF8sNPjeN
+	poLAfq5fAUE18nTEIEZSIfbHpL+Jt2al8aToxQlFPJAYr172A8gxp9zHO7rsUMsB
+	ziHaOY4dV/thScfN7Egmgzdbdn6GJqHZSoCkz/gqrCgQvYMg==
 Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1x7ugd8-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1sxur2h-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Mar 2025 05:52:20 +0000 (GMT)
+	Mon, 17 Mar 2025 07:20:52 +0000 (GMT)
 Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52H5qJIl011823
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52H7KpL1015581
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Mar 2025 05:52:19 GMT
-Received: from [10.239.29.24] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 16 Mar
- 2025 22:52:17 -0700
-Message-ID: <ecfe850c-b263-4bee-b888-c34178e690fc@quicinc.com>
-Date: Mon, 17 Mar 2025 13:52:15 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 ath-next 2/2] wifi: ath11k: fix HTC rx insufficient
- length
-To: Johan Hovold <johan@kernel.org>
-CC: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <johan+linaro@kernel.org>
-References: <20250310010217.3845141-1-quic_miaoqing@quicinc.com>
- <20250310010217.3845141-3-quic_miaoqing@quicinc.com>
- <Z866cCj8SWyZjCoP@hovoldconsulting.com>
- <7b1c5e40-b11d-421b-8c8b-117a2a53298b@quicinc.com>
- <c0cdcaf2-655b-4d22-a949-1519c552e6a4@oss.qualcomm.com>
- <72d95d77-674e-4ae7-83b0-ab58748b8251@quicinc.com>
- <Z9G5zEOcTdGKm7Ei@hovoldconsulting.com>
- <8ea7fe7c-7b4d-4a6f-ae03-b9ca127c23f8@quicinc.com>
- <Z9METTzUJe9yqVEI@hovoldconsulting.com>
- <b1c79589-4fcd-4630-9551-a620087e0c23@quicinc.com>
- <Z9PjjDFBuSJ7exVj@hovoldconsulting.com>
-Content-Language: en-US
+	Mon, 17 Mar 2025 07:20:51 GMT
+Received: from localhost.localdomain (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 17 Mar 2025 00:20:49 -0700
 From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <Z9PjjDFBuSJ7exVj@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+To: <quic_jjohnson@quicinc.com>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <johan+linaro@kernel.org>,
+        Miaoqing Pan
+	<quic_miaoqing@quicinc.com>
+Subject: [PATCH v4 ath-next 0/2] wifi: ath11k: fix HTC rx insufficient length
+Date: Mon, 17 Mar 2025 15:20:34 +0800
+Message-ID: <20250317072036.2066518-1-quic_miaoqing@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3YczbMpel6T2ErY04y9tMdCIElaGNYi1
-X-Proofpoint-ORIG-GUID: 3YczbMpel6T2ErY04y9tMdCIElaGNYi1
-X-Authority-Analysis: v=2.4 cv=Jem8rVKV c=1 sm=1 tr=0 ts=67d7b894 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=s_z2xL-mGXjNykTN8p8A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: O2A91ObrAwYlYxpL4K-Os50DZMHS2dAh
+X-Proofpoint-ORIG-GUID: O2A91ObrAwYlYxpL4K-Os50DZMHS2dAh
+X-Authority-Analysis: v=2.4 cv=XKcwSRhE c=1 sm=1 tr=0 ts=67d7cd54 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=xr_cD6ut0Tu7_UOcYl0A:9
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-17_01,2025-03-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=920 spamscore=0 mlxscore=0 malwarescore=0 adultscore=0
- phishscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- bulkscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ definitions=2025-03-17_02,2025-03-17_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=559 priorityscore=1501 clxscore=1015 phishscore=0
+ impostorscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
+ spamscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503170040
+ definitions=main-2503170052
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250316_225234_112575_E315888D 
-X-CRM114-Status: GOOD (  21.07  )
+X-CRM114-CacheID: sfid-20250317_002056_387293_CC34A13D 
+X-CRM114-Status: UNSURE (   8.06  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,64 +99,35 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+This series of patches is to address the issue reported in
+https://bugzilla.kernel.org/show_bug.cgi?id=218623.
+
+ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1488, expected 1492
+ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, expected 1484
+
+---
+v2: add Reported-by tag.
+v3:
+ - update commit message.
+ - revert the modifications to ath11k_hal_srng_dst_get_next_entry to ensure efficiency.
+ - change warning to dbg when see zero-length descriptor.
+v4:
+ - update commit message.
+ - remove is_desc_len0 flag.
+ - skip updating the length field of the descriptor when it is 0.
+---
+Miaoqing Pan (2):
+  wifi: ath11k: add function to get next srng desc
+  wifi: ath11k: fix HTC rx insufficient length
+
+ drivers/net/wireless/ath/ath11k/ce.c  | 14 +++++++++++---
+ drivers/net/wireless/ath/ath11k/hal.c | 23 +++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/hal.h |  3 ++-
+ 3 files changed, 34 insertions(+), 6 deletions(-)
 
 
-On 3/14/2025 4:06 PM, Johan Hovold wrote:
-> On Fri, Mar 14, 2025 at 09:01:36AM +0800, Miaoqing Pan wrote:
->> On 3/14/2025 12:14 AM, Johan Hovold wrote:
->>> On Thu, Mar 13, 2025 at 09:31:56PM +0800, Miaoqing Pan wrote:
->>>> On 3/13/2025 12:43 AM, Johan Hovold wrote:
-> 
->>>>> +	/* Make sure descriptor is read after the head pointer. */
->>>>> +	dma_rmb();
->>>>> +
->>>>>     	*nbytes = ath11k_hal_ce_dst_status_get_length(desc);
->>>>>     	if (*nbytes == 0) {
->>>>> +		WARN_ON_ONCE(1);	// FIXME: remove
->>>>>     		ret = -EIO;
->>>>>     		goto err;
->>>>>     	}
->>>>
->>>> This issue can still be reproduced.
->>>>
->>>> [ 3283.687469] WARNING: CPU: 0 PID: 0 at
->>>> /drivers/net/wireless/ath/ath11k/ce.c:405
->>>> ath11k_ce_per_engine_service+0x228/0x3e4 [ath11k]
->>>
->>> Thanks for verifying.
->>>
->>> Which platform are you testing on and which kernel are you using?
->>>
->>> I'm still waiting to hear back from some people testing my patch on the
->>> X13s (sc8280xp).
-> 
->> qcs615-ride, kernel 6.6.65.
-> 
-> Ok, so a downstream vendor kernel?
-> 
-> qcs615-ride does not even have PCIe enabled in mainline yet, but I
-> assume that's what you use here?
->   
->> I think the hardware has already ensured synchronization between
->> descriptor and head pointer, which isn't difficult to achieve. The issue
->> is likely caused by something else and requires further debugging.
-> 
-> Yeah, but you still need memory barriers on the kernel side.
-> 
-> It could be that we are looking at two different causes for those
-> zero-length descriptors.
-> 
-> The error handling for that obviously needs to be fixed either way, but
-> I haven't heard anyone hitting the corruption with the memory barriers
-> in place on the X13s yet (even if we'd need some more time to test
-> this).
-> 
-> Johan
-
-After multiple and prolonged verifications, adding dma_rmb() did not 
-improve the issue at all. I think this Status Descriptor is updated by 
-hardware (Copy Engine) controlled by another system, not involving DMA 
-or out-of-order CPU access within the same system, so memory barriers do 
-not take effect.
+base-commit: 42aa76e608ca845c98e79f9e23af0bdb07b2eb1d
+-- 
+2.25.1
 
 
