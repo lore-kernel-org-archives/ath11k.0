@@ -4,74 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1F36C28B30
-	for <ath11k@archiver.kernel.org>; Mon, 17 Mar 2025 13:07:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C1D9C282EC
+	for <ath11k@archiver.kernel.org>; Tue, 18 Mar 2025 05:23:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ydyNNw5BPc+dEFYVeeTi949XQbOoM75Z5Tucc9iNJmU=; b=qKveSKBiFIDtjxedOCWkTsNQVl
-	N3UO1303oHqa0LwvoOGx4k9MUaquwXyB4bz4S4Ko2Wf9niwNFkrnr60mgGvyVTiT/cNCojxjwlLmj
-	CCaE9j37JItEUUQDoF1OvKEA18zSyjMAOkOC94BNrQKWH4rahUJDmhkT0zke+x0yUvHazlHzBaaHZ
-	5rf+enCoBoAfvYKqFFkQftE9LX+B0S9H1vgAd1tai/9clSaZM+gDGv52UNeLiAOCsmzg2n08qrNlm
-	Sz+zYmZafH0ct0YAGFu/mRxqdjcrXITuVKF+RMgZlc/5XsVr447t4hu0I46MJhr+ihAX/2aaBWRNK
-	TDS8IYHA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=2Pl3Kah0DsqoBQNkGt5y+JtyywDOv40qZgjfSIjoPws=; b=GV+Wk36VB615ZjPuLKb93lS+V5
+	iZLD3VIbrbPIr5E1b0fVBNuCs1TQRNdhAXaFlwmXqBq2XdQSnvvVFMjSZOIcMf0L3n3hrlVi4cjAm
+	YAZfcEYClOYec9yoUa+Z0YUTBbTBG5B4untU6Fo9JrhESvzeU667RYZfbWhOICbqhkea3/+JktTLc
+	P1ZWRLNOludfwzbKcAMPlUZ2REsay4TBexck2bMVht2fV/MscTfAEPNemFHaQ4wTonGaOJTmqqyeD
+	FZQgly71fkgxd0lLehsjgt3ShP2DDVnv/aHBubUMw4teWt5QmrIdqVLG5Rgt4z2JMNvq0PrVOMUDr
+	Rj/0U1wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuABy-00000002gBh-3Lma;
-	Mon, 17 Mar 2025 13:07:42 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1tuPQQ-00000004i1x-3zFz;
+	Tue, 18 Mar 2025 05:23:38 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuA9G-00000002fck-2Xt9
+	id 1tuPQN-00000004i1W-33FE
 	for ath11k@lists.infradead.org;
-	Mon, 17 Mar 2025 13:04:55 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id D2819A4050D;
-	Mon, 17 Mar 2025 12:59:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CE46C4CEE3;
-	Mon, 17 Mar 2025 13:04:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742216693;
-	bh=08/mbPZq69oi0MPCJBNrNKVVKfY/AcsPcbrj1BV7nKQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DaCJ5tGf1S5GGUAmNH+e9/xX3imM5/QsD7zEHFUFr+XbeqW++o5U42Y+USXpRF8MB
-	 GrReIXM0ntTnyn/puhLoAkze+/FH9vnLBZB/Ybd907mkXBdc5Y46lOgno71XyvicAc
-	 JUQjk8pbLZQjn6y0J4qmpsSR6nxOnsUyiJb4X20uyHqVKvB+Ot8YdgqQG1JKQ00twp
-	 0sL6Fi17CE9PTwyLXg5AB0FxCNUXSm9MOPjPdjDGoi56LxtrhMsMCfEAlf+NlMQbzX
-	 1pusoQuySYxBczB36aNbmYXQZ4MALX/EuuKbJSv5cJUkOywzRV09d1tlEHY08+io1e
-	 7LGfQPPVC7WLg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tuA9E-000000008V6-0o8n;
-	Mon, 17 Mar 2025 14:04:52 +0100
-Date: Mon, 17 Mar 2025 14:04:52 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>
-Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org, johan+linaro@kernel.org
-Subject: Re: [PATCH v2 ath-next 2/2] wifi: ath11k: fix HTC rx insufficient
- length
-Message-ID: <Z9gd9Aw5Bug8IKSV@hovoldconsulting.com>
-References: <Z866cCj8SWyZjCoP@hovoldconsulting.com>
- <7b1c5e40-b11d-421b-8c8b-117a2a53298b@quicinc.com>
- <c0cdcaf2-655b-4d22-a949-1519c552e6a4@oss.qualcomm.com>
- <72d95d77-674e-4ae7-83b0-ab58748b8251@quicinc.com>
- <Z9G5zEOcTdGKm7Ei@hovoldconsulting.com>
- <8ea7fe7c-7b4d-4a6f-ae03-b9ca127c23f8@quicinc.com>
- <Z9METTzUJe9yqVEI@hovoldconsulting.com>
- <b1c79589-4fcd-4630-9551-a620087e0c23@quicinc.com>
- <Z9PjjDFBuSJ7exVj@hovoldconsulting.com>
- <ecfe850c-b263-4bee-b888-c34178e690fc@quicinc.com>
+	Tue, 18 Mar 2025 05:23:37 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52I1AZ9E020729
+	for <ath11k@lists.infradead.org>; Tue, 18 Mar 2025 05:23:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2Pl3Kah0DsqoBQNkGt5y+JtyywDOv40qZgjfSIjoPws=; b=GKorFj3lPIqc4vbt
+	oJB1nnqmwVIcNFlatNgjSGd/BWPwTLSPsPewYwS7CGsgL21yPdSmqcm5Sw28FrMJ
+	6rPV6PjlRDJcsaCq8cxh+zG3zXfZKef52p8JQhJsLCFU2lHyVrZPPKyKvXHYeizl
+	mmzsPgrDcgcMEO8b0fzGg8oALvSsNttuSK9IuJ5sDwMNzwtQs5QfXfmMAuhQuarz
+	+E/bmSkUre5nfB0B+yzkC8+OG5Qj6tpMTKqiNI7fW0jSGqXAUd3evOTtJu+dWanC
+	TuW64AK1EVcj2BzU0FTJqCmoBOHmBXmtTRWsfOaYxxr2vxZpOrUJbd7zjVqAje+7
+	kZ6Biw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exxbghgr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Tue, 18 Mar 2025 05:23:33 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-225505d1ca5so85490665ad.2
+        for <ath11k@lists.infradead.org>; Mon, 17 Mar 2025 22:23:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742275413; x=1742880213;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Pl3Kah0DsqoBQNkGt5y+JtyywDOv40qZgjfSIjoPws=;
+        b=hpCc6bUa91SO3fqBvhUW+jLeIsoUySDMYFyMAWyQ1l4Ez/00UdnoUPciumyT+smn5h
+         FFtrNMvsRwkOnP03WUnGRB+GHEAAC9mBzfhrUGmshQKtnjtJxe5aD38Uo/tr1oJDlOf4
+         U6cGV50/1WnWNj7rbA2HKioRVXNSiFqkbqrfyd2HnlkcDS0oRCrCIg9RZ2NSVIe+JHnv
+         6hvQbT1YcWmX0COsBm2MsI8Eek9fX/Or2619KA6oK5L5M+8QBUqm+v/xS9vcoGKchwOm
+         g65Y/3OMf/TLy0yfxovlTDkCKtjPQVH+wrOa85N7tA317dBOlYLAsM5UavxQO8c3yHoM
+         IHQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVh3IdlbqKoV96GJDEsJFSVES+DpZKd8urDUum34dJ8pD5jL9GBrfWjEscBFgYcVjYkqwCHllU=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz8DnjZaSg6Hdl+WMueIQ7c53sjDJP8NXX8psVCNILkeWpwbi+i
+	sMZpzzAwAEsmSXTN3uP8AFy1FL8opHMmUNcg43m3n8QTJ4zN2Ki5Xf4zzyrEpAKRSEHnHjap5Bb
+	odFQC56icrxZYk2EA2VzWM+nI3GHOCFGF2QyHRniLESUtAEHutSI5Q11nUGQ4
+X-Gm-Gg: ASbGnctc8Cm/sv2+D7sRekzZdMJ62/g9gc6+JT//hLfVOTl4EIX14ygV/wddoBdldDW
+	zw5lSgV/dvk+TqmlCw6q3AwB+sTZNbFnYmrbPwbjN3V8O/XmXvddHtdAjpuGVSRlxigKRcrqFuD
+	Sd6ahe3YnIvkYmvdGyQtGLlWmQ1uJJmFKDaf8FzSTdCb4rwPC5jTMKnzW8O+w0vsoorBqcHpUAz
+	fP3biXH8n0Yaa13HlSbU6ShowouZwGTpvNvspJAqtPpsfBK24mr3Ql5lkZg6Zf8kF/wvJfjNJn9
+	GK1g0QuPcSRvLr0KNjBe9nraf2TkQEkq7uQ9fAXoMRdSEA==
+X-Received: by 2002:a17:902:d50e:b0:223:2630:6b82 with SMTP id d9443c01a7336-225e0a36298mr195662845ad.10.1742275412997;
+        Mon, 17 Mar 2025 22:23:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEBRYCNl/XCdXfHrA8o7EzcA4Q4teMrA8bJQWpzYSr7LqJZwMY0PAPuiPLPIeZMcDFz1f6ICw==
+X-Received: by 2002:a17:902:d50e:b0:223:2630:6b82 with SMTP id d9443c01a7336-225e0a36298mr195662565ad.10.1742275412575;
+        Mon, 17 Mar 2025 22:23:32 -0700 (PDT)
+Received: from [10.92.192.202] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c68a6e2dsm85348125ad.58.2025.03.17.22.23.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Mar 2025 22:23:32 -0700 (PDT)
+Message-ID: <ab9a0399-95e6-09a1-0eed-84cc73efcf51@oss.qualcomm.com>
+Date: Tue, 18 Mar 2025 10:53:24 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ecfe850c-b263-4bee-b888-c34178e690fc@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 10/10] wifi: ath11k: add support for MHI bandwidth
+ scaling
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        mhi@lists.linux.dev, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, quic_pyarlaga@quicinc.com,
+        quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com,
+        quic_mrana@quicinc.com, Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
+References: <20250313172828.GA740705@bhelgaas>
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <20250313172828.GA740705@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=QN1oRhLL c=1 sm=1 tr=0 ts=67d90355 cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=CBOw_B3jzJvQ_MzsqMMA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 0-eruLXE_9kZ1SPcuBPm74_IqlPHU44V
+X-Proofpoint-GUID: 0-eruLXE_9kZ1SPcuBPm74_IqlPHU44V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-18_02,2025-03-17_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ phishscore=0 spamscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 adultscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503180037
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250317_060454_781799_B41D570F 
-X-CRM114-Status: GOOD (  26.86  )
+X-CRM114-CacheID: sfid-20250317_222335_914986_62B03836 
+X-CRM114-Status: GOOD (  25.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,61 +135,134 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 17, 2025 at 01:52:15PM +0800, Miaoqing Pan wrote:
-> On 3/14/2025 4:06 PM, Johan Hovold wrote:
-> > On Fri, Mar 14, 2025 at 09:01:36AM +0800, Miaoqing Pan wrote:
- 
-> >> I think the hardware has already ensured synchronization between
-> >> descriptor and head pointer, which isn't difficult to achieve. The issue
-> >> is likely caused by something else and requires further debugging.
-> > 
-> > Yeah, but you still need memory barriers on the kernel side.
-> > 
-> > It could be that we are looking at two different causes for those
-> > zero-length descriptors.
-> > 
-> > The error handling for that obviously needs to be fixed either way, but
-> > I haven't heard anyone hitting the corruption with the memory barriers
-> > in place on the X13s yet (even if we'd need some more time to test
-> > this).
 
-> After multiple and prolonged verifications, adding dma_rmb() did not 
-> improve the issue at all. I think this Status Descriptor is updated by 
-> hardware (Copy Engine) controlled by another system, not involving DMA 
-> or out-of-order CPU access within the same system, so memory barriers do 
-> not take effect.
 
-Then it seems we are looking at two separate root causes for the
-corruption as the memory barrier appears to be all that is needed to fix
-the X13s issue.
+On 3/13/2025 10:58 PM, Bjorn Helgaas wrote:
+> On Thu, Mar 13, 2025 at 05:10:17PM +0530, Krishna Chaitanya Chundru wrote:
+>> From: Miaoqing Pan <quic_miaoqing@quicinc.com>
+>>
+>> Add support for MHI bandwidth scaling, which will reduce power consumption
+>> if WLAN operates with lower bandwidth. This feature is only enabled for
+>> QCA6390.
+> 
+> What is the event that initiates bandwidth scaling or reduces power
+> consumption?  Is there any kind of user interface like a sysfs knob
+> an administrator can use?
+> 
+it is initiated by the endpoint firmware based upon the bandwidth
+requirements, if there is high bandwidth data endpoint requests for
+higher data rates or if there is less bandwidth they request for lower
+data rates to reduce power. Endpoint initiates this through MHI
+protocol.
 
-A user who hit the corruption after 2 h without the fix has been running
-over the weekend with the memory barrier without any problems. I'll ask
-further users to test, but it certainly looks like it is working as
-intended.
+We will update the commit with this information.
+> Does this happen based on ath11k usage?  Battery or thermal status?
+> 
+> I guess reducing power consumption or reducing heat is probably the
+> driving factor since we would always use max performance if power and
+> heat were not issues?
+> 
+> Some hints here would be useful.
+> 
+>> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04546-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+>> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+>> ---
+>>   drivers/net/wireless/ath/ath11k/mhi.c | 41 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 41 insertions(+)
+>>
+>> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+>> index 6e45f464a429..74769c0993ae 100644
+>> --- a/drivers/net/wireless/ath/ath11k/mhi.c
+>> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
+>> @@ -20,6 +20,7 @@
+>>   #define MHI_TIMEOUT_DEFAULT_MS	20000
+>>   #define RDDM_DUMP_SIZE	0x420000
+>>   #define MHI_CB_INVALID	0xff
+>> +#define MHI_BW_SCALE_CHAN_DB 126
+>>   
+>>   static const struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
+>>   	{
+>> @@ -73,6 +74,17 @@ static struct mhi_event_config ath11k_mhi_events_qca6390[] = {
+>>   		.client_managed = false,
+>>   		.offload_channel = false,
+>>   	},
+>> +	{
+>> +		.num_elements = 8,
+>> +		.irq_moderation_ms = 0,
+>> +		.irq = 1,
+>> +		.mode = MHI_DB_BRST_DISABLE,
+>> +		.data_type = MHI_ER_BW_SCALE,
+>> +		.priority = 2,
+>> +		.hardware_event = false,
+>> +		.client_managed = false,
+>> +		.offload_channel = false,
+>> +	},
+>>   };
+>>   
+>>   static const struct mhi_controller_config ath11k_mhi_config_qca6390 = {
+>> @@ -313,6 +325,33 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
+>>   	writel(val, addr);
+>>   }
+>>   
+>> +static int ath11k_mhi_op_get_misc_doorbell(struct mhi_controller *mhi_cntrl,
+>> +					   enum mhi_er_data_type type)
+>> +{
+>> +	if (type == MHI_ER_BW_SCALE)
+>> +		return MHI_BW_SCALE_CHAN_DB;
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int ath11k_mhi_op_bw_scale(struct mhi_controller *mhi_cntrl,
+>> +				  struct mhi_link_info *link_info)
+>> +{
+>> +	enum pci_bus_speed speed = pci_lnkctl2_bus_speed(link_info->target_link_speed);
+>> +	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
+>> +	struct pci_dev *pci_dev = to_pci_dev(ab->dev);
+>> +	struct pci_dev *pdev;
+>> +
+>> +	if (!pci_dev)
+>> +		return -EINVAL;
+>> +
+>> +	pdev = pci_upstream_bridge(pci_dev);
+>> +	if (!pdev)
+>> +		return -ENODEV;
+>> +
+>> +	return pcie_set_target_speed(pdev, speed, true);
+> 
+> Seems kind of unfortunate that:
+> 
+>    1) The endpoint driver needs to be involved here, even though it
+>    does nothing that is endpoint-specific, and
+> 
+As mentioned above the trigger to switch data rates is from the firmware
+running in the endpoint. so we need to do from endpoint driver only.
+>    2) The endpoint driver twiddles something in *another* device (the
+>    upstream bridge).  There's a potential locking issue here and
+>    potential conflict with any other devices that may be below that
+>    bridge.
+>
+pcie_set_target_speed API is already having locks to protect/synchronize
+various endpoint requests.
 
-And the memory barrier is de-facto missing as the head pointer and
-descriptor are accessed through (two separate) coherent mappings so
-there are no ordering guarantees without explicit barriers.
+- Krishna Chaitanya.
 
-Now obviously there are further issues in your system, which we should
-make sure we understand before adding workarounds to the driver.
-
-Do you have a pointer to the downstream kernel sources you are testing
-with? Or even better, can you reproduce the issue with mainline after
-adding the PCIe patches that were posted to the lists for these
-platforms?
-
-Apparently the descriptors can also be passed in non-coherent memory
-for some devices (.alloc_cacheable_memory / HAL_SRNG_FLAGS_CACHED). That
-implementation looks suspicious and could possibly result in similar
-problems. Are you using .alloc_cacheable_memory in your setup?
-
-Does it make any difference if you use a full rmb() barrier?
-
-And after modifying ath11k_hal_ce_dst_status_get_length() so that it
-does not clear the length, how many times you need to retry? Does it
-always work on the second try?
-
-Johan
+>> +}
+>> +
+>>   static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
+>>   {
+>>   	struct device_node *np;
+>> @@ -389,6 +428,8 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+>>   	mhi_ctrl->status_cb = ath11k_mhi_op_status_cb;
+>>   	mhi_ctrl->read_reg = ath11k_mhi_op_read_reg;
+>>   	mhi_ctrl->write_reg = ath11k_mhi_op_write_reg;
+>> +	mhi_ctrl->bw_scale = ath11k_mhi_op_bw_scale;
+>> +	mhi_ctrl->get_misc_doorbell = ath11k_mhi_op_get_misc_doorbell;
+>>   
+>>   	switch (ab->hw_rev) {
+>>   	case ATH11K_HW_QCN9074_HW10:
+>>
+>> -- 
+>> 2.34.1
+>>
 
