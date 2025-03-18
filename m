@@ -4,67 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A333C282EC
-	for <ath11k@archiver.kernel.org>; Tue, 18 Mar 2025 07:53:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D83ECC282EC
+	for <ath11k@archiver.kernel.org>; Tue, 18 Mar 2025 17:47:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zOVwMdkFvGuOZ9cWNHAiMuAvOwL6TqB2abgcw+wNOh8=; b=k0tv5uAC+xjHgUBEYd72oYXC50
-	igUDyi1dn1hdWVqvelYs0+sRnTJ93OGnEt+R95R0yP9TazgCDNSqaTidLrlWmo+1rJtPdZc8jjaYp
-	6Ds+gloDlyR3lTIUtxfkwlb4EIMUfh5DVb9mUWp9gTsgL9OWzljLVm33GZkUkZHe4hN0J8XBGWUj+
-	3n+ZqO+84hjxt469S/+ViL9ExjGhJ38/XJHfJknfc23HQRi5sgVYb5aHe7bGBybGxgOnD+NLYB+ps
-	hio241Jze5nhOWL0TfZ1hsrL/GY8qJQ3MZTH08FLRJ6fHpLtegp/Xi36iosUseWaqhF1XrDyfTf9L
-	nDyrYm4w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Y9LJf/fL7QX2flZPVi7lOmAR9zvyZCC3k5njE3AjfdY=; b=DdQq9YpZ+7JwbOJuYqiwtI1dor
+	b/0tbPERVRW17pfbJOnHpVNBRe5CcN2R94cVCpeZPaR0QA28kIlicKoO9liZ3SXJw4fff8rx5HXHT
+	Xm7Qu+oT+13t0emlYegChgkIrN6/zACy1GK32D1sCJ46gnu+GkWjxfmQ+IlAegK5/AuFGpW1xZHe3
+	4NNPFXo+YkgLVj86LFkU52LXjoJDIPPMctWXeH6WiXIYS1QPCn8Yn44FBwTH8o3y4XZe/LzlcvzlT
+	4MSwO3aIprJ40qUHJdtAOOwyMc6iVan58cW0cSkBUihJeGaDIkmy4rn9+ovCNYU9O0CJErxtiq57o
+	/HbdEqWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuRlq-000000052uo-3kC7;
-	Tue, 18 Mar 2025 07:53:54 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tub1l-00000006iqM-3C4T;
+	Tue, 18 Mar 2025 17:46:57 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuRlo-000000052tp-1Ark
+	id 1tuaxs-00000006iFt-24sn
 	for ath11k@lists.infradead.org;
-	Tue, 18 Mar 2025 07:53:53 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52HLe2LG024976;
-	Tue, 18 Mar 2025 07:53:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zOVwMdkFvGuOZ9cWNHAiMuAvOwL6TqB2abgcw+wNOh8=; b=SGXCR2Twy+xbgD8T
-	PGF4PpwfnTpxXsm9h+/KHOdp6mKVwvID0JvXhorEWK4HTmEEwpN2h4mEuI4Xf9fq
-	8bJnli0Unawz7diC+UzEkiAF7LSefLS8U3ieNeSopP+nfXEGLIsypBrO5NYY+byh
-	KKL0Zix/QzJOrPQTxRZqN8AVvUJUEm2ilSPqiRmz2ckmbGu4mOOe8WQh0k9LC0s8
-	tkeJk/ENF+DvIaEVlSaJvyyuUXIWKkOCjMeHGYElR0HZrh8uMH3JtwchOAfo21Xl
-	LgN42WS7ZsjI7zTjt3RYMinJeFrUbfTFCW/cmWkbrgPx/myU8qevFOEjVwBY8iI/
-	6y7nMw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1utyavr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Mar 2025 07:53:47 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52I7rkB1022369
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Mar 2025 07:53:46 GMT
-Received: from [10.239.29.24] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Mar
- 2025 00:53:44 -0700
-Message-ID: <f30cf771-a9cd-4d8f-8d10-1640afd33c23@quicinc.com>
-Date: Tue, 18 Mar 2025 15:53:39 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	Tue, 18 Mar 2025 17:42:57 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 175B75C5925;
+	Tue, 18 Mar 2025 17:40:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E991C4CEDD;
+	Tue, 18 Mar 2025 17:42:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742319775;
+	bh=7UfjllCdR6JB488sLvQIQSOghIh0F09d0d7BjGP7AKc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fRwPBB89NwhX/vPxAPc3guEV+NVZu52CUcBCRPPD1kC/Xy+XANGy52n8UfMerGzQo
+	 4bUOuyvGmTlLlyA8yhM/odYmVCouHCCiBTr+euCcokpONBVnlEhqo+IT9SfDvaXLdY
+	 xlk9JYA7a2tdcAa1OQsW28FU9k75FiIJy097yZR9j4LyZTMIHJx5f1Js2VkZ3iarpV
+	 Dfw8bhM4B4qBhYEDsLdnC5pi1lF7sL2yRClmAOlzXlvdovVbGp3mwEWlhyReQ6qcq7
+	 FCcsO6Y/Z0Lv5xfyYFXNHepHj3SL5NC8M9rW1hGVsDmCFVWaKj7C35QDadj7ywQfRu
+	 2zu3pleJUtqTg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tuaxr-000000001Bw-3gPJ;
+	Tue, 18 Mar 2025 18:42:56 +0100
+Date: Tue, 18 Mar 2025 18:42:55 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org, johan+linaro@kernel.org
 Subject: Re: [PATCH v2 ath-next 2/2] wifi: ath11k: fix HTC rx insufficient
  length
-To: Johan Hovold <johan@kernel.org>
-CC: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <johan+linaro@kernel.org>
-References: <Z866cCj8SWyZjCoP@hovoldconsulting.com>
- <7b1c5e40-b11d-421b-8c8b-117a2a53298b@quicinc.com>
- <c0cdcaf2-655b-4d22-a949-1519c552e6a4@oss.qualcomm.com>
+Message-ID: <Z9mwn3GzpPPZSiTG@hovoldconsulting.com>
+References: <c0cdcaf2-655b-4d22-a949-1519c552e6a4@oss.qualcomm.com>
  <72d95d77-674e-4ae7-83b0-ab58748b8251@quicinc.com>
  <Z9G5zEOcTdGKm7Ei@hovoldconsulting.com>
  <8ea7fe7c-7b4d-4a6f-ae03-b9ca127c23f8@quicinc.com>
@@ -73,31 +64,14 @@ References: <Z866cCj8SWyZjCoP@hovoldconsulting.com>
  <Z9PjjDFBuSJ7exVj@hovoldconsulting.com>
  <ecfe850c-b263-4bee-b888-c34178e690fc@quicinc.com>
  <Z9gd9Aw5Bug8IKSV@hovoldconsulting.com>
-Content-Language: en-US
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <Z9gd9Aw5Bug8IKSV@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=H8Pbw/Yi c=1 sm=1 tr=0 ts=67d9268b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=NEAV23lmAAAA:8 a=2M5b3jNWWK1cOhy4hzQA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: JN3mFfdcbY7wxtnhoottWP2pIq8HRbxq
-X-Proofpoint-ORIG-GUID: JN3mFfdcbY7wxtnhoottWP2pIq8HRbxq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-18_03,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 adultscore=0 spamscore=0 priorityscore=1501
- mlxscore=0 suspectscore=0 malwarescore=0 clxscore=1015 impostorscore=0
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503180055
+ <f30cf771-a9cd-4d8f-8d10-1640afd33c23@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f30cf771-a9cd-4d8f-8d10-1640afd33c23@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250318_005352_448270_DC8CBFDF 
-X-CRM114-Status: GOOD (  33.30  )
+X-CRM114-CacheID: sfid-20250318_104256_617265_6706DF12 
+X-CRM114-Status: GOOD (  37.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,85 +86,77 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Tue, Mar 18, 2025 at 03:53:39PM +0800, Miaoqing Pan wrote:
+> On 3/17/2025 9:04 PM, Johan Hovold wrote:
 
-
-On 3/17/2025 9:04 PM, Johan Hovold wrote:
-> On Mon, Mar 17, 2025 at 01:52:15PM +0800, Miaoqing Pan wrote:
->> On 3/14/2025 4:06 PM, Johan Hovold wrote:
->>> On Fri, Mar 14, 2025 at 09:01:36AM +0800, Miaoqing Pan wrote:
->   
->>>> I think the hardware has already ensured synchronization between
->>>> descriptor and head pointer, which isn't difficult to achieve. The issue
->>>> is likely caused by something else and requires further debugging.
->>>
->>> Yeah, but you still need memory barriers on the kernel side.
->>>
->>> It could be that we are looking at two different causes for those
->>> zero-length descriptors.
->>>
->>> The error handling for that obviously needs to be fixed either way, but
->>> I haven't heard anyone hitting the corruption with the memory barriers
->>> in place on the X13s yet (even if we'd need some more time to test
->>> this).
+> > Then it seems we are looking at two separate root causes for the
+> > corruption as the memory barrier appears to be all that is needed to fix
+> > the X13s issue.
+> > 
+> > A user who hit the corruption after 2 h without the fix has been running
+> > over the weekend with the memory barrier without any problems. I'll ask
+> > further users to test, but it certainly looks like it is working as
+> > intended.
+> > 
+> > And the memory barrier is de-facto missing as the head pointer and
+> > descriptor are accessed through (two separate) coherent mappings so
+> > there are no ordering guarantees without explicit barriers.
 > 
->> After multiple and prolonged verifications, adding dma_rmb() did not
->> improve the issue at all. I think this Status Descriptor is updated by
->> hardware (Copy Engine) controlled by another system, not involving DMA
->> or out-of-order CPU access within the same system, so memory barriers do
->> not take effect.
+> This situation should occur when there is only one descriptor in the 
+> ring. If, as you mentioned, the CPU tries to load the descriptor first, 
+> but the descriptor fetch fails before the HP load because the ring 
+> returns empty, it won't trigger the current issue.
+
+It could if the CPU observes the updates out of order due to the missing
+barrier. The driver could be processing an earlier interrupt when the
+new descriptor is added and head pointer updated. If for example the CPU
+speculatively fetches the descriptor before the head pointer is updated,
+then the descriptor length may be zero when the CPU sees the updated
+head pointer.
+
+This seems to be what is happening on the X13s since adding the memory
+barrier makes the zero-length descriptors go away.
+ 
+> The Copy Engine hardware module copies the metadata to the Status 
+> Descriptor after the DMA is complete, then updates the HP to trigger an 
+> interrupt. I think there might be some issues in this process, such as 
+> the lack of a wmb instruction after the copy is complete, causing the HP 
+> to be updated first.
+
+Yeah, possibly. At least it seems there are more issues than the missing
+barrier on the machines you test.
+ 
+> > Now obviously there are further issues in your system, which we should
+> > make sure we understand before adding workarounds to the driver.
+> > 
+> > Do you have a pointer to the downstream kernel sources you are testing
+> > with? Or even better, can you reproduce the issue with mainline after
+> > adding the PCIe patches that were posted to the lists for these
+> > platforms?
+> > 
+> https://github.com/qualcomm-linux/meta-qcom-hwe/blob/scarthgap/recipes-kernel/linux/linux-qcom-base_6.6.bb
+
+Thanks for the pointer. That's a lot of out-of-tree patches on top of
+stable so not that easy to check the state of the resulting tree.
+
+> > Does it make any difference if you use a full rmb() barrier?
+> > 
+> I've also tried rmb() and mb(), but they didn't work either.
+
+Thanks for checking.
+
+Just to be sure, you did add the barrier in the same place as my patch
+(i.e. just before the descriptor read)?
+
+> > And after modifying ath11k_hal_ce_dst_status_get_length() so that it
+> > does not clear the length, how many times you need to retry? Does it
+> > always work on the second try?
 > 
-> Then it seems we are looking at two separate root causes for the
-> corruption as the memory barrier appears to be all that is needed to fix
-> the X13s issue.
-> 
-> A user who hit the corruption after 2 h without the fix has been running
-> over the weekend with the memory barrier without any problems. I'll ask
-> further users to test, but it certainly looks like it is working as
-> intended.
-> 
-> And the memory barrier is de-facto missing as the head pointer and
-> descriptor are accessed through (two separate) coherent mappings so
-> there are no ordering guarantees without explicit barriers.
-> 
-This situation should occur when there is only one descriptor in the 
-ring. If, as you mentioned, the CPU tries to load the descriptor first, 
-but the descriptor fetch fails before the HP load because the ring 
-returns empty, it won't trigger the current issue.
+> Yes, the test has been running continuously for over 48 hours, always 
+> work on the second try, updated in patch v4.
 
-The Copy Engine hardware module copies the metadata to the Status 
-Descriptor after the DMA is complete, then updates the HP to trigger an 
-interrupt. I think there might be some issues in this process, such as 
-the lack of a wmb instruction after the copy is complete, causing the HP 
-to be updated first.
+Good, at least the descriptor-length-sometimes-never-updated issue is
+solved.
 
-
-> Now obviously there are further issues in your system, which we should
-> make sure we understand before adding workarounds to the driver.
-> 
-> Do you have a pointer to the downstream kernel sources you are testing
-> with? Or even better, can you reproduce the issue with mainline after
-> adding the PCIe patches that were posted to the lists for these
-> platforms?
-> 
-https://github.com/qualcomm-linux/meta-qcom-hwe/blob/scarthgap/recipes-kernel/linux/linux-qcom-base_6.6.bb
-
-> Apparently the descriptors can also be passed in non-coherent memory
-> for some devices (.alloc_cacheable_memory / HAL_SRNG_FLAGS_CACHED). That
-> implementation looks suspicious and could possibly result in similar
-> problems. Are you using .alloc_cacheable_memory in your setup?
-> 
-No.
-
-> Does it make any difference if you use a full rmb() barrier?
-> 
-I've also tried rmb() and mb(), but they didn't work either.
-
-> And after modifying ath11k_hal_ce_dst_status_get_length() so that it
-> does not clear the length, how many times you need to retry? Does it> always work on the second try?
->
-
-Yes, the test has been running continuously for over 48 hours, always 
-work on the second try, updated in patch v4.
-
-
+Johan
 
