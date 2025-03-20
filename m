@@ -4,100 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC1CDC28B30
-	for <ath11k@archiver.kernel.org>; Thu, 20 Mar 2025 05:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22FCBC28B30
+	for <ath11k@archiver.kernel.org>; Thu, 20 Mar 2025 22:44:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=EaM28uuUQjLTLit8/Zrnw3IUUiB5Hmv6M9vSeFjlxLM=; b=WZLk4V8FQnd/Z2J/Xa6lqXSLIk
-	Pqkh5Zjq4eCNk8uhNAunVSNmh0wnCJJoLT3Sil7f5rxAQJmFLs6t4dKx4f/yDbNaeQelhOyUpjJU6
-	6JlxfUqoAWWzcSsVNsq4LKiq3GA8prv3s3liKR6gm80S+UIQzKDkVfdXMfQ7ybZbAIu5jw1BfdwHL
-	G6Ar38KYfaGoUv2yR9RRiKRVbzCSJ2mOMjExqZQ1MB5FvmicGNGFCoX8Fomw0JRRsJpQxC6B0qL6q
-	H8CIT6yVWI8VpmcbINKKYaAH4aIJAakY2ovhWbQg3Drigv4eo4jqwwtmaRgtpNblr/LGscMeMTtFW
-	5uN5gUew==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=+HNOn1s3syUBP5uAd1lFQsx15I1O4vZEXPip5DLA2Ss=; b=mGWvV01bYkl7Wb3nC7hLd1MnBo
+	1AYzHzkpnpQG88wqHK4p++Se0ZUgG1JbPZsX2Gg39+cEs8Vm0TkyG5hrr48kaw7PQ1fjbQBEWkQL1
+	umuprsjJhsq6zwqmhUfS7mq6eRnvOK5GDzz9AtEZ9TxM9r4xT6GdXV7JZ3+4lWATHOSmXR02C4PEp
+	2FKTgzidSX11r3h/D3udqzln9FmxD1OphPsRF6qtItatKSWWBTy8m6dcDqlufiFu24O7PYB+04BX1
+	KoKjQ4iu86Vj7siE1NzHz4AlFY7eBvIEJgMsYSVxlUYX3MOz0KZ5+BA2EtWIibYQh5ESmY8pXBqv3
+	Ji7fwReg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tv8Vp-0000000BDw3-10eT;
-	Thu, 20 Mar 2025 05:32:13 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tvOcJ-0000000DPBr-3eBr;
+	Thu, 20 Mar 2025 22:43:59 +0000
+Received: from mgamail.intel.com ([198.175.65.14])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tv8Vm-0000000BDvd-3J93
+	id 1tvOcH-0000000DPBH-35P7
 	for ath11k@lists.infradead.org;
-	Thu, 20 Mar 2025 05:32:12 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52K2UdoI013162;
-	Thu, 20 Mar 2025 05:32:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=EaM28uuUQjLTLit8/Zrnw3
-	IUUiB5Hmv6M9vSeFjlxLM=; b=Ll940Gy2RKMPp95FRyu6I0FswGdbbw9fQ55QIj
-	VGzDdrLJ/qu0jfUF9pCXwvV3Izb7scUdgaxnRTOOIYsqPBEyaeZU6vMxr8eh4tTu
-	NjoirjzQR8qKl9W+t57W1+onePyvIrp3+6oGu10QypSJYuRmyLjrPT3T13DIkdsx
-	hhkQ+oLNIe9kbmQQDs84BNn9E6jWdZbZEVvfGMAzTdXkBh/LUKH0BQwWts1uEJ19
-	BHTUA9L1qNO3TGc6ijYE1MazAOyu5++Nig0XRm+nB6edk6psltiS6k+kylR9rEmS
-	5IQu73f5yVDFym+6pSlWn8oqRUEkgRq6Iiwz4FtHVsDmgR7A==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exwtqvpu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Mar 2025 05:32:03 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52K5W2gs022637
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Mar 2025 05:32:02 GMT
-Received: from localhost.localdomain (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 19 Mar 2025 22:31:58 -0700
-From: Stone Zhang <quic_stonez@quicinc.com>
-To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
-        Sven Eckelmann
-	<sven@narfation.org>,
-        Muna Sinada <quic_msinada@quicinc.com>,
-        "Govindaraj
- Saminathan" <quic_gsamin@quicinc.com>,
-        Vasanthakumar Thiagarajan
-	<quic_vthiagar@quicinc.com>
-CC: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
-        John Crispin
-	<john@phrozen.org>,
-        Anilkumar Kolli <quic_akolli@quicinc.com>,
-        "Shashidhar
- Lakkavalli" <slakkavalli@datto.com>,
-        <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <quic_miaoqing@quicinc.com>,
-        <quic_zhichen@quicinc.com>, <quic_yuzha@quicinc.com>,
-        Stone Zhang <quic_stonez@quicinc.com>
-Subject: [PATCH ath-next] wifi: ath11k: fix node corruption in ar->arvifs list
-Date: Thu, 20 Mar 2025 13:31:45 +0800
-Message-ID: <20250320053145.3445187-1-quic_stonez@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	Thu, 20 Mar 2025 22:43:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742510638; x=1774046638;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=auxEEuY+xDpirUEPyxYSNf0pr+NS+Jjo/6xqZzmpriI=;
+  b=NcsmhJUolzkoEPAOwUPHowmcneTYiJwlOWrXXe/jVgLnfDfyLZMNZ7x7
+   oaYLhETVZvQMWrgJGhONyYct1LSDhdwMuHjYxr1ktfNDFbLGEvtmYTFr4
+   +IQXXraI+uveGBVGpsITo51pxEyUjxKsZOdzytWWpZArZ/hZwkYO8l4/T
+   1CFf1yavXTDag0SMUNv2wqdB1ud5jceIbdM/yo8CewEPh1zSC1JbNhZGP
+   OoXXC0z4YsOjyT34vlpMw1vzkdlCAsdQZYBj+5Pqpf6NGBGNg8dAtj/+O
+   Qurm40hFoa2m5bUOV4osoKXGntWlVWjm02MqlfKTrWFmHWJthuU+TR2zl
+   A==;
+X-CSE-ConnectionGUID: OFfUm5LuRHic2dDWy7OEAg==
+X-CSE-MsgGUID: v5N8UAfEQZ+/k97i4JkwHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="47543830"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; 
+   d="scan'208";a="47543830"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 15:43:57 -0700
+X-CSE-ConnectionGUID: VJgZY0yFScicTmekw+cYPw==
+X-CSE-MsgGUID: SVQIDu9UQeWEHUtds+YQZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; 
+   d="scan'208";a="154124462"
+Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 20 Mar 2025 15:43:55 -0700
+Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tvOc7-0000q7-1O;
+	Thu, 20 Mar 2025 22:43:49 +0000
+Date: Fri, 21 Mar 2025 06:43:31 +0800
+From: kernel test robot <lkp@intel.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>, ath11k@lists.infradead.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-wireless@vger.kernel.org, quic_bqiang@quicinc.com
+Subject: Re: [PATCH ath-next 1/5] wifi: ath11k: determine PM policy based on
+ machine model
+Message-ID: <202503210624.I3zealnl-lkp@intel.com>
+References: <20250320023003.65028-2-quic_bqiang@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sOjSiLJGgDQuVyA43OTtyxlxS0p3c4_f
-X-Proofpoint-ORIG-GUID: sOjSiLJGgDQuVyA43OTtyxlxS0p3c4_f
-X-Authority-Analysis: v=2.4 cv=UoJjN/wB c=1 sm=1 tr=0 ts=67dba853 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=2pyOCsQr0UlPjGJFVwcA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-20_01,2025-03-19_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- impostorscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=895
- phishscore=0 adultscore=0 clxscore=1011 spamscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503200032
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250320023003.65028-2-quic_bqiang@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250319_223210_832071_59BCE9A8 
-X-CRM114-Status: GOOD (  14.89  )
+X-CRM114-CacheID: sfid-20250320_154357_810934_573BAD16 
+X-CRM114-Status: UNSURE (   8.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,77 +89,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In current WLAN recovery code flow, ath11k_core_halt() only
-reinitializes the "arvifs" list head. This will cause the
-list node immediately following the list head to become an
-invalid list node. Because the prev of that node still points
-to the list head "arvifs", but the next of the list head "arvifs"
-no longer points to that list node.
+Hi Baochen,
 
-When a WLAN recovery occurs during the execution of a vif
-removal, and it happens before the spin_lock_bh(&ar->data_lock)
-in ath11k_mac_op_remove_interface(), list_del() will detect the
-previously mentioned situation, thereby triggering a kernel panic.
+kernel test robot noticed the following build warnings:
 
-The fix is to remove and reinitialize all vif list nodes from the
-list head "arvifs" during WLAN halt. The reinitialization is to make
-the list nodes valid, ensuring that the list_del() in
-ath11k_mac_op_remove_interface() can execute normally.
+[auto build test WARNING on b6f473c96421b8b451a8df8ccb620bcd71d4b3f4]
 
-Call trace:
-__list_del_entry_valid_or_report+0xb8/0xd0
-ath11k_mac_op_remove_interface+0xb0/0x27c [ath11k]
-drv_remove_interface+0x48/0x194 [mac80211]
-ieee80211_do_stop+0x6e0/0x844 [mac80211]
-ieee80211_stop+0x44/0x17c [mac80211]
-__dev_close_many+0xac/0x150
-__dev_change_flags+0x194/0x234
-dev_change_flags+0x24/0x6c
-devinet_ioctl+0x3a0/0x670
-inet_ioctl+0x200/0x248
-sock_do_ioctl+0x60/0x118
-sock_ioctl+0x274/0x35c
-__arm64_sys_ioctl+0xac/0xf0
-invoke_syscall+0x48/0x114
-...
+url:    https://github.com/intel-lab-lkp/linux/commits/Baochen-Qiang/wifi-ath11k-determine-PM-policy-based-on-machine-model/20250320-103536
+base:   b6f473c96421b8b451a8df8ccb620bcd71d4b3f4
+patch link:    https://lore.kernel.org/r/20250320023003.65028-2-quic_bqiang%40quicinc.com
+patch subject: [PATCH ath-next 1/5] wifi: ath11k: determine PM policy based on machine model
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20250321/202503210624.I3zealnl-lkp@intel.com/config)
+compiler: clang version 20.1.1 (https://github.com/llvm/llvm-project 424c2d9b7e4de40d0804dd374721e6411c27d1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250321/202503210624.I3zealnl-lkp@intel.com/reproduce)
 
-Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04591-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503210624.I3zealnl-lkp@intel.com/
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Stone Zhang <quic_stonez@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+All warnings (new ones prefixed by >>):
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 3d39ff85ba94..8d08dd47bde9 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2050,6 +2050,7 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- void ath11k_core_halt(struct ath11k *ar)
- {
- 	struct ath11k_base *ab = ar->ab;
-+	struct list_head *pos, *n;
- 
- 	lockdep_assert_held(&ar->conf_mutex);
- 
-@@ -2065,7 +2066,12 @@ void ath11k_core_halt(struct ath11k *ar)
- 
- 	rcu_assign_pointer(ab->pdevs_active[ar->pdev_idx], NULL);
- 	synchronize_rcu();
--	INIT_LIST_HEAD(&ar->arvifs);
-+
-+	spin_lock_bh(&ar->data_lock);
-+	list_for_each_safe(pos, n, &ar->arvifs)
-+		list_del_init(pos);
-+	spin_unlock_bh(&ar->data_lock);
-+
- 	idr_init(&ar->txmgmt_idr);
- }
- 
+>> drivers/net/wireless/ath/ath11k/core.c:2381:19: warning: cast to smaller integer type 'enum ath11k_pm_policy' from 'void *' [-Wvoid-pointer-to-enum-cast]
+    2381 |                 ab->pm_policy = (enum ath11k_pm_policy)dmi_id->driver_data;
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
-base-commit: b6f473c96421b8b451a8df8ccb620bcd71d4b3f4
+
+vim +2381 drivers/net/wireless/ath/ath11k/core.c
+
+  2373	
+  2374	int ath11k_core_init(struct ath11k_base *ab)
+  2375	{
+  2376		const struct dmi_system_id *dmi_id;
+  2377		int ret;
+  2378	
+  2379		dmi_id = dmi_first_match(ath11k_pm_quirk_table);
+  2380		if (dmi_id)
+> 2381			ab->pm_policy = (enum ath11k_pm_policy)dmi_id->driver_data;
+  2382		else
+  2383			ab->pm_policy = ATH11K_PM_DEFAULT;
+  2384	
+  2385		ath11k_dbg(ab, ATH11K_DBG_BOOT, "pm policy %u\n", ab->pm_policy);
+  2386	
+  2387		ret = ath11k_core_soc_create(ab);
+  2388		if (ret) {
+  2389			ath11k_err(ab, "failed to create soc core: %d\n", ret);
+  2390			return ret;
+  2391		}
+  2392	
+  2393		return 0;
+  2394	}
+  2395	EXPORT_SYMBOL(ath11k_core_init);
+  2396	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
