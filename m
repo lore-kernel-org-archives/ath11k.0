@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74EB7C36006
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A95FEC36005
 	for <ath11k@archiver.kernel.org>; Thu, 20 Mar 2025 02:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,52 +12,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fi/g6K7yc7e89bSfuWI7DIB430/Zwn4BvVQPY2BO1GM=; b=ElLGGANs17X37WLnWx/OjW0nMC
-	FdRWGg+JoB7mYminaDgJDXmY6N0ObBCZsQA8wzH7M6XA2D06nbyJ3zahtzRQ/kEzzN1jQ0/TB1AzF
-	TVsvazpE+igr9pohebTOERH0RBginrSGJ0aHR8KVY8+rNI95DovSVodY1FLBx9Iu4nU/n3VRZkVnp
-	H/89BW+gW928Lxonv0agkmNKrkkxYR0z8UVV0dTHDLh8X2WlGR4C4YHmsAx6EiKkhTghig+w4qryR
-	kFl7Nls69ulctliQckgjASRnPyv5kMS909CJ3XHqCnswQwXgJaECIM4q/UVwQFaoCAQ3G+r8K5l13
-	ia8I6WOQ==;
+	bh=v3F+nX95TJ034QAM2VxFAb855I2X7QkjV6fLqmYG1GM=; b=QuxiCOT0GU+yIJ/sX7ovjsyCwy
+	lABra6uUv2tnBovPVyOLhDpfiCKQRiQwjLkuww6OuDDzZW4Up+Pr1l6LrznBa0spK9ZDiRI5vHmCZ
+	CmD5cMlQBFn0lPryqUgBEsUFIdLQbYRVmwqckX5iAhzy2MQ8jGqZd+t59kS4PbuBXOTznglNciA3s
+	bx507L7FLnGFxI9PwIVK6xg7QuJNY6jPeRaanz7Mr1oaq7nB0jZ6XfthI6DHMIwBeLAeZsxtYT4wO
+	9Ru5oRkMXgL9iZcGAONRYeS4yvCZoAT4xzecCWV/U4rLhfRj/5iAgf0BRA8pmmSMR7VmuWOKruqPt
+	E5/enUgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tv5lF-0000000Aupz-1g5V;
-	Thu, 20 Mar 2025 02:35:57 +0000
+	id 1tv5lD-0000000AuoW-2XA3;
+	Thu, 20 Mar 2025 02:35:55 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tv5fs-0000000Au30-3ZMb
+	id 1tv5fm-0000000Au0C-1aao
 	for ath11k@lists.infradead.org;
-	Thu, 20 Mar 2025 02:30:26 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52JE8Xvq016627;
-	Thu, 20 Mar 2025 02:30:24 GMT
+	Thu, 20 Mar 2025 02:30:19 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52JJ5Zp2023157;
+	Thu, 20 Mar 2025 02:30:17 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fi/g6K7yc7e89bSfuWI7DIB430/Zwn4BvVQPY2BO1GM=; b=VRkEaJl3byChJFZB
-	ZyzcgeZ2e7kY3hC5H6boktvbwJwcI5G9NqHmcMzEDyVl2T7M+TwHH4r9ZG6toKjM
-	UmFKX/FVCXSGs1DHiQvJucsJEG6smIp+yXUQrZH9g21uNjrhLLv8l4/BEBbcQL3y
-	gsJpYc9OKtgZTzceHMhM0jmU0WYHEtrHodDgRJVd8ZQexjjEKR80hafLarJuevXy
-	bB6gW4wl1hkJ+MV9ozweL2kPK1P/f/vtj+RE15oe+axvdCblpu5AuM8HYT7IHOGq
-	vK7ncD6iOqkxg0CZ9CModXA7WyO7aE058BRj5VFsxpgK6oHj3lxaQIuQLmvVmDJx
-	w7vrfw==
+	v3F+nX95TJ034QAM2VxFAb855I2X7QkjV6fLqmYG1GM=; b=BqP+a2ryB1hCsL46
+	0vhOMAJGbovfWtce4QqnYSkDKqwK+FWUuzXqGK5WkmEY75tS/kurM5JQdrlMEqSb
+	ddBat5oc22jAAX7QXyB+Hnj3cEOqdpwfIDk9uz3G2i+cv/udOyg+7qEyVmiai3Rz
+	w+JhYrmyW5WUCxCiwsb+bVXe0o8uqzrchzMg4AeAXC0Of3VEVAhKEDkns/qsFDgF
+	0VmrE0rOvOf8nMJQc+TVoSG3pnhKGZa0biWmS2cLgk2Eve+hZKQeDlGz3W3tCwnb
+	Lcv3ZYdSV0O5xGDMcIbaUZ00YWdTB4ilPyMdcbOSLhBFnMTXfEpzaQgj8A9cDDhi
+	36BPoQ==
 Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45fd1dmntw-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45g3sf0uyp-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Mar 2025 02:30:23 +0000 (GMT)
+	Thu, 20 Mar 2025 02:30:17 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52K2UMH7025421
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52K2UG3C025316
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Mar 2025 02:30:22 GMT
+	Thu, 20 Mar 2025 02:30:16 GMT
 Received: from bqiang-SFF.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 19 Mar 2025 19:30:21 -0700
+ 15.2.1544.9; Wed, 19 Mar 2025 19:30:14 -0700
 From: Baochen Qiang <quic_bqiang@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_bqiang@quicinc.com>
-Subject: [PATCH ath-next 5/5] Reapply "wifi: ath11k: restore country code during resume"
-Date: Thu, 20 Mar 2025 10:30:03 +0800
-Message-ID: <20250320023003.65028-6-quic_bqiang@quicinc.com>
+Subject: [PATCH ath-next 1/5] wifi: ath11k: determine PM policy based on machine model
+Date: Thu, 20 Mar 2025 10:29:59 +0800
+Message-ID: <20250320023003.65028-2-quic_bqiang@quicinc.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250320023003.65028-1-quic_bqiang@quicinc.com>
 References: <20250320023003.65028-1-quic_bqiang@quicinc.com>
@@ -69,21 +69,22 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: oSDa90d7hGJRzYYOPRlkkJWoyvxA0d9E
-X-Proofpoint-GUID: oSDa90d7hGJRzYYOPRlkkJWoyvxA0d9E
-X-Authority-Analysis: v=2.4 cv=T52MT+KQ c=1 sm=1 tr=0 ts=67db7dbf cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=RoHt8tvvRc4mp1QopSkA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 0D-IbMOxYSDA0FGCHHxlPUf6oSor6SJU
+X-Proofpoint-ORIG-GUID: 0D-IbMOxYSDA0FGCHHxlPUf6oSor6SJU
+X-Authority-Analysis: v=2.4 cv=R9IDGcRX c=1 sm=1 tr=0 ts=67db7db9 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=HZsBSmdTCqOkkQ6QzrAA:9
+ a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-20_01,2025-03-19_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- impostorscore=0 priorityscore=1501 bulkscore=0 mlxscore=0 clxscore=1015
- mlxlogscore=904 lowpriorityscore=0 phishscore=0 spamscore=0 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503200014
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 adultscore=0
+ suspectscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 malwarescore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503200015
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250319_193025_014789_0C09EE3A 
-X-CRM114-Status: GOOD (  12.07  )
+X-CRM114-CacheID: sfid-20250319_193018_540817_BD913955 
+X-CRM114-Status: GOOD (  16.26  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,52 +99,129 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This reverts commit d3e154d7776ba57ab679fb816fb87b627fba21c9.
+To handle the Lenovo unexpected wakeup issue [1], previously we revert
+commit 166a490f59ac ("wifi: ath11k: support hibernation"). So currently
+WLAN target is put into WoWLAN mode during suspend. This is a temporary
+solution as it does not work on machines where WLAN power is cut off.
 
-With non-WoWLAN suspend support brought back, commit 7f0343b7b871 ("wifi:
-ath11k: restore country code during resume") needs to be brought back
-as well.
+The thought here is that we do WoWLAN suspend on Lenovo machines while
+do non-WoWLAN suspend (which is done in the reverted commit) on other
+machines. This requires us to identify Lenovo machines from others.
+For that purpose, read board vendor and product name from DMI interface,
+match it against all known affected machines. If there is a match, choose
+WoWLAN suspend mode, else choose non-WoWLAN mode. Save the mode in ab
+for later reference.
+
+[1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
 
 Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.c | 55 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.h |  7 ++++
+ 2 files changed, 62 insertions(+)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index b248237302ac..2fd2c24f5715 100644
+index 3d39ff85ba94..8657e735bf16 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1192,6 +1192,7 @@ EXPORT_SYMBOL(ath11k_core_resume_early);
+@@ -907,6 +907,52 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	},
+ };
  
- static int ath11k_core_resume_default(struct ath11k_base *ab)
++static const struct dmi_system_id ath11k_pm_quirk_table[] = {
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21J4"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21K4"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21K6"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21K8"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21KA"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21F9"),
++		},
++	},
++	{}
++};
++
+ static inline struct ath11k_pdev *ath11k_core_get_single_pdev(struct ath11k_base *ab)
  {
-+	struct ath11k *ar;
- 	long time_left;
+ 	WARN_ON(!ab->hw_params.single_pdev_only);
+@@ -2327,8 +2373,17 @@ EXPORT_SYMBOL(ath11k_core_pre_init);
+ 
+ int ath11k_core_init(struct ath11k_base *ab)
+ {
++	const struct dmi_system_id *dmi_id;
  	int ret;
  
-@@ -1202,6 +1203,20 @@ static int ath11k_core_resume_default(struct ath11k_base *ab)
- 		return -ETIMEDOUT;
- 	}
- 
-+	/* So far only single_pdev_only devices can reach here,
-+	 * so it is valid to handle the first, and the only, pdev.
-+	 */
-+	ar = ab->pdevs[0].ar;
-+	if (ab->hw_params.current_cc_support &&
-+	    ar->alpha2[0] != 0 && ar->alpha2[1] != 0) {
-+		ret = ath11k_reg_set_cc(ar);
-+		if (ret) {
-+			ath11k_warn(ab, "failed to set country code during resume: %d\n",
-+				    ret);
-+			return ret;
-+		}
-+	}
++	dmi_id = dmi_first_match(ath11k_pm_quirk_table);
++	if (dmi_id)
++		ab->pm_policy = (enum ath11k_pm_policy)dmi_id->driver_data;
++	else
++		ab->pm_policy = ATH11K_PM_DEFAULT;
 +
- 	ret = ath11k_dp_rx_pktlog_start(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to start rx pktlog during resume: %d\n",
++	ath11k_dbg(ab, ATH11K_DBG_BOOT, "pm policy %u\n", ab->pm_policy);
++
+ 	ret = ath11k_core_soc_create(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to create soc core: %d\n", ret);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 1a3d0de4afde..df2b0cb2f0b5 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -892,6 +892,11 @@ struct ath11k_msi_config {
+ 	u16 hw_rev;
+ };
+ 
++enum ath11k_pm_policy {
++	ATH11K_PM_DEFAULT,
++	ATH11K_PM_WOW,
++};
++
+ /* Master structure to hold the hw data which may be used in core module */
+ struct ath11k_base {
+ 	enum ath11k_hw_rev hw_rev;
+@@ -1058,6 +1063,8 @@ struct ath11k_base {
+ 	} testmode;
+ #endif
+ 
++	enum ath11k_pm_policy pm_policy;
++
+ 	/* must be last */
+ 	u8 drv_priv[] __aligned(sizeof(void *));
+ };
 -- 
 2.25.1
 
