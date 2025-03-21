@@ -4,67 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A277C36000
-	for <ath11k@archiver.kernel.org>; Fri, 21 Mar 2025 14:55:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB699C36000
+	for <ath11k@archiver.kernel.org>; Fri, 21 Mar 2025 16:07:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=fG/bMu1daC1RDFeF+BZYT4Nu1TtACugbEL3dk4kpAXk=; b=fhFA7fyRRgOKMRBnMoUQvXgvJi
-	dd/JyVYVEV616uEH/WCQG9jdtnBouMMepQb91xNmsgkNDgTCyFT3+AEHwHH6BoSMhDjZbahs5t101
-	SrMXUJW3hFBiNWmmLzk6553SHx86NdYmOHYBmKnu0et5nje2GBuGdiqds9lBO0rMxRsM6DNwOtIOx
-	Rov8wJqBGfDq0Bx7q5rPI6Gml1KWbR1L9EYTKA08rQzFVuREvyIjvyNmP2slvtprnmTOZRAjMS9bZ
-	CoG0CULreLqNM0gxVPne6ue5YakAUlYILi5lAJXI4wc+4Q2LXPrtAbWQCsF/FRTz5f4FbE7M40wCl
-	McxIjaoQ==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Trfnl0mlXgOimQXZYhYIs6u/12k9GzhtwYKbj7vbYfU=; b=OORP7qcQxpJP+MOPcFEPKSymi3
+	7oTMbBgsLadlZ6fpe870RpufsTtr0noQ4/ly7a5yjjtiocVPmSl5C4yWXpv8q1U3Aq2n2DdmIzyeU
+	HVyvopxrVsTaC1/QxCpLTq9MeWwfETdXQ7G0Fqba8LbbigXADPM1Kr4uEtm/bbtLbS+NUfJ4X33er
+	N2ev3Kry25aGoFfhlAmFN2RXUlZOxrQmt4ZG2ItLIqqWazNDNX6c0X9KJv9XLAP5Js0J3gyqX2csj
+	HKZ087Ax8gJmLkeMnv8LVyzQsBXBofpu+SXrTogflCXoI2Rumxe9SxOJ80OVPZEIpfrFaNMOr1lqQ
+	6bkBNzLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvdmX-0000000FDKA-2jiF;
-	Fri, 21 Mar 2025 14:55:33 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tveuO-0000000FQYn-3NYy;
+	Fri, 21 Mar 2025 16:07:44 +0000
+Received: from out-173.mta0.migadu.com ([2001:41d0:1004:224b::ad])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvdmV-0000000FDJ5-0Y73
+	id 1tveuL-0000000FQUm-1OtQ
 	for ath11k@lists.infradead.org;
-	Fri, 21 Mar 2025 14:55:32 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 879DE5C5CE2;
-	Fri, 21 Mar 2025 14:53:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26852C4CEE3;
-	Fri, 21 Mar 2025 14:55:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742568930;
-	bh=ZcznbrIAimjf3k62jvVeyb7mB0mKsIZKqhT19/qFcrU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=fj1I1XTLpatdDoMn/FxSugWTyGK7E+FjNTLy4iZKkEMwiKi9c37fmNLq7tfYgKh6R
-	 jpSBCM0etC4El4sFneH3ypiwPBBxk2Zpm+0/6jKv162xZRI+1Xv0NJ/ohFNQxkXrj7
-	 bbJwwYLEM3OCnqatatjFMFp94Wnj3lBfGhdUA3bsMmfuGGesUFMFzUXvDGBiXo1fAV
-	 ExTl2webDHgNPiR6bJ+u6gS7E1K3oj9Ka5ZXdElp1Dag4lViA1smoGsFtXWEVFlzLB
-	 Putl9MXyEzh3pWVpEM2GxW66u1kb13LLjU9+WC2QU7gSLtSRNT7pso8qkPCo286Xji
-	 Z1+cn+kq/Jmnw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1tvdmW-000000001IG-2WDN;
-	Fri, 21 Mar 2025 15:55:32 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
-	Steev Klimaszewski <steev@kali.org>,
-	Clayton Craft <clayton@craftyguy.net>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>,
-	stable@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: fix rx completion meta data corruption
-Date: Fri, 21 Mar 2025 15:53:02 +0100
-Message-ID: <20250321145302.4775-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.48.1
+	Fri, 21 Mar 2025 16:07:44 +0000
+Message-ID: <981e83c5-6531-4939-b0ad-eebeb02d00af@craftyguy.net>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=craftyguy.net;
+	s=key1; t=1742573256;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Trfnl0mlXgOimQXZYhYIs6u/12k9GzhtwYKbj7vbYfU=;
+	b=c5lSIsRsfbLSTGbwlLgODbiZ+bgfgqhgVdijjJwwyoSX1UiL4s2gVslmK3rQdH0qaYySrZ
+	Ut/akmLHNDz++s8KB1kSWUMzGc3FkD/N8sv8TamHvuhqhIzJQz0SDc7ZlhTHXEtiJp/C6W
+	x4UfLKzmbCGUtjot79oDQNGIUdhbbo8FFmBa4stmbmSBErjlQEKno+oPb4fcvBwMCJB+Ub
+	Rnt7tXNvCZnH2C09upHIRMjAW6PNKwHR58uVbu1gJ82FITtTWDNeRek2odgRbE5rIryDnt
+	Ajl6vtcHLQ63KVVGlv49N7bYQjFGBiMBmQqmBhJz3gSBIi29oXxFDvt28MdHPg==
+Date: Fri, 21 Mar 2025 09:07:31 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] wifi: ath11k: fix ring-buffer corruption
+To: Johan Hovold <johan+linaro@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
+ Steev Klimaszewski <steev@kali.org>,
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20250321094916.19098-1-johan+linaro@kernel.org>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Clayton Craft <clayton@craftyguy.net>
+In-Reply-To: <20250321094916.19098-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250321_075531_285791_1F1550D4 
-X-CRM114-Status: GOOD (  13.29  )
+X-CRM114-CacheID: sfid-20250321_090742_367285_906919F0 
+X-CRM114-Status: GOOD (  22.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,116 +74,96 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add the missing memory barrier to make sure that the REO dest ring
-descriptor is read after the head pointer to avoid using stale data on
-weakly ordered architectures like aarch64.
+On 3/21/25 02:49, Johan Hovold wrote:
+> Users of the Lenovo ThinkPad X13s have reported that Wi-Fi sometimes
+> breaks and the log fills up with errors like:
+> 
+>      ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1484, expected 1492
+>      ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, expected 1484
+> 
+> which based on a quick look at the driver seemed to indicate some kind
+> of ring-buffer corruption.
+> 
+> Miaoqing Pan tracked it down to the host seeing the updated destination
+> ring head pointer before the updated descriptor, and the error handling
+> for that in turn leaves the ring buffer in an inconsistent state.
+> 
+> Add the missing memory barrier to make sure that the descriptor is read
+> after the head pointer to address the root cause of the corruption while
+> fixing up the error handling in case there are ever any (ordering) bugs
+> on the device side.
+> 
+> Note that the READ_ONCE() are only needed to avoid compiler mischief in
+> case the ring-buffer helpers are ever inlined.
+> 
+> Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
+> 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=218623
+> Link: https://lore.kernel.org/20250310010217.3845141-3-quic_miaoqing@quicinc.com
+> Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>
+> Cc: stable@vger.kernel.org	# 5.6
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/net/wireless/ath/ath11k/ce.c  | 11 +++++------
+>   drivers/net/wireless/ath/ath11k/hal.c |  4 ++--
+>   2 files changed, 7 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+> index e66e86bdec20..9d8efec46508 100644
+> --- a/drivers/net/wireless/ath/ath11k/ce.c
+> +++ b/drivers/net/wireless/ath/ath11k/ce.c
+> @@ -393,11 +393,10 @@ static int ath11k_ce_completed_recv_next(struct ath11k_ce_pipe *pipe,
+>   		goto err;
+>   	}
+>   
+> +	/* Make sure descriptor is read after the head pointer. */
+> +	dma_rmb();
+> +
+>   	*nbytes = ath11k_hal_ce_dst_status_get_length(desc);
+> -	if (*nbytes == 0) {
+> -		ret = -EIO;
+> -		goto err;
+> -	}
+>   
+>   	*skb = pipe->dest_ring->skb[sw_index];
+>   	pipe->dest_ring->skb[sw_index] = NULL;
+> @@ -430,8 +429,8 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
+>   		dma_unmap_single(ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
+>   				 max_nbytes, DMA_FROM_DEVICE);
+>   
+> -		if (unlikely(max_nbytes < nbytes)) {
+> -			ath11k_warn(ab, "rxed more than expected (nbytes %d, max %d)",
+> +		if (unlikely(max_nbytes < nbytes || nbytes == 0)) {
+> +			ath11k_warn(ab, "unexpected rx length (nbytes %d, max %d)",
+>   				    nbytes, max_nbytes);
+>   			dev_kfree_skb_any(skb);
+>   			continue;
+> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+> index 61f4b6dd5380..8cb1505a5a0c 100644
+> --- a/drivers/net/wireless/ath/ath11k/hal.c
+> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+> @@ -599,7 +599,7 @@ u32 ath11k_hal_ce_dst_status_get_length(void *buf)
+>   	struct hal_ce_srng_dst_status_desc *desc = buf;
+>   	u32 len;
+>   
+> -	len = FIELD_GET(HAL_CE_DST_STATUS_DESC_FLAGS_LEN, desc->flags);
+> +	len = FIELD_GET(HAL_CE_DST_STATUS_DESC_FLAGS_LEN, READ_ONCE(desc->flags));
+>   	desc->flags &= ~HAL_CE_DST_STATUS_DESC_FLAGS_LEN;
+>   
+>   	return len;
+> @@ -829,7 +829,7 @@ void ath11k_hal_srng_access_begin(struct ath11k_base *ab, struct hal_srng *srng)
+>   		srng->u.src_ring.cached_tp =
+>   			*(volatile u32 *)srng->u.src_ring.tp_addr;
+>   	} else {
+> -		srng->u.dst_ring.cached_hp = *srng->u.dst_ring.hp_addr;
+> +		srng->u.dst_ring.cached_hp = READ_ONCE(*srng->u.dst_ring.hp_addr);
+>   
+>   		/* Try to prefetch the next descriptor in the ring */
+>   		if (srng->flags & HAL_SRNG_FLAGS_CACHED)
 
-This may fix the ring-buffer corruption worked around by commit
-f9fff67d2d7c ("wifi: ath11k: Fix SKB corruption in REO destination
-ring") by silently discarding data, and may possibly also address user
-reported errors like:
+I was experiencing this issue several times per day, but haven't hit it 
+once in the last few days while testing this patch.
 
-	ath11k_pci 0006:01:00.0: msdu_done bit in attention is not set
-
-Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
-
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Cc: stable@vger.kernel.org	# 5.6
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=218005
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
-
-As I reported here:
-
-	https://lore.kernel.org/lkml/Z9G5zEOcTdGKm7Ei@hovoldconsulting.com/
-
-the ath11k and ath12k appear to be missing a number of memory barriers
-that are required on weakly ordered architectures like aarch64 to avoid
-memory corruption issues.
-
-Here's a fix for one more such case which people already seem to be
-hitting.
-
-Note that I've seen one "msdu_done" bit not set warning also with this
-patch so whether it helps with that at all remains to be seen. I'm CCing
-Jens and Steev that see these warnings frequently and that may be able
-to help out with testing.
-
-Johan
-
-
- drivers/net/wireless/ath/ath11k/dp_rx.c | 25 ++++++++++++++++---------
- 1 file changed, 16 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 029ecf51c9ef..0a57b337e4c6 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2646,7 +2646,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- 	struct ath11k *ar;
- 	struct hal_reo_dest_ring *desc;
- 	enum hal_reo_dest_ring_push_reason push_reason;
--	u32 cookie;
-+	u32 cookie, info0, rx_msdu_info0, rx_mpdu_info0;
- 	int i;
- 
- 	for (i = 0; i < MAX_RADIOS; i++)
-@@ -2659,11 +2659,14 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- try_again:
- 	ath11k_hal_srng_access_begin(ab, srng);
- 
-+	/* Make sure descriptor is read after the head pointer. */
-+	dma_rmb();
-+
- 	while (likely(desc =
- 	      (struct hal_reo_dest_ring *)ath11k_hal_srng_dst_get_next_entry(ab,
- 									     srng))) {
- 		cookie = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
--				   desc->buf_addr_info.info1);
-+				   READ_ONCE(desc->buf_addr_info.info1));
- 		buf_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_BUF_ID,
- 				   cookie);
- 		mac_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_PDEV_ID, cookie);
-@@ -2692,8 +2695,9 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- 
- 		num_buffs_reaped[mac_id]++;
- 
-+		info0 = READ_ONCE(desc->info0);
- 		push_reason = FIELD_GET(HAL_REO_DEST_RING_INFO0_PUSH_REASON,
--					desc->info0);
-+					info0);
- 		if (unlikely(push_reason !=
- 			     HAL_REO_DEST_RING_PUSH_REASON_ROUTING_INSTRUCTION)) {
- 			dev_kfree_skb_any(msdu);
-@@ -2701,18 +2705,21 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- 			continue;
- 		}
- 
--		rxcb->is_first_msdu = !!(desc->rx_msdu_info.info0 &
-+		rx_msdu_info0 = READ_ONCE(desc->rx_msdu_info.info0);
-+		rx_mpdu_info0 = READ_ONCE(desc->rx_mpdu_info.info0);
-+
-+		rxcb->is_first_msdu = !!(rx_msdu_info0 &
- 					 RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU);
--		rxcb->is_last_msdu = !!(desc->rx_msdu_info.info0 &
-+		rxcb->is_last_msdu = !!(rx_msdu_info0 &
- 					RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU);
--		rxcb->is_continuation = !!(desc->rx_msdu_info.info0 &
-+		rxcb->is_continuation = !!(rx_msdu_info0 &
- 					   RX_MSDU_DESC_INFO0_MSDU_CONTINUATION);
- 		rxcb->peer_id = FIELD_GET(RX_MPDU_DESC_META_DATA_PEER_ID,
--					  desc->rx_mpdu_info.meta_data);
-+					  READ_ONCE(desc->rx_mpdu_info.meta_data));
- 		rxcb->seq_no = FIELD_GET(RX_MPDU_DESC_INFO0_SEQ_NUM,
--					 desc->rx_mpdu_info.info0);
-+					 rx_mpdu_info0);
- 		rxcb->tid = FIELD_GET(HAL_REO_DEST_RING_INFO0_RX_QUEUE_NUM,
--				      desc->info0);
-+				      info0);
- 
- 		rxcb->mac_id = mac_id;
- 		__skb_queue_tail(&msdu_list[mac_id], msdu);
--- 
-2.48.1
-
+Tested-by: Clayton Craft <clayton@craftyguy.net>
 
