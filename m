@@ -4,64 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25B76C35FFF
-	for <ath11k@archiver.kernel.org>; Fri, 21 Mar 2025 10:31:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA94CC35FFF
+	for <ath11k@archiver.kernel.org>; Fri, 21 Mar 2025 10:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=D6h+MZ5tyLNsg0EsYsKaACdxHm0MqMnkYgqkpwbwzzA=; b=H13R39Ug0jyjX11+6LjovORFdD
-	DZwfYgw9DTku3gzOyzIboCLBZzKT2bGzMSg5nt3I95aXFR4LF6qIDfsn+PsLxo0pIlSTM+HCfAZ1p
-	ZwTNfh8glWsoXZ4rCMgQte65T9NVlDzpQO2fm+iQk1QroEkTFuw/wgA2KG37YzFyXrlntkVLASOQ9
-	0m0ZulREoi4/CjtshLBs3RbZaYD8qfoVcF4ngwvGbywQcOA3+Ym5T/lGXaAS0CsFIZBKBSfUd7x/6
-	9+2VMSaveUaoRb9HUuXLvTWBrbAQXBS4ePA7iaI4hNaISAI3tfedX6uakhrLl2bSD0VxMtTZKV+Cr
-	+XxQ/fJA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=F5VXJFAwunceWjPEyTQ+PCn827vH/75sJz6UqVEsvbo=; b=sIrw3iHt14ItbVetbPGoAxAmRD
+	JUjH/VKlQ4DiHOLx5sTfm95ei+ET4iMbzy4tjPTtw908azgSoOpmfXHK0pz5f9MBANHoDUBoeMPod
+	vjAOEjOdpgrkoRyuVY8u2Qd/9Op3hC24UF+FnWBNSTtPS2Lfn6kau94nN5Y3VkcD5qaA1YciklvxC
+	kjQUCJYOvHkNLf8QBXd8/I1c+OhnhO0qQUn0OZbOlRLtlRW/nUV2F5FFg21+oRY37Dr5OSQjWanaV
+	w414Ulu60AJf774fpztEZqT1TARMllRX0kA3YdhjN9coYu2OFZQg7UaAiZ5UQYFdCD/RqyiddWMnK
+	CH1UCNig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvZeZ-0000000EWqJ-37qU;
-	Fri, 21 Mar 2025 10:31:03 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1tvZlD-0000000EXvU-0rGa;
+	Fri, 21 Mar 2025 10:37:55 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvZ26-0000000ER4U-2css
+	id 1tvZKd-0000000EU4h-1uPD
 	for ath11k@lists.infradead.org;
-	Fri, 21 Mar 2025 09:51:18 +0000
+	Fri, 21 Mar 2025 10:10:28 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id DA81E615CA;
-	Fri, 21 Mar 2025 09:51:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBBF1C4CEE3;
-	Fri, 21 Mar 2025 09:51:17 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 6E871A487E0;
+	Fri, 21 Mar 2025 10:04:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 651EEC4CEE3;
+	Fri, 21 Mar 2025 10:10:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742550677;
-	bh=7VVnqp5We7VPKAInGfw9ekTMBCZL0z2VJqoEGwTjLi4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=lHcV8z2CtfTJIarA0QrL219MIoGuU+sSOalI+d+YJmpoPz+DELbdmQUV5siLF44lQ
-	 C++07eAF9FLFaHnO43AwMRh4KM+vP/BLytxJWUZJekB+x0fOoTqW/l2fGuKUnhpQmL
-	 X0rxP3YTo4a8ths5Ci9stdyTcBw7HhtKEGAIA0WX6j8B9sV4ePpsZnaqcuNv3AvJMA
-	 2acHrQhuAr9did8o4HwDdyeJ+JjR5SKoybrFO+izvveLb1wuTmS1EGHxNAF8Ek8gk3
-	 5JNySUSLARJK2EakaHjRRHvbWR7rOvgR4G7FtRYYl5v9OS5nb1JdCzuMbIG0CvpoVN
-	 QEMm72u/CNQUw==
+	s=k20201202; t=1742551826;
+	bh=YH7fJ3j+cxz0C85hFBF2iuhtOqEPJCUhbKdA9IRCfXk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V3UFHg53voc1NcSSosyBQlcYVGP2BnAOGZmo9ULUEr9fxMwUbemnjLqDJN0eB1mi5
+	 fwQKQxMJvxvw3ZYpgl2kgoUN8+TIXo4251vri90DEwBa9iVb15wQycA8FPx7nZ6sHw
+	 qxMImHkGk+Yrs4kBDrJpkaHRsvV88aYHdfJz08QQ1V+eIy2e54TUrvFa85bmN6VX3b
+	 tPG4dKxm2pOr152PaDPH5fTY4ejiPP3K7ydlNZI8LVuEDrHXU4ayuvGAa+XssYu87E
+	 luncr8XHXQBK1Bm8T2m+nBxt7fs6Z6M4GyGFNhvc0O5owso4K3VvB+sw0v2vlcDSPQ
+	 ow4vpZ1EuXPIg==
 Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1tvZ26-0000000050m-3F6D;
-	Fri, 21 Mar 2025 10:51:19 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
-	Steev Klimaszewski <steev@kali.org>,
-	Clayton Craft <clayton@craftyguy.net>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>,
-	stable@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: fix ring-buffer corruption
-Date: Fri, 21 Mar 2025 10:49:16 +0100
-Message-ID: <20250321094916.19098-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.48.1
+	(envelope-from <johan@kernel.org>)
+	id 1tvZKe-000000005Uu-2F5b;
+	Fri, 21 Mar 2025 11:10:28 +0100
+Date: Fri, 21 Mar 2025 11:10:28 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: quic_jjohnson@quicinc.com, ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+	johan+linaro@kernel.org
+Subject: Re: [PATCH v4 ath-next 2/2] wifi: ath11k: fix HTC rx insufficient
+ length
+Message-ID: <Z907FGWBV_MNlTcE@hovoldconsulting.com>
+References: <20250317072036.2066518-1-quic_miaoqing@quicinc.com>
+ <20250317072036.2066518-3-quic_miaoqing@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250317072036.2066518-3-quic_miaoqing@quicinc.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250321_031027_627021_01A49683 
+X-CRM114-Status: GOOD (  25.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,93 +78,74 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Users of the Lenovo ThinkPad X13s have reported that Wi-Fi sometimes
-breaks and the log fills up with errors like:
+On Mon, Mar 17, 2025 at 03:20:36PM +0800, Miaoqing Pan wrote:
+> A relatively unusual race condition occurs between host software
+> and hardware, where the host sees the updated destination ring head
+> pointer before the hardware updates the corresponding descriptor.
+> When this situation occurs, the length of the descriptor returns 0.
+> 
+> The current error handling method is to increment descriptor tail
+> pointer by 1, but 'sw_index' is not updated, causing descriptor and
+> skb to not correspond one-to-one, resulting in the following error:
+> 
+> ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1488, expected 1492
+> ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, expected 1484
+> 
+> To address this problem and work around the broken hardware,
+> temporarily skip processing the current descriptor and handle it
+> again next time. Also, skip updating the length field of the
+> descriptor when it is 0, because there's a racing update, may
+> never see the updated length.
+> 
+> Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04546-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+> 
+> Reported-by: Johan Hovold <johan+linaro@kernel.org>
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=218623
+> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
 
-    ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1484, expected 1492
-    ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, expected 1484
+As I've argued elsewhere, I think this should be fixed by adding the
+missing memory barrier which is needed to prevent ordering issues like
+this on aarch64:
 
-which based on a quick look at the driver seemed to indicate some kind
-of ring-buffer corruption.
+	https://lore.kernel.org/lkml/Z90yyrZcORhJJgNU@hovoldconsulting.com/
 
-Miaoqing Pan tracked it down to the host seeing the updated destination
-ring head pointer before the updated descriptor, and the error handling
-for that in turn leaves the ring buffer in an inconsistent state.
+The fact that this alone does not seem to be sufficient to address the
+issue on qcs615 (and qcs8300) suggests that there are further issues
+with these platforms that need to be properly understood before adding
+workarounds in one place in one driver.
 
-Add the missing memory barrier to make sure that the descriptor is read
-after the head pointer to address the root cause of the corruption while
-fixing up the error handling in case there are ever any (ordering) bugs
-on the device side.
+I've just posted my fix, a version of which users have been running now
+for a week without hitting the corruption (that some used to hit
+multiple times a daily), here:
 
-Note that the READ_ONCE() are only needed to avoid compiler mischief in
-case the ring-buffer helpers are ever inlined.
+	https://lore.kernel.org/lkml/20250321094916.19098-1-johan+linaro@kernel.org/
 
-Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
+> @@ -387,18 +387,26 @@ static int ath11k_ce_completed_recv_next(struct ath11k_ce_pipe *pipe,
+>  
+>  	ath11k_hal_srng_access_begin(ab, srng);
+>  
+> -	desc = ath11k_hal_srng_dst_get_next_entry(ab, srng);
+> +	desc = ath11k_hal_srng_dst_peek(ab, srng);
+>  	if (!desc) {
+>  		ret = -EIO;
+>  		goto err;
+>  	}
+>  
+>  	*nbytes = ath11k_hal_ce_dst_status_get_length(desc);
+> -	if (*nbytes == 0) {
+> +	if (unlikely(*nbytes == 0)) {
+> +		/* A relatively unusual race condition occurs between host
+> +		 * software and hardware, where the host sees the updated
+> +		 * destination ring head pointer before the hardware updates
+> +		 * the corresponding descriptor. Temporarily skip processing
+> +		 * the current descriptor and handle it again next time.
+> +		 */
+>  		ret = -EIO;
+>  		goto err;
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Closes: https://bugzilla.kernel.org/show_bug.cgi?id=218623
-Link: https://lore.kernel.org/20250310010217.3845141-3-quic_miaoqing@quicinc.com
-Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>
-Cc: stable@vger.kernel.org	# 5.6
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/net/wireless/ath/ath11k/ce.c  | 11 +++++------
- drivers/net/wireless/ath/ath11k/hal.c |  4 ++--
- 2 files changed, 7 insertions(+), 8 deletions(-)
+Your tests suggested that you always see the correct length the next
+time you process the ring buffer, but AFAICT that is not guaranteed to
+happen (i.e. if you hit this on the last transfer).
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index e66e86bdec20..9d8efec46508 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -393,11 +393,10 @@ static int ath11k_ce_completed_recv_next(struct ath11k_ce_pipe *pipe,
- 		goto err;
- 	}
- 
-+	/* Make sure descriptor is read after the head pointer. */
-+	dma_rmb();
-+
- 	*nbytes = ath11k_hal_ce_dst_status_get_length(desc);
--	if (*nbytes == 0) {
--		ret = -EIO;
--		goto err;
--	}
- 
- 	*skb = pipe->dest_ring->skb[sw_index];
- 	pipe->dest_ring->skb[sw_index] = NULL;
-@@ -430,8 +429,8 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
- 		dma_unmap_single(ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
- 				 max_nbytes, DMA_FROM_DEVICE);
- 
--		if (unlikely(max_nbytes < nbytes)) {
--			ath11k_warn(ab, "rxed more than expected (nbytes %d, max %d)",
-+		if (unlikely(max_nbytes < nbytes || nbytes == 0)) {
-+			ath11k_warn(ab, "unexpected rx length (nbytes %d, max %d)",
- 				    nbytes, max_nbytes);
- 			dev_kfree_skb_any(skb);
- 			continue;
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 61f4b6dd5380..8cb1505a5a0c 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -599,7 +599,7 @@ u32 ath11k_hal_ce_dst_status_get_length(void *buf)
- 	struct hal_ce_srng_dst_status_desc *desc = buf;
- 	u32 len;
- 
--	len = FIELD_GET(HAL_CE_DST_STATUS_DESC_FLAGS_LEN, desc->flags);
-+	len = FIELD_GET(HAL_CE_DST_STATUS_DESC_FLAGS_LEN, READ_ONCE(desc->flags));
- 	desc->flags &= ~HAL_CE_DST_STATUS_DESC_FLAGS_LEN;
- 
- 	return len;
-@@ -829,7 +829,7 @@ void ath11k_hal_srng_access_begin(struct ath11k_base *ab, struct hal_srng *srng)
- 		srng->u.src_ring.cached_tp =
- 			*(volatile u32 *)srng->u.src_ring.tp_addr;
- 	} else {
--		srng->u.dst_ring.cached_hp = *srng->u.dst_ring.hp_addr;
-+		srng->u.dst_ring.cached_hp = READ_ONCE(*srng->u.dst_ring.hp_addr);
- 
- 		/* Try to prefetch the next descriptor in the ring */
- 		if (srng->flags & HAL_SRNG_FLAGS_CACHED)
--- 
-2.48.1
-
+Johan
 
