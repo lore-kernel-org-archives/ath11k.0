@@ -4,93 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D89A0C36000
-	for <ath11k@archiver.kernel.org>; Fri, 21 Mar 2025 19:27:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15F0DC36007
+	for <ath11k@archiver.kernel.org>; Sat, 22 Mar 2025 09:04:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=o5KuILFsArzDnml8ZNWsQJ8DsMl/xcUsw5dgf52brGo=; b=WOAWdkwMQTKwcD83q+lIptSdPL
-	MEog7Np7Tz3zrTaNzBzutmHMOFf6OqGFUgujCMdpPuXfKLmzjOoMzFB2SFteC1tLYl3SLhGThJaVE
-	0QDrIqP8cIywvySE6q2dlDBQDLIUZHW5r8EHBHBJ4ytwbbg4CmuXeuR8NJvaURN5XTmXN50CGGz6L
-	sM1GtptRS34dLmu6rJmz/2cLoBhM5nOYuNuqZZbVzc7ColmHXYGB+qcD0vlBOJ7aE8DywcjfXI7GW
-	HOXkrq56qzHKmHrbR8SUTZrN6ZfFcRh8AosbY8YOxRH2qyHylb5Dti8Y02chXPZy8bBh/9djLu+Xz
-	P01Edsgw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Lp6wMmpdVwBU4pDmuRCX8vo8ezEjV9Zo8H7H6eeFiDk=; b=vWx1bTd2Wx6rQ60FCMJF3/fhgT
+	3PxN3orP4O6bmrkWzjX46nT2sZ7aVfuFLxpG/jW1lvM0g9phbIDRiAMmQM+yI3LasNr4Sr0VcVBBh
+	wpn3YwFGhRwiuQC4hvfg+zRSGfX7lERYY6hcGxQD4hJ6GR9SKnAFWeSFjDitwxCypmeyYwQaB+fQF
+	iH/zavQe0j5NiBx+EGMtygm8lPE1sQ942oP65l4dlzufDNokzJZ9RRBnoXLAPrcq/9LspHzAMfnVX
+	eVm/fi635pQy0laXZ/AadgV8VNmYHYjPzyScAIaQ5mO+p486DIU2VUpHQkmvNWGSYMRvqyJsfdStu
+	8PrQoYwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvi1h-0000000G2b6-18yi;
-	Fri, 21 Mar 2025 19:27:29 +0000
-Received: from mout.kundenserver.de ([212.227.17.13])
+	id 1tvume-0000000H80q-1YAu;
+	Sat, 22 Mar 2025 09:04:48 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvi1e-0000000G2Zz-20sd
-	for ath11k@lists.infradead.org;
-	Fri, 21 Mar 2025 19:27:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1742585233; x=1743190033;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=o5KuILFsArzDnml8ZNWsQJ8DsMl/xcUsw5dgf52brGo=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=hDUMyOFb7n6nqUrTqx+gCwefRLtdj1hgKoOG5yWKgXxtKbeArMmlQWrnmQdOBL7a
-	 DyKo6ALqFy5ie9AcTjCHrh1pnk1kCYVa1Qafrv4UTikQHID0gB2X1mOQ8x4Hr60HX
-	 K9rkr1KRUB1InUtcQFJ/daMKMnLXHxbvFiadv6iSldegeahMqNHxuCOKxJc1IR3iu
-	 i5CwkWwkr3D7iUYyIJxPmXXFfrMThN1w6mbq62Acy9x3riQa6GEZLIFXZuoBwpqTC
-	 ZC1tklfNFgqaIb+TF0tXihLjp9QD0BQwbrQA257zXgaHun6JjnJpJOvGM9n0NGmtw
-	 5lLRMy1cBsswLpMl0w==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.229.215]) by mrelayeu.kundenserver.de
- (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MzhWp-1t09Nw2NdJ-00uqaa; Fri, 21 Mar 2025 20:27:13 +0100
-Message-ID: <a2b2d743-42eb-4eb2-ac41-93d2ab0af939@oldschoolsolutions.biz>
-Date: Fri, 21 Mar 2025 20:27:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: fix ring-buffer corruption
-To: Johan Hovold <johan+linaro@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
- Steev Klimaszewski <steev@kali.org>, Clayton Craft <clayton@craftyguy.net>,
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20250321094916.19098-1-johan+linaro@kernel.org>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <20250321094916.19098-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+	id 1tvumb-0000000H7z7-160S;
+	Sat, 22 Mar 2025 09:04:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=Lp6wMmpdVwBU4pDmuRCX8vo8ezEjV9Zo8H7H6eeFiDk=;
+	t=1742634283; x=1743843883; b=rwo1Jh/dWPih5XtjvvZcsi7wWX7xUhVgu18gQKyiJYs0Fo9
+	qkHf7CDZ3oDcwNe7u9gcHea6VnMHTKlKsLrsAtiTNomHoe2F3jpTkXVE5NA1C3WVEc/lAXJBktbW4
+	fkImDttPW1ShO2YQdFZghmNH3rd/oTQ7gT66i1pM7MZtDcBKl1t+pP4hGR5P/amWB9cskcZPODkAa
+	c40GkI3PujOc1gT9dM6BqKs9PqEj04bYcc7y5Qw7k1rrtaDltGsw80vN7b+IhKUXjtCIF/zcDUsGT
+	1EVBppGQKg9hjoX8sMevyyKJbWPdSbPnlirIUxl0YANJvHZ1PZmasDvve6itPcXw==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.98)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1tvumV-00000001trl-1JPB;
+	Sat, 22 Mar 2025 10:04:39 +0100
+Message-ID: <b3efabfe73ad2c194e49a01342f90eda6c7903af.camel@sipsolutions.net>
+Subject: Re: [PATCH v4 1/3] wifi: nl80211: add link id of transmitted
+ profile for MLO MBSSID
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Aloka Dixit <aloka.dixit@oss.qualcomm.com>, 
+	linux-wireless@vger.kernel.org, ath12k@lists.infradead.org, 
+	ath11k@lists.infradead.org
+Cc: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>, Muna
+ Sinada	 <muna.sinada@oss.qualcomm.com>
+Date: Sat, 22 Mar 2025 10:04:38 +0100
+In-Reply-To: <4e4e4737-6040-4ec2-a3be-3fe1aba7b7cf@oss.qualcomm.com>
+References: <20250310200237.652950-1-aloka.dixit@oss.qualcomm.com>
+	 <20250310200237.652950-2-aloka.dixit@oss.qualcomm.com>
+	 <52beaa2c05c91590797cc1f53b779fca085c8850.camel@sipsolutions.net>
+	 <4e4e4737-6040-4ec2-a3be-3fe1aba7b7cf@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:4dfKNF8HgT0iUPiS0YLMuHQtP46Vjd5JnvB0drE83CaG3D+6MJ+
- Ity7CaC7MozQZQGLs5J33TTjO/+4CH/npxqtytEHAaXop+U+aoqo2ziHThoj4CmRCfcJnHK
- jkymob2jwwi+dFnWSEI1I8QsE3EX6qb4cdhSPxj+bM0sslfsIrcdXysf0IF4sr8de5x8qNP
- yMiNsDTi7QFMzj6Vfb4+w==
-UI-OutboundReport: notjunk:1;M01:P0:JCJBpXcAC9M=;qGU8/OmRr/zBvjepw4Yfp4A0tWJ
- DxN21CZcqo/fruL3yB5jlVyDW+qNF5QA6upKW7ezDUq5PJbgP0Xrk0bfPpyXj8mwg20y6moUa
- mkMe0VgRh3Flkv0jcvPJ3J0rX+1WDTuo/kDksdERKuASIRNMatjD7TEzo6YRBXuqtPWtJAiH0
- tmz93Mgx0gY8m/mTnjnzZIORedmjiY9zRmLgpQk2DENIHfyk1tlwDhepPoqnPt0k9WdvRp7L0
- uExo4z5JObwExWgo2eQFyY1bj77m1CANtaTljLXKQnZcdP8PJilcuWsv5Vfw77gqCpfZOdzOl
- gj65XSqS/7MbFjDplwc40tLQ0WfroSttyg6mAeHnKRv9iTcogngSfiU6UIm7lOZj6U5jFvW7Y
- OcqyCv+9V74Bzg6B9Zo3Xgj7hWtpWm+Z+/vNSFparYcRK7PjP2f38/Q8HQJn42KtiUlsRPyHz
- KV6O8k0xLup2gJX/T/L488ZrIesUZzS3cxcv4qt5sNtC5pJAZwWVOO2RF6rALeTxJNnm9OBlf
- r6XItrFCQlh0W+6Y3WQI1eT/caSfrgzw6M0fp/3tJclBelbelvRwf9/jv+47tTebH1aSxeWXf
- tICGegt7GyylsPTpBHQsdVlSW7gmxfyLmFMdfu0nUkGJw9UL+fIdgriF406n5BuFVjViR4tvr
- X01UfXiIYxudRB5umNUpY/jBz+jNdy1jMHNInNmeKkptkF59YuWn154cNuqm6uYLw+YjlqfJ9
- JgpMJFF6oVatTuUDSbBct3HYzwEEoZ/nKAaz5Y8LaimdzvxaOiipXiGcplQQz0Qjpit+s81DK
- ocM4cSSsjq0Dx2q2lrYbkMbBtjpIYnOg/pLa0Q5qUpOgvFOAyQNGLrotMEXJPWVYoky2o61PR
- XDhmlnWJPpedK5mM0jHr4LkSKvXtaQpc6oPQLqnuNpzhIRZ94PNmbhrHEXJz83d70jropuqmm
- rc4Rbssr5ZUy64fTOokvyEQCy0sRKTxc+eVtAcjbHXFk/7cDtPo7iENfUbvBvD3vD5GZNGeC1
- KZFPAW5TRnrRA0f3gIKH6ICHZyOXE/mRFxM3R+q3+JrisrMBOpvy0Gvj1xMoULaM7h/Ja08ef
- oFcJT0g6gd6Q0tT4tGggBGTtChaidwgh+ON1h7ALbKLRgP22H9P1xTftFEvpa+uK2zII9/HBG
- 46SrW3rdB9m8bKFJ8iwXqF7EL++uGi+HeiBtP6k7D3x0P+7a9gBrQOQMDYAOXZeN1WAZ2d5iT
- +j6PXJjXZuSuQQuWvFTEHsF9BPFKeJR14JbKua9h0gR7ZUmJ4OGcSLIlOLwW1e+Ir9HosoEIz
- dgDiI3r8aYIGSkFk04O4QWwj9DXSzRTJbRWXzZ3eu4md3mWZt3Of4xCI6NCEZNHH+YR5CNdKD
- Elbwuuf9FjdvLZfA1Qe1VifG7XzeYB/NUNOyE=
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250321_122726_973984_AB450AFA 
-X-CRM114-Status: UNSURE (   7.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250322_020445_299670_314D481F 
+X-CRM114-Status: GOOD (  16.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,26 +78,57 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/21/25 10:49, Johan Hovold wrote:
-> Users of the Lenovo ThinkPad X13s have reported that Wi-Fi sometimes
-> breaks and the log fills up with errors like:
->
->      ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1484, exp=
-ected 1492
->      ath11k_pci 0006:01:00.0: HTC Rx: insufficient length, got 1460, exp=
-ected 1484
->
-> which based on a quick look at the driver seemed to indicate some kind
-> of ring-buffer corruption.
->
-I had this issue on the Windows Dev Kit 2023 and X13s, interestingly
-never on the HP Omnibook X14. With this patch there have been no
-occurrences.
+On Thu, 2025-03-13 at 15:59 -0700, Aloka Dixit wrote:
+> On 3/12/2025 1:55 AM, Johannes Berg wrote:
+> > Hi Aloka, all,
+> >=20
+> > > + * @NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID: Link ID of the transmitte=
+d profile.
+> > > + *	This parameter is mandatory if the transmitted profile is part of=
+ an MLD
+> > > + *	and the interface getting configured is a non-transmitted profile=
+. For all
+> > > + *	other cases it will be ignored.
+> >=20
+> > So I guess it's a question of what "the interface getting configured"
+> > means, but I guess you could set up the transmitting interface?
+> >=20
+> Right, if the interface getting configured is the transmitted profile=20
+> the link_id is ignored.
 
-Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+But I guess I don't understand yet why it's not needed? If you want to
+configure MBSSID stuff for the transmitting profile it seems you'd need
+the right link anyway?
 
-with best regards
+But if it's not needed, should we at least validate it's correct or so?
 
-Jens
+> The 'else' case in the highlighted snippet above is the same scenario as=
+=20
+> the 'else' case you referred to, which is one layer out: "else if=20
+> (!config->index) {".
+>=20
+> Both are executed when the interface getting configured is the=20
+> transmitting interface. The difference between these two 'else's is that=
+=20
+> in one case userspace explicitly provides=20
+> "NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX" and in other it hasn't.
 
+Right.
+
+> Similarly, for MLO, mac80211 does not need the link_id of the tx=20
+> interface because it already has the link_conf for it as part of basic=
+=20
+> AP configuration parameters, hence link_id is ignored in both 'else's.
+
+Oh so you're saying that you have an outer link_id already in
+nl80211_start_ap() (or other callers). So then I guess we're back to
+validating it, in line with how we say:
+
+                if ((!config->index && tx_ifindex !=3D dev->ifindex) ||
+                    (config->index && tx_ifindex =3D=3D dev->ifindex))
+                        return -EINVAL;
+
+now?
+
+johannes
 
