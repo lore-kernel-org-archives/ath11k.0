@@ -4,66 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D83AC28B30
-	for <ath11k@archiver.kernel.org>; Sun, 23 Mar 2025 20:12:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67B59C36001
+	for <ath11k@archiver.kernel.org>; Mon, 24 Mar 2025 06:16:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=t7Cs40h1I32QA6hah5heYVE4/zI7hWbUU2YmAjNIFo8=; b=jHmfIlZ30dLle9kVNyiOt9f94N
-	lB/cXlgmlYQaoFcwdgk/b/6Out08+g8Nuq2C803yEV8HIg8xEPOiJMQp72KvtdUfEMVKyI+2myeUv
-	WY73wfmzoGluAHa/Mhx3XIF/8lT3/tGr08uEvMQJnuIm2PODVql0AtRKO941mOUnTUpZETIWSvV6L
-	yeJe2NrfglUs+kxI5Nao7lxlWLKw6T/g3NSunDoR3+IyOJPXIck/F4fu0Lsm1zij2mpTNs3rRo/w9
-	FDBsjF6ZbGfkHWXKTrNS3GPrZeKJeVvNMI0nFOB0VGTCVzT7kTUrug665Q6q4IeTEu3mMhv5w3kyp
-	ldkD1zPg==;
+	bh=C8JLMiI733S4xTq1mEOv/zfYlCWUzTNqm+0T4v8oraU=; b=ZNLdg1bZ31VaP3i5NDiYPG1NmF
+	q5YFRcBWLccTZ95FLZ0fHAQLR89MpH85emzeQlV8llq7Vf0L7LNjevoYgLKrSL0c3ndIK2XdqKoGY
+	g5DRrIn25DD0ywINsqLdluoaBaU2jd0fLbTr2Igjx+Vv9c9TPYli1i3Oq0deoiID0VqgeRdq9gh47
+	Y7XZoz1jwP4bNClVYJTtWisTJ8rqK3CWCUgaGa93/+MK8ioYk3DZzDNN+/Ao9LmyduCrDC1ln8dsG
+	UvndrIkd6CpjXTNJgwatSy8RjdKYEE6MVL6tNUuStusm0VnK0wo3F4UH3LLyN5ftBnzAdLophyQpL
+	sTabH0OQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1twRgk-00000001g4L-0iWg;
-	Sun, 23 Mar 2025 20:12:54 +0000
-Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	id 1twb6c-00000002IcN-3CGd;
+	Mon, 24 Mar 2025 06:16:14 +0000
+Received: from out-178.mta0.migadu.com ([2001:41d0:1004:224b::b2])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1twRgh-00000001g3q-2thH
+	id 1twb6W-00000002IbW-22ZI
 	for ath11k@lists.infradead.org;
-	Sun, 23 Mar 2025 20:12:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1742760765; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=AM1DN9WbGR93tp8Nt4Em/P4TSnXZE5tC61utHpEvDWs0BSaYTkDG89667KSmHt1bVkCs3WJ3oyefuthr5gHSbEO/Z6dtHv/4aeI1ALw+Dqp0Zrfc/f7Dabn/hDKAqbdrfxa2Yma1BmUkunS3df0OW2iAYbSGAfeF1TDSXvqa5y0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1742760765; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=t7Cs40h1I32QA6hah5heYVE4/zI7hWbUU2YmAjNIFo8=; 
-	b=ITz1lzJzEIj9uQnksnZoKa0F6xJA4wEf1qT5gMB+mHxLrAjAC+HJwgZcHi3mHDILuYv3YPE/IaICvry8hcE1wu9MOy1rn6cyn9VZ8wa7kkReTTdbwxio9VFkiIVuZIfMhoQv0XJdX1hgFakc5uTUNO23AAgIjRZoBd3vYm2iRYQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
-	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1742760765;
-	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=t7Cs40h1I32QA6hah5heYVE4/zI7hWbUU2YmAjNIFo8=;
-	b=Dke5Xn3yagnMDoMgp2SbUANxyZLruYV1kMxWyv7n6OJNYxrVp0nhU1MtBoVNj4sV
-	v8JeQsiMhWbhIl1Nk+0VTisDu1ET8IwOssWw5OzEez9696bRGWom7OeCZyFIYcC5qH+
-	AkNZPFjVhYl1ezwdbk+6qUB7R6f+1QPC21shXtF4=
-Received: by mx.zohomail.com with SMTPS id 17427607646843.6235385042233474;
-	Sun, 23 Mar 2025 13:12:44 -0700 (PDT)
-Message-ID: <d71241e5-fa21-4aa6-936d-a7a97a8a07b5@collabora.com>
-Date: Mon, 24 Mar 2025 01:12:39 +0500
+	Mon, 24 Mar 2025 06:16:13 +0000
+Message-ID: <51a59b41-4214-4e24-bfe8-3d8174ba1a3b@craftyguy.net>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=craftyguy.net;
+	s=key1; t=1742796960;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=C8JLMiI733S4xTq1mEOv/zfYlCWUzTNqm+0T4v8oraU=;
+	b=AW+seEM8/syKljhEMGkSA3KPt7Al/dEjX1dKgxcynyPa3TzM90Nkz9NV5h8KEnLn5A68h3
+	FxZ6EH8ioKxSvJL8hLKfdMixNTsT1QFvBtLxgxyOianttCUaek8gCrrGfuPeTP8L4ClgDk
+	/oflXwoN9AcoCuO9PVKg40w3+QxUYU0r/IkmqPYasPmFdRgNfNiDACSNNgGvkkf3+046cO
+	4Wv+hZdpFk9byAk/ls69EtsmpsGckON7smiMeAU+T6Mrv3dhjmYhxhQrl9bNv3OcFeluYF
+	2Z5lRmC8sbkYx5+7Aj/ikPyxRWFKIhxg2f3ojVkpM27iEeSnQZIfZ/kXVurXSA==
+Date: Sun, 23 Mar 2025 23:15:54 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next 0/5] wifi: ath11k: bring hibernation support back
-To: Baochen Qiang <quic_bqiang@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <20250320023003.65028-1-quic_bqiang@quicinc.com>
+Subject: Re: [PATCH] wifi: ath11k: fix rx completion meta data corruption
+To: Johan Hovold <johan+linaro@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
+ Steev Klimaszewski <steev@kali.org>,
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20250321145302.4775-1-johan+linaro@kernel.org>
 Content-Language: en-US
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-In-Reply-To: <20250320023003.65028-1-quic_bqiang@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Clayton Craft <clayton@craftyguy.net>
+In-Reply-To: <20250321145302.4775-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250323_131251_845555_0E908A14 
-X-CRM114-Status: GOOD (  11.78  )
+X-CRM114-CacheID: sfid-20250323_231609_303942_D3F79B58 
+X-CRM114-Status: GOOD (  18.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,52 +74,57 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/20/25 7:29 AM, Baochen Qiang wrote:
-> To handle the Lenovo unexpected wakeup issue [1], previously we revert
-> commit 166a490f59ac ("wifi: ath11k: support hibernation"). However we
-> need to bring it back, of course with additional changes such that Lenovo
-> machines would not break.
+On 3/21/25 07:53, Johan Hovold wrote:
+> Add the missing memory barrier to make sure that the REO dest ring
+> descriptor is read after the head pointer to avoid using stale data on
+> weakly ordered architectures like aarch64.
 > 
-> As those machines work well in Non-WoWLAN suspend mode, the thought here
-> is that we do WoWLAN suspend on Lenovo machines while do non-WoWLAN
-> suspend (which is done in the reverted commit) on other machines. This
-> requires us to identify Lenovo machines from others. For that purpose,
-> read machine info from DMI interface, match it against all known affected
-> machines. If there is a match, choose WoWLAN suspend mode, else choose
-> non-WoWLAN mode.
+> This may fix the ring-buffer corruption worked around by commit
+> f9fff67d2d7c ("wifi: ath11k: Fix SKB corruption in REO destination
+> ring") by silently discarding data, and may possibly also address user
+> reported errors like:
 > 
-> [1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
-I've tested the series and it works. Feel free to add my tag to the
-series. Let me know any more help with testing is required.
+> 	ath11k_pci 0006:01:00.0: msdu_done bit in attention is not set
+> 
+> Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
+> 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Cc: stable@vger.kernel.org	# 5.6
+> Link: https://bugzilla.kernel.org/show_bug.cgi?id=218005
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+> 
+> As I reported here:
+> 
+> 	https://lore.kernel.org/lkml/Z9G5zEOcTdGKm7Ei@hovoldconsulting.com/
+> 
+> the ath11k and ath12k appear to be missing a number of memory barriers
+> that are required on weakly ordered architectures like aarch64 to avoid
+> memory corruption issues.
+> 
+> Here's a fix for one more such case which people already seem to be
+> hitting.
+> 
+> Note that I've seen one "msdu_done" bit not set warning also with this
+> patch so whether it helps with that at all remains to be seen. I'm CCing
+> Jens and Steev that see these warnings frequently and that may be able
+> to help out with testing.
+> 
 
-Tested-on: QCNFA765
-WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+Before this patch I was seeing this "msdu_done bit" an average of about 
+40 times per hour... e.g. a recent boot period of 43hrs saw 1600 of 
+these msgs. I've been testing this patch for about 10 hours now 
+connected to the same network etc, and haven't seen this "msdu_done bit" 
+message once. So, even if it's not completely resolving this for 
+everyone, it seems to be a huge improvement for me.
 
-Tested-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+0006:01:00.0 Network controller: Qualcomm Technologies, Inc QCNFA765 
+Wireless Network Adapter (rev 01)
+ath11k_pci 0006:01:00.0: chip_id 0x2 chip_family 0xb board_id 0x8c 
+soc_id 0x400c0210
+ath11k_pci 0006:01:00.0: fw_version 0x11088c35 fw_build_timestamp 
+2024-04-17 08:34 fw_build_id 
+WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
 
-> 
-> Baochen Qiang (5):
->   wifi: ath11k: determine PM policy based on machine model
->   wifi: ath11k: introduce ath11k_core_continue_suspend_resume()
->   wifi: ath11k: refactor ath11k_core_suspend/_resume()
->   wifi: ath11k: support non-WoWLAN mode suspend as well
->   Reapply "wifi: ath11k: restore country code during resume"
-> 
->  drivers/net/wireless/ath/ath11k/ahb.c  |   4 +-
->  drivers/net/wireless/ath/ath11k/core.c | 245 +++++++++++++++++++++++--
->  drivers/net/wireless/ath/ath11k/core.h |  11 ++
->  drivers/net/wireless/ath/ath11k/hif.h  |  14 +-
->  drivers/net/wireless/ath/ath11k/mhi.c  |  14 +-
->  drivers/net/wireless/ath/ath11k/mhi.h  |   5 +-
->  drivers/net/wireless/ath/ath11k/pci.c  |  44 ++++-
->  drivers/net/wireless/ath/ath11k/qmi.c  |   4 +-
->  8 files changed, 301 insertions(+), 40 deletions(-)
-> 
-> 
-> base-commit: b6f473c96421b8b451a8df8ccb620bcd71d4b3f4
-
-
--- 
-Regards,
-Usama
+Tested-by: Clayton Craft <clayton@craftyguy.net>
 
