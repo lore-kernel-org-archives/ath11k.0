@@ -4,101 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AFFAC36005
-	for <ath11k@archiver.kernel.org>; Tue, 25 Mar 2025 01:04:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE02C35FFC
+	for <ath11k@archiver.kernel.org>; Tue, 25 Mar 2025 10:51:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HyTWSl4FFXzLuQLaenb4gwnDzJkBOmFvlp8r3VN/r4Y=; b=tBAZ5SAaCK9hTV3PbhanAaUWVD
-	ESpfqrdkpVPVSziE4gZTkWmelnEwcDy/xzaWUx8UfX+7ngeXJT/UHpRE3kKwDBSjGal6RlHHP/J4N
-	cryYnUDLTteXIM+e0g0xEoZ/CKUz+463ekbhLEh14n/vMQ7A22fiNMBB2xb6riqZt+t4xZHSA2b3f
-	oqRZNfEiwk7cIvUL7DexdHiApt+RVJdPVcMQT+jQ3rDJ5cMPZ3GktGtpE3wQDmZVXSFHSiBpRp18x
-	KHwijCs3QD88FDUg1lNStqNuvjjtvddxclRFZyTzemNREL1waEJuUeriI7GnmZRLfaZ2pvl9RoFAg
-	ygSJBIZg==;
+	bh=e9CquLRoYM0hQWzImTIkM0BZhIPqMDInitdndu1q9d4=; b=Z7400eB+h0oZghOw1zVOBzcUUw
+	OlRIXGZh8jFbFPBH7t6e/kTUn0Gt57x3BmjzSo5wIcaIR11YKIaYVWE9cld5YM8yCKbTBVHjIqPgn
+	TWjOIZs+d/uAUCVJVrLtXfUbc6P18t2e9xFmt+l2ZJM5eP1b8TYq+D3deBtFS3BZAFWJvJAaQSLC5
+	ZmbSDBpIbSX/7xVTVEw2kpdUOoM2H3f0x8v9TfHlFrX10uLoi5KR466WdJapag0n0IoIvrrI0bO48
+	8Qb/mJDmhvFagcGXUQ37q5KpwqjdlMnX9wq+MLyBR5k/1Es1iKDgDLzY+dsfB1QiiEI5FwCoHwieh
+	XIOx9UHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1twsiP-00000004aUz-1hfs;
-	Tue, 25 Mar 2025 01:04:25 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1tx1sK-00000005UtA-3sfP;
+	Tue, 25 Mar 2025 10:51:16 +0000
+Received: from mout.web.de ([212.227.15.4])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1twsiM-00000004aU8-1tGK
+	id 1tx1hp-00000005TSK-2j0O
 	for ath11k@lists.infradead.org;
-	Tue, 25 Mar 2025 01:04:23 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52OMwZm4015560;
-	Tue, 25 Mar 2025 01:04:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HyTWSl4FFXzLuQLaenb4gwnDzJkBOmFvlp8r3VN/r4Y=; b=OQBosDV49WbHOgnU
-	Z7GfNvehMbv6ZQq3zBEIdhvZ56LODp+sREM/w1NXyW9wXGcb+HtuKo6kmXEZFV/d
-	tHwsFdODa8rGt26q2q8Kbt0A2qBdevtPMwyTrpuIzdH3VdWZXtwHo+/PgVxjgroZ
-	y4usmUlEgD8CwX2oE81sq8burnKRIEGqUkMGwMwxzTOYVWDjHZrNvjyj66koT5EJ
-	HM69xWevQ6Hwkr7q9cEPQ21Lwmca7Ed9H7+zr+5wYkjNiJexKzs5ValUuyqqwunk
-	gB+NfjTUjcIErNRJi6qfWAplnN6SJbp799aEqPmkFA1iRxK6UiTgpqR9iohsIIZs
-	ZbmLIQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hpcp5w31-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Mar 2025 01:04:16 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52P14FcK010205
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Mar 2025 01:04:15 GMT
-Received: from [10.239.29.24] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Mar
- 2025 18:04:13 -0700
-Message-ID: <8ab7dddb-b4dc-408c-806b-e34846737d74@quicinc.com>
-Date: Tue, 25 Mar 2025 09:04:11 +0800
+	Tue, 25 Mar 2025 10:40:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1742899211; x=1743504011; i=jwollrath@web.de;
+	bh=e9CquLRoYM0hQWzImTIkM0BZhIPqMDInitdndu1q9d4=;
+	h=X-UI-Sender-Class:Date:From:To:Cc:Subject:Message-ID:In-Reply-To:
+	 References:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Chls3jCff6K8MryzOG5ZnvyH9JLlvPSBBMGCybJHBvMDjr8jRn6Fca41nIo2fkB9
+	 m775leCdmg0F0Tvqrfr/z7Fj+9OIM/yEmQINam6YR+W+MvJr/7yy/96QtMuXKvMgM
+	 Bd1UsKRtGsvqIytzHamP6+8a0dg2hfuVmDYLTUVuYFRzI87EUT7+lL8Icb0t4jNKl
+	 QkK5hcstk9GGxA4AydQxPx1y7rc8mHhmZmRHJRZxS6hQ9EtVHLPpafkcj9VWMtUrI
+	 SupCADxFGxY4mSkLdPZIb09oKu/fGx/NkHjHfmwNoGH7rdmSnHIxoAF2cZmMePG7z
+	 KqXGYAZebE0fM1X1xA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from schienar ([194.12.189.238]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MHVen-1tsxFC325B-0091It; Tue, 25
+ Mar 2025 11:40:11 +0100
+Date: Tue, 25 Mar 2025 11:40:04 +0100
+From: Julian Wollrath <jwollrath@web.de>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH ath-next 1/5] wifi: ath11k: determine PM policy based on
+ machine model
+Message-ID: <20250325114004.101a7c10@schienar>
+In-Reply-To: <20250320023003.65028-2-quic_bqiang@quicinc.com>
+References: <20250320023003.65028-1-quic_bqiang@quicinc.com>
+	<20250320023003.65028-2-quic_bqiang@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 ath-next 2/2] wifi: ath11k: fix HTC rx insufficient
- length
-To: Johan Hovold <johan@kernel.org>
-CC: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <johan+linaro@kernel.org>
-References: <Z9G5zEOcTdGKm7Ei@hovoldconsulting.com>
- <8ea7fe7c-7b4d-4a6f-ae03-b9ca127c23f8@quicinc.com>
- <Z9METTzUJe9yqVEI@hovoldconsulting.com>
- <b1c79589-4fcd-4630-9551-a620087e0c23@quicinc.com>
- <Z9PjjDFBuSJ7exVj@hovoldconsulting.com>
- <ecfe850c-b263-4bee-b888-c34178e690fc@quicinc.com>
- <Z9gd9Aw5Bug8IKSV@hovoldconsulting.com>
- <f30cf771-a9cd-4d8f-8d10-1640afd33c23@quicinc.com>
- <Z9mwn3GzpPPZSiTG@hovoldconsulting.com>
- <a8fc9f07-013c-4e31-9d9e-46e042d81dbf@quicinc.com>
- <Z90yyrZcORhJJgNU@hovoldconsulting.com>
-Content-Language: en-US
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <Z90yyrZcORhJJgNU@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hoScGWf54ahlJCS37E1mSFkrT-EBncqQ
-X-Proofpoint-ORIG-GUID: hoScGWf54ahlJCS37E1mSFkrT-EBncqQ
-X-Authority-Analysis: v=2.4 cv=PLYP+eqC c=1 sm=1 tr=0 ts=67e20110 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8 a=xObAXXU4KUaL95rEUbgA:9
- a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_07,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 suspectscore=0 mlxscore=0 impostorscore=0 priorityscore=1501
- phishscore=0 clxscore=1015 mlxlogscore=999 adultscore=0 malwarescore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503250005
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:CUH06FBuzWW1hp6rPWi/b884Z3drhSfHFp1gkav2R7dOfeFDjB/
+ o1JGHyM/ODUy83tT0MlMNbj0zhTHHnnRVZ0YR1vzoCO88xWYa3TxIS2UYhaenXtLri5BfIX
+ J+kB8NuAzuBVqEdLmU56thWaQe7iqVyUMWOXu1q/GOA55spwp++uGSdiBDC/hVZN5K8HnXp
+ MUNlfdUr2aornRgDDCYPA==
+UI-OutboundReport: notjunk:1;M01:P0:Ir+mLwPSpRs=;fmh1N1+Tc4KpaJcrJexUtn6ucGv
+ ieY3jG3maPF/G91P6ijPFAqZ55yldT7oX4wZPAJ8DsDll6svj8kr4l9IPicQnv7Onbec34s1/
+ tmI9BkenJ9y0iBP057+QS5KW6weJYKbM0Ivu3PcJopDV/wvs54ezxjM4yY3bgqvfa7YuMRXB+
+ IqQ0RaNhqJKSNFRJnXVYTV0Xo9cg1U30XzQCVjPAyvUQra8wtKNMBgO7XlwsI46zVysqZed1y
+ BMJg90GraOu104qQLNrDIewMD+HH+Z0tZwFNNGwSgVuivp+f+3xBCPwIzcP/spe/GxQe5urje
+ kzQIxMAWSe2yU9CLNWQYfWoTqIoHPnSNW/adFgYCUBmubOw++b8Ydc12/MIvuXpmrKwmp4C1h
+ zD+fvRUhaqITzuxynMkYbGByPHHl/FVvWDjW/rvjnpH0N3sTAY7JYw7gE/hz+Nti9UrVHBSZE
+ Qn6T1y3KpDW2Hk/R+QXDjNcOWMvT7Z11dNyRMnfFiaGtO+/sxLnLhHAr0lVDn0jD54TMNcr9I
+ A3mfp9vcAcvSjPbwaIMAkDCUfVtmVVQjXIMHTN80ENg2l/3JPw20cFzLJ1uSMwksVtQD3Bawf
+ 54fa3UQ1KIovHtt5QgKUmhJtvjxfIgf67R0fpECp3ztw9W0l+QA52wmRX2zat9j21wN8TYstV
+ 4UHjSeUQk6wo4GM2CySIPwIY1n61+nAkvuGoQMpDqJLH/UDNCSNiTSFFGEg2fpzw4lR3XnC3P
+ UVU5QNfs8QXHR7UK+GltkXRhsh2KBDcG2BdYXHzntuPvjeLgmCXADiz/f1Rt1ulOqh+N2DBk3
+ Cl8+va1+nNQC4Sq/6BmTaRpfA7xGdiet2J++f2HgI+AoKf2FSoZzASNiInNSVjzEUuJiuLOfK
+ hzlO0wxmsLNtEpWRT8YG4Spsw9m7b13YB3sm7NqhDsJl1FSoJmqAZwYJ4xiNYzUg4J01aVyvM
+ srYCoibSnGiyj9ErqO1ykoyxsMVjdV14PtLBzqT5Nh89UVqhpB1qt4zeICMp1hbCOJSyuI/Yo
+ JcgjAAHo+5FSsz+jsg3VmXQ1EFHOHsZwBeR9kvk202IUP359aj3G2k4Mt3J265LoSg2FNNdnq
+ pGue+WoF81ssLLWW+Zz1z/jblFaAc1bfRXdZr97WtuZeaoGTM1BBaTzXlQSasYbhxD7aw9sIF
+ Gk0shHMHS6J/+KXuOY+Jvsqau0PjLMrYgvJC+r3JROO939eJUjuuWY7cL3DfSPPKKQipDzlit
+ BU3m9NgkaIqZLcvmPV8z1K1xkd5tTnvQXBVUGOOST6Y1lryUUsi9TsEEIIznb7I1/L37wM4yc
+ h5Teeq3vFy5iNFqEJcr6xh/YGsI/xqiLH+8gqB7l1ma1g/hAtjLXCf2HlHrkesFZrJHAdABj+
+ hba6xJfmnct/jkS7lH5EbeIteNh35C7BdQVf3lnWXlbY/1YpoMFjfvq5drCVw8k8IyG4zWz3K
+ LK0IOu6yvn1ag5n9xeI7LVD797TM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250324_180422_522118_045EFDF2 
-X-CRM114-Status: GOOD (  37.81  )
+X-CRM114-CacheID: sfid-20250325_034025_992723_D3935621 
+X-CRM114-Status: GOOD (  19.37  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,109 +100,150 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi,
+
+Am Do, 20 M=C3=A4r 2025 10:29:59 +0800
+schrieb Baochen Qiang <quic_bqiang@quicinc.com>:
+
+> To handle the Lenovo unexpected wakeup issue [1], previously we revert
+> commit 166a490f59ac ("wifi: ath11k: support hibernation"). So
+> currently WLAN target is put into WoWLAN mode during suspend. This is
+> a temporary solution as it does not work on machines where WLAN power
+> is cut off.
+>=20
+> The thought here is that we do WoWLAN suspend on Lenovo machines while
+> do non-WoWLAN suspend (which is done in the reverted commit) on other
+> machines. This requires us to identify Lenovo machines from others.
+> For that purpose, read board vendor and product name from DMI
+> interface, match it against all known affected machines. If there is
+> a match, choose WoWLAN suspend mode, else choose non-WoWLAN mode.
+> Save the mode in ab for later reference.
+>=20
+> [1] https://bugzilla.kernel.org/show_bug.cgi?id=3D219196
+>=20
+> Tested-on: WCN6855 hw2.0 PCI
+> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+>=20
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/core.c | 55
+> ++++++++++++++++++++++++++ drivers/net/wireless/ath/ath11k/core.h |
+> 7 ++++ 2 files changed, 62 insertions(+)
+>=20
+> diff --git a/drivers/net/wireless/ath/ath11k/core.c
+> b/drivers/net/wireless/ath/ath11k/core.c index
+> 3d39ff85ba94..8657e735bf16 100644 ---
+> a/drivers/net/wireless/ath/ath11k/core.c +++
+> b/drivers/net/wireless/ath/ath11k/core.c @@ -907,6 +907,52 @@ static
+> const struct ath11k_hw_params ath11k_hw_params[] =3D { },
+>  };
+> =20
+> +static const struct dmi_system_id ath11k_pm_quirk_table[] =3D {
+> +	{
+> +		.driver_data =3D (void *)ATH11K_PM_WOW,
+> +		.matches =3D {
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21J4"),
+> +		},
+> +	},
+> +	{
+> +		.driver_data =3D (void *)ATH11K_PM_WOW,
+> +		.matches =3D {
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21K4"),
+> +		},
+> +	},
+
+including the quirk for 21K4 is not needed (at least for my machine)
+but causes the interface to not come up again after putting the system
+into hibernation.
 
 
-On 3/21/2025 5:35 PM, Johan Hovold wrote:
-> On Wed, Mar 19, 2025 at 02:47:12PM +0800, Miaoqing Pan wrote:
->> On 3/19/2025 1:42 AM, Johan Hovold wrote:
-> 
->>> It could if the CPU observes the updates out of order due to the missing
->>> barrier. The driver could be processing an earlier interrupt when the
->>> new descriptor is added and head pointer updated. If for example the CPU
->>> speculatively fetches the descriptor before the head pointer is updated,
->>> then the descriptor length may be zero when the CPU sees the updated
->>> head pointer.
->>
->> Sorry, I still think this situation won't happen. Please see the
->> following code.
->>
->> ath11k_hal_srng_access_begin(ab, srng);
->>     => srng->u.dst_ring.cached_hp = *srng->u.dst_ring.hp_addr;
->> desc = ath11k_hal_srng_dst_get_next_entry(ab, srng);
->>     => if (srng->u.dst_ring.tp == srng->u.dst_ring.cached_hp) return NULL;
->> //dma_rmb();
->> *nbytes = ath11k_hal_ce_dst_status_get_length(desc);
->>
->> If the condition 'srng->u.dst_ring.tp == srng->u.dst_ring.cached_hp' is
->> true, the descriptor retrieval fails.
-> 
-> The CPU can still speculate that this condition will be false and load
-> the descriptor.
-> 
-> If the speculation later turns out to be correct, then the descriptor
-> may have stale values from before the head pointer was updated.
-> 
->>> This seems to be what is happening on the X13s since adding the memory
->>> barrier makes the zero-length descriptors go away.
->>
->> Hmm, it is indeed a bit strange. Could it be that dma_rmb() introduces
->> some delay ?
-> 
-> It's only expected since you must use memory barriers on weakly ordered
-> architectures like aarch64 to guarantee the ordering.
->   
->>>> The Copy Engine hardware module copies the metadata to the Status
->>>> Descriptor after the DMA is complete, then updates the HP to trigger an
->>>> interrupt. I think there might be some issues in this process, such as
->>>> the lack of a wmb instruction after the copy is complete, causing the HP
->>>> to be updated first.
->>>
->>> Yeah, possibly. At least it seems there are more issues than the missing
->>> barrier on the machines you test.
->>>    
->>>>> Now obviously there are further issues in your system, which we should
->>>>> make sure we understand before adding workarounds to the driver.
->>>>>
->>>>> Do you have a pointer to the downstream kernel sources you are testing
->>>>> with? Or even better, can you reproduce the issue with mainline after
->>>>> adding the PCIe patches that were posted to the lists for these
->>>>> platforms?
->>>>>
->>>> https://github.com/qualcomm-linux/meta-qcom-hwe/blob/scarthgap/recipes-kernel/linux/linux-qcom-base_6.6.bb
->>>
->>> Thanks for the pointer. That's a lot of out-of-tree patches on top of
->>> stable so not that easy to check the state of the resulting tree.
->>
->> Yes, but there are only a few patches for ath11k.
-> 
-> Sure, but there are other components that come into play here such as
-> the PCIe controller driver.
-> 
-> A colleague of yours recently submitted an updated patch that overrides
-> the no_snoop bit for qcs8300:
-> 
-> 	https://lore.kernel.org/lkml/20250318053836.tievnd5ohzl7bmox@thinkpad/
-> 
-> but that flag appears not to be set in your downstream tree:
-> 
-> 	https://github.com/qualcomm-linux/meta-qcom-hwe/blob/scarthgap/recipes-kernel/linux/linux-qcom-base-6.6/drivers/qcs8300/0004-PCI-qcom-Add-QCS8300-PCIe-support.patch
-> 
-> Something like that may prevent a cached descriptor from being
-> invalidated when the controller updates it.
-> 
-> Similarly, the PCIe controllers are marked as dma-coherent in your
-> devicetrees. A misconfiguration there could also cause problems.
+Cheers,
+Julian
 
-Thank you very much for these suggestions. I tried setting no_snoop and 
-disabling relaxed_ordering, but unfortunately, these did not work.
-
-> 
-> I suggest we merge my fix that adds the missing memory barrier, and
-> which users have now been testing for a week without hitting the
-> corruption (which they used to see several times a day).
-> 
-Agreed, I previously mistakenly thought that the status descriptor was 
-not updated by DMA.
+> +	{
+> +		.driver_data =3D (void *)ATH11K_PM_WOW,
+> +		.matches =3D {
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21K6"),
+> +		},
+> +	},
+> +	{
+> +		.driver_data =3D (void *)ATH11K_PM_WOW,
+> +		.matches =3D {
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21K8"),
+> +		},
+> +	},
+> +	{
+> +		.driver_data =3D (void *)ATH11K_PM_WOW,
+> +		.matches =3D {
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21KA"),
+> +		},
+> +	},
+> +	{
+> +		.driver_data =3D (void *)ATH11K_PM_WOW,
+> +		.matches =3D {
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21F9"),
+> +		},
+> +	},
+> +	{}
+> +};
+> +
+>  static inline struct ath11k_pdev *ath11k_core_get_single_pdev(struct
+> ath11k_base *ab) {
+>  	WARN_ON(!ab->hw_params.single_pdev_only);
+> @@ -2327,8 +2373,17 @@ EXPORT_SYMBOL(ath11k_core_pre_init);
+> =20
+>  int ath11k_core_init(struct ath11k_base *ab)
+>  {
+> +	const struct dmi_system_id *dmi_id;
+>  	int ret;
+> =20
+> +	dmi_id =3D dmi_first_match(ath11k_pm_quirk_table);
+> +	if (dmi_id)
+> +		ab->pm_policy =3D (enum
+> ath11k_pm_policy)dmi_id->driver_data;
+> +	else
+> +		ab->pm_policy =3D ATH11K_PM_DEFAULT;
+> +
+> +	ath11k_dbg(ab, ATH11K_DBG_BOOT, "pm policy %u\n",
+> ab->pm_policy); +
+>  	ret =3D ath11k_core_soc_create(ab);
+>  	if (ret) {
+>  		ath11k_err(ab, "failed to create soc core: %d\n",
+> ret); diff --git a/drivers/net/wireless/ath/ath11k/core.h
+> b/drivers/net/wireless/ath/ath11k/core.h index
+> 1a3d0de4afde..df2b0cb2f0b5 100644 ---
+> a/drivers/net/wireless/ath/ath11k/core.h +++
+> b/drivers/net/wireless/ath/ath11k/core.h @@ -892,6 +892,11 @@ struct
+> ath11k_msi_config { u16 hw_rev;
+>  };
+> =20
+> +enum ath11k_pm_policy {
+> +	ATH11K_PM_DEFAULT,
+> +	ATH11K_PM_WOW,
+> +};
+> +
+>  /* Master structure to hold the hw data which may be used in core
+> module */ struct ath11k_base {
+>  	enum ath11k_hw_rev hw_rev;
+> @@ -1058,6 +1063,8 @@ struct ath11k_base {
+>  	} testmode;
+>  #endif
+> =20
+> +	enum ath11k_pm_policy pm_policy;
+> +
+>  	/* must be last */
+>  	u8 drv_priv[] __aligned(sizeof(void *));
+>  };
 
 
-> Then we can continue to track down why you are having coherency issues
-> on qcs615 and qcs8300. You really want to make sure that that is fixed
-> properly as it may lead to subtle bugs elsewhere too.
-> 
 
-The same WLAN card is attached to qcs615, qcs8300 and sa8775p, and the 
-issue is never be seen on sa8775p, maybe I can compare the PCIE settings 
-to track down the root cause.
-
-
+--=20
+ ()  ascii ribbon campaign - against html e-mail=20
+ /\                        - against proprietary attachments
 
