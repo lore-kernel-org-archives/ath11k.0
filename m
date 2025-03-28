@@ -4,97 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E409C36014
-	for <ath11k@archiver.kernel.org>; Fri, 28 Mar 2025 05:32:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13DC7C28B20
+	for <ath11k@archiver.kernel.org>; Fri, 28 Mar 2025 15:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=DPzqsLzc01etiPqCN2r1R8t0f9qXE5ghw0sQf/1D3D4=; b=Zzz15IBYKLI5jh
-	aWYUUt/tQdKWe1ZJMGAVfgNzgCb5XWPDWW42hPOCSsPzv0yLg/DZxVDfhQ8dkgAPe3zdCE0QDsxk3
-	d4AMXRkzBuKvPQDwFsMbE75YJzqlc0+DvRiLdcOodWjWbQ1/X4JgQeOsVVo5rW67nPpfw+NcjdNmV
-	rpqgsWLcBXEJ31JKJMRJplQdFov3syYo/PIz5mbWRhGu9iU6R6wkWnMPJR9cEdjkt77gNXbZPxIP3
-	rLXpLytozfGPTwL3pzV+o+J0hQwzu9y3dhqXWQdAFk5xCRrY4UVzE3djahQMANFCLo72wN+D1H/9U
-	WYGJKob0f2wbU8Fn1Csg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=u8bZhwwU9ePmpEeDj6f8479srMs+M3qelX22OGhw+9s=; b=iQIs0cqAOAQ6No89gymPjOeCpm
+	tne1nbOAsbCxSq+ukooEmxD+UlPdNnHR6V2yQkBcBgiGEG2JT53tzRn0voiL6o7UYM48JFQI5hP9z
+	Mfj/1FTtwE7zYqm/aiwYUu06pFwjBTI9O/ZmQ+IrSWvbgKClpLkz3H6TEcT3pYsF6QlE43WP6k+EW
+	UPruY6COsidbdJQcQE6+iNuyoBW23mtGTCFQhRbFHZT2n0gK0sLeKaoTP65kMtOuMBt/DlQjMnV2o
+	D8mMgZ5ojx2q1WXKytWrS3HKAavoV+J5pcDnLSnTY0bhA+9wC5oF77yepWrQqkwBjORjIV0aRv+aI
+	rrSbLnfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1ty2Kl-0000000Cdur-3o7Y;
-	Fri, 28 Mar 2025 05:32:47 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1tyBQX-0000000Djim-3MJ4;
+	Fri, 28 Mar 2025 15:15:21 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1ty2Ki-0000000Cdsr-3ivg
-	for ath11k@lists.infradead.org;
-	Fri, 28 Mar 2025 05:32:47 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S5GjJZ021827;
-	Fri, 28 Mar 2025 05:32:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=DPzqsLzc01etiPqCN2r1R8
-	t0f9qXE5ghw0sQf/1D3D4=; b=PiHrDBGYWKkfIWVSifRwRn8mHDi2etXwPs4YXa
-	T23qg1DEgEUyXE47r046dVP4lwswcZyba8bzj2EvEjym37+RonbhiMVEz3/GPi5S
-	x3kQvQej5tOvBYcoGOi7kLY0hqYG/cjm9ghsW0Blq8uZu1d0/TH5yjO7B5CfK9MU
-	523rYq7pxPk/4Rqr1dquoW+4BwFzcI0aUmkdS6sNtbmCGp/a22oQyYBv5Tn+Ikje
-	dM0tUrjfbZy4FimDriWPgniR2m2IOmmThR0ongFirByAAPH6L+AqV/k6Opl6PbZj
-	C0hIE5PpM+FA5SViD/CLyX9xnWz7ICWOGAUxt7QVHGMNv3pw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kyr9rktu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Mar 2025 05:32:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52S5WU43028555
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Mar 2025 05:32:30 GMT
-Received: from [127.0.1.1] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 27 Mar
- 2025 22:32:28 -0700
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-Subject: [PATCH ath-next v3 0/6] wifi: ath11k: bring hibernation support
- back
-Date: Fri, 28 Mar 2025 13:32:23 +0800
-Message-ID: <20250328-ath11k-bring-hibernation-back-v3-0-23405ae23431@quicinc.com>
+	id 1tyAta-0000000DdAQ-3i8e;
+	Fri, 28 Mar 2025 14:41:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7A5DA4440D;
+	Fri, 28 Mar 2025 14:41:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F1CC4CEE5;
+	Fri, 28 Mar 2025 14:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743172877;
+	bh=1g4EHN9FsFeL8KcNzWB9FjbN2ttqTUJJvv9E0VghsJA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=g99fjolP1ynkbsDZq1bxszDEcMaRy32/d6dV9JXBzveXara9Rky+V+W/Z/rsuB+vf
+	 cgLOKza/l5lSqxqewl4N18vNP6cjWNAiEauc1A3K6bJ/Nz3N77rPRfY49YFWSr3/+N
+	 MeQH0RZSpMCgZXvqvxztGv3KH5QxTg264MSX5d/D5RFHD5ZHaIPeSQf2TEHQM0uU04
+	 0NwohwgCfxYQv1ArN4GXUlntUzGhcux6XYIKzXq50EVCWuAgRBMNjX20CWFnzYhlhu
+	 hB365hD3o8UxwChCVV1Ux4/bWMxboHdAH9J6QfxXtpulUr3eeUn7GhmgIW7okkz9Uf
+	 gABQCL5CfAJWw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1tyAte-000000007JI-42Hf;
+	Fri, 28 Mar 2025 15:41:22 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 2/4] arm64: Kconfig: switch to HAVE_PWRCTRL
+Date: Fri, 28 Mar 2025 15:36:44 +0100
+Message-ID: <20250328143646.27678-3-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250328143646.27678-1-johan+linaro@kernel.org>
+References: <20250328143646.27678-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGg05mcC/4XNQQ6CMBQE0KuQrv2GFgrElfcwLkr7Cz/Eom1tM
- IS72xAXunI5mcyblQX0hIGdipV5TBRodjlUh4LpUbkBgUzOTJRClpWoQcWR8wl6T26AkXr0TsU
- 8gl7pCZBzZTrshDKWZePu0dKy+xeWp+Bwieyam5FCnP1rP05y7z8f8s9HklBCjS3ntbJK9nh+P
- EmT00c933Y7iW+v+eeJ7HWtNVqYphad/fW2bXsDQlcP3yYBAAA=
-X-Change-ID: 20250324-ath11k-bring-hibernation-back-e11ad8e82adf
-To: Johannes Berg <johannes@sipsolutions.net>,
-        Jeff Johnson
-	<jjohnson@kernel.org>
-CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Baochen Qiang <quic_bqiang@quicinc.com>,
-        Muhammad Usama Anjum <usama.anjum@collabora.com>,
-        Takashi Iwai
-	<tiwai@suse.de>
-X-Mailer: b4 0.14.2
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fLAS_WEdKn-NvDC9IFw5lwQjxsqAKWpn
-X-Authority-Analysis: v=2.4 cv=UblRSLSN c=1 sm=1 tr=0 ts=67e6346f cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=AIL0eFhmMaeWv0y-ez0A:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: fLAS_WEdKn-NvDC9IFw5lwQjxsqAKWpn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-28_02,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 priorityscore=1501 phishscore=0 mlxscore=0 impostorscore=0
- adultscore=0 clxscore=1011 mlxlogscore=851 bulkscore=0 malwarescore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503280036
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250327_223245_070276_7321D09C 
-X-CRM114-Status: GOOD (  12.47  )
+X-CRM114-CacheID: sfid-20250328_074118_973741_9F827B92 
+X-CRM114-Status: UNSURE (   9.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,67 +85,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-To handle the Lenovo unexpected wakeup issue [1], previously we revert
-commit 166a490f59ac ("wifi: ath11k: support hibernation"). However we
-need to bring it back, of course with additional changes such that Lenovo
-machines would not break.
+The HAVE_PWRCTRL symbol has been renamed to reflect the pwrctrl
+framework name. Switch to the non-deprecated symbol.
 
-For suspend (S3), as those machines work well in WoWLAN mode, the thought
-here is that we put WLAN target into WoWLAN mode on those machines while
-into non-WoWLAN mode (which is done in the reverted commit) on other
-machines. This requires us to identify Lenovo machines from others. For
-that purpose, read machine info from DMI interface, match it against all
-known affected machines. If there is a match, choose WoWLAN suspend mode,
-else choose non-WoWLAN mode. This is done in patches [1 - 4/6]
-
-For hibernation (S4), non-WoWLAN mode is chosen for all machines. The
-unexpected wakeup issue should not happen in this mode, since WLAN target
-power is cut off. To know if the system is going to suspend or to
-hibernate, register a notifier such that kernel can notify us of such
-infomation. This is done in patch [5/6]
-
-The last patch bring the reverted "wifi: ath11k: restore country code
-during resume" commit back.
-
-[1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
-
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 ---
-Changes in v3:
-- [4/6] remove cosmetic blank line change to make it easy to be backport
-- [5/6] s/ath11l/ath11k/ in subject
-- pick Tested-by tag from Takashi Iwai
-- Link to v2: https://lore.kernel.org/r/20250326-ath11k-bring-hibernation-back-v2-0-87fdc2d6428f@quicinc.com
+ arch/arm64/Kconfig.platforms | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v2:
-- fix compile warnings
-- support hibernation on Lenovo machines listed in quirk table
-- Link to v1: https://lore.kernel.org/linux-wireless/20250320023003.65028-1-quic_bqiang@quicinc.com/
-
----
-Baochen Qiang (6):
-      wifi: ath11k: determine PM policy based on machine model
-      wifi: ath11k: introduce ath11k_core_continue_suspend_resume()
-      wifi: ath11k: refactor ath11k_core_suspend/_resume()
-      wifi: ath11k: support non-WoWLAN mode suspend as well
-      wifi: ath11k: choose default PM policy for hibernation
-      Reapply "wifi: ath11k: restore country code during resume"
-
- drivers/net/wireless/ath/ath11k/ahb.c  |   4 +-
- drivers/net/wireless/ath/ath11k/core.c | 294 ++++++++++++++++++++++++++++++---
- drivers/net/wireless/ath/ath11k/core.h |  16 ++
- drivers/net/wireless/ath/ath11k/hif.h  |  14 +-
- drivers/net/wireless/ath/ath11k/mhi.c  |  14 +-
- drivers/net/wireless/ath/ath11k/mhi.h  |   4 +-
- drivers/net/wireless/ath/ath11k/pci.c  |  45 ++++-
- drivers/net/wireless/ath/ath11k/qmi.c  |   4 +-
- 8 files changed, 350 insertions(+), 45 deletions(-)
----
-base-commit: b6f473c96421b8b451a8df8ccb620bcd71d4b3f4
-change-id: 20250324-ath11k-bring-hibernation-back-e11ad8e82adf
-
-Best regards,
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 02f9248f7c84..cc94845e9bbf 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -269,7 +269,7 @@ config ARCH_QCOM
+ 	bool "Qualcomm Platforms"
+ 	select GPIOLIB
+ 	select PINCTRL
+-	select HAVE_PWRCTL if PCI
++	select HAVE_PWRCTRL if PCI
+ 	help
+ 	  This enables support for the ARMv8 based Qualcomm chipsets.
+ 
 -- 
-Baochen Qiang <quic_bqiang@quicinc.com>
+2.48.1
 
 
