@@ -4,64 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 914E3C28B20
-	for <ath11k@archiver.kernel.org>; Fri, 28 Mar 2025 05:32:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E409C36014
+	for <ath11k@archiver.kernel.org>; Fri, 28 Mar 2025 05:32:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
-	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uBSvxRPcw/xnwz8y+vImXfZ6qAVyJphQQgzEpUgpc+s=; b=H81CwYZReoizB3oS0bvI3IJssQ
-	aem8HUGts/Xk9ird6MuntulyXfq68r5ncxywJbhSA+zc7TyiriH+U7eOSJP+jzmIxwkGQAjZfLzt/
-	Sof30ruFKJ9Y8amW4og3TT6AzFg9V6fvA71cCGrWRiUobzZpTONYaw1Y/qNjfW0x6/lL+kLdE0ZBe
-	/hdz2rq9eBlG1Ny+vqPyavvXQG38HWhCgSML1io56hQqnEtd/hFLKPCKQdrevVNI1oyUWOTCBIMWz
-	+tb8A+LdYC8NbcM/D1W8LJ5aJSZ5hGeDg2ZEt4nMuEnmBn1znKgk70bOD6QNyLIK7Ih7+Jv4mM1R4
-	OFVLWtKw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=DPzqsLzc01etiPqCN2r1R8t0f9qXE5ghw0sQf/1D3D4=; b=Zzz15IBYKLI5jh
+	aWYUUt/tQdKWe1ZJMGAVfgNzgCb5XWPDWW42hPOCSsPzv0yLg/DZxVDfhQ8dkgAPe3zdCE0QDsxk3
+	d4AMXRkzBuKvPQDwFsMbE75YJzqlc0+DvRiLdcOodWjWbQ1/X4JgQeOsVVo5rW67nPpfw+NcjdNmV
+	rpqgsWLcBXEJ31JKJMRJplQdFov3syYo/PIz5mbWRhGu9iU6R6wkWnMPJR9cEdjkt77gNXbZPxIP3
+	rLXpLytozfGPTwL3pzV+o+J0hQwzu9y3dhqXWQdAFk5xCRrY4UVzE3djahQMANFCLo72wN+D1H/9U
+	WYGJKob0f2wbU8Fn1Csg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1ty2Kp-0000000CdyK-2uHU;
-	Fri, 28 Mar 2025 05:32:51 +0000
+	id 1ty2Kl-0000000Cdur-3o7Y;
+	Fri, 28 Mar 2025 05:32:47 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1ty2Kn-0000000CdvJ-0rww
+	id 1ty2Ki-0000000Cdsr-3ivg
 	for ath11k@lists.infradead.org;
-	Fri, 28 Mar 2025 05:32:50 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S5STZ3022968;
-	Fri, 28 Mar 2025 05:32:45 GMT
+	Fri, 28 Mar 2025 05:32:47 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S5GjJZ021827;
+	Fri, 28 Mar 2025 05:32:32 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uBSvxRPcw/xnwz8y+vImXfZ6qAVyJphQQgzEpUgpc+s=; b=Aya2f6Q/BSdpbnsA
-	H+FLcODO3z5xw5aSDc9IP+t+Vf7swx/atfRAnATGHuPbdUuUF6IfIFtdX1zTt2n9
-	yLKgtsG70bHg3wxtPbwTFXKoLccWAOJY2wOWbAE+r3zDsvW7iT3lw7A1A6QtwHKP
-	sD76LflJfDTCdyI8iBLzHDbcHr9ML5nWCWa47aeSleGDdPOxJEsw7YPd7gATufBm
-	EZ7pwuWqGW23OVh9Yb14j0AXMfNBl8Y/YlcQs3QNdf3FFEbopqBQyca9ucXMadxZ
-	G435wZ44+WTGMHUQ0xMuZVU5j0UnKr2o+2vp5T3iJNJqJCxX903Bep+tIt5XdblD
-	OEsq1w==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45mb9my0sw-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=DPzqsLzc01etiPqCN2r1R8
+	t0f9qXE5ghw0sQf/1D3D4=; b=PiHrDBGYWKkfIWVSifRwRn8mHDi2etXwPs4YXa
+	T23qg1DEgEUyXE47r046dVP4lwswcZyba8bzj2EvEjym37+RonbhiMVEz3/GPi5S
+	x3kQvQej5tOvBYcoGOi7kLY0hqYG/cjm9ghsW0Blq8uZu1d0/TH5yjO7B5CfK9MU
+	523rYq7pxPk/4Rqr1dquoW+4BwFzcI0aUmkdS6sNtbmCGp/a22oQyYBv5Tn+Ikje
+	dM0tUrjfbZy4FimDriWPgniR2m2IOmmThR0ongFirByAAPH6L+AqV/k6Opl6PbZj
+	C0hIE5PpM+FA5SViD/CLyX9xnWz7ICWOGAUxt7QVHGMNv3pw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kyr9rktu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Mar 2025 05:32:45 +0000 (GMT)
+	Fri, 28 Mar 2025 05:32:31 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52S5WinE032035
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52S5WU43028555
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Mar 2025 05:32:44 GMT
+	Fri, 28 Mar 2025 05:32:30 GMT
 Received: from [127.0.1.1] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 27 Mar
- 2025 22:32:42 -0700
+ 2025 22:32:28 -0700
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-Date: Fri, 28 Mar 2025 13:32:29 +0800
-Subject: [PATCH ath-next v3 6/6] Reapply "wifi: ath11k: restore country
- code during resume"
+Subject: [PATCH ath-next v3 0/6] wifi: ath11k: bring hibernation support
+ back
+Date: Fri, 28 Mar 2025 13:32:23 +0800
+Message-ID: <20250328-ath11k-bring-hibernation-back-v3-0-23405ae23431@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250328-ath11k-bring-hibernation-back-v3-6-23405ae23431@quicinc.com>
-References: <20250328-ath11k-bring-hibernation-back-v3-0-23405ae23431@quicinc.com>
-In-Reply-To: <20250328-ath11k-bring-hibernation-back-v3-0-23405ae23431@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAGg05mcC/4XNQQ6CMBQE0KuQrv2GFgrElfcwLkr7Cz/Eom1tM
+ IS72xAXunI5mcyblQX0hIGdipV5TBRodjlUh4LpUbkBgUzOTJRClpWoQcWR8wl6T26AkXr0TsU
+ 8gl7pCZBzZTrshDKWZePu0dKy+xeWp+Bwieyam5FCnP1rP05y7z8f8s9HklBCjS3ntbJK9nh+P
+ EmT00c933Y7iW+v+eeJ7HWtNVqYphad/fW2bXsDQlcP3yYBAAA=
+X-Change-ID: 20250324-ath11k-bring-hibernation-back-e11ad8e82adf
 To: Johannes Berg <johannes@sipsolutions.net>,
         Jeff Johnson
 	<jjohnson@kernel.org>
@@ -77,22 +79,22 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=cs+bk04i c=1 sm=1 tr=0 ts=67e6347d cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=QX4gbG5DAAAA:8 a=COk6AnOGAAAA:8 a=RoHt8tvvRc4mp1QopSkA:9
- a=QEXdDO2ut3YA:10 a=AbAUZ8qAyYyZVLSsDulk:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: ZwPYu9WncyOpZ-7eai7aFP_bfbwSNi_V
-X-Proofpoint-ORIG-GUID: ZwPYu9WncyOpZ-7eai7aFP_bfbwSNi_V
+X-Proofpoint-GUID: fLAS_WEdKn-NvDC9IFw5lwQjxsqAKWpn
+X-Authority-Analysis: v=2.4 cv=UblRSLSN c=1 sm=1 tr=0 ts=67e6346f cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=AIL0eFhmMaeWv0y-ez0A:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: fLAS_WEdKn-NvDC9IFw5lwQjxsqAKWpn
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-28_02,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- bulkscore=0 mlxlogscore=847 malwarescore=0 lowpriorityscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0 suspectscore=0
- mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 priorityscore=1501 phishscore=0 mlxscore=0 impostorscore=0
+ adultscore=0 clxscore=1011 mlxlogscore=851 bulkscore=0 malwarescore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
  adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
  definitions=main-2503280036
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250327_223249_390486_E50E2DAC 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20250327_223245_070276_7321D09C 
+X-CRM114-Status: GOOD (  12.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,56 +109,67 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This reverts commit d3e154d7776ba57ab679fb816fb87b627fba21c9.
+To handle the Lenovo unexpected wakeup issue [1], previously we revert
+commit 166a490f59ac ("wifi: ath11k: support hibernation"). However we
+need to bring it back, of course with additional changes such that Lenovo
+machines would not break.
 
-With non-WoWLAN suspend support brought back, commit 7f0343b7b871 ("wifi:
-ath11k: restore country code during resume") needs to be brought back
-as well.
+For suspend (S3), as those machines work well in WoWLAN mode, the thought
+here is that we put WLAN target into WoWLAN mode on those machines while
+into non-WoWLAN mode (which is done in the reverted commit) on other
+machines. This requires us to identify Lenovo machines from others. For
+that purpose, read machine info from DMI interface, match it against all
+known affected machines. If there is a match, choose WoWLAN suspend mode,
+else choose non-WoWLAN mode. This is done in patches [1 - 4/6]
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
+For hibernation (S4), non-WoWLAN mode is chosen for all machines. The
+unexpected wakeup issue should not happen in this mode, since WLAN target
+power is cut off. To know if the system is going to suspend or to
+hibernate, register a notifier such that kernel can notify us of such
+infomation. This is done in patch [5/6]
 
-Tested-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
-Tested-by: Takashi Iwai <tiwai@suse.de>
+The last patch bring the reverted "wifi: ath11k: restore country code
+during resume" commit back.
+
+[1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
+
 Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Changes in v3:
+- [4/6] remove cosmetic blank line change to make it easy to be backport
+- [5/6] s/ath11l/ath11k/ in subject
+- pick Tested-by tag from Takashi Iwai
+- Link to v2: https://lore.kernel.org/r/20250326-ath11k-bring-hibernation-back-v2-0-87fdc2d6428f@quicinc.com
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index cde009c3bdaf1e7a4f64a10df61029ef83408cd0..3f0e8e65e8e907d70705634b62909886a09b3b70 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1185,6 +1185,7 @@ EXPORT_SYMBOL(ath11k_core_resume_early);
- 
- static int ath11k_core_resume_default(struct ath11k_base *ab)
- {
-+	struct ath11k *ar;
- 	long time_left;
- 	int ret;
- 
-@@ -1195,6 +1196,20 @@ static int ath11k_core_resume_default(struct ath11k_base *ab)
- 		return -ETIMEDOUT;
- 	}
- 
-+	/* So far only single_pdev_only devices can reach here,
-+	 * so it is valid to handle the first, and the only, pdev.
-+	 */
-+	ar = ab->pdevs[0].ar;
-+	if (ab->hw_params.current_cc_support &&
-+	    ar->alpha2[0] != 0 && ar->alpha2[1] != 0) {
-+		ret = ath11k_reg_set_cc(ar);
-+		if (ret) {
-+			ath11k_warn(ab, "failed to set country code during resume: %d\n",
-+				    ret);
-+			return ret;
-+		}
-+	}
-+
- 	ret = ath11k_dp_rx_pktlog_start(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to start rx pktlog during resume: %d\n",
+Changes in v2:
+- fix compile warnings
+- support hibernation on Lenovo machines listed in quirk table
+- Link to v1: https://lore.kernel.org/linux-wireless/20250320023003.65028-1-quic_bqiang@quicinc.com/
 
+---
+Baochen Qiang (6):
+      wifi: ath11k: determine PM policy based on machine model
+      wifi: ath11k: introduce ath11k_core_continue_suspend_resume()
+      wifi: ath11k: refactor ath11k_core_suspend/_resume()
+      wifi: ath11k: support non-WoWLAN mode suspend as well
+      wifi: ath11k: choose default PM policy for hibernation
+      Reapply "wifi: ath11k: restore country code during resume"
+
+ drivers/net/wireless/ath/ath11k/ahb.c  |   4 +-
+ drivers/net/wireless/ath/ath11k/core.c | 294 ++++++++++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/core.h |  16 ++
+ drivers/net/wireless/ath/ath11k/hif.h  |  14 +-
+ drivers/net/wireless/ath/ath11k/mhi.c  |  14 +-
+ drivers/net/wireless/ath/ath11k/mhi.h  |   4 +-
+ drivers/net/wireless/ath/ath11k/pci.c  |  45 ++++-
+ drivers/net/wireless/ath/ath11k/qmi.c  |   4 +-
+ 8 files changed, 350 insertions(+), 45 deletions(-)
+---
+base-commit: b6f473c96421b8b451a8df8ccb620bcd71d4b3f4
+change-id: 20250324-ath11k-bring-hibernation-back-e11ad8e82adf
+
+Best regards,
 -- 
-2.34.1
+Baochen Qiang <quic_bqiang@quicinc.com>
 
 
