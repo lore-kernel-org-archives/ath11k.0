@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FA32C36014
-	for <ath11k@archiver.kernel.org>; Fri, 28 Mar 2025 15:15:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 209EEC28B20
+	for <ath11k@archiver.kernel.org>; Fri, 28 Mar 2025 15:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=f/+xVXmyifsKxzZW6qvHUn1JTmdvqrYJfpZm/vXSIzA=; b=SsEKPnK4ER+T+ZSNf8mFin/LoC
-	J/rozRyjqepuSMTYOOjHZD0oDXXQaApCsol6o8mbP5jSZAkfCcc+koDxy79MQ7jH1Ees8IthhgTgi
-	wUqU+mRdqD+qn08euFUSEJc083saucH0dpwVqVDGvYblECqbS7y4eSNAsxEjTL8tnaFwU4km6Dwb6
-	szOKxgTQt13f+EEM5XrZGLwqbgJ80dwpT05S1WZbyKe1vJF+hQGWnjtngRE62tGm1Z55t3Wj51its
-	OGJtaO6BNz9T+2wcPL1ucG4zgwkEMoSBE8nOl05t3zyYD1BtTthtGeDNKATwGOj6y7Y7KUlFBQaXk
-	Aec5cD7A==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=dDBmOOaGqFS5KRPk2m9tJwpb4/Lkkb9nYmrvQxmDUZM=; b=sd4iKyjIvz4ciVWuZbS/xvDuct
+	32R/W4sg+DYzqBJLcX5Nvl6bNMNAkLy8QSY5qZqUmIUul5V4B2mmPG/glS2SB4ImTXB/0tsp1zNgP
+	+k+H1LqP27Km5T/D9m4dERLh7POVg/3h2c4LLEbqQERCmrJYeNDxcOBI1P7PZK6z2L6RUj86rrD03
+	MtPnd5rEr6pF+pz8CUyCAwVlEEPoYqNLUmqEjwi1NuVme50wXAE3zEDXJ3j8y1xh/VHqrTmaFuAKx
+	+DJrwwrfp+PsQE8FhjyTidm/9pDgIWptuTTDj1U91aeCLws6UVYlGWkfmVebldtf11JlQJ4YJfYQW
+	cajr+wlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tyBQX-0000000DjiZ-1YlK;
-	Fri, 28 Mar 2025 15:15:21 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tyBU0-0000000Dkdy-3P7G;
+	Fri, 28 Mar 2025 15:18:56 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tyAta-0000000DdAP-3Z6m;
-	Fri, 28 Mar 2025 14:41:20 +0000
+	id 1tyAtb-0000000DdAT-08z7;
+	Fri, 28 Mar 2025 14:41:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id AB1CD5C637C;
-	Fri, 28 Mar 2025 14:39:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 416FFC4CEE4;
+	by dfw.source.kernel.org (Postfix) with ESMTP id 0B6C25C643F;
+	Fri, 28 Mar 2025 14:39:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61342C4CEEB;
 	Fri, 28 Mar 2025 14:41:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1743172877;
-	bh=y7cHCyZAEfSlg6AyD3uU4qQU2vhubF/C2tytpK45mgI=;
-	h=From:To:Cc:Subject:Date:From;
-	b=FhE2tGtwR/3+u2Pxi0Nic1s8CgrzGIuTvwq6WqBTWMA2CxUrHpLNg8V5M5U/5NMbz
-	 sfkvii5DH4bxQq9Wr7+QsOJT4hKvSiENvMymmNdqLgyirCpuhaIYs7T+X60hfE5Hd4
-	 lyBqTyiMMZDj2qBNM5DGdqCFo/YJV0xjBkQlmYgePwNu8IbTQ4v6baT/nbgkY7ZaPa
-	 OX4ew5klYUT0UvgmxuRhinMtYq17kp5BPn5KPgAkGg2HaskmQyiom7Y2sYKWeet0g+
-	 C/ZFo5TZh/XU7FjWncQ7FilvaeVkgqk2TAkB1WBn1jZ0nX/JdUN7k8bb2tuLrzsMzc
-	 6Iif3uzKrFgBw==
+	bh=ukkF1hCEQm7wbvZ+4W4weswXt03pl708DLbZGCEkZ5M=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=nVN+T77o0MVlYYptvSQ19rgbdLkuIJf6geemDlEupAakuG8ZVSFTTH2iqfM9mID7F
+	 rRusyJ0kBF4Gp5vxfHx/B+MnrKhymbBlMxe9cl9gl8o2LY+TgHZgpKNG12P59iOQvv
+	 KqjAE5hOiy5zsCoQY3IMmobvq0yO3WPUnETWfrvL+wL7EKpUG33aWbN0hxiM7SmQW2
+	 GZ2EB6DLom0XC+lG8WyEV3Ndk7jbHZOFq2/XUUDGazUm5SH2IlPnG80VGfhKJDnr8+
+	 U0AhO31B7LBIKnszEaKnfJ+DuRHYvNKUfXNcYFu/MBuUZYi1Xlwa+TlaEUoPiniQT5
+	 t/s2T6nYzONbg==
 Received: from johan by xi.lan with local (Exim 4.97.1)
 	(envelope-from <johan+linaro@kernel.org>)
-	id 1tyAte-000000007JE-3B3i;
-	Fri, 28 Mar 2025 15:41:22 +0100
+	id 1tyAtf-000000007JK-0GTP;
+	Fri, 28 Mar 2025 15:41:23 +0100
 From: Johan Hovold <johan+linaro@kernel.org>
 To: Bartosz Golaszewski <brgl@bgdev.pl>,
 	Bjorn Helgaas <bhelgaas@google.com>,
@@ -59,15 +59,17 @@ Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 0/4] PCI/arm64/ath11k/ath12k: Rename pwrctrl Kconfig symbols
-Date: Fri, 28 Mar 2025 15:36:42 +0100
-Message-ID: <20250328143646.27678-1-johan+linaro@kernel.org>
+Subject: [PATCH 3/4] wifi: ath11k: switch to PCI_PWRCTRL_PWRSEQ
+Date: Fri, 28 Mar 2025 15:36:45 +0100
+Message-ID: <20250328143646.27678-4-johan+linaro@kernel.org>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250328143646.27678-1-johan+linaro@kernel.org>
+References: <20250328143646.27678-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250328_074118_930671_8420BFFE 
-X-CRM114-Status: UNSURE (   9.85  )
+X-CRM114-CacheID: sfid-20250328_074119_192414_843D7D81 
+X-CRM114-Status: UNSURE (   9.77  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,38 +85,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The PCI pwrctrl framework was renamed after being merged, but the
-Kconfig symbols still reflect the old name ("pwrctl" without an "r").
+The PCI_PWRCTRL_PWRSEQ and HAVE_PWRCTRL symbols have been renamed to
+reflect the pwrctrl framework name. Switch to the non-deprecated
+symbols.
 
-This leads to people not knowing how to refer to the framework in
-writing, inconsistencies in module naming, etc.
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Let's rename also the Kconfig symbols before this gets any worse.
-
-The arm64, ath11k and ath12k changes could go through the corresponding
-subsystem trees once they have the new symbols (e.g. in the next cycle)
-or they could all go in via the PCI tree with an ack from their
-maintainers.
-
-There are some new pwrctrl drivers and an arm64 defconfig change on the
-lists so we may need to keep deprecated symbols for a release or two.
-
-Johan
-
-
-Johan Hovold (4):
-  PCI/pwrctrl: Rename pwrctrl Kconfig symbols and slot module
-  arm64: Kconfig: switch to HAVE_PWRCTRL
-  wifi: ath11k: switch to PCI_PWRCTRL_PWRSEQ
-  wifi: ath12k: switch to PCI_PWRCTRL_PWRSEQ
-
- arch/arm64/Kconfig.platforms            |  2 +-
- drivers/net/wireless/ath/ath11k/Kconfig |  2 +-
- drivers/net/wireless/ath/ath12k/Kconfig |  2 +-
- drivers/pci/pwrctrl/Kconfig             | 27 +++++++++++++++++++------
- drivers/pci/pwrctrl/Makefile            |  8 ++++----
- 5 files changed, 28 insertions(+), 13 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index 2e935d381b6b..659ef134ef16 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -24,7 +24,7 @@ config ATH11K_PCI
+ 	select MHI_BUS
+ 	select QRTR
+ 	select QRTR_MHI
+-	select PCI_PWRCTL_PWRSEQ if HAVE_PWRCTL
++	select PCI_PWRCTRL_PWRSEQ if HAVE_PWRCTRL
+ 	help
+ 	  This module adds support for PCIE bus
+ 
 -- 
 2.48.1
 
