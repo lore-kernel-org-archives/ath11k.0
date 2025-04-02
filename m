@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7867DC28B20
-	for <ath11k@archiver.kernel.org>; Wed,  2 Apr 2025 08:15:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF3EC36017
+	for <ath11k@archiver.kernel.org>; Wed,  2 Apr 2025 11:59:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Z5bKkMRbKxlSUJHVqMm4hUmrEWQcNn5FC/pLkQqhEAk=; b=y5HbZXUiPEJkzuaXKyylVVyqjv
-	tsVskWbWniFx4bQRbBLgknVuYQ9PhX+TjAcEltaPPSfHAVUi3XeoSiy+zWRr8KmyCgjBQui07bspI
-	iBe7cx0Lag/wT0tc4BeF5SufRk4ogmZRgc+fNpBCGN5aLLkXOo9aoRytlcnd8WLISKXeG/27N361A
-	yrkxIa3wiqNLNmCEjRfWf/A3okRYO3X7Hjp1b27ZkQ9NOkQgz2FBmU5iJWGP9j5cqsOTHWMNFxSp1
-	y06nBiOI6qb52xBQjYcaLxuF2ziwpydEFICQY8lwmAp88+bliOi9RBNtOAD9BGeNujc6wO9lAu8WO
-	QcUCl75g==;
+	bh=vy9/NJXhvn4mIwhmDZnkXdRgiPzF0YdRinTdxKRE0Rw=; b=qTBPfcQzIpaoncHJa9/rA6V6xH
+	cEgN7DSa2VBokvA9uGWIVNK5DNKCcbDg1ZBBrK/P8QbtK02Fy9LQ3pBq+zfGCux+ptlq4R5NVOz/3
+	hN7gZH/UplZNk1qeCvQwmw6XMFqCTyoOHufjTKnJIXLclp74LX1qBg44XwpNE5N4C0mN9bDoclVNo
+	9M3PojYkBTiOExvPLsKNy6afxayfnbpZfolr3kd+ewDvy9HrAwJ06532F93wCj3RJoCN4gCat0Xr7
+	c55QiYX5tk29YZlBZi/yeW6jk0WxrJy4rWibLVFHjxDixXRYXFgPB3gDgZgVV5fPtnnnQ+0H4frgY
+	Ls4sNR9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tztFa-00000005V3C-495p;
-	Wed, 02 Apr 2025 08:15:07 +0000
-Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
+	id 1tzwkW-00000005zqA-30dZ;
+	Wed, 02 Apr 2025 11:59:16 +0000
+Received: from mail-yb1-xb2d.google.com ([2607:f8b0:4864:20::b2d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tztDo-00000005Uic-46xJ
-	for ath11k@lists.infradead.org;
-	Wed, 02 Apr 2025 08:13:19 +0000
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-30dd5a93b49so44152441fa.0
-        for <ath11k@lists.infradead.org>; Wed, 02 Apr 2025 01:13:16 -0700 (PDT)
+	id 1tzwgC-00000005yzM-1m7P;
+	Wed, 02 Apr 2025 11:54:49 +0000
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-e5dc299deb4so6767222276.1;
+        Wed, 02 Apr 2025 04:54:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1743581595; x=1744186395; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1743594887; x=1744199687; darn=lists.infradead.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Z5bKkMRbKxlSUJHVqMm4hUmrEWQcNn5FC/pLkQqhEAk=;
-        b=HxiTBykiBzrk6loFUQl7dWHZjpGpZYP2CXbwkEWxQ9Ya1kHMA5b+YzyRQyxi6TaaV3
-         erkJU0A/De0VLuxbc0+FTrN/Qk6V35Huw+8jOr66LilpsMKYsrr14Oheu3h/hhlVwV+z
-         WljWtvbxWOp5GCP9JJNs4ThDfokuVHQ1GqaWcc2De1F3f8Sa0/8MgpkGvTgOCIJcLrzU
-         3SuWK6ShLnCNbB7brzXrqzoa3W9nwo/5n2mRlWGMaJnbUNg00emedUCZOkgLKqnTIhjs
-         T4d+Jzal3h5dWlgd3hRwXEJdZZ7B48wIW54FdpNUEI5FMPInF5z9TtQobKDQYdRqbbx3
-         IUvQ==
+        bh=vy9/NJXhvn4mIwhmDZnkXdRgiPzF0YdRinTdxKRE0Rw=;
+        b=L8ZIreKfIr/4LWDpO+SW3Yxmz5MQyNfcaUyxpeChOOp7vNXcOj5zkAR2M6798r2UAm
+         ZCpZNW7gdJjLJLAboZo0R8Kw7+kPTSmGU3HZcedrZkkOvxJ/HXsR517e2cSC6Ih0KAmd
+         5TH4mKchwnej3QWAwIJNKBoMuVqtgJiYZf4U23vytHsKHkgxaEmrIST150KmtxiT7SaP
+         f03HT1UP8WRYZlqwM8/uoAkN16COxpUt0Yyc0kHyXiAnXwCX9CYQV7BTe4/7xAxAC988
+         d4uUXc598nxNbkzcmcdJpD73yCYST8s8BGKCwiEEbBN0wuFOM8a7ZU4QZ0dY2VclOgza
+         t32w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743581595; x=1744186395;
+        d=1e100.net; s=20230601; t=1743594887; x=1744199687;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Z5bKkMRbKxlSUJHVqMm4hUmrEWQcNn5FC/pLkQqhEAk=;
-        b=heyoOx2ccpisW9TtL5S3tJ8QLPuas1fo9u0xvwzcl8nGSjw/vUwK5Mh6SGCXFDHYzH
-         j0fqr4yh4R5Hk19eBoPZm/NXx6/XSooq/0oxMANMtSLIc3xpyxL1QlqflNYEBAd46P/i
-         WON6GFoEt76BNYc12GuW+VtjC6dCo3lvVw6j70pEF+l+7pMxp7oHPdoFuEw6YU36srYa
-         /d6dCioTiIbxuFHTASHnUYTGHTb8eS6pVX2phRkoegax/7iXFDnEIITeJqCR7uqSVXRv
-         NR4tlBiHFZxKn7P1GpLn9PiivZqGcC04C5pehLsx1DdN/8uvgqVPUnRW6XPhdaBdM53W
-         T6ig==
-X-Forwarded-Encrypted: i=1; AJvYcCXe8p66Gyh8XA4TDEe86CjfU1A9mlTrbFvQUoXW3ZAWgkY3JN/bAyKrGjWnZSUmvJYxNArAn1I=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yznwggh8wa4cHvOwHcz9/ubKAzC838U/xMAb6RVLr7MMA1sFFD/
-	C0k2TP1oG4Ru9degDc5CqyIymbMegMVM10phJXEuoOMPBAA1M7QtiXRtS51LwwRcqqeFzHbhZO0
-	UsNxL4/8Eb5iAMfu/WSb0ku5/skTlTwSD9iMOMg==
-X-Gm-Gg: ASbGncv+7LF4MQNPVMHMchVFolfbKJnZT+Ek3TZOcOkbegE+H+UdfWYFAaZirGrPBaR
-	1e12IrWcx0bnZlH9FKf0IGYrQQQSK6XoQHSq1Ng5YSQ5idmJyPN7xkgRNnRDSaQUBTHD5WocKG7
-	PwYNKSVlq3IYHYutExTKGKTgqjx5WC8LbYemTBHgc8cLPruq/obW37NyAmrQ==
-X-Google-Smtp-Source: AGHT+IFkSOGGYa3V9WycrY+gu8XDZN3eeiEk30gJ0tR1xS7OpisGKyrqxHEtle04WwZppsgW2yf3BQ5HfqnjWB9F/Gs=
-X-Received: by 2002:a05:651c:904:b0:30b:ee81:9622 with SMTP id
- 38308e7fff4ca-30de035019cmr53207541fa.31.1743581594610; Wed, 02 Apr 2025
- 01:13:14 -0700 (PDT)
+        bh=vy9/NJXhvn4mIwhmDZnkXdRgiPzF0YdRinTdxKRE0Rw=;
+        b=MAenoZjNerAMZAU+3Ir/lszpwBn3z/QqWXbiT+B77jMktAqsSAPB4J+A9+VQrl/k4D
+         2xYZPT5YNRqhIe4oHCQz9RJ0Re9t7KhscBrjlCfZN4QOvO5BrX4hU1cZ564OZTabpdxt
+         WqZz+8XM30YgEeEaVOvIRVV86FAlF+4YzRb9hDQQulIigGHGg0Gb0IXfNBLBps/yixzi
+         NgiZpyAOuJlEWRUTQLvXOYKj7kMF7nRGWmBog5FvO/8MxVGXyMBbFn9HEou9lEXHyqT6
+         xtqxoU/fmGolgwVrUPj0fnEq9UJJykcAHTbSd8MCQILsswFyr4eW4Nmhh3kJf2WFJ1Dr
+         HSRw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhWG1ajlVO6kWuYSn7++hJ7/iABFBwsI4LlQUXA/92zAe737snuztD3dm01xC2XENYUZe+0Lpz@lists.infradead.org, AJvYcCVVUkXvl/Af11VUqzZJAkzgYPqln6xWGGCMVUoFHV+gk+038zxOf1lbxrJ+B8k3LEBWCojqROc=@lists.infradead.org, AJvYcCWSfgHY78CQI36Gy4IDs76xMbuN4zhHVnRcl1WLx1d+2eCEIEd1ZTbwz2lNrJxBh+cew4/45iVTB5M6p+iDoqJ8Uw==@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw69DDmr7bcABaKf+6rw/FuT5PAiYFgtUe0VEwpJHl4M+Veh/Cg
+	9yGIc2E/wC6vxprPE7ZfszqcGv9kWCcECrWxe/eE2QufNFb6Tjd9760mpTQJ4CBfb0Jk8EhVA3f
+	ffHh4ErGOvCSvT1KxAvbfLPyH99Q=
+X-Gm-Gg: ASbGncseRky1Hpb6Voy8zU3QrIKUdTwAL6S6yANEys5xoJ4X/rqngfoN8n4+Fsevo9Z
+	8FGdUHEKtc4M/cjqdeEMtKUAWx3+D+48jfmGnXq+F5BQ71nFERKtUqYq6yE+HK+Us52elte9NIy
+	2odyoBEB2jtNPTUAiBhhVjbA58
+X-Google-Smtp-Source: AGHT+IFNDtBcIAQYO7+mpC5YBdxcpT/tGHFxiQO0PB6nI3IzfmthfCbTHs6kmv4TBqJ5DaKFjmvLCaVtnbat1OZZT2c=
+X-Received: by 2002:a05:6902:2289:b0:e69:371d:6861 with SMTP id
+ 3f1490d57ef6-e6b838d5499mr22764455276.8.1743594886959; Wed, 02 Apr 2025
+ 04:54:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250328143646.27678-1-johan+linaro@kernel.org>
-In-Reply-To: <20250328143646.27678-1-johan+linaro@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 2 Apr 2025 10:13:03 +0200
-X-Gm-Features: AQ5f1JoGfVJ9ts98vDCtSYScI8e3HIFmZAN4o5AGXV0GNmnQTKivDH_VGXOT9Xk
-Message-ID: <CAMRc=McRPmWu4q9EqYC_3wDCKoniu7Rf308SsKrbCk5rbopFwA@mail.gmail.com>
-Subject: Re: [PATCH 0/4] PCI/arm64/ath11k/ath12k: Rename pwrctrl Kconfig symbols
+References: <20250328143646.27678-1-johan+linaro@kernel.org> <20250328143646.27678-2-johan+linaro@kernel.org>
+In-Reply-To: <20250328143646.27678-2-johan+linaro@kernel.org>
+From: Jonas Gorski <jonas.gorski@gmail.com>
+Date: Wed, 2 Apr 2025 13:54:36 +0200
+X-Gm-Features: AQ5f1Joz82s1WEmRV4TLp7DwBdkZ7lMGLaFCty5_AWjWPHUmCYB4oGRiYB1dCkM
+Message-ID: <CAOiHx=mo6Qd+7WrO2JvBLhqjGR7oHds14FwFFAVoEkVWLnbhdA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] PCI/pwrctrl: Rename pwrctrl Kconfig symbols and slot module
 To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, 
 	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, linux-pci@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, ath11k@lists.infradead.org, 
 	ath12k@lists.infradead.org, linux-wireless@vger.kernel.org, 
@@ -82,8 +82,8 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>, Catalin Marinas <catalin.marinas@arm.co
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250402_011317_364492_F1CB0456 
-X-CRM114-Status: GOOD (  18.14  )
+X-CRM114-CacheID: sfid-20250402_045448_466594_83002791 
+X-CRM114-Status: GOOD (  25.39  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,44 +98,115 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi,
+
+I have some nitpicks ...
+
 On Fri, Mar 28, 2025 at 3:41=E2=80=AFPM Johan Hovold <johan+linaro@kernel.o=
 rg> wrote:
 >
-> The PCI pwrctrl framework was renamed after being merged, but the
-> Kconfig symbols still reflect the old name ("pwrctl" without an "r").
+> Commits b88cbaaa6fa1 ("PCI/pwrctrl: Rename pwrctl files to pwrctrl") and
+> 3f925cd62874 ("PCI/pwrctrl: Rename pwrctrl functions and structures")
+> renamed the "pwrctl" framework to "pwrctrl" for consistency reasons.
 >
-> This leads to people not knowing how to refer to the framework in
-> writing, inconsistencies in module naming, etc.
+> Rename also the Kconfig symbols so that they reflect the new name while
+> adding entries for the deprecated ones. The old symbols can be removed
+> once everything that depends on them has been updated.
 >
-> Let's rename also the Kconfig symbols before this gets any worse.
+> The new slot module is also renamed to reflect the framework name and
+> match the other pwrctrl modules.
 >
-> The arm64, ath11k and ath12k changes could go through the corresponding
-> subsystem trees once they have the new symbols (e.g. in the next cycle)
-> or they could all go in via the PCI tree with an ack from their
-> maintainers.
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  drivers/pci/pwrctrl/Kconfig  | 27 +++++++++++++++++++++------
+>  drivers/pci/pwrctrl/Makefile |  8 ++++----
+>  2 files changed, 25 insertions(+), 10 deletions(-)
 >
-> There are some new pwrctrl drivers and an arm64 defconfig change on the
-> lists so we may need to keep deprecated symbols for a release or two.
+> diff --git a/drivers/pci/pwrctrl/Kconfig b/drivers/pci/pwrctrl/Kconfig
+> index 990cab67d413..62f176e42e33 100644
+> --- a/drivers/pci/pwrctrl/Kconfig
+> +++ b/drivers/pci/pwrctrl/Kconfig
+> @@ -1,19 +1,19 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
 >
-> Johan
+> -config HAVE_PWRCTL
+> +config HAVE_PWRCTRL
+>         bool
 >
+> -config PCI_PWRCTL
+> +config PCI_PWRCTRL
+>         tristate
 >
-> Johan Hovold (4):
->   PCI/pwrctrl: Rename pwrctrl Kconfig symbols and slot module
->   arm64: Kconfig: switch to HAVE_PWRCTRL
->   wifi: ath11k: switch to PCI_PWRCTRL_PWRSEQ
->   wifi: ath12k: switch to PCI_PWRCTRL_PWRSEQ
+> -config PCI_PWRCTL_PWRSEQ
+> +config PCI_PWRCTRL_PWRSEQ
+>         tristate
+>         select POWER_SEQUENCING
+> -       select PCI_PWRCTL
+> +       select PCI_PWRCTRL
 >
->  arch/arm64/Kconfig.platforms            |  2 +-
->  drivers/net/wireless/ath/ath11k/Kconfig |  2 +-
->  drivers/net/wireless/ath/ath12k/Kconfig |  2 +-
->  drivers/pci/pwrctrl/Kconfig             | 27 +++++++++++++++++++------
->  drivers/pci/pwrctrl/Makefile            |  8 ++++----
->  5 files changed, 28 insertions(+), 13 deletions(-)
->
-> --
-> 2.48.1
->
+> -config PCI_PWRCTL_SLOT
+> +config PCI_PWRCTRL_SLOT
+>         tristate "PCI Power Control driver for PCI slots"
+> -       select PCI_PWRCTL
+> +       select PCI_PWRCTRL
+>         help
+>           Say Y here to enable the PCI Power Control driver to control th=
+e power
+>           state of PCI slots.
+> @@ -21,3 +21,18 @@ config PCI_PWRCTL_SLOT
+>           This is a generic driver that controls the power state of diffe=
+rent
+>           PCI slots. The voltage regulators powering the rails of the PCI=
+ slots
+>           are expected to be defined in the devicetree node of the PCI br=
+idge.
+> +
+> +# deprecated
+> +config HAVE_PWRCTL
+> +       bool
+> +       select HAVE_PWRCTRL
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+I'm not sure this will work as intended. This symbol can only be !=3D n
+if anything selects it, but there may also be (outdated) config
+symbols that depend on its value. E.g. ath1*k has "select
+PCI_PWRCTL_PWRSEQ if HAVE_PWRCTL", and if there is nothing selecting
+HAVE_PWRCTL, but HAVE_PWRCTRL directly instead, HAVE_PWRCTL will be =3Dn
+and the condition will fail.
+
+Since you rename the only one selecting HAVE_PWRCTL in patch 2/4, but
+update ath1*k in 3/4 and 4/4, their select PCI_PWRCT(R)L_PWRSEQ use is
+temporarily ineffective. Moving the arm64 patch last would avoid that
+though, at least for the current state.
+
+The alternative would be split this by config symbol instead of per
+tree, so all users would be atomatically updated as well. These
+patches need to go through the same tree anyways, so I see no issue
+doing it that way.
+
+> +
+> +# deprecated
+> +config PCI_PWRCTL_PWRSEQ
+> +       tristate
+> +       select PCI_PWRCTRL_PWRSEQ
+
+Similar issue, but there are no conditionals based on this, so this may be =
+fine.
+
+> +
+> +# deprecated
+> +config PCI_PWRCTL_SLOT
+> +       tristate
+> +       select PCI_PWRCTRL_SLOT
+
+This one won't work. Its value will be automatically calculated based
+on other symbols selecting it, and since there is nothing selecting
+it, it will always be n, regardless what any existing .config says.
+
+So unless you make this a user selectable symbol as well, this will
+(potentially) break existing .configs since its value will be then
+automatically calculated as =3Dn, and the new symbol takes the default
+=3Dn (unless explicitly enabled, or selected by ath1*k).
+
+Best regards,
+Jonas
 
