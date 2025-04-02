@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CE6CC28B20
-	for <ath11k@archiver.kernel.org>; Wed,  2 Apr 2025 13:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A462FC28B20
+	for <ath11k@archiver.kernel.org>; Wed,  2 Apr 2025 13:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MMV085jxv+9eeAt4Q9em+fq+HM2Mg91CAwLDQ2CRiK0=; b=CRCEthera6Q3vW15DMhWEyhbg1
-	sOsJqb7MoMFNnfNbBPux3IjCfSSNv6z6o+mnqWYtgAjmJ1wo2QQG9tXqPY/b3NkahcPf3gRNuLPtg
-	OE5bT08pofquYYYtJSvn/lktA04UAYsGaBzw8uqQ4VhfaC+lS94GRz3RginIv1WzdLZuhJ4g40BYw
-	a6OS4URWqmmcprcjy+fgWh3unbQGh4Xe6mt0OcuRPc1QfNK6EcIl8bqBz82QEmP43JuROz+aCqeZi
-	8jssHXH0TceOG6YsF++fUxmrQAyg6O35K8qbjCsi4mZX8B54ebFQT+vPsjPyWKVoOF4VDYlRaGbRM
-	QzumoGAw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=LHttKifARgYyF81ldV6+hu7ZLDM1Lc7yFe3f1HUVnXI=; b=vv1Kv2/rhVmUDUl0ytPHB1DRRB
+	+9qh1Ek53W2/g98xVf5KAAMvMdTy4iqropexF+ZF0/ToR/iJhD+Lt4yJwrnNRbT4xnm6I3LbWTyGC
+	pCSaKY52ZGOuihX700eXmox74q3DAXMjmEsXEsMLJriNk9ABjwbgEXLBVlzBTB5beSOt8xtrwUGKb
+	saH7sY0Y8jdY/EdmDuBuG7nVM0uEYfP+BcXtZPcC69LIUN3rpMqeSfsTATBO08zIpAnJ1EY9XjqJh
+	L8ruP68QIyBxGNIiPk1uVRHG9Yc7nfS6dFMnK1pViaHmCgjerFZCOLVGQYu9A+4N6tqn/5J6LKtB8
+	YlVFxGiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tzy9E-00000006Ear-3SPg;
-	Wed, 02 Apr 2025 13:28:52 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1tzyAy-00000006Ety-1R7t;
+	Wed, 02 Apr 2025 13:30:40 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tzy7S-00000006EF2-20hz;
+	id 1tzy7S-00000006EF4-20xw;
 	Wed, 02 Apr 2025 13:27:04 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 206694457E;
-	Wed,  2 Apr 2025 13:27:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E079C4AF0C;
+	by dfw.source.kernel.org (Postfix) with ESMTP id 823EA5C6890;
+	Wed,  2 Apr 2025 13:24:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 255AEC4CEE9;
 	Wed,  2 Apr 2025 13:27:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1743600421;
-	bh=sUaCyaEjEYggSl/kXXjuZDqRS5xLlh4DDfCG6MRWm7s=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sF44gpQ6clwCB0In8M9mY9sxmtUTTn0Zy5FU4gp1j0GBdgoEMftZyiKh7w89RMX+M
-	 bQvehtlm2oDyuOL6JBa+qhXydZ6To4pJm+Q9L5aO+Ggg/RqjT9+ult2mk3VAvUL4Z5
-	 wa6KlBzDeTPjYUgcTE0BUaL7Y4vKGYJtnedEveVpjaztX0w8NWT3+oT7Z+Gff2hSWF
-	 0Tvt8EO1lrltt8CbJ+dGpyat4IT3NMBE3HSARnrHxy5kD+nU5T5IQBvhA99/Pz1fqr
-	 JcyMinTPw5VBEmp7faUlIWVVMM+QEGAONLPvfydAptPtSzpFPjm4oDYcWW5g2qBX4f
-	 eGldFLZpC3tAg==
+	bh=ClNiKdAaagNCBF9poM6ZVmYqqOtAci1UecszB5V3I5c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=UtH73OU/kW3B3D43xBbmfrpfLXDrN7UH9K2u9Xr+YmIyZLa7+A0rlj9pQUMSzrdwN
+	 SqYlJeNcA4LgKBPe6wjPh4bXUrlele19Yx/kkPTWT/ZECaSZw1G75/GnIfjYrEJ3Cv
+	 LSR+eouyTdZF3guzUAiF+buNxaoGIuqDwHIogrSCI3eOOh9j5L66OqPEzIkP0Ev+Nd
+	 Gds33G9CNdXLMMLWGx0Nun1b3tffn848JcPeVxNJiULVykTsTjtX2t0t5GxG8z7wEI
+	 1d1erz0Yb0jZHYFr0fzt9H86qKHoZVgB81RLEJ6ioGrbjJ7dAcbf91NerpywAfaqlz
+	 CSb7puTLyYjEA==
 Received: from johan by xi.lan with local (Exim 4.97.1)
 	(envelope-from <johan+linaro@kernel.org>)
-	id 1tzy7W-000000004iO-2htb;
+	id 1tzy7V-000000004iG-2W68;
 	Wed, 02 Apr 2025 15:27:06 +0200
 From: Johan Hovold <johan+linaro@kernel.org>
 To: Bartosz Golaszewski <brgl@bgdev.pl>,
@@ -60,17 +60,15 @@ Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 4/4] arm64: Kconfig: switch to HAVE_PWRCTRL
-Date: Wed,  2 Apr 2025 15:26:34 +0200
-Message-ID: <20250402132634.18065-5-johan+linaro@kernel.org>
+Subject: [PATCH v2 0/4] PCI/arm64/ath11k/ath12k: Rename pwrctrl Kconfig symbols
+Date: Wed,  2 Apr 2025 15:26:30 +0200
+Message-ID: <20250402132634.18065-1-johan+linaro@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250402132634.18065-1-johan+linaro@kernel.org>
-References: <20250402132634.18065-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250402_062702_535978_402B9781 
-X-CRM114-Status: GOOD (  10.44  )
+X-CRM114-CacheID: sfid-20250402_062702_572163_10EFE8C0 
+X-CRM114-Status: GOOD (  14.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,27 +83,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The HAVE_PWRCTRL symbol has been renamed to reflect the pwrctrl
-framework name. Switch to the non-deprecated symbol.
+The PCI pwrctrl framework was renamed after being merged, but the
+Kconfig symbols still reflect the old name ("pwrctl" without an "r").
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/Kconfig.platforms | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This leads to people not knowing how to refer to the framework in
+writing, inconsistencies in module naming, etc.
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 02f9248f7c84..cc94845e9bbf 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -269,7 +269,7 @@ config ARCH_QCOM
- 	bool "Qualcomm Platforms"
- 	select GPIOLIB
- 	select PINCTRL
--	select HAVE_PWRCTL if PCI
-+	select HAVE_PWRCTRL if PCI
- 	help
- 	  This enables support for the ARMv8 based Qualcomm chipsets.
- 
+Let's rename also the Kconfig symbols before this gets any worse.
+
+The ath11k, ath12k and arm64 changes could go theoretically go through
+the corresponding subsystem trees in turn once they have the new
+symbols, but to avoid tracking dependencies over multiple cycles it is
+much preferred to have all of these go in through the PCI tree.
+
+The wifi patches have been acked by Jeff and I don't think Will or
+Catalin will mind the single rename in arm64 if they don't see this
+message in time.
+
+Note that the patches could be squashed into one, but keeping them
+separate highlights the changes done to other subsystems. I also find it
+easier to review the changes this way.
+
+There are some new pwrctrl drivers and an arm64 defconfig change on the
+lists, but the former should also go in through PCI anyway while we can
+make sure that the defconfig update matches the new slot symbol.
+
+Note that getting this rename into rc1 would be great as that way it
+would end up in most subsystem trees soon as well.
+
+Johan
+
+
+Changes in v2:
+ - drop deprecated symbol for the new slot driver to avoid having to a
+   add a new user visible symbol (e.g. any early adopters will be asked
+   to enable the renamed option again)
+
+ - move arm64 patch last two avoid temporarily not having the pwrseq
+   driver selected (Jonas)
+
+Johan Hovold (4):
+  PCI/pwrctrl: Rename pwrctrl Kconfig symbols and slot module
+  wifi: ath11k: switch to PCI_PWRCTRL_PWRSEQ
+  wifi: ath12k: switch to PCI_PWRCTRL_PWRSEQ
+  arm64: Kconfig: switch to HAVE_PWRCTRL
+
+ arch/arm64/Kconfig.platforms            |  2 +-
+ drivers/net/wireless/ath/ath11k/Kconfig |  2 +-
+ drivers/net/wireless/ath/ath12k/Kconfig |  2 +-
+ drivers/pci/pwrctrl/Kconfig             | 22 ++++++++++++++++------
+ drivers/pci/pwrctrl/Makefile            |  8 ++++----
+ 5 files changed, 23 insertions(+), 13 deletions(-)
+
 -- 
 2.49.0
 
