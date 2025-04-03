@@ -4,88 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D903C3600C
-	for <ath11k@archiver.kernel.org>; Thu,  3 Apr 2025 07:40:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6129BC3600C
+	for <ath11k@archiver.kernel.org>; Thu,  3 Apr 2025 19:02:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=r1+85w+l8mYkuW5ZQ70d0+EsyEP9qhZP9Q1yJFSdZLA=; b=Gh5wy57URx5zkQCky1Dv+qSaEc
-	8WKcQ+MeYeIBXj4jOWNz93m5yofDQet1jlrceIROB/SSeX2jm+lY1duoyBykzyMczQiAihuuEs1xT
-	wwZmxJGeuLjHc1XyDoY/pGZW2rXzVvZCtPGMdx7M7GDMy4SPFWLeJ8/i7M97cVPOedrQgS2guVAR3
-	pAAJyW5KWVcPwI3l60COdgIclMvhtDuHNn6xKQXHbaMxJklzZNSeg97A7B1eH/o5USO0gT3CwkSwV
-	NfdY5SI0ydnkxDvNiI9zj3rjdTt2Uuagyub2Au7It5gWcK2O2NSEYD25GB0tMjGNcp31eKB7zWirh
-	6cQDRhZw==;
+	bh=YozHisuMr6gjHnr8exh36BbW3xlWTSyUP+ePugPhofk=; b=ivIcphq14hOfDqYy0uLy0cqX9J
+	bQ3PvWceR0uqWIemZiL6065xbZkrDANSt7qkNscPIPd+jUDa0WfYn9ny9XCZ7my18btWdEZdYS+A0
+	s/Lkb9r3Gyhj6XEC4G4mAScVIgdz+HlDzNXqufm02I+kTIUuEgXMibVpeJzWm8HiFZ3JsCImnvIBs
+	jxN6JpsIMpttUUc4CqKlM/5fC/oNW8VO+6/+AXKxZkIcGXB+TyPJdmq8xhpkpIo5d6lAQYXoYwQRr
+	WVT2g11JQKNqQa0QqiolIfrvDdejFs74MbuzDfrgFv0BvDun0bxxBuGET3btlbdZQgD6bb9MRIzYZ
+	SE7w+8oQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0FBf-0000000899o-0rPv;
-	Thu, 03 Apr 2025 07:40:32 +0000
-Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
+	id 1u0PpT-00000009d5h-44Mx;
+	Thu, 03 Apr 2025 19:02:19 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0F9o-000000088np-43fE
+	id 1u0PpS-00000009d5X-1qol
 	for ath11k@lists.infradead.org;
-	Thu, 03 Apr 2025 07:38:39 +0000
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-30db2c2c609so5500271fa.3
-        for <ath11k@lists.infradead.org>; Thu, 03 Apr 2025 00:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1743665915; x=1744270715; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r1+85w+l8mYkuW5ZQ70d0+EsyEP9qhZP9Q1yJFSdZLA=;
-        b=JDp9doqs+dYZhKoYlOV2HBzpAY2J57vF+PE+mdPrxQEnk384Gwn4gGmPg2xY8WBL3k
-         UaVl5V1mVCfPrz4hrsKf1baAXST1Yk6TYeutQgOGTGGNwjVxJQsgYTzx1RSqctiomXbS
-         1jkcCXu44seBuqW73Lx2cVjDgHhC0k9xFNeGHuPBL8QXyCUBelr6PQGABUU6AMSSJMJ+
-         UQK5qxjUNwZ8qmXdDLos9a9cpvyVtx/5mRgsi+CPC6QGLh1PQ6ETKfhCv/I4D+JujO0g
-         Tnp/yjogTVqL868AQejjxbrNPrcEOFalUYO+h2PhsUJKanf4y/9/uRPDLsbZUwnCFpsr
-         m0Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743665915; x=1744270715;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r1+85w+l8mYkuW5ZQ70d0+EsyEP9qhZP9Q1yJFSdZLA=;
-        b=T+6q2wVwJ1HGL4VAAFncrrdftFz+wsa4SJh47XSbdE3pBfnKI0EiXN0Cl+Zh1bT9rf
-         sqzUrEzqW7bs2nqUUBGXag/8gvDp1G8rnZf6nlPulWoUiZ8wT0HCH/viVSM/8y9ZwnJg
-         EDueuANKPSkg+DbYxu4Pgu4SDXkAuXWLiJXJIIramYnbgbJxiw1Mn6m2snBebQ41cVjJ
-         1Tu4tm6ud85gnhEYJ5PicfSXmCk8NroC3U7yxYsinZJZhU/HKXXhf1SJDEQ+QUKkgUG3
-         ypJcCfXmTy+HQFd8DD4COFc3nMvU0tSLR4lyhNF+08F0IzrBK+RUCzm/FT3vv3y25C1d
-         pqTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXehkF0AakDdPNQ0XHxkzN81/MbhUP86fXRxC/PUGPz7tF8jwhWNsQxkhptLiv6uMTESanzkfU=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzpnqwZkO3LQkeLksjJdO7Rwu5r7p82cCXKrUDrPRn4/7uoyJzA
-	3aSBnz/LzwD7UD9iRMhvv6tWfQarKo30iNSQlQV1lTElMH/+zwuZ3I5FzdUjlRmMoTLR6+mydSg
-	20MFYMZTJ3z0547BUdds/A4lc5igACKafswcLeA==
-X-Gm-Gg: ASbGncuQwl5vgfDtT3lOPR2Tm/pE6HJ/g3vks3FrTX0Vvfv4O8/KVJmiJeNxGO7l+sU
-	XYkoyqfv8GmAFmPBrRuIo65P43k/E90ZOED6ILlmmj4h5OGpSJzh+wfSDTITmOFbG2Wwupu0BB0
-	GwjKE8K7vXcE7xhuPM5q1MP3MW/iHac1yl/8TMLP498siFTIr3ScexJUzu
-X-Google-Smtp-Source: AGHT+IE+efI2xX/8yZlFAe4Vm/Cxzz+Nax11lqQy3zdclZUZJJhpwXV7c7fhUqN3JwjPrbPY+ZyZGS0ljljrKBqXCe4=
-X-Received: by 2002:a2e:be14:0:b0:30b:8f60:cdb7 with SMTP id
- 38308e7fff4ca-30f02b985a2mr4363601fa.24.1743665915290; Thu, 03 Apr 2025
- 00:38:35 -0700 (PDT)
+	Thu, 03 Apr 2025 19:02:18 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 735C06115B;
+	Thu,  3 Apr 2025 19:02:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC50C4CEE8;
+	Thu,  3 Apr 2025 19:02:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743706937;
+	bh=/t8vcH3qynDQfOLkw7QMZ8Gv/WuYDCcCpzwNN7E5DRU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=EAEzt8rAGpbWUbfbgTvy1Ya86DuCwyKecAUj05aOEGsmgrmwReO+H3QNNrhwFLj6e
+	 5uGVB5lukJSGPSNqQ4MwhLRnEfyHN5eQDPfeP4RtPYdyjQwu+CYxSzT1KXp6WNNbr1
+	 py3DfwIeNHyRop/oNShnWpZe7H3qg+uYQlf57EPf+lGBMjnZjziR5F3o129iMuOnbY
+	 FCo1R6DlwTYMYrl6EkBTfgoMa4XnS4cdA85oOF6yGniPXrNH/mWq4rlZyAbg772XBO
+	 y4geDWrdbaQFjLeLLthwv3uUr+wctVU8Uuv68a1hkoWSaZvzCneUlFOXtIv0liUXnb
+	 rGD03qUnPKG5Q==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: P Praneesh <quic_ppranees@quicinc.com>,
+	Tim Harvey <tharvey@gateworks.com>,
+	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+	Sasha Levin <sashal@kernel.org>,
+	jjohnson@kernel.org,
+	ath11k@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.14 02/54] wifi: ath11k: Fix DMA buffer allocation to resolve SWIOTLB issues
+Date: Thu,  3 Apr 2025 15:01:17 -0400
+Message-Id: <20250403190209.2675485-2-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250403190209.2675485-1-sashal@kernel.org>
+References: <20250403190209.2675485-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <20250402132634.18065-1-johan+linaro@kernel.org>
- <CAMRc=Mfpm8=q1mkfNfjPtogbh1S9PKU+w_2yMP+oE_Gj7-qemQ@mail.gmail.com> <Z-42nVkEZeWHdwAm@hovoldconsulting.com>
-In-Reply-To: <Z-42nVkEZeWHdwAm@hovoldconsulting.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 3 Apr 2025 09:38:24 +0200
-X-Gm-Features: AQ5f1JoaECCB4Ig-OQoVaRV_IJbeuDbZtSRj286KtUBGCZkrM4_HeX7c4fhC4-E
-Message-ID: <CAMRc=Mf3on3TpiPDhtPnp1-3b0ika2GHy6h-NJqcgvYpWMHpoQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] PCI/arm64/ath11k/ath12k: Rename pwrctrl Kconfig symbols
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Jonas Gorski <jonas.gorski@gmail.com>, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	ath11k@lists.infradead.org, ath12k@lists.infradead.org, 
-	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250403_003837_207754_0E55FB63 
-X-CRM114-Status: GOOD (  17.26  )
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.14
+Content-Transfer-Encoding: 8bit
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,34 +76,108 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 3, 2025 at 9:19=E2=80=AFAM Johan Hovold <johan@kernel.org> wrot=
-e:
->
-> On Thu, Apr 03, 2025 at 09:11:07AM +0200, Bartosz Golaszewski wrote:
-> > On Wed, Apr 2, 2025 at 3:27=E2=80=AFPM Johan Hovold <johan+linaro@kerne=
-l.org> wrote:
-> > >
-> > > The PCI pwrctrl framework was renamed after being merged, but the
-> > > Kconfig symbols still reflect the old name ("pwrctl" without an "r").
-> > >
-> > > This leads to people not knowing how to refer to the framework in
-> > > writing, inconsistencies in module naming, etc.
-> > >
-> > > Let's rename also the Kconfig symbols before this gets any worse.
-> > >
-> >
-> > Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > I'm re-adding the tag here as otherwise b4 will only pick it up for
-> > patch 4/4 on v2 of the series.
->
-> I had already added it to the first three patches so it was only
-> missing on the last one.
->
-> Johan
+From: P Praneesh <quic_ppranees@quicinc.com>
 
-Indeed, sorry for the noise, I saw b4 only applying it for the last
-one and didn't check git log.
+[ Upstream commit 1bcd20981834928ccc5d981aacb806bb523d8b29 ]
 
-Bartosz
+Currently, the driver allocates cacheable DMA buffers for rings like
+HAL_REO_DST and HAL_WBM2SW_RELEASE. The buffers for HAL_WBM2SW_RELEASE
+are large (1024 KiB), exceeding the SWIOTLB slot size of 256 KiB. This
+leads to "swiotlb buffer is full" error messages on systems without an
+IOMMU that use SWIOTLB, causing driver initialization failures. The driver
+calls dma_map_single() with these large buffers obtained from kzalloc(),
+resulting in ring initialization errors on systems without an IOMMU that
+use SWIOTLB.
+
+To address these issues, replace the flawed buffer allocation mechanism
+with the appropriate DMA API. Specifically, use dma_alloc_noncoherent()
+for cacheable DMA buffers, ensuring proper freeing of buffers with
+dma_free_noncoherent().
+
+Error log:
+[   10.194343] ath11k_pci 0000:04:00.0: swiotlb buffer is full (sz:1048583 bytes), total 32768 (slots), used 2529 (slots)
+[   10.194406] ath11k_pci 0000:04:00.0: failed to set up tcl_comp ring (0) :-12
+[   10.194781] ath11k_pci 0000:04:00.0: failed to init DP: -12
+
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+
+Reported-by: Tim Harvey <tharvey@gateworks.com>
+Closes: https://lore.kernel.org/all/20241210041133.GA17116@lst.de/
+Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+Tested-by: Tim Harvey <tharvey@gateworks.com>
+Link: https://patch.msgid.link/20250119164219.647059-2-quic_ppranees@quicinc.com
+Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/dp.c | 35 +++++++++-------------------
+ 1 file changed, 11 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index fbf666d0ecf1d..f124b7329e1ac 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+- * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #include <crypto/hash.h>
+@@ -104,14 +104,12 @@ void ath11k_dp_srng_cleanup(struct ath11k_base *ab, struct dp_srng *ring)
+ 	if (!ring->vaddr_unaligned)
+ 		return;
+ 
+-	if (ring->cached) {
+-		dma_unmap_single(ab->dev, ring->paddr_unaligned, ring->size,
+-				 DMA_FROM_DEVICE);
+-		kfree(ring->vaddr_unaligned);
+-	} else {
++	if (ring->cached)
++		dma_free_noncoherent(ab->dev, ring->size, ring->vaddr_unaligned,
++				     ring->paddr_unaligned, DMA_FROM_DEVICE);
++	else
+ 		dma_free_coherent(ab->dev, ring->size, ring->vaddr_unaligned,
+ 				  ring->paddr_unaligned);
+-	}
+ 
+ 	ring->vaddr_unaligned = NULL;
+ }
+@@ -249,25 +247,14 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, struct dp_srng *ring,
+ 		default:
+ 			cached = false;
+ 		}
+-
+-		if (cached) {
+-			ring->vaddr_unaligned = kzalloc(ring->size, GFP_KERNEL);
+-			if (!ring->vaddr_unaligned)
+-				return -ENOMEM;
+-
+-			ring->paddr_unaligned = dma_map_single(ab->dev,
+-							       ring->vaddr_unaligned,
+-							       ring->size,
+-							       DMA_FROM_DEVICE);
+-			if (dma_mapping_error(ab->dev, ring->paddr_unaligned)) {
+-				kfree(ring->vaddr_unaligned);
+-				ring->vaddr_unaligned = NULL;
+-				return -ENOMEM;
+-			}
+-		}
+ 	}
+ 
+-	if (!cached)
++	if (cached)
++		ring->vaddr_unaligned = dma_alloc_noncoherent(ab->dev, ring->size,
++							      &ring->paddr_unaligned,
++							      DMA_FROM_DEVICE,
++							      GFP_KERNEL);
++	else
+ 		ring->vaddr_unaligned = dma_alloc_coherent(ab->dev, ring->size,
+ 							   &ring->paddr_unaligned,
+ 							   GFP_KERNEL);
+-- 
+2.39.5
+
 
