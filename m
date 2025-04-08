@@ -4,71 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BEE1C36010
-	for <ath11k@archiver.kernel.org>; Mon,  7 Apr 2025 09:12:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D252C36010
+	for <ath11k@archiver.kernel.org>; Tue,  8 Apr 2025 19:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=; b=BBxRR1n8Y/orv/HaTPMRFvKJO+
-	NIO1B0iLI3wUb+eA6PYbcL/wuMZ3lsq4ZxmGvqW7JPjmCgUz73G4cNj3tmBBxRrI8AVAgEVMXrl82
-	qpCmsx+JkXdhAQmbnAOMAZV2TFUNVPLAOqjB9PuzYCyg3cvkZwyRV/ucYbjFe+Pqg2CTll3saIsBj
-	WCAjWQxdzqO5/4IXkp3yUwB7IqGAIX6yReFMpghJtR4fbgWFwwB9kGd8lCLFbYlN4dOusg7YKBKz4
-	r1v9uqQUdEsvpA96F4ajd9bZL/jBGBTowP0RDAYBUIzQyV8Tz2JStSthufgOh/FRhoqe0aR3+AKap
-	YZo96wuA==;
+	bh=ORcREYdVJdoYu+7x4X+UiIhsSg5592tE7nVnhqMOMzE=; b=y9QvUGvNHjGphjzkeanKP02Bjo
+	myUs93Htj9XAnQGG0Z9vVufzE+pKXmx7rOH3J8rLg+WrygGT6h4n30vYvXvMPMtgREsOd/z/eRMrW
+	dxq3c/L5AbOHe3XGem3fwcQ3qwsTsliIFbifLO1DR7UnUcNPOaxjp3tjlWiqy2dqvWzmFNTrW+IU4
+	GsMv1yhKEIGJH+QO7cTpqlvQ7Bwz3F41jNH91Lzu5/YT5ZdSzyF8fIWpxCA2AAySlqo+7c/JVNirU
+	veJqtxEAdTWzhxabl8a+Ux4uo97wZiw8lUIgmNxqCy4yYJ6igdXh9gBQdyVZ/4ymqDElF/+8ij8l3
+	pUamTfWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
-	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1iWu-0000000H8gy-0URU;
-	Mon, 07 Apr 2025 09:12:32 +0000
-Received: from mail.grablo.pl ([51.77.231.136])
-	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1hF0-0000000GrEH-436w
+	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1u2EIL-00000005CLo-1aZW;
+	Tue, 08 Apr 2025 19:07:37 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1u2EEV-00000005BdO-2gjN
 	for ath11k@lists.infradead.org;
-	Mon, 07 Apr 2025 07:50:01 +0000
-Authentication-Results: grablo.pl; arc=none smtp.remote-ip=127.0.0.1
-ARC-Seal: i=1; d=grablo.pl; s=default; a=rsa-sha256; cv=none; t=1744011981;
-	b=YQtj14F8xNGJ6TgH+u5xOUY/r6FNdU4uFP16e27xGeI5i+fI8liAf0v0FpvNV4dAfNAs
-	 I7QxazznWG/IJVIAOjKcFb88/bCxvmI9AY0DXG6z0Kpucs1PQKNQae4G8iCfz/OtGbtL3
-	 FfsUSewVvsU1mmHft9VezDJ5yMxEtcwu0bqgJiZasvyh6/ODL2eGB/5IIdTdmi2CvvPBd
-	 Ul8yHDHUh5cfVI3ERbrq+RVr8qpEA4WyJbjynpyCnCnw/nK0MEstlkvEa99miLDMjn5Fl
-	 1kDxmeq0OKgHTsvDnFz83FMTyzIqLw3ICs3s3xhyDwxEBNNL8edctSJsWjKsbZn39hQ==
-ARC-Message-Signature: i=1; d=grablo.pl; s=default; a=rsa-sha256;
-	c=relaxed/simple; t=1744011981;
-	h=Message-ID:Date:From:Subject:From;
-	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=;
-	b=R4dVteknLV0FMWN1AwoJuXqWc9NcAXCRGDuZA22CbwTsuIclAQLKtq1f4225IgHtsaUQ
-	 Ug8F/28lgQZwkZrikJpOUDRo15/D+8eoGFDYP5k3+TpeLyuM7kV063aQ9HB8pU35NePpE
-	 nTj9hGGvBEyWF5f3GmPrrecq/5yZYFVPUZyZ728bYSjsRSclF5NzhWGThmNOPzTtoP3mx
-	 32ScjLNzsy1eHccfbw0I3CjNmcJZjMDccOp0UxGd3s1bfgCRevml/MBshXSrTSZ/ea2qb
-	 jTOl1bMAH/2kmHiDV4P1EejHZMAP+zTMfZ8YSoxM8S4xezeXAFvBTop8tZJQqgbmtsA==
-ARC-Authentication-Results: i=1; grablo.pl; arc=none smtp.remote-ip=127.0.0.1
-Received: by mail.grablo.pl (Postfix, from userid 1002)
-	id 1BAF224325; Mon,  7 Apr 2025 07:45:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=grablo.pl; s=mail;
-	t=1744011981; bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=;
-	h=Date:From:To:Subject:From;
-	b=ir+At3jdfyqLCSwky4tZkqI3l2I6EtludxwUDw7skcNPoMY1mdtgarkaTTZzN1a27
-	 bcSqGV5yvhCE67dydR45BZkegFUNpeaG81rKbzWDuWKzzk0jJx8NfSVvIh8WAHE6eN
-	 PZI2qSVRzyUy5+Rb7b19FvxJ8jqoGiMLmWW/43vSx46wILrpbKEOBsoWrwJlHPAPgo
-	 i8p1p3fm1szNgMGef1D+rKNLkhZcxDwJ6N/UkN9CY0NTUacXEXuPVeNJarlr4XUGS1
-	 XYIuSzXGVWGtxO3uK6ZicI9tjNtjYZDOBXo7SdwSr13iJoW65IKqjpvPG/2fJhIjLf
-	 qvNOfNLkEXKAA==
-Received: by mail.grablo.pl for <ath11k@lists.infradead.org>; Mon,  7 Apr 2025 07:45:52 GMT
-Message-ID: <20250407064500-0.1.1p.j3jv.0.bc2528e18s@grablo.pl>
-Date: Mon,  7 Apr 2025 07:45:52 GMT
-From: "Tomasz Biegun" <tomasz.biegun@grablo.pl>
-To: <ath11k@lists.infradead.org>
-Subject: =?UTF-8?Q?Wsp=C3=B3=C5=82praca?=
-X-Mailer: mail.grablo.pl
+	Tue, 08 Apr 2025 19:03:40 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 4EB8BA479B6;
+	Tue,  8 Apr 2025 18:58:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EE3CC4CEE5;
+	Tue,  8 Apr 2025 19:03:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744139018;
+	bh=pHSSTO56neWEEEtpVKmutcv8dw9yWs0shUPmz9GS6v4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jHGbB9wrS9Ga5nO6c0XIStwD4hEx9MwNOOY6sWYkQHLfuTLHDwrqeMnev/R8Eytb3
+	 XMBwXMzr/I5AKWpi5uzAkRBTixYzLesS10cKeUpijGLkpq1iN5gnEuzobgwtUXKgd2
+	 x7Hee3peXsAH5HBtzxDAzMNfxZd8SQDa9AF9mZ6JNCKQHC1y17umW6tT2PNuMJwT81
+	 dA2e6VCBSK3iBRYkZtOIlp17ky+mKuO4Hpeg1hOmn4w1Z7QNNbwnLG380iwzNdeGZs
+	 Jxkh2bTYEhWGeKNff2lSODAvwGwfajmmXBoMu7cDK9cnz3z4/g7DypdvsSNKfIyTyO
+	 0PsqvzaYQTRqw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] wifi: ath11k: Use of_property_present() to test property presence
+Date: Tue,  8 Apr 2025 14:02:11 -0500
+Message-ID: <20250408190211.2505737-2-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250407_004959_695438_EDC1A5D0 
-X-CRM114-Status: UNSURE (   0.97  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250408_120339_741670_92A5FDED 
+X-CRM114-Status: GOOD (  10.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,20 +70,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dzie=C5=84 dobry,=20
+The use of of_property_read_u32() isn't really correct as
+"memory-region" contains phandles (though those happen to be u32s. As
+it is just testing for property presence, use of_property_present()
+instead.
 
-Czy interesuje Pa=C5=84stwa pozyskanie nowych klient=C3=B3w?
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+I'm assuming this should still go to linux-wireless list? I had to 
+manually add that, so looks like recent MAINTAINERS changes aren't quite 
+right.
 
-Zajmujemy si=C4=99 profesjonalnie wsparciem firm w tym zakresie.=20
+ drivers/net/wireless/ath/ath11k/pci.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-Nasi partnerzy zyskuj=C4=85 sta=C5=82y nap=C5=82yw nowych zlece=C5=84 ora=
-z zam=C3=B3wie=C5=84, a tym samym zwi=C4=99kszaj=C4=85 swoje wyniki sprze=
-da=C5=BCy.
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 412f4a134e4a..87ef7f321065 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -929,7 +929,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ {
+ 	struct ath11k_base *ab;
+ 	struct ath11k_pci *ab_pci;
+-	u32 soc_hw_version_major, soc_hw_version_minor, addr;
++	u32 soc_hw_version_major, soc_hw_version_minor;
+ 	int ret;
+ 	u32 sub_version;
+ 
+@@ -955,8 +955,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ 	 * from DT. If memory is reserved from DT for FW, ath11k driver need not
+ 	 * allocate memory.
+ 	 */
+-	ret = of_property_read_u32(ab->dev->of_node, "memory-region", &addr);
+-	if (!ret)
++	if (of_property_present(ab->dev->of_node, "memory-region"))
+ 		set_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags);
+ 
+ 	ret = ath11k_pci_claim(ab_pci, pdev);
+-- 
+2.47.2
 
-Czy mo=C5=BCemy przedstawi=C4=87 szczeg=C3=B3=C5=82y dotycz=C4=85ce zasad=
- i mo=C5=BCliwo=C5=9Bci wsp=C3=B3=C5=82pracy?
-
-
-Pozdrawiam
-Tomasz Biegun
 
