@@ -4,103 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BCDBC369A6
-	for <ath11k@archiver.kernel.org>; Tue,  8 Apr 2025 19:57:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 180EBC369A5
+	for <ath11k@archiver.kernel.org>; Tue,  8 Apr 2025 19:57:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:
-	Cc:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=nGewVlGR5Rw3EAn1ECySsP4zNMvSdf5+Gq5+AeTqVY8=; b=0OmbGtqfoPHcFxgBYf7AO+AXHb
-	PVRCGuhuXuBXkcR3s9fae7JH+0X9funG+nF+qfThbc3KAAAqYq6MQxWM2sFNNtmDK198/wxMcPRdd
-	NoFZqTeHW7e/t/4CvezcTWR1oIT4p+ndLT/MamgpBYViOGF8j9M9zfqFP4EK5guD4dB3u3gundoue
-	bUdrTVpXDYVxL2hUPEzLRC/xxnyoPV/9rlNANoCicDRI6OHB8r490KKzqEbxCYogU+cRxlM9BKG2r
-	Vb9A+QLYUVz+vsLvJhdLzERQ75CV9zxq0BICSXMdwkMf/s85M0ZgCgY6fVBPptZAPzNtuwA3CzeJd
-	3e7/G/yA==;
+	MIME-Version:Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=SIVxRBGsmdBuK29DViOG/pwUq9pv9rU1G74T78se3cY=; b=wH2dI42aiANVR9QnNg7sV+7d8N
+	UY1jxYUubxYKVwGpePmx4r7/6ix2wyVZSigWI1sMykGUkj3zFEikxtD1qTPe1ALmJmzvsTYT4/bt4
+	Lavoq0MM3IFkScHc85NL2ufbFRxMD4RyIBu5sUuMUIYEmekb7QAgKhmAHmAmzJbWBxowOb95eteSx
+	5uLJTYn8pgvVkFFvp18vJ43KrbPL3xfKqlpcOI1rGRky20iQEaMTnjPZjXfdkgp0FdQ7VrAiRqrXh
+	O7ZMg6gtTgG1VNWqf1Zc9Af8KZKD5BEyqNp2iF9Pomfhs6B9sZeVv6Qs4kwTnQyyVFKaeQSz+xYSc
+	Eo2CdduA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2F4y-00000005HcQ-065C;
-	Tue, 08 Apr 2025 19:57:52 +0000
+	id 1u2F4x-00000005Hbt-2Ila;
+	Tue, 08 Apr 2025 19:57:51 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2DwY-000000059CT-20PH
+	id 1u2DwX-000000059CR-2AQB
 	for ath11k@lists.infradead.org;
-	Tue, 08 Apr 2025 18:45:07 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538BliFS014181
-	for <ath11k@lists.infradead.org>; Tue, 8 Apr 2025 18:45:05 GMT
+	Tue, 08 Apr 2025 18:45:06 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538AxpXv000981
+	for <ath11k@lists.infradead.org>; Tue, 8 Apr 2025 18:45:04 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=nGewVlGR5Rw
-	3EAn1ECySsP4zNMvSdf5+Gq5+AeTqVY8=; b=GNMLwAN1/geTCrT3bfp/FuFFkAu
-	3N+qTtt/bxlRYRaQydTX9/vgXCfqCd7WMB2+aJIZ/uoeKdczdYqDKX7r1n6xkQmG
-	0ZhmY0kA90X71TxvDOjFjn/W8cvzuMaCXbvEI1OHg2amOb1QGmgxppBNniV7vbPv
-	tdCGQAVo/SBwm7CBkB9KVfLtbszdTGIn4EkFxEFFwv1ltbVukL9gE48KTVahv2wu
-	p9oLf9w1sN8UukfNwvnWmr1PEFLFBZMSKOssP1aYfW8uuf6xSKdJXm2RGQ+pVSr7
-	Y+jaa1NmTQgYoiL9lkHlrozTVj+KadNIw2DpoPBs9kM7PlPOh6TTYXc2aAg==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twpm8u1u-1
+	content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=SIVxRBGsmdBuK29DViOG/pwUq9pv9rU1G74
+	T78se3cY=; b=omMZ1/RjTRtTgqfBIhDvmzOIrWmSHQ9MKi5gZt7CzIkD1wiEVaQ
+	gVEhuyZCeoAlHCrdSgN3EdxAMDWX4ZFvfck1UVuf8xoiAJA42gx5Pp5BqVnDsLwb
+	yjuvdHgJxSkM5XkY8K/wjnA/KrIz9EsJIRDVMOWL3SC72PnVoLGktnBmh96oReNQ
+	U3pSo8kW2C877iddvgWdbFjVZURBKR/gPvKXbFs4o7EnH2ctv/AfuVddx3laZDvu
+	zBNeek6ugRhaS/uXaO5VMOZWFltBFw/cG+6Rn8LrfbuQcuDWNRG3b3WDOYVOwqb/
+	ny/oP1QZPi23DbJaIZ3RukpoHopsHvAYD8w==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbe8ybe-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
 	for <ath11k@lists.infradead.org>; Tue, 08 Apr 2025 18:45:04 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-2ff581215f7so4763540a91.3
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff5296726fso8955498a91.0
         for <ath11k@lists.infradead.org>; Tue, 08 Apr 2025 11:45:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744137904; x=1744742704;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nGewVlGR5Rw3EAn1ECySsP4zNMvSdf5+Gq5+AeTqVY8=;
-        b=b7YqYyhp9qT8P937FrDmISHta30odz0zf/pLwlOVPqgeqDnO2YjQp283nQYmflAIvc
-         Qzr9b9PBBAOsLMtTETYZhx6cHaneCGmrELTctessFcYWSLlHShKGrLZcO7jumML6mwqz
-         7BgJZwsW6VeRfRE7BBQwzfnJEAe/VzPNmAQckb8ejsVrm5/XrIb09fZ8Jj+7pFcSkzFK
-         NDNIaVOuB0BVwciWoV0IO0Bmd/Pd9UtNa3b+uliBJfWwtQKRBdyOLZ1oBq68AGvl3Pbu
-         PL2y+u6hmSKJ+uUWM0htES90MbZh8ho3/suqaskzThFZf/ZLVoFB1HFyJ07TDROXFtLu
-         GgWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU1+tKRDRqU/lHAeKshiDFb3Gb+reN8MLNxOHORSCszU2vctyqK9Cdi74WpJb9x2ZsjxLqA8zg=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz7BuWBB/fMnpr9uSCtSP7aLrMkh+1uIwK+LDkUvld7xqLvJFv+
-	bekb+NGA7DhohbZBiT6vr/1LhWoka87t8JUCngdFxk3AUKOKXz8yoDatb34Fuu2Q9lyRzwG+Zjw
-	thfLL6+kIsCF6/X82ILuJm7ygdwCsF26Mc/Up8rRQWLlDHNrbZAKCZxDYBWQg
-X-Gm-Gg: ASbGncu+gNPXFteYcbfSHx5mbQWVyQG1e0ohGCc6PfdxBJvbD2VKSlrIumS62jt3jWs
-	9JkuxMGSqXARLa/nkfZYylIjyzPSTly/e3YrtS9wFyBmivkknrtu+kYzC++8URri1BoLKwb07xd
-	7jbzdO42FdVdA92YasmL4qWr9idZ8khfnBUqXXKzBcgR7X/+NHHU9upGMlTrHCVmUs3ArlRSQ5b
-	inx0iD5f1mfBUCJW8HaG7ORDCrBoeCIKPFzfR2ypGvCVBKTTfklAhkOAZnB7uOWU4xFfOTGtZ+p
-	8OFEdqRFx/uuspVeSa9OZmWmDTAcokEMPv3yT7FqKSVTjwNaoAiP1N+RgXEUpXWCd8iy6SU=
-X-Received: by 2002:a17:90b:4ece:b0:2ea:5dea:eb0a with SMTP id 98e67ed59e1d1-306dbb8c16emr404210a91.4.1744137903937;
+        d=1e100.net; s=20230601; t=1744137903; x=1744742703;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SIVxRBGsmdBuK29DViOG/pwUq9pv9rU1G74T78se3cY=;
+        b=EIQSgudOzxhb7hXwLZSjqDJwIXcgsY3U13pAKKV/V3Q1rBak3Sj/HwNXFuGlG9M6Y/
+         PHN8uqRVW3Mu5VHRIeULmw1A6GxbT7J2tFZ9QDclUbzDWvcjUJ8jdBsEZlXsaTmDczuA
+         jhHIAd3b5E/VkNsziNc45H/+3dBULPhag/PyA3/lZEH8m6pVFjmr/3yXNpYjCLEljtvV
+         nlinVbHtvtb3D6IrQsjyaX03dzrdPX2s+jne0SZGKhkX9lUcz04t13yMPZPBcSdTdcIp
+         mIYEYY8vG2ZqzCkd6hAUWp8Pmd3lifB+xk5vfMeblDf3s+CJeMrQfX7SqeC1UU39jox0
+         dSGA==
+X-Forwarded-Encrypted: i=1; AJvYcCWN0SLp2jx2hej7worengrA8NbIyPaQY1UkQf/qRC0xZHJdzIW3IdWs9QHbbrLOcpupiffFXCg=@lists.infradead.org
+X-Gm-Message-State: AOJu0YytgBzha+p3iJR+zziM5HyXSrMD5jurwONqVnsAbDHnZTKGZtcx
+	y8V0bZYRQjtN9jIBA3bJs2xG+WWkljHS5CAqiULg0G6P6R0TZR7eyrwEma4d2E/CWYW2c9d1fKF
+	bq3VT0MPRVjSQglD9z5jAgEcBohuxq7aHRf+gwprH5/hYSIKOsCviTXbE2thSNsNshIyf
+X-Gm-Gg: ASbGncuqICh5CHUn4OpU/BQEkA6MDZOw3JrreUV4Ra9ZKPoKlVS4Uu7iJOJSmOxv5Z/
+	g5472+uPcRnyWdvQNRakxqIqpDxBYX1E8kfoltm94xgRGd5k8cwvr5YDNZ7u8LVuYJx0OuGyohN
+	uCsWtem8APuhQmbucytxTXeOyvbDbH611UOoc9XReonKBcOWRCb0z0V35hpSlO86nPhDr4SsPFd
+	dUnZVvj81kRik2lHxBTPeE7M1N9hfpdiV48ItsBqqTXle5DsI2iaeRHyqVZ2DjSYZrzqU2GXaMH
+	poy0QbV7BmLgPkj9bPoG6ionIVKU31zH9N1BhLCrdai8sms+/4El3Y9abFug10gzPhmpqDE=
+X-Received: by 2002:a17:90b:2e10:b0:2fe:b907:562f with SMTP id 98e67ed59e1d1-306dbbb087fmr381995a91.14.1744137903117;
         Tue, 08 Apr 2025 11:45:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFUOVLwRfGhy9gwHXSdQAnOWYQikjdvGvb9IJL52qmnY3UBEm9qZ17YKSWTwjSbsRDxb3wagg==
-X-Received: by 2002:a17:90b:4ece:b0:2ea:5dea:eb0a with SMTP id 98e67ed59e1d1-306dbb8c16emr404186a91.4.1744137903551;
-        Tue, 08 Apr 2025 11:45:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEJtCIzuK9uo5RZ62/Jh0bNOIUJJoLqLmoyZDpvz1C0mc1efm2PWkfeeQ10I20AY8Qy8+ltvQ==
+X-Received: by 2002:a17:90b:2e10:b0:2fe:b907:562f with SMTP id 98e67ed59e1d1-306dbbb087fmr381973a91.14.1744137902729;
+        Tue, 08 Apr 2025 11:45:02 -0700 (PDT)
 Received: from alokad-linux.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057cb9500dsm12882212a91.47.2025.04.08.11.45.02
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057cb9500dsm12882212a91.47.2025.04.08.11.45.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 11:45:03 -0700 (PDT)
+        Tue, 08 Apr 2025 11:45:02 -0700 (PDT)
 From: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
 To: linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
         ath11k@lists.infradead.org
-Subject: [PATCH wireless-next v5 1/3] wifi: nl80211: add link id of transmitted profile for MLO MBSSID
-Date: Tue,  8 Apr 2025 11:44:59 -0700
-Message-Id: <20250408184501.3715887-2-aloka.dixit@oss.qualcomm.com>
+Subject: [PATCH wireless-next v5 0/3] wifi: MBSSID support in MLO
+Date: Tue,  8 Apr 2025 11:44:58 -0700
+Message-Id: <20250408184501.3715887-1-aloka.dixit@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250408184501.3715887-1-aloka.dixit@oss.qualcomm.com>
-References: <20250408184501.3715887-1-aloka.dixit@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: LuNCioylRvuORVC9mOgeIHZPlg8UH-Tt
-X-Proofpoint-ORIG-GUID: LuNCioylRvuORVC9mOgeIHZPlg8UH-Tt
-X-Authority-Analysis: v=2.4 cv=MpRS63ae c=1 sm=1 tr=0 ts=67f56eb0 cx=c_pps a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=voIm8Yqn4N3_T5BSyJkA:9 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-GUID: n_jJALjCVa1MAkYm4WysPvbqRNyfgEMW
+X-Authority-Analysis: v=2.4 cv=T7OMT+KQ c=1 sm=1 tr=0 ts=67f56eb0 cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=XR8D0OoHHMoA:10 a=MnmnwhSU_71rvZYfISwA:9 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: n_jJALjCVa1MAkYm4WysPvbqRNyfgEMW
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-08_08,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 clxscore=1015 priorityscore=1501 impostorscore=0
- spamscore=0 bulkscore=0 suspectscore=0 malwarescore=0 adultscore=0
- phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=463 lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0
+ mlxscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
  definitions=main-2504080129
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250408_114506_522194_DEBE4B0B 
-X-CRM114-Status: GOOD (  22.01  )
+X-CRM114-CacheID: sfid-20250408_114505_573387_5EAE8537 
+X-CRM114-Status: GOOD (  11.39  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,8 +112,6 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-
 During non-transmitted (nontx) profile configuration, interface
 index of the transmitted (tx) profile is used to retrieve the
 wireless device (wdev) associated with it. With MLO, this 'wdev'
@@ -124,131 +119,216 @@ may be part of an MLD with more than one link, hence only
 interface index is not sufficient anymore to retrieve the correct
 tx profile. Add a new attribute to configure link id of tx profile.
 
-Signed-off-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-Co-developed-by: Muna Sinada <muna.sinada@oss.qualcomm.com>
-Signed-off-by: Muna Sinada <muna.sinada@oss.qualcomm.com>
-Co-developed-by: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
-Signed-off-by: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
----
- include/net/cfg80211.h       |  2 ++
- include/uapi/linux/nl80211.h |  6 ++++++
- net/wireless/nl80211.c       | 24 +++++++++++++++++++++++-
- 3 files changed, 31 insertions(+), 1 deletion(-)
+Similarly, storing 'vif' of tx profile inside 'vif' for nontx
+profiles is not sufficient for MLO, instead store tx link data
+inside each nontx link data structure.
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index efbd79c67be2..ac51614fedff 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -1300,11 +1300,13 @@ struct cfg80211_crypto_settings {
-  * struct cfg80211_mbssid_config - AP settings for multi bssid
-  *
-  * @tx_wdev: pointer to the transmitted interface in the MBSSID set
-+ * @tx_link_id: link ID of the transmitted profile in an MLD.
-  * @index: index of this AP in the multi bssid group.
-  * @ema: set to true if the beacons should be sent out in EMA mode.
-  */
- struct cfg80211_mbssid_config {
- 	struct wireless_dev *tx_wdev;
-+	u8 tx_link_id;
- 	u8 index;
- 	bool ema;
- };
-diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-index ddcc4cda74af..e9ccf43fe3c6 100644
---- a/include/uapi/linux/nl80211.h
-+++ b/include/uapi/linux/nl80211.h
-@@ -8036,6 +8036,11 @@ enum nl80211_sar_specs_attrs {
-  *	Setting this flag is permitted only if the driver advertises EMA support
-  *	by setting wiphy->ema_max_profile_periodicity to non-zero.
-  *
-+ * @NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID: Link ID of the transmitted profile.
-+ *	This parameter is mandatory when NL80211_ATTR_MBSSID_CONFIG attributes
-+ *	are sent for a non-transmitted profile and if the transmitted profile
-+ *	is part of an MLD. For all other cases this parameter is unnecessary.
-+ *
-  * @__NL80211_MBSSID_CONFIG_ATTR_LAST: Internal
-  * @NL80211_MBSSID_CONFIG_ATTR_MAX: highest attribute
-  */
-@@ -8047,6 +8052,7 @@ enum nl80211_mbssid_config_attributes {
- 	NL80211_MBSSID_CONFIG_ATTR_INDEX,
- 	NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX,
- 	NL80211_MBSSID_CONFIG_ATTR_EMA,
-+	NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID,
- 
- 	/* keep last */
- 	__NL80211_MBSSID_CONFIG_ATTR_LAST,
-diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
-index f039a7d0d6f7..bc48365ee188 100644
---- a/net/wireless/nl80211.c
-+++ b/net/wireless/nl80211.c
-@@ -469,6 +469,8 @@ nl80211_mbssid_config_policy[NL80211_MBSSID_CONFIG_ATTR_MAX + 1] = {
- 	[NL80211_MBSSID_CONFIG_ATTR_INDEX] = { .type = NLA_U8 },
- 	[NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX] = { .type = NLA_U32 },
- 	[NL80211_MBSSID_CONFIG_ATTR_EMA] = { .type = NLA_FLAG },
-+	[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID] =
-+		NLA_POLICY_MAX(NLA_U8, IEEE80211_MLD_MAX_NUM_LINKS),
- };
- 
- static const struct nla_policy
-@@ -5523,11 +5525,13 @@ static int validate_beacon_tx_rate(struct cfg80211_registered_device *rdev,
- 
- static int nl80211_parse_mbssid_config(struct wiphy *wiphy,
- 				       struct net_device *dev,
-+				       unsigned int link_id,
- 				       struct nlattr *attrs,
- 				       struct cfg80211_mbssid_config *config,
- 				       u8 num_elems)
- {
- 	struct nlattr *tb[NL80211_MBSSID_CONFIG_ATTR_MAX + 1];
-+	int tx_link_id = -1;
- 
- 	if (!wiphy->mbssid_max_interfaces)
- 		return -EOPNOTSUPP;
-@@ -5551,6 +5555,9 @@ static int nl80211_parse_mbssid_config(struct wiphy *wiphy,
- 	    (!config->index && !num_elems))
- 		return -EINVAL;
- 
-+	if (tb[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID])
-+		tx_link_id = nla_get_u8(tb[NL80211_MBSSID_CONFIG_ATTR_TX_LINK_ID]);
-+
- 	if (tb[NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX]) {
- 		u32 tx_ifindex =
- 			nla_get_u32(tb[NL80211_MBSSID_CONFIG_ATTR_TX_IFINDEX]);
-@@ -5572,10 +5579,25 @@ static int nl80211_parse_mbssid_config(struct wiphy *wiphy,
- 			}
- 
- 			config->tx_wdev = tx_netdev->ieee80211_ptr;
-+			/* Caller should call dev_put(config->tx_wdev) from this point */
-+
-+			if (config->tx_wdev->valid_links) {
-+				if (tx_link_id == -1 ||
-+				    !(config->tx_wdev->valid_links & BIT(tx_link_id)))
-+					return -ENOLINK;
-+
-+				config->tx_link_id = tx_link_id;
-+			}
- 		} else {
-+			if (tx_link_id >= 0 && tx_link_id != link_id)
-+				return -EINVAL;
-+
- 			config->tx_wdev = dev->ieee80211_ptr;
- 		}
- 	} else if (!config->index) {
-+		if (tx_link_id >= 0 && tx_link_id != link_id)
-+			return -EINVAL;
-+
- 		config->tx_wdev = dev->ieee80211_ptr;
- 	} else {
- 		return -EINVAL;
-@@ -6325,7 +6347,7 @@ static int nl80211_start_ap(struct sk_buff *skb, struct genl_info *info)
- 	}
- 
- 	if (info->attrs[NL80211_ATTR_MBSSID_CONFIG]) {
--		err = nl80211_parse_mbssid_config(&rdev->wiphy, dev,
-+		err = nl80211_parse_mbssid_config(&rdev->wiphy, dev, link_id,
- 						  info->attrs[NL80211_ATTR_MBSSID_CONFIG],
- 						  &params->mbssid_config,
- 						  params->beacon.mbssid_ies ?
+v5:
+(1) Added a check for tx_link_id when the parameters are passed for
+the transmitting interface itself.
+(2) Added branch tags in all patches.
+(3) Reduced lines to 80 characters wherever possible.
+
+v4:
+(1) Pre-requisite driver patches are merged in wireless-next
+    hence this series should apply cleanly now.\
+(2) Refactored possible driver changes into a separate patch.
+(3) Found a change missed in HWSIM causing compilation errors,
+    replaced mbssid_tx_bss by tx_bss_conf and confirmed
+    successful compilation.
+(4) Replaced vif->bss_conf->ema_ap by link_conf->ema_ap.
+
+Aloka Dixit (1):
+  wifi: ath12k: pass link_conf for tx_arvif retrieval
+
+Rameshkumar Sundaram (2):
+  wifi: nl80211: add link id of transmitted profile for MLO MBSSID
+  wifi: mac80211: restructure tx profile retrieval for MLO MBSSID
+
+ drivers/net/wireless/ath/ath11k/mac.c         | 10 ++-
+ drivers/net/wireless/ath/ath12k/mac.c         | 35 ++++++---
+ drivers/net/wireless/virtual/mac80211_hwsim.c |  7 +-
+ include/net/cfg80211.h                        |  2 +
+ include/net/mac80211.h                        |  7 +-
+ include/uapi/linux/nl80211.h                  |  6 ++
+ net/mac80211/cfg.c                            | 64 ++++++++++------
+ net/mac80211/ieee80211_i.h                    |  2 +
+ net/mac80211/iface.c                          | 75 +++++++++++++------
+ net/wireless/nl80211.c                        | 24 +++++-
+ 10 files changed, 169 insertions(+), 63 deletions(-)
+
+
+base-commit: 2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c
+prerequisite-patch-id: 23ab0045d41c493c54142d2698027f21d2063ba1
+prerequisite-patch-id: 74c658429fd696e331ccaf3025962d2884756d57
+prerequisite-patch-id: 284c1af7e51812f987ceae4e05ff64c24310d400
+prerequisite-patch-id: 17f6bcc54efce643210524c984b52b9445104427
+prerequisite-patch-id: b0665c8a666421d0afddfdbe6d7db41c657e17d3
+prerequisite-patch-id: 817cc3ee76c3fa22fc6822eb23d7a54399cd6c64
+prerequisite-patch-id: bb2dfb33353038cd07152fc4859e8b10dc191dfd
+prerequisite-patch-id: 999a3915f59eca4995da1061d9e8aa6238f9e36d
+prerequisite-patch-id: a505f82268ec8f6502e49a9170b984fb618a6205
+prerequisite-patch-id: 4bb8e397fa2a3d0db778a6a59142093b0aa9a93f
+prerequisite-patch-id: aa840ba06263db886c7bb245b5a67391f22a4e17
+prerequisite-patch-id: c432a4772ec7dc9be76f04d0f9b02db8a49cbf09
+prerequisite-patch-id: 3fe11b0b9b5674d6cabe50b5db567a3ba83455a7
+prerequisite-patch-id: e8fcaca081f0388638c477923e83b3e92a109dca
+prerequisite-patch-id: 7a014e384baa3f587a9a56762f51df65e397a5bc
+prerequisite-patch-id: 69f02f74837f521729cfcb488dde8d117566bb0e
+prerequisite-patch-id: 1d48b9dcadfd71de63686fb567d51a1209cab958
+prerequisite-patch-id: 5fa3f69215f44f19ba7ee17067902219a9affce3
+prerequisite-patch-id: 7991ff8ab03c0a8287efdb9e54a808b4c6a93c61
+prerequisite-patch-id: 8b422feca8352ccda57d90a49364c0bea20efd04
+prerequisite-patch-id: e48b89ab1370463e8db1d797d98982f4e6aa80a9
+prerequisite-patch-id: 5c1da3321a85db91f97ccae32cf6c3bffded6d2a
+prerequisite-patch-id: 0988c15e49f839a5b1a5b58e6d865455427f663e
+prerequisite-patch-id: 762b2ea2fca5d37a05d386c8b036240ef6964bc2
+prerequisite-patch-id: fe6492431cb48cd5b3fc34190dfd8a129a76f82b
+prerequisite-patch-id: aea177c34c64e725a8ea49de162c494a8f8d4bc3
+prerequisite-patch-id: 456149333aeba8e290a02f643ec25a507ac4fd3f
+prerequisite-patch-id: b226e7375c86290f46abd9afca9b19bf3b124a27
+prerequisite-patch-id: 8b4325a87a91ec45462661ea3470ed90049b6fbe
+prerequisite-patch-id: 4120a2bb50ca6042e3d388303e107b2835a62618
+prerequisite-patch-id: c18a1f6db675ea7c66a614303411e7fa054e81c3
+prerequisite-patch-id: ee0ff2615c9172eec1f0786c98b1e4befbd16f3a
+prerequisite-patch-id: 478e6388419e886406dbf23302c7d3f03da5df89
+prerequisite-patch-id: d99fdd8ad23ed798281f08c9ef5a93984d3c7166
+prerequisite-patch-id: 58f4ceb1a35a075a07119cf4237891ced34ca364
+prerequisite-patch-id: fff242eccb9daa9d2450ad1d074588af56e4d28e
+prerequisite-patch-id: f0ba1a475168911ca79a5bb0e1c294303861a0b0
+prerequisite-patch-id: 3ea9e625ce7d5eaec07e987e6fb0188a4f8df89a
+prerequisite-patch-id: 5f81a63d74193cb883db03f8d6ead5b18e58be74
+prerequisite-patch-id: d351e642a1f2107c8c316f273d2f923b9c90b4b2
+prerequisite-patch-id: d8a3b92f5fecb5b781fe7963be69d49b9e94ad8f
+prerequisite-patch-id: 3711a8bb24847dd69c5805d7425416b239144898
+prerequisite-patch-id: f6b8eea777d71fe53f60ac005468941114525eb4
+prerequisite-patch-id: dd52a7dd54aa5c964c2b91c55677b211cede8bde
+prerequisite-patch-id: db9bdd07b03cc8826184f0619b073df11aa65fd6
+prerequisite-patch-id: be52a0117ae745d3dac4e01cf97e29807e3310b5
+prerequisite-patch-id: 214b49ca52050af46d10ab088c15d3ae0fcdfd57
+prerequisite-patch-id: 0b18da4c5eb73a4d6e103871d5c577e61bc01198
+prerequisite-patch-id: 17d1c6c2fd3ca0e5cd7e283bb1afa1afd91712b5
+prerequisite-patch-id: fc65b56879ea1b7dcac9f100fb2a240f600dcaaa
+prerequisite-patch-id: b65186f62f70456a4f80e646a5f656431b69451b
+prerequisite-patch-id: 0c516eb530339e5398eaaf8ece5e72dfac419f93
+prerequisite-patch-id: b1f6cc6ae066f3e10b5626ff0af3267449d613d3
+prerequisite-patch-id: 0369956ed097ba990e31ca1663550a74ce5bf8a0
+prerequisite-patch-id: 73a4b0a87c136697874bb120a3bf0a7ec6e54a32
+prerequisite-patch-id: 87a073d8b3b4e3cc910b0f712b7448101fae9de9
+prerequisite-patch-id: da1ecefaf63a0043c097432de6788d5f9ca5b911
+prerequisite-patch-id: 8744ce0f19dbc564162abe788c2680504f9e698c
+prerequisite-patch-id: caa8e809ce76651faa280e1a0b9875b7fab9330d
+prerequisite-patch-id: b2e0e586c1ba6ffa8b11bd18368cbea67cbdb753
+prerequisite-patch-id: bcee14a9b5bae0e11bd1c783141307a90630b7dd
+prerequisite-patch-id: 6e6d484433f63d7dbd51411ab4468ba792360918
+prerequisite-patch-id: 29d26e0cb33755991e217f460ac86cd676c383f4
+prerequisite-patch-id: fd62a57d6c6004c6c0cfd85f0e2eb8c0ab7839e0
+prerequisite-patch-id: 1718fbd62dc03d5977d6d8c34db067512eebed8e
+prerequisite-patch-id: 564036f943bedf2264253194f5f86b8d615e8850
+prerequisite-patch-id: 45ed2cdf77c46966f0126328265bebc0dc7f6ef4
+prerequisite-patch-id: f256cdfafcd6b7b6534f2b7cc232a7ba0275105b
+prerequisite-patch-id: 990d63a66b7274ea9af0453dc285468c0bde8f85
+prerequisite-patch-id: 56bbb473eb83d161b675b2349b48a33b8785a5d1
+prerequisite-patch-id: e3588fddfb33c61c52adcb2c112c0e80e2ca42aa
+prerequisite-patch-id: 6c6874d0bed7d5441ba7b307e5226a64bda56061
+prerequisite-patch-id: 4efb720b481735792c74118ae2698e1ef2eddba7
+prerequisite-patch-id: 0a1bde787a5786df6070d319d389d7486a75606d
+prerequisite-patch-id: 44ded2ebd394862c0bed18cac6b2e36aed5ce723
+prerequisite-patch-id: 63f70964b843488b98c11f5debf9550f618a1ea9
+prerequisite-patch-id: 962f20d746fe5fb2da6728fe19dc05c3daa0621f
+prerequisite-patch-id: 35d818261dca90392be64c88e716bb5faf8c21a7
+prerequisite-patch-id: 40c196e396e8ed415f7a331f5900fb3917ec712c
+prerequisite-patch-id: e884fcab280286cbaaba6366991769bd07b2ab39
+prerequisite-patch-id: 4d0e116722d59825154c8e8917d0202fd98078f5
+prerequisite-patch-id: be040da44396d9818f18db2853fe7c262d4cfb73
+prerequisite-patch-id: 9dd59bf6e3327ce8bd845686febef2f5e193efb8
+prerequisite-patch-id: dd8f2c037d15372f5e02c0accdf56fc532c3cfdb
+prerequisite-patch-id: 34e6fad6310eb1ce10ccda70cd4124a39485b764
+prerequisite-patch-id: dca8caad3fdaff54750576381a62011dfd2073bd
+prerequisite-patch-id: d9ede47a8c34e495533296dd0aca07a93204abd6
+prerequisite-patch-id: 1404bc1efe086917d7cd370a99952902bf9baa71
+prerequisite-patch-id: 79de1cedfbad6c39a9304473650ac378741d18d0
+prerequisite-patch-id: ed8b4ba87010952fcf09bbdbaa0df7e202f4086a
+prerequisite-patch-id: f5238d8aff99b6f36ed9637a9aa6a3216aa84027
+prerequisite-patch-id: 8bd4656b09c737c798a4d13de7631202e24cd95e
+prerequisite-patch-id: 0fc2d74ba0d2671dd817adb8e55d3ecb187f4f7a
+prerequisite-patch-id: 7e0459b2079578523aaf464e68be249b32813e90
+prerequisite-patch-id: 4c388ea0b838edfc31bb4d114b8bb91169eee80d
+prerequisite-patch-id: 98948ab791c0d0eb380910c7ac2946c0226397c1
+prerequisite-patch-id: 70db189d6734c40c68fb3a4c1f09d62b26e81180
+prerequisite-patch-id: 1323e461e6cebf72c76e974de69d79d22a072440
+prerequisite-patch-id: 5fb7ae04b288183a278d3fae0aa6346170099bb0
+prerequisite-patch-id: fa69b5303e36547b6559d6f5f50326e6ae9ba4e4
+prerequisite-patch-id: 39927ac63686b25cda5164f5a0e41abee9d4784a
+prerequisite-patch-id: 1688f27e8db25c08bfb18cbb2abb6a2372b4b633
+prerequisite-patch-id: 1ddb34ef92e4bc7375994a4f160849bae927428d
+prerequisite-patch-id: c7bcb86220aad6c6181cd08d0d78a1f65da78f71
+prerequisite-patch-id: 0e1e0ea1ad9c162a9e738b0bddcb38f25f48c41b
+prerequisite-patch-id: 67d880d2df5b91f33ad20cc12c444d5401103e5a
+prerequisite-patch-id: 05d7499afbcce35d4c8240d2cf7dee4165e3bf1c
+prerequisite-patch-id: f4d38661047e7142550201e28a6662fa232a3f88
+prerequisite-patch-id: a7901d9c84089ad0ce46ff22f4b32d6e387a9752
+prerequisite-patch-id: e5cbef4294e38c6d33f3f6ad447abc55ebe68db5
+prerequisite-patch-id: 3032166b901850a364c9b0337b09523a3ebf596c
+prerequisite-patch-id: 26ce057d5b5d135be5d981e891df308945e4ab18
+prerequisite-patch-id: 80b3792ca27e649f9eb28cf79d9a072fe2bc2205
+prerequisite-patch-id: 29ec107b61ae72c86e0a20a535858148ad54c7d5
+prerequisite-patch-id: c077af919afa56ff5188a40ddad027bdf9be8e2b
+prerequisite-patch-id: 3c190de51da5ed5ee7ac4230fb453f22ddff377f
+prerequisite-patch-id: a09e1ef785b415ce5b867645ec8e89c8b87af58d
+prerequisite-patch-id: 7d4b3c9568296547df5bc3ae316d150a55f8c544
+prerequisite-patch-id: 5118a5853b19579d43ee96622289390176df489d
+prerequisite-patch-id: b91fda362b852a25ca35fd8dc8a7fd66a1b0daf7
+prerequisite-patch-id: 33e81269fba910f5ac31cfb05946993c0bac5868
+prerequisite-patch-id: b392f1d558bb8db0bd6cccd59fd4957b13c4b96f
+prerequisite-patch-id: 20139d47344c6ef19e65f78abda5de6ca76f8d0b
+prerequisite-patch-id: b67da7c3d8d28ef8b4628679525c768da4f3c85c
+prerequisite-patch-id: ead3d10df7d01e1297c247195dbfd09b3fb9b63a
+prerequisite-patch-id: 762a4b1408d0a5ad7f46592d0a8b066a8a59a7e2
+prerequisite-patch-id: 0c55ec8437aa6e66e86c48e1d4fa02dea528dfd8
+prerequisite-patch-id: f0db73f74b0d0a1819437fdf24cae30dd6b48651
+prerequisite-patch-id: 8c27b8a8ab296a6c6cd6a85b6357ae498ae28fba
+prerequisite-patch-id: b2737cc5da129d18e0055aa061d54195ef13894d
+prerequisite-patch-id: ff70d9ba9dce54b2fe340c4086d7e12c375263c0
+prerequisite-patch-id: 49bf1d83a71a3849bc1121c3c0e6e716d2e4f155
+prerequisite-patch-id: 37ec19fbb64bcaabc5bce195b4285300c16d7d0e
+prerequisite-patch-id: 97dbd838a9f5510c65808f38fa39a4a24eaa2293
+prerequisite-patch-id: 002824589ccc7b81b3a5ecdb03dcd9a9c05e8ceb
+prerequisite-patch-id: 5fdfc8c739d18459431312ae2bb4fe69aad73d30
+prerequisite-patch-id: f1f37a32fe8303c3cb8b8ea96297e594b75d664d
+prerequisite-patch-id: 0fe222253bf21dba54cbd7a400a36777c96429e8
+prerequisite-patch-id: b3283c31adc1bc06cd12b505e6641582a13b0ef6
+prerequisite-patch-id: 1b6c5a39852547f7b2d64dbc856b887668f07e07
+prerequisite-patch-id: 13fa7d2e670df9728d4b387e834c3d420ff9ee37
+prerequisite-patch-id: ee541dfb77f8aab4b97641ecb48cdb4aaf9d077b
+prerequisite-patch-id: 234e3c8c015b774c66848db45d2ad4cebea89f75
+prerequisite-patch-id: 4c5ac8c2395c91c02239d0785ff95bcac67566f5
+prerequisite-patch-id: 0caad3b04dd135a569dcf61ddcaf18c72047a9c8
+prerequisite-patch-id: cd6efd3519c5cca6f82d7baf2c36903129093e3f
+prerequisite-patch-id: 48005d9aaf97ebc40a1aac963a688015aaef2d3e
+prerequisite-patch-id: d3d9cc4604876dcec4b7b5c2aa32e03aa388ad45
+prerequisite-patch-id: 457ee4a9a3b16a200866013614b8cad50332cf1b
+prerequisite-patch-id: 7c831bdbc62b3809ed22321244880e86740e6e4a
+prerequisite-patch-id: be29ab3e3aa22295ae90754e9891573edfed0647
+prerequisite-patch-id: 5e92f3de83af952de9c5e9aa04b4d5a5378193f5
+prerequisite-patch-id: fb78e1072d328ae037c5d7f65de94557d85d4613
+prerequisite-patch-id: 92386b453ce827699ab5a49f9598db2f5641dfb6
+prerequisite-patch-id: 38b5e8a512797a4a74572926a8094d51bfa46a86
+prerequisite-patch-id: d8166e5a71ae2de06c93fde6f2d57d6081f16d13
+prerequisite-patch-id: aa629bb71bae08b3b6ab475c1dd1e8aca0565107
+prerequisite-patch-id: 36daa4867943717e495975755ed57a63e16ad53b
+prerequisite-patch-id: bb050ef272859d064f82bada98bab3ae03d34f64
+prerequisite-patch-id: caec484b0aad68d915a9fe065a06da6d0bd57f44
+prerequisite-patch-id: 5e8bc582504bcb1c4349f39742bd2cce1ec43745
+prerequisite-patch-id: d54eaee27ed6bb9ce030507e2613bcdf00ca80a3
+prerequisite-patch-id: 90918a2f25c22564071741a44c209d590a5dbca7
+prerequisite-patch-id: d1b5d6a0f3fe5facad73d6171325b1f5ae6ec085
+prerequisite-patch-id: e4f34f4c962a76626ee1afb10c83a99353c7ec1f
+prerequisite-patch-id: a53bd42288f0737c2d62f2b411a9234161de4a14
+prerequisite-patch-id: 6bac5fe78b223a4fa2adf74fc7b83205b39d0fda
+prerequisite-patch-id: 777516cc1ab3bd1904b6ff841945990497326670
+prerequisite-patch-id: 59fbea9aa38d471bc3902d155ad71e0943ebf7c8
+prerequisite-patch-id: 0af1d5a728df87284243cdefe792b3196eaa83da
 -- 
 2.34.1
 
