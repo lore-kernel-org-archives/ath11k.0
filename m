@@ -4,118 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2066FC369A1
-	for <ath11k@archiver.kernel.org>; Tue,  8 Apr 2025 19:57:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31BE3C369AA
+	for <ath11k@archiver.kernel.org>; Tue,  8 Apr 2025 19:57:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:
 	Cc:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=V0zGC39nAfRUYoPg3aOmlDwHuUcoNloqjSgKMRMWL4s=; b=ll6TE5LOw5OBiw9nxbVU52fogg
-	xw9dqH4wShGkejbIIRkmUQ67E3omtpQjjNehaZS1tdCpCbzQ50tncPvlr9sj7TxSfp/ZxpjiBAUVn
-	J+v2QBWN6pyUP+1ndaBQdyoggtlaHTe/aYWOFo8zjGpRvzvu8LgDVfBVBABLFv4BlHriOqVYbpP01
-	OkbEXKa5r79xPcHIpI8sSk6YRqJPQbXeZyL78nlFZL5QIqvHszpGUGjviAYkb3BM+jKx90d2U/wlV
-	7IlCRQlJrGHqgZweqRfqO7to8m9OIGZEJ5WF6sEZB7h0tpDKRH1oO72tzXHz47tU97IWTWuoVIohF
-	hHV6BRkA==;
+	bh=C+rkt+O/whAxBRt3fe3llX2/G76XT4W2u/reGxZ80m8=; b=Hu/pRxnt5+fi0YgWJIeTq4aM1N
+	ZzRPmcT1G/cYOS4MPNVV1jI8uUxJ95yFfCTsNj9kLVscLsd+6qHiMl9/1N38exXKe2RRSTfPVGseV
+	zqdycU2gbn1Cl/GwiGv+S3XU50NxOdJbbiKJYzj9hDUjN1olDliaUE0vw9hgOyfIJQLArmosZGLon
+	CgsFnsDuz2qY5Hvl5iCIxzxbFRji38hIYSmoxDrWCEaoQfK0Sp4Wj9N29JLbPZLuwBOo+Ze3l1f1h
+	HoVz6cbcxaTSSCW6+tXEhzLyzD2kumrbPd43Qez0pMUkYuAkeDMvkReh0VnMubs5N+IlDQ68hfC8M
+	dMYd7N2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2F50-00000005Hfy-3W91;
-	Tue, 08 Apr 2025 19:57:54 +0000
+	id 1u2F4z-00000005Heg-3s3M;
+	Tue, 08 Apr 2025 19:57:53 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2Dwh-000000059EP-0ZgB
+	id 1u2Dwg-000000059EL-42NK
 	for ath11k@bombadil.infradead.org;
 	Tue, 08 Apr 2025 18:45:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:
 	Content-Type:Content-ID:Content-Description;
-	bh=V0zGC39nAfRUYoPg3aOmlDwHuUcoNloqjSgKMRMWL4s=; b=epAmz9aB1VGtiftURxadvW3YfO
-	svHszKOmqyzpHi4fPYg/5A5kLr3r2KnZh/1pu0S9tPk9O0lC9xGBbW7C2qIQccvnVCkNaDwsJn2jK
-	cJmX9kyejuKPa5B0p/rDs1ABKFYHwW4wYhsniHuj9s8ZksMYB3qQk2cHrBZrwD6VWGkEybGM/xiqA
-	vD7wkPuvhxv+ALm0yTAG5JUW2v8dFLVCn9ipn4M6i3/8mjIl92jys+3Fwxqp7jYsWyncSQyWfUYoQ
-	gnr9q8Knn5RDviapblAlZqEWEeUKdRrLqZZmjCrVt3xBefBZTJkAk6hOe2DtKRm/Y9SvvLhnXopo/
-	NYGD/Wxw==;
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	bh=C+rkt+O/whAxBRt3fe3llX2/G76XT4W2u/reGxZ80m8=; b=fYLZKoDOp2Ofht0qE3QcooI54a
+	EGZCJaZD37haKov/Kqof/ZZNIoN4iqQu4Y2eelIhLVFUrQQcGjwwyzK/mDXOQVIsb35LykDAEFc96
+	mceWw7umefg/SYS4RqVdBoLVL6unt40gy7L0v/h5UyZ7XKXbhPgmjdxxJT6kyQAhCyNi3FvOgP6hb
+	s9in0cjerT2EfdABHBXe0IAn71qZ6t2HpzCWfmj//J/2bRLtQiG2JPXOzGxtKHTucKBZa81BfSzEU
+	CU0YR65NeoixlI/2ssjjKqdYAKfp4lzP9YrgxpWIVS2lm2stUVMEQfZXzJrAJEDCbkHAaslxD287N
+	XuOWpV9A==;
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by desiato.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u2Dwc-00000008OVg-1Cs9
+	id 1u2Dwc-00000008OVe-0o9Y
 	for ath11k@lists.infradead.org;
-	Tue, 08 Apr 2025 18:45:14 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538BCa3C001763
+	Tue, 08 Apr 2025 18:45:13 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538AjNqr019454
 	for <ath11k@lists.infradead.org>; Tue, 8 Apr 2025 18:45:07 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=V0zGC39nAfR
-	UYoPg3aOmlDwHuUcoNloqjSgKMRMWL4s=; b=GRIKm0U6JijuRPBUjhnrfOzQ0VK
-	aYSAHJOesdFcAP3DukJWAx3d4OLhliyckt9HxBLq6U9XOimNSekUWE8euon0BUZX
-	iBCQGygWQM2YSnbOipbM7ArrMX++aRB3jZOCRsYoZt97XXAciRivuKvJsH/H3YxB
-	JIS+nmT+tzITavQWA76Auwl2iTxSYaed+koqu2sZcfpA+ExFzEfUMqc/Hy/AOfz9
-	3F51zwFcRVUjqVqbKwIawBoTA+KSWUpopTW5Vzqnq8aKa8TM6woboQw7EcqAMR6W
-	7FqT2Vj77vImqphb+fRo2Co9AfYtrKQzG3gQNfNPOEKx1L212fdPq1sQW/w==
+	:mime-version:references:subject:to; s=qcppdkim1; bh=C+rkt+O/whA
+	xBRt3fe3llX2/G76XT4W2u/reGxZ80m8=; b=GTNWXkjQRtB9KTZeLSv5LeebnRa
+	qOBlhwigvo9/XOozCbEWiT4/oPsIk6BjXH27J+U3X3Lm0gAUvjpS6WqLWwZQ+pcw
+	YE4uvto+85IOHv9YjdQ8GEg8Tig0mGIPbfjUPJVu94X5Z0E44bAgi9ftDUqP46wr
+	ZVNHpBf4oJupFCR/nV9p97RClfhyE+jfOlxMSU4YT1/H+kfH2my6k8lDtyamjumk
+	100AGp/yz+Wv8hjHl7+cqWzfN86y/4QD/RGtZ4mMU/cKuwgETtmt6V9SAzeSNNIL
+	Q+RKmS7WA0HMlreowTv1pT6W1PF/PQm7Wdp+TEHD9VuiFN/Z4InIfe9A1VA==
 Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbe8ybm-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twdggxba-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 08 Apr 2025 18:45:07 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3054210ce06so8225476a91.2
-        for <ath11k@lists.infradead.org>; Tue, 08 Apr 2025 11:45:07 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Tue, 08 Apr 2025 18:45:06 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-2ff6943febeso4506901a91.0
+        for <ath11k@lists.infradead.org>; Tue, 08 Apr 2025 11:45:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744137906; x=1744742706;
+        d=1e100.net; s=20230601; t=1744137905; x=1744742705;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V0zGC39nAfRUYoPg3aOmlDwHuUcoNloqjSgKMRMWL4s=;
-        b=X8aQa5USaGDoqMxiPOSBPrcXzWljglaJrkUvBqTEs8xNAnWS7eLc5AW5rJfn/xcsF4
-         YzACEelEWiGRUJNDjNspM1FzlMPXpZtbpPM9LJUT53yyzzXNEUJRQYIq5hZMgdze90Hz
-         OBj1OOPKUdEQZAiUeomAB8Li1YRlF22VcE5J2YgTkAhRd2A7Io5qioeBCPeyzSLhwEHT
-         VAhj//lAnAPkSzEt9EBuSBWwOPaxtnZQhp9KBvfE0sc0IAQhSfPgSGR9Bwyl9Zpndzeg
-         iHVTk6OPBIpzrKzzwrv+CJpwk2OV1mpb39n/Uj3y9Yl955g5pk14IGljzM6eIvrZtJoq
-         H4Zg==
-X-Forwarded-Encrypted: i=1; AJvYcCX3znxY58t7LXeSOxRdiEllY48PXieeqL1xYuVUMt2R/ansS+EeHANbRhXOdIjzk1n/gC825Lk=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx60MWBqkZ3MyLLZ4ocG3dRyGPemBE88Dqp1jPuq7js34n517zf
-	pYByVvmI0T+2hjCbqnxuSKay5tDQU8ryFWTYVzWpWfFEjTgkZ3MlfFoZMNNblieKeq2Fd3mJKW1
-	yvwQHxQPvK+DZl7BxA8nRgmLlW5u6colg+Q494JH3zdyud1fmS+IkBWVvuXSTcpvT5mZs
-X-Gm-Gg: ASbGncsnk4EUceb19V9kYCJAff+09uGEQwZf9arVAFltiIfXh00Y07AjWJs/rgsXgzg
-	jpgfJavOozRQW3DJ+nrXTeVmPOOfYmLXdIFVef5muklp40jLAN5t/4COI+IkkI+OY8oW2sffjeE
-	yLAANnzJosPCHOKUirSkobomamsRzOy5gEDqIoSdT6qHqyF42XzINHrbqFB8abJgoL/fOhYPtQg
-	2EGauUBxrBSZLfidwnlRsX0xOZCTLiW5uQfEmo0A6jIsN/Cszw8RORREy7PcenY8iXOv4INvhhH
-	Yn6elhEKC7qABfGttxsX1Snh7TVshm7AW5qGApreOVxeBKkncGvIDp50BqnWhgkHxcPseNM=
-X-Received: by 2002:a17:90b:270e:b0:305:2d9b:f8d1 with SMTP id 98e67ed59e1d1-306dbc23bcfmr414948a91.24.1744137905983;
+        bh=C+rkt+O/whAxBRt3fe3llX2/G76XT4W2u/reGxZ80m8=;
+        b=Bg4s9UXiEf7PGIFNoTJNZ2CGY/lEDn5l1Z9dnBj8U53cdxVEV9LxOOSvWBVDeuMwms
+         OQ3oNOaAuwWMvGcJZ/xTgf+yLuSmXVusHyZYrtU48/Ygbx2rPyTEqup4ON39DjXalXO8
+         cfe4e/HN5Je0S2lexIR7UZBaIKH9R40nriXV6+9rGbxTmhzDtxeaFC/RX+jJwxMK+qxK
+         7VBVPz0bMfHJfDI3OQYA/AIv8G368xKxPWVxN99K6t74pC71IOHdaoWAyH2IbSpqehmu
+         s9qCvQ4kroPBvFbNMtPeE/q2ERfs7VeDdtRw2anGuC7/Dc0ryjgqZnRJ8q7SNBhm9rNW
+         n1iw==
+X-Forwarded-Encrypted: i=1; AJvYcCXDEVL4lIvg07qQkquSnw9FySbdPu423To4CRDyDPkvLb23CQ0BxsQn2+xiq9Eu7WyoOviQzkk=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwpvLSVt1mSyQCdjr9a1CUz597ChdI7rNlvZcwzyV/ISLBdUb7p
+	/aFlvOYFnQvRcT4P7/QY0QzU5S8jR18NIZLwJwkd6kP0chCOcmRdEeGyQh0IG8OFM+DVE//5JXJ
+	xFC32HLlDjOu2JmPlzfkbddlKgz4thAzcMXG9pxKxtQzlM62Pgf1+6xfNM+QzwRzcex9w
+X-Gm-Gg: ASbGncsTmby2q4alhpIULkd7EdJQnVocbrisp9+74UQrLRn/kOsQDE7T6nA95g+dIOX
+	mCYQ3YBTNHQZsRT/P4FUGp8FMrlMSd/+/el9W1RJUfyHzRtCmsUfdOtH/qdRj4fEc8m57A2odvQ
+	/lbj5xMmGo0zLstzrZYWsxq+TqIUNSdBfntZNnXKbJUIM5IdS6QSyf9ODylD7LWJSMyV4ZEw5Y0
+	W7IqWAKR2xicATzCA7GVWhTuoU9ztQJCCm3KfIlcJDCj9fYjtrSIUg3YcJXROdYyInZXfBnWXuZ
+	HNnH56c+CpguaTaNDh/pnKN4T8mC0d4OgUWsPHF+l4J58PFtQZcPbIMba4sL8Q3kYODIJjk=
+X-Received: by 2002:a17:90a:f944:b0:2ff:53d6:2b82 with SMTP id 98e67ed59e1d1-306d0d1d6e8mr6172350a91.11.1744137905283;
         Tue, 08 Apr 2025 11:45:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFaU3DhJgD9mFlpz+3pt/knEhqaVCDrmHUL3p4sYGxtpbfvJJ4wuIl+C1Isb4VWBwFOCCpiIA==
-X-Received: by 2002:a17:90b:270e:b0:305:2d9b:f8d1 with SMTP id 98e67ed59e1d1-306dbc23bcfmr414917a91.24.1744137905639;
-        Tue, 08 Apr 2025 11:45:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGq2vjIj7N/n0y+l2ChpHZWdwrF9q19tRe7lt9VniGlfydGnTMCeQwD+qfr2VnNMUu+ZqcvKg==
+X-Received: by 2002:a17:90a:f944:b0:2ff:53d6:2b82 with SMTP id 98e67ed59e1d1-306d0d1d6e8mr6172303a91.11.1744137904725;
+        Tue, 08 Apr 2025 11:45:04 -0700 (PDT)
 Received: from alokad-linux.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057cb9500dsm12882212a91.47.2025.04.08.11.45.04
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057cb9500dsm12882212a91.47.2025.04.08.11.45.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 11:45:05 -0700 (PDT)
+        Tue, 08 Apr 2025 11:45:04 -0700 (PDT)
 From: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
 To: linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
         ath11k@lists.infradead.org
-Subject: [PATCH ath-next v5 3/3] wifi: ath12k: pass link_conf for tx_arvif retrieval
-Date: Tue,  8 Apr 2025 11:45:01 -0700
-Message-Id: <20250408184501.3715887-4-aloka.dixit@oss.qualcomm.com>
+Subject: [PATCH wireless-next v5 2/3] wifi: mac80211: restructure tx profile retrieval for MLO MBSSID
+Date: Tue,  8 Apr 2025 11:45:00 -0700
+Message-Id: <20250408184501.3715887-3-aloka.dixit@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250408184501.3715887-1-aloka.dixit@oss.qualcomm.com>
 References: <20250408184501.3715887-1-aloka.dixit@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: puPbx1Xa1FANkt8VAkJjdGxx1bWQwt36
-X-Authority-Analysis: v=2.4 cv=T7OMT+KQ c=1 sm=1 tr=0 ts=67f56eb3 cx=c_pps a=vVfyC5vLCtgYJKYeQD43oA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=66aBALrjW5AsI7a0044A:9 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-ORIG-GUID: puPbx1Xa1FANkt8VAkJjdGxx1bWQwt36
+X-Authority-Analysis: v=2.4 cv=PJgP+eqC c=1 sm=1 tr=0 ts=67f56eb3 cx=c_pps a=vVfyC5vLCtgYJKYeQD43oA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=X_0Cl_4B8EXWqmMzkNwA:9 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: Pi39BhxxkL6pB6-QOwP3sPPbDxGHmmrr
+X-Proofpoint-GUID: Pi39BhxxkL6pB6-QOwP3sPPbDxGHmmrr
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-08_08,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=844 lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0
- mlxscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 malwarescore=0 spamscore=0
+ impostorscore=0 suspectscore=0 mlxlogscore=999 bulkscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
  definitions=main-2504080129
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250408_194510_702813_D30B4526 
-X-CRM114-Status: GOOD (  14.45  )
+X-CRM114-CacheID: sfid-20250408_194510_633126_CD651CC8 
+X-CRM114-Status: GOOD (  23.67  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,99 +130,418 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Three out of four callers to ath12k_mac_get_tx_arvif() have
-link_conf pointer already set for other operations. Pass it
-as a parameter. Modify ath12k_control_beaconing() to set
-link_conf first.
+From: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
 
+For MBSSID, each vif (struct ieee80211_vif) stores another vif
+pointer for the transmitting profile of MBSSID set. This won't
+suffice for MLO as there may be multiple links, each of which can
+be part of different MBSSID sets. Hence the information needs to
+be stored per-link. Additionally, the transmitted profile itself
+may be part of an MLD hence storing vif will not suffice either.
+Fix MLO by storing an instance of struct ieee80211_bss_conf
+for each link.
+
+Modify following operations to reflect the above structure updates:
+- channel switch completion
+- BSS color change completion
+- Removing nontransmitted links in ieee80211_stop_mbssid()
+- drivers retrieving the transmitted link for beacon templates.
+
+Signed-off-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
+Co-developed-by: Muna Sinada <muna.sinada@oss.qualcomm.com>
+Signed-off-by: Muna Sinada <muna.sinada@oss.qualcomm.com>
+Co-developed-by: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
 Signed-off-by: Aloka Dixit <aloka.dixit@oss.qualcomm.com>
 ---
- drivers/net/wireless/ath/ath12k/mac.c | 31 +++++++++++++++------------
- 1 file changed, 17 insertions(+), 14 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c         | 10 ++-
+ drivers/net/wireless/ath/ath12k/mac.c         | 22 +++++-
+ drivers/net/wireless/virtual/mac80211_hwsim.c |  7 +-
+ include/net/mac80211.h                        |  7 +-
+ net/mac80211/cfg.c                            | 64 ++++++++++------
+ net/mac80211/ieee80211_i.h                    |  2 +
+ net/mac80211/iface.c                          | 75 +++++++++++++------
+ 7 files changed, 130 insertions(+), 57 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 97816916abac..8191ee14a1fd 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1531,8 +1531,14 @@ static int ath11k_mac_set_vif_params(struct ath11k_vif *arvif,
+ 
+ static struct ath11k_vif *ath11k_mac_get_tx_arvif(struct ath11k_vif *arvif)
+ {
+-	if (arvif->vif->mbssid_tx_vif)
+-		return ath11k_vif_to_arvif(arvif->vif->mbssid_tx_vif);
++	struct ieee80211_bss_conf *link_conf, *tx_bss_conf;
++
++	lockdep_assert_wiphy(arvif->ar->hw->wiphy);
++
++	link_conf = &arvif->vif->bss_conf;
++	tx_bss_conf = wiphy_dereference(arvif->ar->hw->wiphy, link_conf->tx_bss_conf);
++	if (tx_bss_conf)
++		return ath11k_vif_to_arvif(tx_bss_conf->vif);
+ 
+ 	return NULL;
+ }
 diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
-index fe4a22362000..15ee1f4b5193 100644
+index 2b6bdc3d2b11..fe4a22362000 100644
 --- a/drivers/net/wireless/ath/ath12k/mac.c
 +++ b/drivers/net/wireless/ath/ath12k/mac.c
-@@ -580,22 +580,16 @@ static int ath12k_mac_vif_link_chan(struct ieee80211_vif *vif, u8 link_id,
- 	return 0;
- }
+@@ -582,12 +582,26 @@ static int ath12k_mac_vif_link_chan(struct ieee80211_vif *vif, u8 link_id,
  
--static struct ath12k_link_vif *ath12k_mac_get_tx_arvif(struct ath12k_link_vif *arvif)
-+static struct ath12k_link_vif *
-+ath12k_mac_get_tx_arvif(struct ath12k_link_vif *arvif,
-+			struct ieee80211_bss_conf *link_conf)
+ static struct ath12k_link_vif *ath12k_mac_get_tx_arvif(struct ath12k_link_vif *arvif)
  {
--	struct ieee80211_bss_conf *link_conf, *tx_bss_conf;
-+	struct ieee80211_bss_conf *tx_bss_conf;
- 	struct ath12k *ar = arvif->ar;
++	struct ieee80211_bss_conf *link_conf, *tx_bss_conf;
++	struct ath12k *ar = arvif->ar;
  	struct ath12k_vif *tx_ahvif;
  
- 	lockdep_assert_wiphy(ath12k_ar_to_hw(ar)->wiphy);
- 
--	link_conf = ath12k_mac_get_link_bss_conf(arvif);
--	if (!link_conf) {
--		ath12k_warn(ar->ab,
--			    "unable to access bss link conf for link %u required to retrieve transmitting link conf\n",
--			    arvif->link_id);
--		return NULL;
--	}
--
- 	tx_bss_conf = wiphy_dereference(ath12k_ar_to_hw(ar)->wiphy,
- 					link_conf->tx_bss_conf);
- 	if (tx_bss_conf) {
-@@ -1623,7 +1617,7 @@ static int ath12k_mac_setup_bcn_tmpl(struct ath12k_link_vif *arvif)
- 		return -ENOLINK;
- 	}
- 
--	tx_arvif = ath12k_mac_get_tx_arvif(arvif);
-+	tx_arvif = ath12k_mac_get_tx_arvif(arvif, link_conf);
- 	if (tx_arvif) {
- 		if (tx_arvif != arvif && arvif->is_up)
- 			return 0;
-@@ -1693,6 +1687,7 @@ static void ath12k_control_beaconing(struct ath12k_link_vif *arvif,
- {
- 	struct ath12k_wmi_vdev_up_params params = {};
- 	struct ath12k_vif *ahvif = arvif->ahvif;
-+	struct ieee80211_bss_conf *link_conf;
- 	struct ath12k_link_vif *tx_arvif;
- 	struct ath12k *ar = arvif->ar;
- 	int ret;
-@@ -1725,7 +1720,15 @@ static void ath12k_control_beaconing(struct ath12k_link_vif *arvif,
- 	params.aid = ahvif->aid;
- 	params.bssid = arvif->bssid;
- 
--	tx_arvif = ath12k_mac_get_tx_arvif(arvif);
+-	if (arvif->ahvif->vif->mbssid_tx_vif) {
+-		tx_ahvif = ath12k_vif_to_ahvif(arvif->ahvif->vif->mbssid_tx_vif);
+-		if (tx_ahvif)
+-			return &tx_ahvif->deflink;
++	lockdep_assert_wiphy(ath12k_ar_to_hw(ar)->wiphy);
++
 +	link_conf = ath12k_mac_get_link_bss_conf(arvif);
 +	if (!link_conf) {
 +		ath12k_warn(ar->ab,
 +			    "unable to access bss link conf for link %u required to retrieve transmitting link conf\n",
 +			    arvif->link_id);
-+		return;
++		return NULL;
 +	}
 +
-+	tx_arvif = ath12k_mac_get_tx_arvif(arvif, link_conf);
- 	if (tx_arvif) {
- 		params.tx_bssid = tx_arvif->bssid;
- 		params.nontx_profile_idx = info->bssid_index;
-@@ -7938,7 +7941,7 @@ static int ath12k_mac_setup_vdev_params_mbssid(struct ath12k_link_vif *arvif,
- 		return -ENOLINK;
++	tx_bss_conf = wiphy_dereference(ath12k_ar_to_hw(ar)->wiphy,
++					link_conf->tx_bss_conf);
++	if (tx_bss_conf) {
++		tx_ahvif = ath12k_vif_to_ahvif(tx_bss_conf->vif);
++		return wiphy_dereference(tx_ahvif->ah->hw->wiphy,
++					 tx_ahvif->link[tx_bss_conf->link_id]);
  	}
  
--	tx_arvif = ath12k_mac_get_tx_arvif(arvif);
-+	tx_arvif = ath12k_mac_get_tx_arvif(arvif, link_conf);
- 	if (!tx_arvif)
- 		return 0;
+ 	return NULL;
+diff --git a/drivers/net/wireless/virtual/mac80211_hwsim.c b/drivers/net/wireless/virtual/mac80211_hwsim.c
+index cf3e976471c6..74d037cfccca 100644
+--- a/drivers/net/wireless/virtual/mac80211_hwsim.c
++++ b/drivers/net/wireless/virtual/mac80211_hwsim.c
+@@ -2273,7 +2273,7 @@ static void mac80211_hwsim_beacon_tx(void *arg, u8 *mac,
+ {
+ 	struct mac80211_hwsim_link_data *link_data = arg;
+ 	u32 link_id = link_data->link_id;
+-	struct ieee80211_bss_conf *link_conf;
++	struct ieee80211_bss_conf *link_conf, *tx_bss_conf;
+ 	struct mac80211_hwsim_data *data =
+ 		container_of(link_data, struct mac80211_hwsim_data,
+ 			     link_data[link_id]);
+@@ -2292,10 +2292,11 @@ static void mac80211_hwsim_beacon_tx(void *arg, u8 *mac,
+ 	    vif->type != NL80211_IFTYPE_OCB)
+ 		return;
  
-@@ -9526,7 +9529,7 @@ ath12k_mac_update_vif_chan(struct ath12k *ar,
- 		params.aid = ahvif->aid;
- 		params.bssid = arvif->bssid;
+-	if (vif->mbssid_tx_vif && vif->mbssid_tx_vif != vif)
++	tx_bss_conf = rcu_access_pointer(link_conf->tx_bss_conf);
++	if (tx_bss_conf && tx_bss_conf != link_conf)
+ 		return;
  
--		tx_arvif = ath12k_mac_get_tx_arvif(arvif);
-+		tx_arvif = ath12k_mac_get_tx_arvif(arvif, link_conf);
- 		if (tx_arvif) {
- 			params.tx_bssid = tx_arvif->bssid;
- 			params.nontx_profile_idx = link_conf->bssid_index;
+-	if (vif->bss_conf.ema_ap) {
++	if (link_conf->ema_ap) {
+ 		struct ieee80211_ema_beacons *ema;
+ 		u8 i = 0;
+ 
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index c498f685d01f..f7ceba974749 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -682,6 +682,9 @@ struct ieee80211_parsed_tpe {
+  *	responder functionality.
+  * @ftmr_params: configurable lci/civic parameter when enabling FTM responder.
+  * @nontransmitted: this BSS is a nontransmitted BSS profile
++ * @tx_bss_conf: Pointer to the BSS configuration of transmitting interface
++ *	if MBSSID is enabled. This pointer is RCU-protected due to CSA finish
++ *	and BSS color change flows accessing it.
+  * @transmitter_bssid: the address of transmitter AP
+  * @bssid_index: index inside the multiple BSSID set
+  * @bssid_indicator: 2^bssid_indicator is the maximum number of APs in set
+@@ -804,6 +807,7 @@ struct ieee80211_bss_conf {
+ 	struct ieee80211_ftm_responder_params *ftmr_params;
+ 	/* Multiple BSSID data */
+ 	bool nontransmitted;
++	struct ieee80211_bss_conf __rcu *tx_bss_conf;
+ 	u8 transmitter_bssid[ETH_ALEN];
+ 	u8 bssid_index;
+ 	u8 bssid_indicator;
+@@ -2023,7 +2027,6 @@ enum ieee80211_neg_ttlm_res {
+  * @txq: the multicast data TX queue
+  * @offload_flags: 802.3 -> 802.11 enapsulation offload flags, see
+  *	&enum ieee80211_offload_flags.
+- * @mbssid_tx_vif: Pointer to the transmitting interface if MBSSID is enabled.
+  */
+ struct ieee80211_vif {
+ 	enum nl80211_iftype type;
+@@ -2052,8 +2055,6 @@ struct ieee80211_vif {
+ 	bool probe_req_reg;
+ 	bool rx_mcast_action_reg;
+ 
+-	struct ieee80211_vif *mbssid_tx_vif;
+-
+ 	/* must be last */
+ 	u8 drv_priv[] __aligned(sizeof(void *));
+ };
+diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
+index 9f683f838431..8d2ded7fecae 100644
+--- a/net/mac80211/cfg.c
++++ b/net/mac80211/cfg.c
+@@ -146,8 +146,8 @@ static int ieee80211_set_ap_mbssid_options(struct ieee80211_sub_if_data *sdata,
+ 					   struct ieee80211_bss_conf *link_conf)
+ {
+ 	struct ieee80211_sub_if_data *tx_sdata;
++	struct ieee80211_bss_conf *old;
+ 
+-	sdata->vif.mbssid_tx_vif = NULL;
+ 	link_conf->bssid_index = 0;
+ 	link_conf->nontransmitted = false;
+ 	link_conf->ema_ap = false;
+@@ -156,14 +156,26 @@ static int ieee80211_set_ap_mbssid_options(struct ieee80211_sub_if_data *sdata,
+ 	if (sdata->vif.type != NL80211_IFTYPE_AP || !params->tx_wdev)
+ 		return -EINVAL;
+ 
++	old = sdata_dereference(link_conf->tx_bss_conf, sdata);
++	if (old)
++		return -EALREADY;
++
+ 	tx_sdata = IEEE80211_WDEV_TO_SUB_IF(params->tx_wdev);
+ 	if (!tx_sdata)
+ 		return -EINVAL;
+ 
+ 	if (tx_sdata == sdata) {
+-		sdata->vif.mbssid_tx_vif = &sdata->vif;
++		rcu_assign_pointer(link_conf->tx_bss_conf, link_conf);
+ 	} else {
+-		sdata->vif.mbssid_tx_vif = &tx_sdata->vif;
++		struct ieee80211_bss_conf *tx_bss_conf;
++
++		tx_bss_conf = sdata_dereference(tx_sdata->vif.link_conf[params->tx_link_id],
++						sdata);
++		if (rcu_access_pointer(tx_bss_conf->tx_bss_conf) != tx_bss_conf)
++			return -EINVAL;
++
++		rcu_assign_pointer(link_conf->tx_bss_conf, tx_bss_conf);
++
+ 		link_conf->nontransmitted = true;
+ 		link_conf->bssid_index = params->index;
+ 	}
+@@ -1669,7 +1681,6 @@ static int ieee80211_stop_ap(struct wiphy *wiphy, struct net_device *dev,
+ 	kfree(link_conf->ftmr_params);
+ 	link_conf->ftmr_params = NULL;
+ 
+-	sdata->vif.mbssid_tx_vif = NULL;
+ 	link_conf->bssid_index = 0;
+ 	link_conf->nontransmitted = false;
+ 	link_conf->ema_ap = false;
+@@ -1683,6 +1694,9 @@ static int ieee80211_stop_ap(struct wiphy *wiphy, struct net_device *dev,
+ 		ieee80211_free_key_list(local, &keys);
+ 	}
+ 
++	ieee80211_stop_mbssid(sdata);
++	RCU_INIT_POINTER(link_conf->tx_bss_conf, NULL);
++
+ 	link_conf->enable_beacon = false;
+ 	sdata->beacon_rate_set = false;
+ 	sdata->vif.cfg.ssid_len = 0;
+@@ -3700,6 +3714,7 @@ void ieee80211_csa_finish(struct ieee80211_vif *vif, unsigned int link_id)
+ {
+ 	struct ieee80211_sub_if_data *sdata = vif_to_sdata(vif);
+ 	struct ieee80211_local *local = sdata->local;
++	struct ieee80211_bss_conf *tx_bss_conf;
+ 	struct ieee80211_link_data *link_data;
+ 
+ 	if (WARN_ON(link_id >= IEEE80211_MLD_MAX_NUM_LINKS))
+@@ -3713,25 +3728,24 @@ void ieee80211_csa_finish(struct ieee80211_vif *vif, unsigned int link_id)
+ 		return;
+ 	}
+ 
+-	/* TODO: MBSSID with MLO changes */
+-	if (vif->mbssid_tx_vif == vif) {
++	tx_bss_conf = rcu_dereference(link_data->conf->tx_bss_conf);
++	if (tx_bss_conf == link_data->conf) {
+ 		/* Trigger ieee80211_csa_finish() on the non-transmitting
+ 		 * interfaces when channel switch is received on
+ 		 * transmitting interface
+ 		 */
+-		struct ieee80211_sub_if_data *iter;
+-
+-		list_for_each_entry_rcu(iter, &local->interfaces, list) {
+-			if (!ieee80211_sdata_running(iter))
+-				continue;
++		struct ieee80211_link_data *iter;
+ 
+-			if (iter == sdata || iter->vif.mbssid_tx_vif != vif)
++		for_each_sdata_link(local, iter) {
++			if (iter->sdata == sdata ||
++			    rcu_access_pointer(iter->conf->tx_bss_conf) != tx_bss_conf)
+ 				continue;
+ 
+-			wiphy_work_queue(iter->local->hw.wiphy,
+-					 &iter->deflink.csa.finalize_work);
++			wiphy_work_queue(iter->sdata->local->hw.wiphy,
++					 &iter->csa.finalize_work);
+ 		}
+ 	}
++
+ 	wiphy_work_queue(local->hw.wiphy, &link_data->csa.finalize_work);
+ 
+ 	rcu_read_unlock();
+@@ -4833,17 +4847,19 @@ ieee80211_color_change_bss_config_notify(struct ieee80211_link_data *link,
+ 
+ 	ieee80211_link_info_change_notify(sdata, link, changed);
+ 
+-	if (!sdata->vif.bss_conf.nontransmitted && sdata->vif.mbssid_tx_vif) {
+-		struct ieee80211_sub_if_data *child;
++	if (!link->conf->nontransmitted &&
++	    rcu_access_pointer(link->conf->tx_bss_conf)) {
++		struct ieee80211_link_data *tmp;
+ 
+-		list_for_each_entry(child, &sdata->local->interfaces, list) {
+-			if (child != sdata && child->vif.mbssid_tx_vif == &sdata->vif) {
+-				child->vif.bss_conf.he_bss_color.color = color;
+-				child->vif.bss_conf.he_bss_color.enabled = enable;
+-				ieee80211_link_info_change_notify(child,
+-								  &child->deflink,
+-								  BSS_CHANGED_HE_BSS_COLOR);
+-			}
++		for_each_sdata_link(sdata->local, tmp) {
++			if (tmp->sdata == sdata ||
++			    rcu_access_pointer(tmp->conf->tx_bss_conf) != link->conf)
++				continue;
++
++			tmp->conf->he_bss_color.color = color;
++			tmp->conf->he_bss_color.enabled = enable;
++			ieee80211_link_info_change_notify(tmp->sdata, tmp,
++							  BSS_CHANGED_HE_BSS_COLOR);
+ 		}
+ 	}
+ }
+diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
+index fb05f3cd37ec..bbc8c2502862 100644
+--- a/net/mac80211/ieee80211_i.h
++++ b/net/mac80211/ieee80211_i.h
+@@ -2795,6 +2795,8 @@ int ieee80211_mgd_assoc_ml_reconf(struct ieee80211_sub_if_data *sdata,
+ 
+ void ieee80211_process_ml_reconf_resp(struct ieee80211_sub_if_data *sdata,
+ 				      struct ieee80211_mgmt *mgmt, size_t len);
++void ieee80211_stop_mbssid(struct ieee80211_sub_if_data *sdata);
++
+ #if IS_ENABLED(CONFIG_MAC80211_KUNIT_TEST)
+ #define EXPORT_SYMBOL_IF_MAC80211_KUNIT(sym) EXPORT_SYMBOL_IF_KUNIT(sym)
+ #define VISIBLE_IF_MAC80211_KUNIT
+diff --git a/net/mac80211/iface.c b/net/mac80211/iface.c
+index f0f4a250b10e..79a441f91c91 100644
+--- a/net/mac80211/iface.c
++++ b/net/mac80211/iface.c
+@@ -726,30 +726,59 @@ static void ieee80211_do_stop(struct ieee80211_sub_if_data *sdata, bool going_do
+ 		ieee80211_add_virtual_monitor(local);
+ }
+ 
+-static void ieee80211_stop_mbssid(struct ieee80211_sub_if_data *sdata)
++void ieee80211_stop_mbssid(struct ieee80211_sub_if_data *sdata)
+ {
+-	struct ieee80211_sub_if_data *tx_sdata, *non_tx_sdata, *tmp_sdata;
+-	struct ieee80211_vif *tx_vif = sdata->vif.mbssid_tx_vif;
++	struct ieee80211_sub_if_data *tx_sdata;
++	struct ieee80211_bss_conf *link_conf, *tx_bss_conf;
++	struct ieee80211_link_data *tx_link, *link;
++	unsigned int link_id;
+ 
+-	if (!tx_vif)
+-		return;
++	lockdep_assert_wiphy(sdata->local->hw.wiphy);
++
++	/* Check if any of the links of current sdata is an MBSSID. */
++	for_each_vif_active_link(&sdata->vif, link_conf, link_id) {
++		tx_bss_conf = sdata_dereference(link_conf->tx_bss_conf, sdata);
++		if (!tx_bss_conf)
++			continue;
+ 
+-	tx_sdata = vif_to_sdata(tx_vif);
+-	sdata->vif.mbssid_tx_vif = NULL;
++		tx_sdata = vif_to_sdata(tx_bss_conf->vif);
++		RCU_INIT_POINTER(link_conf->tx_bss_conf, NULL);
+ 
+-	list_for_each_entry_safe(non_tx_sdata, tmp_sdata,
+-				 &tx_sdata->local->interfaces, list) {
+-		if (non_tx_sdata != sdata && non_tx_sdata != tx_sdata &&
+-		    non_tx_sdata->vif.mbssid_tx_vif == tx_vif &&
+-		    ieee80211_sdata_running(non_tx_sdata)) {
+-			non_tx_sdata->vif.mbssid_tx_vif = NULL;
+-			dev_close(non_tx_sdata->wdev.netdev);
++		/* If we are not tx sdata reset tx sdata's tx_bss_conf to avoid recusrion
++		 * while closing tx sdata at the end of outer loop below.
++		 */
++		if (sdata != tx_sdata) {
++			tx_link = sdata_dereference(tx_sdata->link[tx_bss_conf->link_id],
++						    tx_sdata);
++			if (!tx_link)
++				continue;
++
++			RCU_INIT_POINTER(tx_link->conf->tx_bss_conf, NULL);
++		}
++
++		/* loop through sdatas to find if any of their links
++		 * belong to same MBSSID set as the one getting deleted.
++		 */
++		for_each_sdata_link(tx_sdata->local, link) {
++			struct ieee80211_sub_if_data *link_sdata = link->sdata;
++
++			if (link_sdata == sdata || link_sdata == tx_sdata ||
++			    rcu_access_pointer(link->conf->tx_bss_conf) != tx_bss_conf)
++				continue;
++
++			RCU_INIT_POINTER(link->conf->tx_bss_conf, NULL);
++
++			/* Remove all links of matching MLD until dynamic link
++			 * removal can be supported.
++			 */
++			cfg80211_stop_iface(link_sdata->wdev.wiphy, &link_sdata->wdev,
++					    GFP_KERNEL);
+ 		}
+-	}
+ 
+-	if (sdata != tx_sdata && ieee80211_sdata_running(tx_sdata)) {
+-		tx_sdata->vif.mbssid_tx_vif = NULL;
+-		dev_close(tx_sdata->wdev.netdev);
++		/* If we are not tx sdata, remove links of tx sdata and proceed */
++		if (sdata != tx_sdata && ieee80211_sdata_running(tx_sdata))
++			cfg80211_stop_iface(tx_sdata->wdev.wiphy,
++					    &tx_sdata->wdev, GFP_KERNEL);
+ 	}
+ }
+ 
+@@ -757,21 +786,25 @@ static int ieee80211_stop(struct net_device *dev)
+ {
+ 	struct ieee80211_sub_if_data *sdata = IEEE80211_DEV_TO_SUB_IF(dev);
+ 
+-	/* close dependent VLAN and MBSSID interfaces before locking wiphy */
++	/* close dependent VLAN interfaces before locking wiphy */
+ 	if (sdata->vif.type == NL80211_IFTYPE_AP) {
+ 		struct ieee80211_sub_if_data *vlan, *tmpsdata;
+ 
+ 		list_for_each_entry_safe(vlan, tmpsdata, &sdata->u.ap.vlans,
+ 					 u.vlan.list)
+ 			dev_close(vlan->dev);
+-
+-		ieee80211_stop_mbssid(sdata);
+ 	}
+ 
+ 	guard(wiphy)(sdata->local->hw.wiphy);
+ 
+ 	wiphy_work_cancel(sdata->local->hw.wiphy, &sdata->activate_links_work);
+ 
++	/* Close the dependent MBSSID interfaces with wiphy lock as we may be
++	 * terminating its partner links too in case of MLD.
++	 */
++	if (sdata->vif.type == NL80211_IFTYPE_AP)
++		ieee80211_stop_mbssid(sdata);
++
+ 	ieee80211_do_stop(sdata, true);
+ 
+ 	return 0;
 -- 
 2.34.1
 
