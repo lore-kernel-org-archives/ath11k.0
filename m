@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8597C369B2
-	for <ath11k@archiver.kernel.org>; Mon, 14 Apr 2025 08:26:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DEB1C369B6
+	for <ath11k@archiver.kernel.org>; Mon, 14 Apr 2025 08:26:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=g+p3ZZ8m+P6MBwg+X0cWHrVyngWhZc3MgIiUJosTjVM=; b=WnAXIJnx00G79F7w5D7xKHHvxJ
-	AfPjipaVRdm20K+fmxqlY0ahXbLKh/1Vcei+2ZesMCPpz593efi1cFWg82/c8+RPNq4WIICxKEF+5
-	o0+LALnO7qxKoJaLZWv5MSjkRjhhvZSAX/NQFS9Y8FpmNtDFf3PkSp5WCqNQyeVnix3pmLgIB6gJd
-	McpRzz2sAfpU8Okp9s9zvKQN7/0vufdI6aJxpS6grTLwbgdq/U55SFZrF4orS8KAH/p3nxhouNC5p
-	qkKfsqhezQoPlpjtMKq8q5yLrFKsu4ao1Ax/dC207zMC0Gf9kf1cIi+45ytMbVnGKSpwQFNfG83qx
-	F+YQmSIw==;
+	bh=C/ObABjOV6tmamGjv9L2Q13+VEF7f80WjKn+a2KmsZU=; b=XmDvcAUEcRKE1IG66gVpCPisyX
+	FAAg3D4m8qaF8ySSf/g62TeImoGwTHtCkSCvbSCqQ3fHgAMc4tT/AqILWqzrvEwTMJ/i80XC2u+A7
+	7UeYVg3IWunmE09PM03RjhV5lVIyY9e/fuNM4Lof8Q7IAdi1SXTPSccwD8UGronlbwyPqNvKmo4NK
+	8SfC/lpyGbUXa3g9Ps9sQbn2Ec/3JsEc0qQxv18YTixm4+8rhRrQZW0pr9+Py5uEpGlaCHvEODzi/
+	ysxDbqEFVDpJFHLZsV3Y8eUZcQBvV9izAITZ3IM17s6nxUjCAO5xkLhqkPu+3Wsm3Mix1nk7G/SZs
+	8IanYZog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4F9G-000000014rP-2Ltb;
-	Mon, 14 Apr 2025 08:26:34 +0000
+	id 1u4F9F-000000014pG-3DAc;
+	Mon, 14 Apr 2025 08:26:33 +0000
 Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4F8z-000000014Te-3QyQ;
+	id 1u4F91-000000014V9-0fAh;
 	Mon, 14 Apr 2025 08:26:23 +0000
 From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1744619175;
+	s=2020; t=1744619176;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=g+p3ZZ8m+P6MBwg+X0cWHrVyngWhZc3MgIiUJosTjVM=;
-	b=ofLbcum+e5ES97JZNHgUn4eizYkDbWnLe7xsM+Zdmxa5+24Dx7P2aGHM7z3O141w/4Rr+k
-	WRveEv8SYrJCfpnOWdRe0Lrhgax34JsFWwZTghEZ5yEiNmWu6LJq8IoexKOIoS9JwGMj1U
-	S4w3rdfc484lB0AX/t1LFVhunaQKaxEszKarS5CJczq3PXzEjlrWASNsfBbYVIl4/NbegK
-	ySYcWod+zpWWxlHAn/FkiejzfE4POH5aygMEbC5tcYMs8Peb/Qj9iPW0Q1uyrh/mjAD2S0
-	9q0+XyXre1y2vy0I+hqySM0tWoAVSXGqdyLIy8qXEkZlH8mWo+xn53pyczg7DQ==
+	bh=C/ObABjOV6tmamGjv9L2Q13+VEF7f80WjKn+a2KmsZU=;
+	b=CwLQ96esYh4P4KVCJatZ8Hs44GlzB55o2RFDlB2NnoKBpBTwtnnttXtq6VROizK0QMlx2I
+	fdJ7j4gqaLBCoqlkfZ1RXGFlNyiBmJWKENL3vw8Uczt17RPRBi5rxA4Gava5iUDAFYvikp
+	QE5M9Z54sDWEXNx5tdtopJ9DVVmmtcwowrh/m0D/S2+B66LoJJ3a6+WPDaej08VijYy+gj
+	pOup6JcF7y5Pcc3mwYSDOXBypIIu4AFPIaunhtcjzU8or4EWnQYp44LtnOrIkU7bntJpWC
+	NctE2AcFsSHEFFVm1SrRM5+S1R3TygES0fgt3lu+ss6ppElalDk8lhMyfXz0Ag==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1744619175;
+	s=2020e; t=1744619176;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=g+p3ZZ8m+P6MBwg+X0cWHrVyngWhZc3MgIiUJosTjVM=;
-	b=R8G1LC3nTq9auZ80K7wKWRdWZ5AzwlgcChsPmwJreInP145Kb0TjPt+6wFT5D5ZCsiLixI
-	icD4Mn52YWhoOcBw==
-Date: Mon, 14 Apr 2025 10:26:04 +0200
-Subject: [PATCH net-next 3/7] wifi: ath12k: Don't use %pK through printk
+	bh=C/ObABjOV6tmamGjv9L2Q13+VEF7f80WjKn+a2KmsZU=;
+	b=stqjzGM4ft7DElxC/qKesdImygtnGtJLw7FA4P6YSG5XAK7GUU0TpDDd0NwKpK+oBLbwLL
+	p8/cYaEmZo1280CA==
+Date: Mon, 14 Apr 2025 10:26:06 +0200
+Subject: [PATCH net-next 5/7] wifi: mwifiex: Don't use %pK through printk
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250414-restricted-pointers-net-v1-3-12af0ce46cdd@linutronix.de>
+Message-Id: <20250414-restricted-pointers-net-v1-5-12af0ce46cdd@linutronix.de>
 References: <20250414-restricted-pointers-net-v1-0-12af0ce46cdd@linutronix.de>
 In-Reply-To: <20250414-restricted-pointers-net-v1-0-12af0ce46cdd@linutronix.de>
 To: Jeff Johnson <jjohnson@kernel.org>, 
@@ -73,16 +73,16 @@ Cc: ath10k@lists.infradead.org, linux-kernel@vger.kernel.org,
  intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org, 
  linux-rdma@vger.kernel.org, 
  =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744619172; l=2012;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744619172; l=1442;
  i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
- bh=Mog1fUxDWxYnW9KpoZ7DzBFzkRO6Ky21p9XzMNb3Vf8=;
- b=b/us2xNbwh8znqfnzh9E4Av2oMff6qZufNEzIm5QnYwVPSQtCv4hVANkyEXwMgwxfZZXMClBq
- TRKDFzK5g7kCqMlmFJDdqt8wzmcZOLvplpYQXCfNLJTM+XlGTzlWrnQ
+ bh=DUG1+lN4hYWTRXUIHu9/uXnn+NTpymOB/TnWz/zGsdo=;
+ b=4Oqz6NIxNX2Dv35WuWlxsIW56xiHSeN4apRT/2S8GealXzW3EYzYF9P9h2Mhnx6cG1SWclSLx
+ d+XUSmGw7EEAI1exWfEp1WbMYoqGspvBdqwaN+gAowvrX+qdbEJLvEv
 X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
  pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250414_012618_000516_63BF14F3 
-X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-CacheID: sfid-20250414_012619_337916_08E38328 
+X-CRM114-Status: UNSURE (   9.56  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,31 +113,22 @@ for which its usage is safe.
 
 Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
 ---
- drivers/net/wireless/ath/ath12k/testmode.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/wireless/marvell/mwifiex/pcie.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath12k/testmode.c b/drivers/net/wireless/ath/ath12k/testmode.c
-index 18d56a976dc74c4f6eab87e358c14d4faea648e2..fb6af7ccf71f44ae4bd01cde53fba3527eed0d2d 100644
---- a/drivers/net/wireless/ath/ath12k/testmode.c
-+++ b/drivers/net/wireless/ath/ath12k/testmode.c
-@@ -97,7 +97,7 @@ void ath12k_tm_process_event(struct ath12k_base *ab, u32 cmd_id,
- 	u8 const *buf_pos;
+diff --git a/drivers/net/wireless/marvell/mwifiex/pcie.c b/drivers/net/wireless/marvell/mwifiex/pcie.c
+index dd2a42e732f2398892915e1a3ac88b7d3fb4ed3f..a760de191fce7340040b1bc74efb35cf52ce8368 100644
+--- a/drivers/net/wireless/marvell/mwifiex/pcie.c
++++ b/drivers/net/wireless/marvell/mwifiex/pcie.c
+@@ -2971,7 +2971,7 @@ static int mwifiex_init_pcie(struct mwifiex_adapter *adapter)
+ 		goto err_iomap2;
+ 	}
  
- 	ath12k_dbg(ab, ATH12K_DBG_TESTMODE,
--		   "testmode event wmi cmd_id %d ftm event msg %pK datalen %d\n",
-+		   "testmode event wmi cmd_id %d ftm event msg %p datalen %d\n",
- 		   cmd_id, ftm_msg, length);
- 	ath12k_dbg_dump(ab, ATH12K_DBG_TESTMODE, NULL, "", ftm_msg, length);
- 	pdev_id = DP_HW2SW_MACID(le32_to_cpu(ftm_msg->seg_hdr.pdev_id));
-@@ -227,7 +227,7 @@ static int ath12k_tm_cmd_process_ftm(struct ath12k *ar, struct nlattr *tb[])
- 	buf_len = nla_len(tb[ATH_TM_ATTR_DATA]);
- 	cmd_id = WMI_PDEV_UTF_CMDID;
- 	ath12k_dbg(ar->ab, ATH12K_DBG_TESTMODE,
--		   "testmode cmd wmi cmd_id %d buf %pK buf_len %d\n",
-+		   "testmode cmd wmi cmd_id %d buf %p buf_len %d\n",
- 		   cmd_id, buf, buf_len);
- 	ath12k_dbg_dump(ar->ab, ATH12K_DBG_TESTMODE, NULL, "", buf, buf_len);
- 	bufpos = buf;
+-	pr_notice("PCI memory map Virt0: %pK PCI memory map Virt2: %pK\n",
++	pr_notice("PCI memory map Virt0: %p PCI memory map Virt2: %p\n",
+ 		  card->pci_mmap, card->pci_mmap1);
+ 
+ 	ret = mwifiex_pcie_alloc_buffers(adapter);
 
 -- 
 2.49.0
