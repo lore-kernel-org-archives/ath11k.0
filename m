@@ -4,81 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F408C369B2
-	for <ath11k@archiver.kernel.org>; Mon, 14 Apr 2025 07:33:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E05FEC369B6
+	for <ath11k@archiver.kernel.org>; Mon, 14 Apr 2025 08:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=r6Hcb7CoSvel25wAUR0OKJ4456sj4HsUlowzVIyObhI=; b=qLoV9hklPjSL9QgR5duqkdxXxL
-	wv6ypFI1RC9SGTAj3eaOEzmSfjHlahHiUQjv/QCRwt+/T6tVUF4iEi4HdnEkBzVAV7h4q98U+fJ26
-	W5NeSRdTBM0rYQIJWUiMhgJ4GPv2CHtunKI+cd9hgDg0GS+DhqTpsebQ3DwUi08SGt+QxPrMnPcYc
-	0VmN0K4kS7Jae2b/dCnd//Zh38m1OuZ89qQBotuBjA6On7s/y5xCf20/LgJkMR8PpANPt5Pf7cFPI
-	rX6vtjtjkR/hbKgU8kR/SS6G9n/pQRin+Z1uSb7lUYD1BS82mkEneeYZV5GinT+ygI/aUBeigQ2wT
-	ctdx8pvg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=jrc9Yy1PzgCFjX+NHqHe/gPvbxLEMwfRYZpvhZ/FS0A=; b=JgPzaA2IIPOQNX
+	2HzDpYPzJi0gjgtz5LXVgo0ka1WSJXL0ioRBwqwc3Wee/izm2Ib9TvqolFRAZ24KN2AgqtFwB804M
+	GC9L3e+jLEBb0s7ib8dF6F7UXO7N0RWKJ9csY9jv8sCk8VLDhKWutirAl7S7PcmQH94idAx/czPWs
+	YfW2xHClXDswCDiJnyU/g/08c1h+3bI8K+kRR7Tq653CdxloKplTpeh8TnUi4pEsGIncUKmzCi2VC
+	pmzGHrWSB6e+XpUXQQ9G37SWdPQXuOa2KUx99IzgzC1Fe3+GCQqpaEHZTWYCptqF1YZ0uQ5V+iuAe
+	XmebVmamN8n84YcxiKcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4EJa-00000000wHi-46P9;
-	Mon, 14 Apr 2025 07:33:10 +0000
-Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	id 1u4F91-000000014Vf-0nlx;
+	Mon, 14 Apr 2025 08:26:19 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4EJY-00000000wGs-2Brc
-	for ath11k@lists.infradead.org;
-	Mon, 14 Apr 2025 07:33:09 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1744615967; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=S0354nrgj9hb6NeQadl1Jgb85f2XZ6MReFCZUBNsZDdDAzQrzRFwGnwr8EweP211SA50Xn4y+hioKW/Bz7wmSJyQzWGG86Adf+RIiSkVsJrAFwnk++2k92Nh+A0bocClaD6qEvMeHhwgCJW3OQZKy63j5AuNqVz9pD0HTHtwTRk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1744615967; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=r6Hcb7CoSvel25wAUR0OKJ4456sj4HsUlowzVIyObhI=; 
-	b=Qqza8kx+/OPX6Vbfz/xlS+1wWb4D/S0YtI/H9orFvcpgSpGFzTD7ZWXicQMorRRfkLY8zw0Zasu2X+LL5lPj0154UKv9ZEh+w1uw3aNmD0SyOa03w9DM4n1pwHykJNqkny8yw6F3vlYRtsis62vfJZSL6b8wVLirN7KXsEnTp8A=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
-	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744615967;
-	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=r6Hcb7CoSvel25wAUR0OKJ4456sj4HsUlowzVIyObhI=;
-	b=dw158rFsigQq+3WvSfq3Kgi3Rvj53BgokKnVLW2u3VAHfgNngg/+0puXeBCjJE+y
-	/UGjtVvi3ANtObQaDu9BNvu0glsKVKO/GPUw9KS+PaIttwYgkUOw3xT4m8cT96ClSuA
-	71V/M5BsqaGYHQ1v/2k7u++MKga8gbd8jKW1CeHc=
-Received: by mx.zohomail.com with SMTPS id 1744615966149258.692739802746;
-	Mon, 14 Apr 2025 00:32:46 -0700 (PDT)
-Message-ID: <7d6b074c-8499-4984-b235-d1285b006ab3@collabora.com>
-Date: Mon, 14 Apr 2025 12:32:34 +0500
+	id 1u4F8y-000000014TP-2bI5;
+	Mon, 14 Apr 2025 08:26:17 +0000
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1744619173;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jrc9Yy1PzgCFjX+NHqHe/gPvbxLEMwfRYZpvhZ/FS0A=;
+	b=yk3WhpFdZmssQZ72lhB1qTZyyfyRxUMGb509WQ1XvYBshseihS05xwBznxHhRaTSuvl2/r
+	EV94ezp88ycSGWp7iOyTpqrj5t+3wGtxAiaM9vEX47RmKk5P48wS0XMSxxBOdg/4jJqAHD
+	iHBl8abWHKqitQ+lC99k0cGXVhaRkjhGljSMANJ78YhV8KbI3RqgpbXkvKd92G5a9GW2nS
+	tIBmRwss1Fuv6LjD9Y7xqZj8VGTlEtB6qHwYn6Tlye1uu66CfvxVl6aULoNDAziN+j01pg
+	XkPcQInqq/spXCdJv9D13D3LtBdTdeebkK0YlMI2cFrQF3INyTTmpgSTQMASeg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1744619173;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jrc9Yy1PzgCFjX+NHqHe/gPvbxLEMwfRYZpvhZ/FS0A=;
+	b=ZUTVDh8TwrC2G20/dfmdoIzBLROL3SA9B70xNJai5NOfSK/ZlnlfAJyXQYz/eR/yLSEC1D
+	jaRVzn4m4tTolrBQ==
+Subject: [PATCH net-next 0/7] net: Don't use %pK through printk
+Date: Mon, 14 Apr 2025 10:26:01 +0200
+Message-Id: <20250414-restricted-pointers-net-v1-0-12af0ce46cdd@linutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] bus: mhi: host: don't free bhie tables during
- suspend/hibernation
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Johannes Berg <johannes@sipsolutions.net>, Jeff Johnson
- <jjohnson@kernel.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Yan Zhen <yanzhen@vivo.com>, Youssef Samir <quic_yabdulra@quicinc.com>,
- Qiang Yu <quic_qianyu@quicinc.com>, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Kunwu Chan <chentao@kylinos.cn>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Cc: kernel@collabora.com, mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org
-References: <20250410145704.207969-1-usama.anjum@collabora.com>
- <ba09ae0c-fe8d-8f4e-a1b8-9c7e5913c84e@quicinc.com>
- <fc9ca0da-9f6a-42b5-aa79-abcd43c97043@collabora.com>
- <e0159cb8-fe21-7f71-1ebe-744ed26bd698@quicinc.com>
- <85580a01-289a-461b-b0f1-38fa1b96717c@collabora.com>
- <1c0b2217-49d9-360c-ed60-db517eaf2ccc@quicinc.com>
-Content-Language: en-US
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-In-Reply-To: <1c0b2217-49d9-360c-ed60-db517eaf2ccc@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJnG/GcC/x2MQQqDUAwFryJZN/C1CqVXKV3Iz2ubTZQkFEG8u
+ 79dDszMTgFXBN27nRxfDV2sQX/pqH5me4NVGtNQhqmMZWRHpGtNCK+LWsKDDcnzrYpIuWKSnlq
+ 9Ol66/c8P+gmGLel5HCeLK549cwAAAA==
+X-Change-ID: 20250404-restricted-pointers-net-a8cddd03e5d1
+To: Jeff Johnson <jjohnson@kernel.org>, 
+ Loic Poulain <loic.poulain@linaro.org>, 
+ Brian Norris <briannorris@chromium.org>, 
+ Francesco Dolcini <francesco@dolcini.it>, 
+ Tony Nguyen <anthony.l.nguyen@intel.com>, 
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>, 
+ Tariq Toukan <tariqt@nvidia.com>
+Cc: ath10k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org, 
+ wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org, 
+ intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org, 
+ linux-rdma@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744619172; l=2519;
+ i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
+ bh=BORzOQMujEQoEZ1/2bV+p8+YHtYSGgUIbSUnDvITbw0=;
+ b=nygQqQzI+POOkmd4HUPMbkxcLkdDeVe3FLi1mMvmt2xMpHokr9kq0+dmMGqAVzLbgbGctLw7P
+ 7VQYQJVB0MyCdd69OEvNE7wWyCtsM12NiJoSol6jf5d2f/1FWxdOYwI
+X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
+ pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250414_003308_643237_80A30E24 
-X-CRM114-Status: GOOD (  15.63  )
+X-CRM114-CacheID: sfid-20250414_012616_796900_D9268B7B 
+X-CRM114-Status: UNSURE (   7.34  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,53 +98,56 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/12/25 6:22 AM, Krishna Chaitanya Chundru wrote:
-> 
-> On 4/12/2025 12:02 AM, Muhammad Usama Anjum wrote:
->> On 4/11/25 1:39 PM, Krishna Chaitanya Chundru wrote:
->>>
->>>
->>> On 4/11/2025 12:32 PM, Muhammad Usama Anjum wrote:
->>>> On 4/11/25 8:37 AM, Krishna Chaitanya Chundru wrote:
->>>>>
->>>>>
->>>>> On 4/10/2025 8:26 PM, Muhammad Usama Anjum wrote:
->>>>>> Fix dma_direct_alloc() failure at resume time during bhie_table
->>>>>> allocation. There is a crash report where at resume time, the memory
->>>>>> from the dma doesn't get allocated and MHI fails to re-initialize.
->>>>>> There may be fragmentation of some kind which fails the allocation
->>>>>> call.
->>>>>>
->>>>>> To fix it, don't free the memory at power down during suspend /
->>>>>> hibernation. Instead, use the same allocated memory again after every
->>>>>> resume / hibernation. This patch has been tested with resume and
->>>>>> hibernation both.
->>>>>>
->>>>>> The rddm is of constant size for a given hardware. While the
->>>>>> fbc_image
->>>>>> size depends on the firmware. If the firmware changes, we'll free and
->>>>> If firmware image will change between suspend and resume ?
->>>> Yes, correct.
->>>>
->>> why the firmware image size will change between suspend & resume?
->>> who will update the firmware image after bootup?
->>> It is not expected behaviour.
->> I was trying to research if the firmware can change or not. I've not
->> found any documentation on it.
->>
->> If the firmare is updated in filesystem before suspend/hibernate, would
->> the new firwmare be loaded the next time kernel resumes as the older
->> firmware is no where to be found?
->>
->> What do you think about this?
->>
-> I don't think firmware can be updated before suspend/hibernate. I don't
-> see any reason why it can be updated. If you think it can be updated
-> please quote relevant doc.
-I've not found any documentation on it. Let's wait for others to review
-and it it cannot be updated, I'll remove this part.
+In the past %pK was preferable to %p as it would not leak raw pointer
+values into the kernel log.
+Since commit ad67b74d2469 ("printk: hash addresses printed with %p")
+the regular %p has been improved to avoid this issue.
+Furthermore, restricted pointers ("%pK") were never meant to be used
+through printk(). They can still unintentionally leak raw pointers or
+acquire sleeping looks in atomic contexts.
 
+Switch to the regular pointer formatting which is safer and
+easier to reason about.
+There are still a few users of %pK left, but these use it through seq_file,
+for which its usage is safe.
+
+Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+---
+Thomas Weißschuh (7):
+      wifi: ath10k: Don't use %pK through printk
+      wifi: ath11k: Don't use %pK through printk
+      wifi: ath12k: Don't use %pK through printk
+      wifi: wcn36xx: Don't use %pK through printk
+      wifi: mwifiex: Don't use %pK through printk
+      ice: Don't use %pK through printk or tracepoints
+      net/mlx5: Don't use %pK through tracepoints
+
+ drivers/net/ethernet/intel/ice/ice_main.c          |  2 +-
+ drivers/net/ethernet/intel/ice/ice_trace.h         | 10 +++++-----
+ .../mlx5/core/sf/dev/diag/dev_tracepoint.h         |  2 +-
+ drivers/net/wireless/ath/ath10k/ahb.c              |  2 +-
+ drivers/net/wireless/ath/ath10k/bmi.c              |  6 +++---
+ drivers/net/wireless/ath/ath10k/ce.c               |  4 ++--
+ drivers/net/wireless/ath/ath10k/core.c             |  4 ++--
+ drivers/net/wireless/ath/ath10k/htc.c              |  6 +++---
+ drivers/net/wireless/ath/ath10k/htt_rx.c           |  2 +-
+ drivers/net/wireless/ath/ath10k/mac.c              | 22 +++++++++++-----------
+ drivers/net/wireless/ath/ath10k/pci.c              |  2 +-
+ drivers/net/wireless/ath/ath10k/testmode.c         |  4 ++--
+ drivers/net/wireless/ath/ath10k/txrx.c             |  2 +-
+ drivers/net/wireless/ath/ath10k/usb.c              |  4 ++--
+ drivers/net/wireless/ath/ath10k/wmi.c              |  4 ++--
+ drivers/net/wireless/ath/ath11k/testmode.c         |  2 +-
+ drivers/net/wireless/ath/ath12k/testmode.c         |  4 ++--
+ drivers/net/wireless/ath/wcn36xx/testmode.c        |  2 +-
+ drivers/net/wireless/marvell/mwifiex/pcie.c        |  2 +-
+ 19 files changed, 43 insertions(+), 43 deletions(-)
+---
+base-commit: 8ffd015db85fea3e15a77027fda6c02ced4d2444
+change-id: 20250404-restricted-pointers-net-a8cddd03e5d1
+
+Best regards,
 -- 
-Regards,
-Usama
+Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+
 
