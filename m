@@ -4,100 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65D1FC369B8
-	for <ath11k@archiver.kernel.org>; Mon, 14 Apr 2025 11:06:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91D2EC369A2
+	for <ath11k@archiver.kernel.org>; Mon, 14 Apr 2025 14:28:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xtsqEiOso+3ySVEpPpnY9tocZGrAQf6OsnV8IcNWh6c=; b=j0iv6/sWWm90tLK5Q9d4zqgdlY
-	sr+oR49qq0FguySgYODJ1kSscsmW0Aks5SQgE1mDwiAjgdGPPkD6VmoUpuarUdasQyj3j/cISbU1B
-	M9McEjvOvdpFaHQr43T1Xo/EyM1hIVSU/QjXgeQxlBE8IBn98lcdBYz71DvPmfUagcQ6gEAQScHv0
-	8LzczKMiRw2qYNtYGdvexkFg/wT2vGyg9lHHJSamFxrA2FQYD6n5zeBAl/2pe9GApqk3g2euWflWh
-	0OlJHQrVMYXP45L1Udp64sU6viBN5EanGMEeu2NrixWOFQkiMOVN5Y1aXmOLWobLsk4eT5eY5SPsq
-	wU+E9TfQ==;
+	bh=wxG3IdlEU0/EeaB+zxx6yERTFdkVhtJDwmR5p/NkIrU=; b=fWkJi20aJ9JpdeRz0ewqad54wp
+	D7LoSwNP+ge9x02Rg9jDRh+JO7Vgd987LbfVozrkhl6DkO2klv1qG0rK162meif0d2PQXrcd8wxEC
+	D3paCluKNVFKDq3LmBva/Q180Lu8+x1uecbsqNo+v97TGGll2QtPzfCmwH/kfA3M+QGh/5ePaqfrP
+	hiLtpF0bDGQZQBbxvrTpQvlZ/fNhEohLOhYDCTG481ER00VYuWrBIk5Qw/3aCltkvaWenrj4FFISp
+	3jg4ANM7opF07dzLW65RgA0mePSIfBGrCphJxzDU2RRusx+jEN4DqGN4mjnfO81ShEiWW8t/exGRA
+	Hl/Fl+rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4Hdw-00000001f4h-2ifr;
-	Mon, 14 Apr 2025 11:06:24 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1u4Knn-00000002NcB-3b7l;
+	Mon, 14 Apr 2025 14:28:47 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4HNa-00000001bqE-3cJ1;
-	Mon, 14 Apr 2025 10:49:32 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-39c1ef4acf2so2578478f8f.0;
-        Mon, 14 Apr 2025 03:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744627769; x=1745232569; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xtsqEiOso+3ySVEpPpnY9tocZGrAQf6OsnV8IcNWh6c=;
-        b=JyDbDUABkDUZpW0WDSx23Zi9RtsZZ69kBVMCzg1wgf/ZqUlshJTXOjRl3U04Q1u5T0
-         9pqbg7yrDOYbYjFCCFYIb109yq3Yfig0LVFLCO8JlurG+61I3jtqzaatQQKu+W1tipuh
-         YJrdXj2brqz+5XMZvM/j+tfnszF3SaS73vupJKCUBlTfK4EaAHtfIIjtswGwdcI2JWgK
-         9GHazknU3voUbSWerO80LNIP9NY0BDQHo2cO22HaKsFggLvOmP8TfwcCw62dXQzI6EPl
-         3EV0PrMakToJXhd3o/W4DxmZ8B/tJZZNOufRGSkxDy8WA/QonhlZNjkSQ2yrx4KQXRCD
-         YKsg==
+	id 1u4KaS-00000002K9P-1Ss4
+	for ath11k@lists.infradead.org;
+	Mon, 14 Apr 2025 14:15:01 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99ols017647
+	for <ath11k@lists.infradead.org>; Mon, 14 Apr 2025 14:14:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wxG3IdlEU0/EeaB+zxx6yERTFdkVhtJDwmR5p/NkIrU=; b=hHPr0i7osx8vFaom
+	VYV+Mtndw1qOIbkeg8tmmJa2RB+jki0pRpOT1cTI7EI+aQ5yw/S9bjphuAvvPMC/
+	8+B+8lw9zUWhTzEG0d3w2XWn6YBuSMgN1ryUc5xM6T3/MGLLWA8rW4Hq0VbErtDP
+	d/53phYC2zoWTDWhSHFj/VDYdb4cyIF2Y3FP9gdinwl5uWQTtvotm56cE8vf+p0e
+	fiRsTp2egrw6cWVMeFRnfyE7xhahZscAj5mwHL8I1Zil46Lpe6WxC7wvRY/dox7j
+	qE2VlXfWy9oHphiKtL2syJgo55z2RpfpKomtdH5AqpLNy29LQzfpzjHRWnhbbk+7
+	Q3qABw==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf4vcv8s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 14 Apr 2025 14:14:58 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-227ed471999so38218415ad.3
+        for <ath11k@lists.infradead.org>; Mon, 14 Apr 2025 07:14:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744627769; x=1745232569;
+        d=1e100.net; s=20230601; t=1744640098; x=1745244898;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xtsqEiOso+3ySVEpPpnY9tocZGrAQf6OsnV8IcNWh6c=;
-        b=nhFENihhVpiP8vd8q2PmzMJi6CjZFYrYRZeR1eSeZ6PAghXOtMNdzz5bzux+/kawxZ
-         yWhachAdeyrVLR8dzc9QyuItz66CkZJbOx1AMESPcb/rqFCSKwFhEzCtW5nF6KaOPE0w
-         4hXr8KEpNsTDOnuFaygFWQUFYjoweZKnlJdd5MkfvUgmuaOCj/zJaVshwNg+Pn52Gbiz
-         tZhDnOMbE7sCNEO7l6qRIE6uFV5q6rTKvAKqVgMwGhw5fnzPVvgWm9BWDNXrGp1mboZL
-         vAoP4OMI47pGw21O0SThVPwoVSVoKov/V269qd+Ofo8AGQK356hhlRnuZPsOHGjoPPBt
-         +9JA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8WMEow3IMLMqinwr1q4GtbjUu4uPoAsU9SHf/WcIsLaXpluue13MgvZV9UHc4Wl8D0q3sAFb8@lists.infradead.org, AJvYcCVUTPfApjCxBWy379TjMnVBFQLGrg8ff89AXyDaRRMT6B/VUeUGQ18x+ZBbX2aGCGqxKaUIpjk=@lists.infradead.org, AJvYcCVpVdVOYPlaC8PoooBFwLEZxrh+lpUHof4c/BPck6EM/ABBsp/71sMLV2ZYcSUw850tdd/X6xk56Q==@lists.infradead.org
-X-Gm-Message-State: AOJu0Ywwha7TG2Soxf0uIk1bQV7fD9GfX4wYqgq77TJNOTEIIlTO6w8M
-	UdVvOVUGc45KC8xl9In8ct+DXzfaEOMJGccz7mhH0xQBDkNoYVOh
-X-Gm-Gg: ASbGncuKDonsJtugmADglEC+BtgOA+hg0uwLv+V+o1MRlez2XSalTzXmiVKpf6QqubF
-	HVLvh8Jr40IxHISt9umL6IgOlO5rUCroepXmcPk89ev+es7fNi4IV79eiMR42rJ3xf/Y3TuTjud
-	n1B6SQ90dUnYtwy1Tcnk1TWKgLshdN3igluIZ1UzuYFaC5Ct3B3/ObKZ5fdrn+2jMYclorR8hsM
-	3B+WaTFO6brJKVSyDDagvcMkY6S0ALyU9aQShmsajxW6HcWzg5nxy1igkqHOIzc73qokf73g8s6
-	ALRzNFhyBpQbjyhquudQlFvAv/Sm9jNWHxsj40HsgsDjEYlCLnECwolHyGii
-X-Google-Smtp-Source: AGHT+IH1pMW+2VKVzwJ49w6Ztlv9YMJUN6W45Wwpzz8L92YImh1YeiCHahCGMNa6e6rsSObu5WtiCQ==
-X-Received: by 2002:a5d:6da8:0:b0:39c:1424:3246 with SMTP id ffacd0b85a97d-39ea51d3527mr8524313f8f.2.1744627768500;
-        Mon, 14 Apr 2025 03:49:28 -0700 (PDT)
-Received: from [10.158.37.53] ([193.47.165.251])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eaf445772sm10695726f8f.91.2025.04.14.03.49.25
+        bh=wxG3IdlEU0/EeaB+zxx6yERTFdkVhtJDwmR5p/NkIrU=;
+        b=l4zlV6nIIPrbHsGDEZ+WdzxJ01S/DxYqGYiJ3GtZDx9MacmOModZpxE0Ypoc3FYiKU
+         YCGInKFAAsREAlnXcshpvtI2T1Lr7XSrjROEc5T2MznRZy97dloI84cTGy4p0FUk+Xim
+         r0dsGlfUf1Fr19wnU+KeKZh0otT8xIAdldlyo1pl/NqI3wji5InMmEputU7z9a6XWSzF
+         D8gxGQoTlg4TLurClmOV1B4eaKl3kpy5biz663dE5qKUUs6BQgc48FPumkki0fNV4LyB
+         4HBQU+4x/WhFSpJsoV5YGjUvKAFxkrBByVyUzuqmmbbT6AzuvpXcV6ifcIjRD6XzLbzU
+         bAzA==
+X-Forwarded-Encrypted: i=1; AJvYcCWO0DCUjK6xhrUxZhOUPT0j1LuCOVBUpkhyev9LD2zO7JY1saGvoG5PSYdUAGM3HIG+MQap+hE=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx6DlCR2zKTPswGvCsr0eb9Bx65QD6VR3fM1Z6oOdGwAQj/s0k+
+	0oagpbQaFL5HHf2yVzSeXvW9CYhKnMja47+7tTCvqJbaLiSvZG0KluZZ1xnO6XKf7+vimzOfDuO
+	h4eCK8Dr2SWUC3gOKwLPK4N8TQCPJ/CrKmcfBN1erWmAscBtf+pZ7pYSQk1CC
+X-Gm-Gg: ASbGnctyIdurnWJ13bwjwLHRT4EWrLLUGMtWAbyO6nzdw8rPgQ3dekkpCYXmqsOSqZd
+	p4sK2MC6FYdBmziECdZNG4FIDA1Su89uQpkjem27RJcb5BHSrrPSGtEtvl0H4HUUp1C0/1sBPy7
+	URp6uhNcx6bxl2mI95WufVrsXqrdwGoVCg4m1sO/mkPTSXMY1HB/uMB5yNlG9LIN+GhgN//TqYB
+	CUsa34jCBGcZEY8HCCkccOqx6x0sFOcpmeu8+EnEyzmdyfAqF/K2fQuSMDNL+Swy73C61XP/5qx
+	nR2+1YjKq5DsmmE+Va253dw51hjAuopfZ42aphcK0Ry5r6d3xof93T+MVYYMdg==
+X-Received: by 2002:a17:903:1b03:b0:223:501c:7576 with SMTP id d9443c01a7336-22bea4aac90mr209768655ad.12.1744640097840;
+        Mon, 14 Apr 2025 07:14:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGUc9+/UIqegjATJ9UbGeCCAJ0DtjU4YNhpXakGi/P6OIAyr24MclI3pdwUoau+1IS1bxBK3g==
+X-Received: by 2002:a17:903:1b03:b0:223:501c:7576 with SMTP id d9443c01a7336-22bea4aac90mr209767795ad.12.1744640097219;
+        Mon, 14 Apr 2025 07:14:57 -0700 (PDT)
+Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7cb681asm99532345ad.204.2025.04.14.07.14.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 03:49:28 -0700 (PDT)
-Message-ID: <f4a406e2-af98-4762-af44-9089440c0a7f@gmail.com>
-Date: Mon, 14 Apr 2025 13:49:24 +0300
+        Mon, 14 Apr 2025 07:14:56 -0700 (PDT)
+Message-ID: <ad5e99e8-3ff1-4727-aed6-528ac747f409@oss.qualcomm.com>
+Date: Mon, 14 Apr 2025 08:14:54 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 7/7] net/mlx5: Don't use %pK through tracepoints
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
- Jeff Johnson <jjohnson@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
- Brian Norris <briannorris@chromium.org>,
- Francesco Dolcini <francesco@dolcini.it>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>
-Cc: ath10k@lists.infradead.org, linux-kernel@vger.kernel.org,
- ath11k@lists.infradead.org, ath12k@lists.infradead.org,
- wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org,
- linux-rdma@vger.kernel.org
-References: <20250414-restricted-pointers-net-v1-0-12af0ce46cdd@linutronix.de>
- <20250414-restricted-pointers-net-v1-7-12af0ce46cdd@linutronix.de>
+Subject: Re: [PATCH v2] bus: mhi: host: don't free bhie tables during
+ suspend/hibernation
+To: Muhammad Usama Anjum <usama.anjum@collabora.com>,
+        Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson
+ <jjohnson@kernel.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>, Yan Zhen <yanzhen@vivo.com>,
+        Youssef Samir <quic_yabdulra@quicinc.com>,
+        Qiang Yu <quic_qianyu@quicinc.com>, Alex Elder <elder@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kunwu Chan <chentao@kylinos.cn>
+Cc: kernel@collabora.com, mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org
+References: <20250410145704.207969-1-usama.anjum@collabora.com>
+ <ba09ae0c-fe8d-8f4e-a1b8-9c7e5913c84e@quicinc.com>
+ <fc9ca0da-9f6a-42b5-aa79-abcd43c97043@collabora.com>
+ <e0159cb8-fe21-7f71-1ebe-744ed26bd698@quicinc.com>
+ <85580a01-289a-461b-b0f1-38fa1b96717c@collabora.com>
+ <1c0b2217-49d9-360c-ed60-db517eaf2ccc@quicinc.com>
+ <7d6b074c-8499-4984-b235-d1285b006ab3@collabora.com>
 Content-Language: en-US
-From: Tariq Toukan <ttoukan.linux@gmail.com>
-In-Reply-To: <20250414-restricted-pointers-net-v1-7-12af0ce46cdd@linutronix.de>
+From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+In-Reply-To: <7d6b074c-8499-4984-b235-d1285b006ab3@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: vVpw9w7alcqkP8KtJLS9Tx-05ZNahjKW
+X-Authority-Analysis: v=2.4 cv=IZ6HWXqa c=1 sm=1 tr=0 ts=67fd1862 cx=c_pps a=JL+w9abYAAE89/QcEU+0QA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=e8kDqSdrP573SdWI4XoA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: vVpw9w7alcqkP8KtJLS9Tx-05ZNahjKW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
+ mlxlogscore=999 mlxscore=0 bulkscore=0 impostorscore=0 suspectscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140102
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250414_034930_904942_244925BC 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20250414_071500_398664_F11B450C 
+X-CRM114-Status: GOOD (  17.89  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,28 +137,56 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 14/04/2025 11:26, Thomas Weißschuh wrote:
-> In the past %pK was preferable to %p as it would not leak raw pointer
-> values into the kernel log.
-> Since commit ad67b74d2469 ("printk: hash addresses printed with %p")
-> the regular %p has been improved to avoid this issue.
-> Furthermore, restricted pointers ("%pK") were never meant to be used
-> through tracepoints. They can still unintentionally leak raw pointers or
-> acquire sleeping looks in atomic contexts.
+On 4/14/2025 1:32 AM, Muhammad Usama Anjum wrote:
+> On 4/12/25 6:22 AM, Krishna Chaitanya Chundru wrote:
+>>
+>> On 4/12/2025 12:02 AM, Muhammad Usama Anjum wrote:
+>>> On 4/11/25 1:39 PM, Krishna Chaitanya Chundru wrote:
+>>>>
+>>>>
+>>>> On 4/11/2025 12:32 PM, Muhammad Usama Anjum wrote:
+>>>>> On 4/11/25 8:37 AM, Krishna Chaitanya Chundru wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 4/10/2025 8:26 PM, Muhammad Usama Anjum wrote:
+>>>>>>> Fix dma_direct_alloc() failure at resume time during bhie_table
+>>>>>>> allocation. There is a crash report where at resume time, the memory
+>>>>>>> from the dma doesn't get allocated and MHI fails to re-initialize.
+>>>>>>> There may be fragmentation of some kind which fails the allocation
+>>>>>>> call.
+>>>>>>>
+>>>>>>> To fix it, don't free the memory at power down during suspend /
+>>>>>>> hibernation. Instead, use the same allocated memory again after every
+>>>>>>> resume / hibernation. This patch has been tested with resume and
+>>>>>>> hibernation both.
+>>>>>>>
+>>>>>>> The rddm is of constant size for a given hardware. While the
+>>>>>>> fbc_image
+>>>>>>> size depends on the firmware. If the firmware changes, we'll free and
+>>>>>> If firmware image will change between suspend and resume ?
+>>>>> Yes, correct.
+>>>>>
+>>>> why the firmware image size will change between suspend & resume?
+>>>> who will update the firmware image after bootup?
+>>>> It is not expected behaviour.
+>>> I was trying to research if the firmware can change or not. I've not
+>>> found any documentation on it.
+>>>
+>>> If the firmare is updated in filesystem before suspend/hibernate, would
+>>> the new firwmare be loaded the next time kernel resumes as the older
+>>> firmware is no where to be found?
+>>>
+>>> What do you think about this?
+>>>
+>> I don't think firmware can be updated before suspend/hibernate. I don't
+>> see any reason why it can be updated. If you think it can be updated
+>> please quote relevant doc.
+> I've not found any documentation on it. Let's wait for others to review
+> and it it cannot be updated, I'll remove this part.
 > 
-> Switch to the regular pointer formatting which is safer and
-> easier to reason about.
-> There are still a few users of %pK left, but these use it through seq_file,
-> for which its usage is safe.
-> 
-> Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
-> ---
->   drivers/net/ethernet/mellanox/mlx5/core/sf/dev/diag/dev_tracepoint.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
 
-Reviewed-by: Tariq Toukan <tariqt@nvidia.com>
+Wouldn't this be trivial to test?  Boot the device, go modify the 
+firmware on the filesystem, then go through a suspend cycle.
 
+-Jeff
 
