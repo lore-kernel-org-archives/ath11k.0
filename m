@@ -4,93 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEAC4C369AB
-	for <ath11k@archiver.kernel.org>; Tue, 22 Apr 2025 02:18:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFCFEC369C2
+	for <ath11k@archiver.kernel.org>; Tue, 22 Apr 2025 08:31:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=yPhpEfspJ3un5qULZi8Z94YjW5YiGEKufQi5Vd8r07Y=; b=UUBRmZ0a9JUdGTK0ivLHc/8gEh
-	Z3+RbnWCqbINOYqnffns515CnFeCyMsw361AKK4MgWo73hSxBfdzWHh5MJeI5eGMrlgZo7PviytKT
-	6gFuagZ+yQvQXnJT1L8OP/Ga5ZorsFrVCLXQKojGSDBShrHrQbXWP//4Uxia4BsNJsk6GSOJ9PH8z
-	PUJeR+TwP04oItZBsMz5N99FalniFMo/WMJFfxk5vYJxGwFtAyxkCPUn9ETmFCL2C1IZfXH0cchoi
-	IdXv6lzmVt9uNIsDfbEO1Yhqm02aitqZAim8tai4fFatrSqpgZPuSQ9mkeihFfirXLVJkYWriP2b1
-	3cd2oRXA==;
+	bh=koqDyNKGQKcTOFROOVdPEIjL8A0vo5aApu1lGJhvNxs=; b=pprVPUgdUkTlqTLUFWZiCJMqRe
+	rjRJ5NyR0o9hJLP3K/JgUr87CuaHTEtcLlAG0rMPiMyCMRHmVnkYtNaX3s0apzsrzvbYk1dah/dY2
+	VPqnadqHdMtMqfMirPQ2pK+oWP+on4V0cyEeYabk97E5X8E504vdhCvR0xr1zIFZOJWrTkTosCdnf
+	L1XlIkfycZifkpCk0sJtU5mFCL4ixQ/XSUdeaMMJRtMvPTCEN3TTq1gfQxs3lBSG0oR0EyEihNJM2
+	Cc0ef3a+5YwKl+ikTdpLJbQDibIZvFmaiRKvy5SDSQoWPPBiwtP7upQ8Wz4rJnk4eSwdQWEVRP9XT
+	J+A/yeVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u73Db-00000005ZlQ-02L2;
-	Tue, 22 Apr 2025 02:18:39 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1u792j-00000006Jx2-2awY;
+	Tue, 22 Apr 2025 08:31:49 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u73Ax-00000005YxH-3yZm
+	id 1u77yg-000000066S5-3zK4
 	for ath11k@lists.infradead.org;
-	Tue, 22 Apr 2025 02:15:57 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53LMV7N6015364;
-	Tue, 22 Apr 2025 02:15:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yPhpEfspJ3un5qULZi8Z94YjW5YiGEKufQi5Vd8r07Y=; b=hlrLD3gXBAN/rLZi
-	WC2ViOO1HlJWzgMxSICQegQdsui3p8SdpjM/5U/IP2LShDyZPY41toa7p5Na1Mz5
-	0Ky0+eb5+N6o5BlVPZZL2zXx1mWl6MGbqG+1g/s863+Pf3dDgGQFANAL4p1RfBwU
-	8HQgmVfmafiRAYr/ORCTIwP0GpC7xfbUugp/hBla357r9ipCze0fXPam6mjLbRot
-	gWquu4Z4SXILhGrJQK3oZei8cEp5xNmNc0O3HpRDrm/i+KxGW4qMwHiAY+aHASzS
-	I8xcIb4EryAOYmKDGL+4SmfmGaR1gSpGR9M4zpTK6N8Y9xnwW+QRhjOCRxkkKSb7
-	gRmywA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 464426nr1a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 02:15:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53M2Fj2D020770
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Apr 2025 02:15:45 GMT
-Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Apr
- 2025 19:15:43 -0700
-Message-ID: <5ae72a5c-798a-4c57-b344-02b231cb881c@quicinc.com>
-Date: Tue, 22 Apr 2025 10:15:40 +0800
+	Tue, 22 Apr 2025 07:23:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1745306594; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=GDnCa7CSKWBHKjYhDVczW/mMrfcPwDU1sUCc0MevFwLUCvd4NcoPizYCU/6G5i/7F1JmaRyjNs0q62xdEWD0Fbxilbl92lJtTCh29hFbbnsNI+THuEFHEDjin4n4yhPm/MeMT2o3BTcgeRShq/P089tKsnEu/aBTWUJSM4MfeBA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745306594; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=koqDyNKGQKcTOFROOVdPEIjL8A0vo5aApu1lGJhvNxs=; 
+	b=lIUcwZorjEP0FfJneApPY7wNvpWFiSPlu1YzjMaC31fTenpjF8fjVq/upqZFfq5IYTl0DDefqhIGaG8oTAgX/t8/h38W1PQgUKkgC06/wKJujVMAH5XsXQXcQ3Mm7+ouhVZU/T1Gi2JZChF/OPDJfGGL04TjOUNU75ZOd3af7ms=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745306594;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=koqDyNKGQKcTOFROOVdPEIjL8A0vo5aApu1lGJhvNxs=;
+	b=dttW3+MdHV0ZvUPfId1ImDLKbcLxB71yIt2cwy5XeOjHQ06D7N0gKM2wOpdpNtrJ
+	UxuQYE2Ufy8xn+giIF7ZlZOXjvH76522qxaUeV1kyy+KAA5FpZ8C+L5uCvSfg9ov5uF
+	rgsqCwePNdsMb3KLFsPc0NoYUj3Y7G4FnWsfaDv0=
+Received: by mx.zohomail.com with SMTPS id 174530659195343.6404687687517;
+	Tue, 22 Apr 2025 00:23:11 -0700 (PDT)
+Message-ID: <1bf328cd-d301-4d1f-a8f5-7020d9e25ea5@collabora.com>
+Date: Tue, 22 Apr 2025 12:23:01 +0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: Fix memory reuse logic
-To: Muhammad Usama Anjum <usama.anjum@collabora.com>,
-        Jeff Johnson
-	<jjohnson@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        Anilkumar Kolli
-	<quic_akolli@quicinc.com>
-CC: <kernel@collabora.com>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250418120951.94021-1-usama.anjum@collabora.com>
+Subject: Re: [PATCH v2] bus: mhi: host: don't free bhie tables during
+ suspend/hibernation
+To: Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+ Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Johannes Berg <johannes@sipsolutions.net>, Jeff Johnson
+ <jjohnson@kernel.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Yan Zhen <yanzhen@vivo.com>, Youssef Samir <quic_yabdulra@quicinc.com>,
+ Qiang Yu <quic_qianyu@quicinc.com>, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kunwu Chan <chentao@kylinos.cn>
+Cc: kernel@collabora.com, mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org
+References: <20250410145704.207969-1-usama.anjum@collabora.com>
+ <ba09ae0c-fe8d-8f4e-a1b8-9c7e5913c84e@quicinc.com>
+ <fc9ca0da-9f6a-42b5-aa79-abcd43c97043@collabora.com>
+ <e0159cb8-fe21-7f71-1ebe-744ed26bd698@quicinc.com>
+ <85580a01-289a-461b-b0f1-38fa1b96717c@collabora.com>
+ <1c0b2217-49d9-360c-ed60-db517eaf2ccc@quicinc.com>
+ <7d6b074c-8499-4984-b235-d1285b006ab3@collabora.com>
+ <ad5e99e8-3ff1-4727-aed6-528ac747f409@oss.qualcomm.com>
+ <5dcf3ddf-6b0a-4b4c-b4a3-6e015a7e2f53@collabora.com>
+ <822543a0-d7e1-4aec-ae1b-018b32985d1f@oss.qualcomm.com>
 Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20250418120951.94021-1-usama.anjum@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: sQThG3pSeN9kjsxfKHLL6mqGwENvfqQW
-X-Proofpoint-GUID: sQThG3pSeN9kjsxfKHLL6mqGwENvfqQW
-X-Authority-Analysis: v=2.4 cv=IP8CChvG c=1 sm=1 tr=0 ts=6806fbd2 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=QX4gbG5DAAAA:8 a=7xKvOyCpBhAOSqRoKRkA:9 a=QEXdDO2ut3YA:10
- a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-22_01,2025-04-21_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
- mlxscore=0 malwarescore=0 clxscore=1011 priorityscore=1501 bulkscore=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504220016
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <822543a0-d7e1-4aec-ae1b-018b32985d1f@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250421_191556_006173_5CC60B12 
-X-CRM114-Status: GOOD (  30.92  )
+X-CRM114-CacheID: sfid-20250422_002335_066325_63E1F7F7 
+X-CRM114-Status: GOOD (  21.67  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,96 +98,113 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 4/18/2025 8:09 PM, Muhammad Usama Anjum wrote:
-> Firmware requests 2 segments at first. 1st segment is of 6799360 whose
-> allocation fails and we return success to firmware. Then firmware asks
-
-Host won't fail in case DMA remapping is enabled. Better to rephrase to make it clear that
-the big segment allocation fails in case DMA remapping is not working, usually due to
-IOMMU not present or any necessary kernel config not enabled.
-
-> for 22 smaller segments. Those get allocated. At suspend/hibernation
-> time, these segments aren't freed as they are reused by firmware.
+On 4/18/25 7:08 PM, Jeff Hugo wrote:
+> On 4/18/2025 2:10 AM, Muhammad Usama Anjum wrote:
+>> On 4/14/25 7:14 PM, Jeff Hugo wrote:
+>>> On 4/14/2025 1:32 AM, Muhammad Usama Anjum wrote:
+>>>> On 4/12/25 6:22 AM, Krishna Chaitanya Chundru wrote:
+>>>>>
+>>>>> On 4/12/2025 12:02 AM, Muhammad Usama Anjum wrote:
+>>>>>> On 4/11/25 1:39 PM, Krishna Chaitanya Chundru wrote:
+>>>>>>>
+>>>>>>>
+>>>>>>> On 4/11/2025 12:32 PM, Muhammad Usama Anjum wrote:
+>>>>>>>> On 4/11/25 8:37 AM, Krishna Chaitanya Chundru wrote:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> On 4/10/2025 8:26 PM, Muhammad Usama Anjum wrote:
+>>>>>>>>>> Fix dma_direct_alloc() failure at resume time during bhie_table
+>>>>>>>>>> allocation. There is a crash report where at resume time, the
+>>>>>>>>>> memory
+>>>>>>>>>> from the dma doesn't get allocated and MHI fails to re-
+>>>>>>>>>> initialize.
+>>>>>>>>>> There may be fragmentation of some kind which fails the
+>>>>>>>>>> allocation
+>>>>>>>>>> call.
+>>>>>>>>>>
+>>>>>>>>>> To fix it, don't free the memory at power down during suspend /
+>>>>>>>>>> hibernation. Instead, use the same allocated memory again after
+>>>>>>>>>> every
+>>>>>>>>>> resume / hibernation. This patch has been tested with resume and
+>>>>>>>>>> hibernation both.
+>>>>>>>>>>
+>>>>>>>>>> The rddm is of constant size for a given hardware. While the
+>>>>>>>>>> fbc_image
+>>>>>>>>>> size depends on the firmware. If the firmware changes, we'll
+>>>>>>>>>> free and
+>>>>>>>>> If firmware image will change between suspend and resume ?
+>>>>>>>> Yes, correct.
+>>>>>>>>
+>>>>>>> why the firmware image size will change between suspend & resume?
+>>>>>>> who will update the firmware image after bootup?
+>>>>>>> It is not expected behaviour.
+>>>>>> I was trying to research if the firmware can change or not. I've not
+>>>>>> found any documentation on it.
+>>>>>>
+>>>>>> If the firmare is updated in filesystem before suspend/hibernate,
+>>>>>> would
+>>>>>> the new firwmare be loaded the next time kernel resumes as the older
+>>>>>> firmware is no where to be found?
+>>>>>>
+>>>>>> What do you think about this?
+>>>>>>
+>>>>> I don't think firmware can be updated before suspend/hibernate. I
+>>>>> don't
+>>>>> see any reason why it can be updated. If you think it can be updated
+>>>>> please quote relevant doc.
+>>>> I've not found any documentation on it. Let's wait for others to review
+>>>> and it it cannot be updated, I'll remove this part.
+>>>>
+>>>
+>>> Wouldn't this be trivial to test?  Boot the device, go modify the
+>>> firmware on the filesystem, then go through a suspend cycle.
+>> I just tested this. I've used an old firmware from last year vs the
+>> latest one.
+>>
+>> Firmware A: old firmware size: 5349376
+>> Firmware B: new firmware size: 5165056
+>>
+>> A here has bigger size.
+>>
+>> 1. I loaded A at boot and then replaced the firmwares in filesystem with
+>> B before syspend. At resume time, B was loaded fine by freeing the
+>> bigger memory area and allocating the smaller one.
+>>
+>> 2. I loaded B and then replaced A in its place before suspend. At resume
+>> time, memory was freed and larger memory was allocated. But driver
+>> wasn't able to initialize correctly:
+>>
+>> [  184.051902] ath11k_pci 0000:03:00.0: timeout while waiting for
+>> restart complete
+>> [  184.051916] ath11k_pci 0000:03:00.0: failed to resume core: -110
+>> [  184.051923] ath11k_pci 0000:03:00.0: PM: dpm_run_callback():
+>> pci_pm_resume returns -110
+>> [  184.051945] ath11k_pci 0000:03:00.0: PM: failed to resume async:
+>> error -110
+>> [  187.251911] ath11k_pci 0000:03:00.0: wmi command 16387 timeout
+>> [  187.251924] ath11k_pci 0000:03:00.0: failed to send
+>> WMI_PDEV_SET_PARAM cmd
+>> [  187.251933] ath11k_pci 0000:03:00.0: failed to enable dynamic bw: -11
+>>
+>> So should we generalize above that changing firmware at
+>> suspend/hibernation time isn't supported. If firmware package is
+>> updated, does user restarts every time?
 > 
-> After resume the firmware asks for 2 segments again with first segment
-> of 6799360 and with same vaddr of the first smaller segment which we had
-
-Not follow you here. What do you mean by 'same vaddr'? firmware does not care about vaddr
-at all.
-
-> allocated. Hence vaddr isn't NULL and we compare the type and size if it
-> can be reused. Unfornately, we detect that we cannot reuse it and this
-
-s/Unfornately/Unfortunately/
-
-> first smaller segment is freed. Then we continue to allocate 6799360 size
-> memory from dma which fails and we call ath11k_qmi_free_target_mem_chunk()
-> which frees the second smaller segment as well. Later success is returned
-> to firmware which asks for 22 smaller segments again. But as we had freed
-> 2 segments already, we'll allocate the first 2 new segments again and
-> reuse the remaining 20.
+> You may want to review how other devices handle this.  I can think of
+> these threads as potential reference
 > 
-> This patch is correctiong the skip logic when vaddr is set, but size/type
+> https://lore.kernel.org/all/
+> CAPM=9twyvq3EWkwUeoTdMMj76u_sRPmUDHWrzbzEZFQ8eL++BQ@mail.gmail.com/
+> https://lore.kernel.org/all/20250207012531.621369-1-airlied@gmail.com/
+They are talking about firmware cache which is not being used in the
+wireless drivers. In my kernel config, firwmare cache is enabeld. But
+everytime kernel needs to read the firwamre, it reads from the filesystem.
 
-s/correctiong/correcting/
+What can be the way forward for this patch? Assuming my previous
+experiment with changed firmwares across suspend/resume failed, I should
+remove reuse logic and send again?
 
-> don't match. In this case, we should use the same skip and success logic
-> as used when dma_alloc_coherent fails without freeing the memory area.
-> 
-> We had got reports that memory allocation in this function failed at
-
-any public link to the report?
-
-> resume which made us debug why the reuse logic is wrong. Those failures
-> weren't because of the bigger chunk allocation failure as they are
-> skipped. Rather these failures were because of smaller chunk allocation
-> failures. This patch fixes freeing and allocation of 2 smaller chunks.
-
-any you saying kernels fail to alloc a smaller chunk? why? is system memory exhausted or
-too fragmented?
-
-> 
-> Tested-on: QCNFA765 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
-
-QCNFA765 is not an official chip name. please use WCN6855.
-
-> 
-> Fixes: 5962f370ce41 ("ath11k: Reuse the available memory after firmware reload")
-
-I don't think a Fixes tag apply here. As IMO this is not really an issue, it is just not
-doing well.
-
-> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
-> ---
->  drivers/net/wireless/ath/ath11k/qmi.c | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-> index 47b9d4126d3a9..3c26f4dcf5d29 100644
-> --- a/drivers/net/wireless/ath/ath11k/qmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
-> @@ -1990,8 +1990,16 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
->  		 */
->  		if (chunk->vaddr) {
->  			if (chunk->prev_type == chunk->type &&
-> -			    chunk->prev_size == chunk->size)
-> +			    chunk->prev_size == chunk->size) {
->  				continue;
-> +			} else if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
-> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
-> +					   "size/type mismatch (current %d %u) (prev %d %u), try later with small size\n",
-> +					    chunk->size, chunk->type,
-> +					    chunk->prev_size, chunk->prev_type);
-> +				ab->qmi.target_mem_delayed = true;
-> +				return 0;
-> +			}
->  
->  			/* cannot reuse the existing chunk */
->  			dma_free_coherent(ab->dev, chunk->prev_size,
-
-actual code change LGTM.
-
-
+-- 
+Regards,
+Usama
 
