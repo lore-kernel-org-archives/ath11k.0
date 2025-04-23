@@ -4,66 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B922C369D9
-	for <ath11k@archiver.kernel.org>; Tue, 22 Apr 2025 18:16:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDADCC369D7
+	for <ath11k@archiver.kernel.org>; Wed, 23 Apr 2025 06:55:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=WN+PRgHyAf3nOCo6STp+CMmOb8/tTXBZONy2+wnMbbE=; b=4PDPsx2ztc7ccT
-	4XIu5otmonBTpYoX3Z+Oailkjf+yoKAw/6Wa0iHS8Ktf32pdg45MaEnI6p0qtoh0AQePgDh2cS9qR
-	VdhAYQKwGCsNTu+1Sy7O8olYJUq92pXMwCNGdhqruNye0O7LF1Fdkds4NV0c46oY2OZfVfDcUqhui
-	Vin0SM6uXpyD1z/RtFGYWO7R1B9Rhe+1gWS2knLwReZPgQ2qe5SvtB9TjHAOQFpSZ2n0MIpQFj57a
-	gRhoDYt7rtcQxKbiGvbRK00P44ShdbC7UpYNQn+Qn79XV9XNBlKSLqeh/PfRQ/P2zIDTxJjwF1p6L
-	MgcOB2bdgz03V4MMPueQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=yTzHN7dGIHSIA2ZcTAnz8A4g6gO0WgnqyLnTZP7VHC8=; b=gaYg7nw8jFre3poh+i8J186HEW
+	m1h3ewwd8C0cY3IsI/FnwPOgxhn9PzDGos4RLHuo3EMBlOUldjxF6WY2SfmWoC5fEGJuRIR7xECvi
+	5oFEmbMVvQwXQr5XtiQzikPJevNcNWkMnbY1Cteiunhw+3Tn5foZz4M+H7obh8v7uZHqs/f8m+RwU
+	wH8iLBxjuL52X9CNNJ9XJXKQmJXWWG5FlKQQzrArsxoegzoQG0I2u6OEqOYJobNxq4di+x/+fKTC+
+	v6TrRjUu6wPxIWZxPHO1wyPXf7tZFlfU0bNLDKqrdkbylSGkCjHo7oJYTEWeN23kkiQU3RYj1Lu+X
+	T/U8kQOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u7IAB-000000088Ru-0SjA;
-	Tue, 22 Apr 2025 18:16:07 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1u7U16-00000009PRK-018Q;
+	Wed, 23 Apr 2025 06:55:32 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u7GBb-00000007qBK-2gb7;
-	Tue, 22 Apr 2025 16:09:28 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id B7C4444B4A;
-	Tue, 22 Apr 2025 16:09:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D83FCC4CEE9;
-	Tue, 22 Apr 2025 16:09:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745338167;
-	bh=Qd8a4qsvk9G4mClmpO236TQ3jYEPXO158QQTn0cWxKo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=HX3Z65O5qlPLh9w2tzD5zgqTmEEUNEK6frdS/LWvlhyQODlex5+w4HSJdCbGoofuA
-	 0gQn+BMTfXd7XLr5lao+kMAgSu5Txq5IIBHoQq02UTsB1+yfusdHTZI/mXSP95k5IE
-	 JCqMtjnYl26+MirO5su+/S/djJo/B6kalqrlikwIdjb4Vu39zEDTDScyyECsjs7Fai
-	 xj3CMInF+87Vc5jbImMVngqirfWPFFY/EVDQg/io5f0AlQfwCXr3BL8xM6gBslPVaG
-	 2Q2/l3deREN+8U1BisoC7SipI13tcn9e/v9PO9fsuIMRuduBgAtTmFYvGLoD4BtpK9
-	 aTOM6KqJS8fLw==
-Date: Tue, 22 Apr 2025 11:09:25 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Jonas Gorski <jonas.gorski@gmail.com>, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] PCI/arm64/ath11k/ath12k: Rename pwrctrl Kconfig
- symbols
-Message-ID: <20250422160925.GA331992@bhelgaas>
+	id 1u7TZA-00000009L4R-2lAu
+	for ath11k@lists.infradead.org;
+	Wed, 23 Apr 2025 06:26:41 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1745389588; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ebdmhULDCdrUhAx4aaHuQRurTciMDX++P9TMCC1yWKj12FX4PUzC3fqhzGgLCbkDhjvtLYJs2vbwChjxh3udapZtmzeCOE7jQiLL31pWBiIYokvrvdcbudMj9SrDsXPAJ/jvq9t+JTVPJweYduJDr4DiA2kAvdFRSadyR9xWmqU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1745389588; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=yTzHN7dGIHSIA2ZcTAnz8A4g6gO0WgnqyLnTZP7VHC8=; 
+	b=P6fHgVM+pJcVG+MVaI/WNa73/m3V7DvK6b/pP7wPYAEbJK3cfv7kJP+qgd0sc8adA7KNj9wOlI/rKnBVfCcj5khcWZ43lWP0gtgFcyg8V2at2VxmKgK2tK/zcCz7YJa83rWVPtrI7fk0pA2tg74Jz8YiaBkcb0bST06R56Zsaf4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745389588;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=yTzHN7dGIHSIA2ZcTAnz8A4g6gO0WgnqyLnTZP7VHC8=;
+	b=Ol5LzmvEc3ZMuLQ7uqwbVYMrbSnC0B72Cd3fdt83r9QD5vrtChiefTxzo5ud7TqC
+	fgebkqHpO6FsuI2XQNhGutWIPw4KK8TNqyoMpognxgyE+igoxiuNp0Ii1M5fF3gZu7a
+	7Sqhn2jjwwgnFZ7U4yNIwNdt8tDJ42V047+tSFhk=
+Received: by mx.zohomail.com with SMTPS id 1745389584521570.3483502691803;
+	Tue, 22 Apr 2025 23:26:24 -0700 (PDT)
+Message-ID: <1fc423d1-762c-4e0f-8cf1-d4610c547596@collabora.com>
+Date: Wed, 23 Apr 2025 11:26:18 +0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250402132634.18065-1-johan+linaro@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: Fix memory reuse logic
+To: Baochen Qiang <quic_bqiang@quicinc.com>,
+ Jeff Johnson <jjohnson@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Anilkumar Kolli <quic_akolli@quicinc.com>
+Cc: kernel@collabora.com, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250418120951.94021-1-usama.anjum@collabora.com>
+ <5ae72a5c-798a-4c57-b344-02b231cb881c@quicinc.com>
+ <b30bc7f6-845d-4f9d-967e-c04a2b5f13f5@collabora.com>
+ <6c4ae1f8-a2ea-4ee3-b67d-4a379f097d9b@quicinc.com>
+Content-Language: en-US
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <6c4ae1f8-a2ea-4ee3-b67d-4a379f097d9b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250422_090927_718341_2C8D0088 
-X-CRM114-Status: GOOD (  24.16  )
+X-CRM114-CacheID: sfid-20250422_232640_778978_401B0F3E 
+X-CRM114-Status: GOOD (  23.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,62 +84,105 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-[cc->to Catalin, Will: note the arm64 Kconfig change; my understanding
-is that this shouldn't break existing configs]
+On 4/22/25 1:01 PM, Baochen Qiang wrote:
+> 
+> 
+> On 4/22/2025 3:46 PM, Muhammad Usama Anjum wrote:
+>> Hi,
+>>
+>> Thank you for excellent review.
+>>
+>> On 4/22/25 7:15 AM, Baochen Qiang wrote:
+>>>
+>>>
+>>> On 4/18/2025 8:09 PM, Muhammad Usama Anjum wrote:
+>>>> Firmware requests 2 segments at first. 1st segment is of 6799360 whose
+>>>> allocation fails and we return success to firmware. Then firmware asks
+>>>
+>>> Host won't fail in case DMA remapping is enabled. Better to rephrase to make it clear that
+>>> the big segment allocation fails in case DMA remapping is not working, usually due to
+>>> IOMMU not present or any necessary kernel config not enabled.
+>> IOMMU is turned off. I'll make description better.
+>>
+>>>
+>>>> for 22 smaller segments. Those get allocated. At suspend/hibernation
+>>>> time, these segments aren't freed as they are reused by firmware.
+>>>>
+>>>> After resume the firmware asks for 2 segments again with first segment
+>>>> of 6799360 and with same vaddr of the first smaller segment which we had
+>>>
+>>> Not follow you here. What do you mean by 'same vaddr'? firmware does not care about vaddr
+>>> at all.
+>> So we get request to allocate memory of size = 6799360 and vaddr =
+>> 0xABC). We fail it. Then we get request to allocate memory of size =
+>> 500000 and vaddr is same 0xABC which gets allocated successfully.
+>>
+>> When we resume, firmware asks again for 6799360 with 0xABC vaddr even
+>> though we had allocated memory of 500000 size at 0xABC. I'm referring to
+>> this vaddr that its same.
+> 
+> OK, get your point. But like I said, firmware doesn't case about vaddr, so it is not
+> asking for a 'same vaddr'.
+> 
+> IMO just mentioning vaddr is not NULL is sufficient.
+Okay. I'll update the description to avoid confusion.
 
-On Wed, Apr 02, 2025 at 03:26:30PM +0200, Johan Hovold wrote:
-> The PCI pwrctrl framework was renamed after being merged, but the
-> Kconfig symbols still reflect the old name ("pwrctl" without an "r").
 > 
-> This leads to people not knowing how to refer to the framework in
-> writing, inconsistencies in module naming, etc.
+>>
+>>>
+>>>> allocated. Hence vaddr isn't NULL and we compare the type and size if it
+>>>> can be reused. Unfornately, we detect that we cannot reuse it and this
+>>>
+>>> s/Unfornately/Unfortunately/
+>>>
+>>>> first smaller segment is freed. Then we continue to allocate 6799360 size
+>>>> memory from dma which fails and we call ath11k_qmi_free_target_mem_chunk()
+>>>> which frees the second smaller segment as well. Later success is returned
+>>>> to firmware which asks for 22 smaller segments again. But as we had freed
+>>>> 2 segments already, we'll allocate the first 2 new segments again and
+>>>> reuse the remaining 20.
+>>>>
+>>>> This patch is correctiong the skip logic when vaddr is set, but size/type
+>>>
+>>> s/correctiong/correcting/
+>>>
+>>>> don't match. In this case, we should use the same skip and success logic
+>>>> as used when dma_alloc_coherent fails without freeing the memory area.
+>>>>
+>>>> We had got reports that memory allocation in this function failed at
+>>>
+>>> any public link to the report?
+>> There's no public report. I've attached the logs. You'll find following
+>> error logs in it:
+>>
+>> ath11k_pci 0000:03:00.0: failed to allocate dma memory for qmi (524288 B
+>> type 1)
+>> ath11k_pci 0000:03:00.0: failed to allocate qmi target memory: -22
+>>
+>>
+>>>
+>>>> resume which made us debug why the reuse logic is wrong. Those failures
+>>>> weren't because of the bigger chunk allocation failure as they are
+>>>> skipped. Rather these failures were because of smaller chunk allocation
+>>>> failures. This patch fixes freeing and allocation of 2 smaller chunks.
+>>>
+>>> any you saying kernels fail to alloc a smaller chunk? why? is system memory exhausted or
+>>> too fragmented?
+>> Yes, the smaller chunk doesn't get allocated. I've not been able to
+>> reproduce it on my setup. Both system memory exhaustion and
+>> fragmentation are the suspects.
 > 
-> Let's rename also the Kconfig symbols before this gets any worse.
-> 
-> The ath11k, ath12k and arm64 changes could go theoretically go through
-> the corresponding subsystem trees in turn once they have the new
-> symbols, but to avoid tracking dependencies over multiple cycles it is
-> much preferred to have all of these go in through the PCI tree.
-> 
-> The wifi patches have been acked by Jeff and I don't think Will or
-> Catalin will mind the single rename in arm64 if they don't see this
-> message in time.
-> 
-> Note that the patches could be squashed into one, but keeping them
-> separate highlights the changes done to other subsystems. I also find it
-> easier to review the changes this way.
-> 
-> There are some new pwrctrl drivers and an arm64 defconfig change on the
-> lists, but the former should also go in through PCI anyway while we can
-> make sure that the defconfig update matches the new slot symbol.
-> 
-> Note that getting this rename into rc1 would be great as that way it
-> would end up in most subsystem trees soon as well.
-> 
-> Johan
-> 
-> 
-> Changes in v2:
->  - drop deprecated symbol for the new slot driver to avoid having to a
->    add a new user visible symbol (e.g. any early adopters will be asked
->    to enable the renamed option again)
-> 
->  - move arm64 patch last two avoid temporarily not having the pwrseq
->    driver selected (Jonas)
-> 
-> Johan Hovold (4):
->   PCI/pwrctrl: Rename pwrctrl Kconfig symbols and slot module
->   wifi: ath11k: switch to PCI_PWRCTRL_PWRSEQ
->   wifi: ath12k: switch to PCI_PWRCTRL_PWRSEQ
->   arm64: Kconfig: switch to HAVE_PWRCTRL
-> 
->  arch/arm64/Kconfig.platforms            |  2 +-
->  drivers/net/wireless/ath/ath11k/Kconfig |  2 +-
->  drivers/net/wireless/ath/ath12k/Kconfig |  2 +-
->  drivers/pci/pwrctrl/Kconfig             | 22 ++++++++++++++++------
->  drivers/pci/pwrctrl/Makefile            |  8 ++++----
->  5 files changed, 23 insertions(+), 13 deletions(-)
+> so it is kernel failing to allocate the buffer, not any issue in ath12k leading to this.
+> Please help make this clear to avoid confusion.
+We caught the bug as kernel was unable to allocate memory at resume.
+Later found out that with the optimization in ath11k, we shouldn't be
+trying to allocate memory in the first place. That's why I've sent this
+patch.
 
-Applied to pci/pwrctrl for v6.16, thanks!
+Let me update the description and send v2.
 
+
+-- 
+Regards,
+Usama
 
