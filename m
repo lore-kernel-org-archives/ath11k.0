@@ -4,71 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A2B9C369AB
-	for <ath11k@archiver.kernel.org>; Thu, 24 Apr 2025 04:45:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06808C369AB
+	for <ath11k@archiver.kernel.org>; Thu, 24 Apr 2025 05:52:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1Einm1/iIrnFazLd9EPpQGtzJH6JLy7QJYdzKbUdRw4=; b=nINRQ10V8clRd4bDYu+Szxk8yx
-	NY8ZkUOGS8UuXJQwUj26bPIkKi4NXX/glnu0qJaUl9Tug/ARxiwKCVWHLPRyuASt1IT2uzHZLDGcc
-	4MLFMfnCvboSJ3YptXATGfDV0PYgCeysrNsd03UvxvUwTwRTDJITlloDpAbmxtBBPenICXUYZRHiB
-	+NrKSPMcjC2d7ui+/iw1anWQH/7SI/p6OyRHKdIMgwkl/t5h2OlIo1CbX5lf7A/I6/ox40Fj0fhyb
-	1m+MNhrIiSvO2AdIzDa46fqaGQOk8hu2Zh0G31sQWPBRuBENowWHkh6d5apqwLXNg39N4rBips+zP
-	x52TWsvg==;
+	bh=RVKAYRgRsCPe2jz13cTbtRdtfyuAuOPsPxJR3dzqW6c=; b=0LKgSbqNJ4m1Q518C1VPOjkh74
+	mbEru0hGLSKkboz1vrh/1EMBw4FXSwtrJVZTR5dqkgmT5ZR62l5/6stYz9XKZjCDg/U9SJ2T+1DK8
+	QON/gkPkuPFTc80yERQZMILkmR0zHTMXNGWyzXYy9n3eobOj4b/mTYC9C69v/LssQtTa1OsLom6qw
+	12IHcIB21HwLkhBj1O9AG5IALRc+levPIMaKeohxaWs0kPJilsi9kuEcZkuOo6s5+5etYQLqPz5iX
+	9BwLJudFrDIF22YUXNDpo7pq2xERyvxlwgXKvgL4OnqDN7sJrsAbyRmpFnnYzz5ryTbfp2UeH4WJ4
+	EX2pNVHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u7oT6-0000000CpRH-0r4I;
-	Thu, 24 Apr 2025 04:45:48 +0000
-Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	id 1u7pVG-0000000Cv1N-2pC3;
+	Thu, 24 Apr 2025 05:52:06 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u7oT4-0000000CpQo-0l4c
+	id 1u7pVE-0000000Cv0t-24wi
 	for ath11k@lists.infradead.org;
-	Thu, 24 Apr 2025 04:45:47 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1745469929; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=H4VGPCw8nTAWwtwdbAtBTE/Mo5u2WDp5C9tMV0DMF81Ckn1mJsqxoIs8DpyBmsZFWKqFJ5s5JavcTuX77LPzEjqYs4bh1JuTCXHNcbSAhWYam6wqR4uuHDLssFCQClrs/iV61hpdT4At0xyzA6TO+pyk7I+GiCrODJeFkMH5pK0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745469929; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=1Einm1/iIrnFazLd9EPpQGtzJH6JLy7QJYdzKbUdRw4=; 
-	b=IB5khyDdmXcKXSWn1GUGHlQ93rl+Qqe1OuvhoCvBbXHGDwZ/63c9GMHr5E06+Ty3c8QYjv8C4OPqFlHwL/j1hTSczRUP5sz2eicZu1fpnVB0KFoHHDapYJNCmF9cRfBjvFt9zs1Eym7i1e2neOHBp6tX2zOsJtOQIfY8/rl8gTc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
-	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745469929;
-	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=1Einm1/iIrnFazLd9EPpQGtzJH6JLy7QJYdzKbUdRw4=;
-	b=OhFshwA6NrQnnveB09b6WlcRsspO/edxEoDcNepooEapPoSKkR62BbU0fIWa61/+
-	3LADMDY+kQqVw+SGDftIJQK22QZQONstbf9NrAWG9QGBWFAhOkqGDm5MDY0zhxPhpv0
-	R5kv8n0/0jn1oZ9LE57uSSeu/O+DLWMwaYWAOO8Q=
-Received: by mx.zohomail.com with SMTPS id 1745469925816636.275804169616;
-	Wed, 23 Apr 2025 21:45:25 -0700 (PDT)
-Message-ID: <0dfa628a-b7b2-4aba-885b-a28b7a9b66d4@collabora.com>
-Date: Thu, 24 Apr 2025 09:45:19 +0500
+	Thu, 24 Apr 2025 05:52:05 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53O0FEpU011414;
+	Thu, 24 Apr 2025 05:52:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RVKAYRgRsCPe2jz13cTbtRdtfyuAuOPsPxJR3dzqW6c=; b=Ney3IKpUt6OnDYtp
+	GfIg6tktLNVVAj5ojp6d4GmQJecCjXcp8dLahA9vH2OxWBwqPOp2cc6VUj1HaabP
+	x/SecSAOXr5Ixc3StoZOeM6isDz4EYiICKAPTsKia30BSBy2UbeJr3Ycg2PfkJ6N
+	NGc+TTCRUmESH/zd4NoAP01xhMltuTxS1m1/7HKxrH8duCJMoZXnjpQkBQkhhdyD
+	8wY9LTfBerCAW/UDPgXwzJsSwr3z8w6ef57WccOxF3+NfldyHaqjNbF3D9wIbrEk
+	XuRnq4KpdzaYdYJ1dMRytD4nn2Y0AOZMB4/3Da0gR0uN7EKdKA6xy5vLa1DYLliQ
+	PiogaA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh24cd9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 24 Apr 2025 05:52:01 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53O5q15n017665
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 24 Apr 2025 05:52:01 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Apr
+ 2025 22:51:59 -0700
+Message-ID: <0e129e2a-67fc-48cc-9773-efbea3f7391d@quicinc.com>
+Date: Thu, 24 Apr 2025 13:51:56 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] wifi: ath11k: Fix memory reuse logic
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
- Baochen Qiang <quic_bqiang@quicinc.com>, Jeff Johnson <jjohnson@kernel.org>,
- Kalle Valo <kvalo@kernel.org>, Anilkumar Kolli <quic_akolli@quicinc.com>
-Cc: kernel@collabora.com, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250423065931.4017574-1-usama.anjum@collabora.com>
- <f98ed1af-e190-404f-a2d2-aa64a712e7c2@quicinc.com>
- <228546c4-a4b5-4f21-950d-2623a48f60a6@oss.qualcomm.com>
+Subject: Re: [PATCH] wifi: ath11k: pci: Fix msi_irq crash on driver unload
+ with QCN9074 PCIe WiFi 6 modules
+To: <balsam.chihi@moment.tech>, <jjohnson@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+References: <20250416100939.282481-1-balsam.chihi@moment.tech>
 Content-Language: en-US
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-In-Reply-To: <228546c4-a4b5-4f21-950d-2623a48f60a6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20250416100939.282481-1-balsam.chihi@moment.tech>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=EtLSrTcA c=1 sm=1 tr=0 ts=6809d182 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=jtIo-V0p2nIdXHBmWg4A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: K0_O3d10wGDbkVtJIW4EzkXgV9lilgiV
+X-Proofpoint-ORIG-GUID: K0_O3d10wGDbkVtJIW4EzkXgV9lilgiV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDAzNSBTYWx0ZWRfX/BC4liv1kO8y wdMwZFlMbrLeBjcuC4q25nympxWD5lJt/31QcV5tJ6zBnzZrYK9FCA0FvqpFmii4taDopoTUhIQ Fv7mtTjzNIbcFvLQaIbIoIeYX7mQd3SHwqI1RywlXbaeJ5H/6SfWxahs+V+XbKDhdfav0JGsaCI
+ 72uVwCK85FEWUXAbY2vbEgT9Puv1PeBOKeakqvzZa/rLFrxX07C9m+D1AwWN4hTgMEoNNEao+Ue 5YOwiCnjLn/NiTvynhwzqSuz28Tj5a0fr129XucTK3dHM+7HGccwwel4fy5kNEsFhhlrAvGDaSl nx1g2B4MIbYbgTaFYuJ7mtWJKB3r4QL0oKCalu0r5oBgPKI+oqsG+AHzIi/nbpNosy98iJYypdq
+ PoGp3MjqItYusiZN5p4pHO+qQjI+Z7s5XdoMmHXy5hXHlQJJf2SP/992X4RE5kY99D6iwoFF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.680,FMLib:17.12.80.40
+ definitions=2025-04-24_02,2025-04-22_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ suspectscore=0 mlxscore=0 clxscore=1011 spamscore=0 mlxlogscore=999
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
+ adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504240035
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250423_214546_260977_1F509CDA 
-X-CRM114-Status: GOOD (  42.30  )
+X-CRM114-CacheID: sfid-20250423_225204_551255_B607563F 
+X-CRM114-Status: GOOD (  22.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,174 +103,89 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/23/25 7:28 PM, Jeff Johnson wrote:
-> On 4/23/2025 1:15 AM, Baochen Qiang wrote:
->> On 4/23/2025 2:59 PM, Muhammad Usama Anjum wrote:
-> 
-> For starters, can we make the subject a bit more specific, i.e.
-> Fix MHI target memory reuse logic
-Will do.
-
-> 
->>> Firmware requests 2 segments at first. The first segment is of 6799360
->>> whose allocation fails due to dma remapping not available. The success
-> 
-> the memory allocation succeeds but the remapping fails? that seems like some
-> specific information that actually isn't very useful. From the perspective of
-> the driver all we really care about is that dma_alloc_coherent() fails, not
-> why it fails.
-I'm explaining the code flow here to define what's wrong. If I hadn't
-mentioned this, I would have been asked how this bug gets triggered.
-
-> 
->>> is returned to firmware. Then firmware asks for 22 smaller segments
->>> instead of 2 big ones. Those get allocated successfully. At suspend/
->>> hibernation time, these segments aren't freed as they will be reused
->>> by firmware after resuming.
->>>
->>> After resume the firmware asks for 2 segments again with first segment
->>> of 6799360 and vaddr is not NULL. We compare the type and size with
->>
->> suggest to rephrase as:
->>
->> After resume the firmware asks for 2 segments again with first segment
->> of 6799360. Since chunk->vaddr is not NULL, we compare the type and size with
->>
->>> previous type and size to know if it can be reused or not.
->>> Unfortunately, we detect that it cannot be reuses and this first smaller
->>
->> s/reuses/reused/
->>
->>> segment is freed. Then we continue to allocate 6799360 size memory from
->>> dma which fails and we call ath11k_qmi_free_target_mem_chunk() which
->>
->> it is odd with 'from dma' ...
->>
->> I think just say 'allocate 6799360 size memory' is good enough.
->>
->>> frees the second smaller segment as well. Later success is returned to
->>> firmware which asks for 22 smaller segments again. But as we had freed 2
->>> segments already, we'll allocate the first 2 new smaller segments again
->>> and reuse the remaining 20. Hence we aren't reusing the all 22 small
->>> segments, but only 20.
->>>
->>> This patch is correcting the skip logic when vaddr is set, but size/type
-> 
-> see
-> <https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes>
-> 
-> Specifically:
-> Describe your changes in imperative mood, e.g. “make xyzzy do frotz” instead
-> of “[This patch] makes xyzzy do frotz” or “[I] changed xyzzy to do frotz”, as
-> if you are giving orders to the codebase to change its behaviour.
-> 
->>> don't match. In this case, we should use the same skip and success logic
-> 
-> who is "we"? the driver is performing the action. As part of changing the text
-> to be in imperative mood this should go away.
-> 
->>> as used when dma_alloc_coherent fails without freeing the memory area.
-> 
-> add () to function references
-> 
-Will do
-
->>>
->>> We had got reports that memory allocation in this function failed at
->>> resume [1] which made us debug why the reuse logic is wrong. Those
->>
->> The link is just v1 of this patch, it is not the report. If there is no public report,
->> just don't mention it.
->>
->>> failures weren't because of the bigger chunk allocation failure as they
->>> are skipped. Rather these failures were because of smaller chunk
->>> allocation failures. This issue is in the kernel side as because of
->>> memory pressure or fragmentation, the dma memory allocation fails. This
->>> patch fixes freeing and allocation of 2 smaller chunks.
->>
->> I know you are describing why you start to debug this issue. But I don't think it is
->> needed in the commit message. No matter kernel allocation fails or succeeds, the issue is
->> there, and the description above is sufficient to make the issue clear.
-> 
-> Concur with this.
-> 
->>
->>>
->>> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
->>
->> blank line needed.
->>
->>> [1] https://lore.kernel.org/all/b30bc7f6-845d-4f9d-967e-c04a2b5f13f5@collabora.com
->>>
->>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
->>> ---
->>> Changes since v1:
->>> - Update description
->>>
->>> Fixes: 5962f370ce41 ("ath11k: Reuse the available memory after firmware reload")
->>> I think we should keep fixes tag as ^ claimed that its adding reuse
->>> support. But it left a bug in reuse which we are fixing.
->>>
->>> Feel free to add it or leave it as it is.
->>
->> Jeff, what do you think?
-> 
-> I would drop the tag. As I understand it, the issue described is due to memory
-> fragmentation/starvation, and not due to the fact that ath11k does not
-> actually reuse the first two segments.
-Ath11k not reusing the segment is also an logical issue. The patch
-adding reuse logic claims that it added reuse logic. But it had missed
-this use case.
-
-Anyways not a blocker for me. I just wanted this patch to get backported
-to stable kernels as its fixing the reuse logic and of course issue
-arising from fragmentation.
-
-> 
->>
->>> ---
->>>  drivers/net/wireless/ath/ath11k/qmi.c | 10 +++++++++-
->>>  1 file changed, 9 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
->>> index 47b9d4126d3a9..3c26f4dcf5d29 100644
->>> --- a/drivers/net/wireless/ath/ath11k/qmi.c
->>> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
->>> @@ -1990,8 +1990,16 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
->>>  		 */
->>>  		if (chunk->vaddr) {
->>>  			if (chunk->prev_type == chunk->type &&
->>> -			    chunk->prev_size == chunk->size)
->>> +			    chunk->prev_size == chunk->size) {
-> 
-> please don't change this...
-
-> 
->>>  				continue;
->>> +			} else if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
-> 
-> ...instead just use if here. we normally don't use else after a statement that
-> changes the code flow (return, goto, continue, etc.)
-Will send v3.
-
-> 
-> 
->>> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
->>> +					   "size/type mismatch (current %d %u) (prev %d %u), try later with small size\n",
->>> +					    chunk->size, chunk->type,
->>> +					    chunk->prev_size, chunk->prev_type);
->>> +				ab->qmi.target_mem_delayed = true;
->>> +				return 0;
->>> +			}
->>>  
->>>  			/* cannot reuse the existing chunk */
->>>  			dma_free_coherent(ab->dev, chunk->prev_size,
->>
->>
-> 
 
 
--- 
-Regards,
-Usama
+On 4/16/2025 6:09 PM, balsam.chihi@moment.tech wrote:
+> From: Balsam CHIHI <balsam.chihi@moment.tech>
+> 
+> This patch addresses a crash issue that occurs when unloading the
+> ath11k_pci driver with QCN9074 PCIe WiFi 6 modules.
+> The crash is caused by the driver attempting to perform reset
+> operations during unload, leading to a synchronous external abort
+
+Do we know the root cause of the synchronous external abort?
+
+> and kernel panic, as indicated by the error log:
+> 
+> [ 5615.902985] Internal error: synchronous external abort: 0000000096000210 [#1] SMP
+> ...
+> [ 5616.056382] CPU: 7 PID: 12605 Comm: procd Tainted: G O 6.6.73 #0
+> ...
+> [ 5616.069876] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> [ 5616.076841] pc : ath11k_pci_get_msi_irq+0x18b4/0x1914 [ath11k_pci]
+> [ 5616.083035] lr : ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
+> [ 5616.163712] Call trace:
+> [ 5616.166153] ath11k_pci_get_msi_irq+0x18b4/0x1914 [ath11k_pci]
+> [ 5616.171993] ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
+> [ 5616.177583] ath11k_pcic_read32+0x30/0xb4 [ath11k]
+> [ 5616.182391] ath11k_pci_get_msi_irq+0x528/0x1914 [ath11k_pci]
+> [ 5616.188143] ath11k_pci_get_msi_irq+0x147c/0x1914 [ath11k_pci]
+> [ 5616.193983] ath11k_pci_get_msi_irq+0x1764/0x1914 [ath11k_pci]
+> [ 5616.199822] pci_device_shutdown+0x34/0x44
+> [ 5616.203923] device_shutdown+0x160/0x268
+> [ 5616.207847] kernel_restart+0x40/0xc0
+> [ 5616.211512] __do_sys_reboot+0x104/0x23c
+> [ 5616.215436] __arm64_sys_reboot+0x24/0x30
+> [ 5616.219447] do_el0_svc+0x6c/0xfc
+> [ 5616.222761] el0_svc+0x28/0x9c
+> [ 5616.225817] el0t_64_sync_handler+0x120/0x12c
+> [ 5616.230174] el0t_64_sy
+> [ 5616.233839] Code: f94e0a80 92404a73 91420273 8b130013 (b9400273)
+> [ 5616.239932] ---[ end trace 0000000000000000 ]---
+> [ 5616.244547] Kernel panic - not syncing: synchronous external abort: Fatal exception in interrupt
+> [ 5616.253343] Kernel Offset: disabled
+> [ 5616.256827] CPU features: 0x0,00000000,00020000,1000400b
+> [ 5616.262138] Memory Limit: none
+> [ 5616.265188] Rebooting in 3 seconds..
+> [ 5620.268926] Unable to restart system
+> [ 5620.272503] Reboot failed -- System halted
+> 
+> The fix involves adding a conditional check for the power state before
+> performing the reset operations in the ath11k_pci_sw_reset function.
+> This ensures that the reset functions are only called when loading the driver,
+
+The ath11k_pci_soc_global_reset() is called to make sure the device is in the expected
+state, such that after machine restart, the device can be successfully enumerated. If
+skipped, the chip may be not detected. At least this is the case for WCN6855, for others I
+am not sure.
+
+
+> preventing the crash during driver unload.
+> 
+> Signed-off-by: Balsam CHIHI <balsam.chihi@moment.tech>
+> ---
+>  drivers/net/wireless/ath/ath11k/pci.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+> index 78444f8ea1535..b9c8963c17047 100644
+> --- a/drivers/net/wireless/ath/ath11k/pci.c
+> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+> @@ -368,9 +368,12 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
+>  	}
+>  
+>  	ath11k_mhi_clear_vector(ab);
+> -	ath11k_pci_clear_dbg_registers(ab);
+> -	ath11k_pci_soc_global_reset(ab);
+> -	ath11k_mhi_set_mhictrl_reset(ab);
+> +
+> +	if (power_on) {
+> +		ath11k_pci_clear_dbg_registers(ab);
+> +		ath11k_pci_soc_global_reset(ab);
+> +		ath11k_mhi_set_mhictrl_reset(ab);
+> +	}
+>  }
+>  
+>  static void ath11k_pci_init_qmi_ce_config(struct ath11k_base *ab)
+
 
