@@ -4,70 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E43DCC369D7
-	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 13:29:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6278DC369C2
+	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 16:28:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=4lk2DNQ1X1AZSjaInM8+EVWShn+PsZb+h2wf6Z9CxfU=; b=vs80bTX7ExdKSIKcksswUhf3NL
-	zwC/llvKKaXHuiCYHXSdBn8dFP1DpZ58b+hHRcXRY+IGzThsGENSIAKgl0peRHUgMKigKdJf2EQ0A
-	/dqFzBAooG7/f5BJ8zHMcHbM2gx/3DNw1l9q0otrqSb/aOimoMQBf9rSLlPwMyUsdVXKvbCyiZ/b4
-	es+f+S4sQXSii+kY7xQgZnTL0mYlmvhK0Wv9EEXKjRM0Ey111cVA1Lgv3BuVouyj+JKa099dr+U1r
-	rlRGGwli5s11V7AP1S3XkNsRHoZ52kyrPfOb9xkO4B/yGzeRcg4C8mzYWT2MFb+exu0/Nuq9uPtrL
-	ixwPe77g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=tMds6CmcdH779xJQucw6BprWPQmeQRUV0l1L2HM0TV4=; b=r0FBwdb3M9w0wsAie92VrEohKx
+	3BzyAV60t1vMR0AFNJ2Xfgcy1WwWzRjzKcViPmWXLPwvtlIxINt4zJ7jY9ovaQdI632nvnGXP1hd1
+	kWA6mOvt76Oyp2U5v5jyzKbebLLyUKyX0E6hZcY/z2kAVOexFTyfWDYLSJvPbSh8DaETBuss2araX
+	hXgbuXCKh00s7iQeev7ToYlglPhe+Sg+Cg1qMvySF2LbWdCKI0yht4UhL6fCYHkqsBzmX/TaMTStG
+	XPIu9hSFknnojGlffMUhzDSKqn4bvqgPrn+od5wcUx9WN5e+M5RvhUROvTM3EUGqmHhScMaLthXa+
+	XVnecApQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8J7U-0000000HHXp-2m7J;
-	Fri, 25 Apr 2025 13:29:32 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1u8Luk-00000000DOG-3T0v;
+	Fri, 25 Apr 2025 16:28:34 +0000
+Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8IHV-0000000H8p7-2JK4;
-	Fri, 25 Apr 2025 12:35:50 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id BFFC45C5F39;
-	Fri, 25 Apr 2025 12:33:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 875DCC4CEE8;
-	Fri, 25 Apr 2025 12:35:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745584548;
-	bh=NBbf9gNE6rO2PKHGflXky6hJbsXpf3UmgCARwrP7qoM=;
-	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
-	b=eVCQ2y/XOwPqYzsX8T1RtjqS959rQ/0CmG8oGelz/MVfkfPCnDhF99VHQZf8ZHCvH
-	 uKP1lo6kgDz2AV/j8b2dgcC9UyRA3AfN8CT/yPfnpdU7ZgCLwy4gOZSAPM9hd4ehmr
-	 VjoXsD9YZowYehiPapJHqGnrCR7/5KbwVPdSRJ3Euwjo3zSEgQqpXv003GX+1pQro2
-	 +0nuE5Ph8rQGsWWRE08ddkiShYNbnViBxUlUnEMbn6gBlRfllMQPfej+Uwco/CPSX0
-	 zBRJerf//fxCVuJa+wM1M3cYqgUVi0OzV7omcs9tlzuQT6qtg17JkBM9qmN4oby2Jx
-	 NXI2TZah6L+7A==
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-7053f85f059so21206917b3.2;
-        Fri, 25 Apr 2025 05:35:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUu6nuAVKXwWSBNah8KamoayuTiQ33qonzqkQHL2QLA7AgUzJfJetc3UKMC+mSQydElRpu9KWg=@lists.infradead.org, AJvYcCXmEv3cx1X5xNeXwdSfMsCMoqPTKAJqzIm28J5waS8hmW0s9ZW4U/MTHRsRhY6sNNTA10+kYp8h@lists.infradead.org
-X-Gm-Message-State: AOJu0YwFUPMG3TWarg4dtmqdVn1/qvTt95L2A8HeVUs7jOSXx+ggC+au
-	Jq6fKrypK3OA7S4ZTxbm6+FhT2rYPpWi2HO+wqF4Q0cYL1Z1MzDXboIe8tOAlRZ5q5pLxw4Ykmg
-	b/zc8vOMEWs7ZE2iV02tQHhoOuV4=
-X-Google-Smtp-Source: AGHT+IGDt9aoxGrxaGdyTTeDSrfXroJCvAtD1fdjtKXhnHKlHwfs/SCMm5fDkS5hkf5DjxqYAC/oNkBXKbPa4IJM9tY=
-X-Received: by 2002:a05:690c:6d05:b0:702:d54:5794 with SMTP id
- 00721157ae682-708541e9ffcmr27742027b3.31.1745584547796; Fri, 25 Apr 2025
- 05:35:47 -0700 (PDT)
+	id 1u8KKo-0000000HU4c-2p86
+	for ath11k@lists.infradead.org;
+	Fri, 25 Apr 2025 14:47:24 +0000
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-2295d78b433so27144465ad.2
+        for <ath11k@lists.infradead.org>; Fri, 25 Apr 2025 07:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745592442; x=1746197242; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=tMds6CmcdH779xJQucw6BprWPQmeQRUV0l1L2HM0TV4=;
+        b=TBVyBNetk83Q7nObQ12oRWEaqJH4+N7xTNmZE/g/WrmXHWPtrrpvHrY/lfZjpP7V/P
+         g59jlGiOnmP5bx6YE/wJb+FYsfTUh5HNT4rkKN8EnvSRDw6BTHgCFxwakcE0uRh92TeI
+         fTkxgub3deDxPZsLUWmUj1S+Z4ZG2JBQPlWirPBcvjvYzeGfIEVQTd+2CrkBCqEiaml4
+         P5Im5AGJndKIM07Tx09uvbO21d4sYyZTjtZdLAeWzm4cbCYmw7BxkVXkzAfmk0gqsOjx
+         HPkp8SkKljgfB1HJHpa2j8MN7xz3Dmzr7cREMT3fxYFBg9pZ8hioXjKoEvMSsoLT2P+r
+         egww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745592442; x=1746197242;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tMds6CmcdH779xJQucw6BprWPQmeQRUV0l1L2HM0TV4=;
+        b=ORh7tZF4B3qT8Fy69KqwzedYPnn3gU89L10BH9H+dPWWrdyHKhxJG83vJ0BlzGira3
+         iCZiJRSvQ6878dnyxskcqjAncVBUPXtc0jDAqErAwzq+X8JQWRSCaFK/UUUN492xKl0D
+         DC3U56siPKNguRCkP1WZr6fqFehJ6E9mxZV1i8Y7URWvxjIwpX6J2VsfsSGQeZcwzo5Y
+         55MY0QjZBvBkdOTyV36vWIn3xgxt0wFyi8bx6xHcSqDjyWI2r0FJdADOXQ6VFExQw5gn
+         XOYghzo1oB62VdE0ucQkjyj4DnJlBI4MRen+moy6YkUVNdaNf28dRUSv+W2xQLRqSdrl
+         lRaA==
+X-Forwarded-Encrypted: i=1; AJvYcCXy8KVxSM7jq7Qyrew9NFIpJLmdMyB5Rs2emQe2UWkGy9328l56Hph5bh+HGjVINtNnhT/gAMI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyJvjjZwJ7nVYi5Un/YSfu4RNJx93u/AzWJavPGEkMREKu1Bt4Z
+	iDzqpFQKkIfzjMfNiwXBjNwFassKpJH2ZDueiwbUKmlJnvoYrh9nIVO/V5mQhg==
+X-Gm-Gg: ASbGncvDzQskXMsFhPG/e5n3iUyaHsSIjkUGVeLU8f9FP5eL0Wz+A3B09PpLE+gT+nx
+	VPpKkPSENJMR/0bQ0D1FlnOfIx0zlIjTFrDlrSeEVxAOAEPOsfOnm+rq1TmUSHIvvoDoKooPi7+
+	7iqgb12/wFtgLrhYzVZVGapJgsMi7rnnOiyEHsWYFMgpjLf30P62/GqKyru8eLmbFWy9SWNh1bh
+	JifdCsoUc2Vxj5KOeb6Se++aFECkEDg21nFHf2FFG0NN6S/LSeug9+lW9bcoC6Hlq0D6jCkMiBH
+	09WOcuLb1ijsDthQajPkPUdIT3EcULhqNAGa6FdkU+1SETfvSSNN
+X-Google-Smtp-Source: AGHT+IGlccZ19AfD3jdnufZp8LMe8Yz57J7vptNmjyBiI0lLh+m+16U65auA9epwL1IrRm+aNvHWgg==
+X-Received: by 2002:a17:902:e805:b0:223:5de7:6c81 with SMTP id d9443c01a7336-22dbf5f34f9mr38226475ad.27.1745592441695;
+        Fri, 25 Apr 2025 07:47:21 -0700 (PDT)
+Received: from thinkpad ([120.56.201.179])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db521614dsm32962505ad.215.2025.04.25.07.47.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Apr 2025 07:47:21 -0700 (PDT)
+Date: Fri, 25 Apr 2025 20:17:14 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Muhammad Usama Anjum <usama.anjum@collabora.com>
+Cc: Johannes Berg <johannes@sipsolutions.net>, 
+	Jeff Johnson <jjohnson@kernel.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
+	Yan Zhen <yanzhen@vivo.com>, Youssef Samir <quic_yabdulra@quicinc.com>, 
+	Qiang Yu <quic_qianyu@quicinc.com>, Alex Elder <elder@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Kunwu Chan <chentao@kylinos.cn>, kernel@collabora.com, 
+	mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Subject: Re: [PATCH v2] bus: mhi: host: don't free bhie tables during
+ suspend/hibernation
+Message-ID: <eypd4xigl3yydfj47usazm7ca3kplz5w7bkk7qf6piks4vtaa4@rmecjnlfix66>
+References: <20250410145704.207969-1-usama.anjum@collabora.com>
+ <h2wv7drxntokziiwbzjw5xjzbctbomp6cfcba7ppfbih6o7so7@p6dazv32xfx4>
+ <1136c7cb-1c7b-410b-93d2-c74aec939196@collabora.com>
+ <cfb3sntvqhupyhm2m5tevpsl77r6mzl2aqzr3wtxvr22bezmp3@qjh7ftr2kdjy>
+ <4d87ef88-3533-4255-adc6-6c268818fe25@collabora.com>
+ <y5odcxzms6mwpz5bdxhbjxo7p6whsdgwm772usmmzqobhf6nam@p4ul7vn7d3an>
+ <a403eb91-c90d-444c-b508-c428a8ef1447@collabora.com>
 MIME-Version: 1.0
-References: <96b43d18-72e1-44a8-bf06-6a22fd012b07@oss.qualcomm.com>
-In-Reply-To: <96b43d18-72e1-44a8-bf06-6a22fd012b07@oss.qualcomm.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Fri, 25 Apr 2025 08:35:36 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA71-_a9nG-vULohgzbSfyFyWOB9RE1x4D4vdUbw4HAegg@mail.gmail.com>
-X-Gm-Features: ATxdqUG-Y0F2Gdu0J4NLMD6PZcYoVIbFgR97YO-susRSEJJ3-yKT3qLEMaTQGWY
-Message-ID: <CA+5PVA71-_a9nG-vULohgzbSfyFyWOB9RE1x4D4vdUbw4HAegg@mail.gmail.com>
-Subject: Re: [PULL linux-firmware] ath11k and ath12k firmware 20250424
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: linux-firmware@kernel.org, linux-wireless@vger.kernel.org, 
-	ath11k@lists.infradead.org, ath12k@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a403eb91-c90d-444c-b508-c428a8ef1447@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_053549_676735_91D114D1 
-X-CRM114-Status: GOOD (  17.10  )
+X-CRM114-CacheID: sfid-20250425_074723_040118_176E0FB8 
+X-CRM114-Status: GOOD (  33.61  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,66 +110,81 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 24, 2025 at 4:38=E2=80=AFPM Jeff Johnson
-<jeff.johnson@oss.qualcomm.com> wrote:
->
-> Hi,
-> Here's a new pull request for ath11k and ath12k.
->
-> For ath11k, update the firmware for IPQ5018 and update the board file
-> for WCN6855. For ath12k, update the firmware for WCN7850 and update
-> the board file for QCN9274.
->
-> Please let me know if there are any problems.
->
-> /jeff
->
-> The following changes since commit 490c0af1d6b9ffca0523edcfad27ba483b9d6d=
-a3:
->
->   Merge branch 'robot/pr-0-1745490027' into 'main' (2025-04-24 13:46:05 +=
-0000)
->
-> are available in the Git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git at=
-h-20250424
+On Fri, Apr 25, 2025 at 04:41:43PM +0500, Muhammad Usama Anjum wrote:
+> On 4/25/25 1:59 PM, Manivannan Sadhasivam wrote:
+> > On Fri, Apr 25, 2025 at 12:42:38PM +0500, Muhammad Usama Anjum wrote:
+> >> On 4/25/25 12:32 PM, Manivannan Sadhasivam wrote:
+> >>> On Fri, Apr 25, 2025 at 12:14:39PM +0500, Muhammad Usama Anjum wrote:
+> >>>> On 4/25/25 12:04 PM, Manivannan Sadhasivam wrote:
+> >>>>> On Thu, Apr 10, 2025 at 07:56:54PM +0500, Muhammad Usama Anjum wrote:
+> >>>>>> Fix dma_direct_alloc() failure at resume time during bhie_table
+> >>>>>> allocation. There is a crash report where at resume time, the memory
+> >>>>>> from the dma doesn't get allocated and MHI fails to re-initialize.
+> >>>>>> There may be fragmentation of some kind which fails the allocation
+> >>>>>> call.
+> >>>>>>
+> >>>>>
+> >>>>> If dma_direct_alloc() fails, then it is a platform limitation/issue. We cannot
+> >>>>> workaround that in the device drivers. What is the guarantee that other drivers
+> >>>>> will also continue to work? Will you go ahead and patch all of them which
+> >>>>> release memory during suspend?
+> >>>>>
+> >>>>> Please investigate why the allocation fails. Even this is not a device issue, so
+> >>>>> we cannot add quirks :/
+> >>>> This isn't a platform specific quirk. We are only hitting it because
+> >>>> there is high memory pressure during suspend/resume. This dma allocation
+> >>>> failure can happen with memory pressure on any device.
+> >>>>
+> >>>
+> >>> Yes.
+> >> Thanks for understanding.
+> >>
+> >>>
+> >>>> The purpose of this patch is just to make driver more robust to memory
+> >>>> pressure during resume.
+> >>>>
+> >>>> I'm not sure about MHI. But other drivers already have such patches as
+> >>>> dma_direct_alloc() is susceptible to failures when memory pressure is
+> >>>> high. This patch was motivated from ath12k [1] and ath11k [2].
+> >>>>
+> >>>
+> >>> Even if we patch the MHI driver, the issue is going to trip some other driver.
+> >>> How does the DMA memory goes low during resume? So some other driver is
+> >>> consuming more than it did during probe()?
+> >> Think it like this. The first probe happens just after boot. Most of the
+> >> RAM was empty. Then let's say user launches applications which not only
+> >> consume entire RAM but also the Swap. The DMA memory area is the first
+> >> ~4GB on x86_64 (if I'm not mistaken). Now at resume time when we want to
+> >> allocate memory from dma, it may not be available entirely or because of
+> >> fragmentation we cannot allocate that much contiguous memory.
+> >>
+> > 
+> > Looks like you have a workload that consumes the limited DMA coherent memory.
+> > Most likely the GPU applications I think.
+> > 
+> >> In our testing and real world cases, right now only wifi driver is
+> >> misbehaving. Wifi is also very important. So we are hoping to make wifi
+> >> driver robust.
+> >>
+> > 
+> > Sounds fair. If you want to move forward, please modify the exisiting
+> > mhi_power_down_keep_dev() to include this partial unprepare as well:
+> > 
+> > mhi_power_down_unprepare_keep_dev()
+> > 
+> > Since both APIs are anyway going to be used together, I don't see a need to
+> > introduce yet another API.
+> I've looked at usages of mhi_power_down_keep_dev(). Its getting used by
+> ath12k and ath11k both. We would have to look at ath12k as well before
+> we can change mhi_power_down_keep_dev(). Unfortunately, I don't have
+> device using ath12k at hand.
+> 
 
-Merged and pushed out.
+ath12k conversion looks trivial. So please go ahead with this new API conversion
+for that driver as well.
 
-https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/528
+- Mani
 
-josh
-
->
-> for you to fetch changes up to ce13d29c3933f77674cf45855668485c48d3eba0:
->
->   ath11k: WCN6855 hw2.0: update board-2.bin (2025-04-24 13:04:20 -0700)
->
-> ----------------------------------------------------------------
-> Jeff Johnson (4):
->       ath12k: QCN9274 hw2.0: update board-2.bin
->       ath12k: WCN7850 hw2.0: update to WLAN.HMT.1.1.c5-00284-QCAHMTSWPL_V=
-1.0_V2.0_SILICONZ-3
->       ath11k: IPQ5018 hw1.0: update to WLAN.HK.2.6.0.1-01300-QCAHKSWPL_SI=
-LICONZ-1
->       ath11k: WCN6855 hw2.0: update board-2.bin
->
->  WHENCE                           |    4 +-
->  ath11k/IPQ5018/hw1.0/Notice.txt  | 3918 +++-----------------------------=
-------
->  ath11k/IPQ5018/hw1.0/q6_fw.b00   |  Bin 532 -> 532 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.b01   |  Bin 520 -> 520 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.b04   |  Bin 86788 -> 86788 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.b08   |  Bin 4096 -> 4096 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.b09   |  Bin 2334720 -> 2334720 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.b10   |  Bin 269220 -> 269252 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.b11   |  Bin 99456 -> 99456 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.b13   |  Bin 7072 -> 7080 bytes
->  ath11k/IPQ5018/hw1.0/q6_fw.mdt   |  Bin 1052 -> 1052 bytes
->  ath11k/WCN6855/hw2.0/board-2.bin |  Bin 6429240 -> 6429240 bytes
->  ath12k/QCN9274/hw2.0/board-2.bin |  Bin 1308544 -> 2626240 bytes
->  ath12k/WCN7850/hw2.0/amss.bin    |  Bin 6000704 -> 6082624 bytes
->  ath12k/WCN7850/hw2.0/m3.bin      |  Bin 299660 -> 299660 bytes
->  15 files changed, 315 insertions(+), 3607 deletions(-)
+-- 
+மணிவண்ணன் சதாசிவம்
 
