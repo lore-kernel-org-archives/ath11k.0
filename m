@@ -4,70 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F1AC369D1
-	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 12:47:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EA14C369D1
+	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 12:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=nd5vulT6QD8qk2DwgRwQTIs7bhDvO/LHs3zkNtr0Exs=; b=ajFwDK7BnHf4qNkwtXsBdtcHiL
-	3eJGHqQ2scNpUdkak/k/rsz0KxXNxYB84JM6EDYZz7I8JNxnZVtuFQJ0ixYmte+uWy3FJ6WgddkQ9
-	rxhsklpnDpNFQiZTyB/X4xqmGs7Bu55nQ8F5vHYTimF2zS9U+EIQ6Q4B6VIf+hv1rIF0mYqnyVt0M
-	p1yDGaN0L52YDiI/4hSsr0+DEc45Knagf1pSrpejCjxH7lSut3Aw/xqE9wYRHdsUuPJ2iFUHwIXF3
-	9bSB7YxFmlWEMM6atZSPDf4URvL+7LKSsXVEtkgrd6bljuF8ifE2jDR4er3zd3Y9jO2iG/jv9V8H2
-	EHP4NpHg==;
+	bh=KBe1NI1Wfn0ex1oNt269TcEak7ZMuXOxhR1u9j6mEyc=; b=WerWsLXaqXXprCFFkK6VzFtkNr
+	QeoXq7ZYPFkckD0uCPmQUJqNDGVDS8PO0EdJPzWNCscsGlDveSu6vOLfYM6/TO2jqZcZq5AiyjOD6
+	YTUPEGYl+uFBAIepw9lkNy08v1MroJY2uFvb7LZNaUkm4dm80Tpjll6BiD9HgfbgLN2UpbDH+1UoT
+	Al/y5bltGhp+8mi0k7QmNekRAsNI7ZZPRvmlj0BtXBv+0bExKC+xsFi4DPP68sYxAEy91tMWa52kg
+	TYKjNqDyOFs0cXNgN5rMT+F9BmXHIWDM53RSY5R2ZK7MFm1GvlZqzpzPGoEsP/h28AIZv0z5tAXkk
+	O8OCMQaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8ISN-0000000HADU-3MHg;
-	Fri, 25 Apr 2025 12:47:03 +0000
-Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	id 1u8IW4-0000000HApc-00DC;
+	Fri, 25 Apr 2025 12:50:52 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8GpK-0000000GrKv-3ohJ
+	id 1u8GvO-0000000GsYt-2CKv
 	for ath11k@lists.infradead.org;
-	Fri, 25 Apr 2025 11:02:40 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1745578945; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=oGEJHjQKTfu8Q6UyGnSVrrN+r4htVB6m+ue6Y/BKbRXL7j6ovKminEdixEiQVMSCxQdFL8WuhMjfS4eJZNj4NTxmqGGIFanHmshWQTxtvhMJzGV32tG5Jc6xlhvRahrro37xDB9xwL2/lzqasofbZXC5y7yGByVfMtl/xbenKaQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1745578945; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=nd5vulT6QD8qk2DwgRwQTIs7bhDvO/LHs3zkNtr0Exs=; 
-	b=ZWWL+uFGVd9Ql0v89/LF/3TUkVYQxKX1fDToCxxDw9/+GBjbhrnNenj61yXgTQfXN0HWOKDPSPAQ2zeSLhC8SqNBgyA19G4sTFZuOiiRUtlphfp/mDcgU0Q3TkY8ZM2xjajButpec9DKum4EKORqNw8LNQGRZ0dPMWcbNJqz7FI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
-	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1745578945;
-	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Cc:Cc:Subject:Subject:To:To:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=nd5vulT6QD8qk2DwgRwQTIs7bhDvO/LHs3zkNtr0Exs=;
-	b=LJ8iAYbRsxUS79RtDlzA1kfCSv4rl2Z4/n6O8gCjrq7u5xt5M1tXXFSInGnvzF/p
-	SNIatSvLl6AcTnqaETW2g2juCLYMBlhlNJJQo8Oftb3v/uCjY/roRwAdFSDHr4OaLjp
-	+yjVCkw8/VAI/tC45hYksfVKNBcikQVn+UHIgRGk=
-Received: by mx.zohomail.com with SMTPS id 17455789416681019.0003601830132;
-	Fri, 25 Apr 2025 04:02:21 -0700 (PDT)
-Message-ID: <5f51e283-f29a-4b3f-ad36-d6d851baeb7f@collabora.com>
-Date: Fri, 25 Apr 2025 16:02:15 +0500
+	Fri, 25 Apr 2025 11:08:55 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53P8T77A008626;
+	Fri, 25 Apr 2025 11:08:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KBe1NI1Wfn0ex1oNt269TcEak7ZMuXOxhR1u9j6mEyc=; b=BEse50NmGUYclXQ5
+	hr5Y3Is4gSTA7KIL18BSOCjY5vd1U7lfhf4O718fWTREbW6fmIbyUHaBm5VH3CI5
+	/fzwM/3NHYiIKEV1KBjoI2AcxkZYo2eHzKAqRnDVLbjniuIDy8aA2Dr/n37fZw3G
+	ftGhcK4RiPXG33WMzjPmqM8m9KMEhpDK+yhv8q9m4fz9SXAsTzlHE3bm5oq5jzLH
+	nvV8bLflsVXgl8YRq0KedULzNQyrHwKK2WhEMq5K0NPs4qx1JIcKRZAScay1IC1W
+	PM9LFVwp8pYRqWPieHBtXyq6GMg8iXfGRd5O2wXIIv/phesxlw5pOo0z1GY8pBf/
+	3yB6NQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jgy8r82-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 11:08:49 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53PB8mcW002623
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 11:08:48 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Apr
+ 2025 04:08:46 -0700
+Message-ID: <dee649f1-0516-4a59-a70d-ba206388e568@quicinc.com>
+Date: Fri, 25 Apr 2025 19:08:44 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Cc: usama.anjum@collabora.com, kernel@collabora.com,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] wifi: ath11k: Fix MHI target memory reuse logic
-To: Baochen Qiang <quic_bqiang@quicinc.com>, jeff.johnson@oss.qualcomm.com,
- Jeff Johnson <jjohnson@kernel.org>
-References: <20250425055141.2041712-1-usama.anjum@collabora.com>
- <d83868de-7ff6-4a54-8bee-4652c2479da3@quicinc.com>
+Subject: Re: [PATCH v4] wifi: ath11k: Fix MHI target memory reuse logic
+To: Muhammad Usama Anjum <usama.anjum@collabora.com>,
+        <jeff.johnson@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>
+CC: <kernel@collabora.com>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250425110424.2530460-1-usama.anjum@collabora.com>
 Content-Language: en-US
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-In-Reply-To: <d83868de-7ff6-4a54-8bee-4652c2479da3@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20250425110424.2530460-1-usama.anjum@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDA4MCBTYWx0ZWRfXz4BX1ZSm63PK CI54WtsYPBwnkQyE6/0x9AQ6taMFnSHc9w8X3+4N0Azob+TJ5t8lrE/OiI/hfeKzHOcCz+4pf3o N0AISNJHnPgUTLKQuW5Y8UWleATf9RmMuYPIU7F/e8/xbWYBV9nWiBvQMTkSfrGRl/Cn4S7pkrt
+ +q6A08dt3f/8Kad9qvykD3lnVVD62pYmQZFN35r/s2XZCpKQHYGEvLmyE1FgzgaCOi/f/JnTHfp iyI3YPjk2FrS1RCbYFYs3prpJjZso99tkQEjOPBLsYUO87u5VRm1qmZqMQoAi7IPKz/y3rLVouq puBiIVTVN4E9hIG/kPAGWRRR/PswhUco8GsXHBd2Ln/Gkm8e4+2BYHZQC+DL2FEDmqNCA9c9pfK
+ dfdwYoRVGkzmoGJOTPvhvU++zbWs1YRAhzHnhkxqfZXorMe7jkXvDHqsHzunGG4j9wUd34Yr
+X-Proofpoint-GUID: 253i4z1cxlQ47EO0lmaGkPUHhyZN4vzB
+X-Proofpoint-ORIG-GUID: 253i4z1cxlQ47EO0lmaGkPUHhyZN4vzB
+X-Authority-Analysis: v=2.4 cv=M5VNKzws c=1 sm=1 tr=0 ts=680b6d41 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=QX4gbG5DAAAA:8 a=COk6AnOGAAAA:8 a=V4x8pWjM2KRL0iEsFYkA:9
+ a=QEXdDO2ut3YA:10 a=AbAUZ8qAyYyZVLSsDulk:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_03,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=999 malwarescore=0 impostorscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250080
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_040238_995293_50584E69 
-X-CRM114-Status: GOOD (  22.45  )
+X-CRM114-CacheID: sfid-20250425_040854_697089_8737CF46 
+X-CRM114-Status: GOOD (  22.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,98 +105,74 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/25/25 3:36 PM, Baochen Qiang wrote:
-> 
-> 
-> On 4/25/2025 1:51 PM, Muhammad Usama Anjum wrote:
->> Firmware requests 2 segments at first. The first segment is of 6799360
->> whose allocation fails due to dma remapping not available. The success
->> is returned to firmware. Then firmware asks for 22 smaller segments
->> instead of 2 big ones. Those get allocated successfully. At suspend/
->> hibernation time, these segments aren't freed as they will be reused
->> by firmware after resuming.
->>
->> After resuming, the firmware asks for the 2 segments again with the
->> first segment of 6799360 size. Since chunk->vaddr is not NULL, the
->> type and size are compared with the previous type and size to know if
->> it can be reused or not. Unfortunately, it is detected that it cannot
->> be reused and this first smaller segment is freed. Then we continue to
->> allocate 6799360 size memory which fails and ath11k_qmi_free_target_mem_chunk()
->> is called which frees the second smaller segment as well. Later success
->> is returned to firmware which asks for 22 smaller segments again. But
->> as we had freed 2 segments already, we'll allocate the first 2 new
->> smaller segments again and reuse the remaining 20. Hence 20 small
->> segments are being reused instead of 22.
->>
->> Add skip logic when vaddr is set, but size/type don't match. Use the
->> same skip and success logic as used when dma_alloc_coherent() fails
-> 
-> 
-> till here it is good.
-> 
-> but from below
-> 
->> without freeing the memory area. The following error are being fixed at
->> resume:
->>
->> 	kernel: ath11k_pci 0000:03:00.0: failed to allocate dma memory for qmi (524288 B type 1)
->> 	ath11k_pci 0000:03:00.0: failed to allocate qmi target memory: -22
->>
->> Those failures aren't because of the bigger chunk allocation failure as
->> they are skipped. Rather these failures are because of smaller chunk
->> allocation failures. This patch fixes freeing and allocation of 2 smaller
->> chunks.
-> 
-> to here not good to me, as it gives me the impression that you are fixing a kernel
-> allocation failure.
-> 
-> How about rephrase like:
-> 
-> By skipping, the possibility of resume failure due to kernel failing to allocate memory
-> for QMI can be avoided.
-I don't know why do you feel like that even in v3.
-
-Anyways, I'll send v4 and hope that you'll ack that one.
-
-> 
->>
->> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
->>
->> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
->> ---
->> Changes since v1:
->> - Update description
->>
->> Changes since v2:
->> - Update description
->> ---
->>  drivers/net/wireless/ath/ath11k/qmi.c | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->>
->> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
->> index 47b9d4126d3a9..2782f4723e413 100644
->> --- a/drivers/net/wireless/ath/ath11k/qmi.c
->> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
->> @@ -1993,6 +1993,15 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
->>  			    chunk->prev_size == chunk->size)
->>  				continue;
->>  
->> +			if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
->> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
->> +					   "size/type mismatch (current %d %u) (prev %d %u), try later with small size\n",
->> +					    chunk->size, chunk->type,
->> +					    chunk->prev_size, chunk->prev_type);
->> +				ab->qmi.target_mem_delayed = true;
->> +				return 0;
->> +			}
->> +
->>  			/* cannot reuse the existing chunk */
->>  			dma_free_coherent(ab->dev, chunk->prev_size,
->>  					  chunk->vaddr, chunk->paddr);
-> 
 
 
--- 
-Regards,
-Usama
+On 4/25/2025 7:04 PM, Muhammad Usama Anjum wrote:
+> Firmware requests 2 segments at first. The first segment is of 6799360
+> whose allocation fails due to dma remapping not available. The success
+> is returned to firmware. Then firmware asks for 22 smaller segments
+> instead of 2 big ones. Those get allocated successfully. At suspend/
+> hibernation time, these segments aren't freed as they will be reused
+> by firmware after resuming.
+> 
+> After resuming, the firmware asks for the 2 segments again with the
+> first segment of 6799360 size. Since chunk->vaddr is not NULL, the
+> type and size are compared with the previous type and size to know if
+> it can be reused or not. Unfortunately, it is detected that it cannot
+> be reused and this first smaller segment is freed. Then we continue to
+> allocate 6799360 size memory which fails and ath11k_qmi_free_target_mem_chunk()
+> is called which frees the second smaller segment as well. Later success
+> is returned to firmware which asks for 22 smaller segments again. But
+> as we had freed 2 segments already, we'll allocate the first 2 new
+> smaller segments again and reuse the remaining 20. Hence 20 small
+> segments are being reused instead of 22.
+> 
+> Add skip logic when vaddr is set, but size/type don't match. Use the
+> same skip and success logic as used when dma_alloc_coherent() fails.
+> By skipping, the possibility of resume failure due to kernel failing to
+> allocate memory for QMI can be avoided.
+> 
+> 	kernel: ath11k_pci 0000:03:00.0: failed to allocate dma memory for qmi (524288 B type 1)
+> 	ath11k_pci 0000:03:00.0: failed to allocate qmi target memory: -22
+> 
+> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+> 
+> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+> ---
+> Changes since v1:
+> - Update description
+> 
+> Changes since v2:
+> - Update description
+> 
+> Changes since v3:
+> - Update description
+> ---
+>  drivers/net/wireless/ath/ath11k/qmi.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+> index 47b9d4126d3a9..2782f4723e413 100644
+> --- a/drivers/net/wireless/ath/ath11k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
+> @@ -1993,6 +1993,15 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
+>  			    chunk->prev_size == chunk->size)
+>  				continue;
+>  
+> +			if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
+> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
+> +					   "size/type mismatch (current %d %u) (prev %d %u), try later with small size\n",
+> +					    chunk->size, chunk->type,
+> +					    chunk->prev_size, chunk->prev_type);
+> +				ab->qmi.target_mem_delayed = true;
+> +				return 0;
+> +			}
+> +
+>  			/* cannot reuse the existing chunk */
+>  			dma_free_coherent(ab->dev, chunk->prev_size,
+>  					  chunk->vaddr, chunk->paddr);
+
+LGTM
+
+Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
