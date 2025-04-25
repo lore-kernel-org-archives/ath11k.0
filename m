@@ -4,96 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19580C369C2
-	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 09:39:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4A04C369C2
+	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 11:14:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=QI7dIhq4gpO8qmw+kHNvoSNDB7nG2z7FjzlKM42EHH4=; b=lK8jGJzVojSKd6OeW3UwFG5dqD
-	qudKFDfyIjgyrHf0kF+lxiHYpOu1mj+ddewpAGb0pe1RJ2VY5fRQLnm9A0Ocn6ID1qd68XRSdlIly
-	mxwH50R10Fu2k3bE7sNYRqE0WHtqFWG4c6Qk/xhh37t91eljtKGt8BW4V0jwAM15APLpE2Q2WCYby
-	EY0eZxfEqZtqhMCNWoY/C6ZF0PBZY73mZ9Fcde0TSym2PpXj6hXESKnOxxTTHSmHOVQLWWU0D4GgT
-	2Dg8hTJEwMNEQUO5m9l0kRHLbL7wzxnOdj84u7IwLBKKY+lo5YsqbpYowWPkJzmeJO3DcF0jkyS/O
-	9Is5+F0g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YgrZOy1N7nemxGS32mJw6l2PCkczZjAlBgr99nOAv/Q=; b=D1aPIsziTBU7ifZaT8mcwChEIN
+	YTjnho5KFzgmAtNtYJkvFGRvSl69lUG5TxzD8OeE5Pb459RaReeBl6jSdDvKELo5eywCnLyBKVN4F
+	o7DiJnYOvXo/HsYZIjWWmrq9RmcEiydTIon3rHNLc+LcMjCi1y+8c50hzRfwGrcZ+lQTwp77tzZu5
+	L0iP4kd6PN5V0y004Hj9HgXbtPAIeM5ExYKvkxoDaO34jX1Bpe4saPqUETsVSXDDPTLsnsNG8TJ2n
+	5PtVKMkFtCt2CwDiq2FR1vubEvfME0GGddArtA6p+VMMGXeNN/2j5C4/oaRRQl5ZKNHXLmISX36wS
+	D1JFuuzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8FWR-0000000GZrz-0quH;
-	Fri, 25 Apr 2025 09:39:03 +0000
-Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
+	id 1u8H0b-0000000Gtgk-33Tw;
+	Fri, 25 Apr 2025 11:14:17 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8Euc-0000000GSE2-3F09
+	id 1u8FhM-0000000GbxT-0hEf
 	for ath11k@lists.infradead.org;
-	Fri, 25 Apr 2025 09:00:00 +0000
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-736c062b1f5so1710463b3a.0
-        for <ath11k@lists.infradead.org>; Fri, 25 Apr 2025 01:59:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745571598; x=1746176398; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QI7dIhq4gpO8qmw+kHNvoSNDB7nG2z7FjzlKM42EHH4=;
-        b=DDAKG6huyJjbaMbZURLRp4+xYCrB14W4NwfY6ODrG6UeFYpUC4K5AWhhMtTDrLnio0
-         3EW9XcawEgOc5jcqd5RQJLeC+40GmBWPgYKKPPVvKwEgOqlUn0UtpVKjsk9RqOOAA883
-         GjxIJJ5ucbKRbW14xVPs43tXPxlKQcaEm5QBpLYj5vE0rgE1TtPqce9sbc1pfKi+Q0J0
-         rmlahB5ujBxAxTnG2hKuS6nLxKTl88gqaNNkJRGEpvHSqEW+9T/6IdUckLtUazoTeIGV
-         BmexLX9Ty683cJaZStEVTy1RAZJlO370m0KLvbdW7Q8dsfZt4rkBjZHqri4dA1kHYy7B
-         4a1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745571598; x=1746176398;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QI7dIhq4gpO8qmw+kHNvoSNDB7nG2z7FjzlKM42EHH4=;
-        b=SNw3AOfBYm6vNIa42249N/PtywtEiBcWRpf+AcUxtiObUNNzpIWJ3AvKzYdPPhlrsz
-         fwEAsf5h6OOYu+kM1MF52025rMBl8zDF3w2t2T9NnnFzEIymOXKwu2YLBld9Zzq7HYxl
-         u5rwTZBv75PwyhkY3TMzdgt2QRxvYOjiBA0CP6nlUS9PhbngVg7emvOlfJBt1j7mthf7
-         I1U1PYfgUR4JV33Ovh8kuuZQDb2TZCsbZdXbaYM//bl/crQ9HFmYJwGq2PgUIK/ssLI8
-         NhRLQN5q5v68f4gkDHmq/CQ61evFyfU6iYt3IV/2xecAmYpclJXaMYCNMR1gRNhPMoCV
-         gmqw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2HnxX0Iq2P5Ed9m1QK6P0m43dP6PiBzMv4k2Fb3V+XATo+a5Wt1raT6yxJnlI6tgUBlgDR6w=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx7R6h9L6pI3lUpfy3z6gHmBqKuNOz/nMEvVrKqpB5yPUHJqRvq
-	+Vv9rKWx1U6RsTzWq+opye5fPt2lJpN4EJEHxeOAZlnRHYgpYkQxLAUBJoaGgg==
-X-Gm-Gg: ASbGncu7Mzv90VfkDlzPxbQxjT0NwqUZzK+F+JAhh9xoy4bDU1iIz+ZnGXa7/UCdY3f
-	aitTiv4VyY76kjYaHmKG50Z+8MeFHzUC03HMFZ6d16j2xzZKdJmL4pnpzVoWNEUygHzjqT/TYxr
-	g5Kgvn+/QLoofnR4eI/NuAKZWTolQs5uEwXVjQUEY9Zq+S8XaSvkcgwuDA5PzKxqvV0E7eLfHMt
-	lzMRDKbOVCQ2uLenZdQ8ssIPSFADWkX+xEbgpbubJriOLmxMT3zsiFcSx4I2dhtlaLhlKeAcqAK
-	ptBekEyYaphuKO7Uuilf0zsYXTUg6bhtjGrr3WruwBQyTfRA96AmhjUUm8zo2w==
-X-Google-Smtp-Source: AGHT+IFkKSjUiJTYpCxdE0/nSPU4m+TRaoZshePJKHL8MiFoZ1AglBgvtTwnzJQU1uuNvqEmm4Tfww==
-X-Received: by 2002:a05:6a00:21c6:b0:73e:359:acf4 with SMTP id d2e1a72fcca58-73fc7866454mr2183157b3a.0.1745571597887;
-        Fri, 25 Apr 2025 01:59:57 -0700 (PDT)
-Received: from thinkpad ([120.60.77.160])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25962f61sm2688128b3a.74.2025.04.25.01.59.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 01:59:57 -0700 (PDT)
-Date: Fri, 25 Apr 2025 14:29:50 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Muhammad Usama Anjum <usama.anjum@collabora.com>
-Cc: Johannes Berg <johannes@sipsolutions.net>, 
-	Jeff Johnson <jjohnson@kernel.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
-	Yan Zhen <yanzhen@vivo.com>, Youssef Samir <quic_yabdulra@quicinc.com>, 
-	Qiang Yu <quic_qianyu@quicinc.com>, Alex Elder <elder@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Kunwu Chan <chentao@kylinos.cn>, kernel@collabora.com, 
-	mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH v2] bus: mhi: host: don't free bhie tables during
- suspend/hibernation
-Message-ID: <y5odcxzms6mwpz5bdxhbjxo7p6whsdgwm772usmmzqobhf6nam@p4ul7vn7d3an>
-References: <20250410145704.207969-1-usama.anjum@collabora.com>
- <h2wv7drxntokziiwbzjw5xjzbctbomp6cfcba7ppfbih6o7so7@p6dazv32xfx4>
- <1136c7cb-1c7b-410b-93d2-c74aec939196@collabora.com>
- <cfb3sntvqhupyhm2m5tevpsl77r6mzl2aqzr3wtxvr22bezmp3@qjh7ftr2kdjy>
- <4d87ef88-3533-4255-adc6-6c268818fe25@collabora.com>
+	Fri, 25 Apr 2025 09:50:21 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53P8TIT4015915;
+	Fri, 25 Apr 2025 09:50:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YgrZOy1N7nemxGS32mJw6l2PCkczZjAlBgr99nOAv/Q=; b=HltCvKozkvrWlLdV
+	Mw8MRfR5CQRonXhvchakFlrG/vIbjMenznqQbbre3JeOP0vcZRHol94f9oVavwdj
+	MXw2KbYnuLv1U9nJlq2v1ZIMwYkxgS3EFdGr7SohT8f7Dv1FCr4a3QKuEEZTdxYX
+	LeewQmaf4IksJbPX0EQf6yCpqkh10aawvciuDGCWVXhlvl3yne5NCUCLxfv723/M
+	AXrT8QXVS4Vr9BDXXkY0pjI4J3FChlzQPVDePkuGoNn3hgcSHKeltArgXp/8Pc67
+	uG8AhfpDiT2wycG3oUtBDb4YJ6PxIBoqzpROxfNpPI1+kH3jvrL8p4Iu6rvbXTm/
+	CVH9Ow==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3ghxm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 09:50:16 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53P9oFLK029330
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Apr 2025 09:50:15 GMT
+Received: from [10.216.33.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Apr
+ 2025 02:50:12 -0700
+Message-ID: <07013bbc-296a-2403-a6ca-70de220495c5@quicinc.com>
+Date: Fri, 25 Apr 2025 15:20:09 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4d87ef88-3533-4255-adc6-6c268818fe25@collabora.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] wifi: ath11k: pci: Fix msi_irq crash on driver unload
+ with QCN9074 PCIe WiFi 6 modules
+Content-Language: en-US
+To: Baochen Qiang <quic_bqiang@quicinc.com>,
+        Balsam Chihi
+	<balsam.chihi@moment.tech>
+CC: <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>
+References: <20250416100939.282481-1-balsam.chihi@moment.tech>
+ <0e129e2a-67fc-48cc-9773-efbea3f7391d@quicinc.com>
+ <fa16bad6-305f-77c1-3f56-703564e2dfee@quicinc.com>
+ <CAONkfw6m9O_6FZHBrPYdpv+=AxSgsbh1T7+GaS+U+bnjyVVJvQ@mail.gmail.com>
+ <3da5d47b-993c-405e-841f-1d16d8715610@quicinc.com>
+ <1d0682c0-ee5d-f2d4-199d-4ebc4e71f9ef@quicinc.com>
+ <3660fcfb-be29-422b-a352-3996ad3fc41f@quicinc.com>
+ <CAONkfw5-bfYRwHZ9iHhgJP2f8Zqyz5SZVbdL4n9EPhKU+=ONPg@mail.gmail.com>
+ <CAONkfw7xjJjMAZSfHg5avEV=Bc5aJZqrRxMDvKWK4g14bLNjRQ@mail.gmail.com>
+ <d4b01807-0770-439a-a77b-1e0f078687e3@quicinc.com>
+From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
+In-Reply-To: <d4b01807-0770-439a-a77b-1e0f078687e3@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI1MDA3MCBTYWx0ZWRfXyMGkgIga9Kz0 QNr8QMFjNSDzLUZHg8/46oGXJMoY6ngoSrfHwvSW7nfoUsnpSYoiTUVduMWRTH/i0ndsOY06h8P Y8zljDNZcRkxvtYOEB+PS+V9heQ1sltBaIjzRTtELhDxm+q9qNHUisVJQo3lL545205F3R3Jz9B
+ a3NbLVKxbOui4FebTCRkvn1aUD7nmtbRFA3bTfTllTNogIekFf3n9/X1Ib6a5Iu+hrMUmZe0Eh+ b9EKsv6Jai3Z9CKIEn1BZUIz782d3mOfGUJIB+ZWI5gAnOIXdmffIioJi82lS8LfhEM3eyNft/3 h3xPe+PoFdTxuOKaIv/Gyx4SZJ2h/o1sIFreyb7YfnEdYeUOTiQDmrKMO06VOpVMuOJcXmSEwsr
+ Ir97MxCkSuQMYDVzj/QHLH0UpjfghK9NvRSN7CDSvpEQP1xmXPbJIRQMbW9Eqy3nJPeaUbd/
+X-Authority-Analysis: v=2.4 cv=bs1MBFai c=1 sm=1 tr=0 ts=680b5ad8 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=7rrHA7QNMJ-wWQh4610A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: znQ8zuhr-FV5GRspcv4VuRqDWJHDXHyl
+X-Proofpoint-GUID: znQ8zuhr-FV5GRspcv4VuRqDWJHDXHyl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-25_02,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ priorityscore=1501 suspectscore=0 mlxlogscore=999 mlxscore=0 phishscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504250070
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_015958_813187_9A546351 
-X-CRM114-Status: GOOD (  35.75  )
+X-CRM114-CacheID: sfid-20250425_025020_224100_CF1D8912 
+X-CRM114-Status: UNSURE (   5.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,104 +117,303 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Apr 25, 2025 at 12:42:38PM +0500, Muhammad Usama Anjum wrote:
-> On 4/25/25 12:32 PM, Manivannan Sadhasivam wrote:
-> > On Fri, Apr 25, 2025 at 12:14:39PM +0500, Muhammad Usama Anjum wrote:
-> >> On 4/25/25 12:04 PM, Manivannan Sadhasivam wrote:
-> >>> On Thu, Apr 10, 2025 at 07:56:54PM +0500, Muhammad Usama Anjum wrote:
-> >>>> Fix dma_direct_alloc() failure at resume time during bhie_table
-> >>>> allocation. There is a crash report where at resume time, the memory
-> >>>> from the dma doesn't get allocated and MHI fails to re-initialize.
-> >>>> There may be fragmentation of some kind which fails the allocation
-> >>>> call.
-> >>>>
-> >>>
-> >>> If dma_direct_alloc() fails, then it is a platform limitation/issue. We cannot
-> >>> workaround that in the device drivers. What is the guarantee that other drivers
-> >>> will also continue to work? Will you go ahead and patch all of them which
-> >>> release memory during suspend?
-> >>>
-> >>> Please investigate why the allocation fails. Even this is not a device issue, so
-> >>> we cannot add quirks :/
-> >> This isn't a platform specific quirk. We are only hitting it because
-> >> there is high memory pressure during suspend/resume. This dma allocation
-> >> failure can happen with memory pressure on any device.
-> >>
-> > 
-> > Yes.
-> Thanks for understanding.
-> 
-> > 
-> >> The purpose of this patch is just to make driver more robust to memory
-> >> pressure during resume.
-> >>
-> >> I'm not sure about MHI. But other drivers already have such patches as
-> >> dma_direct_alloc() is susceptible to failures when memory pressure is
-> >> high. This patch was motivated from ath12k [1] and ath11k [2].
-> >>
-> > 
-> > Even if we patch the MHI driver, the issue is going to trip some other driver.
-> > How does the DMA memory goes low during resume? So some other driver is
-> > consuming more than it did during probe()?
-> Think it like this. The first probe happens just after boot. Most of the
-> RAM was empty. Then let's say user launches applications which not only
-> consume entire RAM but also the Swap. The DMA memory area is the first
-> ~4GB on x86_64 (if I'm not mistaken). Now at resume time when we want to
-> allocate memory from dma, it may not be available entirely or because of
-> fragmentation we cannot allocate that much contiguous memory.
-> 
 
-Looks like you have a workload that consumes the limited DMA coherent memory.
-Most likely the GPU applications I think.
 
-> In our testing and real world cases, right now only wifi driver is
-> misbehaving. Wifi is also very important. So we are hoping to make wifi
-> driver robust.
-> 
-
-Sounds fair. If you want to move forward, please modify the exisiting
-mhi_power_down_keep_dev() to include this partial unprepare as well:
-
-mhi_power_down_unprepare_keep_dev()
-
-Since both APIs are anyway going to be used together, I don't see a need to
-introduce yet another API.
-
-- Mani
-
-> > 
-> >> [1]
-> >> https://lore.kernel.org/all/20240419034034.2842-1-quic_bqiang@quicinc.com/
-> >> [2]
-> >> https://lore.kernel.org/all/20220506141448.10340-1-quic_akolli@quicinc.com/
-> >>
-> >> What do you think can be the way forward for this patch?
-> >>
-> > 
-> > Let's try first to analyze why the memory pressure happens during suspend. As I
-> > can see, even if we fix the MHI driver, you are likely to hit this issue
-> > somewhere else.>
-> > - Mani
-> > 
-> >>>
-> > 
-> > [...]
-> > 
-> >>> Did you intend to leak this information? If not, please remove it from
-> >>> stacktrace.
-> >> The device isn't private. Its fine.
-> >>
-> > 
-> > Okay.
-> > 
-> > - Mani
-> > 
+On 4/25/2025 12:35 PM, Baochen Qiang wrote:
 > 
 > 
-> -- 
-> Regards,
-> Usama
+> On 4/24/2025 10:07 PM, Balsam Chihi wrote:
+>> I just rebuilt a clean disto and enabled the debug_mask=0x1020.
+>> There are the logs bellow :
+>>
+>> root@OpenWrt-WAP:~# uname --all
+>> Linux OpenWrt-WAP 6.6.86 #0 SMP Sun Apr 13 16:38:32 2025 aarch64 GNU/Linux
+>>
+>> root@OpenWrt-WAP:~# cat /etc/modules.conf
+>> # examples:
+>> # options mod1 option=val
+>> # blacklist mod2
+>> options ath11k debug_mask=0x1020
+>>
+>> root@OpenWrt-WAP:~# cat /sys/module/ath11k/parameters/debug_mask
+>> 4128
+>>
+>> root@OpenWrt-WAP:~# dmesg | grep ath
+>> [   15.093627] ath11k_pci 0001:01:00.0: Adding to iommu group 2
+>> [   15.099326] ath11k_pci 0001:01:00.0: assign IRQ: got 0
+>> [   15.099512] ath11k_pci 0001:01:00.0: BAR 0: assigned [mem
+>> 0x2840000000-0x28401fffff 64bit]
+>> [   15.107879] ath11k_pci 0001:01:00.0: boot pci_mem 0x00000000880f25e0
+>> [   15.107886] ath11k_pci 0001:01:00.0: boot pci probe 17cb:1104 17cb:1104
+>> [   15.108483] ath11k_pci 0001:01:00.0: MSI vectors: 16
+>> [   15.113538] ath11k_pci 0001:01:00.0: pci msi base data is 0
+>> [   15.113545] ath11k_pci 0001:01:00.0: qcn9074 hw1.0
+>> [   15.118336] ath11k_pci 0001:01:00.0: FW memory mode: 2
+>> [   15.125643] ath11k_pci 0001:01:00.0: boot failed to load firmware-2.bin: -2
+>> [   15.125658] ath11k_pci 0001:01:00.0: boot using fw api 1
+>> [   15.125668] ath11k_pci 0001:01:00.0: pci msi assignment MHI
+>> num_vectors 3 user_base_data 0 base_vector 0
+>> [   15.125675] ath11k_pci 0001:01:00.0: pci num_vectors 3 base_vector 0
+>> [   15.129780] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   15.129933] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   15.129964] ath11k_pci 0001:01:00.0: pci irq 369 group 0
+>> [   15.130013] ath11k_pci 0001:01:00.0: pci irq 370 group 1
+>> [   15.130059] ath11k_pci 0001:01:00.0: pci irq 371 group 2
+>> [   15.130110] ath11k_pci 0001:01:00.0: pci irq 372 group 3
+>> [   15.130157] ath11k_pci 0001:01:00.0: pci irq 373 group 4
+>> [   15.130204] ath11k_pci 0001:01:00.0: pci irq 374 group 5
+>> [   15.130250] ath11k_pci 0001:01:00.0: pci irq 375 group 6
+>> [   15.130295] ath11k_pci 0001:01:00.0: pci irq 376 group 7
+>> [   15.130359] ath11k_pci 0001:01:00.0: pci after request_irq msi_ep_base_data 0
+>> [   15.230443] ath11k_pci 0001:01:00.0: pci ltssm 0x111
+>> [   15.230456] ath11k_pci 0001:01:00.0: pci pcie_hot_rst 0x11
+>> [   15.235499] ath11k_pci 0001:01:00.0: pci pcie_q6_cookie_addr 0x0
+>> [   15.235514] ath11k_pci 0001:01:00.0: pci wlaon_warm_sw_entry 0x0
+>> [   15.255530] ath11k_pci 0001:01:00.0: pci wlaon_warm_sw_entry 0x0
+>> [   15.255545] ath11k_pci 0001:01:00.0: pci soc reset cause 0
+>> [   15.275554] ath11k_pci 0001:01:00.0: pci mhistatus 0xff04
+>> [   15.285571] ath11k_pci 0001:01:00.0: pci link_ctl 0x0000 L0s 0 L1 0
+>> [   15.446403] ath11k_pci 0001:01:00.0: boot notify status reason
+>> MHI_CB_EE_SBL_MODE
+>> [   15.494739] ath11k_pci 0001:01:00.0: boot notify status reason
+>> MHI_CB_EE_MISSION_MODE
+>> [   15.515587] ath11k_pci 0001:01:00.0: chip_id 0x0 chip_family 0x0
+>> board_id 0xff soc_id 0xffffffff
+>> [   15.524423] ath11k_pci 0001:01:00.0: fw_version 0x290b8862
+>> fw_build_timestamp 2024-09-23 10:51 fw_build_id
+>> [   15.534202] ath11k_pci 0001:01:00.0: boot using board name
+>> 'bus=pci,qmi-chip-id=0,qmi-board-id=255'
+>> [   15.551970] ath11k_pci 0001:01:00.0: boot firmware request
+>> ath11k/QCN9074/hw1.0/board-2.bin size 786836
+>> [   15.551992] ath11k_pci 0001:01:00.0: boot board name
+>> [   15.552001] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
+>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
+>> [   15.552007] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
+>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
+>> [   15.552013] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 31 36 30
+>>                              id=160
+>> [   15.552018] ath11k_pci 0001:01:00.0: boot board name
+>> [   15.552024] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
+>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
+>> [   15.552030] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
+>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
+>> [   15.552036] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 31 36 31
+>>                              id=161
+>> [   15.552041] ath11k_pci 0001:01:00.0: boot board name
+>> [   15.552047] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
+>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
+>> [   15.552053] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
+>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
+>> [   15.552059] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 31 36 32
+>>                              id=162
+>> [   15.552064] ath11k_pci 0001:01:00.0: boot board name
+>> [   15.552070] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
+>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
+>> [   15.552076] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
+>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
+>> [   15.552082] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 32 35 35
+>>                              id=255
+>> [   15.552087] ath11k_pci 0001:01:00.0: boot found match board data
+>> for name 'bus=pci,qmi-chip-id=0,qmi-board-id=255'
+>> [   15.552093] ath11k_pci 0001:01:00.0: boot found board data for
+>> 'bus=pci,qmi-chip-id=0,qmi-board-id=255'
+>> [   15.552100] ath11k_pci 0001:01:00.0: boot using board api 2
+>> [   16.910820] ath11k_pci 0001:01:00.0: boot firmware request
+>> ath11k/QCN9074/hw1.0/m3.bin size 340108
+>> [   16.934188] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.934216] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.934228] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.934238] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.934249] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.934258] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.934273] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.934284] ath11k_pci 0001:01:00.0: pci msi assignment CE
+>> num_vectors 5 user_base_data 3 base_vector 3
+>> [   16.935322] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.935333] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 11,ring_num 0
+>> [   16.937172] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.937185] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 12,ring_num 0
+>> [   16.937196] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.937203] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 6,ring_num 0
+>> [   16.937212] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.937219] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 7,ring_num 0
+>> [   16.937489] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.937497] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 5,ring_num 0
+>> [   16.937934] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.938396] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.938405] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 5,ring_num 1
+>> [   16.938823] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.939059] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.939068] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 5,ring_num 2
+>> [   16.939468] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.939635] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.939642] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 2,ring_num 0
+>> [   16.939765] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.939872] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.939959] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.939967] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 3,ring_num 0
+>> [   16.940135] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.940417] ath11k_pci 0001:01:00.0: boot htc service 'Control' ul
+>> pipe 0 dl pipe 1 eid 0 ready
+>> [   16.940425] ath11k_pci 0001:01:00.0: boot htc service 'Control' eid
+>> 0 tx flow control disabled
+>> [   16.941453] ath11k_pci 0001:01:00.0: boot htc service HTT Data does
+>> not allocate target credits
+>> [   16.941570] ath11k_pci 0001:01:00.0: boot htc service 'HTT Data' ul
+>> pipe 4 dl pipe 1 eid 1 ready
+>> [   16.941578] ath11k_pci 0001:01:00.0: boot htc service 'HTT Data'
+>> eid 1 tx flow control disabled
+>> [   16.941633] ath11k_pci 0001:01:00.0: boot htc service 'WMI' ul pipe
+>> 3 dl pipe 2 eid 2 ready
+>> [   16.941641] ath11k_pci 0001:01:00.0: boot htc service 'WMI' eid 2
+>> tx flow control disabled
+>> [   16.943010] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.943267] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.943476] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   16.943604] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.246410] ath11k_pci 0001:01:00.0: htt event 48 not handled
+>> [   17.252661] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.253260] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.253871] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.254512] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.254528] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 16,ring_num 0
+>> [   17.255170] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.255743] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.255759] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 19,ring_num 0
+>> [   17.284419] ath11k_pci 0001:01:00.0: pci msi assignment DP
+>> num_vectors 8 user_base_data 8 base_vector 8
+>> [   17.284438] ath11k_pci 0001:01:00.0: pci ring not part of an
+>> ext_group; ring_type: 20,ring_num 0
+>> [   22.039565] ath11k_pci 0001:01:00.0 phy0-ap0: entered allmulticast mode
+>> [   22.050081] ath11k_pci 0001:01:00.0 phy0-ap0: entered promiscuous mode
+>> [   30.709682] ath11k_pci 0001:01:00.0 phy0-ap0: left allmulticast mode
+>> [   30.716078] ath11k_pci 0001:01:00.0 phy0-ap0: left promiscuous mode
+>> [   36.330610] ath11k_pci 0001:01:00.0 phy0-ap0: entered allmulticast mode
+>> [   36.337503] ath11k_pci 0001:01:00.0 phy0-ap0: entered promiscuous mode
+>>
+>> root@OpenWrt-WAP:~# iw dev
+>> phy#0
+>> Interface phy0-ap0
+>> ifindex 14
+>> wdev 0x2
+>> addr 04:f0:21:bd:d7:99
+>> type AP
+>> channel 100 (5500 MHz), width: 160 MHz, center1: 5570 MHz
+>> multicast TXQ:
+>> qsz-byt qsz-pkt flows drops marks overlmt hashcol tx-bytes tx-packets
+>> 0 0 0 0 0 0 0 0 0
+>>
+>> root@OpenWrt-WAP:~# iwinfo
+>> phy0-ap0  ESSID: "OpenWrt-WAP-5GHz"
+>>            Access Point: 04:F0:21:BD:D7:99
+>>            Mode: Master  Channel: 100 (5.500 GHz)  HT Mode: HE160
+>>            Center Channel 1: 114 2: unknown
+>>            Tx-Power: 0 dBm  Link Quality: unknown/70
+>>            Signal: unknown  Noise: -101 dBm
+>>            Bit Rate: unknown
+>>            Encryption: none
+>>            Type: nl80211  HW Mode(s): 802.11ac/ax/n
+>>            Hardware: 17CB:1104 17CB:1104 [Qualcomm Atheros QCN6024/9024/9074]
+>>            TX power offset: none
+>>            Frequency offset: none
+>>            Supports VAPs: yes  PHY name: phy0
+>>
+>> root@OpenWrt-WAP:~# reboot
+>> [  343.663492] Internal error: synchronous external abort:
+>> 0000000096000210 [#1] SMP
+>> [  343.670992] Modules linked in: nft_fib_inet nft_connlimit
+>> nf_flow_table_inet nf_conncount ath11k_pci(O) ath11k(O) rndis_host
+>> nft_socket nft_reject_ipv6 nft_reject_ipv4 nft_reject_inet nft_reject
+>> nft_redir nft_quota nft_queue nft_numgen nft_nat nft_masq nft_log
+>> nft_limit nft_hash nft_fwd_netdev nft_flow_offload nft_fib_ipv6
+>> nft_fib_ipv4 nft_fib nft_dup_netdev nft_dup_ipv6 nft_dup_ipv4 nft_ct
+>> nft_chain_nat nfnetlink_cttimeout nfnetlink_cthelper nf_tables nf_nat
+>> nf_flow_table nf_conntrack_netlink nf_conntrack mmc_spi mac80211(O)
+>> ftdi_sio ch348 ch341 cfg80211(O) cdc_subset cdc_ether cdc_eem
+>> usbserial usbnet usbmon usbhid ums_usbat ums_sddr55 ums_sddr09
+>> ums_karma ums_jumpshot ums_isd200 ums_freecom ums_datafab ums_cypress
+>> ums_alauda tps23861 tmp103 tmp102 spidev spi_gpio spi_bitbang sfp
+>> rtc_pcf8563 rtc_pcf2123 rtc_ds1672 rtc_ds1374 qrtr_mhi qrtr
+>> qmi_helpers(O) of_mmc_spi nfnetlink_queue nfnetlink nf_socket_ipv6
+>> nf_socket_ipv4 nf_reject_ipv6 nf_reject_ipv4 nf_log_syslog
+>> nf_dup_netdev nf_dup_ipv6 nf_dup_ipv4 nf_defrag_ipv6
+>> [  343.671198]  nf_defrag_ipv4 mhi_pci_generic mhi_net mhi mdio_i2c
+>> mdio_gpio max6697 ltc4151 lm95241 lm92 lm90 lm85 lm77 lm70 lm63 jc42
+>> ina2xx ina209 hid_generic compat(O) cdc_acm at25 adt7475 ntfs3 configs
+>> sg hid tmp421 tc654 adt7410 adt7x10 adcxx ad7418 i2c_gpio
+>> i2c_designware_pci i2c_ccgx_ucsi i2c_algo_bit gpio_pcf857x i2c_mux_reg
+>> i2c_mux_pca954x i2c_mux_pca9541 i2c_mux_gpio cryptodev(O) hwmon_vid
+>> msdos bonding nls_utf8 zram zsmalloc eeprom_93cx6 crypto_user
+>> algif_skcipher algif_rng algif_hash algif_aead af_alg sha512_generic
+>> sha512_arm64 seqiv sha3_generic jitterentropy_rng drbg michael_mic md5
+>> hmac geniv cmac uas usb_storage xhci_plat_hcd xhci_pci xhci_hcd dwc3
+>> dwc2_pci dwc2 roles ohci_pci uhci_hcd ohci_platform ohci_hcd ehci_pci
+>> fsl_mph_dr_of ehci_platform ehci_fsl ahci_platform ahci_qoriq
+>> libahci_platform libahci ehci_hcd nvme nvme_core exfat gpio_cascade
+>> mux_gpio phy_generic usbcore usb_common microchip mii
+>> [  343.842432] CPU: 7 PID: 9435 Comm: procd Tainted: G           O
+>>    6.6.86 #0
+>> [  343.849746] Hardware name: LS1088A
+>> [  343.856969] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+>> [  343.863933] pc : ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
+> 
+> is this instruction causing the synchronous external abort? which src line is it pointing to?
+> 
 
--- 
-மணிவண்ணன் சதாசிவம்
+Below data points may be useful along with the above one.
+
+i) Was this working before for you and broken recently or it has been
+    like this since you tried first?
+
+ii) Running into same issue during rmmod of ath12k driver instead of
+     reboot?
+
+iii) Is it possible to attach the console log during reboot also?
+
+Vasanth
 
