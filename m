@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CACFCC369C2
-	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 17:07:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F947C369D3
+	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 17:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Od8v9uuxXAfd7uGKx+1reVesYOTCW7WP8EaaxY94+tg=; b=xGQ0wfekc24DzN4X7FVTsOK9mD
-	g51Ug04lv+7tCKmmvpHA5PG+YROuN7uXClkY+BpnQ9uRu1vrr7rZ8+y66B00gFNCvA2HXU/bbP/MH
-	MB8EeusK78vaBKJELUlMjt9gR58id8fn6OddBSV5BDk7zOp0w8doJWj4RbY6pymmJNYxESQF7Am6L
-	FD2RalYSvC7/otq3NiTaqT3gQCLcTl16r734jiDzOFfu0SukI+v83cJnrHh4sPiRgB4iDRBaJSdzP
-	hDAY4V1+qQ6jhEf359Nv4dlxhM9Yu8m1E0ErdtLU0NV2gDxT2gRvZM2oVP1gScpjHnhhH23ue+YJT
-	nlovwO0w==;
+	bh=utSRlvWwaJPUba2da6V5YeBrAL7QiUQpMkQtkrVxrps=; b=sdNpkydIytP1MOfSDGjcPtKIZF
+	j27thIJUeMRk4uT0lHAcw9vGR9OW/Phk+iBt/FmfF5ffZcsj+p2OgD8KOZ5uSTp23amhBoQVGzc3l
+	+TkB07tnVwpl4zY1THOpJ2OtWXW27rJQX0VacwOR2rbXblgQaVMn07yGNSDXfIdRUcrDZ9CVnqQ2v
+	6h31M7roxaRv9vlhqAHkshtkGfvKHzfE6eCFoUnabiynQuTB3RK4azHo7+rf3tcW2pm1/5qZctnXw
+	Rn/3ra30ZVKwwRVDpAilWUPPXYeEeU8GS895gwzWXE0ETYSvGOibRQzgELFt0k9tQl5rwXLh7ykSW
+	C9eLWHdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8MWA-00000000Knd-2G9x;
+	id 1u8MWA-00000000KnQ-0d1b;
 	Fri, 25 Apr 2025 17:07:14 +0000
-Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
+Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8LVI-000000008bD-0M0n
+	id 1u8LQq-000000007xc-2swX
 	for ath11k@lists.infradead.org;
-	Fri, 25 Apr 2025 16:02:17 +0000
-Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-30384072398so2263602a91.0
-        for <ath11k@lists.infradead.org>; Fri, 25 Apr 2025 09:02:15 -0700 (PDT)
+	Fri, 25 Apr 2025 15:57:42 +0000
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-736b98acaadso2448191b3a.1
+        for <ath11k@lists.infradead.org>; Fri, 25 Apr 2025 08:57:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745596935; x=1746201735; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1745596659; x=1746201459; darn=lists.infradead.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Od8v9uuxXAfd7uGKx+1reVesYOTCW7WP8EaaxY94+tg=;
-        b=jzhAwlNjzSUT7P8MTS9784z7zIxZiYqKI2ia/YiZgg61FXps1kNxS853tv+q9HUHff
-         ivVYcxwMY6IyZWCa7kyFAIGUJktWY6pZoUZvpp4wTSGNBp5hK0Zwdj3jg560AWQONbSU
-         92phCrCe8sTitI/UT1T0ASvCfxbkGLLIM6DSqxBPBwtNs65/HK5xQ+tC/T7tgAxCRx/s
-         rfvvhR6lcOB3jvUNj4NbeL2rhE4/RRI8y3P4ot3pqaS+f1pI9HfFPyH12miOG00H9JdU
-         n+3fyXswSYy7WO2++//F37CH7nEaqFqo4wNYAQVqBjwsOrHOhcUX4q+/JKiPDD2yeQAS
-         VCcg==
+        bh=utSRlvWwaJPUba2da6V5YeBrAL7QiUQpMkQtkrVxrps=;
+        b=V+2QSvmjQpTcMVBVszxlBZeUW761GNW3+sk4kVAXx4WoY4xNRDCuucw4efW1dergNi
+         9nDIs2l0dOS2x70NtArup+/zjKL1HXqz/OP63isouJWsUYjX2Wcn2ZaKrun+7dESrtO2
+         1x9a+3fmc0CNOSITRszja2baUzNaQADzmYt0dRmQw9Z5w0R8wLWzut1NKHjtXg2H4qr4
+         pVtRMfTaXyOIgz+hmo/tOczx2qTCxgD9UTXHvItujiSj1s3dlXbi3Hl0Cgt+0aAlPG34
+         /oU6Bw2xv7UhsllGsq9rFZt1UFOVP6wlJUEkzoOrSJ9BAqPeKEsC+4BNvdI5ZAuIF3nQ
+         r6/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745596935; x=1746201735;
+        d=1e100.net; s=20230601; t=1745596659; x=1746201459;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Od8v9uuxXAfd7uGKx+1reVesYOTCW7WP8EaaxY94+tg=;
-        b=eCftkLL4hMo+pHVmxcCAWnZGYNykQs5Re01rpS/EtEB46AbKT7vaU2W6zAy5MQEQ5t
-         F0wqX7xfPyHHI/ZwmlDZsAZvlGA3EDiRt4g/C17n2y6WUjD5RZ1M7RbymY2cCdJgb/+T
-         rMGJslsjkZAucpi+ZCUxcGy9KMQzA2h8NTBFyo/x+oxW9zZvTuk5H43ZwNKS1LWmCKQi
-         MQVoY9mZnf6quoX5qzASxLTLc0w2rYPdsG2PParEI2X8gR0EoB7PEDXop/jntcHPuzk6
-         nkLWSLMN4R28IlThxIvp1oflkFhBu9yYmO9lzm/zSubShcOLsNj8fj0okA0+PrpO+R9K
-         aDTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXa/ZYZGo353in2LjjN/iCGKg16jQO20MSf5tHVCsvYrEH7mdoZ2T9vyFFC6WpOGO/NbTEfBtE=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx/2/ovG89Tbzr/xXW6pP3tPepvcZI52bU71BzKMQjIATeWpkGf
-	J4pxMHY8Y9GBfvJfb1IBYtpR1pqxUNbfhjlZ0dyKRzx1jIW3QT37fDMe8GmU7w==
-X-Gm-Gg: ASbGnctqpXY1f23S3gNFUhkc4+TfWhZ5T5ytYS+pmHEAtZV0d14G6SdOnEUa62lMIrv
-	DIUuuCR2MbScdDPOHKHZ56x8FwxSzd1TK0fx4J1COKn7h5l1dTC80+S+/3Bgcxx6iwfu5jOK+zq
-	Af1qaTiQcoy/b8AILQJbsdXiK6BcVyn8Wq5Z4SbJxZFedWggmlaeav3SSkdwULmf94lAckvLcYA
-	daXT7DFrM/L4QRWEu82qeTK6innUNFQRMAUazXGFpII1tr2NV4iR3nSer6U12RYsux+R0h011RB
-	IsuDEXBWy6hp3lDBd1L4hq2mccWkcXKtwIo9t944ow9fq7yJ5xhw
-X-Google-Smtp-Source: AGHT+IHdQ4Ba18bl0q2QrVTsaExU1b+SHdhITO9CRQcmytTANa1AqTjF3k17LH9+AYX+x/7+IPAHdg==
-X-Received: by 2002:a17:90b:264b:b0:2ff:58e1:2bc9 with SMTP id 98e67ed59e1d1-309f7e679aamr4543956a91.25.1745596934960;
-        Fri, 25 Apr 2025 09:02:14 -0700 (PDT)
+        bh=utSRlvWwaJPUba2da6V5YeBrAL7QiUQpMkQtkrVxrps=;
+        b=Y2XKMKhqzwQGXq1pRCvXjCjs3tCX5evW41TUQ5cC533/1O1zRT1daoZ0YelUyVXS0m
+         LVkrSZlqYoClSjMhFJ20cU9siAVs7wHgb9pevK8qbI39tDilLIxYxEEjoENdMkto+wts
+         f9Ek4WOZAdz448xWHFB5cEo37TQopDTZttk4UsiarUaI706zmXaSCnVc6g2kF6WW2vt4
+         zVewClG5UAyV6M3J7+Tb9qkqOY/+uIlp2QimhUze/e1e+pxFuZYACwiC4imxeKms7Lr5
+         eVk9hChCVWCQDzvayUYVdi3xi1tv5UuVPrHyie5AmuHzRbdak/+QIXB/pJvd6WGCXQzU
+         zkRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9raldkyhzP573GFhsNNV/engfH1NI+Rt7MiS3VezFvbmWNWCp8iEB4GtdK6JGmvJk7RnEPQU=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxbJI0bCLXBxet6aYrMPmUI9+3g0+azWtx6JzW8uEsiCfXdTX5T
+	6/YI65AxX7Nye23/QW2LDn+9CUNLk2dHsfEOera8tGiWSqp3BnvEBcWzxICUvw==
+X-Gm-Gg: ASbGnctoPWKezxrJkgBtcceXltHc5hU+5eJLxDhE+0jOjKkK8Jtj9CiygdVjYNpjyuB
+	Pd1xgmqkQLWK6srgIBXKEViayZ3iJqnbKvgDX7M5SU+reDpTinsx1Ckj4z0w7/2UekfV0CLNE3j
+	CYLn+HUp/VkVO43iGBZ1y0pHRU5NnCsZRl2fIF8KSOhJw3kmbdbw+fj8kCCUArUY14Q0/3DWxmY
+	vq25yk12hjduFrk4TxiUBN9uRk26CputZlR/GOyq7cskrp6ak9vhZxFAWFPKzCUckxQSiRNhfSC
+	1TCV7JnD8tS4udHMF8nnP2Kb72C9U1d54G0LOCJfoObhDajjMJ1G
+X-Google-Smtp-Source: AGHT+IEv9WTyD1hNXstYJB7wgOh80HyepKndFk0b9Nsc+PbCz+wAO+jxkDebi/3q0xjNfV/24gj4Tg==
+X-Received: by 2002:a05:6a00:b93:b0:736:3be3:3d77 with SMTP id d2e1a72fcca58-73fd8b6be23mr3721308b3a.16.1745596659476;
+        Fri, 25 Apr 2025 08:57:39 -0700 (PDT)
 Received: from thinkpad ([120.56.201.179])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-309f784ac3fsm1806254a91.45.2025.04.25.09.02.07
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25912c94sm3344436b3a.3.2025.04.25.08.57.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 09:02:14 -0700 (PDT)
-Date: Fri, 25 Apr 2025 21:32:04 +0530
+        Fri, 25 Apr 2025 08:57:39 -0700 (PDT)
+Date: Fri, 25 Apr 2025 21:27:32 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>, 
@@ -80,19 +80,19 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>,
 	ath11k@lists.infradead.org, quic_pyarlaga@quicinc.com, quic_vbadigan@quicinc.com, 
 	quic_vpernami@quicinc.com, quic_mrana@quicinc.com, 
 	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Subject: Re: [PATCH v2 03/10] PCI: dwc: Implement .pre_scale_bus_bw() &
- .post_scale_bus_bw hook
-Message-ID: <6zuyux2emotjxouvo36ijojz4xel7x7aozyem55pmd3xvpbgjs@6abrkkzj3bib>
+Subject: Re: [PATCH v2 02/10] PCI/bwctrl: Add support to scale bandwidth
+ before & after link re-training
+Message-ID: <7njsbucxngxc2eninh57oexywiqsyysrbesyige5zwr4pmxf7t@rw6657lheg4j>
 References: <20250313-mhi_bw_up-v2-0-869ca32170bf@oss.qualcomm.com>
- <20250313-mhi_bw_up-v2-3-869ca32170bf@oss.qualcomm.com>
+ <20250313-mhi_bw_up-v2-2-869ca32170bf@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250313-mhi_bw_up-v2-3-869ca32170bf@oss.qualcomm.com>
+In-Reply-To: <20250313-mhi_bw_up-v2-2-869ca32170bf@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_090216_134437_7D4DCC79 
-X-CRM114-Status: GOOD (  16.06  )
+X-CRM114-CacheID: sfid-20250425_085740_733494_FC658481 
+X-CRM114-Status: GOOD (  27.37  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,52 +107,95 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Mar 13, 2025 at 05:10:10PM +0530, Krishna Chaitanya Chundru wrote:
-> Add support for pre_scale_bus_bw() & post_scale_bus_bw() function op's.
-> Add support for DWC glue drivers to register for these ops.
+On Thu, Mar 13, 2025 at 05:10:09PM +0530, Krishna Chaitanya Chundru wrote:
+> If the driver wants to move to higher data rate/speed than the current data
+> rate then the controller driver may need to change certain votes so that
+> link may come up at requested data rate/speed like QCOM PCIe controllers
+> need to change their RPMh (Resource Power Manager-hardened) state. Once
+> link retraining is done controller drivers needs to adjust their votes
+> based on the final data rate.
+> 
+> Some controllers also may need to update their bandwidth voting like
+> ICC bw votings etc.
+> 
+> So, add pre_scale_bus_bw() & post_scale_bus_bw() op to call before & after
+> the link re-train. There is no explicit locking mechanisms as these are
+> called by a single client endpoint driver.
+> 
+> In case of PCIe switch, if there is a request to change target speed for a
+> downstream port then no need to call these function ops as these are
+> outside the scope of the controller drivers.
 > 
 > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 > ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 21 +++++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h      |  2 ++
->  2 files changed, 23 insertions(+)
+>  drivers/pci/pcie/bwctrl.c | 15 +++++++++++++++
+>  include/linux/pci.h       | 13 +++++++++++++
+>  2 files changed, 28 insertions(+)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index ffaded8f2df7..4da4df62c3f8 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -697,10 +697,31 @@ void __iomem *dw_pcie_own_conf_map_bus(struct pci_bus *bus, unsigned int devfn,
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_own_conf_map_bus);
->  
-> +static int dw_pcie_pre_scale_bus_bw(struct pci_bus *bus, int target_speed)
-> +{
-> +	struct dw_pcie_rp *pp = bus->sysdata;
-> +	int ret = 0;
-> +
-> +	if (pp->ops->pre_scale_bus_bw)
-> +		ret = pp->ops->pre_scale_bus_bw(pp, target_speed);
-> +
-> +	return ret;
-> +}
-> +
-> +static void dw_pcie_post_scale_bus_bw(struct pci_bus *bus, int current_speed)
-> +{
-> +	struct dw_pcie_rp *pp = bus->sysdata;
-> +
-> +	if (pp->ops->pre_scale_bus_bw)
-> +		pp->ops->post_scale_bus_bw(pp, current_speed);
-> +}
-> +
->  static struct pci_ops dw_pcie_ops = {
->  	.map_bus = dw_pcie_own_conf_map_bus,
->  	.read = pci_generic_config_read,
->  	.write = pci_generic_config_write,
-> +	.pre_scale_bus_bw = dw_pcie_pre_scale_bus_bw,
-> +	.post_scale_bus_bw = dw_pcie_post_scale_bus_bw,
+> diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
+> index 0a5e7efbce2c..b1d660359553 100644
+> --- a/drivers/pci/pcie/bwctrl.c
+> +++ b/drivers/pci/pcie/bwctrl.c
+> @@ -161,6 +161,8 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
+>  int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>  			  bool use_lt)
+>  {
+> +	struct pci_host_bridge *host = pci_find_host_bridge(port->bus);
+> +	bool is_rootport = pci_is_root_bus(port->bus);
 
-Please do not add these multi level ops without necessity. Just populate the
-callbacks in qcom_pcie_host_init(). DWC has nothing to do with these callbacks.
+s/rootport/rootbus
+
+>  	struct pci_bus *bus = port->subordinate;
+>  	u16 target_speed;
+>  	int ret;
+> @@ -173,6 +175,16 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>  
+>  	target_speed = pcie_bwctrl_select_speed(port, speed_req);
+>  
+> +	/*
+> +	 * The controller driver may need to be scaled for targeted speed
+
+s/controller/host bridge
+
+> +	 * otherwise link might not come up at requested speed.
+> +	 */
+> +	if (is_rootport && host->ops->pre_scale_bus_bw) {
+> +		ret = host->ops->pre_scale_bus_bw(host->bus, target_speed);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	scoped_guard(rwsem_read, &pcie_bwctrl_setspeed_rwsem) {
+>  		struct pcie_bwctrl_data *data = port->link_bwctrl;
+>  
+> @@ -197,6 +209,9 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>  	    !list_empty(&bus->devices))
+>  		ret = -EAGAIN;
+>  
+> +	if (is_rootport && host->ops->post_scale_bus_bw)
+> +		host->ops->post_scale_bus_bw(host->bus, pci_bus_speed2lnkctl2(bus->cur_bus_speed));
+> +
+>  	return ret;
+>  }
+>  
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 47b31ad724fa..9ae199c1e698 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -804,6 +804,19 @@ struct pci_ops {
+>  	void __iomem *(*map_bus)(struct pci_bus *bus, unsigned int devfn, int where);
+>  	int (*read)(struct pci_bus *bus, unsigned int devfn, int where, int size, u32 *val);
+>  	int (*write)(struct pci_bus *bus, unsigned int devfn, int where, int size, u32 val);
+> +	/*
+> +	 * Callback to the drivers to update ICC bw votes, clock frequencies etc for
+
+s/drivers/host bridge drivers/
+
+> +	 * the link re-train to come up in targeted speed. These are called by a single
+> +	 * client endpoint driver, so there is no need for explicit locking mechanisms.
+
+You need to mention that these ops are meant to be called by devices attached
+to the root port.
 
 - Mani
 
