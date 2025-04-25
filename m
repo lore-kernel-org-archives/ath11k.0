@@ -4,109 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A76CBC369AB
-	for <ath11k@archiver.kernel.org>; Thu, 24 Apr 2025 20:40:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EACC8C369D1
+	for <ath11k@archiver.kernel.org>; Fri, 25 Apr 2025 05:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:Cc:To:From:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=3SyUdMW04qFzJTxNWJA3RWA/E6h9+fNCuPWqTh3yVPA=; b=Xn+B6w0oi+Jf0sufiX4j3uKOOn
-	OTQ47fRJ126yiOMNNgn0kNT9IXAMFfiVh7M9uUHEeWiXqUgNZDay1PBDw5o27uIcrbSj1n8SMkKfq
-	iyj7mdyohNu+XYq/R248pUSoaV6EuZ5rPbMIrLJwcD70VLcOxAke45HsOGQMyTFdrRkNQmzteju7X
-	lj9xdw0XEI28Wn5/aOb1KEj2pAJ/6I0zlO/ckw/5fH0tDhrQ0vdipYds+ne6UYa5U+5FOyBhFeGq6
-	/A/KjH60ADOf7Qjq8DRM5kNGcML8s2cmwLVicmFOmyy4aQRfYSVQS4ppeRczb/DzqG59DH604ehZ9
-	xy7gEB2g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=f8A3cjy377Xq8M/J5lIds8iTR3Oz7LnaNIlKAmosVk0=; b=ynhG4r8/4VoU/KsVwhSLK2REoU
+	+b0r1GzHgDh4vpY3lYJBCt/wVV9xRbX3qxTMzJddZomYr1UDCZQ2vs3gfa7ORjA659TNGowN3a8SJ
+	at1ICVoFso9yk5Vk+uNwmIzwUv7MTpyxA/sWJ1Ml7lllmxRxRUpNWF8Zvm4ioV3vUyhDjore0nxjC
+	HFYihIr5La5whlssQ37J0qduNGqLMWX5OOB4RVMen+GQ+kmOlfIS8S5iedp+/T+ur7vInQ6zd7uh6
+	BKZSfySWOpwqd1yh5pbc6rFMYLHAK81cgenGxsL7xK6+E4HFe3gVNQ6Kk/wVXj99Q3UnZUnaBShmG
+	VMN2R21A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u83NM-0000000FMJb-0T6S;
-	Thu, 24 Apr 2025 20:40:52 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1u8BkX-0000000FzYG-1BU1;
+	Fri, 25 Apr 2025 05:37:21 +0000
+Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u83LA-0000000FM39-3LZK
+	id 1u8BkU-0000000FzXP-46eP
 	for ath11k@lists.infradead.org;
-	Thu, 24 Apr 2025 20:38:38 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53OJmoQB008476
-	for <ath11k@lists.infradead.org>; Thu, 24 Apr 2025 20:38:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=3SyUdMW04qFzJTxNWJA3RW
-	A/E6h9+fNCuPWqTh3yVPA=; b=P3g5oAkBsV1IAXrv8HnNnqAx+ErFnKAahxINog
-	tGIaFdmAdSuSDV3FZ5quSVhVN2OX383ZTCVUlw507TfRBtah0KLnR+AyMnWop3Dh
-	eFA92Ue/LFV/qfwyR1TUxsMG4vp8aopV8fBkLyRkyY8kNytNyRSv1fLOSeroDHFm
-	yyXrahfbO9OScZDyndn5g6sVN4v5Dz+fpe2CkNlBC1nDZnTx83n9BtBi17S3D/TZ
-	I4sHxi9D/7IoRLgoNAOKlkIh4I90olsIClgSkodnBoxXDqltbrvV8KVX3PZVIv0A
-	AF6GAIVgA11PNLZiqSlyX2QEqBQh2vHK5H0+HdN69BU8XLsA==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 466jh3pthd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 24 Apr 2025 20:38:34 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-22c35bafdbdso20710485ad.1
-        for <ath11k@lists.infradead.org>; Thu, 24 Apr 2025 13:38:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745527113; x=1746131913;
-        h=content-transfer-encoding:subject:cc:to:from:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+	Fri, 25 Apr 2025 05:37:20 +0000
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-736c062b1f5so1611162b3a.0
+        for <ath11k@lists.infradead.org>; Thu, 24 Apr 2025 22:37:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745559433; x=1746164233; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=3SyUdMW04qFzJTxNWJA3RWA/E6h9+fNCuPWqTh3yVPA=;
-        b=guKUJx/mgvThonwtO5QW/Cy8KEowoXDKV6Fpaqmwxy+FcCjEam43oaR9qVH2NkPFH/
-         cax+DPxSH4Ai6kpCce+qnIShKx+4b4Mk1e2aadlJr2cpkKfY1XYRVbebarZdKABdOzgT
-         QdJO3ZINCrVQRADkUX0tn5bBOScv8WFlgR+jEuDyJUhmuSVwEFiF3DS3MIhlYhm8CL6X
-         qEbuInCrs8i7ImYmVf2INo4gkLtRibkfUaku7KGvsZdn7ZoYaUxcEsIbG2r5ZI7fQBx0
-         hbGV0vd/7V3xWyHCGgAa/XCdEFb6zRkr3R8g5MqRTf0thgvgFia8tacec0a9ErvZb3r7
-         X3uw==
-X-Forwarded-Encrypted: i=1; AJvYcCXs9g6tp7lqOKbJ6t0Tf1geoW5VLRuch/t/OiqHo3dKbLwssntQp2of6ljVjlTr5W/R8MuzvsM=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwhN1CACp4YBHNvTAb1M1F6YevKIRdD9W1crdlcYJRAsx8kJC6J
-	8AlBBNFS+4kVn5o97Asy4V1/Y+gFMueAYoIHrV1KW2OQE5oBRkzl3Nm/5gslLw8QX2CK4kJKnUi
-	+KEvpvk7w+4sh/tl70DvLdbs3yUQl2duS099SAN5tEbEggrtjNa3TwxO9VrXR
-X-Gm-Gg: ASbGncvIBgK1EBxxf/CLK2tgwzvCy8lm5eqm4XDX8mP4nF3MllgKumIeRQPXIK7vkHb
-	jCMRf9O9wIWnXGp9mZAI/Gq2LjzIJjQXfb21Vf/pJgiQ3xES7Nwq5uKJ/PuU+tJbSM7hctFi3BB
-	W4P7X8Uo0fYYX7TPsE9Vm8vQcJoJbapIzPAwMO1DQUA8znV6AP3VfZ8tAYmhlxiM+H6o9NLYM7I
-	6527GpCnd7ecC/C7azuPD/6KJy1KsAOEHKvc61pYPpSMhXUvayKSqh+XiR9Wsyu8LRJp2pGeUYC
-	VeIlEiKH88cKnGHJV4h+Vl8hUp+1ea+a3fBkVbW8jrrkzGvve+sSTPMoY9dBSFs6Z0PEcUw5ZSd
-	Y5VOI
-X-Received: by 2002:a17:903:1aa8:b0:224:23be:c569 with SMTP id d9443c01a7336-22dbd423f55mr14612045ad.22.1745527113288;
-        Thu, 24 Apr 2025 13:38:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFOssOO9EMlEhSWXpnlt0d7EeCfY5WHRuv9lpuIv/YQVdg/51RxVXr3vI3U4gwYL/f1Cu9COw==
-X-Received: by 2002:a17:903:1aa8:b0:224:23be:c569 with SMTP id d9443c01a7336-22dbd423f55mr14611775ad.22.1745527112895;
-        Thu, 24 Apr 2025 13:38:32 -0700 (PDT)
-Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22db50e7a8dsm18088275ad.136.2025.04.24.13.38.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 13:38:32 -0700 (PDT)
-Message-ID: <96b43d18-72e1-44a8-bf06-6a22fd012b07@oss.qualcomm.com>
-Date: Thu, 24 Apr 2025 13:38:31 -0700
+        bh=f8A3cjy377Xq8M/J5lIds8iTR3Oz7LnaNIlKAmosVk0=;
+        b=kXdAmzL47JWqjPg+cmB6MZ6QKKLEyFvhQzhE+YxXY0+GNLhO6L6PCWqjv0zl9ihcnD
+         9xmk9KFT9B2P/lPhKP3AXUcOUUltlCh/G7tnFyjSPGQXWkC3mOIUjN4D8MxfFK/RsybE
+         o3pfoIbjGdH1ZrpEQ4bqL1svU/hZ/g9GfL0/H+c9WfKQbRn8yLy5yMpMbYWQInI+/5Bm
+         I3ZsXSbyAf7JBMdnamzx/FuO/nUYHNotEXlD2PnP5b8eV/M5aj0qvRKQHR6ksymB4iLE
+         DIpz+OdGtzo4dcOPRpg77oUyIbqhqBsJOysGF5WXC4TPe4VxPadXyiZ4onuJrdPgm/Ls
+         KD3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745559433; x=1746164233;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f8A3cjy377Xq8M/J5lIds8iTR3Oz7LnaNIlKAmosVk0=;
+        b=Ji3i980RAYLbAeEtqFbUs6gMYTJ3zhLf+NW1z7hL8mT5mxF0IbdO6v1o/y5YnwQltE
+         IrMRFSLd0ASXyhA+bLixcP21NHXtOEqlyKZaB1sA4PXYJfyZ44EAqgWtypbaBL06uiGA
+         SS+YyFzbkPuZJOPKzo2WPhB0lL6CFYmGT2g8hryHuCQAR2dXt70W1D2V4DUGy3wm0Xc+
+         Zxn06koR0BK2JrICWezuxqFbCUZa9Eil3I6lAiBUvFwYDHory/QKfbLmU7IBHCSbRy9M
+         kclKQSAp+p8CzCftg3lWsmX0f2uaEbaFYbeC4VUJFQZfWeYVMhT2wsF2wl9MLWtg4V6S
+         ri4g==
+X-Forwarded-Encrypted: i=1; AJvYcCU7pNJ4fOR3kYgf2YcBNT/lhQljr2rPqfdzUtjzXW2tvwlGf2uEfY+QSHFudBUY/T9c/ijNGzA=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzpyRCihJHgELI7TCw16J4x8J3rm+JW2wPJEbNRxY9yNKitKZUp
+	RBQEFE96OJ/GvYRNZmBO3CEpxy13g7D7JSiT4nzrjn2yfdK6ZwhObiShQmQ0nA==
+X-Gm-Gg: ASbGncstkcVom1Ups7Ol0vNYTUV+opZHIxXqmtc2ZB9g4bict2iwjgJhxFgbrX/NJ8/
+	Jaxx65veustRc9lGEgSMydKsiMr1QtU9tTvOiVRkI4INuLFhkaf9GLRgcTbrc1NRbqGsuMwsfaH
+	arvjJm2dZrWgitaMH2RdyA4g7QI9bK3V8mzz1Fytt+gPkh9PwUmuzr+P8L73cBHmTGpmrFwPI1d
+	yll7952mzLFTt94adt5Xhhh8zfVNh6qKxXIBX5RFN39/deVQQPbDQJ05CjBZYGcDocPsy+4MrGD
+	u4SNfKzi8L0uPg7yDC+INf85ROHB72pQv4IBXdeNgY0q1mU/rSI=
+X-Google-Smtp-Source: AGHT+IGcoqrCxQ/PlAvuIQ3GNQhMlOAxNWlv8vOGFLV8g7pv3hl+e+Uba/O0SiwZcqMn3LRnx3eY/Q==
+X-Received: by 2002:a05:6a00:b4a:b0:73e:10ea:b1e9 with SMTP id d2e1a72fcca58-73fd6defd3emr1305557b3a.6.1745559433403;
+        Thu, 24 Apr 2025 22:37:13 -0700 (PDT)
+Received: from thinkpad ([120.60.77.160])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73e25accfc9sm2436701b3a.176.2025.04.24.22.37.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Apr 2025 22:37:12 -0700 (PDT)
+Date: Fri, 25 Apr 2025 11:07:06 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+Cc: quic_carlv@quicinc.com, quic_thanson@quicinc.com, mhi@lists.linux.dev, 
+	linux-arm-msm@vger.kernel.org, Pranjal Ramajor Asha Kanojiya <quic_pkanojiy@quicinc.com>, 
+	ath11k@lists.infradead.org, jjohnson@kernel.org, quic_bqiang@quicinc.com
+Subject: Re: [PATCH] bus: mhi: host: Allocate entire MHI control config once
+Message-ID: <qhoirbfx5p23542hhi3kk7ftwtptsnoxgtewddbh322d74rgb2@xbupxi3ix7sx>
+References: <20250328165913.3380933-1-jeff.hugo@oss.qualcomm.com>
+ <pgr6u3onrlf4mvldqn7cxlqkh3krduv542jqgjcy5c535ys6hm@dujbvax4b56s>
+ <07cc4ee2-4a13-495c-bc4d-8837d6b54414@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-To: linux-firmware@kernel.org
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        ath12k@lists.infradead.org
-Subject: [PULL linux-firmware] ath11k and ath12k firmware 20250424
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: oYOfJMLY0dfv33Shly37DoG3udtcxNgp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI0MDE0NSBTYWx0ZWRfX4NQeT9Q76r5y FvYPvinn1bKwhXE7mYzd/FM4QpenL8+rjiuZDw6bH0eR+6tCrY2KwUoxnz4yrox1B9yVU46qrUn uDm36tH3xHMrs6BZRKY2YaV07Ky55jD30sSdj2YbJGaVJm7bqbefQ7/62C/Wy/dDsFJ16Wg8N5W
- 377onzo7pULplAdgNS1gtdn2XD9YKEjxkyji8nHL+2SL3L7Px2zYwIrZxx3ad3E8hS7qAU73UL3 1LCsHcVQDN+y7ChkMbHwqGu3GtzjyYpWtSrBr94YSgZIzAMHGz6nOQCOB0wOstrtbcOG4qZi+be agjORpYvlbna+CYuJETsPOCWVNZcY3EwioieoplFKzaaIAT2E2xj+X/J8zbeJdfnlG/H9+vKO9z
- Rduhrx3a63ixpkqRU2WR9AaSnS9jPJCjNJXivJjTJ/kLVfrc+CmKfyMBnL4bYir3IyMrlX0F
-X-Authority-Analysis: v=2.4 cv=ELgG00ZC c=1 sm=1 tr=0 ts=680aa14a cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=e70TP3dOR9hTogukJ0528Q==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=c5pCFXJUQfKAI649l18A:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-GUID: oYOfJMLY0dfv33Shly37DoG3udtcxNgp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-24_09,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- malwarescore=0 clxscore=1015 bulkscore=0 phishscore=0 spamscore=0
- mlxscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- mlxlogscore=872 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504240145
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <07cc4ee2-4a13-495c-bc4d-8837d6b54414@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250424_133836_956667_3847E8AF 
-X-CRM114-Status: GOOD (  10.05  )
+X-CRM114-CacheID: sfid-20250424_223719_040007_0B6D5CE5 
+X-CRM114-Status: GOOD (  39.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,50 +101,129 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
-Here's a new pull request for ath11k and ath12k.
++ ath11k list, Jeff and Baochen (for question regarding the use of reserved
+memory for allocating the MHI data structures in host)
 
-For ath11k, update the firmware for IPQ5018 and update the board file
-for WCN6855. For ath12k, update the firmware for WCN7850 and update
-the board file for QCN9274.
+On Tue, Apr 08, 2025 at 08:56:43AM -0600, Jeff Hugo wrote:
+> On 4/8/2025 1:01 AM, Manivannan Sadhasivam wrote:
+> > On Fri, Mar 28, 2025 at 10:59:13AM -0600, Jeff Hugo wrote:
+> > > From: Pranjal Ramajor Asha Kanojiya <quic_pkanojiy@quicinc.com>
+> > > 
+> > > MHI control configurations such as channel context, event context, command
+> > > context and rings, are currently allocated individually. During MHI
+> > > initialization MHI bus driver needs to configure the address space in
+> > > which this control configuration resides. Since different component of the
+> > > config is being allocated separately, only logical solution is to give the
+> > > entire RAM address space, as they could be anywhere.
+> > > 
+> > 
+> > This is fine...
+> 
+> We tripped over this when experimenting with an automotive market product.
+> The FW for that product had a rather strict interpretation of the spec,
+> which we confirmed with the spec owner.
+> 
+> In the specific FW implementation, the device maps the entire MHI space of
+> shared structures in a single ATU entry. The device cannot map an entire
+> 64-bit address space, and it expects all of the shared structures in a
+> single compact range.
+> 
+> This applies to the control structures, not the data buffers per the device
+> implementation.
+> 
+> This restriction seems backed by the spec.  I can't find a reason why the
+> device is invalid, if limited.  I don't think this should break anything,
+> but more on that below.
+> 
 
-Please let me know if there are any problems.
+Yes, atleast I have heard about that limitation before.
 
-/jeff
+> > 
+> > > As per MHI specification the MHI control configuration address space should
+> > > not be more them 4GB.
+> > > 
+> > 
+> > Where exactly this limitation is specified in the spec? The spec supports full
+> > 64 bit address space for the MHI control/data structures. But due to the device
+> > DMA limitations, MHI controller drivers often use 32 bit address space. But
+> > that's not a spec limitation.
+> 
+> Its not the clearest thing, sadly.
+> 
+> Document 80-NF223-11 Rev AB "MHI spec v1.2" Section 6.2 "MHI Registers"
+> table 6-19 (page 106) -
+> 
+> Describing MHICTRLLIMIT: "The most significant 32 bits of MHICTRLBASE and
+> MHICTRLLIMIT registers must be equal."
+> 
+> This means we have a 4GB range (32-bit) to play with in a 64-bit address
+> space.  If the upper 32-bits of the 64-bit address for both the base and the
+> limit must be the same, then the range of addresses from the base to the
+> limit can only vary the lower 32-bits.
+> 
+> Invalid:
+> BASE: 0x0
+> LIMIT: 0xffffffff_ffffffff
+> 
+> Valid:
+> BASE: 0x0f_00000000
+> LIMIT: 0x0f_ffffffff
+> 
 
-The following changes since commit 490c0af1d6b9ffca0523edcfad27ba483b9d6da3:
+Ah. Didn't spot this before, thanks for explaining!
 
-  Merge branch 'robot/pr-0-1745490027' into 'main' (2025-04-24 13:46:05 +0000)
+> > > Since the current implementation is in violation of MHI specification.
+> 
+> For example mhi_init_dev_ctxt()
+> 
+> We allocate the chan_ctxt with dma_alloc_coherent() as an individual
+> allocation.  In the case of AIC100, the device can access the full 64-bit
+> address space, but the DMA engine is limited to a 32-bit transfer size.  The
+> chan_ctxt probably won't be larger than 4GB, so the size is rather
+> irrelevant.  Can be allocated anywhere.  Lets say that it gets put in the
+> lower 32-bit address space - 0x0_XXXXXXXX
+> 
+> Then a little bit later we allocate er_ctxt with a different
+> dma_alloc_coherent() instance.  Being a unique allocation, it is not tied to
+> the chan_ctxt and can exist anywhere.  Lets assume that it gets put
+> somewhere in the non-lower 32-bits - 0x1000_XXXXXXXX
+> 
+> Now we have a problem because we cannot describe a single range covering
+> both of these allocations via MHICTRLBASE/MHICTRLLIMIT where the upper
+> 32-bits of both registers is the same.
+> 
 
-are available in the Git repository at:
+Yes, I get it. I do not have issues in allocating all the structures in one go.
+But the problem is with MHICTRL_BASE/LIMIT. More below.
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git ath-20250424
+> > > Allocate a single giant DMA buffer for MHI control configurations and
+> > > limit the configuration address space to that buffer.
+> > > 
+> > 
+> > I don't think this could work for all devices. For instance, some ath11k devices
+> > use a fixed reserved region in host address space for MHICTRL/BASE.
+> 
+> Why would we be unable to allocate all of the control structures in a single
+> allocation out of that reserved region?  Is it larger than 4GB in size?
+> 
 
-for you to fetch changes up to ce13d29c3933f77674cf45855668485c48d3eba0:
+I was confused by the fact that ath11k driver adds an offset of 0x1000000 to the
+reserved region for the iova_start:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/wireless/ath/ath11k/mhi.c?h=v6.15-rc3#n331
 
-  ath11k: WCN6855 hw2.0: update board-2.bin (2025-04-24 13:04:20 -0700)
+So this means the firmware will only map the memory from reserved + 0x1000000
+for MHI data structures. But even with current implementation, the MHI stack
+doesn't know anything about the offset, because it just relies on
+dma_alloc_coherent() API which will only honor the reserved region pointed by
+'memory' property in the node (without the offset).
 
-----------------------------------------------------------------
-Jeff Johnson (4):
-      ath12k: QCN9274 hw2.0: update board-2.bin
-      ath12k: WCN7850 hw2.0: update to WLAN.HMT.1.1.c5-00284-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
-      ath11k: IPQ5018 hw1.0: update to WLAN.HK.2.6.0.1-01300-QCAHKSWPL_SILICONZ-1
-      ath11k: WCN6855 hw2.0: update board-2.bin
+So I'm not sure how the firmware makes sure that the data structures lives
+within the offset region. This is more of a question to ath11k folks.
 
- WHENCE                           |    4 +-
- ath11k/IPQ5018/hw1.0/Notice.txt  | 3918 +++-----------------------------------
- ath11k/IPQ5018/hw1.0/q6_fw.b00   |  Bin 532 -> 532 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b01   |  Bin 520 -> 520 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b04   |  Bin 86788 -> 86788 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b08   |  Bin 4096 -> 4096 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b09   |  Bin 2334720 -> 2334720 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b10   |  Bin 269220 -> 269252 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b11   |  Bin 99456 -> 99456 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.b13   |  Bin 7072 -> 7080 bytes
- ath11k/IPQ5018/hw1.0/q6_fw.mdt   |  Bin 1052 -> 1052 bytes
- ath11k/WCN6855/hw2.0/board-2.bin |  Bin 6429240 -> 6429240 bytes
- ath12k/QCN9274/hw2.0/board-2.bin |  Bin 1308544 -> 2626240 bytes
- ath12k/WCN7850/hw2.0/amss.bin    |  Bin 6000704 -> 6082624 bytes
- ath12k/WCN7850/hw2.0/m3.bin      |  Bin 299660 -> 299660 bytes
- 15 files changed, 315 insertions(+), 3607 deletions(-)
+But your series is not going to make it any worse. Sorry about the confusion.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
