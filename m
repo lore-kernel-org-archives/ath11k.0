@@ -4,106 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4396C369CB
-	for <ath11k@archiver.kernel.org>; Sat, 26 Apr 2025 04:34:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44723C369D1
+	for <ath11k@archiver.kernel.org>; Mon, 28 Apr 2025 01:57:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:CC:To:From:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YSoiib0Npandl5D3vjAmCM5DWqwibtzJABslR3c1xdw=; b=VgB8SBrFjmVeZORKicn9eCw1Wz
-	4UMygYW4rlK0whA2U2L5A+NBVghjwymmaSE16JwzdEm0E/3gjyp4gpAhsheYon+Lw3+YWtDkJtXEm
-	Fv4rZq//GutyuBTn6c+GtN8I8Ygm9AgyRuvFw8u9loQhDbDRc+yZLTbjkdSBehWUEHMQ1S1E71JVR
-	2aDGCBKcUpo3e+PTi31uIdwhNfVDWt0T7q3jaHSygm0YfJbfSmA0ffbSA0DnS/TDcL/ziW2cOgP/H
-	PpYL8CXKDT07pytv+KYDiaS+MfbnAf8vaD7tdSXcjTMV57UTZC/JOEGcBZvt8Z/aSMqDXlVyFfpbI
-	lV8mSb9A==;
+	bh=Z1zeluIVlhGzc3gjqtdPrlAGIayL7ATiqB7p2dYxNDY=; b=cFzUS7015Dp3vcq7cgNHqUx8r0
+	1XPHQ1SzLA7wNVh2ugqJhWY1GtAeNiwh8U6nOgJofO01CfmeoOuy/X/j4OMmpttWRhLxwMx668/s3
+	RyhS6VZxeA1AQRo8x8OLPZA8WxL8qTSONVEzTKRaM1WVZ4z7GeKHaw53cH+GyNn5iXl4PLO2YTS/X
+	n4zKSNBwjRnXjSgZfq+TnvyV9qfkcG2KscbT0btUSqIm7K0Y50i95sjJ4dHzCWmmCEpybPuzqucbh
+	Oud5xOBKfAeVzeDjy7isaCJJNe0V+qgyKxFIApG196uI1i61O9nfxdeFCtR9xomagZnhKtyjxNFxy
+	CaTsARbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8XF9-00000001PYt-1UVG;
-	Sat, 26 Apr 2025 04:34:23 +0000
+	id 1u9DkX-00000004JxF-22Xj;
+	Mon, 28 Apr 2025 01:57:37 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8XF6-00000001PYR-22XU
+	id 1u9DkU-00000004Jwp-1kef
 	for ath11k@lists.infradead.org;
-	Sat, 26 Apr 2025 04:34:22 +0000
+	Mon, 28 Apr 2025 01:57:35 +0000
 Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53Q3YwsI002348;
-	Sat, 26 Apr 2025 04:34:15 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53RG3oD3023726;
+	Mon, 28 Apr 2025 01:57:29 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YSoiib0Npandl5D3vjAmCM5DWqwibtzJABslR3c1xdw=; b=Qq3AtG1y04AlCqrI
-	Qa9CfNjp54qIY3DoXcWAFOjRUxgvjuOGBPkpVJHrlaGx9Xc5ZBd7Lr89jhgPb0c+
-	DOegWWm8PvMlfTMG1dZI30LAhrTFYEz8XZqqXc+Tt5JrjJWT3D2eXThadqm4tvQO
-	SqMC3QPG6zY+EIugfVrDY0eFGCXNP6i/K2Aa7RqXMq+RG8Xge1Vz7gqm9Y6MtgdD
-	sc4OAMblh7j8T91Z9EmLdfD1QLnUufnbgrvhwckG4e76BuM4ryE4PTKjIN8XFTHh
-	i5Gzazzap5nyoiFwbSY4GRrMcN1FHI8V7PVk/EWima44GjuTF9pB9t9IHV/vB3AW
-	KYiiPg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468qq583cw-1
+	Z1zeluIVlhGzc3gjqtdPrlAGIayL7ATiqB7p2dYxNDY=; b=IUmToEHkXFPKJHSg
+	Ze4NGF+9xZ67rqzxHmuufE+p/86eGTaCEXMblAxoity42HQebpgyAdbd8h6NiBWD
+	fKTDsvgdePbQ4a98CF6ZN2tuYEZcf+xE3BW1EyQ4S0u65i+yBvOPcnICIS1l3XgI
+	B2wYo6SDm9Yt+3WD0pVlqsJUz7o18krfnDSx9a5bMQ6M2fvxH1eBD/rEGl7Oxhxx
+	eAif+972JhoprX1UaVqNPII4rT3CPwQX7CnwKBc1rWTOmKbKDOqa2xUzCxL42hnk
+	3iavOlGKWP5WuOO/BXXLn1E0oGCak3eYWaMJbzDaqyGjqP9K5NuVmemzxpbBROCO
+	5aP0Ug==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468qq5dauh-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 26 Apr 2025 04:34:14 +0000 (GMT)
+	Mon, 28 Apr 2025 01:57:28 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53Q4YERx010432
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53S1vSxg009398
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 26 Apr 2025 04:34:14 GMT
-Received: from [10.216.6.78] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Mon, 28 Apr 2025 01:57:28 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Apr
- 2025 21:33:09 -0700
-Message-ID: <fd6c118b-90ea-4d11-13d0-d8f49f9325e3@quicinc.com>
-Date: Sat, 26 Apr 2025 10:03:05 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 27 Apr
+ 2025 18:57:25 -0700
+Message-ID: <1f2a8c11-214b-43c6-8b3a-9e44094f949a@quicinc.com>
+Date: Mon, 28 Apr 2025 09:57:22 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] wifi: ath11k: pci: Fix msi_irq crash on driver unload
- with QCN9074 PCIe WiFi 6 modules
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] bus: mhi: host: Allocate entire MHI control config
+ once
+To: Jeff Hugo <jeff.hugo@oss.qualcomm.com>, <quic_carlv@quicinc.com>,
+        <quic_thanson@quicinc.com>, <manivannan.sadhasivam@linaro.org>
+CC: <mhi@lists.linux.dev>, <linux-arm-msm@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <jjohnson@kernel.org>,
+        "Pranjal Ramajor Asha
+ Kanojiya" <quic_pkanojiy@quicinc.com>
+References: <20250425170431.921656-1-jeff.hugo@oss.qualcomm.com>
 Content-Language: en-US
-From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>,
-        Balsam Chihi
-	<balsam.chihi@moment.tech>
-CC: <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>
-References: <20250416100939.282481-1-balsam.chihi@moment.tech>
- <0e129e2a-67fc-48cc-9773-efbea3f7391d@quicinc.com>
- <fa16bad6-305f-77c1-3f56-703564e2dfee@quicinc.com>
- <CAONkfw6m9O_6FZHBrPYdpv+=AxSgsbh1T7+GaS+U+bnjyVVJvQ@mail.gmail.com>
- <3da5d47b-993c-405e-841f-1d16d8715610@quicinc.com>
- <1d0682c0-ee5d-f2d4-199d-4ebc4e71f9ef@quicinc.com>
- <3660fcfb-be29-422b-a352-3996ad3fc41f@quicinc.com>
- <CAONkfw5-bfYRwHZ9iHhgJP2f8Zqyz5SZVbdL4n9EPhKU+=ONPg@mail.gmail.com>
- <CAONkfw7xjJjMAZSfHg5avEV=Bc5aJZqrRxMDvKWK4g14bLNjRQ@mail.gmail.com>
- <d4b01807-0770-439a-a77b-1e0f078687e3@quicinc.com>
- <07013bbc-296a-2403-a6ca-70de220495c5@quicinc.com>
-In-Reply-To: <07013bbc-296a-2403-a6ca-70de220495c5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20250425170431.921656-1-jeff.hugo@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: O2_vgrhFemo0_sFR3ZHamQaJft6n95qo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI2MDAzMCBTYWx0ZWRfXxa8dQNEchB+7 y4gRBgOfilmRSbnHOzvhe7hMftDZf43/MNyhSMt8Q2AItxmx1DH0wEZbgLNsCOjtDALLdSQ+fc8 jjg2k0zLg5uTeZR/SN0Or2Y1CD4rd2fA1Tf/OVodmAgiaASe9jB7dTFqje8L6VOSJjGWlartiUR
- J1PC1NlByEK3Jbsd6d9PjUi4l4X3aQt7nrL1fx2nGuHw+BwvxDwI5aNuqUFFbkOPlbAlgBDEt8g W259unN6yxho8DkBCsQ1A/QW4mx63tTIod1Dv2VqwJIlBHUOtMTmNhq3e0oeGePYI/sOn50POcQ xYDOlTO4VzC87hHoeJklQ7p1/a3B1oNQC9uLPHa64N3YCMdqgFBkQ5jb71PyC5hvCbO80UfVDVf
- aH4sAPCtujKZ2VBKeD0f+JKW/S5/Uy23/3UySlZ6MAR/z9IHihEwav6bSyJNlb2tVzLMFrTU
-X-Authority-Analysis: v=2.4 cv=QP1oRhLL c=1 sm=1 tr=0 ts=680c6246 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=IRxMSq4KoiTSvaSUcioA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: O2_vgrhFemo0_sFR3ZHamQaJft6n95qo
+X-Proofpoint-ORIG-GUID: FWS-NmrSiECxJTkb6ZkOjZZeLTdsAT20
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI4MDAxNCBTYWx0ZWRfX39Iguy+0Eg+b bRfLw06hy7ZhmTtgtVSlQI7KlaHGc7vNWp41umapGzgmV5sJhArMSe1ScTgJCQgHZ/g7d4oXP5H /XV3IWOopni6lZxvNT5ORjcNyTzY+Vf7ozMNTK2VP4+pm23ECenkNnc6LmgKHdurgPT/0brlxNE
+ wH6IIdZKs2wevF5wTwDfAOl3di2LG9EI5aR2RyRA5f/PYuFzE2C76Ldj07G9pN+8TVmAp6alo7A 7RfwwReXSznQHc2jXsyA+m2BOSwGKY0AkWPWTQrvfqFVJglNsYXMfAcDZm2/Ntb+wciRButCHLg pmazeu5ugXuzaxCp39C2xxW04ME0X65me04De4R/SnRoIVuKntqYybm5izuDlAAF56vEJ28fV5R
+ StZ4sKdqreBySOaG0bBXOv2u50qgJOqaEU1Iy9mhkR5SkJM0Ehav0/eiqjlYDON7+00sZC0R
+X-Authority-Analysis: v=2.4 cv=QP1oRhLL c=1 sm=1 tr=0 ts=680ee088 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=wXN8a_c2KqDWzSiHy-QA:9 a=2xCbdNrgO4zEkwPZ:21 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: FWS-NmrSiECxJTkb6ZkOjZZeLTdsAT20
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-04-26_01,2025-04-24_02,2025-02-21_01
+ definitions=2025-04-28_01,2025-04-24_02,2025-02-21_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
  clxscore=1015 mlxlogscore=999 lowpriorityscore=0 adultscore=0 mlxscore=0
  bulkscore=0 phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
  classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2504260030
+ definitions=main-2504280014
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_213420_551207_1D02D609 
-X-CRM114-Status: UNSURE (   5.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250427_185734_490675_EA66971E 
+X-CRM114-Status: GOOD (  37.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,305 +110,507 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 4/25/2025 3:20 PM, Vasanthakumar Thiagarajan wrote:
+On 4/26/2025 1:04 AM, Jeff Hugo wrote:
+> From: Pranjal Ramajor Asha Kanojiya <quic_pkanojiy@quicinc.com>
 > 
+> MHI control configurations such as channel context, event context, command
+> context and rings, are currently allocated individually. During MHI
+> initialization MHI bus driver needs to configure the address space in
+> which this control configuration resides. Since different component of the
+> config is being allocated separately, only logical solution is to give the
+> entire RAM address space, as they could be anywhere.
 > 
-> On 4/25/2025 12:35 PM, Baochen Qiang wrote:
->>
->>
->> On 4/24/2025 10:07 PM, Balsam Chihi wrote:
->>> I just rebuilt a clean disto and enabled the debug_mask=0x1020.
->>> There are the logs bellow :
->>>
->>> root@OpenWrt-WAP:~# uname --all
->>> Linux OpenWrt-WAP 6.6.86 #0 SMP Sun Apr 13 16:38:32 2025 aarch64 GNU/Linux
->>>
->>> root@OpenWrt-WAP:~# cat /etc/modules.conf
->>> # examples:
->>> # options mod1 option=val
->>> # blacklist mod2
->>> options ath11k debug_mask=0x1020
->>>
->>> root@OpenWrt-WAP:~# cat /sys/module/ath11k/parameters/debug_mask
->>> 4128
->>>
->>> root@OpenWrt-WAP:~# dmesg | grep ath
->>> [   15.093627] ath11k_pci 0001:01:00.0: Adding to iommu group 2
->>> [   15.099326] ath11k_pci 0001:01:00.0: assign IRQ: got 0
->>> [   15.099512] ath11k_pci 0001:01:00.0: BAR 0: assigned [mem
->>> 0x2840000000-0x28401fffff 64bit]
->>> [   15.107879] ath11k_pci 0001:01:00.0: boot pci_mem 0x00000000880f25e0
->>> [   15.107886] ath11k_pci 0001:01:00.0: boot pci probe 17cb:1104 17cb:1104
->>> [   15.108483] ath11k_pci 0001:01:00.0: MSI vectors: 16
->>> [   15.113538] ath11k_pci 0001:01:00.0: pci msi base data is 0
->>> [   15.113545] ath11k_pci 0001:01:00.0: qcn9074 hw1.0
->>> [   15.118336] ath11k_pci 0001:01:00.0: FW memory mode: 2
->>> [   15.125643] ath11k_pci 0001:01:00.0: boot failed to load firmware-2.bin: -2
->>> [   15.125658] ath11k_pci 0001:01:00.0: boot using fw api 1
->>> [   15.125668] ath11k_pci 0001:01:00.0: pci msi assignment MHI
->>> num_vectors 3 user_base_data 0 base_vector 0
->>> [   15.125675] ath11k_pci 0001:01:00.0: pci num_vectors 3 base_vector 0
->>> [   15.129780] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   15.129933] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   15.129964] ath11k_pci 0001:01:00.0: pci irq 369 group 0
->>> [   15.130013] ath11k_pci 0001:01:00.0: pci irq 370 group 1
->>> [   15.130059] ath11k_pci 0001:01:00.0: pci irq 371 group 2
->>> [   15.130110] ath11k_pci 0001:01:00.0: pci irq 372 group 3
->>> [   15.130157] ath11k_pci 0001:01:00.0: pci irq 373 group 4
->>> [   15.130204] ath11k_pci 0001:01:00.0: pci irq 374 group 5
->>> [   15.130250] ath11k_pci 0001:01:00.0: pci irq 375 group 6
->>> [   15.130295] ath11k_pci 0001:01:00.0: pci irq 376 group 7
->>> [   15.130359] ath11k_pci 0001:01:00.0: pci after request_irq msi_ep_base_data 0
->>> [   15.230443] ath11k_pci 0001:01:00.0: pci ltssm 0x111
->>> [   15.230456] ath11k_pci 0001:01:00.0: pci pcie_hot_rst 0x11
->>> [   15.235499] ath11k_pci 0001:01:00.0: pci pcie_q6_cookie_addr 0x0
->>> [   15.235514] ath11k_pci 0001:01:00.0: pci wlaon_warm_sw_entry 0x0
->>> [   15.255530] ath11k_pci 0001:01:00.0: pci wlaon_warm_sw_entry 0x0
->>> [   15.255545] ath11k_pci 0001:01:00.0: pci soc reset cause 0
->>> [   15.275554] ath11k_pci 0001:01:00.0: pci mhistatus 0xff04
->>> [   15.285571] ath11k_pci 0001:01:00.0: pci link_ctl 0x0000 L0s 0 L1 0
->>> [   15.446403] ath11k_pci 0001:01:00.0: boot notify status reason
->>> MHI_CB_EE_SBL_MODE
->>> [   15.494739] ath11k_pci 0001:01:00.0: boot notify status reason
->>> MHI_CB_EE_MISSION_MODE
->>> [   15.515587] ath11k_pci 0001:01:00.0: chip_id 0x0 chip_family 0x0
->>> board_id 0xff soc_id 0xffffffff
->>> [   15.524423] ath11k_pci 0001:01:00.0: fw_version 0x290b8862
->>> fw_build_timestamp 2024-09-23 10:51 fw_build_id
->>> [   15.534202] ath11k_pci 0001:01:00.0: boot using board name
->>> 'bus=pci,qmi-chip-id=0,qmi-board-id=255'
->>> [   15.551970] ath11k_pci 0001:01:00.0: boot firmware request
->>> ath11k/QCN9074/hw1.0/board-2.bin size 786836
->>> [   15.551992] ath11k_pci 0001:01:00.0: boot board name
->>> [   15.552001] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
->>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
->>> [   15.552007] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
->>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
->>> [   15.552013] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 31 36 30
->>>                              id=160
->>> [   15.552018] ath11k_pci 0001:01:00.0: boot board name
->>> [   15.552024] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
->>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
->>> [   15.552030] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
->>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
->>> [   15.552036] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 31 36 31
->>>                              id=161
->>> [   15.552041] ath11k_pci 0001:01:00.0: boot board name
->>> [   15.552047] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
->>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
->>> [   15.552053] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
->>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
->>> [   15.552059] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 31 36 32
->>>                              id=162
->>> [   15.552064] ath11k_pci 0001:01:00.0: boot board name
->>> [   15.552070] ath11k_pci 0001:01:00.0: 00000000: 62 75 73 3d 70 63 69
->>> 2c 71 6d 69 2d 63 68 69 70  bus=pci,qmi-chip
->>> [   15.552076] ath11k_pci 0001:01:00.0: 00000010: 2d 69 64 3d 30 2c 71
->>> 6d 69 2d 62 6f 61 72 64 2d  -id=0,qmi-board-
->>> [   15.552082] ath11k_pci 0001:01:00.0: 00000020: 69 64 3d 32 35 35
->>>                              id=255
->>> [   15.552087] ath11k_pci 0001:01:00.0: boot found match board data
->>> for name 'bus=pci,qmi-chip-id=0,qmi-board-id=255'
->>> [   15.552093] ath11k_pci 0001:01:00.0: boot found board data for
->>> 'bus=pci,qmi-chip-id=0,qmi-board-id=255'
->>> [   15.552100] ath11k_pci 0001:01:00.0: boot using board api 2
->>> [   16.910820] ath11k_pci 0001:01:00.0: boot firmware request
->>> ath11k/QCN9074/hw1.0/m3.bin size 340108
->>> [   16.934188] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.934216] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.934228] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.934238] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.934249] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.934258] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.934273] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.934284] ath11k_pci 0001:01:00.0: pci msi assignment CE
->>> num_vectors 5 user_base_data 3 base_vector 3
->>> [   16.935322] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.935333] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 11,ring_num 0
->>> [   16.937172] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.937185] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 12,ring_num 0
->>> [   16.937196] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.937203] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 6,ring_num 0
->>> [   16.937212] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.937219] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 7,ring_num 0
->>> [   16.937489] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.937497] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 5,ring_num 0
->>> [   16.937934] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.938396] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.938405] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 5,ring_num 1
->>> [   16.938823] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.939059] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.939068] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 5,ring_num 2
->>> [   16.939468] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.939635] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.939642] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 2,ring_num 0
->>> [   16.939765] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.939872] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.939959] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.939967] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 3,ring_num 0
->>> [   16.940135] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.940417] ath11k_pci 0001:01:00.0: boot htc service 'Control' ul
->>> pipe 0 dl pipe 1 eid 0 ready
->>> [   16.940425] ath11k_pci 0001:01:00.0: boot htc service 'Control' eid
->>> 0 tx flow control disabled
->>> [   16.941453] ath11k_pci 0001:01:00.0: boot htc service HTT Data does
->>> not allocate target credits
->>> [   16.941570] ath11k_pci 0001:01:00.0: boot htc service 'HTT Data' ul
->>> pipe 4 dl pipe 1 eid 1 ready
->>> [   16.941578] ath11k_pci 0001:01:00.0: boot htc service 'HTT Data'
->>> eid 1 tx flow control disabled
->>> [   16.941633] ath11k_pci 0001:01:00.0: boot htc service 'WMI' ul pipe
->>> 3 dl pipe 2 eid 2 ready
->>> [   16.941641] ath11k_pci 0001:01:00.0: boot htc service 'WMI' eid 2
->>> tx flow control disabled
->>> [   16.943010] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.943267] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.943476] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   16.943604] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.246410] ath11k_pci 0001:01:00.0: htt event 48 not handled
->>> [   17.252661] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.253260] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.253871] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.254512] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.254528] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 16,ring_num 0
->>> [   17.255170] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.255743] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.255759] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 19,ring_num 0
->>> [   17.284419] ath11k_pci 0001:01:00.0: pci msi assignment DP
->>> num_vectors 8 user_base_data 8 base_vector 8
->>> [   17.284438] ath11k_pci 0001:01:00.0: pci ring not part of an
->>> ext_group; ring_type: 20,ring_num 0
->>> [   22.039565] ath11k_pci 0001:01:00.0 phy0-ap0: entered allmulticast mode
->>> [   22.050081] ath11k_pci 0001:01:00.0 phy0-ap0: entered promiscuous mode
->>> [   30.709682] ath11k_pci 0001:01:00.0 phy0-ap0: left allmulticast mode
->>> [   30.716078] ath11k_pci 0001:01:00.0 phy0-ap0: left promiscuous mode
->>> [   36.330610] ath11k_pci 0001:01:00.0 phy0-ap0: entered allmulticast mode
->>> [   36.337503] ath11k_pci 0001:01:00.0 phy0-ap0: entered promiscuous mode
->>>
->>> root@OpenWrt-WAP:~# iw dev
->>> phy#0
->>> Interface phy0-ap0
->>> ifindex 14
->>> wdev 0x2
->>> addr 04:f0:21:bd:d7:99
->>> type AP
->>> channel 100 (5500 MHz), width: 160 MHz, center1: 5570 MHz
->>> multicast TXQ:
->>> qsz-byt qsz-pkt flows drops marks overlmt hashcol tx-bytes tx-packets
->>> 0 0 0 0 0 0 0 0 0
->>>
->>> root@OpenWrt-WAP:~# iwinfo
->>> phy0-ap0  ESSID: "OpenWrt-WAP-5GHz"
->>>            Access Point: 04:F0:21:BD:D7:99
->>>            Mode: Master  Channel: 100 (5.500 GHz)  HT Mode: HE160
->>>            Center Channel 1: 114 2: unknown
->>>            Tx-Power: 0 dBm  Link Quality: unknown/70
->>>            Signal: unknown  Noise: -101 dBm
->>>            Bit Rate: unknown
->>>            Encryption: none
->>>            Type: nl80211  HW Mode(s): 802.11ac/ax/n
->>>            Hardware: 17CB:1104 17CB:1104 [Qualcomm Atheros QCN6024/9024/9074]
->>>            TX power offset: none
->>>            Frequency offset: none
->>>            Supports VAPs: yes  PHY name: phy0
->>>
->>> root@OpenWrt-WAP:~# reboot
->>> [  343.663492] Internal error: synchronous external abort:
->>> 0000000096000210 [#1] SMP
->>> [  343.670992] Modules linked in: nft_fib_inet nft_connlimit
->>> nf_flow_table_inet nf_conncount ath11k_pci(O) ath11k(O) rndis_host
->>> nft_socket nft_reject_ipv6 nft_reject_ipv4 nft_reject_inet nft_reject
->>> nft_redir nft_quota nft_queue nft_numgen nft_nat nft_masq nft_log
->>> nft_limit nft_hash nft_fwd_netdev nft_flow_offload nft_fib_ipv6
->>> nft_fib_ipv4 nft_fib nft_dup_netdev nft_dup_ipv6 nft_dup_ipv4 nft_ct
->>> nft_chain_nat nfnetlink_cttimeout nfnetlink_cthelper nf_tables nf_nat
->>> nf_flow_table nf_conntrack_netlink nf_conntrack mmc_spi mac80211(O)
->>> ftdi_sio ch348 ch341 cfg80211(O) cdc_subset cdc_ether cdc_eem
->>> usbserial usbnet usbmon usbhid ums_usbat ums_sddr55 ums_sddr09
->>> ums_karma ums_jumpshot ums_isd200 ums_freecom ums_datafab ums_cypress
->>> ums_alauda tps23861 tmp103 tmp102 spidev spi_gpio spi_bitbang sfp
->>> rtc_pcf8563 rtc_pcf2123 rtc_ds1672 rtc_ds1374 qrtr_mhi qrtr
->>> qmi_helpers(O) of_mmc_spi nfnetlink_queue nfnetlink nf_socket_ipv6
->>> nf_socket_ipv4 nf_reject_ipv6 nf_reject_ipv4 nf_log_syslog
->>> nf_dup_netdev nf_dup_ipv6 nf_dup_ipv4 nf_defrag_ipv6
->>> [  343.671198]  nf_defrag_ipv4 mhi_pci_generic mhi_net mhi mdio_i2c
->>> mdio_gpio max6697 ltc4151 lm95241 lm92 lm90 lm85 lm77 lm70 lm63 jc42
->>> ina2xx ina209 hid_generic compat(O) cdc_acm at25 adt7475 ntfs3 configs
->>> sg hid tmp421 tc654 adt7410 adt7x10 adcxx ad7418 i2c_gpio
->>> i2c_designware_pci i2c_ccgx_ucsi i2c_algo_bit gpio_pcf857x i2c_mux_reg
->>> i2c_mux_pca954x i2c_mux_pca9541 i2c_mux_gpio cryptodev(O) hwmon_vid
->>> msdos bonding nls_utf8 zram zsmalloc eeprom_93cx6 crypto_user
->>> algif_skcipher algif_rng algif_hash algif_aead af_alg sha512_generic
->>> sha512_arm64 seqiv sha3_generic jitterentropy_rng drbg michael_mic md5
->>> hmac geniv cmac uas usb_storage xhci_plat_hcd xhci_pci xhci_hcd dwc3
->>> dwc2_pci dwc2 roles ohci_pci uhci_hcd ohci_platform ohci_hcd ehci_pci
->>> fsl_mph_dr_of ehci_platform ehci_fsl ahci_platform ahci_qoriq
->>> libahci_platform libahci ehci_hcd nvme nvme_core exfat gpio_cascade
->>> mux_gpio phy_generic usbcore usb_common microchip mii
->>> [  343.842432] CPU: 7 PID: 9435 Comm: procd Tainted: G           O
->>>    6.6.86 #0
->>> [  343.849746] Hardware name: LS1088A
->>> [  343.856969] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->>> [  343.863933] pc : ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
->>
->> is this instruction causing the synchronous external abort? which src line is it 
->> pointing to?
->>
+> According to the MHI specification v1.2 rev AB the MHI control
+> configuration address space should not be more them 4GB. This comes from
+> the description of MHICTRLLIMIT in section 6.2 which states: "The most
+> significant 32 bits of MHICTRLBASE and MHICTRLLIMIT registers must be
+> equal".
 > 
-> Below data points may be useful along with the above one.
+> This means we have a 4GB range (32-bit) to play with in a 64-bit address
+> space.  If the upper 32-bits of the 64-bit address for both the base and
+> the limit must be the same, then the range of addresses from the base to
+> the limit can only vary the lower 32-bits.
 > 
-> i) Was this working before for you and broken recently or it has been
->     like this since you tried first?
+> Invalid:
+> BASE: 0x0
+> LIMIT: 0xffffffff_ffffffff
 > 
-> ii) Running into same issue during rmmod of ath12k driver instead of
->      reboot?
+> Valid:
+> BASE: 0x0f_00000000
+> LIMIT: 0x0f_ffffffff
 > 
-> iii) Is it possible to attach the console log during reboot also?
+> The current implementation is in violation of MHI specification.
+> 
+> For example mhi_init_dev_ctxt() -
+> 
+> We allocate the chan_ctxt with dma_alloc_coherent() as an individual
+> allocation.  In the case of AIC100, the device can access the full
+> 64-bit address space, but the DMA engine is limited to a 32-bit transfer
+> size.  The chan_ctxt probably won't be larger than 4GB, so the size is
+> rather irrelevant.  Can be allocated anywhere.  Lets say that it gets
+> put in the lower 32-bit address space - 0x0_XXXXXXXX
+> 
+> Then a little bit later we allocate er_ctxt with a different
+> dma_alloc_coherent() instance.  Being a unique allocation, it is not
+> tied to the chan_ctxt and can exist anywhere.  Lets assume that it gets
+> put somewhere in the non-lower 32-bits - 0x1000_XXXXXXXX
+> 
+> Now we have a problem because we cannot describe a single range covering
+> both of these allocations via MHICTRLBASE/MHICTRLLIMIT where the upper
+> 32-bits of both registers is the same.
+> 
+> Change the implementation to comply with the MHI spec by allocating a
+> single giant DMA buffer for MHI control configurations and limit the
+> configuration address space to that buffer.
+> 
+> Signed-off-by: Pranjal Ramajor Asha Kanojiya <quic_pkanojiy@quicinc.com>
+> Signed-off-by: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+> 
+> v2:
+> -Amend the commit text to cite the spec limitation, and explain it
+> 
+>  drivers/bus/mhi/host/init.c     | 259 +++++++++++++++++---------------
+>  drivers/bus/mhi/host/internal.h |   1 -
+>  include/linux/mhi.h             |   7 +
+>  3 files changed, 143 insertions(+), 124 deletions(-)
+> 
+> diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
+> index 13e7a55f54ff..03afbfb8a96f 100644
+> --- a/drivers/bus/mhi/host/init.c
+> +++ b/drivers/bus/mhi/host/init.c
+> @@ -159,21 +159,21 @@ static struct attribute *mhi_dev_attrs[] = {
+>  };
+>  ATTRIBUTE_GROUPS(mhi_dev);
+>  
+> -/* MHI protocol requires the transfer ring to be aligned with ring length */
+> -static int mhi_alloc_aligned_ring(struct mhi_controller *mhi_cntrl,
+> -				  struct mhi_ring *ring,
+> -				  u64 len)
+> +static void mhi_init_ring_base(struct mhi_ring *ring)
+>  {
+> -	ring->alloc_size = len + (len - 1);
+> -	ring->pre_aligned = dma_alloc_coherent(mhi_cntrl->cntrl_dev, ring->alloc_size,
+> -					       &ring->dma_handle, GFP_KERNEL);
+> -	if (!ring->pre_aligned)
+> -		return -ENOMEM;
+> -
+> -	ring->iommu_base = (ring->dma_handle + (len - 1)) & ~(len - 1);
+> +	ring->iommu_base = (ring->dma_handle + (ring->len - 1)) & ~(ring->len - 1);
+>  	ring->base = ring->pre_aligned + (ring->iommu_base - ring->dma_handle);
+> +}
+>  
+> -	return 0;
+> +/* MHI protocol requires the transfer ring to be aligned with ring length */
+> +static void mhi_init_ring(struct mhi_controller *mhi_cntrl, struct mhi_ring *ring,
+> +			  size_t el_size, size_t offset)
+> +{
+> +	ring->el_size = el_size;
+> +	ring->len = ring->el_size * ring->elements;
+> +	ring->pre_aligned = mhi_cntrl->ctrl_config_base + offset;
+> +	ring->dma_handle = mhi_cntrl->ctrl_config_dma + offset;
+> +	mhi_init_ring_base(ring);
+>  }
+>  
+>  void mhi_deinit_free_irq(struct mhi_controller *mhi_cntrl)
+> @@ -265,40 +265,134 @@ void mhi_deinit_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  	mhi_cmd = mhi_cntrl->mhi_cmd;
+>  	for (i = 0; i < NR_OF_CMD_RINGS; i++, mhi_cmd++) {
+>  		ring = &mhi_cmd->ring;
+> -		dma_free_coherent(mhi_cntrl->cntrl_dev, ring->alloc_size,
+> -				  ring->pre_aligned, ring->dma_handle);
+>  		ring->base = NULL;
+>  		ring->iommu_base = 0;
+>  	}
+>  
+> -	dma_free_coherent(mhi_cntrl->cntrl_dev,
+> -			  sizeof(*mhi_ctxt->cmd_ctxt) * NR_OF_CMD_RINGS,
+> -			  mhi_ctxt->cmd_ctxt, mhi_ctxt->cmd_ctxt_addr);
+> -
+>  	mhi_event = mhi_cntrl->mhi_event;
+>  	for (i = 0; i < mhi_cntrl->total_ev_rings; i++, mhi_event++) {
+>  		if (mhi_event->offload_ev)
+>  			continue;
+>  
+>  		ring = &mhi_event->ring;
+> -		dma_free_coherent(mhi_cntrl->cntrl_dev, ring->alloc_size,
+> -				  ring->pre_aligned, ring->dma_handle);
+>  		ring->base = NULL;
+>  		ring->iommu_base = 0;
+>  	}
+>  
+> -	dma_free_coherent(mhi_cntrl->cntrl_dev, sizeof(*mhi_ctxt->er_ctxt) *
+> -			  mhi_cntrl->total_ev_rings, mhi_ctxt->er_ctxt,
+> -			  mhi_ctxt->er_ctxt_addr);
+> -
+> -	dma_free_coherent(mhi_cntrl->cntrl_dev, sizeof(*mhi_ctxt->chan_ctxt) *
+> -			  mhi_cntrl->max_chan, mhi_ctxt->chan_ctxt,
+> -			  mhi_ctxt->chan_ctxt_addr);
+> -
+> +	dma_free_coherent(mhi_cntrl->cntrl_dev, mhi_cntrl->ctrl_config_size,
+> +			  mhi_cntrl->ctrl_config_base, mhi_cntrl->ctrl_config_dma);
+>  	kfree(mhi_ctxt);
+>  	mhi_cntrl->mhi_ctxt = NULL;
+>  }
+>  
+> +/*
+> + * Control Configuration Address Space Layout
+> + *              +------------------------------------------+
+> + *              |              Channel Context             |
+> + *              +------------------------------------------+
+> + *              |           Array of Channel Rings         |
+> + *              +------------------------------------------+
+> + *              |              Event Context               |
+> + *              +------------------------------------------+
+> + *              |           Array of Event Rings           |
+> + *              +------------------------------------------+
+> + *              |              Command Context             |
+> + *              +------------------------------------------+
+> + *              |           Array of Command Rings         |
+> + *              +------------------------------------------+
+> + */
+> +static int mhi_alloc_control_space(struct mhi_controller *mhi_cntrl, struct mhi_ctxt *mhi_ctxt)
+> +{
+> +	size_t chan_ctxt_offset, cmd_ctxt_offset, er_ctxt_offset;
+> +	size_t chan_ctxt_size, cmd_ctxt_size, er_ctxt_size;
+> +	size_t el_size = sizeof(struct mhi_ring_element);
+> +	u32 ev_rings = mhi_cntrl->total_ev_rings;
+> +	struct mhi_event *mhi_event;
+> +	size_t alloc_size, offset = 0;
+> +	struct mhi_chan *mhi_chan;
+> +	struct mhi_cmd *mhi_cmd;
+> +	struct mhi_ring *ring;
+> +	int i;
+> +
+> +	chan_ctxt_offset = offset;
+> +	chan_ctxt_size = sizeof(*mhi_ctxt->chan_ctxt) * mhi_cntrl->max_chan;
+> +	chan_ctxt_size = PAGE_ALIGN(chan_ctxt_size);
+> +	offset += chan_ctxt_size;
+> +	for (i = 0, mhi_chan = mhi_cntrl->mhi_chan; i < mhi_cntrl->max_chan; i++, mhi_chan++) {
+> +		ring = &mhi_chan->tre_ring;
+> +		if (!ring->elements)
+> +			continue;
+> +		alloc_size = ring->elements * el_size;
+> +		alloc_size = PAGE_ALIGN(alloc_size << 1);
+> +		/* Temporarily save offset here */
+> +		ring->pre_aligned = (void *)offset;
+> +		offset += alloc_size;
+> +	}
+> +
+> +	er_ctxt_offset = offset;
+> +	er_ctxt_size = sizeof(*mhi_ctxt->er_ctxt) * ev_rings;
+> +	er_ctxt_size = PAGE_ALIGN(er_ctxt_size);
+> +	offset += er_ctxt_size;
+> +	for (i = 0, mhi_event = mhi_cntrl->mhi_event; i < ev_rings; i++, mhi_event++) {
+> +		ring = &mhi_event->ring;
+> +		alloc_size = ring->elements * el_size;
+> +		alloc_size = PAGE_ALIGN(alloc_size << 1);
+> +		/* Temporarily save offset here */
+> +		ring->pre_aligned = (void *)offset;
+> +		offset += alloc_size;
+> +	}
+> +
+> +	cmd_ctxt_offset = offset;
+> +	cmd_ctxt_size = sizeof(*mhi_ctxt->cmd_ctxt) * NR_OF_CMD_RINGS;
+> +	cmd_ctxt_size = PAGE_ALIGN(cmd_ctxt_size);
+> +	offset += cmd_ctxt_size;
+> +	for (i = 0, mhi_cmd = mhi_cntrl->mhi_cmd; i < NR_OF_CMD_RINGS; i++, mhi_cmd++) {
+> +		ring = &mhi_cmd->ring;
+> +		alloc_size = CMD_EL_PER_RING * el_size;
+> +		alloc_size = PAGE_ALIGN(alloc_size << 1);
+> +		/* Temporarily save offset here */
+> +		ring->pre_aligned = (void *)offset;
+> +		offset += alloc_size;
+> +	}
+> +
+> +	mhi_cntrl->ctrl_config_size = offset;
+> +	mhi_cntrl->ctrl_config_base = dma_alloc_coherent(mhi_cntrl->cntrl_dev,
+> +							 mhi_cntrl->ctrl_config_size,
+> +							 &mhi_cntrl->ctrl_config_dma,
+> +							 GFP_KERNEL);
+> +	if (!mhi_cntrl->ctrl_config_base)
+> +		return -ENOMEM;
+> +
+> +	/* Setup channel ctxt */
+> +	mhi_ctxt->chan_ctxt = mhi_cntrl->ctrl_config_base + chan_ctxt_offset;
+> +	mhi_ctxt->chan_ctxt_addr = mhi_cntrl->ctrl_config_dma + chan_ctxt_offset;
+> +	for (i = 0, mhi_chan = mhi_cntrl->mhi_chan; i < mhi_cntrl->max_chan; i++, mhi_chan++) {
+> +		ring = &mhi_chan->tre_ring;
+> +		if (!ring->elements)
+> +			continue;
+> +		mhi_init_ring(mhi_cntrl, ring, el_size, (size_t)ring->pre_aligned);
+> +	}
+> +
+> +	/* Setup event context */
+> +	mhi_ctxt->er_ctxt = mhi_cntrl->ctrl_config_base + er_ctxt_offset;
+> +	mhi_ctxt->er_ctxt_addr = mhi_cntrl->ctrl_config_dma + er_ctxt_offset;
+> +	for (i = 0, mhi_event = mhi_cntrl->mhi_event; i < ev_rings; i++, mhi_event++) {
+> +		ring = &mhi_event->ring;
+> +		mhi_init_ring(mhi_cntrl, ring, el_size, (size_t)ring->pre_aligned);
+> +	}
+> +
+> +	/* Setup cmd context */
+> +	mhi_ctxt->cmd_ctxt = mhi_cntrl->ctrl_config_base + cmd_ctxt_offset;
+> +	mhi_ctxt->cmd_ctxt_addr = mhi_cntrl->ctrl_config_dma + cmd_ctxt_offset;
+> +	for (i = 0, mhi_cmd = mhi_cntrl->mhi_cmd; i < NR_OF_CMD_RINGS; i++, mhi_cmd++) {
+> +		ring = &mhi_cmd->ring;
+> +		ring->elements = CMD_EL_PER_RING;
+> +		mhi_init_ring(mhi_cntrl, ring, el_size, (size_t)ring->pre_aligned);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  {
+>  	struct mhi_ctxt *mhi_ctxt;
+> @@ -309,7 +403,7 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  	struct mhi_event *mhi_event;
+>  	struct mhi_cmd *mhi_cmd;
+>  	u32 tmp;
+> -	int ret = -ENOMEM, i;
+> +	int ret, i;
+>  
+>  	atomic_set(&mhi_cntrl->dev_wake, 0);
+>  	atomic_set(&mhi_cntrl->pending_pkts, 0);
+> @@ -318,14 +412,12 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  	if (!mhi_ctxt)
+>  		return -ENOMEM;
+>  
+> -	/* Setup channel ctxt */
+> -	mhi_ctxt->chan_ctxt = dma_alloc_coherent(mhi_cntrl->cntrl_dev,
+> -						 sizeof(*mhi_ctxt->chan_ctxt) *
+> -						 mhi_cntrl->max_chan,
+> -						 &mhi_ctxt->chan_ctxt_addr,
+> -						 GFP_KERNEL);
+> -	if (!mhi_ctxt->chan_ctxt)
+> -		goto error_alloc_chan_ctxt;
+> +	/* Allocate control configuration */
+> +	ret = mhi_alloc_control_space(mhi_cntrl, mhi_ctxt);
+> +	if (ret) {
+> +		kfree(mhi_ctxt);
+> +		return ret;
+> +	}
+>  
+>  	mhi_chan = mhi_cntrl->mhi_chan;
+>  	chan_ctxt = mhi_ctxt->chan_ctxt;
+> @@ -350,15 +442,6 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  		mhi_chan->tre_ring.db_addr = (void __iomem *)&chan_ctxt->wp;
+>  	}
+>  
+> -	/* Setup event context */
+> -	mhi_ctxt->er_ctxt = dma_alloc_coherent(mhi_cntrl->cntrl_dev,
+> -					       sizeof(*mhi_ctxt->er_ctxt) *
+> -					       mhi_cntrl->total_ev_rings,
+> -					       &mhi_ctxt->er_ctxt_addr,
+> -					       GFP_KERNEL);
+> -	if (!mhi_ctxt->er_ctxt)
+> -		goto error_alloc_er_ctxt;
+> -
+>  	er_ctxt = mhi_ctxt->er_ctxt;
+>  	mhi_event = mhi_cntrl->mhi_event;
+>  	for (i = 0; i < mhi_cntrl->total_ev_rings; i++, er_ctxt++,
+> @@ -379,12 +462,6 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  		er_ctxt->msivec = cpu_to_le32(mhi_event->irq);
+>  		mhi_event->db_cfg.db_mode = true;
+>  
+> -		ring->el_size = sizeof(struct mhi_ring_element);
+> -		ring->len = ring->el_size * ring->elements;
+> -		ret = mhi_alloc_aligned_ring(mhi_cntrl, ring, ring->len);
+> -		if (ret)
+> -			goto error_alloc_er;
+> -
+>  		/*
+>  		 * If the read pointer equals to the write pointer, then the
+>  		 * ring is empty
+> @@ -396,28 +473,10 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  		ring->ctxt_wp = &er_ctxt->wp;
+>  	}
+>  
+> -	/* Setup cmd context */
+> -	ret = -ENOMEM;
+> -	mhi_ctxt->cmd_ctxt = dma_alloc_coherent(mhi_cntrl->cntrl_dev,
+> -						sizeof(*mhi_ctxt->cmd_ctxt) *
+> -						NR_OF_CMD_RINGS,
+> -						&mhi_ctxt->cmd_ctxt_addr,
+> -						GFP_KERNEL);
+> -	if (!mhi_ctxt->cmd_ctxt)
+> -		goto error_alloc_er;
+> -
+>  	mhi_cmd = mhi_cntrl->mhi_cmd;
+>  	cmd_ctxt = mhi_ctxt->cmd_ctxt;
+>  	for (i = 0; i < NR_OF_CMD_RINGS; i++, mhi_cmd++, cmd_ctxt++) {
+>  		struct mhi_ring *ring = &mhi_cmd->ring;
+> -
+> -		ring->el_size = sizeof(struct mhi_ring_element);
+> -		ring->elements = CMD_EL_PER_RING;
+> -		ring->len = ring->el_size * ring->elements;
+> -		ret = mhi_alloc_aligned_ring(mhi_cntrl, ring, ring->len);
+> -		if (ret)
+> -			goto error_alloc_cmd;
+> -
+>  		ring->rp = ring->wp = ring->base;
+>  		cmd_ctxt->rbase = cpu_to_le64(ring->iommu_base);
+>  		cmd_ctxt->rp = cmd_ctxt->wp = cmd_ctxt->rbase;
+> @@ -428,43 +487,6 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>  	mhi_cntrl->mhi_ctxt = mhi_ctxt;
+>  
+>  	return 0;
+> -
+> -error_alloc_cmd:
+> -	for (--i, --mhi_cmd; i >= 0; i--, mhi_cmd--) {
+> -		struct mhi_ring *ring = &mhi_cmd->ring;
+> -
+> -		dma_free_coherent(mhi_cntrl->cntrl_dev, ring->alloc_size,
+> -				  ring->pre_aligned, ring->dma_handle);
+> -	}
+> -	dma_free_coherent(mhi_cntrl->cntrl_dev,
+> -			  sizeof(*mhi_ctxt->cmd_ctxt) * NR_OF_CMD_RINGS,
+> -			  mhi_ctxt->cmd_ctxt, mhi_ctxt->cmd_ctxt_addr);
+> -	i = mhi_cntrl->total_ev_rings;
+> -	mhi_event = mhi_cntrl->mhi_event + i;
+> -
+> -error_alloc_er:
+> -	for (--i, --mhi_event; i >= 0; i--, mhi_event--) {
+> -		struct mhi_ring *ring = &mhi_event->ring;
+> -
+> -		if (mhi_event->offload_ev)
+> -			continue;
+> -
+> -		dma_free_coherent(mhi_cntrl->cntrl_dev, ring->alloc_size,
+> -				  ring->pre_aligned, ring->dma_handle);
+> -	}
+> -	dma_free_coherent(mhi_cntrl->cntrl_dev, sizeof(*mhi_ctxt->er_ctxt) *
+> -			  mhi_cntrl->total_ev_rings, mhi_ctxt->er_ctxt,
+> -			  mhi_ctxt->er_ctxt_addr);
+> -
+> -error_alloc_er_ctxt:
+> -	dma_free_coherent(mhi_cntrl->cntrl_dev, sizeof(*mhi_ctxt->chan_ctxt) *
+> -			  mhi_cntrl->max_chan, mhi_ctxt->chan_ctxt,
+> -			  mhi_ctxt->chan_ctxt_addr);
+> -
+> -error_alloc_chan_ctxt:
+> -	kfree(mhi_ctxt);
+> -
+> -	return ret;
+>  }
+>  
+>  int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+> @@ -475,6 +497,7 @@ int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+>  	struct mhi_event *mhi_event;
+>  	void __iomem *base = mhi_cntrl->regs;
+>  	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+> +	dma_addr_t mhi_ctrl_limit = mhi_cntrl->ctrl_config_dma + mhi_cntrl->ctrl_config_size - 1;
 
-I mean kernel log during reboot with previously suggested ath12k debug_mask.
+but the range [ctrl_config_dma, mhi_ctrl_limit] could still be possbile to cross the 4GB
+boundary, no?
+
+>  	struct {
+>  		u32 offset;
+>  		u32 val;
+> @@ -505,11 +528,11 @@ int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+>  		},
+>  		{
+>  			MHICTRLBASE_HIGHER,
+> -			upper_32_bits(mhi_cntrl->iova_start),
+> +			upper_32_bits(mhi_cntrl->ctrl_config_dma),
+>  		},
+>  		{
+>  			MHICTRLBASE_LOWER,
+> -			lower_32_bits(mhi_cntrl->iova_start),
+> +			lower_32_bits(mhi_cntrl->ctrl_config_dma),
+>  		},
+>  		{
+>  			MHIDATABASE_HIGHER,
+> @@ -521,11 +544,11 @@ int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+>  		},
+>  		{
+>  			MHICTRLLIMIT_HIGHER,
+> -			upper_32_bits(mhi_cntrl->iova_stop),
+> +			upper_32_bits(mhi_ctrl_limit),
+>  		},
+>  		{
+>  			MHICTRLLIMIT_LOWER,
+> -			lower_32_bits(mhi_cntrl->iova_stop),
+> +			lower_32_bits(mhi_ctrl_limit),
+>  		},
+>  		{
+>  			MHIDATALIMIT_HIGHER,
+> @@ -622,8 +645,6 @@ void mhi_deinit_chan_ctxt(struct mhi_controller *mhi_cntrl,
+>  	if (!chan_ctxt->rbase) /* Already uninitialized */
+>  		return;
+>  
+> -	dma_free_coherent(mhi_cntrl->cntrl_dev, tre_ring->alloc_size,
+> -			  tre_ring->pre_aligned, tre_ring->dma_handle);
+>  	vfree(buf_ring->base);
+>  
+>  	buf_ring->base = tre_ring->base = NULL;
+> @@ -649,26 +670,18 @@ int mhi_init_chan_ctxt(struct mhi_controller *mhi_cntrl,
+>  	struct mhi_ring *tre_ring;
+>  	struct mhi_chan_ctxt *chan_ctxt;
+>  	u32 tmp;
+> -	int ret;
+>  
+>  	buf_ring = &mhi_chan->buf_ring;
+>  	tre_ring = &mhi_chan->tre_ring;
+> -	tre_ring->el_size = sizeof(struct mhi_ring_element);
+> -	tre_ring->len = tre_ring->el_size * tre_ring->elements;
+>  	chan_ctxt = &mhi_cntrl->mhi_ctxt->chan_ctxt[mhi_chan->chan];
+> -	ret = mhi_alloc_aligned_ring(mhi_cntrl, tre_ring, tre_ring->len);
+> -	if (ret)
+> -		return -ENOMEM;
+> +	mhi_init_ring_base(tre_ring);
+>  
+>  	buf_ring->el_size = sizeof(struct mhi_buf_info);
+>  	buf_ring->len = buf_ring->el_size * buf_ring->elements;
+>  	buf_ring->base = vzalloc(buf_ring->len);
+>  
+> -	if (!buf_ring->base) {
+> -		dma_free_coherent(mhi_cntrl->cntrl_dev, tre_ring->alloc_size,
+> -				  tre_ring->pre_aligned, tre_ring->dma_handle);
+> +	if (!buf_ring->base)
+>  		return -ENOMEM;
+> -	}
+>  
+>  	tmp = le32_to_cpu(chan_ctxt->chcfg);
+>  	tmp &= ~CHAN_CTX_CHSTATE_MASK;
+> diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
+> index ce566f7d2e92..bedaf248c49a 100644
+> --- a/drivers/bus/mhi/host/internal.h
+> +++ b/drivers/bus/mhi/host/internal.h
+> @@ -215,7 +215,6 @@ struct mhi_ring {
+>  	size_t el_size;
+>  	size_t len;
+>  	size_t elements;
+> -	size_t alloc_size;
+>  	void __iomem *db_addr;
+>  };
+>  
+> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+> index dd372b0123a6..79224d07f3f7 100644
+> --- a/include/linux/mhi.h
+> +++ b/include/linux/mhi.h
+> @@ -325,6 +325,9 @@ struct mhi_controller_config {
+>   * @mhi_event: MHI event ring configurations table
+>   * @mhi_cmd: MHI command ring configurations table
+>   * @mhi_ctxt: MHI device context, shared memory between host and device
+> + * @ctrl_config_size: Total allocated size of control configuration buffer
+> + * @ctrl_config_dma: Base bus address of control configuration buffer
+> + * @ctrl_config_base: Base CPU address of control configuration buffer
+>   * @pm_mutex: Mutex for suspend/resume operation
+>   * @pm_lock: Lock for protecting MHI power management state
+>   * @timeout_ms: Timeout in ms for state transitions
+> @@ -403,6 +406,10 @@ struct mhi_controller {
+>  	struct mhi_cmd *mhi_cmd;
+>  	struct mhi_ctxt *mhi_ctxt;
+>  
+> +	size_t ctrl_config_size;
+> +	dma_addr_t ctrl_config_dma;
+> +	void *ctrl_config_base;
+> +
+>  	struct mutex pm_mutex;
+>  	rwlock_t pm_lock;
+>  	u32 timeout_ms;
+
 
