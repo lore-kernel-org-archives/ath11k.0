@@ -4,92 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB7CCC369DC
-	for <ath11k@archiver.kernel.org>; Mon, 28 Apr 2025 16:04:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4855FC369D5
+	for <ath11k@archiver.kernel.org>; Tue, 29 Apr 2025 02:39:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/X7DF9Ew1Agm7nnrSqqFaK71CHWZV0baQc/jIlR9xZ4=; b=ChCJEeINzV9FIHXZD63HoFb11N
-	lmXxHCp+Ow1kVGkI79fEyTENpasgCoVDc+Y7jGKU0NUr/SnaaUvVkcgCprfMvSJ4fpuTFfrx2JAhQ
-	hW7PZSEWriDlNElCRHGlKqcbm8GXhMcvMQGq1R0MLZgqwgRXHCM8WrRGvajW+1PXf4DL282+6DSLW
-	Lz36IeiZsLOazNBJeKjYo6H3sC1BsaMIuKser3zvjjqBSlYsxDyZA3a1qxdrWf7cW/JpRUwIVCu1q
-	zybrije614ELODA/u2pOPHB8rhkFQ28NqvmmcRvChBHUHccZe+Wunuiw2G8l+qpUjHJsJ9fv+Ry++
-	YbRTxhjQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NKktZXjUVHJTf01+SeFofdJnC/BYWnl8koKOQ2R+rp0=; b=vOzAQB5qXzXGxA84IhUAsy1NGn
+	KTcWz8eASQoB3aeC377uw8vrpaonAr6WwZQqePwFKwCxM0Z2H1ztZ4mWVmkHHQZpEKtzgjmJrFRS+
+	SxlL4c1UPLYCTY/W8kuFgrfTLDZ517xO0LBkuRXfpfRU9GgDoOdDPGqOnZFcQ3GLeK8Dg3xGa7WtA
+	LIIRGlh3YYiT6f+usj5zJvsYBeTmN3e3xz8BUxGhK+krXTpHBACaME/xzRXPhKZraXzeC+vI2bvXh
+	E8NvRi2FAGOJPjhUKCrGnrsEd7z8pe71X374eHW+aAaDVnPA5mVXZQFkcCp5+XLRmk0eBdd9LsUci
+	I1VIaQuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9QyL-00000006r1T-2JDt;
-	Mon, 28 Apr 2025 16:04:45 +0000
-Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
+	id 1u9asY-000000086z2-2tDj;
+	Tue, 29 Apr 2025 02:39:26 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9QyJ-00000006r0v-0jxy
+	id 1u9asV-000000086yg-3Lsc
 	for ath11k@lists.infradead.org;
-	Mon, 28 Apr 2025 16:04:44 +0000
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-736bfa487c3so4156545b3a.1
-        for <ath11k@lists.infradead.org>; Mon, 28 Apr 2025 09:04:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745856282; x=1746461082; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/X7DF9Ew1Agm7nnrSqqFaK71CHWZV0baQc/jIlR9xZ4=;
-        b=ZbN4HsOiQi80OO7UCfjLTBe5fmFbIi7gDIQ9IcvcWjKPKjn88KFtAkoDgYHN6kcDdj
-         ziByYXXLU6hpeNtv6MBBV09SW4+NsG88ubS/4e3VyIJlL3vogJQgXncE6zO1S5DzQAOE
-         cTQRtYeW2kmMV21xcpb1meGq2iTgfKwwRxd3MiH3IQGFvLvrNgdpy8GH4FNeEYOxld+A
-         tj3p93gb+Tmdwk/04UMavuIO+EbZTukjE2Wud0B2m9rp+dspkY7l6Zw7gJxDyDuMAvEY
-         hoN/VKzbcaFpwVJXhmaQvUiTXqODWMCXNk952h6Z2GmL8Fsu8N5e11PwQmtJ9bUP8f6e
-         7ksA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745856282; x=1746461082;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/X7DF9Ew1Agm7nnrSqqFaK71CHWZV0baQc/jIlR9xZ4=;
-        b=gKsLlCqQQn81Ay3ywC112pNZrXn868rpLoYHOjpZPXqc3OcdxCRvC32ewsfAYjIoeg
-         N1c0ZK0g3lUsKM04OlIZ5oBrQvayjMJRtMw3G2bbmjFybJeMISE8ZO410wnrLoRSMr0F
-         rUZ9zzxPTPNXZFlddpKvLWeHn0epf+wRjF8qUr37joqiMb6mCzmEWqtrlE9VQU+vOKxK
-         siqtxCirrxhsSQXtkNdtdINYJre0WTRPQvyaHph1J9gr4B10XI7zzO8T5IB75Xvl+GgK
-         Jeg8Ws+egI6hdNI3Knq1yrcYO4CBjdrUdU/Us++oRGOXZZqdFh0fsUVXiEpCD0hP3FbV
-         Ao+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUG9FKJYloMVjU60Y4buSS4qolUE+5HSC3nFnYTlbdUkp5Gpv+OJD2y23nC3pp7Vw+OYQGPc24=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw0Eqxx3e6vCyxY7EkTWZnwcAhbAcAPNqIrC38byOLcqDcuoHuC
-	0ioa+SWYg0DEBrQMAiYDLbcEPu9QZkNIFgmHNiGG/ZJf5xho4DeVBCvJwcdYmg==
-X-Gm-Gg: ASbGncuKP/EOneyQ71azZ8IDhWVIVTlbyAga2RGAMnoYfVcqFyZi7v9mGypRTJJtVPQ
-	tvmkeg+B3jb/v74/w8N96BaELgFWEOLHFXUsfGWAlEd/ZNxOuopV58eMv/KrK68/ehu1kEUrqYQ
-	+CgAfJcjXCp8K0cJUdDxlGpAvUox8+LrkwDZDeKU8o8KWJPzSvouU79gljneTadzmCtZO/0no0x
-	UiKyoSkmDdyBCVSu6dFgdqC7km+71fHRv7/9oI7tnWS1BVtmjuERTQPIBvI0g/EIi18wQJJgPDj
-	HKnykzcU7/ReBOmWdtScZI8DdbsjJQ6W01UcbidVJensau/igA==
-X-Google-Smtp-Source: AGHT+IGKCxoXxJthszuaQ0YIvxIpdqYl5iZVD54zK+MbWjkRhDGpgNCqL+JAneA3KnXAx0zTvsqeuQ==
-X-Received: by 2002:a05:6a21:9984:b0:1f5:8d3b:e272 with SMTP id adf61e73a8af0-2046a404462mr11666596637.1.1745856282535;
-        Mon, 28 Apr 2025 09:04:42 -0700 (PDT)
-Received: from thinkpad ([120.60.72.74])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74002791fb3sm3928077b3a.70.2025.04.28.09.04.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Apr 2025 09:04:42 -0700 (PDT)
-Date: Mon, 28 Apr 2025 21:34:37 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>, quic_carlv@quicinc.com, 
-	quic_thanson@quicinc.com, mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
-	Pranjal Ramajor Asha Kanojiya <quic_pkanojiy@quicinc.com>, ath11k@lists.infradead.org, jjohnson@kernel.org, 
-	quic_bqiang@quicinc.com
-Subject: Re: [PATCH] bus: mhi: host: Allocate entire MHI control config once
-Message-ID: <szphluirfkwx2na7o5y4wax6icezxv5scnwofma7la7v4kz2kg@bgplpwnsabkt>
-References: <20250328165913.3380933-1-jeff.hugo@oss.qualcomm.com>
- <pgr6u3onrlf4mvldqn7cxlqkh3krduv542jqgjcy5c535ys6hm@dujbvax4b56s>
- <07cc4ee2-4a13-495c-bc4d-8837d6b54414@oss.qualcomm.com>
- <qhoirbfx5p23542hhi3kk7ftwtptsnoxgtewddbh322d74rgb2@xbupxi3ix7sx>
- <ea4d081c-185b-4715-9b64-da1347dab28b@oss.qualcomm.com>
+	Tue, 29 Apr 2025 02:39:25 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53SNqEg5025873;
+	Tue, 29 Apr 2025 02:39:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NKktZXjUVHJTf01+SeFofdJnC/BYWnl8koKOQ2R+rp0=; b=IR4ajaxRVA6arZQq
+	Xyn9Yc1IamGIubk8l+gDMRwVv0fzEyE3FFWhSI/atsW7o3zHbM1uHsodP6mq5+H0
+	XwqGa/cEkaimj/yAAfIc7I77FSpSMkzAqghLCpatshwCJuo9j2PVnuWGvrUyRe/r
+	oGV5k+vkrogZldvsV5qJW7hzt7Ae3njUZQJRVfsk+ixlc7UBBppLlI4i1MevJBSO
+	0vtRdap3I6bGcBSF/RnEuI20hTLZbZRZm7GoPZGTagGcqyFS10oUQ1DH2WxK/EYx
+	vc7wGqVN0/FnK2YHN8hStdfjfqMGsdy/gNw3KZncel4I6YuGC13Xke5euyD0bVhY
+	kvefFw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 468qq5j4tq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 02:39:17 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53T2dG5P007055
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Apr 2025 02:39:17 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 28 Apr
+ 2025 19:39:14 -0700
+Message-ID: <f574983e-bd12-4d8b-b294-87c5e554f784@quicinc.com>
+Date: Tue, 29 Apr 2025 10:39:12 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ea4d081c-185b-4715-9b64-da1347dab28b@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] wifi: ath11k: Fix memory reuse logic
+To: Muhammad Usama Anjum <usama.anjum@collabora.com>,
+        <jeff.johnson@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>
+CC: <kernel@collabora.com>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250428080242.466901-1-usama.anjum@collabora.com>
+Content-Language: en-US
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20250428080242.466901-1-usama.anjum@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jep2DKH73GU4AkaTDt10RXB5OvepQmwV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNDI5MDAxOCBTYWx0ZWRfX6XHN9NauGqYO ER9JmSwSW4mDiLyflRcUjdBr7pAgY+55VbAMv2QXcOGf6wY72O+nWzdVEATLcxGgNPCU5CnGwHk W0ACY3bm4n/gJkTzAJT7vs7SgJEWUcwjsOADy77swkrpb5SdNSyxfjfhXYj/har6+hzC/jBvIfC
+ fimFqae+f9Lbq3hNip18GO6nf+iPWDLhI9mGdOvShOkfcLY42PPZ0hAZ5bMYeNNX74mfrwZwodk Ev0D5ZhxxfpF1T+Xw13XEzsh0gaaU6vBpYVwo0zLRISz/1dbsIxVq4Ja209VKU2vyQm4kputsiC JiwlxO6FOicKbPgKEmG+lVDjfHNoA6h4Hx/vpw53VpQKwEroj6czezc286Eq9VkNEx7HYQHYXuU
+ Zd01KuzXATHapr7KrdhevpzD1g+jcAW1N9ksdtkFyQsYgB0e5kY3PdIS9qDQbpfhWOtoNWbH
+X-Authority-Analysis: v=2.4 cv=QP1oRhLL c=1 sm=1 tr=0 ts=68103bd5 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=QX4gbG5DAAAA:8 a=COk6AnOGAAAA:8 a=7xKvOyCpBhAOSqRoKRkA:9
+ a=QEXdDO2ut3YA:10 a=AbAUZ8qAyYyZVLSsDulk:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: jep2DKH73GU4AkaTDt10RXB5OvepQmwV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-04-29_01,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ clxscore=1015 mlxlogscore=999 lowpriorityscore=0 adultscore=0 mlxscore=0
+ bulkscore=0 phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2504290018
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250428_090443_218022_A9332755 
-X-CRM114-Status: GOOD (  18.11  )
+X-CRM114-CacheID: sfid-20250428_193923_850411_17E89D13 
+X-CRM114-Status: GOOD (  23.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,35 +105,77 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Apr 25, 2025 at 09:56:05AM -0700, Jeff Johnson wrote:
-> On 4/24/2025 10:37 PM, Manivannan Sadhasivam wrote:
-> > I was confused by the fact that ath11k driver adds an offset of 0x1000000 to the
-> > reserved region for the iova_start:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/wireless/ath/ath11k/mhi.c?h=v6.15-rc3#n331
-> 
-> This predates my role as maintainer.
-> I was an internal reviewer, but in internal review (as well as the public v1)
-> the code was using dedicated 'qcom' DT entries and did not have an offset.
-> 
-> So I looked at the entire patch history:
-> https://lore.kernel.org/linux-wireless/?q=s%3A%22ath11k%3A+Use+reserved+host+DDR+addresses+from+DT+for+PCI+devices%22
-> 
-> The offset was added in v2.
-> 
-> There is nothing that describes why the offset was added, and nobody
-> questioned it.
-> 
 
-Hmm. I'm not sure how this works in the firmware. If firmware uses iova_start as
-the start address for the ATU mapping of the MHI data structures, then it won't
-be able to access the structures allocated prior to this offset (which would be
-very likely).
 
-So the fact that the firmware still works with this offset means it doesn't use
-iova at all. But it would be good to remove this offset from the code anyway.
+On 4/28/2025 4:02 PM, Muhammad Usama Anjum wrote:
+> Firmware requests 2 segments at first. The first segment is of 6799360
+> whose allocation fails due to dma remapping not available. The success
+> is returned to firmware. Then firmware asks for 22 smaller segments
+> instead of 2 big ones. Those get allocated successfully. At suspend/
+> hibernation time, these segments aren't freed as they will be reused
+> by firmware after resuming.
+> 
+> After resuming, the firmware asks for the 2 segments again with the
+> first segment of 6799360 size. Since chunk->vaddr is not NULL, the
+> type and size are compared with the previous type and size to know if
+> it can be reused or not. Unfortunately, it is detected that it cannot
+> be reused and this first smaller segment is freed. Then we continue to
+> allocate 6799360 size memory which fails and ath11k_qmi_free_target_mem_chunk()
+> is called which frees the second smaller segment as well. Later success
+> is returned to firmware which asks for 22 smaller segments again. But
+> as we had freed 2 segments already, we'll allocate the first 2 new
+> smaller segments again and reuse the remaining 20. Hence 20 small
+> segments are being reused instead of 22.
+> 
+> Add skip logic when vaddr is set, but size/type don't match. Use the
+> same skip and success logic as used when dma_alloc_coherent() fails.
+> By skipping, the possibility of resume failure due to kernel failing to
+> allocate memory for QMI can be avoided.
+> 
+> 	kernel: ath11k_pci 0000:03:00.0: failed to allocate dma memory for qmi (524288 B type 1)
+> 	ath11k_pci 0000:03:00.0: failed to allocate qmi target memory: -22
+> 
+> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+> 
+> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+> ---
+> Changes since v1:
+> - Update description
+> 
+> Changes since v2:
+> - Update description and title of patch
+> 
+> Changes since v3:
+> - Update description and title of patch
+> 
+> Changes since v4:
+> - Update title of the patch
+> ---
+>  drivers/net/wireless/ath/ath11k/qmi.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+> index 47b9d4126d3a9..2782f4723e413 100644
+> --- a/drivers/net/wireless/ath/ath11k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
+> @@ -1993,6 +1993,15 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
+>  			    chunk->prev_size == chunk->size)
+>  				continue;
+>  
+> +			if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
+> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
+> +					   "size/type mismatch (current %d %u) (prev %d %u), try later with small size\n",
+> +					    chunk->size, chunk->type,
+> +					    chunk->prev_size, chunk->prev_type);
+> +				ab->qmi.target_mem_delayed = true;
+> +				return 0;
+> +			}
+> +
+>  			/* cannot reuse the existing chunk */
+>  			dma_free_coherent(ab->dev, chunk->prev_size,
+>  					  chunk->vaddr, chunk->paddr);
 
-- Mani
+Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
--- 
-மணிவண்ணன் சதாசிவம்
+
 
