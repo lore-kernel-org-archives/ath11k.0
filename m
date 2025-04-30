@@ -4,89 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D31EC369D9
-	for <ath11k@archiver.kernel.org>; Wed, 30 Apr 2025 14:05:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91321C3ABA9
+	for <ath11k@archiver.kernel.org>; Wed, 30 Apr 2025 14:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=I2OUPwf5IqiWZra1RWdEivTGb7UptE4RADk/sgo5a3g=; b=zvRuKpaGfioNo/HehxnYT/LpfI
-	ZE/X7Mx9zRFALymmCpN9Vy/Whc1tXDYVIT1dkm5PeJjMmWSuAWsUH3Ihx0kp+5n3swhqH7C1SSoOA
-	qjw4i2hcbBFknHwXQVAXrdbWEu1Ok2EOMR7x/hXl1d4dFzy1uN0iSbXHE66uAum07ZuqqZ7DUYr2Q
-	9nbyFjcYFexS37YWPixAYNmb5S6Rtk80tL70BE6bQOXqw2USTiQFREsLu+YTCxPEhtHg4xwjwko0N
-	cnd4zkmBvTZv/uEQed4zMio33gGpBXbrniXG5JnbgUYSdhOIkchLmmlDDxZ52fpg7uo4Eyi/peNc9
-	Uf2OFWnA==;
+	bh=KCILys+yHVUwYfVKUNACbbfV4Dpb2KXlkbgWgQa0z+0=; b=3Ht7kOwb68jwX2rlVDqpJbmxCz
+	/DwmB7qDQDI//r3YTvTXMsES6mg4VmC/L3yjcEoo2JilS95z2WsmM7c+uDqF1ZHE1mps03SLmAI4W
+	pc+PqSIW0JVVATy/1QnJgndMCq9wIwFBwZYVn0HWjXsHtMwEv0y+JP8RNUO355uHZVflyFsbJVoOY
+	Y1zBiU/b/BJ0mZpL+r873wqJcpULk+nrH52IRlSA3GUg5SYJ5IoYuaiE1fI86N9qOD1ZgZ7nOg75O
+	UKlgfl1Nxtj97kCTArKEvcmAApbqzI0v8Tw49XxFfGOBxRTSlkpcvfjSuASfnInpRwbUbnFMsOFgr
+	Qk6u+sNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uA83r-0000000D4WX-2N0h;
-	Wed, 30 Apr 2025 14:05:19 +0000
-Received: from mail-vs1-xe2b.google.com ([2607:f8b0:4864:20::e2b])
+	id 1uA8RL-0000000D7W9-46tq;
+	Wed, 30 Apr 2025 14:29:35 +0000
+Received: from mgamail.intel.com ([198.175.65.17])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uA83n-0000000D4W7-3RyP
-	for ath11k@lists.infradead.org;
-	Wed, 30 Apr 2025 14:05:18 +0000
-Received: by mail-vs1-xe2b.google.com with SMTP id ada2fe7eead31-4c32190386eso708933137.1
-        for <ath11k@lists.infradead.org>; Wed, 30 Apr 2025 07:05:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=moment-tech.20230601.gappssmtp.com; s=20230601; t=1746021913; x=1746626713; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=I2OUPwf5IqiWZra1RWdEivTGb7UptE4RADk/sgo5a3g=;
-        b=HmYR/cHrS+M3oehz1O03QCqYFg1JA62C6B4wygcoa4CXQR0DF8jppHST9SB5UE8y8F
-         S1KFliTaEMcWKC8UgjMH/pzBkcaYbhSEr692W7+e/1bo8652e9arHNQkvMNjxpgQpXbp
-         kXBRStW8Vl4XJd9+jTGoA34ZYIHjL/G2vEU7Sm6CKZ8a+Ov/v6pvyw4CSR4uCXhiDw+t
-         wMH2KXTwVDiEWeFhoTyRyhHjdUQ3haeiqoiRGrtHl9LBPOPK48N4E6GStWVbrl6ayyLU
-         x1xZNTBSV8S3zyv2RDIsTPQl6Qn9wGKhG6bd4zv2C7zQOXtvK7IPAZ7U4fuoJCE2ZNZY
-         BkcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746021913; x=1746626713;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=I2OUPwf5IqiWZra1RWdEivTGb7UptE4RADk/sgo5a3g=;
-        b=lLF24aCvKWRLKs5I+ThNAmZK51SyJCz5bZkx5wnGYNGdOkPWbwZ0rwgaMV3EtnLSEi
-         7bUiJpUC+NCBXXOf2ZPg1IlMXRflp1ptLI/KPx+WoSL0qJ3fuSd8/sKHI3xt9huTXZgM
-         p7+7QhYPJKHWLmFl6ocQd5neT15wfWBFTdmDS5zD8OfwJ3gCg4h5gWxmkDu4o++28KvP
-         wQgThl5DNAUkB4whwagvlAFA3Rlz5sxZ+WuBLJD7lTwd4x0O3astm6ndfkw7yyY/vvn/
-         6rT3A3bgOByj/vAELHVJEjVdg4bpLREFitXmBdLBYyEXReeJ5MqUn/BkgRmqxheeUnga
-         FRog==
-X-Forwarded-Encrypted: i=1; AJvYcCUHqO88dl5eGU0ScehSl8UL9xVyueyuIVAGjhugVhGNS2+B7I8CifGTH8R97JK6s9NNukymU7U=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy2BY7hHvKl85zgXmBoFxYoqX10pcNN/lMW6EN+uD5/pPRGX7YA
-	1pUuxd5DqRbI7laczgp5rCJyf+p5NpqnWrhi0ZkZ/a1F+JKcdKN7vRZ3Rvk7YhnNazgpitSnxuh
-	5RdwzloYG+ELw6m2+MRzup+yJ4F1SdWkWaDCUuw==
-X-Gm-Gg: ASbGnctGsbkxl5W29vRNzUemb2Kbi+QNv0TorgKK6g5QEK2nr737ZXIezSj0B6V3XL0
-	gdEUtS96EumC8d1aLfi0itvy38DB7uS3t5sGpST4SCtYRpTTH6BZSnne+zGe+utuCK6A4NVIZug
-	kYEeuRIEUZ2RK3tMlGBnrbqJJ3
-X-Google-Smtp-Source: AGHT+IFox9j8ElbmmlmqmMXSXqVv6H1uivmvAtosMymiUPi0Qm8eVkYrV3yL16/ZGLs9JywFJsbveyAeuMmKzDepc8Q=
-X-Received: by 2002:ac5:c389:0:b0:527:b804:ff78 with SMTP id
- 71dfb90a1353d-52ace3b4332mr1525482e0c.1.1746021912610; Wed, 30 Apr 2025
- 07:05:12 -0700 (PDT)
+	id 1uA8RJ-0000000D7Vd-1nny;
+	Wed, 30 Apr 2025 14:29:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746023374; x=1777559374;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=McTwb9pq+/vbqEqNIWzbMZewBCRlkfKpTurFpG+gIdk=;
+  b=Ei/1iTES6Y0eP0QAeBPIFSi0znciJiAIZKTmYaTdSl7e0GhRfcTumcPJ
+   XYnbAb3/GNT/lLkTyRahhNIDUoMohjWF4na6XkwMOsQDnlmtDGkdfIp87
+   T39HVoez7kFcD5sugt2kJvezHCEWI5isupBgZJ0loSDecxj5Trk/sjl3J
+   boCoPdKnnsDrHgPYFbsw08B9QmIZxmBAczZ7dNR4FdrPZE5GlcGmvbkEw
+   Qbs+Dc5fwAx10KBaT5biof9EFj0hi+rsZYaShFTdMa4GniCc1Z54t3XjP
+   UMxRCNPEBHUQbXv1YNrvwfzaKSxpVJ/bxGdv4Ag1YjfVBklY0YqXHRa14
+   Q==;
+X-CSE-ConnectionGUID: 4h9low+mS+eV7yXooWY7rw==
+X-CSE-MsgGUID: 4AzAKnJATQWevH+itkt/qg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11419"; a="47698506"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; 
+   d="scan'208";a="47698506"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2025 07:29:31 -0700
+X-CSE-ConnectionGUID: /vGbO1UYRdKeO1UzaAIs1g==
+X-CSE-MsgGUID: q4UKBdEtQ/SYH4H1q429Eg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; 
+   d="scan'208";a="138968832"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 30 Apr 2025 07:29:26 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uA8R9-0003WT-16;
+	Wed, 30 Apr 2025 14:29:23 +0000
+Date: Wed, 30 Apr 2025 22:29:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Muhammad Usama Anjum <usama.anjum@collabora.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+	Youssef Samir <quic_yabdulra@quicinc.com>,
+	Matthew Leung <quic_mattleun@quicinc.com>,
+	Yan Zhen <yanzhen@vivo.com>, Kunwu Chan <chentao@kylinos.cn>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Dr. David Alan Gilbert" <linux@treblig.org>,
+	Troy Hanson <quic_thanson@quicinc.com>
+Cc: oe-kbuild-all@lists.linux.dev, kernel@collabora.com,
+	Carl Vanderlip <quic_carlv@quicinc.com>,
+	Sumit Garg <sumit.garg@kernel.org>, mhi@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org
+Subject: Re: [PATCH v3] bus: mhi: host: don't free bhie tables during
+ suspend/hibernation
+Message-ID: <202504302208.7JSH4wb6-lkp@intel.com>
+References: <20250429122351.108684-1-usama.anjum@collabora.com>
 MIME-Version: 1.0
-References: <20250416100939.282481-1-balsam.chihi@moment.tech>
- <0e129e2a-67fc-48cc-9773-efbea3f7391d@quicinc.com> <fa16bad6-305f-77c1-3f56-703564e2dfee@quicinc.com>
- <CAONkfw6m9O_6FZHBrPYdpv+=AxSgsbh1T7+GaS+U+bnjyVVJvQ@mail.gmail.com>
- <3da5d47b-993c-405e-841f-1d16d8715610@quicinc.com> <1d0682c0-ee5d-f2d4-199d-4ebc4e71f9ef@quicinc.com>
- <3660fcfb-be29-422b-a352-3996ad3fc41f@quicinc.com> <CAONkfw5-bfYRwHZ9iHhgJP2f8Zqyz5SZVbdL4n9EPhKU+=ONPg@mail.gmail.com>
- <CAONkfw7xjJjMAZSfHg5avEV=Bc5aJZqrRxMDvKWK4g14bLNjRQ@mail.gmail.com>
- <d4b01807-0770-439a-a77b-1e0f078687e3@quicinc.com> <07013bbc-296a-2403-a6ca-70de220495c5@quicinc.com>
- <fd6c118b-90ea-4d11-13d0-d8f49f9325e3@quicinc.com>
-In-Reply-To: <fd6c118b-90ea-4d11-13d0-d8f49f9325e3@quicinc.com>
-From: Balsam Chihi <balsam.chihi@moment.tech>
-Date: Wed, 30 Apr 2025 16:04:36 +0200
-X-Gm-Features: ATxdqUFWDJWFx48KtZzaecKPXcltVvNxFNp3xxh-kcqEgh_N4UyHIqOkZlZR5x8
-Message-ID: <CAONkfw7z3QZORCMxOJAnzF0bLNmsZKfV3rOYEhStAK628dpq+g@mail.gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: pci: Fix msi_irq crash on driver unload
- with QCN9074 PCIe WiFi 6 modules
-To: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>, jjohnson@kernel.org, 
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250429122351.108684-1-usama.anjum@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250430_070516_130538_4F14E3CF 
-X-CRM114-Status: UNSURE (   8.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250430_072933_702768_204B4521 
+X-CRM114-Status: GOOD (  10.82  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,36 +100,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello again,
-sorry for the delay.
-i did further debugging and the i found out that in
-"drivers/net/wireless/ath/ath11k/pci.c",
-"static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)",
-the "val = ath11k_pcic_read32" calls are causing the kernel crash.
-by removing them the driver is working properly.
-so to answer your questions :
-@Baochen Qiang:
->is this instruction causing the synchronous external abort? which src line is it pointing to?
-the src line is  "val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);"
-and any "val = ath11k_pcic_read32" in "static void
-ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)".
-@Vasanthakumar Thiagarajan:
->i) Was this working before for you and broken recently or it has been
->    like this since you tried first?
-the crash exists since began working on the project with the same hardware.
-also earlier versions of openwrt has the same bug.
-samething for Yocto kirkstone and scarthgap.
-FYI, i use two different QCN9074 chps one from Compex and the other
-from 8devices.
-both chips behave the same device_id=0xFF and they both crash because
-of this bug.
-so had to load different board-2.bin (provided by comprex and
-8devices) for each WLAN device to have 2.4GHz and 5GHz bands.
-default board-2.bin (provided by linux-firmware) did not resolve the
-kernel crash.
->ii) Running into same issue during rmmod of ath12k driver instead of
->     reboot?
-both rmmod and reboot of the ath11k_pci driver cause the crash
->iii) Is it possible to attach the console log during reboot also?
-rmmod and reboot are the same logs i already shared above
+Hi Muhammad,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on ath/ath-next]
+[also build test WARNING on next-20250430]
+[cannot apply to mani-mhi/mhi-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus staging/staging-testing staging/staging-next staging/staging-linus usb/usb-testing usb/usb-next usb/usb-linus linus/master v6.15-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Muhammad-Usama-Anjum/bus-mhi-host-don-t-free-bhie-tables-during-suspend-hibernation/20250429-202649
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git ath-next
+patch link:    https://lore.kernel.org/r/20250429122351.108684-1-usama.anjum%40collabora.com
+patch subject: [PATCH v3] bus: mhi: host: don't free bhie tables during suspend/hibernation
+config: arm-randconfig-001-20250430 (https://download.01.org/0day-ci/archive/20250430/202504302208.7JSH4wb6-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 10.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250430/202504302208.7JSH4wb6-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504302208.7JSH4wb6-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/bus/mhi/host/pm.c:1246:6: warning: no previous prototype for 'mhi_power_down_unprepare_keep_dev' [-Wmissing-prototypes]
+    1246 | void mhi_power_down_unprepare_keep_dev(struct mhi_controller *mhi_cntrl)
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/mhi_power_down_unprepare_keep_dev +1246 drivers/bus/mhi/host/pm.c
+
+  1245	
+> 1246	void mhi_power_down_unprepare_keep_dev(struct mhi_controller *mhi_cntrl)
+  1247	{
+  1248		mhi_cntrl->bhi = NULL;
+  1249		mhi_cntrl->bhie = NULL;
+  1250	
+  1251		mhi_deinit_dev_ctxt(mhi_cntrl);
+  1252	}
+  1253	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
