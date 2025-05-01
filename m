@@ -4,88 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A16DC369D9
-	for <ath11k@archiver.kernel.org>; Wed, 30 Apr 2025 16:45:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7512BC369DC
+	for <ath11k@archiver.kernel.org>; Thu,  1 May 2025 16:02:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tc0AZY5QrStEaZH2IJVhHO6VnojpLEy6uLZw7TptXX0=; b=gxRZFLfeWWVELBByp5ui9L47qf
-	K7lcQIy5biLUerJEfx0lpmE1cxPySFqRFSm5en834wTSqIHN93VBDy05roJCKQfIJBsxgWv9y/0tA
-	pcjUclDc+OK0TdfP5w+51FIxtKWGxEtIWjFx4+Niv3qHrLaa+Ym0fcx8gOvOoPrXk4+47eVJTUMna
-	Cs/ryTziOlZghcuGqu9OfQqFNLtDS4gz/N3hqgFW/WJCtBT4imlEL5rMxTIn6JE6HVT4gh+rpjxHg
-	UsEyKVTQ9CPhdn1tSMchb/oVWbGLXeHk8+KMpT3Q7C76lCUnApQAjbbK8rWy55hxi6DoTxTMJ0ESr
-	OGopgN5A==;
+	bh=0SyRuyuTtvCEKvcJ6UDdAVW6OGWJ70bm90YNylOvbj0=; b=xiFBTIrTlO4RKQMEMpcCOC9yTi
+	fG4pH3eySXSq41BSnqpSiFljXvR8EH353w29RBuxIjL9tZyylyru7hbyrEozaFtrq3iNAZvfkz3re
+	xL5ydG0kw2idimM839hdCH2hX36PGcrt27CPIwvJ77B98tQ+fzP2CJnfteRISnQnKNQ5DN45TdLlA
+	ipkXWPqZM5WXNxO/HAiYfpErILsQJRjCmVePopEVfX0BMVXadILlV1n4A7YI5PZWxXiwI60VJ+U8w
+	YublchgBdvYivuqlAmvD8RVFufaLa6DO0T148UKhiyETI4JW8uKmMxCUkKyJn9tayb4/aGktb1HQR
+	dQxxshsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAAZ7-0000000DTN9-1BtV;
-	Wed, 30 Apr 2025 16:45:45 +0000
-Received: from mgamail.intel.com ([198.175.65.11])
+	id 1uAWMc-0000000G8lf-3woU;
+	Thu, 01 May 2025 16:02:18 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAAZ4-0000000DTMd-0kPW;
-	Wed, 30 Apr 2025 16:45:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746031542; x=1777567542;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YRFeOE2SvEpVpyHUyxI/7ubZqIxqK3KMU4XzCZOjQhw=;
-  b=MlQgVbrqSmuma3KnqtkAx5p6VaFOla/TFHjtOAX8n5t9YiXLTnL9j8tC
-   PsIi5UvBOSW4OWsf26n1E/PiMZATS7/OjnEH4Gz9fMaR5x/bGZmNpEyxD
-   vG3u3USkegG0zGp0nKBoCq++aHdoDheLV9pcS7HM/GO4Cs452BoUjsBma
-   ij8Pp+cBsFkSew+aPTVvMxiE5lqdUXHFRdURKiaki6bRrlzroDUBE1Bal
-   oyjuAf06vmFI3SVjQewyXb2c8eiViinbkp4KIxeYHJn+Cf4GiKzKhDdwj
-   qxJA38q+yxxmmCyhEoXZoK1ze0U9As54SlfIvj0KHBJzrT/FuerT0InLT
-   A==;
-X-CSE-ConnectionGUID: 2eDJ+WaMSfqzti0dm6kTug==
-X-CSE-MsgGUID: IlMMUwPYQRedGbq9gW9PNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11419"; a="57900349"
-X-IronPort-AV: E=Sophos;i="6.15,252,1739865600"; 
-   d="scan'208";a="57900349"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2025 09:45:39 -0700
-X-CSE-ConnectionGUID: FRYk2KNrTwGYffzVPt4jkA==
-X-CSE-MsgGUID: dXoFU1mgRlq9kWHXKov/dA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,252,1739865600"; 
-   d="scan'208";a="134108205"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 30 Apr 2025 09:45:35 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uAAYu-0003cH-2Q;
-	Wed, 30 Apr 2025 16:45:32 +0000
-Date: Thu, 1 May 2025 00:45:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Muhammad Usama Anjum <usama.anjum@collabora.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	id 1uAWKt-0000000G8at-3NG7;
+	Thu, 01 May 2025 16:00:33 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 117CCA4B892;
+	Thu,  1 May 2025 15:55:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC6A7C4CEE3;
+	Thu,  1 May 2025 16:00:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1746115230;
+	bh=QdLG6Mxfeg9stM1JIO8NgkMtgfF8uSG0xcaTqwxc4jA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Yw7F+88U1p7hXmr+E/yol8oSlQWOTDSnm9TzXi8h1FFbqpY2uy2uAFQ3QubihEcrF
+	 7uUDL3iQpzSMHZS6K9b5d1ec8UNQyIrfp7fUFGX3YbiFRBsdgFnrmDGt9eRlM3tqhC
+	 7uaeqvAHolASbfZ/lUhfjL5Bsx7SoY2vmpYP28KI=
+Date: Thu, 1 May 2025 18:00:27 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Muhammad Usama Anjum <usama.anjum@collabora.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Jeff Johnson <jjohnson@kernel.org>,
 	Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
 	Youssef Samir <quic_yabdulra@quicinc.com>,
 	Matthew Leung <quic_mattleun@quicinc.com>,
-	Yan Zhen <yanzhen@vivo.com>, Kunwu Chan <chentao@kylinos.cn>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Dr. David Alan Gilbert" <linux@treblig.org>,
-	Troy Hanson <quic_thanson@quicinc.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	kernel@collabora.com, Carl Vanderlip <quic_carlv@quicinc.com>,
-	Sumit Garg <sumit.garg@kernel.org>, mhi@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org
+	Yan Zhen <yanzhen@vivo.com>, Alex Elder <elder@kernel.org>,
+	Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+	Kunwu Chan <chentao@kylinos.cn>,
+	Troy Hanson <quic_thanson@quicinc.com>,
+	"Dr. David Alan Gilbert" <linux@treblig.org>, kernel@collabora.com,
+	mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org, ath12k@lists.infradead.org
 Subject: Re: [PATCH v3] bus: mhi: host: don't free bhie tables during
  suspend/hibernation
-Message-ID: <202505010037.1PMLamw8-lkp@intel.com>
-References: <20250429122351.108684-1-usama.anjum@collabora.com>
+Message-ID: <2025050110-unpeeled-spur-e4af@gregkh>
+References: <20250429122112.104472-1-usama.anjum@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250429122351.108684-1-usama.anjum@collabora.com>
+In-Reply-To: <20250429122112.104472-1-usama.anjum@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250430_094542_305162_3D3636E1 
-X-CRM114-Status: GOOD (  12.22  )
+X-CRM114-CacheID: sfid-20250501_090031_976701_CE076D90 
+X-CRM114-Status: GOOD (  13.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,55 +79,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Muhammad,
+On Tue, Apr 29, 2025 at 05:20:56PM +0500, Muhammad Usama Anjum wrote:
+> Fix dma_direct_alloc() failure at resume time during bhie_table
+> allocation. There is a crash report where at resume time, the memory
+> from the dma doesn't get allocated and MHI fails to re-initialize.
+> There is fragmentation/memory pressure.
+> 
+> To fix it, don't free the memory at power down during suspend /
+> hibernation. Instead, use the same allocated memory again after every
+> resume / hibernation. This patch has been tested with resume and
+> hibernation both.
+> 
+> The rddm is of constant size for a given hardware. While the fbc_image
+> size depends on the firmware. If the firmware changes, we'll free and
+> allocate new memory for it.
+> 
+> Here are the crash logs:
+> 
+> [ 3029.338587] mhi mhi0: Requested to power ON
+> [ 3029.338621] mhi mhi0: Power on setup success
+> [ 3029.668654] kworker/u33:8: page allocation failure: order:7, mode:0xc04(GFP_NOIO|GFP_DMA32), nodemask=(null),cpuset=/,mems_allowed=0
+> [ 3029.668682] CPU: 4 UID: 0 PID: 2744 Comm: kworker/u33:8 Not tainted 6.11.11-valve10-1-neptune-611-gb69e902b4338 #1ed779c892334112fb968aaa3facf9686b5ff0bd7
+> [ 3029.668690] Hardware name: Valve Galileo/Galileo, BIOS F7G0112 08/01/2024
+> [ 3029.668694] Workqueue: mhi_hiprio_wq mhi_pm_st_worker [mhi]
+> [ 3029.668717] Call Trace:
+> [ 3029.668722]  <TASK>
+> [ 3029.668728]  dump_stack_lvl+0x4e/0x70
+> [ 3029.668738]  warn_alloc+0x164/0x190
+> [ 3029.668747]  ? srso_return_thunk+0x5/0x5f
+> [ 3029.668754]  ? __alloc_pages_direct_compact+0xaf/0x360
+> [ 3029.668761]  __alloc_pages_slowpath.constprop.0+0xc75/0xd70
+> [ 3029.668774]  __alloc_pages_noprof+0x321/0x350
+> [ 3029.668782]  __dma_direct_alloc_pages.isra.0+0x14a/0x290
+> [ 3029.668790]  dma_direct_alloc+0x70/0x270
+> [ 3029.668796]  mhi_alloc_bhie_table+0xe8/0x190 [mhi faa917c5aa23a5f5b12d6a2c597067e16d2fedc0]
+> [ 3029.668814]  mhi_fw_load_handler+0x1bc/0x310 [mhi faa917c5aa23a5f5b12d6a2c597067e16d2fedc0]
+> [ 3029.668830]  mhi_pm_st_worker+0x5c8/0xaa0 [mhi faa917c5aa23a5f5b12d6a2c597067e16d2fedc0]
+> [ 3029.668844]  ? srso_return_thunk+0x5/0x5f
+> [ 3029.668853]  process_one_work+0x17e/0x330
+> [ 3029.668861]  worker_thread+0x2ce/0x3f0
+> [ 3029.668868]  ? __pfx_worker_thread+0x10/0x10
+> [ 3029.668873]  kthread+0xd2/0x100
+> [ 3029.668879]  ? __pfx_kthread+0x10/0x10
+> [ 3029.668885]  ret_from_fork+0x34/0x50
+> [ 3029.668892]  ? __pfx_kthread+0x10/0x10
+> [ 3029.668898]  ret_from_fork_asm+0x1a/0x30
+> [ 3029.668910]  </TASK>
+> 
+> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+> 
+> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
 
-kernel test robot noticed the following build warnings:
+What commit id does this fix?  Should it go to stable kernel(s)?  If so,
+how far back?
 
-[auto build test WARNING on ath/ath-next]
-[also build test WARNING on next-20250430]
-[cannot apply to mani-mhi/mhi-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus staging/staging-testing staging/staging-next staging/staging-linus usb/usb-testing usb/usb-next usb/usb-linus linus/master v6.15-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+thanks,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Muhammad-Usama-Anjum/bus-mhi-host-don-t-free-bhie-tables-during-suspend-hibernation/20250429-202649
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git ath-next
-patch link:    https://lore.kernel.org/r/20250429122351.108684-1-usama.anjum%40collabora.com
-patch subject: [PATCH v3] bus: mhi: host: don't free bhie tables during suspend/hibernation
-config: arm64-randconfig-002-20250430 (https://download.01.org/0day-ci/archive/20250501/202505010037.1PMLamw8-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250501/202505010037.1PMLamw8-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505010037.1PMLamw8-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/bus/mhi/host/pm.c:1246:6: warning: no previous prototype for function 'mhi_power_down_unprepare_keep_dev' [-Wmissing-prototypes]
-    1246 | void mhi_power_down_unprepare_keep_dev(struct mhi_controller *mhi_cntrl)
-         |      ^
-   drivers/bus/mhi/host/pm.c:1246:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-    1246 | void mhi_power_down_unprepare_keep_dev(struct mhi_controller *mhi_cntrl)
-         | ^
-         | static 
-   1 warning generated.
-
-
-vim +/mhi_power_down_unprepare_keep_dev +1246 drivers/bus/mhi/host/pm.c
-
-  1245	
-> 1246	void mhi_power_down_unprepare_keep_dev(struct mhi_controller *mhi_cntrl)
-  1247	{
-  1248		mhi_cntrl->bhi = NULL;
-  1249		mhi_cntrl->bhie = NULL;
-  1250	
-  1251		mhi_deinit_dev_ctxt(mhi_cntrl);
-  1252	}
-  1253	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+greg k-h
 
