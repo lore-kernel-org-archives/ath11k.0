@@ -4,105 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00CEAC3ABA3
-	for <ath11k@archiver.kernel.org>; Fri,  2 May 2025 05:39:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CA61C3ABAC
+	for <ath11k@archiver.kernel.org>; Fri,  2 May 2025 08:19:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Vr0af+1fs+co45LxHXF52/9x/AZcZIXPX/7PByAtDyQ=; b=c6N0zAmKzURXgDRp/IIxpmhaxE
-	2SfmkfMl8bH6fuqnNCf20CfQo3QfbU3JWnq7vCmdOR3cUcs5pO7L1hBhC/o14E74qhyO/Vk5m/BzZ
-	ippFIqdtyZOc+Qp0ozNUEVeu1T7bOHU5Z2ZodFEWdY/dPQ7cGKHpnAjAr60yNN1zC0j33WIApPXy6
-	bASRmEW8qhupev219nb5DPAGcCI4iTBpBoQswj93y4bPZhn0TJ59ayLG2ijQLQrVIRe7c5H0RPph5
-	YDT9AG57O9KSmTc6ABLvzHpEKwHEfrol6mFv0E7DstedkQW/1eWNpMQQS/1ogIp56A8MYy5AZw7Zz
-	+5V1qgvg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=84CrWQUO3MnFFPefMzxpDlQeyVctJsJF0WYn/k9T0Jc=; b=bqqg4XJd+Ix/lk7eScr91zhSji
+	ipsoVzKMamK67+yzkSiy5AtWk7iUkwzWSO58dvyRFCgZpTXBKaZX8Zk8AQO5mrqA1fVkjJNJFeyu1
+	36BNmms/j2XHQpcd2xfB42Zxd/x7g/8uAfmSWLAwXLFn7cx1xwSrXXBNxGo3vMCTHZrdtX2D9U0ga
+	O6vpLD3UIVfNnsNif69vUSmJrzv4LiShIr53DC3C59WMWAjniFvGGBbsX0S7aPV7LpNYVxOnWHWyl
+	HWpgkOarfBnTZM0PcqvdB2pg1MmZ9Vjar6+9v+hYW6UZe7dQNjyWhBjFwcK50hNR7ipYcYwOTppaF
+	GK31Ddlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAj7u-00000000ulO-1qcQ;
-	Fri, 02 May 2025 05:39:58 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uAlcN-00000001Bqx-46jo;
+	Fri, 02 May 2025 08:19:35 +0000
+Received: from mail-vk1-xa2e.google.com ([2607:f8b0:4864:20::a2e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAj7q-00000000ukr-0yMd
+	id 1uAlcL-00000001BpY-0WlE
 	for ath11k@lists.infradead.org;
-	Fri, 02 May 2025 05:39:57 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5421NWpF016233;
-	Fri, 2 May 2025 05:39:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Vr0af+1fs+co45LxHXF52/9x/AZcZIXPX/7PByAtDyQ=; b=fA1tskF3FivMPUSS
-	BQjxlbrH30hdelfTXzeJJSXCJSq2vK75iAcxnWkUwWoRFvBorX+A2nGYgr9jcYl+
-	BAI5kXvkRW9uUJ0DOc1bsvkoaxcTu8RYb9IrfqZlko7P/sM1kPB4Bn8VyDvk3B6s
-	Ft02ArOY1R38ypSySSxjxWQmcp1HJa4fVxAzw8HUZGc/LEoKipufHIfm2RtXhn/y
-	bMSz5pShK9wT6HtdQXRYVndqQUcfsJvvLflG7ZmUlQfnJ8K1aTxcTyKcDg1NfnWj
-	6SQw+W0TSR5d+qwLrE5wHw/E+n90r2sp2sdfsjusFXZ/lMe/r5V4VBeAQfm333Mm
-	9qdI6g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u4fb4c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 May 2025 05:39:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5425dmhe008828
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 2 May 2025 05:39:49 GMT
-Received: from [10.152.204.0] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 May 2025
- 22:39:46 -0700
-Message-ID: <15edfacb-4eeb-bc3f-72cd-4b7744c9da13@quicinc.com>
-Date: Fri, 2 May 2025 11:09:43 +0530
+	Fri, 02 May 2025 08:19:35 +0000
+Received: by mail-vk1-xa2e.google.com with SMTP id 71dfb90a1353d-5259331b31eso562126e0c.0
+        for <ath11k@lists.infradead.org>; Fri, 02 May 2025 01:19:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=moment-tech.20230601.gappssmtp.com; s=20230601; t=1746173971; x=1746778771; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=84CrWQUO3MnFFPefMzxpDlQeyVctJsJF0WYn/k9T0Jc=;
+        b=maJpMUGBwCR/MvFwh7m5pRcejlutXBs880AJkGtYmRMwapvBfywpbSaF2Lq1LHgr4S
+         uc2AxsjFHLgYgbOew5O/uVdwOuWR5viY9sReosgzQa0NagzDGImsebnrdPuHj5fGDIYE
+         8hu235SG9aG9T84BMscRsQ1BxMUrW4yJWjFZXqoe6W2ZIBPE4O/1Spgoe3l2wg39dwGt
+         rT2jLVh9ZZH68nwxW7gwnRHPzD2TesnSna/ujEefMpXixB5weS0BSDkv4AlblFSWLV3v
+         biV9kYy4h/ScwHgNiesZ/dHSekPyHmNPqhZruu99nFV3+zFtHbQs/HEqbxjEle+4eG4h
+         cNNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746173971; x=1746778771;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=84CrWQUO3MnFFPefMzxpDlQeyVctJsJF0WYn/k9T0Jc=;
+        b=AMN+MorZmPvHD8R+ioyeXUD4Em3YHSb2Kt1QAYLMTGn79ZtTVnekwX0IskMhHfanTl
+         5KhuuhNQURR/vpEaOE+3UgQWDVsV7koHlysw+Qqiu33eyzwJXA1oBZK0MSsm3oj0430R
+         X02HDLbZ6pIWNZG9MSgOvt8OHr6JOucsmHZ9xJjGnOpi0aViNmoEIP5WNK6Vz3EfQTUi
+         gTBr3ML8f7oH9q6mspFNAMfka6di7PBV5orHJiBs1cQOX3sBvXfOcYwg9WM8+4wITylH
+         2U27xpxGqynNuKta48VBP8aw83n1BYxl9/oYQwtLAWHsI259twz8n7neqRaXivy1YQHY
+         7zsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWFrkTKddFx/oGGbOVU+1DWalK3dlYb0tqY4Gczin/7cRMK3cI8dEG/p9S9koR3oAToyIT+vKs=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy4Vg0zaFfatGu5ENVIt7vmKPmRfCGcSR9ERNJQNOTxp7PZMu2F
+	RBGZH0sRruF9pY94bK+5Fene1SB8tI6INVoZgEFVNbYoEMOotY4iI0cfLNqwVywZklQNx6rlNGk
+	9e758NEHgNCD7hd83jRdEsk3duSNj+5paSTXx7A==
+X-Gm-Gg: ASbGncscSPK+I7WinHe0pFuj6hxQtSuCzu+zBc1JGhXeJGdliLXvqLBzynRDqBU/FpU
+	dzP00+Np/9xU8f2xb+V0tVV73txONLSLczLCuPPC0fXmgfnC27YbDZgOCTv27Zj0upW5oRVyT8K
+	TOcca1dfcXIkKVt/8iHu9w7Lw=
+X-Google-Smtp-Source: AGHT+IHxsA6UkxMOVUH65tG13GkZAPDMxSJgtyY4IzL6w+Y4D8uNT7W+U7Dgze8ywmQoBbZnpmnrL/sRVsMfSWUhbYE=
+X-Received: by 2002:a05:6122:82a7:b0:520:61ee:c814 with SMTP id
+ 71dfb90a1353d-52aed675ebdmr976892e0c.1.1746173971118; Fri, 02 May 2025
+ 01:19:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
+References: <20250416100939.282481-1-balsam.chihi@moment.tech>
+ <0e129e2a-67fc-48cc-9773-efbea3f7391d@quicinc.com> <fa16bad6-305f-77c1-3f56-703564e2dfee@quicinc.com>
+ <CAONkfw6m9O_6FZHBrPYdpv+=AxSgsbh1T7+GaS+U+bnjyVVJvQ@mail.gmail.com>
+ <3da5d47b-993c-405e-841f-1d16d8715610@quicinc.com> <1d0682c0-ee5d-f2d4-199d-4ebc4e71f9ef@quicinc.com>
+ <3660fcfb-be29-422b-a352-3996ad3fc41f@quicinc.com> <CAONkfw5-bfYRwHZ9iHhgJP2f8Zqyz5SZVbdL4n9EPhKU+=ONPg@mail.gmail.com>
+ <CAONkfw7xjJjMAZSfHg5avEV=Bc5aJZqrRxMDvKWK4g14bLNjRQ@mail.gmail.com>
+ <d4b01807-0770-439a-a77b-1e0f078687e3@quicinc.com> <07013bbc-296a-2403-a6ca-70de220495c5@quicinc.com>
+ <fd6c118b-90ea-4d11-13d0-d8f49f9325e3@quicinc.com> <CAONkfw7z3QZORCMxOJAnzF0bLNmsZKfV3rOYEhStAK628dpq+g@mail.gmail.com>
+ <15edfacb-4eeb-bc3f-72cd-4b7744c9da13@quicinc.com>
+In-Reply-To: <15edfacb-4eeb-bc3f-72cd-4b7744c9da13@quicinc.com>
+From: Balsam Chihi <balsam.chihi@moment.tech>
+Date: Fri, 2 May 2025 10:18:54 +0200
+X-Gm-Features: ATxdqUF4R3CpScbdGnvNfMuGve0rFItJnL4807hw3x4RQybCmb1AmtLCdqx_x3Y
+Message-ID: <CAONkfw5=Ze5TrGf1ZYrgDsWhGzOrK8oj4vPGf=xL9UDuLTYx6g@mail.gmail.com>
 Subject: Re: [PATCH] wifi: ath11k: pci: Fix msi_irq crash on driver unload
  with QCN9074 PCIe WiFi 6 modules
-Content-Language: en-US
-To: Balsam Chihi <balsam.chihi@moment.tech>
-CC: Baochen Qiang <quic_bqiang@quicinc.com>, <jjohnson@kernel.org>,
-        <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
-References: <20250416100939.282481-1-balsam.chihi@moment.tech>
- <0e129e2a-67fc-48cc-9773-efbea3f7391d@quicinc.com>
- <fa16bad6-305f-77c1-3f56-703564e2dfee@quicinc.com>
- <CAONkfw6m9O_6FZHBrPYdpv+=AxSgsbh1T7+GaS+U+bnjyVVJvQ@mail.gmail.com>
- <3da5d47b-993c-405e-841f-1d16d8715610@quicinc.com>
- <1d0682c0-ee5d-f2d4-199d-4ebc4e71f9ef@quicinc.com>
- <3660fcfb-be29-422b-a352-3996ad3fc41f@quicinc.com>
- <CAONkfw5-bfYRwHZ9iHhgJP2f8Zqyz5SZVbdL4n9EPhKU+=ONPg@mail.gmail.com>
- <CAONkfw7xjJjMAZSfHg5avEV=Bc5aJZqrRxMDvKWK4g14bLNjRQ@mail.gmail.com>
- <d4b01807-0770-439a-a77b-1e0f078687e3@quicinc.com>
- <07013bbc-296a-2403-a6ca-70de220495c5@quicinc.com>
- <fd6c118b-90ea-4d11-13d0-d8f49f9325e3@quicinc.com>
- <CAONkfw7z3QZORCMxOJAnzF0bLNmsZKfV3rOYEhStAK628dpq+g@mail.gmail.com>
-From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
-In-Reply-To: <CAONkfw7z3QZORCMxOJAnzF0bLNmsZKfV3rOYEhStAK628dpq+g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PDvgQKOfvrG_OCgcrW5h7CScbe1FbqcS
-X-Authority-Analysis: v=2.4 cv=Yaq95xRf c=1 sm=1 tr=0 ts=68145aa5 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=DJGQCCccBhpFZglK8sMA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDA0MSBTYWx0ZWRfX1AFhKBswH2m2 ncdtMB5iMNMJxpR+Aigfz9mHknPZjfcoaRcWNUuLGTjqPoFa7QvVbGtSTWhQuNZHsvTmGkaAT1d DNog3Vr4Fj6/MLT1MjeiK5HWkv6MQEvJwiHV62y9bK08HIeMw7jruoWlpQlzWR9h0+6ZckBe63y
- 3eKJQEno0LFJM2h0rwlA6AjmJ00ggdu7iz13JhwZBPUXLOjPwaMmbthf4DtCoucZuHY2Y2vfPGT Zh83MKoN1aGxtwusuiJTPSgV6eO30t28e7xlrToOobQaGdB3ILaxqYFC74to2TIbB2OdvMMpWCo SC2CPiKBnI+lNuxjiqmoD0TujE01GvYRQBvo3SqgNBIaMvDfCI+llHeccIN3bVAKGxcjGlV64oh
- upfHhXEeaiZrMhDma4+m/8q72ulCW6t+mjIHTHI3jAqfHQG1tvZ+8zce3HUqQNjkoUjmZ4u9
-X-Proofpoint-GUID: PDvgQKOfvrG_OCgcrW5h7CScbe1FbqcS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-01_06,2025-04-24_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- clxscore=1015 suspectscore=0 bulkscore=0 mlxlogscore=937 malwarescore=0
- mlxscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0 adultscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020041
+To: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>, jjohnson@kernel.org, 
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250501_223954_290137_CECF3840 
-X-CRM114-Status: GOOD (  17.09  )
+X-CRM114-CacheID: sfid-20250502_011933_428858_EC1FFC72 
+X-CRM114-Status: UNSURE (   9.30  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,55 +102,76 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+I had to skip all "ath11k_pcic_read32()" calls to avoid the kernel crash.
+When booting and loading the driver the  "ath11k_pcic_read32()" does
+not cause any issues, only when unloading, rebooting and poweroff the
+problem appears.
+I will send the boot and reboot logs as soon as possible (probably
+monday, when i get my hands on the target device).
+and this is the diff that worked for me, that replaces the initial patch :
 
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -201,16 +201,18 @@ static void ath11k_pci_soc_global_reset(
+  ath11k_warn(ab, "link down error during global reset\n");
+ }
 
-On 4/30/2025 7:34 PM, Balsam Chihi wrote:
-> Hello again,
-> sorry for the delay.
-> i did further debugging and the i found out that in
-> "drivers/net/wireless/ath/ath11k/pci.c",
-> "static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)",
-> the "val = ath11k_pcic_read32" calls are causing the kernel crash.
-> by removing them the driver is working properly.
-> so to answer your questions :
-> @Baochen Qiang:
->> is this instruction causing the synchronous external abort? which src line is it pointing to?
-> the src line is  "val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);"
-> and any "val = ath11k_pcic_read32" in "static void
-> ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)".
+-static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)
++static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab,
+bool power_on)
+ {
+- u32 val;
++ if (power_on) {
++ u32 val;
 
-Thanks for the information.
+- /* read cookie */
+- val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
+- ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%x\n", val);
++ /* read cookie */
++ val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
++ ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%x\n", val);
 
-Just to confirm, so you are saying it worked when you skipped
-val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR)  alone but
-still keeping the rest of the register accesses in ath11k_pci_clear_dbg_registers()?
-Or you removed some more register reads in that function? May be you can share the
-code diff that worked for you.
+- val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
+- ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
++ val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
++ ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
++ }
 
+  /* TODO: exact time to sleep is uncertain */
+  mdelay(10);
+@@ -221,14 +223,18 @@ static void ath11k_pci_clear_dbg_registe
+  ath11k_pcic_write32(ab, WLAON_WARM_SW_ENTRY, 0);
+  mdelay(10);
 
-> @Vasanthakumar Thiagarajan:
->> i) Was this working before for you and broken recently or it has been
->>     like this since you tried first?
-> the crash exists since began working on the project with the same hardware.
-> also earlier versions of openwrt has the same bug.
-> samething for Yocto kirkstone and scarthgap.
-> FYI, i use two different QCN9074 chps one from Compex and the other
-> from 8devices.
-> both chips behave the same device_id=0xFF and they both crash because
-> of this bug.
-> so had to load different board-2.bin (provided by comprex and
-> 8devices) for each WLAN device to have 2.4GHz and 5GHz bands.
-> default board-2.bin (provided by linux-firmware) did not resolve the
-> kernel crash.
->> ii) Running into same issue during rmmod of ath12k driver instead of
->>      reboot?
-> both rmmod and reboot of the ath11k_pci driver cause the crash
->> iii) Is it possible to attach the console log during reboot also?
-> rmmod and reboot are the same logs i already shared above
+- val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
+- ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
++ if (power_on) {
++ u32 val;
 
-ath12k logs during reboot showing register read values
-in ath11k_pci_clear_dbg_registers() will be helpful which
-was not there in your log.
+- /* A read clear register. clear the register to prevent
+- * Q6 from entering wrong code path.
+- */
+- val = ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_REG);
+- ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", val);
++ val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
++ ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
++
++ /* A read clear register. clear the register to prevent
++ * Q6 from entering wrong code path.
++ */
++ val = ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_REG);
++ ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", val);
++ }
+ }
 
-Vasanth
+ static int ath11k_pci_set_link_reg(struct ath11k_base *ab,
+@@ -366,7 +372,7 @@ static void ath11k_pci_sw_reset(struct a
+  }
+
+  ath11k_mhi_clear_vector(ab);
+- ath11k_pci_clear_dbg_registers(ab);
++ ath11k_pci_clear_dbg_registers(ab, power_on);
+  ath11k_pci_soc_global_reset(ab);
+  ath11k_mhi_set_mhictrl_reset(ab);
+ }
 
