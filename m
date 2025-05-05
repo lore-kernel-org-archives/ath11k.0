@@ -4,89 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A6D5C369DC
-	for <ath11k@archiver.kernel.org>; Sun,  4 May 2025 12:37:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2FF1C3ABB0
+	for <ath11k@archiver.kernel.org>; Mon,  5 May 2025 08:11:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To
-	:From:Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CM08xeHPPzPAtEx6J7jBMfY5mggSPnim894fiEb9CM0=; b=3Klk4Af71GRyuqlDukYxZDYXAU
-	le+XV9oHCbY7/wjnJzJ8WTe5JaVl5tEW57fjDq846/X6PuVVsashTo93K/Lg73CUidEQT6LXCFPrp
-	KHHz8N8bjv7LDQOA+WaCk2ScM3H++GF0D2byL1Qzr04OO4EorUekrR+a3BOuHOx2nlMdL7991WAYV
-	tLat9jMuv/a2D5h6L5DAkhO2F95XBfjT9ZO4eL6Crfs1TDe4jI1ON0pHSTdhbzlegCQv3Cbt5pQa1
-	jgkkIA6pZaj3Q4tkXq3+Vm8WgGgm3b8spjg6hCIsxqp7EzzlIhvxkvi9HISnutGBkFHn4T6HiViU6
-	zWLGY6PQ==;
+	bh=b+Gg3Mt50xwSUU5m3t61oAB6vI5/1zWYCb/caGSKW4c=; b=mho3gaQsSoK2XUpyOoxQ3rNDOE
+	9KPPk/E9mSv3SC0cbSJoP7lVSodRy5rq71LIhj7EzJNGj8kgy/TzlDk2+LziX/hu9TjseKoaim/Ah
+	KT5D6Tc2ZlR+lQhtkBj+cYyBirbL7oQIFeEvYr9EaowyWTvJ/YFu0UTYX58FnMw4s5bbAeAq9AJBz
+	Jk7qNQUyQ59tpUe10ybYtBAlGyojdEhknR2D7x9ReWrEbEvfdL6Hqpm9/Vbq5IkKA9rG0ZdDwLVqH
+	kIIGsEiKCVN78QmG6W7it6FX7jK/3OlL2CtjHz+SjqWrVujc2/z66jJXXqp0fkwvEAst1IQk9+4IS
+	5LCJMJxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBYaV-00000005HVu-2kEX;
-	Sun, 04 May 2025 12:36:55 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1uBqvU-00000006kTp-2AeE;
+	Mon, 05 May 2025 08:11:48 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBYaS-00000005HVS-4A76
+	id 1uBqvS-00000006kTF-1T9N
 	for ath11k@lists.infradead.org;
-	Sun, 04 May 2025 12:36:54 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-43ede096d73so20470765e9.2
-        for <ath11k@lists.infradead.org>; Sun, 04 May 2025 05:36:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746362211; x=1746967011; darn=lists.infradead.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CM08xeHPPzPAtEx6J7jBMfY5mggSPnim894fiEb9CM0=;
-        b=i1MJwdzrkiRru7CaL286lV2F4xCuFa+07y8grzr41isumCwA/gnZXeR3KtZ5uPV5BM
-         C1tzqFY6gg4GWg3tMUQf3g6NsO7jAKXU9SovibU6nx5CSbtNNHtQ1fs9xOhh98Ww0fHf
-         rhk29SJKWlW8jtirCKaLBXGLDdmkmHN3sEhpE6cmwZIawOOKJpDbeFFkei3GrD7xya0o
-         bO28ZO+3CrVT6CINprH0Ct6i254De4zeJIv141UR1rIiG9lLe16AdPxJq27iEmzMLiCD
-         8fuorhjAYnNUZgGhRIa/lBFLq9xP3AwS3hBQqRp/4vnJfOT3lVRzGa1eceDxNQIPr5a3
-         FIlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746362211; x=1746967011;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CM08xeHPPzPAtEx6J7jBMfY5mggSPnim894fiEb9CM0=;
-        b=tt77Uot/uJQn2ZLJv04MTA7MpeuJjEQ9VT0Jyy3bHT50rfiRw/jklK+jYuz8qlMsoi
-         +YaoEQon90MLwlD8Sznf7KoqcrH23rhuyAnlTKu9z6gpQd5WVE31PEbNrLhRZ6A9SQWt
-         NEcajJ9AvVStST5MucDuAvo01dcPTiOEt44u18uN96czCYHMqm7f9iFE3qKHjw3mQB52
-         9PwCMo7EL1cmXpjHf668lp/kw9w0+tJVa1Z506mqWIOxOuSqOsG060EeCQeruwooCHkw
-         ei82rdMMksu1w01yqunKs/HKFogXR5Obl2iCRl4gOppjF2iXX1LczDkV7zF50apWb4mv
-         0SLA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5251PqLFQKMBIsWSCa/r1D4TNudNwSRgnS7iP0iViaNnvxqVcOskjUL4esUKlKHauxTo0QGs=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxdPhom0elwXubTJ9+t/pv6jFi2ypT2deCXV+SwfXFgVS75GqaB
-	y9WRCJe0MrWjeZ0RlRk+4nTDddhaSYI7wBW6G04Jy3KxgLyyfH3E
-X-Gm-Gg: ASbGncvsME9fUUd62C1xUeGuTFBVMkEp3RqY//82u9YFnwKzXFuRQ+xbmzrPuOxVVu9
-	wRm2qDO5nUsSuQy47uRyqYHWL+el1H5s1T1iwrXzHaI235WLyfgYl3RuExAS5+vlHcAA2ZWAP+g
-	6GWaizChDhLDK1xlDB5OcUB26P6mihJGBW5nKdH15hS9Ix9Ep6ib/GdGW7ob1ToT9/+hxJcwvDe
-	XhjWKu0cT8zzT3qZOJUEX1973ph0osUjwACih2V3/jn2PmuIHNYsYbcckPh7wclXb/s4OaVl0BZ
-	+9kivxEV8OoVmLUBr1Tj1jh52Ap++fDfVERUFLGh+8wTCzGn7IAlYgcXcBM=
-X-Google-Smtp-Source: AGHT+IEApNLeMqXPTD74HBZS5fOAX/1hg+752BPbILvPZGU6lVPtLCQ59W/vyrEscsgOIHE1jBlxFw==
-X-Received: by 2002:a05:600c:828c:b0:43d:160:cd97 with SMTP id 5b1f17b1804b1-441c4923807mr26739845e9.25.1746362210525;
-        Sun, 04 May 2025 05:36:50 -0700 (PDT)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441c0dfc537sm55192625e9.16.2025.05.04.05.36.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 May 2025 05:36:49 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+	Mon, 05 May 2025 08:11:47 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1746432690; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=MLF8NapsauWx/jWEFAUDVSKKaVgiJMS7O27bOiTP34z4/kY/1Y/DTrq0We8cxR6mByfUhB019/sQQNObNPej3kXiy8E+cNM+WvqdBdwBn4UnODiwOMU76aE8ZqFiOMOpTCrp8eqaKJzN1TD0glPySlcfhxo0uu1dH2CEk2jhvhA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1746432690; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=b+Gg3Mt50xwSUU5m3t61oAB6vI5/1zWYCb/caGSKW4c=; 
+	b=mljTnn9fGJrwzH0ffp16E0t2V1qrHGHQhQRg93D9j0dFGPTZy9NQojSFmtHL3rqvcphSWBgY3PtgIZ+WM4pwX4DYUGzo3aA4EXbxNMF19lym/K4opFOvbJgLBS+p5UuGIowb28guCM7oPgprAJk7g5utjbPEGO1Pq1gYfaTCCj8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746432690;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Cc:Cc:Subject:Subject:To:To:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=b+Gg3Mt50xwSUU5m3t61oAB6vI5/1zWYCb/caGSKW4c=;
+	b=AVhsher3yyW72VmiAxLe2e1aGyFzNopPF5zAdnZWGSXnM6b/E6VyqX0optYsSjH7
+	fv5Qc1bVsbV+y9hLMldqxKb7bnpDR5aaBtf6Pl37ZZ193CSysG2mmYH30z/WDfOYK3i
+	8lmp5sDEAAvgLFamLoVcMJ+cghVnxEIAzxwsJBY0=
+Received: by mx.zohomail.com with SMTPS id 1746432688103381.6383686732846;
+	Mon, 5 May 2025 01:11:28 -0700 (PDT)
+Message-ID: <d2ce1fd8-cd84-4744-9847-2ac393bf99eb@collabora.com>
+Date: Mon, 5 May 2025 13:11:23 +0500
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: usama.anjum@collabora.com, kernel@collabora.com,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org, quic_bqiang@quicinc.com
+Subject: Re: [PATCH v5] wifi: ath11k: Fix memory reuse logic
+To: jeff.johnson@oss.qualcomm.com, Jeff Johnson <jjohnson@kernel.org>
+References: <20250428080242.466901-1-usama.anjum@collabora.com>
+Content-Language: en-US
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <20250428080242.466901-1-usama.anjum@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Sun, 04 May 2025 14:36:48 +0200
-Message-Id: <D9NDQJB4VMWA.V4IPOZOIR46W@gmail.com>
-Subject: Re: [PATCH] Revert "ath11k: clear the keys properly via
- DISABLE_KEY"
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Vasanthakumar Thiagarajan" <quic_vthiagar@quicinc.com>,
- <ath11k@lists.infradead.org>, "Sven Eckelmann" <se@simonwunderlich.de>
-Cc: <linux-wireless@vger.kernel.org>, "Steffen Moser"
- <lists@steffen-moser.de>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250117191455.3395145-1-nico.escande@gmail.com>
- <20e0a239-3d23-473b-5bc8-41bc25a64088@quicinc.com>
-In-Reply-To: <20e0a239-3d23-473b-5bc8-41bc25a64088@quicinc.com>
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250504_053653_037174_460F9EE4 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20250505_011146_482767_C491A25E 
+X-CRM114-Status: GOOD (  22.54  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,33 +80,77 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sat Jan 18, 2025 at 11:29 AM CET, Vasanthakumar Thiagarajan wrote:
-> Hi Nicolas,
->
-> On 1/18/2025 12:44 AM, Nicolas Escande wrote:
->> This reverts commit 436a4e88659842a7cf634d7cc088c8f2cc94ebf5.
->>=20
->> This as been reported by multiple people [0] that with this commit,
->> broadcast packets were not being delivered after GTK exchange.
->> Qualcomm seems to have a similar patch [1] confirming the issue.
->>=20
->
-> This will re-open https://www.spinics.net/lists/hostap/msg08921.html
-> reported by Sven. The recommended ath firmware ABI during GTK re-keying
-> is SET_KEY instead of current DEL_KEY followed by SET_KEY. We are looking
-> at other options like some marking by mac80211 for the driver to be able
-> to identify if the received DEL_KEY is for re-keying. Also I'm curious
-> if roaming between secure and non-secure mode is a critical use case.
-> If not, we can probably go ahead with this revert as temporary WAR,
-> @Sven?
->
-> Vasanth
+Reminder to pick this patch.
 
-Hello,
+On 4/28/25 1:02 PM, Muhammad Usama Anjum wrote:
+> Firmware requests 2 segments at first. The first segment is of 6799360
+> whose allocation fails due to dma remapping not available. The success
+> is returned to firmware. Then firmware asks for 22 smaller segments
+> instead of 2 big ones. Those get allocated successfully. At suspend/
+> hibernation time, these segments aren't freed as they will be reused
+> by firmware after resuming.
+> 
+> After resuming, the firmware asks for the 2 segments again with the
+> first segment of 6799360 size. Since chunk->vaddr is not NULL, the
+> type and size are compared with the previous type and size to know if
+> it can be reused or not. Unfortunately, it is detected that it cannot
+> be reused and this first smaller segment is freed. Then we continue to
+> allocate 6799360 size memory which fails and ath11k_qmi_free_target_mem_chunk()
+> is called which frees the second smaller segment as well. Later success
+> is returned to firmware which asks for 22 smaller segments again. But
+> as we had freed 2 segments already, we'll allocate the first 2 new
+> smaller segments again and reuse the remaining 20. Hence 20 small
+> segments are being reused instead of 22.
+> 
+> Add skip logic when vaddr is set, but size/type don't match. Use the
+> same skip and success logic as used when dma_alloc_coherent() fails.
+> By skipping, the possibility of resume failure due to kernel failing to
+> allocate memory for QMI can be avoided.
+> 
+> 	kernel: ath11k_pci 0000:03:00.0: failed to allocate dma memory for qmi (524288 B type 1)
+> 	ath11k_pci 0000:03:00.0: failed to allocate qmi target memory: -22
+> 
+> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+> 
+> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+> ---
+> Changes since v1:
+> - Update description
+> 
+> Changes since v2:
+> - Update description and title of patch
+> 
+> Changes since v3:
+> - Update description and title of patch
+> 
+> Changes since v4:
+> - Update title of the patch
+> ---
+>  drivers/net/wireless/ath/ath11k/qmi.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+> index 47b9d4126d3a9..2782f4723e413 100644
+> --- a/drivers/net/wireless/ath/ath11k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
+> @@ -1993,6 +1993,15 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
+>  			    chunk->prev_size == chunk->size)
+>  				continue;
+>  
+> +			if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
+> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
+> +					   "size/type mismatch (current %d %u) (prev %d %u), try later with small size\n",
+> +					    chunk->size, chunk->type,
+> +					    chunk->prev_size, chunk->prev_type);
+> +				ab->qmi.target_mem_delayed = true;
+> +				return 0;
+> +			}
+> +
+>  			/* cannot reuse the existing chunk */
+>  			dma_free_coherent(ab->dev, chunk->prev_size,
+>  					  chunk->vaddr, chunk->paddr);
 
-Any news on this ?
-I would hate for this to sink into oblivion once again given how hard this
-affects end users when it does hit.
-
-Thanks,
+-- 
+Regards,
+Usama
 
