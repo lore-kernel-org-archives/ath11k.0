@@ -4,102 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32E14C3ABBF
-	for <ath11k@archiver.kernel.org>; Tue,  6 May 2025 10:39:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC8A9C3ABBC
+	for <ath11k@archiver.kernel.org>; Tue,  6 May 2025 16:50:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=hmQ5itCDXl4b8OO8xUVwuQa9wDyhI4g/YkbaLq6LtD8=; b=eVfPddrrn7cb3StXIgpHtketiA
-	ZA4fa5iQlIjMYHJhRqFmeCv3VFXqIZwAcBthrcGUMFILJ3GLW+XTPOj0a0MESLAR56ADNt5Sd4skm
-	++KrKjgVCPVtDBaS2k6xBV8IzlKYwmywjt5lNaB1kCrc+Yd6UrcDezShqAyJzm4s1z/yhFnXFm+J4
-	8HF88PVQaFXkJv2Qh9KGAhcguC4Bfioy+IDEzr+kX4LVlbWSPJMTiuJpo9dw/HBiRIyJaQgScl+DE
-	AIAqxR1ooRyb+dZEKUGWOaCYDipFY/qId+EjnLiR4Jut5T9pOriRm1UzDIAvrP46iqBfGnHOGxHyY
-	TT51BKrA==;
+	bh=le+RGOEXf+PLjSVW04iEzrbaCc2v/k7AHP12FCt1V0Y=; b=E6TOQJd5OhLQHyQZMZihWr6iWH
+	UZou3Z8SgqzgxIBJasx0PU5r9sYOAE8i2zppkiDlPft+NrZwelxGIwH/LGjVU9HnBWQr/JgE0kEu9
+	HQz0yUKgjCaKbe84FPCHxlmGV/cvBxfN8Wf6sEeLIXFfoID79Zvr2ifgYBVJQjsXYOQ8FD824T4V3
+	pwXdhUmi5PqCV5RkKd5isunvytw25gm+sbtvqhLJ8DuCUJ0ksjY5VLN5lJxRaCpwdgFfdGnAwyLQL
+	DRxd7TW/F/YsH0+0jmuAMe2i2MymQpU4R46h/KZkrmJSwpoEF6N+zstmyhGb/OqXcc0QjBd6V+owj
+	8Ran3fCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCFhw-0000000BbA3-3tOm;
-	Tue, 06 May 2025 10:39:28 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uCLVC-0000000CkLI-05hp;
+	Tue, 06 May 2025 16:50:42 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCESo-0000000BKrL-48LX
+	id 1uCI4k-0000000C2l7-362r
 	for ath11k@lists.infradead.org;
-	Tue, 06 May 2025 09:19:48 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5467ItQt016934;
-	Tue, 6 May 2025 09:19:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hmQ5itCDXl4b8OO8xUVwuQa9wDyhI4g/YkbaLq6LtD8=; b=Sc0l0/ZLxr+jZ+Qd
-	loM+f4gDxyHgIedhv/DAA04ZnMUkJkTAUOhuoxEzXF9ktpPK1yH8R/2mr7HeKEVO
-	x6mcCIm7fhSksSKNHt+tcyvaDmBXZ+eesPcHTrQKtERUUy73l+fjjxDJc3NewI6v
-	v6S8WfvJuxeO3Ee68IbOwUwLxVEjHZEeMzzmcYoT7qxlWSp6qMtX8oa3ldXSXP1V
-	Zjpbrsx0gpkakp0ItDRzoDMQu6uvqeT/pIebhTsSBjw8TI1h+2Yf12jJGBow3Ib2
-	EfRqH9w3lI391jJT+D+LBnrdnYQ4/UQ+SZtPL0MbZf67hrDBgRjBLHODwEb7RZjB
-	ab43Pg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46fdwtrc3e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 06 May 2025 09:19:44 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5469JiY2018297
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 6 May 2025 09:19:44 GMT
-Received: from [10.216.28.46] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 6 May 2025
- 02:19:42 -0700
-Message-ID: <0c166b5b-f358-1f39-4569-a1ac388033df@quicinc.com>
-Date: Tue, 6 May 2025 14:49:39 +0530
+	Tue, 06 May 2025 13:11:12 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1746537055; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Mi3wkTw0euUe1uZMnqrVoRQTAXYgJJJpKX+sAdKc+DsIa9D58bptoy+VYTDd0PXgDOyP8xV98/AX/FrMMeFuhd/Kky+4/jkm9g/tkIWUwAnKOfuOPrjGdWHXblqjUTP94ePSAb8itAD6JRgtpEkfiu4sqyMRYV1IctmbHzhFjcE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1746537055; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=le+RGOEXf+PLjSVW04iEzrbaCc2v/k7AHP12FCt1V0Y=; 
+	b=T0STJ2kuRkK56z6+ILP8yF7R6fyJKSscrn2rQl9bhUWQwaTFxhdws9qzTGcz046IX1WfjQGFwdl9i5p1r/dStlYcq9BMFslV6EMtQmpi+uYGlJ1E9JEzM2gyxrl38lfpo7wi4pUquPRm7FXvVvO9sbETZUT/S6m2pVPBM+Bcl3Q=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746537055;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Cc:Cc:Subject:Subject:To:To:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=le+RGOEXf+PLjSVW04iEzrbaCc2v/k7AHP12FCt1V0Y=;
+	b=dJkQeUSiBYBeRg/Hpa4Cz7IPFuwAeLIk1iv2kmqb3DzxaY4ulM12yl4CsYaRqlKy
+	+mFLgkbWqQWWJ5lJOrdMGDDnZMwXoCttV6TMDoxQorJCQ/V+HacA4Uy7nnz87cQWsnC
+	p4YG4fAU6WRQKU/qjbxh0xvkd4pBaLq+KpoS9AO8=
+Received: by mx.zohomail.com with SMTPS id 17465370533315.429619863376274;
+	Tue, 6 May 2025 06:10:53 -0700 (PDT)
+Message-ID: <ec0bb100-4a70-4827-86b1-e4a7e8867a2d@collabora.com>
+Date: Tue, 6 May 2025 18:10:48 +0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] Revert "ath11k: clear the keys properly via DISABLE_KEY"
+User-Agent: Mozilla Thunderbird
+Cc: usama.anjum@collabora.com, kernel@collabora.com,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5] wifi: ath11k: Fix memory reuse logic
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, quic_bqiang@quicinc.com,
+ Jeff Johnson <jjohnson@kernel.org>
+References: <20250428080242.466901-1-usama.anjum@collabora.com>
+ <f58075f7-f643-4e47-b774-dc529aaa01e5@oss.qualcomm.com>
 Content-Language: en-US
-To: Nicolas Escande <nico.escande@gmail.com>, <ath11k@lists.infradead.org>,
-        Sven Eckelmann <se@simonwunderlich.de>
-CC: <linux-wireless@vger.kernel.org>, Steffen Moser <lists@steffen-moser.de>
-References: <20250117191455.3395145-1-nico.escande@gmail.com>
- <20e0a239-3d23-473b-5bc8-41bc25a64088@quicinc.com>
- <D9NDQJB4VMWA.V4IPOZOIR46W@gmail.com>
-From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
-In-Reply-To: <D9NDQJB4VMWA.V4IPOZOIR46W@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <f58075f7-f643-4e47-b774-dc529aaa01e5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=VPPdn8PX c=1 sm=1 tr=0 ts=6819d431 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=OLL_FvSJAAAA:8
- a=IbVDsZSo2lVlMIwTQQ8A:9 a=QEXdDO2ut3YA:10 a=cq9DwLQcLZUA:10
- a=Iy0t56g-M2wA:10 a=oIrB72frpwYPwTMnlWqB:22
-X-Proofpoint-GUID: 0qxcDUgYLaC0xEml_eltkdevkWe14pI5
-X-Proofpoint-ORIG-GUID: 0qxcDUgYLaC0xEml_eltkdevkWe14pI5
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA2MDA4OCBTYWx0ZWRfX7tjRIBDXYq7W
- ++bypCaRnEAyJ5pbjhWAQr+yk2D1EEtxbkfkQmLNU+IA0Mk/reucNPdplpaB52LtKECpFUQlXlT
- ZdpekatG2xaD0LST0Ab4B0duTHNSixxnXZRn9++TYD8lgheiZaP9DuAerCV9of2pX6+Zqgww9fg
- ljrNAq8HU3PU4RsbALWJVmPIiOMcJXp8pwcTqEfdKv0jOXBDlVnFDmzRSokz7ox//O+WZlH2lUg
- Clr/sA8/XU8fbM1nHWJiy8sLyRBfjOp5/U7K2pXyvtkMygk6zcqqq5Use05bmAMb0GwTX1Dcqg8
- dVJ30+GRqM1dyC5o4mbjH0c7MQ/0EBj2f6RrDdFPyM8dNtviG7jW5LPC/xnexOnIGMhBo1qgWi3
- ginN5r9d89utY73qexG8Yz1SdJ7o7RuOBHkYPizBUzg+maHrvGU+9uX04gUqsJk5LjGyAX07
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-06_04,2025-05-05_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 mlxscore=0
- bulkscore=0 clxscore=1011 lowpriorityscore=0 impostorscore=0 malwarescore=0
- mlxlogscore=577 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505060088
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250506_021947_036089_13624A25 
-X-CRM114-Status: GOOD (  14.93  )
+X-CRM114-CacheID: sfid-20250506_061110_812522_A5610AD9 
+X-CRM114-Status: GOOD (  11.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,39 +82,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Nicolas
-
-On 5/4/2025 6:06 PM, Nicolas Escande wrote:
-> On Sat Jan 18, 2025 at 11:29 AM CET, Vasanthakumar Thiagarajan wrote:
->> Hi Nicolas,
->>
->> On 1/18/2025 12:44 AM, Nicolas Escande wrote:
->>> This reverts commit 436a4e88659842a7cf634d7cc088c8f2cc94ebf5.
->>>
->>> This as been reported by multiple people [0] that with this commit,
->>> broadcast packets were not being delivered after GTK exchange.
->>> Qualcomm seems to have a similar patch [1] confirming the issue.
->>>
->>
->> This will re-open https://www.spinics.net/lists/hostap/msg08921.html
->> reported by Sven. The recommended ath firmware ABI during GTK re-keying
->> is SET_KEY instead of current DEL_KEY followed by SET_KEY. We are looking
->> at other options like some marking by mac80211 for the driver to be able
->> to identify if the received DEL_KEY is for re-keying. Also I'm curious
->> if roaming between secure and non-secure mode is a critical use case.
->> If not, we can probably go ahead with this revert as temporary WAR,
->> @Sven?
->>
->> Vasanth
+On 5/6/25 12:17 AM, Jeff Johnson wrote:
+> v2 feedback was not incorporated:
+> For starters, can we make the subject a bit more specific, i.e.
+> Fix MHI target memory reuse logic
 > 
-> Hello,
+> But don't repost for this -- I'll make that change in ath/pending
+I'd changed again on the request of another reviewer. Please feel free
+to change as you like. I don't have any opinion on it.
+
 > 
-> Any news on this ?
-> I would hate for this to sink into oblivion once again given how hard this
-> affects end users when it does hit.
+> However, does ath12k need the same fix?
+Looking at ath12k, there is similar code structure in
+ath12k_qmi_alloc_chunk(). By adding some logging, we can confirm if
+ath12k requires the fix or not. As a lot of code is similar in both
+drivers, ath12k may require the same fix.
 
-We are working on a driver change w/o reverting the commit, we'll share
-the patch once complete.
+I don't have access to ath12k. So I cannot test on it.
 
-Vasanth
+> If so, can you post a separate patch for that?
+> 
+> /jeff
+
+-- 
+Regards,
+Usama
 
