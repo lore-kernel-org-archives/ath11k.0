@@ -4,65 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E623CC3ABB6
-	for <ath11k@archiver.kernel.org>; Tue,  6 May 2025 02:22:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B7EEC3ABBC
+	for <ath11k@archiver.kernel.org>; Tue,  6 May 2025 06:09:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kpaL7YPggXcHbrLQq9yqfGkeaxpFeB90rn+rtjQiKyo=; b=Yc32crPpXw6MAZbUUXUk9tXZ5a
-	GTfuiZ+4QzG/X/JRyAS4FjtrQq0oHwIXDK4p9SmqTg6/400kjEXZqkbEKcvc+cQzIsKm8JINXnNYj
-	jThtddOUllftWixK0gBq0Mf0DN+esO0QICzwbUr8J2BX7TUlAclBFA9tkZmhpDd13mGgpetoWfWGD
-	v0A6jAmeeQdR3Yn3tM2HoOmAlOo6OH2sqGLAx1Kupwo++KQt5cVP9Kfsf07qUahPosR6cTfQnYE0A
-	IklEqUBlYAs8kGPit9DYD8vwsGvKuQ0/XKpukB0XxVff98uP+/eyUFaUFQkGlRslZKz/Y9iw7YExy
-	9HXs/pdQ==;
+	bh=iWQ4nF/xEliB+etY7TkbxF3L7ncofLpYh45LamAVez4=; b=ISN07QVN8Qhq1HF9r4j66Kav2p
+	AyxIEDnTDQIzqmkrKh9+5WA72vgIFf25++qjaafzMb8vuZg0bzMAVRIr/vVyD+2GFpAZRAgdydH1O
+	r9aGTMyP3IH6Y6CY2zTv/tV/t4Ly2ZkRnz7+xECthxYXehypikPW2IQFUixcW9/DyBpwJE/pR1tiF
+	7HIoRQpAjlw8oEQi6CuY0kCRixjym4COn+iVp4a48r50XTwSvPQuKi/scP320+r0GMMYAqky8kLq2
+	YouJwmducvsiDPaSg3A2noQ0Xm3k51rll8fQA5WGP3abUWAvfVvd4zdJN4waViY9LhOJE3DCKEmtC
+	qnHMX/QA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uC7xL-00000009jDG-2ClE;
-	Tue, 06 May 2025 02:22:51 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1uCBV1-0000000AbKD-34jC;
+	Tue, 06 May 2025 06:09:51 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uC4jN-00000008uT0-44GB
+	id 1uC9wx-0000000AE9H-2OZ3
 	for ath11k@lists.infradead.org;
-	Mon, 05 May 2025 22:56:14 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7DB9F629CB;
-	Mon,  5 May 2025 22:55:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13B54C4CEE4;
-	Mon,  5 May 2025 22:56:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746485773;
-	bh=04fT3HF5zV7+v+IOXiYHLUDgH0S8C7MsvuRieKy+yGM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kPPncBP66SLSDLMzxw8HcepL0B8eY7UVdkrwfqvzwkAmhvnB+dqGa0SGGrYbRJIiB
-	 YPGqdsgU0Hc7xQcnOyjYal2Ovl8ocEqqQjh84yEtn22yoeGWBbC8NKqyxcTPaVyGWZ
-	 j2vgBVR/fLOUOEn4LwAWk8cldv4sa1xmxNxgMal/Gw5o5pr8b1BfGZelfDNWu0T7YC
-	 mq2rysYbLmk0+MrNDOvTbjs3Qx3JEmzO55QJz3rW0e8zz9NcPoMdonbDT/hhIsYcDz
-	 8x8ueA/eN/QQNCJHKsRQxdX6CEcUHaj6z5sNAjOptQGq5m5+qeVKpzzYR1nGZ13pY5
-	 3w6aLoVAa8YKA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: P Praneesh <quic_ppranees@quicinc.com>,
-	Tim Harvey <tharvey@gateworks.com>,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-	Sasha Levin <sashal@kernel.org>,
-	jjohnson@kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.12 476/486] wifi: ath11k: Use dma_alloc_noncoherent for rx_tid buffer allocation
-Date: Mon,  5 May 2025 18:39:12 -0400
-Message-Id: <20250505223922.2682012-476-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250505223922.2682012-1-sashal@kernel.org>
-References: <20250505223922.2682012-1-sashal@kernel.org>
+	Tue, 06 May 2025 04:30:37 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 545M6C9A013235;
+	Tue, 6 May 2025 04:30:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iWQ4nF/xEliB+etY7TkbxF3L7ncofLpYh45LamAVez4=; b=eUV0zf+dV13t4EoN
+	rplvCfHhJkRX5dvYCiSqxtOZIvRpvfLENXPk5GeoziGOeFB+tugWrPad4Bq/fegS
+	lcmVdg3jCNSrpN7ocmph1e7XQLzA5hgc6XmZmUACQg/5PyVSEGjZ64ZL3uybvZ6c
+	sG2S7KxW4qVuMvlFsTpdAkQ9Q3SXuGXAkgyVTEV74lpKcaBTCTecEUyC0T5Rr/Al
+	n0UnuqYrBpyK5u/iqXG7X4j55TODmGWCf9atCw0q4Yl7fUmxZzDj7EHVWdmocYQe
+	sGUlNgUr/RKzR9a01gMKCbbsDel8Zb6vaAKDzDcRKHiZeedaEOkkJObjuQ6YYOda
+	tmCgcA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46f5u40vgy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 May 2025 04:30:24 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5464UN3U011675
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 6 May 2025 04:30:23 GMT
+Received: from [10.218.37.122] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 5 May 2025
+ 21:30:16 -0700
+Message-ID: <45deb1b9-748f-2342-1cf7-16b54ef6b95b@quicinc.com>
+Date: Tue, 6 May 2025 09:59:53 +0530
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.12.26
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 07/10] bus: mhi: host: Add support for Bandwidth scale
+Content-Language: en-US
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "Krishna
+ Chaitanya Chundru" <krishna.chundru@oss.qualcomm.com>
+CC: Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?=
+	<ilpo.jarvinen@linux.intel.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        "Lorenzo
+ Pieralisi" <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Johannes Berg
+	<johannes@sipsolutions.net>,
+        Jeff Johnson <jjohnson@kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <mhi@lists.linux.dev>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <quic_pyarlaga@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, <quic_vpernami@quicinc.com>,
+        <quic_mrana@quicinc.com>,
+        Jeff Johnson
+	<jeff.johnson@oss.qualcomm.com>
+References: <20250313-mhi_bw_up-v2-0-869ca32170bf@oss.qualcomm.com>
+ <20250313-mhi_bw_up-v2-7-869ca32170bf@oss.qualcomm.com>
+ <fzin4uttqtf33moiew6bazgxea7w72at5quumjg646s43wnq2g@3eupbyomplgw>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <fzin4uttqtf33moiew6bazgxea7w72at5quumjg646s43wnq2g@3eupbyomplgw>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=KcfSsRYD c=1 sm=1 tr=0 ts=68199060 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8
+ a=n_1mmymH6l7bHqmgIawA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: N1CJ9emTCHl_cKVi1A8ds-4Zvp8ZbOdX
+X-Proofpoint-ORIG-GUID: N1CJ9emTCHl_cKVi1A8ds-4Zvp8ZbOdX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA2MDA0MCBTYWx0ZWRfX2YZ3yvN6PB3d
+ 1MCevqc7sD5s0hK9MEjzAE458suP+nnR7bTwTpt5WWhruCeHLjr9CkRlbBa+jjb7M3DbkXsHYoA
+ WhwGjGg2TU4dPT1I6oJu9gYdutFd4ldO6Rriz1TjM5xemcynowhXa3bqphI/2jFayGTHEAlMfGx
+ op/JgOMa6JkYTDUy75Nzt67HDVVHXP18YoHfrfFWiTNb16AakM4mkAzWJEVJtJStyfOhSZnL08U
+ YV/Tsd7PuU2Xncjf+vi+YSG4xh78uhty0K8JgwA2BvwjGDwyOjA480PhOxcaqQDBrkoef4BwGUA
+ otdBKmnTu3jGrM1ktaFYg9O4LDeQiI5XZURs2Tv2V1I/jy24Z+lygCea5EUhsNSg8O9Aleohe7L
+ wSwIOqauk01sL0NrFAY4k/jDUNaZuLcQUHq33gbkz6YcEzcD0fG6HaQvsoHOumJnfGTPkK6n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-06_02,2025-05-05_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 spamscore=0 suspectscore=0 bulkscore=0 mlxlogscore=999
+ phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0 adultscore=0
+ clxscore=1015 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505060040
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250505_213035_759675_7E7FA0AE 
+X-CRM114-Status: GOOD (  48.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,276 +132,386 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: P Praneesh <quic_ppranees@quicinc.com>
 
-[ Upstream commit eeadc6baf8b3dcd32787cc84f0473dc2a2850370 ]
 
-Currently, the driver allocates cacheable DMA buffers for the rx_tid
-structure using kzalloc() and dma_map_single(). These buffers are
-long-lived and can persist for the lifetime of the peer, which is not
-advisable. Instead of using kzalloc() and dma_map_single() for allocating
-cacheable DMA buffers, utilize the dma_alloc_noncoherent() helper for the
-allocation of long-lived cacheable DMA buffers, such as the peer's rx_tid.
-Since dma_alloc_noncoherent() returns unaligned physical and virtual
-addresses, align them internally before use within the driver. This
-ensures proper allocation of non-coherent memory through the kernel
-helper.
+On 4/25/2025 10:13 PM, Manivannan Sadhasivam wrote:
+> On Thu, Mar 13, 2025 at 05:10:14PM +0530, Krishna Chaitanya Chundru wrote:
+>> As per MHI spec sec 14, MHI supports bandwidth scaling to reduce power
+> 
+> Same here, add spec version.
+> 
+>> consumption. MHI bandwidth scaling is advertised in devices that contain
+> 
+> 'advertised in devices or by devices'? Difference is subtle, but it changes the
+> context.
+> 
+its by device, I will correct it next patch.
+>> the bandwidth scaling capability registers. If enabled, the device
+>> aggregates bandwidth requirements and sends them to the host in the form
+>> of an event. After the host performs the bandwidth switch, it sends an
+>> acknowledgment by ringing a doorbell.
+>>
+>> if the host supports bandwidth scaling events, then it must set
+> 
+> So this means both host and device has to support bandwidth scaling events? What
+Yes both host and device has to support this.
+> does 'events' mean here?
+Device sends bw scale info through dedicated MHI event ring events.
+> 
+>> BW_CFG.ENABLED bit, set BW_CFG.DB_CHAN_ID to the channel ID to the
+>> doorbell that will be used by the host to communicate the bandwidth
+>> scaling status and BW_CFG.ER_INDEX to the index for the event ring
+>> to which the device should send bandwidth scaling request in the
+>> bandwidth scaling capability register.
+>>
+>> As part of mmio init check if the bw scale capability is present or not,
+>> if present advertise host supports bw scale by setting all the required
+>> fields.
+>>
+> 
+> Sounds like the host is depending on the device for bandwidth scaling.
+> 
+yes
+>> MHI layer will only forward the bw scaling request to the controller
+>> driver, it is responsibility of the controller driver to do actual bw
+>> scaling and then pass status to the MHI. MHI will response back to the
+>> device based up on the status of the bw scale received.
+>>
+> 
+> Why the controller driver needs to be involved for a spec defined feature?
+> This is not answered here.
+> 
+The controller driver here is mhi controller driver, the MHI layer
+doesn't have any info about PCI related stuff, only controller driver
+knows about it. I will update the commit text accordingly.
+>> Add a new get_misc_doorbell() to get doorbell for misc capabilities to
+>> use the doorbell with mhi events like MHI BW scale etc.
+>>
+> 
+> So this is a spare doorbell? Why can't you call it as 'get_bw_scaling_db()'?
+> 
+Similar to MHI BW scale there are some other features which depends on
+getting spare doorbell like posted time synchronization MHI V1.2, 5.1.2
+To scale for future features I added like this.
+>> Use workqueue & mutex for the bw scale events as the pci_set_target_speed()
+>> which will called by the mhi controller driver can sleep.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/bus/mhi/common.h        |  16 +++++++
+>>   drivers/bus/mhi/host/init.c     |  64 ++++++++++++++++++++++++-
+>>   drivers/bus/mhi/host/internal.h |   7 ++-
+>>   drivers/bus/mhi/host/main.c     | 101 +++++++++++++++++++++++++++++++++++++++-
+>>   drivers/bus/mhi/host/pm.c       |  10 +++-
+>>   include/linux/mhi.h             |  13 ++++++
+>>   6 files changed, 205 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/bus/mhi/common.h b/drivers/bus/mhi/common.h
+>> index eedac801b800..0a02acee709a 100644
+>> --- a/drivers/bus/mhi/common.h
+>> +++ b/drivers/bus/mhi/common.h
+>> @@ -208,6 +208,22 @@
+>>   #define MHI_RSCTRE_DATA_DWORD1		cpu_to_le32(FIELD_PREP(GENMASK(23, 16), \
+>>   							       MHI_PKT_TYPE_COALESCING))
+>>   
+>> +/* MHI Bandwidth scaling offsets */
+>> +#define MHI_BW_SCALE_CFG_OFFSET		0x4
+>> +#define MHI_BW_SCALE_CAP_ID		(3)
+>> +
+>> +#define MHI_BW_SCALE_ENABLE(bw_scale_db, er_index)	cpu_to_le32(FIELD_PREP(GENMASK(31, 25), \
+>> +							bw_scale_db) |				\
+>> +							FIELD_PREP(GENMASK(23, 19), er_index) |	\
+>> +							BIT(24))
+>> +
+>> +#define MHI_TRE_GET_EV_BW_REQ_SEQ(tre)	FIELD_GET(GENMASK(15, 8), (MHI_TRE_GET_DWORD(tre, 0)))
+>> +#define MHI_BW_SCALE_DB_ID(er_index)	FIELD_PREP(GENMASK(31, 25), er_index)
+>> +
+>> +#define MHI_BW_SCALE_RESULT(status, seq)	cpu_to_le32(FIELD_PREP(GENMASK(11, 8), status) | \
+>> +						FIELD_PREP(GENMASK(7, 0), seq))
+>> +#define MHI_BW_SCALE_NACK			0xF
+>> +
+>>   enum mhi_pkt_type {
+>>   	MHI_PKT_TYPE_INVALID = 0x0,
+>>   	MHI_PKT_TYPE_NOOP_CMD = 0x1,
+>> diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
+>> index 0b14b665ed15..71abe02f5726 100644
+>> --- a/drivers/bus/mhi/host/init.c
+>> +++ b/drivers/bus/mhi/host/init.c
+>> @@ -496,10 +496,56 @@ static int mhi_get_capability_offset(struct mhi_controller *mhi_cntrl, u32 capab
+>>   	return -ENXIO;
+>>   }
+>>   
+>> +/* to be used only if a single event ring with the type is present */
+> 
+> Then open code in the caller itself. I see no benefit in adding it as a separate
+> function.
+> 
+This added as seperate function for upcoming features which uses
+same logic.
+>> +static int mhi_get_er_index(struct mhi_controller *mhi_cntrl,
+>> +			    enum mhi_er_data_type type)
+>> +{
+>> +	struct mhi_event *mhi_event = mhi_cntrl->mhi_event;
+>> +	int i;
+>> +
+>> +	/* find event ring for requested type */
+>> +	for (i = 0; i < mhi_cntrl->total_ev_rings; i++, mhi_event++) {
+>> +		if (mhi_event->data_type == type)
+>> +			return mhi_event->er_index;
+>> +	}
+>> +
+>> +	return -ENOENT;
+>> +}
+>> +
+>> +static int mhi_init_bw_scale(struct mhi_controller *mhi_cntrl,
+>> +			     int bw_scale_db)
+>> +{
+>> +	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+>> +	u32 bw_cfg_offset, val = 0;
+>> +	int ret, er_index;
+>> +
+>> +	ret = mhi_get_capability_offset(mhi_cntrl, MHI_BW_SCALE_CAP_ID,
+>> +					&bw_cfg_offset);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* No ER configured to support BW scale */
+> 
+> What does it mean?
+> 
+I will remove the comment this is not making any sense.
+>> +	er_index = mhi_get_er_index(mhi_cntrl, MHI_ER_BW_SCALE);
+>> +	if (er_index < 0)
+>> +		return er_index;
+>> +
+>> +	bw_cfg_offset += MHI_BW_SCALE_CFG_OFFSET;
+>> +
+>> +	/* advertise host support */
+>> +	val = MHI_BW_SCALE_ENABLE(bw_scale_db, er_index);
+>> +
+>> +	mhi_write_reg(mhi_cntrl, mhi_cntrl->regs, bw_cfg_offset, val);
+>> +
+>> +	dev_dbg(dev, "Bandwidth scaling setup complete. Event ring:%d\n",
+>> +		er_index);
+>> +
+> 
+> "Bandwidth scaling setup complete with event ring: %d\n"
+> 
+ack
+>> +	return 0;
+>> +}
+>> +
+>>   int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+>>   {
+>>   	u32 val;
+>> -	int i, ret;
+>> +	int i, ret, doorbell = 0;
+>>   	struct mhi_chan *mhi_chan;
+>>   	struct mhi_event *mhi_event;
+>>   	void __iomem *base = mhi_cntrl->regs;
+>> @@ -633,6 +679,16 @@ int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+>>   		return ret;
+>>   	}
+>>   
+>> +	if (mhi_cntrl->get_misc_doorbell)
+>> +		doorbell = mhi_cntrl->get_misc_doorbell(mhi_cntrl, MHI_ER_BW_SCALE);
+>> +
+>> +	if (doorbell > 0) {
+>> +		ret = mhi_init_bw_scale(mhi_cntrl, doorbell);
+>> +		if (!ret)
+>> +			mhi_cntrl->bw_scale_db = base + val + (8 * doorbell);
+>> +		else
+>> +			dev_warn(dev, "BW scale setup failure\n");
+> 
+> "Failed to setup bandwidth scaling: %d"
+> 
+>> +	}
+>>   	return 0;
+>>   }
+>>   
+>> @@ -778,6 +834,9 @@ static int parse_ev_cfg(struct mhi_controller *mhi_cntrl,
+>>   		case MHI_ER_CTRL:
+>>   			mhi_event->process_event = mhi_process_ctrl_ev_ring;
+>>   			break;
+>> +		case MHI_ER_BW_SCALE:
+>> +			mhi_event->process_event = mhi_process_bw_scale_ev_ring;
+>> +			break;
+>>   		default:
+>>   			dev_err(dev, "Event Ring type not supported\n");
+>>   			goto error_ev_cfg;
+>> @@ -1012,9 +1071,12 @@ int mhi_register_controller(struct mhi_controller *mhi_cntrl,
+>>   
+>>   		mhi_event->mhi_cntrl = mhi_cntrl;
+>>   		spin_lock_init(&mhi_event->lock);
+>> +		mutex_init(&mhi_event->mutex);
+>>   		if (mhi_event->data_type == MHI_ER_CTRL)
+>>   			tasklet_init(&mhi_event->task, mhi_ctrl_ev_task,
+>>   				     (ulong)mhi_event);
+>> +		else if (mhi_event->data_type == MHI_ER_BW_SCALE)
+>> +			INIT_WORK(&mhi_event->work, mhi_process_ev_work);
+>>   		else
+>>   			tasklet_init(&mhi_event->task, mhi_ev_task,
+>>   				     (ulong)mhi_event);
+>> diff --git a/drivers/bus/mhi/host/internal.h b/drivers/bus/mhi/host/internal.h
+>> index 3134f111be35..bf7c6a7c9383 100644
+>> --- a/drivers/bus/mhi/host/internal.h
+>> +++ b/drivers/bus/mhi/host/internal.h
+>> @@ -241,6 +241,8 @@ struct mhi_event {
+>>   	struct mhi_ring ring;
+>>   	struct db_cfg db_cfg;
+>>   	struct tasklet_struct task;
+>> +	struct work_struct work;
+> 
+> bw_scaling_work or bw_scale_work?
+> 
+ack
+>> +	struct mutex mutex;
+> 
+> Add a comment on the purpose of the mutex.
+> 
+>>   	spinlock_t lock;
+>>   	int (*process_event)(struct mhi_controller *mhi_cntrl,
+>>   			     struct mhi_event *mhi_event,
+>> @@ -403,7 +405,8 @@ int mhi_process_data_event_ring(struct mhi_controller *mhi_cntrl,
+>>   				struct mhi_event *mhi_event, u32 event_quota);
+>>   int mhi_process_ctrl_ev_ring(struct mhi_controller *mhi_cntrl,
+>>   			     struct mhi_event *mhi_event, u32 event_quota);
+>> -
+>> +int mhi_process_bw_scale_ev_ring(struct mhi_controller *mhi_cntrl,
+>> +				 struct mhi_event *mhi_event, u32 event_quota);
+>>   /* ISR handlers */
+>>   irqreturn_t mhi_irq_handler(int irq_number, void *dev);
+>>   irqreturn_t mhi_intvec_threaded_handler(int irq_number, void *dev);
+>> @@ -419,5 +422,5 @@ void mhi_unmap_single_no_bb(struct mhi_controller *mhi_cntrl,
+>>   			    struct mhi_buf_info *buf_info);
+>>   void mhi_unmap_single_use_bb(struct mhi_controller *mhi_cntrl,
+>>   			     struct mhi_buf_info *buf_info);
+>> -
+>> +void mhi_process_ev_work(struct work_struct *work);
+>>   #endif /* _MHI_INT_H */
+>> diff --git a/drivers/bus/mhi/host/main.c b/drivers/bus/mhi/host/main.c
+>> index 4de75674f193..967563d86aec 100644
+>> --- a/drivers/bus/mhi/host/main.c
+>> +++ b/drivers/bus/mhi/host/main.c
+>> @@ -472,7 +472,10 @@ irqreturn_t mhi_irq_handler(int irq_number, void *dev)
+>>   		if (mhi_dev)
+>>   			mhi_notify(mhi_dev, MHI_CB_PENDING_DATA);
+>>   	} else {
+>> -		tasklet_schedule(&mhi_event->task);
+>> +		if (mhi_event->data_type == MHI_ER_BW_SCALE)
+>> +			queue_work(mhi_cntrl->hiprio_wq, &mhi_event->work);
+> 
+> To avoid the hassle, I think it is worth changing the mutex in bwctrl to
+> spinlock. I don't think there would be issues in spinning inside
+> pcie_set_target_speed().
+> 
+I am not sure if it is good to change it to mutex or not in
+pcie_set_target_speed() because it is being called from
+pcie_failed_link_retrain() and this is being called when new pci
+device is added and many other places.
+>> +		else
+>> +			tasklet_schedule(&mhi_event->task);
+>>   	}
+>>   
+>>   	return IRQ_HANDLED;
+>> @@ -1049,6 +1052,102 @@ int mhi_process_data_event_ring(struct mhi_controller *mhi_cntrl,
+>>   	return count;
+>>   }
+>>   
+>> +/* dedicated bw scale event ring processing */
+>> +int mhi_process_bw_scale_ev_ring(struct mhi_controller *mhi_cntrl,
+>> +				 struct mhi_event *mhi_event, u32 event_quota)
+>> +{
+>> +	struct mhi_event_ctxt *er_ctxt = &mhi_cntrl->mhi_ctxt->er_ctxt[mhi_event->er_index];
+>> +	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+>> +	struct mhi_ring *ev_ring = &mhi_event->ring;
+>> +	dma_addr_t ptr = le64_to_cpu(er_ctxt->rp);
+>> +	u32 response = MHI_BW_SCALE_NACK;
+>> +	struct mhi_ring_element *dev_rp;
+>> +	struct mhi_link_info link_info;
+>> +	int ret = -EINVAL;
+>> +
+>> +	if (unlikely(MHI_EVENT_ACCESS_INVALID(mhi_cntrl->pm_state))) {
+>> +		ret =  -EIO;
+>> +		goto exit_bw_scale_process;
+> 
+> exit_bw_scale?
+> 
+ack
+>> +	}
+>> +
+>> +	if (!MHI_IN_MISSION_MODE(mhi_cntrl->ee))
+>> +		goto exit_bw_scale_process;
+>> +
+>> +	if (!is_valid_ring_ptr(ev_ring, ptr)) {
+>> +		dev_err(dev,
+>> +			"Event ring rp points outside of the event ring\n");
+>> +		ret =  -EIO;
+>> +		goto exit_bw_scale_process;
+>> +	}
+>> +
+>> +	dev_rp = mhi_to_virtual(ev_ring, ptr);
+>> +
+>> +	/* if rp points to base, we need to wrap it around */
+> 
+> Nit: Use caps for starting letter and also for acronyms.
+> 
+>> +	if (dev_rp == ev_ring->base)
+>> +		dev_rp = ev_ring->base + ev_ring->len;
+>> +	dev_rp--;
+>> +
+>> +	/* fast forward to currently processed element and recycle er */
+>> +	ev_ring->rp = dev_rp;
+>> +	ev_ring->wp = dev_rp - 1;
+>> +	if (ev_ring->wp < ev_ring->base)
+>> +		ev_ring->wp = ev_ring->base + ev_ring->len - ev_ring->el_size;
+>> +	mhi_recycle_ev_ring_element(mhi_cntrl, ev_ring);
+>> +
+>> +	if (WARN_ON(MHI_TRE_GET_EV_TYPE(dev_rp) != MHI_PKT_TYPE_BW_REQ_EVENT)) {
+>> +		dev_err(dev, "!BW SCALE REQ event\n");
+>> +		goto exit_bw_scale_process;
+>> +	}
+>> +
+>> +	link_info.target_link_speed = MHI_TRE_GET_EV_LINKSPEED(dev_rp);
+>> +	link_info.target_link_width = MHI_TRE_GET_EV_LINKWIDTH(dev_rp);
+>> +	link_info.sequence_num = MHI_TRE_GET_EV_BW_REQ_SEQ(dev_rp);
+>> +
+>> +	dev_info(dev, "Received BW_REQ with seq:%d link speed:0x%x width:0x%x\n",
+>> +		 link_info.sequence_num,
+>> +		 link_info.target_link_speed,
+>> +		 link_info.target_link_width);
+> 
+> dev_dbg()
+> 
+>> +
+>> +	/* bring host and device out of suspended states */
+>> +	ret = mhi_device_get_sync(mhi_cntrl->mhi_dev);
+>> +	if (ret)
+>> +		goto exit_bw_scale_process;
+>> +
+>> +	mhi_cntrl->runtime_get(mhi_cntrl);
+>> +
+>> +	ret = mhi_cntrl->bw_scale(mhi_cntrl, &link_info);
+>> +	if (!ret)
+>> +		response = 0;
+>> +
+>> +	response = MHI_BW_SCALE_RESULT(response, link_info.sequence_num);
+>> +
+>> +	write_lock_bh(&mhi_cntrl->pm_lock);
+>> +	mhi_write_reg(mhi_cntrl, mhi_cntrl->bw_scale_db, 0, response);
+>> +	write_unlock_bh(&mhi_cntrl->pm_lock);
+>> +
+>> +	mhi_cntrl->runtime_put(mhi_cntrl);
+>> +	mhi_device_put(mhi_cntrl->mhi_dev);
+>> +
+>> +exit_bw_scale_process:
+>> +	dev_dbg(dev, "exit er_index:%u ret:%d\n", mhi_event->er_index, ret);
+> 
+> Can these entry exit debug sequences be avoided?
+>
+ack.
+- Krishna Chaitanya.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
-Tested-by: Tim Harvey <tharvey@gateworks.com>
-Link: https://patch.msgid.link/20250119164219.647059-3-quic_ppranees@quicinc.com
-Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/wireless/ath/ath11k/dp.h    |   6 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c | 117 +++++++++++-------------
- 2 files changed, 58 insertions(+), 65 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 65d2bc0687c88..eaf902c25e192 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1,7 +1,7 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2023, 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #ifndef ATH11K_DP_H
-@@ -20,7 +20,6 @@ struct ath11k_ext_irq_grp;
- 
- struct dp_rx_tid {
- 	u8 tid;
--	u32 *vaddr;
- 	dma_addr_t paddr;
- 	u32 size;
- 	u32 ba_win_sz;
-@@ -37,6 +36,9 @@ struct dp_rx_tid {
- 	/* Timer info related to fragments */
- 	struct timer_list frag_timer;
- 	struct ath11k_base *ab;
-+	u32 *vaddr_unaligned;
-+	dma_addr_t paddr_unaligned;
-+	u32 unaligned_size;
- };
- 
- #define DP_REO_DESC_FREE_THRESHOLD  64
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 40b52d12b4323..bfb8e7b1a300c 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/ieee80211.h>
-@@ -675,11 +675,11 @@ void ath11k_dp_reo_cmd_list_cleanup(struct ath11k_base *ab)
- 	list_for_each_entry_safe(cmd, tmp, &dp->reo_cmd_list, list) {
- 		list_del(&cmd->list);
- 		rx_tid = &cmd->data;
--		if (rx_tid->vaddr) {
--			dma_unmap_single(ab->dev, rx_tid->paddr,
--					 rx_tid->size, DMA_BIDIRECTIONAL);
--			kfree(rx_tid->vaddr);
--			rx_tid->vaddr = NULL;
-+		if (rx_tid->vaddr_unaligned) {
-+			dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
-+					     rx_tid->vaddr_unaligned,
-+					     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
-+			rx_tid->vaddr_unaligned = NULL;
- 		}
- 		kfree(cmd);
- 	}
-@@ -689,11 +689,11 @@ void ath11k_dp_reo_cmd_list_cleanup(struct ath11k_base *ab)
- 		list_del(&cmd_cache->list);
- 		dp->reo_cmd_cache_flush_count--;
- 		rx_tid = &cmd_cache->data;
--		if (rx_tid->vaddr) {
--			dma_unmap_single(ab->dev, rx_tid->paddr,
--					 rx_tid->size, DMA_BIDIRECTIONAL);
--			kfree(rx_tid->vaddr);
--			rx_tid->vaddr = NULL;
-+		if (rx_tid->vaddr_unaligned) {
-+			dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
-+					     rx_tid->vaddr_unaligned,
-+					     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
-+			rx_tid->vaddr_unaligned = NULL;
- 		}
- 		kfree(cmd_cache);
- 	}
-@@ -708,11 +708,11 @@ static void ath11k_dp_reo_cmd_free(struct ath11k_dp *dp, void *ctx,
- 	if (status != HAL_REO_CMD_SUCCESS)
- 		ath11k_warn(dp->ab, "failed to flush rx tid hw desc, tid %d status %d\n",
- 			    rx_tid->tid, status);
--	if (rx_tid->vaddr) {
--		dma_unmap_single(dp->ab->dev, rx_tid->paddr, rx_tid->size,
--				 DMA_BIDIRECTIONAL);
--		kfree(rx_tid->vaddr);
--		rx_tid->vaddr = NULL;
-+	if (rx_tid->vaddr_unaligned) {
-+		dma_free_noncoherent(dp->ab->dev, rx_tid->unaligned_size,
-+				     rx_tid->vaddr_unaligned,
-+				     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
-+		rx_tid->vaddr_unaligned = NULL;
- 	}
- }
- 
-@@ -749,10 +749,10 @@ static void ath11k_dp_reo_cache_flush(struct ath11k_base *ab,
- 	if (ret) {
- 		ath11k_err(ab, "failed to send HAL_REO_CMD_FLUSH_CACHE cmd, tid %d (%d)\n",
- 			   rx_tid->tid, ret);
--		dma_unmap_single(ab->dev, rx_tid->paddr, rx_tid->size,
--				 DMA_BIDIRECTIONAL);
--		kfree(rx_tid->vaddr);
--		rx_tid->vaddr = NULL;
-+		dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
-+				     rx_tid->vaddr_unaligned,
-+				     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
-+		rx_tid->vaddr_unaligned = NULL;
- 	}
- }
- 
-@@ -802,10 +802,10 @@ static void ath11k_dp_rx_tid_del_func(struct ath11k_dp *dp, void *ctx,
- 
- 	return;
- free_desc:
--	dma_unmap_single(ab->dev, rx_tid->paddr, rx_tid->size,
--			 DMA_BIDIRECTIONAL);
--	kfree(rx_tid->vaddr);
--	rx_tid->vaddr = NULL;
-+	dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
-+			     rx_tid->vaddr_unaligned,
-+			     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
-+	rx_tid->vaddr_unaligned = NULL;
- }
- 
- void ath11k_peer_rx_tid_delete(struct ath11k *ar,
-@@ -831,14 +831,16 @@ void ath11k_peer_rx_tid_delete(struct ath11k *ar,
- 		if (ret != -ESHUTDOWN)
- 			ath11k_err(ar->ab, "failed to send HAL_REO_CMD_UPDATE_RX_QUEUE cmd, tid %d (%d)\n",
- 				   tid, ret);
--		dma_unmap_single(ar->ab->dev, rx_tid->paddr, rx_tid->size,
--				 DMA_BIDIRECTIONAL);
--		kfree(rx_tid->vaddr);
--		rx_tid->vaddr = NULL;
-+		dma_free_noncoherent(ar->ab->dev, rx_tid->unaligned_size,
-+				     rx_tid->vaddr_unaligned,
-+				     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
-+		rx_tid->vaddr_unaligned = NULL;
- 	}
- 
- 	rx_tid->paddr = 0;
-+	rx_tid->paddr_unaligned = 0;
- 	rx_tid->size = 0;
-+	rx_tid->unaligned_size = 0;
- }
- 
- static int ath11k_dp_rx_link_desc_return(struct ath11k_base *ab,
-@@ -982,10 +984,9 @@ static void ath11k_dp_rx_tid_mem_free(struct ath11k_base *ab,
- 	if (!rx_tid->active)
- 		goto unlock_exit;
- 
--	dma_unmap_single(ab->dev, rx_tid->paddr, rx_tid->size,
--			 DMA_BIDIRECTIONAL);
--	kfree(rx_tid->vaddr);
--	rx_tid->vaddr = NULL;
-+	dma_free_noncoherent(ab->dev, rx_tid->unaligned_size, rx_tid->vaddr_unaligned,
-+			     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
-+	rx_tid->vaddr_unaligned = NULL;
- 
- 	rx_tid->active = false;
- 
-@@ -1000,9 +1001,8 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
- 	struct ath11k_base *ab = ar->ab;
- 	struct ath11k_peer *peer;
- 	struct dp_rx_tid *rx_tid;
--	u32 hw_desc_sz;
--	u32 *addr_aligned;
--	void *vaddr;
-+	u32 hw_desc_sz, *vaddr;
-+	void *vaddr_unaligned;
- 	dma_addr_t paddr;
- 	int ret;
- 
-@@ -1050,49 +1050,40 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
- 	else
- 		hw_desc_sz = ath11k_hal_reo_qdesc_size(DP_BA_WIN_SZ_MAX, tid);
- 
--	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_ATOMIC);
--	if (!vaddr) {
-+	rx_tid->unaligned_size = hw_desc_sz + HAL_LINK_DESC_ALIGN - 1;
-+	vaddr_unaligned = dma_alloc_noncoherent(ab->dev, rx_tid->unaligned_size, &paddr,
-+						DMA_BIDIRECTIONAL, GFP_ATOMIC);
-+	if (!vaddr_unaligned) {
- 		spin_unlock_bh(&ab->base_lock);
- 		return -ENOMEM;
- 	}
- 
--	addr_aligned = PTR_ALIGN(vaddr, HAL_LINK_DESC_ALIGN);
--
--	ath11k_hal_reo_qdesc_setup(addr_aligned, tid, ba_win_sz,
--				   ssn, pn_type);
--
--	paddr = dma_map_single(ab->dev, addr_aligned, hw_desc_sz,
--			       DMA_BIDIRECTIONAL);
--
--	ret = dma_mapping_error(ab->dev, paddr);
--	if (ret) {
--		spin_unlock_bh(&ab->base_lock);
--		ath11k_warn(ab, "failed to setup dma map for peer %pM rx tid %d: %d\n",
--			    peer_mac, tid, ret);
--		goto err_mem_free;
--	}
--
--	rx_tid->vaddr = vaddr;
--	rx_tid->paddr = paddr;
-+	rx_tid->vaddr_unaligned = vaddr_unaligned;
-+	vaddr = PTR_ALIGN(vaddr_unaligned, HAL_LINK_DESC_ALIGN);
-+	rx_tid->paddr_unaligned = paddr;
-+	rx_tid->paddr = rx_tid->paddr_unaligned + ((unsigned long)vaddr -
-+			(unsigned long)rx_tid->vaddr_unaligned);
-+	ath11k_hal_reo_qdesc_setup(vaddr, tid, ba_win_sz, ssn, pn_type);
- 	rx_tid->size = hw_desc_sz;
- 	rx_tid->active = true;
- 
-+	/* After dma_alloc_noncoherent, vaddr is being modified for reo qdesc setup.
-+	 * Since these changes are not reflected in the device, driver now needs to
-+	 * explicitly call dma_sync_single_for_device.
-+	 */
-+	dma_sync_single_for_device(ab->dev, rx_tid->paddr,
-+				   rx_tid->size,
-+				   DMA_TO_DEVICE);
- 	spin_unlock_bh(&ab->base_lock);
- 
--	ret = ath11k_wmi_peer_rx_reorder_queue_setup(ar, vdev_id, peer_mac,
--						     paddr, tid, 1, ba_win_sz);
-+	ret = ath11k_wmi_peer_rx_reorder_queue_setup(ar, vdev_id, peer_mac, rx_tid->paddr,
-+						     tid, 1, ba_win_sz);
- 	if (ret) {
- 		ath11k_warn(ar->ab, "failed to setup rx reorder queue for peer %pM tid %d: %d\n",
- 			    peer_mac, tid, ret);
- 		ath11k_dp_rx_tid_mem_free(ab, peer_mac, vdev_id, tid);
- 	}
- 
--	return ret;
--
--err_mem_free:
--	kfree(rx_tid->vaddr);
--	rx_tid->vaddr = NULL;
--
- 	return ret;
- }
- 
--- 
-2.39.5
-
+> - Mani
+> 
 
