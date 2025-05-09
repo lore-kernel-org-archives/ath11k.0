@@ -4,104 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB06BC3ABC3
-	for <ath11k@archiver.kernel.org>; Fri,  9 May 2025 15:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3691C3ABBC
+	for <ath11k@archiver.kernel.org>; Fri,  9 May 2025 17:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=LqQdyORHbJ+WljesHXXhhkp3aHmrD2aDHe/8+59w2QQ=; b=Xpp6xLnZjQZzeokVa0tE36apV5
-	MHQGmeewncTaavhz4j5+wFOIA8/SdqH87EN04d+RKkYgsGkcNYgpqSWwQnWE399wKMiIbaz+i+Rrw
-	c7Td8s4QSdtl+vZ4tZqrm1XH+uXqTUhYwoQeAYLLR/wg2rW+ypjCooyBlm5YEkNcJcMupSCokwWNo
-	4svIWhqE9tIgXa3xXgI47L20oVV1y1xUtwEia9j1AVirtyha5tMJuesHyfb4Looz0Zy5I3FpbsHRK
-	qZO8cFhT/eB7TBjsC2pBE+uHZSNrIdpsrjTzto6ACv2jOXaaLoY/s0Ri4SLNO7ifNl8admWSo+0IF
-	e/mkXMyg==;
+	bh=hLAgz81NgOrdhBcH1vnfPBEBFEqANxBTAuyVS9y0I9k=; b=MK6ro2QiVYmK5G1eff7X8TY6B5
+	1AGJiOEfsfaOsTdgpXq67/N+cjpjgTCkOOOtHepd+AVUg5qOIZEG+IlUldXobX9cfg3M/D5g8aeJu
+	kEMQJSRJQteKTfgwAuPOozb0Wm5StHI/mK9sQ08O76PC7DeYsUxS5wzHmgbV3N9WWhg71eiOPTjbm
+	Y4kLaLvHHKz7xSub4R+j1UlgXJPnsbTtDkhzAtU623848Id3RlvFR0P02STI/Lf8YyzAdiK7CktH6
+	NPSVwMLlhw49yppZmHo4VkS5RClDP4OQ6JY7ps4QxvkcPbwtwwqs2Fb1dWc6sPXuFYT/U+bBfF1X+
+	4gk6r8yQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDPQG-0000000434c-1yXP;
-	Fri, 09 May 2025 15:14:00 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1uDRfc-00000004SVt-02FT;
+	Fri, 09 May 2025 17:38:00 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDO71-00000003ptf-0ilY
+	id 1uDPkU-000000046W9-2ND9
 	for ath11k@lists.infradead.org;
-	Fri, 09 May 2025 13:50:04 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:40864 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1uDO6u-000000001zf-1ShG;
-	Fri, 09 May 2025 15:49:56 +0200
-X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_2000_2999 0.000000,
-	BODY_SIZE_5000_LESS 0.000000, BODY_SIZE_7000_LESS 0.000000,
-	CTE_7BIT 0.000000, DKIM_ALIGNS 0.000000, DKIM_SIGNATURE 0.000000,
-	HTML_00_01 0.050000, HTML_00_10 0.050000, IN_REP_TO 0.000000,
-	LEGITIMATE_SIGNS 0.000000, MSGID_SAMEAS_FROM_HEX_844412 0.100000,
-	MSG_THREAD 0.000000, MULTIPLE_RCPTS 0.100000, MULTIPLE_REAL_RCPTS 0.000000,
-	NO_CTA_FOUND 0.000000, NO_CTA_URI_FOUND 0.000000, NO_FUR_HEADER 0.000000,
-	NO_URI_HTTPS 0.000000, OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000,
-	REFERENCES 0.000000, SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000,
-	USER_AGENT 0.000000, __ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
-	__BULK_NEGATE 0.000000, __CC_NAME 0.000000, __CC_NAME_DIFF_FROM_ACC 0.000000,
-	__CC_REAL_NAMES 0.000000, __CT 0.000000, __CTE 0.000000,
-	__CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000, __DKIM_ALIGNS_2 0.000000,
-	__DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000,
-	__FORWARDED_MSG 0.000000, __FROM_DOMAIN_NOT_IN_BODY 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
-	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000,
-	__HEADER_ORDER_FROM 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
-	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
-	__MULTIPLE_RCPTS_CC_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __RCVD_PASS 0.000000,
-	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
-	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
-	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_END 0.000000,
-	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
-	__URI_NO_MAILTO 0.000000, __URI_NO_WWW 0.000000, __USER_AGENT 0.000000,
-	__X_MAILSCANNER 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2025.5.9.132728
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=LqQdyORHbJ+WljesHXXhhkp3aHmrD2aDHe/8+59w2QQ=;
-	b=NLdoh3NNhArpXhthKv2u62pOB9Z61p7IeFxyyFcwf6NZVPOOz0IXk+tKjlZ1uZgqHDXfAJjs/NCikEXGzA9hNWIDMjvRc5ap51dBaYKrQf3o1acaFo/KBPsItAeBUOMgEafVQI1Mp5lSoZCjz5rlBfxq8irv0y32Fkus/ivfk8E=;
-Message-ID: <592e4722-d7e1-4202-897f-e2a522074fe6@dd-wrt.com>
-Date: Fri, 9 May 2025 15:49:55 +0200
+	Fri, 09 May 2025 15:34:56 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5497mmnx019353;
+	Fri, 9 May 2025 15:34:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hLAgz81NgOrdhBcH1vnfPBEBFEqANxBTAuyVS9y0I9k=; b=TiXupP/Ujv5tqw55
+	DNYljiCk9RZ2fdQzFdUYavXhs0HaJdBGIXpkHkgRnW9e/6Uv5/Zo4VuPPmvmaokU
+	nBF7xyfuVlww8XN1VErwvaX2UrVPiVWFt3XJG4I1gWZ32xcfnkhUX3FyltzZ/SZp
+	nb0e4eVhHa2amKNegxwzNJ0LGWHUft7HT9HkD8QSY5rYJ7YS0KTe4E9+xBQNl5Kv
+	0++2JBm8G3b3skQ8AUHHY3KdBYor6z8s9Pvke2FOiB0deeQhT1J+2l6qB6xkzv+8
+	ulsTBMVAoFo7PamSRQQ75uTrK+SCV3N2aF1JEIHV8FezPi/BtxKI6FGOIuz7CMrh
+	PCTW1Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gsdj4jma-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 May 2025 15:34:46 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 549FYjxb011981
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 9 May 2025 15:34:45 GMT
+Received: from [10.216.9.250] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 9 May 2025
+ 08:34:42 -0700
+Message-ID: <45f60f9b-66ff-6bc1-f77d-c29f255a2fee@quicinc.com>
+Date: Fri, 9 May 2025 21:04:38 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: Question about TX power
-To: Alexander Wilhelm <alexander.wilhelm@westermo.com>
-Cc: Jeff Johnson <jjohnson@kernel.org>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org
-References: <aB3AK83USvOdTvDv@FUE-ALEWI-WINX>
- <73b2bd16-66aa-405c-acda-237d56be63dd@dd-wrt.com>
- <aB3uKfu3frLyJ/2c@FUE-ALEWI-WINX>
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-In-Reply-To: <aB3uKfu3frLyJ/2c@FUE-ALEWI-WINX>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3] wifi: ath11k: support DBS and DFS compatibility
+Content-Language: en-US
+To: "Yu Zhang(Yuriy)" <quic_yuzha@quicinc.com>, <kvalo@kernel.org>
+CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>, Mihai Moldovan <ionic@ionic.de>
+References: <20241127022742.4016870-1-quic_yuzha@quicinc.com>
+From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
+In-Reply-To: <20241127022742.4016870-1-quic_yuzha@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1uDO6t-000AmL-Ei
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1uDO6t-000AmL-Ei; Fri, 09 May 2025 15:49:55 +0200
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=PMAP+eqC c=1 sm=1 tr=0 ts=681e2096 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=bC-a23v3AAAA:8
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=AOP5zEUh8TzVeoG01q4A:9 a=QEXdDO2ut3YA:10
+ a=-FEs8UIgK8oA:10 a=FO4_E8m0qiDe52t0p3_H:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA5MDE1MyBTYWx0ZWRfX0I79IZYkpF96
+ qxbTLkOVmMp9A4LNS8lfXbYzBjIBvLQ8ORzvOxWAFcZp9yzxg/BLlfUx0fFnHTv57YGOyCZ1a1M
+ +MDKbZ28EzNm7xaFFPPa3aRSOzPevL55EunpQtOekDV9Z6h+BLd8g1+Ihmr7ZF+Lofmh3WC3nEX
+ UVorP0vkLdwstaCvYTKi83R4xSJJaniHP71uIvLu9l+UtB2R6YlV9LSEaz8hl7C7w3HK9KnBVll
+ Yh5eu6tAcesLjKM09C+PbRfy1a1FT4eOoKO1BNRdvCO1eKpcYlvymVeEi83NLV58l8UBm6xZIG7
+ FS6BB2MpqG7m/ga6E8U4nSgcLWhbg/57MP3Pp5vwEAspf5oWMNaCuI/ezHVw3Mrrw8LDWGauy1y
+ OYfFjjwhgjYHocmR46NO9mynQSy2vGwK01x9C9JV13zb7hB1MnxmAYBQ1qqf/zpJTGUm3nN8
+X-Proofpoint-GUID: 7jPHvQtOneHefREtHzIq9j9pKHp7ynNt
+X-Proofpoint-ORIG-GUID: 7jPHvQtOneHefREtHzIq9j9pKHp7ynNt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-09_06,2025-05-09_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 impostorscore=0 mlxscore=0 suspectscore=0 spamscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1011 lowpriorityscore=0
+ mlxlogscore=616 adultscore=0 malwarescore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505090153
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250509_065003_354118_AA346601 
-X-CRM114-Status: GOOD (  17.02  )
+X-CRM114-CacheID: sfid-20250509_083454_628884_2F29A202 
+X-CRM114-Status: UNSURE (   9.16  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,46 +114,39 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
-Am 09.05.2025 um 13:59 schrieb Alexander Wilhelm:
-> Am Fri, May 09, 2025 at 12:54:47PM +0200 schrieb Sebastian Gottschall:
->> Am 09.05.2025 um 10:43 schrieb Alexander Wilhelm:
->>> Hello devs,
->>>
->>> I'd like to understand how TX power setting works on ath11k devices. For example
->>> when I'm using channel 36 for ETSI based regulatory domain, I can set up to 23
->>> dBm. But then I get only 20 dBm as a result. On different channels and/or
->>> regulatory domains I get different reductions. I tried to follow the source
->>> code. As far as I understood is that 'ath11k_mac_txpower_recalc' sets the
->>> correct values and 'ath11k_mac_op_get_txpower' return the different one.
->>>
->>> My question is where this reduction offset is encoded. Is it in the module's
->>> firmware or is it part of the boardfile? Thank you in advance.
->>>
->>>
->>> Best regards
->>> Alexander Wilhelm
->> the boardfile contains chipset specific calibration data which also defines
->> the hardware power limits (more specific data also included in the on board
->> calibration flash of the device or if its a router, in flash memory of the
->> router itself. in addition it includes a regulatory database which is used
->> by the firmware for managing the total power. you have also to consider that
->> the 23dbm are specified without antenna gain.
->> so if the antenna gain is 3 dbm, you get 20 dbm in total. this antenna gain
->> may again be specified in the boardfile.
->> so you will not find your answers in any sourcecode. its all encoded in
->> binary data.
->>
->> Sebastian
->>
-> Alright, thank you Sebastian. Since I'm not using any calibration data on my
-> router/AP device, all data come from the boardfile. I've also understood that
-> the power limit reduction is related to antenna gain. I'll ask the radio module
-> manufacturer to create another boardfile for me that matches the required
-> antenna gain for my router/AP device.
-my answer might be not accurate here. which chipset we are talking about 
-for ath11k?
->
-> Best regards
-> Alexander Wilhelm
->
+
+On 11/27/2024 7:57 AM, Yu Zhang(Yuriy) wrote:
+> Now some chips which support 'support_dual_stations' will enable DBS,
+> but will disable DFS. Restructure the ath11k_mac_setup_iface_combinations
+> function to support DBS and DFS compatibility.
+> 
+> About 'support_dual_station' feature can refer:
+> https://msgid.link/20230714023801.2621802-2-quic_cjhuang@quicinc.com
+> 
+> Add a ieee80211_iface_combination to support DBS and DFS compatibility,
+> one combination can support DFS(same with non dual sta), another
+> combination can support DBS. When running different scenarios that will
+> use different ieee80211_iface_combination due to mac80211 will go through
+> all of possible interface combinations.
+> 
+> In addition, maximum number of interfaces of these types should be total
+> allowed in this group.
+> 
+> The chips affected are:
+> 
+>   QCA6390 hw2.0
+>   WCN6855 hw2.0
+>   WCN6855 hw2.1
+> 
+> Other chips are not affected.
+> 
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-00410-QCAHKSWPL_SILICONZ-2
+> Tested-on: IPQ6018 hw1.0 AHB WLAN.HK.2.1.0.1-01161-QCAHKSWPL_SILICONZ-1
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1.
+> Tested-by: Mihai Moldovan <ionic@ionic.de>
+> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
+> 
+> Signed-off-by: Yu Zhang(Yuriy) <quic_yuzha@quicinc.com>
+
+Reviewed-by: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
 
