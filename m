@@ -4,99 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 444B2C3ABDD
-	for <ath11k@archiver.kernel.org>; Thu, 15 May 2025 17:37:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4561EC2D0CD
+	for <ath11k@archiver.kernel.org>; Thu, 15 May 2025 18:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=28kQjLma94V279htA/iRUZ04/rNy/zv5ChEU82zgGeo=; b=mCaUHsbwXAPJ097ZScKJ0dbKTU
-	jl5v2QbUSkSmDQKh7RyRNe804OL66zV/7Y6WfUL0kNkb1f+gdI0sJpe4RyckTSuwLhpaBWxPYKXh2
-	JhoDMKK8jsAedoKxbTQjTzQK13NXOjX+L78QvMqEbtEzPUQBPNNFYTxhNKe8KeCzeR+maItPSbcLP
-	NJ3ofI9qZSp/72MpqWhmxp7ajjwol799LbEkL7keaGI3SXRFMMDWhflI+2k5GdlXzgYTUgarwKCPO
-	Lb7ynxkaZkms0dpoGUlFYk7ZbKxIXqmMMnNzjt4FQtnc77TZU+2SnguVqHXDrVEP0eiCElMoQ/K7K
-	fGPJC2ow==;
+	bh=sBz/Ja5f1gktQ1PgWCfZnCZrLBBYmcdP46pxidQq15E=; b=txrJVgCJ1vugwq6Zs6QK9a5Ch6
+	WCgCM7Brm3ioTPPRAWkCVciChMa/NNeENLtyGiAziX7mdhKmi0bUmrwy6daWOwrrLCfrE3jxycUl4
+	3jIIOSbRiRymw+r/0OhvYNace1bM8ZZXevcyFEQ9uOOCcndQ/CFlpuXCwWOHvTlukgx54TtO+VqAi
+	kOm+NZgT8Zs4r3/XIissCQVERe/gcoOfH2ZeAdAXTwphtKQTo88dYSy4nZYpduHyS90RKMsrQijD8
+	efOaTU5NSNc/zIRxaeEWVqiy9iZfXeU+a7lxP60ctlukKPTSCcWpFCiusXyXMhrS/o9Rh0Hx/POF2
+	JpZ8zLpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFcWA-00000001Ro8-3co7;
-	Thu, 15 May 2025 17:37:14 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uFcwN-00000001UvQ-3Fpi;
+	Thu, 15 May 2025 18:04:19 +0000
+Received: from mail.as201155.net ([185.84.6.188])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFcVx-00000001RjC-0ebw
+	id 1uFcvz-00000001Uoh-075J
 	for ath11k@lists.infradead.org;
-	Thu, 15 May 2025 17:37:02 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54FEFBbT018190;
-	Thu, 15 May 2025 17:36:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	28kQjLma94V279htA/iRUZ04/rNy/zv5ChEU82zgGeo=; b=CNw/STc3afD4WTn1
-	yh1dl7t7QFwPNjMuYDbE5m0vbCJNcQ2+kKFi+wmEQ6xllgQY7/s622i/BnsiTZsX
-	OVHEC9Tg4u1W6Ts6tJmda6GiIpOxRkdlIS6E7IKnIr+p7BKjkHIkXXcxAM/H34pM
-	prk5+iN520le/vuPo0/99hgTbjJdxSY/IfNHowzVvT5n0Rk84CA1amZLkoMnIA7K
-	5aWqA/MmoEX3wxcJCbvbpnS08KOph9Qvgs7RMEY7ywCtei6y61QeOOfZfiiWYNec
-	+xUB7LB51atfYoJrJhBirOXaIDuijD8Eo6QT2bQqXosTnX5d+9SGaVvlevnTp1+w
-	GP8AMw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcnq2qs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 May 2025 17:36:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54FHathE025188
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 May 2025 17:36:55 GMT
-Received: from [10.216.54.71] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 15 May
- 2025 10:36:52 -0700
-Message-ID: <45758365-5f5a-6650-ed30-1c394b9b81de@quicinc.com>
-Date: Thu, 15 May 2025 23:06:48 +0530
+	Thu, 15 May 2025 18:03:56 +0000
+Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:57846 helo=webmail.newmedia-net.de)
+	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
+	(Exim 4.97.1)
+	(envelope-from <s.gottschall@dd-wrt.com>)
+	id 1uFcvp-0000000029E-17yJ;
+	Thu, 15 May 2025 20:03:45 +0200
+X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_2000_2999 0.000000,
+	BODY_SIZE_5000_LESS 0.000000, BODY_SIZE_7000_LESS 0.000000,
+	CTE_7BIT 0.000000, DKIM_ALIGNS 0.000000, DKIM_SIGNATURE 0.000000,
+	HTML_00_01 0.050000, HTML_00_10 0.050000, IN_REP_TO 0.000000,
+	LEGITIMATE_SIGNS 0.000000, MSGID_SAMEAS_FROM_HEX_844412 0.100000,
+	MSG_THREAD 0.000000, MULTIPLE_RCPTS 0.100000, MULTIPLE_REAL_RCPTS 0.000000,
+	NO_CTA_FOUND 0.000000, NO_CTA_URI_FOUND 0.000000, NO_FUR_HEADER 0.000000,
+	NO_URI_HTTPS 0.000000, OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000,
+	REFERENCES 0.000000, SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000,
+	USER_AGENT 0.000000, __ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
+	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
+	__BULK_NEGATE 0.000000, __CC_NAME 0.000000, __CC_NAME_DIFF_FROM_ACC 0.000000,
+	__CC_REAL_NAMES 0.000000, __CT 0.000000, __CTE 0.000000,
+	__CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000, __DKIM_ALIGNS_2 0.000000,
+	__DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000,
+	__FORWARDED_MSG 0.000000, __FROM_DOMAIN_NOT_IN_BODY 0.000000,
+	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
+	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000,
+	__HEADER_ORDER_FROM 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
+	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
+	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
+	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
+	__MULTIPLE_RCPTS_CC_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
+	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
+	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __RCVD_PASS 0.000000,
+	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
+	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
+	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_END 0.000000,
+	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
+	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
+	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
+	__URI_NO_MAILTO 0.000000, __URI_NO_WWW 0.000000, __USER_AGENT 0.000000,
+	__X_MAILSCANNER 0.000000
+X-SASI-Probability: 8%
+X-SASI-RCODE: 200
+X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2025.5.15.172728
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=sBz/Ja5f1gktQ1PgWCfZnCZrLBBYmcdP46pxidQq15E=;
+	b=i8ZBX1bS8kaFDcg+kqXDePGDnW2ohpUnwNk+d89kfDSpxnzVnSWaYNMGBLu0kd/W1mrxZXdaDvSE8fUYcj+qjvAWeVJShNWQoFTsyCyRxDfWfcoc2AO9U1oagtIPm9rXrhspJx+MVtUzIyJn5PBXHrGHiW6lGWT4dusZXfVZV3g=;
+Message-ID: <2cf0a878-1ced-43e4-b8bc-f0dff9c56dd9@dd-wrt.com>
+Date: Thu, 15 May 2025 20:03:41 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] wifi: ath11k: clean-up during wrong ath11k_crypto_mode
-Content-Language: en-US
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, <jjohnson@kernel.org>
-CC: <~lkcamp/patches@lists.sr.ht>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250515004258.87234-1-rodrigo.gobbi.7@gmail.com>
-From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
-In-Reply-To: <20250515004258.87234-1-rodrigo.gobbi.7@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: Question about TX power
+To: Alexander Wilhelm <alexander.wilhelm@westermo.com>
+Cc: Jeff Johnson <jjohnson@kernel.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org
+References: <aB3AK83USvOdTvDv@FUE-ALEWI-WINX>
+ <73b2bd16-66aa-405c-acda-237d56be63dd@dd-wrt.com>
+ <aB3uKfu3frLyJ/2c@FUE-ALEWI-WINX>
+ <592e4722-d7e1-4202-897f-e2a522074fe6@dd-wrt.com>
+ <aCG2q2vNcLe4z/ff@FUE-ALEWI-WINX>
+From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
+In-Reply-To: <aCG2q2vNcLe4z/ff@FUE-ALEWI-WINX>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PReVneVIMXdp61uFzSqd7vfdKRfVb5QO
-X-Authority-Analysis: v=2.4 cv=aIbwqa9m c=1 sm=1 tr=0 ts=68262638 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=pGLkceISAAAA:8
- a=FEClEzSTKUsJnvQcYz4A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: PReVneVIMXdp61uFzSqd7vfdKRfVb5QO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE1MDE3NCBTYWx0ZWRfX8I8f056ANsqr
- 89fH4uIJyLmC3HgoVn3Rvx6Zl36BTt/61BiOID4jxePEQCkmxYxnCD+G6iaJXrkt5tUqC5shWQM
- ZUMMmMAO71IL2LJIwTeEaHwyKRKZEHJNzyyeKpxw4utPrrg0iUx/H1ntsfs5c5oitrIsCWAPGfg
- WfYdFss4T8UaGhgyqdHvON1OzjFqOaLbfxK1btisN5S/Xnvc37NQyY+aeN9SbwKBNx+rxKnFfue
- ATij+b85fLQ9uh2Y8/C9uFIq7iz1yy3CtQt8uh69AWthwR9O3bWtYpEUMtOrtOBcwLdurP3fmm2
- hJjCh/Pvse8Qj1zXRwfiYqP7S6R5n6OQAZiacRNjePLmeRCP9yrdsh3VxYlQboWQlBm+XGhxh5H
- 6gcIaJrmUgLpnGiPhGNgryOjGQyA7im7Qx7DJuTl+wpg6NmRtHeWr2x5ZVxnI5ImJy4qAmgt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-15_07,2025-05-15_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxlogscore=957 malwarescore=0 bulkscore=0 impostorscore=0
- clxscore=1011 phishscore=0 suspectscore=0 mlxscore=0 spamscore=0
- lowpriorityscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505070000 definitions=main-2505150174
+Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
+X-SA-Exim-Connect-IP: 127.0.0.1
+X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
+X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
+X-NMN-MailScanner-Information: Please contact the ISP for more information
+X-NMN-MailScanner-ID: 1uFcvm-000Bbt-R3
+X-NMN-MailScanner: Found to be clean
+X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
+X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
+	by webmail.newmedia-net.de with esmtp (Exim 4.72)
+	(envelope-from <s.gottschall@dd-wrt.com>)
+	id 1uFcvm-000Bbt-R3; Thu, 15 May 2025 20:03:42 +0200
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250515_103701_323665_DE4A6CDA 
-X-CRM114-Status: GOOD (  11.74  )
+X-CRM114-CacheID: sfid-20250515_110355_360005_B15A8944 
+X-CRM114-Status: GOOD (  13.04  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,30 +119,53 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
-
-On 5/15/2025 6:10 AM, Rodrigo Gobbi wrote:
-> if ath11k_crypto_mode is invalid (not ATH11K_CRYPT_MODE_SW/ATH11K_CRYPT_MODE_HW),
-> ath11k_core_qmi_firmware_ready() will not undo some actions that was previously
-> started/configured. It's reasonable to undo things during this condition, despite
-> the value used at ath11k_crypto_mode not being valid in this case.
-> 
-> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-> ---
-> Smatch got the following error:
-> 
-> drivers/net/wireless/ath/ath11k/core.c:2166 ath11k_core_qmi_firmware_ready() warn: missing unwind goto?
-> 
-
-This warning message can be included in the commit message itself.
-
-> When the ath11k_crypto_mode, which is a module param, is not
-> ATH11K_CRYPT_MODE_SW/HW, clean-up actions are not triggered.
-> Considering the whole ath11k_core_qmi_firmware_ready() function,
-> during potential errors, those actions are properly triggered.
-> I'm suggesting a little change over the default case to clean things up.
-> Tks and regards.
-
-This can be dropped as it does not provide any additional information.
-
-Vasanth
+Am 12.05.2025 um 10:51 schrieb Alexander Wilhelm:
+> Am Fri, May 09, 2025 at 03:49:55PM +0200 schrieb Sebastian Gottschall:
+>> Am 09.05.2025 um 13:59 schrieb Alexander Wilhelm:
+>>> Am Fri, May 09, 2025 at 12:54:47PM +0200 schrieb Sebastian Gottschall:
+>>>> Am 09.05.2025 um 10:43 schrieb Alexander Wilhelm:
+>>>>> Hello devs,
+>>>>>
+>>>>> I'd like to understand how TX power setting works on ath11k devices. For example
+>>>>> when I'm using channel 36 for ETSI based regulatory domain, I can set up to 23
+>>>>> dBm. But then I get only 20 dBm as a result. On different channels and/or
+>>>>> regulatory domains I get different reductions. I tried to follow the source
+>>>>> code. As far as I understood is that 'ath11k_mac_txpower_recalc' sets the
+>>>>> correct values and 'ath11k_mac_op_get_txpower' return the different one.
+>>>>>
+>>>>> My question is where this reduction offset is encoded. Is it in the module's
+>>>>> firmware or is it part of the boardfile? Thank you in advance.
+>>>>>
+>>>>>
+>>>>> Best regards
+>>>>> Alexander Wilhelm
+>>>> the boardfile contains chipset specific calibration data which also defines
+>>>> the hardware power limits (more specific data also included in the on board
+>>>> calibration flash of the device or if its a router, in flash memory of the
+>>>> router itself. in addition it includes a regulatory database which is used
+>>>> by the firmware for managing the total power. you have also to consider that
+>>>> the 23dbm are specified without antenna gain.
+>>>> so if the antenna gain is 3 dbm, you get 20 dbm in total. this antenna gain
+>>>> may again be specified in the boardfile.
+>>>> so you will not find your answers in any sourcecode. its all encoded in
+>>>> binary data.
+>>>>
+>>>> Sebastian
+>>>>
+>>> Alright, thank you Sebastian. Since I'm not using any calibration data on my
+>>> router/AP device, all data come from the boardfile. I've also understood that
+>>> the power limit reduction is related to antenna gain. I'll ask the radio module
+>>> manufacturer to create another boardfile for me that matches the required
+>>> antenna gain for my router/AP device.
+>> my answer might be not accurate here. which chipset we are talking about for
+>> ath11k?
+> I'm using QCN9074 chipset.
+okay. then we are at least talking about a common chipset i was talking 
+about.
+whats the vendor and exact name of that device? i have some sorts of 
+boardfiles from vendors collected.
+>
+>>> Best regards
+>>> Alexander Wilhelm
+>>>
 
