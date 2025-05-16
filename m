@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A29C3C5475C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB5EC54756
 	for <ath11k@archiver.kernel.org>; Fri, 16 May 2025 18:43:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,109 +12,112 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=q0svL+8Yfeg+vJiix8AzKhUs8Lq4dqmn7QH+/xdemwo=; b=qXMYsvx0zZG9YyThKA+Ik4th8p
-	+Me6/T9c4ICvOa2GKPX8TL7n5T1mRyCZq6nxdRGM4PJz141aTeh2CenPNQVsUz2GTnL0ywa8Jo3x5
-	mmWKoin9sau5SdxltN0Lj/5qG5dbHK+D1//NaV+Seuic3IAHyHPNjj4Gs2SB8PDM62fRt0UceGfR1
-	anin9fT9mGqG6JdLjCBJzjDobW4AlLC6h/HauIXRn7+BbvXvaNMegk73otpGWW22J8atsxbjJQpdR
-	XRkHb+ytrXXsCxa8sMMRYEN38wK2AmrKEDDGcXv499j0L5G/GXOYK9r35yoV9rUreIG8tRdhEuRI3
-	WnbrGevw==;
+	bh=bMwJC17N0LZE/PF1Re+m8j8/ER7di5Fs7MKJCmuSolY=; b=xTm/EkTRbCgG/EvtpmVrzq566B
+	evudM3PXRvZu2HNOEWu8fOwpinc03VXOfwrRnlkWr4KH9adcS1HtQwb40LGvW9QFTOGKGx8baLJXq
+	yF7aOWdtxWGKE/84KYbEziFK/6TNuQN/OngRAMJF2kp9mS1aVvZSV6kDSKz6Td1dsSj64cjR0tV2G
+	WjmgfbDvAjGYh/PTg8KFvp43oYQHOdcdw+2wtUuRZgcP/8oBkYCpxVN0MbEwNQ/u0FsYGrrpmUBRS
+	Cgww52ZRxC37QCC9wxvVysTpa9fCrMJBZzns5q8MV3yTexW9+3vGCTtbn5w0yY9Yt8wq2a/ux/JgO
+	DkrDNHkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uG01t-00000004MLA-2i6s;
-	Fri, 16 May 2025 18:43:33 +0000
+	id 1uG01u-00000004MLY-1sBM;
+	Fri, 16 May 2025 18:43:34 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFzsh-00000004KtY-1UZ4
+	id 1uFzsj-00000004Kv7-2lnI
 	for ath11k@lists.infradead.org;
-	Fri, 16 May 2025 18:34:05 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GBpIZU014763
-	for <ath11k@lists.infradead.org>; Fri, 16 May 2025 18:34:02 GMT
+	Fri, 16 May 2025 18:34:06 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GBU9Ix026254
+	for <ath11k@lists.infradead.org>; Fri, 16 May 2025 18:34:05 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	q0svL+8Yfeg+vJiix8AzKhUs8Lq4dqmn7QH+/xdemwo=; b=JhcQeGgBnVPwHm0K
-	nqmnDYrEUMdwqOlosGD588McBjTdMLNQpL7Xz9am2PPVrJl2illbMknGVgZvV1xI
-	INOhZtdhKHYxBGAxZJwrxfYBF5XgNCqMxR3bV2SAZ7nvZ/qKvwXDDgY7AtSLPj9F
-	KZUKWJJrTY0p3MWQecMjiJ85qJHbhHyda1tOii/GbG4gtfdU2TYuQ3PniMvpvYB2
-	zJTjsvS86Y21GgaWRNJLtmPsM2KI+Nc6s/vrjCn+6acZ8TrGe+6Da4qlsF1+5/ro
-	ztg5pCnnIOqJd1sT+jUp1q/tzZZFcItcP5S+hZ08l9Y61ywUmL52odWU0fQTjf4Y
-	iUqb2g==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcpk1c3-1
+	bMwJC17N0LZE/PF1Re+m8j8/ER7di5Fs7MKJCmuSolY=; b=C1RRrQjRL8kVmzyP
+	LZlAkZBgprpLpZBM4LpXi1qGUPvJwia+ag+l4xyW3Eu9mfSc2NaiTQcl0cxwcP6W
+	g74hyL+S+VS4ijJsngIh+2JGVP+yNwRqtmItbP42pkdNIPrOcfqW5YwIkSWdfG10
+	6oU9TqL+HIFaD0U70Z26kPulz60Cj9LNad1cISjKRb9Ty6jSDnlhXs+gbSzpchUV
+	y8QWiqR/Y/2Vbh4rNG3obH4fRNhf6ZhGDG8CJSecruAz5ukjI+7nsoVZ0MYIf6/R
+	9cf/oJ8Hh9cWMl+47vF2kYRhZ/WSedt0QUYCEwn8MvZg/iZDOuwgdXINg/KWfKb6
+	8/B6HA==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcyu3m3-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 16 May 2025 18:34:02 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-30e0e8ba948so2486023a91.2
-        for <ath11k@lists.infradead.org>; Fri, 16 May 2025 11:34:01 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Fri, 16 May 2025 18:34:05 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b090c7c2c6aso1536724a12.0
+        for <ath11k@lists.infradead.org>; Fri, 16 May 2025 11:34:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747420441; x=1748025241;
+        d=1e100.net; s=20230601; t=1747420444; x=1748025244;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=q0svL+8Yfeg+vJiix8AzKhUs8Lq4dqmn7QH+/xdemwo=;
-        b=JyiWnmXXDD0AXhIkIaFtXlhFOnTXJX9bmIxy5rgfcblQQ2Am6whR4MgcowskDwTLt3
-         7LzbDJrB0+Zv0pT8a7Lu+fn0V86mWsvmUNHBEUYqCOoNYWdvHtSSrA/nBWvf6f8GamIR
-         s18u1yYR1/mdwxgkpjeCqiTC/bEXxNVX6gyf7hf1+qGPKZvf+MMNBlp7tncXjoYoKs7n
-         txf8DIf7nI9C2q4xn4XFPzq4lWLPnJXX5eQ7Hh4ofd0oWLI7L7CXimdxffh0ytj7alTl
-         ylN6QsOmi2PxfYmvd9MsZha9/mrljiGygDSZF03Vegn+yGz1YQ52goLsLrfPlhzZLTtW
-         c3ow==
-X-Forwarded-Encrypted: i=1; AJvYcCUc/HmlK5Hz0hUMRDtYKbS3Sf4Y7b6whB4BqdnTO6cCuO0RW7IdAhxcoei+rRuuEDiMYWw2UUQ=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzugLsIjd3GEet39qzj4v89ApFqr3t57Qea813+Izgj//9jmozx
-	l14sqGTRhukccZNVra5o2JUcRZd7cSZY1tCbwevA2lb3FR0RAHVtVhdaJVHXZmtvbRnkyTjIbkQ
-	6PouuYmvyoQdsPnv/amsaHMGp6TjeaxnClvPIuXw4aiEfILGmpea20G4A1zzFw2+c
-X-Gm-Gg: ASbGnctcoyD+7IKRpiXOqSSpgIUVbu22xTVBWwwiX/cd46MbsQMSzftlUbN/Wpreagk
-	ZxTEznSq5/+P63Hza1/xnm7h/+IIPVVEigaqY25bACXPjbN5IABpWootqRpbbzh84QLsJ/ZFVQQ
-	rRhu5oqLRuWfEXtp4mBvgyeotOkSzdcjaGAVw76hXbUiZ5Wzm1Mt+Sl0bPVD3DE5yP2fCXTLLp5
-	FjxrqAw0P5Y54kweN5ahAyRTdQ/zJMOWGKUI2vdf+XPivQWvNKerCZ+6q9NIsziAT1gAPxL3bDt
-	VzPwS3VKw2J0PwSzuauOt+CEeqaSRYT2pjuz8o/SDlzic5fT
-X-Received: by 2002:a17:90b:33c2:b0:2ee:edae:780 with SMTP id 98e67ed59e1d1-30e7d548c90mr6850107a91.15.1747420441010;
-        Fri, 16 May 2025 11:34:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHDN0c6qarJQvD++Jh93GB0pXnmRuirKipjsMNV6jsu1UQrfj/SFWZkZbDZFNWhmtdcINcZQA==
-X-Received: by 2002:a17:90b:33c2:b0:2ee:edae:780 with SMTP id 98e67ed59e1d1-30e7d548c90mr6850072a91.15.1747420440579;
-        Fri, 16 May 2025 11:34:00 -0700 (PDT)
+        bh=bMwJC17N0LZE/PF1Re+m8j8/ER7di5Fs7MKJCmuSolY=;
+        b=jEVbHMZ5Yb1kOIQ4OwR3qDpRBvMdod1p7Uw21j65Op+Abnz+rmEkv/ncjegPfdGMt1
+         l+jaV23T506oTl75/dLcHNfThddE3SXYGg+THgysg5CTOjf8Q2MPszhuq71J1BXerupX
+         AC+yYBWSIxSAvf564c0qZQXntwjuB3X57b+wVKbsl1W0Z2Cks49VjuUAD9jJaPSwk0Vu
+         pdB58LinQdKu66+yDmJE99U+4NvkTprNo+Vo0+mFUXRiN/qh/Of7J43ozSBU+qBvW/ek
+         LAHtVSuXOB0pYhPG5TDUM6ixnm10dQIepjwogr9yO98gBJ1OStuEvyq9/XtEwhR9J4z6
+         +FVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWySTpQuf1RHAcT09PVo6XtAcozbLoOByqsTtUX+txsC/bntvb6p9L39axLLFgijCVuv2U9kxo=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzO2BaWnt+bsae0NfVJpgmK6LV5UoRHqguCEmso2cSKvqxIswbr
+	OGMTjAEyLTwZSLcrsAr3rODgIhFv1R8U/7Q9KZYDdq2YnRm5szSgUezva49e75cw8wURGEhhK5K
+	NRkLayu5ERoNUwKQbvWBmJiG9EIoVltqK3oVCg61t/vX84uFY3Yzde4r056DWmXww
+X-Gm-Gg: ASbGncu3vrLCMjaE5oYFVWxsyiiLwJiAV4ocI14rH9ExbqxmDrUdhq9uVKWPyKtEuIW
+	mild4fyIYi3kp+7ysVi9mKwjB+gtEXaRiyw38BFoo9dEolghVs3rYpeZ+X1AMrbmMd/wDvENlxh
+	6SPuaiZy3RomGH0PJhfu+Q1P63Qj+d5guWY56j136dKnFCK6bCEBrujM0lVB5liaGM4jbWBY6Iv
+	4ELf/HopMpwWzAArsMKhkWygB3bUhORwaXA8+PjbO18XYjDDBzfcyktV6/gQcQKRHdmasqNtoix
+	HVOQUJ6EREfj/rpDyq4fCrOWJaVIKBR3L9xhS7zUcNdGCzcy
+X-Received: by 2002:a17:90a:e28e:b0:30e:823f:ef2d with SMTP id 98e67ed59e1d1-30e83216f6emr3390122a91.22.1747420444342;
+        Fri, 16 May 2025 11:34:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEKrnTa0VFLRTEBZCfV/Z7H4WzAhUIJOQQAV7WI7LhPnP/umk4KgcKmhJ1vHpXH01VjBGHX2w==
+X-Received: by 2002:a17:90a:e28e:b0:30e:823f:ef2d with SMTP id 98e67ed59e1d1-30e83216f6emr3390085a91.22.1747420443852;
+        Fri, 16 May 2025 11:34:03 -0700 (PDT)
 Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30e7d576babsm1886299a91.33.2025.05.16.11.33.59
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30e7d576babsm1886299a91.33.2025.05.16.11.34.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 May 2025 11:33:59 -0700 (PDT)
+        Fri, 16 May 2025 11:34:02 -0700 (PDT)
 From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-To: quic_bqiang@quicinc.com, Jeff Johnson <jjohnson@kernel.org>,
-        Muhammad Usama Anjum <usama.anjum@collabora.com>
-Cc: kernel@collabora.com, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250428080242.466901-1-usama.anjum@collabora.com>
-References: <20250428080242.466901-1-usama.anjum@collabora.com>
-Subject: Re: [PATCH v5] wifi: ath11k: Fix memory reuse logic
-Message-Id: <174742043941.3092151.9479454399125527127.b4-ty@oss.qualcomm.com>
-Date: Fri, 16 May 2025 11:33:59 -0700
+To: Jeff Johnson <jjohnson@kernel.org>, Johan Hovold <johan+linaro@kernel.org>
+Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
+        Steev Klimaszewski <steev@kali.org>,
+        Clayton Craft <clayton@craftyguy.net>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+In-Reply-To: <20250321145302.4775-1-johan+linaro@kernel.org>
+References: <20250321145302.4775-1-johan+linaro@kernel.org>
+Subject: Re: [PATCH] wifi: ath11k: fix rx completion meta data corruption
+Message-Id: <174742044217.3092151.7410193996690738196.b4-ty@oss.qualcomm.com>
+Date: Fri, 16 May 2025 11:34:02 -0700
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.0
-X-Proofpoint-GUID: LCJnS0Pqd4Ysg7lwrk8TrFY9Yq_ti9D_
-X-Proofpoint-ORIG-GUID: LCJnS0Pqd4Ysg7lwrk8TrFY9Yq_ti9D_
-X-Authority-Analysis: v=2.4 cv=cO7gskeN c=1 sm=1 tr=0 ts=6827851a cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=fqv9DNJugNdUxR9BDUUA:9
- a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDE4MiBTYWx0ZWRfX21fGpBRF+/OW
- ZasbeObB+cLiBRh0e/SeYkvfQKauV2F/JA4xKRIPvl+FfdPUaW9WVnIParv6+GRk8OlvRaFAsRs
- f8j0gdsIzEc+xPmeTMQ24sJQ9zuKUO8hB+gU+6ywtkq3vjyzxRTxSOiF7Mtmr+RYFMsLOAJq1xj
- 40PqVCfQ1T5wMGIF2d8sEwsMxc8yzRPuFES1BiaPXrcO7eitDohBEGiY1Mzh0NCrnBB2VIBhbvB
- 2ErHrfSs4vgM2WDWWspEoAHwYkyRdymArUtVPGzPxC7mjZL0DVYp/9UZpIeaLJAfETyC7+EGDFF
- kYvOWDjXnMIC5vvgJLQ8YyDYbSfK8sXDG7trdYF1c7aEU/Tbl9ahEhhkIqnp/ZfKhrEYLGejmdF
- JTcssdjjr9xueGSZW55aAj5uxWf0qfGqQShPh4YtsSyFeyXW/CnVw3lGPpuQ1sXOwHdWjo0c
+X-Proofpoint-GUID: UL0k-NmvaHGxQ_e1QEG6Xp44Zd-bChD1
+X-Proofpoint-ORIG-GUID: UL0k-NmvaHGxQ_e1QEG6Xp44Zd-bChD1
+X-Authority-Analysis: v=2.4 cv=JszxrN4C c=1 sm=1 tr=0 ts=6827851d cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=WD2RVSGR4ZOmZR8fVjQA:9
+ a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDE4MiBTYWx0ZWRfX7XE6Z0qjE8x4
+ n0++iQ9AA60rwfj+q2mXITHYRg+brtAVC3to5AE75RQxfPjqJnezctTI4x4AYfhULsPkRKUtyO3
+ i8of+WO8B2TKI4roN4UNlVkyz6mFDyguP/Ku8I4SkbvXUjrhUPAbz/JMs3/sJpxvlek5rwXvthy
+ AUvpyCtDpfEF4UL2GvjpZBp8meZRHZcRkkvr8FKB6fqZTKexsJ+wgbFlh58zSXXEOUXPG0AGErS
+ vCyTj0MW55jNSpMUpPWNuLCUfe9e72V3NjmHRJbLeJCf90+fXICXqY86IS+jzV9TtZJvJKvHycU
+ 5rs+MgtmGWhAYR5s1ywTux8pVPFnUDZ6UBjHmIAWEAyj4QCs+kqKkx3M8u4NqCbuxo03Q5+Kaw5
+ jmpdIr+cJScVrjNgTKunbhXoKo9H04FhzDxZX7Y4EQnAkVJ33Kh0hNrYYWdlCQrTSHTv6ENV
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-16_06,2025-05-16_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
- adultscore=0 bulkscore=0 malwarescore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505160182
+ impostorscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=974 bulkscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505070000 definitions=main-2505160182
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250516_113403_408313_612F2006 
-X-CRM114-Status: UNSURE (   8.13  )
+X-CRM114-CacheID: sfid-20250516_113405_716130_90E70639 
+X-CRM114-Status: UNSURE (   9.06  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,20 +134,22 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
-On Mon, 28 Apr 2025 13:02:41 +0500, Muhammad Usama Anjum wrote:
-> Firmware requests 2 segments at first. The first segment is of 6799360
-> whose allocation fails due to dma remapping not available. The success
-> is returned to firmware. Then firmware asks for 22 smaller segments
-> instead of 2 big ones. Those get allocated successfully. At suspend/
-> hibernation time, these segments aren't freed as they will be reused
-> by firmware after resuming.
+On Fri, 21 Mar 2025 15:53:02 +0100, Johan Hovold wrote:
+> Add the missing memory barrier to make sure that the REO dest ring
+> descriptor is read after the head pointer to avoid using stale data on
+> weakly ordered architectures like aarch64.
+> 
+> This may fix the ring-buffer corruption worked around by commit
+> f9fff67d2d7c ("wifi: ath11k: Fix SKB corruption in REO destination
+> ring") by silently discarding data, and may possibly also address user
+> reported errors like:
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] wifi: ath11k: Fix memory reuse logic
-      commit: cd2e7bae92bd7e65063ab8d04721d2b711ba4cbe
+[1/1] wifi: ath11k: fix rx completion meta data corruption
+      commit: ab52e3e44fe9b666281752e2481d11e25b0e3fdd
 
 Best regards,
 -- 
