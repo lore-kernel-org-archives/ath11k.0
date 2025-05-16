@@ -4,86 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0597CC2D0CD
-	for <ath11k@archiver.kernel.org>; Thu, 15 May 2025 22:25:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97BD8C3DA4A
+	for <ath11k@archiver.kernel.org>; Fri, 16 May 2025 01:52:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=IKoACcwZvqB4hjAADhBiXrdtznQVIY5lA2O4xWzuOU0=; b=UijAd9vqEwSJ69O+2tGcZoT/jt
-	QJPRVMpWHsTfOzg7aq5hRh9rS1nruCPZiQ6Ar1rWOB9+5zeAuBLYJZG658POus+gWwpPqU+0ViDzG
-	bWBJ2XUobaAiUnvsw3VdDf1Fe8u803nLDl5B0MnITLpQOTWQcfqDo3+394ooX47r+ejk8uSPFN3e7
-	2a5JZHSkeEXwZC6QDzuG8N90wdKjysEFE2Vq5sVViQ5ewveSRymueGVI5MNuLMdLWRGeNlqVqsUat
-	He2N/SOCvZwbH6CR3dbPceTOJCF3hOsWOn5kGb4FeDBy2SgLlVwC1sLjebh1jkEhxjrkYXur22JbR
-	RT6KK40Q==;
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=CTvwtxAEl/GoW/Fv6LUxyvVqZYvC664HWlTMIoG42sI=; b=LEUx/JUrdIN8U6pRLUQCGJ11ua
+	Jc9/iUnrCWnZImVq/E/zT+IMkOLg277+oDlKbJP8gRLI9VsKfjWprWd3Ac4WXfBNyg92Giq5x4Em6
+	bM5rSD5Futw8YbBfpM0SihqZVUXKNPLGEOFZgfq0DJnapGXqYA/hdYftDi5Srax2OhySuNGs8MBSz
+	lChU/o45K1KLfglxeKp9hR6k/Ctzc920LGOrPP6A1Pks8nl7znFXUmS+PrZOe2FNLW2u57USmSKee
+	ImgcgeLR2H+0TTQpeooyWrT7c5MJP9HqSlsQ1/0ctDaHuYAqpdQ2YUxg1FMQDW52k4j5fwRi4fO0J
+	RlLB6xxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFh1A-00000001yLT-00tB;
-	Thu, 15 May 2025 22:25:32 +0000
-Received: from mail-vk1-xa2b.google.com ([2607:f8b0:4864:20::a2b])
+	id 1uFkEw-00000002Egu-2lSs;
+	Fri, 16 May 2025 01:51:58 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFh18-00000001yL9-00r3
+	id 1uFkEt-00000002Eg7-3ONe
 	for ath11k@lists.infradead.org;
-	Thu, 15 May 2025 22:25:31 +0000
-Received: by mail-vk1-xa2b.google.com with SMTP id 71dfb90a1353d-52934f4fb23so872033e0c.1
-        for <ath11k@lists.infradead.org>; Thu, 15 May 2025 15:25:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747347928; x=1747952728; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IKoACcwZvqB4hjAADhBiXrdtznQVIY5lA2O4xWzuOU0=;
-        b=jGnHniuponFGxl/BafQ5kqEQXKum0H/kj/243l8rX5aMHcgSmzOiEMF/hreG1Tu0cc
-         FWsa490mtJ2gwAeyEZ+ZyKK/QeM5lX+E/fq+4CYPDZz+tXHJCVn+mIJ5HSqrgQCP3bIx
-         P2LjgxIm2fJrfH5vTvTzzxjCrtXnA4tLNLsdB5Cqjc3BrCOkaDf1uAT8Bfwx9ok9VzOv
-         Ckj5/Ix6rsy9wApreu10wDq1s6oEn2YNNRkE1G+X96y86j18Ltv2zVO5wGLJfz91H+A+
-         3QLJ4FdhEF0HqFVQbXhdwzlLsu29e6hMud1QRwQTJTTzskZ46ToTuKsSm8vyfcg6JRdl
-         wiLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747347928; x=1747952728;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IKoACcwZvqB4hjAADhBiXrdtznQVIY5lA2O4xWzuOU0=;
-        b=hgktQDAArRjqdriDv1byk4iulPjn9RIqWaZt3ytpshe1fSfw1FE+gzGT5wcWUI+Q9W
-         XhqgM9vrOvXi1PwpVmyCHMixPjjgyPyCeKGXH90DNATPsV4BGphqzJiZEaVipMgK3jjy
-         rNuTxVSCDvd3YQ0do+qJd6oEjJYHTiJogZZ2dmYjWmgPnnOEnA2KU7cvNJc1ba4HC2fS
-         xT4qKvQG0ueTCBMrBEOnG1Pqe0xkH/qTz8ONjPslYYT2GsPLXBRU/3Yc/luK7ftlEM2g
-         KxLeSJknKwoJCKkT5DoeGG/9Q0sQSS6DA3+3IIr7tRQhfsvxEBu+hv2gbGUSlBbChDSW
-         DQGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmZCKazJ9sDXx+nF4c6k0nNaBczLwpMJVuwNoeY3YFN0eKsR8N23k2YTkAYa72knszhebOKq8=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy0RfH/T/p/UL3FNohLZTfF5PZBLWz+owWuJWKkvKnLVF/0xSKA
-	FZFya7goaJFgLvOMBaZZN5v4Bw77NiMVXJyo0OpOPgwtvwc36kocAObx
-X-Gm-Gg: ASbGncsm/kWw4/0cjO8OUfWJxW1+uz8h+4qmC6jPTLwRk/gK8PgagPCTBCN2QSuL2KR
-	2aTv+FpI+nF9LQAaoWLHS9wyx/mOKRqcZDvIvXrzHhOMVJettGxqptGT+d4u7KhRuaa2nE/y8a7
-	LWLjoBC50RxXHuujeS/dwrsKOxfKks120rwrzd+iyjUQmj8dP+sJ56YJpoLWPWJGgdTvDli1mpV
-	gc9u9fGu22Bqy94GD1fHXVmtfGlp4dqCrya3qODXcUdLnrOrjcoSDAI09NyBM7i/Y6kCwbQ+M70
-	JmvY0p47gdMCe/fJxT83DOdFQx1TMnJeXlCjyRJqgazZoO+Teh1yQFvoRK6sE5fMX7iTIHUPQxY
-	=
-X-Google-Smtp-Source: AGHT+IH0Tx0zRc430b72Scg4pBsmQupJJ3uqemf4Bh0+E2crHEPLAfCrR3/q35Bega+vTcWuytGTlQ==
-X-Received: by 2002:a05:6122:88c:b0:52a:cdd8:fc33 with SMTP id 71dfb90a1353d-52dba614e02mr2282226e0c.0.1747347928588;
-        Thu, 15 May 2025 15:25:28 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14d:4c64:81ec:7409:107a:a63b:a3da])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52dba9408f5sm724417e0c.15.2025.05.15.15.25.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 May 2025 15:25:28 -0700 (PDT)
-From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-To: jjohnson@kernel.org
-Cc: ~lkcamp/patches@lists.sr.ht,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] wifi: ath11k: clean-up during wrong ath11k_crypto_mode
-Date: Thu, 15 May 2025 19:22:48 -0300
-Message-ID: <20250515222520.4922-1-rodrigo.gobbi.7@gmail.com>
-X-Mailer: git-send-email 2.49.0
+	Fri, 16 May 2025 01:51:57 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54FEFPAx031652;
+	Fri, 16 May 2025 01:51:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	CTvwtxAEl/GoW/Fv6LUxyvVqZYvC664HWlTMIoG42sI=; b=RFU7aqn2mSKCi2wX
+	ptRaHioNftC9aYL9vxcvOZ0YuUOms8BL1izF4tbQ0IzjGOm5JJKxv/cY7+SxXNf4
+	EFjCPLz8lF4DhC5lgFEnvqdPZiyg0lKFolg6V5AEPsYq1CSu6BDbHdmymyGC6rMy
+	Et5/nHQJF/kOFrsTlV2SQQhwv3IQP50nAubhFKyy6WumRAtC44oa/nnXGpZzVNRh
+	syVh5vmIc4Y36wrLvXUsiPgQJ50lEqaUU+1wndHO/snAsv/EdB7CgeC1ghtqEI9j
+	dfPCCvNhTNxG5WRNsOEXjySrcbioS5eSi4ORU7QHDLGVyR/skUWRtKlOpH6bvWdi
+	h5cI7Q==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcr811e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 May 2025 01:51:51 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54G1pViq005568
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 May 2025 01:51:31 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 15 May
+ 2025 18:51:29 -0700
+Message-ID: <50e0757f-03e8-460c-b14a-103e675f5f84@quicinc.com>
+Date: Fri, 16 May 2025 09:51:26 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] wifi: ath11k: clean-up during wrong ath11k_crypto_mode
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, <jjohnson@kernel.org>
+CC: <~lkcamp/patches@lists.sr.ht>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250515222520.4922-1-rodrigo.gobbi.7@gmail.com>
+Content-Language: en-US
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20250515222520.4922-1-rodrigo.gobbi.7@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: oFmd9ZE8O3rekEovDSMgfM2t5JrJJGjT
+X-Authority-Analysis: v=2.4 cv=Auju3P9P c=1 sm=1 tr=0 ts=68269a37 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=pGLkceISAAAA:8 a=VJvuOwoLhTZW_tfsPHkA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: oFmd9ZE8O3rekEovDSMgfM2t5JrJJGjT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDAxNiBTYWx0ZWRfX5EZH73auMXZ2
+ BdR0hP03ZoOHE0zmXhY1S7o8HNb+GQkIvfpjL4SeDkVAKqVI3KJRu/+cNlXKzsNPpv05O1JviMR
+ x6xc6pbbeFd7EM58pzoBGlfalhEjLdhg4TBZXcoc3g8dBQEpitgt8kkg8K/7QqDTkZdPiyFYlZu
+ THOpnKP9Q0XLElT6mO2xYenOxHNMS6/8q33EXl7duqghZIFqOAAfqN8zda7vMdwCe/Zs2z5FR09
+ 9G7AjRNNpXIPp2zqDh0tdnQFR7fw+lpfWn8KZ0+t2X2TtWcTJrOCb/IhUcirIzFW9KB7gZ4mzyQ
+ 9Dmp6UAZuharqnk+8+tH1IiKuEez1TjfpDH37U7tfKCgLNA6wU2K40MshB4CF+lPgXkhxjNw+7g
+ Cz2FyEAyGZ6QSQDDs8XNFqeOqNUQYfDnncxWjWCIHPGpnE6h4sJDqBoRqap37lp/6KVqaiQ7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-16_01,2025-05-15_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1011 spamscore=0 impostorscore=0 lowpriorityscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 priorityscore=1501 mlxlogscore=944
+ phishscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505160016
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250515_152530_041839_D84130AC 
-X-CRM114-Status: UNSURE (   8.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250515_185155_968351_C339263A 
+X-CRM114-Status: GOOD (  14.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,39 +110,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-if ath11k_crypto_mode is invalid (not ATH11K_CRYPT_MODE_SW/ATH11K_CRYPT_MODE_HW),
-ath11k_core_qmi_firmware_ready() will not undo some actions that was previously
-started/configured. It's reasonable to undo things during this condition, fixing
-the following smatch warning:
 
-drivers/net/wireless/ath/ath11k/core.c:2166 ath11k_core_qmi_firmware_ready()
-warn: missing unwind goto?
 
-Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
----
-Changelog:
-v2: add smatch warn at commit msg
-v1: https://lore.kernel.org/linux-wireless/20250515004258.87234-1-rodrigo.gobbi.7@gmail.com/
----
- drivers/net/wireless/ath/ath11k/core.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+On 5/16/2025 6:22 AM, Rodrigo Gobbi wrote:
+> if ath11k_crypto_mode is invalid (not ATH11K_CRYPT_MODE_SW/ATH11K_CRYPT_MODE_HW),
+> ath11k_core_qmi_firmware_ready() will not undo some actions that was previously
+> started/configured. It's reasonable to undo things during this condition, fixing
+> the following smatch warning:
+> 
+> drivers/net/wireless/ath/ath11k/core.c:2166 ath11k_core_qmi_firmware_ready()
+> warn: missing unwind goto?
+> 
+> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+> ---
+> Changelog:
+> v2: add smatch warn at commit msg
+> v1: https://lore.kernel.org/linux-wireless/20250515004258.87234-1-rodrigo.gobbi.7@gmail.com/
+> ---
+>  drivers/net/wireless/ath/ath11k/core.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+> index 2e9f8a5e61e4..fd3017c444a4 100644
+> --- a/drivers/net/wireless/ath/ath11k/core.c
+> +++ b/drivers/net/wireless/ath/ath11k/core.c
+> @@ -2163,7 +2163,9 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
+>  		break;
+>  	default:
+>  		ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
+> -		return -EINVAL;
+> +		ret = -EINVAL;
+> +		ath11k_dp_free(ab);
+> +		goto err_firmware_stop;
+>  	}
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 2e9f8a5e61e4..fd3017c444a4 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2163,7 +2163,9 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 		break;
- 	default:
- 		ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
--		return -EINVAL;
-+		ret = -EINVAL;
-+		ath11k_dp_free(ab);
-+		goto err_firmware_stop;
- 	}
- 
- 	if (ath11k_frame_mode == ATH11K_HW_TXRX_RAW)
--- 
-2.49.0
+Instead, how about moving the ath11k_crypto_mode validating to the top of
+ath11k_core_qmi_firmware_ready()?
+
+>  
+>  	if (ath11k_frame_mode == ATH11K_HW_TXRX_RAW)
 
 
