@@ -4,121 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB5EC54756
-	for <ath11k@archiver.kernel.org>; Fri, 16 May 2025 18:43:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 248A1C3ABD8
+	for <ath11k@archiver.kernel.org>; Fri, 16 May 2025 18:43:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=bMwJC17N0LZE/PF1Re+m8j8/ER7di5Fs7MKJCmuSolY=; b=xTm/EkTRbCgG/EvtpmVrzq566B
-	evudM3PXRvZu2HNOEWu8fOwpinc03VXOfwrRnlkWr4KH9adcS1HtQwb40LGvW9QFTOGKGx8baLJXq
-	yF7aOWdtxWGKE/84KYbEziFK/6TNuQN/OngRAMJF2kp9mS1aVvZSV6kDSKz6Td1dsSj64cjR0tV2G
-	WjmgfbDvAjGYh/PTg8KFvp43oYQHOdcdw+2wtUuRZgcP/8oBkYCpxVN0MbEwNQ/u0FsYGrrpmUBRS
-	Cgww52ZRxC37QCC9wxvVysTpa9fCrMJBZzns5q8MV3yTexW9+3vGCTtbn5w0yY9Yt8wq2a/ux/JgO
-	DkrDNHkw==;
+	bh=MzzkSiZrg4oJeY3DBEUNx4n2bS19YxHxGP5sLJRKfY8=; b=UbnadfbVhvsSIoSXOw2/VcjBBi
+	tiHVAYo7TDUqwKSG5h09+7JOTSgjHUB44WT/P7DM4ceULRzdxG5Q8H3LWE3hMuOALdogvHOYWVXVS
+	JkGFSEfOfpuktteuUqdL9ZLqvtyOcZHYfubwVGsT48i+qnDgPgJs7aD7GNklpm54KS+wQvi9fhb5O
+	je7Irz5eHqcoUOBrdyqLlQUQxvT3nUAbg5Ba3JVJ9D2Zv945H6mdgOGplmDJQfQSdZuhdnwYf9IMH
+	Efrj0nzHUtV7bSe0UaLA41lrOy8aecxY55NJ/6/qTn2UBhB8Hj1kXrjDLepJLHDjnXwwCTWszSvfm
+	g+WYkmjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uG01u-00000004MLY-1sBM;
-	Fri, 16 May 2025 18:43:34 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uG01v-00000004MN2-48m6;
+	Fri, 16 May 2025 18:43:35 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFzsj-00000004Kv7-2lnI
-	for ath11k@lists.infradead.org;
-	Fri, 16 May 2025 18:34:06 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GBU9Ix026254
-	for <ath11k@lists.infradead.org>; Fri, 16 May 2025 18:34:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bMwJC17N0LZE/PF1Re+m8j8/ER7di5Fs7MKJCmuSolY=; b=C1RRrQjRL8kVmzyP
-	LZlAkZBgprpLpZBM4LpXi1qGUPvJwia+ag+l4xyW3Eu9mfSc2NaiTQcl0cxwcP6W
-	g74hyL+S+VS4ijJsngIh+2JGVP+yNwRqtmItbP42pkdNIPrOcfqW5YwIkSWdfG10
-	6oU9TqL+HIFaD0U70Z26kPulz60Cj9LNad1cISjKRb9Ty6jSDnlhXs+gbSzpchUV
-	y8QWiqR/Y/2Vbh4rNG3obH4fRNhf6ZhGDG8CJSecruAz5ukjI+7nsoVZ0MYIf6/R
-	9cf/oJ8Hh9cWMl+47vF2kYRhZ/WSedt0QUYCEwn8MvZg/iZDOuwgdXINg/KWfKb6
-	8/B6HA==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcyu3m3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 16 May 2025 18:34:05 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b090c7c2c6aso1536724a12.0
-        for <ath11k@lists.infradead.org>; Fri, 16 May 2025 11:34:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747420444; x=1748025244;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bMwJC17N0LZE/PF1Re+m8j8/ER7di5Fs7MKJCmuSolY=;
-        b=jEVbHMZ5Yb1kOIQ4OwR3qDpRBvMdod1p7Uw21j65Op+Abnz+rmEkv/ncjegPfdGMt1
-         l+jaV23T506oTl75/dLcHNfThddE3SXYGg+THgysg5CTOjf8Q2MPszhuq71J1BXerupX
-         AC+yYBWSIxSAvf564c0qZQXntwjuB3X57b+wVKbsl1W0Z2Cks49VjuUAD9jJaPSwk0Vu
-         pdB58LinQdKu66+yDmJE99U+4NvkTprNo+Vo0+mFUXRiN/qh/Of7J43ozSBU+qBvW/ek
-         LAHtVSuXOB0pYhPG5TDUM6ixnm10dQIepjwogr9yO98gBJ1OStuEvyq9/XtEwhR9J4z6
-         +FVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWySTpQuf1RHAcT09PVo6XtAcozbLoOByqsTtUX+txsC/bntvb6p9L39axLLFgijCVuv2U9kxo=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzO2BaWnt+bsae0NfVJpgmK6LV5UoRHqguCEmso2cSKvqxIswbr
-	OGMTjAEyLTwZSLcrsAr3rODgIhFv1R8U/7Q9KZYDdq2YnRm5szSgUezva49e75cw8wURGEhhK5K
-	NRkLayu5ERoNUwKQbvWBmJiG9EIoVltqK3oVCg61t/vX84uFY3Yzde4r056DWmXww
-X-Gm-Gg: ASbGncu3vrLCMjaE5oYFVWxsyiiLwJiAV4ocI14rH9ExbqxmDrUdhq9uVKWPyKtEuIW
-	mild4fyIYi3kp+7ysVi9mKwjB+gtEXaRiyw38BFoo9dEolghVs3rYpeZ+X1AMrbmMd/wDvENlxh
-	6SPuaiZy3RomGH0PJhfu+Q1P63Qj+d5guWY56j136dKnFCK6bCEBrujM0lVB5liaGM4jbWBY6Iv
-	4ELf/HopMpwWzAArsMKhkWygB3bUhORwaXA8+PjbO18XYjDDBzfcyktV6/gQcQKRHdmasqNtoix
-	HVOQUJ6EREfj/rpDyq4fCrOWJaVIKBR3L9xhS7zUcNdGCzcy
-X-Received: by 2002:a17:90a:e28e:b0:30e:823f:ef2d with SMTP id 98e67ed59e1d1-30e83216f6emr3390122a91.22.1747420444342;
-        Fri, 16 May 2025 11:34:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEKrnTa0VFLRTEBZCfV/Z7H4WzAhUIJOQQAV7WI7LhPnP/umk4KgcKmhJ1vHpXH01VjBGHX2w==
-X-Received: by 2002:a17:90a:e28e:b0:30e:823f:ef2d with SMTP id 98e67ed59e1d1-30e83216f6emr3390085a91.22.1747420443852;
-        Fri, 16 May 2025 11:34:03 -0700 (PDT)
-Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30e7d576babsm1886299a91.33.2025.05.16.11.34.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 May 2025 11:34:02 -0700 (PDT)
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-To: Jeff Johnson <jjohnson@kernel.org>, Johan Hovold <johan+linaro@kernel.org>
-Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
-        Steev Klimaszewski <steev@kali.org>,
-        Clayton Craft <clayton@craftyguy.net>,
-        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-In-Reply-To: <20250321145302.4775-1-johan+linaro@kernel.org>
-References: <20250321145302.4775-1-johan+linaro@kernel.org>
-Subject: Re: [PATCH] wifi: ath11k: fix rx completion meta data corruption
-Message-Id: <174742044217.3092151.7410193996690738196.b4-ty@oss.qualcomm.com>
-Date: Fri, 16 May 2025 11:34:02 -0700
+	id 1uG01D-00000004MGL-18l9;
+	Fri, 16 May 2025 18:42:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1747420952; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=UB58WcAzPfmeQxe/5HlsaQ5qwCCfD3VwmFuzrSEowItxfPOF5c3Q2xLQQNXim4CWyY/t2tGz7TA0digxQxndyRoFUiCbuvsz90gQJR2hBB6QetgDJdSO2yavqNdkbtvowdFwQzig8zgTOslXFazXQApQd9TdwdVuyYpsrVMjt/c=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1747420952; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=MzzkSiZrg4oJeY3DBEUNx4n2bS19YxHxGP5sLJRKfY8=; 
+	b=MDf3bxyMFRUmfvwUSN8BfhmOcz5TC5subx1VSeD/d3+mEQR475vYKDlIiAbNMUlY9MVfp75dWp5TbwYtJ4lmhsPRjEKqIttwy/QpXSfUB+/ogf4uFsDc/5oZxjYllJsjzwrBZA4CsMdPv/quI4fKmHerHrGy3qjTevFWALK37So=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747420952;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Cc:Cc:Subject:Subject:To:To:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=MzzkSiZrg4oJeY3DBEUNx4n2bS19YxHxGP5sLJRKfY8=;
+	b=DDyMzMFqhCtktAIbag3MZAEfhMX2KogDJacB8zTo/0Ctr7PTYEvaLiHmFt44rQtI
+	x8jrfeV3A04XflvyyemEfVEa2J8laJZOKUJg/ojNjePSC9OWS6zcvHvkYK2dm+6z5mZ
+	BcVokWCp3hz5UmDeuY+VDrMYm2egk1Y8T6MKMGfo=
+Received: by mx.zohomail.com with SMTPS id 17474209503341.7831844100325043;
+	Fri, 16 May 2025 11:42:30 -0700 (PDT)
+Message-ID: <0e21b693-e03e-4a76-aada-0c48aeae6eec@collabora.com>
+Date: Fri, 16 May 2025 23:42:21 +0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.0
-X-Proofpoint-GUID: UL0k-NmvaHGxQ_e1QEG6Xp44Zd-bChD1
-X-Proofpoint-ORIG-GUID: UL0k-NmvaHGxQ_e1QEG6Xp44Zd-bChD1
-X-Authority-Analysis: v=2.4 cv=JszxrN4C c=1 sm=1 tr=0 ts=6827851d cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=WD2RVSGR4ZOmZR8fVjQA:9
- a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDE4MiBTYWx0ZWRfX7XE6Z0qjE8x4
- n0++iQ9AA60rwfj+q2mXITHYRg+brtAVC3to5AE75RQxfPjqJnezctTI4x4AYfhULsPkRKUtyO3
- i8of+WO8B2TKI4roN4UNlVkyz6mFDyguP/Ku8I4SkbvXUjrhUPAbz/JMs3/sJpxvlek5rwXvthy
- AUvpyCtDpfEF4UL2GvjpZBp8meZRHZcRkkvr8FKB6fqZTKexsJ+wgbFlh58zSXXEOUXPG0AGErS
- vCyTj0MW55jNSpMUpPWNuLCUfe9e72V3NjmHRJbLeJCf90+fXICXqY86IS+jzV9TtZJvJKvHycU
- 5rs+MgtmGWhAYR5s1ywTux8pVPFnUDZ6UBjHmIAWEAyj4QCs+kqKkx3M8u4NqCbuxo03Q5+Kaw5
- jmpdIr+cJScVrjNgTKunbhXoKo9H04FhzDxZX7Y4EQnAkVJ33Kh0hNrYYWdlCQrTSHTv6ENV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-16_06,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=974 bulkscore=0
- malwarescore=0 mlxscore=0 adultscore=0 phishscore=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505070000 definitions=main-2505160182
+User-Agent: Mozilla Thunderbird
+Cc: usama.anjum@collabora.com, kernel@collabora.com,
+ sebastian.reichel@collabora.com, Jeff Johnson
+ <jeff.johnson@oss.qualcomm.com>, Baochen Qiang <quic_bqiang@quicinc.com>,
+ mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org
+Subject: Re: [PATCH v5] bus: mhi: host: don't free bhie tables during
+ suspend/hibernation
+To: Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Jeff Johnson <jjohnson@kernel.org>, Youssef Samir
+ <quic_yabdulra@quicinc.com>, Matthew Leung <quic_mattleun@quicinc.com>,
+ Yan Zhen <yanzhen@vivo.com>, Alex Elder <elder@kernel.org>,
+ Kunwu Chan <chentao@kylinos.cn>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ "Dr. David Alan Gilbert" <linux@treblig.org>
+References: <20250514081447.279981-1-usama.anjum@collabora.com>
+ <f6eac84d-3d67-4f99-a9c5-a9f03d748010@oss.qualcomm.com>
+Content-Language: en-US
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <f6eac84d-3d67-4f99-a9c5-a9f03d748010@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250516_113405_716130_90E70639 
-X-CRM114-Status: UNSURE (   9.06  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250516_114251_351168_3AFE06EB 
+X-CRM114-Status: GOOD (  21.90  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,26 +92,92 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-On Fri, 21 Mar 2025 15:53:02 +0100, Johan Hovold wrote:
-> Add the missing memory barrier to make sure that the REO dest ring
-> descriptor is read after the head pointer to avoid using stale data on
-> weakly ordered architectures like aarch64.
+On 5/16/25 7:59 PM, Jeff Hugo wrote:
+> On 5/14/2025 2:14 AM, Muhammad Usama Anjum wrote:
+>> Fix dma_direct_alloc() failure at resume time during bhie_table
+>> allocation because of memory pressure. There is a report where at
+>> resume time, the memory from the dma doesn't get allocated and MHI
+>> fails to re-initialize.
+>>
+>> To fix it, don't free the memory at power down during suspend /
+>> hibernation. Instead, use the same allocated memory again after every
+>> resume / hibernation. This patch has been tested with resume and
+>> hibernation both.
+>>
+>> There are two allocations of bhie; rddm and fbc. Optimize both of those
 > 
-> This may fix the ring-buffer corruption worked around by commit
-> f9fff67d2d7c ("wifi: ath11k: Fix SKB corruption in REO destination
-> ring") by silently discarding data, and may possibly also address user
-> reported errors like:
+> There are 3, but you touch 2.  I just commented on this in v4.  Only
+> touching two is fine (the device for the 3rd one doesn't need this), but
+> the documentation must be accurate.
+Yeah, for 3rd one in mhi_load_image_bhie(), this optimization isn't
+needed. Let me rephrase and resent v6.
+
 > 
-> [...]
+>> allocations. The rddm is of constant size for a given hardware. While
+>> the fbc_image size depends on the firmware. If the firmware changes,
+>> we'll free and allocate new memory for it. This patch is moticated from
+> 
+> moticated?  Motivated maybe?
+I'm using checkpatch --strict --codespell and hopping that it'll catch
+typos. But it misses some of them. Do you use any such tool?
 
-Applied, thanks!
+> 
+>> the ath12k [1] and ath11k [2] patches. They don't free the memory and
+>> reuse the same memory if new size is same. The firmware caching hasn't
+>> been implemented for the drivers other than the nouveau. (The changing
+>> of firmware isn't tested/supported for wireless drivers. But let's
+>> follow the example patches here.)
+>>
+>> [1] https://lore.kernel.org/all/20240419034034.2842-1-
+>> quic_bqiang@quicinc.com/
+>> [2] https://lore.kernel.org/all/20220506141448.10340-1-
+>> quic_akolli@quicinc.com/
+>>
+>> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-
+>> QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+>> Tested-on: WCN7850 hw2.0 WLAN.HMT.1.1.c5-00284-
+>> QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
+>>
+>> Acked-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+>> Tested-by: Baochen Qiang <quic_bqiang@quicinc.com>
+>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+>> ---
+>> Changes since v1:
+>> - Don't free bhie tables during suspend/hibernation only
+>> - Handle fbc_image changed size correctly
+>> - Remove fbc_image getting set to NULL in *free_bhie_table()
+>>
+>> Changes since v2:
+>> - Remove the new mhi_partial_unprepare_after_power_down() and instead
+>>    update mhi_power_down_keep_dev() to use
+>>    mhi_power_down_unprepare_keep_dev() as suggested by Mani
+>> - Update all users of this API such as ath12k (previously only ath11k
+>>    was updated)
+>> - Define prev_fw_sz in docs
+>> - Do better alignment of comments
+>>
+>> Changes since v3:
+>> - Fix state machine of ath12k by setting ATH12K_MHI_DEINIT with
+>>    ATH12K_MHI_POWER_OFF_KEEP_DEV state (Thanks Sebastian for testing and
+>>    finding the problem)
+>> - Use static with mhi_power_down_unprepare_keep_dev()
+>> - Remove crash log as it was showing that kworker wasn't able to
+>>    allocate memory.
+>>
+>> Changes since v4:
+>> - Update desctiption
+> 
+> While I'm commenting on spelling, "description"
+> 
+> 
+> Code looks ok to me. I think we just need to hash out some of the
+> documentation and this will be good to go.
+Thanks
 
-[1/1] wifi: ath11k: fix rx completion meta data corruption
-      commit: ab52e3e44fe9b666281752e2481d11e25b0e3fdd
+> 
 
-Best regards,
+
 -- 
-Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-
+Regards,
+Usama
 
