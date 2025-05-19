@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E848FC5479B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB39CC54799
 	for <ath11k@archiver.kernel.org>; Mon, 19 May 2025 09:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,78 +12,78 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=J1/73SEf4ytXoZ1yrIlcLZ+v5wHcPMuVTgw0lx2XQTo=; b=vQOquIX0z6c9YWC/sbcdDpdlGP
-	lwmC5szdw9y87JIyWCIGV1rRMnV8goYlFQDyMtdJ5xqSvEZfQ1lFtXrKo0LbPioQL/Zir4f7/mbnG
-	+6AlALGoO8qroy3aIuaIoxkBrSjamdAw/VFvaOzY2N9ci0pzA8O9vTsraMPZTeDcxqcTqdRG8fxo5
-	b1v1bGE+SxjOHAq+t0Oy/0HpoizGPjXxVm8uhsJnfxfF/Zj+IrhTdURlOKpqwgFoHwyMMNzuR9md6
-	tiVZApT7n2ESboGVeJhUTBlF/CD/xIGJtAA2j9h7x2Rhz5h9wPxcX3Vfz1SoldzceYlfpYyRCPXRi
-	unXdtnRw==;
+	bh=007HujZERMxrHzIjqypoNUr3p/UZblbrCkLIdes8l3o=; b=zqItyJ8S4owbkSA+OTX5xm4m1P
+	3QHoN7Yz6ww7xQ6W6omOPuMCm09cD3gFoBKgqOTnZBspqNwesy2PwbmoadiW0Deqks8VmTcz9RpdT
+	RSz7Ichlof7/0kkf7kncUMRBeVr37uqnLDMgIklKkiriYQ+Dj+DTHWyFsUfiegvNaQ68eZZlpb6zC
+	nukyPJeahLRGqfVCoBsa61qa3CGo/IIW8shrMqYmkO0/xN8xLjp7npRT0QLE6k9sOH9OML3WXbAh/
+	ci2FNj3jCl2LH/OiOrJ0b5Ql3sKzHP9ImhPdPE5HJl2gZQZ5ih0gy3Y6q17v4NqIFJ6USyolIo0m7
+	EH+3wo0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uGxES-00000008gv2-3uEU;
-	Mon, 19 May 2025 09:56:28 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uGxEU-00000008gx0-1f9u;
+	Mon, 19 May 2025 09:56:30 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uGx1O-00000008crR-1qBq
+	id 1uGx1e-00000008cvT-1t8E
 	for ath11k@lists.infradead.org;
-	Mon, 19 May 2025 09:42:59 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J9RTva020427
-	for <ath11k@lists.infradead.org>; Mon, 19 May 2025 09:42:57 GMT
+	Mon, 19 May 2025 09:43:15 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J98DBe029025
+	for <ath11k@lists.infradead.org>; Mon, 19 May 2025 09:43:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	J1/73SEf4ytXoZ1yrIlcLZ+v5wHcPMuVTgw0lx2XQTo=; b=kKKAZkPI6RNDjmuv
-	H7XiYRa14vGzrsv8xoWeuBl5p9PkYLjXZjfgj2farMRVSOKTrJvtAcSUOyZIA2Tk
-	gr5SDApVc0yZ0cBJOS7SeY6oPQ2zdxwlhpK+ovGFSxvdjNjQCp2yQlZvREG2nawD
-	FhG+siBqr34WwgYXCOik3NDK7Vhr+FWyQEbvuqCOabyK6CPzTJTSXuoO9u+NZ1j9
-	gDskj05FmwZrVo3Q2wxMs2/6QkIJ6cW0LTb3BL1mSP03wku10Glv4rib8/lB9PTX
-	bx7UU6sw14ByggecxvDtPmriXj7Yzje8EdBnYEVYZEwptYv8/jjYGF11UOUi9P4d
-	bknKNg==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjnykw49-1
+	007HujZERMxrHzIjqypoNUr3p/UZblbrCkLIdes8l3o=; b=JBbUYamNM38KwTPw
+	r5XpHHv0iGfIQvDD01T1azNRyfzAGyNaw8ym8Mz1hYs3velk5YZmKNFz5Qut1u5t
+	8VexHveJsDty+tyJht3pu2JQAtK2yXi2pMDD5IbTihiFeczqnb//j96Zzqg7QlY+
+	ROSr1pAw3nmwZqCln5iyu5KSMmosZPO2/5xYMyw43iTjKHxpjmSqEXdJ1SNVUBj9
+	LRxjHbHyPfTVbagpfTZ361SdkVQZ3VVKVcjb82jj5nGznKnZhcZaLZz3lQJ3ijcF
+	9AHKwlHr6v2+DMbbm4O95fHlRS3U2IS7GsDN+K1fQkkmdic7Wzr1HqosfBi52ugd
+	lpLkqw==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjm4uw2d-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 19 May 2025 09:42:57 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7425efba1a3so3867648b3a.0
-        for <ath11k@lists.infradead.org>; Mon, 19 May 2025 02:42:57 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Mon, 19 May 2025 09:43:13 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-742c00c9044so1111879b3a.0
+        for <ath11k@lists.infradead.org>; Mon, 19 May 2025 02:43:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747647776; x=1748252576;
+        d=1e100.net; s=20230601; t=1747647793; x=1748252593;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=J1/73SEf4ytXoZ1yrIlcLZ+v5wHcPMuVTgw0lx2XQTo=;
-        b=a8/3fYzkJecG7gtrICI9QIUxgCTBiaX/Ph5n7Lq2YQk/EV3A1E8sIBnwx0ZM/ZDM++
-         H83irR3R1Zz0PU8wEHK33Cs84seZzrLQoy7TMrXG1QnCdTf35EmgTpv5kOVTxSJ8djml
-         3ogoX0VOHWnM/e8n8myqIofG28vN+dPOk5JNZE+EvaiaYT6WYpElp0ykBmkc+rBeQUBa
-         89QnDjTlZKVyiXB0BPZiIaWJE9bH+/0u9rDUyVRoQ1N2BW62rgzBzmWW95/YIRR9iJWi
-         ZUmP+9CMPba/Pl4AE3srL8LWOpwP+QMS5ufL1Cn3Ju63v8CuKkTFDL4qYmLz7KvTu86v
-         EeQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVEnUPQ7RW83mYdZABKRfsoFWH5UHDUdUumaz0Pk6C2JWoSfvoDXd2W9uxZGhWPrRWboZX0/BA=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxtl3Khv8M3Cg8ze8VOzo8evx3IAEL5JFPmD35GgfJQGrvwkou/
-	+Nr8yF4ZStVq3JlQPqRwHDhMcxQHpsOHBBMVOfywyi3b9u1yxTfxx8wm/sU4GqOBk1cIqClHXVG
-	+8ey5LbHIa3JvEaPMBOpE5FdDwzfdQgqFMbZ3I+lbxr1Dag263m0JZQqOaPbcz1Cm
-X-Gm-Gg: ASbGnct9BUjMokpLYBcRw+KBTuw5Yzb4UGiaFgTTlqMMe/h2RIOFQctm5LiyshMgVDX
-	tQ+H/h5DphdBiEDGEJ/p/hTfn9IVh0/heP2eKGrtkuqO7z+Ol/ORwIrg5MisT4MUtvDSBPJqMox
-	2znYaSDIKt8qMwE5XRhPU7ssHdqUzGWBLqeg/YQBIqEqWe0bcjIF4kH9rrPfpslpwUNcdN07VJM
-	TvF4wrcn8+pWigiz/jgWpQhJiaNJ/zFMF/qPYz7KeKuh8inPGzk6bE1uMxW05jSeLi7Oi6JTVFR
-	trEz4PzHPRW5PUJVm9SPXAxRIZTt+ROlVrtH7w0+PtR+2HU=
-X-Received: by 2002:a05:6a00:ac1:b0:736:3ea8:4813 with SMTP id d2e1a72fcca58-742a99fab76mr15619571b3a.2.1747647776272;
-        Mon, 19 May 2025 02:42:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH6FoWtfS3J3KvBeQkijcvhEZQEo0F73rDNyaSDtfdrDQW3C1qk8ZesN/i6Mh3j6GEYFvr+HA==
-X-Received: by 2002:a05:6a00:ac1:b0:736:3ea8:4813 with SMTP id d2e1a72fcca58-742a99fab76mr15619544b3a.2.1747647775854;
-        Mon, 19 May 2025 02:42:55 -0700 (PDT)
+        bh=007HujZERMxrHzIjqypoNUr3p/UZblbrCkLIdes8l3o=;
+        b=MSM2GShqzxGWRKisVp4IehW7visbTAQ+moGLxjUuuGAGi15gEFbB1rpxr9YvaDD9pm
+         3wTIL+2+U6Jqft7NosI6/Edk+BGqOfN88X4ZDp7TQixPWO772297UMtrK+noz4A9nrfv
+         2zuMahfv7SyvsJTcqe2cT9/NC0FV/I2I3XKv3TsOs7qmXs6PlpPXkjd0u9XlNkR8rUfi
+         yku1+JMpJEFr0r+6+W3hh0POgSMFWFCImyD+nObFDyrOiF2I2sgtkAkekU/1SI//Olep
+         +3UheYnTGqZn40zT1MWk3+8eRiqQ3JvtqnL3X1d+5NGBHS5UJk1U9GmAyc9Kb1NaIqZD
+         /53A==
+X-Forwarded-Encrypted: i=1; AJvYcCVsY4jYAZB10aSFjcRp0c7zlnETA/nXN+iggUbEWIaO5l57vzheAh+BeQRLUVwHuQtBWcf5gpg=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyy5eHau1zFASMgTwho5BPXg+ofvFHs/f0YGZP+/IQPs1IqifI5
+	2rsYQlUZH6D1GdJB8GcwgnBxBzK5J5BJhre6vN5GrIS6vB/tClXMnKhTL15RQrrH9tRycdxis5k
+	odSa6rHhd+rKxPj7oo4uauKwpeW7gZBmg9fCLnb086EkZrQl6q5XamONtbX1dP+zF
+X-Gm-Gg: ASbGnctmLbnTzfPDK2QAF+Xn2HSiGPEnT6as/dZbd3hddXA7Es6XzFmZCQsIeKcctqf
+	/xwNb+I59I5Dzdo2BkegdVG3DyjDPndsb9/zIxtRKB2Fa+5GC+O60xzkPFjj8E0tysl1ZvsTypB
+	9sARHWIe3ymMwp91mTl37lb4WlbNUsLtCQaNtnzfAvOJFHNNLWBZI4pqG12cS1X2eBRA+7thzjQ
+	l3julXOC1S7Y+YqU7O1ogOBBfqRNlhxwpixHFtFMFLM0UjJ4zUYYm/cdaNcGFIPz51GONpHN0uJ
+	hs/FRtzrCMdw2FbgjKP+fV7hksknkhVY1og2nfgIbTc8gno=
+X-Received: by 2002:a05:6a00:369a:b0:736:39d4:ccf6 with SMTP id d2e1a72fcca58-742a97c3f42mr20730972b3a.8.1747647793070;
+        Mon, 19 May 2025 02:43:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEXhkNUVJCPclqbk5uDEmRPDPDeQKruoNfbCs6qpmkg+bZyNb04iAyNCcxFGV8speQfO5QzZw==
+X-Received: by 2002:a05:6a00:369a:b0:736:39d4:ccf6 with SMTP id d2e1a72fcca58-742a97c3f42mr20730936b3a.8.1747647792699;
+        Mon, 19 May 2025 02:43:12 -0700 (PDT)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a97398f8sm5809092b3a.78.2025.05.19.02.42.46
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a97398f8sm5809092b3a.78.2025.05.19.02.43.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 May 2025 02:42:51 -0700 (PDT)
+        Mon, 19 May 2025 02:43:12 -0700 (PDT)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Mon, 19 May 2025 15:12:17 +0530
-Subject: [PATCH v3 04/11] PCI/ASPM: Clear aspm_disable as part of
- __pci_enable_link_state()
+Date: Mon, 19 May 2025 15:12:20 +0530
+Subject: [PATCH v3 07/11] bus: mhi: host: Add support to read MHI
+ capabilities
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250519-mhi_bw_up-v3-4-3acd4a17bbb5@oss.qualcomm.com>
+Message-Id: <20250519-mhi_bw_up-v3-7-3acd4a17bbb5@oss.qualcomm.com>
 References: <20250519-mhi_bw_up-v3-0-3acd4a17bbb5@oss.qualcomm.com>
 In-Reply-To: <20250519-mhi_bw_up-v3-0-3acd4a17bbb5@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -104,38 +104,39 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
         Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747647743; l=1002;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747647743; l=2595;
  i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=MfTQ3eSGE1lsQsEKDfhk3n4vHJQjv6X96tSeWcGlv9o=;
- b=Yem+nDFvzc6dsaIOAR4b6zXLoldPziYHuM1lIowV7FV6LiFHouh58R4R3CqoekwHVIv/w/HTI
- vxXIWwGg9BDBlBKkBDVhf2SY+qlPn4lRdA9jAvQfk0MP/izsfcAVMWG
+ bh=zi7OTwmsvLq70tK/0cIBpFG23okfTeoXtRDRXjvsdhE=;
+ b=TEAaS8SSMWUIFf9mqCpc4zHTzUXmCfxf8I/joGMUwXRWTbVXz/vK2FNeuqyqI6SiNvuSXkkXp
+ jQARkBD4I/pCrfr0Zd/fEB6jA65pNHcqeK6lNpVJNg/6SNg0YM9raLX
 X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDA5MSBTYWx0ZWRfXwmoiWOIhREFm
- ppGHcXLUVP7uHJwFoEGsljLnLQp6LicmaJAT3pHc+cAuqcXXlc/wvS3btWNeielqYQB2F1CcJeb
- xnb1CsrKt7leOMblFo5bpfVQBxfRhQdI0nu4kph1QJCwEpMI3jl79P7hu9MWRgxD9fQQ+fDnuw9
- Da/A0j1BjpiiM+X+7BRWsnhY13y5uda350Aa+pI+H8o4yxY0v8UH1+ixofN1ktfOlj1ut2ivqkA
- Pwf7bh84jauOZL58TsQBBhchn98+rBcruF5iOBE16XICNzR6t0SqKwaNEtcUFyKWWpPMpSxmRpp
- v8wr0SQmB5v4eLqwkWd9ClRK0ZBjqYowMtzadXPnLKKUd5DgWZjVngyfo/2IPnYKzmQf6W0stbm
- gM3aKoJJuKxsV2mDo5Qg1tRyiNDrNwi65DQXPKQ2SiwGt7idEvXfprUAq3h5k9Fa13igGbZD
-X-Authority-Analysis: v=2.4 cv=Z9XsHGRA c=1 sm=1 tr=0 ts=682afd21 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=JOcJ30pghDwnvxMqNTgA:9
- a=QEXdDO2ut3YA:10 a=ZXulRonScM0A:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-GUID: 94WiWwc1ADFclONvWkzHIUBNcA3CGvHD
-X-Proofpoint-ORIG-GUID: 94WiWwc1ADFclONvWkzHIUBNcA3CGvHD
+X-Authority-Analysis: v=2.4 cv=dIimmPZb c=1 sm=1 tr=0 ts=682afd31 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=8tVK0NU1EB3xojDYR3gA:9 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: RrrhtRoog15GdRs4h0qzqBsf8Y2-_HTf
+X-Proofpoint-GUID: RrrhtRoog15GdRs4h0qzqBsf8Y2-_HTf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDA5MSBTYWx0ZWRfX9aeu6xaWz3bb
+ PJsAf+LFVBm+vUBw2yEYdyXlG5Y+XPjTML7GcYpNkwSxyyR/uVQf0figZNE2+R0sqJSqAXO6Fhf
+ vTV8sbAirxDTXZOFBAvobo5ts0qO7NbpY4x/RsUwilI0qKZz0A1FS2Ou/pVXUGLtytJlkFqbuTx
+ 2U6/63truzv+dryZ3as0W2TWDxQH+gcAVN7dAujeOWHF+05z9koK7JqKdK7RK+UpvlZYwd/Cqn+
+ O3yNMJ661SZhOFz/BgpnmQkb2SAV559c4k1sW4N50v9D157aL5lr9jjoBT4HheusnI9c/gadOv5
+ D9c9TJlBzDqzlcEr7bGf/sSChZ6eEh2Ue00A7F86eMdp6mXl+gmjR2wBb0N06gOBp+iDLxMnz2z
+ PJSChqk06RoB3C3S8Hwd7rYkcYOUsEE0vjqB5hyM/mbTnZUJjZzyBSEnxdYa4pexSnocz/+n
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-19_04,2025-05-16_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 mlxlogscore=995 mlxscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=999 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
  definitions=main-2505190091
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250519_024258_605368_1B11D71B 
-X-CRM114-Status: GOOD (  12.34  )
+X-CRM114-CacheID: sfid-20250519_024314_498488_8EF1DFF9 
+X-CRM114-Status: GOOD (  15.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,28 +151,85 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-If a driver wants to enable ASPM back after disabling ASPM for some
-usecase, it is not being enabled properly because of the aspm_disable
-flag is not getting cleared. This flag is being properly when aspm
-is controlled by sysfs.
+From: Vivek Pernamitta <quic_vpernami@quicinc.com>
 
+As per MHI spec v1.2,sec 6.6, MHI has capability registers which are
+located after the ERDB array. The location of this group of registers is
+indicated by the MISCOFF register. Each capability has a capability ID to
+determine which functionality is supported and each capability will point
+to the next capability supported.
+
+Add a basic function to read those capabilities offsets.
+
+Signed-off-by: Vivek Pernamitta <quic_vpernami@quicinc.com>
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
- drivers/pci/pcie/aspm.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/bus/mhi/common.h    |  4 ++++
+ drivers/bus/mhi/host/init.c | 29 +++++++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+)
 
-diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-index 94324fc0d3e650cd3ca2c0bb8c1895ca7e647b9d..0f858ef86111b43328bc7db01e6493ce67178458 100644
---- a/drivers/pci/pcie/aspm.c
-+++ b/drivers/pci/pcie/aspm.c
-@@ -1453,6 +1453,7 @@ static int __pci_enable_link_state(struct pci_dev *pdev, int state, bool locked)
- 		down_read(&pci_bus_sem);
- 	mutex_lock(&aspm_lock);
- 	link->aspm_default = pci_calc_aspm_enable_mask(state);
-+	link->aspm_disable &= ~state;
- 	pcie_config_aspm_link(link, policy_to_aspm_state(link));
+diff --git a/drivers/bus/mhi/common.h b/drivers/bus/mhi/common.h
+index dda340aaed95a5573a2ec776ca712e11a1ed0b52..eedac801b80021e44f7c65d33cd50760e06c02f2 100644
+--- a/drivers/bus/mhi/common.h
++++ b/drivers/bus/mhi/common.h
+@@ -16,6 +16,7 @@
+ #define MHICFG				0x10
+ #define CHDBOFF				0x18
+ #define ERDBOFF				0x20
++#define MISCOFF				0x24
+ #define BHIOFF				0x28
+ #define BHIEOFF				0x2c
+ #define DEBUGOFF			0x30
+@@ -113,6 +114,9 @@
+ #define MHISTATUS_MHISTATE_MASK		GENMASK(15, 8)
+ #define MHISTATUS_SYSERR_MASK		BIT(2)
+ #define MHISTATUS_READY_MASK		BIT(0)
++#define MISC_CAP_MASK			GENMASK(31, 0)
++#define CAP_CAPID_MASK			GENMASK(31, 24)
++#define CAP_NEXT_CAP_MASK		GENMASK(23, 12)
  
- 	link->clkpm_default = (state & PCIE_LINK_STATE_CLKPM) ? 1 : 0;
+ /* Command Ring Element macros */
+ /* No operation command */
+diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
+index 13e7a55f54ff45b83b3f18b97e2cdd83d4836fe3..a7137a040bdce1c58c98fe9c2340aae4cc4387d1 100644
+--- a/drivers/bus/mhi/host/init.c
++++ b/drivers/bus/mhi/host/init.c
+@@ -467,6 +467,35 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+ 	return ret;
+ }
+ 
++static int mhi_find_capability(struct mhi_controller *mhi_cntrl, u32 capability, u32 *offset)
++{
++	u32 val, cur_cap, next_offset;
++	int ret;
++
++	/* Get the 1st supported capability offset */
++	ret = mhi_read_reg_field(mhi_cntrl, mhi_cntrl->regs, MISCOFF,
++				 MISC_CAP_MASK, offset);
++	if (ret)
++		return ret;
++	do {
++		if (*offset >= mhi_cntrl->reg_len)
++			return -ENXIO;
++
++		ret = mhi_read_reg(mhi_cntrl, mhi_cntrl->regs, *offset, &val);
++		if (ret)
++			return ret;
++
++		cur_cap = FIELD_GET(CAP_CAPID_MASK, val);
++		next_offset = FIELD_GET(CAP_NEXT_CAP_MASK, val);
++		if (cur_cap == capability)
++			return 0;
++
++		*offset = next_offset;
++	} while (next_offset);
++
++	return -ENXIO;
++}
++
+ int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+ {
+ 	u32 val;
 
 -- 
 2.34.1
