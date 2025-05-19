@@ -4,132 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11CEAC2D0CD
-	for <ath11k@archiver.kernel.org>; Sat, 17 May 2025 19:53:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A40EC2D0CD
+	for <ath11k@archiver.kernel.org>; Mon, 19 May 2025 09:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=jHhuD+SKvmjhShJufIFkwA+7zxG5vU/4tqpZWnjcCzs=; b=D3j3cSTm5UcrEK10xOp0gNBeNm
-	yg27okdUutHjpBRNcsiGqxj+XYxhAfsmzaMKERu5ad+D8+vIGf+gzIR5DeavLUr2rs9g2w9JkwYYp
-	5y7zOyQ2z4SkoBRmuZE4C9Lo4WjDUzbdivKxuJm02dFThmIoJDTwo9ZwrdAOdb+t7SyBEdom0PqR+
-	b67dPJw9EamBsqNazp8t+p4El6+U4Q/KXKr3l9h1K3m85JPE3jbtV5j3VQOdCKRYIskqhA1uU3Ujx
-	zupV6EiBh0AV45A0bK/HDTQxwC4Ceck6BSeDXgAwPYKDNaCIa19ZYbRS4xSvcP4qLOlyepPqHwdDO
-	PTL5UTJw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=uU7PofubsUvHU2URxMpgS+EVNoeW1gK8KIbpSjZ8wvs=; b=FY/ov+ypF57kXc/wJEjq3ccGf4
+	6yDSpFg51nFwxEkM2yndKT14fFmJzSsKFP5u3X2GIc5958KIQAkyH96fXnpggfMqBjjjC5HMNR9qh
+	H4RTT/q/DR+rbUMr89tVc0avMIXMQeWWS0skaR+o1+ra0EH51PrsMR9Z48h1nvbIoY0paCSjZ1Jg5
+	5/ntd6/O5AwYQb70VtQzEw0v2PdVI4dmCqDj5yGoKj9z0MbM1jhRCVfPWQXY9gm7896y35BBeKenA
+	LKlj5mKw6CPuGpkIBO2eJTxhbbqm4SNQmAxYz1y85pDfYgOjftQ2SO2lVDOO2qh039NHXcHVor+zE
+	dlLobGoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uGNbO-00000006DNs-1o1R;
-	Sat, 17 May 2025 19:53:46 +0000
-Received: from mail-norwayeastazolkn190130003.outbound.protection.outlook.com ([2a01:111:f403:d20f::3] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1uGxER-00000008gst-1orO;
+	Mon, 19 May 2025 09:56:27 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uGNbM-00000006DNT-2ARH
+	id 1uGx13-00000008ciC-3fbw
 	for ath11k@lists.infradead.org;
-	Sat, 17 May 2025 19:53:45 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qqhLNeJRxcJDzaP+X//DzinKuFV9BufHOPrA53b1sWIDwPciq53JimQozsBFKdvyzn2s9m09xscqPizly23Wwq9GtCQKQz/D0lAVWIPHy5EF1Pg72kAQdgYJkZ728I4AdHPntgAdtfp+t0BD+MwCUJ01VtV7qqEUD3QFqNlDKBoOQ62QX5Kj8RYg6LIsMLcFRboDTirHIWkasqtrAiljSAbFL7G6YP8TSjspX49VoS5k/6tu6Ec/jd1CL8vBcAqgz3KHl0cDERrDTyyVRf/wpae+GnQB+d7M8D8PGGfscdZ2RtXMUPi7XpIyTqzfNDJhN6pIGKYdn1eQppoqnUZjXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jHhuD+SKvmjhShJufIFkwA+7zxG5vU/4tqpZWnjcCzs=;
- b=fIruKLeg+T56brVIQpRR9eFgw2nUMJbCfduMD8ZHPzCwk2o7ba3A1qHnNtVY3W0+tsbwOGt+QN2corswL6aNoXzzT8pGEErhqbufMk3s5WrNXAf30d7Fo44kbXt1mdfOPhlJP/bFL01GUmNb5mvrcPA5ftS9GFYLne5dG+jISxnBLNw/x63B9NZKc8X4QVPiCwMcVJogU3ALNqVrEBujsJ26ATcn7G3EiX9c4k1tK3gjoAxF1+fMpPj+s0WiydUcRwHJMPC9wAS9L6MBxE5biUSZ4FAH/mcZEeNNGDtwG2uBIP8VvHuGYpIfL58r0NmfLs2lhAZZcDhVtXJ24iOIhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from DB6PR08MB2693.eurprd08.prod.outlook.com (2603:10a6:6:1c::13) by
- DB3PR08MB8841.eurprd08.prod.outlook.com (2603:10a6:10:43c::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8722.33; Sat, 17 May 2025 19:53:28 +0000
-Received: from DB6PR08MB2693.eurprd08.prod.outlook.com
- ([fe80::e6db:6f9a:2c0b:acb7]) by DB6PR08MB2693.eurprd08.prod.outlook.com
- ([fe80::e6db:6f9a:2c0b:acb7%5]) with mapi id 15.20.8722.031; Sat, 17 May 2025
- 19:53:27 +0000
-From: =?iso-8859-2?Q?David_Rapa=F2?= <david@rapan.cz>
-To: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-CC: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"jjohnson@kernel.org" <jjohnson@kernel.org>, "johannes@sipsolutions.net"
-	<johannes@sipsolutions.net>
-Subject: [PATCH] ath11k: add support for dynamic vlan (ap/vlan)
-Thread-Topic: [PATCH] ath11k: add support for dynamic vlan (ap/vlan)
-Thread-Index: AQHbx2OkXnFc6lM2sUO0yo3YvwE4ig==
-Date: Sat, 17 May 2025 19:53:27 +0000
-Message-ID: <DB6PR08MB2693ADF1B27329C7BCED7AA5DF92A@DB6PR08MB2693.eurprd08.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB6PR08MB2693:EE_|DB3PR08MB8841:EE_
-x-ms-office365-filtering-correlation-id: 469616d3-b47f-48a9-f30c-08dd957c7df9
-x-ms-exchange-slblob-mailprops: Cq7lScuPrnoSu68Y5FdRDlCPOBk43FEto4axgr+a4en4tQufMkczX2EmhGRq7gXrBkjdUgei8lfTYkIfBktg5QcU29Joq7mH5PZeZTR3lQoyMejSwKth1Bh/jCLJKMGcaKE5wSVBZtGLxeNzufeeS9MIgt0AbbF6BUk9oZ6sFI718ilYtk9knFCH9HdCFElwQdJOd5zVV6p6YN3RLd+eMrEpxsYO4o/TyV5VFcy8fml04Jf2wKPba15RaV4aTf3LhHC+h8iBD0OCwX+GuNowoXBuSsJ9k0rnjfk/K+NE0OscsiU0WAcPBi03efXcff0UbgsF9bOpbFlkWBDVcPxSNPfcx1AeKvG27TgdfspAyHDwL9kSznI4VBXAY8/joeWGMJX0xjnvW6DLKNTkPi9x2HCm+22weXIr5q3GD+nG9WTdDEeqhUgtFoXaRh4Dkbkj11G+Oev3joWnu1YLGRkISMOVdVhwa/VEqdjxwuf8jlRxTUhj8WvK2yM3mMThGmDQXw3j93UxCd5vDnaGl+5qvSHVzhqtZlqCiIyph90/n5Xj3UOBOXplMseUFZ9lK5PLlrxt7egP92h20Lizsl0s7cf9fgHnqszKxyqVXIS1RSeg/SzuYVrRZFxUpacUCim/QBuIALyLsel4c1nQukZ+3k6Fr7h5xnNm8nxnoXuogtCgbfjF7Fb5Zt6kEagqdkQa3bO8pT6zvpwX+UYoRsYmz+bVBgMtHNF9L1vsiKgVqLuHOFJI9mC3d75pe9P0391e7WP3JxNCH0E=
-x-microsoft-antispam: BCL:0;ARA:14566002|7072599006|41001999006|19110799006|8062599006|15030799003|7092599006|8060799009|461199028|15080799009|102099032|3412199025|440099028|19111999003|12091999003|1710799026;
-x-microsoft-antispam-message-info: =?iso-8859-2?Q?F8s1VRlKGScAI8mu2MQGeDeyj70RSK/j8mTjXCoRFQo1K1U1bQmV3xnJ/z?=
- =?iso-8859-2?Q?0S/dBfbmg6v5NtVatZ9xS6kPfeBZgbRUU2DE6K0hZ3ULECzTwKke683Msn?=
- =?iso-8859-2?Q?UR8DosL3/L4gSHP/acOlH4jZkxh8Bdb3Jub9aRL+sZOiKVQaOfHudiiztq?=
- =?iso-8859-2?Q?ctfk1fl4VEJq3d4fRpM+cgJ7SOydQGuFnoUHVJNYeb1TnyN4emqh99org9?=
- =?iso-8859-2?Q?oGE/9rMpu82gWb5ClS01eCDRpV8w0B6KA9zlqMu3jgHxwJ7c57vXhwKc+N?=
- =?iso-8859-2?Q?JWGT1MtKPEW6ZnN1WbcJJ21cRDN/lXTcPYaPH1c2wKjCFioSfJDUiDcivD?=
- =?iso-8859-2?Q?5Ij4UhXk1hTOidnc/gMButs0xQnibj5DFwsXUYU8fFsNbJrmUig4ePh4bm?=
- =?iso-8859-2?Q?m94+aWv/OfjrZkVBRNv7aAoSqViWdfCZJpca+iBLvk08F/CKteBFfxBIQC?=
- =?iso-8859-2?Q?RR5xtAL61DNPwFp3foDpjKGpAiLo3auNxW0fQKOa6mduoESr6uSrnJqq/e?=
- =?iso-8859-2?Q?Oh+Oh9yHSTY2dKS+ZTzs9k+T/c2Rzi0h0uuNzyTrHPboCQBSO9t//vJXEq?=
- =?iso-8859-2?Q?cHEFzr9TuuqZppNlbi2LSrjy2pNc7vywrIR1sdgX/83zXmO0zaVGqMtSg5?=
- =?iso-8859-2?Q?XdTOwvMdzlHmbbk/oKrF5y+s6kRM/IM992j6JIwaN9YmwPCPsosxYeGhaG?=
- =?iso-8859-2?Q?odDyXndwh3nwHr+8GH7lktIkPFvPF0qpTcPNybYuBUkMowa2OBAqa8C6aS?=
- =?iso-8859-2?Q?32KIX4UwbB2RpRUp52H3nx1K6KKSjJiihLBz9QgJ8B2gJYdqqOK/P+TBei?=
- =?iso-8859-2?Q?cqbYx8+wLf0Ko0z7A6KGWrcYtE/sGTXTS2eV/WaFmWDdqUqEgxxDFWSSJK?=
- =?iso-8859-2?Q?3J03ze2K0RSc5dRi2HB921gyLf0PRLIxT1RcUSIoq4hc3eM7YPmCD31NxA?=
- =?iso-8859-2?Q?amkJyjErhfDgqM4/1mJ3PEkIsfR39J0DXWyUAZ8u4txyuIrPrYs72BZtba?=
- =?iso-8859-2?Q?C2fiTxwTjYOSeZJVIFF/Q7hM1BeCJVxR/cMfndDq44rL57Lyzv0SQgWXAE?=
- =?iso-8859-2?Q?k3wE8t7FVil3xqX6CIGa+UJBZUti+qRETJQvfT7UQljFLYPND4hRPzGXHL?=
- =?iso-8859-2?Q?tDwBhSoD8g6106VeydVggcilQPFkjKFuj5VXx6ZBs+wsk30rg5fB1nqQE1?=
- =?iso-8859-2?Q?J+VY+z80lu3gCDkEjTyXvx5u/x3FQaXM0WwCJj1wy1p0ZP0EFxNbLqudlx?=
- =?iso-8859-2?Q?83ua1ZwhbJS6dwgIDyHZg6rrM5QL89CV7Mba8b1+Oopgg43pKEYa6WlK1l?=
- =?iso-8859-2?Q?zxMfzsMTJSuJMfG4RAtyNSAeJP155Ei6HvfAdBaUsHLW4vQ=3D?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?KApqZGwXgez58lKMs88nqoaFWZRxnSQ4dqQcD7C78c4kR1wli2ujOkX24z?=
- =?iso-8859-2?Q?LSDpKQSHq1Tf2U+3/mNBpI3AkccPX1VTXCiCc0ZkREMyx6W8KcsfMA3ADa?=
- =?iso-8859-2?Q?6SXn8a3ynW2auvVGUPcCeqE8pj2r70Dw/gzxanOMMp1QnR6rIwU7FShu9v?=
- =?iso-8859-2?Q?4OghYgZiKyCfv462abj621C5OcvsWxMvb4AvGuh89BRD8iFRDbQS36aOPx?=
- =?iso-8859-2?Q?odevsuIwT1N4HA1ekBcbvVFzkF/xFA4ysGQEkDFkhwTMJlaKrytwrnJgIf?=
- =?iso-8859-2?Q?pzUhb24dSyNCV+YRG8V+IZa4AtDb8gO7rmp+91r2cbfy8LkNu6Kck6Ajm/?=
- =?iso-8859-2?Q?ltxzbnm4dJeCcVUn58iID2VaJLX+NfYkqeo6dTqE75Q7brQShtsX1K2eI7?=
- =?iso-8859-2?Q?/fGiWyIPM+lYMmBGO6OhIYxggev4N6YW0vqk5GAEfpTorICa08TqRcG6Ee?=
- =?iso-8859-2?Q?YAlwOlU7PNssUtQppckW4lNsX9KIJVYW4CXAnNE/9JgTNiVHeIRIbUocg2?=
- =?iso-8859-2?Q?UiM6ML1n1Y9H1G27DbQaVKUG/btcB6HNVZ7pzyY2gg1+UZN0jirPrVKAlS?=
- =?iso-8859-2?Q?MLLI9AWV8bOYTXlDgeOWvDTWGUKZ08phzMf+5aLcc5WSjka0+IICUtWBFD?=
- =?iso-8859-2?Q?PpdSNGKJa8ZkQiX3CvMvtsL25A0BgqkeGPs94eo/jzsmvzMw82P4stg0N2?=
- =?iso-8859-2?Q?9uZRt6khpXKAc+vhAz4XW5kWg+Nk0/zxyHO9SUz0lu24dhqGg2UtFVUDLQ?=
- =?iso-8859-2?Q?xMf2+EvL0ew9TXRtyaQMtH/AAD4K+ifyeQbwgm/tWi4jApBy5KnBsFX0q6?=
- =?iso-8859-2?Q?tQ7T5u81CfoaYEncQCS3FWYnFul6+kcsfejjDMGYAOal+tKT7yogXwktTC?=
- =?iso-8859-2?Q?5qQgxD48PeyjNuuGhTC7SrGD20idZlhm4cvYrkjCTXoj3D68VB52wbjrNc?=
- =?iso-8859-2?Q?QDoH2NdvPbuNCP2MN6xEcJehzYIAotV/7Yv55QJt9U+2oorvkjc5jGl52r?=
- =?iso-8859-2?Q?SRXHRSbQNwGGumblkd6a0Ox3ntZLp6SPLZPGVqXVsDelIj8ZP/zAr49Hkz?=
- =?iso-8859-2?Q?hM9bsYbdGal4+LFMVwND2miShWhOIA+Xip+kEpq3dgJOgOxVaFoHD0+7NX?=
- =?iso-8859-2?Q?TVqKEEE6fY8cm8dZzwWeN5/YYQoVTwyehRoxtLsQMI+rnV1Wi6i2zww45P?=
- =?iso-8859-2?Q?qIHPeaSyuBxeHGy24LDJ+fQd9dGwqWKkcHAzzj0UBsC3V3Jb6DBhFBXklH?=
- =?iso-8859-2?Q?QN5iINyo2D7T5X6YXQdzZ7T25YnQHDWzyqU5FfC8GoXQjVVOoY24mTuLzB?=
- =?iso-8859-2?Q?UbaT9HLh8O1Xxt6QBZK4xCc7kw=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	Mon, 19 May 2025 09:42:39 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J8dSle002440
+	for <ath11k@lists.infradead.org>; Mon, 19 May 2025 09:42:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	uU7PofubsUvHU2URxMpgS+EVNoeW1gK8KIbpSjZ8wvs=; b=JsMyobqftJleRTbj
+	B11FC/2JAVgMNtjie8qW+mRAiSMr00ZwBIKJaCtY3K7PJC1hvmlA+odTItz9mkCP
+	GIU5Beb95mBvQF1MoNpLuAZAKckt3FHFHBhceDgDSiLuQSndTkJrh3vfHvxrVIyp
+	5Y+5+bEuE1WQC5majbNemPAgNASOi3DER8bcp3B5C0fCH4hSP1TxY/fEQJYUKzPF
+	uXoHW6oUhwk4bFr8uqL/aKBxxmsApl1JfFXI1U6EDfPjcYkiq/nG3RWA99sCIJtj
+	ZtvMxwTMCxFSyfvqeexb0VY2onCr+1/JBfnbs5Tb36ISaKeTEGQGtL6FR/1P+pCX
+	4KULVQ==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46r1atg6fp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 19 May 2025 09:42:36 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7377139d8b1so3489462b3a.0
+        for <ath11k@lists.infradead.org>; Mon, 19 May 2025 02:42:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747647756; x=1748252556;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uU7PofubsUvHU2URxMpgS+EVNoeW1gK8KIbpSjZ8wvs=;
+        b=Y16dng2Pf3uAnWSUBHugzA70EMpIXBjrlZRJcRgRl7yaWB/j0EjZoTgp8qyCcshsFl
+         Pk5c0eQQ9/4SerAJk5UoURGaGIMSSLlwADsHQHDhGDZ9964ac0qGdEe47y6qnEalnTx1
+         QLe4XGk5T7OeuiknC8OceNpXnCMUwYWIAWZLYSSgo4AkHcz2vUrGawCG8yncPo0LJlfs
+         ag0OPcwqnzbpGPPT2iVe+jWoQMzlu2gAZR8RtNXiUaXtubp53lT9XQhPCrmwvL3uYdGI
+         YmV2BtMmL8Y3s6AW4+lPqPUFcOJk5aRF6JAYLnQad2feZyQKvMILWzAtszDpELYMr1zv
+         k5Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCVhdbEwoaDVIGrhjV1hCj2TqgBYhxvvveq83Wzfi0b8CGNEMHTs0gFQbIKEULZiWJUQyv+tSuc=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwjbPub1hB9wWSRLB6HaRRwPMo4icw9OUKyHuYJ2Gdjml4L3AMi
+	RvcKHTP2UmbCVAGSrHcc/KP/P6APw7nd/3sQShHqpyy9IzVbyF6Z/TnlN7YtjVfUHJUiEzABpZd
+	puW46JoAlHgFWkTAX2Reuk3ZFngJBdZMoBbVrTvAJDUwFUK8tOslW1KhfWWaxN7FB
+X-Gm-Gg: ASbGncv70jfrYDV8yekxWHsFKaN3Zx4N5FTnHXX+D900ffB8/7C/AloNBFgxtN2HU1x
+	kqjZVOKy462AjKTt6Zi0dRI2n/DKEiuwQq5fLCuYptrX9WDWXU6d6INp9fnsT25KDFKkZD5yR1F
+	XYck9vUNaSH+d2pXf0O6G9snHvMH9+NDHSpjOlAbZDfS9gnXfoJO4cmlz/9Zv+ffzvvZ5HupxLP
+	F0MW/karz989tKFyqluB9U1iR5dCpjRx+Kb+wP9wPjB3vPreQOkRMW4tKWib92fgAajdPRIhCIq
+	a4UgHw8KzKuBIEW/WWsdmSHQACWygRrWBY8rExJewkBNyOM=
+X-Received: by 2002:a05:6a00:ae1c:b0:742:b3a6:db10 with SMTP id d2e1a72fcca58-742b3a6dc2bmr11994285b3a.18.1747647755747;
+        Mon, 19 May 2025 02:42:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE99iUQ+YVc/maiKCsxdLZP8n8nikcwdzK+f/VpTPSVQgsMwchfjJqT1QzUS2xVouHmoYvWTQ==
+X-Received: by 2002:a05:6a00:ae1c:b0:742:b3a6:db10 with SMTP id d2e1a72fcca58-742b3a6dc2bmr11994251b3a.18.1747647755364;
+        Mon, 19 May 2025 02:42:35 -0700 (PDT)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a97398f8sm5809092b3a.78.2025.05.19.02.42.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 02:42:35 -0700 (PDT)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Date: Mon, 19 May 2025 15:12:14 +0530
+Subject: [PATCH v3 01/11] PCI: Update current bus speed as part of
+ pci_pwrctrl_notify()
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-7719-20-msonline-outlook-de33f.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR08MB2693.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 469616d3-b47f-48a9-f30c-08dd957c7df9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2025 19:53:27.8479
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR08MB8841
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250519-mhi_bw_up-v3-1-3acd4a17bbb5@oss.qualcomm.com>
+References: <20250519-mhi_bw_up-v3-0-3acd4a17bbb5@oss.qualcomm.com>
+In-Reply-To: <20250519-mhi_bw_up-v3-0-3acd4a17bbb5@oss.qualcomm.com>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+        =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+        quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747647743; l=1353;
+ i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
+ bh=uFH7gvcXfq8PXUbSnW4zFmBHt5LxnpwhDzcE1X+yWFo=;
+ b=lXyiRKWe2dUM/NoKi98YA2ST4iD+GyJH/JWFyhdLHqiaIoNSFdOEcmMxv7oVHUvW2lVe0h7ZL
+ UYVeLSPwgrlBOdS2f0m/xziM1YsPsEV3QKXX1cYho1bhDVgeJ3/rrYA
+X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-Authority-Analysis: v=2.4 cv=OfqYDgTY c=1 sm=1 tr=0 ts=682afd0d cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=3phiJa3m8EW-4BHYHVwA:9 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: ZUq4keBJfgtDz0vldMJm8cOKFScmpEOd
+X-Proofpoint-GUID: ZUq4keBJfgtDz0vldMJm8cOKFScmpEOd
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDA5MSBTYWx0ZWRfX3mzfwnrGDS6k
+ ggWOclEWX6jrxLtPvA4k0oR1g2/cbj5yAedHhkZfOV1R+xFvqPKlucRetPvX3kIEAa0wmzm4D+m
+ +ao8zvVeKS1bS+6LFY8VF1H0kM+ffliP2JsqkNWHHKbSHpBwsFpq/iTQbegnRCFIS2oBtZhu1l8
+ HMIvmCqV87nLGM/WbS3ah8Yhjg49s/1Yqzux8d7SmzaAj4bcMUL1V9hkEPET6v7mU54dbDcKVU8
+ EnX1e3xNZA1DJS9VXKcgNA393yRggW4tSMSGc0ZX/jMhP9riusL5nmC83IsOSjAGQ7TTRNkkLpT
+ GEzB8itQ73aYflsXCRQgL3CZEORbeU2EwmM07GMUtqK+zG9/uHsHvEA1R9Sx64621FpvaU/y8Y7
+ gahA0LZrIAHVQCaJKqqOAViVq5x3GTqHVx/SSd2gM4z7XBo7tQeMxVmzARRNZG/7WWYuqTs4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-19_04,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0 malwarescore=0
+ bulkscore=0 suspectscore=0 priorityscore=1501 spamscore=0 mlxlogscore=999
+ clxscore=1015 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505190091
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250517_125344_725569_1DF90957 
-X-CRM114-Status: UNSURE (   9.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250519_024238_036036_2FDD2279 
+X-CRM114-Status: GOOD (  15.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,439 +151,46 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k currently lacks support for dynamic vlan (AP/VLAN), so this patch=0A=
-adds feature advertisement in '__ath11k_mac_register' alongside=0A=
-all the other neccessary components supporting its function, including=0A=
-prerequisites for software encryption of VLAN group traffics.=0A=
-VLAN unicast packets shall be taking 8023 xmit path if encapsulation=0A=
-offload is enabled and multicast/broadcast then 80211 xmit path.=0A=
-=0A=
-Metadata info in dp_tx added to notify firmware that the=0A=
-multicast/broadcast packets are encrypted in software.=0A=
-=0A=
-Tested, long-term in production environment using OpenWrt platform=0A=
-installed on multiple AX3600 with FT.=0A=
-=0A=
-Tested-on: IPQ8074 hw2.0 AHB AWLAN.HK.2.9.0.1-01385-QCAHKSWPL_SILICONZ-1=0A=
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-01977-QCAHKSWPL_SILICONZ-1=0A=
-=0A=
-Signed-off-by: Seevalamuthu Mariappan <seevalam@codeaurora.org>=0A=
-Signed-off-by: David Rapan <david@rapan.cz>=0A=
----=0A=
- drivers/net/wireless/ath/ath11k/core.h  |   1 +=0A=
- drivers/net/wireless/ath/ath11k/dp_tx.c |  79 +++++++++-=0A=
- drivers/net/wireless/ath/ath11k/dp_tx.h | 197 ++++++++++++++++++++++++=0A=
- drivers/net/wireless/ath/ath11k/mac.c   |   3 +=0A=
- net/mac80211/tx.c                       |  19 +++=0A=
- 5 files changed, 297 insertions(+), 2 deletions(-)=0A=
-=0A=
-base-commit: ff8069c7cf3eb0fcd53adebdf341b6aaa98bdd3b=0A=
-=0A=
---- a/drivers/net/wireless/ath/ath11k/core.h=0A=
-+++ b/drivers/net/wireless/ath/ath11k/core.h=0A=
-@@ -120,6 +120,7 @@ struct ath11k_skb_cb {=0A=
- 	u32 cipher;=0A=
- 	struct ath11k *ar;=0A=
- 	struct ieee80211_vif *vif;=0A=
-+	u32 pkt_offset;=0A=
- } __packed;=0A=
- =0A=
- struct ath11k_skb_rxcb {=0A=
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c=0A=
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c=0A=
-@@ -79,6 +79,42 @@ enum hal_encrypt_type ath11k_dp_tx_get_e=0A=
- 	}=0A=
- }=0A=
- =0A=
-+#define HTT_META_DATA_ALIGNMENT	0x8=0A=
-+=0A=
-+static int ath11k_dp_metadata_align_skb(struct sk_buff *skb, u8 align_len)=
-=0A=
-+{=0A=
-+	if (unlikely(skb_cow_head(skb, align_len)))=0A=
-+		return -ENOMEM;=0A=
-+=0A=
-+	skb_push(skb, align_len);=0A=
-+	memset(skb->data, 0, align_len);=0A=
-+	return 0;=0A=
-+}=0A=
-+=0A=
-+static int ath11k_dp_prepare_htt_metadata(struct sk_buff *skb,=0A=
-+					 u8 *htt_metadata_size)=0A=
-+{=0A=
-+	u8 htt_desc_size;=0A=
-+	/* Size rounded of multiple of 8 bytes */=0A=
-+	u8 htt_desc_size_aligned;=0A=
-+	int ret;=0A=
-+	struct htt_tx_msdu_desc_ext *desc_ext;=0A=
-+=0A=
-+	htt_desc_size =3D sizeof(struct htt_tx_msdu_desc_ext);=0A=
-+	htt_desc_size_aligned =3D ALIGN(htt_desc_size, HTT_META_DATA_ALIGNMENT);=
-=0A=
-+=0A=
-+	ret =3D ath11k_dp_metadata_align_skb(skb, htt_desc_size_aligned);=0A=
-+	if (unlikely(ret))=0A=
-+		return ret;=0A=
-+=0A=
-+	desc_ext =3D (struct htt_tx_msdu_desc_ext *)skb->data;=0A=
-+	desc_ext->valid_encrypt_type =3D 1;=0A=
-+	desc_ext->encrypt_type =3D 0;=0A=
-+	desc_ext->host_tx_desc_pool =3D 1;=0A=
-+	*htt_metadata_size =3D htt_desc_size_aligned;=0A=
-+	return 0;=0A=
-+}=0A=
-+=0A=
- int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,=0A=
- 		 struct ath11k_sta *arsta, struct sk_buff *skb)=0A=
- {=0A=
-@@ -97,6 +133,9 @@ int ath11k_dp_tx(struct ath11k *ar, stru=0A=
- 	u32 ring_selector =3D 0;=0A=
- 	u8 ring_map =3D 0;=0A=
- 	bool tcl_ring_retry;=0A=
-+	bool is_diff_encap =3D false;=0A=
-+	u8 align_pad;=0A=
-+	u8 htt_meta_size =3D 0;=0A=
- =0A=
- 	if (unlikely(test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)))=0A=
- 		return -ESHUTDOWN;=0A=
-@@ -189,7 +228,10 @@ tcl_ring_sel:=0A=
- =0A=
- 	switch (ti.encap_type) {=0A=
- 	case HAL_TCL_ENCAP_TYPE_NATIVE_WIFI:=0A=
--		ath11k_dp_tx_encap_nwifi(skb);=0A=
-+		if (arvif->vif->offload_flags & IEEE80211_OFFLOAD_ENCAP_ENABLED)=0A=
-+			is_diff_encap =3D true;=0A=
-+		else=0A=
-+			ath11k_dp_tx_encap_nwifi(skb);=0A=
- 		break;=0A=
- 	case HAL_TCL_ENCAP_TYPE_RAW:=0A=
- 		if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags)) {=0A=
-@@ -208,6 +250,33 @@ tcl_ring_sel:=0A=
- 		goto fail_remove_idr;=0A=
- 	}=0A=
- =0A=
-+	/* Add metadata for software encryption of vlan group traffic */=0A=
-+	if ((!test_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ar->ab->dev_flags) &&=0A=
-+	    !(info->control.flags & IEEE80211_TX_CTL_HW_80211_ENCAP) &&=0A=
-+	    !info->control.hw_key && ieee80211_has_protected(hdr->frame_control))=
- ||=0A=
-+	    (skb->protocol =3D=3D cpu_to_be16(ETH_P_PAE) && is_diff_encap)) {=0A=
-+		/* HW requirement is that metadata should always point to a=0A=
-+		 * 8-byte aligned address. So we add alignment pad to start of=0A=
-+		 * buffer. HTT Metadata should be ensured to be multiple of 8-bytes=0A=
-+		 * to get 8-byte aligned start address along with align_pad added=0A=
-+		 */=0A=
-+		align_pad =3D ((unsigned long)skb->data) & (HTT_META_DATA_ALIGNMENT - 1)=
-;=0A=
-+		ret =3D ath11k_dp_metadata_align_skb(skb, align_pad);=0A=
-+		if (unlikely(ret))=0A=
-+			goto fail_remove_idr;=0A=
-+=0A=
-+		ti.pkt_offset +=3D align_pad;=0A=
-+		ret =3D ath11k_dp_prepare_htt_metadata(skb, &htt_meta_size);=0A=
-+		if (unlikely(ret))=0A=
-+			goto fail_remove_idr;=0A=
-+=0A=
-+		ti.pkt_offset +=3D htt_meta_size;=0A=
-+		ti.meta_data_flags |=3D HTT_TCL_META_DATA_VALID_HTT;=0A=
-+		ti.flags0 |=3D FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_TO_FW, 1);=0A=
-+		ti.encap_type =3D HAL_TCL_ENCAP_TYPE_RAW;=0A=
-+		ti.encrypt_type =3D HAL_ENCRYPT_TYPE_OPEN;=0A=
-+	}=0A=
-+=0A=
- 	ti.paddr =3D dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);=
-=0A=
- 	if (unlikely(dma_mapping_error(ab->dev, ti.paddr))) {=0A=
- 		atomic_inc(&ab->soc_stats.tx_err.misc_fail);=0A=
-@@ -216,7 +285,8 @@ tcl_ring_sel:=0A=
- 		goto fail_remove_idr;=0A=
- 	}=0A=
- =0A=
--	ti.data_len =3D skb->len;=0A=
-+	ti.data_len =3D skb->len - ti.pkt_offset;=0A=
-+	skb_cb->pkt_offset =3D ti.pkt_offset;=0A=
- 	skb_cb->paddr =3D ti.paddr;=0A=
- 	skb_cb->vif =3D arvif->vif;=0A=
- 	skb_cb->ar =3D ar;=0A=
-@@ -272,6 +342,8 @@ fail_unmap_dma:=0A=
- 	dma_unmap_single(ab->dev, ti.paddr, ti.data_len, DMA_TO_DEVICE);=0A=
- =0A=
- fail_remove_idr:=0A=
-+	if (ti.pkt_offset)=0A=
-+		skb_pull(skb, ti.pkt_offset);=0A=
- 	spin_lock_bh(&tx_ring->tx_idr_lock);=0A=
- 	idr_remove(&tx_ring->txbuf_idr,=0A=
- 		   FIELD_GET(DP_TX_DESC_ID_MSDU_ID, ti.desc_id));=0A=
-@@ -348,6 +420,10 @@ ath11k_dp_tx_htt_tx_complete_buf(struct=0A=
- 		return;=0A=
- 	}=0A=
- =0A=
-+	if (skb_cb->pkt_offset)=0A=
-+		/* Removing the alignment and htt meta data */=0A=
-+		skb_pull(msdu, skb_cb->pkt_offset);=0A=
-+=0A=
- 	memset(&info->status, 0, sizeof(info->status));=0A=
- =0A=
- 	if (ts->acked) {=0A=
---- a/drivers/net/wireless/ath/ath11k/dp_tx.h=0A=
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.h=0A=
-@@ -17,6 +17,203 @@ struct ath11k_dp_htt_wbm_tx_status {=0A=
- 	u16 peer_id;=0A=
- };=0A=
- =0A=
-+/* htt_tx_msdu_desc_ext=0A=
-+ *=0A=
-+ * valid_pwr=0A=
-+ *		If set, tx pwr spec is valid=0A=
-+ *=0A=
-+ * valid_mcs_mask=0A=
-+ *		If set, tx MCS mask is valid=0A=
-+ *=0A=
-+ * valid_nss_mask=0A=
-+ *		If set, tx Nss mask is valid=0A=
-+ *=0A=
-+ * valid_preamble_type=0A=
-+ *		If set, tx preamble spec is valid=0A=
-+ *=0A=
-+ * valid_retries=0A=
-+ *		If set, tx retries spec is valid=0A=
-+ *=0A=
-+ * valid_bw_info=0A=
-+ *		If set, tx dyn_bw and bw_mask are valid=0A=
-+ *=0A=
-+ * valid_guard_interval=0A=
-+ *		If set, tx guard intv spec is valid=0A=
-+ *=0A=
-+ * valid_chainmask=0A=
-+ *		If set, tx chainmask is valid=0A=
-+ *=0A=
-+ * valid_encrypt_type=0A=
-+ *		If set, encrypt type is valid=0A=
-+ *=0A=
-+ * valid_key_flags=0A=
-+ *		If set, key flags is valid=0A=
-+ *=0A=
-+ * valid_expire_tsf=0A=
-+ *		If set, tx expire TSF spec is valid=0A=
-+ *=0A=
-+ * valid_chanfreq=0A=
-+ *		If set, chanfreq is valid=0A=
-+ *=0A=
-+ * is_dsrc=0A=
-+ *		If set, MSDU is a DSRC frame=0A=
-+ *=0A=
-+ * guard_interval=0A=
-+ *		0.4us, 0.8us, 1.6us, 3.2us=0A=
-+ *=0A=
-+ * encrypt_type=0A=
-+ *		0 =3D NO_ENCRYPT,=0A=
-+ *		1 =3D ENCRYPT,=0A=
-+ *		2 ~ 3 - Reserved=0A=
-+ *=0A=
-+ * retry_limit=0A=
-+ *		Specify the maximum number of transmissions, including the=0A=
-+ *		initial transmission, to attempt before giving up if no ack=0A=
-+ *		is received.=0A=
-+ *		If the tx rate is specified, then all retries shall use the=0A=
-+ *		same rate as the initial transmission.=0A=
-+ *		If no tx rate is specified, the target can choose whether to=0A=
-+ *		retain the original rate during the retransmissions, or to=0A=
-+ *		fall back to a more robust rate.=0A=
-+ *=0A=
-+ * use_dcm_11ax=0A=
-+ *		If set, Use Dual subcarrier modulation.=0A=
-+ *		Valid only for 11ax preamble types HE_SU=0A=
-+ *		and HE_EXT_SU=0A=
-+ *=0A=
-+ * ltf_subtype_11ax=0A=
-+ *		Takes enum values of htt_11ax_ltf_subtype_t=0A=
-+ *		Valid only for 11ax preamble types HE_SU=0A=
-+ *		and HE_EXT_SU=0A=
-+ *=0A=
-+ * dyn_bw=0A=
-+ *		0 =3D static bw, 1 =3D dynamic bw=0A=
-+ *=0A=
-+ * bw_mask=0A=
-+ *		Valid only if dyn_bw =3D=3D 0 (static bw).=0A=
-+ *=0A=
-+ * host_tx_desc_pool=0A=
-+ *		If set, Firmware allocates tx_descriptors=0A=
-+ *		in WAL_BUFFERID_TX_HOST_DATA_EXP,instead=0A=
-+ *		of WAL_BUFFERID_TX_TCL_DATA_EXP.=0A=
-+ *		Use cases:=0A=
-+ *		Any time firmware uses TQM-BYPASS for Data=0A=
-+ *		TID, firmware expect host to set this bit.=0A=
-+ *=0A=
-+ * power=0A=
-+ *		Unit of the power field is 0.5 dbm=0A=
-+ *		signed value ranging from -64dbm to 63.5 dbm=0A=
-+ *=0A=
-+ * mcs_mask=0A=
-+ *		mcs bit mask of 0 ~ 11=0A=
-+ *		Setting more than one MCS isn't currently=0A=
-+ *		supported by the target but is supported=0A=
-+ *		in the interface in case in the future=0A=
-+ *		the target supports specifications of=0A=
-+ *		a limited set of MCS values.=0A=
-+ *=0A=
-+ * nss_mask=0A=
-+ *		Nss bit mask 0 ~ 7=0A=
-+ *		Setting more than one Nss isn't currently=0A=
-+ *		supported by the target but is supported=0A=
-+ *		in the interface in case in the future=0A=
-+ *		the target supports specifications of=0A=
-+ *		a limited set of Nss values.=0A=
-+ *=0A=
-+ * pream_type=0A=
-+ *		Preamble types=0A=
-+ *=0A=
-+ * update_peer_cache=0A=
-+ *		When set these custom values will be=0A=
-+ *		used for all packets, until the next=0A=
-+ *		update via this ext header.=0A=
-+ *		This is to make sure not all packets=0A=
-+ *		need to include this header.=0A=
-+ *=0A=
-+ * chain_mask=0A=
-+ *		Specify which chains to transmit from=0A=
-+ *=0A=
-+ * key_flags=0A=
-+ *		Key Index and related flags - used in mesh mode=0A=
-+ *=0A=
-+ * chanfreq=0A=
-+ *		Channel frequency: This identifies the desired channel=0A=
-+ *		frequency (in MHz) for tx frames. This is used by FW to help=0A=
-+ *		determine when it is safe to transmit or drop frames for=0A=
-+ *		off-channel operation.=0A=
-+ *		The default value of zero indicates to FW that the corresponding=0A=
-+ *		VDEV's home channel (if there is one) is the desired channel=0A=
-+ *		frequency.=0A=
-+ *=0A=
-+ * expire_tsf_lo=0A=
-+ *		tx expiry time (TSF) LSBs=0A=
-+ *=0A=
-+ * expire_tsf_hi=0A=
-+ *		tx expiry time (TSF) MSBs=0A=
-+ *=0A=
-+ * learning_frame=0A=
-+ *		When this flag is set, this frame will be dropped by FW=0A=
-+ *		rather than being enqueued to the Transmit Queue Manager (TQM) HW.=0A=
-+ *=0A=
-+ * send_as_standalone=0A=
-+ *		This will indicate if the msdu needs to be sent as a singleton PPDU,=
-=0A=
-+ *		i.e. with no A-MSDU or A-MPDU aggregation.=0A=
-+ *		The scope is extended to other use-cases.=0A=
-+ *=0A=
-+ * is_host_opaque_valid=0A=
-+ *		Set this bit to 1 if the host_opaque_cookie is populated=0A=
-+ *		with valid information.=0A=
-+ *=0A=
-+ * host_opaque_cookie=0A=
-+ *		Host opaque cookie for special frames=0A=
-+ */=0A=
-+struct htt_tx_msdu_desc_ext {=0A=
-+	u32=0A=
-+		valid_pwr            :  1,=0A=
-+		valid_mcs_mask       :  1,=0A=
-+		valid_nss_mask       :  1,=0A=
-+		valid_preamble_type  :  1,=0A=
-+		valid_retries        :  1,=0A=
-+		valid_bw_info        :  1,=0A=
-+		valid_guard_interval :  1,=0A=
-+		valid_chainmask      :  1,=0A=
-+		valid_encrypt_type   :  1,=0A=
-+		valid_key_flags      :  1,=0A=
-+		valid_expire_tsf     :  1,=0A=
-+		valid_chanfreq       :  1,=0A=
-+		is_dsrc              :  1,=0A=
-+		guard_interval       :  2,=0A=
-+		encrypt_type         :  2,=0A=
-+		retry_limit          :  4,=0A=
-+		use_dcm_11ax         :  1,=0A=
-+		ltf_subtype_11ax     :  2,=0A=
-+		dyn_bw               :  1,=0A=
-+		bw_mask              :  6,=0A=
-+		host_tx_desc_pool    :  1;=0A=
-+	u32=0A=
-+		power                :  8,=0A=
-+		mcs_mask             : 12,=0A=
-+		nss_mask             :  8,=0A=
-+		pream_type           :  3,=0A=
-+		update_peer_cache    :  1;=0A=
-+	u32=0A=
-+		chain_mask           :  8,=0A=
-+		key_flags            :  8,=0A=
-+		chanfreq             : 16;=0A=
-+=0A=
-+	u32 expire_tsf_lo;=0A=
-+	u32 expire_tsf_hi;=0A=
-+=0A=
-+	u32=0A=
-+		learning_frame       :  1,=0A=
-+		send_as_standalone   :  1,=0A=
-+		is_host_opaque_valid :  1,=0A=
-+		rsvd0                : 29;=0A=
-+	u32=0A=
-+		host_opaque_cookie   : 16,=0A=
-+		rsvd1                : 16;=0A=
-+} __packed;=0A=
-+=0A=
- void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *=
-ts);=0A=
- int ath11k_dp_tx_htt_h2t_ver_req_msg(struct ath11k_base *ab);=0A=
- int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,=0A=
---- a/drivers/net/wireless/ath/ath11k/mac.c=0A=
-+++ b/drivers/net/wireless/ath/ath11k/mac.c=0A=
-@@ -10324,6 +10324,9 @@ static int __ath11k_mac_register(struct=0A=
- 		goto err_free_if_combs;=0A=
- 	}=0A=
- =0A=
-+	ar->hw->wiphy->interface_modes |=3D BIT(NL80211_IFTYPE_AP_VLAN);=0A=
-+	ar->hw->wiphy->software_iftypes |=3D BIT(NL80211_IFTYPE_AP_VLAN);=0A=
-+=0A=
- 	if (!ab->hw_params.supports_monitor)=0A=
- 		/* There's a race between calling ieee80211_register_hw()=0A=
- 		 * and here where the monitor mode is enabled for a little=0A=
---- a/net/mac80211/tx.c=0A=
-+++ b/net/mac80211/tx.c=0A=
-@@ -40,6 +40,10 @@=0A=
- =0A=
- /* misc utils */=0A=
- =0A=
-+static void ieee80211_8023_xmit(struct ieee80211_sub_if_data *sdata,=0A=
-+				struct net_device *dev, struct sta_info *sta,=0A=
-+				struct ieee80211_key *key, struct sk_buff *skb);=0A=
-+=0A=
- static __le16 ieee80211_duration(struct ieee80211_tx_data *tx,=0A=
- 				 struct sk_buff *skb, int group_addr,=0A=
- 				 int next_frag_len)=0A=
-@@ -4257,6 +4261,8 @@ void __ieee80211_subif_start_xmit(struct=0A=
- {=0A=
- 	struct ieee80211_sub_if_data *sdata =3D IEEE80211_DEV_TO_SUB_IF(dev);=0A=
- 	struct ieee80211_local *local =3D sdata->local;=0A=
-+	struct ieee80211_sub_if_data *ap_sdata;=0A=
-+	struct ieee80211_key *key =3D NULL;=0A=
- 	struct sta_info *sta;=0A=
- 	struct sk_buff *next;=0A=
- 	int len =3D skb->len;=0A=
-@@ -4281,5 +4287,18 @@ void __ieee80211_subif_start_xmit(struct=0A=
- 	if (IS_ERR(sta))=0A=
- 		sta =3D NULL;=0A=
- =0A=
-+	if (sdata->vif.type =3D=3D NL80211_IFTYPE_AP_VLAN) {=0A=
-+		ap_sdata =3D container_of(sdata->bss,=0A=
-+				 struct ieee80211_sub_if_data, u.ap);=0A=
-+		if (ap_sdata->vif.offload_flags & IEEE80211_OFFLOAD_ENCAP_ENABLED &&=0A=
-+		   !is_multicast_ether_addr(skb->data)) {=0A=
-+			if (sta)=0A=
-+				key =3D rcu_dereference(sta->ptk[sta->ptk_idx]);=0A=
-+			ieee80211_8023_xmit(sdata, dev, sta, key, skb);=0A=
-+			rcu_read_unlock();=0A=
-+			return;=0A=
-+		}=0A=
-+	}=0A=
-+=0A=
- 	skb_set_queue_mapping(skb, ieee80211_select_queue(sdata, sta, skb));=0A=
- 	ieee80211_aggr_check(sdata, sta, skb);=0A=
+If the link is not up till the pwrctl drivers enable power to endpoints
+then cur_bus_speed will not be updated with correct speed.
+
+As part of rescan, pci_pwrctrl_notify() will be called when new devices
+are added and as part of it update the link bus speed.
+
+Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+---
+ drivers/pci/pwrctrl/core.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/pci/pwrctrl/core.c b/drivers/pci/pwrctrl/core.c
+index 9cc7e2b7f2b5608ee67c838b6500b2ae4a07ad52..034f0a5d7868fe956e3fc6a9b7ed485bb69caa04 100644
+--- a/drivers/pci/pwrctrl/core.c
++++ b/drivers/pci/pwrctrl/core.c
+@@ -10,16 +10,21 @@
+ #include <linux/pci-pwrctrl.h>
+ #include <linux/property.h>
+ #include <linux/slab.h>
++#include "../pci.h"
+ 
+ static int pci_pwrctrl_notify(struct notifier_block *nb, unsigned long action,
+ 			      void *data)
+ {
+ 	struct pci_pwrctrl *pwrctrl = container_of(nb, struct pci_pwrctrl, nb);
+ 	struct device *dev = data;
++	struct pci_bus *bus = to_pci_dev(dev)->bus;
+ 
+ 	if (dev_fwnode(dev) != dev_fwnode(pwrctrl->dev))
+ 		return NOTIFY_DONE;
+ 
++	if (bus->self)
++		pcie_update_link_speed((struct pci_bus *)bus);
++
+ 	switch (action) {
+ 	case BUS_NOTIFY_ADD_DEVICE:
+ 		/*
+
+-- 
+2.34.1
+
 
