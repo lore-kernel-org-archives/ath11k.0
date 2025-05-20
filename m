@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D53C3ABDA
-	for <ath11k@archiver.kernel.org>; Tue, 20 May 2025 04:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E63CEC3ABDA
+	for <ath11k@archiver.kernel.org>; Tue, 20 May 2025 04:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=sxgIxQSLdyC89cm2d9pnLf6uGruK6tPHVMq9zFKS2Vs=; b=2n8Y1vxz41CV/iJTfQmTxrbvqL
-	w4sUjDsm+Vak7d7mjzLRXb9/MptKhZhNw5Ul/R/i/65VfN61EZoADQVD9boQbveKxDgZ+XpIsFFPf
-	QBr8uMpsLRgd1DSeHBgQfB2+4CnYnwOv+O3J013UGkDL2mje8Izbujf0mFLU33frI8DehOswM/X8c
-	3epWZUo/BYG/FLUSm/0BUvMCuMxcUQ1Z3whgBKGWnKPDc/r2eYmUNk7VWiQRZC4gqh7ezTYNVyNxP
-	Kqy87FPH10SDLTbA48CDalU4k3vLStFwy4tHLRS9Z2VkeqlwU7yznPvpQGkf6L05OFpAoJTLv7LDv
-	k3jIvTqQ==;
+	bh=K3tXKNyZNuZQgUCz+o2yPQ/bI2CEVtZtYjF3TqmtdC4=; b=UJCg/z2Ncvxdj6y+X9NUjwCuuv
+	e1wWLdkjWZw+H2MqXAb0ZA/KN8yImY73C2bsxEvj7CKa6czelA60ohpI0iYn6WCHFVBbiJARSNUL5
+	Zqh1Q0BK/TX3vjl7nEo2Bi3ur1/DVZ+2eMmf+FPHmLEh+usEXZMHa6Yc48Gc6SeqGPM0wMzpBHB46
+	Td02kRNqtc39qwmSOsBZGztiDpTO9sahhrGwk0eDahGN8aNgE2rUjqy4C0Sqpc2kCLbOjAN7tdeuP
+	AsisScIGhVZ50EeRQCQt54urZwBfODWsw6pjUuaYPbLHFAowCYExP66xHLNlIrO8OFKAJX/1HAS48
+	Q05YsCcg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHEHe-0000000BTWy-155m;
-	Tue, 20 May 2025 04:08:54 +0000
+	id 1uHEKv-0000000BTql-2Km2;
+	Tue, 20 May 2025 04:12:17 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHEFt-0000000BTN2-1iNF
+	id 1uHEKs-0000000BTqN-3HjT
 	for ath11k@lists.infradead.org;
-	Tue, 20 May 2025 04:07:08 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54JLYrij022836
-	for <ath11k@lists.infradead.org>; Tue, 20 May 2025 04:07:05 GMT
+	Tue, 20 May 2025 04:12:15 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54JIihfI019805
+	for <ath11k@lists.infradead.org>; Tue, 20 May 2025 04:12:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sxgIxQSLdyC89cm2d9pnLf6uGruK6tPHVMq9zFKS2Vs=; b=DbBXli2c4lZGp4pE
-	xFrFsyp/+288YNjZ6b9tpgkMn2DFptyMNDHO55io6VkVOQWb/JfRRFijGkSQhMCz
-	oqFpjChDvujboc4acVHDSlaRSjLQ0Ye6rjTmPzBjwzzDgxiF/3sBsZGBtuEJvX/H
-	VboQIOJisYvu0t+rQP2ZYwunVsi+hFI/bw0+UYqc1Y2xZ0fXmAz4iDr9NfPLP1HU
-	GStG2kVsY25tTj1xu7m0rWyFPDCyBNKKxYD1BsT4UFfXLzaBJUTvxkM/Qx0UMCTL
-	03/Xk7CPd3Vjrk4Qqmn/e5CXfg4U6gKmfXjjCoMacBtqVRQjZ8WFQ2N/AVczPlnw
-	53riNQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46r29d2jh7-1
+	K3tXKNyZNuZQgUCz+o2yPQ/bI2CEVtZtYjF3TqmtdC4=; b=lywcwxId5OmbcrEh
+	/CJqR1sA26WgjKj0WAtXnpSsrQwYfBonv/giChvR+jIHajB/VGcR68mBjrdLQ0NM
+	cl2NxTMuRbWyqyqm12gPwb+FY0++nlu4jcsU/NwMZw/pimxeUo92OhrlfRiynK/M
+	++t0uan5lGrEB+fyfI6D3Mk1cgBdbo8ata8BQa67CDleiLbiZ7G+QmJSr/cCc3DG
+	5yztyiOXyaZTQEMa2vT6fSSvr2EfwOwcUPfZpjtd/Tq6N6vgfbTAi9V5KEjSdF+P
+	uhYAOSlAJxKKA0pVNfoWgcMFBkOF50LdHMMeotam+IePGjH1Y5LZRwf+0+z6VXtC
+	onRlsQ==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjkypj5m-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 20 May 2025 04:07:04 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-23206c06d29so16340905ad.0
-        for <ath11k@lists.infradead.org>; Mon, 19 May 2025 21:07:04 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Tue, 20 May 2025 04:12:14 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b26db9af463so4971176a12.2
+        for <ath11k@lists.infradead.org>; Mon, 19 May 2025 21:12:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747714023; x=1748318823;
+        d=1e100.net; s=20230601; t=1747714333; x=1748319133;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sxgIxQSLdyC89cm2d9pnLf6uGruK6tPHVMq9zFKS2Vs=;
-        b=Ed0RTuQ1am6mqwJFLWAGg/WE8T5rCh09MOV9ZHhWpVySc1CCTAxn7e+A3kodmbIwPt
-         FKdOwgmHazYZRNmF3qAWIw42zPLsosh8ldJxi8QHtaouW0cjGYuFnLqUxvgTZVQ81faU
-         tbm7E1COJQ6bq81mMc/t/dpkpDmhAsBtX+sBSWxKN5lyVEgKlXMcb1aN18oKTd1bV4D2
-         4c7ipMfrBGx3hRFeVnqiNOtZwpiCV+XeXrn08PhRrZRI/UDjhkwHqJKB8ZOE1GR1+zYQ
-         iaivN8lgycMgg+g6JE7yrvWDS5OfoljtfftovyJ4LOOJQDZchmpBipFEHk7xHTiTtaa8
-         9K2w==
-X-Forwarded-Encrypted: i=1; AJvYcCXKbOgEbe60G6mioSUlftBG9/pBJ/se+qzif0oAVaiX6fncBbv5oHN/Ot/jF2bEg+5hVHttvb4=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yym+lJzxDbqYJrIb4XL81x0W4zxa7newG7Ku80kcCv803uR+e3T
-	/oT8UKVjYnnvD1fLCPd+oNroxiFb7zLyg3UkzcLgOLJcjlyrIczo1HCKlWWZi6JmBhGYlWPGplM
-	wAxCdWsp1lQWQFh0uG8kU7h+km41EwaRbAtVX7pvL0FCGT6kYI3X8mW6cm52awuIg
-X-Gm-Gg: ASbGncv+cBkVivCQDrkWphvmx68NOheI5ggHv3/eEqTHplviQWyb0lwPSCfLlw6o/MR
-	vj6jjHWnwDD3sTjCgkuTTEhCumfbZxHceqZYIVHoLNjz0FotE9YRDkkh0oFm0QTgL0IC/5uJ35V
-	3BsiRGWeioRcm4WF+1YzHak+o5fTHKIG+xpoHugryEyQj/KWDBwsjXYpEj5kamGRT6VO0UqOtlq
-	oSJ/yLjEZOnbMfcEskKQ1xVuek8IiTOcGOHVNGt3enl/mEzs9kX2u63ahlJ08z5AnYvRR7MtqEk
-	00d5Va2ICXCrrfzKNTNgLwj7jRhYyC223pX8blMEpA==
-X-Received: by 2002:a17:902:d4c5:b0:231:cb8e:4734 with SMTP id d9443c01a7336-231d439ddafmr231677725ad.15.1747714023207;
-        Mon, 19 May 2025 21:07:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF43Iw8v4Ud4eBDvu+fuQQmpwMmCu214kAjlzWktyGTIXejDPtieMgy10/D1MOaJM7eXnyMVw==
-X-Received: by 2002:a17:902:d4c5:b0:231:cb8e:4734 with SMTP id d9443c01a7336-231d439ddafmr231677315ad.15.1747714022663;
-        Mon, 19 May 2025 21:07:02 -0700 (PDT)
+        bh=K3tXKNyZNuZQgUCz+o2yPQ/bI2CEVtZtYjF3TqmtdC4=;
+        b=arqFPW+i7+zg5b42mVvVM54M1B2IWBY0BA6KmIcHfY1OYtin7XISgdI6sDSVMzd2JU
+         Nuh1Xff5JNT34LIlpnzI5NG3AJlXD7IWj1K0FTe734A5L8ssEGj8xxRmxL3qz6tZnpVq
+         xaO8MnFyPEbr8YLx1VSV1uGW4zutHhXfwnhqd6yW9dD6hKFOeGLfJKYej2buZ3zw3Kjc
+         qnWXZUQ3Js+u22gf6JJgTMsD12i5VE7LQue2IAciV/6fp7vPaUELiHHCiWXhUALWadrD
+         B1kFk7fX0E5xDtrdgDm7ocgQUY9ghzjyAVjcIXwPdzDdEz9D2SdFesBEVUV+aRFxQAVa
+         hnKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVgeL0qwj9/6oK5Bwy2j3YLggtf8FwQs+2tarlBY7DlITetHjhT+DGbzT7RVb7d5XqMArmOu5U=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxDXaTS+vfcBTuyYAlokxfjP6wrDzj1epkucbT6Za5DnCVqT2fq
+	jVCY4WJ94Ox7ZVJvT1/mIJTS9Vz/DCEGxX4CKh4ahG7cW8J6BgU0UooI/Kj4OxV8/D6csOT3koQ
+	U7NGR85cMPhhswd8CpqUQFsG0wTquFDLNVPanvB5iU9gf9iO3xyYXaoe30Bk5WfGz
+X-Gm-Gg: ASbGncsjO5PHfBAf9IPd1/fMJTGP7O5A2b3dk6GMzycGkiyMf4m6iem2S062ALgn15Q
+	Z4dYP6FL8gHKM75mD7MNUnofvURMeHhY0ZTS+L8jIXbY5G4GZa4HNqLs9L8dQa2QDElA0qPKESW
+	P3HeBax+M/lkSOdmX6id6smhEOu1lRAOBp4bZKLalkeo0j0KTJDHf0ZXcguXBchr1w44wNWHt0w
+	kY7tpWAwMzRbu/yT9rVWcK1OJsyfEWpy+qdQOTqKlGrilRTtWSZOA7eII+OuBkUy86jED8aGY3M
+	p6uUsZ3ojKEkqBCgEiNE7EQrhn5IiN9bJyUlpodZvQ==
+X-Received: by 2002:a05:6300:218b:b0:216:1ea0:a51a with SMTP id adf61e73a8af0-216219fffedmr22921476637.38.1747714333312;
+        Mon, 19 May 2025 21:12:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IECTNHl0XI2RQjqcne0zYA1ZVA00vadeEtwniXUnY/EXFpPQMXaSNaBx2qH/VBg0UrtXPfDsQ==
+X-Received: by 2002:a05:6300:218b:b0:216:1ea0:a51a with SMTP id adf61e73a8af0-216219fffedmr22921423637.38.1747714332879;
+        Mon, 19 May 2025 21:12:12 -0700 (PDT)
 Received: from [10.92.214.105] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4ac9619sm67528495ad.37.2025.05.19.21.06.57
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b26eb082c66sm7092530a12.60.2025.05.19.21.12.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 May 2025 21:07:02 -0700 (PDT)
-Message-ID: <355c7626-e515-7b13-d882-77dba717e35c@oss.qualcomm.com>
-Date: Tue, 20 May 2025 09:36:56 +0530
+        Mon, 19 May 2025 21:12:12 -0700 (PDT)
+Message-ID: <b3d818f5-942c-1761-221d-af7d7e8f3624@oss.qualcomm.com>
+Date: Tue, 20 May 2025 09:42:05 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH v3 02/11] PCI/bwctrl: Add support to scale bandwidth
- before & after link re-training
+Subject: Re: [PATCH v3 04/11] PCI/ASPM: Clear aspm_disable as part of
+ __pci_enable_link_state()
 Content-Language: en-US
 To: =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
@@ -99,37 +99,37 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
         quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com,
         quic_mrana@quicinc.com, Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 References: <20250519-mhi_bw_up-v3-0-3acd4a17bbb5@oss.qualcomm.com>
- <20250519-mhi_bw_up-v3-2-3acd4a17bbb5@oss.qualcomm.com>
- <2a539ddc-95d6-7c37-4cfe-3a54ffce0861@linux.intel.com>
+ <20250519-mhi_bw_up-v3-4-3acd4a17bbb5@oss.qualcomm.com>
+ <649c2bb2-d9a3-66ce-8bc5-2735195aaa5e@linux.intel.com>
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <2a539ddc-95d6-7c37-4cfe-3a54ffce0861@linux.intel.com>
+In-Reply-To: <649c2bb2-d9a3-66ce-8bc5-2735195aaa5e@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDAzMSBTYWx0ZWRfXyLpQ/GAQKEdy
- KRvGFqfC2w395lweyduZWohqsAUSVv4432OJB/V7RPb8lo7Dd+WPA/Uh33ky8YHuU0u4G1foqna
- QgH05I0WgK7UVC4ngqX6v5gpScQ2MPrvW2PzxgYYcd84FZouIM7etFOyegZuCUJ+nev0Imn0Nv7
- GDSPn63/8/tyUpKqDnkKT88uvYrFMMFWW+JAnFNK6lkoeGYde9yzEPh8458FrsD0V/DXHRqqfwV
- KXqGNGxmCmcX//EVAZ5sLUkfK92fCsyyA7eubzGUfLje+qE0ETcIMNGzOIsTbe/j1Pdt/OhsznB
- /SYgg6AocxKiTChhJ6XGEBbhHFFggl+P12Cn/8bpPCJvtOB/9L4yzvzP/e02ZMSakW1qF4VUhjw
- FKBgyZaGR0VLLHxTq2UT3HNvUiC/7ASMKdfPazKXFJ1+7RBHjk3NRUUvwIdOVx7exXgrs9cm
-X-Proofpoint-GUID: If9GUkhoIqB5IkfxoNyO6_jm9TNOZG_D
-X-Authority-Analysis: v=2.4 cv=KLdaDEFo c=1 sm=1 tr=0 ts=682bffe8 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=PjKuzrdxt0Go-pjIBLUA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: If9GUkhoIqB5IkfxoNyO6_jm9TNOZG_D
+X-Proofpoint-GUID: Li5oAbET-b_ceR7f1ONjM35lyZAfSAUB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDAzMSBTYWx0ZWRfX3WONKQWZElAo
+ onMb6Xw0q3LT/Vq7ykzdogHb2SdXMKwKxS4LNplLFDm6DFYa+7TKuTXZRdAEAL0UKGHPcgX42ZC
+ w35f7GdbkQlLA/SrRP6p2aQc9FOiQdBoFyA+pxmeW8pjzTlf8Qt/XPqvfGYJrR69TfubpqEUAvE
+ jaNKq5ZkkCDpnBF+AO6BX/xXD4UxzYdrFMBDqyKSkAwW+OfEGjJ7yocWZOhX3HbqCzYDn0jLTrY
+ LPnXJUty/BZ98Rh+O96lTqf/9b63ilgPvgesjrV5GlVMYlF2mUD572bHBzXK+HDtXZCJCW4fgjg
+ rOuUVNPoEiizsagrUfI94/CCP4iod7BlLPPq1RVIkTYEh5W8rPh7eU4G49tBe9A9/xz+ogcYWgV
+ vBb0BUh+Hw4j8/+h1wcv3UfVST/dWIrfRJOwhXFLVImJchZbJhGlArvfmSJWOBKFb0AjBgHM
+X-Authority-Analysis: v=2.4 cv=H8Pbw/Yi c=1 sm=1 tr=0 ts=682c011e cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=cbGetAF2pF-RjulI4vsA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-ORIG-GUID: Li5oAbET-b_ceR7f1ONjM35lyZAfSAUB
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-20_02,2025-05-16_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0
- phishscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999 mlxscore=0
- suspectscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 mlxlogscore=999 adultscore=0
+ phishscore=0 mlxscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
+ impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
  definitions=main-2505200031
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250519_210705_454000_1BE534A1 
-X-CRM114-Status: GOOD (  30.10  )
+X-CRM114-CacheID: sfid-20250519_211214_826230_EDFBC36F 
+X-CRM114-Status: GOOD (  22.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,120 +146,54 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 5/19/2025 7:11 PM, Ilpo Järvinen wrote:
+On 5/19/2025 6:51 PM, Ilpo Järvinen wrote:
 > On Mon, 19 May 2025, Krishna Chaitanya Chundru wrote:
 > 
->> If the driver wants to move to higher data rate/speed than the current data
->> rate then the controller driver may need to change certain votes so that
->> link may come up at requested data rate/speed like QCOM PCIe controllers
->> need to change their RPMh (Resource Power Manager-hardened) state. Once
->> link retraining is done controller drivers needs to adjust their votes
->> based on the final data rate.
->>
->> Some controllers also may need to update their bandwidth voting like
->> ICC bw votings etc.
->>
->> So, add pre_scale_bus_bw() & post_scale_bus_bw() op to call before & after
->> the link re-train. There is no explicit locking mechanisms as these are
->> called by a single client endpoint driver.
->>
->> In case of PCIe switch, if there is a request to change target speed for a
->> downstream port then no need to call these function ops as these are
->> outside the scope of the controller drivers.
+>> If a driver wants to enable ASPM back after disabling ASPM for some
+>> usecase, it is not being enabled properly because of the aspm_disable
+>> flag is not getting cleared. This flag is being properly when aspm
+>> is controlled by sysfs.
+> 
+> This sentence has broken grammar/is missing something?
+> 
+> aspm -> ASPM
+> 
 >>
 >> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 >> ---
->>   drivers/pci/pcie/bwctrl.c | 15 +++++++++++++++
->>   include/linux/pci.h       | 14 ++++++++++++++
->>   2 files changed, 29 insertions(+)
+>>   drivers/pci/pcie/aspm.c | 1 +
+>>   1 file changed, 1 insertion(+)
 >>
->> diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
->> index d8d2aa85a22928b99c5bba1d2bcc5647c0edeeb6..3525bc0cd10f1dd7794abbe84ccb10e2c53a10af 100644
->> --- a/drivers/pci/pcie/bwctrl.c
->> +++ b/drivers/pci/pcie/bwctrl.c
->> @@ -161,6 +161,8 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
->>   int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->>   			  bool use_lt)
->>   {
->> +	struct pci_host_bridge *host = pci_find_host_bridge(port->bus);
->> +	bool is_rootbus = pci_is_root_bus(port->bus);
->>   	struct pci_bus *bus = port->subordinate;
->>   	u16 target_speed;
->>   	int ret;
->> @@ -173,6 +175,16 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>> diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
+>> index 94324fc0d3e650cd3ca2c0bb8c1895ca7e647b9d..0f858ef86111b43328bc7db01e6493ce67178458 100644
+>> --- a/drivers/pci/pcie/aspm.c
+>> +++ b/drivers/pci/pcie/aspm.c
+>> @@ -1453,6 +1453,7 @@ static int __pci_enable_link_state(struct pci_dev *pdev, int state, bool locked)
+>>   		down_read(&pci_bus_sem);
+>>   	mutex_lock(&aspm_lock);
+>>   	link->aspm_default = pci_calc_aspm_enable_mask(state);
+>> +	link->aspm_disable &= ~state;
+>>   	pcie_config_aspm_link(link, policy_to_aspm_state(link));
 >>   
->>   	target_speed = pcie_bwctrl_select_speed(port, speed_req);
->>   
->> +	/*
->> +	 * The host bridge driver may need to be scaled for targeted speed
->> +	 * otherwise link might not come up at requested speed.
->> +	 */
->> +	if (is_rootbus && host->pre_scale_bus_bw) {
->> +		ret = host->pre_scale_bus_bw(host, port, target_speed);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->>   	scoped_guard(rwsem_read, &pcie_bwctrl_setspeed_rwsem) {
->>   		struct pcie_bwctrl_data *data = port->link_bwctrl;
->>   
->> @@ -197,6 +209,9 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->>   	    !list_empty(&bus->devices))
->>   		ret = -EAGAIN;
->>   
->> +	if (bus && is_rootbus && host->post_scale_bus_bw)
->> +		host->post_scale_bus_bw(host, port, pci_bus_speed2lnkctl2(bus->cur_bus_speed));
->> +
->>   	return ret;
->>   }
->>   
->> diff --git a/include/linux/pci.h b/include/linux/pci.h
->> index 51e2bd6405cda5acc33d268bbe1d491b145e083f..7eb0856ba0ed20bd1336683b68add124c7483902 100644
->> --- a/include/linux/pci.h
->> +++ b/include/linux/pci.h
->> @@ -601,6 +601,20 @@ struct pci_host_bridge {
->>   	void (*release_fn)(struct pci_host_bridge *);
->>   	int (*enable_device)(struct pci_host_bridge *bridge, struct pci_dev *dev);
->>   	void (*disable_device)(struct pci_host_bridge *bridge, struct pci_dev *dev);
->> +	/*
->> +	 * Callback to the host bridge drivers to update ICC bw votes, clock frequencies etc
+>>   	link->clkpm_default = (state & PCIE_LINK_STATE_CLKPM) ? 1 : 0;
 > 
-> BW
+> I disagree with this change.
 > 
->> +	 * for the link re-train to come up in targeted speed. These are intended to be
->> +	 * called by devices directly attached to the root port. These are called by a single
+> The problem currently with ASPM driver is that pci_disable_link_state()
+> and pci_enable_link_state() are not symmetric pairs despite their
+> misleading names. pci_enable_link_state() should be renamed to
+> pci_set_default_link_state() and if the symmetric pair is needed for
+> pci_disable_link_state(), it would have to be added separately.
 > 
-> Root Port
-> 
->> +	 * client endpoint driver, so there is no need for explicit locking mechanisms.
-> 
-> Endpoint
-> 
->> +	 */
->> +	int (*pre_scale_bus_bw)(struct pci_host_bridge *bridge, struct pci_dev *dev, int speed);
->> +	/*
->> +	 * Callback to the host bridge drivers to adjust ICC bw votes, clock frequencies etc
->> +	 * to the updated speed after link re-train. These are intended to be called by
->> +	 * devices directly attached to the root port. These are called by a single client
->> +	 * endpoint driver, so there is no need for explicit locking mechanisms.
->> +	 */
-> 
-> Please fold comments to 80 characters.
-> 
->> +	void (*post_scale_bus_bw)(struct pci_host_bridge *bridge, struct pci_dev *dev, int speed);
-> 
-> I still don't like the names. Maybe simply pre/post_link_speed_change
-> would sound more generic.
->
-Ack, I will change the name in the next patch.
+I just want to know what are disadvantages/side effects having this
+change here, we can use same API to be symmetric with 
+pci_disable_link_state(). The drivers which are using this API has
+already option to specific the ASPM states which they want to enable and 
+they don't need to call pci_disable_link_state() to specify the states
+they want to disable.
 
 - Krishna Chaitanya.
-
-> Not a show-stopper but the current name sounds pretty esoteric.
-> >>   	void		*release_data;
->>   	unsigned int	ignore_reset_delay:1;	/* For entire hierarchy */
->>   	unsigned int	no_ext_tags:1;		/* No Extended Tags */
->>
->>
+> I've some (rotting) patches which try to do that, in case you want to try
+> to solve this inconsistency in the ASPM driver (I can send them to you)?
 > 
 
