@@ -4,124 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3449AC54E71
-	for <ath11k@archiver.kernel.org>; Wed, 21 May 2025 15:32:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C316C2D0CD
+	for <ath11k@archiver.kernel.org>; Wed, 21 May 2025 16:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qzqnhQBFsflY3nmZG8TNLCp1PRo7RCDvGRrlihPo6kA=; b=RR7If8ZQKpYfAS8UQk6noddxN2
-	/zjToypxJWv9Xs9fHMVv7Lf0EWsfev0F4LiRRD7vIR98U8IM1uJPCsFUUN28evXfuPHGnkfNdaApK
-	m0BG5aoLOCOSuOl/btks1fq0CNM3HtgrPeQo6gGRRPtuHt7eYVI4y6M+0xmQO1J3xkEAISGKYfAuX
-	bK4zHT/vctCLpxJJ7+GxQA9RdjBTpGmH2LIKFVctwNUzhtDoho/Ezh7fGB/gmLrO8H0MwGXRMWptg
-	r53t9DbPsMzw4G/Kg/lgX+aUaDC/GwXXKntxAR3jWnKbXc/EU7C4ojZSu8lBVd0UDgkYiHOJwudwK
-	WScN49IA==;
+	bh=2AWSjmvL8UOKEaItDjz6HH1x/3m449Yejc7i2eBcYjw=; b=qa1R1klnho1Xo8HW0Za8QXah+V
+	/F7bcLlvvE2LQXdcI0JBaSZfH9NQSwLHy2iJmloXAZLZiqkPzoONvrBeu375th4yrJ/nE2lTl0vqR
+	nFwIXkLwvW1/W9zLsrZt9KlAEluIMarGDl8jvEefG5R6INjXAckg96CAWaUz8vo+t4qAWRmAhtduR
+	of8x1tTtRb4EX1eqdW/8p5/i4FYNAnt2UtnMa23mEB6wOgyTYYjIYpZklKU4T+TJuXUycorcEF2jS
+	MLeJ0Libv9mUmxNTar5XmQTTWJB+a8xjciInbvrzybtO1PDRbsdbBNx7ZY8edMoELxFp2C3FfZHmO
+	+iirgrFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHlQy-0000000GHzt-3AUx;
-	Wed, 21 May 2025 15:32:44 +0000
+	id 1uHmN3-0000000GTQi-0gWX;
+	Wed, 21 May 2025 16:32:45 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHlQY-0000000GHvT-0eGJ
+	id 1uHmN1-0000000GTQJ-11tJ
 	for ath11k@lists.infradead.org;
-	Wed, 21 May 2025 15:32:19 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XJY0013424;
-	Wed, 21 May 2025 15:32:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	Wed, 21 May 2025 16:32:44 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XMD6029048
+	for <ath11k@lists.infradead.org>; Wed, 21 May 2025 16:32:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qzqnhQBFsflY3nmZG8TNLCp1PRo7RCDvGRrlihPo6kA=; b=BPj1a56Se3UzYLRx
-	pQgo8D5VG/GtvrdgT08YXfknx06/+rH8Aj6xzkHaJbfbs2N+BLjXtmJ1uHMfGp+w
-	XMSBr5e4bKmW+UFQFwv1Urpv1lmcqGTBnOcV1vzrPTAidIPlkuGWJcBsZt7NAvKM
-	6Nw4mzmJmNvFXear0tpnHhW29T7rLEqrj+fddXj9MvvC4hNcsAFcgM1gd1zBxhHU
-	XI+SkUg9xvDGmrC55vZJuIcUnxQEabStEl+QuUS1TWB92BXvtre7zQGQQOf31pTG
-	4hIesmO3FlPAUeflfbqr+I+YmcmRm/YLsY7WLnYXBJG1YwH5TWCFitsLtl4p8soy
-	JhUfPg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwh5bfsp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 15:32:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54LFW6r7026909
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 15:32:06 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 May
- 2025 08:32:05 -0700
-Message-ID: <2c0b4220-d92c-4dba-9364-33d713f26dbe@quicinc.com>
-Date: Wed, 21 May 2025 09:32:04 -0600
+	2AWSjmvL8UOKEaItDjz6HH1x/3m449Yejc7i2eBcYjw=; b=pax+QLP6S9zFWKsK
+	oZnGOYmg+ucchKgOKgvQoBAKWjbh6IffjMpXB1+/J7XNT9Fr9I5ym4XdNqvD3Dd8
+	gvjvAuIqr6InfjaPxQ4r4mB3SISyVUZZ1LO65OfGmG/6eQRGZpEKBG5NvD7j7dpE
+	11YXv1wRFESDkX+aJyCjt+TmSSbIrx54fUXjjGwKuAwSgszDqJyizUtDvlp5WiHx
+	aiL9ely3cO4wxL7UFyu/lvFSdk/6vnDNvcIhw8wgLtXhJoDhRVKsf3iR3LqIS/5E
+	ZDvISGTN0jVCEygHHfOttKIJkN6TQcov9Ijr97vH2fCObHzjDD1tH0YtutP+KSg1
+	YrGWZA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf43n55-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Wed, 21 May 2025 16:32:42 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-23209d8ba1bso42068915ad.3
+        for <ath11k@lists.infradead.org>; Wed, 21 May 2025 09:32:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747845161; x=1748449961;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2AWSjmvL8UOKEaItDjz6HH1x/3m449Yejc7i2eBcYjw=;
+        b=tPJVbxQJ9JOwTMuJD0iYnh8dtCAUkSywa/RQgHBsSiPSyJ9ff9RgyyXH9f8dRI7f3B
+         Gv+s9k+eu2IIO6WnodwP/wu0hV+7bYRg4v9hB8ikdpD6ZjPAe9xlHI0wB/9E8fnvy6Gg
+         xT+dQZpthtx1lJnPk5CcGzmcjfUygVD11ioIIDJaLYKp9b1F+lDHpbx8rhwT76WI2Imu
+         fQP+sRAl+IFjAkFCXdNoxDwpvpOEpTOOfkGjLEi5fhglxzXK32qqfO5ni2rSHoDEtdB7
+         miaHM6pfDDA2RMalHyCBAK4tkLYNb+DL5Jtmm6DSnLjeKQIiIBv4FMyC2MDdVVT1Gvdd
+         DPoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUasQst/DVgFboQaYrxZWn/aGUJFaJJIjHfz49EhfVtLQUi+G/xnyuobmPHDFwTgrInkUdk8ZQ=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxAMw37VeHc7JVXysBuWMpKCrMVaw1Vyiyb/0wAYgE7SltcsdHB
+	1u6dXtjLep+VngW4dj9RUi6C7rTerp3xej12zPVze94J8SF2f9GP9ViuH/YS893Yon+W7OpPpMp
+	Xn+1x83G4odcVjqf7yMaS/pq/rX1XvZsTIPNM9l+6eAtsP3s3l/7l/mOg8IHtgMZe
+X-Gm-Gg: ASbGncs5ke/Ln1KVOzB9krAUQPDu/QUAAe8T72aVfi6mnnkkJ3TUEsHNwLG7cBPfSBT
+	34fgucfqHgw/Nor3YuEPIQNlEorS++SuXBjM2uGCWwveeAvwaQw+uX7ajVjFmVTlwFg97XE2Cag
+	KuDRNE3egq2XD5UyqL1BxVrDPfMHpgsOFhS2VgrEFq6Am2TJJjjkMB6XqBssDwhhYcMEHIbEikd
+	GC3GsH4QyKuU3Rv+xrD5IhyohGYD7YtsW74naHbq2JIuJrp0dCY4BJUrf0RcKObe1WILN45WsJM
+	FCXIzpBvXIvcE/ri6Lq1MwC72cFHeax8QjGv7qARUmwEYpuHD0mjmogdLqHEhe/iK0ZP/xD/qbI
+	uF2OU
+X-Received: by 2002:a17:902:da8f:b0:223:44c5:4eb8 with SMTP id d9443c01a7336-231d4596b56mr322270265ad.32.1747845160990;
+        Wed, 21 May 2025 09:32:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEdKyjAG6Yh76sFkeES+Qwd89CL8J26v9RhihIoMT+/tbXa2Wl10248eke96oBcvSp8H1i55Q==
+X-Received: by 2002:a17:902:da8f:b0:223:44c5:4eb8 with SMTP id d9443c01a7336-231d4596b56mr322269845ad.32.1747845160422;
+        Wed, 21 May 2025 09:32:40 -0700 (PDT)
+Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4ebac58sm95190325ad.188.2025.05.21.09.32.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 09:32:40 -0700 (PDT)
+Message-ID: <4f68159d-3d90-44fe-b932-511ff3fe7d55@oss.qualcomm.com>
+Date: Wed, 21 May 2025 09:32:39 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/11] bus: mhi: host: Add support to read MHI
- capabilities
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-        "Bjorn
- Helgaas" <bhelgaas@google.com>,
-        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
-	<ilpo.jarvinen@linux.intel.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Johannes Berg
-	<johannes@sipsolutions.net>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        "Bartosz
- Golaszewski" <brgl@bgdev.pl>
-CC: <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <mhi@lists.linux.dev>,
-        <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <qiang.yu@oss.qualcomm.com>, <quic_vbadigan@quicinc.com>,
-        <quic_vpernami@quicinc.com>, <quic_mrana@quicinc.com>,
-        Jeff Johnson
-	<jeff.johnson@oss.qualcomm.com>
-References: <20250519-mhi_bw_up-v3-0-3acd4a17bbb5@oss.qualcomm.com>
- <20250519-mhi_bw_up-v3-7-3acd4a17bbb5@oss.qualcomm.com>
- <aa45ff83-bc8f-4cef-a82c-9a868396d19d@quicinc.com>
- <8bb9acff-b2cf-edb0-bd55-251cf4a93f5b@oss.qualcomm.com>
+Subject: Re: [PATCH v2] ath11k: add support for dynamic vlan (ap/vlan)
+To: =?UTF-8?Q?David_Rapa=C5=88?= <david@rapan.cz>,
+        "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+        "jjohnson@kernel.org" <jjohnson@kernel.org>,
+        "johannes@sipsolutions.net" <johannes@sipsolutions.net>
+References: <DB6PR08MB26934CD2145BE9BC3DF6980ADF9FA@DB6PR08MB2693.eurprd08.prod.outlook.com>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Content-Language: en-US
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <8bb9acff-b2cf-edb0-bd55-251cf4a93f5b@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <DB6PR08MB26934CD2145BE9BC3DF6980ADF9FA@DB6PR08MB2693.eurprd08.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE1MSBTYWx0ZWRfXxnaJb7V1VaIh
- DEkdqiEY9/kGm2Eg4dD3TRPistrrO10PK8DA+eodCpj/WUuQoqzge0Pw6DNzvBiYjzmoPBJ4itd
- yuWpfmX6RjRobZiUqJvMdnJMqGrCp/Y8kknzMAZ+3ykw+5Fp/1AY3cudPYH+B0Cowf80dSgGrqq
- 8eYoYKs9ov7H/tf+pDLxOHxEnTDssU8Jm0Iu5e2Rtb+7n/LoVsIEJ6qIhiwDeZrqHpQY9iyc/Yv
- I/GXfGepp5u1Eicz11jhO3Y2QeAKB7moc3+PVJl6OyPyhbZh2f2d6dTMCkcrx+Ohk4z6a/+qOHH
- 6da4AHdjO99ei2hYMVunmYpbtDpPUqHLDQ2XELVZPiLRd+eDWGKVA122MakxwLgFy/X1wMiNTTg
- 5oA6ZCcSET2EwRjCVyQsPwOJ71zg98jO0O0PLZDmqmtK443G2Ay7pMMnMOxdgq4luM6S3dYJ
-X-Authority-Analysis: v=2.4 cv=XeWJzJ55 c=1 sm=1 tr=0 ts=682df1f7 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=EUspDBNiAAAA:8 a=Af02sFNo4fdZPFbs5mEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: qqsNyME4ffCDkvLPzdtCBRAJtOscHoSf
-X-Proofpoint-ORIG-GUID: qqsNyME4ffCDkvLPzdtCBRAJtOscHoSf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE2MiBTYWx0ZWRfXwVhdCTEDB2zZ
+ oUFL+uXDqDsplPzzel5QrKkyRuRA3/o1E4WbDoTmhV/53axysXdTmIsDE4851WCpw9sw8Xfa5xA
+ HNJtH31OyNLdpKveeEDi4sPSWbgD2AYhJI9yxW35+GUKKZvsG0AEnq+anrL1zLLmG3YptivwHKX
+ o7K24MKzk4tMC7v3xI1qB9byRF/ftNe1Sz412yVR3nom5vjvp6zKcCV6qbNyN2pEvmWpl4P9PqG
+ dfmVJz9mZcaVQtPn3qXd5q5K8w2viqC7xwMVKeo1EKRN+rfmSCpdp23SWKUwTXADGWunyOJ+ydo
+ 4qmDxdQB10hKOLiChQr41gm7Y5ggBZVce/BXt2HG2H66dHrck3462R1IMkxdTljnWUl2WhMnJBf
+ dxm0QbRKsLvTPnvo2MvSNknEpjyCKkViZCm4jmlOrhJ81p/LLK8Fr6HDYqOJk8m/6WpNGU9s
+X-Proofpoint-GUID: TkqA9qm_UK_Y80_EaRRuindllkX9kS1n
+X-Authority-Analysis: v=2.4 cv=Ws8rMcfv c=1 sm=1 tr=0 ts=682e002a cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=e70TP3dOR9hTogukJ0528Q==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=LpQP-O61AAAA:8
+ a=Gb8rUTl75BWT300021YA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=D0TqAXdIGyEA:10 a=xa8LZTUigIcA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=pioyyrs4ZptJ924tMmac:22
+X-Proofpoint-ORIG-GUID: TkqA9qm_UK_Y80_EaRRuindllkX9kS1n
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-21_04,2025-05-20_03,2025-03-28_01
+ definitions=2025-05-21_05,2025-05-20_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 mlxlogscore=999 mlxscore=0 bulkscore=0 spamscore=0
- suspectscore=0 impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505210151
+ spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0 mlxscore=0
+ bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=999 adultscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505210162
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250521_083218_207050_DD8A6E37 
-X-CRM114-Status: GOOD (  21.72  )
+X-CRM114-CacheID: sfid-20250521_093243_320041_270E3AF3 
+X-CRM114-Status: GOOD (  37.30  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,134 +134,454 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 5/21/2025 9:06 AM, Krishna Chaitanya Chundru wrote:
+On 5/20/2025 2:16 PM, David Rapaň wrote:
+> ath11k currently lacks support for dynamic vlan (AP/VLAN), so this patch
+> adds feature advertisement in '__ath11k_mac_register' alongside
+> all the other neccessary components supporting its function, including
+> prerequisites for software encryption of VLAN group traffics.
+> VLAN unicast packets shall be taking 8023 xmit path if encapsulation
+> offload is enabled and multicast/broadcast then 80211 xmit path.
 > 
+> Metadata info in dp_tx added to notify firmware that the
+> multicast/broadcast packets are encrypted in software.
+
+Use imperative mood in your commit text
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes
 > 
-> On 5/21/2025 8:22 PM, Jeffrey Hugo wrote:
->> On 5/19/2025 3:42 AM, Krishna Chaitanya Chundru wrote:
->>> From: Vivek Pernamitta <quic_vpernami@quicinc.com>
->>>
->>> As per MHI spec v1.2,sec 6.6, MHI has capability registers which are
->>> located after the ERDB array. The location of this group of registers is
->>> indicated by the MISCOFF register. Each capability has a capability 
->>> ID to
->>> determine which functionality is supported and each capability will 
->>> point
->>> to the next capability supported.
->>>
->>> Add a basic function to read those capabilities offsets.
->>>
->>> Signed-off-by: Vivek Pernamitta <quic_vpernami@quicinc.com>
->>> Signed-off-by: Krishna Chaitanya Chundru 
->>> <krishna.chundru@oss.qualcomm.com>
->>> ---
->>>   drivers/bus/mhi/common.h    |  4 ++++
->>>   drivers/bus/mhi/host/init.c | 29 +++++++++++++++++++++++++++++
->>>   2 files changed, 33 insertions(+)
->>>
->>> diff --git a/drivers/bus/mhi/common.h b/drivers/bus/mhi/common.h
->>> index 
->>> dda340aaed95a5573a2ec776ca712e11a1ed0b52..eedac801b80021e44f7c65d33cd50760e06c02f2 100644
->>> --- a/drivers/bus/mhi/common.h
->>> +++ b/drivers/bus/mhi/common.h
->>> @@ -16,6 +16,7 @@
->>>   #define MHICFG                0x10
->>>   #define CHDBOFF                0x18
->>>   #define ERDBOFF                0x20
->>> +#define MISCOFF                0x24
->>>   #define BHIOFF                0x28
->>>   #define BHIEOFF                0x2c
->>>   #define DEBUGOFF            0x30
->>> @@ -113,6 +114,9 @@
->>>   #define MHISTATUS_MHISTATE_MASK        GENMASK(15, 8)
->>>   #define MHISTATUS_SYSERR_MASK        BIT(2)
->>>   #define MHISTATUS_READY_MASK        BIT(0)
->>> +#define MISC_CAP_MASK            GENMASK(31, 0)
->>> +#define CAP_CAPID_MASK            GENMASK(31, 24)
->>> +#define CAP_NEXT_CAP_MASK        GENMASK(23, 12)
->>>   /* Command Ring Element macros */
->>>   /* No operation command */
->>> diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
->>> index 
->>> 13e7a55f54ff45b83b3f18b97e2cdd83d4836fe3..a7137a040bdce1c58c98fe9c2340aae4cc4387d1 100644
->>> --- a/drivers/bus/mhi/host/init.c
->>> +++ b/drivers/bus/mhi/host/init.c
->>> @@ -467,6 +467,35 @@ int mhi_init_dev_ctxt(struct mhi_controller 
->>> *mhi_cntrl)
->>>       return ret;
->>>   }
->>> +static int mhi_find_capability(struct mhi_controller *mhi_cntrl, u32 
->>> capability, u32 *offset)
->>> +{
->>> +    u32 val, cur_cap, next_offset;
->>> +    int ret;
->>> +
->>> +    /* Get the 1st supported capability offset */
->>
->> "first"?  Does not seem like you are short on space here.
->>
-> Misc register will have the offest of the 1st capability register
-> from there capabilities will have linked list format.
+> Changes since v1:
+>  Move 'cpu_to_be16(ETH_P_PAE)' to earlier condition and add
+>  'ieee80211_is_qos_nullfunc' check so QoS NULL Data frames are
+>  properly send as open type frames with TID 7 in ethernet encap.
+>  WIthout this change are as QoS Data with TID 0.
 
-No, I'm saying don't have "1st" in the comment, but have "first" 
-instead. I think that will read better.
+patch revision history goes after the "---"
 
-"Get the first supported capability offset"
-
->>> +    ret = mhi_read_reg_field(mhi_cntrl, mhi_cntrl->regs, MISCOFF,
->>> +                 MISC_CAP_MASK, offset);
->>
->> This fits on one line.
->>
->>> +    if (ret)
->>> +        return ret;
->>
->> Blank line here would be nice.
->>
->>> +    do {
->>> +        if (*offset >= mhi_cntrl->reg_len)
->>> +            return -ENXIO;
->>> +
->>> +        ret = mhi_read_reg(mhi_cntrl, mhi_cntrl->regs, *offset, &val);
->>> +        if (ret)
->>> +            return ret;
->>
->>
->> There is no sanity checking we can do on val?  We've had plenty of 
->> issues blindly trusting the device.  I would like to avoid having more.
->>
-> we can check if val is not all F's as sanity other than that we can't
-> check any other things as we don't know if the value is valid or not.
-> Let me know if you have any taught on this.
-
-mhi_read_reg() should handle the PCIe link error case. You can check to 
-see that the value is within the MHI space before using it.
-
-Also, shouldn't the value be transformed from le32 to cpu and back?
-
->> Also looks like if we find the capability we are looking for, we 
->> return the offset without validating it.
->>
-> For offset I can have a check to make sure the offset is not crossing
-> mhi reg len like above.
 > 
-> - Krishna Chaitanya.
->>> +
->>> +        cur_cap = FIELD_GET(CAP_CAPID_MASK, val);
->>> +        next_offset = FIELD_GET(CAP_NEXT_CAP_MASK, val);
->>> +        if (cur_cap == capability)
->>> +            return 0;
->>> +
->>> +        *offset = next_offset;
->>> +    } while (next_offset);
->>> +
->>> +    return -ENXIO;
->>> +}
->>> +
->>>   int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
->>>   {
->>>       u32 val;
->>>
->>
+> Tested, long-term in production environment using OpenWrt platform
+> installed on multiple AX3600 with FT.
+> 
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-01385-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-01977-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Seevalamuthu Mariappan <seevalam@codeaurora.org>
+> Signed-off-by: David Rapan <david@rapan.cz>
+
+Who authored this code? You are submitting it as the author, but the S-O-B
+chain implies Seevalamuthu Mariappan was the author.
+
+> ---
+>  drivers/net/wireless/ath/ath11k/core.h  |   1 +
+>  drivers/net/wireless/ath/ath11k/dp_tx.c |  82 +++++++++-
+>  drivers/net/wireless/ath/ath11k/dp_tx.h | 197 ++++++++++++++++++++++++
+>  drivers/net/wireless/ath/ath11k/mac.c   |   3 +
+>  net/mac80211/tx.c                       |  15 +++
+>  5 files changed, 296 insertions(+), 2 deletions(-)
+> 
+> base-commit: ff8069c7cf3eb0fcd53adebdf341b6aaa98bdd3b
+> 
+> --- a/drivers/net/wireless/ath/ath11k/core.h
+> +++ b/drivers/net/wireless/ath/ath11k/core.h
+> @@ -120,6 +120,7 @@ struct ath11k_skb_cb {
+>  	u32 cipher;
+>  	struct ath11k *ar;
+>  	struct ieee80211_vif *vif;
+> +	u32 pkt_offset;
+>  } __packed;
+>  
+>  struct ath11k_skb_rxcb {
+> --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
+> +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+> @@ -79,6 +79,42 @@ enum hal_encrypt_type ath11k_dp_tx_get_e
+>  	}
+>  }
+>  
+> +#define HTT_META_DATA_ALIGNMENT	0x8
+> +
+> +static int ath11k_dp_metadata_align_skb(struct sk_buff *skb, u8 align_len)
+> +{
+> +	if (unlikely(skb_cow_head(skb, align_len)))
+> +		return -ENOMEM;
+> +
+> +	skb_push(skb, align_len);
+> +	memset(skb->data, 0, align_len);
+> +	return 0;
+> +}
+> +
+> +static int ath11k_dp_prepare_htt_metadata(struct sk_buff *skb,
+> +					 u8 *htt_metadata_size)
+> +{
+> +	u8 htt_desc_size;
+> +	/* Size rounded of multiple of 8 bytes */
+> +	u8 htt_desc_size_aligned;
+> +	int ret;
+> +	struct htt_tx_msdu_desc_ext *desc_ext;
+> +
+> +	htt_desc_size = sizeof(struct htt_tx_msdu_desc_ext);
+> +	htt_desc_size_aligned = ALIGN(htt_desc_size, HTT_META_DATA_ALIGNMENT);
+> +
+> +	ret = ath11k_dp_metadata_align_skb(skb, htt_desc_size_aligned);
+> +	if (unlikely(ret))
+> +		return ret;
+> +
+> +	desc_ext = (struct htt_tx_msdu_desc_ext *)skb->data;
+> +	desc_ext->valid_encrypt_type = 1;
+> +	desc_ext->encrypt_type = 0;
+> +	desc_ext->host_tx_desc_pool = 1;
+> +	*htt_metadata_size = htt_desc_size_aligned;
+> +	return 0;
+> +}
+> +
+>  int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+>  		 struct ath11k_sta *arsta, struct sk_buff *skb)
+>  {
+> @@ -97,6 +133,9 @@ int ath11k_dp_tx(struct ath11k *ar, stru
+>  	u32 ring_selector = 0;
+>  	u8 ring_map = 0;
+>  	bool tcl_ring_retry;
+> +	bool is_diff_encap = false;
+> +	u8 align_pad;
+> +	u8 htt_meta_size = 0;
+>  
+>  	if (unlikely(test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)))
+>  		return -ESHUTDOWN;
+> @@ -189,7 +228,12 @@ tcl_ring_sel:
+>  
+>  	switch (ti.encap_type) {
+>  	case HAL_TCL_ENCAP_TYPE_NATIVE_WIFI:
+> -		ath11k_dp_tx_encap_nwifi(skb);
+> +		if ((arvif->vif->offload_flags & IEEE80211_OFFLOAD_ENCAP_ENABLED) &&
+> +		    (skb->protocol == cpu_to_be16(ETH_P_PAE) ||
+> +		     ieee80211_is_qos_nullfunc(hdr->frame_control)))
+> +			is_diff_encap = true;
+> +		else
+> +			ath11k_dp_tx_encap_nwifi(skb);
+>  		break;
+>  	case HAL_TCL_ENCAP_TYPE_RAW:
+>  		if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags)) {
+> @@ -208,6 +252,33 @@ tcl_ring_sel:
+>  		goto fail_remove_idr;
+>  	}
+>  
+> +	/* Add metadata for software encryption of vlan group traffic */
+> +	if ((!test_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ar->ab->dev_flags) &&
+> +	     !(info->control.flags & IEEE80211_TX_CTL_HW_80211_ENCAP) &&
+> +	     !info->control.hw_key && ieee80211_has_protected(hdr->frame_control)) ||
+> +	    is_diff_encap) {
+> +		/* HW requirement is that metadata should always point to a
+> +		 * 8-byte aligned address. So we add alignment pad to start of
+> +		 * buffer. HTT Metadata should be ensured to be multiple of 8-bytes
+> +		 * to get 8-byte aligned start address along with align_pad added
+> +		 */
+> +		align_pad = ((unsigned long)skb->data) & (HTT_META_DATA_ALIGNMENT - 1);
+> +		ret = ath11k_dp_metadata_align_skb(skb, align_pad);
+> +		if (unlikely(ret))
+> +			goto fail_remove_idr;
+> +
+> +		ti.pkt_offset += align_pad;
+> +		ret = ath11k_dp_prepare_htt_metadata(skb, &htt_meta_size);
+> +		if (unlikely(ret))
+> +			goto fail_remove_idr;
+> +
+> +		ti.pkt_offset += htt_meta_size;
+> +		ti.meta_data_flags |= HTT_TCL_META_DATA_VALID_HTT;
+> +		ti.flags0 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_TO_FW, 1);
+> +		ti.encap_type = HAL_TCL_ENCAP_TYPE_RAW;
+> +		ti.encrypt_type = HAL_ENCRYPT_TYPE_OPEN;
+> +	}
+> +
+>  	ti.paddr = dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);
+>  	if (unlikely(dma_mapping_error(ab->dev, ti.paddr))) {
+>  		atomic_inc(&ab->soc_stats.tx_err.misc_fail);
+> @@ -216,7 +287,8 @@ tcl_ring_sel:
+>  		goto fail_remove_idr;
+>  	}
+>  
+> -	ti.data_len = skb->len;
+> +	ti.data_len = skb->len - ti.pkt_offset;
+> +	skb_cb->pkt_offset = ti.pkt_offset;
+>  	skb_cb->paddr = ti.paddr;
+>  	skb_cb->vif = arvif->vif;
+>  	skb_cb->ar = ar;
+> @@ -272,6 +344,8 @@ fail_unmap_dma:
+>  	dma_unmap_single(ab->dev, ti.paddr, ti.data_len, DMA_TO_DEVICE);
+>  
+>  fail_remove_idr:
+> +	if (ti.pkt_offset)
+> +		skb_pull(skb, ti.pkt_offset);
+>  	spin_lock_bh(&tx_ring->tx_idr_lock);
+>  	idr_remove(&tx_ring->txbuf_idr,
+>  		   FIELD_GET(DP_TX_DESC_ID_MSDU_ID, ti.desc_id));
+> @@ -348,6 +422,10 @@ ath11k_dp_tx_htt_tx_complete_buf(struct
+>  		return;
+>  	}
+>  
+> +	if (skb_cb->pkt_offset)
+> +		/* Removing the alignment and htt meta data */
+> +		skb_pull(msdu, skb_cb->pkt_offset);
+> +
+>  	memset(&info->status, 0, sizeof(info->status));
+>  
+>  	if (ts->acked) {
+> --- a/drivers/net/wireless/ath/ath11k/dp_tx.h
+> +++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
+> @@ -17,6 +17,203 @@ struct ath11k_dp_htt_wbm_tx_status {
+>  	u16 peer_id;
+>  };
+>  
+> +/* htt_tx_msdu_desc_ext
+> + *
+> + * valid_pwr
+> + *		If set, tx pwr spec is valid
+> + *
+> + * valid_mcs_mask
+> + *		If set, tx MCS mask is valid
+> + *
+> + * valid_nss_mask
+> + *		If set, tx Nss mask is valid
+> + *
+> + * valid_preamble_type
+> + *		If set, tx preamble spec is valid
+> + *
+> + * valid_retries
+> + *		If set, tx retries spec is valid
+> + *
+> + * valid_bw_info
+> + *		If set, tx dyn_bw and bw_mask are valid
+> + *
+> + * valid_guard_interval
+> + *		If set, tx guard intv spec is valid
+> + *
+> + * valid_chainmask
+> + *		If set, tx chainmask is valid
+> + *
+> + * valid_encrypt_type
+> + *		If set, encrypt type is valid
+> + *
+> + * valid_key_flags
+> + *		If set, key flags is valid
+> + *
+> + * valid_expire_tsf
+> + *		If set, tx expire TSF spec is valid
+> + *
+> + * valid_chanfreq
+> + *		If set, chanfreq is valid
+> + *
+> + * is_dsrc
+> + *		If set, MSDU is a DSRC frame
+> + *
+> + * guard_interval
+> + *		0.4us, 0.8us, 1.6us, 3.2us
+> + *
+> + * encrypt_type
+> + *		0 = NO_ENCRYPT,
+> + *		1 = ENCRYPT,
+> + *		2 ~ 3 - Reserved
+> + *
+> + * retry_limit
+> + *		Specify the maximum number of transmissions, including the
+> + *		initial transmission, to attempt before giving up if no ack
+> + *		is received.
+> + *		If the tx rate is specified, then all retries shall use the
+> + *		same rate as the initial transmission.
+> + *		If no tx rate is specified, the target can choose whether to
+> + *		retain the original rate during the retransmissions, or to
+> + *		fall back to a more robust rate.
+> + *
+> + * use_dcm_11ax
+> + *		If set, Use Dual subcarrier modulation.
+> + *		Valid only for 11ax preamble types HE_SU
+> + *		and HE_EXT_SU
+> + *
+> + * ltf_subtype_11ax
+> + *		Takes enum values of htt_11ax_ltf_subtype_t
+> + *		Valid only for 11ax preamble types HE_SU
+> + *		and HE_EXT_SU
+> + *
+> + * dyn_bw
+> + *		0 = static bw, 1 = dynamic bw
+> + *
+> + * bw_mask
+> + *		Valid only if dyn_bw == 0 (static bw).
+> + *
+> + * host_tx_desc_pool
+> + *		If set, Firmware allocates tx_descriptors
+> + *		in WAL_BUFFERID_TX_HOST_DATA_EXP,instead
+> + *		of WAL_BUFFERID_TX_TCL_DATA_EXP.
+> + *		Use cases:
+> + *		Any time firmware uses TQM-BYPASS for Data
+> + *		TID, firmware expect host to set this bit.
+> + *
+> + * power
+> + *		Unit of the power field is 0.5 dbm
+> + *		signed value ranging from -64dbm to 63.5 dbm
+> + *
+> + * mcs_mask
+> + *		mcs bit mask of 0 ~ 11
+> + *		Setting more than one MCS isn't currently
+> + *		supported by the target but is supported
+> + *		in the interface in case in the future
+> + *		the target supports specifications of
+> + *		a limited set of MCS values.
+> + *
+> + * nss_mask
+> + *		Nss bit mask 0 ~ 7
+> + *		Setting more than one Nss isn't currently
+> + *		supported by the target but is supported
+> + *		in the interface in case in the future
+> + *		the target supports specifications of
+> + *		a limited set of Nss values.
+> + *
+> + * pream_type
+> + *		Preamble types
+> + *
+> + * update_peer_cache
+> + *		When set these custom values will be
+> + *		used for all packets, until the next
+> + *		update via this ext header.
+> + *		This is to make sure not all packets
+> + *		need to include this header.
+> + *
+> + * chain_mask
+> + *		Specify which chains to transmit from
+> + *
+> + * key_flags
+> + *		Key Index and related flags - used in mesh mode
+> + *
+> + * chanfreq
+> + *		Channel frequency: This identifies the desired channel
+> + *		frequency (in MHz) for tx frames. This is used by FW to help
+> + *		determine when it is safe to transmit or drop frames for
+> + *		off-channel operation.
+> + *		The default value of zero indicates to FW that the corresponding
+> + *		VDEV's home channel (if there is one) is the desired channel
+> + *		frequency.
+> + *
+> + * expire_tsf_lo
+> + *		tx expiry time (TSF) LSBs
+> + *
+> + * expire_tsf_hi
+> + *		tx expiry time (TSF) MSBs
+> + *
+> + * learning_frame
+> + *		When this flag is set, this frame will be dropped by FW
+> + *		rather than being enqueued to the Transmit Queue Manager (TQM) HW.
+> + *
+> + * send_as_standalone
+> + *		This will indicate if the msdu needs to be sent as a singleton PPDU,
+> + *		i.e. with no A-MSDU or A-MPDU aggregation.
+> + *		The scope is extended to other use-cases.
+> + *
+> + * is_host_opaque_valid
+> + *		Set this bit to 1 if the host_opaque_cookie is populated
+> + *		with valid information.
+> + *
+> + * host_opaque_cookie
+> + *		Host opaque cookie for special frames
+> + */
+> +struct htt_tx_msdu_desc_ext {
+> +	u32
+> +		valid_pwr            :  1,
+> +		valid_mcs_mask       :  1,
+> +		valid_nss_mask       :  1,
+> +		valid_preamble_type  :  1,
+> +		valid_retries        :  1,
+> +		valid_bw_info        :  1,
+> +		valid_guard_interval :  1,
+> +		valid_chainmask      :  1,
+> +		valid_encrypt_type   :  1,
+> +		valid_key_flags      :  1,
+> +		valid_expire_tsf     :  1,
+> +		valid_chanfreq       :  1,
+> +		is_dsrc              :  1,
+> +		guard_interval       :  2,
+> +		encrypt_type         :  2,
+> +		retry_limit          :  4,
+> +		use_dcm_11ax         :  1,
+> +		ltf_subtype_11ax     :  2,
+> +		dyn_bw               :  1,
+> +		bw_mask              :  6,
+> +		host_tx_desc_pool    :  1;
+> +	u32
+> +		power                :  8,
+> +		mcs_mask             : 12,
+> +		nss_mask             :  8,
+> +		pream_type           :  3,
+> +		update_peer_cache    :  1;
+> +	u32
+> +		chain_mask           :  8,
+> +		key_flags            :  8,
+> +		chanfreq             : 16;
+> +
+> +	u32 expire_tsf_lo;
+> +	u32 expire_tsf_hi;
+> +
+> +	u32
+> +		learning_frame       :  1,
+> +		send_as_standalone   :  1,
+> +		is_host_opaque_valid :  1,
+> +		rsvd0                : 29;
+> +	u32
+> +		host_opaque_cookie   : 16,
+> +		rsvd1                : 16;
+> +} __packed;
+
+we should not be using bitmasks with packed in upstream code.
+QSDK may have done this, but it's not ok upstream
+and why isn't this being added to hal_desc.h?
+
+
+> +
+>  void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts);
+>  int ath11k_dp_tx_htt_h2t_ver_req_msg(struct ath11k_base *ab);
+>  int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+> --- a/drivers/net/wireless/ath/ath11k/mac.c
+> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+> @@ -10324,6 +10324,9 @@ static int __ath11k_mac_register(struct
+>  		goto err_free_if_combs;
+>  	}
+>  
+> +	ar->hw->wiphy->interface_modes |= BIT(NL80211_IFTYPE_AP_VLAN);
+> +	ar->hw->wiphy->software_iftypes |= BIT(NL80211_IFTYPE_AP_VLAN);
+> +
+>  	if (!ab->hw_params.supports_monitor)
+>  		/* There's a race between calling ieee80211_register_hw()
+>  		 * and here where the monitor mode is enabled for a little
+> --- a/net/mac80211/tx.c
+> +++ b/net/mac80211/tx.c
+> @@ -40,6 +40,10 @@
+>  
+>  /* misc utils */
+>  
+> +static void ieee80211_8023_xmit(struct ieee80211_sub_if_data *sdata,
+> +				struct net_device *dev, struct sta_info *sta,
+> +				struct ieee80211_key *key, struct sk_buff *skb);
+> +
+>  static __le16 ieee80211_duration(struct ieee80211_tx_data *tx,
+>  				 struct sk_buff *skb, int group_addr,
+>  				 int next_frag_len)
+> @@ -4257,6 +4261,7 @@ void __ieee80211_subif_start_xmit(struct
+>  {
+>  	struct ieee80211_sub_if_data *sdata = IEEE80211_DEV_TO_SUB_IF(dev);
+>  	struct ieee80211_local *local = sdata->local;
+> +	struct ieee80211_key *key = NULL;
+>  	struct sta_info *sta;
+>  	struct sk_buff *next;
+>  	int len = skb->len;
+> @@ -4281,5 +4286,15 @@ void __ieee80211_subif_start_xmit(struct
+>  	if (IS_ERR(sta))
+>  		sta = NULL;
+>  
+> +	if (sdata->vif.type == NL80211_IFTYPE_AP_VLAN &&
+> +	    get_bss_sdata(sdata)->vif.offload_flags & IEEE80211_OFFLOAD_ENCAP_ENABLED &&
+> +	    !is_multicast_ether_addr(skb->data)) {
+> +		if (sta)
+> +			key = rcu_dereference(sta->ptk[sta->ptk_idx]);
+> +		ieee80211_8023_xmit(sdata, dev, sta, key, skb);
+> +		rcu_read_unlock();
+> +		return;
+> +	}
+> +
+>  	skb_set_queue_mapping(skb, ieee80211_select_queue(sdata, sta, skb));
+>  	ieee80211_aggr_check(sdata, sta, skb);
 
 
