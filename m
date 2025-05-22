@@ -4,131 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDE79C54E65
-	for <ath11k@archiver.kernel.org>; Thu, 22 May 2025 17:22:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71190C54ED1
+	for <ath11k@archiver.kernel.org>; Thu, 22 May 2025 20:06:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=SK1/K6ke2CEQvsCvAYcqSuQ4JCsnLN/zqUf5AK04VgQ=; b=RXg+1I3IcGQ1xDI4prX09NQ/0o
-	0EET28y/wGtuo44+UGilNsTlIp4dHwkkluPXaJ3b4DSFx6ssE0oTz0SH2A56nBGSpR0A+sDMgSMO9
-	7GcLdlLv5iFSldxMVWoUEMunNnPPg9R6xoY4p+65dtB588crQbGLPH2OA60VGUyFjL+QDqhCe5pv5
-	Kg7fLuNBgKEBVY5ZFrL+7en4xXqrS57lYduLnfI42RoMDz+dTpyrOr1tqBSrWYvojmxSiVYEjhFX5
-	g7DqgvWYK1NWWM7+zHrk9QgLyZstZfhZ7h/XfE8BpTKn3zfJbj2WN7Cy7i0jdiGdYkG2DjuaESJEG
-	53LzWANw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=1wSVqz32Lg2dSnny/+XxgnMzOGKReyfgy7ECXHzhydg=; b=BKlUEls1vg8NqErgpSdDrtJIhn
+	ccGIC4LwGQcqeAm5bRLyQNSAkcsmGugyLxI0hrdNssm+bTlZJFdXawGQCVkdxiCzcuHx9FL0ENLki
+	aBkey4C7V86j5DoRXHwvog+Kwivw19LDABRIcILLg+9taHoIUbdtVRMNyK6y2l0ppMpUxJedApNBN
+	D85fXGDbtAp+3TMlMW6lmrACi61hud+rxfFIRB4Q2ltEwHiCz8uvyc/YcHP70N0XjdSU+mMmbvmrW
+	yhOe1NCHS5n2bFdMtRQJxBoJkJV5+aZmLaoqFK40ZaqlzFD2mIh0s/8TuPKJvnL+qqb1nulImtbIj
+	jA/P/xbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI9dA-00000001j9w-38nv;
-	Thu, 22 May 2025 17:22:56 +0000
-Received: from mail-westeuropeazolkn19010003.outbound.protection.outlook.com ([52.103.33.3] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1uICBX-000000025kt-3iFe;
+	Thu, 22 May 2025 20:06:35 +0000
+Received: from mail-qv1-xf2d.google.com ([2607:f8b0:4864:20::f2d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI9ch-00000001j8j-29xz
+	id 1uICAU-000000025ZB-2mkC
 	for ath11k@lists.infradead.org;
-	Thu, 22 May 2025 17:22:28 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IKPmpVLBCPXVFJnCQKoirG6jGZM2z8zsOoA1SePJtlk/zmCJ8lWTPUUiaHMlTVuqGm1ItE+iPelvH2cqyW1Ga9kfdSR6IeyxZbD+zu7WE4pdO50w2zmk/J2vo7RfCTu25jPHH7uAQRdLrkDZ0RIXkjBn9IKpuUl5MsJ3n/2ARhpykdv7viw8yVEoa0Watuj2O+O4xVoyqjNFpnjMLl6G2H6Notle0+jOZRKAsKvIX8NwvZwSqZ+PT+3ArnQzNZ5MuTE/8IX+yTFrBptSUzNFh9FqvhRLJW+J1xRco3WesknldFTOI4c/FA+5ZSqmDsg1lZVicaxadfSebtzcjFwJYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SK1/K6ke2CEQvsCvAYcqSuQ4JCsnLN/zqUf5AK04VgQ=;
- b=gjyUFsX7oCOsA7k9i8gfOwT2eeYdvR1aWn+LbD6BrgRfqxhwr9GnpOD+bx2ijeewjab65KQUAPawgmcSS5DZdG+bCWlJUeTo4l+wo9NaV/KNFXRKU2qDe52N2eoJpzXz9H1GLu643SCCbpvuP0O1PM4EOcNGOfeqlKRkvtPLN498vJPqDCpnP55W+0iiZgR85Ugm6TdTAk6rLWMfD5hdgHyIiSAGl45hvPXb4dGfKeP/FaK1DC5m0LUMUzsGMOpC1waU8ZWe2tgPvJM3jqFLHXfCizutbRAV/1PJgcUzWBGy60VKs1IQlQ2L5OeL3GAJcsYbnbrGyXimKK4+x5hxaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from DB6PR08MB2693.eurprd08.prod.outlook.com (2603:10a6:6:1c::13) by
- AS8PR08MB6375.eurprd08.prod.outlook.com (2603:10a6:20b:31b::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Thu, 22 May
- 2025 17:22:15 +0000
-Received: from DB6PR08MB2693.eurprd08.prod.outlook.com
- ([fe80::e6db:6f9a:2c0b:acb7]) by DB6PR08MB2693.eurprd08.prod.outlook.com
- ([fe80::e6db:6f9a:2c0b:acb7%5]) with mapi id 15.20.8722.031; Thu, 22 May 2025
- 17:22:15 +0000
-From: =?iso-8859-2?Q?David_Rapa=F2?= <david@rapan.cz>
-To: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-CC: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"jjohnson@kernel.org" <jjohnson@kernel.org>, "johannes@sipsolutions.net"
-	<johannes@sipsolutions.net>
-Subject: [PATCH v3] ath11k: add support for dynamic vlan (ap/vlan)
-Thread-Topic: [PATCH v3] ath11k: add support for dynamic vlan (ap/vlan)
-Thread-Index: AQHbyz2oCV7D9915PEOOd4HN1DIKgQ==
-Date: Thu, 22 May 2025 17:22:14 +0000
-Message-ID: <DB6PR08MB2693100915904FB05300CA47DF99A@DB6PR08MB2693.eurprd08.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB6PR08MB2693:EE_|AS8PR08MB6375:EE_
-x-ms-office365-filtering-correlation-id: a756b2ae-d894-4503-44ae-08dd99553239
-x-microsoft-antispam: BCL:0;ARA:14566002|41001999006|19110799006|15080799009|7092599006|8062599006|15030799003|8060799009|461199028|7072599006|440099028|3412199025|19111999003|12091999003|102099032;
-x-microsoft-antispam-message-info: =?iso-8859-2?Q?f1bGxHoahudy8pOK3XXHbR+FjVo18gyploeH3HHUpJwHewaQqIrMjUDxno?=
- =?iso-8859-2?Q?Ka6i0YeIx2dYojD+5/dOiJy7EgKp5Ky98VtiHI+UtdYYLerlHFxPZlhhxw?=
- =?iso-8859-2?Q?IBICw+yWmfhs2xPfpasyxQAKXGTAGd6HRE066/i+OxOugqdT22Y5QqhOvp?=
- =?iso-8859-2?Q?i9Wq8Kp+c+qp2arNFXIvdeqxDaap4OTO6m0VTSIC0Pd1q3/FpTvktOnbe3?=
- =?iso-8859-2?Q?NmtlMT+/FdJ6bnaH9gR/Z1ATIk9ZIgLpbiCsJFC3/Ut5siPmgZjVuzYGLH?=
- =?iso-8859-2?Q?meBLvJCPvLL1n2ZVF13DeK8nS58k/9ClKpSaV1Lt/5wYo/w7h72Mw1fLt1?=
- =?iso-8859-2?Q?buGhbpjwfymn8ZWE3cGfHeeHBNyXQSm9kAXEE2DQflnBdhDEl9+5bWfvm5?=
- =?iso-8859-2?Q?qVkNP/1RsbJ1c8w+qdABbcnsiHxGd9ycTQ0Da/DDAiKB5kctTDWrJLiZ1T?=
- =?iso-8859-2?Q?wGdwYmhJGiI0U08D3wOiYO3oWW4EJAPboVNpYSMJ+qKg/NJzsY/E1bl2jU?=
- =?iso-8859-2?Q?8qTmbljb+KHJq24MnFelZlZHLWaDHntG2tbJ5pA251xU0ehnKceO+LJclV?=
- =?iso-8859-2?Q?M88Md0x8RIzNq+NoiJEP/zYJDn+35RVijUjMK4dqm/aBQrVUyMWu0EkjOE?=
- =?iso-8859-2?Q?2QgxrvHLcsiQbLs+mdxHPRafI41a+A8hAjIc7INqu2L/Z89lvvbBUc927U?=
- =?iso-8859-2?Q?GMV1nB801O9Xc9lENucNVdl8cwIwKSn9VMXuesy3MGo3ySmoXhlKlGnAPH?=
- =?iso-8859-2?Q?L8PMmuHwcOdmwcBkeXH/QF+vN3iRoCoXt98xbjxuwWtCfLt8quZXHgYq3d?=
- =?iso-8859-2?Q?sKyM+bT7LCoLC37lKv9cI+EhTRWA2k9TzD86NbFoBJ1K4NT9/wPVfQsd5q?=
- =?iso-8859-2?Q?bHe05vJ0cgcaRm0Gt0DtNujD4xJJbo23AH2ZMtFg5+MYa+sVUAFlexcRVP?=
- =?iso-8859-2?Q?Br8qF/dONEGcMJFhVMOydnf4iAjWnc65lPAuObtqQwJKmEWmXH07//xCmP?=
- =?iso-8859-2?Q?Oy7trC6rDWTp5ay8+Cdc6T5LoIs2YjnqG6qW4bfs7hgT/8/dUhrgUgmg64?=
- =?iso-8859-2?Q?BYiF6Y298j3UxBgVaPNhFW26Ix+ME/RO0koPzVJlsNXaGf1lOXloWXDu8y?=
- =?iso-8859-2?Q?lkIY1oU6dBAtlRpeoTdhmOCy5S7JGpnyzDkTrgM3ysb6lHJl1efdyjxNus?=
- =?iso-8859-2?Q?dGhndkcxeHJJhmg+barp+ISr8sLjI1derzjtrRQzUtXsWfjGPjQHVzdwiR?=
- =?iso-8859-2?Q?QrvGJSpl4QM2WefP3vhnV40LNDHeAG+dRZYqxtHZVTeZXEg0K3oC/qjLZj?=
- =?iso-8859-2?Q?RjaJcBx/KRZ40cyBbOrmakY0Lg=3D=3D?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?KhxR4wUuYG8+y26nc671RjFTpL+oQ1l1h3IzkvYcuuZmJx52uecnLECtum?=
- =?iso-8859-2?Q?WhSyEx5J8ZvWPWVLByE361gT6WQ9zMccgs4Td17niw+NzRFpkKutNqKXMG?=
- =?iso-8859-2?Q?K/EsY5cmPuiCfcFRrCFk/gDZa9hEn+zM2EfzSORwgLiV+9bJB2eIHwQci8?=
- =?iso-8859-2?Q?6NgZSXPDOqd6UDAH4IGnaDbtrb1X3dNXSFP2qf9KMSFp8YrOrsXluyvo2a?=
- =?iso-8859-2?Q?fIexawMckMG1ik2FCHP3qLC8O5ckdOdN1mEL186aMjh+ZfuMckbEtBL+Dr?=
- =?iso-8859-2?Q?kMHlWWuwjoklaymF/pXIRUZSxxZgBW2wd1tCiPGzLngKTFwrbpEAx7wL+m?=
- =?iso-8859-2?Q?vAoiW4+0jFue3OKZ8Vhan3U0clvAFGsY/DEXRsKuCT9CGouHm1d7C9SIPw?=
- =?iso-8859-2?Q?08oDr7d+8yUaiytyi3AMwAKIDb2iIL2w2PV8oO4xvlXCYy6Z224f5YrH5q?=
- =?iso-8859-2?Q?LVrPAXSATsF95cWgP8rhk+3l/hmfKwMwNCEuZLPKYkLhpJfASCK2DDwVOL?=
- =?iso-8859-2?Q?FJBWGHXBQth1Gtx4wc0D+IuJ64KWDZCkaRRDCpzP5CiVbrF2ZodXo1sfLQ?=
- =?iso-8859-2?Q?8zH2n34956kZ4euhznr3kSXYweLucSqp2fmEa0joYfJLZqNv5Xt7oO/f5O?=
- =?iso-8859-2?Q?QcC6qJvcGWyierRodcBMgqCVuw13KnkIFoTysS7C8uLfPNgxHxzmPsdrHB?=
- =?iso-8859-2?Q?w7GbBDZz2Dl8mJpYY2NUsVDs79d/XorA7mEzht4+pTQh2QkicN6viGd+xw?=
- =?iso-8859-2?Q?ZzItpga9/fyaIHRO6+ayZO8gLK0gla9jaVNpY7v7OJPAnBjdOK10insdfT?=
- =?iso-8859-2?Q?FbBqfGJdsdcCB05SGYbeq74Gatj6UR1qpYhkHbD8tn9uBV2yKWMRu58YVD?=
- =?iso-8859-2?Q?v1qGFU0+iS/m3QE5//9ZmypyYh8XM+YWdhzaKNGybel2qRz6GJbFgCiomi?=
- =?iso-8859-2?Q?X4HXNNIqmBKMGirmIsKSO/XLDxE3MPZkAQQMNyUe5/8Kaf7ZZxt8sAikJx?=
- =?iso-8859-2?Q?9TaGPbepcXJOzrD/kqWYWO/K/2SoXxAoYpztW8+Ld2sq/IA99zC8oVp+g7?=
- =?iso-8859-2?Q?EDC6cMWa1ESyZjeiW/wwOmhf/Gh5hBUHIIX8eLperdV5NvKd9+9BycOsT2?=
- =?iso-8859-2?Q?PLysje1kdnsgJ23VVH5RaGgUXtNFUQsVIVGHZuQqmUvXMzuM/ilbSuQ3DP?=
- =?iso-8859-2?Q?adK7w3Wgm4umdobln3jHfT3zAG2nnr70FPiBQHOM21rkCr2LfMc7a1fqtP?=
- =?iso-8859-2?Q?q/VuvzB65FVz4QI0iTameA7bjhGtfG7+hZc7BMHkcsZ27nhrAgvoBgSHDj?=
- =?iso-8859-2?Q?esCSUz10+5GN/XxAzhN7Sk0E3g=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	Thu, 22 May 2025 20:05:31 +0000
+Received: by mail-qv1-xf2d.google.com with SMTP id 6a1803df08f44-6f8d663fa22so73280116d6.0
+        for <ath11k@lists.infradead.org>; Thu, 22 May 2025 13:05:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747944329; x=1748549129; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1wSVqz32Lg2dSnny/+XxgnMzOGKReyfgy7ECXHzhydg=;
+        b=cQQJnK62NRLuQDNlIJIfv6PDmcLz6CbBh/aQUbt7dSUF22dclwldR2s2Ea2lQaTO3q
+         xthnJ/SlWwjwaqkXnUV9qSD9TwEYnErGGiMyAm0mU5GbLiZwGIL1QTk01KM4aBUI6u+4
+         QIDFgf4zSb9adiLFeAejJSWMiKrm/KMUySssO53Do7gtuowIQKBLqXA9za3WhVZamCDh
+         pgMtCaZNuDKKILU7PqIZM7tbbqnlG4DJPeS6ohBEfycDYC7rciSUXAi09CuiruKwPJfx
+         Ach8WqrC3EAyT2NHvOjEUhlV+X2KA/GGjomtvxg5l3pTJnUCIXHKj1J2+cNYt7fVuGPS
+         asLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747944329; x=1748549129;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1wSVqz32Lg2dSnny/+XxgnMzOGKReyfgy7ECXHzhydg=;
+        b=HteFaJWuTByLagqYJOlaWlUBT0oKZaYBR330bIDJv0hgU9ZC4VyNs3+TWKsMDsf5vz
+         B2TGF0xGJnyBv5KBFASr3mhjY1gNlmf9OO6k6o3HAh6JcLoEBgUJYQqkl0oFj22w9XUS
+         EQdSfV35eQR8VRIEdBG4ba/QXQks60/o/CoFkPiCCmBAnWEtYP8B4D1n8hmysxRi1Pao
+         egp+vg+OBDqjEfbGZ+WZIX51D1Nejo4xa7TdGxt5zU88DNNwBRMV3nbpipwXgOGOTs1r
+         0AWrwgfo11OlIp7/M2vYCKWEN+wLsgYcw06GjgmuobZawYbmo5WT8eig4Uvs638CP0ks
+         mInw==
+X-Forwarded-Encrypted: i=1; AJvYcCUeFy1Dhd9kCXzb1tqXGmwev0Rggn3ArIcbaUl5Ybbc6rVbMuW0I7Ne+JW0p7sTRlyqHxhIbO0=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxqyo7qfN+Mg7RMOzUN8crRmHbk2VRLWfb/sFjy/IMGMfwmuHUx
+	eWZNRQOb3K7D/4sCxfeSFo7kRpkTl/4AurHWtVrVqRcU9iY5MFpfQr+yxfwnQg==
+X-Gm-Gg: ASbGnctlbLA0CO3KfWb9y01E6l+gbQUGu6CrFAlQdBcpFKrSZnx/h6Nu/MhPVRJ3FMv
+	oEGAVHXiHUY8eTpwoulNRjQ+PNujxB0yccwQcehyfFVrDa6P1cjfGTZShFzXT7X26a1izOhc4gp
+	H1ALh35lP9Txl3Orgg/VpGcgQM7Io3mDrdeiIbvnX/+fAcLecAXV7JBXhKwQj7v/+h56s/dZiPS
+	USYQRmUm0p9WmgFZBOC/IpFpf4bI8DiVIRont5udPcvTj1wmEo9NAd8T8kenVUQnZnsH1KxK9td
+	iKSekmjowRbmmwZRxCXwnouVulmbwziHmOTorTBpQDbPKuP1yx2NULVbxFU7sEGOjL1TqViUoY0
+	=
+X-Google-Smtp-Source: AGHT+IG5nSWFEty9vCN6gC150pOJ2PmZw80Dh5SuO3c3/HPGrsLNCcHFR/yUs1nQe+u4ZesyOmiwHw==
+X-Received: by 2002:a05:620a:2903:b0:7c7:a5f5:5616 with SMTP id af79cd13be357-7cd47fae57amr2902555785a.42.1747944329026;
+        Thu, 22 May 2025 13:05:29 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14d:4c64:81ec:7409:107a:a63b:a3da])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87bec228c01sm10867459241.33.2025.05.22.13.05.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 13:05:28 -0700 (PDT)
+From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+To: jjohnson@kernel.org
+Cc: ~lkcamp/patches@lists.sr.ht,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH ath-next v3] wifi: ath11k: validate ath11k_crypto_mode on top of ath11k_core_qmi_firmware_ready
+Date: Thu, 22 May 2025 17:01:12 -0300
+Message-ID: <20250522200519.16858-1-rodrigo.gobbi.7@gmail.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-8534-20-msonline-outlook-c6e85.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR08MB2693.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a756b2ae-d894-4503-44ae-08dd99553239
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2025 17:22:14.9922
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB6375
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250522_102227_704175_C9C2329D 
-X-CRM114-Status: GOOD (  10.84  )
+X-CRM114-CacheID: sfid-20250522_130530_698522_68D3BDCC 
+X-CRM114-Status: UNSURE (   8.77  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,407 +98,72 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k currently lacks support for dynamic vlan (AP/VLAN), so make=0A=
-'__ath11k_mac_register' in dp_tx to register 'NL80211_IFTYPE_AP_VLAN'=0A=
-as available interface mode.=0A=
-=0A=
-Make 'ath11k_dp_tx' in dp_tx to add metadata info to notify firmware=0A=
-that the multicast/broadcast packets are encrypted in software.=0A=
-=0A=
-Make '__ieee80211_subif_start_xmit' in tx to offload encapsulation=0A=
-for VLAN unicast packets using 8023 xmit path instead of current=0A=
-80211 xmit path.=0A=
-=0A=
-Tested, long-term in production environment using OpenWrt platform=0A=
-installed on multiple AX3600 with FT:=0A=
- Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-01385-QCAHKSWPL_SILICONZ-1=0A=
- Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-01977-QCAHKSWPL_SILICONZ-1=0A=
-=0A=
-Co-developed-by: Seevalamuthu Mariappan <seevalam@codeaurora.org>=0A=
-Signed-off-by: Seevalamuthu Mariappan <seevalam@codeaurora.org>=0A=
-Signed-off-by: David Rapan <david@rapan.cz>=0A=
----=0A=
-v1 -> v2: Move 'cpu_to_be16(ETH_P_PAE)' to earlier condition and add=0A=
- 'ieee80211_is_qos_nullfunc' check so QoS NULL Data frames are=0A=
- properly send as open type frames with TID 7 in ethernet encap=0A=
- instead of QoS Data with TID 0.=0A=
-v2 -> v3: Make 'hal_tx_msdu_metadata' struct to comply with current=0A=
- coding standard (no use of bit masks in '__packed').=0A=
- Make key retrieval in 8023 xmit path from=0A=
- '__ieee80211_subif_start_xmit' to be on pair with the standard flow in=0A=
- 'ieee80211_subif_start_xmit_8023' where it also falls back to=0A=
- 'default_unicast_key'.=0A=
-=0A=
- drivers/net/wireless/ath/ath11k/core.h     |   1 +=0A=
- drivers/net/wireless/ath/ath11k/dp_tx.c    |  83 +++++++++-=0A=
- drivers/net/wireless/ath/ath11k/hal_desc.h | 160 ++++++++++++++++++++=0A=
- drivers/net/wireless/ath/ath11k/mac.c      |   3 +=0A=
- net/mac80211/tx.c                          |  15 +++=0A=
- 5 files changed, 260 insertions(+), 2 deletions(-)=0A=
-=0A=
-base-commit: ff8069c7cf3eb0fcd53adebdf341b6aaa98bdd3b=0A=
-=0A=
---- a/drivers/net/wireless/ath/ath11k/core.h=0A=
-+++ b/drivers/net/wireless/ath/ath11k/core.h=0A=
-@@ -120,6 +120,7 @@ struct ath11k_skb_cb {=0A=
- 	u32 cipher;=0A=
- 	struct ath11k *ar;=0A=
- 	struct ieee80211_vif *vif;=0A=
-+	u32 pkt_offset;=0A=
- } __packed;=0A=
- =0A=
- struct ath11k_skb_rxcb {=0A=
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c=0A=
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c=0A=
-@@ -79,6 +79,43 @@ enum hal_encrypt_type ath11k_dp_tx_get_e=0A=
- 	}=0A=
- }=0A=
- =0A=
-+#define HTT_META_DATA_ALIGNMENT	0x8=0A=
-+=0A=
-+static int ath11k_dp_metadata_align_skb(struct sk_buff *skb, u8 align_len)=
-=0A=
-+{=0A=
-+	if (unlikely(skb_cow_head(skb, align_len)))=0A=
-+		return -ENOMEM;=0A=
-+=0A=
-+	skb_push(skb, align_len);=0A=
-+	memset(skb->data, 0, align_len);=0A=
-+	return 0;=0A=
-+}=0A=
-+=0A=
-+static int ath11k_dp_prepare_htt_metadata(struct sk_buff *skb,=0A=
-+					 u8 *htt_metadata_size)=0A=
-+{=0A=
-+	u8 htt_desc_size;=0A=
-+	/* Size rounded of multiple of 8 bytes */=0A=
-+	u8 htt_desc_size_aligned;=0A=
-+	int ret;=0A=
-+	struct hal_tx_msdu_metadata *desc_ext;=0A=
-+=0A=
-+	htt_desc_size =3D sizeof(struct hal_tx_msdu_metadata);=0A=
-+	htt_desc_size_aligned =3D ALIGN(htt_desc_size, HTT_META_DATA_ALIGNMENT);=
-=0A=
-+=0A=
-+	ret =3D ath11k_dp_metadata_align_skb(skb, htt_desc_size_aligned);=0A=
-+	if (unlikely(ret))=0A=
-+		return ret;=0A=
-+=0A=
-+	desc_ext =3D (struct hal_tx_msdu_metadata *)skb->data;=0A=
-+	desc_ext->info0 =3D le32_encode_bits(1, HAL_TX_MSDU_METADATA_INFO0_ENCRYP=
-T_FLAG) |=0A=
-+			  le32_encode_bits(0, HAL_TX_MSDU_METADATA_INFO0_ENCRYPT_TYPE) |=0A=
-+			  le32_encode_bits(1,=0A=
-+					   HAL_TX_MSDU_METADATA_INFO0_HOST_TX_DESC_POOL);=0A=
-+	*htt_metadata_size =3D htt_desc_size_aligned;=0A=
-+	return 0;=0A=
-+}=0A=
-+=0A=
- int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,=0A=
- 		 struct ath11k_sta *arsta, struct sk_buff *skb)=0A=
- {=0A=
-@@ -97,6 +134,9 @@ int ath11k_dp_tx(struct ath11k *ar, stru=0A=
- 	u32 ring_selector =3D 0;=0A=
- 	u8 ring_map =3D 0;=0A=
- 	bool tcl_ring_retry;=0A=
-+	bool is_diff_encap =3D false;=0A=
-+	u8 align_pad;=0A=
-+	u8 htt_meta_size =3D 0;=0A=
- =0A=
- 	if (unlikely(test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)))=0A=
- 		return -ESHUTDOWN;=0A=
-@@ -189,7 +229,12 @@ tcl_ring_sel:=0A=
- =0A=
- 	switch (ti.encap_type) {=0A=
- 	case HAL_TCL_ENCAP_TYPE_NATIVE_WIFI:=0A=
--		ath11k_dp_tx_encap_nwifi(skb);=0A=
-+		if ((arvif->vif->offload_flags & IEEE80211_OFFLOAD_ENCAP_ENABLED) &&=0A=
-+		    (skb->protocol =3D=3D cpu_to_be16(ETH_P_PAE) ||=0A=
-+		     ieee80211_is_qos_nullfunc(hdr->frame_control)))=0A=
-+			is_diff_encap =3D true;=0A=
-+		else=0A=
-+			ath11k_dp_tx_encap_nwifi(skb);=0A=
- 		break;=0A=
- 	case HAL_TCL_ENCAP_TYPE_RAW:=0A=
- 		if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags)) {=0A=
-@@ -208,6 +253,33 @@ tcl_ring_sel:=0A=
- 		goto fail_remove_idr;=0A=
- 	}=0A=
- =0A=
-+	/* Add metadata for software encryption of vlan group traffic */=0A=
-+	if ((!test_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ar->ab->dev_flags) &&=0A=
-+	     !(info->control.flags & IEEE80211_TX_CTL_HW_80211_ENCAP) &&=0A=
-+	     !info->control.hw_key && ieee80211_has_protected(hdr->frame_control)=
-) ||=0A=
-+	    is_diff_encap) {=0A=
-+		/* HW requirement is that metadata should always point to a=0A=
-+		 * 8-byte aligned address. So we add alignment pad to start of=0A=
-+		 * buffer. HTT Metadata should be ensured to be multiple of 8-bytes=0A=
-+		 * to get 8-byte aligned start address along with align_pad added=0A=
-+		 */=0A=
-+		align_pad =3D ((unsigned long)skb->data) & (HTT_META_DATA_ALIGNMENT - 1)=
-;=0A=
-+		ret =3D ath11k_dp_metadata_align_skb(skb, align_pad);=0A=
-+		if (unlikely(ret))=0A=
-+			goto fail_remove_idr;=0A=
-+=0A=
-+		ti.pkt_offset +=3D align_pad;=0A=
-+		ret =3D ath11k_dp_prepare_htt_metadata(skb, &htt_meta_size);=0A=
-+		if (unlikely(ret))=0A=
-+			goto fail_remove_idr;=0A=
-+=0A=
-+		ti.pkt_offset +=3D htt_meta_size;=0A=
-+		ti.meta_data_flags |=3D HTT_TCL_META_DATA_VALID_HTT;=0A=
-+		ti.flags0 |=3D FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_TO_FW, 1);=0A=
-+		ti.encap_type =3D HAL_TCL_ENCAP_TYPE_RAW;=0A=
-+		ti.encrypt_type =3D HAL_ENCRYPT_TYPE_OPEN;=0A=
-+	}=0A=
-+=0A=
- 	ti.paddr =3D dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);=
-=0A=
- 	if (unlikely(dma_mapping_error(ab->dev, ti.paddr))) {=0A=
- 		atomic_inc(&ab->soc_stats.tx_err.misc_fail);=0A=
-@@ -216,7 +288,8 @@ tcl_ring_sel:=0A=
- 		goto fail_remove_idr;=0A=
- 	}=0A=
- =0A=
--	ti.data_len =3D skb->len;=0A=
-+	ti.data_len =3D skb->len - ti.pkt_offset;=0A=
-+	skb_cb->pkt_offset =3D ti.pkt_offset;=0A=
- 	skb_cb->paddr =3D ti.paddr;=0A=
- 	skb_cb->vif =3D arvif->vif;=0A=
- 	skb_cb->ar =3D ar;=0A=
-@@ -272,6 +345,8 @@ fail_unmap_dma:=0A=
- 	dma_unmap_single(ab->dev, ti.paddr, ti.data_len, DMA_TO_DEVICE);=0A=
- =0A=
- fail_remove_idr:=0A=
-+	if (ti.pkt_offset)=0A=
-+		skb_pull(skb, ti.pkt_offset);=0A=
- 	spin_lock_bh(&tx_ring->tx_idr_lock);=0A=
- 	idr_remove(&tx_ring->txbuf_idr,=0A=
- 		   FIELD_GET(DP_TX_DESC_ID_MSDU_ID, ti.desc_id));=0A=
-@@ -348,6 +423,10 @@ ath11k_dp_tx_htt_tx_complete_buf(struct=0A=
- 		return;=0A=
- 	}=0A=
- =0A=
-+	if (skb_cb->pkt_offset)=0A=
-+		/* Removing the alignment and htt meta data */=0A=
-+		skb_pull(msdu, skb_cb->pkt_offset);=0A=
-+=0A=
- 	memset(&info->status, 0, sizeof(info->status));=0A=
- =0A=
- 	if (ts->acked) {=0A=
---- a/drivers/net/wireless/ath/ath11k/hal_desc.h=0A=
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h=0A=
-@@ -2490,5 +2490,165 @@=0A=
-  *		A count value that indicates the number of times the producer of=0A=
-  *		entries into this Ring has looped around the ring.=0A=
-  */=0A=
-+=0A=
-+#define HAL_TX_MSDU_METADATA_INFO0_ENCRYPT_FLAG		BIT(8)=0A=
-+#define HAL_TX_MSDU_METADATA_INFO0_ENCRYPT_TYPE		GENMASK(16, 15)=0A=
-+#define HAL_TX_MSDU_METADATA_INFO0_HOST_TX_DESC_POOL	BIT(31)=0A=
-+=0A=
-+struct hal_tx_msdu_metadata {=0A=
-+	__le32 info0;=0A=
-+	__le32 rsvd0[6];=0A=
-+} __packed;=0A=
-+=0A=
-+/* hal_tx_msdu_metadata=0A=
-+ *=0A=
-+ * valid_pwr=0A=
-+ *		If set, tx pwr spec is valid=0A=
-+ *=0A=
-+ * valid_mcs_mask=0A=
-+ *		If set, tx MCS mask is valid=0A=
-+ *=0A=
-+ * valid_nss_mask=0A=
-+ *		If set, tx Nss mask is valid=0A=
-+ *=0A=
-+ * valid_preamble_type=0A=
-+ *		If set, tx preamble spec is valid=0A=
-+ *=0A=
-+ * valid_retries=0A=
-+ *		If set, tx retries spec is valid=0A=
-+ *=0A=
-+ * valid_bw_info=0A=
-+ *		If set, tx dyn_bw and bw_mask are valid=0A=
-+ *=0A=
-+ * valid_guard_interval=0A=
-+ *		If set, tx guard intv spec is valid=0A=
-+ *=0A=
-+ * valid_chainmask=0A=
-+ *		If set, tx chainmask is valid=0A=
-+ *=0A=
-+ * valid_encrypt_type=0A=
-+ *		If set, encrypt type is valid=0A=
-+ *=0A=
-+ * valid_key_flags=0A=
-+ *		If set, key flags is valid=0A=
-+ *=0A=
-+ * valid_expire_tsf=0A=
-+ *		If set, tx expire TSF spec is valid=0A=
-+ *=0A=
-+ * valid_chanfreq=0A=
-+ *		If set, chanfreq is valid=0A=
-+ *=0A=
-+ * is_dsrc=0A=
-+ *		If set, MSDU is a DSRC frame=0A=
-+ *=0A=
-+ * guard_interval=0A=
-+ *		0.4us, 0.8us, 1.6us, 3.2us=0A=
-+ *=0A=
-+ * encrypt_type=0A=
-+ *		0 =3D NO_ENCRYPT,=0A=
-+ *		1 =3D ENCRYPT,=0A=
-+ *		2 ~ 3 - Reserved=0A=
-+ *=0A=
-+ * retry_limit=0A=
-+ *		Specify the maximum number of transmissions, including the=0A=
-+ *		initial transmission, to attempt before giving up if no ack=0A=
-+ *		is received.=0A=
-+ *		If the tx rate is specified, then all retries shall use the=0A=
-+ *		same rate as the initial transmission.=0A=
-+ *		If no tx rate is specified, the target can choose whether to=0A=
-+ *		retain the original rate during the retransmissions, or to=0A=
-+ *		fall back to a more robust rate.=0A=
-+ *=0A=
-+ * use_dcm_11ax=0A=
-+ *		If set, Use Dual subcarrier modulation.=0A=
-+ *		Valid only for 11ax preamble types HE_SU=0A=
-+ *		and HE_EXT_SU=0A=
-+ *=0A=
-+ * ltf_subtype_11ax=0A=
-+ *		Takes enum values of htt_11ax_ltf_subtype_t=0A=
-+ *		Valid only for 11ax preamble types HE_SU=0A=
-+ *		and HE_EXT_SU=0A=
-+ *=0A=
-+ * dyn_bw=0A=
-+ *		0 =3D static bw, 1 =3D dynamic bw=0A=
-+ *=0A=
-+ * bw_mask=0A=
-+ *		Valid only if dyn_bw =3D=3D 0 (static bw).=0A=
-+ *=0A=
-+ * host_tx_desc_pool=0A=
-+ *		If set, Firmware allocates tx_descriptors=0A=
-+ *		in WAL_BUFFERID_TX_HOST_DATA_EXP,instead=0A=
-+ *		of WAL_BUFFERID_TX_TCL_DATA_EXP.=0A=
-+ *		Use cases:=0A=
-+ *		Any time firmware uses TQM-BYPASS for Data=0A=
-+ *		TID, firmware expect host to set this bit.=0A=
-+ *=0A=
-+ * power=0A=
-+ *		Unit of the power field is 0.5 dbm=0A=
-+ *		signed value ranging from -64dbm to 63.5 dbm=0A=
-+ *=0A=
-+ * mcs_mask=0A=
-+ *		mcs bit mask of 0 ~ 11=0A=
-+ *		Setting more than one MCS isn't currently=0A=
-+ *		supported by the target but is supported=0A=
-+ *		in the interface in case in the future=0A=
-+ *		the target supports specifications of=0A=
-+ *		a limited set of MCS values.=0A=
-+ *=0A=
-+ * nss_mask=0A=
-+ *		Nss bit mask 0 ~ 7=0A=
-+ *		Setting more than one Nss isn't currently=0A=
-+ *		supported by the target but is supported=0A=
-+ *		in the interface in case in the future=0A=
-+ *		the target supports specifications of=0A=
-+ *		a limited set of Nss values.=0A=
-+ *=0A=
-+ * pream_type=0A=
-+ *		Preamble types=0A=
-+ *=0A=
-+ * update_peer_cache=0A=
-+ *		When set these custom values will be=0A=
-+ *		used for all packets, until the next=0A=
-+ *		update via this ext header.=0A=
-+ *		This is to make sure not all packets=0A=
-+ *		need to include this header.=0A=
-+ *=0A=
-+ * chain_mask=0A=
-+ *		Specify which chains to transmit from=0A=
-+ *=0A=
-+ * key_flags=0A=
-+ *		Key Index and related flags - used in mesh mode=0A=
-+ *=0A=
-+ * chanfreq=0A=
-+ *		Channel frequency: This identifies the desired channel=0A=
-+ *		frequency (in MHz) for tx frames. This is used by FW to help=0A=
-+ *		determine when it is safe to transmit or drop frames for=0A=
-+ *		off-channel operation.=0A=
-+ *		The default value of zero indicates to FW that the corresponding=0A=
-+ *		VDEV's home channel (if there is one) is the desired channel=0A=
-+ *		frequency.=0A=
-+ *=0A=
-+ * expire_tsf_lo=0A=
-+ *		tx expiry time (TSF) LSBs=0A=
-+ *=0A=
-+ * expire_tsf_hi=0A=
-+ *		tx expiry time (TSF) MSBs=0A=
-+ *=0A=
-+ * learning_frame=0A=
-+ *		When this flag is set, this frame will be dropped by FW=0A=
-+ *		rather than being enqueued to the Transmit Queue Manager (TQM) HW.=0A=
-+ *=0A=
-+ * send_as_standalone=0A=
-+ *		This will indicate if the msdu needs to be sent as a singleton PPDU,=
-=0A=
-+ *		i.e. with no A-MSDU or A-MPDU aggregation.=0A=
-+ *		The scope is extended to other use-cases.=0A=
-+ *=0A=
-+ * is_host_opaque_valid=0A=
-+ *		Set this bit to 1 if the host_opaque_cookie is populated=0A=
-+ *		with valid information.=0A=
-+ *=0A=
-+ * host_opaque_cookie=0A=
-+ *		Host opaque cookie for special frames=0A=
-+ */=0A=
- =0A=
- #endif /* ATH11K_HAL_DESC_H */=0A=
---- a/drivers/net/wireless/ath/ath11k/mac.c=0A=
-+++ b/drivers/net/wireless/ath/ath11k/mac.c=0A=
-@@ -10324,6 +10324,9 @@ static int __ath11k_mac_register(struct=0A=
- 		goto err_free_if_combs;=0A=
- 	}=0A=
- =0A=
-+	ar->hw->wiphy->interface_modes |=3D BIT(NL80211_IFTYPE_AP_VLAN);=0A=
-+	ar->hw->wiphy->software_iftypes |=3D BIT(NL80211_IFTYPE_AP_VLAN);=0A=
-+=0A=
- 	if (!ab->hw_params.supports_monitor)=0A=
- 		/* There's a race between calling ieee80211_register_hw()=0A=
- 		 * and here where the monitor mode is enabled for a little=0A=
---- a/net/mac80211/tx.c=0A=
-+++ b/net/mac80211/tx.c=0A=
-@@ -40,6 +40,10 @@=0A=
- =0A=
- /* misc utils */=0A=
- =0A=
-+static void ieee80211_8023_xmit(struct ieee80211_sub_if_data *sdata,=0A=
-+				struct net_device *dev, struct sta_info *sta,=0A=
-+				struct ieee80211_key *key, struct sk_buff *skb);=0A=
-+=0A=
- static __le16 ieee80211_duration(struct ieee80211_tx_data *tx,=0A=
- 				 struct sk_buff *skb, int group_addr,=0A=
- 				 int next_frag_len)=0A=
-@@ -4281,5 +4285,16 @@ void __ieee80211_subif_start_xmit(struct=0A=
- 	if (IS_ERR(sta))=0A=
- 		sta =3D NULL;=0A=
- =0A=
-+	if (sta && sdata->vif.type =3D=3D NL80211_IFTYPE_AP_VLAN &&=0A=
-+	    get_bss_sdata(sdata)->vif.offload_flags & IEEE80211_OFFLOAD_ENCAP_ENA=
-BLED &&=0A=
-+	    !is_multicast_ether_addr(skb->data)) {=0A=
-+		struct ieee80211_key *key =3D rcu_dereference(sta->ptk[sta->ptk_idx]);=
-=0A=
-+		if (!key)=0A=
-+			key =3D rcu_dereference(get_bss_sdata(sdata)->default_unicast_key);=0A=
-+		ieee80211_8023_xmit(sdata, dev, sta, key, skb);=0A=
-+		rcu_read_unlock();=0A=
-+		return;=0A=
-+	}=0A=
-+=0A=
- 	skb_set_queue_mapping(skb, ieee80211_select_queue(sdata, sta, skb));=0A=
- 	ieee80211_aggr_check(sdata, sta, skb);=0A=
+if ath11k_crypto_mode is invalid (not ATH11K_CRYPT_MODE_SW/ATH11K_CRYPT_MODE_HW),
+ath11k_core_qmi_firmware_ready() will not undo some actions that was previously
+started/configured. Do the validation as soon as possible in order to avoid
+undoing actions in that case and also to fix the following smatch warning:
+
+drivers/net/wireless/ath/ath11k/core.c:2166 ath11k_core_qmi_firmware_ready()
+warn: missing unwind goto?
+
+Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+---
+Changelog:
+v3: move validation to the beginning of the ath11k_core_qmi_firmware_ready(), so
+we do not need to clean-up things. A small change over the commit msg due that change.
+v2: https://lore.kernel.org/linux-wireless/20250515222520.4922-1-rodrigo.gobbi.7@gmail.com/#t
+v1: https://lore.kernel.org/linux-wireless/20250515004258.87234-1-rodrigo.gobbi.7@gmail.com/
+---
+ drivers/net/wireless/ath/ath11k/core.c | 28 +++++++++++++-------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 2e9f8a5e61e4..b894e27435da 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -2134,6 +2134,20 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
+ {
+ 	int ret;
+ 
++	switch (ath11k_crypto_mode) {
++	case ATH11K_CRYPT_MODE_SW:
++		set_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
++		set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
++		break;
++	case ATH11K_CRYPT_MODE_HW:
++		clear_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
++		clear_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
++		break;
++	default:
++		ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
++		return -EINVAL;
++	}
++
+ 	ret = ath11k_core_start_firmware(ab, ab->fw_mode);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to start firmware: %d\n", ret);
+@@ -2152,20 +2166,6 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
+ 		goto err_firmware_stop;
+ 	}
+ 
+-	switch (ath11k_crypto_mode) {
+-	case ATH11K_CRYPT_MODE_SW:
+-		set_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
+-		set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
+-		break;
+-	case ATH11K_CRYPT_MODE_HW:
+-		clear_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
+-		clear_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
+-		break;
+-	default:
+-		ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
+-		return -EINVAL;
+-	}
+-
+ 	if (ath11k_frame_mode == ATH11K_HW_TXRX_RAW)
+ 		set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
+ 
+-- 
+2.49.0
+
 
