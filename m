@@ -4,71 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF2DEC54F32
-	for <ath11k@archiver.kernel.org>; Sat, 24 May 2025 11:02:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4314C54ED1
+	for <ath11k@archiver.kernel.org>; Sat, 24 May 2025 22:04:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AuL1lj5+r6l1nileRznb8GEE5TYQHgpOYBvPYyVMCQw=; b=FsFHLeld6GnKCnAOt6U99Q6VfI
-	3ENvTvKJFieDGs6j6ejm0liGkN+HXA+BHHlxU7gdg7gMT1bWyg+6J3oRe7pQ/e7jnKOGzv5nr/3TZ
-	kg3gLShF3s1yHpyrJPhBT7rYXCKg7jKEqqwFRDjkmmjU9ugoJbTeQ1LQBR1S3UAXVz7rDkMSidDYo
-	7ABdiklM/WW9qdagRaQCkD9KTJmBDjmo10rDEA++kiGL3eYb6MpauH+g5pRedRD2QA72i01D5NMCu
-	AvuCOIKmcUpmonE0tldwr+RGkSdVfYtr/MFmTyuHeUmMW+ZADUt9yf0QHC93lg5D5pA2u13r01f0+
-	hVJTnHww==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=jxS4Ln3oPbm4sy1YgNsCi+sBXuqW+jXL43x4PIqWT+Y=; b=uHpQMMvrv68XkgQJVm0U3yIo3F
+	duVm8MvKvMdv6YWTnlC18cFXG7ZSF8YXbyyxh5g3Mc2/kPUpk7CaFhShYrXXrIn2EQXF8+IgAFgCQ
+	M1hPpHwV39ifNhSXSoi1zZACQu8gHUi9++skmA0etn0C+OLp6IJ4sAkc0dwTjFBNjUiHlciTdSw8R
+	+PEnPtydLR8OjytUbBb21cfP6Xv3WQKP6bQxelXf9FbgkW70YtQ4Xf6x9U8bB/e4cUYyGYYg93lBS
+	h++Ah9XgNVpo0oMEEb1EVipl6T0ZD7J8OXcpcc9CB2Yxe/OIncE0frRWGcMmSnWrR0Q312yHAhR2b
+	7CzP6Qcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uImdq-00000005lvI-04XV;
-	Sat, 24 May 2025 11:02:14 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1uIwyJ-00000006Jw0-072c;
+	Sat, 24 May 2025 22:04:03 +0000
+Received: from mail11.truemail.it ([2001:4b7e:0:8::81])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uImdY-00000005lrD-48do;
-	Sat, 24 May 2025 11:01:58 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id A4069A4EEAD;
-	Sat, 24 May 2025 11:01:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5130DC4CEE4;
-	Sat, 24 May 2025 11:01:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748084514;
-	bh=jsOFI/3l7DI68xEW1jpWooo+c55YFp/WUqSMUC7U6gc=;
-	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
-	b=FUTcZTb1+vcx4eQmPZq0637754gCIx1Js52QbIOBUvDcGX1cLJDouMHdbFVwvEFK1
-	 f/P1Xi7uyDYo/cPpvTbqcJm86nebUJE6RL8HRM+RikQxsUX79u6hQ62jT2xEFP2Tbu
-	 vOb/3P1D7xEPWiZdkQnrNvwYY+g1CfWTJgyWi9zuU+jK6Wp/KFHcBMsYHgXMUODh2S
-	 RBBq4E17tSFVH13MFamEDxNfBkwgD65pgmGc5rzqXLbnMwpT/1vlb70F0yrDGgCNxi
-	 /7ohF5gVgOzm/8aT5ZTzx2nSvyEdB17mNel+QloUiPUNK6JPwGsWZxaIP6wimhcJLf
-	 InKP0E/yrD4OA==
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-70e33252046so2060887b3.3;
-        Sat, 24 May 2025 04:01:53 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWGM5KZoAKRZfu73V0kGYvKxuQH55Ii+8kfZh/toC7swXe5Kxi1irFi4Ndtm4uJzUnDwprH2L5W@lists.infradead.org, AJvYcCWdq9flrxaLN4TO2r3NTGojqqopNMaOKCEe4HhhLS+xRLTSzEscyH5rI7aJLGgTcOXEBDxAaXE=@lists.infradead.org, AJvYcCX5AC94ykdXClbxytHkZRu06lnBhX5prQwP18cvhT8Ufz9nhTH/msz6UdIo8QyOGbfrIAyltgM2@lists.infradead.org
-X-Gm-Message-State: AOJu0YxXB7Pe7qWGGOcSxJbA/evJySgYCQIcnNQ6k2eJZ0xWvUUsIfT4
-	/hJq5/HSXjjGVnKCdlAiWcrHjiOqDsNtyztY9ceUMnsVAIONi7Ibq217gAX9dL3Cok5/7MXqRW6
-	AofFuwaRDlVMRJIji00fggxgdLNkRwds=
-X-Google-Smtp-Source: AGHT+IFJVdZ543r+wIyn2Imhhh/2TGC+yMudMhDw1/AM/qAFP+N7wR+LWtgSrHl5DYBkEaNMuQIbk3KltwcTmicgV7Y=
-X-Received: by 2002:a05:690c:921c:b0:70e:2fd7:de8 with SMTP id
- 00721157ae682-70e2fd710d6mr10753577b3.29.1748084512607; Sat, 24 May 2025
- 04:01:52 -0700 (PDT)
+	id 1uIwyD-00000006JuV-2mDX
+	for ath11k@lists.infradead.org;
+	Sat, 24 May 2025 22:04:02 +0000
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 80E801F95E;
+	Sun, 25 May 2025 00:03:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1748124228;
+	bh=jxS4Ln3oPbm4sy1YgNsCi+sBXuqW+jXL43x4PIqWT+Y=;
+	h=Received:Received:From:To:Subject;
+	b=TbSDtnbwR6u4HQPQ4qntVuxBFNUGTDFwwZKXLW66fi9ikAq+3Pv1u/5bUdxhES8pA
+	 M/YMuwWJbFscjlAS4O1158TiI9aUtT+WCpjExGPLjda7FeJanlJA4P6jAq4Cgxs0Eg
+	 VmydGL7OXdmOav7fGgxYoPib3pM6DJLHVGqrqsyGes9KM+da03+e0HoDecoEmqRUrk
+	 5VFqD9xgKGvBRzkam+D2xVaOkBDA5ZHEoF+FgFUKfBG6LnIqaphgu6C3iT55gQNOL2
+	 +jLx04FMuAEx5imRIgdJC9ZgHCZnYA0FTc7XyZiq6Qswz5MubPILbZowOpT9nYIYtk
+	 R6L717K7XqPig==
+Received: from livingston (unknown [192.168.42.11])
+	by gaggiata.pivistrello.it (Postfix) with ESMTP id 395647F80F;
+	Sun, 25 May 2025 00:03:48 +0200 (CEST)
+Received: from pivi by livingston with local (Exim 4.96)
+	(envelope-from <francesco@dolcini.it>)
+	id 1uIwy4-00048G-0K;
+	Sun, 25 May 2025 00:03:48 +0200
+Date: Sun, 25 May 2025 00:03:48 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>,
+	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Re: ath11k-firmware: WCN6855 hw2.1: add Silex SX-PCEAX specific BDF
+Message-ID: <aDJCRNUCzgtvTKjs@livingston.pivistrello.it>
+References: <Z1bc_jn-k-88Io3f@gaggiata.pivistrello.it>
+ <20250121113234.GA28230@francesco-nb>
 MIME-Version: 1.0
-References: <fcfa4e63-e421-42d1-b6da-11d2d7d2dd95@oss.qualcomm.com>
-In-Reply-To: <fcfa4e63-e421-42d1-b6da-11d2d7d2dd95@oss.qualcomm.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Sat, 24 May 2025 07:01:41 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA61i6upJES0Ex+fu=3te0nL5C6UsBzwdqqG71=D9cFz0w@mail.gmail.com>
-X-Gm-Features: AX0GCFtakdGE72uU9Nz4698nzxMe14QZAD3v4jd7XJvJegpl_2qLoV6ELz6n7T8
-Message-ID: <CA+5PVA61i6upJES0Ex+fu=3te0nL5C6UsBzwdqqG71=D9cFz0w@mail.gmail.com>
-Subject: Re: [PULL linux-firmware] ath10k, ath11k and ath12k firmware ath-20250523
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: linux-firmware@kernel.org, linux-wireless@vger.kernel.org, 
-	ath10k@lists.infradead.org, ath11k@lists.infradead.org, 
-	ath12k@lists.infradead.org, jjohnson@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250121113234.GA28230@francesco-nb>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250524_040157_088958_FE07BCD3 
-X-CRM114-Status: GOOD (  14.07  )
+X-CRM114-CacheID: sfid-20250524_150358_589155_D948F7C2 
+X-CRM114-Status: GOOD (  10.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,42 +77,21 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Merged and pushed out.
+Hello Jeff,
 
-https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/561
+On Tue, Jan 21, 2025 at 12:32:34PM +0100, Francesco Dolcini wrote:
+> +Jeff, that seems to be active on this area.
+> 
+> On Mon, Dec 09, 2024 at 01:05:18PM +0100, Francesco Dolcini wrote:
+> > I'd like to ask for inclusion for the board file for Silex SX-PCEAX
+> > radio module [1].
+> 
+> Any comment on this? It's been a while since I sent this and I had no
+> feedback so far.
 
-josh
+Jeff, any suggestion on how to move this forward?
 
-On Fri, May 23, 2025 at 1:08=E2=80=AFPM Jeff Johnson
-<jeff.johnson@oss.qualcomm.com> wrote:
->
-> The following changes since commit 3fbaee2775a4a6d44021aa035823a7388b0874=
-fa:
->
->   Merge branch 'robot/pr-0-1747839277' into 'main' (2025-05-21 15:05:37 +=
-0000)
->
-> are available in the Git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git at=
-h-20250523
->
-> for you to fetch changes up to 2e91d8c3c4bd34a27177180a38f62d3ba3c96031:
->
->   ath12k: WCN7850 hw2.0: update to WLAN.HMT.1.1.c5-00284.1-QCAHMTSWPL_V1.=
-0_V2.0_SILICONZ-3 (2025-05-23 09:50:02 -0700)
->
-> ----------------------------------------------------------------
->
-> This is an update to the WCN7850 firmware that fixes the widely reported
-> failures due to the prior version in ath-20250424.
->
-> ----------------------------------------------------------------
-> Jeff Johnson (1):
->       ath12k: WCN7850 hw2.0: update to WLAN.HMT.1.1.c5-00284.1-QCAHMTSWPL=
-_V1.0_V2.0_SILICONZ-3
->
->  WHENCE                        |   2 +-
->  ath12k/WCN7850/hw2.0/amss.bin | Bin 6082624 -> 6078528 bytes
->  2 files changed, 1 insertion(+), 1 deletion(-)
+Thanks,
+Francesco
+
 
