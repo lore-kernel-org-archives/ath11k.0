@@ -4,113 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D2E8C61CE8
-	for <ath11k@archiver.kernel.org>; Wed,  4 Jun 2025 08:44:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A617C5B549
+	for <ath11k@archiver.kernel.org>; Wed,  4 Jun 2025 14:38:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=a+qlb57xxwaTCuFL52/E3275a9Fzz22EbNv/H6BVDLI=; b=lUhpcLxhBMQPX/hQS9ifh174Rj
-	uq28Nm/+/oh9IGDWbMzewPP6ouOE9K07czblzM1xSdkHPmHsU0oR2l33ZWo0YMiHIgSYsOjPGW6bd
-	ZUaHj6liFgCUMVnCx6sciJdfolDF3wLcR4k2kbB1yDsIaa9Wz0IdVQln7Dvd9tdtbYKAG4sqfDa51
-	ziSod9ptZ75C4GIi6THek1BpAYue77sI1DqQrMPr03r5xw/3SIycTp4k0+L2KaAaQ8YQZFG1qu5jy
-	h9CbSg1iwp6YDYEg0L/NGUw/te0p56IR/3loPNf+WPGZtUEIWiznQERI/sdnMzOiutVv6cZim1o9L
-	aarF5VmQ==;
+	bh=cyLCfwzcP2yoGTytb4szvWXzmZL8hVGG4jBFU8ibaoE=; b=XZqNJtxK1Bvef7NY946VtZm2NK
+	V9ZGeqrJe+MYauHdFlqaVVtxsRYzxkoW46bEcRHMAfMpC4RH2t7QetSberjol6//92HjXOEFKU22l
+	xQ75jmOcAb4GwkzFzFMso3TgjsbLj6bCsj9FxeSDGBoBeDE43F7nHgy5XeAIERNrwpNqWq1/ZkTkB
+	89M7d351oSYFn9WjRDvbg3L+sAXXmaR9Jdz0lv1d2eMNtPA6ub70+KQYyUGiObfwexa0ih4DFGYAb
+	xhQu8uXhuQ/3F3IM3EoUGX8lJJ10EfGzBcedbC4IkALc+tD7LHGTHQRIfFHCdDOtDvpliWP2cj66O
+	9ge7IgVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMjjz-0000000CvjN-0QB4;
-	Wed, 04 Jun 2025 08:44:55 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uMpFl-0000000DauN-30St;
+	Wed, 04 Jun 2025 14:38:05 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMjKb-0000000CsBN-0VKG
+	id 1uMpDx-0000000Dab1-0FRE
 	for ath11k@lists.infradead.org;
-	Wed, 04 Jun 2025 08:18:42 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 553L0T5t007388;
-	Wed, 4 Jun 2025 08:18:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	a+qlb57xxwaTCuFL52/E3275a9Fzz22EbNv/H6BVDLI=; b=RBkmRJ7OeMZ7gRWo
-	4KhEh7RW5NB+MOVVPvpXSo+QNKJ3a6DkjCdtxzYxNIqUKtkRwzJJNT7ZO1L9zXvf
-	pMGzG71O1PhjKVcs2x69CwfYSKSJdgBdzP3LWUMTRq2T33FiHOcZhmPGs4zJI7IF
-	WxwNIgafx7BxYKL7Mlkk4JKZQZQGW1DFnUAyyJep81bCi/+qld/m44ME3OG6Xiz2
-	q/fDPHHri5uWlClr9fYVOv+Us1h+lWMJFhGzgdBPrdxAMxrHBo1RkegbniwGLZ/T
-	OeOR2y+oNB7SgKQZJTbFdZfM/RpMGtMqfFeBAOq7GJGSDMcv17IPhgiVGUYXdBbQ
-	+Kbh5w==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8swaks-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 08:18:38 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5548IbBs023995
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Jun 2025 08:18:37 GMT
-Received: from [10.133.33.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Jun 2025
- 01:18:35 -0700
-Message-ID: <94d95c9b-2fd7-45b1-b9ae-664d651071cc@quicinc.com>
-Date: Wed, 4 Jun 2025 16:18:32 +0800
+	Wed, 04 Jun 2025 14:36:15 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 13DC7A5044C;
+	Wed,  4 Jun 2025 14:36:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEDFBC4CEEF;
+	Wed,  4 Jun 2025 14:36:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749047771;
+	bh=DW6mEbuQyQES+wh95ZJKakXUt1S6KLMtCRzsr6ZDdtA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Lysf+n/azHWgbuQ9uSkAK1Ifb5SCGPn0sQRiTUEsGntJDK+/eR/FK+4ryOoOv8nF5
+	 W2LwOSRVIVOTcBh15tVq9WbKcZpPs5T52PzF2jURQEa7BQv3qtrSO6bjtmahKRKKxT
+	 HW/ZIejZ5o3qUM6q/W4gokOA+fZ/+7fqqhpKT+iBFIrOYJKmCngyiQOc0fuB0g8Nug
+	 OXZ/WlBw9KUMdM5d1Sb0AHa7U8QWbOeoifl1K1qohgJhb5vrvYwAOaF1Y63tC2RXg5
+	 bkk30pDpznPgDj9O2xbskVOoicVLeT9akWs7Vl2BMamTTZyp6i1u3YjY+tNQSWCCym
+	 UEb76AQbavP4w==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1uMpDt-000000006nM-38jX;
+	Wed, 04 Jun 2025 16:36:09 +0200
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: Miaoqing Pan <quic_miaoqing@quicinc.com>,
+	Baochen Qiang <quic_bqiang@quicinc.com>,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH v2 3/5] wifi: ath11k: use plain accesses for monitor descriptor
+Date: Wed,  4 Jun 2025 16:34:55 +0200
+Message-ID: <20250604143457.26032-4-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250604143457.26032-1-johan+linaro@kernel.org>
+References: <20250604143457.26032-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] wifi: ath11k: fix dest ring-buffer corruption
-To: Johan Hovold <johan@kernel.org>
-CC: Baochen Qiang <quic_bqiang@quicinc.com>,
-        Johan Hovold
-	<johan+linaro@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>
-References: <20250526114803.2122-1-johan+linaro@kernel.org>
- <20250526114803.2122-2-johan+linaro@kernel.org>
- <026b710f-b50f-4302-ad4f-36932c2558ff@quicinc.com>
- <aD1axxSAJsbUfnHH@hovoldconsulting.com>
- <5268c9ba-16cf-4d3a-87df-bbe0ddd3d584@quicinc.com>
- <aD7h0OOoGjVm8pDK@hovoldconsulting.com>
- <01634993-80b1-496e-8453-e94b2efe658c@quicinc.com>
- <7025db40-dda0-4cbb-80bd-09bd590584da@quicinc.com>
- <aD_wgACEfm1_1GNz@hovoldconsulting.com>
- <79b4bac1-6e55-408c-a334-006eded4229f@quicinc.com>
- <aD_-zt755Jr_LsWM@hovoldconsulting.com>
-Content-Language: en-US
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <aD_-zt755Jr_LsWM@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=RMizH5i+ c=1 sm=1 tr=0 ts=6840015e cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=3_NjuXynapyhKrkUQyEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA2NCBTYWx0ZWRfXyisOzIPuB7Dm
- ng6rMzjM7MgNzW96wtZtp62LdWw35OorI6YgJdnmQVZe2hx+GWXHGj28A5FTN549UKbV8E7C2fc
- 0GsT/SAiikWo/KPvvj38mEUmIrgQKlx+a+H3pnQtPZj1W+y7QvDo0yEn/BjUd+iejZzM/x8CxiT
- xB/ztP/5/1c++tadyIVM9+rdCMcSmErn5Fq2NuEEIETOE/NytakmdUwiAK0KEx4O7nhQnXwMxA+
- Izeq+8CI28sMqngClKDQk1wb5Vr9Yw5nHDpSU01b85lpUqquZDXMPiMXAlwqAmS3gVhk0m47aBr
- T+vLJgM2QhSZDRHBUndvK1FhFZlv+yfu/cjxHnhBGTWHc3mLqWCnQKtDMWWPzsU5bVnp9lGhh+C
- vVnAS/3NKoRYPEQdvtOZIh96/T0nJWVEwMl3Ou1UcwRieTpH3Wrv+ePPmdCNSvV9rXYJNQ6k
-X-Proofpoint-GUID: W_8y7Pib7JpzMR6Zj-Qj5nLBrlt1jASV
-X-Proofpoint-ORIG-GUID: W_8y7Pib7JpzMR6Zj-Qj5nLBrlt1jASV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-04_02,2025-06-03_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0
- bulkscore=0 suspectscore=0 adultscore=0 mlxlogscore=602 mlxscore=0
- clxscore=1015 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506040064
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250604_011841_162143_2EC8EA3A 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20250604_073613_228353_F35D5263 
+X-CRM114-Status: UNSURE (   9.16  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,72 +80,79 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+The read memory barrier added by commit ab52e3e44fe9 ("wifi: ath11k: fix
+rx completion meta data corruption") is enough to guarantee ordering
+also for plain descriptor accesses so drop the unnecessary READ_ONCE().
 
+Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
 
-On 6/4/2025 4:07 PM, Johan Hovold wrote:
-> On Wed, Jun 04, 2025 at 03:57:57PM +0800, Miaoqing Pan wrote:
->> On 6/4/2025 3:06 PM, Johan Hovold wrote:
->>> On Wed, Jun 04, 2025 at 01:32:08PM +0800, Miaoqing Pan wrote:
->>>> On 6/4/2025 10:34 AM, Miaoqing Pan wrote:
->>>>> On 6/3/2025 7:51 PM, Johan Hovold wrote:
->>>>>> On Tue, Jun 03, 2025 at 06:52:37PM +0800, Baochen Qiang wrote:
-> 
->>>>>>> The sequence is
->>>>>>>
->>>>>>>       1# reading HP
->>>>>>>           srng->u.dst_ring.cached_hp = READ_ONCE(*srng-
->>>>>>>> u.dst_ring.hp_addr);
->>>>>>>
->>>>>>>       2# validate HP
->>>>>>>           if (srng->u.dst_ring.tp == srng->u.dst_ring.cached_hp)
->>>>>>>               return NULL;
->>>>>>>
->>>>>>>       3# get desc
->>>>>>>           desc = srng->ring_base_vaddr + srng->u.dst_ring.tp;
->>>>>>>
->>>>>>>       4# accessing desc
->>>>>>>           ath11k_hal_desc_reo_parse_err(... desc, ...)
->>>>>>>
->>>>>>> Clearly each step depends on the results of previous steps. In this
->>>>>>> case the compiler/CPU
->>>>>>> is expected to be smart enough to not do any reordering, isn't it?
->>>>>>
->>>>>> Steps 3 and 4 can be done speculatively before the load in step 1 is
->>>>>> complete as long as the result is discarded if it turns out not to be
->>>>>> needed.
->>>
->>>>> If the condition in step 2 is true and step 3 speculatively loads
->>>>> descriptor from TP before step 1, could this cause issues?
->>>>
->>>> Sorry for typo, if the condition in step 2 is false and step 3
->>>> speculatively loads descriptor from TP before step 1, could this cause
->>>> issues?
->>>
->>> Almost correct; the descriptor can be loaded (from TP) before the head
->>> pointer is loaded and thus before the condition in step 2 has been
->>> evaluated. And if the condition in step 2 later turns out to be false,
->>> step 4 may use stale data from before the head pointer was updated.
->>
->> Actually, there's a missing step between step 3 and step 4: TP+1.
->>
->> TP+1:
->> 	srng->u.dst_ring.tp += srng->entry_size
-> 
-> Sure, but that is not relevant for the issue at hand.
-> 
->> TP is managed by the CPU and points to the current first unprocessed
->> descriptor, while HP and the descriptor are asynchronously updated by
->> DMA. So are you saying that the descriptor obtained through speculative
->> loading has not yet been updated, or is in the process of being updated?
-> 
-> Exactly.
-> 
-> Johan
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 22 +++++++++-------------
+ 1 file changed, 9 insertions(+), 13 deletions(-)
 
-Thanks, make sense.
-
-Reviewed-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
-
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index d8dab182a9af..218ab41c0f3c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2637,7 +2637,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 	struct ath11k *ar;
+ 	struct hal_reo_dest_ring *desc;
+ 	enum hal_reo_dest_ring_push_reason push_reason;
+-	u32 cookie, info0, rx_msdu_info0, rx_mpdu_info0;
++	u32 cookie;
+ 	int i;
+ 
+ 	for (i = 0; i < MAX_RADIOS; i++)
+@@ -2654,7 +2654,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 	      (struct hal_reo_dest_ring *)ath11k_hal_srng_dst_get_next_entry(ab,
+ 									     srng))) {
+ 		cookie = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
+-				   READ_ONCE(desc->buf_addr_info.info1));
++				   desc->buf_addr_info.info1);
+ 		buf_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_BUF_ID,
+ 				   cookie);
+ 		mac_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_PDEV_ID, cookie);
+@@ -2683,9 +2683,8 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 
+ 		num_buffs_reaped[mac_id]++;
+ 
+-		info0 = READ_ONCE(desc->info0);
+ 		push_reason = FIELD_GET(HAL_REO_DEST_RING_INFO0_PUSH_REASON,
+-					info0);
++					desc->info0);
+ 		if (unlikely(push_reason !=
+ 			     HAL_REO_DEST_RING_PUSH_REASON_ROUTING_INSTRUCTION)) {
+ 			dev_kfree_skb_any(msdu);
+@@ -2693,21 +2692,18 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 			continue;
+ 		}
+ 
+-		rx_msdu_info0 = READ_ONCE(desc->rx_msdu_info.info0);
+-		rx_mpdu_info0 = READ_ONCE(desc->rx_mpdu_info.info0);
+-
+-		rxcb->is_first_msdu = !!(rx_msdu_info0 &
++		rxcb->is_first_msdu = !!(desc->rx_msdu_info.info0 &
+ 					 RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU);
+-		rxcb->is_last_msdu = !!(rx_msdu_info0 &
++		rxcb->is_last_msdu = !!(desc->rx_msdu_info.info0 &
+ 					RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU);
+-		rxcb->is_continuation = !!(rx_msdu_info0 &
++		rxcb->is_continuation = !!(desc->rx_msdu_info.info0 &
+ 					   RX_MSDU_DESC_INFO0_MSDU_CONTINUATION);
+ 		rxcb->peer_id = FIELD_GET(RX_MPDU_DESC_META_DATA_PEER_ID,
+-					  READ_ONCE(desc->rx_mpdu_info.meta_data));
++					  desc->rx_mpdu_info.meta_data);
+ 		rxcb->seq_no = FIELD_GET(RX_MPDU_DESC_INFO0_SEQ_NUM,
+-					 rx_mpdu_info0);
++					 desc->rx_mpdu_info.info0);
+ 		rxcb->tid = FIELD_GET(HAL_REO_DEST_RING_INFO0_RX_QUEUE_NUM,
+-				      info0);
++				      desc->info0);
+ 
+ 		rxcb->mac_id = mac_id;
+ 		__skb_queue_tail(&msdu_list[mac_id], msdu);
+-- 
+2.49.0
 
 
