@@ -4,119 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE20C5B543
-	for <ath11k@archiver.kernel.org>; Wed,  4 Jun 2025 04:55:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 756DEC5B543
+	for <ath11k@archiver.kernel.org>; Wed,  4 Jun 2025 05:32:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:References:CC:To:From:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=G6xI/j2rt/FbpC5WTd3gyKMGjPoB0WhMh3mpvInl0QU=; b=JRYpI87n4XvCbNsLZ1VP/0969u
-	cjOAsDrlfxwjOv7kVGytQ+d6o1suKYqRwrA5dlO/NEoLM/kno/TytlXT6LSIhWjUU+NmyPym48hWM
-	nsCz6EJOA1akV+h1UPKHCuO1jWhFdPxKpayuskC7cYyAQlmMdX8vVwacSNALxPAfbMWCiVh0S8Ju9
-	X1UMMl1IYjlymEnBXiAAR4z5dG/Wv+tiPrWNfG32YmcBFWMa8bhm0NToGQJK17Oi/Q5XgJOutu8LO
-	SvKY15Bm2B8v4WIhkWzXGy+jgNPiajqGImsQqQIZlcMgPFqA5M4w86mibbSDxDCPR4gZMb+Nbf9qS
-	b5WU1T6A==;
+	bh=qCqkv7UIG3GLW1mbMtCLAQnW+VWrOS+08dSxfpBmZco=; b=c+oLz8DrFH4ViQLMEN7gvhMBKD
+	9e7rXM/42fUFsDofcBFi7brGqXFuAgf85jRfadar6Tg3BikI8uKn98IjKxh3UuwnA5MCCv08rBFpK
+	cvJl7H26lNsASfjYMCQvyYpi6K7pPbUDSQcxDxsQkNKmGo2WmByYnaxAI0IJlclYXN5h85hUGVtha
+	KrFfyVqIwBld1Ilx0+JvJJRGZO5WwK+feYbygcf1eMnpkXvQGzHpclFOq8PBVG85bpk0a0O2lkxWi
+	r79C6JB7GN4M+x4ia0nQMBOIFuK7zu030KgTCCwej4KhwNX705l22hlAlUqxsRihUZlX8EsSnawGE
+	wJ0QFJNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMgAM-0000000Cahp-0j50;
-	Wed, 04 Jun 2025 04:55:54 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uMgjf-0000000Cd8j-3RNf;
+	Wed, 04 Jun 2025 05:32:23 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMgAI-0000000Cagq-3Jqi
+	id 1uMgjd-0000000Cd8O-1Jhn
 	for ath11k@lists.infradead.org;
-	Wed, 04 Jun 2025 04:55:52 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 553JvvQV000679
-	for <ath11k@lists.infradead.org>; Wed, 4 Jun 2025 04:55:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	Wed, 04 Jun 2025 05:32:22 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5540FGnn013323;
+	Wed, 4 Jun 2025 05:32:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	G6xI/j2rt/FbpC5WTd3gyKMGjPoB0WhMh3mpvInl0QU=; b=OC+RE2vMwgO4To2Z
-	ZYF5BYwVYCiTYy5WqupvtXrtE2MM7uYd3JhiHABliEUXUpc2NAhN0LkD4RJkr0RZ
-	3zvX+KEShGOLYA0SysYVqIomm/tkDo0pKwOtmwpZfWTaRvPo5XiJBVj8dB220Whw
-	RPrh/1SATYpJ8+9SVxnPH4fg1MMniaD6b9vtdRZaKX0NQoXLnPOVNOjEeGkSfLgc
-	pnXXdbMcyY/Xnooys6d0mM2dRQBgvZ+LNQupTMMca67XmiwfV9EiE1+50C2epiWY
-	XESwEhHwkD3JnYXQbChhxXXw5XXGlgiEYrVLB5ZOyUxhuL+WftBpQwm1bo2g1yhh
-	Tb2ShQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8q4v75-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 04 Jun 2025 04:55:48 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-740774348f6so5419399b3a.1
-        for <ath11k@lists.infradead.org>; Tue, 03 Jun 2025 21:55:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749012947; x=1749617747;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G6xI/j2rt/FbpC5WTd3gyKMGjPoB0WhMh3mpvInl0QU=;
-        b=TYzF+cXceWmWCBUrmN2XKN7a0Q5GBL5pBLvPe+PJTebzD7dX9633eamvIN1CC7CEpo
-         QhzXjKTCact69xdWLazjK34Ppwb0V3lxRPpQoAzHwjaeq8IAowa3EdC+N37f/nm1EIno
-         On9qDKm2l2c/tAuRcQb+CoLK2zihWqyD0jGMvVwlgUbY59+X20q76F3D8YYNxjX0/3kN
-         IWKhkDLp5USaSSzPqRIfFW5d+pjaq/7jjMmoJT1H3fQfHGv6e8Jr0XShoF7Bkmud5BJZ
-         ohnoHlKGHwxbxpltWoOs+HA7OQOKxmiD1jzvaa7AvA9qTdZNheMoeAVaPJsnkr7lf2y4
-         Yxuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVI7F6y5uExIAXW/mwVPp/HJgPR8iHiJy6gXzmH0thiXrV4WRyZ1vikaeaYcfDSOrOlVivpTdk=@lists.infradead.org
-X-Gm-Message-State: AOJu0YygZ+KuUjzQgibk7OXuIqHCpO8GKaFeVcGJalL1VRcVzwcimz5m
-	qQ/dGm3iL9jtNGq8vDQsNHCaM2nk4atVsRq7LweAXG9BvrnX4CGFBnqtzaTV8xycNvF/Gc4JWgp
-	Ymq8Gc1rqwch/wu5bJxsBmZmDPKihMrhjx+jGXVTjgQUg3UCwtIwf69XZp32K9uazTt7pN2qH
-X-Gm-Gg: ASbGncuKNNFSNxXw61PmCTBkZwC67yvFT6Oy7g2yhq7KBSMqhRJSfvOGkUIaiWFDrBC
-	S/LDqXTi8FMhAsjSkPuXillOIkglG+fy9YzrwYKoPfS1BnEJtKJoWCuAxVSRG1JXrUoEZ+iqqN2
-	dk7rabHIzrPP94+nz/54JPjt3P3KoZnPFn3skoYz2yysYs4K+JrbMJJlteylGJ1zTKN3SfQaPsO
-	m9kVXA38J6TV3+idl4dl6ZoHo5kylsp3H91npH9YdcqzDGAENYF6MQh5wcD8af5q7i4h0pEdZXY
-	WEspBThzv5C53bzviKDjp+MWQDOBzYYG/fNOnzxXGPs8LkAhTH1EHwFKGU+8uPs8
-X-Received: by 2002:a05:6a21:38c:b0:21c:fa68:c33a with SMTP id adf61e73a8af0-21d22b3e23dmr2148101637.23.1749012946997;
-        Tue, 03 Jun 2025 21:55:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFrke0SC+6zC9HUdqtri8k0yK+V0ol5laCcwPMyQaz3cgeCVLCSdAo7CbS/kXjM0m44UN0i4Q==
-X-Received: by 2002:a05:6a21:38c:b0:21c:fa68:c33a with SMTP id adf61e73a8af0-21d22b3e23dmr2148075637.23.1749012946608;
-        Tue, 03 Jun 2025 21:55:46 -0700 (PDT)
-Received: from [10.152.204.0] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2eceb36aecsm7917620a12.40.2025.06.03.21.55.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jun 2025 21:55:46 -0700 (PDT)
-Message-ID: <d4e44cf2-4fe1-827f-0255-9b77fc91bd2f@oss.qualcomm.com>
-Date: Wed, 4 Jun 2025 10:25:43 +0530
+	qCqkv7UIG3GLW1mbMtCLAQnW+VWrOS+08dSxfpBmZco=; b=NYlVCjvc/jOzbpMI
+	/y/NN32WoxbZtb8FXj5YYMqlZFHq2eKImbd2s4P6Rg43qzuZfGrME+CQKWxhPQWG
+	In0aCkKX+6HP0KpxFF/Jy8zJTEdXGdedonAPjW9dtVc/kw3JET4rnD3rnv+dWAB7
+	/Gahdfno6Dr9lQRQJdPyfwkeBo/TVKhMJM2LV/1VUwYuGIWFejyak33BfNYWBZYd
+	ZBdNBdY5sYXrVbLvVum+/N7Vf4flPPp1JcPjjqftsS7iEO6jpsQPo5lg2aoBSoGd
+	1Z9dhFRIkNLZq4RyZXWAtRwEUKe2kUPxfD7NJ4c2VF+B5dXTceg7R+Um9TYQR+lH
+	UMbhew==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 472be80n67-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Jun 2025 05:32:13 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5545WD7k007882
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Jun 2025 05:32:13 GMT
+Received: from [10.133.33.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Jun 2025
+ 22:32:11 -0700
+Message-ID: <7025db40-dda0-4cbb-80bd-09bd590584da@quicinc.com>
+Date: Wed, 4 Jun 2025 13:32:08 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 0/7] wifi: ath11k: fixes and refactor to firmware stats
- related functions
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] wifi: ath11k: fix dest ring-buffer corruption
+From: Miaoqing Pan <quic_miaoqing@quicinc.com>
+To: Johan Hovold <johan@kernel.org>, Baochen Qiang <quic_bqiang@quicinc.com>
+CC: Johan Hovold <johan+linaro@kernel.org>,
+        Jeff Johnson
+	<jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <stable@vger.kernel.org>
+References: <20250526114803.2122-1-johan+linaro@kernel.org>
+ <20250526114803.2122-2-johan+linaro@kernel.org>
+ <026b710f-b50f-4302-ad4f-36932c2558ff@quicinc.com>
+ <aD1axxSAJsbUfnHH@hovoldconsulting.com>
+ <5268c9ba-16cf-4d3a-87df-bbe0ddd3d584@quicinc.com>
+ <aD7h0OOoGjVm8pDK@hovoldconsulting.com>
+ <01634993-80b1-496e-8453-e94b2efe658c@quicinc.com>
 Content-Language: en-US
-To: Baochen Qiang <quic_bqiang@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <20250220082448.31039-1-quic_bqiang@quicinc.com>
-From: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
-In-Reply-To: <20250220082448.31039-1-quic_bqiang@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: H1-RS1n6Ac0L_jlVfJ8izXNTwAjA9TJe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDAzOSBTYWx0ZWRfXxqa3PYH+IVlP
- nckodyx2YVJ0RJNCjSdegs7t8vWghEpGRBjJ4NqCAdvmB9anp2PiaF0WuUtHCvfxXDxzJHhrJuj
- qpkGoHOC7ZkExYvG2zqpgVPhbA6ETa07suPq5TSkLwDCIrHFmQBH7auDHP8LQ4vMNOIS5a49e3B
- p5iWsccV/GaweT4jyQtjIRDfyxUysqzn55cqRI51lS2Ckkb/yZ64nXOvWyRlz0Ig95PZwTR+37A
- mjLL54CqZgFq/Fm9DIg6281zcFwFQA3U6/Bd/YYJf5D5hnB82CN6CzVHfkbr5zif0C1OU58z5gI
- sZc6vieuBX3+ZCoBUVjqrPFi9UnjFCNTjqQfmU1sJcAaSsPHnZ/wfwMJzO3OskpKiyhYGKH9AbV
- oosj2mO2TfYoyChomETfMaPtxvySzmtGwNOAPjc9iiw0KPAib7eYMxnb70OpYqGnAvCK7DQ+
-X-Proofpoint-ORIG-GUID: H1-RS1n6Ac0L_jlVfJ8izXNTwAjA9TJe
-X-Authority-Analysis: v=2.4 cv=PrmTbxM3 c=1 sm=1 tr=0 ts=683fd1d4 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=ZLGELXoPAAAA:8
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=Q7OW8kP0y2Iz0-KcJacA:9 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22 a=CFiPc5v16LZhaT-MVE1c:22 a=TjNXssC_j7lpFel5tvFf:22
+In-Reply-To: <01634993-80b1-496e-8453-e94b2efe658c@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=bNYWIO+Z c=1 sm=1 tr=0 ts=683fda5e cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=l3RNslKZv-DLmWWPsjIA:9 a=lqcHg5cX4UMA:10 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=z2U-W3hJrleVIN9YIjzO:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 5CzFIJzzY7eQU4d1_924Wcko4y-5WK1_
+X-Proofpoint-ORIG-GUID: 5CzFIJzzY7eQU4d1_924Wcko4y-5WK1_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA0NCBTYWx0ZWRfX2FHJO/Td95ZZ
+ eQfZ7Y/x9wjgG1bLUp3CA3BCSPsPnNN/uWSCK8HlpGKtnAXy3DYeFvhXwb8icnTUKsqjCyxjn/W
+ 5XUT/loFkXgD+KHLysFAgn70GMvuvJsjfq4LgIJ/OLLhJmKuMsrxtbwr+75MNTqwVGwsy+6geum
+ 3cWrXfLcwtJhFuqxLlVzUPsSVhklk07sigc4QQDvXgfoDz3XyV6o2qVB6UzLEPfpIeGHkCnGla4
+ PunX6QkEDyKWblDtt5lxYDGRYhrE7wZanYdLPMxVocs4JI3UaFVtdvfcGVjFun1sese8x94+AzL
+ xbDepyedus7DEAea5N85eD2tNcED5mNB3xPMZ7UrzkRcBA7duDG4UzipkV+mkirFANEYbBo3QTY
+ 1JUHF4QPYiLWbLCZNIz1bv5217Ecz2XHIpXLRL/UB/TjDtDthFfPjwjWH9d0xAlnUF7Zm4gE
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-04_01,2025-06-03_02,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 spamscore=0 clxscore=1011 adultscore=0
- suspectscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506040039
+ lowpriorityscore=0 malwarescore=0 phishscore=0 priorityscore=1501
+ suspectscore=0 mlxscore=0 impostorscore=0 spamscore=0 clxscore=1015
+ mlxlogscore=603 adultscore=0 bulkscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506040044
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_215550_971595_48BFC479 
-X-CRM114-Status: GOOD (  17.42  )
+X-CRM114-CacheID: sfid-20250603_223221_377434_CAEE882E 
+X-CRM114-Status: GOOD (  17.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,45 +122,75 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 2/20/2025 1:54 PM, Baochen Qiang wrote:
-> We get report [1] that CPU is running in hot loop while requesting firmware stats,
-> fix it in patch [1/6]. While at it, fix potential failures due to static variables
-> in patch [2/6]. patch [3/6] fix potential issues in cases ath11k debugfs is not
-> enabled. patch [4/6] fix lock symmetry issue. and the last two patches refactor
-> firmware stats request helpers such that we can remove some redundant code.
+On 6/4/2025 10:34 AM, Miaoqing Pan wrote:
 > 
-> [1] https://lore.kernel.org/all/7324ac7a-8b7a-42a5-aa19-de52138ff638@app.fastmail.com
 > 
-> v2:
->   - rebased on ToT
->   - use completion mechanism in patch "wifi: ath11k: avoid burning CPU in
->     ath11k_debugfs_fw_stats_request()"
->   - add new patch: "wifi: ath11k: don't wait when there is no vdev started"
->   - update copyright where applicable
-> 	
-> Link to v1:
-> 	https://lore.kernel.org/linux-wireless/20241113015631.3105-1-quic_bqiang@quicinc.com/
+> On 6/3/2025 7:51 PM, Johan Hovold wrote:
+>> On Tue, Jun 03, 2025 at 06:52:37PM +0800, Baochen Qiang wrote:
+>>> On 6/2/2025 4:03 PM, Johan Hovold wrote:
+>>
+>>>> No, the barrier is needed between reading the head pointer and 
+>>>> accessing
+>>>> descriptor fields, that's what matters.
+>>>>
+>>>> You can still end up with reading stale descriptor data even when
+>>>> ath11k_hal_srng_dst_get_next_entry() returns non-NULL due to 
+>>>> speculation
+>>>> (that's what happens on the X13s).
+>>>
+>>> The fact is that a dma_rmb() does not even prevent speculation, no 
+>>> matter where it is
+>>> placed, right?
+>>
+>> It prevents the speculated load from being used.
+>>
+>>> If so the whole point of dma_rmb() is to prevent from compiler 
+>>> reordering
+>>> or CPU reordering, but is it really possible?
+>>>
+>>> The sequence is
+>>>
+>>>     1# reading HP
+>>>         srng->u.dst_ring.cached_hp = READ_ONCE(*srng- 
+>>> >u.dst_ring.hp_addr);
+>>>
+>>>     2# validate HP
+>>>         if (srng->u.dst_ring.tp == srng->u.dst_ring.cached_hp)
+>>>             return NULL;
+>>>
+>>>     3# get desc
+>>>         desc = srng->ring_base_vaddr + srng->u.dst_ring.tp;
+>>>
+>>>     4# accessing desc
+>>>         ath11k_hal_desc_reo_parse_err(... desc, ...)
+>>>
+>>> Clearly each step depends on the results of previous steps. In this 
+>>> case the compiler/CPU
+>>> is expected to be smart enough to not do any reordering, isn't it?
+>>
+>> Steps 3 and 4 can be done speculatively before the load in step 1 is
+>> complete as long as the result is discarded if it turns out not to be
+>> needed.
+>>
 > 
-> Baochen Qiang (7):
->    wifi: ath11k: avoid burning CPU in ath11k_debugfs_fw_stats_request()
->    wifi: ath11k: don't use static variables in
->      ath11k_debugfs_fw_stats_process()
->    wifi: ath11k: don't wait when there is no vdev started
->    wifi: ath11k: move some firmware stats related functions outside of
->      debugfs
->    wifi: ath11k: adjust unlock sequence in ath11k_update_stats_event()
->    wifi: ath11k: move locking outside of ath11k_mac_get_fw_stats()
->    wifi: ath11k: consistently use ath11k_mac_get_fw_stats()
+> If the condition in step 2 is true and step 3 speculatively loads 
+> descriptor from TP before step 1, could this cause issues?
+
+Sorry for typo, if the condition in step 2 is false and step 3 
+speculatively loads descriptor from TP before step 1, could this cause 
+issues?
+
 > 
->   drivers/net/wireless/ath/ath11k/core.c    |   1 +
->   drivers/net/wireless/ath/ath11k/core.h    |   4 +-
->   drivers/net/wireless/ath/ath11k/debugfs.c | 148 ++--------------------
->   drivers/net/wireless/ath/ath11k/debugfs.h |  10 +-
->   drivers/net/wireless/ath/ath11k/mac.c     | 127 ++++++++++++-------
->   drivers/net/wireless/ath/ath11k/mac.h     |   4 +-
->   drivers/net/wireless/ath/ath11k/wmi.c     |  49 ++++++-
->   7 files changed, 147 insertions(+), 196 deletions(-)
+> We previously had extensive discussions on this topic in the https:// 
+> lore.kernel.org/linux-wireless/ecfe850c-b263-4bee-b888- 
+> c34178e690fc@quicinc.com/ thread. On my platform, dma_rmb() did not work 
+> as expected. The issue only disappeared after disabling PCIe endpoint 
+> relaxed ordering in firmware side. So it seems that HP was updated 
+> (Memory write) before descriptor (Memory write), which led to the problem.
+> 
+> 
+> 
+> 
 > 
 
-Reviewed-by: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
 
