@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A199C61CE5
-	for <ath11k@archiver.kernel.org>; Wed,  4 Jun 2025 01:13:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75306C5AE59
+	for <ath11k@archiver.kernel.org>; Wed,  4 Jun 2025 01:28:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ChoZOrrqgzgnAPmlHd8nL9xDqKKQcVCa2pgrz9Lw4Qw=; b=jljVo3ACEtIR+tx4B+zYrQczBi
-	vod4a9QQzqJZzHRzLRjSfPQbH9WyxQCvM3BECyuFiTV3iHFpng5cc8MvwV2ybeuwCBoiZ52Kirhvz
-	q+e+SVTMEBxSxrFnXpEnyXFZdIKV0XIFhYlH/99PH5fnPla2nkAzulLp8W4HnKkiAMmXL+GK8Fb5X
-	Fg6chRjjajxvqXtjkvIpZEOX97S5nnDDqCDNDeqtY04kVhcOBG9/mub7VwR6I5Hg2MTEghYUqYzSG
-	sENCtcDCNrfkyK1jEwkzU52PU0ff+hXXSI2LjhOHHsRkGrvCUXNCwjFH74WdzolNLnK2ulqslayGM
-	I1WMg8Gg==;
+	bh=DNPbdkZ5eLGop34MdSIr2vnL/ZuLLVvkBVCPHqBQYJk=; b=ozdLBGGdebLmnEFMN47Ki4knSI
+	as7NAXCaM61oG0gdWGxguEOEa2DvidpJWgcWnWmyO7vbUz9j1SKAg1VPn5hJSnXZjnrqdJlTMzyqc
+	hv3RoVnzV8+NDxMitFS7MrEf7+mnxm1vGhtiXHT8Utf4F8n5Cq+oYV6nTwVwRlOIxVmYM2bXuWG4S
+	7dycn82ox+6ygLoHxtcoDJGL2N0/amJaHZYRq2Z5ONnWBrxGKCVNL5pWEQVHosMkFG7aPtmUUQ3+f
+	tSuVzpwVXZKX9q1AUQJ4gAmJ+BmhHgIKvhzsG0lv+TXXB/NXDYOWKuaEuvww3+TZdgcHPs9pfMSl9
+	6DP61JJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMcgs-0000000CA03-2Gux;
-	Wed, 04 Jun 2025 01:13:14 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1uMcvp-0000000CCRx-35UY;
+	Wed, 04 Jun 2025 01:28:41 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMcMJ-0000000C6SL-0cDg
+	id 1uMcPQ-0000000C6yn-1Mqz
 	for ath11k@lists.infradead.org;
-	Wed, 04 Jun 2025 00:52:00 +0000
+	Wed, 04 Jun 2025 00:55:13 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 58EFCA4FE49;
-	Wed,  4 Jun 2025 00:51:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00D06C4CEED;
-	Wed,  4 Jun 2025 00:51:56 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id E0F635C1017;
+	Wed,  4 Jun 2025 00:52:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 475B7C4CEED;
+	Wed,  4 Jun 2025 00:55:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748998318;
-	bh=uHa121GI46UrmfsxySFnwrRSj2O8LVG4HNJar+I/JZk=;
+	s=k20201202; t=1748998511;
+	bh=xXiCTL8+SgapkUC/DQT0ILiAk/rJdNNt5qtrpAoF8I4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MKMJMWWhScfQcfkp3UwzZZBRKUfrFI7lzelVqrv4r7Pl+OWUhvEZD35RYzHQWLoxP
-	 7P5uZRrFsPPu3edcivgxhR1u4c/XPwkYqrn1wylLzx7ihzwHRdQnsW9XZexQEEKyiW
-	 OKAzRQrqFd6pjjjFVAm2jkrNq4fIXbCaCu8x235SQa3qXiG/wRdu879h5SD70ylBgA
-	 qRblWpkkn+BgQ3GskdX1i7Y+aalFMSa9JoPSjCLpy5+lMgS3VovnQRl51l7/jt3L/O
-	 OQkwdFx1jw0c1WVsBTI1Pk5SPoTKWQhbkDtzdRn+AGojwIeNYFej3t7TQAG6EKk5Mf
-	 8UWw1hxk69NXQ==
+	b=EAs99XMw84BPNlzF9YR1ReeGi2sR8XvN35GJMs8JLVitycLT/OB0TFkU9DzEty3eu
+	 uqClnNkIiGENItbULpkZTY0w5pZyeEUjMbFLlOrWExqmAprJWOGuFsggCvjRlsUSMv
+	 BQ/u7TDjajWkCPjLXXazNhHhWsxY2an3svYzha/KBZmd3zBWg2qB9Pj8betSDRtjn8
+	 9aAD0rqjPaCxvP6ty2pe+LqEQdYJ2h+4H1OrP+c7bBbwjcjQUXmSiKVIUHppP+3a95
+	 hHnEaiyA459WejFSfE/JEriqZXiSt2GUimmJOrCoWMr3uyibGiv/qEKIod/1rVKVj6
+	 RGeaS+xl8qOFA==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Muhammad Usama Anjum <usama.anjum@collabora.com>,
-	Baochen Qiang <quic_bqiang@quicinc.com>,
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
+	Muhammad Usama Anjum <usama.anjum@collabora.com>,
+	Takashi Iwai <tiwai@suse.de>,
 	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
 	Sasha Levin <sashal@kernel.org>,
 	jjohnson@kernel.org,
 	linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.15 032/118] wifi: ath11k: Fix QMI memory reuse logic
-Date: Tue,  3 Jun 2025 20:49:23 -0400
-Message-Id: <20250604005049.4147522-32-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.15 114/118] wifi: ath11k: determine PM policy based on machine model
+Date: Tue,  3 Jun 2025 20:50:45 -0400
+Message-Id: <20250604005049.4147522-114-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250604005049.4147522-1-sashal@kernel.org>
 References: <20250604005049.4147522-1-sashal@kernel.org>
@@ -65,8 +66,8 @@ X-stable-base: Linux 6.15
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_175159_316550_7403A88D 
-X-CRM114-Status: GOOD (  20.46  )
+X-CRM114-CacheID: sfid-20250603_175512_459741_1262E7A5 
+X-CRM114-Status: GOOD (  18.03  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,127 +82,183 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+From: Baochen Qiang <quic_bqiang@quicinc.com>
 
-[ Upstream commit cd2e7bae92bd7e65063ab8d04721d2b711ba4cbe ]
+[ Upstream commit ce8669a27016354dfa8bf3c954255cb9f3583bae ]
 
-Firmware requests 2 segments at first. The first segment is of 6799360
-whose allocation fails due to dma remapping not available. The success
-is returned to firmware. Then firmware asks for 22 smaller segments
-instead of 2 big ones. Those get allocated successfully. At suspend/
-hibernation time, these segments aren't freed as they will be reused
-by firmware after resuming.
+To handle the Lenovo unexpected wakeup issue [1], previously we revert
+commit 166a490f59ac ("wifi: ath11k: support hibernation"). So currently
+WLAN target is put into WoWLAN mode during suspend. This is a temporary
+solution as it does not work on machines where WLAN power is cut off.
 
-After resuming, the firmware asks for the 2 segments again with the
-first segment of 6799360 size. Since chunk->vaddr is not NULL, the
-type and size are compared with the previous type and size to know if
-it can be reused or not. Unfortunately, it is detected that it cannot
-be reused and this first smaller segment is freed. Then we continue to
-allocate 6799360 size memory which fails and ath11k_qmi_free_target_mem_chunk()
-is called which frees the second smaller segment as well. Later success
-is returned to firmware which asks for 22 smaller segments again. But
-as we had freed 2 segments already, we'll allocate the first 2 new
-smaller segments again and reuse the remaining 20. Hence 20 small
-segments are being reused instead of 22.
+The thought here is that we do WoWLAN suspend on Lenovo machines while
+do non-WoWLAN suspend (which is done in the reverted commit) on other
+machines. This requires us to identify Lenovo machines from others.
+For that purpose, read board vendor and product name from DMI interface,
+match it against all known affected machines. If there is a match, choose
+WoWLAN suspend mode, else choose non-WoWLAN mode. Save the mode in ab
+for later reference.
 
-Add skip logic when vaddr is set, but size/type don't match. Use the
-same skip and success logic as used when dma_alloc_coherent() fails.
-By skipping, the possibility of resume failure due to kernel failing to
-allocate memory for QMI can be avoided.
+[1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
 
-	kernel: ath11k_pci 0000:03:00.0: failed to allocate dma memory for qmi (524288 B type 1)
-	ath11k_pci 0000:03:00.0: failed to allocate qmi target memory: -22
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
 
-Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
-
-Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
-Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
-Link: https://patch.msgid.link/20250428080242.466901-1-usama.anjum@collabora.com
+Tested-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+Tested-by: Takashi Iwai <tiwai@suse.de>
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Link: https://patch.msgid.link/20250328-ath11k-bring-hibernation-back-v3-1-23405ae23431@quicinc.com
 Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
-Based on my analysis of this commit and the Linux kernel ath11k QMI
-code, here's my assessment: **YES** This commit should be backported to
-stable kernel trees. Here's my extensive analysis: ## Critical Bug Fix
-for Resume/Hibernation Failures ### Problem Description The commit fixes
-a critical logic flaw in QMI memory reuse during firmware reload
-scenarios, particularly affecting suspend/resume and hibernation cycles.
-The bug causes resume failures with errors like: ``` kernel: ath11k_pci
-0000:03:00.0: failed to allocate dma memory for qmi (524288 B type 1)
-ath11k_pci 0000:03:00.0: failed to allocate qmi target memory: -22 ```
-### Code Analysis of the Fix **The core issue (lines 1996-2003 in the
-diff):** ```c + if (ab->qmi.mem_seg_count <=
-ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) { + ath11k_dbg(ab, ATH11K_DBG_QMI, +
-"size/type mismatch (current %d %u) (prev %d %u), try later with small
-size\n", + chunk->size, chunk->type, + chunk->prev_size,
-chunk->prev_type); + ab->qmi.target_mem_delayed = true; + return 0; + }
-``` **Before the fix:** When firmware requests different memory segment
-sizes/types than previously allocated (common during resume), the driver
-would: 1. Free the existing memory chunks with `dma_free_coherent()` 2.
-Try to allocate the new larger size (often 6+ MB) 3. Fail due to memory
-fragmentation after hibernation 4. Free remaining chunks, causing loss
-of successfully allocated smaller segments **After the fix:** When
-size/type mismatch occurs and segment count ≤ 5
-(`ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT`), the driver: 1. Sets
-`target_mem_delayed = true` 2. Returns success immediately (skipping
-allocation) 3. Allows firmware to fall back to requesting smaller chunks
-4. Preserves existing memory allocations for reuse ### Why This
-Qualifies for Stable Backporting 1. **Fixes Important User-Affecting
-Bug**: Resume/hibernation failures directly impact user experience and
-system reliability 2. **Minimal and Contained Change**: The fix adds
-only 8 lines of code with a simple conditional check using existing
-mechanisms (`target_mem_delayed` flag and
-`ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT` constant) 3. **Low Regression
-Risk**: - Uses existing, well-tested delayed allocation mechanism - Only
-affects the specific error path for size/type mismatches - Maintains
-backward compatibility with all existing behavior 4. **Critical
-Subsystem**: WiFi connectivity is essential functionality, and resume
-failures can render systems unusable 5. **Clear Root Cause**: The commit
-message and code changes clearly identify and fix a specific logic error
-in memory management 6. **Follows Stable Rules**: - Important bugfix
-(resume failures) - Small and self-contained - No architectural changes
-- Confined to ath11k subsystem ### Validation Against Similar Commits
-Looking at the historical examples: - **Similar Commit #1 (YES)**: Also
-fixes QMI memory allocation warnings/failures, uses similar logic with
-`prev_size` fields - **Similar Commit #4 (YES)**: Implements the
-`target_mem_delayed` mechanism this fix builds upon This commit follows
-the same pattern as previously backported QMI memory fixes, addressing a
-critical failure scenario with minimal risk. ### Technical Validation
-The fix leverages the existing delayed allocation negotiation mechanism
-between driver and firmware, which has been proven stable since its
-introduction. By using `target_mem_delayed = true`, it allows firmware
-to adaptively request smaller, more allocation-friendly memory segments
-rather than failing outright. The `ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT =
-5` threshold ensures this optimization only applies to initial firmware
-memory requests (≤5 segments), not to scenarios where firmware has
-already adapted to smaller chunks (>5 segments). **Conclusion**: This is
-a well-contained, low-risk fix for a critical user-facing issue that
-should definitely be backported to stable kernels.
+**YES** This commit should definitely be backported to stable kernel
+trees. Here's my detailed analysis: ## Bug Fix Nature This commit
+clearly fixes a specific user-visible bug affecting Lenovo laptops with
+WiFi suspend/wake functionality. The commit message explicitly
+references bugzilla.kernel.org issue #219196, indicating this addresses
+real user complaints about unexpected wakeup behavior. This aligns
+perfectly with the **YES** backport example (Similar Commit #1) which
+also reverted hibernation support due to Lenovo platform suspend issues.
+## Code Changes Analysis ### 1. DMI Quirk Table Addition ```c +static
+const struct dmi_system_id ath11k_pm_quirk_table[] = { + { +
+.driver_data = (void *)ATH11K_PM_WOW, + .matches = { +
+DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"), + DMI_MATCH(DMI_PRODUCT_NAME,
+"21J4"), + }, + }, ``` This is a standard, low-risk pattern used
+throughout the kernel for hardware-specific workarounds. It only affects
+machines that exactly match the DMI criteria. ### 2. PM Policy
+Infrastructure ```c +enum ath11k_pm_policy { + ATH11K_PM_DEFAULT, +
+ATH11K_PM_WOW, +}; ``` The commit adds a simple enum and uses existing
+WoWLAN suspend mechanisms rather than introducing new power management
+code. ### 3. Policy Selection Logic ```c + dmi_id =
+dmi_first_match(ath11k_pm_quirk_table); + if (dmi_id) + ab->pm_policy =
+(kernel_ulong_t)dmi_id->driver_data; + else + ab->pm_policy =
+ATH11K_PM_DEFAULT; ``` This is straightforward DMI matching that sets a
+policy flag without changing core functionality. ## Risk Assessment
+**Extremely Low Risk:** - **Scope**: Only affects specific Lenovo laptop
+models (21J4, 21K4, 21K6, 21K8, 21KA, 21F9) - **Fallback**: Non-matching
+machines continue using existing default behavior - **Tested Path**:
+WoWLAN suspend mode is already implemented and working - **No Core
+Changes**: Doesn't modify suspend/resume logic, just selects which path
+to use ## Comparison to Reference Commits This follows the same pattern
+as **Similar Commit #1** (marked YES), which also addressed Lenovo
+platform suspend issues by reverting hibernation support. Both commits:
+- Target specific hardware compatibility issues - Use conservative
+approaches (WoWLAN vs full hibernation) - Have minimal code footprint -
+Address real user bug reports Unlike the **NO** examples which add new
+features (WoWLAN support, new suspend capabilities), this commit uses
+existing infrastructure to fix hardware-specific incompatibilities. ##
+Stable Tree Criteria Alignment ✅ **Fixes important bugs** - Suspend/wake
+functionality on laptops ✅ **Small and contained** - Only DMI table and
+policy selection ✅ **Low regression risk** - Targeted to specific
+hardware ✅ **User-visible impact** - Improves power management behavior
+✅ **No architectural changes** - Uses existing WoWLAN mechanisms This is
+an ideal stable backport candidate that fixes real user issues with
+minimal risk.
 
- drivers/net/wireless/ath/ath11k/qmi.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.c | 55 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.h |  7 ++++
+ 2 files changed, 62 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 4f8b08ed1bbc6..83a48a77c53ee 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1993,6 +1993,15 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 			    chunk->prev_size == chunk->size)
- 				continue;
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 3d39ff85ba94a..f3a29f5d2381b 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -907,6 +907,52 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	},
+ };
  
-+			if (ab->qmi.mem_seg_count <= ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "size/type mismatch (current %d %u) (prev %d %u), try later with small size\n",
-+					    chunk->size, chunk->type,
-+					    chunk->prev_size, chunk->prev_type);
-+				ab->qmi.target_mem_delayed = true;
-+				return 0;
-+			}
++static const struct dmi_system_id ath11k_pm_quirk_table[] = {
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21J4"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21K4"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21K6"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21K8"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21KA"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = {
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21F9"),
++		},
++	},
++	{}
++};
 +
- 			/* cannot reuse the existing chunk */
- 			dma_free_coherent(ab->dev, chunk->prev_size,
- 					  chunk->vaddr, chunk->paddr);
+ static inline struct ath11k_pdev *ath11k_core_get_single_pdev(struct ath11k_base *ab)
+ {
+ 	WARN_ON(!ab->hw_params.single_pdev_only);
+@@ -2327,8 +2373,17 @@ EXPORT_SYMBOL(ath11k_core_pre_init);
+ 
+ int ath11k_core_init(struct ath11k_base *ab)
+ {
++	const struct dmi_system_id *dmi_id;
+ 	int ret;
+ 
++	dmi_id = dmi_first_match(ath11k_pm_quirk_table);
++	if (dmi_id)
++		ab->pm_policy = (kernel_ulong_t)dmi_id->driver_data;
++	else
++		ab->pm_policy = ATH11K_PM_DEFAULT;
++
++	ath11k_dbg(ab, ATH11K_DBG_BOOT, "pm policy %u\n", ab->pm_policy);
++
+ 	ret = ath11k_core_soc_create(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to create soc core: %d\n", ret);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 1a3d0de4afde8..df2b0cb2f0b5a 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -892,6 +892,11 @@ struct ath11k_msi_config {
+ 	u16 hw_rev;
+ };
+ 
++enum ath11k_pm_policy {
++	ATH11K_PM_DEFAULT,
++	ATH11K_PM_WOW,
++};
++
+ /* Master structure to hold the hw data which may be used in core module */
+ struct ath11k_base {
+ 	enum ath11k_hw_rev hw_rev;
+@@ -1058,6 +1063,8 @@ struct ath11k_base {
+ 	} testmode;
+ #endif
+ 
++	enum ath11k_pm_policy pm_policy;
++
+ 	/* must be last */
+ 	u8 drv_priv[] __aligned(sizeof(void *));
+ };
 -- 
 2.39.5
 
