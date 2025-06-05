@@ -4,112 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A023C5B543
-	for <ath11k@archiver.kernel.org>; Thu,  5 Jun 2025 04:01:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53BE0C5B543
+	for <ath11k@archiver.kernel.org>; Thu,  5 Jun 2025 08:14:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YylkOQCh+vCY3pVbR+5T6o1JTLHD9ZCMZHUsqJ1mDIg=; b=rPJ9V3ZuTXyt2U09g9aJhTAbGX
-	COhDoyeMlpUTbKe2fu/13l07DWO/LrLlV05WURJwQ4NRRq3Z/qnnxnfLZ413wObS4fwAc/V0oD82H
-	k8akrRoNL8WyvjZS1qkktTTYXcYHNAfpKiNFUm3etqoeRTET0BTqN6NIQ7fB3le3kY6uUbWFWR3Um
-	98VoYFK/9xHB6ohH6qemDvN/ulv1ftb1r0pWZ5czd1FJBfvS0ivrNkwdaXEOGrrqp7LBqXwor+49R
-	Gtk5a1yYAQL/LEJIMi17NWjQzjHfOQsqYE8bgY1ONzRQx6SWo+LeNnbN+ARYsIVKGv3NAZY4sXZkM
-	LlXLL47A==;
+	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=; b=yHV6R/GH8I9hMX++1uwWXlS+yd
+	CyCkg/E6D92uOidvZGYHEh77BNz/vRlJXY/nx98ssme6sdWXoRa0md8Ip5NU+pJfvUE2z+EWOlPwV
+	xvMMh+2UimTr3Pz3Mb8v8GB5VAz+dRg9Vrm7EV6C0q2H3Y8fSTFlE7KREizO0T44EsM2cyrTkaiWX
+	Lmf5i/36tBMYocD08K7kIHDLIb5s9yJg4jubuV5UOrWmgc4HYDcfL9XjIDJpAeH5WpzFygu7IIqwQ
+	HuXvav2k3gZGnlIIDurzbz1zW4OQ4YuBCxPKgHHIxnqQ6NjoL6ofroJi5dn9H1dQFHJsnS6DQYaB9
+	Tp8LbxfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uN1nS-0000000Eg37-1WDC;
-	Thu, 05 Jun 2025 04:01:42 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uN5jv-0000000F2Up-0vBb;
+	Thu, 05 Jun 2025 08:14:19 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uN1nP-0000000Eg2m-3St6
+	id 1uN5jt-0000000F2Uj-0tLW
+	for ath11k@bombadil.infradead.org;
+	Thu, 05 Jun 2025 08:14:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=; b=WIXSL7R7rwrVqL34dXJVqYlqkG
+	fRsQJAqVCdKa1wJhYWQw1zQBgZtU0HgFLmoySpmbsYUIyuJHoEo+UJQCQ7LkkO9c+yNWO2Ja2QJdH
+	uA+Dft42jqjFJwWrPguqwNDqGxzHHBj5hO24cMbYHahA4hVReNzyInA+fJPPXvlLiHwL1KJKXCcb8
+	mj2b5R+MVzRzKL6XBXZN7ifaSBIjN+sZlQjrY6XyA5rL21hufNaKXWZc5Zcvp+jaGA7nZo01W4E/e
+	dEhj4TZwq8d77ZVTt0t57KEgUiA4W1WtktdBA4zQFKg7sbQ/iAYErR4KjE4xcpNoNjOVXYCRuJyZR
+	cefaAV2Q==;
+Received: from mail.grablo.pl ([51.77.231.136])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uN5jp-0000000175m-1gTt
 	for ath11k@lists.infradead.org;
-	Thu, 05 Jun 2025 04:01:41 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554HXXig032470;
-	Thu, 5 Jun 2025 04:01:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YylkOQCh+vCY3pVbR+5T6o1JTLHD9ZCMZHUsqJ1mDIg=; b=PE/HJkK2ZTSZggqn
-	rU/xxdpJJRUrR77TLp1G94gogCvBRbhr5m/aHae0ffddwYyTauXAvmsyRdqFzyFK
-	8U5ByBrZ3S/bFzdgeuhy3cXM8xECkKOgV0tSlBz+gKEgymxDryEPZX5umLv3uSrk
-	iW/5AUXH9IOKowd4payvnn6T0yA7yHsl9vOr8LyOl/Y5uJIl1bgYoVczLoFsZfWT
-	BMYhhia1Q3kDMF8ClVshO//2RUmu5ZTIF41uuqggoujjS/EtiuWKZWBLU/13WAAt
-	Sj1oOUrNjyAUA7AbInHpV7+QBVMc+g6bU5o8MWx42FzaJliJCgkDp3W+tVcZ/Wje
-	i8Xqfw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471sfuxv8n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Jun 2025 04:01:35 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55541YU8020129
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Jun 2025 04:01:34 GMT
-Received: from [10.133.33.145] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Jun 2025
- 21:01:31 -0700
-Message-ID: <03354d56-ed21-47e0-a52e-14f559ff3bfb@quicinc.com>
-Date: Thu, 5 Jun 2025 12:01:29 +0800
+	Thu, 05 Jun 2025 08:14:15 +0000
+Authentication-Results: grablo.pl; arc=none smtp.remote-ip=127.0.0.1
+ARC-Seal: i=1; d=grablo.pl; s=default; a=rsa-sha256; cv=none; t=1749111247;
+	b=ryJeohCbE59Ae3uJx73hUGPMl63i2/oXTyBw/NgssWKAbTVHCO7n9qzgCny86+WiRohQ
+	 /8L+XtbCjHV8rflTb84Pw016JfA+9aop59eHw9tJ4B2i5GjX+COBz2N6HI3Fn25OPn43O
+	 UyCWLm03sG1RRGQL08UVyyvJbXMBZj6vrNvLPaidIfO+qxrsQE9rNjiVSa2LR3F+OSOQU
+	 2dBpn5/+4aClgum5LXJ9KGb4PNMm3JqQIrvO9yUFzPE8lfA/0mXD50C2yW/4VhAaFDzH6
+	 XiCO4S4Ccz2JCbExG/uQTu1XujuQLl1bdk0v5lZ9lOZTrk4JBvQqpBHD9wzStQCSmbg==
+ARC-Message-Signature: i=1; d=grablo.pl; s=default; a=rsa-sha256;
+	c=relaxed/simple; t=1749111247;
+	h=Message-ID:Date:From:Subject:From;
+	bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=;
+	b=V6/+AoJjB3bbR86BN3P1vbBJGAcYP1aulBwrDK6FFOuLvV2Kev9ERl9q0UKhC0f/ESi+
+	 XeVwEOmiJ822tq7q+Bw1Nyl2+1tTSTaF+xWmOM+8+qbMREzzNvvGZxT2yCrqwH6VcjC8h
+	 ri3d50+pKKnpYppuJNuKzLqOdEOu3msevMijb7wnQoGqt7jVlFlUa8biawCdzNI3mEmtG
+	 EXfMATVX+FyEu9xLnJ5NBkepv6F0mQ+Iy+IaoYxDU42yzuW9IdizqJi6cP5q5+keXHrmZ
+	 4YRUTehJrtZQB8m0Z+riUnAZzIcBQm0/Jmu1Mz904D3Fv/0C97TS+T6yB37TwM/I3UQ==
+ARC-Authentication-Results: i=1; grablo.pl; arc=none smtp.remote-ip=127.0.0.1
+Received: by mail.grablo.pl (Postfix, from userid 1002)
+	id E5E5E265A1; Thu,  5 Jun 2025 08:11:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=grablo.pl; s=mail;
+	t=1749111247; bh=kRFyF5IqcbkY6iIzjZrZ2MrYZFacmXII8t02DtySBB4=;
+	h=Date:From:To:Subject:From;
+	b=C6aZzQGd7MTFge/OUxyipezW9b0zbdJ2ptwWV5nS2wTBRO+0Sa/18o2HFwyC/S0iG
+	 YWRRgVJGMyvkMBm8eMSAn6SzalAMpWF1V04TY4DayQpfL43muAI/Gr8PYiK6PMfD1W
+	 x1reusFeGw7BBHwcBJP8XbvKgN+dX6r34HQ2XICjbDUMpp7Y04yEgl3FdtKd48HI++
+	 fchYPsxCLWLP4UJZg/7FAiH9EVF0eS6IY2yeVLFkYU4zXRuu4fW34x7q6WD4JaaNW2
+	 3NR1wzeTZdWwMGo3Q9P/VGXzyk8UAleOduaNxAnTVee+l+/Z6CnJlX9UFg2zpsuRj8
+	 xVRLNqVMQcpJg==
+Received: by mail.grablo.pl for <ath11k@lists.infradead.org>; Thu,  5 Jun 2025 08:10:43 GMT
+Message-ID: <20250605064500-0.1.2u.10xfg.0.to2skd9edr@grablo.pl>
+Date: Thu,  5 Jun 2025 08:10:43 GMT
+From: "Tomasz Biegun" <tomasz.biegun@grablo.pl>
+To: <ath11k@lists.infradead.org>
+Subject: =?UTF-8?Q?Wsp=C3=B3=C5=82praca?=
+X-Mailer: mail.grablo.pl
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] wifi: ath11k: fix dest ring-buffer corruption
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-        Johan Hovold
-	<johan@kernel.org>,
-        Baochen Qiang <quic_bqiang@quicinc.com>
-CC: Johan Hovold <johan+linaro@kernel.org>,
-        Jeff Johnson
-	<jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>
-References: <20250526114803.2122-1-johan+linaro@kernel.org>
- <20250526114803.2122-2-johan+linaro@kernel.org>
- <026b710f-b50f-4302-ad4f-36932c2558ff@quicinc.com>
- <aD1axxSAJsbUfnHH@hovoldconsulting.com>
- <5268c9ba-16cf-4d3a-87df-bbe0ddd3d584@quicinc.com>
- <aD7h0OOoGjVm8pDK@hovoldconsulting.com>
- <01634993-80b1-496e-8453-e94b2efe658c@quicinc.com>
- <50555c1a-c200-4ac0-8dfb-424ff121b41d@oss.qualcomm.com>
-Content-Language: en-US
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-In-Reply-To: <50555c1a-c200-4ac0-8dfb-424ff121b41d@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=CY8I5Krl c=1 sm=1 tr=0 ts=6841169f cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=HNy3F74MYHTJsWsaVJsA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: eez8o6FWFR7_XDEWNogdVUfn6H8qt2j6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA1MDAzMSBTYWx0ZWRfX1sFSTU4HTb4g
- +fVLEIJj6xUsLDiOzqWPABGcih4+gZuRi+GWUexjAfMKAKkYao0Ht5Y1nQa4FzB1n9a6Uzb389q
- cJZ/IcnuIr7VDP2ikUfQ0FcQI0FxrLK3JBkKcgFNUaPSiiiqqEgt+NWeDvmM304XB7To9/IW6+L
- aMRp74N2rgQsQ1iknlhbv4HF9mVHxSdm7DkcT6n33O6GunJTRh3Subhc+bm3xd1WN7fuIM4RnHi
- R4jfU9k3mZyJqd17Nh+j14BgiwAhuXIhx4IaQtbDlO5GADYl4ND4cZ6kazWBfiBAnFoFyQ40N9C
- ej+1L26jVzpTTVxdKg4Va8g73WaEKWnRr/E3uv+s+VuM8c76f6GXAiYpg6tXrWPsA+dj1d0S+hS
- akR1h0OrMC9VvuZOPhfL8MWDTDFGazFVlIts3bYNnS/rhWPhMctME3hidCHNxgZhCM68pJRD
-X-Proofpoint-GUID: eez8o6FWFR7_XDEWNogdVUfn6H8qt2j6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-05_01,2025-06-03_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxscore=0 adultscore=0 bulkscore=0 suspectscore=0
- malwarescore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 impostorscore=0
- phishscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506050031
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250604_210139_987292_D41F8748 
-X-CRM114-Status: GOOD (  13.19  )
+X-CRM114-CacheID: sfid-20250605_091413_890144_5C894E88 
+X-CRM114-Status: UNSURE (   0.76  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,27 +98,20 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Dzie=C5=84 dobry,=20
+
+Czy interesuje Pa=C5=84stwa pozyskanie nowych klient=C3=B3w?
+
+Zajmujemy si=C4=99 profesjonalnie wsparciem firm w tym zakresie.=20
+
+Nasi partnerzy zyskuj=C4=85 sta=C5=82y nap=C5=82yw nowych zlece=C5=84 ora=
+z zam=C3=B3wie=C5=84, a tym samym zwi=C4=99kszaj=C4=85 swoje wyniki sprze=
+da=C5=BCy.
+
+Czy mo=C5=BCemy przedstawi=C4=87 szczeg=C3=B3=C5=82y dotycz=C4=85ce zasad=
+ i mo=C5=BCliwo=C5=9Bci wsp=C3=B3=C5=82pracy?
 
 
-On 6/5/2025 12:24 AM, Jeff Johnson wrote:
-> On 6/3/2025 7:34 PM, Miaoqing Pan wrote:
->> We previously had extensive discussions on this topic in the
->> https://lore.kernel.org/linux-wireless/ecfe850c-b263-4bee-b888-c34178e690fc@quicinc.com/
->> thread. On my platform, dma_rmb() did not work as expected. The issue
->> only disappeared after disabling PCIe endpoint relaxed ordering in
->> firmware side. So it seems that HP was updated (Memory write) before
->> descriptor (Memory write), which led to the problem.
-> 
-> Have all ath11k and ath12k firmware been updated to prevent this problem from
-> the firmware side?
-> 
-No, as this is not a widespread issue, and addressing it would require 
-modifying the core underlying modules of the firmware. Therefore, we 
-chose not to proceed with that approach but instead used the workaround 
-patch I previously submitted.
-
-> Or do we need both the barriers and the logic to retry reading the descriptor?
-> 
-
-I think so, that would be best.
+Pozdrawiam
+Tomasz Biegun
 
