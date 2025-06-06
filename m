@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1653C5B555
-	for <ath11k@archiver.kernel.org>; Fri,  6 Jun 2025 02:12:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9858C5AD49
+	for <ath11k@archiver.kernel.org>; Fri,  6 Jun 2025 07:44:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6QCEgkhg1+LKwur0LlMAqZRH5jjjkJ7LHNToJmV8QwA=; b=wrnE2vjrBoUKGT0I9s0HEmQ8xX
-	4XoLSjL7VwFbv45X5SEjhvb+VYrxmW3HCZeO25jWW1vI+gIHu6NwG+VVzgXXX4KkMiytNzTGpSQ/v
-	+N6hBoHH6lv0TvlDcnYm098ScGPaCQt8Bqm8Cx+xK6ImyiELCKo7kwhZLuqN+655sbau7mJ/A1AkP
-	/P5TDA600KnkMWNfqYe84bVB+I+Rv+SKpgDz7sdqybDBhqzEPM8JLqzWiX2qINwAiwRGAGUTk9GoB
-	7XKHFSmkCVSIvaKP5eMARwXfqQl7GAx6ES9eudWWVgzbxr3++Qi/YFUqs/PD1cMeQGE49aO7a8mVB
-	o/tn6plA==;
+	bh=kvMimh7QmZo25zRmksscLKSebUu4yESVGPBM/YkSIME=; b=BSuqjK29iE14iSBCkIX560FXNR
+	0XR/ctLMjWNPHT879MO5BPprTleIgyjN+H2OoUClQiuWa+UEtvbBWUE+PrmQHJZ5aMyj3gRsmBPIO
+	cdWvM7c5Ec0d05aP6lgAPva8nVMo19g2aQAKM0dRzHT/pLVvVKg2AhuiX5QDphOuT9XMXqZPZyr/N
+	3NuJHd8ma60hgZnQ9LDDBAgzB5Tt8ZLTG9U0QZ1mqvr1hHjawg9GnxXSeHIQdXFBUFQG6cQZLrQIF
+	JQ9xlxYRGK/k7LFrMEpJc2g5PKxWVDFkU+S3iNgstcmyu6p4dbR4Uh2IwhRlH3ZN2ltcZq5n6Ex4/
+	dENsxfug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uNMZP-0000000GxDD-1xQa;
-	Fri, 06 Jun 2025 02:12:35 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uNRki-0000000HKbR-0KWh;
+	Fri, 06 Jun 2025 07:44:36 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uNMQA-0000000GwQI-2cAv
+	id 1uNRjx-0000000HKWg-1PMy
 	for ath11k@lists.infradead.org;
-	Fri, 06 Jun 2025 02:03:04 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 555I83T1011829;
-	Fri, 6 Jun 2025 02:02:59 GMT
+	Fri, 06 Jun 2025 07:43:50 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5566ZWlM004261;
+	Fri, 6 Jun 2025 07:43:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6QCEgkhg1+LKwur0LlMAqZRH5jjjkJ7LHNToJmV8QwA=; b=Zn+DS2mGmwOm40bf
-	0CF0MYZaC11CHVQ8G6i1D92IzlEMHkwUh0k8NNntQdkZEOn9hWn85p+Abl+Hx5mr
-	rN1u4DLvre0W7bbcMr9FBRFLdYBZ+a2mDNrdIRnoCAy8hvDphkDmlcRYhukSgbji
-	pgb2IVp12N1/THgo2kq42Jeu5u4FykVo+5d8CPuP/xHwjxHMt6F6LT1sOXptjeho
-	xQ9SHWcztC/IFs0mmf51ZyiLjH+SY/VgW4OXueFoHn9d5AbaMwbFnJZ1vB+dkcv5
-	LQLMvOM0cHWG5ymNkK8z8YPxxJrRTCIlp/xjrlKv2y7IrrDWNIcjmOW+YxEh08jj
-	MVxQug==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 472mn05ddt-1
+	kvMimh7QmZo25zRmksscLKSebUu4yESVGPBM/YkSIME=; b=Rf/IuWwUqko5Pe7u
+	X/bFEkzJ8d61kOBJ4BZ1NhoKswDCH669TrkSGe/qiiMXhn0fJqGEmlO6JbcOIewg
+	vfzgqS+lrpCNXJhMXxDezxZV2ymD/mv74jGy/+GZWvb8pM+WhR8fX5H5lGl0wKQ/
+	hu9OyV8xMtf7tVr1NevW+wP5QC0cfDoocdOoh9iuwh16jh02GQ+kxxQaqxJqsuyL
+	IW6wQCnUX9r+fMHsUEVpIBOA7QqKLfQ7g8s3P0HJorMB3j+KfKomdy+tE8LkF/Hr
+	kH0vxauasnCjd1Ikc2q/c83omqHRBtMYrgNCsWd+MD4VF/MAOPPY65G8/XMucOgP
+	tDvtYg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8s3wkq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Jun 2025 02:02:58 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55622vWn026444
+	Fri, 06 Jun 2025 07:43:44 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5567hduY011523
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Jun 2025 02:02:57 GMT
-Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Jun 2025
- 19:02:55 -0700
-Message-ID: <06daee91-709e-4a98-b7ff-8233d33877b9@quicinc.com>
-Date: Fri, 6 Jun 2025 10:02:52 +0800
+	Fri, 6 Jun 2025 07:43:39 GMT
+Received: from [10.133.33.151] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Jun 2025
+ 00:43:37 -0700
+Message-ID: <5330f0fd-5896-4426-92cf-8e8b39b19c14@quicinc.com>
+Date: Fri, 6 Jun 2025 15:43:34 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/3] wifi: ath11k: fix dest ring-buffer corruption
-To: Miaoqing Pan <quic_miaoqing@quicinc.com>, Johan Hovold <johan@kernel.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>, Johan Hovold <johan@kernel.org>
 CC: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
         Johan Hovold
 	<johan+linaro@kernel.org>,
@@ -76,42 +76,43 @@ References: <20250526114803.2122-1-johan+linaro@kernel.org>
  <aEFupJ_nd9ryaTVt@hovoldconsulting.com>
  <bc2afbd6-2876-4f36-81cf-ad8960588a02@quicinc.com>
  <d3ec49ab-964b-4c50-a6ea-534b6c6e336b@quicinc.com>
+ <06daee91-709e-4a98-b7ff-8233d33877b9@quicinc.com>
 Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <d3ec49ab-964b-4c50-a6ea-534b6c6e336b@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Miaoqing Pan <quic_miaoqing@quicinc.com>
+In-Reply-To: <06daee91-709e-4a98-b7ff-8233d33877b9@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: TheKKaAJNytXrshf7BLvc5A8V3afCvEE
-X-Proofpoint-GUID: TheKKaAJNytXrshf7BLvc5A8V3afCvEE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA2MDAxOCBTYWx0ZWRfX5b/ZSbQREFHi
- XZdmp8wAc8fMdifxKLXuh3IG9lfPzLKJIkcIa/SaRenibMznp2W7WePfxb+5u86EMyfbHUREjLE
- qImY+yvI/FwIct8WBy+wOgH7xLkoDr0bRlzYFWr824ykA7lNgM88OAQ8eXV7iCcWdX47XVSV7Ur
- WEL/mMmgwaKvuJ9maGLDMJW1dQHCe+euf0dW35FmLMJwXvrQdFCvkQav5wkln1xT+MX8vhf5tPV
- aEMlYwIdkadt7SE223RjgX8ysIKfoNdYSsd0Bb8vFTDQRZr5/OX6n/mVV44eq4D159ZpSr58VY2
- R6BCWoZVIqi+50J6kVJN+Ece9fpjHd+b47WUJvq4thmbZieG7Ehk3oMW/BecZFo+z7FNwmXrfWq
- lOkGhX0b/OLu+lEIwT7u+V5+yCSNBgGOldM0lWu9pyqMUANmwA4UJA2I4isSsdaq4BV5iuhr
-X-Authority-Analysis: v=2.4 cv=Y8/4sgeN c=1 sm=1 tr=0 ts=68424c52 cx=c_pps
+X-Proofpoint-ORIG-GUID: DWHs2zIX55j2eP5Dt9zGkwh4Ho0TqsAE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA2MDA3MSBTYWx0ZWRfX7TfnkOcqDlxy
+ ZYoAqFVH+P9hOTXH7Z5D9cIeT0OB1lZrEGURVjGYhhEybFvFizmL6Xb3tSlanLYD/C6pi3Zp5V9
+ +5UJUNjSsSME8vHg2D2lCCxoaluYl9e6SHQrexCaJPwq8etk5wyvOFSoL6xKj6mcTekBIUPVhU3
+ uUb1fNaZTzIBYuVa7+F6HOwT1zlhSrRgEMF0OJA+1ZT72Qq8DAffYNwPHL2aoXwkObWn9FxgWJq
+ G0DBhgyUCQ3rU2VIk57MuwBZ3wPHZJxtcZjM1GB1FVQO0gX2255oDGr6IRwE+Zj54OVCz/RMuRV
+ +6Rn+3eOeK47NhdxqYMIDVRcfJkGJeQfXSgOR08fONwsNCVGiwsoQ7ZWCOcRWwOAeV1xwH0ws5h
+ wM/QrTe1HmsSDkOUTpMao7KaVjhBkOQmFTZ+MXOUH0oM5EE9hr4dvVn8caHkk5PM5yfQvdV3
+X-Authority-Analysis: v=2.4 cv=RdWQC0tv c=1 sm=1 tr=0 ts=68429c31 cx=c_pps
  a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
  a=COk6AnOGAAAA:8 a=3zI7SI0Xz8OAuioJ69MA:9 a=QEXdDO2ut3YA:10
  a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: DWHs2zIX55j2eP5Dt9zGkwh4Ho0TqsAE
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-05_08,2025-06-05_01,2025-03-28_01
+ definitions=2025-06-06_02,2025-06-05_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0 phishscore=0
- clxscore=1015 impostorscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- malwarescore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506060018
+ bulkscore=0 adultscore=0 mlxscore=0 priorityscore=1501 phishscore=0
+ clxscore=1015 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 spamscore=0 mlxlogscore=999 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506060071
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250605_190302_787616_E1ED077A 
-X-CRM114-Status: GOOD (  18.99  )
+X-CRM114-CacheID: sfid-20250606_004349_384570_46B6AEA0 
+X-CRM114-Status: GOOD (  18.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,56 +129,66 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 6/6/2025 8:52 AM, Miaoqing Pan wrote:
+On 6/6/2025 10:02 AM, Baochen Qiang wrote:
 > 
 > 
-> On 6/5/2025 6:54 PM, Baochen Qiang wrote:
+> On 6/6/2025 8:52 AM, Miaoqing Pan wrote:
 >>
 >>
->> On 6/5/2025 6:17 PM, Johan Hovold wrote:
->>> On Thu, Jun 05, 2025 at 12:01:29PM +0800, Miaoqing Pan wrote:
->>>> On 6/5/2025 12:24 AM, Jeff Johnson wrote:
->>>>> On 6/3/2025 7:34 PM, Miaoqing Pan wrote:
->>>>>> We previously had extensive discussions on this topic in the
->>>>>> https://lore.kernel.org/linux-wireless/ecfe850c-b263-4bee-b888-
->>>>>> c34178e690fc@quicinc.com/
->>>>>> thread. On my platform, dma_rmb() did not work as expected. The issue
->>>>>> only disappeared after disabling PCIe endpoint relaxed ordering in
->>>>>> firmware side. So it seems that HP was updated (Memory write) before
->>>>>> descriptor (Memory write), which led to the problem.
->>>>>
->>>>> Have all ath11k and ath12k firmware been updated to prevent this problem from
->>>>> the firmware side?
->>>>>
->>>> No, as this is not a widespread issue, and addressing it would require
->>>> modifying the core underlying modules of the firmware. Therefore, we
->>>> chose not to proceed with that approach but instead used the workaround
->>>> patch I previously submitted.
+>> On 6/5/2025 6:54 PM, Baochen Qiang wrote:
+>>>
+>>>
+>>> On 6/5/2025 6:17 PM, Johan Hovold wrote:
+>>>> On Thu, Jun 05, 2025 at 12:01:29PM +0800, Miaoqing Pan wrote:
+>>>>> On 6/5/2025 12:24 AM, Jeff Johnson wrote:
+>>>>>> On 6/3/2025 7:34 PM, Miaoqing Pan wrote:
+>>>>>>> We previously had extensive discussions on this topic in the
+>>>>>>> https://lore.kernel.org/linux-wireless/ecfe850c-b263-4bee-b888-
+>>>>>>> c34178e690fc@quicinc.com/
+>>>>>>> thread. On my platform, dma_rmb() did not work as expected. The issue
+>>>>>>> only disappeared after disabling PCIe endpoint relaxed ordering in
+>>>>>>> firmware side. So it seems that HP was updated (Memory write) before
+>>>>>>> descriptor (Memory write), which led to the problem.
+>>>>>>
+>>>>>> Have all ath11k and ath12k firmware been updated to prevent this problem from
+>>>>>> the firmware side?
+>>>>>>
+>>>>> No, as this is not a widespread issue, and addressing it would require
+>>>>> modifying the core underlying modules of the firmware. Therefore, we
+>>>>> chose not to proceed with that approach but instead used the workaround
+>>>>> patch I previously submitted.
+>>>
+>>> If firmware has a concern, how about doing it in host? As I know it is only a register in
+>>> PCI config space?
+>>>
 >>
->> If firmware has a concern, how about doing it in host? As I know it is only a register in
->> PCI config space?
->>
+>> No, host can only configure the RC, while the initialization of the EP can only be
+>> configured on the firmware side.
 > 
-> No, host can only configure the RC, while the initialization of the EP can only be
-> configured on the firmware side.
+> Are you talking about this specific register or whole configuration space? If it is the
+> latter case we already have something similar (such as disabling ASPM) done in host side.
+> Just curious why not for your issue.
+> 
 
-Are you talking about this specific register or whole configuration space? If it is the
-latter case we already have something similar (such as disabling ASPM) done in host side.
-Just curious why not for your issue.
+ath11k_pci_aspm_disable() disables ASPM for RC, not works here. But we 
+can configured via WMI, which was one of our previous fix options. If 
+there are new questions, we can discuss internally.
 
-> 
->>>
->>> I strongly suggest you fix this at the firmware level rather than try to
->>> work around it in the kernel to avoid playing whack-a-mole whenever a
->>> new (hard to track down) bug shows up.
->>>
->>> The barriers should be enough, but if they are not then the firmware
->>> must be fixed.
->>>
->>> Johan
+
 >>
-> This is beyond our control. After nearly three months of effort, we have decided to
-> abandon it.
+>>>>
+>>>> I strongly suggest you fix this at the firmware level rather than try to
+>>>> work around it in the kernel to avoid playing whack-a-mole whenever a
+>>>> new (hard to track down) bug shows up.
+>>>>
+>>>> The barriers should be enough, but if they are not then the firmware
+>>>> must be fixed.
+>>>>
+>>>> Johan
+>>>
+>> This is beyond our control. After nearly three months of effort, we have decided to
+>> abandon it.
+>>
 > 
 
 
