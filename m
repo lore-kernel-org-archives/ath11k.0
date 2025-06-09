@@ -4,85 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83645C61CE8
-	for <ath11k@archiver.kernel.org>; Mon,  9 Jun 2025 11:17:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E51C5B552
+	for <ath11k@archiver.kernel.org>; Mon,  9 Jun 2025 11:17:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pUF8yzByRJf1RQQuiOGLMtV8Nk65na+X12bzWOfrOVE=; b=dJofF+k53OI8Bq6j4fDmpVygSn
-	YsSLKFK+kTe/KnU7wZGN+cNnIjZ5DRQA0Qvc3JEYWqOGVGif9ArmOpfPIXF8dblOgAbbXE83UMaXC
-	2d4D7ybGn4hju8nJV9yp9ZSuliBInX6Fau8GSF8YxdH1ji5fPC+bDgxtf+LjQ69bNrYEpgAWInP7h
-	TZieGVdOH6GhVOqIV2y42NmxZxZcX8RtdEjA7Ta9e/fKsfSUjpKo1zWsK1v1F4joRxW+ahSAxbnvC
-	QWe4Rne9IqZpOJvub0VeUAI0EPW8y344067eZnUZk/XMEmh9B0ZO6w6lh4mHEV1YOYgm6JLRNnMHT
-	hLsOGerQ==;
+	bh=XMSKmDs8UZabzmzJG8jBh2aHanEhhhPV+f/N8Ve7e2c=; b=wzL4F/aB2mEQU6DMrBZcsako+s
+	lOt8XqaU0aNZvY0H0/eQLgu+4qfFwMubapTrkcmcQU2Ls9oXviQ5r/Z3+7LGCYcFJiWy1Bnbf6Ksf
+	9SJ3lmlz1hDWr4B+nI2+C7mkyWTyiEvydLZWB+pNx1qMK3qdbeFBlO23Ct4pYbYHfVKP2EZTslFCH
+	Y393wVC8MnDjnSf84qJj15eT7QB9SIV/apjQ8Y0TTtkCpMXYNXTOfwgW1CTGxcxc+51c6i2CiJvfp
+	OGkYJ7aoDrctnfa8l7rWZS+iagne5R29fleAsJRmtPa/uCUs/WQl4/twBLS53/8Ji9HcimwYFJtyG
+	IpdzZntw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOaV1-000000040X8-19dW;
-	Mon, 09 Jun 2025 11:17:07 +0000
+	id 1uOaV2-000000040Xr-0di3;
+	Mon, 09 Jun 2025 11:17:08 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOa7D-00000003x8Q-1WWT
+	id 1uOa7P-00000003xCj-1tL8
 	for ath11k@lists.infradead.org;
-	Mon, 09 Jun 2025 10:52:32 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5599WecA002402
-	for <ath11k@lists.infradead.org>; Mon, 9 Jun 2025 10:52:31 GMT
+	Mon, 09 Jun 2025 10:52:44 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55996I48027826
+	for <ath11k@lists.infradead.org>; Mon, 9 Jun 2025 10:52:43 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pUF8yzByRJf1RQQuiOGLMtV8Nk65na+X12bzWOfrOVE=; b=kQMf5LCtCgY4wnD1
-	QxDHGnv2KsCBR2Ov2/TV3t1GnebESF9jap9tux3aahchAUgyKtR4fGVlOPPLF8iW
-	8DNchwlqVyXuiJ/1HjQkGm15Al1Upuw51nF3c4RNivHiYOcx5YOhTEi5ELjj6ioc
-	US7vAFeUaA5ccDjGdtQdjHxpPZeFZWx8jcLzktqKVF5/69jP61olPPfSNTkSQfZB
-	BroEWChvtE+e1cUIz4cARTSogfkioGkXnRNjiD9qobioOkZWs1pTAKu8lJEm6B39
-	g6xVGRbtMEZFIXsON69f2XPVTrfARbnDy7s02wma26pnDDkmp3eMkCfwWqOBO/+T
-	evR8JA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dn65njj-1
+	XMSKmDs8UZabzmzJG8jBh2aHanEhhhPV+f/N8Ve7e2c=; b=oOmf0hh3N51YlmXq
+	ZKEYmu08rgyq2kYpbz5jERVIzqb/rPyo186IJnjtxAdf/TDDkbDqPzshfEWuB4O2
+	yzv12cwASwYq1BLmbM3MGO/XGzX98O8NVeVjrQkRIKDsQjUQSpMXbf6qNGFO2XPS
+	pt0e+cuDzwQ8ilo+kqBxhFCdIuXaSsA1ij5I2mBvGoOxVRxvB8h+fcgsOGTTDk1m
+	d4d3VGQ+pwfA57im0kH2nB2clEBFfH1CRvzMYSoQH2LdzY8oX+2/hEeXYCObAkp6
+	iwCfeaNKgd9ggvcZ/MgXQNEOrLPvvtvNERfEftE/DE9nD5BdabJOpAm+VxnMtmuH
+	U5OW4A==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474eqcdhk3-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 10:52:30 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-23228c09e14so63005035ad.1
-        for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 03:52:30 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 10:52:42 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-235c897d378so39658515ad.1
+        for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 03:52:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749466350; x=1750071150;
+        d=1e100.net; s=20230601; t=1749466362; x=1750071162;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pUF8yzByRJf1RQQuiOGLMtV8Nk65na+X12bzWOfrOVE=;
-        b=UqecRSw/saa3AjlhyS6H7QJU1BphgVTBw5KAk+DO9SsWDf8A3nLRVVAz41tZopVBco
-         wyGIGjGkl6knVb2YfSqrXCyOFFANcr6uzxpS2wZSTkXCajgJskE4OE86GK/+51b3VhIh
-         MVTYVWhNUQzIwrSX1tgEefs7JI4NiSgjMTGItKKyqKyHnQcjLL5kvuzNYJ+Lczr0Fod6
-         bw/qTaSJDZIaheX7boqQ+Oxq0i4RYCMlidiIHpnpF4gvhn0iJw+x0dirX8uDsMiIDDwj
-         oPOBaS5r12XgDnzsY/W0dfXgtWkhGWFHxR0s4ELYDBuirQ+xcAiD5RklNrGp26Sp8FOM
-         Ep0g==
-X-Forwarded-Encrypted: i=1; AJvYcCUjEAchDfVqK2HDAP7MYBl5cSfiSX4Q49kvT23IgVVALEjj2O5I8FAMG2wekH0PTEB1Cam3vTk=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzXqmJf3iKVyi1vsLtKccWHfNNmXM1V/HarQ1Rq2GYIdCDR9LPw
-	eoNYruZsvq57As7AjheL5PyD+i8O2In7VArYWodI/W4cLIpUjynXU5yiEa60/6SxF2uRjAJK/qB
-	ujoz4c1JWxKFkmHL3LlXTJolf6ww37BnAdz/yDeEStkBbchztWLNxMlTMXAcjcZfV
-X-Gm-Gg: ASbGncuKv6r7m6I1ZbgOaYb1IJ4Jt91vfOQt27GsnJ2td2HmOu9Aqb6wCfd6CbRV6XC
-	8YufAIUMRuwF7GVIFsrp2lEop2kx4agk3wEC4FCaFZhN3v7aczLKCvPQzUk5CidZhdeJ61H4XzA
-	xYyx45JBqBtCQDqTkHUg6rfeQimANs6FNPZcWhhztqMcZjJ5EsN9REvIMzt24H5A7/7aoo5QEJv
-	OMa2KnV0OLLVNPWQ1GvG+auRji0MsTAj50VFM3+NtH+Q82bgf6QAL5rtVD8lNxDPpe/2d+1Wm0Y
-	3izr5bZ1CrQ/KDj3MOiLpXuK/UmtZCs1RPkZFwRYkP0FLppkPBg84Qqebw==
-X-Received: by 2002:a17:902:d4cb:b0:231:c792:205 with SMTP id d9443c01a7336-23601cef4c6mr188219015ad.4.1749466350025;
-        Mon, 09 Jun 2025 03:52:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEbCDUCeQUKgzoGTBiAoX5HLibQ9U2gBaucDdLb/rI9EiBZTximeF45g4cVpAaAruBmWLb8Fg==
-X-Received: by 2002:a17:902:d4cb:b0:231:c792:205 with SMTP id d9443c01a7336-23601cef4c6mr188218635ad.4.1749466349659;
-        Mon, 09 Jun 2025 03:52:29 -0700 (PDT)
+        bh=XMSKmDs8UZabzmzJG8jBh2aHanEhhhPV+f/N8Ve7e2c=;
+        b=awsrOQuHhJNzEqCp/IgWyG6K/QQrwnEWbH5nrxKyJ1+X/FAE5f2puTAKdn5SkHQay/
+         T9Wu6nMwCpGGrilWF6/O2K+PbZM4+o/QbaIvhnGPeDm4kMzxmHxsjGMcMCcl5XQEqxq5
+         th7uSbW0E0BNA3Egkd3XucSFccirSnm5zmsmELUFm+DKpvEUXkBvS4ChODZkesXVOFb0
+         ToTCqbatQGPnETv72SGA67lTYLdNKljG2TFqiOBKwtp/BrpPqkjw8VI8cc+kwiYcBta+
+         +R2Kt/p5i4S5xIuSzEr+L84X1eD/VyfvZ1p2AtzKFuAmTfFpZTeZU9h7F97aMzhJTAnP
+         J/Vw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRzJT1P5aGLsX4SrwMM0ia0ocr5xn64Puxw/h7j58yTDJPA5uwf2uiskMLS9rdmvEA7WJh7vw=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyb93G6UISe46DVA59l/9IJlFsAJVnjhu+dDSALKt3Gu7ABAV8L
+	WmF1s+jIIV8WFCp1yuzZDczcCh57XZGowapt68DpuXC+MUz8zAQV7/d8WTJ3miOEG/It06nHcsg
+	THYHK4C+nPL/9gkODXUNsTrh5UWM/OAod4DgJKwImh9hIlQJFCXTXnRxpsi4KJRkV
+X-Gm-Gg: ASbGnctsClk36gBbIDXr6ABgqKj7VTcIHcMklAZsQOsuwS48JPtdehrruHd0hkxQGfq
+	Td4jlGpkKoG4Qw8WrIAAJf+YIcSu0pb9rlPlAc+1LkRy7q2LN08jikg6Ro9KFluti7ra+ryYr9L
+	VM2rkUyBQywmG8JBPAsED4A39QxRpL6X8lY3ATob1R1GJrKlasSu2k9LTfM5LwrzjAgBIDHQEzR
+	Zj4dmogElhsQ1vBFvnsIz+xdMvFsjNaUVCWrQxc0uTCZYDH6JcukOw1HZ8M7walPqETzRmjUoUT
+	j90mQusvtC4fLGnTB6Ytkn1YOcNfb69adIK5v95J0xdVDMY+HryLPdD37Q==
+X-Received: by 2002:a17:903:22c6:b0:234:986c:66bf with SMTP id d9443c01a7336-23601e21e73mr197952235ad.11.1749466362136;
+        Mon, 09 Jun 2025 03:52:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHWPyhHD9XxH9T4qz5fLsYDL+SED/9vTigep2ZpbnbET9oeQcBqBu94wuXuHPx0ZtmVvPvTAQ==
+X-Received: by 2002:a17:903:22c6:b0:234:986c:66bf with SMTP id d9443c01a7336-23601e21e73mr197952025ad.11.1749466361751;
+        Mon, 09 Jun 2025 03:52:41 -0700 (PDT)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603092f44sm51836465ad.63.2025.06.09.03.52.24
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603092f44sm51836465ad.63.2025.06.09.03.52.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 03:52:29 -0700 (PDT)
+        Mon, 09 Jun 2025 03:52:41 -0700 (PDT)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Mon, 09 Jun 2025 16:21:30 +0530
-Subject: [PATCH v4 09/11] PCI: Export pci_set_target_speed()
+Date: Mon, 09 Jun 2025 16:21:32 +0530
+Subject: [PATCH v4 11/11] wifi: ath11k: Add support for MHI bandwidth
+ scaling
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250609-mhi_bw_up-v4-9-3faa8fe92b05@qti.qualcomm.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250609-mhi_bw_up-v4-11-3faa8fe92b05@qti.qualcomm.com>
 References: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
 In-Reply-To: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -101,41 +102,42 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
         qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
         quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+        Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749466291; l=790;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749466291; l=3170;
  i=krichai@qti.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=3MJFNTnmCvNNxzu47ggz59THY99XF+Lv2H8IXU9t+XE=;
- b=/R2j/FvpgVZbKkZ9tHBBRAwTesasN8RhM+TPye32z0glIhUL4IAq4QqKy/A+LYtuKn0+9WKlU
- lekp4bMiZL0AmW9qZ4+HATjTgAYe2/X/37ni6hGW33aJa4Z1+D8rYN3
+ bh=0RMRGjVQy5V22bePXtjwsrcyRhPyFXhPokQ5rNoOCPo=;
+ b=MNDXA2dYcwLCousStsTKANlp0JTVnaDX94/mS+I9WznZ/upyqZYAq8u535wBq2VkfOsmV9Zfl
+ piw6Pg4EfGsDSrpvmNY6Ys/M4EwuMHln7+S6/tyI1nv1Le/XJ1OYyRe
 X-Developer-Key: i=krichai@qti.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA5MDA4MiBTYWx0ZWRfX/GdKfend5jsI
- teHjMXRnOFZ4Jj9/YlzyMyoxU4rDzHs8fLkmpFHcd9ZpzeoYshw+NQgQ8z7fypZbBxhrhS1oLpw
- WdEJHvIhJV17UYZtEwlk5hs5NMx6M2vyufyJzv4r9WvZgT7hBtZWJNgfPghEIB3YOpEnH3T5jFJ
- wtq3dB0LVoZ6Tdd4yRDgtJaq24JvBu7+XBsr1gM1jo+FIwR59tuPGoDGjfZw0Tjqx8+k3DsSDQ6
- ThLrOW8opT6K3D3ssQOin94KDnGMALafv68OgKQp8LOaXhzLeI/n/pZHWVwTxU0TkGN/U+GQxZO
- TmtYhh7j+Ow0JRje57rDXhVRcNMQVdHzNwUN/h8wy5TnT6S95AjE6MqPsGdc72KwWbAeKbE44ON
- i2rQnQKgxzXNln19dwbH3hIiSIYBdN9rSZK1E4Otnj9AZdZt/qckCVfGWI/deEwh0Vd/xabV
-X-Proofpoint-GUID: U2hpbND037mTPClaa7frsySuNDaN8Om7
-X-Authority-Analysis: v=2.4 cv=FaQ3xI+6 c=1 sm=1 tr=0 ts=6846bcee cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=QyXUC8HyAAAA:8
- a=5E3R6_0bZ0f_H1kkCjQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: U2hpbND037mTPClaa7frsySuNDaN8Om7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA5MDA4MiBTYWx0ZWRfX40NvHzMwgoB0
+ dcmjd0GTuUECe1y/ghEjcKwIZrUnHUky2WtEAnOYiQmlZYEp9wfiQ1pzSzqmvYnbHnT2kulPq3a
+ ak/B6PfBx9BSjY8YP6Fkg0C0XEkMu9dwMKsYiQ2s0D5YeQbeCFWoQANXCZX+CtKu9nnOYudFCB/
+ RoYxU+hWq67StJ730gmA45df4oBfKuaGaJiR6mqYDMOq1UX5bSXa0tKFhrB+1CK39FEHaWYOOWN
+ s1Koh6TofSFieQP+TyolvjukHMrxnBVr88lN4vvxMwpOMFZw9gCq5bONeSNDXglW5GqunjJk23u
+ 9TMMpwWfgmC8BjPcNTZzUckCnOEjRGkjfkdRhp64Y7q6xIzfCMzUHl4N4vvo/UjC1Td+HOEZ4fM
+ //ZOnxWxO5geSMC0398qXHeArG5p3L5N0qHiM8A8e6P20HEqtCG5Qb55wvAvNMW+10mXT65i
+X-Authority-Analysis: v=2.4 cv=Q7TS452a c=1 sm=1 tr=0 ts=6846bcfb cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=262QNBeyodYRG1lUGOYA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: A6iSPYWWO8zlVUhEzhURg5s2VSGCxHzI
+X-Proofpoint-ORIG-GUID: A6iSPYWWO8zlVUhEzhURg5s2VSGCxHzI
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-09_04,2025-06-05_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
- mlxlogscore=975 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
- priorityscore=1501 clxscore=1015 classifier=spam authscore=0 authtc=n/a
+ suspectscore=0 phishscore=0 mlxscore=0 spamscore=0 mlxlogscore=999
+ bulkscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
  authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2505280000 definitions=main-2506090082
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250609_035231_406948_4A8EF772 
-X-CRM114-Status: GOOD (  10.74  )
+X-CRM114-CacheID: sfid-20250609_035243_508401_229B9C5F 
+X-CRM114-Status: GOOD (  14.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,27 +152,98 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Export pci_set_target_speed() so that other kernel drivers can use it
-to change the PCIe data rate.
+From: Miaoqing Pan <quic_miaoqing@quicinc.com>
 
+Add support for MHI bandwidth scaling, which will reduce power consumption
+if WLAN operates with lower bandwidth. This feature is only enabled for
+QCA6390.
+
+Bandwidth scaling is initiated by the endpoint firmware based upon the
+bandwidth requirements, if there is high bandwidth data endpoint requests
+for higher data rates or if there is less bandwidth they request for lower
+data rates to reduce power. Endpoint initiates this through MHI protocol.
+
+Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04546-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+
+Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Acked-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 ---
- drivers/pci/pcie/bwctrl.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/wireless/ath/ath11k/mhi.c | 41 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
-index dafb8d4f1cfba987e1ff08edfc7caba527f0c76b..b388e02c37ab2815b562108b24b9e98811053d62 100644
---- a/drivers/pci/pcie/bwctrl.c
-+++ b/drivers/pci/pcie/bwctrl.c
-@@ -193,6 +193,7 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+index acd76e9392d31192aca6776319ef0829a1c69628..f79507c7a82244f9e9d8a3ae6765df3f9432ae8c 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.c
++++ b/drivers/net/wireless/ath/ath11k/mhi.c
+@@ -20,6 +20,7 @@
+ #define MHI_TIMEOUT_DEFAULT_MS	20000
+ #define RDDM_DUMP_SIZE	0x420000
+ #define MHI_CB_INVALID	0xff
++#define MHI_BW_SCALE_CHAN_DB 126
  
- 	return ret;
+ static const struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
+ 	{
+@@ -73,6 +74,17 @@ static struct mhi_event_config ath11k_mhi_events_qca6390[] = {
+ 		.client_managed = false,
+ 		.offload_channel = false,
+ 	},
++	{
++		.num_elements = 8,
++		.irq_moderation_ms = 0,
++		.irq = 1,
++		.mode = MHI_DB_BRST_DISABLE,
++		.data_type = MHI_ER_BW_SCALE,
++		.priority = 2,
++		.hardware_event = false,
++		.client_managed = false,
++		.offload_channel = false,
++	},
+ };
+ 
+ static const struct mhi_controller_config ath11k_mhi_config_qca6390 = {
+@@ -313,6 +325,33 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
+ 	writel(val, addr);
  }
-+EXPORT_SYMBOL_GPL(pcie_set_target_speed);
  
- static void pcie_bwnotif_enable(struct pcie_device *srv)
++static int ath11k_mhi_op_get_misc_doorbell(struct mhi_controller *mhi_cntrl,
++					   enum mhi_er_data_type type)
++{
++	if (type == MHI_ER_BW_SCALE)
++		return MHI_BW_SCALE_CHAN_DB;
++
++	return -EINVAL;
++}
++
++static int ath11k_mhi_op_bw_scale(struct mhi_controller *mhi_cntrl,
++				  struct mhi_link_info *link_info)
++{
++	enum pci_bus_speed speed = pci_lnkctl2_bus_speed(link_info->target_link_speed);
++	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
++	struct pci_dev *pci_dev = to_pci_dev(ab->dev);
++	struct pci_dev *pdev;
++
++	if (!pci_dev)
++		return -EINVAL;
++
++	pdev = pci_upstream_bridge(pci_dev);
++	if (!pdev)
++		return -ENODEV;
++
++	return pcie_set_target_speed(pdev, speed, true);
++}
++
+ static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
  {
+ 	struct device_node *np;
+@@ -389,6 +428,8 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+ 	mhi_ctrl->status_cb = ath11k_mhi_op_status_cb;
+ 	mhi_ctrl->read_reg = ath11k_mhi_op_read_reg;
+ 	mhi_ctrl->write_reg = ath11k_mhi_op_write_reg;
++	mhi_ctrl->bw_scale = ath11k_mhi_op_bw_scale;
++	mhi_ctrl->get_misc_doorbell = ath11k_mhi_op_get_misc_doorbell;
+ 
+ 	switch (ab->hw_rev) {
+ 	case ATH11K_HW_QCN9074_HW10:
 
 -- 
 2.34.1
