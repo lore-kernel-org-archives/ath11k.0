@@ -4,86 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5ECBC5B552
-	for <ath11k@archiver.kernel.org>; Mon,  9 Jun 2025 11:14:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD90CC67861
+	for <ath11k@archiver.kernel.org>; Mon,  9 Jun 2025 11:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tq24Wrli2Qp9Evrio+qi8qkO57cIWgh+60vTcG6QRNc=; b=T4tM+4qN4pwrGwwqjyt0FRzW50
-	dESMBvzOFveWjZroZoOrpAvSIg49dLvpQNhvVhUd37hhBJGSQ9slJhgizX76g4oOqasOvE86N3I4q
-	wYShqrlI3OxczflD9m+zS4ZADAAeOJtZnEHAmm8MD1R1dmpdRDqo/PIJHJnXtqX1IR6txCWr22I4/
-	0qC+sqJL+pvCxhAoaNCwJgQhHdI5RBsFr8mIbZ2y9TAlwDKmRsmDHEPPUgh9iLVVEC2pmey18bnsf
-	4fATCeyIK2EP3efDUJS+csjOWNkKNDxAAJEL8a3jmUKElOmV0o+Lc/kufKtbLxb5MNiypKq+u/QZs
-	8BQoLT2A==;
+	bh=+WnB7SCx1sSjpKFGf2TGgRqSA56lOzErLbFukBFtOrU=; b=b7050v6InmN5xXTjKMU70L/lFK
+	kw7vlGsXfUpGmZSWsQerHKFbG2DaBESGuJUNr3+eoZ6UGQX7y5IRsCV82n6dI7h1CpSKflmdClD94
+	k3uN/FNwk+gvYJR2xJJdS3x531kCenSbTpYgKvsjLx0OD9qTn8xug0F9i2v9KfBeWQUwhlE4Oj7Aj
+	tJWDOL5y420FAoA/i6luarIj6/631wpEjYqN0lvaS2lbNqMjpnq2PgJYuYf0nRexLI68K29LwXS+A
+	Xa71rpoKBDc7rZ92p77rBG1nBszvfIcLO/U0Qh+rsZ/xRfKQbo/k8b4rtL1rB6/2rRy4eTw+kzHXp
+	r4orPGbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOaSs-0000000406M-2jin;
-	Mon, 09 Jun 2025 11:14:54 +0000
+	id 1uOaSr-0000000404u-2Qq7;
+	Mon, 09 Jun 2025 11:14:53 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOa6q-00000003x2F-44DU
+	id 1uOa6f-00000003wzq-18lp
 	for ath11k@lists.infradead.org;
-	Mon, 09 Jun 2025 10:52:10 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5598OqtF000710
-	for <ath11k@lists.infradead.org>; Mon, 9 Jun 2025 10:52:08 GMT
+	Mon, 09 Jun 2025 10:51:58 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5599GkoL016292
+	for <ath11k@lists.infradead.org>; Mon, 9 Jun 2025 10:51:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tq24Wrli2Qp9Evrio+qi8qkO57cIWgh+60vTcG6QRNc=; b=MpKYz8voCd14SNZk
-	b3H4gwBUmyxfECn4zVOKUdcz3fDqCrVXIeT/2zxj7AtaYAR8A9SRcO8dl01gxUWD
-	Pv+jPXtvPEF0pyxMQF3ZRX6e3tRuMBAwdrOsbo7FW2qyhwoCTEq0wfTs+zlYwdla
-	fyzHDyhtojphon9hHzFgpIbw3wy1P0lrt01F2Qb6JtKdYkIglJgW53B6s58FMcsn
-	4EWuhMpKT9csLJeUe3vUyaKcGNUuD+v6ZAfvqKOeTzyF/YjnlcmcsvW1JvC2/mAQ
-	CF7Ozxj2TBIxbtWWVPPk3hS3lTXmzMciAJK/oD/AZf2gQSqXsAo+nHjvBqehcN5h
-	LzAlAw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 475v2t8g3g-1
+	+WnB7SCx1sSjpKFGf2TGgRqSA56lOzErLbFukBFtOrU=; b=E9zComcsbVuP74kv
+	F5FxwcDfUY71bl5ezAMP2a7SDHlkQbj0b6ztptvsN923Z4XT4H6WM65AmGIMtzko
+	BsxU/+SLLgOXmpEc2fMYm2eZbJXHoT6tEPpd0Tk4C0w33eDGqyYkiH56z7cyJq6e
+	0DwtndcFJmu7q2UajswYtNjTJNkcpeblZpvgZLKVQ1WDyXCWQNMMxlYcNSs03iFS
+	q2g+lsq/R3b6SuwHfVe0XJ73bSlLHqHw08Hvv6u9inmKX21juutSNLaWfxcY4Pmv
+	y1Gg5Ar31tsnA/ktW4UraRZ4N8ulSlP8Yu2H07H+JcFis7rBatmIp3C9Dl9sz/I1
+	9oBWiw==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 475g75t1cb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 10:52:08 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-235e7550f7bso40698155ad.3
-        for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 03:52:07 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 10:51:56 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2356ce55d33so48252385ad.0
+        for <ath11k@lists.infradead.org>; Mon, 09 Jun 2025 03:51:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749466327; x=1750071127;
+        d=1e100.net; s=20230601; t=1749466315; x=1750071115;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tq24Wrli2Qp9Evrio+qi8qkO57cIWgh+60vTcG6QRNc=;
-        b=uFAgov9MbV7s6yRXWi+zjMoyFoBA4wKhKf+LYcOLObQCvX31NpAGgSxWp/zdkTNomf
-         +Jimhkze32x4NjvMm4SyBZYXTvynUDGifCEjpJDWMN2mRIfCXrtRUZVJmyoY3Vv2xRsI
-         QkZphZdrx20ZETCLpP9YMxujIOMeUMcAta0CtFik8e/h47oKlMqcGBVzA4/rXFIhgB4w
-         Eg+wj8wSnseZ/n8g3Ud0pTP9+nMbpZ+3A6k8DoS3qLw+5L1GjzJPB3/HJsSAURtI+384
-         GITIgDlBV8/KsaAVfIQ4F7UoL8uk+PguNTqePj0Ar1aqYEL7w8GGpRh6qTJlktROuK9r
-         UjRw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7ohW7Zedl5GYI1VGHooVBWMAra0+3pAbyOu7RAN45/c+VAX+OcfTZBcBpSiDUCbz+1C5vKYw=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwDutPNMxsjB9XOd8iyd1BCg5a4KEbGZ7wde11WE9veqQPt4kO4
-	W0GG0DUCbQkZEjEKPcKMU4lfwTPKlO0zqvkb/8cjV79qBFIvJE6zKpoGtQuzgb3HPdUlEoU+aqd
-	wAslHFKhlohKbWDDHC72/oaXaPBHXJq3lPI80W3MiYdH8QapDz2fCZKLPSJ8wIhYk
-X-Gm-Gg: ASbGncsyJJJeotTnnehj5x2/HUuxvzinXyXUUr5sRHhzGM4IeRXQLR3R/OYqwF0taFI
-	24c/gD5FnOVClaw1MIC/kdEgvujGysn4qsIi1YJ8T4JEyZ7OZ9CrME1bRHUbGK+Ci+edArLavH5
-	YLP4sawepgQBhETi+cBYQscDYn/ujBynqnbb+7K1Tld71TRoHeEN/XgqCRrSIzHkWeBEq5Juq/F
-	iG9uxwnFZQgr1hT+kEdqcQDe9UM2rKhMxgIK0AIRREcqJi0JizkAV0Jvj68FWQ1orRR+Jq/J17F
-	zA+5QHLTZyJ0YmY7FEznollI3nXDE3oxa/cvqqClhLO+gn1dxNhBRn4veA==
-X-Received: by 2002:a17:903:228a:b0:234:986c:66f9 with SMTP id d9443c01a7336-23601d2485dmr182543795ad.22.1749466326747;
-        Mon, 09 Jun 2025 03:52:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFDh+coUuKtWGJZpFtogDmaKOAu2e7dpBqqLmg6/yIehhTMpFOXeREwgQnJUjxOnFZLxpXf1w==
-X-Received: by 2002:a17:903:228a:b0:234:986c:66f9 with SMTP id d9443c01a7336-23601d2485dmr182543445ad.22.1749466326366;
-        Mon, 09 Jun 2025 03:52:06 -0700 (PDT)
+        bh=+WnB7SCx1sSjpKFGf2TGgRqSA56lOzErLbFukBFtOrU=;
+        b=XAUFBFoT4+CHTiKETNMD/bDqCKpmqTTvOZkRXhitTYZtpUWZyZh/MwO/k71VYi81TZ
+         dKMNnXYuKhbiYVc120OhIWX/Gayd2wsnNlGgxjsNOrpxT0qILbomC3Fqu96Ad2Qn+OlI
+         l+u/FhAC5GcUJzQnnamNrwjUdqb2Yg0qwy00DR9Abj4kTIXMA8//s2rXvypTkePDqRnB
+         NXSDUDUW6EGyBzlPqWDxRuRZcdGyt7XYIFUFS8ouqUOIOz0o/u7/TjQNrE+kVAHOtXD3
+         NzJUSDQNRFq2+0zbxfJ8Gn18Ece4dbHWoJoj46GQYISJIU+YyEQAE2eF4eKrTYwtW2BS
+         Z7/g==
+X-Forwarded-Encrypted: i=1; AJvYcCU4NeHERhBC2EKf0JPhXzhX6vMnxPioEuSa1g4ZaZytz1Fxv3NdL7PJ/6FOW8q0z7vEhD0u1Ok=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwOiNK0lkv06b58+FeWV8BmG6UJmJ4s45p/KRyWq+1fDjS51uSD
+	r7PJCEcEnlnHU5zhlHmjLG3GYCZUIV+C5SPCVvbzV7MCtSTDn0Wo0IlC1DHnQHQ0MZnuxrjuxyD
+	+cHx1Vx+8xcFENjg65cOTr70TSOgS6C997GECbY26XMpSiA3lJFxmuppjbQGnnhc/
+X-Gm-Gg: ASbGncsAeyYG/S5B1x1wftNOKEO8BJCTvCOiuGgm0yW7acmzaNfpd89on76o+GUg8vq
+	GJ9TATAUCxC3CMXoGieQ91wbUPsRiWWU+mi6q/tTv5qJr+Z8ixlyNZRWxhCZkxUAH+stC96a/Ty
+	ihY+K8vwnogYAmOJvMnGkdk9SOkNtPynkVR8GQjShAJxQmAey1Kzjt8Vxdxtw7Z27VVB2vfhxIw
+	kwsTS6zZXp4dPTWsN430gHh5sUsvOQutZT/NQNfp8sKyj8LFABPMYZLvlr21qppJHh/X7maONba
+	Hrtwz3dmgL0MpiZWLjtio1Nf0uTvHjh3/u+iONlZM2S2D5hYPq/jeQzxLw==
+X-Received: by 2002:a17:902:ced0:b0:224:24d3:6103 with SMTP id d9443c01a7336-23601d7129bmr193945875ad.35.1749466315154;
+        Mon, 09 Jun 2025 03:51:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHZzNGiSveCaXAGmwtao4h3zyuFCWnr+dvJQS7X9x0EspRwQDlYIe+sfocOUBtwpZVbvfenNw==
+X-Received: by 2002:a17:902:ced0:b0:224:24d3:6103 with SMTP id d9443c01a7336-23601d7129bmr193945685ad.35.1749466314751;
+        Mon, 09 Jun 2025 03:51:54 -0700 (PDT)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603092f44sm51836465ad.63.2025.06.09.03.52.00
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603092f44sm51836465ad.63.2025.06.09.03.51.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 03:52:06 -0700 (PDT)
+        Mon, 09 Jun 2025 03:51:54 -0700 (PDT)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Mon, 09 Jun 2025 16:21:26 +0530
-Subject: [PATCH v4 05/11] PCI/ASPM: Return enabled ASPM states as part of
- pcie_aspm_enabled()
+Date: Mon, 09 Jun 2025 16:21:24 +0530
+Subject: [PATCH v4 03/11] bus: mhi: host: Add support to read MHI
+ capabilities
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250609-mhi_bw_up-v4-5-3faa8fe92b05@qti.qualcomm.com>
+Message-Id: <20250609-mhi_bw_up-v4-3-3faa8fe92b05@qti.qualcomm.com>
 References: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
 In-Reply-To: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -104,38 +104,39 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
         Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749466291; l=2258;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749466291; l=3193;
  i=krichai@qti.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=Oy5xhLR0GTbxXIyGSehq2C1m7jHsrRB+NLo3OFoCcpU=;
- b=FsGVVNU4bBpjH/bLJkqhzBlwA7pBTdKA29oGrWjW1VZGoNcZ5tmxRnyiCdmxxfmQ0EcHrbZCt
- jOaYiPUbZ5RBI4TM1CIEZmIONqihPCbrpnBazbboLIEdYWTK8S6/0Zo
+ bh=YHDxvxn32l4GiIqpkw0a5BDQyd01kwaHJ7Ari+cyZhw=;
+ b=DP+yy3+lpPTfsiVUb0XvmLVgjM8De6zxu8hdMbo96oYzwD6QES2VKKMQTmLaH1CE6MUJzipa+
+ DTAoju4J5e6DK6smrc+9F8YhHpnmnbR7S5Yt6qFi2oNVysn4xALurSH
 X-Developer-Key: i=krichai@qti.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-GUID: MJ0yWUs6cxzfQKg7n2dcFGNrCyY7Z1JN
-X-Authority-Analysis: v=2.4 cv=GoxC+l1C c=1 sm=1 tr=0 ts=6846bcd8 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=wuQQqu7ThqwHlQwkt1oA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: MJ0yWUs6cxzfQKg7n2dcFGNrCyY7Z1JN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA5MDA4MiBTYWx0ZWRfX4YjhwwIepz7B
- vU5oSa5Mk0exUtgEAqqzYshqrO+Fj4JQq2BGBwR4+U0G/W6cvL6RSLDbRb3vT6ZBTdlXAYpjqgK
- 2DHKFNqBS50yR/XNvU4PxFVLJR/3Ht6DCzIho/3iGnOT4L9u7/FCQ3is1lK+L8NxyBkbs1fWO2+
- Y6wABoS6YKdyWznWn7RpPoU2SKu5esPKHDI0ebyj+/nEW7lt7DTP+bxOXxMCVRgfAwe9JJfFFfY
- KC8R6oNMj48SFHgxLmSv5qiJEbJSLrxVblT1BACA171ANITfyPSqR1aaC2e3Q4/K4NdFJ9FRLRx
- s9fkYx5rg0Jh5w7WpM24iB5WArkQeME6kokZRph+85Pgi8u25JYao2enmhjroUztM5TfaVJilzd
- xezxMmZ3wKbweXLM5tkLcZt33KDkNPQ0c1Jq6Sj6JarbVVXITDm3hAwIsibNNNN18qNKoDph
+X-Proofpoint-GUID: ylPNXC3mXZW_vuxSsq_9FgNqZQyflz3v
+X-Proofpoint-ORIG-GUID: ylPNXC3mXZW_vuxSsq_9FgNqZQyflz3v
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA5MDA4MiBTYWx0ZWRfX13DeIv17u9or
+ 262TsRw+MqBgOcjoU+mS9dQ0YE6ryCG3znqeBf3bfyKOE+KpSTHb5vAuFmJP0Rk7BsYulelYg/Q
+ Ki4UPhYtpua2Sf3vy5DO7w2bfw2eeDhvOOBMxNBdLe9tfLCb1CDnt9l7XCMQPHO/jPLMd2JbRqP
+ 44H0isOcYzzCxjPrNddsnFYFpmhuF5vsU8osh38Zas9t+S3s0eIhAuarD4jyFRJFIq3d+685vbb
+ 54g/OYhxrig/tRwmj4oUIC9sPROtOoifofgEwdV2TRqQbdKg3e7zTGAwelHF1YtHgOk8c+Ufm5e
+ Psd4BopY6gp1vCy1VPfmQeWV0Pn/jtVgi2cmXfU7GinxgoAsoCPIvEC9X2TbwHnL1fiRjN+y8Lc
+ UaQM8PyFBhtzzQadzK7AVKbluEHqcXFSkU0cW7p64GgHNGKuR9lsKvu3MFoELWpYYMf4xIcN
+X-Authority-Analysis: v=2.4 cv=TeqWtQQh c=1 sm=1 tr=0 ts=6846bccc cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=CnzCB1l8zP_khqs2e6IA:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+ a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-09_04,2025-06-05_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 adultscore=0 impostorscore=0 malwarescore=0 mlxscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506090082
+ lowpriorityscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ spamscore=0 malwarescore=0 mlxscore=0 adultscore=0 bulkscore=0 clxscore=1015
+ phishscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506090082
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250609_035209_130908_DAB54153 
-X-CRM114-Status: GOOD (  14.68  )
+X-CRM114-CacheID: sfid-20250609_035157_440723_61D4E909 
+X-CRM114-Status: GOOD (  14.82  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,56 +151,106 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-PCIe ASPM states can be also controlled by userspace using exposed sysfs
-entries, if drivers wants to disable and enable ASPM at runtime they
-need to know enabled states for correctly enabling them back.
+From: Vivek Pernamitta <quic_vpernami@quicinc.com>
 
-So return the enabled aspm states as part of pcie_aspm_enabled().
+As per MHI spec v1.2,sec 6.6, MHI has capability registers which are
+located after the ERDB array. The location of this group of registers is
+indicated by the MISCOFF register. Each capability has a capability ID to
+determine which functionality is supported and each capability will point
+to the next capability supported.
 
+Add a basic function to read those capabilities offsets.
+
+Signed-off-by: Vivek Pernamitta <quic_vpernami@quicinc.com>
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
- drivers/pci/pcie/aspm.c | 4 +++-
- include/linux/pci.h     | 4 ++--
- 2 files changed, 5 insertions(+), 3 deletions(-)
+ drivers/bus/mhi/common.h    | 13 +++++++++++++
+ drivers/bus/mhi/host/init.c | 34 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 47 insertions(+)
 
-diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-index 29fcb0689a918f9cb123691e1680de5a1af2c115..94324fc0d3e650cd3ca2c0bb8c1895ca7e647b9d 100644
---- a/drivers/pci/pcie/aspm.c
-+++ b/drivers/pci/pcie/aspm.c
-@@ -1555,8 +1555,10 @@ module_param_call(policy, pcie_aspm_set_policy, pcie_aspm_get_policy,
-  * is deallocated only when the last child of the bridge (i.e., @pdev or a
-  * sibling) is removed, and the caller should be holding a reference to
-  * @pdev, so this should be safe.
-+ *
-+ * Return: Enabled ASPM states
-  */
--bool pcie_aspm_enabled(struct pci_dev *pdev)
-+int pcie_aspm_enabled(struct pci_dev *pdev)
+diff --git a/drivers/bus/mhi/common.h b/drivers/bus/mhi/common.h
+index dda340aaed95a5573a2ec776ca712e11a1ed0b52..58f27c6ba63e3e6fa28ca48d6d1065684ed6e1dd 100644
+--- a/drivers/bus/mhi/common.h
++++ b/drivers/bus/mhi/common.h
+@@ -16,6 +16,7 @@
+ #define MHICFG				0x10
+ #define CHDBOFF				0x18
+ #define ERDBOFF				0x20
++#define MISCOFF				0x24
+ #define BHIOFF				0x28
+ #define BHIEOFF				0x2c
+ #define DEBUGOFF			0x30
+@@ -113,6 +114,9 @@
+ #define MHISTATUS_MHISTATE_MASK		GENMASK(15, 8)
+ #define MHISTATUS_SYSERR_MASK		BIT(2)
+ #define MHISTATUS_READY_MASK		BIT(0)
++#define MISC_CAP_MASK			GENMASK(31, 0)
++#define CAP_CAPID_MASK			GENMASK(31, 24)
++#define CAP_NEXT_CAP_MASK		GENMASK(23, 12)
+ 
+ /* Command Ring Element macros */
+ /* No operation command */
+@@ -204,6 +208,15 @@
+ #define MHI_RSCTRE_DATA_DWORD1		cpu_to_le32(FIELD_PREP(GENMASK(23, 16), \
+ 							       MHI_PKT_TYPE_COALESCING))
+ 
++enum mhi_capability_type {
++	MHI_CAP_ID_INTX = 0x1,
++	MHI_CAP_ID_TIME_SYNC = 0x2,
++	MHI_CAP_ID_BW_SCALE = 0x3,
++	MHI_CAP_ID_TSC_TIME_SYNC = 0x4,
++	MHI_CAP_ID_MAX_TRB_LEN = 0x5,
++	MHI_CAP_ID_MAX,
++};
++
+ enum mhi_pkt_type {
+ 	MHI_PKT_TYPE_INVALID = 0x0,
+ 	MHI_PKT_TYPE_NOOP_CMD = 0x1,
+diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
+index 13e7a55f54ff45b83b3f18b97e2cdd83d4836fe3..9102ce13a2059f599b46d25ef631f643142642be 100644
+--- a/drivers/bus/mhi/host/init.c
++++ b/drivers/bus/mhi/host/init.c
+@@ -467,6 +467,40 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+ 	return ret;
+ }
+ 
++static int mhi_find_capability(struct mhi_controller *mhi_cntrl, u32 capability, u32 *offset)
++{
++	u32 val, cur_cap, next_offset;
++	int ret;
++
++	/* Get the first supported capability offset */
++	ret = mhi_read_reg_field(mhi_cntrl, mhi_cntrl->regs, MISCOFF, MISC_CAP_MASK, offset);
++	if (ret)
++		return ret;
++
++	*offset = (__force u32)le32_to_cpu(*offset);
++	do {
++		if (*offset >= mhi_cntrl->reg_len)
++			return -ENXIO;
++
++		ret = mhi_read_reg(mhi_cntrl, mhi_cntrl->regs, *offset, &val);
++		if (ret)
++			return ret;
++
++		val = (__force u32)le32_to_cpu(val);
++		cur_cap = FIELD_GET(CAP_CAPID_MASK, val);
++		next_offset = FIELD_GET(CAP_NEXT_CAP_MASK, val);
++		if (cur_cap >= MHI_CAP_ID_MAX)
++			return -ENXIO;
++
++		if (cur_cap == capability)
++			return 0;
++
++		*offset = next_offset;
++	} while (next_offset);
++
++	return -ENXIO;
++}
++
+ int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
  {
- 	struct pcie_link_state *link = pcie_aspm_get_link(pdev);
- 
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 1740bab514b0a9a61c027463a1fb154843312a22..cb703443290a013c8372333fc8d547d190d9f3b4 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1848,7 +1848,7 @@ int pci_enable_link_state(struct pci_dev *pdev, int state);
- int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
- void pcie_no_aspm(void);
- bool pcie_aspm_support_enabled(void);
--bool pcie_aspm_enabled(struct pci_dev *pdev);
-+int pcie_aspm_enabled(struct pci_dev *pdev);
- #else
- static inline int pci_disable_link_state(struct pci_dev *pdev, int state)
- { return 0; }
-@@ -1860,7 +1860,7 @@ static inline int pci_enable_link_state_locked(struct pci_dev *pdev, int state)
- { return 0; }
- static inline void pcie_no_aspm(void) { }
- static inline bool pcie_aspm_support_enabled(void) { return false; }
--static inline bool pcie_aspm_enabled(struct pci_dev *pdev) { return false; }
-+static inline int pcie_aspm_enabled(struct pci_dev *pdev) { return false; }
- #endif
- 
- #ifdef CONFIG_HOTPLUG_PCI
+ 	u32 val;
 
 -- 
 2.34.1
