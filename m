@@ -4,89 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 327CFC71134
-	for <ath11k@archiver.kernel.org>; Wed, 11 Jun 2025 19:56:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 709A3C71141
+	for <ath11k@archiver.kernel.org>; Wed, 11 Jun 2025 19:56:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=IzZh7++TWPnt7YAqqfAhztYsaqI1nC4j1vdMdoyOJp4=; b=v4YEJ+w/p165Tr
-	FpCfriAw0swWxrDyWjSKaiQPMsEe0/wqpRaQK78ruZNhXTkETMy3rZeDYIPU6qNsz+m9reEaVXFm3
-	p0WfaN8H3RXp1E0NotIvB4SnKlF9QUpkkvNvOeExaXObqKnWR/tReAnIdQXzrTMS4EyOakGLX9RCt
-	CT9dVPl51gsi4SDL54KgM5/8HQfKfzd6kjUiTDAEDpUW+y5Tuq3YVAUiKbEirSxI13mTKmN/IPV5q
-	IEgHct+5b05YyfgLmL0Yx7NyQVcaiSWNdDa1jaGjo4tQ+bkZJ2ax/KdNJ9DWlHkmlP9tPDWlq9tUf
-	0q1BbfcdmcEDj+TBjmWw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Dxy553rnl4iOCCwPBHilJZl8dv8tb7Ojmt3DJ4lr9Cg=; b=gJzeIzYlzGQmERkM7TafxIJ/A8
+	sIAHOgXRJ3lptVzJBqM8nyzZ/kUfVgLPahp6CwiJxVDKl2+II2DV+0bGRqj11k+kYe9JzR5rjljmg
+	OHuw9Et2Q6iVfTbctYOQceatcbgDe5s5mfS/K4lh7LhOFa4m8LBfhpQazCA7Ksjs3PjshHUIw8/K1
+	Hbx2VYogWXLEmA3w/03iCN7yJU5mOYtD+NNoJogoeY1ZVHLwreT+l2dtf8TpEriXPWeyaavdAP3cM
+	Ok5LA3L2Rinratb4fOXmgD+CAyhlCTlTU7klAL2nwzBt+whB+Ypiuu++/mcUcYMmS12AwVAqh/AqQ
+	+ZgLG6pA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPRYN-0000000B4BV-30bh;
-	Wed, 11 Jun 2025 19:56:07 +0000
+	id 1uPRYQ-0000000B4En-0TN4;
+	Wed, 11 Jun 2025 19:56:10 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPO5S-0000000AZ7K-2uSy
+	id 1uPO5U-0000000AZ8k-12pw
 	for ath11k@lists.infradead.org;
-	Wed, 11 Jun 2025 16:14:03 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DO0E011156
-	for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 16:14:02 GMT
+	Wed, 11 Jun 2025 16:14:05 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DEsA019616
+	for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 16:14:04 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=IzZh7++TWPnt7YAqqfAhzt
-	YsaqI1nC4j1vdMdoyOJp4=; b=S9nwzEEnytmD5lsY3JIK/u2CxjjnuBzwa2Z4K+
-	En/lXI5srBKNpC6TCq81bBvRIs2kl2iTorlABiOoBrB73JPxPRO8pQ2MMDXbZSdj
-	/3pkzw0KNnMk80rSIpIoL/csMMouRrMWK42SGare5klQ7lMd0iMxuQskVp5JpJ3+
-	quST39cipuIM/aldhh3TpSVaNg41pVuT4LY8zaftX4VNppysWhNUKaqCAuzAYWoH
-	cZ0LX9sc52OrzgBBDa5dckOoW6alBlcfKTtSC+BrPlfShG3WoeMi5qL+PMuZd2Yk
-	qJzzFl70vd6H16ZyCeDe9ahEZr+8wX3mE6PIcmVUTMk3pB0g==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ekpw934-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Dxy553rnl4iOCCwPBHilJZl8dv8tb7Ojmt3DJ4lr9Cg=; b=E+UlaHD+abXN/FqV
+	KGu70ycRKjIcsBjDL9u1b9B38gQfKZI23A1mdIIdm7HDI2wckVfqiXQnIR2dPtVO
+	K4elVVlWcNt1Mpg0THT2y+fTQGgT1RjDqph4a/QqfjwxLDe97URcD/19lnMG8zjI
+	pe1yml7lh0QT842Ubjm3JgmlbyBwTiDdTJj8kVBTdnTGR5FqUmb7CustPBjixSN7
+	yeRJi/iMDQiQbD83PQEmpugOl+WA3aGnpqPvEJfyQv0aI1MNJtRrHD617lEC39a+
+	0rZbTFvC8qDG4t2gaG4c2xpYjrCDIglRhw62yjhYaU5hZK64MvOj4WYjGB2BRS1c
+	DELFsQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474eqcnkev-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 16:14:02 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-74292762324so47938b3a.0
-        for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 09:14:02 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 16:14:03 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-74292762324so47958b3a.0
+        for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 09:14:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749658441; x=1750263241;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IzZh7++TWPnt7YAqqfAhztYsaqI1nC4j1vdMdoyOJp4=;
-        b=jeaifWVgX0LEGEtUFmGpWhBf/jSC9gol/uFpzMBctI+10ETWGa/aYGR9uF3YYYo1t/
-         CjMSO6cZIvi63O9pPru+DIz6IZw5q1iyVSaW8ZUo/aRXTF0wNOwS5DogYTMLCyh7iYlY
-         DG2kgABO3uP6fYnONaqTdv4BXcfN1NtLdLccnOgQK/DXmszlH6OjDBPJXQjorAI37SBh
-         ND9rd2XAAds7HwlGgPqXQosnlQwEgpH7vRhLd4RuaPfav/jZG2BXPs+haI7EmygrpTD5
-         LF5aSix7Ly3YYBViRTMcigjPpTebqgxKxCV5J8uNd1oGXmkIl9KsTTNTrsGtEPcsot4T
-         P/jg==
-X-Forwarded-Encrypted: i=1; AJvYcCWmjb4pkILQUxaoHW0QzVkVkQDkz2v7IM8szUiuU5k+CmOd/UP1pyKiXmo0V/2dF3mOdRIWDss=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy1vY4ve0DQ52M/hMszAatCBz8CWUwHil5EpLeJ2wq2qFGy5Jn5
-	vx4fso+xQB1VaMcAmD5yTkYj2afhDDJIsx/GZ0acG6I+9wvIE8c5LzWS4wW8TIx5H8vSw8iSV08
-	vggus/5zNfrruC42N+6nMoQ6NB1nXrlhU1d4W0pXGo75MAvxzodbcZpzyVAPAkqAg6NhB6C7e
-X-Gm-Gg: ASbGnctZHB3hL1of0iSfsGdcaisnInL7VJ8sMjJFzREPiolFoFscF/XU3t6OEgjJYmR
-	y0OotAoAD15WfxvifXbiUInMzJXTgU/IrydoFghBFgsqQs2Mj8uzoXCWN+vtlfpw0QxpwXJpK2D
-	u5M+CicOR9edmwRxXru1uBaUSuZxfXa5wlmXujTMuO11byaPK4vRrGjWJZoCdxaeyzSbJGI4vMl
-	3ueMPvdzQT9HSTJLNXtrMv6gsS/33FpnL2VuIgJJPUrwC9DNUTIHAoP68SyKhhCxbczzJZBNvdf
-	BiAF7zG5ZqVSOVW7k/X+zT1Ivyiy4QsLlZ1qw9YSAWX0hP2CG3ls7sGfGFM=
-X-Received: by 2002:a05:6a00:2314:b0:736:a8db:93bb with SMTP id d2e1a72fcca58-7486cb21d0dmr5341548b3a.5.1749658440962;
-        Wed, 11 Jun 2025 09:14:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH/6SRDJJ5564j6vwuGUZRBSXLBvt48Y+4pJb7MX/NqEakaLAuxT3fRBYYzZ/dhUftkuTCdKw==
-X-Received: by 2002:a05:6a00:2314:b0:736:a8db:93bb with SMTP id d2e1a72fcca58-7486cb21d0dmr5341521b3a.5.1749658440551;
-        Wed, 11 Jun 2025 09:14:00 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749658443; x=1750263243;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dxy553rnl4iOCCwPBHilJZl8dv8tb7Ojmt3DJ4lr9Cg=;
+        b=k/ZkLkuXXBLxa8xvLl6QN5gNi6EBZXErl7YrYO4PiNN+dn9XgaD0lZ/58osYVz8EW+
+         zX9MAn+BgsW/gJ0ZG+Log8w3LWyWvy3XvBu3d/dbmaJZEn1aS2Ikek/b0HJyn+3YuL0S
+         LjJeVPwG9hj9iGfoXxQzsOdZz6Jd/gaYonIwAzOVOltlmLlUuwrgpI8idtr7AO8sInxL
+         6PvalxNrjQkm1szKPnMqSbHc0g6UfopQoeiFzbzKWwXR8RCP6pho/d2aHFFVcTezw+ua
+         Y2Wo8yuCT4F8kEMKQLGZx3ISXKKPRgAtALcrGzIO7ww8SGYX9dfSWUh/VfQ/hyqQfmoO
+         lrQA==
+X-Forwarded-Encrypted: i=1; AJvYcCW57mVwPhb45uXQ+gjxUw+0S4t4h7t9exOMfWa+p/o7kcQg8fU9hleMk3fn0sYNc95nFjBNBEw=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzU3FIZTUJ0J1RfOdICbHC8sCTZB+ajacYe7J+dxdOjVNbJhzQi
+	UR1NUsfiDLk2vVMUGWNw+OwXXCnATh5iCJpwVr2Cz53SFyan6f2hjd3twf32JJme1bkJgvpQL/l
+	G3xk77lNhgzvDlT1VUazPsQIiH2vb4cFZSt0rPcFH9gb8d8VA6XL9VNLKctw2XG9b
+X-Gm-Gg: ASbGncsUZyzRwnLieMGC+ob7rHwpXaUxCCgwUeAOs/MR8PDNf+C8y3WJcaBgbPRvE4T
+	13XoFCbUxI/ZYDq2sJcO7MUDTiD8yQ0oXvruu+S9yqvCfOSnvhRSYKVYZXh4+LnBvLKRM1DtgQP
+	PBuqoDzuye8aQuwNRi2c6hFq0lA3s9wvXOCZB0dgwY3vokNJl5XmOeWonD2SzP9ol0PdyxzmHlH
+	4/NPRQlT63Yy0n/ML9NH+xvbzkhU58T0oFZ+g5xIGlgdT9qoLAMey82qkZf9ZZMGvS+ci82lUf9
+	xYzS/uR0F4TmTnqDWSCK1imFB/TTM13lOdQWaeQnfBX8whFjoaXDbTQRswg=
+X-Received: by 2002:a05:6a00:1490:b0:73e:2d7a:8fc0 with SMTP id d2e1a72fcca58-7486cb219b7mr5179608b3a.1.1749658442762;
+        Wed, 11 Jun 2025 09:14:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IExcLPif8UAuX4ZoswEaY25R/k69NLePm004lZfTnTJsqF+aqjn9Vn3sVFV0N9NDcXgNtJ3aw==
+X-Received: by 2002:a05:6a00:1490:b0:73e:2d7a:8fc0 with SMTP id d2e1a72fcca58-7486cb219b7mr5179579b3a.1.1749658442306;
+        Wed, 11 Jun 2025 09:14:02 -0700 (PDT)
 Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7482cdf1c41sm9443708b3a.149.2025.06.11.09.13.59
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7482cdf1c41sm9443708b3a.149.2025.06.11.09.14.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 09:14:00 -0700 (PDT)
+        Wed, 11 Jun 2025 09:14:02 -0700 (PDT)
 From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Subject: [PATCH ath-next 0/5] wifi: ath: Add missing includes of export.h
-Date: Wed, 11 Jun 2025 09:13:53 -0700
-Message-Id: <20250611-ath-unused-export-v1-0-c36819df7e7b@oss.qualcomm.com>
+Date: Wed, 11 Jun 2025 09:13:55 -0700
+Subject: [PATCH ath-next 2/5] wifi: ath9k: Add missing include of export.h
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEGrSWgC/32NQQ6CMBREr0L+2k/aIjS68h6GBbYfaSIt9heCI
- dzdygHcTDKZmTcbMEVHDNdig0iLYxd8NvJUgBk6/yR0NntQQtWikQK7NODsZyaLtE4hJrS9vNS
- NsvJRaci7KVLv1oN5h1/d05qgzcngOIX4Oc4WeeR/uItEgWToXFmtje7VLTCX77l7mTCOZRZo9
- 33/Aq7uSK3DAAAA
-X-Change-ID: 20250610-ath-unused-export-df19562d1b37
+Message-Id: <20250611-ath-unused-export-v1-2-c36819df7e7b@oss.qualcomm.com>
+References: <20250611-ath-unused-export-v1-0-c36819df7e7b@oss.qualcomm.com>
+In-Reply-To: <20250611-ath-unused-export-v1-0-c36819df7e7b@oss.qualcomm.com>
 To: Jeff Johnson <jjohnson@kernel.org>,
         =?utf-8?q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>
 Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
@@ -94,32 +92,31 @@ Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
         ath12k@lists.infradead.org,
         Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Authority-Analysis: v=2.4 cv=JcO8rVKV c=1 sm=1 tr=0 ts=6849ab4a cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=pn7C01q4hUtA5Nn5QkAA:9
- a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDEzNiBTYWx0ZWRfX9N7iXdNfX1MM
- AG2i1gNtKNHxodEW2jyKR38mb7v6RtGsyIeEJ4NTZqqn6o92fWHFbwvXl4p5/Bdqa1n+uJtNFAK
- nsPc2s9FQ6zsmWaWBDTDe7kpzhTVIEfGfDbeqWZxryRXYX3gORbS33s61wq/FuOp8GP1Nr3H+ah
- UvWZqBlgEkkbxn1GhUU7CxkZVUviKWwWMSyxmJ1jQdy7SMkT26Ff3icSfATdcwHLFdCQYf+OdUQ
- BlzC6xKp9Gz3oUz4a1lK9+pljhut4LGw9hPd4xNY6YjObL0EDX5ZgV4wL5IfNuVqlPAfFd8d56t
- R13JSZMOjDY+98jD4/BaFFOjJuMvsE9xjrtNeimrK8wYALa8yj/W927SZkXqqy/FLmFEkMla26r
- yzv5m1k5glNIX6w30RQsiYu0dd+kq+XcYp07V/Uwd4/COf2n255sFSUAH05bTtlqZpHU9RIq
-X-Proofpoint-GUID: dLSbQonXSsbihESa02cFad0poc0QGfZ3
-X-Proofpoint-ORIG-GUID: dLSbQonXSsbihESa02cFad0poc0QGfZ3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDEzNiBTYWx0ZWRfX8ODkHF/CQ78/
+ grP1pIQufBqOjjqktkwng0+0Ps+6letnxw/OPyJmfOtpjeCwEYlGk/u1swmPEXMlfL6prEct2Zc
+ n9cCD6s2Ado5jG5OAs3YHJveCCGudqRMVEqWCQo10xsA3kCDAs93IpH/Aylnf9qgcmu77q10jNz
+ ffWWqrDcEKX3ZR1xlGobVdoBrFe/Hu8cqiJn8HYtZjdnxuaO+DzSy13QK3yII8v/h+hJKfwlTAd
+ 4PzruphTbUxQflvM8fcro8f/HfI0vVxW8JNSpb8fdCxdT3V2nZlwMIzSkzbeMkEtua8qZjpjysq
+ 0x+XxucNrfDJLap3f+wCvX8cXRjcRlqToNDEAfuxUIyuGw7NcQ7fJlSnYH6AoEvbA+0v1HiCGE6
+ fXa5gfrjl17SF79tBfQgua3NuHH/cebn30OlVsjPX5ogTDxEZsZd7nMldNUXuVL+RqO7PQGB
+X-Authority-Analysis: v=2.4 cv=Q7TS452a c=1 sm=1 tr=0 ts=6849ab4b cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=wX-X5SGVYUOQdF0mMgYA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: 5HC5Hl7XCV6pPa-6aJHS20anJHNpUwf4
+X-Proofpoint-ORIG-GUID: 5HC5Hl7XCV6pPa-6aJHS20anJHNpUwf4
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-11_07,2025-06-10_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=645 bulkscore=0 spamscore=0 impostorscore=0 phishscore=0
- priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015 malwarescore=0
- suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ suspectscore=0 phishscore=0 mlxscore=0 spamscore=0 mlxlogscore=999
+ bulkscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
  authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2505280000 definitions=main-2506110136
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250611_091402_754247_A846B705 
-X-CRM114-Status: UNSURE (   9.20  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250611_091404_306574_8F4E65D1 
+X-CRM114-Status: GOOD (  12.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,40 +131,22 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-commit a934a57a42f6 ("scripts/misc-check: check missing #include
-<linux/export.h> when W=1") added a check which is now generating
-warnings. Fix the ones in drivers/net/wireless/ath/...
+Commit a934a57a42f6 ("scripts/misc-check: check missing #include
+<linux/export.h> when W=1") introduced a new check that is producing
+the following warnings:
 
+drivers/net/wireless/ath/ath9k/common-beacon.c: warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+drivers/net/wireless/ath/ath9k/common-debug.c: warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+drivers/net/wireless/ath/ath9k/common-init.c: warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+drivers/net/wireless/ath/ath9k/common-spectral.c: warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+drivers/net/wireless/ath/ath9k/common.c: warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+drivers/net/wireless/ath/ath9k/dynack.c: warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+drivers/net/wireless/ath/ath9k/hw.c: warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+
+Add the missing #include to satisfy the check.
+
+Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 ---
-Jeff Johnson (5):
-      wifi: ath: Add missing include of export.h
-      wifi: ath9k: Add missing include of export.h
-      wifi: ath10k: Add missing include of export.h
-      wifi: ath11k: Add missing include of export.h
-      wifi: ath12k: Add missing include of export.h
-
- drivers/net/wireless/ath/ath10k/bmi.c            | 2 ++
- drivers/net/wireless/ath/ath10k/ce.c             | 2 ++
- drivers/net/wireless/ath/ath10k/core.c           | 2 ++
- drivers/net/wireless/ath/ath10k/coredump.c       | 2 ++
- drivers/net/wireless/ath/ath10k/debug.c          | 2 ++
- drivers/net/wireless/ath/ath10k/htc.c            | 3 +++
- drivers/net/wireless/ath/ath10k/htt_rx.c         | 3 +++
- drivers/net/wireless/ath/ath10k/htt_tx.c         | 2 ++
- drivers/net/wireless/ath/ath10k/mac.c            | 1 +
- drivers/net/wireless/ath/ath10k/trace.c          | 2 ++
- drivers/net/wireless/ath/ath11k/ce.c             | 2 ++
- drivers/net/wireless/ath/ath11k/core.c           | 2 ++
- drivers/net/wireless/ath/ath11k/coredump.c       | 2 ++
- drivers/net/wireless/ath/ath11k/debug.c          | 2 ++
- drivers/net/wireless/ath/ath11k/debugfs.c        | 2 ++
- drivers/net/wireless/ath/ath11k/dp.c             | 2 ++
- drivers/net/wireless/ath/ath11k/fw.c             | 2 ++
- drivers/net/wireless/ath/ath11k/hal.c            | 2 ++
- drivers/net/wireless/ath/ath11k/pcic.c           | 2 ++
- drivers/net/wireless/ath/ath11k/qmi.c            | 2 ++
- drivers/net/wireless/ath/ath11k/trace.c          | 2 ++
- drivers/net/wireless/ath/ath12k/core.c           | 2 ++
  drivers/net/wireless/ath/ath9k/common-beacon.c   | 1 +
  drivers/net/wireless/ath/ath9k/common-debug.c    | 1 +
  drivers/net/wireless/ath/ath9k/common-init.c     | 1 +
@@ -175,10 +154,94 @@ Jeff Johnson (5):
  drivers/net/wireless/ath/ath9k/common.c          | 1 +
  drivers/net/wireless/ath/ath9k/dynack.c          | 1 +
  drivers/net/wireless/ath/ath9k/hw.c              | 1 +
- drivers/net/wireless/ath/main.c                  | 1 +
- 30 files changed, 53 insertions(+)
----
-base-commit: 2b404d0c06adaeeebd355bd727ef600706b28197
-change-id: 20250610-ath-unused-export-df19562d1b37
+ 7 files changed, 7 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath9k/common-beacon.c b/drivers/net/wireless/ath/ath9k/common-beacon.c
+index 01d6d3205a654292397557990ea485b074313341..e4df89f2fa031ad15a40bfb49ea7639b1ab72a74 100644
+--- a/drivers/net/wireless/ath/ath9k/common-beacon.c
++++ b/drivers/net/wireless/ath/ath9k/common-beacon.c
+@@ -14,6 +14,7 @@
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
++#include <linux/export.h>
+ #include "common.h"
+ 
+ #define FUDGE 2
+diff --git a/drivers/net/wireless/ath/ath9k/common-debug.c b/drivers/net/wireless/ath/ath9k/common-debug.c
+index 7aefb79f6bed5b765de27c1e5d46c9f7ad62647a..1ea070200e4a32be34d2af6784f9196aab4e1925 100644
+--- a/drivers/net/wireless/ath/ath9k/common-debug.c
++++ b/drivers/net/wireless/ath/ath9k/common-debug.c
+@@ -14,6 +14,7 @@
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
++#include <linux/export.h>
+ #include "common.h"
+ 
+ static ssize_t read_file_modal_eeprom(struct file *file, char __user *user_buf,
+diff --git a/drivers/net/wireless/ath/ath9k/common-init.c b/drivers/net/wireless/ath/ath9k/common-init.c
+index 7c13a1deb3acf1c1a1430a29a50f79bfb539e121..da102c791712e7f2eaac06d0d91b9ade08faf8f9 100644
+--- a/drivers/net/wireless/ath/ath9k/common-init.c
++++ b/drivers/net/wireless/ath/ath9k/common-init.c
+@@ -16,6 +16,7 @@
+ 
+ /* We use the hw_value as an index into our private channel structure */
+ 
++#include <linux/export.h>
+ #include "common.h"
+ 
+ #define CHAN2G(_freq, _idx)  { \
+diff --git a/drivers/net/wireless/ath/ath9k/common-spectral.c b/drivers/net/wireless/ath/ath9k/common-spectral.c
+index 300d178830adf6aeda9bda6db2ef31becce9c917..ca01a07f6630cac3ca69b3fb64c5e51e983e1d81 100644
+--- a/drivers/net/wireless/ath/ath9k/common-spectral.c
++++ b/drivers/net/wireless/ath/ath9k/common-spectral.c
+@@ -14,6 +14,7 @@
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
++#include <linux/export.h>
+ #include <linux/relay.h>
+ #include <linux/random.h>
+ #include "ath9k.h"
+diff --git a/drivers/net/wireless/ath/ath9k/common.c b/drivers/net/wireless/ath/ath9k/common.c
+index 099f3d45c594d7bbe7c56aad7503627bd37d20d1..ffcf2276eb92e5f6d38eff13adc56c9ccfbba56b 100644
+--- a/drivers/net/wireless/ath/ath9k/common.c
++++ b/drivers/net/wireless/ath/ath9k/common.c
+@@ -18,6 +18,7 @@
+  * Module for common driver code between ath9k and ath9k_htc
+  */
+ 
++#include <linux/export.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ 
+diff --git a/drivers/net/wireless/ath/ath9k/dynack.c b/drivers/net/wireless/ath/ath9k/dynack.c
+index 321ff54fdb4237f32ffa7c3e52f1c2adddc729fc..598b3a2ad818db88337e74a37d68704e2e4dc241 100644
+--- a/drivers/net/wireless/ath/ath9k/dynack.c
++++ b/drivers/net/wireless/ath/ath9k/dynack.c
+@@ -14,6 +14,7 @@
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
++#include <linux/export.h>
+ #include "ath9k.h"
+ #include "hw.h"
+ #include "dynack.h"
+diff --git a/drivers/net/wireless/ath/ath9k/hw.c b/drivers/net/wireless/ath/ath9k/hw.c
+index f9a774bd0e13937034989b772af2ab74e4cb3a49..14de62c1a32bd2459cc443028a4410cc2c6e4b5b 100644
+--- a/drivers/net/wireless/ath/ath9k/hw.c
++++ b/drivers/net/wireless/ath/ath9k/hw.c
+@@ -14,6 +14,7 @@
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
++#include <linux/export.h>
+ #include <linux/io.h>
+ #include <linux/slab.h>
+ #include <linux/module.h>
+
+-- 
+2.42.0
 
 
