@@ -4,103 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD1B4C5B552
-	for <ath11k@archiver.kernel.org>; Tue, 10 Jun 2025 03:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8839BC61CE7
+	for <ath11k@archiver.kernel.org>; Wed, 11 Jun 2025 04:37:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ArfNvnxR4/D58nIc1VUnd+S5AAkbAYFa23X9JAICe2Y=; b=bG1HI13f2ogv6MB75EFGwHY+eB
-	eFAXgpZypuOAh59VwwNV1jxmd1LXMpKZCr5HGo5IwGC7H7Q2GGx+fFbpo2toeIfMCTXeP/v3LqRIu
-	2Seq0KLrFNm1am79ixqiDS5S2emOUtDNpBpg0KaGnWph7uWS+mYMP1M888E2HdtVRYzPDtlwasUqM
-	Wh3eVicmh59kiAd+H044KrK7k5bBK/xVXuec56y0D7WhnLVw+N8N99FqJyvMmkkGRkso4XVsIneFC
-	ypT6WvpyD5HPrelw0i12sKVjwZ6pY4y/RZWMK1m9i1HrVEfR3jB7z/9Sq54nEE4wW3EFcH//y7nYg
-	WnVz0UrQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=FE1cAWbg11FBslkXTnrUJG3ETee3kwzfdEhvTNzCUjg=; b=IuBLSPtlLnFEchXqy43s3DCS3C
+	Kq+/nKlEtAaZD3xVeu98g3/2VtfzB7K5ATsRNtjms9Q/oC8/e7Tc3/mhT/W6vhTHQqQcU81pc7eJ6
+	4ETIHLVPitbF7URXinkcPf9wDwWribAiAUIjkSt7VDOSRJ+vm9CIQhiOY4M2VR4t5qWeTkqeCKILH
+	M1gXuiK6+kjE7+eE6vR2TrtTSAZ0T8PsvNeo9houf2rks4q1+81maIM5fDUlCHYkkxY3gdLMA1Af+
+	SE0TzTG9X6KWamG3+fLdYkKl5N5on8GblC/ZKz6ERIPxIU4TFVvY+agOsotCU3nRxJkLGsCfIje7o
+	1cnyFA/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOpGW-00000005fKc-41tm;
-	Tue, 10 Jun 2025 03:03:08 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uPDDl-00000008pgb-3uFf;
+	Wed, 11 Jun 2025 04:37:53 +0000
+Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOpGU-00000005fKF-20rm
+	id 1uPDDj-00000008pgH-3acy
 	for ath11k@lists.infradead.org;
-	Tue, 10 Jun 2025 03:03:07 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 559JDIXY007352;
-	Tue, 10 Jun 2025 03:03:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ArfNvnxR4/D58nIc1VUnd+S5AAkbAYFa23X9JAICe2Y=; b=LSUZJxjgh7L35jxv
-	qSv11Yd70mXhRsrqLwoICVuj1VyDHxzzadpJgwBOYy2rRetP0FeOO0xB4Gcx08IT
-	hH7W7qTVwxTSLEE72NS0tmGhnAOHEePRZWRxGZ9Iys4pNSn6oK+/j9ZaTJhTz2rZ
-	4I+HnHdsnxBzrmDa6TkfTE7cjjaADcv6oCsXf8OMhDsRZn2Z4U5WkNSPJEcFbpz8
-	4IhJ2V2FkGVkKktsN4g3iXX80laWFZ6VWcbpk3Re8QGwtaUvWCmMb0qfViiNxBMK
-	9rQ+ZFb5yIbxaVY4nbZCNfFAA5oCsnYNmYdOKXwab0mlo8j6/WsBO28d5Oa+JrYY
-	d3wHXg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474eqcfrhy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Jun 2025 03:03:02 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55A3310h026094
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Jun 2025 03:03:01 GMT
-Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Jun 2025
- 20:02:59 -0700
-Message-ID: <de532ef3-6f24-40dd-9a92-6f2e6c3b4ff5@quicinc.com>
-Date: Tue, 10 Jun 2025 11:02:56 +0800
+	Wed, 11 Jun 2025 04:37:52 +0000
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-234d366e5f2so70630735ad.1
+        for <ath11k@lists.infradead.org>; Tue, 10 Jun 2025 21:37:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1749616671; x=1750221471; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FE1cAWbg11FBslkXTnrUJG3ETee3kwzfdEhvTNzCUjg=;
+        b=YU+z2pLmcvU5I3pB7Qf/FGTNPztRkhdKWxZCHuaAEPAbfdbORRS/BjhS+WmGPODcUs
+         OV24t2aA0edYYjhJ9a057+k/OhnXUMXTWmEEtui1dn9BZnbTr66xlaVpYmmJ129zDABh
+         eDzT1HIeHFl0Wt9kFyhqZRCKlb5Wm0pJG9sH8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749616671; x=1750221471;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FE1cAWbg11FBslkXTnrUJG3ETee3kwzfdEhvTNzCUjg=;
+        b=WBmSiKamFtR3K1ICgu8JhfnOK/0Uqja3YO/ZtfJQdK4ByZluk7dDQPk6yD5HNOHAMn
+         6NqJOgPgGRgKavoiKXgWqrlCS5wam/uT1ajeXbS58gDYLGj3HagKI5cK9sjSw/IDqiOx
+         gXXlLjyvFh9ofZKXlJdg2A/aMZQ1bRKIWcEEk9padAjKQiDiJFIyWcos6Rl5qE4OjfDn
+         hOUlqiXNcN65yTd/vY0lsttm2KQAiJAcqsu35I7sfCfMyeXvmaQ67bcmFsmEdimcnQF6
+         w6dtTUEcH/a5dnnQVPwUC3tCL3ZNdNXO1CdY+FjI7xZviC1KuDT7WTOYPV5Rk5q+93Kg
+         D5mg==
+X-Forwarded-Encrypted: i=1; AJvYcCWUTSRZoNDNgGmWd0Fml+ireXYZb5PvPhpe4GYBYrXq6z9NxogwSDb8wRXRhMJhgAR521bVuu8=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzEYJK2YOwVFRYGbwY2Gayo0JbFGYWI4vmXqH8rGpcLncRUp4jr
+	tQSAcLhtgDAV9PtlPl+NbnAs96DqrTj31zlInXwDgU0GLL+xfNdACXEPxhNXgpH+BasX1DJ8Ggd
+	nqho=
+X-Gm-Gg: ASbGncvZYVofzS+KDKsI9as3qI6ScGQecpqmuJT+zkisfC1+iSudhbYACeWud0dR2Rt
+	I8Z544vMbRWa/8tkVq2WaJgfTVVnTrd1rzs6Nxg29gVjOYIK2AmnMzrR48Bj2FLdnu30PXLgwz6
+	T/a+mv9ABAuBKgdZohvii9ufHdwlS4+qgpA2UGHoeEwBp14Hhanwc+cV6Z8SAgSvM5oU0aNYd/C
+	jL4yqWrHVarFkiP3O1bVY5YdpDuaxXV+HwIZ+AKpUB7GWOFQZCGEwsRtNS5EWjN047UqK44kmRA
+	/rG3fGy2aSeP6593hwvS/l919W8je1AW1uk0tOL+51NfaABYX8hjDuNYiB/8PQGm4SymKgYt5w0
+	a
+X-Google-Smtp-Source: AGHT+IFM8NgLpiLIoUkojJ3i2pht8cBR3G2XAm5m39HTWlGcYeBr0M+6D9ErnNi2+LitOkchPJZG1g==
+X-Received: by 2002:a17:903:32c1:b0:235:a9b:21e7 with SMTP id d9443c01a7336-23641b2654bmr26834905ad.48.1749616671102;
+        Tue, 10 Jun 2025 21:37:51 -0700 (PDT)
+Received: from google.com ([2401:fa00:8f:203:eac8:ff09:e566:df3a])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603077eb7sm78450355ad.39.2025.06.10.21.37.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 21:37:50 -0700 (PDT)
+Date: Wed, 11 Jun 2025 13:37:46 +0900
+From: Sergey Senozhatsky <senozhatsky@chromium.org>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Sergey Senozhatsky <senozhatsky@chromium.org>
+Subject: Re: [PATCHv2] wifi: ath11k: mark reset srng lists as uninitialized
+Message-ID: <74caimlaibla7rge2eoiubeesp6pz7e6u7ifvbw57t4e6q4qso@iypz4pqd7kpr>
+References: <20250529035708.3136232-1-senozhatsky@chromium.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next 2/2] wifi: ath11k: support usercase-specific
- firmware overrides
-To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, <jjohnson@kernel.org>,
-        <johannes@sipsolutions.net>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20250522013444.1301330-1-miaoqing.pan@oss.qualcomm.com>
- <20250522013444.1301330-3-miaoqing.pan@oss.qualcomm.com>
-Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20250522013444.1301330-3-miaoqing.pan@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDAyMiBTYWx0ZWRfX9+ysD0Ci7QQa
- 6h6vgZsUOMgnSNbYlreF5c2GZGSevioggPg1QlNQkh8IO4bIr2GC2XKwYbnHjvCg998jIDKB8i/
- gcknhQqLqLhMYdvsGXs5k0prfec4EB8EQnD2Yv6kXONabzl4cR8KMFk4zICvnPtRt7EraoFrqgA
- J/CrtGk4u/mF2BDtJ1RdtbfuEZ2SswxyBqOTuSpL0KtO+q31MQpf2gWgLQlynrvWMgmrj/drIk0
- RqOhC7f50CY9k1QzgcoZQvFV8hrVdHDXTIgDYqScApfSLcKRKqlTV/2acmR2SgFVgS6dyEot/xQ
- l2/5iBqec0lfvvGZQhzUeCh4Y0n7eIEG7aCi9r4Q6DUORZwUWuE47yqQBX1iwowNYD/4YZtO4Tw
- 8gA/nCzDV7bzE/ibi4q4E7wDE8Vy7XZdD+bRXxaWT0sRM7K1LMRtVHejoLsmTzJuSy58+4Bb
-X-Authority-Analysis: v=2.4 cv=Q7TS452a c=1 sm=1 tr=0 ts=6847a066 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=J7dR-uFlIZdojmd15SYA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: fRCW05m_DI0nbHLbYFxvVi1U4fBhkiW3
-X-Proofpoint-ORIG-GUID: fRCW05m_DI0nbHLbYFxvVi1U4fBhkiW3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-10_01,2025-06-09_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 mlxscore=0 spamscore=0 mlxlogscore=824
- bulkscore=0 clxscore=1011 lowpriorityscore=0 adultscore=0 impostorscore=0
- priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506100022
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250529035708.3136232-1-senozhatsky@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250609_200306_567896_049D61E3 
-X-CRM114-Status: GOOD (  18.65  )
+X-CRM114-CacheID: sfid-20250610_213751_935845_B4330A66 
+X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,72 +96,13 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On (25/05/29 12:56), Sergey Senozhatsky wrote:
+> ath11k_hal_srng_deinit() frees rdp and wrp which are used
+> by srng lists.  Mark srng lists as not-initialized.  This
+> makes sense, for instance, when device fails to resume
+> and the driver calls ath11k_hal_srng_deinit() from
+> ath11k_core_reconfigure_on_crash().
+[..]
 
-
-On 5/22/2025 9:34 AM, Miaoqing Pan wrote:
-> Introduce 'firmware-name' property to allow end-users and/or integrators to
-> decide which usecase-specific firmware to run on the WCN6855. This is
-> necessary due to resource limitations such as memory capacity and CPU
-> capability, or performance and power optimization for different application
-> scenarios.
-> 
-> Currently, there are two firmwares, both files can be executed
-> interchangeably.
-> For example:
-> 
-> - ath11k/WCN6855/hw2.0/amss.bin,
->   ath11k/WCN6855/hw2.0/m3.bin
->   ath11k/WCN6855/hw2.0/board-2.bin
-> 
-> - ath11k/WCN6855/hw2.0/nfa765/amss.bin,
->   ath11k/WCN6855/hw2.0/nfa765/m3.bin
->   ath11k/WCN6855/hw2.0/board-2.bin
-> 
-> The former is the default firmware, suitable for most WiFi 6 STA functions.
-> The latter adds support for commercial-quality SAP and optimizes power
-> consumption for IoT applications. And both use the same BDF/regdb data
-> within the main board-2.bin.
-> 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04479-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
-> 
-> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-> ---
->  drivers/net/wireless/ath/ath11k/core.h | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-> index 339d4fca1ed5..67b3b6d898fa 100644
-> --- a/drivers/net/wireless/ath/ath11k/core.h
-> +++ b/drivers/net/wireless/ath/ath11k/core.h
-> @@ -17,6 +17,7 @@
->  #include <linux/average.h>
->  #include <linux/firmware.h>
->  #include <linux/suspend.h>
-> +#include <linux/of.h>
->  
->  #include "qmi.h"
->  #include "htc.h"
-> @@ -1320,8 +1321,16 @@ static inline void ath11k_core_create_firmware_path(struct ath11k_base *ab,
->  						    const char *filename,
->  						    void *buf, size_t buf_len)
->  {
-> -	snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
-> -		 ab->hw_params.fw.dir, filename);
-> +	const char *fw_name = NULL;
-> +
-> +	of_property_read_string(ab->dev->of_node, "firmware-name", &fw_name);
-> +
-> +	if (fw_name && strncmp(filename, "board", 5))
-> +		snprintf(buf, buf_len, "%s/%s/%s/%s", ATH11K_FW_DIR,
-> +			 ab->hw_params.fw.dir, fw_name, filename);
-> +	else
-> +		snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
-> +			 ab->hw_params.fw.dir, filename);
->  }
->  
->  static inline const char *ath11k_bus_str(enum ath11k_bus bus)
-
-Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
-
-
+Gentle ping.
 
