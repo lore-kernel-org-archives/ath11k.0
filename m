@@ -4,83 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E21BC61CE8
-	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 09:58:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 561A8C71136
+	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 11:32:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=TpZLNWW0DOhsGzvSZThrO5Z24o9vsj5Ub5xo7XurfUA=; b=s3ewzW80gKM186sPRCpFjjRM67
-	21SgqOLDStuYQ1JdllcbaY9iEfPkJB1Z1ZHZod9YWJ6+kLVwE65hABxgCrsdCgrtSCCz3ABdcKusa
-	WF5BN4NTmU2Zzb8nQh/Zl2VZcS8LvH7lCvQix3PRjt50jjkipErBZwU1HbMBbxVt0Pmwf8baaK+mZ
-	gyub6+DXlgoXfD7Pg5L1lkTesbN5BYTPFC+38+xBYlWrNYjs2URQskOANrKD39B2SXBGKWJHAygXR
-	U9FaTv7Owo5QuaemJL3uE6kCMnqk8/oxtVNNPjb2JauhkYXOSnhVKeXzl8IT0tdIZO0PGN1xaQ2Fw
-	c4vKNbpg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=MfDva740sbD7wBeTOlrPtgcsAi2TWLZrQwwMYisXkR8=; b=F60WY5XWw41UoBHA8aPV+EWd8M
+	Rp0QvL+9pD6KZ5OLkEYvTjG/FXwje/WkMZABDUInhSAg7RkiOSBqFO8enRqDR2W6JMMunVnWjfTJG
+	8K19tK9EbmN6k1nX9SwkEgGIOQUzrd0VFJoydMh4auf64gvjgyeEd7xYcCU505ax+/6pkFrYzh8Fs
+	QDcs1nIiTAo5Sn2uuS2eaqkI6h4wOyX+Exce8pRSTJ5f9w22/9PNOeluZW0CmTBohB3MqyH2dHAMh
+	cNntbIcS8px8RBngBWkA3DckCK+5+gof6BVBmYHD2tOqYIntuK/Sl/Z+YktArkWryZKSpHlXqBtgA
+	CAiDl/cA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPehP-0000000CtIy-0buR;
-	Thu, 12 Jun 2025 09:58:19 +0000
-Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
+	id 1uPgAa-0000000D9JZ-0M7q;
+	Thu, 12 Jun 2025 11:32:32 +0000
+Received: from smtp-out2.suse.de ([195.135.223.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPdZP-0000000Ch3K-3jGx
+	id 1uPekG-0000000Cttz-48LA
 	for ath11k@lists.infradead.org;
-	Thu, 12 Jun 2025 08:46:01 +0000
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-74865da80c4so498666b3a.3
-        for <ath11k@lists.infradead.org>; Thu, 12 Jun 2025 01:45:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1749717959; x=1750322759; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TpZLNWW0DOhsGzvSZThrO5Z24o9vsj5Ub5xo7XurfUA=;
-        b=TDgqtkM6VzCPcGO0vdKlZQmFrkbRmFoO3JK0pWDF2mIV/W2yAG6y4T+1UEBjIfpOrm
-         RR1kpNyU9KyNaa+i7sSTxsu234uU7nTDM5Lgh1XQEITapFKhrDKalOS3o/E5TtUKPO0S
-         vzOGZyy2CtBDU6Iw/6s/KiMnqcXXiQH05mcNE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749717959; x=1750322759;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TpZLNWW0DOhsGzvSZThrO5Z24o9vsj5Ub5xo7XurfUA=;
-        b=IaV/vjRnP4UzCkOO4R9RZMMOlivcAvkcudVk1361KixlgXCP5YKsU3YmLLAP3JPL7b
-         5u7V3yysJ9ecYsbn7wu8jVLgH5b3JwS++Gk1ZKIGDZBkTmngw+3J/jRQs24KA6GY6UJV
-         m1l2LPt//tUgLU6ZZnJrIRNDs1+JWgeizongJ5Tmonez3MBbNtu1ulyfMLVAxXLTkE+i
-         uKRTDPHX/29a9irGmpG1FOi8ku/ZVw4dBjZpTqFDMcuQUKDQkLgbBw/EJyQrDirLgzWe
-         GeGPTghtXi6p2CWmg5RwkAysahBPVhxrWo5vO2ABToYvvUT4SIEsGDTYXnSbqURN3I2z
-         rATQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPoPfs+7cqKPy5kxQhOCa83yo46fsoTbv+nkwG10eVUEwY+RTJPb11ki3A+30ycmiu29Yq2Wo=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwFzwcDHVy9bdTaV1uzrjEnLvcW23E1ieWIAgj+nSWcAYINluA2
-	+iFImRudjdFWuDPDyGTqM+j/hFOvU5NQQLokvW5jP0NjGgW6Su3WrbdswyopW1guGA==
-X-Gm-Gg: ASbGncvHguGprq63rSyamf7dAXSM1cghEOlYLJ9g0vWM4E7D30ydCwkMkECZqXVcA7i
-	9u1iwDbY/T0lDkgWbUP2NeoGVIZDCG5BqLzwndPWUvBSxhUnu3H1TK6eGi3SJk+W+AI2GK0y6NF
-	KaixERG9YasWtC0t2k9cvkvgQOz+0RtbrR1mpk5xizgzweUuZ8OcsgRXdIClU9JwLHGNw9Vu6Ji
-	SGmmqdNT5OttKkrypMDnNjzIVFR0Jk25XtEdbMAw1LMQMJUje00l0qx5XDyPwlZY581BdP8wdyX
-	U6Z4qoqbXOZxKriljiHnsLs0/Ko5B3Rtbb+tKjHkB+pM0uZWllW5yqKXMThxkWXQJYO+Ypy7WFI
-	2P4fAcVlTaQQ=
-X-Google-Smtp-Source: AGHT+IH+WHMtXn8bwbKfQnFjtwXx1iGxMWnJkL+ndCJJX/b5xWKBlUyZSGGvyl1WSRHTr2d/Tewnww==
-X-Received: by 2002:a05:6a00:8593:b0:746:1e35:3307 with SMTP id d2e1a72fcca58-7487e22c268mr2650354b3a.14.1749717959076;
-        Thu, 12 Jun 2025 01:45:59 -0700 (PDT)
-Received: from tigerii.tok.corp.google.com ([2401:fa00:8f:203:fcb5:79e0:99d6:8d5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74880a10152sm933200b3a.172.2025.06.12.01.45.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jun 2025 01:45:58 -0700 (PDT)
-From: Sergey Senozhatsky <senozhatsky@chromium.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Sergey Senozhatsky <senozhatsky@chromium.org>
-Subject: [PATCHv3] wifi: ath11k: clear initialized flag for deinit-ed srng lists
-Date: Thu, 12 Jun 2025 17:45:06 +0900
-Message-ID: <20250612084551.702803-1-senozhatsky@chromium.org>
-X-Mailer: git-send-email 2.50.0.rc1.591.g9c95f17f64-goog
+	Thu, 12 Jun 2025 10:01:18 +0000
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 1AC621F78E;
+	Thu, 12 Jun 2025 10:01:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1749722474; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MfDva740sbD7wBeTOlrPtgcsAi2TWLZrQwwMYisXkR8=;
+	b=oB10xmEDnnQCgl7Ov5+3Z/w2op1djNanlBxzXo4xZK79GJdzAcQ9L4mIWQ7PfllEKlNHTo
+	VQxcwSdg1iy/F0cKMKYwBJATaZEDnyqoEcpunZuXt0V84pl12QrsmjaapE5/3t0OsTBItt
+	G4J8dEEYMBLDD8k4wj1lcx7uVXiuJKU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1749722474;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MfDva740sbD7wBeTOlrPtgcsAi2TWLZrQwwMYisXkR8=;
+	b=CCQfAkcfmqyL/JwRt0+58QGcb4i5sA9J2V2eC4V9QTbny0fpirayYOGXmv0Eui/CzBHk/W
+	aqZ3kC+n1RE894CA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1749722474; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MfDva740sbD7wBeTOlrPtgcsAi2TWLZrQwwMYisXkR8=;
+	b=oB10xmEDnnQCgl7Ov5+3Z/w2op1djNanlBxzXo4xZK79GJdzAcQ9L4mIWQ7PfllEKlNHTo
+	VQxcwSdg1iy/F0cKMKYwBJATaZEDnyqoEcpunZuXt0V84pl12QrsmjaapE5/3t0OsTBItt
+	G4J8dEEYMBLDD8k4wj1lcx7uVXiuJKU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1749722474;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MfDva740sbD7wBeTOlrPtgcsAi2TWLZrQwwMYisXkR8=;
+	b=CCQfAkcfmqyL/JwRt0+58QGcb4i5sA9J2V2eC4V9QTbny0fpirayYOGXmv0Eui/CzBHk/W
+	aqZ3kC+n1RE894CA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 81D6D132D8;
+	Thu, 12 Jun 2025 10:01:13 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id USolHGmlSmjRSgAAD6G6ig
+	(envelope-from <pfalcato@suse.de>); Thu, 12 Jun 2025 10:01:13 +0000
+Date: Thu, 12 Jun 2025 11:01:03 +0100
+From: Pedro Falcato <pfalcato@suse.de>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, 
+	akpm@linux-foundation.org, Jeff Johnson <jjohnson@kernel.org>, 
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mm@kvack.org
+Subject: Re: [PATCHv2] wifi: ath11k: mark reset srng lists as uninitialized
+Message-ID: <zlzpmburt4o75yizy6uknx4ews4eox6wbr5jleuixp6o6v2tuk@sz6k4x4gcolo>
+References: <20250529035708.3136232-1-senozhatsky@chromium.org>
+ <5857380e-ced9-4118-b9a0-ce926b25c11c@quicinc.com>
+ <rxaibpgtf37w3th5lnt3w574w443yononqjoglyfktlcxe26qg@jpmtkckrotzp>
+ <d02bca79-66f1-48b0-8c3b-aeaaa17135a9@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d02bca79-66f1-48b0-8c3b-aeaaa17135a9@quicinc.com>
+X-Spamd-Result: default: False [-3.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	MID_RHS_NOT_FQDN(0.50)[];
+	NEURAL_HAM_SHORT(-0.20)[-0.995];
+	MIME_GOOD(-0.10)[text/plain];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250612_014559_925797_BA7FC3C0 
-X-CRM114-Status: GOOD (  11.56  )
+X-CRM114-CacheID: sfid-20250612_030117_170350_99FECFCB 
+X-CRM114-Status: GOOD (  25.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,91 +131,83 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In a number of cases we see kernel panics on resume due
-to ath11k kernel page fault, which happens under the
-following circumstances:
+On Thu, Jun 12, 2025 at 04:01:49PM +0800, Baochen Qiang wrote:
+> [+ kernel mm list]
+> 
+> On 6/12/2025 1:04 PM, Sergey Senozhatsky wrote:
+> > On (25/06/12 11:30), Baochen Qiang wrote:
+> >> On 5/29/2025 11:56 AM, Sergey Senozhatsky wrote:
+> >>> ath11k_hal_srng_deinit() frees rdp and wrp which are used
+> >>> by srng lists.  Mark srng lists as not-initialized.  This
+> >>> makes sense, for instance, when device fails to resume
+> >>> and the driver calls ath11k_hal_srng_deinit() from
+> >>> ath11k_core_reconfigure_on_crash().
+> >>
+> >> Did you see any issue without your change?
+> > 
+> > We do see some issues, yes, on LTS kernels.
+> > 
+> > [..]
+> >>> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+> >>> index 8cb1505a5a0c..cab11a35f911 100644
+> >>> --- a/drivers/net/wireless/ath/ath11k/hal.c
+> >>> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+> >>> @@ -1346,6 +1346,10 @@ EXPORT_SYMBOL(ath11k_hal_srng_init);
+> >>>  void ath11k_hal_srng_deinit(struct ath11k_base *ab)
+> >>>  {
+> >>>  	struct ath11k_hal *hal = &ab->hal;
+> >>> +	int i;
+> >>> +
+> >>> +	for (i = 0; i < HAL_SRNG_RING_ID_MAX; i++)
+> >>> +		ab->hal.srng_list[i].initialized = 0;
+> >>
+> >> With this flag reset, srng stats would not be dumped in ath11k_hal_dump_srng_stats().
+> > 
+> > I think un-initialized lists should not be dumped.
+> > 
+> > ath11k_hal_srng_deinit() releases wrp.vaddr and rdp.vaddr, which are
+> > accessed, as far as I understand it, in ath11k_hal_dump_srng_stats()
+> > as *srng->u.src_ring.tp_addr and *srng->u.dst_ring.hp_addr, presumably,
+> > causing things like:
+> > 
+> > <1>[173154.396775] BUG: unable to handle page fault for address: ffffb4e4c046f010
+> > <1>[173154.396778] #PF: supervisor read access in kernel mode
+> > <1>[173154.396781] #PF: error_code(0x0000) - not-present page
+> 
+> I am confused here: if the root cause is driver trying to read a freed memory, it should
+> not result in a PF issue. Because even if freed, the page is there and still mapped in
+> kernel page table.
+> 
 
-1) First ath11k_hal_dump_srng_stats() call
+Any memory that is virtually-mapped (read: vmalloc, vmap, vm_map_ram, and others)
+will be unmapped on its subsequent free. I'm not familiar with the DMA subsystem,
+but the address ffffb4e4c046f010 is vmalloc-like.
 
- Last interrupt received for each group:
- ath11k_pci 0000:01:00.0: group_id 0 22511ms before
- ath11k_pci 0000:01:00.0: group_id 1 14440788ms before
- [..]
- ath11k_pci 0000:01:00.0: failed to receive control response completion, polling..
- ath11k_pci 0000:01:00.0: Service connect timeout
- ath11k_pci 0000:01:00.0: failed to connect to HTT: -110
- ath11k_pci 0000:01:00.0: failed to start core: -110
- ath11k_pci 0000:01:00.0: firmware crashed: MHI_CB_EE_RDDM
- ath11k_pci 0000:01:00.0: already resetting count 2
- ath11k_pci 0000:01:00.0: failed to wait wlan mode request (mode 4): -110
- ath11k_pci 0000:01:00.0: qmi failed to send wlan mode off: -110
- ath11k_pci 0000:01:00.0: failed to reconfigure driver on crash recovery
- [..]
+> 
+> > <4>[173154.396824] RIP: 0010:ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k]
+> > <4>[173154.396839] Code: 88 c0 44 89 f2 89 c1 e8 3a 14 06 00 41 be e8 25 00 00 eb 6e 42 0f b6 84 33 78 ff ff ff 89 45 d0 46 8b 7c 33 d8 4a 8b 44 33 e0 <44> 8b 20 46 8b 6c 33 e8 42 8b 04 33 48 89 45 c8 48 8b 3d 45 a3 a0
+> > <4>[173154.396842] RSP: 0018:ffffb4e4dceefc50 EFLAGS: 00010246
+> > <4>[173154.396846] RAX: ffffb4e4c046f010 RBX: ffff90d1c3040000 RCX: a0009634a5d28c00
+> > <4>[173154.396849] RDX: ffffffffb0279d80 RSI: ffffffffb0279d80 RDI: ffff90d2e5d17488
+> > <4>[173154.396851] RBP: ffffb4e4dceefc90 R08: ffffffffb0249d80 R09: 0000000000003b82
+> > <4>[173154.396854] R10: 0000000000000004 R11: 00000000ffffffea R12: ffff90d1c3041c90
+> > <4>[173154.396856] R13: ffff90d1c3040000 R14: 0000000000002828 R15: 0000000000000000
+> > <4>[173154.396859] FS: 0000000000000000(0000) GS:ffff90d2e5d00000(0000) knlGS:0000000000000000
+> > <4>[173154.396862] CS: 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > <4>[173154.396865] CR2: ffffb4e4c046f010 CR3: 000000005ca24000 CR4: 0000000000750ee0
+> > <4>[173154.396868] PKRU: 55555554
+> > <4>[173154.396870] Call Trace:
+> > <4>[173154.396874] <TASK>
+> > <4>[173154.396883] ? __die_body+0xae/0xb0
+> > <4>[173154.396890] ? page_fault_oops+0x381/0x3e0
+> > <4>[173154.396896] ? exc_page_fault+0x69/0xa0
+> > <4>[173154.396901] ? asm_exc_page_fault+0x22/0x30
+> > <4>[173154.396908] ? ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k (HASH:3de7 4)]
+> > <4>[173154.396923] ath11k_qmi_driver_event_work+0xbd/0x1050 [ath11k (HASH:3de7 4)]
+> > <4>[173154.396942] worker_thread+0x390/0x960
+> > <4>[173154.396949] kthread+0x149/0x170
+> 
 
-2) At this point reconfiguration fails (we have 2 resets) and
-  ath11k_core_reconfigure_on_crash() calls ath11k_hal_srng_deinit()
-  which destroys srng lists.  However, it does not reset per-list
-  ->initialized flag.
-
-3) Second ath11k_hal_dump_srng_stats() call sees stale ->initialized
-  flag and attempts to dump srng stats:
-
- Last interrupt received for each group:
- ath11k_pci 0000:01:00.0: group_id 0 66785ms before
- ath11k_pci 0000:01:00.0: group_id 1 14485062ms before
- ath11k_pci 0000:01:00.0: group_id 2 14485062ms before
- ath11k_pci 0000:01:00.0: group_id 3 14485062ms before
- ath11k_pci 0000:01:00.0: group_id 4 14780845ms before
- ath11k_pci 0000:01:00.0: group_id 5 14780845ms before
- ath11k_pci 0000:01:00.0: group_id 6 14485062ms before
- ath11k_pci 0000:01:00.0: group_id 7 66814ms before
- ath11k_pci 0000:01:00.0: group_id 8 68997ms before
- ath11k_pci 0000:01:00.0: group_id 9 67588ms before
- ath11k_pci 0000:01:00.0: group_id 10 69511ms before
- BUG: unable to handle page fault for address: ffffa007404eb010
- #PF: supervisor read access in kernel mode
- #PF: error_code(0x0000) - not-present page
- PGD 100000067 P4D 100000067 PUD 10022d067 PMD 100b01067 PTE 0
- Oops: 0000 [#1] PREEMPT SMP NOPTI
- RIP: 0010:ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k]
- Call Trace:
- <TASK>
- ? __die_body+0xae/0xb0
- ? page_fault_oops+0x381/0x3e0
- ? exc_page_fault+0x69/0xa0
- ? asm_exc_page_fault+0x22/0x30
- ? ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k (HASH:6cea 4)]
- ath11k_qmi_driver_event_work+0xbd/0x1050 [ath11k (HASH:6cea 4)]
- worker_thread+0x389/0x930
- kthread+0x149/0x170
-
-Clear per-list ->initialized flag in ath11k_hal_srng_deinit().
-
-Signed-off-by: Sergey Senozhatsky <senozhatsky@chromium.org>
----
-
-v3:
-- updated commit message and subject line (Baochen Qiang)
-
- drivers/net/wireless/ath/ath11k/hal.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 8cb1505a5a0c..cab11a35f911 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1346,6 +1346,10 @@ EXPORT_SYMBOL(ath11k_hal_srng_init);
- void ath11k_hal_srng_deinit(struct ath11k_base *ab)
- {
- 	struct ath11k_hal *hal = &ab->hal;
-+	int i;
-+
-+	for (i = 0; i < HAL_SRNG_RING_ID_MAX; i++)
-+		ab->hal.srng_list[i].initialized = 0;
- 
- 	ath11k_hal_unregister_srng_key(ab);
- 	ath11k_hal_free_cont_rdp(ab);
 -- 
-2.50.0.rc1.591.g9c95f17f64-goog
-
+Pedro
 
