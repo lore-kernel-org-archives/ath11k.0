@@ -4,84 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDD44C61CE8
-	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 05:04:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D1EC61CE8
+	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 05:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=W6r8e7Fw59ZWedLKYju1tRc3TQYtMZ2U4teZHPzlD0k=; b=LCxvWXzcxnRKB4BgX768gP8CvP
-	De3Ob5FkixAU7p9WPdb41OO8lrWRckuEKWjE+OLbPBpak6YUEWt62w7ZkDL5nBWLK0h9vXEKPKBYs
-	CpR8pV8CMy6xONmcS5iMLU0BmI04fbW7Pb4TcSm2F8a5x3vfforvmUk5V0xDKcjTx9rpTzhOGmM2V
-	STdpNZiQGTl/SLa2pS5Gp8oSFYvpsEwZluxxt5wP4KOOgxIwLUeAEXlp61rd7/HhXRwC/RuRINCMx
-	KHYO/soj6JlvWUHCirZOm5cEBglj4JSp4JCgs/PR9Q8BAJUoW/HM2n8IsQOUhWiYBDau8qCIKMiUi
-	8n7G8x2A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=vy2lggNBoJOaZMU29P6tAcOwzzmR5WDrI4CFRZPSgU0=; b=GblmQxxWK1bIwIBbJoc1L2AyyB
+	W1y9vMHonENycXJ0AXgkxtsDdhuIPC+HYNnr35GxGDtGdbDz3kP7ffYTvr7hD+d5qrdk2mYzBAQsM
+	LdMkOfUFaCaOi2sgw29QEWrQZZrKq6Yv+vw8t6bj5js5okuBhhoqTTzc0/nWcP9QcUMdVw9ZwtnKO
+	xip1C+dqUr5gE13zI+uqcCxmyoa1hY+Bf6ZMHYplLQ93G+g1gOWm2T9q1KpiDwb5b/xmXUghtF2pZ
+	DBvgsj0wFS5MjC8Rxd42pnbFolvESTmQyeqs2KrVJMjnBtrgFb89aQofxtBM8nYX3E7lrtRhFhHE3
+	vbiJsVIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPa6m-0000000CCUJ-2lyl;
-	Thu, 12 Jun 2025 05:04:12 +0000
-Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
+	id 1uPanO-0000000CGHL-0sli;
+	Thu, 12 Jun 2025 05:48:14 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPa6k-0000000CCTf-0RcX
+	id 1uPanD-0000000CGGe-0TLt
 	for ath11k@lists.infradead.org;
-	Thu, 12 Jun 2025 05:04:11 +0000
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-234b440afa7so5705625ad.0
-        for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 22:04:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1749704649; x=1750309449; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=W6r8e7Fw59ZWedLKYju1tRc3TQYtMZ2U4teZHPzlD0k=;
-        b=IF24BWzA/uWPwErOlkAYrZ3ozXv/wSJWUPBY042NOBCkfijIaZedSXTQaYfWD/CQjr
-         EcCpkz4T44qBC3rris1K5m15tXoSotHJvBdlD2MNwJu5t1WqHm1upKuOJRrnd0W7ciUA
-         HrunyVTxbSuKMUsckia/UDop8n1qMn3DLPh5o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749704649; x=1750309449;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W6r8e7Fw59ZWedLKYju1tRc3TQYtMZ2U4teZHPzlD0k=;
-        b=NPj0CHprpsjQ4PIyAZzbeMpLQCce6qYt34WKe7VqFoPr3i306z6gLR2nhyP39pT5Ey
-         nw/CBbM5Q4sYbt6Qs3q3Sw55xeGpscOFUnzEAcPv3v2PXvJVDFLfxHOQP7Jmic4B640N
-         syGyfPAm/9HuM/hXSlqUQeq4pwPuVS/29DTl7XhvtFan0QcnRkT9n8M5+q4rtORn2z4M
-         cClzqL2C8OKqz5OzIMHAx0LyAibNrJPQw6uYIiESeAqCzrOu/DfIi6wgCnvrosGQ3B1h
-         UJiMO9z3+QMy3Te7wPNadvVKy5yIgF/IEDvNT6/pbgJ1rs0tcYtIpvroHp1vRk8cprgF
-         gwWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWoHwqLdBOdyv7cdJw7BzxdL9u/bvyoVtfDQ4jCf5qG6qTj3+edzFQ3Ynhiao31Dc9bUh22VnU=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx4T3cmL58Eh56F3MZimxcvhpUBo87/qnfOReCzMy5XC4WE6LrU
-	vLnH+92f/xVvYOi+5tdR+LI8gPZhGzjYbJKqYySOpQVdGPahlXg/0rOlvWtxcvJjGJNrP2gzkYU
-	DaFk=
-X-Gm-Gg: ASbGncsSNV8VysCtAmf9XY0Y23RZAdkHyHujgaIHgZrgpKq5HmVRE5JtSjw+uJzgkFa
-	qRYVBL3z8qYQEXkoh905nMg/c4ezqQf7J4pD8UzuLbwLUN+63GCxz13gV9MCoPkAxTQpP72kgqo
-	9kF9SO1QZg9M35i5G+j1OoThLb7iIF/ir5xHnSvJNqIShJlG6z6ARTczoCwA7JHAPBP6aPv7Sg+
-	uMOjLKkCtogBtwCcyqDQF2aLLn4IdcV3Tv9WeYoUvOcExQxH/cgt7i1k1kRtw8TpYJr7vUySORD
-	Krql5FMPH826JXPJ4TP3O5uxDGtSbnAeB6ipuTlL8OO2J3sir+GwfOyK6YaAri2FEw==
-X-Google-Smtp-Source: AGHT+IGeKQSxkczV8S+QUwl5tRJhb9rbzfk+IBqR9gTkUXX9tBbQqIjwP5qfbSnKVd6Bo+Y8XOZRxQ==
-X-Received: by 2002:a17:902:f605:b0:234:d7b2:2aab with SMTP id d9443c01a7336-23641abc3c0mr84979595ad.14.1749704648947;
-        Wed, 11 Jun 2025 22:04:08 -0700 (PDT)
-Received: from google.com ([2401:fa00:8f:203:68c8:ceca:d8e4:322c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2364e6f9878sm4753525ad.151.2025.06.11.22.04.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 22:04:08 -0700 (PDT)
-Date: Thu, 12 Jun 2025 14:04:03 +0900
-From: Sergey Senozhatsky <senozhatsky@chromium.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+	Thu, 12 Jun 2025 05:48:05 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55BJKBSr013464;
+	Thu, 12 Jun 2025 05:47:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vy2lggNBoJOaZMU29P6tAcOwzzmR5WDrI4CFRZPSgU0=; b=KF/nxShGSv6QM7Z4
+	hQaNFFm4e0ZD/4swvAtBYFixyIhOpiqBauhoHQ4zsndJ5OW+N1wmlhqdWdfDirv7
+	Jw3yYeUlBMjCDxFnSb0uC145q6eyfsiJ6wa4DsB8hnUq4gsP4Xg2vu7VEQxN553l
+	BeKEPK+i71fvxVe700qPFpTvWrWH01qn/eWONNBkTGVSCa8sB9RQAeoS10AhdZDi
+	q9MqMA8Kua82Isw5BLvHjwGOk0H2zAs4UIJ6OAULnWvGVVpWHHIp2FyT6bptxP7j
+	TCE5C7YacKEhul6dOBaTZpCcn1+wXlaAiUKT8Wcul5JU8MecnIpUToq8uSNaPBNC
+	CYghjA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 476fmnf0ac-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Jun 2025 05:47:59 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55C5lwFo008601
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Jun 2025 05:47:58 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Jun
+ 2025 22:47:56 -0700
+Message-ID: <2f77045c-6763-4fc4-bf09-50fd9b76a394@quicinc.com>
+Date: Thu, 12 Jun 2025 13:47:54 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCHv2] wifi: ath11k: mark reset srng lists as uninitialized
-Message-ID: <rxaibpgtf37w3th5lnt3w574w443yononqjoglyfktlcxe26qg@jpmtkckrotzp>
+To: Sergey Senozhatsky <senozhatsky@chromium.org>
+CC: Jeff Johnson <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
 References: <20250529035708.3136232-1-senozhatsky@chromium.org>
  <5857380e-ced9-4118-b9a0-ce926b25c11c@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5857380e-ced9-4118-b9a0-ce926b25c11c@quicinc.com>
+ <rxaibpgtf37w3th5lnt3w574w443yononqjoglyfktlcxe26qg@jpmtkckrotzp>
+Content-Language: en-US
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <rxaibpgtf37w3th5lnt3w574w443yononqjoglyfktlcxe26qg@jpmtkckrotzp>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: IKhNYES_ax4epiXRteVvtZpYsDTKKRZt
+X-Proofpoint-GUID: IKhNYES_ax4epiXRteVvtZpYsDTKKRZt
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEyMDA0MSBTYWx0ZWRfXzj3nsDsf5m9h
+ GTELXCbEJfA2WOBbDukCAcWMPJJ5xYH5JYLTpfFIDNxV1T0raQ5uypG9WPJ8wJILH3AWu6Qhabb
+ W9LrhS9BpksL1ffdzlz+LhP5QAGTcGWCGMbSiCTcDT974deerFVBN+8IJ89gjfPFBKN8l18V48D
+ Kp45+69K6sgPKLggckKM+ierfD0O2CI1prG8bywctzIaNzhBNeNDFIOxE5fpNw5eCJ7aw57eHiu
+ K0i5FLF8OiXP76IPug9a9fa5F3s4ZcUfzz/wY6RkFMwZlaMEs9tgcHyCNLA5BsCuKNTE1LprrFa
+ SAM3oiy+H6s87hOMXEEGP4A2EgwZk9H2jmZZ7/FHPB1NsalnCmKSU6UJqXUrZqjknb0RWT3zfv2
+ TXh8X1xURFr+yn44RcJ471ng/9QRWQwh7pide03zk8ASh+RPf/ImZpQuHXgShrNwaKzEr9SJ
+X-Authority-Analysis: v=2.4 cv=K8wiHzWI c=1 sm=1 tr=0 ts=684a6a0f cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
+ a=gw6Avj90hZdGHWO8bBkA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-12_03,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 mlxscore=0 mlxlogscore=999 phishscore=0 lowpriorityscore=0
+ malwarescore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506120041
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250611_220410_168317_D2331872 
-X-CRM114-Status: GOOD (  17.27  )
+X-CRM114-CacheID: sfid-20250611_224803_172879_31A5EED6 
+X-CRM114-Status: GOOD (  17.56  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,64 +112,75 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On (25/06/12 11:30), Baochen Qiang wrote:
-> On 5/29/2025 11:56 AM, Sergey Senozhatsky wrote:
-> > ath11k_hal_srng_deinit() frees rdp and wrp which are used
-> > by srng lists.  Mark srng lists as not-initialized.  This
-> > makes sense, for instance, when device fails to resume
-> > and the driver calls ath11k_hal_srng_deinit() from
-> > ath11k_core_reconfigure_on_crash().
+
+
+On 6/12/2025 1:04 PM, Sergey Senozhatsky wrote:
+> On (25/06/12 11:30), Baochen Qiang wrote:
+>> On 5/29/2025 11:56 AM, Sergey Senozhatsky wrote:
+>>> ath11k_hal_srng_deinit() frees rdp and wrp which are used
+>>> by srng lists.  Mark srng lists as not-initialized.  This
+>>> makes sense, for instance, when device fails to resume
+>>> and the driver calls ath11k_hal_srng_deinit() from
+>>> ath11k_core_reconfigure_on_crash().
+>>
+>> Did you see any issue without your change?
 > 
-> Did you see any issue without your change?
-
-We do see some issues, yes, on LTS kernels.
-
-[..]
-> > diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-> > index 8cb1505a5a0c..cab11a35f911 100644
-> > --- a/drivers/net/wireless/ath/ath11k/hal.c
-> > +++ b/drivers/net/wireless/ath/ath11k/hal.c
-> > @@ -1346,6 +1346,10 @@ EXPORT_SYMBOL(ath11k_hal_srng_init);
-> >  void ath11k_hal_srng_deinit(struct ath11k_base *ab)
-> >  {
-> >  	struct ath11k_hal *hal = &ab->hal;
-> > +	int i;
-> > +
-> > +	for (i = 0; i < HAL_SRNG_RING_ID_MAX; i++)
-> > +		ab->hal.srng_list[i].initialized = 0;
+> We do see some issues, yes, on LTS kernels.
 > 
-> With this flag reset, srng stats would not be dumped in ath11k_hal_dump_srng_stats().
+> [..]
+>>> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+>>> index 8cb1505a5a0c..cab11a35f911 100644
+>>> --- a/drivers/net/wireless/ath/ath11k/hal.c
+>>> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+>>> @@ -1346,6 +1346,10 @@ EXPORT_SYMBOL(ath11k_hal_srng_init);
+>>>  void ath11k_hal_srng_deinit(struct ath11k_base *ab)
+>>>  {
+>>>  	struct ath11k_hal *hal = &ab->hal;
+>>> +	int i;
+>>> +
+>>> +	for (i = 0; i < HAL_SRNG_RING_ID_MAX; i++)
+>>> +		ab->hal.srng_list[i].initialized = 0;
+>>
+>> With this flag reset, srng stats would not be dumped in ath11k_hal_dump_srng_stats().
+> 
+> I think un-initialized lists should not be dumped.
+> 
+> ath11k_hal_srng_deinit() releases wrp.vaddr and rdp.vaddr, which are
+> accessed, as far as I understand it, in ath11k_hal_dump_srng_stats()
+> as *srng->u.src_ring.tp_addr and *srng->u.dst_ring.hp_addr, presumably,
+> causing things like:
 
-I think un-initialized lists should not be dumped.
+But ath11k_hal_dump_srng_stats() is called before ath11k_hal_srng_deinit(), right?
 
-ath11k_hal_srng_deinit() releases wrp.vaddr and rdp.vaddr, which are
-accessed, as far as I understand it, in ath11k_hal_dump_srng_stats()
-as *srng->u.src_ring.tp_addr and *srng->u.dst_ring.hp_addr, presumably,
-causing things like:
+The sequence is ath11k_hal_dump_srng_stats() is called in reset process, then restart_work
+is queued and in ath11k_core_restart() we call ath11k_core_reconfigure_on_crash(), there
+ath11k_hal_srng_deinit() is called, right?
 
-<1>[173154.396775] BUG: unable to handle page fault for address: ffffb4e4c046f010
-<1>[173154.396778] #PF: supervisor read access in kernel mode
-<1>[173154.396781] #PF: error_code(0x0000) - not-present page
-<4>[173154.396824] RIP: 0010:ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k]
-<4>[173154.396839] Code: 88 c0 44 89 f2 89 c1 e8 3a 14 06 00 41 be e8 25 00 00 eb 6e 42 0f b6 84 33 78 ff ff ff 89 45 d0 46 8b 7c 33 d8 4a 8b 44 33 e0 <44> 8b 20 46 8b 6c 33 e8 42 8b 04 33 48 89 45 c8 48 8b 3d 45 a3 a0
-<4>[173154.396842] RSP: 0018:ffffb4e4dceefc50 EFLAGS: 00010246
-<4>[173154.396846] RAX: ffffb4e4c046f010 RBX: ffff90d1c3040000 RCX: a0009634a5d28c00
-<4>[173154.396849] RDX: ffffffffb0279d80 RSI: ffffffffb0279d80 RDI: ffff90d2e5d17488
-<4>[173154.396851] RBP: ffffb4e4dceefc90 R08: ffffffffb0249d80 R09: 0000000000003b82
-<4>[173154.396854] R10: 0000000000000004 R11: 00000000ffffffea R12: ffff90d1c3041c90
-<4>[173154.396856] R13: ffff90d1c3040000 R14: 0000000000002828 R15: 0000000000000000
-<4>[173154.396859] FS: 0000000000000000(0000) GS:ffff90d2e5d00000(0000) knlGS:0000000000000000
-<4>[173154.396862] CS: 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4>[173154.396865] CR2: ffffb4e4c046f010 CR3: 000000005ca24000 CR4: 0000000000750ee0
-<4>[173154.396868] PKRU: 55555554
-<4>[173154.396870] Call Trace:
-<4>[173154.396874] <TASK>
-<4>[173154.396883] ? __die_body+0xae/0xb0
-<4>[173154.396890] ? page_fault_oops+0x381/0x3e0
-<4>[173154.396896] ? exc_page_fault+0x69/0xa0
-<4>[173154.396901] ? asm_exc_page_fault+0x22/0x30
-<4>[173154.396908] ? ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k (HASH:3de7 4)]
-<4>[173154.396923] ath11k_qmi_driver_event_work+0xbd/0x1050 [ath11k (HASH:3de7 4)]
-<4>[173154.396942] worker_thread+0x390/0x960
-<4>[173154.396949] kthread+0x149/0x170
+> 
+> <1>[173154.396775] BUG: unable to handle page fault for address: ffffb4e4c046f010
+> <1>[173154.396778] #PF: supervisor read access in kernel mode
+> <1>[173154.396781] #PF: error_code(0x0000) - not-present page
+> <4>[173154.396824] RIP: 0010:ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k]
+> <4>[173154.396839] Code: 88 c0 44 89 f2 89 c1 e8 3a 14 06 00 41 be e8 25 00 00 eb 6e 42 0f b6 84 33 78 ff ff ff 89 45 d0 46 8b 7c 33 d8 4a 8b 44 33 e0 <44> 8b 20 46 8b 6c 33 e8 42 8b 04 33 48 89 45 c8 48 8b 3d 45 a3 a0
+> <4>[173154.396842] RSP: 0018:ffffb4e4dceefc50 EFLAGS: 00010246
+> <4>[173154.396846] RAX: ffffb4e4c046f010 RBX: ffff90d1c3040000 RCX: a0009634a5d28c00
+> <4>[173154.396849] RDX: ffffffffb0279d80 RSI: ffffffffb0279d80 RDI: ffff90d2e5d17488
+> <4>[173154.396851] RBP: ffffb4e4dceefc90 R08: ffffffffb0249d80 R09: 0000000000003b82
+> <4>[173154.396854] R10: 0000000000000004 R11: 00000000ffffffea R12: ffff90d1c3041c90
+> <4>[173154.396856] R13: ffff90d1c3040000 R14: 0000000000002828 R15: 0000000000000000
+> <4>[173154.396859] FS: 0000000000000000(0000) GS:ffff90d2e5d00000(0000) knlGS:0000000000000000
+> <4>[173154.396862] CS: 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4>[173154.396865] CR2: ffffb4e4c046f010 CR3: 000000005ca24000 CR4: 0000000000750ee0
+> <4>[173154.396868] PKRU: 55555554
+> <4>[173154.396870] Call Trace:
+> <4>[173154.396874] <TASK>
+> <4>[173154.396883] ? __die_body+0xae/0xb0
+> <4>[173154.396890] ? page_fault_oops+0x381/0x3e0
+> <4>[173154.396896] ? exc_page_fault+0x69/0xa0
+> <4>[173154.396901] ? asm_exc_page_fault+0x22/0x30
+> <4>[173154.396908] ? ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k (HASH:3de7 4)]
+> <4>[173154.396923] ath11k_qmi_driver_event_work+0xbd/0x1050 [ath11k (HASH:3de7 4)]
+> <4>[173154.396942] worker_thread+0x390/0x960
+> <4>[173154.396949] kthread+0x149/0x170
+
 
