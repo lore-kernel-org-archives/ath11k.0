@@ -4,102 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 325D3C71141
-	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 13:19:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA4E9C61CE8
+	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 13:19:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xAru5tL6A9/kwMmGSI/WjuX5wDfBZY9BmkF91WMW9as=; b=EYNfklCT4f1GctW016q2mVsuun
-	cQ6vxZd6kX6ot7X33Pv2QGynd7dBkgxKjxunT/gmMyt8F86fxhHTKykErbzP9KfHyP3EnV72ysk06
-	dosqwYeNLvqhcotSjs1og0ggYUZdypuOVef0pyuendRc4o9JD/BZL9vUufv+hEMk1zPljB7HoT9zP
-	RGrMK1NblwflUiui2WBPgiNVKp4Twqiy9PRm9QingpL2MyMFUnPaElwAobJvSDP/+NWOqAWoCD6wS
-	919QIcdey5dSqexNjQrVN3qIcfh/Npl+9Hdy/4H4bR0mI8q9UtljRA/81VX0ELr2hD6VstwgYuX6T
-	FrdB9HmA==;
+	bh=7QIskp7CeaFU7u4UNInC1v8TRYXWF8xfW2XMu+8r6y8=; b=m9n2paqKlFDXagOYoduM5rnwfX
+	aPDlq3PIpm1ua1iAbZbUdLgRBjQt4S9Bf9HHK1/w2PuMPClQe/6tp7fYr8iWQ5mUiSIS0uU20spjM
+	1APTNL/l8UU0rPnzOQIInKbo6AXZBglI6DB2YuTmk/V9/UADLx48viWQnjt5v8x5j0a9HzjwJIi3Q
+	qHHrp+/XsNrDBtOzjPPhznWsanyagEXFdJqTQitVWXqdjUUTjDzkMw9mI8zzFytaavU6igqmo/8fm
+	9r2pQev44A7MRZvvjF/o1wqd9RXS+VPzHq8daSOZngcgLsq0UwarTa/k20qTGwksiPcYlYwnJTzQi
+	kNFAYdKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPhpm-0000000DMsA-2KuP;
-	Thu, 12 Jun 2025 13:19:10 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uPhq0-0000000DNJI-0h6O;
+	Thu, 12 Jun 2025 13:19:24 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPfUe-0000000D3SI-2YgR
+	id 1uPfyM-0000000D7rh-1Ruw
 	for ath11k@lists.infradead.org;
-	Thu, 12 Jun 2025 10:49:13 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55C9IMav002515;
-	Thu, 12 Jun 2025 10:49:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	Thu, 12 Jun 2025 11:19:55 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55C8fJ1O014570
+	for <ath11k@lists.infradead.org>; Thu, 12 Jun 2025 11:19:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xAru5tL6A9/kwMmGSI/WjuX5wDfBZY9BmkF91WMW9as=; b=UiCPzLXpMWtN2Ugk
-	DqKrYrijt5dQFy7Ygvj22hHCzfHRMPNK2bCMpXV/cpzRIAlXh8jyak3zyhfCGbJh
-	NoCPK4WQuR7W5fnCuO683hXjCKaGsWRcKppLNNIM03c8zf0+aw6GrF2z262R5xN7
-	YuhFbmZZLHlbh6ZrF0ysWtexueuGzbW1e0MoEdhkD/Bedgw1OeFuUhJdiVIaNhIQ
-	3NO9CCCEnYlD0G23bu2wqSSDSSy+scYSrmw3db605l44on9EpSqNtSkb2pnP5jd8
-	GXJ4WDVnbBf606MqCFS2q4JlXhX/T4qGPIhfrsGLa+0j1MDATueSb0U1aFqvKS49
-	CJdcrA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 477jbphqav-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 10:49:08 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55CAn83P014123
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 10:49:08 GMT
-Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Jun
- 2025 03:49:06 -0700
-Message-ID: <73c6cd0a-9c15-421e-afa4-27fe173bb428@quicinc.com>
-Date: Thu, 12 Jun 2025 18:49:03 +0800
+	7QIskp7CeaFU7u4UNInC1v8TRYXWF8xfW2XMu+8r6y8=; b=PGv+2B6filVfzlnw
+	qFQC+g29GIxUfp6kN3eTp6J5fHn7JpE2t9AQOpqzwhmTe4fxaw5XQmtP0neba6Y0
+	CQ9ZYkfEjH9uv/hc9IsWVgVAjCWCcfoyS3QrF3V4jCxYJDCI9TrTCfUpS0PXKh+f
+	wRLLgBxL6kTUum7niuaBsRmFG3sJJk/Wv5VFZOpyhIo9evTAMXoPs0o0/QFF2rW6
+	osOusL0EVJ/xfpFvFwUuE2SJSRcRXgEQ8dOl/RfLYka11gvudS5mP3a6si+HbDAE
+	JwWQBNI2kzMFi/1mwakoYz3QB4iI+A6sDSfCwR1zQep/g/3deOSxL0EdVx1jAAAq
+	rDUBWQ==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 476fmnfx10-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 12 Jun 2025 11:19:52 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b115383fcecso513217a12.1
+        for <ath11k@lists.infradead.org>; Thu, 12 Jun 2025 04:19:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749727191; x=1750331991;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7QIskp7CeaFU7u4UNInC1v8TRYXWF8xfW2XMu+8r6y8=;
+        b=oma7Qe2ILuQnISdL7N5NXiTngVuKGsm7ovkec2aB7G0JHB692LfNVkWPeMGD8XkYXY
+         uq9ACIAapOBGznXRMUXDUgt+szo3t2W7yiRcyLDqowDMjMtVCQoMO6jAHlf4bzGXFhch
+         owPiuCvCjc5NAt+DOeNFE93MKsgQqGr3pcx8D/WpKoWRYNUzg1BmTKx2dMTQ75wAu3vG
+         UtWVql3VAgfA4Ruat3aDGo3TKCABL2vXrh1hg6pNjegrFx6GdPZua5P98JcfmZDugxkO
+         FdlmAhbWbToA4M9Wnz6cBhiwYvh9NlCp2nwze+G306CNFb4NpBVq6jzG7ujHsTWCRI0f
+         ssaQ==
+X-Gm-Message-State: AOJu0Yx3IViHbVwZFUNIVHAaSVAvUahdRxSFxcg75d9wEM+QtBm/Vaib
+	Kb6CS6RLEu+Yg2zNz2nqteoJyTtYciRX7qCmTV3f1Z4SWJHS2tgi/qMDrTikFVR+a7cPZBh0kNK
+	jmwcahGaIeEWGPFO6ji1oo+hP2Z1zhw7BWt6t65YXgoRa6++B/KGfVAKLGS6okxc1
+X-Gm-Gg: ASbGncv8Gb70P/pzuA92vn2LdMoYu/zLnf/iRWajr8a2UZnVshmxI8Lb7ZuKt+1npL/
+	wy90gQPNY2KU0UaMew+N9mh2PIzCXwLHXiiml/BChHOezyUNoUDEk81O59kONeXBef12kpjtQd6
+	NwyS/5XbCcs3RBDBjiBP2ECcUHvG3/ibx6mmQfbyI0Ww7KHJ+8rWprCPD/eZrdF2EcxJRwdtum+
+	ifkNSYhXIApfSA9WOciZD+MXzrPFc35ROooV1SL7FBrfH5yFJX9WBBvm7cYvuFQc8eNAwuDiZeB
+	dZZ7Q+dQArhA6c81nstH5rMfbNHsk+S7fO0e/RIHexRKblPhnS/EybP+Eu8ZdfWi
+X-Received: by 2002:a05:6a21:1519:b0:216:1fc7:5d51 with SMTP id adf61e73a8af0-21f86747eecmr11545651637.37.1749727191398;
+        Thu, 12 Jun 2025 04:19:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEymZNRL34fw7cMWDROMev8RqOV8BO00M024ki/BJ4JwmO6XOC+uwIudz/uK7cTSGz1z7G5uw==
+X-Received: by 2002:a05:6a21:1519:b0:216:1fc7:5d51 with SMTP id adf61e73a8af0-21f86747eecmr11545609637.37.1749727190903;
+        Thu, 12 Jun 2025 04:19:50 -0700 (PDT)
+Received: from [10.152.204.0] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7488087aa4csm1198848b3a.8.2025.06.12.04.19.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jun 2025 04:19:50 -0700 (PDT)
+Message-ID: <ec974dc0-962b-f611-7bbb-c07a3872f70f@oss.qualcomm.com>
+Date: Thu, 12 Jun 2025 16:49:47 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv3] wifi: ath11k: clear initialized flag for deinit-ed srng
- lists
-To: Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Jeff Johnson
-	<jjohnson@kernel.org>
-CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250612084551.702803-1-senozhatsky@chromium.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] wifi: ath11k: support fetching mac address from nvmem
 Content-Language: en-US
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20250612084551.702803-1-senozhatsky@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+To: george.moussalem@outlook.com, Jeff Johnson <jjohnson@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250324-ath11k-nvmem-v1-1-d82bdf72820e@outlook.com>
+From: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
+In-Reply-To: <20250324-ath11k-nvmem-v1-1-d82bdf72820e@outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6qqAZqvnHHzwNlWHZf_PLk18dmzfKXJ5
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEyMDA4MiBTYWx0ZWRfX8kM+9n60IL4u
- OE6AH0e9Q1JP9zlu2pjJKMN8I/hf0ZoR//ultXwmcjuD0jpjifZA63IsPL7S/sYVcURj5hoRcvI
- 26L9zO4Q/kbpGbYq4CEWtZ5JWjPfuidrgbpKBkaWapYDoFaYCTyGd96IJCD9M7lhQ0AHtIjWmlS
- TnNhsx0ITTRkHNIRJQ56KJr1I4wrx3VxVww80X2mLYjyKYVSgzkcubGVsTTNcSOCYGKXCfKGaNq
- VdqGQxany70ywfd9o8AbmQWT8O+nUPtuFMfJBXaZzOdQhtpFrr+IvcnO9XOsUebA7vXiGEoTYzn
- jxW0C6hpwZBTRTl8IwOWR+5D4t7ZYNSE82w4l+Bwlsw9NreXv5L1AU5x8Mji7s11Zb8FQxWcGpx
- iM/zJTQoL/uRFRQs+4liN1I2PDJ/hvLnBY9g5w0LV9CFw6eMyG2K0PDugbqgGfodufklenmJ
-X-Proofpoint-ORIG-GUID: 6qqAZqvnHHzwNlWHZf_PLk18dmzfKXJ5
-X-Authority-Analysis: v=2.4 cv=OLgn3TaB c=1 sm=1 tr=0 ts=684ab0a5 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=cm27Pg_UAAAA:8
- a=COk6AnOGAAAA:8 a=B3OtxjWztyHNNZvo7z4A:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: eZdVStYf6qnPBL67EU16ViPve1zpfngq
+X-Proofpoint-GUID: eZdVStYf6qnPBL67EU16ViPve1zpfngq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEyMDA4NyBTYWx0ZWRfXynvFA4ods0qO
+ aJ7/umbOiicyELIN8xrHYfNJiAgyY659ji6jozUOms6H11GklXj6w/oz6/eR+GE/UcrGQPLRzSx
+ uh36VsLWM+jxiwIVCh9/WtxdqUXH7XeCIINrmsWJZaSBhAhMoigDdgJY4d5dxi5u92Ekhr8Y6Za
+ gbxyNj0gvLEXi+PqJD+ZjczxXfFUUkSzHyHGgmineKO1WdqxugmW9W13kHwzzNay6mSePXPZWFt
+ aRPUoBHMjcV1m9XFQ9T6P0SSU1mdXlMVOzbsJLJmoHMlFnQd3KFvjvB58lBLOt29hbXpP0jCbSx
+ nIiFCosU0NVf7e3lWdin82X/Z9JldNPLF1YqJkRKl8eRhwJiB2nl4ZUtDEvjDghlxdeWF01rm8/
+ 0W/pbFhJbfW4rt86mu1M8onYBFH/tB/9EcXI98WPCy/8IgqjNzl1yXTrejAbTIq7j1FKJhqo
+X-Authority-Analysis: v=2.4 cv=K8wiHzWI c=1 sm=1 tr=0 ts=684ab7d8 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=UqCG9HQmAAAA:8 a=wwL4Hbxs1AlHKMMt3U0A:9
+ a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-12_07,2025-06-10_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 impostorscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
- malwarescore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506120082
+ clxscore=1015 mlxscore=0 mlxlogscore=971 phishscore=0 lowpriorityscore=0
+ malwarescore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506120087
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250612_034912_771796_C3E9E8ED 
-X-CRM114-Status: GOOD (  19.92  )
+X-CRM114-CacheID: sfid-20250612_041954_394261_5ACE3AD2 
+X-CRM114-Status: GOOD (  20.12  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,93 +131,52 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 6/12/2025 4:45 PM, Sergey Senozhatsky wrote:
-> In a number of cases we see kernel panics on resume due
-> to ath11k kernel page fault, which happens under the
-> following circumstances:
+On 3/24/2025 11:54 AM, George Moussalem via B4 Relay wrote:
+> From: George Moussalem <george.moussalem@outlook.com>
 > 
-> 1) First ath11k_hal_dump_srng_stats() call
+> Many embedded devices with ath11k wifi chips store their mac address in
+> nvmem partitions. Currently, the ath11k driver supports getting the
+> mac address from the 'mac-address', 'local-mac-address', and 'address'
+> device tree properties only. As such, add support for obtaining the mac
+> address from nvmem if defined in a 'mac-address' cell by replacing the
+> call to device_get_mac_address by of_get_mac_address which does exactly
+> the same as the former but tries to get it from nvmem if it is not set
+> by above mentioned DT properties,
+
+May be not exactly, this also moves from a generic API to DT specific API that
+might impact systems which dont have device tree (x86)?
+
 > 
->  Last interrupt received for each group:
->  ath11k_pci 0000:01:00.0: group_id 0 22511ms before
->  ath11k_pci 0000:01:00.0: group_id 1 14440788ms before
->  [..]
->  ath11k_pci 0000:01:00.0: failed to receive control response completion, polling..
->  ath11k_pci 0000:01:00.0: Service connect timeout
->  ath11k_pci 0000:01:00.0: failed to connect to HTT: -110
->  ath11k_pci 0000:01:00.0: failed to start core: -110
->  ath11k_pci 0000:01:00.0: firmware crashed: MHI_CB_EE_RDDM
->  ath11k_pci 0000:01:00.0: already resetting count 2
->  ath11k_pci 0000:01:00.0: failed to wait wlan mode request (mode 4): -110
->  ath11k_pci 0000:01:00.0: qmi failed to send wlan mode off: -110
->  ath11k_pci 0000:01:00.0: failed to reconfigure driver on crash recovery
->  [..]
+> Tested-on: IPQ5018, QCN6122, and QCN9074
+
+You may want to follow the existing Tested-on style.
+
 > 
-> 2) At this point reconfiguration fails (we have 2 resets) and
->   ath11k_core_reconfigure_on_crash() calls ath11k_hal_srng_deinit()
->   which destroys srng lists.  However, it does not reset per-list
->   ->initialized flag.
-> 
-> 3) Second ath11k_hal_dump_srng_stats() call sees stale ->initialized
->   flag and attempts to dump srng stats:
-> 
->  Last interrupt received for each group:
->  ath11k_pci 0000:01:00.0: group_id 0 66785ms before
->  ath11k_pci 0000:01:00.0: group_id 1 14485062ms before
->  ath11k_pci 0000:01:00.0: group_id 2 14485062ms before
->  ath11k_pci 0000:01:00.0: group_id 3 14485062ms before
->  ath11k_pci 0000:01:00.0: group_id 4 14780845ms before
->  ath11k_pci 0000:01:00.0: group_id 5 14780845ms before
->  ath11k_pci 0000:01:00.0: group_id 6 14485062ms before
->  ath11k_pci 0000:01:00.0: group_id 7 66814ms before
->  ath11k_pci 0000:01:00.0: group_id 8 68997ms before
->  ath11k_pci 0000:01:00.0: group_id 9 67588ms before
->  ath11k_pci 0000:01:00.0: group_id 10 69511ms before
->  BUG: unable to handle page fault for address: ffffa007404eb010
->  #PF: supervisor read access in kernel mode
->  #PF: error_code(0x0000) - not-present page
->  PGD 100000067 P4D 100000067 PUD 10022d067 PMD 100b01067 PTE 0
->  Oops: 0000 [#1] PREEMPT SMP NOPTI
->  RIP: 0010:ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k]
->  Call Trace:
->  <TASK>
->  ? __die_body+0xae/0xb0
->  ? page_fault_oops+0x381/0x3e0
->  ? exc_page_fault+0x69/0xa0
->  ? asm_exc_page_fault+0x22/0x30
->  ? ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k (HASH:6cea 4)]
->  ath11k_qmi_driver_event_work+0xbd/0x1050 [ath11k (HASH:6cea 4)]
->  worker_thread+0x389/0x930
->  kthread+0x149/0x170
-> 
-> Clear per-list ->initialized flag in ath11k_hal_srng_deinit().
-> 
-> Signed-off-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 > ---
+>   drivers/net/wireless/ath/ath11k/mac.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> v3:
-> - updated commit message and subject line (Baochen Qiang)
-> 
->  drivers/net/wireless/ath/ath11k/hal.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-> index 8cb1505a5a0c..cab11a35f911 100644
-> --- a/drivers/net/wireless/ath/ath11k/hal.c
-> +++ b/drivers/net/wireless/ath/ath11k/hal.c
-> @@ -1346,6 +1346,10 @@ EXPORT_SYMBOL(ath11k_hal_srng_init);
->  void ath11k_hal_srng_deinit(struct ath11k_base *ab)
->  {
->  	struct ath11k_hal *hal = &ab->hal;
-> +	int i;
-> +
-> +	for (i = 0; i < HAL_SRNG_RING_ID_MAX; i++)
-> +		ab->hal.srng_list[i].initialized = 0;
->  
->  	ath11k_hal_unregister_srng_key(ab);
->  	ath11k_hal_free_cont_rdp(ab);
+> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+> index 97816916abac..49af6b9fc867 100644
+> --- a/drivers/net/wireless/ath/ath11k/mac.c
+> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+> @@ -9,6 +9,7 @@
+>   #include <linux/etherdevice.h>
+>   #include <linux/bitfield.h>
+>   #include <linux/inetdevice.h>
+> +#include <linux/of_net.h>
+>   #include <net/if_inet6.h>
+>   #include <net/ipv6.h>
+>   
+> @@ -10379,7 +10380,7 @@ int ath11k_mac_register(struct ath11k_base *ab)
+>   	if (ret)
+>   		return ret;
+>   
+> -	device_get_mac_address(ab->dev, mac_addr);
+> +	of_get_mac_address(ab->dev->of_node, mac_addr);
 
-Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
+May be call of_get_mac_address_nvmem() when device_get_mac_address() fails?
 
-
+Vasanth
 
