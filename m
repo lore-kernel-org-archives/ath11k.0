@@ -4,83 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 607D5C7113E
-	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 06:17:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8B21C71136
+	for <ath11k@archiver.kernel.org>; Thu, 12 Jun 2025 07:04:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=ScgjUpaPfHbqDIMCPtaXg6Ano9ZrKG6mzFmgIhysYwY=; b=p+X9FbO2uu2fqlxozmkRH4lAyN
-	3z9692xLdOrhy5FXeZjSmZJDVuCzpz70RdGgB/G6t2Vqd0kSakcOHl+KkHqtNQ/2lw9QeDTkKZqHI
-	c4JyJrDj/+WD5Ku12luDR6ZHSYO1BfRnFGuID4wwa+HYFQ9thZBJftM/ZzIkUr1ncrt+hUZ1StcpD
-	4622wjgulrjAuj78hiGCVbE8CblBuVE7XYkMfKoCmBmU0K1SlKNoIKkvU/huCWZPwdvjZeWNjuNYq
-	CXt3QFpt6yPKPYR86NIzsmN8ZVa+cVMTvRQkRCi2juys7+Emii+DuhD2WmHx6DgSjtqETjGCaG4Rf
-	Roinw25g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Qr8kVjHr7X/135AkQtdC+yfxTrVr7FzRufaMrCUufQI=; b=UW8FofeqTPzvtbDv+a+7hbRLFP
+	1RUm+dyW6wKp6Rv6ISKWBnYmyDs8m1SrCDi1N1zgoHJ9SyEX3GkSQEUcaOpC+YmJR3PewioS7sX5q
+	P59IFLh7gjzvtVRrHh2WQ7+GBh5FQ4vhxeYgJuftNjL4zzvCcafYDzIN+KsFWNH21JtrNtaMwM2rf
+	dtYhxD95FISisOADr45Et00eCVlQHcyWh+tioAimZoh5mcPQjAxanQIon6MPCqfLzbj9k05ADn6Ep
+	XP712JNFkIGFS3Ey3Q/NRG5X9+CT7yQtkSubzREoGYGy9O5Re8MlUxS+JN8q4Kci07/DTOjA55giZ
+	wFhUxVgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPbFk-0000000CIc1-1lcv;
-	Thu, 12 Jun 2025 06:17:32 +0000
-Received: from mail-wm1-f50.google.com ([209.85.128.50])
+	id 1uPbzI-0000000COX9-0nvx;
+	Thu, 12 Jun 2025 07:04:36 +0000
+Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPbFg-0000000CIbC-0iqn
+	id 1uPbxK-0000000COGh-27VB
 	for ath11k@lists.infradead.org;
-	Thu, 12 Jun 2025 06:17:31 +0000
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-450ce3a2dd5so4542435e9.3
-        for <ath11k@lists.infradead.org>; Wed, 11 Jun 2025 23:17:26 -0700 (PDT)
+	Thu, 12 Jun 2025 07:02:35 +0000
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-7399a2dc13fso885559b3a.2
+        for <ath11k@lists.infradead.org>; Thu, 12 Jun 2025 00:02:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1749708985; x=1750313785; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ScgjUpaPfHbqDIMCPtaXg6Ano9ZrKG6mzFmgIhysYwY=;
-        b=KK19J+2q2/tvlC4bTWrEhES7gonNNokVzOWpKM5DKGMfF9wSiwqRNh/S/C0/u9hP57
-         28TYhFMF0dJq+w/O/GG/HBIClxDfNu0+sIrG4TYsHLa+0Tjdt0kU4U29h+dwabOjlrIh
-         1CSwk3gjOBxU+HLlNvFR93DzKI7fJgZZ5kJ8w=
+        d=chromium.org; s=google; t=1749711754; x=1750316554; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qr8kVjHr7X/135AkQtdC+yfxTrVr7FzRufaMrCUufQI=;
+        b=Gi0/1BDoDCW8ptoUb5BokqN11iu6lsOPfhQ/UEjqZ59ETk08VBdn00R7HySJF3TY5V
+         AvFNpXaQJIZ6a7Nu22gf1XCAW57I04xzcghmptRt4pijnfrYgHtYsJ7hsGfeaH+o9M4j
+         K8em6RaFBepUzfQqB9oIi8opo7gWKX5oU+kyk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749708985; x=1750313785;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ScgjUpaPfHbqDIMCPtaXg6Ano9ZrKG6mzFmgIhysYwY=;
-        b=TyHka2XZlHCz1neDjTI82fVqnoMyxSbYHI2z12dRy9vAJS8jsV1dq6Soi+EmBFVvCN
-         BURS8P+fXAJuEkcAyJW0aSszM8a+kyx76SQmaNQEv+N7F6enjK+dBPteLQaRpc3YPVK8
-         lOPfurlmOL0LUDWPj4lkGSMbXpXrN5XYprTwvGwB0omgyY7mxiCWBMLDKggewTW++16U
-         oZWpbNipjqQzUCj105j0VmEVpG+z/dlIalSfITrKQN0D7XsmETOB9JFNGAU1jJDKiup6
-         2j1PBcqzEIq3lBz4L+TD+wlnXdMQTcHbrMXvn18z7EhDEV7NsNgIUFkInzFrPO4TQnik
-         PsQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWI2EtsbtRGImInrKIGRunAT0n9HGfHpTX5L+Rcpn0EOHXQcgm22wQUDHa+JMLRyR+TGtptSzg=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyXHPOEoJpE5a0b/3M8sp9rCDiSbORXAsvNG9ipFj8VoMhnNwv2
-	e8PNhgLsUzId/+wKawAxBH5fL+MTH3k7cnms6eU278DE2Rr/Sv141E2+1ZSpf4QP0x8=
-X-Gm-Gg: ASbGncuDl/8KN4nDIbw1cogYyi+wS8UBVMHte5V2frLJzeWyhKKaDgWbOgRQVnjr9vX
-	gYL8i/JaQqv39bfBipygw0dKVK3crc+da75S0KfHou2idGy8aHcGYfvzjTMJDmJfxAOw6NN6jIa
-	LWv70k5W6LF5dRRCBSXdevJJEyxuFM82k2mSP/O6pchK8o+0Bzsga0lwjZd409bxphD71Xv5SLv
-	ADqqD7j8gC3Qqpiez6YQj5SbVtupMDQ2DPZF0tOaqoF3/K2mtDTC68/E80msIs7KRE74rhopTHL
-	sc/QMytyXYYPuHgQlJgT9FQoFWjS9vUTHFExW8e6eEzYYpH9QuTzVacF0j//OamEBF4P6Er2JaN
-	YS//pBogVI87fZw==
-X-Google-Smtp-Source: AGHT+IGm81iQMqozoNbGvUNa7Ii3Oga/QDuCjWZCS5lp+cWSAZ4nkHJS8aNtWeIEjp0Xmo8H09kLdA==
-X-Received: by 2002:a05:600c:37c5:b0:442:faa3:fadb with SMTP id 5b1f17b1804b1-4532d2bd72dmr12505585e9.2.1749708985332;
-        Wed, 11 Jun 2025 23:16:25 -0700 (PDT)
-Received: from localhost.localdomain ([2001:b07:6467:4426:b34c:fa23:a49e:c18c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4531fe840a3sm53716255e9.0.2025.06.11.23.16.23
+        d=1e100.net; s=20230601; t=1749711754; x=1750316554;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qr8kVjHr7X/135AkQtdC+yfxTrVr7FzRufaMrCUufQI=;
+        b=NpoH8QBmmpOyMWkwAbLo2kSzpvliaC/Cd8UhGCh8kX3PblYBE9TyczO7tIOcwTILiw
+         2/H5ly2wS7Xwbxmxi7IghQQkL0cjy4Od1jLqrZMX3Qlbt+QyjzaKzGJX9Wod1hn9vE+P
+         +LoZjchjsWDL2F+KcD81x5Cn5AmaBLWuUEMtPLpBByneLKESQla8XhKa69WOJ+QVfGoE
+         tzP9GxkMokQQ1vsRd8CVXIg+POaCDNkXU35ghsMr4Mv5eBvIJBCRKMIqLc8D+u+yo/7h
+         lmXCapWCa5OtjmmHWyv1WbZpSbXeyPuzW4d9sDmzXqCh3joemrklyTwuxl1ItMskqsxy
+         hAPA==
+X-Forwarded-Encrypted: i=1; AJvYcCXzGin5Ori6pabbHqGihJvTqgzOT0JSI172Wa/bWl9s/QMpp/bjTZUxjmjbLUEe6M+DwtSQX/Q=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzJRovJ5IQ6h4wCkIxITuKRH5JJoZd6xZ9KlJjqfGrz8P0Ezs/j
+	BzgW4pjS5pBpGc5noYqrNL4NySyq1VkFH6ALsn4u6EiZoQabv0VFXMUl8j5mE4fJRw==
+X-Gm-Gg: ASbGncvL4ANz8B0hG4krG4poyKtoTFa006enrQK9qVboZLZDREg3k9OzaVd4ApL/RHE
+	gYIF298+XEaECozejO0bCXOY6yG8iknW7DBH87k//LtpB5sIWPBBaVRh0xFKwEYjTIRHyrjqiVh
+	Fy31rCp5EDVrkH7rP7jF1Qj10ojugPAI1TcLfy0Z15clUEqx/aE1bwZVH7WwISsEXt/8zLiOBIB
+	Xeit00LJ6Myw0liJLkJ0UjTakBDJ9bAg1yQWIhfEdHJpdppDQC/7j70k6RY6HkUPUBE3wQ/uHWq
+	65HQLqt0NB5vrquaObHJitrILr2F6R+3/zh1FyxkuSjG1b7bHHwKHtrf4N/rh/Gr
+X-Google-Smtp-Source: AGHT+IHval7kzOTw8xt75tWclw0C5/vtH8Ex8hhouxzzQKZOiM32UWpl93/0+/Xgn6u1sHUzijj+fQ==
+X-Received: by 2002:a05:6a00:8cb:b0:736:5664:53f3 with SMTP id d2e1a72fcca58-7487c31bda1mr2941155b3a.15.1749711753751;
+        Thu, 12 Jun 2025 00:02:33 -0700 (PDT)
+Received: from google.com ([2401:fa00:8f:203:fcb5:79e0:99d6:8d5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7488087e769sm755732b3a.11.2025.06.12.00.02.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 23:16:24 -0700 (PDT)
-From: Michael Trimarchi <michael@amarulasolutions.com>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-amarula@amarulasolutions.com,
-	Michael Trimarchi <michael@amarulasolutions.com>,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org
-Subject: [RFC PATCH] wifi: ath11k: Prevent sending WMI commands to firmware during firmware crash
-Date: Thu, 12 Jun 2025 08:16:15 +0200
-Message-ID: <20250612061619.22094-1-michael@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
+        Thu, 12 Jun 2025 00:02:33 -0700 (PDT)
+Date: Thu, 12 Jun 2025 16:02:28 +0900
+From: Sergey Senozhatsky <senozhatsky@chromium.org>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCHv2] wifi: ath11k: mark reset srng lists as uninitialized
+Message-ID: <xr3n5pbohquhaloonctfqvpb2r3eu6fi5jly7ms4pgcotqmqzh@msrgbaawafsj>
+References: <20250529035708.3136232-1-senozhatsky@chromium.org>
+ <5857380e-ced9-4118-b9a0-ce926b25c11c@quicinc.com>
+ <rxaibpgtf37w3th5lnt3w574w443yononqjoglyfktlcxe26qg@jpmtkckrotzp>
+ <2f77045c-6763-4fc4-bf09-50fd9b76a394@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2f77045c-6763-4fc4-bf09-50fd9b76a394@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250611_231728_206632_EB562971 
-X-CRM114-Status: GOOD (  14.69  )
+X-CRM114-CacheID: sfid-20250612_000234_569193_CF64369C 
+X-CRM114-Status: GOOD (  17.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,67 +97,48 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Set the ATH11K_FLAG_CRASH_FLUSH and ATH11K_FLAG_RECOVERY flags when the
-host driver receives the firmware crash notification from MHI. This
-prevents sending WMI commands to the firmware during recovery.
-We want to prevent the laptop from freezing or becoming extremely slow when
-its firmware repeatedly crashes while attempting to connect to a known Wi-Fi
-network. This often happens with routers that intermittently fail to reconnect
-until the access point is reset. While this solution doesn't fix the underlying
-router issue, it would allow the laptop to select a different Wi-Fi network and
-significant performance degradation during the recovery process.
+On (25/06/12 13:47), Baochen Qiang wrote:
+> > [..]
+> >>> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+> >>> index 8cb1505a5a0c..cab11a35f911 100644
+> >>> --- a/drivers/net/wireless/ath/ath11k/hal.c
+> >>> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+> >>> @@ -1346,6 +1346,10 @@ EXPORT_SYMBOL(ath11k_hal_srng_init);
+> >>>  void ath11k_hal_srng_deinit(struct ath11k_base *ab)
+> >>>  {
+> >>>  	struct ath11k_hal *hal = &ab->hal;
+> >>> +	int i;
+> >>> +
+> >>> +	for (i = 0; i < HAL_SRNG_RING_ID_MAX; i++)
+> >>> +		ab->hal.srng_list[i].initialized = 0;
+> >>
+> >> With this flag reset, srng stats would not be dumped in ath11k_hal_dump_srng_stats().
+> > 
+> > I think un-initialized lists should not be dumped.
+> > 
+> > ath11k_hal_srng_deinit() releases wrp.vaddr and rdp.vaddr, which are
+> > accessed, as far as I understand it, in ath11k_hal_dump_srng_stats()
+> > as *srng->u.src_ring.tp_addr and *srng->u.dst_ring.hp_addr, presumably,
+> > causing things like:
+> 
+> But ath11k_hal_dump_srng_stats() is called before ath11k_hal_srng_deinit(), right?
+> 
+> The sequence is ath11k_hal_dump_srng_stats() is called in reset process, then restart_work
+> is queued and in ath11k_core_restart() we call ath11k_core_reconfigure_on_crash(), there
+> ath11k_hal_srng_deinit() is called, right?
 
-[75795.712161] ath11k_pci 0000:02:00.0: firmware crashed: MHI_CB_EE_RDDM
-[75797.738073] ath11k_pci 0000:02:00.0: wmi command 262145 timeout
-[75797.738090] ath11k_pci 0000:02:00.0: Failed to send WMI_PDEV_OBSS_PD_SPATIAL_REUSE_CMDID
-[75797.738101] ath11k_pci 0000:02:00.0: failed to set vdev 0 OBSS PD parameters: -11
-[75800.746321] ath11k_pci 0000:02:00.0: wmi command 20488 timeout
-[75800.746344] ath11k_pci 0000:02:00.0: failed to send WMI_VDEV_SET_PARAM_CMDID
-[75800.746358] ath11k_pci 0000:02:00.0: failed to set vdev 0 dtim policy: -11
-[75803.754345] ath11k_pci 0000:02:00.0: wmi command 237571 timeout
-[75803.754360] ath11k_pci 0000:02:00.0: failed to send WMI_11D_SCAN_STOP_CMDID: -11
-[75803.754371] ath11k_pci 0000:02:00.0: failed to stopt 11d scan vdev 0 ret: -11
-[75806.762259] ath11k_pci 0000:02:00.0: wmi command 28684 timeout
-[75806.762281] ath11k_pci 0000:02:00.0: Failed to send WMI_BSS_COLOR_CHANGE_ENABLE_CMDID
-[75806.762294] ath11k_pci 0000:02:00.0: failed to enable bss color change on vdev 0: -11
-[75809.770916] ath11k_pci 0000:02:00.0: wmi command 172035 timeout
-[75809.770930] ath11k_pci 0000:02:00.0: Failed to send WMI_OBSS_COLOR_COLLISION_DET_CONFIG_CMDID
-[75809.770938] ath11k_pci 0000:02:00.0: failed to set bss color collision on vdev 0: -11
-[75809.770966] wlp2s0: associated
-[75809.771051] wlp2s0: deauthenticating from a0:95:7f:45:e8:47 by local choice (Reason: 3=DEAUTH_LEAVING)
-[75809.782908] ieee80211 phy0: Hardware restart was requested
-[75809.782932] ath11k_pci 0000:02:00.0: failed to lookup peer a0:95:7f:45:e8:47 on vdev 0
-[75812.842136] ath11k_pci 0000:02:00.0: wmi command 20488 timeout
-[75812.842153] ath11k_pci 0000:02:00.0: failed to send WMI_VDEV_SET_PARAM_CMDID
-[75812.842164] ath11k_pci 0000:02:00.0: Failed to set CTS prot for VDEV: 0
-[75815.850227] ath11k_pci 0000:02:00.0: wmi command 20488 timeout
+My understanding is that the driver first fails to reconfigure
 
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+<4>[163874.555825] ath11k_pci 0000:01:00.0: already resetting count 2
+<4>[163884.606490] ath11k_pci 0000:01:00.0: failed to wait wlan mode request (mode 4): -110
+<4>[163884.606508] ath11k_pci 0000:01:00.0: qmi failed to send wlan mode off: -110
+<3>[163884.606550] ath11k_pci 0000:01:00.0: failed to reconfigure driver on crash recovery
 
----
+so ath11k_core_reconfigure_on_crash() calls ath11k_hal_srng_deinit(),
+which destroys the srng lists, but leaves the stale initialized flag.
+So next time ath11k_hal_dump_srng_stats() is called everything looks ok,
+but in fact everything is not quite ok.
 
- drivers/net/wireless/ath/ath11k/mhi.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index acd76e9392d31..af7ff4fc794de 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -286,8 +286,11 @@ static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
- 			break;
- 		}
- 
--		if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags)))
-+		if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))) {
-+			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
-+			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
- 			queue_work(ab->workqueue_aux, &ab->reset_work);
-+		}
- 
- 		break;
- 	default:
--- 
-2.43.0
-
-base-commit: 0f70f5b08a47a3bc1a252e5f451a137cde7c98ce
+Regardless of that, I do think that resetting the initialized flag
+when srng list is de-initialized/destroyed is the right thing to do.
 
