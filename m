@@ -4,73 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B147C71157
-	for <ath11k@archiver.kernel.org>; Wed, 18 Jun 2025 09:59:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B002C7115A
+	for <ath11k@archiver.kernel.org>; Thu, 19 Jun 2025 02:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Tlhto678Z/9eQGQbe5nkV0xep94YXZZdUP+gSZiE5HY=; b=bbXI8Gz+UekQHChZBtrMjUWTGH
-	FklhdAkt5kTkbnhR/47qFjYDX+XXQCKd3SNgnARIYfyZy7deiebXyuIOwcJNBAiTc9NfKE2wVmjYX
-	4WBAHFLRMKMRkhn5ccjEqZL2Z1QQ7ard7IrR4aRI+UBsHVR/5sVP7pqFfAsx49N6ztafohz02NQLX
-	45g3bQWuTlPO8pKgvp7DEme33+3mWKHoN+OYx8m5/GjtKh1Kv/rh7MSXIzTL4RNE8CwgaiRQq+gn1
-	aEYKniuIYYNCoeuUpNbIad2ycRaws7+ViiXN1WjEDJ8jJke0RC/RynwBDjcF20+Eo4AkAGvNJLfmZ
-	a+T4b9ig==;
+	bh=FU7hS3nxP2s1VnD1O6EqAa6UCfOLId0EKfwYuX88Apo=; b=K/ZD5w1VlMq9r0h+wUwkhQ/KJo
+	A7VAMp2LAQ7Em4jfEdhahmZ17zhDYjvPSVUkv3OMioTghOmauwLxN6Aav8a5eVPQbHDumwj1Js9at
+	AJNitDfLktMVLbjYRX8KIhQgoDUexg6wODGCvRh+wg9rZarNwWUfHzQjk9dUtT+fpyzZ5TP8xI/hY
+	fnb+VQvRYZtF1GbsWlFR0tVwloReX1HIvFuJ35FtC8NZ8ISgqnu2nqFH2/lAuG0wxiwNzp8b6+eI/
+	xL8BMY2tildX7Hm/kLaaKI0Ae65/LkOfOMzYt7KovQ4gKxi671zMKzsl9YCldRM+EqUruGubCjkhY
+	DOlonWMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uRpZu-00000009gJE-1RZ4;
-	Wed, 18 Jun 2025 09:59:34 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1uS5PE-0000000BrKO-1e68;
+	Thu, 19 Jun 2025 02:53:36 +0000
+Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uRpKy-00000009dzD-3asU
+	id 1uS5PB-0000000BrJo-2vjd
 	for ath11k@lists.infradead.org;
-	Wed, 18 Jun 2025 09:44:10 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 1252CA52487;
-	Wed, 18 Jun 2025 09:44:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB960C4CEE7;
-	Wed, 18 Jun 2025 09:44:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750239847;
-	bh=QkcnRg0iy50X+xX4AMzHouOiJ6kRpTXVHmHLRfKjhc4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=neEXwqZZmVh67q5zkgde9c29BEJCb6tH8Qua3s0TA+XrUU6VKIuH85vY6PNJdFof5
-	 maQ//bBvXXqPemj4unlMGPULXfDmcvhSS257cQPK8cH27faQpTNluK4f/hhDCFLl8N
-	 vaC2lV37WhMxyzToyowtD2tLl/+qNr7eqOPObJJHfBWqfPDhd0MHPFsBR7pPBfzBUB
-	 Eje+IxB4j3kf0YCnzsGde+xzbz+S18GRuLiTIwCJP62Zsr82bQvl/OwtlkOm6G0JHZ
-	 JTm7sdspl7ZhrjjdBecfrhVe/qT/kVY95XBTq2nd+DC4ICHjHdoAedo2Gq7diglOKN
-	 Hf4L9l47vunpg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uRpKw-000000005Yg-2Obb;
-	Wed, 18 Jun 2025 11:44:06 +0200
-Date: Wed, 18 Jun 2025 11:44:06 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Takashi Iwai <tiwai@suse.de>,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH ath-next v3 5/6] wifi: ath11k: choose default PM policy
- for hibernation
-Message-ID: <aFKKZtbTIesVYgJK@hovoldconsulting.com>
-References: <20250328-ath11k-bring-hibernation-back-v3-0-23405ae23431@quicinc.com>
- <20250328-ath11k-bring-hibernation-back-v3-5-23405ae23431@quicinc.com>
- <d0cd065c-1cd1-4e56-8c57-60777b1f3664@oss.qualcomm.com>
- <aFJ-SwT1g500h3kC@hovoldconsulting.com>
- <db65c9f0-334f-43fb-bddf-316bf883a848@oss.qualcomm.com>
+	Thu, 19 Jun 2025 02:53:34 +0000
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-b31d0dcfea3so280978a12.3
+        for <ath11k@lists.infradead.org>; Wed, 18 Jun 2025 19:53:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1750301613; x=1750906413; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FU7hS3nxP2s1VnD1O6EqAa6UCfOLId0EKfwYuX88Apo=;
+        b=XRpHDx7X1jZ7KctP3HqyazE6BypWdqLkRVK+TGmDBHiXARg5zeUkFhjpc0/LWAEokZ
+         XrDZrhqbJAykK43+twlVFxEJgM4u3jdZ1KykujKgMpuv4+LSdFz8pTnYBLGuwJivPL7i
+         UU6EaTF0ueWyFpDfV3j9vQqWGPPKgzATa0W2Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750301613; x=1750906413;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FU7hS3nxP2s1VnD1O6EqAa6UCfOLId0EKfwYuX88Apo=;
+        b=Hcbup2a8BrsJZ3skhFnipKGZrvGUWW8BP7xTE4rZ/OJ2T4AdYuwBPWu9MMU+h7dh0Y
+         Aw+FDhK7IwD968Fw0PUK6lVW19YfyNFwG+j9r/XsVeydImFdzqsMiJiAVC642i67ot4V
+         5swjVmrQ5oDIU+MB4YoGnB7YM0U00h3VROfuUyJ67jp+OGLDp6dMWXoGo7+jdVE0BD/y
+         WknnH38onuGoHAfRUeBjw0Fq08HqUg0WhvpkShcCy1AIKY3TQmqusaZjBbOaDYrkAnaa
+         d2qbRYdnr7v9wuexihifvubXBzL9oI997fs2MHYN1bmGhlVJA0JZP1PP/DLj9pFsnmjb
+         MYtA==
+X-Forwarded-Encrypted: i=1; AJvYcCWRTnjHHYP7bYyY8oL2z3JUNDbEdqmCpJud4Lwqm7xjU7V11ZCovOEPHwAqpPovk/vlAImxAoU=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzfSHpy+gpaYyXAuVUCsQHFTwwuZv4OpUlNHLG2h4lKwFhxXcGb
+	oUsETlZEBOQz9mhK4Qvg5gSA+9tMM4579Ro+xPV/g+lq2nNRULZIG9qTH3QkqCDMBw==
+X-Gm-Gg: ASbGncs3uPN21NLJHraltZffocRloJUp5quziLJbFOujm0DQLwHIABcc+/oXFoUmYFW
+	+TSPsOlNV9hp8TJGyZaNXR9utTWqQRvw/Ifg9KApPlkI8oNrC62ZwP3+5KPM2GsG+pnxt5Ox19G
+	KM2535ed7db9S0n2CPtcfJ0dXCIgB+4s8u4dJSzhjmNm6kJ0lvrh+NsBmz1XhSustG8soimuOr4
+	2xxNEPNvUZSOJyNmxoTG+FMhr52qHXnQi+SCyJ0FLr7TXpzbnYQ42cYSmL5wuEUl7uzsWxU+fZD
+	9/xIwW1liCAaUlhGGXkmJ8z67uzjoDJBhOIynUJp2PIM3SnAXczqR3WJBrGnncopAA==
+X-Google-Smtp-Source: AGHT+IGNccPkiKMjhJp9xYP7Kep1hqlT//YVjWo3nk5z9pz6Nus1LaUm0/pUREXGtm7Nq43cBr8sEg==
+X-Received: by 2002:a05:6a20:7f8b:b0:220:3a5:43e9 with SMTP id adf61e73a8af0-22003a54b20mr9849038637.32.1750301612935;
+        Wed, 18 Jun 2025 19:53:32 -0700 (PDT)
+Received: from google.com ([2401:fa00:8f:203:7cb6:ce70:9b77:ed3b])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b31c1b48c69sm3688361a12.31.2025.06.18.19.53.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 19:53:32 -0700 (PDT)
+Date: Thu, 19 Jun 2025 11:53:28 +0900
+From: Sergey Senozhatsky <senozhatsky@chromium.org>
+To: Jeff Johnson <jjohnson@kernel.org>, 
+	Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Sergey Senozhatsky <senozhatsky@chromium.org>
+Subject: Re: [PATCHv3] wifi: ath11k: clear initialized flag for deinit-ed
+ srng lists
+Message-ID: <xgypo7y24oxfe57psg6bdzrmvmahx7swb2ifjxqmpteagsdonw@ubrubygzpbyo>
+References: <20250612084551.702803-1-senozhatsky@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <db65c9f0-334f-43fb-bddf-316bf883a848@oss.qualcomm.com>
+In-Reply-To: <20250612084551.702803-1-senozhatsky@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250618_024409_019325_3AFCED9B 
-X-CRM114-Status: GOOD (  23.37  )
+X-CRM114-CacheID: sfid-20250618_195333_737637_BD32B2D0 
+X-CRM114-Status: GOOD (  12.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,67 +95,66 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 18, 2025 at 11:18:14AM +0200, Konrad Dybcio wrote:
-> On 6/18/25 10:52 AM, Johan Hovold wrote:
-> > On Wed, Jun 18, 2025 at 02:15:04AM +0200, Konrad Dybcio wrote:
-> >> On 3/28/25 6:32 AM, Baochen Qiang wrote:
-> >>> Now WoWLAN mode is chosen for those machines listed in the quirk table.
-> >>> This works for suspend (S3) but breaks for hibernation (S4), because
-> >>> WoWLAN mode requires WLAN power to be sustained, which is not the case
-> >>> during hibernation. For hibernation, the default mode should be used.
-> >>>
-> >>> Register a PM notifier with which kernel can notify us of the actual PM
-> >>> operation: if system is going to suspend, the original PM policy is
-> >>> honored; while if it is hibernation, overwrite it with default policy.
-> >>>
-> >>> To summarize: for suspend (S3), WoWLAN mode is chosen for machines listed
-> >>> in the quirk table, non-WoWLAN mode for others; for hibernation (S4),
-> >>> non-WoWLAN mode is chosen for all.
-> >>>
-> >>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-> >>>
-> >>> Tested-by: Takashi Iwai <tiwai@suse.de>
-> >>> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> >>> ---
-> >>
-> >> I've bisected the following splat to this patch, still happening on
-> >> linux-next/master, WCN6855 + SC8280XP CRD, 100% reproducibility 
-> > 
-> > WFIW, I'm not seeing this with 6.16-rc2 (which has this patch) on either
-> > the X13s or sc8280xp-crd (ath11k now fails to resume on the latter
-> > because of missing regulatory data, but that appears to be a separate
-> > regression).
+On (25/06/12 17:45), Sergey Senozhatsky wrote:
+> In a number of cases we see kernel panics on resume due
+> to ath11k kernel page fault, which happens under the
+> following circumstances:
 > 
-> Do you have CONFIG_DEBUG_NOTIFIERS?
-
-Nope. Would have been useful to mention in your report.
-
-But I'm not seeing the warning with 6.16-rc2 with that option enabled
-either.
-
-> >> [root@sc8280xp-crd ~]# echo mem > /sys/power/state 
-> >> [   20.267830] fb0: Framebuffer is not in virtual address space.
-> >> [   39.863070] PM: suspend entry (s2idle)
-> >> [   39.908067] Filesystems sync: 0.035 seconds
-> >> [   39.934453] ------------[ cut here ]------------
-> >> [   39.939259] Invalid notifier called!
-> >> [   39.939268] WARNING: CPU: 5 PID: 513 at kernel/notifier.c:79 notifier_call_chain+0x84/0x1a4
-> >> [   39.951566] Modules linked in:
-> >> [   39.954732] CPU: 5 UID: 0 PID: 513 Comm: bash Not tainted 6.14.0-rc4longbois-01215-g32d93b51bc7e #12177
-> > 
-> > 6.14?
+> 1) First ath11k_hal_dump_srng_stats() call
 > 
-> g show 32d93b51bc7e2e557771abe4a88da69c609e3d52:Makefile | head
+>  Last interrupt received for each group:
+>  ath11k_pci 0000:01:00.0: group_id 0 22511ms before
+>  ath11k_pci 0000:01:00.0: group_id 1 14440788ms before
+>  [..]
+>  ath11k_pci 0000:01:00.0: failed to receive control response completion, polling..
+>  ath11k_pci 0000:01:00.0: Service connect timeout
+>  ath11k_pci 0000:01:00.0: failed to connect to HTT: -110
+>  ath11k_pci 0000:01:00.0: failed to start core: -110
+>  ath11k_pci 0000:01:00.0: firmware crashed: MHI_CB_EE_RDDM
+>  ath11k_pci 0000:01:00.0: already resetting count 2
+>  ath11k_pci 0000:01:00.0: failed to wait wlan mode request (mode 4): -110
+>  ath11k_pci 0000:01:00.0: qmi failed to send wlan mode off: -110
+>  ath11k_pci 0000:01:00.0: failed to reconfigure driver on crash recovery
+>  [..]
 > 
-> # SPDX-License-Identifier: GPL-2.0
-> VERSION = 6
-> PATCHLEVEL = 14
-> SUBLEVEL = 0
-> EXTRAVERSION = -rc4
+> 2) At this point reconfiguration fails (we have 2 resets) and
+>   ath11k_core_reconfigure_on_crash() calls ath11k_hal_srng_deinit()
+>   which destroys srng lists.  However, it does not reset per-list
+>   ->initialized flag.
 > 
-> it's been in the tree for a while
+> 3) Second ath11k_hal_dump_srng_stats() call sees stale ->initialized
+>   flag and attempts to dump srng stats:
+> 
+>  Last interrupt received for each group:
+>  ath11k_pci 0000:01:00.0: group_id 0 66785ms before
+>  ath11k_pci 0000:01:00.0: group_id 1 14485062ms before
+>  ath11k_pci 0000:01:00.0: group_id 2 14485062ms before
+>  ath11k_pci 0000:01:00.0: group_id 3 14485062ms before
+>  ath11k_pci 0000:01:00.0: group_id 4 14780845ms before
+>  ath11k_pci 0000:01:00.0: group_id 5 14780845ms before
+>  ath11k_pci 0000:01:00.0: group_id 6 14485062ms before
+>  ath11k_pci 0000:01:00.0: group_id 7 66814ms before
+>  ath11k_pci 0000:01:00.0: group_id 8 68997ms before
+>  ath11k_pci 0000:01:00.0: group_id 9 67588ms before
+>  ath11k_pci 0000:01:00.0: group_id 10 69511ms before
+>  BUG: unable to handle page fault for address: ffffa007404eb010
+>  #PF: supervisor read access in kernel mode
+>  #PF: error_code(0x0000) - not-present page
+>  PGD 100000067 P4D 100000067 PUD 10022d067 PMD 100b01067 PTE 0
+>  Oops: 0000 [#1] PREEMPT SMP NOPTI
+>  RIP: 0010:ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k]
+>  Call Trace:
+>  <TASK>
+>  ? __die_body+0xae/0xb0
+>  ? page_fault_oops+0x381/0x3e0
+>  ? exc_page_fault+0x69/0xa0
+>  ? asm_exc_page_fault+0x22/0x30
+>  ? ath11k_hal_dump_srng_stats+0x2b4/0x3b0 [ath11k (HASH:6cea 4)]
+>  ath11k_qmi_driver_event_work+0xbd/0x1050 [ath11k (HASH:6cea 4)]
+>  worker_thread+0x389/0x930
+>  kthread+0x149/0x170
+> 
+> Clear per-list ->initialized flag in ath11k_hal_srng_deinit().
 
-Ah, maybe in linux-next, it was only merged to mainline for 6.16-rc1.
-
-Johan
+If you are with this, can you please pick it up?
 
