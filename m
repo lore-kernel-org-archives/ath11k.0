@@ -4,101 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DFE2C7EE33
-	for <ath11k@archiver.kernel.org>; Wed, 25 Jun 2025 11:06:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB42EC7EE32
+	for <ath11k@archiver.kernel.org>; Wed, 25 Jun 2025 11:06:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YzatJVk7HULpAK16hp2DZtWnmjU7xj3LImLAiQLPHcE=; b=FL/SpFwvNQzKcgSFdAXfH56k6k
-	fbzzPj8sl/vTgk9dudt2Go7z9U8Re/MHv86fRqSrjnVwZUaX/DugOk8SxDhCWXWnle0bLlIMtVKRX
-	gvM0HmZYrkuypzdcIXnWvT6NyLbILK7xzPMR9YYJ/NEG/uXkVPmVveAORvaDR0NQLrV4aI5JqOd5S
-	jGqScl4LT9Ah6UovP17aZXT0ygOgsxmLFi1E9sX8KLTgBEHT/NGrZMtasCZHQd0r3Q0K2Un6LmZsA
-	HmIQkTBVp3r1dpznSVF+R858MkGR9tXZXZbCUzWTpajOMxAgya7SMd1bD74tzLOVrMIVWWog3VcLs
-	2pmurUJg==;
+	bh=MWRBYYbdI2suFA4YYYEBwVodLd67TfdJKU/AXlno+H4=; b=RDq/IMN7riwoTXbXKvFXtZv8h4
+	uxnAN+i0LzpjsOAZb2i9ApptPJyBzeNbDGfx8btFqhWZQ5qRjlMRtdQ9oA+LplecCz3eWCKueRT34
+	9Bef9dgUhZ6jftOrEDK6HI8M2SmbChtN1rlMY7OIFA6SQboc1J2ulqBNlyDSr9pXqJEKN1S4/wTsz
+	5XG6mPUDeRqZWvhviwdywTIIqMjPvevP2g6jicOPfoQGGlKWA2cP50c+99mWvrmY0niNhn+go/unx
+	TGm6Vs2WNGyp1k5JT4LB0PIIo5IN3XZCoE9vppIC84ajDUNKpXG/uPtQCCHMEFch6U/x7nmaW3Pvt
+	J+Zab0ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uUNxx-00000008Pun-1TMz;
-	Wed, 25 Jun 2025 11:06:57 +0000
+	id 1uUNxw-00000008Ptj-1USU;
+	Wed, 25 Jun 2025 11:06:56 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uUMv0-00000008EbL-2E0Z
+	id 1uUMub-00000008EYP-0eV3
 	for ath11k@lists.infradead.org;
-	Wed, 25 Jun 2025 09:59:51 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P5Ntig032017;
-	Wed, 25 Jun 2025 09:59:48 GMT
+	Wed, 25 Jun 2025 09:59:26 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P89juS015531;
+	Wed, 25 Jun 2025 09:59:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YzatJVk7HULpAK16hp2DZtWnmjU7xj3LImLAiQLPHcE=; b=kPJyZ/uetvO+BuRN
-	Fo2uy1gXlRkr9p/tW/0xJlawR9tbaEtXUz7peUSWo2hl9fqsDLkOwCdB6aXSebUg
-	jzmiV2rnFWYLLZLxDhsGXoIOdWhJJXlmmZ1IfP+RJvDHScvoyZTQcwhy1bhr7Q+m
-	7EcRyWBqf/tjgj1iBiRddIHe1y2H2z0ykZR4WJgE64kxMRTX4rgM6mceoa5uo7eY
-	3YPvmVJYpHnUswuBGPzgXGQnHQVPBKUOVZpBvKVt2Be/aFmwrDXvLprvEmMe/fKG
-	qPHvXi6v+23uXi+C1OjwwiAupa4kluEo5uEWV6jE82/5sCy1mMurdRcKXZmPh+8R
-	MTpBBQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47esa4rn28-1
+	MWRBYYbdI2suFA4YYYEBwVodLd67TfdJKU/AXlno+H4=; b=NS+ytyfSz3QRkjmJ
+	FffnMK+i85M9X8Z3wS0W5ZWrnUv40yOBgzH7JxGgI7dgeFDjL6IP777PNs220Zd4
+	9MS1/Fsn1aoUWuAqy3ny13ivK4fF3mmJXixEqYgM2b5TjjN8Rn8errdn6PpWD0gv
+	xSQEeQ0HrCZgvzHPrEiVuBOARYuKd6JoWwp/ErxdK/hV9PkCxP3pq/SMiSJUajjU
+	uGVMFbDf8Yt8c0hiX03fC78Qg6/iJyEWX6bSCTmLbL7KktYWwgylcdyHpOKd0AJn
+	uzabluOE+Z1SY2QnmF6JthxgNwTLHrjkLzNwI7LrhthmokeyZqSv5tFlID+p0NOc
+	ijg/+Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ec269mpe-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 09:59:48 +0000 (GMT)
+	Wed, 25 Jun 2025 09:59:21 +0000 (GMT)
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55P9xlgM019131
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55P9xKtj023120
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 09:59:47 GMT
+	Wed, 25 Jun 2025 09:59:20 GMT
 Received: from [10.133.33.71] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Jun
- 2025 02:59:46 -0700
-Message-ID: <fcb5c21d-a2a2-469e-8fd3-b0104d392bce@quicinc.com>
-Date: Wed, 25 Jun 2025 17:59:43 +0800
+ 2025 02:59:18 -0700
+Message-ID: <9aacb7bd-c613-40d2-b901-53419b57c130@quicinc.com>
+Date: Wed, 25 Jun 2025 17:59:15 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] wifi: ath11k: use plain accesses for monitor
- descriptor
+Subject: Re: [PATCH v2 1/5] wifi: ath11k: fix dest ring-buffer corruption
 To: Johan Hovold <johan+linaro@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
 CC: Miaoqing Pan <quic_miaoqing@quicinc.com>, <linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <stable@vger.kernel.org>
 References: <20250604143457.26032-1-johan+linaro@kernel.org>
- <20250604143457.26032-4-johan+linaro@kernel.org>
+ <20250604143457.26032-2-johan+linaro@kernel.org>
 Content-Language: en-US
 From: Baochen Qiang <quic_bqiang@quicinc.com>
-In-Reply-To: <20250604143457.26032-4-johan+linaro@kernel.org>
+In-Reply-To: <20250604143457.26032-2-johan+linaro@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=eLYTjGp1 c=1 sm=1 tr=0 ts=685bc894 cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA3NCBTYWx0ZWRfXxU5BxMuNh6pn
+ Pp7XW06PMCB67A5A6cKDTlmyDt+0f8DaXkj4ub0riMUkKeft338d3Y0MstSxa5KDp3yUN2Z3gMd
+ ithF0wXdhIJhd9VRrHvj8AstINcPnozC+q685q14EECj+Z7WL+CKTacQnDo3L1vWoqKY4dsviH1
+ q8KmwQfUe0ATybJ5/cNB3wmrT9dNfo0SGt11jAffiTQ/ygWEaQ7SS3s2JbUUyl7aVG2o5hY0dmv
+ byj6YzZmuomVNRd+oAIQ0QEX+qlAGehdwEFJbWOk5RNbO6R3Qwqp2vgMrKqydBczDBlQMdJXpvc
+ TX66XnVV3C70cDXfgv5dkD/VH3Lqln6sVRb0vfAE3QUNaD6u2poOCLtYDaTGYEC61kAZQHu2u/l
+ FdFI0tYa1MdSzTgJan7Oh8sg8RQcq6p725pDeb1EsGCEi78q7Y5Y/z09SjFiT6J0UKX6fVoR
+X-Authority-Analysis: v=2.4 cv=XPQwSRhE c=1 sm=1 tr=0 ts=685bc879 cx=c_pps
  a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=PK9IGAJSL3QZDn1QluMA:9 a=QEXdDO2ut3YA:10
+ a=COk6AnOGAAAA:8 a=ISufsDh2QXdYQW1nCwMA:9 a=QEXdDO2ut3YA:10
  a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: o6HnElnQ1XgdMq66l--787zsDa_3moZL
-X-Proofpoint-ORIG-GUID: o6HnElnQ1XgdMq66l--787zsDa_3moZL
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA3NCBTYWx0ZWRfX72g01TTUvA6C
- cjKzFkMtRl21YcpK/TjfbhScGoSp1oOMSxm27cCEpJ9Vb776b3KyJFFVhSDomL6JYdMwn/jPSMw
- Zl3qMXxotjBy4rjhUh00ekXRBJOgMKHvVRES735idhlpyNEatEmGhjAr4WAbd9WwHT72L8xYsM4
- cfiDdLtcYqmaEb0mg3ZDg00kXA02yW/qVfkDe/JvMY5QF4IQtHr3FR3wv1RlFHJz1zOQbJbr3Uq
- BYs5T4eIVBcohjgFevMrIH/AuTWhKmXQ+QMVyFvakoou6h3cftgZOtxWAE1IKZbT4RxyLSRnOa5
- w16gQilHjEtrK04DI4qbveE9y05jHCjiHWUUNCCa5JIEsVkoirJzAN5PURMdxO1Pj0kGaS9sycG
- CD0VV2hmcMeNV2i7KfD6HDWVGKuAoO0yaQ3h6MBE7yVo4r8n7oT7gIA+kgyjk+ag4EXv52eg
+X-Proofpoint-GUID: 6E7vLhd4BjdK1lPRI8HXVZaJqv-x44Kz
+X-Proofpoint-ORIG-GUID: 6E7vLhd4BjdK1lPRI8HXVZaJqv-x44Kz
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-06-25_02,2025-06-23_07,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 mlxscore=0 clxscore=1015 mlxlogscore=999
- suspectscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
- adultscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506250074
+ lowpriorityscore=0 impostorscore=0 clxscore=1015 suspectscore=0 mlxscore=0
+ spamscore=0 phishscore=0 malwarescore=0 mlxlogscore=830 bulkscore=0
+ priorityscore=1501 adultscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506250074
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250625_025950_580271_8EE198A5 
-X-CRM114-Status: GOOD (  14.35  )
+X-CRM114-CacheID: sfid-20250625_025925_202471_36D7ED9F 
+X-CRM114-Status: GOOD (  20.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,79 +116,82 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 On 6/4/2025 10:34 PM, Johan Hovold wrote:
-> The read memory barrier added by commit ab52e3e44fe9 ("wifi: ath11k: fix
-> rx completion meta data corruption") is enough to guarantee ordering
-> also for plain descriptor accesses so drop the unnecessary READ_ONCE().
+> Add the missing memory barrier to make sure that destination ring
+> descriptors are read after the head pointers to avoid using stale data
+> on weakly ordered architectures like aarch64.
+> 
+> The barrier is added to the ath11k_hal_srng_access_begin() helper for
+> symmetry with follow-on fixes for source ring buffer corruption which
+> will add barriers to ath11k_hal_srng_access_end().
 > 
 > Tested-on: WCN6855 hw2.1 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
 > 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Cc: stable@vger.kernel.org	# 5.6
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  drivers/net/wireless/ath/ath11k/dp_rx.c | 22 +++++++++-------------
->  1 file changed, 9 insertions(+), 13 deletions(-)
+>  drivers/net/wireless/ath/ath11k/ce.c    |  3 ---
+>  drivers/net/wireless/ath/ath11k/dp_rx.c |  3 ---
+>  drivers/net/wireless/ath/ath11k/hal.c   | 12 +++++++++++-
+>  3 files changed, 11 insertions(+), 7 deletions(-)
 > 
+> diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+> index 9d8efec46508..39d9aad33bc6 100644
+> --- a/drivers/net/wireless/ath/ath11k/ce.c
+> +++ b/drivers/net/wireless/ath/ath11k/ce.c
+> @@ -393,9 +393,6 @@ static int ath11k_ce_completed_recv_next(struct ath11k_ce_pipe *pipe,
+>  		goto err;
+>  	}
+>  
+> -	/* Make sure descriptor is read after the head pointer. */
+> -	dma_rmb();
+> -
+>  	*nbytes = ath11k_hal_ce_dst_status_get_length(desc);
+>  
+>  	*skb = pipe->dest_ring->skb[sw_index];
 > diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-> index d8dab182a9af..218ab41c0f3c 100644
+> index ea2959305dec..d8dab182a9af 100644
 > --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 > +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-> @@ -2637,7 +2637,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
->  	struct ath11k *ar;
->  	struct hal_reo_dest_ring *desc;
->  	enum hal_reo_dest_ring_push_reason push_reason;
-> -	u32 cookie, info0, rx_msdu_info0, rx_mpdu_info0;
-> +	u32 cookie;
->  	int i;
+> @@ -2650,9 +2650,6 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+>  try_again:
+>  	ath11k_hal_srng_access_begin(ab, srng);
 >  
->  	for (i = 0; i < MAX_RADIOS; i++)
-> @@ -2654,7 +2654,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+> -	/* Make sure descriptor is read after the head pointer. */
+> -	dma_rmb();
+> -
+>  	while (likely(desc =
 >  	      (struct hal_reo_dest_ring *)ath11k_hal_srng_dst_get_next_entry(ab,
 >  									     srng))) {
->  		cookie = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
-> -				   READ_ONCE(desc->buf_addr_info.info1));
-> +				   desc->buf_addr_info.info1);
->  		buf_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_BUF_ID,
->  				   cookie);
->  		mac_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_PDEV_ID, cookie);
-> @@ -2683,9 +2683,8 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+> index 8cb1505a5a0c..921114686ba3 100644
+> --- a/drivers/net/wireless/ath/ath11k/hal.c
+> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+> @@ -823,13 +823,23 @@ u32 *ath11k_hal_srng_src_peek(struct ath11k_base *ab, struct hal_srng *srng)
 >  
->  		num_buffs_reaped[mac_id]++;
+>  void ath11k_hal_srng_access_begin(struct ath11k_base *ab, struct hal_srng *srng)
+>  {
+> +	u32 hp;
+> +
+>  	lockdep_assert_held(&srng->lock);
 >  
-> -		info0 = READ_ONCE(desc->info0);
->  		push_reason = FIELD_GET(HAL_REO_DEST_RING_INFO0_PUSH_REASON,
-> -					info0);
-> +					desc->info0);
->  		if (unlikely(push_reason !=
->  			     HAL_REO_DEST_RING_PUSH_REASON_ROUTING_INSTRUCTION)) {
->  			dev_kfree_skb_any(msdu);
-> @@ -2693,21 +2692,18 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
->  			continue;
->  		}
+>  	if (srng->ring_dir == HAL_SRNG_DIR_SRC) {
+>  		srng->u.src_ring.cached_tp =
+>  			*(volatile u32 *)srng->u.src_ring.tp_addr;
+>  	} else {
+> -		srng->u.dst_ring.cached_hp = READ_ONCE(*srng->u.dst_ring.hp_addr);
+> +		hp = READ_ONCE(*srng->u.dst_ring.hp_addr);
+> +
+> +		if (hp != srng->u.dst_ring.cached_hp) {
+> +			srng->u.dst_ring.cached_hp = hp;
+> +			/* Make sure descriptor is read after the head
+> +			 * pointer.
+> +			 */
+> +			dma_rmb();
+> +		}
 >  
-> -		rx_msdu_info0 = READ_ONCE(desc->rx_msdu_info.info0);
-> -		rx_mpdu_info0 = READ_ONCE(desc->rx_mpdu_info.info0);
-> -
-> -		rxcb->is_first_msdu = !!(rx_msdu_info0 &
-> +		rxcb->is_first_msdu = !!(desc->rx_msdu_info.info0 &
->  					 RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU);
-> -		rxcb->is_last_msdu = !!(rx_msdu_info0 &
-> +		rxcb->is_last_msdu = !!(desc->rx_msdu_info.info0 &
->  					RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU);
-> -		rxcb->is_continuation = !!(rx_msdu_info0 &
-> +		rxcb->is_continuation = !!(desc->rx_msdu_info.info0 &
->  					   RX_MSDU_DESC_INFO0_MSDU_CONTINUATION);
->  		rxcb->peer_id = FIELD_GET(RX_MPDU_DESC_META_DATA_PEER_ID,
-> -					  READ_ONCE(desc->rx_mpdu_info.meta_data));
-> +					  desc->rx_mpdu_info.meta_data);
->  		rxcb->seq_no = FIELD_GET(RX_MPDU_DESC_INFO0_SEQ_NUM,
-> -					 rx_mpdu_info0);
-> +					 desc->rx_mpdu_info.info0);
->  		rxcb->tid = FIELD_GET(HAL_REO_DEST_RING_INFO0_RX_QUEUE_NUM,
-> -				      info0);
-> +				      desc->info0);
->  
->  		rxcb->mac_id = mac_id;
->  		__skb_queue_tail(&msdu_list[mac_id], msdu);
+>  		/* Try to prefetch the next descriptor in the ring */
+>  		if (srng->flags & HAL_SRNG_FLAGS_CACHED)
 
 Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
-
 
