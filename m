@@ -4,92 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5E50C7EE31
-	for <ath11k@archiver.kernel.org>; Fri, 27 Jun 2025 07:40:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73BFCC7EE2A
+	for <ath11k@archiver.kernel.org>; Mon, 30 Jun 2025 04:12:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=sn0WeSM24B/vzlgYYF7p/UbB3vjcQLKlmQkOWEDTPa8=; b=KNie4eYBQu7upuRtZoB9nfvoKo
-	15/grYYxwjrPNreqQfYb3mNqeSc/8lXEQFV6NSjrtXWuFOYodfuk3Yi7up+4cM5yFfaVuSyimz2E0
-	VmHl61ci5m53EFBnF79uZw5pSzeFZUQ1PWK/C5PgUD//RvlPIcmc2FBTvxYllZb36NDOUlBRnFNST
-	lGNX6wYn1upXir2XOfPiVQM673eOF9rzWRH7rCCH3QlgVa7EHg0BagZSh2KqYdJhIS/PqVfC3AKT2
-	v3OwwB0YmS79W1aCo2PyBtqHE6Z5QPer+dtAITT6oaLvv4PPbKRMCJTIorcm/WytN3FCLMW5hbq05
-	b7cBS2zQ==;
+	bh=QemUHvmYnZbBhKWqdiLnQENNxT6zPm/OvCUZPEIWRTE=; b=zv5K8Jda0dV8LpcE4bXb8DKcVv
+	VY2hIB66PsmQVXkJxwc4LEakTA1ACmctgsuhPC/56p0/RVENqIUCkqBL+ycVdt7aCSOVKfLzR+Z/J
+	YYFZlxy2mQJoTHnz6SrUAeto8040syiu2z7xCIBYNSvgaxXrqEg36tJJLrXpGROEC3zv9s03ZtaLj
+	kJUPh0sIqy9T3j3yX2EXVod0TmRLBO57OcW8TnIzXPkAt7lZGqRr7TRNLlwkj6TirL4C0vezPm1WO
+	US2pz4VXLxHNeNzRYEBdOocClqNQiREWtK4BwCIuLB0MbWe5tzc0abI5Bc/eYnjpSX6CE9TXu2v9B
+	W5xwj61w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uV3h8-0000000Dqqe-0x46;
-	Fri, 27 Jun 2025 07:40:22 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1uW5sQ-00000001B5h-2WFR;
+	Mon, 30 Jun 2025 04:12:18 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uV3Yr-0000000Dpcp-2RCy
+	id 1uW5sN-00000001B5K-1jiW
 	for ath11k@lists.infradead.org;
-	Fri, 27 Jun 2025 07:31:50 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-453426170b6so15798695e9.1
-        for <ath11k@lists.infradead.org>; Fri, 27 Jun 2025 00:31:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751009508; x=1751614308; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sn0WeSM24B/vzlgYYF7p/UbB3vjcQLKlmQkOWEDTPa8=;
-        b=OJKiEKBah/FvSHBlYHfPmnjbIzqPuSyfrEIraS0c7OHeh2Rfm03XzctD57oETqTGXu
-         Cp/wRQc9/t/2BEx1U9yLI+hhZx1P8jHwps+qKt2mNFY8YzMGiAlZyWLyguuKWpYkPlN+
-         1IjPNhYicRMFcoKVt+Metnk7Jt4CffFUP/Y8WmcgVcj5Atv5rPitxMNENFmNbn5D+18J
-         VY2xVwRoLS9U2EE0blWWbOgwsvzpHmkjT4RASgC1w6/sy864/hbYp7YPkPEE/OzlMTHL
-         Lf/MdJpySMDg5tSrQL4Jofs/vUKTaRx0nxcaI5c5LuYVzghfhXZPNJz9jUg+WtzPIa+9
-         cT9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751009508; x=1751614308;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sn0WeSM24B/vzlgYYF7p/UbB3vjcQLKlmQkOWEDTPa8=;
-        b=fzOAFQTg18J/ufTLMSLq1bNPcg6UIFqBzdMZXkgvjlfibfEdiRRrCBapW/zBHT0FLR
-         dEL0kWpKwa6frgvJljxtbyV7oRF/D6NDb4UHZOQciZHIdHQaMFXQy4vbvQKTVBKbuqXl
-         L8+MLTUiNCPy01IFZ1znSS5609CS9HSna0VNV68/pHDE3y6uyTw8II4C+kJq3t1X/VMa
-         C2DowxtFal+oMqG9bMyKuCH/pS0os59nkPZjje093OyLLFq73BDz34LRx+4wzIDCSD2F
-         2e4VUeA6s4qpCmV6tqema3DQcb7EBKi9qdgMgGaQLbUZvLkI6WIQQH2Ub9GiGynLutDM
-         Npqw==
-X-Forwarded-Encrypted: i=1; AJvYcCV2/Zc37MeSHJ9lXAXjGmtedSijtieZCeXclGtbXI3KrfRJjJIIoX8OqZf2J8yudvPUI/iMS7Y=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyLdSVbGQ5vM/qti5PPQLh7gjvX1sPZdWZ7Oi9EDVuje81RItBc
-	DUn3egBqD5dKyxfdy+xklM1a9Pku9Fn1QTgYxYLtD2Aea70IRVKR3HLl
-X-Gm-Gg: ASbGnctMKRDzc7mmB/Xa8mNDVXKy1/wbCa4AxzDSwHMmPxGIfTQ9id1MBtDz201eHb0
-	IAy/G9roA1lFSweB4X6dnG2nkPhAfp4B8Dcg46xRrw7KcH3TzAamvvOW5a2lfIoRJXn+A5Qh+Eh
-	URCTdC2v3XxrqMCuyjI0i4kQmR3uBL2ttbGY9yB0jhD/TZbfdiNiMgjX2aokmrtAP4F2eftJRuF
-	9/uRf8ZlAXA6a0NajwUDOwzhAcNUw34OW4AYdRDERHUA6K1AjK3B9lh9JfbahSAxNzJr9w0dKt4
-	PhwNkk97qOfHHLYD2j0NgKcLP28y9LJbiVEEhRfGOxMM5kj0QyIcjjUiskXh4EeTm4JBBK1xcTG
-	FZoqSY0HENDitsJk=
-X-Google-Smtp-Source: AGHT+IH0LyLYrdKmf3DPLsDNklPgmfuPw+5P0zql/CEgTDuwp2yhva7iCbZKj/XeODsOzg7JnSm5Xw==
-X-Received: by 2002:a05:600c:1994:b0:450:d79d:3b16 with SMTP id 5b1f17b1804b1-4538f309394mr18058945e9.14.1751009507308;
-        Fri, 27 Jun 2025 00:31:47 -0700 (PDT)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453823ba553sm70454755e9.31.2025.06.27.00.31.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jun 2025 00:31:46 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 27 Jun 2025 09:31:46 +0200
-Message-Id: <DAX52ECUSPW5.1P50QHZ8X2QFX@gmail.com>
-Cc: <linux-wireless@vger.kernel.org>, "Steffen Moser"
- <lists@steffen-moser.de>
-Subject: Re: [PATCH] Revert "ath11k: clear the keys properly via
- DISABLE_KEY"
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Vasanthakumar Thiagarajan" <quic_vthiagar@quicinc.com>,
- <ath11k@lists.infradead.org>, "Sven Eckelmann" <se@simonwunderlich.de>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+	Mon, 30 Jun 2025 04:12:17 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55TNrija007588;
+	Mon, 30 Jun 2025 04:12:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QemUHvmYnZbBhKWqdiLnQENNxT6zPm/OvCUZPEIWRTE=; b=IgDy3U4Xqd1gPMN/
+	bSAQNemsQlBXNgNIGWs6Alak+/WimCkjf06rjrZB5Mc9E2jTJwgz7Gh4cSbzobPO
+	V71B9p+g3qzLG4cSaRZD5K7HmRMQ3cVkM77rKqi97FFu9XZk+9zuJn3xCeVMBJfg
+	CnGzlHEB6gxkE3A+UqX7UQS4p/qBNOrWTRTVOqPdrFhmmn8eoJQ/jiyYhzUpO97g
+	yFR2mVNtj2AS2KWQi/A7QISezcqGK1bKPQniC/LY8rriEUWz1+fm2cSN0132vQb0
+	ystnI4pOMcxf+Jz9cAh0dA5lxO9PaWkSHJ77rjTD6tIFr+w9i0/SQM7Bf6D0A7Vj
+	LzzlSA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8fxbap5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Jun 2025 04:12:12 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55U4CBuZ004223
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Jun 2025 04:12:11 GMT
+Received: from [10.152.204.0] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Jun
+ 2025 21:12:09 -0700
+Message-ID: <246a762f-8348-9e61-114c-bdedf63b2e60@quicinc.com>
+Date: Mon, 30 Jun 2025 09:42:03 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] Revert "ath11k: clear the keys properly via DISABLE_KEY"
+Content-Language: en-US
+To: Nicolas Escande <nico.escande@gmail.com>, <ath11k@lists.infradead.org>,
+        Sven Eckelmann <se@simonwunderlich.de>
+CC: <linux-wireless@vger.kernel.org>, Steffen Moser <lists@steffen-moser.de>
 References: <20250117191455.3395145-1-nico.escande@gmail.com>
  <20e0a239-3d23-473b-5bc8-41bc25a64088@quicinc.com>
  <D9NDQJB4VMWA.V4IPOZOIR46W@gmail.com>
  <0c166b5b-f358-1f39-4569-a1ac388033df@quicinc.com>
-In-Reply-To: <0c166b5b-f358-1f39-4569-a1ac388033df@quicinc.com>
+ <DAX52ECUSPW5.1P50QHZ8X2QFX@gmail.com>
+From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
+In-Reply-To: <DAX52ECUSPW5.1P50QHZ8X2QFX@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDAzMiBTYWx0ZWRfXysuZxCL/5C9I
+ SqHbdakDy5TngH/EdEBnGnmm7IngUl3XHm54IKEEcTBjVc4g5Tn/0SVZDfPp/S3AEdDV31eRa1C
+ jVU1MTy9uQHKXw44kdFXSIKKQdftpRQTYCjyT5nTofBqzylK+pe3bRFpOzjSbFwQN3iIalRFCt9
+ WR+6soU9/E2ivUu3NDSsyt3qckO8icP14OcCDWp84/0r57j3zV23J/WGsCnjHK+X5EY6qGUZ1iV
+ ZmXCy0mNWLvCsBj7NHNn+Ko1TxrjhjuAQZpbXaE/8tOUcpZ3TIhd4Eo5lWg1gGWvMMLtXnIRHkQ
+ ldsI2mUJfNs2OTyeBtpfVCnlUOL/o7BQq+qZU4Zziv+FGsgOjriA0iFFEQ0JNXMcBLFJK6ZeFpo
+ MBZr4LyVyeaKAY0eiJqXWlsQIjlmJ0MHy5xT4zgFytPf3stLfVKCjPWmCfuLA0sWrIoIxdj6
+X-Proofpoint-GUID: 5qT1_rULxBA394zJKvEaY1F3P_fQpujI
+X-Proofpoint-ORIG-GUID: 5qT1_rULxBA394zJKvEaY1F3P_fQpujI
+X-Authority-Analysis: v=2.4 cv=TqPmhCXh c=1 sm=1 tr=0 ts=68620e9c cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=OLL_FvSJAAAA:8
+ a=4XwAeAJPTqeN_iEf8BgA:9 a=QEXdDO2ut3YA:10 a=cq9DwLQcLZUA:10
+ a=Iy0t56g-M2wA:10 a=oIrB72frpwYPwTMnlWqB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=671 suspectscore=0 adultscore=0
+ phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
+ impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506300032
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250627_003149_636849_29A841C0 
-X-CRM114-Status: GOOD (  14.43  )
+X-CRM114-CacheID: sfid-20250629_211215_608909_CB8A58AF 
+X-CRM114-Status: GOOD (  16.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,49 +116,53 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue May 6, 2025 at 11:19 AM CEST, Vasanthakumar Thiagarajan wrote:
-> Hi Nicolas
->
-> On 5/4/2025 6:06 PM, Nicolas Escande wrote:
->> On Sat Jan 18, 2025 at 11:29 AM CET, Vasanthakumar Thiagarajan wrote:
->>> Hi Nicolas,
->>>
->>> On 1/18/2025 12:44 AM, Nicolas Escande wrote:
->>>> This reverts commit 436a4e88659842a7cf634d7cc088c8f2cc94ebf5.
+
+
+On 6/27/2025 1:01 PM, Nicolas Escande wrote:
+> On Tue May 6, 2025 at 11:19 AM CEST, Vasanthakumar Thiagarajan wrote:
+>> Hi Nicolas
+>>
+>> On 5/4/2025 6:06 PM, Nicolas Escande wrote:
+>>> On Sat Jan 18, 2025 at 11:29 AM CET, Vasanthakumar Thiagarajan wrote:
+>>>> Hi Nicolas,
 >>>>
->>>> This as been reported by multiple people [0] that with this commit,
->>>> broadcast packets were not being delivered after GTK exchange.
->>>> Qualcomm seems to have a similar patch [1] confirming the issue.
+>>>> On 1/18/2025 12:44 AM, Nicolas Escande wrote:
+>>>>> This reverts commit 436a4e88659842a7cf634d7cc088c8f2cc94ebf5.
+>>>>>
+>>>>> This as been reported by multiple people [0] that with this commit,
+>>>>> broadcast packets were not being delivered after GTK exchange.
+>>>>> Qualcomm seems to have a similar patch [1] confirming the issue.
+>>>>>
 >>>>
+>>>> This will re-open https://www.spinics.net/lists/hostap/msg08921.html
+>>>> reported by Sven. The recommended ath firmware ABI during GTK re-keying
+>>>> is SET_KEY instead of current DEL_KEY followed by SET_KEY. We are looking
+>>>> at other options like some marking by mac80211 for the driver to be able
+>>>> to identify if the received DEL_KEY is for re-keying. Also I'm curious
+>>>> if roaming between secure and non-secure mode is a critical use case.
+>>>> If not, we can probably go ahead with this revert as temporary WAR,
+>>>> @Sven?
+>>>>
+>>>> Vasanth
 >>>
->>> This will re-open https://www.spinics.net/lists/hostap/msg08921.html
->>> reported by Sven. The recommended ath firmware ABI during GTK re-keying
->>> is SET_KEY instead of current DEL_KEY followed by SET_KEY. We are looki=
-ng
->>> at other options like some marking by mac80211 for the driver to be abl=
-e
->>> to identify if the received DEL_KEY is for re-keying. Also I'm curious
->>> if roaming between secure and non-secure mode is a critical use case.
->>> If not, we can probably go ahead with this revert as temporary WAR,
->>> @Sven?
+>>> Hello,
 >>>
->>> Vasanth
->>=20
->> Hello,
->>=20
->> Any news on this ?
->> I would hate for this to sink into oblivion once again given how hard th=
-is
->> affects end users when it does hit.
->
-> We are working on a driver change w/o reverting the commit, we'll share
-> the patch once complete.
->
-> Vasanth
+>>> Any news on this ?
+>>> I would hate for this to sink into oblivion once again given how hard this
+>>> affects end users when it does hit.
+>>
+>> We are working on a driver change w/o reverting the commit, we'll share
+>> the patch once complete.
+>>
+>> Vasanth
+> 
+> Hello,
+> 
+> I might be mistaken but I did not see anything posted for that yet, right ?
 
-Hello,
+Patch has not been posted yet. Since the code change does not
+look straight forward and the issue is security related it takes
+time. This issue is being actively looked into.
 
-I might be mistaken but I did not see anything posted for that yet, right ?
-
-Thanks
+Vasanth
 
