@@ -4,61 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61DD5C8302A
-	for <ath11k@archiver.kernel.org>; Mon, 30 Jun 2025 07:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2026FC7EE30
+	for <ath11k@archiver.kernel.org>; Tue,  1 Jul 2025 10:28:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WO427gDVIXndoIGXFM1y8OPxz33+jCFBhBk8n2lT7ww=; b=TVE1JntroZBhi43QYQJV5sMNDw
-	ojV5vGUmqXZ6ZKmDiAbuvpUOVMOeVcmvcsrpbX8ozyKOFYy6pIKtrKIVRFBlvUbi850HDYsSntl/7
-	l9yJQsoQ7aoGclQfXQ+1e+7eUodcb15bfTj4Zf2YXF9FaqU//v0LLku9dIr6XsEU5UI1gRHdT3eem
-	5tmgpBbTJRdF3CK9AHqD+ZNwFOJR8mOmeOhp2bgsDyktZmIcCLmH5WsWT/92GqP1Y0++GlqpNTUuS
-	G4lRhZlyvpFGbCNWRnbSwR40HLXRACll9QEHNzuFeRpn/lJwKPCrCCrHyAvdQ+QdtztCmB6GDGnFo
-	9CacAZDw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ashagjkkGjt2ib3LXOywvrNMKchVt11lH66XioE/0yY=; b=G+IjcE+qhHjFFrNbAczlERJdrG
+	WAthPNr8VddYiuHhc2EGw3egc5NlqwQ+wXT0aHgIdO6WUcB9XPdwpuKjl3SgmI4eTmnZDjyI4IDXC
+	qpnp6VlGToAjbrNrWpoa+5wMfy7EuyOpKrqFgGWhU1KJu2egZmUKLf2Rr/Ewql25SlPwxiuUw7z1k
+	ccfLhzegKtONRAsWH6vI365wY/Gqj3/7HuUu5O2FviIIXU30Rt15f3h95M0vb98iWjZB+qTc4rCi3
+	DEZBQfbwZ7+HksuIT7NtihYtUHvp6cVBB9KTo5gBOoO6EUqKoA4PeZEzu0zj3HmBPGcctQuB8WPgC
+	1xojhm0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uW9Dd-00000001Ub7-2EXD;
-	Mon, 30 Jun 2025 07:46:25 +0000
-Received: from sender4-op-o12.zoho.com ([136.143.188.12])
+	id 1uWYE7-00000004khs-3dKf;
+	Tue, 01 Jul 2025 10:28:35 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uW9CV-00000001ULl-3He7
+	id 1uWYBG-00000004kHo-1JsP
 	for ath11k@lists.infradead.org;
-	Mon, 30 Jun 2025 07:45:17 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1751269475; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=OWkc/fd86IBru20W3fkAZl/Np/x51Yjfb+/KldMe2iU3VaemuI4mSCVzoBSc3eKULXVV7n6VVR1OGwX+D6OJb30fBcjP2GUbRqXxJ8f0VHYq9m20CVjFMMAHXu9yKGospUPzi/t1k2HEu5Pjw6kaNVjrZnpv8hBRjSzoGp6xSMY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751269475; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=WO427gDVIXndoIGXFM1y8OPxz33+jCFBhBk8n2lT7ww=; 
-	b=TFoyVYEg5FHan2RAk1ce9EY6yLX3C+zJOQmjHDqrB1SQ8kHFz2Z/r7aZaOIgBaVije7p7R5anzKxDqRUYXb2AVwvpiSc6PuZy+2E3kaUZwRnsQUBLtMl643LtCHDKarjaR9gKWYokGozrl61NDC0DTvldNOeHwrznmXuPfLdmQs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
-	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751269475;
-	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Reply-To;
-	bh=WO427gDVIXndoIGXFM1y8OPxz33+jCFBhBk8n2lT7ww=;
-	b=LONoxqnf+xcD0f6vTP3N7eVWZrY7ompALw78D2YASYEb8nYnmwGfCsr1MOU74T5u
-	ymZ0vSFvBqSynanoY4hq8QJ0f84j46AvXCSyvKOgifOGmdt5hWhRE5xcnCAG8TLGwOX
-	ymJAGQGUdkcn04py5GckmsjV8MtFh6epHGNRA2GU=
-Received: by mx.zohomail.com with SMTPS id 1751269474311920.2371976298095;
-	Mon, 30 Jun 2025 00:44:34 -0700 (PDT)
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-To: Manivannan Sadhasivam <mani@kernel.org>,
+	Tue, 01 Jul 2025 10:25:39 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id ACA6A45702;
+	Tue,  1 Jul 2025 10:25:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3D14C4CEEB;
+	Tue,  1 Jul 2025 10:25:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1751365537;
+	bh=1sgmZSc0RqiZBnc+0Tf8VpLK7tigaJ0hMiDLE8raUok=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aWFtFdlP7LxJXSmkxWjJdgi3ZxiYDS3tcdzS+NdbAXMfm7qvQ3fXE5ThJShDLJuTQ
+	 NUtFoF5lXF1oe93UCUwVtp4+oI4E/k4oGz6xvAYgARQ4b0TClNcGG2OIMsf8NI7sbt
+	 ewAf1w4ndj1WqKo9kvXITIGmsgzC5a9qYTmLZYpU=
+Date: Tue, 1 Jul 2025 12:25:34 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Muhammad Usama Anjum <usama.anjum@collabora.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
 	Jeff Johnson <jjohnson@kernel.org>,
 	Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
 	Youssef Samir <quic_yabdulra@quicinc.com>,
 	Matthew Leung <quic_mattleun@quicinc.com>,
-	Muhammad Usama Anjum <usama.anjum@collabora.com>,
 	Yan Zhen <yanzhen@vivo.com>,
 	Alexander Wilhelm <alexander.wilhelm@westermo.com>,
-	Alex Elder <elder@kernel.org>,
-	Kunwu Chan <chentao@kylinos.cn>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Alex Elder <elder@kernel.org>, Kunwu Chan <chentao@kylinos.cn>,
 	Siddartha Mohanadoss <smohanad@codeaurora.org>,
 	Sujeev Dias <sdias@codeaurora.org>,
 	Julia Lawall <julia.lawall@lip6.fr>,
@@ -66,24 +57,20 @@ To: Manivannan Sadhasivam <mani@kernel.org>,
 	Muna Sinada <quic_msinada@quicinc.com>,
 	Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
 	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
-	mhi@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org
-Cc: kernel@collabora.com
-Subject: [PATCH 2/3] bus: mhi: don't deinitialize and re-initialize again
-Date: Mon, 30 Jun 2025 12:43:29 +0500
-Message-Id: <20250630074330.253867-3-usama.anjum@collabora.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250630074330.253867-1-usama.anjum@collabora.com>
+	mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 2/3] bus: mhi: don't deinitialize and re-initialize again
+Message-ID: <2025070128-chihuahua-slimness-da88@gregkh>
 References: <20250630074330.253867-1-usama.anjum@collabora.com>
+ <20250630074330.253867-3-usama.anjum@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250630074330.253867-3-usama.anjum@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250630_004515_878755_A6EB7AC2 
-X-CRM114-Status: UNSURE (   8.31  )
+X-CRM114-CacheID: sfid-20250701_032538_370080_63E4CFB2 
+X-CRM114-Status: UNSURE (   7.73  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,38 +86,14 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Don't deinitialize and reinitialize the HAL helpers. The dma memory is
-deallocated and there is high possibility that we'll not be able to get
-the same memory allocated from dma when there is high memory pressure.
+On Mon, Jun 30, 2025 at 12:43:29PM +0500, Muhammad Usama Anjum wrote:
+> Don't deinitialize and reinitialize the HAL helpers. The dma memory is
+> deallocated and there is high possibility that we'll not be able to get
+> the same memory allocated from dma when there is high memory pressure.
+> 
+> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+> 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
 
-Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
-
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 5 -----
- 1 file changed, 5 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 4488e4cdc5e9e..bc4930fe6a367 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2213,14 +2213,9 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- 	mutex_unlock(&ab->core_lock);
- 
- 	ath11k_dp_free(ab);
--	ath11k_hal_srng_deinit(ab);
- 
- 	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
- 
--	ret = ath11k_hal_srng_init(ab);
--	if (ret)
--		return ret;
--
- 	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 
- 	ret = ath11k_core_qmi_firmware_ready(ab);
--- 
-2.39.5
-
+No cc: stable?
 
