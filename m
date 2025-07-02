@@ -4,54 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F5C8C83F04
-	for <ath11k@archiver.kernel.org>; Wed,  2 Jul 2025 16:35:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F3A0C83F04
+	for <ath11k@archiver.kernel.org>; Wed,  2 Jul 2025 16:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=mSSYZlzjDorHVrW9kO4wmXJF7vcClWLjaQL8PerBKvE=; b=uKV9hCYu44giVl0ckZ3IReLEwr
-	OTAT5ZeIikjlZiXkp/I1ZTA9Nl4hC0VHYh49z/3a7XrwQZQ1zPvD0z21aFvss0w+stHgADVyZ4S2y
-	afIYoq/MyGOgKhKxoOVgvI+ket3WHhArIY7tCM6v+2kJLZYpGMWiQH/dVkYkNvVIbdMlqLdkwLnpf
-	xOsdNAvo9PubaJ/5n58eZWJiHmD6iNOJg7n5pWxmTjBXGMz4aLTYfR3zHIfwjx6l2tnqU5wCYxFWh
-	y5zMmg8DqKviZhy0ajOt/X/Mj/fNXDNJ7KcVe0SDJXDSuGh+JzIvhFgiAA7wntcggk0ND2ILwDKL/
-	neMHY3eQ==;
+	bh=4NVWTCsF8+Y+0HyJZ6iLTeR9+84JjIwIGI7caUUiPfk=; b=z/GtEiknKGd5LdI9SMzmih+bip
+	pURn9epcYBQWiuYBRf+7YidLjotpfSorDeATdRSlUWblphrRkaN7lvmfFkXo4nZVW/wl1uS7wW/W/
+	sqUVtJ1y6R+05CzjugpTQHVNum9RNmv2OlsE0x8PKH7ai52fsyB1BjdnPHsfAJo1VDTY/E+l0zskq
+	84lebT0EkVFRn8VCjXxm+Y6Zkn23UPJwXpbDMc6nLTpNgIln3cbT/Edv82cDyXkcKo+iW+M8me6fn
+	fQS3FZ/HCFN4JBRm/n6cbuidIKVq0rN3/qgy5eD+oezmgkMbUS3aJqIx2L8EmaRfpOdqwzv2BMbHH
+	FTD3xLBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uX0QU-00000008xpc-09uE;
+	id 1uX0QU-00000008xpg-1saW;
 	Wed, 02 Jul 2025 16:35:14 +0000
-Received: from sender4-op-o12.zoho.com ([136.143.188.12])
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWzLI-00000008mXl-0FKV
+	id 1uWzLX-00000008mcx-1rKq
+	for ath11k@bombadil.infradead.org;
+	Wed, 02 Jul 2025 15:26:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=4NVWTCsF8+Y+0HyJZ6iLTeR9+84JjIwIGI7caUUiPfk=; b=MioZeBR1wWE4YK6I9MjJtGtXok
+	sgr7HB2paQ9XybmKRjCLBSGNc4xHoOMKxBJBYOihjTr/EcIfDtt6M/YIQxAFpyTl1bXdO1oWzkfo0
+	ZtuizP3qYjgYYBiffsK/U7LRaEiTCWdMgIiF+a7/5SuvU7hC+9FiGZWkPOoB5QjctaD3IwI1o8RZS
+	41ZAdvlpZJ0QrFUytaqEgpLAx9Yxex+FlucFE5pBOZAeeSr4nqv6aqf3iYkSk6nL1L9k5WCBD91yw
+	12lUiZJsncGpA0R69cAHyToDLBKzcFTbThCWofja3nm940m4tuR/C7gjMLxVY7wp+HKUep0XXgRrh
+	RKd/bFGw==;
+Received: from sender4-op-o12.zoho.com ([136.143.188.12])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uWzLT-00000007Tk0-4AJx
 	for ath11k@lists.infradead.org;
-	Wed, 02 Jul 2025 15:25:49 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1751469910; cv=none; 
+	Wed, 02 Jul 2025 15:26:02 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1751469894; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=Wh4ld+IjPq9rN2v5JrrVbNCJ9Tenxzp/ewU5rqFiunyck4YH3W/tqzh9RZebHG9/ZumIQDhyv5HaQIhnaxA7xPvOmM8lQRQnR189PqUybYczVNFT4AIlTrrAP9D74+vqrH5LwOnwJNo4cPSXgixvX36ChYUJwsrd3oC1lLPCPZg=
+	b=WpmPIDERd62a9YcFDQAaOKN47Tzg/1JmdIjZoGY86x5IWb2DWIs3zTuR9ILYtqEaD/UmXiSsHKy1CZNmVwil0Qxdf6KbIHUqODsUQ2jRLym08lxff3GowMQUqjm/VdGs0SJdu0zvH9lBE2hsh0crhY7aFDyTPr0liefQtd2Mup4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751469910; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=mSSYZlzjDorHVrW9kO4wmXJF7vcClWLjaQL8PerBKvE=; 
-	b=dhdQKgAwyG58FQVyICKT4UXpZblCNhIUSpwm3Xg+BFbPESCNAEFUUOcwJGqofWtMAlsyEPky41WQsUzaTyJ0yp4dJdZgTKWKOkVwNVITcLkDVg4C2z/rpf8G7pVD1n5ZpM0kxwOwZFBDOypzGPWuZO4mdOFyVf5WBCWEYDU81uI=
+	t=1751469894; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4NVWTCsF8+Y+0HyJZ6iLTeR9+84JjIwIGI7caUUiPfk=; 
+	b=WTzsVjl8qqQSkPWxm1e1GRZ7vEwVgSeL0jVkZu28Tnz0+WvsjDxEAPHx5DgHvZ/dKXps2gNsK0WbUmgeomIkfShSUmeRPykOI/qr0WCqCDZXi6jzRbSW/ednvlGGall3A0KWJ+hNP1C0fXnKNxtuhZvJHIm2vEUh4hEbo7i+V60=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=collabora.com;
 	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
 	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751469910;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751469894;
 	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
 	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=mSSYZlzjDorHVrW9kO4wmXJF7vcClWLjaQL8PerBKvE=;
-	b=DeNXlsfHaMk2Kd1KbaP+z5CgMeLB/0Y79MStxyfuES5HDSFJK/8eDKuQ6yEEGcl8
-	z/QOHyIUBVrJunQiap/b+INWBeqtAytqUaKAnv60qL1mZGjRYpXmjO3Dgla5mOfL/GB
-	SVkbt+cCJd9w+pA5ueE3JjlaEEEN3y/GCx97BCgo=
-Received: by mx.zohomail.com with SMTPS id 1751469909243485.9751973058537;
-	Wed, 2 Jul 2025 08:25:09 -0700 (PDT)
-Message-ID: <ed010318-8a10-4a8c-b8d4-721bdf631c2b@collabora.com>
-Date: Wed, 2 Jul 2025 20:25:03 +0500
+	bh=4NVWTCsF8+Y+0HyJZ6iLTeR9+84JjIwIGI7caUUiPfk=;
+	b=arvctNSYqPEhFDsNKsyUzPBgo0Wwowa+zYdl8u38k47zPbYrUyIh6AWxkbB20cD+
+	arRZkRv/dcTwSJF77HtG7MhRcw9Z825S2H33xcMx/6nIEIkNlUHkmonv3tCWixyX6U6
+	+VTlJonTyp6NpNZWKLc9tKj+XkDUsNOQ/9NLFsv4=
+Received: by mx.zohomail.com with SMTPS id 1751469891448470.8632580255727;
+	Wed, 2 Jul 2025 08:24:51 -0700 (PDT)
+Message-ID: <2df35ac2-34f6-4552-8630-5fe380bbdba4@collabora.com>
+Date: Wed, 2 Jul 2025 20:24:45 +0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] bus: mhi: don't deinitialize and re-initialize again
+Subject: Re: [PATCH 1/3] bus: mhi: host: keep bhi buffer through suspend cycle
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Manivannan Sadhasivam <mani@kernel.org>,
  Jeff Johnson <jjohnson@kernel.org>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
@@ -68,18 +83,17 @@ Cc: Manivannan Sadhasivam <mani@kernel.org>,
  linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
  kernel@collabora.com
 References: <20250630074330.253867-1-usama.anjum@collabora.com>
- <20250630074330.253867-3-usama.anjum@collabora.com>
- <2025070128-chihuahua-slimness-da88@gregkh>
+ <20250630074330.253867-2-usama.anjum@collabora.com>
+ <2025070143-hatchback-roundness-bec2@gregkh>
 Content-Language: en-US
 From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-In-Reply-To: <2025070128-chihuahua-slimness-da88@gregkh>
+In-Reply-To: <2025070143-hatchback-roundness-bec2@gregkh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250702_082548_189752_638A1184 
-X-CRM114-Status: UNSURE (   7.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250702_162600_501688_ADFE95F7 
+X-CRM114-Status: GOOD (  18.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,16 +108,129 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Thanks for reviewing!
+
 On 7/1/25 3:25 PM, Greg Kroah-Hartman wrote:
-> On Mon, Jun 30, 2025 at 12:43:29PM +0500, Muhammad Usama Anjum wrote:
->> Don't deinitialize and reinitialize the HAL helpers. The dma memory is
->> deallocated and there is high possibility that we'll not be able to get
->> the same memory allocated from dma when there is high memory pressure.
+> On Mon, Jun 30, 2025 at 12:43:28PM +0500, Muhammad Usama Anjum wrote:
+>> When there is memory pressure, at resume time dma_alloc_coherent()
+>> returns error which in turn fails the loading of firmware and hence
+>> the driver crashes:
+>>
+>> kernel: kworker/u33:5: page allocation failure: order:7,
+>> mode:0xc04(GFP_NOIO|GFP_DMA32), nodemask=(null),cpuset=/,mems_allowed=0
+>> kernel: CPU: 1 UID: 0 PID: 7693 Comm: kworker/u33:5 Not tainted
+>> 6.11.11-valve17-1-neptune-611-g027868a0ac03 #1
+>> 3843143b92e9da0fa2d3d5f21f51beaed15c7d59
+> 
+> Please don't wrap kernel log lines.
+Sorry, missed fixing it. I'll fix it.
+
+> 
+>> kernel: Hardware name: Valve Galileo/Galileo, BIOS F7G0112 08/01/2024
+>> kernel: Workqueue: mhi_hiprio_wq mhi_pm_st_worker [mhi]
+>> kernel: Call Trace:
+>> kernel:  <TASK>
+>> kernel:  dump_stack_lvl+0x4e/0x70
+>> kernel:  warn_alloc+0x164/0x190
+>> kernel:  ? srso_return_thunk+0x5/0x5f
+>> kernel:  ? __alloc_pages_direct_compact+0xaf/0x360
+>> kernel:  __alloc_pages_slowpath.constprop.0+0xc75/0xd70
+>> kernel:  __alloc_pages_noprof+0x321/0x350
+>> kernel:  __dma_direct_alloc_pages.isra.0+0x14a/0x290
+>> kernel:  dma_direct_alloc+0x70/0x270
+>> kernel:  mhi_fw_load_handler+0x126/0x340 [mhi
+>> a96cb91daba500cc77f86bad60c1f332dc3babdf]
+>> kernel:  mhi_pm_st_worker+0x5e8/0xac0 [mhi
+>> a96cb91daba500cc77f86bad60c1f332dc3babdf]
+> 
+> Same here.
+I'll fix it.
+
+> 
+>> kernel:  ? srso_return_thunk+0x5/0x5f
+>> kernel:  process_one_work+0x17e/0x330
+>> kernel:  worker_thread+0x2ce/0x3f0
+>> kernel:  ? __pfx_worker_thread+0x10/0x10
+>> kernel:  kthread+0xd2/0x100
+>> kernel:  ? __pfx_kthread+0x10/0x10
+>> kernel:  ret_from_fork+0x34/0x50
+>> kernel:  ? __pfx_kthread+0x10/0x10
+>> kernel:  ret_from_fork_asm+0x1a/0x30
+>> kernel:  </TASK>
+>> kernel: Mem-Info:
+>> kernel: active_anon:513809 inactive_anon:152 isolated_anon:0
+>>     active_file:359315 inactive_file:2487001 isolated_file:0
+>>     unevictable:637 dirty:19 writeback:0
+>>     slab_reclaimable:160391 slab_unreclaimable:39729
+>>     mapped:175836 shmem:51039 pagetables:4415
+>>     sec_pagetables:0 bounce:0
+>>     kernel_misc_reclaimable:0
+>>     free:125666 free_pcp:0 free_cma:0
+>>
+>> In above example, if we sum all the consumed memory, it comes out
+>> to be 15.5GB and free memory is ~ 500MB from a total of 16GB RAM.
+>> Even though memory is present. But all of the dma memory has been
+>> exhausted or fragmented.
+>>
+>> Fix it by allocating it only once and then reuse the same allocated
+>> memory. As we'll allocate this memory only once, this memory will stay
+>> allocated.
 >>
 >> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
 >>
->> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+>> Fixes: cd457afb1667 ("bus: mhi: core: Add support for downloading firmware over BHIe")
 > 
 > No cc: stable?
-I'll add it to entire series.
+I'll add stable in v2.
+
+> 
+>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+>> ---
+>> Reported here:
+>> https://lore.kernel.org/all/ead32f5b-730a-4b81-b38f-93d822f990c6@collabora.com
+>>
+>> Still a lot of more fixes are required. Hence, I'm not adding closes tag.
+>> ---
+>>  drivers/bus/mhi/host/boot.c     | 19 ++++++++++---------
+>>  drivers/bus/mhi/host/init.c     |  5 +++++
+>>  drivers/bus/mhi/host/internal.h |  2 ++
+>>  include/linux/mhi.h             |  1 +
+>>  4 files changed, 18 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/bus/mhi/host/boot.c b/drivers/bus/mhi/host/boot.c
+>> index b3a85aa3c4768..11bb8c12ac597 100644
+>> --- a/drivers/bus/mhi/host/boot.c
+>> +++ b/drivers/bus/mhi/host/boot.c
+>> @@ -302,8 +302,8 @@ static int mhi_fw_load_bhi(struct mhi_controller *mhi_cntrl,
+>>  	return -EIO;
+>>  }
+>>  
+>> -static void mhi_free_bhi_buffer(struct mhi_controller *mhi_cntrl,
+>> -				struct image_info *image_info)
+>> +void mhi_free_bhi_buffer(struct mhi_controller *mhi_cntrl,
+>> +			 struct image_info *image_info)
+>>  {
+>>  	struct mhi_buf *mhi_buf = image_info->mhi_buf;
+>>  
+>> @@ -455,18 +455,19 @@ static enum mhi_fw_load_type mhi_fw_load_type_get(const struct mhi_controller *m
+>>  
+>>  static int mhi_load_image_bhi(struct mhi_controller *mhi_cntrl, const u8 *fw_data, size_t size)
+>>  {
+>> -	struct image_info *image;
+>> +	struct image_info *image = mhi_cntrl->bhi_image;
+>>  	int ret;
+>>  
+>> -	ret = mhi_alloc_bhi_buffer(mhi_cntrl, &image, size);
+>> -	if (ret)
+>> -		return ret;
+>> +	if (!image) {
+> 
+> What prevents image from going away right after you tested it?
+The changed code isn't doing what it should be doing. I'll completely fix in v2. 
+
+> 
+> thanks,
+> 
+> greg k-h
+
 
