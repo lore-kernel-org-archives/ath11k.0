@@ -4,101 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C149CC8303C
-	for <ath11k@archiver.kernel.org>; Mon,  7 Jul 2025 09:39:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50B0DC8303C
+	for <ath11k@archiver.kernel.org>; Mon,  7 Jul 2025 13:13:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=l2e+UXhs3wbpvZ0zHeB++9+5phi56xOkJYBCLVBgJTQ=; b=0ThAkJeKWKeUA7IqFTfzUf9WBf
-	eXO1OI9U5O8TAchoBhTGPEuO/61L+KCvuOfDmbbtOyt0zOb2nF3F9Lxgf6cM6Q8z/T/ewpNfUTBnk
-	bEqOYl9Ar+esX2HDC2SNbFkiVLFHTKYf5OMZeVM/gkiT63j6CTTxrOhLZhKJw+t4WRZqREYxeYgjS
-	78R8zOe/caL0Dw1fo2c8fGAWsXsEMjJi42mPxeqYAFn6iKwuzrhWj0fnu92/uPR1CwaG5jda1lcRU
-	lLsODC4EBbWcCX3lj6/MBBQRB2KS4BOYQKFHyvJjL0/pkYBh5FI0ILmyvwS36C7gwvIjYgCX+cj5L
-	kqjUhv7g==;
+	bh=88qnIxl1WTM+/s/lulk/yrJSYDtBEUEAd6fSCVve9Q4=; b=I2JtDNNk+z+4GDT5bHPYMTp+j/
+	VV/fzgZwCbHpeAtoRFMTLB8/KGMi3OgjJhA4FzGx8hWSD6PwwYM3MaHFs2+PcZdKoySxxSihbXqTc
+	NOAOO7CxxpfOI2zWMhSOS41xWFyc85cETro6p5P73aJXnWyvPUpJVdsW/bFWKB+GwgccKhjC0yYyj
+	w+WuqUEBlcex/BN/sTg6+AcQCEyS0dwG8qB+Y+p7ISKTG0ZmQcsZ7bT6JYma4llXeUhnYJ5ZvmSFw
+	CQAoR12XfgXuoDBFFbiDChKR/xcluTXPH2aK5PRYTR0THBNqLQGljEHjtJfs7ilN5aAUFe/QTTRLl
+	o4uzcafg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uYiJy-000000020m1-04ch;
-	Mon, 07 Jul 2025 09:39:34 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uYlei-00000002W6h-21xy;
+	Mon, 07 Jul 2025 13:13:12 +0000
+Received: from sender4-op-o12.zoho.com ([136.143.188.12])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uYhji-00000001uvL-2Nc8
+	id 1uYldy-00000002Vx9-04QC
 	for ath11k@lists.infradead.org;
-	Mon, 07 Jul 2025 09:02:07 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 566NCxGO016242
-	for <ath11k@lists.infradead.org>; Mon, 7 Jul 2025 09:01:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	l2e+UXhs3wbpvZ0zHeB++9+5phi56xOkJYBCLVBgJTQ=; b=hcm+tfoBKd0T53Zp
-	7Bh+vvqHx8Ge3ZW05woa/aGjkxGKyrXKjSpjeXSKB1T2AwP/ZHO1oaQdqJhI3O9h
-	B7XMsC3xnAjOWMqwM3ExqEoLfRIPRoHvSwnlPeR5J/OdlQIVtfCfVpBwrfzwiqEh
-	UXrd3SwifmLoo+YWygcrRQpd7Ni8C0n+FTC+b7UB3wm3PyOvF3nUowRNkme007vJ
-	JJH05SwfB0bjzrsjXB5GZa1s5kRD/2EC/HmZ+WtTn6yPUghR/vO3SpsNaSBdBgMZ
-	dLGQpD6VL7M+4LaO+ekFc8n+JuBvs6y1Z+v825Sa6wrtYFtnVCcL3Lr6HWCz7WbY
-	DyqDIQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47pv4xm01b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 07 Jul 2025 09:01:19 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2369261224bso35273005ad.0
-        for <ath11k@lists.infradead.org>; Mon, 07 Jul 2025 02:01:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751878819; x=1752483619;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l2e+UXhs3wbpvZ0zHeB++9+5phi56xOkJYBCLVBgJTQ=;
-        b=PskIsAXgrw7fZWxbFwbzjlhSxmwwBlOo8HBCQd0/2OaDDhkvY9GopVUtM4hyzjZcwX
-         5z3/485C5Ma0WVrOCKqPqF7x5untBKtqwYvQ4UBbx1B3cGu3CWrNdjYA7Ckyk64M6rTr
-         sUkdezOyRMQ/EftjhPAvOQtfxaR4K9GlB/aDDGggx6AtAX1uV+810vCvz5koGj62bFU6
-         X4osgj5uQD6aZeoyqesrvxH02o0iBoV820LiMjQsH9w/tGDjwmq9mLm1A4B4yeqtQsXS
-         uaZFPQTO62es5SpTtaBZQGbiRzvXI1cLhxr5qEExMt9vdjN+nc1X6RqavTPYSyVMytlp
-         PwPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWOcB2hz1OAW9mNPAiB6s9GaE4erf9be2OC1sg2PBUswpSXIMDv/LY5hfX1yXCq9ugXmdgz6lw=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy9msLtNq/sEAIsopR8npw1DYULPvx1w3jibJ6VvYPD7SKRas9O
-	jz7TPpjK+W1M+/TSTehG1PBC0BXjnXj82/AE6H2Dc4fL67ovTnIY6lhugEVfl9/qstbI8AOSD0Q
-	LoqviD3oACIo8T31j1IuYXrPUwSDLx3ue3GclYbo7fR39qf1gscW5JjlXUcRIDr+h
-X-Gm-Gg: ASbGncv2+YW+bo6d8WLbyKayXGSpt2mD04fufbxXD1dMIgirO33hYpZOzbzZ8CfUQcf
-	E/lGIpjcNwYkeNkF1mgGeoOH6kB7bPDta/CkOi3kFJ5Lmk80iVpiGW0meeBvrQ/skP3FHn/W+n+
-	d+/PPb5l8TjhfL9Sh3GIbZOImAiKXzSfEZmImie/uab+jVmwecWS6YBzbEjdksx8fmS8/zpVhCj
-	tuaxk7pV5mQVkgPiNCOmffg6MXUV50z9Qp0yi14yOczqrS2nnKwTx6zaoLX5FmGIhsavj65vxxI
-	UlFQKj6p4x8y9EHlFhCxZheKkvYb2LkQ4xgZgagrpTPbLby46vj8bhnyFr/KtfURw1J/29voHPj
-	UyQbS75ibh6gbjFA=
-X-Received: by 2002:a17:903:24c:b0:234:f580:a15 with SMTP id d9443c01a7336-23c8747b74emr197490255ad.14.1751878818851;
-        Mon, 07 Jul 2025 02:00:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFUsHLYRDEjwSty6jv0erqnLMKM6mdS+v4Q42oEsxLYI9QjDOc3bdcxOjWAkuvoUwr2b1Hjvg==
-X-Received: by 2002:a17:903:24c:b0:234:f580:a15 with SMTP id d9443c01a7336-23c8747b74emr197489345ad.14.1751878818295;
-        Mon, 07 Jul 2025 02:00:18 -0700 (PDT)
-Received: from [10.133.33.166] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c845bde5esm85132675ad.254.2025.07.07.02.00.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jul 2025 02:00:17 -0700 (PDT)
-Message-ID: <7b8ea9ba-02ef-4676-a4d3-d088920283c3@oss.qualcomm.com>
-Date: Mon, 7 Jul 2025 17:00:11 +0800
+	Mon, 07 Jul 2025 13:12:27 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1751893886; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=m7OAsBgLVPt8NhbGdFQF8jF069SVbc5Jg55NGPZVwsf477yyhF0jUSIC0+vmLidfkYCstR4ia9cLytWir7E5+inR8T7TJ19R2tz8w0aIc7yazMgnaRChzYBFUz2JNx9nGXeLvy+v50c9VfB6ZXL2yS57isA6NyKmUovCHd3FvVU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1751893886; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=88qnIxl1WTM+/s/lulk/yrJSYDtBEUEAd6fSCVve9Q4=; 
+	b=XmMCeayGHQt7623aodPa5qisrj0xsgfuQIi+9wW9hUr0rgWA8nbFaggcSgHRqtXGyY0BJdnmCdU5Y6t0541UjtuUzGzKmg4+jheZNquKwkQCNradkvTlM3diLhqrKKDWPyKVBz85+Zzcqw0yDZsekdy68Wi2A0DAxjKUbyBPzKg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751893886;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=88qnIxl1WTM+/s/lulk/yrJSYDtBEUEAd6fSCVve9Q4=;
+	b=DWpR5KjZEJjBLzl75uDVzvaKlFSXN6kWql6zTI1clH6ONk+3hysNbU2R+vNN5FVk
+	SffLW+KmgVi6FuByPR/9chxq6QO/6oiMCFx2OaauyvrhgFO5QLkZj1PzEcNE3HoB527
+	5u/8lcB0leMeb3f1GZr6WExCDX77Z28aoT+oteEA=
+Received: by mx.zohomail.com with SMTPS id 1751893882414750.4599650229642;
+	Mon, 7 Jul 2025 06:11:22 -0700 (PDT)
+Message-ID: <9eba0149-290d-4010-8791-d4d8d8be3786@collabora.com>
+Date: Mon, 7 Jul 2025 18:11:21 +0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 2/3] bus: mhi: don't deinitialize and re-initialize again
-To: Muhammad Usama Anjum <usama.anjum@collabora.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
-        Youssef Samir <quic_yabdulra@quicinc.com>,
-        Matthew Leung <quic_mattleun@quicinc.com>, Yan Zhen <yanzhen@vivo.com>,
-        Alexander Wilhelm <alexander.wilhelm@westermo.com>,
-        Alex Elder <elder@kernel.org>, Kunwu Chan <chentao@kylinos.cn>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Siddartha Mohanadoss <smohanad@codeaurora.org>,
-        Sujeev Dias <sdias@codeaurora.org>,
-        Julia Lawall <julia.lawall@lip6.fr>, John Crispin <john@phrozen.org>,
-        Muna Sinada <quic_msinada@quicinc.com>,
-        Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
-        Maharaja Kennadyrajan <quic_mkenna@quicinc.com>, mhi@lists.linux.dev,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+ Manivannan Sadhasivam <mani@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+ Youssef Samir <quic_yabdulra@quicinc.com>,
+ Matthew Leung <quic_mattleun@quicinc.com>, Yan Zhen <yanzhen@vivo.com>,
+ Alexander Wilhelm <alexander.wilhelm@westermo.com>,
+ Alex Elder <elder@kernel.org>, Kunwu Chan <chentao@kylinos.cn>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Siddartha Mohanadoss <smohanad@codeaurora.org>,
+ Sujeev Dias <sdias@codeaurora.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ John Crispin <john@phrozen.org>, Muna Sinada <quic_msinada@quicinc.com>,
+ Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
+ Maharaja Kennadyrajan <quic_mkenna@quicinc.com>, mhi@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 Cc: kernel@collabora.com
 References: <20250630074330.253867-1-usama.anjum@collabora.com>
  <20250630074330.253867-3-usama.anjum@collabora.com>
@@ -106,36 +74,16 @@ References: <20250630074330.253867-1-usama.anjum@collabora.com>
  <29ba0afa-9a1b-40f9-a174-d03902ea5d3f@collabora.com>
  <8b9eb6f4-6f0c-458d-b1e6-a1893c35b81d@oss.qualcomm.com>
  <a92b3d96-0c19-49c2-ad8b-ad31dec973c3@collabora.com>
+ <7b8ea9ba-02ef-4676-a4d3-d088920283c3@oss.qualcomm.com>
 Content-Language: en-US
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-In-Reply-To: <a92b3d96-0c19-49c2-ad8b-ad31dec973c3@collabora.com>
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <7b8ea9ba-02ef-4676-a4d3-d088920283c3@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA3MDA1MSBTYWx0ZWRfX7UAIQ0MjxAz+
- tgAd5rUygxiFnr/AlTlWwaAnOEVHuA9NPzZHP0PTHyAZF9M5/c3GLmuvbXW6+eInKY+HHIlCxlI
- oeUoXZxSdS/52ZF2QYpNvpm1bQNIQfCFti75cnISDdtfQZ9i97Eo6MMyIcxU5dxhHwiaZuicldR
- msVcZiqZvRe6mwXJig0N+Gkn2cOYknwM5nSrkMQbEf7BRVmLRC10wGL7RSYIqGlgxhjPZAQaN3+
- 07YLlmjDIVLsJhqwmCqYEUlPvBCYT5GbiMRpcCUWJrQdlvxjgYrahERtJpjimsdIUg9EuL5aRUB
- reC+TU9lkk9jatYMDs2O0DhAo3OqXXuPp5/JJXG44vRSvRvb5MTfZQoOjfHCebba9HPoLkIB2ca
- OBeRRulWKdiT1j0JJIQVrdeF4GCnYb0b2vEC1sO6eAuK+AKi5ruCTd86UoeeoFB/YFLDJPb3
-X-Proofpoint-ORIG-GUID: pRCmEjGVJ7KTjjSLFh0wamikurSaVCNJ
-X-Authority-Analysis: v=2.4 cv=DNCP4zNb c=1 sm=1 tr=0 ts=686b8cdf cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=QX4gbG5DAAAA:8 a=hobwWvx8PSQhfgLp46UA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: pRCmEjGVJ7KTjjSLFh0wamikurSaVCNJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-07_01,2025-07-07_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 spamscore=0 clxscore=1015 phishscore=0
- malwarescore=0 mlxlogscore=999 mlxscore=0 lowpriorityscore=0 bulkscore=0
- impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507070051
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250707_020206_723072_C5559E8F 
-X-CRM114-Status: GOOD (  32.91  )
+X-CRM114-CacheID: sfid-20250707_061226_113952_EE2B45AB 
+X-CRM114-Status: GOOD (  29.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,110 +98,128 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 7/7/2025 4:19 PM, Muhammad Usama Anjum wrote:
-> On 7/3/25 6:59 AM, Baochen Qiang wrote:
->>
->>
->> On 7/3/2025 12:12 AM, Muhammad Usama Anjum wrote:
->>> Thank you for reviewing.
+On 7/7/25 2:00 PM, Baochen Qiang wrote:
+> 
+> 
+> On 7/7/2025 4:19 PM, Muhammad Usama Anjum wrote:
+>> On 7/3/25 6:59 AM, Baochen Qiang wrote:
 >>>
->>> On 7/2/25 8:50 AM, Baochen Qiang wrote:
+>>>
+>>> On 7/3/2025 12:12 AM, Muhammad Usama Anjum wrote:
+>>>> Thank you for reviewing.
 >>>>
->>>>
->>>> On 6/30/2025 3:43 PM, Muhammad Usama Anjum wrote:
->>>>> Don't deinitialize and reinitialize the HAL helpers. The dma memory is
->>>>> deallocated and there is high possibility that we'll not be able to get
->>>>> the same memory allocated from dma when there is high memory pressure.
+>>>> On 7/2/25 8:50 AM, Baochen Qiang wrote:
 >>>>>
->>>>> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
 >>>>>
->>>>> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
->>>>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
->>>>> ---
->>>>>  drivers/net/wireless/ath/ath11k/core.c | 5 -----
->>>>>  1 file changed, 5 deletions(-)
+>>>>> On 6/30/2025 3:43 PM, Muhammad Usama Anjum wrote:
+>>>>>> Don't deinitialize and reinitialize the HAL helpers. The dma memory is
+>>>>>> deallocated and there is high possibility that we'll not be able to get
+>>>>>> the same memory allocated from dma when there is high memory pressure.
+>>>>>>
+>>>>>> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+>>>>>>
+>>>>>> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+>>>>>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+>>>>>> ---
+>>>>>>  drivers/net/wireless/ath/ath11k/core.c | 5 -----
+>>>>>>  1 file changed, 5 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+>>>>>> index 4488e4cdc5e9e..bc4930fe6a367 100644
+>>>>>> --- a/drivers/net/wireless/ath/ath11k/core.c
+>>>>>> +++ b/drivers/net/wireless/ath/ath11k/core.c
+>>>>>> @@ -2213,14 +2213,9 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
+>>>>>>  	mutex_unlock(&ab->core_lock);
+>>>>>>  
+>>>>>>  	ath11k_dp_free(ab);
+>>>>>> -	ath11k_hal_srng_deinit(ab);
+>>>>>>  
+>>>>>>  	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
+>>>>>>  
+>>>>>> -	ret = ath11k_hal_srng_init(ab);
+>>>>>> -	if (ret)
+>>>>>> -		return ret;
+>>>>>> -
 >>>>>
->>>>> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
->>>>> index 4488e4cdc5e9e..bc4930fe6a367 100644
->>>>> --- a/drivers/net/wireless/ath/ath11k/core.c
->>>>> +++ b/drivers/net/wireless/ath/ath11k/core.c
->>>>> @@ -2213,14 +2213,9 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
->>>>>  	mutex_unlock(&ab->core_lock);
->>>>>  
->>>>>  	ath11k_dp_free(ab);
->>>>> -	ath11k_hal_srng_deinit(ab);
->>>>>  
->>>>>  	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
->>>>>  
->>>>> -	ret = ath11k_hal_srng_init(ab);
->>>>> -	if (ret)
->>>>> -		return ret;
->>>>> -
+>>>>> while I agree there is no need of a dealloc/realloc, we can not simply remove calling the
+>>>>> _deinit()/_init() pair. At least the memset() cleanup to hal parameters (e.g.
+>>>> Why do is it being done in the resume handler? Shouldn't those parameters be cleaned up
+>>>> in resume handler? So when device wakes up, its state is already correct.
 >>>>
->>>> while I agree there is no need of a dealloc/realloc, we can not simply remove calling the
->>>> _deinit()/_init() pair. At least the memset() cleanup to hal parameters (e.g.
->>> Why do is it being done in the resume handler? Shouldn't those parameters be cleaned up
->>> in resume handler? So when device wakes up, its state is already correct.
 >>>
+>>> Hmm... not quite understand your question. Can you elaborate?
 >>
->> Hmm... not quite understand your question. Can you elaborate?
+>> I'm trying to understand the possibility of cleanup of hal in suspend handler. For example:
+>> * The driver has been loaded and has been working fine.
+>> * The user called suspend. So all devices would be suspended.
+>> * In suspend handler of the ath11k, we should do the necessary cleanups of the states
+>>   like hal.
+>> * When the device would resume after long time, the hal would have the correct state
+>>   already. So we'll not need to deinit and init again.
 > 
-> I'm trying to understand the possibility of cleanup of hal in suspend handler. For example:
-> * The driver has been loaded and has been working fine.
-> * The user called suspend. So all devices would be suspended.
-> * In suspend handler of the ath11k, we should do the necessary cleanups of the states
->   like hal.
-> * When the device would resume after long time, the hal would have the correct state
->   already. So we'll not need to deinit and init again.
+> The hal cleanup is not only needed by suspend/resume, but also a step of reset/recover
+> process. So If we are moving the cleanup to suspend handler, similar stuff needs to be
+> done for reset/recover as well.
+It makes sense.
 
-The hal cleanup is not only needed by suspend/resume, but also a step of reset/recover
-process. So If we are moving the cleanup to suspend handler, similar stuff needs to be
-done for reset/recover as well.
+So clearing the hal structure completely other than ab->hal.srn_config doesn't seem
+right. I've also tested it and it crashes the whole system.
 
+On contrary, with only the current patch applied, there is no abnormality.
+
+num_shadow_reg_configured and avail_blk_resource are non-zero. If I make them 0,
+driver still keeps on working.
+
+	ab->hal.num_shadow_reg_configured = 0;
+	ab->hal.avail_blk_resource = 0;
+	ab->hal.current_blk_index = 0;
+
+As you have suggested setting these 3 to zero, is there any other variable in hal
+structure which should be set to zero?
 > 
 >>
->>> I'm not sure why it worked every time when I tested it on my device.
 >>>
->>>> avail_blk_resource, current_blk_index and num_shadow_reg_configured etc.) inside the
->>>> _init() needs to be kept as the later operation needs a clean state of them.
->>> So should we just memset these 3?
->>
->> more than them I think. We need to take care of all entries in hal since current code is
->> memset them all.
-> I see. So memset the whole ath11k hal structure other than the config.
-> 
->>
+>>>> I'm not sure why it worked every time when I tested it on my device.
+>>>>
+>>>>> avail_blk_resource, current_blk_index and num_shadow_reg_configured etc.) inside the
+>>>>> _init() needs to be kept as the later operation needs a clean state of them.
+>>>> So should we just memset these 3?
 >>>
+>>> more than them I think. We need to take care of all entries in hal since current code is
+>>> memset them all.
+>> I see. So memset the whole ath11k hal structure other than the config.
+>>
 >>>
 >>>>
->>>>>  	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
->>>>>  
->>>>>  	ret = ath11k_core_qmi_firmware_ready(ab);
 >>>>
->>>> the _deinit() is still getting called in case ath11k_core_qmi_firmware_ready() fails,
->>>> making it a little odd since there is no _init() anymore with this change, though this is
->>>> the way of current logic (I mean the hal is currently deinit in the error path).
+>>>>>
+>>>>>>  	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+>>>>>>  
+>>>>>>  	ret = ath11k_core_qmi_firmware_ready(ab);
+>>>>>
+>>>>> the _deinit() is still getting called in case ath11k_core_qmi_firmware_ready() fails,
+>>>>> making it a little odd since there is no _init() anymore with this change, though this is
+>>>>> the way of current logic (I mean the hal is currently deinit in the error path).
+>>>>>
+>>>>> Thinking it more, if we hit the error path, seems the only way is to remove ath11k module.
+>>>>> In that case the _deinit() would be called again in ath11k_pci_remove(), leading to issues
+>>>>> (at least I see a double free of hal->srng_config). But this is another topic which can be
+>>>>> fixed in a separate patch.
 >>>>
->>>> Thinking it more, if we hit the error path, seems the only way is to remove ath11k module.
->>>> In that case the _deinit() would be called again in ath11k_pci_remove(), leading to issues
->>>> (at least I see a double free of hal->srng_config). But this is another topic which can be
->>>> fixed in a separate patch.
+>>>> I don't think this is the problem as HAL is already initialized when before the system has
+>>>> suspended. So by removing deinit() and init() pairs, the HAL still remains initialized. Or
+>>>> maybe I've missed something?
 >>>
->>> I don't think this is the problem as HAL is already initialized when before the system has
->>> suspended. So by removing deinit() and init() pairs, the HAL still remains initialized. Or
->>> maybe I've missed something?
+>>> Yeah, it is OK in normal path. However in error path we face issues.
+>> For example:
+>> * When driver was initialized the first time, the hal was init.
+>> * Then system was suspended and hal doesn't get deinit.
+>> * At system resume, the hal is already init. We can memset some status variables. But its
+>>   initialized already from the first time. (considering this patch that deinit/init have
+>>   been removed)
+>> * So at this stage if some error occurs and we can call the deinit in the error paths.
 >>
->> Yeah, it is OK in normal path. However in error path we face issues.
-> For example:
-> * When driver was initialized the first time, the hal was init.
-> * Then system was suspended and hal doesn't get deinit.
-> * At system resume, the hal is already init. We can memset some status variables. But its
->   initialized already from the first time. (considering this patch that deinit/init have
->   been removed)
-> * So at this stage if some error occurs and we can call the deinit in the error paths.
-> 
+>>
 > 
 
 
