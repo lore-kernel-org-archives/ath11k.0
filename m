@@ -4,84 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF15C83F09
-	for <ath11k@archiver.kernel.org>; Wed,  9 Jul 2025 14:47:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2D94C83F09
+	for <ath11k@archiver.kernel.org>; Wed,  9 Jul 2025 14:47:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xJxps7WNB224pVFYv2oMqbRsIVBO9JOpbY+yv27GphE=; b=XJp16qaTQv3da43AliiHEL5XPr
-	/El5WIVXCjLf1aBl9abZVc3NTypska0UA6qKq//0vtozjGzLRLP2zT1cW4147qDSaT9wrGutzBFpX
-	Ovh1DrMQTM3uSIRDVOd8DarCi9EkbmCBEijj1vY+exCNnGsSsDLJRi5zaicu9TTd2AsNCrqzwK+kx
-	e5amWEuAc9PuLklF+3sLVbGOFz6n936DpCCoAVVY3yssZme2O/z7Oz8lE62Y88WP3BVaW28b6g9s3
-	MPQYhtWZsA6FT/CJP/BtBOdXt8+RzrE5X+IPvb0L97AqW1X26FZRGZw0G2c+8KGMAbjwsH6YwnLB8
-	qK/eudeg==;
+	bh=GzAznaWmjvDBxr0Q3tW6ieQZBTpTt1BwUiW915blvK8=; b=JuEgT7RwRYhST4XH+LZ42okGlW
+	E8cR7eglyNF/yoG3Cp5CLw1IGNWlVxBYPmv9JjhDVhDakuyPyqe+EZIJm/Nbk3cwnuhL5GHAFp5YK
+	iQBCXfnFSGkd+ykFoUWUPe1tRJYgOkP5Rlv+41mfLkotCufrou9nS7j3nCSKQxzuAsxwpdPfiC08w
+	wWGy+mOIungJ53F/OIs7u5DtfZxXXBXYV26AbXnjuM/oR70383OVICpLePaxqQd1J2UX/74xJ2/RA
+	EiVZSKDicinlMQpLT2CeTr1QnzWwCGjmMIC1mvfmtSq/dmdkFYOSiqIcZspxeMu0AZ1p4ZY3XXDQn
+	Em04Oyiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uZW4q-000000092He-0WK6;
+	id 1uZW4q-000000092Hq-3O3X;
 	Wed, 09 Jul 2025 14:47:16 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uZTbO-00000008acm-10Cu
+	id 1uZTcM-00000008alR-0A6K
 	for ath11k@lists.infradead.org;
-	Wed, 09 Jul 2025 12:08:43 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5697ldTD023230
-	for <ath11k@lists.infradead.org>; Wed, 9 Jul 2025 12:08:41 GMT
+	Wed, 09 Jul 2025 12:09:43 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5697jcjf010284
+	for <ath11k@lists.infradead.org>; Wed, 9 Jul 2025 12:09:41 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xJxps7WNB224pVFYv2oMqbRsIVBO9JOpbY+yv27GphE=; b=AYy9mZxIh58Kztr2
-	/nyu7ryxyZs3ZkzzL1Tto1oUAqNxxRmQI+RQHPxiT2r7Zr5AlTtVDwSNqbxWNOp/
-	ZkUju/cFbgFcxwX7HMtIQR96qpM1Cppvsw1hhu+Cl1oKOHwYEA+S4ijP5YYFH0aV
-	G2fTmMlWK4AYHGyeOVyli2VsrQML715tCjk9xzLUsK5m4mAEfiOtA1pZTxdSOgPw
-	w7kfjfyuPuUhlxE5xxiPxToBxz8VjmkAqBH3GXwfy+nGh32lZeYOEoxW/JvekLyP
-	6lb5f+6Ai6EGiN7IHDMEhOjJPfMZUKlyaI77gnjwzDZbOgXgPbJFbQp/LiHwbbFJ
-	0zfa8A==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smbnrugk-1
+	GzAznaWmjvDBxr0Q3tW6ieQZBTpTt1BwUiW915blvK8=; b=XK0LFGIgeCIC6qbe
+	HEYJm5Cjmmu9I7sT6QLpk91tlYapcdArHKQ5hGXt21y5fsG8s0uqIeBkRZKKIJwg
+	2qNTZMSCW0pNZv8+z2E1zcU0gl9fMn+pHZvB4Cthp3atR2sI3sYXOYmUI9/8AW73
+	Afc3q6P5wb+NX3coayjBm5p1V951ZuDB5+87AVAlmSHfWtY1WXxd2HjE28msz1pI
+	hCwUwE0pfhFsoEh6gk7uIsoQNLF6rxGAeiRdbMhQT67PxCUI2bDe5FHeStI4mdTT
+	Jik6wYfBH9trLGPTJPc2Q27ljmZPTR6vPleZFqxhdjKZpkhdHGIO5sbG0yf0+zHq
+	Lv1NRA==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smap0wtj-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 09 Jul 2025 12:08:40 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-234fedd3e51so51776235ad.1
-        for <ath11k@lists.infradead.org>; Wed, 09 Jul 2025 05:08:40 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Wed, 09 Jul 2025 12:09:40 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b31f112c90aso677357a12.0
+        for <ath11k@lists.infradead.org>; Wed, 09 Jul 2025 05:09:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752062920; x=1752667720;
+        d=1e100.net; s=20230601; t=1752062979; x=1752667779;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xJxps7WNB224pVFYv2oMqbRsIVBO9JOpbY+yv27GphE=;
-        b=dnUNEninXnmLHm50dOGd99zb09HIyxelvxUndX3ammGZdKfEr8h4LWrJjZcLs3vaTl
-         cZfbGrZJneb4/UNezO9y65eLM9himrIBXFTe54e2qAE8sZA6anhfywtujp5/YUdvUw6u
-         g5Qoqeq70YjJRJUBJztMus4BjsoO7e9x5mWWYA+7kXCOpstj42BRAhz9bVu2A18Kp3AU
-         spZ6ChSJX2iamU/WLBX3ABvKEBkqHYjGegcQFLs37Gs4+3B322c313+r2sGyknApPbmy
-         UtO+klH9hdbcOQ2NVtyJ4O9QBOC16Mv+l4L/48AKnTpjyAS2cY85fyPOV0vB8QeykBwN
-         kDrg==
-X-Forwarded-Encrypted: i=1; AJvYcCXla1LbnqGW37VihZy/9v4sbSMS9ggc+1ouE3ZG1cIomxqU2AorfR4qdW37FyKxrpnxbcRN3F0=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwGSMvN6p5x3i51lGZwjtQALkuh8LkVp68N7VNWSKZ6kVDcFZ8R
-	FUAVCARZ64I4AG5qwAptrX8fUvvjvogtBlwfBrKVcrKjd16zw5j8HEG00tYOExUUO61h6TH7z0a
-	xcVnianD6Pb72q7lHktVJqbIaBTqplRHPx9xMPnWbrgHaiOi0WJBf1meGKoh+zZYf
-X-Gm-Gg: ASbGncs/f1M51Lu1gpiFWGRGi3ctIkKv6rDp2tUqdZ1hZCLfmOiEfDHFSXP/ooEWsSP
-	24VNc5FllDYxBHAk1Kyy1I4ZndTKD6OVj2T/B0ZUdvn3pE5bCbAMzsgbc7QVFDRbSlAcPjxCNSQ
-	PlwusWbx1dYElsapLQ29dM52XTJue0OMnG3ZBs7nNrDEjHn3NOjdgrPPc4k/7fviOqHSbKSgkVc
-	kd+/f/0MF10IH/tZ3TOG43MWBVb5eq2fFjxKcynUl74hRu9XCs/MSh2XLnawqMxLJzKMbclj+1J
-	V0sNlpM3CWUGLTFdZ4n+2dy0Y/riTxksqHzHdAOHM3wfmNXjv+TV
-X-Received: by 2002:a17:902:ef47:b0:234:d7b2:2ab4 with SMTP id d9443c01a7336-23ddb1a0340mr37438885ad.17.1752062919984;
-        Wed, 09 Jul 2025 05:08:39 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEqtLZ+2Z/+gEvI3+1dVef7Kj2hVfOhPySi9l7Q95XTHCF49m6YWGP88DAjqKUR/2CZeBiXbQ==
-X-Received: by 2002:a17:902:ef47:b0:234:d7b2:2ab4 with SMTP id d9443c01a7336-23ddb1a0340mr37438255ad.17.1752062919533;
-        Wed, 09 Jul 2025 05:08:39 -0700 (PDT)
+        bh=GzAznaWmjvDBxr0Q3tW6ieQZBTpTt1BwUiW915blvK8=;
+        b=tfOxskGQzYze/bsDAevGz6+uOR+dS2Q6ndaodHel87ZjdPnhdP0QeRfTSaeIf204+o
+         5O/2jxLrrHmnyyvIE6LxMCeVu4JmNRCEAf4f27PuPMcrj4yOvtQZco2426kF9bDxIXKp
+         0m6E2JfT8xc+POh6ecJyD0/i5vxle3MpybAtMwDMfXHptgLHpklAay4x+YqufRWeU+1e
+         P+RKTD0KIOiNEXr5KCMyb0O1HN+btylu3jPoWNE07hTBn4ze73a2AQyhjb1bPrx4UUky
+         Y3HXLGVBPqoNnt5IwgTrwSvYfVTTp2cCtA4ViTfbajeETBD4a+CEvH1rHFixlurYSdhy
+         HX3A==
+X-Forwarded-Encrypted: i=1; AJvYcCWi25TCpFK7YOqFvopuK5ps/2nTq30lzfoP5F0M9F2djkXqQlvO60CDABRphlBk1pHHOzPHCgk=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx+q5tGlzxL4APYJkoAkWrX04Zpn32RRf5woap/UM57abtqnKUn
+	EM20B6X5jEN5piox0kYMSmhwiiJ0UZssbwfEXauUYr9aHSvl3C5lQntJor9RwhjNLJsjgjxuxkk
+	FXh6TQ9XKszU0GiSBpDE7kDoLJD3dajthk4nOySss8C3OTLw75uc+0GHXSKpD+Tp2
+X-Gm-Gg: ASbGncstSraCGbQIm8eapQMEcJx6HEEYqBXSODW4m0mQ+ROB5ccl6ianpIKCOSQSwoa
+	Dakwrzz8cp5My4g5Mv7ZLnLay+esP29VInbQYjkUfDQNkoyMDv0ZKPPWJLveQDRhkXO1GiatFqE
+	qin+zuFav/czhnKEEr6bEffVa20seH4NFEBu4xikTjKcwuBOWrYcFwa0sd2PkUWvG05ImjwinPw
+	cqPFeY0pGC2ufvidoVm/UDiayLkLfeNi3phd6d2Hu85NNTP+ICitUS8ekj07baR2z6W73EUZxzg
+	DrWcdMuGYYGlm8BeC3CPNajlRTuk6lo4ehZGWoHnQFmWOOxTdymi
+X-Received: by 2002:a17:902:ef47:b0:236:15b7:62e3 with SMTP id d9443c01a7336-23ddb586dbdmr30688695ad.9.1752062979177;
+        Wed, 09 Jul 2025 05:09:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFP5CmuLtJ9EVCj5EH3hN0FC/CSxne9G31njh1b728ZlbRWZpXih/MgtxmqEpMqJxZ6THKsVA==
+X-Received: by 2002:a17:902:ef47:b0:236:15b7:62e3 with SMTP id d9443c01a7336-23ddb586dbdmr30688305ad.9.1752062978696;
+        Wed, 09 Jul 2025 05:09:38 -0700 (PDT)
 Received: from [10.218.37.122] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c845bf51asm147826915ad.257.2025.07.09.05.08.33
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8457e9d6sm144191025ad.151.2025.07.09.05.09.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jul 2025 05:08:39 -0700 (PDT)
-Message-ID: <a5b8bbcf-f4ea-45bb-8a81-efc834eba233@oss.qualcomm.com>
-Date: Wed, 9 Jul 2025 17:38:32 +0530
+        Wed, 09 Jul 2025 05:09:38 -0700 (PDT)
+Message-ID: <5625ffa1-f952-4646-a17a-fbbfffcdba2a@oss.qualcomm.com>
+Date: Wed, 9 Jul 2025 17:39:31 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/11] PCI/bwctrl: Add support to scale bandwidth
- before & after link re-training
+Subject: Re: [PATCH v4 03/11] bus: mhi: host: Add support to read MHI
+ capabilities
 To: Manivannan Sadhasivam <mani@kernel.org>
 Cc: Bjorn Helgaas <bhelgaas@google.com>,
         =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
@@ -98,38 +98,39 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>,
         quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
         Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 References: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
- <20250609-mhi_bw_up-v4-2-3faa8fe92b05@qti.qualcomm.com>
- <fhi7q5mbe75xbfmff6k4qe5pe6xveya5dsfqkm6bqpz7rcn3vr@jyn4uxl2exp7>
+ <20250609-mhi_bw_up-v4-3-3faa8fe92b05@qti.qualcomm.com>
+ <ttjbjmixxbzatcfthaucuy3j4hosu4azpizes6ptxjnkzsawa5@5axodfdyjff2>
 Content-Language: en-US
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <fhi7q5mbe75xbfmff6k4qe5pe6xveya5dsfqkm6bqpz7rcn3vr@jyn4uxl2exp7>
+In-Reply-To: <ttjbjmixxbzatcfthaucuy3j4hosu4azpizes6ptxjnkzsawa5@5axodfdyjff2>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA5MDEwOCBTYWx0ZWRfX4wrEqm9G189b
- kIsL7GTeN7eFGEbAqIILXr2NOgwCQWENUjJOndylkCsfhR2aMkEA0r80QLkuj5ieDDBwXM+2VRJ
- 4oJ6j+F49WpOcK3za+uMj/wCZC0dRwp0hZcAIbXotMZ5Z85jO/VgB08Z2nVOAKXPIY20s1QASca
- kr8vXcEg0riVvY2SjjYIMbQU/4fRRSm7h5LvssDQPdii2Rf+oXD7ERl36kFtjp8ObDG8icnJZNF
- C68YYVqpcc6CVM+AXG5fS5SG67NJfIjx/J5j15bz5HlxJO2Qy9BgxJfyo+l5C+N10unls0sUaZ0
- X4QdsW5T6AXySjrUmoJKIm9xfnLCq79zGzt2o2mVMzSlowwnRWC0LKui5wJiB6tascNrR6ctCMS
- CUhbNyJ/LcINT4yQz39FTtYcJbqPJwC7gyDQe/l07MO6mZGOBf3MB3xyuUMppw53Ct4ALFGp
-X-Authority-Analysis: v=2.4 cv=QM1oRhLL c=1 sm=1 tr=0 ts=686e5bc8 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=PjKuzrdxt0Go-pjIBLUA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: 53VOcAfyqbZA3vrHpcOTWPTkUepzKq0V
-X-Proofpoint-GUID: 53VOcAfyqbZA3vrHpcOTWPTkUepzKq0V
+X-Authority-Analysis: v=2.4 cv=Ar7u3P9P c=1 sm=1 tr=0 ts=686e5c04 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=wBt9fhMRhOodALO6grUA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: n0tuqtRFCuKnRFFkTsQRAC17Qt-Vr96J
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA5MDEwOCBTYWx0ZWRfX2D6w/1n3xqsN
+ VhHI+RSMrBu8RxU6oWv2QJLLQEGttvaYzgvyghfBxkGpPFkZe0yYCreEiwUWQUavsZDNoK6eZdy
+ NOdqUkm5Vvr3/bb2fsHX1Jz3bfWZ76dzjY2NtHzgAj+Zf2KcHXcSkr7W+GpVPrIWBNXqVEJzl6+
+ bZLmFFV4UBc8N8dBdWiNGfJAw/4wRSQx2pXjeFRw8nQR3EXQTdmE9kuuWStWhVe5eTgtnt/9dBe
+ gWdJkyCKn4r11tlTp5+e25tKzJtbe+3HqnksI5+zbon6d0eGuq6QAK3u0FXovH2F4kdqBw81BdE
+ c19qzKHTYlx6ahilwf7NSI40S+vfjGahZEMKBJYg6uww3qEDGv0A9N26fpSoRVwfSL7KEO7ztdy
+ NxLngBwQPX3I59juM8yGTL/2RYphYieWFYRbEfV5KEFrm+2QbACvWn+2H1CWqqW/fT9B4BCi
+X-Proofpoint-GUID: n0tuqtRFCuKnRFFkTsQRAC17Qt-Vr96J
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-07-09_02,2025-07-08_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 adultscore=0 mlxscore=0
- phishscore=0 mlxlogscore=999 spamscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ mlxscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
+ impostorscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015 adultscore=0
+ phishscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2505280000 definitions=main-2507090108
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250709_050842_293016_3ACCEE21 
-X-CRM114-Status: GOOD (  27.38  )
+X-CRM114-CacheID: sfid-20250709_050942_200938_87889CE4 
+X-CRM114-Status: GOOD (  19.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,113 +147,117 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 7/8/2025 9:55 PM, Manivannan Sadhasivam wrote:
-> On Mon, Jun 09, 2025 at 04:21:23PM GMT, Krishna Chaitanya Chundru wrote:
->> If the driver wants to move to higher data rate/speed than the current data
-> 
-> s/driver/PCI client driver
-> 
->> rate then the controller driver may need to change certain votes so that
->> link may come up at requested data rate/speed like QCOM PCIe controllers
->> need to change their RPMh (Resource Power Manager-hardened) state. Once
->> link retraining is done controller drivers needs to adjust their votes
->> based on the final data rate.
+On 7/8/2025 10:06 PM, Manivannan Sadhasivam wrote:
+> On Mon, Jun 09, 2025 at 04:21:24PM GMT, Krishna Chaitanya Chundru wrote:
+>> From: Vivek Pernamitta <quic_vpernami@quicinc.com>
 >>
->> Some controllers also may need to update their bandwidth voting like
->> ICC BW votings etc.
+>> As per MHI spec v1.2,sec 6.6, MHI has capability registers which are
+>> located after the ERDB array. The location of this group of registers is
+>> indicated by the MISCOFF register. Each capability has a capability ID to
+>> determine which functionality is supported and each capability will point
+>> to the next capability supported.
 >>
->> So, add pre_link_speed_change() & post_link_speed_change() op to call
->> before & after the link re-train. There is no explicit locking mechanisms
->> as these are called by a single client Endpoint driver.
+>> Add a basic function to read those capabilities offsets.
 >>
+>> Signed-off-by: Vivek Pernamitta <quic_vpernami@quicinc.com>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/bus/mhi/common.h    | 13 +++++++++++++
+>>   drivers/bus/mhi/host/init.c | 34 ++++++++++++++++++++++++++++++++++
+>>   2 files changed, 47 insertions(+)
+>>
+>> diff --git a/drivers/bus/mhi/common.h b/drivers/bus/mhi/common.h
+>> index dda340aaed95a5573a2ec776ca712e11a1ed0b52..58f27c6ba63e3e6fa28ca48d6d1065684ed6e1dd 100644
+>> --- a/drivers/bus/mhi/common.h
+>> +++ b/drivers/bus/mhi/common.h
+>> @@ -16,6 +16,7 @@
+>>   #define MHICFG				0x10
+>>   #define CHDBOFF				0x18
+>>   #define ERDBOFF				0x20
+>> +#define MISCOFF				0x24
+>>   #define BHIOFF				0x28
+>>   #define BHIEOFF				0x2c
+>>   #define DEBUGOFF			0x30
+>> @@ -113,6 +114,9 @@
+>>   #define MHISTATUS_MHISTATE_MASK		GENMASK(15, 8)
+>>   #define MHISTATUS_SYSERR_MASK		BIT(2)
+>>   #define MHISTATUS_READY_MASK		BIT(0)
+>> +#define MISC_CAP_MASK			GENMASK(31, 0)
+>> +#define CAP_CAPID_MASK			GENMASK(31, 24)
+>> +#define CAP_NEXT_CAP_MASK		GENMASK(23, 12)
+>>   
+>>   /* Command Ring Element macros */
+>>   /* No operation command */
+>> @@ -204,6 +208,15 @@
+>>   #define MHI_RSCTRE_DATA_DWORD1		cpu_to_le32(FIELD_PREP(GENMASK(23, 16), \
+>>   							       MHI_PKT_TYPE_COALESCING))
+>>   
+>> +enum mhi_capability_type {
+>> +	MHI_CAP_ID_INTX = 0x1,
+>> +	MHI_CAP_ID_TIME_SYNC = 0x2,
+>> +	MHI_CAP_ID_BW_SCALE = 0x3,
+>> +	MHI_CAP_ID_TSC_TIME_SYNC = 0x4,
+>> +	MHI_CAP_ID_MAX_TRB_LEN = 0x5,
+>> +	MHI_CAP_ID_MAX,
+>> +};
+>> +
+>>   enum mhi_pkt_type {
+>>   	MHI_PKT_TYPE_INVALID = 0x0,
+>>   	MHI_PKT_TYPE_NOOP_CMD = 0x1,
+>> diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
+>> index 13e7a55f54ff45b83b3f18b97e2cdd83d4836fe3..9102ce13a2059f599b46d25ef631f643142642be 100644
+>> --- a/drivers/bus/mhi/host/init.c
+>> +++ b/drivers/bus/mhi/host/init.c
+>> @@ -467,6 +467,40 @@ int mhi_init_dev_ctxt(struct mhi_controller *mhi_cntrl)
+>>   	return ret;
+>>   }
+>>   
+>> +static int mhi_find_capability(struct mhi_controller *mhi_cntrl, u32 capability, u32 *offset)
+>> +{
+>> +	u32 val, cur_cap, next_offset;
+>> +	int ret;
+>> +
+>> +	/* Get the first supported capability offset */
+>> +	ret = mhi_read_reg_field(mhi_cntrl, mhi_cntrl->regs, MISCOFF, MISC_CAP_MASK, offset);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	*offset = (__force u32)le32_to_cpu(*offset);
 > 
-> What if client drivers of multiple endpoints connected to different RP of the
-> same Host Bridge call this API? Won't you need locking?
+> Why do you need __force attribute? What does it suppress? Is it because the
+> pointer is not le32?
 > 
-Yeah you are right, I will add locking in next patch.
+yes to suppress warnings.
 
 - Krishna Chaitanya.
 > - Mani
 > 
->> In case of PCIe switch, if there is a request to change target speed for a
->> downstream port then no need to call these function ops as these are
->> outside the scope of the controller drivers.
->>
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->> ---
->>   drivers/pci/pcie/bwctrl.c | 15 +++++++++++++++
->>   include/linux/pci.h       | 18 ++++++++++++++++++
->>   2 files changed, 33 insertions(+)
->>
->> diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
->> index 36f939f23d34e8a3b25a2d1b9059e015f298ca94..dafb8d4f1cfba987e1ff08edfc7caba527f0c76b 100644
->> --- a/drivers/pci/pcie/bwctrl.c
->> +++ b/drivers/pci/pcie/bwctrl.c
->> @@ -140,6 +140,8 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
->>   int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->>   			  bool use_lt)
->>   {
->> +	struct pci_host_bridge *host = pci_find_host_bridge(port->bus);
->> +	bool is_rootbus = pci_is_root_bus(port->bus);
->>   	struct pci_bus *bus = port->subordinate;
->>   	u16 target_speed;
->>   	int ret;
->> @@ -152,6 +154,16 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->>   
->>   	target_speed = pcie_bwctrl_select_speed(port, speed_req);
->>   
->> +	/*
->> +	 * The host bridge driver may need to be scaled for targeted speed
->> +	 * otherwise link might not come up at requested speed.
->> +	 */
->> +	if (is_rootbus && host->pre_link_speed_change) {
->> +		ret = host->pre_link_speed_change(host, port, target_speed);
+>> +	do {
+>> +		if (*offset >= mhi_cntrl->reg_len)
+>> +			return -ENXIO;
+>> +
+>> +		ret = mhi_read_reg(mhi_cntrl, mhi_cntrl->regs, *offset, &val);
 >> +		if (ret)
 >> +			return ret;
->> +	}
 >> +
->>   	scoped_guard(rwsem_read, &pcie_bwctrl_setspeed_rwsem) {
->>   		struct pcie_bwctrl_data *data = port->link_bwctrl;
->>   
->> @@ -176,6 +188,9 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->>   	    !list_empty(&bus->devices))
->>   		ret = -EAGAIN;
->>   
->> +	if (bus && is_rootbus && host->post_link_speed_change)
->> +		host->post_link_speed_change(host, port, pci_bus_speed2lnkctl2(bus->cur_bus_speed));
+>> +		val = (__force u32)le32_to_cpu(val);
+>> +		cur_cap = FIELD_GET(CAP_CAPID_MASK, val);
+>> +		next_offset = FIELD_GET(CAP_NEXT_CAP_MASK, val);
+>> +		if (cur_cap >= MHI_CAP_ID_MAX)
+>> +			return -ENXIO;
 >> +
->>   	return ret;
->>   }
->>   
->> diff --git a/include/linux/pci.h b/include/linux/pci.h
->> index 05e68f35f39238f8b9ce08df97b384d1c1e89bbe..1740bab514b0a9a61c027463a1fb154843312a22 100644
->> --- a/include/linux/pci.h
->> +++ b/include/linux/pci.h
->> @@ -599,6 +599,24 @@ struct pci_host_bridge {
->>   	void (*release_fn)(struct pci_host_bridge *);
->>   	int (*enable_device)(struct pci_host_bridge *bridge, struct pci_dev *dev);
->>   	void (*disable_device)(struct pci_host_bridge *bridge, struct pci_dev *dev);
->> +	/*
->> +	 * Callback to the host bridge drivers to update ICC BW votes, clock
->> +	 * frequencies etc.. for the link re-train to come up in targeted speed.
->> +	 * These are intended to be called by devices directly attached to the
->> +	 * Root Port. These are called by a single client Endpoint driver, so
->> +	 * there is no need for explicit locking mechanisms.
->> +	 */
->> +	int (*pre_link_speed_change)(struct pci_host_bridge *bridge,
->> +				     struct pci_dev *dev, int speed);
->> +	/*
->> +	 * Callback to the host bridge drivers to adjust ICC BW votes, clock
->> +	 * frequencies etc.. to the updated speed after link re-train. These
->> +	 * are intended to be called by devices directly attached to the
->> +	 * Root Port. These are called by a single client Endpoint driver,
->> +	 * so there is no need for explicit locking mechanisms.
->> +	 */
->> +	void (*post_link_speed_change)(struct pci_host_bridge *bridge,
->> +				       struct pci_dev *dev, int speed);
->>   	void		*release_data;
->>   	unsigned int	ignore_reset_delay:1;	/* For entire hierarchy */
->>   	unsigned int	no_ext_tags:1;		/* No Extended Tags */
+>> +		if (cur_cap == capability)
+>> +			return 0;
+>> +
+>> +		*offset = next_offset;
+>> +	} while (next_offset);
+>> +
+>> +	return -ENXIO;
+>> +}
+>> +
+>>   int mhi_init_mmio(struct mhi_controller *mhi_cntrl)
+>>   {
+>>   	u32 val;
 >>
 >> -- 
 >> 2.34.1
