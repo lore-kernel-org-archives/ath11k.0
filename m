@@ -4,78 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E002C83F03
-	for <ath11k@archiver.kernel.org>; Wed,  9 Jul 2025 19:14:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 714C8C83F1B
+	for <ath11k@archiver.kernel.org>; Thu, 10 Jul 2025 16:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=IeZhxlCCLyHzeZG1ulClczmMNQYSscPiCNyYdpKIAB4=; b=ZhBzjT9yYEFb80nSvqtgLSfazr
-	cGYVGoM91OXBONR3LsxGNxFPhYzbsoEg3BTZmB4Q52PLWLMB7nOOwJELSn4yERmlCdDRWeXt408QV
-	HJIEPmLt70URcZhMOJ+TlrrWs3NrBH5Rel/VKZLOCrz29cHqKE5HYFoYdQfbc/higcvzMXGJWQSOl
-	sc0BJNM2nZY2/FC+ZyH8rb1P7O7dCqdyIJ9y4rvMgmu4lEpwfmloj0uFcncvIC0AqpvI9l5PlLMyK
-	JOAm0JzeYRXr5BM7G1RI+YHWjRMr4T2S5667G5ZVjon9SHQOift6Cw0sctjnsOMDWRfYq2Je+q53+
-	RF6ysK+A==;
+	bh=+Bd1ScZrM2JC5+XfTmUMVfKPSMOMu2+hKdobUpn9uAo=; b=R/uiHqcGMICSyAeHSgmlSZEg2S
+	lF/v380ok2zvm9reQCUZeI7CnJppqDE5B1LBsWeendE9tD6c9+QH/0OM3jjMiOLCi+XcG34/yT2u6
+	2ArbgXAAUDujtnXN1HcBwKmlw8KkR2gtiTXoc83IfDtmrIJtGO19NpwJScRxPo3MdEDba6kVEjiE8
+	S38AwFD0PJOErsMu1s9AMgD8PBE4Kdzwrh2TZpPe6hPteCwtau/Xi3Tu7vJspG47S7BXP4lgkAnVJ
+	pBshXt/b8ezLADm77e45z90pSxyXm/hHyPoF9oi4O4xqG6D/o+eTU7g/F2hM4MZyqabXTebpXYeug
+	o1UfVbag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uZaFJ-00000009fa4-1Sj3;
-	Wed, 09 Jul 2025 19:14:23 +0000
-Received: from m16.mail.163.com ([220.197.31.5])
-	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uZX53-00000009DQb-1ycK
+	id 1uZu7t-0000000CQej-1wL1;
+	Thu, 10 Jul 2025 16:28:01 +0000
+Received: from sender4-op-o12.zoho.com ([136.143.188.12])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uZs3X-0000000C5HD-0ZBO
 	for ath11k@lists.infradead.org;
-	Wed, 09 Jul 2025 15:51:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=IeZhxlCCLyHzeZG1ulClczmMNQYSscPiCNyYdpKIAB4=;
-	b=GN9XGPMl6WimNEvHpeuFkSNibLcYkkzX/QavC27QDXDoxwBia8VxOvtoqvUKdG
-	TlDiiL3Qwi/CjHrgNyUmpj7bSAGSm+kOM+6E0rtchib1+YYUZ7WAzZ1mjKts8qli
-	TzqVtso4Cgn6EV02E9P98mINOqaUBI7Rx86IsH1suUA1U=
-Received: from [IPV6:240e:b8f:919b:3100:7981:39b4:a847:709a] (unknown [])
-	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wBnN0bbj25o6MZnDg--.7031S2;
-	Wed, 09 Jul 2025 23:50:53 +0800 (CST)
-Message-ID: <1429abd2-d9c8-46b9-8886-ee81feaf5602@163.com>
-Date: Wed, 9 Jul 2025 23:50:51 +0800
+	Thu, 10 Jul 2025 14:15:24 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1752156866; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=BxbU6/hBdzFK5J83uPrxiRnMJK5DwDubdmhCFsE8xTFJLhOQwhMIoE0J/wBnyQyVlNelxEurbeyG3Xb5KTEPiBLS8OuGd9aH4/YeNeOF16WOmHfai83x8rCj2fNCFcM8D0abUMGw+4K606NNNvOwossKZ2ZMZhpe21y84FzzmbQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1752156866; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=+Bd1ScZrM2JC5+XfTmUMVfKPSMOMu2+hKdobUpn9uAo=; 
+	b=AWvkfaannUwK9VBk/+ID3M8INlNR+LiGkN7SOXEEnqmMuDP4zI3T+5yxF6efYDCxhR+Z8TG8xY5n450grEiA0kOdZ/E3Nz80+CF01Blo8mcW30Zc5SpF8UpJdaUFNybrwuCMUjWqAScmFQb47e2MLe3O+kweM9JCdjLvuO2frAU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752156866;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=+Bd1ScZrM2JC5+XfTmUMVfKPSMOMu2+hKdobUpn9uAo=;
+	b=OIDPkdGXgEeMzXE5rpruOGW/k17fl/ejoogEYAs4cEaibKURNF8jt9+ONc15Ma8w
+	ynSLNOGF5peSetDKVHK6VxLJi/C1EuJNxkmowaFbwvPQuPK8ez2Ud3aSag9e1SxQypg
+	MVpEQC+ZI+L9/HgMSDY9Yc3FhtnaiQxRiVysRfBA=
+Received: by mx.zohomail.com with SMTPS id 1752156862699411.0438114787785;
+	Thu, 10 Jul 2025 07:14:22 -0700 (PDT)
+Message-ID: <d4e9f38b-895e-45ea-90db-3c2839c76c70@collabora.com>
+Date: Thu, 10 Jul 2025 19:14:15 +0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/11] bus: mhi: host: Add support to read MHI
- capabilities
-To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>,
- Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- linux-pci@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
- quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
- Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-References: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
- <20250609-mhi_bw_up-v4-3-3faa8fe92b05@qti.qualcomm.com>
- <ttjbjmixxbzatcfthaucuy3j4hosu4azpizes6ptxjnkzsawa5@5axodfdyjff2>
- <5625ffa1-f952-4646-a17a-fbbfffcdba2a@oss.qualcomm.com>
- <4c68074e-5809-bc4c-185a-88ddcb81f31b@linux.intel.com>
+Subject: Re: [PATCH 1/3] bus: mhi: host: keep bhi buffer through suspend cycle
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ Manivannan Sadhasivam <mani@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+ Youssef Samir <quic_yabdulra@quicinc.com>,
+ Matthew Leung <quic_mattleun@quicinc.com>, Yan Zhen <yanzhen@vivo.com>,
+ Alexander Wilhelm <alexander.wilhelm@westermo.com>,
+ Alex Elder <elder@kernel.org>, Kunwu Chan <chentao@kylinos.cn>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Siddartha Mohanadoss <smohanad@codeaurora.org>,
+ Sujeev Dias <sdias@codeaurora.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ John Crispin <john@phrozen.org>, Muna Sinada <quic_msinada@quicinc.com>,
+ Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
+ Maharaja Kennadyrajan <quic_mkenna@quicinc.com>, mhi@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: kernel@collabora.com
+References: <20250630074330.253867-1-usama.anjum@collabora.com>
+ <20250630074330.253867-2-usama.anjum@collabora.com>
+ <b76cfe82-b977-4166-85d8-368539b392fd@oss.qualcomm.com>
 Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <4c68074e-5809-bc4c-185a-88ddcb81f31b@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <b76cfe82-b977-4166-85d8-368539b392fd@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wBnN0bbj25o6MZnDg--.7031S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZry5try3tw1rtF15Cw4rXwb_yoWDWFb_uw
-	4xZ3srGFyUXF47Crn3Kwn5uanxtF42kF45Xw10v343Xwn2yF42vrs7Jr9aqa1xJFyxAF13
-	Kr1F9ayfW3yUZjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1TKZtUUUUU==
-X-Originating-IP: [240e:b8f:919b:3100:7981:39b4:a847:709a]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiQw+Fo2hujnwdFQAAsW
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250709_085134_000801_AE8CCACB 
-X-CRM114-Status: UNSURE (   7.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250710_071523_253541_AA191F69 
+X-CRM114-Status: GOOD (  18.54  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,44 +94,119 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Thank you so much for review.
 
-
-On 2025/7/9 20:20, Ilpo Järvinen wrote:
->>>> +	do {
->>>> +		if (*offset >= mhi_cntrl->reg_len)
->>>> +			return -ENXIO;
->>>> +
->>>> +		ret = mhi_read_reg(mhi_cntrl, mhi_cntrl->regs, *offset, &val);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		val = (__force u32)le32_to_cpu(val);
->>>> +		cur_cap = FIELD_GET(CAP_CAPID_MASK, val);
->>>> +		next_offset = FIELD_GET(CAP_NEXT_CAP_MASK, val);
->>>> +		if (cur_cap >= MHI_CAP_ID_MAX)
->>>> +			return -ENXIO;
->>>> +
->>>> +		if (cur_cap == capability)
->>>> +			return 0;
->>>> +
->>>> +		*offset = next_offset;
->>>> +	} while (next_offset);
->>>> +
->>>> +	return -ENXIO;
->>>> +}
+On 7/8/25 2:47 PM, Krishna Chaitanya Chundru wrote:
 > 
-> There's a generalization of capability search in Hans Zhang's series,
-> can it be used here too?
+> 
+> On 6/30/2025 1:13 PM, Muhammad Usama Anjum wrote:
+>> When there is memory pressure, at resume time dma_alloc_coherent()
+>> returns error which in turn fails the loading of firmware and hence
+>> the driver crashes:
+>>
+> why only bhi? bhie can also have same issue.
+I was thinking I'd handled all bhie cases in earlier patch. But I haven't. I'll post
+fix for bhie in next version.
 
-Dear Ilpo,
-
-Could you help add your review tag to my series of patches? Mani has 
-added the Acked-by tag. If you add the review tag, I believe Bjorn will 
-merge it in. At the same time, others can use the patches of my series. 
-Thank you very much for your previous suggestions and time.
-
-Best regards,
-Hans
-
+>> kernel: kworker/u33:5: page allocation failure: order:7,
+>> mode:0xc04(GFP_NOIO|GFP_DMA32), nodemask=(null),cpuset=/,mems_allowed=0
+>> kernel: CPU: 1 UID: 0 PID: 7693 Comm: kworker/u33:5 Not tainted
+>> 6.11.11-valve17-1-neptune-611-g027868a0ac03 #1
+>> 3843143b92e9da0fa2d3d5f21f51beaed15c7d59
+>> kernel: Hardware name: Valve Galileo/Galileo, BIOS F7G0112 08/01/2024
+>> kernel: Workqueue: mhi_hiprio_wq mhi_pm_st_worker [mhi]
+>> kernel: Call Trace:
+>> kernel:  <TASK>
+>> kernel:  dump_stack_lvl+0x4e/0x70
+>> kernel:  warn_alloc+0x164/0x190
+>> kernel:  ? srso_return_thunk+0x5/0x5f
+>> kernel:  ? __alloc_pages_direct_compact+0xaf/0x360
+>> kernel:  __alloc_pages_slowpath.constprop.0+0xc75/0xd70
+>> kernel:  __alloc_pages_noprof+0x321/0x350
+>> kernel:  __dma_direct_alloc_pages.isra.0+0x14a/0x290
+>> kernel:  dma_direct_alloc+0x70/0x270
+>> kernel:  mhi_fw_load_handler+0x126/0x340 [mhi
+>> a96cb91daba500cc77f86bad60c1f332dc3babdf]
+>> kernel:  mhi_pm_st_worker+0x5e8/0xac0 [mhi
+>> a96cb91daba500cc77f86bad60c1f332dc3babdf]
+>> kernel:  ? srso_return_thunk+0x5/0x5f
+>> kernel:  process_one_work+0x17e/0x330
+>> kernel:  worker_thread+0x2ce/0x3f0
+>> kernel:  ? __pfx_worker_thread+0x10/0x10
+>> kernel:  kthread+0xd2/0x100
+>> kernel:  ? __pfx_kthread+0x10/0x10
+>> kernel:  ret_from_fork+0x34/0x50
+>> kernel:  ? __pfx_kthread+0x10/0x10
+>> kernel:  ret_from_fork_asm+0x1a/0x30
+>> kernel:  </TASK>
+>> kernel: Mem-Info:
+>> kernel: active_anon:513809 inactive_anon:152 isolated_anon:0
+>>      active_file:359315 inactive_file:2487001 isolated_file:0
+>>      unevictable:637 dirty:19 writeback:0
+>>      slab_reclaimable:160391 slab_unreclaimable:39729
+>>      mapped:175836 shmem:51039 pagetables:4415
+>>      sec_pagetables:0 bounce:0
+>>      kernel_misc_reclaimable:0
+>>      free:125666 free_pcp:0 free_cma:0
+>>
+>> In above example, if we sum all the consumed memory, it comes out
+>> to be 15.5GB and free memory is ~ 500MB from a total of 16GB RAM.
+>> Even though memory is present. But all of the dma memory has been
+>> exhausted or fragmented.
+>>
+>> Fix it by allocating it only once and then reuse the same allocated
+>> memory. As we'll allocate this memory only once, this memory will stay
+>> allocated.
+>>
+>> Tested-on: WCN6855 WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+>>
+>> Fixes: cd457afb1667 ("bus: mhi: core: Add support for downloading firmware over BHIe")
+>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+>> ---
+>> Reported here:
+>> https://lore.kernel.org/all/ead32f5b-730a-4b81-b38f-93d822f990c6@collabora.com
+>>
+>> Still a lot of more fixes are required. Hence, I'm not adding closes tag.
+>> ---
+>>   drivers/bus/mhi/host/boot.c     | 19 ++++++++++---------
+>>   drivers/bus/mhi/host/init.c     |  5 +++++
+>>   drivers/bus/mhi/host/internal.h |  2 ++
+>>   include/linux/mhi.h             |  1 +
+>>   4 files changed, 18 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/bus/mhi/host/boot.c b/drivers/bus/mhi/host/boot.c
+>> index b3a85aa3c4768..11bb8c12ac597 100644
+>> --- a/drivers/bus/mhi/host/boot.c
+>> +++ b/drivers/bus/mhi/host/boot.c
+>> @@ -302,8 +302,8 @@ static int mhi_fw_load_bhi(struct mhi_controller *mhi_cntrl,
+>>       return -EIO;
+>>   }
+>>   -static void mhi_free_bhi_buffer(struct mhi_controller *mhi_cntrl,
+>> -                struct image_info *image_info)
+>> +void mhi_free_bhi_buffer(struct mhi_controller *mhi_cntrl,
+>> +             struct image_info *image_info)
+>>   {
+>>       struct mhi_buf *mhi_buf = image_info->mhi_buf;
+>>   @@ -455,18 +455,19 @@ static enum mhi_fw_load_type mhi_fw_load_type_get(const struct mhi_controller *m
+>>     static int mhi_load_image_bhi(struct mhi_controller *mhi_cntrl, const u8 *fw_data, size_t size)
+>>   {
+>> -    struct image_info *image;
+>> +    struct image_info *image = mhi_cntrl->bhi_image;
+>>       int ret;
+>>   -    ret = mhi_alloc_bhi_buffer(mhi_cntrl, &image, size);
+>> -    if (ret)
+>> -        return ret;
+>> +    if (!image) {
+>> +        ret = mhi_alloc_bhi_buffer(mhi_cntrl, &image, size);
+>> +        if (ret)
+>> +            return ret;
+>>   -    /* Load the firmware into BHI vec table */
+>> -    memcpy(image->mhi_buf->buf, fw_data, size);
+>> +        /* Load the firmware into BHI vec table */
+>> +        memcpy(image->mhi_buf->buf, fw_data, size);
+>> +    }
+>>         ret = mhi_fw_load_bhi(mhi_cntrl, &image->mhi_buf[image->entries - 1]);
+> if mhi fw load fails didn't we need to free bhi buffer.
+Good point. I'll fix in v2.
 
 
