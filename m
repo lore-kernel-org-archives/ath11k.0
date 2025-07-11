@@ -4,84 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FD93C83F1B
-	for <ath11k@archiver.kernel.org>; Fri, 11 Jul 2025 23:12:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E06DC83F1A
+	for <ath11k@archiver.kernel.org>; Sat, 12 Jul 2025 00:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0PpsrmMj0uiPokNCQ1Eqhmb2HaTUqbDl1MR+USJW6LE=; b=R8VaXfdj+kOeo5vXaoIfFLkpEp
-	AdkNZZcEd1yxeZLDBSGUSpSpcmM50Q9K41X2Mxc4PKege3zZSfKYN0mC+B4LxvOXWmmib5r57DjdK
-	Ckaj0Fz7qhc8B+sXQtMCrHwJZlv9NSvZm861ttnotU06UH8Q8+NfKGtBbaaIihhZEWpsXyFpobyan
-	nfL0RT/kog6Mj+EqEsYLUPWxxoUhnMUC0/VI3+3AsF2dysOeKYyYINExpelW9OtkDGFVJkXULTvlc
-	CjbhEjOFkyS7TVAqf1ZFM/kjp8Be5MfV4B0DAfDnLb4EMBWKiQeLm0J3vTNTDleMQSsKjBkuLBI35
-	LlCY3Odw==;
+	bh=iJaNlSK/GbStS7lb9/17BUr8ds+mo5PWyFhZUdAGzHU=; b=KugrraxIiFpS9BxCux6D9rders
+	5KrNro/saCiI89acgRtxjAPFP/IQaqGHZmDS+k4qTbKariKm3EugPX3ck+PxjDiYNJVIwq9IE68X8
+	trztdqB6Ais3oFFREcyD3/7Su2DX8J09gL7nj1t2LbsZebvdifTKXUMHwZAZ6x21lfFINne6ThmRB
+	YuSKdSWCoZOF5kSQ6M5CSFmc8Izo1P+wGKHsS+uQfnAzFg2Y/DB9OHAvi9p24V9UYqJG9PHhFp8Zy
+	se0jRM7z8Hwezlr8ZgL8EZHqsYBZoCTWUXIwibVNY6H4QnFLyKXPKIY4Wx481dNL2ifSaT2ie459x
+	fpSWHG7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uaMuU-0000000G0ce-2xqN;
-	Fri, 11 Jul 2025 23:12:06 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uaNsi-0000000G5o0-2st3;
+	Sat, 12 Jul 2025 00:14:20 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uaMuS-0000000G0cI-2cFn
+	id 1uaMso-0000000G0Ry-0JkU
 	for ath11k@lists.infradead.org;
-	Fri, 11 Jul 2025 23:12:05 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BB3Jxq031220
-	for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 23:12:04 GMT
+	Fri, 11 Jul 2025 23:10:23 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BKCgLs019648
+	for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 23:10:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0PpsrmMj0uiPokNCQ1Eqhmb2HaTUqbDl1MR+USJW6LE=; b=AM69r9ABrIKlQY4s
-	YxvXrJg3dr1YOkoMN/GSblbDv2QbivqBF22HGq+bXcKJEk7KLQiiAsbq/A1GWWhk
-	FE9fFuCzFLb/2jH3edDr0HjaNnP9vEuL+t8pmMQ1/3XfCihqy489xCSPoZ8eFQLG
-	7i7Wxj+jZclQEVZZmWKMomCFGMYLWiGOT3BYZKLLCsQQsRcjbD74DfRbzY40NMx+
-	F5ykAy+u/jXlpNkVH40wRQvxiZww30ViGur6KVDBjOMgTAm4rr1nR6ifu0v7QiOb
-	rs+VnAdMC3/wmL+hI27ytiJlyBOQ6tV8gQd5zK1K4h9u+sdLvCJY3z06XruS3MFm
-	taMmzw==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smbet4mu-1
+	iJaNlSK/GbStS7lb9/17BUr8ds+mo5PWyFhZUdAGzHU=; b=fQy/grzz9xiKmQcY
+	a9nS7NT6LgbLz1F96MqwoPoiXvRywypXDx6Sf08cSwryd9uFUVSiYqrOewsHCQ6K
+	ZTYKYsQjPHxnBbsnvU2S3LSF9TADqJmEn0byQFJZkdELEI5dbfSpKsFRvr773BEh
+	nhtbO+1wzVPcUyf3bkj0rIxAaFy0ra0lNI6u1u988q4kH/DEWPGZy95Vw6GlwYaE
+	GbNeMh9C0hOz41mTHqQPMHBeRm8byif+HdRWmxpbx8XOYFgV4ZRLWLjMecQG1CAr
+	xUW/C5Dicr/7KlfGcn9lxibMFkT1V13Wt5QPZoG1dAASuem8fVd1/DzwkLSHO6xp
+	6+5ajQ==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47u1c59r0v-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 23:12:04 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b1ffc678adfso2024121a12.0
-        for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 16:12:03 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 23:10:20 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b2c37558eccso2172821a12.1
+        for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 16:10:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752275523; x=1752880323;
+        d=1e100.net; s=20230601; t=1752275416; x=1752880216;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0PpsrmMj0uiPokNCQ1Eqhmb2HaTUqbDl1MR+USJW6LE=;
-        b=D8/IcHwKbK+goa3DDnpI+ib2UKR6jUxEvIKiWodK+thW2SyC8I+mHa2NibEmaK4D/m
-         5AiUWwuAq4lbzsYwvYO9WtuOnqpswyviqQ5n5gMXn0KBOiIQVg6aTneVrtBqmeoLcAqN
-         sVayPD4idEP1vVWtonocEv+pC+GMH+cHL2kmgc4jvlXWjnCfH4svbEvskIGHu6S0FIlG
-         JwJd/axF/mz13qwFUeYfoxKWZA8IPVdUQziO1xz/JIxk6IhWfkmFoPMi6leCKfB1Bi6F
-         KgWBEhkc4M7WViha3DFGeMWz2wTLQgwQQvv7mcwnyVlUDKsn9uS4wo5rbmSjgwjCbQE9
-         9YKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWWh10LWgk1tTbR57kGTukW4TWbvvCHfgrdrQaS8sQ832Zsn3nEHdsVeNUXLoufT2HUDin0rR0=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yzcvqy59DY4h5i4/9YSW6UYeIffGR7uJzDCNuGxdvcSKCcEiZvG
-	Ty06kdnEDKPg6fclQ6gK4SRSaiKZeNTpL/F2pGAJxhNTBXUayPsASH/bbdku4UtQyZF3Qjo7xjQ
-	8uVcI2cf1h/muPRBiVrmMBaccM5Z9b9XVrUKgqM412xR7gui9jcrItmNFpNaz9EUf
-X-Gm-Gg: ASbGncuZM1EKv5uq1HW1E1Hy7nMyfdCRCHfn14tiI7z5UCkpFwLvojUo72sUvdZhJX6
-	Zd/3WKiYOFAMhv78ghD2HLBebX8A7BrncsZ7rSHS56d6J25dfQZl8g7hn0RQd0b8LR9kpDmH7Y5
-	WDAHL/EOFdsuvtz1kWoqMWZXDTU+1srRmUB/kLIyUdTiqcV+fgkfqcpER/VZkKzvdZ7s0C5uNFm
-	626Z/7WIdXPOji+zIMGyymDKfLzbgholb2yrhyGe41Cpw4Q02UTTRNxEq2dL8GXzkc/seS1/18E
-	GarwSIDDuRI08s9HAOA/G1+QQn9KMbQOxUneUYVqquK7ePqNGttEEiPM2XIZnyO3E0W0
-X-Received: by 2002:a05:6a20:d43:b0:220:3252:bb7b with SMTP id adf61e73a8af0-2312080596dmr8768283637.31.1752275523086;
-        Fri, 11 Jul 2025 16:12:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGeK7rgvIuioPJc9Djm6BWHu8SfUaUakg+lxMCli0qXD/9xlsegC+9TSbITmlPNQmxFFiKNlw==
-X-Received: by 2002:a05:6a20:d43:b0:220:3252:bb7b with SMTP id adf61e73a8af0-2312080596dmr8768238637.31.1752275522626;
-        Fri, 11 Jul 2025 16:12:02 -0700 (PDT)
+        bh=iJaNlSK/GbStS7lb9/17BUr8ds+mo5PWyFhZUdAGzHU=;
+        b=gR4NdFCVlIGj6EfVXYybysNkWnG2dcdAeJKo7NQcfDZkNQ6ZF42Q6MNvdro/+3eJWR
+         Jvm4v1l7oSd1gCpFvkxGY3Ha/PHdulZnzJuMNKidmWtQKnCxcF2V1sj3XVkFtC8WStVP
+         6+u7ovIG/D5lscXbUZJlTvOdw+BxfQ7Ba/gYoq+Wm/E38FJTgYboeF4aQSZV+LfDw6cY
+         +HNY7dRdK8JNN3uMG9iijOveM7MisL9P2JKxyXyNg9ncFuLL5hEXXo34r8fIlGZRYFY0
+         fMS3Wa+mIV8PInwbuaZ73D0VorhSVbkhhoDEFinKXVKakqV7a2NFJCbJPoPCY1dr1Mxa
+         5j7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW5kycQlBybKUWMcq1ZuHCJiYpOCbGpHKz97K4nJ+PyAMTB2FVFX6PKnSGUrUVKzN2xSI8yIeQ=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy+9V/GYy0C9NHW9dQiymtWyOMTB617VEqkL77DbQrrDilFOnuQ
+	GEeRplwf1wg0PmFIeHlqmLJPKaBfZHjVQJMgb8tIIzcPpEFeQy1DVTdV78ySMZJTFL2eUTEL7fl
+	AQrt+aqM4R8D9n808IgrVKZQx7MQ1UMXcg2mgSLOfMcAa9Sm0bDyA0Nc9OSY4+meD
+X-Gm-Gg: ASbGncsMwdfCG5VYHN2VgVCL24GgniHI1HwDzqL+W7bIBmKfMPq9vDOExCpjdi7e88K
+	MYrL6YJG7t5VbCz1fc6ojpuWqSG6UrEroXWN5KzxLIS4zNcK0qfVAK1Q5UPx9qnbXs+JRIYH+gM
+	CC+bladSu/j1tKHgp/7R/q5mYw45AJsLivQpJ7xUZKETM/whCA0aD2S6t/byBcKToCkULP5XbU7
+	M84rmcPyWA8wEs9q1CAbT0wfMCeb6gSSUeLMe7QrJRK/AaJJBmfqNlW9NAFJExwvaNoTRqK4u2x
+	efZSRY2alYNbF5Dg67Sjq9qz6F73QcP7a9apMN0pc0MC7VSf4/+yDGSZE17VMUA94iVc
+X-Received: by 2002:a17:90b:580c:b0:311:ad7f:3299 with SMTP id 98e67ed59e1d1-31c4cd9d001mr7043604a91.25.1752275415663;
+        Fri, 11 Jul 2025 16:10:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF7Z1TQfgkE3r2PMQwTwfxQjj0gjR9UsVQ1UbIMeevZFsnCWlYfrpvPY3URH71qwyKf5RhBCg==
+X-Received: by 2002:a17:90b:580c:b0:311:ad7f:3299 with SMTP id 98e67ed59e1d1-31c4cd9d001mr7043560a91.25.1752275415267;
+        Fri, 11 Jul 2025 16:10:15 -0700 (PDT)
 Received: from [192.168.29.92] ([49.43.227.1])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9dd59f1sm5742585b3a.3.2025.07.11.16.11.55
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31c3eb467d7sm6197116a91.26.2025.07.11.16.10.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jul 2025 16:12:02 -0700 (PDT)
-Message-ID: <b9647055-a9f2-4016-a7b1-81c15a0d82c1@oss.qualcomm.com>
-Date: Sat, 12 Jul 2025 04:41:53 +0530
+        Fri, 11 Jul 2025 16:10:14 -0700 (PDT)
+Message-ID: <0bc51460-f25c-4607-bb9c-0e317e362201@oss.qualcomm.com>
+Date: Sat, 12 Jul 2025 04:40:05 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 08/11] PCI: qcom: Add support for PCIe
- pre/post_link_speed_change()
+Subject: Re: [PATCH v4 06/11] PCI/ASPM: Clear aspm_disable as part of
+ __pci_enable_link_state()
 To: Bjorn Helgaas <helgaas@kernel.org>
 Cc: Bjorn Helgaas <bhelgaas@google.com>,
         =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
@@ -98,37 +98,37 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>,
         qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
         quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
         Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-References: <20250711212952.GA2308100@bhelgaas>
+References: <20250711230240.GA2312867@bhelgaas>
 Content-Language: en-US
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <20250711212952.GA2308100@bhelgaas>
+In-Reply-To: <20250711230240.GA2312867@bhelgaas>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDE3NiBTYWx0ZWRfX7s6edH//fIQm
- D8OPcaf/jCqFITST/IkvKNTvm8Dsb7I2zsk3wxYnGcVoslMi1saOXRgFd6Agn82WXIey1espyXn
- yqoU0MF2+Y1xPbri1AMZmI6nKOC94vYrQpxZ/ZUF2SQ7fGNyfiJPucAoVzsaNcgrDXV1yc9hYU8
- uIY4/xSN60ZrFUV+WsppIrgTzXWa3qwMS7dDCCW9NwECSXgu9dRMKXQ/ktHjs/KMaLwb6qJiBiT
- xwn1CYFIDdK9FQTAbsDNREdGM0z1Z6A2fYKMDm+wDFgHUYhpDCxE37jVNC2K9fm81CCBqgsi0iu
- gZTrrFZfWxPDFmjq+5W5kNf0M8uOH/0FPkgctbiBIWrArwHAbpThY5PAPc/UFI0gp4n0F32w1xs
- XsxIZVGBOSZaJmG/pLuER1coWwJk0rLPmPtIFHGXock5E7YTDOS21KymtDdL+1+Q6mtnY38a
-X-Proofpoint-GUID: s5bdx4UC8Lvug3Y4N00UIPSM-nfGNmfI
-X-Proofpoint-ORIG-GUID: s5bdx4UC8Lvug3Y4N00UIPSM-nfGNmfI
-X-Authority-Analysis: v=2.4 cv=VpQjA/2n c=1 sm=1 tr=0 ts=68719a44 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=4nqOr+EkFiuPl9GB/B4vcQ==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=40onBu3kYIFXMOwlT5wA:9
- a=QEXdDO2ut3YA:10 a=ZXulRonScM0A:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-ORIG-GUID: BKeizs3ZQJkRhdM6vtDo0dquHD7LUKF2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDE3NiBTYWx0ZWRfXz6xrBl1ZUrqJ
+ soo4YLkeAXFivuPKTHIHLCjHPYid0qicLdvXBLfCWwW7VN46c8CtMogd5WqO0UjV3Q8bNIRtTCN
+ lJI+8RP8FpzM2s5wjAgFHOcXj8qTvSAYJWy6zPDkWKzX++lSdNWPJDeqBH4LI0KtYyF2wq6uILZ
+ 678OKOKr1ckaQBYbFIUzijw7psk9nywbscxXe9bA/H+PaY22sUsDiRMqR7PRu4Dwkm2RBqXKNm9
+ PiOoHA4JdfOLZp8OEnUekfgCAjfoXmm53nYphmIU8jP+eZsxFxvqNKF1VTDdvo5sh3uBpOLjK3t
+ JoNAnZ/J/5MhrCj95ODDSk4E+ho0La3LBywrJUQVBqkqL3Qpz/gzG0JQGGVVwXLrcdZcdUs7Udq
+ z3K7R1JOiib2KZ/bjRfxN92Z2WLJdOky21RKxdQhRdWCSb/B/rE48htaGy7I5zwyoCXj52n/
+X-Proofpoint-GUID: BKeizs3ZQJkRhdM6vtDo0dquHD7LUKF2
+X-Authority-Analysis: v=2.4 cv=N9MpF39B c=1 sm=1 tr=0 ts=687199dc cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=4nqOr+EkFiuPl9GB/B4vcQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=P-IC7800AAAA:8 a=nqD_WAsoW_ZkbJYGnRIA:9
+ a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22 a=d3PnA9EDa4IxuAV0gXij:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-07-11_07,2025-07-09_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 malwarescore=0 suspectscore=0 clxscore=1015 impostorscore=0
- phishscore=0 mlxlogscore=999 lowpriorityscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 spamscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507110176
+ phishscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 spamscore=0 malwarescore=0 suspectscore=0 adultscore=0
+ mlxlogscore=895 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507110176
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250711_161204_670558_D16B0C89 
-X-CRM114-Status: GOOD (  13.93  )
+X-CRM114-CacheID: sfid-20250711_161022_234597_815B9A04 
+X-CRM114-Status: GOOD (  10.84  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,27 +145,19 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 7/12/2025 2:59 AM, Bjorn Helgaas wrote:
-> On Mon, Jun 09, 2025 at 04:21:29PM +0530, Krishna Chaitanya Chundru wrote:
->> QCOM PCIe controllers need to disable ASPM before initiating link
->> re-train. So as part of pre_link_speed_change() disable ASPM and as
->> part of post_link_speed_change() enable ASPM back.
+On 7/12/2025 4:32 AM, Bjorn Helgaas wrote:
+> On Mon, Jun 09, 2025 at 04:21:27PM +0530, Krishna Chaitanya Chundru wrote:
+>> ASPM states are not being enabled back with pci_enable_link_state() when
+>> they are disabled by pci_disable_link_state(). This is because of the
+>> aspm_disable flag is not getting cleared in pci_enable_link_state(), this
+>> flag is being properly cleared when ASPM is controlled by sysfs.
 > 
-> Is this a QCOM defect?  Or is there something in the PCIe spec about
-This is QCOM issue only.
-> needing to disable ASPM during retrain?  What about
-> pcie_retrain_link()?  Does that work on QCOM?
-After disabling ASPM will work pcie_retrain_link().
+> Mention the name of the function where this happens for sysfs so we
+> can easily compare them.
+it is aspm_attr_store_common()[1], it will be used for all ASPM sysfs
+
+[1] 
+https://elixir.bootlin.com/linux/v6.16-rc5/source/drivers/pci/pcie/aspm.c#L1595
 
 - Krishna Chaitanya.
-> 
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -276,10 +276,16 @@ struct qcom_pcie {
->>   	struct dentry *debugfs;
->>   	bool suspended;
->>   	bool use_pm_opp;
->> +	int aspm_state; /* Store ASPM state used in pre & post link speed change */
-> 
-> Whatever this is, it's definitely not an int.  Some kind of unsigned
-> thing of specified size, at least.
 
