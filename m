@@ -4,45 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 187B6C83F1B
-	for <ath11k@archiver.kernel.org>; Fri, 11 Jul 2025 21:36:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5CA6C83F1B
+	for <ath11k@archiver.kernel.org>; Fri, 11 Jul 2025 22:59:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=KnouNH6B/9EBIwqVC/QaB1mh/2dYO6n+r5f4tgtW/rA=; b=yDaMB0MNZ9P3J5
-	n3A0GPKlhZ5FEX8j1MMIvp+nOQiT+Ppu1zW85JWw/pepVfLU2q8iKFMcUtIEmfLGID2zqYSlbK/lB
-	SCxKSTbNiSjCLEGVSkCNEg0ozHwpLaEfiHCnDexgwWwTpav5W3uxw19gTN695IbYbHe+miZkQ5ghN
-	JSVNlXzSN6aEprPMmbH8/KraRsWNGcuuJwJob8gZpt7y332ImdLdbBk8JOHzAFm4we9SGX7QpW51y
-	Zjovb06y/XzaBzJmxnBiYeO1oUZm+qoxdX7U7l18e0MocWdjf0mV1WhcNxVa3/pHLFmPIyF1aQRAu
-	aQRRyiAEhEztTEByO1wQ==;
+	List-Owner; bh=cx+SICU5HeF3+aHaOMVYbh6PDdW3Zmb41bU67xAp8VQ=; b=nbqyH0fCIqnx4u
+	PN18QaIMnUeuowpnZ2lsjDd1XCb3KbNcaPrb5z4zI/7GkCRB5Q9GdwGL9tGsvWcyI7x4KekzB9MWE
+	AGOAnzhu4OE5Aj473v1SjtzzIHG+CjVMSH4/OoewD1KVdzoJKr7tnKFTcFjoE+0U+r7hK/P780WWF
+	k2+jLkKh+we/inSfh27LskoEPOFRrUbNblPU9f/hkz5HBEzz+ymPBlVjJBOdM/ins+pxAMXrvcmsp
+	3L1TJ9KWwctjMEDJQvlzXAX0+YShvey1rcBuTVtHMwbObaa1lZn6D3iZ51gPkgMUNOjrSaKMF39cw
+	fDhcsjUDkgInqgRMSxKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uaLPb-0000000Fu5x-2ggw;
-	Fri, 11 Jul 2025 21:36:07 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1uaMi7-0000000Fz80-0QES;
+	Fri, 11 Jul 2025 22:59:19 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uaLPZ-0000000Fu5b-25tw
+	id 1uaLZH-0000000FuZV-2JEh
+	for ath11k@bombadil.infradead.org;
+	Fri, 11 Jul 2025 21:46:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+	Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:References;
+	bh=cx+SICU5HeF3+aHaOMVYbh6PDdW3Zmb41bU67xAp8VQ=; b=ZpFqtHJ/Jey4/2nNRo01W+L81B
+	eeXQVYxxbfaxhx4RPDiDgtBkYIhLiXzLoFYP3lz6fPX9L2GX4YamHXqoMaYMJi2pryqu/4vfy4dXQ
+	bXeFkEkNq66GRQ3+hpTZbS06MYUDEo9CVT9QjvHFPdSNX6nr9GRtk/fl7rHG6mKIwX8hpufp/5nrl
+	FNKzTf5daMzUjMT7aYu3YUmuK+dBcSFQ8HzwGVmRO5SxTMFrd2nfUE8J78bx6WD2OenCYk1oTADP5
+	HVP2dA5EqCWrsx8JyhrXtuQCFPqJuTf93a9jyk0RdzUBIAV+/2IBImNEZoWU7qoBmjvmRFrmU2yjc
+	m5jL/uyQ==;
+Received: from nyc.source.kernel.org ([147.75.193.91])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uaLZD-00000009MUC-3ze6
 	for ath11k@lists.infradead.org;
-	Fri, 11 Jul 2025 21:36:06 +0000
+	Fri, 11 Jul 2025 21:46:05 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8F7DB43A12;
-	Fri, 11 Jul 2025 21:36:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49C7DC4CEED;
-	Fri, 11 Jul 2025 21:36:04 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 1C00EA54DB0;
+	Fri, 11 Jul 2025 21:46:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88FC7C4CEED;
+	Fri, 11 Jul 2025 21:45:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752269764;
-	bh=6vFUYFx/VhN3Xm63hxLlS9XvwMe/jnHsYahek8vfgTI=;
+	s=k20201202; t=1752270359;
+	bh=SVPARDXoIYbIvHPwhZO/owhQLfsvXzF2C36T9ofsUMM=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=OxanN+Z43huYfALidhi0ROpjH9PpXq7t9mMZrUH4TSYanrqRwi8nkqjE56+aGjBy+
-	 YFZZgvzoI+OeDWdipSfxD1AuW+Xd8OGrquYI9BJdPH4yLhyqWrEkrmqBohkwDray5f
-	 f6qdjzW9zngI7xFlClSOgDRnRZIKFj9PF4TMCl6n1iRsHeuOEBnGOA7oFIPcxBafbj
-	 stBDdIPaAlrO7MlH0yFZp5aiczKaXnSIb5fg3ys2AySgREE4orAbFhG9jPW4h6RGc8
-	 2t+QBZO6AR9bY4CrZTFKZmUpffq3MSa9aWWqj1t6BeHtHu6IBCpHZqJvbAHUGvFmnE
-	 bTHQlrHT1SmYA==
-Date: Fri, 11 Jul 2025 16:36:02 -0500
+	b=kkO5tjFTvYlRwsFVXavHXqv3/cX/fbjkQ5ZD0abSuCtvKz67RF0Y6voaYSgfGqYdV
+	 nzW5jMO+XCzTjdQ/E/NVK0yxirB5G0HASdC/urQwijjw9WBAV7g3rBOaDHsoxgsW+n
+	 1n4ZMT5UUKGVBp0m6j5aTKF2/KN/XnEytrJZgbeAGYeAQx56xVIjkwgUeGavQLZWqf
+	 mBkDLD5BRXqxSssAOP84oYzI+/USVZgGwUKvJCjtEdK12phsUnqBufQ4y7SbB+wBBC
+	 ZAZ0nAwDKshYiSS//mHTSFr55FHZQ4IT7dVvkmWsmTHDLcWwq+dXPx1eSGhHee8K6E
+	 eBWen7SHORZig==
+Date: Fri, 11 Jul 2025 16:45:58 -0500
 From: Bjorn Helgaas <helgaas@kernel.org>
 To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>,
@@ -59,16 +74,16 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>,
 	qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
 	quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
 	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Subject: Re: [PATCH v4 02/11] PCI/bwctrl: Add support to scale bandwidth
- before & after link re-training
-Message-ID: <20250711213602.GA2307197@bhelgaas>
+Subject: Re: [PATCH v4 10/11] PCI: Add function to convert lnkctl2speed to
+ pci_bus_speed
+Message-ID: <20250711214558.GA2308483@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250609-mhi_bw_up-v4-2-3faa8fe92b05@qti.qualcomm.com>
+In-Reply-To: <20250609-mhi_bw_up-v4-10-3faa8fe92b05@qti.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250711_143605_577989_3BA46C3C 
-X-CRM114-Status: GOOD (  20.14  )
+X-CRM114-CacheID: sfid-20250711_224604_431401_F7C2B893 
+X-CRM114-Status: GOOD (  15.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,54 +98,46 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 09, 2025 at 04:21:23PM +0530, Krishna Chaitanya Chundru wrote:
-> If the driver wants to move to higher data rate/speed than the current data
-> rate then the controller driver may need to change certain votes so that
-> link may come up at requested data rate/speed like QCOM PCIe controllers
-> need to change their RPMh (Resource Power Manager-hardened) state. Once
-> link retraining is done controller drivers needs to adjust their votes
-> based on the final data rate.
+On Mon, Jun 09, 2025 at 04:21:31PM +0530, Krishna Chaitanya Chundru wrote:
+> Add a exported function to convert lnkctl2speed to enum pci_bus_speed,
+> so that other kernel drivers can use it.
+
+Name the function explicitly in subject and commit log.
+
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  drivers/pci/pci.c   | 12 ++++++++++++
+>  include/linux/pci.h |  1 +
+>  2 files changed, 13 insertions(+)
 > 
-> Some controllers also may need to update their bandwidth voting like
-> ICC BW votings etc.
-> 
-> So, add pre_link_speed_change() & post_link_speed_change() op to call
-> before & after the link re-train. There is no explicit locking mechanisms
-> as these are called by a single client Endpoint driver.
-> 
-> In case of PCIe switch, if there is a request to change target speed for a
-> downstream port then no need to call these function ops as these are
-> outside the scope of the controller drivers.
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index e9448d55113bdfd2263d8e2f6b3ec802f56b712e..8950e88826e27accfe699e31fba8f4077c26296f 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -6018,6 +6018,18 @@ int pcie_link_speed_mbps(struct pci_dev *pdev)
+>  }
+>  EXPORT_SYMBOL(pcie_link_speed_mbps);
+>  
+> +/**
+> + * pci_lnkctl2_bus_speed - convert lnkctl2 speed to pci_bus_speed
+> + * @speed: LNKCAP2 SLS value
+> + *
+> + * Return: pci_bus_speed
+> + */
+> +enum pci_bus_speed pci_lnkctl2_bus_speed(int speed)
+> +{
+> +	return pcie_link_speed[speed];
+> +}
+> +EXPORT_SYMBOL(pci_lnkctl2_bus_speed);
 
-> +++ b/include/linux/pci.h
-> @@ -599,6 +599,24 @@ struct pci_host_bridge {
->  	void (*release_fn)(struct pci_host_bridge *);
->  	int (*enable_device)(struct pci_host_bridge *bridge, struct pci_dev *dev);
->  	void (*disable_device)(struct pci_host_bridge *bridge, struct pci_dev *dev);
-> +	/*
-> +	 * Callback to the host bridge drivers to update ICC BW votes, clock
-> +	 * frequencies etc.. for the link re-train to come up in targeted speed.
-> +	 * These are intended to be called by devices directly attached to the
-> +	 * Root Port. These are called by a single client Endpoint driver, so
-> +	 * there is no need for explicit locking mechanisms.
-> +	 */
-> +	int (*pre_link_speed_change)(struct pci_host_bridge *bridge,
-> +				     struct pci_dev *dev, int speed);
-> +	/*
-> +	 * Callback to the host bridge drivers to adjust ICC BW votes, clock
-> +	 * frequencies etc.. to the updated speed after link re-train. These
-> +	 * are intended to be called by devices directly attached to the
-> +	 * Root Port. These are called by a single client Endpoint driver,
-> +	 * so there is no need for explicit locking mechanisms.
+You mention both "lnkctl2" and "LNKCAP2" and I don't know whether you
+mean Link Capabilities 2 or Link Control 2, and I don't know what the
+bits passed in are.
 
-No need to repeat the entire comment.  s/.././
+I expect something like FIELD_GET(PCI_EXP_LNKCAP2_SLS, value) here
+that tells us clearly where it came from, so the caller isn't
+responsible for extracting it.  And it takes some kind of unsigned
+value, probably a u32 if it came from Link Capabilities 2.
 
-These pointers feel awfully specific for being in struct
-pci_host_bridge, since we only need them for a questionable QCOM
-controller.  I think this needs to be pushed down into qcom somehow as
-some kind of quirk.
-
-> +	 */
-> +	void (*post_link_speed_change)(struct pci_host_bridge *bridge,
-> +				       struct pci_dev *dev, int speed);
+Bjorn
 
