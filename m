@@ -4,131 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E06DC83F1A
-	for <ath11k@archiver.kernel.org>; Sat, 12 Jul 2025 00:14:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 079F2C83F1A
+	for <ath11k@archiver.kernel.org>; Sat, 12 Jul 2025 04:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iJaNlSK/GbStS7lb9/17BUr8ds+mo5PWyFhZUdAGzHU=; b=KugrraxIiFpS9BxCux6D9rders
-	5KrNro/saCiI89acgRtxjAPFP/IQaqGHZmDS+k4qTbKariKm3EugPX3ck+PxjDiYNJVIwq9IE68X8
-	trztdqB6Ais3oFFREcyD3/7Su2DX8J09gL7nj1t2LbsZebvdifTKXUMHwZAZ6x21lfFINne6ThmRB
-	YuSKdSWCoZOF5kSQ6M5CSFmc8Izo1P+wGKHsS+uQfnAzFg2Y/DB9OHAvi9p24V9UYqJG9PHhFp8Zy
-	se0jRM7z8Hwezlr8ZgL8EZHqsYBZoCTWUXIwibVNY6H4QnFLyKXPKIY4Wx481dNL2ifSaT2ie459x
-	fpSWHG7w==;
+	Content-Type:Subject:From:To:MIME-Version:Date:Message-ID:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=mzTgL6KyVzLy/GJ9g3Xb3ePQiw6Ao0kqdnrFykfnWxc=; b=17GGbXaG3qu0V9PYpCuoOeW+nk
+	/Ma+rH8FYZl4jI4R3oe4czrtFptftyR7dBvvGal7KWBdj8a5WVUw6I31BFvsIo5awRIOL3Asq65Od
+	oMIb/P8hc6y6KqRim3qCHGJI93GYqevaaiwyoGLRsZ2Lq6Cb/StL9jwkv11DIr9Jy2MRxMzMM+SvH
+	VBGBX/tX+OsrWmfmPXdfKMiHv8SQUeyazZFb007X7GbifeQZw20YPkFsEnawh+rMRk8GuBb4z0k0a
+	HJ99bVv190Zg8garDVXvUC7hOKzgDL+NY/ywC9ja5VFcQILyzYQ8EoCkbL7BikMdM37FGohnadu6o
+	ZfI7PEIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uaNsi-0000000G5o0-2st3;
-	Sat, 12 Jul 2025 00:14:20 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uaS4Q-0000000GG4U-0QB2;
+	Sat, 12 Jul 2025 04:42:42 +0000
+Received: from smtp-bc0b.mail.infomaniak.ch ([45.157.188.11])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uaMso-0000000G0Ry-0JkU
+	id 1uaS4N-0000000GG44-2uv1
 	for ath11k@lists.infradead.org;
-	Fri, 11 Jul 2025 23:10:23 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BKCgLs019648
-	for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 23:10:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iJaNlSK/GbStS7lb9/17BUr8ds+mo5PWyFhZUdAGzHU=; b=fQy/grzz9xiKmQcY
-	a9nS7NT6LgbLz1F96MqwoPoiXvRywypXDx6Sf08cSwryd9uFUVSiYqrOewsHCQ6K
-	ZTYKYsQjPHxnBbsnvU2S3LSF9TADqJmEn0byQFJZkdELEI5dbfSpKsFRvr773BEh
-	nhtbO+1wzVPcUyf3bkj0rIxAaFy0ra0lNI6u1u988q4kH/DEWPGZy95Vw6GlwYaE
-	GbNeMh9C0hOz41mTHqQPMHBeRm8byif+HdRWmxpbx8XOYFgV4ZRLWLjMecQG1CAr
-	xUW/C5Dicr/7KlfGcn9lxibMFkT1V13Wt5QPZoG1dAASuem8fVd1/DzwkLSHO6xp
-	6+5ajQ==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47u1c59r0v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 23:10:20 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b2c37558eccso2172821a12.1
-        for <ath11k@lists.infradead.org>; Fri, 11 Jul 2025 16:10:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752275416; x=1752880216;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iJaNlSK/GbStS7lb9/17BUr8ds+mo5PWyFhZUdAGzHU=;
-        b=gR4NdFCVlIGj6EfVXYybysNkWnG2dcdAeJKo7NQcfDZkNQ6ZF42Q6MNvdro/+3eJWR
-         Jvm4v1l7oSd1gCpFvkxGY3Ha/PHdulZnzJuMNKidmWtQKnCxcF2V1sj3XVkFtC8WStVP
-         6+u7ovIG/D5lscXbUZJlTvOdw+BxfQ7Ba/gYoq+Wm/E38FJTgYboeF4aQSZV+LfDw6cY
-         +HNY7dRdK8JNN3uMG9iijOveM7MisL9P2JKxyXyNg9ncFuLL5hEXXo34r8fIlGZRYFY0
-         fMS3Wa+mIV8PInwbuaZ73D0VorhSVbkhhoDEFinKXVKakqV7a2NFJCbJPoPCY1dr1Mxa
-         5j7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW5kycQlBybKUWMcq1ZuHCJiYpOCbGpHKz97K4nJ+PyAMTB2FVFX6PKnSGUrUVKzN2xSI8yIeQ=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy+9V/GYy0C9NHW9dQiymtWyOMTB617VEqkL77DbQrrDilFOnuQ
-	GEeRplwf1wg0PmFIeHlqmLJPKaBfZHjVQJMgb8tIIzcPpEFeQy1DVTdV78ySMZJTFL2eUTEL7fl
-	AQrt+aqM4R8D9n808IgrVKZQx7MQ1UMXcg2mgSLOfMcAa9Sm0bDyA0Nc9OSY4+meD
-X-Gm-Gg: ASbGncsMwdfCG5VYHN2VgVCL24GgniHI1HwDzqL+W7bIBmKfMPq9vDOExCpjdi7e88K
-	MYrL6YJG7t5VbCz1fc6ojpuWqSG6UrEroXWN5KzxLIS4zNcK0qfVAK1Q5UPx9qnbXs+JRIYH+gM
-	CC+bladSu/j1tKHgp/7R/q5mYw45AJsLivQpJ7xUZKETM/whCA0aD2S6t/byBcKToCkULP5XbU7
-	M84rmcPyWA8wEs9q1CAbT0wfMCeb6gSSUeLMe7QrJRK/AaJJBmfqNlW9NAFJExwvaNoTRqK4u2x
-	efZSRY2alYNbF5Dg67Sjq9qz6F73QcP7a9apMN0pc0MC7VSf4/+yDGSZE17VMUA94iVc
-X-Received: by 2002:a17:90b:580c:b0:311:ad7f:3299 with SMTP id 98e67ed59e1d1-31c4cd9d001mr7043604a91.25.1752275415663;
-        Fri, 11 Jul 2025 16:10:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF7Z1TQfgkE3r2PMQwTwfxQjj0gjR9UsVQ1UbIMeevZFsnCWlYfrpvPY3URH71qwyKf5RhBCg==
-X-Received: by 2002:a17:90b:580c:b0:311:ad7f:3299 with SMTP id 98e67ed59e1d1-31c4cd9d001mr7043560a91.25.1752275415267;
-        Fri, 11 Jul 2025 16:10:15 -0700 (PDT)
-Received: from [192.168.29.92] ([49.43.227.1])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31c3eb467d7sm6197116a91.26.2025.07.11.16.10.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jul 2025 16:10:14 -0700 (PDT)
-Message-ID: <0bc51460-f25c-4607-bb9c-0e317e362201@oss.qualcomm.com>
-Date: Sat, 12 Jul 2025 04:40:05 +0530
+	Sat, 12 Jul 2025 04:42:41 +0000
+Received: from smtp-4-0001.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6c])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bfGCd1rb0zwhM
+	for <ath11k@lists.infradead.org>; Sat, 12 Jul 2025 06:42:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ik.me; s=20200325;
+	t=1752295357; bh=mzTgL6KyVzLy/GJ9g3Xb3ePQiw6Ao0kqdnrFykfnWxc=;
+	h=Date:To:From:Subject:From;
+	b=bfpjlZVy/PTZ8NSthd6QyRskEApP6GYjBKljQjfw7a3W5Jau/hFaAEnQ/0yz++pYu
+	 bnxnPJCVrWK9yDCKjv1iX/uoYfjcdZXXwuLTxN7vd7l8n862ry2GCJqHi0Jns0jdPq
+	 si1yHe5NXfK+J+3oxl0oI/T6f8BnO8MtOYPV5xWs=
+Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bfGCc5pGfzcBM
+	for <ath11k@lists.infradead.org>; Sat, 12 Jul 2025 06:42:36 +0200 (CEST)
+Message-ID: <a6af8fab-a24e-32d3-a46c-32c569289bed@ik.me>
+Date: Sat, 12 Jul 2025 06:42:36 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/11] PCI/ASPM: Clear aspm_disable as part of
- __pci_enable_link_state()
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Lorenzo Pieralisi
- <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
-        quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
-        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-References: <20250711230240.GA2312867@bhelgaas>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+To: ath11k@lists.infradead.org
 Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <20250711230240.GA2312867@bhelgaas>
+From: Fourhundred Thecat <400thecat@ik.me>
+Subject: Wi-Fi Breakdown (Qualcomm Wi-Fi 6E NFA725A) on Lenovo ThinkPad T14s
+ Gen 4 - ath11k_pci errors
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: BKeizs3ZQJkRhdM6vtDo0dquHD7LUKF2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDE3NiBTYWx0ZWRfXz6xrBl1ZUrqJ
- soo4YLkeAXFivuPKTHIHLCjHPYid0qicLdvXBLfCWwW7VN46c8CtMogd5WqO0UjV3Q8bNIRtTCN
- lJI+8RP8FpzM2s5wjAgFHOcXj8qTvSAYJWy6zPDkWKzX++lSdNWPJDeqBH4LI0KtYyF2wq6uILZ
- 678OKOKr1ckaQBYbFIUzijw7psk9nywbscxXe9bA/H+PaY22sUsDiRMqR7PRu4Dwkm2RBqXKNm9
- PiOoHA4JdfOLZp8OEnUekfgCAjfoXmm53nYphmIU8jP+eZsxFxvqNKF1VTDdvo5sh3uBpOLjK3t
- JoNAnZ/J/5MhrCj95ODDSk4E+ho0La3LBywrJUQVBqkqL3Qpz/gzG0JQGGVVwXLrcdZcdUs7Udq
- z3K7R1JOiib2KZ/bjRfxN92Z2WLJdOky21RKxdQhRdWCSb/B/rE48htaGy7I5zwyoCXj52n/
-X-Proofpoint-GUID: BKeizs3ZQJkRhdM6vtDo0dquHD7LUKF2
-X-Authority-Analysis: v=2.4 cv=N9MpF39B c=1 sm=1 tr=0 ts=687199dc cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=4nqOr+EkFiuPl9GB/B4vcQ==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=P-IC7800AAAA:8 a=nqD_WAsoW_ZkbJYGnRIA:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-11_07,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 spamscore=0 malwarescore=0 suspectscore=0 adultscore=0
- mlxlogscore=895 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507110176
+Feedback-ID: :39e8e9e9b322912:ham:c07166f4469634d
+X-Infomaniak-Routing: alpha
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250711_161022_234597_815B9A04 
-X-CRM114-Status: GOOD (  10.84  )
+X-CRM114-CacheID: sfid-20250711_214240_017449_A981D65B 
+X-CRM114-Status: UNSURE (   6.49  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,21 +70,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+hello,
+
+I'm experiencing a bizarre Wi-Fi issue on Lenovo ThinkPad T14s Gen 4 
+(AMD Ryzen 7 PRO 7840U) with a Qualcomm Wi-Fi 6E NFA725A card (using the 
+ath11k_pci driver, linux kernel 6.6).
+
+Approximately 50% of the time I boot my laptop, the Wi-Fi connection fails.
+
+     Initial Connection: On affected boots, wlan0 successfully obtains 
+an IP address via DHCP and the network works for a few seconds.
+
+     Sudden Breakdown: After a few seconds the network completely 
+breaks. I cannot ping anything, and attempting to ifdown wlan0 results 
+in long timeouts and numerous errors.
+
+   ath11k_pci 0000:01:00.0: failed to flush transmit queue, data pkts 
+pending X
+   ath11k_pci 0000:01:00.0: wmi command XXX timeout
+   ath11k_pci 0000:01:00.0: HW problem - can not stop rx aggregation
+   ath11k_pci 0000:01:00.0: failed to send WMI_VDEV_INSTALL_KEY cmd
+
+     Later, trying to bring the interface back up fails with Could not 
+set interface wlan0 flags (UP): Resource temporarily unavailable.
+
+Crucial Datapoint:
+If the Wi-Fi works correctly after booting (i.e., this problem does not 
+occur in the first 20 seconds after boot), it will continue to work 
+flawlessly for hours (perhaps days). I can do as many ifdown wlan0 ; 
+ifup wlan0 as I want and I will not trigger the issue.
+
+I am using custom linux kernel 6.6.15, and here are the firmware files:
+
+e12b23ddc4b8d2d2a10a651a5d6fdcd00f60fcae884d2cf5dad17627211fcdfd 
+ath11k/WCN6855/hw2.1/amss.bin
+759a2bcb3249b39c1e9a595f2559e228a1a682786c15cd1643af4a1352eb24ec 
+ath11k/WCN6855/hw2.1/board-2.bin
+0c590881870d0e6e98fc7d393ce05690e09287933b1b535e935bf5d98b77713f 
+ath11k/WCN6855/hw2.1/m3.bin
+e1b774b1feda4cab01f5a26089124059539fc31544ac34129dce45c8ff26d645 
+ath11k/WCN6855/hw2.1/regdb.bin
+d67150c8925a98a4783c2c9a3e652b5a21fcdf8119875e1d2860c7c180fa98f8 
+regulatory.db
+704ba48e3b12a28d3ed9411e526f127870201ba5007ee0c17ae92dafe2444fa5 
+regulatory.db.p7s
 
 
-On 7/12/2025 4:32 AM, Bjorn Helgaas wrote:
-> On Mon, Jun 09, 2025 at 04:21:27PM +0530, Krishna Chaitanya Chundru wrote:
->> ASPM states are not being enabled back with pci_enable_link_state() when
->> they are disabled by pci_disable_link_state(). This is because of the
->> aspm_disable flag is not getting cleared in pci_enable_link_state(), this
->> flag is being properly cleared when ASPM is controlled by sysfs.
-> 
-> Mention the name of the function where this happens for sysfs so we
-> can easily compare them.
-it is aspm_attr_store_common()[1], it will be used for all ASPM sysfs
-
-[1] 
-https://elixir.bootlin.com/linux/v6.16-rc5/source/drivers/pci/pcie/aspm.c#L1595
-
-- Krishna Chaitanya.
 
