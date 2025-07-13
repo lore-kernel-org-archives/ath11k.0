@@ -4,69 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB54AC83F1D
-	for <ath11k@archiver.kernel.org>; Sat, 12 Jul 2025 17:02:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79F05C83F17
+	for <ath11k@archiver.kernel.org>; Sun, 13 Jul 2025 16:30:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:Message-ID:In-Reply-To:Subject:cc:To:Date:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=M7MENuVC1Ij9iiE8ZfB8hLNJnIPFgy8gOphKcRNgZ7s=; b=NNd0mSX91Z1wVbhYTkZ/Y/Wdbg
-	esUUfFeQMUvEOH9vUWM+7Jy7QQ1SpT68suHKAZrKZ2cY9nmyESFNUHZGuLHdXw64c02+kd7o2WBBV
-	7i61F/DjfmVEqy3Tmc9hOJaZ/nw5LPonO8UzZfdKM1l/FZMq6AH5aBo6QVklRCHAwRlLJhJ8pi04a
-	Fx3qbbxMsOeRD5v8rAJV0zX5Vf4WfXy0Ec+DeYlFTlz022cyO+EYllb88298+yogZpC24NrlNgiiB
-	7ggYESC7mjH2/kxFbMo3fk1JlX3eDxGz0XARXMd9m00IjO5jOzyKxJEEjYw+pJ+yLFHx5Tfz1e1n7
-	NO5vaM7g==;
+	bh=68tf9z4Wea5dAjES3gO9S/dcMlfbzKvEen0uUrwXZEM=; b=bqdBjHNbc2nTFcm2ZHJekSLGJo
+	YiLoJtHjrxsYk9TX2OF0L22aW89DQPPtwQVujqDcfHA8EEV2mbbDT5XmdghH3iRYUgAiqisuogGG/
+	18TJ66ek2m7X8RbqmWzwk7rscp7idbEv+voiarInq1BuQoV6JoxwQE02LWAKssEzdi3RN3b6pfR56
+	p/1oN2iMZGwpCaN5mtJq4J4IUO0C50bprDbfmc/Vaf+HftC9LNbTbECCr/rIQcY1s+D9SAL2ZjRHP
+	YTZBAKiKuaeRDzj193tLXNRrPH2S16K/WEFxVWcwQlSI9zAQD6QbKNmwiWgrFv+8Lq0McGqWQ4I75
+	xtbJUgXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uadc8-0000000GpMO-2n8S;
-	Sat, 12 Jul 2025 17:02:16 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1uazah-00000000NvX-0eOH;
+	Sun, 13 Jul 2025 16:30:15 +0000
+Received: from mgamail.intel.com ([198.175.65.20])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uadc6-0000000GpM7-34d4
+	id 1uazYf-00000000No7-45GL
 	for ath11k@lists.infradead.org;
-	Sat, 12 Jul 2025 17:02:14 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3084060007;
-	Sat, 12 Jul 2025 17:02:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A062C4CEEF;
-	Sat, 12 Jul 2025 17:02:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752339731;
-	bh=1HY8c3/LmGoUrP3tyoScTxQmlAqVeoVJ3c1Lyp1DEdc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s7WoWwRFokdz7QDOrKE4h+u1d9Au7oDqmNWsM7XwvnxyFATLfVzrItCT2DRABwlx0
-	 dp6wwxre5pFpYhOdC1JO+wdM+Ur78vjS9j89kcIpiLNW3Tv0VSaoFC5j2LQRqrBWZD
-	 FvhcPFcLlEAbnpVWzJ8vjUD1Qkh3K3TKKruZJhHMsAhyXPLK7p8SswM9jOiE6chpg+
-	 /ITIuLkKAsoovWme8T4v7+OCNRTfSAilLKSemsKZ3zVVyYQDjvk/iQqJG7zJfSdU4P
-	 Dg+PNXJifWB+6dgtlcskTrw1DMVElBintfFo20ICsXELHarEFSxfG9lak4caOCnqnZ
-	 POAbVYyLtBqEw==
-Date: Sat, 12 Jul 2025 22:32:01 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, linux-pci@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-	linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev, linux-wireless@vger.kernel.org, 
-	ath11k@lists.infradead.org, qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com, 
-	quic_vpernami@quicinc.com, quic_mrana@quicinc.com, 
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+	Sun, 13 Jul 2025 16:28:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752424090; x=1783960090;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=ifpdTOGwI1rhrSXr9K9a0r6Seeyr+cw10DFMmHo8Udg=;
+  b=nLMdBwCrcCyfEcUO8sh5hRgaIxVWWpNaOq4YUkyA6uScEptMyQqS43To
+   4AL3hjH2AoVteXgbGqq3WgrN/02vpYRKscl9bBtIP6JMM3joFOtDRPmHZ
+   oF30Imre+fBLwhOypqmGzWS+A9aq/78jZNNVsqJyUy9hgaBPx5C4+HcbO
+   zo8YXswuVappgTfy2DgE/OXq4CKib77yeoqCuanZ/0HgeZfy838RkTNZQ
+   cnMPPCqZ5HB6asXn7MRP6qhLDttUVbj1vGx1XvQFvvphlqzxbaCMHtAfN
+   tLaW4wpAJ9IqG4/jpH0NYPRTtcYl7M9vi7FCI2Ju87NcYn75/kdrykwnk
+   w==;
+X-CSE-ConnectionGUID: Y3XonQSpS9azqkz12hsVJw==
+X-CSE-MsgGUID: So5tz9MaTciNvTLwxM9uDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54344679"
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; 
+   d="scan'208";a="54344679"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2025 09:28:09 -0700
+X-CSE-ConnectionGUID: gK+e7tQVQIOInWqljWHVmA==
+X-CSE-MsgGUID: aLHxtV24T2WZICr7KJ1bcA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,308,1744095600"; 
+   d="scan'208";a="160767417"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.175])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2025 09:28:01 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Sun, 13 Jul 2025 19:27:57 +0300 (EEST)
+To: Manivannan Sadhasivam <mani@kernel.org>
+cc: Bjorn Helgaas <helgaas@kernel.org>, 
+    Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+    Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+    Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
+    Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, 
+    linux-pci@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+    linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev, 
+    linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+    qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com, 
+    quic_vpernami@quicinc.com, quic_mrana@quicinc.com, 
+    Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Subject: Re: [PATCH v4 06/11] PCI/ASPM: Clear aspm_disable as part of
  __pci_enable_link_state()
-Message-ID: <drj7qm65bfu7irnfyy2cfhzkqlrkvd2tuvlxrlpxyohhpjbs3x@ecgooujjynmx>
-References: <604ffae3-1bfc-0922-b001-f3338880eb21@linux.intel.com>
- <20250711230013.GA2309106@bhelgaas>
- <qay63njqf7z7mchizt5sm66i67rvxxxicikxmfuvllmmxfy7ek@mulnjvde5q7w>
- <470742a6-861e-498e-9da4-1fa213969c7e@163.com>
+In-Reply-To: <qay63njqf7z7mchizt5sm66i67rvxxxicikxmfuvllmmxfy7ek@mulnjvde5q7w>
+Message-ID: <9543b1eb-5bd2-bea1-742f-60cbc28bb365@linux.intel.com>
+References: <604ffae3-1bfc-0922-b001-f3338880eb21@linux.intel.com> <20250711230013.GA2309106@bhelgaas> <qay63njqf7z7mchizt5sm66i67rvxxxicikxmfuvllmmxfy7ek@mulnjvde5q7w>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <470742a6-861e-498e-9da4-1fa213969c7e@163.com>
+Content-Type: multipart/mixed; boundary="8323328-1313851053-1752424077=:951"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250713_092810_090072_DA73DAE8 
+X-CRM114-Status: GOOD (  27.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,60 +93,77 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jul 13, 2025 at 12:05:18AM GMT, Hans Zhang wrote:
-> 
-> 
-> On 2025/7/12 17:35, Manivannan Sadhasivam wrote:
-> > > We only have two callers of this (pcie-qcom.c and vmd.c, both in
-> > > drivers/pci/), so it's not clear to me that it needs to be in
-> > > include/linux/pci.h.
-> > > 
-> > > I'm a little dubious about it in the first place since I don't think
-> > > drivers should be enabling ASPM states on their own, but pcie-qcom.c
-> > > and vmd.c are PCIe controller drivers, not PCI device drivers, so I
-> > > guess we can live with them for now.
-> > > 
-> > > IMO the "someday" goal should be that we get rid of aspm_policy and
-> > > enable all the available power saving states by default.  We have
-> > > sysfs knobs that administrators can use if necessary, and drivers or
-> > > quirks can disable states if they need to work around hardware
-> > > defects.
-> > > 
-> > 
-> > Yeah, I think the default should be powersave and let the users disable it for
-> > performance if they want.
-> > 
-> 
-> Dear Bjorn and Mani,
-> 
-> Perhaps I don't think so. At present, our company's testing team has tested
-> quite a few NVMe SSDS. As far as I can remember, the SSDS from two companies
-> have encountered problems and will hang directly when turned on. We have set
-> CONFIG_PCIEASPM_POWERSAVE=y by default. When encountering SSDS from these
-> two companies, we had to add "pcie_aspm.policy=default" in the cmdline, and
-> then the boot worked normally. Currently, we do not have a PCIe protocol
-> analyzer to analyze such issues. The current approach is to modify the
-> cmdline. So I can't prove whether it's a problem with the Root Port of our
-> SOC or the SSD device.
-> 
-> Here I agree with Bjorn's statement that sometimes the EP is not necessarily
-> very standard and there are no hardware issues. Personally, I think the
-> default is default or performance. When users need to save power, they
-> should then decide whether to configure it as powersave or powersupersave.
-> Sometimes, if the EP device connected by the customer is perfect, they can
-> turn it on to save power. But if the EP is not perfect, at least they will
-> immediately know what caused the problem.
-> 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-We all agree that not all endpoints are standards compliant. So if they have any
-issues with ASPM, then ASPM for those devices should be disabled in the quirks
-or in the device driver.
+--8323328-1313851053-1752424077=:951
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-That said, the change that Bjorn proposed is not going to happen in the
-immediate future.
+On Sat, 12 Jul 2025, Manivannan Sadhasivam wrote:
+> On Fri, Jul 11, 2025 at 06:00:13PM GMT, Bjorn Helgaas wrote:
+> > On Fri, Jul 11, 2025 at 04:38:48PM +0300, Ilpo J=C3=A4rvinen wrote:
+> >=20
+> > > +++ b/include/linux/pci.h
+> > > @@ -1826,8 +1826,8 @@ static inline int pcie_set_target_speed(struct =
+pci_dev *port,
+> > >  #ifdef CONFIG_PCIEASPM
+> > >  int pci_disable_link_state(struct pci_dev *pdev, int state);
+> > >  int pci_disable_link_state_locked(struct pci_dev *pdev, int state);
+> > > -int pci_enable_link_state(struct pci_dev *pdev, int state);
+> >=20
+> > AFAICT there's no caller of this at all.  Why do we keep it?
+> >=20
+>=20
+> I'm just working on a series to convert the ath{10/11/12}k drivers to use=
+ this
+> API instead of modifying LNKCTL register directly:
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/d=
+rivers/net/wireless/ath/ath12k/pci.c#n961
 
-- Mani
+Great. I assume but "this API" you meant disable/enable link state that=20
+are real pair unlike the current pci_enable_link_state()?
 
--- 
-மணிவண்ணன் சதாசிவம்
+Did ath1xk need to do some hw specific register updates when changing ASPM=
+=20
+state?
+
+I tried to do similar conversion in r8169 (and actually also ath1xk too)=20
+but it was a while ago already. If I understood the code correctly, r8169=
+=20
+seems to write some HW specific registers when changing ASPM state so I=20
+would have likely need to add some ops for it to play nice with state=20
+changes not originating from the driver itself but from the ASPM driver,=20
+which is where the work then stalled.
+
+> > > -int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
+> >=20
+> > We only have two callers of this (pcie-qcom.c and vmd.c, both in
+> > drivers/pci/), so it's not clear to me that it needs to be in
+> > include/linux/pci.h.
+> >=20
+> > I'm a little dubious about it in the first place since I don't think
+> > drivers should be enabling ASPM states on their own, but pcie-qcom.c
+> > and vmd.c are PCIe controller drivers, not PCI device drivers, so I
+> > guess we can live with them for now.
+> >=20
+> > IMO the "someday" goal should be that we get rid of aspm_policy and
+> > enable all the available power saving states by default.  We have
+> > sysfs knobs that administrators can use if necessary, and drivers or
+> > quirks can disable states if they need to work around hardware
+> > defects.
+>=20
+> Yeah, I think the default should be powersave and let the users disable i=
+t for
+> performance if they want.
+
+I'm certainly not against improvements in this front, but I think we need=
+=20
+to get rid off custom ASPM disable code from the drivers first.
+
+--=20
+ i.
+
+--8323328-1313851053-1752424077=:951--
 
