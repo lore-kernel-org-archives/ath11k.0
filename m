@@ -4,72 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E357FC83F1A
-	for <ath11k@archiver.kernel.org>; Mon, 14 Jul 2025 13:56:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15934C83F2D
+	for <ath11k@archiver.kernel.org>; Mon, 14 Jul 2025 15:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=XHD48ucUIFcblLLtHo/TJUDGNVrA7vYs22CUo0nUCGI=; b=B7jo8729shdo65l3/FFbcVc7j2
-	eQdaV1S/KM6L6nVFkUeqi8DdS7IXQDOVqSO3bGIe0WtKrk75VXuWZBoIWkiMCiwjUjoI8k41g7giP
-	NsTMjREjcwv2uQxWGT8fBtnwH5AtaXY4bBGoVOAQ0r4hvmUXUVOvnIsle2j2UwWLds9yawUbpNmzs
-	76sDN4EQocF2X199zKmqB/28fuCnuBxerAxYcU2pxO9uJSSKo4Jmj7K/8nx0aH5YYuP6QU+oszGbx
-	4M8KeKKi07UIycQjIlY+pVcsF+WTS6HZu3OM0rVQ8vgRLOu3AYTnze8mMKBjWNwilwHHiv95Q1M/H
-	hmXVEF3Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:From:Subject:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=uYe5JEQ/NJBdGO052CLNtnqKAn42FRtb4sm7urxF55s=; b=dkCNextd7akAlUt7v2hKsOnFza
+	WDwb6sWLEeoSt64cbikjJtRxBhxAatl7TFc+99SNydbdd+6+NFcIGRr6LHlQoNLqDa6FCyzFVtwni
+	kVEiZTpe5pSpV8nxpUJ+WlXQa8UeB/Vc8yXNanIPVGi/ND1sAv9xL2mgwZb/YvgcuUOnjELSbbgWz
+	2B79bmDkGRsFWu0mC8kzWzwXJkfVVxgVxirTGzlDFMD4R3WgD1l8GaKuKWJGZsgi82eSBpJAAe3RF
+	bJL4NsNyVpZlBHb6RCQLWjN9SmgeHwqluNOisEc8HSZ/RTvoizX9gxo+dykW58LwuBNWKchRLcMg/
+	bgLl2ECQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ubJfB-00000002Nim-22yb;
-	Mon, 14 Jul 2025 13:56:13 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1ubKnC-00000002ZU6-2l9u;
+	Mon, 14 Jul 2025 15:08:34 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ubJag-00000002MuY-0M2u
+	id 1ubK08-00000002RbJ-1ihU
 	for ath11k@lists.infradead.org;
-	Mon, 14 Jul 2025 13:51:35 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 0DC99A57104;
-	Mon, 14 Jul 2025 13:51:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA606C4CEED;
-	Mon, 14 Jul 2025 13:51:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752501092;
-	bh=wEFbqS8TlqYik+f8XbfTNLMdRUhavAYHebu3HmoWO50=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H3ddQ4qhYjcSKCYEWWshXmRIhOzJtNxAdmeOK6CWi+oVNPEN3DO+2jGTH4lAlruIG
-	 8+y9K9w8FTayMurEMmYs+HJMLbwH93DOBGTDYbMkK8hO/UUo2/nSvH7eCjGeeWkOey
-	 mgiu7JMTM4aHNcSd0WPWuZtphZIbRlYB7F0KcK12xap9MT1nZm83j4IF/QAIjxf2s4
-	 YFZmrw00/pkiG7+S+JC4sJiqXvv9pbtl9bkP7nP0K2OBeBAViMpnbmC3blCaJGgZ9Z
-	 LVGKAotp9ugJVjEBFL+kqX1qJxiWcWz+30H/LxzJUGav3P83Twf/E0XDrYGGRg8D3r
-	 TePbTsIYH05gQ==
-Date: Mon, 14 Jul 2025 19:21:21 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, 
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	linux-pci@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-	linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev, linux-wireless@vger.kernel.org, 
-	ath11k@lists.infradead.org, qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com, 
-	quic_vpernami@quicinc.com, quic_mrana@quicinc.com, 
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Subject: Re: [PATCH v4 06/11] PCI/ASPM: Clear aspm_disable as part of
- __pci_enable_link_state()
-Message-ID: <gwpn5no4i2wwwk3qo4tcgp6z6floo6k2ymzfuucg3tbwtmccte@ydsupmrd2nqu>
-References: <604ffae3-1bfc-0922-b001-f3338880eb21@linux.intel.com>
- <20250711230013.GA2309106@bhelgaas>
- <qay63njqf7z7mchizt5sm66i67rvxxxicikxmfuvllmmxfy7ek@mulnjvde5q7w>
- <9543b1eb-5bd2-bea1-742f-60cbc28bb365@linux.intel.com>
+	Mon, 14 Jul 2025 14:17:53 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56ECEQnW000324
+	for <ath11k@lists.infradead.org>; Mon, 14 Jul 2025 14:17:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=uYe5JEQ/NJBdGO052CLNtn
+	qKAn42FRtb4sm7urxF55s=; b=bLYNq9MzOyM9dXurG4DhYAHNGDH1bJRR6TXm72
+	BEFhSQQsLvNca2nzXu0l1OY06y/nS6AJz5wZyHRltNXGqRLM0bHNt+1yPT0HiFAb
+	Yb1B0i3mf7R8Vt+BiizpO/7WaLhcCko1TSdqYMFP0fThmqNJQtlqBSAwM6wOmESr
+	/LCniaT7GdG0RVhu9hRPx44sU5xFL/GHl59/Sc3ify+F42HDKiWM/ddwAALPEdfq
+	2QhTH7R3c5hY7pwME5+qAZsBZsUEialXU3a1jMVeHJwC8fCNHVC0PKpKzX3Gv1Jp
+	8winSY1KHLLlog7NtRRsLXPn+7Y2c/Xq9TALALu+5Iop2zSw==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47vvay1g74-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 14 Jul 2025 14:17:50 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-74928291bc3so3727620b3a.0
+        for <ath11k@lists.infradead.org>; Mon, 14 Jul 2025 07:17:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752502670; x=1753107470;
+        h=content-transfer-encoding:from:content-language:subject:cc:to
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uYe5JEQ/NJBdGO052CLNtnqKAn42FRtb4sm7urxF55s=;
+        b=J+WMVXWAtMSL96LPrvH/cJBHmtrN9HBXDm52GnEcjN6lbrQ3e4vYC5JsT4HYox7wa4
+         xB5sR2k77WBXj7CgJX/z9KzY7V3fQGzEhFtA8Z9CaNaYRP7VsmE5ninkgwEsGbpyNwUz
+         RbjZipGXTDoceF+ONGM3J37hbO/oDkVPVrtRSUTnQX7uFgNv/fMoEiSYuQuvt8chX5rH
+         C7Xqg2cFyx5NCwRw/uIguN0tWrD0Ervh3DDsomQrybthbHOb7pnHdnU9Lx9o4cvyNMmC
+         zuD1rKx00LZYvnF/XcUqxQmQiSb1FI9OdQdicdSo6gYAoFBhK1zd7eyXHykHlmzgYeNx
+         i18A==
+X-Forwarded-Encrypted: i=1; AJvYcCUGJVPoCGpo5jpqrgh+0mEeiWlo0Sf4nuiE43rtdOLpaCAi25OjtG862tdZSCugjaUFlNQG3Cg=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzoZqZGr8UelXG4u/jnkRfDZotbsTGXGugwKsntPqm6iKHZXYAP
+	XR35NTwjAl4XltGYNWje1w7POsQUH1TCKE0bB+emD0/Kr0SVlcqdzo2Y7ZboWQxXAD9jUr94cJc
+	14agMPzNaCSA+Y8Ky8/Xp5484HBxM8Mx855ryNQ2G2KkAzYlS762Rpm9cf23dRimH
+X-Gm-Gg: ASbGncvdFjH+VZvCub3pifBXhe8iiicBmF6wB0W2Aw9jyBFk92Q5CNQTM7jF9EyGIaC
+	7nCJs90Srsq7NZAYfkRhuxX1eds+OOrjeog+2AgC0r9Jdqi9AX5iWpuXMNFD+zZhD5R8v9C9mtR
+	DhGhOR16Ubmi2Ixlsp6LRddvo8ZSoKIgDNqWo+jINowQ8VrVUlgxWEpmeUc2z42c5Aiv7BjVAIW
+	k2M0jXtXpPpHf/7lQGjQQW26aejn8eWB662Np0KiWAH9Z+dhDVkMotkjNMoFZipQLFvacwevLZK
+	7Yt0gbvEN0P/Eb4JZ44vwIVpzRr7iirCo0BHrh+OShdKdip6a8vRte+yYZgzzjqvmwlutFVLmiQ
+	x
+X-Received: by 2002:a05:6a00:2d15:b0:749:112:c172 with SMTP id d2e1a72fcca58-74f1ebccf03mr14544862b3a.16.1752502669683;
+        Mon, 14 Jul 2025 07:17:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFgfKx6sUk0FX4r+rgTdQmHFsfNOtS1CTSqL+Sp9TUZPq6HVE3canvzPacPiUNgm7i7hhR8cQ==
+X-Received: by 2002:a05:6a00:2d15:b0:749:112:c172 with SMTP id d2e1a72fcca58-74f1ebccf03mr14544818b3a.16.1752502668996;
+        Mon, 14 Jul 2025 07:17:48 -0700 (PDT)
+Received: from [10.81.24.74] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74ebfd2d26asm8796236b3a.76.2025.07.14.07.17.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 07:17:48 -0700 (PDT)
+Message-ID: <eb5bee18-e267-4fe8-9200-5a371a15539b@oss.qualcomm.com>
+Date: Mon, 14 Jul 2025 07:17:47 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9543b1eb-5bd2-bea1-742f-60cbc28bb365@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+To: linux-wireless@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>
+Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        ath12k@lists.infradead.org, jjohnson@kernel.org
+Subject: pull-request: ath-current-20250714
+Content-Language: en-US
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: nRly_dTQwLBpi2iJoNrL-cLOO7aF_Vv4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE0MDA4NCBTYWx0ZWRfX9985m3jt0b9l
+ gPbSye61gj7gd+T2b/pMqjcLc1iMueLl/pmkhTpP5pszrZgVQNgUzTyARBlJAShXxd4PCaKYhJC
+ GVXoHAnHey57rBpR9Nu9u0IhSj2ncEVlNti+PZx2hg+TGkvAqljMEQPdtEqlmfsym3cedFfURQw
+ WEMwQDfY+BmpxDGLPZ3+iJo6De0orm1DMEpOcT3oSXV3fo4J/O8g/3+XWmxjJqHAlFSKWiio5Dw
+ NVNiZvwsvkPnfB2eSm7aL/InGZpM79yPu3PjGSnRf97fRuOx5fP76ollvaGDEDYT+vbKgo7Xbx9
+ DW+CHHEgYPohgUzBo47jpxt3BQTOmUmmhGzmWSycGRl/oFiVOb1xykVowJvN86ga3YEKC6T7e9c
+ ZCz2FxBAHiuXdZEX+qhV0ol62sLUlSap5u1t8/klBtMN8g0VyBVH5+jyHV2vK7C6uZ98a0Pz
+X-Authority-Analysis: v=2.4 cv=GNIIEvNK c=1 sm=1 tr=0 ts=6875118e cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=Yt6yo0lQyOCnsUEz3GcA:9
+ a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-ORIG-GUID: nRly_dTQwLBpi2iJoNrL-cLOO7aF_Vv4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-14_01,2025-07-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=999 phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ mlxscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 suspectscore=0
+ priorityscore=1501 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507140084
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250714_065134_254326_0A50AFD4 
-X-CRM114-Status: GOOD (  40.50  )
+X-CRM114-CacheID: sfid-20250714_071752_458447_D138B031 
+X-CRM114-Status: UNSURE (   7.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,97 +128,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jul 13, 2025 at 07:27:57PM GMT, Ilpo Järvinen wrote:
-> On Sat, 12 Jul 2025, Manivannan Sadhasivam wrote:
-> > On Fri, Jul 11, 2025 at 06:00:13PM GMT, Bjorn Helgaas wrote:
-> > > On Fri, Jul 11, 2025 at 04:38:48PM +0300, Ilpo Järvinen wrote:
-> > > 
-> > > > +++ b/include/linux/pci.h
-> > > > @@ -1826,8 +1826,8 @@ static inline int pcie_set_target_speed(struct pci_dev *port,
-> > > >  #ifdef CONFIG_PCIEASPM
-> > > >  int pci_disable_link_state(struct pci_dev *pdev, int state);
-> > > >  int pci_disable_link_state_locked(struct pci_dev *pdev, int state);
-> > > > -int pci_enable_link_state(struct pci_dev *pdev, int state);
-> > > 
-> > > AFAICT there's no caller of this at all.  Why do we keep it?
-> > > 
-> > 
-> > I'm just working on a series to convert the ath{10/11/12}k drivers to use this
-> > API instead of modifying LNKCTL register directly:
-> > 
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/wireless/ath/ath12k/pci.c#n961
-> 
-> Great. I assume but "this API" you meant disable/enable link state that 
-> are real pair unlike the current pci_enable_link_state()?
-> 
+The following changes since commit c07981af55d3ba3ec3be880cfe4a0cc10f1f7138:
 
-Yes. I actually based my series on top of this series, but I guess I should just
-merge the API change patch to my series as it is relatively small compared to
-this one (so it will get merged quicker).
+  wifi: mac80211: add the virtual monitor after reconfig complete (2025-07-10 13:27:14 +0200)
 
-> Did ath1xk need to do some hw specific register updates when changing ASPM 
-> state?
-> 
+are available in the Git repository at:
 
-Fortunately, no.
+  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-current-20250714
 
-> I tried to do similar conversion in r8169 (and actually also ath1xk too) 
-> but it was a while ago already. If I understood the code correctly, r8169 
-> seems to write some HW specific registers when changing ASPM state so I 
-> would have likely need to add some ops for it to play nice with state 
-> changes not originating from the driver itself but from the ASPM driver, 
-> which is where the work then stalled.
-> 
+for you to fetch changes up to afcefc58fdfd687e3a9a9bef0be5846b96f710b7:
 
-ath driver changes are straightforward, but I need to add an inline function to
-convert lnkctl setting to aspm states:
+  wifi: ath12k: Fix packets received in WBM error ring with REO LUT enabled (2025-07-11 07:35:02 -0700)
 
-static inline int ath_pci_aspm_state(u16 lnkctl)
-{
-	int state = 0;
+----------------------------------------------------------------
+ath.git update for v6.16-rc7
 
-	if (lnkctl & PCI_EXP_LNKCTL_ASPM_L0S)
-		state |= PCIE_LINK_STATE_L0S;
-	if (lnkctl & PCI_EXP_LNKCTL_ASPM_L1)
-		state |= PCIE_LINK_STATE_L1;
+Fix an ath12k performance regression introduce in v6.16-rc1
 
-	return state;
-}
+----------------------------------------------------------------
+Nithyanantham Paramasivam (1):
+      wifi: ath12k: Fix packets received in WBM error ring with REO LUT enabled
 
-Currently, it is in ath/ath.h, but if you feel that we should move it to
-include/linux/pci.h, let me know!
-
-> > > > -int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
-> > > 
-> > > We only have two callers of this (pcie-qcom.c and vmd.c, both in
-> > > drivers/pci/), so it's not clear to me that it needs to be in
-> > > include/linux/pci.h.
-> > > 
-> > > I'm a little dubious about it in the first place since I don't think
-> > > drivers should be enabling ASPM states on their own, but pcie-qcom.c
-> > > and vmd.c are PCIe controller drivers, not PCI device drivers, so I
-> > > guess we can live with them for now.
-> > > 
-> > > IMO the "someday" goal should be that we get rid of aspm_policy and
-> > > enable all the available power saving states by default.  We have
-> > > sysfs knobs that administrators can use if necessary, and drivers or
-> > > quirks can disable states if they need to work around hardware
-> > > defects.
-> > 
-> > Yeah, I think the default should be powersave and let the users disable it for
-> > performance if they want.
-> 
-> I'm certainly not against improvements in this front, but I think we need 
-> to get rid off custom ASPM disable code from the drivers first.
-> 
-
-It would be difficult IMO as drivers have their own usecases. For instance, the
-ath drivers need to disable ASPM states to avoid issues during firmware
-download. Then they need to enable ASPM back once the firmware is up and
-running.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+ drivers/net/wireless/ath/ath12k/dp_rx.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
