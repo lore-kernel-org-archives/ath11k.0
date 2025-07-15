@@ -4,77 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB9C8C83F22
-	for <ath11k@archiver.kernel.org>; Tue, 15 Jul 2025 14:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 121C5C83F22
+	for <ath11k@archiver.kernel.org>; Tue, 15 Jul 2025 16:22:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=yDPjmv3LEWDCBb9fA78/k0Uz/0ozwN9L8y+fFs46MNU=; b=KYVxS/y8meN9QgSYURx5y8IGIS
-	JIoTovr4SMf1psqUitf1F10CFaHZAhZ4wtkYQzAaVDwVvZja8R9TKmdKLr9LdcCWVT8xybZVhRTbc
-	gRxX7TVCV10910IxLSdpthbEMP8DWAfAXybEDnFRppXTl28kB8HhB/Q1WsQcFrXEAhmZOHNQvn6z2
-	TIDCzMSXsZX6qmE5ybUhX35vjNPVzdFJNAJ1gwcVpegwEy3Q2CU5iG1abKAYSNi9fESWR9QVrlwRU
-	nvCPpRlXUH3js+yuw3vfMc7h70EgEB6XTPIKZX74LOTw7ouXIStAhK2EIRE1IhK40yOwh7nuz8f8X
-	/THz09Vw==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=y8FmBktC9WSRYxvxolkGYL5S4AI0gxd1QPXCyRbb+Bw=; b=Z4XcH/zQI+iliQk0FdvjImGJfR
+	S1XdYUbbepB3mfYTwGyP/EpdXm1I1DUHhW+hxi7G/94iUvdIOe4o2MZAl4HkHYa8dlDtCEbmW3DzF
+	A1L7Olx7Y/5empg0DgBXRO/Up3IqE05aBgSOkLlWq4b78piIBRR4qU3tdXCI8by6knhk+tOtewLkG
+	ON8OEAb82CH+aDXdTF9YWE6cWWUYx+hpMSQRH9ancM/UziIC4rgIweWuDa+JFNPl2GtFjdwfP011Y
+	eRMfV4f6J5rKcWg/UpGDvfMs1f8HJf9XSBLhZWvdHqBH14Tm66JZN7q+etHBHZWpaW44qOwyNwbvH
+	NCxr0QHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ubgy9-00000005RVI-3H5H;
-	Tue, 15 Jul 2025 14:49:21 +0000
-Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ubffB-00000005CQk-0lLV
+	id 1ubiQ6-00000005jVh-2BEh;
+	Tue, 15 Jul 2025 16:22:18 +0000
+Received: from m16.mail.163.com ([220.197.31.3])
+	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1ubgyO-00000005RXt-2Og1
 	for ath11k@lists.infradead.org;
-	Tue, 15 Jul 2025 13:25:42 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1752585847; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ZVG2fuf9IkoShLnMJ+0FksgGRRohYKjrlPa30aqFmRitabW7R2nYYmsCwDJjC54xAaf0rmrqRRPz50UiDJdUGcwL7mJqMB1XW6LT3Ui5t5acdCTeU7sxm6sBxMex5Sli76K5JABMUigTEu/zuOt1LiEP8qn08+ty2y4xz7MG0dc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1752585847; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=yDPjmv3LEWDCBb9fA78/k0Uz/0ozwN9L8y+fFs46MNU=; 
-	b=OU8dCDgwZT1HsjCe3ad9QPeWr6zUmuOPv1c83KvsLVKBBo5stH+tEycJGEVr1nNl9MAOUdJqPSaT6GXz9xCDqaVaLCDHkweHPLc1AV7CwTM6HVl4ugxQQ1pNgNTZkTZhsJusoK33kWqYxaRoJdvtM0XXpAhw/dpcBrL0hafL/3w=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
-	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752585847;
-	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Transfer-Encoding:Reply-To;
-	bh=yDPjmv3LEWDCBb9fA78/k0Uz/0ozwN9L8y+fFs46MNU=;
-	b=b1VUHq9Z909pI6HmnxYCx+SQ8VQCp663xgQ6zTE/pJxicvsyUdnEzm1B36tmlwJG
-	zk6pH0PCH9MvUhd/ubbjWbWUkpqLgCsVv+xQTKwokQWYeXzqnPjNLYPDWS18LHD3vH4
-	pMgxYD9pohvpKufEpnOutmzhYWwAUuTWFmpMNQD4=
-Received: by mx.zohomail.com with SMTPS id 1752585844627311.6253288130798;
-	Tue, 15 Jul 2025 06:24:04 -0700 (PDT)
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-To: Jeff Johnson <jjohnson@kernel.org>,
-	kbuild test robot <lkp@intel.com>,
-	Ganesh Sesetti <gseset@codeaurora.org>,
-	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
-	Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>,
-	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: Muhammad Usama Anjum <usama.anjum@collabora.com>,
-	kernel@collabora.com,
-	stable@vger.kernel.org,
-	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-	Sriram R <quic_srirrama@quicinc.com>,
-	Rajkumar Manoharan <rmanohar@codeaurora.org>,
-	Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
-	Bhagavathi Perumal S <bperumal@codeaurora.org>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] wifi: ath11k: HAL SRNG: don't deinitialize and re-initialize again
-Date: Tue, 15 Jul 2025 18:23:50 +0500
-Message-Id: <20250715132351.2641289-1-usama.anjum@collabora.com>
-X-Mailer: git-send-email 2.39.5
+	Tue, 15 Jul 2025 14:49:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=y8FmBktC9WSRYxvxolkGYL5S4AI0gxd1QPXCyRbb+Bw=;
+	b=DV3FuCcum96CB6OJl3oa/EcvfiVGdVsWmvSySDMjIyTZCnpMC4bboVdDK+mD72
+	GtTSSKWuSnsg+whFjBRn8GL29NJh9i/eTQ4cD8j1VMxO6p5BvyrgKhq8LkBu0ksv
+	MNbGlbHEC2XQO11n4cIfhSj3hQLoS3vZBSMdzm35evdjk=
+Received: from [IPV6:240e:b8f:919b:3100:7981:39b4:a847:709a] (unknown [])
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wAH7fhVanZoxSGjFA--.45568S2;
+	Tue, 15 Jul 2025 22:48:54 +0800 (CST)
+Message-ID: <7da900a6-04cd-41f7-afc8-5570eb7639e1@163.com>
+Date: Tue, 15 Jul 2025 22:48:53 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 06/11] PCI/ASPM: Clear aspm_disable as part of
+ __pci_enable_link_state()
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>,
+ Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ linux-pci@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+ quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
+ Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+References: <20250714193214.GA2415073@bhelgaas>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <20250714193214.GA2415073@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: _____wAH7fhVanZoxSGjFA--.45568S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJFW7tw18Gry7Cr1DXFW5ZFb_yoW5Xr1xpa
+	yrtasIkFZ5Jr97Gw12vw1jqF4SkwnYy345G3s5tryUJw45u39xGr4xtrZY9F93WrWxW3ya
+	vrZ8WwnrZFyq9a7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07URa0QUUUUU=
+X-Originating-IP: [240e:b8f:919b:3100:7981:39b4:a847:709a]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiQwWLo2h2Y3mQSAAAsy
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250715_062541_284222_58F4CEE7 
-X-CRM114-Status: GOOD (  11.12  )
+X-CRM114-CacheID: sfid-20250715_074937_330883_6E5ED14B 
+X-CRM114-Status: GOOD (  21.92  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,82 +86,68 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Don't deinitialize and reinitialize the HAL helpers. The dma memory is
-deallocated and there is high possibility that we'll not be able to get
-the same memory allocated from dma when there is high memory pressure.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Cc: stable@vger.kernel.org
-Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
----
-Changes since v1:
-- Cc stable and fix tested on tag
-- Clear essential fields as they may have stale data
----
- drivers/net/wireless/ath/ath11k/core.c |  6 +-----
- drivers/net/wireless/ath/ath11k/hal.c  | 12 ++++++++++++
- drivers/net/wireless/ath/ath11k/hal.h  |  1 +
- 3 files changed, 14 insertions(+), 5 deletions(-)
+On 2025/7/15 03:32, Bjorn Helgaas wrote:
+> On Sun, Jul 13, 2025 at 12:05:18AM +0800, Hans Zhang wrote:
+>> On 2025/7/12 17:35, Manivannan Sadhasivam wrote:
+>> ...
+> 
+>>>> IMO the "someday" goal should be that we get rid of aspm_policy
+>>>> and enable all the available power saving states by default.  We
+>>>> have sysfs knobs that administrators can use if necessary, and
+>>>> drivers or quirks can disable states if they need to work around
+>>>> hardware defects.
+>>>
+>>> Yeah, I think the default should be powersave and let the users
+>>> disable it for performance if they want.
+>>
+>> Perhaps I don't think so. At present, our company's testing team has
+>> tested quite a few NVMe SSDS. As far as I can remember, the SSDS
+>> from two companies have encountered problems and will hang directly
+>> when turned on. We have set CONFIG_PCIEASPM_POWERSAVE=y by default.
+>> When encountering SSDS from these two companies, we had to add
+>> "pcie_aspm.policy=default" in the cmdline, and then the boot worked
+>> normally. Currently, we do not have a PCIe protocol analyzer to
+>> analyze such issues. The current approach is to modify the cmdline.
+>> So I can't prove whether it's a problem with the Root Port of our
+>> SOC or the SSD device.
+> 
+> Have you reported these?
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 4488e4cdc5e9e..34b27711ed00f 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2213,14 +2213,10 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- 	mutex_unlock(&ab->core_lock);
- 
- 	ath11k_dp_free(ab);
--	ath11k_hal_srng_deinit(ab);
-+	ath11k_hal_srng_clear(ab);
- 
- 	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
- 
--	ret = ath11k_hal_srng_init(ab);
--	if (ret)
--		return ret;
--
- 	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 
- 	ret = ath11k_core_qmi_firmware_ready(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index b32de563d453a..dafa9bdbb3d32 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1359,6 +1359,18 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
- }
- EXPORT_SYMBOL(ath11k_hal_srng_deinit);
- 
-+void ath11k_hal_srng_clear(struct ath11k_base *ab)
-+{
-+	memset(ab->hal.srng_list, 0,
-+	       sizeof(ab->hal.srng_list));
-+	memset(ab->hal.shadow_reg_addr, 0,
-+	       sizeof(ab->hal.shadow_reg_addr));
-+	ab->hal.avail_blk_resource = 0;
-+	ab->hal.current_blk_index = 0;
-+	ab->hal.num_shadow_reg_configured = 0;
-+}
-+EXPORT_SYMBOL(ath11k_hal_srng_clear);
-+
- void ath11k_hal_dump_srng_stats(struct ath11k_base *ab)
- {
- 	struct hal_srng *srng;
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index 601542410c752..839095af9267e 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -965,6 +965,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
- 			  struct hal_srng_params *params);
- int ath11k_hal_srng_init(struct ath11k_base *ath11k);
- void ath11k_hal_srng_deinit(struct ath11k_base *ath11k);
-+void ath11k_hal_srng_clear(struct ath11k_base *ab);
- void ath11k_hal_dump_srng_stats(struct ath11k_base *ab);
- void ath11k_hal_srng_get_shadow_config(struct ath11k_base *ab,
- 				       u32 **cfg, u32 *len);
--- 
-2.39.5
+Dear Bjorn,
+
+I haven't reported it. Because we don't have a PCIe protocol analyzer to 
+analyze this situation, it's not certain whether it's a problem with our 
+SOC Root Port or the NVMe SSD. If I have time later, I will conduct a 
+comparison test on the RK3588.
+
+> 
+>> Here I agree with Bjorn's statement that sometimes the EP is not
+>> necessarily very standard and there are no hardware issues.
+>> Personally, I think the default is default or performance. When
+>> users need to save power, they should then decide whether to
+>> configure it as powersave or powersupersave.  Sometimes, if the EP
+>> device connected by the customer is perfect, they can turn it on to
+>> save power. But if the EP is not perfect, at least they will
+>> immediately know what caused the problem.
+> 
+> We should discover device defects as early as possible so we can add
+> quirks for them.  Defaulting to ASPM being partly disabled means it
+> gets much less testing and users end up passing around "fixes" like
+> booting with "pcie_aspm.policy=default" or similar.  I do not want
+> users to trip over a device that doesn't work and have to look for
+> workarounds on the web.
+> 
+> I also think it's somewhat irresponsible of us to consume more power
+> than necessary.  But as Mani said, this would be a big change and
+> might have to be done with a BIOS date check or something to try to
+> avoid regressions.
+> 
+
+Ok. I understand your purpose now.
+
+Best regards,
+Hans
 
 
