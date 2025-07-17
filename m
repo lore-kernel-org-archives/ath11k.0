@@ -4,69 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C93CC83F39
-	for <ath11k@archiver.kernel.org>; Thu, 17 Jul 2025 10:33:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BD81C83F1B
+	for <ath11k@archiver.kernel.org>; Thu, 17 Jul 2025 10:52:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=RqpEGxrSHjPnQapAo1n/KgA8xPOEaDfBWKwYDY9LCL4=; b=QuTq5RxFMPRIQZbPFPsyZL48JL
-	nng3LZPwI4DQqq5Yfmm4Pbqrk29WPQnrnBSbvm6PpcwakqTIVRfJZVe8Vx7iIZgKLYgKXjxtPlqlf
-	XLqLEuBehv6sMUfqfNV0MftagESSoiyxN35e2Udv025Wa/i5NpdZC03jDHOFB+40nEWWCPVX23MKq
-	mXXzd9NnVDAtv84L59HQRhq4FDYLoapJtojh23tjlpuj5Y7TCgdvf/o3kHCMCliZiTRi1XDOtP+n3
-	5MQnUsnUr+5sXW8gfLPzrJDOtR9D4SBcfmWDN3UP68C2Zll6vnjEZnVpyJQlkB2VLkmkm0AzIYulp
-	nWp+zDnA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=myrD4Oc5GjJnUJKj0O/5nUQsBQ9XKBlijpMkJOywH2Q=; b=Ds8vMIusoifLKJWw4dI8UiLPJU
+	Wg2dnTnSA++xXR/TmywYZ0nclGn3h7ukkXr/xHBF5JtvbkufTExEZrens2wslrKaRsuk9afd04t4s
+	WNmJXFdZbJ5eMrdZ8qoVjBsqb3BCWSiiiH+sq1D+nM9sOMCtxjjfMESwtuKYsdACL9h98ani84em4
+	FVW0uiqlnSuAzLxJkwyuWJkAwormgAEq6+HfvQT7mSRrdsGOZk/Kddi78rBj40t1Q6itPPCJLaxA5
+	CEYYTC5bNesK5QBs5tks/fm70FC8rUanPL9KOC/LAFJxhXDFSH2jm93D/0fyZAOs19NlIfD79P3Y/
+	7v2tE2sA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ucLvD-00000009qa7-2Zre;
-	Thu, 17 Jul 2025 10:33:03 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1ucMDZ-00000009uRG-1jL4;
+	Thu, 17 Jul 2025 10:52:01 +0000
+Received: from sender4-op-o12.zoho.com ([136.143.188.12])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ucLtp-00000009qLy-0R9b;
-	Thu, 17 Jul 2025 10:31:38 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 4FF355C572E;
-	Thu, 17 Jul 2025 10:31:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B58EC4CEE3;
-	Thu, 17 Jul 2025 10:31:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752748295;
-	bh=GEF0Iea9tdt8h2xZCwTe5vufEO4aXfoWH9l3WAh+Oz4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PMzAIZPTr+EmY4y6vQDBLndTvsjtdW2C/Q37l47c2JiNuLSMKT9BgZRlUw63VrlMc
-	 o6KoeKskW/7c4OjpccPNJAK+abKpRVqfzcLSQrnpSuC0gu2HKt2y6abARAnv0/ESi6
-	 e/3h3CYaFvb6yK7PXocCosZMbF0BZ+zRUVP+3BxoIB+a4/rNVqQWeX8ocYwS8Cid8b
-	 qySdiZSO14+KSkjzDUnZx3d+Xo4AkNFu4O7bBMj8NmEzKmgfLTEpVzYcFw+7I5QH9o
-	 Yy7d9U055qgdEqcwFMdnAeRh5UkwaILFQitu1p5ms2/lYH4Hl5qHnTW8NHji091BM9
-	 Cg904INvymVcw==
-Date: Thu, 17 Jul 2025 16:01:23 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Jeff Johnson <jjohnson@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Nirmal Patel <nirmal.patel@linux.intel.com>, 
-	Jonathan Derrick <jonathan.derrick@linux.dev>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	ath12k@lists.infradead.org, ath11k@lists.infradead.org, ath10k@lists.infradead.org, 
-	Bjorn Helgaas <helgaas@kernel.org>, ilpo.jarvinen@linux.intel.com, linux-arm-msm@vger.kernel.org, 
-	linux-pci@vger.kernel.org, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Qiang Yu <qiang.yu@oss.qualcomm.com>
-Subject: Re: [PATCH 4/6] wifi: ath12k: Use pci_{enable/disable}_link_state()
- APIs to enable/disable ASPM states
-Message-ID: <wyqtr3tz3k2zdf62kgtcepf3sedm7z7wacv27visl2xsrqspmq@wi4fgef2mn2m>
-References: <20250716-ath-aspm-fix-v1-0-dd3e62c1b692@oss.qualcomm.com>
- <20250716-ath-aspm-fix-v1-4-dd3e62c1b692@oss.qualcomm.com>
- <38ace6a3-d594-4438-a193-cf730a7b87d6@oss.qualcomm.com>
+	id 1ucKst-00000009j7k-3czo
+	for ath11k@lists.infradead.org;
+	Thu, 17 Jul 2025 09:26:37 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1752744333; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=G+rPizvRlW5rcmE6CDCyf4ffA3Z0FKCeRnehUu3cx05zpHGjTR546+Hz1rS6hvGTPIKhqUkwALrBAkBMaKf5ASpZW//wDhgiLANieTtYgnJwTmm0yjLkZFs9I3tL5xu2S1O03ZPc9Simy3HfLBasSZR/hhekIX9mqFUTj9TVQsA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1752744333; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=myrD4Oc5GjJnUJKj0O/5nUQsBQ9XKBlijpMkJOywH2Q=; 
+	b=BFSJrfuHL1RVypiJX4ghnXVEuc2VSeLLYdpjJlyW2uACH/Fn7h3qk7FgRrIVggfHPwadqqi3fnO461VgRKRN7zsi/6lN4NL4zj9vQGbsN9fZ4Xx3Q8QLSVf3rZllNoJrclX6T75rGN8HaHVHEZZ6FvBAWn2F/DkknDLuE0XWvlY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752744333;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=myrD4Oc5GjJnUJKj0O/5nUQsBQ9XKBlijpMkJOywH2Q=;
+	b=FhzF4R/3dKXmWFVrbFUw/WOBC09YOhBrtYs3UWiU7XcZwUeHA9LM9HMcgJZbEbGI
+	ziyCPElmJg04dGAKvZv9FzAQD+Hp7Wdatv8jcXsOGQ8nvLL035/Euisp+JewsUOfrpy
+	CkmWfhcp5+6A+3KRSBsSk402iU39IRYTCTqSdMjw=
+Received: by mx.zohomail.com with SMTPS id 1752744331135757.2706251805113;
+	Thu, 17 Jul 2025 02:25:31 -0700 (PDT)
+Message-ID: <656979d8-9ce8-4225-91dc-2236d9e1291f@collabora.com>
+Date: Thu, 17 Jul 2025 14:25:34 +0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <38ace6a3-d594-4438-a193-cf730a7b87d6@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] wifi: ath11k: HAL SRNG: don't deinitialize and
+ re-initialize again
+To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+ Jeff Johnson <jjohnson@kernel.org>, kbuild test robot <lkp@intel.com>,
+ Ganesh Sesetti <gseset@codeaurora.org>,
+ Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
+ Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: kernel@collabora.com, stable@vger.kernel.org,
+ Sriram R <quic_srirrama@quicinc.com>,
+ Rajkumar Manoharan <rmanohar@codeaurora.org>,
+ Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
+ Bhagavathi Perumal S <bperumal@codeaurora.org>,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250715132351.2641289-1-usama.anjum@collabora.com>
+ <7ecc1cfc-5033-4d74-9303-9ac58527113c@oss.qualcomm.com>
+Content-Language: en-US
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <7ecc1cfc-5033-4d74-9303-9ac58527113c@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250717_033137_223309_007AD627 
-X-CRM114-Status: GOOD (  12.97  )
+X-CRM114-CacheID: sfid-20250717_022635_974901_2813DDAA 
+X-CRM114-Status: GOOD (  15.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,85 +91,108 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jul 17, 2025 at 05:24:13PM GMT, Baochen Qiang wrote:
+On 7/16/25 8:10 AM, Baochen Qiang wrote:
+> 
+> 
+> On 7/15/2025 9:23 PM, Muhammad Usama Anjum wrote:
+>> Don't deinitialize and reinitialize the HAL helpers. The dma memory is
+>> deallocated and there is high possibility that we'll not be able to get
+>> the same memory allocated from dma when there is high memory pressure.
+>>
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
+>>
+>> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+>> Cc: stable@vger.kernel.org
+>> Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+>> ---
+>> Changes since v1:
+>> - Cc stable and fix tested on tag
+>> - Clear essential fields as they may have stale data
+>> ---
+>>  drivers/net/wireless/ath/ath11k/core.c |  6 +-----
+>>  drivers/net/wireless/ath/ath11k/hal.c  | 12 ++++++++++++
+>>  drivers/net/wireless/ath/ath11k/hal.h  |  1 +
+>>  3 files changed, 14 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+>> index 4488e4cdc5e9e..34b27711ed00f 100644
+>> --- a/drivers/net/wireless/ath/ath11k/core.c
+>> +++ b/drivers/net/wireless/ath/ath11k/core.c
+>> @@ -2213,14 +2213,10 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
+>>  	mutex_unlock(&ab->core_lock);
+>>  
+>>  	ath11k_dp_free(ab);
+>> -	ath11k_hal_srng_deinit(ab);
+>> +	ath11k_hal_srng_clear(ab);
+>>  
+>>  	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
+>>  
+>> -	ret = ath11k_hal_srng_init(ab);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>>  	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+>>  
+>>  	ret = ath11k_core_qmi_firmware_ready(ab);
+>> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+>> index b32de563d453a..dafa9bdbb3d32 100644
+>> --- a/drivers/net/wireless/ath/ath11k/hal.c
+>> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+>> @@ -1359,6 +1359,18 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
+>>  }
+>>  EXPORT_SYMBOL(ath11k_hal_srng_deinit);
+>>  
+>> +void ath11k_hal_srng_clear(struct ath11k_base *ab)
+>> +{
+>> +	memset(ab->hal.srng_list, 0,
+>> +	       sizeof(ab->hal.srng_list));
+>> +	memset(ab->hal.shadow_reg_addr, 0,
+>> +	       sizeof(ab->hal.shadow_reg_addr));
+> 
+> nit: I would add comment here that no need to memset rdp and wrp memory since each
+> individual segment would get cleared when
+> 
+> ath11k_hal_srng_src_hw_init()
+> 	*srng->u.src_ring.tp_addr = 0;
+> 
+> and
+> ath11k_hal_srng_dst_hw_init()
+> 	*srng->u.dst_ring.hp_addr = 0;
+I'll add:
+	/* No need to memset rdp and wrp memory since each individual
+	 * segment would get cleared ath11k_hal_srng_src_hw_init() and
+	 * ath11k_hal_srng_dst_hw_init().
+	 */
 
-[...]
+> 
+>> +	ab->hal.avail_blk_resource = 0;
+>> +	ab->hal.current_blk_index = 0;
+>> +	ab->hal.num_shadow_reg_configured = 0;
+>> +}
+>> +EXPORT_SYMBOL(ath11k_hal_srng_clear);
+>> +
+>>  void ath11k_hal_dump_srng_stats(struct ath11k_base *ab)
+>>  {
+>>  	struct hal_srng *srng;
+>> diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+>> index 601542410c752..839095af9267e 100644
+>> --- a/drivers/net/wireless/ath/ath11k/hal.h
+>> +++ b/drivers/net/wireless/ath/ath11k/hal.h
+>> @@ -965,6 +965,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
+>>  			  struct hal_srng_params *params);
+>>  int ath11k_hal_srng_init(struct ath11k_base *ath11k);
+>>  void ath11k_hal_srng_deinit(struct ath11k_base *ath11k);
+>> +void ath11k_hal_srng_clear(struct ath11k_base *ab);
+>>  void ath11k_hal_dump_srng_stats(struct ath11k_base *ab);
+>>  void ath11k_hal_srng_get_shadow_config(struct ath11k_base *ab,
+>>  				       u32 **cfg, u32 *len);
+> 
+> other than the nit:
+> 
+> Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
 
-> > @@ -16,6 +16,8 @@
-> >  #include "mhi.h"
-> >  #include "debug.h"
-> >  
-> > +#include "../ath.h"
-> > +
-> >  #define ATH12K_PCI_BAR_NUM		0
-> >  #define ATH12K_PCI_DMA_MASK		36
-> >  
-> > @@ -928,8 +930,7 @@ static void ath12k_pci_aspm_disable(struct ath12k_pci *ab_pci)
-> >  		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
-> >  
-> >  	/* disable L0s and L1 */
-> > -	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
-> > -				   PCI_EXP_LNKCTL_ASPMC);
-> > +	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_L0S | PCIE_LINK_STATE_L1);
-> 
-> Not always, but sometimes seems the 'disable' does not work:
-> 
-> [  279.920507] ath12k_pci_power_up 1475: link_ctl 0x43 //before disable
-> [  279.920539] ath12k_pci_power_up 1482: link_ctl 0x43 //after disable
-> 
-> 
-> >  
-> >  	set_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags);
-> >  }
-> > @@ -958,10 +959,7 @@ static void ath12k_pci_aspm_restore(struct ath12k_pci *ab_pci)
-> >  {
-> >  	if (ab_pci->ab->hw_params->supports_aspm &&
-> >  	    test_and_clear_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags))
-> > -		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
-> > -						   PCI_EXP_LNKCTL_ASPMC,
-> > -						   ab_pci->link_ctl &
-> > -						   PCI_EXP_LNKCTL_ASPMC);
-> > +		pci_enable_link_state(ab_pci->pdev, ath_pci_aspm_state(ab_pci->link_ctl));
-> 
-> always, the 'enable' is not working:
-> 
-> [  280.561762] ath12k_pci_start 1180: link_ctl 0x43 //before restore
-> [  280.561809] ath12k_pci_start 1185: link_ctl 0x42 //after restore
-> 
+Thanks,
+Usama
 
-Interesting! I applied your diff and I never see this issue so far (across 10+
-reboots):
-
-[    3.758239] ath12k_pci_power_up 1475: link_ctl 0x42
-[    3.758315] ath12k_pci_power_up 1480: link_ctl 0x40
-[    4.383900] ath12k_pci_start 1180: link_ctl 0x40
-[    4.384026] ath12k_pci_start 1185: link_ctl 0x42
-
-Are you sure that you applied all the 6 patches in the series and not just the
-ath patches? Because, the first 3 PCI core patches are required to make the API
-work as intended.
-
-> 
-> >  }
-> >  
-> >  static void ath12k_pci_cancel_workqueue(struct ath12k_base *ab)
-> > 
-> 
-> In addition, frequently I can see below AER warnings:
-> 
-> [  280.383143] aer_ratelimit: 30 callbacks suppressed
-> [  280.383151] pcieport 0000:00:1c.0: AER: Correctable error message received from
-> 0000:00:1c.0
-> [  280.383177] pcieport 0000:00:1c.0: PCIe Bus Error: severity=Correctable, type=Data Link
-> Layer, (Transmitter ID)
-> [  280.383184] pcieport 0000:00:1c.0:   device [8086:7ab8] error status/mask=00001000/00002000
-> [  280.383193] pcieport 0000:00:1c.0:    [12] Timeout
-> 
-
-I don't see any AER errors either.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
