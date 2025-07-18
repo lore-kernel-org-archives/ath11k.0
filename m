@@ -4,83 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2E58C83F17
-	for <ath11k@archiver.kernel.org>; Fri, 18 Jul 2025 13:24:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51B80C83F1A
+	for <ath11k@archiver.kernel.org>; Fri, 18 Jul 2025 16:46:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:From:Subject:Message-Id:
-	Date:Content-Type:Content-Transfer-Encoding:Mime-Version:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=RJXTsE2KOiSMZokrSowhZ4t+AsNAOTZqnDdpfZ+HcGc=; b=4miah5tFAVrHww+KiZZjwrqzFN
-	EP+F9MHplBJPr/63/A1rEN1WtH071anlRUfqrfcItgTBdTKScFY/M+f7yJIcdxys4dLqmVFoMR5zH
-	dQIo0XePJTRfVnEtv9j6KfBNGuT9ISW0vn2+vRiQhbtsIN/D88TJsAcQbsFHO7qMvdXGXvHlu9lvq
-	a7OwoXggeAKEENIBrRbfLTsXK4CTHON7DSM3G6ktvxp1s3gFVhn+rT9zQG2Q/2JCtMwIOhlvmNfp9
-	KXYnGsPH4bWo21Xoq0lowNZNAw96lPHOKKIjb0rnySsK16aLKvDiWD9o6tTUk3kbzlZ5kytzrmtBn
-	A5uBpqoA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=dCEM8aWN+j09CDRWVG7/dnusk4+88HZYwOw99R8RwOY=; b=loF32eRAuNytRK
+	LkyWXmIXwUoJsP+9S6aTwaFVuZagBCsBtl6K8umvxtkkYKkcqBzkPYRe/+E+gqbS3qA0M1zQE4xOi
+	l80xeYoPgj6f89P8YoVLvvZYnR6awh5pClVZlSh9lRmBxjoRX2QUAuauNlj+XCvmeGLCdl69XkBJt
+	l07UvrUW57jx9zzDX7/jimRaNotlyPSKQJKNLa79Vk1nyvOJho3rZoO4fi+lb2jLfgDlU7pWQ+SUD
+	jAAo4+cn7p4sRIylojgY4FoZ1ih3S5K4WbOjPU30U6Csxy9uzRoskgTgpqhT9VQRCM3sCabsPWJpc
+	/4/J4SthcnBhVOrMy0Ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ucl4l-0000000CgP2-3jrH;
-	Fri, 18 Jul 2025 13:24:35 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1ucoER-0000000D90a-49eP;
+	Fri, 18 Jul 2025 16:46:47 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ucl3S-0000000CgEd-42hb
-	for ath11k@lists.infradead.org;
-	Fri, 18 Jul 2025 13:23:16 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-6077dea37easo3501099a12.3
-        for <ath11k@lists.infradead.org>; Fri, 18 Jul 2025 06:23:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752844992; x=1753449792; darn=lists.infradead.org;
-        h=to:from:subject:message-id:date:content-transfer-encoding
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RJXTsE2KOiSMZokrSowhZ4t+AsNAOTZqnDdpfZ+HcGc=;
-        b=z1WulVOdePYLwNK7I3C3PkLKsNloj/RLaJaCSpPWHLMm7ZxhWj4FO8attvTiBH8Lr9
-         aGe3bjHZnor383XUYvFEcajf4tyHLwMoJzrKdzKCcsf0APHKQTSL90rSCjV8crUe0Fse
-         zTuqqjQPz8wIJbXn4I7BMeEbXRxeIUEGirupe+0vBVF1EZKRT3CWXXQK42LEYIOz8eq8
-         NHOxfkYWf3O/53ajaXY/99iorr1S8aeORMeAEPhMxokmEOgeGBEaDDj+w4LQm/o9K6q+
-         MU02ZwmTxmF9cufBZwXwhXZEsTrknmaQrU3x5KiiSxap2DRyYrWPzZe5pufxCl1Peq0K
-         8f1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752844992; x=1753449792;
-        h=to:from:subject:message-id:date:content-transfer-encoding
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RJXTsE2KOiSMZokrSowhZ4t+AsNAOTZqnDdpfZ+HcGc=;
-        b=IQhyodyzIA3QzJFXQH5SsHu3ykmF+UXA5A8cYfSKHd0Y2jbjCuzAB/m+h1v4U48iaR
-         Muw8GSTda4bGCiTgYWB5/B618MEJYUwubmT86EqB5AbVJeRAq4uzWEXuydtsfAhXJcYr
-         hXqV3JWe97cUsTjC1StRZAlzuIDTl/cGj9IPo4rqZBfMnlYy4HUufCxukTRqDLzZI3YK
-         2WiBM8aDVZ10f6lP9TrtzAc69zjAYO65yMFYq28aZTqSPi2uRBEoe7bEp2+OHSLBAfg0
-         XBPXO1GmZgwPsejBOjiE6zDkFhSQs8XzP+AVs03WG0nX/Kr0FK+xou/3ZD1oAyIV5Gry
-         QIbw==
-X-Gm-Message-State: AOJu0YxqQtVg5f+6OAjniI/mYTgdUenCiKybvg3StygQOo+HLxf+6iRP
-	4ihf4HBiQEvzhDPbMmQgtWWnVkWQnXu8TbXlN+Tp4GNyclhnaK1YPq6wAHGcEP9qWnrJ05zjd0a
-	K3jCcVtk=
-X-Gm-Gg: ASbGncsiE4jirSEA4W8rulSZh2UtCEAte0aBZxnhzN0HcSFZXe1SsPoci8UVSrmWUq8
-	jRIu/j0PG0ShYxkO9jVcEuz0fNV4OfGFaImjbAn2UNnkA6J0Gubn0f39lLUhxFZ7OGjEWYVwlNR
-	9Jm/u52ZU0+0pAHa3XdcnOXK3nySb6Zi94+K825BnOoHAC1MaMpTCk2rkFY5kluHQ0oDglmHFR0
-	E44VVPyIdcVagfEb3ZsUytZbtGlwRqvr+qWJ6MHvwU0k58bu1yiLrWdP4Nfn19ksNfG4JBgBXi0
-	6CNyBrsR3m4HchPf49DdJvBfSiIA7Q9Vv+9s65Q89+ZN28lNQNQUYHbuuMiz2UUvP3aNXtDW5ZU
-	7qVAkck7FMXkt23USHbTn2xsw4eh/ykWC/6SXmjkkCmSnEcox6iPu+dc=
-X-Google-Smtp-Source: AGHT+IHZo2D/DBg8hn+lB03yUXC/ioaRaeyW1DWDx5Kc7syRvpA3/VoW5y+u6rC3pfNmkDBBKHRZFg==
-X-Received: by 2002:a17:907:c5cd:b0:ae3:6744:3661 with SMTP id a640c23a62f3a-ae9ce10c4f9mr829756066b.44.1752844992262;
-        Fri, 18 Jul 2025 06:23:12 -0700 (PDT)
-Received: from localhost (212095005010.public.telering.at. [212.95.5.10])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aec6c79ae67sm121366666b.11.2025.07.18.06.23.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Jul 2025 06:23:11 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 18 Jul 2025 15:23:10 +0200
-Message-Id: <DBF7OWAWQ94M.FSCP4DPF8ZJY@fairphone.com>
-Subject: ath11k WiFi bringup on Milos SoC
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: <ath11k@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+	id 1ucnuO-0000000D5OB-2DyE;
+	Fri, 18 Jul 2025 16:26:05 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id E949540BD3;
+	Fri, 18 Jul 2025 16:26:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 812F3C4CEEB;
+	Fri, 18 Jul 2025 16:26:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752855963;
+	bh=aXCC6a0BRcLONBCEG+qLtT+Rm3FPzL7V91riur1H9Xg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=VitDl0P293UBhnBWTfwW9kVJK0g1L/RqqX2mGlwmW2JmETRPxtereKE2Vuq0LK+EG
+	 bf8x/QDXwtgdesGEGkf9l3+tOv/u5eMPMLfDd5Jm8tmNgi/l9dkuuL+h79ov7lthlp
+	 UFI2NSU7GD4fAKI/DAVKgV5+ZvEGjKu37s3kDh3BO2tZWRiDjhL2lKGk1Q0vG+z9uf
+	 wI7zXsu3ola9AnO/2kZYI7KblB/WNrwX/y89x0GMfAWLCxdr3YZUcYLqkv2y4YdPhH
+	 a+Wk/8evsszEwS9hOiOwuRm74mqj4lvhO6udfWVIb4fa6/y07B1q7rkveAwQJ6a9dO
+	 Qcy/kMyM8zjbQ==
+Date: Fri, 18 Jul 2025 11:26:00 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	manivannan.sadhasivam@oss.qualcomm.com,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Nirmal Patel <nirmal.patel@linux.intel.com>,
+	Jonathan Derrick <jonathan.derrick@linux.dev>,
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ath12k@lists.infradead.org, ath11k@lists.infradead.org,
+	ath10k@lists.infradead.org, ilpo.jarvinen@linux.intel.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Qiang Yu <qiang.yu@oss.qualcomm.com>
+Subject: Re: [PATCH 4/6] wifi: ath12k: Use pci_{enable/disable}_link_state()
+ APIs to enable/disable ASPM states
+Message-ID: <20250718162600.GA2700538@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <wkapzhyr6hzp5az4jae3y5c77c3fg4uwrmyyipbq4uosamcivq@z7nv6w7nbyrp>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250718_062315_021733_DD3A8FD7 
-X-CRM114-Status: UNSURE (   8.07  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250718_092604_617775_13551233 
+X-CRM114-Status: GOOD (  47.85  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,45 +82,157 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Fri, Jul 18, 2025 at 05:19:28PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Jul 18, 2025 at 07:05:03PM GMT, Baochen Qiang wrote:
+> > On 7/18/2025 6:20 PM, Manivannan Sadhasivam wrote:
+> > > On Fri, Jul 18, 2025 at 01:27:27PM GMT, Manivannan Sadhasivam wrote:
+> > >> On Fri, Jul 18, 2025 at 10:05:02AM GMT, Baochen Qiang wrote:
+> > >>> On 7/17/2025 7:29 PM, Manivannan Sadhasivam wrote:
+> > >>>> On Thu, Jul 17, 2025 at 06:46:12PM GMT, Baochen Qiang wrote:
+> > >>>>> On 7/17/2025 6:31 PM, Manivannan Sadhasivam wrote:
+> > >>>>>> On Thu, Jul 17, 2025 at 05:24:13PM GMT, Baochen Qiang wrote:
+> > >>>>>>
+> > >>>>>> [...]
+> > >>>>>>
+> > >>>>>>>> @@ -16,6 +16,8 @@
+> > >>>>>>>>  #include "mhi.h"
+> > >>>>>>>>  #include "debug.h"
+> > >>>>>>>>  
+> > >>>>>>>> +#include "../ath.h"
+> > >>>>>>>> +
+> > >>>>>>>>  #define ATH12K_PCI_BAR_NUM		0
+> > >>>>>>>>  #define ATH12K_PCI_DMA_MASK		36
+> > >>>>>>>>  
+> > >>>>>>>> @@ -928,8 +930,7 @@ static void ath12k_pci_aspm_disable(struct ath12k_pci *ab_pci)
+> > >>>>>>>>  		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
+> > >>>>>>>>  
+> > >>>>>>>>  	/* disable L0s and L1 */
+> > >>>>>>>> -	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+> > >>>>>>>> -				   PCI_EXP_LNKCTL_ASPMC);
+> > >>>>>>>> +	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_L0S | PCIE_LINK_STATE_L1);
+> > >>>>>>>
+> > >>>>>>> Not always, but sometimes seems the 'disable' does not work:
+> > >>>>>>>
+> > >>>>>>> [  279.920507] ath12k_pci_power_up 1475: link_ctl 0x43 //before disable
+> > >>>>>>> [  279.920539] ath12k_pci_power_up 1482: link_ctl 0x43 //after disable
+> > >>>>>>>
+> > >>>>>>>
+> > >>>>>>>>  
+> > >>>>>>>>  	set_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags);
+> > >>>>>>>>  }
+> > >>>>>>>> @@ -958,10 +959,7 @@ static void ath12k_pci_aspm_restore(struct ath12k_pci *ab_pci)
+> > >>>>>>>>  {
+> > >>>>>>>>  	if (ab_pci->ab->hw_params->supports_aspm &&
+> > >>>>>>>>  	    test_and_clear_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags))
+> > >>>>>>>> -		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+> > >>>>>>>> -						   PCI_EXP_LNKCTL_ASPMC,
+> > >>>>>>>> -						   ab_pci->link_ctl &
+> > >>>>>>>> -						   PCI_EXP_LNKCTL_ASPMC);
+> > >>>>>>>> +		pci_enable_link_state(ab_pci->pdev, ath_pci_aspm_state(ab_pci->link_ctl));
+> > >>>>>>>
+> > >>>>>>> always, the 'enable' is not working:
+> > >>>>>>>
+> > >>>>>>> [  280.561762] ath12k_pci_start 1180: link_ctl 0x43 //before restore
+> > >>>>>>> [  280.561809] ath12k_pci_start 1185: link_ctl 0x42 //after restore
+> > >>>>>>>
+> > >>>>>>
+> > >>>>>> Interesting! I applied your diff and I never see this issue so far (across 10+
+> > >>>>>> reboots):
+> > >>>>>
+> > >>>>> I was not testing reboot. Here is what I am doing:
+> > >>>>>
+> > >>>>> step1: rmmod ath12k
+> > >>>>> step2: force LinkCtrl using setpci (make sure it is 0x43, which seems more likely to see
+> > >>>>> the issue)
+> > >>>>>
+> > >>>>> 	sudo setpci -s 02:00.0 0x80.B=0x43
+> > >>>>>
+> > >>>>> step3: insmod ath12k and check linkctrl
+> > >>>>>
+> > >>>>
+> > >>>> So I did the same and got:
+> > >>>>
+> > >>>> [ 3283.363569] ath12k_pci_power_up 1475: link_ctl 0x43
+> > >>>> [ 3283.363769] ath12k_pci_power_up 1480: link_ctl 0x40
+> > >>>> [ 3284.007661] ath12k_pci_start 1180: link_ctl 0x40
+> > >>>> [ 3284.007826] ath12k_pci_start 1185: link_ctl 0x42
+> > >>>>
+> > >>>> My host machine is Qcom based Thinkpad T14s and it doesn't
+> > >>>> support L0s. So that's why the lnkctl value once enabled
+> > >>>> becomes 0x42. This is exactly the reason why the drivers
+> > >>>> should not muck around LNKCTL register manually.
+> > >>>
+> > >>> Thanks, then the 0x43 -> 0x40 -> 0x40 -> 0x42 sequence should
+> > >>> not be a concern. But still the random 0x43 -> 0x43 -> 0x43 ->
+> > >>> 0x42 sequence seems problematic.
+> > >>>
+> > >>> How many iterations have you done with above steps? From my
+> > >>> side it seems random so better to do some stress test.
+> > >>>
+> > >>
+> > >> So I ran the modprobe for about 50 times on the Intel NUC that
+> > >> has QCA6390, but didn't spot the disparity. This is the script
+> > >> I used:
+> > >>
+> > >> for i in {1..50} ;do echo "Loop $i"; sudo setpci -s 01:00.0 0x80.B=0x43;\
+> > >> sudo modprobe -r ath11k_pci; sleep 1; sudo modprobe ath11k_pci; sleep 1;done
+> > >>
+> > >> And I always got:
+> > >>
+> > >> [ 5862.388083] ath11k_pci_aspm_disable: 609 lnkctrl: 0x43
+> > >> [ 5862.388124] ath11k_pci_aspm_disable: 614 lnkctrl: 0x40
+> > >> [ 5862.876291] ath11k_pci_start: 880 lnkctrl: 0x40
+> > >> [ 5862.876346] ath11k_pci_start: 886 lnkctrl: 0x42
+> > >>
+> > >> Also no AER messages. TBH, I'm not sure how you were able to
+> > >> see the random issues with these APIs. That looks like a race,
+> > >> which is scary.
+> > >>
+> > >> I do not want to ignore your scenario, but would like to
+> > >> reproduce and get to the bottom of it.
+> > > 
+> > > I synced with Baochen internally and able to repro the issue.
+> > > Ths issue is due to hand modifying the LNKCTL register from
+> > > userspace. The PCI core maintains the ASPM state internally and
+> > > uses it to change the state when the
+> > > pci_{enable/disable}_link_state*() APIs are called.
+> > > 
+> > > So if the userspace or a client driver modifies the LNKCTL
+> > > register manually, it makes the PCI cached ASPM states invalid.
+> > > So while this series fixes the driver from doing that, nothing
+> > > prevents userspace from doing so using 'setpci' and other tools.
+> > > Userspace should only use sysfs attributes to change the state
+> > > and avoid modifying the PCI registers when the PCI core is
+> > > controlling the device.  So this is the reason behind the
+> > > errantic behavior of the API and it is not due to the issue with
+> > > the API or the PCI core.
+> > 
+> > IMO we can not rely on userspace doing what or not doing what, or
+> > on how it is doing, right? So can we fix PCI core to avoid this?
+> 
+> I'm not sure it is possible to *fix* the PCI core here. Since the
+> PCI core gives userspace access to the entire config space of the
+> device, the userspace reads/writes to any of the registers it want.
+> So unless the config space access if forbidden if a driver is bound
+> to the device, it is inevitable. And then there is also /dev/mem...
+> 
+> Interestingly, there is an API available for this purpose:
+> pci_request_config_region_exclusive(), but it is used only by the
+> AMD arch driver to prevent userspace from writing to the entire
+> config space of the device.
+> 
+> Maybe it makes sense to use something like this to prevent the
+> userspace access to the entire config space if the driver is bind to
+> the device.
 
-I'm trying to bring up WiFi on the Milos SoC (on my device: SM7635)
-which is paired with a WCN6755.
+I'm not really a fan of pci_request_config_region_exclusive() because
+it's such a singleton thing.  I don't like to be one of only a few
+users of an interface.
 
-There's also the WPSS remoteproc on this SoC, similar to SC7280/Kodiak.
+Linux has a long tradition of allowing root users to shoot themselves
+in the foot, and setpci is very useful as a debugging tool.  Maybe
+tainting the kernel for config writes from userspace, and possibly
+even a WARN_ONCE() at the time, would be a compromise.
 
-Using the qcom,wcn6750-wifi compatible in dt makes the wpss firmware
-crash soon after boot with the following errors:
-
-[ 1263.547381] ath11k 17110040.wifi: wcn6750 hw1.0
-[ 1263.577281] remoteproc remoteproc2: powering up wpss
-[ 1263.814337] remoteproc remoteproc2: Booting fw image qcom/milos/fairphon=
-e/fp6/wpss.mbn, size 8229144
-[ 1263.817861] PDM: no support for the platform, userspace daemon might be =
-required.
-[ 1264.523796] remoteproc remoteproc2: remote processor wpss is now up
-[ 1264.773557] ath11k 17110040.wifi: chip_id 0x1 chip_family 0xb board_id 0=
-xff soc_id 0x40140120
-[ 1264.774484] ath11k 17110040.wifi: fw_version 0x3014ffff fw_build_timesta=
-mp 2025-04-09 08:57 fw_build_id WLAN.MSL.3.0.1-00328.3-QCAMSLSWPLZ-1.105949=
-.2
-[ 1272.362281] ath11k 17110040.wifi: htt event 48 not handled
-[ 1273.499832] qcom_q6v5_pas 8a00000.remoteproc: fatal error received: cmno=
-s_assert.c:400:Asserted in whal_wmac_recipes.c:whal_wmac_transition_to_fw_c=
-ontrol:1734
-[ 1273.500231] remoteproc remoteproc2: crash detected in wpss: type fatal e=
-rror
-[ 1273.501114] remoteproc remoteproc2: handling crash #1 in wpss
-[ 1273.501153] remoteproc remoteproc2: recovering wpss
-
-That "htt event 48" should be HTT_T2H_PPDU_ID_FMT_IND, I have briefly
-looked in the WiFi driver from the downstream 6.1 kernel and while I
-might definitely be wrong here, I'm guessing it's not related to the
-crash.
-
-Anyone have an idea how to debug this? Unfortunately my AMSS sources do
-not include any sources for WiFi, it's just prebuilts.
-
-Regards
-Luca
+Bjorn
 
