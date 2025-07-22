@@ -4,133 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DF45C83F25
-	for <ath11k@archiver.kernel.org>; Tue, 22 Jul 2025 11:04:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DD09C83F27
+	for <ath11k@archiver.kernel.org>; Tue, 22 Jul 2025 11:24:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jCcIy69ciDOUcVdtD2bZCMzRk/SyBUFRLG70HN1E2+Q=; b=gI3ZYHpbb1dj9lS3/88I/+oiwI
-	4ZlcxN4OL4Mq9SQd3qMKKsstDeTOoo7mcBJTERAQnDOxt2d/n7/1+iYI3/EsBHAw1EJ0LKDB84FOy
-	CFqwdNjjr5KNJc83gVZuytB/AnoLlyvvtKOFlGstOdz7lB+xGhGqU8jWn4V/udjX79k1HMsq9IVJU
-	5yZcyaaNMCzQfNT2OYAyVPJQ9OqTZp6A/rvW+FetfYQ1H5TTYwBXPtRKpLyN91XyQoJQDhyUESmbN
-	O7eFkmf4h543t4R4OKNqfyQ3TBPB90mBufOyl+kp66NF6LiujN211PPBirXj0GEG02Rhr9Df46vLC
-	CUmAQ70A==;
+	bh=lFb9As+tGUSsfLRTQC2OOODRjXdSTQs59XrJQlNc9GI=; b=4b6zf+cjKFGkP6hQ9oMubhDIZD
+	u0nHOyu7EkSKNCVMtTp2+g/+UR4Ri6Uae26oSKs6UKD4S8YyUyK9OPCVAkefEy67IqiQPrHB/Ji3l
+	EKUowvdhqrMyWLGy/pcpWEbYBTW8WbI4mRgryvkQqNniaCRL8vgdj0MkDoRkyBOn3vLcX+OBjgeqJ
+	y/Bm2KV58tYrZfsHfugBRPDHz0VY4QTV0XTSRHZ4C8bIKJuHj4nzhtUyx3DNJZmIVh4jtMXNeMMq/
+	wlG7og7ThJETFGZlldfYqWbwwH0g7aBg3ZDv6uwefabah/ADmAsgM5lEZRzZa1WWj56fr5HRtDL1K
+	QkMJCFXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueAmx-00000002E82-0nV0;
-	Tue, 22 Jul 2025 11:04:03 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1ueB6v-00000002H1H-2sp0;
+	Tue, 22 Jul 2025 11:24:41 +0000
+Received: from sender4-op-o12.zoho.com ([136.143.188.12])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueAmu-00000002E7J-36lJ
+	id 1ueB6t-00000002H0s-34x4
 	for ath11k@lists.infradead.org;
-	Tue, 22 Jul 2025 11:04:02 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56M7D4g0017499
-	for <ath11k@lists.infradead.org>; Tue, 22 Jul 2025 11:03:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jCcIy69ciDOUcVdtD2bZCMzRk/SyBUFRLG70HN1E2+Q=; b=gTRM5A+ZXBV1LYZH
-	oVBmEosxHP33U+7/2sCjFSscWe4nGK/f+gXjn5xNeKKUV1yqF6yNb7EFMn0i8LRR
-	16mhIwk9iplEJHanlgtA783cn44423NPSDypNTK0L/GbZUsgmTL96QEYBUm2ko7+
-	CCrwFohoQJjQPt91kyCR0aCn/iyGBgFhB9XNH2kIRlEqGPsCnkJC7LxqSY4jPrOK
-	iKo5zANUOwW6Vw3jcKypisxjmS7VHgiZciDZS5sxKjBkPOG7Frg4d/zFg28Spfp2
-	khieEqYk/0ri3+2XImGWUKMe1zVosO5/wq3L5wzBpx7TPhMmX8RXHM7QrMGYc6kr
-	cbL36g==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 481t6w29xt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 22 Jul 2025 11:03:59 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-75494e5417bso5051857b3a.0
-        for <ath11k@lists.infradead.org>; Tue, 22 Jul 2025 04:03:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753182238; x=1753787038;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jCcIy69ciDOUcVdtD2bZCMzRk/SyBUFRLG70HN1E2+Q=;
-        b=BY2yJT/cFSiTso/KJ1FDwD48xgP2WGQ87mrI5gB4i4S8SmszM2UXSIyakXnqTjVRu0
-         yUuDM2c0z51L8WLes7nTycJlSKzZQdf68h7xqowpks4uO1FqnBA/klXCVKbkCJXAXHpZ
-         CYSLNBK0I/jIb5ZQ6Tww7Xk1Sj5uFX6mI3FHOAZGr3NcSGNSc0iN97qsh0zG8FIO7ZM6
-         1ZYKbSZ/T5h6+N2f7v3EmQGBoe39ohZ9i/fsaV0gucRxYaUEHMI9aahMcsdk56GP9pck
-         9S4Qjn9cfrMSg/cl/x8uXZp7qQZePvNdWxxvoLYRMgcN7rjstWIuSIWNnRwQEqOsGC3a
-         f6GA==
-X-Forwarded-Encrypted: i=1; AJvYcCW5T9309Q4Bq3hwOC5tvIQhXf2ZqHnudOc8G9vMhJU211sGgayCvh88utEzGjWBKfsmZqP6Tk4=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw67DsYfhP9D+XwXOxHiz5a3PoDotWsuqnKjd1rsidiSg6Rm+AO
-	MjEc2M5spY8TLiX32S5sfB37g1jRZiXqPUTmRatinv6tevSa/02wh9Pvv8Wko3Y8qz23ZpuC+3N
-	hiBKeFwTA7+LZP2qw9JGw3m26Ht/0TgX/isvDuAxtJYOEibUsXoYWZ59VC211rTYF
-X-Gm-Gg: ASbGncux4HdyE97E0Ab/7ru572h1aFFCopscGy5BJu5TyNzBAlYr2zgnZITVsM87/0l
-	Ae+xMizUioqD5Y96du/1oPra8XrzHWsFqcWzu1RNapMhu0PRNznnVPykf7tWSOY+o5XEmWf3sqE
-	mkv1iltq0sbq/Z/IEDmMJM4C4TcGadlqRJbZ+558icIALn3uHxdTJSNP7yU9APYqEYHdf/ILNKl
-	HWMxIqEvknFFYdxNxi+GTW6civxVWFJKEfuW1EaYZpXb1uvgJi5jK06JmBxdgah8xIWTA/JRxUi
-	7g+uHdTdFA3naO9LbaA4mVpOlQ0gVB7t2Ccq4+1ND6QT1oud6Hx9Gz4m7nq1KVpfgUA3pERmAQ=
-	=
-X-Received: by 2002:a05:6a00:1817:b0:736:5969:2b6f with SMTP id d2e1a72fcca58-75ed156d03bmr3761904b3a.6.1753182238337;
-        Tue, 22 Jul 2025 04:03:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgZIDkCUV2AXz/9PK4/a4NCij1DJxFB71Da611o7fAf8jI0CKXgwVrcrLnlMSH3ym9h+L+Lw==
-X-Received: by 2002:a05:6a00:1817:b0:736:5969:2b6f with SMTP id d2e1a72fcca58-75ed156d03bmr3761869b3a.6.1753182237848;
-        Tue, 22 Jul 2025 04:03:57 -0700 (PDT)
-Received: from [10.218.37.122] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-759cbd67ed2sm7293938b3a.135.2025.07.22.04.03.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 04:03:57 -0700 (PDT)
-Message-ID: <d4078b6c-1921-4195-9022-755845cdb432@oss.qualcomm.com>
-Date: Tue, 22 Jul 2025 16:33:50 +0530
+	Tue, 22 Jul 2025 11:24:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1753183444; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=AM5rf5qTRMzd7B0mcgd3eoqRkznkHh298xcYgOjrM9NXYTQwKyTRR+ypqZB2mP/mAn6R6CwQZIw/OKidgtsUjqVQKU6AGiWv2qPL4Z5O6BkEPlmyoj9bMYLXPU0uMxow306OomcNP+6zp1U/eOQvUELhT6rtT2cR6CaT0DysfUs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753183444; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=lFb9As+tGUSsfLRTQC2OOODRjXdSTQs59XrJQlNc9GI=; 
+	b=MRgsn2aL9kEwvhAYF5BoZauUK27DjiIVrD2uRBZi2N0d7x/UqpurXBIPtyKNB36seUK9gSqC3rjgpp/ba21zZWTvm3TYW4sUmcLfs616dC6wV+1mmyg+AS4QQjkcziYtcGDXhYGz7uA1t9CwZS0xAh88dH9/amlEvlaQyUhCWJ8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
+	dmarc=pass header.from=<usama.anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753183444;
+	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Cc:Cc:Subject:Subject:To:To:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=lFb9As+tGUSsfLRTQC2OOODRjXdSTQs59XrJQlNc9GI=;
+	b=NpseaKQXDA7i4X7EY+DW3lqKjkD2veGr+YrHY4zaJf4Slf7vbh3PlL8b8oU/G0W+
+	wr7zyWzLsvMPfU45Ydv5D1UuxOfsutLhFXMeg794F7IYW9LnlDDc7vIQtUtV41ZUBYO
+	ylyM+8rlfnW3UqvOtP0+b4Uuyrr+b1L4c7OdbRDU=
+Received: by mx.zohomail.com with SMTPS id 1753183441522359.46150902403406;
+	Tue, 22 Jul 2025 04:24:01 -0700 (PDT)
+Message-ID: <ae7a08cb-af73-4a27-aad4-c852be5f77aa@collabora.com>
+Date: Tue, 22 Jul 2025 16:23:55 +0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/11] PCI/bwctrl: Add support to scale bandwidth
- before & after link re-training
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Lorenzo Pieralisi
- <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
-        quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
-        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-References: <20250711213602.GA2307197@bhelgaas>
- <55fc3ae6-ba04-4739-9b89-0356c3e0930c@oss.qualcomm.com>
+Cc: usama.anjum@collabora.com, kernel@collabora.com, stable@vger.kernel.org,
+ Muna Sinada <quic_msinada@quicinc.com>,
+ Anilkumar Kolli <quic_akolli@quicinc.com>, Miles Hu <milehu@codeaurora.org>,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Julia Lawall <julia.lawall@lip6.fr>,
+ Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+ Sathishkumar Muruganandam <quic_murugana@quicinc.com>,
+ Jeff Johnson <jjohnson@kernel.org>, kbuild test robot <lkp@intel.com>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+ Sven Eckelmann <sven@narfation.org>
+Subject: Re: [PATCH v3] wifi: ath11k: HAL SRNG: don't deinitialize and
+ re-initialize again
+To: Kalle Valo <kvalo@kernel.org>
+References: <20250722053121.1145001-1-usama.anjum@collabora.com>
+ <1598d25d-e254-410e-ac5c-66d5450fd686@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <55fc3ae6-ba04-4739-9b89-0356c3e0930c@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=SPpCVPvH c=1 sm=1 tr=0 ts=687f701f cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=UU_a8xXafIRJjp1WqNEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIyMDA5MCBTYWx0ZWRfX6gkygEOpMtpU
- uMSjmGZGT/cTGDwqvuscxSxC52V+v8NalYg8FtjB/1wjDE6x/wx1HvnHhpgdyBjd05ntlbr8HUt
- NYI/MZYpR+CurWGTpmf2R2qkYtOBJ+89DXqGAXDK6B1uF1AiJy973YuZRywhx45J9g+KBHRTxFe
- nHpl1D5hoMvUXk9VJJ9ESHuPP02kPeJnNji0L5/E0kOaphrddTaN9XbkehSjgQHBD2kfqG6XNtc
- Qlm/QC8IMa/LUL04hqKYlqL/RYp5F2N5+A5zvXBX/CZTyuvwXFFGsdUA0MilO6tGrQCy4lG6oXr
- aeKVw4wlCYf+wN1CgrREC712Oh+GcICj1i3KmNFvK8cqpxiUoqwdAaPH5rE6H0uqRU/nC8VfHjY
- 8S1vsVcPPwNx+DOUC9b8oJanKpaKLzAIYoKFoegXAwAJN7utCCPhKFGjdX0yDjQ205fh0OPu
-X-Proofpoint-ORIG-GUID: P4IKtSJXCvVpxgRMQyeDCV9AoJPBIDMu
-X-Proofpoint-GUID: P4IKtSJXCvVpxgRMQyeDCV9AoJPBIDMu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-22_02,2025-07-21_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- mlxscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507220090
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <1598d25d-e254-410e-ac5c-66d5450fd686@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250722_040400_782343_50F453AD 
-X-CRM114-Status: GOOD (  25.23  )
+X-CRM114-CacheID: sfid-20250722_042439_845643_E1F9350D 
+X-CRM114-Status: GOOD (  15.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,89 +89,100 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi Kalle,
 
-
-On 7/12/2025 4:36 AM, Krishna Chaitanya Chundru wrote:
+On 7/22/25 2:47 PM, Baochen Qiang wrote:
 > 
 > 
-> On 7/12/2025 3:06 AM, Bjorn Helgaas wrote:
->> On Mon, Jun 09, 2025 at 04:21:23PM +0530, Krishna Chaitanya Chundru 
->> wrote:
->>> If the driver wants to move to higher data rate/speed than the 
->>> current data
->>> rate then the controller driver may need to change certain votes so that
->>> link may come up at requested data rate/speed like QCOM PCIe controllers
->>> need to change their RPMh (Resource Power Manager-hardened) state. Once
->>> link retraining is done controller drivers needs to adjust their votes
->>> based on the final data rate.
->>>
->>> Some controllers also may need to update their bandwidth voting like
->>> ICC BW votings etc.
->>>
->>> So, add pre_link_speed_change() & post_link_speed_change() op to call
->>> before & after the link re-train. There is no explicit locking 
->>> mechanisms
->>> as these are called by a single client Endpoint driver.
->>>
->>> In case of PCIe switch, if there is a request to change target speed 
->>> for a
->>> downstream port then no need to call these function ops as these are
->>> outside the scope of the controller drivers.
+> On 7/22/2025 1:31 PM, Muhammad Usama Anjum wrote:
+>> Don't deinitialize and reinitialize the HAL helpers. The dma memory is
+>> deallocated and there is high possibility that we'll not be able to get
+>> the same memory allocated from dma when there is high memory pressure.
 >>
->>> +++ b/include/linux/pci.h
->>> @@ -599,6 +599,24 @@ struct pci_host_bridge {
->>>       void (*release_fn)(struct pci_host_bridge *);
->>>       int (*enable_device)(struct pci_host_bridge *bridge, struct 
->>> pci_dev *dev);
->>>       void (*disable_device)(struct pci_host_bridge *bridge, struct 
->>> pci_dev *dev);
->>> +    /*
->>> +     * Callback to the host bridge drivers to update ICC BW votes, 
->>> clock
->>> +     * frequencies etc.. for the link re-train to come up in 
->>> targeted speed.
->>> +     * These are intended to be called by devices directly attached 
->>> to the
->>> +     * Root Port. These are called by a single client Endpoint 
->>> driver, so
->>> +     * there is no need for explicit locking mechanisms.
->>> +     */
->>> +    int (*pre_link_speed_change)(struct pci_host_bridge *bridge,
->>> +                     struct pci_dev *dev, int speed);
->>> +    /*
->>> +     * Callback to the host bridge drivers to adjust ICC BW votes, 
->>> clock
->>> +     * frequencies etc.. to the updated speed after link re-train. 
->>> These
->>> +     * are intended to be called by devices directly attached to the
->>> +     * Root Port. These are called by a single client Endpoint driver,
->>> +     * so there is no need for explicit locking mechanisms.
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
 >>
->> No need to repeat the entire comment.  s/.././
+>> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+>> Cc: stable@vger.kernel.org
+>> Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+>> Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+>> Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+>> ---
+>> Changes since v1:
+>> - Cc stable and fix tested on tag
+>> - Clear essential fields as they may have stale data
 >>
->> These pointers feel awfully specific for being in struct
->> pci_host_bridge, since we only need them for a questionable QCOM
->> controller.  I think this needs to be pushed down into qcom somehow as
->> some kind of quirk.
+>> Changes since v2:
+>> - Add comment and reviewed by tag
+>> ---
+>>  drivers/net/wireless/ath/ath11k/core.c |  6 +-----
+>>  drivers/net/wireless/ath/ath11k/hal.c  | 16 ++++++++++++++++
+>>  drivers/net/wireless/ath/ath11k/hal.h  |  1 +
+>>  3 files changed, 18 insertions(+), 5 deletions(-)
 >>
-> Currently these are needed by QCOM controllers, but it may also needed
-> by other controllers may also need these for updating ICC votes, any
-> system level votes, clock frequencies etc.
-> QCOM controllers is also doing one extra step in these functions to
-> disable and enable ASPM only as it cannot link speed change support
-> with ASPM enabled.
+>> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+>> index 4488e4cdc5e9e..34b27711ed00f 100644
+>> --- a/drivers/net/wireless/ath/ath11k/core.c
+>> +++ b/drivers/net/wireless/ath/ath11k/core.c
+>> @@ -2213,14 +2213,10 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
+>>  	mutex_unlock(&ab->core_lock);
+>>  
+>>  	ath11k_dp_free(ab);
+>> -	ath11k_hal_srng_deinit(ab);
+>> +	ath11k_hal_srng_clear(ab);
+>>  
+>>  	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
+>>  
+>> -	ret = ath11k_hal_srng_init(ab);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>>  	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+>>  
+>>  	ret = ath11k_core_qmi_firmware_ready(ab);
+>> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+>> index b32de563d453a..e8ebf963f195c 100644
+>> --- a/drivers/net/wireless/ath/ath11k/hal.c
+>> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+>> @@ -1359,6 +1359,22 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
+>>  }
+>>  EXPORT_SYMBOL(ath11k_hal_srng_deinit);
+>>  
+>> +void ath11k_hal_srng_clear(struct ath11k_base *ab)
+>> +{
+>> +	/* No need to memset rdp and wrp memory since each individual
+>> +	 * segment would get cleared ath11k_hal_srng_src_hw_init() and
 > 
-Bjorn, can you check this.
+> nit: s/cleared /cleared in/
+Please can you make this change while applying the patch?
 
-For QCOM devices we need to update the RPMh vote i.e a power source
-votes for the link to come up in required speed. and also we need
-to update interconnect votes also. This will be applicable for
-other vendors also.
+> 
+>> +	 * ath11k_hal_srng_dst_hw_init().
+>> +	 */
+>> +	memset(ab->hal.srng_list, 0,
+>> +	       sizeof(ab->hal.srng_list));
+>> +	memset(ab->hal.shadow_reg_addr, 0,
+>> +	       sizeof(ab->hal.shadow_reg_addr));
+>> +	ab->hal.avail_blk_resource = 0;
+>> +	ab->hal.current_blk_index = 0;
+>> +	ab->hal.num_shadow_reg_configured = 0;
+>> +}
+>> +EXPORT_SYMBOL(ath11k_hal_srng_clear);
+>> +
+>>  void ath11k_hal_dump_srng_stats(struct ath11k_base *ab)
+>>  {
+>>  	struct hal_srng *srng;
+>> diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+>> index 601542410c752..839095af9267e 100644
+>> --- a/drivers/net/wireless/ath/ath11k/hal.h
+>> +++ b/drivers/net/wireless/ath/ath11k/hal.h
+>> @@ -965,6 +965,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
+>>  			  struct hal_srng_params *params);
+>>  int ath11k_hal_srng_init(struct ath11k_base *ath11k);
+>>  void ath11k_hal_srng_deinit(struct ath11k_base *ath11k);
+>> +void ath11k_hal_srng_clear(struct ath11k_base *ab);
+>>  void ath11k_hal_dump_srng_stats(struct ath11k_base *ab);
+>>  void ath11k_hal_srng_get_shadow_config(struct ath11k_base *ab,
+>>  				       u32 **cfg, u32 *len);
+> 
 
-If this is not correct place I can add them in the pci_ops.
-- Krishna Chaitanya.
-> - Krishna Chaitanya.
->>> +     */
->>> +    void (*post_link_speed_change)(struct pci_host_bridge *bridge,
->>> +                       struct pci_dev *dev, int speed);
 
