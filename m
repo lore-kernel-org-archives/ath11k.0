@@ -4,77 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4433DC83F1A
-	for <ath11k@archiver.kernel.org>; Tue, 22 Jul 2025 05:34:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1845C83F27
+	for <ath11k@archiver.kernel.org>; Tue, 22 Jul 2025 08:37:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=5Q6iMEIwGl68fheKRd/l4+lC7AlYzE3zdk14QF/Z4a4=; b=qY7I6894AsV70gPuiRum38xgpe
-	8CdsNQ0YrBzcP8Jf8h8K7yRrraJTec2G19zVS/lHAX3oJEfmdUFCcnUew5vJhwvAytNwWtFsEmybC
-	T/UP2KEYOPuE2LQlYD0EbRkOtBuMQRR4pjSCmxKUtaWeXk6iRF1B6C4t2xdRaBZUJ5CZJ4swuN1Xc
-	R30rtjCzA19Zruni2KW2HlG/viniqd38uczZOQCnVhPEtqTf3ztfLWPxqrvU4sf43xNkRr7Eu5CO/
-	UsF8JGqI49wXYD1Sl6rNxraRY1GcYbfh1BRHeC91WMIb8Ax2wFF48kwIpc7nUl3VcYhUc01wkmQhC
-	27mefKZA==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=v1CPlPbwtTVjIc8HWeOwVxWexCvpUqlAqvq7jTFTfSM=; b=jn1xXOaVF4ohaH3KVGbFNBpVF3
+	uHu75NKuoBtdyH+MVqt3CRVgbOiK3clZiHDINejPt3W10w+5P18ZO0dzpAyFaiQ0UTppWb0i40kSW
+	xdNlz9bjhea1OJrcteE3FvwDu90SEKqkc4vm60QR4eDfUjiLAdrtTZwcfwxFSnU1kNqyGmLxHlbXY
+	gyvY2q2qTE9nsAHJiPp24wdbNJNM1cDOCA8M5YIGeWIUzQP6O1EsmEjpyI830N62llfJ5a9ljFjnn
+	dlgrdgzYd5tj8QhVz9JEULOlU7/ZV1CE7Woa9QuATmz2R1xVbYD1IB2wkn9KaxpS62UhlxRH8+/sp
+	gejZArjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ue5e7-00000001LHj-3Moa;
-	Tue, 22 Jul 2025 05:34:35 +0000
-Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	id 1ue8VO-00000001r1N-0Lkq;
+	Tue, 22 Jul 2025 08:37:46 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ue5bs-00000001L3l-06lU
+	id 1ue8Tb-00000001qlH-33ti
 	for ath11k@lists.infradead.org;
-	Tue, 22 Jul 2025 05:32:17 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1753162307; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=C+aLutokWiTyaf0z0rekZO8jCLn04C4oWIPYFOHB0ISyfU/lZbI/sskWtL1JbXnZPvY+kV5KWM9z0DSbIEITS2O68YDWN5K7/rXJ7EaghTycqxQnUQvG8r9nxCb4+j+S39SUR9RooF6c3Qoq1gRjCihRbFwTNdPilcn4E/aT6zE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1753162307; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=5Q6iMEIwGl68fheKRd/l4+lC7AlYzE3zdk14QF/Z4a4=; 
-	b=N1rVk1mFBevE03nCoCcGTxa3Fu4H28u9t9fVFOx9cSv1zCSq7b0cwKOynyHeocdMEumKBBbreF1PGEdhwiWE6zf5lrvVTwPewLzpERwI0MQsr3I21SDmvKDgAe92STpcOV9JJmoSWntoSRfKkwWSe8NQ7XlNlbMHw4/MBACd/O4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=usama.anjum@collabora.com;
-	dmarc=pass header.from=<usama.anjum@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753162307;
-	s=zohomail; d=collabora.com; i=usama.anjum@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Transfer-Encoding:Reply-To;
-	bh=5Q6iMEIwGl68fheKRd/l4+lC7AlYzE3zdk14QF/Z4a4=;
-	b=JGVReFLjfAi9/3RpbIEolp6ubOJtw6logedRk6OwVQVZPJs+TQbp7deuaaJtXyCJ
-	Lxr6JbUKyyyyOYl6hWHrrWy7sdB3aIw2J/vIPNMOw6Zv+fl4PmHadK5n+S+PjXvNHGW
-	GXgQrEeDpQBIWiko7B/7dyzbIJYu+3WfjYk5adxE=
-Received: by mx.zohomail.com with SMTPS id 1753162304932604.0388171987082;
-	Mon, 21 Jul 2025 22:31:44 -0700 (PDT)
-From: Muhammad Usama Anjum <usama.anjum@collabora.com>
-To: Jeff Johnson <jjohnson@kernel.org>,
-	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-	kbuild test robot <lkp@intel.com>,
-	Julia Lawall <julia.lawall@lip6.fr>,
-	Sven Eckelmann <sven@narfation.org>,
-	Sathishkumar Muruganandam <quic_murugana@quicinc.com>
-Cc: Muhammad Usama Anjum <usama.anjum@collabora.com>,
-	kernel@collabora.com,
-	stable@vger.kernel.org,
-	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-	Muna Sinada <quic_msinada@quicinc.com>,
-	Anilkumar Kolli <quic_akolli@quicinc.com>,
-	Kalle Valo <kvalo@kernel.org>,
-	Miles Hu <milehu@codeaurora.org>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] wifi: ath11k: HAL SRNG: don't deinitialize and re-initialize again
-Date: Tue, 22 Jul 2025 10:31:21 +0500
-Message-Id: <20250722053121.1145001-1-usama.anjum@collabora.com>
-X-Mailer: git-send-email 2.39.5
+	Tue, 22 Jul 2025 08:35:59 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56M7GIf5003943
+	for <ath11k@lists.infradead.org>; Tue, 22 Jul 2025 08:35:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	v1CPlPbwtTVjIc8HWeOwVxWexCvpUqlAqvq7jTFTfSM=; b=Q1lI7noRzvDFvPCU
+	3M4pyUqyo1Z5L85dZNCwP2tRgZ6Ll7/0wsZObSzkJRJkYfPx8ot0nWCk5nZelo4p
+	DjqwhWvqJPJGTxgy9USzzfvGnZh6HVCnvXJODTdwJy04RlOINBsym3ih2itgH/AT
+	r8+1CTwFQkyV8GY8zDRNr+fF2jQt9u9qkXHGMaj4dp4EkJ7b8ewo9DhIvhuq640a
+	P3cLJuTnmWC6BsEbfU2zGEfhmyFQGCZYc8Wrf9xe71fiBc0ezq31KnLIH/f2gMl6
+	HXRy68e9hiGcHKXXWkCVBh38jy28J4dX6MXv+OO9o36TiZHWDqR999IcXvbr9rQ+
+	amBX9g==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48048v72rh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Tue, 22 Jul 2025 08:35:53 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b3ba7659210so3858234a12.2
+        for <ath11k@lists.infradead.org>; Tue, 22 Jul 2025 01:35:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753173353; x=1753778153;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v1CPlPbwtTVjIc8HWeOwVxWexCvpUqlAqvq7jTFTfSM=;
+        b=J+6UupYeMxshIBiMhJebEC/+FBTumfdo+x05XPkLVoHeBiMzidLq2hVxrOPiIw8YpA
+         sHFIWHEkVYD2PV0CMSbTBcVc36bQ8xYwm1Hawtbs3g9HFF1MOa/MVgTWCS3SzYsVkzp9
+         pbpDtANE/rxLExIanvgKPt+FI28g92lq8wAiYKW9oda52XUOMHZrYzVlVt/4kndGavK9
+         KSXBf0WSE2XhypM3Edlh9hULCLS0z8eXN39FF8Oivq46KOCORoZhyAUbW50ZhzRGijvN
+         FeuQniBca745iibCiDX5Z1cnrWZfIriK9qj7th+AHxVahM/FRGcF+FHILR+5bl1yxp2z
+         NgIQ==
+X-Gm-Message-State: AOJu0Yx3fQ85VvxdOIfi/1e491f8rC7wlEHkNHmKD0gZwxGQVEPvrD0J
+	JFqkrue+/+P2uE6K4vrJBE/yZMnwUSE//GJaOYjCoZX1oOAQIRofecVD8lr8NhzzmVKnKNuxHz9
+	iXC1uNZYCW+IDBtRqotZ6n7UOtvLgRode8mzFas4udSATkExTCORhy3nx/OrsJpZj
+X-Gm-Gg: ASbGncuqLgSz4/YB3lugScdKP0Gw5VLDuT0HVO0127shWEGi0pgcuCBH93q45y7tPxj
+	zkvn6xOHtPS6OO5Y+QsOIuCPvb/7NC7ffslb/0Eq2tenUdWlX1AKfmj1MrclzmX1zl4RAI3Py/W
+	+rL/vWLb2ZugmO3ym4Qi+1TOdyH3QyJX+k5pGsQp6VyQ8dboySJ0zp/tyJrcI2vKG8GKyGibhz2
+	Miy7M9KsbtACXXyKjMldr7rGQcVzIZ2cYbkL9rK/S2RU3y3SjC4OtyMYKb82Yrmr8BJtRWmmrTE
+	R64Ipz53t8qdA55w4km+w0ncRlQ47maabTskR37qUVbUgQHh37lUrUaGXCYQKjHJZplDZ63G6Eb
+	XYmm0BQKi9ixaeZegq3LgFLZjY7wz0s8=
+X-Received: by 2002:a05:6a20:2588:b0:220:1ca5:957c with SMTP id adf61e73a8af0-23814269fa7mr47543360637.31.1753173352912;
+        Tue, 22 Jul 2025 01:35:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGxQoVSL6iDytp5HaUmhxPmpFMPPetP7b0Xmv7yoM9vlNb9LHyBBh/GNPcPF++PFFEUqYTYnw==
+X-Received: by 2002:a05:6a20:2588:b0:220:1ca5:957c with SMTP id adf61e73a8af0-23814269fa7mr47543312637.31.1753173352439;
+        Tue, 22 Jul 2025 01:35:52 -0700 (PDT)
+Received: from [10.133.33.45] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-759cbd66eecsm7175486b3a.142.2025.07.22.01.35.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jul 2025 01:35:52 -0700 (PDT)
+Message-ID: <0b28bb5f-56b3-4be6-b4f4-89ca546a24d0@oss.qualcomm.com>
+Date: Tue, 22 Jul 2025 16:35:48 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k_pci: add a soft dependency on qrtr-mhi
+To: Christoph Hellwig <hch@lst.de>, kvalo@kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20221202130600.883174-1-hch@lst.de>
+Content-Language: en-US
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+In-Reply-To: <20221202130600.883174-1-hch@lst.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: P7nxXM3QYzEDIHmKWbk5Mgn4KQJLQD5c
+X-Authority-Analysis: v=2.4 cv=SYL3duRu c=1 sm=1 tr=0 ts=687f4d69 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=dBPL878wbgeN_2oxvkwA:9
+ a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIyMDA2OSBTYWx0ZWRfX02dA1qpviJft
+ 6B0eu4b3SWqSM/orzsAtuDuDpUgBjcngbS/NvuB4dut71d7nj/Xcbrcb7qWlcXd3KrmqINQmlZW
+ ZZs77TU33xFUbUO1dTMWsCMT3dZb+3gK2GXy0vKC2BGXGXfOVsX2DQyvuOeaqlaNNqnaawfVSJ8
+ bvt1nu4G2n7jdiFArsJpR/m+sGJHYnv30S0q+DaN+qnzpMvKI+PKQkOoYt18qPGFRiFUoXnfFkw
+ c/4RAZl4PX0+z3uqG7u6MqlyzBwYK4dZNUAfygH9nLnRwoQvF1+nFAEXDsLG1AjH99BWfKJH2io
+ Xhwsx5dGVswrECTWpIe7i4qJAsDbqTdVq/+MtxGWxCX34Wz9sk3gCOIxoZD5OVqMspN7Z+A4KFu
+ sAt2aTO+mc9sn203pKkUAB4fT40h4AF87jcGts4ZSjMhPv6+agtPAzQkzqbWTPR3GeG+8wU7
+X-Proofpoint-ORIG-GUID: P7nxXM3QYzEDIHmKWbk5Mgn4KQJLQD5c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-22_01,2025-07-21_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 mlxscore=0 bulkscore=0 mlxlogscore=999
+ lowpriorityscore=0 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 adultscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507220069
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250721_223216_165969_95E110CC 
-X-CRM114-Status: GOOD (  11.89  )
+X-CRM114-CacheID: sfid-20250722_013555_811556_EB35EA1A 
+X-CRM114-Status: GOOD (  18.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,90 +130,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Don't deinitialize and reinitialize the HAL helpers. The dma memory is
-deallocated and there is high possibility that we'll not be able to get
-the same memory allocated from dma when there is high memory pressure.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.6
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Cc: stable@vger.kernel.org
-Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Signed-off-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
----
-Changes since v1:
-- Cc stable and fix tested on tag
-- Clear essential fields as they may have stale data
+On 12/2/2022 9:06 PM, Christoph Hellwig wrote:
+> While ath11k_pci can load without qrtr-mhi, probing the actual hardware
+> will fail when qrtr and qrtr-mhi aren't loaded with
+> 
+>    failed to initialize qmi handle: -517
+> 
+> Add a MODULE_SOFTDEP statement to bring the module in (and as a hint
+> for kernel packaging) for those cases where it isn't autoloaded already
+> for some reason.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/net/wireless/ath/ath11k/pci.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+> index 99cf3357c66e16..9d58856cbf8a94 100644
+> --- a/drivers/net/wireless/ath/ath11k/pci.c
+> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+> @@ -1037,6 +1037,8 @@ module_exit(ath11k_pci_exit);
+>  MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax WLAN PCIe devices");
+>  MODULE_LICENSE("Dual BSD/GPL");
+>  
+> +MODULE_SOFTDEP("pre: qrtr-mhi");
+> +
+>  /* QCA639x 2.0 firmware files */
+>  MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_BOARD_API2_FILE);
+>  MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_AMSS_FILE);
 
-Changes since v2:
-- Add comment and reviewed by tag
----
- drivers/net/wireless/ath/ath11k/core.c |  6 +-----
- drivers/net/wireless/ath/ath11k/hal.c  | 16 ++++++++++++++++
- drivers/net/wireless/ath/ath11k/hal.h  |  1 +
- 3 files changed, 18 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 4488e4cdc5e9e..34b27711ed00f 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2213,14 +2213,10 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- 	mutex_unlock(&ab->core_lock);
- 
- 	ath11k_dp_free(ab);
--	ath11k_hal_srng_deinit(ab);
-+	ath11k_hal_srng_clear(ab);
- 
- 	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
- 
--	ret = ath11k_hal_srng_init(ab);
--	if (ret)
--		return ret;
--
- 	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 
- 	ret = ath11k_core_qmi_firmware_ready(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index b32de563d453a..e8ebf963f195c 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1359,6 +1359,22 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
- }
- EXPORT_SYMBOL(ath11k_hal_srng_deinit);
- 
-+void ath11k_hal_srng_clear(struct ath11k_base *ab)
-+{
-+	/* No need to memset rdp and wrp memory since each individual
-+	 * segment would get cleared ath11k_hal_srng_src_hw_init() and
-+	 * ath11k_hal_srng_dst_hw_init().
-+	 */
-+	memset(ab->hal.srng_list, 0,
-+	       sizeof(ab->hal.srng_list));
-+	memset(ab->hal.shadow_reg_addr, 0,
-+	       sizeof(ab->hal.shadow_reg_addr));
-+	ab->hal.avail_blk_resource = 0;
-+	ab->hal.current_blk_index = 0;
-+	ab->hal.num_shadow_reg_configured = 0;
-+}
-+EXPORT_SYMBOL(ath11k_hal_srng_clear);
-+
- void ath11k_hal_dump_srng_stats(struct ath11k_base *ab)
- {
- 	struct hal_srng *srng;
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index 601542410c752..839095af9267e 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -965,6 +965,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
- 			  struct hal_srng_params *params);
- int ath11k_hal_srng_init(struct ath11k_base *ath11k);
- void ath11k_hal_srng_deinit(struct ath11k_base *ath11k);
-+void ath11k_hal_srng_clear(struct ath11k_base *ab);
- void ath11k_hal_dump_srng_stats(struct ath11k_base *ab);
- void ath11k_hal_srng_get_shadow_config(struct ath11k_base *ab,
- 				       u32 **cfg, u32 *len);
--- 
-2.39.5
+Do we know why this patch is rejected?
 
 
