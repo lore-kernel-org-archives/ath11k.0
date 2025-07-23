@@ -4,121 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02C37C83F17
-	for <ath11k@archiver.kernel.org>; Wed, 23 Jul 2025 05:59:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 733FDC83F1A
+	for <ath11k@archiver.kernel.org>; Wed, 23 Jul 2025 16:25:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YzAlWwPyl11DobQ4XCJnSqZiGHQh2UO3s/x4QZ068e8=; b=CuMSsVV02GJlC6azhshdjMlhDM
-	xwijJUOzvKIqCXbf7tc7t81cfvtiA6yPSLwhutKGdLrpk6iNQldvSQHjVjOv27vyqphK7I/Q/5sWd
-	0JN46ar4yA/QntnQ16tzu5La7Htxk0n+yySOZDnoUAISlA9f4p9jIjqjlKE2DenntY2DQA8gvxwM8
-	g6tQ4UioXow8eVIOlo+aJbmUj8qtGLzAhB+RnGMHzyDvCRT1+DwrDBlgPdkLZBPyJ7v/UyilkMRcd
-	2UWfnxgGs+8mnhL9yVEWBJoyfjQ4H86zTdv7qvLIYYADnVhNcYsD+3ahwu+tUuzPr8a1OtTITdb1l
-	4mvd+DCQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=yVLsJ8Vre4NdVwPpXE5wbLKW3qV499y7Dl2apXd6eOw=; b=e88lC3brMA0ezc9G6b/BM/N1XQ
+	SLUDsxivhlcjn/Sn/77LhWaO3wBX8KPqpRLf/8U+/Yn96LOpm6Pbqstw18u73HDiI3IJtOGtKVHIK
+	KdZYg/SgX3osWjM+0PKS54VA/h8svcftLmCC0yw0QnOCO840O3oj1g9zoREs3juMkAEzsFeeruqzb
+	Yk3nUMGKBiuOwiwi8n5hUh4/O+/0T1ZNplaXPpyIm9MZz70eGC1pop5tFL6EkqtIHu9NeErEcLnqF
+	3/gPmG6WdA+QyfdGya7Jma+rjV2BDLNbi2sa9SU0K9FohpIq7U59oaiTv4SWEZ9watvK58j/Kxjrg
+	qB7rAzJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueSVR-000000045WK-0VNE;
-	Wed, 23 Jul 2025 05:59:09 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uecHp-00000005UZQ-0kzh;
+	Wed, 23 Jul 2025 16:25:45 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueSUh-000000045R2-1smS
+	id 1uecHn-00000005UZI-2W5P
 	for ath11k@lists.infradead.org;
-	Wed, 23 Jul 2025 05:58:24 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56MMOcb0001674
-	for <ath11k@lists.infradead.org>; Wed, 23 Jul 2025 05:58:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YzAlWwPyl11DobQ4XCJnSqZiGHQh2UO3s/x4QZ068e8=; b=Pe2dzWi1DlTugsPP
-	pMZWzIM+c8dkEzAe9yDdidTgUmvuz2LWfi3Nk//5qaNCjBEOIMYe6c9w3bd/RDED
-	49QkjSwFaQ/UFKeQa7WPLOV1FwutBU8y4Z2pk6fo70hItU5YnfvQZm8NbA+GS/Rf
-	tVnzMLx4meHly92sZNaOjpVl56Bi9Kb9jdUVM1ntOxY3dRI7ipBsI2vVTEB4sMnU
-	4TDU9C3a7j9fSf6y95RmWlS093ZhEcSt+dbQr3eiIUmwZiS84NYjDtszlLFwgF+3
-	myFGGDBOM7gSSB1ISGcZprIiVXh4wcs1lXZEKQq6eEyMPTPVI7AUvCAM97cl+nrZ
-	itliIQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48045w2bpu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 23 Jul 2025 05:58:21 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3132e7266d3so6356549a91.2
-        for <ath11k@lists.infradead.org>; Tue, 22 Jul 2025 22:58:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753250301; x=1753855101;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YzAlWwPyl11DobQ4XCJnSqZiGHQh2UO3s/x4QZ068e8=;
-        b=DSPCQrUHbU5LY/B1/CCElmeP8tabQK9rgCFH1m6rDdpepR3aSju/4yr4Sm/YN9/yvf
-         G13Od9cjhJn4E1T7Od3Pqeggcba9Mun8Tt8bZhc1x35tun5yXgimBwlc2dmiwfjy8BGp
-         6Qx9m2fPb5NcBaz4qM/CTMaYUpR9yEw2hgJWiiSQULxJ3TUY2Ua69O3Fm3rdrDa1gNsW
-         Horffw2psHeHQ7qOUIeI5zzUbAvQlgtKFqCBQ4VDsK0a6eJth3MFRjJN1++dcXdgqJK1
-         8IseqB6jvObMXwN2iFhdxso/ECHRWElG/t8LJmh+EEYG+UVPj7yDEgZREpZhAdezGSxS
-         sMlQ==
-X-Gm-Message-State: AOJu0YxcvdaoxmMVTGNc5by5WIXI0KxNqfVOHC7cS8JEsf3TkQRyI0c3
-	LnQSJMq4tNHn/Mp4OGdgzRC3t0WxlU1KVtk7NyFvSqIvtG9GUcXGPiozONqVjkLMT0FhY9So2oo
-	d0PbqnTCs1mI0omF84ZvJoeiNXJL3/rGkT8wIiBAYxLIBaT9CXRXv9jrWIlAH7lw8
-X-Gm-Gg: ASbGncsgFrVeR4+x8rcE8ILTyqysH0jiEcH3tgX2edPFng1MFXJ7kV9JoO9+s+JCK6W
-	CPVfcNtoYVfOCk8C8cs4R1ap/oegN20k5Jtnx/znHPjaKWYZ/KDYfpIGS/bMN9d50j1nyz4sDNX
-	4MLJXMj4cD+zKjEi7fG6ZxDnep2IJR3/5lZx32Wge1hG8KvvJwG9SEzSdrHWDXXPfalv1aIp3HG
-	U+/cHgfpm/9Pu8ljssUk/w8zJYycZjoyzQAhQZHXpX41CFeTg1U97gknHpbJO1kwB6iHq2WRDNp
-	hz5+Jzr9HhWKTxlkWKSlBSjc6UMHcwo1c76zfz2qtz/5zL/cg3oO6TA8IWb2PvZTxCmm/MyHrW6
-	4H015oVJ91HAtgHbtx8RhkVK033TAmS8=
-X-Received: by 2002:a17:90b:3f8f:b0:312:639:a058 with SMTP id 98e67ed59e1d1-31e5082e792mr2978019a91.27.1753250300704;
-        Tue, 22 Jul 2025 22:58:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH+Dllea4dAoEds88TCilmkFnz0an9y6OUH3WvLxWNlLxgWLGEnGgF98AiavG4GsOxkZ4osSQ==
-X-Received: by 2002:a17:90b:3f8f:b0:312:639:a058 with SMTP id 98e67ed59e1d1-31e5082e792mr2977978a91.27.1753250300115;
-        Tue, 22 Jul 2025 22:58:20 -0700 (PDT)
-Received: from [10.133.33.45] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e51b9337esm756858a91.36.2025.07.22.22.58.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 22:58:19 -0700 (PDT)
-Message-ID: <6b411f8f-b4e1-4252-a9a2-04e36043e252@oss.qualcomm.com>
-Date: Wed, 23 Jul 2025 13:58:16 +0800
+	Wed, 23 Jul 2025 16:25:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id CF057600AC;
+	Wed, 23 Jul 2025 16:25:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB9E0C4CEE7;
+	Wed, 23 Jul 2025 16:25:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753287942;
+	bh=nLC91lUvP3zaJg6UlqQrBSAOMHuwcblVye+egF7o2Tw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E8H4yG2sLM3EtMIyyp3VER+MZNetfiBhRLouHhWKhwRpYBCBdtJfBQFI+9fmQ1for
+	 8B/wEdAoNqSUu4VOesl07v6HNCu9olofUWlx2A60mZ4MN7T7gyajRq/Uup2WndNjuC
+	 QiLjGI9EjELN+U/L030mP1AVQip63ygQ/teTrGgUprT9PwdmwWeqF0KCfuFpEY7SrF
+	 nF9t4CDiztR5/YLRw29ipCNmcuWXkuhx00rl0yPHncOgoNmLVOlpxtwSJ7xazqd+rx
+	 kFBfz1V69Pwb9Ie/DvVGG/DLUwYV6/jN14DRnmo5aWGyi6xNYJPfLzAfaIdj0woL3O
+	 ICHkDV7g6cfwQ==
+Date: Wed, 23 Jul 2025 21:55:31 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+	Jeff Johnson <jjohnson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Jingoo Han <jingoohan1@gmail.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	mhi@lists.linux.dev, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com, 
+	quic_mrana@quicinc.com
+Subject: Re: [PATCH v4 04/11] bus: mhi: host: Add support for Bandwidth scale
+Message-ID: <76txeoaa7k3nquvegvmivjazlzdtsnsxa3jtfrlfzbndffc7dx@c2nfzty73scj>
+References: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
+ <20250609-mhi_bw_up-v4-4-3faa8fe92b05@qti.qualcomm.com>
+ <j24c2ii33yivc7rb3vwbwljxwvhdpqwbfgt3gid2njma6t47i4@uhykehw23h2q>
+ <31c192f7-cd69-46ad-9443-5d57ae2aa86e@oss.qualcomm.com>
+ <eg2v3kctnztxcaulffu7tvysljimmyhnramyjj5gpa4vrv3yxu@g3pgwpwx37iq>
+ <2c42bbe7-79aa-42f6-8af8-65d1be7253a5@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k_pci: add a soft dependency on qrtr-mhi
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-        Christoph Hellwig <hch@lst.de>, kvalo@kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20221202130600.883174-1-hch@lst.de>
- <0b28bb5f-56b3-4be6-b4f4-89ca546a24d0@oss.qualcomm.com>
- <83c62cb2-7d85-4a9e-ba76-63faa27faedf@oss.qualcomm.com>
-Content-Language: en-US
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-In-Reply-To: <83c62cb2-7d85-4a9e-ba76-63faa27faedf@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=LL1mQIW9 c=1 sm=1 tr=0 ts=688079fd cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=7D9JVqTAamdkZGSUpmsA:9
- a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-GUID: sfYT_8Ozkn_4nalCIxXtzMNBunePrh6o
-X-Proofpoint-ORIG-GUID: sfYT_8Ozkn_4nalCIxXtzMNBunePrh6o
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDA0OCBTYWx0ZWRfXyP4eGiXQolth
- nNY4Fkz8Nag9xC2/0M6kRTX2lVIjSeargzkdGsbIN93HYMkDZZYnWi/8QnsVM80OtQUuhQkfheU
- teGo0YFcjYS6ve+3xwv2KbhNfknjSs6VwOCGgU57pjYGTew9nB5ydyLkpd4srGVTuvjHZbvEPyk
- StAnWVnZov/qNF4qQahIbvs5+/aw5rdQqe+5sJTUUH9aga2AH/BMNUx1dobfZpGQrrOYLGCebWq
- GkHyXgmYNpoztIePM/T5AMZmq0Sfbb+hZK45htq7Yp+Wt4WGWPzNNzpJptFpixr6Ta8uRNrhPQL
- 8dUtdEnwSdaoH3RKSpQElyV8IMaNcHN730TdzvM9vNoN/QES3N5+/TA9kmAERTQP/hhvGqmoioe
- RNh2GjuHmbw7CgTrm+FrrgH5SEu/+I6xxRA/hceBJZp50ptBUBQaZqWNky4aRQMhy27fN5Mg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-23_01,2025-07-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxlogscore=999 clxscore=1015 mlxscore=0 adultscore=0
- suspectscore=0 spamscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507230048
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250722_225823_514959_322133A4 
-X-CRM114-Status: GOOD (  25.35  )
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2c42bbe7-79aa-42f6-8af8-65d1be7253a5@oss.qualcomm.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,73 +81,116 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Fri, Jul 11, 2025 at 12:25:30PM GMT, Krishna Chaitanya Chundru wrote:
 
+[...]
 
-On 7/22/2025 10:37 PM, Jeff Johnson wrote:
-> On 7/22/2025 1:35 AM, Baochen Qiang wrote:
->>
->>
->> On 12/2/2022 9:06 PM, Christoph Hellwig wrote:
->>> While ath11k_pci can load without qrtr-mhi, probing the actual hardware
->>> will fail when qrtr and qrtr-mhi aren't loaded with
->>>
->>>    failed to initialize qmi handle: -517
->>>
->>> Add a MODULE_SOFTDEP statement to bring the module in (and as a hint
->>> for kernel packaging) for those cases where it isn't autoloaded already
->>> for some reason.
->>>
->>> Signed-off-by: Christoph Hellwig <hch@lst.de>
->>> ---
->>>  drivers/net/wireless/ath/ath11k/pci.c | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
->>> index 99cf3357c66e16..9d58856cbf8a94 100644
->>> --- a/drivers/net/wireless/ath/ath11k/pci.c
->>> +++ b/drivers/net/wireless/ath/ath11k/pci.c
->>> @@ -1037,6 +1037,8 @@ module_exit(ath11k_pci_exit);
->>>  MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax WLAN PCIe devices");
->>>  MODULE_LICENSE("Dual BSD/GPL");
->>>  
->>> +MODULE_SOFTDEP("pre: qrtr-mhi");
->>> +
->>>  /* QCA639x 2.0 firmware files */
->>>  MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_BOARD_API2_FILE);
->>>  MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_AMSS_FILE);
->>
->> Do we know why this patch is rejected?
+> > > > > +static int mhi_init_bw_scale(struct mhi_controller *mhi_cntrl,
+> > > > > +			     int bw_scale_db)
+> > > > > +{
+> > > > > +	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+> > > > > +	u32 bw_cfg_offset, val;
+> > > > > +	int ret, er_index;
+> > > > > +
+> > > > > +	ret = mhi_find_capability(mhi_cntrl, MHI_BW_SCALE_CAP_ID, &bw_cfg_offset);
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > > > +
+> > > > > +	er_index = mhi_get_er_index(mhi_cntrl, MHI_ER_BW_SCALE);
+> > > > > +	if (er_index < 0)
+> > > > > +		return er_index;
+> > > > > +
+> > > > > +	bw_cfg_offset += MHI_BW_SCALE_CFG_OFFSET;
+> > > > > +
+> > > > > +	/* Advertise host support */
+> > > > > +	val = (__force u32)cpu_to_le32(FIELD_PREP(MHI_BW_SCALE_DB_CHAN_ID, bw_scale_db) |
+> > > > > +				       FIELD_PREP(MHI_BW_SCALE_ER_INDEX, er_index) |
+> > > > > +				       MHI_BW_SCALE_ENABLED);
+> > > > > +
+> > > > 
+> > > > It is wrong to store the value of cpu_to_le32() in a non-le32 variable.
+> > > > mhi_write_reg() accepts the 'val' in native endian. writel used in the
+> > > > controller drivers should take care of converting to LE before writing to the
+> > > > device.
+> > > > 
+> > > ok then I will revert to u32.
+> > > 
+> > > I think we need a patch in the controller drivers seperately to handle
+> > > this.
+> > 
+> > Why?
+> > 
+> what I understood from your previous comment is from here we need to
+> send u32 only and the controller drivers should take care of
+> converting u32 to le32.
+> As of today controller drivers are not considering this and writing
+> u32 only.
+> So we need a seperate patch in the controller driver to convert it to
+> le32.
+
+No. All controller drivers are using writel() to write the register. Since
+writel() converts the value to little endian from native endian, you do not need
+to do anything.
+
+> > > > > +	mhi_write_reg(mhi_cntrl, mhi_cntrl->regs, bw_cfg_offset, val);
+> > > > > +
+> > > > > +	dev_dbg(dev, "Bandwidth scaling setup complete with event ring: %d\n",
+> > > > > +		er_index);
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+
+[...]
+
+> > > > > +	link_info.target_link_speed = MHI_TRE_GET_EV_LINKSPEED(dev_rp);
+> > > > > +	link_info.target_link_width = MHI_TRE_GET_EV_LINKWIDTH(dev_rp);
+> > > > > +	link_info.sequence_num = MHI_TRE_GET_EV_BW_REQ_SEQ(dev_rp);
+> > > > > +
+> > > > > +	dev_dbg(dev, "Received BW_REQ with seq:%d link speed:0x%x width:0x%x\n",
+> > > > > +		link_info.sequence_num,
+> > > > > +		link_info.target_link_speed,
+> > > > > +		link_info.target_link_width);
+> > > > > +
+> > > > > +	/* Bring host and device out of suspended states */
+> > > > > +	ret = mhi_device_get_sync(mhi_cntrl->mhi_dev);
+> > > > 
+> > > > Looks like mhi_device_get_sync() is going runtime_get()/runtime_put() inside
+> > > > mhi_trigger_resume(). I'm wondering why that is necessary.
+> > > > 
+> > > Before mhi_trigger_resume we are doing wake_get, which will make sure
+> > > device will not transition to the low power modes while servicing this
+> > > event. And also make sure mhi state is in M0 only.
+> > > 
+> > > As we are in workqueue this can be scheduled at some later time and by
+> > > that time mhi can go to m1 or m2 state.
+> > > 
+> > 
+> > My comment was more about the behavior of mhi_trigger_resume(). Why does it call
+> > get() and put()? Sorry if I was not clear.
+> > Get() needed for bringing out of suspend, put() is for balancing the
+> get() I belive the intention here is to trigger resume only and balance
+> pm framework.
 > 
-> This predates me becoming a maintainer, and I don't see any comment from Kalle
-> to the patch, however he did have the following comment in a separate thread
-> where the issue was being discussed:
-> https://lore.kernel.org/all/87cz8v2xb2.fsf@kernel.org/
+> That said mhi_device_get_sync() has a bug we are doing wake_get() before
+> triggering resume and also trigger resume will not guarantee that device
+> had resumed, it is not safe to do wake_get untill device is out of
+> suspend, we might need to introduce runtime_get_sync() function and new
+> API for this purpose.
+> mhi_trigger_resume makes sense in the place like this[1], where ever
+> there are register writes after trigger resume it may need  to be
+> replaced with runtime_get_sync().
 > 
->> Though I am happy to take your MODULE_SOFTDEP() patch, just wondering if
->> there is a better way to solve this. For example net/mac80211 (the
->> 802.11 stack) has a lot of crypto dependencies:
->>
->> 	select CRYPTO
->> 	select CRYPTO_LIB_ARC4
->> 	select CRYPTO_AES
->> 	select CRYPTO_CCM
->> 	select CRYPTO_GCM
->> 	select CRYPTO_CMAC
->> 	select CRC32
->>
->> And it's not using MODULE_SOFTDEP() at all.
-> 
-> So I'm guessing he considered this to be an issue that should be solved
-> external to the individual drivers.
+> This function needs to do mhi_cntrl->runtime_get_sync(mhi_cntrl); first
+> to make sure controller is not in suspend and then mhi_device_get_sync()
+> to make sure device is staying in M0. and in the end we balance these
+> with mhi_cntrl->runtime_put(mhi_cntrl) & mhi_device_put().
 > 
 
-Thanks for finding the thread, it really helps.
+Sounds good to me.
 
-Hmm, I agree that we should not blame this on the driver as all dependencies have been
-clearly documented in the Kconfig file. However seems the userspace tool (e.g. depmod on
-Ubuntu) does not care about it but just looks into ko files under /lib/modules. So if we
-currently does not have a better solution, maybe we can take the MODULE_SOFTDEP way?
+- Mani
 
-> /jeff
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
