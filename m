@@ -4,69 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 733FDC83F1A
-	for <ath11k@archiver.kernel.org>; Wed, 23 Jul 2025 16:25:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29459C83F26
+	for <ath11k@archiver.kernel.org>; Fri, 25 Jul 2025 03:25:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=yVLsJ8Vre4NdVwPpXE5wbLKW3qV499y7Dl2apXd6eOw=; b=e88lC3brMA0ezc9G6b/BM/N1XQ
-	SLUDsxivhlcjn/Sn/77LhWaO3wBX8KPqpRLf/8U+/Yn96LOpm6Pbqstw18u73HDiI3IJtOGtKVHIK
-	KdZYg/SgX3osWjM+0PKS54VA/h8svcftLmCC0yw0QnOCO840O3oj1g9zoREs3juMkAEzsFeeruqzb
-	Yk3nUMGKBiuOwiwi8n5hUh4/O+/0T1ZNplaXPpyIm9MZz70eGC1pop5tFL6EkqtIHu9NeErEcLnqF
-	3/gPmG6WdA+QyfdGya7Jma+rjV2BDLNbi2sa9SU0K9FohpIq7U59oaiTv4SWEZ9watvK58j/Kxjrg
-	qB7rAzJQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gAgCxVEFH4EwgekZ7jqlaF3NdXCGkoGWDEW1KVwMxh8=; b=XDXNHFhhfrUePZq/JSYTxVCus9
+	WDtH3vAR9R667l22zuHiF8/P8IqDc2kgnxSz/d2KVdCPAJFkvuJBWjFHK9uiACU8vQZuF9c1J1kb9
+	ZThC51IhA0fxjdv10KYVms9J2IadmFkI9dS/M98dCTnsTzoJ/XGjekPlDsAldAyNTpPeAdMkbXCYn
+	ypD2/KLcOg87FOEfeupgPTONE64bFUIJz5LIcfRP9NoFI9zEDPz/Z+uhPGctYtFV9Z1Xd1bOBoixp
+	0/5beICk4dl5xPYBAR1VZMCoNZ36v9n87IY42NQmcd/QTBQf725ZkKlHMvenk7CzexzUa8d4oQl+y
+	ozJb5U8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uecHp-00000005UZQ-0kzh;
-	Wed, 23 Jul 2025 16:25:45 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uf948-00000008yBA-1TPp;
+	Fri, 25 Jul 2025 03:25:48 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uecHn-00000005UZI-2W5P
+	id 1uf946-00000008yAd-0Kii
 	for ath11k@lists.infradead.org;
-	Wed, 23 Jul 2025 16:25:43 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id CF057600AC;
-	Wed, 23 Jul 2025 16:25:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB9E0C4CEE7;
-	Wed, 23 Jul 2025 16:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753287942;
-	bh=nLC91lUvP3zaJg6UlqQrBSAOMHuwcblVye+egF7o2Tw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E8H4yG2sLM3EtMIyyp3VER+MZNetfiBhRLouHhWKhwRpYBCBdtJfBQFI+9fmQ1for
-	 8B/wEdAoNqSUu4VOesl07v6HNCu9olofUWlx2A60mZ4MN7T7gyajRq/Uup2WndNjuC
-	 QiLjGI9EjELN+U/L030mP1AVQip63ygQ/teTrGgUprT9PwdmwWeqF0KCfuFpEY7SrF
-	 nF9t4CDiztR5/YLRw29ipCNmcuWXkuhx00rl0yPHncOgoNmLVOlpxtwSJ7xazqd+rx
-	 kFBfz1V69Pwb9Ie/DvVGG/DLUwYV6/jN14DRnmo5aWGyi6xNYJPfLzAfaIdj0woL3O
-	 ICHkDV7g6cfwQ==
-Date: Wed, 23 Jul 2025 21:55:31 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Jingoo Han <jingoohan1@gmail.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	mhi@lists.linux.dev, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com, 
-	quic_mrana@quicinc.com
-Subject: Re: [PATCH v4 04/11] bus: mhi: host: Add support for Bandwidth scale
-Message-ID: <76txeoaa7k3nquvegvmivjazlzdtsnsxa3jtfrlfzbndffc7dx@c2nfzty73scj>
-References: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
- <20250609-mhi_bw_up-v4-4-3faa8fe92b05@qti.qualcomm.com>
- <j24c2ii33yivc7rb3vwbwljxwvhdpqwbfgt3gid2njma6t47i4@uhykehw23h2q>
- <31c192f7-cd69-46ad-9443-5d57ae2aa86e@oss.qualcomm.com>
- <eg2v3kctnztxcaulffu7tvysljimmyhnramyjj5gpa4vrv3yxu@g3pgwpwx37iq>
- <2c42bbe7-79aa-42f6-8af8-65d1be7253a5@oss.qualcomm.com>
+	Fri, 25 Jul 2025 03:25:47 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56OLrGup015704
+	for <ath11k@lists.infradead.org>; Fri, 25 Jul 2025 03:25:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gAgCxVEFH4EwgekZ7jqlaF3NdXCGkoGWDEW1KVwMxh8=; b=B9epV11FfCQV+COt
+	gJAr7LOIZ4aRCYBQTj8saWj3U8Y0OR55jUoP1WBW+SvDp76jxvLMlTEe6NG0q7Ry
+	Wi9xl79T9HVthEeFdiKAnXuujjzon6l7O6WgeQyqJqOr35+Jb3ZbgTZZ3b0hdLFK
+	7rSMc46i6wgDeRRxviG0fGrZvyX7GAMxLWyBZBT+4y1IzAzAtoSPf7oGaZNMQK62
+	o/v4gCXs9WDQTk5UNomjUKrP9IfXYpGSckILUkKYL8qVVryQHRDqNgi3vAIjgRD2
+	ERh5oxK3m/6jABvHbDrd26Z0my3QBQqAG2gM5KZ86mQbbo7O6Az0Ac8igtvRe8Mu
+	en1y9g==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 483w500mqq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Fri, 25 Jul 2025 03:25:43 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-74ea5d9982cso1478925b3a.2
+        for <ath11k@lists.infradead.org>; Thu, 24 Jul 2025 20:25:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753413942; x=1754018742;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gAgCxVEFH4EwgekZ7jqlaF3NdXCGkoGWDEW1KVwMxh8=;
+        b=J41/whWY9ae1T7fUs72/LqoEklJPDVH+wHj5Hrg9EIRHmTm/Zp1hlt56x9Lah5QTo4
+         OBV1fLJMxZVxHoXUzqyv17Ag6d7Ho8TvtyTTqkhyR+z1x7ZEdj6ZTvVLTgpw3JBYsB6P
+         ekcQDuGOPY1trXRC87MUDYdYD7cO+wwxVUHHLgUhQQE0Ewj0cqXgUltVZPMniwPU22ln
+         XbUYStCHE+Yka6Ed4Q9NrfqcVXIOLkHQ+Vx08XbYl4+rQIVOAzUxMpqXgzA1rnqlTtvp
+         JTnJ2PY3adlgDM/8M8PjJE7LUYKeXAOyFmf+5jMVjFdKWvnETNuL902oQxdI2gSSypD+
+         emUg==
+X-Gm-Message-State: AOJu0YwijR727wNU77AqhCing7iusE1L8ox5PoF6f2SlVFqCoiE5+Wdj
+	7i1AIQ2JufsvEgijB2UINzIpCIyJImkCbb9R8uCdHC1c70LjhQkOIGN+2DhRhJ8DEl4PHfD4eB6
+	V551csMU6FT59eWNM/XLcACf6rlwDcudyx+KHxicOMvi9yoH3vhDx1x8UjAOMxKAz
+X-Gm-Gg: ASbGnctww1DdsoW4mQRnsk1QfLo3Pv9YfIqNzAwPzaanMuTnO7yhV7l01lVK5HiXM7a
+	DGQacebi0bZ9crMnjYCR6UZ0P+WkElaf2xVJVN37UAQX1R3LBpyHgP4lRgFVPWciFfpbdypJxdW
+	Gbaj4JvlmnEXGNeE6cYmYXGXbLBAfHn7s+6isXeS7I8FbLFc2hYd8uPI/G7jLZG8aaXgvCVQesz
+	hztwdUtkneQixSQbW4W0k1aJ8YGTjUHbTteIMnoyyPO78AOGTEMmK0VO2QCLVCqEX+XupG2PNBv
+	K71spJDIJNb/R4uXOchvckNZn1hCrrB40hfCrLANMLoR8TnczoIc+QFFzJKpad1lTAnqba0vxnQ
+	o6vsH8Sf738ciEPWZgFzTMIozME2G/Vc=
+X-Received: by 2002:a05:6a00:13a8:b0:746:27fc:fea9 with SMTP id d2e1a72fcca58-763382d6fbcmr607454b3a.11.1753413942274;
+        Thu, 24 Jul 2025 20:25:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHncZoW5RENbDvszxFyfWEajWqb1Oi9KTnRhml7Lt1AqE/V3LJWkfgGNgBvnGH1vpwvtqghiQ==
+X-Received: by 2002:a05:6a00:13a8:b0:746:27fc:fea9 with SMTP id d2e1a72fcca58-763382d6fbcmr607426b3a.11.1753413941794;
+        Thu, 24 Jul 2025 20:25:41 -0700 (PDT)
+Received: from [10.133.33.68] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-761b0622bedsm2770417b3a.120.2025.07.24.20.25.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jul 2025 20:25:41 -0700 (PDT)
+Message-ID: <91fa8b1d-7bd0-4beb-80ef-eb65d2562f17@oss.qualcomm.com>
+Date: Fri, 25 Jul 2025 11:25:39 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2c42bbe7-79aa-42f6-8af8-65d1be7253a5@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ath11k: pci: avoid unsafe register access during shutdown
+To: balsam.chihi@moment.tech, linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org, jjohnson@kernel.org
+References: <20250611164004.38580-1-balsam.chihi@moment.tech>
+Content-Language: en-US
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+In-Reply-To: <20250611164004.38580-1-balsam.chihi@moment.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: srIyEmfvfwPp2l6LFZZG_btEQPrvP9T6
+X-Proofpoint-ORIG-GUID: srIyEmfvfwPp2l6LFZZG_btEQPrvP9T6
+X-Authority-Analysis: v=2.4 cv=bKAWIO+Z c=1 sm=1 tr=0 ts=6882f937 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=7G27ipKfusndooSKQysA:9
+ a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDAyNCBTYWx0ZWRfXw3fa2vyjtqL4
+ VoabWQI6adD7i3sG15sZ4Uzdj7XhmsPJs7PQ+agvk/neGYmgjk/zrg543BwT03fgVSIj+nnWw1D
+ PoLIv1c1nWerSKKwAnmCN9a1AUqUUcd0UzcR0UNH5V0VikWl3IVpSKKVcEhsjg7osLZRdcVbN+L
+ 75yK8fflp9emIXzttlNPsZsPG8A5/+UN86k5QItHtgBxngOyhn/wGdmLvnacWM8D/P+gDc+0UHz
+ SGkZRW+sbE8I3u+Jq65u9w5NwSyMxZnvvh+j6w2W9c99Eo+q6FEvWsvFTLjNCTB/xoRepzKT20p
+ MWoRfRgRjHmWBhL5x+MZ+zLNYSany1fzTwao2KScuX0hZ70A64q2n42/IXO/9Mb7+7finxXEcRG
+ sIpBNZSR2bHap26ar5h25wWlMR3C5ba8gTTfu8K+wW/QxyRpzx7r/OUENRVkwi/2iaDgUtmH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-25_01,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0 spamscore=0 mlxlogscore=999 clxscore=1015
+ phishscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0 mlxscore=0
+ suspectscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507250024
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250724_202546_251164_FF14AAB9 
+X-CRM114-Status: GOOD (  26.27  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,116 +128,138 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jul 11, 2025 at 12:25:30PM GMT, Krishna Chaitanya Chundru wrote:
 
-[...]
 
-> > > > > +static int mhi_init_bw_scale(struct mhi_controller *mhi_cntrl,
-> > > > > +			     int bw_scale_db)
-> > > > > +{
-> > > > > +	struct device *dev = &mhi_cntrl->mhi_dev->dev;
-> > > > > +	u32 bw_cfg_offset, val;
-> > > > > +	int ret, er_index;
-> > > > > +
-> > > > > +	ret = mhi_find_capability(mhi_cntrl, MHI_BW_SCALE_CAP_ID, &bw_cfg_offset);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	er_index = mhi_get_er_index(mhi_cntrl, MHI_ER_BW_SCALE);
-> > > > > +	if (er_index < 0)
-> > > > > +		return er_index;
-> > > > > +
-> > > > > +	bw_cfg_offset += MHI_BW_SCALE_CFG_OFFSET;
-> > > > > +
-> > > > > +	/* Advertise host support */
-> > > > > +	val = (__force u32)cpu_to_le32(FIELD_PREP(MHI_BW_SCALE_DB_CHAN_ID, bw_scale_db) |
-> > > > > +				       FIELD_PREP(MHI_BW_SCALE_ER_INDEX, er_index) |
-> > > > > +				       MHI_BW_SCALE_ENABLED);
-> > > > > +
-> > > > 
-> > > > It is wrong to store the value of cpu_to_le32() in a non-le32 variable.
-> > > > mhi_write_reg() accepts the 'val' in native endian. writel used in the
-> > > > controller drivers should take care of converting to LE before writing to the
-> > > > device.
-> > > > 
-> > > ok then I will revert to u32.
-> > > 
-> > > I think we need a patch in the controller drivers seperately to handle
-> > > this.
-> > 
-> > Why?
-> > 
-> what I understood from your previous comment is from here we need to
-> send u32 only and the controller drivers should take care of
-> converting u32 to le32.
-> As of today controller drivers are not considering this and writing
-> u32 only.
-> So we need a seperate patch in the controller driver to convert it to
-> le32.
-
-No. All controller drivers are using writel() to write the register. Since
-writel() converts the value to little endian from native endian, you do not need
-to do anything.
-
-> > > > > +	mhi_write_reg(mhi_cntrl, mhi_cntrl->regs, bw_cfg_offset, val);
-> > > > > +
-> > > > > +	dev_dbg(dev, "Bandwidth scaling setup complete with event ring: %d\n",
-> > > > > +		er_index);
-> > > > > +
-> > > > > +	return 0;
-> > > > > +}
-> > > > > +
-
-[...]
-
-> > > > > +	link_info.target_link_speed = MHI_TRE_GET_EV_LINKSPEED(dev_rp);
-> > > > > +	link_info.target_link_width = MHI_TRE_GET_EV_LINKWIDTH(dev_rp);
-> > > > > +	link_info.sequence_num = MHI_TRE_GET_EV_BW_REQ_SEQ(dev_rp);
-> > > > > +
-> > > > > +	dev_dbg(dev, "Received BW_REQ with seq:%d link speed:0x%x width:0x%x\n",
-> > > > > +		link_info.sequence_num,
-> > > > > +		link_info.target_link_speed,
-> > > > > +		link_info.target_link_width);
-> > > > > +
-> > > > > +	/* Bring host and device out of suspended states */
-> > > > > +	ret = mhi_device_get_sync(mhi_cntrl->mhi_dev);
-> > > > 
-> > > > Looks like mhi_device_get_sync() is going runtime_get()/runtime_put() inside
-> > > > mhi_trigger_resume(). I'm wondering why that is necessary.
-> > > > 
-> > > Before mhi_trigger_resume we are doing wake_get, which will make sure
-> > > device will not transition to the low power modes while servicing this
-> > > event. And also make sure mhi state is in M0 only.
-> > > 
-> > > As we are in workqueue this can be scheduled at some later time and by
-> > > that time mhi can go to m1 or m2 state.
-> > > 
-> > 
-> > My comment was more about the behavior of mhi_trigger_resume(). Why does it call
-> > get() and put()? Sorry if I was not clear.
-> > Get() needed for bringing out of suspend, put() is for balancing the
-> get() I belive the intention here is to trigger resume only and balance
-> pm framework.
+On 6/12/2025 12:40 AM, balsam.chihi@moment.tech wrote:
+> From: Balsam CHIHI <balsam.chihi@moment.tech>
 > 
-> That said mhi_device_get_sync() has a bug we are doing wake_get() before
-> triggering resume and also trigger resume will not guarantee that device
-> had resumed, it is not safe to do wake_get untill device is out of
-> suspend, we might need to introduce runtime_get_sync() function and new
-> API for this purpose.
-> mhi_trigger_resume makes sense in the place like this[1], where ever
-> there are register writes after trigger resume it may need  to be
-> replaced with runtime_get_sync().
+> During system reboot or module removal (rmmod), a crash was observed
+> due to a synchronous external abort caused by invalid register access
+> in ath11k_pci_clear_dbg_registers(). This happens when the device is
+> already powered off and the driver attempts to read debug registers.
+
+What does 'powered off' mean exactly here? is WLAN powered by an internal/external supply
+that will be removed during rmmod/reboot?
+
 > 
-> This function needs to do mhi_cntrl->runtime_get_sync(mhi_cntrl); first
-> to make sure controller is not in suspend and then mhi_device_get_sync()
-> to make sure device is staying in M0. and in the end we balance these
-> with mhi_cntrl->runtime_put(mhi_cntrl) & mhi_device_put().
+> The crash log shows:
+> root@OpenWrt:~# reboot
+> [  343.663492] Internal error: synchronous external abort:
+> 0000000096000210 [#1] SMP
+> [  343.670992] Modules linked in: [...]
+> [  343.842432] CPU: 7 PID: 9435 Comm: procd Tainted: G O 6.6.86 #0
+> [  343.849746] Hardware name: LS1088A
+> [  343.856969] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> [  343.863933] pc : ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
+
+I don't see any relationship between ath11k_pci_clear_dbg_registers() and this PC pointer.
+So how did you locate the problematic register access then?
+
+> [  343.870125] lr : ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
+> [...]
+> [  343.950800] Call trace:
+> [  343.953241]  ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
+> [  343.959080]  ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
+> [  343.964671]  ath11k_pcic_read32+0x30/0xb4 [ath11k]
+> [  343.969477]  ath11k_pci_get_msi_irq+0x528/0x1900 [ath11k_pci]
+> [  343.975230]  ath11k_pci_get_msi_irq+0x1460/0x1900 [ath11k_pci]
+> [  343.981068]  ath11k_pci_get_msi_irq+0x1750/0x1900 [ath11k_pci]
+> [  343.986906]  pci_device_shutdown+0x34/0x44
+> [  343.991004]  device_shutdown+0x160/0x268
+> [  343.994928]  kernel_restart+0x40/0xc0
+> [  343.998594]  __do_sys_reboot+0x104/0x23c
+> [  344.002518]  __arm64_sys_reboot+0x24/0x30
+> [  344.006529]  do_el0_svc+0x6c/0x100
+> [  344.009931]  el0_svc+0x28/0x9c
+> [  344.012986]  el0t_64_sync_handler+0x120/0x12c
+> [  344.017344]  el0t_64_sync+0x178/0x17c
+> [  344.021009] Code: f94e0a80 92404a73 91420273 8b130013 (b9400273)
+> [  344.027102] ---[ end trace 0000000000000000 ]---
 > 
+> This patch adds a `power_on` flag to conditionally skip debug register
+> reads when the device is not powered, preventing invalid memory access.
 
-Sounds good to me.
+why is only 'read' concerned here?
 
-- Mani
+You are skipping several 'read' in this change, could you help narrow down which
+individual read instance causes this?
 
--- 
-மணிவண்ணன் சதாசிவம்
+> 
+> With this change, the system no longer crashes on reboot or rmmod,
+> and the driver continues to function correctly when reloaded.
+> 
+> Tested-on: QCN9074 hw2.0 PCIe on LS1088A
+> Tested-on: OpenWrt 24.10.1
+> Fixes: crash on reboot/rmmod due to invalid register access
+> Signed-off-by: Balsam CHIHI <balsam.chihi@moment.tech>
+> ---
+>  drivers/net/wireless/ath/ath11k/pci.c | 36 ++++++++++++++++-----------
+>  1 file changed, 21 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+> index 78444f8ea153..0c1b55957557 100644
+> --- a/drivers/net/wireless/ath/ath11k/pci.c
+> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+> @@ -203,16 +203,18 @@ static void ath11k_pci_soc_global_reset(struct ath11k_base *ab)
+>  		ath11k_warn(ab, "link down error during global reset\n");
+>  }
+>  
+> -static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)
+> +static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab, bool power_on)
+>  {
+> -	u32 val;
+> +	if (power_on) {
+> +		u32 val;
+>  
+> -	/* read cookie */
+> -	val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
+> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%x\n", val);
+> +		/* read cookie */
+> +		val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
+> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%x\n", val);
+>  
+> -	val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
+> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
+> +		val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
+> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
+> +	}
+>  
+>  	/* TODO: exact time to sleep is uncertain */
+>  	mdelay(10);
+> @@ -223,14 +225,18 @@ static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)
+>  	ath11k_pcic_write32(ab, WLAON_WARM_SW_ENTRY, 0);
+>  	mdelay(10);
+>  
+> -	val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
+> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
+> +	if (power_on) {
+> +		u32 val;
+>  
+> -	/* A read clear register. clear the register to prevent
+> -	 * Q6 from entering wrong code path.
+> -	 */
+> -	val = ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_REG);
+> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", val);
+> +		val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
+> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
+> +
+> +		/* A read clear register. clear the register to prevent
+> +		* Q6 from entering wrong code path.
+> +		*/
+> +		val = ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_REG);
+> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", val);
+> +	}
+>  }
+>  
+>  static int ath11k_pci_set_link_reg(struct ath11k_base *ab,
+> @@ -368,7 +374,7 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
+>  	}
+>  
+>  	ath11k_mhi_clear_vector(ab);
+> -	ath11k_pci_clear_dbg_registers(ab);
+> +	ath11k_pci_clear_dbg_registers(ab, power_on);
+>  	ath11k_pci_soc_global_reset(ab);
+>  	ath11k_mhi_set_mhictrl_reset(ab);
+>  }
+
 
