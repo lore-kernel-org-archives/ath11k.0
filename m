@@ -4,116 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29459C83F26
-	for <ath11k@archiver.kernel.org>; Fri, 25 Jul 2025 03:25:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C45A1C87FC9
+	for <ath11k@archiver.kernel.org>; Tue, 29 Jul 2025 13:04:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gAgCxVEFH4EwgekZ7jqlaF3NdXCGkoGWDEW1KVwMxh8=; b=XDXNHFhhfrUePZq/JSYTxVCus9
-	WDtH3vAR9R667l22zuHiF8/P8IqDc2kgnxSz/d2KVdCPAJFkvuJBWjFHK9uiACU8vQZuF9c1J1kb9
-	ZThC51IhA0fxjdv10KYVms9J2IadmFkI9dS/M98dCTnsTzoJ/XGjekPlDsAldAyNTpPeAdMkbXCYn
-	ypD2/KLcOg87FOEfeupgPTONE64bFUIJz5LIcfRP9NoFI9zEDPz/Z+uhPGctYtFV9Z1Xd1bOBoixp
-	0/5beICk4dl5xPYBAR1VZMCoNZ36v9n87IY42NQmcd/QTBQf725ZkKlHMvenk7CzexzUa8d4oQl+y
-	ozJb5U8w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=; b=aHGOlIoSItKgRszqrLRxvp0We3
+	VU70XgBqS6DWj/PPJZ/Utylg0hoJmo6doD+9nmYispA+nMuRVM7MqX7Gp9LGhf+7zgrF1b1jO8im4
+	SHqNJKN0BlICRalga7kIqjDXagnbHXSSOzuKtlpMSeOrbMVgz4J80y4iXjBXvGp9zV7mh7KlMIT8x
+	1wqOSLsrHAEXu3gg3/Lfri4mDvbSEOilK2b5TJMcWRVRpz32suXEfPvgrnZlJaRPppdow8thwRjaX
+	aQ4FWDDMyWyOtI3+tbs64M600SyN2Z26ASJoM3ln0SsnRrnzcSbZW4vH3u27BgGVs9TMKP39XERw0
+	y90d+m4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uf948-00000008yBA-1TPp;
-	Fri, 25 Jul 2025 03:25:48 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1ugk0G-0000000GmGJ-0qpK;
+	Tue, 29 Jul 2025 13:04:24 +0000
+Received: from mx08-0057a101.pphosted.com ([185.183.31.45])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uf946-00000008yAd-0Kii
+	id 1ugk0D-0000000GmFy-1j3O
 	for ath11k@lists.infradead.org;
-	Fri, 25 Jul 2025 03:25:47 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56OLrGup015704
-	for <ath11k@lists.infradead.org>; Fri, 25 Jul 2025 03:25:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gAgCxVEFH4EwgekZ7jqlaF3NdXCGkoGWDEW1KVwMxh8=; b=B9epV11FfCQV+COt
-	gJAr7LOIZ4aRCYBQTj8saWj3U8Y0OR55jUoP1WBW+SvDp76jxvLMlTEe6NG0q7Ry
-	Wi9xl79T9HVthEeFdiKAnXuujjzon6l7O6WgeQyqJqOr35+Jb3ZbgTZZ3b0hdLFK
-	7rSMc46i6wgDeRRxviG0fGrZvyX7GAMxLWyBZBT+4y1IzAzAtoSPf7oGaZNMQK62
-	o/v4gCXs9WDQTk5UNomjUKrP9IfXYpGSckILUkKYL8qVVryQHRDqNgi3vAIjgRD2
-	ERh5oxK3m/6jABvHbDrd26Z0my3QBQqAG2gM5KZ86mQbbo7O6Az0Ac8igtvRe8Mu
-	en1y9g==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 483w500mqq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 25 Jul 2025 03:25:43 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-74ea5d9982cso1478925b3a.2
-        for <ath11k@lists.infradead.org>; Thu, 24 Jul 2025 20:25:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753413942; x=1754018742;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gAgCxVEFH4EwgekZ7jqlaF3NdXCGkoGWDEW1KVwMxh8=;
-        b=J41/whWY9ae1T7fUs72/LqoEklJPDVH+wHj5Hrg9EIRHmTm/Zp1hlt56x9Lah5QTo4
-         OBV1fLJMxZVxHoXUzqyv17Ag6d7Ho8TvtyTTqkhyR+z1x7ZEdj6ZTvVLTgpw3JBYsB6P
-         ekcQDuGOPY1trXRC87MUDYdYD7cO+wwxVUHHLgUhQQE0Ewj0cqXgUltVZPMniwPU22ln
-         XbUYStCHE+Yka6Ed4Q9NrfqcVXIOLkHQ+Vx08XbYl4+rQIVOAzUxMpqXgzA1rnqlTtvp
-         JTnJ2PY3adlgDM/8M8PjJE7LUYKeXAOyFmf+5jMVjFdKWvnETNuL902oQxdI2gSSypD+
-         emUg==
-X-Gm-Message-State: AOJu0YwijR727wNU77AqhCing7iusE1L8ox5PoF6f2SlVFqCoiE5+Wdj
-	7i1AIQ2JufsvEgijB2UINzIpCIyJImkCbb9R8uCdHC1c70LjhQkOIGN+2DhRhJ8DEl4PHfD4eB6
-	V551csMU6FT59eWNM/XLcACf6rlwDcudyx+KHxicOMvi9yoH3vhDx1x8UjAOMxKAz
-X-Gm-Gg: ASbGnctww1DdsoW4mQRnsk1QfLo3Pv9YfIqNzAwPzaanMuTnO7yhV7l01lVK5HiXM7a
-	DGQacebi0bZ9crMnjYCR6UZ0P+WkElaf2xVJVN37UAQX1R3LBpyHgP4lRgFVPWciFfpbdypJxdW
-	Gbaj4JvlmnEXGNeE6cYmYXGXbLBAfHn7s+6isXeS7I8FbLFc2hYd8uPI/G7jLZG8aaXgvCVQesz
-	hztwdUtkneQixSQbW4W0k1aJ8YGTjUHbTteIMnoyyPO78AOGTEMmK0VO2QCLVCqEX+XupG2PNBv
-	K71spJDIJNb/R4uXOchvckNZn1hCrrB40hfCrLANMLoR8TnczoIc+QFFzJKpad1lTAnqba0vxnQ
-	o6vsH8Sf738ciEPWZgFzTMIozME2G/Vc=
-X-Received: by 2002:a05:6a00:13a8:b0:746:27fc:fea9 with SMTP id d2e1a72fcca58-763382d6fbcmr607454b3a.11.1753413942274;
-        Thu, 24 Jul 2025 20:25:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHncZoW5RENbDvszxFyfWEajWqb1Oi9KTnRhml7Lt1AqE/V3LJWkfgGNgBvnGH1vpwvtqghiQ==
-X-Received: by 2002:a05:6a00:13a8:b0:746:27fc:fea9 with SMTP id d2e1a72fcca58-763382d6fbcmr607426b3a.11.1753413941794;
-        Thu, 24 Jul 2025 20:25:41 -0700 (PDT)
-Received: from [10.133.33.68] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-761b0622bedsm2770417b3a.120.2025.07.24.20.25.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Jul 2025 20:25:41 -0700 (PDT)
-Message-ID: <91fa8b1d-7bd0-4beb-80ef-eb65d2562f17@oss.qualcomm.com>
-Date: Fri, 25 Jul 2025 11:25:39 +0800
+	Tue, 29 Jul 2025 13:04:22 +0000
+Received: from pps.filterd (m0214196.ppops.net [127.0.0.1])
+	by mx07-0057a101.pphosted.com (8.18.1.8/8.18.1.8) with ESMTP id 56T5ibqJ3531570;
+	Tue, 29 Jul 2025 15:04:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	270620241; bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=; b=zU
+	y4Nq8vvNIHj6wHzB29gaugEHhB/h4IJ3v34Em94Jl1n8hZdPIa09Tkz8zLLhAPez
+	7mB2eynyIdWgVaEDW6R89sJ8mbuMUm2JauOmMRbLLnGCFbdotpoA7pqO5a/PLT8F
+	UxnZsHfKxzrkzWPhzQ33fdHy8vr3TpcKpE4fQ1tay+N4WnyN/OxQCHizPlB3TL2N
+	JsL+mqrwoupCdVZBnM/HSwBNTe+hay4E+xlsaZhTzOzH5NS8AMiJkYMDhfe021iV
+	LHYrt6iaCryDiE0Y5oVofoyVMzcLu1I6KcgNiFHPZykzaqE8tvtklwR+O9vJqO3h
+	/VRlvPCi2JcCTkT0mdkQ==
+Received: from eur03-am7-obe.outbound.protection.outlook.com (mail-am7eur03on2108.outbound.protection.outlook.com [40.107.105.108])
+	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 484k10tsff-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 29 Jul 2025 15:04:05 +0200 (MEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bhkU8XQ+C/+65YmX+63j2J9RcUPztLtFc+smVnAbDJ2nqciadtNIRJFSx4uWW9vyA6xoKWPDsI4Br+TqN+A2r780DgeZyTaBfctZOMGJtfXzavucvC61te45TpD8XE5f3/k11rK+pJJW/GNQEnBupI4PrMA/Wvr3yLTCZYcekeQjG2HgBTh9/brjbP5tDEUdP4au1qyS6Fj26W8dQmo1vS2QglF9kfooiZN04RuHSo8Plj3embPxdX2B2C6M4YMzYlm+o7LQrNsqWzf3YYnpEZ+/iRgr/rrxJSapORuvx8IaLQyYHucE7vC+IvfCM4PjJnxLMeqCWj/lowvR4ImJ8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=;
+ b=jWK9TGXiSTshZaMa1EKO65t+jbgNB4AIWt7e/BuCfAu1vqDC5OheBx95M5+HVu8hdUy4ozJJgVsKeHrCvQBF2iWMlkOGloL3eDaGhzgGp4mtlUIZmesTAqFBconLN1KHnKK6F+EteJ1UiVcHu06+W8BJ711xyZPkuZaDIQ+PmsiVz3kfDDmx4/+36Rt4pkrUXVdKBBLXyDZiELpza5xSgyRA9SrzYX2WbU61aDtKY6VUEqmb5w3FFGriuoqhyH2Mkx6kUAmFIquHJHk9eA/kEukISo+K9M3fnVDtWiRyZLMiVT6fT+QpgqaxzAbd7jCZJZOAYxXXE+3Xfe7wGb+R6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
+ dkim=pass header.d=westermo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=beijerelectronicsab.onmicrosoft.com;
+ s=selector1-beijerelectronicsab-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=;
+ b=voXKTIKUBNWVIPRrNcrIRG+QxMe1uGEqy7qTk4loiRxzZTDqBc56CrPXp0O2l68yfy3fizLRKBKdXmXFDMf/YKXGHaGp1eUfqhWx8N0ocpwoKmJR7La1qomQXtQgaeam8xeYJcLKDTNmI6kByxvhj6t0S3N2FVJJ8erhdW43Fmk=
+Received: from FRWP192MB2997.EURP192.PROD.OUTLOOK.COM (2603:10a6:d10:17c::10)
+ by BESP192MB2979.EURP192.PROD.OUTLOOK.COM (2603:10a6:b10:f3::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.11; Tue, 29 Jul
+ 2025 13:04:03 +0000
+Received: from FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
+ ([fe80::8e66:c97e:57a6:c2b0]) by FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
+ ([fe80::8e66:c97e:57a6:c2b0%5]) with mapi id 15.20.8989.010; Tue, 29 Jul 2025
+ 13:04:02 +0000
+Date: Tue, 29 Jul 2025 15:03:57 +0200
+From: Alexander Wilhelm <alexander.wilhelm@westermo.com>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Missing BEACON_LOSS event
+Message-ID: <aIjGvT+yQkZf8/Xs@FUE-ALEWI-WINX>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/2.1.4 (2021-12-11)
+X-ClientProxiedBy: GV3P280CA0084.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:a::17) To FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:d10:17c::10)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ath11k: pci: avoid unsafe register access during shutdown
-To: balsam.chihi@moment.tech, linux-wireless@vger.kernel.org
-Cc: ath11k@lists.infradead.org, jjohnson@kernel.org
-References: <20250611164004.38580-1-balsam.chihi@moment.tech>
-Content-Language: en-US
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-In-Reply-To: <20250611164004.38580-1-balsam.chihi@moment.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: srIyEmfvfwPp2l6LFZZG_btEQPrvP9T6
-X-Proofpoint-ORIG-GUID: srIyEmfvfwPp2l6LFZZG_btEQPrvP9T6
-X-Authority-Analysis: v=2.4 cv=bKAWIO+Z c=1 sm=1 tr=0 ts=6882f937 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=7G27ipKfusndooSKQysA:9
- a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDAyNCBTYWx0ZWRfXw3fa2vyjtqL4
- VoabWQI6adD7i3sG15sZ4Uzdj7XhmsPJs7PQ+agvk/neGYmgjk/zrg543BwT03fgVSIj+nnWw1D
- PoLIv1c1nWerSKKwAnmCN9a1AUqUUcd0UzcR0UNH5V0VikWl3IVpSKKVcEhsjg7osLZRdcVbN+L
- 75yK8fflp9emIXzttlNPsZsPG8A5/+UN86k5QItHtgBxngOyhn/wGdmLvnacWM8D/P+gDc+0UHz
- SGkZRW+sbE8I3u+Jq65u9w5NwSyMxZnvvh+j6w2W9c99Eo+q6FEvWsvFTLjNCTB/xoRepzKT20p
- MWoRfRgRjHmWBhL5x+MZ+zLNYSany1fzTwao2KScuX0hZ70A64q2n42/IXO/9Mb7+7finxXEcRG
- sIpBNZSR2bHap26ar5h25wWlMR3C5ba8gTTfu8K+wW/QxyRpzx7r/OUENRVkwi/2iaDgUtmH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-25_01,2025-07-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 spamscore=0 mlxlogscore=999 clxscore=1015
- phishscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0 mlxscore=0
- suspectscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507250024
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: FRWP192MB2997:EE_|BESP192MB2979:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6db7ca19-2ff5-4733-142d-08ddcea06440
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WChF4K9TEL62z21k3lr4f39xmBOLJtKiURMgQtFPw+vjz0VNKDmnhdd37EhA?=
+ =?us-ascii?Q?z77KJ2VUbztyv6XWs8Plyr2pL65Ioyo18pS6aW9KYmvvZvXK8jCaUMAMihEG?=
+ =?us-ascii?Q?yPZRJEBzw0RnBnKGirA7p8lLQuAIKfL73M9ejL1a+pHM14YKBKPghLawcYFf?=
+ =?us-ascii?Q?oifZODNHkM/V0nNMSi6+2vfkZGewaQF2Nh9JOghc85G44ysO6Nibb40v7oy7?=
+ =?us-ascii?Q?J/keaNRpxacr1zE1B/HXXjhvTfW0ImFmkbiFrh6i2UGzI3aiISVc9zMh5m/w?=
+ =?us-ascii?Q?f9ZgnApcHJ38C2c6oG1BtIXCLh9jDZmG8d4We80RPbZdYcQ9OWruU0sFjiIg?=
+ =?us-ascii?Q?OcesFK3DMBdSPmG9vtiqaq8DX9f1A/lTEpxcUjViGXZACeElvImF82bY/+m8?=
+ =?us-ascii?Q?XLOCgbvZVeyiKGXj4cW13FwmP9A/HhqZ3asDVvcbFUw+az+qcYwyDNtz+NfI?=
+ =?us-ascii?Q?zuvqMerdVpEsisz3ZMLZFPA4BMa+46H0yEBHenqaNTscQaO7OiaLRpSEk4QW?=
+ =?us-ascii?Q?sFwITK+Im5ZZJ9SrY6E7rKgqpHHfBrcKbtZFbejtAwXgrZZX6TImJzWa/L65?=
+ =?us-ascii?Q?I5Jgr3O1uPM32CgS06jiGDOdg1wMtV9fp1vXWHxnnLGE827+NEQ5S2LUI430?=
+ =?us-ascii?Q?Wzx1cMtEMB5xpRogD1kkCCgl2PU1FLV6qdTtlJoTJxqq/zx05EwejgCw9Scw?=
+ =?us-ascii?Q?zaamtjzrCCyPzwR20UEZI6ncpTRhCuz4+hDmfGViKNau3Ag26KGi+f++LSFt?=
+ =?us-ascii?Q?aP2dFUYJnr/rVeAlUHaXRHEtyqNyUZhAcOPQAVRI7KjYL7QcaC/qsVCC7QQJ?=
+ =?us-ascii?Q?xtwDAL+WU6MjdzBxaX5UrIliAAqwJn8etWBXpn/86AG5drqahuqWOzErqWhc?=
+ =?us-ascii?Q?yNWry6Mw+dPofYXK391WDUhxhUUBwiAFXxAlDiiV+zSrVjUgZvsHCX/Xjmna?=
+ =?us-ascii?Q?BRKZ4qcHbAu8G7DcT5P37b1Y51tyY+4c+pENStQMFY5r5EmqVm5Csf6cdVse?=
+ =?us-ascii?Q?OQYMNjWyQnJHoWy0G8Hv3a7iA7LQhTacx+lZ9detQHNaipKKRsuVw67iOSH0?=
+ =?us-ascii?Q?zcjY7oWybYzIbq0yHgPvDIyEYTCXxTgZvSrF5ohEunj2ORjiuklxeeRGuVyi?=
+ =?us-ascii?Q?eQ2jHlDa2rGjqiKA43TVgVz+GXXadyUdTdUuBjiwuuvsDbRHw6INAvPxjKSq?=
+ =?us-ascii?Q?+z1zaRXqTFFpkQLbR92xTB46nEf4i0l3N1lT/Ae8eEdV+6YSM/y8WKwaWCcz?=
+ =?us-ascii?Q?TYLtoiDdBWERiUsQfErI6HRPUGEP0Ds06JPgcjG87w/z/lJFVKBEthMC/GZH?=
+ =?us-ascii?Q?o3oRDXkpzPUgwpmeTuYFazHFbThmJi9rsXvg6Ru0rKvOT6fSlH5NErdSE5YJ?=
+ =?us-ascii?Q?EotH3fxgoxSEXH+dT5DT5Ea/JIZqcK3B6XsFIa0MUczkcJKmWZlBjPfGzxaO?=
+ =?us-ascii?Q?QDdMd6Yh6nc=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FRWP192MB2997.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZGs5HB3brspwB/PHvHobf67HK3PnYFVuDuuQJUbF1sy7qkUZVRZACAxuSXHq?=
+ =?us-ascii?Q?wFgeDKUSsgRLNTdBxE1GzxGB/R6R090yZurwJ59gLxWqMgS/Fk8DS5d3aSdS?=
+ =?us-ascii?Q?PiLybSIRx1occ/AvFwZONKrTt4iC7wt73ZNszTyQk9UOZaACTucga7SrKoXr?=
+ =?us-ascii?Q?5xEwjpEODG7q8P4meqsAsrGRKnO2QpWBfHsKA5eI25W/rhKdoqHl6MCHUIrG?=
+ =?us-ascii?Q?nasIDNC+MumI3YbWAP7DPzMFRgqq4IqbdAzHflPRtF5cSSkUgZq9uchGFLHh?=
+ =?us-ascii?Q?JbxOcAlM5rsIdknaRna+Zmn31HAOHho1mCciac8xpgDUXgwk7OrvHrmAsihB?=
+ =?us-ascii?Q?OticmoEacOssS9KJNbzjQrZjXtDxGGJvOUWPwYPWAMlaXIFF6vI/qJ7laQeS?=
+ =?us-ascii?Q?QgOMpKt7ULtL3MDX5Zc67du1Ty/YfnstiENDAL18dZZQmg8mIhXgqXdJAsMf?=
+ =?us-ascii?Q?JB3FArakA7RMecyFBOy+RjcHoCKff2+s7oFIbmArE2pd0ZkqOxjXOmgAllc+?=
+ =?us-ascii?Q?UMedMHFnsArG3R6mqgZCo+prQljOdHqwBmkKvEEMKLP2CcDdPpkw/wGj0a66?=
+ =?us-ascii?Q?tiSmmbi6U9Cp93LCc8G+vj+jTkh8vKCSm3njiukzjN5UK706a9Cf2o/+L1iq?=
+ =?us-ascii?Q?5byqc4GsbnOzG2rPAX4hvcOFQsGW1ogPhoQFMHZ6WgddYzcGfrd0QhTr3dRh?=
+ =?us-ascii?Q?XTqboO7L5UDphvM8WiHOv/NB8Vpt9lUx1CQl1PeOaQLozM4L21YYxSwDhXuJ?=
+ =?us-ascii?Q?uRWL+pi/BRsRY2wD+UOokjU95+JeQapxsQSb303eROusBB4uMey4gv/P1woM?=
+ =?us-ascii?Q?2FyrARfP+UY8fMi1+439DKBkjZW2YLr/trIQnKAhZcD+lPrTSgG/9+fvPGq+?=
+ =?us-ascii?Q?ECTv+pv8wJUic60xx6V4WShp3sFj01UiXcPn7IKl8nBI3LDKGHNWcLV2jG0X?=
+ =?us-ascii?Q?F/ek3b3fioQOKn5HWwOt0rUm/oMG+tmL4au1OFtgh2w6oW3xTdt+2FQcAyMk?=
+ =?us-ascii?Q?NqbpT27PRUG/NKU5ulcnzRzhMXej6xXn+mqlXKh+dusjvsZGZ9H5kA9r/Omf?=
+ =?us-ascii?Q?i5oI/mO9SELPGKiww1x43Yp+MeW4xSb2Tg7u7ag2RiA2LJJ0ChMHrypDj5wb?=
+ =?us-ascii?Q?sDvkoQhBpwqkjiZLrPJM8mHlaLOS8slPk1xUn3Sivr9zM4DdIvcQ/wzefWQb?=
+ =?us-ascii?Q?QhBaLz14BeaZ7Fa7yARLsCaA1KJPdQR8IoHAP/0pKsnIpca7PbdjsJ9aCghO?=
+ =?us-ascii?Q?6L+gx+ZAJTvW8ik1qAkX4o5/86xmuiHFCnbkw9MzTevV0dBZk68n0JcmXh+V?=
+ =?us-ascii?Q?fyR5xTCjFR/evbzUoqj2j00aKRMZYNoJA7+N3hsbkrudjHo9PwVbiwbN+SS/?=
+ =?us-ascii?Q?3acXHaa8F5Jrrg5uCky3dXBlD2TAghCVMiw0X1mQaaw+NKhpksy4HFz//qAU?=
+ =?us-ascii?Q?uHPc+dad4kwnHj6l4T+eT2s0mDdaQzmNg8MNZdXLNSszEwqm7HG32R3mq+ZU?=
+ =?us-ascii?Q?myWqtm+F8q8w4bBryyA600L4f/gm+oFfXEt7mXV5sDoHq8uTcK46UeFv5xs0?=
+ =?us-ascii?Q?2O3fFcUXQR4t16qSD/QSbZ3sjdE71/awWblz1Y3a?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: Q2guGzLau7rqjOAY17HHW6IzxCu/40GHbrcJ2SgLCR1SyDqUGTbjS86mGhWHqRp0VdxIiJyC0sLMWf3M/dEemrmiKwjtQ6Vuvc0Kq7WatVBVxxZDGZR8E8mq7FWsIQDOGoD7p25KVr/I75NArEWE6YU5+s6SypTJqVZJQJ0AUXiObGlR06pPs5e39zbr84WQKcNLrWr5a9Dt9BGzBkIez+SyZwWjA7AHaN6J8wTrXFx4+dFji+0Ub7286XJPcsfRE8D1Giw2G9VEntR4dbWeeEm8zfPnV7b7um8wpdd4CYp6XkYJm4QawPgLC9zmIvQ9OYNIwAmxSEwjNYphghruHyHpnieoCSrrV6jWo1DP/xWQhFR0KdicylHHzg3ju6nNQF80Up4e06ZKIYUm1Ych9XGOh/JJ7ea9vH4qWl6xMwbrRudTvA8H+DEU+XyDYp6E9rC8WtnA4/MsTY5pLn8v9mtkkrDavcqtF7UX5mgHmr2d2qFp335QaDHxw3ClFLabi+mmnPKRf0zCXozdsFQx5AFQHGDuv3xjvj/EJlpGmrk+6F99WPTVG+azkf13HyeJ04rXJ5mkcdNq8fRKUZpuGlDfa6DvwBlTd34HrM9NG3sQlWQl12B6mR4ZDwujWY/E
+X-OriginatorOrg: westermo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6db7ca19-2ff5-4733-142d-08ddcea06440
+X-MS-Exchange-CrossTenant-AuthSource: FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 13:04:02.9073
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gsTBK5tp9DhI46+xzv8BuJ1Mu68nEnPCH41wPx4ox4HVegBYCfbRZjuo5wygC3lX7sndMcs8zCWJD83thQpukQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BESP192MB2979
+X-MS-Exchange-CrossPremises-AuthSource: FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossPremises-AuthAs: Internal
+X-MS-Exchange-CrossPremises-AuthMechanism: 14
+X-MS-Exchange-CrossPremises-Mapi-Admin-Submission: 
+X-MS-Exchange-CrossPremises-MessageSource: StoreDriver
+X-MS-Exchange-CrossPremises-BCC: 
+X-MS-Exchange-CrossPremises-OriginalClientIPAddress: 104.151.95.196
+X-MS-Exchange-CrossPremises-TransportTrafficType: Email
+X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:0;
+X-MS-Exchange-CrossPremises-SCL: 1
+X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
+X-OrganizationHeadersPreserved: BESP192MB2979.EURP192.PROD.OUTLOOK.COM
+X-Authority-Analysis: v=2.4 cv=VqwjA/2n c=1 sm=1 tr=0 ts=6888c6c5 cx=c_pps
+ a=1UqH5OoN4Xn9YX5XMDOJDA==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
+ a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Wb1JkmetP80A:10 a=8gLI3H-aZtYA:10
+ a=NVTPNgu7vbDRLQVt67YA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: NfZs9VimVCont4wOl1LrOifffK4LFNxj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDEwMSBTYWx0ZWRfX5blibreP3dAC
+ XzETWhzdkSbTht3jtaZBqVFwYm5fAUJfpGvrmE43FCbnUBUKDjJV2WNXBItiD7Zdyp4HPL80HmS
+ bV3NNSubLGPM54ygWo+hjML83PoMhhh5Dw+9doZsSWCbccseYI3FU7TgHLaunWl6hJ6rkWR3c4a
+ zH2wGhal/M9hKJH7fhYmSwAnscrkiXft0d0AAmpgRXUiuFfYb7qgDvN8WWRLDjjhlTShEfT0A2A
+ XPOP7E7c6XO6Ts9bqzi1gnve3bijqqqBdfsY9gZkfRFAnQHk6gQ0pD8UY4+Jqt3qU6xJPcj9qMw
+ +j7IFLiNF+XKSS6jJsPxyEB+IJMM6AdQBQWmZeMt2mldNUCb8wsZT/lW3FMaYAZeO3yPZxs9ONp
+ qKR7D4PQ
+X-Proofpoint-ORIG-GUID: NfZs9VimVCont4wOl1LrOifffK4LFNxj
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250724_202546_251164_FF14AAB9 
-X-CRM114-Status: GOOD (  26.27  )
+X-CRM114-CacheID: sfid-20250729_060421_736480_E57A87DC 
+X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,138 +199,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hello devs,
+
+can someone help with the following issue?
+
+I'm using a QCN9074-based device in STA mode, connected to an access point. When
+the AP is powered off (without sending a deauthentication frame), the client
+remains indefinitely associated. There is no disconnect, no beacon loss event,
+and the RSSI remains stuck at the last known value.
+
+Here is what I see in the logs:
+
+    daemon.debug wpa_supplicant[6960]: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
+    daemon.debug wpa_supplicant[6960]: nl80211: Packet loss event for 04:f0:21:bd:63:1f (num_packets 10)
+    daemon.debug wpa_supplicant[6960]: wlan0: Event STATION_LOW_ACK (32) received
+
+As a comparison, with an ath10k-based device, I get the expected disconnect sequence:
+
+    daemon.debug wpa_supplicant[5859]: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
+    daemon.debug wpa_supplicant[5859]: nl80211: Beacon loss event
+    daemon.debug wpa_supplicant[5859]: wlan0: Event BEACON_LOSS (53) received
+    daemon.notice wpa_supplicant[5859]: wlan0: CTRL-EVENT-BEACON-LOSS
+    daemon.debug wpa_supplicant[5859]: RTM_NEWLINK: ifi_index=13 ifname=wlan0 operstate=33554432 linkmode=16777216 ifi_family=0 ifi_flags=0x1003 ([UP])
+    daemon.notice netifd: Network device 'wlan0' link is down
+    daemon.notice netifd: Interface 'wlan' has link connectivity loss
+    daemon.debug wpa_supplicant[5859]: nl80211: Drv Event 20 (NL80211_CMD_DEL_STATION) received for wlan0
+    daemon.debug wpa_supplicant[5859]: nl80211: Delete station 04:f0:21:bd:63:1f
+    daemon.debug wpa_supplicant[5859]: nl80211: Drv Event 39 (NL80211_CMD_DEAUTHENTICATE) received for wlan0
+    daemon.debug wpa_supplicant[5859]: nl80211: Deauthenticate event
+    daemon.debug wpa_supplicant[5859]: wlan0: Event DEAUTH (11) received
+    daemon.debug wpa_supplicant[5859]: wlan0: Deauthentication notification
+    daemon.debug wpa_supplicant[5859]: wlan0:  * reason 4 (DISASSOC_DUE_TO_INACTIVITY) locally_generated=1
+    daemon.debug wpa_supplicant[5859]: wlan0:  * address 04:f0:21:bd:63:1f
+    daemon.debug wpa_supplicant[5859]: Deauthentication frame IE(s) - hexdump(len=0): [NULL]
+    daemon.notice wpa_supplicant[5859]: wlan0: CTRL-EVENT-DISCONNECTED bssid=04:f0:21:bd:63:1f reason=4 locally_generated=1
+
+From what I can tell, the function `ath11k_mac_handle_beacon_miss()` exists and
+is wired up via `ath11k_roam_event()`, but the firmware never seems to send
+`WMI_ROAM_EVENTID`, so the handler is never triggered.
+
+Is this expected behavior? Does the firmware need to be configured differently
+to enable beacon miss detection in STA mode? Or is this a known limitation? Any
+help or clarification would be appreciated.
 
 
-On 6/12/2025 12:40 AM, balsam.chihi@moment.tech wrote:
-> From: Balsam CHIHI <balsam.chihi@moment.tech>
-> 
-> During system reboot or module removal (rmmod), a crash was observed
-> due to a synchronous external abort caused by invalid register access
-> in ath11k_pci_clear_dbg_registers(). This happens when the device is
-> already powered off and the driver attempts to read debug registers.
-
-What does 'powered off' mean exactly here? is WLAN powered by an internal/external supply
-that will be removed during rmmod/reboot?
-
-> 
-> The crash log shows:
-> root@OpenWrt:~# reboot
-> [  343.663492] Internal error: synchronous external abort:
-> 0000000096000210 [#1] SMP
-> [  343.670992] Modules linked in: [...]
-> [  343.842432] CPU: 7 PID: 9435 Comm: procd Tainted: G O 6.6.86 #0
-> [  343.849746] Hardware name: LS1088A
-> [  343.856969] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> [  343.863933] pc : ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
-
-I don't see any relationship between ath11k_pci_clear_dbg_registers() and this PC pointer.
-So how did you locate the problematic register access then?
-
-> [  343.870125] lr : ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
-> [...]
-> [  343.950800] Call trace:
-> [  343.953241]  ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
-> [  343.959080]  ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
-> [  343.964671]  ath11k_pcic_read32+0x30/0xb4 [ath11k]
-> [  343.969477]  ath11k_pci_get_msi_irq+0x528/0x1900 [ath11k_pci]
-> [  343.975230]  ath11k_pci_get_msi_irq+0x1460/0x1900 [ath11k_pci]
-> [  343.981068]  ath11k_pci_get_msi_irq+0x1750/0x1900 [ath11k_pci]
-> [  343.986906]  pci_device_shutdown+0x34/0x44
-> [  343.991004]  device_shutdown+0x160/0x268
-> [  343.994928]  kernel_restart+0x40/0xc0
-> [  343.998594]  __do_sys_reboot+0x104/0x23c
-> [  344.002518]  __arm64_sys_reboot+0x24/0x30
-> [  344.006529]  do_el0_svc+0x6c/0x100
-> [  344.009931]  el0_svc+0x28/0x9c
-> [  344.012986]  el0t_64_sync_handler+0x120/0x12c
-> [  344.017344]  el0t_64_sync+0x178/0x17c
-> [  344.021009] Code: f94e0a80 92404a73 91420273 8b130013 (b9400273)
-> [  344.027102] ---[ end trace 0000000000000000 ]---
-> 
-> This patch adds a `power_on` flag to conditionally skip debug register
-> reads when the device is not powered, preventing invalid memory access.
-
-why is only 'read' concerned here?
-
-You are skipping several 'read' in this change, could you help narrow down which
-individual read instance causes this?
-
-> 
-> With this change, the system no longer crashes on reboot or rmmod,
-> and the driver continues to function correctly when reloaded.
-> 
-> Tested-on: QCN9074 hw2.0 PCIe on LS1088A
-> Tested-on: OpenWrt 24.10.1
-> Fixes: crash on reboot/rmmod due to invalid register access
-> Signed-off-by: Balsam CHIHI <balsam.chihi@moment.tech>
-> ---
->  drivers/net/wireless/ath/ath11k/pci.c | 36 ++++++++++++++++-----------
->  1 file changed, 21 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-> index 78444f8ea153..0c1b55957557 100644
-> --- a/drivers/net/wireless/ath/ath11k/pci.c
-> +++ b/drivers/net/wireless/ath/ath11k/pci.c
-> @@ -203,16 +203,18 @@ static void ath11k_pci_soc_global_reset(struct ath11k_base *ab)
->  		ath11k_warn(ab, "link down error during global reset\n");
->  }
->  
-> -static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)
-> +static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab, bool power_on)
->  {
-> -	u32 val;
-> +	if (power_on) {
-> +		u32 val;
->  
-> -	/* read cookie */
-> -	val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
-> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%x\n", val);
-> +		/* read cookie */
-> +		val = ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
-> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%x\n", val);
->  
-> -	val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
-> +		val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
-> +	}
->  
->  	/* TODO: exact time to sleep is uncertain */
->  	mdelay(10);
-> @@ -223,14 +225,18 @@ static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)
->  	ath11k_pcic_write32(ab, WLAON_WARM_SW_ENTRY, 0);
->  	mdelay(10);
->  
-> -	val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
-> +	if (power_on) {
-> +		u32 val;
->  
-> -	/* A read clear register. clear the register to prevent
-> -	 * Q6 from entering wrong code path.
-> -	 */
-> -	val = ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_REG);
-> -	ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", val);
-> +		val = ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", val);
-> +
-> +		/* A read clear register. clear the register to prevent
-> +		* Q6 from entering wrong code path.
-> +		*/
-> +		val = ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_REG);
-> +		ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", val);
-> +	}
->  }
->  
->  static int ath11k_pci_set_link_reg(struct ath11k_base *ab,
-> @@ -368,7 +374,7 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
->  	}
->  
->  	ath11k_mhi_clear_vector(ab);
-> -	ath11k_pci_clear_dbg_registers(ab);
-> +	ath11k_pci_clear_dbg_registers(ab, power_on);
->  	ath11k_pci_soc_global_reset(ab);
->  	ath11k_mhi_set_mhictrl_reset(ab);
->  }
-
+Best regards
+Alexander Wilhelm
 
