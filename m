@@ -4,187 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C45A1C87FC9
-	for <ath11k@archiver.kernel.org>; Tue, 29 Jul 2025 13:04:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05721C87FCE
+	for <ath11k@archiver.kernel.org>; Wed, 30 Jul 2025 07:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=; b=aHGOlIoSItKgRszqrLRxvp0We3
-	VU70XgBqS6DWj/PPJZ/Utylg0hoJmo6doD+9nmYispA+nMuRVM7MqX7Gp9LGhf+7zgrF1b1jO8im4
-	SHqNJKN0BlICRalga7kIqjDXagnbHXSSOzuKtlpMSeOrbMVgz4J80y4iXjBXvGp9zV7mh7KlMIT8x
-	1wqOSLsrHAEXu3gg3/Lfri4mDvbSEOilK2b5TJMcWRVRpz32suXEfPvgrnZlJaRPppdow8thwRjaX
-	aQ4FWDDMyWyOtI3+tbs64M600SyN2Z26ASJoM3ln0SsnRrnzcSbZW4vH3u27BgGVs9TMKP39XERw0
-	y90d+m4Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
+	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=6l1gAO/UvA1KSMRC0e4WN8jJW7JgF3A+xKhsibHchD0=; b=4PpMzKiqaEFi7uEoo2nNeRE/G4
+	DhElvsTEJndlJFwtLrflttQLWu918fCTfo4KiUGUlnEnr2wuA9rJi0I7ThmH63IuS/G8fVjgHw+3Y
+	G5+5RzcZdXAkha+zudHjwZiIb3eUvgmLJcFPglyoW37CF0R12Zkd0LJLorcGrhHk3EDR9sHPL4/um
+	ykNhibHQbPMApKN1jG+gDcpRFQWqnFYdN2XVip9ksS1w9h28qBjdm46BV2QJGohY6mz1/IPxlIU4G
+	LbjDb4B2zNFnQB/IbHN3azOH6Fpe5ukxWjSUOCj3dYsbCDCa41byiS8lKoYA+bZ0Y0GVBwcdM+MJN
+	IHR3O5CA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ugk0G-0000000GmGJ-0qpK;
-	Tue, 29 Jul 2025 13:04:24 +0000
-Received: from mx08-0057a101.pphosted.com ([185.183.31.45])
+	id 1uh1hV-00000000vtj-0QGV;
+	Wed, 30 Jul 2025 07:58:13 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ugk0D-0000000GmFy-1j3O
+	id 1uh1bn-00000000vMw-2wrv
 	for ath11k@lists.infradead.org;
-	Tue, 29 Jul 2025 13:04:22 +0000
-Received: from pps.filterd (m0214196.ppops.net [127.0.0.1])
-	by mx07-0057a101.pphosted.com (8.18.1.8/8.18.1.8) with ESMTP id 56T5ibqJ3531570;
-	Tue, 29 Jul 2025 15:04:05 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	270620241; bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=; b=zU
-	y4Nq8vvNIHj6wHzB29gaugEHhB/h4IJ3v34Em94Jl1n8hZdPIa09Tkz8zLLhAPez
-	7mB2eynyIdWgVaEDW6R89sJ8mbuMUm2JauOmMRbLLnGCFbdotpoA7pqO5a/PLT8F
-	UxnZsHfKxzrkzWPhzQ33fdHy8vr3TpcKpE4fQ1tay+N4WnyN/OxQCHizPlB3TL2N
-	JsL+mqrwoupCdVZBnM/HSwBNTe+hay4E+xlsaZhTzOzH5NS8AMiJkYMDhfe021iV
-	LHYrt6iaCryDiE0Y5oVofoyVMzcLu1I6KcgNiFHPZykzaqE8tvtklwR+O9vJqO3h
-	/VRlvPCi2JcCTkT0mdkQ==
-Received: from eur03-am7-obe.outbound.protection.outlook.com (mail-am7eur03on2108.outbound.protection.outlook.com [40.107.105.108])
-	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 484k10tsff-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 29 Jul 2025 15:04:05 +0200 (MEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bhkU8XQ+C/+65YmX+63j2J9RcUPztLtFc+smVnAbDJ2nqciadtNIRJFSx4uWW9vyA6xoKWPDsI4Br+TqN+A2r780DgeZyTaBfctZOMGJtfXzavucvC61te45TpD8XE5f3/k11rK+pJJW/GNQEnBupI4PrMA/Wvr3yLTCZYcekeQjG2HgBTh9/brjbP5tDEUdP4au1qyS6Fj26W8dQmo1vS2QglF9kfooiZN04RuHSo8Plj3embPxdX2B2C6M4YMzYlm+o7LQrNsqWzf3YYnpEZ+/iRgr/rrxJSapORuvx8IaLQyYHucE7vC+IvfCM4PjJnxLMeqCWj/lowvR4ImJ8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=;
- b=jWK9TGXiSTshZaMa1EKO65t+jbgNB4AIWt7e/BuCfAu1vqDC5OheBx95M5+HVu8hdUy4ozJJgVsKeHrCvQBF2iWMlkOGloL3eDaGhzgGp4mtlUIZmesTAqFBconLN1KHnKK6F+EteJ1UiVcHu06+W8BJ711xyZPkuZaDIQ+PmsiVz3kfDDmx4/+36Rt4pkrUXVdKBBLXyDZiELpza5xSgyRA9SrzYX2WbU61aDtKY6VUEqmb5w3FFGriuoqhyH2Mkx6kUAmFIquHJHk9eA/kEukISo+K9M3fnVDtWiRyZLMiVT6fT+QpgqaxzAbd7jCZJZOAYxXXE+3Xfe7wGb+R6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
- dkim=pass header.d=westermo.com; arc=none
+	Wed, 30 Jul 2025 07:52:21 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3b783ea502eso492856f8f.1
+        for <ath11k@lists.infradead.org>; Wed, 30 Jul 2025 00:52:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=beijerelectronicsab.onmicrosoft.com;
- s=selector1-beijerelectronicsab-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PXKW9Lu5PeYoQ+707ZnJKnM6K6AOBq1UJRVvxD1apus=;
- b=voXKTIKUBNWVIPRrNcrIRG+QxMe1uGEqy7qTk4loiRxzZTDqBc56CrPXp0O2l68yfy3fizLRKBKdXmXFDMf/YKXGHaGp1eUfqhWx8N0ocpwoKmJR7La1qomQXtQgaeam8xeYJcLKDTNmI6kByxvhj6t0S3N2FVJJ8erhdW43Fmk=
-Received: from FRWP192MB2997.EURP192.PROD.OUTLOOK.COM (2603:10a6:d10:17c::10)
- by BESP192MB2979.EURP192.PROD.OUTLOOK.COM (2603:10a6:b10:f3::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.11; Tue, 29 Jul
- 2025 13:04:03 +0000
-Received: from FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
- ([fe80::8e66:c97e:57a6:c2b0]) by FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
- ([fe80::8e66:c97e:57a6:c2b0%5]) with mapi id 15.20.8989.010; Tue, 29 Jul 2025
- 13:04:02 +0000
-Date: Tue, 29 Jul 2025 15:03:57 +0200
-From: Alexander Wilhelm <alexander.wilhelm@westermo.com>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject: Missing BEACON_LOSS event
-Message-ID: <aIjGvT+yQkZf8/Xs@FUE-ALEWI-WINX>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/2.1.4 (2021-12-11)
-X-ClientProxiedBy: GV3P280CA0084.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:a::17) To FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:d10:17c::10)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: FRWP192MB2997:EE_|BESP192MB2979:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6db7ca19-2ff5-4733-142d-08ddcea06440
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WChF4K9TEL62z21k3lr4f39xmBOLJtKiURMgQtFPw+vjz0VNKDmnhdd37EhA?=
- =?us-ascii?Q?z77KJ2VUbztyv6XWs8Plyr2pL65Ioyo18pS6aW9KYmvvZvXK8jCaUMAMihEG?=
- =?us-ascii?Q?yPZRJEBzw0RnBnKGirA7p8lLQuAIKfL73M9ejL1a+pHM14YKBKPghLawcYFf?=
- =?us-ascii?Q?oifZODNHkM/V0nNMSi6+2vfkZGewaQF2Nh9JOghc85G44ysO6Nibb40v7oy7?=
- =?us-ascii?Q?J/keaNRpxacr1zE1B/HXXjhvTfW0ImFmkbiFrh6i2UGzI3aiISVc9zMh5m/w?=
- =?us-ascii?Q?f9ZgnApcHJ38C2c6oG1BtIXCLh9jDZmG8d4We80RPbZdYcQ9OWruU0sFjiIg?=
- =?us-ascii?Q?OcesFK3DMBdSPmG9vtiqaq8DX9f1A/lTEpxcUjViGXZACeElvImF82bY/+m8?=
- =?us-ascii?Q?XLOCgbvZVeyiKGXj4cW13FwmP9A/HhqZ3asDVvcbFUw+az+qcYwyDNtz+NfI?=
- =?us-ascii?Q?zuvqMerdVpEsisz3ZMLZFPA4BMa+46H0yEBHenqaNTscQaO7OiaLRpSEk4QW?=
- =?us-ascii?Q?sFwITK+Im5ZZJ9SrY6E7rKgqpHHfBrcKbtZFbejtAwXgrZZX6TImJzWa/L65?=
- =?us-ascii?Q?I5Jgr3O1uPM32CgS06jiGDOdg1wMtV9fp1vXWHxnnLGE827+NEQ5S2LUI430?=
- =?us-ascii?Q?Wzx1cMtEMB5xpRogD1kkCCgl2PU1FLV6qdTtlJoTJxqq/zx05EwejgCw9Scw?=
- =?us-ascii?Q?zaamtjzrCCyPzwR20UEZI6ncpTRhCuz4+hDmfGViKNau3Ag26KGi+f++LSFt?=
- =?us-ascii?Q?aP2dFUYJnr/rVeAlUHaXRHEtyqNyUZhAcOPQAVRI7KjYL7QcaC/qsVCC7QQJ?=
- =?us-ascii?Q?xtwDAL+WU6MjdzBxaX5UrIliAAqwJn8etWBXpn/86AG5drqahuqWOzErqWhc?=
- =?us-ascii?Q?yNWry6Mw+dPofYXK391WDUhxhUUBwiAFXxAlDiiV+zSrVjUgZvsHCX/Xjmna?=
- =?us-ascii?Q?BRKZ4qcHbAu8G7DcT5P37b1Y51tyY+4c+pENStQMFY5r5EmqVm5Csf6cdVse?=
- =?us-ascii?Q?OQYMNjWyQnJHoWy0G8Hv3a7iA7LQhTacx+lZ9detQHNaipKKRsuVw67iOSH0?=
- =?us-ascii?Q?zcjY7oWybYzIbq0yHgPvDIyEYTCXxTgZvSrF5ohEunj2ORjiuklxeeRGuVyi?=
- =?us-ascii?Q?eQ2jHlDa2rGjqiKA43TVgVz+GXXadyUdTdUuBjiwuuvsDbRHw6INAvPxjKSq?=
- =?us-ascii?Q?+z1zaRXqTFFpkQLbR92xTB46nEf4i0l3N1lT/Ae8eEdV+6YSM/y8WKwaWCcz?=
- =?us-ascii?Q?TYLtoiDdBWERiUsQfErI6HRPUGEP0Ds06JPgcjG87w/z/lJFVKBEthMC/GZH?=
- =?us-ascii?Q?o3oRDXkpzPUgwpmeTuYFazHFbThmJi9rsXvg6Ru0rKvOT6fSlH5NErdSE5YJ?=
- =?us-ascii?Q?EotH3fxgoxSEXH+dT5DT5Ea/JIZqcK3B6XsFIa0MUczkcJKmWZlBjPfGzxaO?=
- =?us-ascii?Q?QDdMd6Yh6nc=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FRWP192MB2997.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZGs5HB3brspwB/PHvHobf67HK3PnYFVuDuuQJUbF1sy7qkUZVRZACAxuSXHq?=
- =?us-ascii?Q?wFgeDKUSsgRLNTdBxE1GzxGB/R6R090yZurwJ59gLxWqMgS/Fk8DS5d3aSdS?=
- =?us-ascii?Q?PiLybSIRx1occ/AvFwZONKrTt4iC7wt73ZNszTyQk9UOZaACTucga7SrKoXr?=
- =?us-ascii?Q?5xEwjpEODG7q8P4meqsAsrGRKnO2QpWBfHsKA5eI25W/rhKdoqHl6MCHUIrG?=
- =?us-ascii?Q?nasIDNC+MumI3YbWAP7DPzMFRgqq4IqbdAzHflPRtF5cSSkUgZq9uchGFLHh?=
- =?us-ascii?Q?JbxOcAlM5rsIdknaRna+Zmn31HAOHho1mCciac8xpgDUXgwk7OrvHrmAsihB?=
- =?us-ascii?Q?OticmoEacOssS9KJNbzjQrZjXtDxGGJvOUWPwYPWAMlaXIFF6vI/qJ7laQeS?=
- =?us-ascii?Q?QgOMpKt7ULtL3MDX5Zc67du1Ty/YfnstiENDAL18dZZQmg8mIhXgqXdJAsMf?=
- =?us-ascii?Q?JB3FArakA7RMecyFBOy+RjcHoCKff2+s7oFIbmArE2pd0ZkqOxjXOmgAllc+?=
- =?us-ascii?Q?UMedMHFnsArG3R6mqgZCo+prQljOdHqwBmkKvEEMKLP2CcDdPpkw/wGj0a66?=
- =?us-ascii?Q?tiSmmbi6U9Cp93LCc8G+vj+jTkh8vKCSm3njiukzjN5UK706a9Cf2o/+L1iq?=
- =?us-ascii?Q?5byqc4GsbnOzG2rPAX4hvcOFQsGW1ogPhoQFMHZ6WgddYzcGfrd0QhTr3dRh?=
- =?us-ascii?Q?XTqboO7L5UDphvM8WiHOv/NB8Vpt9lUx1CQl1PeOaQLozM4L21YYxSwDhXuJ?=
- =?us-ascii?Q?uRWL+pi/BRsRY2wD+UOokjU95+JeQapxsQSb303eROusBB4uMey4gv/P1woM?=
- =?us-ascii?Q?2FyrARfP+UY8fMi1+439DKBkjZW2YLr/trIQnKAhZcD+lPrTSgG/9+fvPGq+?=
- =?us-ascii?Q?ECTv+pv8wJUic60xx6V4WShp3sFj01UiXcPn7IKl8nBI3LDKGHNWcLV2jG0X?=
- =?us-ascii?Q?F/ek3b3fioQOKn5HWwOt0rUm/oMG+tmL4au1OFtgh2w6oW3xTdt+2FQcAyMk?=
- =?us-ascii?Q?NqbpT27PRUG/NKU5ulcnzRzhMXej6xXn+mqlXKh+dusjvsZGZ9H5kA9r/Omf?=
- =?us-ascii?Q?i5oI/mO9SELPGKiww1x43Yp+MeW4xSb2Tg7u7ag2RiA2LJJ0ChMHrypDj5wb?=
- =?us-ascii?Q?sDvkoQhBpwqkjiZLrPJM8mHlaLOS8slPk1xUn3Sivr9zM4DdIvcQ/wzefWQb?=
- =?us-ascii?Q?QhBaLz14BeaZ7Fa7yARLsCaA1KJPdQR8IoHAP/0pKsnIpca7PbdjsJ9aCghO?=
- =?us-ascii?Q?6L+gx+ZAJTvW8ik1qAkX4o5/86xmuiHFCnbkw9MzTevV0dBZk68n0JcmXh+V?=
- =?us-ascii?Q?fyR5xTCjFR/evbzUoqj2j00aKRMZYNoJA7+N3hsbkrudjHo9PwVbiwbN+SS/?=
- =?us-ascii?Q?3acXHaa8F5Jrrg5uCky3dXBlD2TAghCVMiw0X1mQaaw+NKhpksy4HFz//qAU?=
- =?us-ascii?Q?uHPc+dad4kwnHj6l4T+eT2s0mDdaQzmNg8MNZdXLNSszEwqm7HG32R3mq+ZU?=
- =?us-ascii?Q?myWqtm+F8q8w4bBryyA600L4f/gm+oFfXEt7mXV5sDoHq8uTcK46UeFv5xs0?=
- =?us-ascii?Q?2O3fFcUXQR4t16qSD/QSbZ3sjdE71/awWblz1Y3a?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: Q2guGzLau7rqjOAY17HHW6IzxCu/40GHbrcJ2SgLCR1SyDqUGTbjS86mGhWHqRp0VdxIiJyC0sLMWf3M/dEemrmiKwjtQ6Vuvc0Kq7WatVBVxxZDGZR8E8mq7FWsIQDOGoD7p25KVr/I75NArEWE6YU5+s6SypTJqVZJQJ0AUXiObGlR06pPs5e39zbr84WQKcNLrWr5a9Dt9BGzBkIez+SyZwWjA7AHaN6J8wTrXFx4+dFji+0Ub7286XJPcsfRE8D1Giw2G9VEntR4dbWeeEm8zfPnV7b7um8wpdd4CYp6XkYJm4QawPgLC9zmIvQ9OYNIwAmxSEwjNYphghruHyHpnieoCSrrV6jWo1DP/xWQhFR0KdicylHHzg3ju6nNQF80Up4e06ZKIYUm1Ych9XGOh/JJ7ea9vH4qWl6xMwbrRudTvA8H+DEU+XyDYp6E9rC8WtnA4/MsTY5pLn8v9mtkkrDavcqtF7UX5mgHmr2d2qFp335QaDHxw3ClFLabi+mmnPKRf0zCXozdsFQx5AFQHGDuv3xjvj/EJlpGmrk+6F99WPTVG+azkf13HyeJ04rXJ5mkcdNq8fRKUZpuGlDfa6DvwBlTd34HrM9NG3sQlWQl12B6mR4ZDwujWY/E
-X-OriginatorOrg: westermo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6db7ca19-2ff5-4733-142d-08ddcea06440
-X-MS-Exchange-CrossTenant-AuthSource: FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 13:04:02.9073
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gsTBK5tp9DhI46+xzv8BuJ1Mu68nEnPCH41wPx4ox4HVegBYCfbRZjuo5wygC3lX7sndMcs8zCWJD83thQpukQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BESP192MB2979
-X-MS-Exchange-CrossPremises-AuthSource: FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossPremises-AuthAs: Internal
-X-MS-Exchange-CrossPremises-AuthMechanism: 14
-X-MS-Exchange-CrossPremises-Mapi-Admin-Submission: 
-X-MS-Exchange-CrossPremises-MessageSource: StoreDriver
-X-MS-Exchange-CrossPremises-BCC: 
-X-MS-Exchange-CrossPremises-OriginalClientIPAddress: 104.151.95.196
-X-MS-Exchange-CrossPremises-TransportTrafficType: Email
-X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:0;
-X-MS-Exchange-CrossPremises-SCL: 1
-X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
-X-OrganizationHeadersPreserved: BESP192MB2979.EURP192.PROD.OUTLOOK.COM
-X-Authority-Analysis: v=2.4 cv=VqwjA/2n c=1 sm=1 tr=0 ts=6888c6c5 cx=c_pps
- a=1UqH5OoN4Xn9YX5XMDOJDA==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Wb1JkmetP80A:10 a=8gLI3H-aZtYA:10
- a=NVTPNgu7vbDRLQVt67YA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-GUID: NfZs9VimVCont4wOl1LrOifffK4LFNxj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDEwMSBTYWx0ZWRfX5blibreP3dAC
- XzETWhzdkSbTht3jtaZBqVFwYm5fAUJfpGvrmE43FCbnUBUKDjJV2WNXBItiD7Zdyp4HPL80HmS
- bV3NNSubLGPM54ygWo+hjML83PoMhhh5Dw+9doZsSWCbccseYI3FU7TgHLaunWl6hJ6rkWR3c4a
- zH2wGhal/M9hKJH7fhYmSwAnscrkiXft0d0AAmpgRXUiuFfYb7qgDvN8WWRLDjjhlTShEfT0A2A
- XPOP7E7c6XO6Ts9bqzi1gnve3bijqqqBdfsY9gZkfRFAnQHk6gQ0pD8UY4+Jqt3qU6xJPcj9qMw
- +j7IFLiNF+XKSS6jJsPxyEB+IJMM6AdQBQWmZeMt2mldNUCb8wsZT/lW3FMaYAZeO3yPZxs9ONp
- qKR7D4PQ
-X-Proofpoint-ORIG-GUID: NfZs9VimVCont4wOl1LrOifffK4LFNxj
+        d=gmail.com; s=20230601; t=1753861938; x=1754466738; darn=lists.infradead.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6l1gAO/UvA1KSMRC0e4WN8jJW7JgF3A+xKhsibHchD0=;
+        b=BkiwoE6zb/B3zeGiBYGUNyutjuZEGQXCdwY0i0fzOUO4zlaIsCrxtrqzZtoiXwQ9C8
+         fescpTIZyTD4AasqVP+vmMqyEurCTcolDgxr9YUEc4zUIK75xlacjF7Xt+sagzyW+Ksz
+         eOD0N+gByyhquvKkAI9M8YHRuGB5jUZt5l8TTN2gABfCkS9M2oXiia+ST7jAK5S0G9+9
+         JtVoJnAjI/p1VEESxYaqSKakzp7ti7JvRMg2rT9d6YWBC8K+GXt4Cqwk86un2i6gZt8q
+         wOfLYZj8Xg2ObnI9HCLJweSNVql+TOEkxTL1Bk+rfxA9pFgza6nuRNVPK451X3R9nmY1
+         aANw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753861938; x=1754466738;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6l1gAO/UvA1KSMRC0e4WN8jJW7JgF3A+xKhsibHchD0=;
+        b=vhp6jAVO/Mcs8rZ542ldbd47Chym7VMQ97AVk5KWjqDmazwkgHoOya3NKGd/2wduU6
+         E3X2ScbhJpmFkOnzsKJgQiUSmvj8hlCPpVzAdEQKNacEz1x1T5yuZtHAuMYv0XPv+fVS
+         +JMX1WiTv/q8sL0ioYxDO6G33Pt1nrV1mh7v8Eo2rkeESXpNJv9hMjlIRqYuKi4pbJdv
+         1Wn6be//I2PhDxdnGtm1JVuXqPj/Bj/jyB0TwMhV9kr9S+2cLM+XeVW90RxDYwyh74fQ
+         oYIVMgpRWVCsDRS3T9XP+0DJhU+t3h+lC6QwMR9pYpP9F31SpX0RxAjOpO91yH69Lfxx
+         HQfg==
+X-Gm-Message-State: AOJu0Yzv+kZF8A/Qa8oU4ZP9HAEXWv3kItnZyJFfFXoVkT7RZ+K5CwF5
+	ZjW0f8h8JnOr8I5Gq3Q3TMjz77btg9BenLMQlAXXqHNKFtC7o9Rfg8fxTBCQeA==
+X-Gm-Gg: ASbGncsEy9LThkz+BMiWOZgKQIbY+PPhrHfO/r48UELJW0uEU5MDcJ+bgD6LgrLgtNI
+	xZPNcWP7twshQsTK/80mF2tMI1BG8yeqZ/TXiF9CLlKH8mjOOnOkHKtTGV1blN1+ScsJ68/PCOU
+	QMAkbvYAJFOGph+PwD16iJ/5WNkRVUM/BhtEV6WLvup/SOBU+inn473FM1VIXdjEmbvQPjx3ReZ
+	638u5rSiMxlhfGTysJw54E91lP40MxxqpUORV4sjyn74IDzPz6qN1mqBk+e4hp0a2lhhH5N91OK
+	a8LiHjN240U0XvYl2BhrPgwCLG7v8r1f+moLRBDjJHVjYTi/wzpUE25LEFTX0Az2ULOJ5+EeDSJ
+	t2nz7hBQ6higbRKz4pQ325TJxBhXFt6Sh3PuH9joL
+X-Google-Smtp-Source: AGHT+IEpfcshaEmI74+FRPGDA4WifzJapnTiLXEYiP3DH31K2fBVogP/EMh4TPJeVT8GPBF/IKYPlA==
+X-Received: by 2002:a5d:588c:0:b0:3b7:8842:89f5 with SMTP id ffacd0b85a97d-3b78e3d5a20mr5041589f8f.1.1753861937650;
+        Wed, 30 Jul 2025 00:52:17 -0700 (PDT)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b778f0c1b8sm14750871f8f.56.2025.07.30.00.52.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Jul 2025 00:52:17 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 30 Jul 2025 09:52:16 +0200
+Message-Id: <DBP862N3JBT3.2NRSJ8BECF0YI@gmail.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+Subject: Re: Missing BEACON_LOSS event
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: "Alexander Wilhelm" <alexander.wilhelm@westermo.com>, "Jeff Johnson"
+ <jjohnson@kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <aIjGvT+yQkZf8/Xs@FUE-ALEWI-WINX>
+In-Reply-To: <aIjGvT+yQkZf8/Xs@FUE-ALEWI-WINX>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250729_060421_736480_E57A87DC 
-X-CRM114-Status: UNSURE (   9.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250730_005219_743011_08F460DE 
+X-CRM114-Status: GOOD (  16.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -199,50 +98,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello devs,
+On Tue Jul 29, 2025 at 3:03 PM CEST, Alexander Wilhelm wrote:
+> Hello devs,
+>
+> can someone help with the following issue?
+>
+> I'm using a QCN9074-based device in STA mode, connected to an access poin=
+t. When
+> the AP is powered off (without sending a deauthentication frame), the cli=
+ent
+> remains indefinitely associated. There is no disconnect, no beacon loss e=
+vent,
+> and the RSSI remains stuck at the last known value.
+[...]
+> From what I can tell, the function `ath11k_mac_handle_beacon_miss()` exis=
+ts and
+> is wired up via `ath11k_roam_event()`, but the firmware never seems to se=
+nd
+> `WMI_ROAM_EVENTID`, so the handler is never triggered.
+>
+> Is this expected behavior? Does the firmware need to be configured differ=
+ently
+> to enable beacon miss detection in STA mode? Or is this a known limitatio=
+n? Any
+> help or clarification would be appreciated.
 
-can someone help with the following issue?
+Hello,
 
-I'm using a QCN9074-based device in STA mode, connected to an access point. When
-the AP is powered off (without sending a deauthentication frame), the client
-remains indefinitely associated. There is no disconnect, no beacon loss event,
-and the RSSI remains stuck at the last known value.
+I've brought this up already on the ath11k/ath12k list:
+https://lore.kernel.org/ath12k/CZA2NS7J83D4.18SU6W9R96KPY@gmail.com/
+To my knowlege, nothing upstream has been posted so far by QCA.
 
-Here is what I see in the logs:
+In non mainline sources there is a patch to support ath12k:
+https://git.codelinaro.org/clo/qsdk/oss/system/feeds/wlan-open/-/blob/win.w=
+lan_host_opensource.3.0/patches/ath12k/897-wifi-ath12k-Add-support-for-STA-=
+mode-to-trigger.patch
+My guess is that ath11k works the same way.
 
-    daemon.debug wpa_supplicant[6960]: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
-    daemon.debug wpa_supplicant[6960]: nl80211: Packet loss event for 04:f0:21:bd:63:1f (num_packets 10)
-    daemon.debug wpa_supplicant[6960]: wlan0: Event STATION_LOW_ACK (32) received
+It would be great if QCA people could mainline this, it seems like a small
+enough and isolated feature that could be pushed without side effects.=20
 
-As a comparison, with an ath10k-based device, I get the expected disconnect sequence:
+>
+>
+> Best regards
+> Alexander Wilhelm
 
-    daemon.debug wpa_supplicant[5859]: nl80211: Drv Event 64 (NL80211_CMD_NOTIFY_CQM) received for wlan0
-    daemon.debug wpa_supplicant[5859]: nl80211: Beacon loss event
-    daemon.debug wpa_supplicant[5859]: wlan0: Event BEACON_LOSS (53) received
-    daemon.notice wpa_supplicant[5859]: wlan0: CTRL-EVENT-BEACON-LOSS
-    daemon.debug wpa_supplicant[5859]: RTM_NEWLINK: ifi_index=13 ifname=wlan0 operstate=33554432 linkmode=16777216 ifi_family=0 ifi_flags=0x1003 ([UP])
-    daemon.notice netifd: Network device 'wlan0' link is down
-    daemon.notice netifd: Interface 'wlan' has link connectivity loss
-    daemon.debug wpa_supplicant[5859]: nl80211: Drv Event 20 (NL80211_CMD_DEL_STATION) received for wlan0
-    daemon.debug wpa_supplicant[5859]: nl80211: Delete station 04:f0:21:bd:63:1f
-    daemon.debug wpa_supplicant[5859]: nl80211: Drv Event 39 (NL80211_CMD_DEAUTHENTICATE) received for wlan0
-    daemon.debug wpa_supplicant[5859]: nl80211: Deauthenticate event
-    daemon.debug wpa_supplicant[5859]: wlan0: Event DEAUTH (11) received
-    daemon.debug wpa_supplicant[5859]: wlan0: Deauthentication notification
-    daemon.debug wpa_supplicant[5859]: wlan0:  * reason 4 (DISASSOC_DUE_TO_INACTIVITY) locally_generated=1
-    daemon.debug wpa_supplicant[5859]: wlan0:  * address 04:f0:21:bd:63:1f
-    daemon.debug wpa_supplicant[5859]: Deauthentication frame IE(s) - hexdump(len=0): [NULL]
-    daemon.notice wpa_supplicant[5859]: wlan0: CTRL-EVENT-DISCONNECTED bssid=04:f0:21:bd:63:1f reason=4 locally_generated=1
-
-From what I can tell, the function `ath11k_mac_handle_beacon_miss()` exists and
-is wired up via `ath11k_roam_event()`, but the firmware never seems to send
-`WMI_ROAM_EVENTID`, so the handler is never triggered.
-
-Is this expected behavior? Does the firmware need to be configured differently
-to enable beacon miss detection in STA mode? Or is this a known limitation? Any
-help or clarification would be appreciated.
-
-
-Best regards
-Alexander Wilhelm
 
