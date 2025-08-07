@@ -4,119 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E04CCC87FD2
-	for <ath11k@archiver.kernel.org>; Tue,  5 Aug 2025 18:37:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 165B9C87FCA
+	for <ath11k@archiver.kernel.org>; Thu,  7 Aug 2025 10:10:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rf//mbP0mXrK7QtQ6anN4k1iTluCGOJU5QYSOKvtHFo=; b=IZoWhrDABUMJof0D/3g5ktRt7H
-	iypqBMfAdKTF2/0eTQU2A0D8ivkpnrTpLEPYhSIbtcLHz74xIfbYf78ksniO9tnbS40JCUjkIEC5B
-	E5J/hvI6pgb0H5WRVpWM9AIFLshCkx7I4wRnDetzJXrYTEnd7wym3l4qx1tLCjohyGZq2tHSQ+6Jj
-	aIC72H2/41gRlpy1c8d4DL/OpxfjaA/3bFFakbIwSiMAGMjFhvrb/o9+1QW4Pbivjv7/xcOxMmjAy
-	FslJgHiTiVzVpOCCH3EPhv8mJOFMls9ndQpIcubcJGUHuqhRYeJLNcejN8htPdXj8d5BPLXLWjNtd
-	6/fCGcHA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=s3a2/KC83RRH5zHKbQEVkzPRNvio8bmrz3u0KHdf0+w=; b=zOdsImeBKOLIavvqNDybvmXIhm
+	PiEqM/eb+h5I/ZujktokLYvnaWT9Y71cT90d15RPlCviQX2Q5YIKRPIFUI12894Uw/QUy1I22NDLJ
+	p3tvuwl5ifbetg/pMV7G/dBXW3RpT85u0yac671Bbdphcc/+qiMiDILyIoH0B671gHRpr9rxTA3SR
+	Gqx5eLNZgEYkkq0cS4gy8sIhz4QQE6T4ZHj/t7XYeIs0yYSz9R5PeRgkHvoJPCpgInHM+BzJIIrwX
+	eXK4sxkv5tAZsC2yNAXQOinCvGuD5tRTxNwkdero2r/nJLhmk7C/w5F1sJyyLhzNXd1IYyj+0G4kE
+	QmBDlR4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ujMX3-0000000DYXE-0yHp;
-	Tue, 05 Aug 2025 18:37:05 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1ujxZZ-00000000B26-3MxF;
+	Thu, 07 Aug 2025 10:10:09 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ujLpN-0000000DTYL-0WSF
-	for ath11k@lists.infradead.org;
-	Tue, 05 Aug 2025 17:51:58 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 575G2KBi003583
-	for <ath11k@lists.infradead.org>; Tue, 5 Aug 2025 17:51:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rf//mbP0mXrK7QtQ6anN4k1iTluCGOJU5QYSOKvtHFo=; b=N3ZlBfZiZmXM2hKo
-	JyCw9vet7lfQxleS5sHzx1l0tAWbzE0pPCZav4wPDqFtgIjt0W++eeFqviqRZu0o
-	p+eQy7GsExCJUG9LMzfY0pcWdgtcMs7nJKUGGMrARE6J1lGpl4zFPOygYfHP4ulQ
-	kYsf9E+XJ0eGsPmHwPVQoG9MRgzWDjTpf/y6/6jfNFjDRL8YLVvMsQXsULnnQm3y
-	1HQWcddKN8B/OfHLUHw7glbASRdoxTUySAZcCkUje41JqVoCmW5sPHkjLDLBbHqE
-	sTxKKWOFpuqEhFbSvM5IqTnxdj5GwHFRtbdV54FqPnZaP9uus2CgKy8a1bDgEdJ4
-	c5ACaA==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48b3j3ubmj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 05 Aug 2025 17:51:55 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-31f32271a1fso165682a91.0
-        for <ath11k@lists.infradead.org>; Tue, 05 Aug 2025 10:51:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754416314; x=1755021114;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rf//mbP0mXrK7QtQ6anN4k1iTluCGOJU5QYSOKvtHFo=;
-        b=J0waNV6fR8cN1M9LNpXrOWh+5ulDpxqVDBBM5PAb+EBPRKkYQecQjEgBtYa1LCy9P1
-         GjNd7WWk/xVzqtoFDZjam5zfrsbYu/Zk3OZxSHfuGNb648C6q1mzCKVBtcPs2Q2ZcVkp
-         /m34EfuHPS7EFKrMcm5ipfIJd26JYwaKOhByBD56xRLJ/8GyMbccFkq4kGXkFCE3XkNp
-         he9+YF1ACXbzuJkitymiV3FDNjz0LD0K5TJRqTE6DO77zJiRKkkVDUpOAK0tagqp7iaT
-         hVf6c87ijmB2btTbNdghwP7vO4jn328DRHUYv/FmwYH0fk+P21mgLAIOoCE6750ikeK6
-         NvpA==
-X-Forwarded-Encrypted: i=1; AJvYcCUe9i+xZWT2PUhq1ewiQ27DzdzqJcmZC9tBdk6BeqjvdKl3nFSB7FLVeFZQDxWCG3/dqE488SI=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyexpEG+HwgRShr55KrnGtJayQH5fFYNn0qcFZ9NtJ2qPba/bDw
-	zKbTuP3PrYyNPWwQOb0g2oGgBOn6rdrIPnP/cpLzYVMmDy5ssK56AFvZNWAsTXJlTNMr13F7oLY
-	kcuZBUt484W2TyffwDZtlt9jAPHvQEuLITwNFWh5KQITf6YlaR0W5hWJlOGtxS8MeBE5WyMWH
-X-Gm-Gg: ASbGnculkAbuM3+WNrmzb221ZuZTtLQv9XE0mfpAlGA7Q+XN2ILi/JPee9lmVNDJsRE
-	GyonRnuFuwVkJqiWKGl64bEEaKwSwEwPaF/dPnN2YycC9iog6LmpjXOEvEtAj/hjX8YeVVRi3y2
-	EZfDKPl/A3qpvpvuHiWOOB1QEoFUt/WRomaOO3+WCrKjQ+62ZsXMtmKgHPO5DkG0Sj71lT8Oeai
-	kOkvulibGIguBTTdLdAx1/EG3APGvc70VkZ18UgxQI1lJRCDAUO9XutZqFCpoiTo8Qq8vd8rXVh
-	cm0EVGqwP+LbBmUoY/w5+qOaKKW/iB4gfHqsRCZmZr5b0fWbxykyo+z4aPQDWN5Np9MxguMaauu
-	rra3OvBYRqWWy89S+qduF0n1pyQvPjYNC
-X-Received: by 2002:a17:90b:1c8d:b0:31e:fe21:ca43 with SMTP id 98e67ed59e1d1-3214fe6f11cmr5318322a91.4.1754416314132;
-        Tue, 05 Aug 2025 10:51:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE8vHN+2k1K+J0WmbiKP+Mi36OqmEJeM2GmdLwEejlFXJ3TRGfBScl4fkVD8dNT3zipp0INeg==
-X-Received: by 2002:a17:90b:1c8d:b0:31e:fe21:ca43 with SMTP id 98e67ed59e1d1-3214fe6f11cmr5318296a91.4.1754416313582;
-        Tue, 05 Aug 2025 10:51:53 -0700 (PDT)
-Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3216121ec0esm770702a91.10.2025.08.05.10.51.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Aug 2025 10:51:53 -0700 (PDT)
-Message-ID: <4131b3d4-44ce-48be-b8c8-23538c0ecb86@oss.qualcomm.com>
-Date: Tue, 5 Aug 2025 10:51:51 -0700
+	id 1ujxTY-000000009Y6-2Qdy;
+	Thu, 07 Aug 2025 10:03:56 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 57E0B600AE;
+	Thu,  7 Aug 2025 10:03:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A6A6C4CEEB;
+	Thu,  7 Aug 2025 10:03:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754561033;
+	bh=YsqhzwTGXsR1Inz4NSQKc7b929mseLNbPE/51iSw51I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aQLXgkfT6CABBvINOQd0JkgipyPhzRY4X9At4aPhH2YDexocOd/T49lHaLOQ9T55Q
+	 Fhjf1afz77KsJXqa5Qdn4/MkvJXaAjnBUQRhvuKx/CM6HCAt5LMN63ago/pVK2cPUy
+	 JNY3NsFeOlWFqo1P90D3aPZvelkDYwTCiL9q+px3Jlu+MezxMrHFr6Rtg7wftkNQeJ
+	 VJ3G8TshAj3JGk98t5Pb9pyj5aXLp9VyDlWsSrK0WMKb11i/5GeB3ZCMFs/o7dqyy5
+	 0GOdUVfXBsUw2vU39ErMupqgB7vk98M5i+V/wA6NPK1LMM+Mt9aboc11Fr08iv4vnw
+	 Khl6HMDo18RkQ==
+Date: Thu, 7 Aug 2025 15:33:43 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Nirmal Patel <nirmal.patel@linux.intel.com>, Jonathan Derrick <jonathan.derrick@linux.dev>, 
+	linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, ath12k@lists.infradead.org, 
+	ath11k@lists.infradead.org, ath10k@lists.infradead.org, Bjorn Helgaas <helgaas@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Qiang Yu <qiang.yu@oss.qualcomm.com>
+Subject: Re: [PATCH 4/6] wifi: ath12k: Use pci_{enable/disable}_link_state()
+ APIs to enable/disable ASPM states
+Message-ID: <poam3nvpyeahyvuyyow63u7hl63kq7ju6rondfonjjv6mix4vh@gflqxihdm2yk>
+References: <20250716-ath-aspm-fix-v1-0-dd3e62c1b692@oss.qualcomm.com>
+ <20250716-ath-aspm-fix-v1-4-dd3e62c1b692@oss.qualcomm.com>
+ <7a97d075-2e37-5f40-5247-867146938613@linux.intel.com>
+ <3q2gqo6ipzyqr7i64yhndtpg4etwep4lgffk7emxluxuhjfya5@vt7czmsgpbuw>
+ <52baf40b-41ed-2588-7817-4d8cd859e0d1@linux.intel.com>
+ <je7sz6lgig3picksxv4ncfjcnnw2sdsp5ja6bwofqjuydhc4v6@b3kavwicxggu>
+ <fdfcc2c8-c749-2616-9295-7f4aa37fb0a4@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next v3] wifi: ath11k: fix group data packet drops
- during rekey
-To: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
-        ath11k@lists.infradead.org
-References: <20250804075344.3494691-1-rameshkumar.sundaram@oss.qualcomm.com>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20250804075344.3494691-1-rameshkumar.sundaram@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 2h59vOP9L446x711iNb3Mza08nLC0Vyh
-X-Authority-Analysis: v=2.4 cv=TZ+WtQQh c=1 sm=1 tr=0 ts=689244bb cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=e70TP3dOR9hTogukJ0528Q==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=0Wns9SyGRh5zLXKo8moA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDEyNCBTYWx0ZWRfX9DymTA/TpufI
- yEawFLSz8NvFtMBDiyeiqNnIqQy9vGw5Hy0jdp7WhjUY823630VZSZVW3w/1o8X8L8T3ZRXHxLC
- QRWgopLblOAwPSnpyubuYJb3Pi3jvbTVB0Ubs7SMtHj4NP23oj06NksSxjcFCcI3bdEndN3bYZK
- Gcm33+R08omiwUI1PA/DsWG1Skh8dB0+3gg++IiTxVY7jjkLjy9FhhEaNVycfS+KcWdBPSzk5da
- dD1ipgRQu9AZNcxOyQx+0GoTpQpAJmZho64ET1bWphZ5cLuKuq2Ah78ZvMdVBu97WNR/DDrvtAX
- 5lk8+LZfTO4iquo3SEXFDiZIJu09bFhvh5u7zS9sxGbNjj3UcXyDdWoDoNkJq5ydNCsRWgJGyse
- YGAVyl2EakQp8OTmxaHF4zhUFP+x/Q6+rD07s40P0SFg80qp6SkkfcQUQ7aSnWlsKGnXb+mp
-X-Proofpoint-ORIG-GUID: 2h59vOP9L446x711iNb3Mza08nLC0Vyh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-05_04,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 mlxscore=0 suspectscore=0 impostorscore=0
- spamscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=999
- phishscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508050124
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250805_105157_214393_93EEB0C7 
-X-CRM114-Status: GOOD (  27.83  )
+In-Reply-To: <fdfcc2c8-c749-2616-9295-7f4aa37fb0a4@linux.intel.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,87 +82,162 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 8/4/2025 12:53 AM, Rameshkumar Sundaram wrote:
-> During GTK rekey, mac80211 issues a clear key (if the old key exists)
-> followed by an install key operation in the same context. This causes
-> ath11k to send two WMI commands in quick succession: one to clear the
-> old key and another to install the new key in the same slot.
+On Mon, Jul 21, 2025 at 02:28:24PM GMT, Ilpo Järvinen wrote:
+> On Mon, 21 Jul 2025, Manivannan Sadhasivam wrote:
 > 
-> Under certain conditions—especially under high load or time sensitive
-> scenarios, firmware may process these commands asynchronously in a way
-> that firmware assumes the key is cleared whereas hardware has a valid key.
-> This inconsistency between hardware and firmware leads to group addressed
-> packet drops. Only setting the same key again can restore a valid key in
-> firmware and allow packets to be transmitted.
+> > On Mon, Jul 21, 2025 at 01:09:05PM GMT, Ilpo Järvinen wrote:
+> > > On Mon, 21 Jul 2025, Manivannan Sadhasivam wrote:
+> > > > On Mon, Jul 21, 2025 at 11:04:10AM GMT, Ilpo Järvinen wrote:
+> > > > > On Wed, 16 Jul 2025, Manivannan Sadhasivam via B4 Relay wrote:
+> > > > > > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > > > > > 
+> > > > > > It is not recommended to enable/disable the ASPM states on the back of the
+> > > > > > PCI core directly using the LNKCTL register. It will break the PCI core's
+> > > > > > knowledge about the device ASPM states. So use the APIs exposed by the PCI
+> > > > > > core to enable/disable ASPM states.
+> > > > > > 
+> > > > > > Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
+> > > > > > 
+> > > > > > Reported-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> > > > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > > > > > ---
+> > > > > >  drivers/net/wireless/ath/ath.h        | 14 ++++++++++++++
+> > > > > >  drivers/net/wireless/ath/ath12k/pci.c | 10 ++++------
+> > > > > >  2 files changed, 18 insertions(+), 6 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/net/wireless/ath/ath.h b/drivers/net/wireless/ath/ath.h
+> > > > > > index 34654f710d8a1e63f65a47d4602e2035262a4d9e..ef685123b66bf4f41428fec67c1967f242a9ef27 100644
+> > > > > > --- a/drivers/net/wireless/ath/ath.h
+> > > > > > +++ b/drivers/net/wireless/ath/ath.h
+> > > > > > @@ -21,6 +21,8 @@
+> > > > > >  #include <linux/skbuff.h>
+> > > > > >  #include <linux/if_ether.h>
+> > > > > >  #include <linux/spinlock.h>
+> > > > > > +#include <linux/pci.h>
+> > > > > > +#include <linux/pci_regs.h>
+> > > > > >  #include <net/mac80211.h>
+> > > > > >  
+> > > > > >  /*
+> > > > > > @@ -336,4 +338,16 @@ static inline const char *ath_bus_type_to_string(enum ath_bus_type bustype)
+> > > > > >  	return ath_bus_type_strings[bustype];
+> > > > > >  }
+> > > > > >  
+> > > > > > +static inline int ath_pci_aspm_state(u16 lnkctl)
+> > > > > > +{
+> > > > > > +	int state = 0;
+> > > > > > +
+> > > > > > +	if (lnkctl & PCI_EXP_LNKCTL_ASPM_L0S)
+> > > > > > +		state |= PCIE_LINK_STATE_L0S;
+> > > > > > +	if (lnkctl & PCI_EXP_LNKCTL_ASPM_L1)
+> > > > > > +		state |= PCIE_LINK_STATE_L1;
+> > > > > > +
+> > > > > > +	return state;
+> > > > > > +}
+> > > > > > +
+> > > > > >  #endif /* ATH_H */
+> > > > > > diff --git a/drivers/net/wireless/ath/ath12k/pci.c b/drivers/net/wireless/ath/ath12k/pci.c
+> > > > > > index 489d546390fcdab8f615cc9184006a958d9f140a..a5e11509e3ab8faad6638ff78ce6a8a5e9c3cbbd 100644
+> > > > > > --- a/drivers/net/wireless/ath/ath12k/pci.c
+> > > > > > +++ b/drivers/net/wireless/ath/ath12k/pci.c
+> > > > > > @@ -16,6 +16,8 @@
+> > > > > >  #include "mhi.h"
+> > > > > >  #include "debug.h"
+> > > > > >  
+> > > > > > +#include "../ath.h"
+> > > > > > +
+> > > > > >  #define ATH12K_PCI_BAR_NUM		0
+> > > > > >  #define ATH12K_PCI_DMA_MASK		36
+> > > > > >  
+> > > > > > @@ -928,8 +930,7 @@ static void ath12k_pci_aspm_disable(struct ath12k_pci *ab_pci)
+> > > > > >  		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
+> > > > > >  
+> > > > > >  	/* disable L0s and L1 */
+> > > > > > -	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+> > > > > > -				   PCI_EXP_LNKCTL_ASPMC);
+> > > > > > +	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_L0S | PCIE_LINK_STATE_L1);
+> > > > > 
+> > > > > I'd remove to comment too as the code is self-explanatory after this 
+> > > > > change.
+> > > > > 
+> > > > 
+> > > > Ack
+> > > > 
+> > > > > >  
+> > > > > >  	set_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags);
+> > > > > >  }
+> > > > > > @@ -958,10 +959,7 @@ static void ath12k_pci_aspm_restore(struct ath12k_pci *ab_pci)
+> > > > > >  {
+> > > > > >  	if (ab_pci->ab->hw_params->supports_aspm &&
+> > > > > >  	    test_and_clear_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags))
+> > > > > > -		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+> > > > > > -						   PCI_EXP_LNKCTL_ASPMC,
+> > > > > > -						   ab_pci->link_ctl &
+> > > > > > -						   PCI_EXP_LNKCTL_ASPMC);
+> > > > > > +		pci_enable_link_state(ab_pci->pdev, ath_pci_aspm_state(ab_pci->link_ctl));
+> > > > > >  }
+> > > > > >  
+> > > > > >  static void ath12k_pci_cancel_workqueue(struct ath12k_base *ab)
+> > > > > 
+> > > > > As you now depend on ASPM driver being there, these should also add to 
+> > > > > Kconfig:
+> > > > > 
+> > > > > depends on PCIEASPM
+> > > > > 
+> > > > 
+> > > > I thought about it, but since this driver doesn't necessarily enable ASPM for
+> > > > all the devices it supports, I didn't add the dependency. But looking at it
+> > > > again, I think makes sense to add the dependency since the driver cannot work
+> > > > reliably without disabling ASPM (for the supported devices).
+> > > 
+> > > PCIEASPM is already default y and if EXPERT so it is not something 
+> > > that is expected to be disabled.
+> > > 
+> > > You also no longer need to move the ASPM link state defines LKP found out 
+> > > about after adding the depends on.
+> > > 
+> > 
+> > Yes, it will fix the reported issue, but guarding the definitions feels wrong to
+> > me still. Maybe that's something we can worry later.
+> > 
+> > > I'm a bit worried this series will regress in the cases where OS doesn't 
+> > > control ASPM so it might be necessary to include something along the 
+> > > lines of the patch below too (the earlier discussion on this is in Link 
+> > > tags):
+> > > 
+> > 
+> > atheros drivers didn't have such comment (why they were manually changing the
+> > LNKCTL register), but I agree that there is a chance that they could cause issue
+> > on platforms where BIOS didn't give ASPM control to the OS.
+> > 
+> > But as a non-ACPI developer, I don't know what does 'ACPI doesn't give
+> > permission to manage ASPM' mean exactly. Does ACPI allow to disable ASPM but not
+> > enable it?
 > 
-> This issue remained latent because the host's clear key commands were
-> not effective in firmware until commit 436a4e886598 ("ath11k: clear the
-> keys properly via DISABLE_KEY"). That commit enabled the host to
-> explicitly clear group keys, which inadvertently exposed the race.
+> While others are likely better qualified to answer this, my impression is 
+> that even disabling ASPM is not allowed when OS does has not been granted 
+> control over ASPM (OS should not change the value of ASPM Control in 
+> LNKCTL at all).
 > 
-> To mitigate this, restrict group key clearing across all modes (AP, STA,
-> MESH). During rekey, the new key can simply be set on top of the previous
-> one, avoiding the need for a clear followed by a set.
+> The obvious trouble then is, if a driver/hw needs ASPM to be disabled over 
+> certain period of its operation or entirely to ensure stable operation, 
+> and ASPM is enabled, we're between a rock and a hard place when changes to 
+> ASPM Control field are disallowed.
 > 
-> However, in AP mode specifically, permit group key clearing when no
-> stations are associated. This exception supports transitions from secure
-> modes (e.g., WPA2/WPA3) to open mode, during which all associated peers
-> are removed and the group key is cleared as part of the transition.
+> Because the ASPM driver took a hard stance of conformance here and did 
+> not let touching the ASPM Control field, we ended up having drivers that 
+> then write ASPM Control on their own to work around HW problems (see e.g. 
+> the comments in drivers/net/ethernet/intel/e1000e/netdev.c that make it 
+> very clear it was intentional from the driver) so it was considered that 
+> allowing disabling ASPM might be acceptable compromise over drivers doing 
+> it on their own (and leaving the ASPM driver out of the loop because it 
+> cannot be relied to disable ASPM consistently in all cases).
 > 
-> Add a per-BSS station counter to track the presence of stations during
-> set key operations. Also add a reset_group_keys flag to track the key
-> re-installation state and avoid repeated installation of the same key
-> when the number of connected stations transitions to non-zero within a
-> rekey period.
-> 
-> Additionally, for AP and Mesh modes, when the first station associates,
-> reinstall the same group key that was last set. This ensures that the
-> firmware recovers from any race that may have occurred during a previous
-> key clear when no stations were associated.
-> 
-> This change ensures that key clearing is permitted only when no clients
-> are connected, avoiding packet loss while enabling dynamic security mode
-> transitions.
-> 
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
-> 
-> Reported-by: Steffen Moser <lists@steffen-moser.de>
-> Closes: https://lore.kernel.org/linux-wireless/c6366409-9928-4dd7-bf7b-ba7fcf20eabf@steffen-moser.de
-> Fixes: 436a4e886598 ("ath11k: clear the keys properly via DISABLE_KEY")
-> Signed-off-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-> ---
-> v3:
->   - Allowed clear key strictly only for AP mode
->   - Rephrased the commit text and comment in ath11k_mac_op_set_key()
->     to explain that the race occures rarely under heavy load and
->     discrepancy of states between firmware and hardware
->   - Added newline (\n) at the end of warn log in ath11k_set_group_keys()
->   - Made addr varaible as const * in ath11k_set_group_keys()
-> v2:
->   - Followed r-xmas style
->   - Removed vdev_type check before calling ath11k_set_group_keys()
->   - Removed lockdep assert in ath11k_set_group_keys()
->   - Removed flags variable and passed WMI_KEY_GROUP in ath11k_set_group_keys()
->   - Changed the if condition to have positive cases in ath11k_mac_op_set_key()
->   - Added code comments in ath11k_mac_op_set_key() to explain how clear key and
->     set key are issue back to back by mac80211 and added high level information
->     about the firmware race.
->   - Added comments in ath11k_mac_op_set_key() and ath11k_mac_station_add() to
->     explain why a reinstall of same key is needed.
-> ---
 
-To clear up any confusion, this should have been a v3 posted internally for
-review, and the history listed is from prior internal review.
+Since there was no comments from ACPI folks, I will go ahead with your patch. I
+will also CC them in the next version so that they can yell at me if they want.
 
-So this is actually the first public version, but to avoid confusion, all
-followup to the current public review should be incorporated in a public v4.
+- Mani
 
-Also the follow-up should use the ath-current branch tag since this should be
-incorporated into v6.17 instead of waiting for the v6.18 development cycle to
-complete.
-
-/jeff
-/jeff
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
