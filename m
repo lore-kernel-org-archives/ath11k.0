@@ -4,85 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0DEFC87FD2
-	for <ath11k@archiver.kernel.org>; Mon, 11 Aug 2025 12:27:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C372CA0EC4
+	for <ath11k@archiver.kernel.org>; Mon, 11 Aug 2025 23:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GYdkcTWbUlS5e0ai1u6zNM9VGBZaPTEbSzeTgy3Ag4o=; b=m1VbNR7u8pQFAcHYsYlI6kNtX0
-	9jaKu1bc+hNLb4HSLhD9db4RCpFn9wjJMUF6dg0ImBs0UAQ5ZlefZJ99a9Iz50gMWQFW0oVvCNSF3
-	Pzq13O7/Igd/JbAkYGTVssU1ZDn+LLYju96zBtEZbcWMJvgl7j+oFUud+LSBIulZ9r9mBou7N66TJ
-	Dz57nrB/lnEyGKSLXymmaHzNtmokbkqKVRRVkWxXAMGsXAudavmYuu2WoKfhQ130H7BKZ7XXaswPk
-	vHqXvTvui5SestAlWFsnt/DymFIOfZXe73LmKXBDOj80GoRbat0STa4btAklxVyzewGzcjCJSBMAS
-	aBCVKJww==;
+	bh=dGsgGPBgImInUSa/S/a/bgy2SN3F+qWPRbzs8M9qZRg=; b=pq1JgqE97bRGJxgmD6qC1yP0ga
+	s1SvFs2+LikspPw4wkQDaTKoWleG5de6SVDIMNtmqYnoJtCC9KT393W9TO4TL+5ESq9bMF8Bei4kl
+	cx66IPCr0pcSRG0DFzv0g4S8MMuMrseYgtyBdFuuJZ3LDNUr6LFPJ9Y4Vohg2TX4lsUPQhQFhDl0B
+	OcDQE+GXN3qRay5zrdHd6QEm6coGiG2z/T8jfLTlSEykk/nQg0RQ7VLJ4+YV1mAWzp8p2BNwy5MH+
+	rzLAHs5cgGyLHVsfpvjUAls0g99aQ9i8Q9NSYGfbB5ZhgBsv/bY/hDIeIyP0mPruIM8XPoZpeG2gm
+	G7BLsUwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ulRcZ-00000007dPr-451l;
-	Mon, 11 Aug 2025 12:27:23 +0000
-Received: from mail-vk1-xa36.google.com ([2607:f8b0:4864:20::a36])
+	id 1ulc2d-00000009Osn-2244;
+	Mon, 11 Aug 2025 23:34:59 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ulRcX-00000007dPS-1bC8
+	id 1ulc2a-00000009OsG-3LyL
 	for ath11k@lists.infradead.org;
-	Mon, 11 Aug 2025 12:27:23 +0000
-Received: by mail-vk1-xa36.google.com with SMTP id 71dfb90a1353d-5393cfc2e77so2492572e0c.3
-        for <ath11k@lists.infradead.org>; Mon, 11 Aug 2025 05:27:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=moment-tech.20230601.gappssmtp.com; s=20230601; t=1754915240; x=1755520040; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GYdkcTWbUlS5e0ai1u6zNM9VGBZaPTEbSzeTgy3Ag4o=;
-        b=Fds7qVheElZyvixXJCw8W0wE4gu1hYXvgFIn3y+/knhItVMo2HHwifHXMPJL+xAPSA
-         4d5CmPg5rKb/SbZC+Ah5GkApTjH5nIA4Xyp0CMMmiFf5DQOLiR51/Zz44gyt41oCNP7H
-         GoImbtpiZxNxOZFpeATgCzoNCFukfKFyS+dyCS43Vzfi3jTpjHWaBT7HGT4SgnbEWhQe
-         NS4YPw0cq0CVbzlVSGalgTzgY+PPUXm02SHP+pGdMXoz7e7gS2N5BXGTIqkkTZZ9eJJO
-         mgv8Z3flkQG3crO2+HqKBYl4ZjHY8/eoYvSwFIYqhCogarnn6pb9fi2N56K2ghONe5oy
-         XFcw==
+	Mon, 11 Aug 2025 23:34:58 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57BH6bwX021817
+	for <ath11k@lists.infradead.org>; Mon, 11 Aug 2025 23:34:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dGsgGPBgImInUSa/S/a/bgy2SN3F+qWPRbzs8M9qZRg=; b=UfYdKDzCVDorIY0f
+	xZNFXRoF5OdEb2TIZvoEbG+JXGHeCs8yC3cGXVZjXV/DkqNoQxnzv65xisMCazu3
+	2qPgnQNf5jWSzy77dWrYzEdtuOgsKksWeSQ1loWAER/fS3KbPbe2SAWupUEmpoc0
+	rcHpjsbhZdutypSSa7OaAV8C8JeLMuD06levYT6geCAsouvg0yYI/WYMJ0qCSRgh
+	joZBpsG7HQYGOeORFuNv57+esVD9V0VkWogsU7tlLSXRv10RjK1UEkkeMbz8lRHz
+	cHPFU37LyUZcUZSfca6WlCsJDLQKkwNa04q8bWlfqxIQ+l4gIXh7gXc9wBRRv6lF
+	ukYgaQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dy3g628m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 11 Aug 2025 23:34:55 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-76bf2f8ba3aso3964384b3a.1
+        for <ath11k@lists.infradead.org>; Mon, 11 Aug 2025 16:34:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754915240; x=1755520040;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GYdkcTWbUlS5e0ai1u6zNM9VGBZaPTEbSzeTgy3Ag4o=;
-        b=VlI/zeTXP9QI9HaKAejlFIPJSR8+jUD9GB0KzExflpTnkBsVU7lOKhQrucczQMseXb
-         GWeUE5erAPi3LpKy6G/NbtwWl6ouLtHFuDIjkbhU4QvgffOkbl/BRlK0CgDzcmkAjuY2
-         sKmuSIN5fQ4XrSD2EQ6lCw33cGRG6f/Q0VXF/dEO3ZLtBJivUAU7EeVNCAVjZeMR3mGZ
-         1MXKArBEApE6z61qgAl1CaH08c1meMw9hQVWOFNAazgjXD6py2KZjLHDozSFkeoEXfAS
-         A+33OKMi/jntLlPx+HA8p+MvNtT/aG0rH/IekD+yUjJo20GyguNsxrENyaUbCVZu+1W5
-         ETrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxQKklh2+R79hyfh/f5hxYlWEU8qw7eYoxnsDWe5xiqr6tiISRnmmz+eobVh4GCiIT4f8WkDY=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxtAdrR1Ri/SJD5wOWkM9fQNx4em7HmsUCxaEWr8ioh2l65D8oX
-	jOQIlT2EivzDYdSMCX4Gq5ohhQ8lF4DJwGxBARYHXcQ6qCEXzEWlhG+JwQGazEvksunh9VyNR9E
-	8T4sIvvlaGlSqaQTt02z1MIerCtZm3hwgMgvmVrEfPw==
-X-Gm-Gg: ASbGncsJqsbEckqHsaBqrnia/vCKl0eUKCCPJsw2Izv78jcb1uTtSZRWwhd2jFu5+rL
-	1SRI6jOc8DJeobUP5pdycSsrOdIJl1V4cLM6ybCa1cBFEdBJxXp0KwacWSqlERnDPZ1WHzQ45Fe
-	FudQ9/xzmN2GIX4eWNbVh+tkIEbDJRxRIf+ojHYnYjot4cUoB5DTKgk6IHx44o2RWpKBYDxvzSB
-	kbUcNQhDg==
-X-Google-Smtp-Source: AGHT+IGtUSrENkQ194ELDBv806l0BAdJnjsN3630pPKssfifeVkFRi4vYZkrUKQ9gqEQB0V2wCZ4cx9QV5b/pC4i+2o=
-X-Received: by 2002:a05:6122:1da2:b0:539:58c2:1e0a with SMTP id
- 71dfb90a1353d-53a52d9e73bmr4740534e0c.4.1754915239717; Mon, 11 Aug 2025
- 05:27:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754955294; x=1755560094;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dGsgGPBgImInUSa/S/a/bgy2SN3F+qWPRbzs8M9qZRg=;
+        b=Nq6YWr9aZw0zXhtuDt35l6ZhfF4d1rilB5wdc9/73BmMB4lMFPBw75bDYxGazKx2rR
+         AOyR1zbrQlMZzpI7R1qPBmsQBbM2uwpE6LpbGCSOhLWubFsso6BTTnNcLF3mUbhSTd7V
+         B9/m97a8OTAhC1EW5KouZlkx6lyKQy8U6qyo/FmFMglk9l0nyylEu8ozabkQIxhhyl/W
+         ss3dBfpJUNsSEiSiyeBV+NI6I/6xAGCn7czjk7ZEyJfVbFzukg7ay348zmzNcqvq7Nhe
+         wqeSRJSLhXvwYd3cM7Z0nUsOrR32XzNI2fdYb0eCrTcmszWzKfppSVmfdowYKS7PEvca
+         e/Kw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbhiBGjoL1nqCbT80juR4TaPQhhaA05XdYBJADKxj+XJPKBr39fDUUaXC+H3nXnAZ23NYcec0=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyV/wBlbw4ckYEXEJSaUJ0NbTWPtnLysxPaCwnUf65VxYU1LXZS
+	MVl2iMY4n3Dbgc6Fd5oxnAgKB/9IfJXhyj0HGk0Z9Xl0BEjfTuyhZ8FyVmBE4lcn6NYQtnkm1Sm
+	sH+taRWditDTw5E1tcAl7+jy0tV9Ee9H/9rwn4lNHQ49fLMmvERqB+PSNzfoWBZ3G6uujCTBC
+X-Gm-Gg: ASbGnctVga55OCeAIReyU2pK5LFzFvb0QN1Lf2v/a+cAI5p1AfSIRzbFeb8frtZutaB
+	efvs/ByOVWZGJGfKJId+6tR/Pqq2h+DmcW18DfZs4VzxMVSAxUmqE2Ni/Ogho1Gp5AvQB0i/Ped
+	BDR5MLQOxDHcy5yE2/UvOLBo2NBMaf69ghKXypCZn4pQlwcy9jZ3iIO3URvo0zA2agk2gL7aIdN
+	m9fVq7t2HlbylApX8nBzRxOresQle/Z/05Cxc3K8p5gDKBfQA4IaNuWSBV61IS1YKDf6bElJlTu
+	ywtixcKIUcqqQ6cGIQIS5VLJTRRltjuJy3v2rLawnEwEIcbBPcz+3IXf9QdsGLQuRv4mqQZzAQZ
+	nsu6I3/RercSymFYrR6u3nR3z7mgH7CmB
+X-Received: by 2002:a17:903:2392:b0:237:e3bc:7691 with SMTP id d9443c01a7336-242fc351ad6mr23924415ad.13.1754955294206;
+        Mon, 11 Aug 2025 16:34:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFcAf6wG5Jrq1BlaBArK3/b+PZCCmoqHFiS1lwy/yi8xLa5GpCpUXgaZCTQAjPMSBzhPwNRzA==
+X-Received: by 2002:a17:903:2392:b0:237:e3bc:7691 with SMTP id d9443c01a7336-242fc351ad6mr23924115ad.13.1754955293808;
+        Mon, 11 Aug 2025 16:34:53 -0700 (PDT)
+Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef674bsm281745595ad.17.2025.08.11.16.34.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Aug 2025 16:34:52 -0700 (PDT)
+Message-ID: <5b769b75-df2a-4dba-a41b-198851b61b9c@oss.qualcomm.com>
+Date: Mon, 11 Aug 2025 16:34:51 -0700
 MIME-Version: 1.0
-References: <20250611164004.38580-1-balsam.chihi@moment.tech>
- <91fa8b1d-7bd0-4beb-80ef-eb65d2562f17@oss.qualcomm.com> <CAONkfw5Xyk8CGmVDpWZfkWnuCcFq6400jUkqyeMDtS0UNSh9vg@mail.gmail.com>
- <ecab2156-b234-4fba-a2ad-13a2d9b4693f@oss.qualcomm.com>
-In-Reply-To: <ecab2156-b234-4fba-a2ad-13a2d9b4693f@oss.qualcomm.com>
-From: Balsam Chihi <balsam.chihi@moment.tech>
-Date: Mon, 11 Aug 2025 14:26:43 +0200
-X-Gm-Features: Ac12FXw1P5XX-AczedanlW-0plGUXiJmPaZUga9P5lPjxeYcpWrMRPbb3YofUmg
-Message-ID: <CAONkfw4hkDQtJyOj4RVsR3V=FJDJYKnjtmqzD=jBMy1ax=tC_A@mail.gmail.com>
-Subject: Re: [PATCH] ath11k: pci: avoid unsafe register access during shutdown
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	jjohnson@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] Revert "ath11k: clear the keys properly via DISABLE_KEY"
+To: Nicolas Escande <nico.escande@gmail.com>, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Steffen Moser <lists@steffen-moser.de>
+References: <20250117191455.3395145-1-nico.escande@gmail.com>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20250117191455.3395145-1-nico.escande@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=X4lSKHTe c=1 sm=1 tr=0 ts=689a7e1f cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=e70TP3dOR9hTogukJ0528Q==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=qC_FGOx9AAAA:8
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=WobwCshsJSUAwqENw7MA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22 a=fsdK_YakeE02zTmptMdW:22
+ a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzMSBTYWx0ZWRfX71H14szpHlSA
+ Vd+HIqlmWtv2aW7GlXyeciinSsQSsaPQGI5edyrECqKlEBCWrxBlTUJKg0fMo1vV3pe9GLm7tHV
+ h5dz5bzr3ui94iXraZPk/UfdUuc4MjGJxZKKMdG4aao2BRW+lj9qkAUWx3h2fjBVBweI95Gmwzt
+ 7v9nobiKkisJWz8Mq6ZngR+dtfObmI9Ytn70rJi0JrJ/nD6RaLiY8o546Qa60TN0Q5w776muwdw
+ QaOGQZUejGX0T0llo4DVm+Z1p+UvPoBXlBjpnjGoUFEAoLL/BtxTa79/f+fE3Z58BpUQ4EHfzKL
+ eb5IBmqfPH7UGPTzidoctOquY1gNYMGLaQrifc4/fB2LPP5LyYEMInBC7cC5luLaXH/r4Z5Imkw
+ dJs1OFA3
+X-Proofpoint-GUID: 2w3ouxXvmNkvFn0rQD-buNs9URTQ05bu
+X-Proofpoint-ORIG-GUID: 2w3ouxXvmNkvFn0rQD-buNs9URTQ05bu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-11_05,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 adultscore=0
+ spamscore=0 bulkscore=0 suspectscore=0 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090031
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250811_052721_664424_43B26E3E 
-X-CRM114-Status: GOOD (  41.78  )
+X-CRM114-CacheID: sfid-20250811_163456_848368_E9042431 
+X-CRM114-Status: GOOD (  10.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,244 +130,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Aug 11, 2025 at 1:00=E2=80=AFPM Baochen Qiang
-<baochen.qiang@oss.qualcomm.com> wrote:
->
->
->
-> On 8/11/2025 5:08 PM, Balsam Chihi wrote:
-> > On Fri, Jul 25, 2025 at 5:25=E2=80=AFAM Baochen Qiang
-> > <baochen.qiang@oss.qualcomm.com> wrote:
-> >>
-> >>
-> >>
-> >> On 6/12/2025 12:40 AM, balsam.chihi@moment.tech wrote:
-> >>> From: Balsam CHIHI <balsam.chihi@moment.tech>
-> >>>
-> >
-> > Hello, sorry for the delay. I was OoO.
-> >
-> >>> During system reboot or module removal (rmmod), a crash was observed
-> >>> due to a synchronous external abort caused by invalid register access
-> >>> in ath11k_pci_clear_dbg_registers(). This happens when the device is
-> >>> already powered off and the driver attempts to read debug registers.
-> >>
-> >> What does 'powered off' mean exactly here? is WLAN powered by an inter=
-nal/external supply
-> >> that will be removed during rmmod/reboot?
-> >
-> > The "powered off" means that the wlan card is rmmod or reboot.
-> > It is not powered by external supply.
->
-> OK.
->
-> >
-> >>
-> >>>
-> >>> The crash log shows:
-> >>> root@OpenWrt:~# reboot
-> >>> [  343.663492] Internal error: synchronous external abort:
-> >>> 0000000096000210 [#1] SMP
-> >>> [  343.670992] Modules linked in: [...]
-> >>> [  343.842432] CPU: 7 PID: 9435 Comm: procd Tainted: G O 6.6.86 #0
-> >>> [  343.849746] Hardware name: LS1088A
-> >>> [  343.856969] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS =
-BTYPE=3D--)
-> >>> [  343.863933] pc : ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
-> >>
-> >> I don't see any relationship between ath11k_pci_clear_dbg_registers() =
-and this PC pointer.
-> >> So how did you locate the problematic register access then?
-> >
-> > I tyied to look for the problem based the PC pointer but I was not
-> > abled to find it.
-> > So, I added prints in ath11k driver to find out where it stucks,
-> > classical debug method.
->
-> Yeah, classical and always work.
->
-> > Then I found out that any "ath11k_pcic_read32()" call fails on rmmod
-> > ath11k_pci or reboot,
->
-> I worry PCIe link is not stable on your platform when rmmod/reboot. Can y=
-ou try with ASPM
-> disabled?
+On 1/17/2025 11:14 AM, Nicolas Escande wrote:
+> This reverts commit 436a4e88659842a7cf634d7cc088c8f2cc94ebf5.
+> 
+> This as been reported by multiple people [0] that with this commit,
+> broadcast packets were not being delivered after GTK exchange.
+> Qualcomm seems to have a similar patch [1] confirming the issue.
+> 
+> [0] https://lore.kernel.org/linux-wireless/Z2Q9POuV-6MIdzRf@pilgrim/
+> [1] https://git.codelinaro.org/clo/qsdk/oss/system/feeds/wlan-open/-/blob/win.wlan_host_opensource.3.0.r24/patches/ath11k/350-ath11k-Revert-clear-the-keys-properly-when-DISABLE_K.patch
+> 
+> Fixes: 436a4e886598 ("ath11k: clear the keys properly via DISABLE_KEY")
+> Reported-by: Steffen Moser <lists@steffen-moser.de>
+> Closes: https://lore.kernel.org/linux-wireless/c6366409-9928-4dd7-bf7b-ba7fcf20eabf@steffen-moser.de
+> Signed-off-by: Nicolas Escande <nico.escande@gmail.com>
+> ---
 
-ASPM is indeed disabled in the Kernel config.
-I will also try with your patch and get back to you with the results.
-And in the meanwhile, I would like to let you know the following informatio=
-n :
-Other PCIe devices are working well even with ASPM enabled in the same slot=
-,
-and the issue is present in all PCIe slots.
-I have many board variants of the same platform that showed the same output=
-.
-Maybe it is only related to the Qualcomm QCN9074 WiFi6E chipset?
-I tried 2 wifi cards from two manufacturers of the same wifi chip and
-the issue is the same.
-Is it related to the SoC Freescale Layerscape LS1088A?
-It seems like the kernel is accessing a freed resource or no longer
-existing memory address because the wifi card is turned off.
+Can you please check if this alternative addresses the issue:
+[PATCH ath-current v4] wifi: ath11k: fix group data packet drops during rekey
+https://msgid.link/20250810170018.1124014-1-rameshkumar.sundaram@oss.qualcomm.com
 
+Any Tested-on/Tested-by tags would be appreciated!
 
->
-> --- a/drivers/net/wireless/ath/ath11k/pci.c
-> +++ b/drivers/net/wireless/ath/ath11k/pci.c
-> @@ -605,11 +605,13 @@ static void ath11k_pci_aspm_disable(struct ath11k_p=
-ci *ab_pci)
->
->  static void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci)
->  {
-> +#if 0
->         if (test_and_clear_bit(ATH11K_PCI_ASPM_RESTORE, &ab_pci->flags))
->                 pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_=
-LNKCTL,
->                                                    PCI_EXP_LNKCTL_ASPMC,
->                                                    ab_pci->link_ctl &
->                                                    PCI_EXP_LNKCTL_ASPMC);
-> +#endif
->  }
->
->  #ifdef CONFIG_DEV_COREDUMP
->
->
-> > but they work fine when insmod/boot ath11k_pci.
-> >
-> >>
-> >>> [  343.870125] lr : ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
-> >>> [...]
-> >>> [  343.950800] Call trace:
-> >>> [  343.953241]  ath11k_pci_get_msi_irq+0x18a0/0x1900 [ath11k_pci]
-> >>> [  343.959080]  ath11k_pcic_init_msi_config+0x98/0xc4 [ath11k]
-> >>> [  343.964671]  ath11k_pcic_read32+0x30/0xb4 [ath11k]
-> >>> [  343.969477]  ath11k_pci_get_msi_irq+0x528/0x1900 [ath11k_pci]
-> >>> [  343.975230]  ath11k_pci_get_msi_irq+0x1460/0x1900 [ath11k_pci]
-> >>> [  343.981068]  ath11k_pci_get_msi_irq+0x1750/0x1900 [ath11k_pci]
-> >>> [  343.986906]  pci_device_shutdown+0x34/0x44
-> >>> [  343.991004]  device_shutdown+0x160/0x268
-> >>> [  343.994928]  kernel_restart+0x40/0xc0
-> >>> [  343.998594]  __do_sys_reboot+0x104/0x23c
-> >>> [  344.002518]  __arm64_sys_reboot+0x24/0x30
-> >>> [  344.006529]  do_el0_svc+0x6c/0x100
-> >>> [  344.009931]  el0_svc+0x28/0x9c
-> >>> [  344.012986]  el0t_64_sync_handler+0x120/0x12c
-> >>> [  344.017344]  el0t_64_sync+0x178/0x17c
-> >>> [  344.021009] Code: f94e0a80 92404a73 91420273 8b130013 (b9400273)
-> >>> [  344.027102] ---[ end trace 0000000000000000 ]---
-> >>>
-> >>> This patch adds a `power_on` flag to conditionally skip debug registe=
-r
-> >>> reads when the device is not powered, preventing invalid memory acces=
-s.
-> >>
-> >> why is only 'read' concerned here?
-> >
-> > Good question, I can't explain why only the reading fails but not the w=
-riting.
-> >
-> >>
-> >> You are skipping several 'read' in this change, could you help narrow =
-down which
-> >> individual read instance causes this?
-> >>
-> >
-> > All read calls fail on rmmod/reboot, when
-> > ath11k_pci_clear_dbg_registers() is called.
-> > But they all succeed when insmod/boot ath11k_pci.
-> >
-> >>>
-> >>> With this change, the system no longer crashes on reboot or rmmod,
-> >>> and the driver continues to function correctly when reloaded.
-> >>>
-> >>> Tested-on: QCN9074 hw2.0 PCIe on LS1088A
-> >>> Tested-on: OpenWrt 24.10.1
-> >>> Fixes: crash on reboot/rmmod due to invalid register access
-> >>> Signed-off-by: Balsam CHIHI <balsam.chihi@moment.tech>
-> >>> ---
-> >>>  drivers/net/wireless/ath/ath11k/pci.c | 36 ++++++++++++++++---------=
---
-> >>>  1 file changed, 21 insertions(+), 15 deletions(-)
-> >>>
-> >>> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wire=
-less/ath/ath11k/pci.c
-> >>> index 78444f8ea153..0c1b55957557 100644
-> >>> --- a/drivers/net/wireless/ath/ath11k/pci.c
-> >>> +++ b/drivers/net/wireless/ath/ath11k/pci.c
-> >>> @@ -203,16 +203,18 @@ static void ath11k_pci_soc_global_reset(struct =
-ath11k_base *ab)
-> >>>               ath11k_warn(ab, "link down error during global reset\n"=
-);
-> >>>  }
-> >>>
-> >>> -static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)
-> >>> +static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab, b=
-ool power_on)
-> >>>  {
-> >>> -     u32 val;
-> >>> +     if (power_on) {
-> >>> +             u32 val;
-> >>>
-> >>> -     /* read cookie */
-> >>> -     val =3D ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
-> >>> -     ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%x\n", va=
-l);
-> >>> +             /* read cookie */
-> >>> +             val =3D ath11k_pcic_read32(ab, PCIE_Q6_COOKIE_ADDR);
-> >>> +             ath11k_dbg(ab, ATH11K_DBG_PCI, "pcie_q6_cookie_addr 0x%=
-x\n", val);
-> >>>
-> >>> -     val =3D ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> >>> -     ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", va=
-l);
-> >>> +             val =3D ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> >>> +             ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%=
-x\n", val);
-> >>> +     }
-> >>>
-> >>>       /* TODO: exact time to sleep is uncertain */
-> >>>       mdelay(10);
-> >>> @@ -223,14 +225,18 @@ static void ath11k_pci_clear_dbg_registers(stru=
-ct ath11k_base *ab)
-> >>>       ath11k_pcic_write32(ab, WLAON_WARM_SW_ENTRY, 0);
-> >>>       mdelay(10);
-> >>>
-> >>> -     val =3D ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> >>> -     ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%x\n", va=
-l);
-> >>> +     if (power_on) {
-> >>> +             u32 val;
-> >>>
-> >>> -     /* A read clear register. clear the register to prevent
-> >>> -      * Q6 from entering wrong code path.
-> >>> -      */
-> >>> -     val =3D ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_REG);
-> >>> -     ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", val);
-> >>> +             val =3D ath11k_pcic_read32(ab, WLAON_WARM_SW_ENTRY);
-> >>> +             ath11k_dbg(ab, ATH11K_DBG_PCI, "wlaon_warm_sw_entry 0x%=
-x\n", val);
-> >>> +
-> >>> +             /* A read clear register. clear the register to prevent
-> >>> +             * Q6 from entering wrong code path.
-> >>> +             */
-> >>> +             val =3D ath11k_pcic_read32(ab, WLAON_SOC_RESET_CAUSE_RE=
-G);
-> >>> +             ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause %d\n", =
-val);
-> >>> +     }
-> >>>  }
-> >>>
-> >>>  static int ath11k_pci_set_link_reg(struct ath11k_base *ab,
-> >>> @@ -368,7 +374,7 @@ static void ath11k_pci_sw_reset(struct ath11k_bas=
-e *ab, bool power_on)
-> >>>       }
-> >>>
-> >>>       ath11k_mhi_clear_vector(ab);
-> >>> -     ath11k_pci_clear_dbg_registers(ab);
-> >>> +     ath11k_pci_clear_dbg_registers(ab, power_on);
-> >>>       ath11k_pci_soc_global_reset(ab);
-> >>>       ath11k_mhi_set_mhictrl_reset(ab);
-> >>>  }
-> >>
-> >
->
+/jeff
 
