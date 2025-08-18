@@ -4,133 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F46CA0EE4
-	for <ath11k@archiver.kernel.org>; Mon, 18 Aug 2025 06:48:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6787CA0EE4
+	for <ath11k@archiver.kernel.org>; Mon, 18 Aug 2025 07:51:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=UeidIzr/dKJkWw7XetUW6GunyrwIPKaUXOvs0jevNFA=; b=iYEX9kKz378JL/8n62XBWdwEeh
-	k+2P/nOpIyL46W/STlOvCDMcvgXQG5ZFJwvrTPGwUsGAPGUPN2JwON8qLQi8Vx17pjsJjBZeXcO7q
-	6Bi92XT/lZFDLarqdKsXFWdBp2XTV2xGAh7mVm9OEd/2v2531Pn3odRqeIJWhZB5I7ARGRdhHPYdu
-	R/v/l/hTXq7bOYh+EWAyW9idL/0ilrGXu7PEb12LGWkDmYBwu0KSnDuPn/vHr7zbN8EAeXeQdy+6l
-	zhDOoTiZpUcRLd7w/8B0MCtCIUNQ3CxC79jns5x9KF6HkESCBBK9m850LC7Io4KBz/YPet6Ea83Wu
-	2fFLyUXw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=BRUR63/9aD2Ruqw6bsMyEoFGN4lusEU40fZgzCYOtXk=; b=PUrI4MGxDVbNZEEFl9m5lrV+iV
+	nfGOq2urmNMd57+FUFAUMJ0THhjaxgSJ/rzKIXUUNPBSZp9fk5Cfy4aZxFUKEylFlYAISADP4CWfQ
+	rnFIN4xuDh+Eb5oLGgsp9rFFL7fPQJF/EeN83tDKpXU1qID0EV6NKo7pEqrXPYWLFfe7dGw3KP9Jn
+	i016XrYpS0mEiS7xnVgh2AKISTOd3REdTP77dWK/uH38sqKUTTfu5Qu/CsDoR4m08JKeHe2wj2M/8
+	lG9tiwWo1tosYLbnmusHSyY22G/WwLlTAhDe1SOb8TbGmVJ0ZGp0kiuKGIELwIWsK6p44hrfJRVHV
+	XvrUkIMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1untfQ-00000006hvX-0gRx;
-	Mon, 18 Aug 2025 06:48:28 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1unueQ-00000006pVK-02Qx;
+	Mon, 18 Aug 2025 07:51:31 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1unsit-00000006ZkK-1cWK
+	id 1unu0E-00000006lWj-0GzK
 	for ath11k@lists.infradead.org;
-	Mon, 18 Aug 2025 05:48:00 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57HNIObn001035
-	for <ath11k@lists.infradead.org>; Mon, 18 Aug 2025 05:47:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UeidIzr/dKJkWw7XetUW6GunyrwIPKaUXOvs0jevNFA=; b=WpZ5N/9lLxtvIiLL
-	tvCtZGO6DxuJNKFjeGBEAEw53dQ6VjgKlknokGx5ZCc71GJ9wmZpYK1RnmMpbP/i
-	EcUpg1j9CxTzngUGbVkEDfQJF9ZTWTbKa9KG5ZWPSk9S0LObhKUnnZj3OCFiI0SP
-	fMwh8HxIDR70+9MuKs6TAdz6ouni790VfwOO5zeVKWSu4EwI21u23JV49aZwgUCZ
-	9a1ZWtIf7oCeO0OCgSwxh4sjaUOs+BMT3fwbQtmZDn1JA47odMnL1yhcMtPZgovo
-	ON7pLqDlAajFnRvPgta8UhmjASThtb5c/rs5YPpaomcdwcM8xxK7NrbGSAOBE5Gm
-	ccyr0w==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jgxtbheq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 18 Aug 2025 05:47:58 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2445805d386so39098955ad.1
-        for <ath11k@lists.infradead.org>; Sun, 17 Aug 2025 22:47:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755496077; x=1756100877;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UeidIzr/dKJkWw7XetUW6GunyrwIPKaUXOvs0jevNFA=;
-        b=uSumFVMwX+g3zxMTSIsp/DfDuVmr55CI98B10swoHWaHvTymbAUkzcBYUVOJTBDtgX
-         U2+zcBKdNFcGkAdxLINntTTkJn5ejBCJc5oWj9xJp8P2Cy74RrZtkRACPXKiAcc9+vGC
-         USE09XfgrK46mkSzVsofV8P9nfpxhxjWwviWg9w3xWNVwtgMA4eHuwzRbVKMeD95FpGW
-         xFBKCQpPBBF+rOU6+x5byT/jkqFXIgjElXWhp4JFiPNz5d84WhaLjWFE+cdhoenaWpaI
-         4/XJPsr3vF2Yb9GNhA2Lz3VSOxVQBTqPx4NZyOSAtr9dpqxP88Tdw0Nb210UpyA11Ut8
-         KIKg==
-X-Forwarded-Encrypted: i=1; AJvYcCVqR9DIV/8F09c9NK3xRSChKDrz3moXm2Tq6SC1zvjQVZ3C7X6JecOxHmv3m4GE+Mx5GecWm6k=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx+u7ZAsciMHYNMJ3qN3r94/H7qU71bU8fARD+aSOfj3wxr+E3N
-	LIexEp641lFRu/ILsfLPVI/kCztwU7HFdAtvgwI4426BYoDiapBOlDBtO180a30y7Ekj91Wa46B
-	vU+ifjiv9ISnHJgwUsvY2zgfQtWPGtvK/0AQBh8NwaUiXazQw3NdASbliGloXFeQc
-X-Gm-Gg: ASbGnctcva7BgUeE4OhySZzNfkOIfKpA2pttchI/dChcc0v86Q8+IGct+zbu3DqKBXS
-	PeYn6UtuUFgq+/yGO9VWGn8vgmKhOc0N+cpksbBcZdJxe/xKZsclt6EXuHvb9LXWBd+gaXODL9z
-	iffDYpK4rSmxNR5BVPenBczlbFFxk+XxXU87aajqjwAsiXNMEAyPR5MSSMBP58VZwAICXhkskbZ
-	eRpvHe0n+yHo/3wuWrCrhsbUCzFwdZ2iWdSnFbcj4120FacxPluhF5X3+DNv6L+v0HpGu4soguc
-	lN37IDgb2i/2em7TfPDaAXSwbnDWQd9pQcFK8z0zF4PHJC8CjnRPrI6ETW8LJmM4FwOHurW1ag=
-	=
-X-Received: by 2002:a17:902:ef02:b0:244:6b77:5b10 with SMTP id d9443c01a7336-2446d89d221mr126079015ad.36.1755496077040;
-        Sun, 17 Aug 2025 22:47:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IER4IOalNWar66B22rHJVMIAjJY1v2hPIOrJvCuOPmIDSJbaYtKfcaHS83aej4K/R2Bxeoqgw==
-X-Received: by 2002:a17:902:ef02:b0:244:6b77:5b10 with SMTP id d9443c01a7336-2446d89d221mr126078695ad.36.1755496076565;
-        Sun, 17 Aug 2025 22:47:56 -0700 (PDT)
-Received: from [10.218.42.132] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446d5a9b9esm69293305ad.167.2025.08.17.22.47.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Aug 2025 22:47:56 -0700 (PDT)
-Message-ID: <bb1b095f-4198-495d-a82d-1d1d7b7367d1@oss.qualcomm.com>
-Date: Mon, 18 Aug 2025 11:17:49 +0530
+	Mon, 18 Aug 2025 07:09:59 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id E40FF5C59C6;
+	Mon, 18 Aug 2025 07:09:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87486C4CEED;
+	Mon, 18 Aug 2025 07:09:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755500995;
+	bh=XvgFub5eWHK2y36TAgRUO9tAFUs63v+IadSoFQ/DpsU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W32LT4Tosdsx+2NXw2u1isMpVYDjyZqPlCxbxMEXJ2WiHtGJNx+6Dl4kNSSzgtt9O
+	 UKIIpqaXhWbtd1vaKSTyL4WYFy3CEJpqR7Z8fiTLy/dgNr8UDaz/4eeH9gUs4KS7CN
+	 pGIaPa6ONNgBsB8FtUUotkdv/dWGXdEGMmu15YRxBZJFDMXc/HEy8Jbrc3gDjKv/Zu
+	 u8yM0YaWBeCUZ5Xr5voXpvcn3ohs4GlilhyzXggY80rtNjpGUAVWgFhBAIqXRJPQbD
+	 zlP5Gd2KtgRLxAsV7sp71gXi/U1/ERE2mkBDLDuvfELhqWRwg/UGtIh36+eO+nkUu7
+	 Atgtpqo8BIU2g==
+Date: Mon, 18 Aug 2025 12:39:43 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	mhi@lists.linux.dev, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com, 
+	quic_mrana@quicinc.com, Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Subject: Re: [PATCH v4 02/11] PCI/bwctrl: Add support to scale bandwidth
+ before & after link re-training
+Message-ID: <mrsdwtzz7x6uuoakjr6kymqccfxs3lndplols7j33apbru7jii@tjdljisgaqny>
+References: <20250711213602.GA2307197@bhelgaas>
+ <55fc3ae6-ba04-4739-9b89-0356c3e0930c@oss.qualcomm.com>
+ <d4078b6c-1921-4195-9022-755845cdb432@oss.qualcomm.com>
+ <68a78904-e2c7-4d4d-853d-d9cd6413760e@oss.qualcomm.com>
+ <ycbh6zfwae3q4s6lfxepmxoq32jaqu5i7csa2ayuqaanwbvzvi@id4prmhl3yvh>
+ <ec0e3b33-76f4-4ad5-8497-5c8c8b42f67e@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/11] bus: mhi: host: Add support to read MHI
- capabilities
-To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        linux-pci@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        qiang.yu@oss.qualcomm.com, quic_vbadigan@quicinc.com,
-        quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
-        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-References: <20250609-mhi_bw_up-v4-0-3faa8fe92b05@qti.qualcomm.com>
- <20250609-mhi_bw_up-v4-3-3faa8fe92b05@qti.qualcomm.com>
- <ttjbjmixxbzatcfthaucuy3j4hosu4azpizes6ptxjnkzsawa5@5axodfdyjff2>
- <5625ffa1-f952-4646-a17a-fbbfffcdba2a@oss.qualcomm.com>
- <4c68074e-5809-bc4c-185a-88ddcb81f31b@linux.intel.com>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <4c68074e-5809-bc4c-185a-88ddcb81f31b@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: hu21TGY9KhtUWcMOEcAowD11L4nkIxOE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAyMCBTYWx0ZWRfX/Hi8AC87HhSg
- XDdT7QTU9ULhvukMZ0tScMmA78YIuOV/GpVG4elmLU8ykW7wZuhbQ2JlWYQ6EfHXzURoDjwZfdl
- 2ZNm1phWWioyQPync/Jfz16LugaumS2P4ct9YKKpDUqSwyvyDGw5LfAjA4dG4q6Jg1QUVvgmeMs
- UYhfJhy7HdbJdl0etN/AdNcyiWY9KG2eAO34h2paFYcvpD7Us2qY2N690hPdhE7TVkWLpWuFwHK
- q3VXtBFfZFPIKpnFT5GGOibqdce/J1rNzhb9SXspnyHtpJxePWzfKisEV701nM2dq/In8DQ0Swx
- /Sc70j5I+bvCISOP4vFzATVmOwr2CtPc7EC7Wpw5Xphq/cZwxeVLw8FsMFy/qltJfk3gGFcWR9l
- +fxwJDOY
-X-Proofpoint-GUID: hu21TGY9KhtUWcMOEcAowD11L4nkIxOE
-X-Authority-Analysis: v=2.4 cv=V7B90fni c=1 sm=1 tr=0 ts=68a2be8e cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=BTqdaEJVcAPEW8WuxcAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-18_02,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 malwarescore=0 adultscore=0 clxscore=1015
- suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508160020
+In-Reply-To: <ec0e3b33-76f4-4ad5-8497-5c8c8b42f67e@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250817_224759_436425_BE967D65 
-X-CRM114-Status: GOOD (  19.95  )
+X-CRM114-CacheID: sfid-20250818_000958_183800_DE4665D4 
+X-CRM114-Status: GOOD (  50.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,133 +85,134 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Wed, Aug 13, 2025 at 09:25:03AM GMT, Krishna Chaitanya Chundru wrote:
+> 
+> 
+> On 8/12/2025 10:13 PM, Manivannan Sadhasivam wrote:
+> > On Tue, Aug 12, 2025 at 09:35:46AM GMT, Krishna Chaitanya Chundru wrote:
+> > > 
+> > > 
+> > > On 7/22/2025 4:33 PM, Krishna Chaitanya Chundru wrote:
+> > > > 
+> > > > 
+> > > > On 7/12/2025 4:36 AM, Krishna Chaitanya Chundru wrote:
+> > > > > 
+> > > > > 
+> > > > > On 7/12/2025 3:06 AM, Bjorn Helgaas wrote:
+> > > > > > On Mon, Jun 09, 2025 at 04:21:23PM +0530, Krishna Chaitanya
+> > > > > > Chundru wrote:
+> > > > > > > If the driver wants to move to higher data rate/speed than
+> > > > > > > the current data
+> > > > > > > rate then the controller driver may need to change certain
+> > > > > > > votes so that
+> > > > > > > link may come up at requested data rate/speed like QCOM PCIe
+> > > > > > > controllers
+> > > > > > > need to change their RPMh (Resource Power Manager-hardened) state. Once
+> > > > > > > link retraining is done controller drivers needs to adjust their votes
+> > > > > > > based on the final data rate.
+> > > > > > > 
+> > > > > > > Some controllers also may need to update their bandwidth voting like
+> > > > > > > ICC BW votings etc.
+> > > > > > > 
+> > > > > > > So, add pre_link_speed_change() & post_link_speed_change() op to call
+> > > > > > > before & after the link re-train. There is no explicit
+> > > > > > > locking mechanisms
+> > > > > > > as these are called by a single client Endpoint driver.
+> > > > > > > 
+> > > > > > > In case of PCIe switch, if there is a request to change
+> > > > > > > target speed for a
+> > > > > > > downstream port then no need to call these function ops as these are
+> > > > > > > outside the scope of the controller drivers.
+> > > > > > 
+> > > > > > > +++ b/include/linux/pci.h
+> > > > > > > @@ -599,6 +599,24 @@ struct pci_host_bridge {
+> > > > > > >        void (*release_fn)(struct pci_host_bridge *);
+> > > > > > >        int (*enable_device)(struct pci_host_bridge *bridge,
+> > > > > > > struct pci_dev *dev);
+> > > > > > >        void (*disable_device)(struct pci_host_bridge *bridge,
+> > > > > > > struct pci_dev *dev);
+> > > > > > > +    /*
+> > > > > > > +     * Callback to the host bridge drivers to update ICC BW
+> > > > > > > votes, clock
+> > > > > > > +     * frequencies etc.. for the link re-train to come up
+> > > > > > > in targeted speed.
+> > > > > > > +     * These are intended to be called by devices directly
+> > > > > > > attached to the
+> > > > > > > +     * Root Port. These are called by a single client
+> > > > > > > Endpoint driver, so
+> > > > > > > +     * there is no need for explicit locking mechanisms.
+> > > > > > > +     */
+> > > > > > > +    int (*pre_link_speed_change)(struct pci_host_bridge *bridge,
+> > > > > > > +                     struct pci_dev *dev, int speed);
+> > > > > > > +    /*
+> > > > > > > +     * Callback to the host bridge drivers to adjust ICC BW
+> > > > > > > votes, clock
+> > > > > > > +     * frequencies etc.. to the updated speed after link
+> > > > > > > re-train. These
+> > > > > > > +     * are intended to be called by devices directly attached to the
+> > > > > > > +     * Root Port. These are called by a single client Endpoint driver,
+> > > > > > > +     * so there is no need for explicit locking mechanisms.
+> > > > > > 
+> > > > > > No need to repeat the entire comment.  s/.././
+> > > > > > 
+> > > > > > These pointers feel awfully specific for being in struct
+> > > > > > pci_host_bridge, since we only need them for a questionable QCOM
+> > > > > > controller.  I think this needs to be pushed down into qcom somehow as
+> > > > > > some kind of quirk.
+> > > > > > 
+> > > > > Currently these are needed by QCOM controllers, but it may also needed
+> > > > > by other controllers may also need these for updating ICC votes, any
+> > > > > system level votes, clock frequencies etc.
+> > > > > QCOM controllers is also doing one extra step in these functions to
+> > > > > disable and enable ASPM only as it cannot link speed change support
+> > > > > with ASPM enabled.
+> > > > > 
+> > > > Bjorn, can you check this.
+> > > > 
+> > > > For QCOM devices we need to update the RPMh vote i.e a power source
+> > > > votes for the link to come up in required speed. and also we need
+> > > > to update interconnect votes also. This will be applicable for
+> > > > other vendors also.
+> > > > 
+> > > > If this is not correct place I can add them in the pci_ops.
+> > > Bjorn,
+> > > 
+> > > Can you please comment on this.
+> > > 
+> > > Is this fine to move these to the pci_ops of the bridge.
+> > > Again these are not specific to QCOM, any controller driver which
+> > > needs to change their clock rates, ICC bw votes etc needs to have
+> > > these.
+> > > 
+> > 
+> > No, moving to 'pci_ops' is terrible than having it in 'pci_host_bridge' IMO. If
+> > we want to get rid of these ops, we can introduce a quirk flag in
+> > 'pci_host_bridge' and when set, the bwctrl code can disable/enable ASPM
+> > before/after link retrain. This clearly states that the controller is quirky and
+> > we need to disable/enable ASPM.
+> > 
+> > For setting OPP, you can have a separate callback in 'pci_host_bridge' that just
+> > allows setting OPP *after* retrain, like 'pci_host_bridge:link_change_notify()'.
+> > I don't think you really need to set OPP before retrain though. As even if you
+> > do it pre and post link retrain, there is still a small window where the link
+> > will operate without adequate vote.
+> > 
+> Hi Mani,
+> 
+> we need to update the OPP votes before link retrain, for example if
+> there is request  to change data rate from 5 GT/s to 8 GT/s on some
+> platforms we need to update RPMh votes from low_svs to NOM corner
+> without this clocks will not scale for data rates 8 GT/s and link
+> retrain will fail. For that reason we are trying to add pre and post
+> callbacks.
+> 
 
+If we are targetting OPP only, then can't we do direct OPP setting from the
+bwctrl driver itself? Or we also need to set ICC votes directly also (in the
+non-opp case)?
 
-On 7/9/2025 5:50 PM, Ilpo Järvinen wrote:
-> On Wed, 9 Jul 2025, Krishna Chaitanya Chundru wrote:
->> On 7/8/2025 10:06 PM, Manivannan Sadhasivam wrote:
->>> On Mon, Jun 09, 2025 at 04:21:24PM GMT, Krishna Chaitanya Chundru wrote:
->>>> From: Vivek Pernamitta <quic_vpernami@quicinc.com>
->>>>
->>>> As per MHI spec v1.2,sec 6.6, MHI has capability registers which are
->>>> located after the ERDB array. The location of this group of registers is
->>>> indicated by the MISCOFF register. Each capability has a capability ID to
->>>> determine which functionality is supported and each capability will point
->>>> to the next capability supported.
->>>>
->>>> Add a basic function to read those capabilities offsets.
->>>>
->>>> Signed-off-by: Vivek Pernamitta <quic_vpernami@quicinc.com>
->>>> Signed-off-by: Krishna Chaitanya Chundru
->>>> <krishna.chundru@oss.qualcomm.com>
->>>> ---
->>>>    drivers/bus/mhi/common.h    | 13 +++++++++++++
->>>>    drivers/bus/mhi/host/init.c | 34 ++++++++++++++++++++++++++++++++++
->>>>    2 files changed, 47 insertions(+)
->>>>
->>>> diff --git a/drivers/bus/mhi/common.h b/drivers/bus/mhi/common.h
->>>> index
->>>> dda340aaed95a5573a2ec776ca712e11a1ed0b52..58f27c6ba63e3e6fa28ca48d6d1065684ed6e1dd
->>>> 100644
->>>> --- a/drivers/bus/mhi/common.h
->>>> +++ b/drivers/bus/mhi/common.h
->>>> @@ -16,6 +16,7 @@
->>>>    #define MHICFG				0x10
->>>>    #define CHDBOFF				0x18
->>>>    #define ERDBOFF				0x20
->>>> +#define MISCOFF				0x24
->>>>    #define BHIOFF				0x28
->>>>    #define BHIEOFF				0x2c
->>>>    #define DEBUGOFF			0x30
->>>> @@ -113,6 +114,9 @@
->>>>    #define MHISTATUS_MHISTATE_MASK		GENMASK(15, 8)
->>>>    #define MHISTATUS_SYSERR_MASK		BIT(2)
->>>>    #define MHISTATUS_READY_MASK		BIT(0)
->>>> +#define MISC_CAP_MASK			GENMASK(31, 0)
->>>> +#define CAP_CAPID_MASK			GENMASK(31, 24)
->>>> +#define CAP_NEXT_CAP_MASK		GENMASK(23, 12)
->>>>      /* Command Ring Element macros */
->>>>    /* No operation command */
->>>> @@ -204,6 +208,15 @@
->>>>    #define MHI_RSCTRE_DATA_DWORD1
->>>> cpu_to_le32(FIELD_PREP(GENMASK(23, 16), \
->>>>    							       MHI_PKT_TYPE_COALESCING))
->>>>    +enum mhi_capability_type {
->>>> +	MHI_CAP_ID_INTX = 0x1,
->>>> +	MHI_CAP_ID_TIME_SYNC = 0x2,
->>>> +	MHI_CAP_ID_BW_SCALE = 0x3,
->>>> +	MHI_CAP_ID_TSC_TIME_SYNC = 0x4,
->>>> +	MHI_CAP_ID_MAX_TRB_LEN = 0x5,
->>>> +	MHI_CAP_ID_MAX,
->>>> +};
->>>> +
->>>>    enum mhi_pkt_type {
->>>>    	MHI_PKT_TYPE_INVALID = 0x0,
->>>>    	MHI_PKT_TYPE_NOOP_CMD = 0x1,
->>>> diff --git a/drivers/bus/mhi/host/init.c b/drivers/bus/mhi/host/init.c
->>>> index
->>>> 13e7a55f54ff45b83b3f18b97e2cdd83d4836fe3..9102ce13a2059f599b46d25ef631f643142642be
->>>> 100644
->>>> --- a/drivers/bus/mhi/host/init.c
->>>> +++ b/drivers/bus/mhi/host/init.c
->>>> @@ -467,6 +467,40 @@ int mhi_init_dev_ctxt(struct mhi_controller
->>>> *mhi_cntrl)
->>>>    	return ret;
->>>>    }
->>>>    +static int mhi_find_capability(struct mhi_controller *mhi_cntrl, u32
->>>> capability, u32 *offset)
->>>> +{
->>>> +	u32 val, cur_cap, next_offset;
->>>> +	int ret;
->>>> +
->>>> +	/* Get the first supported capability offset */
->>>> +	ret = mhi_read_reg_field(mhi_cntrl, mhi_cntrl->regs, MISCOFF,
->>>> MISC_CAP_MASK, offset);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	*offset = (__force u32)le32_to_cpu(*offset);
->>>
->>> Why do you need __force attribute? What does it suppress? Is it because the
->>> pointer is not le32?
->>>
->> yes to suppress warnings.
-> 
-> I'm pretty sure sparce with endianness checking won't be happy with that
-> construct as you pass u32 where le32_to_cpu() expects __le32. Have you
-> checked this with sparse? (It might not check endianness with default args.)
-> 
->>>> +	do {
->>>> +		if (*offset >= mhi_cntrl->reg_len)
->>>> +			return -ENXIO;
->>>> +
->>>> +		ret = mhi_read_reg(mhi_cntrl, mhi_cntrl->regs, *offset, &val);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		val = (__force u32)le32_to_cpu(val);
->>>> +		cur_cap = FIELD_GET(CAP_CAPID_MASK, val);
->>>> +		next_offset = FIELD_GET(CAP_NEXT_CAP_MASK, val);
->>>> +		if (cur_cap >= MHI_CAP_ID_MAX)
->>>> +			return -ENXIO;
->>>> +
->>>> +		if (cur_cap == capability)
->>>> +			return 0;
->>>> +
->>>> +		*offset = next_offset;
->>>> +	} while (next_offset);
->>>> +
->>>> +	return -ENXIO;
->>>> +}
-> 
-> There's a generalization of capability search in Hans Zhang's series,
-> can it be used here too?
-I Checked this option, the mhi capabilities will not fit in to the
-series mentioned for not matching the mask for cap ID, size etc. mhi
-capability are similar to PCI, but they vary between mask of cap ID, 
-size of the space etc. so going with current approach only.
+- Mani
 
-- Krishna Chaitanya.
-> 
-> 
+-- 
+மணிவண்ணன் சதாசிவம்
 
