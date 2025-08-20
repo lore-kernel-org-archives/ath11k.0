@@ -4,114 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9E81CA0EE4
-	for <ath11k@archiver.kernel.org>; Wed, 20 Aug 2025 18:52:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC7ECA0EDC
+	for <ath11k@archiver.kernel.org>; Wed, 20 Aug 2025 20:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:From:Subject:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=ieO5QYvlXZ27cvWcN7TcUCqXSIjOdosqMsk86g8EQmo=; b=4mRT55fj+lgW6R6ENVW1OCpY/1
-	9r9H98pfCN76KIjsauDChbbHMqQjhpT4H1mfFq3QsDRQDIEPbD6siopdWcHnJOw8mOQO9NJBYHELE
-	VcWV9UXPK4R8WHrXH/xE9BkyowjbnaUSTEgOvzsbUvGH/XEL+RolymA3MYD8nFZZsdocADsBU5hCC
-	gInPQpa5iLHNTIGZU0huim1dsLJ6K2qbkZIIF8FGW+1gL1lv0VuTrD5AdwRyb/Q+8G7ZccbyCnfD/
-	DfVH+R7+YsbXqdsIpFWtlS0jJbYaHivaN6IYwgPTMivlRUEHv0beg6IYtOqrNL8R2Z4Uu2hWcnwdh
-	+Sq9E/zg==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YAYts3qQJ9Eyo6BlRv7Iy1YTBHP9F/QVNGFH7KXnyfM=; b=qja+PhtOH6Y6OIje4dDQFgSk6B
+	gDi5gEOwHMs0geQsPcGgaIIqst/WGiJvV7gr8Too8D0cE0Km11u55WyQf7UmyJMW5IX3O2ksU2UA2
+	tXecKVcmLnoWI5wf24k2P72YM/19X8eCAcUCLJ60Hsep0swGBH0jZImNkGRfWCkIqaJovRIrIxQjQ
+	ePyLG0XMdtJB3kXgTKhzr0dl1jl2Rkjw+/2FvbdP0rzUmSnSee8hXh9NrDYOVcFzziO/9ffssflU4
+	xC90q61tLCWf/2HFYDPs8HzsE6jeO6HaVbdjEnOY2G7ffmUKrGHIm/mwjPfGzMmcYMclG4MfNia1y
+	ZqhjL0vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uonvH-0000000EiO4-2ZFX;
-	Wed, 20 Aug 2025 18:52:35 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uoplD-0000000Et9m-0WWA;
+	Wed, 20 Aug 2025 20:50:19 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uokg6-0000000EFNJ-0JEF
+	id 1uolV4-0000000EN6W-3ack
 	for ath11k@lists.infradead.org;
-	Wed, 20 Aug 2025 15:24:43 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57KARRxP027686
-	for <ath11k@lists.infradead.org>; Wed, 20 Aug 2025 15:24:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=ieO5QYvlXZ27cvWcN7TcUC
-	qXSIjOdosqMsk86g8EQmo=; b=VKJaRiT55u+wuZYcGP8KE/vctxooO0A5jv4jVk
-	RyLaRFlpfdDWcV8vhqfhsDmYS9/s3knHZ0hXB+jpgmvlWP1+5qgI2VdzwbdJyTeC
-	VM1tq1ObC4n8fCKqoa4weYjQ5QhU1LFG2BNQg3YlEtYdbCdftMoPIdU96AstXT+Y
-	qqbZ1nudl1vYg/fInjOgVt3Z0hQZvOxGecIJEo9wHd+e33c3dovXiPx6yiY40+lJ
-	cTI1u5l3hnzIaHt4IUMtomd5+6hmP9VlJfthSTd7715YkFH8Q75a1V7c4u1WPHTy
-	y0HFkkO5VCM9+Hm/rJqaD5nVr+RWOvKk16V1a7J5BRvi7JFw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52at4n5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 20 Aug 2025 15:24:40 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-245f2a91d02so6052055ad.0
-        for <ath11k@lists.infradead.org>; Wed, 20 Aug 2025 08:24:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755703479; x=1756308279;
-        h=content-transfer-encoding:from:content-language:subject:cc:to
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ieO5QYvlXZ27cvWcN7TcUCqXSIjOdosqMsk86g8EQmo=;
-        b=MR+/pAP1p2kFXbv0gwtDbUCzB87TMwOGNEixBt3sEwefJWXiSjj1Sm3Iu1lKQxn8dB
-         F7oMM1bxkbg1PtpHpaCRrnxOTpReldnNA1wje+E1pP4QpxLsDcgFBK1F0x/QdxNIJGEy
-         g1GGqzt58SYP00h4BATikZzQHI18P0tKexPO82yiKl/8Uo7g1AyU+Qt9PL8JFB+m0Osa
-         /y6NH9BYJ+pPyQKkpLRJFlP6y4/IXpkksLKNyG3RSATV4ifMJtkX6VY+4Vojw9tYnGRu
-         qbUuXc1xO7tf0AqGth6bZy/9Fr1Gh9ZAuN5t4VwLwO0s04jW0TVauLXKZze1ixbaxCMA
-         S1qA==
-X-Forwarded-Encrypted: i=1; AJvYcCXVnM4pBTR0jMnP+0WDTCI3zOrSaSF4FtOVL+uOwxdi0QnlExmvffcIZidcy7KTNuMZIAJ180k=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxBnNAtyWoytXk3guS9/sltJ3tqOlTNkXyTQIBsDfdML20usqWR
-	tLZILEICFS6/N3N1Rf20x4MRK7YHf2MA3059k+OtfMr0mQdCvgXXk4tEAOqcFuQnDkfLu+VPmmD
-	uazrIYC3flTcBzhXsJvY3mj4zYKaApHW44J/5Ll4ne7LaKeEvKmowXBUL12Sz15PY
-X-Gm-Gg: ASbGncvjjF9QuL3YCmBJApkIyseF5Vh5O0+gdFftvbqPBp+KqNP/38ur8pQCzlWDyGd
-	Y5eiAAkr3T14DzhQKMdfiZa+5qdMGKWiQhH2Wy7Swyl/KSv1oQIma/9uA1yMh/5YkOXndaM1kyK
-	2OFa4Td5Ouykm9YQGSnP9qND1Kfd28G5Km+8qZ+zvSBFLSXzm2k8iKTkIh6v2R7pm1cw3R3uc1O
-	CoBtOvRsRDBFw7/pVm5SgQTGvSJLUdFe8V44TOxn0tp1jD1+hRvXO/wpVpEzmplWfDpEcY8uTnh
-	/E7IBhyGrti+j/NYcDyASycYW3pIjJ5vaHuqSoJ9Y3i+3PH65lychqcNi4ZIqZd0CzzALBdNjPh
-	n
-X-Received: by 2002:a17:903:1205:b0:240:5bf7:97ac with SMTP id d9443c01a7336-245e09d0be4mr86387495ad.16.1755703478640;
-        Wed, 20 Aug 2025 08:24:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF0VKBXRsV4LWznZ8KguG4ys3hOJb+MIIxxdAz09Ju4QNnohG2o8peVOrH0bhoqJVc9guMWrw==
-X-Received: by 2002:a17:903:1205:b0:240:5bf7:97ac with SMTP id d9443c01a7336-245e09d0be4mr86387125ad.16.1755703478206;
-        Wed, 20 Aug 2025 08:24:38 -0700 (PDT)
-Received: from [10.81.24.74] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245ed35d511sm29919525ad.50.2025.08.20.08.24.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Aug 2025 08:24:37 -0700 (PDT)
-Message-ID: <323382be-397d-4df6-976a-89319fe97202@oss.qualcomm.com>
-Date: Wed, 20 Aug 2025 08:24:37 -0700
+	Wed, 20 Aug 2025 16:17:22 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 4BEC3601F5
+	for <ath11k@lists.infradead.org>; Wed, 20 Aug 2025 16:17:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96490C4AF0B
+	for <ath11k@lists.infradead.org>; Wed, 20 Aug 2025 16:17:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755706641;
+	bh=t+ycOb5iNlE3oQujrJjZp9WkbI6MVMq0bnMqM9b7LRo=;
+	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+	b=paPpanP+6j6Id2XAQw+l1Ns/fBw8uqCODHLS07VZOP4anZjsKxmN9dCWD++x+wraI
+	 RYDwIyP3j9cxaeNkR521mN0qJcD7jLGEpNYitPxmFVbm7RLysSjhliawQcwHVtff40
+	 1LsKtml83GDX1A1EdsY8erWB9VID5hlrpMKHhjljHz0B1RVHkvAqWSDLkD/AUURw97
+	 3m2pGfFJfSNLfrDMujwok/XYtuGJL/n90ZgHyPOqeG7ru74CaB0A8jG30BA3rF7EZr
+	 mjjmfEh4z/HujqX4+vJ9osqb9BpxqR6uOh+y/SH0Bw2nVi78qHT7pXZAFkDZmCLRFM
+	 4Z8m9E+9k/SEg==
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e934c8f9751so39355276.2
+        for <ath11k@lists.infradead.org>; Wed, 20 Aug 2025 09:17:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVK9Zj82IZyrl07yydN0qcOkXqZ2EeLOwBPWUH5s4p8mDhxNqHFCbzYhxNnoxW2hk1K4egdmq4=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxyi0Hcj669mV+pblIl6oItbWm7OzQXC46pSbnZk8z0gC8bNJun
+	BxwKYg+nn99I66KoUw4WgwZpI1RlzuIqHzBi4quzU6Tji3NfyKSfJK/AIR2ss/C++tH5eKmWIYh
+	Y9iONLxo8UbG3tks49CEkT8yohwtjod0=
+X-Google-Smtp-Source: AGHT+IEIvxy4pkBjmIrsNlC8iA7B1npTls4qyfPoYOP3dde7/lkDCFEZHzVAICwtTDSEfLDZEszUUaKvJvkzNr8ObbM=
+X-Received: by 2002:a05:6902:430c:b0:e94:e1e5:37f4 with SMTP id
+ 3f1490d57ef6-e94f6707983mr3154446276.50.1755706640799; Wed, 20 Aug 2025
+ 09:17:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: linux-firmware@kernel.org
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        jjohnson@kernel.org
-Subject: [PULL linux-firmware] ath11k firmware ath-20250820
-Content-Language: en-US
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX1BecZmF0O52r
- X9UnuB22WD3qAA8e95867jRo0xfP+83hzZrvXXdMbZvyRnqeOAGmQKljyLzwPAoMZ4bxeVYaMs2
- ZQKp0VjndaJ4DIv7/JMzLPijoA+3KG0nURGkaDQzIM7Mft9Tloc/vkd8OSUzKgIus5OLmBQOwL9
- FkNDE3P/CuTqCdOQ4Vxa/endsBn7qw5o7rOe1nfPsBo0eogJ77ELwB2hdvMXwR+GYvtH5CgJIf8
- Kx8mKWOp0pB2qhNYCf3O7cud7NkyzxSDKE3U17t2fuutt+Fq/CjqkYBTHeIDtgzcNC+NLQRn3P3
- C4iLuRHwIc1WQwLKQG8b/sVfysVKOA/y0bErdo3abIeNCy816JDjMVdq7F5+QJIPhoNhP6k2a8J
- qoAZV1RCAjYmutZAvtXIseq4fNrYzA==
-X-Authority-Analysis: v=2.4 cv=TIIci1la c=1 sm=1 tr=0 ts=68a5e8b8 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=SvOVevs7hV0f9PBrymgA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22 a=HhbK4dLum7pmb74im6QT:22
-X-Proofpoint-ORIG-GUID: Co8Yl3GkSUJGPja7AJNGMhkgJEWhLLx6
-X-Proofpoint-GUID: Co8Yl3GkSUJGPja7AJNGMhkgJEWhLLx6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-20_04,2025-08-20_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0
- bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250820_082442_232214_441E2E0E 
-X-CRM114-Status: GOOD (  11.33  )
+References: <323382be-397d-4df6-976a-89319fe97202@oss.qualcomm.com>
+In-Reply-To: <323382be-397d-4df6-976a-89319fe97202@oss.qualcomm.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Wed, 20 Aug 2025 12:17:09 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA53_O+TmvHcJM-7xLaE5wwtELJE-oX8f=WZFnA+ZZSRGA@mail.gmail.com>
+X-Gm-Features: Ac12FXzHSnPFBjD5SgC0DQxSz5oP68mLKNVoc6XNbXGuiE3XiYL4ENWc4kWi5wk
+Message-ID: <CA+5PVA53_O+TmvHcJM-7xLaE5wwtELJE-oX8f=WZFnA+ZZSRGA@mail.gmail.com>
+Subject: Re: [PULL linux-firmware] ath11k firmware ath-20250820
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: linux-firmware@kernel.org, linux-wireless@vger.kernel.org, 
+	ath11k@lists.infradead.org, jjohnson@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,41 +80,57 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
-Here is a new pull request for ath11k firmware.
+On Wed, Aug 20, 2025 at 11:24=E2=80=AFAM Jeff Johnson
+<jeff.johnson@oss.qualcomm.com> wrote:
+>
+> Hi,
+> Here is a new pull request for ath11k firmware.
+>
+> This adds an alternative firmware for WCN6855 that is part of NFA765,
+> optimized for IoT applications.
+>
+> Please let me know if there are any problems.
+>
+> Thanks,
+> /jeff
+>
+> ---
+>
+> The following changes since commit 5dcaa87d4035f437acb9d8817d88b269322698=
+63:
+>
+>   Merge branch 'robot/pr-0-1755692386' into 'main' (2025-08-20 13:19:30 +=
+0000)
+>
+> are available in the Git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git at=
+h-20250820
 
-This adds an alternative firmware for WCN6855 that is part of NFA765,
-optimized for IoT applications.
+Merged and pushed out.
 
-Please let me know if there are any problems.
+https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/656
 
-Thanks,
-/jeff
+josh
 
----
-
-The following changes since commit 5dcaa87d4035f437acb9d8817d88b26932269863:
-
-  Merge branch 'robot/pr-0-1755692386' into 'main' (2025-08-20 13:19:30 +0000)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git ath-20250820
-
-for you to fetch changes up to 71b945d2190cbaf6bebe8c1a8b0b41a71d65ec31:
-
-  ath11k: WCN6855 hw2.0@nfa765: add to WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1 (2025-08-20 08:01:38 -0700)
-
-----------------------------------------------------------------
-Jeff Johnson (1):
-      ath11k: WCN6855 hw2.0@nfa765: add to WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
-
- WHENCE                                 |    4 +
- ath11k/WCN6855/hw2.0/nfa765/Notice.txt | 3658 ++++++++++++++++++++++++++++++++
- ath11k/WCN6855/hw2.0/nfa765/amss.bin   |  Bin 0 -> 5005312 bytes
- ath11k/WCN6855/hw2.0/nfa765/m3.bin     |  Bin 0 -> 266684 bytes
- 4 files changed, 3662 insertions(+)
- create mode 100644 ath11k/WCN6855/hw2.0/nfa765/Notice.txt
- create mode 100644 ath11k/WCN6855/hw2.0/nfa765/amss.bin
- create mode 100644 ath11k/WCN6855/hw2.0/nfa765/m3.bin
+>
+> for you to fetch changes up to 71b945d2190cbaf6bebe8c1a8b0b41a71d65ec31:
+>
+>   ath11k: WCN6855 hw2.0@nfa765: add to WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V=
+2_SILICONZ_IOE-1 (2025-08-20 08:01:38 -0700)
+>
+> ----------------------------------------------------------------
+> Jeff Johnson (1):
+>       ath11k: WCN6855 hw2.0@nfa765: add to WLAN.HSP.1.1-04685-QCAHSPSWPL_=
+V1_V2_SILICONZ_IOE-1
+>
+>  WHENCE                                 |    4 +
+>  ath11k/WCN6855/hw2.0/nfa765/Notice.txt | 3658 ++++++++++++++++++++++++++=
+++++++
+>  ath11k/WCN6855/hw2.0/nfa765/amss.bin   |  Bin 0 -> 5005312 bytes
+>  ath11k/WCN6855/hw2.0/nfa765/m3.bin     |  Bin 0 -> 266684 bytes
+>  4 files changed, 3662 insertions(+)
+>  create mode 100644 ath11k/WCN6855/hw2.0/nfa765/Notice.txt
+>  create mode 100644 ath11k/WCN6855/hw2.0/nfa765/amss.bin
+>  create mode 100644 ath11k/WCN6855/hw2.0/nfa765/m3.bin
 
