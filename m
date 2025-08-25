@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83163C8303F
-	for <ath11k@archiver.kernel.org>; Mon, 25 Aug 2025 19:08:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3935CA0FE7
+	for <ath11k@archiver.kernel.org>; Mon, 25 Aug 2025 19:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=0oBDyC9fLX/pLfcozSaN6iJ1v45lzRypwu18pnCaxzs=; b=In7QY043WrpzC2QhAQr5biNtRV
-	Om5J6qH2H4mCxr8kThHvR364jJq5m+vsHrVqQPRSL6I5L4I0Yj7adMUM6kbPyJBG2IUaa1iCQArwG
-	BDspJ2KKJjxehfehYR70zhO6d+Of3osMNYx+ejteCCHc8KHq2CZwgMMl2tMNNNdPVps1p1E+2MdC3
-	570f9cEpfZI4a7TlE1kEyP1CeK9M8GCxIkSnk1gWyAmGbccKOJl0hL2124lLXR2mla1Ep7Ffn362K
-	CYvdAfPlEbAE9VRMy2O9pp12bG/Fuc2odH3bwXhqL2CfxDOmPI9tAMhMhfNzyB6Ir0/KZVEUzq6Ox
-	ENts1pNw==;
+	bh=rGF1zNDBjc7PJulOlT1posJeUiUu4j+MBRupO2zuFUI=; b=08j3g6MaDRBLha85Y+EPEYyab9
+	ZG2l3sHsabPpbfkmuAUx+2KAwT1MknFi+q0Y8in3Lv55n20OzxrtvbPbuF9PdTA84FiQQ60mcPMmE
+	OH3vd/x3f6peYZlVbCEjEJ/3OQNwoX1Z/E1CCZUd9uk8DYgcE8c8qJTPbAaacVNqfVttDUV6X/qpg
+	1YePyjyXg6kFCc+OSiEq77wBjwLVsVgPaIFx0t2JrurzSXMRMAmoXRWEMyxt0hXJ5YfGjU+5dOLua
+	Je0AN22aZlcqERvDEbqW70MnhAk0XI3kg43HeMDw/nTzLji6DYkfJ48m71/q0jwqk+h2kpigBNyEi
+	LqGutdYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqcYi-00000009BhK-3LmD;
-	Mon, 25 Aug 2025 19:08:48 +0000
+	id 1uqcYk-00000009Bk8-3edE;
+	Mon, 25 Aug 2025 19:08:50 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqbFT-00000008rJa-2WNw;
+	id 1uqbFT-00000008rJp-3HZV;
 	Mon, 25 Aug 2025 17:44:53 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id ADA4344E3D;
-	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3734DC4CEF1;
+	by sea.source.kernel.org (Postfix) with ESMTP id 0AD1844EA3;
+	Mon, 25 Aug 2025 17:44:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7C3CFC2BCB3;
 	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1756143890;
-	bh=ZvlrhCwbVGHwCszHJQ3ZLQ8iRWvKvHB5cHlEHKo+skg=;
+	bh=Wx6W28IBSOPVhur4cAm2KHQeeo345xNGoIygZEGlbK0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=SI4d5GlTfUmUduk6M3iXd6lBcDw4xX3b6BB7cMez1lj1aJ651eKSOyt21rEj4Iu+2
-	 BdLpWZu0k083HqMKobSfxXBLUAkNcSVJ9VPY4Qoy6jAybr+IKrrlkOC5L0Ik1KnNf7
-	 wxujP0hXqAoHGoEXO4OTKl3Zc5HpKl65az32oobXSsKEv3w5APwxqP3466KtJ+v0fn
-	 ZYaIih0Cbwtq6Lg3v6/swE2VZWsW+0ZYxx4aMnHrebwi6ezSxFi2eVtywbeGoYvYbw
-	 XVHsUlBaSWrehrnIj7Wt8/6pzsxZAzzCT5GexV5eGDY5QMolZPTMQZ3+PHHo7IPWWx
-	 NEvXDgv6TcJJA==
+	b=d7jH5bVREQJNjPJlorubTT9aOqlxybbHLTU7gQ4Mi2P4aDwkI5MCCetjwC4wbnHXZ
+	 2MJJW1p5PuV6msGH07n34d7IubdR5gu7y8l3p3LlbmoJsw7iY8FpBOF8Gdn6GEqcbW
+	 ogGQsHmWxAUrTcw9nsOXcTyJTYPIrpKK5NQzZv6UqjK5/VDToSkoCcPKlEBRCSleYc
+	 zognQ8HDpyI4CSwkWwuyR3Jzbnk3h4I+vbMH9ZzCJUHIDApmBCD3HoLMOyquOKynLG
+	 GyDhausLLXhR3x3IqKnvWuixY34KyqQAJfjKMGSrwFmX63FvR8/bDVk+xBGvGN7/ww
+	 thRLl+kP/qIcg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 26322CA0EFA;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71E43CA0EED;
 	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
 From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
-Date: Mon, 25 Aug 2025 23:14:37 +0530
-Subject: [PATCH v2 2/8] PCI/ASPM: Fix the behavior of
- pci_enable_link_state*() APIs
+Date: Mon, 25 Aug 2025 23:14:42 +0530
+Subject: [PATCH v2 7/8] wifi: ath11k: Use pci_{enable/disable}_link_state()
+ APIs to enable/disable ASPM states
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250825-ath-aspm-fix-v2-2-61b2f2db7d89@oss.qualcomm.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250825-ath-aspm-fix-v2-7-61b2f2db7d89@oss.qualcomm.com>
 References: <20250825-ath-aspm-fix-v2-0-61b2f2db7d89@oss.qualcomm.com>
 In-Reply-To: <20250825-ath-aspm-fix-v2-0-61b2f2db7d89@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>, 
@@ -70,24 +70,24 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
  "Rafael J. Wysocki" <rafael@kernel.org>, 
  Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4956;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3144;
  i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=ZbX/P/Tjf8pjL7HPByaCkE9n8aYYv5gDRWCzS63i5A4=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBorKEOxJ6aeOqgKi7d2p8e9E6vSn9QgBCPg7H7l
- AlQQ0hzDaiJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaKyhDgAKCRBVnxHm/pHO
- 9drpB/0XOkzdkNiuiw9s73/6BgGYyTjbWx1OWr9LvaBjBd3ShgAqfHQaoj3hN1DZihUNBW2HXOn
- tkoQqt2NTgsPPoZ/QNHanSCE30ox/iW/ZWPmC6PPJHcg5kQBw1Iwu4PLVsnNWjBmNbxGTK/oEbM
- Bj/XCvyaVteO1torMSTAyehBeNLhpvmD8Mn5nM4QF0nFuWIYD9Cfr7w5WJ0Lkhr8D8IehD1lAG2
- FonxTNhKNwLS61BZPUUAePAuN0lMqRJFSoiOptS6BwCgyuZbZl4/wyq+hPO8z3nEFFOc2HR4rzm
- pe+yzOBTli2HXIkl3O8qe26rdBDVsVr3ppSoX9xV0WyYhXAn
+ bh=K8FTwvItCiUnOOZrxrN2h/nq2BvbT+Wy0KtDYhVyhrY=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBorKEPYMGTaSp8NMZfMxZegLgw/ywSID5AZ1Ba+
+ gsX7ZfIHlSJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaKyhDwAKCRBVnxHm/pHO
+ 9UQuB/9rHiAkPXNCloNwt2ZMvvMg2V+yPJgaGgkUtvckx77vEpqrmTqabjua6TM5frI4eUkTZT4
+ mjQ6L+/s1x51XvU3xRwVXz7LpJzD+6ZPzllkd6bSKTWzHYs2ud/muci1b7D189UPBPHOubDyMJR
+ qRGH7dS6UY9wsodC+1pYXlVtRazVcWN7v8VA6dFzjUTeETBEeuFHdLgTDaP6p8DbuT1Vo1ROaHp
+ nyBCSyoBDKmotIFDmIhAF+2sIazt4Yb+uQs1g8dpBC5nccYDDPmBEI04zyo+qUYHByPpzRzNll2
+ bePWYZk7FWt403okq5s9prQ8oPpKOoWSFwSiW+XwYorkfvs6
 X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
  fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-Endpoint-Received: by B4 Relay for
  manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
 X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_104451_708497_7F8C447A 
-X-CRM114-Status: GOOD (  16.30  )
+X-CRM114-CacheID: sfid-20250825_104451_907738_45538EDC 
+X-CRM114-Status: GOOD (  11.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,115 +105,83 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-pci_enable_link_state() and pci_enable_link_state_locked() APIs are
-supposed to be symmectric with pci_disable_link_state() and
-pci_disable_link_state_locked() APIs.
+It is not recommended to enable/disable the ASPM states on the back of the
+PCI core directly using the LNKCTL register. It will break the PCI core's
+knowledge about the device ASPM states. So use the APIs exposed by the PCI
+core to enable/disable ASPM states.
 
-But unfortunately, they are not symmetric. This behavior was mentioned in
-the kernel-doc of these APIs:
-
-" Clear and set the default device link state..."
-
-and
-
-"Also note that this does not enable states disabled by
-pci_disable_link_state()"
-
-These APIs won't enable all the states specified by the 'state' parameter,
-but only enable the ones not previously disabled by the
-pci_disable_link_state*() APIs. But this behavior doesn't align with the
-naming of these APIs, as they give the impression that these APIs will
-enable all the specified states.
-
-To resolve this ambiguity, allow these APIs to enable the specified states,
-regardeless of whether they were previously disabled or not. This is
-accomplished by clearing the previously disabled states from the
-'link::aspm_disable' parameter in __pci_enable_link_state() helper. Also,
-reword the kernel-doc to reflect this behavior.
-
-The current callers of pci_enable_link_state_locked() APIs (vmd and
-pcie-qcom) did not disable the ASPM states before calling this API. So it
-is evident that they do not depend on the previous behavior of this API and
-intend to enable all the specified states.
-
-And the other API, pci_enable_link_state() doesn't have a caller for now,
-but will be used by the 'atheros' WLAN drivers in the subsequent commits.
-
-Suggested-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Co-developed-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 ---
- drivers/pci/pcie/aspm.c | 33 ++++++++++++++++++---------------
- 1 file changed, 18 insertions(+), 15 deletions(-)
+ drivers/net/wireless/ath/ath11k/Kconfig |  2 +-
+ drivers/net/wireless/ath/ath11k/pci.c   | 19 +++----------------
+ drivers/net/wireless/ath/ath11k/pci.h   |  3 ++-
+ 3 files changed, 6 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-index be9bd272057c3472f3e31dc9568340b19d52012a..fac46113a90c7fac6c97125e6a7e385045780005 100644
---- a/drivers/pci/pcie/aspm.c
-+++ b/drivers/pci/pcie/aspm.c
-@@ -1459,6 +1459,7 @@ static int __pci_enable_link_state(struct pci_dev *pdev, int state, bool locked)
- 		down_read(&pci_bus_sem);
- 	mutex_lock(&aspm_lock);
- 	link->aspm_default = pci_calc_aspm_enable_mask(state);
-+	link->aspm_disable &= ~state;
- 	pcie_config_aspm_link(link, policy_to_aspm_state(link));
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index 659ef134ef168f5e5ad9a532ccd485d20d8701d5..9e19823fbd1a8d48517dcf1c2e644686f7e0ff57 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -20,7 +20,7 @@ config ATH11K_AHB
  
- 	link->clkpm_default = (state & PCIE_LINK_STATE_CLKPM) ? 1 : 0;
-@@ -1471,17 +1472,18 @@ static int __pci_enable_link_state(struct pci_dev *pdev, int state, bool locked)
+ config ATH11K_PCI
+ 	tristate "Atheros ath11k PCI support"
+-	depends on ATH11K && PCI
++	depends on ATH11K && PCI && PCIEASPM
+ 	select MHI_BUS
+ 	select QRTR
+ 	select QRTR_MHI
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index d8655badd96d0f4b6946f8af927d878aaa3147ad..94bf5973d146754173d076eebd36580b820dc894 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -586,19 +586,9 @@ static void ath11k_pci_free_region(struct ath11k_pci *ab_pci)
+ 
+ static void ath11k_pci_aspm_disable(struct ath11k_pci *ab_pci)
+ {
+-	struct ath11k_base *ab = ab_pci->ab;
+-
+-	pcie_capability_read_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-				  &ab_pci->link_ctl);
+-
+-	ath11k_dbg(ab, ATH11K_DBG_PCI, "link_ctl 0x%04x L0s %d L1 %d\n",
+-		   ab_pci->link_ctl,
+-		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L0S),
+-		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
++	ab_pci->aspm_states = pcie_aspm_enabled(ab_pci->pdev);
+ 
+-	/* disable L0s and L1 */
+-	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-				   PCI_EXP_LNKCTL_ASPMC);
++	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_ALL);
+ 
+ 	set_bit(ATH11K_PCI_ASPM_RESTORE, &ab_pci->flags);
+ }
+@@ -606,10 +596,7 @@ static void ath11k_pci_aspm_disable(struct ath11k_pci *ab_pci)
+ static void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci)
+ {
+ 	if (test_and_clear_bit(ATH11K_PCI_ASPM_RESTORE, &ab_pci->flags))
+-		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-						   PCI_EXP_LNKCTL_ASPMC,
+-						   ab_pci->link_ctl &
+-						   PCI_EXP_LNKCTL_ASPMC);
++		pci_enable_link_state(ab_pci->pdev, ab_pci->aspm_states);
  }
  
- /**
-- * pci_enable_link_state - Clear and set the default device link state so that
-- * the link may be allowed to enter the specified states. Note that if the
-- * BIOS didn't grant ASPM control to the OS, this does nothing because we can't
-- * touch the LNKCTL register. Also note that this does not enable states
-- * disabled by pci_disable_link_state(). Return 0 or a negative errno.
-+ * pci_enable_link_state - Enable device's link state
-+ * @pdev: PCI device
-+ * @state: Mask of ASPM link states to enable
-+ *
-+ * Enable device's link state, so the link will enter the specified states.
-+ * Note that if the BIOS didn't grant ASPM control to the OS, this does
-+ * nothing because we can't touch the LNKCTL register.
-  *
-  * Note: Ensure devices are in D0 before enabling PCI-PM L1 PM Substates, per
-  * PCIe r6.0, sec 5.5.4.
-  *
-- * @pdev: PCI device
-- * @state: Mask of ASPM link states to enable
-+ * Return: 0 on success, a negative errno otherwise.
-  */
- int pci_enable_link_state(struct pci_dev *pdev, int state)
- {
-@@ -1490,19 +1492,20 @@ int pci_enable_link_state(struct pci_dev *pdev, int state)
- EXPORT_SYMBOL(pci_enable_link_state);
+ #ifdef CONFIG_DEV_COREDUMP
+diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
+index c33c7865145cc666394135e7fd8e10dd4462e5df..fe58ce814aeff1d71b5d6e44ccfd9d5b3cd9d48d 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.h
++++ b/drivers/net/wireless/ath/ath11k/pci.h
+@@ -72,7 +72,8 @@ struct ath11k_pci {
  
- /**
-- * pci_enable_link_state_locked - Clear and set the default device link state
-- * so that the link may be allowed to enter the specified states. Note that if
-- * the BIOS didn't grant ASPM control to the OS, this does nothing because we
-- * can't touch the LNKCTL register. Also note that this does not enable states
-- * disabled by pci_disable_link_state(). Return 0 or a negative errno.
-+ * pci_enable_link_state_locked - Enable device's link state
-+ * @pdev: PCI device
-+ * @state: Mask of ASPM link states to enable
-+ *
-+ * Enable device's link state, so the link will enter the specified states.
-+ * Note that if the BIOS didn't grant ASPM control to the OS, this does
-+ * nothing because we can't touch the LNKCTL register.
-  *
-  * Note: Ensure devices are in D0 before enabling PCI-PM L1 PM Substates, per
-  * PCIe r6.0, sec 5.5.4.
-  *
-- * @pdev: PCI device
-- * @state: Mask of ASPM link states to enable
-- *
-  * Context: Caller holds pci_bus_sem read lock.
-+ *
-+ * Return: 0 on success, a negative errno otherwise.
-  */
- int pci_enable_link_state_locked(struct pci_dev *pdev, int state)
- {
+ 	/* enum ath11k_pci_flags */
+ 	unsigned long flags;
+-	u16 link_ctl;
++	/* Cached PCIe ASPM states */
++	u32 aspm_states;
+ 	u64 dma_mask;
+ };
+ 
 
 -- 
 2.45.2
