@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FAADCA0FE9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CD78CA0FE7
 	for <ath11k@archiver.kernel.org>; Mon, 25 Aug 2025 20:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
@@ -12,46 +12,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=30dccVeAaD88WRXZ2IvKzNMq/kNxpIlWs/4zzERS9z0=; b=QFdy59EJzMu9yMcP8P0wfJjoWC
-	YjiOMP+/F4AMhfi6HSbhKBzf1RhF0dlPAThA71z+dqJdbEPoJ226MBCy0P4ulUK2w0Rd5eKEimOwa
-	6BBKFrUSduvbTj8ERiJl8+AAOwoy3AyzDSL1NaJw7FA0au4XAASkt2hRHEm4rrXgHdaY1Bm3B12Cw
-	/IrjKzi5RSUjR0jmuhyfkj8nTz7AYsxnR9Tx4Gk315+cwamFhMh9ozKKipL+DJ8cvHqi2n+Jfn9sh
-	DUYuN9pzNFQs0PUYC8Af0JpijD5CH8ViAZqW1ZhsfsGkiIKOD5Bso8O3jcRpMrHE5nwXq0ye6PO7N
-	ey255v1Q==;
+	bh=/718QguiAnExEOa3uQoLgpOV84l4SN1qF2AVrHPhQtg=; b=4UAbfH69J7PGsTdOQ9QDyZS33n
+	nW99+2y8oo8Qajnh6YT/U/n54DddCmkBgpLKnZS2gj6TYGyAM6i5ivBpO8tYZ76q751LQmtRhr3g5
+	XhecaUriPzjRaJkiYntvedqD6S2+y1eYu7eAkyw5k0AKSKpDLg8bIhFWM5mkQ1eUHY49e6Ngy04cG
+	6M05yLU8dm+kp8LAeA8fAzQUx81FDfGTy2hkPD18OAXPURjxwLtWqpzULovtPvcM5G3sGgRRZkp9K
+	f1CZxGQph4x1w088PwyvFGIpUitVYWr/yz93Z6PSHOL/ATB1/btb0hgljr47dxWLvpzdVg1+1a5hL
+	+cXuylag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqdig-00000009Yw1-31X1;
-	Mon, 25 Aug 2025 20:23:10 +0000
+	id 1uqdif-00000009YvV-37b6;
+	Mon, 25 Aug 2025 20:23:09 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqbFT-00000008rJm-2WAa;
-	Mon, 25 Aug 2025 17:44:53 +0000
+	id 1uqbFT-00000008rJk-2VlT;
+	Mon, 25 Aug 2025 17:44:52 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id E487644E97;
+	by sea.source.kernel.org (Postfix) with ESMTP id C930544E89;
 	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 65332C4AF1A;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4151AC19421;
 	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1756143890;
-	bh=W2VzOd4LaPPqd03f5mZn4e//pyUDYNDJInaL1ivlSb4=;
+	bh=XIKXkwSdpDFgryuO8AscrjzoCScXTyqY2YV5IZIW2eE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=oWvuaw4fY34Fat0zJPLQ7kPHaaOYJgM4O8T3jfYUYUnWgXkCt+zUcyNKGLHfpQFvF
-	 YG7iJRa9WRiOm+gC/vpjA0ViELfa9lWuTluGvQYfYB1g0K68p123JM1MFeBXBYmwJl
-	 4cNpEoj0cG0s33COjUZYyctZDye1Q5MymUpE2D+sKkqMKUydBDDoia906G98jJ2aVk
-	 RDfleTU7oQE30h0Yzyx6/htVdwrJQU+R+6ddbutX2+7fSa+nk2vc9Ef6Bh2F3yjU3R
-	 xCgXZO+sgy/aBi5MDYA5K6o54uQSQuL4/Rg6jGM3If8WfhStHwU99+j5w2XAhvaS4f
-	 gw0l+uOKDpXqQ==
+	b=qU3VIkwi9ipzyXAef3IHjOfSkA6fgbg36bhmnZ6ctYJqEONhyVMlhjRj1OLRCXmCl
+	 We2AO005UwaSCw0ORnwxjnbO8eC5sKEb/l/jW0cDm6fbEz63phFgsNGsAOE78nVNFS
+	 vLOGt8CWmYmxw1yqX5deRc4MORmZsVwRKk8Z8Ur33ptY2rsnhswCd2hYkhcaWXGmNA
+	 Tec/KlStxskkAA94AYXo0hgSjDeX+zBclWxT2JqqxfvfyQIXB73wlZgcDwdEnLYr8y
+	 N+0z7XVD1Nn1dqtESANyeE7fbm0TNwZUXleBhnkoktx5zpp11Hk5uV0SBTrNYx9hKs
+	 WTbBRmbqidnGQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 552F7CA0FE7;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37F01CA0FED;
 	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
 From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
-Date: Mon, 25 Aug 2025 23:14:40 +0530
-Subject: [PATCH v2 5/8] PCI/ASPM: Return enabled ASPM states from
- pcie_aspm_enabled() API
+Date: Mon, 25 Aug 2025 23:14:38 +0530
+Subject: [PATCH v2 3/8] PCI/ASPM: Transition the device to D0 (if required)
+ inside pci_enable_link_state_locked() API
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250825-ath-aspm-fix-v2-5-61b2f2db7d89@oss.qualcomm.com>
+Message-Id: <20250825-ath-aspm-fix-v2-3-61b2f2db7d89@oss.qualcomm.com>
 References: <20250825-ath-aspm-fix-v2-0-61b2f2db7d89@oss.qualcomm.com>
 In-Reply-To: <20250825-ath-aspm-fix-v2-0-61b2f2db7d89@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>, 
@@ -70,24 +70,24 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
  "Rafael J. Wysocki" <rafael@kernel.org>, 
  Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2836;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4214;
  i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=jMfN6qwvopwk5oh/k0Cf9IL8m25slb1JveeGwVNhrME=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBorKEPiwhWp+/PSd/iBSrmb3dl5Tv2stjEC5I9s
- hxFRCLyDCmJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaKyhDwAKCRBVnxHm/pHO
- 9U8+B/0c1VbCfjh2R58dS1EgS8LhCsvsrwAoexW6nBilgkDlYrlhBMoBaLI9cifrzAIzOEwcpwp
- NcFXH/cJcNB4HE8+VOkeAosGiDRPAmkzhw0lCs0Zlke9MbptGXuiPFDUt3GmgUZFkni+1PmQiZ6
- t6ufSeZOuHr+lb4VOpYPvZuElkBpX9XkBPc2DkTZqNa2qxW6FlpPDQju2PvMuVCv7T7pt2oMDuZ
- cZ90VmyDcXelHokd348TRdPfCo7jMmed/A1/r531KO5UTv8PLsuSq9Qvt5HkrI2hNPVe0r0BCKj
- ycJ81OSii5p8Cs+xcBp48q2Q8kYaaB30f/wEOr4w8XM10UxL
+ bh=Qjbd70IC+ShOK3ZDf4DRoBiUH5NS5aHCnprLq7DQ7iM=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBorKEPLbdqO2EWRQxfmgtisJzzWpgiy2ZIIPyDr
+ wXo38kcIkeJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaKyhDwAKCRBVnxHm/pHO
+ 9Y3zB/9zEs5uWjC3Xrp3WhZFy5crlFwe49xFUi+A+EJpbRJDiMhgTxouJpKvRY/cZvY8DxcuyWq
+ Q6VKk/Q1UWHC054LHzynKwqasTaviVYQgMqMwjJ4C06i9hMSyr/L2Hywarv9Nni8mhUD372eY4O
+ Ry0svyzfWZJplUYBwqnbbhvSYfeX3oN++0ibNInhZ9fFX4dLGMvQUfAj1+EoX7Zk11ND+Z44c7q
+ /34v40Br95YeTKp/FOIwVK8dayq7uZiqEKwRc3AcrXGobv4humuJVCA8HaXe79RalBT9kairD6/
+ KQbjIRML/SnxYy9jMFN3tTtwmRh5tpXkjm+u8YXE6E7wjWXP
 X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
  fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-Endpoint-Received: by B4 Relay for
  manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
 X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_104451_714399_0374A87A 
-X-CRM114-Status: GOOD (  14.07  )
+X-CRM114-CacheID: sfid-20250825_104451_708171_609CF3F7 
+X-CRM114-Status: GOOD (  12.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,69 +105,108 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-pcie_aspm_enabled() returns 'pcie_link_state::aspm_enabled' parameter which
-contains the enabled states. But the API currently returns the 'bool' type
-which is used by the callers to decide if ASPM is enabled or not.
+Both of the current callers of the pci_enable_link_state_locked() API
+transition the device to D0 before calling. This aligns with the PCIe spec
+r6.0, sec 5.5.4:
 
-To allow the future callers to also make use of the enabled ASPM states,
-return the actual type of 'pcie_link_state::aspm_enabled' parameter, 'u32'.
+"If setting either or both of the enable bits for PCI-PM L1 PM Substates,
+both ports must be configured as described in this section while in D0."
 
-Existing callers can still treat the return value as a 'bool' as the C11
-standard guarantees the behavior (this API relied on the same behavior
-before as well).
+But it looks redundant to let the callers transition the device to D0. So
+move the logic inside the API and perform D0 transition only if the PCI-PM
+L1 Substates are getting enabled.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 ---
- drivers/pci/pcie/aspm.c | 6 ++++--
- include/linux/pci.h     | 4 ++--
- 2 files changed, 6 insertions(+), 4 deletions(-)
+ drivers/pci/controller/dwc/pcie-qcom.c |  5 -----
+ drivers/pci/controller/vmd.c           |  5 -----
+ drivers/pci/pcie/aspm.c                | 22 ++++++++++++++++++----
+ 3 files changed, 18 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..af705d71f72b2b7c3004cbb69cbd779c637bb22b 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom.c
++++ b/drivers/pci/controller/dwc/pcie-qcom.c
+@@ -1042,11 +1042,6 @@ static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+ 
+ static int qcom_pcie_enable_aspm(struct pci_dev *pdev, void *userdata)
+ {
+-	/*
+-	 * Downstream devices need to be in D0 state before enabling PCI PM
+-	 * substates.
+-	 */
+-	pci_set_power_state_locked(pdev, PCI_D0);
+ 	pci_enable_link_state_locked(pdev, PCIE_LINK_STATE_ALL);
+ 
+ 	return 0;
+diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vmd.c
+index b679c7f28f51c13468b60f1e6481a26d5967d4eb..85cfd8cbc6f7ed2730f4f8e5357d9b90d8906ad3 100644
+--- a/drivers/pci/controller/vmd.c
++++ b/drivers/pci/controller/vmd.c
+@@ -768,11 +768,6 @@ static int vmd_pm_enable_quirk(struct pci_dev *pdev, void *userdata)
+ 	pci_info(pdev, "VMD: Default LTR value set by driver\n");
+ 
+ out_state_change:
+-	/*
+-	 * Ensure devices are in D0 before enabling PCI-PM L1 PM Substates, per
+-	 * PCIe r6.0, sec 5.5.4.
+-	 */
+-	pci_set_power_state_locked(pdev, PCI_D0);
+ 	pci_enable_link_state_locked(pdev, PCIE_LINK_STATE_ALL);
+ 	return 0;
+ }
 diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-index 3c8101023e80d3c0550136f729782c0e0a3e28cf..fed44b7cb46e9f34c9ef6d5fa6a7b009976cbfdc 100644
+index fac46113a90c7fac6c97125e6a7e385045780005..1243715bc054f859af175143a7ffaef0971f097a 100644
 --- a/drivers/pci/pcie/aspm.c
 +++ b/drivers/pci/pcie/aspm.c
-@@ -1582,15 +1582,17 @@ module_param_call(policy, pcie_aspm_set_policy, pcie_aspm_get_policy,
- 	NULL, 0644);
- 
- /**
-- * pcie_aspm_enabled - Check if PCIe ASPM has been enabled for a device.
-+ * pcie_aspm_enabled - Get the enabled PCIe ASPM states for a device.
-  * @pdev: Target device.
+@@ -1480,13 +1480,20 @@ static int __pci_enable_link_state(struct pci_dev *pdev, int state, bool locked)
+  * Note that if the BIOS didn't grant ASPM control to the OS, this does
+  * nothing because we can't touch the LNKCTL register.
   *
-  * Relies on the upstream bridge's link_state being valid.  The link_state
-  * is deallocated only when the last child of the bridge (i.e., @pdev or a
-  * sibling) is removed, and the caller should be holding a reference to
-  * @pdev, so this should be safe.
-+ *
-+ * Return: Enabled PCIe ASPM states. 0 if ASPM is disabled.
+- * Note: Ensure devices are in D0 before enabling PCI-PM L1 PM Substates, per
+- * PCIe r6.0, sec 5.5.4.
++ * Note: The device will be transitioned to D0 state if the PCI-PM L1 Substates
++ * are getting enabled.
+  *
+  * Return: 0 on success, a negative errno otherwise.
   */
--bool pcie_aspm_enabled(struct pci_dev *pdev)
-+u32 pcie_aspm_enabled(struct pci_dev *pdev)
+ int pci_enable_link_state(struct pci_dev *pdev, int state)
  {
- 	struct pcie_link_state *link = pcie_aspm_get_link(pdev);
++	/*
++	 * Ensure the device is in D0 before enabling PCI-PM L1 PM Substates, per
++	 * PCIe r6.0, sec 5.5.4.
++	 */
++	if (FIELD_GET(PCIE_LINK_STATE_L1_SS_PCIPM, state))
++		pci_set_power_state(pdev, PCI_D0);
++
+ 	return __pci_enable_link_state(pdev, state, false);
+ }
+ EXPORT_SYMBOL(pci_enable_link_state);
+@@ -1500,8 +1507,8 @@ EXPORT_SYMBOL(pci_enable_link_state);
+  * Note that if the BIOS didn't grant ASPM control to the OS, this does
+  * nothing because we can't touch the LNKCTL register.
+  *
+- * Note: Ensure devices are in D0 before enabling PCI-PM L1 PM Substates, per
+- * PCIe r6.0, sec 5.5.4.
++ * Note: The device will be transitioned to D0 state if the PCI-PM L1 Substates
++ * are getting enabled.
+  *
+  * Context: Caller holds pci_bus_sem read lock.
+  *
+@@ -1511,6 +1518,13 @@ int pci_enable_link_state_locked(struct pci_dev *pdev, int state)
+ {
+ 	lockdep_assert_held_read(&pci_bus_sem);
  
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 59876de13860dbe50ee6c207cd57e54f51a11079..6f3c5d6a9a959abefbb69e1165aec704da507313 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1851,7 +1851,7 @@ int pci_enable_link_state(struct pci_dev *pdev, int state);
- int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
- void pcie_no_aspm(void);
- bool pcie_aspm_support_enabled(void);
--bool pcie_aspm_enabled(struct pci_dev *pdev);
-+u32 pcie_aspm_enabled(struct pci_dev *pdev);
- #else
- static inline int pci_disable_link_state(struct pci_dev *pdev, int state)
- { return 0; }
-@@ -1863,7 +1863,7 @@ static inline int pci_enable_link_state_locked(struct pci_dev *pdev, int state)
- { return 0; }
- static inline void pcie_no_aspm(void) { }
- static inline bool pcie_aspm_support_enabled(void) { return false; }
--static inline bool pcie_aspm_enabled(struct pci_dev *pdev) { return false; }
-+static inline u32 pcie_aspm_enabled(struct pci_dev *pdev) { return false; }
- #endif
- 
- #ifdef CONFIG_HOTPLUG_PCI
++	/*
++	 * Ensure the device is in D0 before enabling PCI-PM L1 PM Substates, per
++	 * PCIe r6.0, sec 5.5.4.
++	 */
++	if (FIELD_GET(PCIE_LINK_STATE_L1_SS_PCIPM, state))
++		pci_set_power_state(pdev, PCI_D0);
++
+ 	return __pci_enable_link_state(pdev, state, true);
+ }
+ EXPORT_SYMBOL(pci_enable_link_state_locked);
 
 -- 
 2.45.2
