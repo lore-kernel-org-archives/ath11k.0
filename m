@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CF55CA0FE7
-	for <ath11k@archiver.kernel.org>; Mon, 25 Aug 2025 19:08:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86057C8303F
+	for <ath11k@archiver.kernel.org>; Mon, 25 Aug 2025 19:09:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=KCjHGGkmmC6v3Bf9wkmeAbcJyKHATedmhzconsWJRvQ=; b=T0HEsFyWX2B0LuDuM072vIMpVd
-	Bs96fNR4yGHN5QjL/mbv2bytrSigbmS0MuvZvtuJuNpgzDuzY3cIwCPxWfLbEq1PRhUknUflfA/y2
-	ToHOpVEqz6A191kuXZFQUg6r+jsap3MiglGE/jJcH2YZrA6AKUX8BPzelEqgPgwkj2DzXAXT21SmJ
-	ZCbB0Qt4jONcrNkyID7C4E+dTK7K+XeZWG8gHjhi6ISalqj7Nvqs6fUAlINt64k4DHGSNjaDJnuej
-	Q+pMePDWdKGqoClIdCZ4qNdPj98Ncqef4EAdIO6iU4fc5sC0AXQ1hVOF9rv/17F+k1pZArSl1Dvsy
-	8Nez3hFw==;
+	bh=HwVTY9gQunUmzKvR8faug7127o6R0G25HuTuT6UhCac=; b=NYhOfum9T8uAIeJB1sw/bf3bhN
+	MeEf9y63xPv0NNZKH9IWuxoAq6u6Eq7TeDQs8qh5tIOUAXHdC18nUPhEU0HVPRCknDIiwAR9XJgg3
+	Ma2FCeKvmbln7DUHiFnidU2jEuoZ5uDyvJCTxTVDr8nuzK2RGJe/8zJikLvr2n5tKLTZn3qasDvq5
+	1lc0B0ViS4qe1r2PqiqMKMyCl5CqbN3vPGLWDnXvren7b6kpd/yvICQyxg/pWi4FeHL9Rhf/jJKn1
+	oi709f30M5aNF8u7l6WzsmwwHeomlwjC17yD3O/6ODFyGUgoGq8Vx4nqw+j/c6XAx3A9SLZddHJkj
+	0fEAowfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqcYr-00000009BwZ-47Pj;
-	Mon, 25 Aug 2025 19:08:57 +0000
+	id 1uqcYx-00000009C6i-1ltR;
+	Mon, 25 Aug 2025 19:09:03 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqbFT-00000008rJl-3I4I;
-	Mon, 25 Aug 2025 17:44:54 +0000
+	id 1uqbFX-00000008rMk-0R23;
+	Mon, 25 Aug 2025 17:44:56 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id CD5E65C62F0;
-	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 26246C113D0;
+	by dfw.source.kernel.org (Postfix) with ESMTP id A2E1F5C62EA;
+	Mon, 25 Aug 2025 17:44:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6DC7AC4AF48;
 	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1756143890;
-	bh=u+j1MWZrVDMnA0nN2hd703dpVLMQhCSZUL4OYJmX1Iw=;
+	bh=5r5CGSyABcYjNsRbD59pnqOF5sW34Z3EZ4rn8nXrc0M=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JDKkY/D5iZoD0kVKUsBTL0e8MYxmuawMMJvAeqNP7YhOQN3wTellFdvhGjMRrI5l5
-	 VN9F09nL7C9t6pODn1tZS5Xc+qAHuVl+iRRnFSXIzuDPLB2CmaawMvpyinbWXQIG9g
-	 VMpCFUNfMMishrwV2EF4W4YkL5Jm8C3JJxhcUmSlHvqUo9FFR1n8f/Niqo2fMwAxgZ
-	 uAd4GNql8Jhn1Z6THTI2FCQcvtFlMWwSAX1Opawak3KxvDPCkUqdnbMZCuu7wOYFg7
-	 zbbwSGjqDuWGs+7hzMk7pCMaNNsBB1hbpTGIHGD4HvYAQk6JzUbSxH/nuNgtjRqiV7
-	 dR/o39cctmCjw==
+	b=oskTPZo+0jBNzrlwS7d+fv+SFAZqEBVpXnhKW0MEsDtXy1abOHC/DnfNHJVc+Cbr5
+	 ZI3mWKFwx2redjvPNhYAejwdAiqx90Mll6Me3bArP+NhQ65plSDDtgQ77SGy5djLK7
+	 xRlFnfJH3AQwKv5y364WGRYmt+ESN2mCoLqYyWApzHW7jF1YIxzO5c5GiY9ddHcIcP
+	 KLsNJTPPj3Z/+REQrDzybOPEGwgxOqGQcdIPZRGNEDrUxJAcvRokSON5EcmBGk3Dyv
+	 XPETiEQ6OR2fZmZ3Jd3TlHcmvPA7S3Rfc8lIxAyaRgtD2+bTgTYvDdE79xOog0lRed
+	 ly90yyROwFP3A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1481FCA0FE7;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63F2BCA0FED;
 	Mon, 25 Aug 2025 17:44:50 +0000 (UTC)
 From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
-Date: Mon, 25 Aug 2025 23:14:36 +0530
-Subject: [PATCH v2 1/8] PCI/ASPM: Always disable ASPM when driver requests
- it
+Date: Mon, 25 Aug 2025 23:14:41 +0530
+Subject: [PATCH v2 6/8] wifi: ath12k: Use pci_{enable/disable}_link_state()
+ APIs to enable/disable ASPM states
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250825-ath-aspm-fix-v2-1-61b2f2db7d89@oss.qualcomm.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250825-ath-aspm-fix-v2-6-61b2f2db7d89@oss.qualcomm.com>
 References: <20250825-ath-aspm-fix-v2-0-61b2f2db7d89@oss.qualcomm.com>
 In-Reply-To: <20250825-ath-aspm-fix-v2-0-61b2f2db7d89@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>, 
@@ -68,26 +68,27 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
  =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
  Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
  "Rafael J. Wysocki" <rafael@kernel.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+ Qiang Yu <qiang.yu@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4409;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3464;
  i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=XteWgzQLE4FB1d7fUUtWPfDxXr3Zn7uGZ3PNAO/OJ1o=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBorKEOInbYm5tl5KOPLP0FAuBz7q4CEGOPyc+H8
- JnnTv9G2EeJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaKyhDgAKCRBVnxHm/pHO
- 9ZWBB/4v7fVw7cQpZhIlei/tgmZsW671sNE/em0HNodv96mg1pNd6NIEv76mCwcqsQW9WXZzu1P
- A1Rfn/XV4mJI7DIrfGI80bYvM8hFz5iWdD93TpVpfS9KKTf9BveX3sBJ7CBy7dCdqDqWtMBtxd9
- RGoFOQB5Zr5yNNBnUfZ1kP4F3Q2lAvzzOaOqUiTwf1Rb66K3OJidg5WrDX2XVgAxXlbh+s3dqgx
- rKa605QyAAvQHUpIZTxVYoqBxXpFE1Y0B5sW2TdcGODrN9aR4kT1GoBkuj5pgOyT6bZnXvj9Q09
- iUHx/0rrCwBlMdlO4njgBUYwkx4sySg5EXZNY6rLq3wPz9UT
+ bh=YGFWkIzjyhJ7NOe0rjueqTF+ezI7rthYPLb8nbyWY/g=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBorKEPxDoq8Rt3E/gfDSPMFBM6a+hNKg0+2PyCy
+ S0mmGxqoDaJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaKyhDwAKCRBVnxHm/pHO
+ 9aizB/9QbdeHisz8JMQZeOvxBOeQqcnLLDlPLGiXOCPkjvsCidqfJpKcjMxM/OvG4l0wcTKibU6
+ EqsrITqfxgI9G3Gb9W4eJJuDqkzs3AU2QyoupUYB2+pdYlEfH1U+Gb/5JUmZnMb89RDCqJn69qx
+ tAL/BS8Ci5vxcBHQBfx3jpl6+iHzRa9Ok7zj1UfaLdBx8VCSVmTZ4n4cFpAtnTz4jQ38A4NzSRD
+ hydPz+jv0OHoqIYwj9euNkRc2LD0At/ePKUtZB9JucYAEv2mbmzVzzRkqJrXl9fPldon+TB6bA7
+ 0MFdxNivxmcOEH6Louvsx58LBStikkIimvSd+Y+fwaTT5u6i
 X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
  fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-Endpoint-Received: by B4 Relay for
  manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
 X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_104451_942468_4C7C9906 
-X-CRM114-Status: GOOD (  18.53  )
+X-CRM114-CacheID: sfid-20250825_104455_229136_998DFB20 
+X-CRM114-Status: GOOD (  12.67  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,101 +104,89 @@ Reply-To: manivannan.sadhasivam@oss.qualcomm.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-PCI core/ASPM service driver allows controlling ASPM state through
-pci_disable_link_state() API. It was decided earlier (see the Link
-below), to not allow ASPM changes when OS does not have control over it
-but only log a warning about the problem 'commit 2add0ec14c25 ("PCI/ASPM:
-Warn when driver asks to disable ASPM, but we can't do it")'.
+It is not recommended to enable/disable the ASPM states on the back of the
+PCI core directly using the LNKCTL register. It will break the PCI core's
+knowledge about the device ASPM states. So use the APIs exposed by the PCI
+core to enable/disable ASPM states.
 
-A number of drivers have added workarounds to force ASPM off with own
-writes into the Link Control Register (some even with comments
-explaining why PCI core does not disable it under some circumstances).
-According to the comments, some drivers require ASPM to be off for
-reliable operation.
+Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
 
-Having custom ASPM handling in drivers is problematic because the state
-kept in the ASPM service driver is not updated by the changes made
-outside the link state management API.
-
-As the first step to address this issue, make pci_disable_link_state()
-to unconditionally disable ASPM so the motivation for drivers to come
-up with custom ASPM handling code is eliminated.
-
-To fully take advantage of the ASPM handling core provides, the drivers
-that need to quirk ASPM have to be altered depend on PCIEASPM and the
-custom ASPM code is removed. This is to be done separately. As PCIEASPM
-is already behind EXPERT, it should be no problem to limit disabling it
-for configurations that do not require touching ASPM.
-
-Make pci_disable_link_state() function comment to comply kerneldoc
-formatting while changing the description.
-
-Link: https://lore.kernel.org/all/CANUX_P3F5YhbZX3WGU-j1AGpbXb_T9Bis2ErhvKkFMtDvzatVQ@mail.gmail.com/
-Link: https://lore.kernel.org/all/20230511131441.45704-1-ilpo.jarvinen@linux.intel.com/
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-[mani: commit message fixup]
+Reported-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 ---
- drivers/pci/pcie/aspm.c | 33 ++++++++++++++++++++-------------
- 1 file changed, 20 insertions(+), 13 deletions(-)
+ drivers/net/wireless/ath/ath12k/Kconfig |  2 +-
+ drivers/net/wireless/ath/ath12k/pci.c   | 19 +++----------------
+ drivers/net/wireless/ath/ath12k/pci.h   |  4 +++-
+ 3 files changed, 7 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-index 919a05b9764791c3cc469c9ada62ba5b2c405118..be9bd272057c3472f3e31dc9568340b19d52012a 100644
---- a/drivers/pci/pcie/aspm.c
-+++ b/drivers/pci/pcie/aspm.c
-@@ -1381,16 +1381,23 @@ static int __pci_disable_link_state(struct pci_dev *pdev, int state, bool locked
- 		return -EINVAL;
- 	/*
- 	 * A driver requested that ASPM be disabled on this device, but
--	 * if we don't have permission to manage ASPM (e.g., on ACPI
-+	 * if we might not have permission to manage ASPM (e.g., on ACPI
- 	 * systems we have to observe the FADT ACPI_FADT_NO_ASPM bit and
--	 * the _OSC method), we can't honor that request.  Windows has
--	 * a similar mechanism using "PciASPMOptOut", which is also
--	 * ignored in this situation.
-+	 * the _OSC method), previously we chose to not honor disable
-+	 * request in that case. Windows has a similar mechanism using
-+	 * "PciASPMOptOut", which is also ignored in this situation.
-+	 *
-+	 * Not honoring the requests to disable ASPM, however, led to
-+	 * drivers forcing ASPM off on their own. As such changes of ASPM
-+	 * state are not tracked by this service driver, the state kept here
-+	 * became out of sync.
-+	 *
-+	 * Therefore, honor ASPM disable requests even when OS does not have
-+	 * ASPM control. Plain disable for ASPM is assumed to be slightly
-+	 * safer than fully managing it.
- 	 */
--	if (aspm_disabled) {
--		pci_warn(pdev, "can't disable ASPM; OS doesn't have ASPM control\n");
--		return -EPERM;
--	}
-+	if (aspm_disabled)
-+		pci_warn(pdev, "OS doesn't have ASPM control, disabling ASPM anyway\n");
+diff --git a/drivers/net/wireless/ath/ath12k/Kconfig b/drivers/net/wireless/ath/ath12k/Kconfig
+index 1ea1af1b8f6c5425c38663977f1d60fe3acb5437..789276e1e9c289de7afdbcaf72be6410b6ea7385 100644
+--- a/drivers/net/wireless/ath/ath12k/Kconfig
++++ b/drivers/net/wireless/ath/ath12k/Kconfig
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: BSD-3-Clause-Clear
+ config ATH12K
+ 	tristate "Qualcomm Technologies Wi-Fi 7 support (ath12k)"
+-	depends on MAC80211 && HAS_DMA && PCI
++	depends on MAC80211 && HAS_DMA && PCI && PCIEASPM
+ 	select CRYPTO_MICHAEL_MIC
+ 	select QCOM_QMI_HELPERS
+ 	select MHI_BUS
+diff --git a/drivers/net/wireless/ath/ath12k/pci.c b/drivers/net/wireless/ath/ath12k/pci.c
+index c729d5526c753d2b7b7542b6f2a145e71b335a43..29236da231e51ac402e40dd124bb474b3102e6c8 100644
+--- a/drivers/net/wireless/ath/ath12k/pci.c
++++ b/drivers/net/wireless/ath/ath12k/pci.c
+@@ -917,19 +917,9 @@ static void ath12k_pci_free_region(struct ath12k_pci *ab_pci)
  
- 	if (!locked)
- 		down_read(&pci_bus_sem);
-@@ -1417,13 +1424,13 @@ int pci_disable_link_state_locked(struct pci_dev *pdev, int state)
- EXPORT_SYMBOL(pci_disable_link_state_locked);
- 
- /**
-- * pci_disable_link_state - Disable device's link state, so the link will
-- * never enter specific states.  Note that if the BIOS didn't grant ASPM
-- * control to the OS, this does nothing because we can't touch the LNKCTL
-- * register. Returns 0 or a negative errno.
-- *
-+ * pci_disable_link_state - Disable device's link state
-  * @pdev: PCI device
-  * @state: ASPM link state to disable
-+ *
-+ * Disable device's link state so the link will never enter specific states.
-+ *
-+ * Return: 0 or a negative errno
-  */
- int pci_disable_link_state(struct pci_dev *pdev, int state)
+ static void ath12k_pci_aspm_disable(struct ath12k_pci *ab_pci)
  {
+-	struct ath12k_base *ab = ab_pci->ab;
+-
+-	pcie_capability_read_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-				  &ab_pci->link_ctl);
+-
+-	ath12k_dbg(ab, ATH12K_DBG_PCI, "pci link_ctl 0x%04x L0s %d L1 %d\n",
+-		   ab_pci->link_ctl,
+-		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L0S),
+-		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
++	ab_pci->aspm_states = pcie_aspm_enabled(ab_pci->pdev);
+ 
+-	/* disable L0s and L1 */
+-	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-				   PCI_EXP_LNKCTL_ASPMC);
++	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_ALL);
+ 
+ 	set_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags);
+ }
+@@ -958,10 +948,7 @@ static void ath12k_pci_aspm_restore(struct ath12k_pci *ab_pci)
+ {
+ 	if (ab_pci->ab->hw_params->supports_aspm &&
+ 	    test_and_clear_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags))
+-		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-						   PCI_EXP_LNKCTL_ASPMC,
+-						   ab_pci->link_ctl &
+-						   PCI_EXP_LNKCTL_ASPMC);
++		pci_enable_link_state(ab_pci->pdev, ab_pci->aspm_states);
+ }
+ 
+ static void ath12k_pci_cancel_workqueue(struct ath12k_base *ab)
+diff --git a/drivers/net/wireless/ath/ath12k/pci.h b/drivers/net/wireless/ath/ath12k/pci.h
+index d1ec8aad7f6c3b6f5cbdf8ce57a4106733686521..f3e4e59323036e6251d422b7a2d1997811cc3f98 100644
+--- a/drivers/net/wireless/ath/ath12k/pci.h
++++ b/drivers/net/wireless/ath/ath12k/pci.h
+@@ -114,7 +114,9 @@ struct ath12k_pci {
+ 
+ 	/* enum ath12k_pci_flags */
+ 	unsigned long flags;
+-	u16 link_ctl;
++
++	/* Cached PCIe ASPM states */
++	u32 aspm_states;
+ 	unsigned long irq_flags;
+ 	const struct ath12k_pci_ops *pci_ops;
+ 	u32 qmi_instance;
 
 -- 
 2.45.2
