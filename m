@@ -4,119 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB4ACCA0EFA
-	for <ath11k@archiver.kernel.org>; Tue, 26 Aug 2025 10:34:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77AEACA0EFA
+	for <ath11k@archiver.kernel.org>; Tue, 26 Aug 2025 13:02:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:From:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=THXD3tlh8eUkNhfT5PZNJhHY5CcdeoTK49zbedmEjuk=; b=v3FNcVSyOswlTNNW7vnKSQ0CeG
-	RWDrNhsyj0ldCmxpkKE8aTEyoEmTOcreX8wQOCVCQpkhvVlDmNraJApcBcn9rdnMPtwBaiq1pA0t+
-	txNHpGn8DJ887S4z4u8wWPmmseRNFUlKhvqakhSZPBe8TRM+k+SxnHL3sohnDdMwL2EEWs/Ati5RJ
-	VoIb8bm57BYiVQh0nw35KL2ou8lTDdfzywJjJE46IbwOQ4qeDEe6ibQPNXL5kQYED4f0E6jlTqCWD
-	/jxrfeU3Sgz8SN/FRK0NRZDmKmZ7bLVzX8efUhYxUTiNzfFexEwc6BllgKjKiMQ7EaMLbG+Rs22fp
-	FQInCV+Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-ID:Content-Type:
+	MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To:Date:From:
+	Reply-To:Content-Transfer-Encoding:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=LkWRgKKm9FxeOFnQsAZESgl378dIsMxSS/KweLozGsQ=; b=Epi6dk4ZngBAOUn571t7izTNT6
+	38wLPK4hDxUBzIyBHU6/HOf5zB+6G0Vr+Fzw87dszd23SRosH5M2NK92TQ6WaS9RE6enLxbvJ7e4V
+	LMDzCG0C0KpU4/TaLtIufvAKvIhwetnYfPICTC7tXao5vO/RPnS0dkm5YtnFgCgcCfdSjFlDEzSET
+	zCio64wUkrSl0VktuGJqNJHbUShKt7byq/Z7vfMWZa1eSAfSoeH7wuItL6N2hq2HeJgloNkBckyCZ
+	8Tc9ub1V1FzHoGnXBmOO5+5LkoOdxttVbcVAxGVSKJdNcU5SNIUjoy1jBt5mFNyqrGbytgXU27b6t
+	jp/K0tjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqr0f-0000000BdaX-1V7i;
-	Tue, 26 Aug 2025 10:34:37 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1uqtJe-0000000C1Pc-2PmK;
+	Tue, 26 Aug 2025 13:02:22 +0000
+Received: from mgamail.intel.com ([192.198.163.10])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqqET-0000000BU2C-3yVR
-	for ath11k@lists.infradead.org;
-	Tue, 26 Aug 2025 09:44:51 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57Q8Y8b1027644
-	for <ath11k@lists.infradead.org>; Tue, 26 Aug 2025 09:44:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=THXD3tlh8eUkNhfT5PZNJh
-	HY5CcdeoTK49zbedmEjuk=; b=g4+QgYUC8d0fGdy5J1db+XMkqGsk83v8dKbpP0
-	vrEBj3W9YYImfOLv2+Wo8BIyei98A5TR5lp9jvA9M86MqcGtcUEZml27fg2y0Dk2
-	vo3ri2btmuN8mw5Lh4yRN0ZuuKE/J91YsI0ycvr9JNVYrJ//8fMHfZX9lL/uzSpe
-	NUAQuUTQ4oJ/I9jAY+YVa4sE9b/TxXLZq2NiSyDm/G2aW6bX+W0/ZrZRj9uBPQ2Z
-	xS9sOSrStM15Ko4iRccxLqfpAXVhHkVFX9os05DyEIE1jYiwFUUuiILuNO3EJXkl
-	cAl/uvU31ubvcHxGWhEFGvMSxfZsZCx8Y2km9BMOGEkP1JDQ==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48rtpetnjn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 26 Aug 2025 09:44:48 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b49de53348aso1538282a12.1
-        for <ath11k@lists.infradead.org>; Tue, 26 Aug 2025 02:44:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756201487; x=1756806287;
-        h=content-transfer-encoding:cc:to:subject:from:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=THXD3tlh8eUkNhfT5PZNJhHY5CcdeoTK49zbedmEjuk=;
-        b=KBlPmSKDd24w6IPg22mSfBm0LPq6KMKBJb09bmdX9wTdR8vIk+u/XTGrMGnh3AIQ8K
-         TFTCnjJcY5y60N2kDa4u4WNDIU/ykb4IhXy3uWxQ6mjng8xEBiJYlqGpjCFwptcsqTzm
-         PU6fLJnQ+aBGN/1L9uEQgAjvkIlOiB/nK1P/AKv0H6VPgdwwcVk2RQ6stP8ei8ATOebP
-         0TsliiwlA2I2u2opX1MPoeqKWa/Bl0wGnMVPsGJnr0hpUevy7bljKfJ8DCw94RjvOEzw
-         6wO+/iX/HyUJDK6ctwXHeqwpq0e9jKcGRWXqzsFT7QIilOXbiA98YMR1nYvnzBulDbWi
-         /o9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUj+NUaLLVRixPBWzOnUxjz26UnOzsQrNV8tUFFFs+2I/Q+X2nv88xu0DWI031qHEkbJmuOvjA=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyRFxtDk6t0zAII6xv7DmxNKBFolwoq0dUVX6UIMVry9stmNbRR
-	MKoZAsDFBuhfCtLdsv/Qufe5jnX6bSitaW1wWKBu0q2ceN7hDEp9iw1UAPsbZLcjLFxe3vG3JYn
-	Bcn+8fdbLRtD86mRZpi2q9aq7eKtg6tzwN/AYF0EK8+V0H6MCJ0SV+mbaU4XEjz7w
-X-Gm-Gg: ASbGncu0cXd13Rh89Eh5BL19uKkRc9M+ezk2u98ACoX4s2SeIZSctjYEMsNjy1vEXvi
-	BQIYfoljtoPXFMBl7dmOVXQ0ZeqQ23jTKTDsIEaa8SgMJlmN9CVWzflTv9yTmC/SZ8rY97Rn/s3
-	3QJb8oPeT8QSq0LRw2w0lCp61emhKw1nrnuGwWpnhNvgzPJAsLTxUOWhKITBJXvbsPpnqa/wfSv
-	5PcQpj1E3ixzbLVnPQP0cXfk2DBbh7rCfrU0bw2U9iCmcug7Dh0yNKhQJIQUScC2qfqI4+XzCeC
-	zYixjL0GZZ+lw2GgW31i/rQJ43mGDAhTqV+5RBY6US4jqKT//lF3wQk8+yRAOIOCH17kx6dA40x
-	m8WldXjpbQkRLs1DJAzyxgxo4Bg==
-X-Received: by 2002:a05:6a21:9990:b0:1f3:31fe:c1da with SMTP id adf61e73a8af0-2438facc696mr1246052637.11.1756201487016;
-        Tue, 26 Aug 2025 02:44:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFvRL2Fy9sI3oGMG7jx+6nF6YDFCIRE8NYEdNTyKm+HWJTBqahFHayZ4KaRSOkfwszakqi1yw==
-X-Received: by 2002:a05:6a21:9990:b0:1f3:31fe:c1da with SMTP id adf61e73a8af0-2438facc696mr1246024637.11.1756201486520;
-        Tue, 26 Aug 2025 02:44:46 -0700 (PDT)
-Received: from [10.133.33.184] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-771f9f289c3sm1329536b3a.19.2025.08.26.02.44.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Aug 2025 02:44:46 -0700 (PDT)
-Message-ID: <ff6c1fe6-820f-4e58-8395-df06aa91706c@oss.qualcomm.com>
-Date: Tue, 26 Aug 2025 17:44:42 +0800
+	id 1uqtDR-0000000C0T5-1AQ2;
+	Tue, 26 Aug 2025 12:55:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756212957; x=1787748957;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version:content-id;
+  bh=R4iU1jfyixe8o3Lo4PGR4XGLQyegIIrVAMccWj8FMcM=;
+  b=CZkEIP5GFcymLrdX+w97I/kQQGjNQRy/SM7RK/3nVdgDgyS+5JbN7ctb
+   9g03BeyZbliV8AJOTJmd/EKgXO6V6XPeidnlpA+j3b7sgyly3buzTzjop
+   bAtOmDT0QuHX+9GAqKvNIQSB9ia1i0lF/TEijJwz6cqy5/EVZw0FwqDQF
+   7tzD6UKLO9pX+AukCCDuNh0dnd1/i61FJuir8Th40cC3ZOD8BXzWuoj/A
+   AwMI1LSuEQKk+cJ70wmbINDKOqE/61Mn4nUCr2zv8uOLoMSW8ZjWHK1ZC
+   Q6Y7iG0LseaXolBJwt14KtAHlc3oA+5vje9W3GZ2GJ9sZiUHWylFjukPw
+   A==;
+X-CSE-ConnectionGUID: tgJv800dRpKcebMedKl5yw==
+X-CSE-MsgGUID: tPZl8uW8SC6C5KkFPPkwBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="69814754"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
+   d="scan'208";a="69814754"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2025 05:55:53 -0700
+X-CSE-ConnectionGUID: auHUum6tRHS2IljYMCxSQg==
+X-CSE-MsgGUID: o1h+Y04mS+OxNUWKpynnLw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
+   d="scan'208";a="206733326"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.4])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2025 05:55:46 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Tue, 26 Aug 2025 15:55:42 +0300 (EEST)
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+    David Box <david.e.box@linux.intel.com>
+cc: Bjorn Helgaas <bhelgaas@google.com>, 
+    Manivannan Sadhasivam <mani@kernel.org>, 
+    Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, 
+    Rob Herring <robh@kernel.org>, Nirmal Patel <nirmal.patel@linux.intel.com>, 
+    Jonathan Derrick <jonathan.derrick@linux.dev>, 
+    Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org, 
+    LKML <linux-kernel@vger.kernel.org>, linux-arm-msm@vger.kernel.org, 
+    linux-wireless@vger.kernel.org, ath12k@lists.infradead.org, 
+    ath11k@lists.infradead.org, ath10k@lists.infradead.org, 
+    Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+    "Rafael J. Wysocki" <rafael@kernel.org>
+Subject: Re: [PATCH v2 2/8] PCI/ASPM: Fix the behavior of pci_enable_link_state*()
+ APIs
+In-Reply-To: <20250825-ath-aspm-fix-v2-2-61b2f2db7d89@oss.qualcomm.com>
+Message-ID: <f644fc83-31cc-1f0e-58cf-7c007e6173e4@linux.intel.com>
+References: <20250825-ath-aspm-fix-v2-0-61b2f2db7d89@oss.qualcomm.com> <20250825-ath-aspm-fix-v2-2-61b2f2db7d89@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Subject: is dma_mapping_error() check necessary for dma_alloc_noncoherent()?
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: iommu@lists.linux.dev,
-        "linux-kernel@vger.kernel.org >> linux-kernel"
- <linux-kernel@vger.kernel.org>,
-        "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: vOZLEPOKAfkGaXX9kf9o81vjdaFCQixr
-X-Proofpoint-ORIG-GUID: vOZLEPOKAfkGaXX9kf9o81vjdaFCQixr
-X-Authority-Analysis: v=2.4 cv=Hd8UTjE8 c=1 sm=1 tr=0 ts=68ad8210 cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=Q74vz0maYr0LruRLZiwA:9
- a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI1MDE0MiBTYWx0ZWRfXwL1vrD21kigR
- Z9cNTIn4V9BxTzkjTltS4YJxr6UgnmK8zqJzsuq8j/AkvBmgnkypW4TruAj+Gd5cT5m5ZvVdatN
- dvK2Q7CjxamDQICnBnIENfYMI+hMnIjdkQy1I3xwO/AWDWTTKZc3IEFjWLUM+i81Qs4XWEe2Lpq
- lS6pCgjxk69iDbpFgE8cpUZT76xJw/nSLJm0UsBkMRcHxO9EPEfeW/qkXGzXrLw4EqYRdj+RESZ
- 6AWTLg0zCUrRlqbUATRBmH1oVaMK++skTz0k9tL714U0VhFqBvWzg+R13Ofqpd61n0bs87BMuwx
- LZHFTcWIhlX9QtpLhzRLxYZD6JKmjYw1ruxyjVWz6chs9Oy2o+m7Fc5Mlbjy1MxGbNuP2w2NLRJ
- vT0dIfFG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-26_02,2025-08-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
- adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508250142
+Content-Type: multipart/mixed; BOUNDARY="8323328-846575285-1756206986=:934"
+Content-ID: <ed51a60b-2da2-8824-e685-a71851c626aa@linux.intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250826_024450_116416_0F3977D9 
-X-CRM114-Status: UNSURE (   9.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250826_055557_330415_343B59C5 
+X-CRM114-Status: GOOD (  31.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,52 +94,167 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi guys,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-I have a driver which allocate noncoherent DMA buffer and get the returned CPU addr tested:
+--8323328-846575285-1756206986=:934
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <96a2aa14-031e-f827-2cad-088a1b047808@linux.intel.com>
 
-	vaddr_unaligned = dma_alloc_noncoherent(ab->dev, rx_tid->unaligned_size, &paddr,
-						DMA_BIDIRECTIONAL, GFP_ATOMIC);
-	if (!vaddr_unaligned) {
-		spin_unlock_bh(&ab->base_lock);
-		return -ENOMEM;
-	}
++David
 
-while free the buffer
+On Mon, 25 Aug 2025, Manivannan Sadhasivam via B4 Relay wrote:
 
-	dma_free_noncoherent(ab->dev, rx_tid->unaligned_size,
-			     rx_tid->vaddr_unaligned,
-			     rx_tid->paddr_unaligned, DMA_BIDIRECTIONAL);
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>=20
+> pci_enable_link_state() and pci_enable_link_state_locked() APIs are
+> supposed to be symmectric with pci_disable_link_state() and
+> pci_disable_link_state_locked() APIs.
+>=20
+> But unfortunately, they are not symmetric. This behavior was mentioned in
+> the kernel-doc of these APIs:
+>=20
+> " Clear and set the default device link state..."
+>=20
+> and
+>=20
+> "Also note that this does not enable states disabled by
+> pci_disable_link_state()"
+>=20
+> These APIs won't enable all the states specified by the 'state' parameter=
+,
+> but only enable the ones not previously disabled by the
+> pci_disable_link_state*() APIs. But this behavior doesn't align with the
+> naming of these APIs, as they give the impression that these APIs will
+> enable all the specified states.
+>=20
+> To resolve this ambiguity, allow these APIs to enable the specified state=
+s,
+> regardeless of whether they were previously disabled or not. This is
+> accomplished by clearing the previously disabled states from the
+> 'link::aspm_disable' parameter in __pci_enable_link_state() helper. Also,
+> reword the kernel-doc to reflect this behavior.
+>=20
+> The current callers of pci_enable_link_state_locked() APIs (vmd and
+> pcie-qcom) did not disable the ASPM states before calling this API. So it
+> is evident that they do not depend on the previous behavior of this API a=
+nd
+> intend to enable all the specified states.
 
-I get below warnings:
+While it might be "safe" in the sense that ->aspm_disable is not set by=20
+anything, I'm still not sure if overloading this function for two=20
+different use cases is a good idea.
 
- DMA-API: ath11k_pci 0000:03:00.0: device driver failed to check map error[device
-address=0x00000000f3ad7000] [size=639 bytes] [mapped as single]
- WARNING: CPU: 15 PID: 64303 at kernel/dma/debug.c:1036 check_unmap+0x7e2/0x950
- RIP: 0010:check_unmap+0x7e2/0x950
- Call Trace:
-  <TASK>
-  ? free_to_partial_list+0x9d/0x350
-  debug_dma_unmap_page+0xac/0xc0
-  ? debug_smp_processor_id+0x17/0x20
-  ? rcu_is_watching+0x13/0x70
-  dma_free_pages+0x56/0x180
-  [...]
-  </TASK>
- ---[ end trace 0000000000000000 ]---
- DMA-API: Mapped at:
-  debug_dma_map_page+0x7c/0x140
-  dma_alloc_pages+0x74/0x220
-  [...]
+I'd like to hear David's opinion on this as he grasps the ->aspm_default=20
+vs ->aspm_disable thing much better than I do.
 
-Checking code gives me the impression that I should do dma_mapping_error() check as well.
-And indeed with below diff the warning is gone:
+> And the other API, pci_enable_link_state() doesn't have a caller for now,
+> but will be used by the 'atheros' WLAN drivers in the subsequent commits.
+>=20
+> Suggested-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
 
-+       dma_mapping_error(ab->dev, paddr);
+This tag sound like I'm endorsing this approach which is not the case. I'd=
+=20
+prefer separate functions for each use case, setting aspm_default and=20
+another for the enable state.
 
-However this does not make sense to me since IMO testing the CPU address is good enough, I
-can not imagine a valid case where DMA alloc/map fails while returning a valid CPU
-address, no?
+--=20
+ i.
 
-If I was right, should we remove invocation to debug_dma_map_page() in dma_alloc_pages()?
+> Co-developed-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.=
+com>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.co=
+m>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
+com>
+> ---
+>  drivers/pci/pcie/aspm.c | 33 ++++++++++++++++++---------------
+>  1 file changed, 18 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
+> index be9bd272057c3472f3e31dc9568340b19d52012a..fac46113a90c7fac6c97125e6=
+a7e385045780005 100644
+> --- a/drivers/pci/pcie/aspm.c
+> +++ b/drivers/pci/pcie/aspm.c
+> @@ -1459,6 +1459,7 @@ static int __pci_enable_link_state(struct pci_dev *=
+pdev, int state, bool locked)
+>  =09=09down_read(&pci_bus_sem);
+>  =09mutex_lock(&aspm_lock);
+>  =09link->aspm_default =3D pci_calc_aspm_enable_mask(state);
+> +=09link->aspm_disable &=3D ~state;
+>  =09pcie_config_aspm_link(link, policy_to_aspm_state(link));
+> =20
+>  =09link->clkpm_default =3D (state & PCIE_LINK_STATE_CLKPM) ? 1 : 0;
+> @@ -1471,17 +1472,18 @@ static int __pci_enable_link_state(struct pci_dev=
+ *pdev, int state, bool locked)
+>  }
+> =20
+>  /**
+> - * pci_enable_link_state - Clear and set the default device link state s=
+o that
+> - * the link may be allowed to enter the specified states. Note that if t=
+he
+> - * BIOS didn't grant ASPM control to the OS, this does nothing because w=
+e can't
+> - * touch the LNKCTL register. Also note that this does not enable states
+> - * disabled by pci_disable_link_state(). Return 0 or a negative errno.
+> + * pci_enable_link_state - Enable device's link state
+> + * @pdev: PCI device
+> + * @state: Mask of ASPM link states to enable
+> + *
+> + * Enable device's link state, so the link will enter the specified stat=
+es.
+> + * Note that if the BIOS didn't grant ASPM control to the OS, this does
+> + * nothing because we can't touch the LNKCTL register.
+>   *
+>   * Note: Ensure devices are in D0 before enabling PCI-PM L1 PM Substates=
+, per
+>   * PCIe r6.0, sec 5.5.4.
+>   *
+> - * @pdev: PCI device
+> - * @state: Mask of ASPM link states to enable
+> + * Return: 0 on success, a negative errno otherwise.
+>   */
+>  int pci_enable_link_state(struct pci_dev *pdev, int state)
+>  {
+> @@ -1490,19 +1492,20 @@ int pci_enable_link_state(struct pci_dev *pdev, i=
+nt state)
+>  EXPORT_SYMBOL(pci_enable_link_state);
+> =20
+>  /**
+> - * pci_enable_link_state_locked - Clear and set the default device link =
+state
+> - * so that the link may be allowed to enter the specified states. Note t=
+hat if
+> - * the BIOS didn't grant ASPM control to the OS, this does nothing becau=
+se we
+> - * can't touch the LNKCTL register. Also note that this does not enable =
+states
+> - * disabled by pci_disable_link_state(). Return 0 or a negative errno.
+> + * pci_enable_link_state_locked - Enable device's link state
+> + * @pdev: PCI device
+> + * @state: Mask of ASPM link states to enable
+> + *
+> + * Enable device's link state, so the link will enter the specified stat=
+es.
+> + * Note that if the BIOS didn't grant ASPM control to the OS, this does
+> + * nothing because we can't touch the LNKCTL register.
+>   *
+>   * Note: Ensure devices are in D0 before enabling PCI-PM L1 PM Substates=
+, per
+>   * PCIe r6.0, sec 5.5.4.
+>   *
+> - * @pdev: PCI device
+> - * @state: Mask of ASPM link states to enable
+> - *
+>   * Context: Caller holds pci_bus_sem read lock.
+> + *
+> + * Return: 0 on success, a negative errno otherwise.
+>   */
+>  int pci_enable_link_state_locked(struct pci_dev *pdev, int state)
+>  {
+>=20
+>=20
+--8323328-846575285-1756206986=:934--
 
