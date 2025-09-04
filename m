@@ -4,185 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DD2FCA1009
-	for <ath11k@archiver.kernel.org>; Wed,  3 Sep 2025 09:46:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A024ACA1012
+	for <ath11k@archiver.kernel.org>; Thu,  4 Sep 2025 10:31:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=tusTmFChqnOQaZJBkYzIUwYZ4wTS5ZVotCA3YZ5Mdxo=; b=xdpD7HpbvwCya+TGTBebAgAI9e
-	r3hy/tGSFELBfL8sroCa2wpCTRMp2jADeoXXaPipXZVfEQYBYF4QTJ5KmtdhaxErNRvZ+UcvRV7/f
-	tudNpIctpnNIY6b7YfHkUpJqxjjARb9waCUUwKK7TFHvVYdh9M144ndJjiePAP3huJ6aoJYX7jSrK
-	QbFY77MrqwuBFqLl5+lXvWq9id1FKOPfPj+WN6DLm9BpfllfYEgG3mI2v9Zr2GMBxnrRMOPx2FYxo
-	hWqWwoA23BQ+V9g4fM1yFqO6+hv/t4zBhT7GqcuVt88okhOY8Yjmx9GiIbadCINXBUB3SADzW9p85
-	GlKd/R9A==;
+	bh=zx83lTm+FDte02e3FppN05MIMP6Z5zqC3JMzyNUwq3E=; b=I7qvoaLCKeexVNBANiDm+Lm87h
+	x+jpeDVgIeVgres2+pLrBUGFkEsyjqTm0cJn14VrhvglPXtZ1/Rx8ZVPT71Tu2HhIy/whcDiNQjUO
+	VYfl/9UNiV2QYpH+uAH8gr6is5g23O60mtcpJHCblI3VMtgtxCYSEhTzxOe9c2DBHBGpb+8sZQ/OH
+	5yQmzXBBzGP3AfKAruYJ22ITf5qae3XimQYerHDcEqaDEZJ457TQpYMQm5nWwGEKY6gncKQi60XAY
+	KE9CHWZfFqgAsMz1SwxXtW6vkNoQv/VZeOeRZXoYF3BU7HP7l/DFgkEia9ufpstDmGXm1r8wStgkn
+	qpyTW15Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1utk4F-00000005yNK-3jc6;
-	Wed, 03 Sep 2025 09:46:15 +0000
-Received: from mx07-0057a101.pphosted.com ([205.220.184.10])
+	id 1uu7FS-0000000AuSy-37fI;
+	Thu, 04 Sep 2025 10:31:22 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1utiu9-00000005b5q-3O8X
+	id 1uu6BT-0000000AXJ4-0jpP
 	for ath11k@lists.infradead.org;
-	Wed, 03 Sep 2025 08:31:47 +0000
-Received: from pps.filterd (m0214197.ppops.net [127.0.0.1])
-	by mx07-0057a101.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5834nERW1873499;
-	Wed, 3 Sep 2025 10:31:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	270620241; bh=tusTmFChqnOQaZJBkYzIUwYZ4wTS5ZVotCA3YZ5Mdxo=; b=VL
-	e9ldDZNwzNiI+SmxgJVhvKmxRY2dzBhw5yzD3/eqi55OR/H6kYRPp75kaGyac/6k
-	5594VUE7lcLPK1HJtCb9ieHhlwDOoOoDrnp5kENXnEL2O+YK1wrtsVzqXGyJY2o9
-	pNwUiO09RMUYQXsvG1XSaQ2Rz2FAgGYavJ9mP+pbFlGAJHLSYLpXKmP0ZJglQEok
-	XS1uljar7dxKYvPyrTNXVo4/Gv/0txg2NnLFa/yUULXSsZPmO01H3xufvFTaAAvK
-	y0d8Y3v7IXzi8IDHVndkXIN/vFc+AbBSPmldng2uJCjX5qtPZ4LZhxXRH1I2BLkh
-	SzsNVJjOGfHNqY3KyCUQ==
-Received: from eur03-am7-obe.outbound.protection.outlook.com (mail-am7eur03on2133.outbound.protection.outlook.com [40.107.105.133])
-	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 48unnbkrj8-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 03 Sep 2025 10:31:32 +0200 (MEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KbjXGfcFuE8WjF+HwgFHvo0ySXfeKRf1Brg3TPj8VzJQl8LLnyMtJN/M3SM2kbswtqQywJTb4zofx47J7iFHludV+ocNWaXEuS1ZL/z3uFdXdgCGvr1IYNqoFoPowmj4WlZBpILlrySsn2DfRrZrhOiIhCAfRnj/bwaO2vk7m+TggqYDYIuulGRigDltrPbA111YP3M/AkLb37Gl3nhIUii8bbTU5ED6jU4xjAms8S4wjq9Dp0MxZfjbzmPEqYbh3B9qWo5EYqEF53OtxRJs3VeagXvxeA6m7y4qQbGq1cbDpUj3O1TPWsSBTmwuBG2Cf+W+hd8alyxTrsewgH2saA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tusTmFChqnOQaZJBkYzIUwYZ4wTS5ZVotCA3YZ5Mdxo=;
- b=HNDpxuDh/DXVstbZ0ObOeWkTnBuOfptmCNxmV5PJgVD0CK9SyXg/BLDr5onWmCK4pVRdCBGpbhatFXWXrofxpIboCZtx2Tk4Hgc248+1HjVBs/5ukoXRLtCbnS5Gfm0LrX0WKQcSHjQyEZ93Dj2LS7nF8kiW+G9vH0+ROH+B/yWdmX77mz5zjjmogYUVQgy6OWVKRk7a7S2VmGnXIaKuTKEdt4XZ60uCvW4lTpR0figXdoK3dL1tsOFSPhbcIHRfll526SJVk1qqMhUeQ4/k8SXhvceSXvtD/1X5NOKG8eQ7udhRbf0VxfYdUtNIpnV8LHCE1jhqdcPwtzbydDv59w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
- dkim=pass header.d=westermo.com; arc=none
+	Thu, 04 Sep 2025 09:23:12 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-45b8b7ac427so6035795e9.2
+        for <ath11k@lists.infradead.org>; Thu, 04 Sep 2025 02:23:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=beijerelectronicsab.onmicrosoft.com;
- s=selector1-beijerelectronicsab-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tusTmFChqnOQaZJBkYzIUwYZ4wTS5ZVotCA3YZ5Mdxo=;
- b=OlooiLrDIYRdqj9+QkwD5/imyBQmxsm6QFX+OhgeFTHGabLdt1e2jYqI1tOlLfJve2KqZZod+kpjdcbiq50ejHHyi6aMUdDtaE+pn1cVt3vJNCDhpbYAydEAofIjbIdeciApG6uPX3ZhRPjcSScBPNsQb9XiBKvWyXfeWYX+2Ok=
-Received: from FRWP192MB2997.EURP192.PROD.OUTLOOK.COM (2603:10a6:d10:17c::10)
- by MRVP192MB2804.EURP192.PROD.OUTLOOK.COM (2603:10a6:501:59::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Wed, 3 Sep
- 2025 08:31:29 +0000
-Received: from FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
- ([fe80::8e66:c97e:57a6:c2b0]) by FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
- ([fe80::8e66:c97e:57a6:c2b0%5]) with mapi id 15.20.9073.026; Wed, 3 Sep 2025
- 08:31:29 +0000
-Date: Wed, 3 Sep 2025 10:31:23 +0200
-From: Alexander Wilhelm <alexander.wilhelm@westermo.com>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject: ath11k: question about memory-region
-Message-ID: <aLf825sx7W2S4Hlx@FUE-ALEWI-WINX>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/2.1.4 (2021-12-11)
-X-ClientProxiedBy: GVYP280CA0030.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:f9::11) To FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:d10:17c::10)
+        d=linaro.org; s=google; t=1756977790; x=1757582590; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zx83lTm+FDte02e3FppN05MIMP6Z5zqC3JMzyNUwq3E=;
+        b=qD2hshBVy7p3QWNIXGf06a1hfS64jQaaj8/QWPrw5rhcBWiKyjB9DAiExeFkLc4pub
+         2mqA1ozoi35/etCzVcWb26lKcYUxtsWt9VI6RE5lgfkckyns0JoqbdhULiO2/JhThzun
+         coHP2BAS2T6rgrKgpjJRX+d8nW/gT9Wu9YhDBQ2oguYXZtTyYjS1TbF7l/pdWnanZ+wS
+         Esbtdb2I1IMhB2miDXQi2gMOsF2w+wkpiZ5BnSzwvZW8ek1dqGuFnct0OcHlkaV9d/XV
+         pnW6EV/sZAbSh9I3thcn8kCqYY0Okzqwvigax/zhkzI0P1MqZ5jlOMnTZpOd/6ktrBsN
+         WyTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756977790; x=1757582590;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zx83lTm+FDte02e3FppN05MIMP6Z5zqC3JMzyNUwq3E=;
+        b=ZTT7h1bQOCWQF0a4DVA1AZljmOxcHovvzzO2Fjxymg1L7Iq+k+VdwGmDM8AUKbvipW
+         Sbs5KWkHOEsPhoMWp2InhY6AJ5eeGlSbecM2/v73RO8dreL1XOJfSigFLyTJ2pce30WO
+         EudN/5bbrcgAlYo1qZhVhOuNxTzdIJ1jqPC4EPaCfBv+1qxTZbpYynmAN+BlIDkiKo/u
+         Tt2C3G5hSQe2AGIGnI6ZRIp6nOcpG6MAWdVzRof+Jh2guk0opPBeIvCamV5H26+8R7lT
+         dLszsd+1Ug6JvJ4zEJSaFrLxY85NLqJQXzk6kAG1IJo9muedVOpc1qGHC8sJ5Pi/UEi6
+         5cYA==
+X-Forwarded-Encrypted: i=1; AJvYcCXRUeXfrmEnXhINyvWQvYfOluT2eoaYKwE5tDnWLaH6TKFO31nxsH2FrGk01aG0CWFTbiz/e9Y=@lists.infradead.org
+X-Gm-Message-State: AOJu0YweQRYQLwbZLN6n3mOg6gY/U/3qj83sACbLBa2wPEJVlsZ3iedC
+	qRj41hzr+4n6Ugvfxtk+pJJFJw8Su+p7cqeHLE4uECxKfkPhbPoleCL/pqSBcFK9IUlwhjDNWFG
+	53zJK
+X-Gm-Gg: ASbGncuNByHjnsYqeTKur2uNrzwEVmiJ+yrRuWpIL89RHW4deJ6/EnR2KDZMQIewpm7
+	gQyMgvzkpYZkt4nbT4jC5P01IWaAwcVQJXIiF7o4R0+5VH0Rtc2ijPfkgIL38qQeV1vc17yC2RL
+	bfzBvN6Kv129O5ASHXxpf2vXzS0mmxTM5/OFtptUQxEqNbtPPMjYVZnEfMhgawQ4zPezHFF/Je2
+	gqjbjEnoB6alRMSCQKKPbdi86ZtLUnZkHmfXjmwLsEQ0zHxbm/MkJjnFNYYtlTUt2wSM3tFs4JO
+	IXvT9pfpdaG74ETCxKic69QS6b+tAHnYCJ7kwG0Su1Hbv+wvG1A0WS4URWIBE5NlFWRBHSbUngB
+	oY7l9vAXrHc3v7N4N+zRTOtW5YDfNcuKIyyUT3w==
+X-Google-Smtp-Source: AGHT+IHbDgBpEVih0OWeNYjBFHGh3HVRMCoCH7tpGwiuk6sZz3Nfar/dPjqC5tXVM9a9iz2RPe9XBQ==
+X-Received: by 2002:a05:600c:19ce:b0:45d:84ca:8a7 with SMTP id 5b1f17b1804b1-45da74cf485mr25153155e9.14.1756977789645;
+        Thu, 04 Sep 2025 02:23:09 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45c6faad9cfsm87635225e9.0.2025.09.04.02.23.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 02:23:09 -0700 (PDT)
+Date: Thu, 4 Sep 2025 12:23:06 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Subject: [bug report] wifi: ath11k: fix group data packet drops during rekey
+Message-ID: <aLlaetkalDvWcB7b@stanley.mountain>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: FRWP192MB2997:EE_|MRVP192MB2804:EE_
-X-MS-Office365-Filtering-Correlation-Id: c8178dde-4f05-4cce-1f47-08ddeac447b1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?K+Hf5UnZFYfq5ZWrAJmYnMpQxvHdRzx+T5yBGa+ZQOoPC2buTuocgT3vReQc?=
- =?us-ascii?Q?TSIbHIF0HzyduK0o/Ek8MSoYKLiQ/vCzkYaOjBNrVqkB2V+MPwgX+oBJQdA7?=
- =?us-ascii?Q?p2e/x0GYnCbwmU2HaL4YKoAeoQgqD2Zd3q13VA4+BKnyG6BPvPsKt+SpsWWU?=
- =?us-ascii?Q?aQ/YrzCxVKRxXt9m4LwyHK715rVu3HxdXTt+rIJfT+T1GGtTqRPWymaLuWbG?=
- =?us-ascii?Q?bOFqCBm/mVPR6ppGiJ6sMx0uKK2OD5YLGg2/hrQC24MSO/+IlJhl2MSOQ7WS?=
- =?us-ascii?Q?oukvbXQmlkEGdR9BTAumLTpv0f9cZwNa8E4nwNx2KrZfNKUqtAcSk5XJeYfv?=
- =?us-ascii?Q?ZfpZVZujvuXN3eLQj43U0zhEtXAi/fmmQWSLxuS5dXtGJ36KYH+i/xhee80v?=
- =?us-ascii?Q?XxesDN7A7h2aWIctkFHW9IwzVyF1Kwla+XO1955ybwY90CAiLN8cxVIQPVZX?=
- =?us-ascii?Q?PbvRD5g7J6HU79eCTwSVK/P7bTbVEvyc1iNrGv0MfBOEL2pHF4UTZq9PJd74?=
- =?us-ascii?Q?zCMwHE6ugwhm65YEKUuLrIY9yxc/OfzavGTdjm6ppBD1DynQq6+dMO3ClSw6?=
- =?us-ascii?Q?AfebjQNTGEdjuhN7VPuK/EKdpGyncX7BuEICSZPhSfgS5FKOYL61/Y9K9PjI?=
- =?us-ascii?Q?11XHYScf67ynSPKDRvLBA0ljJgOtSma0pBDZfuccY61deQEjNlw2prmS2dQ6?=
- =?us-ascii?Q?yGzEGKb6zrpG5rUJ7DRiJi3gEWwntJylmQiu/2NY/+QNoIb5zxDAus132PLO?=
- =?us-ascii?Q?KUjTX08KroVqux2RYSKQBNB/glNn0sK7uP3snq1P/0kFuDnNzBIaig5x3ITC?=
- =?us-ascii?Q?WxG7iQthsXBcDxooo5RP0GNvkrVcw1qv1hEq/NimPmu24tJoRCRTyfp7o9g1?=
- =?us-ascii?Q?Gl0B6Ukxjj+rZaPof6EF2+wt6hqpcEjwRYk8P3FNyQI7YE8Q/nm0k2ft21RG?=
- =?us-ascii?Q?pMdRNzifFk77hqWdPVyMPJSZleb8ELevh7z+b/f1JzAHccgwoNdEDMnb+qrn?=
- =?us-ascii?Q?sWfYmGcSipOH+SzFo9byzdy0235o0KoCgpp9ztTkp5vt9WYbZ+FGnDCQ9RRr?=
- =?us-ascii?Q?IgD7fEQFP3a4okqkKPZ1JUYRuQ7E5fe/+CWaVySWdYsUvDmW/ELYuzNtzawU?=
- =?us-ascii?Q?5j2gwoo0KfS4Iogec4oYdfQfMcZNP6naUBofRNE2DA/4BqoMW6P9okYPfjD4?=
- =?us-ascii?Q?H4BqlsZXqejKcj2f7gS9XriJNzX6UTX3s2lng/4NxVFGW0Pv6ey+mrMajrvg?=
- =?us-ascii?Q?xfXU8N9sOPCv1hN+xv5rS1xqZo8F5olo0dGEjXb4s62vckNhcVSnAIpfcmHE?=
- =?us-ascii?Q?9iyW+lioMKrHQVUA0r9simsHu7qHpwbJcJfqn1bptyBfSiuVP9Qa7o3KpA3N?=
- =?us-ascii?Q?G7wT7U4eq5mUYP9MQYrZvK2SHEu6NbUaQYLVebk29MJP9l8sO4CMCPPbQ/Fo?=
- =?us-ascii?Q?d6VxlUgONJc=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FRWP192MB2997.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ONNW3hIbbs+iw309uLYOl3To59/f3BD6L/vgSh6rApjLRdg09eYo+COuu3nc?=
- =?us-ascii?Q?1+4LHusJVhcNWtG0QBbMi1yfn5tK+cs3jcrDP1uDQGeEcV+tYyn82HfjmNt2?=
- =?us-ascii?Q?gbVsRt1jA+Yhyd1qKZ0bZA521tFNiDfBH6uVfpVV8vaYvXP0M4Bi4y73fYnH?=
- =?us-ascii?Q?k+04hU7WAN6lrdtxfPuRI8kYF++vTtY8kOyHtQ/o02od3pq0e1X75QHpruOH?=
- =?us-ascii?Q?pd/I87htpLo+NU29RQm6TMnQV9c4jOBGg27k8cFAczsWuRO0lfCmyRWC+I7m?=
- =?us-ascii?Q?nN3S6YQtJhF4LdR7jCk7/PziqSnKoQISvZEFKe6Y1TOwZKCF8cmP9/13135E?=
- =?us-ascii?Q?feTz+20En4QZq24hTw06/F6UfqdL1Q1aJ6XsFLNKaOsg0IFjlmXSt5EuuoVk?=
- =?us-ascii?Q?NIJUEFmIm5CyzOd/KR8c87WT4/cLnMaoTeo+wAxDIOFCSRjOOV0BlPBuPzED?=
- =?us-ascii?Q?lJ44t/XsImt49buJiKzdG/57d10xLdxOx9MOd6ajUp5WJaKV+qzso3DgkgTT?=
- =?us-ascii?Q?py5OaNFB3i2kaItl1RGVfJGH26caTjhfWe4U8QdV5HbDO7aEjA9N3bp6L3Fa?=
- =?us-ascii?Q?pw2NcYeTsI6uy7QEaKBy5MmJNXoRtGnxLHVW4CMdCoGOZc0XHHNqgAx/NuS+?=
- =?us-ascii?Q?efzCJLV6TVI0b3fp/JvZ3piMzn1gYFJSP57n86ZMY0h37zOj9I6xGHAgDnaY?=
- =?us-ascii?Q?WQ9BAhYlhKsJt60dlcqmmf2tF28UKg43Y8jTw2ylFtqPnzFMbpJo3aR2QIUa?=
- =?us-ascii?Q?iH6yfYXgGRFVuTFof96f4KqIp0yDrwcF+74tne4FG2jSZkUsKUmJe8NILYQp?=
- =?us-ascii?Q?wZfUo/78AAHp/Vi0jGyUpFfRsnFZ1WZP6hllxZu5sBRQtKR2uoFZLrfGoF9Y?=
- =?us-ascii?Q?3J1wNmgIyAEMQtDCkqprdt+6YxbVY4aG//aXGfeazxlodpUwlzXSL2lTIZnw?=
- =?us-ascii?Q?7Sqt6cX9H7iA3xpJM/dCFJOlneOoWyLoDlMVTT6sfAyFC8KQD9dfcqaeMz87?=
- =?us-ascii?Q?u2ghfqNTiLezJGQ8rLuzdyFLjh4wgYFDWvhplwZvtOVHYouRI1J8IrVi+hwB?=
- =?us-ascii?Q?KCcMeOzX8yoUsLfA5mr/lyFCJNdhZk4JK2ojWkAoAroNdgXgS58YkRsiPAXg?=
- =?us-ascii?Q?lqxCs/EApWRfATkJxFMBYE9H+U/RTECKL3qVxPAx6VLFRMF8rpATFftLNuet?=
- =?us-ascii?Q?q3L2P3YU8DGwyLujZvLyVwoOxBNLlQ93HV3kFFOxAuIQ5oOHF8g/kUe7dKnA?=
- =?us-ascii?Q?lxHG8IHKvzz76Z10UAIdg7ChpQd55SoyulZwNV3lTRoTbiBphb4t9aiGB0kn?=
- =?us-ascii?Q?8BEcALQ5rIwwBksV0THghe6UlywEW7jNQ8GkjbqitHPAHuSYG62F6fr8Es9V?=
- =?us-ascii?Q?b3CZOdH4+Vn9K43T2bfUMscOfLMGQJD3u7nBRmyYPPEKmeBxszixEADm6wOD?=
- =?us-ascii?Q?Prqx3KKl3qAiivxhiVbC8tXC5eA3BZhpdPr9o3609aX7GO10bpXFnTB+EWIE?=
- =?us-ascii?Q?K0OHLoNFT6M19cMEmRtmM7F0xJLcTnizeoRj96ZRXXaqW8dwYJSCpYywKz1L?=
- =?us-ascii?Q?KHVYuaa2ZRdVxHKo96XQAZDmCZO6/kWSq5gKqkk0?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: BzUyYJ7hs8//oio02QG+/PEIkmyRA8SeoIhWYQGvz54eQ8V0y/BW9Lxte4TxeqsjBpALmflZZ8oYzomb62rx1KXr+Nr2Oca19RQJZv0CPu/CJIWHdhn4LYEk/3Xwu/2ihKDZwMGvt2Z9I9QbVTDlNqUjkkaHimIwuIYSE6E7upBQOmbXhjM+LPAS9dp+J4oHrygL1DQTE0Hr40rrPhgPIsN7fhZ07UsVH+HB0y9R1ZhpcRI5CY+uJWG28miM/vIz0v0oW5qLxjZmdVfR3kWMwNbRwWsmmIcneCo3ql5WpovPzyRVNb1R+l5FKLRLjOav4V7iD/nmRE2SLWirHDVlx36rU5DbGkEa+KfPb+gojkusbN6VfTC43aqZYZ+cdJltUrafjrYl+VNImmWjnm/8Ta3sBwRwfHJV/sxvcJnmdHpn7zmmN61sITgJ+ddXEXr/yvMDoj3euGq53nrSyrh+efbkkf4yl2iIbCyMznx8P6X/s2MQSSoCpmfEXjuwXM3MK4UkYWFCCJlJ24orwjeTXumrA76vGXg1gITM58EY/8J92aES34oLrBXI0vPA06c/sXdLNoGGBTw31dqCulTsOnkvcuTk1pWquLq9nLCyZughVr7torkY28DPcZjR6PY+
-X-OriginatorOrg: westermo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8178dde-4f05-4cce-1f47-08ddeac447b1
-X-MS-Exchange-CrossTenant-AuthSource: FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2025 08:31:29.4405
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 50Rvm0pTnyxNRuPrZhYm8CCDej3LSXQoW0TQOX7rChVLpiCMQb+x1ovjGC7mlLGo35xPoIHE+MQ1+wUqInhMZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRVP192MB2804
-X-MS-Exchange-CrossPremises-AuthSource: FRWP192MB2997.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossPremises-AuthAs: Internal
-X-MS-Exchange-CrossPremises-AuthMechanism: 14
-X-MS-Exchange-CrossPremises-Mapi-Admin-Submission: 
-X-MS-Exchange-CrossPremises-MessageSource: StoreDriver
-X-MS-Exchange-CrossPremises-BCC: 
-X-MS-Exchange-CrossPremises-OriginalClientIPAddress: 104.151.95.196
-X-MS-Exchange-CrossPremises-TransportTrafficType: Email
-X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:0;
-X-MS-Exchange-CrossPremises-SCL: 1
-X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
-X-OrganizationHeadersPreserved: MRVP192MB2804.EURP192.PROD.OUTLOOK.COM
-X-Proofpoint-ORIG-GUID: YfOrf0R1TOYw_rdb7i6ELLA1ujyuQIhK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAzMDA4MyBTYWx0ZWRfX02uTzUYN5jl+
- Ko/WWkA0wLU3fVh61zk5sXBixoP/gHEOPbT5skabYwzgyTld+yW+1wPcXIkBHBjfNN4YeadoECe
- yfI4vyj6idMRZp1LDpJyxomU9PR7Rsuo0oGZaKMxe2biULyzU665cVucJOr8RnXrmdWVEY5c/ga
- XDHz4yjTQAj3Ysqxe2K8sq2ZbVteTSK7ycGNgWbOlkpvIXSaA1TQlgJ7jCakuJ152tfW5nLWEud
- dBtX/3NjBP40tlaSFGXtOBNmRZLVs7Up5N3C9szVorS2Fo0i6/ezz06p210sn5a2av28mUpXnfT
- ZuNDuD9fIze/B37InLVdubDyax8661eyf+MMh/qbkPJkR0O+aVAk+XLpKo73yw=
-X-Authority-Analysis: v=2.4 cv=Ac2xH2XG c=1 sm=1 tr=0 ts=68b7fce4 cx=c_pps
- a=PEstti8cHjY5srQ4zJy28A==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=8gLI3H-aZtYA:10
- a=nnYCWavfzEyUydkX7kQA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-GUID: YfOrf0R1TOYw_rdb7i6ELLA1ujyuQIhK
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250903_013146_150255_849F7D81 
-X-CRM114-Status: UNSURE (   8.14  )
+X-CRM114-CacheID: sfid-20250904_022311_217436_3DE3D0E3 
+X-CRM114-Status: UNSURE (   9.99  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -198,76 +98,59 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello devs,
+Hello Rameshkumar Sundaram,
 
-I have a question regarding the use of memory-region on a platform without CMA
-support. Since CMA is not available, the driver allocates many smaller memory
-chunks instead.
+Commit 97acb0259cc9 ("wifi: ath11k: fix group data packet drops
+during rekey") from Aug 10, 2025 (linux-next), leads to the following
+Smatch static checker warning:
 
-To evaluate an alternative, I defined a node within reserved-memory in the
-device tree. However, this led to a firmware crash:
+	drivers/net/wireless/ath/ath11k/mac.c:4459 ath11k_mac_op_set_key()
+	warn: bitwise AND condition is false here
 
-    ath11k_pci 0001:01:00.0: BAR 0: assigned [mem 0xc00000000-0xc001fffff 64bit]
-    ath11k_pci 0001:01:00.0: boot pci_mem 0x10b272d0
-    ath11k_pci 0001:01:00.0: boot pci probe 17cb:1104 17cb:1104
-    ath11k_pci 0001:01:00.0: pci request one msi vector
-    ath11k_pci 0001:01:00.0: MSI vectors: 1
-    ath11k_pci 0001:01:00.0: pci msi base data is 0
-    ath11k_pci 0001:01:00.0: qcn9074 hw1.0
-    ath11k_pci 0001:01:00.0: FW memory mode: 0
-    ath11k_pci 0001:01:00.0: boot failed to load firmware-2.bin: -2
-    ath11k_pci 0001:01:00.0: boot using fw api 1
-    ath11k_pci 0001:01:00.0: pci msi assignment MHI num_vectors 3 user_base_data 0 base_vector 0
-    ath11k_pci 0001:01:00.0: pci num_vectors 3 base_vector 0
-    ath11k_pci 0001:01:00.0: pci msi assignment CE num_vectors 1 user_base_data 0 base_vector 0
-    ath11k_pci 0001:01:00.0: pci msi assignment DP num_vectors 1 user_base_data 0 base_vector 0
-    ath11k_pci 0001:01:00.0: pci irq 18 group 0
-    ath11k_pci 0001:01:00.0: pci irq 18 group 1
-    ath11k_pci 0001:01:00.0: pci irq 18 group 2
-    ath11k_pci 0001:01:00.0: pci irq 18 group 3
-    ath11k_pci 0001:01:00.0: pci irq 18 group 4
-    ath11k_pci 0001:01:00.0: pci irq 18 group 5
-    ath11k_pci 0001:01:00.0: pci irq 18 group 6
-    ath11k_pci 0001:01:00.0: pci irq 18 group 7
-    ath11k_pci 0001:01:00.0: pci after request_irq msi_ep_base_data 0
-    ath11k_pci 0001:01:00.0: pci ltssm 0x111
-    ath11k_pci 0001:01:00.0: pci pcie_hot_rst 0x11
-    ath11k_pci 0001:01:00.0: pci pcie_q6_cookie_addr 0x0
-    ath11k_pci 0001:01:00.0: pci wlaon_warm_sw_entry 0x0
-    ath11k_pci 0001:01:00.0: pci wlaon_warm_sw_entry 0x0
-    ath11k_pci 0001:01:00.0: pci soc reset cause 0
-    ath11k_pci 0001:01:00.0: pci mhistatus 0xff04
-    ath11k_pci 0001:01:00.0: pci link_ctl 0x0000 L0s 0 L1 0
-    ath11k_pci 0001:01:00.0: pci pci reg 0x3164 instance_id 0x11 read val 0x11
-    ath11k_pci 0001:01:00.0: boot notify status reason UNKNOWN
-    ath11k_pci 0001:01:00.0: boot notify status reason MHI_CB_EE_MISSION_MODE
-    ath11k_pci 0001:01:00.0: qmi wifi fw qmi service connected
-    ath11k_pci 0001:01:00.0: qmi indication register request
-    ath11k_pci 0001:01:00.0: qmi host cap request
-    ath11k_pci 0001:01:00.0: qmi firmware request memory request
-    ath11k_pci 0001:01:00.0: qmi mem seg type 1 size 36700160
-    ath11k_pci 0001:01:00.0: qmi mem seg type 4 size 3784704
-    ath11k_pci 0001:01:00.0: qmi mem seg type 3 size 1048576
-    ath11k_pci 0001:01:00.0: qmi mem seg type 9 size 8388608
-    ath11k_pci 0001:01:00.0: qmi mem seg type 10 size 8192
-    ath11k_pci 0001:01:00.0: qmi ignore invalid mem req type 3
-    ath11k_pci 0001:01:00.0: qmi ignore invalid mem req type 9
-    ath11k_pci 0001:01:00.0: qmi ignore invalid mem req type 10
-    ath11k_pci 0001:01:00.0: qmi req mem_seg[0] 0x0000000040000000 36700160 1
-    ath11k_pci 0001:01:00.0: qmi req mem_seg[1] 0x0000000000000000 3784704 4
-    ath11k_pci 0001:01:00.0: qmi respond memory request delayed 0
-    ath11k_pci 0001:01:00.0: boot notify status reason MHI_CB_EE_RDDM
-    ath11k_pci 0001:01:00.0: firmware crashed: MHI_CB_EE_RDDM
-    ath11k_pci 0001:01:00.0: ignore reset dev flags 0x2000
-    ath11k_pci 0001:01:00.0: failed to wait qmi memory request: -110
-    ath11k_pci 0001:01:00.0: qmi failed to respond fw mem req: -110
+drivers/net/wireless/ath/ath11k/mac.c
+    4428 
+    4429         /* Allow group key clearing only in AP mode when no stations are
+    4430          * associated. There is a known race condition in firmware where
+    4431          * group addressed packets may be dropped if the key is cleared
+    4432          * and immediately set again during rekey.
+    4433          *
+    4434          * During GTK rekey, mac80211 issues a clear key (if the old key
+    4435          * exists) followed by an install key operation for same key
+    4436          * index. This causes ath11k to send two WMI commands in quick
+    4437          * succession: one to clear the old key and another to install the
+    4438          * new key in the same slot.
+    4439          *
+    4440          * Under certain conditions—especially under high load or time
+    4441          * sensitive scenarios, firmware may process these commands
+    4442          * asynchronously in a way that firmware assumes the key is
+    4443          * cleared whereas hardware has a valid key. This inconsistency
+    4444          * between hardware and firmware leads to group addressed packet
+    4445          * drops after rekey.
+    4446          * Only setting the same key again can restore a valid key in
+    4447          * firmware and allow packets to be transmitted.
+    4448          *
+    4449          * There is a use case where an AP can transition from Secure mode
+    4450          * to open mode without a vdev restart by just deleting all
+    4451          * associated peers and clearing key, Hence allow clear key for
+    4452          * that case alone. Mark arvif->reinstall_group_keys in such cases
+    4453          * and reinstall the same key when the first peer is added,
+    4454          * allowing firmware to recover from the race if it had occurred.
+    4455          */
+    4456 
+    4457         is_ap_with_no_sta = (vif->type == NL80211_IFTYPE_AP &&
+    4458                              !arvif->num_stations);
+--> 4459         if ((flags & WMI_KEY_PAIRWISE) || cmd == SET_KEY || is_ap_with_no_sta) {
+                              ^^^^^^^^^^^^^^^^
+WMI_KEY_PAIRWISE is zero so this is false.
 
-Why is `CALDB_MEM_REGION_TYPE` always set to physical address 0? Could the crash
-be caused by platform-specific constraints and not the firmware/driver? Does it
-make sense at all to use reserved-memory instead of small memory chunks, for
-example in terms of performance?
+I should probably write a static checker warning for code that does:
 
+	flags |= WMI_KEY_PAIRWISE;
 
-Best regards,
-Alexander Wilhelm
+    4460                 ret = ath11k_install_key(arvif, key, cmd, peer_addr, flags);
+    4461                 if (ret) {
+    4462                         ath11k_warn(ab, "ath11k_install_key failed (%d)\n", ret);
+
+regards,
+dan carpenter
 
