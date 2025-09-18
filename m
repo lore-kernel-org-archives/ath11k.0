@@ -4,117 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69D5BCAC59A
-	for <ath11k@archiver.kernel.org>; Thu, 18 Sep 2025 16:08:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7319DCAC597
+	for <ath11k@archiver.kernel.org>; Thu, 18 Sep 2025 19:35:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qICgYr9pTII0ek2CGvjEE+bggBezqbDRv5s7Qp5blPE=; b=ScWehH4F3c6M1pP0Tx1cjhanrn
-	kXSyJSQIr8vI4vRaKZ2S1EhpJdOxTzqAVPwvbO2+jlSY5QVaA3lhy48+4B+/PUQFKz9tyZJ7w0/bD
-	pYPv3RwcgH9VlfvKLjBPqM37Xsj/en6ZT8Kg43Gw8btBFOjjOQ+z5ind0dAYwIPNLMGDFMxoera95
-	iSYlxV6+equ3/aSeeuX9AJtzRhDc3LabhhHsmRDeerf42mzYiAOocfEJAvzc6gn47dt00R8/E2Yv4
-	mKAuL+Gl/pjlcw76eaACRRc3WjYGYM/jsz/uMaOXsk+Q1HLI1XR6K+dqRkv6DkTZRq/HhvfWrXvtY
-	vMQCIXGA==;
+	bh=lXAg7ojCyxBCDClCOw8hFL48+P4B5I4oGQpykRIfRcs=; b=DB6FS1ivweSwhSq6ByBHV0FeFg
+	xoRBtlvOiONgb9hHGSDHS+xMHNLC856363tsYaYi0Erz7QpW7Mj+z0XrXctUq/tsJPKKykqUJXMOV
+	bm2e52UdKoVtISfWtXWAbZPBLWYzoRh2AYVQrkvbM+PEmRdlxXqZtHu9rPTB4IZv4zH1jS53PnmUm
+	uvnDlfbk6uswqM4m9nkV4a0xykHLC4fmxkjFThAoGTWKjyUpkdGGTcsy45SMjmlBaLH0UcqKUUunz
+	rohclW3DQYhHbjFHYWp+RlUo60X9sBKT3D+hF7Bv3qyWWrO3mjRsIPEwkBHxP1tjKgYSdQ7p4sdlD
+	YF+Q3a4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzHAz-00000000Yx0-0XAw;
-	Thu, 18 Sep 2025 16:08:05 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uzKPT-000000010HM-2lju;
+	Thu, 18 Sep 2025 19:35:15 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzHAw-00000000Yvp-3BNB
+	id 1uzKPR-000000010Gm-0l52
 	for ath11k@lists.infradead.org;
-	Thu, 18 Sep 2025 16:08:04 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58IFFkck007166
-	for <ath11k@lists.infradead.org>; Thu, 18 Sep 2025 16:08:01 GMT
+	Thu, 18 Sep 2025 19:35:14 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58IEaxhl012312
+	for <ath11k@lists.infradead.org>; Thu, 18 Sep 2025 19:35:12 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qICgYr9pTII0ek2CGvjEE+bggBezqbDRv5s7Qp5blPE=; b=lWsuGhjAfPcG/dFC
-	Y2QGOArgYjmDWw6zhISUE9kj6glVXlRkLr0c2dEETQaj0qomW3jv0q7FWy0wSpe9
-	xzTbnxKh/afGiDyXNK6n+08US6G4exQLze3YYujrOy77jJU29WuNyHGCmmNMxht0
-	OFgLCZC2oDsp12R8t1aF4gkYITBDAQeXs0hCTJudgdVucamdYQRf2/5sfGTbrzq7
-	4rEoQoWCI9ESbDs+95OfVe5ZEV1Ip0jFgoD1wfNrOy/9wWOPoXgrJ/kRHHoDlB5X
-	u0iTdscOHdx2WlfPkS7YblTfLoBxejS0rqN0BDqxM4Zb9DFaTK3KFuGuA7kTOXUi
-	hMZEZw==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 498ebesjph-1
+	lXAg7ojCyxBCDClCOw8hFL48+P4B5I4oGQpykRIfRcs=; b=Xtkp4UxpjlRktOka
+	jqZWRYl6lSN6eBIMOk4s/wbGhSvw2lIWoj6cu6WlGj6xj3iGFo2eB3QqIeTDMT/0
+	uraaCxyVsyAAgfijWWXphxW2hlWGDySWfEhFPiGXgho/D2NZIa1nF+FB6h0q+3Up
+	G2W4FhUNU8oPycgRTNshqheGYYz4phi5FHc8Qv9Wph5QRvqH71EGyUlbE/Q5vQvT
+	4I8kk0U05HFSM6tVz0KFXgOnzAeKryj3v6pUTUkjzc3p0bgxMN9259j0QXxW92m3
+	+sDsp4FptxgRepegnCZPjdn4a2oRtDiQWkmhE4G8a6/k71rAysZOCuKBghjDkR1l
+	jGREzA==
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com [209.85.210.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4985wx3ssb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 18 Sep 2025 16:08:01 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-77c5a0c19d4so1488337b3a.3
-        for <ath11k@lists.infradead.org>; Thu, 18 Sep 2025 09:08:01 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Thu, 18 Sep 2025 19:35:11 +0000 (GMT)
+Received: by mail-ot1-f70.google.com with SMTP id 46e09a7af769-764acfa35c5so1390039a34.0
+        for <ath11k@lists.infradead.org>; Thu, 18 Sep 2025 12:35:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758211680; x=1758816480;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1758224111; x=1758828911;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qICgYr9pTII0ek2CGvjEE+bggBezqbDRv5s7Qp5blPE=;
-        b=VfozhNDskeK+fmUw8RCsLlZ+2y8b7LPoMFz2RhuO7b2NfkR2asSOO3OokDvVG6oBCp
-         bO4tjd7/LoYn5wZpCWhKVRuDxWTYn0JAc5b97l6rzJWWBg6UgcCchMfTEQeJfZWNqTQo
-         bOXbw5MSlnFxUQAE23IHQd9PL60Nz8+dpXcf8QSBLZn1Ak64fH9YI9QFnmaBKkaDhKv7
-         c5YBJNnNT8KePBx7LCjUrpl1cYN7kzofnImopm8EGi/CdTcaWdscCdVuV082IxB4Nyiv
-         m3O6Lc6Uvio+vM5V6nMQ/S/56eSWJNPET7L+72Agz3XHO8kyeIQT8z32of/5ctIS6DW5
-         GPcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXrU7phMlXEaIB5+QBCaw8rGmG8HP3rBzRJ11R5+9UWK4KTZYvAUBW8bAUYZwphJ++9NgD29q0=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx/KdjsMJUUAcfaBc/2tEaVwfxZuY/UdExoe9UlODMsGgVQXh3Y
-	O5WunRk9P8lr50yvP44cnwL4bnC6br1r+CdEABt2BHbV4zp2FFZssNmzuD19b444THaapn4qdEe
-	Gnd2AbRWRPElL0DLBwr2qkHzek44a8F/Dkdu/k6J3a1n/YLWwVRTdI94sxGZ/AWyi
-X-Gm-Gg: ASbGncslh+nwSs5xwDOysovRHeRfAD8O+IGcVQhA7UM3Lr5FZlAJWuE6XAaxtKisZ/k
-	hoP3yn3fs/nHgs6FbQnWooaoB2wJlNzyBEkFE7He+0SFHrRLBV6G0BaJFgCyaB5+C3AZ2TmrBUX
-	9WxdymjO7ykZ0cHJ3K68HcFDr5SQhtRVI/UdgRIgkiTaoN8aiI29RS4F2WWSe4Okl/7DZTFbI26
-	VqKrrZh8O09txcsU0hYpEW7zsdI1CHKEw+zlly48BIltLJPFxKPlckcyAZ0srS90asoF0Zd77TD
-	ZIwouvjD1rvQQjKhXYJnYBK5tuZG2kZV+OCoPiN/Mda8C4KmqAawl9VfH3Nl9vZr9+/AguG3C8T
-	bIlfVe4ej
-X-Received: by 2002:a05:6a00:ad0:b0:778:97e1:f499 with SMTP id d2e1a72fcca58-77bf9c4b95bmr8516639b3a.21.1758211680071;
-        Thu, 18 Sep 2025 09:08:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGZc2KMQorqsMojd+psOzChVBBFfgXHMXPd0ZabNoIuhc/lj2qbM9Uj58M/Sr3DdXCoo4dh4A==
-X-Received: by 2002:a05:6a00:ad0:b0:778:97e1:f499 with SMTP id d2e1a72fcca58-77bf9c4b95bmr8516591b3a.21.1758211679475;
-        Thu, 18 Sep 2025 09:07:59 -0700 (PDT)
-Received: from [192.168.11.100] ([124.123.81.173])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77cfec403c1sm2705361b3a.83.2025.09.18.09.07.56
+        bh=lXAg7ojCyxBCDClCOw8hFL48+P4B5I4oGQpykRIfRcs=;
+        b=Yjw5abiAT1Yo9QdOeE8GJEglBtFeH5miZq5jvG0nBAAOe5BOAijt32aHUP5xMUtkEA
+         naNCCaQ71UfdhX3+aaVs4G8hPPBBTjxQZhz3Qn2biTijCzyPGqUEPEbXSNKtUPv3jacd
+         s4psUQL7s0HanW/oq7p/vqvypTpgOytIFpD0xIjNIOjYWzms7xSkAEQp4kSXvCGDQ7WD
+         WbtHu2vWJCjg5Tbl2uoPBVfwJTBAISMEN23CwoLfC9+YwG/lnlRUke9BO7XWjtOok35D
+         W4gluXjkzetKHA8oGA6kv1qeIfSwyTG7dZp6TJ20wyfocTXIxjd2tUt95C6AlD7QoQIG
+         gunw==
+X-Forwarded-Encrypted: i=1; AJvYcCUJODYz6iUjR8EzhPa1QVIydG1Pu1xUVGLcXe38Tf94svZE4xPmMGxFnAWU2dKhwXgtK7yE/hs=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzSjuk/jOAhomOokNl1czmOkqzlmr4J01G3Z/h92FvMo7YY8H0c
+	1N82REWPcOhVYkQSRnfYNePAnfQuJGCoP6VJPwY51VZEsBsg+TvOEIuxO20PYbiOvPCiuKXv7lI
+	g5ekeob8kzCe/m9N715kwjUhgXgLwV/0PDUPssboMuGMWdWwgZj+z9mIz5cuMF0sW
+X-Gm-Gg: ASbGncvWZmaZJ1ndouYnMuFIaT2KXuCqyp+D3uz5ycgee73ZTh7/EAxnRiEzFU3FZZs
+	Owe0cHQwkXb4C4qeaEr+0bkZTfiWZu8hAS55yfyAgFIKKfo+NI4VnMNHeHChpSZsHCy3J/cKN2I
+	6PNldYRi0dJDlxgMhyO7E2m7fEwi+wwRfAXUa8umDhbRF5JccQn8FaSg28Il9Pskc82i2JsqEZC
+	sPGPc3kqMnFy4ZEOFES/u1rqfKFUgNYg3bC/J15QCv6fRK8lS5o0AvbN5l7r0a6l3vGvl9BlmIL
+	bfa95nBbZ/4tNEI8G95leFvzhNJUKP+uuuBtG2Fi6C+0OHz9N+bn9QLqY3JbyzNz7HXR0P4TPOC
+	O3AVrpG1VN8zmpWtCzH5LS8AZMvPfLmCZMsGq
+X-Received: by 2002:a05:6830:6619:b0:758:4f2f:239c with SMTP id 46e09a7af769-76f7a3a1a45mr571455a34.30.1758224110957;
+        Thu, 18 Sep 2025 12:35:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHwoxCYY5Mc8kGGNdF5NWEJW8KsmKqjizen55hJBywYZk1+LhtDIBl6+ggbcPD21Fo/hCQlzA==
+X-Received: by 2002:a05:6830:6619:b0:758:4f2f:239c with SMTP id 46e09a7af769-76f7a3a1a45mr571435a34.30.1758224110392;
+        Thu, 18 Sep 2025 12:35:10 -0700 (PDT)
+Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-625db7d1200sm1008387eaf.21.2025.09.18.12.35.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Sep 2025 09:07:58 -0700 (PDT)
-Message-ID: <d3f77052-bb4f-4ba4-b165-b672cc67147e@oss.qualcomm.com>
-Date: Thu, 18 Sep 2025 21:37:55 +0530
+        Thu, 18 Sep 2025 12:35:10 -0700 (PDT)
+Message-ID: <1e3e936e-595b-40d6-8404-aaeffdeb3df8@oss.qualcomm.com>
+Date: Thu, 18 Sep 2025 12:35:08 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [bug report] wifi: ath11k: fix group data packet drops during
- rekey
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-References: <aLlaetkalDvWcB7b@stanley.mountain>
+Subject: Re: [PATCH] wifi: ath11k: fix NULL derefence in ath11k_qmi_m3_load()
+To: Matvey Kovalev <matvey.kovalev@ispras.ru>,
+        Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org,
+        stable@vger.kernel.org
+References: <20250917192020.1340-1-matvey.kovalev@ispras.ru>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Content-Language: en-US
-From: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-In-Reply-To: <aLlaetkalDvWcB7b@stanley.mountain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 0x2OhR4lZ7r6jTr1gZcVimI3gacdmkyo
-X-Authority-Analysis: v=2.4 cv=H6/bw/Yi c=1 sm=1 tr=0 ts=68cc2e61 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=R7zuFBDiW8lgADV909h7jA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=b9pLVJSGNDumshOBPLQA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-GUID: 0x2OhR4lZ7r6jTr1gZcVimI3gacdmkyo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE4MDA3NCBTYWx0ZWRfX3CK4AOeanWlq
- KdlnPI1ncXHu7k4ouCxLW3lcdqtM63AP7iw0xqyJ6VUd6aA7MkwDXxMkqTp3G8X4qEulm6sPqhA
- reEhbKINyv3IbuBD/e5I9rCnfT4471llxkx5jKvnTHTNQgo7HJeYabWc5YOszJXwwK3qt3Hvgnm
- Y8lCXxQeiI4A2RTUrOu+yHCvWlWfQMcbCz0Muwq2NisQ6acoiKiryXH1pKVL/IVuTqIyDr3DaB/
- ZB8x56v02DoAFmafEbmJtSAkONNK/XzhtLJn/oK4iGyZ8/4i1cXsC4yDKBUo+1JXEBpFY4Ofs71
- Nl1EQZLdlay4YXInIbyj/NVshvrX/PVjxoGESzO8t6+FmWKXticUO2vMHkV3gIb26B1a+6lzYbI
- HS+FWN+t
+In-Reply-To: <20250917192020.1340-1-matvey.kovalev@ispras.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: AEf21t0U4eL3cWhUkSRJ8JwDWmn4fd8G
+X-Proofpoint-GUID: AEf21t0U4eL3cWhUkSRJ8JwDWmn4fd8G
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE3MDIxOSBTYWx0ZWRfX6u86TrLjWE6i
+ V2sCrdjDLlKsAgMtvzZb0HQ2vCrEjN4uNO0gXyikYIag2UhSxSYhbmDUAaYjuCjSPeJP56QSRrK
+ 1luZG6A+hBoNtFsh+KYJK/z1Ua0tl0aArw+NktyS5SxaVEVLtXSZ0WsuA0U4aER5rKycP4jJCbL
+ Er8UqZuOLljsPk4tsswxKD1aW5dzgygsdraySW3H8xaGz/oSaSxzJQUgqdQM7ZabiwdSeLQnBf2
+ 0LcLjtU4tr54yoIftVDgWFiPQ92Cv7CTbvc6r4wH9qng+cN53twaa5EOQibEdDG+JmTV9N25JGk
+ 3Fr/PgwC3+MXqqROwHdCX4FZpj2SeY1gUuLmGFGEzKHl9CbXRLy2Kf6uv6fgFyrHgvehMiIDXhj
+ wqPX0j8b
+X-Authority-Analysis: v=2.4 cv=Fq8F/3rq c=1 sm=1 tr=0 ts=68cc5eef cx=c_pps
+ a=7uPEO8VhqeOX8vTJ3z8K6Q==:117 a=e70TP3dOR9hTogukJ0528Q==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=HH5vDtPzAAAA:8 a=VwQbUJbxAAAA:8
+ a=xjQjg--fAAAA:8 a=KkCtspFpTa3j_I0B6KMA:9 a=QEXdDO2ut3YA:10
+ a=EXS-LbY8YePsIyqnH6vw:22 a=QM_-zKB-Ew0MsOlNKMB5:22 a=L4vkcYpMSA5nFlNZ2tk3:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-18_01,2025-09-18_02,2025-03-28_01
+ definitions=2025-09-18_02,2025-09-18_02,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 adultscore=0 impostorscore=0 suspectscore=0
- malwarescore=0 priorityscore=1501 bulkscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509180074
+ clxscore=1015 malwarescore=0 impostorscore=0 phishscore=0 priorityscore=1501
+ bulkscore=0 spamscore=0 suspectscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509170219
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250918_090802_799406_11F2C68C 
-X-CRM114-Status: GOOD (  21.71  )
+X-CRM114-CacheID: sfid-20250918_123513_340932_525825E2 
+X-CRM114-Status: GOOD (  19.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,72 +132,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 9/4/2025 2:53 PM, Dan Carpenter wrote:
-> Hello Rameshkumar Sundaram,
+On 9/17/2025 12:20 PM, Matvey Kovalev wrote:
+> If ab->fw.m3_data points to data, then fw pointer remains null.
+> Further, if m3_mem is not allocated, then fw is dereferenced to be
+> passed to ath11k_err function.
 > 
-> Commit 97acb0259cc9 ("wifi: ath11k: fix group data packet drops
-> during rekey") from Aug 10, 2025 (linux-next), leads to the following
-> Smatch static checker warning:
+> Replace fw->size by m3_len.
 > 
-> 	drivers/net/wireless/ath/ath11k/mac.c:4459 ath11k_mac_op_set_key()
-> 	warn: bitwise AND condition is false here
+> Found by Linux Verification Center (linuxtesting.org) with SVACE.
 > 
-> drivers/net/wireless/ath/ath11k/mac.c
->      4428
->      4429         /* Allow group key clearing only in AP mode when no stations are
->      4430          * associated. There is a known race condition in firmware where
->      4431          * group addressed packets may be dropped if the key is cleared
->      4432          * and immediately set again during rekey.
->      4433          *
->      4434          * During GTK rekey, mac80211 issues a clear key (if the old key
->      4435          * exists) followed by an install key operation for same key
->      4436          * index. This causes ath11k to send two WMI commands in quick
->      4437          * succession: one to clear the old key and another to install the
->      4438          * new key in the same slot.
->      4439          *
->      4440          * Under certain conditions—especially under high load or time
->      4441          * sensitive scenarios, firmware may process these commands
->      4442          * asynchronously in a way that firmware assumes the key is
->      4443          * cleared whereas hardware has a valid key. This inconsistency
->      4444          * between hardware and firmware leads to group addressed packet
->      4445          * drops after rekey.
->      4446          * Only setting the same key again can restore a valid key in
->      4447          * firmware and allow packets to be transmitted.
->      4448          *
->      4449          * There is a use case where an AP can transition from Secure mode
->      4450          * to open mode without a vdev restart by just deleting all
->      4451          * associated peers and clearing key, Hence allow clear key for
->      4452          * that case alone. Mark arvif->reinstall_group_keys in such cases
->      4453          * and reinstall the same key when the first peer is added,
->      4454          * allowing firmware to recover from the race if it had occurred.
->      4455          */
->      4456
->      4457         is_ap_with_no_sta = (vif->type == NL80211_IFTYPE_AP &&
->      4458                              !arvif->num_stations);
-> --> 4459         if ((flags & WMI_KEY_PAIRWISE) || cmd == SET_KEY || is_ap_with_no_sta) {
->                                ^^^^^^^^^^^^^^^^
-> WMI_KEY_PAIRWISE is zero so this is false.
+> Fixes: 7db88b962f06 ("wifi: ath11k: add firmware-2.bin support")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Matvey Kovalev <matvey.kovalev@ispras.ru>
+> ---
+>  drivers/net/wireless/ath/ath11k/qmi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> I should probably write a static checker warning for code that does:
-> 
-> 	flags |= WMI_KEY_PAIRWISE;
-> 
+> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+> index 378ac96b861b7..1a42b4abe7168 100644
+> --- a/drivers/net/wireless/ath/ath11k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
+> @@ -2557,7 +2557,7 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
+>  					   GFP_KERNEL);
+>  	if (!m3_mem->vaddr) {
+>  		ath11k_err(ab, "failed to allocate memory for M3 with size %zu\n",
+> -			   fw->size);
+> +			   m3_len);
+>  		ret = -ENOMEM;
+>  		goto out;
+>  	}
 
-Thanks for reporting this, will send a patch to fix the if() as well as 
-remove the code that does |= WMI_KEY_PAIRWISE.
+I'll fix this subject misspelling:
+WARNING:TYPO_SPELLING: 'derefence' may be misspelled - perhaps 'dereference'?
 
-
->      4460                 ret = ath11k_install_key(arvif, key, cmd, peer_addr, flags);
->      4461                 if (ret) {
->      4462                         ath11k_warn(ab, "ath11k_install_key failed (%d)\n", ret);
-> 
-> regards,
-> dan carpenter
-
-
---
-Ramesh
-
+/jeff
 
