@@ -4,115 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BB6ACCD183
-	for <ath11k@archiver.kernel.org>; Mon,  6 Oct 2025 17:12:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83284CCA476
+	for <ath11k@archiver.kernel.org>; Tue,  7 Oct 2025 08:11:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:From:Subject:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=6uX8yMRU+RN3y5an9EtPvmiOJ+b25K/dHy7f3R3KmZc=; b=CcrXMwNxyTd7QggLEPhHwDBOrC
-	WAo1kbKmqrFbVoihURqIV2PpV8B7sALhZQOZ+teh2nhmgavMxqjWpUZT9SoBOqxj0KS5fObC3Pyuu
-	Trk0Ilfz7RGMMk3sKpw/s9in0t82v2AogDxQuQn4/wHUjIESJBJqLsbI4KEvLtngafMSnI8XuP4QG
-	bkwvK8i4RlVg+zn/GDk7NuAIE0rys/Sj6I4MBVCtjQaL73Ui6hlPHBhO174Zg1sOmKyc84UEJ/r7B
-	Lx34St/YaHNgAtQO3gb96RS7xRalDgRHpqjO81isPgYuNqLP0gnAiKSH1GaU7vmX4G8RbPwMgQGX6
-	3jAGCaiw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Date:Cc:To:From:Subject:Message-ID:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=aX+Sa+g3JxYQdmRZvAEhVm9iZwqXmPV/pvfdfF3SINY=; b=kBdGrIgpjyJQOHkE6+6TN3bO6P
+	gByJgshz7l2SMUD7/TxNXo2gT+siTMaQq3imNlPVQYPmTv2/+8Tsp/Z3rPBpQWJ85h1qgJmTolDnD
+	zM9/gn+NdXn18dGiUWdWvmQ2EZoewZuTJn6dWs4tYRmha9PoTj8Fcoe9yqdAPIytg1X23ejinIvJh
+	Xow3ouD7ifzrB3MQOvRIGzx2cHpyJUooqinQ5wPuMtaZgRFdL4yTLmsLRORQPeUD6+fkPRElh97MW
+	hPD9N2TA+GRLNg4Bqz96CNBn6fCLTHoqApx9qYgo+2iuz5YeOKjQIsjzBMkKQrtAKsMbKzzJrdq20
+	y4lJylRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v5olK-00000000Tit-400e;
-	Mon, 06 Oct 2025 17:12:38 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1v62nC-00000001Unf-2scM;
+	Tue, 07 Oct 2025 08:11:30 +0000
+Received: from mail-westeuropeazolkn190110001.outbound.protection.outlook.com ([2a01:111:f403:d201::1] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v5olH-00000000Tho-3bgt
+	id 1v62n8-00000001UnJ-30Km
 	for ath11k@lists.infradead.org;
-	Mon, 06 Oct 2025 17:12:36 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 596FBFPt023916
-	for <ath11k@lists.infradead.org>; Mon, 6 Oct 2025 17:12:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=6uX8yMRU+RN3y5an9EtPvm
-	iOJ+b25K/dHy7f3R3KmZc=; b=HhfEKCM7fnl6+pfb6gMNDtWYFwhTCpKvfexTHX
-	/6/ZpRxP+xywLmYoKsHZAntTl94M8R/tQ/KqOBR7AYO+TWq8SnCLaaQsy0NyEGFS
-	c414gNyua2Iax/hlGlP+oMNv4HDkX+cmyQleuPE4jNILGSat6IjSVP2/f1J76GPj
-	FXr6dVGZ9nqiS7XGZ6WDGrC38ga7DNRYgrXfQm8PG6ODhtuSxIcVQKJhXKbhqFxZ
-	5mcG3aL6Acadq+TBYu+FJ5jmV+iwOlSKUHMr2aMlGHqqXKf6a1N44H6ntqer11Ht
-	FR8AxXlURGLwjkqjeyw6ktLpbCFXCo8U/od+WUQnmV5Xuoiw==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49mg6a8ayt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 06 Oct 2025 17:12:35 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b557abaad02so6324221a12.3
-        for <ath11k@lists.infradead.org>; Mon, 06 Oct 2025 10:12:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759770754; x=1760375554;
-        h=content-transfer-encoding:from:content-language:subject:cc:to
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6uX8yMRU+RN3y5an9EtPvmiOJ+b25K/dHy7f3R3KmZc=;
-        b=jaFk+WP672uGCOVRZp2KIVipvgwdDVjXJwpIXkbFXBxTPZJvTZwO5iaOfPJzzU7sZo
-         dAJmU0s/+r37CEr6e95qATIf5NyMx6p8CB70BaJTE5RpYZUFFb0Z55Tr5i+VPVoLgUXv
-         iTVMZ4CIc61nACRZTYJOzCLd+4MTGxzTOsQK8tl3yobnScXzkTXFNoL18aM/jqqP4s7q
-         EEF4IaQfqMkNV1WHklADNtDsKgzyHYx7ByPSuKDLy0xEHkMHWYWGSlVkq3NXhsGpcIki
-         uNIV5N7AAmvh/koR3Dg65MnlVdpl5uaY6zSOJYyV4vO/qffvRQByBJ8hQv4KcsQiWxbb
-         FKOg==
-X-Forwarded-Encrypted: i=1; AJvYcCV9amIFac/Noi25vpUTAxzPgdGSCI5XBb30dDpFkMRouzPZoWUtrFIbKfISW1SSUGchNOY31+A=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxsHHDNAxpnurRL9s1mRWGT2GoPHM/fUaFh1VPOilSGWKZ0KIIJ
-	484/Mp1Y4WPaIFrZ160RDydATy+BXtldjyrqLg3EEPe57rf7EuDT6QEVZnwMWXF3qUCQCeRax9Z
-	HmrMYvk2FK6CDFNqs672j7s4fR9mmCnaq+t+ujPgNfTX3Q0uEePka89uztFGRwsRq
-X-Gm-Gg: ASbGncutLCMoD+l9umU29VARp4H3oE80UjQ1Q6UcLj+RvB/t3+Ajps0dPmij8wVDOvN
-	54/iIdihIZg7sZ6dFpqEYKXJogBSrUTyS8ezvWXpNyPHgLExxclIPnuIKvZRvmhyaOiH8aY5dGw
-	DWQ7X9Cx1DkS4lrA84miNvXle62Trau/OifRkrAPj9uRUKcdgmvfLKVJECsjWDxjARd5lL2EHEA
-	UGi47cstg07rXko7oeUsg9HEmcV5talZHMayjv8A3eMMf7n8/RnYdhCxtcLS4G/JTWrO/ugmYv6
-	Q+hmNDQr/6gUU+8bp9z5d6wuKbm36RCG6WWQWIJ0Zk7aS3pEjp72JPp7q4L4Rxrtmlj5TQYXZXq
-	PVBRjbw==
-X-Received: by 2002:a05:6a20:72a8:b0:2c9:1323:f7f8 with SMTP id adf61e73a8af0-32b61dfb938mr17494034637.6.1759770754472;
-        Mon, 06 Oct 2025 10:12:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGcFsQ5Cj8EuYVNyQn76xpACvpnbuvWlGVRXDAN6Io60+FOAQqunJFYDQCHg/w+DzTzrjT7CQ==
-X-Received: by 2002:a05:6a20:72a8:b0:2c9:1323:f7f8 with SMTP id adf61e73a8af0-32b61dfb938mr17494007637.6.1759770754025;
-        Mon, 06 Oct 2025 10:12:34 -0700 (PDT)
-Received: from [10.81.24.74] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b609ba636c2sm12363691a12.16.2025.10.06.10.12.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 10:12:33 -0700 (PDT)
-Message-ID: <45843a5f-011f-4751-b9bc-004768b1454e@oss.qualcomm.com>
-Date: Mon, 6 Oct 2025 10:12:32 -0700
+	Tue, 07 Oct 2025 08:11:29 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ntE7rj7j1sogx0xprzepLth1nngWVsi4ssyIH6mIpLkoFqbL1YyJTnYv2hALepStdjWhO2gtDi1gR5gSwNAqnSP0gZfOXbOj0Mp2BGIc7srG6DYKyvJYF8vIzpRAWup3owpkTaZiWljZwN4dRfWPuwRQeK4sOn4a0aoF+rac6E3IgHTZ15SUcjODCM+9yWC1gPmGjXNvx6OV/kNwZuwtmSTETVa3sMioSWk1EoL2zIWailsXze+AkEs0yNS9LYCdWgS6x+zMmCHQETSoQysb9HoN7y9X3kWcASknm7+TQ7ph9CxUViVlioAQvsS+fWn9VYsuwcS4SJ1mZn9IhsH//A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aX+Sa+g3JxYQdmRZvAEhVm9iZwqXmPV/pvfdfF3SINY=;
+ b=hZWvmYpgJG9UJ2pS4YCdJ/ElC4SawgAacLK2QOY5flCuoDpEI/sd7Gln5R/pZUGw3IAygMIPbWmL5Q3J6F6raDd3PXo2j8L58f4qhbDy9SmCsOlHjBsJlDKjNcBG91EAw/ZMJqtAK0Sid/kSs5CiUpFFaT1B0isXoVXlHx7ttxTQQquroIOCqGoAsnkKnVdfdoLaFT+uInviAduhI+tGPec6wWpvtLDiYHZIH3evil1jTK1JK5cvb1b1xEfF9IiMsAh7CqirG6dnqF/vs3GtJuEYgisQP+0t5Oq8sdD3mXn8tMa3Y2dm9vRZnk4hy5PitWWH9AASvxb7h2FrRpgrfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from GV1P250MB1433.EURP250.PROD.OUTLOOK.COM (2603:10a6:150:284::10)
+ by AS8P250MB0007.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:35a::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Tue, 7 Oct
+ 2025 08:11:18 +0000
+Received: from GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
+ ([fe80::5957:21ce:d025:7747]) by GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
+ ([fe80::5957:21ce:d025:7747%3]) with mapi id 15.20.9160.017; Tue, 7 Oct 2025
+ 08:11:18 +0000
+Message-ID: <GV1P250MB14333A5BF24623C4753A10E1E8E0A@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM>
+Subject: [RFC PATCH] ath11k: add ath11k_mac_op_flush_sta to properly flush
+ pending packets
+From: Florian Maurer <f.maurer@outlook.de>
+To: Jeff Johnson <jjohnson@kernel.org>, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Date: Tue, 07 Oct 2025 10:11:16 +0200
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
+X-ClientProxiedBy: FR4P281CA0260.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e8::7) To GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
+ (2603:10a6:150:284::10)
+X-Microsoft-Original-Message-ID: <3851002fc48cd95f674710c7535ced7826ffcdec.camel@outlook.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: linux-wireless@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>
-Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-        ath12k@lists.infradead.org, jjohnson@kernel.org
-Subject: pull-request: ath-current-20251006
-Content-Language: en-US
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=QtdTHFyd c=1 sm=1 tr=0 ts=68e3f883 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=NTglem7-DTcMTCxUeT4A:9
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-ORIG-GUID: uPCf-covyift6fKJ2YhzJF8EbdXvYJJQ
-X-Proofpoint-GUID: uPCf-covyift6fKJ2YhzJF8EbdXvYJJQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA2MDEyMSBTYWx0ZWRfX1Td02g6+ttGc
- 3/0dhXNPfM/cj36w2eDZ3ZXCzcczIUga0IQVw2Jc6A/1r8Y9DlVe+3IykG1TddkJiSIlx5cE9NN
- 3KK5lpRIrB/n4itsdHJ/RwqR9leS843DgG2J5qd8lFY0W+bpwMynsZI7L/1p+kggTpuCwjaTU/r
- 9FbLFdZGFuWATNXBEPqtsnCtXkdlwNFdE/xA87FiraID18R3I+IX+2lTgfgtp5qFMbzQ/8MhUTq
- QMRh99BF44WZffNzlJYdJsCAPsIVBcqvKxhp+AdBK3fePEDVmgn0oXFKG02d+z0k2FU5CJhyUj4
- 3NjPEExNTTxP/dq76wsRQjj/i6Be3oKDlP1T3y+2GBzY+s/l3mInaYYy3letFUcTSXIUJiSVQVc
- 62eMRT4DAzwphDDYQp8sQ3tVUYpUog==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-06_05,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
- adultscore=0 clxscore=1015 suspectscore=0 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510060121
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV1P250MB1433:EE_|AS8P250MB0007:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0935b36-55b9-41fa-81d8-08de057917ab
+X-Microsoft-Antispam: BCL:0;ARA:14566002|19110799012|15080799012|23021999003|8060799015|12121999013|5062599005|5072599009|6090799003|461199028|1602099012|39105399003|40105399003|4302099013|3412199025|440099028|51005399003|10035399007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eDZRc0tFNEg5RG1VMm52N0lmalpkWnlyN0dCc0lud01KNjhSRUdlQ1lOeFd1?=
+ =?utf-8?B?Rys0N3gvR2xwSUx1bWRTdG5iMHVzU0RyT0VFRElPZ2dDR1VXNGY2WkZBNjRM?=
+ =?utf-8?B?WkJyU3B1dVkrMXNrQW1oZGNyV09tMEo5N2JLQmFiZjBYUjNEdEgveXo0U0Zn?=
+ =?utf-8?B?RGdaR2d0WGlmQTlsNS9HVkN2a21WL3hjWUNic0VySlQxbEdKamttWkdjeGFk?=
+ =?utf-8?B?MWVza0RyaC9aY204dysrTmY0dWt2RlE4OHFCQUxtNWdnTFIvTERCT0VsZW1p?=
+ =?utf-8?B?bU41TGhxY01ZTVYwNVFqWEtXTTdyd1V3aGlvL2FjWVJHcnhYdXNLaG5JTk1S?=
+ =?utf-8?B?cTlmZUpWZTJoZFhYZGJCR0YweFd0VHhqcEt1K1Jiem4xdTFENENHNm9pZW5t?=
+ =?utf-8?B?TUdicHFWQ1Y1RU9jTFJaQ21oMlFHRGFpMUhKak45dVNKSnNhL05KdEdJdUpn?=
+ =?utf-8?B?NHJRUTF0M3RjRWd2RWRCMFA4MTZyeDMzODljNW9TcGJ4YmJ6L2QycUFBSENU?=
+ =?utf-8?B?aTdZSWhxZjJsdXhkbW5RNGxJRlpkZ2I4Mlk2UVBPSG45Sm54OWlsTFJlWmxD?=
+ =?utf-8?B?cDN6Y09kWFF5cm8wWlBUd2FvdnpaM3hjME1XNWVwVytVVlVDKzZMWVA2MThq?=
+ =?utf-8?B?M2ZMY2liOXphZDdoeWVDSUE0MnltTWttZkdoNmg2WXhRTXd1dDJqVnVsaDY5?=
+ =?utf-8?B?S1o1RndTU0VoTS9CMXpsUnpDQmVHKzB4L2ZTSEJwcHJtUEhTTHluQVNrZEZh?=
+ =?utf-8?B?NHRqaEFDSDduU09YdkNhczdVZHdrZ1JnL1AxZVVYV2g5cEhpOVhrL0o5alZR?=
+ =?utf-8?B?cERjeUhJN3hZb0lSMDNYQlBRbmJydVRMV1MvemIvYXFYMndHZm1aYjFLMGtF?=
+ =?utf-8?B?dEVZb3ZHWk1YcXd6cnZyUTI5MS9SbmoyR0dVRjNHYW45bXZ6S2FqR3pLOWZ6?=
+ =?utf-8?B?Q2txTE95c0RDQmtITHl1S3hxUDVuSkVCanNRVDFJSHdaMEt6bHpYeFVoT2Zu?=
+ =?utf-8?B?RFUwaCtvVzNTUkZ4L2FFSi9tcmZHeFRGNkFRejBSY003eVpDM3ltSkRNQ2NC?=
+ =?utf-8?B?dmZ4eERmeU5mNk9NcXJUaVRsa1RITzRTMVY3RTI3T1VmU3RtSnprMTJ3dng4?=
+ =?utf-8?B?R0l6ZXVDVFExN2Z5OTNhckRVK3RpUU1GYWlvS0tmVFBmWDNHU2hEZnBLUVZG?=
+ =?utf-8?B?TWVTSGRhbnNVL3pIYnFVb0JHbXp2TEhKVXZ1OUs0Q0l6TFgvYk1hb1hJTkZL?=
+ =?utf-8?B?b1dxY1dRelZEcks0Umg2L2JYZytyc0F5NHc0WGhVd1ZTWHRIYUNIVDVwaVlq?=
+ =?utf-8?B?eFI3cHpveVZaMEN0VFdmTFZGOEVvdFhOTUJiNUNFZXN3QnNRYzZ5MFA5ZE5D?=
+ =?utf-8?B?UDV1blMreExCTm5EeEpWTDFWYkRGWmFRbVRlOFpYSXEzUHA1TDA1WVEwSVVp?=
+ =?utf-8?B?ejRzdHk5UW5xZXIwNkhyTEpFSnMzeVBUb002cGZKRW5ONzFLeVF1UnIzZlZq?=
+ =?utf-8?B?ZEtsOERIbTA3WUpJY25meFdrd2tIMzBKa2s4cVNHYStTQ290cW5tSGszMitI?=
+ =?utf-8?B?Sk0yWnZkZUxTdVJrYlBBZkV6N01MRmJNRnpwQ3cyY1VRL0VTS2hPaDFrTnVH?=
+ =?utf-8?B?UHBING16ZzFET3phZGcxa2pzM2JFZ2YyN3lXWlhNMHpPckFzZTArL2Z3bHFC?=
+ =?utf-8?B?SGtISjVCdm5MYUR3N1hZYm9YeTFDNFdGemNHNEs0YXRSNjlLalRWZXJaRm83?=
+ =?utf-8?B?RDdabVpjUUphYXdackl2ejk2NEN1ZE1vZlE3ajFvTG8yV2lUVnVEREkwWmpG?=
+ =?utf-8?B?SkQ3YnZ1RGQ0RDgyVm1Qb0oycTdYZmRBeUFBYTYvR00vLzh3aFdmZ21PRG5Z?=
+ =?utf-8?B?QmRKYTFaSlpkUWFTYUJ3NUJFdzZZcm04WWo5LzdoajFDUFU3eXFjSHRmMGQ3?=
+ =?utf-8?Q?N8jLHxsl7Gi4QDZmhE5F2/OKvUlN59SK?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QWRXdVlzanpnRXJYMzRlK1F2b1k3bVFCdWVHcEtsUHVYSU5lekdPV0FmRXlY?=
+ =?utf-8?B?Yk1SS3pRamxRYjEvdHltMDRUS0xRZVl4ZmRZVm5zeldya0o0SFJkUXYxY0c4?=
+ =?utf-8?B?Q1o3bVVRMFlIdkNpTUtRY2l6dmEzelM1ckFnSFhXZ1oydGRaWXlvdE5SSDdE?=
+ =?utf-8?B?Z0FKVWt4S2pJMTMxSFVjWjdVcnhJclpWZkhZNHAySG5IM2RxdVU3TTNMWWJB?=
+ =?utf-8?B?QVJpWlFJTHpmbUdBSVFLYzdnL2lSVzZxNzQxSkl2TkxyMFpWYVlYRlFGbFFZ?=
+ =?utf-8?B?bmlENExEbm5MQjJNMEtOVW8yQ0hCZC9HK1V4dzdXME1CbElsZkxTa25RbjNl?=
+ =?utf-8?B?NlhwZU5RWXVlcDdHVWhpVEdEdXJ4RlZ3QWhySnp1L1ZCZlRxNTdFR251cGVr?=
+ =?utf-8?B?bzVmM0dJeUtWMXBKVU4zN21OQVcrM0krQzI1UDFqSm5rd3NBWm9qNzdRWUJ6?=
+ =?utf-8?B?cTl6TFBlWFVwYk5ZQndrN1BTNGJ4V3VlN1JEVVVoTnJXV2tSVW93NzVBU203?=
+ =?utf-8?B?a2Q4Z091ek1EdGVVYWNZVVl1MzVjY3ArMGtXbEQ0TU05S3NBTnF0RGJiQzNB?=
+ =?utf-8?B?b1JOV0xzdFp1S2V3Y09QU1YyeTVaVGxrMVJYRElhWStFcE1VUFZuSlBnNjFx?=
+ =?utf-8?B?ZE5EZzZ1NHRWVTdXeC9Fbnp2cURIV2NCOTZ4TS9EektUUEFMWTdHMHhXRHZL?=
+ =?utf-8?B?aURnZ0wvZ2lKZUtBVytvRUZiRlR3TnNjMU1BeU80TVhVc0Z5czZhLzQyT205?=
+ =?utf-8?B?a2FsTnJqZlFkRHRCV21ZeldPblMyemVPQXBJL2M4RFRTRjJLZGhiUmI3OU1N?=
+ =?utf-8?B?ZFZFbnVuY1o5R2VnMXEyUWUxVUhVQWRRSGFZY2VQdk8zMzJjaTRRNFEzTDFK?=
+ =?utf-8?B?eGtvYmZVOTh5WTJGQWVqZzBzaUVKTHc2LzB2NHZQL1Z1ZkNJTDkvV2RBL0RM?=
+ =?utf-8?B?eFZGeHFNdFdjTWhqZVJnQURmSzVpbGE1c1BaMENJVHFPQkpCTHVhcXBnaVFX?=
+ =?utf-8?B?SHFJemhRNE55ZFkyNndpTVZObHdGUDBBM010OHZIay9Ja1RPZFBsVW53THZr?=
+ =?utf-8?B?azZ6L09YTFZvYmZGaDlLWisyWldxREVFbzd3ZkJPSlltQ2NCU3REOXJSYUdR?=
+ =?utf-8?B?SVZoMWJDUm1aV0RhY0M0S016VndtT0VITTNEbSt2dkliVm56VDZzb0ZTVDll?=
+ =?utf-8?B?QmVqUHY5UVNJazJ4MXliR3FTTmd1V1NBRDZxTUNndGV3Tlo0ZXFBcWhxMDRm?=
+ =?utf-8?B?eEQ2eGdxSm5DN1RlY2hwUkh0aWcvYnZVVTFBUFMzam1nUysveVFISzh0NnQy?=
+ =?utf-8?B?ZEQwZTdxZm5CcTgweUZ3Zyt0amZHazlPVDJrZm1LKzd5TmZZRzJaSncvemJG?=
+ =?utf-8?B?Z0JJTlRtZHpnMmFWaEVybmxlNEhRT1lXZFFpbHk1dTY0cEsrWlpJUWtFWDNw?=
+ =?utf-8?B?Q0hqTXRIRkxwQUQ5OFF5R3U5dHl0WS9VYWU5emJVckQ0d2E1a085V0dCM3lG?=
+ =?utf-8?B?ZUFBdzBQakJrZGh1Q2t6T1FUVEJQWUZzSTMvbnA4dTZFNC9jdVFPYVZjQlNq?=
+ =?utf-8?B?RGVQRDczRXhuQktDdnlMZXlvcmNLcS9qam1wdzg0SWlIMnBhL1dRY0U5V3Bx?=
+ =?utf-8?B?QXNzVXduQlNqQm9LNmpFK0lCWGFJSDJrUHEwS3pzUFUzRFpaVU9EL2N0N3No?=
+ =?utf-8?Q?AqS+m+htsPB93YT8PAdS?=
+X-OriginatorOrg: sct-15-20-8534-15-msonline-outlook-5f066.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0935b36-55b9-41fa-81d8-08de057917ab
+X-MS-Exchange-CrossTenant-AuthSource: GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 08:11:18.3122
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P250MB0007
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251006_101235_895609_7646EEA5 
-X-CRM114-Status: UNSURE (   8.77  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20251007_011126_766870_A83473EA 
+X-CRM114-Status: GOOD (  11.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,41 +155,85 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The following changes since commit 4ff71af020ae59ae2d83b174646fc2ad9fcd4dc4:
+When a STA is marked as no longer authorized, if the driver doesn't
+implement flush_sta(), mac80211 calls ieee80211_flush_queues() to
+flush hardware queues to avoid sending unencrypted frames.
 
-  Merge tag 'net-6.17-rc8' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net (2025-09-25 08:23:52 -0700)
+This has became a problem for ath11k because ieee80211_flush_queues()
+will stop all traffic and call ath11k_flush, which waits until the
+whole HW queue is empty. In a busy environment this will trigger a
+timeout warning and stalls other STAs.
 
-are available in the Git repository at:
+Fix this by implementing flush_sta method using WMI command to flush
+frames of a specific STA.
+Flushed frames will be marked as discard in tx complete indication.
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-current-20251006
+warning print "ath11k c000000.wifi: failed to flush transmit queue 0"
+was observed on various openwrt devices, and is fixed through this patch.
 
-for you to fetch changes up to 9c78e747dd4fee6c36fcc926212e20032055cf9d:
+Signed-off-by: Florian Maurer <f.maurer@outlook.de>
+Tested-by: Florian Maurer  <f.maurer@outlook.de>
+Co-authored-by: Benjamin Berg <benjamin@sipsolutions.net>
+Tested-by: Flole <flole@flole.de>
+---
+We tested this patch and it solved the problem of flushing the transmit
+queues taking too long when the AP is busy.
+We did not confirm if this flush is implemented to guarantee that no
+unencrypted frames are sent out on station removal.
+Could someone with more knowledge about the firmware behavior check
+wether this approach is feasible or if a different approach should be
+taken.
+It is not clear to me if the approach taken in "wifi: ath10k: Flush
+only requested txq in ath10k_flush()" might be better.
+https://lore.kernel.org/linux-wireless/01d859e8e574a1f5d0b916333fe0b5cda859=
+af9b.1732293922.git.repk@triplefau.lt/
 
-  wifi: ath11k: avoid bit operation on key flags (2025-10-06 09:48:55 -0700)
+Regards
+Florian
 
-----------------------------------------------------------------
-ath.git update for v6.18-rc1
+ drivers/net/wireless/ath/ath11k/mac.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Fix memory leaks in both ath10k and ath12k.
-Fix a sparse issue in ath11k.
-Allow ath11k suspend/resume to work on more Lenovo laptops.
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/a=
+th/ath11k/mac.c
+index 106e2530b64e..a94649edd4ed 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -8330,6 +8330,24 @@ static void ath11k_mac_op_flush(struct ieee80211_hw =
+*hw, struct ieee80211_vif *v
+ 	ath11k_mac_flush_tx_complete(ar);
+ }
+=20
++static void ath11k_mac_op_flush_sta(struct ieee80211_hw *hw,
++							struct ieee80211_vif *vif,
++			    			struct ieee80211_sta *sta)
++{
++	struct ath11k_vif *arvif =3D (void *)vif->drv_priv;
++	struct ath11k *ar =3D hw->priv;
++	struct peer_flush_params params =3D {
++		.peer_tid_bitmap =3D 0xFF,
++		.vdev_id =3D arvif->vdev_id,
++	};
++	int ret =3D 0;
++
++	ret =3D ath11k_wmi_send_peer_flush_tids_cmd(ar, sta->addr, &params);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to flush sta (sta %pM)\n",
++			    sta->addr);
++}
++
+ static bool
+ ath11k_mac_has_single_legacy_rate(struct ath11k *ar,
+ 				  enum nl80211_band band,
+@@ -9920,6 +9938,7 @@ static const struct ieee80211_ops ath11k_ops =3D {
+ 	.set_bitrate_mask		=3D ath11k_mac_op_set_bitrate_mask,
+ 	.get_survey			=3D ath11k_mac_op_get_survey,
+ 	.flush				=3D ath11k_mac_op_flush,
++	.flush_sta			=3D ath11k_mac_op_flush_sta,
+ 	.sta_statistics			=3D ath11k_mac_op_sta_statistics,
+ 	CFG80211_TESTMODE_CMD(ath11k_tm_cmd)
+=20
+--=20
+2.47.3
 
-----------------------------------------------------------------
-Karthik M (1):
-      wifi: ath12k: free skb during idr cleanup callback
-
-Loic Poulain (1):
-      wifi: ath10k: Fix memory leak on unsupported WMI command
-
-Mark Pearson (1):
-      wifi: ath11k: Add missing platform IDs for quirk table
-
-Rameshkumar Sundaram (1):
-      wifi: ath11k: avoid bit operation on key flags
-
- drivers/net/wireless/ath/ath10k/wmi.c  |  1 +
- drivers/net/wireless/ath/ath11k/core.c | 54 ++++++++++++++++++++++++++++++----
- drivers/net/wireless/ath/ath11k/mac.c  | 10 +++----
- drivers/net/wireless/ath/ath12k/mac.c  | 34 +++++++++++----------
- 4 files changed, 72 insertions(+), 27 deletions(-)
 
