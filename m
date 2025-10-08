@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4270CCCA470
-	for <ath11k@archiver.kernel.org>; Wed,  8 Oct 2025 05:59:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC214CCA470
+	for <ath11k@archiver.kernel.org>; Wed,  8 Oct 2025 06:09:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=XobQWHMsN4/biCRYjq9SRSXgTwbdiyO4GRWenZy9z+0=; b=u+gmZzXlGeFAjCzD4Dvt03HHEY
-	GNkvqE+ZR+rQ58ZGyPRGqhYdheRc9tshsSPXEV/tMtviulKbpyFFu6BUra97XxDpoOV6O7Q6UMIm5
-	nA6xni7vxXU65S1c/93CwCO5fy6yZcsNvl2RF5GZUJKOEy5p/rjHGZ9+V3cLtqAIm+IOv3lhSIYPj
-	g8cEo/b43KM1VczM6q5o0lMy7Hzc0BkXiHWRBnN4wg2TJuRFK8iH++IR/6omLmuEKY5wHWVn++biZ
-	RtCLNPQPQhrZZXwhG1/e/rJeugZtcS15uBafmsYvpdiSP5W7ejqD9FEsc2/qjScplkxYr7R27xNqw
-	7P7Y6PRg==;
+	bh=ZjAFkAwnsi4tcxNNj3MNh9UFNQuCts5SaEEBlOZE+2o=; b=zaJu99kO/bONRW2sfL3idA+hWy
+	Q9jYz68ux8eBmcb457eEE0Fm+Xg+jyLQXCkpTopTUn6g8hxClZPUCohbT/buY5S6SbLstDR4wuaQW
+	NUJYP/tLuqGG0fzEBPDfZhaXH9Elr/bzj0PsevoMc73aXxCtJh54qVziKusyxRTmciaeurXx7n6Bt
+	8YM+1PHGNTxrHEVo49+jwQ2ZYpihTevn4wpznUpcjst83EtksXnqbVkRSSyID15bzg1v8YBbth94m
+	k6TAlgnCqrxrsmrzUm5GtE0OjfqFJqemRm6Q97rdu2jiw+lg6W5Anhl8j6TY/Ulxw615afUznsFP4
+	42gL2+6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6NCw-00000003F7L-1lP1;
-	Wed, 08 Oct 2025 05:59:26 +0000
+	id 1v6NMw-00000003GTF-1FOp;
+	Wed, 08 Oct 2025 06:09:46 +0000
 Received: from mail.as201155.net ([185.84.6.188])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6NCt-00000003F6x-221y
+	id 1v6NMt-00000003GSq-2V54
 	for ath11k@lists.infradead.org;
-	Wed, 08 Oct 2025 05:59:25 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:46128 helo=webmail.newmedia-net.de)
+	Wed, 08 Oct 2025 06:09:45 +0000
+Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:49592 helo=webmail.newmedia-net.de)
 	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
 	(Exim 4.97.1)
 	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1v6NCn-000000007z9-07j0;
-	Wed, 08 Oct 2025 07:59:17 +0200
+	id 1v6NMq-000000001Wu-06QM;
+	Wed, 08 Oct 2025 08:09:40 +0200
 X-SASI-Hits: BODY_SIZE_4000_4999 0.000000, BODY_SIZE_5000_LESS 0.000000,
 	BODY_SIZE_7000_LESS 0.000000, CTE_7BIT 0.000000, DKIM_ALIGNS 0.000000,
 	DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
@@ -47,21 +47,20 @@ X-SASI-Hits: BODY_SIZE_4000_4999 0.000000, BODY_SIZE_5000_LESS 0.000000,
 	__CTE 0.000000, __CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000,
 	__DKIM_ALIGNS_2 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
 	__DQ_NEG_IP 0.000000, __FORWARDED_MSG 0.000000,
-	__FRAUD_BODY_WEBMAIL 0.000000, __FRAUD_PARTNERSHIP 0.000000,
-	__FRAUD_WEBMAIL 0.000000, __FROM_DOMAIN_NOT_IN_BODY 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
-	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000,
-	__HEADER_ORDER_FROM 0.000000, __HTTPS_URI 0.000000,
-	__INVOICE_MULTILINGUAL 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
-	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__MOZILLA_USER_AGENT 0.000000, __MSGID_HEX_844412 0.000000,
-	__MULTIPLE_RCPTS_TO_X2 0.000000, __MULTIPLE_URI_TEXT 0.000000,
-	__NO_HTML_TAG_RAW 0.000000, __OUTBOUND_SOPHOS_FUR 0.000000,
-	__OUTBOUND_SOPHOS_FUR_IP 0.000000, __OUTBOUND_SOPHOS_FUR_RDNS 0.000000,
-	__PHISH_SPEAR_SUBJ_PREDICATE 0.000000, __RCVD_PASS 0.000000,
-	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
-	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
+	__FRAUD_BODY_WEBMAIL 0.000000, __FRAUD_WEBMAIL 0.000000,
+	__FROM_DOMAIN_NOT_IN_BODY 0.000000, __FUR_RDNS_SOPHOS 0.000000,
+	__HAS_CC_HDR 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
+	__HAS_REFERENCES 0.000000, __HEADER_ORDER_FROM 0.000000,
+	__HTTPS_URI 0.000000, __INVOICE_MULTILINGUAL 0.000000, __IN_REP_TO 0.000000,
+	__MAIL_CHAIN 0.000000, __MIME_BOUND_CHARSET 0.000000,
+	__MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000,
+	__MIME_VERSION 0.000000, __MOZILLA_USER_AGENT 0.000000,
+	__MSGID_HEX_844412 0.000000, __MULTIPLE_RCPTS_TO_X2 0.000000,
+	__MULTIPLE_URI_TEXT 0.000000, __NO_HTML_TAG_RAW 0.000000,
+	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
+	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_SPEAR_SUBJ_PREDICATE 0.000000,
+	__RCVD_PASS 0.000000, __REFERENCES 0.000000, __SANE_MSGID 0.000000,
+	__SCAN_D_NEG 0.000000, __SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
 	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_END 0.000000,
 	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
 	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
@@ -72,12 +71,12 @@ X-SASI-Hits: BODY_SIZE_4000_4999 0.000000, BODY_SIZE_5000_LESS 0.000000,
 	__USER_AGENT 0.000000, __X_MAILSCANNER 0.000000
 X-SASI-Probability: 8%
 X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2025.10.8.45719
+X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2025.10.8.52719
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=XobQWHMsN4/biCRYjq9SRSXgTwbdiyO4GRWenZy9z+0=;
-	b=dNetz+jh29FgYuOmixy2Oq0XHCYMUV+A1mfJtOtauJkSq6+wuNkLi20yb1Cac/gND4JI+AQP/bCUaurbMcm7ECCaEDeuXx5v8kd6KYWZ9MEV2sry22i44aTbjVvMMkHfnOmaDssn4gzaB53TjzLRSQGEumHbO/3nignMABCIp8Q=;
-Message-ID: <0eefe658-19c4-4527-8866-474b4a635cd6@dd-wrt.com>
-Date: Wed, 8 Oct 2025 07:59:14 +0200
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=ZjAFkAwnsi4tcxNNj3MNh9UFNQuCts5SaEEBlOZE+2o=;
+	b=lDQfOP/On/CBvYS/kgOztXi4K7Ur+qLc+4/FsoRyZxasNTLO+cNfDN2dZM23HAsOeKSKlUFHNwFKt5TxHzropEiaIMvUn3Q4+G0mcZs/GI2BYcd2ei00k6TR5W4YUBxXCL4b8BEMC8qV5jr4n44frcROUwjgqbZ6CHFx4//NaCU=;
+Message-ID: <822673fe-174f-472e-8874-783198e22300@dd-wrt.com>
+Date: Wed, 8 Oct 2025 08:09:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird Beta
 Subject: Re: [RFC PATCH] ath11k: add ath11k_mac_op_flush_sta to properly flush
@@ -97,16 +96,16 @@ X-SA-Exim-Connect-IP: 127.0.0.1
 X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
 X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
 X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1v6NCm-0004hT-DO
+X-NMN-MailScanner-ID: 1v6NMo-0004kr-RP
 X-NMN-MailScanner: Found to be clean
 X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
 X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
 	by webmail.newmedia-net.de with esmtp (Exim 4.72)
 	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1v6NCm-0004hT-DO; Wed, 08 Oct 2025 07:59:16 +0200
+	id 1v6NMo-0004kr-RP; Wed, 08 Oct 2025 08:09:38 +0200
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251007_225923_668763_23D37BFE 
-X-CRM114-Status: GOOD (  18.38  )
+X-CRM114-CacheID: sfid-20251007_230943_803041_EC86BAF4 
+X-CRM114-Status: GOOD (  17.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -209,10 +208,7 @@ Am 07.10.2025 um 15:59 schrieb Florian Maurer:
 > https://github.com/openwrt/openwrt/pull/20293#issuecomment-3367037471
 > It works with 0xffff though, but I don't quite know what the firmware
 > does/expects here. Maybe someone with more information can help.
-got it. i was working on exactly the same patch some days ago and got a 
-report from testers with exakt that firmware crash.
-i may be able to explain the cause since i have the firmware 
-sourcecodes, but they are very complex and it will take a while to find 
-that out
+due the sources. BIT 17 has a special purpose named WMI_MGMT_TID
+all bits can be masked but bit 17 as it seems
 >
 
