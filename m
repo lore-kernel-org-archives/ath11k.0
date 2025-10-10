@@ -4,108 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC214CCA470
-	for <ath11k@archiver.kernel.org>; Wed,  8 Oct 2025 06:09:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41397CCD185
+	for <ath11k@archiver.kernel.org>; Fri, 10 Oct 2025 16:46:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZjAFkAwnsi4tcxNNj3MNh9UFNQuCts5SaEEBlOZE+2o=; b=zaJu99kO/bONRW2sfL3idA+hWy
-	Q9jYz68ux8eBmcb457eEE0Fm+Xg+jyLQXCkpTopTUn6g8hxClZPUCohbT/buY5S6SbLstDR4wuaQW
-	NUJYP/tLuqGG0fzEBPDfZhaXH9Elr/bzj0PsevoMc73aXxCtJh54qVziKusyxRTmciaeurXx7n6Bt
-	8YM+1PHGNTxrHEVo49+jwQ2ZYpihTevn4wpznUpcjst83EtksXnqbVkRSSyID15bzg1v8YBbth94m
-	k6TAlgnCqrxrsmrzUm5GtE0OjfqFJqemRm6Q97rdu2jiw+lg6W5Anhl8j6TY/Ulxw615afUznsFP4
-	42gL2+6g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=kh9iEsij45plAaoQh2Xc290ky/7j3jYE95CHbVbG25E=; b=plu+ENjUMcgt21a5WHxpHU+ADa
+	WHhx+F56JMEpogBc2BBicefgNkrlU64t+VNIBxMHw92s5EIuK9J8ROwr5wEgpswIpp4H8if9oyqft
+	aYdJghfoQQexfIkY1tC2YjkoQgBy4xsX1thPsLFB6y5Kl16kgn45IOndIyzjnpSH5W8mgoBW7V+Af
+	ZhgsZYTipmol2FZsDI93PbQwdkh5C5szdf3oxxBniXhj1lyEZkVjvDrREkyO0rGd/tnEHtw/FlcI8
+	jUdpKsuQttnChDWnFLmxO10zJ6jwblO0GSCZZQ0D/IGR/Egg5gLTxAWh21AT62GCQai+ydj4DskfQ
+	WZhd/yXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6NMw-00000003GTF-1FOp;
-	Wed, 08 Oct 2025 06:09:46 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1v7GGQ-00000008zKL-29x5;
+	Fri, 10 Oct 2025 16:46:42 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6NMt-00000003GSq-2V54
+	id 1v7GGO-00000008zK0-3ADk
+	for ath11k@bombadil.infradead.org;
+	Fri, 10 Oct 2025 16:46:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
+	Reply-To:Content-ID:Content-Description:In-Reply-To:References;
+	bh=kh9iEsij45plAaoQh2Xc290ky/7j3jYE95CHbVbG25E=; b=Y5bkkmSur4iCGwPdNKQDQTmDRM
+	qu9n9TLEy4Ge+zbxtnllSdcQBmYUO3Lu7Uc+WMS2AeESG7+Lf8hDmeF4ReZtsyFl7SjlDEhnhPh9k
+	sD/AzItwkG0ZC99VPFkds3L9E1zH2wpbg+y6ak5wdFS3lYfprUFW1Lod3799S0LUGW/QjRs+0IKHK
+	gfVcB+2b+YjFNmyqeuAfTazK+XLVOI9Aj+wlVjV04JvwvQH2QXthj8/IhId2isWu9qWnh/qH6wrEy
+	h0vA1yWBIgtjEAuHI6tjeU4nygiF5JBnpy8l5HlXx74FRCmFabSAoIYhJhwWo3i/sDmp6RWaboybW
+	XAMp9MDQ==;
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1v7GGL-00000002Igj-1HVk
 	for ath11k@lists.infradead.org;
-	Wed, 08 Oct 2025 06:09:45 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:49592 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1v6NMq-000000001Wu-06QM;
-	Wed, 08 Oct 2025 08:09:40 +0200
-X-SASI-Hits: BODY_SIZE_4000_4999 0.000000, BODY_SIZE_5000_LESS 0.000000,
-	BODY_SIZE_7000_LESS 0.000000, CTE_7BIT 0.000000, DKIM_ALIGNS 0.000000,
-	DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
-	IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000,
-	MSGID_SAMEAS_FROM_HEX_844412 0.100000, MSG_THREAD 0.000000,
-	MULTIPLE_REAL_RCPTS 0.000000, NO_FUR_HEADER 0.000000, OUTBOUND 0.000000,
-	OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000, SENDER_NO_AUTH 0.000000,
-	SUSP_DH_NEG 0.000000, URI_WITH_PATH_ONLY 0.000000, USER_AGENT 0.000000,
-	__ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
-	__BULK_NEGATE 0.000000, __CP_URI_IN_BODY 0.000000, __CT 0.000000,
-	__CTE 0.000000, __CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000,
-	__DKIM_ALIGNS_2 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
-	__DQ_NEG_IP 0.000000, __FORWARDED_MSG 0.000000,
-	__FRAUD_BODY_WEBMAIL 0.000000, __FRAUD_WEBMAIL 0.000000,
-	__FROM_DOMAIN_NOT_IN_BODY 0.000000, __FUR_RDNS_SOPHOS 0.000000,
-	__HAS_CC_HDR 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
-	__HAS_REFERENCES 0.000000, __HEADER_ORDER_FROM 0.000000,
-	__HTTPS_URI 0.000000, __INVOICE_MULTILINGUAL 0.000000, __IN_REP_TO 0.000000,
-	__MAIL_CHAIN 0.000000, __MIME_BOUND_CHARSET 0.000000,
-	__MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000,
-	__MIME_VERSION 0.000000, __MOZILLA_USER_AGENT 0.000000,
-	__MSGID_HEX_844412 0.000000, __MULTIPLE_RCPTS_TO_X2 0.000000,
-	__MULTIPLE_URI_TEXT 0.000000, __NO_HTML_TAG_RAW 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_SPEAR_SUBJ_PREDICATE 0.000000,
-	__RCVD_PASS 0.000000, __REFERENCES 0.000000, __SANE_MSGID 0.000000,
-	__SCAN_D_NEG 0.000000, __SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
-	__SCAN_D_NEG_HEUR2 0.000000, __SUBJ_ALPHA_END 0.000000,
-	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
-	__URI_ENDS_IN_SLASH 0.000000, __URI_HAS_HYPHEN_USC 0.000000,
-	__URI_IN_BODY 0.000000, __URI_MAILTO 0.000000, __URI_NOT_IMG 0.000000,
-	__URI_NO_WWW 0.000000, __URI_NS 0.000000, __URI_WITH_PATH 0.000000,
-	__USER_AGENT 0.000000, __X_MAILSCANNER 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2025.10.8.52719
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID; bh=ZjAFkAwnsi4tcxNNj3MNh9UFNQuCts5SaEEBlOZE+2o=;
-	b=lDQfOP/On/CBvYS/kgOztXi4K7Ur+qLc+4/FsoRyZxasNTLO+cNfDN2dZM23HAsOeKSKlUFHNwFKt5TxHzropEiaIMvUn3Q4+G0mcZs/GI2BYcd2ei00k6TR5W4YUBxXCL4b8BEMC8qV5jr4n44frcROUwjgqbZ6CHFx4//NaCU=;
-Message-ID: <822673fe-174f-472e-8874-783198e22300@dd-wrt.com>
-Date: Wed, 8 Oct 2025 08:09:37 +0200
+	Fri, 10 Oct 2025 16:46:39 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59AFV5Lv018573
+	for <ath11k@lists.infradead.org>; Fri, 10 Oct 2025 16:46:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=kh9iEsij45plAaoQh2Xc29
+	0ky/7j3jYE95CHbVbG25E=; b=mNsikZVoe5M/oxcLYiOMu1TlLhRHTRlu9Ae5AW
+	Awhg61idruVfkNKBHktD4DK29ggixRwj3heXjEKJJeaRlTyEPhqac/0CITvlmmwt
+	4if0YRZWkJMRmtNSBOwGmOWliJMAbSfd+quYndS6XymL53peRvp2AutAZN7v7aIm
+	lvWZIUZzoyveuJdnBHSTRQLAOIki7wZCvmZH9JaRWyrE2VjRoxrWXazQ1zf2yq+u
+	Bfplw5EOrp7CvC9RWfq5w/iz5OrgmC/lvbz0vv4OUFyGZj28IyUMDzYXJkFL54oY
+	1+X+pZ/J3QI2A32X1GAudQO+s6FzKd7ajeCdEC92w0qQ+hng==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4m74er-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Fri, 10 Oct 2025 16:46:32 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-28973df6a90so42886045ad.2
+        for <ath11k@lists.infradead.org>; Fri, 10 Oct 2025 09:46:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760114791; x=1760719591;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kh9iEsij45plAaoQh2Xc290ky/7j3jYE95CHbVbG25E=;
+        b=A2CfI2mec5CzJEW0rIxd3fQG95la6hWW/w13uvEokCAA4jHbi8um6KTFnPXBZsCKDJ
+         tPsnqJSnlhql7jwcDAwnKj1zbyAQghOUGOaMfqZ0OWCI6xkHtvBCPJ9VjrOphJRksWFV
+         OMmyESywEf0whSnXxYrcsEU4+nXgSIPg5umim2Ms7tnsM+stSlELxNz+v1Aatb1rpyls
+         CoCUpBBlDhB6daGEoKs+gnsoHvfZ76OmErwvrRVz/H4eLEE751oi1NIiZTtdZc3GdKzp
+         GYZh21TM6KOFETTWZhu6eqy0ZVJ9CGBPrSfsy9T5fLFLSQhRVs5jbZNMRsMm5aYg/kEu
+         uhSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVrvCyRVXMrqxuU57UxLCivv+nq/hAnQ38R94oVrc2SO9zLmhn3URK464iSOiCz+BFHhk/EhpA=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyAuHMUCuQ5zZ61KwPLdlmY6mUHSiD2zR+nb21unlzSqt4vu1Nt
+	v6NOyrwzqmF51yGC8S5f3++HW8syRU3bU6WmMhEsJ6CcjS+L7T73x5pX+tSuBup7e1EWZZwp6L+
+	VoMenwiePACNUOIgRmT257Av1sWEc7w8bbJhBzhYCns7anJ00Y8yreWW66gPCgnMqOgm7WNiE
+X-Gm-Gg: ASbGncvFbekFLLKpg0K5vfHb2SI+3OOvmLNntIHGNxgAIRiGS9svQoKPgBM+7Wef+rg
+	SEVDz6cRiiXziRxrqITqFmSWNhP8+tR6uYNThC0lHuQSUR8Wte9xNq+7lR8ka/ZNm6HdDt/1heV
+	FUcZwHyEt6UKXEzKr2Qpyay9sdkCLmdZUnIKl70FVUQ1PxTTVSBknGsOq7MWdVzuYxWDXz2atg0
+	KFUXM1EZJHxxO3jqTwHPvbwbjaeKtSEQya71hA1oB63bwERPj8DdrrktQKgqYuum4ZxhkxQGxHl
+	GXwGEXef8yACwbOcvfb+OPLSGLX7L6NzTv4gAl6fdVvE7I5hrdogfmUSFdrlCM5Nwc9wBRv7UzG
+	r
+X-Received: by 2002:a17:903:1aa5:b0:269:96db:94f with SMTP id d9443c01a7336-290273ffec4mr164572455ad.49.1760114791462;
+        Fri, 10 Oct 2025 09:46:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGsxeyikdMvc9n3cRyalMxLlb1YcFKQRAqMJOZUbfHHv0r/1PIx3oESwUGS4QtjuZ977iaUcQ==
+X-Received: by 2002:a17:903:1aa5:b0:269:96db:94f with SMTP id d9443c01a7336-290273ffec4mr164571885ad.49.1760114790829;
+        Fri, 10 Oct 2025 09:46:30 -0700 (PDT)
+Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de6c07sm61831635ad.1.2025.10.10.09.46.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Oct 2025 09:46:30 -0700 (PDT)
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Date: Fri, 10 Oct 2025 09:46:27 -0700
+Subject: [PATCH ath-next] wifi: ath11k: Remove struct
+ wmi_bcn_send_from_host_cmd
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [RFC PATCH] ath11k: add ath11k_mac_op_flush_sta to properly flush
- pending packets
-To: Florian Maurer <f.maurer@outlook.de>, Jeff Johnson <jjohnson@kernel.org>,
- ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <GV1P250MB14333A5BF24623C4753A10E1E8E0A@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM>
- <236b48e6-43c3-4d2e-a864-3ba627101c90@dd-wrt.com>
- <GV1P250MB14333099108FC4461F201AE3E8E0A@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM>
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-In-Reply-To: <GV1P250MB14333099108FC4461F201AE3E8E0A@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1v6NMo-0004kr-RP
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1v6NMo-0004kr-RP; Wed, 08 Oct 2025 08:09:38 +0200
+Message-Id: <20251010-ath11k-nuke-wmi_bcn_send_from_host_cmd-v1-1-bfb5118d9018@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAGI46WgC/52OQQ7CIBREr2JYS8MnthVX3sMYAvQrRAGFWjVN7
+ y5h7UY3k0wmeW9mkjE5zGS3mknCyWUXQymwXhFjVTgjdUPphDPeAmOCqtECXGh4XJA+vZPaBJk
+ xDPKUopc25lEaP1DFOG5BcBTYkwK7JTy5VxUdSGHQgK+RHMtiXR5jetcHE9T9V9kEFKgApQdoT
+ ac2233Mubk/1NVE75sS1TTx/+i80HvdCdSKdUybL/RlWT5wFwSCSwEAAA==
+X-Change-ID: 20251009-ath11k-nuke-wmi_bcn_send_from_host_cmd-a02e8192e9e7
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX2LBiMRmazy+6
+ msgLCPxsnQ/emtX1e+xgSqIDZFTR/LS/7HsF+zytlK+RuL6kX1AVBYyQ8qxf9XN0GG3GifmpIGk
+ Gz7AstpVzplZo5/jLbWEQYZSUlk6xpgU0AoozKCNMw3w+tEjzK0Cexzc3IE44iMdqt0V2ZCJvNw
+ 00TbbGpPxzT1dp2Fp/S46v44bWQbWp9PU7B9+uZa9bwIfRLPle5tZymdvZfjF6cF4wBNGeHuaad
+ OSBaNOO9UKqToWVauCAMIfA6mLJ+Z7kWEGbkw7wUIu5WrstpijVnirLl1RIHPGsfvICFzfWrXTf
+ 6aHR4wNjfXxnFKIjmXUHHxVe5WjM/JYpmgHqtT++110XIy3Gl2li+re99a11PFIqpYvaxIxa1z+
+ jqvTcWtJhmtJzDOSU8xZBkF2/shWTg==
+X-Authority-Analysis: v=2.4 cv=B6G0EetM c=1 sm=1 tr=0 ts=68e93868 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=IK4e_bFUgs84OYqGAtIA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: HkXt1toiMeSXNARAfWajcRPNzSlsJBYx
+X-Proofpoint-ORIG-GUID: HkXt1toiMeSXNARAfWajcRPNzSlsJBYx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-10_04,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 suspectscore=0
+ malwarescore=0 adultscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251007_230943_803041_EC86BAF4 
-X-CRM114-Status: GOOD (  17.49  )
+X-CRM114-CacheID: sfid-20251010_174637_806970_69163B16 
+X-CRM114-Status: GOOD (  11.96  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,95 +147,52 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+struct wmi_bcn_send_from_host_cmd is unused, so remove it.
 
-Am 07.10.2025 um 15:59 schrieb Florian Maurer:
-> On Tue, 2025-10-07 at 14:38 +0200, Sebastian Gottschall wrote:
->> Am 07.10.2025 um 10:11 schrieb Florian Maurer:
->>
->>> When a STA is marked as no longer authorized, if the driver doesn't
->>> implement flush_sta(), mac80211 calls ieee80211_flush_queues() to
->>> flush hardware queues to avoid sending unencrypted frames.
->>>
->>> This has became a problem for ath11k because ieee80211_flush_queues()
->>> will stop all traffic and call ath11k_flush, which waits until the
->>> whole HW queue is empty. In a busy environment this will trigger a
->>> timeout warning and stalls other STAs.
->>>
->>> Fix this by implementing flush_sta method using WMI command to flush
->>> frames of a specific STA.
->>> Flushed frames will be marked as discard in tx complete indication.
->>>
->>> warning print "ath11k c000000.wifi: failed to flush transmit queue 0"
->>> was observed on various openwrt devices, and is fixed through this patch.
->>>
->>> Signed-off-by: Florian Maurer <f.maurer@outlook.de>
->>> Tested-by: Florian Maurer  <f.maurer@outlook.de>
->>> Co-authored-by: Benjamin Berg <benjamin@sipsolutions.net>
->>> Tested-by: Flole <flole@flole.de>
->>> ---
->>> We tested this patch and it solved the problem of flushing the transmit
->>> queues taking too long when the AP is busy.
->>> We did not confirm if this flush is implemented to guarantee that no
->>> unencrypted frames are sent out on station removal.
->>> Could someone with more knowledge about the firmware behavior check
->>> wether this approach is feasible or if a different approach should be
->>> taken.
->>> It is not clear to me if the approach taken in "wifi: ath10k: Flush
->>> only requested txq in ath10k_flush()" might be better.
->>> https://lore.kernel.org/linux-wireless/01d859e8e574a1f5d0b916333fe0b5cda859af9b.1732293922.git.repk@triplefau.lt/
->>>
->>> Regards
->>> Florian
->>>
->>>    drivers/net/wireless/ath/ath11k/mac.c | 19 +++++++++++++++++++
->>>    1 file changed, 19 insertions(+)
->>>
->>> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
->>> index 106e2530b64e..a94649edd4ed 100644
->>> --- a/drivers/net/wireless/ath/ath11k/mac.c
->>> +++ b/drivers/net/wireless/ath/ath11k/mac.c
->>> @@ -8330,6 +8330,24 @@ static void ath11k_mac_op_flush(struct ieee80211_hw *hw, struct ieee80211_vif *v
->>>    	ath11k_mac_flush_tx_complete(ar);
->>>    }
->>>    
->>> +static void ath11k_mac_op_flush_sta(struct ieee80211_hw *hw,
->>> +							struct ieee80211_vif *vif,
->>> +			    			struct ieee80211_sta *sta)
->>> +{
->>> +	struct ath11k_vif *arvif = (void *)vif->drv_priv;
->>> +	struct ath11k *ar = hw->priv;
->>> +	struct peer_flush_params params = {
->>> +		.peer_tid_bitmap = 0xFF,
->>> +		.vdev_id = arvif->vdev_id,
->>> +	};
->>> +	int ret = 0;
->>> +
->>> +	ret = ath11k_wmi_send_peer_flush_tids_cmd(ar, sta->addr, &params);
->>> +	if (ret)
->>> +		ath11k_warn(ar->ab, "failed to flush sta (sta %pM)\n",
->>> +			    sta->addr);
->>> +}
->>> +
->>>    static bool
->>>    ath11k_mac_has_single_legacy_rate(struct ath11k *ar,
->>>    				  enum nl80211_band band,
->>> @@ -9920,6 +9938,7 @@ static const struct ieee80211_ops ath11k_ops = {
->>>    	.set_bitrate_mask		= ath11k_mac_op_set_bitrate_mask,
->>>    	.get_survey			= ath11k_mac_op_get_survey,
->>>    	.flush				= ath11k_mac_op_flush,
->>> +	.flush_sta			= ath11k_mac_op_flush_sta,
->>>    	.sta_statistics			= ath11k_mac_op_sta_statistics,
->>>    	CFG80211_TESTMODE_CMD(ath11k_tm_cmd)
->>>    
->> why is peer_tid_bitmap 0xff instead of 0xffffffff?
-> When setting it to 0xffffffff it fails with:
-> Assertion !CHK_TID_FLG(ptid, WAL_TID_IN_SCHEDQ) failedparam0 :zero,
-> param1 :zero, param2 :zero.
-> leading to a device reboot. See:
-> https://github.com/openwrt/openwrt/pull/20293#issuecomment-3367037471
-> It works with 0xffff though, but I don't quite know what the firmware
-> does/expects here. Maybe someone with more information can help.
-due the sources. BIT 17 has a special purpose named WMI_MGMT_TID
-all bits can be masked but bit 17 as it seems
->
+Compile tested only.
+
+Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+---
+ drivers/net/wireless/ath/ath11k/wmi.h | 16 +---------------
+ 1 file changed, 1 insertion(+), 15 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 9fcffaa2f383..3c4885a12855 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -1,7 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+- * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+  */
+ 
+ #ifndef ATH11K_WMI_H
+@@ -3463,20 +3463,6 @@ struct scan_cancel_param {
+ 	u32 pdev_id;
+ };
+ 
+-struct  wmi_bcn_send_from_host_cmd {
+-	u32 tlv_header;
+-	u32 vdev_id;
+-	u32 data_len;
+-	union {
+-		u32 frag_ptr;
+-		u32 frag_ptr_lo;
+-	};
+-	u32 frame_ctrl;
+-	u32 dtim_flag;
+-	u32 bcn_antenna;
+-	u32 frag_ptr_hi;
+-};
+-
+ #define WMI_CHAN_INFO_MODE		GENMASK(5, 0)
+ #define WMI_CHAN_INFO_HT40_PLUS		BIT(6)
+ #define WMI_CHAN_INFO_PASSIVE		BIT(7)
+
+---
+base-commit: de7674ee69a0023a2dd1c6f0cb66f3cbbba89923
+change-id: 20251009-ath11k-nuke-wmi_bcn_send_from_host_cmd-a02e8192e9e7
+
 
