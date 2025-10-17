@@ -4,121 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB5E5CCD1A2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D91ACCD184
 	for <ath11k@archiver.kernel.org>; Fri, 17 Oct 2025 04:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=cWolfLazVFYT84mp58WCfAKVs/5R8s1zPglUdTg+gis=; b=bfkFw/l6HJ73YWGqXBPEPeVPXk
-	AQGjoyaw9tA/jIT8TP3W68MccJkcMN7RNJSM/2fDxY2g+YKULiVM4syyzDjPJ4vq1b7XTyWUDCcr+
-	bYjct57H6/cienj/hJ5LUDBlHYY3rAA0B3QSBbTDVGTYGkPzipvWOAMTsszYvBEiO4Pbjzr8nc8+M
-	atqXmTiL7MK4fRx0NhYhuQ/5KEiJ0ofVnaThZAyuqgWhNvN+BsCW5JUpx1AZCKikXze+VoC0seA73
-	zfE7R1rMT5LOC2Sq4lBuM3oXyRyjB7KgMs8zhjpe5lKje57Cyi08a7pmOcSlDk2OuaaeqKtTqscBS
-	s/VVmTsA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=eIh6QDrVuJ/d1GJLBquAFX9AU/PpEXWmpulGYO5uhxw=; b=vwhcKjhJ1rgCJ8
+	ZxF27qqQgGSmESy5M0IqK01o1npnoKSOq1MrIuVGJUIdP4IVyDMl1UKiJ6kczt/HU8hcmmNjykojP
+	6n4qqwwwDyo1iTHZ+Jym4z342l4krT/mH6BswIz8pnH8MmQPn8mnMdemG7CZEv3/JPFx1rfdK8ZlW
+	H1Uh4JFDLxMZ+rHbEHFB8Z+94qAJCIoQfe44f+tgF2KqG639/bW0wplL3R/lCIOVoFANmiSkyg/Fw
+	GnKtHTKK07P0WYBbgAxIaSYPpu+T2RYIWLmGlt4QZhTBcpupeioqOLYkQQLU/3cgepah/x/JPeuDi
+	pX/HhomlqvdO/I0rlbQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v9blI-00000006UuU-2dMx;
-	Fri, 17 Oct 2025 04:08:16 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1v9blG-00000006Ute-3Vmf;
+	Fri, 17 Oct 2025 04:08:14 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v9blG-00000006UtK-1voD
+	id 1v9blE-00000006Usd-0Zya
 	for ath11k@lists.infradead.org;
-	Fri, 17 Oct 2025 04:08:15 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59GKLThM028682
-	for <ath11k@lists.infradead.org>; Fri, 17 Oct 2025 04:08:14 GMT
+	Fri, 17 Oct 2025 04:08:13 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59GKLTks025396
+	for <ath11k@lists.infradead.org>; Fri, 17 Oct 2025 04:08:10 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cWolfLazVFYT84mp58WCfAKVs/5R8s1zPglUdTg+gis=; b=F1ZXj4GrM3fQPJjk
-	7g331XXg15LcXc21lt/oKyWMFI3ecoFwHEWcIYJdR8Um0Mav7jhvX8Vox/PnqxxM
-	ItfTIquI/zS464lt2wFloU3nAKdOTssQwIv2bP5PIgAV/E4P+gYZxP17yeo5f36x
-	gHOhet6a4g//2be958W8eqqnGNl0cnm/XWRgObW3YbhMEph5xK7ubI0L3O+eJJ6K
-	AXhaarQguSlLQT3ImgXPw0qhpDSyRkLZlYd/ILb9f3A9x2R0T3y909cGg0hM7meh
-	uJ5AgzMLzXcX+R77X193YPDCAB6xe3KB1SkasGmP/1St6waPCWgC1xLJMKq6pmXR
-	hUPxgA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49u1h0tdwj-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=eIh6QDrVuJ/d1GJLBquAFX
+	9AU/PpEXWmpulGYO5uhxw=; b=fx0eexYeTDSLElR2Q5M6s2tDrfIUJtt05nzPJJ
+	xedsYcY5dgiNRoH9TSncQ2vQQlUnB6EopAVry0fnOvect9rqBjhmJ6vdjsK2N8nt
+	Eb10uhaGTvKZsVIqYvV30X9f0g3oc4cFgjEPQy7DdKIUMhFM8A2rfPTFLssJpUBk
+	I5BKRPhVW4TKeHRGH/DCeWjLEv9DNOIMhZmrZPRUe2XTlgywKIy+U+sFVVJHgUWr
+	uYZ49msIxbR46jATSj4ODo8JqKamnJZGCcE1G/buxxM7C4SKSSzOzO/LGpunAx6B
+	CdXig5w2uSc9w0PQKvO06xzfoqUJq58ZhqteBRGwEeisqw+w==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfdkjrg9-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 17 Oct 2025 04:08:13 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2909e6471a9so11964365ad.0
-        for <ath11k@lists.infradead.org>; Thu, 16 Oct 2025 21:08:13 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Fri, 17 Oct 2025 04:08:09 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-28e538b5f23so17629235ad.3
+        for <ath11k@lists.infradead.org>; Thu, 16 Oct 2025 21:08:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760674093; x=1761278893;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cWolfLazVFYT84mp58WCfAKVs/5R8s1zPglUdTg+gis=;
-        b=BOmfVgH510vOYEPDFRUf6KZWg2TVi35aJpKkE6yo1A51P/yRXsvEcqQvR5Qmk0YLlP
-         XySLfrO+fC5pzU+OYqF0t9d80Il27Hypdiz8IrkdKgHFT8xC7WlD3yc2ACXfI4kKLPOk
-         bjwU/DGDXjaKBgzyoKeiQlEKk/mhIkXR4y+92Wh8nCnwjgp9x3LizsQ+hoUqdp1AN+ax
-         Y5qdJSTcu18Yba0mgOyTsiEdlVviErq3/0nb4SQMUWHB6/4A5he/iMMXS5YrUqq2OQUr
-         5ihIJJD1nFLWApSmgH3+VCdsBSUmHasoQhsPej4VQZyNpqMjLXRvg/34xNbKKf9+79jX
-         39MQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWFtfqA4GiVk6vqUaeh1yPmDmH7ivZA4rOz8bsQRJQa0ExqAPk8KgJBMM1CIWr5ZTItTAcVyMg=@lists.infradead.org
-X-Gm-Message-State: AOJu0YysFlXZNl8SsmppdIbcdxu0RUq0SJ1KOFXva7YWBNLP4F+4Es5w
-	dKjjJPInUzkMGzkU2B6yEI/wTvTnQAwMPgPtmA94CdFGwTNNfbWT8UF1yE6id2JvpK/NR71mQnr
-	jcmpbfqWPJWohUTHU1fp/Cfteq7mdsjYyWcaemPtk52MR+GGZJtXe5RxeJarjPQjU
-X-Gm-Gg: ASbGncuB+OlQXJQp91YbyX9hVmnf6UZ9urP22J19FMtMr7tzmbQnVU2gIJT9R821Cyq
-	Q3qIJgV89uthfE1IW/MSr4D8U11pa3kpMzcSoChyZ4opR0yStBwMeRpgBP+GCDlF6oHzLqG9FtQ
-	nFzIphqY0dPcmXYnN3q2nmgAEnx4r75/CKYoTJ9QpofwUaE3wNIprALM0ZO1dGZmkuNeRVTHJzl
-	cVM/25fYO0I5fVREZLhgRJB2qo9uaWuUgPVamNe5+5k9MTeu5FSegdp2g02NNutDgREhSJY7SJp
-	4UcY4eVJDvxYgENNjgTXkGFm+0A35AY3mqou4hsIgPHoCn+p6F77cUcvDj1OnQtu6X4VIL4qqBf
-	23Rp8Ug1iB2qU0w1InfMx5rEHAyqD5w01sxw6W+irv759IUkpUjtIMXvIh9NOMXBQNusuSd4TRD
-	kLaf2rCM6v6EKZs1bCZRwulfU=
-X-Received: by 2002:a17:902:ec87:b0:264:70e9:dcb1 with SMTP id d9443c01a7336-290cba481bemr29330365ad.56.1760674092883;
-        Thu, 16 Oct 2025 21:08:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFXQc/rF6+4aCLOlalhTrIqG/9+ZR208dHO2zKfTlxMoTdojrxoUaPi3LlK1PsMdL9w63V5vA==
-X-Received: by 2002:a17:902:ec87:b0:264:70e9:dcb1 with SMTP id d9443c01a7336-290cba481bemr29330005ad.56.1760674092376;
-        Thu, 16 Oct 2025 21:08:12 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760674089; x=1761278889;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eIh6QDrVuJ/d1GJLBquAFX9AU/PpEXWmpulGYO5uhxw=;
+        b=Ao4/v9+xuj2ZHZCT9DrhBpCOKYaU0IG4GyHNpb1sQ/OGnRm5LKAWyIdRRsdx/FdhgY
+         WSUlRAXauW8s9NvyGINu2BKqAEVtqCecQCh9EkfeECATXaktqfzlUKcWfcL+Lq+CnUT8
+         D/tMToxjbLMN+od4Ed6OO69lnQotHaYIRCEKJircT8YvU7SSeUxUn81NHuVuh5LP3zzD
+         j5OEFjsrmsMYB2gzvr061eUhKBSnfCTm1coccnZWUcNck5MJRTR1sNHruZzYi1qlwDm6
+         2/SrOdJxu6hxb67eZ03sUFBej2zeHbtxnbN3SSa+WvEfpV3ewxhLEv/0Or56c/dVjSIa
+         p1Jg==
+X-Forwarded-Encrypted: i=1; AJvYcCVaBkoyvkrDfIG582BXbcbJZ7M81VqLFVL5JPtge+dHzxWTORSeh3yhNQ9mqln5km2iYegD3qk=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxuY1iwn6FS1bja80XdoHS+vx9VL/50hXJH+SNtdWAbi2VtDkN9
+	qg3raQsncxlA/eVh/agAiMkhm09BxxzHOASIGHSi1vcCfwzmz1e78ITmvyqLwCY5/Cjrj/VbJUv
+	lay0579gn3Gb48perG2vmHo/fRVcJZw/XLOy7jLFlnLaodQjYi0lK3YPtEyO1BWcn
+X-Gm-Gg: ASbGncuiIIZS/fgEGajkkktnBaAvYeaDZK3Ep5CZnsExUk9Ef1dvS3U12hu+BjWzQc0
+	zC8ZS+NVZ+neSS1lCA8HVqGJ6sKr9mA7EsOeYuV26Nxikp0JZ0ZqF5kN8uwQFkhKFAtMdF4Dwxy
+	gNaTykxv/UhnKcqO2dw4LPJbwXmNdE/lnwc9QUOMnTB83Nw9oWvtsFuRpVTC19lrj7kP37HsfeY
+	iOnuJ4VcCGi/EUkyrft83YEVt7mGKjN7R7o/2lVj3DVbJKUQcjXz7cVnHmY0C1yDETjzbU0t6Qq
+	HlMC4Abd8pjUkXqfdzBAucaBNfUDK9prC9+5ZWONJXa5Wy++DVXhGi3c+Q/7dWg1nS0o5Pn3Bgz
+	ZcqSwxQhTd9Peqr8iVJtU+qikaXjywXhyerlJownH+on4xgcKrNzWFXZcuuXnQs27ymvW/8ud2E
+	ob5TU3u8jOzc5f9aQkWQ9Sv+Q=
+X-Received: by 2002:a17:902:e543:b0:267:99bf:6724 with SMTP id d9443c01a7336-290caf830f9mr30438625ad.31.1760674088659;
+        Thu, 16 Oct 2025 21:08:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEyYc6twQnPndhA3cfepRvywyPP4rwvgYtifdeLoXuii2ItyGwjzdw2RWmU5anA7cCujXlqdQ==
+X-Received: by 2002:a17:902:e543:b0:267:99bf:6724 with SMTP id d9443c01a7336-290caf830f9mr30438275ad.31.1760674088123;
+        Thu, 16 Oct 2025 21:08:08 -0700 (PDT)
 Received: from hu-adisi-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099a7afcbsm47635345ad.76.2025.10.16.21.08.10
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099a7afcbsm47635345ad.76.2025.10.16.21.08.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Oct 2025 21:08:12 -0700 (PDT)
+        Thu, 16 Oct 2025 21:08:07 -0700 (PDT)
 From: Aditya Kumar Singh <aditya.kumar.singh@oss.qualcomm.com>
-Date: Fri, 17 Oct 2025 09:37:58 +0530
-Subject: [PATCH ath-next 2/4] wifi: ath11k: wrap
- ath11k_mac_op_get_txpower() with lock-aware internal helper
+Subject: [PATCH ath-next 0/4] wifi: ath11k: add support for Tx Power
+ insertion
+Date: Fri, 17 Oct 2025 09:37:56 +0530
+Message-Id: <20251017-add_tx_power_insertion_support-v1-0-f08feacfca93@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251017-add_tx_power_insertion_support-v1-2-f08feacfca93@oss.qualcomm.com>
-References: <20251017-add_tx_power_insertion_support-v1-0-f08feacfca93@oss.qualcomm.com>
-In-Reply-To: <20251017-add_tx_power_insertion_support-v1-0-f08feacfca93@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIABzB8WgC/5XNTQrCMBAF4KtI1qYkkwZ/Vt5DpDTJ1Aa0qUmsF
+ endHbpyoaibgcfwvvdgCaPHxLaLB4s4+ORDR0EuF8y2dXdE7h1lBgK0FGLNa+eqPFZ9uGGsfEf
+ 1TJUqXfs+xMxRA2jcQGkaxwjpIzZ+nAf2rM4t73DM7ECf1qcc4n1eHuT8/3VkkFxwraST2FiDD
+ nchpeJyrU82nM8FnXlhgBdViq8qkCpMo6BUaoVoPqjqP1WR6oyyCq1AWOs36jRNTyTI2bSJAQA
+ A
+X-Change-ID: 20251008-add_tx_power_insertion_support-e5225e924bfd
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
         linux-kernel@vger.kernel.org,
         Aditya Kumar Singh <aditya.kumar.singh@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Authority-Analysis: v=2.4 cv=esXSD4pX c=1 sm=1 tr=0 ts=68f1c12d cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+X-Proofpoint-ORIG-GUID: Mruics8M2NpdW0tIZi4jQYd210ZD8cmW
+X-Authority-Analysis: v=2.4 cv=MrNfKmae c=1 sm=1 tr=0 ts=68f1c129 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
  a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=HHL2EbrfMguBWQQB2GUA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-GUID: Wg3U9bPbqdHocCwBOkWj_FQeub0RNuKg
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE2MDA5OSBTYWx0ZWRfXyjM+MUVivBY9
- aCvA6UKfjJlPHLZUNS281GUcHQf2QO6DS1JCRffKmC/ePsW+PIuQaru3eovSf1KC7mTyvXPTvqZ
- nfe7ECYBmoPfTit9CA/c+RkBoorh2pCV09KDxddzrqabrpBqiADPw1y9lIhduFNJgvAO1iKtOh3
- AGsZWfX4o8YbKF93zI9oqhgThSw8vbcX/F/xhNrLw7eDIGnyBOGXl71xdTCF1HKHRitlI+6xCME
- NOIOf1QWLD6BrQQhRih2zUiidh6sv9HCHOuz3aetFiRnVhgWEOQCM5alLYOIVggYtT4arSfgGn8
- RuHPCuK7psmlHVxmZBL6y2slMCjeYz7xN5x6qU/7gs+T9+ZG98UP/qnVd/5BNATR8YLzCY5k1VW
- mBooHG78Fq7C5ooifxLnS4qBHcXP4A==
-X-Proofpoint-ORIG-GUID: Wg3U9bPbqdHocCwBOkWj_FQeub0RNuKg
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=Tb0W7XID7D5ug3WCqewA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: Mruics8M2NpdW0tIZi4jQYd210ZD8cmW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX3YauqAwIAnuZ
+ HtiOQT6W0RULYaglQ4MYQvlBRjfCjyjrU0pPj0Z/r8WoLyAtvzEW/TUi8PXBFQseKSs87p7AAHw
+ iC2IKcHqwH7UzCJ81rt6siHN+IV2skBrin37UkUl3BVO3hrBTGVXlu1B8CoG/pl07jOnzyr+DPA
+ m68oUAIK+gYOo+YkBceyFqAR3qMTCLcc/+g2XhaxRwZGrBEWOIDIa+m8wzjSdJr6nPj58CaXJvu
+ PNT0CAXHWX55VUniWoR1XHr8b3rRVEAwvFYxlSmOuXVIr1WidZqb1V2O5vAlKLV6OBl9NtTBaTw
+ RhKh1bSIytUs5u/5AMdrO3xXsfAucAsZJ2Fen6k+ou/Zpe3ejIM7vILvtzumHVDtZcr9n7faqds
+ /01lBBScpMV9pmU0ENCOlxNfb5QXUg==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-17_02,2025-10-13_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 impostorscore=0 bulkscore=0 spamscore=0
- malwarescore=0 suspectscore=0 clxscore=1011 lowpriorityscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ spamscore=0 bulkscore=0 clxscore=1011 adultscore=0 phishscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510160099
+ definitions=main-2510110018
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251016_210814_654580_582BB4B0 
-X-CRM114-Status: GOOD (  13.20  )
+X-CRM114-CacheID: sfid-20251016_210812_299371_59B7473B 
+X-CRM114-Status: GOOD (  11.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,98 +136,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Refactor ath11k_mac_op_get_txpower() by introducing a new internal function
-ath11k_mac_handle_get_txpower(), which assumes the caller holds the
-appropriate lock. This prepares the codebase for future change where the
-internal function may be invoked directly with the lock already acquired,
-improving modularity and lock handling consistency.
+For certain action frames like the TPC Report IE in the spectrum management
+TPC Report action frame, and in the Radio Measurement Link Measurement
+Report action frame there is a requirement to fill in the current
+and max Tx power of the device in the packet.
 
-No functional change intended.
+Add support to populate these fields in the relevant packets. Advertise
+this capability from the driver using the feature flag
+NL80211_FEATURE_TX_POWER_INSERTION.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+In software-encrypted cases such as PMF, skip insertion since the packets
+are already encrypted and cannot be modified.
 
-Signed-off-by: Aditya Kumar Singh <aditya.kumar.singh@oss.qualcomm.com>
+Patch Overview:
+Patches 1 and 2 serve as preparatory groundwork.
+Patches 3 and 4 implement the core changes described.
+
+For context, this ath11k implementation is adapted from prior ath12k work [1].
+
+Reference:
+[1] https://lore.kernel.org/linux-wireless/20250630-support-for-tx-power-insertion-v1-0-77f45484d5bb@oss.qualcomm.com/
+
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 31 ++++++++++++++++++++-----------
- 1 file changed, 20 insertions(+), 11 deletions(-)
+Aditya Kumar Singh (4):
+      wifi: ath11k: relocate some Tx power related functions in mac.c
+      wifi: ath11k: wrap ath11k_mac_op_get_txpower() with lock-aware internal helper
+      wifi: ath11k: add support for Tx Power insertion in RRM action frame
+      wifi: ath11k: advertise NL80211_FEATURE_TX_POWER_INSERTION
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a7bd0ddf5fdf..cd6e98ee1232 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4103,12 +4103,10 @@ static int ath11k_mac_get_fw_stats(struct ath11k *ar, u32 pdev_id,
- 	return ret;
- }
- 
--static int ath11k_mac_op_get_txpower(struct ieee80211_hw *hw,
--				     struct ieee80211_vif *vif,
--				     unsigned int link_id,
--				     int *dbm)
-+static int ath11k_mac_handle_get_txpower(struct ath11k *ar,
-+					 struct ieee80211_vif *vif,
-+					 int *dbm)
- {
--	struct ath11k *ar = hw->priv;
- 	struct ath11k_base *ab = ar->ab;
- 	struct ath11k_fw_stats_pdev *pdev;
- 	int ret;
-@@ -4119,15 +4117,13 @@ static int ath11k_mac_op_get_txpower(struct ieee80211_hw *hw,
- 	 * of these. Hence, we request the FW pdev stats in which FW reports
- 	 * the minimum of all vdev's channel Tx power.
- 	 */
--	mutex_lock(&ar->conf_mutex);
-+	lockdep_assert_held(&ar->conf_mutex);
- 
- 	/* Firmware doesn't provide Tx power during CAC hence no need to fetch
- 	 * the stats.
- 	 */
--	if (test_bit(ATH11K_CAC_RUNNING, &ar->dev_flags)) {
--		mutex_unlock(&ar->conf_mutex);
-+	if (test_bit(ATH11K_CAC_RUNNING, &ar->dev_flags))
- 		return -EAGAIN;
--	}
- 
- 	ret = ath11k_mac_get_fw_stats(ar, ar->pdev->pdev_id, 0,
- 				      WMI_REQUEST_PDEV_STAT);
-@@ -4148,14 +4144,12 @@ static int ath11k_mac_op_get_txpower(struct ieee80211_hw *hw,
- 	*dbm = pdev->chan_tx_power / 2;
- 
- 	spin_unlock_bh(&ar->data_lock);
--	mutex_unlock(&ar->conf_mutex);
- 
- 	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "txpower from firmware %d, reported %d dBm\n",
- 		   pdev->chan_tx_power, *dbm);
- 	return 0;
- 
- err_fallback:
--	mutex_unlock(&ar->conf_mutex);
- 	/* We didn't get txpower from FW. Hence, relying on vif->bss_conf.txpower */
- 	*dbm = vif->bss_conf.txpower;
- 	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "txpower from firmware NaN, reported %d dBm\n",
-@@ -4163,6 +4157,21 @@ static int ath11k_mac_op_get_txpower(struct ieee80211_hw *hw,
- 	return 0;
- }
- 
-+static int ath11k_mac_op_get_txpower(struct ieee80211_hw *hw,
-+				     struct ieee80211_vif *vif,
-+				     unsigned int link_id,
-+				     int *dbm)
-+{
-+	struct ath11k *ar = hw->priv;
-+	int ret;
-+
-+	mutex_lock(&ar->conf_mutex);
-+	ret = ath11k_mac_handle_get_txpower(ar, vif, dbm);
-+	mutex_unlock(&ar->conf_mutex);
-+
-+	return ret;
-+}
-+
- static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
- 				 struct ieee80211_vif *vif,
- 				 struct ieee80211_scan_request *hw_req)
-
--- 
-2.34.1
+ drivers/net/wireless/ath/ath11k/mac.c | 447 ++++++++++++++++++++++++----------
+ 1 file changed, 312 insertions(+), 135 deletions(-)
+---
+base-commit: d5ce93f136fbee2b7afbe221f34ca881036f8de3
+change-id: 20251008-add_tx_power_insertion_support-e5225e924bfd
 
 
