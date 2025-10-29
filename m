@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89624CCF9EB
-	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 16:13:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75259CCF9F0
+	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 17:41:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AeMhBH0QGdy8lhrSJdDm9zdK6/Q4Rvr1fV0LeeyP5wo=; b=Cao3ULlcpBF0r8SjcYm22BJ+36
-	vpnZyfR7W3I06wrtjBr+BrkYgaNVBe2tGCP3B2LVyZtYP6bcDE0MrfCWBAi6xgWBqDuZPzVwdLK87
-	9H+BSax2fqzrqSBse1ZfTijD7o9hxjhgTPkv7mvVIp+JNNDledYwoG9Xv77W312Atboy+hfWOGdFn
-	3sYP/sRdYKQsfkac/Bo+Mosa9OfpEIviiXa3bSqW+UpVQiOgPyWQsdyebnK1emNKpOzhgc0KB1C7g
-	+kd5AHZpk1TzUppEbBbyxBn1F7PER1DxzPNGhXJt2M4L1HEKM9tal3lV05Tm7btWZIWwndLQDoIWA
-	1uBH9NJg==;
+	bh=1Tm2efnxxnQzoL+56KNFAzc6Jp5lRujeZJq36TELet0=; b=pMP5shpR19KznOhx3bIdZwGRRK
+	DFWmJhIzcWU+6tyMecq+xrr/k1/5BegQ1bQ9uV2xHYeg0CZd8/eiY5kg+qwlVFqCNLryjfetdbpm8
+	A3MG6bovvBO4A6Exr1XAp8M+tAHggskJfEJZABfZ5v9Fyk/Zx5svJ65wzSZb28FfayiDU5KQ3dh66
+	9HyZ5ITC1Cg3GXc691heZh2Zttain65x2SpRVO+BmO0vNX9y2JoC1IewjPrdn0l5YtT9TnR3yDyj1
+	XNRfd/k9NionY6+qpnDRegArLDIqoQE7yXn8V+fQuDENv2jkudCSdQq1DZuDJ60z3QQY/R25kR5f7
+	FQMrSfOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vE8nB-00000001xP5-3D1N;
-	Wed, 29 Oct 2025 16:12:57 +0000
-Received: from mail-westusazolkn19010017.outbound.protection.outlook.com ([52.103.2.17] helo=BYAPR05CU005.outbound.protection.outlook.com)
+	id 1vEAAs-00000002FNt-229Z;
+	Wed, 29 Oct 2025 17:41:30 +0000
+Received: from mail-southcentralusazolkn19012065.outbound.protection.outlook.com ([52.103.14.65] helo=SN4PR2101CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vE8n9-00000001xMZ-19df
+	id 1vEAAq-00000002FN2-1zuj
 	for ath11k@lists.infradead.org;
-	Wed, 29 Oct 2025 16:12:56 +0000
+	Wed, 29 Oct 2025 17:41:29 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f2ZCnVQcmH95lMGuMTgsMjnqOMTn+vkmGfA+csY8vpheasOO97qQ1EJj6+7NXBPCkcbFEgeZ/A1Mwi4Ay9QlI8iUJf+CpySvGid48z6VQqa54vLj53GG+bf7eaZl1b33l1qJ7U/zne1TYEL6rsYNdjwZP8FHnAOQ3B1qqOBSoarQFuWAXzC7Mh+Mv0nmIOha0E2O2YpATwmag7Nr4adEZ/aRubBZ/2f/+cimusorjtwudMmryo2vJWVXdMPykTkWsR2aldYuIQJNtu8JDAaxIt2vHujyW/MASfaMrAwgMU7e7ukwRbUy4JIZtP3vLduZDXGB7IYZ68mFrHzlW32FSg==
+ b=XmI2rxZciqkElxC+fCFOSqk6ZPe6bO2D8o6kvZA8Rd8W3mqUGf0i0o/KjQ7pu19AcWU3283hBLMd8X6EYEfEOFQO9tahb5LOlBFf8Ng7ur0fhKKl4B6MuQQFgWisgTfX0oUH7O/HGH4GEMG2iUcjagZegj7p0YxkarfIc21GBhjhtq58iKdRTXiE/wWY31FfMEoZhMsb4ifHdlVgSJ56o50yMMmokChedQ9sGMpkdE/blmpNdVcYe0oy33mUWrcumPn0CGWcXd57+/cYt7Wp42yfUUhhIItpJF8G2KhVZLcXF5skeVBRmOLQbT6vvgWtbSkmBQU2/kWzyjvTyU3pgA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AeMhBH0QGdy8lhrSJdDm9zdK6/Q4Rvr1fV0LeeyP5wo=;
- b=AmX5hpruCcb0KUb8LAtb4gUHMVkLZWZaY2JTdWf6EQCp+NihVqvDo5XYUHJthIFFXaQOO4jfzSClkn7s5W9gl0SC3L3aWpl21+v1G+4GJ3qk3cBFeE0+FOqMePRUCZJYnL2PM2C8ehgEYrKYwgyFplxaLiVdIJ6ocg9tSZcCtaXcCtf8rNSGXRxNc7JXbATzMdCMrkC4MVC+KjF6B8ozyyXxwEr75YH+MtEAUx3wGKF2n6XQMNKX4SuksAKtXESRyBxvyFBUaWob6dvBbL4YOzLCVJNu9L6l8Mc7v3Tt7kRt59i7yXL8+RGSpPydBPt6qqZ2IyPgdmZdbV9VZvYYQw==
+ bh=1Tm2efnxxnQzoL+56KNFAzc6Jp5lRujeZJq36TELet0=;
+ b=VzVx4MsWm5gNQ2z42whQqbUMNLik6OAFxECEa3NhqJP8UOb8oC+f3+hXsh6Pgjs8exiLEmUk3uVAWT8YCO3NATzZl/eMgCDwIpMVyICwqqjKobn6cVq7+Iow4Mu7Pxh+swAjYtC8d/B81/0JjaN3f23a+46ZUeU/fx7T4nh6aFY5IjlJXvL2+uppN5NuuSEr3MDhYlvXlIQzQGp4B3UiNmUsVzoCcLbtUbMqYSISQWxqBQ9fvJm0EwSgrbNswzJYlfj0t61yhqSsdC1s1hyxDWck5L52gYRmg7uiXQ1p50eZhXUlU9JC26M5OIq9K7BEmIYbHIWudwqHxK+miSpF0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AeMhBH0QGdy8lhrSJdDm9zdK6/Q4Rvr1fV0LeeyP5wo=;
- b=nk0H66683W5vD5xrCtqD23HME9QqiMCCUpzwStujUX4pZR489ZLWBH08m9rmRMyxX0UHPfNx8+vh7jmC9wkaRwg8KLDfgfn0PO9sv8iwmgK+GbQ7dO7Q/XcCOzluuEGEZyWkITKcPuUtrJ1GFDtcLXqcOazSi1Wevcbkmkieqsbu4/xG19KPL8xgLr9XNI+a7VMu4PwMOBAIytKkfKPUPuvGXVdL3Vr14fZJ/AzVZFxMo3s2iLZpzZo4d2eKcD56xbtdU8k85ieNRwF0b2N1NS+9msYiJRteTVgIjldqFzO4hcYItCWzGrLDpso9w2W8JAj/9IaMFnvwyE9mNTAm3g==
+ bh=1Tm2efnxxnQzoL+56KNFAzc6Jp5lRujeZJq36TELet0=;
+ b=q0HzdNiatDxpg5n6xct4nYqUSsXTqXzVzx9l8khQUzyIejYhW/XvQwvfmiE13w/OvVnOIGQf9yiwZCZm+ZmkEebMLhoof76jCIKGoaMbkQNK+TPg9pbMC52EYL5vpo5vKaSISxpzum1f9W4xchvspExkK0YEEJB+7o2lUBZOKv6BscWVpSQjDx3QNSs5DLhXITW8TrGr9VQ3v4t2GxAd8AQmznolHOIkAozDi60qJafzzAe4QBaYok9tvpr0z9apqqKTQxT0J1an/vYBSTISGGl+oYoo4vm86TjVgvFvGLlPpQxKr6aNDcQvmuoV8QKhrukgHOhyHD519ul8eWoBNw==
 Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
- by DM4PR19MB6271.namprd19.prod.outlook.com (2603:10b6:8:a7::18) with
+ by PH8PR19MB7165.namprd19.prod.outlook.com (2603:10b6:510:217::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Wed, 29 Oct
- 2025 16:12:48 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Wed, 29 Oct
+ 2025 17:41:23 +0000
 Received: from DS7PR19MB8883.namprd19.prod.outlook.com
  ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
  ([fe80::e0c2:5b31:534:4305%4]) with mapi id 15.20.9275.013; Wed, 29 Oct 2025
- 16:12:48 +0000
-Message-ID: <DS7PR19MB88836505C4CC48D3E62FBC0A9DFAA@DS7PR19MB8883.namprd19.prod.outlook.com>
-Date: Wed, 29 Oct 2025 20:12:37 +0400
+ 17:41:22 +0000
+Message-ID: <DS7PR19MB88834F5A352F93EE909AB42F9DFAA@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Wed, 29 Oct 2025 21:41:14 +0400
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt: bindings: net: add bindings for QCN6122
+Subject: Re: [PATCH 5/6] wifi: ath11k: add multipd support for QCN6122
 To: Krzysztof Kozlowski <krzk@kernel.org>,
  Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -61,96 +61,97 @@ To: Krzysztof Kozlowski <krzk@kernel.org>,
 Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
  ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
- <20251029-ath11k-qcn6122-v1-1-58ed68eba333@outlook.com>
- <3dc712ae-b51f-4142-bbab-1eadbc27e60a@kernel.org>
+ <20251029-ath11k-qcn6122-v1-5-58ed68eba333@outlook.com>
+ <5137cd11-004c-43ed-8bbb-646beb105844@kernel.org>
 Content-Language: en-US
 From: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <3dc712ae-b51f-4142-bbab-1eadbc27e60a@kernel.org>
+In-Reply-To: <5137cd11-004c-43ed-8bbb-646beb105844@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-X-ClientProxiedBy: DO3P289CA0005.QATP289.PROD.OUTLOOK.COM
- (2603:1096:790:1f::17) To DS7PR19MB8883.namprd19.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DO3P289CA0023.QATP289.PROD.OUTLOOK.COM
+ (2603:1096:790:1e::17) To DS7PR19MB8883.namprd19.prod.outlook.com
  (2603:10b6:8:253::16)
-X-Microsoft-Original-Message-ID: <81d7ae30-7dcc-490b-b2e8-47d84740e400@outlook.com>
+X-Microsoft-Original-Message-ID: <32a3ba0f-d9dd-49f5-a9d3-3e3916de0f3e@outlook.com>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|DM4PR19MB6271:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12051fd1-d796-4a4e-52ae-08de1706005d
-X-MS-Exchange-SLBlob-MailProps: RlF2DIMZ1qU1KA69x/B2/kCnokZ6o97m1+qLAmhIg8SdK3fLSrERQ0jKuV0d5m5W7hZ4xLEjX8+/KCYAclfGa8EUafSY0I0D3A6BbQaoRy5Tn7DaMu7dA6Wpg8c4hCYVF6SlvVjWrbXR2vZcEvUH/LVJ7WubSswgJAaT338qtLriOnyJVtvECdANMNwjR3vkOCk1ZK1u8AJjZSWmxstK+4Le8AqG4TcKW2mo7qZ+mHQgZicb0CTg4DK/5IqFGZ/SQ4OPp4tMhFO6hF5uXw27RjuX54aSlGDMs6NYctHGCQj59duJbgTB/w2gT6ooGa/2heeOrVn2bFeQT2KCK15vjznBQZKzA3o2979TgvXYNqVMkD164K5wj92BLYR6PcArjBfFAqudf9pUotgMf+d7WlK08XedsipPEGRNKRZCSIUapZTlf4XJScDTcWfOJhg3hTZC8I+Cl+INaX/pw+89c5YgdwLZe1cRpMHhrDevTzv4+yzsUQxp9HdqDNm+WfJYjrIEF8/svZVRRLHqyC7R9bjcaBlqRj089FC2HFUrvMJWHvvsXFYWi4EyqF2mKEdK7TR2/tlHAhDuYhiowP+VNEhtCgrIwFAYvrsFBffdV2vWKx++f4TL2TOOdSzYLrS/aU6mFtY0oy7SFuV5nv8zibDkUx2QDviQ3RdUI48WT+E4Lh0w1NYcz/PTPh8utnsTeQk0qs9tY1jQfeWCUKKS79kZiogpvGOAKnM0zs8mIDZK+OInp1PvJqboc9H6V7bnc4ev0VYOSoI5YrfJW8mUTilASfYT3SI1DNH3orXfbJenvnSt0Ye7IanUkPBGVyNiSdihqMDDBMA4TpPxoiQxZua+iL72Aswl
-X-Microsoft-Antispam: BCL:0;ARA:14566002|6090799003|8060799015|461199028|23021999003|15080799012|5072599009|19110799012|1602099012|52005399003|40105399003|440099028|3412199025|4302099013|10035399007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?L1NndUd2T05KRWpackhyUVBHWUwyaEQ2MStjcFFwRmFWeitRL0hUTXdTTlZt?=
- =?utf-8?B?UWpoMTZiR3IrUThEU01CNGVJVGhsTWlZWGRFQnB4Qy9ueFBVTVFpZWlESUQ3?=
- =?utf-8?B?Z1lsK3NjRVlUYnhYTW9Cb3o0cjd4Zm5QV054Y29MelhjTVF0ZGtXK0M3Vk5H?=
- =?utf-8?B?WEtDVzBRMFdRL2VTOWZKell2NG0xMXlPaXJTZ2hFRDJ2TkFldmZpOEhhaVFt?=
- =?utf-8?B?MUNRZFFnSTRFQVB1QWFDVkl2WVZ4YTcrcFhWOWJoM2hGMURSSlhRK2xxZG50?=
- =?utf-8?B?UnI1N3pwa3lQUmNsSURoMGNTT2lOYzBLdVhFSHRBUVpXc09vUTlCK1I1SEZF?=
- =?utf-8?B?ZnhadjVNS3o2dURkVmZudXBMcVR1Y3QzQTVMSStwWHVvZUx1b1QvMEQ2OHZI?=
- =?utf-8?B?eVJhUDhVNWxFZGFEYkhYdTFlUlpoTTFjZzFYakJwMmRRV24wQ0hFaEJaMlRi?=
- =?utf-8?B?V3gvTG9nNmRhejgrelhmb3h4alJUb3NsaEdoZHdMYlhBUEFHSVp3Z2txTnd6?=
- =?utf-8?B?SCtsUWprR0xFMzlqYUNVVnE0OEhaU2xjU3VqYjA0LzBsdDhxbXlKZkkvUGd3?=
- =?utf-8?B?NUpEYlRRSTRuWnpxcHFhREpYRXdWY1FtNjB3MENCcjNjcmpvYVlOTWtjNGFp?=
- =?utf-8?B?OWIrWE9SVWdvMU51MGg3Nm10WHBoTlZPVGdVc2N0WXFneEtVNk5qNGIxWXB3?=
- =?utf-8?B?eGRuTW5lNGN6TjNYQVpBYVQwNUJscnppTVhydXRHbzM2WERqclVPM1NNQkxQ?=
- =?utf-8?B?aGxBRUpsL2Q5ZDFxVmpuVVhOcCtDSUxGSFhJcHBIZUJOUStFZ3BkdHVuV1FL?=
- =?utf-8?B?WUFpTG5Gd3BjWUR6TmtmUS90eXFVa2tMd2JPR2dKWGc1b0x1dFpiaEsxU1FV?=
- =?utf-8?B?VTZSUzVaNWFDUGQ2aU01WWFPNXlQV0hCMUxaMDBDMEQ5Q0E5VU11bHRCS3NQ?=
- =?utf-8?B?SHM4d01TRGYrVFZZRmZyN1M3VUVybWNIUjlPSFJaYTUwdzNHSVoyUndhN2xS?=
- =?utf-8?B?dnFhWi9CUVdIaklvbHJNQkE1aUIzYWxyUVhpLzRvTm1IT2hQRGNiZ3hwQ3Fn?=
- =?utf-8?B?Vmc4bFBJQmxkblRMRzM5Z0JKaTFMTllCS05qdjIvYW1zQ05MZkNiV01IUXBB?=
- =?utf-8?B?T2RyaWkzY1Z1SUFVSnJEMmVHK202UWRNa2FBeWFFYythRTZqdW9mUGxLOVdy?=
- =?utf-8?B?ZmZBVWttWDJMODBBUDg2Y2hyNzRZYTZsUDFEMmxLWXZ6bEl4a05IUlV5ZFR6?=
- =?utf-8?B?NDBuem5wa0RPQ0swVmNsQ3BndExjM3F3SFoyODZvZHJ0WDJoOTMyWU53WDVz?=
- =?utf-8?B?YWw3MkdLQ092aFJjUDh2QjZ5K0dYdllQaHhxWkR5bXBJbk1rejE1eUNPWjB4?=
- =?utf-8?B?cjJxK1hCNktMS1E4WDZDbHg5aW03SmFkcnlZclFId0kyZW9SaFhHamdpS1BJ?=
- =?utf-8?B?TW5YVHU5SGNUemtWcTFDSkFHV0liYUkzSUR3c0FEQVErK1JoZldNOXhaZkdh?=
- =?utf-8?B?VGcwbzYwVXpIdjl4Q2NvWlp4Qkx6VnYwd0FaM2phMWhkcUxlaVJZT1ZvTmhp?=
- =?utf-8?B?SHJZQ3F0dXppME4rcll6eDBVZTU3QTVKajNYa0Fqd2xZaDlaT3BEOGk1dzdh?=
- =?utf-8?B?QjN6Uk0zU09ZOVlPZ3UwUDlzRFdLRmt6MmM1YUhHek9pVWRaMzFZZjloRlVv?=
- =?utf-8?B?MEg1bUR4TkZZT1AyM3BlR001UEh1QXdhWHNtN2RTMWxBMUhQLzBwOWdmMzZk?=
- =?utf-8?Q?ShNq01o3+XW5TxLzZE=3D?=
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|PH8PR19MB7165:EE_
+X-MS-Office365-Filtering-Correlation-Id: 46b811af-8dc1-43de-93be-08de17125ffd
+X-MS-Exchange-SLBlob-MailProps: /UmSaZDmfYBk0OqXWkGcw9KFcS+e1k4icv+gtFELIJ4ZxYEjZ5dCz32cLIIlt6pb9Z7MMQCi8E1jc83seq/I1nXKGtjTifUt9tgXN3CSPYfong1fduBot2sOGhw4sZ8Uj7xQjqQjStn+tJW/D0X+9SRvK0xSvf9u6ef5NscXKj8w4KaY1oaM22vlTE1zuCbM8d/qSHl24BjqFf85nLIGuHjku+YAhjDjjRkMe2HAsXo803UQ3Q+2EtoCjUc5m3E47oBp6pHjsY+ZozMiAvonsCB3TGMbduuL/gvXBW1kC7DogHokW5sVgT5zkpRZO94jNN7j6kP28oaV70SLEtLE+eM6NiAkTSFsD4NEkhydicDMXp9NObl512o+2JDLIhCtbuuM11/f1K/ptPKfxRtZYcU2hF1NBCgOXEzahIy6CRA3f3XXaTZlWeI1DKK+N6auXNF41oixTTWpmpWZTDjlgbPfFY8KekCuEEKmLtn18kl3B/UbmxCy40C7apEWaDaB0kovcFAT8aSjFdRFruWSFgMSaN0aETRn1IiZ3IKDKS0QrQqRRlbutddG+6X5Bo3oKN7nVql00oJxyj9cbkXW2lEYmIiPdDLYlXqNboz8O1IZvQEMuaJIdmLj/YOTyc/XPNrR5Y0NuLIn5i8eZk3+ef3Ad/JtS3C1jiFRz1rc3rbAec+3c58k+CGOaWW59TrnHDMaw53+je1SSIzY90DQGRbb65Ob0LPvGXIZ6JKIgbbOltwXM8MoSCB+4U0yvClVLQI2nhYeElPTf6ooGRv7ypeDkg3If6RWGadVVAgUg3mG0BzHc7asSpG0hMnFtvE38BeVwhOAvRWIrjr8SqNvYQ==
+X-Microsoft-Antispam: BCL:0;ARA:14566002|19110799012|8060799015|15080799012|23021999003|461199028|5072599009|6090799003|41001999006|3412199025|440099028|4302099013|10035399007|40105399003|12091999003|1602099012;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZVlINm02Mno0V3JNWEFQbmVUalhpcWRzaVlqZm52Z3B6Z2w3VjNiTjNGNnJ0?=
+ =?utf-8?B?LzZwS0xteDh6SXA0VW5DbnBuV24zWTVZVklNS1BGZE5RTkdtaWNQemMrSXVi?=
+ =?utf-8?B?K3dEYy9ybVFJZnpOL21jRVhFdFlRakxjRXN6S2RJVGJ4aHpEQTd0QStVUCt4?=
+ =?utf-8?B?dk4rMXlxeGFQVmJUT2RVLzFQdUpvYkR3SmFtT3U1OXNKcW0xNU9uQVdsRi9K?=
+ =?utf-8?B?Y2lUeW9pZzh3ek9jRGZmSnA5c1FtT2VoTGNkQktTb0VCZTBrUDlKaGtyQ1Vv?=
+ =?utf-8?B?VTdYWEZqUWh0V2Z5ZmZwZWo5NlpyM016Z2xzekhrNS9wd2cvd2srMDRVWCtL?=
+ =?utf-8?B?QUlGWnBDSXJDRHliMGlpSHBraWwyWktTd24weDQxekFRVmVSckkyOU5JOFNz?=
+ =?utf-8?B?cGo4TW9WLzhMdGhHOVVJSjh0N3VuaFdkeS9zY01LVTMwUnNCeUcvY0NIOEgv?=
+ =?utf-8?B?c3QwRW1Ta1Z6NDJaNWlOcUd3ZkYyTHhWUll1RU1mMUtiQThINklzQ2xJRW9M?=
+ =?utf-8?B?SWlnWVMvYS9XRnZjRnRiVm9McEJYYTZDaUJFR3JHdCtYNVE2bkFkMnArWW1B?=
+ =?utf-8?B?QS96Wk14aFdXMzB4WWhlbUlweWpFRlBNemgxNW1TbFI5TEdzMVFmdlg3cnAw?=
+ =?utf-8?B?SUlCQndEQzhPbkxmVkJaSXhid1pRcmtwQitkQllXTmI4bGNJTWxuZmN1ckFE?=
+ =?utf-8?B?cUk2Q0pMYmNvckR4d0VoYlloKzVQbkZ6ZWhud0s2RWg3TVB4SEFDWTNWMzhP?=
+ =?utf-8?B?SlhRMHBMUFp1Yk9kWUhwZlNpaGtpR2o4OE1haGVLZUhZRGUwUDFFOWhrRkRP?=
+ =?utf-8?B?UDZueTVBSWdNV2cwVWRVMkRmV0xqL3RucGxPaERNZW9OS3grS2R5ZElUMlZC?=
+ =?utf-8?B?cWZJelFaczdJdnUvNjZkRzJxOGE2Myt2STRVVFZ5ek5kNFl6amtGT2FyemEx?=
+ =?utf-8?B?OTc4R1R0a2RSOFpQTUltVmVmYVVCTmZvVnFUWUFIejFIVXhoL1FzdDZJTC9w?=
+ =?utf-8?B?emxYTTYwZXZnWk5EQ2VDdlZ6K1lpMmxkb0RxbktBNUlVTGtKUUI0dExCQUJK?=
+ =?utf-8?B?UWdQMC9Xcjl1NUFvN1dJUVprWWYrblVoRTJ5MnpYRUdDczBIai9DbUloamg5?=
+ =?utf-8?B?OVFFNWcxeW5CaHJlMTBkVXlSMThrNko5UC80SkxUdHdSUkpKTVhMQVZJZ1VY?=
+ =?utf-8?B?dVNsQ3JUemh1UTVHQmF0Zmw1U1lhVUNINmtzZlBzVC9EaXBQZC9oNEtRQkxG?=
+ =?utf-8?B?eE1NSHB0a2o0emtxQ0kyTm5Oa0E3WTdBc0JMb2hSaDZrcUtwU2tUbzJzMFFq?=
+ =?utf-8?B?NFYrcnJxV2N4NHhVMWJHWWdOUkk0Q3gvSjE3bkxRUkQ4alRMaUYrWWRKdVU3?=
+ =?utf-8?B?RTFxODFiOUJXUXRyWFFVZ3hNNVg0U0N0NDk3Rm5KWTRjY1EyWThad0tBZjEw?=
+ =?utf-8?B?WG0xTmFRb1hjRzRwZUozSWFETDZ0d1Z5Z0NLVE9LTVk2MlRHVVMxTk5XM3Iy?=
+ =?utf-8?B?Q0Y2Z1VEMTgxM1V0QUx6VlQ0VUs5a3dqREhRVml3OE9QdDJQd3IxUy8vY0t3?=
+ =?utf-8?B?b2VZNGpQaDkvTE1VZHFYKzVhdEt5QXZRc1Y1Sy9VbHVUOTIzejlkR0FsRTlw?=
+ =?utf-8?B?TEhYeG42NHFRWUt3ZWJhY0FMWnRMd0xYSVkzUkFQWjRGaHYvUGlmZml2SHZ5?=
+ =?utf-8?B?UGtNazZDbnNsQUtTdDlrZnp1UXBUT2owa1dFVVU2STJvVWdMMlRyRmI2Ynh4?=
+ =?utf-8?Q?u09LmRcT1BKssYBphQqGBtMm/2Ahn/x1Mi8kxjQ?=
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2ZKUGgxZW44V1k1dDJUbC9FSEhidS8xRlZBLzRURGIzRUJETE5lU0RaMWRV?=
- =?utf-8?B?cW8zRWdNakJJRjl2SmJlNnMyUXI3ZXdhRmxmUkMxaW9BMi9lbG9uWmpLTDNZ?=
- =?utf-8?B?THBpK01XaHBNRzY1SUhtS2Jla2RtanFnU1cybEJmM3FVVEZ5RjYzYkVEZFQr?=
- =?utf-8?B?bE54UTVtWGpGYWY0L25nSzZYQml5bm9CZjF3MzFiU3A1c002VXI4WGhWbjFl?=
- =?utf-8?B?QnFZam9WQlc0dzJNQWVITXpqc1hpKzhKTVR4V0RLUjY3MFRsdC8rUi85WUE4?=
- =?utf-8?B?YzlDTE5TTTJ2L0k2WmhDWlcxRmF2czkxMFRucFNkclJVbWtCcTFzelhDUXVD?=
- =?utf-8?B?L1YyUkZkM3RzWll5NDNCMTU5TTdFKzlCOHo0ekJIdjZETHEzZ3NVakltTTg5?=
- =?utf-8?B?eVBCbVdjb294KzJ4dFFzMUhDTG85MVVvSDhGUXJFM1hPSm5PdFN0bzFIc1JE?=
- =?utf-8?B?QXViMFlFRnlOTDRKeCtjMkYwek5HcEFFc3U1UWZpYmZ4a0M1aHJXVU9TeFdI?=
- =?utf-8?B?bE9VVDZQT1p3Y3JYc0IvajIwR1RReGZXaTcvWXd2Mm5aRE1XTjVtZ25WZy9p?=
- =?utf-8?B?WUFmTmJWR0FvQ3lqWFNGNFo0bHV2VXFhVHJaR3RxRlFzUjZ0Zy9LT0pBcVIv?=
- =?utf-8?B?WXdOa0tXTmFCdHc1eXIwK0N1Q05aUDV3NkpoT0w5cnJsczVXRlhieExqcXE1?=
- =?utf-8?B?VEFSZnRCcGRJbnpTQlFJOHd2ZlZrU3lOalQzMUx6dHF4Z1JzME9xbnkybUZP?=
- =?utf-8?B?NUttZWpobVFkckFtMUlqT3BHWmtqUmZaQStvSmhGN3Y0clAvSWpZbEJsb0Q2?=
- =?utf-8?B?Z1hrSUNtWUVBQkdXcE5UTDAzK3F0WDAvbFo5UHZhWVhZMTNRK0V6WHdZeEp5?=
- =?utf-8?B?ajRtOWtxUGNVM2RxeWRwK0lDYkdXTHNrMnk2YXRzWU1mT2tJQVhNN0ExUmgr?=
- =?utf-8?B?ekRQekJlaWRLVUpuQUt2TEd4T216RkdHVXNPRktYVSs3ZkRYOXpNQ3hXbmlx?=
- =?utf-8?B?MGpobm9ZeW1RcHczVmVYZTBVY25qazV5WXJSYjZTWFpZUi9DaHRkMjhoTXU3?=
- =?utf-8?B?K1puK0crbVRqbWVzSkVRWjdEb2RHSllRbmliQ3ZENjFydG9WcFRWRndKdmtr?=
- =?utf-8?B?emZMWThjUTYwVHM5V3hyS1lBcDEwVklDZit4NGk1TlBiZXhyRVRTMmRGR3Ni?=
- =?utf-8?B?M2tvVnZLSUVNdG5PdlI5SE9FK2FwWGIwUDV1U1V6b05uK3BUZVpnbFJKSkNZ?=
- =?utf-8?B?b3BCMmlEVXlLNTUzUUdBVVVOMVFuM3pGTnE5bjJZNkZaNEhlckRlM0dJd2FL?=
- =?utf-8?B?anUrTHpFeDlZdUNwQkozTEduOXJ0cGtVa3doeDBoc09nb2tCelBxZWhpbzBJ?=
- =?utf-8?B?a0ZpbDllWmpjb2kxKzNZS0RDSWNYeUNtanVpODYrSWczNWd2aXp5YSt2WGRa?=
- =?utf-8?B?MVJFbmtNTkVsdzgvSkpZdlY0K1JUNWlKY0pkY29FK1BySVQrUytqeUhkaDV3?=
- =?utf-8?B?NitkNEpiOHVkTjJvd3k0QlZ3WFBoR1B3djZWeXVtVEpUMFJCUTV2a2Nvc0pi?=
- =?utf-8?B?VUlHVXlhOEllZXg4Qmh6MFM2Y2Z6OTJpalh3dk1TbE9FRVk2TzVkbFRYQUVy?=
- =?utf-8?B?ZDVkTHo2QVJ3dXJRV1lhc3FBb0IrQnRNQlRiZFFGMTVubmVjMEhvd0Irb3FJ?=
- =?utf-8?Q?4I2szOYHlV1rSEkxq8Qh?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z3pVaERzendza0QxRG1vendwRGZ0S2kvTmVHSlRtNDZyc0YvSjZ2Q1JTb2hN?=
+ =?utf-8?B?c0kxTE1NdW11V3FkN2V0bzJac0tKRDdrNXRiZlBnaHVZMjgxZ2VjeEhSK0Fl?=
+ =?utf-8?B?enFCci8zUFV6OVp6bDF1ZGJrOExkZHVpakZkdFphMjNRdWxiQVNZZlA1ekNp?=
+ =?utf-8?B?ZS82NWhRdS80bTdxZjU4UUN3QW1VRnFjUlpBeE9XRmltUnE3VUd1SHluL1N4?=
+ =?utf-8?B?ZElHMHJEOVRqWlN5TkJOM3ZuUjMxZnhnakppQWgwRk5DUVdON3duTk1qWUl4?=
+ =?utf-8?B?SXd6Y1BEMW9mUlpmZlgyeWtidnRTeHo1aXFVeW9qQldMUjE3dVlsWXBlMFM4?=
+ =?utf-8?B?UStyT0ROcXJ0dTM0citBSkVFMXJEU3BrakZKaDRBcXNNeDFDUDgxU3Q0dUc5?=
+ =?utf-8?B?akpRREV4Y0pPTzJLS0Q3UkxlUGZFdjhDVVlSZGRhTTQzWGgyWTBHck5HYzFs?=
+ =?utf-8?B?YnBkQUs0UW9qZ3JaMVlZQm01OVcyeE5uWkI5ekJCbmhoRXcreTB6VmJYeEZI?=
+ =?utf-8?B?S294RXJZOU92WmwyY1VGV2NtcmMraTh2NHJpQjVlYmRXNU5ld3ZMTXBFZmJY?=
+ =?utf-8?B?NnlFcDBpRnJrSWZzNHZlTUVvdzJMaEhnMXcwb2xNMXppSC9RRVdBMkV5bEFZ?=
+ =?utf-8?B?NmJnTVdIdW4wMzlDdVJJUEwxdzVxRTZBOWIzZk51Q3BxWm1vbzNWWS80bVNX?=
+ =?utf-8?B?VnBHRXJZTzNBWVlORmZKaVpuK0Y0NjlzMFowMFFhU0E3ODc4U240K3ZYYlBw?=
+ =?utf-8?B?THZiOTNYLzFvMjl0eitRNWZvcXRVcys4cXF2elJENGIxVUI4aHFnUkFteGhJ?=
+ =?utf-8?B?d3IzUFhteHdQR29ZOFEzMHY1SGw4WXNGVi81dytYaDNXTUgrc0M5S2szdUZG?=
+ =?utf-8?B?d1QvY21HL01BSVVMQ1lVaWZ6ck9GbEZLditOajBWMklrdkwzNzQxWHExYkMv?=
+ =?utf-8?B?WGd2OUF1Z1E5SGRKR3NLeTFlVWRObGRYUGlIdkoyNXV3RC80endrbDBCbTZT?=
+ =?utf-8?B?VWkwR01FNEwxN0lQUWFzU3JITjNjQXRIaVpWMHgvTVI0K3pIdmtvUFJwcXBz?=
+ =?utf-8?B?d0xLUk45ejMvOGhjRHZSUTFhR3NXUmMvenBmVGpFbEtza0hJUkZLRUdFdE5D?=
+ =?utf-8?B?eStQUm1jamo4WXRPV0N1dHdicEFwdWVZeHdUVTdtdjVTNFVYOFBFa2tlY3oy?=
+ =?utf-8?B?S2k2dWxSemMvb2Y4bzMrMmRybllKekU2cVVnOEtjMFBLVWIvaHhLRVE2MnlV?=
+ =?utf-8?B?TktOQVpCcWFaQjFld21GTURjMms5dk9YM3dpWmhJaUFBZzlSU0xWMGFWRmFS?=
+ =?utf-8?B?M0kxNU9Vdmg0VHYrTmsvUnJjdGdSQmJOV3d3YWg0ZzQ0S1pYLzZxa2dFcGJM?=
+ =?utf-8?B?YjY5cUVhcGF3V2Q2Z3hNRzlIN3lEK0tZOU5VaVBlcmVRSW9DWFV2QVd5aWhX?=
+ =?utf-8?B?QVpBT1VwdVZXLytLVnpVRHk5QkR1WTV0VG5XT1NHWmNCalhpNFVBUlN1QWdC?=
+ =?utf-8?B?dG1xYWtzdi9lSDdmdFJkbGdQYWZadmFKbGdGV1Z5cHQxQUFLK2pIWGJheDAw?=
+ =?utf-8?B?ZXZYOGVubW5sUWJyOVlDM0tQaE5uL3R6STV6NVRIRlI5Q01xdEJBdUk1T2N6?=
+ =?utf-8?B?SUxsd2U0eVoxRnY4OXNzV0FhMGxzNVFDeFN1ak9Fbm5wdHV2UWRnUmZpdWZ5?=
+ =?utf-8?Q?HQ8nlHS3sXEWgxZGpK6t?=
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12051fd1-d796-4a4e-52ae-08de1706005d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46b811af-8dc1-43de-93be-08de17125ffd
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 16:12:48.4448
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 17:41:22.7862
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR19MB6271
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR19MB7165
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251029_091255_336053_D3A2E4B8 
-X-CRM114-Status: GOOD (  27.25  )
+X-CRM114-CacheID: sfid-20251029_104128_559171_6B30A095 
+X-CRM114-Status: GOOD (  21.62  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -167,159 +168,120 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 10/29/25 18:32, Krzysztof Kozlowski wrote:
+On 10/29/25 18:43, Krzysztof Kozlowski wrote:
 > On 29/10/2025 15:26, George Moussalem via B4 Relay wrote:
 >> From: George Moussalem <george.moussalem@outlook.com>
 >>
->> QCN6122 is a PCIe based solution that is attached to and enumerated
->> by the WPSS (Wireless Processor SubSystem) Q6 processor.
-> 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-> 
-> The prefix is never "dt:".
-> 
-Will do in next version, thanks.
-
-> 
-> A nit, subject: drop second/last, redundant "bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-
-Will change accordingly.
-
+>> IPQ5018/QCN6122 platforms use multi PD (protection domains) to avoid
+>> having one instance of the running Q6 firmware crashing resulting in
+>> crashing the others.
 >>
->> Though it is a PCIe device, since it is not attached to APSS processor
->> (Application Processor SubSystem), APSS will be unaware of such a decice
->> so it is registered to the APSS processor as a platform device(AHB).
->> Because of this hybrid nature, it is called as a hybrid bus device as
->> introduced by WCN6750. It has 5 CE and 8 DP rings.
->>
->> QCN6122 is similar to WCN6750 and follows the same codepath as for
->> WCN6750.
+>> The IPQ5018 platform can have up to two QCN6122 wifi chips.
+>> To differentiate the two, the PD instance number (1 or 2) is added to
+>> the QMI service instance ID, which the QCN6122 firmware also expects.
+>> IPQ5018 internal wifi is always the first PD while QCN6122 cards must be
+>> second or third.
 >>
 >> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 >> ---
->>  .../bindings/net/wireless/qcom,ath11k.yaml         | 57 +++++++++++++++++++++-
->>  1 file changed, 56 insertions(+), 1 deletion(-)
+>> See below patch for more info:
+>> https://lore.kernel.org/all/20231110091939.3025413-1-quic_mmanikan@quicinc.com/
+> 
+> I don't see any common part with that. Your bindings are completely
+> different and while PD was justified there, there is no such
+> justification here. Neither in the bindings.
+
+Will adjust the description in the bindings and add more details. Mind
+you that I don't have access to the proprietary designs / data sheets,
+so it will be based on my understanding:
+
+The firmware running on the Q6 remote processor takes WCSS - wifi
+functionality - out of reset and brings them up. Each wifi radio on the
+IPQ5018/QCN6122 platform runs on a separate process (referred to as
+protection domain) which avoids one that crashed crashing the others.
+The firmware and kernel driver communicate over QMI leveraging the user
+PD IDs as instance IDs to distinguish between multiple QCN6122 wifi chips.
+
+With that, would the additional property in the bindings be considered /
+accepted? Else, any guidance would be appreciated.
+
+> 
+>> ---
+>>  drivers/net/wireless/ath/ath11k/ahb.c  | 31 +++++++++++++++++++++++++++++++
+>>  drivers/net/wireless/ath/ath11k/core.h |  4 ++++
+>>  drivers/net/wireless/ath/ath11k/pci.c  |  1 +
+>>  3 files changed, 36 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> index c089677702cf17f3016b054d21494d2a7706ce5d..4b0b282bb9231c8bc496fed42e0917b9d7d106d2 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> @@ -21,12 +21,13 @@ properties:
->>        - qcom,ipq6018-wifi
->>        - qcom,wcn6750-wifi
->>        - qcom,ipq5018-wifi
->> +      - qcom,qcn6122-wifi
-> 
-> Why people keep adding to the end... previously ipq5018 added by
-> qualcom, did not even get any review.
-> 
-> Place it before wcn and let ipq5018 be outlier since this was broken
-> already.
-> 
-
-it was exactly ipq5018 which got me thinking I should add it to the end.
-Will alphabetically insert qcn6122. I could reorder the entire list as
-well if you'd like (ipq6018 is also misplaced)
-
+>> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+>> index 7b267dd62e964b2c4d6c3bbe016abd1ad0297219..820a383e88caf125892176e421b0121fed7e7055 100644
+>> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+>> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+>> @@ -429,6 +429,7 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
+>>  	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
+>>  	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
+>>  	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
+>> +	ab->qmi.service_ins_id += ab->userpd_id;
+>>  }
 >>  
->>    reg:
->>      maxItems: 1
+>>  static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+>> @@ -1101,6 +1102,28 @@ static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
+>>  	return ret;
+>>  }
 >>  
->>    interrupts:
->> -    minItems: 32
->> +    minItems: 13
->>      maxItems: 52
->>  
->>    interrupt-names:
->> @@ -87,6 +88,14 @@ properties:
->>      items:
->>        - const: wlan-smp2p-out
->>  
->> +  qcom,userpd:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [2, 3]
->> +    description: instance ID of user PD (protection domain) in multi-PD
->> +                 architectures to distinguish between multiple instances
->> +                 of the same wifi chip used by QMI in its interface with
->> +                 the firmware running on Q6.
-> 
-> Broken indentation. It is supposed to be two spaces. Look at this file -
-> why are you doing this completely different?
-> 
-> Anyway, please do not come with 2nd or 3rd property for this. We already
-> have such somewhere.
-
-Would you mind pointing me to the property you're referring to? Do you
-mean the QRTR ID as proposed in this RFC:
-https://lore.kernel.org/linux-wireless/cover.1732506261.git.ionic@ionic.de/
-
-if so, this wouldn't help this in this case. Although it's PCIe based,
-PCI is not even enabled as the Q6 firmware itself takes care of that.
-
-> 
+>> +static int ath11k_get_userpd_id(struct device *dev, int *userpd)
+>> +{
+>> +	int ret, userpd_id;
 >> +
->>  required:
->>    - compatible
->>    - reg
->> @@ -268,6 +277,31 @@ allOf:
->>              - description: interrupt event for ring DP20
->>              - description: interrupt event for ring DP21
->>              - description: interrupt event for ring DP22
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,qcn6122-wifi
->> +    then:
->> +      required:
->> +        - qcom,userpd
->> +      properties:
->> +        interrupts:
->> +          items:
->> +            - description: interrupt event for ring CE1
->> +            - description: interrupt event for ring CE2
->> +            - description: interrupt event for ring CE3
->> +            - description: interrupt event for ring CE4
->> +            - description: interrupt event for ring CE5
->> +            - description: interrupt event for ring DP1
->> +            - description: interrupt event for ring DP2
->> +            - description: interrupt event for ring DP3
->> +            - description: interrupt event for ring DP4
->> +            - description: interrupt event for ring DP5
->> +            - description: interrupt event for ring DP6
->> +            - description: interrupt event for ring DP7
->> +            - description: interrupt event for ring DP8
->>  
->>  examples:
->>    - |
->> @@ -467,3 +501,24 @@ examples:
->>              iommus = <&apps_smmu 0x1c02 0x1>;
->>          };
->>      };
+>> +	ret = of_property_read_u32(dev->of_node, "qcom,userpd", &userpd_id);
 >> +
->> +  - |
->> +    wifi1: wifi@b00a040 {
->> +        reg = <0x0b00a040 0x0>;
->> +        compatible = "qcom,qcn6122-wifi";
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	switch (userpd_id) {
+>> +	case 2:
+>> +		*userpd = ATH11K_QCN6122_USERPD_2;
+>> +		break;
+>> +	case 3:
+>> +		*userpd = ATH11K_QCN6122_USERPD_3;
+>> +		break;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +	return 0;
+>> +}
+>> +
+>>  static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
+>>  {
+>>  	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
+>> @@ -1142,6 +1165,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+>>  	const struct ath11k_hif_ops *hif_ops;
+>>  	const struct ath11k_pci_ops *pci_ops;
+>>  	enum ath11k_hw_rev hw_rev;
+>> +	int userpd_id = 0;
+>>  	int ret;
+>>  
+>>  	hw_rev = (uintptr_t)device_get_match_data(&pdev->dev);
+>> @@ -1160,6 +1184,12 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+>>  	case ATH11K_HW_QCN6122_HW10:
+>>  		hif_ops = &ath11k_ahb_hif_ops_qcn6122;
+>>  		pci_ops = &ath11k_ahb_pci_ops_wcn6750;
+>> +		ret = ath11k_get_userpd_id(&pdev->dev, &userpd_id);
+>> +		if (ret) {
+>> +			dev_err(&pdev->dev, "failed to get userpd: %d\n", ret);
+>> +			return ret;
+>> +		}
+>> +		dev_info(&pdev->dev, "multi-pd architecture - userpd: %d\n", userpd_id);
 > 
-> Don't add examples if they differ by one property. Drop.
-
-Dropped in next version.
-Thanks for the quick review!
-
+> This does not look like useful printk message. Drivers should be silent
+> on success:
+> https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+> https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
 > 
-> BR
+>>  		break;
+>>  	default:
 > 
 > Best regards,
 > Krzysztof
+> 
 
 
