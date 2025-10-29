@@ -4,76 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 929F6CCF9EB
-	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 14:26:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3103CCF9F0
+	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 14:32:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ogSj3BDALyo6prrT9KaTIothDniaGBw/nuNFZjpZDnY=; b=NKPhhIU1L1SFi/yWKsPrrVAdRV
-	YH+2XRUfeeG4ep3P6j6Cp2X+RgwWRPQAUhby/2La0y1Tz/mS3yJoNGqCa7qatw3VCHrwqJjQu7VDh
-	ehRb1uakIUTMcBm54px2BEFDvk103tRgDN1kjccl4/pTNE4n+aMYapoYzmVU0g/fZ8DHJeLPyS20r
-	ntMIowywUvof8LQgeBI3w04I0g3yP3AxvdauznOUG1q5ePHFtW6iuwtewAqRCCwxOUZOhKCvEHXfu
-	t1owIwwfjf34/sBIHdNYGx5Zu4TtefI1E76yLRfJL1kCWCJw1vfrfO+uqOblwgI4PDx5XtoD3KWiN
-	NEjoecHw==;
+	bh=l2Dpt6xhKRBLfbnuYUG8cSyvB7YsFaHVlV52y7GGiko=; b=SBK+5nR42fmGlvP7HwG26dkwUN
+	maK7zIO2EQqt8mwqrFDjzxFO6ZqQKE1e1tGYB3Lky6SZRGFxgvhyFjQ/xbKsjNBkZNof43jwuZ1hm
+	JhCvrM/D2Lk2zdYQD3Q5J392NRm062+eWPwB57Aok4WV7Ww9NbhRBjltoqTzLd0Um8wlp5zLLDKTI
+	c8LtkaapJ/AvpuxnvGbgFdoGufFT365XTdsm0CnSeFb1sRQ5Q1gkAzAFm/ZHrVRQJnDJHcf6PSe4U
+	EjtIpzCvafiMF7jIJtdTvsyPC+OKt85Eb7f1Ewh4aIJZHxU8NQAhDrP2t2WJFOZrwsVmUJRcyE7GG
+	Qt8v1ZUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vE78Q-00000001Zgb-3bWD;
-	Wed, 29 Oct 2025 14:26:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vE7Dt-00000001azk-1DaH;
+	Wed, 29 Oct 2025 14:32:25 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vE78N-00000001Zbt-0yBn
+	id 1vE7Dq-00000001ayA-1z5b
 	for ath11k@lists.infradead.org;
-	Wed, 29 Oct 2025 14:26:44 +0000
+	Wed, 29 Oct 2025 14:32:23 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id C530B49CA7;
-	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A5F2BC116C6;
-	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A71CD43AF2;
+	Wed, 29 Oct 2025 14:32:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 228B9C4CEF7;
+	Wed, 29 Oct 2025 14:32:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761748000;
-	bh=VZqF9VrAmlHotZC3esggL8Hr1cnKxgb531ArBlobfaA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=p4kvwU8PXGIa7diweVJjDvIyEOAl2NEL2Yg6t1WtZBlb975WYqMYBMUOFLw1ps+HP
-	 jYZqyxfUSTeYEbUf/14hLDl+ceNvugPIDDeXSohWTJ33JMSPvxZOxScW1IEWJkoJh9
-	 y/JcjTBDdWPyxZmUWsCn4xSo2gJXGamyucg+OgxSKwScN4uG8C2Lm7+sm4VvexwMsI
-	 uM3DTTohKBVzTSuBjMqS5aa7PQEMhvjuDtT8ixSYS3J6mn+gkfwhBHC9vOxAQBViDX
-	 nvi8SXfyDoJD+c+y37S3cqMyEHynugZ9ZK04ImiOJH6PAplRVmNvxqrSWYAuB7rps7
-	 gMD4uZxfry7UQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9ADC4CCF9F6;
-	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 29 Oct 2025 18:26:27 +0400
-Subject: [PATCH 6/6] wifi: ath11k: add QCN6122 device support
+	s=k20201202; t=1761748341;
+	bh=NEzLf3mSJIDiz5bz4MFHpewpc6FNvGIjuz2LwuKvfbA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YuUE8j0+KmbFvLDKEg3mYRB2zH3GCFwCCwV49oUVrYlH7pVzDTOWbcda9NwPmdfwj
+	 Srda6GY9aDZB9lvwIwHg2Zc9lbh7P7QdqJX58gCUsBXcGB9c3l3psJrLGHtBPkuN95
+	 f30wC4+7So/oYSzEIly7xFTgK6NRvMr/BEXgISeaaG+65GiNVmgC0XAX3sNthi+gtO
+	 2VxQnZCHk1wV5OAAMbDx52InZXzTgcJpx63lPEFko53LPR5MgKHy9VQ8d9RmFO1UQh
+	 +JhYDGejI6ECOHHbQL/GmxGVdICcOXjM3Fl/RtKcI3Q/cynu8qTTaRMvL8g4MciALG
+	 TgFoL9bmSR5Gw==
+Message-ID: <3dc712ae-b51f-4142-bbab-1eadbc27e60a@kernel.org>
+Date: Wed, 29 Oct 2025 15:32:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251029-ath11k-qcn6122-v1-6-58ed68eba333@outlook.com>
-References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
-In-Reply-To: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
-To: Johannes Berg <johannes@sipsolutions.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt: bindings: net: add bindings for QCN6122
+To: george.moussalem@outlook.com, Johannes Berg <johannes@sipsolutions.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761747997; l=1944;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=MO7KsMfpzKHk3Kbh2D8damE6MIZVTsMgz25SICdrEDs=;
- b=K3qK5c3f0lBX0CW0vl5IFl9pODMBfTzS0f2OsZsmCjYeksCdtIJiyhhes4SZWzKIzw18NU6EC
- egExsLPJIhlDMg0OgQbszxEu05a3cT04hTUgeQbovPISaaGNStZjFGi
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
+ <20251029-ath11k-qcn6122-v1-1-58ed68eba333@outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251029-ath11k-qcn6122-v1-1-58ed68eba333@outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251029_072643_364219_D81F4E10 
-X-CRM114-Status: GOOD (  10.11  )
+X-CRM114-CacheID: sfid-20251029_073222_556192_26456787 
+X-CRM114-Status: GOOD (  21.67  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,66 +116,138 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: george.moussalem@outlook.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: George Moussalem <george.moussalem@outlook.com>
+On 29/10/2025 15:26, George Moussalem via B4 Relay wrote:
+> From: George Moussalem <george.moussalem@outlook.com>
+> 
+> QCN6122 is a PCIe based solution that is attached to and enumerated
+> by the WPSS (Wireless Processor SubSystem) Q6 processor.
 
-Add support for QCN6122 wifi.
-STA, AP, and MESH modes are supported.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Tested on: Linksys MX2000, Linksys MX6200, and GLiNET B3000 access
-points for prolonged duration tests spanning multiple days with multiple
-clients connected with firmware:
-WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-
-Although QCN6122 is a PCIe device, it is an IPQ5018 SoC specific
-solution and uses shared IPQ5018/QCN6122 firmware.
-
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- drivers/net/wireless/ath/ath11k/ahb.c  | 3 +++
- drivers/net/wireless/ath/ath11k/pcic.c | 9 +++++++++
- 2 files changed, 12 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 820a383e88caf125892176e421b0121fed7e7055..6747fcdbf9a777d4214b9ef751dac2774a80c0ff 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -37,6 +37,9 @@ static const struct of_device_id ath11k_ahb_of_match[] = {
- 	{ .compatible = "qcom,ipq5018-wifi",
- 	  .data = (void *)ATH11K_HW_IPQ5018_HW10,
- 	},
-+	{ .compatible = "qcom,qcn6122-wifi",
-+	  .data = (void *)ATH11K_HW_QCN6122_HW10,
-+	},
- 	{ }
- };
- 
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index fc6e7da05c6028e30facf10d38a55f614067e44b..ac1e156ab3e0f0c47de1eb1ac5afea21addfd739 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -139,6 +139,15 @@ static const struct ath11k_msi_config ath11k_msi_config[] = {
- 		},
- 		.hw_rev = ATH11K_HW_QCA6698AQ_HW21,
- 	},
-+	{
-+		.total_vectors = 13,
-+		.total_users = 2,
-+		.users = (struct ath11k_msi_user[]) {
-+			{ .name = "CE", .num_vectors = 5, .base_vector = 0 },
-+			{ .name = "DP", .num_vectors = 8, .base_vector = 5 },
-+		},
-+		.hw_rev = ATH11K_HW_QCN6122_HW10,
-+	},
- };
- 
- int ath11k_pcic_init_msi_config(struct ath11k_base *ab)
-
--- 
-2.51.1
+The prefix is never "dt:".
 
 
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+> 
+> Though it is a PCIe device, since it is not attached to APSS processor
+> (Application Processor SubSystem), APSS will be unaware of such a decice
+> so it is registered to the APSS processor as a platform device(AHB).
+> Because of this hybrid nature, it is called as a hybrid bus device as
+> introduced by WCN6750. It has 5 CE and 8 DP rings.
+> 
+> QCN6122 is similar to WCN6750 and follows the same codepath as for
+> WCN6750.
+> 
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+>  .../bindings/net/wireless/qcom,ath11k.yaml         | 57 +++++++++++++++++++++-
+>  1 file changed, 56 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> index c089677702cf17f3016b054d21494d2a7706ce5d..4b0b282bb9231c8bc496fed42e0917b9d7d106d2 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> @@ -21,12 +21,13 @@ properties:
+>        - qcom,ipq6018-wifi
+>        - qcom,wcn6750-wifi
+>        - qcom,ipq5018-wifi
+> +      - qcom,qcn6122-wifi
+
+Why people keep adding to the end... previously ipq5018 added by
+qualcom, did not even get any review.
+
+Place it before wcn and let ipq5018 be outlier since this was broken
+already.
+
+>  
+>    reg:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    minItems: 32
+> +    minItems: 13
+>      maxItems: 52
+>  
+>    interrupt-names:
+> @@ -87,6 +88,14 @@ properties:
+>      items:
+>        - const: wlan-smp2p-out
+>  
+> +  qcom,userpd:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [2, 3]
+> +    description: instance ID of user PD (protection domain) in multi-PD
+> +                 architectures to distinguish between multiple instances
+> +                 of the same wifi chip used by QMI in its interface with
+> +                 the firmware running on Q6.
+
+Broken indentation. It is supposed to be two spaces. Look at this file -
+why are you doing this completely different?
+
+Anyway, please do not come with 2nd or 3rd property for this. We already
+have such somewhere.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -268,6 +277,31 @@ allOf:
+>              - description: interrupt event for ring DP20
+>              - description: interrupt event for ring DP21
+>              - description: interrupt event for ring DP22
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,qcn6122-wifi
+> +    then:
+> +      required:
+> +        - qcom,userpd
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: interrupt event for ring CE1
+> +            - description: interrupt event for ring CE2
+> +            - description: interrupt event for ring CE3
+> +            - description: interrupt event for ring CE4
+> +            - description: interrupt event for ring CE5
+> +            - description: interrupt event for ring DP1
+> +            - description: interrupt event for ring DP2
+> +            - description: interrupt event for ring DP3
+> +            - description: interrupt event for ring DP4
+> +            - description: interrupt event for ring DP5
+> +            - description: interrupt event for ring DP6
+> +            - description: interrupt event for ring DP7
+> +            - description: interrupt event for ring DP8
+>  
+>  examples:
+>    - |
+> @@ -467,3 +501,24 @@ examples:
+>              iommus = <&apps_smmu 0x1c02 0x1>;
+>          };
+>      };
+> +
+> +  - |
+> +    wifi1: wifi@b00a040 {
+> +        reg = <0x0b00a040 0x0>;
+> +        compatible = "qcom,qcn6122-wifi";
+
+Don't add examples if they differ by one property. Drop.
+
+BR
+
+Best regards,
+Krzysztof
 
