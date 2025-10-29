@@ -4,54 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3A62CCD1BF
-	for <ath11k@archiver.kernel.org>; Tue, 28 Oct 2025 12:27:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DCBCCCF9EB
+	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 14:26:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:To:From:Date:Message-ID:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Z+4grIbAkZYYjwTXdp4WpEHUwrNfDmjCfVVao4jIQdw=; b=jRjBJ1APnrPu3yM8u1NSFEINUi
-	QJeiJEEXsZ+ba+vLXBRR2EVarGP75muG7mpPm30wEP6tjurcdWLuolvmSVJpT4jtVVWb6goOZJf3W
-	DrCP5auNaJ4jQ9TwktEQ5QW5Bpqq12F6cdtIrxq7/eYb32YFi/zOoBPmOVFJnTy3+7t44qumz070M
-	uQzQUomWW+RQMJSik8CQqUHhTTYV5W1JA/auiqq9QPmQfE70Hr0OycLdLkbqD6yd4UZem+SQP+V5e
-	gW4D1tYAjZiBICjaQsmoTboScDXl6IB8gycOEZXNUkqoH4G3wqasXZJTPJ/Linb1G+BWgKrrQJyDx
-	lmawW4lA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
+	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=vzbpm2dnzJBswSJiWtgzx8gduRteEOO5gHMDWd0weyY=; b=RZ0Fg4u7QQd8U7Dh8adcMgwJ19
+	c9Jj3EIMGtWQMEIkibMWFZN5/bxY3tYgpWgghaU39axwRQOghQ2+nHzuxf2dWvOj4Hj30F2ax6vpg
+	fdgzumDiASJGr/x07aISwHOaDE/0lK6gesZ8BeDWF866IhE2Lpy8+/arl7xmDNKxbuuIEJTRyhX6S
+	WR4UcM44MGubhd1LSRkPd7Y/kUodKVd6++HaggVHngOniAY20NMv1IzfM/Y6vXUWMpHHIqMjpoXgE
+	OecvzG1iMXSiSkPkkWT3ZjVMtQjviNVVgWe5G6l1rB7/06WMYjKf81UgveeDJYLNiGxBiKNGJBC2V
+	zFZm1OnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vDin1-0000000Fvzw-28f2;
-	Tue, 28 Oct 2025 12:27:03 +0000
-Received: from mail.dealiq.pl ([51.178.24.110])
+	id 1vE78M-00000001ZbK-2AtE;
+	Wed, 29 Oct 2025 14:26:42 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vDimy-0000000FvzV-0oD9
+	id 1vE78L-00000001Za8-43kU
 	for ath11k@lists.infradead.org;
-	Tue, 28 Oct 2025 12:27:01 +0000
-Received: by mail.dealiq.pl (Postfix, from userid 1002)
-	id 6083029577; Tue, 28 Oct 2025 09:42:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dealiq.pl; s=mail;
-	t=1761653467; bh=Z+4grIbAkZYYjwTXdp4WpEHUwrNfDmjCfVVao4jIQdw=;
-	h=Date:From:To:Subject:From;
-	b=XQADcoeFWIhiGLQQqZ9IYFFujWk7wLSOD6i1B9iBrETcflZubX5jrWvxOuwFNX3j6
-	 MuSqtpMzbti51V6sX4r0ONuHoRQgh5bq3/uIwAG59cazWBjHux2jJZ2ySJx17APgr/
-	 rf1KHOPDOfuPIUJHFtaguNWksANkqQylffkrHq2mPlrPF+kbGlY3HCwcbl0r/13LLp
-	 hrsZ4Irciz/JIioDXtymu+dyi2qyRjGHD06/R6OA37NFG/N/W0fB2W/KSv+8pk8aYw
-	 MIVEThkj9CZvXzUPs6avoJnIumfPfJIncYixD7PdbClBPgA76q2YqMWbHjHXwq5ntU
-	 YukTXtFo4HWig==
-Received: by mail.dealiq.pl for <ath11k@lists.infradead.org>; Tue, 28 Oct 2025 08:41:00 GMT
-Message-ID: <20251028084500-0.1.ko.1j32k.0.xq58i915sa@dealiq.pl>
-Date: Tue, 28 Oct 2025 08:41:00 GMT
-From: "Robert Gonciarek" <robert.gonciarek@dealiq.pl>
-To: <ath11k@lists.infradead.org>
-Subject: Dofinansowanie fotowoltaiki 
-X-Mailer: mail.dealiq.pl
+	Wed, 29 Oct 2025 14:26:42 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id D423C61FFC;
+	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7A181C116B1;
+	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761748000;
+	bh=AtjMxj2RJkTu7x047fEmpxwycKxJKu/Y4UgyPp4JT2U=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=UKymL+7vf4ctJnVjcsZtRD3JGJ/buIRHl51/x4BGUHIqB70HY4tBVqbrnlH+L3QKh
+	 eqD1N16AZzDyGT8054ODSxCLFEX7I8AKZnxmJ9jIYN7fOpkUHwXCQRNZZaYIu8wLiV
+	 sbHWmXjn/7v7UChbMY0tm9pBbeSXu6NMOLemsUmDUjPBhVCSkXKKwFwm/TCA/54VXI
+	 bMdk/OJWAx/ZEXdy7rKTk7Y7VHyJ3wmeQK8xCYyIRm48XU5z3Fc0SX4FGwjox4GwZf
+	 7mE+IIXl/RBE6+pv/e9UT7EoN657dP/1qOspCLUCTVOMU1vHw+tJ9OrIwxA/ClacHX
+	 CmzImP+ZhlXCQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B341CCF9F7;
+	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Date: Wed, 29 Oct 2025 18:26:24 +0400
+Subject: [PATCH 3/6] wifi: ath11k: add hw ring mask for QCN6122
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251028_052700_501163_35260A73 
-X-CRM114-Status: UNSURE (   0.82  )
-X-CRM114-Notice: Please train this message.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251029-ath11k-qcn6122-v1-3-58ed68eba333@outlook.com>
+References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
+In-Reply-To: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
+To: Johannes Berg <johannes@sipsolutions.net>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761747997; l=3140;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=F4MQL1JaTu6P90bDVdrVejjoMM5YwIv+d0BERrhNqeI=;
+ b=jJQlYmAbR/J3UObt+0UXmeqgU+6hjMtwkUdTs/DKqfZdNPaHuzOYmCKW57tGq64BUlBkeNTMm
+ 4liXEqZ3NfRB5ulQxmBEo5LcNaVE5wvzBQmE2ruW6iKRd93jTqdujOM
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,33 +82,96 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: george.moussalem@outlook.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dzie=C5=84 dobry,
+From: George Moussalem <george.moussalem@outlook.com>
 
-w zwi=C4=85zku z nieustannie rosn=C4=85cymi cenami produkt=C3=B3w i us=C5=
-=82ug - wiele firmy stawia na rozwi=C4=85zania, kt=C3=B3re pomog=C4=85 zm=
-niejszy=C4=87 wydatki zwi=C4=85zane z prowadzeniem dzia=C5=82alno=C5=9Bci=
-, a jednym z nich jest wyb=C3=B3r instalacji fotowoltaicznych.=20
+Add ring mask for QCN6122 and register them in hw params.
 
-Wszystkim odbiorcom szukaj=C4=85cym mo=C5=BCliwo=C5=9Bci obni=C5=BCenia k=
-oszt=C3=B3w energii elektrycznej, wychodzimy naprzeciw =C5=9Bwiadcz=C4=85=
-c kompleksow=C4=85 obs=C5=82ug=C4=99 inwestycji w fotowoltaik=C4=99.=20
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c |  1 +
+ drivers/net/wireless/ath/ath11k/hw.c   | 37 ++++++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ 3 files changed, 39 insertions(+)
 
-Jako jedyna na rynku firma zapewniamy 12 lat gwarancji, audyt po monta=C5=
-=BCowy, a tak=C5=BCe kalkulacj=C4=99 oszcz=C4=99dno=C5=9Bci po monta=C5=BC=
-u fotowoltaiki.
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 401b843402c6cca0e7fdd61e68b57fa6d5a6ae7e..b8ed8b673516855e6596d519c8234f4e230b6a2f 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -919,6 +919,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.max_radios = MAX_RADIOS_5018,
+ 		.bdf_addr = 0x4D200000,
+ 		.hw_ops = &ipq5018_ops,
++		.ring_mask = &ath11k_hw_ring_mask_qcn6122,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
+ 		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCN6122,
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index caa6dc12a790b5072d5453ac123a604cf440a20a..56e7f86f2878f87aab42ae6abe504949b44297cc 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -2070,6 +2070,43 @@ const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_wcn6750 = {
+ 	},
+ };
+ 
++const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qcn6122 = {
++	.tx  = {
++		ATH11K_TX_RING_MASK_0,
++		ATH11K_TX_RING_MASK_1,
++		ATH11K_TX_RING_MASK_2,
++	},
++	.rx_mon_status = {
++		0, 0, 0,
++		ATH11K_RX_MON_STATUS_RING_MASK_0,
++	},
++	.rx = {
++		0, 0, 0, 0,
++		ATH11K_RX_RING_MASK_0,
++		ATH11K_RX_RING_MASK_1,
++		ATH11K_RX_RING_MASK_2,
++		ATH11K_RX_RING_MASK_3,
++	},
++	.rx_err = {
++		0, 0, 0, 0, 0, 0, 0, 0,
++		ATH11K_RX_ERR_RING_MASK_0,
++	},
++	.rx_wbm_rel = {
++		0, 0, 0, 0, 0, 0, 0, 0, 0,
++		ATH11K_RX_WBM_REL_RING_MASK_0,
++	},
++	.reo_status = {
++		0, 0, 0,
++		ATH11K_REO_STATUS_RING_MASK_0,
++	},
++	.rxdma2host = {
++		ATH11K_RXDMA2HOST_RING_MASK_0,
++	},
++	.host2rxdma = {
++		ATH11K_HOST2RXDMA_RING_MASK_0,
++	},
++};
++
+ /* Target firmware's Copy Engine configuration for IPQ5018 */
+ const struct ce_pipe_config ath11k_target_ce_config_wlan_ipq5018[] = {
+ 	/* CE0: host->target HTC control and raw streams */
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 52d9f4c13b1366f2339b8900cf9db91e6ff1bcff..e7220c46de10c378ea5b452d78f921054ff54e54 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -285,6 +285,7 @@ extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_ipq8074;
+ extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qca6390;
+ extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qcn9074;
+ extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_wcn6750;
++extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qcn6122;
+ 
+ extern const struct ce_ie_addr ath11k_ce_ie_addr_ipq8074;
+ extern const struct ce_ie_addr ath11k_ce_ie_addr_ipq5018;
 
-Umo=C5=BCliwiamy leasing z odroczon=C4=85 sp=C5=82at=C4=85 i bez wk=C5=82=
-adu w=C5=82asnego, gwarantujemy wsparcie w pozyskaniu odpowiedniego =C5=BA=
-r=C3=B3d=C5=82a finansowania i pomoc w przypadku wnioskowania o dotacj=C4=
-=99.
-
-Czy chcieliby Pa=C5=84stwo zapozna=C4=87 si=C4=99 z mo=C5=BCliwo=C5=9Bcia=
-mi inwestycji w PV dopasowanymi do Pa=C5=84stwa obiektu?=20
+-- 
+2.51.1
 
 
-Pozdrawiam
-Robert Gonciarek
 
