@@ -4,104 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C552CCF9F0
-	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 14:43:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89624CCF9EB
+	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 16:13:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=UeVwJ8nqU2XH+HMb/RelBvlFI4rvQZkEB7UFtJHCNIE=; b=N0zDmfwYaIgLx/65cxLJPd5DB6
-	jGb9BeFsGaun7o2s8Cw7hftPRtjmMU3HAm6SsDqV34Dd5rt2oqq/OWGQI3GmNnfgMI8uKST4SWvFp
-	lwe1CvoZQvSmdPFLRZzvJ3mu10vFX6vm0ghLhYhEjBeAP1o1MAIzvCRQZxgW1fnex/vgJLYgh+e7y
-	PuTXDW9ZK4VaC2oVvbrZ71ViuKdYooDzzulRyh/9irYG5QEKL/tU5vvOx4UWqNh2352Wp4qZwXhTT
-	DZLV08R8zXGbnc4Y/PpVtaO1n/BJbzOskVrglV3mjQkHiOzQTwiMM8uTWLeZ9HG8YFGAIsacEGl6U
-	2ynLViag==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=AeMhBH0QGdy8lhrSJdDm9zdK6/Q4Rvr1fV0LeeyP5wo=; b=Cao3ULlcpBF0r8SjcYm22BJ+36
+	vpnZyfR7W3I06wrtjBr+BrkYgaNVBe2tGCP3B2LVyZtYP6bcDE0MrfCWBAi6xgWBqDuZPzVwdLK87
+	9H+BSax2fqzrqSBse1ZfTijD7o9hxjhgTPkv7mvVIp+JNNDledYwoG9Xv77W312Atboy+hfWOGdFn
+	3sYP/sRdYKQsfkac/Bo+Mosa9OfpEIviiXa3bSqW+UpVQiOgPyWQsdyebnK1emNKpOzhgc0KB1C7g
+	+kd5AHZpk1TzUppEbBbyxBn1F7PER1DxzPNGhXJt2M4L1HEKM9tal3lV05Tm7btWZIWwndLQDoIWA
+	1uBH9NJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vE7Oq-00000001dWt-2GJI;
-	Wed, 29 Oct 2025 14:43:44 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vE8nB-00000001xP5-3D1N;
+	Wed, 29 Oct 2025 16:12:57 +0000
+Received: from mail-westusazolkn19010017.outbound.protection.outlook.com ([52.103.2.17] helo=BYAPR05CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vE7Op-00000001dVk-0c7L
+	id 1vE8n9-00000001xMZ-19df
 	for ath11k@lists.infradead.org;
-	Wed, 29 Oct 2025 14:43:43 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1CDA8620EB;
-	Wed, 29 Oct 2025 14:43:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66F0FC116C6;
-	Wed, 29 Oct 2025 14:43:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761749021;
-	bh=7aIwRuIOpA2NvB46ZJFZlfxwwf5CrcEct874eSGcgUE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nUCG2dgAAGxavtrh6AFskbiNPy7Opyv54fNrY/+gU0ZaTvBrd+ZtUjFEd4lc5Qbk/
-	 srjLlCZcD6v3yy00NaOnMM6kO85tayYB85zgXeLHHSpevQ6O2DGvXlTZcGF+ktUVor
-	 G0oJOc1gayru+VczSM4ZiddijK6BzGtNWVQ5cxsRUBBCvQgzVaswHsRgcDYtOKLawP
-	 at5sw+sOWuAecSORYOvFAW4sokeUujaDbydmhkXBgd33S7RBrbM2DgiSBbVNPSePhZ
-	 OnukuKbisUVQxThAKHPJxURwRslfcZUKDhTxzc0zF6/DUihlPrLIr5qeFFcPt3CXjz
-	 R9KUmZIa60r5g==
-Message-ID: <5137cd11-004c-43ed-8bbb-646beb105844@kernel.org>
-Date: Wed, 29 Oct 2025 15:43:37 +0100
-MIME-Version: 1.0
+	Wed, 29 Oct 2025 16:12:56 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=f2ZCnVQcmH95lMGuMTgsMjnqOMTn+vkmGfA+csY8vpheasOO97qQ1EJj6+7NXBPCkcbFEgeZ/A1Mwi4Ay9QlI8iUJf+CpySvGid48z6VQqa54vLj53GG+bf7eaZl1b33l1qJ7U/zne1TYEL6rsYNdjwZP8FHnAOQ3B1qqOBSoarQFuWAXzC7Mh+Mv0nmIOha0E2O2YpATwmag7Nr4adEZ/aRubBZ/2f/+cimusorjtwudMmryo2vJWVXdMPykTkWsR2aldYuIQJNtu8JDAaxIt2vHujyW/MASfaMrAwgMU7e7ukwRbUy4JIZtP3vLduZDXGB7IYZ68mFrHzlW32FSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AeMhBH0QGdy8lhrSJdDm9zdK6/Q4Rvr1fV0LeeyP5wo=;
+ b=AmX5hpruCcb0KUb8LAtb4gUHMVkLZWZaY2JTdWf6EQCp+NihVqvDo5XYUHJthIFFXaQOO4jfzSClkn7s5W9gl0SC3L3aWpl21+v1G+4GJ3qk3cBFeE0+FOqMePRUCZJYnL2PM2C8ehgEYrKYwgyFplxaLiVdIJ6ocg9tSZcCtaXcCtf8rNSGXRxNc7JXbATzMdCMrkC4MVC+KjF6B8ozyyXxwEr75YH+MtEAUx3wGKF2n6XQMNKX4SuksAKtXESRyBxvyFBUaWob6dvBbL4YOzLCVJNu9L6l8Mc7v3Tt7kRt59i7yXL8+RGSpPydBPt6qqZ2IyPgdmZdbV9VZvYYQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AeMhBH0QGdy8lhrSJdDm9zdK6/Q4Rvr1fV0LeeyP5wo=;
+ b=nk0H66683W5vD5xrCtqD23HME9QqiMCCUpzwStujUX4pZR489ZLWBH08m9rmRMyxX0UHPfNx8+vh7jmC9wkaRwg8KLDfgfn0PO9sv8iwmgK+GbQ7dO7Q/XcCOzluuEGEZyWkITKcPuUtrJ1GFDtcLXqcOazSi1Wevcbkmkieqsbu4/xG19KPL8xgLr9XNI+a7VMu4PwMOBAIytKkfKPUPuvGXVdL3Vr14fZJ/AzVZFxMo3s2iLZpzZo4d2eKcD56xbtdU8k85ieNRwF0b2N1NS+9msYiJRteTVgIjldqFzO4hcYItCWzGrLDpso9w2W8JAj/9IaMFnvwyE9mNTAm3g==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by DM4PR19MB6271.namprd19.prod.outlook.com (2603:10b6:8:a7::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Wed, 29 Oct
+ 2025 16:12:48 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%4]) with mapi id 15.20.9275.013; Wed, 29 Oct 2025
+ 16:12:48 +0000
+Message-ID: <DS7PR19MB88836505C4CC48D3E62FBC0A9DFAA@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Wed, 29 Oct 2025 20:12:37 +0400
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] wifi: ath11k: add multipd support for QCN6122
-To: george.moussalem@outlook.com, Johannes Berg <johannes@sipsolutions.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+Subject: Re: [PATCH 1/6] dt: bindings: net: add bindings for QCN6122
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
  ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
- <20251029-ath11k-qcn6122-v1-5-58ed68eba333@outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20251029-ath11k-qcn6122-v1-1-58ed68eba333@outlook.com>
+ <3dc712ae-b51f-4142-bbab-1eadbc27e60a@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251029-ath11k-qcn6122-v1-5-58ed68eba333@outlook.com>
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <3dc712ae-b51f-4142-bbab-1eadbc27e60a@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DO3P289CA0005.QATP289.PROD.OUTLOOK.COM
+ (2603:1096:790:1f::17) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID: <81d7ae30-7dcc-490b-b2e8-47d84740e400@outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|DM4PR19MB6271:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12051fd1-d796-4a4e-52ae-08de1706005d
+X-MS-Exchange-SLBlob-MailProps: RlF2DIMZ1qU1KA69x/B2/kCnokZ6o97m1+qLAmhIg8SdK3fLSrERQ0jKuV0d5m5W7hZ4xLEjX8+/KCYAclfGa8EUafSY0I0D3A6BbQaoRy5Tn7DaMu7dA6Wpg8c4hCYVF6SlvVjWrbXR2vZcEvUH/LVJ7WubSswgJAaT338qtLriOnyJVtvECdANMNwjR3vkOCk1ZK1u8AJjZSWmxstK+4Le8AqG4TcKW2mo7qZ+mHQgZicb0CTg4DK/5IqFGZ/SQ4OPp4tMhFO6hF5uXw27RjuX54aSlGDMs6NYctHGCQj59duJbgTB/w2gT6ooGa/2heeOrVn2bFeQT2KCK15vjznBQZKzA3o2979TgvXYNqVMkD164K5wj92BLYR6PcArjBfFAqudf9pUotgMf+d7WlK08XedsipPEGRNKRZCSIUapZTlf4XJScDTcWfOJhg3hTZC8I+Cl+INaX/pw+89c5YgdwLZe1cRpMHhrDevTzv4+yzsUQxp9HdqDNm+WfJYjrIEF8/svZVRRLHqyC7R9bjcaBlqRj089FC2HFUrvMJWHvvsXFYWi4EyqF2mKEdK7TR2/tlHAhDuYhiowP+VNEhtCgrIwFAYvrsFBffdV2vWKx++f4TL2TOOdSzYLrS/aU6mFtY0oy7SFuV5nv8zibDkUx2QDviQ3RdUI48WT+E4Lh0w1NYcz/PTPh8utnsTeQk0qs9tY1jQfeWCUKKS79kZiogpvGOAKnM0zs8mIDZK+OInp1PvJqboc9H6V7bnc4ev0VYOSoI5YrfJW8mUTilASfYT3SI1DNH3orXfbJenvnSt0Ye7IanUkPBGVyNiSdihqMDDBMA4TpPxoiQxZua+iL72Aswl
+X-Microsoft-Antispam: BCL:0;ARA:14566002|6090799003|8060799015|461199028|23021999003|15080799012|5072599009|19110799012|1602099012|52005399003|40105399003|440099028|3412199025|4302099013|10035399007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?L1NndUd2T05KRWpackhyUVBHWUwyaEQ2MStjcFFwRmFWeitRL0hUTXdTTlZt?=
+ =?utf-8?B?UWpoMTZiR3IrUThEU01CNGVJVGhsTWlZWGRFQnB4Qy9ueFBVTVFpZWlESUQ3?=
+ =?utf-8?B?Z1lsK3NjRVlUYnhYTW9Cb3o0cjd4Zm5QV054Y29MelhjTVF0ZGtXK0M3Vk5H?=
+ =?utf-8?B?WEtDVzBRMFdRL2VTOWZKell2NG0xMXlPaXJTZ2hFRDJ2TkFldmZpOEhhaVFt?=
+ =?utf-8?B?MUNRZFFnSTRFQVB1QWFDVkl2WVZ4YTcrcFhWOWJoM2hGMURSSlhRK2xxZG50?=
+ =?utf-8?B?UnI1N3pwa3lQUmNsSURoMGNTT2lOYzBLdVhFSHRBUVpXc09vUTlCK1I1SEZF?=
+ =?utf-8?B?ZnhadjVNS3o2dURkVmZudXBMcVR1Y3QzQTVMSStwWHVvZUx1b1QvMEQ2OHZI?=
+ =?utf-8?B?eVJhUDhVNWxFZGFEYkhYdTFlUlpoTTFjZzFYakJwMmRRV24wQ0hFaEJaMlRi?=
+ =?utf-8?B?V3gvTG9nNmRhejgrelhmb3h4alJUb3NsaEdoZHdMYlhBUEFHSVp3Z2txTnd6?=
+ =?utf-8?B?SCtsUWprR0xFMzlqYUNVVnE0OEhaU2xjU3VqYjA0LzBsdDhxbXlKZkkvUGd3?=
+ =?utf-8?B?NUpEYlRRSTRuWnpxcHFhREpYRXdWY1FtNjB3MENCcjNjcmpvYVlOTWtjNGFp?=
+ =?utf-8?B?OWIrWE9SVWdvMU51MGg3Nm10WHBoTlZPVGdVc2N0WXFneEtVNk5qNGIxWXB3?=
+ =?utf-8?B?eGRuTW5lNGN6TjNYQVpBYVQwNUJscnppTVhydXRHbzM2WERqclVPM1NNQkxQ?=
+ =?utf-8?B?aGxBRUpsL2Q5ZDFxVmpuVVhOcCtDSUxGSFhJcHBIZUJOUStFZ3BkdHVuV1FL?=
+ =?utf-8?B?WUFpTG5Gd3BjWUR6TmtmUS90eXFVa2tMd2JPR2dKWGc1b0x1dFpiaEsxU1FV?=
+ =?utf-8?B?VTZSUzVaNWFDUGQ2aU01WWFPNXlQV0hCMUxaMDBDMEQ5Q0E5VU11bHRCS3NQ?=
+ =?utf-8?B?SHM4d01TRGYrVFZZRmZyN1M3VUVybWNIUjlPSFJaYTUwdzNHSVoyUndhN2xS?=
+ =?utf-8?B?dnFhWi9CUVdIaklvbHJNQkE1aUIzYWxyUVhpLzRvTm1IT2hQRGNiZ3hwQ3Fn?=
+ =?utf-8?B?Vmc4bFBJQmxkblRMRzM5Z0JKaTFMTllCS05qdjIvYW1zQ05MZkNiV01IUXBB?=
+ =?utf-8?B?T2RyaWkzY1Z1SUFVSnJEMmVHK202UWRNa2FBeWFFYythRTZqdW9mUGxLOVdy?=
+ =?utf-8?B?ZmZBVWttWDJMODBBUDg2Y2hyNzRZYTZsUDFEMmxLWXZ6bEl4a05IUlV5ZFR6?=
+ =?utf-8?B?NDBuem5wa0RPQ0swVmNsQ3BndExjM3F3SFoyODZvZHJ0WDJoOTMyWU53WDVz?=
+ =?utf-8?B?YWw3MkdLQ092aFJjUDh2QjZ5K0dYdllQaHhxWkR5bXBJbk1rejE1eUNPWjB4?=
+ =?utf-8?B?cjJxK1hCNktMS1E4WDZDbHg5aW03SmFkcnlZclFId0kyZW9SaFhHamdpS1BJ?=
+ =?utf-8?B?TW5YVHU5SGNUemtWcTFDSkFHV0liYUkzSUR3c0FEQVErK1JoZldNOXhaZkdh?=
+ =?utf-8?B?VGcwbzYwVXpIdjl4Q2NvWlp4Qkx6VnYwd0FaM2phMWhkcUxlaVJZT1ZvTmhp?=
+ =?utf-8?B?SHJZQ3F0dXppME4rcll6eDBVZTU3QTVKajNYa0Fqd2xZaDlaT3BEOGk1dzdh?=
+ =?utf-8?B?QjN6Uk0zU09ZOVlPZ3UwUDlzRFdLRmt6MmM1YUhHek9pVWRaMzFZZjloRlVv?=
+ =?utf-8?B?MEg1bUR4TkZZT1AyM3BlR001UEh1QXdhWHNtN2RTMWxBMUhQLzBwOWdmMzZk?=
+ =?utf-8?Q?ShNq01o3+XW5TxLzZE=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2ZKUGgxZW44V1k1dDJUbC9FSEhidS8xRlZBLzRURGIzRUJETE5lU0RaMWRV?=
+ =?utf-8?B?cW8zRWdNakJJRjl2SmJlNnMyUXI3ZXdhRmxmUkMxaW9BMi9lbG9uWmpLTDNZ?=
+ =?utf-8?B?THBpK01XaHBNRzY1SUhtS2Jla2RtanFnU1cybEJmM3FVVEZ5RjYzYkVEZFQr?=
+ =?utf-8?B?bE54UTVtWGpGYWY0L25nSzZYQml5bm9CZjF3MzFiU3A1c002VXI4WGhWbjFl?=
+ =?utf-8?B?QnFZam9WQlc0dzJNQWVITXpqc1hpKzhKTVR4V0RLUjY3MFRsdC8rUi85WUE4?=
+ =?utf-8?B?YzlDTE5TTTJ2L0k2WmhDWlcxRmF2czkxMFRucFNkclJVbWtCcTFzelhDUXVD?=
+ =?utf-8?B?L1YyUkZkM3RzWll5NDNCMTU5TTdFKzlCOHo0ekJIdjZETHEzZ3NVakltTTg5?=
+ =?utf-8?B?eVBCbVdjb294KzJ4dFFzMUhDTG85MVVvSDhGUXJFM1hPSm5PdFN0bzFIc1JE?=
+ =?utf-8?B?QXViMFlFRnlOTDRKeCtjMkYwek5HcEFFc3U1UWZpYmZ4a0M1aHJXVU9TeFdI?=
+ =?utf-8?B?bE9VVDZQT1p3Y3JYc0IvajIwR1RReGZXaTcvWXd2Mm5aRE1XTjVtZ25WZy9p?=
+ =?utf-8?B?WUFmTmJWR0FvQ3lqWFNGNFo0bHV2VXFhVHJaR3RxRlFzUjZ0Zy9LT0pBcVIv?=
+ =?utf-8?B?WXdOa0tXTmFCdHc1eXIwK0N1Q05aUDV3NkpoT0w5cnJsczVXRlhieExqcXE1?=
+ =?utf-8?B?VEFSZnRCcGRJbnpTQlFJOHd2ZlZrU3lOalQzMUx6dHF4Z1JzME9xbnkybUZP?=
+ =?utf-8?B?NUttZWpobVFkckFtMUlqT3BHWmtqUmZaQStvSmhGN3Y0clAvSWpZbEJsb0Q2?=
+ =?utf-8?B?Z1hrSUNtWUVBQkdXcE5UTDAzK3F0WDAvbFo5UHZhWVhZMTNRK0V6WHdZeEp5?=
+ =?utf-8?B?ajRtOWtxUGNVM2RxeWRwK0lDYkdXTHNrMnk2YXRzWU1mT2tJQVhNN0ExUmgr?=
+ =?utf-8?B?ekRQekJlaWRLVUpuQUt2TEd4T216RkdHVXNPRktYVSs3ZkRYOXpNQ3hXbmlx?=
+ =?utf-8?B?MGpobm9ZeW1RcHczVmVYZTBVY25qazV5WXJSYjZTWFpZUi9DaHRkMjhoTXU3?=
+ =?utf-8?B?K1puK0crbVRqbWVzSkVRWjdEb2RHSllRbmliQ3ZENjFydG9WcFRWRndKdmtr?=
+ =?utf-8?B?emZMWThjUTYwVHM5V3hyS1lBcDEwVklDZit4NGk1TlBiZXhyRVRTMmRGR3Ni?=
+ =?utf-8?B?M2tvVnZLSUVNdG5PdlI5SE9FK2FwWGIwUDV1U1V6b05uK3BUZVpnbFJKSkNZ?=
+ =?utf-8?B?b3BCMmlEVXlLNTUzUUdBVVVOMVFuM3pGTnE5bjJZNkZaNEhlckRlM0dJd2FL?=
+ =?utf-8?B?anUrTHpFeDlZdUNwQkozTEduOXJ0cGtVa3doeDBoc09nb2tCelBxZWhpbzBJ?=
+ =?utf-8?B?a0ZpbDllWmpjb2kxKzNZS0RDSWNYeUNtanVpODYrSWczNWd2aXp5YSt2WGRa?=
+ =?utf-8?B?MVJFbmtNTkVsdzgvSkpZdlY0K1JUNWlKY0pkY29FK1BySVQrUytqeUhkaDV3?=
+ =?utf-8?B?NitkNEpiOHVkTjJvd3k0QlZ3WFBoR1B3djZWeXVtVEpUMFJCUTV2a2Nvc0pi?=
+ =?utf-8?B?VUlHVXlhOEllZXg4Qmh6MFM2Y2Z6OTJpalh3dk1TbE9FRVk2TzVkbFRYQUVy?=
+ =?utf-8?B?ZDVkTHo2QVJ3dXJRV1lhc3FBb0IrQnRNQlRiZFFGMTVubmVjMEhvd0Irb3FJ?=
+ =?utf-8?Q?4I2szOYHlV1rSEkxq8Qh?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12051fd1-d796-4a4e-52ae-08de1706005d
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 16:12:48.4448
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR19MB6271
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20251029_091255_336053_D3A2E4B8 
+X-CRM114-Status: GOOD (  27.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,102 +165,161 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 29/10/2025 15:26, George Moussalem via B4 Relay wrote:
-> From: George Moussalem <george.moussalem@outlook.com>
+
+
+On 10/29/25 18:32, Krzysztof Kozlowski wrote:
+> On 29/10/2025 15:26, George Moussalem via B4 Relay wrote:
+>> From: George Moussalem <george.moussalem@outlook.com>
+>>
+>> QCN6122 is a PCIe based solution that is attached to and enumerated
+>> by the WPSS (Wireless Processor SubSystem) Q6 processor.
 > 
-> IPQ5018/QCN6122 platforms use multi PD (protection domains) to avoid
-> having one instance of the running Q6 firmware crashing resulting in
-> crashing the others.
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 > 
-> The IPQ5018 platform can have up to two QCN6122 wifi chips.
-> To differentiate the two, the PD instance number (1 or 2) is added to
-> the QMI service instance ID, which the QCN6122 firmware also expects.
-> IPQ5018 internal wifi is always the first PD while QCN6122 cards must be
-> second or third.
+> The prefix is never "dt:".
 > 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> ---
-> See below patch for more info:
-> https://lore.kernel.org/all/20231110091939.3025413-1-quic_mmanikan@quicinc.com/
+Will do in next version, thanks.
 
-I don't see any common part with that. Your bindings are completely
-different and while PD was justified there, there is no such
-justification here. Neither in the bindings.
-
-> ---
->  drivers/net/wireless/ath/ath11k/ahb.c  | 31 +++++++++++++++++++++++++++++++
->  drivers/net/wireless/ath/ath11k/core.h |  4 ++++
->  drivers/net/wireless/ath/ath11k/pci.c  |  1 +
->  3 files changed, 36 insertions(+)
 > 
-> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-> index 7b267dd62e964b2c4d6c3bbe016abd1ad0297219..820a383e88caf125892176e421b0121fed7e7055 100644
-> --- a/drivers/net/wireless/ath/ath11k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-> @@ -429,6 +429,7 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
->  	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
->  	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
->  	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
-> +	ab->qmi.service_ins_id += ab->userpd_id;
->  }
->  
->  static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
-> @@ -1101,6 +1102,28 @@ static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
->  	return ret;
->  }
->  
-> +static int ath11k_get_userpd_id(struct device *dev, int *userpd)
-> +{
-> +	int ret, userpd_id;
-> +
-> +	ret = of_property_read_u32(dev->of_node, "qcom,userpd", &userpd_id);
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	switch (userpd_id) {
-> +	case 2:
-> +		*userpd = ATH11K_QCN6122_USERPD_2;
-> +		break;
-> +	case 3:
-> +		*userpd = ATH11K_QCN6122_USERPD_3;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	return 0;
-> +}
-> +
->  static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
->  {
->  	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-> @@ -1142,6 +1165,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
->  	const struct ath11k_hif_ops *hif_ops;
->  	const struct ath11k_pci_ops *pci_ops;
->  	enum ath11k_hw_rev hw_rev;
-> +	int userpd_id = 0;
->  	int ret;
->  
->  	hw_rev = (uintptr_t)device_get_match_data(&pdev->dev);
-> @@ -1160,6 +1184,12 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
->  	case ATH11K_HW_QCN6122_HW10:
->  		hif_ops = &ath11k_ahb_hif_ops_qcn6122;
->  		pci_ops = &ath11k_ahb_pci_ops_wcn6750;
-> +		ret = ath11k_get_userpd_id(&pdev->dev, &userpd_id);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "failed to get userpd: %d\n", ret);
-> +			return ret;
-> +		}
-> +		dev_info(&pdev->dev, "multi-pd architecture - userpd: %d\n", userpd_id);
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
 
-This does not look like useful printk message. Drivers should be silent
-on success:
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+Will change accordingly.
 
->  		break;
->  	default:
+>>
+>> Though it is a PCIe device, since it is not attached to APSS processor
+>> (Application Processor SubSystem), APSS will be unaware of such a decice
+>> so it is registered to the APSS processor as a platform device(AHB).
+>> Because of this hybrid nature, it is called as a hybrid bus device as
+>> introduced by WCN6750. It has 5 CE and 8 DP rings.
+>>
+>> QCN6122 is similar to WCN6750 and follows the same codepath as for
+>> WCN6750.
+>>
+>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>> ---
+>>  .../bindings/net/wireless/qcom,ath11k.yaml         | 57 +++++++++++++++++++++-
+>>  1 file changed, 56 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> index c089677702cf17f3016b054d21494d2a7706ce5d..4b0b282bb9231c8bc496fed42e0917b9d7d106d2 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> @@ -21,12 +21,13 @@ properties:
+>>        - qcom,ipq6018-wifi
+>>        - qcom,wcn6750-wifi
+>>        - qcom,ipq5018-wifi
+>> +      - qcom,qcn6122-wifi
+> 
+> Why people keep adding to the end... previously ipq5018 added by
+> qualcom, did not even get any review.
+> 
+> Place it before wcn and let ipq5018 be outlier since this was broken
+> already.
+> 
 
-Best regards,
-Krzysztof
+it was exactly ipq5018 which got me thinking I should add it to the end.
+Will alphabetically insert qcn6122. I could reorder the entire list as
+well if you'd like (ipq6018 is also misplaced)
+
+>>  
+>>    reg:
+>>      maxItems: 1
+>>  
+>>    interrupts:
+>> -    minItems: 32
+>> +    minItems: 13
+>>      maxItems: 52
+>>  
+>>    interrupt-names:
+>> @@ -87,6 +88,14 @@ properties:
+>>      items:
+>>        - const: wlan-smp2p-out
+>>  
+>> +  qcom,userpd:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [2, 3]
+>> +    description: instance ID of user PD (protection domain) in multi-PD
+>> +                 architectures to distinguish between multiple instances
+>> +                 of the same wifi chip used by QMI in its interface with
+>> +                 the firmware running on Q6.
+> 
+> Broken indentation. It is supposed to be two spaces. Look at this file -
+> why are you doing this completely different?
+> 
+> Anyway, please do not come with 2nd or 3rd property for this. We already
+> have such somewhere.
+
+Would you mind pointing me to the property you're referring to? Do you
+mean the QRTR ID as proposed in this RFC:
+https://lore.kernel.org/linux-wireless/cover.1732506261.git.ionic@ionic.de/
+
+if so, this wouldn't help this in this case. Although it's PCIe based,
+PCI is not even enabled as the Q6 firmware itself takes care of that.
+
+> 
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -268,6 +277,31 @@ allOf:
+>>              - description: interrupt event for ring DP20
+>>              - description: interrupt event for ring DP21
+>>              - description: interrupt event for ring DP22
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,qcn6122-wifi
+>> +    then:
+>> +      required:
+>> +        - qcom,userpd
+>> +      properties:
+>> +        interrupts:
+>> +          items:
+>> +            - description: interrupt event for ring CE1
+>> +            - description: interrupt event for ring CE2
+>> +            - description: interrupt event for ring CE3
+>> +            - description: interrupt event for ring CE4
+>> +            - description: interrupt event for ring CE5
+>> +            - description: interrupt event for ring DP1
+>> +            - description: interrupt event for ring DP2
+>> +            - description: interrupt event for ring DP3
+>> +            - description: interrupt event for ring DP4
+>> +            - description: interrupt event for ring DP5
+>> +            - description: interrupt event for ring DP6
+>> +            - description: interrupt event for ring DP7
+>> +            - description: interrupt event for ring DP8
+>>  
+>>  examples:
+>>    - |
+>> @@ -467,3 +501,24 @@ examples:
+>>              iommus = <&apps_smmu 0x1c02 0x1>;
+>>          };
+>>      };
+>> +
+>> +  - |
+>> +    wifi1: wifi@b00a040 {
+>> +        reg = <0x0b00a040 0x0>;
+>> +        compatible = "qcom,qcn6122-wifi";
+> 
+> Don't add examples if they differ by one property. Drop.
+
+Dropped in next version.
+Thanks for the quick review!
+
+> 
+> BR
+> 
+> Best regards,
+> Krzysztof
+
 
