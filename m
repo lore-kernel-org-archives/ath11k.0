@@ -4,154 +4,131 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75259CCF9F0
-	for <ath11k@archiver.kernel.org>; Wed, 29 Oct 2025 17:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87934CCF9EA
+	for <ath11k@archiver.kernel.org>; Thu, 30 Oct 2025 04:31:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1Tm2efnxxnQzoL+56KNFAzc6Jp5lRujeZJq36TELet0=; b=pMP5shpR19KznOhx3bIdZwGRRK
-	DFWmJhIzcWU+6tyMecq+xrr/k1/5BegQ1bQ9uV2xHYeg0CZd8/eiY5kg+qwlVFqCNLryjfetdbpm8
-	A3MG6bovvBO4A6Exr1XAp8M+tAHggskJfEJZABfZ5v9Fyk/Zx5svJ65wzSZb28FfayiDU5KQ3dh66
-	9HyZ5ITC1Cg3GXc691heZh2Zttain65x2SpRVO+BmO0vNX9y2JoC1IewjPrdn0l5YtT9TnR3yDyj1
-	XNRfd/k9NionY6+qpnDRegArLDIqoQE7yXn8V+fQuDENv2jkudCSdQq1DZuDJ60z3QQY/R25kR5f7
-	FQMrSfOw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=K9OY/sJ/Izn65ncQP/ishJDLZT0HjSH4Heg2jcohoJk=; b=ZP5kaHFhO1dtVphtHOR6Iv0rAU
+	EK+WZdxphSv7VxG1n7XnZAYS8pwhcxJ2WuuEcvhB7SRJvllCSqmNk1vJUoZ/iW5v6FbCyQf1x3u5u
+	CVemzSKogyKmsytWcj2yKSqZm0j+OaPBv7/+xaPOrbzZ79DNiQcWWbsV7UL5LuNkZN7ADlhe3V8U2
+	57W2ZlyZHIX8iJ/w5tZvv2v4H5SiRABXaXsc365mVtQu1UABy+keSNt/Ciq1SPJWInG1NslkGFh98
+	h/y+9R41JZIf07F3rM71/LXnw3fv7vWUGaqoR3HA5HTMeabX0Q+Q4RmsDW5fbz1kF3gAw3TW1JZsx
+	MmjIAeLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEAAs-00000002FNt-229Z;
-	Wed, 29 Oct 2025 17:41:30 +0000
-Received: from mail-southcentralusazolkn19012065.outbound.protection.outlook.com ([52.103.14.65] helo=SN4PR2101CU001.outbound.protection.outlook.com)
+	id 1vEKKM-00000003SfY-4BDP;
+	Thu, 30 Oct 2025 04:31:59 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEAAq-00000002FN2-1zuj
+	id 1vEKKK-00000003SdQ-2BeB
 	for ath11k@lists.infradead.org;
-	Wed, 29 Oct 2025 17:41:29 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XmI2rxZciqkElxC+fCFOSqk6ZPe6bO2D8o6kvZA8Rd8W3mqUGf0i0o/KjQ7pu19AcWU3283hBLMd8X6EYEfEOFQO9tahb5LOlBFf8Ng7ur0fhKKl4B6MuQQFgWisgTfX0oUH7O/HGH4GEMG2iUcjagZegj7p0YxkarfIc21GBhjhtq58iKdRTXiE/wWY31FfMEoZhMsb4ifHdlVgSJ56o50yMMmokChedQ9sGMpkdE/blmpNdVcYe0oy33mUWrcumPn0CGWcXd57+/cYt7Wp42yfUUhhIItpJF8G2KhVZLcXF5skeVBRmOLQbT6vvgWtbSkmBQU2/kWzyjvTyU3pgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1Tm2efnxxnQzoL+56KNFAzc6Jp5lRujeZJq36TELet0=;
- b=VzVx4MsWm5gNQ2z42whQqbUMNLik6OAFxECEa3NhqJP8UOb8oC+f3+hXsh6Pgjs8exiLEmUk3uVAWT8YCO3NATzZl/eMgCDwIpMVyICwqqjKobn6cVq7+Iow4Mu7Pxh+swAjYtC8d/B81/0JjaN3f23a+46ZUeU/fx7T4nh6aFY5IjlJXvL2+uppN5NuuSEr3MDhYlvXlIQzQGp4B3UiNmUsVzoCcLbtUbMqYSISQWxqBQ9fvJm0EwSgrbNswzJYlfj0t61yhqSsdC1s1hyxDWck5L52gYRmg7uiXQ1p50eZhXUlU9JC26M5OIq9K7BEmIYbHIWudwqHxK+miSpF0Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Tm2efnxxnQzoL+56KNFAzc6Jp5lRujeZJq36TELet0=;
- b=q0HzdNiatDxpg5n6xct4nYqUSsXTqXzVzx9l8khQUzyIejYhW/XvQwvfmiE13w/OvVnOIGQf9yiwZCZm+ZmkEebMLhoof76jCIKGoaMbkQNK+TPg9pbMC52EYL5vpo5vKaSISxpzum1f9W4xchvspExkK0YEEJB+7o2lUBZOKv6BscWVpSQjDx3QNSs5DLhXITW8TrGr9VQ3v4t2GxAd8AQmznolHOIkAozDi60qJafzzAe4QBaYok9tvpr0z9apqqKTQxT0J1an/vYBSTISGGl+oYoo4vm86TjVgvFvGLlPpQxKr6aNDcQvmuoV8QKhrukgHOhyHD519ul8eWoBNw==
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
- by PH8PR19MB7165.namprd19.prod.outlook.com (2603:10b6:510:217::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Wed, 29 Oct
- 2025 17:41:23 +0000
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305%4]) with mapi id 15.20.9275.013; Wed, 29 Oct 2025
- 17:41:22 +0000
-Message-ID: <DS7PR19MB88834F5A352F93EE909AB42F9DFAA@DS7PR19MB8883.namprd19.prod.outlook.com>
-Date: Wed, 29 Oct 2025 21:41:14 +0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] wifi: ath11k: add multipd support for QCN6122
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
- <20251029-ath11k-qcn6122-v1-5-58ed68eba333@outlook.com>
- <5137cd11-004c-43ed-8bbb-646beb105844@kernel.org>
-Content-Language: en-US
-From: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <5137cd11-004c-43ed-8bbb-646beb105844@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DO3P289CA0023.QATP289.PROD.OUTLOOK.COM
- (2603:1096:790:1e::17) To DS7PR19MB8883.namprd19.prod.outlook.com
- (2603:10b6:8:253::16)
-X-Microsoft-Original-Message-ID: <32a3ba0f-d9dd-49f5-a9d3-3e3916de0f3e@outlook.com>
+	Thu, 30 Oct 2025 04:31:57 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TKWDNp1504048
+	for <ath11k@lists.infradead.org>; Thu, 30 Oct 2025 04:31:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	K9OY/sJ/Izn65ncQP/ishJDLZT0HjSH4Heg2jcohoJk=; b=iV72iQ27zDgr9J5A
+	EV4pGldbth+PPpq6/zWpFeFJM9YE2P3sLKC/jeTaxYntqz7ldcdZE85vnB4qSykK
+	e/TxGZB7p0tz6K62KiIFos/keeAuogPQETIo54NrdA6YRY3H6v47A7DTOUSBAv/6
+	igQd6tePZ3Az7Ne+THESafpeNno4bF+mfNcAz3BQ2wOM/uvK0iLR+WW+pwrZtNA9
+	3bamkDDJSvBoXhfL3l7GS0rqHtL6m4uVHju+KqpQGX+IpzXIRMCPCvvz7vAVNWFt
+	9Oxp3YK0Ig7aQmREq7tcJ68gVz7XvaknhGCwFR2QvNwhvRWXzFFV9uMAYAsnelAz
+	JD6QqQ==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3t1js5q9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 30 Oct 2025 04:31:56 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b6ce1b57b3eso928916a12.1
+        for <ath11k@lists.infradead.org>; Wed, 29 Oct 2025 21:31:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761798715; x=1762403515; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K9OY/sJ/Izn65ncQP/ishJDLZT0HjSH4Heg2jcohoJk=;
+        b=VKJnEk4d08JFSNrohs3q7uNipNpH9dSgcq6FUOUKPp053o60RPpxQLyTgu7p/ceu72
+         qf3GfisWCgcEfyxilBjRbABCqIDO/yCfCYSBz+rRZODBadDVYBUKLM0S9mrakiIECJ0O
+         wHO7HrD6+UX7pLkFsLv6EPFWS768PuM+EeIEWGFcOMpTtLoO1Aiyst1iKr3r0x6RWV8K
+         k87UjNSvCxCbia/2ntY+9E4U9cxiRSKPn9LbKJRt6Bt9pbxInWGQRDUSSPnjbWWgB9sc
+         pOtNKXxbVBWWI2UZgAaBXJmH6NGMoQuno9oVDZSd5FpxYIKHAiTJrvvGghBBlvCpTsR/
+         lFZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761798715; x=1762403515;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K9OY/sJ/Izn65ncQP/ishJDLZT0HjSH4Heg2jcohoJk=;
+        b=JpwtXsavg5GWJI3g2kIAuQCSn0KRAc/qCDIKByEXa+fGZMWmaktH9lCzSEiA1iZIMn
+         jwtJkNzbHKHvydWSP4L2Dge8b+KPk5vIPp8LqoPEJMh5/laF/vy/YjWwlM0BPSvH5lDk
+         YoQPQcgDBbn/Qpnx4E/KORvw5sGyt4tsjImxq3Rc2W2TYvS6YjCVihNLtehs6UcPDNT5
+         KIFMqvyHUccKEsT7+gfazHyVomaXt4wyN1Idc/8D5XC7nLZlRgLVrGXPzq0LDGiXZaBs
+         OFazNfkfk9GrY14z4rkbgKO7bZsgVPAvueV8j39cwtBPHZv+K1/rkhxc4lrQ2BKRQY91
+         Gk1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUZlcr+ugLtkGCoiGqsLSYTfUTcknGga1Ixjrwq7OlABlmOOMp5smqcWK2oX1v5MCXTrG3FG7o=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyxDHEfxXqmes3F3IkBDDzPwI6MLbPQesYOiZH6vxGK4M6U/m4d
+	Pq0Btf1I9HhzVPXL5vjkpZ2HerNIhfpnvOFn3Vxc1Kdn8nb3G+1DTTROHlNDd49Ls60pUR8kLol
+	8BXNQPqlTDccWkFkcKtZ7L5SNJEQmxSA3bnMIeT1B3MZC1CnstziZDSX4+4bQeqr7
+X-Gm-Gg: ASbGncsRJ0rrS7/twPZ+7K/zw57Q0AgKpyIqkL1S5w/9B8m4Cz6sJc88tupcbNEhRuL
+	GXRP5vS1D9qqGGuz6R2STlaJBuiVPtkmgbrgxW+g8TuVvHX1612QJaNlCmMHVP0VbtMX0afMDnM
+	6t20W6gbzcOqXNa6vHDLyMVtqBT9ej2pJuU7xOXZGk/vO9Jh5goP7SrddfbXoWp4msPBQMVgBQx
+	KAQRH3JaryY8S2ke0gzYwPXWXDsUM15jNCOAjGbJtwMIsUj/IN7zmnjjlID7HVEJV0IAQxyPvlL
+	3XY7HrAW5af1HzfZOBDVtkTtD1zlscQKFy+y2/AQhF1wWF/W41O/GaB4WA5PiN4z6eA8j0lxwDH
+	STgWg7qpiZy+gNc82/LiNMDzl9DQ60G86e2IH16GDUBV6
+X-Received: by 2002:a05:6a20:6a06:b0:339:7f7c:bcf8 with SMTP id adf61e73a8af0-34785034697mr2337491637.22.1761798715249;
+        Wed, 29 Oct 2025 21:31:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGB3i/yFiAlnZX22laM4f5lComhTLnjEIKaO1G+/jN2+dVTM9EM2eEVHsfTZQQ92+4QTvVflg==
+X-Received: by 2002:a05:6a20:6a06:b0:339:7f7c:bcf8 with SMTP id adf61e73a8af0-34785034697mr2337456637.22.1761798714661;
+        Wed, 29 Oct 2025 21:31:54 -0700 (PDT)
+Received: from hu-yuzha-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a41409e456sm16912161b3a.71.2025.10.29.21.31.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 21:31:54 -0700 (PDT)
+From: "Yu Zhang(Yuriy)" <yu.zhang@oss.qualcomm.com>
+To: jjohnson@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org
+Subject: [PATCH ath-next 3/6] wifi: ath11k: Add support unassociated client CFR
+Date: Wed, 29 Oct 2025 21:31:47 -0700
+Message-Id: <20251030043150.3905086-4-yu.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251030043150.3905086-1-yu.zhang@oss.qualcomm.com>
+References: <20251030043150.3905086-1-yu.zhang@oss.qualcomm.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|PH8PR19MB7165:EE_
-X-MS-Office365-Filtering-Correlation-Id: 46b811af-8dc1-43de-93be-08de17125ffd
-X-MS-Exchange-SLBlob-MailProps: /UmSaZDmfYBk0OqXWkGcw9KFcS+e1k4icv+gtFELIJ4ZxYEjZ5dCz32cLIIlt6pb9Z7MMQCi8E1jc83seq/I1nXKGtjTifUt9tgXN3CSPYfong1fduBot2sOGhw4sZ8Uj7xQjqQjStn+tJW/D0X+9SRvK0xSvf9u6ef5NscXKj8w4KaY1oaM22vlTE1zuCbM8d/qSHl24BjqFf85nLIGuHjku+YAhjDjjRkMe2HAsXo803UQ3Q+2EtoCjUc5m3E47oBp6pHjsY+ZozMiAvonsCB3TGMbduuL/gvXBW1kC7DogHokW5sVgT5zkpRZO94jNN7j6kP28oaV70SLEtLE+eM6NiAkTSFsD4NEkhydicDMXp9NObl512o+2JDLIhCtbuuM11/f1K/ptPKfxRtZYcU2hF1NBCgOXEzahIy6CRA3f3XXaTZlWeI1DKK+N6auXNF41oixTTWpmpWZTDjlgbPfFY8KekCuEEKmLtn18kl3B/UbmxCy40C7apEWaDaB0kovcFAT8aSjFdRFruWSFgMSaN0aETRn1IiZ3IKDKS0QrQqRRlbutddG+6X5Bo3oKN7nVql00oJxyj9cbkXW2lEYmIiPdDLYlXqNboz8O1IZvQEMuaJIdmLj/YOTyc/XPNrR5Y0NuLIn5i8eZk3+ef3Ad/JtS3C1jiFRz1rc3rbAec+3c58k+CGOaWW59TrnHDMaw53+je1SSIzY90DQGRbb65Ob0LPvGXIZ6JKIgbbOltwXM8MoSCB+4U0yvClVLQI2nhYeElPTf6ooGRv7ypeDkg3If6RWGadVVAgUg3mG0BzHc7asSpG0hMnFtvE38BeVwhOAvRWIrjr8SqNvYQ==
-X-Microsoft-Antispam: BCL:0;ARA:14566002|19110799012|8060799015|15080799012|23021999003|461199028|5072599009|6090799003|41001999006|3412199025|440099028|4302099013|10035399007|40105399003|12091999003|1602099012;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZVlINm02Mno0V3JNWEFQbmVUalhpcWRzaVlqZm52Z3B6Z2w3VjNiTjNGNnJ0?=
- =?utf-8?B?LzZwS0xteDh6SXA0VW5DbnBuV24zWTVZVklNS1BGZE5RTkdtaWNQemMrSXVi?=
- =?utf-8?B?K3dEYy9ybVFJZnpOL21jRVhFdFlRakxjRXN6S2RJVGJ4aHpEQTd0QStVUCt4?=
- =?utf-8?B?dk4rMXlxeGFQVmJUT2RVLzFQdUpvYkR3SmFtT3U1OXNKcW0xNU9uQVdsRi9K?=
- =?utf-8?B?Y2lUeW9pZzh3ek9jRGZmSnA5c1FtT2VoTGNkQktTb0VCZTBrUDlKaGtyQ1Vv?=
- =?utf-8?B?VTdYWEZqUWh0V2Z5ZmZwZWo5NlpyM016Z2xzekhrNS9wd2cvd2srMDRVWCtL?=
- =?utf-8?B?QUlGWnBDSXJDRHliMGlpSHBraWwyWktTd24weDQxekFRVmVSckkyOU5JOFNz?=
- =?utf-8?B?cGo4TW9WLzhMdGhHOVVJSjh0N3VuaFdkeS9zY01LVTMwUnNCeUcvY0NIOEgv?=
- =?utf-8?B?c3QwRW1Ta1Z6NDJaNWlOcUd3ZkYyTHhWUll1RU1mMUtiQThINklzQ2xJRW9M?=
- =?utf-8?B?SWlnWVMvYS9XRnZjRnRiVm9McEJYYTZDaUJFR3JHdCtYNVE2bkFkMnArWW1B?=
- =?utf-8?B?QS96Wk14aFdXMzB4WWhlbUlweWpFRlBNemgxNW1TbFI5TEdzMVFmdlg3cnAw?=
- =?utf-8?B?SUlCQndEQzhPbkxmVkJaSXhid1pRcmtwQitkQllXTmI4bGNJTWxuZmN1ckFE?=
- =?utf-8?B?cUk2Q0pMYmNvckR4d0VoYlloKzVQbkZ6ZWhud0s2RWg3TVB4SEFDWTNWMzhP?=
- =?utf-8?B?SlhRMHBMUFp1Yk9kWUhwZlNpaGtpR2o4OE1haGVLZUhZRGUwUDFFOWhrRkRP?=
- =?utf-8?B?UDZueTVBSWdNV2cwVWRVMkRmV0xqL3RucGxPaERNZW9OS3grS2R5ZElUMlZC?=
- =?utf-8?B?cWZJelFaczdJdnUvNjZkRzJxOGE2Myt2STRVVFZ5ek5kNFl6amtGT2FyemEx?=
- =?utf-8?B?OTc4R1R0a2RSOFpQTUltVmVmYVVCTmZvVnFUWUFIejFIVXhoL1FzdDZJTC9w?=
- =?utf-8?B?emxYTTYwZXZnWk5EQ2VDdlZ6K1lpMmxkb0RxbktBNUlVTGtKUUI0dExCQUJK?=
- =?utf-8?B?UWdQMC9Xcjl1NUFvN1dJUVprWWYrblVoRTJ5MnpYRUdDczBIai9DbUloamg5?=
- =?utf-8?B?OVFFNWcxeW5CaHJlMTBkVXlSMThrNko5UC80SkxUdHdSUkpKTVhMQVZJZ1VY?=
- =?utf-8?B?dVNsQ3JUemh1UTVHQmF0Zmw1U1lhVUNINmtzZlBzVC9EaXBQZC9oNEtRQkxG?=
- =?utf-8?B?eE1NSHB0a2o0emtxQ0kyTm5Oa0E3WTdBc0JMb2hSaDZrcUtwU2tUbzJzMFFq?=
- =?utf-8?B?NFYrcnJxV2N4NHhVMWJHWWdOUkk0Q3gvSjE3bkxRUkQ4alRMaUYrWWRKdVU3?=
- =?utf-8?B?RTFxODFiOUJXUXRyWFFVZ3hNNVg0U0N0NDk3Rm5KWTRjY1EyWThad0tBZjEw?=
- =?utf-8?B?WG0xTmFRb1hjRzRwZUozSWFETDZ0d1Z5Z0NLVE9LTVk2MlRHVVMxTk5XM3Iy?=
- =?utf-8?B?Q0Y2Z1VEMTgxM1V0QUx6VlQ0VUs5a3dqREhRVml3OE9QdDJQd3IxUy8vY0t3?=
- =?utf-8?B?b2VZNGpQaDkvTE1VZHFYKzVhdEt5QXZRc1Y1Sy9VbHVUOTIzejlkR0FsRTlw?=
- =?utf-8?B?TEhYeG42NHFRWUt3ZWJhY0FMWnRMd0xYSVkzUkFQWjRGaHYvUGlmZml2SHZ5?=
- =?utf-8?B?UGtNazZDbnNsQUtTdDlrZnp1UXBUT2owa1dFVVU2STJvVWdMMlRyRmI2Ynh4?=
- =?utf-8?Q?u09LmRcT1BKssYBphQqGBtMm/2Ahn/x1Mi8kxjQ?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z3pVaERzendza0QxRG1vendwRGZ0S2kvTmVHSlRtNDZyc0YvSjZ2Q1JTb2hN?=
- =?utf-8?B?c0kxTE1NdW11V3FkN2V0bzJac0tKRDdrNXRiZlBnaHVZMjgxZ2VjeEhSK0Fl?=
- =?utf-8?B?enFCci8zUFV6OVp6bDF1ZGJrOExkZHVpakZkdFphMjNRdWxiQVNZZlA1ekNp?=
- =?utf-8?B?ZS82NWhRdS80bTdxZjU4UUN3QW1VRnFjUlpBeE9XRmltUnE3VUd1SHluL1N4?=
- =?utf-8?B?ZElHMHJEOVRqWlN5TkJOM3ZuUjMxZnhnakppQWgwRk5DUVdON3duTk1qWUl4?=
- =?utf-8?B?SXd6Y1BEMW9mUlpmZlgyeWtidnRTeHo1aXFVeW9qQldMUjE3dVlsWXBlMFM4?=
- =?utf-8?B?UStyT0ROcXJ0dTM0citBSkVFMXJEU3BrakZKaDRBcXNNeDFDUDgxU3Q0dUc5?=
- =?utf-8?B?akpRREV4Y0pPTzJLS0Q3UkxlUGZFdjhDVVlSZGRhTTQzWGgyWTBHck5HYzFs?=
- =?utf-8?B?YnBkQUs0UW9qZ3JaMVlZQm01OVcyeE5uWkI5ekJCbmhoRXcreTB6VmJYeEZI?=
- =?utf-8?B?S294RXJZOU92WmwyY1VGV2NtcmMraTh2NHJpQjVlYmRXNU5ld3ZMTXBFZmJY?=
- =?utf-8?B?NnlFcDBpRnJrSWZzNHZlTUVvdzJMaEhnMXcwb2xNMXppSC9RRVdBMkV5bEFZ?=
- =?utf-8?B?NmJnTVdIdW4wMzlDdVJJUEwxdzVxRTZBOWIzZk51Q3BxWm1vbzNWWS80bVNX?=
- =?utf-8?B?VnBHRXJZTzNBWVlORmZKaVpuK0Y0NjlzMFowMFFhU0E3ODc4U240K3ZYYlBw?=
- =?utf-8?B?THZiOTNYLzFvMjl0eitRNWZvcXRVcys4cXF2elJENGIxVUI4aHFnUkFteGhJ?=
- =?utf-8?B?d3IzUFhteHdQR29ZOFEzMHY1SGw4WXNGVi81dytYaDNXTUgrc0M5S2szdUZG?=
- =?utf-8?B?d1QvY21HL01BSVVMQ1lVaWZ6ck9GbEZLditOajBWMklrdkwzNzQxWHExYkMv?=
- =?utf-8?B?WGd2OUF1Z1E5SGRKR3NLeTFlVWRObGRYUGlIdkoyNXV3RC80endrbDBCbTZT?=
- =?utf-8?B?VWkwR01FNEwxN0lQUWFzU3JITjNjQXRIaVpWMHgvTVI0K3pIdmtvUFJwcXBz?=
- =?utf-8?B?d0xLUk45ejMvOGhjRHZSUTFhR3NXUmMvenBmVGpFbEtza0hJUkZLRUdFdE5D?=
- =?utf-8?B?eStQUm1jamo4WXRPV0N1dHdicEFwdWVZeHdUVTdtdjVTNFVYOFBFa2tlY3oy?=
- =?utf-8?B?S2k2dWxSemMvb2Y4bzMrMmRybllKekU2cVVnOEtjMFBLVWIvaHhLRVE2MnlV?=
- =?utf-8?B?TktOQVpCcWFaQjFld21GTURjMms5dk9YM3dpWmhJaUFBZzlSU0xWMGFWRmFS?=
- =?utf-8?B?M0kxNU9Vdmg0VHYrTmsvUnJjdGdSQmJOV3d3YWg0ZzQ0S1pYLzZxa2dFcGJM?=
- =?utf-8?B?YjY5cUVhcGF3V2Q2Z3hNRzlIN3lEK0tZOU5VaVBlcmVRSW9DWFV2QVd5aWhX?=
- =?utf-8?B?QVpBT1VwdVZXLytLVnpVRHk5QkR1WTV0VG5XT1NHWmNCalhpNFVBUlN1QWdC?=
- =?utf-8?B?dG1xYWtzdi9lSDdmdFJkbGdQYWZadmFKbGdGV1Z5cHQxQUFLK2pIWGJheDAw?=
- =?utf-8?B?ZXZYOGVubW5sUWJyOVlDM0tQaE5uL3R6STV6NVRIRlI5Q01xdEJBdUk1T2N6?=
- =?utf-8?B?SUxsd2U0eVoxRnY4OXNzV0FhMGxzNVFDeFN1ak9Fbm5wdHV2UWRnUmZpdWZ5?=
- =?utf-8?Q?HQ8nlHS3sXEWgxZGpK6t?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46b811af-8dc1-43de-93be-08de17125ffd
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 17:41:22.7862
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR19MB7165
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: Yh-vBEZi0zDywVONVBzPi-eOib-bGhsE
+X-Proofpoint-ORIG-GUID: Yh-vBEZi0zDywVONVBzPi-eOib-bGhsE
+X-Authority-Analysis: v=2.4 cv=M/lA6iws c=1 sm=1 tr=0 ts=6902ea3c cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=J6nKnfFvHuu1lZMax6MA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDAzNCBTYWx0ZWRfX/lGwZGBJklKO
+ hnU0p2qP/t+BjpU8FZAjrjMC0cszt99zSaffofuTt4XY7yMZjX63+bic8lOYpQEjVIpSXuKX9cL
+ Q0YljblJ9C7WVpCnWEFCcwzb6dblPfHR0RI2BdMnoVoGGIuMn5VEMDySAgJpwwKhpHbcx0vdpZE
+ CMPRi9/rlSMQrYleoy8NPgHJU3muNaOMXnZWE6r24pqJBHxqmM9anMPUz4JpIAmxL4fiuhjq2J9
+ VZeFPdlyezwp8MloCW8X6s15iLUeiMkT7XgOk8w1qBOHoebNnOIFmayxmCjwM5McYouBWx63lNM
+ P5EKWBLnvx5ANinTXtgORyglZXcAWkaKHc+tg9L+FMX4P3GBfMneXglyqep6QbFBO+Gs84Oco29
+ 6XFW1BfKPQe2TMuIhl8jETnIHCQZ2A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_01,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1015 adultscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2510300034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251029_104128_559171_6B30A095 
-X-CRM114-Status: GOOD (  21.62  )
+X-CRM114-CacheID: sfid-20251029_213156_575265_1C9F3521 
+X-CRM114-Status: GOOD (  22.35  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -166,122 +143,473 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 
+Provide debugfs interfaces support to config unassociated client CFR
+from the user space.
 
-On 10/29/25 18:43, Krzysztof Kozlowski wrote:
-> On 29/10/2025 15:26, George Moussalem via B4 Relay wrote:
->> From: George Moussalem <george.moussalem@outlook.com>
->>
->> IPQ5018/QCN6122 platforms use multi PD (protection domains) to avoid
->> having one instance of the running Q6 firmware crashing resulting in
->> crashing the others.
->>
->> The IPQ5018 platform can have up to two QCN6122 wifi chips.
->> To differentiate the two, the PD instance number (1 or 2) is added to
->> the QMI service instance ID, which the QCN6122 firmware also expects.
->> IPQ5018 internal wifi is always the first PD while QCN6122 cards must be
->> second or third.
->>
->> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
->> ---
->> See below patch for more info:
->> https://lore.kernel.org/all/20231110091939.3025413-1-quic_mmanikan@quicinc.com/
-> 
-> I don't see any common part with that. Your bindings are completely
-> different and while PD was justified there, there is no such
-> justification here. Neither in the bindings.
+To enable CFR capture for unassociated clients,
 
-Will adjust the description in the bindings and add more details. Mind
-you that I don't have access to the proprietary designs / data sheets,
-so it will be based on my understanding:
+echo “<mac address> <val> <periodicity>”
+ > /sys/kernel/debug/ieee80211/phyX/ath11k/cfr_unassoc
 
-The firmware running on the Q6 remote processor takes WCSS - wifi
-functionality - out of reset and brings them up. Each wifi radio on the
-IPQ5018/QCN6122 platform runs on a separate process (referred to as
-protection domain) which avoids one that crashed crashing the others.
-The firmware and kernel driver communicate over QMI leveraging the user
-PD IDs as instance IDs to distinguish between multiple QCN6122 wifi chips.
+Mac address: mac address of the client.
+Val: 0 - start CFR capture
+     1 – stop CFR capture
+Periodicity: Periodicity at which hardware is expected to collect CFR
+dump.
+     0 - single shot capture.
+     non zero - for Periodic captures (value must be multiple of 10 ms)
 
-With that, would the additional property in the bindings be considered /
-accepted? Else, any guidance would be appreciated.
+Tested-on: IPQ8074 hw2.0 PCI IPQ8074 WLAN.HK.2.5.0.1-00991-QCAHKSWPL_SILICONZ-1
+Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
 
-> 
->> ---
->>  drivers/net/wireless/ath/ath11k/ahb.c  | 31 +++++++++++++++++++++++++++++++
->>  drivers/net/wireless/ath/ath11k/core.h |  4 ++++
->>  drivers/net/wireless/ath/ath11k/pci.c  |  1 +
->>  3 files changed, 36 insertions(+)
->>
->> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
->> index 7b267dd62e964b2c4d6c3bbe016abd1ad0297219..820a383e88caf125892176e421b0121fed7e7055 100644
->> --- a/drivers/net/wireless/ath/ath11k/ahb.c
->> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
->> @@ -429,6 +429,7 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
->>  	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
->>  	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
->>  	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
->> +	ab->qmi.service_ins_id += ab->userpd_id;
->>  }
->>  
->>  static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
->> @@ -1101,6 +1102,28 @@ static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
->>  	return ret;
->>  }
->>  
->> +static int ath11k_get_userpd_id(struct device *dev, int *userpd)
->> +{
->> +	int ret, userpd_id;
->> +
->> +	ret = of_property_read_u32(dev->of_node, "qcom,userpd", &userpd_id);
->> +
->> +	if (ret)
->> +		return ret;
->> +
->> +	switch (userpd_id) {
->> +	case 2:
->> +		*userpd = ATH11K_QCN6122_USERPD_2;
->> +		break;
->> +	case 3:
->> +		*userpd = ATH11K_QCN6122_USERPD_3;
->> +		break;
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +	return 0;
->> +}
->> +
->>  static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
->>  {
->>  	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
->> @@ -1142,6 +1165,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
->>  	const struct ath11k_hif_ops *hif_ops;
->>  	const struct ath11k_pci_ops *pci_ops;
->>  	enum ath11k_hw_rev hw_rev;
->> +	int userpd_id = 0;
->>  	int ret;
->>  
->>  	hw_rev = (uintptr_t)device_get_match_data(&pdev->dev);
->> @@ -1160,6 +1184,12 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
->>  	case ATH11K_HW_QCN6122_HW10:
->>  		hif_ops = &ath11k_ahb_hif_ops_qcn6122;
->>  		pci_ops = &ath11k_ahb_pci_ops_wcn6750;
->> +		ret = ath11k_get_userpd_id(&pdev->dev, &userpd_id);
->> +		if (ret) {
->> +			dev_err(&pdev->dev, "failed to get userpd: %d\n", ret);
->> +			return ret;
->> +		}
->> +		dev_info(&pdev->dev, "multi-pd architecture - userpd: %d\n", userpd_id);
-> 
-> This does not look like useful printk message. Drivers should be silent
-> on success:
-> https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
-> https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
-> 
->>  		break;
->>  	default:
-> 
-> Best regards,
-> Krzysztof
-> 
+Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+Co-developed-by: Yu Zhang(Yuriy) <yu.zhang@oss.qualcomm.com>
+Signed-off-by: Yu Zhang(Yuriy) <yu.zhang@oss.qualcomm.com>
+---
+ drivers/net/wireless/ath/ath11k/cfr.c | 228 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/cfr.h |  33 ++++
+ drivers/net/wireless/ath/ath11k/mac.c |  15 +-
+ drivers/net/wireless/ath/ath11k/wmi.c |  16 +-
+ drivers/net/wireless/ath/ath11k/wmi.h |   2 +-
+ 5 files changed, 290 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/cfr.c b/drivers/net/wireless/ath/ath11k/cfr.c
+index 4672100786df..649675e94bab 100644
+--- a/drivers/net/wireless/ath/ath11k/cfr.c
++++ b/drivers/net/wireless/ath/ath11k/cfr.c
+@@ -14,6 +14,60 @@ static int ath11k_cfr_process_data(struct ath11k *ar,
+ 	return 0;
+ }
+ 
++/* Helper function to check whether the given peer mac address
++ * is in unassociated peer pool or not.
++ */
++bool ath11k_cfr_peer_is_in_cfr_unassoc_pool(struct ath11k *ar, const u8 *peer_mac)
++{
++	struct ath11k_cfr *cfr = &ar->cfr;
++	struct cfr_unassoc_pool_entry *entry;
++	int i;
++
++	if (!ar->cfr_enabled)
++		return false;
++
++	spin_lock_bh(&cfr->lock);
++	for (i = 0; i < ATH11K_MAX_CFR_ENABLED_CLIENTS; i++) {
++		entry = &cfr->unassoc_pool[i];
++		if (!entry->is_valid)
++			continue;
++
++		if (ether_addr_equal(peer_mac, entry->peer_mac)) {
++			spin_unlock_bh(&cfr->lock);
++			return true;
++		}
++	}
++
++	spin_unlock_bh(&cfr->lock);
++
++	return false;
++}
++
++void ath11k_cfr_update_unassoc_pool_entry(struct ath11k *ar,
++					  const u8 *peer_mac)
++{
++	struct ath11k_cfr *cfr = &ar->cfr;
++	struct cfr_unassoc_pool_entry *entry;
++	int i;
++
++	spin_lock_bh(&cfr->lock);
++	for (i = 0; i < ATH11K_MAX_CFR_ENABLED_CLIENTS; i++) {
++		entry = &cfr->unassoc_pool[i];
++		if (!entry->is_valid)
++			continue;
++
++		if (ether_addr_equal(peer_mac, entry->peer_mac) &&
++		    entry->period == 0) {
++			memset(entry->peer_mac, 0, ETH_ALEN);
++			entry->is_valid = false;
++			cfr->cfr_enabled_peer_cnt--;
++			break;
++		}
++	}
++
++	spin_unlock_bh(&cfr->lock);
++}
++
+ void ath11k_cfr_decrement_peer_count(struct ath11k *ar,
+ 				     struct ath11k_sta *arsta)
+ {
+@@ -130,6 +184,59 @@ int ath11k_cfr_send_peer_cfr_capture_cmd(struct ath11k *ar,
+ 	return ret;
+ }
+ 
++void ath11k_cfr_update_unassoc_pool(struct ath11k *ar,
++				    struct ath11k_per_peer_cfr_capture *params,
++				    u8 *peer_mac)
++{
++	struct ath11k_cfr *cfr = &ar->cfr;
++	struct cfr_unassoc_pool_entry *entry;
++	int available_idx = -1;
++	int i;
++
++	guard(spinlock_bh)(&cfr->lock);
++
++	if (!params->cfr_enable) {
++		for (i = 0; i < ATH11K_MAX_CFR_ENABLED_CLIENTS; i++) {
++			entry = &cfr->unassoc_pool[i];
++			if (ether_addr_equal(peer_mac, entry->peer_mac)) {
++				memset(entry->peer_mac, 0, ETH_ALEN);
++				entry->is_valid = false;
++				cfr->cfr_enabled_peer_cnt--;
++				break;
++			}
++		}
++		return;
++	}
++
++	if (cfr->cfr_enabled_peer_cnt >= ATH11K_MAX_CFR_ENABLED_CLIENTS) {
++		ath11k_info(ar->ab, "Max cfr peer threshold reached\n");
++		return;
++	}
++
++	for (i = 0; i < ATH11K_MAX_CFR_ENABLED_CLIENTS; i++) {
++		entry = &cfr->unassoc_pool[i];
++
++		if (ether_addr_equal(peer_mac, entry->peer_mac)) {
++			ath11k_info(ar->ab,
++				    "peer entry already present updating params\n");
++			entry->period = params->cfr_period;
++			available_idx = -1;
++			break;
++		}
++
++		if (available_idx < 0 && !entry->is_valid)
++			available_idx = i;
++	}
++
++	if (available_idx >= 0) {
++		entry = &cfr->unassoc_pool[available_idx];
++		ether_addr_copy(entry->peer_mac, peer_mac);
++		entry->period = params->cfr_period;
++		entry->is_valid = true;
++		cfr->cfr_enabled_peer_cnt++;
++	}
++}
++
+ static ssize_t ath11k_read_file_enable_cfr(struct file *file,
+ 					   char __user *user_buf,
+ 					   size_t count, loff_t *ppos)
+@@ -188,10 +295,127 @@ static const struct file_operations fops_enable_cfr = {
+ 	.llseek = default_llseek,
+ };
+ 
++static ssize_t ath11k_write_file_cfr_unassoc(struct file *file,
++					     const char __user *ubuf,
++					     size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	struct ath11k_cfr *cfr = &ar->cfr;
++	struct cfr_unassoc_pool_entry *entry;
++	char buf[64] = {};
++	u8 peer_mac[6];
++	u32 cfr_capture_enable;
++	u32 cfr_capture_period;
++	int available_idx = -1;
++	int ret, i;
++
++	simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++
++	guard(mutex)(&ar->conf_mutex);
++	guard(spinlock_bh)(&cfr->lock);
++
++	if (ar->state != ATH11K_STATE_ON)
++		return -ENETDOWN;
++
++	if (!ar->cfr_enabled) {
++		ath11k_err(ar->ab, "CFR is not enabled on this pdev %d\n",
++			   ar->pdev_idx);
++		return -EINVAL;
++	}
++
++	ret = sscanf(buf, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx %u %u",
++		     &peer_mac[0], &peer_mac[1], &peer_mac[2], &peer_mac[3],
++		     &peer_mac[4], &peer_mac[5], &cfr_capture_enable,
++		     &cfr_capture_period);
++
++	if (ret < 1)
++		return -EINVAL;
++
++	if (cfr_capture_enable && ret != 8)
++		return -EINVAL;
++
++	if (!cfr_capture_enable) {
++		for (i = 0; i < ATH11K_MAX_CFR_ENABLED_CLIENTS; i++) {
++			entry = &cfr->unassoc_pool[i];
++			if (ether_addr_equal(peer_mac, entry->peer_mac)) {
++				memset(entry->peer_mac, 0, ETH_ALEN);
++				entry->is_valid = false;
++				cfr->cfr_enabled_peer_cnt--;
++			}
++		}
++
++		return count;
++	}
++
++	if (cfr->cfr_enabled_peer_cnt >= ATH11K_MAX_CFR_ENABLED_CLIENTS) {
++		ath11k_info(ar->ab, "Max cfr peer threshold reached\n");
++		return count;
++	}
++
++	for (i = 0; i < ATH11K_MAX_CFR_ENABLED_CLIENTS; i++) {
++		entry = &cfr->unassoc_pool[i];
++
++		if (available_idx < 0 && !entry->is_valid)
++			available_idx = i;
++
++		if (ether_addr_equal(peer_mac, entry->peer_mac)) {
++			ath11k_info(ar->ab,
++				    "peer entry already present updating params\n");
++			entry->period = cfr_capture_period;
++			return count;
++		}
++	}
++
++	if (available_idx >= 0) {
++		entry = &cfr->unassoc_pool[available_idx];
++		ether_addr_copy(entry->peer_mac, peer_mac);
++		entry->period = cfr_capture_period;
++		entry->is_valid = true;
++		cfr->cfr_enabled_peer_cnt++;
++	}
++
++	return count;
++}
++
++static ssize_t ath11k_read_file_cfr_unassoc(struct file *file,
++					    char __user *ubuf,
++					    size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	struct ath11k_cfr *cfr = &ar->cfr;
++	struct cfr_unassoc_pool_entry *entry;
++	char buf[512] = {};
++	int len = 0, i;
++
++	spin_lock_bh(&cfr->lock);
++
++	for (i = 0; i < ATH11K_MAX_CFR_ENABLED_CLIENTS; i++) {
++		entry = &cfr->unassoc_pool[i];
++		if (entry->is_valid)
++			len += scnprintf(buf + len, sizeof(buf) - len,
++					 "peer: %pM period: %u\n",
++					 entry->peer_mac, entry->period);
++	}
++
++	spin_unlock_bh(&cfr->lock);
++
++	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_configure_cfr_unassoc = {
++	.write = ath11k_write_file_cfr_unassoc,
++	.read = ath11k_read_file_cfr_unassoc,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
+ static void ath11k_cfr_debug_unregister(struct ath11k *ar)
+ {
+ 	debugfs_remove(ar->cfr.enable_cfr);
+ 	ar->cfr.enable_cfr = NULL;
++	debugfs_remove(ar->cfr.cfr_unassoc);
++	ar->cfr.cfr_unassoc = NULL;
+ }
+ 
+ static void ath11k_cfr_debug_register(struct ath11k *ar)
+@@ -199,6 +423,10 @@ static void ath11k_cfr_debug_register(struct ath11k *ar)
+ 	ar->cfr.enable_cfr = debugfs_create_file("enable_cfr", 0600,
+ 						 ar->debug.debugfs_pdev, ar,
+ 						 &fops_enable_cfr);
++
++	ar->cfr.cfr_unassoc = debugfs_create_file("cfr_unassoc", 0600,
++						  ar->debug.debugfs_pdev, ar,
++						  &fops_configure_cfr_unassoc);
+ }
+ 
+ void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
+diff --git a/drivers/net/wireless/ath/ath11k/cfr.h b/drivers/net/wireless/ath/ath11k/cfr.h
+index 054962f6cfb3..fa9d98cc72b7 100644
+--- a/drivers/net/wireless/ath/ath11k/cfr.h
++++ b/drivers/net/wireless/ath/ath11k/cfr.h
+@@ -45,6 +45,12 @@ struct ath11k_look_up_table {
+ 	struct ath11k_dbring_element *buff;
+ };
+ 
++struct cfr_unassoc_pool_entry {
++	u8 peer_mac[ETH_ALEN];
++	u32 period;
++	bool is_valid;
++};
++
+ struct ath11k_cfr {
+ 	struct ath11k_dbring rx_ring;
+ 	/* Protects cfr data */
+@@ -53,6 +59,7 @@ struct ath11k_cfr {
+ 	spinlock_t lut_lock;
+ 	struct ath11k_look_up_table *lut;
+ 	struct dentry *enable_cfr;
++	struct dentry *cfr_unassoc;
+ 	u8 cfr_enabled_peer_cnt;
+ 	u32 lut_num;
+ 	u64 tx_evt_cnt;
+@@ -65,6 +72,7 @@ struct ath11k_cfr {
+ 	u64 flush_dbr_cnt;
+ 	u64 clear_txrx_event;
+ 	u64 cfr_dma_aborts;
++	struct cfr_unassoc_pool_entry unassoc_pool[ATH11K_MAX_CFR_ENABLED_CLIENTS];
+ };
+ 
+ enum ath11k_cfr_capture_method {
+@@ -88,6 +96,13 @@ void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
+ 				 u32 buf_id);
+ void ath11k_cfr_decrement_peer_count(struct ath11k *ar,
+ 				     struct ath11k_sta *arsta);
++void ath11k_cfr_update_unassoc_pool_entry(struct ath11k *ar,
++					  const u8 *peer_mac);
++bool ath11k_cfr_peer_is_in_cfr_unassoc_pool(struct ath11k *ar,
++					    const u8 *peer_mac);
++void ath11k_cfr_update_unassoc_pool(struct ath11k *ar,
++				    struct ath11k_per_peer_cfr_capture *params,
++				    u8 *peer_mac);
+ int ath11k_cfr_send_peer_cfr_capture_cmd(struct ath11k *ar,
+ 					 struct ath11k_sta *arsta,
+ 					 struct ath11k_per_peer_cfr_capture *params,
+@@ -113,6 +128,24 @@ static inline void ath11k_cfr_decrement_peer_count(struct ath11k *ar,
+ {
+ }
+ 
++static inline void ath11k_cfr_update_unassoc_pool_entry(struct ath11k *ar,
++							const u8 *peer_mac)
++{
++}
++
++static inline bool
++ath11k_cfr_peer_is_in_cfr_unassoc_pool(struct ath11k *ar, const u8 *peer_mac)
++{
++	return false;
++}
++
++static inline void
++ath11k_cfr_update_unassoc_pool(struct ath11k *ar,
++			       struct ath11k_per_peer_cfr_capture *params,
++			       u8 *peer_mac)
++{
++}
++
+ static inline int
+ ath11k_cfr_send_peer_cfr_capture_cmd(struct ath11k *ar,
+ 				     struct ath11k_sta *arsta,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 965c377cd8dc..2fbd64d78338 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6186,6 +6186,8 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	dma_addr_t paddr;
+ 	int buf_id;
+ 	int ret;
++	bool tx_params_valid = false;
++	bool peer_in_unassoc_pool;
+ 
+ 	ATH11K_SKB_CB(skb)->ar = ar;
+ 
+@@ -6224,7 +6226,18 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
+ 
+ 	ATH11K_SKB_CB(skb)->paddr = paddr;
+ 
+-	ret = ath11k_wmi_mgmt_send(ar, arvif->vdev_id, buf_id, skb);
++	peer_in_unassoc_pool = ath11k_cfr_peer_is_in_cfr_unassoc_pool(ar, hdr->addr1);
++
++	if (ar->cfr_enabled &&
++	    ieee80211_is_probe_resp(hdr->frame_control) &&
++	    peer_in_unassoc_pool)
++		tx_params_valid = true;
++
++	if (peer_in_unassoc_pool)
++		ath11k_cfr_update_unassoc_pool_entry(ar, hdr->addr1);
++
++	ret = ath11k_wmi_mgmt_send(ar, arvif->vdev_id, buf_id, skb,
++				   tx_params_valid);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to send mgmt frame: %d\n", ret);
+ 		goto err_unmap_buf;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 846c9946a084..0b4cc943c290 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -651,11 +651,12 @@ static u32 ath11k_wmi_mgmt_get_freq(struct ath11k *ar,
+ }
+ 
+ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
+-			 struct sk_buff *frame)
++			 struct sk_buff *frame, bool tx_params_valid)
+ {
+ 	struct ath11k_pdev_wmi *wmi = ar->wmi;
+ 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(frame);
+ 	struct wmi_mgmt_send_cmd *cmd;
++	struct wmi_mgmt_send_params *params;
+ 	struct wmi_tlv *frame_tlv;
+ 	struct sk_buff *skb;
+ 	u32 buf_len;
+@@ -665,6 +666,8 @@ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
+ 		  frame->len : WMI_MGMT_SEND_DOWNLD_LEN;
+ 
+ 	len = sizeof(*cmd) + sizeof(*frame_tlv) + roundup(buf_len, 4);
++	if (tx_params_valid)
++		len += sizeof(*params);
+ 
+ 	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
+ 	if (!skb)
+@@ -680,7 +683,7 @@ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
+ 	cmd->paddr_hi = upper_32_bits(ATH11K_SKB_CB(frame)->paddr);
+ 	cmd->frame_len = frame->len;
+ 	cmd->buf_len = buf_len;
+-	cmd->tx_params_valid = 0;
++	cmd->tx_params_valid = !!tx_params_valid;
+ 
+ 	frame_tlv = (struct wmi_tlv *)(skb->data + sizeof(*cmd));
+ 	frame_tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_BYTE) |
+@@ -690,6 +693,15 @@ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
+ 
+ 	ath11k_ce_byte_swap(frame_tlv->value, buf_len);
+ 
++	if (tx_params_valid) {
++		params =
++		(struct wmi_mgmt_send_params *)(skb->data + (len - sizeof(*params)));
++		params->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TX_SEND_PARAMS) |
++				     FIELD_PREP(WMI_TLV_LEN,
++						sizeof(*params) - TLV_HDR_SIZE);
++		params->tx_params_dword1 |= WMI_TX_PARAMS_DWORD1_CFR_CAPTURE;
++	}
++
+ 	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_MGMT_TX_SEND_CMDID);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab,
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 1562d169ba9a..afc78fa4389b 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -6391,7 +6391,7 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
+ 			u32 cmd_id);
+ struct sk_buff *ath11k_wmi_alloc_skb(struct ath11k_wmi_base *wmi_sc, u32 len);
+ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
+-			 struct sk_buff *frame);
++			 struct sk_buff *frame, bool tx_params_valid);
+ int ath11k_wmi_p2p_go_bcn_ie(struct ath11k *ar, u32 vdev_id,
+ 			     const u8 *p2p_ie);
+ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
+-- 
+2.34.1
 
 
