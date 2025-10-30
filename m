@@ -4,127 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B8A4CCF9E5
-	for <ath11k@archiver.kernel.org>; Thu, 30 Oct 2025 04:31:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8051CCF9F6
+	for <ath11k@archiver.kernel.org>; Thu, 30 Oct 2025 04:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=S83667zQZRice3z5u+eUbvkWMyLeSS6XNkrtj4q8fxE=; b=iLDCW/eVmO3rZAmtT7nfXoUc/e
-	xFGMXV86eOr5mEAXmvE1kPw+U4tqlmzRNXP1Q3ngq276Zb2K6oJwSZS/TyBnko+80+DKjNhuMUkSK
-	pBTnBRp7VyUbqw3bG11/jtzyKe1Z0+pGiT8pFwFHeX8mXADmE2wKnJqypOy/lXTpsTbo1p3Ou+XUk
-	Dr/5U29/D8s4hzK8D4/QUKgHeB4v67BbQzsiD+6atnFzjXDdEwLJzEsXeTBEup6/m1/epMAf78AMi
-	WWFSuc6m1tRVYm+J4JdufHErI2gC7gaU6OOgMvjRSVF1bCXVa4mkNaLGXOYZya1Si/nUdXuU1UcmA
-	rQ2F8QnA==;
+	bh=J+oQ43VnLQFT+FFdFNj69VT4fG+7G9aphoGdp03TwCo=; b=NDMXYyZphvfB1DGktTk0g6vOlg
+	Shag/yBNrN9UxgeqCopKMLZxYb4SGe6VYi+1fdLJwrXpntpINyHLyO80j0k4ZCWdj6hssQ7ZAP9SG
+	zJCsbhadr/T/jGyfl+fKi9/RRa9+jR/WBmw0GRJCJ45NQH7SVoxyf45a3q9T8FdjAqX3AyhsKEQtZ
+	IZWo19yd4vsZfU7Krp8pW2sAvf7KTnIHc4whNJ6XhyAsBtd3nhnkMctJsKbyOjhqxWb/WppG9YQFg
+	VBQSDAKVvbxz0LNDQ83EyzelegroaVlipRXZSSFG9fO3kZOaWYXhLHuMMPTS1rF90S3ieQmib3SLu
+	EuoiOMZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEKKM-00000003SeW-1oSM;
-	Thu, 30 Oct 2025 04:31:58 +0000
+	id 1vEKKO-00000003Sh4-1H4U;
+	Thu, 30 Oct 2025 04:32:00 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEKKJ-00000003Sd3-3bE1
+	id 1vEKKL-00000003Sdz-2Jvv
 	for ath11k@lists.infradead.org;
-	Thu, 30 Oct 2025 04:31:57 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TLLAcR1696883
-	for <ath11k@lists.infradead.org>; Thu, 30 Oct 2025 04:31:55 GMT
+	Thu, 30 Oct 2025 04:31:58 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TNtvPC810604
+	for <ath11k@lists.infradead.org>; Thu, 30 Oct 2025 04:31:57 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=S83667zQZRi
-	ce3z5u+eUbvkWMyLeSS6XNkrtj4q8fxE=; b=mTYt48BF/jMrG8T0+wvOFZRkrSI
-	/Ited0iThF9Yvjet1qQZPn+f3PZsJtB/uh4x84Rjd/mdG2bdQ/sNcOGUfT5V0TNY
-	dzBFNtqZOBLZpB0UqeXJsFNjf65Gg2w8elCd5JDa0SJi4ERVACKbErkJxWjQxv3h
-	CjBr0v5m/hgl4+ZxPdkTze9MoTd3O5bhTTLxyzmLj6XdrPzHeaQCSMIAqcVxJ17n
-	4UWqw9BrjJzwrqODx0z3Ctdlyt+51EvkIBaOaLLwP/HlUZk9NUhUh1RZWV/C+n6s
-	dq/VEhycl+UasPy0RcnNPLxIsG1KlhFjAyqIs9F1odNdxCpnJK+9yfCgleQ==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3trv10ry-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=J+oQ43VnLQF
+	T+FFdFNj69VT4fG+7G9aphoGdp03TwCo=; b=iPOjkYizbN2tZZcqxT5fM5e9/Z+
+	oKxQhD+hnTtVLmGbObJ5t+khW3OIZGITf7oCs/Z0Thfyf4DrRuZBJckeWROMVfY0
+	ZG2XVGGdXy1QVuhoDHjZpGM8An2kpN8Eehthl0hyUDaJehRvFUVuksoC3WtWdK2C
+	IzXtKBlvdsQOMlEn/jlYqjh2Jb1LiPipu2CnA9B1FjdZMNEjcWOoYZtXwkGuJLzC
+	/RjpAlG1DNZ73Wy6jiOVq8LISScuyN+7fMT2NVqlEciGue5TNQ/j7F6bh4rdt25E
+	ITLycE0b/o/kRz1/kpa4xEznf5gxuhhNSz0qA+Rbe5FSiscYLP48oXE3j4Q==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3mvga7tt-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 30 Oct 2025 04:31:55 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7a277277cb7so1274619b3a.3
-        for <ath11k@lists.infradead.org>; Wed, 29 Oct 2025 21:31:55 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Thu, 30 Oct 2025 04:31:57 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7a675fbd6c7so224113b3a.2
+        for <ath11k@lists.infradead.org>; Wed, 29 Oct 2025 21:31:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761798715; x=1762403515; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1761798716; x=1762403516; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=S83667zQZRice3z5u+eUbvkWMyLeSS6XNkrtj4q8fxE=;
-        b=Scq17bFKSsvNA9lDnvuMcMKyrNx2SPmBcYP3ioMYhlHQhM6YerrdNg3Z8fCPvmnqVV
-         5CYuqETtJJCW7o+FafxwizWc7a5xfiUNy92ukYcsHNF9ObgwACy7RW9XY5C8rRTBk1wN
-         AMQDMek7RP6RgzKSFybdCZy9pyIrgPuglkGHGMrxi1fV8OI1tcNYgdSAwXKMzODPzZA1
-         d/Ao9KpYBtNvbSGVcj6jKgoBPmuJ9pFXlajy7PNzhsaw/ZgqC9n+iCgjDprkQOh4Wwg8
-         JNhnUzxsNa1F6KWBlCv5LHEefKV3TP7NNtfQJ4hI8ISJNWREzgJj4Fg28HTietu5WmPO
-         RYhQ==
+        bh=J+oQ43VnLQFT+FFdFNj69VT4fG+7G9aphoGdp03TwCo=;
+        b=N3yiQ+vgtHkJvuJFbMoEWGCz/C3kEOxCaXXnf97kTww2vGsH1rBDKg3sG0ZWA7gCTH
+         9KIX2TlvozGnyFSpoFDHM4qBPT/ahWJRd6QyVkzK5g04Z8O8PFwvunZ3ztIT9kYGC/J8
+         hxVHsMUXlIt5aa4CqLUzS5NNEveGqWhj9a5kR9k4URGwUSYlGjgrVKen9VZGtXPZxRgT
+         NZFU36cC6u4AW0O3PEXpWBxjQU/sIO9ZhPRz7iwbQacQkjgvHqBczi3F0UyiZE4eds7o
+         HSgzd8BmeNBT23+GLwJI6LP+qsBZu1awel/YAgYiX2ty5lO8E/viGWcASMlTeylMIT3z
+         t86g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761798715; x=1762403515;
+        d=1e100.net; s=20230601; t=1761798716; x=1762403516;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=S83667zQZRice3z5u+eUbvkWMyLeSS6XNkrtj4q8fxE=;
-        b=XFirfzqHQRwxMvpmjdnrZjolEEGG7Ro7X7Oq/do7L+udprEZjjoTOn+jm4YnnBxaA2
-         Q3Ipa73OHdz+Jr+FRpkmweManlpwFnwjmgKEpl32k0ylIhPCv4rO2U63dJaRXYfaOqTK
-         PC1dCqm8ufiyPkpsLeJbLWmwG4Ed6uDmDWM7x2OkNSrlxGd1Ap4WInqPAgnwpNGvI0gX
-         y3lG7eHS3oFOZZzWBw5h6U7br/1tq1CqOAlrve0+g0Xz0nq2X1rVVpNhMhhVkmA4I2/6
-         g7ms/LdcDYkPeVmKTZJlqq6SS+nRFfzGaxzzwn7LaP7JYRIou8jIEWv37kcz6SuWMlzD
-         fxUA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6vrxbsiCc1STDzJFp4KMkFOqd2BeDl0D3kBbw4lYQKZN3OJK2mq1KVPXwPX5AmWrO+yqUuD8=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzIukO/q5OPIf6xyUPudTiQLQA+Rl6c0VqaL/1rKOw93Xfb+EMJ
-	ieJUPLGFa/6dkFrk2pAwMN4Na/CymeczjGuf6qx5LEAKiRuTdGv2GqfzDr8M8Ijcn0PpwLzK/Ii
-	aeu2iS5Ja9TDpcU0DhFuAMD2fgVvzx0rszW1LaeGNmI2pB0hpIGIBAMypZ+KXvbMj
-X-Gm-Gg: ASbGncuck2LKYdQ7DD78qChwPsOMfpXc/TRzUa+v2e/dIwB/nkzpvgQba2AI1qMnXCw
-	Uv6Og1f/BztLmzrJHWaxVb7c4UvUHI18IZqohNboV6kD25gAxx+zqtVmvRqRl+Idq7ZQben5Y+3
-	SR78/PgHujKzpTx3/0qBULbSy6dWzYoML94TzI53WrWiLIErrbhstAIcI7NEqrLNRoh20Drwto+
-	fyKJVvz/XDYNMm+aBJB8AOLEsFWqBYffZUf1npltTQHgnPVdQR9TZv6aHC/IdaEay5RSxPDfM6Z
-	3OV6TbSTZgm7ABYAmjsGJUlHJRQECEVYO0BuU+x0anZYeTCSKsZ8JGduT4xAalXWoOkHMh0MLil
-	VVa1g5/7fPOqYtWR9JfhK/AlKtuqSs5h77MsUlz6ftr9Y
-X-Received: by 2002:a05:6a20:918f:b0:334:8002:740f with SMTP id adf61e73a8af0-34659c34941mr6841611637.41.1761798714319;
-        Wed, 29 Oct 2025 21:31:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHVUC1mLA6QcCQam4M5+jEzyd3LUNekD87U/k0MQux+OFDNoy1Law4okzUwCvvgoBEfd33Wgg==
-X-Received: by 2002:a05:6a20:918f:b0:334:8002:740f with SMTP id adf61e73a8af0-34659c34941mr6841575637.41.1761798713725;
-        Wed, 29 Oct 2025 21:31:53 -0700 (PDT)
+        bh=J+oQ43VnLQFT+FFdFNj69VT4fG+7G9aphoGdp03TwCo=;
+        b=K8GcyWX8YWDfbtpokWwbNsSXCLxIfFPPbFrj+mBxEwDC10yWRTSdUlSZ4XLeccAFrP
+         01LnCYH02lLzIrJma2pf1SDxeOkw+Wv6D2UO0amoZOTBw4Tksh6I3MvV1gFfPxQ3nNyW
+         GJfb+cv5zWtP+qikIyglgO/nVj/v7HOknHyDpJezVjWsK3GeODuYZlWjk5aQbUBqpVV7
+         pyovkdc71EF3iqiSqa8+e4gJsjMoCLKdOLy2Wo6Xur/AvIlbAEZm2PAmI32x9NDQi4Ed
+         NIR9pUP+ttKPeSInZTK3mZEAPANeMTKYwSMtVW7eBy534enjTEfwjOgxmwbKPV/rrkB4
+         8ZTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVFb5d6HXIKpbkHAEy3NlixSKHZPFCoiZAgHN44nROkXzc+zYOwBi//WgDjx/GGp/ebUbA3Dc=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxxxpIpBISnohlGTT219kHSvbRz1xtilJaKDnJOq5A2vKULUOnN
+	6WlOU6dKOCKP6QJkNYlQAonXDh39+rL9Gg8xUzBRRz2MvHxhjLovirJ26nPyhUyrKh1eHLb7SEQ
+	A60NfJw4QGBX7n5IMClKVdOo+BB6tzwU3yzf+j3+uFMC0vmWbFHJFu1okBjEVCoOQdOvPl7iw/Y
+	w=
+X-Gm-Gg: ASbGncsii/g27u4Fmnfb9e5eezNUIR728E1q/7Oj3HoKzh3xbdgUuhfIdNliinBuKKK
+	aM+Dv9pRcJGjcg++xZ9sor+g+iSJ3TigfTciua4Qv58CPd/eR75JSLsJx7sOTIiVXJj3HZvQL1F
+	Ei2kXNzWMe8Y470xEK9UDUU1oNIBCXO5JrlswMM6htN8ODdBG0D5EoYkZDufJ1YlEumCAhAD9/R
+	d0eo5gv63zdbrgsIPMIRQoJt0+xlbvbYA++cIybDULKLqtz+NNshG1UP4Cgivjj8pprOiByTV3C
+	5EnYK3NNo9d2qp0Kc1K859eMOGf4GxG2Pr9tjHoi440JRIsrc3nZP5aE9MxoJ8vTVX4T7K6B3A9
+	QbVFh9yKm+xIOQKpbSgZIp94BnYw4Nrbl6Pq/z7NUfsK8
+X-Received: by 2002:a05:6a00:c95:b0:781:275a:29e9 with SMTP id d2e1a72fcca58-7a4e47257dfmr5858040b3a.16.1761798716114;
+        Wed, 29 Oct 2025 21:31:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGPouVDVw2VyvWCm8X0eoZJuWhJoirnxRu7ZoOIPTQ0W4kl7fco+ho3SYmAM7WaEbsmCWOlcQ==
+X-Received: by 2002:a05:6a00:c95:b0:781:275a:29e9 with SMTP id d2e1a72fcca58-7a4e47257dfmr5858019b3a.16.1761798715650;
+        Wed, 29 Oct 2025 21:31:55 -0700 (PDT)
 Received: from hu-yuzha-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a41409e456sm16912161b3a.71.2025.10.29.21.31.52
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a41409e456sm16912161b3a.71.2025.10.29.21.31.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 21:31:53 -0700 (PDT)
+        Wed, 29 Oct 2025 21:31:55 -0700 (PDT)
 From: "Yu Zhang(Yuriy)" <yu.zhang@oss.qualcomm.com>
 To: jjohnson@kernel.org
 Cc: linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
         ath11k@lists.infradead.org
-Subject: [PATCH ath-next 2/6] wifi: ath11k: Register debugfs for CFR configuration
-Date: Wed, 29 Oct 2025 21:31:46 -0700
-Message-Id: <20251030043150.3905086-3-yu.zhang@oss.qualcomm.com>
+Subject: [PATCH ath-next 4/6] wifi: ath11k: Register relayfs entries for CFR dump
+Date: Wed, 29 Oct 2025 21:31:48 -0700
+Message-Id: <20251030043150.3905086-5-yu.zhang@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251030043150.3905086-1-yu.zhang@oss.qualcomm.com>
 References: <20251030043150.3905086-1-yu.zhang@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: WaX7uilm5R44AT0GRw8_rI2q1K4ntSz0
-X-Authority-Analysis: v=2.4 cv=D+ZK6/Rj c=1 sm=1 tr=0 ts=6902ea3b cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDAzNCBTYWx0ZWRfX6C6o7Z+FyEoD
+ R1SsT06i5lmteeKCFxVOnx9+7uQfDgUx/mvGmSW+ptIpeP7j9f6OgQH+HgjA7hF1Sh9euve40DC
+ 8GtPnQorrMXoAkcnTba7qvTQPKTpFsQvMisVknLpLhoIEJvKS4qo0f2yVLIfTZaf63cb5dW4YBt
+ 7Wltiw06mt93ucWT3MQb97WTEy+zZdRNT7GDjLWn844mp6zKZva33CGKuUPdsRFuj7qPHp86I+A
+ 4psf5XVjRvvD2Q3ihRvnu8EPnWRfSQ7tALVgnsu3zW7pmdPLagxxL2gLBczmv3+UvVQkFepL+B+
+ TTEeCindXCz3/ZJxybVTPL3KDAdXY7N9avrZs1Yld8Ib0RUPyAbR3dlSNA8sdT3QnIkwof8M7hM
+ lKyLNZFwlchnWg7mY04WSEMQ1QdiIw==
+X-Authority-Analysis: v=2.4 cv=S8XUAYsP c=1 sm=1 tr=0 ts=6902ea3d cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=dJ9JZWBW9j4LC2dvM44A:9
- a=zc0IvFSfCIW2DFIPzwfm:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: WaX7uilm5R44AT0GRw8_rI2q1K4ntSz0
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDAzNCBTYWx0ZWRfX7s3FmP8Uuvms
- qF3OmZGEKYcrAuWzswG/9hWk/CAuWJZQ6nQDStR3SvnoeOfG+Uw+4+rElQpVEmD60qyaRQHOUqG
- mJ3kIznrjeUxXeoMFjLFSi/2wXtN5vIdV2vKe6gT1y4bISj0RxMEIXmq7T30+tLdwabFsqM7JT0
- cN7EcxHmxQxQuQ3PYVl7TsPSr1VD5+AqBHDe04PJdZwLqggyL+g+e0dMEJ6dkpH7qSsx60QX4QX
- 0OXn07NxEo2iEOm8YSTHnsxjXaYZXAh71an192PFo55lMAoJvYolzSpXxY+dH8JmT5PB3Um9izN
- /On3x3Wqj8bizE9O8Wwl0em97q0ZDxnmnyOiceXO/6dxIFUYtYNhM6sOGAx+TMkvUHmNuB6xq6m
- SHIvQZw/C2bN7hj9+uORZsENWQZXRQ==
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=6mQ44K8ZfP1dJrZg0vYA:9
+ a=OpyuDcXvxspvyRM73sMx:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: zV3ZR0FWfdZOHsjT08IBHId0rNsKFX1U
+X-Proofpoint-ORIG-GUID: zV3ZR0FWfdZOHsjT08IBHId0rNsKFX1U
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-10-30_01,2025-10-29_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
- priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300034
+ suspectscore=0 malwarescore=0 spamscore=0 bulkscore=0 clxscore=1015
+ phishscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2510300034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251029_213155_931420_4B441D8B 
-X-CRM114-Status: GOOD (  20.87  )
+X-CRM114-CacheID: sfid-20251029_213157_595497_EE19CD86 
+X-CRM114-Status: GOOD (  16.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -141,35 +143,60 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 
-Provide debugfs interfaces support to config CFR from the user space.
+Provide a relayfs interface to collect the CFR dump from the user space.
 
-To enable/disable cfr feature use command,
+'/sys/kernel/debug/ieee80211/phyX/ath11k/cfr_capture' is exposed to user
+space to get CFR data.
 
-echo <val> > /sys/kernel/debug/ieee80211/phyX/ath11k/enable_cfr
+CFR format to user space:
+ ___________________________________________
+| CFR header | CFR payload | CFR tail data |
+|____________|_____________|_______________|
 
-where, val: 0 to disable CFR and 1 to enable CFR.
+CFR header contains the following fields,
 
-To enable CFR capture for associated peers,
+* Start magic number 0xDEADBEAF - 4 bytes
+* vendor id - 4 bytes
+* cfr metadata version - 1 byte
+* cfr data version - 1 byte
+* device type - 1 byte
+* platform type - 1 byte
+* CFR metadata length - 4 bytes
+* metadata - 92 bytes
+        peer mac - 6 bytes
+        capture status - 1 byte (1 for success 0 for failure)
+        capture_bw - 1 byte
+        channel_bw - 1 byte
+        phy_mode - 1 byte
+        prim20_chan - 2 bytes
+        center_freq1 - 2 bytes
+        center_freq2 - 2 bytes
+        capture_mode - 1 byte
+        capture_type - 1 byte
+        sts_count - 1 byte
+        num_rx_chain - 1 byte
+        timestamp - 4 bytes
+        length - 4 bytes
+        chain_rssi - 32 bytes (4 bytes for each chain)
+        chain_phase - 16 bytes (2 bytes for each chain)
+        cfo_measurement - 4 bytes
+        agc_gain - 8 bytes (1 bytes for each chain)
+        rx_start_ts - 4 bytes
 
-echo "<val> <bw> <periodicity> <method>"
- >
-/sys/kernel/debug/ieee80211/phyX/netdev\:wlanx/stations/<mac>/cfr_capture
+CFR payload:
 
-val: 0 - stop CFR capture
-     1 - start CFR capture
-bw: CFR capture bandwidth
-     0 - 20MHZ
-     1 - 40MHZ
-     2 - 80MHZ
-Periodicity: Periodicity at which hardware is expected to collect CFR
-dump.
-     0 - single shot capture.
-     non zero - for Periodic captures (value must be multiple of 10 ms)
-method: Method used by hardware to collect the CFR dump.
-     0 - from the ACKs of QOS NULL packets.
+CFR payload contains 8bytes of ucode header followed by the tone
+information. Tone order is positive tones, followed by PHY memory
+garbage, followed by negative tones. Dummy tones are uploaded to make
+number of tones always integer number of 64. Number of tones is not
+preamble type dependent.
 
-Also, send the required WMI commands to the firmware based on the CFR
-configurations.
+Each CFR tone has 14-bit I component and 14-bit Q component and is sign
+extended to 16-bit I/Q. Two tones are packed into one 64-bit unit as:
+
+[63:0] = [Tone1_Q(63:48) Tone1_I(47:32) Tone0_Q(31:16) Tone0_I(15:0)]
+
+CFR tail: end magic number 0xBEAFDEAD
 
 Tested-on: IPQ8074 hw2.0 PCI IPQ8074 WLAN.HK.2.5.0.1-00991-QCAHKSWPL_SILICONZ-1
 Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
@@ -178,653 +205,72 @@ Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 Co-developed-by: Yu Zhang(Yuriy) <yu.zhang@oss.qualcomm.com>
 Signed-off-by: Yu Zhang(Yuriy) <yu.zhang@oss.qualcomm.com>
 ---
- drivers/net/wireless/ath/ath11k/cfr.c         | 190 ++++++++++++++++++
- drivers/net/wireless/ath/ath11k/cfr.h         |  41 ++++
- drivers/net/wireless/ath/ath11k/core.h        |  11 +
- drivers/net/wireless/ath/ath11k/debugfs_sta.c | 143 ++++++++++++-
- drivers/net/wireless/ath/ath11k/mac.c         |   2 +
- drivers/net/wireless/ath/ath11k/wmi.c         |  41 ++++
- drivers/net/wireless/ath/ath11k/wmi.h         |  50 ++++-
- 7 files changed, 475 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/cfr.c | 35 +++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/cfr.h |  1 +
+ 2 files changed, 36 insertions(+)
 
 diff --git a/drivers/net/wireless/ath/ath11k/cfr.c b/drivers/net/wireless/ath/ath11k/cfr.c
-index d057e4556c24..4672100786df 100644
+index 649675e94bab..0a7dcf7b7793 100644
 --- a/drivers/net/wireless/ath/ath11k/cfr.c
 +++ b/drivers/net/wireless/ath/ath11k/cfr.c
-@@ -14,6 +14,193 @@ static int ath11k_cfr_process_data(struct ath11k *ar,
- 	return 0;
+@@ -416,10 +416,45 @@ static void ath11k_cfr_debug_unregister(struct ath11k *ar)
+ 	ar->cfr.enable_cfr = NULL;
+ 	debugfs_remove(ar->cfr.cfr_unassoc);
+ 	ar->cfr.cfr_unassoc = NULL;
++
++	relay_close(ar->cfr.rfs_cfr_capture);
++	ar->cfr.rfs_cfr_capture = NULL;
  }
  
-+void ath11k_cfr_decrement_peer_count(struct ath11k *ar,
-+				     struct ath11k_sta *arsta)
++static struct dentry *ath11k_cfr_create_buf_file_handler(const char *filename,
++							 struct dentry *parent,
++							 umode_t mode,
++							 struct rchan_buf *buf,
++							 int *is_global)
 +{
-+	struct ath11k_cfr *cfr = &ar->cfr;
++	struct dentry *buf_file;
 +
-+	spin_lock_bh(&cfr->lock);
-+
-+	if (arsta->cfr_capture.cfr_enable)
-+		cfr->cfr_enabled_peer_cnt--;
-+
-+	spin_unlock_bh(&cfr->lock);
++	buf_file = debugfs_create_file(filename, mode, parent, buf,
++				       &relay_file_operations);
++	*is_global = 1;
++	return buf_file;
 +}
 +
-+static enum ath11k_wmi_cfr_capture_bw
-+ath11k_cfr_bw_to_fw_cfr_bw(enum ath11k_cfr_capture_bw bw)
++static int ath11k_cfr_remove_buf_file_handler(struct dentry *dentry)
 +{
-+	switch (bw) {
-+	case ATH11K_CFR_CAPTURE_BW_20:
-+		return WMI_PEER_CFR_CAPTURE_BW_20;
-+	case ATH11K_CFR_CAPTURE_BW_40:
-+		return WMI_PEER_CFR_CAPTURE_BW_40;
-+	case ATH11K_CFR_CAPTURE_BW_80:
-+		return WMI_PEER_CFR_CAPTURE_BW_80;
-+	default:
-+		return WMI_PEER_CFR_CAPTURE_BW_MAX;
-+	}
-+}
++	debugfs_remove(dentry);
 +
-+static enum ath11k_wmi_cfr_capture_method
-+ath11k_cfr_method_to_fw_cfr_method(enum ath11k_cfr_capture_method method)
-+{
-+	switch (method) {
-+	case ATH11K_CFR_CAPTURE_METHOD_NULL_FRAME:
-+		return WMI_CFR_CAPTURE_METHOD_NULL_FRAME;
-+	case ATH11K_CFR_CAPTURE_METHOD_NULL_FRAME_WITH_PHASE:
-+		return WMI_CFR_CAPTURE_METHOD_NULL_FRAME_WITH_PHASE;
-+	case ATH11K_CFR_CAPTURE_METHOD_PROBE_RESP:
-+		return WMI_CFR_CAPTURE_METHOD_PROBE_RESP;
-+	default:
-+		return WMI_CFR_CAPTURE_METHOD_MAX;
-+	}
-+}
-+
-+int ath11k_cfr_send_peer_cfr_capture_cmd(struct ath11k *ar,
-+					 struct ath11k_sta *arsta,
-+					 struct ath11k_per_peer_cfr_capture *params,
-+					 const u8 *peer_mac)
-+{
-+	struct ath11k_cfr *cfr = &ar->cfr;
-+	struct wmi_peer_cfr_capture_conf_arg arg;
-+	enum ath11k_wmi_cfr_capture_bw bw;
-+	enum ath11k_wmi_cfr_capture_method method;
-+	int ret = 0;
-+
-+	if (cfr->cfr_enabled_peer_cnt >= ATH11K_MAX_CFR_ENABLED_CLIENTS &&
-+	    !arsta->cfr_capture.cfr_enable) {
-+		ath11k_err(ar->ab, "CFR enable peer threshold reached %u\n",
-+			   cfr->cfr_enabled_peer_cnt);
-+		return -ENOSPC;
-+	}
-+
-+	if (params->cfr_enable == arsta->cfr_capture.cfr_enable &&
-+	    params->cfr_period == arsta->cfr_capture.cfr_period &&
-+	    params->cfr_method == arsta->cfr_capture.cfr_method &&
-+	    params->cfr_bw == arsta->cfr_capture.cfr_bw)
-+		return ret;
-+
-+	if (!params->cfr_enable && !arsta->cfr_capture.cfr_enable)
-+		return ret;
-+
-+	bw = ath11k_cfr_bw_to_fw_cfr_bw(params->cfr_bw);
-+	if (bw >= WMI_PEER_CFR_CAPTURE_BW_MAX) {
-+		ath11k_warn(ar->ab, "FW doesn't support configured bw %d\n",
-+			    params->cfr_bw);
-+		return -EINVAL;
-+	}
-+
-+	method = ath11k_cfr_method_to_fw_cfr_method(params->cfr_method);
-+	if (method >= WMI_CFR_CAPTURE_METHOD_MAX) {
-+		ath11k_warn(ar->ab, "FW doesn't support configured method %d\n",
-+			    params->cfr_method);
-+		return -EINVAL;
-+	}
-+
-+	arg.request = params->cfr_enable;
-+	arg.periodicity = params->cfr_period;
-+	arg.bw = bw;
-+	arg.method = method;
-+
-+	ret = ath11k_wmi_peer_set_cfr_capture_conf(ar, arsta->arvif->vdev_id,
-+						   peer_mac, &arg);
-+	if (ret) {
-+		ath11k_warn(ar->ab,
-+			    "failed to send cfr capture info: vdev_id %u peer %pM: %d\n",
-+			    arsta->arvif->vdev_id, peer_mac, ret);
-+		return ret;
-+	}
-+
-+	spin_lock_bh(&cfr->lock);
-+
-+	if (params->cfr_enable &&
-+	    params->cfr_enable != arsta->cfr_capture.cfr_enable)
-+		cfr->cfr_enabled_peer_cnt++;
-+	else if (!params->cfr_enable)
-+		cfr->cfr_enabled_peer_cnt--;
-+
-+	spin_unlock_bh(&cfr->lock);
-+
-+	arsta->cfr_capture.cfr_enable = params->cfr_enable;
-+	arsta->cfr_capture.cfr_period = params->cfr_period;
-+	arsta->cfr_capture.cfr_method = params->cfr_method;
-+	arsta->cfr_capture.cfr_bw = params->cfr_bw;
-+
-+	return ret;
-+}
-+
-+static ssize_t ath11k_read_file_enable_cfr(struct file *file,
-+					   char __user *user_buf,
-+					   size_t count, loff_t *ppos)
-+{
-+	struct ath11k *ar = file->private_data;
-+	char buf[32] = {};
-+	size_t len;
-+
-+	mutex_lock(&ar->conf_mutex);
-+	len = scnprintf(buf, sizeof(buf), "%d\n", ar->cfr_enabled);
-+	mutex_unlock(&ar->conf_mutex);
-+
-+	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
-+}
-+
-+static ssize_t ath11k_write_file_enable_cfr(struct file *file,
-+					    const char __user *ubuf,
-+					    size_t count, loff_t *ppos)
-+{
-+	struct ath11k *ar = file->private_data;
-+	u32 enable_cfr;
-+	int ret;
-+
-+	if (kstrtouint_from_user(ubuf, count, 0, &enable_cfr))
-+		return -EINVAL;
-+
-+	guard(mutex)(&ar->conf_mutex);
-+
-+	if (ar->state != ATH11K_STATE_ON)
-+		return -ENETDOWN;
-+
-+	if (enable_cfr > 1)
-+		return -EINVAL;
-+
-+	if (ar->cfr_enabled == enable_cfr)
-+		return count;
-+
-+	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_PER_PEER_CFR_ENABLE,
-+					enable_cfr, ar->pdev->pdev_id);
-+	if (ret) {
-+		ath11k_warn(ar->ab,
-+			    "Failed to enable/disable per peer cfr %d\n", ret);
-+		return ret;
-+	}
-+
-+	ar->cfr_enabled = enable_cfr;
-+
-+	return count;
-+}
-+
-+static const struct file_operations fops_enable_cfr = {
-+	.read = ath11k_read_file_enable_cfr,
-+	.write = ath11k_write_file_enable_cfr,
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
-+	.llseek = default_llseek,
-+};
-+
-+static void ath11k_cfr_debug_unregister(struct ath11k *ar)
-+{
-+	debugfs_remove(ar->cfr.enable_cfr);
-+	ar->cfr.enable_cfr = NULL;
-+}
-+
-+static void ath11k_cfr_debug_register(struct ath11k *ar)
-+{
-+	ar->cfr.enable_cfr = debugfs_create_file("enable_cfr", 0600,
-+						 ar->debug.debugfs_pdev, ar,
-+						 &fops_enable_cfr);
-+}
-+
- void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
- 				 u32 buf_id)
- {
-@@ -88,6 +275,7 @@ void ath11k_cfr_deinit(struct ath11k_base *ab)
- 			ar = ab->pdevs[i].ar;
- 			cfr = &ar->cfr;
- 
-+			ath11k_cfr_debug_unregister(ar);
- 			ath11k_cfr_ring_free(ar);
- 
- 			spin_lock_bh(&cfr->lut_lock);
-@@ -140,6 +328,8 @@ int ath11k_cfr_init(struct ath11k_base *ab)
- 		}
- 
- 		cfr->lut_num = num_lut_entries;
-+
-+		ath11k_cfr_debug_register(ar);
- 	}
- 
- 	return 0;
-diff --git a/drivers/net/wireless/ath/ath11k/cfr.h b/drivers/net/wireless/ath/ath11k/cfr.h
-index 65b87d759329..054962f6cfb3 100644
---- a/drivers/net/wireless/ath/ath11k/cfr.h
-+++ b/drivers/net/wireless/ath/ath11k/cfr.h
-@@ -14,10 +14,14 @@
- #define ATH11K_CFR_EVENT_TIMEOUT_MS     1
- #define ATH11K_CFR_NUM_RING_ENTRIES     1
- 
-+#define ATH11K_MAX_CFR_ENABLED_CLIENTS 10
- #define CFR_MAX_LUT_ENTRIES 136
- 
- #define HOST_MAX_CHAINS 8
- 
-+struct ath11k_sta;
-+struct ath11k_per_peer_cfr_capture;
-+
- struct ath11k_cfr_dma_hdr {
- 	u16 info0;
- 	u16 info1;
-@@ -48,6 +52,8 @@ struct ath11k_cfr {
- 	/* Protect for lut entries */
- 	spinlock_t lut_lock;
- 	struct ath11k_look_up_table *lut;
-+	struct dentry *enable_cfr;
-+	u8 cfr_enabled_peer_cnt;
- 	u32 lut_num;
- 	u64 tx_evt_cnt;
- 	u64 dbr_evt_cnt;
-@@ -61,11 +67,32 @@ struct ath11k_cfr {
- 	u64 cfr_dma_aborts;
- };
- 
-+enum ath11k_cfr_capture_method {
-+	ATH11K_CFR_CAPTURE_METHOD_NULL_FRAME,
-+	ATH11K_CFR_CAPTURE_METHOD_NULL_FRAME_WITH_PHASE,
-+	ATH11K_CFR_CAPTURE_METHOD_PROBE_RESP,
-+	ATH11K_CFR_CAPTURE_METHOD_MAX,
-+};
-+
-+enum ath11k_cfr_capture_bw {
-+	ATH11K_CFR_CAPTURE_BW_20,
-+	ATH11K_CFR_CAPTURE_BW_40,
-+	ATH11K_CFR_CAPTURE_BW_80,
-+	ATH11K_CFR_CAPTURE_BW_MAX,
-+};
-+
- #ifdef CONFIG_ATH11K_CFR
- int ath11k_cfr_init(struct ath11k_base *ab);
- void ath11k_cfr_deinit(struct ath11k_base *ab);
- void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
- 				 u32 buf_id);
-+void ath11k_cfr_decrement_peer_count(struct ath11k *ar,
-+				     struct ath11k_sta *arsta);
-+int ath11k_cfr_send_peer_cfr_capture_cmd(struct ath11k *ar,
-+					 struct ath11k_sta *arsta,
-+					 struct ath11k_per_peer_cfr_capture *params,
-+					 const u8 *peer_mac);
-+
- #else
- static inline int ath11k_cfr_init(struct ath11k_base *ab)
- {
-@@ -80,5 +107,19 @@ static inline void ath11k_cfr_lut_update_paddr(struct ath11k *ar,
- 					       dma_addr_t paddr, u32 buf_id)
- {
- }
-+
-+static inline void ath11k_cfr_decrement_peer_count(struct ath11k *ar,
-+						   struct ath11k_sta *arsta)
-+{
-+}
-+
-+static inline int
-+ath11k_cfr_send_peer_cfr_capture_cmd(struct ath11k *ar,
-+				     struct ath11k_sta *arsta,
-+				     struct ath11k_per_peer_cfr_capture *params,
-+				     const u8 *peer_mac)
-+{
 +	return 0;
 +}
- #endif /* CONFIG_ATH11K_CFR */
- #endif /* ATH11K_CFR_H */
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 40fb7cee3e43..3f41e6569a78 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -532,6 +532,13 @@ struct ath11k_per_ppdu_tx_stats {
- 
- DECLARE_EWMA(avg_rssi, 10, 8)
- 
-+struct ath11k_per_peer_cfr_capture {
-+	enum ath11k_cfr_capture_method cfr_method;
-+	enum ath11k_cfr_capture_bw cfr_bw;
-+	u32 cfr_enable;
-+	u32 cfr_period;
++
++static const struct rchan_callbacks rfs_cfr_capture_cb = {
++	.create_buf_file = ath11k_cfr_create_buf_file_handler,
++	.remove_buf_file = ath11k_cfr_remove_buf_file_handler,
 +};
 +
- struct ath11k_sta {
- 	struct ath11k_vif *arvif;
- 
-@@ -572,6 +579,10 @@ struct ath11k_sta {
- 	bool peer_current_ps_valid;
- 
- 	u32 bw_prev;
-+
-+#ifdef CONFIG_ATH11K_CFR
-+	struct ath11k_per_peer_cfr_capture cfr_capture;
-+#endif
- };
- 
- #define ATH11K_MIN_5G_FREQ 4150
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index d89d0f28d890..dfb9d877d28a 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -1,7 +1,6 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-  */
- 
-@@ -240,6 +239,141 @@ static const struct file_operations fops_tx_stats = {
- 	.llseek = default_llseek,
- };
- 
-+#ifdef CONFIG_ATH11K_CFR
-+static ssize_t ath11k_dbg_sta_write_cfr_capture(struct file *file,
-+						const char __user *user_buf,
-+						size_t count, loff_t *ppos)
-+{
-+	struct ieee80211_sta *sta = file->private_data;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
-+	struct ath11k *ar = arsta->arvif->ar;
-+	struct ath11k_cfr *cfr = &ar->cfr;
-+	struct wmi_peer_cfr_capture_conf_arg arg;
-+	u32 cfr_capture_enable = 0, cfr_capture_bw  = 0;
-+	u32 cfr_capture_method = 0, cfr_capture_period = 0;
-+	char buf[64] = {};
-+	int ret;
-+
-+	simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, user_buf, count);
-+
-+	guard(mutex)(&ar->conf_mutex);
-+
-+	if (ar->state != ATH11K_STATE_ON)
-+		return -ENETDOWN;
-+
-+	if (!ar->cfr_enabled)
-+		return -EINVAL;
-+
-+	ret = sscanf(buf, "%u %u %u %u", &cfr_capture_enable, &cfr_capture_bw,
-+		     &cfr_capture_period, &cfr_capture_method);
-+
-+	if (ret < 1 || (cfr_capture_enable && ret != 4))
-+		return -EINVAL;
-+
-+	if (cfr_capture_enable == arsta->cfr_capture.cfr_enable &&
-+	    (cfr_capture_period &&
-+	     cfr_capture_period == arsta->cfr_capture.cfr_period) &&
-+	    cfr_capture_bw == arsta->cfr_capture.cfr_bw &&
-+	    cfr_capture_method == arsta->cfr_capture.cfr_method)
-+		return count;
-+
-+	if (!cfr_capture_enable &&
-+	    cfr_capture_enable == arsta->cfr_capture.cfr_enable)
-+		return count;
-+
-+	if (cfr_capture_enable > WMI_PEER_CFR_CAPTURE_ENABLE ||
-+	    cfr_capture_bw > arsta->bw ||
-+	    cfr_capture_bw > WMI_PEER_CFR_CAPTURE_BW_80 ||
-+	    cfr_capture_method > ATH11K_CFR_CAPTURE_METHOD_NULL_FRAME_WITH_PHASE ||
-+	    cfr_capture_period > WMI_PEER_CFR_PERIODICITY_MAX)
-+		return -EINVAL;
-+
-+	/* Target expects cfr period in multiple of 10 */
-+	if (cfr_capture_period % 10) {
-+		ath11k_err(ar->ab, "periodicity should be 10x\n");
-+		return -EINVAL;
-+	}
-+
-+	if (ar->cfr.cfr_enabled_peer_cnt >= ATH11K_MAX_CFR_ENABLED_CLIENTS &&
-+	    !arsta->cfr_capture.cfr_enable) {
-+		ath11k_err(ar->ab, "CFR enable peer threshold reached %u\n",
-+			   ar->cfr.cfr_enabled_peer_cnt);
-+		return -EINVAL;
-+	}
-+
-+	if (!cfr_capture_enable) {
-+		cfr_capture_bw = arsta->cfr_capture.cfr_bw;
-+		cfr_capture_period = arsta->cfr_capture.cfr_period;
-+		cfr_capture_method = arsta->cfr_capture.cfr_method;
-+	}
-+
-+	arg.request = cfr_capture_enable;
-+	arg.periodicity = cfr_capture_period;
-+	arg.bw = cfr_capture_bw;
-+	arg.method = cfr_capture_method;
-+
-+	ret = ath11k_wmi_peer_set_cfr_capture_conf(ar, arsta->arvif->vdev_id,
-+						   sta->addr, &arg);
-+	if (ret) {
-+		ath11k_warn(ar->ab,
-+			    "failed to send cfr capture info: vdev_id %u peer %pM: %d\n",
-+			    arsta->arvif->vdev_id, sta->addr, ret);
-+		return ret;
-+	}
-+
-+	spin_lock_bh(&ar->cfr.lock);
-+
-+	if (cfr_capture_enable &&
-+	    cfr_capture_enable != arsta->cfr_capture.cfr_enable)
-+		cfr->cfr_enabled_peer_cnt++;
-+	else if (!cfr_capture_enable)
-+		cfr->cfr_enabled_peer_cnt--;
-+
-+	spin_unlock_bh(&ar->cfr.lock);
-+
-+	arsta->cfr_capture.cfr_enable = cfr_capture_enable;
-+	arsta->cfr_capture.cfr_period = cfr_capture_period;
-+	arsta->cfr_capture.cfr_bw = cfr_capture_bw;
-+	arsta->cfr_capture.cfr_method = cfr_capture_method;
-+
-+	return count;
-+}
-+
-+static ssize_t ath11k_dbg_sta_read_cfr_capture(struct file *file,
-+					       char __user *user_buf,
-+					       size_t count, loff_t *ppos)
-+{
-+	struct ieee80211_sta *sta = file->private_data;
-+	struct ath11k_sta *arsta = ath11k_sta_to_arsta(sta);
-+	struct ath11k *ar = arsta->arvif->ar;
-+	char buf[512] = {};
-+	int len = 0;
-+
-+	mutex_lock(&ar->conf_mutex);
-+
-+	len += scnprintf(buf + len, sizeof(buf) - len, "cfr_enabled = %d\n",
-+			 arsta->cfr_capture.cfr_enable);
-+	len += scnprintf(buf + len, sizeof(buf) - len, "bandwidth = %d\n",
-+			 arsta->cfr_capture.cfr_bw);
-+	len += scnprintf(buf + len, sizeof(buf) - len, "period = %d\n",
-+			 arsta->cfr_capture.cfr_period);
-+	len += scnprintf(buf + len, sizeof(buf) - len, "cfr_method = %d\n",
-+			 arsta->cfr_capture.cfr_method);
-+
-+	mutex_unlock(&ar->conf_mutex);
-+
-+	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
-+}
-+
-+static const struct file_operations fops_peer_cfr_capture = {
-+	.write = ath11k_dbg_sta_write_cfr_capture,
-+	.read = ath11k_dbg_sta_read_cfr_capture,
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
-+	.llseek = default_llseek,
-+};
-+#endif /* CONFIG_ATH11K_CFR */
-+
- static ssize_t ath11k_dbg_sta_dump_rx_stats(struct file *file,
- 					    char __user *user_buf,
- 					    size_t count, loff_t *ppos)
-@@ -877,6 +1011,13 @@ void ath11k_debugfs_sta_op_add(struct ieee80211_hw *hw, struct ieee80211_vif *vi
- 		debugfs_create_file("htt_peer_stats_reset", 0600, dir, sta,
- 				    &fops_htt_peer_stats_reset);
- 
-+#ifdef CONFIG_ATH11K_CFR
-+	if (test_bit(WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT,
-+		     ar->ab->wmi_ab.svc_map))
-+		debugfs_create_file("cfr_capture", 0600, dir, sta,
-+				    &fops_peer_cfr_capture);
-+#endif/* CONFIG_ATH11K_CFR */
-+
- 	debugfs_create_file("peer_ps_state", 0400, dir, sta,
- 			    &fops_peer_ps_state);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c6360d6a72bd..965c377cd8dc 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9979,6 +9979,8 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 		}
- 		spin_unlock_bh(&ar->ab->base_lock);
- 		mutex_unlock(&ar->ab->tbl_mtx_lock);
-+
-+		ath11k_cfr_decrement_peer_count(ar, arsta);
- 	} else if (old_state == IEEE80211_STA_AUTH &&
- 		   new_state == IEEE80211_STA_ASSOC &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index edff6fb61344..846c9946a084 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -3941,6 +3941,47 @@ int ath11k_wmi_fils_discovery_tmpl(struct ath11k *ar, u32 vdev_id,
- 	return 0;
- }
- 
-+int ath11k_wmi_peer_set_cfr_capture_conf(struct ath11k *ar,
-+					 u32 vdev_id, const u8 *mac_addr,
-+					 struct wmi_peer_cfr_capture_conf_arg *arg)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct wmi_peer_cfr_capture_cmd_fixed_param *cmd;
-+	struct sk_buff *skb;
-+	int ret;
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_peer_cfr_capture_cmd_fixed_param *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_PEER_CFR_CAPTURE_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-+
-+	memcpy(&cmd->mac_addr, mac_addr, ETH_ALEN);
-+	cmd->request = arg->request;
-+	cmd->vdev_id = vdev_id;
-+	cmd->periodicity = arg->periodicity;
-+	cmd->bandwidth = arg->bw;
-+	cmd->capture_method = arg->method;
-+
-+	ret = ath11k_wmi_cmd_send(ar->wmi, skb, WMI_PEER_CFR_CAPTURE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ar->ab,
-+			    "WMI vdev %d failed to send peer cfr capture cmd: %d\n",
-+			    vdev_id, ret);
-+		dev_kfree_skb(skb);
-+	}
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "WMI peer CFR capture cmd req %u id %u period %u bw %u mode %u\n",
-+		   arg->request, vdev_id, arg->periodicity,
-+		   arg->bw, arg->method);
-+
-+	return ret;
-+}
-+
- int ath11k_wmi_probe_resp_tmpl(struct ath11k *ar, u32 vdev_id,
- 			       struct sk_buff *tmpl)
+ static void ath11k_cfr_debug_register(struct ath11k *ar)
  {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 7a55fe0879c0..1562d169ba9a 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -362,6 +362,10 @@ enum wmi_tlv_cmd_id {
- 	WMI_PEER_REORDER_QUEUE_REMOVE_CMDID,
- 	WMI_PEER_SET_RX_BLOCKSIZE_CMDID,
- 	WMI_PEER_ANTDIV_INFO_REQ_CMDID,
-+	WMI_PEER_RESERVED0_CMDID,
-+	WMI_PEER_TID_MSDUQ_QDEPTH_THRESH_UPDATE_CMDID,
-+	WMI_PEER_TID_CONFIGURATIONS_CMDID,
-+	WMI_PEER_CFR_CAPTURE_CMDID,
- 	WMI_BCN_TX_CMDID = WMI_TLV_CMD(WMI_GRP_MGMT),
- 	WMI_PDEV_SEND_BCN_CMDID,
- 	WMI_BCN_TMPL_CMDID,
-@@ -3833,7 +3837,8 @@ struct wmi_scan_prob_req_oui_cmd {
- #define WMI_TX_PARAMS_DWORD1_BW_MASK		GENMASK(14, 8)
- #define WMI_TX_PARAMS_DWORD1_PREAMBLE_TYPE	GENMASK(19, 15)
- #define WMI_TX_PARAMS_DWORD1_FRAME_TYPE		BIT(20)
--#define WMI_TX_PARAMS_DWORD1_RSVD		GENMASK(31, 21)
-+#define WMI_TX_PARAMS_DWORD1_CFR_CAPTURE	BIT(21)
-+#define WMI_TX_PARAMS_DWORD1_RSVD		GENMASK(31, 22)
- 
- struct wmi_mgmt_send_params {
- 	u32 tlv_header;
-@@ -4218,6 +4223,45 @@ enum cc_setting_code {
- 	 */
- };
- 
-+enum ath11k_wmi_cfr_capture_bw {
-+	WMI_PEER_CFR_CAPTURE_BW_20,
-+	WMI_PEER_CFR_CAPTURE_BW_40,
-+	WMI_PEER_CFR_CAPTURE_BW_80,
-+	WMI_PEER_CFR_CAPTURE_BW_MAX,
-+};
++	ar->cfr.rfs_cfr_capture = relay_open("cfr_capture",
++					     ar->debug.debugfs_pdev,
++					     ar->ab->hw_params.cfr_stream_buf_size,
++					     ar->ab->hw_params.cfr_num_stream_bufs,
++					     &rfs_cfr_capture_cb, NULL);
 +
-+enum ath11k_wmi_cfr_capture_method {
-+	WMI_CFR_CAPTURE_METHOD_NULL_FRAME,
-+	WMI_CFR_CAPTURE_METHOD_NULL_FRAME_WITH_PHASE,
-+	WMI_CFR_CAPTURE_METHOD_PROBE_RESP,
-+	WMI_CFR_CAPTURE_METHOD_MAX,
-+};
-+
-+struct wmi_peer_cfr_capture_conf_arg {
-+	enum ath11k_wmi_cfr_capture_bw bw;
-+	enum ath11k_wmi_cfr_capture_method method;
-+	u32 request;
-+	u32 periodicity;
-+};
-+
-+struct wmi_peer_cfr_capture_cmd_fixed_param {
-+	u32 tlv_header;
-+	u32 request;
-+	struct wmi_mac_addr mac_addr;
-+	u32 vdev_id;
-+	u32 periodicity;
-+	/* BW of measurement - of type enum ath11k_wmi_cfr_capture_bw */
-+	u32 bandwidth;
-+	/* Method used to capture CFR - of type enum ath11k_wmi_cfr_capture_method */
-+	u32 capture_method;
-+} __packed;
-+
-+#define WMI_PEER_CFR_CAPTURE_ENABLE   1
-+#define WMI_PEER_CFR_CAPTURE_DISABLE  0
-+
-+/*periodicity in ms */
-+#define WMI_PEER_CFR_PERIODICITY_MAX 600000
-+
- static inline enum cc_setting_code
- ath11k_wmi_cc_setting_code_to_reg(enum wmi_reg_cc_setting_code status_code)
- {
-@@ -6532,5 +6576,7 @@ bool ath11k_wmi_supports_6ghz_cc_ext(struct ath11k *ar);
- int ath11k_wmi_send_vdev_set_tpc_power(struct ath11k *ar,
- 				       u32 vdev_id,
- 				       struct ath11k_reg_tpc_power_info *param);
--
-+int ath11k_wmi_peer_set_cfr_capture_conf(struct ath11k *ar,
-+					 u32 vdev_id, const u8 *mac,
-+					 struct wmi_peer_cfr_capture_conf_arg *arg);
- #endif
+ 	ar->cfr.enable_cfr = debugfs_create_file("enable_cfr", 0600,
+ 						 ar->debug.debugfs_pdev, ar,
+ 						 &fops_enable_cfr);
+diff --git a/drivers/net/wireless/ath/ath11k/cfr.h b/drivers/net/wireless/ath/ath11k/cfr.h
+index fa9d98cc72b7..4653b04c30de 100644
+--- a/drivers/net/wireless/ath/ath11k/cfr.h
++++ b/drivers/net/wireless/ath/ath11k/cfr.h
+@@ -60,6 +60,7 @@ struct ath11k_cfr {
+ 	struct ath11k_look_up_table *lut;
+ 	struct dentry *enable_cfr;
+ 	struct dentry *cfr_unassoc;
++	struct rchan *rfs_cfr_capture;
+ 	u8 cfr_enabled_peer_cnt;
+ 	u32 lut_num;
+ 	u64 tx_evt_cnt;
 -- 
 2.34.1
 
