@@ -4,134 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55D0DCCFA04
-	for <ath11k@archiver.kernel.org>; Wed,  5 Nov 2025 02:40:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F5E2CCFA04
+	for <ath11k@archiver.kernel.org>; Wed,  5 Nov 2025 02:47:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=z82SbUtYiowhkxe7KgzgwLjWQMrm7JLfiBO5E0UsegI=; b=GoVK4ZqaSXtlH68kRDW3WtwscN
-	g1ZNV0NwE+JRO/+Cd/SZKrFPgFigGc02C4GRuFUjDFYMCzZ/XRra+/YrjJB4xrb4T7jlngwANAXTe
-	bVe48oPdyFw60NQ2bf3X8M1kb3BGSIGmPk1uhUG0JeQm+TnvDpiofODDlUEd3V31ZHWZdfgwNDDsH
-	GKccBF9KEGutKPlLtCIS1u68QVCJywm1PjONyqTCll4fDwk8lGhkLUcI2oNBx6fGu+F/xw6H5CQOr
-	S/XryufEjQ+kgEpcpvSxh7snPZZlDCuoch7HA20K5tzYTC/RY7BttoFWmTguzzNmEfsFxxiusa70c
-	W9o2/qtQ==;
+	bh=xEgKxTzFP5wtiwCINthvDjzT8DEp1xPRg4SO6G8xn2c=; b=ERjfHKz8tv52nLZLmrErQg77VB
+	r8XwCcKaKiLCRs/mS3RR61jnmrLH/oQ/vc/3liE9l+fr8iiZasivw6nb+FcysENWGGxhTlvWSg7VD
+	wgYcTX6HAozluOICPfUh0rnX3zp+3C2OlGBPXWmNNdoVa3tTrCWqYjbHtu6qSomRxEArbyxdvsHSU
+	1KZ+BowLdoeKF24iVuIOMczuQx6NLitS0n36AVE2cjOJMeeRlBwVcG0gVIobhkgp6fQ+gblvL//1S
+	5urPuNrZxEM7xNSM4/if0PJWEdfyfIWxp2gN2IcMwIvyZ5JfVFT9sgTtTTZuinuVs07Tt8ZNWF1qW
+	+/ALv4Lg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vGTS0-0000000CutR-1Li0;
-	Wed, 05 Nov 2025 02:40:44 +0000
+	id 1vGTYA-0000000CvF5-1VSn;
+	Wed, 05 Nov 2025 02:47:06 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vGTRx-0000000Cut0-1oep
+	id 1vGTY7-0000000CvEc-1NDn
 	for ath11k@lists.infradead.org;
-	Wed, 05 Nov 2025 02:40:42 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A4KfnaX2967309
-	for <ath11k@lists.infradead.org>; Wed, 5 Nov 2025 02:40:40 GMT
+	Wed, 05 Nov 2025 02:47:04 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A4Kg2MI2979005
+	for <ath11k@lists.infradead.org>; Wed, 5 Nov 2025 02:47:02 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	z82SbUtYiowhkxe7KgzgwLjWQMrm7JLfiBO5E0UsegI=; b=EHeQhTrmpw09NDfx
-	4muN/DAkeBwYbImq0BluHCo9G0IjWiXdviFtfODZiYFWYxHaw+DvRC92mNfJAwJi
-	6I7lruuckhjJNEf1Hsr2DT4Q3a5E6KRfTklUrqSswEmc7odC3HU1pN0tY/3sWu+k
-	ip44eTRjY1oPUDVaztRH/gxOlrCuhpea3/HH364rrNXKHjVav4DipFD0tNtTD31b
-	5CMgNYFhj6o8JZjVui+s+P0VhJ84Mu+IytCdDFqVC93/8uCXmS+Mhv0Hrk0SOsGZ
-	8WHZU8JrizA57AO4FhbEgWT8gNo9jXFP9+w2DPbI9Y8Sx5XEp+ZovUCP44T6b6Au
-	ff6DUw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7heajb1u-1
+	xEgKxTzFP5wtiwCINthvDjzT8DEp1xPRg4SO6G8xn2c=; b=Y6Irj+iWoATxQYrG
+	5Z+y9o7SE6YyPNcWVGkCzJQ0hlISPUcVdUzTQYQEQfv68RRYHxq5XC+ELN5HUZ2z
+	4RToSObOufxg52mH4xH8HvoXQ6Z/Vsvd09WiPazfe+jE1/T1uHQnCcnudBnNu2kn
+	9LTM6BNf1FUQ2Rk21Rg0z7WkDvxvq4b+Lt2myXhsOiCfRErf6Gknc+wGmx7HuSCw
+	IIoX9LLxKfdbw8tf2avcC9EqYCg0zF0RUn6kPEV1pONE1XPfEy6hB2VBUEIaBh1J
+	XEqKP1NiNgC5EbpeNf3PnNCIbjzE/gray0HDbVwQw20HyCti4z08R/FML6oMBpvq
+	gYwSWQ==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7hbjtb7k-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 05 Nov 2025 02:40:39 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-32ee62ed6beso10563772a91.2
-        for <ath11k@lists.infradead.org>; Tue, 04 Nov 2025 18:40:39 -0800 (PST)
+	for <ath11k@lists.infradead.org>; Wed, 05 Nov 2025 02:47:02 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3418ad76023so2184960a91.0
+        for <ath11k@lists.infradead.org>; Tue, 04 Nov 2025 18:47:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762310439; x=1762915239; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1762310822; x=1762915622; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z82SbUtYiowhkxe7KgzgwLjWQMrm7JLfiBO5E0UsegI=;
-        b=jbty/PEJ724oN1O/6joqVCHBbjSeVqnT9ApUBxy84g8WsfzUCUYelkJKHeilF9xM/5
-         UhnN8JhZoig41io3VM/kerJQGdjBBsuwjhBFQ6+QXGyD/uaIwlb1n5USfaFJOtFuwSis
-         aGnzUYXc72VLk1L0b4+M4f6q1HhMxRUs9j9Kauaj0qfruCqem9iQ/a8K3AjwJ+uXI5dm
-         cmgjdWqjEL+Mzg6BwS86dXXMK5Pylhj4xTxIogfkau6FiIUzyd4MTRbyLCDzqyBOGLLw
-         m13cE8HghNsXkcTpG1JvAnrYR/hH1U3NDZpO2ZA7XRiy+TzktPQLKK3d8Yj2c9axsAZA
-         IRWQ==
+        bh=xEgKxTzFP5wtiwCINthvDjzT8DEp1xPRg4SO6G8xn2c=;
+        b=KZtPKBfODGIIQOxfPmbpkrCfbVxpiySeKFx4pjZklewiKiDxdMpxvCc5nqiXbTJwRD
+         XKUQpPEQ/MLx4bPya4bY/CwRzCnqCGZRIXK2kMAHVlINz1pRfft1FA18o+iL411c4wtQ
+         wqU9YDirl/th16hLKBmC43vAQj72dgZG3DVxkMWpY3IAXmIJhvo7zssKwexDdh+gw2Ee
+         5y4DYXGAKDqbS5XvSxT5VErZ84PNqFmEsHYfO0FzzAAfABQKKnoy+FplADkqLLyPytuC
+         UvZIPZ1cTqdqMPvoJJcPvGxXLZXu6AjAEdIYhqDQMDXcb6xouWx25K4pFsdrFShUd9Qz
+         /MIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762310439; x=1762915239;
+        d=1e100.net; s=20230601; t=1762310822; x=1762915622;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z82SbUtYiowhkxe7KgzgwLjWQMrm7JLfiBO5E0UsegI=;
-        b=EBfOOx69TisII/SFmkZGVc8XRd+fj+SxsAxXfY4L7Mge4jVs+t8s3joLaGn0G34qMr
-         gh+IoPzx3jUnn6kPAisYs91GkzxGspk0NoYVGGDc5aeZcGx0Rz62sXvjy0i0Zu50Cakv
-         wpKnL2RLKwPaxGXToYZN1zH3reR3X2dSj+imgRtQoIGRzutAA4TDvDYKeogfCIRm7LiR
-         R2Kb2bzK35Zj/pndki7px9x6wnBEQ6EcLndQkf785wERGUli3Wb2xCQLvFQ9YTdequLp
-         qCaxqzmNT2Kh7A2pABsUWBLhK+/cxhYC39k1XjH+lSbeWjelyi2/l+2lXB0HSHeHLKbG
-         J81g==
-X-Forwarded-Encrypted: i=1; AJvYcCXoq9O5clkywfMzYX6rm3lvEPIHvN6OCFJ6BR3SnGwAkdEqXfktQvoC1YSHD8iQ84AhFFuPsDM=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzXvh6crepJHGfyEdjg/Vq6uvv1FEeihiPXUXTnuN9cYmWfIgZM
-	d6ogphRue6LwiaX2C3iRuFVerDwmgVTnIUPturrq6h52rj+UYu/cxck2D1W4/dGRAKWVot61LUm
-	tM3jQ70M1z++OG8unDxYXPs/B+YR7Tujr0pPthBwd94yyN9akCOJuT4gSRwVCcNJe
-X-Gm-Gg: ASbGncskDVrzpiM0okNzZWaSvivialUDWIUKJq8DJfO1k46OzPrTCFfnGJBDpblql+/
-	GkffmZt7k+ETEybXkZ6EmzSVCWnMtifMK8OhBR0pqELBc19AQ96UJ56635A12SB4sYvs1BrsC4h
-	5SpAIumc9h5+2uOgJxmuehNuqA72KralkCMfUDPKsr1gPHY3p0mREOMxRfC3tzPF71RP5vgXeb+
-	gO5oSQxeCtdy1rMojV7/rjg2NbX7ZcJlFPHOKPu3fppwCwgccjJKSxq+TRb9Km1PnLta05x+4KP
-	fRgJ9OqDWkt8eFGEgexNdcQ7+760KS2wBpDXAwBtkfdV92tsherAQZItZAoEKhSASOIE1h9ndkB
-	RXhEkXp46H1eIlc1foeZ530I/xx5RfS+IF3r4mWYLcb/ti9519pRcnkvolcg/H5dCJ/xOeMM=
-X-Received: by 2002:a17:90b:3c08:b0:340:f05a:3eca with SMTP id 98e67ed59e1d1-341a6dc4b17mr1965629a91.20.1762310439056;
-        Tue, 04 Nov 2025 18:40:39 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFDuWiRwazftd6t2s4wdBPAp02THBe+Zs4XUJxxyHZqsHdFitgl1KE5K/oEAKb/kWJ93nt93g==
-X-Received: by 2002:a17:90b:3c08:b0:340:f05a:3eca with SMTP id 98e67ed59e1d1-341a6dc4b17mr1965610a91.20.1762310438491;
-        Tue, 04 Nov 2025 18:40:38 -0800 (PST)
+        bh=xEgKxTzFP5wtiwCINthvDjzT8DEp1xPRg4SO6G8xn2c=;
+        b=BHw9g5gFgWTXPyomTKYSR9BaI6sPXIL3x1zBmX8AJE62i2E1bzvNu1Uk9L2wDGXbPA
+         nmN0VXeCw9lyGrMXPJwycgm5vVmK7shdTaoUl7HldxdCUZvW+elHMA2M9NpXlFc/aKF/
+         KYgVgBs1KPwo9qAm40ftGH1mqbRhwG6ypKLGVfoduxEkbIblCcHV3b0AAqwIQPrpfutj
+         Lxu0mZ2IHMQ5Z/Kl/T9tGwz64YvWvCdJeLyJAzNJRll/xBoxJPeR0viEWdIvENenlHsX
+         qkEH7z4zGaU2aJzYW7sPMRpTu3rycuyqn6Zn6LVFrOLB8krHbbHcGeHc5zu2V9IxG5Xs
+         AILA==
+X-Forwarded-Encrypted: i=1; AJvYcCWtrCpTmp8QbFLIAoXVo9sOwIM2j4sXQCOyNKr2tye8vb6CPn/8taXfy/xQ1Tmx93nFgyYyiZU=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzphLeRBmEUKaFt0ALXXiWiw+RXMPkz8lIHh7gDsLeFldClT45X
+	N3svGAxzW9mVW7xG+cskiYXQUqtIk+/I0X8sI8lIzCZjJ3/QbkUEJlT3+1KGftu4V6SyAlS7IyH
+	gdPrlP3KaQVqgGtX4beL6jhZ9Xr7saZPNiBUxSU0PKx3oxZl21t7XBswLaVOKMcAT
+X-Gm-Gg: ASbGncu2FCMCn7cJVBdiEzg7QUYBbBv+eNKCoav3JzMcLZnQu4AmR2FQScwCgwUwsg0
+	PCYTEFOsqosEIIIVpKxQ+2FmLu7YhqFBeYfc7CeHJLj8HFcV8py48ApB2qK5OltfobkLayuOSur
+	/Wo9wi/55ApXKqv40T7qdlVYap3ga7/1RkeytIpfI8M62r2j9DUkWFyTezSntr1POsDkEiX4bB9
+	4jJwG4KVz7l/55/HgUbOKslcyjPdrGo9HkWSt6l41Lr7FOQJfwMdT916HnVH137PiKcjld+TnC/
+	yDXx5g3hLyqWBSqM0L/5E8prfxUZ/rBMDKmdBh+oYHZXN0hnrnaB7WesqnpquEw3rSsOuU34pG/
+	0654RTfKgsNEtbaixQapln4WRzpX9R/uIvfJ1/9YNk+pPHT/OXftcEWyvsCD8fk2AEK2pz50=
+X-Received: by 2002:a17:90b:5350:b0:340:776d:f4ca with SMTP id 98e67ed59e1d1-341a6de83a1mr1783543a91.26.1762310821994;
+        Tue, 04 Nov 2025 18:47:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGuwMno/jN7iUuFKpQ58L3wuOLckMwb2hS/UjoC4WxCpQxVIypLOXTOb+caLCW75bcojVp0Yg==
+X-Received: by 2002:a17:90b:5350:b0:340:776d:f4ca with SMTP id 98e67ed59e1d1-341a6de83a1mr1783499a91.26.1762310821509;
+        Tue, 04 Nov 2025 18:47:01 -0800 (PST)
 Received: from [10.133.33.42] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ba675d384f5sm121115a12.27.2025.11.04.18.40.36
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ba1f942a9d9sm3829624a12.33.2025.11.04.18.46.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Nov 2025 18:40:38 -0800 (PST)
-Message-ID: <809038ef-dd0b-4b42-9357-f4f0825a4857@oss.qualcomm.com>
-Date: Wed, 5 Nov 2025 10:40:32 +0800
+        Tue, 04 Nov 2025 18:47:01 -0800 (PST)
+Message-ID: <9830e3fb-3f08-4343-bae8-07d446f86173@oss.qualcomm.com>
+Date: Wed, 5 Nov 2025 10:46:55 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next v2 1/6] wifi: ath11k: Add initialization and
- deinitialization sequence for CFR module
+Subject: Re: [PATCH ath-next v2 5/6] wifi: ath11k: Register DBR event handler
+ for CFR data
 To: "Yu Zhang(Yuriy)" <yu.zhang@oss.qualcomm.com>, jjohnson@kernel.org
 Cc: linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
         ath11k@lists.infradead.org,
         Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
 References: <20251104162633.3007874-1-yu.zhang@oss.qualcomm.com>
- <20251104162633.3007874-2-yu.zhang@oss.qualcomm.com>
+ <20251104162633.3007874-6-yu.zhang@oss.qualcomm.com>
 From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20251104162633.3007874-2-yu.zhang@oss.qualcomm.com>
+In-Reply-To: <20251104162633.3007874-6-yu.zhang@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=GekaXAXL c=1 sm=1 tr=0 ts=690ab927 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Authority-Analysis: v=2.4 cv=Uv5u9uwB c=1 sm=1 tr=0 ts=690abaa6 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=9cJcMz6cYvtNARQ-iUYA:9 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDAxNSBTYWx0ZWRfX8nXR4FxoMFAb
- 97zidU/Xfd76W7m7hHU/+MsTSl7WM9nD1VbHjC5tv3GSIlTgIBxPuB/NB031PKgllqH5B8utrmK
- EzIJyTnmDFFjwMiJlYoOVX0qBXuWaex8wW2NOT+q2VgeWgx+OOr1+QYHmzjthK0QYZOSvvbvj7M
- m3TAs2P8Oq311iZdD4az9RcIoxJehj/ZPAvZzSJm6dio1wOELT3MSNIhi+kcloWvAO4UJQs3leo
- zGalF80H0J/HFtTswULPMWkG5Kdo4Y7ZNIWGt5EZA6uIBQw5h2HikmLNSCDVLFsftHTL4abFxBJ
- 9fxjyEUkXxmhhB/DFbhgoqzj08zyxaQtVmMFeI8EKlV9AzfIGGM5YpLNxSHcwFkFVKOknNk0oyQ
- Y2446Do3WbLX8+B9LZ2gHmjmdeef6g==
-X-Proofpoint-GUID: frSLAFlxvAqdlmisWPru3H8_HKvdVsZB
-X-Proofpoint-ORIG-GUID: frSLAFlxvAqdlmisWPru3H8_HKvdVsZB
+ a=VkNPw1HP01LnGYTKEx00:22 a=wcWF3zN8gqulG0AiaMQA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: HSRMHOEtE8mlfq42K98UaM7-V2MG41ba
+X-Proofpoint-GUID: HSRMHOEtE8mlfq42K98UaM7-V2MG41ba
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDAxNiBTYWx0ZWRfXw0vvozcJVPdt
+ 52d0Vi5HbNRYhkYszqKNbXx8MmSioUThouQXHnd98twg5uDsvDkjomgeRJoGAafJatP1ycLwmJJ
+ 7uIMX7EDtQdMrg3KCYADKDWGqZ7jrFjEqL8D5Kb92hXxgrRGWbPOYROehMggEicQALvyQxACJDx
+ 50JB7qxzXP7381lOLldFRByxKn2Z1Bf2fxSYerazXKGVgqpAOuF6Y0mgpoZEBXmHgcpBSAZQBpK
+ FSik/FaDwG7psa30+iK7/fukDa/v1rOevfGBTWcdLGZE3mFbdZolBbRWe22yjMQ+72/1ObZ9QiA
+ +2ZwGREblz2GmPqnK3VjiNkVF6Dz1sONXR388XaqyF0DImbsUYEx+vVzMGuG2TlbiilhNvSPlgO
+ 60Yt+vVlRsPgrGm/hEd3tJ3NsXsBDA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-05_01,2025-11-03_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0
- phishscore=0 priorityscore=1501 suspectscore=0 clxscore=1015 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511050015
+ malwarescore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
+ bulkscore=0 spamscore=0 clxscore=1015 adultscore=0 phishscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511050016
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251104_184041_495262_B917D854 
-X-CRM114-Status: GOOD (  34.26  )
+X-CRM114-CacheID: sfid-20251104_184703_383116_907D3DAA 
+X-CRM114-Status: GOOD (  14.27  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,257 +149,77 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 On 11/5/2025 12:26 AM, Yu Zhang(Yuriy) wrote:
-> From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-> 
-> Channel Frequency Response (CFR) module will be initialized only when
-> the following criteria passes:
->  * Enabled CFR support for the hardware through the hardware param
->    'cfr_support'
->  * WMI service enabled for the CFR support
->    'WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT'
-> 
-> Also, provide a configuration option CONFIG_ATH11K_CFR to enable CFR
-> feature support during the compilation time.
-> 
-> CFR module initialization includes Direct Buffer(DB) ring initialization
-> where hardware uses the DB ring buffers to copy CFR data to host.
-> Number of buffers and buffer size of the ring is based on the DB ring
-> capabilities advertised by the firmware through WMI service ready.
-> Also ring configurations are sent to firmware through
-> ath11k_dbring_wmi_cfg_setup().
-> 
-> Predefine ath11k_cfr_dma_hdr, ath11k_look_up_table, and ath11k_cfr
-> structs and fields for subsequent patches.
-> 
-> Tested-on: IPQ8074 hw2.0 PCI IPQ8074 WLAN.HK.2.5.0.1-00991-QCAHKSWPL_SILICONZ-1
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
-> 
-> Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-> Co-developed-by: Yu Zhang (Yuriy) <yu.zhang@oss.qualcomm.com>
-> Signed-off-by: Yu Zhang (Yuriy) <yu.zhang@oss.qualcomm.com>
-> Reviewed-by: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
-> ---
->  drivers/net/wireless/ath/ath11k/Kconfig  |  11 ++
->  drivers/net/wireless/ath/ath11k/Makefile |   1 +
->  drivers/net/wireless/ath/ath11k/cfr.c    | 160 +++++++++++++++++++++++
->  drivers/net/wireless/ath/ath11k/cfr.h    |  84 ++++++++++++
->  drivers/net/wireless/ath/ath11k/core.c   |  41 +++++-
->  drivers/net/wireless/ath/ath11k/core.h   |   8 +-
->  drivers/net/wireless/ath/ath11k/dbring.c |  40 ++++--
->  drivers/net/wireless/ath/ath11k/dbring.h |   6 +-
->  drivers/net/wireless/ath/ath11k/hal.c    |   3 +-
->  drivers/net/wireless/ath/ath11k/hw.h     |   5 +-
->  drivers/net/wireless/ath/ath11k/wmi.h    |   1 +
->  11 files changed, 343 insertions(+), 17 deletions(-)
->  create mode 100644 drivers/net/wireless/ath/ath11k/cfr.c
->  create mode 100644 drivers/net/wireless/ath/ath11k/cfr.h
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
-> index 659ef134ef16..47dfd39caa89 100644
-> --- a/drivers/net/wireless/ath/ath11k/Kconfig
-> +++ b/drivers/net/wireless/ath/ath11k/Kconfig
-> @@ -58,3 +58,14 @@ config ATH11K_SPECTRAL
->  	  Enable ath11k spectral scan support
->  
->  	  Say Y to enable access to the FFT/spectral data via debugfs.
-> +
-> +config ATH11K_CFR
-> +	bool "ath11k channel frequency response support"
-> +	depends on ATH11K_DEBUGFS
-> +	depends on RELAY
-> +	help
-> +	  Enable ath11k channel frequency response dump support.
-> +	  This option exposes debugfs nodes that will allow the user
-> +	  to enable, disable, and dump data.
-> +
-> +	  Say Y to enable CFR data dump collection via debugfs.
-> diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-> index d9092414b362..b1435fcf3e1b 100644
-> --- a/drivers/net/wireless/ath/ath11k/Makefile
-> +++ b/drivers/net/wireless/ath/ath11k/Makefile
-> @@ -28,6 +28,7 @@ ath11k-$(CONFIG_THERMAL) += thermal.o
->  ath11k-$(CONFIG_ATH11K_SPECTRAL) += spectral.o
->  ath11k-$(CONFIG_PM) += wow.o
->  ath11k-$(CONFIG_DEV_COREDUMP) += coredump.o
-> +ath11k-$(CONFIG_ATH11K_CFR) += cfr.o
->  
->  obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
->  ath11k_ahb-y += ahb.o
-> diff --git a/drivers/net/wireless/ath/ath11k/cfr.c b/drivers/net/wireless/ath/ath11k/cfr.c
-> new file mode 100644
-> index 000000000000..73ffe3510ffe
-> --- /dev/null
-> +++ b/drivers/net/wireless/ath/ath11k/cfr.c
-> @@ -0,0 +1,160 @@
-> +// SPDX-License-Identifier: BSD-3-Clause-Clear
-> +/*
-> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#include <linux/relay.h>
-> +#include "core.h"
-> +#include "debug.h"
-> +
-> +static int ath11k_cfr_process_data(struct ath11k *ar,
-> +				   struct ath11k_dbring_data *param)
-> +{
-> +	return 0;
-> +}
-> +
-> +void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
-> +				 u32 buf_id)
-> +{
-> +	struct ath11k_cfr *cfr = &ar->cfr;
-> +
-> +	if (cfr->lut)
-> +		cfr->lut[buf_id].dbr_address = paddr;
-> +}
-> +
-> +static void ath11k_cfr_ring_free(struct ath11k *ar)
-> +{
-> +	struct ath11k_cfr *cfr = &ar->cfr;
-> +
-> +	ath11k_dbring_buf_cleanup(ar, &cfr->rx_ring);
-> +	ath11k_dbring_srng_cleanup(ar, &cfr->rx_ring);
-> +}
-> +
-> +static int ath11k_cfr_ring_alloc(struct ath11k *ar,
-> +				 struct ath11k_dbring_cap *db_cap)
-> +{
-> +	struct ath11k_cfr *cfr = &ar->cfr;
-> +	int ret;
-> +
-> +	ret = ath11k_dbring_srng_setup(ar, &cfr->rx_ring,
-> +				       ATH11K_CFR_NUM_RING_ENTRIES,
-> +				       db_cap->min_elem);
-> +	if (ret) {
-> +		ath11k_warn(ar->ab, "failed to setup db ring: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ath11k_dbring_set_cfg(ar, &cfr->rx_ring,
-> +			      ATH11K_CFR_NUM_RESP_PER_EVENT,
-> +			      ATH11K_CFR_EVENT_TIMEOUT_MS,
-> +			      ath11k_cfr_process_data);
-> +
-> +	ret = ath11k_dbring_buf_setup(ar, &cfr->rx_ring, db_cap);
-> +	if (ret) {
-> +		ath11k_warn(ar->ab, "failed to setup db ring buffer: %d\n", ret);
-> +		goto srng_cleanup;
-> +	}
-> +
-> +	ret = ath11k_dbring_wmi_cfg_setup(ar, &cfr->rx_ring, WMI_DIRECT_BUF_CFR);
-> +	if (ret) {
-> +		ath11k_warn(ar->ab, "failed to setup db ring cfg: %d\n", ret);
-> +		goto buffer_cleanup;
-> +	}
-> +
-> +	return 0;
-> +
-> +buffer_cleanup:
-> +	ath11k_dbring_buf_cleanup(ar, &cfr->rx_ring);
-> +srng_cleanup:
-> +	ath11k_dbring_srng_cleanup(ar, &cfr->rx_ring);
-> +	return ret;
-> +}
-> +
-> +void ath11k_cfr_deinit(struct ath11k_base *ab)
-> +{
-> +	struct ath11k_cfr *cfr;
-> +	struct ath11k *ar;
-> +	int i;
-> +
-> +	if (!test_bit(WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT, ab->wmi_ab.svc_map) ||
-> +	    !ab->hw_params.cfr_support)
-> +		return;
-> +
-> +	for (i = 0; i <  ab->num_radios; i++) {
-> +		ar = ab->pdevs[i].ar;
-> +		cfr = &ar->cfr;
-> +
 
-don't you need to check whether the radio has WMI_DIRECT_BUF_CFR capability just as what
-is done in the init path?
-
-And for the other functions where CFR is involved, do we need to check it as well?
-Checking spectral feature which seems to be similar to CFR, there is a 'enabled' flag
-there indicating whether this capability is supported and initialized, maybe we need it as
-well?
-
-> +		ath11k_cfr_ring_free(ar);
-> +
-> +		spin_lock_bh(&cfr->lut_lock);
-> +		kfree(cfr->lut);
-> +		cfr->lut = NULL;
-> +		spin_unlock_bh(&cfr->lut_lock);
-> +	}
-> +}
-> +
-> +int ath11k_cfr_init(struct ath11k_base *ab)
+> +static enum ath11k_cfr_correlate_status
+> +ath11k_cfr_correlate_and_relay(struct ath11k *ar,
+> +			       struct ath11k_look_up_table *lut,
+> +			       u8 event_type)
 > +{
-> +	struct ath11k_dbring_cap db_cap;
-> +	struct ath11k_cfr *cfr;
-> +	u32 num_lut_entries;
-> +	struct ath11k *ar;
-> +	int i, ret;
+> +	enum ath11k_cfr_correlate_status status;
+> +	struct ath11k_cfr *cfr = &ar->cfr;
+> +	u64 diff;
 > +
-> +	if (!test_bit(WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT, ab->wmi_ab.svc_map) ||
-> +	    !ab->hw_params.cfr_support)
-> +		return 0;
-> +
-> +	for (i = 0; i < ab->num_radios; i++) {
-> +		ar = ab->pdevs[i].ar;
-> +		cfr = &ar->cfr;
-> +
-> +		ret = ath11k_dbring_get_cap(ar->ab, ar->pdev_idx,
-> +					    WMI_DIRECT_BUF_CFR, &db_cap);
-> +		if (ret)
-> +			continue;
-> +
-> +		idr_init(&cfr->rx_ring.bufs_idr);
-> +		spin_lock_init(&cfr->rx_ring.idr_lock);
-> +		spin_lock_init(&cfr->lock);
-> +		spin_lock_init(&cfr->lut_lock);
-> +
-> +		num_lut_entries = min_t(u32, CFR_MAX_LUT_ENTRIES, db_cap.min_elem);
-> +		cfr->lut = kcalloc(num_lut_entries, sizeof(*cfr->lut),
-> +				   GFP_KERNEL);
-> +		if (!cfr->lut) {
-> +			ret = -ENOMEM;
-> +			goto err;
-> +		}
-> +
-> +		ret = ath11k_cfr_ring_alloc(ar, &db_cap);
-> +		if (ret) {
-> +			ath11k_warn(ab, "failed to init cfr ring for pdev %d: %d\n",
-> +				    i, ret);
-> +			spin_lock_bh(&cfr->lut_lock);
-> +			kfree(cfr->lut);
-> +			cfr->lut = NULL;
-> +			spin_unlock_bh(&cfr->lut_lock);
-> +			goto err;
-> +		}
-> +
-> +		cfr->lut_num = num_lut_entries;
+> +	if (event_type == ATH11K_CORRELATE_TX_EVENT) {
+> +		if (lut->tx_recv)
+> +			cfr->cfr_dma_aborts++;
+> +		cfr->tx_evt_cnt++;
+> +		lut->tx_recv = true;
+> +	} else if (event_type == ATH11K_CORRELATE_DBR_EVENT) {
+> +		cfr->dbr_evt_cnt++;
+> +		lut->dbr_recv = true;
 > +	}
 > +
-> +	return 0;
+> +	if (lut->dbr_recv && lut->tx_recv) {
+> +		if (lut->dbr_ppdu_id == lut->tx_ppdu_id) {
+> +			/* 64-bit counters make wraparound highly improbable,
+> +			 * wraparound handling is omitted.
+> +			 */
+
+I was meaning that we need to change to the common Linux comment style which starts with
+an empty line:
+
+	/*
+	 * your comments start here
+	 */
+
+> +			cfr->last_success_tstamp = lut->dbr_tstamp;
+> +			if (lut->dbr_tstamp > lut->txrx_tstamp) {
+> +				diff = lut->dbr_tstamp - lut->txrx_tstamp;
+> +				ath11k_dbg(ar->ab, ATH11K_DBG_CFR,
+> +					   "txrx event -> dbr event delay = %u ms",
+> +					   jiffies_to_msecs(diff));
+> +			} else if (lut->txrx_tstamp > lut->dbr_tstamp) {
+> +				diff = lut->txrx_tstamp - lut->dbr_tstamp;
+> +				ath11k_dbg(ar->ab, ATH11K_DBG_CFR,
+> +					   "dbr event -> txrx event delay = %u ms",
+> +					   jiffies_to_msecs(diff));
+> +			}
 > +
-> +err:
-> +	for (i = i - 1; i >= 0; i--) {
-> +		ar = ab->pdevs[i].ar;
-> +		cfr = &ar->cfr;
+> +			ath11k_cfr_free_pending_dbr_events(ar);
+> +
+> +			cfr->release_cnt++;
+> +			status = ATH11K_CORRELATE_STATUS_RELEASE;
+> +		} else {
+> +			/* Discard TXRX event on PPDU ID mismatch because multiple PPDUs
+> +			 * may share the same DMA address due to ucode aborts.
+> +			 */
 > +
 
 same here
-> +		ath11k_cfr_ring_free(ar);
-> +
-> +		spin_lock_bh(&cfr->lut_lock);
-> +		kfree(cfr->lut);
-> +		cfr->lut = NULL;
-> +		spin_unlock_bh(&cfr->lut_lock);
+
+> +			ath11k_dbg(ar->ab, ATH11K_DBG_CFR,
+> +				   "Received dbr event twice for the same lut entry");
+> +			lut->tx_recv = false;
+> +			lut->tx_ppdu_id = 0;
+> +			cfr->clear_txrx_event++;
+> +			cfr->cfr_dma_aborts++;
+> +			status = ATH11K_CORRELATE_STATUS_HOLD;
+> +		}
+> +	} else {
+> +		status = ATH11K_CORRELATE_STATUS_HOLD;
 > +	}
-> +	return ret;
+> +
+> +	return status;
 > +}
+> +
 
