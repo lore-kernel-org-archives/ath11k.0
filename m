@@ -4,145 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18483CE7AED
-	for <ath11k@archiver.kernel.org>; Fri, 14 Nov 2025 11:44:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C539FCE7AEE
+	for <ath11k@archiver.kernel.org>; Fri, 14 Nov 2025 11:49:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5961PjEg1810kbw0j0eiHAeuJitJT7UlO8fvP1HU50A=; b=H/t7JPQeOGNYjGRt+56dxl1wrH
-	zcGho4V5SlTq0PtzvApkEIXRVT2GvW+l9CZzYAKe5NsqkmkPVpfosP1XoHFHnpdasKkYGcQ9jIbVM
-	NNEZ8qIPRZ0yEUa7uexFxaToD5drHOgdZO/lBRq+cDwhc+tglEBNMqoGzKPCnDzc4ZAImdFV5wjSU
-	cQqhTBZXqGJlA3NyxztY4ovUXeFSvyN9kcrdoL+7e8ISR33C8OPsgAQpIP/uqUnecUXdRr6pFn8GM
-	WnLZLgawgkHCcY70gpVUaPomm+ZCZkaj33tVSLVTLfgYMSlNuOdAro0JAHRN/UAQNnWaLDMkt1gRf
-	cXa7D2qQ==;
+	bh=t3bWQ8GMrssZqusnaHfetg7uXcMqTlFjBxdeS35ms5g=; b=na4UBDWK7v5wepKrmuwWDz3+JZ
+	BPc8TnBVziJDAb0wpe89Mr2wGJd8GT3gkoKBT0bf9J9P1bu7KjmEhwN0Ufj+HOEbzLXUjaApcDF9a
+	5SeNHz9gC+qRydO/LCXmOsNZhOPEbbMAiXJzOEc40qlctfWr2j+2GYSJtUL5VWgJmrZ/C9W8SHmUg
+	5otuegcjrD30jVz0rXtQmaHrY0IycovauFPuUIotNPhGRswAQv4k65tn9K0eB6O6dfVaYf47TWw83
+	GIai+jmmkg91pmT2gJZzIzD0zoXdxO/4T8GPlI3LWRt3iOEaq8eJlTusepEa/gfB3QDXnvtHn7+Ov
+	jWsBiMqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJsE6-0000000C8hC-1ooh;
-	Fri, 14 Nov 2025 11:44:26 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1vJsIf-0000000C9E2-01MN;
+	Fri, 14 Nov 2025 11:49:09 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJsE3-0000000C8fN-0bTh
-	for ath11k@lists.infradead.org;
-	Fri, 14 Nov 2025 11:44:25 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE8AiRI1477479
-	for <ath11k@lists.infradead.org>; Fri, 14 Nov 2025 11:44:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5961PjEg1810kbw0j0eiHAeuJitJT7UlO8fvP1HU50A=; b=VuFdSrrhJeEzK3wb
-	83dIPl9p+5XQN0YyrqeaAKqvqZk+2YVebqGk157VzP9bMHQZCkcZ654KwQ4t02kS
-	7K8mIp4LSFk66284F7eZdLKNyrh2tnLsCeqrG4zcTUpOIn6wGzmhAa6+b/bHSPgD
-	AZdhwAXNZNgD91T+045U3baj3di6VeHbXg0Vl97qu4KJCdueffgkvcRE+oBVDDlR
-	efW4rX7fERRiE2WGCQTFkhXHyT+Ed0VaXQ9/OhKd3T9ITlp5GDEttm/N826Ei7Yk
-	7trkoIhYzPFEX+BfwowsGCCnW/40pqMhpjBa6g6Wz+WvxW44M8cmNnKjezADUj7P
-	osSkTQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adr9dt0f2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 14 Nov 2025 11:44:21 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ed6855557aso80896101cf.1
-        for <ath11k@lists.infradead.org>; Fri, 14 Nov 2025 03:44:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763120661; x=1763725461; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5961PjEg1810kbw0j0eiHAeuJitJT7UlO8fvP1HU50A=;
-        b=dIL/LCrSPto6H2CyZrNXj4O7El8yF8s/Rrj2kaQB4W0CjVPBxBRWrrC9skHLNRzykw
-         dDTFtGArjP9YeEUEvNtTg2mNH/v4yvDmTSZ6Ic7cI+mKzQjsAkYE0GycjqSz/cU9KZSs
-         FQ0tglABUQyV3G9gmlAvXKGW0QOu8i5D/z1YnBYrLInbMQd7Cq6ad0oXyAnXk4tQgYes
-         bKQKocZ8BZ43k4tte0p6AzOAqj1MXjeotAoxebYOnCHKC93k4AZgfpfTo5kf7hLtxv+D
-         1RBh8b5IYaSTcaHjOzSx7jgRYkogU5tkQeECsCf2hC/NZEqfv3k7Edh+cAguq+HfYQvu
-         NIow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763120661; x=1763725461;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5961PjEg1810kbw0j0eiHAeuJitJT7UlO8fvP1HU50A=;
-        b=pci//GwEZU2ojwaJpOcPwK343wLPOpA5UhJ8XUhYkj2RlAqOzNzxh5vNGNj+w7wI2R
-         XvFM8qinVcMOlU4DWZnxdNfTxBCJ/7sErkEwHlrOV9N+aLkuOa9wtAIlonKeswWq4DEg
-         nUCadh6vXZ3+Tfw5WFyzqmeWLgt+Hwj6BEpWAr98oMFY4q/+6mKR1Kkvbw36jQry6CUY
-         La2Wv6gAbugJBTWKBPHAIPh87pBogXr0X72fRlsuNWQydTeM4emk5j0fDaS/+PxqDgER
-         A/uNXfaHSLK+MJWLEWoydmCp951Y+yM75sV2ttQFkrSiaIEEBjJN/8qstvJy34tSuaNa
-         GJZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWJ4UDIEsVNZ9jZtJGacvBTZCSUO2rcI8UwU8yUS1FjPuDg2cGkc6Ho9YfpeMyfE9lxB6zkW8=@lists.infradead.org
-X-Gm-Message-State: AOJu0Ywvoc1KB0qCp9z1RlD6UeRVLG27p+Qi3FBEvXrgX4s6o3w+ztLu
-	92xHS5mgY+ZqBBqlznPDYh4hvaerVTrZyp/5KOiGflnlSEuzAHXTkS0ymZxHnbhI/jiGTYlpPKU
-	UIs6t2iR5UOL6lt7fRYhV2vHteZio7GuSg7jkiGRDRv1AKrYHyvCnq48T8hWIg1LG
-X-Gm-Gg: ASbGnctgQJ054acuQHlVU4hnIiodyRggmhaI7V1E184fytKoMPE8kzJmp80pn5fW5U7
-	CHjmkWEE+BOLLC9dvTZnogvHaBMh1hZlX0gKsBK6xaTWfZNWAucQrHHvU2WtomQgfr11+Jgo+rB
-	MtJtvYE9Zj0BhKcjoIAFI09SLRgbwL0Etc7EcEQNFm12seExuqOgcEJUTwUGJ2SWUoqXCneNcKY
-	fBiwXhTqMp035s4PFtPk+ITmnCm9J+J0VUNZq6Rgb8DJ0kxb0o3VdOs5G0OEqWSVlDFz7+FwWJ6
-	hAhTYD4TgXjF6U9jSCKFz7xB+Du+ywcY9K/nAzeYn9zBi+E3uE1dYVQxDAuBs1dzDLFxnnSCufq
-	Bd/FXB+fC2cy/fBaWfD2edJ6Lfz9HoPUOtrfL
-X-Received: by 2002:a05:622a:34b:b0:4ed:223e:139b with SMTP id d75a77b69052e-4ede6faa8e2mr91683651cf.6.1763120661285;
-        Fri, 14 Nov 2025 03:44:21 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGGKSxXof2g5+6sgV/vHp4xRjNtsZJyx2k6oEmSKoRXu7xN5sluEXzQ2X8pNO62GmUXl+lsLw==
-X-Received: by 2002:a05:622a:34b:b0:4ed:223e:139b with SMTP id d75a77b69052e-4ede6faa8e2mr91683351cf.6.1763120660805;
-        Fri, 14 Nov 2025 03:44:20 -0800 (PST)
-Received: from [192.168.68.121] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-477952b001csm2189845e9.16.2025.11.14.03.44.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 03:44:20 -0800 (PST)
-Message-ID: <70322e09-694a-471d-b4fc-f5a8a1c01450@oss.qualcomm.com>
-Date: Fri, 14 Nov 2025 11:44:18 +0000
+	id 1vJsIb-0000000C9DA-3OYt;
+	Fri, 14 Nov 2025 11:49:06 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2ABE743833;
+	Fri, 14 Nov 2025 11:49:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA94EC4CEFB;
+	Fri, 14 Nov 2025 11:49:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763120945;
+	bh=cC46TDZLqw5+GYMhdoo+O522lBYA4CPjnOeOdcsc1+E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZeQkJVwiXV1dOT2t+9jWjSvBpOMZLOQJxLHxO0cPMqNQ2ph31ma57WBeUzyomVa3D
+	 KOrF19b9OaI+rIAMc7XH3XtY8Aqf15oqO7sFpZRWR+1OuziNB54zBYAh+oZtMSRk6A
+	 ULwc11/eQpSTRUxsa+A35IwDKSG8OfyLaLS0g7i0hKnAoprHPqiK1BNfr8Ytl0CAUH
+	 OU56R/ZNSk/Tm4w/kf1OKTRHvt4bzZcSYIawlUNl1Xi7bUI9+nkSR2318I2/9L22Jz
+	 JeDAss0Crl48QYeBfmlD7edepkG+TL7Lc2G5IabZ90MuMBJjt9RVCXw5wTHKRm2cig
+	 wQKUbwxXgMrzA==
+Message-ID: <a0d238a8-a618-46e7-b4da-0f47b468aae3@kernel.org>
+Date: Fri, 14 Nov 2025 12:48:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] wifi: ath: Use static calibration variant table for
  devicetree platforms
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 Cc: Jeff Johnson <jjohnson@kernel.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
+ Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ath10k@lists.infradead.org,
-        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        ath12k@lists.infradead.org,
-        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+ linux-kernel@vger.kernel.org, ath10k@lists.infradead.org,
+ ath11k@lists.infradead.org, devicetree@vger.kernel.org,
+ ath12k@lists.infradead.org, Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
 References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
  <20251114-ath-variant-tbl-v1-1-a9adfc49e3f3@oss.qualcomm.com>
  <3a951821-14b1-464e-b1da-05a95f4164af@kernel.org>
  <kn24jkn77ydcrn23xz6z27cvaclksmeb3ic7pr24lxsqediugl@ubkf5t4wyyrq>
  <f9d47593-6fba-495e-aedb-c0efcaa5526e@kernel.org>
+ <70322e09-694a-471d-b4fc-f5a8a1c01450@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <f9d47593-6fba-495e-aedb-c0efcaa5526e@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <70322e09-694a-471d-b4fc-f5a8a1c01450@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=IaiKmGqa c=1 sm=1 tr=0 ts=69171615 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gHqtoCV0S4uQAjPoSdoA:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-ORIG-GUID: QiuM8hCP7-_Ib8kR7KIMDCsHHWCwl3QD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA5MyBTYWx0ZWRfXwArSjvQg6LVM
- yo8fb0jnsd9qRLV15nIZNMpMzZlhtRTT/i2mnoQvOSq1gQ41tW4vmCUf9ICWo+0V2iDQ8jMLg4t
- Ck7dVz9WHEISENZiswy5pU6ZBAU7DL3axZmCSr9Uz8pU0SwGP9ur+DhE6M/4noYgPXz3YrLtGT1
- 0H6BR4qmwmnN/zbN0ZYMAQW0vBarI5BBpavR96IZoCRNVgBy6tbkXwkUAgG1yGkiXsglclkzXkT
- mBVjPXLWg492ksHxZCy4DRqr7+ZLRD9FNLdLO2QxzWRzCw6UwNlAJJk/XCOp74CvOCEkrp72wdA
- AMU35H9czFC7d7biKW28YyHhEWaWLsoTH/4cvivCVDrOJitYNOnmalYhFKYHOjingDVolK0jS+2
- ssQcuuqOApaU9iyJPw5amARjht7CGw==
-X-Proofpoint-GUID: QiuM8hCP7-_Ib8kR7KIMDCsHHWCwl3QD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_03,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 adultscore=0 bulkscore=0 phishscore=0
- clxscore=1011 spamscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140093
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251114_034423_303338_258FE11D 
-X-CRM114-Status: GOOD (  19.54  )
+X-CRM114-CacheID: sfid-20251114_034905_896027_8CAEF7FF 
+X-CRM114-Status: GOOD (  17.90  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,60 +127,62 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/14/25 11:24 AM, Krzysztof Kozlowski wrote:
-> On 14/11/2025 12:16, Manivannan Sadhasivam wrote:
->>>>  
->>>> +static const struct __ath_calib_variant_table {
->>>> +	const char *machine;
->>>> +	const char *variant;
->>>> +} ath_calib_variant_table[] = {
->>>> +	{ "ALFA Network AP120C-AC", "ALFA-Network-AP120C-AC" },
->>>> +	{ "8devices Jalapeno", "8devices-Jalapeno" },
->>>> +	{ "Google cozmo board", "GO_COZMO" },
->>>> +	{ "Google damu board", "GO_DAMU" },
->>>> +	{ "Google fennel sku1 board", "GO_FENNEL" },
->>>> +	{ "Google fennel sku6 board", "GO_FENNEL" },
->>>> +	{ "Google fennel sku7 board", "GO_FENNEL" },
+On 14/11/2025 12:44, Srinivas Kandagatla wrote:
+> On 11/14/25 11:24 AM, Krzysztof Kozlowski wrote:
+>> On 14/11/2025 12:16, Manivannan Sadhasivam wrote:
+>>>>>  
+>>>>> +static const struct __ath_calib_variant_table {
+>>>>> +	const char *machine;
+>>>>> +	const char *variant;
+>>>>> +} ath_calib_variant_table[] = {
+>>>>> +	{ "ALFA Network AP120C-AC", "ALFA-Network-AP120C-AC" },
+>>>>> +	{ "8devices Jalapeno", "8devices-Jalapeno" },
+>>>>> +	{ "Google cozmo board", "GO_COZMO" },
+>>>>> +	{ "Google damu board", "GO_DAMU" },
+>>>>> +	{ "Google fennel sku1 board", "GO_FENNEL" },
+>>>>> +	{ "Google fennel sku6 board", "GO_FENNEL" },
+>>>>> +	{ "Google fennel sku7 board", "GO_FENNEL" },
+>>>>
+>>>> Are these top-machine models? If so, you cannot use them. The value is
+>>>> user-informative, not ABI. If you wanted to use them, you would need to
+>>>> document the ABI.
+> 
+> the value has expected format, can it not be an ABI?, from DT Specs:
+
+Where is the ABI documented? You should not have ABI which is completely
+undocumented.
+
+> "Specifies a string that uniquely identifies the model of the system
+> board" We can argue that its not part of
+> Documentation/devicetree/bindings/arm/qcom.yaml
+> 
+> @Mani, can you not use the top level machine compatibles instead,
+> something like: "google,fennel-sku7" instead of "Google fennel sku7
+> board" which is an ABI.
+> 
+>>>>
 >>>
->>> Are these top-machine models? If so, you cannot use them. The value is
->>> user-informative, not ABI. If you wanted to use them, you would need to
->>> document the ABI.
-
-the value has expected format, can it not be an ABI?, from DT Specs:
-"Specifies a string that uniquely identifies the model of the system
-board" We can argue that its not part of
-Documentation/devicetree/bindings/arm/qcom.yaml
-
-@Mani, can you not use the top level machine compatibles instead,
-something like: "google,fennel-sku7" instead of "Google fennel sku7
-board" which is an ABI.
-
->>>
+>>> I had this question initially, but Srini convinced me it is OK to use it in the
+>>> driver as they do it in audio :)
 >>
->> I had this question initially, but Srini convinced me it is OK to use it in the
->> driver as they do it in audio :)
-> 
-> That's sounds like an issue which could be fixed or at least discussed.
-> There is no in-kernel usage of ASoC's 'model' property, thus we probably
-> never noticed that it is an ABI.
-> 
-model is actually used as soundcard name and long name if there is no
-DMI info for the platform,  This string is also used at the UCM level to
-identify the correct UCM configuration.
+>> That's sounds like an issue which could be fixed or at least discussed.
+>> There is no in-kernel usage of ASoC's 'model' property, thus we probably
+>> never noticed that it is an ABI.
+>>
+> model is actually used as soundcard name and long name if there is no
+> DMI info for the platform,  This string is also used at the UCM level to
+> identify the correct UCM configuration.
+You speak about user-space... I did not dispute that. I said - it is not
+used in the kernel.
 
+> >
+> However the model that we are referring for sound is part of the
+> dt-bindings for the sound card, not the top-level model, so this is an
+> ABI for soundcard itself.
 
-However the model that we are referring for sound is part of the
-dt-bindings for the sound card, not the top-level model, so this is an
-ABI for soundcard itself.
+We speak about the values. They are not defined as ABI and not used in
+the kernel.
 
---srini
-
-> OTOH, everyone apparently knows that audio's 'model' is an ABI because
-> no one changes it, unlike top-level machine 'model' which is being
-> changed from time to time.
-> 
-> Best regards,
-> Krzysztof
-
-
+Best regards,
+Krzysztof
 
