@@ -4,147 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9BBDCEBF86
-	for <ath11k@archiver.kernel.org>; Sat, 15 Nov 2025 23:17:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEFE5CD4F3E
+	for <ath11k@archiver.kernel.org>; Mon, 17 Nov 2025 02:36:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1R3xw/XAi01agYyqIc3sNrCkFZlN3jidnSxIyY58jAc=; b=tscvG6RljbNIoG+67tYwsqSJ/j
-	A6r8FTfXnObW0N8pozEFOxyK7WzvPF6b8V9Mt+7RdoPki6TgdCMrMur9/pIXvaAmTODDRUcP7KBz6
-	VhWR9rZ/c3ZhmL2o847koRluJBlIANZGhPDkFkXivTsdvXbsW13QIr9mxWjux0mSL6VnLg0F+f7vP
-	xqFyqHsfn1Ok8ufCNfgnsLa1cWEBQ1GjnSZzVRXbjAVj8xi5SzWN2ZKdGe95up4dQepR9i/gAeEsB
-	m5/TBvdem4vLE4FzP7R2SfvDZsXRSIE/KqaMtfm5k+nrp7TTnVDa4sigZG8FZjGxGsZT3HQDfvEZQ
-	o0doNqaQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=39pbJS3KgdysbLKFSIpTFsRIixBoour3yJy497186+I=; b=wATEUvwdiTBf0o3O2kSRkdnqnX
+	sgrvHqx3jmYyk+zS01H+YOfI0lVMduFRPp40/ZTrrOPHCijpmu8QVxqc+9au59RiwKHnmBy4dX8Wo
+	mNhB7bTBb7nDMzC2xWuw9pSizKDqAC68zTJUivjpldXAXB9SodTDzYlJjdrBpIfOp/Tl/YplzpOw4
+	vfQa9wdgr95s0VCG5wahk7M9zKChPjx8UhlA9CMxZxwwnE2qS96WjWMnZNt/elQooBcZwx0CR7SQL
+	zLBiPT+QsmyNRM4h0zXE0kAdprJnLuw2Id0V51kVBryy92/u4RJYEC5rB4eb/axQKSeLRR6NnsklI
+	Pd/hrfZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vKPVx-0000000EBXS-3DHw;
-	Sat, 15 Nov 2025 23:17:05 +0000
-Received: from mail-northeuropeazolkn19012042.outbound.protection.outlook.com ([52.103.32.42] helo=DUZPR83CU001.outbound.protection.outlook.com)
+	id 1vKp6r-0000000FJSY-0gTF;
+	Mon, 17 Nov 2025 02:36:53 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vKPVv-0000000EBX1-11nd
+	id 1vKp6o-0000000FJRW-0NQR
 	for ath11k@lists.infradead.org;
-	Sat, 15 Nov 2025 23:17:04 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ruVjSUHH1vJNpmobhblhmB3sYgeD+GkjeXVX4OxFcfL07j+IJUsBdsTxutiuPnOa6rApuAj+r8vzMgyVACo2CWzOFLk1pMmh7fJJcHzmfrBIW1tVO2a6lxxrEyO3jtD8qdXOh6wzhG9oHRP7Xs2TG+m/skY2CJ4CzUMSYfp9jMHK5k4AWyWbvDGC3BqeRxKFcerSETKK9XUGRKS1GuiKDrQVwbQFntzX9fL6GxWnouYM4D6RVu+3sbcDR18T8ThjuCcJLD2fmIu2zkU1irSc0BX4rBNAJD6gCE3BuIBJ1UQWW6yLLGDroydjy31P2X0iIlm96o2ao5QsRlhUrKHR1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1R3xw/XAi01agYyqIc3sNrCkFZlN3jidnSxIyY58jAc=;
- b=X5m8IUQ8wm4k/9FrG7asRjtSc7x8paSac9yFqFR+gifD3psnOVG+D/CXokRkw+3fIe2uUDSlw673n+a7nDjfS/zbvrLWYcsNBcHmAxVtxuBjnTTZuia+euQZdvihN3RB2bA136vYnMQULStXpnzq705oaY8fX7QXX1KX1S+wVQJi6whrEPy/+zaKSrZwEUQyE/4FmL+h2RaTtaH2CoUzWOLOs+3VjAURmsM9NJ9zCs+eVJ33CbK5nojAMyX1X63uwXpzBADlgk8Sf2m6ZXumf8cup1VZuUa+2MrFxItrDGqI6gNCZ3smiGhiG8e9c0p76HNLASXnbTA5gcd/zQS0Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from GV1P250MB1433.EURP250.PROD.OUTLOOK.COM (2603:10a6:150:284::10)
- by AS1P250MB0655.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:48e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.19; Sat, 15 Nov
- 2025 23:16:59 +0000
-Received: from GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
- ([fe80::5957:21ce:d025:7747]) by GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
- ([fe80::5957:21ce:d025:7747%4]) with mapi id 15.20.9320.018; Sat, 15 Nov 2025
- 23:16:59 +0000
-Message-ID: <GV1P250MB14330DE9B959725A5EE6DC7FE8CBA@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM>
-Subject: Re: [RFC PATCH] ath11k: add ath11k_mac_op_flush_sta to properly
- flush pending packets
-From: Florian Maurer <f.maurer@outlook.de>
-To: Sebastian Gottschall <s.gottschall@dd-wrt.com>, Jeff Johnson
-	 <jjohnson@kernel.org>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Date: Sun, 16 Nov 2025 00:16:58 +0100
-In-Reply-To: <822673fe-174f-472e-8874-783198e22300@dd-wrt.com>
-References: <GV1P250MB14333A5BF24623C4753A10E1E8E0A@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM>
-	 <236b48e6-43c3-4d2e-a864-3ba627101c90@dd-wrt.com>
-	 <GV1P250MB14333099108FC4461F201AE3E8E0A@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM>
-	 <822673fe-174f-472e-8874-783198e22300@dd-wrt.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+deb13u1 
-X-ClientProxiedBy: AM9P195CA0014.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:21f::19) To GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
- (2603:10a6:150:284::10)
-X-Microsoft-Original-Message-ID: <ab8b59df073ff94c83cfdb9b2e029b42fa28050b.camel@outlook.de>
+	Mon, 17 Nov 2025 02:36:51 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AGLjF0X2446065
+	for <ath11k@lists.infradead.org>; Mon, 17 Nov 2025 02:36:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	39pbJS3KgdysbLKFSIpTFsRIixBoour3yJy497186+I=; b=YuSLJsFdOr3BcJNh
+	Gj5MugWKswwVd+rbaw1i6qWOK1Bl3HgyKx7UJC4Y8M3tE/xEwX0o5UqFsawE+xc1
+	vzFwgTtgDvDYUBd6FChY4pX/Gli7EGaQQlbWgr4RTj7E36Focd+p/d/b4HvXKdrr
+	DbUyIh4hq551V4XfpJonhVmQT/LTX6WdmsIgrRncEC/66enyz7mbvtoH4OjTk5kP
+	pdV5+dVBMaeB10vGXG1vaozmzZ9XBCD/+md0nWwIHhiXqndxmA5TMSlCnxC/KQbz
+	uofUdCsg7rE1GKP5Es17kQW1613Jk2hjbIYFvMPmT0rEsA0ZaRE+SNLXp+C6DpKq
+	yb03Vg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aejm5b3k8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 17 Nov 2025 02:36:48 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-297dfae179bso97602315ad.1
+        for <ath11k@lists.infradead.org>; Sun, 16 Nov 2025 18:36:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763347007; x=1763951807; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=39pbJS3KgdysbLKFSIpTFsRIixBoour3yJy497186+I=;
+        b=hl4Eu98NLnwSdfea3uXJ3xdo5MRoT1lDPm0jCRvO3oDw62WCPyKlROyOu99/GdtvR9
+         RLOSebmDT9ysPAjcZw6bnoiimYA8YVvUk/Hgt6YDSqt3x4tW3KqKEfEyvT/+8K0wugIP
+         tJibFsvAqTnozQ381nOTFUFLhXjrrbJU4QzCJhiVbY2bDoMEisfH+hJ4NBB9fUviC/hj
+         kpL+SoWppjGd3dk0Vo0MPpcM/TiYtlxxfO8l4Mr2X8Kxv1DfegePP2979Xygf2N9xIY0
+         tRC9dCeRgSolb2Ih9TTbgFBUIjEauV/ELSBgJByHm56amfoJyirFi7mJOvtwrUxT0Dtr
+         Ghrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763347007; x=1763951807;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=39pbJS3KgdysbLKFSIpTFsRIixBoour3yJy497186+I=;
+        b=TqbzOMw3Pex8pjncYq3rKN3NEry0pdflLbo3RNEoVJHDwlZ+bY/wvBYOJgQGvhtNTK
+         Mq4m68DDRylB26SiXUhzo+KuZS1D3ml2/drnyWjXr+t4k1wgoFwV4IwccJ5uhky/3Ugg
+         gSkaCw+S/JAQjEnZ8jnKovGBmO0uGCKe7dTMtqT7cE1Vk//txYg561wYhsZggnZtgAIs
+         3HYzGxX0u96J3BhSHv5aWWiJFTvAz3r/0M9c+E28RgY/B//cWJK7EPUFdcKDR1EeFylu
+         p6YJJdlEyApSzebksCNXDCT/qJxUl33AcpktDQtwS8ikI9I/5RqiYolne0Qdx3Vep5cq
+         c/4w==
+X-Forwarded-Encrypted: i=1; AJvYcCU28B31LLyZ7bYmPHTWKiZZh4JPgPQyZjtwr113xsJkulAJVhgQN3wnFUXGjjogJch52CoLDig=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxhKmSiWwTcoMxIs1oidB024LrBG91hcOf4FyxH4GftRLFn5Cpq
+	U4rYcJlVJvqJ+KQfcaqXIT22eyOAvnxe0uOimT8QD7VYaoK/t2P4yKRHBQW9P0glkcgc2bwVgA7
+	kSWMTSP8awP/C0lKhu77goeX7zJLZqvd4s6oQGHn+GtCQBJv4oFzGl1JDAY4U/2HY
+X-Gm-Gg: ASbGncuL4PtSrPZV5KIXI5nR1bs2MJyYSa9xXFZz77vUlU+Rbjr1fjvmm7+egADYNFY
+	BO4BDV/pc4LAVI0JN08jD1SNIl7bOWYPd/hYeFWT7yBv1/kxIVPd+dSaHr7+H/pf9v6avfogHi+
+	yxq64k2lvEMtxwy61SSY8VJXVipRB0/5eG8e+iZR02yGA8/3dE5G73+DGZm2IJBdWkUQqs5oCqP
+	w4veR6z01+E/XatJBXQzT4NsNEmKFEkqdtfRNWJhCA90XTeoD641/oo9wpQVoAx9tLGHvt1TfoG
+	yAIoL7wIJnKqQl1PX5WuPYcJyASXSsbk/82f7lOjJGYMe+GcWVM0grxnTbVtBCdVlboSoGw4W23
+	SoeAr28x4yzUR8ps+e/XskPtSblM4VlvqwHA9h4XJAGGue3F5rcvQcJMbeSgFheCrjXm7vCuE
+X-Received: by 2002:a17:902:ec83:b0:297:fec4:1557 with SMTP id d9443c01a7336-2986a7598abmr116773875ad.60.1763347007448;
+        Sun, 16 Nov 2025 18:36:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF8W+0BgPJEYbjw4FrKmofDfdMKM3fYG9H5M16t+BNUAdPhrbs9j8JpXvNtQsZA+wy9bjNFIg==
+X-Received: by 2002:a17:902:ec83:b0:297:fec4:1557 with SMTP id d9443c01a7336-2986a7598abmr116773605ad.60.1763347006931;
+        Sun, 16 Nov 2025 18:36:46 -0800 (PST)
+Received: from [10.133.33.104] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2bf11asm121402975ad.90.2025.11.16.18.36.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Nov 2025 18:36:46 -0800 (PST)
+Message-ID: <2fd84ab2-2e3e-4d05-add5-17930a35fedf@oss.qualcomm.com>
+Date: Mon, 17 Nov 2025 10:36:39 +0800
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1P250MB1433:EE_|AS1P250MB0655:EE_
-X-MS-Office365-Filtering-Correlation-Id: efedddba-5a76-4508-5dc3-08de249d13bc
-X-Microsoft-Antispam: BCL:0;ARA:14566002|6090799003|5072599009|461199028|12121999013|19110799012|15080799012|23021999003|51005399006|8060799015|440099028|3412199025|4302099013|10035399007|40105399003|1602099012;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dlc4STBSQkc5eUJzTDd0MmRwc3R4bWprdFlZbzZMeUd2b2lFMDkwTUVxSGZa?=
- =?utf-8?B?aXJHS2xRTWVCTGFzREdSc0pUZkMvQVI0VUpnemxuWlFvNnowbHJwdXUzNEZs?=
- =?utf-8?B?Z0o0K0w4UmtoYzJIWXQvUEdQWU1LbkQ3ZjBRTkhvY0MvNGMrbVdVR0JWUVNO?=
- =?utf-8?B?bzVma1U5K0doVnArSHUwdzJ3UForUzZCOU1yZURucjlDSHdaL3VoUGhvMExu?=
- =?utf-8?B?M0FHVXk3dUFINFNNT2RHd1RuZi8zL3U0TlJlNHZoVzBrYTZnWDFYUTBNNi9H?=
- =?utf-8?B?N0VsYUpiSjB5TDJIbGJIeG1XRG00OWdteVErb1VGN2tmRWp2Z3VqRUNaRGN5?=
- =?utf-8?B?V3ZGUnVuM3pGMDBuSHpoYnMxQjNlUHNyenRmbXZuRVVxdFhrSlpFVlJjTEsz?=
- =?utf-8?B?YWk4OGYvTTFyS1h5Wm5zZHpZSmFvOUZsVGQySUFUQ0REWDcrUU5CeStuK2My?=
- =?utf-8?B?SXVIdkQ4NnBDR0w2MUNNVENlTU5jNEdjZjZJeHZyRUJlMDh4dXQvNEtWZCta?=
- =?utf-8?B?eTJZL3VpWm5ib21XeXpBQ2xpVmlvTEJ5dmFTaDR6S2VVMnBhajZ2MWJkSjlV?=
- =?utf-8?B?Q2tYYW9QeVQwUDlXSzQ2bXFnOTZnQ04zVE1rQUdCeURIWWpBOFdZTjc5TXV6?=
- =?utf-8?B?a1cxYk5zVjNtNlhhVE81TTVVSDVoUkhyOFRBcjNxMnVYYmVuMFVvK0VtSjB0?=
- =?utf-8?B?Q0tkV2RkMGQ3TE93Z0JRSEZUTkJUbVFxT2ZmWFp1bU96VktMQTdkL3RZSVlG?=
- =?utf-8?B?K3VDb0Nxc0FiUVpBLzF6VDIrMHduZkVwMFp1MnhsUzJ5SkREMk4zc21BUlg5?=
- =?utf-8?B?UEpVU0NCUnoyMHdqWUFGTlNIVThqT0pRRFpqQVo4K2EvZW5GQTdMblJJTUwz?=
- =?utf-8?B?akY2cXhoYXQzc2lsdTdtQ0xkcVFGNWZWNnhwRUh5MGYzQWgraHVRcW84aWI4?=
- =?utf-8?B?Y25nUmZuU0ZoeW9HRE96eWtacG1xYjJteGIwZXhJSWpMdVlzSjVyblhRRHhN?=
- =?utf-8?B?ZE5lYjdrNmU0Q2dLeEc4YUJweG5XM1dUaUtxNUorWWVNd045UzIrRjU4WUky?=
- =?utf-8?B?ZzlRRWFOOGxXY0lIMmRtZHVNWCtKbFBMY3JHV1R1NStvRGNrb3dndlRVMWZN?=
- =?utf-8?B?Uk4vZUV5MUpKck4ycEYzcGYxVG5MK01RNXRqUG1zWG9ONWlMVERHNnJGaWNl?=
- =?utf-8?B?SlVtbDVsTmhEdzBLcWNCOGttSVZmZ0pTcUszMklQbzluUjd2Q1ozNno2aktl?=
- =?utf-8?B?NWxGMDlXODFlKzFzdEhrQ200L04zV2JuNlhJQ3k4SUtYKzVTNzNrZzBoWEti?=
- =?utf-8?B?cFBTVEZDWE5DbFhPellWdXNXTmhUbU03dTNadWtCaS9GbjM3TEZRdzU0ZW1w?=
- =?utf-8?B?bEhQWHFXRFRUbFMvV3JjQVpPU0xOUkhpRVk5UnZZejdMbHVWaUNPL1pLMzkv?=
- =?utf-8?B?djJaaEl0aU9PV1Y3NFRHNkVsSE0rNU1YK3dtc05Mc3Y5VnpjUkxjZzVXYlNh?=
- =?utf-8?B?azFVUnpzVmVoZ29vbEF3YmJTOHVUM2ZpUDhqT1FJTitxOENXZEg3Z0Fqa0NM?=
- =?utf-8?B?U1ZrQThIN0MxSjJCTW5vejRCaW81QVY2d0RvNVhPeG5XNkpTeE5WSW4xd0s2?=
- =?utf-8?B?NzVJQSt2SXRhVHJwem5sM21LRGszeFZYbS9VMkplQnd4ejV6TGJOeENsa0dp?=
- =?utf-8?B?UGsxRTVVeVZNaXZBNTUzVmlSLzVoNzlLdlpXTENYMk9LQ1o4R2NkcEJ3NDNq?=
- =?utf-8?Q?hVjmB57KV5iFaS7bSXOfjyPMtkuU890AGcS1E60?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UVQ0VHBvNTh6UitqUEpsNStpZzhJQkVtTkpTOGNQbzd0S1hVK2REOWZLUURJ?=
- =?utf-8?B?bTRKQmErZG5rMkd5aEhqQ2RaaDhPZVVkV0ZZL1FoeG8zZWdXWWdWUXoxQ1Rp?=
- =?utf-8?B?YUZWcVlDcnRoRXlsRkxmdDJSdXhvdldjejhteFo0Q2xaQnlJVzJ0SWFBQXg2?=
- =?utf-8?B?L3lSdFhRNGZwMjltSlRmZlAvVHZ1NHprR3l1NExGZDdDZHkxeWlwZzVBTFpj?=
- =?utf-8?B?aGFvc3RGNEdXRTFPTzg3aWxmNjd5dFduSEN0OGswK0d4R0xsYWVHZXg0ajhi?=
- =?utf-8?B?QnBqbDNLWHluWi9iUENQWndvK1JENUIyeFRsSFFWcHdYc1E4SVFLOFdTemY1?=
- =?utf-8?B?eFh0aWFZTk4wdzc2SmlER29lcmJYS1VTbGE2RFFlYkxHcG9tUmh4SjdGUk4v?=
- =?utf-8?B?U1U5bXVRYUk4bEJHOGxxa3JSODlYVTREWWVBZTZpSy8rT2RlZkxxS1dtdyt3?=
- =?utf-8?B?Sm5rZ1FKYzhneHhLY04vdGxwdUlHZmxkZzhmZGtoMnJKMFJ6WFV3MC9lNk9p?=
- =?utf-8?B?bU4xY1VubTFDcjhhSlNoVWZTTitjeVIvaWZhb200SUREOFZUQ1l5ZXUzejNE?=
- =?utf-8?B?RTRvaStKbjl6VVdnK1FEaVlzd21uSkJFUlEzRlM0UWxZNVVxeDNQMmUxb0h2?=
- =?utf-8?B?ZmZVbUFwY01LZFNITFh6SW9lRHBrQTZtSnQwcXA3b0k1bTZSOWlrUURpWVVF?=
- =?utf-8?B?T2xXeHA2M1JGaTBVMmdZTUdCNWZCcHVUc3VQWmZmZ0ZrTlNXb1U0Q0NUclV0?=
- =?utf-8?B?UXd6OVNkZUtBdTN4UDZDbUJrOFRaRGJLekN5U3dQcWdFbkswclNlTUxtVi9D?=
- =?utf-8?B?cE1MRWZ1LzREVjNMNnNiZDBCdEtZZExnU0NRaEwrOHVvL1ZpSU9acEMwR0hY?=
- =?utf-8?B?T0NiUVJERGVSK0Jab29CblVhbHEwZHMzWDFtNk9IUnRiM2VJc05BMmVhV2FW?=
- =?utf-8?B?SCsxdkFaaUlkb1pYcHZvMjVZNmEzOXNIM2lrZXZ6a1ZhaW1YRXZJNVFGdGpJ?=
- =?utf-8?B?ZUF0UHl0S2JJbjBKSS9yMmo1bTdYYVNxSTVxVDJWKyt4dnRGbkw4bm1iL3FM?=
- =?utf-8?B?dHU5aXNVbGpwalViVVdSQUJNei91cHdtSnZucTFaMWkxU0w1VlJIS1dScU53?=
- =?utf-8?B?Z0NReW9xZUFtTTAyVUVoT0lDanU0MitHMVRiZzkyR3lXeDNpSmpkMUNFcW9w?=
- =?utf-8?B?ZmZMcjYwbjVjNGo2WDNoRlZNUUI5bEpORTg2WWRHZVRWNWh0R1VZMGJqb0ly?=
- =?utf-8?B?UmpSNDIyWDNKRGtWWGo1bHJGOElncjBHaVkzdzVkaGtMTXVuNlJDbmJGdGM1?=
- =?utf-8?B?cUlxYitxbnh6azB1QVpkWkM1bVZBakVZeGttQjhTSnlidnZTMHErUW81L1lx?=
- =?utf-8?B?Q2xSWTVENHFvRUpUd0QrUEF5aHpmVU5HeE5oS3I0UGVBSU9tamRmWGNWKzlz?=
- =?utf-8?B?WXNSQnNnN1ZoVUhhRGdRN0RzaWNhYXRTZVlSZXIvazBYamRXNDVoNEc0R3cx?=
- =?utf-8?B?Z3JVb1BXeTFJL3dDdWoyajUyeExvWkxWZUljeTBLdE9aekJncWRzQ0p5cjBW?=
- =?utf-8?B?VlBWd0lWeWNBcDhkY3pzOVAwQzZ0MUw4Y0VUb3hSTkRNbHg2S1hZSkNzaFNl?=
- =?utf-8?B?bjNHdHRLWnZ0Q05Bc0gyY0UzMU1iT2pSYzdQcUUzaUxIZDJ5emdhU0JyK0dT?=
- =?utf-8?B?Y2RBeGhkQlZXN0d2NEtSMGJTcGMrTEVYR1JLZXhVTFQ2M2hLRUJDcDhIM3k1?=
- =?utf-8?Q?uF48uEiLuVD75CMeDs=3D?=
-X-OriginatorOrg: sct-15-20-8534-15-msonline-outlook-5f066.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: efedddba-5a76-4508-5dc3-08de249d13bc
-X-MS-Exchange-CrossTenant-AuthSource: GV1P250MB1433.EURP250.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2025 23:16:59.7099
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1P250MB0655
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] wifi: ath: Use static calibration variant table for
+ devicetree platforms
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Johannes Berg
+ <johannes@sipsolutions.net>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        devicetree@vger.kernel.org, ath12k@lists.infradead.org,
+        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE3MDAyMCBTYWx0ZWRfX2sJuE07CbFuN
+ hRaCIqKZwSHojDt2zr34Pc3CaGosz3LacJ25cEa15bP1PJ1lrjJyEaMSj6XMI16kjRmL6q1Ce8N
+ +vN9TWx7IJ3c6NPJJLtGztGG9sjcVIUWjQ1oYjZcn6SFRhof0Lu7vy/ot1FpMl3/lqDEdrMXObH
+ xbwm+HlNtfsvSWm0m5KW1ZYRVsQ4rmmb5evAbfS9LmXNxCypbYlzV+M2CQi5ygLpk+baj16koYZ
+ ePuV6fYFkzcjlQx5jxRG6dpb14HbZ/dJfttztnm50OIyKZWw7eGcDQBkCqV0ZZziEJodsgk0wS0
+ HWeq0pqLy0Moxa+4enVVoSmCahlNX0setXcR/pHSM2z5aX9ybtSDDTbeQpdaRaTYzwNQaBiL36Q
+ aUYpvERDPsS/XRIfNbysPEAdHi1cYw==
+X-Proofpoint-GUID: e6LSPE-CwtLwzjEdxLJyXUg4ih9Wcp4n
+X-Proofpoint-ORIG-GUID: e6LSPE-CwtLwzjEdxLJyXUg4ih9Wcp4n
+X-Authority-Analysis: v=2.4 cv=Pb7yRyhd c=1 sm=1 tr=0 ts=691a8a40 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=oboMlcojp0BuSSWQvFAA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22 a=HhbK4dLum7pmb74im6QT:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-17_01,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 bulkscore=0 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511170020
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251115_151703_290762_EEC26ADD 
-X-CRM114-Status: GOOD (  34.52  )
+X-CRM114-CacheID: sfid-20251116_183650_283872_F1CBC83C 
+X-CRM114-Status: GOOD (  20.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -159,114 +152,53 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2025-10-08 at 08:09 +0200, Sebastian Gottschall wrote:
-> Am 07.10.2025 um 15:59 schrieb Florian Maurer:
-> > On Tue, 2025-10-07 at 14:38 +0200, Sebastian Gottschall wrote:
-> > > Am 07.10.2025 um 10:11 schrieb Florian Maurer:
-> > >=20
-> > > > When a STA is marked as no longer authorized, if the driver doesn't
-> > > > implement flush_sta(), mac80211 calls ieee80211_flush_queues() to
-> > > > flush hardware queues to avoid sending unencrypted frames.
-> > > >=20
-> > > > This has became a problem for ath11k because ieee80211_flush_queues=
-()
-> > > > will stop all traffic and call ath11k_flush, which waits until the
-> > > > whole HW queue is empty. In a busy environment this will trigger a
-> > > > timeout warning and stalls other STAs.
-> > > >=20
-> > > > Fix this by implementing flush_sta method using WMI command to flus=
-h
-> > > > frames of a specific STA.
-> > > > Flushed frames will be marked as discard in tx complete indication.
-> > > >=20
-> > > > warning print "ath11k c000000.wifi: failed to flush transmit queue =
-0"
-> > > > was observed on various openwrt devices, and is fixed through this =
-patch.
-> > > >=20
-> > > > Signed-off-by: Florian Maurer <f.maurer@outlook.de>
-> > > > Tested-by: Florian Maurer  <f.maurer@outlook.de>
-> > > > Co-authored-by: Benjamin Berg <benjamin@sipsolutions.net>
-> > > > Tested-by: Flole <flole@flole.de>
-> > > > ---
-> > > > We tested this patch and it solved the problem of flushing the tran=
-smit
-> > > > queues taking too long when the AP is busy.
-> > > > We did not confirm if this flush is implemented to guarantee that n=
-o
-> > > > unencrypted frames are sent out on station removal.
-> > > > Could someone with more knowledge about the firmware behavior check
-> > > > wether this approach is feasible or if a different approach should =
-be
-> > > > taken.
-> > > > It is not clear to me if the approach taken in "wifi: ath10k: Flush
-> > > > only requested txq in ath10k_flush()" might be better.
-> > > > https://lore.kernel.org/linux-wireless/01d859e8e574a1f5d0b916333fe0=
-b5cda859af9b.1732293922.git.repk@triplefau.lt/
-> > > >=20
-> > > > Regards
-> > > > Florian
-> > > >=20
-> > > >    drivers/net/wireless/ath/ath11k/mac.c | 19 +++++++++++++++++++
-> > > >    1 file changed, 19 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wi=
-reless/ath/ath11k/mac.c
-> > > > index 106e2530b64e..a94649edd4ed 100644
-> > > > --- a/drivers/net/wireless/ath/ath11k/mac.c
-> > > > +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> > > > @@ -8330,6 +8330,24 @@ static void ath11k_mac_op_flush(struct ieee8=
-0211_hw *hw, struct ieee80211_vif *v
-> > > >    	ath11k_mac_flush_tx_complete(ar);
-> > > >    }
-> > > >   =20
-> > > > +static void ath11k_mac_op_flush_sta(struct ieee80211_hw *hw,
-> > > > +							struct ieee80211_vif *vif,
-> > > > +			    			struct ieee80211_sta *sta)
-> > > > +{
-> > > > +	struct ath11k_vif *arvif =3D (void *)vif->drv_priv;
-> > > > +	struct ath11k *ar =3D hw->priv;
-> > > > +	struct peer_flush_params params =3D {
-> > > > +		.peer_tid_bitmap =3D 0xFF,
-> > > > +		.vdev_id =3D arvif->vdev_id,
-> > > > +	};
-> > > > +	int ret =3D 0;
-> > > > +
-> > > > +	ret =3D ath11k_wmi_send_peer_flush_tids_cmd(ar, sta->addr, &param=
-s);
-> > > > +	if (ret)
-> > > > +		ath11k_warn(ar->ab, "failed to flush sta (sta %pM)\n",
-> > > > +			    sta->addr);
-> > > > +}
-> > > > +
-> > > >    static bool
-> > > >    ath11k_mac_has_single_legacy_rate(struct ath11k *ar,
-> > > >    				  enum nl80211_band band,
-> > > > @@ -9920,6 +9938,7 @@ static const struct ieee80211_ops ath11k_ops =
-=3D {
-> > > >    	.set_bitrate_mask		=3D ath11k_mac_op_set_bitrate_mask,
-> > > >    	.get_survey			=3D ath11k_mac_op_get_survey,
-> > > >    	.flush				=3D ath11k_mac_op_flush,
-> > > > +	.flush_sta			=3D ath11k_mac_op_flush_sta,
-> > > >    	.sta_statistics			=3D ath11k_mac_op_sta_statistics,
-> > > >    	CFG80211_TESTMODE_CMD(ath11k_tm_cmd)
-> > > >   =20
-> > > why is peer_tid_bitmap 0xff instead of 0xffffffff?
-> > When setting it to 0xffffffff it fails with:
-> > Assertion !CHK_TID_FLG(ptid, WAL_TID_IN_SCHEDQ) failedparam0 :zero,
-> > param1 :zero, param2 :zero.
-> > leading to a device reboot. See:
-> > https://github.com/openwrt/openwrt/pull/20293#issuecomment-3367037471
-> > It works with 0xffff though, but I don't quite know what the firmware
-> > does/expects here. Maybe someone with more information can help.
-> due the sources. BIT 17 has a special purpose named WMI_MGMT_TID
-> all bits can be masked but bit 17 as it seems
->=20
-Setting more than 0xFF leads to firmware crashes in AP/MESH mode.
-Setting bit 17 in AP mode crashes as well.
 
-There is reason to believe that bits 25-28 should be flushed
-in STA mode, which is done in the v3 of this patch:
-https://patchwork.kernel.org/project/linux-wireless/patch/GV1P250MB1433E723=
-AF90A69AEBB696DAE8CBA@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM/
+
+On 11/14/2025 6:22 PM, Manivannan Sadhasivam wrote:
+> Hi,
+> 
+> This series aims to deprecate the usage of "qcom,*calibration-variant"
+> devicetree property to select the calibration variant for the WLAN devices. This
+> is necessary for WLAN devices connected using PCI bus, as hardcoding the device
+> specific information in PCI devicetree node causes the node to be updated every
+> time when a new device variant is attached to the PCI slot. This approach is not
+> scalable and causes bad user experience.
+
+I am not very clear about the problem here: is calibration variant device/module specific,
+or platform specific? If it is module specific, why the lookup is based on the machine
+'model' property? While if it is platform specific, why do we need to update devicetree
+node whenever a new device is attached?
+
+> 
+> So to avoid relying on the "qcom,*calibration-variant" property, this series
+> introduces a new static calibration variant table based lookup. The newly
+> introduced helper, ath_get_calib_variant() will parse the model name from
+> devicetree and use it to do the variant lookup during runtime. The
+> ath_calib_variant_table[] will hold all the model and calibration variant
+> entries for the supported devices.
+> 
+> Going forward, new entries will be added to this table to support calibration
+> variants.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+> Manivannan Sadhasivam (2):
+>       wifi: ath: Use static calibration variant table for devicetree platforms
+>       dt-bindings: wireless: ath: Deprecate 'qcom,calibration-variant' property
+> 
+>  .../bindings/net/wireless/qcom,ath10k.yaml         |  1 +
+>  .../bindings/net/wireless/qcom,ath11k-pci.yaml     |  3 +-
+>  .../bindings/net/wireless/qcom,ath11k.yaml         |  1 +
+>  .../bindings/net/wireless/qcom,ath12k-wsi.yaml     |  6 +-
+>  .../bindings/net/wireless/qcom,ipq5332-wifi.yaml   |  2 +-
+>  drivers/net/wireless/ath/ath.h                     | 98 ++++++++++++++++++++++
+>  drivers/net/wireless/ath/ath10k/core.c             |  5 ++
+>  drivers/net/wireless/ath/ath11k/core.c             |  7 ++
+>  8 files changed, 115 insertions(+), 8 deletions(-)
+> ---
+> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+> change-id: 20251114-ath-variant-tbl-22865456a527
+> 
+> Best regards,
+
 
