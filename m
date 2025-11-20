@@ -4,67 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 875A0CF64B2
-	for <ath11k@archiver.kernel.org>; Thu, 20 Nov 2025 03:42:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A289CD4F3E
+	for <ath11k@archiver.kernel.org>; Thu, 20 Nov 2025 03:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2kOZ2qGDbUtlfM0lfAWL+CuCYcvOT4XDmaR4zoAjfg0=; b=u0hHjq53Fw9OjT5hoIEKIZoVUq
-	+ke6VB0zyV4GaRd+vYz11rl6jkVBjd3FYvCFz2ZmR3Zo2/eg9BwE1Eh3Kdc+CzIpHa3ofUwypBX1d
-	xiMmUkgVTTNCq8HjtWOL/FeiTDaf7ycacYeIgT0guRCXJoaR63Lph7zao+4SPLPA0/tovRBnH91Jm
-	WSgWyq7bqtYCAgAMAkeBv3G2/lQ1ctyN9PgEWPdMsSLvxngcA13mDo6fVVxCivufn/OBSpfE9FIN6
-	kf0qERoXVKRn/2oQEB/wECYwaoAbZqj8Qvnsb4+ca40K9oEs1yfJV3a9sqzVosqGbHgIfyGbwqEho
-	zNwEw+hQ==;
+	bh=yGCAfufdk5uS0AxJlXQPTK96nfX3x9IiOUSTFIkZ/is=; b=VJMddYpLlIZ6PYNCOPzikEwKOb
+	BsZJfkynnl7NF9DpX4otp8y7FYTPEUVDNBOfpWRdHXbRfaNr99yCAWBdhSZaAmePhrnx4RV4lK6YV
+	pfE3K2Q9BfJ2oaCbPblgAHTrePgQsRZr6GlmFcp9qeBGuwekbmkQznswnu2N2vy1XAYR+amkVxWwN
+	gpOi8I8RyvAr/7HxLMZdZO4oBXGkELN89y9OkNtpQYBRPH9IQqxnWtFR25KHiwpLsLC4jadMv0M8b
+	Ge8b+vY48oM6lWqzvoGCtKmkEk2k00qIqMCSpx6YfII2Ufe9n+mi9u5oxVb06P+xIx9kBTlKLvBeu
+	pp0qfO/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLvYz-000000064u5-1B5B;
-	Thu, 20 Nov 2025 03:42:29 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1vLvZ9-0000000655s-1iuY;
+	Thu, 20 Nov 2025 03:42:39 +0000
+Received: from mout.gmx.net ([212.227.17.20])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLvYY-000000064Nh-2m2L;
-	Thu, 20 Nov 2025 03:42:03 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=2kOZ2qGDbUtlfM0lfAWL+CuCYcvOT4XDmaR4zoAjfg0=; b=EsQH+k6D9OWxoSsvmMvIsdeHax
-	etZzjquvq11X4nO0OdlC9G5BLDcFf7NwtZHo2MrHerPbeBCfpFyGBy5i4cTGoJaLoYi5YnBOh1FFz
-	KnEAcMXh/LMLWL7F6HbRTSm3eEyq44RYamZ3c06wggijmifgmhZmE/0gs3vC7uhws55HVaODzA3N7
-	o6vIQpQHaEko5tEdOExklbepRBGieUjjAgaz+5ix+n2fDkKaf8KeXzwsP1E/OZX3IAZK3rhyhfRx5
-	LpMhtcwc2PoV2ycF0N+zDy8iG3kuWAkRxossiAABK9hAxW2K4+cAbzOmVWldPg7MTv/IWD+ajFWJt
-	UL1BrT8w==;
-Received: from mout.gmx.net ([212.227.17.22])
-	by casper.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLvYV-00000000WbF-0XY9;
-	Thu, 20 Nov 2025 03:42:01 +0000
+	id 1vLvYO-00000006491-0j8G;
+	Thu, 20 Nov 2025 03:42:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1763610097; x=1764214897; i=w_armin@gmx.de;
-	bh=2kOZ2qGDbUtlfM0lfAWL+CuCYcvOT4XDmaR4zoAjfg0=;
+	s=s31663417; t=1763610103; x=1764214903; i=w_armin@gmx.de;
+	bh=yGCAfufdk5uS0AxJlXQPTK96nfX3x9IiOUSTFIkZ/is=;
 	h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
 	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
 	 cc:content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=aKRIWuba0IAdSUR2MXvDkorv86Y1ma2GufVCsqO7RDi044SaUcUeLfJRCsvWhOJZ
-	 8lZCCPrDPiIwpKYFe92yZ7cl+oQBk5PdsXE9QtVfJHT6fY/4WyTWm3RVh9+1pvNYT
-	 XOTtdu+Py5bMANyXWChVUNV/XOqyhDY6rkxskQXa4PJMhZ4HXSdcmbwKt8z6pWvDw
-	 AOqOqQglEo0n2sNgSc13QNRZNO8l0YSQyF5TE8XSk/gx3MT4ZSL/gSh0NODa1+a94
-	 b4HGwJ9JmaVnftC4QqsZpRQ7DpGBZEyNTe2pZUU+7gAYi2dJyimmLuWgp/RsZCQk6
-	 MgBVjHxoIbwuoDuL8Q==
+	b=Fn+QVfxaSd0iv80J/t3/nHz27I4UZwNn/U8ZC4n7U53UXfe6mivDKKOhlfkOmgU5
+	 kgRauhVnYUVO4DvkYlaeaaST5QdgH9gBgq5HI8FkCbn8rwB7pbo+rAX0nrSM8VO8i
+	 0630u+KDujYVAtPnXhJ9kBRV3uPE/16oaWSQPsZsSqjEc+jYRZXbQsu6ke6hcooL/
+	 3q78rGoz1CXC5hCz3F75IQNumahYNZtk1y9z6f6LegSibcTox8sBJ1/Ir2R5lH/iY
+	 LPEKdA+esjJQNPXPZjwOc/UUo80AHXuuh2t0qaswri+onvVodEaAVl0bNeGH75Lnf
+	 A2AYMzyB3p+S2yHn8Q==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from [127.0.0.1] ([93.202.247.91]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MHXFx-1vQeUz3w9p-00FRNj; Thu, 20
- Nov 2025 04:41:37 +0100
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MpDNf-1vvqqv49BH-00oEAf; Thu, 20
+ Nov 2025 04:41:43 +0100
 From: Armin Wolf <W_Armin@gmx.de>
-Date: Thu, 20 Nov 2025 04:41:16 +0100
-Subject: [PATCH RFC RESEND 6/8] thermal: core: Set parent device in
- thermal_cooling_device_register()
+Date: Thu, 20 Nov 2025 04:41:18 +0100
+Subject: [PATCH RFC RESEND 8/8] thermal: core: Allow setting the parent
+ device of thermal zone devices
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <20251120-thermal-device-v1-6-bbdad594d57a@gmx.de>
+Message-Id: <20251120-thermal-device-v1-8-bbdad594d57a@gmx.de>
 References: <20251120-thermal-device-v1-0-bbdad594d57a@gmx.de>
 In-Reply-To: <20251120-thermal-device-v1-0-bbdad594d57a@gmx.de>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -82,15 +68,15 @@ Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-pci@vger.kernel.org, imx@lists.linux.dev, 
  linux-renesas-soc@vger.kernel.org
 X-Mailer: b4 0.14.3
-X-Provags-ID: V03:K1:4cIbWlrQp5RG0n2sdwfhJ6mqPNnFdfuw6wKcvDWlILFAv7qB4Kk
- KqQuPEi4WwVoI3o132IYI+euD43CiKKHwCpQCZNpS6bMVqqmIv2AW0/pM3zKghPVVUzAlVw
- QhugDQFsCGPrviBIOLioCsXA6xffXkGkUjh/U4M/vLy/p/zKDgcqUYeENmR7spTp54/Q6Uc
- nFlDNc2B7nUFaUiFctdJA==
-UI-OutboundReport: notjunk:1;M01:P0:P3U7megnmYM=;50+IRZ/J8/lMb44LA+JADkKOOMq il4Jm7Vs3ejlr8VL3Edd3jn3NwB9ZinnasBNSdFS/V7k2y6AWi8Y98OkC6bySr+vNOXqW0eQV 2Q7b/tgNH73MO2JRq4bHL9E7BpDYP5gORx/ClW6cENwv/fUVQ6ZADryPHUd4Iuo7r3QVZUTi+ besk8+x8XVshK9vpLbQ4jT3AWq7NzlxwiMRAh78B9tGU6UIg3+canT/AC74WElxFWMNh2SEiT XBgVIQitFA9heHS5zDc0W7Rvr/c8QQmFGXJKiGVhqRd6dKdZLA/50TMOBGSaDyp4c1juB3/O+ +8nkqhCgiT2jYtALimyJhWPmcH8pXGdlWBDgiR2l36AEpU4tbqRGuYXejCqrDQ8+mWO3aQ+wV LcNlofQv8QAx8L2GtQajCmyKKVZcmJl3qULvZM1U213xkGHc7ivnoToy4GxRUTKOCwKvUAbLW lezo0Gcb181k8ti1Hm1XgIZWGIjRxU1XXrhPFS6HHD9IDazRlSy4/F95by/mZv3xrLB7usgx8 q91bB+qg3xvpw0YwB2TiPe5cUGJbdPcTPT7mA1FzvUL6IKxNEtreom+2dJjwpY26YaQxd+U49 nIQFN0IORvrdp+/hVzro5YSHiYOkMhZOONEz33DtlA/hYhQSVwD1RKVG0mdMAjX9qeBde9/H2 MHNgxuVIQFi57zGJR08FbuZO2m1bXqUHKDBA1UGlZQimm8mTKhmGYDCNw6YVYOCXpkD3ctElG T6mewLa59cMWxV/vVfkO5YBEpHejXgBoTBX32Q6vJedA5xPKXGIjHhChIs1GKCg6Qr8phGuy4 7cc89nAADMOcbrmTvp21F47xQjWtsq+FSTit4VhH5rJR9SrxxOPo0Vm8CEvV13+EE33YUngxV tEX7m9Y86n9EHOiVfcZL5aMZN3VS8oQVh1gnQMxYatNMxoiU5o8tU1BU3f9XD2QxfGPRpWnXR eunZdiVWNOSM1Q32IAQWzqYeekwGNiZi/SDZGiCp8LAxVcRBnXp9PYoW03PvD8ExQjWQvu7Us mCX4sX2ky47xaWGFvyiRwtxPIgrRIERH4ouT1PlqO68z06vGS5dcjd0P7kclFxvPuZJKxqswE B+Ne+z/PzZvJtX1Nacwu7xeachc/K8uMncpTmYvVMG622jyTH5sNxEx6ku7EBqNCU5Aa8Kfq2 zgrc6wMU7v+HAdzv93VYLxaScz3bVMQcJRb92rAi5LNV/7ZkIwWgdkth+s1K6G+nMkBYYYidH Nf2r/YTFbOdkV2tfRRCiiTK01+6w7JQSR/Q1N2K8SfGOkQJtRPEbyvX7jMX+WV/YkGX4qDJal Q8XMutiX8MGebWKkbNz14ovKd+XHcuovZa4U+5y1LP2BqKQaPfddhSirrYR1pbLxcZ28Oz3vb tpzbRhoyDRm8gMMRiij2n/WiQBBu1K4qmmMssanyKQl+rzcbo8HRqTf/jbv7ndCgPK0h16QGh I04AwxcJXcAy4uWtHdAglagcBtt28f976v37Lgs4Ab9Siv+fYXHmiMDp1D1Y95hjmU6XIXgI2 MHb56sedafZYe5psNqo+PBN04/6yeRMZT2oD2ZQC1ud2QY6w6s4sVQDesrlYKW7XpI4N6NKQ5 iX8IybJXHKbWrheJwr1z9E5ZpiIAzqBNtnXg9pdwqdvI4cOdl6AZTnh7zVgFrV8iMdGH3a5EO 5YbtHBmV6ZjHXTdyNgqhbbTImJKAp7bzkhl+O2W7M/40tWsp5lPqwFC66twSMLJK7KXbZKvnw SODSReqg0nU3a07wxNfQ7Sz4QxszHHrH+PEBDvf/tjzSZHtus8ZbNkRWE/61mpjiE6nKRGMNB ZjjND/PtUGuBKgGgXgz4ZudNNtl0s5vPB4ctd/Obf1a5IKYiDEPAGeVW3/H/a7r/Zo+jHCCsc YJYQmZoZeqwS/b1YstzfAqnbOLd222x7k9itGLpPj/7G2kXIyTkj7cPZwA4MSDjbOw0S15GC2 nrX0fzKFnVD4CGXTr32NmOjfT+Lh8anF4v9tXdRVxjcoZigeYG3EmEdhP1LVkRKytmtcpNAEi 3ogpr7Nv0aRHcuNTlL7VLMdtamIk0U9NU4lHxt10gakGNZnuW7kAbaUwSMbIvLO8R/8KMbUoB qoYQkag6Y65MLRTapMbogPIinaL9iuGV0Np+mKNqFmd/IY+TKL5wd9fRp/LhN16d7Vmkw4Xu6 kQdhTzIxGohCmkwK+yx6YnqvShyZQM/UHkreL9+nrlFkf27mWTXWwZ+blSU6B/pU2w25f7ePM 8f9xED0rGQMT3prmPRLu6XQ9A84jYlyJJdDj0PFHAkzC0n0U9u3Vfubq1WQDuYhUYLcGAaB7H XjsQd9DOhExaVihS2nXSk8bt7YB8BDG59Xdedg+YZYp48AcFHFClJO4v2+JPBotEGfAV4FICk r1Anz9fG8vSw+cZJGzF44APLAdVbQVUh/S/BfokehnLVpHpF56NOPmM/aFFLj5DCNcjwmrG+A DWjCWm7gYslOQMk+ZiYLQBv6SeQv0rHktMBcmkZBW0g2E+mzO7m81mICSF8JKqtbxz4uc1eH2 Nv6Yxfb0t8NXG1rwA4QHWGknWsF93ffSKME1DBkBR8lJl1Wrkp3nvfRDuDe5thMgCv1VskhBY lbsWpl9PYJGnOl92R7Xld2ajPfUZB1V5gFJTUTwnDiN7+ChNtatHQWC2zf/qxUpSmqJiC5069 ab9x/0t6dgGpM0xkZgtjCbF1YQdWYS7sHzJTlkz7NTvkb2lxTmpPKTr5NahC3i7j0JsaAranM RdlYIkAJLWXhz77aZaK/9HtmKidcmZHrw06xPEe64vBd7TXyXI0U+t03nl3uEs+xb3Nxo5SsU F2O6XJX8ybbj23pCunhn3vLtnnJgXMtX50jbEh8E+nH9FzPCtsMWeOMoeOZhj9CfbPyy0+IfP zQ1PXO3Z+SOHFZYvFO6XuOTw9jLbo5BEIQy986moYDf6evHa320J/Gt/DKiJP3hN42vX2cQIg n3X9HGBX4zVZ3O/Md7t7Fp14hm252K8hFAvUwwY21Fe4bHI9QMHnFAdRGn6biUw43Kv62cbou yzab5aZSUoYHhtO7OF2mQA7MRR0hdxS4zuzcc0fzf9iD7zXPiFtVw78OPfNLC/i1RD461pnlG W45FfD1LjBMzWSJ7HAT7vfcYv4uSBIm5MEQO3eujgE4uUlgTkuLpq2UY88Souml55aFEOLOT2 X8wV8qPfS0hQLrvN3QZK0alMtD4BOD31oJsLHMYkNRdvnQej6GX7lMwxvkPfDl3pm0xs3UZIx lezlnG122guQTwrRrbI3DTIC4p8HbhzeEZuCD/l5SxSt8tYKHYykY7LQWZ/eMCZHwrpF3H0+1 MO3bwNRKRfiuFhqMETlkU/awDEoq4WGyaAvK86CqRnmmOVN0wX0Hd20LttBIgqfJdaN+k9xL2 YM+RBklY6OdPtFlbc1HXed9AePVKPH5jCxCTcmdqeKliRoSkhv07EiRwE1b6+hBvp6oB+y0Xk 3JUrSE5Yc6iHQBzR/HeY8hIiajGeZJtYinEMN1Z5lyZwkBVEqhFsL6+d83jWolSOdmCC/Hik9 wCPCI4miAKc+ph+Wbl8C3DAiMiSobPeAB0fYJCcD9S+8RFqGCfZwOvmc+uR2CIWyIocTA044y p/XjtOsvy2OQRIUZsSmsIExSk+wzWAcYQjaz0o+TdiNVjTsb/FatijRlkrqoFIFrwlSMOfqfh ChsfZQpQ4CjGD1sMFUxNvZNeogalLe/0vBlr7+n+RwbRl6AtquMCJw5HPkqVl457HLCHwAM41 omWrXUOZXsjBMQOqEj7CwHngK4Oe3DDqwGOjl1Lszp61Re9e6ayx4Pj8WvrhTPxQJDGo4tYo6 VUGTPQrfumvlmFVbRofqb1L9ymGYd5yfdXRf/9F+3jz4qXSnTgPnYc2P6Rlfzk8CEHz9sJcai
- upqt6BuFB49TwSR6UIBOgAgBis8RnwmzoTTTe14xLFAMz+2qTZ1fSqiE8vAWq7/HUEzlKx2es neQ3+adtMYh7Abv3osUuadK/xN9X0Tj5TA6WjKJM7IfkxcYdFbQfP5EODH2U0+DkkvsfYIpIh iB/we1F2SH6YmFs1Mgjo1aJm7XGBnYhxC7/L8gvqWzfft8em/Yn/ndQ5PtqV/+3uxIt8GqwSA dv/zN7Agwfd4325nSnddgGMKG8BMNpp641hOWnJzSiTnj6iX3jtwT3A0upJtPDhrIBJZS8poc p66PlF7wafWOeGQo+MCPMrORomp/kcnNYc3ZgjMJTrlOHOy5O0qfawGCl8Dj+f5JGDxHlXFwC wEzSkgAdxNqgEOOszxQjJNzASw0n/iAAnsY3EEcD82ycdfTn3yrNxkOjzcVGWVIdi5oV1hgpu 9ecmsn5FeUF6aaVELt6pZ467PFuYeBnHWoMdtqal7Dcuy5syiTSP6hlOwwu4Z+72cFgJIjchr Bt7Lu3pQBfKd9cftKJiiQQpzyZybFSqb29WikYUPg94GrsCFDAc7nL26mNM0zUcfxW/Lzsjbg kmFEKA1beMJGL94E/snTeoNdRK8PGugAsDYQRuztrpH+DOXyRg3xlSXWMmAU3B/LAXHcmgF2n Vj9kXtK8xs7nJBSn6NgUynxim3nKsJgDz6ZSIPOaqbX1kNwhomYphxKzBT/kCh84HBm6urkCW 0zKkWQZTaS/YF+qMFl2P921j3ETkph1i3TuqEFQMXSA85iSxIde+RGYCpJNuzvt6psO5ht3X4 WQEFWuxqrI5BviJvBSPIqG/HzIyS+MnxHU/6rHoe54ZmyqyQ2OTwWIXqQvQPjwOE4koAbxUoN +ANKsKvaGVuiiul8gbC6hPPFTcu9FHn2TFGRV1Vb4KXKV1noHzWgb7fmJsDAa6NMX4QN1njbC PVMCWU75xkNI44hWD29zSWRHDKu3SpVEHl5GFu9lK6b2TtYJaPgthCGjgi1beMCwjwDyJAXcZ 8e/0Brv4rPZe7assrWOmR0BX6qq6nPqmSWTKf/G8A+8K6NJ0qnc/WDW3skaost5dIKxC0SaLc qo6ewaeQMX1gpFnv6akQSW1lGEOsJVBJZuffL4VeYa0+x+22TemQgP1BWirrNQzbC+ZtUilVP bL7npE84wZdn7HxanocnD6oePhLqjUHtD1fjKOCLXTi43FOdepgNFyuTWuAegqxTJPYlhRmp6 6tUSa2kbBDzA+IwwoCF33BdZWDQoUCIol2FsFYulwdwbR34UlYvuDujxUB7Brh/T1BwVg3ii+ D+g+ND8CQLykQNoG4g8heDLsFQhGM
+X-Provags-ID: V03:K1:R29awBHW0pqrjeABaMJFeDeacollc6WnJKGlNk9Wna3omHYXCjn
+ m61RHMalT6Lb2k4YAfSPR7ytFyN0UtIL90dS+nXkcN4L3ICEvRK9gpAPBEyzklGXl/Lz2DD
+ bg0fadpRxNvgexXTaEqozYWxR36WENOxDYp6KdPE4bWpFRrS270/z3yY1fChEG4kRsCNEH+
+ sM5FUlwuIXR0Xxm961Frg==
+UI-OutboundReport: notjunk:1;M01:P0:i5pXje0rV6w=;1Ujnq5tb+zNr7M3rsTtP+kZayRV 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
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251120_034159_342402_D1680AAA 
-X-CRM114-Status: GOOD (  10.56  )
+X-CRM114-CacheID: sfid-20251119_194154_346936_B6170A16 
+X-CRM114-Status: GOOD (  14.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,371 +91,710 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Extend thermal_cooling_device_register() to allow users to specify
-the parent device of the cooling device to be created.
+Thermal zone devices currently have no parent device, potentially
+causing issues with suspend ordering and making it impossible for
+user space appications to associate a given thermal zone device with
+its parent device.
+
+Extend the functions used to register thermal zone devices to also
+accept a parent device pointer. Also update all users of those
+functions to provide a parent device pointer if available.
 
 Signed-off-by: Armin Wolf <W_Armin@gmx.de>
 =2D--
- Documentation/driver-api/thermal/sysfs-api.rst          | 5 ++++-
- drivers/acpi/acpi_video.c                               | 2 +-
- drivers/acpi/fan_core.c                                 | 4 ++--
- drivers/acpi/processor_thermal.c                        | 2 +-
- drivers/net/ethernet/mellanox/mlxsw/core_thermal.c      | 2 +-
- drivers/net/wireless/ath/ath10k/thermal.c               | 2 +-
- drivers/net/wireless/ath/ath11k/thermal.c               | 2 +-
- drivers/net/wireless/intel/iwlwifi/mld/thermal.c        | 4 +---
- drivers/net/wireless/intel/iwlwifi/mvm/tt.c             | 2 +-
- drivers/net/wireless/mediatek/mt76/mt7915/init.c        | 2 +-
- drivers/net/wireless/mediatek/mt76/mt7996/init.c        | 2 +-
- drivers/platform/x86/acerhdf.c                          | 2 +-
- drivers/thermal/intel/int340x_thermal/int3403_thermal.c | 4 ++--
- drivers/thermal/intel/int340x_thermal/int3406_thermal.c | 2 +-
- drivers/thermal/intel/intel_powerclamp.c                | 2 +-
- drivers/thermal/intel/intel_tcc_cooling.c               | 2 +-
- drivers/thermal/pcie_cooling.c                          | 2 +-
- drivers/thermal/thermal_core.c                          | 5 +++--
- include/linux/thermal.h                                 | 9 +++++----
- 19 files changed, 30 insertions(+), 27 deletions(-)
+ Documentation/driver-api/thermal/sysfs-api.rst     |  5 ++-
+ drivers/acpi/thermal.c                             | 16 +++++---
+ drivers/net/ethernet/chelsio/cxgb4/cxgb4_thermal.c |  4 +-
+ drivers/net/ethernet/mellanox/mlxsw/core_thermal.c | 45 +++++++++++------=
+=2D----
+ drivers/net/wireless/intel/iwlwifi/mld/thermal.c   |  2 +-
+ drivers/net/wireless/intel/iwlwifi/mvm/tt.c        | 10 ++---
+ drivers/platform/x86/acerhdf.c                     |  2 +-
+ drivers/power/supply/power_supply_core.c           |  4 +-
+ drivers/thermal/armada_thermal.c                   |  2 +-
+ drivers/thermal/da9062-thermal.c                   |  2 +-
+ drivers/thermal/dove_thermal.c                     |  2 +-
+ drivers/thermal/imx_thermal.c                      |  2 +-
+ .../intel/int340x_thermal/int3400_thermal.c        |  2 +-
+ .../intel/int340x_thermal/int340x_thermal_zone.c   | 13 +++----
+ .../int340x_thermal/processor_thermal_device_pci.c |  7 ++--
+ drivers/thermal/intel/intel_pch_thermal.c          |  2 +-
+ drivers/thermal/intel/intel_quark_dts_thermal.c    |  2 +-
+ drivers/thermal/intel/intel_soc_dts_iosf.c         |  2 +-
+ drivers/thermal/intel/x86_pkg_temp_thermal.c       |  6 +--
+ drivers/thermal/kirkwood_thermal.c                 |  2 +-
+ drivers/thermal/renesas/rcar_thermal.c             | 10 +++--
+ drivers/thermal/spear_thermal.c                    |  2 +-
+ drivers/thermal/testing/zone.c                     |  2 +-
+ drivers/thermal/thermal_core.c                     |  7 +++-
+ drivers/thermal/thermal_of.c                       |  9 +++--
+ include/linux/thermal.h                            |  4 ++
+ 26 files changed, 92 insertions(+), 74 deletions(-)
 
 diff --git a/Documentation/driver-api/thermal/sysfs-api.rst b/Documentatio=
 n/driver-api/thermal/sysfs-api.rst
-index f73de211bdce..cf242cd16f2e 100644
+index cf242cd16f2e..0a29bc949ef3 100644
 =2D-- a/Documentation/driver-api/thermal/sysfs-api.rst
 +++ b/Documentation/driver-api/thermal/sysfs-api.rst
-@@ -215,13 +215,16 @@ temperature) and throttle appropriate devices.
+@@ -37,7 +37,8 @@ temperature) and throttle appropriate devices.
      ::
 =20
- 	struct thermal_cooling_device
--	*thermal_cooling_device_register(char *name,
-+	*thermal_cooling_device_register(struct device *parent, char *name,
- 			void *devdata, struct thermal_cooling_device_ops *)
-=20
-     This interface function adds a new thermal cooling device (fan/proces=
-sor/...)
-     to /sys/class/thermal/ folder as `cooling_device[0-*]`. It tries to b=
-ind itself
-     to all the thermal zone devices registered at the same time.
+ 	struct thermal_zone_device *
+-	thermal_zone_device_register_with_trips(const char *type,
++	thermal_zone_device_register_with_trips(struct device *parent,
++                                        const char *type,
+ 					const struct thermal_trip *trips,
+ 					int num_trips, void *devdata,
+ 					const struct thermal_zone_device_ops *ops,
+@@ -49,6 +50,8 @@ temperature) and throttle appropriate devices.
+     /sys/class/thermal folder as `thermal_zone[0-*]`. It tries to bind al=
+l the
+     thermal cooling devices registered to it at the same time.
 =20
 +    parent:
 +        parent device pointer.
-+
-     name:
- 	the cooling device name.
-     devdata:
-diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
-index 658e11745523..eae1ff9805b1 100644
-=2D-- a/drivers/acpi/acpi_video.c
-+++ b/drivers/acpi/acpi_video.c
-@@ -1759,7 +1759,7 @@ static void acpi_video_dev_register_backlight(struct=
- acpi_video_device *device)
- 	device->backlight->props.brightness =3D
- 			acpi_video_get_brightness(device->backlight);
-=20
--	device->cooling_dev =3D thermal_cooling_device_register("LCD", device,
-+	device->cooling_dev =3D thermal_cooling_device_register(parent, "LCD", d=
-evice,
- 							      &video_cooling_ops);
- 	if (IS_ERR(device->cooling_dev)) {
- 		/*
-diff --git a/drivers/acpi/fan_core.c b/drivers/acpi/fan_core.c
-index 2ca3e347f15c..7ebf2529fbfd 100644
-=2D-- a/drivers/acpi/fan_core.c
-+++ b/drivers/acpi/fan_core.c
-@@ -584,8 +584,8 @@ static int acpi_fan_probe(struct platform_device *pdev=
-)
- 	else
- 		name =3D acpi_device_bid(device);
-=20
--	cdev =3D thermal_cooling_device_register(name, device,
--						&fan_cooling_ops);
-+	cdev =3D thermal_cooling_device_register(&pdev->dev, name, device,
-+					       &fan_cooling_ops);
- 	if (IS_ERR(cdev)) {
- 		result =3D PTR_ERR(cdev);
- 		goto err_end;
-diff --git a/drivers/acpi/processor_thermal.c b/drivers/acpi/processor_the=
-rmal.c
-index 1ff10321eac5..a7307f5d137f 100644
-=2D-- a/drivers/acpi/processor_thermal.c
-+++ b/drivers/acpi/processor_thermal.c
-@@ -313,7 +313,7 @@ int acpi_processor_thermal_init(struct acpi_processor =
-*pr,
+     type:
+ 	the thermal zone type.
+     trips:
+diff --git a/drivers/acpi/thermal.c b/drivers/acpi/thermal.c
+index 99ad67bbd764..483e28ce0d67 100644
+=2D-- a/drivers/acpi/thermal.c
++++ b/drivers/acpi/thermal.c
+@@ -607,16 +607,20 @@ static int acpi_thermal_register_thermal_zone(struct=
+ acpi_thermal *tz,
+ 					      unsigned int trip_count,
+ 					      int passive_delay)
  {
- 	int result =3D 0;
++	unsigned int polling_delay =3D tz->polling_frequency * 100;
+ 	int result;
 =20
--	pr->cdev =3D thermal_cooling_device_register("Processor", device,
-+	pr->cdev =3D thermal_cooling_device_register(&device->dev, "Processor", =
-device,
- 						   &processor_cooling_ops);
- 	if (IS_ERR(pr->cdev)) {
- 		result =3D PTR_ERR(pr->cdev);
+ 	if (trip_count)
+-		tz->thermal_zone =3D thermal_zone_device_register_with_trips(
+-					"acpitz", trip_table, trip_count, tz,
+-					&acpi_thermal_zone_ops, NULL, passive_delay,
+-					tz->polling_frequency * 100);
++		tz->thermal_zone =3D thermal_zone_device_register_with_trips(&tz->devic=
+e->dev,
++									   "acpitz", trip_table,
++									   trip_count, tz,
++									   &acpi_thermal_zone_ops,
++									   NULL, passive_delay,
++									   polling_delay);
+ 	else
+-		tz->thermal_zone =3D thermal_tripless_zone_device_register(
+-					"acpitz", tz, &acpi_thermal_zone_ops, NULL);
++		tz->thermal_zone =3D thermal_tripless_zone_device_register(&tz->device-=
+>dev, "acpitz",
++									 tz, &acpi_thermal_zone_ops,
++									 NULL);
+=20
+ 	if (IS_ERR(tz->thermal_zone))
+ 		return PTR_ERR(tz->thermal_zone);
+diff --git a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_thermal.c b/drivers/=
+net/ethernet/chelsio/cxgb4/cxgb4_thermal.c
+index 7bab8da8f6e6..05a1ec7df7a5 100644
+=2D-- a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_thermal.c
++++ b/drivers/net/ethernet/chelsio/cxgb4/cxgb4_thermal.c
+@@ -59,8 +59,8 @@ int cxgb4_thermal_init(struct adapter *adap)
+ 	}
+=20
+ 	snprintf(ch_tz_name, sizeof(ch_tz_name), "cxgb4_%s", adap->name);
+-	ch_thermal->tzdev =3D thermal_zone_device_register_with_trips(ch_tz_name=
+, &trip, num_trip,
+-								    adap,
++	ch_thermal->tzdev =3D thermal_zone_device_register_with_trips(adap->pdev=
+_dev, ch_tz_name,
++								    &trip, num_trip, adap,
+ 								    &cxgb4_thermal_ops,
+ 								    NULL, 0, 0);
+ 	if (IS_ERR(ch_thermal->tzdev)) {
 diff --git a/drivers/net/ethernet/mellanox/mlxsw/core_thermal.c b/drivers/=
 net/ethernet/mellanox/mlxsw/core_thermal.c
-index eac9a14a6058..1117d59b74fd 100644
+index 1117d59b74fd..a1b1e9e8dd3d 100644
 =2D-- a/drivers/net/ethernet/mellanox/mlxsw/core_thermal.c
 +++ b/drivers/net/ethernet/mellanox/mlxsw/core_thermal.c
-@@ -693,7 +693,7 @@ int mlxsw_thermal_init(struct mlxsw_core *core,
- 			mlxsw_cdev =3D &thermal->cdevs[i];
- 			mlxsw_cdev->thermal =3D thermal;
- 			mlxsw_cdev->idx =3D i;
--			cdev =3D thermal_cooling_device_register("mlxsw_fan",
-+			cdev =3D thermal_cooling_device_register(dev, "mlxsw_fan",
- 							       mlxsw_cdev,
- 							       &mlxsw_cooling_ops);
- 			if (IS_ERR(cdev)) {
-diff --git a/drivers/net/wireless/ath/ath10k/thermal.c b/drivers/net/wirel=
-ess/ath/ath10k/thermal.c
-index 8b15ec07b107..16eb41b928ba 100644
-=2D-- a/drivers/net/wireless/ath/ath10k/thermal.c
-+++ b/drivers/net/wireless/ath/ath10k/thermal.c
-@@ -161,7 +161,7 @@ int ath10k_thermal_register(struct ath10k *ar)
- 	if (!test_bit(WMI_SERVICE_THERM_THROT, ar->wmi.svc_map))
- 		return 0;
-=20
--	cdev =3D thermal_cooling_device_register("ath10k_thermal", ar,
-+	cdev =3D thermal_cooling_device_register(ar->dev, "ath10k_thermal", ar,
- 					       &ath10k_thermal_ops);
-=20
- 	if (IS_ERR(cdev)) {
-diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wirel=
-ess/ath/ath11k/thermal.c
-index 18d6eab5cce3..363697ce8641 100644
-=2D-- a/drivers/net/wireless/ath/ath11k/thermal.c
-+++ b/drivers/net/wireless/ath/ath11k/thermal.c
-@@ -172,7 +172,7 @@ int ath11k_thermal_register(struct ath11k_base *ab)
- 		if (!ar)
- 			continue;
-=20
--		cdev =3D thermal_cooling_device_register("ath11k_thermal", ar,
-+		cdev =3D thermal_cooling_device_register(&ar->hw->wiphy->dev, "ath11k_t=
-hermal", ar,
- 						       &ath11k_thermal_ops);
-=20
- 		if (IS_ERR(cdev)) {
-diff --git a/drivers/net/wireless/intel/iwlwifi/mld/thermal.c b/drivers/ne=
-t/wireless/intel/iwlwifi/mld/thermal.c
-index f8a8c35066be..9e56e6e80ab7 100644
-=2D-- a/drivers/net/wireless/intel/iwlwifi/mld/thermal.c
-+++ b/drivers/net/wireless/intel/iwlwifi/mld/thermal.c
-@@ -366,9 +366,7 @@ static void iwl_mld_cooling_device_register(struct iwl=
-_mld *mld)
- 	BUILD_BUG_ON(ARRAY_SIZE(name) >=3D THERMAL_NAME_LENGTH);
-=20
- 	mld->cooling_dev.cdev =3D
--		thermal_cooling_device_register(name,
--						mld,
--						&tcooling_ops);
-+		thermal_cooling_device_register(mld->dev, name, mld, &tcooling_ops);
-=20
- 	if (IS_ERR(mld->cooling_dev.cdev)) {
- 		IWL_DEBUG_TEMP(mld,
-diff --git a/drivers/net/wireless/intel/iwlwifi/mvm/tt.c b/drivers/net/wir=
-eless/intel/iwlwifi/mvm/tt.c
-index 53bab21ebae2..b184f08230b9 100644
-=2D-- a/drivers/net/wireless/intel/iwlwifi/mvm/tt.c
-+++ b/drivers/net/wireless/intel/iwlwifi/mvm/tt.c
-@@ -744,7 +744,7 @@ static void iwl_mvm_cooling_device_register(struct iwl=
-_mvm *mvm)
- 	BUILD_BUG_ON(ARRAY_SIZE(name) >=3D THERMAL_NAME_LENGTH);
-=20
- 	mvm->cooling_dev.cdev =3D
--		thermal_cooling_device_register(name,
-+		thermal_cooling_device_register(mvm->dev, name,
- 						mvm,
- 						&tcooling_ops);
-=20
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7915/init.c b/drivers/ne=
-t/wireless/mediatek/mt76/mt7915/init.c
-index 5ea8b46e092e..cb08bb36f6e2 100644
-=2D-- a/drivers/net/wireless/mediatek/mt76/mt7915/init.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7915/init.c
-@@ -200,7 +200,7 @@ static int mt7915_thermal_init(struct mt7915_phy *phy)
- 	if (!name)
- 		return -ENOMEM;
-=20
--	cdev =3D thermal_cooling_device_register(name, phy, &mt7915_thermal_ops)=
-;
-+	cdev =3D thermal_cooling_device_register(&wiphy->dev, name, phy, &mt7915=
-_thermal_ops);
- 	if (!IS_ERR(cdev)) {
- 		if (sysfs_create_link(&wiphy->dev.kobj, &cdev->device.kobj,
- 				      "cooling_device") < 0)
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7996/init.c b/drivers/ne=
-t/wireless/mediatek/mt76/mt7996/init.c
-index 5e95a36b42d1..bb6e55d79d0e 100644
-=2D-- a/drivers/net/wireless/mediatek/mt76/mt7996/init.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7996/init.c
-@@ -249,7 +249,7 @@ static int mt7996_thermal_init(struct mt7996_phy *phy)
-=20
- 	snprintf(cname, sizeof(cname), "cooling_device%d", phy->mt76->band_idx);
-=20
--	cdev =3D thermal_cooling_device_register(name, phy, &mt7996_thermal_ops)=
-;
-+	cdev =3D thermal_cooling_device_register(&wiphy->dev, name, phy, &mt7996=
-_thermal_ops);
- 	if (!IS_ERR(cdev)) {
- 		if (sysfs_create_link(&wiphy->dev.kobj, &cdev->device.kobj,
- 				      cname) < 0)
-diff --git a/drivers/platform/x86/acerhdf.c b/drivers/platform/x86/acerhdf=
-.c
-index 5ce5ad3efe69..c74937d475e5 100644
-=2D-- a/drivers/platform/x86/acerhdf.c
-+++ b/drivers/platform/x86/acerhdf.c
-@@ -650,7 +650,7 @@ static int __init acerhdf_register_thermal(void)
+@@ -349,6 +349,8 @@ static const struct thermal_cooling_device_ops mlxsw_c=
+ooling_ops =3D {
+ static int
+ mlxsw_thermal_module_tz_init(struct mlxsw_thermal_module *module_tz)
  {
++	unsigned int polling_delay =3D module_tz->parent->polling_delay;
++	struct device *dev =3D module_tz->parent->bus_info->dev;
+ 	char tz_name[40];
+ 	int err;
+=20
+@@ -358,14 +360,12 @@ mlxsw_thermal_module_tz_init(struct mlxsw_thermal_mo=
+dule *module_tz)
+ 	else
+ 		snprintf(tz_name, sizeof(tz_name), "mlxsw-module%d",
+ 			 module_tz->module + 1);
+-	module_tz->tzdev =3D thermal_zone_device_register_with_trips(tz_name,
+-							module_tz->trips,
+-							MLXSW_THERMAL_NUM_TRIPS,
+-							module_tz,
+-							&mlxsw_thermal_module_ops,
+-							&mlxsw_thermal_params,
+-							0,
+-							module_tz->parent->polling_delay);
++	module_tz->tzdev =3D thermal_zone_device_register_with_trips(dev, tz_nam=
+e, module_tz->trips,
++								   MLXSW_THERMAL_NUM_TRIPS,
++								   module_tz,
++								   &mlxsw_thermal_module_ops,
++								   &mlxsw_thermal_params, 0,
++								   polling_delay);
+ 	if (IS_ERR(module_tz->tzdev)) {
+ 		err =3D PTR_ERR(module_tz->tzdev);
+ 		return err;
+@@ -466,6 +466,8 @@ mlxsw_thermal_modules_fini(struct mlxsw_thermal *therm=
+al,
+ static int
+ mlxsw_thermal_gearbox_tz_init(struct mlxsw_thermal_module *gearbox_tz)
+ {
++	unsigned int polling_delay =3D gearbox_tz->parent->polling_delay;
++	struct device *dev =3D gearbox_tz->parent->bus_info->dev;
+ 	char tz_name[40];
  	int ret;
 =20
--	cl_dev =3D thermal_cooling_device_register("acerhdf-fan", NULL,
-+	cl_dev =3D thermal_cooling_device_register(NULL, "acerhdf-fan", NULL,
- 						 &acerhdf_cooling_ops);
+@@ -475,13 +477,13 @@ mlxsw_thermal_gearbox_tz_init(struct mlxsw_thermal_m=
+odule *gearbox_tz)
+ 	else
+ 		snprintf(tz_name, sizeof(tz_name), "mlxsw-gearbox%d",
+ 			 gearbox_tz->module + 1);
+-	gearbox_tz->tzdev =3D thermal_zone_device_register_with_trips(tz_name,
+-						gearbox_tz->trips,
+-						MLXSW_THERMAL_NUM_TRIPS,
+-						gearbox_tz,
+-						&mlxsw_thermal_gearbox_ops,
+-						&mlxsw_thermal_params, 0,
+-						gearbox_tz->parent->polling_delay);
++	gearbox_tz->tzdev =3D thermal_zone_device_register_with_trips(dev, tz_na=
+me,
++								    gearbox_tz->trips,
++								    MLXSW_THERMAL_NUM_TRIPS,
++								    gearbox_tz,
++								    &mlxsw_thermal_gearbox_ops,
++								    &mlxsw_thermal_params, 0,
++								    polling_delay);
+ 	if (IS_ERR(gearbox_tz->tzdev))
+ 		return PTR_ERR(gearbox_tz->tzdev);
 =20
+@@ -709,13 +711,12 @@ int mlxsw_thermal_init(struct mlxsw_core *core,
+ 				 MLXSW_THERMAL_SLOW_POLL_INT :
+ 				 MLXSW_THERMAL_POLL_INT;
+=20
+-	thermal->tzdev =3D thermal_zone_device_register_with_trips("mlxsw",
+-						      thermal->trips,
+-						      MLXSW_THERMAL_NUM_TRIPS,
+-						      thermal,
+-						      &mlxsw_thermal_ops,
+-						      &mlxsw_thermal_params, 0,
+-						      thermal->polling_delay);
++	thermal->tzdev =3D thermal_zone_device_register_with_trips(dev, "mlxsw",
++								 thermal->trips,
++								 MLXSW_THERMAL_NUM_TRIPS,
++								 thermal, &mlxsw_thermal_ops,
++								 &mlxsw_thermal_params, 0,
++								 thermal->polling_delay);
+ 	if (IS_ERR(thermal->tzdev)) {
+ 		err =3D PTR_ERR(thermal->tzdev);
+ 		dev_err(dev, "Failed to register thermal zone\n");
+diff --git a/drivers/net/wireless/intel/iwlwifi/mld/thermal.c b/drivers/ne=
+t/wireless/intel/iwlwifi/mld/thermal.c
+index 9e56e6e80ab7..56a0022d33db 100644
+=2D-- a/drivers/net/wireless/intel/iwlwifi/mld/thermal.c
++++ b/drivers/net/wireless/intel/iwlwifi/mld/thermal.c
+@@ -256,7 +256,7 @@ static void iwl_mld_thermal_zone_register(struct iwl_m=
+ld *mld)
+=20
+ 	sprintf(name, "iwlwifi_%u", atomic_inc_return(&counter) & 0xFF);
+ 	mld->tzone =3D
+-		thermal_zone_device_register_with_trips(name, trips,
++		thermal_zone_device_register_with_trips(mld->dev, name, trips,
+ 							IWL_MAX_DTS_TRIPS,
+ 							mld, &tzone_ops,
+ 							NULL, 0, 0);
+diff --git a/drivers/net/wireless/intel/iwlwifi/mvm/tt.c b/drivers/net/wir=
+eless/intel/iwlwifi/mvm/tt.c
+index b184f08230b9..e4777b815976 100644
+=2D-- a/drivers/net/wireless/intel/iwlwifi/mvm/tt.c
++++ b/drivers/net/wireless/intel/iwlwifi/mvm/tt.c
+@@ -672,11 +672,11 @@ static void iwl_mvm_thermal_zone_register(struct iwl=
+_mvm *mvm)
+ 		mvm->tz_device.trips[i].type =3D THERMAL_TRIP_PASSIVE;
+ 		mvm->tz_device.trips[i].flags =3D THERMAL_TRIP_FLAG_RW_TEMP;
+ 	}
+-	mvm->tz_device.tzone =3D thermal_zone_device_register_with_trips(name,
+-							mvm->tz_device.trips,
+-							IWL_MAX_DTS_TRIPS,
+-							mvm, &tzone_ops,
+-							NULL, 0, 0);
++	mvm->tz_device.tzone =3D thermal_zone_device_register_with_trips(mvm->de=
+v, name,
++								       mvm->tz_device.trips,
++								       IWL_MAX_DTS_TRIPS,
++								       mvm, &tzone_ops,
++								       NULL, 0, 0);
+ 	if (IS_ERR(mvm->tz_device.tzone)) {
+ 		IWL_DEBUG_TEMP(mvm,
+ 			       "Failed to register to thermal zone (err =3D %ld)\n",
+diff --git a/drivers/platform/x86/acerhdf.c b/drivers/platform/x86/acerhdf=
+.c
+index c74937d475e5..abdb5749c169 100644
+=2D-- a/drivers/platform/x86/acerhdf.c
++++ b/drivers/platform/x86/acerhdf.c
+@@ -656,7 +656,7 @@ static int __init acerhdf_register_thermal(void)
  	if (IS_ERR(cl_dev))
-diff --git a/drivers/thermal/intel/int340x_thermal/int3403_thermal.c b/dri=
-vers/thermal/intel/int340x_thermal/int3403_thermal.c
-index 264c9bc8e645..08d9e91f01cb 100644
-=2D-- a/drivers/thermal/intel/int340x_thermal/int3403_thermal.c
-+++ b/drivers/thermal/intel/int340x_thermal/int3403_thermal.c
-@@ -178,8 +178,8 @@ static int int3403_cdev_add(struct int3403_priv *priv)
- 	priv->priv =3D obj;
- 	obj->max_state =3D p->package.count - 1;
- 	obj->cdev =3D
--		thermal_cooling_device_register(acpi_device_bid(priv->adev),
--				priv, &int3403_cooling_ops);
-+		thermal_cooling_device_register(&priv->adev->dev, acpi_device_bid(priv-=
->adev),
-+						priv, &int3403_cooling_ops);
- 	if (IS_ERR(obj->cdev))
- 		result =3D PTR_ERR(obj->cdev);
+ 		return -EINVAL;
 =20
-diff --git a/drivers/thermal/intel/int340x_thermal/int3406_thermal.c b/dri=
-vers/thermal/intel/int340x_thermal/int3406_thermal.c
-index e21fcbccf4ba..e458add39a88 100644
-=2D-- a/drivers/thermal/intel/int340x_thermal/int3406_thermal.c
-+++ b/drivers/thermal/intel/int340x_thermal/int3406_thermal.c
-@@ -157,7 +157,7 @@ static int int3406_thermal_probe(struct platform_devic=
+-	thz_dev =3D thermal_zone_device_register_with_trips("acerhdf", trips, AR=
+RAY_SIZE(trips),
++	thz_dev =3D thermal_zone_device_register_with_trips(NULL, "acerhdf", tri=
+ps, ARRAY_SIZE(trips),
+ 							  NULL, &acerhdf_dev_ops,
+ 							  &acerhdf_zone_params, 0,
+ 							  (kernelmode) ? interval*1000 : 0);
+diff --git a/drivers/power/supply/power_supply_core.c b/drivers/power/supp=
+ly/power_supply_core.c
+index 9a28381e2607..cbc4bed17efa 100644
+=2D-- a/drivers/power/supply/power_supply_core.c
++++ b/drivers/power/supply/power_supply_core.c
+@@ -1531,8 +1531,8 @@ static int psy_register_thermal(struct power_supply =
+*psy)
+ 		struct thermal_zone_params tzp =3D {
+ 			.no_hwmon =3D IS_ENABLED(CONFIG_POWER_SUPPLY_HWMON)
+ 		};
+-		psy->tzd =3D thermal_tripless_zone_device_register(psy->desc->name,
+-				psy, &psy_tzd_ops, &tzp);
++		psy->tzd =3D thermal_tripless_zone_device_register(&psy->dev, psy->desc=
+->name, psy,
++								 &psy_tzd_ops, &tzp);
+ 		if (IS_ERR(psy->tzd))
+ 			return PTR_ERR(psy->tzd);
+ 		ret =3D thermal_zone_device_enable(psy->tzd);
+diff --git a/drivers/thermal/armada_thermal.c b/drivers/thermal/armada_the=
+rmal.c
+index c2fbdb534f61..fc60b0bab627 100644
+=2D-- a/drivers/thermal/armada_thermal.c
++++ b/drivers/thermal/armada_thermal.c
+@@ -871,7 +871,7 @@ static int armada_thermal_probe(struct platform_device=
+ *pdev)
+ 		/* Wait the sensors to be valid */
+ 		armada_wait_sensor_validity(priv);
+=20
+-		tz =3D thermal_tripless_zone_device_register(priv->zone_name,
++		tz =3D thermal_tripless_zone_device_register(&pdev->dev, priv->zone_nam=
+e,
+ 							   priv, &legacy_ops,
+ 							   NULL);
+ 		if (IS_ERR(tz)) {
+diff --git a/drivers/thermal/da9062-thermal.c b/drivers/thermal/da9062-the=
+rmal.c
+index a8d4b766ba21..c5368c2b53b9 100644
+=2D-- a/drivers/thermal/da9062-thermal.c
++++ b/drivers/thermal/da9062-thermal.c
+@@ -196,7 +196,7 @@ static int da9062_thermal_probe(struct platform_device=
+ *pdev)
+ 	INIT_DELAYED_WORK(&thermal->work, da9062_thermal_poll_on);
+ 	mutex_init(&thermal->lock);
+=20
+-	thermal->zone =3D thermal_zone_device_register_with_trips(thermal->confi=
+g->name,
++	thermal->zone =3D thermal_zone_device_register_with_trips(&pdev->dev, th=
+ermal->config->name,
+ 								trips, ARRAY_SIZE(trips), thermal,
+ 								&da9062_thermal_ops, NULL, pp_tmp,
+ 								0);
+diff --git a/drivers/thermal/dove_thermal.c b/drivers/thermal/dove_thermal=
+.c
+index 723bc72f0626..101c6109b04a 100644
+=2D-- a/drivers/thermal/dove_thermal.c
++++ b/drivers/thermal/dove_thermal.c
+@@ -139,7 +139,7 @@ static int dove_thermal_probe(struct platform_device *=
+pdev)
+ 		return ret;
+ 	}
+=20
+-	thermal =3D thermal_tripless_zone_device_register("dove_thermal", priv,
++	thermal =3D thermal_tripless_zone_device_register(&pdev->dev, "dove_ther=
+mal", priv,
+ 							&ops, NULL);
+ 	if (IS_ERR(thermal)) {
+ 		dev_err(&pdev->dev,
+diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
+index 38c993d1bcb3..043e80756017 100644
+=2D-- a/drivers/thermal/imx_thermal.c
++++ b/drivers/thermal/imx_thermal.c
+@@ -679,7 +679,7 @@ static int imx_thermal_probe(struct platform_device *p=
+dev)
+ 		goto legacy_cleanup;
+ 	}
+=20
+-	data->tz =3D thermal_zone_device_register_with_trips("imx_thermal_zone",
++	data->tz =3D thermal_zone_device_register_with_trips(dev, "imx_thermal_z=
+one",
+ 							   trips,
+ 							   ARRAY_SIZE(trips),
+ 							   data,
+diff --git a/drivers/thermal/intel/int340x_thermal/int3400_thermal.c b/dri=
+vers/thermal/intel/int340x_thermal/int3400_thermal.c
+index 41d3bc3ed8a2..ed21da8f0a47 100644
+=2D-- a/drivers/thermal/intel/int340x_thermal/int3400_thermal.c
++++ b/drivers/thermal/intel/int340x_thermal/int3400_thermal.c
+@@ -594,7 +594,7 @@ static int int3400_thermal_probe(struct platform_devic=
 e *pdev)
 =20
- 	int3406_thermal_get_limit(d);
+ 	evaluate_odvp(priv);
 =20
--	d->cooling_dev =3D thermal_cooling_device_register(acpi_device_bid(adev)=
+-	priv->thermal =3D thermal_tripless_zone_device_register("INT3400 Thermal=
+", priv,
++	priv->thermal =3D thermal_tripless_zone_device_register(&pdev->dev, "INT=
+3400 Thermal", priv,
+ 							      &int3400_thermal_ops,
+ 							      &int3400_thermal_params);
+ 	if (IS_ERR(priv->thermal)) {
+diff --git a/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.c =
+b/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.c
+index 3d9efe69d562..3adccb7fc157 100644
+=2D-- a/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.c
++++ b/drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.c
+@@ -160,13 +160,12 @@ struct int34x_thermal_zone *int340x_thermal_zone_add=
+(struct acpi_device *adev,
+=20
+ 	int34x_zone->lpat_table =3D acpi_lpat_get_conversion_table(adev->handle)=
+;
+=20
+-	int34x_zone->zone =3D thermal_zone_device_register_with_trips(
+-							acpi_device_bid(adev),
+-							zone_trips, trip_cnt,
+-							int34x_zone,
+-							&zone_ops,
+-							&int340x_thermal_params,
+-							0, 0);
++	int34x_zone->zone =3D thermal_zone_device_register_with_trips(&adev->dev=
 ,
-+	d->cooling_dev =3D thermal_cooling_device_register(&pdev->dev, acpi_devi=
-ce_bid(adev),
- 							 d, &video_cooling_ops);
- 	if (IS_ERR(d->cooling_dev))
- 		goto err;
-diff --git a/drivers/thermal/intel/intel_powerclamp.c b/drivers/thermal/in=
-tel/intel_powerclamp.c
-index 9a4cec000910..a8f798bf459f 100644
-=2D-- a/drivers/thermal/intel/intel_powerclamp.c
-+++ b/drivers/thermal/intel/intel_powerclamp.c
-@@ -779,7 +779,7 @@ static int __init powerclamp_init(void)
- 	/* set default limit, maybe adjusted during runtime based on feedback */
- 	window_size =3D 2;
++								    acpi_device_bid(adev),
++								    zone_trips, trip_cnt,
++								    int34x_zone, &zone_ops,
++								    &int340x_thermal_params,
++								    0, 0);
+ 	kfree(zone_trips);
 =20
--	cooling_dev =3D thermal_cooling_device_register("intel_powerclamp", NULL=
-,
-+	cooling_dev =3D thermal_cooling_device_register(NULL, "intel_powerclamp"=
-, NULL,
- 						      &powerclamp_cooling_ops);
- 	if (IS_ERR(cooling_dev))
- 		return -ENODEV;
-diff --git a/drivers/thermal/intel/intel_tcc_cooling.c b/drivers/thermal/i=
-ntel/intel_tcc_cooling.c
-index f352ecafbedf..a0ead0fb1fbe 100644
-=2D-- a/drivers/thermal/intel/intel_tcc_cooling.c
-+++ b/drivers/thermal/intel/intel_tcc_cooling.c
-@@ -101,7 +101,7 @@ static int __init tcc_cooling_init(void)
- 	pr_info("Programmable TCC Offset detected\n");
-=20
- 	tcc_cdev =3D
--	    thermal_cooling_device_register("TCC Offset", NULL,
-+	    thermal_cooling_device_register(NULL, "TCC Offset", NULL,
- 					    &tcc_cooling_ops);
- 	if (IS_ERR(tcc_cdev)) {
- 		ret =3D PTR_ERR(tcc_cdev);
-diff --git a/drivers/thermal/pcie_cooling.c b/drivers/thermal/pcie_cooling=
+ 	if (IS_ERR(int34x_zone->zone)) {
+diff --git a/drivers/thermal/intel/int340x_thermal/processor_thermal_devic=
+e_pci.c b/drivers/thermal/intel/int340x_thermal/processor_thermal_device_p=
+ci.c
+index 0d4dcc66e097..2b3116e23fa1 100644
+=2D-- a/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci=
 .c
-index a876d64f1582..4d37f7f9d108 100644
-=2D-- a/drivers/thermal/pcie_cooling.c
-+++ b/drivers/thermal/pcie_cooling.c
-@@ -61,7 +61,7 @@ struct thermal_cooling_device *pcie_cooling_device_regis=
-ter(struct pci_dev *port
- 	if (!name)
- 		return ERR_PTR(-ENOMEM);
++++ b/drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.c
+@@ -371,10 +371,9 @@ static int proc_thermal_pci_probe(struct pci_dev *pde=
+v, const struct pci_device_
 =20
--	return thermal_cooling_device_register(name, port, &pcie_cooling_ops);
-+	return thermal_cooling_device_register(&port->dev, name, port, &pcie_coo=
-ling_ops);
- }
+ 	psv_trip.temperature =3D get_trip_temp(pci_info);
 =20
- void pcie_cooling_device_unregister(struct thermal_cooling_device *cdev)
+-	pci_info->tzone =3D thermal_zone_device_register_with_trips("TCPU_PCI", =
+&psv_trip,
+-							1, pci_info,
+-							&tzone_ops,
+-							&tzone_params, 0, 0);
++	pci_info->tzone =3D thermal_zone_device_register_with_trips(&pdev->dev, =
+"TCPU_PCI", &psv_trip,
++								  1, pci_info, &tzone_ops,
++								  &tzone_params, 0, 0);
+ 	if (IS_ERR(pci_info->tzone)) {
+ 		ret =3D PTR_ERR(pci_info->tzone);
+ 		goto err_del_legacy;
+diff --git a/drivers/thermal/intel/intel_pch_thermal.c b/drivers/thermal/i=
+ntel/intel_pch_thermal.c
+index fc326985796c..754527b2b09a 100644
+=2D-- a/drivers/thermal/intel/intel_pch_thermal.c
++++ b/drivers/thermal/intel/intel_pch_thermal.c
+@@ -235,7 +235,7 @@ static int intel_pch_thermal_probe(struct pci_dev *pde=
+v,
+=20
+ 	nr_trips +=3D pch_wpt_add_acpi_psv_trip(ptd, &ptd_trips[nr_trips]);
+=20
+-	ptd->tzd =3D thermal_zone_device_register_with_trips(board_names[board_i=
+d],
++	ptd->tzd =3D thermal_zone_device_register_with_trips(&pdev->dev, board_n=
+ames[board_id],
+ 							   ptd_trips, nr_trips,
+ 							   ptd, &tzd_ops,
+ 							   NULL, 0, 0);
+diff --git a/drivers/thermal/intel/intel_quark_dts_thermal.c b/drivers/the=
+rmal/intel/intel_quark_dts_thermal.c
+index 89498eb29a89..d8d38b6ed452 100644
+=2D-- a/drivers/thermal/intel/intel_quark_dts_thermal.c
++++ b/drivers/thermal/intel/intel_quark_dts_thermal.c
+@@ -376,7 +376,7 @@ static struct soc_sensor_entry *alloc_soc_dts(void)
+ 	trips[QRK_DTS_ID_TP_HOT].temperature =3D get_trip_temp(QRK_DTS_ID_TP_HOT=
+);
+ 	trips[QRK_DTS_ID_TP_HOT].type =3D THERMAL_TRIP_HOT;
+=20
+-	aux_entry->tzone =3D thermal_zone_device_register_with_trips("quark_dts"=
+,
++	aux_entry->tzone =3D thermal_zone_device_register_with_trips(NULL, "quar=
+k_dts",
+ 								   trips,
+ 								   QRK_MAX_DTS_TRIPS,
+ 								   aux_entry,
+diff --git a/drivers/thermal/intel/intel_soc_dts_iosf.c b/drivers/thermal/=
+intel/intel_soc_dts_iosf.c
+index ea87439fe7a9..74638dac75e6 100644
+=2D-- a/drivers/thermal/intel/intel_soc_dts_iosf.c
++++ b/drivers/thermal/intel/intel_soc_dts_iosf.c
+@@ -230,7 +230,7 @@ static int add_dts_thermal_zone(int id, struct intel_s=
+oc_dts_sensor_entry *dts,
+ 		}
+ 	}
+ 	snprintf(name, sizeof(name), "soc_dts%d", id);
+-	dts->tzone =3D thermal_zone_device_register_with_trips(name, trips,
++	dts->tzone =3D thermal_zone_device_register_with_trips(NULL, name, trips=
+,
+ 							     SOC_MAX_DTS_TRIPS,
+ 							     dts, &tzone_ops,
+ 							     NULL, 0, 0);
+diff --git a/drivers/thermal/intel/x86_pkg_temp_thermal.c b/drivers/therma=
+l/intel/x86_pkg_temp_thermal.c
+index 3fc679b6f11b..807126dc4bea 100644
+=2D-- a/drivers/thermal/intel/x86_pkg_temp_thermal.c
++++ b/drivers/thermal/intel/x86_pkg_temp_thermal.c
+@@ -342,9 +342,9 @@ static int pkg_temp_thermal_device_add(unsigned int cp=
+u)
+=20
+ 	INIT_DELAYED_WORK(&zonedev->work, pkg_temp_thermal_threshold_work_fn);
+ 	zonedev->cpu =3D cpu;
+-	zonedev->tzone =3D thermal_zone_device_register_with_trips("x86_pkg_temp=
+",
+-			trips, thres_count,
+-			zonedev, &tzone_ops, &pkg_temp_tz_params, 0, 0);
++	zonedev->tzone =3D thermal_zone_device_register_with_trips(NULL, "x86_pk=
+g_temp", trips,
++								 thres_count, zonedev, &tzone_ops,
++								 &pkg_temp_tz_params, 0, 0);
+ 	if (IS_ERR(zonedev->tzone)) {
+ 		err =3D PTR_ERR(zonedev->tzone);
+ 		goto out_kfree_zonedev;
+diff --git a/drivers/thermal/kirkwood_thermal.c b/drivers/thermal/kirkwood=
+_thermal.c
+index 4619e090f756..4827ad2bdb49 100644
+=2D-- a/drivers/thermal/kirkwood_thermal.c
++++ b/drivers/thermal/kirkwood_thermal.c
+@@ -71,7 +71,7 @@ static int kirkwood_thermal_probe(struct platform_device=
+ *pdev)
+ 	if (IS_ERR(priv->sensor))
+ 		return PTR_ERR(priv->sensor);
+=20
+-	thermal =3D thermal_tripless_zone_device_register("kirkwood_thermal",
++	thermal =3D thermal_tripless_zone_device_register(&pdev->dev, "kirkwood_=
+thermal",
+ 							priv, &ops, NULL);
+ 	if (IS_ERR(thermal)) {
+ 		dev_err(&pdev->dev,
+diff --git a/drivers/thermal/renesas/rcar_thermal.c b/drivers/thermal/rene=
+sas/rcar_thermal.c
+index fdd7afdc4ff6..3d228e4c7b09 100644
+=2D-- a/drivers/thermal/renesas/rcar_thermal.c
++++ b/drivers/thermal/renesas/rcar_thermal.c
+@@ -488,10 +488,12 @@ static int rcar_thermal_probe(struct platform_device=
+ *pdev)
+ 						dev, i, priv,
+ 						&rcar_thermal_zone_ops);
+ 		} else {
+-			priv->zone =3D thermal_zone_device_register_with_trips(
+-				"rcar_thermal", trips, ARRAY_SIZE(trips), priv,
+-						&rcar_thermal_zone_ops, NULL, 0,
+-						idle);
++			priv->zone =3D thermal_zone_device_register_with_trips(dev, "rcar_ther=
+mal",
++									     trips,
++									     ARRAY_SIZE(trips),
++									     priv,
++									     &rcar_thermal_zone_ops,
++									     NULL, 0, idle);
+=20
+ 			ret =3D thermal_zone_device_enable(priv->zone);
+ 			if (ret) {
+diff --git a/drivers/thermal/spear_thermal.c b/drivers/thermal/spear_therm=
+al.c
+index 603dadcd3df5..c5bba9d600d4 100644
+=2D-- a/drivers/thermal/spear_thermal.c
++++ b/drivers/thermal/spear_thermal.c
+@@ -122,7 +122,7 @@ static int spear_thermal_probe(struct platform_device =
+*pdev)
+ 	stdev->flags =3D val;
+ 	writel_relaxed(stdev->flags, stdev->thermal_base);
+=20
+-	spear_thermal =3D thermal_tripless_zone_device_register("spear_thermal",
++	spear_thermal =3D thermal_tripless_zone_device_register(&pdev->dev, "spe=
+ar_thermal",
+ 							      stdev, &ops, NULL);
+ 	if (IS_ERR(spear_thermal)) {
+ 		dev_err(&pdev->dev, "thermal zone device is NULL\n");
+diff --git a/drivers/thermal/testing/zone.c b/drivers/thermal/testing/zone=
+.c
+index c12c405225bb..5a7e9969582e 100644
+=2D-- a/drivers/thermal/testing/zone.c
++++ b/drivers/thermal/testing/zone.c
+@@ -402,7 +402,7 @@ static int tt_zone_register_tz(struct tt_thermal_zone =
+*tt_zone)
+=20
+ 	tt_zone->tz_temp =3D tt_zone->temp;
+=20
+-	tz =3D thermal_zone_device_register_with_trips("test_tz", trips, i, tt_z=
+one,
++	tz =3D thermal_zone_device_register_with_trips(NULL, "test_tz", trips, i=
+, tt_zone,
+ 						     &tt_zone_ops, NULL, 0, 0);
+ 	if (IS_ERR(tz))
+ 		return PTR_ERR(tz);
 diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core=
 .c
-index 5d752e712cc0..92e51d2e4535 100644
+index 92e51d2e4535..9d8499999579 100644
 =2D-- a/drivers/thermal/thermal_core.c
 +++ b/drivers/thermal/thermal_core.c
-@@ -1145,6 +1145,7 @@ __thermal_cooling_device_register(struct device *par=
-ent, struct device_node *np,
+@@ -1475,6 +1475,7 @@ static void thermal_zone_init_complete(struct therma=
+l_zone_device *tz)
 =20
  /**
-  * thermal_cooling_device_register() - register a new thermal cooling dev=
-ice
-+ * @parent:	parent device pointer.
-  * @type:	the thermal cooling device type.
-  * @devdata:	device private data.
-  * @ops:		standard thermal cooling devices callbacks.
-@@ -1157,10 +1158,10 @@ __thermal_cooling_device_register(struct device *p=
-arent, struct device_node *np,
-  * ERR_PTR. Caller must check return value with IS_ERR*() helpers.
+  * thermal_zone_device_register_with_trips() - register a new thermal zon=
+e device
++ * @parent:	parent device pointer
+  * @type:	the thermal zone device type
+  * @trips:	a pointer to an array of thermal trips
+  * @num_trips:	the number of trip points the thermal zone support
+@@ -1498,7 +1499,7 @@ static void thermal_zone_init_complete(struct therma=
+l_zone_device *tz)
+  * IS_ERR*() helpers.
   */
- struct thermal_cooling_device *
--thermal_cooling_device_register(const char *type, void *devdata,
-+thermal_cooling_device_register(struct device *parent, const char *type, =
-void *devdata,
- 				const struct thermal_cooling_device_ops *ops)
- {
--	return __thermal_cooling_device_register(NULL, NULL, type, devdata, ops)=
-;
-+	return __thermal_cooling_device_register(parent, NULL, type, devdata, op=
-s);
- }
- EXPORT_SYMBOL_GPL(thermal_cooling_device_register);
+ struct thermal_zone_device *
+-thermal_zone_device_register_with_trips(const char *type,
++thermal_zone_device_register_with_trips(struct device *parent, const char=
+ *type,
+ 					const struct thermal_trip *trips,
+ 					int num_trips, void *devdata,
+ 					const struct thermal_zone_device_ops *ops,
+@@ -1576,6 +1577,7 @@ thermal_zone_device_register_with_trips(const char *=
+type,
+ 		tz->ops.critical =3D thermal_zone_device_critical;
 =20
+ 	tz->device.class =3D thermal_class;
++	tz->device.parent =3D parent;
+ 	tz->devdata =3D devdata;
+ 	tz->num_trips =3D num_trips;
+ 	for_each_trip_desc(tz, td) {
+@@ -1651,12 +1653,13 @@ thermal_zone_device_register_with_trips(const char=
+ *type,
+ EXPORT_SYMBOL_GPL(thermal_zone_device_register_with_trips);
+=20
+ struct thermal_zone_device *thermal_tripless_zone_device_register(
++					struct device *parent,
+ 					const char *type,
+ 					void *devdata,
+ 					const struct thermal_zone_device_ops *ops,
+ 					const struct thermal_zone_params *tzp)
+ {
+-	return thermal_zone_device_register_with_trips(type, NULL, 0, devdata,
++	return thermal_zone_device_register_with_trips(parent, type, NULL, 0, de=
+vdata,
+ 						       ops, tzp, 0, 0);
+ }
+ EXPORT_SYMBOL_GPL(thermal_tripless_zone_device_register);
+diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
+index 1a51a4d240ff..e3359ca20d77 100644
+=2D-- a/drivers/thermal/thermal_of.c
++++ b/drivers/thermal/thermal_of.c
+@@ -354,6 +354,7 @@ static void thermal_of_zone_unregister(struct thermal_=
+zone_device *tz)
+  * zone properties and registers new thermal zone with those
+  * properties.
+  *
++ * @parent: parent device pointer
+  * @sensor: A device node pointer corresponding to the sensor in the devi=
+ce tree
+  * @id: An integer as sensor identifier
+  * @data: A private data to be stored in the thermal zone dedicated priva=
+te area
+@@ -364,7 +365,9 @@ static void thermal_of_zone_unregister(struct thermal_=
+zone_device *tz)
+  *	- ENOMEM: if one structure can not be allocated
+  *	- Other negative errors are returned by the underlying called function=
+s
+  */
+-static struct thermal_zone_device *thermal_of_zone_register(struct device=
+_node *sensor, int id, void *data,
++static struct thermal_zone_device *thermal_of_zone_register(struct device=
+ *parent,
++							    struct device_node *sensor,
++							    int id, void *data,
+ 							    const struct thermal_zone_device_ops *ops)
+ {
+ 	struct thermal_zone_device_ops of_ops =3D *ops;
+@@ -412,7 +415,7 @@ static struct thermal_zone_device *thermal_of_zone_reg=
+ister(struct device_node *
+ 			of_ops.critical =3D thermal_zone_device_critical_shutdown;
+ 	}
+=20
+-	tz =3D thermal_zone_device_register_with_trips(np->name, trips, ntrips,
++	tz =3D thermal_zone_device_register_with_trips(parent, np->name, trips, =
+ntrips,
+ 						     data, &of_ops, &tzp,
+ 						     pdelay, delay);
+ 	if (IS_ERR(tz)) {
+@@ -478,7 +481,7 @@ struct thermal_zone_device *devm_thermal_of_zone_regis=
+ter(struct device *dev, in
+ 	if (!ptr)
+ 		return ERR_PTR(-ENOMEM);
+=20
+-	tzd =3D thermal_of_zone_register(dev->of_node, sensor_id, data, ops);
++	tzd =3D thermal_of_zone_register(dev, dev->of_node, sensor_id, data, ops=
+);
+ 	if (IS_ERR(tzd)) {
+ 		devres_free(ptr);
+ 		return tzd;
 diff --git a/include/linux/thermal.h b/include/linux/thermal.h
-index fa53d12173ce..29a608bf5f80 100644
+index 29a608bf5f80..0c5a91313bd5 100644
 =2D-- a/include/linux/thermal.h
 +++ b/include/linux/thermal.h
-@@ -250,8 +250,9 @@ struct device *thermal_zone_device(struct thermal_zone=
-_device *tzd);
- void thermal_zone_device_update(struct thermal_zone_device *,
- 				enum thermal_notify_event);
+@@ -226,6 +226,7 @@ int thermal_zone_get_crit_temp(struct thermal_zone_dev=
+ice *tz, int *temp);
 =20
--struct thermal_cooling_device *thermal_cooling_device_register(const char=
- *,
--		void *, const struct thermal_cooling_device_ops *);
-+struct thermal_cooling_device *
-+thermal_cooling_device_register(struct device *parent, const char *type, =
-void *drvdata,
-+				const struct thermal_cooling_device_ops *ops);
- struct thermal_cooling_device *
- thermal_of_cooling_device_register(struct device *parent, struct device_n=
-ode *np, const char *type,
- 				   void *devdata, const struct thermal_cooling_device_ops *);
-@@ -298,8 +299,8 @@ static inline void thermal_zone_device_update(struct t=
-hermal_zone_device *tz,
- { }
+ #ifdef CONFIG_THERMAL
+ struct thermal_zone_device *thermal_zone_device_register_with_trips(
++					struct device *parent,
+ 					const char *type,
+ 					const struct thermal_trip *trips,
+ 					int num_trips, void *devdata,
+@@ -235,6 +236,7 @@ struct thermal_zone_device *thermal_zone_device_regist=
+er_with_trips(
+ 					unsigned int polling_delay);
 =20
- static inline struct thermal_cooling_device *
--thermal_cooling_device_register(const char *type, void *devdata,
--	const struct thermal_cooling_device_ops *ops)
-+thermal_cooling_device_register(struct device *parent, const char *type, =
-void *devdata,
-+				const struct thermal_cooling_device_ops *ops)
+ struct thermal_zone_device *thermal_tripless_zone_device_register(
++					struct device *parent,
+ 					const char *type,
+ 					void *devdata,
+ 					const struct thermal_zone_device_ops *ops,
+@@ -276,6 +278,7 @@ int thermal_zone_device_disable(struct thermal_zone_de=
+vice *tz);
+ void thermal_zone_device_critical(struct thermal_zone_device *tz);
+ #else
+ static inline struct thermal_zone_device *thermal_zone_device_register_wi=
+th_trips(
++					struct device *parent,
+ 					const char *type,
+ 					const struct thermal_trip *trips,
+ 					int num_trips, void *devdata,
+@@ -285,6 +288,7 @@ static inline struct thermal_zone_device *thermal_zone=
+_device_register_with_trip
  { return ERR_PTR(-ENODEV); }
- static inline struct thermal_cooling_device *
- thermal_of_cooling_device_register(struct device *parent, struct device_n=
-ode *np, const char *type,
+=20
+ static inline struct thermal_zone_device *thermal_tripless_zone_device_re=
+gister(
++					struct device *parent,
+ 					const char *type,
+ 					void *devdata,
+ 					struct thermal_zone_device_ops *ops,
 
 =2D-=20
 2.39.5
