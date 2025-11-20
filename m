@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C070CF64B3
-	for <ath11k@archiver.kernel.org>; Thu, 20 Nov 2025 03:41:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94A71CF256D
+	for <ath11k@archiver.kernel.org>; Thu, 20 Nov 2025 03:41:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=EfKyHSgu72E5XtbQRP8q+S271PUWmhxdP5i176j621o=; b=LBvGX1vw3tdh17
-	LS1knJCXgpecVzBADx3hpNx23t0i0EVDU/XQCwqE4RmHS752nZ4EHK2MDUQ0qPFCl0GiiiOTLDaEi
-	30FsFUgyxhwEq3wo5kHxpz/u6T0RxqrnVrHQ9z/4qvA6nS8m4MFJ84FhVYI4EigYTM1TMvdm5GQ6n
-	B81L2OqU8dV+pKaBbHOo02QfP5kltxjZpnvjEoCx/9RGFsNEvNXj0aXvcSJCeuCoI4JD2iHYKPKR2
-	EvPWOeBgUtH8Dw4EHhPvxGL2JDDXHJAdC2aut+kHJbmbcrQ1CiPu1nDfzNfQASaB9mNYExhe5jGxW
-	enCyTgBDmmMh86yqteTg==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=eaVKqe10jzGoKFaLYje3vU37/s2NKQBvZXfmlKCsGAc=; b=py2FdEEhTilThZVPQ4ArjDIojx
+	r+vdreZZgPuAX69scctYNZ2Kp1O3UazwEXrB/mpWaXAdVh8pbaJiUigHa922V6MSjy7ztztwFHuTw
+	8F1n1oKWV5sXvacQlokeJieET6XvG24l8COIuOf1egk1Vo7Omte9rni/bcO7S0JEp+sA7YNNmhQSM
+	OBAFkO9502ctYFFuvlS2Bk5Sro3lgP74JOXH1apPPigguIwUlcUeyy2t8TG0YhcVFBw7MhPJrPSQR
+	R4etP2rIOmwWusQsNh4AWKqAtVuXqTzJgGhoh+upf7g0GjYR3iD+9KEqOcTBpG2UNQqSyaT7UTv/b
+	ZrVynSNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLvYA-000000063ti-17IU;
-	Thu, 20 Nov 2025 03:41:38 +0000
-Received: from mout.gmx.net ([212.227.17.21])
+	id 1vLvYH-0000000642j-01h1;
+	Thu, 20 Nov 2025 03:41:45 +0000
+Received: from mout.gmx.net ([212.227.17.22])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLvY7-000000063rG-2EUe;
-	Thu, 20 Nov 2025 03:41:37 +0000
+	id 1vLvY9-000000063rn-0RbC;
+	Thu, 20 Nov 2025 03:41:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1763610078; x=1764214878; i=w_armin@gmx.de;
-	bh=EfKyHSgu72E5XtbQRP8q+S271PUWmhxdP5i176j621o=;
-	h=X-UI-Sender-Class:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:To:Cc:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
+	s=s31663417; t=1763610088; x=1764214888; i=w_armin@gmx.de;
+	bh=eaVKqe10jzGoKFaLYje3vU37/s2NKQBvZXfmlKCsGAc=;
+	h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=aoqKxpItMFG/cGUVVkfB1NhzTpFMPOwqiKqBkxUSdglyjuleis0Y4HhyHY0LUHTP
-	 wRzVvH7IxSr6a2GcsddK3MvmeVjt3jEnGdwZp4OR7PTI5HxZ5421SPvgzEpDawqwu
-	 0f7W3SM+Dd6YN6b29vbbaCI29NanKxtyYlM4pe4fxcToFiRu1H6Q7Y/jW4mQt6sZw
-	 lNMoAGaNhFDgHzG078dSISrf5mH4jVfTkQbVg1sYvP5KlRiCpSJN7rz1oRqdp6gkN
-	 H23cOPc2JXbFFSX+Mw+IAyRdoZV1KbBfhJ4bbD0lGUbIlMSQ2Nf/m/ZkN0rLg5fhp
-	 sP1EsXjlcFU6jXzdaQ==
+	b=Th3qEvxjewQqwXU/xhaHf5Ll1f8Vp8hBfOK6ybKV+U8vWmZTNhjyZWr/LYz6vWOd
+	 jJjt15/HvTqKN6IR11Yflx/J2I6FDe4kvKwSv8+gd4uDm4wVJAejJsA4myAmpJnxy
+	 fWZk8pFU0UBuZv4PWCkd06l/35/0b7QxK/QVqRNjBwmesQvAdg3uCvFzYsc4vjOTW
+	 T+LHsCiFrnKYsWhUwxubAI9QsLGdpMHXIcIJhap7ed6KuDbLwSB6ixBPaXFAlia6l
+	 8cy8vL1bGxsmAtiECsWBbXs7EoZrplOJZJ4l+JmgAFeOVC8+GKA6qGLFnRDtdluH7
+	 wjWZyc4ZexuDePU9zw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from [127.0.0.1] ([93.202.247.91]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MLi8m-1vdav82PvU-00KALa; Thu, 20
- Nov 2025 04:41:18 +0100
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N4QsY-1wJpsv3tLC-013yhI; Thu, 20
+ Nov 2025 04:41:28 +0100
 From: Armin Wolf <W_Armin@gmx.de>
-Subject: [PATCH RFC RESEND 0/8] thermal: core: Allow setting the parent
- device of thermal zone/cooling devices
-Date: Thu, 20 Nov 2025 04:41:10 +0100
-Message-Id: <20251120-thermal-device-v1-0-bbdad594d57a@gmx.de>
+Date: Thu, 20 Nov 2025 04:41:13 +0100
+Subject: [PATCH RFC RESEND 3/8] ACPI: processor: Stop creating "device"
+ sysfs link
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-X-B4-Tracking: v=1; b=H4sIANaNHmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1NDQ0MT3ZKM1KLcxBzdFKDi5FRdM1PTFENjCwsjk2QzJaCmgqLUtMwKsIH
- RSkFuziCxINdgVz8XpdjaWgB7+urfbwAAAA==
-X-Change-ID: 20251114-thermal-device-655d138824c6
+Message-Id: <20251120-thermal-device-v1-3-bbdad594d57a@gmx.de>
+References: <20251120-thermal-device-v1-0-bbdad594d57a@gmx.de>
+In-Reply-To: <20251120-thermal-device-v1-0-bbdad594d57a@gmx.de>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
  Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
  Lukasz Luba <lukasz.luba@arm.com>, Len Brown <lenb@kernel.org>, 
@@ -70,15 +68,16 @@ Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-pci@vger.kernel.org, imx@lists.linux.dev, 
  linux-renesas-soc@vger.kernel.org
 X-Mailer: b4 0.14.3
-X-Provags-ID: V03:K1:UzHmwioHZKfjFpYTePSeoB+nEB5pgRKUwAckErW8vPODyOjizzx
- /feBzdus+6v6o3v+eb2dnxcueQu6ShHFe1TT6Xi/kk8kv5nVS0Y9m+JMn8+ZkS1ADmANUys
- KJE6GDq7jWYTptIpEMYFhITEe/619/61fPiKltwdUQWuLX/fH71JR7y/I3G+rWcTL/yjCgw
- 31BGItEd8tKh5IQVLSerA==
-UI-OutboundReport: notjunk:1;M01:P0:7gAiZgF03ew=;ZONVuGAOGDYqPBH8Je3dmeYjmp6 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 Q0O7hFL4=
+X-Provags-ID: V03:K1:SWQ7IvrI1KL+iiz0txNAGiZfu9T4bhUbIqbVkWpgAXS65gy5YI/
+ YpmPXK4L/gpxGPYeuwRV/AIKDjUHbK87+XzAxo1gN/fgEBjKLM4pE4OD69RumNUFc9r8kcI
+ sxvQmo7/wJKWnUEvF6ubDkMCaTYLJdRy5Q29YlNoxLRgJglIdMJPUVl0vGHV4OUHhy84V/E
+ TQhrWPU3+/kbcnUkEmkqA==
+UI-OutboundReport: notjunk:1;M01:P0:HjK8xIrgeAI=;j9mCg/IYDC1FMwnexbAW9LuTo8N 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
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251119_194135_854602_C41A457B 
-X-CRM114-Status: GOOD (  13.85  )
+X-CRM114-CacheID: sfid-20251119_194137_425509_06A84C47 
+X-CRM114-Status: UNSURE (   9.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,101 +92,64 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Drivers registering thermal zone/cooling devices are currently unable
-to tell the thermal core what parent device the new thermal zone/
-cooling device should have, potentially causing issues with suspend
-ordering and making it impossible for user space appications to
-associate a given thermal zone device with its parent device.
-
-This patch series aims to fix this issue by extending the functions
-used to register thermal zone/cooling devices to also accept a parent
-device pointer. The first six patches convert all functions used for
-registering cooling devices, while the functions used for registering
-thermal zone devices are converted by the remaining two patches.
-
-I tested this series on various devices containing (among others):
-- ACPI thermal zones
-- ACPI processor devices
-- PCIe cooling devices
-- Intel Wifi card
-- Intel powerclamp
-- Intel TCC cooling
-
-I also compile-tested the remaining affected drivers, however i would
-still be happy if the relevant maintainers (especially those of the
-mellanox ethernet switch driver) could take a quick glance at the
-code and verify that i am using the correct device as the parent
-device.
-
-This work is also necessary for extending the ACPI thermal zone driver
-to support the _TZD ACPI object in the future.
+The thermal core will soon automatically create sysfs links between
+the cooling device and its parent device. Stop manually creating
+the "device" sysfs link between the cooling device and the parent
+device to avoid a name collision. The "thermal_cooling" sysfs link
+however stays for backwards compatibility, as it does not suffer
+from a name collision.
 
 Signed-off-by: Armin Wolf <W_Armin@gmx.de>
 =2D--
-Armin Wolf (8):
-      thermal: core: Allow setting the parent device of cooling devices
-      thermal: core: Set parent device in thermal_of_cooling_device_regist=
-er()
-      ACPI: processor: Stop creating "device" sysfs link
-      ACPI: fan: Stop creating "device" sysfs link
-      ACPI: video: Stop creating "device" sysfs link
-      thermal: core: Set parent device in thermal_cooling_device_register(=
-)
-      ACPI: thermal: Stop creating "device" sysfs link
-      thermal: core: Allow setting the parent device of thermal zone devic=
-es
+ drivers/acpi/processor_thermal.c | 13 +------------
+ 1 file changed, 1 insertion(+), 12 deletions(-)
 
- Documentation/driver-api/thermal/sysfs-api.rst     | 10 ++++-
- drivers/acpi/acpi_video.c                          |  9 +----
- drivers/acpi/fan_core.c                            | 16 ++------
- drivers/acpi/processor_thermal.c                   | 15 +------
- drivers/acpi/thermal.c                             | 33 ++++++---------
- drivers/gpu/drm/etnaviv/etnaviv_gpu.c              |  4 +-
- drivers/net/ethernet/chelsio/cxgb4/cxgb4_thermal.c |  4 +-
- drivers/net/ethernet/mellanox/mlxsw/core_thermal.c | 47 +++++++++++------=
-=2D----
- drivers/net/wireless/ath/ath10k/thermal.c          |  2 +-
- drivers/net/wireless/ath/ath11k/thermal.c          |  2 +-
- drivers/net/wireless/intel/iwlwifi/mld/thermal.c   |  6 +--
- drivers/net/wireless/intel/iwlwifi/mvm/tt.c        | 12 +++---
- drivers/net/wireless/mediatek/mt76/mt7915/init.c   |  2 +-
- drivers/net/wireless/mediatek/mt76/mt7996/init.c   |  2 +-
- drivers/platform/x86/acerhdf.c                     |  4 +-
- drivers/power/supply/power_supply_core.c           |  4 +-
- drivers/thermal/armada_thermal.c                   |  2 +-
- drivers/thermal/cpufreq_cooling.c                  |  2 +-
- drivers/thermal/cpuidle_cooling.c                  |  2 +-
- drivers/thermal/da9062-thermal.c                   |  2 +-
- drivers/thermal/devfreq_cooling.c                  |  2 +-
- drivers/thermal/dove_thermal.c                     |  2 +-
- drivers/thermal/imx_thermal.c                      |  2 +-
- .../intel/int340x_thermal/int3400_thermal.c        |  2 +-
- .../intel/int340x_thermal/int3403_thermal.c        |  4 +-
- .../intel/int340x_thermal/int3406_thermal.c        |  2 +-
- .../intel/int340x_thermal/int340x_thermal_zone.c   | 13 +++---
- .../int340x_thermal/processor_thermal_device_pci.c |  7 ++--
- drivers/thermal/intel/intel_pch_thermal.c          |  2 +-
- drivers/thermal/intel/intel_powerclamp.c           |  2 +-
- drivers/thermal/intel/intel_quark_dts_thermal.c    |  2 +-
- drivers/thermal/intel/intel_soc_dts_iosf.c         |  2 +-
- drivers/thermal/intel/intel_tcc_cooling.c          |  2 +-
- drivers/thermal/intel/x86_pkg_temp_thermal.c       |  6 +--
- drivers/thermal/kirkwood_thermal.c                 |  2 +-
- drivers/thermal/pcie_cooling.c                     |  2 +-
- drivers/thermal/renesas/rcar_thermal.c             | 10 +++--
- drivers/thermal/spear_thermal.c                    |  2 +-
- drivers/thermal/tegra/soctherm.c                   |  5 +--
- drivers/thermal/testing/zone.c                     |  2 +-
- drivers/thermal/thermal_core.c                     | 23 +++++++----
- drivers/thermal/thermal_of.c                       |  9 +++--
- include/linux/thermal.h                            | 22 +++++-----
- 43 files changed, 145 insertions(+), 162 deletions(-)
-=2D--
-base-commit: 653ef66b2c04bcdecaf3d13ea5069c4b1f27d5da
-change-id: 20251114-thermal-device-655d138824c6
+diff --git a/drivers/acpi/processor_thermal.c b/drivers/acpi/processor_the=
+rmal.c
+index c7b1dc5687ec..1ff10321eac5 100644
+=2D-- a/drivers/acpi/processor_thermal.c
++++ b/drivers/acpi/processor_thermal.c
+@@ -323,6 +323,7 @@ int acpi_processor_thermal_init(struct acpi_processor =
+*pr,
+ 	dev_dbg(&device->dev, "registered as cooling_device%d\n",
+ 		pr->cdev->id);
+=20
++	/* For backwards compatibility */
+ 	result =3D sysfs_create_link(&device->dev.kobj,
+ 				   &pr->cdev->device.kobj,
+ 				   "thermal_cooling");
+@@ -332,19 +333,8 @@ int acpi_processor_thermal_init(struct acpi_processor=
+ *pr,
+ 		goto err_thermal_unregister;
+ 	}
+=20
+-	result =3D sysfs_create_link(&pr->cdev->device.kobj,
+-				   &device->dev.kobj,
+-				   "device");
+-	if (result) {
+-		dev_err(&pr->cdev->device,
+-			"Failed to create sysfs link 'device'\n");
+-		goto err_remove_sysfs_thermal;
+-	}
+-
+ 	return 0;
+=20
+-err_remove_sysfs_thermal:
+-	sysfs_remove_link(&device->dev.kobj, "thermal_cooling");
+ err_thermal_unregister:
+ 	thermal_cooling_device_unregister(pr->cdev);
+=20
+@@ -356,7 +346,6 @@ void acpi_processor_thermal_exit(struct acpi_processor=
+ *pr,
+ {
+ 	if (pr->cdev) {
+ 		sysfs_remove_link(&device->dev.kobj, "thermal_cooling");
+-		sysfs_remove_link(&pr->cdev->device.kobj, "device");
+ 		thermal_cooling_device_unregister(pr->cdev);
+ 		pr->cdev =3D NULL;
+ 	}
 
-Best regards,
 =2D-=20
-Armin Wolf <W_Armin@gmx.de>
+2.39.5
 
 
