@@ -4,82 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2B0DCFA74F
-	for <ath11k@archiver.kernel.org>; Fri, 21 Nov 2025 08:42:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECC2DCFC27B
+	for <ath11k@archiver.kernel.org>; Fri, 21 Nov 2025 13:29:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=c8TTlrk9jhEkZ2BRRQwFZvRKVNTvpyz9ieTO4ovRvVQ=; b=U6M7rzFPGoHY8zuplhO+9QfDpa
-	+4Gd/GnnK4ipdunMy+yx4L9+FhEMtla0wn+NzNDqMjdbtcV2744VH4nDzv4SuUtHZt3VXBfNvB6rf
-	e6jF1J+k7xmRMkl9NffOu77c7+g+OYNrox3Q7YRkaoW5ACQIXMZWyvBVaYPvH0bjabHI4nQNR9b3I
-	cYsnBpzu85gun3dqo+JM35xNjtY6eHaSRjqEtqQ+xfvltFQ7tqTLwRRHqED51OVlQy6U4SOOCDG4u
-	TAb1oWzWIVhA8Gr4g10/S4H44jgVfwQOK7IgYIVXEoxPTu86uJjTa5sAdpNGUjHz22EiKlMP2FUqr
-	HP9RPisQ==;
+	bh=4E4qgWLZbJvc0nks66Kf2sl/KD3LP6StGpvCGYDfDXY=; b=E9N/ZoJlbH2tkte3xYduQC5uF4
+	NYCX2G6juFNotypRxDpWRgx54ztLbM2AHpKJ4bIeXBpvqkMEBpTJABvdKH9Kw1a7Up6Pau50PiCs9
+	i5neZBUXj5pF30U29jDMxw24hCU7bpD0EW8UuDHna4zi6xI7ZmYws9bXZF0guJTZdN+wL21RFl98W
+	KipUDFRLO3ktfQKg2WleZRulMbVpRhgJJKBNNf0OrZBNDgf+N2n+mvWt6CqQzPH/aTOU9GgTkz1hG
+	OqtbveSrZqq5NR6Bxp+UcCcDtFttkB5lzrbyM9oe7dkYlIlP5q40EJMQJGbrGSY+yWYRlNrpExHca
+	wRZbEFkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vMMia-000000085YP-06FP;
-	Fri, 21 Nov 2025 08:42:12 +0000
-Received: from mail-pj1-x1029.google.com ([2607:f8b0:4864:20::1029])
+	id 1vMRCL-00000008PcM-3s0e;
+	Fri, 21 Nov 2025 13:29:13 +0000
+Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vMMiX-000000085Xw-2Si2
+	id 1vMRCJ-00000008PbO-0AhX
 	for ath11k@lists.infradead.org;
-	Fri, 21 Nov 2025 08:42:10 +0000
-Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-34101107cc8so1551172a91.0
-        for <ath11k@lists.infradead.org>; Fri, 21 Nov 2025 00:42:09 -0800 (PST)
+	Fri, 21 Nov 2025 13:29:12 +0000
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-b73875aa527so321321166b.3
+        for <ath11k@lists.infradead.org>; Fri, 21 Nov 2025 05:29:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763714528; x=1764319328; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1763731749; x=1764336549; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=c8TTlrk9jhEkZ2BRRQwFZvRKVNTvpyz9ieTO4ovRvVQ=;
-        b=W8f9TdyKHd3PlOzFxPatBnKaazOu2u+rZa32/yW64cdhz96tIuz/TBD6dmMm6pLqnn
-         F6DX7eiahnOYwrGPUPgIigFPe69jWpavVt/6I6quov0Dfnqlqi1/vuENm95m0ktg9aLS
-         btKj+71D5FjZ7Rv55QO7gBUrxtglmmFWLoV6TPCYmZTkff09Nv+3csRQzzm4A4I10UU1
-         nn5/yJI6oHYfefVx+pI0QOk4RTbmoWD4hMtRCRR0fZYXiCXsxW56UsQ6h8TzTuz5M62t
-         bfBoExjOwOKpiXSX9ASpHoMpLMndsixyrW+NyStz1RdRE+kqVzZ6CqrJoYuBCYc4IKWe
-         vXKw==
+        bh=4E4qgWLZbJvc0nks66Kf2sl/KD3LP6StGpvCGYDfDXY=;
+        b=AWolaUjX4sYRdipBZzETXgd4PZKzgXltuCuHTEMtwZBPutkMcVj1DuFQaqEeVJE7X2
+         Py3Z8P18LQWaRS/V+O7V6/TvA9EEYPrL8q3ZQ4EeknHuvyIWjnvLcigCdnh5KPL+DOZu
+         wh8qsxql/AVqCobSqLkd8Irw73lHJfob6hWZV4l2ZLSsKJ29FuTWkQO7pL2c9zZ04MQ8
+         zv3vWjud1POG/zzCttSJ6hQpLZYbanqDiNKLPqsMqXTh5BLOjZ945CQSmX4hHBRGGzPU
+         rn4ob8qrQU4qHaDEbRWZTK9dWMfK/hGVYHX2tL71Z3I0bfJK6CEBCFwNxINwMFqK3mb7
+         S96A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763714528; x=1764319328;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1763731749; x=1764336549;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=c8TTlrk9jhEkZ2BRRQwFZvRKVNTvpyz9ieTO4ovRvVQ=;
-        b=eUN04epFvjfEit/iTMxv9kcOVTlViriw+gZpqlMUo7EJx17FFgGuaj/KcrSXuI5RJ+
-         vTJFGBntGqateEQKRGGQI9CNedZs+PTdvB9WXgA2KxIKEWeijKG+AAdCpNeMhLaeJe8T
-         jc6CaWkUdsqbYDicBupDXqhbU1HxcBczR1Yr8+0P8w0FBfM4pFYbkYTRnOuMRowpVjM7
-         +4+kGsFMF4o0x/k1y8Y1P/V1y8/MGVr8Fr/wuYQlqYx0oO4IVqm/AIBfV9QrKLRcmArc
-         wSe2nYQECluDU+ujbwM8yolAxK3LW51Hnp4aPgRmtj0JAXsEVeckgAV+T+khnyKoKUBm
-         DU7w==
-X-Gm-Message-State: AOJu0YzAZauhCJIakq/G2ccpuMVUnGJlaMWZxeExcBdl2NBzEUmf/d8y
-	nPi4FAUuZAtp/X3vGxVe/FgFwLwdObZPSNHVaJxg3rW2EamI8hWxVEUx7WyqmyK9mbPh/FfPZWT
-	7rsJX3jevf0GqXUvPS6nm5ixfaN+TzQ==
-X-Gm-Gg: ASbGnctU4OD+flYOZee5OOwM64CkS25GytMROZ9zsHWhlHQwB486vlaF79QVlrTZasR
-	VapMUdc3EJVYPNuAxM1cQJOLHUmZpA43mCoNbU1xsFeBLsZH4w9MRBBonB9p8zj0oxXbuBWgmlp
-	k+Z/+E8j1W50nrxRuSQc6GVJ0onG8dNQuGKp/WLvt7yDJW5qqFCmTxR1lgYAWWahexWPSjIf4FR
-	AT7SI3XJwUkLEncoEkrQ9tHHd69HjcwQvfUHei1k2iVBIOO2lkamg9LQKaceDcILnUcZw==
-X-Google-Smtp-Source: AGHT+IGXpwSBg+cnmgfT3mAH/pI9tjvarzlh6U4QCi0C2qg3LizoR8jOqripn70lrYlTiGneCh572FLui3ROUR09I3A=
-X-Received: by 2002:a17:90b:5251:b0:341:8c8b:b8e6 with SMTP id
- 98e67ed59e1d1-34733e7ad83mr1972483a91.16.1763714528468; Fri, 21 Nov 2025
- 00:42:08 -0800 (PST)
+        bh=4E4qgWLZbJvc0nks66Kf2sl/KD3LP6StGpvCGYDfDXY=;
+        b=JKXlafV29q3KHZjm0jsAf9ozcTLRUC6hggb5EMM+2ObciiMhmULRz3+HWCaMc3MA4e
+         oOdvqik8+OGqtABT9XratZPQ9lFUQtORVA/dhIl06gL4neif7ySxChJhR205AsLBhcmB
+         fWJqy88CBYg/myqlJCPAKE/UetwYygJyN60isja/9lUsYIn2VKQHbujd8ecaP2KYQWkH
+         Mx9tAH/lykFT0aOlA2NP2yvX6HbBFWKVcZZw5TGe7by2dVjpzz1gQovoIA6p61zbK0lA
+         wjORuhgtesRNy8M/FWNgGX6U8qFKoM2FRmCvyLWfTJqD5XiAFib2LE/vIx0AW4+uOGEH
+         hEhA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6kkPs6ogj3+PE0++eW0Cl82ECL+YKhnhAUVJydN6W5u2kf+tuQ/vGSdCsI/6Og6oTr2wvqWI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyD9Jo6L8YXBJwpVVRL/kH0Kd9ViJJPJiytVZFEZVxumeQg0ILN
+	AokY09lQ3Vur9P1B9P+UuY93kWI2yzKXGO4vzEHLMhr8ucwWnRnKXUA=
+X-Gm-Gg: ASbGncsHMDn6UMlS8PCINPXMqPfn8ntDc5TZ7ie+SUydz6n9fwcGY+QkvQtcFMzXuGL
+	YwKicd+7ZTRXSvlD7U+CRoiK2JjCxaDDhMqe8TNkV5xxBbN/V37rv7w84BUfVJNf9Uu3bfGqdam
+	9zfbfUvvv670c4euGowMjVL2Yi+CGaReublmH9ePTM1S1aN8wEbAYW/805gVELnIxnyaP4PLwKx
+	eisSGELjRED50p/21ni5LfTgOg9r1d2/kO9je3AVEc4L2yeFSjoyJDwShZ44sBPNK1GRahz/l97
+	iXEpsAeqLrcYmeTzeOUnFV26OS9x/G1IuLOySFxJbTHVj6xL4nKY0iBa/SOW7hp6Da3U5E8bTq7
+	mmZsxZ13p4nbY2hBRFGuXX8B4BjqcM2kP85sKEXmsDWBXLrW/YRaUENtMyb5v+M3lq18lWStRtP
+	oHvAPiazmq0kDyM18lWrpUBoO0/ErH87LlwF+0dzOhmiNEGCU=
+X-Google-Smtp-Source: AGHT+IF+fRHUXtIbFHexbW+bX7vS6xhtJysRXvMNTGrbcAbQOhcG/TSSGP78YliQlRoGmwcWofF6oQ==
+X-Received: by 2002:a17:907:da4:b0:b73:3ced:2f66 with SMTP id a640c23a62f3a-b767159eea3mr272040066b.14.1763731748949;
+        Fri, 21 Nov 2025 05:29:08 -0800 (PST)
+Received: from frutis-latitude7490 (public-gprs376887.centertel.pl. [37.47.103.120])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b7654cefe53sm459963266b.13.2025.11.21.05.29.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Nov 2025 05:29:08 -0800 (PST)
+From: =?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: =?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>,
+	ath10k <ath10k@lists.infradead.org>,
+	ath11k <ath11k@lists.infradead.org>,
+	ath12k <ath12k@lists.infradead.org>,
+	linux-wireless <linux-wireless@vger.kernel.org>,
+	Kalle Valo <quic_kvalo@quicinc.com>
+Subject: Re: New staging repos for ath1*k firmware
+Date: Fri, 21 Nov 2025 14:28:25 +0100
+Message-ID: <20251121132825.1663248-1-frut3k7@gmail.com>
+X-Mailer: git-send-email 2.50.0
+In-Reply-To: <bac97f31-4a70-4c4c-8179-4ede0b32f869@quicinc.com>
+References: 
 MIME-Version: 1.0
-References: <3f355c8a-5bf2-4a74-9b35-daa8ae479736@oss.qualcomm.com>
-In-Reply-To: <3f355c8a-5bf2-4a74-9b35-daa8ae479736@oss.qualcomm.com>
-From: =?UTF-8?Q?Pawe=C5=82_Owoc?= <frut3k7@gmail.com>
-Date: Fri, 21 Nov 2025 09:41:57 +0100
-X-Gm-Features: AWmQ_bm1mnDLYgE0TQOEDWcR3npK8zC4Q3Xo_KhVCay49lQ1oXDPp4bWCogJKLI
-Message-ID: <CAKEyCaD4=qeQZYYOv4BTrqUJkZa+jnea1b3BL434X1iGMA-_xg@mail.gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: add support for MU EDCA
-To: "Yu Zhang(Yuriy)" <yu.zhang@oss.qualcomm.com>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	quic_yuzha@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251121_004209_627930_7AC0B54B 
-X-CRM114-Status: UNSURE (   8.38  )
+X-CRM114-CacheID: sfid-20251121_052911_107435_A9A516D9 
+X-CRM114-Status: UNSURE (   5.35  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,28 +104,9 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Nov 21, 2025 at 6:00=E2=80=AFAM Yu Zhang(Yuriy)
-<yu.zhang@oss.qualcomm.com> wrote:
->
-> hi,
->
->  From your log/calltrace, I didn=E2=80=99t see any errors related to MU E=
-DCA;
-> what I saw were related to SMPS. Did you also add changes related to SMPS=
-?
->
-> Yuriy
-
-Hi Yuriy,
-
-Thanks for your reply. The ath11k driver is version 6.14.12.
-Everything works if I remove the mu_edca setting without any other changes.
-
-The problem doesn't occur with the newer IPQ8074 firmware, version 2.12-014=
-60,
-which hasn't been publicly released.
-
-More details: https://github.com/openwrt/openwrt/issues/20702
+Hi, is it possible to release the new firmware version (2.12) for the IPQ8074?
+There's a problem with the latest ath11k driver on version 2.9:
+https://lore.kernel.org/linux-wireless/CAKEyCaD8RMqPvwZOxgwAT4G=h-M94ToxoSdYwCjfvZMiM8mB-g@mail.gmail.com/
 
 Regards,
 
