@@ -4,130 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D59DCFD364
-	for <ath11k@archiver.kernel.org>; Tue, 25 Nov 2025 07:40:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4EEDCFD37B
+	for <ath11k@archiver.kernel.org>; Tue, 25 Nov 2025 09:58:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=aRvbrDXMlUapeNa4jzEy/DlJZgXccZdRA4u21/uqA+g=; b=0v48HAxl3EWAespqipVfsZIeYz
-	eWzVO4og98v/Lxw6mXIMseCtx/DG/4Vhq8IIJZuTx9kFxV8C/xpGaM0VtBLS3zc4sfktB1f6LyJ4D
-	oJKqm79/V4epC9OSrwfv2kDpBNPrNzQRMWABgSGruTAZk692HmaNZCpBYQHIWRBE3HXSBlBJ6CwYY
-	FDzJPDUvCw54UM1umxKE26W9cNcui+HmxfGNB0op8HI/Qp2DOtWWw3UJyQV+lsgpaNkNPaM67J1TA
-	rOpM+7i3xWNuPfsaA8LAh9f7auVt+xCkKOgVfzoXqRoF3cY5EjpJ2+rOQZP3mrXtXG81rHyhGS+ia
-	5GJQGv4Q==;
+	bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=; b=LXrtS+bapi94nCGXzASxrZFgnI
+	S7cu/Bo3k9IeVsM7K2Y6g9N4a6L6rBZeWIqHQTAai0/uhGlgXojml5XaQDKVxfJLijBaxxdm/8NHB
+	eoMaahpk4OewZES8s3e7D/jyt6FTchdvwX1+aCi6+1TYv7o8yaven9ZIFR44Gc5ykk/W2a6rmMDD1
+	iYTOGDChDLfSdotm2TEoC4bSxCRbXD/xvQoJfpRdnd/9poVl7xcmiLlrlAm7vfI625PgWK/6qBwhE
+	Lb9jlvE4AJSf05DR41pK+FpA0OaLDmHSiG6g0vmcx1K9YiicO71eqYD6tuLBZi4TvB16TsraY0nY6
+	onwtWtFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNner-0000000CuQp-3j1u;
-	Tue, 25 Nov 2025 07:40:17 +0000
-Received: from smtp-out2.suse.de ([195.135.223.131])
+	id 1vNpoA-0000000D3ld-0Ehp;
+	Tue, 25 Nov 2025 09:58:02 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNnep-0000000CuQO-01gX
+	id 1vNpo9-0000000D3kx-0Wx3
+	for ath11k@bombadil.infradead.org;
+	Tue, 25 Nov 2025 09:58:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=; b=hPhScjxnAp7yJkq4TpeZA4oMVw
+	Hr6lowpnrnBqBSIa71BrTD6CxwM2nt1fCWkK7tPONBgfNbaqCqe2VhQ1Sb4GHzytrKOmveEk4x/SB
+	JjNH8GDteoh6PDtxvc+EbpO2+/VIqIRuSOiBtjUcUo5DhZU8OQKl4wZHwnpZmVk0A2+/pLwlvXbTO
+	jJttxmgvmAjR0VKKelCvKuf/HzPxTD223n99C+Cla4THZg3pT+x20/IPPvSB9R3zSYiMg9Ov+BN7Y
+	BiJHL43AijLe3oKUB/3wHMU49/MXfFVRRbifR87GgQO1krsZ0JD2F7GzC+5SZSSQV7Gwdxt/iw6E0
+	hNud7pAg==;
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vNowU-00000005Uen-0AYY
 	for ath11k@lists.infradead.org;
-	Tue, 25 Nov 2025 07:40:16 +0000
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id D412B5BCE5;
-	Tue, 25 Nov 2025 07:40:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1764056413; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aRvbrDXMlUapeNa4jzEy/DlJZgXccZdRA4u21/uqA+g=;
-	b=HgFbRFN225sNsD3SaPgvKBv2G/EEaAwvAE3HVY3pAirujTqMABU4eEL8xGR8Yti1qb+9ul
-	sbC5jVLqGjKD6ZONbRn5z3I7WYyTY0dv9vg2qlQRwSTNrmdOfKPErFb0M/v+K/yilFgsiE
-	0h17CISijuHJZptemq9OUWGQmhQHs8w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1764056413;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aRvbrDXMlUapeNa4jzEy/DlJZgXccZdRA4u21/uqA+g=;
-	b=0TVAActQP918GvH+XZJQMzX8Hfbxg8f+NCOd7T1/GIMSELTXuWHxyYE2ZLa9pjTPpRWoAd
-	U7rtqwoCyUdWBVAw==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=gM6+bMyT;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=rSVRz2ai
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1764056412; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aRvbrDXMlUapeNa4jzEy/DlJZgXccZdRA4u21/uqA+g=;
-	b=gM6+bMyTQ+styOCbndNUPSiezq5f2WAkKCc8+M/+6aeVvxpzVwVgQDm1yfAuJ5/hz4EJsR
-	UsPW7m5+lurbzRs5f1PaMg7r9mk+FJEP2WF+IqwrNFxS0l4KKUEa3csnKIm5oRUDT7rdyp
-	pIXN/2kOHAAPULNGU1a7ttOzj9t/jCU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1764056412;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aRvbrDXMlUapeNa4jzEy/DlJZgXccZdRA4u21/uqA+g=;
-	b=rSVRz2airFAIoZeCsE9pXwJJZ0xt59LC1HyarXMe6eKFYTmL3T9aPMyIFOAeB0nJxYmIez
-	TtblqQEgFEPLrMAQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A77583EA63;
-	Tue, 25 Nov 2025 07:40:12 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id UZKlJ1xdJWl9VQAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Tue, 25 Nov 2025 07:40:12 +0000
-Date: Tue, 25 Nov 2025 08:40:12 +0100
-Message-ID: <875xaypnkz.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Cc: Takashi Iwai <tiwai@suse.de>,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-	Mark Pearson <mpearson-lenovo@squebb.ca>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org
-Subject: Re: [PATCH] wifi: ath11k: Add quirk entry for Thinkpad T14s Gen3 AMD
-In-Reply-To: <277cfe97-3024-4e65-8766-7b96646c5120@oss.qualcomm.com>
-References: <20251124134713.5819-1-tiwai@suse.de>
-	<2faa8f4e-cb30-4e91-87d2-853c90458b01@oss.qualcomm.com>
-	<87ecpmppkt.wl-tiwai@suse.de>
-	<277cfe97-3024-4e65-8766-7b96646c5120@oss.qualcomm.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/30.1 Mule/6.0
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Rspamd-Queue-Id: D412B5BCE5
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-3.51 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCVD_TLS_ALL(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.com:url,suse.de:email,suse.de:mid,suse.de:dkim];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
-	DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
+	Tue, 25 Nov 2025 09:02:36 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-b7380f66a8bso791241166b.2
+        for <ath11k@lists.infradead.org>; Tue, 25 Nov 2025 01:57:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764064675; x=1764669475; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=;
+        b=DZeQGtADCy2RJHLbOxVCfbpH/CSs3uNLxBpZnDZPjGrj5zcnJFf44JpPOUFhYV5Kgm
+         6z0LBXBs3vcFWiVuczU46pej8WFrTPiV8UJEL47utfH5Bwjq2OCYp9sT1PDurN9kYWC6
+         XbQVvKW8Rr4UhNIZKpLY5MGhQJ4PSs+tTrzwZULXvWZYEuh+/YL4aKU/x7lBCksoUGtJ
+         tNAQ+Mb5YHAsnyi/ELtEXl85KCnJ2stYrE9HPZNdybkQJV+DUbWiSa0jHV0I8o7JIPyn
+         8Xm5PdbRqJDstfBrt/ALyVXcLOTHI6oRuURRyTv4lvKY/b+tC2uKInmsjrmHao2/grNy
+         HNkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764064675; x=1764669475;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=;
+        b=ws9KPQcCwcYSacwAB0qGRFjgCVX+K5/a/E15F7Gw4sSCk4FLZS7SrG7gCM2revrv0A
+         JpqYBta6UlCsB4+ArqYLdv66RHAiwyF775DqmGKM+SFzNOo5MmM0NZUVfJlbk6nYi78d
+         cOq1yAbjTB8FJ1Gmp7G/UEhqIhnh9xVHYs9KnLSp1kYAMnfKJsb1VREF+ROK/9Lo2ZHq
+         N9mDOYNzQSyzEjfHm3H2XpHbrQZSDaFeIAPCw91FX5sPrvP2N6WcscusWPf/q/wp06Ba
+         qBDHRcqr0iBfBlYEo9RnRQ2nCZ/MPpQjf2jjcXWp5kF3M3yRreLUuJwEOiQZiVt1Hdym
+         pdDw==
+X-Forwarded-Encrypted: i=1; AJvYcCXV9FhYh51SU6zYm8zvH1tEtvZcQWkVEiUmpm6ognZgJj2DJk/1l/5jjnsJB/6QXN9QOAU4wYU=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyia/7djTxq+NOHYll66XGvnmtovpxShMBrHS1FMLxfQWuBMsrf
+	NW6Zy8H35FGLhiAa/JzZSaGUteQOXYRXm25BEozeG8/AF2oR7hN8aCnL
+X-Gm-Gg: ASbGncv8/nUvLgM86Oh4zIdBDxfponlxEPG/tqd0YoA6tLMkzxFdr89EZ6EPDOi4RvM
+	xEgS5s+37CMYl+XNKm2keXLWaDUfiraCMgiL8KJMPOoqNSQL6Wwzwv95nwA6Vj9mNx6QG7E7AkI
+	Eo0grNKynP5y24QRvb7sN/q+eNqbvIkAQB7vt3nPma5kDORqlvbapDSalRhW/fwhJrQ19IxjSzP
+	sbYBrKCQSa68wrcpUHjEgt4yGdD5Dp3nx8IqQx8lH2yaVqKbIB7LlGHTraq0BDMNwb08qs8Qido
+	ylUCEqhf1EJZovzg9Gq1yB/IWydyRTiayVvMMm7ahO/aTAOWMktp5nNIxKFjVw05TfSXvDEayqr
+	FwHSs/cl5LzmFqevKQYfsfUD19ad37rk5x/LA8sodAGIFA9EfEMKqo49+qkVP9H5IKRo31Em8bs
+	AIKPDra86GLAZCdYnyNkRp6oAprQvmyK0AFG9a5xOEvA4gc4UCB/81AOq2WjidEdSYOzV4VuriY
+	DuJlQqYVtgySA==
+X-Google-Smtp-Source: AGHT+IHLisWyuG15RnJSodDThe/ELizaIWdtNrkb9dhnJFuydOtd23t6sLVr0LkGdKB4Y4UIprMu/A==
+X-Received: by 2002:a17:906:c156:b0:b73:7652:ef9e with SMTP id a640c23a62f3a-b7671a28d01mr1625571366b.55.1764064674836;
+        Tue, 25 Nov 2025 01:57:54 -0800 (PST)
+Received: from ernest.hoecke-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654ff3bbesm1539477966b.51.2025.11.25.01.57.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Nov 2025 01:57:54 -0800 (PST)
+Date: Tue, 25 Nov 2025 10:57:53 +0100
+From: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+	Baochen Qiang <baochen.qiang@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, 
+	Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, 
+	ath11k@lists.infradead.org, devicetree@vger.kernel.org, ath12k@lists.infradead.org, 
+	Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Subject: Re: [PATCH 0/2] wifi: ath: Use static calibration variant table for
+ devicetree platforms
+Message-ID: <fasihmiu2szj6m2r3qef5slvzlvdjo2ajhrd6xyqsa5cajrbzq@a5dyulg2dnac>
+References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
+ <2fd84ab2-2e3e-4d05-add5-17930a35fedf@oss.qualcomm.com>
+ <jnggqxqv3rjzhyevovnnxzplfhl3t6auhhvmoz7wxmsf6awgdx@dusdgxwsxvts>
+ <b8277024-f9d4-4f17-946f-c2c390669067@oss.qualcomm.com>
+ <exfmj52dqu3uctwsb2gopcjg7744vq5avlkahtmgfw4opw4mfl@t2svrln72u53>
+ <f853d9b2-47f8-47b5-a02d-6aa8f12a4283@oss.qualcomm.com>
+ <trr5j57vwk2dhoibdgdxnlkftnmfcmjkwmicsiltmhybxanjaf@tzaeeqcyz56l>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <trr5j57vwk2dhoibdgdxnlkftnmfcmjkwmicsiltmhybxanjaf@tzaeeqcyz56l>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251124_234015_197226_D6E487F3 
-X-CRM114-Status: GOOD (  35.69  )
+X-CRM114-CacheID: sfid-20251125_090234_331619_0B074BE2 
+X-CRM114-Status: GOOD (  16.73  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,114 +128,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 25 Nov 2025 08:25:12 +0100,
-Baochen Qiang wrote:
+On Tue, Nov 18, 2025 at 12:23:20PM +0530, Manivannan Sadhasivam wrote:
 > 
+> ath12k doesn't seem to require a calibration variant. But even if the user
+> replaces ath11k chipset with ath10k one, the calibration variant should be the
+> same as it is platform specific except for WSI.
 > 
+> - Mani
 > 
-> On 11/25/2025 2:57 PM, Takashi Iwai wrote:
-> > On Tue, 25 Nov 2025 03:28:22 +0100,
-> > Baochen Qiang wrote:
-> >>
-> >>
-> >>
-> >> On 11/24/2025 9:47 PM, Takashi Iwai wrote:
-> >>> The recent kernels showed a regression wrt suspend/resume on Lenovo
-> >>> Thinkpad T14s Gen 3 AMD model; it fails to reconnect on resume after a
-> >>> long time sleep.  The only workaround was to unload/reload the driver
-> >>
-> >> how long? and with a short suspend you don't see the issue?
-> > 
-> > I can't say exactly, but usually after some hours.  I see it happening
-> > when the machine is resumed in the morning after an overnight sleep.
-> > Short suspends can resume mostly, as far as I tested.
-> > 
-> >>> (or reboot).
-> >>>
-> >>> It seems that this model also requires the similar quirk with
-> >>> ATH11K_PM_WOW which has been done for other Thinkpad models.
-> >>
-> >> the quirk is to workaround the unexpected wakeup issue, which seems not the same with
-> >> yours. Hence not sure if this is the right fix.
-> > 
-> > Yes, I wonder that, too.  The whole suspend/resume procedure look
-> > fairly different with PM WoW quirk, so some of them might matter.
-> > 
-> >>> Link: https://bugzilla.suse.com/show_bug.cgi?id=1254181
-> >>> Signed-off-by: Takashi Iwai <tiwai@suse.de>
-> >>> ---
-> >>>
-> >>> I'm not sure whether this model has another DMI entry, so put Mark to
-> >>> Cc.
-> >>>
-> >>> Also, I wonder which Thinkpad models are rather the ones that should
-> >>> *not* take the quirk.  Since mine is Gen 3 and I already see Gen 2
-> >>> entries, which else remaining...?
-> >>>
-> >>>
-> >>>  drivers/net/wireless/ath/ath11k/core.c | 7 +++++++
-> >>>  1 file changed, 7 insertions(+)
-> >>>
-> >>> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-> >>> index 812686173ac8..3aa78a39394b 100644
-> >>> --- a/drivers/net/wireless/ath/ath11k/core.c
-> >>> +++ b/drivers/net/wireless/ath/ath11k/core.c
-> >>> @@ -924,6 +924,13 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
-> >>>  			DMI_MATCH(DMI_PRODUCT_NAME, "21J4"),
-> >>>  		},
-> >>>  	},
-> >>> +	{
-> >>> +		.driver_data = (void *)ATH11K_PM_WOW,
-> >>> +		.matches = { /* T14s G3 AMD */
-> >>> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
-> >>> +			DMI_MATCH(DMI_PRODUCT_NAME, "21CR"),
-> >>> +		},
-> >>> +	},
-> >>
-> >> so with the change, the issue is not seen after a __long__ suspend?
-> > 
-> > Right, the connection gets resumed properly.
-> > 
-> >>>  	{
-> >>>  		.driver_data = (void *)ATH11K_PM_WOW,
-> >>>  		.matches = { /* T14 G4 AMD #1 */
-> >>
-> >> Hmm, I am feeling that we need to dig more to root cause this issue. Can you please help
-> >> to collect verbose wpa_supplicant/iwd log and kernel log?
-> >>
-> >> wpa_supplicant:
-> >> 	cd /lib/systemd/system
-> >> 	diff --git a/wpa_supplicant.service b/wpa_supplicant.service
-> >> 	index d5c7ef8..69693d0 100644
-> >> 	--- a/wpa_supplicant.service
-> >> 	+++ b/wpa_supplicant.service
-> >> 	@@ -5,7 +5,8 @@ Before=network.target
-> >> 	 [Service]
-> >> 	 Type=dbus
-> >> 	 BusName=fi.epitest.hostap.WPASupplicant
-> >> 	-ExecStart=/sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
-> >> 	+ExecStart=/sbin/wpa_supplicant -u -s -t -f/var/log/wpa_supplicant.log -dd -O
-> >> /run/wpa_supplicant
-> >>
-> >>
-> >> IWD:
-> >> simply add '-d' option when starting it. You may directly add it to the systemd service
-> >> entry if you like. See
-> >>
-> >> https://archive.kernel.org/oldwiki/iwd.wiki.kernel.org/debugging.html
-> > 
-> > OK, I'll try to get the log (in tomorrow morning :)
-> > 
-> > Meanwhile, the PM WoW quirk looks fine for this Thinkpad model, I see
-> > no other regression with the quirk.  As a stop gap, would it be
-> > acceptable?  If yes, I'll resubmit with the entry of another Gen 3
-> > model Mark suggested.
+> -- 
+> மணிவண்ணன் சதாசிவம்
 > 
-> I would suggest you waiting before we root cause, or at least before logs are collected
-> and investigated. Then let's see what we do next.
 
-OK, fair enough.
+Hi all,
 
+Jumping in on this thread to ask about how we should handle variants.
 
-Takashi
+We are using the WCN7850 device with the ath12k driver and received three
+board files for this from Silex, signed by Qualcomm. All three support the
+same board (SX-PCEBE), where one is the board file to be used for the
+US/EU/JP and the other two are one for higher emissions in the UK/CA and
+one for lower emissions in the UK/CA.
+
+Since these are needed for regulatory differences but support the same
+board, we were wondering about your views on how to handle that in
+mainline. I see that there is no support for the board file selection in
+the device tree for ath12k, and that there is some discussion on how to
+handle variants in general. We are using a device tree-based setup and no
+ACPI.
+
+Thanks!
+
+Kind regards,
+Ernest
 
