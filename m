@@ -4,89 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63B62D0E6F0
-	for <ath11k@archiver.kernel.org>; Tue, 25 Nov 2025 14:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 120DDD116F3
+	for <ath11k@archiver.kernel.org>; Thu, 27 Nov 2025 17:41:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=JAphU0cH3ceIFX/NL4RhLMIKJFwd3sLjevWt8KuG4Hs=; b=j8sDTZ++hZ4ul8N7seXeFMocun
-	p1cxxeqVWeA65S/9dlZ1gRwuq9Ku62R3EZGxzTXTBi83+8QVY0emkv/05pb+rmjmRF8o8st/yA5hU
-	6uOHmYYLVlQMnMamPh4p6PR7DUDoEcM3DcpSfzotq966Wkh83Z91g+kbKvJ30EUTwwVthP/ctuu+z
-	Ptwso5XHNZI4lIBB3PeYTd/+xIJxCULEiz6bSFwaLB+BM3AmidhcP6/uVycDwSe3fTKHiJCVjM7RP
-	mFlLqkUY8ithqAcO/bvVztfHo1mpLiMRrULvvchMUXa9UijULiZcElgZY/MGkkPgyOdUpEsAkfmIO
-	3GObZ9rQ==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=8bsiA+7jVFgPqmnKeFG9KW6tU0ft/RGHgNVYPhwHLYU=; b=Cvh9HxV+2y4AOyaZIOgXenXyh3
+	uWUwHqg1KQuday6KcVG9nh3zBNP709Rd0YBLNS1YRSkakNrvTETtJqG/9wIYYCuZLd7z3CAwL3f2V
+	g+kFQ2cINljIvTHWgXSBtg80lIsoM/E8C08OKpNgetGPuhPiTGJhqoNE3RsBRW6Ov7BBp62XKM91m
+	AiIyX13EO9St56ZRmBgu5pcwZxamkNge+4hLGr5AqoqIsJiVL0GspjX5Txhcqbf9LSomhtM+Q8ssj
+	+mCygB9hq6OIigrsEcYlyYXenkwiMuCVvnTMxOWAzJOK9r7gi4cMnIN1pEV6pkdBNQYeHHN1bB5Xz
+	vbLzFeMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNu1w-0000000DQvt-1eTI;
-	Tue, 25 Nov 2025 14:28:32 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1vOfzh-0000000H1Mk-3qMw;
+	Thu, 27 Nov 2025 17:41:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNu1u-0000000DQvP-37QK
+	id 1vOfzf-0000000H1Lp-2ync
 	for ath11k@lists.infradead.org;
-	Tue, 25 Nov 2025 14:28:31 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-42b379cd896so3095317f8f.3
-        for <ath11k@lists.infradead.org>; Tue, 25 Nov 2025 06:28:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764080909; x=1764685709; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JAphU0cH3ceIFX/NL4RhLMIKJFwd3sLjevWt8KuG4Hs=;
-        b=nVHA3IdMV/u96gPN9Rw9GU6lSybuakoT8Im/3ZjM1YtWE9gRuFcnW7VB8kuk4EXPTI
-         xauQan+Qq2Xb+hOttLsh1xNpNXsbvGxismhactfFfBkj8EF9R84dzNLhDpYL5rt4qGR8
-         R3hMO7e30bbQVkYFdhXSpTLeGLxODlrikSYs+Uy5M21GciiNQvsbti1KfRDMoy7aCYua
-         KGVUDyI0uExP29ckRIZNFK2OCnMfBsseZq26YMO13mX7JN7K7/l8K7B4lMZbvQqQZ+WW
-         PeYcN50+ofaQQj2WpzVgDzx1Utg1b0wJnFzSKuoV4kmpdBqJrqLttwAWmJbEyfJ728GG
-         hN4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764080909; x=1764685709;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JAphU0cH3ceIFX/NL4RhLMIKJFwd3sLjevWt8KuG4Hs=;
-        b=Fq/M9gD8pazVjnUViGHKL1KXwTXttXX+DCA7T4qcpkHlLvsXLAD7a7J2Wms8k7KS0f
-         bc7K5411/23Im7xKqx/aXCCC0nQOiHWX/FaI3zBGhQQOxc7AB+ql4kx05h+Xg/fBgLsz
-         G2EQQRAHL6jrmNl9JpxZSOxrx/RmMwPSFi3KZbVK/cBKGYb9iebmR4uVCfFibBRKWOLj
-         oQFbgrJDCBLsU6tugvwjXCEikSp63zffb3WRBN7v1L+MwyFEXHr2RI6O9cxv/C2ssGAm
-         ZpSz8tU3SFFoKko9DuuoPo1ZsqqSxGJTERyPKdxc/hNpkZ/cnM/1v9cZdleYX79xUibt
-         vT1w==
-X-Forwarded-Encrypted: i=1; AJvYcCVrRrf7PxRi6zuX49rNzsZxkdiVCzTWDmFsrXdDs88XfaXGRFlwNjYGux6Ker9PeCcUmG3wDH8=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyCYijGoG45lE9F9kyi8kltP7h4QV2vLjPrNdo8Nxv5sRw03fRZ
-	64fPekEtyD+c2RjOiURNZtep51/IGnGSOHCnME8RYjQtmLMtQCnlcrxN
-X-Gm-Gg: ASbGncsxQdoQvRUy0LQ+6PvtmFTmBjAK5A6uWZDINdEXLjC3bjGUHohnW/H4JWazEX6
-	BT1Mv5ff06VeTEgIpIZ3dbcblfCZIebiKOrrub9nJZRPWwyyvN2m8decGTADAdEuye3onx4MMvQ
-	voqB0OisJ486I2MwuEJPj2lfrOh3HWG2L9ClN1tYHP5o/1d6hgC4Z6QX7Df4kCAryfnz32OSTBb
-	UuIQCknwcPvlC2w8LhZSO7IMqKjsRQ2daBqWERq5VgtTQtQoMuPIzcq4XetWS67sjNvNIZnvQGD
-	/A96TvEU/DAujsrR8FlJdctMKjR9PAw5eN6x18mJhIGCrYBzGjmOZG5Kt/EtgS7zQrwEKvbcW2h
-	mGVK6EAqcTu+IftfVjQkX/0J7lq3nNCpc/2uXMS9AvY/2N/Dw4/nXrelBAIWrjR6sJqwU64cwrI
-	cy2Dpyjahi95J5jriBbIT+Oadfzg==
-X-Google-Smtp-Source: AGHT+IEqA6HDUrBNX63cSpBKkeoaSj+oHLwImQUfcsZ2vVjQkznOGyiU7c2nMqKOmiSejP6/HoFHig==
-X-Received: by 2002:a5d:5f44:0:b0:42b:41dc:1b58 with SMTP id ffacd0b85a97d-42cc1d19957mr15867880f8f.45.1764080908831;
-        Tue, 25 Nov 2025 06:28:28 -0800 (PST)
-Received: from Ansuel-XPS24 (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-42cb7fd8c47sm35959194f8f.38.2025.11.25.06.28.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 06:28:28 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Jeff Johnson <jjohnson@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	P Praneesh <quic_ppranees@quicinc.com>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Scott Mercer <TheRootEd24@gmail.com>
-Subject: [PATCH] wifi: ath11k: fix rssi station dump for IPQ5018 and QCN6122
-Date: Tue, 25 Nov 2025 15:28:14 +0100
-Message-ID: <20251125142821.18152-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	Thu, 27 Nov 2025 17:41:23 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id C835C6022B
+	for <ath11k@lists.infradead.org>; Thu, 27 Nov 2025 17:41:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77BB9C19423
+	for <ath11k@lists.infradead.org>; Thu, 27 Nov 2025 17:41:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764265282;
+	bh=YRwpnmivmIGfSil+ZD1aGlxCYo+UU/QzrOBg9t1fcoE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=GQo4zWhWFwuM7yaQm/G6MoYrO1sGCe63LiivwvpbJXTuD4bpwtx7vVrjJq/jO3yNT
+	 /glPNOmTyEyuQgFnjW09IwIDuzYIhIp82Bq5tDcMxZ2FYvQimg6WzJuHjpMmBtLdRC
+	 7UHkgkhDXiAZGbYaljkVGuyQaHao2d5pJkHVYaTTRtcd/n5x9+u6+lZm+cbLEo/yUI
+	 r91c8vZQfOXME3t0aQ3s8j0vLUmV7g0L5ZqU6BMJPCG7P1VcW7pspVtnA3oNfQZt9a
+	 wFzr4/a6G8flzMAgfLEhY9Cq1WfAqIZxQ26MOBUnGa6tT8wSG9PPUc+wOdGDq10Lp1
+	 5jvmWmWflox3A==
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-450c9057988so468763b6e.1
+        for <ath11k@lists.infradead.org>; Thu, 27 Nov 2025 09:41:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWdXn9gJLgUfqgmKbgrsL3GGua3lT32cqqAGZyE7Tyjgvkz4Z91m5SwhR35I4nIkMJpbVG7Pl8=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzvrXZ/ujqsgWSIsXJmWn5GQPc91CgBki33qA1czzl3csE//FFb
+	JciWua6kYvPpu5WwZ8J0pCQe+2Js8lglR1KCQzzlZ3KpAPtZqasOsy5hZlEhtDwkE956Peg+v4t
+	1ilfJGuumbWj3cdM8qglpT1u9/H90vO4=
+X-Google-Smtp-Source: AGHT+IHbfQ5CxJ+BeKUIRbyKYrpAVhmzQHngDVOs0E2Nv7PPmdkB/EPrjv3dEJtB2ATSYwuHhVrLlp/6B/DbEuYhyUY=
+X-Received: by 2002:a05:6808:14d3:b0:450:d7fb:85c2 with SMTP id
+ 5614622812f47-4514e6e1593mr4705868b6e.19.1764265281611; Thu, 27 Nov 2025
+ 09:41:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251125_062830_817879_F9A18065 
-X-CRM114-Status: GOOD (  10.51  )
+References: <20251120-thermal-device-v1-0-bbdad594d57a@gmx.de>
+ <CAJZ5v0jOPrBcozzJMsB1eE12MuZRWDAV-+=jfrhJbi=S0p5J9Q@mail.gmail.com> <5f3ef610-4024-4ca0-a934-2649f5d25f40@gmx.de>
+In-Reply-To: <5f3ef610-4024-4ca0-a934-2649f5d25f40@gmx.de>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Thu, 27 Nov 2025 18:41:10 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0iJVV=kf-aJBx8F8dtGfaZpGVyhfi6DBWEg4j3c_nH8_A@mail.gmail.com>
+X-Gm-Features: AWmQ_bnNFzjNLr4ZD-k1rd8sHstOmmRzRHvS_v-U6yiSpHx7MBaeEIqIodGMGBQ
+Message-ID: <CAJZ5v0iJVV=kf-aJBx8F8dtGfaZpGVyhfi6DBWEg4j3c_nH8_A@mail.gmail.com>
+Subject: Re: [PATCH RFC RESEND 0/8] thermal: core: Allow setting the parent
+ device of thermal zone/cooling devices
+To: Armin Wolf <W_Armin@gmx.de>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Len Brown <lenb@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Ido Schimmel <idosch@nvidia.com>, Petr Machata <petrm@nvidia.com>, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+	linux-tegra@vger.kernel.org, linux-acpi@vger.kernel.org, 
+	linux-doc@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, 
+	ath11k@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, platform-driver-x86@vger.kernel.org, 
+	linux-pci@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,36 +92,231 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Commit 031ffa6c2cd3 ("wifi: ath11k: fix rssi station dump not updated in
-QCN9074") didn't account for IPQ5018 and QCN6122 WiFi card that are
-based on QCN9074.
+On Sat, Nov 22, 2025 at 3:18=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> wrote:
+>
+> Am 21.11.25 um 21:35 schrieb Rafael J. Wysocki:
+>
+> > On Thu, Nov 20, 2025 at 4:41=E2=80=AFAM Armin Wolf <W_Armin@gmx.de> wro=
+te:
+> >> Drivers registering thermal zone/cooling devices are currently unable
+> >> to tell the thermal core what parent device the new thermal zone/
+> >> cooling device should have, potentially causing issues with suspend
+> >> ordering
+> > This is one potential class of problems that may arise, but I would
+> > like to see a real example of this.
+> >
+> > As it stands today, thermal_class has no PM callbacks, so there are no
+> > callback execution ordering issues with devices in that class and what
+> > other suspend/resume ordering issues are there?
+>
+> Correct, that is why i said "potentially".
+>
+> >
+> > Also, the suspend and resume of thermal zones is handled via PM
+> > notifiers.  Is there a problem with this?
+>
+> The problem with PM notifiers is that thermal zones stop working even bef=
+ore
+> user space is frozen. Freezing user space might take a lot of time, so ha=
+ving
+> no thermal management during this period is less than ideal.
 
-Update the .mpdu_info_get_peerid to use the QCN9074 variant to correctly
-receive consistent RSSI station data.
+This can be addressed by doing thermal zone suspend after freezing
+tasks and before starting to suspend devices.  Accordingly, thermal
+zones could be resumed after resuming devices and before thawing
+tasks.  That should not be an overly complex change to make.
 
-Reported-by: Scott Mercer <TheRootEd24@gmail.com>
-Suggested-by: Scott Mercer <TheRootEd24@gmail.com>
-Tested-by: Scott Mercer <TheRootEd24@gmail.com>
-Fixes: 031ffa6c2cd3 ("wifi: ath11k: fix rssi station dump not updated in QCN9074")
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/net/wireless/ath/ath11k/hw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> This problem would not occur when using dev_pm_ops, as thermal zones woul=
+d be
+> suspended after user space has been frozen successfully. Additionally, wh=
+en using
+> dev_pm_ops we can get rid of thermal_pm_suspended, as the device core alr=
+eady mandates
+> that no new devices (including thermal zones and cooling devices) be regi=
+stered during
+> a suspend/resume cycle.
+>
+> Replacing the PM notifiers with dev_pm_ops would of course be a optimizat=
+ion with
+> its own patch series.
 
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index caa6dc12a790..05d7acbbab56 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -1175,7 +1175,7 @@ const struct ath11k_hw_ops ipq5018_ops = {
- 	.rx_desc_get_attention = ath11k_hw_qcn9074_rx_desc_get_attention,
- 	.reo_setup = ath11k_hw_ipq5018_reo_setup,
- 	.rx_desc_get_msdu_payload = ath11k_hw_qcn9074_rx_desc_get_msdu_payload,
--	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
-+	.mpdu_info_get_peerid = ath11k_hw_qcn9074_mpdu_info_get_peerid,
- 	.rx_desc_mac_addr2_valid = ath11k_hw_ipq9074_rx_desc_mac_addr2_valid,
- 	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq9074_rx_desc_mpdu_start_addr2,
- 	.get_ring_selector = ath11k_hw_ipq8074_get_tcl_ring_selector,
--- 
-2.51.0
+Honestly, I don't see much benefit from using dev_pm_ops for thermal
+zone devices and cooling devices.  Moreover, I actually think that
+they could be "no PM" devices that are not even put on the
+suspend-resume device list.  Technically, they are just interfaces on
+top of some other devices allowing the user space to interact with the
+latter and combining different pieces described by the platform
+firmware.  They by themselves have no PM capabilities.
 
+> >> and making it impossible for user space applications to
+> >> associate a given thermal zone device with its parent device.
+> > Why does user space need to know the parent of a given cooling device
+> > or thermal zone?
+>
+> Lets say that we have two thermal zones registered by two instances of th=
+e
+> Intel Wifi driver. User space is currently unable to find out which therm=
+al zone
+> belongs to which Wifi adapter, as both thermal zones have the (nearly) sa=
+me type string ("iwlwifi[0-X]").
+
+But the "belong" part is not quite well defined here.  I think that
+what user space needs to know is what devices are located in a given
+thermal zone, isn't it?  Knowing the parent doesn't necessarily
+address this.
+
+> This problem would be solved once we populate the parent device pointer i=
+nside the thermal zone
+> device, as user space can simply look at the "device" symlink to determin=
+e the parent device behind
+> a given thermal zone device.
+
+I'm not convinced about this.
+
+> Additionally, being able to access the acpi_handle of the parent device w=
+ill be necessary for the
+> ACPI thermal zone driver to support cooling devices other than ACPI fans =
+and ACPI processors.
+
+I guess by the "parent" you mean the device represented in the ACPI
+namespace by a ThermalZone object, right?  But this is not the same as
+the "parent" in the Wifi driver context, is it?
+
+> >> This patch series aims to fix this issue by extending the functions
+> >> used to register thermal zone/cooling devices to also accept a parent
+> >> device pointer. The first six patches convert all functions used for
+> >> registering cooling devices, while the functions used for registering
+> >> thermal zone devices are converted by the remaining two patches.
+> >>
+> >> I tested this series on various devices containing (among others):
+> >> - ACPI thermal zones
+> >> - ACPI processor devices
+> >> - PCIe cooling devices
+> >> - Intel Wifi card
+> >> - Intel powerclamp
+> >> - Intel TCC cooling
+> > What exactly did you do to test it?
+>
+> I tested:
+> - the thermal zone temperature readout
+> - correctness of the new sysfs links
+> - suspend/resume
+>
+> I also verified that ACPI thermal zones still bind with the ACPI fans.
+
+I see, thanks.
+
+> >> I also compile-tested the remaining affected drivers, however i would
+> >> still be happy if the relevant maintainers (especially those of the
+> >> mellanox ethernet switch driver) could take a quick glance at the
+> >> code and verify that i am using the correct device as the parent
+> >> device.
+> > I think that the above paragraph is not relevant any more?
+>
+> You are right, however i originally meant to CC the mellanox maintainers =
+as
+> i was a bit unsure about the changes i made to their driver. I will rewor=
+k
+> this section in the next revision and CC the mellanox maintainers.
+>
+> >
+> >> This work is also necessary for extending the ACPI thermal zone driver
+> >> to support the _TZD ACPI object in the future.
+> > I'm still unsure why _TZD support requires the ability to set a
+> > thermal zone parent device.
+>
+> _TZD allows the ACPI thermal zone to bind to cooling devices other than A=
+CPI fans
+> and ACPI processors, like ACPI batteries.
+
+No, it is not for cooling devices if my reading of the specification
+is correct.  It says:
+
+"_TZD (Thermal Zone Devices)
+
+This optional object evaluates to a package of device names. Each name
+corresponds to a device in the ACPI namespace that is associated with
+the thermal zone. The temperature reported by the thermal zone is
+roughly correspondent to that of each of the devices."
+
+And then
+
+"The list of devices returned by the control method need not be a
+complete and absolute list of devices affected by the thermal zone.
+However, the package should at least contain the devices that would
+uniquely identify where this thermal zone is located in the machine.
+For example, a thermal zone in a docking station should include a
+device in the docking station, a thermal zone for the CD-ROM bay,
+should include the CD-ROM."
+
+So IIUC this is a list of devices allowing the location of the thermal
+zone to be figured out.  There's nothing about cooling in this
+definition.
+
+> This however will currently not work as
+> the ACPI thermal zone driver uses the private drvdata of the cooling devi=
+ce to
+> determine if said cooling device should bind. This only works for ACPI fa=
+ns and
+> processors due to the fact that those drivers store a ACPI device pointer=
+ inside
+> drvdata, something the ACPI thermal zone expects.
+
+I'm not sure I understand the above.
+
+There is a list of ACPI device handles per trip point, as returned by
+either _PSL or _ALx.  Devices whose handles are in that list will be
+bound to the thermal zone, so long as there are struct acpi_device
+objects representing them which is verified with the help of the
+devdata field in struct thermal_cooling_device.
+
+IOW, cooling device drivers that create struct thermal_cooling_device
+objects representing them are expected to set devdata in those objects
+to point to struct acpi_device objects corresponding to their ACPI
+handles, but in principle acpi_thermal_should_bind_cdev() might as
+well just use the handles themselves.  It just needs to know that
+there is a cooling driver on the other side of the ACPI handle.
+
+The point is that a cooling device to be bound to an ACPI thermal zone
+needs an ACPI handle in the first place to be listed in _PSL or _ALx.
+
+> As we cannot require all cooling devices to store an ACPI device pointer =
+inside
+> their drvdata field in order to support ACPI,
+
+Cooling devices don't store ACPI device pointers in struct
+thermal_cooling_device objects, ACPI cooling drivers do, and there are
+two reasons to do that: (1) to associate a given struct
+thermal_cooling_device with an ACPI handle and (2) to let
+acpi_thermal_should_bind_cdev() know that the cooling device is
+present and functional.
+
+This can be changed to store an ACPI handle in struct
+thermal_cooling_device and acpi_thermal_should_bind_cdev() may just
+verify that the device is there by itself.
+
+> we must use a more generic approach.
+
+I'm not sure what use case you are talking about.
+
+Surely, devices with no representation in the ACPI namespace cannot be
+bound to ACPI thermal zones.  For devices that have a representation
+in the ACPI namespace, storing an ACPI handle in devdata should not be
+a problem.
+
+> I was thinking about using the acpi_handle of the parent device instead o=
+f messing
+> with the drvdata field, but this only works if the parent device pointer =
+of the
+> cooling device is populated.
+>
+> (Cooling devices without a parent device would then be ignored by the ACP=
+I thermal
+> zone driver, as such cooling devices cannot be linked to ACPI).
+
+It can be arranged this way, but what's the practical difference?
+Anyone who creates a struct thermal_cooling_device and can set its
+parent pointer to a device with an ACPI companion, may as well set its
+devdata to point to that companion directly - or to its ACPI handle if
+that's preferred.
 
