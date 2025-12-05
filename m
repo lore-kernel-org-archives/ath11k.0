@@ -4,128 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D2DD1D87E
-	for <ath11k@archiver.kernel.org>; Thu,  4 Dec 2025 07:11:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD80AD3398D
+	for <ath11k@archiver.kernel.org>; Fri,  5 Dec 2025 16:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=X5dN5yZ9ItC8K4kgYMQf5DsqZ5QTAm8KkS0z5PvBi2w=; b=u9XtJ7JYkT2OGy3EAtdpKUViaM
-	+cibDT1AbfV7/EbLuMpgQ5WpCOJPo6jlPh8mNcA1MjYLPRT9Y228soAdk0Ceyavb5mPIhyfM66civ
-	gglwvsOwtT1kP2e+die7rIilILDzdeRAgfSADg0QBH3ytm42wTNcyOapTWu+ZQxCOfax2rDeZEka/
-	ghCLs5jOUI7MR+zwGuAB0JdNO2t3q/Q8caFds/x0kTrhwG0YUk7vIUet3klBEWPljjTWARwUCwfgx
-	bpT1DYAiWsP5Vk14ZnnAeV3o5VZpXt36soSPzqTWSB+2A55j+kzKu/bHEOKf0rhGNZkRWYatAzye0
-	ukLMRefw==;
+	Content-Type:From:Subject:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=uY/zz/FmTheKinzMsruxPAeAFgeFSh6MXrbrP2Vw8Ck=; b=EsFvZ1f5D0ulZF5hI6VwtYajrA
+	eVrHkS7CfNb6NagKNyQvx5bGFd7BU3NFQEX643IfRMhceMNTPVE3sVkTNmn43GyFGILlohKw5vsB7
+	omcDfFBimajTcPhvLCov/3PozoDXtZx3LUgz1o6wPbRExDiYGZ00sWmrTtbwXv9aEmI4sCtqVo2wl
+	JZt1Q6/rmxj9/fNfw4z0zN0KL3JBp/elHB2xSda5kFmJNbgYyN9szKSFjvBh1na3upr7FSeoJYvLH
+	LYumXKtOSTxthbps30dZOvZqkpR6ZiDv6B2fpZFR0A4AP4GPlJ5n4X+zyHwn7nKPXDs46aTuX0DWB
+	XH3FwupA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vR3Up-00000007b7W-1IWi;
-	Thu, 04 Dec 2025 07:11:23 +0000
+	id 1vRYh8-00000009hmC-1xrJ;
+	Fri, 05 Dec 2025 16:30:10 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vR3Un-00000007b68-24Qs
+	id 1vRYh5-00000009hl9-1VqL
 	for ath11k@lists.infradead.org;
-	Thu, 04 Dec 2025 07:11:22 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B469Iqe825019
-	for <ath11k@lists.infradead.org>; Thu, 4 Dec 2025 07:11:20 GMT
+	Fri, 05 Dec 2025 16:30:08 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5FBQMf1028360
+	for <ath11k@lists.infradead.org>; Fri, 5 Dec 2025 16:30:05 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=X5dN5yZ9ItC
-	8K4kgYMQf5DsqZ5QTAm8KkS0z5PvBi2w=; b=fKFLdc71YwSnEPot8G73icRdbIC
-	upzhNi0Ezvuc6NmDSoQLFY7kpPswZ9vyJ3oIwAC66yC40336Vle/xRWwKn5buHt7
-	SrErJZUDsdIYxbcOWrfCqkbV0q2XkZ89KJHH/Bg6PQIoA76BbNSWbO9RjvRl7qqf
-	8WKSS6S4PE/Fy0YT7ZjVMmo76K2ZUy1R/rgJUuj8o7Mu/P8F/wI3xilCM4ZVB4kJ
-	jJJiP/EwFg29wqlacYMjlDwXmmZaCqvd4SFmhNo8BkRaywD9gsLz4OhuXsAK0XB8
-	vaOwUESaJwIskln8Koqfehy7DgUA6HTfZp/0OphRxxavvbVFlaCmiMI9dhQ==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4atm12b4c1-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=uY/zz/FmTheKinzMsruxPA
+	eAFgeFSh6MXrbrP2Vw8Ck=; b=AmewZFZuTpnfOwXbHKGEFposUfJyFi+9L/sM1r
+	dSP3z8QBY0s66WGN4QyK0LiJWmXsSTQKVNyoVvL4s1MnLL1Rhj7gRAT4lNs2nURK
+	dXHXbwhxGEmkvjv8VHTbYeo1HDmUf46r0p770SoRRFiX5mGiFt+xObRaXGrpEgo/
+	CnIpWfQmW+Sgv/N5Ch4PPntC5ALF1km241FZ0pnT1Mk+k1E3nLSOj1W54UjHiUhv
+	6wxXjP38eeyJj3JO2sFOcSCJadq8QQECu5O9iFXzot9W7jffAsdqNyk0UiBmYzZh
+	gqmSJhtxjEUoF3w2O17fdLobl4KIkCGudqsdbL45Ahy+TH2Q==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4auj7n2u7r-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 04 Dec 2025 07:11:20 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b8973c4608so1662291b3a.3
-        for <ath11k@lists.infradead.org>; Wed, 03 Dec 2025 23:11:20 -0800 (PST)
+	for <ath11k@lists.infradead.org>; Fri, 05 Dec 2025 16:30:05 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-298535ef0ccso29919125ad.3
+        for <ath11k@lists.infradead.org>; Fri, 05 Dec 2025 08:30:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764832279; x=1765437079; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1764952204; x=1765557004; darn=lists.infradead.org;
+        h=content-transfer-encoding:from:content-language:subject:cc:to
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=X5dN5yZ9ItC8K4kgYMQf5DsqZ5QTAm8KkS0z5PvBi2w=;
-        b=bfYgmjTWZQnmJn9LsRkNC/EyncCW51i4wvBnrPtl4q1CgqePU5JF5gPUUJqKTmkeX3
-         MHw22NPKO0+iklmJuDq79p4YNZKjBOUIrcdzbZCEZtwkDxy4aUCAH8sGCytFFC2BdtRt
-         hOn4qYZoozNt7++rvtHz5/jSXe7q685CG275tdJZHdrXrftHbk/b3MmzjHUmDXYcD0oC
-         cGyLW3b/zjATjOSi0eei339DIRp+7jXrvJcYEigVVocXvsN84J+u6IgH8yRmgOsItHIy
-         ha5LKtzwK+cNwg6bvIZD450hQHtq142QSn1JjQtqHx0pTJmOHKer3G0oelqYapFS2zd+
-         tEhw==
+        bh=uY/zz/FmTheKinzMsruxPAeAFgeFSh6MXrbrP2Vw8Ck=;
+        b=hm/t62rjCIJeiS1Jrs9ZTw94O47PTV5IWf7zCyEb/aqWiUSrKWp5k6jaiFHMw1EzHc
+         T1H56vM/MI5BaDeZP1gT80jIM+aFQyLoIdCv2o8Xj60PTUDaHEaFuJW0Lzj79NQPhHhD
+         ixETmv2J9N7O4fODgecDKr/Ju3j8HAfFR8Vzs5pT4o1KCiZbqAcEfawS1STZQ0jX1QgO
+         xbHfJYYSccNcJRuXJ7+5fTVgDrQruez4t5mOxKwErLE2i4XYDzEH5YVytPn84CMaCkIr
+         NV11ySc1tH557qwVLYEfE7nRlkh5Gh27zax6k6kbu/3EuDbKHckjni8XsYeLRw8JliVF
+         jcYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764832279; x=1765437079;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=X5dN5yZ9ItC8K4kgYMQf5DsqZ5QTAm8KkS0z5PvBi2w=;
-        b=nRfZY2uuGZUjzgHMrJKw043OjnWfv4u8falDFxB6kwv206yAi0ptOpfB7UM7dj9ofD
-         atIjaZM1vZAuX/3/YpwxGDdmv3l6Pqd7tgVMoceoHUVv4LtB4n0KB0E33z/7YxYGnhZn
-         Opwjdzn0fLf/rnjX6XKB8ouKpRZ6++3msQ/foNbg858/RGZlBPdU3aJYO/USZUrs+Jod
-         ENL4sb3nHxzKMcaz3PooA9XP+Q9Iqm7RWnmzLgl5x16JStiV7uYU3wxMnKNOgzJO/nDw
-         n38FDKdEVecKgqWdUG0KZJU3klHRUDGovJUaL3sNj+6fWu8lxeaT13TA/+yHsamdXoqn
-         hFCw==
-X-Gm-Message-State: AOJu0Yz9oNE3abx23gXBxK7BfH8dRDmdZgyUWM3bWAMQZbPYTDyCebp9
-	V4i2ZnenEl6VXVu8oDEdytEI/aswq/MQCvH7T47QlGMznj3XkDDjdr3aaAW2x+63LnsBQYto4hC
-	J1Vnf8Cj230et8rWuk7YwC9Wb0a6/h+QMdVZQMePgQ8ZS0399COwMBPTJvS8s/Jwx6nwbT+qNvm
-	A=
-X-Gm-Gg: ASbGnctHNt4l1/Ym3k2j2Ws3mRSyMC50V8pyKzuhqpgnJkUunKs/YrziVUerWEghzkv
-	SaoMERRjezZKiMZZc0ReupZZrEs6/WHNi7q2Fbi6+sWvQz3UZlwP07iFiQR7W7gCoBENpv5UptZ
-	9bZ6TfGd438O3a8X/yWB08QtzW8uUjMp4KkVT/2yTXUpFB+VB0YT/MgvmCWmITajFzC5IQWbMQj
-	cTnCY4xwhE/WZ1rD3A+K6PbU3arHPlV+AMxS3y5acNjKvhg9j6Ozk0YkiPsE1Yi/NKGT5C+U6P7
-	VZYhnTdNuaEwagy106X69OOvq2bggMHeVn5KhlgDDMzntp8+6bB26lSS2GfEpvPOUJ8qs6tH5K7
-	14EBQkKpD5YhOLkGQcWSyAo6peweaMC2lSJ3h2AP1shTD7PTep+HWhBGgAJ5MqF3To4PC
-X-Received: by 2002:a05:6a21:9983:b0:34d:d030:6739 with SMTP id adf61e73a8af0-3640384fb33mr2392096637.31.1764832279061;
-        Wed, 03 Dec 2025 23:11:19 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGRimZYOSogE6sc3Z8nzoRkgTMJ+lV0kNJ7Xyql9Svm92IYE3Ca3TS6TItapIHe2OVC9kCfmA==
-X-Received: by 2002:a05:6a21:9983:b0:34d:d030:6739 with SMTP id adf61e73a8af0-3640384fb33mr2392072637.31.1764832278645;
-        Wed, 03 Dec 2025 23:11:18 -0800 (PST)
-Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7e29f2ed331sm1117470b3a.4.2025.12.03.23.11.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Dec 2025 23:11:18 -0800 (PST)
-From: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-To: jjohnson@kernel.org, johannes@sipsolutions.net, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-Subject: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name' property
-Date: Thu,  4 Dec 2025 15:11:00 +0800
-Message-Id: <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
-References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1764952204; x=1765557004;
+        h=content-transfer-encoding:from:content-language:subject:cc:to
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uY/zz/FmTheKinzMsruxPAeAFgeFSh6MXrbrP2Vw8Ck=;
+        b=RxLf00miY6RXACnEyWxZiRuLauwsmk8rS9jTCBhgu2JSwcsPWCkUxBjzJtJADGo5iN
+         egED98ehQiDnnt9G2wKuRQRahmlO4ukk2A1VFCjKypHrYR/uNipHQUSsesCXxmx4pCl0
+         oPuxxioshGJpJvm3h3ewgoPvgo+7Zp7KvxTFWPLxLXHuB+1SId1onKAr10zHhxknHMqJ
+         AEMFiaRf1Nj8n9wy2xCI6SAXGHViOi8oBQIxvSt4+i1Ojr3WAmGB1F8InGJKtmSQ6wmv
+         pp3+D1jrQVMDc0OObZ/EKCAmDEaG3M0DgZw3mRIBcywqO0S2KGchPp3a8mBfs6gsTXku
+         kU5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVLYyIM22yRb1O+UtdNc9qVaKPN/1JhXgbxqOVXt7/jFEWbK8Xm1ap+tJZfG+/WrsDVbrGWd6M=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxEMmWH3rT7PCK2eDUqqUlcG+vFXd3fdYrhcvStP1tyoRdVbXw3
+	dGvANGMRrMi4LHK87hbtmC1WxeJxQxjMyEYW7PXj+j8W0WGCCc3hZFArFsal2HAlsRUjg60FKgB
+	Q+V+/2ZJAz/wcXniCoWsYt9qb1eKckEBWZnVCAhL7WbCsXBPKgn4DP+Z8QjwrrVdqvjEEuy/J
+X-Gm-Gg: ASbGnctNyOaxJSPcM6nw2GjBzoH78vJM/7Gq+izygpjjDqKPZQljVWZUiUeSnpku7Pa
+	u75rE3cDoMAOOmsvij1pbofmIw0hV3R9gmI+JMKemFJK/rf2rmljPOsaiI0RFu4DVPANT7+c8+R
+	5Yh19uetJc2jwa4Ea0QdmGxEgmSZVUSnH47/G0zjOUJo/SNU0APpz3TAdEpk7YfWUjik5csmAZG
+	zbo+xgcZPFODNZzaH3qHqw0hHQCqM+G8ubtapPW+XwfrAwCY4e1pXBP17U/zsr6NdOnrgKbSrqR
+	XugiQOQtRDYJZ+sv/W5I0RpVyORTQdIeXg0eHxWWUcHH95zIGOv1h/fCafv8puwV0KoksyabSc/
+	/omaEQvQJQM5RC81LDwZ2iGyU61uGnwatTiFz+Z1Ah02h0w==
+X-Received: by 2002:a17:903:1b28:b0:294:ccc6:cd30 with SMTP id d9443c01a7336-29d9fb6eb47mr88186845ad.17.1764952204101;
+        Fri, 05 Dec 2025 08:30:04 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFoqCm17nT0SnoxUP5EoDhHux+tD0gpH6iUAYDqqKgBNd2YHlT+I8Pl/pJ4QXlhgtjs1gu46A==
+X-Received: by 2002:a17:903:1b28:b0:294:ccc6:cd30 with SMTP id d9443c01a7336-29d9fb6eb47mr88186545ad.17.1764952203564;
+        Fri, 05 Dec 2025 08:30:03 -0800 (PST)
+Received: from [10.81.24.74] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29dae33c2e2sm53266725ad.0.2025.12.05.08.30.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Dec 2025 08:30:03 -0800 (PST)
+Message-ID: <f4e1e95f-672d-418c-9f3a-e47d01a1fe91@oss.qualcomm.com>
+Date: Fri, 5 Dec 2025 08:30:02 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA0MDA1NyBTYWx0ZWRfX6Gd1teS9NhWp
- YzlLVb561IyL9AThkOQhZmpTUJbe41QU0fslcdtD1MlaXwN96DLO4aRHlN3cnqhDg2C6jJiRGxU
- c4+MMumoN3KEu7cTzhdZgs9DCNDhga6n0j3e7e6MRTPVOeuUkvjMHpZDJH4zoKBPubo3h1DRD0j
- oo3agzvfpjL69TXUFS14sMUBEAxH1EKeLz5uTxSB3Fvj3zBFJMqA51UhXhE8uzVUccyzCCaVW+9
- RrzJXmCa9ElJ2NALKf66gg8UF7ieU6y/55WJnlzeBjaClgqiDL5RsImp5Mk9JX4BAIDDZX45dEN
- pV67V9DOj5hVd4ONsgqEcfX+lCVbTNFOwLCyQz5FlbFmsTDzGuBtp/tKnMr1hihAWkfTv3Jfoio
- TOXAQp7PojIePKkuVwTN+WI+BMULuA==
-X-Authority-Analysis: v=2.4 cv=JY6xbEKV c=1 sm=1 tr=0 ts=69313418 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=-5GDireV7CNCQn9VzVAA:9 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-GUID: UFcpb7fdT0Lb1SyVNefIY5clsg-JMyxn
-X-Proofpoint-ORIG-GUID: UFcpb7fdT0Lb1SyVNefIY5clsg-JMyxn
+User-Agent: Mozilla Thunderbird
+To: linux-firmware@kernel.org
+Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+        ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+        jjohnson@kernel.org
+Subject: [PULL linux-firmware] ath10k, ath11k and ath12k firmware ath-20251205
+Content-Language: en-US
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=DOSCIiNb c=1 sm=1 tr=0 ts=6933088d cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=81yDGmwx11_j3xA_CzoA:9
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-ORIG-GUID: tZO8EurUdAobE_FSIQ9kChGXdSYDZYPV
+X-Proofpoint-GUID: tZO8EurUdAobE_FSIQ9kChGXdSYDZYPV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDEyMCBTYWx0ZWRfX2tjf8DPhlWj5
+ SmBGuOcDOHV6znz3FmFhMomVXVsP0Bt6aGQQS2eyr1jrL03vOLqcVnaFCry7UGgAUUc1ksAPibv
+ grI5Mo04feGN5jA/FxP5ItoARN6ko90UxYlz/P+9m9Rt+xKLBT63H3hbzeaM/msw4A+MkVKjX5h
+ M6DN3wPbISEUVTpIfnhVtUTRH/PDGd9R1PAKlFZLJW4bATgsNfSLIvTs64yCBdJUJK1WWacLNpb
+ H1V6qodB/xtf8DOFPRIUweREUXg/a/aSPw3hhdEBKZrmISQfuE4+SSKbkgPq5WOWV2gVz+xdOjr
+ pT0sOt50Ri7tCslQMn6BSMwNGTrr2lynVVVw7jnaWXD4mIxOLERMBM2M7mqRnMe5Ysf/dVj+v6F
+ kwlvtj2RUOsSsiRZz7WiEUmmF+we8g==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-04_02,2025-12-03_02,2025-10-01_01
+ definitions=2025-12-05_06,2025-12-04_04,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 adultscore=0 impostorscore=0 suspectscore=0 priorityscore=1501
- malwarescore=0 bulkscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512040057
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
+ suspectscore=0 spamscore=0 phishscore=0 impostorscore=0 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512050120
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251203_231121_648026_94D961D5 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20251205_083007_533411_06F80FF6 
+X-CRM114-Status: UNSURE (   9.07  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,30 +142,43 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The firmware-name property was introduced to allow end-users and
-integrators to select usecase specific firmware for the WCN6855.
-However, specifying firmware for an M.2 WLAN module in the Device
-Tree is not appropriate. Instead, this functionality will be handled
-within the ath11k driver.
+Hi,
+Here's a new pull request for ath10k, ath11k and ath12k.
 
-Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
----
- .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
- 1 file changed, 1 insertion(+)
+Only ath10k board files are included this cycle:
+QCA4019 hw1.0: Add Netgear LBR20 specific BDFs
+QCA4019 hw1.0: Add Meraki MR30H specific BDFs
+QCA4019 hw1.0: Add Meraki "underdog" specific BDFs
+QCA9888 hw2.0: Add Netgear LBR20 specific BDFs
+WCN3990 hw1.0: Add board file for the Arduino Imola (UNO-Q)
+WCN3990 hw1.0: Add Xiaomi Redmi K20 Pro/ Xiaomi Mi 9T Pro specific BDFs
+WCN3990 hw1.0: Add board file for Huawei MateBook E 2019
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-index e34d42a30192..0162e365798b 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-@@ -37,6 +37,7 @@ properties:
- 
-   firmware-name:
-     maxItems: 1
-+    deprecated: true
-     description:
-       If present, a board or platform specific string used to lookup
-       usecase-specific firmware files for the device.
--- 
-2.34.1
+Please let me know if there are any problems.
 
+Thanks,
+/jeff
+
+The following changes since commit a0f0e52138e5f77fb0f358ff952447623ae0a7c4:
+
+  Merge branch 'amd-staging' into 'main' (2025-12-03 21:05:40 +0000)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git ath-20251205
+
+for you to fetch changes up to 05c97f71a5336854054db1dd4acdaf68c5b7c144:
+
+  ath10k: WCN3990 hw1.0: update board-2.bin (2025-12-05 08:20:14 -0800)
+
+----------------------------------------------------------------
+Jeff Johnson (3):
+      ath10k: QCA4019 hw1.0: update board-2.bin
+      ath10k: QCA9888 hw2.0: update board-2.bin
+      ath10k: WCN3990 hw1.0: update board-2.bin
+
+ ath10k/QCA4019/hw1.0/board-2.bin | Bin 1822336 -> 1895232 bytes
+ ath10k/QCA9888/hw2.0/board-2.bin | Bin 218596 -> 230744 bytes
+ ath10k/WCN3990/hw1.0/board-2.bin | Bin 670116 -> 742192 bytes
+ 3 files changed, 0 insertions(+), 0 deletions(-)
 
