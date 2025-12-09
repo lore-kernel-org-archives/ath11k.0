@@ -4,137 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CAD6D3B7EA
-	for <ath11k@archiver.kernel.org>; Tue,  9 Dec 2025 05:02:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64FCED3B98D
+	for <ath11k@archiver.kernel.org>; Tue,  9 Dec 2025 18:25:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Jc4jv2RNuyXGveHXHTVYyuwtb9MnQoiXlS8KJa9ej4A=; b=HNbUD/UeG7Jfh2XLZOUyR5SruQ
-	Bp6k4icatya1zm8et0bfIIHUlwWN/AoKcQiay5Ck7NBJ0ch8KzUiCgSvbNh9qqh+WtoCTcmSUlD8G
-	zEORF3lZ6lF2he8XaE53kyrnpIDaUH1yPtnPBhWTIRrS6QKc8zJTcf62phwtm53IfSKYN7+KOx36O
-	OJMf/nnH09oWz5rTLOGAI1jY3zZ76cAqnbECp6XF7gzQFvLYKfKI84G3EXSB6XrEwQMGVL1NFrBh5
-	27pfhG8PRh3KTQl/VRkmTCQ4RRjG87C/IR9DTlQzwHZXFBl7M7MVrn1xRN1PQPgZ6/kd85z3UBbFh
-	UvRrrBHw==;
+	Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=lkc4Nd76roOagE/sydZDRrKk4ou7BRA6VRWLgxtS9gw=; b=Rb3wpSZaez12sA9fAe3BXpVa6t
+	Pi40kzlmVUcwAxOc45s9KkgJZRobuPrAKRjhBlc/yiaFK7TeOxUjedfbqD3ueYlgu77BNZASo3JVs
+	/RRsaJHa0J1CsL+BVBdudGwyoR6hjt4blZoO/4VSo4lCiDYyID5+VacDn/gT8dIn/bJofnkO1Mcm5
+	RYZGyIJWyYUrVM4eyMr4xdOwU2QbXhMzARWyTDzTE9B01L6Q0yTPXWVFZbnAWBnWeM1bvARq2mV0d
+	S+LmJj9/TZzNTozFXbhwfO2oBKljjXT5WdHP/OSNBkG7ejlgk863cT64wIHVj4Ml8I9D49f4z0uRl
+	n1/uqFHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vSprc-0000000DpDb-2kE6;
-	Tue, 09 Dec 2025 05:02:16 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1vT2Op-0000000EeYq-06np;
+	Tue, 09 Dec 2025 18:25:23 +0000
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vSpra-0000000DpDB-10xU
+	id 1vT2Ok-0000000EeXQ-0mvM
 	for ath11k@lists.infradead.org;
-	Tue, 09 Dec 2025 05:02:15 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B8NXC8o1737377
-	for <ath11k@lists.infradead.org>; Tue, 9 Dec 2025 05:02:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Jc4jv2RNuyXGveHXHTVYyuwtb9MnQoiXlS8KJa9ej4A=; b=N5klPZ/1AvOgjugL
-	nkdxD1LwFil6nKqnTeMQK/1A8D/sf8Hhswkpynx+heqYl/67/jJyDSl7DKEWIcct
-	l2dPBB7fuLjHgQxC5p01wQY+Qv3laQMCtpkH/MhgZUtXIF2Xla+QS1BzleyhrcqA
-	JN8MsaGlrjV9vYDa8WOntoDR3Poa7cTJYCuYylyhjs9YpVom4RKp460YIAZ2T7zv
-	OehClvfmc5LF1BjsiXF1uscI6vmSVsHeLLfrl1TO581cXreaNCGflsbbutIuP2Ix
-	NT9oQSXiTRB59ZVaeY0eyuzDASnYEQng0AJRzAaYYuCNyzeFZH4ZF+jy+0PscQ4U
-	tkwVmw==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4awvke2yyj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 09 Dec 2025 05:02:12 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b89c1ce9cfso5247239b3a.2
-        for <ath11k@lists.infradead.org>; Mon, 08 Dec 2025 21:02:12 -0800 (PST)
+	Tue, 09 Dec 2025 18:25:21 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-64175dfc338so10220940a12.0
+        for <ath11k@lists.infradead.org>; Tue, 09 Dec 2025 10:25:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765256532; x=1765861332; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Jc4jv2RNuyXGveHXHTVYyuwtb9MnQoiXlS8KJa9ej4A=;
-        b=EzWdbVomAY6aOv1+8Kc7Xw0CTrj6/drPBrcuIuzHiJ55RUzSPaDrIKgxZibcGUYeQu
-         ngJc6VEclgfiVKiqF1MnmSv+DfinE0x1EGP3Lq+NHpro8Z7qUTOPuOAIio88KpQQN20z
-         JOS29dKteHa9/yf4nCmr1eew/TF77aL6GXimOzZpRvIRXULuQd3P4+CjOPYKVstnavc/
-         wlYJVAcBE4vPvhaEcazNLahxosUkhd7qzrYoADwMmMppa4JtpBA+XYMxAp0UuI1f0U6r
-         eFMsFtZthLRg0PRz1PSYGKJl0bsnEgr7P6PXU/I0X8xTQ5l0nlp3xv05naeWj841i0dH
-         RxqA==
+        d=gmail.com; s=20230601; t=1765304714; x=1765909514; darn=lists.infradead.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lkc4Nd76roOagE/sydZDRrKk4ou7BRA6VRWLgxtS9gw=;
+        b=QV1o2LxQoi4YRZNxYkn/OveT+BhTxKtBZZl5P6LURJMd7aAy6DdVTMWXxI+yv0vzYm
+         RsMbrjgRAyntPkfUWPnUF+KsFiew3u9gWtQjJ4bloW5nMKTos+DtvcLudBKOJDISeEDX
+         DP6qh7/OlAnOLT8gT2l4gF+uQMVLwfIyyH6rDtX+GvnQPdXZVRtMykKqf/Ye0sMX7Og0
+         fEkhSTnvUOxkl1ZF9POgjzzVbuS+3y64kpiFpANViFjv4x3Igh+zcV3POrfKANr6MnyL
+         QNdjPSJv2PUETMqVjboMzj+RSJOxv+FlEtMu2vmfSE5quGzwi/07Ay7Jr64IKQFm0FRc
+         li0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765256532; x=1765861332;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Jc4jv2RNuyXGveHXHTVYyuwtb9MnQoiXlS8KJa9ej4A=;
-        b=VG7SuhA+Oltdb8+gLJnPYB3sKiIZqTtFyhipsyyBE+qM89BfEtHLieLO0JEsAu9MTm
-         PHNuvVo69peWJN4lknnQ/EzsglvGebsGtx1XQx2NEXLshvcJvphWtMgyZ+qEpNtubAtv
-         a648hsZI1VbEcJAMPLSh1kWZlpIRz/+h8biQ9LBYK84jD0TFPYNG/mIVC67CO+TMrnex
-         wExt2sevqE1rWV4kmy0y5Icd+if0U7rqu7USvH9OKUiMSsWRboSbL5NNMKXsShDqGMt3
-         BFHhSL+t5ZiW7KV7zk5FPSvHBeaXuEZp5kBTP4ux4NQG6pRpUR/KryQTIofaLDOQHxAZ
-         GsNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWktsDWcoFeLbDjHVKliilgw9FB1BEav8miyLLaUt5ZhV82Mmi+DKk50/daNV7ZyroO+LYzYcc=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyi8qf8AW/R3qjD7AyoZqkahuVYjxunMqtKNoE8hey7XlLOXoMX
-	PpSsc477jnzLw6gFZzzKLBAwhA5M4Qjnk8HMsGHeii6+9TRufPRbDwODV8h0Oh9+dYW2r4goHc7
-	Xxn0qyRNAzjb/q0FRThkFZVwn8q8T82tbNIarJFWhaAu7+2MvcODgzQdwphLTUpv3
-X-Gm-Gg: ASbGncu+0sulkVlEJVQWwL8rjpWZGGNLxBq6srGaEkzzpij2OGU8cP5zoRi5xCgoK6a
-	EuSp6kFZ5jehsHW1rIJYFvol9+G5SYESDCy/5GXBHpeTw5TOvunT02TJ7N3sTJPOsmrR8ct2lkg
-	bNld5Ah4wRadBXRSxxkfFYDPluHQEYEOJv83lkCPvGGYgwmwny58cqN7dAbbav0CWlECMEXeq1a
-	Cv+lIoFi15wQGBpKYyzyD0MHFBchyhUP3b9Jdwy7avUtWCLpTLFdU5/Xm7429Vta57Hn1qxm1xB
-	S5/Chb+SlVLIBzg3966GRteHxZL2M0qaka9RrRQRhEhKLfySyFRMbz4mpzLmPvoBuAKpdAMwjTO
-	2TyfiQ/mP2xa/KvOzkQYE8p+W+ohf0Zn8HBPHGhKNz3E8TbtfGH3B6vs=
-X-Received: by 2002:a05:6a00:3981:b0:7e8:4587:e8ae with SMTP id d2e1a72fcca58-7e8c3912445mr8517335b3a.33.1765256531725;
-        Mon, 08 Dec 2025 21:02:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGYLdzTPb0B57/9aI4fS+XKXuKcTD/o71EuRLCeGYL7FTGUtSJh8ceVafXGdQFf2b8l3oLSuA==
-X-Received: by 2002:a05:6a00:3981:b0:7e8:4587:e8ae with SMTP id d2e1a72fcca58-7e8c3912445mr8517312b3a.33.1765256531194;
-        Mon, 08 Dec 2025 21:02:11 -0800 (PST)
-Received: from [10.152.204.0] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7e2aef9f649sm14743547b3a.55.2025.12.08.21.02.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Dec 2025 21:02:10 -0800 (PST)
-Message-ID: <4b793236-2008-e57f-3257-48a65dae5d8b@oss.qualcomm.com>
-Date: Tue, 9 Dec 2025 10:32:06 +0530
+        d=1e100.net; s=20230601; t=1765304714; x=1765909514;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lkc4Nd76roOagE/sydZDRrKk4ou7BRA6VRWLgxtS9gw=;
+        b=GcpNtI3N0pobmRr5wCHnYxqP1yIUN02SlLEoFzjb1jOGVZkMhXQFa1gBDKXmAytWM1
+         jgY8KIkMnzBxbALmmcFgYjZeyZl+3uu1dRx/4i8cfPIM9C0RzpF+q7zciEsDLkuLMPyL
+         OLuX0P2l7z5lDNYhUfNZmedkObQtfFYEfK/ebgey84acxSenIWXgu7tT1QdgLm2CPI7/
+         OqeJVIy8Zpq+ShLvuXgAHuhmDyhjxF1zZYZhGJoNBC/u7/hjt2ZIuIKe5TsmVinRQ46G
+         3vH1JXlUs15FmJMApoy6TMSB99Bfc4PevJWip3H3HHbwK1cXCTD3xu4RZdeKJmWkCiop
+         ISaQ==
+X-Gm-Message-State: AOJu0YxVJQZ/mSz2iAZXgjT/ixdOGJyuHbhMRLatPg16BqkuCbrb9RlN
+	Rrv2r7atBxuk+wRpAR2+/NLtPFxV3h4iluJ8JArP4RdxSpMOV1+OVFYfl4jk6D3wPplpKJ/wR7n
+	ihoIP2/ZlQTwg0bV4s7vPZBgQS3pwYkDZm//Z
+X-Gm-Gg: ASbGncuZuVZbzdTQqjntpZ0Ho4y90HBRBWvjyKKufnTMNVx+oMChyd0CWbUtfvKoUZd
+	bDcdHk4u/F1K4TcA0PWUx+J5qHKDZOXrpRf1A2nzVnynvqLdAwpwic+TCPMD+74hBgKb6GGiZJ8
+	BzIjM72puNt2jSuqxw/j4uSzEqRL5/qeD0DvIKTCN7M+MTn4j77VWCNx00WgRYxhwNEmPuRBkNx
+	9yqH/MmeRtmBbekKRZ8JHLxyHKeZm9ThlSn4JFMDjEJwBOwaTs14+ziyHW9hkbRDsL8wvbjWAMM
+	mmwKfbUaI7LUV94Mc3DVkJ85/gH/
+X-Google-Smtp-Source: AGHT+IE8cF2ROt4BH9y56/oqoQcJtiGa6j4xYX1COcGKP4iQ21POcvUVW+o/iPagJ0QZ10VvAO1L7m7uKIkC/PY2w+I=
+X-Received: by 2002:a05:6402:1465:b0:640:c8b8:d55 with SMTP id
+ 4fb4d7f45d1cf-64919c0dfb8mr10612218a12.3.1765304713612; Tue, 09 Dec 2025
+ 10:25:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] wifi: ath11k: fix qmi memory allocation logic for CALDB
- region
-Content-Language: en-US
-From: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>, jjohnson@kernel.org,
-        ath11k@lists.infradead.org, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org, Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-References: <20251206175829.2573256-1-mr.nuke.me@gmail.com>
- <01a05a49-ae5f-a3ec-7685-02a5f7cb9652@oss.qualcomm.com>
- <cbf3e828-77c9-8291-1328-7e876a8843d1@oss.qualcomm.com>
-In-Reply-To: <cbf3e828-77c9-8291-1328-7e876a8843d1@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: WffMdGrtJdtiZklwQMcGvSMOgFBP39VU
-X-Proofpoint-ORIG-GUID: WffMdGrtJdtiZklwQMcGvSMOgFBP39VU
-X-Authority-Analysis: v=2.4 cv=UvBu9uwB c=1 sm=1 tr=0 ts=6937ad54 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8
- a=EWcMrb2KQbkG0C4WZugA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA5MDAzNiBTYWx0ZWRfX2gK4gHiSIjyw
- hlL7rgKOh2lqFh2GPQuuvPnYeuzgH1eyQljf2U4ec7DC8p795iTFm/H9zGPGnDQ3eCntFybM+dc
- uC0W3Np/Anf8E7247YSEM8EbOeYF6r7JRBoyvWibik+zxM6pJ3TyiUAUWlZom+Bwj1SKqF6ceYr
- UG32VZE0rUMa1sUQ+uGxKbixzgkyo8NZPgH865SlBjJl48o3WHagVlO+cZWw87XdF5TUwHWisXK
- 5rbxTiecCYb0FSEnOTjV2LN2FYnHyJzXXzqtMQXZLf1JUYNzMZdPtu843xPGtPKEAfTIzUL3xj0
- iXVIbnS4VAiy5xAFLcUYTGR1+t/W/1/aHkpjCyHOFvSejqA4e+PJAm1nt58L7VhtUAJT54viqWI
- Ixth8hyYvD6x/6YiG7xuPUJ6rocGcg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-08_07,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 suspectscore=0
- adultscore=0 impostorscore=0 phishscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512090036
+From: Aliliche Larbi <alilichelarbi@gmail.com>
+Date: Tue, 9 Dec 2025 19:25:01 +0100
+X-Gm-Features: AQt7F2qZyCMFWTFgcbJPIwyUC8pDF0SQUCADWilEfddl0Lq4EkZ9izmEp2ZpoMY
+Message-ID: <CAPEqGQoo7Cw7qBZYtvTqGr30mi+s0OXL5KgUSnWh2sjEutKw-w@mail.gmail.com>
+Subject: =?UTF-8?Q?=5Bath11k=5D_Roaming_latency_with_Compex_WLE300HX_=28QCN90?=
+	=?UTF-8?Q?74=29_=E2=80=94_firmware=2Fdriver_issue=2FLatency?=
+To: ath11k@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251208_210214_412257_77FF7D43 
-X-CRM114-Status: GOOD (  18.17  )
+X-CRM114-CacheID: sfid-20251209_102518_242590_0CE78044 
+X-CRM114-Status: UNSURE (   4.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,86 +92,112 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hello,
+
+I am experiencing persistent roaming latency with a Compex WLE300HX
+(QCN9074-based) Wi-Fi 6 PCIe card using the ath11k driver.
+
+I have a roaming test platform with multiple APs and controllable
+attenuators.
+
+The roaming test is performed between two 11a access points:
+- AP1 on channel 36
+- AP2 on channel 149
+
+Using Wireshark monitors, I measured the time between:
+1) the last data packet on channel 36, and
+2) the first data packet on channel 149.
+
+I tested four devices:
+
+1. ACKSYS Railbox (WLE300HX), firmware QCN9074:
+   https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware.git
+
+2. 8devices Mango kit, CPU IPQ6018 + WLE300HX (QCN9074 firmware)
+
+3. ACKSYS Airwave, CPU IPQ6018 + QCA firmware:
+   https://github.com/andreybondar59/firmware_qca-wireless
+
+4. Moxa AWK-1161C, CPU IPQ6010, firmware unknown
+
+Roaming time (last data packet on ch36 =E2=86=92 first data packet on ch149=
+):
+- Moxa: ~104 ms
+- Railbox: ~180 ms
+- AirWave: ~104 ms
+- Mango: ~140 ms
+
+Wireshark measurement (last data packet ch36 =E2=86=92 authentication respo=
+nse ch149):
+- Moxa: ~44 ms
+- Railbox: ~101 ms
+- AirWave: ~51 ms
+- Mango: ~100 ms
+
+I traced the Railbox using ftrace and extracted several WMI commands and
+their response times, from the last data packet on channel 36 until
+authentication success on channel 149:
+
+subif_start_xmit -> wmi_install_key_cmdid: 19.9 ms
+wmi_install_key_cmdid -> wmi_install_key_cmdid_response: 1.2 ms
+wmi_install_key_cmdid_response -> wmi_perr_delete_cmdid: 0.26 ms
+wmi_perr_delete_cmdid -> wmi_perr_delete_cmdid_response: 5 ms
+wmi_perr_delete_cmdid_response -> ath11k_mac_vdev_stop(): 0.5 ms
+ath11k_mac_vdev_stop() -> wmi_vdev_stop_cmdid: 19.3 ms
+wmi_vdev_stop_cmdid -> wmi_vdev_stop_cmdid_response: 0.27 ms
+wmi_vdev_stop_cmdid_response -> ath11k_wmi_vdev_start(): 0.03 ms
+ath11k_wmi_vdev_start() -> wmi_vdev_start_cmdid: 6.3 ms
+wmi_vdev_start_cmdid -> wmi_vdev_start_cmdid_response: 38.7 ms
+wmi_vdev_start_cmdid_response -> ieee80211_mgd_auth: 18.7 ms
+ieee80211_mgd_auth -> wmi_send_auth_req_cmdid: 5 ms
+wmi_send_auth_req_cmdid -> wmi_send_auth_req_cmdid_completed: 2.7 ms
+wmi_send_auth_req_cmdid_completed -> wmi_rx_auth_response: 1.39 ms
+wmi_rx_auth_response -> ieee80211_mark_sta_authenticated(): 3.57 ms
+
+Total: ~123 ms between the last packet on ch36 and authentication
+success on ch149
+
+Note: These timings are specific to the Railbox (QCN9074).
+The Airwave (IPQ6018 + QCA firmware) behaves differently; for instance,
+the vdev start command responds in ~10 ms on the Airwave firmware.
+
+Given this, it seems the QCN9074 firmware responds significantly slower.
+
+What are the differences between the WLE300HX QCN9074 firmware and the
+QCA firmware used on the Airwave device? Is there anything that can be
+tuned or configured to reduce roaming latency?
 
 
-On 12/8/2025 3:55 PM, Vasanthakumar Thiagarajan wrote:
-> 
-> 
-> On 12/8/2025 3:38 PM, Vasanthakumar Thiagarajan wrote:
->>
->>
->> On 12/6/2025 11:28 PM, Alexandru Gagniuc wrote:
->>> Memory region assignment in ath11k_qmi_assign_target_mem_chunk()
->>> assumes that:
->>>    1. firmware will make a HOST_DDR_REGION_TYPE request, and
->>>    2. this request is processed before CALDB_MEM_REGION_TYPE
->>>
->>> In this case CALDB_MEM_REGION_TYPE, can safely be assigned immediately
->>> after the host region.
->>>
->>> However, if the HOST_DDR_REGION_TYPE request is not made, or the
->>
->> AFAICT, this is highly unlikely as HOST_DDR_REGION_TYPE will always be before
->> CALDB_MEM_REGION_TYPE. >
->>> reserved-memory node is not present, then res.start and res.end are 0,
->>> and host_ddr_sz remains uninitialized. The physical address should
->>> fall back to ATH11K_QMI_CALDB_ADDRESS. That doesn't happen:
->>>
->>> resource_size(&res) returns 1 for an empty resource, and thus the if
->>> clause never takes the fallback path. ab->qmi.target_mem[idx].paddr
->>> is assigned the uninitialized value of host_ddr_sz + 0 (res.start).
->>>
->>> Use "if (res.end > res.start)" for the predicate, which correctly
->>> falls back to ATH11K_QMI_CALDB_ADDRESS.
->>>
->>> Fixes: 900730dc4705 ("wifi: ath: Use of_reserved_mem_region_to_resource() for 
->>> "memory-region"")
->>>
->>> Cc: stable@vger.kernel.org # v6.18
->>> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
->>> ---
->>>   drivers/net/wireless/ath/ath11k/qmi.c | 4 ++--
->>>   1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
->>> index aea56c38bf8f3..6cc26d1c1e2a4 100644
->>> --- a/drivers/net/wireless/ath/ath11k/qmi.c
->>> +++ b/drivers/net/wireless/ath/ath11k/qmi.c
->>> @@ -2054,7 +2054,7 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base 
->>> *ab)
->>>                   return ret;
->>>               }
->>> -            if (res.end - res.start + 1 < ab->qmi.target_mem[i].size) {
->>> +            if (resource_size(&res) < ab->qmi.target_mem[i].size) {
->>>                   ath11k_dbg(ab, ATH11K_DBG_QMI,
->>>                          "fail to assign memory of sz\n");
->>>                   return -EINVAL;
->>> @@ -2086,7 +2086,7 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base 
->>> *ab)
->>>               }
->>>               if (ath11k_core_coldboot_cal_support(ab)) {
->>> -                if (resource_size(&res)) {
->>> +                if (res.end > res.start) {
->>>                       ab->qmi.target_mem[idx].paddr =
->>>                               res.start + host_ddr_sz;
->>>                       ab->qmi.target_mem[idx].iaddr =
->>
->> The rest looks good.
->>
->> Reviewed-by: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
->>
-> 
-> Well, since CALDB_MEM_REGION_TYPE will always come only after HOST_DDR_REGION_TYPE we'll 
-> not be running into this issue in real deployment with ath11k firmware binaries available 
-> in public.
-> 
+Thank you,
+Larbi
+------------------------------------------------------wireshark
+measures in ms--------------------------------------------------
+Event                         | MOXA         | RailboxV2 + WLE3000HX
+  |AirWave (New FW)     | Mango + WLE3000HX
+--------------------------+-------------------+----------------------------=
+----------+-----------------------------+-------------------
+LAST DATA PACKET    | T0                | T0
+                | T0                       | T0
 
-Nevertheless, I agree this is a critical issue to be fixed. There is another patch[1]
-fixing the same issue a bit differently.
+Disassociate                  | T0+{16}       | XX
+                      | Deauth XX          | XX
+Auth request                  | T0+{42}       | T0+{94;97}
+                  | T0+{48}               | T0+{96}
+Auth response               | T0+{44}       | T0+{98;101}
+               | T0+{51}               | T0+{99}
+Assoc request                | T0+{46}      | T0+{113;116}
+              | T0+{57}               | T0+{104}
+Assoc response             | T0+{51}      | T0+{115;118}
+            | T0+{58}               | T0+{106}
+EAPOL 1/4                    | T0+{61}       | T0+{123;126}
+               | T0+{67}               | T0+{113}
+EAPOL 2/4                    | T0+{64}      | T0+{142;144}
+               | T0+{73}               | T0+{124}
+EAPOL 3/4                    | T0+{67}      | T0+{145;147}
+               | T0+{76}               | T0+{125}
+EAPOL 4/4                    | T0+{68}      | T0+{148;151}
+               | T0+{78}               | T0+{129}
 
-
-Vasanth
-
-[1]: https://lore.kernel.org/linux-wireless/20251208200437.14199-1-ansuelsmth@gmail.com/
-
+LAST DATA PACKET    | T0+{104}    | T0+{177;197}
+     | T0+{104}             | T0+{140}
 
