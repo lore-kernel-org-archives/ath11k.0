@@ -4,133 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 223FCD2CE17
-	for <ath11k@archiver.kernel.org>; Wed, 10 Dec 2025 06:46:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FEBDD3C92C
+	for <ath11k@archiver.kernel.org>; Wed, 10 Dec 2025 16:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+iRPms9B7iFzeDhFGJSewFfbFC3pyljCFjAM3tAMS7k=; b=ka41xvQodPyUoOMQZw/gPmbcgO
-	+rupdny20cMpGqcEVC0Q9N9+ulfa0JxXPaWDWnIyWoCQpc9wEFbhdTh7iT2Oud+HJqOQhNjErMqg5
-	HGeLoMR1hzxWVDOumqSe6q9smzyat8OP4XG6Lciw9/tgKRuozcs8hu9YBBlsD+t71Cmqxpnrdnv5P
-	JVJKfyxYH1sN/SKXZz/gkVuGyIJZxmj63lwQHADBz72h4mfDHgD7fGCg2tyQLS07/iDr+YHOaikC5
-	PekFr6NfJ8Rzr1siZjAUy7g+DNa0wUCfvdGgkm5UHwmiRwmhq/Np2xLdCa8LZOz5PCaph9S0EYzRb
-	7l/YUXog==;
+	bh=NJZYQknDSHLvDKguXhtEKNArlWtBipldxLRZyU8kGAA=; b=kVtyg77sCyywy8Kqlp8keoRhgM
+	Dtlyf6FaW1Xtr/EA67+vhoczwMkLeRbMk//s+t4w6CU0K9D03DW9lS2UHAY3ulMc9q3vPkiNgntcF
+	fHbLZMYSJ+0wDMadRdfiTlTSyvUx770owfCT/uVq+rijev0Xp2rem+ERpKy5H8PpNMRu3oheGd//K
+	JW6KcRw0xt3Popx0WQmsjUrFs1+PZaohlZ7oROBtjLwVHQtLSUGcyud8F4f/BDM2NECkheEreeiFR
+	s6GpO3+HTBOR5d+RMZG8mww31l4FnxdbmbFy5WX4OK4Gk+mBe4TLGW92FJ40g3Lq2aMUs5EJlUR6Z
+	XAHtS7bQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vTDyC-0000000FBBf-1wst;
-	Wed, 10 Dec 2025 06:46:40 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1vTN3L-0000000Fe0Q-28Jr;
+	Wed, 10 Dec 2025 16:28:35 +0000
+Received: from mail-oo1-xc32.google.com ([2607:f8b0:4864:20::c32])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vTDy9-0000000FBBE-2oQS
+	id 1vTN3J-0000000Fdzo-1nP2
 	for ath11k@lists.infradead.org;
-	Wed, 10 Dec 2025 06:46:38 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BA6DoW92460844
-	for <ath11k@lists.infradead.org>; Wed, 10 Dec 2025 06:46:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+iRPms9B7iFzeDhFGJSewFfbFC3pyljCFjAM3tAMS7k=; b=j66zKzMbNlzNvZlb
-	oQpMD+EDgFVwMGbouhZyQn+w2HgnbjCtaPG1lJY6+x4rEbRLSFZJUCMMrq/QS7Rx
-	Eo+Xl2Gd4ylXW1GosPNvr2tQqE7aUkYE9Q+zuvs9bEFOWagX9nxEPiyC5Ngo2M6U
-	wa9MOid5WSyRBjomTfP0yEDpdZeeJQB+yDQSzORQU8npP56QsLKFMz0LtAi7g7hI
-	abQqpwpuVjg8znPQR4a21WcLyoycG3rBUz004keGCJyUyBVcBjvPrWsfQ8lgE90p
-	DuziKmcomO993QojIEf8iwuoTA4SkNH0JUEXvfhHBcESQ73MK7WD+XrcEsWP5Efv
-	7l3jKQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4axqu5aa2m-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 10 Dec 2025 06:46:36 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7c7957d978aso7314889b3a.1
-        for <ath11k@lists.infradead.org>; Tue, 09 Dec 2025 22:46:36 -0800 (PST)
+	Wed, 10 Dec 2025 16:28:34 +0000
+Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-65b1f030a08so1322694eaf.1
+        for <ath11k@lists.infradead.org>; Wed, 10 Dec 2025 08:28:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765349195; x=1765953995; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=gmail.com; s=20230601; t=1765384112; x=1765988912; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+iRPms9B7iFzeDhFGJSewFfbFC3pyljCFjAM3tAMS7k=;
-        b=jeuFNcV2Q972o3ARs2IsfzFSZgzpxd/aukjHomHdkIU5f6lwVV0XvZlCxyiyuW7khD
-         HJxsjvCRM6Q9vHlPeqsUdI22nNCgWBRaCm6KPJxjJ54XeqOLRSVszGpgyi60CzqyeJA9
-         l/rQ/T0WTdj69YiA7pqYtHieWVmBFj6DX5zEmFhI0KZvCXnUxAucpHH/7W/xi7lv8r2O
-         mH2q0cRnWn/vqYuLf2TUsnYJGv95RvVWZ6ea70Z9KzEaiuWh1lIvflZxbnSiiyz5+SHa
-         W3wxHzpYTY2SgoRKOQYJUBuyly+iH4Q+WCTqTT3gXrNEIEkMslRsyXxp/qovPSDrxxWD
-         jKFg==
+        bh=NJZYQknDSHLvDKguXhtEKNArlWtBipldxLRZyU8kGAA=;
+        b=lm9fRjTB+UHarQ9bQDJjf/h4wcVdLNIQQ8cFFTIyMlgSn18XF5JXdYl6Mr41r+FIqn
+         18myU15aNF7O6RKuZstKMF8DgS+7FG77SUbknGZQX6KF37trMzILVsj/CpVfY1yW0Bda
+         Sd7jsviVfTGEF9Y01uWvdDE89mKW2wU1R8yOsfCKmtbWSgOQn3p1cyn1ND8rULTKQwBz
+         bNF4Jgvrgr7tlCMqiIvafKcg+F6W9RcEBDneg8AjoDCPw4aMgaFccSAs41/E9nbSfm3N
+         GIgIUBVthgCYKnjDjWFoeTo45jGAR6LMhYlYSuJpQGoKS+NQYA/XFNkz03JZ3hLLu/1V
+         iftg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765349195; x=1765953995;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=1e100.net; s=20230601; t=1765384112; x=1765988912;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+iRPms9B7iFzeDhFGJSewFfbFC3pyljCFjAM3tAMS7k=;
-        b=Z/jUdPOjqWKC+qGHO24i25IV86l6P0LUWctl2GBbq1Lnw5i/bCbHt5+nza271bPW3O
-         zQKTJkONWHa4K4IWHkN4ZuZq06x2KbEPlbppP/IYkTmdxAfsLlkisUlQaXHzCc7FuI+u
-         7zgMd3aqaI2LHBeaKCf2PbjC6Bka4UNcFuYGjYSbf54H8Sr8y+6WHDJk5NGJgqT9012o
-         MieX7CBuhZ6UJ4MLBmgq+NCXbDDit8iKygqYIwcPiaq7uzaV7WT4UwHXwLY4nBl9EEjw
-         nKN3UJSjUIIUToP87y6uUEpHWBXiy6MSxdrbmEB0tlU7RKU1Ux63wDoYBTETi6aQ2sgp
-         b8mg==
-X-Forwarded-Encrypted: i=1; AJvYcCW+/a3acoaPb23Rsgu/Yx5TSza3SKCVa4azt5btUd18ihQPEjh50nm6jRyOkLKDbv3uYjOofAU=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwyfYqw/S9eiFjh/grQbryXMXVZqwPJzmTiOgPJS42rBpQCuOR7
-	LVBeLNFqPfjQiJVgR67QHHfA34sRvGU7aZ3s65L3RfBIW+/DbvhUGGCNBfCu2FWndxS2M++QTju
-	gVxW3I6+9Z4xe7WczgFvkSVzpgk1bI+RqRZihugPu3K1GcWt/pNc6jS2TknRFqCxDYUKtiW0D
-X-Gm-Gg: ASbGncs4vwX66WnNfhfDTLyea3e+ilMOAc/FnRb3rordIWqfbpd4lkJ/oILuZrIksiB
-	JfI60STEiyYCzQogAi2SEhSjqHvuJGaeXfCShi9WggzHIhJe5NYluD5aXVlgJCVDf1YfezwS/o9
-	Cht+NrRSWD49CbNuBEHj4ETPkiNJVgiDmy//Oq/6MmNTInZOmflEkQ8jHkPtjxzB5vEjfpvaNoe
-	vlA4uFs9xj1LkzWMPTLPNdssrFnjlP4sRh3Cx3facPaxP568E99IrOpGvbu4vNxWFkJNlisbRsQ
-	KQ1FprsuunPJ7pNAPi9w9SNb8uAy5UGwCdytea1XWGLrEx4JhmzKP1vklyNbSKWa/yUeJ+vyILt
-	bhM2FZhmtQNTav1sjLcPthQYVxrI/Xfx3FzGD7TP+QkRcdBro0dCeMlMz0GusDt3Y9XnxasCvgx
-	gDIeaInW4=
-X-Received: by 2002:a05:6a20:7290:b0:35d:be42:92de with SMTP id adf61e73a8af0-366e170cc7amr1362804637.21.1765349195237;
-        Tue, 09 Dec 2025 22:46:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE65f7VgpKX1toP+VOD+uRyYC2xSY370jW2fBx9NgXa+YET7tXhNnG6VxOvmHuqpf5eJGCdvA==
-X-Received: by 2002:a05:6a20:7290:b0:35d:be42:92de with SMTP id adf61e73a8af0-366e170cc7amr1362784637.21.1765349194821;
-        Tue, 09 Dec 2025 22:46:34 -0800 (PST)
-Received: from [10.133.33.160] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bfa0ad20207sm14737009a12.11.2025.12.09.22.46.33
+        bh=NJZYQknDSHLvDKguXhtEKNArlWtBipldxLRZyU8kGAA=;
+        b=V0VIzhF93nf6bNPc+baowHq6EyTf8ALOVsw1Oqmkf5Sf5lO3/iSf9ABRTtKaKJm3Vw
+         ccSz0e1Mc48w4XEIc0KoVeYAH7kjNFSLyW4l9hPyLS6iZfq/0WVdfBeCCazaVruUfaEG
+         z+dZ7QX0NRyL4f20yogEmWjL98NiHo4NLDYgD6O5zWe8aFa2cpi0A0om+KHP/Icc9sh/
+         lABiACbHjaQ8qGa5hv4A4ot+LcssnmPy2RTq9ys+OffV4ostfLK/hvO1rCTw5Dybn2rJ
+         KDSPYU9NBhD0eWGnQHvGP8ikHT7EcH614eXJTTug4eUTbo+tqMG3qGdYF1KgSH6Busm0
+         4F/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUm+LhnI9T9tNPwPDtNxjHmNXvi1Qqk3WWRiO8BYLl/c8ysNM2veoFios+um8d38oJwwNq4EFU=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwXl64/t6j7Nvz128lduGKJx0pwIrVrdqgxHiCuq13MeFWvtAOu
+	aFhzh4sXiCH4LT3tMP+wZ3qH1osxkdjPRbZNN9qkmKIYlZ/Fox7YB8iY
+X-Gm-Gg: ASbGncv49bvAuhkgoYE4uJzcjScSS4V8VhbOAFjtdJF/TiIYey6/BktdU3kHWGahEyV
+	JV1MsrrrX++jtkw8WFET1A8hkkdiZGV5O2y7k9dTV3ZE3HQAJvdKCRVJC2ac0pwJEpjA2bnIjAa
+	bQOno1MoLTTwnZKBhRWJu/jEJMI2ZHYz+bUgcLyY2HCxCvdCw0L216oF1yfPb2Gd/pVABCkIBwC
+	MIc74lwnYuLYEfq4uUJOYH5Ns16NilSjZF11ghAUG9rNwSmw2c2bndONnfH+DC13ncw+a40QI9M
+	HW+Cmghk8pCrcskpNNImkmojQuiot4SuOcyqryhsPegmciasrmsFZ5ZrDs0IlobMRIj6VRx90o1
+	+nO/k7HskxMu/NT5SLC+yUzIs7TZWFKoHQybYr/iPGApc+WRlCaSkQpASSesTEzFjUuqhJcaiyS
+	vwb434h8tRQYAtNqsJBOiUJe2HfcdjQQVOnoILSOvcxbZ5ljtyTBv3wO0dvMWL+vIw1F49CGFJW
+	Q0qciFv3u6nrw3ld9USHbWnrNTBHV0p0Q==
+X-Google-Smtp-Source: AGHT+IEOTURGJY/7tDFDiPk6IetB2YEaM3bd1RUuyhbKckdTVmeWFHurgRgim5ZWERL+/J6iWhH4nQ==
+X-Received: by 2002:a05:6820:f021:b0:659:9a49:9059 with SMTP id 006d021491bc7-65b2ac652bcmr2158121eaf.36.1765384112012;
+        Wed, 10 Dec 2025 08:28:32 -0800 (PST)
+Received: from [192.168.7.203] (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6597ec61d03sm9487131eaf.8.2025.12.10.08.28.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Dec 2025 22:46:34 -0800 (PST)
-Message-ID: <5a5b4961-904c-45e6-aca6-b58a122e2134@oss.qualcomm.com>
-Date: Wed, 10 Dec 2025 14:46:31 +0800
+        Wed, 10 Dec 2025 08:28:31 -0800 (PST)
+Message-ID: <16e02bce-18c3-42e4-a51d-60c4bdf8a763@gmail.com>
+Date: Wed, 10 Dec 2025 10:28:30 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] wifi: ath11k: move .max_tx_ring to struct
  ath11k_hw_hal_params
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>, ath11k@lists.infradead.org,
-        Jeff Johnson <jjohnson@kernel.org>
+To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+ ath11k@lists.infradead.org, Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20251210024036.3965135-1-mr.nuke.me@gmail.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+ <5a5b4961-904c-45e6-aca6-b58a122e2134@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20251210024036.3965135-1-mr.nuke.me@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: mr.nuke.me@gmail.com
+In-Reply-To: <5a5b4961-904c-45e6-aca6-b58a122e2134@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: JYKJInUF741FtRZmAGFdrpM49XEaFFmg
-X-Authority-Analysis: v=2.4 cv=Y7/1cxeN c=1 sm=1 tr=0 ts=6939174c cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=UC6oHK_YC1xWRw2yuZ8A:9 a=QEXdDO2ut3YA:10
- a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-ORIG-GUID: JYKJInUF741FtRZmAGFdrpM49XEaFFmg
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDA1NyBTYWx0ZWRfX7edvRfdvETvA
- kOp6Yhx3QkOV17ZUYGNWhIAAhDKVdlxjJ7Ui+MFY2HIOiaZrbqmtx/2nLb1sFMnDrmxax5cBlZq
- q+fxmz0gs+Re0Ryl7RweE3dtlK+PvARJvRVTWILCuY3mx7h7WdKT79p5rC2XOKHUswwVEnRWEc+
- sJcHMglUo91p9FkZF1latWpbIU5Ha/ZHxX9p6VMzuW0w0Nbi1DFwqWgtsYaRXeMpiBBx7vrnpUh
- YOsVZuQ0NjsIzOPkH2C2jOccECnwIT5EQP2J9h9sdlSFi8GzrurLmkQY7I4hcYcmllis1Qhregq
- loCdlAZSZmnxUyQC7qB9nxs1JKswky2nSBnI2bzeUKFjcO+Kj8lpcNc7UobisaYVWdfQhCrfLU2
- AUcLa1NHz5SczB1hjxgB25Vi2KRjcw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-09_05,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0
- phishscore=0 bulkscore=0 priorityscore=1501 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512100057
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251209_224637_835262_63E38E69 
-X-CRM114-Status: GOOD (  13.45  )
+X-CRM114-CacheID: sfid-20251210_082833_478173_C72BDB6E 
+X-CRM114-Status: GOOD (  15.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,31 +105,53 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 12/10/2025 10:40 AM, Alexandru Gagniuc wrote:
-> ".max_tx_ring" is an upper bounds to indexing ".tcl2wbm_rbm_map". It
-> is initialized in, core.c, a different file than the array init. This
-> spaghetti-like relation is fragile and not obvious. Accidentally
-> setting ".max_tx_ring" too high leads to a hard to track out-of-
-> bounds access and memory corruption.
+On 12/10/25 12:46 AM, Baochen Qiang wrote:
 > 
-> Clarify this dependency by moving ".max_tx_ring" adjacent to the array
-> ".tcl2wbm_rbm_map". Use ARRAY_SIZE() instead of #defines to initialize
-> the length field. Remove DP_TCL_NUM_RING_MAX_QCA6390, as it is no
-> longer required.
 > 
-> The intent is to make the code easier to understand rather than fix
-> an existing bug.
+> On 12/10/2025 10:40 AM, Alexandru Gagniuc wrote:
+>> ".max_tx_ring" is an upper bounds to indexing ".tcl2wbm_rbm_map". It
+>> is initialized in, core.c, a different file than the array init. This
+>> spaghetti-like relation is fragile and not obvious. Accidentally
+>> setting ".max_tx_ring" too high leads to a hard to track out-of-
+>> bounds access and memory corruption.
+>>
+>> Clarify this dependency by moving ".max_tx_ring" adjacent to the array
+>> ".tcl2wbm_rbm_map". Use ARRAY_SIZE() instead of #defines to initialize
+>> the length field. Remove DP_TCL_NUM_RING_MAX_QCA6390, as it is no
+>> longer required.
+>>
+>> The intent is to make the code easier to understand rather than fix
+>> an existing bug.
+>>
 > 
+> Even the code chane works, I am not sure whether we should do this. Because, logically
+> max_tx_ring represents hardware capability which is static. However the change actually
+> implies max_tx_ring varies on tcl2wbm_rbm_map definition.
 
-Even the code chane works, I am not sure whether we should do this. Because, logically
-max_tx_ring represents hardware capability which is static. However the change actually
-implies max_tx_ring varies on tcl2wbm_rbm_map definition.
+I see what you mean, although tcl2wbm_rbm_map is const. More details below.
 
-If we are going to add something to avoid the potential out-of-bound access or to improve
-code readability, how about something like
 
-	ASSERT(hw_params.max_tx_ring <= ARRAR_SIZE(tcl2wbm_rbm_map))
+> If we are going to add something to avoid the potential out-of-bound access or to improve
+> code readability, how about something like
+> 
+> 	ASSERT(hw_params.max_tx_ring <= ARRAR_SIZE(tcl2wbm_rbm_map))
+A static assert might be a good solution. I don't know how to do that.
+By the time we have hw_params.max_tx_ring and tcl2wbm_rbm_map, the
+latter is a pointer, so we can't use ARRAY_SIZE(). We could try to do
+it dynamically, but I feel that's spaghetti code:
+
+	if (tcl2wbm_rbm_map == &ath11k_hw_hal_params_ipq8074)
+		ASSERT(hw_params.max_tx_ring <= ARRAY_SIZE(ath11k_hw_hal_params_ipq8074));
+	else if (...)
+		...
+
+Alternatively, I can take the suggestion from your other email, and
+keep the "max_tx_ring", or "num_tx_rings" name. Because it is part of
+the hw_params struct (via .hal_params), it still describes the
+hardware. While the value is derived from a constant array, instead
+of being hardcoded, it remains an immutable quantity, consistent with
+a static hardware descriptor, would you agree?
+
+Alex
 
 
