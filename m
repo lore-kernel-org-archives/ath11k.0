@@ -4,135 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ED50D3E783
-	for <ath11k@archiver.kernel.org>; Thu, 11 Dec 2025 02:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7573CD3E787
+	for <ath11k@archiver.kernel.org>; Thu, 11 Dec 2025 03:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=n673qLBkgOUY1GHNMNe14VRslEKsiUEor3PWKBqvmbc=; b=QRs9h5BblsSLn04j8s5Wm0lkbz
-	OAtw/m9gPNPT1OZRluKzFHviQWWcpJ87XHg548995VK8C1EiQCEaRl2USqxMHE2Vlyjx9RtmORzGJ
-	E8GJldQUoeExNweXD6I1BVr2rhWC5QL/43QJrrIrr5zGpZY1rdZteHAc+NHyKSpbd1QCEKkWuWPTy
-	bGUfB8j7gg0c2ex8BbH1IuIvGiueOQ02mLBpNomMA0eZV9lRtXg1oxrNOJ99VJZIb3kL614K3+7rV
-	2JUPp7nrKGmN4czkcvls304jS9rp4dVU8xCGvQ1Kv9a0pdUH93H7PjsWumZXk07CCuKRe8+NbQGDI
-	grO7xMRQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JrFkK5erra3kNWqY8ylnxRh4L32xcv8PH+rAxIvXR0k=; b=PrB8J8iG2UMryvnqfgUM0HI6GG
+	2elx2r2+td1DsnmIcx9yCZt4Po2628tZ/S9kAfWJcvK39jEEQ6weDEcyF4fweOlVSjBtwGeuqY5T8
+	BVQEklLYL8pagqU3Kvxr8cF1lUW7KKVB7yqI24MYi27M82ZZM/g7Vi/o5Zmh4KRWt1yXoct5mw1kM
+	1uJPCjxhIAoDTLCTzln5N9P0S0fAjOOBzfHEgDUn+XwcSf6d6AR5dVmdkAYgu2hUneTl4Q9ImAYmf
+	FZqXfCWQdqM8NxZaEVuK0cB0T1BxjvV0hH+qXGSptv/tyzOYhLRDPO1uEDhBqlECgvzGLtfLH9DBD
+	7y793ngQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vTWWK-0000000G7wC-37B0;
-	Thu, 11 Dec 2025 02:35:08 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1vTXCP-0000000G9hk-1d3K;
+	Thu, 11 Dec 2025 03:18:37 +0000
+Received: from mgamail.intel.com ([192.198.163.8])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vTWWI-0000000G7vr-1Clu
+	id 1vTXCM-0000000G9hG-3RU5
 	for ath11k@lists.infradead.org;
-	Thu, 11 Dec 2025 02:35:07 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BALSkjg3563616
-	for <ath11k@lists.infradead.org>; Thu, 11 Dec 2025 02:35:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	n673qLBkgOUY1GHNMNe14VRslEKsiUEor3PWKBqvmbc=; b=pAIk9k4SbuaX1xTf
-	QSNyAUhV7jOF3xTHmsPHpwr5d52MHgCfHal4UhkAaC8aPthsXJvzZ3Kfh8L25hD6
-	pRnRG3YLRcRdUMdOJxWaGwpVXP9+uhP7yeRGhXdQP2vloE07BUhkjxBNFQuLo4cs
-	fewQlAvkVJdZN12qFHwuCRg94anmOwN8bAORcLYjkaUFOR0AJo6aTS3Sn9xH4OX+
-	UH+AINfHrCjQUPAtt3E3ABbCissg6r9qeCeYNvTEbhbfds5A9w4O87TMMSsdON+9
-	cYY5JOfh0xwiNBt2wkNYqkPQn9Z6gtAos72fhjCig1zi9+2QQX+lPMBTTB2u+kLL
-	QaGEVg==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aygtfgpyh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 11 Dec 2025 02:35:03 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7b89ee2c1a4so756738b3a.2
-        for <ath11k@lists.infradead.org>; Wed, 10 Dec 2025 18:35:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765420502; x=1766025302; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n673qLBkgOUY1GHNMNe14VRslEKsiUEor3PWKBqvmbc=;
-        b=MFwZ9JC4qFgEPKzVjvsawtdrGSTGO471sQvfZuwam76G8aAPGgOT0qX97DUzSF1wf9
-         BWEPfcat+9x82mv3IxYnllwRpy9Ju6dvoAbZDxYbbjRfcAYOx4qLOWXY9SVyAP/GaKuc
-         uwCrXoyKqTUz7KFoCFUL0xP8ZaGFcPuWgUfKeayrztiepAp3ebx5tZhQsgFmR8jZ1Lao
-         PKUBvc7J3YbDTskJy37A0B9/aBD10GzUJvgkKgppPmF9KvYjDlzxgBIol1K9Rt2FFK28
-         I6ONP4Nc5vw4P+KoW8LjnAwnfe8yJsrAtdDcqFuw1frtrHP2nye4D6+RnlFG44kYVe/q
-         RUcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765420502; x=1766025302;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n673qLBkgOUY1GHNMNe14VRslEKsiUEor3PWKBqvmbc=;
-        b=wXfrALAL8qhjHO6nPj6GSjCcvFH6Xvh/Kzb0oMYRSkl7QC06Yq88p3hWbRk7KbPJfd
-         /I3u7AZSRAAEqIvtPbG1rmqfXaP95SLto+LHzBmLUXK3W3+3wbIKNhIWHcKpcMmD6eWz
-         PmhipGgb5QKladxZi3OlplTXfDgsgJpR5ZIgIs17ilID/+/YOIi6ZCMbZnnE3i8K1lmV
-         0U9bTxK+7DsoM+4dDJOf5DoiaeyBEuCzbfW+vsBCawfd9WS7d6rD6ZBkS0X9UFW9yaLo
-         hXxPNGnY9dxCCtWp/lBhPh+fvkPDMRCmDz+zM7dBOBGBY/A2cdymaXxrZ5XTIqPkWeJq
-         017Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU6etnT140YKai4ymXDV1W2WDWmJNg+kNhK4o2uelYEDuAt6YmZz/KrV42RYDEnJGMfW/zzV3M=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yymi7ADoXLXyOjJEctZKjSapfB3pAsLc9Dd05UA8JAe28G2i9zw
-	2+Nzcq/1QHg0u4JrUEJuQ2Bkg0MfYlRQEYVWsffNOQnB/41t6snArJNUmdJNXlr6aagH6VIA62h
-	m8MwvZzp7rjNNEaXUdhVQec5vcjpEVtrAJCGxvh1VsRciq0smeXEHNAheAj4Cz8iXFqdKCogQ//
-	A=
-X-Gm-Gg: ASbGnctxpEVZ2Uyy0AYFt2N9KJfnSpKPnezHunpRKvDLaZ7smLzNV9o1kauQ+LnErU+
-	3tn7eNSxSAGfD4uAIW7wKcYrbvd3KTArnu7oxCY+0pGMyd1jJjVJJLoxilOtpkEGx1XtVwMkSw8
-	bkb425F1sRycussyLqy60KyJdASjKaCOq+dQ9WD2WOTno1AtAtHjoaPBSWMVi7janoaS5E7W1ek
-	g/AePsYZpEUyHJkxWSr412UrMTTK825dO3tE0hrX2kQm647jqrEJcDqdPKTqDpLcvX05CJPgDUx
-	RDo368UEKgBY+dKSs/L56VhFaFrHSd123WkSqqGYkoR5hIcU5I0jvp4a3cU8ICVXQ6xTKNVycbq
-	PyEMcRKOf0leXpu6glw/Sruf1d4EgmGaK9I8/NBfH
-X-Received: by 2002:a05:6300:210c:b0:361:63eb:d478 with SMTP id adf61e73a8af0-366e03bb718mr4153508637.20.1765420502282;
-        Wed, 10 Dec 2025 18:35:02 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE2z8roFhRBPLuU2YWWkgf8t/WjBVw8Y7MY45hRenK6F6I5TPyVzNHD4sB1SeRqaWsWius3hg==
-X-Received: by 2002:a05:6300:210c:b0:361:63eb:d478 with SMTP id adf61e73a8af0-366e03bb718mr4153488637.20.1765420501799;
-        Wed, 10 Dec 2025 18:35:01 -0800 (PST)
-Received: from [10.231.195.103] ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c0c2c1925bfsm675226a12.31.2025.12.10.18.34.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Dec 2025 18:35:01 -0800 (PST)
-Message-ID: <1722daf9-064f-4d1e-a7b0-206f3acffd96@oss.qualcomm.com>
-Date: Thu, 11 Dec 2025 10:34:57 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	Thu, 11 Dec 2025 03:18:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765423115; x=1796959115;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZCJsSyKpFDGI4enSrr3CZY9EUTvp8kqs7B1Bpl9BdAM=;
+  b=JgxAh8ACeITqanrjLWnytClVtW3nUSXNSER2SSNwbhtF+6ZrR0M+Swf1
+   53KDKgwmT5fnLO9XpP2Q/+csxhouQD0nbgu3n4fSmqtZEzDEgNsIauXTW
+   rgxS1Se3CUaFvECat6azHck+m5E4nJyyZ01GKG5Qoy6U+qTGSbgmW5BHz
+   mcwZYWZMdV75JqDkdEp17OQ4oP5QOqPoePLj1AEXkJzPuGkrBoro6YH3U
+   SKX//W4hoWz/OK5GOfIkXg6pk3JNxSQLJMJuc1cgrg+5tjp6U8YXX1K56
+   e5EeJstbX0H2J36Zei8aWQrRzA6n3vSSR3xeqMFGsJXxH9b9u/Ez9qmH+
+   Q==;
+X-CSE-ConnectionGUID: 3HX6beeEQ+O+1/bIdrgw9Q==
+X-CSE-MsgGUID: 7BuhTYuYRNivfuzxVrQ7Mg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="85008594"
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; 
+   d="scan'208";a="85008594"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2025 19:18:32 -0800
+X-CSE-ConnectionGUID: dbsS4O/OSVOimLjRfVIMRQ==
+X-CSE-MsgGUID: cKn7PKfGT1WYgz/AmLdxnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; 
+   d="scan'208";a="220033324"
+Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 10 Dec 2025 19:18:30 -0800
+Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vTXCF-00000000461-33tO;
+	Thu, 11 Dec 2025 03:18:27 +0000
+Date: Thu, 11 Dec 2025 11:17:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexandru Gagniuc <mr.nuke.me@gmail.com>, ath11k@lists.infradead.org,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Alexandru Gagniuc <mr.nuke.me@gmail.com>,
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] wifi: ath11k: move .max_tx_ring to struct
  ath11k_hw_hal_params
-To: mr.nuke.me@gmail.com, ath11k@lists.infradead.org,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-ID: <202512111054.OwS5ClW9-lkp@intel.com>
 References: <20251210024036.3965135-1-mr.nuke.me@gmail.com>
- <5a5b4961-904c-45e6-aca6-b58a122e2134@oss.qualcomm.com>
- <16e02bce-18c3-42e4-a51d-60c4bdf8a763@gmail.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <16e02bce-18c3-42e4-a51d-60c4bdf8a763@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=At7jHe9P c=1 sm=1 tr=0 ts=693a2dd7 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=_WrCZ2CG3_jBuci-I8YA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-ORIG-GUID: P7wMOulfclH7ZaHoLeHr4Le-nqaD-i8Q
-X-Proofpoint-GUID: P7wMOulfclH7ZaHoLeHr4Le-nqaD-i8Q
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDAxMyBTYWx0ZWRfX48ZBAaFxqGn6
- xi6EUP5oo0fCvtOZb8WjkQAQeAlLEre2tDZL+OT6lx/vDkXz3RHmXiKGQqNjbHatQ27z1pXGwrg
- jxTWl7OEb5xsrMcri6p6OczGPzCOrq3lXT0GzQolfCu1KgDBjAH7b1wjHZBv90OPKN3XCYVJtRO
- uNDfg49F8jvZpeOU1AmPEDCLp/u3unw1VZbi1aAglJA+qETOjF/wQNb2sIzelnal3cGDFL+b8Uv
- yfZyeiWHJYFU3qLe6DaDt9YJKTKnHWmgWpTepjnV5fwA6y+/hKbhNJElxKx+5Ct22VQjHK1KZqb
- fw53P04jTa1CdwsMGdjFsYeDHiajWGEQtsxzdprty7ft0Uc5Sz4k+y7SDcw+mytshuiQSi3wSYd
- koavcyMrJlzFTr76PVRHyA2TyU8WRQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
- phishscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110013
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251210024036.3965135-1-mr.nuke.me@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251210_183506_365045_586D40BE 
-X-CRM114-Status: GOOD (  21.89  )
+X-CRM114-CacheID: sfid-20251210_191834_879260_6EEA8AE0 
+X-CRM114-Status: GOOD (  10.67  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,72 +90,112 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi Alexandru,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on ath/ath-next]
+[also build test ERROR on linus/master v6.18 next-20251210]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexandru-Gagniuc/wifi-ath11k-move-max_tx_ring-to-struct-ath11k_hw_hal_params/20251210-104321
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git ath-next
+patch link:    https://lore.kernel.org/r/20251210024036.3965135-1-mr.nuke.me%40gmail.com
+patch subject: [PATCH] wifi: ath11k: move .max_tx_ring to struct ath11k_hw_hal_params
+config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20251211/202512111054.OwS5ClW9-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 6ec8c4351cfc1d0627d1633b02ea787bd29c77d8)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251211/202512111054.OwS5ClW9-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512111054.OwS5ClW9-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/net/wireless/ath/ath11k/debugfs.c:710:32: error: no member named 'max_tx_ring' in 'struct ath11k_hw_params'
+     710 |         for (i = 0; i < ab->hw_params.max_tx_ring; i++)
+         |                         ~~~~~~~~~~~~~ ^
+   1 error generated.
 
 
-On 12/11/2025 12:28 AM, mr.nuke.me@gmail.com wrote:
-> On 12/10/25 12:46 AM, Baochen Qiang wrote:
->>
->>
->> On 12/10/2025 10:40 AM, Alexandru Gagniuc wrote:
->>> ".max_tx_ring" is an upper bounds to indexing ".tcl2wbm_rbm_map". It
->>> is initialized in, core.c, a different file than the array init. This
->>> spaghetti-like relation is fragile and not obvious. Accidentally
->>> setting ".max_tx_ring" too high leads to a hard to track out-of-
->>> bounds access and memory corruption.
->>>
->>> Clarify this dependency by moving ".max_tx_ring" adjacent to the array
->>> ".tcl2wbm_rbm_map". Use ARRAY_SIZE() instead of #defines to initialize
->>> the length field. Remove DP_TCL_NUM_RING_MAX_QCA6390, as it is no
->>> longer required.
->>>
->>> The intent is to make the code easier to understand rather than fix
->>> an existing bug.
->>>
->>
->> Even the code chane works, I am not sure whether we should do this. Because, logically
->> max_tx_ring represents hardware capability which is static. However the change actually
->> implies max_tx_ring varies on tcl2wbm_rbm_map definition.
-> 
-> I see what you mean, although tcl2wbm_rbm_map is const. More details below.
-> 
-> 
->> If we are going to add something to avoid the potential out-of-bound access or to improve
->> code readability, how about something like
->>
->>     ASSERT(hw_params.max_tx_ring <= ARRAR_SIZE(tcl2wbm_rbm_map))
-> A static assert might be a good solution. I don't know how to do that.
-> By the time we have hw_params.max_tx_ring and tcl2wbm_rbm_map, the
-> latter is a pointer, so we can't use ARRAY_SIZE(). We could try to do
+vim +710 drivers/net/wireless/ath/ath11k/debugfs.c
 
-Yeah, that is a problem ...
+da3a9d3c15769b Kalle Valo    2020-09-16  657  
+cb4e57db2ff0c8 Kalle Valo    2020-09-16  658  static ssize_t ath11k_debugfs_dump_soc_dp_stats(struct file *file,
+da3a9d3c15769b Kalle Valo    2020-09-16  659  						char __user *user_buf,
+da3a9d3c15769b Kalle Valo    2020-09-16  660  						size_t count, loff_t *ppos)
+da3a9d3c15769b Kalle Valo    2020-09-16  661  {
+da3a9d3c15769b Kalle Valo    2020-09-16  662  	struct ath11k_base *ab = file->private_data;
+da3a9d3c15769b Kalle Valo    2020-09-16  663  	struct ath11k_soc_dp_stats *soc_stats = &ab->soc_stats;
+da3a9d3c15769b Kalle Valo    2020-09-16  664  	int len = 0, i, retval;
+da3a9d3c15769b Kalle Valo    2020-09-16  665  	const int size = 4096;
+da3a9d3c15769b Kalle Valo    2020-09-16  666  	static const char *rxdma_err[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX] = {
+da3a9d3c15769b Kalle Valo    2020-09-16  667  			"Overflow", "MPDU len", "FCS", "Decrypt", "TKIP MIC",
+da3a9d3c15769b Kalle Valo    2020-09-16  668  			"Unencrypt", "MSDU len", "MSDU limit", "WiFi parse",
+da3a9d3c15769b Kalle Valo    2020-09-16  669  			"AMSDU parse", "SA timeout", "DA timeout",
+da3a9d3c15769b Kalle Valo    2020-09-16  670  			"Flow timeout", "Flush req"};
+da3a9d3c15769b Kalle Valo    2020-09-16  671  	static const char *reo_err[HAL_REO_DEST_RING_ERROR_CODE_MAX] = {
+da3a9d3c15769b Kalle Valo    2020-09-16  672  			"Desc addr zero", "Desc inval", "AMPDU in non BA",
+da3a9d3c15769b Kalle Valo    2020-09-16  673  			"Non BA dup", "BA dup", "Frame 2k jump", "BAR 2k jump",
+da3a9d3c15769b Kalle Valo    2020-09-16  674  			"Frame OOR", "BAR OOR", "No BA session",
+da3a9d3c15769b Kalle Valo    2020-09-16  675  			"Frame SN equal SSN", "PN check fail", "2k err",
+da3a9d3c15769b Kalle Valo    2020-09-16  676  			"PN err", "Desc blocked"};
+da3a9d3c15769b Kalle Valo    2020-09-16  677  
+da3a9d3c15769b Kalle Valo    2020-09-16  678  	char *buf;
+da3a9d3c15769b Kalle Valo    2020-09-16  679  
+da3a9d3c15769b Kalle Valo    2020-09-16  680  	buf = kzalloc(size, GFP_KERNEL);
+da3a9d3c15769b Kalle Valo    2020-09-16  681  	if (!buf)
+da3a9d3c15769b Kalle Valo    2020-09-16  682  		return -ENOMEM;
+da3a9d3c15769b Kalle Valo    2020-09-16  683  
+da3a9d3c15769b Kalle Valo    2020-09-16  684  	len += scnprintf(buf + len, size - len, "SOC RX STATS:\n\n");
+da3a9d3c15769b Kalle Valo    2020-09-16  685  	len += scnprintf(buf + len, size - len, "err ring pkts: %u\n",
+da3a9d3c15769b Kalle Valo    2020-09-16  686  			 soc_stats->err_ring_pkts);
+da3a9d3c15769b Kalle Valo    2020-09-16  687  	len += scnprintf(buf + len, size - len, "Invalid RBM: %u\n\n",
+da3a9d3c15769b Kalle Valo    2020-09-16  688  			 soc_stats->invalid_rbm);
+da3a9d3c15769b Kalle Valo    2020-09-16  689  	len += scnprintf(buf + len, size - len, "RXDMA errors:\n");
+da3a9d3c15769b Kalle Valo    2020-09-16  690  	for (i = 0; i < HAL_REO_ENTR_RING_RXDMA_ECODE_MAX; i++)
+da3a9d3c15769b Kalle Valo    2020-09-16  691  		len += scnprintf(buf + len, size - len, "%s: %u\n",
+da3a9d3c15769b Kalle Valo    2020-09-16  692  				 rxdma_err[i], soc_stats->rxdma_error[i]);
+da3a9d3c15769b Kalle Valo    2020-09-16  693  
+da3a9d3c15769b Kalle Valo    2020-09-16  694  	len += scnprintf(buf + len, size - len, "\nREO errors:\n");
+da3a9d3c15769b Kalle Valo    2020-09-16  695  	for (i = 0; i < HAL_REO_DEST_RING_ERROR_CODE_MAX; i++)
+da3a9d3c15769b Kalle Valo    2020-09-16  696  		len += scnprintf(buf + len, size - len, "%s: %u\n",
+da3a9d3c15769b Kalle Valo    2020-09-16  697  				 reo_err[i], soc_stats->reo_error[i]);
+da3a9d3c15769b Kalle Valo    2020-09-16  698  
+da3a9d3c15769b Kalle Valo    2020-09-16  699  	len += scnprintf(buf + len, size - len, "\nHAL REO errors:\n");
+da3a9d3c15769b Kalle Valo    2020-09-16  700  	len += scnprintf(buf + len, size - len,
+da3a9d3c15769b Kalle Valo    2020-09-16  701  			 "ring0: %u\nring1: %u\nring2: %u\nring3: %u\n",
+da3a9d3c15769b Kalle Valo    2020-09-16  702  			 soc_stats->hal_reo_error[0],
+da3a9d3c15769b Kalle Valo    2020-09-16  703  			 soc_stats->hal_reo_error[1],
+da3a9d3c15769b Kalle Valo    2020-09-16  704  			 soc_stats->hal_reo_error[2],
+da3a9d3c15769b Kalle Valo    2020-09-16  705  			 soc_stats->hal_reo_error[3]);
+da3a9d3c15769b Kalle Valo    2020-09-16  706  
+da3a9d3c15769b Kalle Valo    2020-09-16  707  	len += scnprintf(buf + len, size - len, "\nSOC TX STATS:\n");
+da3a9d3c15769b Kalle Valo    2020-09-16  708  	len += scnprintf(buf + len, size - len, "\nTCL Ring Full Failures:\n");
+da3a9d3c15769b Kalle Valo    2020-09-16  709  
+31582373a4a8e8 Baochen Qiang 2021-10-11 @710  	for (i = 0; i < ab->hw_params.max_tx_ring; i++)
+da3a9d3c15769b Kalle Valo    2020-09-16  711  		len += scnprintf(buf + len, size - len, "ring%d: %u\n",
+da3a9d3c15769b Kalle Valo    2020-09-16  712  				 i, soc_stats->tx_err.desc_na[i]);
+da3a9d3c15769b Kalle Valo    2020-09-16  713  
+da3a9d3c15769b Kalle Valo    2020-09-16  714  	len += scnprintf(buf + len, size - len,
+da3a9d3c15769b Kalle Valo    2020-09-16  715  			 "\nMisc Transmit Failures: %d\n",
+da3a9d3c15769b Kalle Valo    2020-09-16  716  			 atomic_read(&soc_stats->tx_err.misc_fail));
+da3a9d3c15769b Kalle Valo    2020-09-16  717  
+cb4e57db2ff0c8 Kalle Valo    2020-09-16  718  	len += ath11k_debugfs_dump_soc_ring_bp_stats(ab, buf + len, size - len);
+da3a9d3c15769b Kalle Valo    2020-09-16  719  
+da3a9d3c15769b Kalle Valo    2020-09-16  720  	if (len > size)
+da3a9d3c15769b Kalle Valo    2020-09-16  721  		len = size;
+da3a9d3c15769b Kalle Valo    2020-09-16  722  	retval = simple_read_from_buffer(user_buf, count, ppos, buf, len);
+da3a9d3c15769b Kalle Valo    2020-09-16  723  	kfree(buf);
+da3a9d3c15769b Kalle Valo    2020-09-16  724  
+da3a9d3c15769b Kalle Valo    2020-09-16  725  	return retval;
+da3a9d3c15769b Kalle Valo    2020-09-16  726  }
+da3a9d3c15769b Kalle Valo    2020-09-16  727  
 
-> it dynamically, but I feel that's spaghetti code:
-> 
->     if (tcl2wbm_rbm_map == &ath11k_hw_hal_params_ipq8074)
->         ASSERT(hw_params.max_tx_ring <= ARRAY_SIZE(ath11k_hw_hal_params_ipq8074));
->     else if (...)
->         ...
-> 
-
-Hmm, this is ugly. I would rather have
-
-	map_size = ARRAR_SIZE()
-
-in each hal_params, and then
-
-	ASSERT(hw_params.max_tx_ring <= hw_params.hal_params->map_size)
-
-> Alternatively, I can take the suggestion from your other email, and
-> keep the "max_tx_ring", or "num_tx_rings" name. Because it is part of
-> the hw_params struct (via .hal_params), it still describes the
-> hardware. While the value is derived from a constant array, instead
-> of being hardcoded, it remains an immutable quantity, consistent with
-> a static hardware descriptor, would you agree?
-
-Also works for me. You can make the decision.
-
-> 
-> Alex
-> 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
