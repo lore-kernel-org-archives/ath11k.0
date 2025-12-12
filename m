@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD282D3B7E2
-	for <ath11k@archiver.kernel.org>; Fri, 12 Dec 2025 03:23:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0044AD43367
+	for <ath11k@archiver.kernel.org>; Fri, 12 Dec 2025 03:24:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7az2cjsG0PVyqzGAbVWQGzza8Zyhr4amiWwD1JdOX9Q=; b=Km48Uyoxp74QW2BMMKQ52QGQIE
-	GyohV3YeluVLlUUXWPFKyXsACkgz6CqjYVqDg2Ly56SxQiXIl3eNIKfe23Mwb0KE1o2k5bzdTbB4g
-	yOxMPwQE68yvUG/g7Sj3KQKRxpD2Yfsova8OCnZNB9cLRkbYqOQnf3N96UPIy1RYMns5ojSOmerKf
-	wZSFjcEPmnYo3ynCYBkJeyXsbIeeS0pxhctXZbK467Q2krCzvMZxDkDMjCPap1nde44Q4Sff9kcrx
-	HHvJrwcokXyYnmzwHzxGCX2IkCjiQ34Q/z2NZsBv7KtupOI58vrPAk1wn1EzibNmFX+Ty55I0VGwX
-	DqeQ+kPw==;
+	bh=Z/KzAlXvrekSR29uxw5tKN/NmziqWmBlh6JqugB40qI=; b=1ZJw/dDTYyaAdQAfhU0FlG5D6Z
+	9vyUGR/9J9ML7rrkywtrkjmuAzwkLlE0KemDdskQAFosTxuuzOATrLZ5aFbMkrrzSSwinP6CSa7jI
+	S3mJvmMkNP9XAaI1L0u07ERzTdFJ44cTy3T+gJ81LBL7cL5VkkJ+8HiKTJehO7K0TQovSq2Jey8/5
+	FhsuHxiILAtCCVpiil7lzuB9PpWevPE3vRWjIg92rzj/V2Vs6k8etRlEWIkINzR7PX8KasDQjIncK
+	I3VlwrxZowLz+4c0829MDrb9bHa8UQzvzFNkDpU4uuwD9h8H5O76M2dWUK7X+PQlNA5Kv1UO7B1Oz
+	TntYZIXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vTtl4-000000000tb-1EAN;
-	Fri, 12 Dec 2025 03:23:54 +0000
+	id 1vTtlk-000000000zS-2c8a;
+	Fri, 12 Dec 2025 03:24:36 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vTtl1-000000000t8-2tVp
+	id 1vTtli-000000000z7-1ghA
 	for ath11k@lists.infradead.org;
-	Fri, 12 Dec 2025 03:23:52 +0000
+	Fri, 12 Dec 2025 03:24:35 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2EC7140444;
-	Fri, 12 Dec 2025 03:23:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F6DDC4CEF1;
-	Fri, 12 Dec 2025 03:23:48 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 18A0C40A72;
+	Fri, 12 Dec 2025 03:24:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D60F6C4CEF1;
+	Fri, 12 Dec 2025 03:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765509831;
-	bh=K8jcmDfwawGDO1MmNxAbMFp3nfxo1X3GQ2tU2FUVSHM=;
+	s=k20201202; t=1765509874;
+	bh=5/R5kiFdVWrYb4dsU1euAO1704HWmXQyLH2Rz6QDq5M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k2x4n1pFApHVeRJGUl6UCS+KP4iRRxoC6wpsdzoD+/L0NsdyeMaIRSmN+scRE+w+V
-	 RE2bdmy1Eb2iGH/GQc65hc3LWHSWy+f7JoVuVVjF/0+4W5ZkvV1poaoq2lI7liqykJ
-	 70D1czMNqG+zVM77tDUv5QtXRB3+1cYAfFXVPnP0l9C4j3CPmCGhLfmMJsuoqY8+RQ
-	 Y++h6Q4RQflF3a/BQyk1uhMQKEcJ8GAUITq4Go5pgnXNou9lWO7N4kiog972mC8pHf
-	 EWZcn6Si2mlUudrXf+n2uR28MUC31vlUaCQDtbvj47Cglk2VBtacxpmUNDszEyqvp9
-	 zpmRspQmXtTew==
-Message-ID: <76d1c3ad-d648-4719-b016-1f16b195e64c@kernel.org>
-Date: Fri, 12 Dec 2025 04:23:45 +0100
+	b=BKkC61jLeQ407EqBG0Bu3lv/sfClhMwJIkby4Gfo5jZLJH+a0zJBQs8qd/jrc2iCS
+	 fJcPMYSKSDhpTincWhIzUHTPZSwjLlRhKS21Q6EzD3mxj3ZI7/HSGUWSvfAVn0K133
+	 vrRTUsH+Qwq9Fpk3G67CBfVIWhU+R6h6Qq1caIq0DkFGX0WqJn2h5QKL25BpfPuKN0
+	 rUNBe6lzCjub2iSX7ZpvIljLW8N3f+KnCCA7xefO1vWLnRaUdkyEbnmpiJrgvupPdP
+	 tdaq1JPPK3nM49anksPzVp7VdDnaTbM5x4LFAbXO+abyu+e+ATOlUqADpio9BNZ3JO
+	 6Ho1/xpseMuIg==
+Message-ID: <11c1304a-242f-4643-8128-a12c0dec49b2@kernel.org>
+Date: Fri, 12 Dec 2025 04:24:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci:
- deprecate 'firmware-name' property
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
- Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+Subject: Re: [PATCH ath-current 1/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
  johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
- <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
- <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
+ <20251204071100.970518-2-miaoqing.pan@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,12 +100,13 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
+In-Reply-To: <20251204071100.970518-2-miaoqing.pan@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251211_192351_773381_79984456 
-X-CRM114-Status: GOOD (  13.04  )
+X-CRM114-CacheID: sfid-20251211_192434_481426_9A1F2A42 
+X-CRM114-Status: UNSURE (   5.16  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,44 +121,26 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/12/2025 17:44, Jeff Johnson wrote:
-> On 12/3/2025 11:11 PM, Miaoqing Pan wrote:
->> The firmware-name property was introduced to allow end-users and
->> integrators to select usecase specific firmware for the WCN6855.
->> However, specifying firmware for an M.2 WLAN module in the Device
->> Tree is not appropriate. Instead, this functionality will be handled
->> within the ath11k driver.
->>
->> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
->> ---
->>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
->> index e34d42a30192..0162e365798b 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
->> @@ -37,6 +37,7 @@ properties:
->>  
->>    firmware-name:
->>      maxItems: 1
->> +    deprecated: true
->>      description:
->>        If present, a board or platform specific string used to lookup
->>        usecase-specific firmware files for the device.
-> 
-> The driver patch completely removes support for this, so is this really
-> considered deprecated? Or should this actually be considered obsolete and
-
-That's silent ABI break. I will formally NAK the patch.
+On 04/12/2025 08:10, Miaoqing Pan wrote:
+> @@ -1275,6 +1275,7 @@ bool ath11k_core_coldboot_cal_support(struct ath11k_base *ab);
+>  
+>  const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
+>  						    const char *filename);
+> +const char *ath11k_core_get_usecase_firmware(struct ath11k_base *ab);
+>  
+>  static inline const char *ath11k_scan_state_str(enum ath11k_scan_state state)
+>  {
+> @@ -1325,9 +1326,7 @@ static inline void ath11k_core_create_firmware_path(struct ath11k_base *ab,
+>  						    const char *filename,
+>  						    void *buf, size_t buf_len)
+>  {
+> -	const char *fw_name = NULL;
+> -
+> -	of_property_read_string(ab->dev->of_node, "firmware-name", &fw_name);
+> +	const char *fw_name = ath11k_core_get_usecase_firmware(ab);
 
 
-> completely removed?
-> 
-> Do any DTS files actually reference this?
-> 
-> /jeff
-
+NAK, silent ABI break without explanation..
 
 Best regards,
 Krzysztof
