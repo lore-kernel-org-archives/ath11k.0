@@ -4,89 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4604D5B16E
-	for <ath11k@archiver.kernel.org>; Mon, 15 Dec 2025 13:30:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE851D5B161
+	for <ath11k@archiver.kernel.org>; Tue, 16 Dec 2025 04:36:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PJkDNRjVKTCXxlQ763q4Xz31xc3gzoaQKhtZs+uBIc8=; b=fl+ooAb84CSO5ZnNOnjHwA1aSj
-	0fP3eOp1BBsi72NJylQ1wSzgy6K9wrvOrMKfJyogGSDz9/U8WYLD6z9LsV91Svf5S5vP2v6aAf81z
-	K2VUQcaH83+L5vyDJGzQ3VMNGUVD9GTU8Tol4EEageICxY9o8BUVA8QUtJjmzGsSI57cI+LGyhiOL
-	+p+1Wy0UBqeubFi4a63/iihgd9zjV8JlMvm29xLMyT3fP0oxtl+Vz2jKNcX3otnK4ETTlMK1xWXkP
-	zWPolQzaW55P0L/Cu7vJuf0E4jYj1ABjjZQMHUiZxtqNElWPtHmjle86VsUbVEGzsQq2cJ6qIsavZ
-	3Q6aSUNw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=T7VGHKNtM1JC0CBVAGFFnYSWZgu9YXfXL47IE3gej6I=; b=IDBKizcQ8COZ0tyQilpkI2nkY5
+	LLaqrSpr01epfcGPnf2EiR8iNmuL8ccDzFDk1mA/qVYjRQQ6KiRfC5PnQC7SJ1RMD3h3xPYfpLjkA
+	iloavrentNn01qZx0Q1ZnA1Q2CHHZ9iqbrhtXUaZrYz1AX5HGdhXoRStXkdNfIdwjeESZdki11vPS
+	H4O7kBPKmxb46k3+2l6dTi2XYRU7mJhRduL6u/2KaOM0pxlxzfDO+2BR5T6GKIEKLg2wLTq3tazId
+	hDq2gXSiz5l/N1lRaAm68xC6sW46ZCOgUV0+21Z3LLwvYyN/jfVJPzP68Q6IickBO0gn/BpUJR+yv
+	tUdiznwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vV8er-00000003guC-1giL;
-	Mon, 15 Dec 2025 13:30:37 +0000
-Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
+	id 1vVMn7-00000004gUg-0w5E;
+	Tue, 16 Dec 2025 04:36:07 +0000
+Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vV8ej-00000003gtS-3CVh
+	id 1vVMn3-00000004gUF-2SaB
 	for ath11k@lists.infradead.org;
-	Mon, 15 Dec 2025 13:30:36 +0000
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-2a0d67f1877so13589375ad.2
-        for <ath11k@lists.infradead.org>; Mon, 15 Dec 2025 05:30:29 -0800 (PST)
+	Tue, 16 Dec 2025 04:36:03 +0000
+Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-7c6e9538945so2821739a34.1
+        for <ath11k@lists.infradead.org>; Mon, 15 Dec 2025 20:36:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765805428; x=1766410228; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PJkDNRjVKTCXxlQ763q4Xz31xc3gzoaQKhtZs+uBIc8=;
-        b=TKBJLMi+2i5bXZzHO3vIq1FYCgvIH8Wyj3/L12jFqYTzyNVWNeDvwh/1g+mK2sCxRj
-         IviVdLobQiwmempYYzjgjS1CxHKdqvXst1plS/hl66Dr7Wl8WyaVpggLoUM7956G1bx4
-         33EbOPuFyCld6MYZq4a7ZjSh+9voUs7tleltv+cf6rJpTZwh79yzbuepf3H1aHBXMkm/
-         i4uaD4cR3XpoKw/yiQvmfgxdDGqmSqZfFLMb6pf5aiaaYXJNItKiPjd6nDf9jpwdmkdw
-         dGgylXxqW+cFpXZIyMWEHuZyQjMX9KDHvYouD5vpexdWn0o6nVg84tmz90PAlYit99HQ
-         HObQ==
+        d=gmail.com; s=20230601; t=1765859759; x=1766464559; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T7VGHKNtM1JC0CBVAGFFnYSWZgu9YXfXL47IE3gej6I=;
+        b=M9zaK2m1ekWI5/ntoHZPpMt5JX9vuT8OBRgKftcfyC54OhDzRsMaIpUHuRB7EmyU59
+         T/2ccVW2MyXkqeg4cr47FEPvuUsbUNia/Ji3GTbnuqox/DkIDHFZ+vs+zoc1+gfMRu6R
+         jGqoVbxU/pcCHxy4LFTZg6FGByzsIf7TJfb/B2YhGANm6A92kkDqcULMLbNpdMGIJNrE
+         gpIsuBDaa4ZrLdZAwhrHJpS0bsrKxJ/NhQMre+EWrlCVhnlouKj77bQCe6Yz01n7ZxpX
+         b3TeeCZ5IVABKG8R/1/MaDEoyMWXvFdzasZdR/PJQcL/9E14mi98DzhBPXYsUDZgJov6
+         UBbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765805428; x=1766410228;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PJkDNRjVKTCXxlQ763q4Xz31xc3gzoaQKhtZs+uBIc8=;
-        b=gHxqKpdlEVQI92Wp4rtzRymBq0DQrWhPrcncaxSCJQudV1RUH6cK8/XArUZyZaQGw4
-         rhp45Aik0bCWIhKx/bodmaVqS/wI7ZQABP51g/k34MPPtiWcvjm5oJTCckrUkXkejOTb
-         ZO7G3l3/jXMBAz328gOk5NGt/qVvvoZ2J98dD2viluGZwHDwcCgGvR2OFo3jIZruOkgf
-         4mmJwBePucccVDc/scjvE54V2BnZPWNsjo8nGIJPiHv751ojioefYpTD9DJ3MklvZuYx
-         L1kfmqlmePwTrdFpcLV8+6UHuIbLHWfn6nk4TtFZ3oLRuh3NoIL/yUgZWfEOLkF87N0i
-         w1YA==
-X-Forwarded-Encrypted: i=1; AJvYcCVQFdKh1FNAqnRJIp6plrzdLTGCZtJn7VmsdbQ2Xd3P0rMPr5868XerJ6Q1NA6DhNmtrGy1Ub8=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwIM+5QaszAc3x0yhCTTpYldcWUSTwvi9v84ZCWQ/7RTnXUNw3d
-	5Tp+AFv9hjwRQssjrY0tvj0KtSvLX/ErC7ksSuSRK9PmnX3gdeEyoKKTBBiFnLTJjDJ22/zZqXi
-	U7yugA7EvvoV2l+VBI0aPAyb9IgVM6g==
-X-Gm-Gg: AY/fxX5zA/uySkgOefRPHsdl7y9sNv13AF0HkSe+QSpA8Ee11aILPDLS4FxsjhD3mZL
-	adeI4s9Pr3J8jHRG7OTbxY4aM/XQHLet8LdRqtrL90Z3aOzWvMFu7Ip1P0Dehr2FrbU+BQFYXEn
-	Zk4zYJWwZejQVsx1Sikhudb4ash9BF7HWXO7VG6eJlA725Pm1UnkUq1/Q7b0vZTzfiF8JUDqRf4
-	HfuM8/bpjak5uB44i1pHYq7c8OnPWkWrOtpA21YNPg8ibHZYjVMUv5z9ZhkNhXi0DMI
-X-Google-Smtp-Source: AGHT+IGNyZImSxeGZeoUYCfp6rJDQ4U6PuDWgb/0x2U9gBN6DqBTJCQG5Ua3aFtSZvHJd5c9J71DJS/Ut0qLUHmXMMs=
-X-Received: by 2002:a17:902:f78e:b0:2a0:945d:a18d with SMTP id
- d9443c01a7336-2a0945da439mr72795495ad.44.1765805428169; Mon, 15 Dec 2025
- 05:30:28 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765859759; x=1766464559;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T7VGHKNtM1JC0CBVAGFFnYSWZgu9YXfXL47IE3gej6I=;
+        b=uDA+TTLM1p6Dsn6X3sMbUi3WrntazxLUv8dnato5nYP2dv4+V2NMbhYiOx650j2Jvl
+         Q1Uz76ZGmS/MyD4y9/p2mIZybyAHFk2sbG61vq1uPwDwxurA2XsorfSDq3G1MtsNrEot
+         N1ofhVHCXvJwqXbALLxNTqzi5SWEElKR7BhiTf7An7n2A1FJ/PegKinC2AgsYYeLELTr
+         795bHZqf0K311sjqvhxl345bkKDNVbFY4F8rygHIDT4LSfdvArQIYFBbzvwXOIpJ/WQa
+         FO65P+9oefDcBzsqY8AtgDa8+1Q0BpMWzei3WXVnY+xqGOLdlass5zs89mzbb5M3Bq0+
+         UA3Q==
+X-Gm-Message-State: AOJu0YxxakG5MLu53p7RgLfMn+TtBHeqQSOjPx9jBQFVhiERxLAGeKes
+	1gU2tuXB4wOUxXHS46JvfZXY2kRNrQ2SxtUwXZuBwlGxMLrWetR/Q8vTuWMOIA==
+X-Gm-Gg: AY/fxX5yvVEYjEMyiEMNniFV1duhp6V6hgr0E7HGrmTN3aVbIVfI+lTXIF/AgOQn3Mo
+	tZd3eMh0BYbeMhMbmOKo7SP5XMkHyappw3CkXJ8D9mpuI6EOIE3R7+JHsCMMwOyDoqu15Ya1KcV
+	JEjPM3mTXtg8atbijYZ0NPnZ5TQnkunwEUBIIQ6ZaGZvmrAl/lZWucdScWvwylu8RfpEyvqfaqT
+	U8RYHLZp8uD8mK2BgFTx50rnHAeeUbmEX7+XYsTe1AWnVsx2Js1oRiievVayOUPvhsOIb+CLJiy
+	jWrYqwgF9EXNbUFttlz4FFHg5qXf+QGeUpelphdiE80aL3/MoOSKLfGHdlYUaOODaUcNSkPQ6os
+	1F80a7NLLOWQnWl/lbaIQJ2zA0Vuma1MAN8wE1DqfVPIUED44wVz16MB4fAXj/5CrDjdqJoX4zd
+	PpryGxOBmKMyIZt2E57fCDOrGme3KxtuBZrPF0EDdOec7KBg4zU5ByEQ6uHTXh7lAtEVuQwozDY
+	CfADcKzClaPYElMKmqgMrDGKZQK
+X-Google-Smtp-Source: AGHT+IH+TqIPuUN/dMFCU97t7Q8gftaVx3eoTbjPNaDmHr9yxJL5QssQktaf3+BhVZjdlEzRjDOxmQ==
+X-Received: by 2002:a05:6820:16a6:b0:659:9a49:8eda with SMTP id 006d021491bc7-65b451879f5mr5787893eaf.14.1765859759054;
+        Mon, 15 Dec 2025 20:35:59 -0800 (PST)
+Received: from nukework.lan (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-65b35f2b1e5sm8948353eaf.3.2025.12.15.20.35.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Dec 2025 20:35:57 -0800 (PST)
+From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+To: ath11k@lists.infradead.org,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: baochen.qiang@oss.qualcomm.com,
+	Alexandru Gagniuc <mr.nuke.me@gmail.com>,
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] wifi: ath11k: move .max_tx_ring to struct ath11k_hw_hal_params
+Date: Mon, 15 Dec 2025 22:35:52 -0600
+Message-ID: <20251216043555.628296-1-mr.nuke.me@gmail.com>
+X-Mailer: git-send-email 2.45.1
 MIME-Version: 1.0
-References: <3f355c8a-5bf2-4a74-9b35-daa8ae479736@oss.qualcomm.com>
- <CAKEyCaD4=qeQZYYOv4BTrqUJkZa+jnea1b3BL434X1iGMA-_xg@mail.gmail.com>
- <35c554a3-efdd-425c-ac34-858a927bbe15@oss.qualcomm.com> <e7e4058e-6f95-444f-b843-d942496dcf07@dd-wrt.com>
- <4a91f85b-12cd-42b6-854f-6e9574392791@oss.qualcomm.com> <cf3ff4c8-7884-5c07-11ae-29f169be76a2@oss.qualcomm.com>
- <CAKEyCaBUutjzmg_AKJC1MsssieH12qjCsTMErNm1uJPbv-JUGQ@mail.gmail.com>
-In-Reply-To: <CAKEyCaBUutjzmg_AKJC1MsssieH12qjCsTMErNm1uJPbv-JUGQ@mail.gmail.com>
-From: =?UTF-8?Q?Pawe=C5=82_Owoc?= <frut3k7@gmail.com>
-Date: Mon, 15 Dec 2025 14:30:16 +0100
-X-Gm-Features: AQt7F2q4yMJsOe75dbChB3hSlehqV4by-aOiit0-807T41hls5sGKgShzCFrHuk
-Message-ID: <CAKEyCaDr49O703aa7k9qBzV0sUx2q0JhVGB5STqq01iBmgE3gw@mail.gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: add support for MU EDCA
-To: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
-Cc: "Yu Zhang(Yuriy)" <yu.zhang@oss.qualcomm.com>, 
-	Sebastian Gottschall <s.gottschall@dd-wrt.com>, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	quic_yuzha@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251215_053029_871352_74947A89 
-X-CRM114-Status: GOOD (  21.99  )
+X-CRM114-CacheID: sfid-20251215_203601_728641_AEAEEE43 
+X-CRM114-Status: GOOD (  22.75  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,1097 +99,349 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Nov 24, 2025 at 9:34=E2=80=AFAM Pawe=C5=82 Owoc <frut3k7@gmail.com>=
- wrote:
->
-> On Mon, Nov 24, 2025 at 5:35=E2=80=AFAM Vasanthakumar Thiagarajan
-> <vasanthakumar.thiagarajan@oss.qualcomm.com> wrote:
-> >
-> >
-> >
-> > On 11/24/2025 6:39 AM, Yu Zhang(Yuriy) wrote:
-> > >
-> > >
-> > > On 11/22/2025 6:17 PM, Sebastian Gottschall wrote:
-> > >> Am 22.11.2025 um 08:55 schrieb Yu Zhang(Yuriy):
-> > >>
-> > >>>
-> > >>>
-> > >>> On 11/21/2025 4:41 PM, Pawe=C5=82 Owoc wrote:
-> > >>>> On Fri, Nov 21, 2025 at 6:00=E2=80=AFAM Yu Zhang(Yuriy)
-> > >>>> <yu.zhang@oss.qualcomm.com> wrote:
-> > >>>>>
-> > >>>>> hi,
-> > >>>>>
-> > >>>>>   From your log/calltrace, I didn=E2=80=99t see any errors relate=
-d to MU EDCA;
-> > >>>>> what I saw were related to SMPS. Did you also add changes related=
- to SMPS?
-> > >>>>>
-> > >>>>> Yuriy
-> > >>>>
-> > >>>> Hi Yuriy,
-> > >>>>
-> > >>>> Thanks for your reply. The ath11k driver is version 6.14.12.
-> > >>>> Everything works if I remove the mu_edca setting without any other=
- changes.
-> > >>>>
-> > >>>> The problem doesn't occur with the newer IPQ8074 firmware, version=
- 2.12-01460,
-> > >>>> which hasn't been publicly released.
-> > >>>
-> > >>> So the newer IPQ8074 firmware fixed this issue, great.
-> > >>>
-> > >>>>
-> > >>>> More details: https://github.com/openwrt/openwrt/issues/20702
-> > >>>>
-> > >>>> Regards,
-> > >> the point is what he mentions that these newer firmwares arent avail=
-able public. i
-> > >> provided openwrt these images for testing
-> > >> so he is asking if or when qualcomm does release newer firmwares to =
-the public repositories
-> > >>
-> > >> Sebastian
-> > >>
-> > >>>
-> > >>>
-> > >>>
-> > >
-> > > hi, Jeff and Vasanthakumar
-> > >
-> > > When will release the newer IPQ8074 firmware 2.12-01460?
-> >
-> > I guess the issue has to be addressed with the current firmware binarie=
-s as well.
-> >
-> > @Pawel, can you pls share the debug log with debug_mask=3D0x73 (AHB|WMI=
-|MAC|BOOT|QMI)?
-> >
-> > Vasanth
->
-> Hi Vasanth,
->
-> Debug logs:
-> [ 1343.118355] ath11k c000000.wifi: ipq8074 hw2.0
-> [ 1343.118392] ath11k c000000.wifi: FW memory mode: 0
-> [ 1343.143829] ath11k c000000.wifi: boot failed to load firmware-2.bin: -=
-12
-> [ 1343.143879] ath11k c000000.wifi: boot using fw api 1
-> [ 1343.149872] ath11k c000000.wifi: boot pm policy 0
-> [ 1343.154681] remoteproc remoteproc0: powering up cd00000.q6v5_wcss
-> [ 1343.159299] remoteproc remoteproc0: Booting fw image
-> IPQ8074/q6_fw.mdt, size 668
-> [ 1343.511331] remoteproc remoteproc0: remote processor
-> cd00000.q6v5_wcss is now up
-> [ 1343.511888] ath11k c000000.wifi: qmi wait for cold boot done
-> [ 1343.551276] ath11k c000000.wifi: qmi wifi fw qmi service connected
-> [ 1343.551331] ath11k c000000.wifi: qmi indication register request
-> [ 1343.557604] ath11k c000000.wifi: qmi host cap request
-> [ 1343.563670] ath11k c000000.wifi: qmi firmware request memory request
-> [ 1343.567508] ath11k c000000.wifi: qmi mem seg type 4 size 4112384
-> [ 1343.573893] ath11k c000000.wifi: qmi mem seg type 2 size 262144
-> [ 1343.579899] ath11k c000000.wifi: qmi mem seg type 3 size 786432
-> [ 1343.585533] ath11k c000000.wifi: qmi fail to get qcom,m3-dump-addr,
-> ignore m3 dump mem req
-> [ 1343.591454] ath11k c000000.wifi: qmi req mem_seg[0]
-> 0x000000004ba00000 4112384 4
-> [ 1343.599779] ath11k c000000.wifi: qmi req mem_seg[1]
-> 0x000000004b0c0000 262144 2
-> [ 1343.607333] ath11k c000000.wifi: qmi respond memory request delayed 0
-> [ 1343.615780] ath11k c000000.wifi: qmi firmware memory ready indication
-> [ 1343.620954] ath11k c000000.wifi: qmi target cap request
-> [ 1343.628515] ath11k c000000.wifi: chip_id 0x0 chip_family 0x0
-> board_id 0xff soc_id 0xffffffff
-> [ 1343.632404] ath11k c000000.wifi: fw_version 0x290b84a5
-> fw_build_timestamp 2024-09-23 11:32 fw_build_id
-> WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
-> [ 1343.641113] ath11k c000000.wifi: qmi SMBIOS bdf variant name not set.
-> [ 1343.654043] ath11k c000000.wifi: boot using board name
-> 'bus=3Dahb,qmi-chip-id=3D0,qmi-board-id=3D255,variant=3DLinksys-MX8500'
-> [ 1343.660693] ath11k c000000.wifi: boot firmware request
-> ath11k/IPQ8074/hw2.0/board-2.bin size 131180
-> [ 1343.671059] ath11k c000000.wifi: boot board name
-> [ 1343.679987] ath11k c000000.wifi: 00000000: 62 75 73 3d 61 68 62 2c
-> 71 6d 69 2d 63 68 69 70  bus=3Dahb,qmi-chip
-> [ 1343.684838] ath11k c000000.wifi: 00000010: 2d 69 64 3d 30 2c 71 6d
-> 69 2d 62 6f 61 72 64 2d  -id=3D0,qmi-board-
-> [ 1343.694668] ath11k c000000.wifi: 00000020: 69 64 3d 32 35 35 2c 76
-> 61 72 69 61 6e 74 3d 4c  id=3D255,variant=3DL
-> [ 1343.704460] ath11k c000000.wifi: 00000030: 69 6e 6b 73 79 73 2d 4d
-> 58 38 35 30 30           inksys-MX8500
-> [ 1343.714270] ath11k c000000.wifi: boot found match board data for
-> name 'bus=3Dahb,qmi-chip-id=3D0,qmi-board-id=3D255,variant=3DLinksys-MX85=
-00'
-> [ 1343.723734] ath11k c000000.wifi: boot found board data for
-> 'bus=3Dahb,qmi-chip-id=3D0,qmi-board-id=3D255,variant=3DLinksys-MX8500'
-> [ 1343.735717] ath11k c000000.wifi: boot using board api 2
-> [ 1343.746637] ath11k c000000.wifi: qmi bdf_type 0
-> [ 1343.751929] ath11k c000000.wifi: qmi bdf download req fixed addr type =
-0
-> [ 1343.757563] ath11k c000000.wifi: boot firmware request
-> ath11k/IPQ8074/hw2.0/cal-ahb-c000000.wifi.bin size 131072
-> [ 1343.763036] ath11k c000000.wifi: qmi bdf download req fixed addr type =
-2
-> [ 1343.777486] ath11k c000000.wifi: qmi caldata type: 2
-> [ 1343.779656] ath11k c000000.wifi: qmi BDF download sequence completed
-> [ 1343.784832] ath11k c000000.wifi: qmi m3 info req
-> [ 1343.792257] ath11k c000000.wifi: qmi firmware init done
-> [ 1343.792265] ath11k c000000.wifi: qmi wlan mode req mode 7
-> [ 1343.887037] ath11k c000000.wifi: qmi Coldboot calibration wait started
-> [ 1343.889278] ath11k c000000.wifi: qmi cold boot calibration done
-> [ 1343.889280] ath11k c000000.wifi: qmi Coldboot calibration done
-> [ 1343.898293] ath11k c000000.wifi: qmi firmware ready
-> [ 1343.904177] ath11k c000000.wifi: qmi wifi fw del server
-> [ 1343.915094] remoteproc remoteproc0: stopped remote processor
-> cd00000.q6v5_wcss
-> [ 1343.915124] remoteproc remoteproc0: powering up cd00000.q6v5_wcss
-> [ 1343.921524] remoteproc remoteproc0: Booting fw image
-> IPQ8074/q6_fw.mdt, size 668
-> [ 1344.272140] remoteproc remoteproc0: remote processor
-> cd00000.q6v5_wcss is now up
-> [ 1344.272205] ath11k c000000.wifi: qmi exit wait for cold boot done
-> [ 1344.312104] ath11k c000000.wifi: qmi wifi fw qmi service connected
-> [ 1344.312161] ath11k c000000.wifi: qmi indication register request
-> [ 1344.318398] ath11k c000000.wifi: qmi host cap request
-> [ 1344.324449] ath11k c000000.wifi: qmi firmware request memory request
-> [ 1344.328314] ath11k c000000.wifi: qmi mem seg type 4 size 4112384
-> [ 1344.334722] ath11k c000000.wifi: qmi mem seg type 2 size 262144
-> [ 1344.340728] ath11k c000000.wifi: qmi mem seg type 3 size 786432
-> [ 1344.346372] ath11k c000000.wifi: qmi fail to get qcom,m3-dump-addr,
-> ignore m3 dump mem req
-> [ 1344.352270] ath11k c000000.wifi: qmi req mem_seg[0]
-> 0x000000004ba00000 4112384 4
-> [ 1344.360607] ath11k c000000.wifi: qmi req mem_seg[1]
-> 0x000000004b0c0000 262144 2
-> [ 1344.368159] ath11k c000000.wifi: qmi respond memory request delayed 0
-> [ 1344.376580] ath11k c000000.wifi: qmi firmware memory ready indication
-> [ 1344.381782] ath11k c000000.wifi: qmi target cap request
-> [ 1344.389347] ath11k c000000.wifi: chip_id 0x0 chip_family 0x0
-> board_id 0xff soc_id 0xffffffff
-> [ 1344.393234] ath11k c000000.wifi: fw_version 0x290b84a5
-> fw_build_timestamp 2024-09-23 11:32 fw_build_id
-> WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
-> [ 1344.401944] ath11k c000000.wifi: qmi SMBIOS bdf variant name not set.
-> [ 1344.414869] ath11k c000000.wifi: boot using board name
-> 'bus=3Dahb,qmi-chip-id=3D0,qmi-board-id=3D255,variant=3DLinksys-MX8500'
-> [ 1344.421515] ath11k c000000.wifi: boot firmware request
-> ath11k/IPQ8074/hw2.0/board-2.bin size 131180
-> [ 1344.431888] ath11k c000000.wifi: boot board name
-> [ 1344.440817] ath11k c000000.wifi: 00000000: 62 75 73 3d 61 68 62 2c
-> 71 6d 69 2d 63 68 69 70  bus=3Dahb,qmi-chip
-> [ 1344.445680] ath11k c000000.wifi: 00000010: 2d 69 64 3d 30 2c 71 6d
-> 69 2d 62 6f 61 72 64 2d  -id=3D0,qmi-board-
-> [ 1344.455529] ath11k c000000.wifi: 00000020: 69 64 3d 32 35 35 2c 76
-> 61 72 69 61 6e 74 3d 4c  id=3D255,variant=3DL
-> [ 1344.465332] ath11k c000000.wifi: 00000030: 69 6e 6b 73 79 73 2d 4d
-> 58 38 35 30 30           inksys-MX8500
-> [ 1344.475129] ath11k c000000.wifi: boot found match board data for
-> name 'bus=3Dahb,qmi-chip-id=3D0,qmi-board-id=3D255,variant=3DLinksys-MX85=
-00'
-> [ 1344.484576] ath11k c000000.wifi: boot found board data for
-> 'bus=3Dahb,qmi-chip-id=3D0,qmi-board-id=3D255,variant=3DLinksys-MX8500'
-> [ 1344.496557] ath11k c000000.wifi: boot using board api 2
-> [ 1344.507469] ath11k c000000.wifi: qmi bdf_type 0
-> [ 1344.512766] ath11k c000000.wifi: qmi bdf download req fixed addr type =
-0
-> [ 1344.518411] ath11k c000000.wifi: boot firmware request
-> ath11k/IPQ8074/hw2.0/cal-ahb-c000000.wifi.bin size 131072
-> [ 1344.523873] ath11k c000000.wifi: qmi bdf download req fixed addr type =
-2
-> [ 1344.538314] ath11k c000000.wifi: qmi caldata type: 2
-> [ 1344.540477] ath11k c000000.wifi: qmi BDF download sequence completed
-> [ 1344.545676] ath11k c000000.wifi: qmi m3 info req
-> [ 1344.553075] ath11k c000000.wifi: qmi firmware init done
-> [ 1344.553080] ath11k c000000.wifi: qmi firmware start
-> [ 1344.561544] ath11k c000000.wifi: qmi wlan cfg req
-> [ 1344.567548] ath11k c000000.wifi: qmi wlan mode req mode 0
-> [ 1344.586214] ath11k c000000.wifi: boot htc service 'Control' ul pipe
-> 0 dl pipe 1 eid 0 ready
-> [ 1344.586242] ath11k c000000.wifi: boot htc service 'Control' eid 0
-> tx flow control disabled
-> [ 1344.596252] ath11k c000000.wifi: boot htc service HTT Data does not
-> allocate target credits
-> [ 1344.601745] ath11k c000000.wifi: boot htc service 'HTT Data' ul
-> pipe 4 dl pipe 1 eid 1 ready
-> [ 1344.609966] ath11k c000000.wifi: boot htc service 'HTT Data' eid 1
-> tx flow control disabled
-> [ 1344.618673] ath11k c000000.wifi: boot htc service 'WMI' ul pipe 3
-> dl pipe 2 eid 2 ready
-> [ 1344.626707] ath11k c000000.wifi: boot htc service 'WMI' eid 2 tx
-> flow control disabled
-> [ 1344.634723] ath11k c000000.wifi: boot htc service 'WMI MAC1' ul
-> pipe 7 dl pipe 2 eid 3 ready
-> [ 1344.642678] ath11k c000000.wifi: boot htc service 'WMI MAC1' eid 3
-> tx flow control disabled
-> [ 1344.651303] ath11k c000000.wifi: boot htc service 'WMI MAC2' ul
-> pipe 9 dl pipe 2 eid 4 ready
-> [ 1344.659346] ath11k c000000.wifi: boot htc service 'WMI MAC2' eid 4
-> tx flow control disabled
-> [ 1344.668112] ath11k c000000.wifi: wmi wmi_ext_service_bitmap
-> 0:0x5e45be01, 1:0x2d94d02, 2:0x1ff030c6, 3:0x6c795c10
-> [ 1344.676099] ath11k c000000.wifi: wmi wmi_ext2_service__bitmap
-> 0:0x30b784, 1:0xa0809228, 2:0x18a4f17, 3:0x0422
-> [ 1344.686514] ath11k c000000.wifi: wmi event service available
-> [ 1344.696823] ath11k c000000.wifi: wmi event service ready
-> [ 1344.702216] ath11k c000000.wifi: wmi preferred_hw_mode:1
-> [ 1344.707525] ath11k c000000.wifi: wmi event service ready ext
-> [ 1344.712807] ath11k c000000.wifi: wmi event service ready ext2
-> [ 1344.718713] ath11k c000000.wifi: wmi cmd wmi init
-> [ 1344.907598] ath11k c000000.wifi: wmi unsupported event id 0x4026
-> [ 1344.936927] ath11k c000000.wifi: wmi unsupported event id 0x4026
-> [ 1344.988324] ath11k c000000.wifi: wmi processing regulatory channel lis=
-t
-> [ 1344.988361] ath11k c000000.wifi: wmi status_code REG_SET_CC_STATUS_PAS=
-S
-> [ 1344.993743] ath11k c000000.wifi: wmi cc US dsf 1 BW: min_2ghz 0
-> max_2ghz 40 min_5ghz 2 max_5ghz 160
-> [ 1345.000345] ath11k c000000.wifi: wmi num_2ghz_reg_rules 1
-> num_5ghz_reg_rules 4
-> [ 1345.009370] ath11k c000000.wifi: wmi number of reg rules in 2 GHz band=
-: 1
-> [ 1345.016660] ath11k c000000.wifi: wmi reg rule 1: (2402 - 2472 @ 40)
-> (6, 30) (FLAGS 0)
-> [ 1345.023521] ath11k c000000.wifi: wmi number of reg rules in 5 GHz band=
-: 4
-> [ 1345.031331] ath11k c000000.wifi: wmi reg rule 1: (5170 - 5250 @ 80)
-> (6, 30) (FLAGS 0)
-> [ 1345.038102] ath11k c000000.wifi: wmi reg rule 2: (5250 - 5330 @ 80)
-> (6, 24) (FLAGS 8)
-> [ 1345.045915] ath11k c000000.wifi: wmi reg rule 3: (5490 - 5730 @
-> 160) (6, 24) (FLAGS 8)
-> [ 1345.053727] ath11k c000000.wifi: wmi reg rule 4: (5735 - 5895 @
-> 160) (6, 30) (FLAGS 0)
-> [ 1345.061541] ath11k c000000.wifi: wmi processed regulatory channel list
-> [ 1345.069437] ath11k c000000.wifi: wmi event reg handle chan list
-> [ 1345.075947] ath11k c000000.wifi: wmi wmi handle chan list power
-> type 0 vdev type 0
-> [ 1345.082789] ath11k c000000.wifi: wmi processing regulatory channel lis=
-t
-> [ 1345.089404] ath11k c000000.wifi: wmi status_code REG_SET_CC_STATUS_PAS=
-S
-> [ 1345.095913] ath11k c000000.wifi: wmi cc US dsf 1 BW: min_2ghz 0
-> max_2ghz 40 min_5ghz 2 max_5ghz 160
-> [ 1345.102514] ath11k c000000.wifi: wmi num_2ghz_reg_rules 1
-> num_5ghz_reg_rules 4
-> [ 1345.111539] ath11k c000000.wifi: wmi number of reg rules in 2 GHz band=
-: 1
-> [ 1345.118829] ath11k c000000.wifi: wmi reg rule 1: (2402 - 2472 @ 40)
-> (6, 30) (FLAGS 0)
-> [ 1345.125689] ath11k c000000.wifi: wmi number of reg rules in 5 GHz band=
-: 4
-> [ 1345.133500] ath11k c000000.wifi: wmi reg rule 1: (5170 - 5250 @ 80)
-> (6, 30) (FLAGS 0)
-> [ 1345.140272] ath11k c000000.wifi: wmi reg rule 2: (5250 - 5330 @ 80)
-> (6, 24) (FLAGS 8)
-> [ 1345.148085] ath11k c000000.wifi: wmi reg rule 3: (5490 - 5730 @
-> 160) (6, 24) (FLAGS 8)
-> [ 1345.155898] ath11k c000000.wifi: wmi reg rule 4: (5735 - 5895 @
-> 160) (6, 30) (FLAGS 0)
-> [ 1345.163710] ath11k c000000.wifi: wmi processed regulatory channel list
-> [ 1345.171606] ath11k c000000.wifi: wmi event reg handle chan list
-> [ 1345.178116] ath11k c000000.wifi: wmi wmi handle chan list power
-> type 0 vdev type 0
-> [ 1345.183940] ath11k c000000.wifi: wmi event ready
-> [ 1345.191573] ath11k c000000.wifi: wmi unsupported event id 0x4021
-> [ 1345.196414] ath11k c000000.wifi: htt event 48 not handled
-> [ 1345.233427] ath11k c000000.wifi: wmi cmd set init country
-> [ 1345.233751] ath11k c000000.wifi: wmi processing regulatory channel lis=
-t
-> [ 1345.234080] ath11k c000000.wifi: wmi cmd set init country
-> [ 1345.237848] ath11k c000000.wifi: wmi status_code REG_SET_CC_STATUS_PAS=
-S
-> [ 1345.237853] ath11k c000000.wifi: wmi cc GB dsf 2 BW: min_2ghz 0
-> max_2ghz 40 min_5ghz 2 max_5ghz 160
-> [ 1345.256241] ath11k c000000.wifi: wmi num_2ghz_reg_rules 1
-> num_5ghz_reg_rules 3
-> [ 1345.265256] ath11k c000000.wifi: wmi number of reg rules in 2 GHz band=
-: 1
-> [ 1345.272552] ath11k c000000.wifi: wmi reg rule 1: (2402 - 2482 @ 40)
-> (0, 20) (FLAGS 0)
-> [ 1345.279415] ath11k c000000.wifi: wmi number of reg rules in 5 GHz band=
-: 3
-> [ 1345.287221] ath11k c000000.wifi: wmi reg rule 1: (5170 - 5250 @ 80)
-> (0, 23) (FLAGS 512)
-> [ 1345.293988] ath11k c000000.wifi: wmi reg rule 2: (5250 - 5330 @ 80)
-> (0, 23) (FLAGS 520)
-> [ 1345.301808] ath11k c000000.wifi: wmi reg rule 3: (5490 - 5710 @
-> 160) (0, 30) (FLAGS 8)
-> [ 1345.309794] ath11k c000000.wifi: wmi processed regulatory channel list
-> [ 1345.317777] ath11k c000000.wifi: wmi event reg handle chan list
-> [ 1345.324280] ath11k c000000.wifi: wmi wmi handle chan list power
-> type 0 vdev type 0
-> [ 1345.332060] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1345.337783] ath11k c000000.wifi: wmi processing regulatory channel lis=
-t
-> [ 1345.344599] ath11k c000000.wifi: wmi status_code REG_SET_CC_STATUS_PAS=
-S
-> [ 1345.351266] ath11k c000000.wifi: wmi cc GB dsf 2 BW: min_2ghz 0
-> max_2ghz 40 min_5ghz 2 max_5ghz 160
-> [ 1345.357824] ath11k c000000.wifi: wmi num_2ghz_reg_rules 1
-> num_5ghz_reg_rules 3
-> [ 1345.366835] ath11k c000000.wifi: wmi number of reg rules in 2 GHz band=
-: 1
-> [ 1345.374109] ath11k c000000.wifi: wmi reg rule 1: (2402 - 2482 @ 40)
-> (0, 20) (FLAGS 0)
-> [ 1345.380997] ath11k c000000.wifi: wmi number of reg rules in 5 GHz band=
-: 3
-> [ 1345.388797] ath11k c000000.wifi: wmi reg rule 1: (5170 - 5250 @ 80)
-> (0, 23) (FLAGS 512)
-> [ 1345.395565] ath11k c000000.wifi: wmi reg rule 2: (5250 - 5330 @ 80)
-> (0, 23) (FLAGS 520)
-> [ 1345.403364] ath11k c000000.wifi: wmi reg rule 3: (5490 - 5710 @
-> 160) (0, 30) (FLAGS 8)
-> [ 1345.411371] ath11k c000000.wifi: wmi processed regulatory channel list
-> [ 1345.419352] ath11k c000000.wifi: wmi event reg handle chan list
-> [ 1345.425856] ath11k c000000.wifi: wmi wmi handle chan list power
-> type 0 vdev type 0
-> [ 1345.431697] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1371.329758] ath11k c000000.wifi: wmi cmd pdev set param 34 pdev id 1 v=
-alue 1
-> [ 1371.329813] ath11k c000000.wifi: wmi cmd pdev set param 10 pdev id 1 v=
-alue 1
-> [ 1371.335954] ath11k c000000.wifi: wmi scan prob req oui 14216286
-> [ 1371.342952] ath11k c000000.wifi: wmi cmd pdev set param 35 pdev id 1 v=
-alue 0
-> [ 1371.348618] ath11k c000000.wifi: wmi cmd pdev dfs phyerr offload
-> enable pdev id 1
-> [ 1371.355948] ath11k c000000.wifi: wmi cmd pdev set param 143 pdev id 1 =
-value 1
-> [ 1371.363248] ath11k c000000.wifi: wmi cmd pdev set param 1 pdev id 1 va=
-lue 240
-> [ 1371.370372] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1371.377495] ath11k c000000.wifi: wmi cmd pdev set param 2 pdev id 1 va=
-lue 240
-> [ 1371.383552] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1371.390603] ath11k c000000.wifi: wmi mac channel [0/19] freq 5180
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.396673] ath11k c000000.wifi: wmi mac channel [1/19] freq 5200
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.406133] ath11k c000000.wifi: wmi mac channel [2/19] freq 5220
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.415768] ath11k c000000.wifi: wmi mac channel [3/19] freq 5240
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.425391] ath11k c000000.wifi: wmi mac channel [4/19] freq 5260
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.435039] ath11k c000000.wifi: wmi mac channel [5/19] freq 5280
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.444674] ath11k c000000.wifi: wmi mac channel [6/19] freq 5300
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.454309] ath11k c000000.wifi: wmi mac channel [7/19] freq 5320
-> maxpower 46 regpower 46 antenna 0 mode 0
-> [ 1371.463945] ath11k c000000.wifi: wmi mac channel [8/19] freq 5500
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.473579] ath11k c000000.wifi: wmi mac channel [9/19] freq 5520
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.483215] ath11k c000000.wifi: wmi mac channel [10/19] freq 5540
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.492852] ath11k c000000.wifi: wmi mac channel [11/19] freq 5560
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.502488] ath11k c000000.wifi: wmi mac channel [12/19] freq 5580
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.512211] ath11k c000000.wifi: wmi mac channel [13/19] freq 5600
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.521930] ath11k c000000.wifi: wmi mac channel [14/19] freq 5620
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.531654] ath11k c000000.wifi: wmi mac channel [15/19] freq 5640
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.541376] ath11k c000000.wifi: wmi mac channel [16/19] freq 5660
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.551096] ath11k c000000.wifi: wmi mac channel [17/19] freq 5680
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.560821] ath11k c000000.wifi: wmi mac channel [18/19] freq 5700
-> maxpower 60 regpower 60 antenna 0 mode 0
-> [ 1371.570551] ath11k c000000.wifi: wmi no.of chan =3D 19 len =3D 552
-> pdev_id =3D 1 num_sends =3D 0
-> [ 1371.580263] ath11k c000000.wifi: wmi chan scan list chan[0] =3D 5180,
-> chan_info->info    20000
-> [ 1371.588597] ath11k c000000.wifi: wmi chan scan list chan[1] =3D 5200,
-> chan_info->info    20000
-> [ 1371.597016] ath11k c000000.wifi: wmi chan scan list chan[2] =3D 5220,
-> chan_info->info    20000
-> [ 1371.605424] ath11k c000000.wifi: wmi chan scan list chan[3] =3D 5240,
-> chan_info->info    20000
-> [ 1371.613857] ath11k c000000.wifi: wmi chan scan list chan[4] =3D 5260,
-> chan_info->info    20480
-> [ 1371.622277] ath11k c000000.wifi: wmi chan scan list chan[5] =3D 5280,
-> chan_info->info    20480
-> [ 1371.630698] ath11k c000000.wifi: wmi chan scan list chan[6] =3D 5300,
-> chan_info->info    20480
-> [ 1371.639116] ath11k c000000.wifi: wmi chan scan list chan[7] =3D 5320,
-> chan_info->info    20480
-> [ 1371.647536] ath11k c000000.wifi: wmi chan scan list chan[8] =3D 5500,
-> chan_info->info    20480
-> [ 1371.655957] ath11k c000000.wifi: wmi chan scan list chan[9] =3D 5520,
-> chan_info->info    20480
-> [ 1371.664365] ath11k c000000.wifi: wmi chan scan list chan[10] =3D
-> 5540, chan_info->info    20480
-> [ 1371.672798] ath11k c000000.wifi: wmi chan scan list chan[11] =3D
-> 5560, chan_info->info    20480
-> [ 1371.681217] ath11k c000000.wifi: wmi chan scan list chan[12] =3D
-> 5580, chan_info->info    20480
-> [ 1371.689724] ath11k c000000.wifi: wmi chan scan list chan[13] =3D
-> 5600, chan_info->info    20480
-> [ 1371.698231] ath11k c000000.wifi: wmi chan scan list chan[14] =3D
-> 5620, chan_info->info    20480
-> [ 1371.706738] ath11k c000000.wifi: wmi chan scan list chan[15] =3D
-> 5640, chan_info->info    20480
-> [ 1371.715232] ath11k c000000.wifi: wmi chan scan list chan[16] =3D
-> 5660, chan_info->info    20480
-> [ 1371.723754] ath11k c000000.wifi: wmi chan scan list chan[17] =3D
-> 5680, chan_info->info    20480
-> [ 1371.732258] ath11k c000000.wifi: wmi chan scan list chan[18] =3D
-> 5700, chan_info->info    20480
-> [ 1371.740776] ath11k c000000.wifi: wmi cmd scan chan list channels 19
-> [ 1371.749337] ath11k c000000.wifi: wmi cmd lro config pdev_id 0x1
-> [ 1371.755344] ath11k c000000.wifi: mac add interface id 0 type 2
-> subtype 0 map 3ffffffff
-> [ 1371.761248] ath11k c000000.wifi: wmi cmd vdev create id 0 type 2
-> subtype 0 macaddr xx:xx:xx:xx:xx:bb pdevid 1
-> [ 1371.769239] ath11k c000000.wifi: mac vdev xx:xx:xx:xx:xx:bb
-> created, vdev_id 0
-> [ 1371.779216] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 48 value 1
-> [ 1371.786337] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 91 value 1
-> [ 1371.793883] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 34 value 4
-> [ 1371.801356] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1371.808821] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 1 value 1
-> [ 1371.816633] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 2 value 0
-> [ 1371.824527] ath11k c000000.wifi: wmi cmd sta powersave mode psmode
-> 0 vdev id 0
-> [ 1371.832432] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 1 value -1
-> [ 1371.839639] ath11k c000000.wifi: mac defer protection mode setup,
-> vdev is not ready yet
-> [ 1371.847184] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 7 value 1
-> [ 1371.854993] ath11k c000000.wifi: mac Set slottime: 1 for VDEV: 0
-> [ 1371.862632] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 8 value 1
-> [ 1371.868630] ath11k c000000.wifi: mac Set preamble: 1 for VDEV: 0
-> [ 1371.876008] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1371.881988] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1371.891110] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1371.900310] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1371.909514] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1371.919059] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1371.924786] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1371.932517] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1371.940414] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1371.949703] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1371.958904] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1371.968455] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1371.978000] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1371.983728] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1371.991461] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1371.999356] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1372.008991] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1372.018192] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1372.027742] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1372.037289] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1372.043017] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1372.050747] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1372.058644] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1372.068281] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1372.077828] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1372.087380] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1372.096923] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1372.102652] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1372.112495] ath11k c000000.wifi: wmi cmd request stats 0x4 vdev id
-> 0 pdev id 1
-> [ 1372.112652] ath11k c000000.wifi: wmi stats id 0x4 num chain 0
-> [ 1372.125471] ath11k c000000.wifi: wmi event update stats
-> [ 1372.131299] ath11k c000000.wifi: wmi debug get fw stat pdev id 1
-> vdev id 0 stats id 0x4
-> [ 1372.136439] ath11k c000000.wifi: mac txpower from firmware 57,
-> reported 28 dBm
-> [ 1372.144667] ath11k c000000.wifi: wmi cmd request stats 0x4 vdev id
-> 0 pdev id 1
-> [ 1372.144782] ath11k c000000.wifi: wmi stats id 0x4 num chain 0
-> [ 1372.158812] ath11k c000000.wifi: wmi event update stats
-> [ 1372.164629] ath11k c000000.wifi: wmi debug get fw stat pdev id 1
-> vdev id 0 stats id 0x4
-> [ 1372.169667] ath11k c000000.wifi: mac txpower from firmware 57,
-> reported 28 dBm
-> [ 1372.178147] ath11k c000000.wifi: wmi cmd request stats 0x4 vdev id
-> 0 pdev id 1
-> [ 1372.178277] ath11k c000000.wifi: wmi stats id 0x4 num chain 0
-> [ 1372.192145] ath11k c000000.wifi: wmi event update stats
-> [ 1372.197964] ath11k c000000.wifi: wmi debug get fw stat pdev id 1
-> vdev id 0 stats id 0x4
-> [ 1372.202992] ath11k c000000.wifi: mac txpower from firmware 57,
-> reported 28 dBm
-> [ 1372.211080] ath11k c000000.wifi: wmi cmd request stats 0x4 vdev id
-> 0 pdev id 1
-> [ 1372.211208] ath11k c000000.wifi: wmi stats id 0x4 num chain 0
-> [ 1372.225478] ath11k c000000.wifi: wmi event update stats
-> [ 1372.231296] ath11k c000000.wifi: wmi debug get fw stat pdev id 1
-> vdev id 0 stats id 0x4
-> [ 1372.236337] ath11k c000000.wifi: mac txpower from firmware 57,
-> reported 28 dBm
-> [ 1372.245004] ath11k c000000.wifi: wmi cmd request stats 0x4 vdev id
-> 0 pdev id 1
-> [ 1372.245133] ath11k c000000.wifi: wmi stats id 0x4 num chain 0
-> [ 1372.258812] ath11k c000000.wifi: wmi event update stats
-> [ 1372.264628] ath11k c000000.wifi: wmi debug get fw stat pdev id 1
-> vdev id 0 stats id 0x4
-> [ 1372.269673] ath11k c000000.wifi: mac txpower from firmware 57,
-> reported 28 dBm
-> [ 1372.281635] ath11k c000000.wifi: wmi cmd request stats 0x4 vdev id
-> 0 pdev id 1
-> [ 1372.281764] ath11k c000000.wifi: wmi stats id 0x4 num chain 0
-> [ 1372.292147] ath11k c000000.wifi: wmi event update stats
-> [ 1372.297964] ath11k c000000.wifi: wmi debug get fw stat pdev id 1
-> vdev id 0 stats id 0x4
-> [ 1372.302993] ath11k c000000.wifi: mac txpower from firmware 57,
-> reported 28 dBm
-> [ 1372.381175] ath11k c000000.wifi: wmi cmd start scan
-> [ 1372.381508] ath11k c000000.wifi: wmi event scan started type 1
-> reason 7 freq 5180 req_id 1 scan_id 40960 vdev_id 0 state starting (1)
-> [ 1372.393659] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1372.397948] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1372.403131] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5180 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1372.444312] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5180 cmd_flags 0 noise_floor -97 rx_clear_count 5354
-> cycle_count 50136 mac_clk_mhz 1
-> [ 1372.448433] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5180 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1372.460543] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1372.470268] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1372.476240] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5200 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1372.506965] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5200 cmd_flags 0 noise_floor -96 rx_clear_count 3636
-> cycle_count 50128 mac_clk_mhz 1
-> [ 1372.511086] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5200 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1372.523226] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1372.532905] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1372.538886] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5220 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1372.569672] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5220 cmd_flags 0 noise_floor -97 rx_clear_count 2372
-> cycle_count 50135 mac_clk_mhz 1
-> [ 1372.573794] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5220 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1372.585866] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1372.595598] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1372.601577] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5240 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1372.632315] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5240 cmd_flags 0 noise_floor -96 rx_clear_count 11755
-> cycle_count 50129 mac_clk_mhz 1
-> [ 1372.636438] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5240 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1372.648528] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1372.658319] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1372.664309] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5260 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1372.794974] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5260 cmd_flags 0 noise_floor -97 rx_clear_count 4397
-> cycle_count 150111 mac_clk_mhz 1
-> [ 1372.799092] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5260 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1372.811111] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1372.820984] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1372.826974] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5280 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1372.957543] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5280 cmd_flags 0 noise_floor -97 rx_clear_count 2353
-> cycle_count 150120 mac_clk_mhz 1
-> [ 1372.961654] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5280 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1372.973673] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1372.983542] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1372.989535] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5300 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1373.120110] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5300 cmd_flags 0 noise_floor -97 rx_clear_count 4341
-> cycle_count 150120 mac_clk_mhz 1
-> [ 1373.124233] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5300 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1373.136302] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1373.146115] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1373.152106] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5320 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1373.282736] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5320 cmd_flags 0 noise_floor -97 rx_clear_count 2334
-> cycle_count 150119 mac_clk_mhz 1
-> [ 1373.286849] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5320 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1373.298886] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1373.308737] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1373.314727] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5500 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1373.445363] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5500 cmd_flags 0 noise_floor -97 rx_clear_count 821
-> cycle_count 150113 mac_clk_mhz 1
-> [ 1373.449479] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5500 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1373.461482] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1373.471281] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1373.477271] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5520 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1373.607918] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5520 cmd_flags 0 noise_floor -97 rx_clear_count 267
-> cycle_count 150115 mac_clk_mhz 1
-> [ 1373.612041] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5520 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1373.624187] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1373.633847] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1373.639825] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5540 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1373.770611] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5540 cmd_flags 0 noise_floor -96 rx_clear_count 62601
-> cycle_count 150112 mac_clk_mhz 1
-> [ 1373.774734] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5540 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1373.786877] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1373.796701] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1373.802692] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5560 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1373.933313] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5560 cmd_flags 0 noise_floor -97 rx_clear_count 274
-> cycle_count 150116 mac_clk_mhz 1
-> [ 1373.937426] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5560 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1373.949463] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1373.959228] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1373.965219] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5580 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1374.095900] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5580 cmd_flags 0 noise_floor -97 rx_clear_count 702
-> cycle_count 150114 mac_clk_mhz 1
-> [ 1374.100011] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5580 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1374.112152] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1374.121823] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1374.127806] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5600 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1374.258582] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5600 cmd_flags 0 noise_floor -97 rx_clear_count 458
-> cycle_count 150118 mac_clk_mhz 1
-> [ 1374.262703] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5600 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1374.274733] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1374.284497] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1374.290488] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5620 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1374.421172] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5620 cmd_flags 0 noise_floor -97 rx_clear_count 3858
-> cycle_count 150115 mac_clk_mhz 1
-> [ 1374.425293] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5620 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1374.437399] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1374.447175] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1374.453167] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5640 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1374.583831] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5640 cmd_flags 0 noise_floor -96 rx_clear_count 1830
-> cycle_count 150118 mac_clk_mhz 1
-> [ 1374.587944] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5640 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1374.600070] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1374.609848] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1374.615826] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5660 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1374.746542] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5660 cmd_flags 0 noise_floor -96 rx_clear_count 3208
-> cycle_count 150115 mac_clk_mhz 1
-> [ 1374.750657] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5660 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1374.760648] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1374.773131] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1374.778536] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5680 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1374.911226] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5680 cmd_flags 0 noise_floor -97 rx_clear_count 1446
-> cycle_count 150116 mac_clk_mhz 1
-> [ 1374.915348] ath11k c000000.wifi: wmi event scan bss channel type 4
-> reason 7 freq 5680 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1374.927367] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1374.937228] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1374.943219] ath11k c000000.wifi: wmi event scan foreign channel
-> type 8 reason 7 freq 5700 req_id 1 scan_id 40960 vdev_id 0 state
-> running (2)
-> [ 1375.073818] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 5700 cmd_flags 0 noise_floor -96 rx_clear_count 45010
-> cycle_count 150118 mac_clk_mhz 1
-> [ 1375.073908] ath11k c000000.wifi: wmi event chan info vdev_id 0
-> err_code 0 freq 0 cmd_flags 1 noise_floor 0 rx_clear_count 0
-> cycle_count 0 mac_clk_mhz 0
-> [ 1375.087599] ath11k c000000.wifi: wmi chan info report completed
-> [ 1375.100955] ath11k c000000.wifi: wmi event scan completed type 2
-> reason 0 freq 5700 req_id 1 scan_id 40960 vdev_id 0 state running (2)
-> [ 1375.232750] ath11k c000000.wifi: mac chanctx add freq 5180 width 5
-> ptr 000000006f627186
-> [ 1375.232810] ath11k c000000.wifi: mac chanctx change freq 5180 width
-> 5 ptr 000000006f627186 changed 10
-> [ 1375.239619] ath11k c000000.wifi: mac chanctx assign ptr
-> 000000006f627186 vdev_id 0
-> [ 1375.248969] ath11k c000000.wifi: mac vdev 0 start center_freq 5180
-> phymode 11ax-he160
-> [ 1375.256442] ath11k c000000.wifi: wmi cmd vdev start id 0x0 freq
-> 0x143c mode 0x14
-> [ 1375.812162] ath11k c000000.wifi: wmi unsupported event id 0x402b
-> [ 1375.812402] ath11k c000000.wifi: wmi event pdev ctl failsafe check sta=
-tus 0
-> [ 1375.820594] ath11k c000000.wifi: wmi event start resp event
-> [ 1375.823938] ath11k c000000.wifi: wmi vdev start resp for vdev id 0
-> [ 1375.823964] ath11k c000000.wifi: mac vdev xx:xx:xx:xx:xx:bb
-> started, vdev_id 0
-> [ 1375.835754] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 45 value 887
-> [ 1375.842949] ath11k c000000.wifi: mac vdev_id 0 txpower 23
-> [ 1375.850501] ath11k c000000.wifi: mac txpower to set in hw 23
-> [ 1375.856059] ath11k c000000.wifi: wmi cmd pdev set param 4 pdev id 1 va=
-lue 46
-> [ 1375.861790] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 3 value 100
-> [ 1375.868819] ath11k c000000.wifi: mac Beacon interval: 100 set for VDEV=
-: 0
-> [ 1375.876199] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 25 value 268435459
-> [ 1375.883051] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 94 value 268435459
-> [ 1375.891234] ath11k c000000.wifi: wmi cmd peer create vdev_id 0
-> peer_addr xx:xx:xx:xx:xx:aa
-> [ 1375.891672] ath11k c000000.wifi: wmi unsupported event id 0x601a
-> [ 1375.899384] ath11k c000000.wifi: mac Added peer: xx:xx:xx:xx:xx:aa
-> for VDEV: 0
-> [ 1375.913692] ath11k c000000.wifi: wmi cmd peer set param vdev 0 peer
-> 0xxx:xx:xx:xx:xx:aa set param 19 value 3
-> [ 1375.920742] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 0
-> [ 1375.930723] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 1
-> [ 1375.940181] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 2
-> [ 1375.949645] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 3
-> [ 1375.959106] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 4
-> [ 1375.968564] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 5
-> [ 1375.978026] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 6
-> [ 1375.987488] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 7
-> [ 1375.996950] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 8
-> [ 1376.006413] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 9
-> [ 1376.015874] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 10
-> [ 1376.025328] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 11
-> [ 1376.034797] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 12
-> [ 1376.044345] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 13
-> [ 1376.053895] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 14
-> [ 1376.063443] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 15
-> [ 1376.072993] ath11k c000000.wifi: wmi cmd peer reorder queue setup
-> addr xx:xx:xx:xx:xx:aa vdev_id 0 tid 16
-> [ 1376.082675] phy3-sta0: authenticate with xx:xx:xx:xx:xx:aa (local
-> address=3Dxx:xx:xx:xx:xx:bb)
-> [ 1376.092083] phy3-sta0: send auth to xx:xx:xx:xx:xx:aa (try 1/3)
-> [ 1376.100611] ath11k c000000.wifi: mac tx mgmt frame, buf id 0
-> [ 1376.106248] ath11k c000000.wifi: wmi cmd mgmt tx send
-> [ 1376.107162] ath11k c000000.wifi: wmi mgmt tx comp pending 0 desc id 0
-> [ 1376.112122] ath11k c000000.wifi: mac tx mgmt frame, vdev_id 0
-> [ 1378.139030] phy3-sta0: send auth to xx:xx:xx:xx:xx:aa (try 2/3)
-> [ 1378.139113] ath11k c000000.wifi: mac tx mgmt frame, buf id 0
-> [ 1378.143782] ath11k c000000.wifi: wmi cmd mgmt tx send
-> [ 1378.144690] ath11k c000000.wifi: wmi mgmt tx comp pending 0 desc id 0
-> [ 1378.149704] ath11k c000000.wifi: mac tx mgmt frame, vdev_id 0
-> [ 1378.168532] phy3-sta0: authenticate with xx:xx:xx:xx:xx:aa (local
-> address=3Dxx:xx:xx:xx:xx:bb)
-> [ 1378.168587] phy3-sta0: send auth to xx:xx:xx:xx:xx:aa (try 1/3)
-> [ 1378.176120] ath11k c000000.wifi: mac tx mgmt frame, buf id 0
-> [ 1378.181705] ath11k c000000.wifi: wmi cmd mgmt tx send
-> [ 1378.182438] ath11k c000000.wifi: wmi mgmt tx comp pending 0 desc id 0
-> [ 1378.187613] ath11k c000000.wifi: mac tx mgmt frame, vdev_id 0
-> [ 1378.195160] phy3-sta0: authenticated
-> [ 1378.205579] phy3-sta0: associate with xx:xx:xx:xx:xx:aa (try 1/3)
-> [ 1378.208397] ath11k c000000.wifi: mac tx mgmt frame, buf id 0
-> [ 1378.214342] ath11k c000000.wifi: wmi cmd mgmt tx send
-> [ 1378.215343] ath11k c000000.wifi: wmi mgmt tx comp pending 0 desc id 0
-> [ 1378.220199] ath11k c000000.wifi: mac tx mgmt frame, vdev_id 0
-> [ 1378.229011] phy3-sta0: RX AssocResp from xx:xx:xx:xx:xx:aa
-> (capab=3D0x1111 status=3D0 aid=3D2)
-> [ 1378.237222] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.245329] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.254808] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.264363] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 3 cwmax 7 txop 47 acm 0 no_ack 0
-> [ 1378.273900] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.283096] ath11k c000000.wifi: wmi wmm set type 1 ac 0 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1378.288910] ath11k c000000.wifi: wmi wmm set type 1 ac 1 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1378.298026] ath11k c000000.wifi: wmi wmm set type 1 ac 2 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1378.307226] ath11k c000000.wifi: wmi wmm set type 1 ac 3 aifs 5
-> cwmin 5 cwmax 7 txop 255 acm 0 no_ack 0
-> [ 1378.316431] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.325623] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1378.331524] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1378.339256] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.347158] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.356791] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 2
-> cwmin 7 cwmax 15 txop 94 acm 0 no_ack 0
-> [ 1378.366340] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 3 cwmax 7 txop 47 acm 0 no_ack 0
-> [ 1378.375535] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.384903] ath11k c000000.wifi: wmi wmm set type 1 ac 0 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1378.390730] ath11k c000000.wifi: wmi wmm set type 1 ac 1 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1378.399845] ath11k c000000.wifi: wmi wmm set type 1 ac 2 aifs 5
-> cwmin 5 cwmax 7 txop 255 acm 0 no_ack 0
-> [ 1378.409047] ath11k c000000.wifi: wmi wmm set type 1 ac 3 aifs 5
-> cwmin 5 cwmax 7 txop 255 acm 0 no_ack 0
-> [ 1378.418250] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.427617] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1378.433519] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1378.441250] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 3
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.449153] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 2
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.458787] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 2
-> cwmin 7 cwmax 15 txop 94 acm 0 no_ack 0
-> [ 1378.468338] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 3 cwmax 7 txop 47 acm 0 no_ack 0
-> [ 1378.477537] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.486905] ath11k c000000.wifi: wmi wmm set type 1 ac 0 aifs 8
-> cwmin 9 cwmax 10 txop 255 acm 0 no_ack 0
-> [ 1378.492722] ath11k c000000.wifi: wmi wmm set type 1 ac 1 aifs 0
-> cwmin 0 cwmax 0 txop 0 acm 0 no_ack 0
-> [ 1378.502188] ath11k c000000.wifi: wmi wmm set type 1 ac 2 aifs 5
-> cwmin 5 cwmax 7 txop 255 acm 0 no_ack 0
-> [ 1378.511304] ath11k c000000.wifi: wmi wmm set type 1 ac 3 aifs 5
-> cwmin 5 cwmax 7 txop 255 acm 0 no_ack 0
-> [ 1378.520508] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.529874] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1378.535782] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1378.543501] ath11k c000000.wifi: wmi wmm set type 0 ac 0 aifs 3
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.551409] ath11k c000000.wifi: wmi wmm set type 0 ac 1 aifs 7
-> cwmin 15 cwmax 1023 txop 0 acm 0 no_ack 0
-> [ 1378.561046] ath11k c000000.wifi: wmi wmm set type 0 ac 2 aifs 2
-> cwmin 7 cwmax 15 txop 94 acm 0 no_ack 0
-> [ 1378.570592] ath11k c000000.wifi: wmi wmm set type 0 ac 3 aifs 2
-> cwmin 3 cwmax 7 txop 47 acm 0 no_ack 0
-> [ 1378.579794] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.589166] ath11k c000000.wifi: wmi wmm set type 1 ac 0 aifs 8
-> cwmin 9 cwmax 10 txop 255 acm 0 no_ack 0
-> [ 1378.594979] ath11k c000000.wifi: wmi wmm set type 1 ac 1 aifs 15
-> cwmin 9 cwmax 10 txop 255 acm 0 no_ack 0
-> [ 1378.604447] ath11k c000000.wifi: wmi wmm set type 1 ac 2 aifs 5
-> cwmin 5 cwmax 7 txop 255 acm 0 no_ack 0
-> [ 1378.613907] ath11k c000000.wifi: wmi wmm set type 1 ac 3 aifs 5
-> cwmin 5 cwmax 7 txop 255 acm 0 no_ack 0
-> [ 1378.623111] ath11k c000000.wifi: wmi cmd vdev set wmm params
-> [ 1378.632479] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 4 value 0
-> [ 1378.635814] qcom-q6v5-wcss-pil cd00000.q6v5_wcss: fatal error received=
-:
-> [ 1378.635814] QC Image Version:
-> QC_IMAGE_VERSION_STRING=3DWLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
-> [ 1378.635814] Image Variant : IMAGE_VARIANT_STRING=3D8074.wlanfw.eval_v2=
-Q
-> [ 1378.635814]
-> [ 1378.635814] wal_tx_control.c:823 Assertion 0 failedparam0 :zero,
-> param1 :zero, param2 :zero.
-> [ 1378.635814] Thread ID      : 0x0000006b  Thread name    : WLAN RT0
-> Process ID     : 0
-> [ 1378.635814] Register:
-> [ 1378.635814] SP : 0x4bfb95e0
-> [ 1378.635814] FP : 0x4bfb95e8
-> [ 1378.635814] PC : 0x4b107f58
-> [ 1378.635814] SSR : 0x00000008
-> [ 1378.635814] BADVA : 0x00020000
-> [ 1378.635814] LR : 0x4b1076f4
-> [ 1378.635814]
-> [ 1378.635814] Stack Dump
-> [ 1378.635814] from : 0x4bfb95e0
-> [ 1378.635814] to   : 0x4bfb9bb8
-> [ 1378.635814]
-> [ 1378.638389] ath11k c000000.wifi: wmi cmd set powersave param
-> vdev_id 0 param 0 value 0
-> [ 1378.693929] remoteproc remoteproc0: crash detected in
-> cd00000.q6v5_wcss: type fatal error
-> [ 1378.716184] ath11k c000000.wifi: wmi cmd vdev set param vdev 0x0
-> param 13 value 2
-> [ 1378.724158] remoteproc remoteproc0: handling crash #1 in cd00000.q6v5_=
-wcss
-> [ 1378.732394] ath11k c000000.wifi: mac DTIM period: 2 set for VDEV: 0
-> [ 1378.739857] remoteproc remoteproc0: recovering cd00000.q6v5_wcss
-> [ 1378.740462] ath11k c000000.wifi: qmi wifi fw del server
-> [ 1378.746696] SError Interrupt on CPU3, code 0x00000000bf000002 -- SErro=
-r
-> [ 1378.746704] CPU: 3 UID: 0 PID: 49 Comm: kworker/u16:2 Tainted: G
-> M       O       6.12.58 #0
-> [ 1378.746711] Tainted: [M]=3DMACHINE_CHECK, [O]=3DOOT_MODULE
-> [ 1378.746713] Hardware name: Linksys MX8500 (DT)
-> [ 1378.746716] Workqueue: events_unbound wiphy_delayed_work_pending [cfg8=
-0211]
-> [ 1378.746763] pstate: 80400005 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYP=
-E=3D--)
-> [ 1378.746767] pc : __local_bh_enable_ip+0x8/0x94
-> [ 1378.746777] lr : ath11k_ce_send+0x1ac/0x344 [ath11k]
-> [ 1378.746799] sp : ffffffc081a6b610
-> [ 1378.746800] x29: ffffffc081a6b610 x28: 000000000000001f x27: 000000000=
-0000003
-> [ 1378.746806] x26: ffffffc079e3f1e8 x25: ffffff80033488c0 x24: ffffff801=
-47f7500
-> [ 1378.746811] x23: ffffff8014812058 x22: ffffff8014810150 x21: ffffff801=
-4813798
-> [ 1378.746816] x20: ffffff80148137d8 x19: ffffffc079e3f1e8 x18: ffffffc08=
-1a6b2ff
-> [ 1378.746821] x17: 6176203331206d61 x16: 7261702030783020 x15: 000000000=
-0000005
-> [ 1378.746826] x14: 0000000000000000 x13: 30203a5645445620 x12: 000000000=
-0000001
-> [ 1378.746831] x11: 0000000000000004 x10: 0000000000000048 x9 : 000000000=
-0000000
-> [ 1378.746836] x8 : ffffff80147f754e x7 : 0000000000000000 x6 : 000000000=
-0000000
-> [ 1378.746841] x5 : ffffffc094a06400 x4 : 0000000000000000 x3 : 000000002=
-0000000
-> [ 1378.746845] x2 : 0000000000000064 x1 : 0000000000000200 x0 : 000000000=
-0000400
-> [ 1378.746852] Kernel panic - not syncing: Asynchronous SError Interrupt
-> [ 1378.746855] CPU: 3 UID: 0 PID: 49 Comm: kworker/u16:2 Tainted: G
-> M       O       6.12.58 #0
-> [ 1378.746859] Tainted: [M]=3DMACHINE_CHECK, [O]=3DOOT_MODULE
-> [ 1378.746861] Hardware name: Linksys MX8500 (DT)
-> [ 1378.746863] Workqueue: events_unbound wiphy_delayed_work_pending [cfg8=
-0211]
-> [ 1378.746878] Call trace:
-> [ 1378.746881]  dump_backtrace.part.0+0xbc/0xc8
-> [ 1378.746888]  show_stack+0x18/0x24
-> [ 1378.746892]  dump_stack_lvl+0x5c/0x7c
-> [ 1378.746898]  dump_stack+0x18/0x24
-> [ 1378.746900]  panic+0x12c/0x308
-> [ 1378.746904]  add_taint+0x0/0xb4
-> [ 1378.746908]  arm64_serror_panic+0x70/0x7c
-> [ 1378.746913]  do_serror+0x28/0x68
-> [ 1378.746918]  el1h_64_error_handler+0x30/0x54
-> [ 1378.746922]  el1h_64_error+0x68/0x6c
-> [ 1378.746925]  __local_bh_enable_ip+0x8/0x94
-> [ 1378.746930]  ath11k_htc_send+0x1a4/0x4bc [ath11k]
-> [ 1378.746942]  ath11k_hal_rx_sw_mon_ring_buf_paddr_get+0x598/0x265c [ath=
-11k]
-> [ 1378.746953]  ath11k_wmi_cmd_send+0x98/0x284 [ath11k]
-> [ 1378.746963]  ath11k_wmi_vdev_set_param_cmd+0x64/0x104 [ath11k]
-> [ 1378.746974]  ath11k_mac_11d_scan_stop+0xabc/0x2678 [ath11k]
-> [ 1378.746985]  ieee80211_bss_info_change_notify+0xf8/0x1a4 [mac80211]
-> [ 1378.747019]  ieee80211_mgd_set_link_qos_params+0xeac/0x224c [mac80211]
-> [ 1378.747041]  ieee80211_sta_rx_queued_mgmt+0x88/0xa68 [mac80211]
-> [ 1378.747062]  ieee80211_ibss_leave+0xc54/0x1a50 [mac80211]
-> [ 1378.747083]  wiphy_delayed_work_pending+0x324/0x450 [cfg80211]
-> [ 1378.747097]  process_one_work+0x178/0x304
-> [ 1378.747102]  worker_thread+0x278/0x440
-> [ 1378.747106]  kthread+0xdc/0xe0
-> [ 1378.747114]  ret_from_fork+0x10/0x20
-> [ 1378.747118] SMP: stopping secondary CPUs
-> [ 1378.765671] Kernel Offset: disabled
-> [ 1378.765673] CPU features: 0x00,00000000,00000000,0200400b
-> [ 1378.765676] Memory Limit: none
->
-> Regards,
+".max_tx_ring" is an upper bounds to indexing ".tcl2wbm_rbm_map". It
+is initialized in, core.c, a different file than the array. This
+spaghetti-like relation is fragile and not obvious. Accidentally
+setting ".max_tx_ring" too high leads to a hard to track out-of-
+bounds access and memory corruption.
 
-Hi Vasanth,
+There is a small ambiguity on the meaning of "max_tx_ring":
+ - The highest ring, max=3 implies there are 4 rings (0, 1, 2, 3)
+ - The highest number to use for array indexing (there are 3 rings)
 
-According to the information in this commit, older firmware versions
-do not support EDCA parameter:
-https://git.codelinaro.org/clo/qsdk/oss/system/feeds/wlan-open/-/blob/win.w=
-lan_host_opensource.4.0.r30/patches/ath11k/0209-QSDK-CP-wifi-ath11k-Fix-the=
--WMM-param-type.patch?ref_type=3Dheads
+Clarify this dependency by moving ".max_tx_ring" adjacent to the array
+".tcl2wbm_rbm_map", and name it "num_tx_rings". Use ARRAY_SIZE()
+instead of #defines to initialize the length field.
 
-Thanks Sebastian!
+The ath11k_hw_hal_params_qca6390 uses fewer num_tx_rings than its map,
+so use a constant to express the correct value. Add a static_assert()
+to fail compilation if the constant is accidentally set too high.
+
+The intent is to make the code easier to understand rather than fix
+an existing bug.
+
+Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+---
+
+I am trying to make ath11k work on IPQ9574. My device uses a IPQ9570
+with a QCN5024 as the 2.4 GHz wifi.
+
+I spent a few days tracking a memory corruption bug caused by
+erroneously setting ".max_tx_ring" too high. I think I would not have
+made this mistake if the initializations of .max_tx_ring and
+.tcl2wbm_rbm_map were right next to each other.
+
+Changes since v1:
+ - use "num_tx_rings" name instead of "map_len"
+ - make sure debugfs.c is correctly updated
+ - add a static_assert for ath11k_hw_hal_params_qca6390 special case
+
+ drivers/net/wireless/ath/ath11k/core.c    | 12 +-----------
+ drivers/net/wireless/ath/ath11k/debugfs.c |  2 +-
+ drivers/net/wireless/ath/ath11k/dp.c      | 12 ++++++------
+ drivers/net/wireless/ath/ath11k/dp_tx.c   |  9 +++++----
+ drivers/net/wireless/ath/ath11k/hw.c      | 19 +++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/hw.h      |  3 ++-
+ drivers/net/wireless/ath/ath11k/mac.c     |  2 +-
+ 7 files changed, 35 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 812686173ac8a..07199ceecbeb4 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -100,7 +100,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = false,
+ 		.fix_l1ss = true,
+ 		.credit_flow = false,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX,
+ 		.hal_params = &ath11k_hw_hal_params_ipq8074,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = true,
+@@ -184,7 +183,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = false,
+ 		.fix_l1ss = true,
+ 		.credit_flow = false,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX,
+ 		.hal_params = &ath11k_hw_hal_params_ipq8074,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = true,
+@@ -271,7 +269,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = false,
+ 		.fix_l1ss = true,
+ 		.credit_flow = true,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
+ 		.hal_params = &ath11k_hw_hal_params_qca6390,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+@@ -358,7 +355,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = false,
+ 		.fix_l1ss = true,
+ 		.credit_flow = false,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX,
+ 		.hal_params = &ath11k_hw_hal_params_ipq8074,
+ 		.supports_dynamic_smps_6ghz = true,
+ 		.alloc_cacheable_memory = true,
+@@ -445,7 +441,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = true,
+ 		.fix_l1ss = false,
+ 		.credit_flow = true,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
+ 		.hal_params = &ath11k_hw_hal_params_qca6390,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+@@ -533,7 +528,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = true,
+ 		.fix_l1ss = false,
+ 		.credit_flow = true,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
+ 		.hal_params = &ath11k_hw_hal_params_qca6390,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+@@ -619,7 +613,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = true,
+ 		.fix_l1ss = false,
+ 		.credit_flow = true,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX,
+ 		.hal_params = &ath11k_hw_hal_params_wcn6750,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+@@ -662,7 +655,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_IPQ8074,
+ 		.ring_mask = &ath11k_hw_ring_mask_ipq8074,
+ 		.credit_flow = false,
+-		.max_tx_ring = 1,
+ 		.spectral = {
+ 			.fft_sz = 2,
+ 			.fft_pad_sz = 0,
+@@ -698,7 +690,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = false,
+ 		.idle_ps = false,
+ 		.supports_suspend = false,
+-		.hal_params = &ath11k_hw_hal_params_ipq8074,
++		.hal_params = &ath11k_hw_hal_params_ipq5018,
+ 		.single_pdev_only = false,
+ 		.coldboot_cal_mm = true,
+ 		.coldboot_cal_ftm = true,
+@@ -789,7 +781,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = true,
+ 		.fix_l1ss = false,
+ 		.credit_flow = true,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
+ 		.hal_params = &ath11k_hw_hal_params_qca6390,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+@@ -876,7 +867,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_regdb = true,
+ 		.fix_l1ss = false,
+ 		.credit_flow = true,
+-		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
+ 		.hal_params = &ath11k_hw_hal_params_qca6390,
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 977f945b6e669..50f344803e8fd 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -707,7 +707,7 @@ static ssize_t ath11k_debugfs_dump_soc_dp_stats(struct file *file,
+ 	len += scnprintf(buf + len, size - len, "\nSOC TX STATS:\n");
+ 	len += scnprintf(buf + len, size - len, "\nTCL Ring Full Failures:\n");
+ 
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++)
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++)
+ 		len += scnprintf(buf + len, size - len, "ring%d: %u\n",
+ 				 i, soc_stats->tx_err.desc_na[i]);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 56b1a657e0b0f..c940de285276d 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -344,7 +344,7 @@ void ath11k_dp_stop_shadow_timers(struct ath11k_base *ab)
+ 	if (!ab->hw_params.supports_shadow_regs)
+ 		return;
+ 
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++)
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++)
+ 		ath11k_dp_shadow_stop_timer(ab, &ab->dp.tx_ring_timer[i]);
+ 
+ 	ath11k_dp_shadow_stop_timer(ab, &ab->dp.reo_cmd_timer);
+@@ -359,7 +359,7 @@ static void ath11k_dp_srng_common_cleanup(struct ath11k_base *ab)
+ 	ath11k_dp_srng_cleanup(ab, &dp->wbm_desc_rel_ring);
+ 	ath11k_dp_srng_cleanup(ab, &dp->tcl_cmd_ring);
+ 	ath11k_dp_srng_cleanup(ab, &dp->tcl_status_ring);
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++) {
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++) {
+ 		ath11k_dp_srng_cleanup(ab, &dp->tx_ring[i].tcl_data_ring);
+ 		ath11k_dp_srng_cleanup(ab, &dp->tx_ring[i].tcl_comp_ring);
+ 	}
+@@ -400,7 +400,7 @@ static int ath11k_dp_srng_common_setup(struct ath11k_base *ab)
+ 		goto err;
+ 	}
+ 
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++) {
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++) {
+ 		tcl_num = ab->hw_params.hal_params->tcl2wbm_rbm_map[i].tcl_ring_num;
+ 		wbm_num = ab->hw_params.hal_params->tcl2wbm_rbm_map[i].wbm_ring_num;
+ 
+@@ -782,7 +782,7 @@ int ath11k_dp_service_srng(struct ath11k_base *ab,
+ 	int i, j;
+ 	int tot_work_done = 0;
+ 
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++) {
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++) {
+ 		if (BIT(ab->hw_params.hal_params->tcl2wbm_rbm_map[i].wbm_ring_num) &
+ 		    ab->hw_params.ring_mask->tx[grp_id])
+ 			ath11k_dp_tx_completion_handler(ab, i);
+@@ -1035,7 +1035,7 @@ void ath11k_dp_free(struct ath11k_base *ab)
+ 
+ 	ath11k_dp_reo_cmd_list_cleanup(ab);
+ 
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++) {
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++) {
+ 		spin_lock_bh(&dp->tx_ring[i].tx_idr_lock);
+ 		idr_for_each(&dp->tx_ring[i].txbuf_idr,
+ 			     ath11k_dp_tx_pending_cleanup, ab);
+@@ -1086,7 +1086,7 @@ int ath11k_dp_alloc(struct ath11k_base *ab)
+ 
+ 	size = sizeof(struct hal_wbm_release_ring) * DP_TX_COMP_RING_SIZE;
+ 
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++) {
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++) {
+ 		idr_init(&dp->tx_ring[i].txbuf_idr);
+ 		spin_lock_init(&dp->tx_ring[i].tx_idr_lock);
+ 		dp->tx_ring[i].tcl_data_ring_id = i;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 562aba66582f3..86e1e6c27b36c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -91,6 +91,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	struct hal_srng *tcl_ring;
+ 	struct ieee80211_hdr *hdr = (void *)skb->data;
+ 	struct dp_tx_ring *tx_ring;
++	size_t num_tx_rings = ab->hw_params.hal_params->num_tx_rings;
+ 	void *hal_tcl_desc;
+ 	u8 pool_id;
+ 	u8 hal_ring_id;
+@@ -113,7 +114,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ tcl_ring_sel:
+ 	tcl_ring_retry = false;
+ 
+-	ti.ring_id = ring_selector % ab->hw_params.max_tx_ring;
++	ti.ring_id = ring_selector % num_tx_rings;
+ 	ti.rbm_id = ab->hw_params.hal_params->tcl2wbm_rbm_map[ti.ring_id].rbm_id;
+ 
+ 	ring_map |= BIT(ti.ring_id);
+@@ -126,7 +127,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	spin_unlock_bh(&tx_ring->tx_idr_lock);
+ 
+ 	if (unlikely(ret < 0)) {
+-		if (ring_map == (BIT(ab->hw_params.max_tx_ring) - 1) ||
++		if (ring_map == (BIT(num_tx_rings) - 1) ||
+ 		    !ab->hw_params.tcl_ring_retry) {
+ 			atomic_inc(&ab->soc_stats.tx_err.misc_fail);
+ 			return -ENOSPC;
+@@ -244,8 +245,8 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		 * checking this ring earlier for each pkt tx.
+ 		 * Restart ring selection if some rings are not checked yet.
+ 		 */
+-		if (unlikely(ring_map != (BIT(ab->hw_params.max_tx_ring)) - 1) &&
+-		    ab->hw_params.tcl_ring_retry && ab->hw_params.max_tx_ring > 1) {
++		if (unlikely(ring_map != (BIT(num_tx_rings)) - 1) &&
++		    ab->hw_params.tcl_ring_retry && num_tx_rings > 1) {
+ 			tcl_ring_retry = true;
+ 			ring_selector++;
+ 		}
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index caa6dc12a790b..bbaacdf76af0a 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -2707,6 +2707,14 @@ const struct ath11k_hw_regs wcn6750_regs = {
+ 	.hal_reo1_misc_ctl = 0x000005d8,
+ };
+ 
++static const struct ath11k_hw_tcl2wbm_rbm_map ath11k_hw_tcl2wbm_rbm_map_ipq5018[] = {
++	{
++		.tcl_ring_num = 0,
++		.wbm_ring_num = 0,
++		.rbm_id = HAL_RX_BUF_RBM_SW0_BM,
++	},
++};
++
+ static const struct ath11k_hw_tcl2wbm_rbm_map ath11k_hw_tcl2wbm_rbm_map_ipq8074[] = {
+ 	{
+ 		.tcl_ring_num = 0,
+@@ -2822,19 +2830,30 @@ const struct ath11k_hw_regs ipq5018_regs = {
+ 	.hal_wbm1_release_ring_base_lsb = 0x0000097c,
+ };
+ 
++const struct ath11k_hw_hal_params ath11k_hw_hal_params_ipq5018 = {
++	.rx_buf_rbm = HAL_RX_BUF_RBM_SW3_BM,
++	.tcl2wbm_rbm_map = ath11k_hw_tcl2wbm_rbm_map_ipq5018,
++	.num_tx_rings = ARRAY_SIZE(ath11k_hw_tcl2wbm_rbm_map_ipq5018),
++};
++
+ const struct ath11k_hw_hal_params ath11k_hw_hal_params_ipq8074 = {
+ 	.rx_buf_rbm = HAL_RX_BUF_RBM_SW3_BM,
+ 	.tcl2wbm_rbm_map = ath11k_hw_tcl2wbm_rbm_map_ipq8074,
++	.num_tx_rings = ARRAY_SIZE(ath11k_hw_tcl2wbm_rbm_map_ipq8074),
+ };
+ 
+ const struct ath11k_hw_hal_params ath11k_hw_hal_params_qca6390 = {
+ 	.rx_buf_rbm = HAL_RX_BUF_RBM_SW1_BM,
+ 	.tcl2wbm_rbm_map = ath11k_hw_tcl2wbm_rbm_map_ipq8074,
++	.num_tx_rings = DP_TCL_NUM_RING_MAX_QCA6390,
+ };
+ 
++static_assert(ARRAY_SIZE(ath11k_hw_tcl2wbm_rbm_map_ipq8074) >= DP_TCL_NUM_RING_MAX_QCA6390);
++
+ const struct ath11k_hw_hal_params ath11k_hw_hal_params_wcn6750 = {
+ 	.rx_buf_rbm = HAL_RX_BUF_RBM_SW1_BM,
+ 	.tcl2wbm_rbm_map = ath11k_hw_tcl2wbm_rbm_map_wcn6750,
++	.num_tx_rings = ARRAY_SIZE(ath11k_hw_tcl2wbm_rbm_map_wcn6750),
+ };
+ 
+ static const struct cfg80211_sar_freq_ranges ath11k_hw_sar_freq_ranges_wcn6855[] = {
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 52d9f4c13b136..9db984ac4321c 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -134,6 +134,7 @@ struct ath11k_hw_tcl2wbm_rbm_map {
+ struct ath11k_hw_hal_params {
+ 	enum hal_rx_buf_return_buf_manager rx_buf_rbm;
+ 	const struct ath11k_hw_tcl2wbm_rbm_map *tcl2wbm_rbm_map;
++	size_t num_tx_rings;
+ };
+ 
+ struct ath11k_hw_params {
+@@ -198,7 +199,6 @@ struct ath11k_hw_params {
+ 	bool supports_regdb;
+ 	bool fix_l1ss;
+ 	bool credit_flow;
+-	u8 max_tx_ring;
+ 	const struct ath11k_hw_hal_params *hal_params;
+ 	bool supports_dynamic_smps_6ghz;
+ 	bool alloc_cacheable_memory;
+@@ -291,6 +291,7 @@ extern const struct ce_ie_addr ath11k_ce_ie_addr_ipq5018;
+ 
+ extern const struct ce_remap ath11k_ce_remap_ipq5018;
+ 
++extern const struct ath11k_hw_hal_params ath11k_hw_hal_params_ipq5018;
+ extern const struct ath11k_hw_hal_params ath11k_hw_hal_params_ipq8074;
+ extern const struct ath11k_hw_hal_params ath11k_hw_hal_params_qca6390;
+ extern const struct ath11k_hw_hal_params ath11k_hw_hal_params_wcn6750;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 3276fe443502f..33ebe03380114 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7392,7 +7392,7 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+ 	idr_for_each(&ar->txmgmt_idr,
+ 		     ath11k_mac_vif_txmgmt_idr_remove, vif);
+ 
+-	for (i = 0; i < ab->hw_params.max_tx_ring; i++) {
++	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++) {
+ 		spin_lock_bh(&ab->dp.tx_ring[i].tx_idr_lock);
+ 		idr_for_each(&ab->dp.tx_ring[i].txbuf_idr,
+ 			     ath11k_mac_vif_unref, vif);
+-- 
+2.45.1
+
 
