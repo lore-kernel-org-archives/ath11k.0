@@ -4,67 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 576CDD6E2B0
-	for <ath11k@archiver.kernel.org>; Thu, 18 Dec 2025 16:24:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4B0ED6E2B4
+	for <ath11k@archiver.kernel.org>; Thu, 18 Dec 2025 16:51:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3ErTlMAv6ZVtNtIwiySv/0dt6NKw+yq7HXxauLF93bM=; b=FhLXIgpWY2z/fWHfpLalgsHZ0K
-	miRPdPQbMK+NFolAHOz9BwlNbAvBYD8j3s1vMeAsp9jk2pv4qr6ff/H7m/aP/SJaSE9YLz5HaejgM
-	KGnRGZ4d1mskbgIxPNGHRO7aXRFzFAFsyGDzv0E94vcVEJmFmlicvrIRDZpo6Bnk6ITKLVaI3QO9n
-	ws75OtxO2rFMxsj8l1LNcEfWNYDKXHa5N11OtOD5a66Oq6ItgWUcTjMUCBOyNPlSh4zhlT3hGCj4b
-	HVCChGpoSwKF5bRTY58AhhqgD+Qb1HVJw7vRzlUnQgU5zYZ1qPDURiCSS7RmUOncuUkS0mUozsIpF
-	s+gc8ntQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=10Ndtz8o6dzxnc5RLlmeG4snK8Zi+4akjc/aO/fWrlQ=; b=nx6BvXqYIpOUmxqYR39UGo3bh5
+	sRxKpCMakJlw1fpgAaIePdTA/6tNM41sM+LHxyN1+3KOL85D/ZywqWCOgPv1xsC8+n/b+Z2l02WPK
+	/9zvK7mp6GZLp9gC2CfMtEpMNWfg1uIwAeboRiSzU9XDKhXGq79yrP7P87lguS0+RM6/KA8cbxykO
+	YfINX5Wdf6mpP0ZSxS7khyhX8wYO5RDjqG4sk8lwBR/48fgdFbmbngBMHfRu+AeYWIw0vCHnrb8iL
+	2OqC6GcbMLPUAo+sNIaV8C+59cNxIOOtflhUJz2MADkvMopcSVWmMAwhCN0Iv83IMagn6/8zQy5OO
+	CqcrlijQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vWGnc-00000008ovq-0H4H;
-	Thu, 18 Dec 2025 16:24:20 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1vWHEF-00000008rFP-1kjX;
+	Thu, 18 Dec 2025 16:51:51 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vWGna-00000008ovd-08K4;
-	Thu, 18 Dec 2025 16:24:18 +0000
+	id 1vWHED-00000008rEb-2wBk;
+	Thu, 18 Dec 2025 16:51:49 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7109460008;
-	Thu, 18 Dec 2025 16:24:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 742D1C4CEFB;
-	Thu, 18 Dec 2025 16:24:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B4ADB60008;
+	Thu, 18 Dec 2025 16:51:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5E7C6C4CEFB;
+	Thu, 18 Dec 2025 16:51:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766075057;
-	bh=X5gSMMJxTpeVSLwt9c3VGpJBP7cA+dKBFUTwA1R/8Mk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CpB9QjfxUGu7QHeL+Ttl3LbAbI0T6PGcte3cn+vIPi7DalYPSikxLc4VNjs+cpLMU
-	 wAHm/NDnq3/9kUW0LDoX3+13AOelp2GqKXTYjoe50BFg7vDy3SO6luvKjh1dbx8+uX
-	 esRJC+w0UZsPyGsE4IuZLrx1NXnDPaAPK7noFXUR3Sfa757BmSMq29w2iuXqHYK48p
-	 MZaE4rqXx9iMTl7GFQzcqkHRmumgpFlPwZofAGeWpTNAx1AKVTt+Di4Upt2U7lFyTc
-	 1X3wPqiVCqHD+JYpbvtv5JKyX0UGO6Mxcto4/3HoJJkrHjbEJkKYjYI8YoSW//pXSP
-	 XLtDOMNb4Xjqg==
-Date: Thu, 18 Dec 2025 21:54:07 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Jeff Hugo <jeff.hugo@oss.qualcomm.com>, Carl Vanderlip <carl.vanderlip@oss.qualcomm.com>, 
-	Oded Gabbay <ogabbay@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Maxim Kochetkov <fido_max@inbox.ru>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	mhi@lists.linux.dev, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	ath12k@lists.infradead.org, netdev@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
-	Johan Hovold <johan@kernel.org>, Chris Lew <quic_clew@quicinc.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] net: qrtr: Drop the MHI auto_queue feature for IPCR
- DL channels
-Message-ID: <pm5amorzm2bvjrvswd4phwiic7wsmitxtzwdvtwqflepxkukjf@esikj32tds7o>
-References: <20251217-qrtr-fix-v1-0-f6142a3ec9d8@oss.qualcomm.com>
- <20251217-qrtr-fix-v1-1-f6142a3ec9d8@oss.qualcomm.com>
- <CAFEp6-0iuJNDM9hdU3rWns=Vst6Ev1iyNim1ngRH3Z44CHwTAg@mail.gmail.com>
+	s=k20201202; t=1766076708;
+	bh=NWdJvH9yOqg1eTTYzzMYejBHNkyExdCjfVBKS/HDM44=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=dt4gPY4QoL+iquIEKaMU8FXDPaXWNEPoR76qyDRHf8BHEABOmmGqtldjowawYsjxR
+	 SfbmUrNxL0bSRyi70P4EZ6VZ21E8aaqF9juKg/aGPGjIv3uKE5OkphBJ+Ft/cgHlI8
+	 nCX+083XK2NvLNffoypKwGZF1KMWhz4ZP/D1vyvnoopUTLd7y5p1cxigFS8xImbp5O
+	 2TVzL3mGpf2FGU7b4uyMvuBffHeZSE7gfkY+/yJchtnFkTvEkmgWTh0eF0wulIRahs
+	 YpVJtAsI9LsXJxdTg9nA/ewkkOn67614r/CHh5inurQ1zuS9diPae1+Sm4fCzoKoFX
+	 cppHZOlVDrNsQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A7FDD6ACF9;
+	Thu, 18 Dec 2025 16:51:48 +0000 (UTC)
+From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
+Subject: [PATCH v2 0/2] net: qrtr: Drop the MHI 'auto_queue' feature
+Date: Thu, 18 Dec 2025 22:21:43 +0530
+Message-Id: <20251218-qrtr-fix-v2-0-c7499bfcfbe0@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFEp6-0iuJNDM9hdU3rWns=Vst6Ev1iyNim1ngRH3Z44CHwTAg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB8xRGkC/22MQQ6CMBBFr0Jm7ZBOFa2uvIdh0bSDNBEqLRIN6
+ d0dWbv5yXv5eStkToEzXKoVEi8hhzgK6F0FrrfjnTF4YdBKN6TphFOaE3bhjU41Rpw3nizI/Zl
+ Y9Ja6tcJ9yHNMn6280M/+iSyECrsjHbTdszt7c40519PLPlwchloG2lLKFxUi2w6nAAAA
+X-Change-ID: 20251217-qrtr-fix-c058251d8d1a
+To: Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+ Carl Vanderlip <carl.vanderlip@oss.qualcomm.com>, 
+ Oded Gabbay <ogabbay@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+ Jeff Johnson <jjohnson@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, 
+ Maxim Kochetkov <fido_max@inbox.ru>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, mhi@lists.linux.dev, 
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+ ath12k@lists.infradead.org, netdev@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, Johan Hovold <johan@kernel.org>, 
+ Chris Lew <quic_clew@quicinc.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2023;
+ i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
+ bh=NWdJvH9yOqg1eTTYzzMYejBHNkyExdCjfVBKS/HDM44=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpRDEi+Khc2ZOmm08ikV3hNuslUf4Bh48CandeI
+ RWNP6g/wIqJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaUQxIgAKCRBVnxHm/pHO
+ 9cemB/4vwlTSkc1bcE9+WVu8UZBpxkiHP576YpiTakv5EZxlkFChtASnSg5UjtwhIOXzyOgFQy2
+ pEEenMNY623MJgBh7dLPRFliZcUk5vqRoynw9xyZoFq0N6+a/Wl9StpbTruRRUlKCZjV45RTnF5
+ DPEocovrNLBl0IOuhO2IaNLl28iwB47Rijj/8/14ZY5n7SuWdm6C+s/SX72/nLlSvghNYhlikR/
+ GoWwVOwRzqgutCV9wESS0ljwkenQpfx+gNiQv4hbEG7rCIPWPNwzOROxvllQTFCimCsVVbthY/h
+ etHKiqG93rCOK9WO1mHhSY/l8rE53ViVBptce8Tt1ed0goJG
+X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Endpoint-Received: by B4 Relay for
+ manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
+X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,170 +99,62 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: manivannan.sadhasivam@oss.qualcomm.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Dec 17, 2025 at 09:55:01PM +0100, Loic Poulain wrote:
-> Hi Mani,
-> 
-> On Wed, Dec 17, 2025 at 6:17 PM Manivannan Sadhasivam via B4 Relay
-> <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> wrote:
-> >
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> >
-> > MHI stack offers the 'auto_queue' feature, which allows the MHI stack to
-> > auto queue the buffers for the RX path (DL channel). Though this feature
-> > simplifies the client driver design, it introduces race between the client
-> > drivers and the MHI stack. For instance, with auto_queue, the 'dl_callback'
-> > for the DL channel may get called before the client driver is fully probed.
-> > This means, by the time the dl_callback gets called, the client driver's
-> > structures might not be initialized, leading to NULL ptr dereference.
-> >
-> > Currently, the drivers have to workaround this issue by initializing the
-> > internal structures before calling mhi_prepare_for_transfer_autoqueue().
-> > But even so, there is a chance that the client driver's internal code path
-> > may call the MHI queue APIs before mhi_prepare_for_transfer_autoqueue() is
-> > called, leading to similar NULL ptr dereference. This issue has been
-> > reported on the Qcom X1E80100 CRD machines affecting boot.
-> >
-> > So to properly fix all these races, drop the MHI 'auto_queue' feature
-> > altogether and let the client driver (QRTR) manage the RX buffers manually.
-> > In the QRTR driver, queue the RX buffers based on the ring length during
-> > probe and recycle the buffers in 'dl_callback' once they are consumed. This
-> > also warrants removing the setting of 'auto_queue' flag from controller
-> > drivers.
-> >
-> > Currently, this 'auto_queue' feature is only enabled for IPCR DL channel.
-> > So only the QRTR client driver requires the modification.
-> >
-> > Cc: stable@vger.kernel.org
-> > Fixes: 227fee5fc99e ("bus: mhi: core: Add an API for auto queueing buffers for DL channel")
-> > Fixes: 68a838b84eff ("net: qrtr: start MHI channel after endpoit creation")
-> > Reported-by: Johan Hovold <johan@kernel.org>
-> > Closes: https://lore.kernel.org/linux-arm-msm/ZyTtVdkCCES0lkl4@hovoldconsulting.com
-> > Suggested-by: Chris Lew <quic_clew@quicinc.com>
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >  drivers/accel/qaic/mhi_controller.c   | 44 -----------------------
-> >  drivers/bus/mhi/host/pci_generic.c    | 20 ++---------
-> >  drivers/net/wireless/ath/ath11k/mhi.c |  4 ---
-> >  drivers/net/wireless/ath/ath12k/mhi.c |  4 ---
-> >  net/qrtr/mhi.c                        | 67 +++++++++++++++++++++++++++++------
-> >  5 files changed, 58 insertions(+), 81 deletions(-)
-> [...]
-> > diff --git a/net/qrtr/mhi.c b/net/qrtr/mhi.c
-> > index 69f53625a049..0b4d181ea747 100644
-> > --- a/net/qrtr/mhi.c
-> > +++ b/net/qrtr/mhi.c
-> > @@ -24,13 +24,25 @@ static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
-> >         struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
-> >         int rc;
-> >
-> > -       if (!qdev || mhi_res->transaction_status)
-> > +       if (!qdev || (mhi_res->transaction_status && mhi_res->transaction_status != -ENOTCONN))
-> >                 return;
-> >
-> > +       /* Channel got reset. So just free the buffer */
-> > +       if (mhi_res->transaction_status == -ENOTCONN) {
-> > +               devm_kfree(&mhi_dev->dev, mhi_res->buf_addr);
-> > +               return;
-> > +       }
-> > +
-> >         rc = qrtr_endpoint_post(&qdev->ep, mhi_res->buf_addr,
-> >                                 mhi_res->bytes_xferd);
-> >         if (rc == -EINVAL)
-> >                 dev_err(qdev->dev, "invalid ipcrouter packet\n");
-> > +
-> > +       /* Done with the buffer, now recycle it for future use */
-> > +       rc = mhi_queue_buf(mhi_dev, DMA_FROM_DEVICE, mhi_res->buf_addr,
-> > +                          mhi_dev->mhi_cntrl->buffer_len, MHI_EOT);
-> > +       if (rc)
-> > +               dev_err(&mhi_dev->dev, "Failed to recycle the buffer: %d\n", rc);
-> >  }
-> >
-> >  /* From QRTR to MHI */
-> > @@ -72,6 +84,27 @@ static int qcom_mhi_qrtr_send(struct qrtr_endpoint *ep, struct sk_buff *skb)
-> >         return rc;
-> >  }
-> >
-> > +static int qcom_mhi_qrtr_queue_dl_buffers(struct mhi_device *mhi_dev)
-> > +{
-> > +       void *buf;
-> > +       int ret;
-> > +
-> > +       while (!mhi_queue_is_full(mhi_dev, DMA_FROM_DEVICE)) {
-> 
-> This approach might be a bit racy, since a buffer could complete
-> before the alloc+queue loop finishes. That could e.g lead to recycle
-> error in a concurrent DL callback.
+Hi,
 
-I don't think the race is possible as we just queue the buffers during probe and
-resume. But I get your point, using mhi_get_free_desc_count() is more
-straightforward.
+This series intends to fix the race between the MHI stack and the MHI client
+drivers due to the MHI 'auto_queue' feature. As it turns out often, the best
+way to fix an issue in a feature is to drop the feature itself and this series
+does exactly that.
 
-- Mani
+There is no real benefit in having the 'auto_queue' feature in the MHI stack,
+other than saving a few lines of code in the client drivers. Since the QRTR is
+the only client driver which makes use of this feature, this series reworks the
+QRTR driver to manage the buffer on its own.
 
-> It might be simpler to just queue
-> the number of descriptors returned by mhi_get_free_desc_count().
-> 
-> > +               buf = devm_kmalloc(&mhi_dev->dev, mhi_dev->mhi_cntrl->buffer_len, GFP_KERNEL);
-> > +               if (!buf)
-> > +                       return -ENOMEM;
-> > +
-> > +               ret = mhi_queue_buf(mhi_dev, DMA_FROM_DEVICE, buf, mhi_dev->mhi_cntrl->buffer_len,
-> > +                                   MHI_EOT);
-> > +               if (ret) {
-> > +                       dev_err(&mhi_dev->dev, "Failed to queue buffer: %d\n", ret);
-> > +                       return ret;
-> > +               }
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> >  static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
-> >                                const struct mhi_device_id *id)
-> >  {
-> > @@ -87,20 +120,30 @@ static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
-> >         qdev->ep.xmit = qcom_mhi_qrtr_send;
-> >
-> >         dev_set_drvdata(&mhi_dev->dev, qdev);
-> > -       rc = qrtr_endpoint_register(&qdev->ep, QRTR_EP_NID_AUTO);
-> > -       if (rc)
-> > -               return rc;
-> >
-> >         /* start channels */
-> > -       rc = mhi_prepare_for_transfer_autoqueue(mhi_dev);
-> > -       if (rc) {
-> > -               qrtr_endpoint_unregister(&qdev->ep);
-> > +       rc = mhi_prepare_for_transfer(mhi_dev);
-> > +       if (rc)
-> >                 return rc;
-> > -       }
-> > +
-> > +       rc = qrtr_endpoint_register(&qdev->ep, QRTR_EP_NID_AUTO);
-> > +       if (rc)
-> > +               goto err_unprepare;
-> > +
-> > +       rc = qcom_mhi_qrtr_queue_dl_buffers(mhi_dev);
-> > +       if (rc)
-> > +               goto err_unregister;
-> >
-> >         dev_dbg(qdev->dev, "Qualcomm MHI QRTR driver probed\n");
-> >
-> >         return 0;
-> > +
-> > +err_unregister:
-> > +       qrtr_endpoint_unregister(&qdev->ep);
-> > +err_unprepare:
-> > +       mhi_unprepare_from_transfer(mhi_dev);
-> > +
-> > +       return rc;
-> >  }
-> 
-> Regards,
-> Loic
+Testing
+=======
 
+Tested on Qcom X1E based Lenovo Thinkpad T14s laptop with WLAN device.
+
+Merge Strategy
+==============
+
+Since this series modifies many subsystem drivers, I'd like to get acks from
+relevant subsystem maintainers and take the series through MHI tree.
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+---
+Changes in v2:
+- Used mhi_get_free_desc_count() to queue the buffers
+- Collected tags
+- Link to v1: https://lore.kernel.org/r/20251217-qrtr-fix-v1-0-f6142a3ec9d8@oss.qualcomm.com
+
+---
+Manivannan Sadhasivam (2):
+      net: qrtr: Drop the MHI auto_queue feature for IPCR DL channels
+      bus: mhi: host: Drop the auto_queue support
+
+ drivers/accel/qaic/mhi_controller.c   | 44 -------------------
+ drivers/bus/mhi/host/init.c           | 10 -----
+ drivers/bus/mhi/host/internal.h       |  3 --
+ drivers/bus/mhi/host/main.c           | 81 +----------------------------------
+ drivers/bus/mhi/host/pci_generic.c    | 20 +--------
+ drivers/net/wireless/ath/ath11k/mhi.c |  4 --
+ drivers/net/wireless/ath/ath12k/mhi.c |  4 --
+ include/linux/mhi.h                   | 14 ------
+ net/qrtr/mhi.c                        | 69 ++++++++++++++++++++++++-----
+ 9 files changed, 62 insertions(+), 187 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251217-qrtr-fix-c058251d8d1a
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+
+
 
