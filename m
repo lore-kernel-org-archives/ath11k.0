@@ -4,138 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4ADEE784A6
-	for <ath11k@archiver.kernel.org>; Thu, 25 Dec 2025 09:54:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44B14E7AD42
+	for <ath11k@archiver.kernel.org>; Thu, 25 Dec 2025 10:05:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zPoJzn5MnVIeCWCGvk2Bfp5U8ncISIr0hUiVXJGS/dE=; b=tEmkEGD+QPqyK9wz8/cfHxzcIK
-	3Olny6xE1BYe45D6+CjllQeyE3rVjqWSbFXPUSH7HzVOHDJUc1xDE6nxbAwDnwBBkaTJhFMFU9V0C
-	zvJ7kbH6FN9yPslW8jSCp/0UD5v2COZ0csZ0Aj559txHmUcE5q7lUERPZk24m+PknQv0udkM61O7Z
-	2+S6oA96XYm7MYDfOc0nPNhQoQx+nB6/6GwxPvCNyOylbXo5FrXvvUk1wB3iBqWq7HE4GpP/E4eHh
-	xLMhk3QRCd4xnVjrwFAyy3PyP77mU6yzvaLVfYFQXcxVwtWvsa9lgI/8xZXYc3X7H1AL8UWsgv01b
-	sF3Ut5rg==;
+	bh=fpQR5MhthxNYS5X1B4rXC7O41ZaJ8gH+dbtsDtAc7Lg=; b=BThC8PMgd7kG5zj29jaPhItx7Q
+	LLp9k0UvDdhhfzTNnT0ojxXJ4DMK5zWokvfKKCcZxiO1M2Nd/3hDyMDERfvIH7LTMTmbHMszil4c4
+	+UtpRZt+LGC1vvV41RLbbYLQDxCpU1U70i/wt6c0+ZK3w51xPwKo5cAuJt4S196GHN7nw5t3A4asl
+	zFojlbDs5iKUDv7zwjsPPE0hiCI4PvOixEa/O7w7YEalPmkuQ2Yo4gkNGiLExbgXLFh/Q5nwCWVr8
+	fE7xqrULZrFfeAPnMSCfJyxQFa+UCMJrWjC+xYb0dwllv41/PKm9aX7js4USjFhl0fGA2FGnqn8mc
+	dyeZt16Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vYi2g-00000000Ibd-0gXP;
-	Thu, 25 Dec 2025 09:53:58 +0000
+	id 1vYiE9-00000000JEO-0nkZ;
+	Thu, 25 Dec 2025 10:05:49 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vYi2d-00000000IbE-0wiW
+	id 1vYiE5-00000000JDz-1laL
 	for ath11k@lists.infradead.org;
-	Thu, 25 Dec 2025 09:53:56 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BP8cFoY2190841
-	for <ath11k@lists.infradead.org>; Thu, 25 Dec 2025 09:53:54 GMT
+	Thu, 25 Dec 2025 10:05:48 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BP8bTr11455187
+	for <ath11k@lists.infradead.org>; Thu, 25 Dec 2025 10:05:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zPoJzn5MnVIeCWCGvk2Bfp5U8ncISIr0hUiVXJGS/dE=; b=TE2v60XH1FUKvUz3
-	ds+7IcAvHSq65cJ0C35k87Gp8aDp48NolclJFd/lBbOiq9iGHNOrssSL2LqItN5L
-	Ugk0+q9nPkW7+E/N8d9WqFJZs4C7z1aZh+xgTpoCARlr9sBFjS31NGHFnjwDcabF
-	77V7B0bTDGroLypC63r+t5r12ll80ftsTLkfl+3RbfXxdfCS3uG3tljs0NsEwrkA
-	O+3OrFOdnOXBU1YjeSyulD0sqUNC7UWiQapwc7XLECC4r6BIna8o4zMrFPFrrIAf
-	qCV+LvmYBExL6+dTk9vRceXcRS2ghVWra9M0XQnJtB5vNytpAFql96vYEhjWT5iN
-	jL5vEw==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b8xvc8e8s-1
+	fpQR5MhthxNYS5X1B4rXC7O41ZaJ8gH+dbtsDtAc7Lg=; b=eHokdcIF4YJP56la
+	BGteIpjyXQKlQ4e57sPQq4hY1McvZPSnAynfqqmT70dudKiQtaqPV4/8xRmnh77n
+	XDmZX3Hfh/i45/KPE+nJwIcLcvd639eRQnRYuQY2zyuhhOSSnOzabChDvKJ7KA43
+	f9TiqL/fi9nnFN98uZEnpEmILEkILc6X+k5VfcKO2OQ3aMD6hS0JPnYvsmIUHvXz
+	0s1+mQLipd9bqVhSxwmeY5Xik8LMFHsqZgWBZoD5NoOIhBS5kZGFHLmUrnTcisj9
+	wjxxEVyJjzrs43sYqqacBlRgaLWIjjFdHiVsFasLAoBHHX6owU+Dux0M8yzPpEmx
+	t/idiQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b8xn28fnp-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 25 Dec 2025 09:53:53 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7b9321b9312so13464909b3a.1
-        for <ath11k@lists.infradead.org>; Thu, 25 Dec 2025 01:53:53 -0800 (PST)
+	for <ath11k@lists.infradead.org>; Thu, 25 Dec 2025 10:05:44 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7f21951c317so5544708b3a.2
+        for <ath11k@lists.infradead.org>; Thu, 25 Dec 2025 02:05:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766656433; x=1767261233; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1766657144; x=1767261944; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zPoJzn5MnVIeCWCGvk2Bfp5U8ncISIr0hUiVXJGS/dE=;
-        b=bO1Dbx1mIUpSoJ3A6AWNsKcXvkFuAmPytL84PVnyDzoIRZI2MrRwMlOUpob7D/3und
-         zcxu0KmUb7CvRucxXPnZmfEdsupPMTtbX7cM9+vxIwgsZANCyO40oY0TDdjOF/M6z66p
-         KhyvdPkWPf7phzgTA5gQzj1l3shtdd6YzVzaAH6RcwVItfgM6zQ4PRrsIDCMhE+gcmbm
-         SWJ/0rtmOQTz7UbnddclKq9yhN6OB2m95KIkSc2FZEkAQhTPFTOEl6wQ8GA5y9P+BNv0
-         rx+l6dI7NB5rRNCBMGAgUl337vc+z/fC0lRre0xnnz+BN66482vjH+rEzoI4PF/mHwa7
-         Isqw==
+        bh=fpQR5MhthxNYS5X1B4rXC7O41ZaJ8gH+dbtsDtAc7Lg=;
+        b=Y4RtzhoHCad2Yz4AAG+Pp73okbytpcQJ61BiGEJXJeIUck8ZeEwZinpSZnqGUcm/N3
+         e/N7aEd9TNKyTC3ih2/tmf8m/N8ECwUSQRntw/FQmKBRky/WwlJCpHdO4YJGvC080gPQ
+         bdPfQc5ym2D5rYSa4rkKLU0rewxQdc9Hol/HuLJFm1yx/tZHWD3JRuhpaVwJ+iU4bpZ8
+         aelFnuLgppFiwL9DMVOnBlJ+yOquLDTWuWcHUJpzCjC1mYu4qBMGNmlpS4nqt8R4Qffa
+         vJfPcfb+OWkoPj3FvJtq+2HM6B4ZLfhLVPwjcOyGNbjDLPcyyBEj5fkaEmTUgX2sb1Ko
+         5dqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766656433; x=1767261233;
+        d=1e100.net; s=20230601; t=1766657144; x=1767261944;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zPoJzn5MnVIeCWCGvk2Bfp5U8ncISIr0hUiVXJGS/dE=;
-        b=ANgeTY1jOcI8tqsOO/oquGCRbVTTEd8KFYxkc+uNXWVoztjcIrK8u9u9eZ9qZNa+Na
-         Qbh/igDCns6RudDwECWp7IuO7XWOdNsHJvNVLa0/8xBMUfgVd4c4VaLEUrDinXCdl/2A
-         eZC5veDd+2p4asaXtOBtcYGo4tAPz/kDD9xLjskhZWlbV52D4QAGAYm4v9SKqUq5qzvK
-         gX+D8nzAgDOWrM+wqrwFFlCo7L4dwE7Ny/BNU51M7rbRIAG2V0o3hh6p4q7TJnCu/9+3
-         WPsvNuv9FtgxlCoUkZR5UBvOFH2nejBaXZoKHEUayzeePTEUBoiC6dZA0djcw7Xc4KO1
-         PJVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWZHEDl+7rWr6d5V2RxYaYHL3ECTZ1a9gWmb14PqBLMUwinb5K9iOkn5LbjNSZNo7pzMlayyQ=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxi28ZBc/fe3YnzhyPGW7hRtMZjLKy4GKOl+pNya07Uf9DaZCTC
-	9t1F68Cy1q0qsQCEAsVyCduOOfXUGcxTIQiwExPmOdE6dIjyW4GtYpHeX1Sd1dE7Oz2UqJSioE8
-	WaHFJJnf4o7LvTlzy9YYXUBgUm65Ayx6rkhYAB5qxmOZltmEoICgnUK0Tm4Zl0LNLO3QP2p0gsr
-	A=
-X-Gm-Gg: AY/fxX67S57aJlevLb9pnSLMn1w0E4vnHdmH+gUjl9sE7+s5+UPmZF98n4g3K5NifIA
-	Tsj/TMf/Sf+8js5cWo40xIweFGkOamM1Q+EikUzYoctkk1RZSaXcHli9Gbd8zvXY3ZAk27vzoYq
-	KPmmlnq4f3x7Ih8So62F4Qg1wYSNyj7QqonaBehJJ/+sGRIRyO7M5tIPhiC4mCo4FOyxRBumEQX
-	ogSnvZegSUOlnb4mDqfK+9fnwU6g0Tj9Jbaz7YGrqNO7f1rVsM+4dCL44UVR09Ld0/yVZx0C6H5
-	RZKGyfMEuQu240+TtqqcoEQGo1Y3haoBVrMtkGZHg65FGrTeGXTeo2EC7BtGNRHMY+RekQm7ko2
-	t7WmE2vLHRlEapfBRL6FApSTs1Ht+q1pExSYnIHQ0duxUC+5cipktPHw5OM+UuReHC3iqXAqgy2
-	ojV35Rbw==
-X-Received: by 2002:a05:6a00:328a:b0:7f7:27dd:7b1c with SMTP id d2e1a72fcca58-7ff657a3052mr16843310b3a.15.1766656432914;
-        Thu, 25 Dec 2025 01:53:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGn1qJlipakub6W2N58VGWbfUbPN3Zr60Q60P+PGYZNJMcFTv/ySGDvrx6wsHfo/9FhATfXyw==
-X-Received: by 2002:a05:6a00:328a:b0:7f7:27dd:7b1c with SMTP id d2e1a72fcca58-7ff657a3052mr16843294b3a.15.1766656432497;
-        Thu, 25 Dec 2025 01:53:52 -0800 (PST)
+        bh=fpQR5MhthxNYS5X1B4rXC7O41ZaJ8gH+dbtsDtAc7Lg=;
+        b=sLB2V2yT4EXkw0Xsqw48wnnxTtWNOus5y2hTUU0aIt+QZ5VpcddIVupREJj9255A2y
+         aF8kCnH/KeHdY4ZPudJ96PhC/V2rDVb/jhvjtVp4UHAtHCnGDixnVWYWkqtkoVfNGhqr
+         ilChgl5iW9Sg4ghj1YDTXpPkN4wiGgadjDXSHyzeRmuKhY88jILSq/1XRXukbcTkjy7m
+         Bj7l8aTpRZdamdA/J1NmtUMLF72oAz/q8uvJCVx4xzs4LLc1LaObQVaKYXh16svQCar7
+         v/VrUStWf+pV+Km1Qr7wlxncF+BgpPL7eyfv+ACxtDu9mmBUF7Jg2/+oaBp8RGu0STMG
+         vG5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVMPHydPL5GGA6Qc7ozPH5cDGblOpTPP/puS4+OPss4O75AhbwwJfuxEa7UTDuiIe+MzHSIIOg=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyAZrtBdRfI7RExmIjgihK+WBv3k16HNxKMIPtSx9Kxnq0HAPmP
+	9g996VnW1pihX28ULV+gEiCKUYHVWt81FL+Nj24Puiq/2DBX+YAxyzyxRKnhAzn0pb8mHw9nogM
+	JmzoWA8wnLWUWYnHUZ73ar/VXvIiRtrergews72IEO2qXTysiykp5OnL4OHJKLISs
+X-Gm-Gg: AY/fxX7DDIRgs6WRDqaxmK6w+X43Z801jy1vyQt/6c3k5ehNgXdhhXiqIy7yL1Tko/m
+	0axSoCescd2bHNmLxW6blg60ty2uFooP9dpWchWtycQFrPL3WnBfdloqUncA5taK1RnMnouG68q
+	UtGv+DjIsgUW4SzFNKqkUvRrgNJ0DkuWHjjkZ2XAfIlyy0fpNvHMX1+6dsZqq7t1QnOmf6znt45
+	78R2ZMpvMxyS4G8/wYnaMj57+P4g6X7y59/+Bp5/NCaKdFZmhFRFl2lEPyc7+zTcs7SBZUi1F4x
+	qWskCbMoKVwxnaLORyhJc32wIPtVMpv8RigTgGRfrdhfjeLNHOF9qUrkLzOwzsM4lA9bNoghDJM
+	2dp3wiR2DCW5VLOLo4E+4KcVBgtQAQ76W7Y+TRzPC14a5KL5i/cwgz3yKXp1Qy2ZurwXUZ15pmP
+	553Ic4Og==
+X-Received: by 2002:a05:6a00:1f06:b0:7ae:d1d:d500 with SMTP id d2e1a72fcca58-7ff641193d9mr18300397b3a.4.1766657143930;
+        Thu, 25 Dec 2025 02:05:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGHAFIEoFagy2scNUKwIjJ20L5wmLpWPL/hZajeM9dLT/f6lWLYsRJMfgEduMnI8hA2d3pDWw==
+X-Received: by 2002:a05:6a00:1f06:b0:7ae:d1d:d500 with SMTP id d2e1a72fcca58-7ff641193d9mr18300372b3a.4.1766657143406;
+        Thu, 25 Dec 2025 02:05:43 -0800 (PST)
 Received: from [10.133.33.27] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e792b65sm19218679b3a.58.2025.12.25.01.53.50
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e48cffesm18764071b3a.49.2025.12.25.02.05.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Dec 2025 01:53:52 -0800 (PST)
-Message-ID: <566f4d26-8a36-415b-9ec7-3dc5082acb2b@oss.qualcomm.com>
-Date: Thu, 25 Dec 2025 17:53:46 +0800
+        Thu, 25 Dec 2025 02:05:42 -0800 (PST)
+Message-ID: <e63d61c6-a35b-421a-820c-91262f3b11a4@oss.qualcomm.com>
+Date: Thu, 25 Dec 2025 18:05:36 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] wifi: ath11k: move .max_tx_ring to struct
- ath11k_hw_hal_params
-To: "Alex G." <mr.nuke.me@gmail.com>, ath11k@lists.infradead.org,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251216043555.628296-1-mr.nuke.me@gmail.com>
- <83c5bb41-ac0f-4f01-be38-ba536dc8b977@oss.qualcomm.com>
- <3484871.yKVeVyVuyW@nukework.gtech>
+Subject: Re: [PATCH] wifi: ath11k: fix qmi memory allocation logic for CALDB
+ region
+To: "Alex G." <mr.nuke.me@gmail.com>, jjohnson@kernel.org,
+        ath11k@lists.infradead.org,
+        Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+References: <20251206175829.2573256-1-mr.nuke.me@gmail.com>
+ <7ef46837-7799-4ede-9f5e-88a010d5d1d4@oss.qualcomm.com>
+ <884758381.0ifERbkFSE@nukework.gtech>
 From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <3484871.yKVeVyVuyW@nukework.gtech>
+In-Reply-To: <884758381.0ifERbkFSE@nukework.gtech>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: P9XGa5QSDwaz68ODKqFl6kZ2_2TRWpw2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI1MDA5MyBTYWx0ZWRfXyPpBo/JjHVy9
- 6moW5lQk1b+qfSA+0jhKgf4bf9Go9EiShQk1mb80TjGHf/KUtre2Gi6fVQ1sSn7sggw2U1ssa7F
- zmA+R1BnsqrKtlL9Eqboc+C2EParxPwk/wxTeCHY2Uk1vVPffqdYtl4B8Dnp5AT1/aPaWztPR/+
- 8OcoOg1D0mI73LwomWkQSg7m+cGq0e/4wxDqJfRpeoa5zPhbj4vn0KvRXk6shODdL8XP2a0bHRA
- kFH3uWKgdTsLwZkKk+6KRgFyJs9duSdGN1h+P84QtT8MCZsfykgvykQkIvOqKv/rzGiJk4ohYha
- NB+PmyQQ8k0a6JsbDVUhv5afTUKJMEYyWfn1ZQlMdnl6gI+CU5yp2Jkkdl98PZaJGRjXdH1OO+5
- +cip+A8xyckK69xvtTkfJpsQOJ5onCCFfddcfJ7JtFC7MEe0fxFmEWBfli6Awp4g1EE7Qu817rT
- 21LksPEhSKgyxWDpKSA==
-X-Proofpoint-ORIG-GUID: P9XGa5QSDwaz68ODKqFl6kZ2_2TRWpw2
-X-Authority-Analysis: v=2.4 cv=M4xA6iws c=1 sm=1 tr=0 ts=694d09b1 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI1MDA5NSBTYWx0ZWRfX+VTLU9BQLTIP
+ +hFwe5EntoG7y4TWBeqjWfALDpnW5Y1YbTh1+OOxQIsfXYi8zn+sLuiKs5UwzQcPTpCxvK3pf0g
+ EuvQ80VNx6ARebSuWTINJL2INJT8x9aSPNQ1MfoqJ0Y9yOfbcEA6mt2fBQwxqeKfd6oqxqDbsTC
+ 8djnmgvOOPU794Gi7JoQxO+Lwq67BEcK5naCH1xAw44d9TykmqgGelZsmq9ad6FGJueEUNqxPR5
+ h5nIkr+1f2w/15HZ5BI4ejPM2JStd6bKnnqIUuvjK5+xEK3osCkNPdz7KmkNyKDbg2D6yVJQypM
+ Q4tLXR4iKrwSlb2T9aGIfEAKS3Y4msstd2MUhWVd3hfI9L9Ko2mTB2Wfm7BuwtO6LaUd9YWr5iG
+ XUlD2K359ou+Vd7KYsvxSE3Zi1meiM/4cYR3Rr4dGpTckcbOXG8Ksv2fbbvDvrBq5S5ncOGe0pz
+ fMIhxoLPGomq2BZ5Ceg==
+X-Proofpoint-GUID: vxl4klqsvlbv_y0RBYD2_zdoZq5juxor
+X-Authority-Analysis: v=2.4 cv=Cp+ys34D c=1 sm=1 tr=0 ts=694d0c78 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Z-jVJAX58Zs0z9JWT1YA:9 a=QEXdDO2ut3YA:10
- a=IoOABgeZipijB_acs4fv:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=yXKDi3_BjhFrakrclucA:9 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-ORIG-GUID: vxl4klqsvlbv_y0RBYD2_zdoZq5juxor
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-24_04,2025-12-22_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0
- impostorscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512250093
+ suspectscore=0 lowpriorityscore=0 priorityscore=1501 bulkscore=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 clxscore=1015
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512250095
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251225_015355_309446_8B69919D 
-X-CRM114-Status: GOOD (  10.69  )
+X-CRM114-CacheID: sfid-20251225_020545_520459_F8B8450C 
+X-CRM114-Status: GOOD (  19.67  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,19 +154,80 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 12/25/2025 5:53 AM, Alex G. wrote:
+On 12/25/2025 5:47 AM, Alex G. wrote:
+> On Monday, December 8, 2025 4:23:46 AM CST Baochen Qiang wrote:
+>> On 12/7/2025 1:58 AM, Alexandru Gagniuc wrote:
+>>> Memory region assignment in ath11k_qmi_assign_target_mem_chunk()
+>>>
+>>> assumes that:
+>>>   1. firmware will make a HOST_DDR_REGION_TYPE request, and
+>>>   2. this request is processed before CALDB_MEM_REGION_TYPE
+>>>
+>>> In this case CALDB_MEM_REGION_TYPE, can safely be assigned immediately
+>>> after the host region.
+>>>
+>>> However, if the HOST_DDR_REGION_TYPE request is not made, or the
+>>> reserved-memory node is not present, then res.start and res.end are 0,
+>>> and host_ddr_sz remains uninitialized. The physical address should
+>>> fall back to ATH11K_QMI_CALDB_ADDRESS. That doesn't happen:
+>>>
+>>> resource_size(&res) returns 1 for an empty resource, and thus the if
+>>> clause never takes the fallback path. ab->qmi.target_mem[idx].paddr
+>>> is assigned the uninitialized value of host_ddr_sz + 0 (res.start).
+>>>
+>>> Use "if (res.end > res.start)" for the predicate, which correctly
+>>> falls back to ATH11K_QMI_CALDB_ADDRESS.
+> 
+> I am ready to submit the IPQ9574 support. This patch is a dependency. Should I 
+> include this change in the series that adds IPQ9574?
+
+Better not, first reason is for track purpose. And the second, since the patch is fixing a
+broken commit, IMO being standalone makes it easy for stable team to do backport work.
 
 > 
-> Sure, I will do it this way.
+>> In addition, does it make sense to do of_reserved_mem_region_to_resource()
+>> before the loop, which may give CALDB_MEM_REGION_TYPE a chance even
+>> HOST_DDR_REGION_TYPE request is not made?
 > 
-> I am ready to submit the IPQ9574 support, and this patch is a dependency. 
-> Should I include v3 of this patch in the IPQ9574 series, or submit v3 
-> independently?
+> I'm sorry that I initially missed this question. I don't think we should move 
+> &res initialization outside the loop. We also need host_ddr_sz to be 
+> initialized by a HOST_DDR_REGION_TYPE (1) request. On IPQ9574, the firmware 
+> doesn't make that request, so host_ddr_sz remains uninitialized. Since &res 
+> and host_ddr_sz are used together, I think it's better to initialize them, 
+> together.
+
+fine then
+
+> 
+> 
+> Without patch:
+> 
+>     ath11k c000000.wifi: qmi firmware request memory request
+>     ath11k c000000.wifi: qmi mem seg type 4 size 409600
+>     ath11k c000000.wifi: qmi mem seg type 2 size 262144
+>     ath11k c000000.wifi: qmi mem seg type 3 size 1048576
+>     ...
+>     ath11k c000000.wifi: failed to assign qmi target memory: -5
+> 
+> 
+> 
+> With patch:
+> 
+>     ath11k c000000.wifi: qmi firmware request memory request
+>     ath11k c000000.wifi: qmi mem seg type 4 size 409600
+>     ath11k c000000.wifi: qmi mem seg type 2 size 262144
+>     ath11k c000000.wifi: qmi mem seg type 3 size 1048576
+>     ath11k c000000.wifi: qmi ignore invalid mem req type 3
+>     ath11k c000000.wifi: qmi req mem_seg[0] 0x000000004ba00000 409600 4
+>     ath11k c000000.wifi: qmi req mem_seg[1] 0x000000004b700000 262144 2
+> 
+> 
+> Tested on : WLAN.HK.2.9.0.1-01890-QCAHKSWPL_SILICONZ-1
 > 
 > Alex
 > 
-
-I would suggest a v3 for track purpose. Another reason is that this patch is more of an
-optimization benefiting all chips, rather than being specific to your new chip.
+> 
+> 
+> 
 
 
