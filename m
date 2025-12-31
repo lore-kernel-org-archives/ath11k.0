@@ -4,104 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BFDDEE57D3
-	for <ath11k@archiver.kernel.org>; Wed, 31 Dec 2025 06:06:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E965AEE6429
+	for <ath11k@archiver.kernel.org>; Wed, 31 Dec 2025 10:56:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:References:In-Reply-To:Message-ID:Date:CC:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=sxInCXIieNrCVyMMDuEN44qeFuhRjFwOIv9Pud/p0MM=; b=eDmltfylAXROEagyztWWW8X0FD
-	GVzm5bJp6arxcKYCkCBqBERLiyrc2UeuuNDSbHdqeHv6yOJn/WWs9zs1HZjDii9M/svui/OWKJIGx
-	m/Oays5N6hjQDEUtigN+nK+AQCvI0ozIiKEWnWHOuCk+zCCmXDIZuKNWrFOQDMS8NddBr3WGAspL5
-	IcL/jyneyMenHE3NoPnSbQnEG6QWMa3UmQ0+BAk7bTokT+9gpRW6dn/q4rstwHuT1ujHS+15OL9vL
-	CRJQTk3GbtLN41zAO8HJxTD+2Fqbzccj1eKTRD5aenMAiu1R2B2zbFxu3pSPAELk3FTK0xFQgWaZc
-	R1Ppt5OA==;
+	bh=O+f7Mi5vx+QI3KHSGUaTpC6QdSIVzAVg+5x+XC0DFt4=; b=zRpUUU7pyKMqJn5jxcvu0NA4dy
+	kaJME1ca2GC1JxA42+mi4rZx8SEIKbb/hidHmVSRIuBQ7sLEwHKLJdGeH0O4HAc15+o+TNQ/ZhK3J
+	yKRDXnZ0SVeCyrZJk4yemV2xgVw9Y6lttNNyyADT7YKPXbmIoop5YbYZT+NjsOa1B2pw16xrEiGvQ
+	guGdCugnmCDVu+6xPSwAju4jLvLGzSaj9T8TNrK8WYjws+ZTHkJ4FMsrpEkutJWh01qfFWeoB96h0
+	ldK2lf85IJJjeq/Hn7zLPptYDHFeQ3cgetyOhGxr8lvr85jpdtxiuKopFBcwJB877Ly4miT68m/Gn
+	IHYeiijw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vapLt-00000005inh-00WY;
-	Wed, 31 Dec 2025 06:06:33 +0000
-Received: from mail-pg1-x561.google.com ([2607:f8b0:4864:20::561])
+	id 1vatrz-00000005txz-3yEM;
+	Wed, 31 Dec 2025 10:55:59 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vapLp-00000005inM-2mmV
+	id 1vatrv-00000005txA-3k2k
 	for ath11k@lists.infradead.org;
-	Wed, 31 Dec 2025 06:06:31 +0000
-Received: by mail-pg1-x561.google.com with SMTP id 41be03b00d2f7-c2a9a9b43b1so4281713a12.2
-        for <ath11k@lists.infradead.org>; Tue, 30 Dec 2025 22:06:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767161188; x=1767765988;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:dkim-signature
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sxInCXIieNrCVyMMDuEN44qeFuhRjFwOIv9Pud/p0MM=;
-        b=RjShLgOO31zhhmWMEoLkPRwkXrKwVacGDNAI4CHoKUvC+emKW7gWEeuChm8r7BaEWE
-         M4qcr0BFaHitkQ7zHv1zAuJX5rI0pc+/GMtJHXc/OzIQrk7+hgu4GGTFRzcKF/xjfja1
-         OSuezqd9OBBHvywkss2hdyUlyF9aTHIsE/8CCpV5xuO36waRPjGNxSaxtDHpTfKRaoUp
-         qIEBlG/kRqOXErS7iuAdGgR2jmJN5Z6iPua4uzCNbiX5tC+hOTUHgAeQ8iIKreb7g4Vq
-         PffN/rEWFWakCCpMx4s576X5crgyn6Az9og65hYU4zRMHgc16DyCSnXGZtwvxgbCpYoV
-         AZnA==
-X-Forwarded-Encrypted: i=1; AJvYcCXwEv6OvcfqecVzSzD3ENPpDkkR/ubqB+uFBveqwLGfqXw7MFlIlP/lH47sw//lBq1Oemzxq6Q=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx9S5MNK+Oi3QI1f0eeCfYwx0VFVn+DZJoWc/AcR/+RJSWgQ+md
-	Vp3hcU9Pjkm8W2Eol/l0BGeRmXhyIGqmFYrEaMeoz1Se2RPtoJIajnWrcjFlgDaJZMl5cf1qNk6
-	SQyH7rLMLzl/ksQJ0LZpNbx1DMH5YDg5zn8yl6mYFcfUCBj4hHt+bmcLPk9IgnEnCOc/+jeqxC2
-	ZqR6UC0liQ2B218xXfq43yUfTBcD1rmfu6Aicy09tg0V201arfore2AvTznFqoPj/wx7iqFDDwK
-	cobcsHgwGml3ShyffdN0ME=
-X-Gm-Gg: AY/fxX4T27OvqRhGV+r6ufdvZpW54M4Sf/3HkjJ7C0+Ak+klr8s8RJSXAnbQ+H1ppnc
-	ZkgVxsEBFkEMqzlNcoZhH4sGZO/ZLsxNR/TOSi2Kurm4dygdB0S0KMcoJ41INoCstBsvWMEeZci
-	9fFdwWekEk9SG5ozb1TwpIZdEwEKEKWXV7alxEyF9vlJDVkWqLY0ooJmvql6R+ppbkID7yNPtqF
-	nFFfmw8FKb14oPlpkha77ZeYViCYh+aEz+IKiRuC4acZNTJbemrBVM5svu4AIyIB9EXmiX9mCoP
-	o3VakRPwx3mgHVD6jrkFqb2N4tWIMhLeWw2lCt9Ez2/wWvgDCdysEc6v00lijr4aChZ2vVCQPm7
-	cC07ZorGb7UtSTekLLvVQpLFO9yXr6oUwuKXN2sZKbnz4JwMQHofMZmIJtr2+LsWX8iY1mKLDxR
-	dy2GKuoti64yQ44ZWvMiPAhtBBMTNwxfPbTgdQtBcKNtnCd4jfct0=
-X-Google-Smtp-Source: AGHT+IFr0GLrBpr8g15aaztY+KZ2/swfXo8W0CrGwpgUr1RhjNFNmYYr2JvI6mc+/cMgdYMTxgoooniN74fv
-X-Received: by 2002:a05:7022:4185:b0:11a:2ec0:dd02 with SMTP id a92af1059eb24-121722ebc42mr39367314c88.33.1767161187448;
-        Tue, 30 Dec 2025 22:06:27 -0800 (PST)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-117.dlp.protect.broadcom.com. [144.49.247.117])
-        by smtp-relay.gmail.com with ESMTPS id a92af1059eb24-12172439a90sm7035913c88.0.2025.12.30.22.06.26
-        for <ath11k@lists.infradead.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Dec 2025 22:06:27 -0800 (PST)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-b73586b1195so601599866b.3
-        for <ath11k@lists.infradead.org>; Tue, 30 Dec 2025 22:06:26 -0800 (PST)
+	Wed, 31 Dec 2025 10:55:57 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BV78S532733277
+	for <ath11k@lists.infradead.org>; Wed, 31 Dec 2025 10:55:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	O+f7Mi5vx+QI3KHSGUaTpC6QdSIVzAVg+5x+XC0DFt4=; b=l9LalVlHnMCVESuA
+	ktNoLFmYgR+yMVeRPmZ1JFaUS088FgaON98gaUXZiHac/q7y5EeYEAVhiSnb1ZAs
+	bYT+nenGTAW/98+5957nIK3Pr9Yc487SIjLLFsPE3gnkNCbWbIo3ZBBxFrTCoTdK
+	khuLOhMy8IAWzxCWzztVs4hz4Kcl5cvgc8fD+mE0Mfp4uZWixQ1IaVnRZ1KWAq41
+	edQTCHKA1PUAvPJLc6h0JiA83UANl8JKbLs7O3Uf0ZpoojkDqxfTTdBzgaYir3SN
+	77Kp5o6ebyhoMAclhFdxW9LbhvNNHHTcT7l7pkeRIVAhRR6276p8C4+OyjObaxgD
+	SQHIsA==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bcy6agcnn-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Wed, 31 Dec 2025 10:55:54 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7c240728e2aso22644486b3a.3
+        for <ath11k@lists.infradead.org>; Wed, 31 Dec 2025 02:55:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1767161185; x=1767765985; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sxInCXIieNrCVyMMDuEN44qeFuhRjFwOIv9Pud/p0MM=;
-        b=GzmyKZ7L1kcRWzVvUUtuDHw7AK9EN5xwUVX3edFdl1SLoZJECHMrV5Q4S5yOrTFmgf
-         XcNatDaEbz2xvn4/DohkJYEpUBV4lwiNBDg8bvzz/nKMgBF2E3UrbGj226vblYVNYmNL
-         f/P5uUsh3Gwe/mJ2z5A037Igx6Cmm9DKTMqlE=
-X-Forwarded-Encrypted: i=1; AJvYcCUmu5NThLAxL8uU5kqiJHL/H2sYRrii2GnLKyLsl1h2tn2vfypW+ecaEHyXAdeY2WTO7tnXSFU=@lists.infradead.org
-X-Received: by 2002:a17:907:3f12:b0:b83:974d:ddc8 with SMTP id a640c23a62f3a-b83974dea84mr341477966b.25.1767161185279;
-        Tue, 30 Dec 2025 22:06:25 -0800 (PST)
-X-Received: by 2002:a17:907:3f12:b0:b83:974d:ddc8 with SMTP id a640c23a62f3a-b83974dea84mr341475966b.25.1767161184785;
-        Tue, 30 Dec 2025 22:06:24 -0800 (PST)
-Received: from [192.168.178.31] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f4ef1fsm3931732566b.64.2025.12.30.22.06.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Dec 2025 22:06:24 -0800 (PST)
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-To: Qian Zhang <qian.zhang@oss.qualcomm.com>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty <quic_vnaralas@quicinc.com>, Yu Zhang <yu.zhang@oss.qualcomm.com>, Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
-Date: Wed, 31 Dec 2025 07:06:24 +0100
-Message-ID: <19b7303bb18.2873.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
-In-Reply-To: <20251223092728.1950017-2-qian.zhang@oss.qualcomm.com>
-References: <20251223092728.1950017-1-qian.zhang@oss.qualcomm.com>
- <20251223092728.1950017-2-qian.zhang@oss.qualcomm.com>
-User-Agent: AquaMail/1.56.0 (build: 105600589)
-Subject: Re: [PATCH ath-next v4 1/6] wifi: ath11k: Add initialization and deinitialization sequence for CFR module
+        d=oss.qualcomm.com; s=google; t=1767178554; x=1767783354; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O+f7Mi5vx+QI3KHSGUaTpC6QdSIVzAVg+5x+XC0DFt4=;
+        b=Fn41dL5yPmJ8/pZJnJbGwM+Yo2hCBvIzqLR+Z3r8gnP1VO7BL2uDWy5sRwVdlrNYvH
+         h4JaMVTd4f2nyhopKq1pOLpKGhIvF8FigJZaQklsz2tTcUyd0A2PmEWKEPzICrJZadTC
+         /uVvht/0JO8aTk3WBP2q+51RsfltARH5IADzdKhaLrXmBESaSInXV/BhZfIZXUo9Jxpb
+         68GGVYQ4sC0zr8yxJ4w1HAoXYUnwPF2wv1KX/W2cofwKDphxUdS/4pFSCyBl2J3XQWSx
+         95GpK7PU9HsOQy3EBwLeOIf6pxt82bXQhPaRs36u7DB6F6GPRc7FVFnLpwwQFqP50TW3
+         scYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767178554; x=1767783354;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=O+f7Mi5vx+QI3KHSGUaTpC6QdSIVzAVg+5x+XC0DFt4=;
+        b=Uf/8SbNLYkjBZEmq6e3ifHdw+WdeLtJMXDrTOEsA3KJa0R/pUvs9kwnpXAp/x/jXK1
+         ZWGvZCZKw8UvZwuZUW1wCzoMrx/J86S/KXBZSk6tNt4iFA/KnuqRXOGQVeVKjZr51Ed0
+         0V7Ig+guNLBPNK2sDe3cREn3dnkGZYYY2TNC4gK4fiXn1j5YbAszZFUdK1LbTWjO/RlC
+         BCfnmLOxnL5U9CQnGGE8zjrOYM4rXqtWoH1gfPegYdpbKvY8xqarAc+RGpu+W9fc6Pom
+         Qi+NbPfZC0mccsH944iMrfU4mKV/cEmcUGkebJP0xxE63vzyVugDGvJWKcCh98kle07I
+         F0Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCWUPd8Ol2sTT82R2okGb9eAmS/LQALDASAz++uQvxzPFqR2CRRQSp3IhqCVGhFWawR2ye1zKt4=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz8kT0ovwfqyL5HN3KEcE5WiRcspbHvj8pirzAk1aEBlzrwRCyX
+	QNY4nODfnBqSlaqM4pLDI0q4j8oJarUvSsWb6+Mn4XK5qSS1DeRv1cWW7oQybPSykmnFqEX8hv+
+	zQielhy4hdPW1VnYyAQNwuWoLfk8jQB5xbOH8nCpfiCdwt/PyJdCQzc6Kk/dyJEcR
+X-Gm-Gg: AY/fxX502Ip8SgaVBxcDM1RINdiuQGkykiUjwV4HMmS89aZVIeQ2AiZ2FWMWgA9G7yt
+	ur/OFe97xAj7aM9GkzbfasCDz7gFEr8bW6B9f1IdNuQ+ocouV6zUB5qsTCAkuM1QayCf7ep/+dr
+	PKvVDhzX+yTLEQiIbOHTxXO6gn1Zk1kT1HtvvjL0PjoLZbfL41ei6tFBxto16VQSAM0YgZivpVS
+	QTNkwm1cJZ10Saa+IJ3f/Ebfsd+k+OELfsnxySwDBjFLrnQQxeW84li4LT5RFTrhzVyThPq1+sS
+	r+e5N1UwzdMMEyCIuiVzcH/eI+0o7FgIyl61IPR6L5LunodP4eTXgapmigC9GJU47XgdXdWEKvh
+	ahbZV4G4263wZMpsBhva1ByoeHShPm5kT+vDtgA==
+X-Received: by 2002:a05:6a00:348a:b0:7e1:730a:613b with SMTP id d2e1a72fcca58-7ff64ec6724mr32190519b3a.31.1767178553537;
+        Wed, 31 Dec 2025 02:55:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGioiLvW2U0joeR5pbtZjSEPSozpQwlq9uIpJCK2UPjGGzU6NNfRTPRLdM9fVlDl9M9HcekTA==
+X-Received: by 2002:a05:6a00:348a:b0:7e1:730a:613b with SMTP id d2e1a72fcca58-7ff64ec6724mr32190489b3a.31.1767178553048;
+        Wed, 31 Dec 2025 02:55:53 -0800 (PST)
+Received: from [192.168.1.102] ([120.60.65.32])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e48cea1sm35616794b3a.45.2025.12.31.02.55.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Dec 2025 02:55:52 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+To: Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+        Carl Vanderlip <carl.vanderlip@oss.qualcomm.com>,
+        Oded Gabbay <ogabbay@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        ath12k@lists.infradead.org, netdev@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Johan Hovold <johan@kernel.org>, Chris Lew <quic_clew@quicinc.com>,
+        stable@vger.kernel.org
+In-Reply-To: <20251218-qrtr-fix-v2-0-c7499bfcfbe0@oss.qualcomm.com>
+References: <20251218-qrtr-fix-v2-0-c7499bfcfbe0@oss.qualcomm.com>
+Subject: Re: [PATCH v2 0/2] net: qrtr: Drop the MHI 'auto_queue' feature
+Message-Id: <176717854647.8976.2100798756796791971.b4-ty@oss.qualcomm.com>
+Date: Wed, 31 Dec 2025 16:25:46 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
+X-Proofpoint-ORIG-GUID: MH_ivN7aP6qkf-QuObq4l6Yabghc5ShK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMxMDA5NiBTYWx0ZWRfXwSG07YRoKux7
+ 2XyZCvOG/qD009cHYt/cTbnOqG/hkoz71rzQr48iNmHvYz9w/jnluXhg/ycukAyo9N4L5aPT0jA
+ qwSAsYcJ0c3WwyFWPoLJHzB4DUYlW9o8elKmy1ThP9B1cq5jlGtT8twF1vh10hO5aTPWproNhx4
+ yw00LWAwQ7g9z43sfJc+KERY0SuCAi1pUHctTLN3/ErwqnAMwTRU/dSWDp7rewzO3FrUeT7tZl2
+ wIN/6SFUIXRfRJ0bAbt/IFrv6nWxz9/KIRLkNRrgiPlszSdYPkF/P8hzMSmvZeMLSGYNxY8dywp
+ 5zNm+qT3Povcb7+5IOIHCesqWc7PCHKi1I49yGfQPNcyLHaC59krsjc/jhIqXq75Or4P4zg6BU2
+ ZfMSqelBdJZxVBOPCjwhfEbftEeMxH30ayKhdzTliDqzKwTQftkT7e0mD5D7sRm/ssCkOhFdHad
+ Tl3Xq69/TAkcPuDxhdg==
+X-Proofpoint-GUID: MH_ivN7aP6qkf-QuObq4l6Yabghc5ShK
+X-Authority-Analysis: v=2.4 cv=J9GnLQnS c=1 sm=1 tr=0 ts=6955013a cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=+SK5D59PVgoENw9OlSzWFQ==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=d1LwL24QG6zMnwvM45oA:9
+ a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-31_03,2025-12-31_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 impostorscore=0 spamscore=0
+ suspectscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512310096
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251230_220630_010175_39EB15C7 
-X-CRM114-Status: GOOD (  11.11  )
+X-CRM114-CacheID: sfid-20251231_025556_374130_1ED8AE00 
+X-CRM114-Status: GOOD (  14.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,38 +158,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Op 23 december 2025 10:27:46 schreef Qian Zhang <qian.zhang@oss.qualcomm.com>:
 
-> Channel Frequency Response (CFR) module will be initialized only when
-> the following criteria passes:
-> * Enabled CFR support for the hardware through the hardware param
->   'cfr_support'
-> * WMI service enabled for the CFR support
->   'WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT'
+On Thu, 18 Dec 2025 22:21:43 +0530, Manivannan Sadhasivam wrote:
+> This series intends to fix the race between the MHI stack and the MHI client
+> drivers due to the MHI 'auto_queue' feature. As it turns out often, the best
+> way to fix an issue in a feature is to drop the feature itself and this series
+> does exactly that.
+> 
+> There is no real benefit in having the 'auto_queue' feature in the MHI stack,
+> other than saving a few lines of code in the client drivers. Since the QRTR is
+> the only client driver which makes use of this feature, this series reworks the
+> QRTR driver to manage the buffer on its own.
+> 
+> [...]
 
-[...]
+Applied, thanks!
 
-> diff --git a/drivers/net/wireless/ath/ath11k/core.c 
-> b/drivers/net/wireless/ath/ath11k/core.c
-> index 812686173ac8..6a6bf6316ac9 100644
-> --- a/drivers/net/wireless/ath/ath11k/core.c
-> +++ b/drivers/net/wireless/ath/ath11k/core.c
-> @@ -1,7 +1,6 @@
-> // SPDX-License-Identifier: BSD-3-Clause-Clear
-> /*
->  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-> - * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights 
-> reserved.
+[1/2] net: qrtr: Drop the MHI auto_queue feature for IPCR DL channels
+      commit: 51731792a25cb312ca94cdccfa139eb46de1b2ef
+[2/2] bus: mhi: host: Drop the auto_queue support
+      commit: 4a9ba211d0264131dcfca0cbc10bff5ff277ff0a
 
-Hi Qiang Zhang,
-
-Some explanation on this would have been nice. Doing this in a separate 
-patch would be even better.
-
-Regards,
-Arend
->  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->  */
-
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
 
