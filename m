@@ -4,146 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DAB6EEE250
-	for <ath11k@archiver.kernel.org>; Thu,  1 Jan 2026 18:53:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BE39FA3758
+	for <ath11k@archiver.kernel.org>; Fri,  2 Jan 2026 21:18:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ik6hlVXeTmBKrAB0aF6mx5+u5ON4Nq+bNmY4Sp4BCBg=; b=HMRdMUfNtKepT2iyhZkJhCpEpo
-	vEJrZQev2FN27FkO7uAHqQbb6K1kHwLteurCW1YYhnCHMS+Wiv7ICr2hi43jP0jwj5hP4mjGw2HPx
-	PccbruHPlpbrFCS5T74mTaJQRVdWfblUO36QangepHO1snr2yzNMA/HKjkL2FwJ7pWdgcEEzvdWWJ
-	c+tg9mnya/OFaCUe+peZvL61d1FXkz2f5R+dj+ZMoLx6cadtlzvEFyo6ezy8WKWW8Cy/aqW8KLZRS
-	8ASiDvbtFXJIsOmdRxHbZy1Zm5Bsha/Tvgukj/9wizlUU4IihNZ9ikyk6tV/pvbb+r7SEQrVM/Iip
-	5csiad9Q==;
+	bh=qOJF7nRLfD3LQ6Qb8ilPntbm93z82Bo02fUsb9OKhUY=; b=kRTo8IyeBjR2jGYcVxW5ppZhu7
+	+DLM/MTrc/6e4jpdv8h8wg4S53WnCS75o4SERohSGmzm0BHu1HyMf1lK7oj/l0lwP29sCzhiE5Nsz
+	Rm5+Tgxf1TnvJDl4kzem3+SUuPE8dWKCF70sSWj4XOtPM5hgBLC9PD/+0QRET4eyAOZrwB46lMq6x
+	F+i3HSguEIS4A2//ECEfaa+a9lhauEkyE9JqsuehZK5ChD9S74R8nNEIR8O8QHw/RPqIRZ0CBzE7D
+	5DGGyMgTf6+CBsRIIQVXTQkvxz1hNLGffHlA9dcrNNyYVf6DLViQRx64SjF2I3F2c+BceEHw0mUKp
+	0KsCteeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vbNnR-00000007RTb-2dUI;
-	Thu, 01 Jan 2026 18:53:17 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1vbmWx-00000008irw-16Ey;
+	Fri, 02 Jan 2026 21:17:55 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vbNnO-00000007RSu-1Ypi
+	id 1vbmWt-00000008irZ-2swc
 	for ath11k@lists.infradead.org;
-	Thu, 01 Jan 2026 18:53:15 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 601BoNhT2236705
-	for <ath11k@lists.infradead.org>; Thu, 1 Jan 2026 18:53:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ik6hlVXeTmBKrAB0aF6mx5+u
-	5ON4Nq+bNmY4Sp4BCBg=; b=E4JOakQbeHUd6cX0TJKs3SQDrGS3pN2GXE+/B77s
-	INRK2xConOMgsCZKtMw8/fZXSNHbErDJWHW4Kbo60eBISTJCQ9lIDk28sOEZTRDy
-	XVzeWLOybrD5nIZ4g2HAnzlujiKgLff4gMQgcQ6w56CooqFQXgPybL7gxO8s1m1h
-	1VO/+c37m4ObAWcnTpVT/gg9QgA611Lr4ebrGOxbU3MdR+NLv5Ve2mkXK5OCjB+2
-	W3d3/b8NaEx7oRJzXPxramL2NbhUk/m2bJ0vEAMTCHM3UF6gjX/SaQC5qCVPLjjR
-	k2juBGo8D3SaarlLyE6ASbPvMHRwcBjhUHoCA5US8AI4pQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bd76n9xjm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 01 Jan 2026 18:53:11 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4edb6a94873so226274011cf.0
-        for <ath11k@lists.infradead.org>; Thu, 01 Jan 2026 10:53:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767293590; x=1767898390; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ik6hlVXeTmBKrAB0aF6mx5+u5ON4Nq+bNmY4Sp4BCBg=;
-        b=BbyBbV4NCHEJIKUcsu1LDk8zF+Sip5brjiDhiH5R2dA1QBVfX1rDpXGjPHbUFqSaWz
-         tTxjdTD3wBk+Tkrk9q4Dqy3apvcAzUAcMqO2XZIimlRm7dZfUDhwgFQJ/tQJK9a4q9sm
-         +g/74TMpqgaEAtk2bjv+lLuEHJAVhCZ4OL0gShIfTyaQz0pKGUhQ8D5pIm433XnM2q75
-         enmBHSSFgpvOjZH1OssvDwnQCE0mItgbS4ETTNhttOxUcTbvnHn2Julxoubkadhbzys6
-         /thyStgYCMv85kNWptzH7OAwwggcAMHWAJp6WXmuYO8rOPiz/7ac1jnEG+xbORUKCZ+F
-         u50Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767293590; x=1767898390;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ik6hlVXeTmBKrAB0aF6mx5+u5ON4Nq+bNmY4Sp4BCBg=;
-        b=YG2BGrr7+pj7fNwPK4m2Ru3kXE0eT1RoGUcS1WYJshGVaHnn9bxZ6vS9G0IIzoMwmV
-         1lwdST5CIuAuJn0EBUr/sVa4A1Xdtm/PxXkNjEQ7iBIMO/xAUyswnaK/GgSc4D8qElbH
-         4yIwaAKlDPNandl88Um5jH61swPw30AOMsK9ELm8pETMzp3P72IzZFyKM1s3f2Gs34ki
-         Mwj9TiVd1/UI7vmO10A1AElzIbdw9xl4wKa4qgA1H4gxMZ1eESXHJ2w3xDZo17bwCQJT
-         zjcC7Q73sHV17c/0tywGKqkWrzTw51bGoEDV7KtwVKWSATbCYUHffoqtuMn4e6d93IKl
-         eZXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJPAgyWptFhq9jCGfPcB8hE0uk3TuAFDmEKORIh3LP1P9rokhUmkBoG9PCQlnTL4nILH/QwKM=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwwBre7lueGRjlcFudFnkygT29rpYcOVphgDrzGGSw8QBY+RBKb
-	yrnYSrUnzwWS8XEMLgKyiLZlB5eblW0uCP+FHfF4rv+lXlVjXDoeshI2qSGei8o35cNHPBK+cSD
-	2SGDGWpyFVdURaOh01Qn0WGqqMLw4HRPfswnECthHLaEmNwQwwytNNvGmKYR9wm3h
-X-Gm-Gg: AY/fxX6cAkrEEkiXFpNJsvf7MyqCD8PW0VBHlxj2VI817M0v5zBkASwawsKEfkE02tk
-	oig73zcfCg/N/GQUdgVldIzvZ+iSa4y9p05oavODQjXnpKPCcMDah0r64sG+4xxVZHWf3GwWIVQ
-	UVghLk6GoyhDRJW9IFUzdT/S0+0vOelYPEhp+iaeqJCJ2PJo9y5iGFXFNP2pYl8nXXuzyVeUkGV
-	M/nNqH9JZ9iqyPXK2Lx+whkBqMGOzYkqqoJ3R3i7lWHYiBgowtaI3Ob/Ew/51b84478JifarTSb
-	EqqOP/zwIvTw7GFV6zcqyyy2TEp0m48ppXIjkK17HyRTzFiExALmmTBweoLdo7DzG/ZfQByG7RU
-	nr/ieR8ZfcOTed2aIq5Iq
-X-Received: by 2002:a05:622a:1f06:b0:4f1:e0c7:7892 with SMTP id d75a77b69052e-4f4abceebbcmr599601201cf.21.1767293589943;
-        Thu, 01 Jan 2026 10:53:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFqWg0OwJN7WPv/Z6zzoCKj3pxTkw7ICxhLJa4qdOrQj71LJo+OUfAsFJ3QIwlHL9BMYoFVPw==
-X-Received: by 2002:a05:622a:1f06:b0:4f1:e0c7:7892 with SMTP id d75a77b69052e-4f4abceebbcmr599600801cf.21.1767293589362;
-        Thu, 01 Jan 2026 10:53:09 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.7.10])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b836b9b08c2sm1537526166b.58.2026.01.01.10.53.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jan 2026 10:53:08 -0800 (PST)
-Date: Thu, 1 Jan 2026 20:53:06 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
-        Carl Vanderlip <carl.vanderlip@oss.qualcomm.com>,
-        Oded Gabbay <ogabbay@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        mhi@lists.linux.dev, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, ath12k@lists.infradead.org,
-        netdev@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Johan Hovold <johan@kernel.org>, Chris Lew <quic_clew@quicinc.com>,
-        stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] net: qrtr: Drop the MHI auto_queue feature for
- IPCR DL channels
-Message-ID: <bah766ajefvfoiqgbgjwwlbbr4ech4yupo2wjogejxcd5tmq4p@q5powzzdfbbf>
-References: <20251218-qrtr-fix-v2-0-c7499bfcfbe0@oss.qualcomm.com>
- <20251218-qrtr-fix-v2-1-c7499bfcfbe0@oss.qualcomm.com>
+	Fri, 02 Jan 2026 21:17:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id E2BDD41AA4;
+	Fri,  2 Jan 2026 21:17:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F7D1C116B1;
+	Fri,  2 Jan 2026 21:17:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767388670;
+	bh=Wmy5ed3YGxGb0MZ2kcqjFsdOicrxvlhnA+MzPNdvS0U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M5xGIv8F6/8OGvVPxvNzX8YceW4K4uHRDomjvOgegHCBjt/GQ+EWb25FTbPoFF0WH
+	 sEecm/DwXbS9mjP5EPL4XXnqEp85x/YHC00pR7dMRZfsc4z44Qq05eVwMfmAKlISkG
+	 jYHwY5G08vdw25NipaXB52j9MUust7cKUBhG/WD8eMZ7kfaatOZFPMUFFGXIgSVcYR
+	 75ChhFFQEK/1bxqn/pMsDRw+VWn/m83Hl+wTXwrG6HFD59jL0M9mtXeb1yI0293z4z
+	 OD/bNBZx6pUFr1Nr3GqFCjYs4KYtW1MYvYHasUijUGYqjpt6h3dOiFVI1yV8SHs0e5
+	 IyDKA0qX1miAA==
+Date: Fri, 2 Jan 2026 15:17:49 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Johannes Berg <johannes@sipsolutions.net>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: wireless: ath11k: Combine two if:then:
+ clauses
+Message-ID: <176738866889.203763.17293474751487788708.robh@kernel.org>
+References: <20251230114835.52504-2-krzysztof.kozlowski@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251218-qrtr-fix-v2-1-c7499bfcfbe0@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTAxMDE3MSBTYWx0ZWRfX7Kv1bcengIBI
- bdujw/EUPYSZGLL1AfVC3LPyHauRg9SVOF5OcfP4UKiwxvCgx5w7JZnjbaoBoVNQyWadCt5HmZY
- KCxk4t5d+jozlSVLUA04HGr6YVWkbcwLCYxE/ujTLwuG6rycZ7Ez+v98PpoDgngeRZA2pymb0JK
- YhYLfqxOMf1Stc37btmpRVJDAeAmINcQpA4yeRTmfcTOOgJchzCIP5NvQnmHpJbdPo+7fPsNSvu
- RPIGheSZkmqbOrcEwJDg8bz9TiN7AcuXpju/Mtbqcmx/QLAm0P+Vagow1AwFf8a/URPaeZGE2a9
- wbQ5PDbS3cBsmnhy4ZCzyZaZFbdUAhieWSwpv5CpByZdRZ8vtn3rxZ5fOjb2csFQO2HuXC3NClt
- 9Bx+FyrySBhT7icsL5Gqa2MTc72KnlPjSMiJqj5eP4WrGcSiiNT4VU9HRNYsMAkD/TSFaHmKZHZ
- rCYiF9hDyNF/B/JTsLQ==
-X-Proofpoint-ORIG-GUID: IMUSkKH-dBHz9akac-djY7JJikd4rpyo
-X-Authority-Analysis: v=2.4 cv=TdmbdBQh c=1 sm=1 tr=0 ts=6956c297 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=hZ5Vz02otkLiOpJ15TJmsQ==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=zitRP-D0AAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=isMaZ9OHK7bkWVW8W2QA:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=xwnAI6pc5liRhupp6brZ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: IMUSkKH-dBHz9akac-djY7JJikd4rpyo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-01_07,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
- spamscore=0 bulkscore=0 adultscore=0 suspectscore=0 clxscore=1011
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601010171
+In-Reply-To: <20251230114835.52504-2-krzysztof.kozlowski@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260101_105314_438375_E97F2553 
-X-CRM114-Status: GOOD (  18.89  )
+X-CRM114-CacheID: sfid-20260102_131753_143493_0F63269D 
+X-CRM114-Status: UNSURE (   7.61  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,44 +77,17 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 25-12-18 22:21:44, Manivannan Sadhasivam via B4 Relay wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
-> MHI stack offers the 'auto_queue' feature, which allows the MHI stack to
-> auto queue the buffers for the RX path (DL channel). Though this feature
-> simplifies the client driver design, it introduces race between the client
-> drivers and the MHI stack. For instance, with auto_queue, the 'dl_callback'
-> for the DL channel may get called before the client driver is fully probed.
-> This means, by the time the dl_callback gets called, the client driver's
-> structures might not be initialized, leading to NULL ptr dereference.
-> 
-> Currently, the drivers have to workaround this issue by initializing the
-> internal structures before calling mhi_prepare_for_transfer_autoqueue().
-> But even so, there is a chance that the client driver's internal code path
-> may call the MHI queue APIs before mhi_prepare_for_transfer_autoqueue() is
-> called, leading to similar NULL ptr dereference. This issue has been
-> reported on the Qcom X1E80100 CRD machines affecting boot.
-> 
-> So to properly fix all these races, drop the MHI 'auto_queue' feature
-> altogether and let the client driver (QRTR) manage the RX buffers manually.
-> In the QRTR driver, queue the RX buffers based on the ring length during
-> probe and recycle the buffers in 'dl_callback' once they are consumed. This
-> also warrants removing the setting of 'auto_queue' flag from controller
-> drivers.
-> 
-> Currently, this 'auto_queue' feature is only enabled for IPCR DL channel.
-> So only the QRTR client driver requires the modification.
-> 
-> Fixes: 227fee5fc99e ("bus: mhi: core: Add an API for auto queueing buffers for DL channel")
-> Fixes: 68a838b84eff ("net: qrtr: start MHI channel after endpoit creation")
-> Reported-by: Johan Hovold <johan@kernel.org>
-> Closes: https://lore.kernel.org/linux-arm-msm/ZyTtVdkCCES0lkl4@hovoldconsulting.com
-> Suggested-by: Chris Lew <quic_clew@quicinc.com>
-> Acked-by: Jeff Johnson <jjohnson@kernel.org> # drivers/net/wireless/ath/...
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-Tested on Dell XPS13 9345, so:
+On Tue, 30 Dec 2025 12:48:36 +0100, Krzysztof Kozlowski wrote:
+> Simplify the binding by combining two if:then: clauses which have
+> exactly the same conditional part.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml    | 9 ---------
+>  1 file changed, 9 deletions(-)
+> 
 
-Tested-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
