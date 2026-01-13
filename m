@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DAC8D29DDE
-	for <ath11k@archiver.kernel.org>; Tue, 13 Jan 2026 07:29:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C5B9D29DDE
+	for <ath11k@archiver.kernel.org>; Tue, 13 Jan 2026 07:30:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=otC8AA35DQUAdsDvuQYidG76vcF7pI03qZliy3uyWEQ=; b=Mny5qEkC+8SkbF0fI6x71QVNJY
-	F6DCviG+u7/ewdn7z8h1cKoBIszx8gevSwvo3mR4//if4X8U6JHHsTM7FxswvM/JwPf3fiAc2NX6V
-	/MCTNc4HGpkkMEH6TaBWtJo23Bddw0gvN2g0exN/GtJyJnnocaCpuNAy4RrTea5bQ6lldwH9QzD00
-	dIHPouYLmDq5GQEa5N7FGav+V2imt/7RYKHvyGt+Ol1YiKtzZQCq/6aSNQ5HqpUWpo1DLvXpW+8pk
-	Gus+57CM+FSnXo7m13lH5dONmO1+/pjF6YYbZjGWR4rIQ87KzpQ8TzkV55U0SorppUVGKqtwAgHYd
-	ttlSinLA==;
+	bh=cb+mJepdEBpA+neSYrHhpbjNGoVwA3wx621T8Cu48FU=; b=p9b77k1aXr8KiSnA8v7MOf1K41
+	GAQCGbgH9nHtA7GpNUxsyd8Q/voO5cFHWrhUUxaWgL+HBCRmfQbF3txwlWGkqZhLql6BGqlmJsZXo
+	RN0Hx2vH1RTllK37xBy9RZ2fig7hmOmrQgReghdEqvaoWuMPrxuny5Kf2Y4nxo2TCJY8/oGz1a+uQ
+	oAYHA/a9/LDbt2OL7U1+UwDuvU3XMtZQJrSgXKn8DDUvE4bAgIHYqIyKibS5bkWUMB6VwG2ksTjbJ
+	rvtRO6kuKSnvP/N3CxuDnm/GIwQee+yAm9xeZgZeSle6UBttoqcWG54PDuWxIVZxGSbNxdeTToccA
+	uyq4/c1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfYq5-00000006exL-1vUQ;
-	Tue, 13 Jan 2026 07:29:17 +0000
+	id 1vfYrN-00000006fAH-26WO;
+	Tue, 13 Jan 2026 07:30:37 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfYq4-00000006ewe-1Nou
+	id 1vfYrM-00000006fA0-1xAd
 	for ath11k@lists.infradead.org;
-	Tue, 13 Jan 2026 07:29:16 +0000
+	Tue, 13 Jan 2026 07:30:36 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2F35D6000A;
-	Tue, 13 Jan 2026 07:29:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83EE3C116C6;
-	Tue, 13 Jan 2026 07:29:12 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E33A060097;
+	Tue, 13 Jan 2026 07:30:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B75C116C6;
+	Tue, 13 Jan 2026 07:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768289354;
-	bh=+1g63FBZYAnjoJfvzsiNwUHQkuO5dOwtUQFXga6ktcE=;
+	s=k20201202; t=1768289435;
+	bh=GkuVz6PJ37bXi+SsxKuFykpOfTC/ZcnWw1QD/eObPQI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qyV1HwVpVW6fy/NWPVNzSp6vrlrq1Hq0n2gpNvHTqhWZSUdSv96xvSKJsVxBGP5YQ
-	 hPQ6N0pBEbZ1tEMNBwKkcxz6zsgElS/izbeVcj7S4XBTaX4eGjIDzl2G6CCC20zhZ5
-	 laLlW9ir0vfk0hqCHx3Fbw0ly5zQBBPMAjq8r8gbRizBdncDBFcUq0wq1P8LPHQ3/F
-	 MsT1BpBxl/E43pGOflZfQGOG9EmrEy0FHn58jHV5i2v0Epayk121/XYalC/ipD+xGo
-	 5SnQKHktdJhmH8CKDDfE32FjIAu9Xkihu3rXoWuEEXpqC6AiLxc+ZdQz5ldtSadbB9
-	 9gJWcjc0H4d/Q==
-Message-ID: <6777df67-e6db-4f11-a971-9627fe86765e@kernel.org>
-Date: Tue, 13 Jan 2026 08:29:10 +0100
+	b=t5eliOJ/FiqE2tCMO4evqlPqp7LNVswtFLvaC/174Tm9zXKFncsP9Z6CFpZ+Yd1h9
+	 gkJsqdY9P14c8LUkyvfJkVrqAjd/TNRlQcsbWonGe/qwTvYMZmwTnaxrxhGogj00OT
+	 aO7IcP6WIjfgCeXLNwsP0vSBW1TG0tPx3IzOSy9a1xIoH6+Ir7JftVAbn/faJOcHz/
+	 PN/t+KhNXqVX5PCzt1oeqJve9G2w4PEZ8mNgd+aiyCBhJHeC0VAk9o3X+uBNaO8i52
+	 GzDtglPOBDQathEI2w77Swe06/VwSMCsFxV2eYqy60vRcQQK21/Ljqwoj2YxiTy2HU
+	 FRTavSpN9DQqw==
+Message-ID: <12234020-267c-4d62-baff-89e6d053f24e@kernel.org>
+Date: Tue, 13 Jan 2026 08:30:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci:
- deprecate 'firmware-name' property
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
- Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+Subject: Re: [PATCH v2 ath-current 1/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
  johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
- <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
- <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
- <76d1c3ad-d648-4719-b016-1f16b195e64c@kernel.org>
- <0ad4722d-1557-4d8d-ae45-c0fdf893067f@oss.qualcomm.com>
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+References: <20251214025230.716387-1-miaoqing.pan@oss.qualcomm.com>
+ <20251214025230.716387-2-miaoqing.pan@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,7 +101,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <0ad4722d-1557-4d8d-ae45-c0fdf893067f@oss.qualcomm.com>
+In-Reply-To: <20251214025230.716387-2-miaoqing.pan@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: ath11k@lists.infradead.org
@@ -121,59 +118,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 12/01/2026 20:51, Jeff Johnson wrote:
-> On 12/11/2025 7:23 PM, Krzysztof Kozlowski wrote:
->> On 11/12/2025 17:44, Jeff Johnson wrote:
->>> On 12/3/2025 11:11 PM, Miaoqing Pan wrote:
->>>> The firmware-name property was introduced to allow end-users and
->>>> integrators to select usecase specific firmware for the WCN6855.
->>>> However, specifying firmware for an M.2 WLAN module in the Device
->>>> Tree is not appropriate. Instead, this functionality will be handled
->>>> within the ath11k driver.
->>>>
->>>> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
->>>> ---
->>>>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
->>>>  1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
->>>> index e34d42a30192..0162e365798b 100644
->>>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
->>>> @@ -37,6 +37,7 @@ properties:
->>>>  
->>>>    firmware-name:
->>>>      maxItems: 1
->>>> +    deprecated: true
->>>>      description:
->>>>        If present, a board or platform specific string used to lookup
->>>>        usecase-specific firmware files for the device.
->>>
->>> The driver patch completely removes support for this, so is this really
->>> considered deprecated? Or should this actually be considered obsolete and
->>
->> That's silent ABI break. I will formally NAK the patch.
->>
->>
->>> completely removed?
->>>
->>> Do any DTS files actually reference this?
->>>
->>> /jeff
->>
->>
->> Best regards,
->> Krzysztof
+On 14/12/2025 03:52, Miaoqing Pan wrote:
+> For M.2 WLAN chips, there is no suitable DTS node to specify the
+> firmware-name property. In addition, assigning firmware for the
+> M.2 PCIe interface causes chips that do not use usecase specific
+> firmware to fail. Therefore, abandoning the approach of specifying
+> firmware in DTS. As an alternative, propose a static lookup table
+> mapping device compatible to firmware names. Currently, only WCN6855
+> HW2.1 requires this.
 > 
-> Krzysztof,
-> Can you check the v2 to see if you still want to NAK?
+> For details on usecase specific firmware, see:
+> https://lore.kernel.org/all/20250522013444.1301330-3-miaoqing.pan@oss.qualcomm.com/.
 > 
-> https://msgid.link/20251214025230.716387-3-miaoqing.pan@oss.qualcomm.com
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
 > 
+> Fixes: edbbc647c4f3 ("wifi: ath11k: support usercase-specific firmware overrides")
+> Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+> ---
 
-First, yes, still NAK.
+I already said why it is wrong patch and you did not improve. You also
+added tags from reviews of something completely different, which
+effectively bypassed my filters. I find it unacceptable.
 
-Second, that patch faked Rob's tag, so it is unacceptable!
+Let me mark it formally:
+
+NAK
+
+Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
