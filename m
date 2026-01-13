@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4B1CD29DDE
-	for <ath11k@archiver.kernel.org>; Tue, 13 Jan 2026 07:28:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DAC8D29DDE
+	for <ath11k@archiver.kernel.org>; Tue, 13 Jan 2026 07:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+3Gf2I/xLy7vPzEfN3bQ4mMJn01CHY7omo6qFgEWjZI=; b=sRmUvFKZOHxU14JOHlQ2v86YU3
-	9J2BMXL2ktJ+nAfFSd7uea056Ww+Z6JoDr4KTfMAu4E7l1jVvErEFmXlJeG7Lm2nU6m9L93gN/0GK
-	1qTwmy8IFTqJ2AozBlSMlLix/GGMfu+759/N4WMg7oyYeAb1WQTpSHahUPBxgd59pOWDMJkpbdj5E
-	GYMz8ObW3hohhbq/WE+Nr+KZE93BAwOAGgXdzvY30LQj/NA6CCBXs5h6k/A0HCyRP1m/i4lNQG4v4
-	54r0mYwimfAJfI6De1x/fofTT0XoPue8YjxEFKvQQQ0Hl1WYex8TVzK7Ffw79lK+pnNnoeNynoU3B
-	jcwZDN/Q==;
+	bh=otC8AA35DQUAdsDvuQYidG76vcF7pI03qZliy3uyWEQ=; b=Mny5qEkC+8SkbF0fI6x71QVNJY
+	F6DCviG+u7/ewdn7z8h1cKoBIszx8gevSwvo3mR4//if4X8U6JHHsTM7FxswvM/JwPf3fiAc2NX6V
+	/MCTNc4HGpkkMEH6TaBWtJo23Bddw0gvN2g0exN/GtJyJnnocaCpuNAy4RrTea5bQ6lldwH9QzD00
+	dIHPouYLmDq5GQEa5N7FGav+V2imt/7RYKHvyGt+Ol1YiKtzZQCq/6aSNQ5HqpUWpo1DLvXpW+8pk
+	Gus+57CM+FSnXo7m13lH5dONmO1+/pjF6YYbZjGWR4rIQ87KzpQ8TzkV55U0SorppUVGKqtwAgHYd
+	ttlSinLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfYpf-00000006ert-0M68;
-	Tue, 13 Jan 2026 07:28:51 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vfYq5-00000006exL-1vUQ;
+	Tue, 13 Jan 2026 07:29:17 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfYpd-00000006erN-13K3
+	id 1vfYq4-00000006ewe-1Nou
 	for ath11k@lists.infradead.org;
-	Tue, 13 Jan 2026 07:28:50 +0000
+	Tue, 13 Jan 2026 07:29:16 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id F1BC143345;
-	Tue, 13 Jan 2026 07:28:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BE72C116C6;
-	Tue, 13 Jan 2026 07:28:45 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 2F35D6000A;
+	Tue, 13 Jan 2026 07:29:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83EE3C116C6;
+	Tue, 13 Jan 2026 07:29:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768289327;
-	bh=ZfNSEL7xYSCwNOCsmAzEzyoN2HealqqoXUad0dJ53pU=;
+	s=k20201202; t=1768289354;
+	bh=+1g63FBZYAnjoJfvzsiNwUHQkuO5dOwtUQFXga6ktcE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y38Kfah4lXNk3UbEf5ue9MTJjm63zo/6aSwb3Tq2nUnrCQYcLzGIpvNI/2x5O3P1v
-	 m3j34WxuLu1eKnPLcgBN+0NRIyAmzZdW1HXaSuJKZeWscvQ7zdp0JkE8tPikWOd2HU
-	 b38uLk3MTucPfw+lIxGdAL27C6uenHU2TJuLPLzrNSiNyRVyeCuv4ObR9JThLoCVmf
-	 96GfqWgUE4+Zl6BCbqXFFsUkEQUaWDkwZJzvyIP1BOyAE3AkRjk3ldlxMh1ax0pvtE
-	 dL2+JupMVX6Z2diU+YZjiJhLAont5WxXSCMejore20iC8C7F82AoSTzKQPzanf/3VQ
-	 2Af4p2xOW+OUQ==
-Message-ID: <fa997674-402a-41cf-9334-f7fc89ae5ebc@kernel.org>
-Date: Tue, 13 Jan 2026 08:28:43 +0100
+	b=qyV1HwVpVW6fy/NWPVNzSp6vrlrq1Hq0n2gpNvHTqhWZSUdSv96xvSKJsVxBGP5YQ
+	 hPQ6N0pBEbZ1tEMNBwKkcxz6zsgElS/izbeVcj7S4XBTaX4eGjIDzl2G6CCC20zhZ5
+	 laLlW9ir0vfk0hqCHx3Fbw0ly5zQBBPMAjq8r8gbRizBdncDBFcUq0wq1P8LPHQ3/F
+	 MsT1BpBxl/E43pGOflZfQGOG9EmrEy0FHn58jHV5i2v0Epayk121/XYalC/ipD+xGo
+	 5SnQKHktdJhmH8CKDDfE32FjIAu9Xkihu3rXoWuEEXpqC6AiLxc+ZdQz5ldtSadbB9
+	 9gJWcjc0H4d/Q==
+Message-ID: <6777df67-e6db-4f11-a971-9627fe86765e@kernel.org>
+Date: Tue, 13 Jan 2026 08:29:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 ath-current 2/2] dt-bindings: net: wireless:
- ath11k-pci: remove obsolete firmware-name property
-To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+Subject: Re: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci:
+ deprecate 'firmware-name' property
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
  johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251214025230.716387-1-miaoqing.pan@oss.qualcomm.com>
- <20251214025230.716387-3-miaoqing.pan@oss.qualcomm.com>
+References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
+ <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
+ <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
+ <76d1c3ad-d648-4719-b016-1f16b195e64c@kernel.org>
+ <0ad4722d-1557-4d8d-ae45-c0fdf893067f@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,12 +104,9 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251214025230.716387-3-miaoqing.pan@oss.qualcomm.com>
+In-Reply-To: <0ad4722d-1557-4d8d-ae45-c0fdf893067f@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260112_232849_336290_83EDA6FA 
-X-CRM114-Status: GOOD (  17.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,62 +121,59 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 14/12/2025 03:52, Miaoqing Pan wrote:
-> The firmware-name property was introduced to allow end-users and
-> integrators to select usecase specific firmware for the WCN6855.
-> However, specifying firmware for an M.2 WLAN module in the Device
-> Tree is not appropriate. Instead, this functionality will be handled
-> within the ath11k driver.
+On 12/01/2026 20:51, Jeff Johnson wrote:
+> On 12/11/2025 7:23 PM, Krzysztof Kozlowski wrote:
+>> On 11/12/2025 17:44, Jeff Johnson wrote:
+>>> On 12/3/2025 11:11 PM, Miaoqing Pan wrote:
+>>>> The firmware-name property was introduced to allow end-users and
+>>>> integrators to select usecase specific firmware for the WCN6855.
+>>>> However, specifying firmware for an M.2 WLAN module in the Device
+>>>> Tree is not appropriate. Instead, this functionality will be handled
+>>>> within the ath11k driver.
+>>>>
+>>>> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+>>>> ---
+>>>>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>>>> index e34d42a30192..0162e365798b 100644
+>>>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>>>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>>>> @@ -37,6 +37,7 @@ properties:
+>>>>  
+>>>>    firmware-name:
+>>>>      maxItems: 1
+>>>> +    deprecated: true
+>>>>      description:
+>>>>        If present, a board or platform specific string used to lookup
+>>>>        usecase-specific firmware files for the device.
+>>>
+>>> The driver patch completely removes support for this, so is this really
+>>> considered deprecated? Or should this actually be considered obsolete and
+>>
+>> That's silent ABI break. I will formally NAK the patch.
+>>
+>>
+>>> completely removed?
+>>>
+>>> Do any DTS files actually reference this?
+>>>
+>>> /jeff
+>>
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> The driver has removed all support for firmware-name, and no upstream
-> Device Tree files reference this property. Therefore, this patch
-> removes the property from the binding and marks it as obsolete.
-
-No, it does not mark it obsolete. Point me to the place.
-
+> Krzysztof,
+> Can you check the v2 to see if you still want to NAK?
 > 
-> This is a DT ABI-breaking change, but safe since there are no in-tree
-> users.
-
-It's not safe. What about my board using this WiFi? Or Mr. foo's board?
-
-Still NAK, you did not improve it.
-
-
+> https://msgid.link/20251214025230.716387-3-miaoqing.pan@oss.qualcomm.com
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-And that's a fake tag.
+First, yes, still NAK.
 
-Rob never acked such patch! Adding tags for something completely
-different is not acceptable.
-
-
-Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml   | 6 ------
->  1 file changed, 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-> index e34d42a30192..653b319fee88 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-> @@ -35,12 +35,6 @@ properties:
->        string to uniquely identify variant of the calibration data for designs
->        with colliding bus and device ids
->  
-> -  firmware-name:
-> -    maxItems: 1
-> -    description:
-> -      If present, a board or platform specific string used to lookup
-> -      usecase-specific firmware files for the device.
-> -
->    vddrfacmn-supply:
->      description: VDD_RFA_CMN supply regulator handle
->  
-
+Second, that patch faked Rob's tag, so it is unacceptable!
 
 Best regards,
 Krzysztof
