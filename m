@@ -4,91 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5726CD3CCB0
-	for <ath11k@archiver.kernel.org>; Thu, 15 Jan 2026 04:44:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F94AD3CC9F
+	for <ath11k@archiver.kernel.org>; Thu, 15 Jan 2026 08:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FyJ1nwAoXFB46LdRdtLwHzhq+4ZJYtwrTRcf5CIjovw=; b=xx7/TDUP2UO7Yuk1yRwsWtIpqP
-	bNLIbOyDQeLb7YrqUbRiJGQ6Sab2MGMu8PMkS3v7AGC7eecRL8+xkEykAhn9L+xH+tz2auVJY9FL1
-	i5uymzrHS+D8mGtuDSXyLkr3sMr2vm34dx4cPyaeMPGomMujam2NcH84Z4kfJH56FaxtIRkgSz462
-	dj3w2tMsB3pYlPZ+VmSk535E2m/QFqwFN8M1GwOwIWb5tM7rjcFUq5MBEohcOoahBm03IzgY1VBTb
-	++iAz2R+ikLLjMaluErFvYBDJxxhLaCENoDBYu5b9LGblcI/8MDijBwuSy0iSG/f7vbMXiBGK3D2K
-	IhTUQnkQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
+	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Kgip1bKFrTPG9c2JsFgljQmYZi6HcbppxU5CdVuIuZo=; b=hEWJLZS4bhk18qpJ8gV6Tdxb/N
+	b6iLt+COaeN2rRTXOH9XmS5CDWCcZ08vYMDma8Ye6Ddc8QGfWdA8lTEMQfFugCBDhO7qhPRtg0P1w
+	hOKEd+Hu+xn2Rjfsb7VgLzkD6lQbqUZ1qHJgklmNWDqmKbnhPlcR7PuGqqb4902HhaBPKmJzk0OOA
+	abw6PxX4WqjuLNtrHckEi8PiqjpwRew6dpXqVp6UZnuKegvhc3Uzf7fQjCD/tAWwtkl0MceFtTZTJ
+	snQ8TY08OPaXfyaHV2Osm8NvJBHjRG1rIX2HZfzNqNll2U1yZ2tAgNvfO2V45AzfXXV3yidHJ0Af8
+	ixW9jDyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgFDI-0000000BmdX-20hn;
-	Thu, 15 Jan 2026 04:44:04 +0000
-Received: from mail-oa1-x36.google.com ([2001:4860:4864:20::36])
+	id 1vgIai-0000000BzQR-1oIV;
+	Thu, 15 Jan 2026 08:20:28 +0000
+Received: from sender4-op-o15.zoho.com ([136.143.188.15])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgFDF-0000000Bmd2-2cy3
+	id 1vgIaf-0000000BzQ6-2Kk3
 	for ath11k@lists.infradead.org;
-	Thu, 15 Jan 2026 04:44:03 +0000
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-40438e0cba6so82224fac.1
-        for <ath11k@lists.infradead.org>; Wed, 14 Jan 2026 20:44:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768452240; x=1769057040; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FyJ1nwAoXFB46LdRdtLwHzhq+4ZJYtwrTRcf5CIjovw=;
-        b=nNWmvsZv6+U2Rt9jvEjhDUq3PU9v3KzABYE5MLwsvISHnjm77padoWrzxG/6NaEdme
-         7kVcyU0KareM9AmEOLBvP8IfD0engaw/9kbsfCv8vHTphcrQnFi2x83Paw4vIOYnEazE
-         yVG1cPf1CvF1kM/YFlsxKVVALMRCdab0BVvT3JlHY7mmGtoCp7BfAXjiBhV/GDu50v7X
-         L6jZ1W1e88tebOmhCakab+gUheKk/bd9nL9eHeLkU7D4VdxkaISuxgttKA4YDQiCIACH
-         kvcNcJX/ALvMY7I9+4yIIaU0OP5tdPUXiGDEjgmHYJM57XB5B7qK7gszPcwhiZ0jKH2u
-         IqHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768452240; x=1769057040;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FyJ1nwAoXFB46LdRdtLwHzhq+4ZJYtwrTRcf5CIjovw=;
-        b=RdqSqMvBmO3GRhcjUxt8+V/Q4bvTbhfa8GeV5lQLe9f4dHDuw61dfN+oP1qjgFLB0C
-         VgulcCaPWAcKVQUoS9AQ9H7FN2EcENv6/MM0ek71PBicYHBbD2uq57lWFqIluY6aFcQC
-         WuqA+tJ2CVPsL2AOyPcr9Op8sWaQoXcpfoYTe9Qlcf2kxX53DRw6cVsDpOBVbt77DStK
-         vgdGBh4iBcufgkkR7RgMs57/eQfPgLTdvEDyWZAg7FOx/smkZ8J+54q1//62ASbGKTBO
-         q/GLo5ULiiKRB4qzbGlWvAQ902FCoHuzUBPvT3aU9EjSDS1eS9k7jU0YEMFilnlB194b
-         aQ8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXdnZiri+LgL7O1YINJS4fDD25DLRuG6YhO0eB1kGXJQVEkMadcDPbAB7WH65zTprur8iq3nfw=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyG8ukzr9reGBzuZfxM/aGPMAONAV3/YVQHeQwWNV9W7gz4ySGa
-	udHFESvBngZZT8WUqCqzMm98XseeWngzZkQqJP+VcuC1rt3qkRZhCuaH
-X-Gm-Gg: AY/fxX7iJA3jfUxNCEKy8lPSsPKyF3cxPOENnAVggPwemQ12OjkrwVuagr3vjZa4EKn
-	nt9Cn1jnq3RhYUfQwdKtoZxe5GYtcBSKhH80YEa1QZb0kbBJtFfbZLxjMaAYb4zLOIA/TIR/aoy
-	kpDuHAK0lJpYv1BFd/KWH2QqjxpEoYEHl4bRkL95QQl6BruexEHjcSkjGvztH/TCE//XWLTD4aa
-	jXQ6fha/IregKbhtS2a1HFXYwWa/msZ5ki19c7gCV9R10Yoy88vF7HY1/YaN56JyQnAZjv9QlDo
-	Qcv9qkAc8E2+tgjqsBCrssWVsEJfYQyljrq3cg/s5U1e+32UBLqt62zV4QlSjF1c05M4De3OoRK
-	KcyUq5doXEy6/kcIAwGxK4+A8wShk8nDrewVCW1pfvW//x4jDNARwPCchkER2XwhQ3rX8fma90k
-	3gJOtVFmibeOcDFZZcC0NjFKdIl1ZtI75CIpm+8rCw9esfPxB37qhoyDPuetGaAegKQUjW/24ik
-	17WeXBDbMXHaeRzGp0R2J5OXnp21Jo=
-X-Received: by 2002:a05:6870:e194:b0:3e8:9b25:2fc4 with SMTP id 586e51a60fabf-40406f33962mr3217936fac.7.1768452240100;
-        Wed, 14 Jan 2026 20:44:00 -0800 (PST)
-Received: from nukework.gtech (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4043b1b0116sm82362fac.12.2026.01.14.20.43.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 20:43:58 -0800 (PST)
-From: "Alex G." <mr.nuke.me@gmail.com>
-To: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>,
- jjohnson@kernel.org, ath11k@lists.infradead.org,
- Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: baochen.qiang@oss.qualcomm.com, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] wifi: ath11k: move .max_tx_ring to struct ath11k_hw_hal_params
-Date: Wed, 14 Jan 2026 22:43:56 -0600
-Message-ID: <6267675.44csPzL39Z@nukework.gtech>
-In-Reply-To: <89a61ef1-3e83-4303-ba04-cf5c5a4aae56@oss.qualcomm.com>
-References: <20251228151408.2116108-1-mr.nuke.me@gmail.com>
- <5896283.e9J7NaK4W3@nukework.gtech>
- <89a61ef1-3e83-4303-ba04-cf5c5a4aae56@oss.qualcomm.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+	Thu, 15 Jan 2026 08:20:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1768465220; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=W61ILOhWMba/+q7dc66NIlC7XyYlPy5j08DIO+XRgpHRjZq6meacGdQZUtSW4E3mjhWinDUgkN6L3eXAEfA4Tcq8Rzldy47rXnYk6goJh5I6+YvMpjUEt0bbPFwKfFYXvsyvPEFkzMY0kL5MDR+gDztD99sLaemQxbmMzFXfu0U=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768465220; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Kgip1bKFrTPG9c2JsFgljQmYZi6HcbppxU5CdVuIuZo=; 
+	b=cwJhIPq1CT53lHkxJ12MLtfHzYJPPzrrcRMm83/CE586+RGMNxBFe+tkDruY1uQQyPQzsGUfxiG/xuWfRKct9saczc3Cl2VksCJERMsQ39TG0j0NRPKupxfVLOjG5p7eYNSpnlYHYfKzjPw+Xf7LzwBcqnT1b8DX6cu/006o+lQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=xv97.com;
+	spf=pass  smtp.mailfrom=m@xv97.com;
+	dmarc=pass header.from=<m@xv97.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768465220;
+	s=zmail; d=xv97.com; i=m@xv97.com;
+	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
+	bh=Kgip1bKFrTPG9c2JsFgljQmYZi6HcbppxU5CdVuIuZo=;
+	b=aCHZXmKosSKPg1eh1SZr717U6SBxMF93DPnMNn/7WJl9iH0jqT0fCghw5qKL9caa
+	eonL5R4yQ4woBb3Iz+8zZ9JLGmWB6XRdeJBQS9qhL52gk/8QoHgT3N7Urvo2cjynItS
+	yPODfQ/7E86MJws/t3MsCGXnqK34gobKxH18KNDc=
+Received: by mx.zohomail.com with SMTPS id 1768465217051452.0691473771633;
+	Thu, 15 Jan 2026 00:20:17 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 15 Jan 2026 16:20:12 +0800
+Message-Id: <DFP0LJ1BX1US.2KD2FIIVAKD3S@xv97.com>
+Cc: <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH] wifi: ath: fix comment typo in monitor mode handling
+From: "Chien Wong" <m@xv97.com>
+To: "Jeff Johnson" <jeff.johnson@oss.qualcomm.com>, "Chien Wong"
+ <m@xv97.com>, "'ath11k@lists.infradead.org'" <ath11k@lists.infradead.org>
+References: <20251030143041.12027-1-m@xv97.com>
+ <a47cfe9f-01eb-4cdd-ac97-421f3c8a3451@oss.qualcomm.com>
+In-Reply-To: <a47cfe9f-01eb-4cdd-ac97-421f3c8a3451@oss.qualcomm.com>
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260114_204402_611108_4F449344 
-X-CRM114-Status: GOOD (  20.08  )
+X-CRM114-CacheID: sfid-20260115_002025_649548_884C17D1 
+X-CRM114-Status: GOOD (  10.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,53 +78,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wednesday, January 14, 2026 3:59:09 PM CST Jeff Johnson wrote:
-> On 1/14/2026 1:29 PM, Alex G. wrote:
-> > On Wednesday, January 14, 2026 11:24:19 AM CST Jeff Johnson wrote:
-> >> On 1/12/2026 11:00 PM, Vasanthakumar Thiagarajan wrote:
-> >>> On 12/28/2025 8:44 PM, Alexandru Gagniuc wrote:
-> >>>> ".max_tx_ring" is an upper bounds to indexing ".tcl2wbm_rbm_map". It
-> >>>> is initialized in, core.c, a different file than the array. This
-> >>>> spaghetti-like relation is fragile and not obvious. Accidentally
-> >>>> setting ".max_tx_ring" too high leads to a hard to track out-of-
-> >>>> bounds access and memory corruption.
-> >>>> 
-> >>>> There is a small ambiguity on the meaning of "max_tx_ring":
-> >>>>   - The highest ring, max=3 implies there are 4 rings (0, 1, 2, 3)
-> >>>>   - The highest number to use for array indexing (there are 3 rings)
-> >>>> 
-> >>>> Clarify this dependency by moving ".max_tx_ring" adjacent to the array
-> >>>> ".tcl2wbm_rbm_map", and name it "num_tx_rings". Use ARRAY_SIZE()
-> >>>> instead of #defines to initialize the length field.
-> >>>> 
-> >>>> The ath11k_hw_hal_params_qca6390 uses fewer num_tx_rings than its map,
-> >>>> so use a constant to express the correct value. Add a static_assert()
-> >>>> to fail compilation if the constant is accidentally set too high.
-> >>> 
-> >>> Text related to static_assert to be removed accordingly.
-> > 
-> > Hi Jeff,
-> > 
-> >> I removed the last sentence in 'pending', please check:
-> >> 
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git/commit/?h=pen
-> >> din g&id=26bb149b5e011b0f73f7b74421589cbd38e3304b
-> > 
-> > Re-reading the commit message, I think it makes sense to also remove the
-> > sentence "The ath11k_hw_hal_params_qca6390 uses fewer num_tx_rings than
-> > its
-> > map, so use a constant to express the correct value.". Do you think it's
-> > worth submitting a v4 with this minor change?
-> > 
-> > Alex
-> 
-> No need to submit a v4. I can make that change in 'pending'
+On Thu Jan 15, 2026 at 12:34 AM CST, Jeff Johnson wrote:
+> On 10/30/2025 7:30 AM, Chien Wong wrote:
+>
+> Subject should have use "ath11k:"
+> I'll fix this in my pending branch
+>
+> And I've removed the ath12k list and added the ath11k list
+>
+>> Correct a typo in the monitor mode comment where "it make" was mistakenl=
+y
+>> used instead of "it doesn't make". The comment explains that the brief
+>> period where monitor mode appears enabled before being removed is harmle=
+ss
+>> in practice.
+>> Also, use more common phrase "in practice" instead of "in practise".
+>>=20
+>> Fixes: 3f6e6c3291ed ("ath11k: disable monitor mode on QCA6390")
+>> Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices"=
+)
+>
+> And I'll drop the Fixes tags since there is no code change and hence no n=
+eed
+> to backport this change to stable kernels.
+>
 
-Thank you!
+As a newbie in kernel development, I now understand the use of Fixes tag.
+Thank you.
 
-> /jeff
-
-
-
-
+Regards,
+Chien Wong
 
