@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CFEAD35687
-	for <ath11k@archiver.kernel.org>; Wed, 28 Jan 2026 08:01:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76C6DD35662
+	for <ath11k@archiver.kernel.org>; Wed, 28 Jan 2026 08:02:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WtX7WUQf94FoGImASnmC6kP+3mHso7O2r56Ly0oaf5Y=; b=PMAJ1+ltsIiEG/7lRp5u4FfHXY
-	YrH2udCjUNOZp/3v5fCEqIGlwq9vRLwIYKmjIxXHv2w0b3jfdhjl2bBmCigmwMJ9yE3Z72EjcmFGv
-	qB0C88BbNpkPRsWL+n/NBhVR2vQh3VIqSaIj64uS1uCH/sRTPIQ8qg9/hbQKb752i6D0+BEsZV5VI
-	4Z0aNzngapuNyKjnD4ZTC0/vX5ECIB5i3WndTCklxPCzPRFn4qvXExkeib82K4yNc0T5A3KHRHIyy
-	SPhbmqjpkNqdf3sn1FxEmQ+er0Smqa3yXdFVp0IdNkQLVXvMXrwxTADY7OEx6m7lHprx1dRz2cGSm
-	0vFeB5NA==;
+	bh=NcU7/p6qno0tEHklZzACC1rSh1saR26qy7//XJr79mo=; b=yPd29bo3nn09yRrR1PDjJFLR0s
+	Dca8mhTLdO5wEeSKuSkV20hVVLZtlxRNbh6ep0NBGqT9pX7vIJARwHQBcspAM2f0APNU8709n/DJR
+	0GGGTnKo8WcCo01yazChILbTUuTIniv0XDpP8br8n7Bt9kCawaiWzJpzP9zx4e4t65E04lpaJ8rv5
+	vzNZYu+msr0KpHEGDaJ+zLGtVXMQuQN9d4sq11lx25tKc+ti3sys92TDCJIcN95v5Zs2r+8P19c4J
+	M2+886oGFQpjHuOlpTXbiS0UnnOmqbZH4jM+IAJ7JFZhBCgaGtxX9ExQE6F4NMh8370txgENl0Mi7
+	tFsZ1Riw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vl0Ty-0000000Fd6W-1SXh;
-	Wed, 28 Jan 2026 08:00:58 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vl0V6-0000000FdJ4-0B4r;
+	Wed, 28 Jan 2026 08:02:08 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vl0Tw-0000000Fd5V-1gbE
+	id 1vl0V4-0000000FdIs-2lh0
 	for ath11k@lists.infradead.org;
-	Wed, 28 Jan 2026 08:00:57 +0000
+	Wed, 28 Jan 2026 08:02:06 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 24EC0440E9;
-	Wed, 28 Jan 2026 08:00:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B29E0C4CEF1;
-	Wed, 28 Jan 2026 08:00:49 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id EC7B06001A;
+	Wed, 28 Jan 2026 08:02:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96028C4CEF1;
+	Wed, 28 Jan 2026 08:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769587254;
-	bh=jIvfssoGcY0BvL3IR9BRlmSTBEHL996yOHu4WI2blRs=;
+	s=k20201202; t=1769587325;
+	bh=T8hcE7eNk2CecyVgSpXssfXRPdfqXP0wzf7C43lxfIg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cx1mqs+U9tA0vqZ18Rtfy7qYneyOKwndZ/UhZ+ASayVxWbTAgCjhPpdVbRXbmxITp
-	 At+/nJ64SSy3IeOclIN0YJOhcJOHKyfNLirOxv8qkiD5HMBZcFp45+k2iMfWFFmFsM
-	 /9mXJlYVQxzhJ2j0uQ3QozXyCbFmRhD8Y7/IK2HYPbq4wQrNFDsihnu3woeeBdOmS8
-	 OrOJlFp3TTNS8YNXKC2FNCVnTM8KZZb3NhBtN0VGOCYgUbjOnzK5u6uDAZcfuYwSDx
-	 l9SGgbsta2+tAomlg9clb0PfT+02k+iTzoJtvQIP/WgfZxYXrqAhsQSdTiwCcuEsmn
-	 IesvUezDgK8eg==
-Message-ID: <45a07659-4eed-418c-837f-b3a96d519768@kernel.org>
-Date: Wed, 28 Jan 2026 09:00:47 +0100
+	b=UHDmGbNQe0aHHUS3zjJJwgCzA3D3DhG2XuBWb9TUfx3H/Vo5znrbHiMsfis6GezGi
+	 jFJK2dXU8+oVxJnun9gFOZmVe/OcTvAsPZdszEf0R5mvXRMxgqAPIWUP350D3B/vjl
+	 22QEYmHJTbMijnPUinAx0XrMyJWsVOhkHPtSt1PUapeJTfgGZ2T6Fe0g+kMWrgQCXn
+	 bKz5XKtjq0RcctFHH39VcS8cTCcQ4hZNFyVKOoqz2VUBF5IQpV83Fefo6iR5Q2WLSU
+	 mnSj9+IQ/2FQdXe1DUeGM1DiE2Uy86+Y3BPwTPWyXMW+L/skq9YPsOQU8SGiN4YOvM
+	 G5UQbGogsX7Rg==
+Message-ID: <32845805-5758-4c35-8818-ebccbfd9546a@kernel.org>
+Date: Wed, 28 Jan 2026 09:01:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 ath-current 2/2] dt-bindings: net: wireless:
- ath11k-pci: deprecate 'firmware-name' property
-To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+Subject: Re: [PATCH v4 ath-current 0/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
  johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  jonas.gorski@gmail.com
 References: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
- <20260121095055.3683957-3-miaoqing.pan@oss.qualcomm.com>
+ <74176aab-03d4-4095-890d-7ef1739b914b@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,13 +102,9 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260121095055.3683957-3-miaoqing.pan@oss.qualcomm.com>
+In-Reply-To: <74176aab-03d4-4095-890d-7ef1739b914b@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260128_000056_482313_83734DFA 
-X-CRM114-Status: UNSURE (   8.65  )
-X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,22 +119,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 21/01/2026 10:50, Miaoqing Pan wrote:
-> The firmware-name property was originally introduced to allow end-users
-> and integrators to select use-case-specific firmware for the WCN6855.
-> However, specifying firmware for an M.2 WLAN module in the Device Tree
-> is not appropriate. Instead, this functionality will be handled within
-> the ath11k driver. Therefore, the firmware-name property is now
-> deprecated.
+On 27/01/2026 18:31, Jeff Johnson wrote:
+> On 1/21/2026 1:50 AM, Miaoqing Pan wrote:
+>> The 'firmware-name' property was introduced to allow end-users and
+>> integrators to select use-case-specific firmware for the WCN6855.
+>> But for M.2 WLAN chips, there is no suitable DTS node to specify
+>> the 'firmware-name' property. In addition, assigning firmware for
+>> the M.2 PCIe interface causes chips that do not use use-case-specific
+>> firmware to fail. Therefore, abandoning the approach of specifying
+>> firmware in DTS. As an alternative, propose a static lookup table
+>> mapping device compatible to firmware names.
+>>
+>> ---
+>> v2:
+>> - Drops `firmware-name` from completely.
+>> - Updates the commit message to clearly state that the property is
+>>   obsolete and the change is ABI-breaking but safe for upstream.
+>> v3:
+>>  - Deprecate 'firmware-name' property instead of obsolete.
+>>  - Keep the ABI backwards compatible.
+>> v4:
+>>  - Use of_machine_is_compatible() to simplify the code.
+>>  - Add back Acked-by tag. 
+>> ---
+>>
+>> Miaoqing Pan (2):
+>>   wifi: ath11k: add usecase firmware handling based on device compatible
+>>   dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name'
+>>     property
+>>
+>>  .../net/wireless/qcom,ath11k-pci.yaml         |  1 +
+>>  drivers/net/wireless/ath/ath11k/core.c        | 27 +++++++++++++++++++
+>>  drivers/net/wireless/ath/ath11k/core.h        |  4 +++
+>>  3 files changed, 32 insertions(+)
+>>
+>>
+>> base-commit: d8e1f4a193101a72235416f189b01131a57e26e9
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
->  1 file changed, 1 insertion(+)
+> Krzysztof,
+> Since you previously NAKed this series, can you confirm that your review
+> comments have been addressed?
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Binding looks fine, but I did not check the driver.
 
 Best regards,
 Krzysztof
