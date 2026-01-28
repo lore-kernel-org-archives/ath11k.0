@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84434D3566F
-	for <ath11k@archiver.kernel.org>; Wed, 28 Jan 2026 03:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EF74D3566F
+	for <ath11k@archiver.kernel.org>; Wed, 28 Jan 2026 03:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=qlKghUV9ld2gU45DaAF71LRyytTqz6VnujoFsgUJSDQ=; b=MyBlijiIQ/RoHvykxfiJyj032B
-	hQgb0V/MosECxFgeRZZtNEnt6v4YMxpE+T0AGjdqkw2OlQYGeRbpEI3a29jpM3nTBr92CYRfvMl4G
-	kO8KW6gbAEYsyMw14J2BPG17qppr9z566rEKk8g0KiVXaoQKRAa2sLQBaid61+h/5J5jYa4HqUGfy
-	3PKtl3M6IQIIx/bIVYs+uMWFZ0EidbKBbQzJVcAg4MKff9N3ieFKRGA9My7uAGQcC6Mi3KRzdhHAv
-	gwl4aVsjaWclCes4G8oZulenwe9AkH2iPgp1NWQw9GuIVb37YDzhRsudnNRgNnruT7G/9JLVMHcN7
-	QCsUJbNw==;
+	bh=0INwQ4zR9lsK5oLlHwZx9ihLIVxnuFjdw8vQPsF7vEk=; b=Og5mISX4Lv8cWU6wipFdeusHpu
+	6NhQELyqbUGwV1dAv6YcGeWzrcJq8UMZyi3VwWmUTz8jwAqBYcmGEN28psnXUVGtK7vpRZe89bImV
+	5xQNzXQi85NI6Vvc0dzuscHWX9ZQ+cbretRAF98FPS4t1Rqa0q9m75hSL7PeMiY0zmFROmbDdgt/g
+	SBwhiluP2/nK4Z6oGcoSZnbspN559sJTgpCYwfltk1kBcA/5XnGSUI9ofDWJcSNGdE+VRO7gFHoeH
+	FWY5aR47ltTuKLoIKYl6zMF/+xi1EPENUt1HHPbKlef/tt4VYaE1ecOL3Nij8ll24C9rbOZJKbQwY
+	JL47IUTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vkwD8-0000000FNg9-091G;
-	Wed, 28 Jan 2026 03:27:18 +0000
+	id 1vkwDD-0000000FNhW-1JOC;
+	Wed, 28 Jan 2026 03:27:23 +0000
 Received: from n169-110.mail.139.com ([120.232.169.110])
 	by bombadil.infradead.org with smtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vkwD3-0000000FNfP-495V
+	id 1vkwD9-0000000FNfz-0Mec
 	for ath11k@lists.infradead.org;
-	Wed, 28 Jan 2026 03:27:16 +0000
+	Wed, 28 Jan 2026 03:27:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=139.com; s=dkim; l=0;
 	h=from:subject:message-id:to:cc:mime-version;
 	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=YkFy3MhfwFXTE1XjtTOvfMz/yiUCdBImkeb9XLiYDcCWCbVTvsSKg7K7RiF6UUED4Fu/7LdUDaara
-	 NoMRmdRLJ+W2fb58Pk5g0hTdZFPiXFOZbxFElGKb9ykaTDiAtJeQQn3aAYwfpPjKWJ/CXpghEmRpa7
-	 u4d2V7llf6lhfEy0=
+	b=bi7C/XfyYJRDA+TU92t+IQb/KN4DmRcGqH27twgmkalh+9Dtv9WQ7uJ03ypbDD4uq1h14KS0Zc9+e
+	 ctHcM/O/dteIpkDq7e4g4CY105VS2ykjDXmpZVQX2oyqVefl0jjIZV8DPzTwjEzf9TNkhA3SVpv+03
+	 +SdeonLlE/6tIDDw=
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM: 
 X-RM-SPAM-FLAG: 00000000
 Received: from NTT-kernel-dev (unknown[60.247.85.88])
-	by rmsmtp-lg-appmail-05-12083 (RichMail) with SMTP id 2f33697981c6653-0065b;
-	Wed, 28 Jan 2026 11:26:02 +0800 (CST)
-X-RM-TRANSID: 2f33697981c6653-0065b
+	by rmsmtp-lg-appmail-05-12083 (RichMail) with SMTP id 2f33697981da662-0066a;
+	Wed, 28 Jan 2026 11:26:20 +0800 (CST)
+X-RM-TRANSID: 2f33697981da662-0066a
 From: Li hongliang <1468888505@139.com>
 To: gregkh@linuxfoundation.org,
 	stable@vger.kernel.org,
@@ -58,14 +58,14 @@ Cc: patches@lists.linux.dev,
 	quic_pradeepc@quicinc.com,
 	linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org
-Subject: [PATCH 6.12.y] wifi: ath11k: fix RCU stall while reaping monitor destination ring
-Date: Wed, 28 Jan 2026 11:26:57 +0800
-Message-Id: <20260128032657.1183323-1-1468888505@139.com>
+Subject: [PATCH 6.6.y] wifi: ath11k: fix RCU stall while reaping monitor destination ring
+Date: Wed, 28 Jan 2026 11:27:15 +0800
+Message-Id: <20260128032715.1183385-1-1468888505@139.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260127_192714_571600_40E5D0FD 
+X-CRM114-CacheID: sfid-20260127_192721_124541_E05019CE 
 X-CRM114-Status: UNSURE (   9.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
@@ -118,10 +118,10 @@ Signed-off-by: Li hongliang <1468888505@139.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 66a00f330734..9373bfe50526 100644
+index 8cc51ab699de..dc54ea16c12a 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -4777,7 +4777,7 @@ ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
+@@ -4728,7 +4728,7 @@ ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
  			if (!msdu) {
  				ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
  					   "msdu_pop: invalid buf_id %d\n", buf_id);
@@ -130,7 +130,7 @@ index 66a00f330734..9373bfe50526 100644
  			}
  			rxcb = ATH11K_SKB_RXCB(msdu);
  			if (!rxcb->unmapped) {
-@@ -5404,7 +5404,7 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
+@@ -5362,7 +5362,7 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
  					   "full mon msdu_pop: invalid buf_id %d\n",
  					    buf_id);
  				spin_unlock_bh(&rx_ring->idr_lock);
