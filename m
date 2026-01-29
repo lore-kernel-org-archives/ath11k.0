@@ -4,62 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32F50D358C2
-	for <ath11k@archiver.kernel.org>; Thu, 29 Jan 2026 06:13:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DB00D61001
+	for <ath11k@archiver.kernel.org>; Thu, 29 Jan 2026 11:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1aP+p3pkuZEJ5WqF20qIXkmTR7lKKQv4XO2CS/5zgQk=; b=vDvN/O7jCTndbi5P5E5SHp7kjF
-	sHE31610FceJ3ESYTwK1761oxWIjT/J1cvUAUwkPvmUag2M6v/l/cZd2D6cwp8G6RBK1cU88Q5/68
-	h54hWr4r3BtBb7d8zjWqUww735GHXbYyEs88BLN3mfzaEIqCZMl/koUo+v5hW2ZvGJQ4mjEyDjba0
-	t5H4+m660fb9IVok4wGMkWLVWoiCCE5kT0Px64ZX0I2pQ7hWmjj5n3Mwb5hJ0yVF4+/ywrDTTlyzs
-	sWk50cZ7wxp8uUTaH6ej8bvZisnU1bofsRdjkh+i3sPq/BJnpwvFpZgyOT9DoBC8OtcYK8h/IR2nn
-	rnfzr83g==;
+	bh=42D4Yqc3Zjl6wkobPB6JXQnteYWOrIpSff9Z6J5iluM=; b=ov38WQChg7wRr2tkXC7MSw0qAG
+	5kXj0VEbJ+hN2F+0K727Bcqq/ZdduHjFErugbsjo88ORM/Z/SEoXaoOSCaytFsLZYyZQzT1jMQuSC
+	z/msF9qV+XLf93dMFmwQj0MEwNXpAPltvZ0ybIK+XT4pwutEmnWt3yvuNoWwT8iLGuXt/CvE5pFpd
+	ypRB9WCWI/vG+i+piZfvXeKlFvxemiJsXz/WlUexa4nn6GqDCGu7yf7OVjmZhq8JL5n3/VHQV+xZi
+	N8SMUcYiGq0X1/7D8lVm7rQZueSSwMjUGBDWZ5IrENClWQJl4GOGCmddqMWR2UIT/EJhS8CKZKr6k
+	iLfoOo0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vlLHl-0000000HJpW-0Hgy;
-	Thu, 29 Jan 2026 06:13:45 +0000
-Received: from mail-m49197.qiye.163.com ([45.254.49.197])
+	id 1vlQ28-0000000023h-23aD;
+	Thu, 29 Jan 2026 11:17:56 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vlLHh-0000000HJo6-1JEX
+	id 1vlQ25-00000000232-0AuN
 	for ath11k@lists.infradead.org;
-	Thu, 29 Jan 2026 06:13:43 +0000
-Received: from LAPTOP-N070L597.localdomain (unknown [221.228.238.82])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3262103f5;
-	Thu, 29 Jan 2026 14:13:31 +0800 (GMT+08:00)
-From: Zilin Guan <zilin@seu.edu.cn>
-To: jeff.johnson@oss.qualcomm.com
-Cc: ath11k@lists.infradead.org,
-	baochen.qiang@oss.qualcomm.com,
-	jianhao.xu@seu.edu.cn,
-	jjohnson@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	zilin@seu.edu.cn
-Subject: Re: [PATCH v2] wifi: ath11k: fix memory leaks in beacon template setup
-Date: Thu, 29 Jan 2026 06:13:30 +0000
-Message-Id: <20260129061330.796429-1-zilin@seu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <6cc72c12-6f50-4e91-9b7a-bde8633009c4@oss.qualcomm.com>
-References: <6cc72c12-6f50-4e91-9b7a-bde8633009c4@oss.qualcomm.com>
+	Thu, 29 Jan 2026 11:17:54 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TA9Zmf2060686
+	for <ath11k@lists.infradead.org>; Thu, 29 Jan 2026 11:17:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	42D4Yqc3Zjl6wkobPB6JXQnteYWOrIpSff9Z6J5iluM=; b=YoNbLz6/fOuqh3kQ
+	uw7DWabpo1ARyYCtEN7OOH7L1FjLx4SP42WgmB0FIM5js4/eHw3LSrHBiBE3UPM3
+	ouVPYv6r8E1av3Npg5JikkRn5YKpyTf4/o+MW/n5co8qb4NFSOTlbV4K1KUme2tX
+	SSvmXxQQLNffibRBIm3FqsLrFpZ9HhQIlcUZFh837otCakMiAKWuGb+l5x8V3nQr
+	RC1+U2LMA5pQsRurkPmi47zPEgmUvPiSvifrxTkbWrulzyf/MrHQkQHo2OJghUAG
+	2XenEdJBvBF/cjWAgGlQx8gzEMOUw/S83N1KV0A3fGNk21xd9T7L6pa4VxE0OY2m
+	Ik5Nsg==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bypgrk65r-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 29 Jan 2026 11:17:52 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-352c7f19acaso699568a91.0
+        for <ath11k@lists.infradead.org>; Thu, 29 Jan 2026 03:17:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769685471; x=1770290271; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=42D4Yqc3Zjl6wkobPB6JXQnteYWOrIpSff9Z6J5iluM=;
+        b=XKUsmnD01yH1npWVdL30QpGQFwV3HXZejSNOx2PJf/i/j2JbwuAOEW5jZXQO6eCwEi
+         6aKh9+j6B7zh5oGladTLcSiSeQxGztpkQlKEmII6Za8ZW8wmcHGEsDYomUnQNZ3zVDo5
+         UjkkNl87ADB69rQQFNIT2xLSQCaEXOF2OyvSMdDOzkyj8NZwdNByOOxii+K7zS9vK344
+         S/mry7fneRV0tFeuHBAghCyeqHpmJsSEw3HCFadakVJXPjmVhaBhng25API61ZH3ZefX
+         DBuOI3wDZvLJydivhBFsLFVLv8dDJHDMxov2z3LdFZjK4uo2ZGpyF0NxUsPhzW+UIksJ
+         gDKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769685471; x=1770290271;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=42D4Yqc3Zjl6wkobPB6JXQnteYWOrIpSff9Z6J5iluM=;
+        b=M+h0UEqbxcJvGORORJlD4/VhvjJ+mpEOh0uZVir6vIkOGz0MlU0e1lTP9WE6Lp3Qz5
+         ahy4xkQr4LGq7WAe5pofLOzTa3ZFcUUhD3cuNc/Ekl77yGEfwA03zjw6p/9d08JjJl/M
+         e5c2I8HUfuVRpj5mk1Tcf+n5BOKRth+u16zt38fHWbfNHOwIX2lVQE2roUN9kGoQGUvi
+         QUyyh/MlN1+bv2Ut+bW0PkeR6JYhHwvIPym+aG6eEHASg/E7pXm2bX+6ttQIg18vg5a2
+         xL7cSLlLiRWz4/+/5guWUvA5xiyxYeaK1T8PumkC2wRr51dE/hNoDcCLnq6ZwAa5nIoO
+         slJg==
+X-Forwarded-Encrypted: i=1; AJvYcCXX+oZr/MeYTLMxDguddkofk912E7mKJy1preGdxzta6h89UvLQ7pOEusGnhcED84c8LMAU+fc=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzxMLW0EZWwpOPPxY5e1W24XdjnJpQGv4GRRp0k57eEiERNaCqh
+	nlMIsBwryhIG0PWhxvOKVZPOmsUC9rKqJ6q6k8A0R2RABF0qdbR2sz7PI2PEtMRhoCRPj7AzaCB
+	ftDmzEeZ0ihWQbsqw9N1/KfQPCtmUE554yFiULVJf4Tj6uQrtIWCIRCBdNRl+vM+T
+X-Gm-Gg: AZuq6aJQATe1Vy2nBR0l+2ymzk8/LKy19gbG11rQ6ZXuosDKV+3cQxAv3cNQhizt0Xl
+	FujLMJHLFsEFZ9UkwxMb4+l/Vxksh17tMzp+pSnw914svxXIjntcG+BZpLyLXbSFAcjguxkXwkC
+	zp2jH+2jxKXcbGLceA7mpwMq6PJEwWpbC/j+eR+BqbSW/piKvxXBEJX9b4qx2dFNpGUY1JvAaWH
+	ffuE2khjyeisEAsPiRZbL/10ciDGk5G4ihbn3gbV8YJAXDMS0DdP+SC1aVWMnDK24jxj/ECtjXZ
+	Jf4cNXHa1m9FtNqi3puxo4W2srAvHv98Bt01Mzfyt5EsztXfFHUS1QP7TNEupfLec0p/4dA5Mud
+	uUiiub+ymoTrCrXYDiKIhq7sdhMjkuJHqM7oNy5Wx9EduolHaWnKzm38=
+X-Received: by 2002:a17:90b:2d83:b0:34a:a1c1:90a0 with SMTP id 98e67ed59e1d1-353fed87a85mr6962688a91.28.1769685471369;
+        Thu, 29 Jan 2026 03:17:51 -0800 (PST)
+X-Received: by 2002:a17:90b:2d83:b0:34a:a1c1:90a0 with SMTP id 98e67ed59e1d1-353fed87a85mr6962659a91.28.1769685470908;
+        Thu, 29 Jan 2026 03:17:50 -0800 (PST)
+Received: from [10.152.204.0] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-353f6103e9fsm7934690a91.2.2026.01.29.03.17.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jan 2026 03:17:50 -0800 (PST)
+Message-ID: <f30be082-036b-4554-80b3-da1dd19d8caa@oss.qualcomm.com>
+Date: Thu, 29 Jan 2026 16:47:45 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9c0862afff03a1kunme0f4efb7101759
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDGU5MVktDQ04ZTB1NTUJDS1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJSUpVSUlDVUlIQ1VDSVlXWRYaDxIVHRRZQVlPS0hVSktJSE5DQ1VKS0tVS1
-	kG
-DKIM-Signature: a=rsa-sha256;
-	b=N+33e20hZPujV9M4SD7xaqas3npKFRMKKSSOOir1i5JvxRvctx8KW3XzrUeVG+4zlGZGjyuKumJtt0E1T5zwvyOLRMitdG5a7puLGouLfO2kzleozibEq64/YaHZ9CLKJH3xVwvUY6PWQiJYD0v9i2vk3DeJ2cydFl1lRnoSYZs=; s=default; c=relaxed/relaxed; d=seu.edu.cn; v=1;
-	bh=1aP+p3pkuZEJ5WqF20qIXkmTR7lKKQv4XO2CS/5zgQk=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] ath11k: support IPQ9574
+To: Alexandru Gagniuc <mr.nuke.me@gmail.com>, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, jjohnson@kernel.org,
+        ath11k@lists.infradead.org
+Cc: johannes@sipsolutions.net, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260109044457.3074510-1-mr.nuke.me@gmail.com>
+Content-Language: en-US
+From: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
+In-Reply-To: <20260109044457.3074510-1-mr.nuke.me@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=d7T4CBjE c=1 sm=1 tr=0 ts=697b41e0 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VFJI8iCbsL4109xkWtAA:9 a=QEXdDO2ut3YA:10
+ a=ZXulRonScM0A:10 a=zZCYzV9kfG8A:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-GUID: vM9satwXCuVj3r17jPS0y1KjLoRPOBgQ
+X-Proofpoint-ORIG-GUID: vM9satwXCuVj3r17jPS0y1KjLoRPOBgQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA3NiBTYWx0ZWRfX69R+JAoB7Hrj
+ bnmpLGHdREtT0wnbPyLsMvWZ8nuChJiKHrUCBDZO2ZZRMy572wYY577lJ9N3Z3vuePFlbRcXT1r
+ lUzVO6ke3p5VBce+0GDR6LNjJP7f3MJO11LmWDaQkhQkNFJQE1I8rl9ZS4u8CUGW6+oUELe8Uvi
+ FX/sLTHeYbffnUgPwEP/wCf7vV/ax2WX1ndP9IOlZrzcpKyOwBJO/vrIyOQYlcn2kPeaMLdlv0q
+ T4NYiB3Bn06hw4LXbBx2AreC2en6f6FaJw762FQ/DirsrMY05CvfAbbgHMLy96mr0XFjhYvtJkN
+ 9lZ6JFQPA1jaaSSyBHFd8NXbvZ7piobrd3s5mixpg9mbyvJNAGYK7LO8BtA/Y9xfg1Y9nbD49cH
+ Pa1X0wm8ThIOQPKqVg0Z3GleLlmAgki2aRaRXKYAxwaffDSrELqGrYNrEBSMFwBwpl/vBcmI//4
+ 2CpPXgRzrcLjWDr4xoA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 suspectscore=0 adultscore=0
+ malwarescore=0 impostorscore=0 bulkscore=0 spamscore=0 clxscore=1015
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601290076
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260128_221341_993121_A08CEE35 
-X-CRM114-Status: GOOD (  26.84  )
+X-CRM114-CacheID: sfid-20260129_031753_098319_B0008C0F 
+X-CRM114-Status: GOOD (  14.26  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,80 +146,21 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 28, 2026 at 08:30:22AM -0800, Jeff Johnson wrote:
-> On 1/19/2026 10:37 PM, Zilin Guan wrote:
-> > The functions ath11k_mac_setup_bcn_tmpl_ema() and
-> > ath11k_mac_setup_bcn_tmpl_mbssid() allocate memory for beacon templates
-> > but fail to free it when parameter setup returns an error.
-> > 
-> > Since beacon templates must be released during normal execution, they
-> > must also be released in the error handling paths to prevent memory
-> > leaks.
-> > 
-> > Fix this by adding the missing deallocation calls in the respective
-> > error paths.
-> > 
-> > Compile tested only. Issue found using a prototype static analysis tool
-> > and code review.
-> > 
-> > Fixes: 3a415daa3e8b ("wifi: ath11k: add P2P IE in beacon template")
-> > Fixes: 335a92765d30 ("wifi: ath11k: MBSSID beacon support")
-> > Suggested-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-> > Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
-> > ---
-> > Changes in v2:
-> > - Use unified exit paths for cleanup.
-> > 
-> >  drivers/net/wireless/ath/ath11k/mac.c | 25 +++++++++++++++----------
-> >  1 file changed, 15 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> > index 4dfd08b58416..42edcc5e9e49 100644
-> > --- a/drivers/net/wireless/ath/ath11k/mac.c
-> > +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> > @@ -1561,8 +1561,10 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif,
+
+
+On 1/9/2026 10:14 AM, Alexandru Gagniuc wrote:
+> This is my attempt to make ath11k work on IPQ9574. IPQ9574 is intended
+> for wifi-7 devices, so it seems the exception rather than the rule to
+> pair it with a wifi-6 chip. That's exactly what my Archer BE550 does.
 > 
-> while looking to apply this patch I noticed the following logic earlier in the
-> function:
-> 
->  	beacons = ieee80211_beacon_get_template_ema_list(tx_arvif->ar->hw,
->  							 tx_arvif->vif, 0);
->  	if (!beacons || !beacons->cnt) {
->  		ath11k_warn(arvif->ar->ab,
->  			    "failed to get ema beacon templates from mac80211\n");
->  		return -EPERM;
->  	}
-> 
-> I did not look at ieee80211_beacon_get_template_ema_list()
-> But if it is possible that this can return a valid beacons pointer with
-> beacons->cnt == 0, then won't this also leak the beacons allocation?
-> 
-> Given that ieee80211_beacon_free_ema_list(beacons) can handle a NULL
-> beacons pointer, perhaps this should also goto free?
+> This consists of a wifi-6 (QCN5024) chip connected via PCIe to the
+> SoC, but exposed to the OS via AHB.
 
-Hi Jeff,
+Pls note that IPQ9574 has internal wifi-6 which is connected AHB
+not PCIe. Also, host driver does not really need to worry about QCN5024
+(that is not connected over PCIe either anyway). You may also want to change
+the commit message of "[PATCH v2 2/2] wifi: ath11k: support ipq9574"
+accordingly.
 
-Thanks for pointing that out.
-
-I looked into the allocation chain for 
-ieee80211_beacon_get_template_ema_list():
-
-ieee80211_beacon_get_template_ema_list()
-	|__ __ieee80211_beacon_get()
-		|__ ieee80211_beacon_get_ap_ema_list()
-
-It seems that ieee80211_beacon_get_ap_ema_list() only returns a valid 
-pointer when ema->cnt is non-zero. Therefore, a valid beacons pointer with 
-beacons->cnt == 0 is likely unreachable under the current mac80211 
-implementation, making the existing check more of a defensive programming
-measure.
-
-However, for the sake of strict logical consistency, it would make sense 
-to use the goto path there as well.
-
-Do you think it's worth updating this in a v3, or is the current v2 
-sufficient given the current call logic?
-
-Best regards, 
-Zilin
+Vasanth
 
