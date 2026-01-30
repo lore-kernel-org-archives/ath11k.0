@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91274D49C69
-	for <ath11k@archiver.kernel.org>; Fri, 30 Jan 2026 07:44:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8E38D49C74
+	for <ath11k@archiver.kernel.org>; Fri, 30 Jan 2026 08:45:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=dxrW9ETbBNzSeSrVWsa/TL7QUsND7/iXmMFvytA+xzs=; b=N7TOmRSWYdpzEY6BccCg4Y/Nwr
-	V2sJRUYGltcZnK38cLdGVHwIKJLnECCbjaTONddNt7gCG5A7aJqGlQKZxN00vmNKaVHiQ383EvNPN
-	VxCydfTupKHMRBnesT2NDwyKI1DgUM5yERfrbRkzfSuTj+PMzccOqGjcEUZXfwhuV3ALVcTKkl76B
-	TspwDEIGjQWOLDJnOK2fWr20mabWUwo+NzXGUoIA/DzVhT+V4DXgDSpraqBWq+eygaMt7n3T+hT9/
-	X4+lIpcjDvSCZ5xvevndiRag3JVDktoIQhkg6kH6LRrx8joXIEicDfTRGwiqfDnSnh8MblrAtYk3H
-	1IeLrJZg==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=8NrH7IJo/8+ZqcBtk4ukR127UMxGs74cURPlgAcvspA=; b=OP1jzBFAdjW8ZhUav/w7oseUkT
+	WNh9X2ljgiJrfxWTh0zyAK4HQyjxchSoPZmPGYtvFWYVuYL81f5/iCyaViO6aMxAud/vRGgc7MocX
+	OuorpJoYutzyeMq6eGXXt7oX6M18k+g4Q7YHsRh2IPhfoFaZaFaMS4ZjevIQgCwq6i5siYuvCeJYD
+	00nMDYRcml071RCBu6ung5kRwXG8GILRGi4MXAv4BfP1b0TaIs3oJjGym5LA4eIGPO08VTsftGYUZ
+	hPxrni6PUCORbCixf7/iBaP0+QxU7937i5g3OM+lZA48A9SPfjtRDwN/IJM57jC+MuEPy8AFTOZfT
+	4jeJyijA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vljBM-000000019qD-0JBi;
-	Fri, 30 Jan 2026 07:44:44 +0000
+	id 1vlk7o-00000001Edw-1lqC;
+	Fri, 30 Jan 2026 08:45:08 +0000
 Received: from mail-m49197.qiye.163.com ([45.254.49.197])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vljBI-000000019oz-0hYQ
+	id 1vlk7j-00000001Edb-4Bea
 	for ath11k@lists.infradead.org;
-	Fri, 30 Jan 2026 07:44:42 +0000
-Received: from LAPTOP-N070L597.localdomain (unknown [223.112.146.162])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3288ed044;
-	Fri, 30 Jan 2026 15:44:27 +0800 (GMT+08:00)
+	Fri, 30 Jan 2026 08:45:06 +0000
+Received: from LAPTOP-N070L597.localdomain (unknown [58.241.16.34])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 328b8ae14;
+	Fri, 30 Jan 2026 16:44:54 +0800 (GMT+08:00)
 From: Zilin Guan <zilin@seu.edu.cn>
 To: jeff.johnson@oss.qualcomm.com
 Cc: ath11k@lists.infradead.org,
@@ -38,28 +38,26 @@ Cc: ath11k@lists.infradead.org,
 	jjohnson@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-wireless@vger.kernel.org,
-	zilin@seu.edu.cn
-Subject: Re: [PATCH v2] wifi: ath11k: fix memory leaks in beacon template setup
-Date: Fri, 30 Jan 2026 07:44:26 +0000
-Message-Id: <20260130074426.63517-1-zilin@seu.edu.cn>
+	Zilin Guan <zilin@seu.edu.cn>
+Subject: [PATCH v3] wifi: ath11k: fix memory leaks in beacon template setup
+Date: Fri, 30 Jan 2026 08:44:51 +0000
+Message-Id: <20260130084451.110768-1-zilin@seu.edu.cn>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <97b132e8-d3b2-4e52-aa74-c8aeb0f5d516@oss.qualcomm.com>
-References: <97b132e8-d3b2-4e52-aa74-c8aeb0f5d516@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9c0ddc4b9c03a1kunmed20031614a423
+X-HM-Tid: 0a9c0e13a3a003a1kunm4e2d4f0f14cedb
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHkNOVkwdSksfGR4dTBpJTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJSUhVSkpJVUpPTVVKTUlZV1kWGg8SFR0UWUFZT0tIVUpLSUhOQ0NVSktLVU
-	tZBg++
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTksaVh4dS0sYTkNMGR9LTFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlOQ1VJT0pVSk1VSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhOQ0NVSktLVUtZBg
+	++
 DKIM-Signature: a=rsa-sha256;
-	b=OHwbRpFSsU6IIhOQFDMjnyPOpaOL+QC8uBYyUAoG/1jESujr4ryGiteLrOMD0YfpfvUoHwZoP6RabS0rvUyqsw3tTqkwVHqGNhORNjUGpHYue8hi2n1KAvD5kfFMiatJUnEMoOxGi5RuipZXUpx4AEwKTNkWgFJtRJS8aS96KxU=; s=default; c=relaxed/relaxed; d=seu.edu.cn; v=1;
-	bh=dxrW9ETbBNzSeSrVWsa/TL7QUsND7/iXmMFvytA+xzs=;
+	b=aIvtVqc9Ky8KdJSoVNHyPpBCzBCBoRE9xvk79lXeNMs3OHO3u0YQsA/utT2H8NOkT+NcPJcr44INSjTkB4gczTQCG0DkMw8QbbuFrEtAZLUZ/AgOXp567RVH/snhPsasqspE1yp7U0quuxHc8hS15WU/YTB+tyFMePTRRjv2qyQ=; s=default; c=relaxed/relaxed; d=seu.edu.cn; v=1;
+	bh=8NrH7IJo/8+ZqcBtk4ukR127UMxGs74cURPlgAcvspA=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260129_234440_846145_A9CF1308 
-X-CRM114-Status: GOOD (  10.50  )
+X-CRM114-CacheID: sfid-20260130_004504_680729_5064087D 
+X-CRM114-Status: GOOD (  13.69  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,26 +72,101 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 29, 2026 at 07:36:43AM -0800, Jeff Johnson wrote:
-> I prefer strict logical consistency so I prefer either adding the goto or
-> removing the beacons->cnt check.
-> 
-> Or a completely different approach would be to use cleanup.h functionality and
-> annotate beacons with __free(ieee80211_beacon_free_ema_list) so that no
-> explicit calls to that function are required. If you try this approach then
-> beacons must be defined at the point of allocation:
-> 
-> 	struct ieee80211_ema_beacons *beacons __free(ieee80211_beacon_free_ema_list) =
-> 		ieee80211_beacon_get_template_ema_list(tx_arvif->ar->hw,
-> 						       tx_arvif->vif, 0);
-> 
-> Note that I have not tried this approach with allocations other than from the
-> kmalloc() family with __free(kfree), but in theory this should work.
-> 
-> /jeff
+The functions ath11k_mac_setup_bcn_tmpl_ema() and
+ath11k_mac_setup_bcn_tmpl_mbssid() allocate memory for beacon templates
+but fail to free it when parameter setup returns an error.
 
-Thanks! I'll add the goto path for the beacons->cnt check in v3.
+Since beacon templates must be released during normal execution, they
+must also be released in the error handling paths to prevent memory
+leaks.
 
-Best regards,
-Zilin
+Fix this by using unified exit paths with proper cleanup in the respective
+error paths.
+
+Compile tested only. Issue found using a prototype static analysis tool
+and code review.
+
+Fixes: 3a415daa3e8b ("wifi: ath11k: add P2P IE in beacon template")
+Fixes: 335a92765d30 ("wifi: ath11k: MBSSID beacon support")
+Suggested-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
+---
+Changes in v3:
+- Add goto path for the beacons->cnt check for strict logical consistency.
+
+Changes in v2:
+- Use unified exit paths for cleanup.
+
+ drivers/net/wireless/ath/ath11k/mac.c | 28 ++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 4dfd08b58416..e872f416ea97 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1557,12 +1557,15 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif,
+ 	if (!beacons || !beacons->cnt) {
+ 		ath11k_warn(arvif->ar->ab,
+ 			    "failed to get ema beacon templates from mac80211\n");
+-		return -EPERM;
++		ret = -EPERM;
++		goto free;
+ 	}
+ 
+ 	if (tx_arvif == arvif) {
+-		if (ath11k_mac_set_vif_params(tx_arvif, beacons->bcn[0].skb))
+-			return -EINVAL;
++		if (ath11k_mac_set_vif_params(tx_arvif, beacons->bcn[0].skb)) {
++			ret = -EINVAL;
++			goto free;
++		}
+ 	} else {
+ 		arvif->wpaie_present = tx_arvif->wpaie_present;
+ 	}
+@@ -1589,11 +1592,11 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif,
+ 		}
+ 	}
+ 
+-	ieee80211_beacon_free_ema_list(beacons);
+-
+ 	if (tx_arvif != arvif && !nontx_vif_params_set)
+-		return -EINVAL; /* Profile not found in the beacons */
++		ret = -EINVAL; /* Profile not found in the beacons */
+ 
++free:
++	ieee80211_beacon_free_ema_list(beacons);
+ 	return ret;
+ }
+ 
+@@ -1622,19 +1625,22 @@ static int ath11k_mac_setup_bcn_tmpl_mbssid(struct ath11k_vif *arvif,
+ 	}
+ 
+ 	if (tx_arvif == arvif) {
+-		if (ath11k_mac_set_vif_params(tx_arvif, bcn))
+-			return -EINVAL;
++		if (ath11k_mac_set_vif_params(tx_arvif, bcn)) {
++			ret = -EINVAL;
++			goto free;
++		}
+ 	} else if (!ath11k_mac_set_nontx_vif_params(tx_arvif, arvif, bcn)) {
+-		return -EINVAL;
++		ret = -EINVAL;
++		goto free;
+ 	}
+ 
+ 	ret = ath11k_wmi_bcn_tmpl(ar, arvif->vdev_id, &offs, bcn, 0);
+-	kfree_skb(bcn);
+-
+ 	if (ret)
+ 		ath11k_warn(ab, "failed to submit beacon template command: %d\n",
+ 			    ret);
+ 
++free:
++	kfree_skb(bcn);
+ 	return ret;
+ }
+ 
+-- 
+2.34.1
+
 
