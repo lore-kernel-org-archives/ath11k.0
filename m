@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A13CE83047
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64214E83043
 	for <ath11k@archiver.kernel.org>; Tue,  3 Feb 2026 03:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,50 +12,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=qatfgezKZzt4sOA6uJMlHKjvspXuFKxeQTHZj+mJiDo=; b=OTYZpxHlCXIuNoBlGFW8u3fQVd
-	mX2/tXVkYR1NgbwplAkVoK9CfoH6OwwLTG+jnW+XX1FygA3kT+taRe5LXh7xbH2hqE9iJOjp0WILF
-	VsYiX3G20603RL5N3n9WROSARo3ObIrmiT+gsdoXcXnmgCCL5qKlxPDAMkjBSCeRlEfihePm0jgN8
-	BHEv+hFmnx95gb7C83F5dzeK8su6a3e15bfOJQs+W6o0n9EfjtPSlJ7NrtueJ4kMv43kOw/nIgkpu
-	DV4emikyAvjo/H1INKsfdfd/hTAvttYdE+aZeEwQtucJ+r9eDx2mHH9dNa/7kPhCa5zjpvH2MVzaF
-	uat7A1Rw==;
+	bh=C50bWFa7aqyqnyZ/JJOsqyFb7IHrQ0VnSRx06DjFIbY=; b=d/hhOSXJkRS/5NuqcGCDeYkw3Q
+	kS1UdBY/SsA2TK7VfPWqeO15R9gMJJWMTnIrFcwkbNrkDpCrHZ+btj6VVNEYtWgraxQPPD2qJs3B0
+	6kg9Ui8LeZ3jxd5plJEe48k+xAhmXVFdod3M0YK6DZodtP6DKnd36jDOwsEWpHIP3hzA9kmv0vspR
+	246GiLKFyqsqccBl/84x0YEcPF3VkHAkyi27VI6LWHoQ1zk4QBnMPuHCu61zty1LdHIQXQaQbIGvN
+	NOjorOHmJE/wZdk2A3Q7poq73UYVMhNpYpf6P6tqH6f10GFKx29FpGh+udOjPU+lyc97c5L94lJLN
+	DYe96LHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vn6rp-00000005z3K-3XD7;
-	Tue, 03 Feb 2026 03:14:17 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1vn6rt-00000005z4t-15jE;
+	Tue, 03 Feb 2026 03:14:21 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vn6ro-00000005z2P-1jgK
+	id 1vn6rr-00000005z3N-0eQ8
 	for ath11k@bombadil.infradead.org;
-	Tue, 03 Feb 2026 03:14:16 +0000
+	Tue, 03 Feb 2026 03:14:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
 	Content-Description:In-Reply-To:References;
-	bh=qatfgezKZzt4sOA6uJMlHKjvspXuFKxeQTHZj+mJiDo=; b=ccuOPUuZr72jLLlXPxHZHx+WlS
-	ZEjv2TXKGwogRi/fXS4OgIfr15IAr7oeMBXnwIWieABykHvkWXSdWfD6YGcLqUQ0Oj1S0zqeFqgGn
-	QJi2FYxcLCBWexGyrNapJ4apZ2YA/b2okq+24PJB4r8kktORAhXCLc61UC5ppiq64RtVWug4x0viY
-	ivM2a16wXozNPf5I0yloekTexu+8XKzndE4pa/J7LGSHgD7s3dDORlJHy0VOIeT7/EVl3E4ksVziG
-	Tq96oUnwnV36CCYsVTA2t8gllGuanJxaHucRRFynZCnaQMMh0e5Y9mNIbex9W0wAqZeFr3DzQYGQF
-	V81/KFQg==;
-Received: from n169-113.mail.139.com ([120.232.169.113])
-	by casper.infradead.org with smtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vn6rh-0000000HUXx-1hvy
+	bh=C50bWFa7aqyqnyZ/JJOsqyFb7IHrQ0VnSRx06DjFIbY=; b=flYZ7zdxBhrQrznuHMTZdhUToB
+	R5/zF7kEDdSaSC5/AN1TZ7m87LftuXI4r42pwpQRvJSqSTh/rO+DxItnEF4Upv+G2h/p27xPN8gJO
+	5a76pZ3sH9OoK3J5uhnl2CQtl4C1+zg8K7AhbCxS0Tx8Xaj/YQEb8jVmTObHsubzdEQ2WSS0S2xiJ
+	ONckdY9+VCb+t4ly1EazXGMGRVkciGydTmdm4MbT+4CSCB9Q0+06w9WZYNeRer4Murk20ca+xt4u1
+	5F8RPa/kRWtZRfR1S9JqBvfqWM0k8k889l3ibMyRerfFAg9rvecfg5kLQzdRvVr9lO2nui2iSz5Vw
+	rfanAWmQ==;
+Received: from n169-110.mail.139.com ([120.232.169.110])
+	by desiato.infradead.org with smtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vn6rh-0000000FXji-0s8S
 	for ath11k@lists.infradead.org;
-	Tue, 03 Feb 2026 03:14:13 +0000
+	Tue, 03 Feb 2026 03:14:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=139.com; s=dkim; l=0;
 	h=from:subject:message-id:to:cc:mime-version;
 	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=bF9xXUCBYr14DTlSP3qW82ZV2LS9j203TZXrBWdDQM9Sz7QJtxdViRC+IoO5haIusaksYLTJ9K1vZ
-	 005CSKOB9xMlgQuB81xBm2SBdNYPzoBG7oasP69F4CBIiQmpw6BzqJxqf9DejVX83et0dAlFEBy4DN
-	 n9lGAcm2h24BhV4E=
+	b=CM3Ge6Vl/N/TAHyFvv+Y5RzRTyxtfIPEz2RiQcpYL+c/5lgcR612aXhP5d+NNtZ03kgdt2HiSXLGR
+	 PCkIoTN9MYPVIX3cA3jgUt49wc0pBRYs4DoTXFCc1wWljj2/kC71jsSnaCIFl16AEsTmEB/ciIBukL
+	 JVEysUxkHbj9dKlw=
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM: 
 X-RM-SPAM-FLAG: 00000000
 Received: from NTT-kernel-dev (unknown[60.247.85.88])
-	by rmsmtp-lg-appmail-32-12046 (RichMail) with SMTP id 2f0e698167da3b3-0440b;
-	Tue, 03 Feb 2026 11:13:34 +0800 (CST)
-X-RM-TRANSID: 2f0e698167da3b3-0440b
+	by rmsmtp-lg-appmail-03-12081 (RichMail) with SMTP id 2f31698167e54ae-024dc;
+	Tue, 03 Feb 2026 11:13:47 +0800 (CST)
+X-RM-TRANSID: 2f31698167e54ae-024dc
 From: Li hongliang <1468888505@139.com>
 To: gregkh@linuxfoundation.org,
 	stable@vger.kernel.org,
@@ -72,15 +72,15 @@ Cc: patches@lists.linux.dev,
 	ath11k@lists.infradead.org,
 	quic_jjohnson@quicinc.com,
 	jeff.johnson@oss.qualcomm.com
-Subject: [PATCH 6.6.y] wifi: ath11k: add srng->lock for ath11k_hal_srng_* in monitor mode
-Date: Tue,  3 Feb 2026 11:13:45 +0800
-Message-Id: <20260203031345.1357063-1-1468888505@139.com>
+Subject: [PATCH 6.12.y] wifi: ath11k: add srng->lock for ath11k_hal_srng_* in monitor mode
+Date: Tue,  3 Feb 2026 11:13:55 +0800
+Message-Id: <20260203031355.1359867-1-1468888505@139.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260203_031410_673614_75655F29 
-X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-CacheID: sfid-20260203_031412_839143_6A1F2905 
+X-CRM114-Status: UNSURE (   9.88  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -139,10 +139,10 @@ Signed-off-by: Li hongliang <1468888505@139.com>
  1 file changed, 8 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index dc54ea16c12a..ed1ea61c8142 100644
+index 9373bfe50526..ff97c2649ce5 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -5093,7 +5093,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
+@@ -5142,7 +5142,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
  	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
  	const struct ath11k_hw_hal_params *hal_params;
  	void *ring_entry;
@@ -151,7 +151,7 @@ index dc54ea16c12a..ed1ea61c8142 100644
  	u32 ppdu_id;
  	u32 rx_bufs_used;
  	u32 ring_id;
-@@ -5117,6 +5117,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
+@@ -5159,6 +5159,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
  
  	spin_lock_bh(&pmon->mon_lock);
  
@@ -159,7 +159,7 @@ index dc54ea16c12a..ed1ea61c8142 100644
  	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
  
  	ppdu_id = pmon->mon_ppdu_info.ppdu_id;
-@@ -5175,6 +5176,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
+@@ -5217,6 +5218,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
  								mon_dst_srng);
  	}
  	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
@@ -167,7 +167,7 @@ index dc54ea16c12a..ed1ea61c8142 100644
  
  	spin_unlock_bh(&pmon->mon_lock);
  
-@@ -5564,7 +5566,7 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
+@@ -5606,7 +5608,7 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
  	struct hal_sw_mon_ring_entries *sw_mon_entries;
  	struct ath11k_pdev_mon_stats *rx_mon_stats;
  	struct sk_buff *head_msdu, *tail_msdu;
@@ -176,7 +176,7 @@ index dc54ea16c12a..ed1ea61c8142 100644
  	void *ring_entry;
  	u32 rx_bufs_used = 0, mpdu_rx_bufs_used;
  	int quota = 0, ret;
-@@ -5580,6 +5582,9 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
+@@ -5622,6 +5624,9 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
  		goto reap_status_ring;
  	}
  
@@ -186,7 +186,7 @@ index dc54ea16c12a..ed1ea61c8142 100644
  	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
  	while ((ring_entry = ath11k_hal_srng_dst_peek(ar->ab, mon_dst_srng))) {
  		head_msdu = NULL;
-@@ -5623,6 +5628,7 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
+@@ -5665,6 +5670,7 @@ static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
  	}
  
  	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
