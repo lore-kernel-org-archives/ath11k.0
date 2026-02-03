@@ -4,53 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCA73E8783D
-	for <ath11k@archiver.kernel.org>; Tue,  3 Feb 2026 14:51:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA767E87857
+	for <ath11k@archiver.kernel.org>; Tue,  3 Feb 2026 18:54:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:From:Cc:To:Subject:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:References:List-Owner;
-	bh=6KLePK1qUOcqrZmMzOgHr5MOZVQUg3xnul2TxKgM6CM=; b=e/m+a3El3F/TxohO87tYgvtDW3
-	SFlcNHG1nYjCc9hM7qa2rGIyi8r9L6X+CTxYpgr6lOJM3RtdcJ5H0RWs8UXY231NQLabys7MEtxff
-	CR5AngvkfW/3ZEStMgrvvmUsGZEbimsPXArY2TsvQMMZtpSc3W6NqozPIYe8ABytiJMWR0Dg/L+OM
-	Wl4u5IK1xj7g/2nooKExA0sRAxZivXrmAdeZtk6PAuXpkFYmLuUAwVLLX7Et4YVhy3JVXgoRFkVN6
-	i4716KbgA1cnDNKFoNJlQnnUtBZroSNYAo3M11lSrAlsvtVjalg6Mk20PoKu4ni+gNrE9r+8mieth
-	VEnkjrWw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=CmtU7RT5ENPxTg0z+Iwqyn5/DF9ojToNvTX2vIIjWYg=; b=0BvgOM+PZ6X9B7aUegrkKOEbyk
+	4ytVG7zrpi10gl5xROkViDJQ7nVWlcVZn8JUNizKZ5Z9VlLAbGGuLqgImWNTX67qyuXOE4j3GgrPC
+	aFvvr2gDcK7MukqsOP8TENv+RmRUfYq7ZTukG5xeBb5cXLqOXdjZ/feGdFlVJAqin5HXXVjmdQ5mO
+	lNVrWUM4ZxZXN7r07tSYknrM3LawyMDA7gVazGqIcnctrpB4I6sJXFTtsDVR6BQK9lnYnxI444uEC
+	kZyJY9mBUy37N3wRd1hEMhKJWAhaPW3uLuiOagwZnq0mTeV9j1iei0ITtLGuJ3LeIZU+6k0JGgyeO
+	tE13jbtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vnHkp-00000006nBw-1ieP;
-	Tue, 03 Feb 2026 14:51:47 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vnLXj-00000007CbK-2j21;
+	Tue, 03 Feb 2026 18:54:31 +0000
+Received: from mail-vk1-xa30.google.com ([2607:f8b0:4864:20::a30])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vnHkn-00000006nB6-2FOx
+	id 1vnLXg-00000007Caj-3QyP
 	for ath11k@lists.infradead.org;
-	Tue, 03 Feb 2026 14:51:45 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 93EDD601E9;
-	Tue,  3 Feb 2026 14:51:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC37BC116D0;
-	Tue,  3 Feb 2026 14:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1770130304;
-	bh=QSp29F+xOUw3e1H6MHduxV7/F6OWg3YPjFWiMUOQtzU=;
-	h=Subject:To:Cc:From:Date:In-Reply-To:From;
-	b=xlRN70H+ueCa3Hd64BsQD6irYph2AyoaY2qpx0XPosxhJ7Ntu/m6YKZy1juNyNhJ+
-	 eeL0utfwDh0MJxIijwkywAeDdKG8NZrs7/KRYtUwYf19MbHi0G9kmd0vHgjxjvNPaP
-	 SB858Bq0QE+BC2lof5qh6+8TlTh2P6fFdaFGFW5o=
-Subject: Patch "wifi: ath11k: add srng->lock for ath11k_hal_srng_* in monitor mode" has been added to the 6.12-stable tree
-To: 1468888505@139.com,ath11k@lists.infradead.org,gregkh@linuxfoundation.org,gseset@codeaurora.org,jeff.johnson@oss.qualcomm.com,jjohnson@kernel.org,kvalo@kernel.org,patches@lists.linux.dev,quic_jjohnson@quicinc.com,quic_kangyang@quicinc.com,quic_msinada@quicinc.com,quic_vnaralas@quicinc.com,quic_vthiagar@quicinc.com
-Cc: <stable-commits@vger.kernel.org>
-From: <gregkh@linuxfoundation.org>
-Date: Tue, 03 Feb 2026 15:50:48 +0100
-In-Reply-To: <20260203031355.1359867-1-1468888505@139.com>
-Message-ID: <2026020348-dimple-bright-abce@gregkh>
+	Tue, 03 Feb 2026 18:54:31 +0000
+Received: by mail-vk1-xa30.google.com with SMTP id 71dfb90a1353d-56379cb870bso1970492e0c.2
+        for <ath11k@lists.infradead.org>; Tue, 03 Feb 2026 10:54:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770144867; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CTHs+7C3qdqlzzahQHO/QGgIK71AoZ3ZtHBpgVyoV5oHQO9GyboxZMnKC6HAle2tFb
+         mmsxlpR+IGGyC9YnQxRy7vnG/8qPHcE3kqdnqEH04Ncx52l8IfgSbtQb/kI7RQz1C1SL
+         sUpwbDcwTCf9POArDtaJ8AAd5+qvRpejVeJDei/b556bMsOgO8WkKNORBiQVQlUdYo3y
+         oqE29UT53MAtqFvOoJ3JqO6ru6lUyzLjmXvlcJQYXwK0ODXoRG6lGnTQdRHRx+5Gp1pd
+         UygXYMkWvJdRlOc90Uqum4DRVOVA8CDm9bQWPcRhbGut4wdz2EJwHeLaDqN/HnnfI8IY
+         Hgrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=CmtU7RT5ENPxTg0z+Iwqyn5/DF9ojToNvTX2vIIjWYg=;
+        fh=hQUEiiksHvYN/EFmEKRXMJqwCC0zT2cV3viCNHAv7Ok=;
+        b=JfTwk0uLaYaKka/dWYh0h81vuZMy5QBB5CfMAT8FAwh57N4HwiMvqihY9PeqFhjHZh
+         JxKmmz8DDst2xRpnrgg5gIyzK/JTgrvFKH6knL01ihf3H6ofc6mD/lTpk6sg4Oe3xdMK
+         vqSCewCqtUHaZk0cKvcA5HDuuyUEJNzeowUI15Kt1aC/xWHDoklD9jQqCRN0dbcv2Y5+
+         0azn6eq+K8VeoRBFuwGNfSxjOhFPJwD+TLPjw0J3TZJ4qeHQ8o6MtUPgpSM8OhD5oZHT
+         b+u3DWxqygacaO82iOAcuqw1mr3HZenCTtSBBPfdAnqzPvwAi479uxdKZTeWZ2NKQoIR
+         ruiQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770144867; x=1770749667; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=CmtU7RT5ENPxTg0z+Iwqyn5/DF9ojToNvTX2vIIjWYg=;
+        b=KG4iBcnTNN42SLYmEbJAupxoQXc63kl3rm/B64tRySoH810t7JM4a3ciiPqztyHlRz
+         ReB7FM44AbmqUtHIDdILeclM6nIke4LqCPVYjJZr28QHktDPJSIoHXQDAFp8Ggv9ryTW
+         X21dZGOSx6Bkhezb+ung0EFaVZhlunxi/SMeqlYwSNwf63n1yedGMB5loeTSO7qvrLYz
+         R++r0tdoQhSoe95Eh8N4xNSVVsVZAJ0RFLoP7PGBGU7nb0Yh1/Ipn09NR25IDoyUWvBC
+         KdSvkE5+OVcZELmhRJY59b8umTKpBTWsh40dr/wHut4yjK+X+GgWPytI9wpoz+1O4uQU
+         7tAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1770144867; x=1770749667;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CmtU7RT5ENPxTg0z+Iwqyn5/DF9ojToNvTX2vIIjWYg=;
+        b=OqZOl0BB18xqyhSO9I9iCUiwGepTIZtRce3f6BCZHB5E6Pb+RD0bl26r1k8lJhU5sy
+         zhtLhHj1AC92X0aMt+Ng3j5AIr4seM7KCUps0Rkb8b2crlqBmJLDnMQSDesv3A+NEyxB
+         +Cp7WmoHRWiMADor/FroGOUnaRPkmm3h1UD3DOkZN7FB6I9dL2lj6Nlo5drU8qBaA6fP
+         CJhBU02zcZSRRSNQS8jTOsY41F0WrtWpZ8MJQmSxoAp5tG/Y3j+TkD2V11c9oFmj8I7p
+         J+Zrnxnw5TCb50PIGeX1FlbNVE2Tn0LAUSatROjTRbayKYUDvRqpdYkEsbmqMcO66m16
+         3G7g==
+X-Gm-Message-State: AOJu0Yw3bmrep0xBlLrD4H24QAcHOuZSNr0udPbSLEyQp2Tv5Whvho4x
+	2eBpJQTflcAMIyqR0D8ysbBBh+pWh4uReqcuBoIOQ1L77YxxzcvU04OjwH2b/7Q+nya31ExVxRn
+	eIPWhrnMF0qPpoFIt/CcjfZdvN3tTiYr9rUl1
+X-Gm-Gg: AZuq6aILu1vSlMtKrhe9hmUlvoYsHyuzq8k9UVpOJy/zNPaUjsvU5LVGx6v5GonN5zg
+	/RvZpj/mB5+NTzS6UoTum5pfC8JOCY6SUCDfVrW8Y0/4TUF1nfyJt3/B9WZEN0/zAGrsSqQE3KI
+	aM8bu9KzU9gOa5qTKO1FDyhRtzxB+hBcO5dZabYZROo06E2AMJLHG91TpVac8Cg40sQRf5cAftA
+	+F5vULb9Av2/hRJHIUMxueoNvBL9QrnHRE2N8wIiKXmCoMcOeYr4/V6vo3VLuIwEhWV6KGl74Ji
+	KIcKnw==
+X-Received: by 2002:a05:6102:3f06:b0:5f1:72a7:f879 with SMTP id
+ ada2fe7eead31-5f9395bcab9mr235560137.28.1770144867118; Tue, 03 Feb 2026
+ 10:54:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
+From: Mohamed Sallam <sallamx99@gmail.com>
+Date: Tue, 3 Feb 2026 20:54:00 +0200
+X-Gm-Features: AZwV_Qg0zuNmPc-RqUWYuxa9iWC_QTz_O_laHPZvXVqGcvd4Yt-VLU3RSIMP37o
+Message-ID: <CALOnm7APGpVWcx45O78fa4hOCUGDc0-ywGoqicr51YtpxNueLg@mail.gmail.com>
+Subject: Potential firmware selection issue with QCNFA765 on ThinkPad P14s Gen 5
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260203_105429_925943_D1364CDA 
+X-CRM114-Status: GOOD (  18.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,130 +108,119 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hi ath11k maintainers,
 
-This is a note to let you know that I've just added the patch titled
+I'm not very experienced with Linux - I'm an end user who noticed something
+strange with my WiFi and wanted to share my findings in case it helps others.
 
-    wifi: ath11k: add srng->lock for ath11k_hal_srng_* in monitor mode
+Full disclosure: I used AI tools to help me investigate this issue and
+understand the driver behavior. If I'm misunderstanding something fundamental,
+please let me know.
 
-to the 6.12-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+WHAT I OBSERVED
+===============
+I have a Lenovo ThinkPad P14s Gen 5 AMD with a Qualcomm QCNFA765 WiFi card
+(PCI ID 17cb:1103, subsystem 17aa:9309). I'm running Arch Linux with kernel
+6.12.68-1-lts and firmware package linux-firmware-atheros 20260110-1.
 
-The filename of the patch is:
-     wifi-ath11k-add-srng-lock-for-ath11k_hal_srng_-in-monitor-mode.patch
-and it can be found in the queue-6.12 subdirectory.
+I noticed that channels 149-165 in the 5 GHz band are marked with (no IR),
+preventing me from using them. This happens consistently on my system.
 
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
+WHAT I FOUND
+============
+While trying to understand why this happens, I discovered that the
+linux-firmware package contains two different firmware files:
+- Generic: ath11k/WCN6855/hw2.0/amss.bin
+- Card-specific: ath11k/WCN6855/hw2.0/nfa765/amss.bin
 
+When I manually create a symlink to use the nfa765 variant instead of the
+default, the (no IR) restrictions disappear and all channels work normally.
+This suggests the driver might not be selecting the optimal firmware for
+this specific card variant.
 
-From stable+bounces-213160-greg=kroah.com@vger.kernel.org Tue Feb  3 04:14:45 2026
-From: Li hongliang <1468888505@139.com>
-Date: Tue,  3 Feb 2026 11:13:55 +0800
-Subject: wifi: ath11k: add srng->lock for ath11k_hal_srng_* in monitor mode
-To: gregkh@linuxfoundation.org, stable@vger.kernel.org, quic_kangyang@quicinc.com
-Cc: patches@lists.linux.dev, linux-kernel@vger.kernel.org, kvalo@kernel.org, jjohnson@kernel.org, quic_vthiagar@quicinc.com, quic_vnaralas@quicinc.com, quic_msinada@quicinc.com, gseset@codeaurora.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, quic_jjohnson@quicinc.com, jeff.johnson@oss.qualcomm.com
-Message-ID: <20260203031355.1359867-1-1468888505@139.com>
+The AI analysis suggested that:
+- The driver looks for firmware at ath11k/<chip>/<hw_rev>/<filename>
+- There's a "firmware-name" property that can override this, but it seems
+to only work on ARM platforms with device trees, not x86 laptops
+- The PCI subsystem ID (17aa:9309) might be available to the driver but
+isn't being used to pick different firmware files
 
-From: Kang Yang <quic_kangyang@quicinc.com>
+I don't know if this is accurate - it's just what the AI told me based on
+looking at the driver code. The key point is that the firmware swap fixes
+the issue for me.
 
-[ Upstream commit 63b7af49496d0e32f7a748b6af3361ec138b1bd3 ]
+REPRODUCTION STEPS
+==================
+On my system, with the default setup:
+1. Check channel flags: iw phy | grep -E "5745|5765|5785|5805|5825"
+2. Channels 149-165 show (no IR)
 
-ath11k_hal_srng_* should be used with srng->lock to protect srng data.
+After applying the workaround (symlink nfa765 firmware):
+1. Same check shows channels without (no IR) restrictions
+2. WiFi works on all channels
 
-For ath11k_dp_rx_mon_dest_process() and ath11k_dp_full_mon_process_rx(),
-they use ath11k_hal_srng_* for many times but never call srng->lock.
+TECHNICAL DETAILS
+=================
+Hardware: Lenovo ThinkPad P14s Gen 5 AMD (21ME001MUS)
+WiFi: Qualcomm QCNFA765 (WCN6855 hw2.1)
+PCI: 17cb:1103, subsystem 17aa:9309 (Lenovo)
+Kernel: 6.12.68-1-lts
+Firmware: linux-firmware-atheros 20260110-1
+Firmware ver: WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
 
-So when running (full) monitor mode, warning will occur:
-RIP: 0010:ath11k_hal_srng_dst_peek+0x18/0x30 [ath11k]
-Call Trace:
- ? ath11k_hal_srng_dst_peek+0x18/0x30 [ath11k]
- ath11k_dp_rx_process_mon_status+0xc45/0x1190 [ath11k]
- ? idr_alloc_u32+0x97/0xd0
- ath11k_dp_rx_process_mon_rings+0x32a/0x550 [ath11k]
- ath11k_dp_service_srng+0x289/0x5a0 [ath11k]
- ath11k_pcic_ext_grp_napi_poll+0x30/0xd0 [ath11k]
- __napi_poll+0x30/0x1f0
- net_rx_action+0x198/0x320
- __do_softirq+0xdd/0x319
+Logs from my system:
+$ dmesg | grep ath11k
+[    2.845632] ath11k_pci 0000:02:00.0: chip_id 0x0 chip_family 0x0
+board_id 0xff
+[    2.845778] ath11k_pci 0000:02:00.0: fw_version 0x1019B0E1
+fw_build_timestamp 2024-12-19
+[    2.845789] ath11k_pci 0000:02:00.0: fw_build_id
+WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
+[    2.845806] ath11k_pci 0000:02:00.0: qmi failed to load bdf
+[    2.845809] ath11k_pci 0000:02:00.0: qmi failed to load cal data,
+fallback to 0xff
 
-So add srng->lock for them to avoid such warnings.
+$ lspci -vnns 02:00.0
+02:00.0 0280: 17cb:1103 (rev 01)
+    Subsystem: 17aa:9309
+    Kernel driver in use: ath11k_pci
 
-Inorder to fetch the srng->lock, should change srng's definition from
-'void' to 'struct hal_srng'. And initialize them elsewhere to prevent
-one line of code from being too long. This is consistent with other ring
-process functions, such as ath11k_dp_process_rx().
+With default firmware:
+$ iw phy | grep -E "5745|5765|5785|5805|5825"
+* 5745.0 MHz [149] (14.0 dBm) (no IR)
+* 5765.0 MHz [153] (14.0 dBm) (no IR)
+* 5785.0 MHz [157] (14.0 dBm) (no IR)
+* 5805.0 MHz [161] (14.0 dBm) (no IR)
+* 5825.0 MHz [165] (14.0 dBm) (no IR)
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.30
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+With nfa765 firmware symlinked:
+* 5745.0 MHz [149] (23.0 dBm)
+* 5765.0 MHz [153] (23.0 dBm)
+* 5785.0 MHz [157] (23.0 dBm)
+* 5805.0 MHz [161] (23.0 dBm)
+* 5825.0 MHz [165] (23.0 dBm)
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Kang Yang <quic_kangyang@quicinc.com>
-Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-Link: https://patch.msgid.link/20241219110531.2096-3-quic_kangyang@quicinc.com
-Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Signed-off-by: Li hongliang <1468888505@139.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c |   10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+MY WORKAROUND
+=============
+I'm currently using this workaround:
+  sudo ln -sf ../hw2.0/nfa765/amss.bin.zst \
+      /lib/firmware/ath11k/WCN6855/hw2.1/amss.bin.zst
 
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -5142,7 +5142,7 @@ static void ath11k_dp_rx_mon_dest_proces
- 	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
- 	const struct ath11k_hw_hal_params *hal_params;
- 	void *ring_entry;
--	void *mon_dst_srng;
-+	struct hal_srng *mon_dst_srng;
- 	u32 ppdu_id;
- 	u32 rx_bufs_used;
- 	u32 ring_id;
-@@ -5159,6 +5159,7 @@ static void ath11k_dp_rx_mon_dest_proces
- 
- 	spin_lock_bh(&pmon->mon_lock);
- 
-+	spin_lock_bh(&mon_dst_srng->lock);
- 	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
- 
- 	ppdu_id = pmon->mon_ppdu_info.ppdu_id;
-@@ -5217,6 +5218,7 @@ static void ath11k_dp_rx_mon_dest_proces
- 								mon_dst_srng);
- 	}
- 	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
-+	spin_unlock_bh(&mon_dst_srng->lock);
- 
- 	spin_unlock_bh(&pmon->mon_lock);
- 
-@@ -5606,7 +5608,7 @@ static int ath11k_dp_full_mon_process_rx
- 	struct hal_sw_mon_ring_entries *sw_mon_entries;
- 	struct ath11k_pdev_mon_stats *rx_mon_stats;
- 	struct sk_buff *head_msdu, *tail_msdu;
--	void *mon_dst_srng = &ar->ab->hal.srng_list[dp->rxdma_mon_dst_ring.ring_id];
-+	struct hal_srng *mon_dst_srng;
- 	void *ring_entry;
- 	u32 rx_bufs_used = 0, mpdu_rx_bufs_used;
- 	int quota = 0, ret;
-@@ -5622,6 +5624,9 @@ static int ath11k_dp_full_mon_process_rx
- 		goto reap_status_ring;
- 	}
- 
-+	mon_dst_srng = &ar->ab->hal.srng_list[dp->rxdma_mon_dst_ring.ring_id];
-+	spin_lock_bh(&mon_dst_srng->lock);
-+
- 	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
- 	while ((ring_entry = ath11k_hal_srng_dst_peek(ar->ab, mon_dst_srng))) {
- 		head_msdu = NULL;
-@@ -5665,6 +5670,7 @@ next_entry:
- 	}
- 
- 	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
-+	spin_unlock_bh(&mon_dst_srng->lock);
- 	spin_unlock_bh(&pmon->mon_lock);
- 
- 	if (rx_bufs_used) {
+This fixes the issue for me, but I understand it's a hack, not a proper
+solution.
 
+QUESTIONS
+=========
+1. Is the driver supposed to automatically select card-specific firmware
+   based on PCI subsystem ID, or is this working as designed?
+2. If it's supposed to work this way, could there be a bug in the firmware
+   path selection logic?
+3. Is there a better workaround than manually symlinking firmware files?
 
-Patches currently in stable-queue which might be from 1468888505@139.com are
+Thank you for your time and for maintaining this driver. I appreciate
+any guidance you can provide, even if it's just to tell me this is
+expected behavior and I'm misunderstanding something.
 
-queue-6.12/wifi-ath11k-add-srng-lock-for-ath11k_hal_srng_-in-monitor-mode.patch
+Best regards,
+Mohamed Sallam
 
