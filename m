@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B404CEF5855
-	for <ath11k@archiver.kernel.org>; Sat, 14 Feb 2026 21:25:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67359EF5855
+	for <ath11k@archiver.kernel.org>; Sat, 14 Feb 2026 21:26:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=SWk7hSSYb5Femz4tm04VaAzcrJLpwh3NfoBFPna66NA=; b=fyq7N2UeI93gXIcUujAihiT8OR
-	xJTnwy5hIU3J0tmgP3Ig8QxAlSmKTNClouCtBcsPp/9P8TtwQ7PaKTje+dozdLCGRDMYCICLvkCcC
-	MYsUE0NSeGnOYIEr7S4pONu3Act3qglzjvBxobecDeAqIDNvkAku44TOd7XtJbQ2S7zovcShSsQmR
-	kRcWPAMp9yVKcsrZz8Bic6q39uQwoV7VuqIuo2DrbPoNUWgEaIWhWKXZnrDfr+o/BY1B3SPXBh7kR
-	+fALFKMsGWIfVsITcZrItZw7uVsgWhLpGleu4ExtQbktpgF+n57N8Z3uOogmYwPAoUkAr9j2l2zTQ
-	lqtB+pzg==;
+	bh=DGA3qce0pMgK5nD3xJB2S0Pl8lHWXqa0BxNwGHhq21Q=; b=0g2QPDjCvU+yAWBOEK4NzYawJW
+	BzJuxmCbtIxubooY/x3wWLSXpV4tFKgEvTfjyVLY5Apu99XFkViP9RfU6eTRQGeN9W0tlMhhLJe60
+	kFtdq0MGH2TVUYEaWkTJcAPceRUbUyXznQ8WtlG2X2MqY9dh51JPopPguXzFbim42KhUkvdeNR1L0
+	3wpqQcSyGMU5K2yQTlkD8ffvpMkoSahDPf9QHEL3bPMjozmQv2bYNpylkM7pO5nuHKcjtUMj+QlX+
+	VknxwZjIvoV/NrGX3f7DHlDtZ0KM9NBSJCmXzW9X9Z3Gz71UfJE1wO3J8N5M4rRSHaERgvkRHtBEE
+	x+oWKNqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vrN8Q-00000004wjv-0VVI;
-	Sat, 14 Feb 2026 21:25:02 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vrN9O-00000004wvT-0IvW;
+	Sat, 14 Feb 2026 21:26:02 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vrN8M-00000004wjF-3l2p
+	id 1vrN9M-00000004wu6-1koi
 	for ath11k@lists.infradead.org;
-	Sat, 14 Feb 2026 21:25:00 +0000
+	Sat, 14 Feb 2026 21:26:00 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4D94240592;
-	Sat, 14 Feb 2026 21:24:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F1ADC19422;
-	Sat, 14 Feb 2026 21:24:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 7F8E16011F;
+	Sat, 14 Feb 2026 21:25:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B2F1C19423;
+	Sat, 14 Feb 2026 21:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771104296;
-	bh=fxEy/VAQh7Q7g3K0+kZaqByD2cwf947wO4nxZ/CQB4M=;
+	s=k20201202; t=1771104358;
+	bh=LfB/OXHK6nNuZXdd4ErG/FdhVBuHyGyB7eImBfTn8ls=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=H2ktMjGCjDB6a2Dj2HpGptgRUc6wlHS0/xu+9de1f3kDkibBHeDtFPO3+c98JB+td
-	 pShAga1eVSTBGwfrUAG5JdrX7s46+GHiyYIiwPF6Ep4uKFWA/P82NOeVPTJH4tUj5h
-	 aztHxheSYG8Ze5s4aUsfb0JuAIea/y4V7EJzC8IaJ/izJsw1JPBqfJOgZwZHgAaxC8
-	 zQ3nKyeaN4AUm/Fs/TCk+0EtaiAvQVmkI6odYqkyQkxbfkLQFS+M/Cwocs5KhFLhpx
-	 OmT22MmjQc3LCeaGhpVigPjij9BZ44TVYJYbaNFr65WQuc+fh92d7si06IY3G+0h6W
-	 VcC9ApXDzapHg==
+	b=Fny6I+Ah2cJEkwHGKIlvJPmiWBrCAryO2eAJ8N6N3pVP6mu/ez60oz90y6WTlv6+W
+	 s+bigyKqlwQ+pQlShTTQCPWFRXaqGcJlRGiA6sK276d0TWbDs9QaJp55pcD548BZhW
+	 N5HXDUbbXZn9C7+B5c4LurClax/bxkdWq+oI3HEzEdITCs9pQGT/g+SlzbYbEANssX
+	 ZjVORSKCuHS324kDjQt4Vzzd6mwVjiquajRXmV3wTeQJL5p/sonadNCf2iCm8+Gui6
+	 haR/MJgUPTwuQOvxFt32yv3aMk9S0YUGcXIL6ZVw6AIutpD/YohV9BwdqmrvVlFamS
+	 WIhHTeLDHnp5Q==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Qian Zhang <qian.zhang@oss.qualcomm.com>,
+Cc: Ross Vandegrift <ross@kallisti.us>,
 	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	Mark Pearson <mpearson-lenovo@squebb.ca>,
 	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
 	Sasha Levin <sashal@kernel.org>,
 	jjohnson@kernel.org,
 	linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.19-6.12] wifi: ath11k: Fix failure to connect to a 6 GHz AP
-Date: Sat, 14 Feb 2026 16:22:27 -0500
-Message-ID: <20260214212452.782265-2-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.19-6.6] wifi: ath11k: add pm quirk for Thinkpad Z13/Z16 Gen1
+Date: Sat, 14 Feb 2026 16:23:03 -0500
+Message-ID: <20260214212452.782265-38-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260214212452.782265-1-sashal@kernel.org>
 References: <20260214212452.782265-1-sashal@kernel.org>
@@ -64,9 +65,6 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.19
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260214_132458_976785_70720312 
-X-CRM114-Status: GOOD (  16.04  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,101 +79,159 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Qian Zhang <qian.zhang@oss.qualcomm.com>
+From: Ross Vandegrift <ross@kallisti.us>
 
-[ Upstream commit 0bc8c48de6f06c0cac52dde024ffda4433de6234 ]
+[ Upstream commit 4015b1972763d7d513172276e51439f37e622a92 ]
 
-STA fails to connect to a 6 GHz AP with the following errors:
- ath11k_pci 0000:01:00.0: failed to handle chan list with power type 1
- wlp1s0: deauthenticating from c8:a3:e8:dd:41:e3 by local choice (Reason: 3=DEAUTH_LEAVING)
+Z16 Gen1 has the wakeup-from-suspend issues from [1] but was never added
+to the appropriate quirk list.  I've tested this patch on top of 6.18.2,
+it fixes the issue for me on 21D4
 
-ath11k_reg_handle_chan_list() treats the update as redundant and
-returns -EINVAL. That causes the connection attempt to fail.
+Mark Pearson provided the other product IDs covering the second Z16 Gen1
+and both Z13 Gen1 identifiers.  They share the same firmware, and folks
+in the bugzilla report do indeed see the problem on Z13.
 
-Avoid unnecessary validation during association. Apply the regulatory
-redundant check only when the power type is IEEE80211_REG_UNSET_AP,
-which only occurs during core initialization.
+[1] - https://bugzilla.kernel.org/show_bug.cgi?id=219196
 
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
-
-Signed-off-by: Qian Zhang <qian.zhang@oss.qualcomm.com>
+Signed-off-by: Ross Vandegrift <ross@kallisti.us>
 Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Link: https://patch.msgid.link/20260108034607.812885-1-qian.zhang@oss.qualcomm.com
+Tested-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+Link: https://patch.msgid.link/wj7o2kmb7g54stdjvxp2hjqrnutnq3jbf4s2uh4ctvmlxdq7tf@nbkj2ebakhrd
 Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
-The key prerequisite is `e3d373ec4f02b` which added the 6 GHz regulatory
-type support and the `power_type` parameter to
-`ath11k_reg_handle_chan_list()`. This was merged in v6.9 cycle. For
-stable trees that don't have this function signature, the patch wouldn't
-apply anyway (and wouldn't be needed since 6 GHz support wouldn't exist
-in the same form).
+## Analysis
 
-### Summary
+### Commit Message Analysis
 
-**What the fix does**: Narrows a regulatory update redundancy check to
-only apply during core initialization (`IEEE80211_REG_UNSET_AP`), not
-during association with a 6 GHz AP. Also fixes a memory leak on the
-early-return path by properly calling `ath11k_reg_reset_info()`.
+This commit adds DMI-based power management quirk entries for Lenovo
+ThinkPad Z13 Gen1 and Z16 Gen1 laptops to the `ath11k_pm_quirk_table[]`.
+The commit message clearly states:
 
-**Why it matters for stable users**: Without this fix, users with ath11k
-WiFi cards (WCN6855, etc.) cannot connect to 6 GHz WiFi 6E access points
-at all. This is a complete connectivity failure, not a subtle
-performance issue.
+- The Z16 Gen1 has known wakeup-from-suspend issues documented in kernel
+  bugzilla #219196
+- The fix has been tested on actual hardware (21D4 model)
+- Additional product IDs were provided by Mark Pearson (Lenovo engineer)
+  covering both Z13 Gen1 and Z16 Gen1 variants
+- The devices share the same firmware and users in the bugzilla confirm
+  the problem exists on Z13 as well
 
-**Meets stable criteria**:
-- Obviously correct and tested on real hardware
-- Fixes a real, user-visible bug (WiFi connection failure)
-- Fixes an important issue (complete loss of 6 GHz WiFi connectivity)
-- Small and contained (5 lines of logic in 1 file)
-- Does not introduce new features
-- Also fixes a memory leak (bonus)
+### Code Change Analysis
 
-**Risk assessment**: Very low. The change is conservative — it only
-narrows an existing condition. The worst case scenario is that the
-redundancy check doesn't fire during association, which is the correct
-behavior since the regulatory update should be processed during
-association.
+The change adds exactly 4 new DMI table entries to the existing
+`ath11k_pm_quirk_table[]` array:
+- Z13 G1: product names "21D2" and "21D3"
+- Z16 G1: product names "21D4" and "21D5"
 
-**Dependencies**: Requires `e3d373ec4f02b` (6 GHz regulatory type
-support) in the stable tree. This limits backport to 6.9+ stable trees,
-but for those trees this fix is important.
+Each entry follows the identical pattern as every other entry in the
+table:
+```c
+{
+    .driver_data = (void *)ATH11K_PM_WOW,
+    .matches = {
+        DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+        DMI_MATCH(DMI_PRODUCT_NAME, "XXXX"),
+    },
+},
+```
+
+This is a pure data addition — no logic changes, no new code paths, no
+new APIs.
+
+### Classification: Hardware Quirk/Workaround
+
+This falls squarely into the **QUIRKS and WORKAROUNDS** exception
+category explicitly called out in the stable kernel rules. It adds
+hardware-specific quirk entries for devices with broken suspend/resume
+behavior. The quirk table and the `ATH11K_PM_WOW` mechanism already
+exist in the kernel — this merely extends coverage to additional laptop
+models.
+
+### Risk Assessment
+
+- **Risk: Extremely low.** Adding DMI match entries to an existing quirk
+  table cannot break anything for other users. The entries only activate
+  on the specific Lenovo product IDs listed.
+- **Scope: Minimal.** Only one file changed, only data additions, no
+  logic changes.
+- **Testing: Strong.** The commit has `Tested-by:` from Mark Pearson
+  (Lenovo), `Reviewed-by:` from both the Qualcomm ath11k maintainer
+  (Baochen Qiang) and Mark Pearson, and was tested by the author on
+  actual hardware.
+
+### User Impact
+
+- **Problem:** WiFi fails to work properly after suspend/resume on
+  ThinkPad Z13/Z16 Gen1 laptops — a critical issue for laptop users.
+- **Affected users:** All owners of these specific Lenovo ThinkPad
+  models using the ath11k WiFi driver.
+- **Severity:** High — broken suspend/resume on a laptop is a
+  significant usability issue that affects daily use.
+- **Bugzilla link:** The issue is documented with multiple users
+  confirming it.
+
+### Dependency Check
+
+No dependencies on other commits. The quirk table infrastructure already
+exists in stable trees. The entries follow the exact same format as
+existing entries.
+
+### Conclusion
+
+This is a textbook stable backport candidate: a small, zero-risk, data-
+only addition of hardware quirk entries to an existing table, fixing a
+real and well-documented suspend/resume bug on specific laptop models,
+with proper testing and review from both the hardware vendor and the
+subsystem maintainer.
 
 **YES**
 
- drivers/net/wireless/ath/ath11k/reg.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c | 28 ++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index d62a2014315a0..49b79648752cf 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-  */
- #include <linux/rtnetlink.h>
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 812686173ac8a..03dddc1cd003a 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -994,6 +994,34 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
+ 			DMI_MATCH(DMI_PRODUCT_NAME, "21F9"),
+ 		},
+ 	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = { /* Z13 G1 */
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21D2"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = { /* Z13 G1 */
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21D3"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = { /* Z16 G1 */
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21D4"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = { /* Z16 G1 */
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21D5"),
++		},
++	},
+ 	{}
+ };
  
-@@ -926,8 +926,11 @@ int ath11k_reg_handle_chan_list(struct ath11k_base *ab,
- 	 */
- 	if (ab->default_regd[pdev_idx] && !ab->new_regd[pdev_idx] &&
- 	    !memcmp((char *)ab->default_regd[pdev_idx]->alpha2,
--		    (char *)reg_info->alpha2, 2))
--		goto retfail;
-+		    (char *)reg_info->alpha2, 2) &&
-+	    power_type == IEEE80211_REG_UNSET_AP) {
-+		ath11k_reg_reset_info(reg_info);
-+		return 0;
-+	}
- 
- 	/* Intersect new rules with default regd if a new country setting was
- 	 * requested, i.e a default regd was already set during initialization
 -- 
 2.51.0
 
