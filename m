@@ -4,101 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82D85E9A05E
-	for <ath11k@archiver.kernel.org>; Thu, 19 Feb 2026 19:42:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 049EBC531C7
+	for <ath11k@archiver.kernel.org>; Thu, 19 Feb 2026 19:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=17XK3meZ03iUdZqQRtoxoxHX9Zd+qrkGcSktTTzYFBM=; b=aaXfzfptqpq+HR
-	UaY/MnhSrB8z2Ij82BODfm5Sl3olO4uz399MVSdD+1zQMaUv01Zb5Dzd7j0o8x4Mvthh7bZhYUCqU
-	uKxHij5xa5MSs9x2Fpy7kzgFtVekUDtuuNqE8ne7WbozTqsyKZq1L1bBpdIRb52aXe5NVPsLmmpkj
-	QF9YJenfyND9smph7xQrmlAbi4C5zVzbwvJambp1/I54avrxC1865RFSzg6KMBdXR10rQgGMXpPki
-	VrolDT9HZi8Bk41jOeZmp5eFMQuTdgsW8EZUXdI3b6yPsXZYbbUtPGxXGomFqzzjRdvDe5CfzwdTL
-	Z3drjRkYMs0/akm7lyOg==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=FmxNHp+wAQ9sYx3bt/fGgakAW78bGdOHRXPUHaz0Tz0=; b=cgzHmJHK8NcJqKvFyCwGiL+Zkv
+	59oq4zi4BwBQ9xRtGTyZMBn5qd0F0Q2IwNeBdiPh7W4+NGOMTyCbMwpZj7HOIQvf9zyTPpCsafEKL
+	5wftYpsawllVnPSfCCmy37Da79f1LAwsT1+MB2mIonbcH8eevWKuKRKUHan2E1/ueOtzLgV1mL5WL
+	M4tEzE5EdSXGiRyK1wmnIY8UQlfJDo/JghwUgVodZpiNoSjMh0QAH88y8POrGpuDdK9JQzjA71qeS
+	w+weNudCGZ8U9sp+XYm2kAhYdaaoQXipEOWYRARrIGotNVcXI6T/+W3zA0zb8+ELY8H1vewOr2ueE
+	Ox5r5akQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vt9vN-0000000BrXf-1GIg;
-	Thu, 19 Feb 2026 19:42:57 +0000
+	id 1vt9vR-0000000BrcN-2dal;
+	Thu, 19 Feb 2026 19:43:01 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vt9vJ-0000000BrVP-3u8G
+	id 1vt9vP-0000000BrYx-0EsL
 	for ath11k@lists.infradead.org;
-	Thu, 19 Feb 2026 19:42:55 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61JC2xKt3077992
-	for <ath11k@lists.infradead.org>; Thu, 19 Feb 2026 19:42:52 GMT
+	Thu, 19 Feb 2026 19:43:00 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61JC7dUC2883966
+	for <ath11k@lists.infradead.org>; Thu, 19 Feb 2026 19:42:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=17XK3meZ03iUdZqQRtoxox
-	HX9Zd+qrkGcSktTTzYFBM=; b=d/YoCMPy3dOPOftDx6PKyh5Y831zNqbl3bgSE5
-	tNQsbdMlSrX0VIEyb8wsG2NCoR5XgmamsqgheAxCxsgFtCOtIwvtQnWvAjhZZOWW
-	KOqhYOdZa1uc+j4vO4CzzHD0zhsqe6/Knu3CjsAinJ9mQYxt8rNq1cYm5lZecwfY
-	K3wIginPCaUvDsixSxFO4zHKzqF1hrIDgm5UiYBxiAI8r3uMJdCVXoHWLNQi/MM1
-	+iei5YtJSncVUWWdC4UWIv4/Aj1d0f53feS9bZIIofS0ta4vIqK7PHPMVfzKkaz1
-	S0xqLnF3p/0xM8vo+uo0i1OyLH/873tnxfhm5Jfg0xtjiNEA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cdrk82t9w-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FmxNHp+wAQ9sYx3bt/fGgakAW78bGdOHRXPUHaz0Tz0=; b=DANjuMZW7UtPXq/c
+	SnOshB5sStiI8ii369enB5ysZHnVGjAO3fw+HMIkz9Qczvxc0b9CkGC/x3eK4yF9
+	L1KZIRy2pBdgpikbk81lgEXK1Kbvhl/tI1dJLev4DdHU/Os77r3OYKoJCPeIsM2M
+	+3IDo88SPE3ZjRw3EYYJGFTElsBpu+/44PZc+9PAlemMRrEr7pDrmM9WPN9dYGl7
+	18MokW7GyVgQN4yf5e2t7QzHBaPuApVBBJrhj5yl4jIi9E016NXrudaDe8kgvMeN
+	6Y6hI1SGw9VxtLm7UhsqYesdPhmvWdnns9QJhTRLk3NS+ibTmxW33xtWk3DhIgkh
+	5MxJ5A==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cdqfgavpu-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 19 Feb 2026 19:42:52 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2ad147cdf07so12948285ad.2
-        for <ath11k@lists.infradead.org>; Thu, 19 Feb 2026 11:42:52 -0800 (PST)
+	for <ath11k@lists.infradead.org>; Thu, 19 Feb 2026 19:42:57 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2a8c273332cso101212825ad.1
+        for <ath11k@lists.infradead.org>; Thu, 19 Feb 2026 11:42:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771530171; x=1772134971; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=17XK3meZ03iUdZqQRtoxoxHX9Zd+qrkGcSktTTzYFBM=;
-        b=bx0LCqNwn5xTi/zEfWkXhSJKjtdBSukMz7K0/Fx9Rm08b3Pf5OIrstv5JPyFwoSosr
-         utxepMs1RqC5RlatGrKjaOH2R/GJYhpBmsDu/+JwE86UQzgbYirc296CLsWr4WAOivnr
-         ADxknlh7QIajEf36pTtc0tdhvtur3qXOP/PRqDjERM3z9qPLeP7/c/dZ1d2Tik3fLE+J
-         72+FWEwz9VcNvfgKjdPNn60aRLR4pkGSGEcwikMIe26nkC+AU0D5YiYZIFce2FAMHbQG
-         8mBjtOrM9SAIZfLLkRo9JZ7mhXXA8GKGmAbLpRuIDASP2+VjPKK9lc0tuwTFDwQYf5oD
-         HU5w==
+        d=oss.qualcomm.com; s=google; t=1771530177; x=1772134977; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FmxNHp+wAQ9sYx3bt/fGgakAW78bGdOHRXPUHaz0Tz0=;
+        b=PsoJhU+NdzbiSfs4RXPWSeDDwZeH/J2NdHtm8mfd/J5oEVoT9VQ3h5A5YYHbIPeqdj
+         INzks7xoalbGf/TnPnboGTyHDCKNH1q0tgIstD4Vved6xO0UBf4ZtF3A8s5Im0cIl0d5
+         2FGxRYCPtrZ9o6qh6wkSttyl81NlYhzmiegthYBmf2xw1buLsB197b4hv/9lkEUIFbw1
+         tWARIY3xnhV7txIUFqrGQQvtcH/b9a0GhJmanVmhGE4p/mCHiyvcUZV+BG6GkhK45EkJ
+         rLhtDf3L2ZD9kxYdkVQvAa6o5sRxsDXAMhyI/4fyPMy9MxsffAcCpgSbUiOpkcFcl/SC
+         xe5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771530171; x=1772134971;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=17XK3meZ03iUdZqQRtoxoxHX9Zd+qrkGcSktTTzYFBM=;
-        b=YL/pAgdgGLsjLQBKOfhDT8ZR9KzXOaymsU3f+I/fO7bc4XC2etahyDUP2Vco/vKSTt
-         lNk5tIk648EvTA9eSZQ9yUeFxTAngzzxH5YZHf0DCo+1Aw4t3fOS3VCG6/8DkjFmAz5U
-         emdsWkbtJdah7Kfg0DYwTlC9z+tBOOIZfsyPj6XmlVkpg/3dkOtqLVjtDm7pes00NOWA
-         HG1tRRSMoD8ZCX9iwHaywuPEUqm71ocrUNyoBW9+n3GenXRfhLjsLyStD0La6KhMrROF
-         ObwOdrmk3ed3RK6wUlPTvOQcRdgWoQRZYp33UBaF8JmgHAfdIaCV0xPqrub8lJzWV+5u
-         zqpA==
-X-Forwarded-Encrypted: i=1; AJvYcCXeDlHzKguqJIQPnkZY76zbziCWTvgrqwfPncDdDoUP0uIdxW+0ggn3lfCIDPR8U2bQacZ5u2k=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwTw7qk/6y5tVSY8fpdFEycZFnEECr92prN+/59BJi/O8o4UZpl
-	N5SDZPRELdWignMD3bw6WYVEmdZQ6DB/lcvAwJgm7q8AY5aU6G9Fi128exZ/9pbTBBuz0cWREL0
-	rG1d2IUVFuXjr3PIycGCp0PqHQ1qTNY3Rbz7NPvMqK/vDLczOSlQghJ4ojdSXiPQT
-X-Gm-Gg: AZuq6aLQxMtFiTjGYm/Ok9UaiuvAHLonWxaHt4MfFtDdGJeRJp9LBpipicydfrbHU+D
-	48wOBKO2u1XeDWUjcjrPkermv1NjEMl7eWibySDgUpHjJMC4wrWfZKqD2lADM2Ts9CRfNXTNDur
-	qm4pRuEe0BFeRNW4+1ygco6EJSkh+wmF7DtEqwhKNE20SmelMMkugs/elppp0sZgDxo2oCooZaF
-	AJnk3QmTShoon+tB0vQIkbG6UqIU3o5Rm7bpL23X+/VvFs8+ThRdGKuwsuXfRgteM3Uo5rnGIhp
-	KrakNfN9kfS/6LP4rNPM883yDZb/vWfo1NqnwX7MuU0hKhPepiG6mzvx3VjjJGbD97ARBOt6DJL
-	hwHAku8U3t2ONqhira7vNNImN+8A4QEhKs7yXO0btiRgBDQpBIS7NUdkfYxZGzlg83CrmmZ6k4n
-	y+a8OXPexq0jNSuCaZyjhJ3H4LGQfpsZmVPWiFpzU=
-X-Received: by 2002:a17:902:ce87:b0:2a9:5f11:3a26 with SMTP id d9443c01a7336-2ad1740bcaamr190724095ad.7.1771530171165;
-        Thu, 19 Feb 2026 11:42:51 -0800 (PST)
-X-Received: by 2002:a17:902:ce87:b0:2a9:5f11:3a26 with SMTP id d9443c01a7336-2ad1740bcaamr190723835ad.7.1771530170705;
-        Thu, 19 Feb 2026 11:42:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771530177; x=1772134977;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FmxNHp+wAQ9sYx3bt/fGgakAW78bGdOHRXPUHaz0Tz0=;
+        b=sddpty6fy/TIOeQXcJfhF5Uibg3Ho0rpeqybH4adHexQ0MTXj4rZg28pnkaT1JwmB0
+         IR6n71dhusNZQ4PKa+6XSfgroXEWlxmWh+AX78rAhYwSXg4XetnNFh6D1VQteLWPugeW
+         XvTps/RY/vNyFmP6GPpFlSesXQNEb70Kil1ik2GDJXA2mzjFdbShqgISWRxCoDfnjvzu
+         2LJ744FAcFpcojtsyCQHejM5YIH/0qWkxjvrgKCpfVumqVvb5GEXr0Yc1Kupm140K2jI
+         VIlK4tOhUx87cAurVMyIQMEDc8V7+5c9iAMMwzphIhsCgkIfsI5FNbC3ZHv+INE3q6yW
+         /hRw==
+X-Forwarded-Encrypted: i=1; AJvYcCWFxtHJBY4gk83H9oqOJPzyBhX+n6i22sgFwj77oPngv119p0t3EQ/C5uCfi9/bit48BKbjx4o=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwitlpFTAg9RcBypXoc5W51vYUTe5236qJVvlsFwKoXzZevqzbT
+	lXo+aKoQv7tskIuyBcaWw+wBuAfb0r5NCIjOdh+4tY4qHWnCe47jjiCXlOkQoqAyBNiHd9iqgPg
+	5tNqYGtzacBlG/gmdNw35uVhA8eda6HJDORj90+XBIzKpftYU2J8xbJI+8at490EL
+X-Gm-Gg: AZuq6aKzDnUMjqws6MH57y7JJaTTLkMRMJAEY3UJDaSJxkytMMABKKu6siLLo3vSAWo
+	g0hdVBvHlFNU7ys1YZhg3XbCQ6IwPtLNf4sYkBAULKS0M0gmNl80s+HtR7z9ImPaS+ft3xFZ4/H
+	29sh/dja6wk8cZEbzSIQ0ESc4qaU2GR5Qq3+4ymVhCNCM0o6Tlq8N2Ie5Q+AQlIUxJ1CyR55rjN
+	0QuTpzg31+HsEez6zrJK8GqlDPOBz05DOuVFWMi7SCDi0qpfnPUrFrcYXOtFRWQl5S3gIX5ivb9
+	ccDBTFjmSCJO1gka7xqaPgPHIscaqKkVm4XOm3hyPVkUrxsJ5tLwjgZp5LHuQKKkq1zP8SJULyo
+	Qmct9DcbHuBjtj5RWzh4HcG/DC+5hH35DU+X6ykloH7NYtY9cBGwKeM7BvA2czbEh/Ju8xFtJkd
+	/Pu7q7sir6iB14vCJ3ANhFhXTDOW3CSgrzKT/eWaQ=
+X-Received: by 2002:a17:902:d591:b0:298:5abe:4b1 with SMTP id d9443c01a7336-2ad17591077mr197412985ad.52.1771530176613;
+        Thu, 19 Feb 2026 11:42:56 -0800 (PST)
+X-Received: by 2002:a17:902:d591:b0:298:5abe:4b1 with SMTP id d9443c01a7336-2ad17591077mr197412775ad.52.1771530176165;
+        Thu, 19 Feb 2026 11:42:56 -0800 (PST)
 Received: from hu-rajkbhag-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1a712ed9sm264404225ad.20.2026.02.19.11.42.45
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1a712ed9sm264404225ad.20.2026.02.19.11.42.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 11:42:50 -0800 (PST)
+        Thu, 19 Feb 2026 11:42:55 -0800 (PST)
 From: Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>
-Subject: [PATCH wireless-next 0/2] wifi: mac80211: fetch FILS and
- unsolicited probe response templates by link ID
-Date: Fri, 20 Feb 2026 01:12:40 +0530
-Message-Id: <20260220-fils-prob-by-link-v1-0-a2746a853f75@oss.qualcomm.com>
+Date: Fri, 20 Feb 2026 01:12:41 +0530
+Subject: [PATCH wireless-next 1/2] wifi: mac80211: fetch FILS discovery
+ template by link ID
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALBnl2kC/x3MQQqDMBBG4avIrDuQBLHgVcRFU/+0gyHKTKkW8
- e6GLr/FewcZVGDUNwcpvmKylAp/a+j5fpQXWKZqCi50LgTHSbLxqkvk+OMsZWYg+XvX+jb5SLV
- bFUn2/3OgTRQZZlywf2g8zwuoT+8IcgAAAA==
-X-Change-ID: 20260220-fils-prob-by-link-eef176414f1b
+Message-Id: <20260220-fils-prob-by-link-v1-1-a2746a853f75@oss.qualcomm.com>
+References: <20260220-fils-prob-by-link-v1-0-a2746a853f75@oss.qualcomm.com>
+In-Reply-To: <20260220-fils-prob-by-link-v1-0-a2746a853f75@oss.qualcomm.com>
 To: Jeff Johnson <jjohnson@kernel.org>, Felix Fietkau <nbd@nbd.name>,
         Lorenzo Bianconi <lorenzo@kernel.org>,
         Ryder Lee <ryder.lee@mediatek.com>,
@@ -114,32 +114,33 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
         Sriram R <quic_srirrama@quicinc.com>,
         Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Proofpoint-GUID: Ill1s2FulF9Dn3irG-eiWvcTuRc4QRzR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE5MDE3OSBTYWx0ZWRfX0ik7lDdN42bM
- p6YtXWtWIV28sRkNhBJa2uOpWQdyVuPLKXTKLMYxhFHRNSca43BGynkYZQNcI4g3+QVn1zBNP6X
- 4LlAesYHTfgqjnsFyLfXAMUsPQCI41e654+nyuy4jBWs86h+StazGwHNyIkatl+yVWYC31loS2G
- xDsdMzKgpqao52iwZg/CHnlgXO2Jd818DEGgUpa3EGLgFDyMEDGZxe/1PZN6OojIotdpQph3Ar9
- DIdN2RY4BwrGO+czZgYgGG6RbjX90IoXHr04MoK8Lu6RtRjQ54obXkmhpfoSir6huzcO7I/oqZR
- UxyWsHen7RKgzY0JrriOIMkG9qOpn/9RJBEksIEui/X3GK6EHcZug8KwpQXHRO/oz9Lj0IrY/Fq
- JpesnOjliZccXh6mdDaUdV0fDh69xV6jNfmEpqI58LaBoZWaj7eoLUlpDurBHmLQiz1mTLbtVFH
- hl4OUJJMNj0i2C2prTQ==
-X-Authority-Analysis: v=2.4 cv=MJBtWcZl c=1 sm=1 tr=0 ts=699767bc cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+X-Proofpoint-GUID: kQ7F7xy2BEBfZUTK2bMJW3tgBPwqz10A
+X-Proofpoint-ORIG-GUID: kQ7F7xy2BEBfZUTK2bMJW3tgBPwqz10A
+X-Authority-Analysis: v=2.4 cv=A6hh/qWG c=1 sm=1 tr=0 ts=699767c1 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
  a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
  a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=wJPCH--AHzS56o4of04A:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: Ill1s2FulF9Dn3irG-eiWvcTuRc4QRzR
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=uhjc5PK_p913YsLhG_cA:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE5MDE3OSBTYWx0ZWRfXx2992+VY5GHv
+ izxpK7gzul2dt04V+hS8A2cAbKlk67YoIAjjBwq5lYQa0l424HPM9Tr+2dojrgO+ELlAZqv9NLo
+ QZjwN5Bh5dbfjB8SZrdNiRKhz23PQhkYoQ5nCpeapAThk0YPKfUcQmn25BUFK1SRPQ3FC1gAi0I
+ LjmHpvwlVZIUOeIhOj/fxirvKIfUKoFIL827iuMxwj5h4Ppw2nGWQGWoElJ+pAP1kP/I+c/9GCV
+ f+LiV3nsyXPFM51KA9rOnw1H7vBL0Gjn7mphN2lnfTC3yn4x8xTlVtVZr/xSkinKy/Q6Buq78GH
+ 1cDgLTCO4znWMEDGzFvQM+abSMfVJsP7ksKCGKpD1zH3NHNrMVFbJqIl3pZRZnLK7ANCHIYXYpb
+ OAKoMvJq36aLUimESdvboD6nOeBmAEq8BA6KUdQ658DaPSmtbfDub8+RX6P5X3pBcKrC+e1ivT2
+ fhuxNFgAr+Djs5vyR7Q==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-19_04,2026-02-19_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
- clxscore=1011 bulkscore=0 priorityscore=1501 impostorscore=0 adultscore=0
+ phishscore=0 priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0
+ spamscore=0 malwarescore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602190179
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260219_114254_101226_E1467039 
-X-CRM114-Status: GOOD (  10.92  )
+X-CRM114-CacheID: sfid-20260219_114259_242423_D06216D9 
+X-CRM114-Status: GOOD (  19.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -154,29 +155,152 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, the FILS discovery and unsolicited probe response templates
-are always fetched from the default link of a virtual interface in both
-Multi-Link Operation (MLO) and non-MLO cases. However, in the MLO case
-there is a need to fetch these templates from a specific link instead of
-the default link.
+From: Sriram R <quic_srirrama@quicinc.com>
 
-Hence, add support for fetching these templates based on the link ID from
-the corresponding link data.
+Currently, the FILS discovery template is always fetched from the default
+link of a virtual interface in both Multi-Link Operation (MLO) and
+non-MLO cases. However, in the MLO case there is a need to fetch the FILS
+discovery template from a specific link instead of the default link.
 
+Hence, add support for fetching the FILS discovery template based on the
+link ID from the corresponding link data.
+
+Signed-off-by: Sriram R <quic_srirrama@quicinc.com>
+Co-developed-by: Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>
+Signed-off-by: Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>
 ---
-Sriram R (2):
-      wifi: mac80211: fetch FILS discovery template by link ID
-      wifi: mac80211: fetch unsolicited probe response template by link ID
+ drivers/net/wireless/ath/ath11k/mac.c           |  2 +-
+ drivers/net/wireless/ath/ath12k/mac.c           |  3 ++-
+ drivers/net/wireless/mediatek/mt76/mt7915/mcu.c |  2 +-
+ drivers/net/wireless/mediatek/mt76/mt7996/mcu.c |  3 ++-
+ include/net/mac80211.h                          |  4 +++-
+ net/mac80211/tx.c                               | 20 +++++++++++++-------
+ 6 files changed, 22 insertions(+), 12 deletions(-)
 
- drivers/net/wireless/ath/ath11k/mac.c           |  4 +--
- drivers/net/wireless/ath/ath12k/mac.c           |  6 ++--
- drivers/net/wireless/mediatek/mt76/mt7915/mcu.c |  4 +--
- drivers/net/wireless/mediatek/mt76/mt7996/mcu.c |  6 ++--
- include/net/mac80211.h                          |  8 +++--
- net/mac80211/tx.c                               | 40 ++++++++++++++++---------
- 6 files changed, 44 insertions(+), 24 deletions(-)
----
-base-commit: 37a93dd5c49b5fda807fd204edf2547c3493319c
-change-id: 20260220-fils-prob-by-link-eef176414f1b
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 4dfd08b58416..4776bb6fc889 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3305,7 +3305,7 @@ static int ath11k_mac_fils_discovery(struct ath11k_vif *arvif,
+ 	if (info->fils_discovery.max_interval) {
+ 		interval = info->fils_discovery.max_interval;
+ 
+-		tmpl = ieee80211_get_fils_discovery_tmpl(ar->hw, arvif->vif);
++		tmpl = ieee80211_get_fils_discovery_tmpl(ar->hw, arvif->vif, 0);
+ 		if (tmpl)
+ 			ret = ath11k_wmi_fils_discovery_tmpl(ar, arvif->vdev_id,
+ 							     tmpl);
+diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
+index 68431a0e128e..34f82cda4197 100644
+--- a/drivers/net/wireless/ath/ath12k/mac.c
++++ b/drivers/net/wireless/ath/ath12k/mac.c
+@@ -4311,7 +4311,8 @@ static int ath12k_mac_fils_discovery(struct ath12k_link_vif *arvif,
+ 	if (info->fils_discovery.max_interval) {
+ 		interval = info->fils_discovery.max_interval;
+ 
+-		tmpl = ieee80211_get_fils_discovery_tmpl(hw, vif);
++		tmpl = ieee80211_get_fils_discovery_tmpl(hw, vif,
++							 info->link_id);
+ 		if (tmpl)
+ 			ret = ath12k_wmi_fils_discovery_tmpl(ar, arvif->vdev_id,
+ 							     tmpl);
+diff --git a/drivers/net/wireless/mediatek/mt76/mt7915/mcu.c b/drivers/net/wireless/mediatek/mt76/mt7915/mcu.c
+index 00bff4d3aab8..83ce06857a1e 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt7915/mcu.c
++++ b/drivers/net/wireless/mediatek/mt76/mt7915/mcu.c
+@@ -1977,7 +1977,7 @@ mt7915_mcu_add_inband_discov(struct mt7915_dev *dev, struct ieee80211_vif *vif,
+ 
+ 	if (changed & BSS_CHANGED_FILS_DISCOVERY) {
+ 		interval = vif->bss_conf.fils_discovery.max_interval;
+-		skb = ieee80211_get_fils_discovery_tmpl(hw, vif);
++		skb = ieee80211_get_fils_discovery_tmpl(hw, vif, 0);
+ 	} else if (changed & BSS_CHANGED_UNSOL_BCAST_PROBE_RESP &&
+ 		   vif->bss_conf.unsol_bcast_probe_resp_interval) {
+ 		interval = vif->bss_conf.unsol_bcast_probe_resp_interval;
+diff --git a/drivers/net/wireless/mediatek/mt76/mt7996/mcu.c b/drivers/net/wireless/mediatek/mt76/mt7996/mcu.c
+index 14a88ef79b6c..795a294fa904 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt7996/mcu.c
++++ b/drivers/net/wireless/mediatek/mt76/mt7996/mcu.c
+@@ -2863,7 +2863,8 @@ int mt7996_mcu_beacon_inband_discov(struct mt7996_dev *dev,
+ 	if (changed & BSS_CHANGED_FILS_DISCOVERY &&
+ 	    link_conf->fils_discovery.max_interval) {
+ 		interval = link_conf->fils_discovery.max_interval;
+-		skb = ieee80211_get_fils_discovery_tmpl(hw, vif);
++		skb = ieee80211_get_fils_discovery_tmpl(hw, vif,
++							link_conf->link_id);
+ 	} else if (changed & BSS_CHANGED_UNSOL_BCAST_PROBE_RESP &&
+ 		   link_conf->unsol_bcast_probe_resp_interval) {
+ 		interval = link_conf->unsol_bcast_probe_resp_interval;
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index 7f9d96939a4e..d36c14a86c8a 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -7766,13 +7766,15 @@ u32 ieee80211_calc_tx_airtime(struct ieee80211_hw *hw,
+  * ieee80211_get_fils_discovery_tmpl - Get FILS discovery template.
+  * @hw: pointer obtained from ieee80211_alloc_hw().
+  * @vif: &struct ieee80211_vif pointer from the add_interface callback.
++ * @link_id: valid link_id during MLO or 0 for non-MLO.
+  *
+  * The driver is responsible for freeing the returned skb.
+  *
+  * Return: FILS discovery template. %NULL on error.
+  */
+ struct sk_buff *ieee80211_get_fils_discovery_tmpl(struct ieee80211_hw *hw,
+-						  struct ieee80211_vif *vif);
++						  struct ieee80211_vif *vif,
++						  unsigned int link_id);
+ 
+ /**
+  * ieee80211_get_unsol_bcast_probe_resp_tmpl - Get unsolicited broadcast
+diff --git a/net/mac80211/tx.c b/net/mac80211/tx.c
+index 007f5a368d41..f547cfb27666 100644
+--- a/net/mac80211/tx.c
++++ b/net/mac80211/tx.c
+@@ -5839,21 +5839,28 @@ struct sk_buff *ieee80211_proberesp_get(struct ieee80211_hw *hw,
+ EXPORT_SYMBOL(ieee80211_proberesp_get);
+ 
+ struct sk_buff *ieee80211_get_fils_discovery_tmpl(struct ieee80211_hw *hw,
+-						  struct ieee80211_vif *vif)
++						  struct ieee80211_vif *vif,
++						  unsigned int link_id)
+ {
+ 	struct sk_buff *skb = NULL;
+ 	struct fils_discovery_data *tmpl = NULL;
+ 	struct ieee80211_sub_if_data *sdata = vif_to_sdata(vif);
++	struct ieee80211_link_data *link;
+ 
+ 	if (sdata->vif.type != NL80211_IFTYPE_AP)
+ 		return NULL;
+ 
+-	rcu_read_lock();
+-	tmpl = rcu_dereference(sdata->deflink.u.ap.fils_discovery);
+-	if (!tmpl) {
+-		rcu_read_unlock();
++	if (link_id >= IEEE80211_MLD_MAX_NUM_LINKS)
++		return NULL;
++
++	guard(rcu)();
++	link = rcu_dereference(sdata->link[link_id]);
++	if (!link)
++		return NULL;
++
++	tmpl = rcu_dereference(link->u.ap.fils_discovery);
++	if (!tmpl)
+ 		return NULL;
+-	}
+ 
+ 	skb = dev_alloc_skb(sdata->local->hw.extra_tx_headroom + tmpl->len);
+ 	if (skb) {
+@@ -5861,7 +5868,6 @@ struct sk_buff *ieee80211_get_fils_discovery_tmpl(struct ieee80211_hw *hw,
+ 		skb_put_data(skb, tmpl->data, tmpl->len);
+ 	}
+ 
+-	rcu_read_unlock();
+ 	return skb;
+ }
+ EXPORT_SYMBOL(ieee80211_get_fils_discovery_tmpl);
+
+-- 
+2.34.1
 
 
