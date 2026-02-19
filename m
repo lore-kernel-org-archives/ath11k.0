@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 607BAE9A04B
-	for <ath11k@archiver.kernel.org>; Wed, 18 Feb 2026 18:53:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F423E9A05A
+	for <ath11k@archiver.kernel.org>; Thu, 19 Feb 2026 19:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=UFO694JGZghLwRjP+Q0ArC5oiDQPi8VPrT/t+tbGzIM=; b=MecAI5FNmLxJowpO14yv+Pz/6/
-	LU0VQ+uB6mP3PvHHbNJDiVBuXEz+kBP8MKNSRE4Cuvbsa+0JYYTnHBE+O/m4DD8j8YqSqo5uG52cZ
-	kmOzZxLZYBwrO0cIVnrfJ5K3BnitM+xo/9NpmYyvjdtHAJlQ6L3mdQcxg2jGyT0T2E9rQbLfB7ndR
-	PGM6tUKV+j4fwAgnX3aDN6SJMQVLt3QZkw/hW2bkS24oe6AOicTPadf3vHyecE7Xn/qNAQ13UYFOl
-	TB6ZZlWM+m1VC/XGfdyLPEY7OAZtkLJu2OJ2LT5U2hx8m7InkHQSJX0S23EgsbWYdb/eGTo/2vQts
-	AFJOhqJg==;
+	bh=hgCcEQscnC1A0M5Z+eU+ZpUVs4h+tvl5CBYetUBPG/E=; b=rWZUrh+j6ewFWuM9/OAp8BCg86
+	BsxzgNKiEyTmIynA7HTczCKWRVRvuJ3lvI74nvCTlPO0dm3AivLYRK0qiDGe8kJoihqWy6e5zUg7y
+	uKo/zOrio3Rohpz6jxM4GKCJc2uH2z4lldLAseZU/cLkjQE9hkXKPdJsDeGwPPHOJhWp3BfDb0upe
+	cGd4w/Vwz4LIpSuS51OdO4Id5iT7MrHzxF145kfplSxTfPytp4u8vpjUXlqMUx6q60NGA1iaIhU3K
+	2xlHEOhdrGllxH0XcGMwmM7kdLh6yX3P3hiVVoF5VmdmhcMStHQ0FUxDyXDJ7Z5oGS0CMsA3teHi3
+	hCRp0pWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsmfc-0000000AGve-0WY2;
-	Wed, 18 Feb 2026 18:53:08 +0000
+	id 1vt9Xh-0000000BpVy-2xDT;
+	Thu, 19 Feb 2026 19:18:29 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsmfb-0000000AGvV-1zOE;
-	Wed, 18 Feb 2026 18:53:07 +0000
+	id 1vt9Xg-0000000BpVL-0kYP;
+	Thu, 19 Feb 2026 19:18:28 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7E2CE600AE;
-	Wed, 18 Feb 2026 18:53:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CCBAC116D0;
-	Wed, 18 Feb 2026 18:53:04 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 0462B60054;
+	Thu, 19 Feb 2026 19:18:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A723C4CEF7;
+	Thu, 19 Feb 2026 19:18:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771440786;
-	bh=FRllGX9nLo+CpVjaG2YksqYXbdeYtFiLPME24SliD7I=;
+	s=k20201202; t=1771528706;
+	bh=gvXBwyLFdk3xxBFxRxUSJbv6JkCAypUGLwGbTH/OBCc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h2CDNTESaRrCSKdOZB0a+CsOvs025z6t9xnHCAm3im4+gboUNNyQeWvceFb40N2a6
-	 n10wr669Z/L56T1OtSoIZxx4KuriPXk4IVW+DPp9St0G/W7cmbmZ8+fT3DdSVjOOi2
-	 j2g1UgpKskVk9/JyA1iOGJv9N844ExVPzQEmCJP87qXAUVnir/tDa7xTNWXhjjhT43
-	 pEHN2Pu1nbA35ys6G+xXR+NspnXzOxKM/cL39h29+7O2Zlz5a6zEdARjQ0s9DjssYx
-	 LTKd+IbBqjkATDYHd4K/95FiT9W4gvtcV/AusAC4SwQmjpYZWsmdGdgSVwYGnbOl2R
-	 ZSJWh3inAfFSA==
-Date: Wed, 18 Feb 2026 12:53:03 -0600
+	b=YXexcDULOjzDtA93bwTJbt66rlxWvePfarSZ7k26QtLaKNqU6T+CWX6UdHtWp/MGT
+	 JcUiYSscYQTLtwOQff/J5lt2XrQLKeTnn8c0JZOVNm7fCTF04JAIgkQfAcpINhIain
+	 biUi47EYDyxPtJgId52KmRmQtDjrrTULDAlVBtKyzs3pff6p3S+nVUGYICuA3zPyQi
+	 Co+HbvuXtvRHZR7AAGU1BgG2134yjsjtv1RVOsqGcJSAvfjhMTtznX6y9MOWztzwst
+	 jIw3RTQ817uv4tbW8DZL2Klxn1HR7pt0R3fzYqUByU4AjW6ebXBor+UzYXcnJbwUkd
+	 p8z8H3Hov92eQ==
+Date: Thu, 19 Feb 2026 13:18:23 -0600
 From: Bjorn Andersson <andersson@kernel.org>
 To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Cc: Alexander Wilhelm <alexander.wilhelm@westermo.com>, 
@@ -50,16 +50,17 @@ Cc: Alexander Wilhelm <alexander.wilhelm@westermo.com>,
 	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
 	Jeff Johnson <jjohnson@kernel.org>, ath11k@lists.infradead.org, ath12k@lists.infradead.org
 Subject: Re: [PATCH 1/2] soc: qcom: qmi: Fix "invalid data length" in encoder
-Message-ID: <q2gogah4suu3nftewye2l3iud2nxwdi7ykzqnagnz7npmrurgm@7icn643kozp6>
+Message-ID: <ke3anvhgm7popzmrh3eg272eczhtcmgtho6trkwleczim23lcd@dnaudbsrslhr>
 References: <20260214-qmi-encode-invalid-length-v1-0-780cb4e98b0f@oss.qualcomm.com>
  <20260214-qmi-encode-invalid-length-v1-1-780cb4e98b0f@oss.qualcomm.com>
  <aZLcO4kD5fGtLcGh@FUE-ALEWI-WINX>
  <vexuybqdbf6wx5dxlcdlcy6lwqmxmzonorjn6x5zlzdpxzi3yo@pcqbxitzed2m>
  <608ff2a7-775e-46ae-ba8b-9d9c2f8219bc@oss.qualcomm.com>
+ <q2gogah4suu3nftewye2l3iud2nxwdi7ykzqnagnz7npmrurgm@7icn643kozp6>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <608ff2a7-775e-46ae-ba8b-9d9c2f8219bc@oss.qualcomm.com>
+In-Reply-To: <q2gogah4suu3nftewye2l3iud2nxwdi7ykzqnagnz7npmrurgm@7icn643kozp6>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,37 +75,73 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Feb 18, 2026 at 10:00:22AM -0800, Jeff Johnson wrote:
-> On 2/16/2026 7:25 AM, Bjorn Andersson wrote:
-> > It might very well be that the underlying bug is my expectation that
-> > elem_size should be reflected in the struct and not only in the encoded
-> > message, and hence what I wrote in https://github.com/linux-msm/qmic.
-> > Perhaps the length-specifier of an array should always be u32?
+On Wed, Feb 18, 2026 at 12:53:03PM -0600, Bjorn Andersson wrote:
+> On Wed, Feb 18, 2026 at 10:00:22AM -0800, Jeff Johnson wrote:
+> > On 2/16/2026 7:25 AM, Bjorn Andersson wrote:
+> > > It might very well be that the underlying bug is my expectation that
+> > > elem_size should be reflected in the struct and not only in the encoded
+> > > message, and hence what I wrote in https://github.com/linux-msm/qmic.
+> > > Perhaps the length-specifier of an array should always be u32?
+> > > 
+> > > @Chris, what does the downstream generator produce here?
 > > 
-> > @Chris, what does the downstream generator produce here?
+> > Is this behavior just constrained to QMI_DATA_LEN TLVs?
+> > 
+> > I'm looking at downstream Android WLAN code and it has the same discrepancy,
+> > so it appears the code generator is always producing a u32 member in the host
+> > struct to hold a QMI_DATA_LEN member even though the actual element size as
+> > defined in the qmi_elem_info array is either sizeof(u8) or sizeof(u16).
+> > 
+> > Does this issue get fixed if we change the member in the host struct, i.e. for
+> > the issue mentioned (that I chopped off) modify:
+> > struct qmi_wlanfw_request_mem_ind_msg_v01 {
+> > -	u32 mem_seg_len;
+> > +	u8 mem_seg_len;
+> > 
 > 
-> Is this behavior just constrained to QMI_DATA_LEN TLVs?
+> Yes, that would fix the problem.
 > 
-> I'm looking at downstream Android WLAN code and it has the same discrepancy,
-> so it appears the code generator is always producing a u32 member in the host
-> struct to hold a QMI_DATA_LEN member even though the actual element size as
-> defined in the qmi_elem_info array is either sizeof(u8) or sizeof(u16).
+> But if your elem_info arrays are coming from the downstream tool, then I
+> think the correct way to fix this would be to move in the other
+> direction and turn some those u8/u16 members elsewhere into u32.
 > 
-> Does this issue get fixed if we change the member in the host struct, i.e. for
-> the issue mentioned (that I chopped off) modify:
-> struct qmi_wlanfw_request_mem_ind_msg_v01 {
-> -	u32 mem_seg_len;
-> +	u8 mem_seg_len;
+> I have the downstream code generator source here somewhere...
 > 
 
-Yes, that would fix the problem.
+I reviewed the downstream code generator source and documentation.
 
-But if your elem_info arrays are coming from the downstream tool, then I
-think the correct way to fix this would be to move in the other
-direction and turn some those u8/u16 members elsewhere into u32.
+We do generate tables matching the ath12k c-structures, i.e. variable
+length arrays are always prefixed with an uint32_t field - not a
+uint8_t or uint16_t based on elem_size.
 
-I have the downstream code generator source here somewhere...
+Looking back at the original implementation of the in-kernel
+qmi_encode(), we only read elem_size bytes from the c-structure, but we
+do so into the (little-endian) uint32_t on the stack, from which we
+encode the message and act upon the result.
+
+In qmi_decode() we decode elem_size bytes from the message into the
+(little endian) uint32_t and then write 4 bytes to the c-structure.
+
+
+The fix would as such seem to be to just update the length fields to be
+all uint32_t. The problem I see with this is that qmic [1] is the only
+publicly available code generator, and if we change it to always
+generate uint32_t length members, we also need to fix the
+encoder/decoder in libqrtr [2] - which will be an ABI breaking change.
+
+If we go the other way around, the drawback is that we no longer support
+the c-structures generated by the proprietary code generator.
+
+Worth pointing out is that the structure of the c-code is an ABI between
+the encoder/decoder, the code generator and the client - it does not
+affect the wire format.
+
+[1] https://github.com/linux-msm/qmic
+[2] https://github.com/linux-msm/qrtr
 
 Regards,
 Bjorn
+
+> Regards,
+> Bjorn
 
