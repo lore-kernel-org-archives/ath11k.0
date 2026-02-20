@@ -4,68 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 791B1C531F8
-	for <ath11k@archiver.kernel.org>; Fri, 20 Feb 2026 03:21:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8CC6C5AD46
+	for <ath11k@archiver.kernel.org>; Fri, 20 Feb 2026 17:53:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=vBCVCITHSPHOtdPeXeQFYR0LVpn/8nDrkgwjl8SXPCA=; b=qB6XbNCFLA7v1q6YvSRCx74YgM
-	qLLbKchHVKaVTFyTo3ZxRrT9L+lnADQlN/gIwLfNttxLPP3HO7qNC+a88I71aMPKlzelQuMrrN7VA
-	4dIdelVOfGZxThvsoHFXGQBAJv00L2Z0bIFmfz1MboHvGDgtc27GTVaru+EN2GNSCKHpv9kchpuZ9
-	Y9xiuQ+5cxsO8+B2TZ8+92bxiwgJ3ZNJJIp2hsocHixVtOyYmfiho2KbgIfWYDWTsW69CQ+4pXgF5
-	oZ4lhJ2jV4Bh2QTKUnK0lGLrbi9F57M1ctgYuqEQjL67cI5+1fbTmNkMsAiYyoamZ9LF/5qR4nagb
-	y+LoYdrA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=0srCeho4DTy1RFWev4F97XRwpqyAchfSz4tNZb1F+Ug=; b=cR0qRviBOgdYQ0FDlzTY20orFu
+	SL/oeS8uOfnea+GbFXFHML4RSxVJCLEOD8/gNGzjsnS676REzQPRKsIDTPgndFgE7k8+h/raiZvXx
+	J2UJcWc7FiJZDG48oN/lYPy64pFc3APG6DERpqiP2FAUMAq6m4wI5OL0sQYQEw7Ii3H3xA+n/54sM
+	Hpl0ZwCdcKFvufumaCe90tgumiLRA3yYTa/ByF7e0dUMgdw5vraSYNaH57XA0rX8ehGzLXHC34ZLO
+	LoNJw3erAZ6J/00iCjqNR6qYJUn3RbiCq9TaxD4SIBeHL6S98hvA+Uenq34nKad99X87tZDckP0v2
+	Pb0nz9Sw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vtH4d-0000000D9m6-1FfB;
-	Fri, 20 Feb 2026 03:20:59 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vtUhE-0000000FPx2-20UR;
+	Fri, 20 Feb 2026 17:53:44 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vtH4a-0000000D9ld-3GS1;
-	Fri, 20 Feb 2026 03:20:58 +0000
+	id 1vtUhB-0000000FPwD-22a7;
+	Fri, 20 Feb 2026 17:53:42 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0F4B540670;
-	Fri, 20 Feb 2026 03:20:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 938E0C4CEF7;
-	Fri, 20 Feb 2026 03:20:51 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8306843CD3;
+	Fri, 20 Feb 2026 17:53:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2B9EC116C6;
+	Fri, 20 Feb 2026 17:53:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771557652;
-	bh=wgWPPCRutcpO0Vhe/8Eobv+T7qlKLjGdFeswF+1azuI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WTJJkWdwSDM3vKCDuXGH7+QA7AxvOe4/p4VvANZJGC1UXLvxckICmzFt1ZsiEmlgP
-	 MqvGYf/lrB5t0UnDAUrz4B6LwFK/8DZaCy7Ci63LpyUE8ESBH70GxDhq7OZYSdHKG9
-	 fvLtjZgnUCseWLjoB+PgbE4XHIOTBOA6CjQGO5+RwZWYCuQ6LpEQVetCmzg4i7ieta
-	 VlJ3zicDCTHQJRRdW4m2wzDy7/TEbEh+Z2/6houW6nc8Ja1gYmGrwP42KkwmYJ/TrM
-	 TpdPUk7fZAiGYeHxYtTgAUEnGY+/Yj/35XpVnYmMWQgtMQaBx/guFVhJrgEZRovJXQ
-	 sgHkhwHnXdYGg==
-Date: Thu, 19 Feb 2026 21:20:49 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: Alexander Wilhelm <alexander.wilhelm@westermo.com>, 
-	Chris Lew <christopher.lew@oss.qualcomm.com>, Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
-	Jeff Johnson <jjohnson@kernel.org>, ath11k@lists.infradead.org, ath12k@lists.infradead.org
-Subject: Re: [PATCH 1/2] soc: qcom: qmi: Fix "invalid data length" in encoder
-Message-ID: <jys6bzcbdl5wly255nlcyjqrq4tehxpez2ydybm4ae7dalqxmq@s3xcuzy7ckqa>
-References: <20260214-qmi-encode-invalid-length-v1-0-780cb4e98b0f@oss.qualcomm.com>
- <20260214-qmi-encode-invalid-length-v1-1-780cb4e98b0f@oss.qualcomm.com>
- <aZLcO4kD5fGtLcGh@FUE-ALEWI-WINX>
- <vexuybqdbf6wx5dxlcdlcy6lwqmxmzonorjn6x5zlzdpxzi3yo@pcqbxitzed2m>
- <608ff2a7-775e-46ae-ba8b-9d9c2f8219bc@oss.qualcomm.com>
- <q2gogah4suu3nftewye2l3iud2nxwdi7ykzqnagnz7npmrurgm@7icn643kozp6>
- <ke3anvhgm7popzmrh3eg272eczhtcmgtho6trkwleczim23lcd@dnaudbsrslhr>
- <1ad37b2f-5f3c-493e-ba3c-fec1a0377767@oss.qualcomm.com>
+	s=k20201202; t=1771610020;
+	bh=zNATZPRtqPD3ySxmy8GYe+CARDOEJ9t0TrF6n5pOmTE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B/kT1Cv5HlExiMa1VET81TqQAYYr9tLcOCAnJJOdYaK/sPblFipClpHYyjogdEkG0
+	 HKk85M77RiFqctmJv2TKiFzu0iTYJ98/4FyPJyPHRLzUFPff0p9dtjSyWqTnpNl151
+	 hIn5yV2EWQmaVjj4NBWUpNo7stuvoREiuWcuUE51B11JG4W46absJE1rza03DKOni7
+	 yffyAmnqEx/nFTM8RU+HQMaX7rJuM2MSqY/sKZfNI53l9saPewBvCrwSwMBwrVqkld
+	 KdLhrcXUnSMVKKQMzK+kbVvcnrDlhrlQjh9QUSv13NXam3yqbRhppYpAq5tKj0a3Ua
+	 WCmRfCeSGkzeg==
+Message-ID: <3b0d26bd-35ff-40af-af8e-fbc1dd0d31cd@kernel.org>
+Date: Fri, 20 Feb 2026 09:53:38 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1ad37b2f-5f3c-493e-ba3c-fec1a0377767@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH wireless-next 0/2] wifi: mac80211: fetch FILS and
+ unsolicited probe response templates by link ID
+To: Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>,
+ Jeff Johnson <jjohnson@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
+ Shayne Chen <shayne.chen@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Johannes Berg <johannes@sipsolutions.net>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org, ath12k@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Sriram R <quic_srirrama@quicinc.com>
+References: <20260220-fils-prob-by-link-v1-0-a2746a853f75@oss.qualcomm.com>
+From: Jeff Johnson <jjohnson@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20260220-fils-prob-by-link-v1-0-a2746a853f75@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260219_192056_880542_B9535A20 
-X-CRM114-Status: GOOD (  32.47  )
+X-CRM114-CacheID: sfid-20260220_095341_549522_66A677B7 
+X-CRM114-Status: GOOD (  10.75  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,77 +81,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Feb 19, 2026 at 01:25:36PM -0800, Jeff Johnson wrote:
-> On 2/19/2026 11:18 AM, Bjorn Andersson wrote:
-> > I reviewed the downstream code generator source and documentation.
-> > 
-> > We do generate tables matching the ath12k c-structures, i.e. variable
-> > length arrays are always prefixed with an uint32_t field - not a
-> > uint8_t or uint16_t based on elem_size.
-> > 
-> > Looking back at the original implementation of the in-kernel
-> > qmi_encode(), we only read elem_size bytes from the c-structure, but we
-> > do so into the (little-endian) uint32_t on the stack, from which we
-> > encode the message and act upon the result.
-> > 
-> > In qmi_decode() we decode elem_size bytes from the message into the
-> > (little endian) uint32_t and then write 4 bytes to the c-structure.
-> > 
-> > 
-> > The fix would as such seem to be to just update the length fields to be
-> > all uint32_t. The problem I see with this is that qmic [1] is the only
-> > publicly available code generator, and if we change it to always
-> > generate uint32_t length members, we also need to fix the
-> > encoder/decoder in libqrtr [2] - which will be an ABI breaking change.
+On 2/19/2026 11:42 AM, Raj Kumar Bhagat wrote:
+> Currently, the FILS discovery and unsolicited probe response templates
+> are always fetched from the default link of a virtual interface in both
+> Multi-Link Operation (MLO) and non-MLO cases. However, in the MLO case
+> there is a need to fetch these templates from a specific link instead of
+> the default link.
 > 
-> And IMO that is a deal breaker since it would break the interface with all
-> existing legacy firmware.
+> Hence, add support for fetching these templates based on the link ID from
+> the corresponding link data.
 > 
+> ---
+> Sriram R (2):
+>       wifi: mac80211: fetch FILS discovery template by link ID
+>       wifi: mac80211: fetch unsolicited probe response template by link ID
+> 
+>  drivers/net/wireless/ath/ath11k/mac.c           |  4 +--
+>  drivers/net/wireless/ath/ath12k/mac.c           |  6 ++--
 
-No, the firwmare-facing encoded length in the messages are currently all
-little-endian elem_sized, and this would be unchanged. It's merely a
-question about the ABI between code generator, encoder/decoder, and the
-client code.
+Acked-by: Jeff Johnson <jjohnson@kernel.org> # for drivers/net/wireless/ath
 
-> > 
-> > If we go the other way around, the drawback is that we no longer support
-> > the c-structures generated by the proprietary code generator.
-> > 
-> > Worth pointing out is that the structure of the c-code is an ABI between
-> > the encoder/decoder, the code generator and the client - it does not
-> > affect the wire format.
-> > 
-> > [1] https://github.com/linux-msm/qmic
-> > [2] https://github.com/linux-msm/qrtr
-> 
-> Going back to the original implementation that reads and writes a u32 on the
-> stack, can we stick with that but add endian logic that correctly converts
-> between u32 host endian on the stack and either u8 or u16 little endian in the
-> messages? Is this specific to QMI_DATA_LEN TLVs?
+>  drivers/net/wireless/mediatek/mt76/mt7915/mcu.c |  4 +--
+>  drivers/net/wireless/mediatek/mt76/mt7996/mcu.c |  6 ++--
+>  include/net/mac80211.h                          |  8 +++--
+>  net/mac80211/tx.c                               | 40 ++++++++++++++++---------
+>  6 files changed, 44 insertions(+), 24 deletions(-)
+> ---
+> base-commit: 37a93dd5c49b5fda807fd204edf2547c3493319c
+> change-id: 20260220-fils-prob-by-link-eef176414f1b
 > 
 
-I gave it some more thought, and discussed a bit with Chris Lew.
-
-If we change qmic to produce uint32_t length entries and align the
-in-kernel interfaces to use 32-bit lengths the kernel works fine - and
-thanks to Alexander's work, should support both endianes (will double
-check).
-
-For the userspace library, the decoder already writes 32-bit fields
-(into the u8/u16...) so the situation for currently generated c-structs
-will be unchanged and it will be correct for 32-bit fields.
-
-The encoder is reading u8/u16 from the c-struct and encodes this. Just
-as with the structs in athNNk, we can change them to 32-bit without
-impacting the encoder; as long as we don't change the encoder...
-The only problem I think we have left is that we can't fix the userspace
-encoder - as this would be incompatible with current clients (u8/u16
-can't be read as u32).
-
-
-I'll take another pass tomorrow, to review this, review Alexander's work
-once more, and prepare some patches.
-
-Regards,
-Bjorn
 
