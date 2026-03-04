@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00494EC1425
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1776E67A8A
 	for <ath11k@archiver.kernel.org>; Wed,  4 Mar 2026 12:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,46 +12,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uZ7SdU3hV5AjOcTeMYWKR/5vOk71Ft3xAJlUBLnP+zI=; b=N4fdkTu56QUfkkzKrqK05SIygK
-	VI83tiWku6k5LMesf5AhHbGkqouXJYk4DS9e7N6z+MgsD6P5d7U4g5ea2qxznw4wYVI4UDnI6a1fu
-	I85SdzAOHj7wBvinF4doVsWs8Dk7XIXKdgqVdaGhfmYdTd2UCGfZWviATjc5v6s2mDydLgLvyNvnT
-	l+pSsjsWD8DGQaLEc+RKJFhyL/g7I59B0dNIeSLcaQ5B4jCfG3UKYGKUAyClt7DCp2kHLlJ6GJ67z
-	3r4TGq+2YIFPPMj0VKBFYXjG2Nrha/29ZqNEkKBT9ZO1JQyY0Pjid+QnP3kx0SlMAEi7a7iRbfyz4
-	oaUREECQ==;
+	bh=OT9gZtimC6f+n46cZlm3ae87KN71oriUYBgKwjfa7kM=; b=v3vH+ufl6GiuJv1SfsGW6SAOOB
+	XqGJt6Yge/pHtBemxeF1wixjdKOqGZ5Zu1EkLGP4/hAsVs7peN5ZeFSpJm+xBbf9meemgk428n7yi
+	edsmOxTdtx5BdkulvfPBJS1iCyX6f9eRwSSaWdHqJsWyBcqrNtVXhGIpCcASJOesTbdGFaWUBzC8G
+	gDwLBjVTO/p7CQpbDc1brb2p203lN0ny3elG71kDpJM14B6bv4sWcBkvH5SqQ0PCvsOlVPPHmlgaa
+	fZKCkEt/LvU5Ulk76Yi4ZUL6zPZjcAYnC886dSJX4ZBNlSydRBPDe5ATah+ItjOvRSJz3Vvy6IsAx
+	Tb0MKR+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxldw-0000000HCXD-0QjO;
-	Wed, 04 Mar 2026 12:48:00 +0000
+	id 1vxldv-0000000HCWy-3X9G;
+	Wed, 04 Mar 2026 12:47:59 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxlds-0000000HCV7-2jYN
+	id 1vxlds-0000000HCV6-2SaL
 	for ath11k@lists.infradead.org;
-	Wed, 04 Mar 2026 12:47:59 +0000
+	Wed, 04 Mar 2026 12:47:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1772628474;
-	bh=hof7rouX38nmEzoDefI3x1AgAGZp8Hxze5p0FV+9bmU=;
+	bh=qTa6bNhVs6NpYSFFFtl049zj5lWrm0xAmHqh8jsaWps=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=T1RNa96XA6dPBKEZNn0Ri8Wk7cTMaTxMj0jc98kXGNAQPW96lzss7wqFHq+f9bhsh
-	 gQcDu47A7ou3GOzljzFmwUMymuoxBTdV4MdgnrM4FBQvd2nc7+XqNL1w3rc/SGS/SD
-	 D/WbBDCQldYyq3ECWsUN5kTjoUumUDUu0xfTWJemMKaTds2mz0xsmASworAcHzqy84
-	 i4AXsI5AYtImisZOPIF7pZx1ExsuBY2X+7U7BdA4VEwUQnKu9EEGMLTOdcKoLKWZlK
-	 76gY0NJVPUbjja1ftPrSDE0hM2q6g8ncK3iVDyDJ/vA8SK6QOP/GI794iP9qwpuWgN
-	 W3AG39+C3npjw==
+	b=C+wWQp7abmiobMdni+eLSaFYWOu/qYstOToE+lprOAMWUexamTiMGzTBlWbUqpQIc
+	 B2v5mKT5svjW7BhPNYlglFm34u7ZvMKSajB0R1xmNwKZ/OPG6OyWejpYMsIwnOPPvo
+	 2t5hs05zkcR93h0Bo4YjFbVzWsEbn8NWZH9jQQAfDcgqvJztxwO0pBfgUGyQGzeNkv
+	 1H/ZDxn0IypIz38vFFHNtKYpuyoWBVwZ02ATw7lU/J98sPg5mXVc+aY7VIflGOLLdD
+	 kbCCUzcR6jpk7FxyS/xcmTbqFJiLJuLwZ+ZnJyej02PbMsHYn09CX8WPJZz+k+a+3a
+	 y47CH5CDmxmuA==
 Received: from [192.168.1.53] (unknown [IPv6:2a01:6243:64f:0:a5a5:9171:d9e9:ce23])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: mattl)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 271D717E0EAA;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8809617E129E;
 	Wed,  4 Mar 2026 13:47:54 +0100 (CET)
 From: Matthew Leach <matthew.leach@collabora.com>
-Date: Wed, 04 Mar 2026 12:47:14 +0000
-Subject: [PATCH RFC 2/3] net: ath11k: add firmware lockup detection and
- recovery
+Date: Wed, 04 Mar 2026 12:47:15 +0000
+Subject: [PATCH RFC 3/3] net: ath11k: add lockup simulation via debugfs
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260304-ath11k-lockup-fixes-v1-2-67143c2fe2a1@collabora.com>
+Message-Id: <20260304-ath11k-lockup-fixes-v1-3-67143c2fe2a1@collabora.com>
 References: <20260304-ath11k-lockup-fixes-v1-0-67143c2fe2a1@collabora.com>
 In-Reply-To: <20260304-ath11k-lockup-fixes-v1-0-67143c2fe2a1@collabora.com>
 To: Jeff Johnson <jjohnson@kernel.org>
@@ -60,8 +59,8 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
  Matthew Leach <matthew.leach@collabora.com>
 X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260304_044756_843519_BC6CFC06 
-X-CRM114-Status: GOOD (  13.79  )
+X-CRM114-CacheID: sfid-20260304_044756_776147_71F6AB4B 
+X-CRM114-Status: GOOD (  15.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,117 +75,132 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Detect firmware lockup when a WMI command times out and TX descriptor
-exhaustion occurs within ATH11K_LOCKUP_DESC_ERR_RANGE_HZ (1 minute). In
-this case, consider the firmware dead.
+Add a debugfs command to simulate a firmware lockup.
 
-When a lockup is detected, queue reset work to restart the chip.
-After reset completes, clear the lockup detection state.
+This does not hang the hardware. Instead, it forces the driver down an
+error path that reproduces the sequence observed during real lockups:
+
+  ath11k_pci 0000:03:00.0: failed to transmit frame -12
+  ath11k_pci 0000:03:00.0: failed to transmit frame -12
+  ath11k_pci 0000:03:00.0: failed to transmit frame -12
+  ...
+  ath11k_pci 0000:03:00.0: wmi command 28680 timeout
+  ath11k_pci 0000:03:00.0: failed to submit WMI_MGMT_TX_SEND_CMDID cmd
+  ath11k_pci 0000:03:00.0: failed to send mgmt frame: -11
+
+This allows validation of the firmware lockup detection and recovery
+mechanism without requiring a real hardware failure.
 
 Signed-off-by: Matthew Leach <matthew.leach@collabora.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h |  2 ++
- drivers/net/wireless/ath/ath11k/mac.c  |  6 ++++++
- drivers/net/wireless/ath/ath11k/wmi.c  | 24 +++++++++++++++++++++++-
- 3 files changed, 31 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/core.h    | 1 +
+ drivers/net/wireless/ath/ath11k/debugfs.c | 7 ++++++-
+ drivers/net/wireless/ath/ath11k/hal.c     | 7 +++++--
+ drivers/net/wireless/ath/ath11k/htc.c     | 2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c     | 6 +++++-
+ 5 files changed, 18 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a0d725923ef2..221dcd23b3dd 100644
+index 221dcd23b3dd..44b02ae1e85b 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -70,6 +70,7 @@ extern bool ath11k_ftm_mode;
- #define ATH11K_RESET_FAIL_TIMEOUT_HZ (20 * HZ)
- #define ATH11K_RECONFIGURE_TIMEOUT_HZ (10 * HZ)
- #define ATH11K_RECOVER_START_TIMEOUT_HZ (20 * HZ)
-+#define ATH11K_LOCKUP_DESC_ERR_RANGE_HZ (60 * HZ)
- 
- enum ath11k_supported_bw {
- 	ATH11K_BW_20	= 0,
-@@ -1039,6 +1040,7 @@ struct ath11k_base {
- 
+@@ -1041,6 +1041,7 @@ struct ath11k_base {
  	struct ath11k_dbring_cap *db_caps;
  	u32 num_db_cap;
-+	u64 last_frame_tx_error_jiffies;
+ 	u64 last_frame_tx_error_jiffies;
++	bool simulate_lockup;
  
  	/* To synchronize 11d scan vdev id */
  	struct mutex vdev_id_11d_lock;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 748f779b3d1b..a0b4d60da330 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9,6 +9,7 @@
- #include <linux/etherdevice.h>
- #include <linux/bitfield.h>
- #include <linux/inetdevice.h>
-+#include <linux/jiffies.h>
- #include <net/if_inet6.h>
- #include <net/ipv6.h>
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 0c1138407838..ca0b72a3e0b0 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -356,7 +356,8 @@ static ssize_t ath11k_read_simulate_fw_crash(struct file *file,
+ 	const char buf[] =
+ 		"To simulate firmware crash write one of the keywords to this file:\n"
+ 		"`assert` - this will send WMI_FORCE_FW_HANG_CMDID to firmware to cause assert.\n"
+-		"`hw-restart` - this will simply queue hw restart without fw/hw actually crashing.\n";
++		"`hw-restart` - this will simply queue hw restart without fw/hw actually crashing.\n"
++		"`lockup` - simulate a firmware lockup without the h/w actually hanging.\n";
  
-@@ -6546,6 +6547,10 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
+ 	return simple_read_from_buffer(user_buf, count, ppos, buf, strlen(buf));
+ }
+@@ -413,6 +414,10 @@ static ssize_t ath11k_write_simulate_fw_crash(struct file *file,
+ 		ath11k_info(ab, "user requested hw restart\n");
+ 		queue_work(ab->workqueue_aux, &ab->reset_work);
+ 		ret = 0;
++	} else if (!strcmp(buf, "lockup")) {
++		ath11k_info(ab, "simulating lockup\n");
++		ab->simulate_lockup = true;
++		ret = 0;
+ 	} else {
+ 		ret = -EINVAL;
+ 		goto exit;
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index e821e5a62c1c..e01fb17a4734 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -691,7 +691,7 @@ int ath11k_hal_srng_dst_num_free(struct ath11k_base *ab, struct hal_srng *srng,
  
- 	ret = ath11k_dp_tx(ar, arvif, arsta, skb);
- 	if (unlikely(ret)) {
-+		scoped_guard(spinlock_bh, &ar->ab->base_lock) {
-+			ar->ab->last_frame_tx_error_jiffies = jiffies_64;
-+		}
+ 	tp = srng->u.dst_ring.tp;
+ 
+-	if (sync_hw_ptr) {
++	if (sync_hw_ptr && !ab->simulate_lockup) {
+ 		hp = *srng->u.dst_ring.hp_addr;
+ 		srng->u.dst_ring.cached_hp = hp;
+ 	} else {
+@@ -743,7 +743,7 @@ u32 *ath11k_hal_srng_src_get_next_entry(struct ath11k_base *ab,
+ 	 */
+ 	next_hp = (srng->u.src_ring.hp + srng->entry_size) % srng->ring_size;
+ 
+-	if (next_hp == srng->u.src_ring.cached_tp)
++	if (next_hp == srng->u.src_ring.cached_tp || ab->simulate_lockup)
+ 		return NULL;
+ 
+ 	desc = srng->ring_base_vaddr + srng->u.src_ring.hp;
+@@ -828,6 +828,9 @@ void ath11k_hal_srng_access_begin(struct ath11k_base *ab, struct hal_srng *srng)
+ 
+ 	lockdep_assert_held(&srng->lock);
+ 
++	if (ab->simulate_lockup)
++		return;
 +
- 		ath11k_warn(ar->ab, "failed to transmit frame %d\n", ret);
- 		ieee80211_free_txskb(ar->hw, skb);
- 	}
-@@ -9281,6 +9286,7 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
- 				atomic_dec(&ab->reset_count);
- 				complete(&ab->reset_complete);
- 				ab->is_reset = false;
-+				ab->last_frame_tx_error_jiffies = 0;
- 				atomic_set(&ab->fail_cont_count, 0);
- 				ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset success\n");
- 			}
+ 	if (srng->ring_dir == HAL_SRNG_DIR_SRC) {
+ 		srng->u.src_ring.cached_tp =
+ 			*(volatile u32 *)srng->u.src_ring.tp_addr;
+diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+index 4571d01cc33d..b05d04a1f5e8 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.c
++++ b/drivers/net/wireless/ath/ath11k/htc.c
+@@ -208,7 +208,7 @@ static int ath11k_htc_process_trailer(struct ath11k_htc *htc,
+ 			break;
+ 		}
+ 
+-		if (ab->hw_params.credit_flow) {
++		if (ab->hw_params.credit_flow && !ab->simulate_lockup) {
+ 			switch (record->hdr.id) {
+ 			case ATH11K_HTC_RECORD_CREDITS:
+ 				len = sizeof(struct ath11k_htc_credit_report);
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 40747fba3b0c..7d9f0bcbb3b0 100644
+index 7d9f0bcbb3b0..27d6d4a2f803 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -7,8 +7,11 @@
- #include <linux/ctype.h>
- #include <net/mac80211.h>
- #include <net/cfg80211.h>
-+#include <linux/cleanup.h>
- #include <linux/completion.h>
- #include <linux/if_ether.h>
-+#include <linux/jiffies.h>
-+#include <linux/spinlock.h>
- #include <linux/types.h>
- #include <linux/pci.h>
- #include <linux/uuid.h>
-@@ -325,9 +328,28 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
- 			}), WMI_SEND_TIMEOUT_HZ);
+@@ -345,9 +345,13 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
+ 
+ 		if (time_in_range64(ab->last_frame_tx_error_jiffies,
+ 				    range_start, jiffies_64) &&
+-		    queue_work(ab->workqueue_aux, &ab->reset_work))
++		    queue_work(ab->workqueue_aux, &ab->reset_work)) {
+ 			ath11k_err(wmi_ab->ab,
+ 				   "Firmware lockup detected.  Resetting.");
++
++			/* Assume that reset gets us out of lockup. */
++			ab->simulate_lockup = false;
++		}
  	}
  
--	if (ret == -EAGAIN)
-+	if (ret == -EAGAIN) {
-+		u64 range_start;
-+
- 		ath11k_warn(wmi_ab->ab, "wmi command %d timeout\n", cmd_id);
- 
-+		guard(spinlock_bh)(&ab->base_lock);
-+
-+		if (ab->last_frame_tx_error_jiffies == 0)
-+			return ret;
-+
-+		range_start =
-+			(jiffies_64 > ATH11K_LOCKUP_DESC_ERR_RANGE_HZ) ?
-+				jiffies_64 - ATH11K_LOCKUP_DESC_ERR_RANGE_HZ :
-+				0;
-+
-+		if (time_in_range64(ab->last_frame_tx_error_jiffies,
-+				    range_start, jiffies_64) &&
-+		    queue_work(ab->workqueue_aux, &ab->reset_work))
-+			ath11k_err(wmi_ab->ab,
-+				   "Firmware lockup detected.  Resetting.");
-+	}
-+
  	if (ret == -ENOBUFS)
- 		ath11k_warn(wmi_ab->ab, "ce desc not available for wmi command %d\n",
- 			    cmd_id);
 
 -- 
 2.53.0
