@@ -4,87 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A9CEFED2F5
-	for <ath11k@archiver.kernel.org>; Fri, 13 Mar 2026 00:16:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6BA7106FD97
+	for <ath11k@archiver.kernel.org>; Fri, 13 Mar 2026 07:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=F3YA59Mp4HTuyJkhwuElaXOAlXnXSvbB0FwywcY2nbs=; b=l1oVtcCBIJdDEzt/93Hlvo95EW
-	YIJesjezwugpZlwn/yF3p5RJ/1Ah8fLsO411wyebc0Jkq6mebPE/2n2Iu7WWfR1POsA0p+wkBPGJB
-	YFCC5EAZW7tD1kRsawbwTJN8vtcLUHAZ6GFcxaYSlvtoX3MyG8GRA9Cbt32VN7NJ1vUpcINTf7oqZ
-	xCCOT1/TU1G3QqbfLp9mcZTXG8KBtGRb0FNXOIe7yyECjepymGnJ6yZU5I3RR126Qy9GlwJgaZ/NS
-	vH72w4cnf3y3PcX9v6n5hUVmMCCtKmIjL1kf3w+x+96M9XLSjaThmZxUG8OeujWBbQ4SH3Ym/n77f
-	qfsuOpEg==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=i2IlKIi4brx2n2555N+kXUhgIRruRM2KVO7+XTSNjAw=; b=X7Y62wbOO7o2V6kvVSGxmwbxL+
+	dF3DCzoeOQwDuPGEK14ANS7cPhJ4Wp0xzbgRFfDJnMZrvJ1+DIJDG+NICp2WU4R5rgEVC8L2v/NHv
+	s6vNUy82mXDzFJ0UxSZKFdEv66Opc3x06CnSYt467V7CKxLx048H5GGduRhf28Es5S894+xYDHuLU
+	BL0wuqaiJ1t8MITNd75EcDM1X22b5Lw0QSahpgSm+q2xS2r8ef35QsHSNx9mJeb25T1cOkH0VnslN
+	2hX87qXBiOkxzUkgfsHMsjtzhIMtR4scTMK6P7brMZQd9CY6R5klaZAEAigDZ/gIFNXe81FAyLXTm
+	3csmh7fw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0qCc-0000000FtdJ-0cvA;
-	Fri, 13 Mar 2026 00:16:30 +0000
-Received: from mail-yx1-xb130.google.com ([2607:f8b0:4864:20::b130])
+	id 1w0wkv-0000000H120-0X90;
+	Fri, 13 Mar 2026 07:16:21 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0qCZ-0000000Ftch-3czZ
+	id 1w0wkt-0000000H10d-0Q9l
 	for ath11k@lists.infradead.org;
-	Fri, 13 Mar 2026 00:16:28 +0000
-Received: by mail-yx1-xb130.google.com with SMTP id 956f58d0204a3-64c97997b0fso1366967d50.3
-        for <ath11k@lists.infradead.org>; Thu, 12 Mar 2026 17:16:27 -0700 (PDT)
+	Fri, 13 Mar 2026 07:16:20 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62D5th473342929
+	for <ath11k@lists.infradead.org>; Fri, 13 Mar 2026 07:16:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	i2IlKIi4brx2n2555N+kXUhgIRruRM2KVO7+XTSNjAw=; b=kYOta4Hp6PVm9IEo
+	z0kzYQ7SouURAyJ6rUTTvPIoClsZXCgEpgm9eIegOOHN5QFlkHFjyubBt7hd7hyE
+	cbOMlzo76yJn1yxqMtA+ZqwPGfS3bCV34TogNZSJ5/VCPWu5j49ux1+sRj+B651n
+	QGMQiDz/iJd05KRzSFJVg/BFBYj4+WjCDwsdxWkF38g0A75m5ktyIstd2V8SbjET
+	zdzuNBkA1Zws7sfX9UWbOnpwy2H1OrCtQuJG/DgGhjZ0x0G+e++0ROoTnPyA5xE8
+	L1G9gTSRqrfL0RXA+uVzBkq+8GWOL5dpt1EhWOIeq/L6JCiZfHVex8W+W5phkdJb
+	rpJ2HA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cus9w3ng9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Fri, 13 Mar 2026 07:16:17 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2ae6dd98043so19887085ad.3
+        for <ath11k@lists.infradead.org>; Fri, 13 Mar 2026 00:16:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773360987; x=1773965787; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=F3YA59Mp4HTuyJkhwuElaXOAlXnXSvbB0FwywcY2nbs=;
-        b=PIjsGwhJZY5fqUyNN0WGHARVTWr1iWJju0eoXvmP99mUV1lHH93jjdmo5+oKTC24ZA
-         v1fr4VnBdMVY2Epauyn0Gy8lTsylf0eglQVf1tvYG4sHmz6xYGjQCV+7W5djliMH9jfl
-         2sh/VBRuNZs0GyHrC9h19t4U3JVDl+1dTc4+/PNe3xuLLrQ6CCupAvEGLwR2YbuOLl24
-         8ceLbrhWZ1mmSrhHX5oRr+n3Uh/yl8k8qkct5SE51jT5yqkFVa5qlw7A8KM2KF5CZ+bB
-         0yyD5o6XOhYfaOOCkQs7RKFXT+EZv/Q05/ygAkBLcO+Q/zSogZFp0037J8jY8MKRjAZY
-         2ORQ==
+        d=oss.qualcomm.com; s=google; t=1773386177; x=1773990977; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i2IlKIi4brx2n2555N+kXUhgIRruRM2KVO7+XTSNjAw=;
+        b=DtcyqDsr2cacgI7psiV4R4C4ALOTLx01gJ+fJNX0Ms1ClbxhEqtlSX8KFbrZYKpZvf
+         CoOorLNDZglz+xQ3R8Lg98icjBgObBKAqfkw4CmRa62GbY3Jimdl7XE49l2ipPKLO1x+
+         jvi1itVEWDbSJa2BWLa8k9ujiIwCy3kwhWXEk1tFU4zQKWXLwGYHBsd10b4hfKDipfJ/
+         CJdOaFdoaMWTYTDQjOpMxu6N783Uw/Kf8EjZr0y5xVFb3U4LvjCQHkq7XZiukFR9ld5g
+         SN63sMrGXofN1WqCWZqCxHbStGkaus0X0jd4MkHuz6+QkOl9MaqttlX89QCFI/9J4oSF
+         o1KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773360987; x=1773965787;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F3YA59Mp4HTuyJkhwuElaXOAlXnXSvbB0FwywcY2nbs=;
-        b=UFwlCANrpEoEWJoTiHtzVlMcLEEx6ybxKZQgyVugJPI/iq4hBv4Up6ZuEBLplfhbep
-         VVxK+U6RYmik8waRtbiNeJbibz1REY4/PTfNb8IvtyDdtFbLgNQDa8Fgjpg4VysKwMOh
-         VW1mU7ZuEfzZ/cO2QI0m19WnUvo22P6IA2gJGMayBF0VgFhXd1NRxS4RHXa6nOMdvrxv
-         NDS3Pq+5gJrVtdDGtslbYr0MmSGeJtGYi54EgmyXvwnEj6oiVYRnwz1Gj1Sg8FOsj//0
-         +BIDw4I20gZYorU8Uxx/S/FxH2Bvd922cLvBW+3EpzAfVpSsCTUWw07ZbUG7ioJXvbln
-         /8Og==
-X-Forwarded-Encrypted: i=1; AJvYcCUTo6XpjSlHpzulJJ43GwoEO6SMZG2Dr5iA+T6KMJdHRHivh3ejNqk4BCdvQsAL8xDOiMLfLbc=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz/sco/r6uJZVCt5v1fBStlDX86fJu3dppnBOH69BZ+qu4w09Mh
-	iSsP3yTZq8LODwH2pmePE9ZZiyfflfe9WCcIJlRUsOiLwq2ALTz0Ni4Z
-X-Gm-Gg: ATEYQzxqDJLOfT2gfUiVLYSapaSyQngdTYrEtcEW9lQo3XZd10Z2PxHZ2Dr/VRaFPbj
-	No8ReStpb96MgSHH+iZdvOOMDSeawI/VzL9SRD2k+2D6FTQcoVyLpH4i+2ri6herRS13atBlJmU
-	XdgHFbDH5uJlFBByeSdi8FQdcnczhM0SX01aRVhLoXizdHpp7ddpX5a6UmMWh2aLsMs/r7fJdKE
-	hRpaQ7u3vh8a7p0DWATmXWGJgRZMH8pe1QGpjiwNbZKHwqCUY+ny/7cqW5Ofi1ulmD+CeqVpkDj
-	d1Ia12oqtNAlnEVoSdmKlNZLrxMRYJlbm3thtHMYpgTiNSdL1sS367TzU6fxjPljCYAUYgrUpPv
-	Trf99JRsdtsneZlegl+8/wbHdlosf/QWh+MqBAvGYv/3B0LlLOM1Cqk410AR/BPu5oRwZJtLls3
-	27hvcSHypJZgYHg9+09sby3VAS0ULA9orZqaGrQuL4uO/Tn0vOClh1ew==
-X-Received: by 2002:a53:c448:0:b0:64c:9fd7:676a with SMTP id 956f58d0204a3-64e630dc827mr1182932d50.83.1773360986740;
-        Thu, 12 Mar 2026 17:16:26 -0700 (PDT)
-Received: from ryzen ([2601:644:8000:56f5::8bd])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64e65a405c5sm157460d50.2.2026.03.12.17.16.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2026 17:16:26 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: Jeff Johnson <jjohnson@kernel.org>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	ath11k@lists.infradead.org (open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER),
-	linux-kernel@vger.kernel.org (open list),
-	linux-hardening@vger.kernel.org (open list:KERNEL HARDENING (not covered by other areas):Keyword:\b__counted_by(_le|_be)?\b)
-Subject: [PATCH ath-next] wifi: ath11k: use kzalloc_flex
-Date: Thu, 12 Mar 2026 17:16:08 -0700
-Message-ID: <20260313001608.118294-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.53.0
+        d=1e100.net; s=20251104; t=1773386177; x=1773990977;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i2IlKIi4brx2n2555N+kXUhgIRruRM2KVO7+XTSNjAw=;
+        b=iMIqIQoimBSe6mT2MgKvxV1qI1aPSlb0VOXlxVfVymIcfklIZBbQvl0J+6ty/z4u7T
+         LPGvdS4rg7Gq6fxI1jmMjqnZwoxpIbtSErTCpFW8a9xWbnVIaLNq/x8UuK4bcewgDJb9
+         7g0yuW8JW0MJgIedNmNYs9wyfFOJbcjLkrXzeFdwioq5p0ZgEm/l+I8t2AtxnQ+wq5FQ
+         NKeHoNtkrN29e/FyVZa2zkOk6dor5qh9LH/FdSsLq/tELufwTP9t63TSowQOJIt/kM2j
+         Hm3pSjXh4SbV69k7f3jV/uz3CvIucbKowmjiTl3alGa3cp772BR0ZLKGVbcbYuu7eOqF
+         k9Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCWlP+nttJAVQfwpSzNbDXoBNKJpZs+iptTe2tGQoPKEQg1Hp9qiCP5WKse/MU2tPuTfykaPkzU=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw1D98WO9juQaSwACutm6RlA6ZE7Y88cTmydDynCfJFJDOGUFK0
+	GftqbqcFKKAaZGcWlcSdP9Qtqq18EYxtxjsBCnBu1h0wbPACUolDdxX5hNA/5slqQXC7FIFBgUn
+	+MStKp7uC6oMnTz9/qLnSokOREXZMztf5uNeX1wQhAxag7LwDKFE914nPlAbHRfeA
+X-Gm-Gg: ATEYQzxZPTe9uICzJvGCS8t3vM1m/144eJQM749FYw1OaN00j9+5Ja4xch9bvYCKkQX
+	f76ZRvnhslNwchxDI8WxjVRQcF8gytdfocsYyrZtVsZk8NhbuzVYpyaxQTBh9WEEuTBhP+baFmf
+	DE+Y4JWhcClWy+wJsodC2MrnqpZ+VODv+KzK2zV8AMv9phhbl9DAab5Xv6ICl271IUEoMOgWFvp
+	eiFqJLdncK2MhSVq6HF/ZgFzrvsujEGsJUhWyAvGF/jK0DATShgO+wc52/VZ4PY7CqO5bVCSg5n
+	H2CAYmfe6cd5tSneyNBQL7/SeQ95+11fIdAf8JDXFQDlImXsU4CFXYG2fAg4COue8ioNUxDXdnw
+	L5tArxQWPjMZwV+dClfOZdKX2oz4gXgcamws1RsbExwYH8//WHHNGxQ==
+X-Received: by 2002:a17:903:390d:b0:2ae:3cf0:3aa1 with SMTP id d9443c01a7336-2aecaa3bfe2mr25528745ad.37.1773386176728;
+        Fri, 13 Mar 2026 00:16:16 -0700 (PDT)
+X-Received: by 2002:a17:903:390d:b0:2ae:3cf0:3aa1 with SMTP id d9443c01a7336-2aecaa3bfe2mr25528405ad.37.1773386176268;
+        Fri, 13 Mar 2026 00:16:16 -0700 (PDT)
+Received: from [10.218.35.45] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2aece62c733sm16610105ad.35.2026.03.13.00.16.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 00:16:15 -0700 (PDT)
+Message-ID: <a17e4c07-1f00-4b0d-90e3-2eeb1e71a248@oss.qualcomm.com>
+Date: Fri, 13 Mar 2026 12:46:08 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] net: mhi_net: Implement runtime PM support
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+        Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+        Carl Vanderlip <carl.vanderlip@oss.qualcomm.com>,
+        Oded Gabbay <ogabbay@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+ <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, mhi@lists.linux.dev,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+        netdev@vger.kernel.org, mayank.rana@oss.qualcomm.com,
+        quic_vbadigan@quicinc.com, vivek.pernamitta@oss.qualcomm.com
+References: <20251201-mhi_runtimepm-v1-0-fab94399ca75@oss.qualcomm.com>
+ <20251201-mhi_runtimepm-v1-3-fab94399ca75@oss.qualcomm.com>
+ <nj4ovttt4i7hsqfdv5zhdotxrx3upxfq4ozuligwuheubnsmkd@e6bwzgkn55kl>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <nj4ovttt4i7hsqfdv5zhdotxrx3upxfq4ozuligwuheubnsmkd@e6bwzgkn55kl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 0zdVyJO1WZA_BHQCAKBxG0pAmezP4ivr
+X-Authority-Analysis: v=2.4 cv=IIIPywvG c=1 sm=1 tr=0 ts=69b3b9c1 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=8pif782wAAAA:8 a=EUspDBNiAAAA:8 a=BRVcir-zca08BhkZB6AA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDA1NyBTYWx0ZWRfX2bduYIlIjN7a
+ 9Z1ABtVHTdC7JUnxZ/I4ff1Q8sIpX+kHLIiDR3wkIrsYkxn3SjHbfKGZWEULZesXPCLB2f/JqLf
+ bjkWAZiQvCNFyplInrGAZogPp7v2aGXdAfDeuzyDKEPruZsePvJOL2NAKqz6+lziC7JaqeUfu95
+ ULbvEsnA8dfIdmSw7FsGUMXYLQ9w28iiooPvrEO/VwbPxGhG2p0QvKiTagog2qpl30OZ2YiWa7u
+ GF1/xx5C2+3KnFRDA35frBrn/LLIg+/dXaeYwhuBPjz5Ai21ohv3eAnjfyBQMi6pT40y4Csbmm5
+ 8lTMNaqIRZrUXwZM0jtJl4zFgZtWvvGgEZXHvRCibYNMqvHG6AiKYDztdU2pb68MQzxmOflQZVd
+ 5YxIXJInpSNSngBsqiyWi9VhWuZabXs0CVhnpmAtP4LIPKYMaXNd6xnq+LwnGtZoBR+MAN1D5DD
+ euDUUuF9w81J5OkuHXg==
+X-Proofpoint-ORIG-GUID: 0zdVyJO1WZA_BHQCAKBxG0pAmezP4ivr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-13_01,2026-03-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0
+ clxscore=1015 adultscore=0 impostorscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130057
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260312_171627_916773_D29E012A 
-X-CRM114-Status: GOOD (  16.01  )
+X-CRM114-CacheID: sfid-20260313_001619_269768_4D41708F 
+X-CRM114-Status: GOOD (  26.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,167 +158,128 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Convert kzalloc_obj + kcalloc to kzalloc_flex to save an allocation.
 
-Add __counted_by to get extra runtime analysis. Move counting variable
-assignment immediately after allocation as required by __counted_by.
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 71 ++++++++++-----------------
- drivers/net/wireless/ath/ath11k/wmi.h |  2 +-
- 2 files changed, 28 insertions(+), 45 deletions(-)
+On 12/3/2025 3:07 AM, Bjorn Andersson wrote:
+> On Mon, Dec 01, 2025 at 06:13:19PM +0530, Krishna Chaitanya Chundru wrote:
+>> Add runtime power management support to the mhi_net driver to align with
+>> the updated MHI framework, which expects runtime PM to be enabled by client
+>> drivers. This ensures the controller remains active during data transfers
+>> and can autosuspend when idle.
+> This last sentence hints at there being an actual problem with the
+> current code. Perhaps we do this because it's the right thing to do,
+> perhaps we're making this change because devices are crashing and
+> burning?
+we are doing because its right thing to do, with current code we are not 
+seeing
+any issues.
+> Start your commit message with making the reason for your change clear.
+>
+> Ask yourself https://en.wikipedia.org/wiki/Five_whys when you come up
+> with your problem description.
+ack.
+>> The driver now uses pm_runtime_get() and pm_runtime_put() around
+>> transmit, receive, and buffer refill operations. Runtime PM is initialized
+>> during probe with autosuspend enabled and a 100ms delay. The device is
+>> marked with pm_runtime_no_callbacks() to notify PM framework that there
+>> are no callbacks for this driver.
+> This looks like an AI prompt, does it add value to the commit message?
+>
+> It can mostly be summarized as "Implement pm_runtime in the driver". The
+> only part that's not obvious is the 100ms autosuspend delay, but you
+> skipped explaining why you did choose this number.
+100ms taken from pci port bus driver reference, I will add the reason 
+for 100ms
+in next patch.
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/net/mhi_net.c | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>
+>> diff --git a/drivers/net/mhi_net.c b/drivers/net/mhi_net.c
+>> index ae169929a9d8e449b5a427993abf68e8d032fae2..c5c697f29e69e9bc874b6cfff4699de12a4af114 100644
+>> --- a/drivers/net/mhi_net.c
+>> +++ b/drivers/net/mhi_net.c
+>> @@ -9,6 +9,7 @@
+>>   #include <linux/mod_devicetable.h>
+>>   #include <linux/module.h>
+>>   #include <linux/netdevice.h>
+>> +#include <linux/pm_runtime.h>
+>>   #include <linux/skbuff.h>
+>>   #include <linux/u64_stats_sync.h>
+>>   
+>> @@ -76,6 +77,7 @@ static netdev_tx_t mhi_ndo_xmit(struct sk_buff *skb, struct net_device *ndev)
+>>   	struct mhi_device *mdev = mhi_netdev->mdev;
+>>   	int err;
+>>   
+>> +	pm_runtime_get(&mdev->dev);
+> What happened to your error handling?
+ack I will add error handling.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 4a68bb9ca4fa..b5f3d7221b5f 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4228,13 +4228,14 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
- 	if (ret)
- 		goto exit;
-
--	arg = kzalloc_obj(*arg);
-+	arg = kzalloc_flex(*arg, chan_list, req->n_channels);
-
- 	if (!arg) {
- 		ret = -ENOMEM;
- 		goto exit;
- 	}
-
-+	arg->num_chan = req->n_channels;
- 	ath11k_wmi_start_scan_init(ar, arg);
- 	arg->vdev_id = arvif->vdev_id;
- 	arg->scan_id = ATH11K_SCAN_ID;
-@@ -4262,38 +4263,27 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
- 		arg->scan_f_passive = 1;
- 	}
-
--	if (req->n_channels) {
--		arg->num_chan = req->n_channels;
--		arg->chan_list = kcalloc(arg->num_chan, sizeof(*arg->chan_list),
--					 GFP_KERNEL);
-+	for (i = 0; i < arg->num_chan; i++) {
-+		if (test_bit(WMI_TLV_SERVICE_SCAN_CONFIG_PER_CHANNEL,
-+			     ar->ab->wmi_ab.svc_map)) {
-+			arg->chan_list[i] =
-+				u32_encode_bits(req->channels[i]->center_freq,
-+						WMI_SCAN_CONFIG_PER_CHANNEL_MASK);
-
--		if (!arg->chan_list) {
--			ret = -ENOMEM;
--			goto exit;
--		}
--
--		for (i = 0; i < arg->num_chan; i++) {
--			if (test_bit(WMI_TLV_SERVICE_SCAN_CONFIG_PER_CHANNEL,
--				     ar->ab->wmi_ab.svc_map)) {
--				arg->chan_list[i] =
--					u32_encode_bits(req->channels[i]->center_freq,
--							WMI_SCAN_CONFIG_PER_CHANNEL_MASK);
--
--				/* If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set in scan
--				 * flags, then scan all PSC channels in 6 GHz band and
--				 * those non-PSC channels where RNR IE is found during
--				 * the legacy 2.4/5 GHz scan.
--				 * If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set,
--				 * then all channels in 6 GHz will be scanned.
--				 */
--				if (req->channels[i]->band == NL80211_BAND_6GHZ &&
--				    req->flags & NL80211_SCAN_FLAG_COLOCATED_6GHZ &&
--				    !cfg80211_channel_is_psc(req->channels[i]))
--					arg->chan_list[i] |=
--						WMI_SCAN_CH_FLAG_SCAN_ONLY_IF_RNR_FOUND;
--			} else {
--				arg->chan_list[i] = req->channels[i]->center_freq;
--			}
-+			/* If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set in scan
-+			 * flags, then scan all PSC channels in 6 GHz band and
-+			 * those non-PSC channels where RNR IE is found during
-+			 * the legacy 2.4/5 GHz scan.
-+			 * If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set,
-+			 * then all channels in 6 GHz will be scanned.
-+			 */
-+			if (req->channels[i]->band == NL80211_BAND_6GHZ &&
-+			    req->flags & NL80211_SCAN_FLAG_COLOCATED_6GHZ &&
-+			    !cfg80211_channel_is_psc(req->channels[i]))
-+				arg->chan_list[i] |=
-+					WMI_SCAN_CH_FLAG_SCAN_ONLY_IF_RNR_FOUND;
-+		} else {
-+			arg->chan_list[i] = req->channels[i]->center_freq;
- 		}
- 	}
-
-@@ -9736,19 +9726,14 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
-
- 	scan_time_msec = ar->hw->wiphy->max_remain_on_channel_duration * 2;
-
--	arg = kzalloc_obj(*arg);
-+	arg = kzalloc_flex(*arg, chan_list, 1);
- 	if (!arg) {
- 		ret = -ENOMEM;
- 		goto exit;
- 	}
--	ath11k_wmi_start_scan_init(ar, arg);
-+
- 	arg->num_chan = 1;
--	arg->chan_list = kcalloc(arg->num_chan, sizeof(*arg->chan_list),
--				 GFP_KERNEL);
--	if (!arg->chan_list) {
--		ret = -ENOMEM;
--		goto free_arg;
--	}
-+	ath11k_wmi_start_scan_init(ar, arg);
-
- 	arg->vdev_id = arvif->vdev_id;
- 	arg->scan_id = ATH11K_SCAN_ID;
-@@ -9769,7 +9754,7 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
- 		spin_lock_bh(&ar->data_lock);
- 		ar->scan.state = ATH11K_SCAN_IDLE;
- 		spin_unlock_bh(&ar->data_lock);
--		goto free_chan_list;
-+		goto free_arg;
- 	}
-
- 	ret = wait_for_completion_timeout(&ar->scan.on_channel, 3 * HZ);
-@@ -9779,7 +9764,7 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
- 		if (ret)
- 			ath11k_warn(ar->ab, "failed to stop scan: %d\n", ret);
- 		ret = -ETIMEDOUT;
--		goto free_chan_list;
-+		goto free_arg;
- 	}
-
- 	ieee80211_queue_delayed_work(ar->hw, &ar->scan.timeout,
-@@ -9787,8 +9772,6 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
-
- 	ret = 0;
-
--free_chan_list:
--	kfree(arg->chan_list);
- free_arg:
- 	kfree(arg);
- exit:
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index baed501b640b..b2dade0516ac 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3423,7 +3423,6 @@ struct scan_req_params {
- 	u32 num_bssid;
- 	u32 num_ssids;
- 	u32 n_probes;
--	u32 *chan_list;
- 	u32 notify_scan_events;
- 	struct wlan_ssid ssid[WLAN_SCAN_PARAMS_MAX_SSID];
- 	struct wmi_mac_addr bssid_list[WLAN_SCAN_PARAMS_MAX_BSSID];
-@@ -3436,6 +3435,7 @@ struct scan_req_params {
- 	struct hint_bssid hint_bssid[WLAN_SCAN_MAX_HINT_BSSID];
- 	struct wmi_mac_addr mac_addr;
- 	struct wmi_mac_addr mac_mask;
-+	u32 chan_list[] __counted_by(num_chan);
- };
-
- struct wmi_ssid_arg {
---
-2.53.0
+- Krishna Chaitanya.
+>
+> Regards,
+> Bjorn
+>
+>>   	err = mhi_queue_skb(mdev, DMA_TO_DEVICE, skb, skb->len, MHI_EOT);
+>>   	if (unlikely(err)) {
+>>   		net_err_ratelimited("%s: Failed to queue TX buf (%d)\n",
+>> @@ -94,6 +96,7 @@ static netdev_tx_t mhi_ndo_xmit(struct sk_buff *skb, struct net_device *ndev)
+>>   	u64_stats_inc(&mhi_netdev->stats.tx_dropped);
+>>   	u64_stats_update_end(&mhi_netdev->stats.tx_syncp);
+>>   
+>> +	pm_runtime_put_autosuspend(&mdev->dev);
+>>   	return NETDEV_TX_OK;
+>>   }
+>>   
+>> @@ -261,6 +264,7 @@ static void mhi_net_ul_callback(struct mhi_device *mhi_dev,
+>>   	}
+>>   	u64_stats_update_end(&mhi_netdev->stats.tx_syncp);
+>>   
+>> +	pm_runtime_put_autosuspend(&mdev->dev);
+>>   	if (netif_queue_stopped(ndev) && !mhi_queue_is_full(mdev, DMA_TO_DEVICE))
+>>   		netif_wake_queue(ndev);
+>>   }
+>> @@ -277,6 +281,7 @@ static void mhi_net_rx_refill_work(struct work_struct *work)
+>>   
+>>   	size = mhi_netdev->mru ? mhi_netdev->mru : READ_ONCE(ndev->mtu);
+>>   
+>> +	pm_runtime_get_sync(&mdev->dev);
+>>   	while (!mhi_queue_is_full(mdev, DMA_FROM_DEVICE)) {
+>>   		skb = netdev_alloc_skb(ndev, size);
+>>   		if (unlikely(!skb))
+>> @@ -296,6 +301,7 @@ static void mhi_net_rx_refill_work(struct work_struct *work)
+>>   		cond_resched();
+>>   	}
+>>   
+>> +	pm_runtime_put_autosuspend(&mdev->dev);
+>>   	/* If we're still starved of rx buffers, reschedule later */
+>>   	if (mhi_get_free_desc_count(mdev, DMA_FROM_DEVICE) == mhi_netdev->rx_queue_sz)
+>>   		schedule_delayed_work(&mhi_netdev->rx_refill, HZ / 2);
+>> @@ -362,12 +368,19 @@ static int mhi_net_probe(struct mhi_device *mhi_dev,
+>>   
+>>   	SET_NETDEV_DEV(ndev, &mhi_dev->dev);
+>>   
+>> +	pm_runtime_no_callbacks(&mhi_dev->dev);
+>> +	devm_pm_runtime_set_active_enabled(&mhi_dev->dev);
+>> +	pm_runtime_set_autosuspend_delay(&mhi_dev->dev, 100);
+>> +	pm_runtime_use_autosuspend(&mhi_dev->dev);
+>> +	pm_runtime_get(&mhi_dev->dev);
+>>   	err = mhi_net_newlink(mhi_dev, ndev);
+>>   	if (err) {
+>>   		free_netdev(ndev);
+>> +		pm_runtime_put_autosuspend(&mhi_dev->dev);
+>>   		return err;
+>>   	}
+>>   
+>> +	pm_runtime_put_autosuspend(&mhi_dev->dev);
+>>   	return 0;
+>>   }
+>>   
+>>
+>> -- 
+>> 2.34.1
+>>
+>>
 
 
