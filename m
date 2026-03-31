@@ -4,79 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC09AFB3CF7
-	for <ath11k@archiver.kernel.org>; Mon, 30 Mar 2026 10:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 731F4FF60CE
+	for <ath11k@archiver.kernel.org>; Tue, 31 Mar 2026 06:33:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uZ7SdU3hV5AjOcTeMYWKR/5vOk71Ft3xAJlUBLnP+zI=; b=sxObu4jYozCoO4PcgSyqg/McCm
-	OsMFUEt97k6pETUt5fMzTpTbuK2VDOj+BZUFe+6Ik3zuSowGhicTY1TIfuVOpu2Q9/3z91WmZpfES
-	M2X15oTDvBIGj9pWIGyEwarMebp2Xggs1xa+3F/GtoHA+AUo4EZDTShVbOx32z/a7nBrENuFJvX7e
-	3C7ppGYVdiY3OQ/iZ/w0DZnzoNWSSLDp00txrT4glO5YuFCkjMtvWUrKWKZmAy8+FJplOVYa8defA
-	1FRGFG2prI1S8rI3SIsDCHspGTebAa/zFV8YO798oswm+1nhnXXnWbx9OZsB0gxeeADawuvrZAyZe
-	kNDxB0Jg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=BHRZnPz/Io0usue24a8iKNJ83JyS5x8wD71HVkyE2Gw=; b=pV5OQIhfF2TkBL40WnCkhC7f2A
+	WnH7g34BPjbxUQO+V3fsI1Rq0/5M6TQUM/qRRu+h7N4KaJlzTU/3iY1DD0AizbU1us+baHd6kzDJV
+	xVJ5Q0E2GUehHQTABmH0IhU2MZUMhVM49fxDLsbz5tFK4wAVdyUC3PmQc2gi5OiwedF3azYchiuPi
+	ebyepR4flF1ideBp7+2dh1ajoqGIKmwz0vasJrTVXWJ+00TBTHebMQ1zrzT9JLAbP/IJedu9g2tvR
+	Y10vo4nGK0s28z2/XQEj0z7+tXtyllqVjSBwNy0LNEH5UT0XTrmuinP4IuJoFq+G17QbXl6DV4Jv+
+	wEfc2Q6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w79Vc-0000000B0va-3h6N;
-	Mon, 30 Mar 2026 10:06:12 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1w7Sfd-0000000CO9H-2Wi1;
+	Tue, 31 Mar 2026 06:33:49 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w79Vb-0000000B0u5-0tvB
-	for ath11k@bombadil.infradead.org;
-	Mon, 30 Mar 2026 10:06:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=uZ7SdU3hV5AjOcTeMYWKR/5vOk71Ft3xAJlUBLnP+zI=; b=bG0zVbKPBfGmqkqewpamVTxJlR
-	QQOILygVzsjXjleC4shd20Mkpnx/Fs1HyNNVip/tcM9/B75UbzkVZXMqAaXAJusweNJXB/MEElmMx
-	hraHQuCrrWNg0y5/liE7yPHhLJmxJICD+4792bxyru8eIuPiyrbxcs7g2mphS+0Kf8gzrwolHAawT
-	KF1iSF2VOGfjyDVPc3bj6ymt9l46uI+C/Rd+Rh5sW6kWQQGRx1OmCheQQCIrwuCs/jNHK68QLeMzM
-	kjSQNl0xid63ewGnc5AUf9bthqxVFP6IYHAPIu53aJPYhxs1mv4fSVYxJ9GIPMcHaZxNy7jaescbQ
-	VRomBDLQ==;
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w79VV-0000000DW1D-3E5Z
+	id 1w7Sfc-0000000CO9A-1uVZ
 	for ath11k@lists.infradead.org;
-	Mon, 30 Mar 2026 10:06:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1774865159;
-	bh=hof7rouX38nmEzoDefI3x1AgAGZp8Hxze5p0FV+9bmU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=F8l017a6jNR8NndedfguN48w4q6E9iPXvyzJRDXbsqK+z4SEGeRuPFWg6EWdcww1H
-	 UKIJVr/UfRo4o9u8WyVjRFD+PSFOzs94LMrY+Zg9Tre8nPw48XKm6/RVeTxuvoW7g1
-	 i2zYy1PoZOC7hB6s7IgfmO2hiY2IlSMhOXkrr4VmfvxkX08M0d7yBGiGEptV50YG1K
-	 C9FK0rSXI7T5Oenk5cl6V7Ksqd22HBjCsgnnG23HOALuYNb079BDR4RDQJEdwRfheS
-	 P8oa5nlOVejlV85ABGu2sICw9gOBqp0RR/ZxXbTVMy2Gek5KleCW71VXWHty3Dyk0P
-	 Y5O/21hZD5oIw==
-Received: from [192.168.1.53] (unknown [IPv6:2a01:6243:628:0:43ea:f64d:fc7e:3a2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mattl)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CEBD217E41B3;
-	Mon, 30 Mar 2026 12:05:58 +0200 (CEST)
-From: Matthew Leach <matthew.leach@collabora.com>
-Date: Mon, 30 Mar 2026 11:05:32 +0100
-Subject: [PATCH RESEND RFC 2/3] net: ath11k: add firmware lockup detection
- and recovery
+	Tue, 31 Mar 2026 06:33:48 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 94E1960103;
+	Tue, 31 Mar 2026 06:33:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 439DEC19423;
+	Tue, 31 Mar 2026 06:33:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774938827;
+	bh=ui7nelJNgDVq7+lCQ8oQddflHq1KI/3JObI0yenQbQE=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=ZTE805pno7S6DeTyVYU0xr0Ac0Sk7pZt3Koareit5y7Go7/0WzmS5fstfcFIUMgSN
+	 MOZl7bqz2CGZSym+Cc69MS/vlcuR+nt2n3nh3s4hNlWpA8hVbMFGc7XIjT+zmiBc9y
+	 KlBNTsVsU+npAC+UhmXa6o1tKn1Mr6PEVjH6YoNZzGXr8MOMfYxro8CaksVcWe7yBu
+	 cz9VZDGUDygWhJYOJmnfzT288lzUBIuV0EhPNKZTiGTwLehtl5+7Cl6g9sRAtcW7Zy
+	 AO+rnIccsC0c3R8tLt+u70Fer8Nnqg7nfpvgOQKEsEw3ERswlK+JUww88plpo34u7u
+	 e2VzB/TWn3GvA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F678FF60CF;
+	Tue, 31 Mar 2026 06:33:47 +0000 (UTC)
+From: Kyle Farnung via B4 Relay <devnull+kfarnung.gmail.com@kernel.org>
+Date: Mon, 30 Mar 2026 23:32:53 -0700
+Subject: [PATCH v2] wifi: ath11k: apply existing PM quirk to ThinkPad P14s
+ Gen 5 AMD
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260330-ath11k-lockup-fixes-v1-2-7ed21095c2c4@collabora.com>
-References: <20260330-ath11k-lockup-fixes-v1-0-7ed21095c2c4@collabora.com>
-In-Reply-To: <20260330-ath11k-lockup-fixes-v1-0-7ed21095c2c4@collabora.com>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
- linux-kernel@vger.kernel.org, kernel@collabora.com, 
- Matthew Leach <matthew.leach@collabora.com>
-X-Mailer: b4 0.15.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260330_110606_326878_D2D31208 
-X-CRM114-Status: GOOD (  13.78  )
+Message-Id: <20260330-p14s-pm-quirk-v2-1-ef18ce07996b@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XMSw7CIBSF4a00d+w1PMSkjtyH6QAptDdKQVCia
+ di72LnD/yTnWyHbRDbDqVsh2UKZwtJC7Dows14mizS2BsHEkUnJMPJDxujx8aJ0Q6YVv2reC6k
+ ctE9M1tF78y5D65nyM6TPxhf+W/9JhSNH44TTsjdGjOo8eU33vQkehlrrFwFGBJiqAAAA
+X-Change-ID: 20260330-p14s-pm-quirk-0a51ba19235f
+To: Jeff Johnson <jjohnson@kernel.org>, 
+ Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Kyle Farnung <kfarnung@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774938826; l=2024;
+ i=kfarnung@gmail.com; s=20260330; h=from:subject:message-id;
+ bh=goqTouCdFtdr9SNadM69GmR467yJ8YsnFiPC1yn5iAQ=;
+ b=IdTKuCdL9uMN7+89uh+WWQM8YD+zhhN/m4BDbQDv4Ukh/UqXDAxT/kZFxTkgIyohPv/r4xmNp
+ h+R43lTYheCDkjHeMkAMiQ3CqrP9or/GUtWD8C5oV/nlkR0bptu41P1
+X-Developer-Key: i=kfarnung@gmail.com; a=ed25519;
+ pk=47jis5OdLKFgZynNQVqkx1mTGiEgFTUX+MecmG9rbmE=
+X-Endpoint-Received: by B4 Relay for kfarnung@gmail.com/20260330 with
+ auth_id=706
+X-Original-From: Kyle Farnung <kfarnung@gmail.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,122 +85,69 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: kfarnung@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Detect firmware lockup when a WMI command times out and TX descriptor
-exhaustion occurs within ATH11K_LOCKUP_DESC_ERR_RANGE_HZ (1 minute). In
-this case, consider the firmware dead.
+From: Kyle Farnung <kfarnung@gmail.com>
 
-When a lockup is detected, queue reset work to restart the chip.
-After reset completes, clear the lockup detection state.
+Some ThinkPad P14s Gen 5 AMD systems experience suspend/resume
+reliability issues similar to those reported in [1]. These platforms
+were not previously included in the ath11k PM quirk table.
 
-Signed-off-by: Matthew Leach <matthew.leach@collabora.com>
+Add DMI matches for product IDs 21ME and 21MF to apply the existing
+ATH11K_PM_WOW override, improving suspend/resume behavior on these
+systems.
+
+Tested on a ThinkPad P14s Gen 5 AMD (21ME) running 6.19.9.
+
+[1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
+[2] https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p14s-gen-5-type-21me-21mf/
+
+Fixes: ce8669a27016 ("wifi: ath11k: determine PM policy based on machine model")
+Cc: stable@vger.kernel.org
+Signed-off-by: Kyle Farnung <kfarnung@gmail.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h |  2 ++
- drivers/net/wireless/ath/ath11k/mac.c  |  6 ++++++
- drivers/net/wireless/ath/ath11k/wmi.c  | 24 +++++++++++++++++++++++-
- 3 files changed, 31 insertions(+), 1 deletion(-)
+Changes in v2:
+- Fix missing mailing list recipients (linux-wireless, ath11k, linux-kernel)
+- Link to v1: https://lore.kernel.org/r/20260330-p14s-pm-quirk-v1-1-cf2fa39cc2d5@gmail.com
+---
+ drivers/net/wireless/ath/ath11k/core.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a0d725923ef2..221dcd23b3dd 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -70,6 +70,7 @@ extern bool ath11k_ftm_mode;
- #define ATH11K_RESET_FAIL_TIMEOUT_HZ (20 * HZ)
- #define ATH11K_RECONFIGURE_TIMEOUT_HZ (10 * HZ)
- #define ATH11K_RECOVER_START_TIMEOUT_HZ (20 * HZ)
-+#define ATH11K_LOCKUP_DESC_ERR_RANGE_HZ (60 * HZ)
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 3f6f4db5b7ee1aba79fd7526e5d59d068e0f4a2e..21d366224e75904feeae6cb9c93d9ef692d127fe 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -1041,6 +1041,20 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
+ 			DMI_MATCH(DMI_PRODUCT_NAME, "21D5"),
+ 		},
+ 	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = { /* P14s G5 AMD #1 */
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21ME"),
++		},
++	},
++	{
++		.driver_data = (void *)ATH11K_PM_WOW,
++		.matches = { /* P14s G5 AMD #2 */
++			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "21MF"),
++		},
++	},
+ 	{}
+ };
  
- enum ath11k_supported_bw {
- 	ATH11K_BW_20	= 0,
-@@ -1039,6 +1040,7 @@ struct ath11k_base {
- 
- 	struct ath11k_dbring_cap *db_caps;
- 	u32 num_db_cap;
-+	u64 last_frame_tx_error_jiffies;
- 
- 	/* To synchronize 11d scan vdev id */
- 	struct mutex vdev_id_11d_lock;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 748f779b3d1b..a0b4d60da330 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9,6 +9,7 @@
- #include <linux/etherdevice.h>
- #include <linux/bitfield.h>
- #include <linux/inetdevice.h>
-+#include <linux/jiffies.h>
- #include <net/if_inet6.h>
- #include <net/ipv6.h>
- 
-@@ -6546,6 +6547,10 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
- 
- 	ret = ath11k_dp_tx(ar, arvif, arsta, skb);
- 	if (unlikely(ret)) {
-+		scoped_guard(spinlock_bh, &ar->ab->base_lock) {
-+			ar->ab->last_frame_tx_error_jiffies = jiffies_64;
-+		}
-+
- 		ath11k_warn(ar->ab, "failed to transmit frame %d\n", ret);
- 		ieee80211_free_txskb(ar->hw, skb);
- 	}
-@@ -9281,6 +9286,7 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
- 				atomic_dec(&ab->reset_count);
- 				complete(&ab->reset_complete);
- 				ab->is_reset = false;
-+				ab->last_frame_tx_error_jiffies = 0;
- 				atomic_set(&ab->fail_cont_count, 0);
- 				ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset success\n");
- 			}
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 40747fba3b0c..7d9f0bcbb3b0 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -7,8 +7,11 @@
- #include <linux/ctype.h>
- #include <net/mac80211.h>
- #include <net/cfg80211.h>
-+#include <linux/cleanup.h>
- #include <linux/completion.h>
- #include <linux/if_ether.h>
-+#include <linux/jiffies.h>
-+#include <linux/spinlock.h>
- #include <linux/types.h>
- #include <linux/pci.h>
- #include <linux/uuid.h>
-@@ -325,9 +328,28 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
- 			}), WMI_SEND_TIMEOUT_HZ);
- 	}
- 
--	if (ret == -EAGAIN)
-+	if (ret == -EAGAIN) {
-+		u64 range_start;
-+
- 		ath11k_warn(wmi_ab->ab, "wmi command %d timeout\n", cmd_id);
- 
-+		guard(spinlock_bh)(&ab->base_lock);
-+
-+		if (ab->last_frame_tx_error_jiffies == 0)
-+			return ret;
-+
-+		range_start =
-+			(jiffies_64 > ATH11K_LOCKUP_DESC_ERR_RANGE_HZ) ?
-+				jiffies_64 - ATH11K_LOCKUP_DESC_ERR_RANGE_HZ :
-+				0;
-+
-+		if (time_in_range64(ab->last_frame_tx_error_jiffies,
-+				    range_start, jiffies_64) &&
-+		    queue_work(ab->workqueue_aux, &ab->reset_work))
-+			ath11k_err(wmi_ab->ab,
-+				   "Firmware lockup detected.  Resetting.");
-+	}
-+
- 	if (ret == -ENOBUFS)
- 		ath11k_warn(wmi_ab->ab, "ce desc not available for wmi command %d\n",
- 			    cmd_id);
 
+---
+base-commit: dbd94b9831bc52a1efb7ff3de841ffc3457428ce
+change-id: 20260330-p14s-pm-quirk-0a51ba19235f
+
+Best regards,
 -- 
-2.53.0
+Kyle Farnung <kfarnung@gmail.com>
+
 
 
