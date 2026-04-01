@@ -4,106 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5332109B491
-	for <ath11k@archiver.kernel.org>; Tue, 31 Mar 2026 15:40:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCE6010F92EC
+	for <ath11k@archiver.kernel.org>; Wed,  1 Apr 2026 02:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=u8qcruLr1TaN4a3nPxJC8zeje2SUnWQJ8J8aOZ6a6Fo=; b=rm0leCBiXhtlFcdTzIg8AhEX1q
-	rvg6ewH351FZtOZx0fxeJ+zpSQYxuGRhkVDiEEq8roApwGp+vrpHTebCvYChq+6L5D4GPPHY770mD
-	/Zi+niBGp9ukfrLwRYUQoakpQDLaDn9j+KwUax/n8bx8KDCj72vWy/ePyB3OQYQlsw23UQg8OecMn
-	mhtG+Eh8wse4ZP0NtxUBe89ywhabQ2+U9ukS+2F9xqkOkJ6uaxUmcQw599kvpEaYv5D1i+rEA/xGI
-	QpFSs5WPe8mVBxHWS+/mfKwfH3mpX6QkMYdpOCIfMGzQhvWoXNrLv89XJC99bftVyNWTNmtDANHoL
-	VX2Hc1dg==;
+	bh=JzyNb4USxocw8PkrF1IarRRAjVYqOgczXdpojVI5iMI=; b=w6YHzXGXMjhAoWG80qW5O2S6ta
+	76jIn0OAlxVS7BkftjakKwRZ+IMjSWIGc7q5xhmPwlKK2A6B6lTzHwn5TZA9z5yyCbs0v5VtyVHmj
+	5WHypSLRTfBPUjoKM4qNehb+SBC8x93iR8g/WrkYe4nAGsx2TQiAILnZg3ALACne0wMRAwq2wJouk
+	bwhKDao90VnGlTa+n5BE4kIM+b2F6HFgnqnd6arRzmK9G1BbNe7iXT1v0TMou/UvkS7iC3UHNSNfd
+	ewGST9pGOF6qJFZmKufmM6D8hjmtrfVfdbhpLFcZiJ4f+78wT0uuvjc5xTr45TrfM2CGhmwgOSYEC
+	rkG2B54w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7bCW-0000000DCIn-0ybI;
-	Tue, 31 Mar 2026 15:40:20 +0000
-Received: from mail-ot1-x32e.google.com ([2607:f8b0:4864:20::32e])
+	id 1w7l0U-0000000Doov-3HmT;
+	Wed, 01 Apr 2026 02:08:34 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7bCU-0000000DCIR-1cps
+	id 1w7l0R-0000000Donm-3gmJ
 	for ath11k@lists.infradead.org;
-	Tue, 31 Mar 2026 15:40:19 +0000
-Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-7d9bba96f7dso3107856a34.1
-        for <ath11k@lists.infradead.org>; Tue, 31 Mar 2026 08:40:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774971616; cv=none;
-        d=google.com; s=arc-20240605;
-        b=WUit9PCvDrqKNrVq02ZEKBbXtdxr5ghQIwyXnqJOthKcoWG/eJSyx1VF5nqSa55sKL
-         2BRwEGg9KLjhj6OTVjhxmwJtGf9gY6LYhYNAEvBsYNFIL1qpbgWvKTRNrTQJviHbYWuh
-         jwdAr+RTN7DbYLo8mKu87kkpJkg7L9Dd8/Z8EBATRrjZGVj2j54OCPCMSybuKWkm/lsJ
-         hkddqSmwXC65w8uDpRxZ8EJXfGpNimpcGZAWzMAqrOv1xcAOEUyV3MPvq3m7KaLBqEeu
-         CsHUZAwrQkYvqsELIHZkSJUfyVnzxT0yiJSRw6Ycsj+6nGRW16anz4z3bkxp0eEKRGUG
-         kEOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=u8qcruLr1TaN4a3nPxJC8zeje2SUnWQJ8J8aOZ6a6Fo=;
-        fh=5uRsjvnRYr4SbP19DZthNJui5PCDEBjyPbvomiMiFpE=;
-        b=TnxC0aBLDqAQIhFdkp57NdTilJpqscuREhTja2+AQq6/M/LUMUVLBvwT9/9TSPk1H2
-         +OEqRQ4cKBz1I/uBjKfn0tg3Tw50u+EMMMowMihnA8GMnUEzVUmBOCBcXYYHaAEsfI+M
-         XVExrOEjTd7SINk863WKf2eGSMvRmySdK4WG/HBM8WtXR8eSg+MuP6QVzSXEVfGpFBHA
-         JpKH2teZPLmVZ1upNh1Nk2PsFeLyv2twCI01PC0Y17AeU8RcG4ixI0IjVahGeE5VqRyx
-         Hrhyn58E2Deon+KmVY2OQ/XY+enZV2lbsa1oJ9sKq7hZXPY6M9Rihi0sFLBykZ2bH9eh
-         +rJg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Wed, 01 Apr 2026 02:08:33 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63124fKs719334
+	for <ath11k@lists.infradead.org>; Wed, 1 Apr 2026 02:08:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JzyNb4USxocw8PkrF1IarRRAjVYqOgczXdpojVI5iMI=; b=SdsaoRXguAprSXDC
+	9yqfibThNQiZbFtLpJLvlRbnzUlBoNti8nPp8KytZcH/7sJ6VRyHl9l0Z2dElFnJ
+	xvSsBuCX+2UxFhUit/ctzMvqqkmB5hUsFrFuOXqg3K7i+nj7oAbfq6tByucuAB9d
+	Xjk4yK1ogIreLKEZ3N3FH7h1MjdM99gMhCjsABL0jMLIzQrYOWSZYTZSu4AvMW4M
+	d5/PDb2q9DIXOkfZ4g+HmcHGtsBVhUf1X8ZcGzQSryIvisNvWHRlMyYkVAm1h35H
+	m72zq3hj3OfQp71JpQQaMjWtm80v4ZaTL+BWFKLvGsph4yierehzmjWITI0JDrbM
+	z40LYA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d8kcssn9g-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Wed, 01 Apr 2026 02:08:30 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-35d98c6ab60so427290a91.1
+        for <ath11k@lists.infradead.org>; Tue, 31 Mar 2026 19:08:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774971616; x=1775576416; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u8qcruLr1TaN4a3nPxJC8zeje2SUnWQJ8J8aOZ6a6Fo=;
-        b=HFpoX+XM1if82t6Yxt14zprcUsWxM5OmaB56+ooipjpNYUHfiZ0RofMxsyV4GGfPtA
-         lMt+JKq3O6w6mBkQJXVgrgM/2U64InaxtHIeX+n6Qp+6BysKoYy9Ai0eY3OrMsUieFO6
-         9+DF7KTm0UzhTa1KzGg1dsIO+bcOG0/QTXg/q41s1OFp0aH2wrcs7QQNLW/9eOCgWbcN
-         q+tSDf4dk9ScNKuSASNO6Dp54lLBJpaKqJB+HTltFznRHwjNF5ptJ1EBsNqJak4hLVmV
-         lEwJN3ZzopXvjP81pODhBKQqhAPYUaXqZx4ZH60Fq0TJrEagfD+Kk5nGxLq6znpRAl/M
-         lttw==
+        d=oss.qualcomm.com; s=google; t=1775009310; x=1775614110; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JzyNb4USxocw8PkrF1IarRRAjVYqOgczXdpojVI5iMI=;
+        b=GpuAyQLCDyygj6sRw8Jzms1QbTAAQtc2yNSwOxHJnXjNxf5vUQu+hyVponZmkiPapj
+         bOB1+/q1F/GcKecCCtg9mI8IVwEg4Rjj6PQc1Tl/qC5fQ5/Q0M9VG+zAh9E3F1WrKWTF
+         OZAmm9K2YcuqhfziXJu2Ip4dwy+6QREqSQ6q1vgGBw7ZU0YYBy+55ZuMvDXoE7t0xn+r
+         WJ4XmqDSHzJYBpA2906+2Lzpza2j2hS4AL9bE8GDTi79nJSbIELAtmj5PIccTTDerXjy
+         egkn4pnw2TaOUyLAhJ7cWBdqYP3W4Wkj30wBj/+V7fCUh41JdwEDPp9KPBpcd8oba85z
+         5b2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774971616; x=1775576416;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=u8qcruLr1TaN4a3nPxJC8zeje2SUnWQJ8J8aOZ6a6Fo=;
-        b=H3u1P8vYCxRmbruEYiyIYed4BWXf62iHSuBNNHPEfffxo10Ug4JMWLcUQfotbnCXCc
-         Us2/3l3LZB2CPvnOuEiT0/wyVMSp8etQrUveujb8HfAeA6PfEvpn1n4ALJN9NHTSzzpn
-         24crBmkohEeTq+UIWkIRWug1qqhcv5XVo5fIxNGL4gK4h1+pwLFN85t2+G4usmcrQwGo
-         qu0ERIt0HBFHg27oyQCGoCdbkiIg9ejeszXbeO/kbS0I2xEAFgW22lhnCcSHW8ixv1zW
-         W0kc2/6lbdNNIYEBWK+qXSuJ5bxi/QOcp2TE91vpCVNbFmg0kouDU4yS6trQ9zp/L9mJ
-         BXoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX1oe9LPfju6A4vg9RpRWztQPpJdqAwv4B5RVCouV1AM/hnhy3z9bh5Ex7EkoMBcXoorbs5Vss=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxjAfG0BVp7m7Y03p3TrXwMgvpEIlsPTNFcRLniQlRug+QRYGgD
-	Gh6XvlfrFndFbfhL7aXZwIuhRox4n3TigpFrt/BJ2/zSv1WRVr4vULlXCVsANBXzCTiM9QKwNze
-	QgQU0hEr2Ca3FUJBsjzHDM4UoYEx5d5k=
-X-Gm-Gg: ATEYQzxspeuDx6pxFvpeXWNqMAhexKvh+dTu7OjYs1UXsAVisXAv4xboBKpQi2ddUHC
-	IpDPD4dzJRKCb1Lsib8jybwsW/pCP7K8dwyz+x7bMN+N2L5GxVNDHhzvj3f8x+tW2Wx51LtYotn
-	Nd72pYTxMuyGW0tYBcsBBEKKcQWzqR4Rn5HAo89HZ4K9oCt5Rx0RcNiTxFKYl7xB2Nj3H0V/wbF
-	2+N88+tQq+ZUuNR+czIhT8h8w0Wv27sPB3wwtybjX6+L57oJDdTqm8asGjXcYBuiU4czJN/qAGp
-	ZZtJ7ikujKSYOWDwqTX77PIzn6NYTmtVE8MFOzceGEWf+8o=
-X-Received: by 2002:a05:6808:1718:b0:468:48d:8075 with SMTP id
- 5614622812f47-46a8a395fb3mr7995552b6e.8.1774971616516; Tue, 31 Mar 2026
- 08:40:16 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1775009310; x=1775614110;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JzyNb4USxocw8PkrF1IarRRAjVYqOgczXdpojVI5iMI=;
+        b=qw3FyRVip4/GTjB9g4gdN4HQp3NRKBiyx1F587B3Z1jLwRo4IIy8Qa9UuwMhIelKLW
+         mVBETGj0zmy7CIEy/bDfDEgGMmjgM2qvljhu3lOGErG7MIh5tdPLBc0/lZzGv2+cgbqJ
+         PIKb2Z2F1ErFmvLbBxd89Kr+nmGAYAVUadm18PY9W1fddHXykUvxdf06OAZAmcGEoOES
+         xzOCHTZ6TPN8jpGDVPXOAKfYvF38a0jsidqW8+85LCdByPKirYrvAMtoLIRxs9k8bpVr
+         pAs8OdTYvFgb3/3wib6QHnF+6QY7XY8EBaBGt5bszDbbwc3dQVS0/58BV3EtVYrQ425O
+         1LjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVweaDsb6RIWlDu2WWQswcAdPzkLU2DG1J5+8XyxdOqSHKNLn02AY2XZmtKTLAQJLbcbBjMXXI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzmTBKNe483ihb4alhuFUvU86VqNSWnp7apXrqq6z0gYG8ySRuj
+	hMu8w4gofiqNho4Gj66ZuQEHgwxmcaTKDTBTbBHRrnmMDcgo5LqyDPebk5GYplNFMlvso54E4pk
+	wtUs2VMEMVEJ8A/vOE0EdfUNVnjnGlxwwVtHlO1JeKgrUnPthDCTnUk7ogRliTCQ1
+X-Gm-Gg: ATEYQzxVzjJE2JEkrzjK4Ebm60jb58OYr5Fo0x8M+wErtV51WS2bUwbV36IvcyHWc6I
+	uMywnMWc2RZUkuQnBmE8yWdYYUQmQ1zbLB6a9SoXg9O9FJ7AmXLt6BqA/SLYSZHYNfje47kBpEd
+	0B+jotbGE+Xvbbm/ycX5mF3nX4FNzuKVb0mRJtVCyrHvFs2s+zzJ35kw2wCMVB+jdR8RxvKcW0U
+	LryDZe1dhxCu5a9boOnROj5NZhlg0OF6VHEg6Ymhz4ZeXIXsyXs0GbA+25Wi8S6zUpEkx2O4LRa
+	RGC8/9QtGpEgz+TpIXP9Nl2NZP9gS8HhIZOtQMKSCVzt2ur3B2CMuEawC4yZuVSlAn/RLnvEB5N
+	uru3Tnk8SGgDYfUO3LK/zIzS9zyHLEhk4xIp90dKp0uQDx0Le/npJwndDcpnbb6BLFb2h3P4GUY
+	Z225ioLKNtabjUcRGvKw==
+X-Received: by 2002:a17:90b:1845:b0:34a:c671:50df with SMTP id 98e67ed59e1d1-35db8f8ebffmr5487404a91.17.1775009309691;
+        Tue, 31 Mar 2026 19:08:29 -0700 (PDT)
+X-Received: by 2002:a17:90b:1845:b0:34a:c671:50df with SMTP id 98e67ed59e1d1-35db8f8ebffmr5487375a91.17.1775009309166;
+        Tue, 31 Mar 2026 19:08:29 -0700 (PDT)
+Received: from [10.133.33.81] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c76b96c684csm1889708a12.0.2026.03.31.19.08.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Mar 2026 19:08:28 -0700 (PDT)
+Message-ID: <082b3d13-6fb1-4041-a187-fddec3b013e4@oss.qualcomm.com>
+Date: Wed, 1 Apr 2026 10:08:25 +0800
 MIME-Version: 1.0
-References: <20260330-p14s-pm-quirk-v1-1-cf2fa39cc2d5@gmail.com>
-In-Reply-To: <20260330-p14s-pm-quirk-v1-1-cf2fa39cc2d5@gmail.com>
-From: Kyle Farnung <kfarnung@gmail.com>
-Date: Tue, 31 Mar 2026 08:40:05 -0700
-X-Gm-Features: AQROBzAt-wrDIMtX7p-AOcDjVXjahzEybmuxfvEKnbowGjaS1uRal6qZfRUGMgw
-Message-ID: <CAOPSVF3tbkTVjW1o1NfrgbOA9v163n_QuDR4ay2ggdMs5f9Z0g@mail.gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: apply existing PM quirk to ThinkPad P14s
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] wifi: ath11k: apply existing PM quirk to ThinkPad P14s
  Gen 5 AMD
-To: kfarnung@gmail.com
-Cc: jjohnson@kernel.org, mpearson-lenovo@squebb.ca, stable@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+To: kfarnung@gmail.com, Jeff Johnson <jjohnson@kernel.org>,
+        Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20260330-p14s-pm-quirk-v2-1-ef18ce07996b@gmail.com>
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20260330-p14s-pm-quirk-v2-1-ef18ce07996b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDAxMDAxMyBTYWx0ZWRfX52R+k13cs2fi
+ gRquaJTK9n2jYMawreKaj3O+PuiW63szNmIQuZAzSLEdikhazuw6/BG/ZBtj63SVkwghaX5Cg2O
+ YRaCLtzq5xmNM6Kl6HnIdwtuITGiy6ylXkF1/nG72jHbFqXhNbHVr78PiYiNZ/F4pP7kcjq4URQ
+ jDZggcUe2KJDNgWdEJaTYl17Rk/6Mc9znnLs7CVXbzmTETK4YOmEzoQHkHOrroyvTQCjDwPfRDn
+ NDwNFqGiYcdj87BlU9a5jdYnonXjbLOpQd/WeMPTGOttZ2MNfkR/0QNnI1Y9ZwZ+IOGHoXEGC+n
+ e51zhaBEj8NO1KChrLGXUrXEbkvY53CQdTf9dCdHimkToFAoBNfkBtBQ/XYtZSYUvauaWTlwEKO
+ pzxfNhJzlVNu3kdr1Yx3EsY5Rqp3MnyZ575McQc6z5+/meSQsjrKGwF55+S6C1+nXVRS4C25cT/
+ Xt8ur8fMXFnfPxRYfkA==
+X-Authority-Analysis: v=2.4 cv=KNlXzVFo c=1 sm=1 tr=0 ts=69cc7e1e cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
+ a=VwQbUJbxAAAA:8 a=8k6WQxmsAAAA:8 a=pGLkceISAAAA:8 a=A18gnXuDaOBEhP_xktQA:9
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: YGYvQ-FLrHuKzsapan1AAWHKzQECrKIX
+X-Proofpoint-GUID: YGYvQ-FLrHuKzsapan1AAWHKzQECrKIX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-01_01,2026-03-31_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0 malwarescore=0
+ suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2604010013
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260331_084018_434658_23EE4D8C 
-X-CRM114-Status: GOOD (  17.57  )
+X-CRM114-CacheID: sfid-20260331_190832_050922_27B1D668 
+X-CRM114-Status: GOOD (  18.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,79 +148,68 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 30, 2026 at 11:18=E2=80=AFPM Kyle Farnung via B4 Relay
-<devnull+kfarnung.gmail.com@kernel.org> wrote:
->
+
+
+On 3/31/2026 2:32 PM, Kyle Farnung via B4 Relay wrote:
 > From: Kyle Farnung <kfarnung@gmail.com>
->
+> 
 > Some ThinkPad P14s Gen 5 AMD systems experience suspend/resume
 > reliability issues similar to those reported in [1]. These platforms
+
+how similar it is? can you describe the issue in details?
+
 > were not previously included in the ath11k PM quirk table.
->
+> 
 > Add DMI matches for product IDs 21ME and 21MF to apply the existing
 > ATH11K_PM_WOW override, improving suspend/resume behavior on these
 > systems.
->
+> 
 > Tested on a ThinkPad P14s Gen 5 AMD (21ME) running 6.19.9.
->
-> [1] https://bugzilla.kernel.org/show_bug.cgi?id=3D219196
-> [2] https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thin=
-kpad-p-series-laptops/thinkpad-p14s-gen-5-type-21me-21mf/
->
-> Fixes: ce8669a27016 ("wifi: ath11k: determine PM policy based on machine =
-model")
+> 
+> [1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
+> [2] https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p14s-gen-5-type-21me-21mf/
+> 
+> Fixes: ce8669a27016 ("wifi: ath11k: determine PM policy based on machine model")
 > Cc: stable@vger.kernel.org
 > Signed-off-by: Kyle Farnung <kfarnung@gmail.com>
 > ---
+> Changes in v2:
+> - Fix missing mailing list recipients (linux-wireless, ath11k, linux-kernel)
+> - Link to v1: https://lore.kernel.org/r/20260330-p14s-pm-quirk-v1-1-cf2fa39cc2d5@gmail.com
+> ---
 >  drivers/net/wireless/ath/ath11k/core.c | 14 ++++++++++++++
 >  1 file changed, 14 insertions(+)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireles=
-s/ath/ath11k/core.c
-> index 3f6f4db5b7ee1aba79fd7526e5d59d068e0f4a2e..21d366224e75904feeae6cb9c=
-93d9ef692d127fe 100644
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+> index 3f6f4db5b7ee1aba79fd7526e5d59d068e0f4a2e..21d366224e75904feeae6cb9c93d9ef692d127fe 100644
 > --- a/drivers/net/wireless/ath/ath11k/core.c
 > +++ b/drivers/net/wireless/ath/ath11k/core.c
-> @@ -1041,6 +1041,20 @@ static const struct dmi_system_id ath11k_pm_quirk_=
-table[] =3D {
->                         DMI_MATCH(DMI_PRODUCT_NAME, "21D5"),
->                 },
->         },
-> +       {
-> +               .driver_data =3D (void *)ATH11K_PM_WOW,
-> +               .matches =3D { /* P14s G5 AMD #1 */
-> +                       DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
-> +                       DMI_MATCH(DMI_PRODUCT_NAME, "21ME"),
-> +               },
-> +       },
-> +       {
-> +               .driver_data =3D (void *)ATH11K_PM_WOW,
-> +               .matches =3D { /* P14s G5 AMD #2 */
-> +                       DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
-> +                       DMI_MATCH(DMI_PRODUCT_NAME, "21MF"),
-> +               },
-> +       },
->         {}
+> @@ -1041,6 +1041,20 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
+>  			DMI_MATCH(DMI_PRODUCT_NAME, "21D5"),
+>  		},
+>  	},
+> +	{
+> +		.driver_data = (void *)ATH11K_PM_WOW,
+> +		.matches = { /* P14s G5 AMD #1 */
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21ME"),
+> +		},
+> +	},
+> +	{
+> +		.driver_data = (void *)ATH11K_PM_WOW,
+> +		.matches = { /* P14s G5 AMD #2 */
+> +			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> +			DMI_MATCH(DMI_PRODUCT_NAME, "21MF"),
+> +		},
+> +	},
+>  	{}
 >  };
->
->
+>  
+> 
 > ---
 > base-commit: dbd94b9831bc52a1efb7ff3de841ffc3457428ce
 > change-id: 20260330-p14s-pm-quirk-0a51ba19235f
->
+> 
 > Best regards,
-> --
-> Kyle Farnung <kfarnung@gmail.com>
->
->
 
-Apologies to everyone, I realized that I lost my CC list in the sending
-process. I wasn't sure what the right fix was so I ended up posting a v2
-patch [1] instead.
-
-[1] https://lore.kernel.org/linux-wireless/20260330-p14s-pm-quirk-v2-1-ef18=
-ce07996b@gmail.com/
-
-Thanks,
-Kyle
 
