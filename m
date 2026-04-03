@@ -4,80 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED736E8536E
-	for <ath11k@archiver.kernel.org>; Fri,  3 Apr 2026 13:55:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 848B6E8536E
+	for <ath11k@archiver.kernel.org>; Fri,  3 Apr 2026 13:55:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=m83BxTeATfqd1UWKENZnthRfrI/lStR1Bw2POp0MJqM=; b=SFisuM32+bzFizJMrBthpQZsdp
-	DfT6dHcYv9tZ0xqoFmbqRQgTHB/+gJv+3r+Qjg+Ewi0m8FHVXe+J66stoi1jmMxmgfG53BE6KSKGq
-	oBf0IWjdPwi8TM6SnCPzO0b79EWu5J8Wz0k8+vgSjuV4nA8TfdBECxY3TLK0PXzIzl1V00mza8QPt
-	yYj/3V52UXZmqCK2caWy8ZbUN/Y8TjiJrhIZ99MPrQhQyoNMFgw95y4RXFBFXKRi2DY/n2hOJJrbh
-	Q/HDY6gjPt/U56bxGcnJTc+CwvfU8mAFpRqxCuBpCGgcy7gf0vhxyDikXIH5OLFS1KfcJY5kFC8nh
-	qVzQuAww==;
+	bh=q1YCa6QIo9PeY+05m/sjhH3PUg81ljbhDyFPKMlTXyw=; b=L1MFyB46Sj/hmaAR0c8mjmeV7c
+	6FXgTSQCzUAnQZtGOE3k0c9SB+E2/IEYigIJA2mWeUZlB3nSBpmxwpe7AYmnnSEmqzY4FJ/Dd85qO
+	qWsedBpIc8cTsGnEsppDwR9U6vHyqk//sfkt7prn/4y9s7kkCktqaUiVvESlX0agSb8zBqUMHP7Aq
+	IbSOtNQK2TH7r4knr4C3tbMZdXFMXonvuN85ZhZa6WCIYhw5YhxdJSloxO8JrY3GzHJ2QySoMVAyM
+	AaBoLtKp/cRPdVwC/L2n9G5/HfkBODRZh3jAPOcO1QmppNaq+a+n2C56lTz/n96hNRySNip/9xftK
+	thWCvtbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w8ezX-000000026Kd-0R9u;
-	Fri, 03 Apr 2026 13:55:19 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1w8ezf-000000026PT-0n9D;
+	Fri, 03 Apr 2026 13:55:27 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w8ezU-000000026JP-1GzW
+	id 1w8ezb-000000026MZ-0DjO
 	for ath11k@lists.infradead.org;
-	Fri, 03 Apr 2026 13:55:17 +0000
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-b97f9587e6eso263019866b.3
-        for <ath11k@lists.infradead.org>; Fri, 03 Apr 2026 06:55:15 -0700 (PDT)
+	Fri, 03 Apr 2026 13:55:25 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-b93698bb57aso386403866b.0
+        for <ath11k@lists.infradead.org>; Fri, 03 Apr 2026 06:55:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1775224514; x=1775829314; darn=lists.infradead.org;
+        d=fairphone.com; s=fair; t=1775224521; x=1775829321; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=m83BxTeATfqd1UWKENZnthRfrI/lStR1Bw2POp0MJqM=;
-        b=n2DKSKqkIzQK6VV/5KgC5gifGPlq12iIVUoFIGemik8E0PvW6AB68bx86HNzbmLVIS
-         uG76VcvtpYJ8ysIzB+pFIc8/PlrbdAhgM92nPsiA5sQ3ncEBQIVMYEV/+zgbmAh1Uext
-         5M375bUf4GAVzpJeYu0qh/1Pq/h8arN+qWP+VppuDNFyyWy+jq3b9GTZS9HU/ulnj7UI
-         8cxusM2MO/4aaQ6LYiPtITn5eitg2EFqF2xzShZh7eWIDTiiFrOpo3+hQKx674JVX4e1
-         Ap5A8p9r42fc4i0Hg7yW5vFVY91IzSE0LAmS1JtPxtKM2Ffz7HUN+qzNLc/mJiHAdwDl
-         L3/w==
+        bh=q1YCa6QIo9PeY+05m/sjhH3PUg81ljbhDyFPKMlTXyw=;
+        b=LP6vI1oRAUUdctrodbZVODQhctEnYLFGcmSV19qHTtS+TIJTUAF5+gl/CT48VK8Ceu
+         nSxFwPYVvArZ2PBZYP8kd8u12a3JgBseWPiOY3M0jFFBF/uKP3iZMAUE8imIT7epKLtq
+         kvbSrjVClfosTl/JpWXvjxo1kFkGQuirtgjll7KVx5PbqEPiPgxWL0pgfIcAM1Sp6f33
+         QgJmMyaflo3uP19193imD14vKJEr+Vbc6mRkjEZZx7eXn5cr/QmSuOf6Yst2gr6LvbZY
+         3z4LWy32EolWCWv6RwFqcfaK80gKhNVTT4GfzYKtP/1otKuajujJunCVyYjF3Pyrzws1
+         s+0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775224514; x=1775829314;
+        d=1e100.net; s=20251104; t=1775224521; x=1775829321;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=m83BxTeATfqd1UWKENZnthRfrI/lStR1Bw2POp0MJqM=;
-        b=D2Bj8+BI0qN17bGHhFc0P+UFzpLlxuCgDqPGfyRSujAnRr1Q1qSX1x/9RFNQMWWd4o
-         vZOI07Y1f2pJkXVKZzIDRGst/bNW78SMtFG/EWTYWwuEZz4bEFpj0OQNlZyfTDCHx5zC
-         sXOh48weKbut2Ye1S/dvPpHm1cZaaHGaRUFXDUQ5JSgXF0gAudzaDII9Y3uaIUZsp99a
-         0vbn8+fbnWbmC2MnABhivPCcRqS0y/i521iqyY8P8EBP6fNqKSeOMPjiXl83UM22K/HO
-         fshZEj0v3ifhVpIC7mIe0vFcOuGC0ptwYeOqZRDVNdg7GOsmi7mrPVz+N30kZNUIj4tY
-         kcqg==
-X-Forwarded-Encrypted: i=1; AJvYcCXSojWiJDkzfK+KTwSAK04Gh88Ifkcwp324Ocks+wBdQ9/OVuX3PsN0L73P6TbDV0lcUDXwXc0=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz5ihE7ZRrR0P7XL6IlXsP+wyUp954g0a1ics498MWVh+W/SPVN
-	5qDm15o7NAr3mpZq8ib+ju3o4Wxu6Ryx0kf0J8aF2a+tUKbup4eUZtLbihqjW1uF1Hs=
-X-Gm-Gg: AeBDiev6OD94zNhT0adluTBSLP3TfLcUXhiyurhy0qoyyrGCP4zIKrbBi2jGHJH+9Za
-	IchNbkoiR4g2HXk7xC+TkIMwU7hvJy72ib43ZVGn6RYoTKoHXi4VZHQ95hpcUFOn2xc7IEx8xKg
-	yl4nMlysXO5PuwH41t7ySZkXisqeh85O4QTDv/8WHg1Ts+rq3E7qEU1Ww/dfjwuMipZnVkyeR7n
-	KrcVBdK53WdFv4y+WpTfqGqE01D+BhvT6Kr6KxmNb9VqcGTDE0k0be46PdgTHWzhhqLmmmNPhgv
-	wqWI23F41BOgyC5TVrLIuoG32rM+wa1UAq3Ap+jwfbRsABtPUk1QXzPqfAuMc+/qtJIKtcE5pW2
-	1/9vgtLqvkZtGAEg8xbr+MrfrkEhJvii95mc2nVrJjvGlWFIZiPgLfi57vwJSChcFrnXE0cj2Y/
-	U7u2YPTED5kFYZXZ5cdfms9dY1d5DlkqzEcB7w0ID9zwXG5pIVp1lQxepDJKHKg5Jgkv2nHM+Vr
-	2bvYctemw/rm2jiMTfBD8A7muiTOV342O7WAA==
-X-Received: by 2002:a17:907:d08f:b0:b9c:10c4:e708 with SMTP id a640c23a62f3a-b9c67a34a9dmr143022066b.42.1775224514386;
-        Fri, 03 Apr 2026 06:55:14 -0700 (PDT)
+        bh=q1YCa6QIo9PeY+05m/sjhH3PUg81ljbhDyFPKMlTXyw=;
+        b=mdt/+HHntJ9FWPfL6gIDaf8G/QMKD96Hg59WOyqdUexUBXZ1rJh9HFdkMe2sh58Llx
+         IUs15X24yhMvyiXlUFYlNIMwme/yx+PCx4bUK2XVinDMmfadVmmGQcMxboCZV8rBLGkH
+         dRlKjp2Gj4Fv5VxQDI6ewZEmiz1tHGAALSZSkypdVUrkUx02VcR5CXEPGpkUnI9iMSSN
+         X7ipAPIezaG6FPYVZki2HGga6GTUN5PY6YilS674hL3M/bpJ4oPOartNW6VICAAO6snT
+         3hc6eWiYZwPP3OWwd8dOOUNavq33QRy9sVo2PpXGl6nA7KaUUQrgGuisbu9Wc2bps/e0
+         GL3A==
+X-Forwarded-Encrypted: i=1; AJvYcCUWewHW2B69ijwCRBNOtqXn6RETAWYuB+9OABgqZmVqLhHbIbE1U+htyR37UI73GCcBu55L4KQ=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx7thQLc3TK5y2Ffh8uLwF2lgrQNci4FYzMKo3btCo4KXd22mM/
+	3+83903sbBTHaYkkkVIixQVeLcFoEuTwYmU32dU/rl/BCs4W742w/1OchOPOfVgGBXE=
+X-Gm-Gg: AeBDieuD3+vi8A1O1MJQPvJ5lBh763peTTiYzJutkRSbv2N5liRCn1olHMd33PW2Zqg
+	xVOwS3OfkC8kH1fQmc7YvWmikHLOBRE9Pxkz99M8kFcejVlh8cMIDndshuzvBR+Oy8jtxHgCc+S
+	DJDBd1E9yym7apeCn2ARZ+AXP9u3cIjOoSKitJDkLncwH1DZaSw74pvA5cOsTLb0ktyfETBGA4X
+	mrM9YdtJV3XDS3d1nZw0MTmh58TJG0IEOrz3kPGk9PD4UQ7UunnMYGoCyhs/dPUs2KFXHoBrhAw
+	wa5FKPoDJ5yGEUEH2p/H4MV9W2LoeIs/7RQ7y6dI1sAEzv64MyMqNwCs2jHK4deO2CSZQWpQXpL
+	pUtRPVnvB4Z0BVo4kWYiMOJiSg2GRBVnmjmD+bOfsJiTOJ08piLnbaCOcgJ3RWgxx4r9ad3Xm8y
+	7aphH7rHtZYgMUnw6J54PXQWjRhEqnOQjrqeLMA9999UoBTAsFOgq9aqBxNagjVclJ63i49dFga
+	PzGplzHwjs2xrwpRJq/6aqJ/k2AdpKAxrfWnYtNEvshHZSv
+X-Received: by 2002:a17:906:ee83:b0:b99:86b6:85fd with SMTP id a640c23a62f3a-b9c65596fdbmr158557066b.9.1775224521403;
+        Fri, 03 Apr 2026 06:55:21 -0700 (PDT)
 Received: from otso.local (2001-1c00-3b89-c600-71a4-084f-6409-1447.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:71a4:84f:6409:1447])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.13
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Apr 2026 06:55:13 -0700 (PDT)
+        Fri, 03 Apr 2026 06:55:20 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 03 Apr 2026 15:52:47 +0200
-Subject: [PATCH v2 1/7] regulator: dt-bindings: qcom,qca6390-pmu: Document
- WCN6755 PMU
+Date: Fri, 03 Apr 2026 15:52:51 +0200
+Subject: [PATCH v2 5/7] arm64: dts: qcom: milos: Add WCN6755 WiFi node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260403-milos-fp6-bt-wifi-v2-1-393322b27c5f@fairphone.com>
+Message-Id: <20260403-milos-fp6-bt-wifi-v2-5-393322b27c5f@fairphone.com>
 References: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 In-Reply-To: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -98,16 +97,16 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=1270;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=2562;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=v0N8xo6MFWIwVEW8StRaWQk6fHZBEqBZmxy286b/97Y=;
- b=lmSluzrxl2IvHohqbLRwM8ZeK0TA0Y4HsWh+y4B3jOfVOirTRYkehiK7ceZ42CboR9e5Ts5BN
- rMEWV8MPDVyDP+/ux64qnG2NCnxwOhrrXEqE51f24EPFDrswFgQmVZA
+ bh=Laagl1WvmKQiKODwRM094nhY7LnQG8oBc9UyZ9+RHgI=;
+ b=5dJnjoMOmNyoMHrWYuV+T1fDHL+fKjWcd2iksZsGpFY5KgrcxW85fMrGe1suXpl/g2g53QTu/
+ 2BtMLr3WqRnAYp8oduhNM5XgqDpI+uMmoQqYThDMSgKypx2bIP832X6
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260403_065516_359405_85DD8051 
-X-CRM114-Status: UNSURE (   9.79  )
+X-CRM114-CacheID: sfid-20260403_065523_789763_5327FF40 
+X-CRM114-Status: UNSURE (   9.25  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,42 +122,70 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Document the WCN6755 PMU using a fallback to WCN6750 since the two chips
-seem to be completely pin and software compatible. In fact the original
-downstream kernel just pretends the WCN6755 is a WCN6750.
+Add a node for the WCN6755 WiFi found with the Milos SoC.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- .../devicetree/bindings/regulator/qcom,qca6390-pmu.yaml  | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/qcom/milos.dtsi | 46 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-index 47c425c9fff1..105174df7df2 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-@@ -16,11 +16,17 @@ description:
+diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
+index 71292dfd6e08..3a3d7f2134e8 100644
+--- a/arch/arm64/boot/dts/qcom/milos.dtsi
++++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+@@ -2438,6 +2438,52 @@ gic_its: msi-controller@17140000 {
+ 			};
+ 		};
  
- properties:
-   compatible:
--    enum:
--      - qcom,qca6390-pmu
--      - qcom,wcn6750-pmu
--      - qcom,wcn6855-pmu
--      - qcom,wcn7850-pmu
-+    oneOf:
-+      - items:
-+          - enum:
-+              - qcom,wcn6755-pmu
-+          - const: qcom,wcn6750-pmu
++		wifi: wifi@17110040 {
++			compatible = "qcom,wcn6755-wifi", "qcom,wcn6750-wifi";
++			reg = <0x0 0x17110040 0x0 0x0>;
 +
-+      - enum:
-+          - qcom,qca6390-pmu
-+          - qcom,wcn6750-pmu
-+          - qcom,wcn6855-pmu
-+          - qcom,wcn7850-pmu
- 
-   vdd-supply:
-     description: VDD supply regulator handle
++			iommus = <&apps_smmu 0x1400 0x1>;
++
++			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING 0>,
++				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING 0>;
++
++			qcom,rproc = <&remoteproc_wpss>;
++			qcom,smem-states = <&smp2p_wlan_out 0>;
++			qcom,smem-state-names = "wlan-smp2p-out";
++
++			status = "disabled";
++		};
++
+ 		timer@17420000 {
+ 			compatible = "arm,armv7-timer-mem";
+ 			reg = <0x0 0x17420000 0x0 0x1000>;
 
 -- 
 2.53.0
