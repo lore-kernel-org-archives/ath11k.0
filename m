@@ -4,94 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C7EBE85367
-	for <ath11k@archiver.kernel.org>; Fri,  3 Apr 2026 13:55:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D757E85370
+	for <ath11k@archiver.kernel.org>; Fri,  3 Apr 2026 13:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=JUIw5PfzjSbRelAWl0scbWA1aw6NDc9ZPR21LqC1P6U=; b=dcpTPoa4zscVVdsPRyBIElmFc/
-	EkAFGnAv2qpYKjREcCN3Yrkw1a5xYVVSso4/UMaNyR1JlX9kkkywxyGGcwRG/bAMEllXby4hwMrJY
-	ckC0fhyV3N6AX1xFcV+3vAt2V9fWYzyGShCipmQj31nUORKBqhZUJnwE4moUvv+nk4hOln9DKpwVn
-	Q+9BEwqZtJQ+HG/TZWXuMqw6lar0JPDgh6FvVqRoVE2rGNDQmRhOOLbvCX1SOagHh5ZaUS97vtnKS
-	uLHXZ2gPrNrwDbepcS4hPTjObVJE0t1x6sUzx9w/f2xBJSIxf/9ieoCx91x7ScurP1vifQc5JAFvU
-	pbEVz4wg==;
+	bh=00QsAJAs94/ZqUyZhadzKRAFArz8oATvGeKh7GrAju0=; b=SZdm8PTuvkK5QrwrNa/S/1KluQ
+	wquK0VkVZ2H4TcMnkIYnfy4gJVivLpyY4wBBHNDnn6SI4Ay1ToFSY0oyPxdzwK0KT+O59cGnp7r/G
+	TfJm68dsP2heccmGVI7mhun+aAYT1E6/xkHF6Se5uR30GJ0h/2/WWCX2lfvBGu7ni/2a6q/n4xl9I
+	eyVTyqzqf8y+m0huFsde6YU0lheGhyMhbRkN18eMqL/P2QkKOVKj1A0zgjJrM8iqFjgJjDtQIzOYJ
+	atufdJdY7dae406E3f/spc5weuPdURH8Dim3rb5c8wMo0j7fD5HfrTpdNOaySv5kjbwiGgmWB9dgR
+	uLikytdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w8ezf-000000026Qa-4BIJ;
-	Fri, 03 Apr 2026 13:55:28 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w8ezf-000000026Oq-1Jeo
-	for ath11k@bombadil.infradead.org;
-	Fri, 03 Apr 2026 13:55:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=JUIw5PfzjSbRelAWl0scbWA1aw6NDc9ZPR21LqC1P6U=; b=M5MPwqgMOznyIDdxSwbMMIJ5dZ
-	ERUshdWkaVGROAoU5qpcLmlpEkTSemt/ONw6GOpbgwQCtc4ubBUW+3la8/RM+B2AHaL+lq915hF71
-	GNXjf5zGBPQ9AQm0bgSqkW+zCxTJ5DcjvpnmDVy9Tjq6dSKd+zk6wiXRuhRvDdkNYkxLuCo4t17/c
-	l45LiPSeAnVyorJj7YO8XkRvv+UpIWbxAc5jC/N+VDE1QEoBltdMx5ynVISCZ4awGv8DhHds/nkLr
-	Czd2A2JoFg4dZIpuzc4vSOoaOkBLovo3eCpWx0fzI9aYhbQqtXAjYLIQB5gauP2EH8kTHDKlF3cgC
-	HlAfzjZA==;
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w8ezb-00000004CZm-330F
-	for ath11k@lists.infradead.org;
+	id 1w8eze-000000026P5-3mdx;
 	Fri, 03 Apr 2026 13:55:26 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-b941762394aso251675366b.1
-        for <ath11k@lists.infradead.org>; Fri, 03 Apr 2026 06:55:22 -0700 (PDT)
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1w8ezZ-000000026LE-20oY
+	for ath11k@lists.infradead.org;
+	Fri, 03 Apr 2026 13:55:25 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-b93698bb57aso386397866b.0
+        for <ath11k@lists.infradead.org>; Fri, 03 Apr 2026 06:55:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1775224520; x=1775829320; darn=lists.infradead.org;
+        d=fairphone.com; s=fair; t=1775224519; x=1775829319; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JUIw5PfzjSbRelAWl0scbWA1aw6NDc9ZPR21LqC1P6U=;
-        b=K04X/XmPdkbvd7sLCQhq1anYXRxe4A62OLxs+lndrB80HrBWO6O+HufgwEWfUQVP0s
-         3HGbW9zpS9+g654KwRjwoxliO3MxaCzD4EBMR6Y2qOHckx9T1uAj0oCiOryeCZeioRFm
-         MHFP9xKtOyqqEALKAoPCA75gz3WxBPFVeRihPFYOHLZ7EOrFqkzScaZWBEZRWAtaQEQW
-         te5ee2j4TYV6d2bEe4E/OI5+R0fR6+13CsSDp0YtGddn9mYMLBOSe08yBm2MN5/fdKxu
-         ZT0sTJ1kGjiu3pBNQpyUDI2Kmh+zqzoLRkSTbURWtZt1dnqAwtMoBRfxehUh+VRBNuPy
-         /TgQ==
+        bh=00QsAJAs94/ZqUyZhadzKRAFArz8oATvGeKh7GrAju0=;
+        b=gAl15j0qjsF20YkNYpOcRxhb3zeaS7EwRoqwRbDK06GyhBVlr/mYfaFBmTRxo+Jkkk
+         XFaaBd5isFKgZN0j+i5TiB3NaihYqpfMmKT3cI08ofgiNWB7//uEs3mjYYZF5jIhbABn
+         wqAhxR2PQ9aRVmWFuZ8jn0Rr9pV15f5FZ98w9SU1teDs320e17PGWrqT5dFljbyov8vt
+         O6DY0GnfC+fIPiqkgjqmIb0W1SO8tGFFS8EQECHi7FmwuPv3eibwwOSOYtKkEs7aCbW7
+         DiN4DCGi0N5hv/Jk0xhkLXIg1LGNhtbZHxKEYd9BEIF+quMdU7JQYg5vr5+Ic1zjwZN8
+         CToQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775224520; x=1775829320;
+        d=1e100.net; s=20251104; t=1775224519; x=1775829319;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=JUIw5PfzjSbRelAWl0scbWA1aw6NDc9ZPR21LqC1P6U=;
-        b=JEk/eDV4PQ9K4gLBVgHKlJw1BMkvvOtIat0jxYIioDT6QDSjGIJy6NvufBTZN3xha9
-         RC2IbHqOIzMBzV/eIgwe4GOqkCwtadvM5xoAtHP5UFwgTF/IOW+NggfhCl5gsQJcr0NG
-         HuYWvHl1FBKkvZszq0aDwHIcjG7iTyILDARrtJFq2swC7tI23irqc9+UNjtlm9kCfS5n
-         B/V3tk/z/P7RRnC1q0PWvDvCygOupPtfOhRHX0QsDSNDtWkB4JsTgdmPQDOjPS2dMgGw
-         FrXNEnnocFpA1O6oPUXiphcWzbpw0aZhTcm/O+CpXNCEk7q+x6MIO+z0eB0WhGmgDhSl
-         vWNg==
-X-Forwarded-Encrypted: i=1; AJvYcCVskC681KBhIMwjeoE8/+LRuvwdiQie1IHn5/UfjlbwFTFaOsI9COAmpjYbnerC1AhLb+F1tso=@lists.infradead.org
-X-Gm-Message-State: AOJu0Ywzx/wjTFOK4e4fOJ/FIddd9YClpqZ5QlT84NohFFEhLLZ4BRRX
-	au2czfMM3LLsML8o3qBo/aSa3RRauYcTwq/kVy15Fdc7CjWKDhIcEiOtn5Wscjx6HCE=
-X-Gm-Gg: AeBDietd8OGNXXs/+h2IwFuLB3JosOQYufisoUtoTyGZVjiS89SEBZL1DozkJjqSYaF
-	HkD178GcYLVErHqmQvxuiqC6+0bxxo2hLLKP4V5COulJZY35LWJhCWmzjWeFVozcc3UDXP++37d
-	I2+9K9lLCOhl8MpyS1Pay92ONp5eb3d+WWkPLL+mvxXJP4n7CrsLQZjpAcvYTNsI1Bzb09Hgtsg
-	US5NhNemXeHSVy9c4KO/C85j80wPFqYGNnBiTOliRs6eoXTPkMgQ04jFgfaWztKHHQ3R+GkYlxH
-	zA4CQeNG0vLUcrczHPE8q8IfZVgRyYCGauNXBit10Gzkw0ztOwvrgaLdQkhuNX4unACT7di8Bkm
-	Tj9BYiuZuden/Ehuk+xsgzm4jM3CMyANSRiWs9zuuW+YwZVZJAWb/PAxWeajK+WL96oxlo7x8ix
-	noiGFDkBsGC+eu24xglRQhgJ131OEKKxya9Ya8oO3hIfeThfocVMDeXAlHC8617AWFbZ/Tq8LuP
-	Hea0CKyuD4Dqbu+QnNV7JkPrchvyhRoqXMr3A==
-X-Received: by 2002:a17:907:9711:b0:b96:e593:fd1e with SMTP id a640c23a62f3a-b9c66e5e2cemr156799566b.0.1775224520390;
-        Fri, 03 Apr 2026 06:55:20 -0700 (PDT)
+        bh=00QsAJAs94/ZqUyZhadzKRAFArz8oATvGeKh7GrAju0=;
+        b=kMpnX5in/kOHMCLsLVDA++dDJZcY5aQ4Fe5GdSwCO/vkuR9bVu2Yq8Ne7dWYUHhwtX
+         z7lav5nDnYc3K3t74Kqifwf2202Pe04ic2ssVw6sZIXgttnsPbRcoPmLYL9/u7cuMInF
+         FtynMhgdVodoKV53IZcvemacObQbORBNr9v2UZ9/JKw7L22rv7KWb9mU5qc4dHnik5gN
+         oJjR/Nx98iD9NsfKMILfIEtRsDROxpH/lW+kutlEH2WxSLowiJwaED0J8WCDfazcdBc1
+         3T2UWY4dGy6UXouykfrEfNpL7KKR9GdIoAHWr+WoxsZWoBE/rTXJHDcYnLuXNxkR6Dwo
+         kdSg==
+X-Forwarded-Encrypted: i=1; AJvYcCXUYp416nv4ZiizVGucqyOZVUXLbWg/Wsm1K3T5iiHzKXYhmbtYwGoZFs2Ze+VQa+XzdHWXYC0=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzYxH9bos5Ma96O4MaydhTEMH7C83Deo2Aw53hM1Rne9HJDuPtl
+	t5oFLoYBzk7gIEJw5Ufs8b1eKSfjaZIGE0Y4hDfj52MwXCbpLbvu0cNWQtXp07WUlCY=
+X-Gm-Gg: AeBDievHepoiD8/Lwy01uT+mwbRD7QMC8UVlSgMydVZ9qFw2/gXIn0y5cqiELjGuwdm
+	OPp+PxS2Llhz8sgoVs6Kc8oU546UxPZFKtwiO4NJXGpb0xQcun2FLTEL5T9VRCMiTx6Cg+I7N+D
+	Vc+d3P7QklzTtNy8/BuA6UyxgATrJ/YgW0CljAolQDHxzu+5JboIuD39aiEmt4Ba5Wp5oPmeJHT
+	u5QBXQgZokPbXsvoQbOFKnk+Z0Ax2RusfE6ZSzFpG9rTlyjBQZ0IDAs29alJ1zVwDaw0CG+LEKJ
+	d6tNbSzev9hq0lYQjySlia50JvVgp0DTCydbseYzZCZ0Fd9Ens/Bnz/TiIMOXvY6OnL1h/gJqSo
+	glrIaxyO6anbkOZ6nHx/how0ptmvjljOwywGoqMplMrYVvsODPXAWlHr0aXp0ylsFQibl5Hl08N
+	UpWgukAMxcEal19DKxsfDbFii+FYNBCpA7OBtmYGf+t5php9EFHPAGR9v1kSuJbpRDKOS2vawFP
+	+RO5VEpXvPruoc0J9p/gJbNKCwwduRcHzaDHQ==
+X-Received: by 2002:a17:906:6a02:b0:b9c:cb1:a61b with SMTP id a640c23a62f3a-b9c658742acmr142510866b.16.1775224516202;
+        Fri, 03 Apr 2026 06:55:16 -0700 (PDT)
 Received: from otso.local (2001-1c00-3b89-c600-71a4-084f-6409-1447.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:71a4:84f:6409:1447])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.19
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Apr 2026 06:55:20 -0700 (PDT)
+        Fri, 03 Apr 2026 06:55:15 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 03 Apr 2026 15:52:50 +0200
-Subject: [PATCH v2 4/7] arm64: dts: qcom: milos: Split up uart11 pinctrl
+Date: Fri, 03 Apr 2026 15:52:49 +0200
+Subject: [PATCH v2 3/7] dt-bindings: net: wireless: ath11k: Document
+ WCN6755 WiFi
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260403-milos-fp6-bt-wifi-v2-4-393322b27c5f@fairphone.com>
+Message-Id: <20260403-milos-fp6-bt-wifi-v2-3-393322b27c5f@fairphone.com>
 References: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 In-Reply-To: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -112,16 +98,16 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=1487;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=1239;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=0tNxjU9iZ5aS9yMEJ2ytUcRE8/Wq0mJ0XVTDTTRdWIM=;
- b=/YToNUqYXJRAKqxJIRr0r/cZTobsLFymsg/TVbH46bVWMTHSJdm7XRvdUpgk256TWrcMjxZzR
- nOrivC7LfVFCc3S9aQe2Xi11CK1Ror8u934bOVKDYcB1HNT8BXOHYGt
+ bh=bX0RSkEhHMY0CQeWiiphb/xjS1x++AeW72AXUrJMhfA=;
+ b=DTJTtJ7BKJd8qPXVe3nd0JrxaYiQE2N8bwiN41dxZ5jihuyHGd6fmesGzuo/2w99jisvtHofF
+ h8Mx18K34cAAflNUNQSKgyj8B17L/9Yc4dJVyM76qpuovDBjx8PeKjI
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260403_145523_989279_9C62F7D8 
-X-CRM114-Status: UNSURE (   9.56  )
+X-CRM114-CacheID: sfid-20260403_065521_541770_5C888DA8 
+X-CRM114-Status: UNSURE (   9.72  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -137,57 +123,42 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In order to set the pinctrl for the individual CTS, RTS, TX and RX pins,
-split up the pinctrl configuration into 4 nodes so that boards can set
-some properties separately.
+Document the WCN6755 WiFi using a fallback to WCN6750 since the two
+chips seem to be completely pin and software compatible. In fact the
+original downstream kernel just pretends the WCN6755 is a WCN6750.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- arch/arm64/boot/dts/qcom/milos.dtsi | 28 ++++++++++++++++++----------
- 1 file changed, 18 insertions(+), 10 deletions(-)
+ .../devicetree/bindings/net/wireless/qcom,ath11k.yaml    | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
-index 4a64a98a434b..71292dfd6e08 100644
---- a/arch/arm64/boot/dts/qcom/milos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/milos.dtsi
-@@ -2099,19 +2099,27 @@ qup_i2c7_data_clk: qup-i2c7-data-clk-state {
- 			};
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index 0cc1dbf2beef..94f8f8551756 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -16,11 +16,17 @@ description: |
  
- 			qup_uart11_cts_rts: qup-uart11-cts-rts-state {
--				/* CTS, RTS */
--				pins = "gpio48", "gpio49";
--				function = "qup1_se4";
--				drive-strength = <2>;
--				bias-pull-down;
-+				qup_uart11_cts: cts-pins {
-+					pins = "gpio48";
-+					function = "qup1_se4";
-+				};
+ properties:
+   compatible:
+-    enum:
+-      - qcom,ipq8074-wifi
+-      - qcom,ipq6018-wifi
+-      - qcom,wcn6750-wifi
+-      - qcom,ipq5018-wifi
++    oneOf:
++      - items:
++          - enum:
++              - qcom,wcn6755-wifi
++          - const: qcom,wcn6750-wifi
 +
-+				qup_uart11_rts: rts-pins {
-+					pins = "gpio49";
-+					function = "qup1_se4";
-+				};
- 			};
++      - enum:
++          - qcom,ipq8074-wifi
++          - qcom,ipq6018-wifi
++          - qcom,wcn6750-wifi
++          - qcom,ipq5018-wifi
  
- 			qup_uart11_default: qup-uart11-default-state {
--				/* TX, RX */
--				pins = "gpio50", "gpio51";
--				function = "qup1_se4";
--				drive-strength = <2>;
--				bias-pull-up;
-+				qup_uart11_tx: tx-pins {
-+					pins = "gpio50";
-+					function = "qup1_se4";
-+				};
-+
-+				qup_uart11_rx: rx-pins {
-+					pins = "gpio51";
-+					function = "qup1_se4";
-+				};
- 			};
- 
- 			sdc2_default: sdc2-default-state {
+   reg:
+     maxItems: 1
 
 -- 
 2.53.0
