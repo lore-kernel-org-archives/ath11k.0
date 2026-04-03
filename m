@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D757E85370
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0145EE85371
 	for <ath11k@archiver.kernel.org>; Fri,  3 Apr 2026 13:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,72 +12,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=00QsAJAs94/ZqUyZhadzKRAFArz8oATvGeKh7GrAju0=; b=SZdm8PTuvkK5QrwrNa/S/1KluQ
-	wquK0VkVZ2H4TcMnkIYnfy4gJVivLpyY4wBBHNDnn6SI4Ay1ToFSY0oyPxdzwK0KT+O59cGnp7r/G
-	TfJm68dsP2heccmGVI7mhun+aAYT1E6/xkHF6Se5uR30GJ0h/2/WWCX2lfvBGu7ni/2a6q/n4xl9I
-	eyVTyqzqf8y+m0huFsde6YU0lheGhyMhbRkN18eMqL/P2QkKOVKj1A0zgjJrM8iqFjgJjDtQIzOYJ
-	atufdJdY7dae406E3f/spc5weuPdURH8Dim3rb5c8wMo0j7fD5HfrTpdNOaySv5kjbwiGgmWB9dgR
-	uLikytdw==;
+	bh=EPHsiCpdUUXRFvwRdI2OtsPeWnYw906MZTDdwum5VRU=; b=bkAKAzy7t0b54txRh71IJF/34f
+	CeYLpbclwumkSmcCHUgW9tHbLml3ZM/L80+5ZtnhXBYHs1RdLnj34H44LR32JFnsBnc6QI/oxA3NH
+	1QFelSjd777TDOMgeujPZ2u0GYorv9ORKinJXceb7/2JRCBwkY8PX4u6buZC0nJDwkDnQuOclJV0y
+	Aee6nMsvGQ2zpD0oYKeen006McqS0EziTGsT0VxMV0Pod1p5mw+76h1zDhCJ+6BfDh6TVy0kCi20k
+	nSgezax5Z0UuO78+ZoeRUeT+catcQsMjbORjR4AUN+NVhFrnwRk4QYkDWXMwQvS348u5by8+tc4c0
+	oDSNK/og==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w8eze-000000026P5-3mdx;
-	Fri, 03 Apr 2026 13:55:26 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1w8ezf-000000026Q4-331H;
+	Fri, 03 Apr 2026 13:55:27 +0000
+Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w8ezZ-000000026LE-20oY
+	id 1w8ezc-000000026Mu-1nsq
 	for ath11k@lists.infradead.org;
-	Fri, 03 Apr 2026 13:55:25 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-b93698bb57aso386397866b.0
-        for <ath11k@lists.infradead.org>; Fri, 03 Apr 2026 06:55:20 -0700 (PDT)
+	Fri, 03 Apr 2026 13:55:26 +0000
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-b9825ba7f9dso496612966b.0
+        for <ath11k@lists.infradead.org>; Fri, 03 Apr 2026 06:55:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1775224519; x=1775829319; darn=lists.infradead.org;
+        d=fairphone.com; s=fair; t=1775224522; x=1775829322; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=00QsAJAs94/ZqUyZhadzKRAFArz8oATvGeKh7GrAju0=;
-        b=gAl15j0qjsF20YkNYpOcRxhb3zeaS7EwRoqwRbDK06GyhBVlr/mYfaFBmTRxo+Jkkk
-         XFaaBd5isFKgZN0j+i5TiB3NaihYqpfMmKT3cI08ofgiNWB7//uEs3mjYYZF5jIhbABn
-         wqAhxR2PQ9aRVmWFuZ8jn0Rr9pV15f5FZ98w9SU1teDs320e17PGWrqT5dFljbyov8vt
-         O6DY0GnfC+fIPiqkgjqmIb0W1SO8tGFFS8EQECHi7FmwuPv3eibwwOSOYtKkEs7aCbW7
-         DiN4DCGi0N5hv/Jk0xhkLXIg1LGNhtbZHxKEYd9BEIF+quMdU7JQYg5vr5+Ic1zjwZN8
-         CToQ==
+        bh=EPHsiCpdUUXRFvwRdI2OtsPeWnYw906MZTDdwum5VRU=;
+        b=Mnuwcg+CK3mCkmDCUbWIw9vIcnY7I1ajVjdVzsfetQwzwAfZ5AXXkqYaTba51RwVtb
+         21xPBbAQKm/BXcXopIAjKE1KQBHenkCGUkQaFD1kN7NgcyIffjUCz8DfCzq/7M0cZfjd
+         lpZfenMjegMhw5+0qJAvEVu2KgePh+6vql6Z52EDD6BRMmoLEMesGlqAwOZ7ncHCc5Km
+         R/DT3yWVC3n0YsG4mROg4nfn1D4it+YhP6uNgT5S8Qb51j8adMzrwHInqAwoi9EuvRrX
+         CuOsdA7487hKXD1BKBW5c74xY531TmtXTk9lMANwqJwNWSKbewBqdDyzwZ5yW7dN9TDB
+         LMyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775224519; x=1775829319;
+        d=1e100.net; s=20251104; t=1775224522; x=1775829322;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=00QsAJAs94/ZqUyZhadzKRAFArz8oATvGeKh7GrAju0=;
-        b=kMpnX5in/kOHMCLsLVDA++dDJZcY5aQ4Fe5GdSwCO/vkuR9bVu2Yq8Ne7dWYUHhwtX
-         z7lav5nDnYc3K3t74Kqifwf2202Pe04ic2ssVw6sZIXgttnsPbRcoPmLYL9/u7cuMInF
-         FtynMhgdVodoKV53IZcvemacObQbORBNr9v2UZ9/JKw7L22rv7KWb9mU5qc4dHnik5gN
-         oJjR/Nx98iD9NsfKMILfIEtRsDROxpH/lW+kutlEH2WxSLowiJwaED0J8WCDfazcdBc1
-         3T2UWY4dGy6UXouykfrEfNpL7KKR9GdIoAHWr+WoxsZWoBE/rTXJHDcYnLuXNxkR6Dwo
-         kdSg==
-X-Forwarded-Encrypted: i=1; AJvYcCXUYp416nv4ZiizVGucqyOZVUXLbWg/Wsm1K3T5iiHzKXYhmbtYwGoZFs2Ze+VQa+XzdHWXYC0=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzYxH9bos5Ma96O4MaydhTEMH7C83Deo2Aw53hM1Rne9HJDuPtl
-	t5oFLoYBzk7gIEJw5Ufs8b1eKSfjaZIGE0Y4hDfj52MwXCbpLbvu0cNWQtXp07WUlCY=
-X-Gm-Gg: AeBDievHepoiD8/Lwy01uT+mwbRD7QMC8UVlSgMydVZ9qFw2/gXIn0y5cqiELjGuwdm
-	OPp+PxS2Llhz8sgoVs6Kc8oU546UxPZFKtwiO4NJXGpb0xQcun2FLTEL5T9VRCMiTx6Cg+I7N+D
-	Vc+d3P7QklzTtNy8/BuA6UyxgATrJ/YgW0CljAolQDHxzu+5JboIuD39aiEmt4Ba5Wp5oPmeJHT
-	u5QBXQgZokPbXsvoQbOFKnk+Z0Ax2RusfE6ZSzFpG9rTlyjBQZ0IDAs29alJ1zVwDaw0CG+LEKJ
-	d6tNbSzev9hq0lYQjySlia50JvVgp0DTCydbseYzZCZ0Fd9Ens/Bnz/TiIMOXvY6OnL1h/gJqSo
-	glrIaxyO6anbkOZ6nHx/how0ptmvjljOwywGoqMplMrYVvsODPXAWlHr0aXp0ylsFQibl5Hl08N
-	UpWgukAMxcEal19DKxsfDbFii+FYNBCpA7OBtmYGf+t5php9EFHPAGR9v1kSuJbpRDKOS2vawFP
-	+RO5VEpXvPruoc0J9p/gJbNKCwwduRcHzaDHQ==
-X-Received: by 2002:a17:906:6a02:b0:b9c:cb1:a61b with SMTP id a640c23a62f3a-b9c658742acmr142510866b.16.1775224516202;
-        Fri, 03 Apr 2026 06:55:16 -0700 (PDT)
+        bh=EPHsiCpdUUXRFvwRdI2OtsPeWnYw906MZTDdwum5VRU=;
+        b=Y3KhHXtAbbbXvlSLXb/oZa4unwiNYI6RTy0gu9AZuzxX2tqdQzGZRkI+LgubhDHWPY
+         LLpk7sLbH7fA+bClvmACzi89lpoC+cY+1yor5xjWmwE/A3VD37dwEEAZZo0N5DS+/cho
+         mN+sJRsNTezHSDsAyXDOMXiCYF3fyGuausigQJxnALPjR+V7kb3z1xagG65txg01bDCz
+         iF5FzMoIia76+k2QGwwbuczJG4CNACmc9zggDYkHYKQtswL0x7cHt7c1HXhqJ/+mAOet
+         8lQOkMYj1gfwDbp7RXAodJH1EjnJB1jbQUzBpam6147garg3UJLyWzLJRvvp9v+NxiaK
+         jaSA==
+X-Forwarded-Encrypted: i=1; AJvYcCXS58Hk6sk5ysp5ahpEz/iwHOnnKa7VQ4FMkZJmD8fHTr+Eldx+jySXi1OEgaMNASsauYYDjiI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwCiCcs6Ea1ZCA9CLblebM45W3YE9C6srjv1QdXeHRNbWviDIGn
+	PXzJ/+3GHA4C8ewDSPa8D+tdHS6+LvSK25aCHK3iCcaM2NdKTsUBv8XmaPsfo6tYK71ZUUPyyKp
+	yxToD6Sg=
+X-Gm-Gg: ATEYQzwdEnbHoJx/ymeFMWW6zBvduCx1X9m9hAoVXmgTq8Dwvq3/E+nlTGdINNoyxxv
+	KQyqFRmN2P1XAOcw+u6Z8vA/ULF0prPi/6EQrpntcSbnde63mt8yJuTMwSYW7WW9f16JbiZi4KF
+	+yrLdGNSAqVkyhsxreViP3j1MtdAyqPy8jfF/YSvONuYCuVLepuc6U6aPQpi9HlyjF0eai8iQIg
+	WV/1atV6eO7TpFI9MjKV1IaXwGLEyc2UCZyjpwiE9FdHGit+uxEYS2tvOZRR8SzzcgfhVjy8GmA
+	S0AvM7gVxXhOJmkbf+uCUYL1qgGO0O8mu/QhyE1+n51Gwovm9ipHQE69kqriramicVOAPGbP6os
+	jxPOux7zj5wwR7QY8Ci9LMRX/eoSKt/fZj3UreqKocaTvRMUYDorHRrDsuRG0R38Sn8Kcg5QhM9
+	2l4s1oRWhlN8G1Qe/GfaUHo3NhHj4JXn+gWNr1zEtG5H95PbhrpdGRReDoyDE/0uYfwMi/7Chl0
+	MzAVFb928d/SCTEUzNZINclbkCHRk7GfgU1Uw==
+X-Received: by 2002:a17:907:3d56:b0:b94:231f:26ca with SMTP id a640c23a62f3a-b9c46fedc37mr308190066b.20.1775224522291;
+        Fri, 03 Apr 2026 06:55:22 -0700 (PDT)
 Received: from otso.local (2001-1c00-3b89-c600-71a4-084f-6409-1447.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:71a4:84f:6409:1447])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.15
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Apr 2026 06:55:15 -0700 (PDT)
+        Fri, 03 Apr 2026 06:55:21 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 03 Apr 2026 15:52:49 +0200
-Subject: [PATCH v2 3/7] dt-bindings: net: wireless: ath11k: Document
- WCN6755 WiFi
+Date: Fri, 03 Apr 2026 15:52:52 +0200
+Subject: [PATCH v2 6/7] arm64: dts: qcom: milos-fairphone-fp6: Enable
+ Bluetooth
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260403-milos-fp6-bt-wifi-v2-3-393322b27c5f@fairphone.com>
+Message-Id: <20260403-milos-fp6-bt-wifi-v2-6-393322b27c5f@fairphone.com>
 References: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 In-Reply-To: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -98,17 +99,16 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=1239;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=5650;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=bX0RSkEhHMY0CQeWiiphb/xjS1x++AeW72AXUrJMhfA=;
- b=DTJTtJ7BKJd8qPXVe3nd0JrxaYiQE2N8bwiN41dxZ5jihuyHGd6fmesGzuo/2w99jisvtHofF
- h8Mx18K34cAAflNUNQSKgyj8B17L/9Yc4dJVyM76qpuovDBjx8PeKjI
+ bh=akUQPIrMgPWRNFtOss4vuRIj1MAE0awNf856ZYFJhDg=;
+ b=dyYdc5Ec1aiox9qFG4Riy10GAz315VOhkO2VRCASezMRP6RTMEzf6wuziUmcu2DsGn7c72cho
+ P8++lG8qX9OCFoKmQAwkmfYwCfcltX0EMy6Baz9Am39oTehVbjctRh/
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260403_065521_541770_5C888DA8 
-X-CRM114-Status: UNSURE (   9.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260403_065525_340816_8F29FCCD 
+X-CRM114-Status: GOOD (  14.73  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,42 +123,230 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Document the WCN6755 WiFi using a fallback to WCN6750 since the two
-chips seem to be completely pin and software compatible. In fact the
-original downstream kernel just pretends the WCN6755 is a WCN6750.
+Add the nodes to describe the WCN6755 chip with its PMU and Bluetooth
+parts.
+
+Thanks to Alexander Koskovich for helping with the bringup, adding
+'clocks' to the PMU node to make Bluetooth work.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- .../devicetree/bindings/net/wireless/qcom,ath11k.yaml    | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 174 +++++++++++++++++++++++
+ 1 file changed, 174 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-index 0cc1dbf2beef..94f8f8551756 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-@@ -16,11 +16,17 @@ description: |
+diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+index c1899db46e71..db72418b7195 100644
+--- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
++++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+@@ -24,6 +24,7 @@ / {
  
- properties:
-   compatible:
--    enum:
--      - qcom,ipq8074-wifi
--      - qcom,ipq6018-wifi
--      - qcom,wcn6750-wifi
--      - qcom,ipq5018-wifi
-+    oneOf:
-+      - items:
-+          - enum:
-+              - qcom,wcn6755-wifi
-+          - const: qcom,wcn6750-wifi
+ 	aliases {
+ 		serial0 = &uart5;
++		serial1 = &uart11;
+ 	};
+ 
+ 	gpio-keys {
+@@ -225,6 +226,67 @@ trip1 {
+ 			};
+ 		};
+ 	};
 +
-+      - enum:
-+          - qcom,ipq8074-wifi
-+          - qcom,ipq6018-wifi
-+          - qcom,wcn6750-wifi
-+          - qcom,ipq5018-wifi
++	wcn6750-pmu {
++		compatible = "qcom,wcn6755-pmu", "qcom,wcn6750-pmu";
++
++		vddaon-supply = <&vreg_s3b>;
++		vddasd-supply = <&vreg_l7b>;
++		vddpmu-supply = <&vreg_s3b>;
++		vddrfa0p8-supply = <&vreg_s3b>;
++		vddrfa1p2-supply = <&vreg_s2b>;
++		vddrfa1p7-supply = <&vreg_s1b>;
++		vddrfa2p2-supply = <&vreg_s1j>;
++
++		bt-enable-gpios = <&tlmm 53 GPIO_ACTIVE_HIGH>;
++
++		clocks = <&rpmhcc RPMH_RF_CLK1>;
++
++		pinctrl-0 = <&bluetooth_enable_default>;
++		pinctrl-names = "default";
++
++		regulators {
++			vreg_pmu_rfa_cmn: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn";
++			};
++
++			vreg_pmu_aon_0p59: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p59";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p85: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p85";
++			};
++
++			vreg_pmu_btcmx_0p85: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p85";
++			};
++
++			vreg_pmu_rfa_0p8: ldo5 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo6 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p7: ldo7 {
++				regulator-name = "vreg_pmu_rfa_1p7";
++			};
++
++			vreg_pmu_pcie_0p9: ldo8 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_pcie_1p8: ldo9 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
++		};
++	};
+ };
  
-   reg:
-     maxItems: 1
+ &apps_rsc {
+@@ -752,6 +814,39 @@ &pon_resin {
+ 	status = "okay";
+ };
+ 
++&qup_uart11_cts {
++	/*
++	 * Configure a bias-bus-hold on CTS to lower power
++	 * usage when Bluetooth is turned off. Bus hold will
++	 * maintain a low power state regardless of whether
++	 * the Bluetooth module drives the pin in either
++	 * direction or leaves the pin fully unpowered.
++	 */
++	bias-bus-hold;
++};
++
++&qup_uart11_rts {
++	/* We'll drive RTS, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
++&qup_uart11_rx {
++	/*
++	 * Configure a pull-up on RX. This is needed to avoid
++	 * garbage data when the TX pin of the Bluetooth module is
++	 * in tri-state (module powered off or not driving the
++	 * signal yet).
++	 */
++	bias-pull-up;
++};
++
++&qup_uart11_tx {
++	/* We'll drive TX, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -810,6 +905,59 @@ &tlmm {
+ 			       <13 1>, /* NC */
+ 			       <63 2>; /* WLAN UART */
+ 
++	qup_uart11_sleep_cts: qup-uart11-sleep-cts-state {
++		pins = "gpio48";
++		function = "gpio";
++		/*
++		 * Configure a bias-bus-hold on CTS to lower power
++		 * usage when Bluetooth is turned off. Bus hold will
++		 * maintain a low power state regardless of whether
++		 * the Bluetooth module drives the pin in either
++		 * direction or leaves the pin fully unpowered.
++		 */
++		bias-bus-hold;
++	};
++
++	qup_uart11_sleep_rts: qup-uart11-sleep-rts-state {
++		pins = "gpio49";
++		function = "gpio";
++		/*
++		 * Configure pull-down on RTS. As RTS is active low
++		 * signal, pull it low to indicate the BT SoC that it
++		 * can wakeup the system anytime from suspend state by
++		 * pulling RX low (by sending wakeup bytes).
++		 */
++		bias-pull-down;
++	};
++
++	qup_uart11_sleep_tx: qup-uart11-sleep-tx-state {
++		pins = "gpio50";
++		function = "gpio";
++		/*
++		 * Configure pull-up on TX when it isn't actively driven
++		 * to prevent BT SoC from receiving garbage during sleep.
++		 */
++		bias-pull-up;
++	};
++
++	qup_uart11_sleep_rx: qup-uart11-sleep-rx-state {
++		pins = "gpio51";
++		function = "gpio";
++		/*
++		 * Configure a pull-up on RX. This is needed to avoid
++		 * garbage data when the TX pin of the Bluetooth module
++		 * is floating which may cause spurious wakeups.
++		 */
++		bias-pull-up;
++	};
++
++	bluetooth_enable_default: bluetooth-enable-default-state {
++		pins = "gpio53";
++		function = "gpio";
++		output-low;
++		bias-disable;
++	};
++
+ 	sdc2_card_det_n: sdc2-card-det-state {
+ 		pins = "gpio65";
+ 		function = "gpio";
+@@ -836,6 +984,32 @@ &uart5 {
+ 	status = "okay";
+ };
+ 
++&uart11 {
++	/delete-property/ interrupts;
++	interrupts-extended = <&intc GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH 0>,
++			      <&tlmm 51 IRQ_TYPE_EDGE_FALLING>;
++
++	pinctrl-1 =  <&qup_uart11_sleep_cts>,
++		     <&qup_uart11_sleep_rts>,
++		     <&qup_uart11_sleep_tx>,
++		     <&qup_uart11_sleep_rx>;
++	pinctrl-names = "default",
++			"sleep";
++
++	status = "okay";
++
++	bluetooth {
++		compatible = "qcom,wcn6755-bt", "qcom,wcn6750-bt";
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++	};
++};
++
+ &ufs_mem_hc {
+ 	reset-gpios = <&tlmm 167 GPIO_ACTIVE_LOW>;
+ 
 
 -- 
 2.53.0
