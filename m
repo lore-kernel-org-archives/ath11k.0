@@ -4,82 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6937F46C4E
-	for <ath11k@archiver.kernel.org>; Mon,  6 Apr 2026 15:22:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D981FB5184
+	for <ath11k@archiver.kernel.org>; Tue,  7 Apr 2026 02:49:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uyaQcsOWY1uHlnDlYnCy5afcawsocc3R22w/Q5XTUhA=; b=psmXvYTvOgMZ/oJgKK1nH6N7gu
-	dgzfQUlgUzQXK2l7dmbxtfD2KX5bkYs9vVtMcD2VLIRAutWMIthYbTjr3pURBshi5N+POcaMPEI3p
-	aljWHe+GoG8cPprMCsUc/7Lj0v5W62EP7x3C70FIqLT/kr49CTBI+4G7nxgxXssPeEV99CS55HwIp
-	bQPo4t/9BN55fIjMdhEm9fDUc8z0p1Ldsxw2AznpXWxbcDJlS+BYsqyHK7LUMkByujpmie1Kh0Dnh
-	/wJPpe0HnrBZv4pZWipoEFiCgZ8sMazXkGFeis8VioXTW4GRghQ9Cnyn+UfAbSPQJxYDUHcW6oeDY
-	dD69QcHg==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Os/4pn0L/ASajHM2IP5+TXjMdCaPJ2tuIwT9Dt1v7s0=; b=Mx3CTf9C8Z1P9xDZsgRZEzBZQx
+	8GxDTwtf2gol3Fi0A9LQ3kqyULxFEKmROL3MqhyAbLJ8q20QBFpQCbUoCCrCIkDlmZ4LSmNRR8gn0
+	AmSUoTC9penu78WvRKRgKa7pPxP/d8ZkRUAxPZIS3ekyWSYteSDxPb5yDSvYPGZwhRv3R+DDk2wIi
+	ozFsRT0Qf5P2IzwRckgrEO1MjQZKMN5RIFZUW7/e990MaHunlSCOHouAuKUCLaPGPs8ruxArPOgoY
+	YIO9oEPGjPGOFouJkWEKBLmpdY8vGY0eua9KJoRfBLI43d4ERe955vtDAxoef+5lFOal165FH1Rem
+	7w+L4spA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w9lmv-00000005GDq-0Vn1;
-	Mon, 06 Apr 2026 15:22:53 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1w9wUo-00000005ml9-1yo4;
+	Tue, 07 Apr 2026 02:48:54 +0000
+Received: from mail-yx1-xb130.google.com ([2607:f8b0:4864:20::b130])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w9lmt-00000005GDi-08Qf
+	id 1w9wUl-00000005mkl-2Y64
 	for ath11k@lists.infradead.org;
-	Mon, 06 Apr 2026 15:22:51 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3FA3560123;
-	Mon,  6 Apr 2026 15:22:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9718C4CEF7;
-	Mon,  6 Apr 2026 15:22:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775488969;
-	bh=iC5RuUkjr4YheJjq+5kXm0uCQrLTCZePxmO0UJuDLJI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=vFbjQkjDICQPatHELDGaZzMGsOG7IMqZS8Nx0QZ7vwFj+aO7qSZLsXOzn/2N3Aj8P
-	 GQaS+U+vr2nDy11N5l6FpMnGTPxVQCPaO44HkAA0aJr7qr1c6F5Nfjt8wEOGHEdnaG
-	 uvklpS8YoFvJ8yZ4D9kHX5qNvlrRjscjnj6mvcxJIR/OHxiuHuUTfNloMmaxYvV1hs
-	 p9NclkJ/ClxVwPY7sllotz/eUaHLFeDjYUhXB7y9xDxfCsmLWmVlApD9hr+Nsa2eDI
-	 rE+YsIJ/4bKRYOWBWiKAMG5g4+q2szxGIIDSDYo+GQLzupJ/idfiqks9ySg9L9GvoR
-	 THwzn+tommHiQ==
-From: Mark Brown <broonie@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alexander Koskovich <AKoskovich@pm.me>, 
- Liam Girdwood <lgirdwood@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
- Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Rocky Liao <quic_rjliao@quicinc.com>, 
- Johannes Berg <johannes@sipsolutions.net>, 
- Jeff Johnson <jjohnson@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
-References: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
-Subject: Re: (subset) [PATCH v2 0/7] Enable Bluetooth and WiFi on Fairphone
- (Gen. 6)
-Message-Id: <177548144839.46304.13972601101594073712.b4-ty@b4>
-Date: Mon, 06 Apr 2026 14:17:28 +0100
+	Tue, 07 Apr 2026 02:48:52 +0000
+Received: by mail-yx1-xb130.google.com with SMTP id 956f58d0204a3-64e87a81639so4306009d50.0
+        for <ath11k@lists.infradead.org>; Mon, 06 Apr 2026 19:48:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775530130; x=1776134930; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Os/4pn0L/ASajHM2IP5+TXjMdCaPJ2tuIwT9Dt1v7s0=;
+        b=e3yDQMJpAmWYKn4m9THUQBPUuQ1E3prQO9IIIcpavjTzlYsHIipJdAr9u6d7FIEnzA
+         o+xE3bjkDq6JSBKn6LGSoUQWnsLL+0UD+kEowrDa+nhKJSG0OxkV053eZTkxkG6z2N//
+         tfaLbwNc/kj72rdwM51mSIKAdTeOsYjrECWybnmCNOhD1jQ7jHn27v9ZMWw6aLTqFJ3I
+         3Ec+rkVdDEFYXt87RRuE60tGjTJnqQvpzc6S1ShkOMs5OSC8bSvazIxGWODsNseAwUVi
+         4ku4AopiQnbtrr4azK2xL0M3lw/F603j/qdVtRCcSeLhZ4yGYbDpOk+jItdK1WxMr4nK
+         GHdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775530130; x=1776134930;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Os/4pn0L/ASajHM2IP5+TXjMdCaPJ2tuIwT9Dt1v7s0=;
+        b=parTbQnooy26DbRfcGKEsvEyjIMuXp48kIcDiZ4VxBCYu77+iW3+ZMOeGTc258bDIX
+         MG8W60M/g+8cduHDctB0rkWTgKBD/X2qfBb6eWN/qrtQzTvvbhqCdJqlPU7KVRltvWJQ
+         vlt6avHzxKadkxI7mrcqwj2pOKhtXOGt3sFCpUpC6VDXZTA0/YYdp7fHDTB03ptMWZQz
+         RkpDI5mq6YiMJP9RcRyy8AgTMKzNO9GuUIcte/sRs7CdNrZBxj/VrqRipsGX1SM34KIi
+         e3JzndVfw4nbLj2iUvL0KKZlL6vKQ57wWLVxKdKK7mB8VPszrR6T8guWrlknCAZQbLWc
+         92ug==
+X-Gm-Message-State: AOJu0YxtXFpsCRX/FTF/w8KMJsCqi7HiAujfU/5VdQLO5IMVo5KG4wZ/
+	FIg2KFtE532Iu8nVDWJhgKYWlZPxwW7z4PD/RafKeWmyeY2Ku6Au9eZ6
+X-Gm-Gg: AeBDiesEerkciWoV3kWJbmRrzDKPGrL4tgy3DOaEGp0RnLddrjfsJ75fATv5Xs18ltf
+	leQ0Uj4+3mSMk5v+JriM5Cy8TCDjVTMoXPPX64pc1wJHfy+AQIleBzVeCnY6L3daw8NLf1opVr/
+	sfBEo6U19reUIHMyLfvAlVj8Hph7Ciba5jVun2FCHXnpFEUIlQyv4a46z2y9+G2oXlylK1wrJRi
+	gvACWH8k+IoEGCjiEhJ/s9t08ItHEFh38jvUai0N5urgot++FlL2xvfiqNK6vDCJFU50Yul3MTx
+	+gzUfhqEC9DA4/3VY/RLwF87zbDj5h4neZ06PuVDtNGd8zvYHB1G2JK1ElldPhZ3lcMtvYaUBMI
+	ljJaMOyX7WCCp2DxKxdRiaIHgGD93NyyuFyYTibK5ZQqtI9Ug9xa0asABRiBdEHMuEk15R6SbXx
+	aifSRGxI3Sc15uyUx06qDrlSn3GRrQ2HEpCCm30bbqZw6EOwehCF0rI75g791B
+X-Received: by 2002:a05:690c:39b:b0:79c:c51c:7f41 with SMTP id 00721157ae682-7a4d556e135mr148205687b3.29.1775530129831;
+        Mon, 06 Apr 2026 19:48:49 -0700 (PDT)
+Received: from DEV.lan (c-75-74-152-49.hsd1.fl.comcast.net. [75.74.152.49])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-7a36e42ff31sm61216267b3.6.2026.04.06.19.48.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Apr 2026 19:48:49 -0700 (PDT)
+From: Joshua Klinesmith <joshuaklinesmith@gmail.com>
+To: linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org,
+	Joshua Klinesmith <joshuaklinesmith@gmail.com>
+Subject: [PATCH wireless] wifi: ath11k: fix monitor mode frame length by using correct descriptor size
+Date: Mon,  6 Apr 2026 22:48:36 -0400
+Message-ID: <20260407024836.53871-1-joshuaklinesmith@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev-67696
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1248; i=broonie@kernel.org;
- h=from:subject:message-id; bh=iC5RuUkjr4YheJjq+5kXm0uCQrLTCZePxmO0UJuDLJI=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp08/EHCSvABc5+hfj7LywcFO5vIyiMIyPbeR7h
- ppJ03irVwuJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCadPPxAAKCRAk1otyXVSH
- 0KVpB/9S4D+rqQdrlGK7dDEaMH4ZQMEuGOMsBF05rICalPIeS+4HrqIdPQlTVFXQS+2FvhlW2v9
- 05Q1bZHOQZs52JJs+bbrwIb+9HnsD4fm4Fcq/CwxMBFfcb3D/8Uh7op9NLC9TMkaPvIlEyMVD4V
- 2eZIcjoyQ3ZyIsPzOqGIEKPo5UdI+TQyvmwOYnNcJ7Pg/Ft7ElkHEieBdQ7gR8SjyUegXQSAXNJ
- Lklhvvjd7b4qNJo6F8BDqvjelJFrUH+BSDJI63aYQTuDG5KvMSdQqyGFYjyO6PyvaEmtsmtpWY1
- OBo9Osy1m0mMXQWQCHFcbL50CpXYNDkWKuhxF3yLVZDqBqGq
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260406_194851_677394_4912638C 
+X-CRM114-Status: GOOD (  13.06  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,38 +94,116 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, 03 Apr 2026 15:52:46 +0200, Luca Weiss wrote:
-> Enable Bluetooth and WiFi on Fairphone (Gen. 6)
-> 
-> Add the required bits to enable Bluetooth and WiFi on the Milos
-> SoC-based Fairphone (Gen. 6) smartphone.
+The monitor mode RX path in ath11k_dp_rx_mon_mpdu_pop() and
+ath11k_dp_rx_full_mon_mpdu_pop() uses sizeof(struct hal_rx_desc) to
+compute the packet buffer offset. This is the size of the union of all
+chip-specific descriptors (the maximum), not the actual descriptor size
+for the running chip. The later ath11k_dp_rx_msdus_set_payload() then
+strips only hw_params.hal_desc_sz bytes (the chip-specific size) from
+the front of the skb.
 
-Applied to
+On IPQ8074 and QCN9074, sizeof(struct hal_rx_desc) is 392 but
+hal_desc_sz is 384, leaving 8 extra bytes of descriptor data at the
+end of every monitor mode frame delivered to userspace. On WCN6855 the
+sizes happen to match so the bug is not visible.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.1
+The same mismatch in ath11k_dp_mon_set_frag_len() causes incorrect
+fragment length calculation for multi-buffer MSDUs, under-counting
+intermediate fragments by 8 bytes and over-counting the last fragment.
 
-Thanks!
+Fix by using ar->ab->hw_params.hal_desc_sz consistently in both
+monitor mpdu_pop functions and passing it through to set_frag_len.
 
-[1/7] regulator: dt-bindings: qcom,qca6390-pmu: Document WCN6755 PMU
-      https://git.kernel.org/broonie/regulator/c/b043657c35e5
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Link: https://github.com/openwrt/openwrt/issues/16183
+Signed-off-by: Joshua Klinesmith <joshuaklinesmith@gmail.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 27 ++++++++++++++-----------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 85defe11750d..c86ffc203f15 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -4511,10 +4511,11 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
+ 	return 0;
+ }
+ 
+-static void ath11k_dp_mon_set_frag_len(u32 *total_len, u32 *frag_len)
++static void ath11k_dp_mon_set_frag_len(u32 *total_len, u32 *frag_len,
++				       u32 hal_desc_sz)
+ {
+-	if (*total_len >= (DP_RX_BUFFER_SIZE - sizeof(struct hal_rx_desc))) {
+-		*frag_len = DP_RX_BUFFER_SIZE - sizeof(struct hal_rx_desc);
++	if (*total_len >= (DP_RX_BUFFER_SIZE - hal_desc_sz)) {
++		*frag_len = DP_RX_BUFFER_SIZE - hal_desc_sz;
+ 		*total_len -= *frag_len;
+ 	} else {
+ 		*frag_len = *total_len;
+@@ -4658,19 +4659,19 @@ static u32 ath11k_dp_rx_mon_comp_ppduid(u32 msdu_ppdu_id, u32 *ppdu_id,
+ 
+ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
+ 				      bool *is_frag, u32 *total_len,
+-				      u32 *frag_len, u32 *msdu_cnt)
++				      u32 *frag_len, u32 *msdu_cnt,
++				      u32 hal_desc_sz)
+ {
+ 	if (info->msdu_flags & RX_MSDU_DESC_INFO0_MSDU_CONTINUATION) {
+ 		if (!*is_frag) {
+ 			*total_len = info->msdu_len;
+ 			*is_frag = true;
+ 		}
+-		ath11k_dp_mon_set_frag_len(total_len,
+-					   frag_len);
++		ath11k_dp_mon_set_frag_len(total_len, frag_len, hal_desc_sz);
+ 	} else {
+ 		if (*is_frag) {
+-			ath11k_dp_mon_set_frag_len(total_len,
+-						   frag_len);
++			ath11k_dp_mon_set_frag_len(total_len, frag_len,
++						   hal_desc_sz);
+ 		} else {
+ 			*frag_len = info->msdu_len;
+ 		}
+@@ -4792,7 +4793,7 @@ u32 ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
+ 
+ 			rx_desc = (struct hal_rx_desc *)msdu->data;
+ 
+-			rx_pkt_offset = sizeof(struct hal_rx_desc);
++			rx_pkt_offset = ar->ab->hw_params.hal_desc_sz;
+ 			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(ar->ab, rx_desc);
+ 
+ 			if (is_first_msdu) {
+@@ -4823,7 +4824,8 @@ u32 ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar, int mac_id,
+ 			}
+ 			ath11k_dp_mon_get_buf_len(&msdu_list.msdu_info[i],
+ 						  &is_frag, &total_len,
+-						  &frag_len, &msdu_cnt);
++						  &frag_len, &msdu_cnt,
++						  rx_pkt_offset);
+ 			rx_buf_size = rx_pkt_offset + l2_hdr_offset + frag_len;
+ 
+ 			ath11k_dp_pkt_set_pktlen(msdu, rx_buf_size);
+@@ -5424,7 +5426,7 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
+ 
+ 			rx_desc = (struct hal_rx_desc *)msdu->data;
+ 
+-			rx_pkt_offset = sizeof(struct hal_rx_desc);
++			rx_pkt_offset = ar->ab->hw_params.hal_desc_sz;
+ 			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(ar->ab, rx_desc);
+ 
+ 			if (is_first_msdu) {
+@@ -5439,7 +5441,8 @@ ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
+ 
+ 			ath11k_dp_mon_get_buf_len(&msdu_list.msdu_info[i],
+ 						  &is_frag, &total_len,
+-						  &frag_len, &msdu_cnt);
++						  &frag_len, &msdu_cnt,
++						  rx_pkt_offset);
+ 
+ 			rx_buf_size = rx_pkt_offset + l2_hdr_offset + frag_len;
+ 
+-- 
+2.43.0
 
 
