@@ -4,82 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F8AF94CB4
-	for <ath11k@archiver.kernel.org>; Tue, 21 Apr 2026 21:33:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 269D1F94CB5
+	for <ath11k@archiver.kernel.org>; Tue, 21 Apr 2026 23:03:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:
-	References:In-Reply-To:To:Cc:From:MIME-Version:Content-Transfer-Encoding:
-	Content-Type:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Pj+ZVcQEPmH4qxu2L24IFturo4+OF2h+9wWxx6eGO/Q=; b=fqs7tux2xQSbo9vf/c8fZytjdq
-	r2pn6XooVSvfoSngqXQFB7yNGjSz3+bO4r6y64Aq6NofdydBWn/9S2jc/61DzIaak6b9laaPMsSRS
-	1LDngFxNCySUd3Ftanlxs//+2EnlHix4452/D2pXZvkEf0UBnpHYpHCBEXVlK8TPUKpHIuVxXjSwd
-	J3qqoARuktwvSqopfSVxMLpR9MBcGpq3dep4ywsj261wTw9vNNCxQCYerbJYxTkGCdIR5U0W59ZEo
-	akLSyWesWPey/Ieqyc+NNBTpv3TmMo2qQQ87EibEo6R8rOwO0SvsgcZBBDhnot17BhiEIC4jPA+4Q
-	rM/4U3kw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=; b=RK68HLM61oTOFM6WzBv+78pinZ
+	tc2um3ORwL/4yVBLa1GB1/qUFVpGyXk3BTLG/p0njDIKmO9LXGEmdeO+QnXZAgocSI0Ecu8gA6AVb
+	xC0V5Mt/c2X2lFCpD2KzFy1X9NiwRLltxgmEHfzD0zx30uC996r+OMFsDKajPO0XTD4ESk8N6YR5I
+	WvTLg/LA69dZsw2Pq/VnRrOUff9bhyyUjukA6QwSJcKgJ1KyyiCew+TTe/316uSBqhSvMpQjXNRO+
+	JeXpYgWha0FHpuF3x0zptCpQrRX212F1Jln2Cfy+x6hDDGAcOaHogpTq4RBX1WXCikCyrugieguwh
+	pgBmO8mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFIis-00000009BQl-35Xp;
-	Tue, 21 Apr 2026 21:33:34 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wFK87-00000009Oor-1KLz;
+	Tue, 21 Apr 2026 23:03:43 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFIir-00000009BQR-2jq0;
-	Tue, 21 Apr 2026 21:33:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7E59A61335;
-	Tue, 21 Apr 2026 21:33:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1D63C2BCB0;
-	Tue, 21 Apr 2026 21:33:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776807212;
-	bh=vatupuq4WrABpSuEUMYUtujivXgVDiHk3e1MmNVxM+Q=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=RfEYijh7XhOIIxtCBiZK1gn5IXNLv5qcn5amQw5CqC2XQ0mRjsWMy0SwC/jKxN8Ha
-	 +lGNHgaycbYUVz/8qUQTAV87+keU8WY1I1fe4qL/Cubm0CmcRljTFyT4oCGT3XsCWG
-	 21JAOI+XCTuLyqtAQ0JY89PQj9ztU0bsVRSzsv4sAV4REIQeaAk9EIXe86axCL8Lcv
-	 P49oQppEQE3W5ysKk35W1yekjIPJzFLIHvqS9YHqLVNNeeeAs1gWZnOJuQHTbQ76Mo
-	 fn4ArOBoMvEaOR/5jHbzodnC5RnVkOGNRxUq58/UbFZ0QTUKrwlb9kjzN5QiQ3GPHQ
-	 wuq7UQCA8GLiQ==
-Date: Tue, 21 Apr 2026 16:33:30 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1wFK84-00000009OoQ-1aYI
+	for ath11k@lists.infradead.org;
+	Tue, 21 Apr 2026 23:03:41 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63LIZxg6728041
+	for <ath11k@lists.infradead.org>; Tue, 21 Apr 2026 23:03:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=; b=C08Wgs/D5BxxsDTG
+	uPClNrUhhIVtPGrJtfKL2LUB588QQ8kyDjstsGbE4UXFhsASAYMSh+JZHy5SJ2vB
+	aN5NgCAvsYOpIN8NCVVQzct3pAQ6vgiek9Z1JozcJ4v1qU4JsVKQLRYSeU3J8OJj
+	ogfCl5FopAB4xHRwv1y7e6G2RHwTOjDVwMeqSxAnBbWp+Qkc+Vg100pm0li5U+cD
+	GfDOUcO316dvWAgurOWU/ivbbLjhlvN87AS7Vv486IVRmd99WnnqUzdKGsGnmg+A
+	vIPW8FiDoTl6FTo5i1+5q5iWah3MsWL/kOkURIBUNY9g42wysoGYnOlCF5dQrzJ8
+	GD2Gaw==
+Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dpenh8q3m-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Tue, 21 Apr 2026 23:03:39 +0000 (GMT)
+Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-12c21dbc9c1so13917835c88.0
+        for <ath11k@lists.infradead.org>; Tue, 21 Apr 2026 16:03:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1776812618; x=1777417418; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=;
+        b=doedeRtNkrVcMr+rlALEmLkv62BoKfmiaTztP7Ksi9KQ7i9ErlJlL8ryVEmwuJCpRK
+         oUc7c0M2SVcRIsLtzyPw82B0G+JXVZv6qk45VLUJ7x5Rpa2X7PLcsvVfY/PbC2ag9i2/
+         3wsd6ZO60Bdp2hT/seEnd1ET22BqRJdYObn1ohndq05pOWC9U9/h7FSkBt+yb50Q1acp
+         N4rQ/m1C7gEaFap3dV9jRhDYcYPraqnBHxo9ORLRnXVsKpDooRmFfFDXRrfLXCuSr3VU
+         ACLTztE1jPzI31wiUylXY+lnSeiCLyYxzCBAHdLI3iBft70YRjb8+V3P3xqI0Cd8HFNg
+         SISQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776812618; x=1777417418;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=;
+        b=kzj2X6WuL3lUiYeypajfRg+OySjngUXUBrbihs6Lh3YYIpdQtzfMf0oxmEO3BSQICP
+         JUWCBdVDsrw3uCplLJev+v2oEPqFBfDq0kKxWqDpX8ForAcuFrcc/cLdhRuwo409EkhG
+         8oZXHFmhpKDHzNk9Wfeggoxw6r62QtQNdgPzYEb8GWBAdEYx0G2R1AzfiyEKUqbCCHIa
+         gLWppEgPW3pstZkcakp5oviuC6AdTRye402/bds6yzMOzSj7AQaJHLmpAB+LChvn+nX/
+         SxKPqIRWsORGg29RoDoNAdnUfZnBM7jABw0l63MXVFcPiBiQIE9K/0HXHCs57btUvfQx
+         K57A==
+X-Forwarded-Encrypted: i=1; AFNElJ8TOoCVTcSI5Ldy+aUjM3RUPUFzGdUypS27gS5NgGdrk05vkp73UJ2U1ZBCstX/F0fzCcaUN1U=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw56TpxdSYO/QIKlWBPXbIb/fVww8hrxzT48UPlGIz9Ruw2H7l+
+	+N15Ex0QBl/eNBR3pqRIDyQNIxQwrKDNfGEZpP0+9IbW4VNGhQaUyFsn/aVBOnsRlhgbDfOZLUK
+	TFb+3mt/QTvRdVE25zgKuiwvkd6MtqwWZ6Z/7mv6Bpa3k3kXl0g6k8LCygvv2mx+d
+X-Gm-Gg: AeBDiev6g56ZZ/ElQMgnFhXO1uKV1glhCDw2lpnnQp2PIsPoXO3unU088IsiuzWolUH
+	hZ8kVP70k67CwnaplbyqyUu8wwDjNAI2sckv/6XThWHte4EYQY/hWD8mOEK3y1MTdHLGU19V+2Q
+	y9lcyxOs+X3iL4y7oop4GJY6Dmlq3m9nIxY5LDPrS7DNfs3St1y6kh8f10rcmgLEB9/3iVNUETM
+	XZ/md2HrhdmgBgz9SMDwkQ12FhHDRYyrxwQVHHGzDS7Iu45HC06/UYXFYiqpn7zaN96efq4e/ZW
+	Stm5tLvRYuvSGsXJ1RAlCBYr7GQwFel7315l0OjWKzW9gZX6uhjRLFD/mrG9JWONKLEA9gZQr9H
+	po+uhHfcUFPljh8GqoHaxGjjbQO/MaWMZHW7EUVjfLLj2HskAbhd+IKWvvXUyngJ7BwZa0CfAmN
+	bhKY0QGphp0Fqwgbx02xuF1emT
+X-Received: by 2002:a05:7022:4586:b0:12d:b7bb:4f54 with SMTP id a92af1059eb24-12db7bb5581mr1624404c88.3.1776812618058;
+        Tue, 21 Apr 2026 16:03:38 -0700 (PDT)
+X-Received: by 2002:a05:7022:4586:b0:12d:b7bb:4f54 with SMTP id a92af1059eb24-12db7bb5581mr1624380c88.3.1776812617542;
+        Tue, 21 Apr 2026 16:03:37 -0700 (PDT)
+Received: from [192.168.1.47] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2e53d8b944bsm21141603eec.28.2026.04.21.16.03.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Apr 2026 16:03:36 -0700 (PDT)
+Message-ID: <ebca61af-7873-4a6a-aae7-151e81b328e5@oss.qualcomm.com>
+Date: Tue, 21 Apr 2026 16:03:34 -0700
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, ath11k@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xu Yang <xu.yang_2@nxp.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, linux-spi@vger.kernel.org, 
- Patrice Chotard <patrice.chotard@foss.st.com>, 
- Rao Mandadapu <quic_srivasam@quicinc.com>, Mark Brown <broonie@kernel.org>, 
- linux-sound@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Bjorn Andersson <andersson@kernel.org>, linux-remoteproc@vger.kernel.org, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>, linux-wireless@vger.kernel.org, 
- Johannes Berg <johannes@sipsolutions.net>, 
- Yang Xiwen <forbidden405@outlook.com>, 
- Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
- Alex Elder <elder@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, Stephan Gerhold <stephan@gerhold.net>, 
- linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>, 
- Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>, 
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
- Bjorn Helgaas <bhelgaas@google.com>, Jeff Johnson <jjohnson@kernel.org>, 
- linux-mmc@vger.kernel.org, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
- "David S. Miller" <davem@davemloft.net>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, ath10k@lists.infradead.org, 
- netdev@vger.kernel.org, Maxime Ripard <mripard@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-In-Reply-To: <20260421195836.1547469-1-robh@kernel.org>
-References: <20260421195836.1547469-1-robh@kernel.org>
-Message-Id: <177680720998.183058.5012840252939438533.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Fix phandle-array constraints, again
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH ath-next] wifi: ath11k: use kzalloc_flex
+To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
+Cc: Jeff Johnson <jjohnson@kernel.org>, Kees Cook <kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER"
+ <ath11k@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        open "list:KERNEL" HARDENING "(not" covered by other
+ "areas):Keyword:b__counted_by(_le|_be)?b" <linux-hardening@vger.kernel.org>
+References: <20260313001608.118294-1-rosenp@gmail.com>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20260313001608.118294-1-rosenp@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=HdUkiCE8 c=1 sm=1 tr=0 ts=69e8024b cx=c_pps
+ a=JYo30EpNSr/tUYqK9jHPoA==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=rJ_IYOnZYG8bJ-BjWygA:9 a=QEXdDO2ut3YA:10 a=Fk4IpSoW4aLDllm1B1p-:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDIyOSBTYWx0ZWRfX3DDp3UIXIkfJ
+ o6vWpnoRhnT+aZOrRHPkyaAeAfFHnq+05BO1vpzHKuHTytaCBPAjZmYo78kvRu+rQYpOeaITzxU
+ 2aCBc2MRmxqrB5k3MaYgs7FxZAaS03aA965ijsA5VGYgAPBJ5wMtPyGju9FLlW9Lr0p2FsEZG7d
+ iauEQpWqdhrVzHvP+KyYJSeHloEF1a3wU02Xy8rxHD5Re3nNhFuELAsvizfuEOLYYVO0oQsKzH3
+ OueJWabTIG1IfmS1tvc6aPkO7hFi4X2L4TtrlGPp9kiBCee9jnItAaqngDTt2aaVNdFDgLnQ316
+ 7tYrKPNOE0Ac2A/5YWIVhMcuWUsDRgnO4mKk+7Xt32l3+LUv3XH4/FGUyc2jad2ktrmPKgNNcAU
+ uvJZJM3ZjeJayFyfykOCNYNYKHL7Sdj0fBWSW3S6z28qPtYUUYLTZTbxn0eaLqLu4leTSaSqTqa
+ Wl5icvs+YAwijSe6WvA==
+X-Proofpoint-ORIG-GUID: 3wcv9IK2khs54otu4IAOSzuuziiXdXZt
+X-Proofpoint-GUID: 3wcv9IK2khs54otu4IAOSzuuziiXdXZt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-21_03,2026-04-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ clxscore=1015 suspectscore=0 lowpriorityscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604210229
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260421_160340_689990_6744D204 
+X-CRM114-Status: UNSURE (   7.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,69 +150,12 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-On Tue, 21 Apr 2026 14:55:25 -0500, Rob Herring (Arm) wrote:
-> The unfortunately named 'phandle-array' property type is really a matrix
-> with phandle and fixed arg cells entries. A matrix property should have 2
-> levels of items constraints.
+On 3/12/2026 5:16 PM, Rosen Penev wrote:
+> Convert kzalloc_obj + kcalloc to kzalloc_flex to save an allocation.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Can someone from QCom provide some descriptions for 'qcom,smem-states'
-> properties.
-> ---
->  .../display/rockchip/rockchip,rk3399-cdn-dp.yaml         | 2 ++
->  .../bindings/mmc/hisilicon,hi3798cv200-dw-mshc.yaml      | 7 ++++---
->  Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml | 6 ++++++
->  Documentation/devicetree/bindings/net/qcom,ipa.yaml      | 6 ++++++
->  .../devicetree/bindings/net/wireless/qcom,ath10k.yaml    | 5 ++++-
->  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml    | 5 ++++-
->  .../bindings/net/wireless/qcom,ipq5332-wifi.yaml         | 9 +++++++++
->  .../devicetree/bindings/pci/toshiba,tc9563.yaml          | 5 +++--
->  .../bindings/remoteproc/qcom,msm8916-mss-pil.yaml        | 3 +++
->  .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml        | 3 +++
->  .../devicetree/bindings/remoteproc/qcom,pas-common.yaml  | 4 ++++
->  .../bindings/remoteproc/qcom,qcs404-cdsp-pil.yaml        | 4 ++++
->  .../bindings/remoteproc/qcom,sc7180-mss-pil.yaml         | 3 +++
->  .../bindings/remoteproc/qcom,sc7280-adsp-pil.yaml        | 3 +++
->  .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml         | 3 +++
->  .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml        | 3 +++
->  .../bindings/remoteproc/qcom,sdm845-adsp-pil.yaml        | 3 +++
->  .../devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml   | 3 +++
->  Documentation/devicetree/bindings/sound/samsung,tm2.yaml | 2 ++
->  .../devicetree/bindings/spi/st,stm32mp25-ospi.yaml       | 5 +++--
->  .../devicetree/bindings/usb/chipidea,usb2-common.yaml    | 2 ++
->  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml  | 7 ++++---
->  22 files changed, 81 insertions(+), 12 deletions(-)
-> 
+> Add __counted_by to get extra runtime analysis. Move counting variable
+> assignment immediately after allocation as required by __counted_by.
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/remoteproc/qcom,qcs404-cdsp-pil.yaml:99:1: [warning] too many blank lines (2 > 1) (empty-lines)
-./Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml:67:1: [warning] too many blank lines (2 > 1) (empty-lines)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.example.dtb: i2c-mux3 (i2c-demux-pinctrl): i2c-parent:0: [2, 3, 4] is too long
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-demux-pinctrl.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,tm2.example.dtb: sound (samsung,tm2-audio): i2s-controller: [[4294967295], [0], [4294967295], [0]] is too long
-	from schema $id: http://devicetree.org/schemas/sound/samsung,tm2.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260421195836.1547469-1-robh@kernel.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+can you update this like you did for the ath12k patch?
 
 
