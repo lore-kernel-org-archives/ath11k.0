@@ -4,138 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 269D1F94CB5
-	for <ath11k@archiver.kernel.org>; Tue, 21 Apr 2026 23:03:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11C82F94CB5
+	for <ath11k@archiver.kernel.org>; Tue, 21 Apr 2026 23:12:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=; b=RK68HLM61oTOFM6WzBv+78pinZ
-	tc2um3ORwL/4yVBLa1GB1/qUFVpGyXk3BTLG/p0njDIKmO9LXGEmdeO+QnXZAgocSI0Ecu8gA6AVb
-	xC0V5Mt/c2X2lFCpD2KzFy1X9NiwRLltxgmEHfzD0zx30uC996r+OMFsDKajPO0XTD4ESk8N6YR5I
-	WvTLg/LA69dZsw2Pq/VnRrOUff9bhyyUjukA6QwSJcKgJ1KyyiCew+TTe/316uSBqhSvMpQjXNRO+
-	JeXpYgWha0FHpuF3x0zptCpQrRX212F1Jln2Cfy+x6hDDGAcOaHogpTq4RBX1WXCikCyrugieguwh
-	pgBmO8mw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=VTFjozRKzlcsUeI3wET9p6IVNlwFbfMKkKPMEGBJgq8=; b=jNQ6073Sr4bKm0xtQKVMgN5znc
+	TXN7kzQwZ3ojj/bcdo55pA3UIBVgRGWzMOZLo3JOFHQrN7Uuq6GTWsmvuwZCkp9cDJZ5nPeCAFTs6
+	z2c33JeL9qfN9xg1lc0c+22dh5Sm9dIWSrSYzeAhW4S+1CK2Iynf1mm6rDAhofSilETJZOxet8jGu
+	azgjRpfV2jEn3TzFVRsvFsfTlt2F3nfviL70mqipRzzMuJR5I4iltzWaaWQzUq6wcIJuvXp+00CG2
+	L4dyInQasA8TVVLRrbAQHyighcQ26H7ciExjrj1dyzC5TFwTUcNQBE8bAm8TKt64/GvPwtbQiszH3
+	PdI7nN/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFK87-00000009Oor-1KLz;
-	Tue, 21 Apr 2026 23:03:43 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wFKGY-00000009P8Y-1Btn;
+	Tue, 21 Apr 2026 23:12:26 +0000
+Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFK84-00000009OoQ-1aYI
+	id 1wFKGV-00000009P8B-38rJ
 	for ath11k@lists.infradead.org;
-	Tue, 21 Apr 2026 23:03:41 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63LIZxg6728041
-	for <ath11k@lists.infradead.org>; Tue, 21 Apr 2026 23:03:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=; b=C08Wgs/D5BxxsDTG
-	uPClNrUhhIVtPGrJtfKL2LUB588QQ8kyDjstsGbE4UXFhsASAYMSh+JZHy5SJ2vB
-	aN5NgCAvsYOpIN8NCVVQzct3pAQ6vgiek9Z1JozcJ4v1qU4JsVKQLRYSeU3J8OJj
-	ogfCl5FopAB4xHRwv1y7e6G2RHwTOjDVwMeqSxAnBbWp+Qkc+Vg100pm0li5U+cD
-	GfDOUcO316dvWAgurOWU/ivbbLjhlvN87AS7Vv486IVRmd99WnnqUzdKGsGnmg+A
-	vIPW8FiDoTl6FTo5i1+5q5iWah3MsWL/kOkURIBUNY9g42wysoGYnOlCF5dQrzJ8
-	GD2Gaw==
-Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dpenh8q3m-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 21 Apr 2026 23:03:39 +0000 (GMT)
-Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-12c21dbc9c1so13917835c88.0
-        for <ath11k@lists.infradead.org>; Tue, 21 Apr 2026 16:03:38 -0700 (PDT)
+	Tue, 21 Apr 2026 23:12:24 +0000
+Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-358d80f60ccso2761959a91.3
+        for <ath11k@lists.infradead.org>; Tue, 21 Apr 2026 16:12:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776812618; x=1777417418; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=;
-        b=doedeRtNkrVcMr+rlALEmLkv62BoKfmiaTztP7Ksi9KQ7i9ErlJlL8ryVEmwuJCpRK
-         oUc7c0M2SVcRIsLtzyPw82B0G+JXVZv6qk45VLUJ7x5Rpa2X7PLcsvVfY/PbC2ag9i2/
-         3wsd6ZO60Bdp2hT/seEnd1ET22BqRJdYObn1ohndq05pOWC9U9/h7FSkBt+yb50Q1acp
-         N4rQ/m1C7gEaFap3dV9jRhDYcYPraqnBHxo9ORLRnXVsKpDooRmFfFDXRrfLXCuSr3VU
-         ACLTztE1jPzI31wiUylXY+lnSeiCLyYxzCBAHdLI3iBft70YRjb8+V3P3xqI0Cd8HFNg
-         SISQ==
+        d=gmail.com; s=20251104; t=1776813142; x=1777417942; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VTFjozRKzlcsUeI3wET9p6IVNlwFbfMKkKPMEGBJgq8=;
+        b=EsfddnzF6DeEmG7g+TI+bBjdQVgT4B1dx8NkKq8G922yteVzSFa8FlZ+VbyJWHqFxC
+         bv7Vm4CpTC/9jxElVjLsHZb5mf+Dve9I3UCkXYw52KwbjzgnF656rND+WFn0t7s7oqdN
+         iwZ4RWcCgXHZ8/ucB3Q2QZvD+dsUTXvMAxCbBRQEe46RalIFGhQsA0dA3QBtU2Bc9zHi
+         vFBI1CJCFBKDpLnDdjjhWsQwjVhwkigSdlWCnUn6XqOD3483tcmGWm50XznHdZtieZRx
+         uAVdxy+yVinTESESiKLPLBI/9MYH0rdFLYAPPQFXYKc6LizSFMrWnkHVa9c691AR5NM8
+         oX6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776812618; x=1777417418;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HQZP7gTwR4SY+QJKGb719xKlN345DJF+yiTx3Ot0K6U=;
-        b=kzj2X6WuL3lUiYeypajfRg+OySjngUXUBrbihs6Lh3YYIpdQtzfMf0oxmEO3BSQICP
-         JUWCBdVDsrw3uCplLJev+v2oEPqFBfDq0kKxWqDpX8ForAcuFrcc/cLdhRuwo409EkhG
-         8oZXHFmhpKDHzNk9Wfeggoxw6r62QtQNdgPzYEb8GWBAdEYx0G2R1AzfiyEKUqbCCHIa
-         gLWppEgPW3pstZkcakp5oviuC6AdTRye402/bds6yzMOzSj7AQaJHLmpAB+LChvn+nX/
-         SxKPqIRWsORGg29RoDoNAdnUfZnBM7jABw0l63MXVFcPiBiQIE9K/0HXHCs57btUvfQx
-         K57A==
-X-Forwarded-Encrypted: i=1; AFNElJ8TOoCVTcSI5Ldy+aUjM3RUPUFzGdUypS27gS5NgGdrk05vkp73UJ2U1ZBCstX/F0fzCcaUN1U=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw56TpxdSYO/QIKlWBPXbIb/fVww8hrxzT48UPlGIz9Ruw2H7l+
-	+N15Ex0QBl/eNBR3pqRIDyQNIxQwrKDNfGEZpP0+9IbW4VNGhQaUyFsn/aVBOnsRlhgbDfOZLUK
-	TFb+3mt/QTvRdVE25zgKuiwvkd6MtqwWZ6Z/7mv6Bpa3k3kXl0g6k8LCygvv2mx+d
-X-Gm-Gg: AeBDiev6g56ZZ/ElQMgnFhXO1uKV1glhCDw2lpnnQp2PIsPoXO3unU088IsiuzWolUH
-	hZ8kVP70k67CwnaplbyqyUu8wwDjNAI2sckv/6XThWHte4EYQY/hWD8mOEK3y1MTdHLGU19V+2Q
-	y9lcyxOs+X3iL4y7oop4GJY6Dmlq3m9nIxY5LDPrS7DNfs3St1y6kh8f10rcmgLEB9/3iVNUETM
-	XZ/md2HrhdmgBgz9SMDwkQ12FhHDRYyrxwQVHHGzDS7Iu45HC06/UYXFYiqpn7zaN96efq4e/ZW
-	Stm5tLvRYuvSGsXJ1RAlCBYr7GQwFel7315l0OjWKzW9gZX6uhjRLFD/mrG9JWONKLEA9gZQr9H
-	po+uhHfcUFPljh8GqoHaxGjjbQO/MaWMZHW7EUVjfLLj2HskAbhd+IKWvvXUyngJ7BwZa0CfAmN
-	bhKY0QGphp0Fqwgbx02xuF1emT
-X-Received: by 2002:a05:7022:4586:b0:12d:b7bb:4f54 with SMTP id a92af1059eb24-12db7bb5581mr1624404c88.3.1776812618058;
-        Tue, 21 Apr 2026 16:03:38 -0700 (PDT)
-X-Received: by 2002:a05:7022:4586:b0:12d:b7bb:4f54 with SMTP id a92af1059eb24-12db7bb5581mr1624380c88.3.1776812617542;
-        Tue, 21 Apr 2026 16:03:37 -0700 (PDT)
-Received: from [192.168.1.47] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2e53d8b944bsm21141603eec.28.2026.04.21.16.03.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Apr 2026 16:03:36 -0700 (PDT)
-Message-ID: <ebca61af-7873-4a6a-aae7-151e81b328e5@oss.qualcomm.com>
-Date: Tue, 21 Apr 2026 16:03:34 -0700
+        d=1e100.net; s=20251104; t=1776813142; x=1777417942;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VTFjozRKzlcsUeI3wET9p6IVNlwFbfMKkKPMEGBJgq8=;
+        b=Q0y+iRGcNFedeKFMT/AEXWTEMj4lizUozXsIt44kCXblglTsaWS6zMaff4+FJpxSSf
+         MYXe8Lb4W4JfiVwrTmoUNVWVugO9HzKszKk/uapX+SZhCKBLxLlsavSMdBo1gwKoDHM1
+         qrf/9H3bNHYMwQx5AOQb00iIYaIyNEn07tIObKhmRFgIHNigAN9Tss1RYDmdY0nin5zO
+         t+tvhhk8rVsN+8fUjhaq2mOiDhhoJtbodVJht8kj4oz7QSNlh4k6TjzyAhOrky9Y2Ufi
+         DBYMfMu/BOhTOqopve4w0loGFVs5RDxcQkp17Pi7zu1Qus7sg8v/2GIS82zhMVAqsAXc
+         DRyQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/tYKhvPfFDs3u6Q7fYRpKj7RSMFIcAzJ123DpV3myHj8X5XHYjUj1IOuQprFUQ0DclPTlmqUU=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyfjhVtn7Gd+TYkUGbgvFe3XF7WxUm9WFC7dtaC+qgb1ZZuH/Im
+	w1olj4nOByABlE3fs3MFuFHNfy15A6EIsQTs7jncc/cJajqm1qzlA3jT
+X-Gm-Gg: AeBDiesEBf/HeBvpf264+JIERviudSN4A848h/VaObKdmh4ky7lI/azG0Aepi4CmOkf
+	ww4bnx20eHiakQfd5UCyPmtWdu58kzSnzFf23MAgJpJKbPGyHV/5jV8MRwYW8Oyeets6+V1ffPT
+	NgTNtalc46MBrcAnHswsohLJNUP43NaX7qCzRvhTLUEyUh4AWrU1v0cm3w7EEQIDJ2nsvlb0Nsi
+	CWmPZ/XgIVPuMSSV647ECtVJNhC+nF7YT8ZfGilzjYfvsd+DIsN9Ms3GkQHPN+Vhb02io+SxKKb
+	Ao4WeBRmxv/H7nUGXUIutjrnV4xCayaeF3KT5YJ2HE+j92GDgIonCFNgsIgXTBMhkLIsxeJJUH/
+	lXRwwqZjDRlYDqHVxWHakCOJC7VM0BtEXz1cOjnTXqnJouRmoHwj5PtxW2xAnk9BRyWycfE/kAi
+	1gyMLOsY6tmbALEqZrhDJP4MRTQnA2GALT0Fd514TMd82gXM5S4VsfArM033K59dS9QQ==
+X-Received: by 2002:a17:90b:3b89:b0:35f:b1f3:ac12 with SMTP id 98e67ed59e1d1-361403cb172mr19257134a91.4.1776813142527;
+        Tue, 21 Apr 2026 16:12:22 -0700 (PDT)
+Received: from ryzen ([2601:644:8000:5b5d::8be])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36140fc575bsm14881131a91.4.2026.04.21.16.12.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Apr 2026 16:12:21 -0700 (PDT)
+From: Rosen Penev <rosenp@gmail.com>
+To: linux-wireless@vger.kernel.org
+Cc: Jeff Johnson <jjohnson@kernel.org>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	ath11k@lists.infradead.org (open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER),
+	linux-kernel@vger.kernel.org (open list),
+	linux-hardening@vger.kernel.org (open list:KERNEL HARDENING (not covered by other areas):Keyword:\b__counted_by(_le|_be)?\b)
+Subject: [PATCHv2 ath-next] wifi: ath11k: use kzalloc_flex
+Date: Tue, 21 Apr 2026 16:12:05 -0700
+Message-ID: <20260421231205.77361-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next] wifi: ath11k: use kzalloc_flex
-To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
-Cc: Jeff Johnson <jjohnson@kernel.org>, Kees Cook <kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "open list:QUALCOMM ATHEROS ATH11K WIRELESS DRIVER"
- <ath11k@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        open "list:KERNEL" HARDENING "(not" covered by other
- "areas):Keyword:b__counted_by(_le|_be)?b" <linux-hardening@vger.kernel.org>
-References: <20260313001608.118294-1-rosenp@gmail.com>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260313001608.118294-1-rosenp@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=HdUkiCE8 c=1 sm=1 tr=0 ts=69e8024b cx=c_pps
- a=JYo30EpNSr/tUYqK9jHPoA==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=rJ_IYOnZYG8bJ-BjWygA:9 a=QEXdDO2ut3YA:10 a=Fk4IpSoW4aLDllm1B1p-:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDIyOSBTYWx0ZWRfX3DDp3UIXIkfJ
- o6vWpnoRhnT+aZOrRHPkyaAeAfFHnq+05BO1vpzHKuHTytaCBPAjZmYo78kvRu+rQYpOeaITzxU
- 2aCBc2MRmxqrB5k3MaYgs7FxZAaS03aA965ijsA5VGYgAPBJ5wMtPyGju9FLlW9Lr0p2FsEZG7d
- iauEQpWqdhrVzHvP+KyYJSeHloEF1a3wU02Xy8rxHD5Re3nNhFuELAsvizfuEOLYYVO0oQsKzH3
- OueJWabTIG1IfmS1tvc6aPkO7hFi4X2L4TtrlGPp9kiBCee9jnItAaqngDTt2aaVNdFDgLnQ316
- 7tYrKPNOE0Ac2A/5YWIVhMcuWUsDRgnO4mKk+7Xt32l3+LUv3XH4/FGUyc2jad2ktrmPKgNNcAU
- uvJZJM3ZjeJayFyfykOCNYNYKHL7Sdj0fBWSW3S6z28qPtYUUYLTZTbxn0eaLqLu4leTSaSqTqa
- Wl5icvs+YAwijSe6WvA==
-X-Proofpoint-ORIG-GUID: 3wcv9IK2khs54otu4IAOSzuuziiXdXZt
-X-Proofpoint-GUID: 3wcv9IK2khs54otu4IAOSzuuziiXdXZt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-21_03,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0 spamscore=0
- clxscore=1015 suspectscore=0 lowpriorityscore=0 adultscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604210229
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260421_160340_689990_6744D204 
-X-CRM114-Status: UNSURE (   7.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260421_161223_838359_815C41D9 
+X-CRM114-Status: GOOD (  16.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,12 +99,169 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/12/2026 5:16 PM, Rosen Penev wrote:
-> Convert kzalloc_obj + kcalloc to kzalloc_flex to save an allocation.
-> 
-> Add __counted_by to get extra runtime analysis. Move counting variable
-> assignment immediately after allocation as required by __counted_by.
+Convert kzalloc_obj + kcalloc to kzalloc_flex to save an allocation.
 
-can you update this like you did for the ath12k patch?
+Add __counted_by to get extra runtime analysis. Move counting variable
+assignment immediately after allocation before any potential accesses.
+kzalloc_flex does this anyway for GCC >= 15.
+
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+---
+ v2: reword counting variable comment.
+ drivers/net/wireless/ath/ath11k/mac.c | 71 ++++++++++-----------------
+ drivers/net/wireless/ath/ath11k/wmi.h |  2 +-
+ 2 files changed, 28 insertions(+), 45 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 4a68bb9ca4fa..b5f3d7221b5f 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4228,13 +4228,14 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
+ 	if (ret)
+ 		goto exit;
+
+-	arg = kzalloc_obj(*arg);
++	arg = kzalloc_flex(*arg, chan_list, req->n_channels);
+
+ 	if (!arg) {
+ 		ret = -ENOMEM;
+ 		goto exit;
+ 	}
+
++	arg->num_chan = req->n_channels;
+ 	ath11k_wmi_start_scan_init(ar, arg);
+ 	arg->vdev_id = arvif->vdev_id;
+ 	arg->scan_id = ATH11K_SCAN_ID;
+@@ -4262,38 +4263,27 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
+ 		arg->scan_f_passive = 1;
+ 	}
+
+-	if (req->n_channels) {
+-		arg->num_chan = req->n_channels;
+-		arg->chan_list = kcalloc(arg->num_chan, sizeof(*arg->chan_list),
+-					 GFP_KERNEL);
++	for (i = 0; i < arg->num_chan; i++) {
++		if (test_bit(WMI_TLV_SERVICE_SCAN_CONFIG_PER_CHANNEL,
++			     ar->ab->wmi_ab.svc_map)) {
++			arg->chan_list[i] =
++				u32_encode_bits(req->channels[i]->center_freq,
++						WMI_SCAN_CONFIG_PER_CHANNEL_MASK);
+
+-		if (!arg->chan_list) {
+-			ret = -ENOMEM;
+-			goto exit;
+-		}
+-
+-		for (i = 0; i < arg->num_chan; i++) {
+-			if (test_bit(WMI_TLV_SERVICE_SCAN_CONFIG_PER_CHANNEL,
+-				     ar->ab->wmi_ab.svc_map)) {
+-				arg->chan_list[i] =
+-					u32_encode_bits(req->channels[i]->center_freq,
+-							WMI_SCAN_CONFIG_PER_CHANNEL_MASK);
+-
+-				/* If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set in scan
+-				 * flags, then scan all PSC channels in 6 GHz band and
+-				 * those non-PSC channels where RNR IE is found during
+-				 * the legacy 2.4/5 GHz scan.
+-				 * If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set,
+-				 * then all channels in 6 GHz will be scanned.
+-				 */
+-				if (req->channels[i]->band == NL80211_BAND_6GHZ &&
+-				    req->flags & NL80211_SCAN_FLAG_COLOCATED_6GHZ &&
+-				    !cfg80211_channel_is_psc(req->channels[i]))
+-					arg->chan_list[i] |=
+-						WMI_SCAN_CH_FLAG_SCAN_ONLY_IF_RNR_FOUND;
+-			} else {
+-				arg->chan_list[i] = req->channels[i]->center_freq;
+-			}
++			/* If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set in scan
++			 * flags, then scan all PSC channels in 6 GHz band and
++			 * those non-PSC channels where RNR IE is found during
++			 * the legacy 2.4/5 GHz scan.
++			 * If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set,
++			 * then all channels in 6 GHz will be scanned.
++			 */
++			if (req->channels[i]->band == NL80211_BAND_6GHZ &&
++			    req->flags & NL80211_SCAN_FLAG_COLOCATED_6GHZ &&
++			    !cfg80211_channel_is_psc(req->channels[i]))
++				arg->chan_list[i] |=
++					WMI_SCAN_CH_FLAG_SCAN_ONLY_IF_RNR_FOUND;
++		} else {
++			arg->chan_list[i] = req->channels[i]->center_freq;
+ 		}
+ 	}
+
+@@ -9736,19 +9726,14 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
+
+ 	scan_time_msec = ar->hw->wiphy->max_remain_on_channel_duration * 2;
+
+-	arg = kzalloc_obj(*arg);
++	arg = kzalloc_flex(*arg, chan_list, 1);
+ 	if (!arg) {
+ 		ret = -ENOMEM;
+ 		goto exit;
+ 	}
+-	ath11k_wmi_start_scan_init(ar, arg);
++
+ 	arg->num_chan = 1;
+-	arg->chan_list = kcalloc(arg->num_chan, sizeof(*arg->chan_list),
+-				 GFP_KERNEL);
+-	if (!arg->chan_list) {
+-		ret = -ENOMEM;
+-		goto free_arg;
+-	}
++	ath11k_wmi_start_scan_init(ar, arg);
+
+ 	arg->vdev_id = arvif->vdev_id;
+ 	arg->scan_id = ATH11K_SCAN_ID;
+@@ -9769,7 +9754,7 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
+ 		spin_lock_bh(&ar->data_lock);
+ 		ar->scan.state = ATH11K_SCAN_IDLE;
+ 		spin_unlock_bh(&ar->data_lock);
+-		goto free_chan_list;
++		goto free_arg;
+ 	}
+
+ 	ret = wait_for_completion_timeout(&ar->scan.on_channel, 3 * HZ);
+@@ -9779,7 +9764,7 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
+ 		if (ret)
+ 			ath11k_warn(ar->ab, "failed to stop scan: %d\n", ret);
+ 		ret = -ETIMEDOUT;
+-		goto free_chan_list;
++		goto free_arg;
+ 	}
+
+ 	ieee80211_queue_delayed_work(ar->hw, &ar->scan.timeout,
+@@ -9787,8 +9772,6 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
+
+ 	ret = 0;
+
+-free_chan_list:
+-	kfree(arg->chan_list);
+ free_arg:
+ 	kfree(arg);
+ exit:
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index baed501b640b..b2dade0516ac 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -3423,7 +3423,6 @@ struct scan_req_params {
+ 	u32 num_bssid;
+ 	u32 num_ssids;
+ 	u32 n_probes;
+-	u32 *chan_list;
+ 	u32 notify_scan_events;
+ 	struct wlan_ssid ssid[WLAN_SCAN_PARAMS_MAX_SSID];
+ 	struct wmi_mac_addr bssid_list[WLAN_SCAN_PARAMS_MAX_BSSID];
+@@ -3436,6 +3435,7 @@ struct scan_req_params {
+ 	struct hint_bssid hint_bssid[WLAN_SCAN_MAX_HINT_BSSID];
+ 	struct wmi_mac_addr mac_addr;
+ 	struct wmi_mac_addr mac_mask;
++	u32 chan_list[] __counted_by(num_chan);
+ };
+
+ struct wmi_ssid_arg {
+--
+2.53.0
 
 
