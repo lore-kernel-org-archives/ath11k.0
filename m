@@ -4,143 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACF9AFDEE5C
-	for <ath11k@archiver.kernel.org>; Fri, 24 Apr 2026 02:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 462DAFE51F3
+	for <ath11k@archiver.kernel.org>; Fri, 24 Apr 2026 09:51:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=j/oAe5WAJR0Hau8bnlbPZKUUWTns+NjCrP+ar8tn4pY=; b=vaJVBcv3oq6uS+2egyA7g4y1ff
-	VAktPL4aultjT5ZwIA9MQQ3cwJKEe5Zk0iBw2KYnZZuJHewKgpcPtMIZjoFlzEZpEwYfAY+ilCpJd
-	4t85Zg3rMVwNt8GYhQSTesonNr1fXAXAPme55ouyo3AlPtuI56GjZpamqD4mN4YUjxrBwKf7abdDx
-	xW6jGcXelmvxFIxYl16bZUdjbu8zmNczDsNBccfWzjJI+lo2icvyQuRPnfyQ+NDQnAoKJy4ce1FqW
-	hjzq3oNrZSfmgUGCxj0lGJJakx3gmVOyoTYwFpvGuCYtlXNk84365ksYgG57W4rj7/C5drYU5BVuM
-	VQcdM/AQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=mMo0bm/KHf9B+Wgcz67cJXTPtP310kPIOtQb4AW44qY=; b=JUuXCP9b1Hf5hGCxU+qaXe4qAv
+	oz4Vpuy6Rh7YLgYhYyqbGn5eVW2EQUf98ud8ic+B6vnkjyZFAIk3bXj0MR0Ojn1WiZLofr7oIt2gW
+	+U0ecyNlvlu7L/cRwMEi9NE46OAgfMSU4sRffx0BWzxPW2vSDsPwwDU1MXUnXBykgn71fksIPDtVB
+	qBQdW12c829SF2H3SFOzHwwtT9tL2uEJSMiZ5/AOXgPgmXdH63yh4TPfmvEAgE0iunQU/5Ue3kbRR
+	BsFNXm68E3X1rei9vvv0M0gtmqSrkQVZ7hP48E0hF0d8O/0GCv1NWUSL0QEnAU8tgz/1DZGV31mRs
+	bpsJ9qig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wG5ws-0000000CUdO-24xv;
-	Fri, 24 Apr 2026 02:07:18 +0000
-Received: from mail-centralusazolkn19010006.outbound.protection.outlook.com ([52.103.13.6] helo=DM1PR04CU001.outbound.protection.outlook.com)
+	id 1wGDBm-0000000CxZc-13zR;
+	Fri, 24 Apr 2026 09:51:10 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wG5wp-0000000CUcx-3R91
+	id 1wGDBj-0000000CxZC-1OdJ
 	for ath11k@lists.infradead.org;
-	Fri, 24 Apr 2026 02:07:17 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hs3lZtXU1s3pL5BRv7wryfNOEFAk0eeroz/NrgM6ifydN0jDRhJv8B1gF0uHO64vJ3aGgp9zPEDglWHQJ5TMOurrnNXW4irTMr5o2QD8SVHQbNd1JlTgzJOggBx20lJ7Qdq84wa+wTaTCj4A8QTOg+y7oVVMyqqMvAuHI0kSlX13TbCY3jDhWiYjkm8E1uaJ3MOsavDVL+dExFZq8zrhmWRV8YTbm5J2GNG9kBOg3b2qOC+fsNyExDt4Rn8ESXpHOA1WMd0zBLFuiBmzR2mnHyUt0WBkyvN5yUn+lhpUuVMXQLalJzUqo24jACh48u8EOmGaaDXWCR/z0Rwf6Ey+WQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j/oAe5WAJR0Hau8bnlbPZKUUWTns+NjCrP+ar8tn4pY=;
- b=daePu4DqvPVeIg5XCTeV9cCPbev0FzXn4BtY5JDyJa/Wxgux8qHRl5E2OvVuyLf0VQwYHdroI2kLDv4CXFm8p0GSQcayDX+xc0Abbx/FGF92kpOwqQTanOB+aW/Hs1MsZ8AUDHqPWAyyBI9VwWa0nRWesMUaxRc3tU4+NCincyCbZbCt8g1h5HEqCtj8BAIVMOsMpdvi78SHZqYSF1oz23htrZLkqX8TPfKxRbSJCEDvAuZijiFwONjQu3rQIztDo6AV2bEf4bWfLveidIUGV04ens6n31mYl/PhUQtTlbItJzvXJwHorqiZTgdDGIYVHLg83ak4zpnVHgbj8hDveQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j/oAe5WAJR0Hau8bnlbPZKUUWTns+NjCrP+ar8tn4pY=;
- b=pkDf7tbvgbmp48LibP1mvYb1eA1Tyh7j+ywHYwYRAZ2Fei6NR/pVHtOodJpz2bV/ub3tTLxqODzsFfv/fhM5UO0smDU8xHAEB7xYbkP6wEYuLlN5Dq0rbYT2MC6tJi3yCw8ODOw0v502qMRylmEB6ggoN8W5S7t4RynyzzfzBzc7SL1w1lBCESpbZYZImkp4fGVGUm9hZtmEax0GGi5brdSahfqW7zRKx0j3qkuxdxaZjAe7RTJE5KWbsPAFYA20BIGuD1MnX1PiZysLXZMBADToQ6MgCtCVFI8pEcqa2KDp9AZWHI5mnXls44qeKWCFUU/oN0kNryvaxKQ7fVHOBg==
-Received: from IA2P223MB1199.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:4ab::20)
- by BN0P223MB0215.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:15e::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.22; Fri, 24 Apr
- 2026 02:07:03 +0000
-Received: from IA2P223MB1199.NAMP223.PROD.OUTLOOK.COM
- ([fe80::af53:cbf1:1f4:2519]) by IA2P223MB1199.NAMP223.PROD.OUTLOOK.COM
- ([fe80::af53:cbf1:1f4:2519%5]) with mapi id 15.20.9846.021; Fri, 24 Apr 2026
- 02:07:03 +0000
-From: Kyle Farnung <kfarnung@outlook.com>
-To: =?iso-8859-1?Q?Santiago_Ruano_Rinc=F3n?= <santiagorr@riseup.net>, Jeff
- Johnson <jjohnson@kernel.org>, "linux-wireless@vger.kernel.org"
-	<linux-wireless@vger.kernel.org>, "ath11k@lists.infradead.org"
-	<ath11k@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-CC: Mark Pearson <mpearson-lenovo@squebb.ca>, "koike@igalia.com"
-	<koike@igalia.com>, Kyle Farnung <kfarnung@gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: Add two missing Lenovo IDs to the quirk
- table
-Thread-Topic: [PATCH] wifi: ath11k: Add two missing Lenovo IDs to the quirk
- table
-Thread-Index: AQHc02ZBYMNwSv09nEeYknyNqqNCq7Xtc5tg
-Date: Fri, 24 Apr 2026 02:07:03 +0000
-Message-ID: <IA2P223MB1199153665E2AFF709BD2F52D02B2@IA2P223MB1199.NAMP223.PROD.OUTLOOK.COM>
-References: <20260423211458.458911-1-santiagorr@riseup.net>
-In-Reply-To: <20260423211458.458911-1-santiagorr@riseup.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA2P223MB1199:EE_|BN0P223MB0215:EE_
-x-ms-office365-filtering-correlation-id: 576be4bf-cb23-4d69-4b0c-08dea1a62d98
-x-microsoft-antispam: BCL:0;ARA:14566002|8060799015|31061999003|41001999006|8062599012|39105399006|24021099003|21061999006|19110799012|461199028|37011999003|15080799012|15030799006|1602099012|40105399003|4302099013|3412199025|440099028|10035399007|102099032;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?o7y4/3sWVywzjsWWaCX+3kKfXBK5zAlUCmUXLNwk4x79cKTeyl1y90mCJU?=
- =?iso-8859-1?Q?DmHJOXFoqXcVlolhjpiirWKX2bH/iphEmo7UYatdag+z3Se7wZ2ybZgszA?=
- =?iso-8859-1?Q?CL+PHEkdjUkWt1XNLM6vi+VL+nzLLX2Lo5QiWChxKriY/ZgMn7fNTd/zDC?=
- =?iso-8859-1?Q?IUD9B3F45LyfFIWVtx/A1c+hrPxqoqBBGKWQGE3uifEdU1B4JVcNryFYcs?=
- =?iso-8859-1?Q?2ZPUSU6jvyBwnZaa+Dw7OgpXWCEchPmdjNSyroK7/jWtjS/Y7JRwFzK/4e?=
- =?iso-8859-1?Q?a2qXXDDMX/3mzEdNFgd7bq634QvCChEAx7Uvxfc6FcUXhdHZEEim7Q10Az?=
- =?iso-8859-1?Q?U2biPnoMOHzkRNK4N2vpIIyXRUE997xVO8OvEMiGk+OYVaCRJ3+nOGD0FC?=
- =?iso-8859-1?Q?vLhNrSlUYEeYf6czu4GYz2NOcdH8sGtvk9EfPs4IzGAHIRA5a7FaGa9OvR?=
- =?iso-8859-1?Q?oa5D0bzF1yZQOPC+dkbW2NklBfbssIH+fgIuSA8I1LTO2LKwtY+iRPParD?=
- =?iso-8859-1?Q?bzV+KBuHFrcVbRvkwO6lzXoPyrzXOo9o2VkxhtfOiGaBeKpRbxhyWwNPAg?=
- =?iso-8859-1?Q?gVudRFsDlk3wvZCaxoMT53Ee3pm1hmtwZpKdOMWQ4jceLaDDbMmcJ+Zfd8?=
- =?iso-8859-1?Q?fkFSu49bvijihePZMBHELy9+j7Lgln3+oOFv+RgoO1pC4O9dtJ+Q8jKEye?=
- =?iso-8859-1?Q?tfQ30dtXJu8oo9d/usxTzP3Fp6AnmMjQ4SM4h8+Vge7Fs2krptyzdr0jm3?=
- =?iso-8859-1?Q?chVZiv/U0tayvi70cNLggnMXbyoYcitp0FObGf6yiziIYkwTid6qd6nHpM?=
- =?iso-8859-1?Q?q80lJv+k9uaLr/Wdlcq9TCjFrEYr+dWi29k1d23CaGzqD0CFrpT7qzCfrK?=
- =?iso-8859-1?Q?KKIY3bYCG7ObM2NVeMAF8WtqCMNnLElih1EiBDS1xGcBPoGX2QoQeX7yak?=
- =?iso-8859-1?Q?u652q/JiPTP3IljqJK4vn1ZF0CkFN63w7sowKBwk03sz5OXC1ZP2RyRLsc?=
- =?iso-8859-1?Q?Pr6clPF6lpwf5FSELHAnR6yj5jTb5UB5BmoiyxPi3Xv2Dt1l0/7r13V69M?=
- =?iso-8859-1?Q?T1MOiGXSfMhgDpKmgB2PWlaHQEZVD0toEkfYzVntzRPKe38qEhgFOg9vxr?=
- =?iso-8859-1?Q?EW2k/ioDmSv8dorXyGDl7xZKevqAY=3D?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?+fo7oKYeNrI6Td57xZlujoR6xEGEVv5V9u6M7k/ZIR8ptLdEcF/DRSwPsY?=
- =?iso-8859-1?Q?nYXHVC0ndyaxtgU8xka+pNb7QdTh53mpiKj/K2ZWFJzqIGVgqTYRAH+mlI?=
- =?iso-8859-1?Q?ausmw0f5zU1MrJ7Pf6tLpeRsEQT7gmirKVjR/lKu6VvIhWhYxQqG1PHClB?=
- =?iso-8859-1?Q?QaYZAKADUcXK2LZ/WAUyiEbK9foUadsqfwvzOaeDLa7dCX7S7kqc8plqLC?=
- =?iso-8859-1?Q?Z2HNWDCdagrbbIp+ka6WxSKX8nDenO5hz5bVOZdCm7+OweAwX+kBqbPyDZ?=
- =?iso-8859-1?Q?oERtOZW+unTVnGD1nXqfpe7SM6wIfN3cuXYJZgVvzbvyT8ppetY+496Q37?=
- =?iso-8859-1?Q?/xA8Ne6SN9JKZIhtgMehJps47Yq0N6Ie+F1BVtwZyG8Gz5i1VYgwKJfpK1?=
- =?iso-8859-1?Q?shmPakhq/qCptRZK4xNWxjTjmnZZ85UVQ+pgWr9spfLz1nlceuwaeuj2S7?=
- =?iso-8859-1?Q?/OKkLNIHoz6No3hYwKC5uvJXEjkgcOjlcOB2T0jHRFK4YOD97p2bSkXf2x?=
- =?iso-8859-1?Q?ADcshVWGKI4NkfQ70hRmQgEpxL1aqCYwEGc+wS8hy2/t4vveDyLpB+S3uX?=
- =?iso-8859-1?Q?zM+XikFZN1ko0MUzSQLFOATRAr/ytdnWjb7HXqrwgrHTTL2OblrkdywnEA?=
- =?iso-8859-1?Q?riWCfl5LPcW/gupa6wcovT5UxO0ULgt27vYbsQ4+ATXYGt6icB3zhN7wta?=
- =?iso-8859-1?Q?agLZtUpG7RXNeZhWoQ0nUsVDhMWS+e3xOMXFb9yRt6pvsg3NVn1mvTm+JB?=
- =?iso-8859-1?Q?tmLY+C8/R8Up3MZtqLZH+zWk4mrs3zApIeOQmP8VfHbTPiVSBADKlC51zZ?=
- =?iso-8859-1?Q?2DoHPP6sqYL0HgqPnbX8oYyOdQbKvGytpIzZTFmvWiZIUu5YhRe/85CVgM?=
- =?iso-8859-1?Q?eSq97vbkuhFkVRbzzdJdftJbyAgey8S69sQlm9QIaeOwBq49e1ZY3qfPv4?=
- =?iso-8859-1?Q?X10vdsnEZ4QKd4q+BYwMUUyxC5gnPDh/lYrKqS0gUNf88c6ZHIUeSa+kdm?=
- =?iso-8859-1?Q?gto9jkuncfkGaYwyxcpGayg2bSpF7v6HqDKRB+zBQebo0V9j6WwU1pMkeX?=
- =?iso-8859-1?Q?d6T5h/qHHtwjGAjqsxA9WWuTuYlKRefTwQL1zyKf+CRgLQOpvlk36k8utu?=
- =?iso-8859-1?Q?fWUBvuILx+mPV3tx8QuA0MdymykXjovYWEhgpWHOVrxZyI/7so384OhdQf?=
- =?iso-8859-1?Q?Fc0/Ei3rY/JwP6/ATq4CiessW6jJpOFx/VuNyvMgUiJpZtjqJeQCyX9fKL?=
- =?iso-8859-1?Q?VZMamotRovwCRX4legGfA4zXDlzmNo4fjMY2YEqLwYJ5it8vFp8Tu/lrzn?=
- =?iso-8859-1?Q?X5fFw9m+VCWtf6wqTsoYN2JCsQgUJxZItgLT+tDbZTZ7/0w5qHvaYI5Qb+?=
- =?iso-8859-1?Q?TsIXViLDTwX8fmelCxiOyL1Obpx1JfsGfDKgTnfOfWBDn2T0EIs7oI4oK5?=
- =?iso-8859-1?Q?kapGnfOFrS3zfbiIPFlsh1xR/RneZV9U+Z4F1g16YthVyIOL7mNEyGgQkI?=
- =?iso-8859-1?Q?o=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	Fri, 24 Apr 2026 09:51:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1777024262;
+	bh=EK10yGwkXVQnZj51E7ttz818C88LRbsuydqLz2WzW7E=;
+	h=From:Date:Subject:To:Cc:From;
+	b=kveuvuCzBee3QivjhV4pxyXkhdCXE/uMSmzTYDnXm1Okw0XpA7Rw0eRuJRm0BHbJt
+	 waNMq53DXKOv07GkSHHvb/Y+CSjJ303VMFfViyGEX1neYY+JrqpP8rSDnpE57hTfTV
+	 GIT8wJtuUT+J5qI56X0S/Z6STIEQpTLbVZRPiJUrLtaT6T91YLWht+zn9zaQb3pGkd
+	 1Rekms+ZEPrfgPr9YfODxcJNPGxRZo2Uf7Uiy+FNPwVzMUOKVU4Sg8AFGmJmZDUcVr
+	 zW6wR7gFHAuyLVkD+0RIC6WPejzUb862/wsueuXLwZWEI0JhlRevhoxUdcDpXDIBti
+	 3MO5NUbTu/HUA==
+Received: from goku.local (unknown [100.64.0.7])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mattl)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8928F17E13B2;
+	Fri, 24 Apr 2026 11:51:02 +0200 (CEST)
+From: Matthew Leach <matthew.leach@collabora.com>
+Date: Fri, 24 Apr 2026 10:50:35 +0100
+Subject: [PATCH v4] wifi: ath11k: fix peer resolution on rx path when
+ peer_id=0
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA2P223MB1199.NAMP223.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 576be4bf-cb23-4d69-4b0c-08dea1a62d98
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2026 02:07:03.4712
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0P223MB0215
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260424-ath11k-null-peerid-workaround-v4-1-252b224d3cf6@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/43OTW7CMBAF4KsgrzHyjJ0QWPUeFYvxTxpDiCM7C
+ a1Q7o4DCyq1Eiyf9OZ7c2XJRe8S26+uLLrJJx+6HNR6xUxD3Zfj3ubMUGApJJachgbgxLuxbXn
+ v8rHllxBPFMPYWV5iQYC7bQUaWDb66Gr/ffc/D4+cRn10ZljQpdH4NIT4c39ggqX37tYEHLgwW
+ NtC5pO6+jChbUmHSBsTzmzZm/ApKiheiZhFJE1Oak0Gyv9E+VvcvhJlFq1QUiBWSlV/xHmeb7L
+ xdM2EAQAA
+X-Change-ID: 20260326-ath11k-null-peerid-workaround-625a129781b1
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>, 
+ Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>, 
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kernel@collabora.com, 
+ Matthew Leach <matthew.leach@collabora.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_190715_871348_8CDB70E7 
-X-CRM114-Status: GOOD (  14.88  )
+X-CRM114-CacheID: sfid-20260424_025107_588943_C74A5763 
+X-CRM114-Status: GOOD (  14.24  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,95 +82,91 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-> =0A=
-> =0A=
-> =0A=
-> ________________________________________=0A=
-> From: Santiago Ruano Rinc=F3n <santiagorr@riseup.net>=0A=
-> Sent: Thursday, April 23, 2026 2:14 PM=0A=
-> To: Jeff Johnson; linux-wireless@vger.kernel.org; ath11k@lists.infradead.=
-org; linux-kernel@vger.kernel.org=0A=
-> Cc: Mark Pearson; kfarnung@outlook.com; koike@igalia.com=0A=
-> Subject: [PATCH] wifi: ath11k: Add two missing Lenovo IDs to the quirk ta=
-ble=0A=
-> =0A=
-> Commit 0eb002c93c3b4 ("wifi: ath11k: Add missing platform IDs for quirk=
-=0A=
-> table") added some Lenovo platform IDs to the quirk table to address a=0A=
-> wakeup from suspend issue [1].  However, at least two more platform ID=0A=
-> are missing in that table: P14s Gen 5 AMD, as reported by Kyle Farnung [2=
-]=0A=
-> and P14s Gen 3 AMD.  This commit adds one ID for each.=0A=
-> =0A=
-> [1] https://bugzilla.kernel.org/show_bug.cgi?id=3D219196=0A=
-> [2] https://bugzilla.kernel.org/show_bug.cgi?id=3D219196#c23=0A=
-> =0A=
-> Tested-on: P14s G3 AMD.=0A=
-=0A=
-Lenovo products have a pair of IDs, you'll want 21J6 [3] and 21MF [4] as=0A=
-well. I submitted a patch myself [5], but I've been investigating another=
-=0A=
-symptom.=0A=
-=0A=
-I have the same "wake on power removed" issue, but I have another issue=0A=
-that's more annoying where the wifi just dies randomly. I only have the=0A=
-wake issue when power is disconnected, not when power is connected again.=
-=0A=
-I mostly leave my device connected, so I only realized the behavior while=
-=0A=
-doing the regression testing requested in the other patch.=0A=
-=0A=
-[3] https://pcsupport.lenovo.com/jm/en/products/laptops-and-netbooks/thinkp=
-ad-p-series-laptops/thinkpad-p14s-gen-3-type-21j5-21j6/21j5=0A=
-[4] https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkp=
-ad-p-series-laptops/thinkpad-p14s-gen-5-type-21me-21mf/21me/21me000pge=0A=
-[5] https://lore.kernel.org/all/ba4d194b-6d31-4d8a-a6a6-da116f9f56ac@oss.qu=
-alcomm.com/=0A=
-=0A=
-> =0A=
-> Fixes: ce8669a27016 ("wifi: ath11k: determine PM policy based on machine =
-model")=0A=
-> Signed-off-by: Santiago Ruano Rinc=F3n <santiagorr@riseup.net>=0A=
-> ---=0A=
->  drivers/net/wireless/ath/ath11k/core.c | 14 ++++++++++++++=0A=
->  1 file changed, 14 insertions(+)=0A=
-> =0A=
-> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireles=
-s/ath/ath11k/core.c=0A=
-> index 3f6f4db5b7ee..56938d5d42a1 100644=0A=
-> --- a/drivers/net/wireless/ath/ath11k/core.c=0A=
-> +++ b/drivers/net/wireless/ath/ath11k/core.c=0A=
-> @@ -957,6 +957,13 @@ static const struct dmi_system_id ath11k_pm_quirk_ta=
-ble[] =3D {=0A=
->                         DMI_MATCH(DMI_PRODUCT_NAME, "21K4"),=0A=
->                 },=0A=
->         },=0A=
-> +       {=0A=
-> +               .driver_data =3D (void *)ATH11K_PM_WOW,=0A=
-> +               .matches =3D { /* P14s G3 AMD */=0A=
-> +                       DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),=0A=
-> +                       DMI_MATCH(DMI_PRODUCT_NAME, "21J5"),=0A=
-> +               },=0A=
-> +       },=0A=
->         {=0A=
->                 .driver_data =3D (void *)ATH11K_PM_WOW,=0A=
->                 .matches =3D { /* P14s G4 AMD #1 */=0A=
-> @@ -971,6 +978,13 @@ static const struct dmi_system_id ath11k_pm_quirk_ta=
-ble[] =3D {=0A=
->                         DMI_MATCH(DMI_PRODUCT_NAME, "21K6"),=0A=
->                 },=0A=
->         },=0A=
-> +       {=0A=
-> +               .driver_data =3D (void *)ATH11K_PM_WOW,=0A=
-> +               .matches =3D { /* P14s Gen 5 AMD */=0A=
-> +                       DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),=0A=
-> +                       DMI_MATCH(DMI_PRODUCT_NAME, "21ME"),=0A=
-> +               },=0A=
-> +       },=0A=
->         {=0A=
->                 .driver_data =3D (void *)ATH11K_PM_WOW,=0A=
->                 .matches =3D { /* T16 G2 AMD #1 */=0A=
-> --=0A=
-> 2.53.0=0A=
-> =0A=
+It has been observed that on certain chipsets a peer can be assigned
+peer_id=0. For reception of non-aggregated MPDUs this is fine as
+ath11k_dp_rx_h_find_peer() has a fallback case where it locates the peer
+based upon the source MAC address. On an aggregated link, the mpdu_start
+header is only populated by hardware on the first sub-MSDU. This causes
+the peer resolution to be skipped for the subsequent MSDUs and the
+encryption type of these frames to be set to an incorrect value,
+resulting in these MSDUs being dropped by ieee80211.
+
+ath11k_pci 0000:03:00.0: data rx skb 000000002f4b704d len 1534 peer xx:xx:xx:xx:xx:xx 0 ucast sn 3063 he160 rate_idx 9 vht_nss 2 freq 5240 band 1 flag 0x40d1a fcs-err 0 mic-err 0 amsdu-more 0 peer_id 0 first_msdu 1 last_msdu 0
+ath11k_pci 0000:03:00.0: data rx skb 0000000038acd580 len 1534 peer (null) 0 ucast sn 3063 he160 rate_idx 9 vht_nss 2 freq 5240 band 1 flag 0x40d00 fcs-err 0 mic-err 0 amsdu-more 0 peer_id 0 first_msdu 0 last_msdu 1
+
+Remove the null peer_id checks in ath11k_dp_rx_h_find_peer() and
+ath11k_hal_rx_parse_mon_status_tlv(), allowing peers with an assigned ID
+of 0 to be resolved.
+
+Fixes: 2167fa606c0f ("ath11k: Add support for RX decapsulation offload")
+Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.9
+Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Signed-off-by: Matthew Leach <matthew.leach@collabora.com>
+---
+Changes in v4:
+- Prefix subsystem with 'wifi:'.
+- Added the 'Tested-by' and 'Fixes' trailers.
+- Link to v3: https://patch.msgid.link/20260417-ath11k-null-peerid-workaround-v3-1-d04302284486@collabora.com
+
+Changes in v3:
+- Clarified that the mpdu_start header isn't populated by the h/w for
+  all sub-MSDUs in the commit message.
+- Fix second null-peer check in ath11k_hal_rx_parse_mon_status_tlv().
+- Link to v2: https://patch.msgid.link/20260415-ath11k-null-peerid-workaround-v2-1-2abae3bbac16@collabora.com
+
+Changes in v2:
+
+- Since peer_id=0 is a valid condition on some chips, remove the guard
+  that prevented the peer lookup.
+- Link to v1: https://patch.msgid.link/20260326-ath11k-null-peerid-workaround-v1-1-0c2fd53202f8@collabora.com
+
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c  | 3 +--
+ drivers/net/wireless/ath/ath11k/hal_rx.c | 5 +----
+ 2 files changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 49d959b2e148..ff2c78a4e5f3 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2215,8 +2215,7 @@ ath11k_dp_rx_h_find_peer(struct ath11k_base *ab, struct sk_buff *msdu)
+ 
+ 	lockdep_assert_held(&ab->base_lock);
+ 
+-	if (rxcb->peer_id)
+-		peer = ath11k_peer_find_by_id(ab, rxcb->peer_id);
++	peer = ath11k_peer_find_by_id(ab, rxcb->peer_id);
+ 
+ 	if (peer)
+ 		return peer;
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 753bd93f0212..51e0840bc0d1 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -1467,11 +1467,8 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
+ 	case HAL_RX_MPDU_START: {
+ 		struct hal_rx_mpdu_info *mpdu_info =
+ 				(struct hal_rx_mpdu_info *)tlv_data;
+-		u16 peer_id;
+ 
+-		peer_id = ath11k_hal_rx_mpduinfo_get_peerid(ab, mpdu_info);
+-		if (peer_id)
+-			ppdu_info->peer_id = peer_id;
++		ppdu_info->peer_id = ath11k_hal_rx_mpduinfo_get_peerid(ab, mpdu_info);
+ 		break;
+ 	}
+ 	case HAL_RXPCU_PPDU_END_INFO: {
+
+---
+base-commit: f338e77383789c0cae23ca3d48adcc5e9e137e3c
+change-id: 20260326-ath11k-null-peerid-workaround-625a129781b1
+
+Best regards,
+--  
+Matt
+
 
