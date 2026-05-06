@@ -4,62 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE33CD342C
-	for <ath11k@archiver.kernel.org>; Wed,  6 May 2026 20:03:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91C0FCD342C
+	for <ath11k@archiver.kernel.org>; Wed,  6 May 2026 20:30:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=FBStJu5AVvcG88W9ms1p6fIs0VIKAoPet7WSD3JdXYY=; b=MiyhmO2vagjaMiUYlhzVAuM/cw
-	/DOuvB4wXgFgbnaGt90KI4m1BI6Ik2+geaj0TYbrMCy8TZKg43Nv+C7Z2CWDlvGUCGYmNNDPHTQ8f
-	Mc8i+N0u7hfdneoEL0NDMRXioRvcS6YXYespsz7qjfu2Agt/IvR87iwEnBIoXO2P4KXPh8vsG3Cx6
-	nJ7WvTKYSB0eFwI8ItmiM1yPs51CDf/h8gs7CFNZTS4O5G9th7WB4AklN28lhMpZSg75WW/TIO2c0
-	m0J28ey96Jl4uMxXebUcI+F+cf9RU+dQLm3oxqQPYiUa8ZYcBL8QatCkmSwEzuBp8FoMTFOU+Uo4J
-	LoQ1JiJQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=srk9N6x4OS8mAV/nGLNUxRKHC22Lg0AqoTFTMh9gocc=; b=VBT5CgjZgI8ghlHKI5UaGS38O2
+	5PiQ2n1kNDsRiPnIY+PSN7VmEQw8sjNHI1IsFMPtRILM6Vwu9bH4ZOUQqvspzApFvflIjwrcgBXCG
+	zGWGEbWT5keuRBtTDB9b2ZC10zj19GQU9kFk5IZpFuo83h1DBOGBLd16jxPQrcuy5oikiayBMzDN+
+	qzNfpn68xGG0zL9MZTdTCPUTaUHf2dpe9sUzjv8RCzMUmzuQXkdrSzlOrpgYxnoIl0cYzrmPOrafY
+	It8yVYaFI+XB8mEC9anwrF24WQTsHU0106FddbODrGhx7trZKbP2l533DU+cuJgrd28ZcHxXGNG/D
+	ZJaQ+/6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKiSQ-00000001w2s-1XOj;
-	Wed, 06 May 2026 20:02:58 +0000
+	id 1wKitF-00000001zBd-0Rs6;
+	Wed, 06 May 2026 20:30:41 +0000
 Received: from mx0.riseup.net ([198.252.153.6])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKiSO-00000001w2R-3nTq
+	id 1wKitD-00000001zAr-2s7k
 	for ath11k@lists.infradead.org;
-	Wed, 06 May 2026 20:02:57 +0000
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+	Wed, 06 May 2026 20:30:39 +0000
+Received: from fews04-sea.riseup.net (fews04-sea-pn.riseup.net [10.0.1.154])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx0.riseup.net (Postfix) with ESMTPS id 4g9mWy6nlBz9shx;
-	Wed,  6 May 2026 20:02:54 +0000 (UTC)
+	by mx0.riseup.net (Postfix) with ESMTPS id 4g9n7y4j0Wz9tNS;
+	Wed,  6 May 2026 20:30:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=riseup.net; s=squak;
-	t=1778097775; bh=FBStJu5AVvcG88W9ms1p6fIs0VIKAoPet7WSD3JdXYY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=rlqqI4/sRmkdMPJFfOVjGhA4mmzOwFUM/XK4XCwU2q4ni5FnSjE8ZwTK7sFbWhuRK
-	 jLBFhEIrEzM1Z4D30Lr24Erm6BbhpTZklSllg3hAM6eT5H/e06N+SP2WgiB3ztlJNy
-	 xELG5NYdlUI67iKp4bwfl/Jlp9zBM6k8EfnBOWrA=
-X-Riseup-User-ID: CCE37216CA06750F7617076F546FDAFBDF4B17FA4091129CBB3034E01BC13F24
+	t=1778099438; bh=srk9N6x4OS8mAV/nGLNUxRKHC22Lg0AqoTFTMh9gocc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qpIAfWAzjvB3ANhLP4mYlw7OUGtndDH4GtMtzx5RRjSX6IPzGg4X8R/VTejqTLVPS
+	 qERoxHriCHfyGLAv6f2bFF2XWQxBALCz508JrG+4tXCqd5xYrdhKDIs64HFpkcyQBh
+	 8Nti3L5GX3tnVfs4WPiKoJ5c/XT/fIwH/uwsHnSI=
+X-Riseup-User-ID: B5D412F198E8899EDABFE04F17A73459F0107F3AED606021FB1B88E15F0B1FD2
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4g9mWx0SxXz1y6Y;
-	Wed,  6 May 2026 20:02:52 +0000 (UTC)
-From: =?UTF-8?q?Santiago=20Ruano=20Rinc=C3=B3n?= <santiagorr@riseup.net>
-To: Jeff Johnson <jjohnson@kernel.org>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Mark Pearson <mpearson-lenovo@squebb.ca>,
-	kfarnung@outlook.com,
-	koike@igalia.com
-Subject: [PATCH v2] wifi: ath11k: Add two missing Lenovo IDs to the quirk table
-Date: Wed,  6 May 2026 16:54:46 -0300
-Message-ID: <20260506200249.317690-1-santiagorr@riseup.net>
+	 by fews04-sea.riseup.net (Postfix) with ESMTPSA id 4g9n7x3hdDz5wV9;
+	Wed,  6 May 2026 20:30:37 +0000 (UTC)
+Date: Wed, 6 May 2026 17:30:33 -0300
+From: Santiago Ruano =?iso-8859-1?Q?Rinc=F3n?= <santiagorr@riseup.net>
+To: Kyle Farnung <kfarnung@gmail.com>
+Cc: Kyle Farnung <kfarnung@outlook.com>, Jeff Johnson <jjohnson@kernel.org>,
+	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Mark Pearson <mpearson-lenovo@squebb.ca>,
+	"koike@igalia.com" <koike@igalia.com>, 1132343@bugs.debian.org
+Subject: Re: [PATCH] wifi: ath11k: Add two missing Lenovo IDs to the quirk
+ table
+Message-ID: <afuk6c0n-TXXUySs@voleno>
+References: <20260423211458.458911-1-santiagorr@riseup.net>
+ <IA2P223MB1199153665E2AFF709BD2F52D02B2@IA2P223MB1199.NAMP223.PROD.OUTLOOK.COM>
+ <aeuH2chCSi57RYVU@voleno>
+ <CAOPSVF3=BmOUw5+nnk-EYnpP_ff7wXsFAaz6sHbw-brLy-HojA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOPSVF3=BmOUw5+nnk-EYnpP_ff7wXsFAaz6sHbw-brLy-HojA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260506_130257_006644_530644BE 
-X-CRM114-Status: GOOD (  10.83  )
+X-CRM114-CacheID: sfid-20260506_133039_786833_10EDC793 
+X-CRM114-Status: GOOD (  23.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,81 +81,52 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Commit 0eb002c93c3b4 ("wifi: ath11k: Add missing platform IDs for quirk
-table") added some Lenovo platform IDs to the quirk table to address a
-wakeup from suspend issue [1].  However, at least P14s Gen 5 AMD, as
-reported by Kyle Farnung [2], and P14s Gen 3 AMD are missing in the
-table.  This commit adds the two corresponding Lenovo version IDs for
-each.
+El 26/04/26 a las 10:44, Kyle Farnung escribiÛ:
+...
+> Feel free to just merge yours and I'll withdraw mine. I'm regression
+> testing the WiFi disconnect issue I'm encountering, so I'll just focus on
+> that. In the meantime this seems righteous.
 
-[1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
-[2] https://bugzilla.kernel.org/show_bug.cgi?id=219196#c23
+Thanks, I've just sent an updated version
 
-Tested-on: P14s G3 AMD running 7.0.3.
+> 
+> >
+> > >
+> > > I have the same "wake on power removed" issue, but I have another issue
+> > > that's more annoying where the wifi just dies randomly. I only have the
+> > > wake issue when power is disconnected, not when power is connected again.
+> > > I mostly leave my device connected, so I only realized the behavior while
+> > > doing the regression testing requested in the other patch.
+> >
+> > I've also been hit by a similar annoying wifi randomly dying issue that
+> > you describe [deb#1132343].  With the patch that I attached applied to
+> > 7.0.0, my P14s G3 AMD laptop has been running for more that 3 days, with
+> > several suspends / weak ups, either with power connected or
+> > disconnected.  And I haven't encountered that problem since it booted so
+> > I concluded that the patch fixed it.  But chances are that I am wrong.
+> >
+> > [deb#1132343] https://bugs.debian.org/1132343
+> >
+> > The latest bad version I tested where the wifi died was 6.9.11.  I plan
+> > test the patch on top of it.
+> 
+> 6.9 or 6.19? My issue started between 6.16.10 and 6.17.4.
 
-Fixes: ce8669a27016 ("wifi: ath11k: determine PM policy based on machine model")
-Co-authored-by: Kyle Farnung <kfarnung@gmail.com>
-Signed-off-by: Santiago Ruano Rinc√≥n <santiagorr@riseup.net>
----
-Changes in v2:
-- Merged the Lenovo P14s G5 AMD #1 and #2 related changes proposed by
-  Kyle Farnung in
-  https://lore.kernel.org/all/20260330-p14s-pm-quirk-v2-1-ef18ce07996b@gmail.com/
-- Added Kyle Farnung as Co-author of the commit
-- Added the second ID of Lenovo P14s G3 AMD, and adapt the comments
-  accordingly
-- v1: https://lore.kernel.org/ath11k/20260423211458.458911-1-santiagorr@riseup.net/
----
- drivers/net/wireless/ath/ath11k/core.c | 28 ++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+6.19, sorry.  And I confirm it is still present in 7.0.3. But my P14s
+Gen3  machine has been running on a 7.0.3 patched with
+https://lore.kernel.org/ath11k/20260423211458.458911-1-santiagorr@riseup.net/
+for more than two days, with several suspends and no wifi issues.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 3f6f4db5b7ee..c1ce0a11af44 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -957,6 +957,20 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
- 			DMI_MATCH(DMI_PRODUCT_NAME, "21K4"),
- 		},
- 	},
-+	{
-+		.driver_data = (void *)ATH11K_PM_WOW,
-+		.matches = { /* P14s G3 AMD #1 */
-+			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
-+			DMI_MATCH(DMI_PRODUCT_NAME, "21J5"),
-+		},
-+	},
-+	{
-+		.driver_data = (void *)ATH11K_PM_WOW,
-+		.matches = { /* P14s G3 AMD #2 */
-+			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
-+			DMI_MATCH(DMI_PRODUCT_NAME, "21J6"),
-+		},
-+	},
- 	{
- 		.driver_data = (void *)ATH11K_PM_WOW,
- 		.matches = { /* P14s G4 AMD #1 */
-@@ -971,6 +985,20 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
- 			DMI_MATCH(DMI_PRODUCT_NAME, "21K6"),
- 		},
- 	},
-+	{
-+		.driver_data = (void *)ATH11K_PM_WOW,
-+		.matches = { /* P14s G5 AMD #1 */
-+			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
-+			DMI_MATCH(DMI_PRODUCT_NAME, "21ME"),
-+		},
-+	},
-+	{
-+		.driver_data = (void *)ATH11K_PM_WOW,
-+		.matches = { /* P14s G5 AMD #2 */
-+			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
-+			DMI_MATCH(DMI_PRODUCT_NAME, "21MF"),
-+		},
-+	},
- 	{
- 		.driver_data = (void *)ATH11K_PM_WOW,
- 		.matches = { /* T16 G2 AMD #1 */
--- 
-2.53.0
+However, from your comment at
+https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=o9wVcFMc6f-yhmSBcZqQ@mail.gmail.com/,
+I read that you are concluding that the culprit for the dying wifi is
+rather 79266fd78df1 ("wifi: ath11k: HAL SRNG: don't deinitialize and
+re-initialize again").
+Could you please confirm that you have been able to reproduce the wifi
+randomly dying issue with kernel patched with
+https://lore.kernel.org/all/20260330-p14s-pm-quirk-v2-1-ef18ce07996b@gmail.com/?
 
+thanks,
+
+ -- S
 
