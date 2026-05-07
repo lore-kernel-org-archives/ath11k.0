@@ -4,69 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91C0FCD342C
-	for <ath11k@archiver.kernel.org>; Wed,  6 May 2026 20:30:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264E6CD343B
+	for <ath11k@archiver.kernel.org>; Thu,  7 May 2026 07:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=srk9N6x4OS8mAV/nGLNUxRKHC22Lg0AqoTFTMh9gocc=; b=VBT5CgjZgI8ghlHKI5UaGS38O2
-	5PiQ2n1kNDsRiPnIY+PSN7VmEQw8sjNHI1IsFMPtRILM6Vwu9bH4ZOUQqvspzApFvflIjwrcgBXCG
-	zGWGEbWT5keuRBtTDB9b2ZC10zj19GQU9kFk5IZpFuo83h1DBOGBLd16jxPQrcuy5oikiayBMzDN+
-	qzNfpn68xGG0zL9MZTdTCPUTaUHf2dpe9sUzjv8RCzMUmzuQXkdrSzlOrpgYxnoIl0cYzrmPOrafY
-	It8yVYaFI+XB8mEC9anwrF24WQTsHU0106FddbODrGhx7trZKbP2l533DU+cuJgrd28ZcHxXGNG/D
-	ZJaQ+/6g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=szDG1yGf2JvHzzIARZ5fXBS4Y9Dri5eXAFqj1ClQZbA=; b=Gid7RriWwfgFOYHCP5DAmqXEVQ
+	q5bd1XO1Av3xNmH+1nXx1YuCMt72Sx4kIuWjc5W4TW5E/lRjPvHVUil5VQDZQMlxLvdJTDag5nKxB
+	9pGiTXoqNJwfvgKtPDTTKQ3SQF5cgFL0IRxqwxyNJw0rSdw8lq1Xbwi7PWRFmp4TpwzOPuKe2sC/8
+	R5tbmnjssTOpJzBOHa7t86Iw2WUgeXcbMc9J6+4F9m2IWrct4KLOCrFRDi5iEpsnQUZnck1fmVTmg
+	vk4WGu7bh6gNW4b6ElMch0BxKNQQLwPjORQiR81IHwj6O2kaUgoEj/AQyadOhs9ZcdACSJhBjtlmr
+	Qz0+rZHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKitF-00000001zBd-0Rs6;
-	Wed, 06 May 2026 20:30:41 +0000
-Received: from mx0.riseup.net ([198.252.153.6])
+	id 1wKsqO-00000002zov-0ThX;
+	Thu, 07 May 2026 07:08:24 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKitD-00000001zAr-2s7k
+	id 1wKsqM-00000002zoV-451c
 	for ath11k@lists.infradead.org;
-	Wed, 06 May 2026 20:30:39 +0000
-Received: from fews04-sea.riseup.net (fews04-sea-pn.riseup.net [10.0.1.154])
+	Thu, 07 May 2026 07:08:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1778137700;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=szDG1yGf2JvHzzIARZ5fXBS4Y9Dri5eXAFqj1ClQZbA=;
+	b=hhwMlwsaNV7jENBUnR1wEA/6wnmlpXmLoQEjfc6ZR7cj41crLhn42MD0xixgCHKO2muOFK
+	Dut8Gx0f5uSyTf/OqE4/QtkX5onKzSqVcwMYtGqy3zGk2F7BuTB6DIc7b4qGz5JvthUlw4
+	TAl833Rz51MipGaq6pP654AsFRiYmpw=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-661-FaxXW4vKMHm-x5oZVn4pVg-1; Thu,
+ 07 May 2026 03:08:15 -0400
+X-MC-Unique: FaxXW4vKMHm-x5oZVn4pVg-1
+X-Mimecast-MFC-AGG-ID: FaxXW4vKMHm-x5oZVn4pVg_1778137694
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx0.riseup.net (Postfix) with ESMTPS id 4g9n7y4j0Wz9tNS;
-	Wed,  6 May 2026 20:30:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=riseup.net; s=squak;
-	t=1778099438; bh=srk9N6x4OS8mAV/nGLNUxRKHC22Lg0AqoTFTMh9gocc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qpIAfWAzjvB3ANhLP4mYlw7OUGtndDH4GtMtzx5RRjSX6IPzGg4X8R/VTejqTLVPS
-	 qERoxHriCHfyGLAv6f2bFF2XWQxBALCz508JrG+4tXCqd5xYrdhKDIs64HFpkcyQBh
-	 8Nti3L5GX3tnVfs4WPiKoJ5c/XT/fIwH/uwsHnSI=
-X-Riseup-User-ID: B5D412F198E8899EDABFE04F17A73459F0107F3AED606021FB1B88E15F0B1FD2
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	 by fews04-sea.riseup.net (Postfix) with ESMTPSA id 4g9n7x3hdDz5wV9;
-	Wed,  6 May 2026 20:30:37 +0000 (UTC)
-Date: Wed, 6 May 2026 17:30:33 -0300
-From: Santiago Ruano =?iso-8859-1?Q?Rinc=F3n?= <santiagorr@riseup.net>
-To: Kyle Farnung <kfarnung@gmail.com>
-Cc: Kyle Farnung <kfarnung@outlook.com>, Jeff Johnson <jjohnson@kernel.org>,
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Mark Pearson <mpearson-lenovo@squebb.ca>,
-	"koike@igalia.com" <koike@igalia.com>, 1132343@bugs.debian.org
-Subject: Re: [PATCH] wifi: ath11k: Add two missing Lenovo IDs to the quirk
- table
-Message-ID: <afuk6c0n-TXXUySs@voleno>
-References: <20260423211458.458911-1-santiagorr@riseup.net>
- <IA2P223MB1199153665E2AFF709BD2F52D02B2@IA2P223MB1199.NAMP223.PROD.OUTLOOK.COM>
- <aeuH2chCSi57RYVU@voleno>
- <CAOPSVF3=BmOUw5+nnk-EYnpP_ff7wXsFAaz6sHbw-brLy-HojA@mail.gmail.com>
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 51528195608F;
+	Thu,  7 May 2026 07:08:14 +0000 (UTC)
+Received: from fedora.redhat.com (unknown [10.44.48.69])
+	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9EE961953947;
+	Thu,  7 May 2026 07:08:10 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: rameshkumar.sundaram@oss.qualcomm.com
+Cc: ath11k@lists.infradead.org,
+	jjohnson@kernel.org,
+	jtornosm@redhat.com,
+	linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] wifi: ath11k: fix warning when unbinding
+Date: Thu,  7 May 2026 09:08:07 +0200
+Message-ID: <20260507070808.367442-1-jtornosm@redhat.com>
+In-Reply-To: <005af843-da19-4df9-af67-2cd148b24d62@oss.qualcomm.com>
+References: <005af843-da19-4df9-af67-2cd148b24d62@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+X-Mimecast-MFC-PROC-ID: G3dwjRTkmXujlHgcPjFSZm3HVoI3nJZ339bPEfatU14_1778137694
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOPSVF3=BmOUw5+nnk-EYnpP_ff7wXsFAaz6sHbw-brLy-HojA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260506_133039_786833_10EDC793 
-X-CRM114-Status: GOOD (  23.16  )
+X-CRM114-CacheID: sfid-20260507_000823_081030_3EE92490 
+X-CRM114-Status: UNSURE (   9.28  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,52 +90,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-El 26/04/26 a las 10:44, Kyle Farnung escribiÛ:
-...
-> Feel free to just merge yours and I'll withdraw mine. I'm regression
-> testing the WiFi disconnect issue I'm encountering, so I'll just focus on
-> that. In the meantime this seems righteous.
+Hello Rameshkumar,
 
-Thanks, I've just sent an updated version
+The hardwre that I am using is QCNFA765, but I think it is something
+related to ath11k driver and not related to some specific hardware.
 
-> 
-> >
-> > >
-> > > I have the same "wake on power removed" issue, but I have another issue
-> > > that's more annoying where the wifi just dies randomly. I only have the
-> > > wake issue when power is disconnected, not when power is connected again.
-> > > I mostly leave my device connected, so I only realized the behavior while
-> > > doing the regression testing requested in the other patch.
-> >
-> > I've also been hit by a similar annoying wifi randomly dying issue that
-> > you describe [deb#1132343].  With the patch that I attached applied to
-> > 7.0.0, my P14s G3 AMD laptop has been running for more that 3 days, with
-> > several suspends / weak ups, either with power connected or
-> > disconnected.  And I haven't encountered that problem since it booted so
-> > I concluded that the patch fixed it.  But chances are that I am wrong.
-> >
-> > [deb#1132343] https://bugs.debian.org/1132343
-> >
-> > The latest bad version I tested where the wifi died was 6.9.11.  I plan
-> > test the patch on top of it.
-> 
-> 6.9 or 6.19? My issue started between 6.16.10 and 6.17.4.
+I am running with the latest upstream kernel and I can reproduce it, so
+I think it is not related with the problems that you comment.
 
-6.19, sorry.  And I confirm it is still present in 7.0.3. But my P14s
-Gen3  machine has been running on a 7.0.3 patched with
-https://lore.kernel.org/ath11k/20260423211458.458911-1-santiagorr@riseup.net/
-for more than two days, with several suspends and no wifi issues.
+Let me repeat this to try to clarify:
 
-However, from your comment at
-https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=o9wVcFMc6f-yhmSBcZqQ@mail.gmail.com/,
-I read that you are concluding that the culprit for the dying wifi is
-rather 79266fd78df1 ("wifi: ath11k: HAL SRNG: don't deinitialize and
-re-initialize again").
-Could you please confirm that you have been able to reproduce the wifi
-randomly dying issue with kernel patched with
-https://lore.kernel.org/all/20260330-p14s-pm-quirk-v2-1-ef18ce07996b@gmail.com/?
+The easiest way to reproduce it is to run in a VM the default upstream
+kernel (with this card using PCI passthrough), and since this is always
+failing, just unbind the device (ath11k_pci).
 
-thanks,
+The same problem was fixed by me for ath12k driver here ca68ce0d9f4b
+("wifi: ath12k: fix warning when unbinding"), and I have seen the same
+problem is also happening for ath11k driver.
 
- -- S
+Thanks
+
+Best regards
+Jos√© Ignacio
+
 
