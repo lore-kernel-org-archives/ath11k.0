@@ -4,89 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E38CD4F21
-	for <ath11k@archiver.kernel.org>; Tue, 12 May 2026 20:49:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29326CD343F
+	for <ath11k@archiver.kernel.org>; Tue, 12 May 2026 23:09:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=vKU4pQmE3L/XjIfYjhU7sj8Ooq/2wcIT1kv/cz8f7gk=; b=bh8mk95xF2eeqzJHRU9Oscc4yR
-	awIwKn3MqdTmv85Xt+kXHrRG2hf/HSbCh0OeyAa8yX6ejS/gaktMaMLbIjf9HvEUf9QHwg9Fm6kmn
-	ieYRzCY3Cvm9Ko+GK255LOIeAO/ZiIqX5s1rRYq7HjdDsP0C+xfoyktvLWJFRvgErDrfZJC6+N0cO
-	wm7c/ndKmQwq0aEKNxw2AD7ZcDcV4m4huxYo0jo2JDrvykxhk6JiShXoPL11aiKDjOl54K6AF62Ng
-	DcickHKBbOZrQ2/j1UYPUguUpONgk1nN4FjZsiTURnHdKiw15+rO/MLBcnKasZ2aRZD6IjxDZ+3By
-	O83SHV4Q==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=; b=44nnQsTzTiTms61GZBCCbjkYmy
+	T4Q9MDGiaYqVt5F483RWPQXKNz9olW3tAbwxoS/2a2A8V+ACpHQ1nnti02aJTsDHksvxS2GZ2aUAI
+	niQo77Spc9GJn70ebQDCw0rnzonKerZY6p3wF5iq+XiOi79HDqAK0eKCKSlSU+1WmVmzNswzzypsd
+	MNrTp3GzRZpr9iZix4qefjtSVHqi8OLJGo3YBKJ3HOhSOaS9E+Nk4y6cB/WiJm+fZuj60c2ejEBF3
+	CBXNHpTQ/q98ShSZJOZiCBuvMLhCJoY9mV+OLA3ljH9ce49E3lUqLLABLYyOfD8Vgr39p2aBv4ZRs
+	BrCcliOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMu2J-00000000Nsz-2ffu;
-	Tue, 12 May 2026 20:49:03 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1wMwEY-00000000fCM-2uao;
+	Tue, 12 May 2026 23:09:50 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMu2G-00000000Ns5-3fH4
+	id 1wMwEV-00000000fBg-0ayO
 	for ath11k@lists.infradead.org;
-	Tue, 12 May 2026 20:49:02 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:36684 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wMu2C-000000004D8-0Ftd
-	for ath11k@lists.infradead.org;
-	Tue, 12 May 2026 22:48:56 +0200
-X-SASI-Hits: BODYTEXTP_SIZE_3000_LESS 0.000000, BODY_SIZE_2000_2999 0.000000,
-	BODY_SIZE_5000_LESS 0.000000, BODY_SIZE_7000_LESS 0.000000,
-	CTE_8BIT 0.000000, DKIM_ALIGNS 0.000000, DKIM_SIGNATURE 0.000000,
-	HTML_00_01 0.050000, HTML_00_10 0.050000, LEGITIMATE_SIGNS 0.000000,
-	MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_URI_FOUND 0.000000,
-	NO_FUR_HEADER 0.000000, NO_URI_HTTPS 0.000000, OUTBOUND 0.000000,
-	OUTBOUND_SOPHOS 0.000000, SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000,
-	TO_IN_SUBJECT 0.500000, __ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BULK_NEGATE 0.000000, __CC_NAME 0.000000, __CC_NAME_DIFF_FROM_ACC 0.000000,
-	__CC_REAL_NAMES 0.000000, __CTE 0.000000, __DKIM_ALIGNS_1 0.000000,
-	__DKIM_ALIGNS_2 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
-	__DQ_NEG_IP 0.000000, __FRAUD_BADTHINGS 0.000000,
-	__FROM_DOMAIN_IN_ANY_CC1 0.000000, __FROM_DOMAIN_IN_RCPT 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
-	__HAS_MSGID 0.000000, __HAS_X_MAILER 0.000000, __MIME_TEXT_ONLY 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__NO_HTML_TAG_RAW 0.000000, __OUTBOUND_SOPHOS_FUR 0.000000,
-	__OUTBOUND_SOPHOS_FUR_IP 0.000000, __OUTBOUND_SOPHOS_FUR_RDNS 0.000000,
-	__RCVD_PASS 0.000000, __SANE_MSGID 0.000000, __SL_HEAVY 0.000000,
-	__SUBJ_ALPHA_END 0.000000, __SUBJ_STARTS_S_BRACKETS 0.000000,
-	__TO_IN_SUBJECT 0.000000, __TO_IN_SUBJECT2 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NO_NAME 0.000000, __URI_MAILTO 0.000000,
-	__URI_NO_WWW 0.000000, __URI_NS 0.000000, __X_MAILSCANNER 0.000000
-X-SASI-Probability: 9%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2026.5.12.195719
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From; bh=vKU4pQmE3L/XjIfYjhU7sj8Ooq/2wcIT1kv/cz8f7gk=;
-	b=hRxUemeVYf0hNhCptRceKVXFrm+/T/6YqcthVq/DJjFNpBFRZ3gtlTCGEFDoX2CuFlphh7C9IqE14EieKwoKRvYtg/zjHMGk/WrJ7jQRhZ5hOWLZ/laAJKwgM9bsvYM7ZaF2Or+mwIdFXqZir2w78tg6o1/sZL6GsCFusMf4t4I=;
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-To: ath11k@lists.infradead.org
-Cc: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-Subject: [PATCH] wifi: ath11k: fix txpower in ap mode for 6 Ghz
-Date: Wed, 13 May 2026 02:48:51 +0600
-Message-ID: <20260512204851.2634163-1-s.gottschall@dd-wrt.com>
-X-Mailer: git-send-email 2.51.0
+	Tue, 12 May 2026 23:09:48 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64CLnl2v2233638
+	for <ath11k@lists.infradead.org>; Tue, 12 May 2026 23:09:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=; b=dADzSW6UaBFuDFi5
+	xO4fszBtP+/JBqYczFZbyYPP4BCAjoxSvPXD9ZmoYC9uw31mM2bi04bAAxO8yI1L
+	WRww2SHi7xv0X79Ohy2KiCrMWiiESo69V2xWqvB1vRnzGIJgZqg+8JqYsei7nBfD
+	L0tcMnZcKrWt2vnUSjtrpiN+YwUDgH2GEZmsZ4usdRc0NiNubTxZbB6Brn5asz+j
+	LBrfA6xoxnzL92oZF8+ZdqUCHPLApvJWUxBTf22rNLkbGRa53mm7E0CP3Ax6ULUA
+	Rv8KJxzuw5Ii6KOCds+Am4mW82iq/I1fplic4hDYJ1VacJFl9h7H0y8bJlSf3ZM9
+	INPZOQ==
+Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e42rhtvfk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Tue, 12 May 2026 23:09:44 +0000 (GMT)
+Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2ba8013a9e3so9858926eec.0
+        for <ath11k@lists.infradead.org>; Tue, 12 May 2026 16:09:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778627383; x=1779232183; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=;
+        b=XsDtnZ/KCszZ8+igO88Cd62Uqn3zsvxMkfAGiPewKShIZkof9D4Pvpve47NqKAKZgy
+         oREuncs2ftF76rWkyod6cQCAn/1Cb0vcYDe7iJqjE1qQb4uxd/D2fUedVP6KkzHkVqpg
+         QMM0WMxbb/wIQfrvdVkPP9IxKxg2G4KkwEe9uYElcRMP9hyPJ6G5X2lmfKeINTG9XtXj
+         JRRRVpG4sBroCdZ0Wpy0GIkx8FycJ7hg69PzSn2OckXY5tarQLANIoyO01s40mj5bsVR
+         G/glQjgQOM8jB6ZGKXR0b1LiX6t5auuWXpGqQehtbn6eA4BLLgaO9rpaSQtELeCQtd0D
+         kuHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778627383; x=1779232183;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=;
+        b=r1HFc9jo0YWu1ywbPmnbC9KVV9AT/hxdODaSHljSkNJZDY8SB6kB5FH/EuQnQJvxWM
+         Fs3VwgChWTgngTmUAy//E2+H/5S+/p6sR9njtayHLpKCKD1B8EYtRXMaU09dK06cgQZ5
+         jgCJu6q5H17xZTDs0x+M9qvpFc/m6Yq6mq78GW9a5jgIct6ewUCeClFAbPc/20b6IkbJ
+         YFQFseDSSRrCof3PqtitJEOAcwehsaASDDWFAnWmXx1EDofb3Z0tFixxmk8zq8X+vuvn
+         BoYs2wPu4DFHioknewvr8P7+gULNJV8otDwMhUnLo+DTHNdVy/i1LD0+t2hT6mjmMbCS
+         nYnw==
+X-Forwarded-Encrypted: i=1; AFNElJ+KyMtAkqTDbVJK7i+Ash3W3+g7dlNCb77mnNDwPUYOx5tuOPUMRNkj4jBp2w8NPaMhQV9iKwQ=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy1BfiRJ7Y+d+IqpqGLh0ooP51Z0WQ815OCjEAAE1e36fPULkzz
+	bRNEJzYe+8zoLU25We/7nbScRs2tTu0f2N7b8aHDKnMYKUg5EjjpfLT+EdHM+JPXK21x+9Wvv9d
+	ZW79gkPaF8/PFlh6IW0fxTkILL8NngWE/WGzWSRQmDbqwTOn/V6NV06BOS6FUmz5b
+X-Gm-Gg: Acq92OGX8GYK+CdarkH2V1UKpM+eZUgBsIM0LAcrMWRuWjDI/mJQz/N9IVtmdCbRnzv
+	kEQGiOyYLAtw5C8TApl+q4ezG9QMCt67p2kiw6oDyQJavvy1gvAcMs6PF7+U+w4sB6bCBKALuFf
+	k/ebsl9iraiacLuR7E83a8gqasd8oE6KKW8pBPDBbRpnc8n710MMwXzbQdD07oDIxwf3MBvJ+C1
+	0M1QD8yjkT/DUuP5GfMl62ORbrWEL6zlC735xPh9UBVAFTKdJNXn9HBGMxqaOM3fGQnyh/T7vn/
+	YJJBydpHfjKg3VtlUUaBuhOgZQ5iJoOK+x6I78lBWocDBqEe4r/rgJf2XQdCCiiQZ3oL4Lrcj4y
+	94pxfOrGhr1RnUijm7ACgsAEy7Uj/8nxiCnOh7/m4DLu3kACMBo65Oy8fIibFC9lSFL9SgGWsIc
+	6GF+E2e2B5TdKZfw==
+X-Received: by 2002:a05:7301:5807:b0:2d2:129a:1694 with SMTP id 5a478bee46e88-301556537d9mr140562eec.18.1778627383343;
+        Tue, 12 May 2026 16:09:43 -0700 (PDT)
+X-Received: by 2002:a05:7301:5807:b0:2d2:129a:1694 with SMTP id 5a478bee46e88-301556537d9mr140532eec.18.1778627382674;
+        Tue, 12 May 2026 16:09:42 -0700 (PDT)
+Received: from [192.168.1.59] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2f888e381c9sm19636171eec.26.2026.05.12.16.09.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 May 2026 16:09:42 -0700 (PDT)
+Message-ID: <e9a822df-f0e1-464b-af99-c1ca315ec5cf@oss.qualcomm.com>
+Date: Tue, 12 May 2026 16:09:40 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1wMu29-0001qo-UX
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wMu29-0001qo-UX; Tue, 12 May 2026 22:48:54 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND RFC 1/3] net: ath11k: fix redundant reset from
+ stale pending workqueue bit
+To: Matthew Leach <matthew.leach@collabora.com>,
+        Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20260330-ath11k-lockup-fixes-v1-0-7ed21095c2c4@collabora.com>
+ <20260330-ath11k-lockup-fixes-v1-1-7ed21095c2c4@collabora.com>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20260330-ath11k-lockup-fixes-v1-1-7ed21095c2c4@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEyMDIzNyBTYWx0ZWRfX7f/8WXnlge8C
+ b4Jurb+i273VtbulGK07lyPhCYaMGKK6ZLjpnvBgSgzjrob5CMnVbG5WuPSAzvufcRwSAslX6du
+ +zXKq0Tx4RLVseWkfdSYpnoSKVt3RtEn6KG4+pBnIzEqyThkNSyVCiMAmDmYDoDWYCuHsn5WyNd
+ HS6dOytjN/18fUZsLW6dS9xGJSyLeNRSzLrH6JvVEMT5DnnmTJvMx6KvzfG9lobJS5Bt258kxs1
+ 6kAThunaTbTfJCXAQ1ck24uxt6xeQlWJwjcKUdCvfkQbiDllZgXJP66gZ/yTA/oIn+0BL0vbsh0
+ YVZ1+qH2ToG1+p1j8OYDe/EQHSP39ntOcMswSAgZ9Le8SejA1vlBBNGZ5ziedBoTghV4tbrNdYj
+ Z2edsp2nU/Z7gkez2VqeWgkTtGHManjpsXERk7oYrbQ4fn6eXoGF+WwD8GHqHPy/85SrF/4Xiom
+ aPmR9BxIsGL8VcRBNog==
+X-Proofpoint-GUID: m76MNDiFl3TMixhHjBXkbyMLRFKAm2LH
+X-Authority-Analysis: v=2.4 cv=GbMnWwXL c=1 sm=1 tr=0 ts=6a03b338 cx=c_pps
+ a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=QX4gbG5DAAAA:8 a=xtXBsnOKPzI8Tx_VA0wA:9 a=QEXdDO2ut3YA:10
+ a=bBxd6f-gb0O0v-kibOvt:22 a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-ORIG-GUID: m76MNDiFl3TMixhHjBXkbyMLRFKAm2LH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
+ definitions=main-2605120237
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260512_134901_052223_8F766204 
-X-CRM114-Status: GOOD (  10.86  )
+X-CRM114-CacheID: sfid-20260512_160947_315564_8474D418 
+X-CRM114-Status: GOOD (  23.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,53 +149,65 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-there is an issue which has been discovered a while ago while testing
-which killed txpower to 0dbm once scanning is triggered in AP mode
-on QCN9074 based chipsets if 6 Ghz is in use.
-ath11k_wmi_send_vdev_set_tpc_power must be set in AP mode in the same
-way is it is for STA as it is implemented in ath12k and in the
-qsdk version for ath11k.
-this patch must be considered to be backported (i discovered that issue
-already 2 years ago)
+On 3/30/2026 3:05 AM, Matthew Leach wrote:
+> During a firmware lockup, WMI commands time out in rapid succession,
+> each calling queue_work() to schedule ath11k_core_reset().  This can
+> cause a spurious extra reset after recovery completes:
+> 
+> 1. First WMI timeout calls queue_work(), sets the pending bit and
+>    schedules ath11k_core_reset(). The workqueue clears the pending bit
+>    before invoking the work function. reset_count becomes 1 and the reset
+>    is kicked off asynchronously. ath11k_core_reset() returns.
+> 
+> 2. Second WMI timeout calls queue_work() and re-queues the work. When it
+>    runs after step 1 returns, it sees reset_count > 1 and blocks in
+>    wait_for_completion(). The pending bit is again cleared.
+> 
+> 3. Third WMI timeout calls queue_work(), the pending bit was cleared in
+>    step 2, so this succeeds and arms another execution.
+> 
+> 4. The asynchronous reset finishes. ath11k_mac_op_reconfig_complete()
+>    decrements reset_count and calls complete(). The blocked worker from
+>    step 2 wakes, takes the early-exit path, and decrements reset_count to
+>    0.
+> 
+> 5. The workqueue sees the pending bit from step 3 and runs
+>    ath11k_core_reset() again. reset_count is 0, triggering a
+>    full redundant hardware reset.
+> 
+> Fix this by calling cancel_work() on reset_work in
+> ath11k_mac_op_reconfig_complete() before signalling completion. This
+> clears any stale pending bit, preventing the spurious re-execution.
+> 
+> Signed-off-by: Matthew Leach <matthew.leach@collabora.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/mac.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+> index e4ee2ba1f669..748f779b3d1b 100644
+> --- a/drivers/net/wireless/ath/ath11k/mac.c
+> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+> @@ -9274,6 +9274,10 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+>  			 * the recovery has to be done for each radio
+>  			 */
+>  			if (recovery_count == ab->num_radios) {
+> +				/* Cancel any pending work, preventing a second redudant
 
-Signed-off-by: Sebastian Gottschall <s.gottschall@dd-wrt.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+nits:
+1) networking no longer uses a different block comment style so use the
+standard style where /* is on a line by itself
+2: s/redudant/redundant/ (subject has it right)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a48b6bf1f29a..dc192152b2e8 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3497,13 +3497,14 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
- 	return 0;
- }
- 
--static bool ath11k_mac_supports_station_tpc(struct ath11k *ar,
-+static bool ath11k_mac_supports_tpc(struct ath11k *ar,
- 					    struct ath11k_vif *arvif,
- 					    const struct cfg80211_chan_def *chandef)
- {
- 	return ath11k_wmi_supports_6ghz_cc_ext(ar) &&
- 		test_bit(WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT, ar->ab->wmi_ab.svc_map) &&
--		arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-+		(arvif->vdev_type == WMI_VDEV_TYPE_STA ||
-+		arvif->vdev_type == WMI_VDEV_TYPE_AP) &&
- 		arvif->vdev_subtype == WMI_VDEV_SUBTYPE_NONE &&
- 		chandef->chan &&
- 		chandef->chan->band == NL80211_BAND_6GHZ;
-@@ -7647,8 +7648,8 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 	/* TODO: For now we only set TPC power here. However when
- 	 * channel changes, say CSA, it should be updated again.
- 	 */
--	if (ath11k_mac_supports_station_tpc(ar, arvif, chandef)) {
--		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, &arvif->chanctx);
-+	if (ath11k_mac_supports_tpc(ar, arvif, chandef)) {
-+		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, ctx);
- 		ath11k_wmi_send_vdev_set_tpc_power(ar, arvif->vdev_id,
- 						   &arvif->reg_tpc_info);
- 	}
--- 
-2.51.0
+but don't post a new version just for these -- wait for any other comments.
+I'm pinging the development team to look at this thread.
+
+> +				 * reset.
+> +				 */
+> +				cancel_work(&ab->reset_work);
+>  				atomic_dec(&ab->reset_count);
+>  				complete(&ab->reset_complete);
+>  				ab->is_reset = false;
+> 
 
 
