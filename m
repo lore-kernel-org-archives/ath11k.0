@@ -4,137 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29326CD343F
-	for <ath11k@archiver.kernel.org>; Tue, 12 May 2026 23:09:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59393CD4F21
+	for <ath11k@archiver.kernel.org>; Tue, 12 May 2026 23:19:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=; b=44nnQsTzTiTms61GZBCCbjkYmy
-	T4Q9MDGiaYqVt5F483RWPQXKNz9olW3tAbwxoS/2a2A8V+ACpHQ1nnti02aJTsDHksvxS2GZ2aUAI
-	niQo77Spc9GJn70ebQDCw0rnzonKerZY6p3wF5iq+XiOi79HDqAK0eKCKSlSU+1WmVmzNswzzypsd
-	MNrTp3GzRZpr9iZix4qefjtSVHqi8OLJGo3YBKJ3HOhSOaS9E+Nk4y6cB/WiJm+fZuj60c2ejEBF3
-	CBXNHpTQ/q98ShSZJOZiCBuvMLhCJoY9mV+OLA3ljH9ce49E3lUqLLABLYyOfD8Vgr39p2aBv4ZRs
-	BrCcliOg==;
+	bh=j27ntAJ+N1LZSw0iXAtPGZfZuXUE/x84Crfg5pmEaIY=; b=wShCeL8Ja2XWkAD5hiPNTq28Bn
+	sj+/Bm1MUzTCNgqVxXnWGoFZ8NuCnXirJH+8YO6XGRwQnAtpPrfSW9VKnkv2qZaP69E54tZjr0EB3
+	U/5Cg5c+Ke+tinXz4LuZG10wmepQvNEBMl82Mr44WmtWzGmUmx+4EpP49ZzkZWuDY0bY9QcGK47/c
+	CWrchcj3sHlWPmhPBgY30AGkWz/cl0QGCNOIeZkWX3Y/Nj/xTUFg7NfzGGzTlPy1LURXMTLUX5Z39
+	2ylgyFCLNzVs5ixXlkLgomiPctrlK9avMZIO0hVupTdLxkn6AR7vOAvTtW4468da7RvD8WlT+SLob
+	p1LggRlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMwEY-00000000fCM-2uao;
-	Tue, 12 May 2026 23:09:50 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wMwNb-00000000gCc-08yf;
+	Tue, 12 May 2026 23:19:11 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMwEV-00000000fBg-0ayO
+	id 1wMwNY-00000000gC7-1BbW
 	for ath11k@lists.infradead.org;
-	Tue, 12 May 2026 23:09:48 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64CLnl2v2233638
-	for <ath11k@lists.infradead.org>; Tue, 12 May 2026 23:09:44 GMT
+	Tue, 12 May 2026 23:19:09 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64CLnF7b1805711
+	for <ath11k@lists.infradead.org>; Tue, 12 May 2026 23:19:07 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=; b=dADzSW6UaBFuDFi5
-	xO4fszBtP+/JBqYczFZbyYPP4BCAjoxSvPXD9ZmoYC9uw31mM2bi04bAAxO8yI1L
-	WRww2SHi7xv0X79Ohy2KiCrMWiiESo69V2xWqvB1vRnzGIJgZqg+8JqYsei7nBfD
-	L0tcMnZcKrWt2vnUSjtrpiN+YwUDgH2GEZmsZ4usdRc0NiNubTxZbB6Brn5asz+j
-	LBrfA6xoxnzL92oZF8+ZdqUCHPLApvJWUxBTf22rNLkbGRa53mm7E0CP3Ax6ULUA
-	Rv8KJxzuw5Ii6KOCds+Am4mW82iq/I1fplic4hDYJ1VacJFl9h7H0y8bJlSf3ZM9
-	INPZOQ==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e42rhtvfk-1
+	j27ntAJ+N1LZSw0iXAtPGZfZuXUE/x84Crfg5pmEaIY=; b=JzujmVnb1gC8bscZ
+	Hzt1tsDSD+8WUB2IskIW6OEaYO679MD5yVKeZY0q+skQXve0Y5P9WMnbELBEbzjj
+	IlawRRsBofNjsMPQyO43k6NXf6snePYb75crICP0KW02ID4Q1axVFErT0xDchCm6
+	wvSXBsK03PKf5ANg8ttqCZp9IW/Tp54gLxSvxm3UeCFSbu6XiRyVmjJa1cRWpbao
+	V7R6rWrRuLCGj7ZOg0c2BwFOvmy5nPYSZvUpuG/VLE5HaOy7EGkRhpPnV1dApvk9
+	gPTZuKacC4GM1OxzNP8rnI9CyaIdqUfQTxeIf3Ptt1jgaTMS7HjWgA3W8kTFa2ku
+	lCTuog==
+Received: from mail-dl1-f72.google.com (mail-dl1-f72.google.com [74.125.82.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e444stc33-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 12 May 2026 23:09:44 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2ba8013a9e3so9858926eec.0
-        for <ath11k@lists.infradead.org>; Tue, 12 May 2026 16:09:44 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Tue, 12 May 2026 23:19:07 +0000 (GMT)
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-130aab78a09so6010899c88.0
+        for <ath11k@lists.infradead.org>; Tue, 12 May 2026 16:19:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778627383; x=1779232183; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1778627946; x=1779232746; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=;
-        b=XsDtnZ/KCszZ8+igO88Cd62Uqn3zsvxMkfAGiPewKShIZkof9D4Pvpve47NqKAKZgy
-         oREuncs2ftF76rWkyod6cQCAn/1Cb0vcYDe7iJqjE1qQb4uxd/D2fUedVP6KkzHkVqpg
-         QMM0WMxbb/wIQfrvdVkPP9IxKxg2G4KkwEe9uYElcRMP9hyPJ6G5X2lmfKeINTG9XtXj
-         JRRRVpG4sBroCdZ0Wpy0GIkx8FycJ7hg69PzSn2OckXY5tarQLANIoyO01s40mj5bsVR
-         G/glQjgQOM8jB6ZGKXR0b1LiX6t5auuWXpGqQehtbn6eA4BLLgaO9rpaSQtELeCQtd0D
-         kuHw==
+        bh=j27ntAJ+N1LZSw0iXAtPGZfZuXUE/x84Crfg5pmEaIY=;
+        b=ADnW36+Vw9dQWr7T3G8/zPopD7vf3e/1/VuWc9jTYcVhPWbPjeKeCv1615Fz03e/g+
+         5rASx5Mlf2kF+KN2QcZyeEYzPZ/l+upeIkhH3yUWBNW8GyDBHgJDkX7NJ/Kf0HThmjqv
+         UngZFJdovIl+fAnAqglMArz7HmafG/NMOZCmCCyfmM1z/WTzPty9rW1bhEp/0rPKkdfi
+         VqUlk0RoKzHs/d2yFyCB8oKnuEqwDZF0uSV13EnHt+o26MoTtKFGT32nbZ+lCegFDRY0
+         lBy/RmLsnPzRTcVLhCbZI2HCE4wb4xzUsNTqsmyCfZHkhxMIPkGuUlOe0JwX/u360AsU
+         a7NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778627383; x=1779232183;
+        d=1e100.net; s=20251104; t=1778627946; x=1779232746;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+iFRSuQ7UV7VaBz7cxLx0+Ht3vKhhgSju6olGQmM5Jc=;
-        b=r1HFc9jo0YWu1ywbPmnbC9KVV9AT/hxdODaSHljSkNJZDY8SB6kB5FH/EuQnQJvxWM
-         Fs3VwgChWTgngTmUAy//E2+H/5S+/p6sR9njtayHLpKCKD1B8EYtRXMaU09dK06cgQZ5
-         jgCJu6q5H17xZTDs0x+M9qvpFc/m6Yq6mq78GW9a5jgIct6ewUCeClFAbPc/20b6IkbJ
-         YFQFseDSSRrCof3PqtitJEOAcwehsaASDDWFAnWmXx1EDofb3Z0tFixxmk8zq8X+vuvn
-         BoYs2wPu4DFHioknewvr8P7+gULNJV8otDwMhUnLo+DTHNdVy/i1LD0+t2hT6mjmMbCS
-         nYnw==
-X-Forwarded-Encrypted: i=1; AFNElJ+KyMtAkqTDbVJK7i+Ash3W3+g7dlNCb77mnNDwPUYOx5tuOPUMRNkj4jBp2w8NPaMhQV9iKwQ=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy1BfiRJ7Y+d+IqpqGLh0ooP51Z0WQ815OCjEAAE1e36fPULkzz
-	bRNEJzYe+8zoLU25We/7nbScRs2tTu0f2N7b8aHDKnMYKUg5EjjpfLT+EdHM+JPXK21x+9Wvv9d
-	ZW79gkPaF8/PFlh6IW0fxTkILL8NngWE/WGzWSRQmDbqwTOn/V6NV06BOS6FUmz5b
-X-Gm-Gg: Acq92OGX8GYK+CdarkH2V1UKpM+eZUgBsIM0LAcrMWRuWjDI/mJQz/N9IVtmdCbRnzv
-	kEQGiOyYLAtw5C8TApl+q4ezG9QMCt67p2kiw6oDyQJavvy1gvAcMs6PF7+U+w4sB6bCBKALuFf
-	k/ebsl9iraiacLuR7E83a8gqasd8oE6KKW8pBPDBbRpnc8n710MMwXzbQdD07oDIxwf3MBvJ+C1
-	0M1QD8yjkT/DUuP5GfMl62ORbrWEL6zlC735xPh9UBVAFTKdJNXn9HBGMxqaOM3fGQnyh/T7vn/
-	YJJBydpHfjKg3VtlUUaBuhOgZQ5iJoOK+x6I78lBWocDBqEe4r/rgJf2XQdCCiiQZ3oL4Lrcj4y
-	94pxfOrGhr1RnUijm7ACgsAEy7Uj/8nxiCnOh7/m4DLu3kACMBo65Oy8fIibFC9lSFL9SgGWsIc
-	6GF+E2e2B5TdKZfw==
-X-Received: by 2002:a05:7301:5807:b0:2d2:129a:1694 with SMTP id 5a478bee46e88-301556537d9mr140562eec.18.1778627383343;
-        Tue, 12 May 2026 16:09:43 -0700 (PDT)
-X-Received: by 2002:a05:7301:5807:b0:2d2:129a:1694 with SMTP id 5a478bee46e88-301556537d9mr140532eec.18.1778627382674;
-        Tue, 12 May 2026 16:09:42 -0700 (PDT)
+        bh=j27ntAJ+N1LZSw0iXAtPGZfZuXUE/x84Crfg5pmEaIY=;
+        b=q7ECKK7WX/IQN+cgSqrZTygWXDvztkzKtEf7kr48fcK7h0AoT4KRDy62ArKH5plT32
+         KuF8GSJl1vJ1kyWYJ4WUhMEuy9a9DyaRDaVGc5RnnOFVIqzX3jyApmOFHH2C7WQt8hlj
+         exhaApz2z4T+gwv4PHDX7Kfjjb3cx26ljo5+lTthvLrEFogemH0NhQfHRS03HEJGvACw
+         Qj9sEFTabtCGE+tCLl5eK3ZaqKas6JCqUxyPmINkirDlgxpvx4jQ2XvF9Pggi9+7sJwk
+         JzSXqCvSRPxjGkavczEnuf9W8Yq0ZvZBz7XMUPpJIFzq4UMMfwQAFQRweikvzsWLj8NI
+         XT9Q==
+X-Forwarded-Encrypted: i=1; AFNElJ+3FgWmLs92pYG41EVIlvNFQJWKhdUF6RevFUl2k0+82hMaE7SRag6Bl8hGoKRLuqd2zPoiFbU=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwhDtya/zO+9rbiVHP4/lHIqRqHVUSuI34ivvOeQsrtozJ6ALD8
+	4BaVz1UQcEBTxKrERI7L/RU85SMj32BqHrqUo2oQQkfNkPk9mC11KxnSTMmmaeuFPfPiyhEnQ9S
+	fAWFv9tNEic+Loxx9nb4MEsX2zHbmOYwLIW+Rt3WZhwdlVot7SWdtFiwXH/3swmMjPkJaiqNR
+X-Gm-Gg: Acq92OHMlidQpSFQaJU9fg9x/D6bo3KKLX8+2L+FaJkbli3SY62Gc+Lj1ZE9F9oAI5/
+	2EXvxi6VSXqGSM61ZSPEEAuge8LCThiHwqi5ctf6dYD0f/Cr0nrkRhamGVmcdZDaXW8gk97stwn
+	lGHavLT9JZh6bPhEvFtn+6rb/iFSokpgdKK1ZK95aBJg3dQKAcf1qFEsbGUTLKrxN+YrpVCCmoX
+	zRCvXJBlCaoepb0shzn9eIwBB4699dKe4LJkvryV5vZDWiiml+vIAQPqDRdoJIhMaJEpT3ZC6Jb
+	StImyZPYv9HNxXTskbHH+oyu3Q1fqoPSoYjOFThOOXs6xfwd6E+QbSjEEMMjcZ8/3Vf+h7OQ75L
+	TsOk+A4YQO1J1+p+fU3YbvBLCembBkRe3eoaLpFOaQLyk+9z4DReAzI9yi2VEEGrV4xu3ruzxF2
+	n3u2aZkIGg2CdUQQ==
+X-Received: by 2002:a05:7022:225:b0:128:cf80:deea with SMTP id a92af1059eb24-1342ee3a12cmr528527c88.1.1778627946476;
+        Tue, 12 May 2026 16:19:06 -0700 (PDT)
+X-Received: by 2002:a05:7022:225:b0:128:cf80:deea with SMTP id a92af1059eb24-1342ee3a12cmr528505c88.1.1778627945868;
+        Tue, 12 May 2026 16:19:05 -0700 (PDT)
 Received: from [192.168.1.59] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2f888e381c9sm19636171eec.26.2026.05.12.16.09.41
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13278210d40sm25517183c88.4.2026.05.12.16.19.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 May 2026 16:09:42 -0700 (PDT)
-Message-ID: <e9a822df-f0e1-464b-af99-c1ca315ec5cf@oss.qualcomm.com>
-Date: Tue, 12 May 2026 16:09:40 -0700
+        Tue, 12 May 2026 16:19:05 -0700 (PDT)
+Message-ID: <2edfe25b-2190-4463-bbba-b2468d872a4c@oss.qualcomm.com>
+Date: Tue, 12 May 2026 16:19:04 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND RFC 1/3] net: ath11k: fix redundant reset from
- stale pending workqueue bit
+Subject: Re: [PATCH RESEND RFC 3/3] net: ath11k: add lockup simulation via
+ debugfs
 To: Matthew Leach <matthew.leach@collabora.com>,
         Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
         linux-kernel@vger.kernel.org, kernel@collabora.com
 References: <20260330-ath11k-lockup-fixes-v1-0-7ed21095c2c4@collabora.com>
- <20260330-ath11k-lockup-fixes-v1-1-7ed21095c2c4@collabora.com>
+ <20260330-ath11k-lockup-fixes-v1-3-7ed21095c2c4@collabora.com>
 From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20260330-ath11k-lockup-fixes-v1-1-7ed21095c2c4@collabora.com>
+In-Reply-To: <20260330-ath11k-lockup-fixes-v1-3-7ed21095c2c4@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEyMDIzNyBTYWx0ZWRfX7f/8WXnlge8C
- b4Jurb+i273VtbulGK07lyPhCYaMGKK6ZLjpnvBgSgzjrob5CMnVbG5WuPSAzvufcRwSAslX6du
- +zXKq0Tx4RLVseWkfdSYpnoSKVt3RtEn6KG4+pBnIzEqyThkNSyVCiMAmDmYDoDWYCuHsn5WyNd
- HS6dOytjN/18fUZsLW6dS9xGJSyLeNRSzLrH6JvVEMT5DnnmTJvMx6KvzfG9lobJS5Bt258kxs1
- 6kAThunaTbTfJCXAQ1ck24uxt6xeQlWJwjcKUdCvfkQbiDllZgXJP66gZ/yTA/oIn+0BL0vbsh0
- YVZ1+qH2ToG1+p1j8OYDe/EQHSP39ntOcMswSAgZ9Le8SejA1vlBBNGZ5ziedBoTghV4tbrNdYj
- Z2edsp2nU/Z7gkez2VqeWgkTtGHManjpsXERk7oYrbQ4fn6eXoGF+WwD8GHqHPy/85SrF/4Xiom
- aPmR9BxIsGL8VcRBNog==
-X-Proofpoint-GUID: m76MNDiFl3TMixhHjBXkbyMLRFKAm2LH
-X-Authority-Analysis: v=2.4 cv=GbMnWwXL c=1 sm=1 tr=0 ts=6a03b338 cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
+X-Proofpoint-GUID: _bZu6Bdq_lr-nzVQP4BjIfn3hdYCuHp8
+X-Authority-Analysis: v=2.4 cv=OcKoyBTY c=1 sm=1 tr=0 ts=6a03b56b cx=c_pps
+ a=bS7HVuBVfinNPG3f6cIo3Q==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
  a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=QX4gbG5DAAAA:8 a=xtXBsnOKPzI8Tx_VA0wA:9 a=QEXdDO2ut3YA:10
- a=bBxd6f-gb0O0v-kibOvt:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-ORIG-GUID: m76MNDiFl3TMixhHjBXkbyMLRFKAm2LH
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=QX4gbG5DAAAA:8 a=MEfDkqlxHPSrZSc_TmcA:9 a=QEXdDO2ut3YA:10
+ a=vBUdepa8ALXHeOFLBtFW:22 a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-ORIG-GUID: _bZu6Bdq_lr-nzVQP4BjIfn3hdYCuHp8
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEyMDIzOCBTYWx0ZWRfX33MKmUZSSG/O
+ gYnl5u19+LKnzF9BzGGKQZlGZOzpFXpDEcklbejV3Z/7NmidvscdWP3vuLtMiJxvC3OGgDhonBL
+ paTMPb3Y9NdmTR1QdE7tDuBKRSyECWnxOhvn7ATtpNqUFcVLEhosC3G81jf2yuwxH0WndInC226
+ Kgn8kojKWYGkHT6NK5cmbwK18nuyFfkwn2fyDBiZcP22H3B3vgyq8Tv5QKnbJ1EJecFKsHbx3vS
+ lwg/c8A3hYc+foWjBChJt0kLj/3HtxuGcvgBWQOWBhHPXv0KqyGIx3nHl5R5LXA7OiuujeCLtba
+ bf2uHgrYqeX55NA8zJP15ERBxWd3QFP3az7FClbJ6SRMnnWDX/swmbWVi1dN3ecv9dq2V0TSoNW
+ vs4gc5qlkbvdNBinJALJjJz4LQMxCXsThpADTb/BvAM+bI3H99m95e46OA9Aj7sNdOdE1i6aaCa
+ KeLTPJ0/JbTrQ99lCkw==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 bulkscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
+ clxscore=1015 phishscore=0 spamscore=0 bulkscore=0 adultscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
- definitions=main-2605120237
+ definitions=main-2605120238
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260512_160947_315564_8474D418 
-X-CRM114-Status: GOOD (  23.18  )
+X-CRM114-CacheID: sfid-20260512_161908_342751_0A38DE81 
+X-CRM114-Status: GOOD (  24.66  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,64 +150,137 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 On 3/30/2026 3:05 AM, Matthew Leach wrote:
-> During a firmware lockup, WMI commands time out in rapid succession,
-> each calling queue_work() to schedule ath11k_core_reset().  This can
-> cause a spurious extra reset after recovery completes:
+> Add a debugfs command to simulate a firmware lockup.
 > 
-> 1. First WMI timeout calls queue_work(), sets the pending bit and
->    schedules ath11k_core_reset(). The workqueue clears the pending bit
->    before invoking the work function. reset_count becomes 1 and the reset
->    is kicked off asynchronously. ath11k_core_reset() returns.
+> This does not hang the hardware. Instead, it forces the driver down an
+> error path that reproduces the sequence observed during real lockups:
 > 
-> 2. Second WMI timeout calls queue_work() and re-queues the work. When it
->    runs after step 1 returns, it sees reset_count > 1 and blocks in
->    wait_for_completion(). The pending bit is again cleared.
+>   ath11k_pci 0000:03:00.0: failed to transmit frame -12
+>   ath11k_pci 0000:03:00.0: failed to transmit frame -12
+>   ath11k_pci 0000:03:00.0: failed to transmit frame -12
+>   ...
+>   ath11k_pci 0000:03:00.0: wmi command 28680 timeout
+>   ath11k_pci 0000:03:00.0: failed to submit WMI_MGMT_TX_SEND_CMDID cmd
+>   ath11k_pci 0000:03:00.0: failed to send mgmt frame: -11
 > 
-> 3. Third WMI timeout calls queue_work(), the pending bit was cleared in
->    step 2, so this succeeds and arms another execution.
-> 
-> 4. The asynchronous reset finishes. ath11k_mac_op_reconfig_complete()
->    decrements reset_count and calls complete(). The blocked worker from
->    step 2 wakes, takes the early-exit path, and decrements reset_count to
->    0.
-> 
-> 5. The workqueue sees the pending bit from step 3 and runs
->    ath11k_core_reset() again. reset_count is 0, triggering a
->    full redundant hardware reset.
-> 
-> Fix this by calling cancel_work() on reset_work in
-> ath11k_mac_op_reconfig_complete() before signalling completion. This
-> clears any stale pending bit, preventing the spurious re-execution.
+> This allows validation of the firmware lockup detection and recovery
+> mechanism without requiring a real hardware failure.
 > 
 > Signed-off-by: Matthew Leach <matthew.leach@collabora.com>
 > ---
->  drivers/net/wireless/ath/ath11k/mac.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>  drivers/net/wireless/ath/ath11k/core.h    | 1 +
+>  drivers/net/wireless/ath/ath11k/debugfs.c | 7 ++++++-
+>  drivers/net/wireless/ath/ath11k/hal.c     | 7 +++++--
+>  drivers/net/wireless/ath/ath11k/htc.c     | 2 +-
+>  drivers/net/wireless/ath/ath11k/wmi.c     | 6 +++++-
+>  5 files changed, 18 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> index e4ee2ba1f669..748f779b3d1b 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -9274,6 +9274,10 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
->  			 * the recovery has to be done for each radio
->  			 */
->  			if (recovery_count == ab->num_radios) {
-> +				/* Cancel any pending work, preventing a second redudant
-
-nits:
-1) networking no longer uses a different block comment style so use the
-standard style where /* is on a line by itself
-2: s/redudant/redundant/ (subject has it right)
-
-but don't post a new version just for these -- wait for any other comments.
-I'm pinging the development team to look at this thread.
-
-> +				 * reset.
-> +				 */
-> +				cancel_work(&ab->reset_work);
->  				atomic_dec(&ab->reset_count);
->  				complete(&ab->reset_complete);
->  				ab->is_reset = false;
+> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+> index 221dcd23b3dd..44b02ae1e85b 100644
+> --- a/drivers/net/wireless/ath/ath11k/core.h
+> +++ b/drivers/net/wireless/ath/ath11k/core.h
+> @@ -1041,6 +1041,7 @@ struct ath11k_base {
+>  	struct ath11k_dbring_cap *db_caps;
+>  	u32 num_db_cap;
+>  	u64 last_frame_tx_error_jiffies;
+> +	bool simulate_lockup;
+>  
+>  	/* To synchronize 11d scan vdev id */
+>  	struct mutex vdev_id_11d_lock;
+> diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+> index 0c1138407838..ca0b72a3e0b0 100644
+> --- a/drivers/net/wireless/ath/ath11k/debugfs.c
+> +++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+> @@ -356,7 +356,8 @@ static ssize_t ath11k_read_simulate_fw_crash(struct file *file,
+>  	const char buf[] =
+>  		"To simulate firmware crash write one of the keywords to this file:\n"
+>  		"`assert` - this will send WMI_FORCE_FW_HANG_CMDID to firmware to cause assert.\n"
+> -		"`hw-restart` - this will simply queue hw restart without fw/hw actually crashing.\n";
+> +		"`hw-restart` - this will simply queue hw restart without fw/hw actually crashing.\n"
+> +		"`lockup` - simulate a firmware lockup without the h/w actually hanging.\n";
+>  
+>  	return simple_read_from_buffer(user_buf, count, ppos, buf, strlen(buf));
+>  }
+> @@ -413,6 +414,10 @@ static ssize_t ath11k_write_simulate_fw_crash(struct file *file,
+>  		ath11k_info(ab, "user requested hw restart\n");
+>  		queue_work(ab->workqueue_aux, &ab->reset_work);
+>  		ret = 0;
+> +	} else if (!strcmp(buf, "lockup")) {
+> +		ath11k_info(ab, "simulating lockup\n");
+> +		ab->simulate_lockup = true;
+> +		ret = 0;
+>  	} else {
+>  		ret = -EINVAL;
+>  		goto exit;
+> diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+> index e821e5a62c1c..e01fb17a4734 100644
+> --- a/drivers/net/wireless/ath/ath11k/hal.c
+> +++ b/drivers/net/wireless/ath/ath11k/hal.c
+> @@ -691,7 +691,7 @@ int ath11k_hal_srng_dst_num_free(struct ath11k_base *ab, struct hal_srng *srng,
+>  
+>  	tp = srng->u.dst_ring.tp;
+>  
+> -	if (sync_hw_ptr) {
+> +	if (sync_hw_ptr && !ab->simulate_lockup) {
+>  		hp = *srng->u.dst_ring.hp_addr;
+>  		srng->u.dst_ring.cached_hp = hp;
+>  	} else {
+> @@ -743,7 +743,7 @@ u32 *ath11k_hal_srng_src_get_next_entry(struct ath11k_base *ab,
+>  	 */
+>  	next_hp = (srng->u.src_ring.hp + srng->entry_size) % srng->ring_size;
+>  
+> -	if (next_hp == srng->u.src_ring.cached_tp)
+> +	if (next_hp == srng->u.src_ring.cached_tp || ab->simulate_lockup)
+>  		return NULL;
+>  
+>  	desc = srng->ring_base_vaddr + srng->u.src_ring.hp;
+> @@ -828,6 +828,9 @@ void ath11k_hal_srng_access_begin(struct ath11k_base *ab, struct hal_srng *srng)
+>  
+>  	lockdep_assert_held(&srng->lock);
+>  
+> +	if (ab->simulate_lockup)
+> +		return;
+> +
+>  	if (srng->ring_dir == HAL_SRNG_DIR_SRC) {
+>  		srng->u.src_ring.cached_tp =
+>  			*(volatile u32 *)srng->u.src_ring.tp_addr;
+> diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+> index 4571d01cc33d..b05d04a1f5e8 100644
+> --- a/drivers/net/wireless/ath/ath11k/htc.c
+> +++ b/drivers/net/wireless/ath/ath11k/htc.c
+> @@ -208,7 +208,7 @@ static int ath11k_htc_process_trailer(struct ath11k_htc *htc,
+>  			break;
+>  		}
+>  
+> -		if (ab->hw_params.credit_flow) {
+> +		if (ab->hw_params.credit_flow && !ab->simulate_lockup) {
+>  			switch (record->hdr.id) {
+>  			case ATH11K_HTC_RECORD_CREDITS:
+>  				len = sizeof(struct ath11k_htc_credit_report);
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+> index 7d9f0bcbb3b0..27d6d4a2f803 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+> @@ -345,9 +345,13 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
+>  
+>  		if (time_in_range64(ab->last_frame_tx_error_jiffies,
+>  				    range_start, jiffies_64) &&
+> -		    queue_work(ab->workqueue_aux, &ab->reset_work))
+> +		    queue_work(ab->workqueue_aux, &ab->reset_work)) {
+>  			ath11k_err(wmi_ab->ab,
+>  				   "Firmware lockup detected.  Resetting.");
+> +
+> +			/* Assume that reset gets us out of lockup. */
+> +			ab->simulate_lockup = false;
+> +		}
+>  	}
+>  
+>  	if (ret == -ENOBUFS)
 > 
 
+My 1st impression of this patch is that the datapath folks are not going to
+like the ab->simulate_lockup checks in the hot path. But I'll let the
+engineers speak for themselves.
+
+/jeff
 
