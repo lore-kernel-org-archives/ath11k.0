@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93E4BCD37B6
-	for <ath11k@archiver.kernel.org>; Wed, 13 May 2026 05:10:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95717CD484C
+	for <ath11k@archiver.kernel.org>; Wed, 13 May 2026 05:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
 	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/z4okyAFuUcU6TBYEMXGoDYk7X2ZKAwJd30vl70UUbg=; b=WKViSpV0WEoGi+8URsGpnahu0m
-	Z5MfSso2UV3cXHvVySG5F9MrCiLwCkR0GqksMgpD0feA8UkOBz8C+MacScaZ+omEv5pzYrel1p4mG
-	TXfWH+jLdapfiyBws6BsfDRAkQEvQwChR03KWkgRvMVAw3vMnOWfR6e3IQYaWBNzaNDmq0v3LzZL5
-	GA9GeeVxyRUKE86io4OJYnXm0S2A1IA/9yVCYV5Sth4lxt0/sm5M2cHtLcxVyYRHor3DUNx1l3Uy2
-	vhjZemEtti3qP6xfaOtdLcKRCobtmyX/xQHBWmfAfSqPMBfXHAR32ofGQrlHkf1C7xw8LivE+Zf4H
-	kW+0JhQg==;
+	bh=vHfpGR+tPaY2TDdziOInxYAYSj6im2Q2BupHyFRZhDA=; b=Y0eDB0Kfq2kB4Nqm7K81abYvDI
+	NG07PpUgm9+M9S3iTnT0CuVEtz2Y9o5MR/Vchr6kAzvhbxuuEdwKkoddZwSCUlEH7nscgJ78UdqMY
+	+mOoA+a+F5SMXI3xv46ped3EcE4zcn0KliEmrdNAg7p1VCSVvV9B27lcquAJ4tMXgD6Wy2iOSK+3y
+	aQBbeUvn7pq4B8sBTgZLEmMCwjRQMCNXAMYppQ259w8viF7xvlzrR8afiTBiS96Fv75CB7fn6P69/
+	R7MByHwYtAf9rp8SRqNF9mRMBT6OO3q38FyGRLNWrHJOmRvyd97GXauNfIfLafs+prdWbRXHRKb0r
+	OlBKm6vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN1rM-00000001IDD-0cSS;
-	Wed, 13 May 2026 05:10:16 +0000
+	id 1wN21y-00000001J1x-2Rek;
+	Wed, 13 May 2026 05:21:14 +0000
 Received: from mail.as201155.net ([185.84.6.188])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN1rJ-00000001ICe-0J7s
+	id 1wN21w-00000001J13-0aUQ
 	for ath11k@lists.infradead.org;
-	Wed, 13 May 2026 05:10:14 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:43200 helo=webmail.newmedia-net.de)
+	Wed, 13 May 2026 05:21:13 +0000
+Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:44204 helo=webmail.newmedia-net.de)
 	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
 	(Exim 4.97.1)
 	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wN1r9-000000007RP-1ngs;
-	Wed, 13 May 2026 07:10:04 +0200
+	id 1wN21i-000000007zt-25cK;
+	Wed, 13 May 2026 07:20:59 +0200
 X-SASI-Hits: BODY_SIZE_3000_3999 0.000000, BODY_SIZE_5000_LESS 0.000000,
 	BODY_SIZE_7000_LESS 0.000000, CTE_7BIT 0.000000, DKIM_ALIGNS 0.000000,
 	DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
@@ -49,15 +49,15 @@ X-SASI-Hits: BODY_SIZE_3000_3999 0.000000, BODY_SIZE_5000_LESS 0.000000,
 	__FORWARDED_MSG 0.000000, __FRAUD_BADTHINGS 0.000000,
 	__FUR_RDNS_SOPHOS 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
 	__HAS_REFERENCES 0.000000, __HEADER_ORDER_FROM 0.000000,
-	__INVOICE_MULTILINGUAL 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
-	__MIME_BOUND_CHARSET 0.000000, __MIME_TEXT_ONLY 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__MOZILLA_USER_AGENT 0.000000, __MSGID_DOMAIN_IN_REFERENCES 0.000000,
-	__MSGID_HEX_844412 0.000000, __MULTIPLE_RCPTS_TO_X2 0.000000,
-	__NO_HTML_TAG_RAW 0.000000, __OUTBOUND_SOPHOS_FUR 0.000000,
-	__OUTBOUND_SOPHOS_FUR_IP 0.000000, __OUTBOUND_SOPHOS_FUR_RDNS 0.000000,
-	__RCVD_PASS 0.000000, __REFERENCES 0.000000, __SANE_MSGID 0.000000,
-	__SCAN_D_NEG 0.000000, __SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
+	__IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000, __MIME_BOUND_CHARSET 0.000000,
+	__MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000,
+	__MIME_VERSION 0.000000, __MOZILLA_USER_AGENT 0.000000,
+	__MSGID_DOMAIN_IN_REFERENCES 0.000000, __MSGID_HEX_844412 0.000000,
+	__MULTIPLE_RCPTS_TO_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
+	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
+	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __RCVD_PASS 0.000000,
+	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
+	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
 	__SCAN_D_NEG_HEUR2 0.000000, __SL_HEAVY 0.000000, __SUBJ_ALPHA_END 0.000000,
 	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
 	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
@@ -66,12 +66,12 @@ X-SASI-Hits: BODY_SIZE_3000_3999 0.000000, BODY_SIZE_5000_LESS 0.000000,
 	__USER_AGENT 0.000000, __X_MAILSCANNER 0.000000
 X-SASI-Probability: 8%
 X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2026.5.13.42719
+X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2026.5.13.45719
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:Message-ID; bh=/z4okyAFuUcU6TBYEMXGoDYk7X2ZKAwJd30vl70UUbg=;
-	b=b93MHhh9vP4fJcgaY0rsAm7TmTaa4/2IhMsWXGMtHngV4z2xmT/6LOx19QFETVYva+Bf4jJNXmuidLgW3q6x3Bkr8vdPBo6/pBlThzRkCtyBVCtRWBS6rmbOw8VR+EuPZEnaIPqLBm6plSkJdrbAcXdKBdnDTj/oGsw76JS2tM8=;
-Message-ID: <29294e2b-9e87-4052-aa6b-16323d7a469e@dd-wrt.com>
-Date: Wed, 13 May 2026 07:09:55 +0200
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:Message-ID; bh=vHfpGR+tPaY2TDdziOInxYAYSj6im2Q2BupHyFRZhDA=;
+	b=jWCNmHVIuTEijiJJSZ6N6dBmrYo4CVpRB8/N50q34ais55HZbbX7OEPOhXxaFJ58Q0gw3ATTyu5N8sDkRqh3NhsrY7rU1byPHM8n2I95ueO7ICzWG0cY2FlwlVUZCNP1i3noulkfyPAJLq/xOJdGpTA+z2BpzH+9FQgOiIH3KeY=;
+Message-ID: <d4a6da02-632f-4bc0-b8dd-6d3b001e4350@dd-wrt.com>
+Date: Wed, 13 May 2026 07:20:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird Beta
 Subject: Re: [PATCH] wifi: ath11k: fix txpower in ap mode for 6 Ghz
@@ -87,16 +87,16 @@ X-SA-Exim-Connect-IP: 127.0.0.1
 X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
 X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
 X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1wN1r5-0004AR-Bs
+X-NMN-MailScanner-ID: 1wN21i-0004FR-B8
 X-NMN-MailScanner: Found to be clean
 X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
 X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
 	by webmail.newmedia-net.de with esmtp (Exim 4.72)
 	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wN1r5-0004AR-Bs; Wed, 13 May 2026 07:09:59 +0200
+	id 1wN21i-0004FR-B8; Wed, 13 May 2026 07:20:58 +0200
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260512_221013_260337_D1FB3139 
-X-CRM114-Status: GOOD (  22.95  )
+X-CRM114-CacheID: sfid-20260512_222112_337728_F55FFE1A 
+X-CRM114-Status: GOOD (  20.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -159,11 +159,13 @@ Am 13.05.2026 um 03:56 schrieb Baochen Qiang:
 >> +	if (ath11k_mac_supports_tpc(ar, arvif, chandef)) {
 >> +		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, ctx);
 > is this intentional change? I doubt it even doesn't compile.
+in addition. i compile tested it. and if you talk about the change from 
+arvid->chanctx to ctx. this valid
+arvif->chanctx is not always set. the only trustworthy source is ctx and 
+represents the current channel context.
+there was never a reason to use arvif->chanctx
 
-i renamed the function from ath11k_mac_supports_station_tpc to 
-ath11k_mac_supports_tpc since the function now checks for ap and station 
-mode or what are you talking about?
-
+Sebastian
 
 >
 >>   		ath11k_wmi_send_vdev_set_tpc_power(ar, arvif->vdev_id,
@@ -171,22 +173,6 @@ mode or what are you talking about?
 >>   	}
 > the ath12k patch has additional changes to hardcode power_type to LPI for an AP vdev,
 > should it be done for ath11k as well?
-hard to tell. i just can tell you that this issue on 6 ghz channels 
-happens if tpc power isnt used. but i tested this solution
-you can simply check it. got to a 6 ghz channel.
-
-to
-
-iw dev wlanX scan
-iw dev wlanX info
-and you will see that txpower is 0 and the ap is also now very weak.
-btw. this issue is fixed and covered in the qca qsdk for ath11k. i dont 
-know what it was limited to sta only which porting this patch to 
-upstream ath11k.
-
-Sebastian
-
-
 >
 > commit a44958c83e52238996a48e7d604167c9b9d0a529
 > Author: Hariharan Basuthkar <quic_hbasuthk@quicinc.com>
