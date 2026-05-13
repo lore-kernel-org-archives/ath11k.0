@@ -4,132 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1955CCD37AC
-	for <ath11k@archiver.kernel.org>; Wed, 13 May 2026 01:56:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8584CD343F
+	for <ath11k@archiver.kernel.org>; Wed, 13 May 2026 03:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=saz+pev2K8mOzYf70PXVM9LCWt22Aarfa30XZsfqgsQ=; b=W5uEpKLGX/nX1gQK4BMFVsFp2L
-	ejCJPq4/nVi9UNd0GNliPqYYK+xgiPchdSiQZf6IvIiweiKBaJYY0aPmiTTPU4Q31J7FOB6vBJFZx
-	VVg1VI+YGcNBLy0bs/XjDmUGXVTHNIMskbUWyzyYzFoHsmYatod+5R0Sp7mZqlhLMks6Wocjn9675
-	ROBoR6rjBMdFZS5viU8FCXH72FeihJj57UhHv6LSuHyraf6Q8F2NUOcZ1YqyMk3oMtInxwdbYW+F9
-	jE7wTf9gBmIaXxA0xrtKcE3NaUR+6VpPuBc09USG/Wt2x+1ktdQwXbKLxIA9KPJEo5H/o8GHPDuDA
-	gyaRX3yg==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=mkJHePA5ylc7DrllEguE7yS7MQQUyp0sxg23OnXjj2s=; b=x4PKy6yunwdxkdeaI1v9FJZ+Ok
+	8l4AuLxeR8rkIaMtzhTZMbIeKlZew14sKddSfx0xxuMFaq5D7B/fUfeiWYOVaUYs1KXQx27YGu8js
+	iPRC+WGxLktyHNrRZ0leRC5zCNxwFhv9JrHoaT36PjhzpDmEYpDhGigrE9N7mtn9PVH8Z6QZjRr1H
+	IiQzVIBq4kryGlhwVyNoL57osSoTTA00ecF1lbZxXXxSg+M0Kjrr7pOvyG4qXoAniTiZV9b2iE8Th
+	/RewE92m8ilmEaOtjEjV7XyFiMRvQvaspBFedZY1Y2PbiF3Yj5vObLYKwdNz1vmAiKyXykKbDg1Td
+	F/CHZMkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMyqB-00000000tXI-37K2;
-	Wed, 13 May 2026 01:56:51 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wN0JT-000000013BP-0Tas;
+	Wed, 13 May 2026 03:31:11 +0000
+Received: from mail-ot1-x32f.google.com ([2607:f8b0:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMyq8-00000000tWk-1AKa
+	id 1wN0JQ-000000013Ao-1oDk
 	for ath11k@lists.infradead.org;
-	Wed, 13 May 2026 01:56:49 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64D08mu22524900
-	for <ath11k@lists.infradead.org>; Wed, 13 May 2026 01:56:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	saz+pev2K8mOzYf70PXVM9LCWt22Aarfa30XZsfqgsQ=; b=EmO0XZYDEtZXKIPc
-	dhLy7ZVP6KZZwiyZQLkAunEmr1l4q7BytgsxmYVL6dxI/HzIQi1XGHsjclG64gKt
-	eSXzjSKBqvRRDzTQgYFo19HRaDxWvU0H1h5OCkyiTtZJlDeiGb4W5QISvkdCh7n4
-	UK/uxKeRCE9QmRronSTn5KcRvBxE7XhCgVzD/34zmMWuGNJKRURO5FYEH9krDg2j
-	dsKBq2jk9m6pmNhpGpNseoQ/cmPtCqF0rmVe8jiYAaZ5crtJv779lb1xSEWgFoL6
-	sMZMckmBCBNUlGaHwT8aMhdiPftmUpd5x6O51qT3NduAOczcCleisBfFtsgolZd7
-	bTeMXA==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e42rhu85u-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 13 May 2026 01:56:46 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3662668b825so10770722a91.3
-        for <ath11k@lists.infradead.org>; Tue, 12 May 2026 18:56:46 -0700 (PDT)
+	Wed, 13 May 2026 03:31:09 +0000
+Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-7dcdaf06498so4217846a34.2
+        for <ath11k@lists.infradead.org>; Tue, 12 May 2026 20:31:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778643067; cv=none;
+        d=google.com; s=arc-20240605;
+        b=WgNa46BwfumE+gDzsf2pY0lEZE570qfnzOepfE9hGOekbLo2+n+F+9xsXlHFBfNyAs
+         ky6icLbynZc4XTC27POF2cA7EscZJpyD/ep9yX/FnZ8eaOW8GFxZNXe9DxPYAA5SV3C7
+         B0vczIUypIDMcZ+jrKbUXBpjUcsQS7fQcurVLS1p/bfhxvbOODVlA9kVLgd7vQNYEBiU
+         F5PUriQDbBdphwmZaR8sSWLQ4ubTWxibToM329GO6KkH6BD/zzZLENXFGyd00+fvt9IO
+         0D+bBx3eXrSknCh8gjED9XqQDL1slWhNUt+EmnNQ+WrgrnadgfHLjRaT0Kud0f1CoAjo
+         2nHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=mkJHePA5ylc7DrllEguE7yS7MQQUyp0sxg23OnXjj2s=;
+        fh=yRRb9Z8Q2NouDeyJ4GfhuNtkTguUiu3zJbt2sJfrgGg=;
+        b=HL/IvRD4IQgTScUqqCoVEg1nd9WEdLMtyRLy2SFNLOkEekltp2ykvkKQ4a7cDYb34d
+         QHXKRAH0A84kuvFxMqBl8DLfmyOPdoHrPec4LGBukxluPKthVw0NmVH6O/FUCCBKF7FP
+         k+uz3wIacMhp4F6497ELabPHqhWioMbEM1/kO8CbcHtTXyiNqt8Cig9c2wvkV9ZVSXUe
+         fTEplstwto+pOkQrfBwsAyV2XNqwkTtsCL4xMmAYinxVX/C9b06y2TOA6YAsVYNLCs96
+         Ayk2yIDtQlqrptcXXwx0f6PEFFM4dJ/NNei6bM6gKVUH6a7ZMKeLtqtMvYpzgPO3W5/s
+         eIaw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778637406; x=1779242206; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=saz+pev2K8mOzYf70PXVM9LCWt22Aarfa30XZsfqgsQ=;
-        b=MfBeU8gX7WsjKH2/vTqzgfFitFziu6VIEVNHUAT7BVczI5/BcQZxzaXpqTw5YACOC9
-         amBuVYnjhDyriRQXkhf2ONcOJZ87GZdufcb4VXqjY4yxdpahOl5H83Sqdlhvbqj5t4VY
-         CJ/gUN3VAhoEHQv0zKMlyKiAGZuEAKZT9rZDPXO1zcP79RTamt7Fz4XNV6U501gzekeC
-         G/ImuU2yDbsrE076osqvinQkt4qOinuMhOTEN+y0GPYh1NQR2bQ1X6aZ5+tQ+q8gQtCZ
-         +r1c1Ee3gLxlIW20oUDGjz8MbCBL/gHzM1zB0baftqJCLxjZGQHeogfwUSDhdfDBskgt
-         CqEQ==
+        d=gmail.com; s=20251104; t=1778643067; x=1779247867; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mkJHePA5ylc7DrllEguE7yS7MQQUyp0sxg23OnXjj2s=;
+        b=lKjRNhSIn4+7O7PBmvNheLSTgDU6Fky6gA/yKaF6su8c86MKhIlUI9Ew9JNCoE8B/6
+         XTCCPMJl2zMIRXlOLCn7x09qnZ/er+PP/7WmE2rpWYRPRjx1j3ASFkHdJQJ1hcI9OoXi
+         amPii8Sl8KtCmnCA22Xnu+wGun7n8PI3KmrcXmlD/kmFa0xCh1as5KFWRsJZx/3GtrhP
+         Pj8NnkU3JPalSL9KqAGSaC451xa6V51sOK0fJ7NZARx6YTvcup3FGZzR5tmT2GZWXHeJ
+         jxObsmKQUfCjqThVdZaN8HAfJI0e8DyvxKSVubwN27y8uVaUM0aH7iIo8m6ZnQYoLBSe
+         HWWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778637406; x=1779242206;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=saz+pev2K8mOzYf70PXVM9LCWt22Aarfa30XZsfqgsQ=;
-        b=dnNNnBjgjXAAXA7piWddB4WwOpReNXN8BoZWDv4yCKMNCqL+ot1OO1UIq+iHBJDdUB
-         0entPgdiY6PNg2BZln5l8CxU+4F3X9Y/Rd1MVEsaRrmittdaKQGNtDjZEC3NLA4pv+eK
-         DYCXmIHd56XZadfVffWH9Oubhhig3iaKF02gzVLN8cTrA+uArlET9x1mu3FqruZGwHG1
-         4Q1QQ4H4X0rKTTRm0RdwLJ5ZgoyaNSHSaAwOg3jc/qZq5kHPmqyXD/yXf+Y+VMAuBYCl
-         wXsPHjwJlwAOXZzjDtW2C7FAe1F1L0Qh5SqKNrTP5By2vr5wB7F7XsfboOesxQDq1LnF
-         te/Q==
-X-Forwarded-Encrypted: i=1; AFNElJ9scFvufVPD+BrsCoP1MftGoMMwN008HdEZeVeHXqs+/kBsEPOZFJJoUoXrwMP5yHYwg/9mBLc=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyTdVnh5DBlSxZskZHnel0NJuzFpTZbFUOMUiIPQvUZ7nOYykIm
-	0fq3SmiRSZvBBZDVx14IGM96eaaNLt+NzVTVgwFY4FQsZMD5aSQZ5PFRL13RYPVhyHNIvY0BkA6
-	qg8Am5k7KMjt7musfM/Y2Ktw2gMY5uukuJxHfA92+sLsRuZ2vssZRDntzX5w3IVnr
-X-Gm-Gg: Acq92OHG7mDAwKz1cG9ba+DCEmhYivRTPyN1YDmsy5YVJjMh2VvAJL5nDwelcovULzk
-	A26QTeCVPsBlASuV3wv3OY5d81lVtIVa2+Gi6c0fbeuVeO8vJriuFQVxXloyvhbPxDcjXpp0NFb
-	CY0PcDOitdehqsAnuOSR4St9LpJqg1GMXGiDKpWzHTy8Gl5QxoEAd+Fi8JxZ7WD/o3p3kDDCoYR
-	qS/EJHceRlBa5PE26ECnIhfHNFR2Ob0iet0gqZUO9s0U9P6nMKZPEL4+7zfno+g2RXLTYkEHnt2
-	W1bSwFFLEZ3+21lUQypdYZsJAJ5oThfcoq3ZpahrO/AsIDHGV5J+fwk4VUTdumDacPZzofE/VWm
-	7t066Ua8AwYnQ89KI3ObC87lD2VvkF2fTfclTmcY+QL055wDGhcgTQHEXYrfSwYimwW7TMUncd7
-	2ZzE/TIflts1umQvlKtpA=
-X-Received: by 2002:a17:90b:2f4d:b0:366:132:fda7 with SMTP id 98e67ed59e1d1-368f781f60dmr965093a91.10.1778637405788;
-        Tue, 12 May 2026 18:56:45 -0700 (PDT)
-X-Received: by 2002:a17:90b:2f4d:b0:366:132:fda7 with SMTP id 98e67ed59e1d1-368f781f60dmr965071a91.10.1778637405302;
-        Tue, 12 May 2026 18:56:45 -0700 (PDT)
-Received: from [10.133.33.178] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-368ee327443sm1134873a91.11.2026.05.12.18.56.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 May 2026 18:56:45 -0700 (PDT)
-Message-ID: <17060e4f-f0f9-4842-9460-82422d23a8c1@oss.qualcomm.com>
-Date: Wed, 13 May 2026 09:56:41 +0800
+        d=1e100.net; s=20251104; t=1778643067; x=1779247867;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=mkJHePA5ylc7DrllEguE7yS7MQQUyp0sxg23OnXjj2s=;
+        b=QVU/rXBkkZzV/6LKoUdrxW67DOKFNsxJ5uE+szu5qhWCaZwyZPAUbnaw3W95jhrSUU
+         wQpkz4ShakRq/q5061IFdiIWGs3alqmj/PZNXaI6qfh9zTtuW5zR3kjzEMySut599qJc
+         iV7hhduR8DwDvBpYcDRACPqOPV9J7QEQz8reZBPXgu5YK21613S0YynVowiWeDd3hNIX
+         PwKHuN8iputhadCvHJtavLl/dsOajETP04ApaxO7YC6hxIZscZunUKGD/1DpLURG8FQa
+         y/mOFoy5dVC6tX2Hqf1NmLQFRS2OUbis9w/WBHlPw59CRRzlT8IaS8/PqMS9ZCcU7ygl
+         Vong==
+X-Forwarded-Encrypted: i=1; AFNElJ9FDGN2c1ceZl3cbFKo+Tv1IuGx2Ae8adNhpVNFhxzNk6GSVwrqh8hJm5FMgNGKL29t3QNbnoI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzBcCF5d6+7zqNQ0fCD4SmpbgU02NO06d2zPGndQ/h94SO5WQ4N
+	iWHYlWAhdqDmF4Cimt94MokHcR5TYxgTSh3wEIDRfApyAoMgAILM5I+ihaUqjzX8/GVJbpfx1Y+
+	rUDSUEYeK45tyUstN2S5WHch8fSEkjQVNu8NzVV8=
+X-Gm-Gg: Acq92OEIYoLdK+rpESRoqWGSIIlABWRu6DvW7YBJZYaQ0MM/9iZerSFhoDXpaVUXUla
+	vrvqD5nlzWhiUFIDeLc2afH/UwC9Q/gX4RDg6ibGBQg6thUT5ZfQ362Dku9j/0rOglV1Y85gekW
+	v9DsIcs/5qNVU6LzNhMrDMPSQotpv5qrFbCHTh33hwuU3xsVB11HpzTb1Mga/VOCEZEGQGoG8Se
+	eZcGhzNfg7Gi37STbx+uFkqQlQtvXynuBpWu/5hmrLe0bM/mplQkf51QfW+JDHxnunz4O6UVyhB
+	xiJCn+u9zpHdBcxhlHQWUJOCvgBIWL1cTnaAMrY=
+X-Received: by 2002:a05:6830:3697:b0:7e3:7f84:4cf9 with SMTP id
+ 46e09a7af769-7e3da0cefcamr1048436a34.11.1778643067157; Tue, 12 May 2026
+ 20:31:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: ath11k: fix txpower in ap mode for 6 Ghz
-To: Sebastian Gottschall <s.gottschall@dd-wrt.com>, ath11k@lists.infradead.org
-References: <20260512204851.2634163-1-s.gottschall@dd-wrt.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260512204851.2634163-1-s.gottschall@dd-wrt.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDAxNyBTYWx0ZWRfX/c1EBQWZPwKS
- Ov5kc/c0O5d0y+8bANQq0g//mn3xB3BcnW8Ac63dTpyP39Iaq/Dt1OSjtqH+lPLIhVg0g6zMxFK
- kHvIWBrpfeZ6+JBfHsgNOi0YuBJjeSoZRBGVHsjDNrY2gxDcHJFpMCbalVUgEgWC0bocuY6Jkrh
- TVfonu5gAYZcfPKS0TS41e6F+N+9oZD45znqbmkt6WhbtDLem9S5CdXAeYGiYOJtNAJngCcdNih
- 09Xxhwc2gwpAQNPUlkfdiIGgUqCHd6xHvsi5LJ9ZppmYapu1mXY/J3F9uqxwwmh7VfqjLPPie/A
- SM9zH4+qDzc46hxiO73mBqt3LqspxxTBJRFx8N2YSztyEqMReXQzq8RFeOB6xyRXD9df82AHtan
- nKWozX8s9OuIvLLEHRgrbyBc8PZ73HxHiOYgCafQd+tsJBfo5JaB2Y55v7rJiJolWVBjKUlhVyF
- Uz2WjUhFDVtgeaVG1cQ==
-X-Proofpoint-GUID: 7i05L9Ro_3OKWKmbedxkhjkIq5F64Za0
-X-Authority-Analysis: v=2.4 cv=GbMnWwXL c=1 sm=1 tr=0 ts=6a03da5e cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=Y5XITzagAAAA:8 a=COk6AnOGAAAA:8 a=4gm6xPFbWwVjzW7VRE4A:9 a=QEXdDO2ut3YA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22 a=dfzBCs9aBJshU-flp7fy:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 7i05L9Ro_3OKWKmbedxkhjkIq5F64Za0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 bulkscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
- definitions=main-2605130017
+References: <20260506200249.317690-1-santiagorr@riseup.net> <45f1c979-ea8d-4118-8551-eff93966b4e1@oss.qualcomm.com>
+In-Reply-To: <45f1c979-ea8d-4118-8551-eff93966b4e1@oss.qualcomm.com>
+From: Kyle Farnung <kfarnung@gmail.com>
+Date: Tue, 12 May 2026 20:30:55 -0700
+X-Gm-Features: AVHnY4LEQy64KrKEqNOZLc_Lh90vHXqKfZK_pa-aabTj8o44CzX52CeEkWtIEYo
+Message-ID: <CAOPSVF29ofKi8fpmJxuq9F5uQXHe4RrFvGb2V-odGMNA77NWXw@mail.gmail.com>
+Subject: Re: [PATCH v2] wifi: ath11k: Add two missing Lenovo IDs to the quirk table
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: =?UTF-8?Q?Santiago_Ruano_Rinc=C3=B3n?= <santiagorr@riseup.net>, 
+	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
+	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	kfarnung@outlook.com, Mark Pearson <mpearson-lenovo@squebb.ca>, koike@igalia.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260512_185648_447731_E2785DED 
-X-CRM114-Status: GOOD (  22.91  )
+X-CRM114-CacheID: sfid-20260512_203108_483014_C363577E 
+X-CRM114-Status: GOOD (  27.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,74 +118,120 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Tue, May 12, 2026 at 5:03=E2=80=AFPM Jeff Johnson
+<jeff.johnson@oss.qualcomm.com> wrote:
+>
+> On 5/6/2026 12:54 PM, Santiago Ruano Rinc=C3=B3n wrote:
+> > Commit 0eb002c93c3b4 ("wifi: ath11k: Add missing platform IDs for quirk
+> > table") added some Lenovo platform IDs to the quirk table to address a
+> > wakeup from suspend issue [1].  However, at least P14s Gen 5 AMD, as
+> > reported by Kyle Farnung [2], and P14s Gen 3 AMD are missing in the
+> > table.  This commit adds the two corresponding Lenovo version IDs for
+> > each.
+> >
+> > [1] https://bugzilla.kernel.org/show_bug.cgi?id=3D219196
+> > [2] https://bugzilla.kernel.org/show_bug.cgi?id=3D219196#c23
+> >
+> > Tested-on: P14s G3 AMD running 7.0.3.
+> >
+> > Fixes: ce8669a27016 ("wifi: ath11k: determine PM policy based on machin=
+e model")
+> > Co-authored-by: Kyle Farnung <kfarnung@gmail.com>
+>
+> This is not a standard Linux kernel commit tag.
+> Co-developed-by: could be used, but I'd need a Signed-off-by: from Kyle
+>
+> Kyle, if you'd like these added please reply with both a Co-developed-by =
+and
+> a Signed-off-by tag
 
+I re-tested the bug behavior on the v7.0.4 tag and found that I'm not able
+to reproduce it on my device. I put the device to sleep and then unplugged
+and replugged power; it never woke up until I intentionally woke it.
 
-On 5/13/2026 4:48 AM, Sebastian Gottschall wrote:
-> there is an issue which has been discovered a while ago while testing
-> which killed txpower to 0dbm once scanning is triggered in AP mode
-> on QCN9074 based chipsets if 6 Ghz is in use.
-> ath11k_wmi_send_vdev_set_tpc_power must be set in AP mode in the same
-> way is it is for STA as it is implemented in ath12k and in the
-> qsdk version for ath11k.
-> this patch must be considered to be backported (i discovered that issue
-> already 2 years ago)
-> 
-> Signed-off-by: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-> ---
->  drivers/net/wireless/ath/ath11k/mac.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> index a48b6bf1f29a..dc192152b2e8 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -3497,13 +3497,14 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
->  	return 0;
->  }
->  
-> -static bool ath11k_mac_supports_station_tpc(struct ath11k *ar,
-> +static bool ath11k_mac_supports_tpc(struct ath11k *ar,
->  					    struct ath11k_vif *arvif,
->  					    const struct cfg80211_chan_def *chandef)
->  {
->  	return ath11k_wmi_supports_6ghz_cc_ext(ar) &&
->  		test_bit(WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT, ar->ab->wmi_ab.svc_map) &&
-> -		arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-> +		(arvif->vdev_type == WMI_VDEV_TYPE_STA ||
-> +		arvif->vdev_type == WMI_VDEV_TYPE_AP) &&
->  		arvif->vdev_subtype == WMI_VDEV_SUBTYPE_NONE &&
->  		chandef->chan &&
->  		chandef->chan->band == NL80211_BAND_6GHZ;
-> @@ -7647,8 +7648,8 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
->  	/* TODO: For now we only set TPC power here. However when
->  	 * channel changes, say CSA, it should be updated again.
->  	 */
-> -	if (ath11k_mac_supports_station_tpc(ar, arvif, chandef)) {
-> -		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, &arvif->chanctx);
-> +	if (ath11k_mac_supports_tpc(ar, arvif, chandef)) {
-> +		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, ctx);
+Based on discussion in [3], I narrowed my issue with wi-fi disassociation
+on wake to a suspect commit [4]. I'm developing a patch that clears the rdp
+and wrp buffers during wake to clear out any stale state in the LMAC rings.
+I'll submit that once I'm done testing it.
 
-is this intentional change? I doubt it even doesn't compile.
+Santiago: Are you seeing the sleep/wake bug from [1] or something similar
+to what I was seeing around disconnections on wake?
 
->  		ath11k_wmi_send_vdev_set_tpc_power(ar, arvif->vdev_id,
->  						   &arvif->reg_tpc_info);
->  	}
+[3] https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=3Do9wVcFMc6f=
+-yhmSBcZqQ@mail.gmail.com/
+[4] 32be3ca4cf78b ("wifi: ath11k: HAL SRNG: don't deinitialize and
+re-initialize again")
 
-the ath12k patch has additional changes to hardcode power_type to LPI for an AP vdev,
-should it be done for ath11k as well?
-
-commit a44958c83e52238996a48e7d604167c9b9d0a529
-Author: Hariharan Basuthkar <quic_hbasuthk@quicinc.com>
-Date:   Fri Jun 6 16:53:16 2025 +0530
-
-    wifi: ath12k: Send WMI_VDEV_SET_TPC_POWER_CMD for AP vdev
-
-    [...]
-
-    For a AP vdev, hardcode ap_power_type as IEEE80211_REG_LPI_AP, which is
-    filled in the WMI_VDEV_SET_TPC_POWER_CMDID sent to the target.
-    Currently, LPI is the only supported AP power mode. Since there is
-    no method currently to set the AP power mode from user-space, the
-    power mode is hard-coded to LPI.
-
+>
+> I can apply these fixes when I process the patch in my tree.
+>
+> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#wh=
+en-to-use-acked-by-cc-and-co-developed-by
+>
+> > Signed-off-by: Santiago Ruano Rinc=C3=B3n <santiagorr@riseup.net>
+> > ---
+> > Changes in v2:
+> > - Merged the Lenovo P14s G5 AMD #1 and #2 related changes proposed by
+> >   Kyle Farnung in
+> >   https://lore.kernel.org/all/20260330-p14s-pm-quirk-v2-1-ef18ce07996b@=
+gmail.com/
+> > - Added Kyle Farnung as Co-author of the commit
+> > - Added the second ID of Lenovo P14s G3 AMD, and adapt the comments
+> >   accordingly
+> > - v1: https://lore.kernel.org/ath11k/20260423211458.458911-1-santiagorr=
+@riseup.net/
+> > ---
+> >  drivers/net/wireless/ath/ath11k/core.c | 28 ++++++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> >
+> > diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wirel=
+ess/ath/ath11k/core.c
+> > index 3f6f4db5b7ee..c1ce0a11af44 100644
+> > --- a/drivers/net/wireless/ath/ath11k/core.c
+> > +++ b/drivers/net/wireless/ath/ath11k/core.c
+> > @@ -957,6 +957,20 @@ static const struct dmi_system_id ath11k_pm_quirk_=
+table[] =3D {
+> >                       DMI_MATCH(DMI_PRODUCT_NAME, "21K4"),
+> >               },
+> >       },
+> > +     {
+> > +             .driver_data =3D (void *)ATH11K_PM_WOW,
+> > +             .matches =3D { /* P14s G3 AMD #1 */
+> > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21J5"),
+> > +             },
+> > +     },
+> > +     {
+> > +             .driver_data =3D (void *)ATH11K_PM_WOW,
+> > +             .matches =3D { /* P14s G3 AMD #2 */
+> > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21J6"),
+> > +             },
+> > +     },
+> >       {
+> >               .driver_data =3D (void *)ATH11K_PM_WOW,
+> >               .matches =3D { /* P14s G4 AMD #1 */
+> > @@ -971,6 +985,20 @@ static const struct dmi_system_id ath11k_pm_quirk_=
+table[] =3D {
+> >                       DMI_MATCH(DMI_PRODUCT_NAME, "21K6"),
+> >               },
+> >       },
+> > +     {
+> > +             .driver_data =3D (void *)ATH11K_PM_WOW,
+> > +             .matches =3D { /* P14s G5 AMD #1 */
+> > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21ME"),
+> > +             },
+> > +     },
+> > +     {
+> > +             .driver_data =3D (void *)ATH11K_PM_WOW,
+> > +             .matches =3D { /* P14s G5 AMD #2 */
+> > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21MF"),
+> > +             },
+> > +     },
+> >       {
+> >               .driver_data =3D (void *)ATH11K_PM_WOW,
+> >               .matches =3D { /* T16 G2 AMD #1 */
+>
 
