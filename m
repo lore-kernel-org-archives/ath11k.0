@@ -4,102 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20309CD4F21
-	for <ath11k@archiver.kernel.org>; Wed, 13 May 2026 16:09:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D129DCD4F21
+	for <ath11k@archiver.kernel.org>; Wed, 13 May 2026 17:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=JBsAtAWBqz1+kerHiARStKnlTvse/wEm86jzq2JLGrw=; b=CvR+bJUR5PrG0SsTMwk+jmpl7X
-	zi1cBmuQRtKbILJ6dljexdW7EBJYl+6bSwrjqXSm9lx0d9c8NqEna9F89xo5HBM1bcoiB+OSP0/26
-	9ZDl4qpK1ZBHCSHvqDFan0sBUba/nV7Gqu6wccSlHABkU0AOBlZs+7r6+owxkkV3LYUDerXE96LVW
-	QTcz8m6J3hK/R/Kn/1r5fQyVic34N8dHRNU7fV9wkecYuTxQVjGp9UVD5/7KWtutt6a87JIFqA7QF
-	0HlWyHubUIgpz/vSNzjgr6unKArgHl6nwts32d+fw3Jr5DhQfDr1i5/UVWnWmZICd00pwEWmxDqil
-	sjEhvOuQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Uu0Ury0RB4Jz8n9cKBHsi6ncR/kg9AlVj4sjmyqoarQ=; b=zvkYjYl6ZNgDvGuFEkuAeD3fnW
+	ip5Zt9kL9nTQFaLOFBI9nVCsNbAxrN2OcQxHVXxHpj9omgJjbpZyDHhMR8Te3n0/yDRzsVUtXJ/As
+	Gkme6Ed00Fgy4gk1cFj0g5gye1r1N/vWuXULomgdKMCOXmQ8Cl+xQ2gUC5b/OxvbPZzlpAqf7jyCE
+	vzls/gOZTbIIBTqT9NAvXO8QETwnDgPGVFXPG71cAbBD3J72p7CGANxmV6BflibJQ6NO8n87N7qVV
+	f6Ia1yesPKcY6rD64ZRrSggPUl8pyHJR9h3ii5Fs3OMDSkRQpZZqGxamG8yM9SZmEq5I5BBkNcenk
+	YmTi54FQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNC9E-00000003AJK-2kK7;
-	Wed, 13 May 2026 16:09:24 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1wNDpw-00000003PSn-2qxl;
+	Wed, 13 May 2026 17:57:36 +0000
+Received: from mx1.riseup.net ([198.252.153.129])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNC9C-00000003AIW-1Dkm
+	id 1wNDpu-00000003PRn-1mv4
 	for ath11k@lists.infradead.org;
-	Wed, 13 May 2026 16:09:23 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:46854 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wNC8z-000000006d7-1kuY;
-	Wed, 13 May 2026 18:09:10 +0200
-X-SASI-Hits: BODY_SIZE_4000_4999 0.000000, BODY_SIZE_5000_LESS 0.000000,
-	BODY_SIZE_7000_LESS 0.000000, CTE_8BIT 0.000000, DKIM_ALIGNS 0.000000,
-	DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
-	IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000,
-	MSGID_SAMEAS_FROM_HEX_844412 0.100000, MSG_THREAD 0.000000,
-	MSG_THREAD_SOLO 0.000000, NO_CTA_URI_FOUND 0.000000, NO_FUR_HEADER 0.000000,
-	NO_URI_HTTPS 0.000000, OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000,
-	REFERENCES 0.000000, SENDER_NO_AUTH 0.000000, SUSP_DH_NEG 0.000000,
-	USER_AGENT 0.000000, __ANY_URI 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
-	__BULK_NEGATE 0.000000, __CRYPTO_ADDRESS_OBFU 0.000000, __CT 0.000000,
-	__CTE 0.000000, __CT_TEXT_PLAIN 0.000000, __DKIM_ALIGNS_1 0.000000,
-	__DKIM_ALIGNS_2 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
-	__DQ_NEG_IP 0.000000, __EXCESSIVE_NEWLINES 0.000000,
-	__FORWARDED_MSG 0.000000, __FRAUD_BADTHINGS 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
-	__HAS_REFERENCES 0.000000, __HEADER_ORDER_FROM 0.000000, __HIGHBITS 0.000000,
-	__IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000, __MIME_BOUND_CHARSET 0.000000,
-	__MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000,
-	__MIME_VERSION 0.000000, __MOZILLA_USER_AGENT 0.000000,
-	__MSGID_DOMAIN_IN_REFERENCES 0.000000, __MSGID_HEX_844412 0.000000,
-	__MULTIPLE_RCPTS_TO_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __RCVD_PASS 0.000000,
-	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SCAN_D_NEG 0.000000,
-	__SCAN_D_NEG2 0.000000, __SCAN_D_NEG_HEUR 0.000000,
-	__SCAN_D_NEG_HEUR2 0.000000, __SL_HEAVY 0.000000, __SUBJ_ALPHA_END 0.000000,
-	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
-	__URI_MAILTO 0.000000, __URI_NO_WWW 0.000000, __URI_NS 0.000000,
-	__USER_AGENT 0.000000, __X_MAILSCANNER 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2026.5.13.152719
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:Message-ID; bh=JBsAtAWBqz1+kerHiARStKnlTvse/wEm86jzq2JLGrw=;
-	b=Ut9v9/Pr+jJkwJkzDuZAuvK+JPBHjo4L6Dfsz7RkUnWcWpTU5h0+UZhznsxQI6slTymSOgkai2o5NmyHnAhQ8Su2EGbKBVjOftjwcuKDRAOIltSkufhWxZojOW90VMnuDX29An0D/5TZnCVhrAKqXwTbn2iJlbTQYHELec8iVwU=;
-Message-ID: <2281b281-fa3d-4f52-a1d2-e3e4073a78b8@dd-wrt.com>
-Date: Wed, 13 May 2026 18:09:07 +0200
+	Wed, 13 May 2026 17:57:36 +0000
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx1.riseup.net (Postfix) with ESMTPS id 4gG1Pz13rtzDtMg;
+	Wed, 13 May 2026 17:57:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=riseup.net; s=squak;
+	t=1778695047; bh=Uu0Ury0RB4Jz8n9cKBHsi6ncR/kg9AlVj4sjmyqoarQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TQkgR1YSoPPecXK7tPD2J+PWn9Lo27uUCM/PructzgOmUzWI1yRMnxQw10PLe0vV+
+	 r/KKAx0EepIwxhKVeW/8HmEf9IP8aIehQqJZkqY4MZviI4O4qUHoFlTQnL61OZoaay
+	 6Bojo3j80wrVNtDjlhxW5zVzc5C3fnJSTlmT8bQ4=
+X-Riseup-User-ID: FDEA97DCFEFD1AD42A6E284BEB520E068F61E67A59937672D6FCB631F4E492EE
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4gG1Px56s6z1yhC;
+	Wed, 13 May 2026 17:57:25 +0000 (UTC)
+Date: Wed, 13 May 2026 14:57:18 -0300
+From: Santiago Ruano =?iso-8859-1?Q?Rinc=F3n?= <santiagorr@riseup.net>
+To: Kyle Farnung <kfarnung@gmail.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kfarnung@outlook.com, Mark Pearson <mpearson-lenovo@squebb.ca>,
+	koike@igalia.com
+Subject: Re: [PATCH v2] wifi: ath11k: Add two missing Lenovo IDs to the quirk
+ table
+Message-ID: <agS7fr8mDI9TLpvh@voleno>
+References: <20260506200249.317690-1-santiagorr@riseup.net>
+ <45f1c979-ea8d-4118-8551-eff93966b4e1@oss.qualcomm.com>
+ <CAOPSVF29ofKi8fpmJxuq9F5uQXHe4RrFvGb2V-odGMNA77NWXw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH] wifi: ath11k: fix txpower in ap mode for 6 Ghz
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>, ath11k@lists.infradead.org
-References: <20260512204851.2634163-1-s.gottschall@dd-wrt.com>
- <17060e4f-f0f9-4842-9460-82422d23a8c1@oss.qualcomm.com>
- <d4a6da02-632f-4bc0-b8dd-6d3b001e4350@dd-wrt.com>
- <688defbe-de3a-43d1-b17b-70e337749032@oss.qualcomm.com>
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
-In-Reply-To: <688defbe-de3a-43d1-b17b-70e337749032@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1wNC8y-000929-Mo
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wNC8y-000929-Mo; Wed, 13 May 2026 18:09:08 +0200
+In-Reply-To: <CAOPSVF29ofKi8fpmJxuq9F5uQXHe4RrFvGb2V-odGMNA77NWXw@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260513_090922_474833_D08E0642 
-X-CRM114-Status: GOOD (  18.22  )
+X-CRM114-CacheID: sfid-20260513_105734_544831_4067B536 
+X-CRM114-Status: GOOD (  33.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,93 +79,116 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+El 12/05/26 a las 20:30, Kyle Farnung escribió:
+> On Tue, May 12, 2026 at 5:03 PM Jeff Johnson
+> <jeff.johnson@oss.qualcomm.com> wrote:
+> >
+> > On 5/6/2026 12:54 PM, Santiago Ruano Rincón wrote:
+> > > Commit 0eb002c93c3b4 ("wifi: ath11k: Add missing platform IDs for quirk
+> > > table") added some Lenovo platform IDs to the quirk table to address a
+> > > wakeup from suspend issue [1].  However, at least P14s Gen 5 AMD, as
+> > > reported by Kyle Farnung [2], and P14s Gen 3 AMD are missing in the
+> > > table.  This commit adds the two corresponding Lenovo version IDs for
+> > > each.
+> > >
+> > > [1] https://bugzilla.kernel.org/show_bug.cgi?id=219196
+> > > [2] https://bugzilla.kernel.org/show_bug.cgi?id=219196#c23
+> > >
+> > > Tested-on: P14s G3 AMD running 7.0.3.
+> > >
+> > > Fixes: ce8669a27016 ("wifi: ath11k: determine PM policy based on machine model")
+> > > Co-authored-by: Kyle Farnung <kfarnung@gmail.com>
+> >
+> > This is not a standard Linux kernel commit tag.
+> > Co-developed-by: could be used, but I'd need a Signed-off-by: from Kyle
+> >
+> > Kyle, if you'd like these added please reply with both a Co-developed-by and
+> > a Signed-off-by tag
+> 
+> I re-tested the bug behavior on the v7.0.4 tag and found that I'm not able
+> to reproduce it on my device. I put the device to sleep and then unplugged
+> and replugged power; it never woke up until I intentionally woke it.
+> 
+> Based on discussion in [3], I narrowed my issue with wi-fi disassociation
+> on wake to a suspect commit [4]. I'm developing a patch that clears the rdp
+> and wrp buffers during wake to clear out any stale state in the LMAC rings.
+> I'll submit that once I'm done testing it.
+> 
+> Santiago: Are you seeing the sleep/wake bug from [1] or something similar
+> to what I was seeing around disconnections on wake?
 
-Am 13.05.2026 um 12:12 schrieb Baochen Qiang:
->
-> On 5/13/2026 1:20 PM, Sebastian Gottschall wrote:
->> Am 13.05.2026 um 03:56 schrieb Baochen Qiang:
->>> On 5/13/2026 4:48 AM, Sebastian Gottschall wrote:
->>>> there is an issue which has been discovered a while ago while testing
->>>> which killed txpower to 0dbm once scanning is triggered in AP mode
->>>> on QCN9074 based chipsets if 6 Ghz is in use.
->>>> ath11k_wmi_send_vdev_set_tpc_power must be set in AP mode in the same
->>>> way is it is for STA as it is implemented in ath12k and in the
->>>> qsdk version for ath11k.
->>>> this patch must be considered to be backported (i discovered that issue
->>>> already 2 years ago)
->>>>
->>>> Signed-off-by: Sebastian Gottschall <s.gottschall@dd-wrt.com>
->>>> ---
->>>>    drivers/net/wireless/ath/ath11k/mac.c | 9 +++++----
->>>>    1 file changed, 5 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
->>>> index a48b6bf1f29a..dc192152b2e8 100644
->>>> --- a/drivers/net/wireless/ath/ath11k/mac.c
->>>> +++ b/drivers/net/wireless/ath/ath11k/mac.c
->>>> @@ -3497,13 +3497,14 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
->>>>        return 0;
->>>>    }
->>>>    -static bool ath11k_mac_supports_station_tpc(struct ath11k *ar,
->>>> +static bool ath11k_mac_supports_tpc(struct ath11k *ar,
->>>>                            struct ath11k_vif *arvif,
->>>>                            const struct cfg80211_chan_def *chandef)
->>>>    {
->>>>        return ath11k_wmi_supports_6ghz_cc_ext(ar) &&
->>>>            test_bit(WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT, ar->ab->wmi_ab.svc_map) &&
->>>> -        arvif->vdev_type == WMI_VDEV_TYPE_STA &&
->>>> +        (arvif->vdev_type == WMI_VDEV_TYPE_STA ||
->>>> +        arvif->vdev_type == WMI_VDEV_TYPE_AP) &&
->>>>            arvif->vdev_subtype == WMI_VDEV_SUBTYPE_NONE &&
->>>>            chandef->chan &&
->>>>            chandef->chan->band == NL80211_BAND_6GHZ;
->>>> @@ -7647,8 +7648,8 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
->>>>        /* TODO: For now we only set TPC power here. However when
->>>>         * channel changes, say CSA, it should be updated again.
->>>>         */
->>>> -    if (ath11k_mac_supports_station_tpc(ar, arvif, chandef)) {
->>>> -        ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, &arvif->chanctx);
->>>> +    if (ath11k_mac_supports_tpc(ar, arvif, chandef)) {
->>>> +        ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, ctx);
->>> is this intentional change? I doubt it even doesn't compile.
->> in addition. i compile tested it. and if you talk about the change from arvid->chanctx to
->> ctx. this valid
->> arvif->chanctx is not always set. the only trustworthy source is ctx and represents the
->> current channel context.
->> there was never a reason to use arvif->chanctx
-> my bad, I was referring to a wrong codebase.
->
-> Yes, you are correct. Even the upstream ath12k uses ctx instead of arvif->chanctx.
-yes. i found that out while reviewing. just had scratching why 
-arvif->chanctx was used initially.
-for me it looks this patch was ported from qsdk patches but modified to 
-support station only.
-reason unknown. regarding your power type comment (LPI) i have to review 
-the current ath11k upstream codebase first
-since i developed this patch initially for kernel 6.12.
->
->> Sebastian
->>
->>>>            ath11k_wmi_send_vdev_set_tpc_power(ar, arvif->vdev_id,
->>>>                               &arvif->reg_tpc_info);
->>>>        }
->>> the ath12k patch has additional changes to hardcode power_type to LPI for an AP vdev,
->>> should it be done for ath11k as well?
->>>
->>> commit a44958c83e52238996a48e7d604167c9b9d0a529
->>> Author: Hariharan Basuthkar <quic_hbasuthk@quicinc.com>
->>> Date:   Fri Jun 6 16:53:16 2025 +0530
->>>
->>>       wifi: ath12k: Send WMI_VDEV_SET_TPC_POWER_CMD for AP vdev
->>>
->>>       [...]
->>>
->>>       For a AP vdev, hardcode ap_power_type as IEEE80211_REG_LPI_AP, which is
->>>       filled in the WMI_VDEV_SET_TPC_POWER_CMDID sent to the target.
->>>       Currently, LPI is the only supported AP power mode. Since there is
->>>       no method currently to set the AP power mode from user-space, the
->>>       power mode is hard-coded to LPI.
->>>
->>>
->
+I was seeing wifi issues after wake-up, including disassociations, as
+described at https://bugs.debian.org/1132343.
+
+> 
+> [3] https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=o9wVcFMc6f-yhmSBcZqQ@mail.gmail.com/
+> [4] 32be3ca4cf78b ("wifi: ath11k: HAL SRNG: don't deinitialize and
+> re-initialize again")
+> 
+> >
+> > I can apply these fixes when I process the patch in my tree.
+> >
+> > https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+> >
+> > > Signed-off-by: Santiago Ruano Rincón <santiagorr@riseup.net>
+> > > ---
+> > > Changes in v2:
+> > > - Merged the Lenovo P14s G5 AMD #1 and #2 related changes proposed by
+> > >   Kyle Farnung in
+> > >   https://lore.kernel.org/all/20260330-p14s-pm-quirk-v2-1-ef18ce07996b@gmail.com/
+> > > - Added Kyle Farnung as Co-author of the commit
+> > > - Added the second ID of Lenovo P14s G3 AMD, and adapt the comments
+> > >   accordingly
+> > > - v1: https://lore.kernel.org/ath11k/20260423211458.458911-1-santiagorr@riseup.net/
+> > > ---
+> > >  drivers/net/wireless/ath/ath11k/core.c | 28 ++++++++++++++++++++++++++
+> > >  1 file changed, 28 insertions(+)
+> > >
+> > > diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+> > > index 3f6f4db5b7ee..c1ce0a11af44 100644
+> > > --- a/drivers/net/wireless/ath/ath11k/core.c
+> > > +++ b/drivers/net/wireless/ath/ath11k/core.c
+> > > @@ -957,6 +957,20 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
+> > >                       DMI_MATCH(DMI_PRODUCT_NAME, "21K4"),
+> > >               },
+> > >       },
+> > > +     {
+> > > +             .driver_data = (void *)ATH11K_PM_WOW,
+> > > +             .matches = { /* P14s G3 AMD #1 */
+> > > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21J5"),
+> > > +             },
+> > > +     },
+> > > +     {
+> > > +             .driver_data = (void *)ATH11K_PM_WOW,
+> > > +             .matches = { /* P14s G3 AMD #2 */
+> > > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21J6"),
+> > > +             },
+> > > +     },
+> > >       {
+> > >               .driver_data = (void *)ATH11K_PM_WOW,
+> > >               .matches = { /* P14s G4 AMD #1 */
+> > > @@ -971,6 +985,20 @@ static const struct dmi_system_id ath11k_pm_quirk_table[] = {
+> > >                       DMI_MATCH(DMI_PRODUCT_NAME, "21K6"),
+> > >               },
+> > >       },
+> > > +     {
+> > > +             .driver_data = (void *)ATH11K_PM_WOW,
+> > > +             .matches = { /* P14s G5 AMD #1 */
+> > > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21ME"),
+> > > +             },
+> > > +     },
+> > > +     {
+> > > +             .driver_data = (void *)ATH11K_PM_WOW,
+> > > +             .matches = { /* P14s G5 AMD #2 */
+> > > +                     DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+> > > +                     DMI_MATCH(DMI_PRODUCT_NAME, "21MF"),
+> > > +             },
+> > > +     },
+> > >       {
+> > >               .driver_data = (void *)ATH11K_PM_WOW,
+> > >               .matches = { /* T16 G2 AMD #1 */
+> >
 
