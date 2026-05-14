@@ -4,90 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5687CD4F21
-	for <ath11k@archiver.kernel.org>; Thu, 14 May 2026 02:50:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3114FCD37AC
+	for <ath11k@archiver.kernel.org>; Thu, 14 May 2026 04:52:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=7CMKcbI18CZoAdN/ImXeXGh+qevbiPMNi4nmYhMHeRA=; b=TdfuFKBvWREziE09kNKevo/AEG
-	EK7b8+abxoi7iQKtFDpLR0hIBIrB7wyYyHC2MqCTRIUVMBoWROkhMrpouprKaXCv7epZBcrxwM731
-	yAeCylbPsoblnRCg7KOURrlwCVvxuxKcuFljiLg9r5JRUsvpfedUe4zNlPnfI/S9sswuPC64A9ki4
-	EH8Z243H5hOkVz8fhJf+0Qm4CFcB+6P6RWdv6jpgVXRZ6SDz7HJuB9aVQnmPUCsqH2oBMHZcTGosk
-	ADtSUx35lRa9qXHhPDMc+bnJJgVq3GsTAf+cwGW284sUK9zgxE1vdv8qcOep9Dwqc8M3S0FS9gWT4
-	++w4hy9Q==;
+	bh=nB6K0IeFd+1uw5rf1Ps0y3aueGBh2t5B3OagXPsvXVQ=; b=y4xfz1B4RejhCi+gUMUkJG5BIS
+	JLdJGcvR/QhJmoB0Ds4iXEr5J1ZkMhfjKIex9zwZlVwi5ItK6DuwVm+q4UIxvAO/saJepv0IYIC9g
+	KnNA311pQH3h1nJAXoxaAhBRiF+mgybqSA3/cTyVfeTsXIpmSWYQ+51PzEB4Q7pTiUqIqjBDakGlW
+	vCVAdKz5nySyzlKYemw16ydUvFzOv3q6hkH682GBYuhVoult6yU4FwhZ8CVor4WWygc2mzK4FCew8
+	4e0VKlsvz/Eu35WtiJ3+9ATRMNRo1JaGzIuYMx9tby3FqDGwFkp6l+xMOdIsREuOHDVMC8cVNTMAo
+	abwgIC/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNM9w-00000004Ogk-0Dxw;
-	Thu, 14 May 2026 02:50:48 +0000
-Received: from mail.as201155.net ([185.84.6.188])
+	id 1wNO3u-00000004ZJL-1BUE;
+	Thu, 14 May 2026 04:52:42 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNM9s-00000004Ofp-0PT8
+	id 1wNO3s-00000004ZJ3-3h6Y
 	for ath11k@lists.infradead.org;
-	Thu, 14 May 2026 02:50:46 +0000
-Received: from smtps.newmedia-net.de ([2a05:a1c0:0:de::167]:34068 helo=webmail.newmedia-net.de)
-	by mail.as201155.net with esmtps  (TLS1) tls TLS_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.97.1)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wNM9j-000000003BQ-1axn;
-	Thu, 14 May 2026 04:50:35 +0200
-X-SASI-Hits: BODY_SIZE_3000_3999 0.000000, BODY_SIZE_5000_LESS 0.000000,
-	BODY_SIZE_7000_LESS 0.000000, CTE_8BIT 0.000000, DKIM_ALIGNS 0.000000,
-	DKIM_SIGNATURE 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
-	LEGITIMATE_SIGNS 0.000000, MULTIPLE_RCPTS 0.100000,
-	MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_URI_FOUND 0.000000,
-	NO_FUR_HEADER 0.000000, NO_REAL_NAME 0.000000, NO_URI_HTTPS 0.000000,
-	OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000, SENDER_NO_AUTH 0.000000,
-	SUSP_DH_NEG 0.000000, TO_IN_SUBJECT 0.500000, __ANY_URI 0.000000,
-	__BODY_NO_MAILTO 0.000000, __BULK_NEGATE 0.000000, __CC_NAME 0.000000,
-	__CC_NAME_DIFF_FROM_ACC 0.000000, __CC_REAL_NAMES 0.000000, __CTE 0.000000,
-	__DKIM_ALIGNS_1 0.000000, __DKIM_ALIGNS_2 0.000000, __DQ_NEG_DOMAIN 0.000000,
-	__DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000, __FRAUD_BADTHINGS 0.000000,
-	__FROM_DOMAIN_IN_ANY_CC1 0.000000, __FROM_DOMAIN_IN_RCPT 0.000000,
-	__FROM_NAME_NOT_IN_ADDR 0.000000, __FUR_RDNS_SOPHOS 0.000000,
-	__HAS_CC_HDR 0.000000, __HAS_FROM 0.000000, __HAS_MSGID 0.000000,
-	__HAS_X_MAILER 0.000000, __MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000,
-	__MIME_TEXT_P1 0.000000, __MIME_VERSION 0.000000,
-	__MULTIPLE_RCPTS_CC_X2 0.000000, __NO_HTML_TAG_RAW 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __RCVD_PASS 0.000000,
-	__SANE_MSGID 0.000000, __SL_HEAVY 0.000000, __SUBJ_ALPHA_END 0.000000,
-	__SUBJ_STARTS_S_BRACKETS 0.000000, __TO_IN_SUBJECT2 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NO_NAME 0.000000, __URI_MAILTO 0.000000,
-	__URI_NO_WWW 0.000000, __URI_NS 0.000000, __X_MAILSCANNER 0.000000
-X-SASI-Probability: 10%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 5.1.4, AntispamData: 2026.5.14.22719
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dd-wrt.com; s=mikd;
-	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From; bh=7CMKcbI18CZoAdN/ImXeXGh+qevbiPMNi4nmYhMHeRA=;
-	b=dZ8Hf7XxTMyMmL/5xV/157HVgvlmGFZCN3WHLfaq3a/KtvyG1ute8FxC4yPbGi9YoFThUb48JPfUTPzekulc7n4yrgQsWEQ9m6+obppMg816+r1qIBjffd8+xmc46n3d495CxGmS5a+xoupZm0lJfSHMvmcGu3cbqAf1+YbyKjg=;
-From: s.gottschall@dd-wrt.com
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-	Sebastian Gottschall <s.gottschall@dd-wrt.com>
-Subject: [PATCH v2] wifi: ath11k: fix txpower in ap mode for 6 Ghz
-Date: Thu, 14 May 2026 08:50:33 +0600
-Message-ID: <20260514025033.582687-1-s.gottschall@dd-wrt.com>
-X-Mailer: git-send-email 2.51.0
+	Thu, 14 May 2026 04:52:40 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id F0F3160121;
+	Thu, 14 May 2026 04:52:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F549C2BCC6;
+	Thu, 14 May 2026 04:52:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778734359;
+	bh=1/zpOikpu7K01PFdOF+RYE+bOzqD7AJ/p59qRdvBRdY=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=d2uVGaxQpijiXiMuKBTxIv86TxKo55rB2XvRqVmT3BL3DnHpmD0j33fGJP0PZXrF2
+	 dZK3DVAgFlZesU0W4RVI7VaX6JQj1Zo5RBW0pcs6ySEYezLBy4atLj3xeBeCPSAyQp
+	 2hw1grMUwU0O6LUF/2ioo5FWXuKIiMP66lZnrDmziswxS8lI7rYflOXlD5BEcEOy+x
+	 K9ixJg955NfYbdsoOkL7ZMiPeczwzBDDgc6sRfp7JIPSe7tT3w8g1M+bP8G3azreth
+	 0XB9B/SIOTcC2QcDVGRs5OZwQgS3pc18ZPmwwLMltqbftu30QfJ0voxVX4IW+wwmpN
+	 FhRzLPmbFb3oQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 89428CD4F39;
+	Thu, 14 May 2026 04:52:39 +0000 (UTC)
+From: Kyle Farnung via B4 Relay <devnull+kfarnung.gmail.com@kernel.org>
+Date: Wed, 13 May 2026 21:52:12 -0700
+Subject: [PATCH] wifi: ath11k: clear shared SRNG pointer state on restart
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Received-SPF: pass (webmail.newmedia-net.de: localhost is always allowed.) client-ip=127.0.0.1; envelope-from=s.gottschall@dd-wrt.com; helo=webmail.newmedia-net.de;
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: s.gottschall@dd-wrt.com
-X-SA-Exim-Scanned: No (on webmail.newmedia-net.de); SAEximRunCond expanded to false
-X-NMN-MailScanner-Information: Please contact the ISP for more information
-X-NMN-MailScanner-ID: 1wNM9i-000CHH-MH
-X-NMN-MailScanner: Found to be clean
-X-NMN-MailScanner-From: s.gottschall@dd-wrt.com
-X-Received: from localhost ([127.0.0.1] helo=webmail.newmedia-net.de)
-	by webmail.newmedia-net.de with esmtp (Exim 4.72)
-	(envelope-from <s.gottschall@dd-wrt.com>)
-	id 1wNM9i-000CHH-MH; Thu, 14 May 2026 04:50:34 +0200
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260513_195044_297149_27095180 
-X-CRM114-Status: GOOD (  12.21  )
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260513-kfarnung-ath11k-srng-clear-pointer-state-v1-1-bc700dd8b333@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2NywrCQAwAf6XkbGCzUl+/Ih5im7ahkpZkFaH03
+ 128zVxmNghxlYBbs4HLR0MXq0KHBrqJbRTUvjrklE+ppSPOA7u9bUQuE9GM4ZW7l7DjuqgVcYz
+ CRfBK/YWf6SytZKi51WXQ7391f+z7D53Sk4N6AAAA
+X-Change-ID: 20260513-kfarnung-ath11k-srng-clear-pointer-state-91d8ab07e5e2
+To: Jeff Johnson <jjohnson@kernel.org>, 
+ Muhammad Usama Anjum <usama.anjum@arm.com>, 
+ Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, santiagorr@riseup.net, stable@vger.kernel.org, 
+ Kyle Farnung <kfarnung@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778734359; l=3434;
+ i=kfarnung@gmail.com; s=20260330; h=from:subject:message-id;
+ bh=XJuJhNZPkZzqwmUgFybWgxjzGDftVSfNEsebbvGwSDA=;
+ b=uj7RAdlKe6Dq/MwIimfTIXag4PerG+bL1bff/qD6gwXGRjbtWzbh36slDaJOSLak3IznIwRpm
+ ar/zYfA0NsxAGXHHHBc4Xm9CJt9sATCa6ej8etG2xVD+0f9x5qdbc0l
+X-Developer-Key: i=kfarnung@gmail.com; a=ed25519;
+ pk=47jis5OdLKFgZynNQVqkx1mTGiEgFTUX+MecmG9rbmE=
+X-Endpoint-Received: by B4 Relay for kfarnung@gmail.com/20260330 with
+ auth_id=706
+X-Original-From: Kyle Farnung <kfarnung@gmail.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,86 +85,86 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: kfarnung@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Sebastian Gottschall <s.gottschall@dd-wrt.com>
+From: Kyle Farnung <kfarnung@gmail.com>
 
-there is an issue which has been discovered a while ago while testing
-which killed txpower to 0 dBm once scanning is triggered in AP mode
-on QCN9074 based chipsets if 6 GHz is in use.
-ath11k_wmi_send_vdev_set_tpc_power must be set in AP mode in the same
-way is it is for STA as it is implemented in ath12k and in the
-qsdk version for ath11k.
-this patch must be considered to be backported (i discovered that issue
-already 2 years ago)
+LMAC rings reuse the shared rdp/wrp pointer buffers without going
+through the normal SRNG hw-init path that zeros non-LMAC ring
+pointers. After restart, ath11k_hal_srng_clear() can therefore hand
+stale hp/tp state from the previous firmware instance back to the new
+one.
 
-fixes: i74ef2d05ede63fd6416aa635aa8972dff901325f
-(wifi: ath11k: use WMI_VDEV_SET_TPC_POWER_CMDID when EXT_TPC_REG_SUPPORT for 6 GHz)
+Clear the shared pointer buffers while keeping the allocations in
+place so restart still avoids reallocating SRNG DMA memory, but starts
+with fresh ring-pointer state.
 
-Signed-off-by: Sebastian Gottschall <s.gottschall@dd-wrt.com>
+Fixes: 32be3ca4cf78b ("wifi: ath11k: HAL SRNG: don't deinitialize and re-initialize again")
+Cc: stable@vger.kernel.org
+Link: https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=o9wVcFMc6f-yhmSBcZqQ@mail.gmail.com/
+Signed-off-by: Kyle Farnung <kfarnung@gmail.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+This patch is the result of investigating suspend/resume failures on a
+Lenovo ThinkPad P14s Gen 5 AMD with ath11k.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index a48b6bf1f29a..0984c3981ee4 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3497,13 +3497,13 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
- 	return 0;
- }
+I originally proposed extending the existing ath11k PM quirk for this
+platform, but after discussion in [1] and bisection the issue appears to
+be a regression introduced by [2]. There is also a parallel report in [3]
+that appears consistent with the same root cause. This patch keeps the
+intended no-reallocation behavior from that change, but clears the
+preserved shared SRNG pointer state so restart begins from a clean state.
+
+Testing so far has been limited to local suspend/resume cycling on the
+affected system. The issue was originally reproduced on v7.0.4, and the
+patch was also built and tested on top of ath-current with repeated
+suspend/resume cycles on a Lenovo ThinkPad P14s Gen 5 AMD.
+
+[1] https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=o9wVcFMc6f-yhmSBcZqQ@mail.gmail.com/
+[2] 32be3ca4cf78b ("wifi: ath11k: HAL SRNG: don't deinitialize and re-initialize again")
+[3] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1132343
+---
+ drivers/net/wireless/ath/ath11k/hal.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index e821e5a62c1c0..0c0aeb803018e 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -1387,14 +1387,21 @@ EXPORT_SYMBOL(ath11k_hal_srng_deinit);
  
--static bool ath11k_mac_supports_station_tpc(struct ath11k *ar,
--					    struct ath11k_vif *arvif,
--					    const struct cfg80211_chan_def *chandef)
-+static bool ath11k_mac_supports_tpc(struct ath11k *ar, struct ath11k_vif *arvif,
-+				    const struct cfg80211_chan_def *chandef)
+ void ath11k_hal_srng_clear(struct ath11k_base *ab)
  {
- 	return ath11k_wmi_supports_6ghz_cc_ext(ar) &&
- 		test_bit(WMI_TLV_SERVICE_EXT_TPC_REG_SUPPORT, ar->ab->wmi_ab.svc_map) &&
--		arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-+		(arvif->vdev_type == WMI_VDEV_TYPE_STA ||
-+		arvif->vdev_type == WMI_VDEV_TYPE_AP) &&
- 		arvif->vdev_subtype == WMI_VDEV_SUBTYPE_NONE &&
- 		chandef->chan &&
- 		chandef->chan->band == NL80211_BAND_6GHZ;
-@@ -7647,8 +7647,8 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 	/* TODO: For now we only set TPC power here. However when
- 	 * channel changes, say CSA, it should be updated again.
+-	/* No need to memset rdp and wrp memory since each individual
+-	 * segment would get cleared in ath11k_hal_srng_src_hw_init()
+-	 * and ath11k_hal_srng_dst_hw_init().
++	/* Preserve the shared pointer buffers, but clear the previous
++	 * firmware instance's hp/tp state before handing them back to FW.
++	 * LMAC rings reuse this shared memory without going through the
++	 * normal SRNG hw-init path that zeros non-LMAC ring pointers.
  	 */
--	if (ath11k_mac_supports_station_tpc(ar, arvif, chandef)) {
--		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, &arvif->chanctx);
-+	if (ath11k_mac_supports_tpc(ar, arvif, chandef)) {
-+		ath11k_mac_fill_reg_tpc_info(ar, arvif->vif, ctx);
- 		ath11k_wmi_send_vdev_set_tpc_power(ar, arvif->vdev_id,
- 						   &arvif->reg_tpc_info);
- 	}
-@@ -8155,6 +8155,7 @@ void ath11k_mac_fill_reg_tpc_info(struct ath11k *ar,
- 		psd_power, tx_power;
- 	s8 eirp_power = 0;
- 	u16 start_freq, center_freq;
-+	u8 reg_6ghz_power_mode;
- 
- 	chan = ctx->def.chan;
- 	start_freq = ath11k_mac_get_6ghz_start_frequency(&ctx->def);
-@@ -8311,8 +8312,14 @@ void ath11k_mac_fill_reg_tpc_info(struct ath11k *ar,
- 	reg_tpc_info->num_pwr_levels = num_pwr_levels;
- 	reg_tpc_info->is_psd_power = is_psd_power;
- 	reg_tpc_info->eirp_power = eirp_power;
-+	if (arvif->vdev_type == WMI_VDEV_TYPE_STA)
-+		reg_6ghz_power_mode = vif->bss_conf.power_type;
-+	else
-+		/* For now, LPI is the only supported AP power mode */
-+		reg_6ghz_power_mode = IEEE80211_REG_LPI_AP;
-+
- 	reg_tpc_info->ap_power_type =
--		ath11k_reg_ap_pwr_convert(vif->bss_conf.power_type);
-+		ath11k_reg_ap_pwr_convert(reg_6ghz_power_mode);
- }
- 
- static void ath11k_mac_parse_tx_pwr_env(struct ath11k *ar,
+ 	memset(ab->hal.srng_list, 0,
+ 	       sizeof(ab->hal.srng_list));
+ 	memset(ab->hal.shadow_reg_addr, 0,
+ 	       sizeof(ab->hal.shadow_reg_addr));
++	if (ab->hal.rdp.vaddr)
++		memset(ab->hal.rdp.vaddr, 0,
++		       sizeof(*ab->hal.rdp.vaddr) * HAL_SRNG_RING_ID_MAX);
++	if (ab->hal.wrp.vaddr)
++		memset(ab->hal.wrp.vaddr, 0,
++		       sizeof(*ab->hal.wrp.vaddr) * HAL_SRNG_NUM_LMAC_RINGS);
+ 	ab->hal.avail_blk_resource = 0;
+ 	ab->hal.current_blk_index = 0;
+ 	ab->hal.num_shadow_reg_configured = 0;
+
+---
+base-commit: 54a5b38e4396530e5b2f12b54d3844e860ab6784
+change-id: 20260513-kfarnung-ath11k-srng-clear-pointer-state-91d8ab07e5e2
+
+Best regards,
 -- 
-2.51.0
+Kyle Farnung <kfarnung@gmail.com>
+
 
 
