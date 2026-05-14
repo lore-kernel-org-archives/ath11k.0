@@ -4,76 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3114FCD37AC
-	for <ath11k@archiver.kernel.org>; Thu, 14 May 2026 04:52:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05B87CD37AC
+	for <ath11k@archiver.kernel.org>; Thu, 14 May 2026 04:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=nB6K0IeFd+1uw5rf1Ps0y3aueGBh2t5B3OagXPsvXVQ=; b=y4xfz1B4RejhCi+gUMUkJG5BIS
-	JLdJGcvR/QhJmoB0Ds4iXEr5J1ZkMhfjKIex9zwZlVwi5ItK6DuwVm+q4UIxvAO/saJepv0IYIC9g
-	KnNA311pQH3h1nJAXoxaAhBRiF+mgybqSA3/cTyVfeTsXIpmSWYQ+51PzEB4Q7pTiUqIqjBDakGlW
-	vCVAdKz5nySyzlKYemw16ydUvFzOv3q6hkH682GBYuhVoult6yU4FwhZ8CVor4WWygc2mzK4FCew8
-	4e0VKlsvz/Eu35WtiJ3+9ATRMNRo1JaGzIuYMx9tby3FqDGwFkp6l+xMOdIsREuOHDVMC8cVNTMAo
-	abwgIC/w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ZuLPtwpcvWP+BVIoZY2D5pGrjRu1PqelS3IjJR6x5/I=; b=1UoaLkiMKyMw9MbvuGCrBkc0LW
+	3aT3CsMTYdJgHKUCTDJSd5pefWft/2KvroYE9ZENuQ9UPG6QXV1fuTdcVjKz2Y2wF+l24eaHRkq0u
+	kGtHymlI00Ia/JOuxSPiBRYtprRpODUEh8S6PvdpztsmuKvoAX1VdqQkJGphR1AGOSy8xRbaGAYkh
+	teqEMfbP4fD9BsTRqxa5e/GE8NWXlfm3PQA1412RtvwXKYLExL5qYd7m0ChgepDA1uHotAKpch2Uy
+	Wri9M3aFGJocPqEPVlpPAseQt6RUZ+6vpksKXu2/ZpVmeWoVM0loBOmL1m22cL+Eg+dQC/3gUjDjN
+	gMM4j2Ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNO3u-00000004ZJL-1BUE;
-	Thu, 14 May 2026 04:52:42 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wNO5y-00000004ZYk-1yN3;
+	Thu, 14 May 2026 04:54:50 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNO3s-00000004ZJ3-3h6Y
+	id 1wNO5w-00000004ZY3-1HJg
 	for ath11k@lists.infradead.org;
-	Thu, 14 May 2026 04:52:40 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id F0F3160121;
-	Thu, 14 May 2026 04:52:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F549C2BCC6;
-	Thu, 14 May 2026 04:52:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778734359;
-	bh=1/zpOikpu7K01PFdOF+RYE+bOzqD7AJ/p59qRdvBRdY=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=d2uVGaxQpijiXiMuKBTxIv86TxKo55rB2XvRqVmT3BL3DnHpmD0j33fGJP0PZXrF2
-	 dZK3DVAgFlZesU0W4RVI7VaX6JQj1Zo5RBW0pcs6ySEYezLBy4atLj3xeBeCPSAyQp
-	 2hw1grMUwU0O6LUF/2ioo5FWXuKIiMP66lZnrDmziswxS8lI7rYflOXlD5BEcEOy+x
-	 K9ixJg955NfYbdsoOkL7ZMiPeczwzBDDgc6sRfp7JIPSe7tT3w8g1M+bP8G3azreth
-	 0XB9B/SIOTcC2QcDVGRs5OZwQgS3pc18ZPmwwLMltqbftu30QfJ0voxVX4IW+wwmpN
-	 FhRzLPmbFb3oQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89428CD4F39;
-	Thu, 14 May 2026 04:52:39 +0000 (UTC)
-From: Kyle Farnung via B4 Relay <devnull+kfarnung.gmail.com@kernel.org>
-Date: Wed, 13 May 2026 21:52:12 -0700
-Subject: [PATCH] wifi: ath11k: clear shared SRNG pointer state on restart
+	Thu, 14 May 2026 04:54:49 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64E35KgL1096436
+	for <ath11k@lists.infradead.org>; Thu, 14 May 2026 04:54:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ZuLPtwpcvWP+BVIoZY2D5pGrjRu1PqelS3IjJR6x5/I=; b=ZLXLvucVCuKvR2EA
+	cfvmI3H96Hc4yjIkK/XsZUL93fR0yHnNMcWX/ovEdlcP/9mDz9cBP7uW2eRlTEGo
+	krf1OeTikpI6HNfEjAtwtFfRf8+l8CMs/xDP5QC98PkBM1NN61M6ubCNa+X9aqdd
+	dyYyMkUfLwWyS8oAozzl2BoHPUrnUWb3jVdaQVA3x3V616GfMDdO5yr9uUsrVXKb
+	fyzuc6rgGJrnjzwygrJy2AnqlkptngTGsPi4zXxf2IQKqcWofbruxNislX/LAd2e
+	g1n6JIbhTLX8e1z6hkCdP9zlgHU0yz/bEOalhdkH0kAl8untSBAL6Cm51779qXbH
+	wut09g==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e566bg9hc-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 14 May 2026 04:54:47 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2baf7378ad0so63320715ad.0
+        for <ath11k@lists.infradead.org>; Wed, 13 May 2026 21:54:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778734486; x=1779339286; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZuLPtwpcvWP+BVIoZY2D5pGrjRu1PqelS3IjJR6x5/I=;
+        b=PCFrm3ex1rU7jYmU2tdhBIkBz1OtwixCqsh9riA7/8Y/rph7W6s02rwjvniuecrESD
+         PIhaH1J0TRB1YKq8yTbO14jbq/1O/anv9L5XNmkp84q0TdIylf20AYfie6coyCYUDuQ7
+         XG3xgo6NpJrS4L0M5QPeHrPhN3ZARQIwr17WOLjqt8UIkpMgrFvdqvQz2fNp46UEN7TF
+         KilUTde3fHst9LW2iuG85NlX5Nev+iwIDPjoX41fxdAkkmJmdvXovpetdgdGyovSoYnM
+         3LJTbFGUXYKPy2aVxPENVM6I9tV+l17o9zHC9QFYoQNSf5V4GtfO2Ig6G2teZX0L3y8Z
+         TbQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778734486; x=1779339286;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZuLPtwpcvWP+BVIoZY2D5pGrjRu1PqelS3IjJR6x5/I=;
+        b=Jt0A1N2/fPgfdgz1Uid5zshbzOv84TCL2tZI4XEwi5WRwJ1gHbTCq5o41kQdvbR87Z
+         FqpsQzWfX88Ft1nfDFlJP30e/V/Md67mUD6n4zjYtuHtK923p04XLXT9qjzjMVsU2En+
+         xnu5m7mVoELuLdSS94PMXCn2cnXe0SjBk3etxDPuuwPnjZXkHr7DrkWOPE85b2Pi6iFX
+         ZFnfaoeI8g/pO2wr1cVZ7j+AteGVe27y1eqVvZLoQGEnxGbPU4B9TmmRLjcH7K2FhzvT
+         VxXHWjabk97zu37+kch/HSKdd4jjFnK0zg1lytNgRfavFC02DSO+JWZ9wByqiXwHwBhe
+         NE6Q==
+X-Gm-Message-State: AOJu0YyZcL3u6kdsuLz5Lc0jfkjJ1ztBAroAg+r2v/b0NDjBahbb8N6g
+	poaisIh3gF0QEAjlLKGLx0QP3/t/i4/jSGQCmhi4fba+FSZlwNsOOTL6xS7CL5XHWa84TRSBOY2
+	BB3uolJyMuCNgo3ZkXRxGWp/oZYtG6SMxyH4EpuiGSJbXk31hADja2gUY5orJXrqL
+X-Gm-Gg: Acq92OGUbYJlzeoPbvGY4o36HzRghUeL872cPGtayjBJLjW2gBBUNhbyIKNqejffqTR
+	OAmy4Ta41Oj0ttTsN24KHwK/gX/wfSLNHi1KvySJJgmEsY79eWibzxCdqgO80ILeFueM5K5dT2Z
+	Cprv/s4ZdbiskgxEeW5SNsUR7+REpu4PECLStej2J01E2OKYCKOZi3FzkHQaxVcOh9zdmUt2G1M
+	KxRVkNIVHgVQ7FJwqldmgiDQzGeL951hDoaEsWky5arclOqiBKOx227LPnocRxmMwwrdY+6/pZ8
+	THbiYZPljPgnIKKJ0yEP/uYEfjOP/Huo0dtX07FOvanip8T66BSITLy/vkAusv09eTcIilo+DsI
+	VPdrw/j7kaYPwLHL0wrDIz0ow0n1tBXGltMcrmMzl+HdCYnzoOZ5Y2AADKtxQB9I/7jHzgxpG
+X-Received: by 2002:a17:903:9cf:b0:2b4:65d8:6a20 with SMTP id d9443c01a7336-2bd2f4cc122mr55750075ad.2.1778734485577;
+        Wed, 13 May 2026 21:54:45 -0700 (PDT)
+X-Received: by 2002:a17:903:9cf:b0:2b4:65d8:6a20 with SMTP id d9443c01a7336-2bd2f4cc122mr55749805ad.2.1778734484963;
+        Wed, 13 May 2026 21:54:44 -0700 (PDT)
+Received: from [10.152.199.23] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bd5cfe6512sm9094395ad.52.2026.05.13.21.54.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 May 2026 21:54:44 -0700 (PDT)
+Message-ID: <324401b9-f6c2-4d2c-92ba-659f78b4ef6c@oss.qualcomm.com>
+Date: Thu, 14 May 2026 10:24:40 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-kfarnung-ath11k-srng-clear-pointer-state-v1-1-bc700dd8b333@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2NywrCQAwAf6XkbGCzUl+/Ih5im7ahkpZkFaH03
- 128zVxmNghxlYBbs4HLR0MXq0KHBrqJbRTUvjrklE+ppSPOA7u9bUQuE9GM4ZW7l7DjuqgVcYz
- CRfBK/YWf6SytZKi51WXQ7391f+z7D53Sk4N6AAAA
-X-Change-ID: 20260513-kfarnung-ath11k-srng-clear-pointer-state-91d8ab07e5e2
-To: Jeff Johnson <jjohnson@kernel.org>, 
- Muhammad Usama Anjum <usama.anjum@arm.com>, 
- Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
- linux-kernel@vger.kernel.org, santiagorr@riseup.net, stable@vger.kernel.org, 
- Kyle Farnung <kfarnung@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778734359; l=3434;
- i=kfarnung@gmail.com; s=20260330; h=from:subject:message-id;
- bh=XJuJhNZPkZzqwmUgFybWgxjzGDftVSfNEsebbvGwSDA=;
- b=uj7RAdlKe6Dq/MwIimfTIXag4PerG+bL1bff/qD6gwXGRjbtWzbh36slDaJOSLak3IznIwRpm
- ar/zYfA0NsxAGXHHHBc4Xm9CJt9sATCa6ej8etG2xVD+0f9x5qdbc0l
-X-Developer-Key: i=kfarnung@gmail.com; a=ed25519;
- pk=47jis5OdLKFgZynNQVqkx1mTGiEgFTUX+MecmG9rbmE=
-X-Endpoint-Received: by B4 Relay for kfarnung@gmail.com/20260330 with
- auth_id=706
-X-Original-From: Kyle Farnung <kfarnung@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: fix warning when unbinding
+To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>,
+        rameshkumar.sundaram@oss.qualcomm.com
+Cc: ath11k@lists.infradead.org, jjohnson@kernel.org,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        stable@vger.kernel.org
+References: <336655c6-4dac-46e9-a783-549f0a9cccea@oss.qualcomm.com>
+ <20260508103202.456865-1-jtornosm@redhat.com>
+Content-Language: en-US
+From: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
+In-Reply-To: <20260508103202.456865-1-jtornosm@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: QLKMARIyhbswtxcDKLKlTSQ3huYUKX1x
+X-Authority-Analysis: v=2.4 cv=WsMb99fv c=1 sm=1 tr=0 ts=6a055597 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=M0CKB0vJUJO0TNvbIsAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE0MDA0NSBTYWx0ZWRfX6y5FsN0his6H
+ iJGKu/yqz2LD6SX4pJRaoQYIMAdcA9zjuivcLeGgXa/r29EkmtG00w3nS+7IFt1dDdAUOU63Cwh
+ LIBCXOUwGIRjo2Bj8HBW6AsHYutQ0hDU+GyCd2OLHuxLBkEexp/b28boKBzu3+cF3L6O+UguUnR
+ a2xQgPCJYPRiaCoQloxbOt8kvMwIuHpGUhr1J1qIomis2FqC8pCVqbUUqpHWvAaPVV5x5IecBnb
+ aHsrSLxsEMu0EsKinIp2Vhtt+PXqxPABZvqYqPLeISQ5wGhfnORbwuktHkWkmfKxTz6sx3RNxSB
+ 58txxNPOylJUTYBkb9YM4P5mzPJNgJjv8PVxsIGEg75Id/6a6+sM++X9x8AXJMC3ZFB47IUr047
+ bWqNZJVgbimwencVQ2KP8ZPtdzEG7TKAuNGbcaBCBrr8a+432fm0bS9NqUUb0Csa5wAYjjJm6O3
+ nJT+PQlH6OTLU3AlCpQ==
+X-Proofpoint-GUID: QLKMARIyhbswtxcDKLKlTSQ3huYUKX1x
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-14_01,2026-05-13_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 malwarescore=0 phishscore=0 bulkscore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605140045
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260513_215448_465984_ECCCDB70 
+X-CRM114-Status: GOOD (  17.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,86 +143,44 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: kfarnung@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kyle Farnung <kfarnung@gmail.com>
+On 5/8/2026 4:01 PM, Jose Ignacio Tornos Martinez wrote:
+> Hello Rameshkumar,
+> 
+>> What is the exact failure? Do you see any driver error logs when it occurs?
+> No error log, just the warning.
+> 
+>> Got it. I was just thinking along with the proposed fix — whether we
+>> might also need to handle the sequencing on QMI failure.
+>> In other words, do you think the issue(double free) would still be
+>> reproducible if we include a change like below ?
+> Yes, I think so and in addition the code is more robust.
+> 
 
-LMAC rings reuse the shared rdp/wrp pointer buffers without going
-through the normal SRNG hw-init path that zeros non-LMAC ring
-pointers. After restart, ath11k_hal_srng_clear() can therefore hand
-stale hp/tp state from the previous firmware instance back to the new
-one.
+I agree that setting tx_status to NULL makes ath11k_dp_free() more
+defensive, and it matches the ath12k fix.
 
-Clear the shared pointer buffers while keeping the allocations in
-place so restart still avoids reallocating SRNG DMA memory, but starts
-with fresh ring-pointer state.
+However, i am still wondering how the second ath11k_dp_free() is reached 
+if ATH11K_FLAG_QMI_FAIL is set.
 
-Fixes: 32be3ca4cf78b ("wifi: ath11k: HAL SRNG: don't deinitialize and re-initialize again")
-Cc: stable@vger.kernel.org
-Link: https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=o9wVcFMc6f-yhmSBcZqQ@mail.gmail.com/
-Signed-off-by: Kyle Farnung <kfarnung@gmail.com>
----
-This patch is the result of investigating suspend/resume failures on a
-Lenovo ThinkPad P14s Gen 5 AMD with ath11k.
+In ath11k_pci_remove(), when ATH11K_FLAG_QMI_FAIL is set, we take the
+qmi_fail path and skip ath11k_core_deinit(). So the normal remove path:
 
-I originally proposed extending the existing ath11k PM quirk for this
-platform, but after discussion in [1] and bisection the issue appears to
-be a regression introduced by [2]. There is also a parallel report in [3]
-that appears consistent with the same root cause. This patch keeps the
-intended no-reallocation behavior from that change, but clears the
-preserved shared SRNG pointer state so restart begins from a clean state.
+     ath11k_pci_remove()
+       ath11k_core_deinit()
+         ath11k_core_soc_destroy()
+           ath11k_dp_free()
 
-Testing so far has been limited to local suspend/resume cycling on the
-affected system. The issue was originally reproduced on v7.0.4, and the
-patch was also built and tested on top of ath-current with repeated
-suspend/resume cycles on a Lenovo ThinkPad P14s Gen 5 AMD.
+should not run.
 
-[1] https://lore.kernel.org/all/CAOPSVF04q6uvVdq8GTRLHBrVMdpt9=o9wVcFMc6f-yhmSBcZqQ@mail.gmail.com/
-[2] 32be3ca4cf78b ("wifi: ath11k: HAL SRNG: don't deinitialize and re-initialize again")
-[3] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1132343
----
- drivers/net/wireless/ath/ath11k/hal.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+So if the double free is still reproducible with QMI_FAIL set (with the 
+change i proposed), either the flag is not actually set in this failure 
+case, or there is another path calling ath11k_dp_free() ?
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index e821e5a62c1c0..0c0aeb803018e 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1387,14 +1387,21 @@ EXPORT_SYMBOL(ath11k_hal_srng_deinit);
- 
- void ath11k_hal_srng_clear(struct ath11k_base *ab)
- {
--	/* No need to memset rdp and wrp memory since each individual
--	 * segment would get cleared in ath11k_hal_srng_src_hw_init()
--	 * and ath11k_hal_srng_dst_hw_init().
-+	/* Preserve the shared pointer buffers, but clear the previous
-+	 * firmware instance's hp/tp state before handing them back to FW.
-+	 * LMAC rings reuse this shared memory without going through the
-+	 * normal SRNG hw-init path that zeros non-LMAC ring pointers.
- 	 */
- 	memset(ab->hal.srng_list, 0,
- 	       sizeof(ab->hal.srng_list));
- 	memset(ab->hal.shadow_reg_addr, 0,
- 	       sizeof(ab->hal.shadow_reg_addr));
-+	if (ab->hal.rdp.vaddr)
-+		memset(ab->hal.rdp.vaddr, 0,
-+		       sizeof(*ab->hal.rdp.vaddr) * HAL_SRNG_RING_ID_MAX);
-+	if (ab->hal.wrp.vaddr)
-+		memset(ab->hal.wrp.vaddr, 0,
-+		       sizeof(*ab->hal.wrp.vaddr) * HAL_SRNG_NUM_LMAC_RINGS);
- 	ab->hal.avail_blk_resource = 0;
- 	ab->hal.current_blk_index = 0;
- 	ab->hal.num_shadow_reg_configured = 0;
 
----
-base-commit: 54a5b38e4396530e5b2f12b54d3844e860ab6784
-change-id: 20260513-kfarnung-ath11k-srng-clear-pointer-state-91d8ab07e5e2
-
-Best regards,
--- 
-Kyle Farnung <kfarnung@gmail.com>
-
+--
+Ramesh
 
 
