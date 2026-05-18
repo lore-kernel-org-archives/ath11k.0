@@ -4,137 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D98A6CD4F49
-	for <ath11k@archiver.kernel.org>; Mon, 18 May 2026 13:54:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BA08CD4F4A
+	for <ath11k@archiver.kernel.org>; Mon, 18 May 2026 13:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=wbs/00sIy0HRUS/VzxcZvFVipUwRNKU5yzSk8ZCe+Cw=; b=4gtmQ/IQqN6pmhrL5NPqaaIVHF
-	w5MjbMgbFICuEIMH8QXxC/XJukyB6cYM9xanoaYYOjgz2zWeS9/QIzYDSFz+3oeXI+/cAY9GXdVir
-	1kvqQyyBhJI4oJsMNeN7woPBHBB4Ez2Bkcm16UI9NVWfyT1MZwu+w/IS/5CTUh1NHSGHysFh6zi8n
-	YOYnjMmSbt55R2ogaIyqXFkYYFdnC3pxHORG+fqQr2KPx1yITH2UmrLCbtpodl5Wr/0RyA+SLYu0N
-	EK1E6BJprPI0n7Oi6nyBZ+JjuaSSIwJs49zSNTOga7TLLZnA9MOWvcayGSrFsocILMvH6lB1ZxwWz
-	yfTtgpYg==;
+	bh=adEAsg2ZzgM40o8WGasVv3IMJk1fWqgZiZUjX8Vrrs4=; b=B1NbkU5AerU+icADX0C0VVHS96
+	0rJsZDTORge5QtPIyZ3+g8NggMlI3s+vKuYys457kdyKhEJGFx4FhJnebjQl8vLqMca7CC+7GaMjj
+	KX2oqEdI1d1x2giTLn/8juw4+oiDzxryjmubUlWh73JLJ5SzLtFYWEXZv5s6IKrKBoZTqhkB7wOmV
+	eseEVrKBg1T+fBQ/xvcgBukjEwMAB0bh7nHSX6UhcuZysNu2KPzpm+Rd46b1IF0Nwmo9MLBf+13uP
+	eyERDzYfmcc9P13YsXs/tGcLRyZeUGMScXK+P3IzNpy3qlwMjZjIEwXAqEqRPZpWHX11Y+JBlBtug
+	f5HctcEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOyQI-0000000FsxP-2V4Y;
-	Mon, 18 May 2026 13:54:22 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wOyQG-0000000Fsvj-0xll;
+	Mon, 18 May 2026 13:54:20 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOyQF-0000000FsuZ-25q4
+	id 1wOyQA-0000000Fss9-3Zdg
 	for ath11k@lists.infradead.org;
-	Mon, 18 May 2026 13:54:21 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64I7cNd4353033
-	for <ath11k@lists.infradead.org>; Mon, 18 May 2026 13:54:18 GMT
+	Mon, 18 May 2026 13:54:18 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64IAliqo2685229
+	for <ath11k@lists.infradead.org>; Mon, 18 May 2026 13:54:13 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wbs/00sIy0HRUS/VzxcZvFVipUwRNKU5yzSk8ZCe+Cw=; b=VhqQMg9l+Es1EhIP
-	EQyDzcmaXqmpqTuJX+4NbcdHUvAZK/nEGHUYihhRScCfQAE6VarU+6Ef8XwYY0vp
-	T1wVBxC5Epsd2mUPdb9Vk7ChQsdtDVKtqsFqMDg18n3TfhnM4JpVJ9nE9Vm5fgzk
-	SHp90eMCsMM0Z5+Ke/UHExwltx45m1NadKA5Uxlfi0q4IvuQIqK17+Mt3guxTviD
-	AcTkCFXXWsrP9/Jfd/rp34hpdGB6t6VLCDwP5S5ePw0S+obA4XwWHVJvMvlFAlsA
-	GwnE5/xhmC/d85oIuO/lytCJB6Ow5yz74UzBM3yN060vSPDiwQlzXRNfK/J7XGyV
-	dn2jBw==
-Received: from mail-dl1-f70.google.com (mail-dl1-f70.google.com [74.125.82.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e7xjahfq7-1
+	adEAsg2ZzgM40o8WGasVv3IMJk1fWqgZiZUjX8Vrrs4=; b=XasWpou05i24BOWs
+	1W17tSfaJcBGzNa59WjRxR7P/jAJdwa1ZKiR39Z1XeXVRbUTy9Cm01TTMpYe+GJc
+	j5vjdFG4xMCkFxeZStL/FSNEW25rsrBGg2K5iZdtNXbp74Y3K3SuKZ/yqRg1ZOon
+	dQzABuSWTEmB7s8gSYt5fjrXjCk5AoLeHNz94f57pgoUX6Q4Lk9pQMfarS3wGuoH
+	We/CqcoGboV2gY2Pb+MOk0ci1AF50nS/SxUZCkWZTSVBG0M/cMptlG5FFiE/R+89
+	aGt6eknLArjbNzOUoFnYEhWuCtO5RKYOLu8j+9CHzrStYtGwG6O0/mOxEBT3morU
+	/5eaFw==
+Received: from mail-dl1-f72.google.com (mail-dl1-f72.google.com [74.125.82.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e7vrbt2bx-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 18 May 2026 13:54:18 +0000 (GMT)
-Received: by mail-dl1-f70.google.com with SMTP id a92af1059eb24-135405e4035so9607705c88.1
-        for <ath11k@lists.infradead.org>; Mon, 18 May 2026 06:54:18 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Mon, 18 May 2026 13:54:13 +0000 (GMT)
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-1329791f18fso3908003c88.1
+        for <ath11k@lists.infradead.org>; Mon, 18 May 2026 06:54:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779112458; x=1779717258; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1779112453; x=1779717253; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wbs/00sIy0HRUS/VzxcZvFVipUwRNKU5yzSk8ZCe+Cw=;
-        b=fpMVsrCDLUX1iTn3SseKTpUsA03c+/VOOxTkdJ3iSatKOad86neABuEIuU9NPmaj1F
-         1aY22MFWI9v12yOFLuP6kVhoMNhDveCK/K/cIgy5u0XZQmGXwGQS0D8yo36wKjEUtCTe
-         HsSpjL9GIbiVG+okbB0Y9PdiGRqe2YaFKkW8LMPw5AgaealPAMWRSsQTR9n8H5jnle53
-         J3jUagt77iYoBX4TlaVcbJRU0sc8CwxOkbn1GpaKC4/ByVbnCWZbkCtnnf6XzRer+2mf
-         LLw0YaMF95YKJtteJE0f8tkYtg2fswfZp4Asoek4MaVTSbv6RfeIFusxePwSVWFMooPE
-         2fnw==
+        bh=adEAsg2ZzgM40o8WGasVv3IMJk1fWqgZiZUjX8Vrrs4=;
+        b=edtmNuEs21/GA5UR8Npyx5qVDf8xFUvMLi4ow3hVxCxWVzeDKoXndqDlsu+qSlrU+D
+         a/i/6OhNBCcJ8y6/Jy6pugfpY+jaaOX7s+5+m4UieDT6sYU3kWI047fOKWjwHQoE77hc
+         b9u87eyOwEgn1qfxckf5/WYMYqiy6fJ3RkQAVFtiMNZkdNBSNSaV/MuVoQUgaola+qh4
+         uKt3CPM0ezE3hXVLwLuIt8+2hhAuv8mlkAiAI3FmlYxdaZSTwG6qxWxBoOPNjvO6mwLA
+         UI/sq5izEzvkkUp0dR1cttgl4S8sZYIdvlo1tawMClozduN/HrEaDyksekCOpk5QfbNt
+         Qp/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779112458; x=1779717258;
+        d=1e100.net; s=20251104; t=1779112453; x=1779717253;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=wbs/00sIy0HRUS/VzxcZvFVipUwRNKU5yzSk8ZCe+Cw=;
-        b=eNLHU34TMJTdF83X+h+VvN3En0hJXNDUXmGRfUrZ4bQqBi8hzpMvz+jCHseAETZGgA
-         lN+T7to+7QhObc7fKZxABqQiX2JkQ4rTDF7uCsKpMjWct54oN+IUO/S9CUFcOP+mAJBW
-         iGICWu4tbbYD6BG8Ty0psEbyEM9h/paJczRrYhwxAu3tnViNbeUrYC521NsT0YMw76r7
-         Dtz2Cy82iRiAct0hbrDRGQXHNBJEMjlxu0aZ5VTW5rML+oIh6s5L8F1oV+bKkW5RYY6/
-         8zzsVFlJVQdKSKLyZrubgBAovCjP7AMOlN7Mnn6dmLxGe9pxptw8l2B+JBs0ZE6fl8xc
-         2ktg==
-X-Forwarded-Encrypted: i=1; AFNElJ/HMhwOjidjjsgc8OYiL1hcetYTMkOXdeKPKxiL/pFAU9q7lfqMEIgCQj9wrwB7s8gpyFsyTLc=@lists.infradead.org
-X-Gm-Message-State: AOJu0YycNC9mk0AGlix+3qScw0aZYrPMqg0w5dc1gFUeFREq1C+/hBft
-	G4vh9WAecllQdOijVSWv76cOAXDHddogE1qOW686tM6vP/rQPIHb7nPHXK5Ccm+5VOlJu49AfRR
-	56ynOIp1fnMnPFYfPBca1FwQa7hfbZn1qSg7S1w9Q5xp1n3z4mxoCbPPRFU3LxFNV
-X-Gm-Gg: Acq92OEcb32F2oJ9Dnqzee78/gHlKH2KGNhvHjeujRMynWBY+Zgmsn8pqj19/qmYe+h
-	5lvrhJYjQvB1Iy6Z+ZoGwALIJrWk3zmLk02D7+DoOD5TaBRb4fCLlKmbKu7Hny/1atHbJ6P2VZm
-	tcX6Hu4NkCBhXofsteqQRt370ZSw/O6O9WX9g5i8VIm4+NB48FC91BJ5QAYgLX6yiXsYSw2/ZiX
-	IdghONyuh/2RW0dqLAt42qeUlt2GmSZHVhXLZfaogLB3BDhGCHPp/rzIZn/3acCRfMZ7xa2RUBj
-	CLv6h83HQqijvcqJEQOzZkgWeLwSIvtv2hv2Z85RJfttY9ypbxr0VBVZvA7DeYN3/kMMCR+BlQL
-	EV+XpZT1TLeCwknlRW3iSJ4R5kqxulYgeBEvTT9xJ8I2mAxgRN4zJW3857kFfsDko7LnI1X1Zct
-	zb
-X-Received: by 2002:a05:7022:911:b0:12c:5e48:4c01 with SMTP id a92af1059eb24-1350441939fmr6474502c88.1.1779112457687;
-        Mon, 18 May 2026 06:54:17 -0700 (PDT)
-X-Received: by 2002:a05:7022:911:b0:12c:5e48:4c01 with SMTP id a92af1059eb24-1350441939fmr6474476c88.1.1779112457051;
-        Mon, 18 May 2026 06:54:17 -0700 (PDT)
+        bh=adEAsg2ZzgM40o8WGasVv3IMJk1fWqgZiZUjX8Vrrs4=;
+        b=QWvc4QMUYFFmXu7OadbVUN5qMkw19509psSTwOx7cPHAtEJ1peLPDBilV5DWiid0KI
+         B2rFZlkMMXddWruOz0ATKbUKTjnQxw2/LvcYLPhQ7m68NdOiB8qdJsh5v58q2VjnAVr3
+         v8mfHRSe+jMEmK+EjbHLWijrWj4TV40kr+3pA+n2D7pQfrwaMaCn46mwn4Ln4EXoZj/C
+         hmMqrNQtxyL76hgBbkIURk9NuKZtHoZs4+l7+R4dKhfpkQ2YEj1nwX6eh7q7NCHs3wDL
+         K/NB0uwlHeV7Z6bwQO0RpGhnY59K7iP4L4Ckw7YwFkwfuVocMFfrEVCqRGvMW59OPICB
+         rI4w==
+X-Forwarded-Encrypted: i=1; AFNElJ8Jqe00jihiXkkC1RRkNqZ3wBc89XaXIwSeTo2FETOczqSfBl/ij2/0PP/wY7cBMUTeoXnh1OY=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwX89hbGUqo35HAl+GUebIUvkJs/92Ls2otIEKgSh0oqwI61mrc
+	RjQ4GfBb5XHb+aPNZDiiOzXvoI64v6Iei61oyHAKbaTjRoQo+002NjJfJ90wYbu8DpSfWTYGMqH
+	kRXn0F0q8cgJziABNzt59fKCIyZYuUFdYZq3bhN449lOoSOBerCSAE+ATtj/KffDT
+X-Gm-Gg: Acq92OFfWcYSrRPiZ7mSiiFcS177zy95EJTPHpCBw5GlgKj5DZPc+d+RU/IPxgGWOsa
+	KBsI0nXphXqQcclW/ghr2g8vH19Yf+Y/x+p6CbUApX+uVej/LRqRe5JAhNVC8Kf7dgrMyFZSxoO
+	aGI2c0fu7/PQK0fvSmhuc24XpzWhTixxN5bAbVtVwfxk+4g+hRXNGIoHHn9e9T1eeGnGqNZ3oEf
+	oigDEyqR3mdbG1D3x3kZ0tHAEdkc6cVWE1pPEs2eu9RJc276YnSGQ5dkvR9R0cCF8UA/7MDW+tA
+	XLckFFJ8Av5/RJ1hoN/WOFWsn4/8vjeBOKmmBiRjxgYnREth0jpClkot5xGWmNp02cyb40QnEad
+	lsfP3otja5S/+ukXb4g4OQ0wLz1WAc3iy4VmhuEWGsxyEp5r6V5IEUeFUO7JGGvLwXvO/U+DbBr
+	G0N8MAolMxXjM=
+X-Received: by 2002:a05:7022:438a:b0:128:cf5c:5356 with SMTP id a92af1059eb24-1350440ab6dmr6181740c88.5.1779112453094;
+        Mon, 18 May 2026 06:54:13 -0700 (PDT)
+X-Received: by 2002:a05:7022:438a:b0:128:cf5c:5356 with SMTP id a92af1059eb24-1350440ab6dmr6181706c88.5.1779112452486;
+        Mon, 18 May 2026 06:54:12 -0700 (PDT)
 Received: from hu-jjohnson-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-134cc33a618sm20870488c88.12.2026.05.18.06.54.14
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-134cc33a618sm20870488c88.12.2026.05.18.06.54.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 06:54:14 -0700 (PDT)
+        Mon, 18 May 2026 06:54:11 -0700 (PDT)
 From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 To: Jeff Johnson <jjohnson@kernel.org>,
-        Muhammad Usama Anjum <usama.anjum@arm.com>,
-        Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-        Kyle Farnung <kfarnung@gmail.com>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        linux-kernel@vger.kernel.org, santiagorr@riseup.net,
-        stable@vger.kernel.org
-In-Reply-To: <20260513-kfarnung-ath11k-srng-clear-pointer-state-v1-1-bc700dd8b333@gmail.com>
-References: <20260513-kfarnung-ath11k-srng-clear-pointer-state-v1-1-bc700dd8b333@gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: clear shared SRNG pointer state on
- restart
-Message-Id: <177911245414.2671480.12255059395274590716.b4-ty@oss.qualcomm.com>
-Date: Mon, 18 May 2026 06:54:14 -0700
+        Matthew Leach <matthew.leach@collabora.com>
+Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+        Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+In-Reply-To: <20260424-ath11k-null-peerid-workaround-v4-1-252b224d3cf6@collabora.com>
+References: <20260424-ath11k-null-peerid-workaround-v4-1-252b224d3cf6@collabora.com>
+Subject: Re: [PATCH v4] wifi: ath11k: fix peer resolution on rx path when
+ peer_id=0
+Message-Id: <177911245167.2671480.4093957799300242035.b4-ty@oss.qualcomm.com>
+Date: Mon, 18 May 2026 06:54:11 -0700
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE4MDEzNiBTYWx0ZWRfX3aPe/2KsK9VN
- 7wiqUj7hAiMAzqcdfQHgwIdqhqxdk1Uy+e8DboUZuyLqVrYnCnst07nHc3XbHY/2AvC2OiuBs0R
- QFVYYqIZDFoDkZG2RsTlRX71rEFyuqDK4YRzdoql+84NwOC8iTUeJOYJaHvkX8w2EXiJ8LBV49p
- oxObEl8rtESS11DlTOUGeml2MLtqKKcLpCCwVXo35PzgEkjBGv5/S3Q1G8cQAe26U7FKCLxyifO
- rUdMdxxVM8eDMjVwSHQg/o/HsCsgc9+HcRcUrFjvJz8JYbsopX4Bps275mjgU8BGVoqZpDdwlop
- mNaPxFJGwMSPSe3VxkTF3N8bXQ6PQXwpgsmbTEBgHQ0VBDH68QhlSinzQOookfcCMOLinmyRG1A
- k4a8KpsVymUCzAwtKGLhaXoIuukXIaIoF6hjJ5o6CNk9Tc84nog6CovT9RrF2/0h5BS07PhsTYw
- HbPw0TGnklFvBr2eUzg==
-X-Authority-Analysis: v=2.4 cv=BYHoFLt2 c=1 sm=1 tr=0 ts=6a0b1a0a cx=c_pps
- a=SvEPeNj+VMjHSW//kvnxuw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Proofpoint-GUID: iLo8mwtIBqKQiq9InjmFWEww0RAL2wPK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE4MDEzNiBTYWx0ZWRfXygRK9ymc/tMN
+ JZAhfCY0tSHGGS3xCkB4PaIv0xDftsGOscaIefSS7icnhDUkc06A+CxG7eZmh2DK56fZlK37dy8
+ awsVBo2lTmwfBqObi+PwYtDUA7LcAaj0a0H5g6qFGV/gJiCdTnNBS/DNkh12FjM9e9dIUi62gkL
+ Kt+8ezAxKrNDtkHdjSMx8ZUQghJG5M3Tb8v2SNkw6G/7hPtxxj3Tem0LaLRe5r1HBZp+3eokgak
+ a7DSB86uXv99sDT2qWvCdTzK1R9mCU6V+kEDlHzaD7Z4rRUY2A93TapPnu6zsMdTT0M+cbL+2Dl
+ Y49Jw6Gr/L1qfE6+Io/2k5iv6phIyDsKmd1SzfxGQpUnYdFmTmMao6Acq5EgsQ//B68hG9IHj9X
+ ikCNdAKSGONUVeSlSSxNbxR7nh8BfEHV4GqVudFqqmH8Fd7gewPgNkRagdLdI7iDXU3FH83PpyP
+ GaUjNx3Olywcgt/V+Bw==
+X-Authority-Analysis: v=2.4 cv=KZ3idwYD c=1 sm=1 tr=0 ts=6a0b1a05 cx=c_pps
+ a=bS7HVuBVfinNPG3f6cIo3Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=EUspDBNiAAAA:8 a=CbO934nNXDxLm8dFh94A:9 a=QEXdDO2ut3YA:10
- a=Kq8ClHjjuc5pcCNDwlU0:22
-X-Proofpoint-ORIG-GUID: A7G1-OF6c3rku4xpVYE2p4PCI0Y10Wf1
-X-Proofpoint-GUID: A7G1-OF6c3rku4xpVYE2p4PCI0Y10Wf1
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=EUspDBNiAAAA:8 a=qak6Y_TGKhJDndXz1vUA:9 a=QEXdDO2ut3YA:10
+ a=vBUdepa8ALXHeOFLBtFW:22
+X-Proofpoint-ORIG-GUID: iLo8mwtIBqKQiq9InjmFWEww0RAL2wPK
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-05-18_03,2026-05-15_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 priorityscore=1501 bulkscore=0 spamscore=0
- phishscore=0 clxscore=1015 impostorscore=0 malwarescore=0 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 phishscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605180136
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260518_065419_734413_88CC399F 
-X-CRM114-Status: UNSURE (   9.29  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260518_065414_908596_61F25E8D 
+X-CRM114-Status: GOOD (  11.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,23 +148,22 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
-On Wed, 13 May 2026 21:52:12 -0700, Kyle Farnung wrote:
-> LMAC rings reuse the shared rdp/wrp pointer buffers without going
-> through the normal SRNG hw-init path that zeros non-LMAC ring
-> pointers. After restart, ath11k_hal_srng_clear() can therefore hand
-> stale hp/tp state from the previous firmware instance back to the new
-> one.
-> 
-> Clear the shared pointer buffers while keeping the allocations in
-> place so restart still avoids reallocating SRNG DMA memory, but starts
-> with fresh ring-pointer state.
+On Fri, 24 Apr 2026 10:50:35 +0100, Matthew Leach wrote:
+> It has been observed that on certain chipsets a peer can be assigned
+> peer_id=0. For reception of non-aggregated MPDUs this is fine as
+> ath11k_dp_rx_h_find_peer() has a fallback case where it locates the peer
+> based upon the source MAC address. On an aggregated link, the mpdu_start
+> header is only populated by hardware on the first sub-MSDU. This causes
+> the peer resolution to be skipped for the subsequent MSDUs and the
+> encryption type of these frames to be set to an incorrect value,
+> resulting in these MSDUs being dropped by ieee80211.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] wifi: ath11k: clear shared SRNG pointer state on restart
-      commit: f51e4b3b5574ad8cb5b16b11f8a1452147ece87a
+[1/1] wifi: ath11k: fix peer resolution on rx path when peer_id=0
+      commit: 2a2451a34afdf563b3102d36a4b6cf335cf813e2
 
 Best regards,
 -- 
