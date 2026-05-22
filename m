@@ -4,98 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A13DCD5BB0
-	for <ath11k@archiver.kernel.org>; Fri, 22 May 2026 10:01:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3D36CD5BB0
+	for <ath11k@archiver.kernel.org>; Fri, 22 May 2026 10:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=89GZyqjxzP4kzPz+TzUkPQL4cVAEH+s+D1a55Or7dm0=; b=Ghprg1WKCusTxchoPjozZgaypl
-	BQi+LmT3Btgo8VeQO48BvEgjcSV+Als1IXa9sUjBF2sIIqd1GQQbEQF1YpYPRZ9lg48Lkq8JDBzRz
-	JyEOI2kqVlAvJhzKmEprOe6Emb1OEcgRjQEXAAxqNSpDMSdAMTluV4RA0LFCQZwuhTW1Dizb383J9
-	GRftW6x9EAZGrdYNYvAmI9Jte+2+EcOn5iSOW41Ep3S/1g2gHdZKIO0aE//o62iYUE3m+Y9IUb70k
-	/ZueolfO8mades+klJpdPpc7Ph+6hgHweNXdax0iI/UklaDYg8uAZtx0PtthWkidbYGrd4f+qjGyl
-	goK33+HA==;
+	bh=P+6QIFUay/hg2xkAFLiW+meafenw/9VGhbxcOU+YUEk=; b=HVvzH4td0YHanHlVVuBCN+mWRB
+	6L0vkJYHMXdeaADiddxMaerdIHn5zKyBioXVRNjdgKAzdEnktxGURhf72t0dwHKlbacaG/ThhSpkI
+	j0LwiWNcNQa8vkQl+JStm0WxJajiDSAKnjW9MLnh6WHLFNmaf1CI0zemEyeXQidp0paOm0VGQCGy4
+	v4j14fOvmSVurHqi+tkixvLyaH0+baAMFJJn1DTaQC2q6Rx04mKgAyT7A0hfIYKmbqneHuxD6/Lbt
+	AEkHV9sxNknCpESgLkGRlDe4tWN7q/i9UdJy9YQqYKhLlT8IIVbd6J+9MJp0gN5GO1wMLYEN0iWkR
+	SpvL21ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQMgy-0000000APCh-31V7;
-	Fri, 22 May 2026 10:01:20 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wQMhB-0000000APOw-06yV;
+	Fri, 22 May 2026 10:01:33 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQMgu-0000000AP7h-16pU
+	id 1wQMhA-0000000APNX-19sy
+	for ath11k@bombadil.infradead.org;
+	Fri, 22 May 2026 10:01:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=P+6QIFUay/hg2xkAFLiW+meafenw/9VGhbxcOU+YUEk=; b=OpwuwYEUjdY86zZeIJHfZPG5uj
+	3w/E9Vq64cUilElCeaEauJSSAcjsfbmOrGwRNacrVtAVHp+fufkLma95sYEjOnJYE0I5irwUNSkid
+	VVkgIhOxpOeRcbwBaj1rp+Jt5HFMH4PGHjV8og3k3WbqIfHsOWPaS+9arh5Wy0M75oADK3hI9sEzK
+	LmxZr+6rq+C1mAu4cuhLq/y4ZLOvq7JppggVh/fUStFCOudiUbf4QDKYxey28YHE8M1OJdJmoMTtc
+	n7PnAAl4ojTD0dZ2hvgqAyuzBTICk/loeS34vJbbTnXiyo6Dk+LNP6HZiONlXdv+kc/8Pu7Sv2ckQ
+	KOsjnTlg==;
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	by desiato.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wQMh6-00000003vAD-1NyO
 	for ath11k@lists.infradead.org;
-	Fri, 22 May 2026 10:01:19 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64M8aTRx399102
-	for <ath11k@lists.infradead.org>; Fri, 22 May 2026 10:01:16 GMT
+	Fri, 22 May 2026 10:01:30 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64M9C5kI3005097
+	for <ath11k@lists.infradead.org>; Fri, 22 May 2026 10:01:24 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	89GZyqjxzP4kzPz+TzUkPQL4cVAEH+s+D1a55Or7dm0=; b=jqjpioQFFAri1m2v
-	HbJL84xCVFhlIq0d2UiQ47xNCEwDEpYfl4QL2066E9UNWXygtvKtJX6KVopUig/B
-	DNCs1cdIbKI7+ComLVYO15cK90mYoNtvznOcMR7Pw8RmqruWrK/FwqkO21zVgCBK
-	BGtMJPVA+o5ViB3j7kd4mCSt1nju/CF1aR0HxDv8B2oJFbuE0NkFGMdP0EDG41PL
-	2EARo6n8CCNkcRm9atfIEi0uo7M3xl0W6uCWvjaXHbMUrrZvkd43nV+sABOxFnxR
-	QFVHmfwgpIAYWljVCxKScvyUUXS3b4Wc3qsYtvf0yKf+zVnB4cPFQ+LMUzoQGMTs
-	inJCFg==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ea5p9us0r-1
+	P+6QIFUay/hg2xkAFLiW+meafenw/9VGhbxcOU+YUEk=; b=RgzlyxGB94tPSA5n
+	VmceMUIf6T/pLYNQQdcpkxCalmE7Lg26vv2WwJqGcuj4W7nHxcjpcLM1mBh+iXE+
+	72/xMMGiPCSy7eXlSFdyXhFM5lU2AVcEYijhJ3Pvwg8nESKOBXpZmVgkT4GMycdv
+	ic8HSEjmbIz0XqwzDPbrZirpSCFDLRtUNlBVker1EaBUd4nnlU7n8EjkQSNIJLS4
+	8Z+eaVoJpuyr42ZlyZia5YePGd9O5XuqnE9GP7ajY929j37pU30rk4XZMrBPB8KH
+	5TmBdinMtcQfwbL69AJe9yj5FeSUdPjKDOny2ntiBeYmvcT8iiep0pyxYhJKlwvw
+	VQ3lWg==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eafrt9ew3-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 22 May 2026 10:01:15 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c82751074c8so11347088a12.0
-        for <ath11k@lists.infradead.org>; Fri, 22 May 2026 03:01:15 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Fri, 22 May 2026 10:01:23 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-837c4eb3bdfso4388241b3a.2
+        for <ath11k@lists.infradead.org>; Fri, 22 May 2026 03:01:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779444075; x=1780048875; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1779444083; x=1780048883; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=89GZyqjxzP4kzPz+TzUkPQL4cVAEH+s+D1a55Or7dm0=;
-        b=C6ni7uXbTYQJkbgvvGp54VoLtgVFwTZMrmk46G5Too1CU+8dDzUHHN0BNOBiSUPJeg
-         F95zc0+TWn7nEQzAaE+a+SBl7JhYNq9XToa4/PYJHHGx6l44C87jrB03Df3gyisLhiaE
-         XJNE85q4trka3fF1xVSyZWq/8dOYZVCgtlcx5CLaLd+ReDxoqVlU1kps/fy7prJO5no3
-         8OsvjMrjFd3VQuTq3bxzxk4MyrYbzAeeFSD/YsUZyw9bleJfoiFErDSKSNEodH4HQrHh
-         OerjwBwHmzGEgFvKwGIkikh72ToLQnuvo1FeCfAiHgsijLMs9putqi5CTquOblbWnnjR
-         Qimw==
+        bh=P+6QIFUay/hg2xkAFLiW+meafenw/9VGhbxcOU+YUEk=;
+        b=MdtrN538L1wqON0bkVf39iT+f+7/FxfhHQ6/VQ9oexoZT1pUn8uH0HLqe82ba6cU1r
+         kPhbaKTBnnaPjEzgK9UjWdi9Jg2FSnlL4wL4VhkN5sCg83jpGaKQYCdcjHBTeUFKE/0d
+         JoPhZewRws0uGvBxmg0Z/mXA5dI0q3aj58uW5r/qBhBPiryoOaVWdrVF+c2qoeucR7lY
+         BVNySXOGbhiExf5/9foTC3J6ROhLISPORUp9Rl7XthFWY8Js69QZFhTk1EIe9sOQo+29
+         R+wa3ls8ZTqcDd7JI7M5kRDFse3+mzuXZlhsO2ccUeE5qDZOHeNU22yp8YkBbdoTRNGW
+         LBHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779444075; x=1780048875;
+        d=1e100.net; s=20251104; t=1779444083; x=1780048883;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=89GZyqjxzP4kzPz+TzUkPQL4cVAEH+s+D1a55Or7dm0=;
-        b=kTvCYsMFhRESBmxA0icEechAqpO6fGFNZYdHJFoZTjHqVpcHyuhUg4/nLkNsbAyhvC
-         RccZQDGLvVbELL5DYPmPcQQCELzvaUALkWNrqzCa1pZy96mYDMS37nNbQw9ry7ExbNPj
-         jFzl1Xatzm9VkZ8K8ewAUgTY4S3l5PF/J8lHxVGZSwW7JQZpF6gmuRnAP7snCCWPmDsj
-         TyuRYTxeW1AHgKnkBtV/FHKAXucYnJ5dfMg3SbFa2OnXxRnFZY0Tb9pceZEV795C3pLT
-         1CLVRdPu25Y48Cohu947K3sgzF+1r2MbXrnU00Kwr4rn9qGiqa+oXtWfUnEQ9OTo/LJr
-         fdcA==
-X-Forwarded-Encrypted: i=1; AFNElJ+cLxb+ZFeR6m9xEmCe+TTvO9XXEtZZptrO4WKHf0pm27BkQZl4vovYLIQ6LaeNhVk0tIMJD/s=@lists.infradead.org
-X-Gm-Message-State: AOJu0YwgUlyO+kOtmRkfCNry8zred2YOAtgg+1cS7VP110ZHIMH6o/5E
-	+cCjnqBf8DzlMcIrt/94XrMW6wZIKRV1dhid4FA9E9BqRA9s6xJjVGFu57NSy/6jsZcn2LiMCuA
-	LhKBiWQVY0DIHEUaSQhFQ5z1rLGFktbo/Ud8qcIG/kVTgHIukDV0UlQlc3D8+cIO7
-X-Gm-Gg: Acq92OEg+1GiH9ppgz8/1gr/x8cOkKMG+/yTbNtMp3LvK8iREwFFYtDenTXaLD4sy2b
-	NLBo++MExEheOptezalt6oWOW5FZLf81L8hg7cPNCWrrqKsQCff8GxvaswBWMpaZq7OUfAKUNDC
-	yr/ywjUbRwUCUNORzUQ8vfMRHSErquSPcoE0cJahCuwKTKiOz4iQwXsFY6UguXtFMIuPpbeco9S
-	v0fGI+BWOkkmRstxFFHe9NedQ25PZ5QxGlhNTjdYNyHKpbAuEVatfm7XxipBnQS+USaFikKhdu5
-	3en7fkJ6y4nXvjg7H+qptaUlnE7narwsXRFqQPv4p6D0WPdI5WbIUIDNKNqjdDkEtsOajJGQWVN
-	Kss18RsWQANbUOPeCg2l8XFyXTUlqcGyR7CMucFmHKGZPD8nkae6ZnVNk
-X-Received: by 2002:a05:6a00:1807:b0:81f:31c3:2e34 with SMTP id d2e1a72fcca58-8415f330494mr3326886b3a.25.1779444074802;
-        Fri, 22 May 2026 03:01:14 -0700 (PDT)
-X-Received: by 2002:a05:6a00:1807:b0:81f:31c3:2e34 with SMTP id d2e1a72fcca58-8415f330494mr3326808b3a.25.1779444074141;
-        Fri, 22 May 2026 03:01:14 -0700 (PDT)
+        bh=P+6QIFUay/hg2xkAFLiW+meafenw/9VGhbxcOU+YUEk=;
+        b=dH1mzHsKjC3YHBuWMKZswIi3j2V2SBcy7sjWJk245cTdpooV/6RYsgkMBeVXEmdrp9
+         8I5T6jvUaY85ulsjOHEFaOIjcFj+1gcpsyYWrH8R+btUkU2SgTHTsuJWEmoUEQpbx6vJ
+         fJRZa6+1ol0nwBhJoiOjksqhFuHXFq+X+IqfVoW0EK+qoIOJZUGH2sIKAmLrmAZYje7e
+         Na/AYHeRgeXdakZiIRm29f52PxpoBGKcCUjQPQShLl2onp66I4JRVJliYHWovprbnJs2
+         kd61sbBhooSUMB2Iw8h9ld9VcSCVVIqBH+KkRSMINKvlp9ycgM9Vk74j6/tM7TvcCEHk
+         JL2w==
+X-Forwarded-Encrypted: i=1; AFNElJ8LWvqXdVlewRqsy0np6sQtzGRo0BI7rT7NNx7KgCUutFJ2MWBfba2Kj7DJa/ErVfqCUavwGQM=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz+25Mns88mQD1zYOxdqO5aCwDOlRUFrfbmz2/nV0Szl3TzDVwR
+	1F/n/MQqvHNlO24jND+5hqR7XZq5cSvjALPPFFDuo96fyj0C3diVhZ0CS61Rvye8Q1prg3tBmtL
+	gnecw0fg00nAT8KjEV7aNsZ3jAp0IQD+Hou1MP+cyYhUHwsCVrmilBL/OLGOh2hab
+X-Gm-Gg: Acq92OEByCla9VMP2z7ywbu2q5QuffJ3DBezZqMD7Ot9sFgsMFO9z2KD9hc+kP9/r2d
+	45MEyBdpucP5JT37zU+Ic6FharnqFkT2ZTYdRAZEslT2/pPaRf3lo1eNnVwPqSmjjSUlv5dAQS9
+	P5NJMP9iV/1AQheuVxt7TaiTBrG0TlvqsMbybULFtyCKib0//S9x3IhtoVU0TleusrVoAq6GBa/
+	Y/Yi9k/RxxZC965hcrBMv1DP/OUA7RARkAJF9lowJw+/gDzLeIM37X0/zmDyXWOLXHmwdWI6T1h
+	/6eW4/mRZ1hD8OhKVMDl9k75ON7jqA14E30e3yn9xuWRBfoyGBlwNpkSkFqbfM7msk+G7eW321R
+	ZglgIjHBhh7hvzLqNzztNZWPBGTUA0oKVrXuypoY3bRPVS8zvLszqvyfh
+X-Received: by 2002:a05:6a00:438b:b0:82c:9f7e:518c with SMTP id d2e1a72fcca58-8415f32e17amr3015046b3a.25.1779444083221;
+        Fri, 22 May 2026 03:01:23 -0700 (PDT)
+X-Received: by 2002:a05:6a00:438b:b0:82c:9f7e:518c with SMTP id d2e1a72fcca58-8415f32e17amr3014968b3a.25.1779444082645;
+        Fri, 22 May 2026 03:01:22 -0700 (PDT)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84164ac9b74sm1516641b3a.3.2026.05.22.03.01.06
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84164ac9b74sm1516641b3a.3.2026.05.22.03.01.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 May 2026 03:01:13 -0700 (PDT)
+        Fri, 22 May 2026 03:01:22 -0700 (PDT)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Fri, 22 May 2026 15:30:34 +0530
-Subject: [PATCH v2 3/6] net: mhi_net: Hold runtime PM during active data
- path operations
+Date: Fri, 22 May 2026 15:30:35 +0530
+Subject: [PATCH v2 4/6] net: qrtr: Hold runtime PM during active data path
+ operations
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260522-mhi_runtimepm-v2-3-fbebf41a82bb@oss.qualcomm.com>
+Message-Id: <20260522-mhi_runtimepm-v2-4-fbebf41a82bb@oss.qualcomm.com>
 References: <20260522-mhi_runtimepm-v2-0-fbebf41a82bb@oss.qualcomm.com>
 In-Reply-To: <20260522-mhi_runtimepm-v2-0-fbebf41a82bb@oss.qualcomm.com>
 To: Manivannan Sadhasivam <mani@kernel.org>,
@@ -117,41 +132,40 @@ Cc: mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
         vivek.pernamitta@oss.qualcomm.com,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779444039; l=4173;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779444039; l=5157;
  i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=y3Md+/LJdRoPfa8fSBTst//7iA3QrqSh3tsJRClRwKA=;
- b=s+sHbgZoUcbrkhk1NuhJt9uKCZYJuw6T6gtb1ZC0H9M7hSgDCA1Etn58jrZgjHnvT0SCRG62Q
- V7oqxMJp/lHBjYl/lZQf2obhPMwRXspe8hoAXlE3MFihEsy0yCkGb4V
+ bh=BhFCU11Vli0eY4peRB1YT42TDHVLDyHFog9G3pGgq0Q=;
+ b=UVBS6HbShn+y5fJQr2GY5SAYIopHLLknf3feWh42YxN8Cfo16vZuvf1XVAOydKz7dA3b3K6eD
+ /OQhLOIVtQKBDTOurt56nsyDbIEnzo5jjzEyQsOPqQr9m2m8ymwcde3
 X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Authority-Analysis: v=2.4 cv=DKm/JSNb c=1 sm=1 tr=0 ts=6a10296b cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Authority-Analysis: v=2.4 cv=JN0LdcKb c=1 sm=1 tr=0 ts=6a102973 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=EUspDBNiAAAA:8 a=-cKO2LIWXEwUer3o84gA:9 a=QEXdDO2ut3YA:10
- a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-GUID: qz8Po20LovcisYOwPX_d1N2k784OfQSI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIyMDA5OSBTYWx0ZWRfXz52bJxQaSUWh
- it5gQz/+OlOgi21ZSzDmpLI4Y50Urh4N5vo4g+WlNNBv5FbbSArafsjFujDwOlcBO31W3rVLOSg
- h4Cuko4jDLeOheuXY3u3P9Ng/jmTVTCGjBgTwASK6qhYzweWAxLXZv0wti0vHEI7Pzw1ZGrOcJl
- r8MBLbxcOXvPrORYmUbnrGyXoaiXAel7M+Yvu9uHmZL95wy1Ufc1bvvVenEm8BdiQ6zpfQtdo3O
- MtRYdqw6LzoD0lIVRK8+VZiHzb/p9MAuQRJOecPHFYgMoTTJkiK40OXiZsJpGMYfM3nYlntvtcE
- d7EPp5t+GHUymYG37TU/g8qbPlu/J3homxmLZrYyx+qagjt395oluCAmIvU8E49Td+gxnumDPB2
- khnO7yAnJMi1StKFXssX+jLrWBKGlLXZvpAzWwEBw0ERvYZ2r3sAaGyQMXAMy1pRhvpM14dFQa6
- 5Ovd+Ac+Fi4lAvZuLew==
-X-Proofpoint-ORIG-GUID: qz8Po20LovcisYOwPX_d1N2k784OfQSI
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=mqvsnErzViNTL7-QoTgA:9 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIyMDA5OSBTYWx0ZWRfX5l0afPD91/n/
+ 5pLpzP3tnsQtIsAYJj0FM5AiVRJmhxliS8avWWPNla7C7vMSEU81CbX8kjeynk5XRqisMXGxPim
+ fDnlDjH8q9xN6EW5PTrjecyB53NAaDJfSKbFdOn//nHzZ5Ug8m3dSy8/6+7Q2HC+CFlCRRFwSkc
+ cqQkLvb+IUZQdi2Qd7KahbUGUzX7wJm7yNwSj7Vwx8KYu4uxn9nree2qeIP6oGEEKDZrf1NEI7h
+ oIhvLCI21Ms9PE3o08mUDEs3GWS/Wrimnwl8qzun0JAc9qDEueEoNKCamJe3aMmH+rTEOyXHrEE
+ ptDo+aVEPo6dnl7sDABJ6f23U7fun4NG8h+/LPi+AImeS+d0cHznk/3opEKQd6n4ObGXnN5TGVw
+ L+X8JjlX4VWs+K/V+QOltwgwskOfa0m330tKjDHWrWYhS8n3+56jRysgFwEE6ugu8oTtKp9dQ18
+ gVt3ZGUQ+p4YXW1W2vQ==
+X-Proofpoint-GUID: jmNT4JQG1rCXFlID3DuwkBaijnELjWNi
+X-Proofpoint-ORIG-GUID: jmNT4JQG1rCXFlID3DuwkBaijnELjWNi
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-05-22_02,2026-05-18_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 spamscore=0 phishscore=0 suspectscore=0
- priorityscore=1501 clxscore=1015 impostorscore=0 adultscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605220099
+ adultscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0
+ phishscore=0 bulkscore=0 clxscore=1011 spamscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605220099
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260522_030116_716554_B65A3FD2 
-X-CRM114-Status: GOOD (  17.00  )
+X-CRM114-CacheID: sfid-20260522_110129_089525_5EB2EC27 
+X-CRM114-Status: GOOD (  19.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -166,132 +180,178 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The mhi_net driver does not coordinate with runtime PM, which allows the
-underlying MHI controller to be runtime-suspended while transmit, receive,
-or RX buffer refill operations are in progress. This can lead to stalled
-transfers or failed queueing once runtime PM is enabled in the MHI core.
+The QRTR MHI transport driver does not coordinate with runtime PM, which
+allows the underlying MHI controller to be runtime-suspended while
+transmit, receive, or RX buffer refill operations are in progress. This can
+lead to stalled transfers or failed buffer queueing once runtime PM is
+enabled in the MHI core.
 
-Add runtime PM reference counting to the mhi_net data path to keep the
-controller active for the duration of TX, RX, and buffer management
-operations. Enable runtime PM during probe and take/release references
-explicitly around these critical paths.
+Add runtime PM reference counting around TX, RX, and buffer management
+operations to keep the controller active for the duration of each critical
+section. Enable runtime PM during probe and take explicit references around
+these data path operations.
 
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
- drivers/net/mhi_net.c | 39 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ net/qrtr/mhi.c | 57 ++++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 54 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/mhi_net.c b/drivers/net/mhi_net.c
-index ae169929a9d8..5d7f9ccdb17b 100644
---- a/drivers/net/mhi_net.c
-+++ b/drivers/net/mhi_net.c
-@@ -9,6 +9,7 @@
+diff --git a/net/qrtr/mhi.c b/net/qrtr/mhi.c
+index 80e341d2f8a4..cba7a5daf7a4 100644
+--- a/net/qrtr/mhi.c
++++ b/net/qrtr/mhi.c
+@@ -6,6 +6,7 @@
+ #include <linux/mhi.h>
  #include <linux/mod_devicetable.h>
  #include <linux/module.h>
- #include <linux/netdevice.h>
 +#include <linux/pm_runtime.h>
  #include <linux/skbuff.h>
- #include <linux/u64_stats_sync.h>
+ #include <net/sock.h>
  
-@@ -76,11 +77,19 @@ static netdev_tx_t mhi_ndo_xmit(struct sk_buff *skb, struct net_device *ndev)
- 	struct mhi_device *mdev = mhi_netdev->mdev;
- 	int err;
+@@ -38,11 +39,20 @@ static void qcom_mhi_qrtr_dl_callback(struct mhi_device *mhi_dev,
+ 	if (rc == -EINVAL)
+ 		dev_err(qdev->dev, "invalid ipcrouter packet\n");
  
-+	err = pm_runtime_get(&mdev->dev);
-+	if (err < 0 && err != -EINPROGRESS) {
-+		dev_err(&mdev->dev, "pm_runtime_get failed %d\n", err);
-+		pm_runtime_put_noidle(&mdev->dev);
-+		goto exit_drop;
-+	}
-+
- 	err = mhi_queue_skb(mdev, DMA_TO_DEVICE, skb, skb->len, MHI_EOT);
- 	if (unlikely(err)) {
- 		net_err_ratelimited("%s: Failed to queue TX buf (%d)\n",
- 				    ndev->name, err);
- 		dev_kfree_skb_any(skb);
-+		pm_runtime_put(&mdev->dev);
- 		goto exit_drop;
- 	}
- 
-@@ -251,6 +260,7 @@ static void mhi_net_ul_callback(struct mhi_device *mhi_dev,
- 		/* MHI layer stopping/resetting the UL channel */
- 		if (mhi_res->transaction_status == -ENOTCONN) {
- 			u64_stats_update_end(&mhi_netdev->stats.tx_syncp);
-+			pm_runtime_put(&mdev->dev);
- 			return;
- 		}
- 
-@@ -261,6 +271,7 @@ static void mhi_net_ul_callback(struct mhi_device *mhi_dev,
- 	}
- 	u64_stats_update_end(&mhi_netdev->stats.tx_syncp);
- 
-+	pm_runtime_put(&mdev->dev);
- 	if (netif_queue_stopped(ndev) && !mhi_queue_is_full(mdev, DMA_TO_DEVICE))
- 		netif_wake_queue(ndev);
- }
-@@ -277,6 +288,12 @@ static void mhi_net_rx_refill_work(struct work_struct *work)
- 
- 	size = mhi_netdev->mru ? mhi_netdev->mru : READ_ONCE(ndev->mtu);
- 
-+	err = pm_runtime_resume_and_get(&mdev->dev);
-+	if (err) {
-+		dev_err(&mdev->dev, "pm_runtime_resume_and_get failed %d\n", err);
++	rc = pm_runtime_get(&qdev->mhi_dev->dev);
++	if (rc < 0 && rc != -EINPROGRESS) {
++		dev_err(&mhi_dev->dev, "pm_runtime_get failed %d\n", rc);
++		pm_runtime_put_noidle(&qdev->mhi_dev->dev);
 +		return;
 +	}
 +
- 	while (!mhi_queue_is_full(mdev, DMA_FROM_DEVICE)) {
- 		skb = netdev_alloc_skb(ndev, size);
- 		if (unlikely(!skb))
-@@ -296,6 +313,7 @@ static void mhi_net_rx_refill_work(struct work_struct *work)
- 		cond_resched();
- 	}
- 
-+	pm_runtime_put(&mdev->dev);
- 	/* If we're still starved of rx buffers, reschedule later */
- 	if (mhi_get_free_desc_count(mdev, DMA_FROM_DEVICE) == mhi_netdev->rx_queue_sz)
- 		schedule_delayed_work(&mhi_netdev->rx_refill, HZ / 2);
-@@ -362,20 +380,41 @@ static int mhi_net_probe(struct mhi_device *mhi_dev,
- 
- 	SET_NETDEV_DEV(ndev, &mhi_dev->dev);
- 
-+	pm_runtime_no_callbacks(&mhi_dev->dev);
-+	err = devm_pm_runtime_set_active_enabled(&mhi_dev->dev);
-+	if (err)
-+		return err;
+ 	/* Done with the buffer, now recycle it for future use */
+ 	rc = mhi_queue_buf(mhi_dev, DMA_FROM_DEVICE, mhi_res->buf_addr,
+ 			   mhi_dev->mhi_cntrl->buffer_len, MHI_EOT);
+ 	if (rc)
+ 		dev_err(&mhi_dev->dev, "Failed to recycle the buffer: %d\n", rc);
 +
-+	err = pm_runtime_resume_and_get(&mhi_dev->dev);
-+	if (err) {
-+		dev_err(&mhi_dev->dev, "pm_runtime_resume_and_get failed %d\n", err);
-+		return err;
++	pm_runtime_put(&mhi_dev->dev);
+ }
+ 
+ /* From QRTR to MHI */
+@@ -54,6 +64,8 @@ static void qcom_mhi_qrtr_ul_callback(struct mhi_device *mhi_dev,
+ 	if (skb->sk)
+ 		sock_put(skb->sk);
+ 	consume_skb(skb);
++
++	pm_runtime_put(&mhi_dev->dev);
+ }
+ 
+ /* Send data over MHI */
+@@ -69,13 +81,21 @@ static int qcom_mhi_qrtr_send(struct qrtr_endpoint *ep, struct sk_buff *skb)
+ 	if (rc)
+ 		goto free_skb;
+ 
++	rc = pm_runtime_resume_and_get(&qdev->mhi_dev->dev);
++	if (rc) {
++		dev_err(&qdev->mhi_dev->dev, "pm_runtime_resume_and_get failed %d\n", rc);
++		goto free_skb;
 +	}
 +
- 	err = mhi_net_newlink(mhi_dev, ndev);
- 	if (err) {
- 		free_netdev(ndev);
-+		pm_runtime_put(&mhi_dev->dev);
- 		return err;
+ 	rc = mhi_queue_skb(qdev->mhi_dev, DMA_TO_DEVICE, skb, skb->len,
+ 			   MHI_EOT);
+ 	if (rc)
+-		goto free_skb;
++		goto runtime_put;
+ 
+ 	return rc;
+ 
++runtime_put:
++	pm_runtime_put(&qdev->mhi_dev->dev);
+ free_skb:
+ 	if (skb->sk)
+ 		sock_put(skb->sk);
+@@ -90,20 +110,30 @@ static int qcom_mhi_qrtr_queue_dl_buffers(struct mhi_device *mhi_dev)
+ 	void *buf;
+ 	int ret;
+ 
++	ret = pm_runtime_resume_and_get(&mhi_dev->dev);
++	if (ret) {
++		dev_err(&mhi_dev->dev, "pm_runtime_resume_and_get failed %d\n", ret);
++		return ret;
++	}
++
+ 	free_desc = mhi_get_free_desc_count(mhi_dev, DMA_FROM_DEVICE);
+ 	while (free_desc--) {
+ 		buf = devm_kmalloc(&mhi_dev->dev, mhi_dev->mhi_cntrl->buffer_len, GFP_KERNEL);
+-		if (!buf)
++		if (!buf) {
++			pm_runtime_put(&mhi_dev->dev);
+ 			return -ENOMEM;
++		}
+ 
+ 		ret = mhi_queue_buf(mhi_dev, DMA_FROM_DEVICE, buf, mhi_dev->mhi_cntrl->buffer_len,
+ 				    MHI_EOT);
+ 		if (ret) {
+ 			dev_err(&mhi_dev->dev, "Failed to queue buffer: %d\n", ret);
++			pm_runtime_put(&mhi_dev->dev);
+ 			return ret;
+ 		}
  	}
  
 +	pm_runtime_put(&mhi_dev->dev);
  	return 0;
  }
  
- static void mhi_net_remove(struct mhi_device *mhi_dev)
+@@ -121,12 +151,22 @@ static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
+ 	qdev->dev = &mhi_dev->dev;
+ 	qdev->ep.xmit = qcom_mhi_qrtr_send;
+ 
++	pm_runtime_no_callbacks(&mhi_dev->dev);
++	rc = devm_pm_runtime_set_active_enabled(&mhi_dev->dev);
++	if (rc)
++		return rc;
++
++	rc = pm_runtime_resume_and_get(&mhi_dev->dev);
++	if (rc) {
++		dev_err(&mhi_dev->dev, "pm_runtime_resume_and_get failed %d\n", rc);
++		return rc;
++	}
+ 	dev_set_drvdata(&mhi_dev->dev, qdev);
+ 
+ 	/* start channels */
+ 	rc = mhi_prepare_for_transfer(mhi_dev);
+ 	if (rc)
+-		return rc;
++		goto runtime_put;
+ 
+ 	rc = qrtr_endpoint_register(&qdev->ep, QRTR_EP_NID_AUTO);
+ 	if (rc)
+@@ -138,12 +178,15 @@ static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
+ 
+ 	dev_dbg(qdev->dev, "Qualcomm MHI QRTR driver probed\n");
+ 
++	pm_runtime_put(&mhi_dev->dev);
+ 	return 0;
+ 
+ err_unregister:
+ 	qrtr_endpoint_unregister(&qdev->ep);
+ err_unprepare:
+ 	mhi_unprepare_from_transfer(mhi_dev);
++runtime_put:
++	pm_runtime_put(&mhi_dev->dev);
+ 
+ 	return rc;
+ }
+@@ -151,10 +194,18 @@ static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
+ static void qcom_mhi_qrtr_remove(struct mhi_device *mhi_dev)
  {
- 	struct mhi_net_dev *mhi_netdev = dev_get_drvdata(&mhi_dev->dev);
+ 	struct qrtr_mhi_dev *qdev = dev_get_drvdata(&mhi_dev->dev);
 +	int err;
 +
 +	err = pm_runtime_resume_and_get(&mhi_dev->dev);
 +	if (err)
 +		dev_err(&mhi_dev->dev, "pm_runtime_resume_and_get failed %d\n", err);
  
- 	mhi_net_dellink(mhi_dev, mhi_netdev->ndev);
+ 	qrtr_endpoint_unregister(&qdev->ep);
+ 	mhi_unprepare_from_transfer(mhi_dev);
+ 	dev_set_drvdata(&mhi_dev->dev, NULL);
 +
 +	if (!err)
 +		pm_runtime_put(&mhi_dev->dev);
  }
  
- static const struct mhi_device_info mhi_hwip0 = {
+ static const struct mhi_device_id qcom_mhi_qrtr_id_table[] = {
 
 -- 
 2.34.1
