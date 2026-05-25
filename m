@@ -4,124 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 510B7CD4F54
-	for <ath11k@archiver.kernel.org>; Mon, 25 May 2026 02:07:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EEC6CD5BC9
+	for <ath11k@archiver.kernel.org>; Mon, 25 May 2026 13:24:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-Type:To:Subject:From:MIME-Version:Date:Message-ID:Reply-To:Cc:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt+yvs6LIY=; b=ErTvi9Xth5EP9gleRwblQTWNo1
-	OaJSlRcdQXu6mSkNnQwhHQEj/mFJ5DPez2hOb6y11Y57GJEaPNUd1ixZdB4Jg///XsH2NxudINW5v
-	qa6RKMq8CuqgtX1cYZfUVtYR/wWs9zDjxljl4aQG03nLo/nutTohld8HbdIeMAnqtYNoxNIWeuzr+
-	E5OEP0+GUDimh7rfvuO9tQZJbzuman079VCX5wPNnr8GbN/soDr4O6CaKI/iqy18FE83M3NCqUjaS
-	AUBoumXq9h/woUutRyQ+ovFgJS7ioifSgqttfYlBOKxl1qA3TabBrJrkxZUg+aYZLG1fAQv257J3y
-	/gkNaf6Q==;
+	bh=9aNWWpQ+16cskdRqLSNbL+nh+J/jH+qNm9U4np8Wsd4=; b=ktt6CjQe6Oa9Z0OmGSp/hdXr7V
+	64g4Hzsh3IOiR8cDSF4ji0irj4kogDGk1Qc+t8Xl3D+lyNDCOhYPh0nkak7lZ8/+rtosr2JGOyUAP
+	50++leo9pmFq1BUQnoG88OTeN2B2FjX4txXXyLXbIYbmds6bJtdT4+Tt7o8nmrgVLq12VbdEBqCh8
+	pMH/+0qUxtSybEnbnqyZ77ZlK+MmJnYSLRbjWDtqW7uETljLUtqOkMa2xPZs5boLt2aVFCS43dbB5
+	CjiG/j1fQytgOIh/BFFaq3rkU9q5qwMyLhO5Q3I8enqskRJiX/DVLMYxbWiMz/jWnQx1u87NtTdPU
+	+9EiomSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wRKj0-0000000G5VD-3mO8;
-	Mon, 25 May 2026 02:07:26 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wRVHx-0000000HJ4Y-1w8x;
+	Mon, 25 May 2026 13:24:13 +0000
+Received: from mout-p-101.mailbox.org ([80.241.56.151])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wRKiy-0000000G5UY-3JVB
+	id 1wRVHu-0000000HJ3W-0JQK
 	for ath11k@lists.infradead.org;
-	Mon, 25 May 2026 02:07:26 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64P1xit42002726
-	for <ath11k@lists.infradead.org>; Mon, 25 May 2026 02:07:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt
-	+yvs6LIY=; b=C6MtZNKfcJnz7/ykQSMFD1uVT83PZnjhgHddpsLQ/Wcxjt9Z/+f
-	8pNAbz+pu6YPMXy+JbjjUUncLjKYnept/KK3Gv6CQcBEQfUfbwdAdS4DgNc2wfhu
-	rnNoB+9Qjb1Xhloq7yMne4I7NjQnXB/92KUZFMUU8KZ0ZHlR6KF/w+gBZj/AV9Wl
-	hnuLC/r5aBEX1Cs8Yu18KGhOYM9NtWKG+1PmNLjH/uAaQtHOZdMo+Ran3dv19YIP
-	fwUc26X7vNzRQ6fyJvocoE31HKLi0PRtRxExduOLV8md26VQiogw/QCTpXdHic46
-	3oiKsUNgkgq7s3NxB2jI/4aAQpG0e6T6dwA==
-Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eb1kmmw16-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 25 May 2026 02:07:22 +0000 (GMT)
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2fe1cf409a1so14592088eec.1
-        for <ath11k@lists.infradead.org>; Sun, 24 May 2026 19:07:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779674842; x=1780279642; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt+yvs6LIY=;
-        b=PS+42yP5kjrXX2VtpbxSOwQUc9CJxrbRJFJCK3hribIe+eLoCaDtSPn+vks50NmsTG
-         gJgp/i+bssObOF7zGFntbg6SCqc7/DuUMDDfCE2opbjm28NvAm4CbJUVjgsPfOPEEuNU
-         5qS7bRBJkQu0mJUPP3tfjfU0jZQLn9MBwVo/+poPEdMM92SYJc+r0ehPWkNheGP+W/lf
-         WjKBj8OOK6W+rlvel2nkYYLhCTNXmkush9BvY9Lb+lYsGxfnw7HefBrt5De/KwFks2J1
-         nA8b+kzMw3kZvjhnyEu9pn/8uL+kQkRhf8akGYrai/n52h5Rae1Sik2sY7qWZVlammDM
-         D/yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779674842; x=1780279642;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt+yvs6LIY=;
-        b=AKgFRs7HhgFaHhqven/kSi0fjBANFAqK3pz8nQr/mPyKqUStXDgmcVGIylEI0zeg+g
-         P7DVcIr1M3aQCNqBVa9GZSyUT3Dy0KZ6CiaJR2X0shq3LP4WfzK0q0QU7DImdhWAO9lz
-         DHBotjF2Qh6jLtNGMttjRGmoEXhVKGflwLLAOrkX2DhyediceCnFmlV3vpWvsbgISbzo
-         yhTPIFRtoUIqBfLMl+hyk9FuTEkRqGEyyZQHXO4MvxD9Wqf4fMJ5g1n8vwsQy4bK6WaH
-         rTjsnC5VVL7xqPMJ3CDwvCADAVofSmiED5kcQ1AsJqVeo0yD2md/uvHYRFWCUMb4qAQq
-         XDtw==
-X-Gm-Message-State: AOJu0YyUX6nPS9LLsi/+SVwenI5vsaP+eI69VUhd3MqA+RIxqozHl+At
-	RzCdz4ZOgoKbEvQs9LPpbTsnIVT2IQNcvIzhgIKwgyJZZ0IlmftC81lRi9HsN2ZJ5FIIUMaHPRR
-	NDgvXRI6g7IvJJFL6E/CxrbwO1Cotz0ucRl0T/nDLAavDzigc/VS3hAeWdZGHntSB
-X-Gm-Gg: Acq92OHFOKTebhw6WbO1ZzrMoha/PaAZ8e8ekNA6fYxUz4e4eBRQBjau0IxuJitq34R
-	qKnGjw5OKAvSSFaDjlbhuvpo2p0iiqsa3rnIGXnfmkbzgZfWcXM+DinIEhqhwQAwjuqRhsUOn90
-	dvJTgU+EyRshg6YL/fYIiwErACVUOzC1kyBgp9bcp3JlapqvZsM1MnW13xXaCgWe5xgliCkN2W/
-	nqOF7/QOd9k/WU0kDIvnXxQ0JIFeMSAMpFRFsb8yyu76Aa7FNyG/dChwz7MWFWRzTQmqH5QAt1F
-	i3GmKmd5Z5VX1QkxJ+USTNLF/j49dK62gs1O1RYx54kQApdmXJLvoVhT0o48pwWnDWhFZ/y/DUM
-	olA4UjBBOWT7QGx8ijX6mN+RBiPvcQakjK6NaJLhxbUrsHIJq9/ox+kjXMmhF5Vu8WLQXsYR1HO
-	zKFQ==
-X-Received: by 2002:a05:7022:2528:b0:12d:ca31:f1b6 with SMTP id a92af1059eb24-1365f814439mr4377465c88.18.1779674841800;
-        Sun, 24 May 2026 19:07:21 -0700 (PDT)
-X-Received: by 2002:a05:7022:2528:b0:12d:ca31:f1b6 with SMTP id a92af1059eb24-1365f814439mr4377453c88.18.1779674841173;
-        Sun, 24 May 2026 19:07:21 -0700 (PDT)
-Received: from san-w175-na3-01.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1366aa88cffsm4839011c88.11.2026.05.24.19.07.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 May 2026 19:07:20 -0700 (PDT)
-From: Wei Zhang <wei.zhang@oss.qualcomm.com>
-To: jeff.johnson@oss.qualcomm.com
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wei.zhang@oss.qualcomm.com
-Subject: [PATCH ath-next] wifi: ath11k: raise max vdevs to 4 on hardware with P2P and dual-station support
-Date: Sun, 24 May 2026 19:07:11 -0700
-Message-ID: <20260525020711.2590815-1-wei.zhang@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+	Mon, 25 May 2026 13:24:11 +0000
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4gPGmz624hz9tp1;
+	Mon, 25 May 2026 15:24:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hauke-m.de; s=MBO0001;
+	t=1779715443;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=9aNWWpQ+16cskdRqLSNbL+nh+J/jH+qNm9U4np8Wsd4=;
+	b=rWwdl9DzOMQiwVWE9f/I4nFw7g7gjR+CCINHQFSf0e+yJ2m1ZJYhIeYSdY2rPPVI7cXTpM
+	MXrPd+VoObpz7gT396192/PHv9ZuaLedUVQ0wQUe772JiGcrxAIbQxk3pQlvMtDnak/bFw
+	ZqNMygcpv1ji2/+y7yJ0COx/dFyPdUTYqEzvBUtBeugskusb2SwTnbIBruf1NpSTl9haPe
+	ZDhjRLme+BVApMY8L2hpNzjowN7PsRGrccFzHWreIu+Oc3wGtxLeXQgM0jGx2bKRIeNBFy
+	K07q382vBbyw7vB5qx7f4gIXA0R7FK5HNhNQMZgf1E3X1P279UVAQWivvUpm7A==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=none;
+	spf=pass (outgoing_mbo_mout: domain of hauke@hauke-m.de designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=hauke@hauke-m.de
+Message-ID: <0fbb0b6e-c849-4e26-9c46-2ac4986f6b52@hauke-m.de>
+Date: Mon, 25 May 2026 15:24:00 +0200
 MIME-Version: 1.0
+Content-Language: en-US
+From: Hauke Mehrtens <hauke@hauke-m.de>
+Subject: =?UTF-8?Q?ath11k=3A_WCN6855_WoWLAN_resume_leaves_RX_in_unrecoverabl?=
+ =?UTF-8?Q?e_reorder_state_=E2=86=92_TCP_collapses?=
+To: Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, Baochen Qiang <quic_bqiang@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDAxOCBTYWx0ZWRfX5lS5E/PFn6iI
- EsQbk1WhxrHhN4pTdeLSyMurpNzx12twpzeeI3UOfjUgnwhQfinGQVe5oiX30/UNGlK61lXjTBd
- XvJoyCWKZMG47R7ahOhG0wV0s08Bgn0r4xvVy9IzxeH0yVGQGEofzvzfxc/xs8DaIM/w7oWpXRz
- zvlbuBEcbqcyz44nW9RhZYdwQw4TghGP9+7QubKb9IhK/5BmrEs3b2CpyaIBxZ/n6a7N66/m0Z5
- pSztUxpqq7d0O06HxdYpx2TzNryKy5XEeh6aKmOOg18RYobkGCV/HIv0sOa0YkiOSac+jKiluWg
- xgr7nmRkf+hY3SwhkdAu40CEw2RLPFxm2a7xsNjzbJTYZj09sEsUY9eC8dq9xb8BnsLvHB/f8G2
- HRlxmpHPevhOJRpYH9i1o1NUtGfUsjnjMGBCaxytilAIuFGvtKVhUf5g2SOpZXl1n/WvngtuIw5
- si5ITgFxzfxVB2qCiFw==
-X-Proofpoint-ORIG-GUID: rcwVAha2oJBrEOq76RO_ntc8gYJ_zOtm
-X-Authority-Analysis: v=2.4 cv=cN3QdFeN c=1 sm=1 tr=0 ts=6a13aeda cx=c_pps
- a=cFYjgdjTJScbgFmBucgdfQ==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
- a=6dL03X2lIcQah84ha6YA:9 a=scEy_gLbYbu1JhEsrz4S:22
-X-Proofpoint-GUID: rcwVAha2oJBrEOq76RO_ntc8gYJ_zOtm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-24_07,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
- spamscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605250018
+X-Rspamd-Queue-Id: 4gPGmz624hz9tp1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260524_190724_963237_6C6CC793 
-X-CRM114-Status: GOOD (  12.61  )
+X-CRM114-CacheID: sfid-20260525_062410_264609_CFBD7C57 
+X-CRM114-Status: UNSURE (   5.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,82 +77,141 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When P2P support is enabled, wpa_supplicant creates a p2p-device
-interface by default, which implicitly consumes one vdev. On systems
-managed by NetworkManager, this interface cannot be reliably disabled,
-leaving only two usable interfaces for user configurations.
+I used AI to help me debug this problem.
 
-Increase num_vdevs to four for QCA6390 hw2.0, WCN6855 hw2.0/hw2.1,
-QCA2066 hw2.1, and QCA6698AQ hw2.1 to account for the implicit
-p2p-device and enable common concurrency scenarios such as AP + AP + STA.
+On Lenovo ThinkPad P14s G4 AMD (QCNFA765 / WCN6855 hw2.1), ~1 in 10
+suspend/resume cycles leaves the ath11k RX path delivering MSDUs out of
+order (~16% of TCP segments). TCP cwnd stays at 1-3 MSS and goodput
+collapses to ~3 Mbit/s; UDP on the same link in the same minute pushes
+100+ Mbit/s.
 
-This change increases interface concurrency in the two-channel scenario
-by raising the maximum vdev limit, while keeping other combination rules
-unchanged.
+This machine is in the DMI quirk list at
+`drivers/net/wireless/ath/ath11k/core.c` that forces `ATH11K_PM_WOW`.
+In WOW mode the firmware is kept alive across suspend; the WOW resume
+path does not re-initialise REO HW or per-TID BA state.
+The PM_WOW quirk was added as a workaround for unexpected-wakeup bug
+https://bugzilla.kernel.org/show_bug.cgi?id=219196
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
-Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.9
-Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+## Affected components
 
-Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+- **Driver:** ath11k_pci
+- **Chip:** WCN6855 hw2.1 (`17cb:1103`, QCNFA765)
+- **Firmware:** 
+`WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41`
+   (fw_version `0x11088c35`, 2024-04-17)
+- **Kernel:** observed on 7.0.9-arch1-1; also present across many
+   earlier kernel versions over the past >1 year on this hardware
+- **Machine:** Lenovo ThinkPad P14s G4 AMD, DMI `21K5CTO1WW` (matches
+   quirk entry "P14s G4 AMD #1" at `core.c:961-966` via `"21K5"`
+   substring)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 3f6f4db5b7ee..8dacc878c006 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -267,7 +267,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.coldboot_cal_ftm = false,
- 		.cbcal_restart_fw = false,
- 		.fw_mem_mode = 0,
--		.num_vdevs = 2 + 1,
-+		.num_vdevs = 4,
- 		.num_peers = 512,
- 		.supports_suspend = true,
- 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
-@@ -445,7 +445,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.coldboot_cal_ftm = false,
- 		.cbcal_restart_fw = false,
- 		.fw_mem_mode = 0,
--		.num_vdevs = 2 + 1,
-+		.num_vdevs = 4,
- 		.num_peers = 512,
- 		.supports_suspend = true,
- 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
-@@ -535,7 +535,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.coldboot_cal_ftm = false,
- 		.cbcal_restart_fw = false,
- 		.fw_mem_mode = 0,
--		.num_vdevs = 2 + 1,
-+		.num_vdevs = 4,
- 		.num_peers = 512,
- 		.supports_suspend = true,
- 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
-@@ -797,7 +797,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.coldboot_cal_ftm = false,
- 		.cbcal_restart_fw = false,
- 		.fw_mem_mode = 0,
--		.num_vdevs = 2 + 1,
-+		.num_vdevs = 4,
- 		.num_peers = 512,
- 		.supports_suspend = true,
- 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
-@@ -886,7 +886,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.coldboot_cal_ftm = false,
- 		.cbcal_restart_fw = false,
- 		.fw_mem_mode = 0,
--		.num_vdevs = 2 + 1,
-+		.num_vdevs = 4,
- 		.num_peers = 512,
- 		.supports_suspend = true,
- 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+## Reproduce
 
-base-commit: 2e9422a6a2d8bf4036287c2fd3b034392af64048
--- 
-2.34.1
+1. Associate to an HE AP (characterised at 6 GHz, HE-MCS 5/6 NSS 2
+    160 MHz, -56 dBm, using MT7915 with OpenWrt 25.12).
+2. Suspend, wake, test `iperf3` TCP. Repeat. On average within ~10
+    cycles, one resume leaves the link broken.
+3. In the broken state: `iw dev wlpXsY link` still reports ~1.3 Gbit/s
+    "bitrate". Ping and UDP iperf3 look fine. TCP iperf3 collapses to
+    ~3 Mbit/s with cwnd stuck at 1-3 MSS.
 
+## Evidence
+
+### iperf3, same link same minute
+
+```
+AP -> STA, UDP -b 200M -l 1400 -t 15:
+   sender:   200 Mbit/s, 267876 datagrams
+   receiver: 102 Mbit/s, 137290 received, 130585 "lost"
+   (not real loss; iperf3 UDP counts out-of-window arrivals as lost)
+
+AP -> STA, TCP -t 15:
+   3.43 Mbit/s, 521 retransmits, cwnd 1.41-5.66 KB throughout
+```
+
+### UDP run: no real loss anywhere
+
+- `ip -s link` delta: `+267,953 packets`, `0 errors`, `0 dropped`
+   (AP sent 267,876).
+- `/proc/net/snmp` Udp: `RcvbufErrors 0, InErrors 0`.
+- ath11k `pdev_stats` delta: `MSDUs delivered to HTT +267,985`.
+- `soc_dp_stats` entirely zero: no RXDMA / REO / HAL / TCL / backpressure
+   errors of any kind.
+- AP `iw station get`: ~1.3% retry rate, -65 dBm ACK signal,
+   `expected throughput 1049 Mbps`.
+
+→ Air link clean. Host data path clean. Firmware delivered every
+datagram. No drops anywhere.
+
+### TCP socket reorder (`ss -tin` once per second during TCP iperf3)
+
+```
+    t (s)    bytes_rx   segs_in   rcv_ooopack
+    0        1,291,653       895          158
+    1        1,717,365     1,189          210
+    2        2,060,541     1,426          274
+    3        2,519,557     1,743          335
+    4        3,050,973     2,110          397
+    5        3,446,277     2,383          450
+    6        3,906,741     2,701          513
+```
+
+~60 ooo packets/s out of ~370 segs/s = **~16% out-of-order**, sustained.
+
+### Packet-level pattern (`tcpdump` on wlpXsY)
+
+Seq normalised to 0 at flow start:
+
+```
+22 ms     2896:4344
+25 ms     4344:5792
+27 ms     1448:2896           <-- late; fills gap from 5 ms earlier
+28 ms     5792:7240
+54 ms     8688:10136
+55 ms     10136:11584
+57 ms     7240:8688           <-- late
+107 ms    26064:27512
+107 ms    28960:30408
+108 ms    30408:31856
+109 ms    27512:28960         <-- late
+156 ms    57920:59368
+156 ms    59368:60816
+157 ms    56472:57920         <-- late
+```
+
+Fingerprint: A-MPDU subframe lost on first transmission, retried, retry
+arrives 2-5 ms later. Working REO HW would buffer the continuation
+until the missing subframe arrived or the per-TID reorder timeout
+(`HAL_DEFAULT_REO_TIMEOUT_USEC`, 40 ms) expired. Here both continuation
+and retry pass through unordered.
+
+## Diagnosis
+
+- Air link healthy; host data path clean; REO HW error counters all
+   zero — REO simply isn't enforcing order for this peer's TIDs.
+- dmesg across 3 days of suspend cycles shows zero ath11k re-init
+   activity (no `fw_version` reprint, no `wcn6855 hw2.1` reprint). The
+   firmware instance is the same one from the most recent `modprobe`.
+   `ath11k_core_suspend_wow` / `ath11k_core_resume_wow` neither power
+   down the device nor re-initialise REO.
+- `rmmod` triggers full `ath11k_hif_power_down` + chip re-init on next
+   `modprobe`, which re-runs `ath11k_hw_wcn6855_reo_setup`. This is the
+   only reliable recovery, so the corrupted state lives in firmware /
+   REO HW that the WOW resume path never touches.
+
+The non-WOW path (`ath11k_core_suspend_default`) does power-down + full
+re-init on resume, re-running `ath11k_dp_srng_common_setup()` →
+`hw_ops->reo_setup()`. The WOW path does not.
+
+## Related
+
+- Bug #219196 — unexpected wakeups; the WOW workaround was added to
+   mitigate this
+- `ce8669a27016` — introduced the WOW quirk table (2025-03-28, Baochen 
+Qiang)
+- `0eb002c93c3b` — added `21K5` / `21K6` (this laptop) to the quirk
+   table (2025-09-29, Mark Pearson)
+- `4015b1972763` — adds Z13/Z16 Gen1 to WOW quirk (Nov 2025)
+
+Hauke
 
