@@ -4,160 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFD92CD5BAC
-	for <ath11k@archiver.kernel.org>; Fri, 22 May 2026 20:09:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 510B7CD4F54
+	for <ath11k@archiver.kernel.org>; Mon, 25 May 2026 02:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=4mgJ5edVM+mqGwYghHMz4APWCN08GCaqEMyrnNrUOWY=; b=seaIVKg4z+f/FiPlaGyNHIpuOD
-	ls3vMqPFKua0ZPaawCRhz+5dx4udhVfLEmS0iQ1mamTAIseq2iBhDTngxa29joGdd9w+NOWCce+yd
-	pf8mBXp6tEuUW09aMOlePxlFLXdFDOefPjLkMhpLZSariNoXoDQI8Ly6WxP25Ab9Ap/VLr5QLvL4I
-	W+epBjsfL9C1XgK+ScdWP8fAHOwdmKR1/3/eWzpqK6Mw/Adi8ccGnV+8xIna5nTKxfeKIfV/3VNvQ
-	I8phvMcUaKQA12H0ovWnankpaIREj+C4SLIkRvZInFUxufXpuEffEXu+oCnLinn/0aRzF4ZHLdqty
-	+Rx+tP9Q==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt+yvs6LIY=; b=ErTvi9Xth5EP9gleRwblQTWNo1
+	OaJSlRcdQXu6mSkNnQwhHQEj/mFJ5DPez2hOb6y11Y57GJEaPNUd1ixZdB4Jg///XsH2NxudINW5v
+	qa6RKMq8CuqgtX1cYZfUVtYR/wWs9zDjxljl4aQG03nLo/nutTohld8HbdIeMAnqtYNoxNIWeuzr+
+	E5OEP0+GUDimh7rfvuO9tQZJbzuman079VCX5wPNnr8GbN/soDr4O6CaKI/iqy18FE83M3NCqUjaS
+	AUBoumXq9h/woUutRyQ+ovFgJS7ioifSgqttfYlBOKxl1qA3TabBrJrkxZUg+aYZLG1fAQv257J3y
+	/gkNaf6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQWBQ-0000000BqNj-0QFR;
-	Fri, 22 May 2026 20:09:24 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wRKj0-0000000G5VD-3mO8;
+	Mon, 25 May 2026 02:07:26 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQWBO-0000000BqMp-1S0r
+	id 1wRKiy-0000000G5UY-3JVB
 	for ath11k@lists.infradead.org;
-	Fri, 22 May 2026 20:09:23 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64MG0i253477058
-	for <ath11k@lists.infradead.org>; Fri, 22 May 2026 20:09:21 GMT
+	Mon, 25 May 2026 02:07:26 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64P1xit42002726
+	for <ath11k@lists.infradead.org>; Mon, 25 May 2026 02:07:23 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4mgJ5edVM+mqGwYghHMz4APWCN08GCaqEMyrnNrUOWY=; b=EbgztTsE1C9CerSE
-	ANTpW3uvn5Il5z/EcdPUowP+j1DovIhpYLkshTBQcFSp04zrMrdGzt9VrEDdhC4u
-	/OS8jPtLzIIC64gNN8r1/jWRO1QKY7ePcVrH1lXNsJdefWwgMAsp1OkdSnzgxz2A
-	RmeUVsDokIDB0hnA0AhEfhHrMWZiz+A/5xNfbXHXQ2JjFfmAuTexFDG4uSh9GBE4
-	Uj7Hhq2m1Z1Dkp6h7E7qH5ORpxVxb0PHRo1f9A+gQd3r8tvMFo7+/vT88LSzxMd0
-	CYtP3evhGCD5OxWn9UeuQY1sqK6HwmFMAEMNY2/FH5RrzV0e0fIlG8WG6aFtaO5Z
-	vTsYIQ==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eat9r8uvd-1
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt
+	+yvs6LIY=; b=C6MtZNKfcJnz7/ykQSMFD1uVT83PZnjhgHddpsLQ/Wcxjt9Z/+f
+	8pNAbz+pu6YPMXy+JbjjUUncLjKYnept/KK3Gv6CQcBEQfUfbwdAdS4DgNc2wfhu
+	rnNoB+9Qjb1Xhloq7yMne4I7NjQnXB/92KUZFMUU8KZ0ZHlR6KF/w+gBZj/AV9Wl
+	hnuLC/r5aBEX1Cs8Yu18KGhOYM9NtWKG+1PmNLjH/uAaQtHOZdMo+Ran3dv19YIP
+	fwUc26X7vNzRQ6fyJvocoE31HKLi0PRtRxExduOLV8md26VQiogw/QCTpXdHic46
+	3oiKsUNgkgq7s3NxB2jI/4aAQpG0e6T6dwA==
+Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eb1kmmw16-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 22 May 2026 20:09:21 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-910b2b92741so1457358385a.0
-        for <ath11k@lists.infradead.org>; Fri, 22 May 2026 13:09:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779480560; cv=none;
-        d=google.com; s=arc-20240605;
-        b=YSpZYbIBZE+TbAJu6G7UHN/GsE1tWqn11/Aa3eVJeAGdbjkyYejmYWyoP6SKk+fFPn
-         3gFlHFnlGMHMKo5ycfuH/jscS3omxUWI7U7Ui/VNGp3SMl/itl7tRGZtvZKjrHwlVnde
-         wndw4iLy9XrSaomuHRgIZGCd/AZ0hUSMtK7ZMP1uXEOes6/4TTaGdriesO5a4IWFYel6
-         Ta29+aIhSh5NZZavUNmxLa27ZDu6k409MwrN7OKCy8C8st5F0b0zDxZKMiYXqua/SYT7
-         Wr8I/Ja4jP2JYKrWHT04QJ492Yd8GHDe7lEeeUuy9iSlLrh0cuEr3fdVlGiKfiTL0pMT
-         znGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=4mgJ5edVM+mqGwYghHMz4APWCN08GCaqEMyrnNrUOWY=;
-        fh=UwGnGhSf1BZ+spUheujzscEzNo6xbiimGMN94CVxb4Y=;
-        b=XbR1rM6pEoQu9vih73jUiWYIANQofVEOy6lsLQGVnqwYCgs9R0HOyQx0BZ0Ykfg2LG
-         nNnfYSoEfPIDp+uvAqgDZGrZtbS+43RJA4TOOFVXh98hMRPMViMHKDbjr5QuBuld08Wg
-         wXk8Z6MKwwRySBXCfJq3RW7lA8C2ZeFjwAOhscn0qfCxobGutTOpxcyaIzZidFDTbIqp
-         xeXWKHwbFGE2Ggxr/5Mijm8C/uknGnoK+RzJ52vjWypmoOHaznn24s1CMVYmgtoqbjIs
-         0gwulpZfbkwYzJcYpIRrPRnF/lR1KN/upBqYneljhuB33h6WAlqjrCIS4yaEbn77plZM
-         bW2g==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	for <ath11k@lists.infradead.org>; Mon, 25 May 2026 02:07:22 +0000 (GMT)
+Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2fe1cf409a1so14592088eec.1
+        for <ath11k@lists.infradead.org>; Sun, 24 May 2026 19:07:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779480560; x=1780085360; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4mgJ5edVM+mqGwYghHMz4APWCN08GCaqEMyrnNrUOWY=;
-        b=BeG5Rli90S9FvFLxRQdbCuFS26vGYpKXdPW0190Xx9y0fEr2fHKVmwXHXxmj5EpTDN
-         FKMgIIZYhjEx5I/G5eH5tydDkl2o5iFBq3lXkpMVMwi4uUL5Rnyblvc8ohdPlI8TVwIR
-         PXDWOcWYgTAVibxbtzPXZvGYWvfdbK4uQConBlKGXlcxGYYUEVjIUlRu49dalgChU/HO
-         kwSUWBJyK76NIa7a3E8VeoPOY+oKiF25+8AfDBKzvtXqueO5Qur5kR3jUwRLUso2VnX6
-         CB8mpTAbyjo1RFNHL9wvGrv6qpuWl+tSSiATwbmsRiFkV8Qo+I/aZy0pnitemWt7ps7D
-         nXxA==
+        d=oss.qualcomm.com; s=google; t=1779674842; x=1780279642; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt+yvs6LIY=;
+        b=PS+42yP5kjrXX2VtpbxSOwQUc9CJxrbRJFJCK3hribIe+eLoCaDtSPn+vks50NmsTG
+         gJgp/i+bssObOF7zGFntbg6SCqc7/DuUMDDfCE2opbjm28NvAm4CbJUVjgsPfOPEEuNU
+         5qS7bRBJkQu0mJUPP3tfjfU0jZQLn9MBwVo/+poPEdMM92SYJc+r0ehPWkNheGP+W/lf
+         WjKBj8OOK6W+rlvel2nkYYLhCTNXmkush9BvY9Lb+lYsGxfnw7HefBrt5De/KwFks2J1
+         nA8b+kzMw3kZvjhnyEu9pn/8uL+kQkRhf8akGYrai/n52h5Rae1Sik2sY7qWZVlammDM
+         D/yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779480560; x=1780085360;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=4mgJ5edVM+mqGwYghHMz4APWCN08GCaqEMyrnNrUOWY=;
-        b=OcbS4BRyM6DJDZN1sxlUJP4NTmnsK/XL87VHFNTPjYkSByK9dJapbSQBgfPFyaKek4
-         2w99NKMmkUvFf84P7trsllr6QTllp86hVLLEPyswRX7ttwufKP8CChDrdd1/rEicDOTK
-         TsM4rWAcJm8VtDuBYGuatZyPEX/ezBZoU9tj3sbL3nLm270CKUkfbwmtvTzt8jCPX4d/
-         S5OYrXZec7K/EgIRM/DskWOZzv6HyJYfyR5A2chYDnSLIV9EySE9UaMQZt5/94mhKHT9
-         sMxYoRGqSdVCPBIvmZfCwKIqczBgdymybSeMEkIgptKaIg0Wc90NROspjj9soRJjytc9
-         pyJg==
-X-Forwarded-Encrypted: i=1; AFNElJ9cLfQ0Lzb+iStnLN1Ldc1Io6Ixyak76A+ZSGkBcDMjtUAkXaGcEtEKWhXNBIVAaOc3nnnSDtU=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzyQQqxeAeflD/fQ6AfuSHzC6OQyUMqo3i9hPSCT57cr1vbsHDm
-	QmgHW7OxNvwRSvkjhzsw4tuqsGF2TNNmbFF2Ghn2tClUgsy998qJOocZfPTUgveM5szb80aQ1GH
-	9VJwPbb8f+xwKadzjG+v0yOSsjjttYjUDn7QFQQRwjHA3aotUmHsi3BRwtkJOR3qqkcpktDTZAJ
-	ZsbMRZJP8IhN06QP2wfa5IIep89kQ3HBEKM2t+4dY=
-X-Gm-Gg: Acq92OEZFBiNi4UbGlbR/b9j7211RsXm8JkOYaIU0ghebwIJ9AViFO9TMr9nls3Enbt
-	ptfge1b97q3ZsyvpRXDQe4XprB4DHayj7JJZi+C+wCPx8tjHiojLWTy55JUxOorvPuO0VEXBgkO
-	JI9MbxAOSqJPkK0kZFXrupPUpKAdUB6G9vwv36PF0+5Lw8fd8WnMt26+HFFypzCi0QW0MjOXvly
-	mmdELUB8Ric4G589IYJzH1fErQ8bfiVFgBH8HbtZsl909kMAK1Sjho8m8lOXE8ya4Xc
-X-Received: by 2002:a05:620a:28c7:b0:8cd:aa61:ad8f with SMTP id af79cd13be357-914b50cab94mr617029585a.14.1779480560219;
-        Fri, 22 May 2026 13:09:20 -0700 (PDT)
-X-Received: by 2002:a05:620a:28c7:b0:8cd:aa61:ad8f with SMTP id
- af79cd13be357-914b50cab94mr617022585a.14.1779480559708; Fri, 22 May 2026
- 13:09:19 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1779674842; x=1780279642;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MsrGpr+YZgbAu3GU1QdDRHiOVznOzwgFXUt+yvs6LIY=;
+        b=AKgFRs7HhgFaHhqven/kSi0fjBANFAqK3pz8nQr/mPyKqUStXDgmcVGIylEI0zeg+g
+         P7DVcIr1M3aQCNqBVa9GZSyUT3Dy0KZ6CiaJR2X0shq3LP4WfzK0q0QU7DImdhWAO9lz
+         DHBotjF2Qh6jLtNGMttjRGmoEXhVKGflwLLAOrkX2DhyediceCnFmlV3vpWvsbgISbzo
+         yhTPIFRtoUIqBfLMl+hyk9FuTEkRqGEyyZQHXO4MvxD9Wqf4fMJ5g1n8vwsQy4bK6WaH
+         rTjsnC5VVL7xqPMJ3CDwvCADAVofSmiED5kcQ1AsJqVeo0yD2md/uvHYRFWCUMb4qAQq
+         XDtw==
+X-Gm-Message-State: AOJu0YyUX6nPS9LLsi/+SVwenI5vsaP+eI69VUhd3MqA+RIxqozHl+At
+	RzCdz4ZOgoKbEvQs9LPpbTsnIVT2IQNcvIzhgIKwgyJZZ0IlmftC81lRi9HsN2ZJ5FIIUMaHPRR
+	NDgvXRI6g7IvJJFL6E/CxrbwO1Cotz0ucRl0T/nDLAavDzigc/VS3hAeWdZGHntSB
+X-Gm-Gg: Acq92OHFOKTebhw6WbO1ZzrMoha/PaAZ8e8ekNA6fYxUz4e4eBRQBjau0IxuJitq34R
+	qKnGjw5OKAvSSFaDjlbhuvpo2p0iiqsa3rnIGXnfmkbzgZfWcXM+DinIEhqhwQAwjuqRhsUOn90
+	dvJTgU+EyRshg6YL/fYIiwErACVUOzC1kyBgp9bcp3JlapqvZsM1MnW13xXaCgWe5xgliCkN2W/
+	nqOF7/QOd9k/WU0kDIvnXxQ0JIFeMSAMpFRFsb8yyu76Aa7FNyG/dChwz7MWFWRzTQmqH5QAt1F
+	i3GmKmd5Z5VX1QkxJ+USTNLF/j49dK62gs1O1RYx54kQApdmXJLvoVhT0o48pwWnDWhFZ/y/DUM
+	olA4UjBBOWT7QGx8ijX6mN+RBiPvcQakjK6NaJLhxbUrsHIJq9/ox+kjXMmhF5Vu8WLQXsYR1HO
+	zKFQ==
+X-Received: by 2002:a05:7022:2528:b0:12d:ca31:f1b6 with SMTP id a92af1059eb24-1365f814439mr4377465c88.18.1779674841800;
+        Sun, 24 May 2026 19:07:21 -0700 (PDT)
+X-Received: by 2002:a05:7022:2528:b0:12d:ca31:f1b6 with SMTP id a92af1059eb24-1365f814439mr4377453c88.18.1779674841173;
+        Sun, 24 May 2026 19:07:21 -0700 (PDT)
+Received: from san-w175-na3-01.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1366aa88cffsm4839011c88.11.2026.05.24.19.07.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 May 2026 19:07:20 -0700 (PDT)
+From: Wei Zhang <wei.zhang@oss.qualcomm.com>
+To: jeff.johnson@oss.qualcomm.com
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wei.zhang@oss.qualcomm.com
+Subject: [PATCH ath-next] wifi: ath11k: raise max vdevs to 4 on hardware with P2P and dual-station support
+Date: Sun, 24 May 2026 19:07:11 -0700
+Message-ID: <20260525020711.2590815-1-wei.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20260522-mhi_runtimepm-v2-0-fbebf41a82bb@oss.qualcomm.com> <20260522-mhi_runtimepm-v2-3-fbebf41a82bb@oss.qualcomm.com>
-In-Reply-To: <20260522-mhi_runtimepm-v2-3-fbebf41a82bb@oss.qualcomm.com>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Fri, 22 May 2026 22:09:08 +0200
-X-Gm-Features: AVHnY4J-9F8AAJuD_tJW6-iaDPIYDcwXI9s5goDnYZwmGPWaSdjsV19cBJfwNa0
-Message-ID: <CAFEp6-1sdQn11NKom6cfwtJvZX-CnPRpJeVzQ+99Sb4A4L-qaQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] net: mhi_net: Hold runtime PM during active data
- path operations
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-        Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
-        Carl Vanderlip <carl.vanderlip@oss.qualcomm.com>,
-        Oded Gabbay <ogabbay@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
-        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-        Johannes Berg <johannes@sipsolutions.net>, mhi@lists.linux.dev,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, ath12k@lists.infradead.org,
-        netdev@vger.kernel.org, mayank.rana@oss.qualcomm.com,
-        quic_vbadigan@quicinc.com, vivek.pernamitta@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=dt/rzVg4 c=1 sm=1 tr=0 ts=6a10b7f1 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8 a=omgbQWz8Cy1bZfrwG_oA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-ORIG-GUID: hpdxympcQiOkRtMv155heQc69NsKajGp
-X-Proofpoint-GUID: hpdxympcQiOkRtMv155heQc69NsKajGp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIyMDIwMCBTYWx0ZWRfX6CNs1Jt6fC08
- mYf29ElYe06dm7dJvCovfUdPiE8FSo7o8xh2/oJzKkbe1uC3nCBeKUle/f1AlQgufd0EKFx40dL
- pLy/0gEW4oG6Ql2UOQJYLkCSKDlIAZxZOvqG0xRsKTrol5JfJgbGoQZLHAYA8dry9QsOAktOc/j
- eYAo5oxrbQwBgaI/RKq/6Dfw8oU2JXNpH21f6RbOfB0VG18VxnyTPNO1I+ndZRxEq5Y8XyKMp+Z
- HXIbtjKo7J+ONhJ4g+2rLBOun7mHMzLlMyLKe7N08XvPgt4+2Cr1FWqfy7Nqj6DOz9LswVSaqMx
- /Ez7Ndq6Wtfl8YYe7SCqF6yWE4Hwv8VYVUUjD5YmF9fjwZtFGx1UMXdG1K7d/1GH494FrKYuqYB
- J0gx13DWHi07M7R1wkeeLSfYLtXjXdC0Eluoqk0Di8b57RFBJsFOL1TRI2dY7tCA33SeIbcDV+p
- xDmtA6rO3HBkjHEYvDg==
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDAxOCBTYWx0ZWRfX5lS5E/PFn6iI
+ EsQbk1WhxrHhN4pTdeLSyMurpNzx12twpzeeI3UOfjUgnwhQfinGQVe5oiX30/UNGlK61lXjTBd
+ XvJoyCWKZMG47R7ahOhG0wV0s08Bgn0r4xvVy9IzxeH0yVGQGEofzvzfxc/xs8DaIM/w7oWpXRz
+ zvlbuBEcbqcyz44nW9RhZYdwQw4TghGP9+7QubKb9IhK/5BmrEs3b2CpyaIBxZ/n6a7N66/m0Z5
+ pSztUxpqq7d0O06HxdYpx2TzNryKy5XEeh6aKmOOg18RYobkGCV/HIv0sOa0YkiOSac+jKiluWg
+ xgr7nmRkf+hY3SwhkdAu40CEw2RLPFxm2a7xsNjzbJTYZj09sEsUY9eC8dq9xb8BnsLvHB/f8G2
+ HRlxmpHPevhOJRpYH9i1o1NUtGfUsjnjMGBCaxytilAIuFGvtKVhUf5g2SOpZXl1n/WvngtuIw5
+ si5ITgFxzfxVB2qCiFw==
+X-Proofpoint-ORIG-GUID: rcwVAha2oJBrEOq76RO_ntc8gYJ_zOtm
+X-Authority-Analysis: v=2.4 cv=cN3QdFeN c=1 sm=1 tr=0 ts=6a13aeda cx=c_pps
+ a=cFYjgdjTJScbgFmBucgdfQ==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
+ a=6dL03X2lIcQah84ha6YA:9 a=scEy_gLbYbu1JhEsrz4S:22
+X-Proofpoint-GUID: rcwVAha2oJBrEOq76RO_ntc8gYJ_zOtm
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-22_05,2026-05-18_01,2025-10-01_01
+ definitions=2026-05-24_07,2026-05-18_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
- clxscore=1015 phishscore=0 adultscore=0 lowpriorityscore=0 spamscore=0
+ malwarescore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
+ spamscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605220200
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605250018
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260522_130922_399353_51F71EF3 
-X-CRM114-Status: GOOD (  26.89  )
+X-CRM114-CacheID: sfid-20260524_190724_963237_6C6CC793 
+X-CRM114-Status: GOOD (  12.61  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -172,166 +136,82 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Krishna,
+When P2P support is enabled, wpa_supplicant creates a p2p-device
+interface by default, which implicitly consumes one vdev. On systems
+managed by NetworkManager, this interface cannot be reliably disabled,
+leaving only two usable interfaces for user configurations.
 
-On Fri, May 22, 2026 at 12:01=E2=80=AFPM Krishna Chaitanya Chundru
-<krishna.chundru@oss.qualcomm.com> wrote:
->
-> The mhi_net driver does not coordinate with runtime PM, which allows the
-> underlying MHI controller to be runtime-suspended while transmit, receive=
-,
-> or RX buffer refill operations are in progress. This can lead to stalled
-> transfers or failed queueing once runtime PM is enabled in the MHI core.
->
-> Add runtime PM reference counting to the mhi_net data path to keep the
-> controller active for the duration of TX, RX, and buffer management
-> operations. Enable runtime PM during probe and take/release references
-> explicitly around these critical paths.
->
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.co=
-m>
-> ---
->  drivers/net/mhi_net.c | 39 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
->
-> diff --git a/drivers/net/mhi_net.c b/drivers/net/mhi_net.c
-> index ae169929a9d8..5d7f9ccdb17b 100644
-> --- a/drivers/net/mhi_net.c
-> +++ b/drivers/net/mhi_net.c
-> @@ -9,6 +9,7 @@
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
->  #include <linux/netdevice.h>
-> +#include <linux/pm_runtime.h>
->  #include <linux/skbuff.h>
->  #include <linux/u64_stats_sync.h>
->
-> @@ -76,11 +77,19 @@ static netdev_tx_t mhi_ndo_xmit(struct sk_buff *skb, =
-struct net_device *ndev)
->         struct mhi_device *mdev =3D mhi_netdev->mdev;
->         int err;
->
-> +       err =3D pm_runtime_get(&mdev->dev);
-> +       if (err < 0 && err !=3D -EINPROGRESS) {
-> +               dev_err(&mdev->dev, "pm_runtime_get failed %d\n", err);
-> +               pm_runtime_put_noidle(&mdev->dev);
-> +               goto exit_drop;
-> +       }
-> +
+Increase num_vdevs to four for QCA6390 hw2.0, WCN6855 hw2.0/hw2.1,
+QCA2066 hw2.1, and QCA6698AQ hw2.1 to account for the implicit
+p2p-device and enable common concurrency scenarios such as AP + AP + STA.
 
-I am wondering what the value is in pushing this PM responsibility to
-each individual MHI client driver and requiring every MHI operation to
-be bracketed with runtime PM handling.
+This change increases interface concurrency in the two-channel scenario
+by raising the maximum vdev limit, while keeping other combination rules
+unchanged.
 
-What does the client driver know here that the MHI core itself cannot
-handle centrally? It feels like ensuring the controller is
-runtime-active during transfer could be handled generically in the
-framework instead of duplicating the same logic in every client.
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
+Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+Tested-on: QCA2066 hw2.1 PCI WLAN.HSP.1.1-03926.13-QCAHSPSWPL_V2_SILICONZ_CE-2.52297.9
+Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
 
->         err =3D mhi_queue_skb(mdev, DMA_TO_DEVICE, skb, skb->len, MHI_EOT=
-);
->         if (unlikely(err)) {
->                 net_err_ratelimited("%s: Failed to queue TX buf (%d)\n",
->                                     ndev->name, err);
->                 dev_kfree_skb_any(skb);
-> +               pm_runtime_put(&mdev->dev);
->                 goto exit_drop;
->         }
->
-> @@ -251,6 +260,7 @@ static void mhi_net_ul_callback(struct mhi_device *mh=
-i_dev,
->                 /* MHI layer stopping/resetting the UL channel */
->                 if (mhi_res->transaction_status =3D=3D -ENOTCONN) {
->                         u64_stats_update_end(&mhi_netdev->stats.tx_syncp)=
-;
-> +                       pm_runtime_put(&mdev->dev);
->                         return;
->                 }
->
-> @@ -261,6 +271,7 @@ static void mhi_net_ul_callback(struct mhi_device *mh=
-i_dev,
->         }
->         u64_stats_update_end(&mhi_netdev->stats.tx_syncp);
->
-> +       pm_runtime_put(&mdev->dev);
->         if (netif_queue_stopped(ndev) && !mhi_queue_is_full(mdev, DMA_TO_=
-DEVICE))
->                 netif_wake_queue(ndev);
->  }
-> @@ -277,6 +288,12 @@ static void mhi_net_rx_refill_work(struct work_struc=
-t *work)
->
->         size =3D mhi_netdev->mru ? mhi_netdev->mru : READ_ONCE(ndev->mtu)=
-;
->
-> +       err =3D pm_runtime_resume_and_get(&mdev->dev);
-> +       if (err) {
-> +               dev_err(&mdev->dev, "pm_runtime_resume_and_get failed %d\=
-n", err);
-> +               return;
-> +       }
-> +
->         while (!mhi_queue_is_full(mdev, DMA_FROM_DEVICE)) {
->                 skb =3D netdev_alloc_skb(ndev, size);
->                 if (unlikely(!skb))
-> @@ -296,6 +313,7 @@ static void mhi_net_rx_refill_work(struct work_struct=
- *work)
->                 cond_resched();
->         }
->
-> +       pm_runtime_put(&mdev->dev);
->         /* If we're still starved of rx buffers, reschedule later */
->         if (mhi_get_free_desc_count(mdev, DMA_FROM_DEVICE) =3D=3D mhi_net=
-dev->rx_queue_sz)
->                 schedule_delayed_work(&mhi_netdev->rx_refill, HZ / 2);
-> @@ -362,20 +380,41 @@ static int mhi_net_probe(struct mhi_device *mhi_dev=
-,
->
->         SET_NETDEV_DEV(ndev, &mhi_dev->dev);
->
-> +       pm_runtime_no_callbacks(&mhi_dev->dev);
-> +       err =3D devm_pm_runtime_set_active_enabled(&mhi_dev->dev);
-> +       if (err)
-> +               return err;
-> +
-> +       err =3D pm_runtime_resume_and_get(&mhi_dev->dev);
-> +       if (err) {
-> +               dev_err(&mhi_dev->dev, "pm_runtime_resume_and_get failed =
-%d\n", err);
-> +               return err;
-> +       }
-> +
->         err =3D mhi_net_newlink(mhi_dev, ndev);
->         if (err) {
->                 free_netdev(ndev);
-> +               pm_runtime_put(&mhi_dev->dev);
->                 return err;
->         }
->
-> +       pm_runtime_put(&mhi_dev->dev);
->         return 0;
->  }
->
->  static void mhi_net_remove(struct mhi_device *mhi_dev)
->  {
->         struct mhi_net_dev *mhi_netdev =3D dev_get_drvdata(&mhi_dev->dev)=
-;
-> +       int err;
-> +
-> +       err =3D pm_runtime_resume_and_get(&mhi_dev->dev);
-> +       if (err)
-> +               dev_err(&mhi_dev->dev, "pm_runtime_resume_and_get failed =
-%d\n", err);
->
->         mhi_net_dellink(mhi_dev, mhi_netdev->ndev);
-> +
-> +       if (!err)
-> +               pm_runtime_put(&mhi_dev->dev);
->  }
->
->  static const struct mhi_device_info mhi_hwip0 =3D {
->
-> --
-> 2.34.1
->
+Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 3f6f4db5b7ee..8dacc878c006 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -267,7 +267,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+-		.num_vdevs = 2 + 1,
++		.num_vdevs = 4,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+@@ -445,7 +445,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+-		.num_vdevs = 2 + 1,
++		.num_vdevs = 4,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+@@ -535,7 +535,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+-		.num_vdevs = 2 + 1,
++		.num_vdevs = 4,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+@@ -797,7 +797,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+-		.num_vdevs = 2 + 1,
++		.num_vdevs = 4,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+@@ -886,7 +886,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.coldboot_cal_ftm = false,
+ 		.cbcal_restart_fw = false,
+ 		.fw_mem_mode = 0,
+-		.num_vdevs = 2 + 1,
++		.num_vdevs = 4,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+
+base-commit: 2e9422a6a2d8bf4036287c2fd3b034392af64048
+-- 
+2.34.1
+
 
