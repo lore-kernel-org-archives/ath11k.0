@@ -4,128 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23DFECD6E57
-	for <ath11k@archiver.kernel.org>; Tue,  2 Jun 2026 14:28:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8964CD6E69
+	for <ath11k@archiver.kernel.org>; Tue,  2 Jun 2026 16:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:From:Subject:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=O50jApDYHIgJb/YLiCc0daKUWGbnLsbEGopktQ8wurA=; b=KVYpi/Uve85bjLO+J2tEBebZ4D
-	Fe+fVI+TO18P5mZ6zR7ZU6ex0KQdqXZ1UgaeLWnSbQOHkShAPGUJcxAszMR82A9pOJaW7UUk2IobT
-	N+hOMmF9QO/C2ZL36ZPzz2ImWvGCJ+wXdr4FRzgQf7BWJrgnTt0yTFxKOQqz8WusyTMqIugvSihAX
-	HzUQCRs3N4nnLshJRR+2+skoH1BR3MB2vSiklegywHaLhKnIkXkhyfh1F6BlxSDH+jdy8KVAWliiH
-	x5nzP73jKwK15OM0AxMOoHtJf/8RdyjZO+G51XLoYRFhsyYnMSwz7zkv4vJYBgDsuJmyQF5oHr66O
-	2QZdhdAA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=eyRgo6cWRybOXcu017cXhnx+oRpZ7UUflqvwC+P4eZI=; b=lQRhEmlAeqxUHQR5HB5bPeDWOU
+	dlDNDza6AJK9W0iHQbKVfwm+WbPinz6u9ZIZkbN9GHSJ6BtPziNCIF9uOVLTvXJVOvzGapO2zBwts
+	xtrWlOEABy9SHqSZSxJgk2gi2fz35B0h5AYcIyZ6GCOuWHZYJH7+ZB4ygCbOOsH+lkfBUoDmkBj9B
+	HvTMzNBhcwsOpQutgf+C0e/9qfNYVYs068qPZjpJHD88+94wygL3vKYsXuA+T4WOB0Gf8VjIoteOa
+	KkGQpZ8Xc9lx9T3aZr3cqO7115aTSetvdg5G4Kmm7lE2n4C2RSBdp8p39AeRgw+ugUlGXdwaKqPkS
+	QJ5lfqFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUQ62-0000000DBKM-2FIN;
-	Tue, 02 Jun 2026 14:27:58 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wURXu-0000000DO52-3YMh;
+	Tue, 02 Jun 2026 16:00:50 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUQ5z-0000000DBJQ-3Z6B
+	id 1wURXs-0000000DO3o-1EVY
 	for ath11k@lists.infradead.org;
-	Tue, 02 Jun 2026 14:27:57 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 652AKD682691969
-	for <ath11k@lists.infradead.org>; Tue, 2 Jun 2026 14:27:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=O50jApDYHIgJb/YLiCc0da
-	KUWGbnLsbEGopktQ8wurA=; b=BSZKg4doFi6Yc7w23PyEnxn/ermC+HXymQi7Gx
-	MTU84Gmil9/HLIKmzjmEahYtYwns6qU+JfYWVddLJIGejMzJMGl2TRTAGo1t5C/9
-	ARFk7VZljBobBnQG2/hebyoAoWfqsLjmD9bzxhJAZyBQ+q0sRz2OQQd/RxgWNwRd
-	n84sqh+fDfOjml3+8tPdiUmRN7TzBw+j20fBbh3zPRup0CoYCDhDngQFnTmzn2Sx
-	bsXxviE5PaMbGAsvWkjuTQQajnvsyUW0NzWTlrR8rALOokUoRrv3mxg4Q4LM1ntX
-	i98okuppxifQNnDcQXYI3leyR4weTvds3fVh6D2EsSqp+aoQ==
-Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ehqumjc16-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 02 Jun 2026 14:27:54 +0000 (GMT)
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-304ec73b015so6341106eec.1
-        for <ath11k@lists.infradead.org>; Tue, 02 Jun 2026 07:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780410474; x=1781015274; darn=lists.infradead.org;
-        h=content-transfer-encoding:from:content-language:subject:cc:to
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O50jApDYHIgJb/YLiCc0daKUWGbnLsbEGopktQ8wurA=;
-        b=TXLtmMF38foMbPY3syMZL2SJpSWQtNXKOP3vsH8bEeFxWEDGJ7ofLksm8nWVki54v2
-         KsCPeeTeS6aQ0JxFvW8NuP2xxXLv07/yzsj3FbwT59RTwTQ/8ZUyifSuuH/JAvyN08CY
-         iSYABXvFZmYBe0hEev0+EQSrdxdY+cAFeF/gHe0jLFL9Ja7eYnTWLbWt4RnLJE61D4Pz
-         34I9V5lgkdPxSon/JIpbpWi7fLvo6lSvA72/pfPbO0t4lL2NpZ+3b5EnwALKLDQ4538T
-         bq4DE+kmEMFeEaFXMgHzf7FOjbCRV+vsWDUELDfdLR/PZbobdJIhjJ5eh3SWBsxpImgS
-         O99w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780410474; x=1781015274;
-        h=content-transfer-encoding:from:content-language:subject:cc:to
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O50jApDYHIgJb/YLiCc0daKUWGbnLsbEGopktQ8wurA=;
-        b=lmDIT2ERbJ5Y+mHCfhPoDfMz4ymYn3ZnT8skg6dQKbiUQfHvlea1wQYknwTXKAIYCa
-         Ob/wGchx1zxdu8d/8QgqkqOUdKzOLHx0StnZEDymW01M2fpoQmvIXem/dFkWVha5lKLl
-         Ss+/kBcz9oxcS2MHWcUUwIi3Y5opcN5Gabm8eH4zwH4XpJBbKgGXldif3Fb0Swy0EhJf
-         H0j1Pj9tiR6zDh+5COXbgOJyzAzlDqh8+QRr38MrDqDb5uoYNjoR+5cxkagLdsU4jWo+
-         e9SbONps9+8Iy1onaUFRyvZbMLhP/cbB7ss5OmnqYKjm50+oQpPVd5QgUGAelPddyR7v
-         Ngsw==
-X-Forwarded-Encrypted: i=1; AFNElJ94sbb2sUbqpRJ5syQcWHmj2khuzx4oaR7BSB7kQJ1rY7h118Bu09RiakrbWvR26GLFnryU7N4=@lists.infradead.org
-X-Gm-Message-State: AOJu0YybeBkO68v+01bd4cFHJqnGskUe8RcjYZGRIlbQxTZwZtUuiMPI
-	pq2oq7yX5Bw2uTw3ETKM7U6UhLavsN/3pX1R2bljTtFVkHZgEupilvKkNZE5QOWLXFwF46F1kw+
-	3MBbA5GsAAAOWh35cVN3vqduy89h2EohwiUbCZPmZNRU3On/LLP1L2ccKQVp99apv
-X-Gm-Gg: Acq92OEm20BwY2UgJJru75IjUaJZ34aeCV4TMmFDdpYhdMAcwC5M+XzpfAhuGrtYxHH
-	mUp9L4heIj9fm2EbSzNfkmUGp3Y0KglqgaK47C7tV25mvN4fMWWNENEvlAy6eqUs2Z9zC0PWI9J
-	XQxUj8roujfNGxFWWpjU9ey5TE/dY6iM2/fLWFKyhp1k9pJT9HSPhrX6zDkTcOaRexCPxTJiOsI
-	o19WDla/ySypY49swQuOGP+ESmrCq0xHq0IsUNjwVtcFi00EFHBL7L5TO/UALwDGrCXs+xIB8nA
-	tbYpCAqvT0x/2Eg7kW3TAgkIuRlp1CB0F9CJBFanlfuJrVot3uqrhwJIll9x5rO16UqctucSKcr
-	6MLQhfdhTxzjFSkaYdxddSi2N/ey5NyPLh+AcOEz8i1nLj2YNerrDZJdBYKMej8tTXat6
-X-Received: by 2002:a05:7300:5714:b0:304:1fb6:88fd with SMTP id 5a478bee46e88-304fa693196mr8120235eec.29.1780410474016;
-        Tue, 02 Jun 2026 07:27:54 -0700 (PDT)
-X-Received: by 2002:a05:7300:5714:b0:304:1fb6:88fd with SMTP id 5a478bee46e88-304fa693196mr8120214eec.29.1780410473495;
-        Tue, 02 Jun 2026 07:27:53 -0700 (PDT)
-Received: from [10.81.91.45] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-304ed53d06asm12573698eec.14.2026.06.02.07.27.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jun 2026 07:27:53 -0700 (PDT)
-Message-ID: <10edc8a3-4d0d-482b-9ea0-30d827f67b2e@oss.qualcomm.com>
-Date: Tue, 2 Jun 2026 07:27:52 -0700
+	Tue, 02 Jun 2026 16:00:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1780416047;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=eyRgo6cWRybOXcu017cXhnx+oRpZ7UUflqvwC+P4eZI=;
+	b=DVhi/VFAOYbExpiSCRZR9R67be7VenRYZcl4oevMDbJHPhW4V2+Fh27Qr1STc6pyqP+c23
+	KQUaT6OAUZjaB30hdaYy+C8rVGoZAcAGlrXv9UTw2jf3uWUhI+ljL90xtNl3McCBx9Z8lM
+	jCobwAyJkc17mdC6Tge2vvTsLW4YGZU=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-332-Tf_-ziY3OM2czz4vjWM-hQ-1; Tue,
+ 02 Jun 2026 12:00:43 -0400
+X-MC-Unique: Tf_-ziY3OM2czz4vjWM-hQ-1
+X-Mimecast-MFC-AGG-ID: Tf_-ziY3OM2czz4vjWM-hQ_1780416042
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 925EA1800617;
+	Tue,  2 Jun 2026 16:00:41 +0000 (UTC)
+Received: from fedora.redhat.com (unknown [10.44.48.109])
+	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 10D421956095;
+	Tue,  2 Jun 2026 16:00:37 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: bhelgaas@google.com,
+	alex@shazbot.org
+Cc: jjohnson@kernel.org,
+	mani@kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	mhi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+Subject: [PATCH v6 1/3] PCI: Add d3cold as general reset method
+Date: Tue,  2 Jun 2026 18:00:22 +0200
+Message-ID: <20260602160024.1171949-2-jtornosm@redhat.com>
+In-Reply-To: <20260602160024.1171949-1-jtornosm@redhat.com>
+References: <20260602160024.1171949-1-jtornosm@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: linux-wireless@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>
-Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-        ath12k@lists.infradead.org, jjohnson@kernel.org
-Subject: pull-request: ath-next-20260602
-Content-Language: en-US
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjAyMDEzOSBTYWx0ZWRfXwwNUkN05hgYY
- SnZn7yfo0xDpJDHfsfyf5DwoJj2pzOMs5b/0e+wNeLbxiWu+x1hoy9O36Dab7+9SFP8ThOilwgm
- 1Gw+njZFM//abUd8nAQRFXPMpCvdrsd7hAmwe0tizllZw+WtKsnecYGnk7gjuLp7aHYmZwsQXaA
- XXeCmYr/fWCiYNjHOsxhuha+Fj/+Azu5wh+bzers8TA2T9AXeiy+BxTGzM2lDGAsSvMFsFEnEAt
- rjK/Vi2PnQY4LEgDN61C3hTQG97xihwCeGUSs1/8lE+oaJGcr9qfPRAfFxZL5MRy4EEtaVd7HRp
- mdVSTnbyfNEjQ4fCHinU+4pFqE6si6oWu1ktud+mFST2Ghe0Xd011W9nR2N+yDiZqiz8lr5/Wec
- 1ZQhYhKwcPKEz02RCxU2a5yqmR7XxqQO/JYKEBb8YWi+IXtfgn01UqQ3Nf47YOG/blC2DOEEn1v
- S7ke+PV52L3OoIA4scQ==
-X-Proofpoint-ORIG-GUID: P7FVaJ_Gu7_MaWA7C1MWELhNob-I-LPU
-X-Proofpoint-GUID: P7FVaJ_Gu7_MaWA7C1MWELhNob-I-LPU
-X-Authority-Analysis: v=2.4 cv=Rrv16imK c=1 sm=1 tr=0 ts=6a1ee86a cx=c_pps
- a=cFYjgdjTJScbgFmBucgdfQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=VwQbUJbxAAAA:8 a=lSH6NSywkKVUnX8X2cAA:9 a=QEXdDO2ut3YA:10
- a=scEy_gLbYbu1JhEsrz4S:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-02_02,2026-05-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
- suspectscore=0 impostorscore=0 phishscore=0 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606020139
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+X-Mimecast-MFC-PROC-ID: KFzJkW8aZelCtXz647cG2nLGky-diLgl3qIy8yuT2Lg_1780416042
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260602_072755_961746_3DEAE067 
-X-CRM114-Status: GOOD (  10.54  )
+X-CRM114-CacheID: sfid-20260602_090048_434699_D58A83C1 
+X-CRM114-Status: GOOD (  16.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,85 +93,124 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The following changes since commit e7d6bd24e883bf7c328d73c99bf6bcde19bf5e61:
+Add D3cold power cycle as a general PCI reset method for single-function
+devices on platforms with ACPI _PR3 power resources. This provides true
+power cycle reset capability when the platform can physically cut power
+to the device.
 
-  Merge tag 'wireless-next-2026-05-28' of https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next (2026-05-28 17:05:23 -0700)
+The implementation strictly requires _PR3 to be present - the platform
+must be able to control device power. This ensures d3cold only attempts
+true power cycling, not falling back to D3hot transitions.
 
-are available in the Git repository at:
+D3cold reset is placed at the end of the reset hierarchy since it requires
+specific platform support and should be tried after standard methods.
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git tags/ath-next-20260602
+Reset hierarchy with this change:
+1. device_specific
+2. acpi
+3. flr
+4. af_flr
+5. pm (D3hot via config space, checks NoSoftRst)
+6. bus (SBR)
+7. cxl_bus
+8. d3cold (NEW - true power cycle, requires _PR3)
 
-for you to fetch changes up to 565257a857690244211d85593b2cd490ce86783a:
+This benefits:
+- Platforms with _PR3 support
+- Single-function devices needing true power cycle
+- VFIO passthrough scenarios where FLR/PM unavailable
 
-  wifi: ath12k: Handle 4-address EAPOL frames from WBM error path (2026-06-01 09:58:06 -0700)
+Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+---
+v6: code unchanged from v5
+v5: https://lore.kernel.org/all/20260521130512.515125-2-jtornosm@redhat.com/
 
-----------------------------------------------------------------
-ath.git patches for v7.2 (PR #3)
+ drivers/pci/pci.c   | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/pci.h |  2 +-
+ 2 files changed, 51 insertions(+), 1 deletion(-)
 
-In ath12k, add driver support for WDS mode.
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index 8f7cfcc00090..096868f80cd4 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -4491,6 +4491,55 @@ static int pci_pm_reset(struct pci_dev *dev, bool probe)
+ 	return ret;
+ }
+ 
++/**
++ * pci_d3cold_reset - Put device into D3cold and back to D0 for reset
++ * @dev: PCI device to reset
++ * @probe: if true, check if D3cold reset is supported; if false, perform reset
++ *
++ * Reset the device by transitioning through D3cold (actual power removal via
++ * platform power control) and back to D0. This requires ACPI _PR3 power
++ * resources to be present - the platform must be able to physically cut power
++ * to the device.
++ *
++ * Only available for single-function devices to avoid affecting other
++ * functions in multi-function devices.
++ *
++ * Returns 0 if device can be/was reset this way, -ENOTTY if not supported,
++ * or other negative error code on failure.
++ */
++static int pci_d3cold_reset(struct pci_dev *dev, bool probe)
++{
++	int ret;
++
++	if (dev->multifunction)
++		return -ENOTTY;
++
++	if (!pci_pr3_present(dev))
++		return -ENOTTY;
++
++	if (probe)
++		return 0;
++
++	if (dev->current_state != PCI_D0)
++		return -EINVAL;
++
++	ret = pci_dev_reset_iommu_prepare(dev);
++	if (ret) {
++		pci_err(dev, "failed to stop IOMMU for a PCI reset: %d\n", ret);
++		return ret;
++	}
++
++	ret = pci_set_power_state(dev, PCI_D3cold);
++	if (ret)
++		goto done;
++
++	ret = pci_set_power_state(dev, PCI_D0);
++
++done:
++	pci_dev_reset_iommu_done(dev);
++	return ret;
++}
++
+ /**
+  * pcie_wait_for_link_status - Wait for link status change
+  * @pdev: Device whose link to wait for.
+@@ -5065,6 +5114,7 @@ const struct pci_reset_fn_method pci_reset_fn_methods[] = {
+ 	{ pci_pm_reset, .name = "pm" },
+ 	{ pci_reset_bus_function, .name = "bus" },
+ 	{ cxl_reset_bus_function, .name = "cxl_bus" },
++	{ pci_d3cold_reset, .name = "d3cold" },
+ };
+ 
+ /**
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index 2c4454583c11..1ca7b880ead7 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -51,7 +51,7 @@
+ 			       PCI_STATUS_PARITY)
+ 
+ /* Number of reset methods used in pci_reset_fn_methods array in pci.c */
+-#define PCI_NUM_RESET_METHODS 8
++#define PCI_NUM_RESET_METHODS 9
+ 
+ #define PCI_RESET_PROBE		true
+ #define PCI_RESET_DO_RESET	false
+-- 
+2.54.0
 
-In ath11k and ath12k, a number of cleanups and minor bug fixes.
-
-----------------------------------------------------------------
-Aaradhana Sahu (1):
-      wifi: ath12k: add hardware parameters for maximum supported clients
-
-Aditya Kumar Singh (1):
-      wifi: ath12k: Prevent incorrect vif chanctx switch when handling multi-radio contexts
-
-Hangtian Zhu (1):
-      wifi: ath12k: allow peer_id 0 in dp peer lookup
-
-Kwan Lai Chee Hou (1):
-      wifi: ath12k: fix incorrect HT/VHT/HE/EHT MCS reporting in monitor mode
-
-Miaoqing Pan (3):
-      wifi: ath11k: fix invalid data access in ath11k_dp_rx_h_undecap_nwifi
-      wifi: ath11k: add MSDU length validation for TKIP MIC error
-      wifi: ath12k: fix memory leak in ath12k_wifi7_dp_rx_h_verify_tkip_mic()
-
-Rosen Penev (1):
-      wifi: ath11k: use kzalloc_flex for struct scan_req_params
-
-Tamizh Chelvam Raja (6):
-      wifi: ath12k: Set WDS vdev parameter for 4-address station interface
-      wifi: ath12k: Add support for 4-address mode
-      wifi: ath12k: Add 4-address mode support for eth offload
-      wifi: ath12k: Add support for 4-address NULL frame handling
-      wifi: ath12k: Add support for 4-address frame notification
-      wifi: ath12k: Handle 4-address EAPOL frames from WBM error path
-
-Wei Zhang (3):
-      wifi: ath11k: raise max vdevs to 4 on hardware with P2P and dual-station support
-      wifi: ath12k: fix inconsistent arvif state in vdev_create error paths
-      wifi: ath12k: fix NULL deref in change_sta_links for unready link
-
- drivers/net/wireless/ath/ath11k/core.c             |  10 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c            |  59 +++++-
- drivers/net/wireless/ath/ath11k/mac.c              |  72 +++----
- drivers/net/wireless/ath/ath11k/wmi.h              |   2 +-
- drivers/net/wireless/ath/ath12k/core.h             |   9 +
- drivers/net/wireless/ath/ath12k/dp_mon.c           |   6 +-
- drivers/net/wireless/ath/ath12k/dp_peer.c          |   2 +-
- drivers/net/wireless/ath/ath12k/dp_peer.h          |   2 +
- drivers/net/wireless/ath/ath12k/dp_rx.c            |  13 +-
- drivers/net/wireless/ath/ath12k/dp_rx.h            |   3 +-
- drivers/net/wireless/ath/ath12k/hal.h              |   4 +-
- drivers/net/wireless/ath/ath12k/hw.h               |  25 ++-
- drivers/net/wireless/ath/ath12k/mac.c              | 228 ++++++++++++++++++---
- drivers/net/wireless/ath/ath12k/mac.h              |   3 +
- drivers/net/wireless/ath/ath12k/peer.c             |  11 +-
- drivers/net/wireless/ath/ath12k/wifi7/dp_mon.c     |   3 +-
- drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c      |  95 ++++++++-
- drivers/net/wireless/ath/ath12k/wifi7/dp_tx.c      |  41 +++-
- drivers/net/wireless/ath/ath12k/wifi7/dp_tx.h      |   4 +-
- .../net/wireless/ath/ath12k/wifi7/hal_qcc2072.c    |  16 ++
- .../net/wireless/ath/ath12k/wifi7/hal_qcn9274.c    |  16 ++
- drivers/net/wireless/ath/ath12k/wifi7/hal_tx.c     |   4 +-
- drivers/net/wireless/ath/ath12k/wifi7/hal_tx.h     |   1 +
- .../net/wireless/ath/ath12k/wifi7/hal_wcn7850.c    |  16 ++
- drivers/net/wireless/ath/ath12k/wifi7/hw.c         |  48 ++++-
- drivers/net/wireless/ath/ath12k/wmi.c              |  47 ++++-
- drivers/net/wireless/ath/ath12k/wmi.h              |  17 ++
- 27 files changed, 642 insertions(+), 115 deletions(-)
 
