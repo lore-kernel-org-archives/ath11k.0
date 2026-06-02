@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D288CD6E4A
-	for <ath11k@archiver.kernel.org>; Tue,  2 Jun 2026 07:59:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 414EECD6E4A
+	for <ath11k@archiver.kernel.org>; Tue,  2 Jun 2026 08:00:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
 	Message-ID:Date:References:MIME-Version:In-Reply-To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=G/HpCIqlG2HxGomUFcoIVzuyzpu9MWocyL926EjXgmk=; b=18pJl8WvjfONDKPpVomjPgY9w9
-	WV0QbSnzL+r6tQy6GeujQyXxvqtMAkAzKLUVnKNyNVrTgMYfCDp+ue6Nj9IVnExmXeivrtI8k8ooK
-	ahJ0xOENnlRgWJWKjgKtlxmbPCUpsZgcZzs0ep9sKFbFFHP7YiXqXhnHeYx6WHfA48/qAqfpeK88J
-	4OqksjOIWyTIikIfcJR+Ucc1A3jifB8GQIgD25DGjkEZdthhPlVi4iDNIDBiQI9pjLxO7XgXFwjyc
-	wAaQLbaIUuxrfMag4iW+GztI66LQyc9y6pycRH84iRd74VNaNrVQ2o1UYwIkuiW5CpPoX/2tWuWHi
-	YrusZqVw==;
+	bh=YcHbUW0/z6MxMlX2QsScaV0gwWaW5ODpoWMz4NoUgZw=; b=jH9csYr0uZcJQITh1CznPdM6rg
+	Yq/e+mh/rYjB/cVsvKYdQP5JT4QiFtdI/BE9OKxCQK47Ui00bRcC7ZMp5KueX6UmnU43DPJ//549n
+	8TSR6h7nyoPssLXJt1HvTtjzbtmvrj+PvmzVAWE8EPJcswClktwCFqiTYOdxxWO4NU6P5MGLgvzO5
+	s+aSwmT9ulq3Vnmpi6GsJiWRqiQnfgp2NRi/r9vLxriENzTzZzj+AICnowjDBaDTfWTP5irmQ4/tx
+	LwRby+If62Glf6XP6hO2jR8mLSp3SvPjxRJoTjL+b1Ontsgq2/hUFwZhYo4O3zZtOENnr4X9hkFac
+	eVKlZBRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUK1w-0000000CWQ6-1Kf4;
-	Tue, 02 Jun 2026 07:59:20 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wUK2v-0000000CWZb-2wHx;
+	Tue, 02 Jun 2026 08:00:21 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUK1s-0000000CWPK-0ZtW
+	id 1wUK2t-0000000CWZD-2cnm
 	for ath11k@lists.infradead.org;
-	Tue, 02 Jun 2026 07:59:19 +0000
+	Tue, 02 Jun 2026 08:00:20 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C65824090A
-	for <ath11k@lists.infradead.org>; Tue,  2 Jun 2026 07:59:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9A7E1F00899
-	for <ath11k@lists.infradead.org>; Tue,  2 Jun 2026 07:59:15 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 02D0F445B0
+	for <ath11k@lists.infradead.org>; Tue,  2 Jun 2026 08:00:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2DCF1F00A03
+	for <ath11k@lists.infradead.org>; Tue,  2 Jun 2026 08:00:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780387155;
-	bh=G/HpCIqlG2HxGomUFcoIVzuyzpu9MWocyL926EjXgmk=;
+	s=k20260515; t=1780387218;
+	bh=YcHbUW0/z6MxMlX2QsScaV0gwWaW5ODpoWMz4NoUgZw=;
 	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=VU56cKixBIDeC2J/S3kuGNTkdWzTND796sQiRbvRjPsWIIxdR5AQTls/gapJ2Kpz4
-	 CP7v+v/I6a+Hb66HaYbyE4LUTpx3UPrkYmtHQy/d4PAVJyNxz4nPgaPzgBiYcthFNI
-	 D3hPSHH+PDZXPAofn1wbxBiY1Cn0Hq25kS8/spmGAMHUaxlXt9EZNLrS2LwTdzogUp
-	 TtOT1oTZXVGf6vLEJC7NzyJYEapDmkadUxV1BscXVTw6VZJJht4ikMmgLXDm1sLN9d
-	 HIpFP9J+wzk58cp+Z7ZDpVcbtBflzOZZBVQaiXNTs7//x5FCI9dSkIyMRegbC41DdW
-	 zdd8ZwBNJtLJA==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-39676ff4674so22842261fa.0
-        for <ath11k@lists.infradead.org>; Tue, 02 Jun 2026 00:59:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9u4Ah3WkNCivOmJasyvrtrVL3+AlwcRbO5LvbOKlxkspPSU/JpKNWldOVnEluD50V+OK/+Smk=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxt4fyL/V+qrlitR4+QumZI93/rwIbSVF/NqacuiJRCfHt/Lndg
-	SgKKcYwBIi16/wMMwEETS1TJry7Jl0p9wXxFJnzdLQor57myuk27gnps0yIdNLxTKx2Y2R57doI
-	DJ5fpikSy97kMVlOgvWH6OQxisZ4wBfH2lG94CTCbTw==
-X-Received: by 2002:a2e:bea6:0:b0:396:9897:4cc5 with SMTP id
- 38308e7fff4ca-3969a852edamr10861651fa.5.1780387154481; Tue, 02 Jun 2026
- 00:59:14 -0700 (PDT)
+	b=KzNDbDXUP0/GMeHK0OA58vp1P+iuRNQD3rXvWS3Jv2YLR3nFB6b/Fsx3qmeJ9uDtY
+	 ST49GW2bUSnc6WwFndPZPApLCXbsnR06mrP4zB8k9T249WuHHDIXZRQiHvHqBOkV2c
+	 5jaQVnUAyYkqjMmE2dY9YINfcGHjlYu8PtkJHoYBAaSvW+1FTUn0ScSt2Ato0gHTc6
+	 rm7b5UIX8yQAUqd24jQ8X7TVgQKKjYa1zo+yjfKih3vuOduO5hmqKKLibfOyOFsTX2
+	 hQOWS5oS67SUnmx0GLc6u8uoqOBQ4p2/bY9LxIpEsAvtSXRpyUcjmKkNX1FGrOd1CQ
+	 qceuqgMB41GDA==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3966c0d5ac9so27889171fa.2
+        for <ath11k@lists.infradead.org>; Tue, 02 Jun 2026 01:00:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+j2lU531OzQ81BTwKK+ZOmb2rJKgI3vRaUMcTeJWqN999vrYHLyC2B5DdqU3pEjWae9/UEgEo=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzoLBVwBdY+YUxaUpg9mq1Vok242aUTQ+80a9ogkO1S9H4s7rlN
+	dCe5JODzYm9zwUBUXsj4dLgk303AvZExsu4VX9YspFCEvzHoMZEsx2U6rzyowfYpmSUndxKdSYk
+	kVHsoYHJBN+Qp1s4enILMvgkW+55K2SLfXuuSchW6Dg==
+X-Received: by 2002:a2e:8614:0:b0:396:9630:5ed with SMTP id
+ 38308e7fff4ca-3969a81a943mr7988131fa.15.1780387217586; Tue, 02 Jun 2026
+ 01:00:17 -0700 (PDT)
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 2 Jun 2026 07:59:12 +0000
+ HTTPREST; Tue, 2 Jun 2026 03:00:15 -0500
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 2 Jun 2026 07:59:12 +0000
+ HTTPREST; Tue, 2 Jun 2026 03:00:15 -0500
 From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260601-sm8350-wifi-v1-6-242917d88031@oss.qualcomm.com>
+In-Reply-To: <20260601-sm8350-wifi-v1-7-242917d88031@oss.qualcomm.com>
 MIME-Version: 1.0
-References: <20260601-sm8350-wifi-v1-0-242917d88031@oss.qualcomm.com> <20260601-sm8350-wifi-v1-6-242917d88031@oss.qualcomm.com>
-Date: Tue, 2 Jun 2026 07:59:12 +0000
-X-Gmail-Original-Message-ID: <CAMRc=Me1OFX9YO9bqBKFffaCS8FH7-_bSS4BsVgW+qoYQmDjVg@mail.gmail.com>
-X-Gm-Features: AVHnY4Jj6PQ-4DZSgjCutJzrmJiIfEI2Eoc9MefyrTPUsszRaLc0Op3HHJ1m_C8
-Message-ID: <CAMRc=Me1OFX9YO9bqBKFffaCS8FH7-_bSS4BsVgW+qoYQmDjVg@mail.gmail.com>
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: sm8350: modernize PCIe entries
+References: <20260601-sm8350-wifi-v1-0-242917d88031@oss.qualcomm.com> <20260601-sm8350-wifi-v1-7-242917d88031@oss.qualcomm.com>
+Date: Tue, 2 Jun 2026 03:00:15 -0500
+X-Gmail-Original-Message-ID: <CAMRc=MfmosOiaYONd1Cs_G8M4bgL6k844gmANUD-tg_H+VcEqA@mail.gmail.com>
+X-Gm-Features: AVHnY4LpWcxff9jncmRnjmUuLE6aaoj7VaQIrr97syxQJ21dl10x_BOM0i6sA48
+Message-ID: <CAMRc=MfmosOiaYONd1Cs_G8M4bgL6k844gmANUD-tg_H+VcEqA@mail.gmail.com>
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8350-hdk: describe WiFi/BT chip
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
@@ -81,9 +81,8 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
 	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260602_005916_214683_51672FB9 
-X-CRM114-Status: UNSURE (   6.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260602_010019_765006_D0A9BA2B 
+X-CRM114-Status: GOOD (  11.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,12 +97,39 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, 1 Jun 2026 11:46:54 +0200, Dmitry Baryshkov
+On Mon, 1 Jun 2026 11:46:55 +0200, Dmitry Baryshkov
 <dmitry.baryshkov@oss.qualcomm.com> said:
-> The recent suggestion is to have PERST# / WAKE pins and PHYs in the PCIe
-> port rather than RC device. The kernel recently started warning about
-> the older style of DT. Modernize DT for SM8350 platform by moving the
-> entries under the root port device node.
+> The SM8350 HDK has onboard WiFi/BT chip, WCN6851. It is an earlier
+> version of well-known WCN6855 WiFI/BT SoC. Describe the PMU, BT and WiFI
+> parts of the device.
+>
+> The firmware isn't (yet) available as a part of linux-firmware, so it
+> was verified with the firmware files from the vendor-supplied package
+> (wcn prefix was applied to Bluetooth firmware files to make them follow
+> upstream driver changes, vendor provided hpbtfw10.tlv and hpnv10.b06).
+>
+> Bluetooth: hci0: QCA Product ID   :0x00000013
+> Bluetooth: hci0: QCA SOC Version  :0x400c0110
+> Bluetooth: hci0: QCA ROM Version  :0x00000100
+> Bluetooth: hci0: QCA Patch Version:0x00001017
+> Bluetooth: hci0: QCA controller version 0x01100100
+> Bluetooth: hci0: QCA Downloading qca/wcnhpbtfw10.tlv
+> Bluetooth: hci0: QCA Downloading qca/wcnhpnv10.b06
+> Bluetooth: hci0: QCA setup on UART is completed
+> Bluetooth: hci0: HFP non-HCI data transport is supported
+>
+> ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x605fffff 64bit]: assigned
+> ath11k_pci 0000:01:00.0: MSI vectors: 32
+> ath11k_pci 0000:01:00.0: wcn6855 hw1.1
+> mhi mhi0: Requested to power ON
+> mhi mhi0: Power on setup success
+> mhi mhi0: Wait for device to enter SBL or Mission mode
+> ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0x6 soc_id 0x400c0110
+> ath11k_pci 0000:01:00.0: fw_version 0x110c80c8 fw_build_timestamp 2021-05-25 21:43 fw_build_id WLAN.HSP.1.1.c3-00200-QCAHSPSWPL_V1_V2_SILICONZ-1
+> ath11k_pci 0000:01:00.0 wlp1s0: renamed from wlan0
+>
+> For the reference, the driver looks for the board data for
+> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=0,qmi-board-id=6,variant=QC_8350_HDK
 >
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
