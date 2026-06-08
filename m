@@ -4,98 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4B8ECD8CA4
-	for <ath11k@archiver.kernel.org>; Mon,  8 Jun 2026 06:59:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 636A9CD8C9D
+	for <ath11k@archiver.kernel.org>; Mon,  8 Jun 2026 06:59:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/7UWcSa7sch199uUm0ihpHSXkTOLrOrU2Q3K/tjsND8=; b=cUJhARuc6pvyy3ZjSfuItZB4gb
-	d3jX3BIgpOachbXGQ8RM9/axdlXYzrtKOvDbwmLXoMYSjAVLCnAi39doBjg37lB5xCLM4yPRX1A7R
-	FvrmAXFu68tqVNJlrdSvFNyy9pJq3wrNr/rAglErivppsSrFoEwd4vSAM8w+Z4g5jwXK2Jqj4rlHO
-	/j0F+SnBqKomZhfwoxgkwAXYLn8neyZergIVtUv+WHYTkC/G0meGwVskX2z315EaQTizlY5woWylI
-	kNHlzj0WfXeCBSUSvQHkm/xczsNpYSGtRrSR7HacBMcXYo4PZut8Q4HeL59ZoHc02k5ERqmAmxFhV
-	w4XVOvlA==;
+	bh=5UUGNkY7j3/4zh2rLPHPzZHPlPL1HtPoB4XrZlt6ez8=; b=Bq9EFtRfuQZMRhlJxyGAtmAu7q
+	+t+rhDnXcgQQ+04e8zSSmHqAJfMi9f7pC5+yX15yULtN2nIP/4C++mplgTsLcWEnN5Ezj7Q+DGCzw
+	UZ/OPsBBVsvBbtP//nETa0QVOxYoTawR5cLbtjMJ8bj3NBvsLpDHU9GhZrG+l42kkYpF7/yNy1fs2
+	BTxWlZN6H+elE/R0KPrQK0VtHz4nmra9j73Jw4OjH00NL3Rrped9kFj30h2G9Pc3q0bJiWJ448C1x
+	2WZwodGb2/jQPnMasrd9PpuXF5UaiCyegksZwyOFsYOi5conf0GS0IHTZ2Q70urle0ytmsLIpCvgR
+	DW/yhg3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wWTxZ-00000002vYZ-2ZDd;
-	Mon, 08 Jun 2026 06:59:45 +0000
+	id 1wWTxd-00000002vdr-2z1u;
+	Mon, 08 Jun 2026 06:59:49 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wWTxX-00000002vVA-0l2t
+	id 1wWTxb-00000002vZg-04Wv
 	for ath11k@lists.infradead.org;
-	Mon, 08 Jun 2026 06:59:44 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6586OlGJ2801823
-	for <ath11k@lists.infradead.org>; Mon, 8 Jun 2026 06:59:42 GMT
+	Mon, 08 Jun 2026 06:59:49 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6586PmGi2733184
+	for <ath11k@lists.infradead.org>; Mon, 8 Jun 2026 06:59:46 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/7UWcSa7sch199uUm0ihpHSXkTOLrOrU2Q3K/tjsND8=; b=MsePBlZ+U1N9lgCF
-	NLYP92U844vUD1wYtSyuAsPUHaJfSR0oRRVeFxzRzhEUt7JpEkblaAj9xyG2n2th
-	wCjSB/RcL0cZlKR9o0D6MwJsJ0L1uP4wHUo6TYjfVAEPlxKwR4uIboDS7VyBaGjk
-	mLTcXMKsYDmNAkPjg1CR1E/MP3y86PETbOao+3zXWzlqxxkgwwsLC0QGWZR+enEH
-	I0mAVS9BL00B51ZNv03jyj1vQ74kp4qbFVKbbvU03RGqp9kfp/VVju3leLhQ4Qo3
-	ML6rl/erWJO8/4iIRnRWkPRh3bAOW2pwcqXnTPgS3O8c7L89WhgNUQVbJYzaW80H
-	jlITsg==
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4em9k3psg5-1
+	5UUGNkY7j3/4zh2rLPHPzZHPlPL1HtPoB4XrZlt6ez8=; b=gLwKCEW2PQCeQqva
+	NS9QXhcWMAFJYCt3Ee6FPAJqCW5CTFsfrMtgC/znIDmEHt/IZyEm03DkAA5KGJ/1
+	5/pRX7IO5XHkSXjmiOu9qYe6De/Y93LzCYg1xbo9zhYga7NksFr1SWrpm7gn1y07
+	uRSPpNt6EAbmOFdnTPnou1nwDppjVJjafGEa23+o/r5Kb6goroP80DimL/E88YXD
+	W0Q6Sn+PnZHootbHWjf91m2/DOs+sBrdxV40ituPeG2xBOxjY+6/VaX8Xm48w/T6
+	2pollpjB1KvahgeFe+4v9aHCG7Sny//Yum1GzNiIYsgq3t4fmkROSc6ohANdv0oJ
+	+sNNSQ==
+Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com [209.85.222.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4emavf6gfx-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Mon, 08 Jun 2026 06:59:42 +0000 (GMT)
-Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-6cfb3463931so5152459137.0
-        for <ath11k@lists.infradead.org>; Sun, 07 Jun 2026 23:59:42 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Mon, 08 Jun 2026 06:59:45 +0000 (GMT)
+Received: by mail-ua1-f70.google.com with SMTP id a1e0cc1a2514c-963d24c3886so3565282241.0
+        for <ath11k@lists.infradead.org>; Sun, 07 Jun 2026 23:59:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780901981; x=1781506781; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1780901985; x=1781506785; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/7UWcSa7sch199uUm0ihpHSXkTOLrOrU2Q3K/tjsND8=;
-        b=iJrKONC3Lrm6YMeU1FS2UYcmANL6ph3q8r+dLGprYooWu2a/Nvtl5PSQJr/g6NVA+C
-         eUKOJKICpT2+z9+iBS+b4+NU8I2d+WNQ/1/T5YoWqFvMP0F1aql97dBT7tyiUk4uhHrz
-         RmF6vGpjmWjanE20JbSaotO16sg11tRuXceaAlA8h3NU1W8HiBLOR83kcOFcp0gy8eHT
-         rhIZaIliqYZMy3ehp33ePcCtOzgte7sSAZcsfV2SmOmGdp7O3eDR/76aaGxHzp9b3v5F
-         XxIQ9PfwHQAIX1D2pj+LV63AwK6H92OT7+JQ0XM3IqzxoeKtzVK2dtQ30XQRKfr9izuo
-         6FnQ==
+        bh=5UUGNkY7j3/4zh2rLPHPzZHPlPL1HtPoB4XrZlt6ez8=;
+        b=LEci+NJsYt8T0YjTle2808+PO4pN8mRpCRXp0msiIwllYzElmAboR/GM7OsrXdJBgV
+         oTh046yKvPQg/n2HDM9JGQXL7/GRSjE+XDv36IKV8U7ejOS/W9EZpDk7P6u9hNBhN1PM
+         LvybRNlIQ1eaB3oqgSCh+VgTl+OiWhLTymqb99nPs57lZoOWf7snxDvEI1Z2SMxlVR4g
+         JfecEclSxlKeowr0qVVQwgKcjwv5yEkgBVam4Dwu48x44dX5YG/V3BLfqFFNfR6g2UBM
+         QWHWAxNAH5jJEt8T3DOcZiyvtpCAlcR79pkV5/DCx/RM0xIwfquA1i1SYTGi1T3oxjse
+         ZCKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780901981; x=1781506781;
+        d=1e100.net; s=20251104; t=1780901985; x=1781506785;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=/7UWcSa7sch199uUm0ihpHSXkTOLrOrU2Q3K/tjsND8=;
-        b=bvxWu3pUGAdIqtfOeLoC/zeX9ceSToYcFz9hLtJ7wQyuB93THoDWY+C4xrZojeBSBY
-         oo/Fp+gmoTAONQM8NsNL1LYojE53iUcSu2f0sRUBlNd+f+bbrgxlespJZtHK5zdKPoZ0
-         EE5yino8bWNMkmDECDRz6JeQzYGmCU8nFPmyVhRUjQpB7Mt3VQWlsWuFPhg5Irnob2Ow
-         v7OY4tPp2iXdz4WFAiyyoTEEuSYcGm+E6dY5EM8p3Qsxrd63MRwYGJznlLe8GDxGVsKA
-         qIXfIplFAbnUfrQ2f8iyZT4TjNXtNer396CSv7oxAC92mcCDK7JOzmzsQaTRqDWH2Otk
-         hj0g==
-X-Forwarded-Encrypted: i=1; AFNElJ8TkAbM1+AVv0JNCbkA9pdgrJtDUjSwn2Chf6p5y44I2GQncnyFQowpgCpv3lwkffmnn3dcCo4=@lists.infradead.org
-X-Gm-Message-State: AOJu0YyCaz/qfEOdnKTitZieq6/FcRu8vMnWH4ulWhnmeA0BesCaFHHO
-	QvIM9IbJKLIlnuHas+kdocMzEvQHtXrIDBXPMlDvgoIuecNu6wib4UulvCHXlYAUtesFO0WVTqD
-	ZaI0DhEiK1NLdl3HRDSFsB7SUi/PmMSZPQBJeOlONpJpFXozu6UYWBiEJAKRZlO7k
-X-Gm-Gg: Acq92OF/Vvm4BmPtm8kUsguZO6ElKUboNwIwBCddg2HGk3p2lNtmlvbZawSDIkPqiYv
-	glGhRc6n6JHFSLqkE6Zo78Je7rUetPNcobAr5B6YweCCMUBRrQR6MAuLn7O2DJGZFNDbnT4It24
-	e7It2TbSGKwNT7eKkZu5zZyOuHLJk9MTrodnc7rBy1eMDvwELhAtTa8PB25Qv8hlEKL1S6kO88d
-	ZUjjkuh7pQoCUs2Rl5YLg1v33tCVZndOLV7ZT3uYbT6KGYcXnDq8fJlnbTE5hLkIGUI08o/a7uM
-	2OwlC0l1sWrqjgNGd1OqkCNbU4b4hf/pYbLIRuAf6sXCa7TxbrMovMi7gRp1ZJfeLAW5/TLQn48
-	O1o4aJ8vi+FEiZgCOCY30YOEC96ZSoyJuM66Zh6EehBBQ6UIoQC0Bz9xTfuv0ml2uN1wIOSadPs
-	pxsGiChwk/nBLkveLUb7SecBkRSHeglV7jQ4oKGhz9qpcshg==
-X-Received: by 2002:a05:6102:5490:b0:6d9:a889:13b2 with SMTP id ada2fe7eead31-6fefdee84d9mr6614180137.11.1780901981552;
-        Sun, 07 Jun 2026 23:59:41 -0700 (PDT)
-X-Received: by 2002:a05:6102:5490:b0:6d9:a889:13b2 with SMTP id ada2fe7eead31-6fefdee84d9mr6614147137.11.1780901981146;
-        Sun, 07 Jun 2026 23:59:41 -0700 (PDT)
+        bh=5UUGNkY7j3/4zh2rLPHPzZHPlPL1HtPoB4XrZlt6ez8=;
+        b=CQ9/hRi24cbG3s7VFHH2PRsW8G7pGgw2HA8refmvhyRqZM/3xyi1QilE7bIWOf0VYI
+         d4EpVb2yaoyHAGrKlJGkRqhL+pKPqp25krPyvEIWkj09XcpBrUjy+ZCSwQwjAp5RSgSR
+         mvZpyDwKmVqP/QvGPUv34uX+D7FGKbFwE+FXzQcqWUoJYqCfdIKC6Yk6pIYfQBBI/Jn1
+         h5MK6seIcuq5+3mhyMhOPmH4vjMShq5SRW582Qbmr/xoDYQV7ZMX8D6OXiDWLoNlsRZZ
+         7fClbKBnns05rU+Ndhp1QuJbh2HNokXqnHmb05kuRSMwMlIjmWlKhkncq/4bqAETGyWW
+         34Uw==
+X-Forwarded-Encrypted: i=1; AFNElJ/1pHTTRG1ekTxaQdMn5AQ53P8jpcGj6bNJTQCaExiG84Go63zZwni7YUx+hcRhGlxLZDPqRJs=@lists.infradead.org
+X-Gm-Message-State: AOJu0YynSlGey80jLJxHum9O1tQQjyLnh446lq5Fq+xA2/KFE5Pe9nNG
+	aBVWxdmcipFQVR4afDHCF03MLA2h7ydNyS383ARMj4lwyj12aqmqX+fzXGge2sp2tHU/62yvTHO
+	b0O3FRnNM8ChS7lsjTE6sFeXgw3hmUzpMqrsLHrJdG8NyzhwW5E8E8ADkv9reQ+Jg
+X-Gm-Gg: Acq92OGkyUP9MunVPItxhF0+DPCWmG9Fx5lWA4RmPOG2vZ6AkUhT8vuiKuhEJmnbO44
+	Qyf/vXHSbeakWdA088zTOSs/Lf8RpypnSOA+/C9sgMljIctQStr2uTwjjVImjXENapm3FexzwRu
+	YgbzHMIQUSeQH4AatQq6llkEeKQ/YZr4iY0lWtW3RwhQ2r7PEA8Zl/2X16W8rYrcp5FJpcdWN4i
+	XXxovEetRkPSjpjFk0OdPKefGtJK2mT+N/QFUZlKJnD08z4hRhU5W003SOumTfcbgmm+eY7nMVH
+	LDKYwJtvLFTyrgBuxUCRY/cQnADm0kb9sMukFtqrgsnCRJrp2VHxW6yAUY+uiuUXpGXyyZ3PhBL
+	7FW8ZiRCCB00KDHc7vsv9PKKvDL2+yiuY5BmE8LIdexlS9PsfXNkYdchFgL70D2V7cmC01IODRN
+	FzT2bhm9yVe+sldXCjNg5xdWdGBk10irYuNWbkcaiSJR5b3g==
+X-Received: by 2002:a05:6102:3e0b:b0:6ef:d9b8:88d with SMTP id ada2fe7eead31-6fefc8b6fd2mr7182290137.8.1780901985337;
+        Sun, 07 Jun 2026 23:59:45 -0700 (PDT)
+X-Received: by 2002:a05:6102:3e0b:b0:6ef:d9b8:88d with SMTP id ada2fe7eead31-6fefc8b6fd2mr7182278137.8.1780901984873;
+        Sun, 07 Jun 2026 23:59:44 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b8ed789sm3638621e87.3.2026.06.07.23.59.37
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b8ed789sm3638621e87.3.2026.06.07.23.59.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Jun 2026 23:59:39 -0700 (PDT)
+        Sun, 07 Jun 2026 23:59:41 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Mon, 08 Jun 2026 09:59:24 +0300
-Subject: [PATCH v2 6/7] arm64: dts: qcom: sm8350: modernize PCIe entries
+Date: Mon, 08 Jun 2026 09:59:25 +0300
+Subject: [PATCH v2 7/7] arm64: dts: qcom: sm8350-hdk: describe WiFi/BT chip
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260608-sm8350-wifi-v2-6-efb68f1ff04c@oss.qualcomm.com>
+Message-Id: <20260608-sm8350-wifi-v2-7-efb68f1ff04c@oss.qualcomm.com>
 References: <20260608-sm8350-wifi-v2-0-efb68f1ff04c@oss.qualcomm.com>
 In-Reply-To: <20260608-sm8350-wifi-v2-0-efb68f1ff04c@oss.qualcomm.com>
 To: Manivannan Sadhasivam <mani@kernel.org>,
@@ -121,44 +121,44 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         Bartosz Golaszewski <brgl@bgdev.pl>, linux-bluetooth@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2866;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6193;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=n8BAXFAj+oDCn4RhQ8z2NOQ90wTtinkzV4SU1c/SY4o=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBqJmhLpooe78rWUM+pR4BQH6xXBSOcSM/trlgR8
- 7p27ucqN/eJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaiZoSwAKCRCLPIo+Aiko
- 1Wi2B/wL9YzaoY4qmodagukhZOgdXJIhA6Y1QNMMx/Va60ooRz8YLt4QW9aOMDXUsOFPoLa+U94
- XGMmnat45/qKU/rD95roVjE/BrtRvsA83alds5Pw92qaatXP5HGdcyZshtqD9v9dYyp5tVnmLkB
- jrWSC8j3g1Omxut44iWRiy6laIkRAR5O+JZoEVYqksajmAMmaPGxK6iuwV7INO439eRXeKu+9lp
- FRg5VGJff6rHF94spYK4CBnlSV+CKQJA2Ow+iMkJpMN9oOKFjNSPu23rynyScf4FwdMmcCI8ey1
- Q5Im/Iway9vmYQRKRL/dS3vObRmxszVEGx5OzDrTZ10Ztks8
+ bh=ivfez+E9B3qAfRh5L70SB2bSHUzO4GoveMoTJ4pZ8Vc=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBqJmhMuqGfQoyOCl1z0/vW5dE+0jogozA0K9B7r
+ kku4lpySs+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaiZoTAAKCRCLPIo+Aiko
+ 1XabCACw2Bp0Gz+PrGS7tDbpoA4CbJky6pod9M426pAO+JrCgMofF5yNPYfSbJdixO6vvT3t004
+ XRNGoysRpBKyIrZCROWXoj8W66wckYFcKMntiwBCl3OZmZgoulp9sfIA4Rj8S+96k77801TNZNn
+ K+BpDr+GcMfk3eH46QBM3/5wO5zmglfFTWmIwiQ5l5kb+Lq7f79XetrIglxNYnEPp/NzBLFToJg
+ cXIfLqhtff6pRJtjSGY370yRkPgjeW+zV7D43PVBb7q6Z0SAtdtlkIUfLAgDAGGJ/IHUbKsMxb7
+ sq1NwizoyGv4tyXrnlNYcGR8MH9VmN0DFZ92s8nFLlGbKCl7
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA4MDA2MiBTYWx0ZWRfXyPnzmdAMst+P
- QJbTiCOQrS40AAxk5IbiZALRVJXGogqv23c3ruE6gKQMd66+cHLTgBKxwx1M9c0qb6KR7Xr+mWA
- yYQKEc0FyI/dzoIVCw6Lyv60EF/WoXugzw45VuK47p4BFmfKhk5Cs892+h99jRhCq9eMEMRxzDF
- L8cZsVCoyTvAt0+8bVdK9Pl9fwYY0ekjNWMUDb0+QA31uRFTDWOfuZ87sUPmyiaskWgM0391c+f
- 9dUSXuHdjbXIxSnoUhC0IkJrzJmPIxzBpRlBe7hiUEvseiG0Qy/n/l3RZ0giGPjyiMA0h3NtB0o
- mCgKpnpeSP9Qfe8TyQbRhM+6ebMjSajuFQijfxy05fSP04Hg1owv0O30b7VNzIFsCxmes9g9dnO
- g2mr4q4jB3D6YkwngT0/HdeVC+cjOj5pUEXPrJ+wk7OSfy1+nhDO6/dvaGV8g4jq4O94LxKPWN5
- 8PlwajmLJrx5KGvqY2Q==
-X-Proofpoint-ORIG-GUID: 2P9bqPo9AO3mY9FMDGCRXDkS5GqVvmbe
-X-Proofpoint-GUID: 2P9bqPo9AO3mY9FMDGCRXDkS5GqVvmbe
-X-Authority-Analysis: v=2.4 cv=TIB1jVla c=1 sm=1 tr=0 ts=6a26685e cx=c_pps
- a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+X-Authority-Analysis: v=2.4 cv=I4JVgtgg c=1 sm=1 tr=0 ts=6a266862 cx=c_pps
+ a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
- a=a-LFHBoeUMMLBGfzAX8A:9 a=QEXdDO2ut3YA:10 a=gYDTvv6II1OnSo0itH1n:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
+ a=o9ryCBrv46mMSQ48XGcA:9 a=QEXdDO2ut3YA:10 a=TD8TdBvy0hsOASGTdmB-:22
+X-Proofpoint-ORIG-GUID: iolRlflVQVFVvGI-YEeeGW9qxWDpUnfA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA4MDA2MiBTYWx0ZWRfX7syUU+xU1NiZ
+ Ifuknpvy4uFUpzxZAIlXJrWxeJyBJ0bP66C3DDglSQ9qu//wXDPcsKfALm8S3yozld9neKh9uHG
+ +MeAVzm4GqolP4AWipU+K9RRbimGlF+pAd57htOuc0YVY+gGgQD96csfh3vDT6+dQS7MhUacBXf
+ yaCHC31nm5+cEpihbGpjnPVY7SC8ymj2tYkHV//l+1fAl3RwF/koNjB1eBG2ucX5q5tdA2PLNOC
+ nclqieaiHorzDsx4XToyiLtj5lx720KHBT6Gmg07Q8vkEbbO3ebxxawnitPocKi9GPtbUxn74sJ
+ ZTPRYWn16RMlD5Poo/AMJEusTp6NvM7KeH6wd2U2XhEpSiwPuKSxjCFf8LpnXCaqE/bUzMv4O+s
+ n2mRxtNUadkT66bh/uKhlYRDhO7dOyElQMeDWl2UubsmeL8eiUzA2y0v8TQV5Sc7+hrU426qfhF
+ V4XHMmZVcBA7n+2GNmg==
+X-Proofpoint-GUID: iolRlflVQVFVvGI-YEeeGW9qxWDpUnfA
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-08_02,2026-06-05_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0 impostorscore=0
+ suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
+ bulkscore=0 phishscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606080062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260607_235943_358554_FC296F66 
-X-CRM114-Status: GOOD (  11.81  )
+X-CRM114-CacheID: sfid-20260607_235947_186055_518073D8 
+X-CRM114-Status: GOOD (  15.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -173,109 +173,214 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The recent suggestion is to have PERST# / WAKE pins and PHYs in the PCIe
-port rather than RC device. The kernel recently started warning about
-the older style of DT. Modernize DT for SM8350 platform by moving the
-entries under the root port device node.
+The SM8350 HDK has onboard WiFi/BT chip, WCN6851. It is an earlier
+version of well-known WCN6855 WiFI/BT SoC. Describe the PMU, BT and WiFI
+parts of the device.
+
+The firmware isn't (yet) available as a part of linux-firmware, so it
+was verified with the firmware files from the vendor-supplied package
+(wcn prefix was applied to Bluetooth firmware files to make them follow
+upstream driver changes, vendor provided hpbtfw10.tlv and hpnv10.b06).
+
+Bluetooth: hci0: QCA Product ID   :0x00000013
+Bluetooth: hci0: QCA SOC Version  :0x400c0110
+Bluetooth: hci0: QCA ROM Version  :0x00000100
+Bluetooth: hci0: QCA Patch Version:0x00001017
+Bluetooth: hci0: QCA controller version 0x01100100
+Bluetooth: hci0: QCA Downloading qca/wcnhpbtfw10.tlv
+Bluetooth: hci0: QCA Downloading qca/wcnhpnv10.b06
+Bluetooth: hci0: QCA setup on UART is completed
+Bluetooth: hci0: HFP non-HCI data transport is supported
+
+ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x605fffff 64bit]: assigned
+ath11k_pci 0000:01:00.0: MSI vectors: 32
+ath11k_pci 0000:01:00.0: wcn6855 hw1.1
+mhi mhi0: Requested to power ON
+mhi mhi0: Power on setup success
+mhi mhi0: Wait for device to enter SBL or Mission mode
+ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0x6 soc_id 0x400c0110
+ath11k_pci 0000:01:00.0: fw_version 0x110c80c8 fw_build_timestamp 2021-05-25 21:43 fw_build_id WLAN.HSP.1.1.c3-00200-QCAHSPSWPL_V1_V2_SILICONZ-1
+ath11k_pci 0000:01:00.0 wlp1s0: renamed from wlan0
+
+For the reference, the driver looks for the board data for
+bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=0,qmi-board-id=6,variant=QC_8350_HDK
 
 Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 18 +++++++++++-------
- arch/arm64/boot/dts/qcom/sm8350.dtsi    | 12 ++++--------
- 2 files changed, 15 insertions(+), 15 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 126 ++++++++++++++++++++++++++++++++
+ 1 file changed, 126 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index 5f975d009465..4973a3eb11b5 100644
+index 4973a3eb11b5..8e35216e4272 100644
 --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
 +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -493,12 +493,14 @@ &pcie0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie0_default_state>;
- 
--	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
--
- 	status = "okay";
+@@ -115,6 +115,70 @@ lt9611_3v3: lt9611-3v3-regulator {
+ 		regulator-boot-on;
+ 		regulator-always-on;
+ 	};
++
++	wcn6855-pmu {
++		compatible = "qcom,wcn6851-pmu", "qcom,wcn6855-pmu";
++
++		pinctrl-0 = <&bt_en>, <&wlan_en>, <&swctrl>;
++		pinctrl-names = "default";
++
++		wlan-enable-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
++		bt-enable-gpios = <&tlmm 65 GPIO_ACTIVE_HIGH>;
++		swctrl-gpios = <&tlmm 153 GPIO_ACTIVE_HIGH>;
++
++		vddio-supply = <&vreg_s10b_1p8>;
++		vddaon-supply = <&vreg_s11b_0p95>;
++		vddpmu-supply = <&vreg_s11b_0p95>;
++		vddpmumx-supply = <&vreg_s2e_0p85>;
++		vddpmucx-supply = <&vreg_s11b_0p95>;
++		vddrfa0p95-supply = <&vreg_s11b_0p95>;
++		vddrfa1p3-supply = <&vreg_s12b_1p25>;
++		vddrfa1p9-supply = <&vreg_s1c_1p86>;
++		vddpcie1p3-supply = <&vreg_s12b_1p25>;
++		vddpcie1p9-supply = <&vreg_s1c_1p86>;
++
++		regulators {
++			vreg_pmu_rfa_cmn_0p8: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn_0p8";
++			};
++
++			vreg_pmu_aon_0p8: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p8";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p8: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p8";
++			};
++
++			vreg_pmu_btcmx_0p8: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p8";
++			};
++
++			vreg_pmu_pcie_1p8: ldo5 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
++
++			vreg_pmu_pcie_0p9: ldo6 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_rfa_0p8: ldo7 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo8 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p7: ldo9 {
++				regulator-name = "vreg_pmu_rfa_1p7";
++			};
++		};
++	};
  };
  
-+&pcie0_port0 {
-+	reset-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+};
+ &adsp {
+@@ -373,6 +437,13 @@ vreg_l7e_2p8: ldo7 {
+ 			regulator-name = "vreg_l7e_2p8";
+ 			regulator-min-microvolt = <2800000>;
+ 			regulator-max-microvolt = <2800000>;
 +
++			/*
++			 * This is used by the RF front-end for which there is
++			 * no way to represent it in DT (yet?).
++			 */
++			regulator-boot-on;
++			regulator-always-on;
+ 		};
+ 	};
+ };
+@@ -499,6 +570,23 @@ &pcie0 {
+ &pcie0_port0 {
+ 	reset-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+ 	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
++
++	wifi@0 {
++		compatible = "pci17cb,1103";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
++		vddaon-supply = <&vreg_pmu_aon_0p8>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
++		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
++
++		qcom,calibration-variant = "QC_8350_HDK";
++	};
+ };
+ 
  &pcie0_phy {
- 	vdda-phy-supply = <&vreg_l5b_0p88>;
- 	vdda-pll-supply = <&vreg_l6b_1p2>;
-@@ -507,15 +509,17 @@ &pcie0_phy {
+@@ -763,6 +851,20 @@ &tlmm {
+ 		"HST_WLAN_UART_TX",
+ 		"HST_WLAN_UART_RX";
+ 
++	wlan_en: wlan-en-state {
++		pins = "gpio64";
++		function = "gpio";
++		drive-strength = <16>;
++		bias-disable;
++	};
++
++	bt_en: bt-en-state {
++		pins = "gpio65";
++		function = "gpio";
++		drive-strength = <16>;
++		bias-disable;
++	};
++
+ 	pcie0_default_state: pcie0-default-state {
+ 		perst-pins {
+ 			pins = "gpio94";
+@@ -815,12 +917,36 @@ sdc2_card_det_n: sd-card-det-n-state {
+ 		drive-strength = <2>;
+ 		bias-pull-up;
+ 	};
++
++	swctrl: swctrl-state {
++		pins = "gpio153";
++		function = "gpio";
++		drive-strength = <16>;
++		bias-disable;
++	};
  };
  
- &pcie1 {
--	perst-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
--
--	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie1_default_state>;
-+	pinctrl-names = "default";
- 
+ &uart2 {
  	status = "okay";
  };
  
-+&pcie1_port0 {
-+	reset-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
++&uart18 {
++	status = "okay";
++
++	bluetooth {
++		compatible = "qcom,wcn6851-bt", "qcom,wcn6855-bt";
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
++		vddaon-supply = <&vreg_pmu_aon_0p8>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
++		vddbtcmx-supply = <&vreg_pmu_btcmx_0p8>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
++	};
 +};
 +
- &pcie1_phy {
+ &ufs_mem_hc {
  	status = "okay";
- 	vdda-phy-supply = <&vreg_l5b_0p88>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index eb2a795d8edb..136daa444865 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1583,12 +1583,9 @@ pcie0: pcie@1c00000 {
- 
- 			power-domains = <&gcc PCIE_0_GDSC>;
- 
--			phys = <&pcie0_phy>;
--			phy-names = "pciephy";
--
- 			status = "disabled";
- 
--			pcie@0 {
-+			pcie0_port0: pcie@0 {
- 				device_type = "pci";
- 				reg = <0x0 0x0 0x0 0x0 0x0>;
- 				bus-range = <0x01 0xff>;
-@@ -1596,6 +1593,7 @@ pcie@0 {
- 				#address-cells = <3>;
- 				#size-cells = <2>;
- 				ranges;
-+				phys = <&pcie0_phy>;
- 			};
- 		};
- 
-@@ -1692,12 +1690,9 @@ pcie1: pcie@1c08000 {
- 
- 			power-domains = <&gcc PCIE_1_GDSC>;
- 
--			phys = <&pcie1_phy>;
--			phy-names = "pciephy";
--
- 			status = "disabled";
- 
--			pcie@0 {
-+			pcie1_port0: pcie@0 {
- 				device_type = "pci";
- 				reg = <0x0 0x0 0x0 0x0 0x0>;
- 				bus-range = <0x01 0xff>;
-@@ -1705,6 +1700,7 @@ pcie@0 {
- 				#address-cells = <3>;
- 				#size-cells = <2>;
- 				ranges;
-+				phys = <&pcie1_phy>;
- 			};
- 		};
  
 
 -- 
