@@ -4,70 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A03DCD8CB2
-	for <ath11k@archiver.kernel.org>; Wed, 10 Jun 2026 07:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04EABCD8CB9
+	for <ath11k@archiver.kernel.org>; Wed, 10 Jun 2026 10:01:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EgV/NjGFw2TBnGNu1grd25blD1KwYsPIRIqEutCfpzc=; b=o9mP8TOM3ztzHOXIOr02NFhSmM
-	J9OkTXg/BShkJWVwioORcgNb50iQW1tcnorHUPnhDWGY1KW0tdmxUGXIOzprJWDuQ2E2w2P2B3jXd
-	hZK0p2agBdWkTok3yzH4RZdc0Y6Hp3Pg3dH9hnEdpSS1iVsyy+EhUFEr84zqs0OiPu3o1fpUv2RMy
-	gpJXmuRIyqVsUbLvekaW1IMwFbWsnf7i5MX5eo9ZGGEKU7HkABWrjIwzuPZJrDlpcsn4iS1rkYFDg
-	R/pkV/Vy7URrHOf5g9iUEHFtt7iAXWQJmdsAB3ub19EAAaXrk+Cv+p8bmvdM2s5AM6mjcOZ0Xv+Rv
-	hkxZlryg==;
+	bh=G0u3YOlBGasTqI/efMg4dbBFjH2Jdl45+ZYBRiUMwLY=; b=hQNQzHLuQiQXH7Y4wYAEDlOZOf
+	Lvw3Art4BVz09o5elSnNnz8YpnMNxWLZ6cyqo+dh1nnusGUzg47AQeXI5KS6TKR8lwzlf+AR5dxtJ
+	F4kQVXR1FTjjZEngtCQyMYoONE0nD2iM+A3H+hYI78yCX12YmtHvzcVs7W+Tz62T2CuMxspO58jIi
+	GrW+C1QN/OB3iGNlAfvFFkqvLQlAR0SjUGEUMysvaq5iUAmfgW50MN8gR1loilDKz7TcoIrooC6ex
+	Soe6rBBw0D4l/I3hufEyYHGFHjLZM17vsXxQwN2eG7Sh4Ovb7TQftcfyldS1G/caeQ0r0OhMV87li
+	kXSD5VkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXDZ5-00000006yCt-40nN;
-	Wed, 10 Jun 2026 07:41:31 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wXFkM-00000007KmM-3k2j;
+	Wed, 10 Jun 2026 10:01:18 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXDZ5-00000006yCm-2dSi
+	id 1wXFkK-00000007KkZ-0ffY
 	for ath11k@lists.infradead.org;
-	Wed, 10 Jun 2026 07:41:31 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5415B43FB4;
-	Wed, 10 Jun 2026 07:41:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DBC11F00893;
-	Wed, 10 Jun 2026 07:41:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781077291;
-	bh=EgV/NjGFw2TBnGNu1grd25blD1KwYsPIRIqEutCfpzc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=N3yauVZSBrf47qf05zumLqq/Yg56bWYcjmWs3qicj1JFe4cQx7KkFLZPodz/lycsr
-	 aaihNpg+Vq43zVq9abn/EkBkSOeY3BhN+4R/JyLPYnTCAXRRSrzc7GlCb/bmOA7IfK
-	 qyzerJOFwCiszfXk4wEbGDQSN6abHyem5iag0vy1PPECpR8Ca5aZeoiP456d50WmXn
-	 2tTdFGkVLD/lFEZKqu5b28jYpNGpKdzy35aB1qQxAn8OsOtI0jOBUK938yHgyoFvvT
-	 VacH128cjlgDJz6a765Ae/xyrfrmsCtj2rJ11InHyeZCjsQ3XJbdv50WWFjoGujyv6
-	 mxUHxrjjhwdvw==
-Date: Wed, 10 Jun 2026 09:41:27 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Qiang Yu <qiang.yu@oss.qualcomm.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-bluetooth@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH v2 4/7] dt-bindings: bluetooth: qcom,wcn6855-bt: document
- WCN6851
-Message-ID: <20260610-lush-mellow-dragon-3ed9fd@quoll>
-References: <20260608-sm8350-wifi-v2-0-efb68f1ff04c@oss.qualcomm.com>
- <20260608-sm8350-wifi-v2-4-efb68f1ff04c@oss.qualcomm.com>
+	Wed, 10 Jun 2026 10:01:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1781085673;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=G0u3YOlBGasTqI/efMg4dbBFjH2Jdl45+ZYBRiUMwLY=;
+	b=NW413LBOVuhCSUbQQYtqEAu4+yMzK1PDwOjLdxEgFyb3CwMZpu/4ZgU7W8s0UULlyyukWi
+	o3tw7mrfBC/CXRASyEyV9Gcj+ZoSrS6IwJAsUnb/3BppNYQjfTFhGJrXpTqptuO1UPemnr
+	IYw4H1tJQ7OD54tsajNVOWg7qyPA/9U=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-308-kRo-Y_WdOd6I7y7utJw08Q-1; Wed,
+ 10 Jun 2026 06:01:09 -0400
+X-MC-Unique: kRo-Y_WdOd6I7y7utJw08Q-1
+X-Mimecast-MFC-AGG-ID: kRo-Y_WdOd6I7y7utJw08Q_1781085667
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 505BB1845575;
+	Wed, 10 Jun 2026 10:01:07 +0000 (UTC)
+Received: from fedora.redhat.com (unknown [10.44.48.27])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id E818C1800599;
+	Wed, 10 Jun 2026 10:01:01 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: alex@shazbot.org
+Cc: ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	bhelgaas@google.com,
+	jjohnson@kernel.org,
+	jtornosm@redhat.com,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	mani@kernel.org,
+	mhi@lists.linux.dev
+Subject: Re: [PATCH v8 2/3] PCI: Add device-specific reset for Qualcomm devices
+Date: Wed, 10 Jun 2026 12:00:59 +0200
+Message-ID: <20260610100059.19235-1-jtornosm@redhat.com>
+In-Reply-To: <20260609115352.32acb6fe@shazbot.org>
+References: <20260609115352.32acb6fe@shazbot.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260608-sm8350-wifi-v2-4-efb68f1ff04c@oss.qualcomm.com>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+X-Mimecast-MFC-PROC-ID: vUhgBv29BuHgBfA5Q4d44i5gqm_ZaA_PqdtggJ3OtJE_1781085667
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260610_030116_293363_FCE8807A 
+X-CRM114-Status: UNSURE (   7.75  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,20 +94,22 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 08, 2026 at 09:59:22AM +0300, Dmitry Baryshkov wrote:
-> WCN6851 is an earlier version of WCN6855 WiFi/BT chip, compatible with
-> it. Add a device-specific compat string with the fallback to WCN6855
-> one.
-> 
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/net/bluetooth/qcom,wcn6855-bt.yaml        | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+Hi Alex,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> My only complaint is that this is positioned a bit generically...
+Ok, I'll make the comment of the function more specific for these Qualcomm
+devices.
+  
+> Has each of these devices been tested on a platform where D3cold is
+> actually achieved through this method?
+No, I don't have access to platforms with _PR3 support. All testing was on
+M.2 adapters (D3hot fallback only). Since D3hot works reliably and D3cold
+is a stronger reset mechanism, the approach should work - but I cannot
+confirm the D3cold path through testing.
 
-Best regards,
-Krzysztof
+I'll send v9 with the updated comment.
+
+Thanks,
+Jose Ignacio
 
 
