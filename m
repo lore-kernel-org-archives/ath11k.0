@@ -4,69 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C434FCD8CB9
-	for <ath11k@archiver.kernel.org>; Thu, 11 Jun 2026 06:14:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19E17CD98CC
+	for <ath11k@archiver.kernel.org>; Thu, 11 Jun 2026 07:30:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=M5WsnsZ4MAvmLf7nKfATl47R6VK/KMexUssZggzEOs4=; b=inAdB+Zjqh5jwhWUiqHOUuS0Bq
-	i7DwOOzHzsdF76YUNS0HiGmE/GsoaKzSVvlcEpgPp9+PB1O72T0o90lkz1LpYoC+K9iGHSrn1MCJa
-	iC+rrB45WV8lrWWtbBRPWJLp7gt0mLovPDCJu12IZu7I4WHcKPaQwn3hf3MOArsB1b5cGSz5xYBGe
-	lZy5utrq8cvaEwqzx3kFEjFfXYzzzFqyOM4sWGCLwWnL/ZJ6X4Fmb5L+7NZ7cCD+D5eXijnvFqtnc
-	Qj/iybnEbPHsChdxqMistm9Qz3fv9C0vYIY9uEMTY7WJa44KIOUatTXHJJI8fqiotjGcLawDJtx7L
-	J/5hIXGg==;
+	bh=kuw0J3g45Skc3QfhRqB7uACn5uzzyF7cYO293roxvqI=; b=SUJAiofcejuXB9euxBO5hcL6qP
+	pD2ckaWkzKI/4POYOzS4ura6ypcLqXwf0nDHjgevK87RrP2l6Kwr+8b2xka6OhUjCcOwv0pv1j6lb
+	1t7ITvqPHUSMQ9N2MrAfZQ7DIJnJZ6l2CsgCkUB6szQgx8E/6BcBS+ubFhAf1UZBf1M0lkyibcEQM
+	uTaprqr6NksBTbQJj71zfytabXm2SGDDagVFSk9z/2ogzNDNK0wLidmvW2sPPOZb1HJHJfOol3BaN
+	MFKlICaYYFd75EctyVc2bsJvxB0LTktHVXKhMWcuCmNIdfgtNSE40ADTXOZfBUmaaIjjvd6RockWb
+	M11vOqEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXYfu-00000008n28-15Un;
-	Thu, 11 Jun 2026 06:13:58 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wXZrh-00000008sWc-3Bud;
+	Thu, 11 Jun 2026 07:30:13 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXYfs-00000008n22-3KSb
+	id 1wXZre-00000008sVX-2nrP
 	for ath11k@lists.infradead.org;
-	Thu, 11 Jun 2026 06:13:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 41B8760208;
-	Thu, 11 Jun 2026 06:13:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5408B1F00893;
-	Thu, 11 Jun 2026 06:13:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781158436;
-	bh=M5WsnsZ4MAvmLf7nKfATl47R6VK/KMexUssZggzEOs4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IzmudD+B7ZucXc0KDJnmsz9xM1FnRQBwm/PIXROQNKj6CCc+H+5SGsBTgwBzN7Wzu
-	 k9177ZHMbKTJJPj+iXvlHum/tr130j9U5FJ2tdQdqpjH4fjvqcunNJ+a3vx03yeLiF
-	 bOnwBjnGOrrRCEHODZsB98PWCyovwmc3Zi07b1YVQ6Ndggo8QnhXt2pu4kOLA17836
-	 xgb0BlQcTQyI72kjrHIkuVSxKSSC5iDYlBefSbE5xmJpGLSy12blUQ3cMWt+TXAxq2
-	 jTxIykVDfebvWpq/74rFGbk+CpQtJRDmyC4NmI2hxqZne9DkhurG6flVCUgew9n3/G
-	 zkO5RXSENaZUg==
-Date: Thu, 11 Jun 2026 08:13:42 +0200
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Qiang Yu <qiang.yu@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
-	Rocky Liao <quic_rjliao@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	devicetree@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	linux-bluetooth@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: sm8350: modernize PCIe entries
-Message-ID: <3qq4afo425imn25yb74ag62vpd5lhil4ctjbmknd3yrsvq3tw6@3hq23lknpm23>
-References: <20260608-sm8350-wifi-v2-0-efb68f1ff04c@oss.qualcomm.com>
- <20260608-sm8350-wifi-v2-6-efb68f1ff04c@oss.qualcomm.com>
+	Thu, 11 Jun 2026 07:30:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1781163009;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kuw0J3g45Skc3QfhRqB7uACn5uzzyF7cYO293roxvqI=;
+	b=JsvnUI9C7xzCKOhne7EdFUwf0iG+xEQ8mOexJRa1aOp78H65OKPvU++bXT6oeG5UfkJg+W
+	H8/QkDab6/XrmdiNY/Ytrtt/0nCAsK61val96WBMeGqsbnSvIUw05t8MVv+80mUTKaNVYc
+	fRe3lPeufvcwpbzZVpQQBopWDB5reLM=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-246-kKtD1rzIMJGQH5L-LcWCpQ-1; Thu,
+ 11 Jun 2026 03:30:05 -0400
+X-MC-Unique: kKtD1rzIMJGQH5L-LcWCpQ-1
+X-Mimecast-MFC-AGG-ID: kKtD1rzIMJGQH5L-LcWCpQ_1781163004
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id B36451800378;
+	Thu, 11 Jun 2026 07:30:02 +0000 (UTC)
+Received: from fedora.redhat.com (unknown [10.44.48.63])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0C97B30001A1;
+	Thu, 11 Jun 2026 07:29:57 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: alex@shazbot.org
+Cc: ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	bhelgaas@google.com,
+	jjohnson@kernel.org,
+	jtornosm@redhat.com,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	mani@kernel.org,
+	mhi@lists.linux.dev
+Subject: Re: [PATCH v8 2/3] PCI: Add device-specific reset for Qualcomm devices
+Date: Thu, 11 Jun 2026 09:29:56 +0200
+Message-ID: <20260611072956.22448-1-jtornosm@redhat.com>
+In-Reply-To: <20260610131517.6d7bd63a@shazbot.org>
+References: <20260610131517.6d7bd63a@shazbot.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+X-Mimecast-MFC-PROC-ID: aQCYDH85OoVqevuP-422sheb0AO3UqM2TQ6A_QsGhxk_1781163004
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260608-sm8350-wifi-v2-6-efb68f1ff04c@oss.qualcomm.com>
+content-type: text/plain; charset="US-ASCII"; x-default=true
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260611_003010_780021_B1F025C5 
+X-CRM114-Status: GOOD (  10.38  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,121 +93,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 08, 2026 at 09:59:24AM +0300, Dmitry Baryshkov wrote:
-> The recent suggestion is to have PERST# / WAKE pins and PHYs in the PCIe
-> port rather than RC device. The kernel recently started warning about
-> the older style of DT. Modernize DT for SM8350 platform by moving the
-> entries under the root port device node.
-> 
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Hi Alex,
 
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+> This seems to suggest that the D3cold reset method is also untested...
+> I'd suggest dropping the D3cold throughout, unless you can get someone
+> to volunteer to test it. It seems like you really just want this quirk
+> to do a D3hot regardless of NoSoftRst+ with a select set of devices
+> where it appears to do more than nothing, where doing nothing is
+> effectively what's left after the other reset methods are being quirked
+> off for being worse than nothing.  Thanks,
 
-- Mani
+Agreed, I don't have access to hardware with _PR3 support to install the
+Qualcomm devices - all my testing for these has been on platforms without
+_PR3 (desktop M.2 adapters).  
+I'll drop the general d3cold infrastructure (patch 1/3) entirely and simplify
+patch 2/3 to just a D3hot-only device-specific reset for the specific Qualcomm
+devices where testing shows it works despite NoSoftRst+.
+  
+v9 coming soon.
 
-> ---
->  arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 18 +++++++++++-------
->  arch/arm64/boot/dts/qcom/sm8350.dtsi    | 12 ++++--------
->  2 files changed, 15 insertions(+), 15 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> index 5f975d009465..4973a3eb11b5 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> @@ -493,12 +493,14 @@ &pcie0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pcie0_default_state>;
->  
-> -	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> -
->  	status = "okay";
->  };
->  
-> +&pcie0_port0 {
-> +	reset-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> +};
-> +
->  &pcie0_phy {
->  	vdda-phy-supply = <&vreg_l5b_0p88>;
->  	vdda-pll-supply = <&vreg_l6b_1p2>;
-> @@ -507,15 +509,17 @@ &pcie0_phy {
->  };
->  
->  &pcie1 {
-> -	perst-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-> -
-> -	pinctrl-names = "default";
->  	pinctrl-0 = <&pcie1_default_state>;
-> +	pinctrl-names = "default";
->  
->  	status = "okay";
->  };
->  
-> +&pcie1_port0 {
-> +	reset-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-> +};
-> +
->  &pcie1_phy {
->  	status = "okay";
->  	vdda-phy-supply = <&vreg_l5b_0p88>;
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index eb2a795d8edb..136daa444865 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -1583,12 +1583,9 @@ pcie0: pcie@1c00000 {
->  
->  			power-domains = <&gcc PCIE_0_GDSC>;
->  
-> -			phys = <&pcie0_phy>;
-> -			phy-names = "pciephy";
-> -
->  			status = "disabled";
->  
-> -			pcie@0 {
-> +			pcie0_port0: pcie@0 {
->  				device_type = "pci";
->  				reg = <0x0 0x0 0x0 0x0 0x0>;
->  				bus-range = <0x01 0xff>;
-> @@ -1596,6 +1593,7 @@ pcie@0 {
->  				#address-cells = <3>;
->  				#size-cells = <2>;
->  				ranges;
-> +				phys = <&pcie0_phy>;
->  			};
->  		};
->  
-> @@ -1692,12 +1690,9 @@ pcie1: pcie@1c08000 {
->  
->  			power-domains = <&gcc PCIE_1_GDSC>;
->  
-> -			phys = <&pcie1_phy>;
-> -			phy-names = "pciephy";
-> -
->  			status = "disabled";
->  
-> -			pcie@0 {
-> +			pcie1_port0: pcie@0 {
->  				device_type = "pci";
->  				reg = <0x0 0x0 0x0 0x0 0x0>;
->  				bus-range = <0x01 0xff>;
-> @@ -1705,6 +1700,7 @@ pcie@0 {
->  				#address-cells = <3>;
->  				#size-cells = <2>;
->  				ranges;
-> +				phys = <&pcie1_phy>;
->  			};
->  		};
->  
-> 
-> -- 
-> 2.47.3
-> 
+Thanks,
 
--- 
-மணிவண்ணன் சதாசிவம்
+Best regards
+Jose Ignacio
+
 
