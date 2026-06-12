@@ -4,78 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 532FDCD8CA8
-	for <ath11k@archiver.kernel.org>; Fri, 12 Jun 2026 14:27:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65FD6CD8CA8
+	for <ath11k@archiver.kernel.org>; Fri, 12 Jun 2026 14:33:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=+9WVanvaDPGBZOyMlBen4PPe6xSb3aQF/JsFC1M/M8M=; b=sGOR84evmiNpkYnp4S6r6UIZMX
-	lsEdHoEcmwrbOXlw17v3d508eGLdhFkkjBnNGgeykgEARoGebAmfGpEjpO3t3ke1mPx3S8eLbzGxM
-	3fRRfnPbl03Qou2D5+hiHB+/6NAMgCKEl/nDPKxjtvEktvvmO3FNESJOOtyvI/jgtXgKcy5DtYPWJ
-	l7OGzrCl4t+cTuHlcA9KkOFQHQeZViUsQtw5k7/t80xyJApp5HeMaWxZNeC91sqiy7cqHL89kS0f6
-	XyoVQNXLJPdWz+qa9DM5W1HCgxhlro0jleqan1C/G3PpyogfPPynyXEDT7k25Jjqlo+AQ8syhKHVd
-	dSreKGbg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
+	Subject:Cc:To:From:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=TTLM106efnje673B2OyrJhDO3JKyBJ//Wa8kKGBktzg=; b=SG9K7FyrHEX/OlzSXsaTRcan8l
+	6ne5aZJIh/ydmVmMzQY8WrnS58liQNQ1U14b85g4NoGeb0+1wLhpbqr2S3dHEo7nITuaP9fEakbJB
+	PO3tALUqt9OqyeLrWJuFz994YheobMTc/l4CYs7nd167NG12l8bPOBYK1B96UpaWti8FuQUUEerOE
+	1mHjiVrmojrviQKzRJiW/BTFbn6/M9vFg0vvwu5YJcXdFMRnQS2XxIQZ8b2NKwH5ex69PxSfMlnz5
+	eQBtR3/KdDnC2/wbEUPcDMSWoIwTlS6QkfeT2swFadUpgd+Y+I9GIFcXaz/L5FapvrlBofvdFh2Bm
+	SDTeinkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wY2qg-0000000B3uY-0Fll;
-	Fri, 12 Jun 2026 14:27:06 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1wY2wi-0000000B4x4-3zfy;
+	Fri, 12 Jun 2026 14:33:20 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wY2qc-0000000B3sA-2o5H
+	id 1wY2wf-0000000B4wK-488u
 	for ath11k@lists.infradead.org;
-	Fri, 12 Jun 2026 14:27:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1781274420;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=+9WVanvaDPGBZOyMlBen4PPe6xSb3aQF/JsFC1M/M8M=;
-	b=Mzu7tveyaDTQfB0CZZBrIiw4q97N8gSZMMXLxoOL/UeQ/V8pNbj2YuSeUADFDbplmQKAYd
-	LDj49QJ3r2WpO+Uwyjv0vFshlWUTs7k35+s67/Mnnt04wuahxwD6xkWPfu40mJFZrMg7EY
-	zOTSvNFjNIXgATWucH4vnd9rUi0mvgc=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-572-Ykr_fRK1MZK2zdPPqwysZA-1; Fri,
- 12 Jun 2026 10:26:59 -0400
-X-MC-Unique: Ykr_fRK1MZK2zdPPqwysZA-1
-X-Mimecast-MFC-AGG-ID: Ykr_fRK1MZK2zdPPqwysZA_1781274417
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id C074118005A6;
-	Fri, 12 Jun 2026 14:26:56 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.44.48.49])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9EA2030001A1;
-	Fri, 12 Jun 2026 14:26:51 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: bhelgaas@google.com,
-	alex@shazbot.org
-Cc: jjohnson@kernel.org,
-	mani@kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	mhi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH v9] PCI: Add device-specific reset for Qualcomm devices
-Date: Fri, 12 Jun 2026 16:26:38 +0200
-Message-ID: <20260612142638.1243895-1-jtornosm@redhat.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: JDlTijIqTsnQmCTKwFzifA4LL7Hjc0wMlLJ63MPt5t0_1781274417
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
+	Fri, 12 Jun 2026 14:33:19 +0000
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-bec3ffb95dbso177592666b.0
+        for <ath11k@lists.infradead.org>; Fri, 12 Jun 2026 07:33:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1781274795; x=1781879595; darn=lists.infradead.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TTLM106efnje673B2OyrJhDO3JKyBJ//Wa8kKGBktzg=;
+        b=vU8RUmazfENQUhiA+neetwW/9Lp3SGgVeufYzTlte1aPQWDXlFoVQ2w8wabVh5woS5
+         dW9sOoqT75chBgj9rn+K3epiA2IuSs6TOG7FWDScc1Y3LUAGEW0icNm+oRtmgGr3Msk5
+         UHEivisFdGEL96ndYIUBWKxK1geF5GQcz3oCl0Ne4Wr9nv5hwh/DJTdo3w0Ikx+fRH+p
+         f2NXDL1SJ+KyfOwk1wgvtCtsXMX9VnXmv6fBBaNBfzy/yJaZBmVr4/dIwIikQVIk8TVt
+         bk/qnmHh0eV0p9vnoH7wodx/eAvigXovAaULE68s/h8KdpiUzjVs4gNH3plKyvbe2fKy
+         /ywA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781274795; x=1781879595;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TTLM106efnje673B2OyrJhDO3JKyBJ//Wa8kKGBktzg=;
+        b=FAgqDuxNbSXgxHlkkTV6uVGSxxoKXuDefTZrYxwYo/xtQvEABVX5XUsq/hHAFia52R
+         sN5Awuk+tdUEHg99xhrm4EHwcp9GplOY0aBhDUOk7bSYn4JghzDF+tZLhchmcy6aNFp9
+         8sdg7yKc/bvAJv92EEjIPf/XohkFnmNa4StROx4xNk4Qo0gzK6+FViQ3g5CDD59cYD8J
+         YqLNPZbY5uLa3qKKaXIlcbxioCmXBlq0WtzUYoA0ZI5yRE1N227Ostowrld+4TL7qFbH
+         fXzePL8r67wuEKA0zYPu/gobFp9uL4+vYPs2Z+N+3ZMQEBph1uV/uwj7aosSW+Y/4pka
+         rBoA==
+X-Forwarded-Encrypted: i=1; AFNElJ9ytZ41QMx6fOre6Owo+mrdM41O906tH7LJXjfFmZ+eyookcokUA1d6UznN47T5X6bdM3pUnTE=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz3PaG1kBnFlrhlp3m+1qpwzw1l3PNAM3S6EfJrswUFe4hJG+rM
+	DufGs1jlN7BST0cqfznsabpWS7cdKTfYobAXquZ3SMg28zta+fo+IWsDzs3nduJsOJY=
+X-Gm-Gg: Acq92OFvVRQJAJPXw+NB6rVJ7z4sVWMQh5ozayQR21WmYieOMG3e+hnav0mS9MtdHFZ
+	MR5PPAFi2Gnm1aPCrbxaDvCkQJ494raywkG48lKA8IKraQmIlbVvQG8OKLfUQQVI9SkRhFKu/97
+	HpVIVXniDgVqoazz/IirR2PCQ6LteFhbOa38Q+4WsHAG5NHuc5ZSkaoPavtr4NX34e2/9MIjznZ
+	GlOLyLTQrVBL0aO/2ZFP0H6j9kEu2eIiH7UTllBAK5gz8it4ri7MkFy1r+DAcx0Kfef2aF3nUet
+	Gck0XJSA0VNLZz1EevBDZIwuM8c1upvpZ5YmEazIeNe4MJYqOIuQdQWZlFQaTnKR474bnpQptKl
+	JYihXq+j/cFldYoEZTTrer+c+EBevKKHqJ6XuN9AA8oj1cO5P7AAen3tL+z/gLZd4nlAZtp4m8v
+	rcUkPPICmoiN1URiCze8IQI3Vl7C3KVv1BPHFsYy24S4CEgF5AMqSUOX0EkkQQpxECkJbQQjn1q
+	nAMOAVqq0o6pw+FBxbgJdW4v2YxGAlKUnLgVw==
+X-Received: by 2002:a17:907:9994:b0:beb:bf23:ac78 with SMTP id a640c23a62f3a-bfe2aefcebcmr149500366b.44.1781274795114;
+        Fri, 12 Jun 2026 07:33:15 -0700 (PDT)
+Received: from localhost (2001-1c00-3b89-c600-b4d0-bc9f-f60e-913a.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:b4d0:bc9f:f60e:913a])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb4b32308sm110137366b.19.2026.06.12.07.33.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jun 2026 07:33:14 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 12 Jun 2026 16:33:13 +0200
+Message-Id: <DJ757RE8OYHO.2XEXNTLVIJ497@fairphone.com>
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Luca Weiss" <luca.weiss@fairphone.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Alexander Koskovich"
+ <AKoskovich@pm.me>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
+ <broonie@kernel.org>, "Bartosz Golaszewski" <brgl@kernel.org>, "Marcel
+ Holtmann" <marcel@holtmann.org>, "Luiz Augusto von Dentz"
+ <luiz.dentz@gmail.com>, "Balakrishna Godavarthi"
+ <quic_bgodavar@quicinc.com>, "Rocky Liao" <quic_rjliao@quicinc.com>,
+ "Johannes Berg" <johannes@sipsolutions.net>, "Jeff Johnson"
+ <jjohnson@kernel.org>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-bluetooth@vger.kernel.org>,
+ <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+Subject: Re: [PATCH v2 2/7] dt-bindings: bluetooth: qcom,wcn6750-bt:
+ Document WCN6755 Bluetooth
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
+ <20260403-milos-fp6-bt-wifi-v2-2-393322b27c5f@fairphone.com>
+In-Reply-To: <20260403-milos-fp6-bt-wifi-v2-2-393322b27c5f@fairphone.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260612_072702_784551_5420BCD4 
-X-CRM114-Status: GOOD (  13.81  )
+X-CRM114-CacheID: sfid-20260612_073318_142953_BF5FDC93 
+X-CRM114-Status: GOOD (  12.14  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,107 +114,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Some Qualcomm PCIe devices (WCN6855/WCN7850 WiFi cards, SDX62/SDX65 modems)
-lack working reset methods for VFIO passthrough scenarios. These devices
-have no FLR capability, advertise NoSoftRst+ (blocking PM reset), and have
-broken bus reset.
+Hi Luiz,
 
-The problem manifests in VFIO passthrough scenarios:
+On Fri Apr 3, 2026 at 3:52 PM CEST, Luca Weiss wrote:
+> Document the WCN6755 Bluetooth using a fallback to WCN6750 since the two
+> chips seem to be completely pin and software compatible. In fact the
+> original downstream kernel just pretends the WCN6755 is a WCN6750.
 
-- WCN6855 WiFi card (17cb:1103): Normal VM operation works fine, including
-  clean shutdown/reboot. However, when the VM terminates uncleanly
-  (crash, force-off), VFIO attempts to reset the device before it can
-  be assigned to another VM. Without a working reset method, the device
-  remains in an undefined state, preventing reuse.
+Could you please pick up this patch (or provide an Ack if you want Bjorn
+to pick this up with the rest of the series).
 
-- WCN7850 WiFi card (17cb:1107): Same behavior as WCN6855.
+Regards
+Luca
 
-- SDX62/SDX65 5G modems (17cb:0308): Never successfully initialize even
-  on first VM assignment without proper reset capability.
-
-Add device-specific reset entries for these Qualcomm devices using D3hot
-power cycling. Testing shows that despite advertising NoSoftRst+, D3hot
-transition provides sufficient reset for VFIO reuse, particularly after
-unexpected VM termination. While not a complete reset (BARs preserved),
-it provides the only viable reset mechanism for these devices.
-
-Testing was performed on desktop platforms with M.2 WiFi and modem cards
-using M.2-to-PCIe adapters, including extensive force-reset cycling to
-verify stability.
-
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
----
-v9:
-  - Complete redesign based on maintainer feedback (Alex Williamson, Bjorn
-    Helgaas, Rafael Wysocki): dropped general d3cold infrastructure entirely
-    and now just a single patch: the proven D3hot reset for specific
-    Qualcomm devices (device-specific reset)
-  - Previous v8 patch 1/3 (general d3cold) dropped: concerns about ACPI
-    portability, bridge issues, runtime PM, and lack of _PR3 hardware for
-    testing.
-  - Previous v8 patch 3/3 (quirk_no_bus_reset) already merged for v7.2
-v8: https://lore.kernel.org/all/20260609163649.319755-1-jtornosm@redhat.com/
-
- drivers/pci/quirks.c | 38 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
-
-diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index 431c021d7414..bac1edb6c2dc 100644
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -4240,6 +4240,41 @@ static int reset_hinic_vf_dev(struct pci_dev *pdev, bool probe)
- 	return 0;
- }
- 
-+/*
-+ * Device-specific reset method for certain Qualcomm devices via D3hot power
-+ * cycle.
-+ *
-+ * These specific Qualcomm devices lack FLR capability, advertise NoSoftRst+
-+ * (blocking PM reset), and have broken bus reset. Despite advertising
-+ * NoSoftRst+, testing shows that D3hot transition provides sufficient reset
-+ * for VFIO reuse, particularly after unexpected VM termination where the
-+ * device would otherwise remain in an undefined state. While not a complete
-+ * reset (BARs are preserved), it provides the only viable reset mechanism for
-+ * these devices in the commented situations.
-+ */
-+static int reset_qualcomm_d3hot(struct pci_dev *dev, bool probe)
-+{
-+	int ret;
-+
-+	if (probe)
-+		return 0;
-+
-+	if (dev->current_state != PCI_D0)
-+		return -EINVAL;
-+
-+	ret = pci_set_power_state(dev, PCI_D3hot);
-+	if (ret)
-+		return ret;
-+	msleep(200);
-+
-+	ret = pci_set_power_state(dev, PCI_D0);
-+	if (ret)
-+		return ret;
-+	msleep(200);
-+
-+	return 0;
-+}
-+
- static const struct pci_dev_reset_methods pci_dev_reset_methods[] = {
- 	{ PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_82599_SFP_VF,
- 		 reset_intel_82599_sfp_virtfn },
-@@ -4255,6 +4290,9 @@ static const struct pci_dev_reset_methods pci_dev_reset_methods[] = {
- 		reset_chelsio_generic_dev },
- 	{ PCI_VENDOR_ID_HUAWEI, PCI_DEVICE_ID_HINIC_VF,
- 		reset_hinic_vf_dev },
-+	{ PCI_VENDOR_ID_QCOM, 0x1103, reset_qualcomm_d3hot },  /* WCN6855 */
-+	{ PCI_VENDOR_ID_QCOM, 0x1107, reset_qualcomm_d3hot },  /* WCN7850 */
-+	{ PCI_VENDOR_ID_QCOM, 0x0308, reset_qualcomm_d3hot },  /* SDX62/SDX65 */
- 	{ 0 }
- };
- 
--- 
-2.54.0
+>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  .../devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yaml     | 10 ++++=
+++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750=
+-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.=
+yaml
+> index 8606a45ac9b9..79522409d709 100644
+> --- a/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yam=
+l
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yam=
+l
+> @@ -12,8 +12,14 @@ maintainers:
+> =20
+>  properties:
+>    compatible:
+> -    enum:
+> -      - qcom,wcn6750-bt
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,wcn6755-bt
+> +          - const: qcom,wcn6750-bt
+> +
+> +      - enum:
+> +          - qcom,wcn6750-bt
+> =20
+>    enable-gpios:
+>      maxItems: 1
 
 
