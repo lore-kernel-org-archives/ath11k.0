@@ -4,81 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B62ECD98F6
-	for <ath11k@archiver.kernel.org>; Thu, 18 Jun 2026 06:33:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F06E5CD98E4
+	for <ath11k@archiver.kernel.org>; Mon, 22 Jun 2026 02:57:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fxEPUDJEb/E2TNBGBdy1DqfUWhcoKOjLbBcYOBP7BPY=; b=mO0wWx8dSOWhMWHBkd95fXPQdl
-	3y7qEq9ernYf4zzSFWvxnjFUiEOH8VOOXyGtOZoLQ+hJYLZH6xoRtbiUrK3Ri0aGdcdhhm/M5VZ7V
-	73OH2ZcXUzcC2ekpZL7XmBs91nM4dp66LeIVWaEE+OERvWhUA4OUqm7IV81nzINP0UZ7G77CI1nkg
-	UYWtOA726qtD1pfaU4fPkr/6EI0BpqLiH8I0/OB0uhbPyyYW4khyiw+8Z7vXrjBJK6tg+iBEywyf0
-	VJmDlKoUMKarD7jKpxtqfHWBumlUgEIZc4mqIgu7E1OhMLWitBJ22BMp7aXeDZ2BfeqTnqwaHofTt
-	VZDZTPqg==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=/dZrKZyJQsh8CVq0V1vQx87a/QiFzODktdeo6xpWzw4=; b=nMpLE6M8fw5tnKsD5ql36Ufzjj
+	3J0dE6MCiXaE5GTedn0Thi/+Ql6B4Vvh8OceKBFneqyLwYaLkPWocaHjyHd5AraRuxhvJNoGivASx
+	jHpB3ClbyujJa9gQQfjbOTAh+daQmwr0JNMwn6AmZ/lZ77KNwoaydbAOYJn9WEgE2p1kyq+7xUldO
+	HQq3Vs8HEIx9zGcQMd7sbqK3gQu6BTL4Vg5JY57iO0smBWX8de4w7M0AQCPHQdXJzsjHtcdgN9PVP
+	EHP5e4wiUD6ICXSkrK/ZVZXXc3HA/ihimpchFihGoyiRpO7gb6qj8ELp7tagWFVWit1rf4koibzsw
+	RQ3o7BxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wa6Je-00000000hFI-0jZJ;
-	Thu, 18 Jun 2026 06:33:30 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1wbUr1-00000004KZ7-3xUg;
+	Mon, 22 Jun 2026 02:57:44 +0000
+Received: from smtpbguseast1.qq.com ([54.204.34.129])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wa6Jb-00000000hES-1R2s
+	id 1wbUqy-00000004KYl-14IV
 	for ath11k@lists.infradead.org;
-	Thu, 18 Jun 2026 06:33:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1781764405;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fxEPUDJEb/E2TNBGBdy1DqfUWhcoKOjLbBcYOBP7BPY=;
-	b=OPFkZDNunr/SnyD5u3QWFs10VAkHlQ1Lb3liWo8mVAErFdvqgxFQXGpEFNsMoSBIpr5O/Z
-	coJR/vOnCVd8TYbwBi3b4tUiziJNWUQHleNywe3kd9LYTjGvO2ojZTf4qhakmSWIW6Bm9s
-	GOOxcTnxnRcK1OF7+fmwZ0dO8wCyr8c=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-220-sZX7nJgjPVaSpqNJyJkT1w-1; Thu,
- 18 Jun 2026 02:33:20 -0400
-X-MC-Unique: sZX7nJgjPVaSpqNJyJkT1w-1
-X-Mimecast-MFC-AGG-ID: sZX7nJgjPVaSpqNJyJkT1w_1781764399
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 54C011955F0A;
-	Thu, 18 Jun 2026 06:33:18 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.44.32.28])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 589073000238;
-	Thu, 18 Jun 2026 06:33:13 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: mani@kernel.org
-Cc: alex@shazbot.org,
+	Mon, 22 Jun 2026 02:57:42 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+	s=onoh2408; t=1782097034;
+	bh=/dZrKZyJQsh8CVq0V1vQx87a/QiFzODktdeo6xpWzw4=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version;
+	b=XBTvLEnmzBfaYFKSDBi66rkPNaIh2yqgAZjsnJk49fON2lU56gMLiCHNUcspGXHK1
+	 5hrvWYTBVwsaZ/ydofeWDc9NeVrB5Cpvi4hHKsAqiLY2DgecQ+H/ghLRYoWQi7Y8zO
+	 02eXX0yePFk3KOBS0B57TuHRlOGun5rHL7p7j8/I=
+X-QQ-mid: esmtpgz13t1782097029tf773796c
+X-QQ-Originating-IP: pQAhdQ2K8DBH86OGSYD/2Bl7UlibMqvqKXMwSU7VKEI=
+Received: from localhost.localdomain ( [124.126.19.250])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 22 Jun 2026 10:57:03 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 3873773278757756852
+EX-QQ-RecipientCnt: 5
+From: ZhaoJinming <zhaojinming@uniontech.com>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	bhelgaas@google.com,
-	jjohnson@kernel.org,
-	jtornosm@redhat.com,
 	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	mhi@lists.linux.dev
-Subject: Re: [PATCH v9] PCI: Add device-specific reset for Qualcomm devices
-Date: Thu, 18 Jun 2026 08:33:08 +0200
-Message-ID: <20260618063309.9536-1-jtornosm@redhat.com>
-In-Reply-To: <n3maiuu5cctivlal4fozysz37ir6ecdfws5u2xxw2neclsfdfj@nsvwvlh7b4j5>
-References: <n3maiuu5cctivlal4fozysz37ir6ecdfws5u2xxw2neclsfdfj@nsvwvlh7b4j5>
+	ZhaoJinming <zhaojinming@uniontech.com>
+Subject: [PATCH] wifi: ath11k: fix resource leak on error in ext IRQ setup
+Date: Mon, 22 Jun 2026 10:56:59 +0800
+Message-Id: <20260622025659.1235658-1-zhaojinming@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: oOoNggQYTUAMXO2sTnHNVOSebK0Ju9HkZGa5MTqqubY_1781764399
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: OapyzHutjwH/z1OrIGPVJ617gkaKfgP7BZAlBmZl2KmQdumzbHbzDKS/
+	VwpN9/92Z4YZTK8Cf9MVjEfYoItwOLU8K/GAyI/le47vS+3GuGIBOQJy6DZocBZr7YvO0z7
+	jPqd3lMCiOdyG6G+YHrPPitOFKmF0995fwxW9L0Jn6Pm6wlhH1Fg1axcZlMtSIDuqO3Xnjv
+	BCovHc96nY1gM0Z1aoKI5PD4mrIlKZSSbQaLe7e6xVuj4/Dzf5vnvaDzXK+FzuBlR2h1Juc
+	beZh5r0KCkCYdJiFw6rc5qMcf9Lsm1a5xGZavj1xyZyU1Gts3dK7tUeCxeYOFyIZYATzD+t
+	RQakM0lEqdk6ybBcNjHmPHrmTB+SnK9dyxv5iZZlTX8WcIm88oQjhpt3PDQzJsa0BkxvuJf
+	QQwv1OABIPwA66EWFPwqOx1/ypO5Nvfk9sbuQ4ubWP8OAwcFMwqppCSD02GL2Ice6HqerQe
+	3uYZVSpE5fwwKpG16fWx30QAGJo12F0pOoULUpa44VXdrgl0tIN5k6B5u1rDQip79dxCjWO
+	ZX3nsDPdhb32qGhIg+eRUcp6dr2rrawO3OyOnyT9E8wZGbolUmdpSflXm/zeUnENq+JO2lg
+	0AFv+SmkOIY6SCLe8MiSRFlc2HTSfyF3sTGMLWcWmw+l5vLviivNiljHwSLtNcITwTR0kUs
+	2KhOkAeTVdGo9XP7UPXRB+wh1gp6sAS2/s48sGGzBkxmHlFJrK35NusSL8oMbmDX8zpo2HU
+	uOLQ1FWEWIS3WWlDRPrmxcMrmYrRCL6xFnqCzGyUvjfF9s0fmFlLOYFzTyYjkKZroeMOTKF
+	GNtCC0Ae2zTy3d+HYCTRLEHNI+IbtLS4Nuy6dkwpqeSxVuogrII7Try7XcTvkX247TWoS1j
+	PygKulq9ZOD1sY+jsPUP6pVhzGx5jvxh3nyik7USNK9kZvnMvqbBdMaebdFSDHRd/JbnX5n
+	X3D8dze/peG2M/nZlW19JtP+ZSBdOrjrstdRd1ygPVXmBJOwYZf2XAfpvUaAo8LvkyeSGR6
+	CsZzC8KgeNwBu9kOcvEEjrheFqLmI=
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+X-QQ-RECHKSPAM: 0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260617_233327_480778_35558362 
-X-CRM114-Status: GOOD (  10.66  )
+X-CRM114-CacheID: sfid-20260621_195740_830162_AE24E10E 
+X-CRM114-Status: GOOD (  12.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,68 +92,96 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Mani,
+In ath11k_ahb_config_irq(), when a CE request_irq() fails, the function
+returns the error immediately without freeing the CE IRQs that were
+successfully registered in previous loop iterations. The probe error
+path does not call ath11k_ahb_free_irq() either, so the previously
+registered CE IRQ handlers remain attached to the interrupt lines and
+are never released.
 
-Let me clarify the exact scenario and where the reset is necessary:
+In ath11k_ahb_config_ext_irq(), when an external request_irq() fails,
+the error is only logged and the loop continues. The function then
+returns 0 indicating success, leaving the device in a partially
+configured state where some external IRQs are not registered. This
+causes enable_irq()/disable_irq()/free_irq() to be called on
+unregistered IRQs during runtime and remove/shutdown, triggering
+WARN_ON(!desc->action), and missing interrupt handlers lead to data
+loss.
 
-* For the commented WiFi devices (WCN6855/WCN7850):
+Additionally, if alloc_netdev_dummy() fails for a later IRQ group, the
+function returns -ENOMEM without freeing the ext IRQs and napi_ndev
+that were successfully set up for earlier groups.
 
-Standard VFIO passthrough flow (this works fine):
-  1. Unbind native driver (ath11k/ath12k/MHI)
-  2. Bind vfio-pci driver
-  3. Assign device to VM
-  4. VM boots, loads its own driver → device works perfectly
-  5. VM shuts down cleanly → device can be reassigned → works fine
+Fix all three issues: propagate the error up to the caller and unwind
+all successfully registered IRQs and allocated resources on failure.
 
-The problem occurs with unclean VM termination:
-  1. VM crashes or is force-terminated
-  2. VFIO tries to reset the device before reassignment
-  3. Without a working PCI reset method, reset fails
-  4. Device stuck in undefined state → cannot be reassigned to another VM
-  
-     Unbinding the driver again doesn't help because the device hardware
-     itself is in a bad state. From hypervisor:
-     $ lspci -vvv -s 0000:03:00.0
-        03:00.0 Network controller: Qualcomm Technologies, Inc (rev ff) (prog-if ff)
-            !!! Unknown header type 7f
-     And a full host power-cycle is necessary to recover.
-     
-* For the commented modem devices (SDX62/SDX65): 
+Signed-off-by: ZhaoJinming <zhaojinming@uniontech.com>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c | 30 ++++++++++++++++++++++++---
+ 1 file changed, 27 insertions(+), 3 deletions(-)
 
-Even worse because it fails during the first VM boot without proper reset
-capability, standard VFIO passthrough flow:
-  1. Unbind native driver (MHI)
-  2. Bind vfio-pci driver
-  3. Assign device to VM
-  4. VM boots, loads its own driver and crashes:
-     [   24.024165] mhi mhi0: Device failed to enter MHI Ready
-     [   24.024168] mhi mhi0: MHI did not enter READY state
-     
-     Unbind/rebind attempts fail:
-     [  352.643601] mhi mhi0: Requested to power ON
-     [  352.643611] mhi mhi0: Power on setup success
-     [  373.442954] mhi mhi0: Device failed to clear MHI Reset
-     [  373.442970] mhi mhi0: MHI did not enter READY state
-     And requires a full host power cycle to recover,
-     even outside of VFIO scenarios.
-
-* MHI Host driver's remove callback may handle clean software state
-teardown, but it doesn't provide a PCI reset capability that VFIO can
-invoke. VFIO needs a reset method registered in the PCI reset hierarchy
-(device_specific, pm, flr, bus, etc.). VFIO invokes this reset both during
-initial device binding (before the VM starts) and when reassigning the
-device between VMs - without a working reset method, the device cannot
-reach a clean state for initialization.
-
-
-
-I hope this clarifies the scenario better. Please let me know if I can
-provide more information or run any specific tests to help investigate this
-further.
-
-Thanks
-
-Best regards
-José Ignacio
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index f566d699d074..041c0fefe8c8 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -536,8 +536,10 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 		irq_grp->grp_id = i;
+ 
+ 		irq_grp->napi_ndev = alloc_netdev_dummy(0);
+-		if (!irq_grp->napi_ndev)
+-			return -ENOMEM;
++		if (!irq_grp->napi_ndev) {
++			irq_grp->num_irq = 0;
++			goto err_request_irq;
++		}
+ 
+ 		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
+ 			       ath11k_ahb_ext_grp_napi_poll);
+@@ -600,11 +602,25 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 			if (ret) {
+ 				ath11k_err(ab, "failed request_irq for %d\n",
+ 					   irq);
++				irq_grp->num_irq = j;
++				goto err_request_irq;
+ 			}
+ 		}
+ 	}
+ 
+ 	return 0;
++
++err_request_irq:
++	for ( ; i >= 0; i--) {
++		irq_grp = &ab->ext_irq_grp[i];
++		for (j = irq_grp->num_irq - 1; j >= 0; j--)
++			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
++		if (irq_grp->napi_ndev) {
++			netif_napi_del(&irq_grp->napi);
++			free_netdev(irq_grp->napi_ndev);
++		}
++	}
++	return ret;
+ }
+ 
+ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+@@ -629,8 +645,16 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+ 		ret = request_irq(irq, ath11k_ahb_ce_interrupt_handler,
+ 				  IRQF_TRIGGER_RISING, irq_name[irq_idx],
+ 				  ce_pipe);
+-		if (ret)
++		if (ret) {
++			ath11k_err(ab, "failed request_irq for %d\n", irq);
++			for (i--; i >= 0; i--) {
++				if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
++					continue;
++				free_irq(ab->irq_num[ATH11K_IRQ_CE0_OFFSET + i],
++					 &ab->ce.ce_pipe[i]);
++			}
+ 			return ret;
++		}
+ 
+ 		ab->irq_num[irq_idx] = irq;
+ 	}
+-- 
+2.20.1
 
 
