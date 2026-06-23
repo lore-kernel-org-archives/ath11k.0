@@ -4,99 +4,131 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E47FDCDB479
-	for <ath11k@archiver.kernel.org>; Tue, 23 Jun 2026 14:15:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA0C2CDB46F
+	for <ath11k@archiver.kernel.org>; Tue, 23 Jun 2026 14:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=2/BP8S3K7EAUl7PQnFjVmpuzHDdXnjTm3NfjEHjajEM=; b=v+kFXFmsHy71LXdFcsG+TzYbFq
-	ocL6w3wwBQ/q2aJGdlmdNNaZYJ9865X/Ka+FzwAHCldxRLPtS3uFJKf1SxrmYZjDI9RCc+K6tPu5r
-	ex2CMEZdGnnENw+Hu6NzzHp36RVQLrnX7wIH7GMWeRwjRkqxweP+xxG+mhCDWUJOhz12LCCvfxZAY
-	VZaPIm/KLF+Rw1Y/kbh02WmSvhPG/+Wlhed4y4MtBG7dSFpYVnydkVcGto923SUAF8okXHJDXBm8N
-	rv/MfpO5v5IRlXTQHXx0DleOlFlkH/sc6r9VarX3MfFmAqY8VMBxgNJS57qacNSHPqWjemNhmyHZN
-	2xLKE+Gw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=ViNuCLfK+fFW0U/eEAsK3rYml2n+gN9k9b6JwUIS9lw=; b=0w1/XN236EbO+Uc/nEmR9XmYlG
+	TwV78SSS2spGm9NzrclD9pDHSahhsRKu0PihMFRqsVShUgjPz/FCM8wZ8w5Xk7LVFRNPFSALep6PB
+	acZzcZk/wtGA+2542TOwnSquKbSswMT7JRRIv757rHwoOyX8tIMytScRMbp1DPHbQFUcYhdR5ZSR6
+	mE0hDv7FtBvVj/Vj++P1P4dwt6Q4P00lMEk+YGNSp+UXEbh3bbffYVM+KMDnClXta+d8q9yF9DVal
+	LE+UKM+9BUUIb9P8cWayw3FHNgOgN1BjZGD3ddQupyN65UeklPq3u1o+yN5e8o5WraLPqXiiJlqVd
+	jpkYqr3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wc1uX-00000006PmG-3v9d;
-	Tue, 23 Jun 2026 14:15:33 +0000
-Received: from fout-b4-smtp.messagingengine.com ([202.12.124.147])
+	id 1wc1wK-00000006Q3U-1CEn;
+	Tue, 23 Jun 2026 14:17:24 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wc1uV-00000006Plr-14rR;
-	Tue, 23 Jun 2026 14:15:33 +0000
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfout.stl.internal (Postfix) with ESMTP id A1B8F1D0012B;
-	Tue, 23 Jun 2026 10:15:29 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-05.internal (MEProxy); Tue, 23 Jun 2026 10:15:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1782224129;
-	 x=1782310529; bh=2/BP8S3K7EAUl7PQnFjVmpuzHDdXnjTm3NfjEHjajEM=; b=
-	fWYbk6fkCNJC0bClPCw0ReBNdY4hN50DXQBD3DzXZQlrOQKgfkztR1qs6Z1B59lM
-	mXq/zyIRZQrmHPdTdXkxYvjCvd20lyfjz2/V29HoOovlhp6A4DOzlzMdyapJtjhu
-	5r1/IDqtzHbH+p/xPReg6U2FyANt6gLsceneZbidHLLxUiKNPks+heZBIsC2ddJx
-	tj9TqzPSKgFxvaTeiO1Z7ZKj6GJcgk/YMtBaOH1GSWdsehZYWR+gxk8d31tcLAB7
-	BwCF1YHE7yibxQGzSU/6HlSkZW5Yy79reIBWOfzzbrlAtJyaUb4sJTNCVIObJE/N
-	e+ONpLAI6slz+TUEjkLKlg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1782224129; x=
-	1782310529; bh=2/BP8S3K7EAUl7PQnFjVmpuzHDdXnjTm3NfjEHjajEM=; b=d
-	5wFqDmeEoZULivheN107RbYoHR/AiayXFajvfWcvzOueC9a/OpQjUk33AW2s+wud
-	S68bO7o76KRqu60FLYGAFtdjOekhCIvpbNUQvN9P2kFfK5dDKG+23b47W5uh1dKH
-	NQtrv3gGm4PxEvVz0SKJCN8keHi+WTw60m2vGmCgsd20MXveWNhrP2eG2e0JJpPZ
-	XGVL//Cu9WN6xLVC92JF3fWr5VKpTZvIRAukXIbhptKVayPGbg3JXMEopYBue/nI
-	WM1DYcuU6FyRQ/yXXhEaoFRZfSpdJlp1xqwDKtu5YVEnOpGgJtsMu+R6PD5zHa2M
-	mHTnAHikq1lmBSf7knMrQ==
-X-ME-Sender: <xms:AZU6amHwTQM9Sk9JhzlIL57NdDglaID_OXxTc38efbiZpidyv0EEmQ>
-    <xme:AZU6avdQkVDsxA6PTEivIkdxE6go6uZwehI57pW0EmO0xQPHgnuzLF5JuFpdrzzA5
-    _HzYk5Ez-ESaJyJIB4X93m9w_dCFsRg1t8d1Dt4g1dgWU-8-xGFwg>
-X-ME-Received: <xmr:AZU6avpw6ntrmuenZorUPiJQ5HFCLxO4Tkvhe2qmLGChLDJ4-SslPzrcciM>
-X-ME-Proxy-Cause: dmFkZTEtltNPcCC7LyAuhl+F6mArHQnqSrrLTwwKExrXFThrGIeCpx+D/j+xo8RW9Aeb11
-    IjCJP2gJR3JeMmMcXRHHc6ZvZ6CmsaWiTS/tZu5AS4X6umxRyVu9/omdNSNMa4zgDvnwCW
-    LmHl7a3hynDEBCupmG8oHySMy/FUCpt/Tz2sFcrjvGVk/aUa11z+/lCkvOUcuHixlVVZ8r
-    ZcUMBKg/CR0J6Y4jXqGMml/9io5G/QNccl03ob3/2wk0l+xsige7kSbMveB3jq78qV/YSC
-    lJnh42RgTRJ5DEmJdAK32pyA+wRJ2tisV6YI/QxALvNOt4ynidfjUmsGnjE82cfrTiMFNm
-    QJeWWpu8OaaduqTC9G4JqO+pr+PmThSgZweCJkdbqnABYAEWMbRu2s+UwgrQFNeHMyJ2B9
-    TtA4yF7PCrI2OL1V0CL7ZfbZUXqCjsSZNGLaoymRlLmk7NVo9O1WvtzIq2P/JvK15//DRs
-    W3XROktIIlBGsMFb0efJ/HdTNaO4NwV51gGtv6e0mz1cdFy8X1g7YT3RSR6WcqjMgEC8hQ
-    W7x5QwP9IvMqVwnjnk5g+5R9tzgZO5hnaHgqIeXtPG/3Avjzug8HPYeIQ5BmM7hhjRMH3o
-    tu+rJbr4GLksDf7NFO9DUBa2SyH+iniMKm8SY7vOr8lhc80w/GmFEPPVxlWA
-X-ME-Proxy: <xmx:AZU6agA1NamTjmN3RGC8XCC_HfwZXZ8gcqBeavb-hNqv9gn5uUZvyA>
-    <xmx:AZU6aoeyNTIhZh0SplNYIa4iGoTht0cruMnDxc7-vk10W11yGLgr8A>
-    <xmx:AZU6agvtI6tevKqtZpX3n4nO5Sf6_Ql9XeImd-itP6SErmCHQOJDsw>
-    <xmx:AZU6anjaUc7soy3hM31J9HPENUmjN0SAx6sWHgA8luzAM-jxLmRpPw>
-    <xmx:AZU6ao6ItSUirKMV9MCX9Mu6m87XTdBBQkDexvO6oePbn2MnQCEz73lD>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 23 Jun 2026 10:15:28 -0400 (EDT)
-Date: Tue, 23 Jun 2026 08:15:26 -0600
-From: Alex Williamson <alex@shazbot.org>
-To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Cc: mani@kernel.org, ath11k@lists.infradead.org, ath12k@lists.infradead.org,
- bhelgaas@google.com, jjohnson@kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org,
- mhi@lists.linux.dev, alex@shazbot.org
-Subject: Re: [PATCH v9] PCI: Add device-specific reset for Qualcomm devices
-Message-ID: <20260623081526.1366a16a@shazbot.org>
-In-Reply-To: <20260623125637.1188867-1-jtornosm@redhat.com>
-References: <r4jeqtx247iosfjdps6g4fqwtsdzine5qlgh33sdt4p6ktmaln@o725aolrpj4l>
-	<20260623125637.1188867-1-jtornosm@redhat.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	id 1wc1wF-00000006Q2H-1SU4
+	for ath11k@lists.infradead.org;
+	Tue, 23 Jun 2026 14:17:23 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65NC6ojJ3745537
+	for <ath11k@lists.infradead.org>; Tue, 23 Jun 2026 14:17:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=ViNuCLfK+fFW0U/eEAsK3rYml2n+gN9k9b6
+	JwUIS9lw=; b=BlPW4reykkzhCcTaouJHKL40SI3XmaatmqOQiNPkm5HHY4Og/6j
+	Coev/dt5js1torALL33PL9p74RoJCak/BC9ldI2D1C/uZgbatHEZBgm1fOW1Zs31
+	M1lRi9pbXffMhH65omXEms5Cb2YGnHY4UWPXLKD9oImOrQw97Tu5kb2hg3F/zaNy
+	aRDWgDOB+IK6aH0StpaadQLpuu7AX94i+UVbKuoaNb6YhSxSx5rhWkULKVHZ0t/1
+	4IzGwh3rc4/ILMV0SJPAvZDNMtsHzbcpsq1e+Jm/67G8KnSX5FzIzreLa6JIahpj
+	GCpeUeYtrzBD8xMF9B5lnPMhsrlkJ0xgkeQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eysv3ghaq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Tue, 23 Jun 2026 14:17:18 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-36d97955899so3799701a91.0
+        for <ath11k@lists.infradead.org>; Tue, 23 Jun 2026 07:17:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782224238; x=1782829038; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ViNuCLfK+fFW0U/eEAsK3rYml2n+gN9k9b6JwUIS9lw=;
+        b=CrfA6t35Lgcw1/Mmi15PB7IP17lUZ74eNazRhUGj5z5TjpPc6UqT0o2cCWUK/XStG8
+         +B/JR4tanM7qO/E0D36vnKaBB++LOHq2v0M7luO4ViPjrBzXiIq9rTTM/h/SfsZuj93P
+         M6WUbq4yTYI+sHsOvkiMIBXV4ZnIQK8JhDe2XMK54YPpnlBdvm+fKqjSlYmze3j81s9R
+         SBXIQEVkMnrTAXWFi8RVLjDEk/i4/oVCKop2COd+dBx+g8rESp6t7A79hxhUtPVqO5IM
+         UEqeMkdi6LEO5BjWXLJw9wzYWXO5ZwFJJYKHW/4NMuq69BrQ99/aEhZap2l2qglREpK9
+         EThg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782224238; x=1782829038;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ViNuCLfK+fFW0U/eEAsK3rYml2n+gN9k9b6JwUIS9lw=;
+        b=nf+2zAxluq0am79jgTDx7hjuoWsoIJDa0LOmOws4pTEaREwnr3ijjWa3ELmyzn2HFH
+         3DWpa+FrCyNUSqpEx0iQ8hJcY6E5izN/az9aIxkpXkfQUdgtK25V7/mC2dbx+w2pbh61
+         B7u+Y7QojJmOtCh0fV8bkWJnzDRjgip9ZfcsNIah4M9I656nn1faH3G0itqEWiU9KVVc
+         aMc78Ms8y3sBLFs0usM79QFm+PQo1ldl2jrU3LWPK8UfdS2O+BCIPowQj0zCF+zPrxVz
+         TnK3Dp7ySQLI6JMwuPEW4vDVSMVr5FVx0hrF4XuHY9PGYGY6w5lupIvioBqVqGfkTUA3
+         yaJA==
+X-Forwarded-Encrypted: i=1; AHgh+RrPQmZktaE4Sd2i6LrJSc0jBoGRLrwdrQnPTYCvAPS3F8j9JWT8jc6x0xd4R6eHdu29Nz8tyLI=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzxlrWzV3u04Yd+1t3YKDfMwBFWeBCzp/IqKs+Xo2gdFEkC5lmV
+	UIe7LMBsOVMVTbZQwEPZmol06B/JbYdi/9eKVFAYZLX8ywec3+Jye0Sb7eVgHz4RWD7U0GsuhBz
+	SIbaIGpGyRlGTKIPreY0KtWEztrTi+Yo3Z6rC0q7kFWI3IRWfVVvi4TbigL1hzHlFGn+5uyVl
+X-Gm-Gg: AfdE7cmcBIgjNQgd+IYjUPKza+UYXDRrZEH/cNLLn0T3IzTGhiSvK+upZAFKE0cnynj
+	GSiUpQ82+127T9T/QnWEIlbRLQisWHBeAqR6pK+RfEoXrz3BZ3XirnLFNBgOiTEJiQtR56lIjfd
+	zGKVAdSMBrejTEyHA1O6yGmYFUBqPDJwFRTEgIqm4yJWFgsfpQQI62TatDJvFA/tSbBxWr/7/55
+	qwYcQUvQFrJ/MF+IgU4zo3/qUM9YihfcQ8KC2wfyNKumANxSYcaLDWk2RcM4LMIWUqDoIncdDfC
+	RbM6hvQqwsangWvrlweH1TNpc+gWGtZZtv2ZmObOB5IGsy2F5EX0bLAu33eX7uEMfX8i6zij7Dw
+	TIFAOLoogZy91XfGtUsdTZNcr91skKmQoff/jgJu5YauoiNziy3HXP+bWOBWK
+X-Received: by 2002:a17:90b:1f91:b0:37c:83ec:1641 with SMTP id 98e67ed59e1d1-37d4d71d7d0mr14541720a91.5.1782224237751;
+        Tue, 23 Jun 2026 07:17:17 -0700 (PDT)
+X-Received: by 2002:a17:90b:1f91:b0:37c:83ec:1641 with SMTP id 98e67ed59e1d1-37d4d71d7d0mr14541655a91.5.1782224237179;
+        Tue, 23 Jun 2026 07:17:17 -0700 (PDT)
+Received: from QCOM-IvKeorbwK5.na.qualcomm.com ([120.56.199.52])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-37d4f315842sm10094199a91.17.2026.06.23.07.17.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jun 2026 07:17:15 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+To: jjohnson@kernel.org
+Cc: linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
+        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mani@kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Alex Williamson <alex@shazbot.org>
+Subject: [PATCH 1/2] wifi: ath11k: Flush the posted write after writing to PCIE_SOC_GLOBAL_RESET
+Date: Tue, 23 Jun 2026 16:16:48 +0200
+Message-ID: <20260623141649.41087-1-manivannan.sadhasivam@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIzMDExNyBTYWx0ZWRfX3+M+zDqrgIyM
+ kkAcIQgJTEu82w0gbNAwVKmEdZGK1miQylVZTU8W90ayksIeAyAwrYuh7hZUFTKs2asRO1hdynJ
+ 9NRE7Jcs93jCpZXW5yl1L8zIQwWqTcI=
+X-Authority-Analysis: v=2.4 cv=WtAb99fv c=1 sm=1 tr=0 ts=6a3a956e cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=Alb0JCXUjTgUeOUvUsHAUA==:17
+ a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=VwQbUJbxAAAA:8
+ a=r1p2_3pzAAAA:8 a=EUspDBNiAAAA:8 a=b6JBSybIbF9IxaTxWo8A:9
+ a=mQ_c8vxmzFEMiUWkPHU9:22 a=r_pkcD-q9-ctt7trBg_g:22
+X-Proofpoint-ORIG-GUID: 0vOZqJYHrmRpSiEnI1JXDYZAX3c1DG-8
+X-Proofpoint-GUID: 0vOZqJYHrmRpSiEnI1JXDYZAX3c1DG-8
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIzMDExNyBTYWx0ZWRfX7FeLM8I+6B6+
+ bn6+rCKX9kW7uxsfj2JGKnu02Os9qPMo1y+QUL2CAveXIVaNvzybgASiCzJRv20Vl9dSfpC9Bgt
+ K+nNo9IDe2mnFc70WCatCGAIETkxnoZA7pLKKRySsdmzsary7i6r7ik27Axoq0rNhDf+FOe1BVF
+ QZ/zrrhAVYDjHBO7rCf0oO12MfJjQF4Zcr/KjbZAr0hMlS8/B3MEjEaHQhKLg8q/GBsev7d9ezg
+ 1QKcAX/F9BihqP5SZLDlN0K8hCVcjGQW0pxUmmI8oy6UlX3ueoUJfDgQMdEK9r7RCPI4k6UHlSf
+ JOkWwehpct2i1GuezcXHMLt+CmBDhg+6pd8QkIIbFNee2QDu8sbn7g9wRhUcAi5QQ2uzXkbJkV+
+ rrpAmOHDVsI6dSo9J0r+9Z7Fu250KtlI+y6tM7DGledmxytocpJVSJ8Vt1uQDOJoVoaLg5BlPJF
+ pYakVrOdPzrlwQ8VhuQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-23_03,2026-06-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 lowpriorityscore=0 clxscore=1011 spamscore=0 adultscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606230117
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260623_071531_792321_9D05FE48 
-X-CRM114-Status: UNSURE (   6.34  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260623_071719_398841_60FF1483 
+X-CRM114-Status: GOOD (  14.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,14 +143,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 23 Jun 2026 14:56:35 +0200
-Jose Ignacio Tornos Martinez <jtornosm@redhat.com> wrote:
+ath11k_pci_soc_global_reset() tries to reset the device by writing to the
+PCIE_SOC_GLOBAL_RESET register. But it doesn't do a read-back to ensure
+that the write gets flushed to the device before the delay.
 
-> Alex, Mani - would you prefer a dedicated VFIO PCI variant driver (similar
-> to mlx5-vfio-pci) to ensure the reset logic only runs in VFIO scenarios, or
-> is the quirks.c approach acceptable? I can implement either approach.
+This may lead to the delay on the host to be insufficient, if the posted
+write doesn't reach the device before the delay.
 
-It should be a device specific reset in quirks.c.  Thanks,
+So add a read-back after writing to the PCIE_SOC_GLOBAL_RESET register and
+before the delay.
 
-Alex
+Compile tested only.
+
+Fixes: f3c603d412b3 ("ath11k: reset MHI during power down and power up")
+Reported-by: Alex Williamson <alex@shazbot.org>
+Closes: https://lore.kernel.org/linux-pci/20260622160822.09350246@shazbot.org
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+---
+ drivers/net/wireless/ath/ath11k/pci.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 35bb9e7a63a2..a163168f3617 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -199,6 +199,8 @@ static void ath11k_pci_soc_global_reset(struct ath11k_base *ab)
+ 	val |= PCIE_SOC_GLOBAL_RESET_V;
+ 
+ 	ath11k_pcic_write32(ab, PCIE_SOC_GLOBAL_RESET, val);
++	/* Flush the posted write to the device */
++	ath11k_pcic_read32(ab, PCIE_SOC_GLOBAL_RESET);
+ 
+ 	/* TODO: exact time to sleep is uncertain */
+ 	delay = 10;
+@@ -208,6 +210,8 @@ static void ath11k_pci_soc_global_reset(struct ath11k_base *ab)
+ 	val &= ~PCIE_SOC_GLOBAL_RESET_V;
+ 
+ 	ath11k_pcic_write32(ab, PCIE_SOC_GLOBAL_RESET, val);
++	/* Flush the posted write to the device */
++	ath11k_pcic_read32(ab, PCIE_SOC_GLOBAL_RESET);
+ 
+ 	mdelay(delay);
+ 
+-- 
+2.43.0
+
 
