@@ -4,57 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E665DC43458
-	for <ath11k@archiver.kernel.org>; Mon, 29 Jun 2026 16:01:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AC29C43602
+	for <ath11k@archiver.kernel.org>; Tue, 30 Jun 2026 06:29:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZMagSuV/KEPQnZY+XS5s3kJW3BcH6iR0+wLbzdgK2X0=; b=M1NsB+9sIYDwmbypNjv6gpDKvi
-	1Y07F2nhZSFf7Nfuh8sakuN1+hUpQy9BquGLJPOOFgVusQLgpGbZzhuHJ6nwgwXeNiwjkv7ZcRaiq
-	NUea6bKGmj0C0MoLuTEtHSMLaqnJSupbTxePpnugExgRLk5P9ixN804dpsXBSfxAxqntZCIX23hxd
-	JuzrVe7aEjRyBN2RbKT1+ku014lePyrsJnQ1oeVfTko7QoOYfTyaBVbSnK6tsgdYm/g3LLzSRi5Od
-	hgGHpfRpR5JwrDq/9RWJBzZJrNArc5LY9JjTgJcxtYO+UJUl7Oi5SOcrZE9n8s9NFoF4tzGZnnZjg
-	Ix1rDfoA==;
+	bh=2aaA+j96ATu54kIfRUjrZHWPEKT1weTYWyrrAFERnVw=; b=Lsodnl459HUv+BdPtFz3gikfj+
+	bmnRyAtvpEPktrIg5oR2NJGOmkcEX94SUW8qA1hU5CAiOl5FJ6r/dPuTcf7qC+BzeoZLGH/YBO5wV
+	6+1LvOLnIC4g6JNlGB5qL5zBYVgjqM0kjVCv+pBk9Fig+J2W6TUQUjuHA6KHN68eWGAMMDR/4nFpL
+	/nAJxsHNpsnBAYenGBO4hAW/W9KHkvLE0iKFZEtsqulD11+TW9SZV1wpM3+qu4JIWHy1CuJL5r4dq
+	3NfSgVLlGut40GhS2wDkla4KeVpKTopKlzrftwfuJS4evjOFJ2yv3WHSpnXT49s5DHhXz1DVGKIWZ
+	zHFsNe6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weEQd-0000000F9SR-1xwf;
-	Mon, 29 Jun 2026 16:01:47 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1weRyF-0000000Fw9u-3jtA;
+	Tue, 30 Jun 2026 06:29:23 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weEQb-0000000F9SA-3n9w;
-	Mon, 29 Jun 2026 16:01:45 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3FD2E434CD;
-	Mon, 29 Jun 2026 16:01:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780AD1F000E9;
-	Mon, 29 Jun 2026 16:01:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782748905;
-	bh=ZMagSuV/KEPQnZY+XS5s3kJW3BcH6iR0+wLbzdgK2X0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=NmwCUn9fNzlLN6RHJFD4f7AaI7M+siGWgaA6KKEP8+YaHgbCT8Eo8ua71Hrl3tsBb
-	 EpcinpRLb8K5+ZYGfFCrfm7EX5pUXhwd2BSqPwDcPUh64Nk5R6nFyv7fw9tmx/PWoa
-	 s69IS3QurF0gsSQrR2oF5sNahDh46sdOzkV2qJUBVdWI9wGP4VGkAi+UmP5kFjb/Ds
-	 meVJPowgZXAb7UJobfEJ81GhUUY0N+OGFRk5wNRqM/PZgIS0yfCIQVKPoMH597Gonz
-	 PY9ic9oKw/XQW/PxJLHU+q6JjPJcYIjAlGlPO+EzOkAuHa1iOiwDQAOk+nrX2N1xLA
-	 JmMc0obmWEe7w==
-Date: Mon, 29 Jun 2026 18:01:37 +0200
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Cc: bhelgaas@google.com, alex@shazbot.org, jjohnson@kernel.org, 
-	linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	ath12k@lists.infradead.org, mhi@lists.linux.dev, linux-kernel@vger.kernel.org
+	id 1weRyD-0000000Fw9G-0GJa
+	for ath11k@lists.infradead.org;
+	Tue, 30 Jun 2026 06:29:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1782800958;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2aaA+j96ATu54kIfRUjrZHWPEKT1weTYWyrrAFERnVw=;
+	b=KVz8nBiCXpmavcEPUQwZAAUcLmDPBmT8YjM0aqzhqe/+gzoK3BEG+6riNCaPb5AhKOCeSd
+	xEd+em+9gu+949pZkUOGxj5EIej5HSTaqLuIRaviDcdGrW7xvpOHWFPp/YHMdoBe7G5VB1
+	RDfKmmapz9iC+ZWOMPDfPeRTYpoF3Mw=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-592-WG2wTwo0Meu3YKrqxdSpYQ-1; Tue,
+ 30 Jun 2026 02:29:14 -0400
+X-MC-Unique: WG2wTwo0Meu3YKrqxdSpYQ-1
+X-Mimecast-MFC-AGG-ID: WG2wTwo0Meu3YKrqxdSpYQ_1782800953
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id ED91C19774F5;
+	Tue, 30 Jun 2026 06:29:11 +0000 (UTC)
+Received: from fedora.redhat.com (unknown [10.44.48.35])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 1D3743000B4D;
+	Tue, 30 Jun 2026 06:29:05 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: mani@kernel.org
+Cc: alex@shazbot.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	bhelgaas@google.com,
+	jjohnson@kernel.org,
+	jtornosm@redhat.com,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	mhi@lists.linux.dev
 Subject: Re: [PATCH v11] PCI: Add device-specific reset for Qualcomm devices
-Message-ID: <5mrwcurlf6xnqla5x5idpt7ug34nv2eqpijnjmccgdwazrmwyv@64tixxe4aa57>
-References: <20260626055023.197470-1-jtornosm@redhat.com>
+Date: Tue, 30 Jun 2026 08:29:04 +0200
+Message-ID: <20260630062904.197939-1-jtornosm@redhat.com>
+In-Reply-To: <5mrwcurlf6xnqla5x5idpt7ug34nv2eqpijnjmccgdwazrmwyv@64tixxe4aa57>
+References: <5mrwcurlf6xnqla5x5idpt7ug34nv2eqpijnjmccgdwazrmwyv@64tixxe4aa57>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+X-Mimecast-MFC-PROC-ID: QRDphjCqVo9a3blnB8K_vGgLFrJ7UMoKGpX4JkAGVWQ_1782800953
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260626055023.197470-1-jtornosm@redhat.com>
+content-type: text/plain; charset="US-ASCII"; x-default=true
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260629_232921_172663_6C654184 
+X-CRM114-Status: UNSURE (   4.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,134 +94,12 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jun 26, 2026 at 07:50:23AM +0200, Jose Ignacio Tornos Martinez wrote:
-> Some Qualcomm PCIe devices (WCN6855/WCN7850 WiFi cards, SDX62/SDX65 modems)
-> lack working reset methods for VFIO passthrough scenarios. These devices
-> have no FLR capability, advertise NoSoftRst+ (blocking PM reset), and have
-> broken bus reset.
-> 
-> The problem manifests in VFIO passthrough scenarios:
-> 
-> - WCN6855 (17cb:1103) and WCN7850 (17cb:1107) WiFi devices:
->   Normal VM operation works fine, including clean shutdown/reboot.
->   However, when the VM terminates uncleanly (crash, force-off), VFIO
->   attempts to reset the device before it can be assigned to another VM.
->   Without a working reset method, the device remains in an undefined state,
->   preventing reuse.
-> 
-> - SDX62/SDX65 (17cb:0308) 5G modems: Never successfully initialize even
->   on first VM assignment without proper reset capability.
-> 
-> Add device-specific reset methods using BAR-space hardware reset registers
-> that exist in these devices:
-> 
-> - WCN6855/WCN7850 WiFi devices use SoC global reset via BAR0 (sequence from
->   ath11k/ath12k driver: ath11k_pci_soc_global_reset(), ath11k_pci_sw_reset(),
->   ath11k_mhi_set_mhictrl_reset()):
->   - Write/clear reset bit at offset 0x3008
->   - Wait for PCIe link recovery (up to 5 seconds)
->   - Clear MHI controller SYSERR status at offset 0x38
-> 
-> - SDX62/SDX65 modem devices use MHI SoC reset via BAR0 (sequence from MHI
->   driver: mhi_soc_reset(), mhi_pci_reset_prepare()):
->   - Write reset request to offset 0xb0
->   - Wait 2 seconds for reset completion
-> 
-> These are true hardware reset mechanisms (not power management or firmware
-> error recovery), providing proper device reset for VFIO scenarios.
-> 
-> Testing was performed on desktop platforms with M.2 WiFi and modem cards
-> using M.2-to-PCIe adapters, including extensive force-reset cycling to
-> verify stability.
-> 
-> Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+Hi Mani,
 
-Couple of comments below, including one bug due to my previous suggestion. Once
-those are addressed, feel free to add:
+No worries! v12 with the fix and WLAN renaming is on the way.
+Thanks for catching it and your help
 
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+Best regards
+Jose Ignacio
 
-> ---
-> v11: Address Manivannan Sadhasivam feedback:
->   - Remove unused QUALCOMM_WIFI_MHISTATUS define
->   - Use PCI_ERROR_RESPONSE instead of 0xffffffff
->   - Sort device IDs in ascending order (0x0308, 0x1103, 0x1107)
-> v10: https://lore.kernel.org/all/20260623183115.1585273-1-jtornosm@redhat.com/
-> 
->  drivers/pci/quirks.c | 117 +++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 117 insertions(+)
-> 
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 431c021d7414..0de606366200 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -4240,6 +4240,120 @@ static int reset_hinic_vf_dev(struct pci_dev *pdev, bool probe)
->  	return 0;
->  }
->  
-> +#define QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET	0x3008
-> +#define QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET_V	BIT(0)
-> +#define QUALCOMM_WIFI_MHICTRL			0x38
-> +#define QUALCOMM_WIFI_MHICTRL_RESET_MASK	0x2
-
-Qcom calls these WiFi devices as WLAN devices. So I'd prefer to use this term
-all around even for function names.
-
-> +
-> +/*
-> + * Qualcomm WiFi device-specific reset using SoC global reset via BAR0
-> + * registers.
-> + */
-> +static int reset_qualcomm_wifi(struct pci_dev *pdev, bool probe)
-> +{
-> +	bool link_recovered = false;
-> +	unsigned long timeout;
-> +	void __iomem *bar;
-> +	u32 val;
-> +	u16 cmd;
-> +
-> +	if (probe)
-> +		return 0;
-> +
-> +	if (pdev->current_state != PCI_D0)
-> +		return -EINVAL;
-> +
-> +	pci_read_config_word(pdev, PCI_COMMAND, &cmd);
-> +	pci_write_config_word(pdev, PCI_COMMAND, cmd | PCI_COMMAND_MEMORY);
-> +
-> +	bar = pci_iomap(pdev, 0, 0);
-> +	if (!bar) {
-> +		pci_write_config_word(pdev, PCI_COMMAND, cmd);
-> +		return -ENODEV;
-> +	}
-> +
-> +	val = ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-> +	val |= QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET_V;
-> +	iowrite32(val, bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-> +	ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-> +
-> +	msleep(10);
-> +
-> +	val &= ~QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET_V;
-> +	iowrite32(val, bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-> +	ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-> +
-> +	msleep(10);
-> +
-> +	timeout = jiffies + msecs_to_jiffies(5000);
-> +	while (time_before(jiffies, timeout)) {
-> +		val = ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-> +		if (val != PCI_ERROR_RESPONSE) {
-
-As Sashiko also pointed out, this will always evaluate to true due to
-PCI_ERROR_RESPONSE being ~0ULL. Please use:
-
-	if (!PCI_POSSIBLE_ERROR(val))
-
-Sorry for the wrong suggestion earlier.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
