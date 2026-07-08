@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E15AC44508
-	for <ath11k@archiver.kernel.org>; Wed,  8 Jul 2026 14:30:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CE1EC44507
+	for <ath11k@archiver.kernel.org>; Wed,  8 Jul 2026 14:30:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=hWOk/yMb/DfRr2Yn4LCKXVEmejtbOqAdLmjyo6mC5fk=; b=YaYO5okDNuEBh7VvvGwkWwKZhd
-	xoXBTFMY43J2m+kn7aHpUMre0CHaEzlNAn48tpNZft9qN1jQ+N9jPHBm7lySM8IUk5i3Az24WC1p4
-	Kh2LNXu/+q6P0DEyi1UdcV0yNcwuIPTfSTbjhVMNpXchfS89lUXkIybO9hK5genb2qE3DQNk7jL/T
-	hn8WORCnDlTLP/EusqW3QtmxUg7oRJqyfU+KBr5XNqLv1RWvGGVnho0IRKlyyp2WM5Kz2nXJrI6kZ
-	avifvvWf4Md5yzw9IqpbEgueMaZf8NsBImEF7aQTs1mNSyNYqzBiR4GhcqqbAE9WZ/MQczNiK0u1a
-	+hJ/LwVA==;
+	bh=pE8knZb5PfTuvyHzjpJUTmtQScJsBMG32HGqjapgxSc=; b=e3Fa6eG39FrBZtJn8mozy+8MlT
+	yVHh2jWk9mphZ2WOCO0rSBkdlAY/0UGuUoMhkX6jXYCuieJEAxJm5Xt9GhLfEvmxjGv2DHnqJTU/e
+	IsNauIV5veGE0L07Xpt4cdyJe9nqNyVJAkUnhX5qTt6eO46UDOkoCp0aWy/8N3+gVgK7MRuRX9Ser
+	8S0DPjEgV134YM9boFQsYFIwh+rWRkIIMm8UjkEi5Z6lUXZxuvxRWpFUUY0e954Bg4INogMjB9dtc
+	2aLZc4nhjvV4srKFtsppuL+pOyKhTmC15i1udk5t7PNtpoQneSeTORMAv6zdlPBtDDRHt989zGHMs
+	aCqpWt2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whTI8-0000000HK68-0jh8;
-	Wed, 08 Jul 2026 14:30:24 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1whTI9-0000000HK9x-46oT;
+	Wed, 08 Jul 2026 14:30:25 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whTI5-0000000HK34-3pXQ;
-	Wed, 08 Jul 2026 14:30:21 +0000
+	id 1whTI6-0000000HK3J-0XoJ;
+	Wed, 08 Jul 2026 14:30:22 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 62CF543F67;
+	by sea.source.kernel.org (Postfix) with ESMTP id 8415E43F82;
 	Wed,  8 Jul 2026 14:30:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 43668C2BCF7;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 65AD1C2BCF4;
 	Wed,  8 Jul 2026 14:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783521021;
-	bh=pxGH3Cj3T3IWZGVPncFNsgUx42ibALF5/SiwqEinBMU=;
+	bh=VL9HBYLxktPtHWz3XN6ujn/qPGVwq+t0QM8uPcnnyFE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=PB7kiWihiRYLcWnTEqaOtcGV/bwnS/QnMKDwvT2mzkkmrwOLAZ9TVwAtdusUI+bL6
-	 /jgrdd6KU+ijUwV10ggZxiBoBdQXdreytotEoIbfWkFyutQuAIBmjR7NB371eQ9O4I
-	 M3gHXPlvDskN5gd4TMnVp7FTYDywdwkhPSxGpeMX09cwgLWAnhLKStuDsc1wiGT7qx
-	 KViuMGk5FY9AL6YL8tL3LoGQ4c75vZvSeQO04r5LPdd8xmorQbSt/tgwBlHZMVyVFF
-	 zoH4JkP0+Rw5D2PanD+cjwabvKoHYT81I72c4pkMwiimhD0/bWDgnsNamtmKfgXWgf
-	 JRYJFZ+Rjr+KQ==
+	b=uRhbHwK3Hf3oKmmdv0lNC/QZ6OhpkyuOaN+7dORrmgX8oRHJRRtfj85EdijayXYoj
+	 CQSgtp8xqhVG/GTkdPVdoJ2/li8G68v24TsSohL+1UTOddETUJC9S0RAiJB48r76tF
+	 TipfLmRXNsSvT2h3Linjb90tfzMdcdu3rEeAP7WwGWIbuWa3+bltJVMFQN2RX5SHRN
+	 FyIwspRQ0Qg45UKYxoiDLMmOFi1S2alIdj0zEdwVLe2GbqkekY1DdaT27Xkjt2doKJ
+	 ERmPOTc6N/ddk0C+tl5d7HtvBmhNj+tlqN5Pht89On1m19Nlesf+RyuQuGuYX2uFRF
+	 9ggCA394y4ZNQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C870C44501;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 52A57C43458;
 	Wed,  8 Jul 2026 14:30:21 +0000 (UTC)
 From: Manivannan Sadhasivam <mani@kernel.org>
-Date: Wed, 08 Jul 2026 16:30:19 +0200
-Subject: [PATCH v3 5/8] PCI/ASPM: Return enabled ASPM states from
- pcie_aspm_enabled() API
+Date: Wed, 08 Jul 2026 16:30:21 +0200
+Subject: [PATCH v3 7/8] wifi: ath11k: Use pci_{enable/disable}_link_state()
+ APIs to enable/disable ASPM states
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-pci-aspm-fix-v3-5-6bd72451746e@kernel.org>
+Message-Id: <20260708-pci-aspm-fix-v3-7-6bd72451746e@kernel.org>
 References: <20260708-pci-aspm-fix-v3-0-6bd72451746e@kernel.org>
 In-Reply-To: <20260708-pci-aspm-fix-v3-0-6bd72451746e@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>, 
@@ -69,16 +69,16 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
  =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
  Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2725; i=mani@kernel.org;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2987; i=mani@kernel.org;
  h=from:subject:message-id;
- bh=JE1epGkh6OmrTgbOPCoGhLS46KX+aD9RGtBqPDoeheo=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBqTl75IEBeBr7vgPEyPnSoBoB6GZ79Rfh8KIORA
- bapu0keiCSJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCak5e+QAKCRBVnxHm/pHO
- 9TISCACKEukOmg8rnNBVcMT4pIqw0nQnoicAdF3BwaP+F67ZiYu7IvI/dohF5rQoJxZ1/M5XlKW
- z9Kebuzx8GGTVkWvwlAWb21bGBHzbABniUgfrscceykQOFaZzekzGCzpnbGIin/XwayXkcBzi6J
- m8OUTHHJ/L//t+yVO+TsjMZ1s8hrhYdMmPeDjaNnshFI2xJCB7RzvWWfo0Szihq8Dz6Z0JXscBf
- q8DJVQVZBCQeR9T3syqny5AxPjPtpkMzJa4Dn9Y6L2n7kZq9+cYmB0JvPkEZJbnvhTZYUUpLdOD
- d5tezCI2xDPDnkTlCj+4z9zMT3galiXwwD4GdMD2BuAbTOZ8
+ bh=59wUpl/E90ZN2ijmP67COqOAAWZoyF3++0KlktxUhMw=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBqTl76AXfVIr8lqqmcElFkQxvRb8nDLwSolH+U2
+ iY07JQuAxuJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCak5e+gAKCRBVnxHm/pHO
+ 9Wy6B/4nR2x6UIp/WP9pSP7RSsfelBYusTRvVs4+R8UckgV8QXSru8c3ChXtF9OQA25L+uTJIPt
+ cPxnbkzy/D+vaVEXLXlKcvbiNwCVpX6wOPUmjt871CfxhHdbHzPiKCWyRSWqnc+Cp76e4N92F5z
+ dO+CNQfuRXGBKMEeOa/ZeWWXGpvB4TpnOB1x8eoNVvtxSsFV9hNI7e4Cyn4VK/+Dpak80cfm5qc
+ 8dbw7VfNliQlhn3a/BK96N5h4fCU7mQwAFHFH481OTDGcGKl6nFaW31jtf3t9efq1gHu0Tn8pS6
+ b3TB8xLvXYX3IaziB8Y8XVlT15A7Px8rfBobRQIPmiCafNLm
 X-Developer-Key: i=mani@kernel.org; a=openpgp;
  fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-Endpoint-Received: by B4 Relay for mani@kernel.org/default with
@@ -99,69 +99,83 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-pcie_aspm_enabled() returns 'pcie_link_state::aspm_enabled' parameter which
-contains the enabled states. But the API currently returns the 'bool' type
-which is used by the callers to decide if ASPM is enabled or not.
-
-To allow the future callers to also make use of the enabled ASPM states,
-return the actual type of 'pcie_link_state::aspm_enabled' parameter, 'u32'.
-
-Existing callers can still treat the return value as a 'bool' as the C11
-standard guarantees the behavior (this API relied on the same behavior
-before as well).
+It is not recommended to enable/disable the ASPM states on the back of the
+PCI core directly using the LNKCTL register. It will break the PCI core's
+knowledge about the device ASPM states. So use the APIs exposed by the PCI
+core to enable/disable ASPM states.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 ---
- drivers/pci/pcie/aspm.c | 6 ++++--
- include/linux/pci.h     | 4 ++--
- 2 files changed, 6 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/Kconfig |  2 +-
+ drivers/net/wireless/ath/ath11k/pci.c   | 19 +++----------------
+ drivers/net/wireless/ath/ath11k/pci.h   |  3 ++-
+ 3 files changed, 6 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-index 5e7e199c78d2..3ce6b9319566 100644
---- a/drivers/pci/pcie/aspm.c
-+++ b/drivers/pci/pcie/aspm.c
-@@ -1694,15 +1694,17 @@ module_param_call(policy, pcie_aspm_set_policy, pcie_aspm_get_policy,
- 	NULL, 0644);
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index 122726f84492..c8b418521173 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -19,7 +19,7 @@ config ATH11K_AHB
  
- /**
-- * pcie_aspm_enabled - Check if PCIe ASPM has been enabled for a device.
-+ * pcie_aspm_enabled - Get the enabled PCIe ASPM states for a device.
-  * @pdev: Target device.
-  *
-  * Relies on the upstream bridge's link_state being valid.  The link_state
-  * is deallocated only when the last child of the bridge (i.e., @pdev or a
-  * sibling) is removed, and the caller should be holding a reference to
-  * @pdev, so this should be safe.
-+ *
-+ * Return: Enabled PCIe ASPM states. 0 if ASPM is disabled.
-  */
--bool pcie_aspm_enabled(struct pci_dev *pdev)
-+u32 pcie_aspm_enabled(struct pci_dev *pdev)
+ config ATH11K_PCI
+ 	tristate "Atheros ath11k PCI support"
+-	depends on ATH11K && PCI
++	depends on ATH11K && PCI && PCIEASPM
+ 	select MHI_BUS
+ 	select QRTR
+ 	select QRTR_MHI
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 35bb9e7a63a2..da980e01d1fc 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -604,19 +604,9 @@ static void ath11k_pci_free_region(struct ath11k_pci *ab_pci)
+ 
+ static void ath11k_pci_aspm_disable(struct ath11k_pci *ab_pci)
  {
- 	struct pcie_link_state *link = pcie_aspm_get_link(pdev);
+-	struct ath11k_base *ab = ab_pci->ab;
+-
+-	pcie_capability_read_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-				  &ab_pci->link_ctl);
+-
+-	ath11k_dbg(ab, ATH11K_DBG_PCI, "link_ctl 0x%04x L0s %d L1 %d\n",
+-		   ab_pci->link_ctl,
+-		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L0S),
+-		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
++	ab_pci->aspm_states = pcie_aspm_enabled(ab_pci->pdev);
  
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index be6719626c8f..61f6b78c19fd 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1921,7 +1921,7 @@ int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
- int pci_force_enable_link_state(struct pci_dev *pdev, int state);
- void pcie_no_aspm(void);
- bool pcie_aspm_support_enabled(void);
--bool pcie_aspm_enabled(struct pci_dev *pdev);
-+u32 pcie_aspm_enabled(struct pci_dev *pdev);
- #else
- static inline int pci_disable_link_state(struct pci_dev *pdev, int state)
- { return 0; }
-@@ -1935,7 +1935,7 @@ static inline int pci_force_enable_link_state(struct pci_dev *pdev, int state)
- { return 0; }
- static inline void pcie_no_aspm(void) { }
- static inline bool pcie_aspm_support_enabled(void) { return false; }
--static inline bool pcie_aspm_enabled(struct pci_dev *pdev) { return false; }
-+static inline u32 pcie_aspm_enabled(struct pci_dev *pdev) { return 0; }
- #endif
+-	/* disable L0s and L1 */
+-	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-				   PCI_EXP_LNKCTL_ASPMC);
++	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_ASPM_ALL);
  
- #ifdef CONFIG_HOTPLUG_PCI
+ 	set_bit(ATH11K_PCI_ASPM_RESTORE, &ab_pci->flags);
+ }
+@@ -624,10 +614,7 @@ static void ath11k_pci_aspm_disable(struct ath11k_pci *ab_pci)
+ static void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci)
+ {
+ 	if (test_and_clear_bit(ATH11K_PCI_ASPM_RESTORE, &ab_pci->flags))
+-		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+-						   PCI_EXP_LNKCTL_ASPMC,
+-						   ab_pci->link_ctl &
+-						   PCI_EXP_LNKCTL_ASPMC);
++		pci_force_enable_link_state(ab_pci->pdev, ab_pci->aspm_states);
+ }
+ 
+ #ifdef CONFIG_DEV_COREDUMP
+diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
+index 1e3005a4b64c..474c18741418 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.h
++++ b/drivers/net/wireless/ath/ath11k/pci.h
+@@ -72,7 +72,8 @@ struct ath11k_pci {
+ 
+ 	/* enum ath11k_pci_flags */
+ 	unsigned long flags;
+-	u16 link_ctl;
++	/* Cached PCIe ASPM states */
++	u32 aspm_states;
+ 	u64 dma_mask;
+ };
+ 
 
 -- 
 2.43.0
