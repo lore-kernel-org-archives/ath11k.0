@@ -4,76 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3E94C44501
-	for <ath11k@archiver.kernel.org>; Fri, 10 Jul 2026 15:56:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60489C44506
+	for <ath11k@archiver.kernel.org>; Fri, 10 Jul 2026 20:25:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pATWsdQm30JCXc1HWlDCG95/ra2kk3e7pyWFp3wMnyo=; b=YhcxDM2S9XsPDCFod/tncQCDxJ
-	sW4XudsrE6tKESeycBueIATcALGRlwHy+ZqRO9BiaIj7TcOQJkiNlvA/FUedkJmFuPuNmtQ/fnKpr
-	wqJmSGMatOwhZigXhtnf1tRZDcPWr+KnoHvnwdzHIORaXqolgW1PLiLxWtAd/3hwwND41mCBkKg51
-	rk6Y6YJVLMyTlUYpamJNUYEyutuquwpI8iHYrS+rLHQe9ai8ue85heZIpLsSmlEZiUO2QykIJugr5
-	pwf4dsVbWM1UJY1RI5r5qp0UUC9mRH3eaWWnhW8ry3zjih4oh+5pwMzHlTWLsjb90b3A0YsOX4Y6k
-	79ejt/VA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=xkkm/ay4UwW+LKTRMQXsXHe7l4TsIKcsEKX51F7sGr4=; b=y8VW49CVo94JCZ
+	dKqrg2bLLXYca1k8d72AeHf2AbmUyGgbageVHW7q6hhGEzV4xx5keiCBB7f4Wd5jtBzjKzXPAG9vr
+	oMIUPNHACBGAG0FqAp/UCVtjKo5RAML252qWPtucEJ6/Tt6+2mA6J36grGnQnpuChEBmB+xrC/6ka
+	TONq3sPuyMcZkf87dNXxM/A/qspI6zqxaitZ2AzeSl6HtGx2r8hzX2y1LiHIj8Di7XpwJjRmd/Hfb
+	LmgXrXeAdzGxqBbpPb4KYS+yTFkaFOcthxoTfUqapSWfI+QX0Nkeuca7tS0BDT4bjKJuOv2Jl6qBa
+	1estRA4nJB7ysMQs6Etw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiDaM-00000005EPh-1kSJ;
-	Fri, 10 Jul 2026 15:56:18 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1wiHnA-00000005h8z-44V3;
+	Fri, 10 Jul 2026 20:25:48 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiDaK-00000005EOt-3z2D
-	for ath11k@lists.infradead.org;
-	Fri, 10 Jul 2026 15:56:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1783698976;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pATWsdQm30JCXc1HWlDCG95/ra2kk3e7pyWFp3wMnyo=;
-	b=XSH4pjRIMb3VC1b7h+nQpO4eEjtw5+onK+mzONqv4QUaAg8mZ2gnfyvjGlyRI4t9ABRcOJ
-	jc8Tbhfl+J8DvKkfs9LVlc2+xK/ZS4avqg6lVFGc+lwPRw+CYkz5L5iQm621J+cLdRcKN/
-	apQ3BqTGiGv3iSh1PFNAKjhFNVPGMUc=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-118-1kpJZUVPNvK2nPBELwC-sQ-1; Fri,
- 10 Jul 2026 11:55:03 -0400
-X-MC-Unique: 1kpJZUVPNvK2nPBELwC-sQ-1
-X-Mimecast-MFC-AGG-ID: 1kpJZUVPNvK2nPBELwC-sQ_1783698902
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 34F3E195607D;
-	Fri, 10 Jul 2026 15:55:02 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.44.48.25])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 1ABD01800480;
-	Fri, 10 Jul 2026 15:54:59 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: jjohnson@kernel.org
-Cc: ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH 1/2] wifi: ath11k: implement custom wake_tx_queue with flow control
-Date: Fri, 10 Jul 2026 17:54:42 +0200
-Message-ID: <20260710155443.1761760-2-jtornosm@redhat.com>
-In-Reply-To: <20260710155443.1761760-1-jtornosm@redhat.com>
-References: <20260710155443.1761760-1-jtornosm@redhat.com>
+	id 1wiHnA-00000005h8e-0ar8;
+	Fri, 10 Jul 2026 20:25:48 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E0CB240C4B;
+	Fri, 10 Jul 2026 20:25:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A0831F00A3A;
+	Fri, 10 Jul 2026 20:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783715147;
+	bh=xkkm/ay4UwW+LKTRMQXsXHe7l4TsIKcsEKX51F7sGr4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To;
+	b=Sd7sj++52Pz2Pz2wGW3mFCJs7y5zatPJ6wjFHodxWDPYb9ZC+NX15p0Uny3xfhysj
+	 wElnyMhbIk3ZUUOA5+t10GaPqjbbPsyfgHALPKW6KnJtDLUAyYaKU1fwOkEBJmolO7
+	 0ePWxShhOkhgF2fBtCCjMwYKKC/CunYss+mySjVw3PW+rxJBWmsEXZyIZ3w2KvOSp6
+	 a+wBIBpHFugDxxDB71+jUyYifB+wywDqnLXJE3CGR+A/MkdE1aESXoj8Lz8C+GBLyj
+	 naz9D8aUs4b4ooSPfrhUV/DJVq9hOpsig9yUtQzeTvdZ6tfLFPgzxALqrTBDe3In7h
+	 qzCiOIDuy6RgQ==
+Date: Fri, 10 Jul 2026 15:25:46 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Nirmal Patel <nirmal.patel@linux.intel.com>,
+	Jonathan Derrick <jonathan.derrick@linux.dev>,
+	Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
+	ath11k@lists.infradead.org, ath10k@lists.infradead.org,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Qiang Yu <qiang.yu@oss.qualcomm.com>,
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Subject: Re: [PATCH v3 6/8] wifi: ath12k: Use
+ pci_{enable/disable}_link_state() APIs to enable/disable ASPM states
+Message-ID: <20260710202546.GA989860@bhelgaas>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
-X-Mimecast-MFC-PROC-ID: X--OPbyIXLB3Q6tGkHQCv8RE5ZIZ3WtS1ki46Q27mWo_1783698902
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260710_085617_075364_2D0491C4 
-X-CRM114-Status: GOOD (  15.83  )
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260708-pci-aspm-fix-v3-6-6bd72451746e@kernel.org>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,121 +79,106 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Under heavy traffic, ath11k experiences frequent -ENOMEM errors
-("failed to transmit frame -12") when the hardware TCL ring fills up.
-This issue is more commonly observed in VMs with PCIe passthrough but
-also occurs on bare metal systems. It is particularly problematic on
-devices with a single shared TCL ring where all traffic classes
-compete for the same 512 descriptor slots.
+On Wed, Jul 08, 2026 at 04:30:20PM +0200, Manivannan Sadhasivam wrote:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> 
+> It is not recommended to enable/disable the ASPM states on the back of the
+> PCI core directly using the LNKCTL register. It will break the PCI core's
+> knowledge about the device ASPM states. So use the APIs exposed by the PCI
+> core to enable/disable ASPM states.
+> 
+> Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
+> 
+> Reported-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  drivers/net/wireless/ath/ath12k/Kconfig |  2 +-
+>  drivers/net/wireless/ath/ath12k/pci.c   | 19 +++----------------
+>  drivers/net/wireless/ath/ath12k/pci.h   |  4 +++-
+>  3 files changed, 7 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath12k/Kconfig b/drivers/net/wireless/ath/ath12k/Kconfig
+> index 4a2b240f967a..7852ede3eaea 100644
+> --- a/drivers/net/wireless/ath/ath12k/Kconfig
+> +++ b/drivers/net/wireless/ath/ath12k/Kconfig
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: BSD-3-Clause-Clear
+>  config ATH12K
+>  	tristate "Qualcomm Wi-Fi 7 support (ath12k)"
+> -	depends on MAC80211 && HAS_DMA && PCI
+> +	depends on MAC80211 && HAS_DMA && PCI && PCIEASPM
 
-Implement a custom wake_tx_queue operation that:
+As Sashiko pointed out [1], I think adding the PCIEASPM dependency is
+an issue.  The PCI core should provide stubs or whatever is necessary
+to make ath12k work even if PCIEASPM isn't selected.
 
-1. Checks hardware ring space before dequeuing packets from mac80211
-2. Uses per-packet locking to serialize ring access and prevent races
-3. Syncs with hardware state to get accurate free slot count
-4. Returns early during firmware crash in the same way as other tx paths
+I'm guessing this hardware depends on the ability to disable ASPM even
+without PCIEASPM so we probably would need more than just empty stubs.
+We do build aspm.c unconditionally now and we provide LTR and L1SS
+save/restore regardless of PCIEASPM.  Maybe we need something similar
+here.
 
-This approach follows the pattern used in the iwlwifi driver, adapted
-for ath11k's hardware ring architecture.
+[1] https://lore.kernel.org/all/20260708144904.0CC4F1F000E9@smtp.kernel.org
 
-This eliminates -ENOMEM errors and improves throughput by optimizing
-resource usage and preventing unnecessary packet drops.
-
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
----
- drivers/net/wireless/ath/ath11k/dp.c  |  1 +
- drivers/net/wireless/ath/ath11k/dp.h  |  2 ++
- drivers/net/wireless/ath/ath11k/mac.c | 49 ++++++++++++++++++++++++++-
- 3 files changed, 51 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index f389b97acbdd..2e5978ec2b05 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -1087,6 +1087,7 @@ int ath11k_dp_alloc(struct ath11k_base *ab)
- 	for (i = 0; i < ab->hw_params.hal_params->num_tx_rings; i++) {
- 		idr_init(&dp->tx_ring[i].txbuf_idr);
- 		spin_lock_init(&dp->tx_ring[i].tx_idr_lock);
-+		spin_lock_init(&dp->tx_ring[i].wake_tx_lock);
- 		dp->tx_ring[i].tcl_data_ring_id = i;
- 
- 		dp->tx_ring[i].tx_status_head = 0;
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 84f66839f0c6..6d99501aa269 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -87,6 +87,8 @@ struct dp_tx_ring {
- 	struct idr txbuf_idr;
- 	/* Protects txbuf_idr and num_pending */
- 	spinlock_t tx_idr_lock;
-+	/* Serializes wake_tx_queue operations for this ring */
-+	spinlock_t wake_tx_lock;
- 	struct hal_wbm_release_ring *tx_status;
- 	int tx_status_head;
- 	int tx_status_tail;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2d55cdc4d165..48a9e2b45e3d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -10065,9 +10065,56 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 	return ret;
- }
- 
-+static void ath11k_mac_op_wake_tx_queue(struct ieee80211_hw *hw,
-+					struct ieee80211_txq *txq)
-+{
-+	struct ieee80211_tx_control control = {
-+		.sta = txq->sta,
-+	};
-+	struct ath11k *ar = hw->priv;
-+	struct dp_tx_ring *tx_ring;
-+	struct hal_srng *tcl_ring;
-+	struct sk_buff *skb;
-+	int num_free;
-+	u8 ring_id;
-+
-+	if (!ar)
-+		return;
-+
-+	if (unlikely(test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)))
-+		return;
-+
-+	ring_id = txq->ac % ar->ab->hw_params.hal_params->num_tx_rings;
-+	tx_ring = &ar->ab->dp.tx_ring[ring_id];
-+	tcl_ring = &ar->ab->hal.srng_list[tx_ring->tcl_data_ring.ring_id];
-+
-+	while (1) {
-+		spin_lock_bh(&tx_ring->wake_tx_lock);
-+
-+		spin_lock(&tcl_ring->lock);
-+		num_free = ath11k_hal_srng_src_num_free(ar->ab, tcl_ring, true);
-+		spin_unlock(&tcl_ring->lock);
-+
-+		if (num_free == 0) {
-+			spin_unlock_bh(&tx_ring->wake_tx_lock);
-+			break;
-+		}
-+
-+		skb = ieee80211_tx_dequeue(hw, txq);
-+		if (!skb) {
-+			spin_unlock_bh(&tx_ring->wake_tx_lock);
-+			break;
-+		}
-+
-+		ath11k_mac_op_tx(hw, &control, skb);
-+
-+		spin_unlock_bh(&tx_ring->wake_tx_lock);
-+	}
-+}
-+
- static const struct ieee80211_ops ath11k_ops = {
- 	.tx				= ath11k_mac_op_tx,
--	.wake_tx_queue			= ieee80211_handle_wake_tx_queue,
-+	.wake_tx_queue			= ath11k_mac_op_wake_tx_queue,
- 	.start                          = ath11k_mac_op_start,
- 	.stop                           = ath11k_mac_op_stop,
- 	.reconfig_complete              = ath11k_mac_op_reconfig_complete,
--- 
-2.54.0
-
+>  	select QCOM_QMI_HELPERS
+>  	select MHI_BUS
+>  	select QRTR
+> diff --git a/drivers/net/wireless/ath/ath12k/pci.c b/drivers/net/wireless/ath/ath12k/pci.c
+> index d9a22d6afbb0..6d48fb25690d 100644
+> --- a/drivers/net/wireless/ath/ath12k/pci.c
+> +++ b/drivers/net/wireless/ath/ath12k/pci.c
+> @@ -884,19 +884,9 @@ static void ath12k_pci_free_region(struct ath12k_pci *ab_pci)
+>  
+>  static void ath12k_pci_aspm_disable(struct ath12k_pci *ab_pci)
+>  {
+> -	struct ath12k_base *ab = ab_pci->ab;
+> -
+> -	pcie_capability_read_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+> -				  &ab_pci->link_ctl);
+> -
+> -	ath12k_dbg(ab, ATH12K_DBG_PCI, "pci link_ctl 0x%04x L0s %d L1 %d\n",
+> -		   ab_pci->link_ctl,
+> -		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L0S),
+> -		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
+> +	ab_pci->aspm_states = pcie_aspm_enabled(ab_pci->pdev);
+>  
+> -	/* disable L0s and L1 */
+> -	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+> -				   PCI_EXP_LNKCTL_ASPMC);
+> +	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_ASPM_ALL);
+>  
+>  	set_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags);
+>  }
+> @@ -925,10 +915,7 @@ static void ath12k_pci_aspm_restore(struct ath12k_pci *ab_pci)
+>  {
+>  	if (ab_pci->ab->hw_params->supports_aspm &&
+>  	    test_and_clear_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags))
+> -		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+> -						   PCI_EXP_LNKCTL_ASPMC,
+> -						   ab_pci->link_ctl &
+> -						   PCI_EXP_LNKCTL_ASPMC);
+> +		pci_force_enable_link_state(ab_pci->pdev, ab_pci->aspm_states);
+>  }
+>  
+>  static void ath12k_pci_cancel_workqueue(struct ath12k_base *ab)
+> diff --git a/drivers/net/wireless/ath/ath12k/pci.h b/drivers/net/wireless/ath/ath12k/pci.h
+> index 0e0e2020c6ae..409ef063cd69 100644
+> --- a/drivers/net/wireless/ath/ath12k/pci.h
+> +++ b/drivers/net/wireless/ath/ath12k/pci.h
+> @@ -128,7 +128,9 @@ struct ath12k_pci {
+>  
+>  	/* enum ath12k_pci_flags */
+>  	unsigned long flags;
+> -	u16 link_ctl;
+> +
+> +	/* Cached PCIe ASPM states */
+> +	u32 aspm_states;
+>  	unsigned long irq_flags;
+>  	const struct ath12k_pci_ops *pci_ops;
+>  	u32 qmi_instance;
+> 
+> -- 
+> 2.43.0
+> 
+> 
 
