@@ -4,67 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60489C44506
-	for <ath11k@archiver.kernel.org>; Fri, 10 Jul 2026 20:25:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D0C9C44501
+	for <ath11k@archiver.kernel.org>; Sat, 11 Jul 2026 15:33:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=xkkm/ay4UwW+LKTRMQXsXHe7l4TsIKcsEKX51F7sGr4=; b=y8VW49CVo94JCZ
-	dKqrg2bLLXYca1k8d72AeHf2AbmUyGgbageVHW7q6hhGEzV4xx5keiCBB7f4Wd5jtBzjKzXPAG9vr
-	oMIUPNHACBGAG0FqAp/UCVtjKo5RAML252qWPtucEJ6/Tt6+2mA6J36grGnQnpuChEBmB+xrC/6ka
-	TONq3sPuyMcZkf87dNXxM/A/qspI6zqxaitZ2AzeSl6HtGx2r8hzX2y1LiHIj8Di7XpwJjRmd/Hfb
-	LmgXrXeAdzGxqBbpPb4KYS+yTFkaFOcthxoTfUqapSWfI+QX0Nkeuca7tS0BDT4bjKJuOv2Jl6qBa
-	1estRA4nJB7ysMQs6Etw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=klSAWJ+LyVat8IJ5fTR83Bg1CYUQhCsmSF+iDHUXRZU=; b=we68oKNNiXibp1GbrI1fNY+qO8
+	4mgmCJuHtLtGVaZE+pZ2mTP6jk5bEue1+AUp9UGtWAW9r+OmQ36YFw2kYjyWRjiAgJIrYuNPVriDj
+	RQ5dULSmomYy9RByO9QoLoydOfqFF0Ha0+qjTntDr/0s7LT0P+67eWBIFdFv9MBuFI3JPVZ2+HPOU
+	CJOznglg7L52JIqtt91AMUNNJ3//OBCca9NesySqmKD/HNFsogZngPHmfOGHZyQmJPdjkOoexet3E
+	WK7vOxcuDj+g3a9tvjh/EzjLxysy/GFOwmc0a/FX04RSNnlRevMVlHGzjo3qNsDywesYntZcP0e8p
+	cODsesWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiHnA-00000005h8z-44V3;
-	Fri, 10 Jul 2026 20:25:48 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wiZi8-00000006ewU-0UCs;
+	Sat, 11 Jul 2026 15:33:48 +0000
+Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiHnA-00000005h8e-0ar8;
-	Fri, 10 Jul 2026 20:25:48 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E0CB240C4B;
-	Fri, 10 Jul 2026 20:25:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A0831F00A3A;
-	Fri, 10 Jul 2026 20:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783715147;
-	bh=xkkm/ay4UwW+LKTRMQXsXHe7l4TsIKcsEKX51F7sGr4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=Sd7sj++52Pz2Pz2wGW3mFCJs7y5zatPJ6wjFHodxWDPYb9ZC+NX15p0Uny3xfhysj
-	 wElnyMhbIk3ZUUOA5+t10GaPqjbbPsyfgHALPKW6KnJtDLUAyYaKU1fwOkEBJmolO7
-	 0ePWxShhOkhgF2fBtCCjMwYKKC/CunYss+mySjVw3PW+rxJBWmsEXZyIZ3w2KvOSp6
-	 a+wBIBpHFugDxxDB71+jUyYifB+wywDqnLXJE3CGR+A/MkdE1aESXoj8Lz8C+GBLyj
-	 naz9D8aUs4b4ooSPfrhUV/DJVq9hOpsig9yUtQzeTvdZ6tfLFPgzxALqrTBDe3In7h
-	 qzCiOIDuy6RgQ==
-Date: Fri, 10 Jul 2026 15:25:46 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Nirmal Patel <nirmal.patel@linux.intel.com>,
-	Jonathan Derrick <jonathan.derrick@linux.dev>,
-	Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
-	ath11k@lists.infradead.org, ath10k@lists.infradead.org,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Qiang Yu <qiang.yu@oss.qualcomm.com>,
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Subject: Re: [PATCH v3 6/8] wifi: ath12k: Use
- pci_{enable/disable}_link_state() APIs to enable/disable ASPM states
-Message-ID: <20260710202546.GA989860@bhelgaas>
+	id 1wiZi5-00000006evp-0OPo
+	for ath11k@lists.infradead.org;
+	Sat, 11 Jul 2026 15:33:46 +0000
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-2cace91f112so15258875ad.0
+        for <ath11k@lists.infradead.org>; Sat, 11 Jul 2026 08:33:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783784024; x=1784388824; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=klSAWJ+LyVat8IJ5fTR83Bg1CYUQhCsmSF+iDHUXRZU=;
+        b=cE/VpUvKJPnGLS4nAMJa4ipMXkIQq65zWoGddHplvX+Ef0JaJlJoGB/C9U9wKrZBtT
+         QSdC3GhI8W1X0PqQjVEqGsxs1KL1k+tk1Ljrz0wtZWOAwvGqlJqtLb0G4d/QjQXkUWbO
+         f3Zcg9++IhWMkmbYnx+qMvD32zzBdPdr6B6POPZh1gpN0sIM1jmr/Ev85TdP7IRe27vi
+         zihlF77mR6Y8RUy4hrf9WV702iMsqXXqI0wzFrt0zydTJ3IkTaT0MUEUhc/CH4SXjLrA
+         B0UGImYslBrJz0LMm6/jXARFtvukX6e9tlPDcxVEkV/XSu75vvJmaAHmeuies8nrTy9L
+         2Twg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783784024; x=1784388824;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=klSAWJ+LyVat8IJ5fTR83Bg1CYUQhCsmSF+iDHUXRZU=;
+        b=i5mYZGQA7hzA7K4bvQ/lDSuc1wt9J7oo7XOd8bFBxQyIMBwjvLIH+Clyg2jbbe6r5F
+         YblL9HE4iQUgD961UsdlYSCiQGEEAps5Gt+2oGcdajj5adM5fZRRM/dXSgE+cMu/pS/8
+         JmtypZ4OXkdFneTCc53cyikn9nKbsHwcyVNYsI1LayaVKQ80ovYQ231UfzOa1llZsEcE
+         w1L4QG0aS60JFFeiY2Ek1oKGjdBnlJkSd4gOqQpAhCTqM0vC/+vrpscDXAbqdd1Lvwy8
+         bf+8jfYpG/CiibiIw0bdvEcJUVuE484c4XxjAU7OdhuNHZ0sGmOoZwBEl+4N4ZQVO1RU
+         O7Gw==
+X-Gm-Message-State: AOJu0Yz2fqctFJdhie6nh2bZL/R2VDNDk9aP5997Km1UrceAVI/340vp
+	WNho3EHlAsQAj6Y6nM+CqFa9Zwe6oqm4Nfyy4SIoNPXW5ME4BKXIhz4N
+X-Gm-Gg: AfdE7ckn1JOny7XJ6FS7aEwg7am0DskXtmodZIyllttA99JrnnlwQO+E8UCo8qLt7KM
+	EuDyQyXSyVXhLzzWXx5pPIY9WH4cZ9GXmH3gskpQu8kEkcpyptflEilFILFODYOhnXA3FAEmIqk
+	WkY+yj87Z/hPbC8QYv2/TedjBGLky/lCQ+1kHVtra0L+oSbrWU/Ny7WwvRpKiEgBTtL9nEEbkLP
+	g7IxUAUQdA9zPGa4PL7mRMCSlVj9NNA89UZiTOGsPApIgQEo1xp8GlpIaVPYGiQUFLwGoel5z13
+	InQT+4Qm1UedxfOph1CqJXQEFPNbKBqS/DNIPhp/F2zYRmtqodfhnAFgzaxAjfuhu8NlZDIJBnA
+	lh1rOXdPV99MxRgkkMcl4FBdM0/ZPKtqDXFnyugckMxvV4cy/m/vdti9jFeAMUEIzP0P8gBhU7H
+	K6WmN1pwLOgaVE3Ds1me+hcgGo9T54Dnuf0M30kgHMpwt8DkGc65DFnyCK7LmFxXIK
+X-Received: by 2002:a17:903:b08:b0:2c6:a172:55a6 with SMTP id d9443c01a7336-2ce9e7a5d20mr32200805ad.9.1783784024060;
+        Sat, 11 Jul 2026 08:33:44 -0700 (PDT)
+Received: from DESKTOP-VNSSJ2S.lan (59-127-145-64.hinet-ip.hinet.net. [59.127.145.64])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ce95e001b1sm18256645ad.66.2026.07.11.08.33.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Jul 2026 08:33:43 -0700 (PDT)
+From: Zhi-Jun You <hujy652@gmail.com>
+To: jtornosm@redhat.com
+Cc: ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	jjohnson@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	hujy652@gmail.com
+Subject: [PATCH 1/2] wifi: ath11k: implement custom wake_tx_queue with flow control
+Date: Sat, 11 Jul 2026 23:33:36 +0800
+Message-ID: <20260711153336.542-1-hujy652@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260710155443.1761760-2-jtornosm@redhat.com>
+References: <20260710155443.1761760-2-jtornosm@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260708-pci-aspm-fix-v3-6-6bd72451746e@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260711_083345_133519_D9612114 
+X-CRM114-Status: UNSURE (   4.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,106 +102,18 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 08, 2026 at 04:30:20PM +0200, Manivannan Sadhasivam wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
-> It is not recommended to enable/disable the ASPM states on the back of the
-> PCI core directly using the LNKCTL register. It will break the PCI core's
-> knowledge about the device ASPM states. So use the APIs exposed by the PCI
-> core to enable/disable ASPM states.
-> 
-> Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
-> 
-> Reported-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
->  drivers/net/wireless/ath/ath12k/Kconfig |  2 +-
->  drivers/net/wireless/ath/ath12k/pci.c   | 19 +++----------------
->  drivers/net/wireless/ath/ath12k/pci.h   |  4 +++-
->  3 files changed, 7 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath12k/Kconfig b/drivers/net/wireless/ath/ath12k/Kconfig
-> index 4a2b240f967a..7852ede3eaea 100644
-> --- a/drivers/net/wireless/ath/ath12k/Kconfig
-> +++ b/drivers/net/wireless/ath/ath12k/Kconfig
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: BSD-3-Clause-Clear
->  config ATH12K
->  	tristate "Qualcomm Wi-Fi 7 support (ath12k)"
-> -	depends on MAC80211 && HAS_DMA && PCI
-> +	depends on MAC80211 && HAS_DMA && PCI && PCIEASPM
+Hi Jose,
 
-As Sashiko pointed out [1], I think adding the PCIEASPM dependency is
-an issue.  The PCI core should provide stubs or whatever is necessary
-to make ath12k work even if PCIEASPM isn't selected.
+In wake_tx_queue:
+ring_id = txq->ac % ar->ab->hw_params.hal_params->num_tx_rings;
 
-I'm guessing this hardware depends on the ability to disable ASPM even
-without PCIEASPM so we probably would need more than just empty stubs.
-We do build aspm.c unconditionally now and we provide LTR and L1SS
-save/restore regardless of PCIEASPM.  Maybe we need something similar
-here.
+In ath11k_dp_tx which is called by ath11k_mac_op_tx:
+ring_selector = ab->hw_params.hw_ops->get_ring_selector(skb);
+ti.ring_id = ring_selector % num_tx_rings;
 
-[1] https://lore.kernel.org/all/20260708144904.0CC4F1F000E9@smtp.kernel.org
+Are you sure ring_id will be the same?
+Also mgmt frames use a different path.
 
->  	select QCOM_QMI_HELPERS
->  	select MHI_BUS
->  	select QRTR
-> diff --git a/drivers/net/wireless/ath/ath12k/pci.c b/drivers/net/wireless/ath/ath12k/pci.c
-> index d9a22d6afbb0..6d48fb25690d 100644
-> --- a/drivers/net/wireless/ath/ath12k/pci.c
-> +++ b/drivers/net/wireless/ath/ath12k/pci.c
-> @@ -884,19 +884,9 @@ static void ath12k_pci_free_region(struct ath12k_pci *ab_pci)
->  
->  static void ath12k_pci_aspm_disable(struct ath12k_pci *ab_pci)
->  {
-> -	struct ath12k_base *ab = ab_pci->ab;
-> -
-> -	pcie_capability_read_word(ab_pci->pdev, PCI_EXP_LNKCTL,
-> -				  &ab_pci->link_ctl);
-> -
-> -	ath12k_dbg(ab, ATH12K_DBG_PCI, "pci link_ctl 0x%04x L0s %d L1 %d\n",
-> -		   ab_pci->link_ctl,
-> -		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L0S),
-> -		   u16_get_bits(ab_pci->link_ctl, PCI_EXP_LNKCTL_ASPM_L1));
-> +	ab_pci->aspm_states = pcie_aspm_enabled(ab_pci->pdev);
->  
-> -	/* disable L0s and L1 */
-> -	pcie_capability_clear_word(ab_pci->pdev, PCI_EXP_LNKCTL,
-> -				   PCI_EXP_LNKCTL_ASPMC);
-> +	pci_disable_link_state(ab_pci->pdev, PCIE_LINK_STATE_ASPM_ALL);
->  
->  	set_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags);
->  }
-> @@ -925,10 +915,7 @@ static void ath12k_pci_aspm_restore(struct ath12k_pci *ab_pci)
->  {
->  	if (ab_pci->ab->hw_params->supports_aspm &&
->  	    test_and_clear_bit(ATH12K_PCI_ASPM_RESTORE, &ab_pci->flags))
-> -		pcie_capability_clear_and_set_word(ab_pci->pdev, PCI_EXP_LNKCTL,
-> -						   PCI_EXP_LNKCTL_ASPMC,
-> -						   ab_pci->link_ctl &
-> -						   PCI_EXP_LNKCTL_ASPMC);
-> +		pci_force_enable_link_state(ab_pci->pdev, ab_pci->aspm_states);
->  }
->  
->  static void ath12k_pci_cancel_workqueue(struct ath12k_base *ab)
-> diff --git a/drivers/net/wireless/ath/ath12k/pci.h b/drivers/net/wireless/ath/ath12k/pci.h
-> index 0e0e2020c6ae..409ef063cd69 100644
-> --- a/drivers/net/wireless/ath/ath12k/pci.h
-> +++ b/drivers/net/wireless/ath/ath12k/pci.h
-> @@ -128,7 +128,9 @@ struct ath12k_pci {
->  
->  	/* enum ath12k_pci_flags */
->  	unsigned long flags;
-> -	u16 link_ctl;
-> +
-> +	/* Cached PCIe ASPM states */
-> +	u32 aspm_states;
->  	unsigned long irq_flags;
->  	const struct ath12k_pci_ops *pci_ops;
->  	u32 qmi_instance;
-> 
-> -- 
-> 2.43.0
-> 
-> 
+Best regards,
+Zhi-Jun
 
