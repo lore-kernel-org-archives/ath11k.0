@@ -4,139 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D93C4450A
-	for <ath11k@archiver.kernel.org>; Wed, 15 Jul 2026 03:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05CD4C44508
+	for <ath11k@archiver.kernel.org>; Wed, 15 Jul 2026 06:41:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=59dtjn3uigWcqD04FKFVloeTaBJk83JWYja0Nk1JPpA=; b=pkenysGvl+BZWNQuOki2Mtx1zs
-	pxL5ozRw5EjJjcSRxlPG8wJVjRFwUrp5oXzMuTgeoYqb2IuaXRdjvBVWtrC2xWoJCvOxN5DGEmOJz
-	IQBXMP17AqX5/plvf6SGwKUYNFQ7Hc6tybjlu53C1LR8dEYKJMttdPTGScmuZI8brSz1EoVH6aoHG
-	cMjpi9rZbVDOBH1W5SkaBd8gDaHUl1bGvXdebGR0n/4iUiLamM6QMXbrMvA7TLO1wZXaWaNMj0vKU
-	UhwwNs78yOPqXH8hK0DAMi4Jdg56uIO5WdoOO95MHu4ocC8oXZo1w/ZX+uwFZ1m/pdTyxQCo0OQ1R
-	9+4Czgaw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=oeq61mqCq1QhzXC9+NpA6dqzmbivhALns06QC0nTUSk=; b=rEmMI+bmx2G+mR4YTgmRWQaPdG
+	egl+64ADuhKi47/dXkOPCFQIux4xvfl/zslXK+Aqry/lTFR4uJGomRD75rlpb8UuT2kqnAYWvL6To
+	fMAS+njzn+U8fP/lytRDZKaPD7UbaKBN74jVX1AHrSgBDLxWcVbm/+3Ur3c/gwvTZRBzQ1ePIfC12
+	BMucYwb2mTvGDiCVdyy0pfmJGEs85UyYVoVpHB2srt6S62IeSSpxNQeVFVse0YDKTu7xDpiaIGW+H
+	KhIYFQOMjOWBOJpxMwhqkOsb9n48rA8TgmQQtdU7F3vS4sym5hjxYKHoMYM/wZh3fvXauDy/mDdHj
+	TxE/OSSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjq6K-0000000DfkM-3Xuq;
-	Wed, 15 Jul 2026 03:16:00 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wjtIl-0000000DvPG-1Gik;
+	Wed, 15 Jul 2026 06:41:03 +0000
+Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjq6I-0000000Dfjq-1A8h
+	id 1wjtIj-0000000DvNm-0PPJ
 	for ath11k@lists.infradead.org;
-	Wed, 15 Jul 2026 03:15:59 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66F0IYZT2143875
-	for <ath11k@lists.infradead.org>; Wed, 15 Jul 2026 03:15:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	59dtjn3uigWcqD04FKFVloeTaBJk83JWYja0Nk1JPpA=; b=Y97+WZNoYirbt+yU
-	Dmgjh2qwKrggfixGQGRCQckh72F2BOR2Vi4k1BOBouCPewvPKol8pC9w4/VRnn0a
-	MW5WCUFtcat8PwimEgRCLW1HstzdZBFPlSO7CsJ/gGGLggpxMGbsw4Q2qxuu0dMs
-	6SB5QDKI1O4qNscZuEBIXwq7E0X71GlKOia3G7ukIXKyAJI+ZczCVjZO5oh/bogf
-	/L/VTfEKteCs4eMZUnhy/yJVURbGhRWl9mlKv/R4Rp3/K1jNCwlQp0A+dAcrUFys
-	xw7gF5IMk+Bq6qAFsXM/E5UE6S6cXY3uW14zNkDhrZEwI8T68OIz9Az36v8yc8bZ
-	I+5SiA==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fdmjq31kq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 15 Jul 2026 03:15:56 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-385d2703b64so292367a91.1
-        for <ath11k@lists.infradead.org>; Tue, 14 Jul 2026 20:15:56 -0700 (PDT)
+	Wed, 15 Jul 2026 06:41:02 +0000
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-ca957432c7fso3511746a12.1
+        for <ath11k@lists.infradead.org>; Tue, 14 Jul 2026 23:41:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1784085356; x=1784690156; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=59dtjn3uigWcqD04FKFVloeTaBJk83JWYja0Nk1JPpA=;
-        b=cGRz6mr6Mz2qJ4Ei67Zh/T7tRXA77t23ttGcL/7lwH8v5irPDl8bxm16r2B2O9tMQP
-         nIfZLjT1z3x3WVxrmlO/R4lWKXL+UexCowtXOG9osJQJH60lezLqkWCDPBkHYrbK9sPL
-         H3upyizzkCOir0bWluQch9Wl0cxJWsavhdxEIaZp2mmenWf3PeYWPjSyGQlFwiJE/9qa
-         A1vqrR4j2QUnVDYg0ApjkO6Z5eMcydhBNgo13y4eXZs119ksbwO4fzy1ROzQws2oduDg
-         AvNgZkt0uI+3l12jj+Ri/6IXcz/ETxqmB26O1kfE5eUQiZdYbkbxkaJrMutJ/tRnk0WS
-         +7MQ==
+        d=gmail.com; s=20251104; t=1784097660; x=1784702460; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=oeq61mqCq1QhzXC9+NpA6dqzmbivhALns06QC0nTUSk=;
+        b=OZAggJa7mwRu0ty26ZTf3UbiAbqgqY1xlogHiMQub3q1Qdi0fzBMNCL+NPamS102Ra
+         YhrIwsn81C1IjAD4SbAOroYp/t6CR62DoGz0YNHOpWGU33OlF728A4bX9GOJDMNMuvZH
+         dJMbyMjjy9Oj7vsb3cNp2w2py2nZ7DrrvmroK/IocId6FWutm8SktZ6M9yJd/2Q+2H5M
+         IjTeJZkYKj4U9DUclkx/YipWv9ePqUT/FMH3Rp7RWhDVLBUeN1GPeEjUyUQ4WYB/WN++
+         vho1kghRf+WrL3Qj2Da2BDA7Y9nNjn5Nx2VRXqy6URysuwDVlr5vsq1tvjOdrF4RhoZM
+         WMRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784085356; x=1784690156;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1784097660; x=1784702460;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=59dtjn3uigWcqD04FKFVloeTaBJk83JWYja0Nk1JPpA=;
-        b=Wl+ifr5j+9qP9H9Env0S3tSFqFJwonasDaeERZOa22sk3nsg8al4UpKbTia8nzKM8h
-         FzctW2tcqlnuZMHLLazhEHO+2HsRMs5CE6fhuhTsQqbyc9wLrk6UpPub0/+wK0LO1kZ9
-         8eZcDv/iVIPVpiaASQdFuj42DA5MyGB6lOdmK1kux+EANCI7fyIw1vN2v9V9nZBaMINr
-         qmevCSH73MZl4zw4RoCBSknVmvWFOZdbec1J+YPW/HMqa8qSPpMr33tqz8YaiYjk5mwP
-         tKSMAlO+TdH+u97bAduTyl8ETu7s8mVes0TDbncEy4z8h4AY/HwjqMpM1k7lfA1g8zFO
-         NGkw==
-X-Forwarded-Encrypted: i=1; AHgh+RpHxOmBPwo+E5S02+rZpM8ClrgGWRGzgG3AtPak3nuBh9M4VAHDIzdgEKXVCrlewJEGrEQYLlg=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxbsq0cnb2/BDvEumgyA0vH/ngV5gwEA2rVDy3RElSjOOcJf8wO
-	SnHnjVwVB6O1pIVA5BVg1jOFnBoBtGKdHNhRF5WBoNe0Y14pZ9v8EPvhjggDoZm0gzWKgy3/sMm
-	rRtVqwJqCSBb/CUTNkLlHNGvS9C/2cnjg/9HzYyDmvY+P3tV8UHdZb83A2JgsHum3
-X-Gm-Gg: AfdE7ck4HZnbDOK2UoZGkzMwTGxX0icA0B1iU8ZTplORaEi2q/fVlKqb0RVWH7B1Qjg
-	1WZP14AJmDnSl4cL7uA+S/q8I6QUEkImEvpdOqDZ2kyg21O1s2vKToBT4JOydTGs75ilIYwfbbU
-	1gYn51dYgVNV5zjl6y7PSCDIjGVy3dkFsIiy1o5q4Dx/e1p5rC9ckQ8/j1KznK6+M+Adkpq6bw5
-	m1St4wkaG+nYj+x92JsBC/OjQRTjnOa3PAxp8aDK8dd1cLfXEGrpcUl5TXsHEol23pI82t2Jf2T
-	N9gNXPNS1ZGZkfC+/ZTHqEzHjPL4bKzKJCu+Q6uEV8NTCEqaI2M1jNnfgc/J9sut5Bfys00yBMo
-	A7fCr3nz76Ski7dn5/8Afzlz0SR4m+Hbhy05KXzB86/6Lvll1a1FCh+bPe9/4CF5GTKNhCeXgkj
-	pSs5Y66s4=
-X-Received: by 2002:a17:90b:2248:b0:37f:fd70:6790 with SMTP id 98e67ed59e1d1-38dc81c1b09mr11421807a91.9.1784085355771;
-        Tue, 14 Jul 2026 20:15:55 -0700 (PDT)
-X-Received: by 2002:a17:90b:2248:b0:37f:fd70:6790 with SMTP id 98e67ed59e1d1-38dc81c1b09mr11421788a91.9.1784085355202;
-        Tue, 14 Jul 2026 20:15:55 -0700 (PDT)
-Received: from [10.133.33.98] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-38e1745a86esm2287488a91.16.2026.07.14.20.15.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jul 2026 20:15:54 -0700 (PDT)
-Message-ID: <3c67115f-5aea-402a-987b-c3092e0c3386@oss.qualcomm.com>
-Date: Wed, 15 Jul 2026 11:15:51 +0800
+        bh=oeq61mqCq1QhzXC9+NpA6dqzmbivhALns06QC0nTUSk=;
+        b=SO3P+BIxzbmC5Vmcobez3K8zx7oDjuotADka2NY3oi0+xvryFbD3hPZ18HUIRmkYe7
+         IR/KMbjEjhl2P8OtpJqwzDl2125NrSnKls34IGNvjIj65IqeKsokva4psjaQrwWnHdr7
+         JZUKUGepZZnTqcjkK4wCv48HS1vrbJFlMCaXr4X1n4sl9luZk8trRx0y0wowCQHdO+BJ
+         JlPBsRel+HHM7u7uz5eak02yEn5wCNY7C5746CO3KkBxmwIladCfVgRRnropmEoHfPZj
+         HdSjAUjlCdeyQx6IX3uN5Dcu1Z2WkIy3Kkl6MKEnGieeX+ABl42UN+ZI42zucmGD7kWu
+         PH2w==
+X-Forwarded-Encrypted: i=1; AHgh+RpWnwPSlzgzQPN0sz5kU2ZgwXbAZZGYfcAprgFjRsFCpL/ng49TYTpJ/vYztR6DKxNd/ItiASY=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwNKHauFwyZcfJAn6VHcn3MyayaeLBtUjU5S8SnJxHemj6ZxKWJ
+	P4qMbLcXuSIqW53GlPq5BhYB0Gyvf5FWajLgSTdHB3Hv254GonTQG8JOt3zuvW8YnxmErg==
+X-Gm-Gg: AfdE7ckLa3vn2R7ZPW5xnb1EF0scFpV/Vk8MrwUiFOzidNn8zmWvYf6RSPCcw1WfZ/N
+	OJSrpgS4vNpU8oz2kLHFz8fhc6SI4X1WDNjLZzz08RF3oum3NRxY9z0EOCWyw2JzNtzrD+Ymshq
+	5OLeNnrGuq2i9Cs0ZAOP9fzUh1Z9eVIMt1tQslYkvVr7ARvU67FItCpYEAHOA1tbJnYQvHhsKcP
+	dSyGU/0Adb9fnY9NvkYGBQF+x/F0oc5SwFUHlX+NAApoYH01YyqBbksjWfWkajvfJy2wBMPlckf
+	BOVQi7EuspKRDVdDK4C6DrJ5i1c6Qnt2dny1juogVVe4KGMJ/mlx73eyT/5Ne9J4Uh+yYA2iRJi
+	wmYZZo3LwguNHNLU7SZIkIv2I1OvgG7XZBMYlC+PxzMmzgQsXJHgCaDWmPzKyUoloLQGAlqU7s9
+	SHBD8GCz5/4g==
+X-Received: by 2002:a05:6a21:329d:b0:3bf:77d7:667d with SMTP id adf61e73a8af0-3c3573b6069mr5927585637.28.1784097660214;
+        Tue, 14 Jul 2026 23:41:00 -0700 (PDT)
+Received: from lgs.. ([101.76.249.46])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ca79aff904dsm9138269a12.6.2026.07.14.23.40.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jul 2026 23:40:59 -0700 (PDT)
+From: Guangshuo Li <lgs201920130244@gmail.com>
+To: Jeff Johnson <jjohnson@kernel.org>,
+	Anilkumar Kolli <quic_akolli@quicinc.com>,
+	Sriram R <quic_srirrama@quicinc.com>,
+	Shashidhar Lakkavalli <slakkavalli@datto.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
+	Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>,
+	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	ath12k@lists.infradead.org
+Cc: Guangshuo Li <lgs201920130244@gmail.com>
+Subject: [PATCH v2] wifi: ath11k/ath12k: release QMI handles on late init failures
+Date: Wed, 15 Jul 2026 14:40:42 +0800
+Message-ID: <20260715064042.1988288-1-lgs201920130244@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] wifi: ath11k: fix resource leak on error in ext IRQ
- setup
-To: ZhaoJinming <zhaojinming@uniontech.com>,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <e94de910-0a15-4b82-b006-03da98305e9b@oss.qualcomm.com>
- <20260713105912.20095-1-zhaojinming@uniontech.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260713105912.20095-1-zhaojinming@uniontech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=LqmiDHdc c=1 sm=1 tr=0 ts=6a56fb6c cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=iHwBjlyiAAAA:8 a=EOvvyNets2oEhnj6SMYA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=uNSKXYNwxGiU6LD0JREI:22
-X-Proofpoint-GUID: JaWm9pwkMk92XngGGR2_biPr4cm9d8L4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE1MDAyOCBTYWx0ZWRfX4TOUCci+ijsj
- EUHmf+p4/sQ+l/dRrnXKKNijyc9YSlgFHXuFKhHzuWIcdNxtMxKzPmSzBXnLgPHZzQDJbuFDF9H
- Cm7XJCXa5kOZr+hYWDbl4SRg6Bq0pGl6jSFZCAI3/LEK3aV8Vs42Gs2j7bWZVMX7jNUPFuyeM86
- GratqBXOemwQ/+wUulWA3/mP40stvyplq/eny7r9HKncNzN83e2qHeGAkTzsCufsN16uqsnBUnP
- QwDHP7PoDvp9wNwQzeKJSm5pOemjgwr0gnGlCDKc0bEO2zYqCZ035/2W0Iv+eP1nG5wZaNat1Bz
- n0vIJSMyhATVTf3YXrPAU7lhck0Ft1Oh9Ygoj58+qcB8odOpvD1Wtjsuq4V2wdzfgUAHvFh4SY/
- aangvsLUhjGeahwk9wrKjslMfTJcVwHNZqOlMHkj/nJQ6lhQSfy8PHl3Jg2DB4qVCZzieYDYTqn
- No+H1VgLdCfJxRKaGlg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE1MDAyOCBTYWx0ZWRfX2GSnjtQi/MBd
- nviCkXCm7GlOT/LyHdoL0Haxafnfc+0earhis9o7H3JUOzyZdiTNXgLxzz6A85hoWXOcR8quG1c
- hQHiYC8uUohABTJfgtS4wq2JrX4IUY4=
-X-Proofpoint-ORIG-GUID: JaWm9pwkMk92XngGGR2_biPr4cm9d8L4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-15_01,2026-07-14_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0 spamscore=0
- bulkscore=0 clxscore=1015 adultscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607150028
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260714_201558_387194_26E1272F 
-X-CRM114-Status: GOOD (  34.26  )
+X-CRM114-CacheID: sfid-20260714_234101_161691_B9C22FE3 
+X-CRM114-Status: GOOD (  10.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,219 +105,106 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+ath11k and ath12k initialize their QMI handles before allocating the QMI
+event workqueues and registering the service lookups.
 
+If either of these later initialization steps fails, the functions
+return without releasing the initialized QMI handles, leaking their
+resources.
 
-On 7/13/2026 6:59 PM, ZhaoJinming wrote:
-> In ath11k_ahb_config_irq(), when a CE request_irq() fails, the function
-> returns the error immediately without freeing the CE IRQs that were
-> successfully registered in previous loop iterations. The probe error
-> path does not call ath11k_ahb_free_irq() either, so the previously
-> registered CE IRQ handlers remain attached to the interrupt lines and
-> are never released.
-> 
-> In ath11k_ahb_config_ext_irq(), when an external request_irq() fails,
-> the error is only logged and the loop continues. The function then
-> returns 0 indicating success, leaving the device in a partially
-> configured state where some external IRQs are not registered. This
-> causes enable_irq()/disable_irq()/free_irq() to be called on
-> unregistered IRQs during runtime and remove/shutdown, triggering
-> WARN_ON(!desc->action), and missing interrupt handlers lead to data
-> loss.
-> 
-> Additionally, if alloc_netdev_dummy() fails for a later IRQ group, the
-> function returns -ENOMEM without freeing the ext IRQs and napi_ndev
-> that were successfully set up for earlier groups.
-> 
-> Fix all three issues: propagate the error up to the caller and unwind
-> all successfully registered IRQs and allocated resources on failure.
-> 
-> Signed-off-by: ZhaoJinming <zhaojinming@uniontech.com>
-> ---
-> 
-> Changes in v2:
-> - Move `irq_grp` declaration from for-loop body to function scope to fix
->   compile error in err_request_irq error path.
-> - Set ret = -ENOMEM before goto err_request_irq on alloc_netdev_dummy()
->   failure to avoid returning uninitialized value.
-> - When ath11k_ahb_config_ext_irq() fails, unwind the already-registered
->   CE IRQs via a shared err_ce_irq cleanup path to avoid leaking them.
-> 
->  drivers/net/wireless/ath/ath11k/ahb.c | 48 ++++++++++++++++++++++++++--
->  1 file changed, 44 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-> index f566d699d074..11bafbd94aff 100644
-> --- a/drivers/net/wireless/ath/ath11k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-> @@ -524,20 +524,24 @@ static irqreturn_t ath11k_ahb_ext_interrupt_handler(int irq, void *arg)
->  static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
->  {
->  	struct ath11k_hw_params *hw = &ab->hw_params;
-> +	struct ath11k_ext_irq_grp *irq_grp;
->  	int i, j;
->  	int irq;
->  	int ret;
->  
->  	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
-> -		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
-> +		irq_grp = &ab->ext_irq_grp[i];
->  		u32 num_irq = 0;
+Release the QMI handles on the late failure paths in both drivers.
 
-declaration after statement. better to have num_irq declaration at the beginning of the
-for loop.
+ath12k_qmi_deinit_service() uses ab->qmi.ab to determine whether QMI
+service initialization completed successfully. Set it only after all
+initialization steps succeed. Keep the ath11k assignment unchanged
+because ath11k does not use it as an initialization-success guard.
 
->  
->  		irq_grp->ab = ab;
->  		irq_grp->grp_id = i;
->  
->  		irq_grp->napi_ndev = alloc_netdev_dummy(0);
-> -		if (!irq_grp->napi_ndev)
-> -			return -ENOMEM;
-> +		if (!irq_grp->napi_ndev) {
-> +			ret = -ENOMEM;
-> +			irq_grp->num_irq = 0;
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Fixes: 088a099690e4 ("wifi: ath12k: fix error handling in creating hardware group")
+Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+---
+v2:
+  - Set ath12k ab->qmi.ab only after QMI service initialization succeeds,
+    as suggested by Baochen Qiang.
+  - Fix the same late initialization QMI handle leak in ath11k, as
+    suggested by Vasanthakumar Thiagarajan.
+  - Drop the Reviewed-by tag due to the code changes.
 
-the ath12k_base is allocated by kzalloc, so the ext_irq_grp array, as a member of
-ath12k_base, is already zero'ed, hence this re-initialization is redundant. But I am OK
-with it since it improves code readability.
+ drivers/net/wireless/ath/ath11k/qmi.c | 10 ++++++++--
+ drivers/net/wireless/ath/ath12k/qmi.c | 13 ++++++++++---
+ 2 files changed, 18 insertions(+), 5 deletions(-)
 
-> +			goto err_request_irq;
-> +		}
->  
->  		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
->  			       ath11k_ahb_ext_grp_napi_poll);
-> @@ -600,11 +604,25 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
->  			if (ret) {
->  				ath11k_err(ab, "failed request_irq for %d\n",
->  					   irq);
-> +				irq_grp->num_irq = j;
-
-with this forcing to the number of successful irq request ...
-
-> +				goto err_request_irq;
->  			}
->  		}
->  	}
->  
->  	return 0;
-> +
-> +err_request_irq:
-> +	for ( ; i >= 0; i--) {
-
-then with the index starting from the failed loop ...
-
-> +		irq_grp = &ab->ext_irq_grp[i];
-> +		for (j = irq_grp->num_irq - 1; j >= 0; j--)
-> +			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
-> +		if (irq_grp->napi_ndev) {
-
-and with the guard ...
-
-> +			netif_napi_del(&irq_grp->napi);
-> +			free_netdev(irq_grp->napi_ndev);
-> +		}
-> +	}
-
-at the cost of above three, the centralized err handling is working. Yeah this simplifies
-the code, but makes it hard to understand.
-
-what about:
-
-1. refactor the existing ath11k_ahb_free_ext_irq():
-
-ath11k_ahb_free_ext_irq_grp()
-{
-	for (j = 0; j < irq_grp->num_irq; j++)
-		free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
-
-	netif_napi_del(&irq_grp->napi);
-	free_netdev(irq_grp->napi_ndev);
-}
-
-then we can have
-
-ath11k_ahb_free_ext_irq()
-{
-	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++)
-		ath11k_ahb_free_ext_irq_grp(irq_grp)
-}
-
-and the complete err handling of ext irq can be
-
-ath11k_ahb_config_ext_irq()
-{
-	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
-
-		irq_grp->napi_ndev = alloc_netdev_dummy(0);
-		if (!irq_grp->napi_ndev) {
-			ret = -ENOMEM;
-			irq_grp->num_irq = 0;
-			goto err_request_irq;
-		}
-
-		...
-
-		for (j = 0; j < num_irq; j++) {
-			ret = request_irq();
-			if (ret) {
-				irq_grp->num_irq = j;
-				ath11k_ahb_free_ext_irq_grp(irq_grp);
-				goto err_request_irq;
-			}
-		}
-
-		irq_grp->num_irq = num_irq;
-	}
-
-err_request_irq:
-	for ( i--; i >= 0; i--) {
-		irq_grp = &ab->ext_irq_grp[i];
-		ath11k_ahb_free_ext_irq_grp(irq_grp);
-	}
-
-	return ret;
-}
-	
-> +	return ret;
->  }
->  
->  static int ath11k_ahb_config_irq(struct ath11k_base *ab)
-> @@ -629,15 +647,30 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
->  		ret = request_irq(irq, ath11k_ahb_ce_interrupt_handler,
->  				  IRQF_TRIGGER_RISING, irq_name[irq_idx],
->  				  ce_pipe);
-> -		if (ret)
-> -			return ret;
-> +		if (ret) {
-> +			ath11k_err(ab, "failed request_irq for %d\n", irq);
-> +			goto err_ce_irq;
-> +		}
->  
->  		ab->irq_num[irq_idx] = irq;
->  	}
->  
->  	/* Configure external interrupts */
->  	ret = ath11k_ahb_config_ext_irq(ab);
-> +	if (ret) {
-> +		ath11k_err(ab, "failed to configure ext irq: %d\n", ret);
-> +		goto err_ce_irq;
-> +	}
-> +
-> +	return 0;
->  
-> +err_ce_irq:
-> +	for (i--; i >= 0; i--) {
-> +		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
-> +			continue;
-> +		free_irq(ab->irq_num[ATH11K_IRQ_CE0_OFFSET + i],
-> +			 &ab->ce.ce_pipe[i]);
-> +	}
-
-this is also a duplication of the CE part of ath11k_ahb_free_irq(), consider refactoring
-the exsiting helper and reuse it.
-
->  	return ret;
->  }
->  
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 410a7ee076a0..6e3f82169d24 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -3329,7 +3329,8 @@ int ath11k_qmi_init_service(struct ath11k_base *ab)
+ 	ab->qmi.event_wq = alloc_ordered_workqueue("ath11k_qmi_driver_event", 0);
+ 	if (!ab->qmi.event_wq) {
+ 		ath11k_err(ab, "failed to allocate workqueue\n");
+-		return -EFAULT;
++		ret = -EFAULT;
++		goto err_release_qmi_handle;
+ 	}
+ 
+ 	INIT_LIST_HEAD(&ab->qmi.event_list);
+@@ -3342,9 +3343,14 @@ int ath11k_qmi_init_service(struct ath11k_base *ab)
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "failed to add qmi lookup: %d\n", ret);
+ 		destroy_workqueue(ab->qmi.event_wq);
+-		return ret;
++		goto err_release_qmi_handle;
+ 	}
+ 
++	return ret;
++
++err_release_qmi_handle:
++	qmi_handle_release(&ab->qmi.handle);
++
+ 	return ret;
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath12k/qmi.c b/drivers/net/wireless/ath/ath12k/qmi.c
+index fd762b5d7bb5..692f1b2c2031 100644
+--- a/drivers/net/wireless/ath/ath12k/qmi.c
++++ b/drivers/net/wireless/ath/ath12k/qmi.c
+@@ -4041,7 +4041,6 @@ int ath12k_qmi_init_service(struct ath12k_base *ab)
+ 
+ 	memset(&ab->qmi.target, 0, sizeof(struct target_info));
+ 	memset(&ab->qmi.target_mem, 0, sizeof(struct target_mem_chunk));
+-	ab->qmi.ab = ab;
+ 
+ 	ab->qmi.target_mem_mode = ab->target_mem_mode;
+ 	ret = qmi_handle_init(&ab->qmi.handle, ATH12K_QMI_RESP_LEN_MAX,
+@@ -4054,7 +4053,8 @@ int ath12k_qmi_init_service(struct ath12k_base *ab)
+ 	ab->qmi.event_wq = alloc_ordered_workqueue("ath12k_qmi_driver_event", 0);
+ 	if (!ab->qmi.event_wq) {
+ 		ath12k_err(ab, "failed to allocate workqueue\n");
+-		return -EFAULT;
++		ret = -EFAULT;
++		goto err_release_qmi_handle;
+ 	}
+ 
+ 	INIT_LIST_HEAD(&ab->qmi.event_list);
+@@ -4067,9 +4067,16 @@ int ath12k_qmi_init_service(struct ath12k_base *ab)
+ 	if (ret < 0) {
+ 		ath12k_warn(ab, "failed to add qmi lookup\n");
+ 		destroy_workqueue(ab->qmi.event_wq);
+-		return ret;
++		goto err_release_qmi_handle;
+ 	}
+ 
++	ab->qmi.ab = ab;
++
++	return ret;
++
++err_release_qmi_handle:
++	qmi_handle_release(&ab->qmi.handle);
++
+ 	return ret;
+ }
+ 
+-- 
+2.43.0
 
 
