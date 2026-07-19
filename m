@@ -4,83 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1C9DC44524
-	for <ath11k@archiver.kernel.org>; Sun, 19 Jul 2026 21:58:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CAB9C44512
+	for <ath11k@archiver.kernel.org>; Sun, 19 Jul 2026 21:58:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=+b/LWj/hLmWJErzZT/ZoMVshAClUgZMmHRGkesS9h0M=; b=R5mV5X/RrAtE3+blXjZTmH4JKV
-	6k4G3j5PoaGwNOlqcyTYqQ7XmfNAnaVHi8Nu9ojvoaRnyFTll92O2lcDr1f77IiZ9V5K2ZZ6H8Q3a
-	0L4a1jUwpxIg9CXLFDVhfEzYZEBWB1Pq/h+yf9wl5gtpD+GvdHJbka8Gck4b6yhO0w9T7jUxzKYjs
-	txcO3RHL4InzxmstpZ7rtnBRdtslEW/6sjW5eJVqnWA2S8G2OfdWc57NmaZvu0TY0yNmU41BL1tz+
-	jBCoPz07YOeNUeOf3492YOgCGj+AHUnJ1h6Ytm34flHvZM5DKR+vXzJYROHIdJvcSd4l0yuLfviCY
-	SA9+69gQ==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/sGXqOXERG0g5LCnDxjc6HxcIh4ePUmjqAzBWTaTJ4M=; b=obaDaL8D3ZtD/Mjv+NWepg3uFx
+	grNdZxCjAZsFTS1xQsiFtUenA6ubDmmyadpXi0ORLlMlS6Xsf2fISmmh2byI2Ykao4qd3yQfs/oQv
+	6IGu9t4waVgYa2a4iVtOGM6XOUIin0Lj3eKEaLUTKVwO/UVpUYmVZ9nv2HveAVhXu05uR8Wxa9n1V
+	sCy3fyufiYddqSbuQphLUleYsOde6Xx8XNCea6cqtI6yBhrZWNDfOy2eeuubON5Ttmo0PDTcQ/9nw
+	zV1geVUKivE2+nve0rij0Y0H0sD3sz1JA5ePzNFl5UDrbQuA64jPYovigsF5+GqMvmMsGZHAEEYJD
+	GxNDpjOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlZWo-00000005PBs-0Il0;
-	Sun, 19 Jul 2026 21:58:30 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1wlZWs-00000005PE5-18o1;
+	Sun, 19 Jul 2026 21:58:34 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlZWl-00000005PBC-1rh0
+	id 1wlZWo-00000005PBn-3DUU
 	for ath11k@lists.infradead.org;
-	Sun, 19 Jul 2026 21:58:29 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-c1600d040e4so503770366b.1
-        for <ath11k@lists.infradead.org>; Sun, 19 Jul 2026 14:58:25 -0700 (PDT)
+	Sun, 19 Jul 2026 21:58:31 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-c1712a04ddaso499939366b.2
+        for <ath11k@lists.infradead.org>; Sun, 19 Jul 2026 14:58:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784498304; x=1785103104; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=+b/LWj/hLmWJErzZT/ZoMVshAClUgZMmHRGkesS9h0M=;
-        b=BC1fhV0RWVm2VdOfRju+06HJi4oc95v0BT0Vz/V42I1N2igWb2kZPbC4VOUXiRt5VL
-         GXzLzR8VdxzMF75Se9QDln2PT8sDftJJGZ2q41g2eaVn/EBqhcWyo2lfAqJKMsXuVZtQ
-         UtEyDmBPAfci2VjgwgocGgYLb4TMRUNXojMG0PkzZGyOBv9odgHt503y/nZVH+o5d0rl
-         ihDU0cnFGOnBu2cH4+Sg6ipREIwqEkc0Ql01BvOXmFJaPhKtkpqqb8NJZMt9QgupZNdD
-         ENutuU1qqKV7oLhID3g/pc6kFKQkYEsgsjqMyvJzAygWzlyxno5oCXKSl01hZNatTQYi
-         qMiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784498304; x=1785103104;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1784498309; x=1785103109; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=+b/LWj/hLmWJErzZT/ZoMVshAClUgZMmHRGkesS9h0M=;
-        b=HNZF3iz1Epo4jD2Ks/erWMhA5KLAT/PRC/J9Rf7Iw6JjJyz9WjOf5G6cFbISnu5FPR
-         b0wbASaJRqyCZ5yAvsVcCAoBV2clPp8ZkfAXogKsNz9B0SyOhCRYkMIqpDdgiOuZKp3y
-         0MJXGzhlenq5f5XthKcS8j+CScOvn9JQvq5OUGh8UmWdT7KdwlGbQ3f3MO3g6LTb56sY
-         pDGXPxSpPDEZaScMF3Z4Uu6mLpJpTxqI5Yew1S5uruLvPZ6B9xAxwkayYhz475SWaxS4
-         x59+fDVY07d0MUTJRvTjt1DOhfpdbO/wSumz1/VaE+lA02OGwveIJ1O/U8/SVLVk6Cfj
-         PrAw==
-X-Forwarded-Encrypted: i=1; AHgh+RpQavzMNu17S/vrbi9bYay0eD3aJoeyGH+MpuyLKao1ErXNUVdy8518vRyJNwLhBQm1KTOZezc=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy4C4pVqXRC2aF1JCIrbdreVGzTBvtqcOmCC1z9coxJo3/EDhin
-	TJ2aSbcN4zlExRjnhjWF/nzI3sAIstwkzqVG2x2vxKoc6S6mFJ4RXGlas2x0r9CH
-X-Gm-Gg: AfdE7ck2TYLMAOtU3UKMSeOjUo8bwDXuXbOklpt24ex3mjVBpk3E4bZ0ACdYALKP+/7
-	jfsBopvc2CiOC13vvSofpLYeUYDn4Wc9qArFIR/VQNgixcgy8DPgBUis8VU7nXa5z8qcp97wJDw
-	TxhM+IA+5KxNNdBjo2JNKm4zOGR5Ehk7jFbnEClkisdx1uRvrQAX3AW0IPcjSiZjgaUQ02Dptz+
-	94XlJPWfr2IW6cBypGP4BLjv32bizCp6oek8p0WW1F3VU6s5hP38EQQuRLtCJkHgg/1MiQ3j/5q
-	+fy4ORQKou8kYhoRQoKIyAEWMUYxmaaJXIwz+O735l4FaddGt43a90jt9MajkwnnyPaRAjrlWnQ
-	BTlAzGMIcH+z6yspfyRIjzI8EdCw1KOwLe8b7/QKmC3ienG+p3TgLshPnA5mbObRs7mepeowTfh
-	CekLGr1ahloiGKRQ==
-X-Received: by 2002:a17:907:3e93:b0:c12:b68f:1a72 with SMTP id a640c23a62f3a-c169240e51fmr720302766b.24.1784498304106;
-        Sun, 19 Jul 2026 14:58:24 -0700 (PDT)
+        bh=/sGXqOXERG0g5LCnDxjc6HxcIh4ePUmjqAzBWTaTJ4M=;
+        b=nhVq/KZsB3VI6oBqSXeesVQVhRoNRMHWwAF6nlKAlE5x0XS7CvHbb47Gut6/mhcMdA
+         bvMkuD0uVzgSVIyxt97WuFbX39RP1q/J0EJZ7h2Zc7/jwYRAWk/QaVbBr3VZAenfXMmR
+         kyHIS+xFkwMLs2KatR8ipkymF4WYX5p1NNp7/vBj0JyiSQzg9XGrqHy33sT9ZB7CzBMV
+         g5GlafUR3uip5y38K9tqzMN7O2tA8g2nE8IKRH0OWJvzF05jbe+oLr5DWL1dt62jKrV1
+         dmyWRQyQFjbijMtEAetiwxzjFPvOat7zgVQ9UENyXla9uaGRSwqgpWazieF7WXX3miLa
+         QjPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784498309; x=1785103109;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=/sGXqOXERG0g5LCnDxjc6HxcIh4ePUmjqAzBWTaTJ4M=;
+        b=QLKJ3MQEAs5UeZs99bshWNjoGya/KfwrFmk76zWPY4DOP0NslUeHd0qaBj7hw0Aw6v
+         YMUYdq/MZmkLoNvjF+Rs1LEZIZrkLKN4q5yRIsscCnueumk138mak1X+1+sz8fGMb6IC
+         WnKXEQf1hKNdKlM1fKLAlqdd+tsBULazTDTusvdf6Ki9XvyfJttNYZknfda3J/R6f9Hi
+         SA/5MNbOomeHNdHB6zffg/KqFvpo/vbZ1/F5MR55LnIqoC3OCzPpC81WeDw79HaDHlO/
+         E4umXKIvl0KzTaeB500J2fHsayc2l+O6C1n8jlB7qg6PUfGZBKzgLzFh7zrruxpHsr6H
+         x5kA==
+X-Forwarded-Encrypted: i=1; AHgh+RpthYCrXXmmoqsQtThH/XIoklN5Z0qxNhVirQLO05huMYPX+ENF4K5fnzoFn+p9JSdkDkKqGz4=@lists.infradead.org
+X-Gm-Message-State: AOJu0YwKtkVeYITv1L8RF7P4XRML0epSQti07bGjRaOvfoSDGMUQzBgE
+	UY9tZllJ9XhIquMjptwxIi4uD2Js4OIRh2P5AvUy1Pm0VDJIgvktZ1/p
+X-Gm-Gg: AfdE7cnhizMjQD4ItyCC32YmojRcVYflkhqOjLS/YwtbyMR8ha20+mvYU17BsjgP3iI
+	f1U7Wuj3TiQQCQ1Y22HmccvEHupgfguPXdy/2hqPWawDom/lqtGmCHMP0KVGsDJEb33ygHbgA+x
+	B8Jk1mU1MmEK3pPWRoAz1EniZ8mSsp2xV5wqIneNld7EYILQjSagu13+wwWub0zd7KcrdP8D1un
+	+ZSYNH1RlzUh4V5d6YGIdgy8GvkvrUV3Zty9dYWix/2kngB6eLp3bpIH8xlAxka0nqs6k3VQkvs
+	rzETOLif4fN4p3GBvSwMkgZXlIVo1thq9mlwciFhrrpwuNpETqAQvT/Lj1ndMsFGCaKLlF6DQCR
+	TRE+m0oHgdDSs2YRJB2omZN5eWmMYS651IT07I9RNe/SuuEFLWqpLT1FGbM0ol/mraFjMnqE/W1
+	4ZzQKZo9DNCiE+LnnwjIqrUh3h
+X-Received: by 2002:a17:907:78e:b0:c12:cacc:92c6 with SMTP id a640c23a62f3a-c16b48890abmr432532666b.59.1784498308387;
+        Sun, 19 Jul 2026 14:58:28 -0700 (PDT)
 Received: from nv-msd-x1c.mtdk.labs.mlnx ([212.60.125.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c16eb80bbf8sm379116766b.0.2026.07.19.14.58.21
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c16eb80bbf8sm379116766b.0.2026.07.19.14.58.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jul 2026 14:58:22 -0700 (PDT)
+        Sun, 19 Jul 2026 14:58:27 -0700 (PDT)
 From: Mark Ruvald Pedersen <wabsie@gmail.com>
 To: linux-wireless@vger.kernel.org
 Cc: Jeff Johnson <jjohnson@kernel.org>,
 	ath11k@lists.infradead.org
-Subject: [RFC PATCH 0/3] wifi: ath11k: isolate RXDMA page-frag lifetimes
-Date: Sun, 19 Jul 2026 23:58:14 +0200
-Message-ID: <20260719215817.2468580-1-wabsie@gmail.com>
+Subject: [RFC PATCH 2/3] wifi: ath11k: make external IRQ control idempotent
+Date: Sun, 19 Jul 2026 23:58:16 +0200
+Message-ID: <20260719215817.2468580-3-wabsie@gmail.com>
 X-Mailer: git-send-email 2.51.2
+In-Reply-To: <20260719215817.2468580-1-wabsie@gmail.com>
+References: <20260719215817.2468580-1-wabsie@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260719_145827_502363_1B0BB607 
-X-CRM114-Status: UNSURE (   6.57  )
+X-CRM114-CacheID: sfid-20260719_145830_821752_FE09ABF8 
+X-CRM114-Status: UNSURE (   9.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,52 +99,76 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k fills RXDMA rings with skb heads allocated by dev_alloc_skb().
-Those allocations use shared per-CPU page-frag caches, so unrelated RXDMA
-rings and other network users can place fragments with different
-lifetimes on the same backing page.
+ath11k tracks each external IRQ group's NAPI lifecycle with napi_enabled,
+but calls the physical IRQ enable and disable helpers outside the state
+guards. Repeating a lifecycle disable therefore increments Linux's IRQ
+disable depth on AHB and multi-MSI PCI even when NAPI is already
+disabled. One later enable leaves the IRQ masked.
 
-On an IPQ8074-based Linksys MX4200, repeater/AP traffic made available
-memory fall at roughly 12-16 MiB/min until OOM. Ring and IDR ownership
-remained bounded while page-frag backing accumulated. Two ownership
-captures found fragments from multiple allocation origins on 86-87% of
-the final tracker-visible backing pages.
+Move each physical group transition inside the matching NAPI state
+transition. Preserve the ordering: mask IRQs before synchronizing and
+disabling NAPI, then enable NAPI before unmasking IRQs. The outer
+synchronize_irq() calls remain unchanged.
 
-This RFC:
+This makes sequential lifecycle transitions idempotent. It does not
+change the temporary disable/enable pairing in interrupt handlers and
+NAPI poll completion.
 
-  1. fixes an existing no-op alignment attempt on empty RX skbs;
-  2. makes sequential external IRQ/NAPI lifecycle transitions idempotent;
-  3. quiesces non-reset crash recovery before DP teardown, gives each
-     RXDMA ring a private page-frag cache, and drains it after the ring's
-     DMA mappings and skbs have been released.
-
-No RX buffer or ring sizes are changed, and the existing per-buffer DMA
-map/unmap lifecycle is unchanged.
-
-page_pool should also be viable, but it is not a mechanical allocator
-substitution here. These skb heads need about 2.5 KiB of backing, so an
-order-0 pool uses one 4 KiB page per buffer. An order-1 fragmented pool
-restores packing density but lacks page_frag_cache's lower-order fallback
-under fragmentation. page_pool also adds fallible setup/unwind and
-requires every skb return path to become pool-aware. This RFC keeps those
-behaviors unchanged; I can prototype page_pool if that is the preferred
-ath11k direction.
-
-The AHB version was built as an OpenWrt backport and remained bounded in
-natural-load, resident, and high-packet-rate pressure runs. PCI has not
-been runtime-tested. The non-reset firmware-recovery path has not been
-validated in isolation, so feedback on patches 2 and 3 is especially
-welcome. The IRQ state guards make repeated sequential calls safe; they
-do not add synchronization between concurrent lifecycle callers.
-
-OpenWrt discussion:
-https://github.com/openwrt/openwrt/pull/24254
-
-Mark Ruvald Pedersen (3):
-  wifi: ath11k: reserve headroom when aligning RX buffers
-  wifi: ath11k: make external IRQ control idempotent
-  wifi: ath11k: use private page-frag caches for RXDMA rings
-
+Fixes: d943fdad7589 ("ath11k: Fix napi related hang")
+Fixes: bbfdc5a751a6 ("ath11k: Refactor PCI code to support WCN6750")
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Signed-off-by: Mark Ruvald Pedersen <wabsie@gmail.com>
 ---
-base-commit: 189721a4afa1804315e7dcfca9ca0539c7b1d7af
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 1e1dea485..1f1562ff3 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -235,9 +235,9 @@ static void __ath11k_ahb_ext_irq_disable(struct ath11k_base *ab)
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+-		ath11k_ahb_ext_grp_disable(irq_grp);
+-
+ 		if (irq_grp->napi_enabled) {
++			ath11k_ahb_ext_grp_disable(irq_grp);
++
+ 			napi_synchronize(&irq_grp->napi);
+ 			napi_disable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = false;
+@@ -380,8 +380,8 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
+ 		if (!irq_grp->napi_enabled) {
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
++			ath11k_ahb_ext_grp_enable(irq_grp);
+ 		}
+-		ath11k_ahb_ext_grp_enable(irq_grp);
+ 	}
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index 2259adc3b..bf367f60b 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -455,9 +455,9 @@ static void __ath11k_pcic_ext_irq_disable(struct ath11k_base *ab)
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+-		ath11k_pcic_ext_grp_disable(irq_grp);
+-
+ 		if (irq_grp->napi_enabled) {
++			ath11k_pcic_ext_grp_disable(irq_grp);
++
+ 			napi_synchronize(&irq_grp->napi);
+ 			napi_disable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = false;
+@@ -490,8 +490,8 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
+ 		if (!irq_grp->napi_enabled) {
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
++			ath11k_pcic_ext_grp_enable(irq_grp);
+ 		}
+-		ath11k_pcic_ext_grp_enable(irq_grp);
+ 	}
+ 
+ 	set_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &ab->dev_flags);
 
