@@ -4,86 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABEFCC4451B
-	for <ath11k@archiver.kernel.org>; Sun, 19 Jul 2026 21:58:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C237AC44525
+	for <ath11k@archiver.kernel.org>; Mon, 20 Jul 2026 02:20:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZrnWAngYS6JLzxtxY9C76JD3u8HKuRum017zjKAx33U=; b=DFFECGNG54SjyWujYyQQzQ06w5
-	A++5+X1QqNyhRyizD3ZDIm4WTHJy4hubqhJt2LqFg0ITUvOOY2ZEzrcyWmQ863FEnORFkIojTsUbK
-	CPHkVqNyNV2j5dwcvirD8oQa9AurpxsJsaAPFh3B/6jitYG6G8qiCOKc28amNODDy6HQn4eoR9k/K
-	EChau6XmjQPWEwinzNElCz6NhFiXC8VbuOQgTAH3Uuq9rA8n6VFIjzv7UAYPnRv0D9jyCNaGUxrQA
-	s1dtbxBM7qBpRJn+zc4/iIUKeWud5mPd5t4+hFOUb6ZXDwUyUpf7fb/T26hv/15GiqPgtzAePnxGi
-	eFT1d3rQ==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=WwYCea8We6mdjWm+dC6kPkTmaclY2KKsawC/nEua+YM=; b=HppXEdpN+tcbUbcMFCWduECKvc
+	2AZRISm2XfrfCQWP9IB5xwUOXanE5K0U9XiXh0r8OFyabfjrLB3Ce+dX5VXlRuy/GKYBS/muRD0lr
+	9vEWhJa+79xGh5KettdwR03A+QNeuo3priCj4U1C04JUhgg3zgLx3MEELVEErhQkgqbmR+OyvZ3l7
+	vJ04p0fyQDSzmcqAawL6a/iHK4uDXfwR5WaeHg0GpTY7mdTuqdBKZIe6BJtpMgfF3QbK50iwTd+6P
+	quPg3f4s6Z/HAnMZIK7oFy7wArqfKS6TeDl5EgynhLX8P3LtczV4Qfem1O7873nM0S5MUnEfvi2uX
+	K3T7IrGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlZWt-00000005PEa-1Qqw;
-	Sun, 19 Jul 2026 21:58:35 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1wldc5-00000005gAb-1TKM;
+	Mon, 20 Jul 2026 02:20:13 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlZWq-00000005PCj-3G2L
+	id 1wldc2-00000005g84-1oIf
 	for ath11k@lists.infradead.org;
-	Sun, 19 Jul 2026 21:58:33 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-c12614b81c9so1705450766b.3
-        for <ath11k@lists.infradead.org>; Sun, 19 Jul 2026 14:58:32 -0700 (PDT)
+	Mon, 20 Jul 2026 02:20:11 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66JNsbQ7657712
+	for <ath11k@lists.infradead.org>; Mon, 20 Jul 2026 02:20:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	WwYCea8We6mdjWm+dC6kPkTmaclY2KKsawC/nEua+YM=; b=MoWD+ea/sFbiCg2X
+	7GR8vHVuokwWB4yy/3OH9zhziJEkOK9Ft1l32QWhYabo1c0vcPJqAIqOl9kxJKqp
+	uKZGHf29Q3l6vFg2sIf7lmcda7shqXnZ9/QQ2gFehvLLho06wKywqZkC3RPhMPIN
+	ZZHRoUOT/QzzqR91rmBkcSX7j6PsF2lQZ1mFcvUtaAWMu+sb6vrJ3hybPGgwSHbZ
+	xzPjtdHxWS6X/gjGw6MuEEzsk/BWC2m6V2LM5Akg64anM5RBAALwJ7717+yIO8ZW
+	Y5697mrbNV7uWxgeCuq54js4Xk6tKIel8jm7WzhwTqNuWOAqJnbocBqUkWVPVx0t
+	vNh8dw==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fg2chkxnk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 20 Jul 2026 02:20:09 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2cacf17c7e0so92162445ad.0
+        for <ath11k@lists.infradead.org>; Sun, 19 Jul 2026 19:20:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784498311; x=1785103111; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=ZrnWAngYS6JLzxtxY9C76JD3u8HKuRum017zjKAx33U=;
-        b=gxMFzVOCsOFr5Wv7V4ewiV+YYGB+vNkAsdDAHpDBerCJXXKhTq1FCNWl6E+yY2pvRO
-         GNsJuLDm+y6VP9WDec03tX2zt7W7BJs0afQ7LlbOd9bQclvHqOQVOH2P6NUarIJOVtoP
-         OCKAz8ZYRiU04UnQeQ8L25SZckxKHhTSLVDf3AAS3kejvqk8IBBlraayecIn1FnrtEKr
-         ghhjeI8VXO/0wOlMQIMs/po1cw+3IJlas5FU1fzohkPys26d6zUldRUd2xWWt4rMv8Gr
-         /KW+6SMRYY170WByG0iWUNQAPLO7Wj1Y7jhspGSIE6YADXLQF5xwLdo01hJscUY4CvUj
-         hgrA==
+        d=oss.qualcomm.com; s=google; t=1784514008; x=1785118808; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=WwYCea8We6mdjWm+dC6kPkTmaclY2KKsawC/nEua+YM=;
+        b=a2Aeezgbx5w5aK/LLjUtFP3OXTV0hDAlv/pFSKkBPfS9jS1zqhg7n1LdYQBxF4ar0R
+         q6FZomehL4G+JSOgXpslo2R3gFQ/Y0n4IRErx3LKDxcH66McbIdpZc1NK5z2fhV1ory1
+         p1ElkKlJgOS+BLjEVGWh9uaEG92UKAT3kqqlRGClO53T+TrZi3r39EKfm0ZZSLth01fi
+         ZxWpFkRZBSC4U/U8PLJToKSvAcfxJCiLa45Ol03LhXouXM3f3sRsY1AnO2ir/pXpuZ1v
+         SiYCaGOymDg69z5zGZFO2847/HtrUJcPC4j2zXYKVRTLVmgjuLN91qK1PwYQ/NuC0Obb
+         /uvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784498311; x=1785103111;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=ZrnWAngYS6JLzxtxY9C76JD3u8HKuRum017zjKAx33U=;
-        b=jdPAKkC8Gb1sV8sjV1jyx0H882qVk+68Ducba+730H4aDGbGDzOAxbY4g7pt4w/XbV
-         xkR/36tVwWoUWIAIb9QARQL8rTdR6lYZ5i694j7rhbGOxYTEV7JpyhGf6M/6amtY9GVi
-         N8/JbcFULAqdLNbp/0Xuek1mLIIRClCKb7+xf5cx8OEt8K95vgcjKF93aJ54Bjbkf0bL
-         xv/wHUus90A/48sSlt3T67eM95O4ivBRzg7/fAPt5idupP991XDEqhdNqbTWmDxzJiZ0
-         EOzmtk5mrWVqqfhTTY6mEGC/uTh6PmMPp9SPkjK3/Kt38IdXmedvRYB4TYg9YdiVSUrW
-         /QQg==
-X-Forwarded-Encrypted: i=1; AHgh+Rok17/+KwGJCiMZMGQam/GQ5FIEW4YQvku59A0XL1vatlDb05g1hGsPWptBaM4hov6aJLNk2MU=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyp+lZFU75uwG+44fgEOKFcMXzdi58Y7sfSqveVr5O2s4+I9cSy
-	TNr1UmuWdpzV/ImsGNyhjC7SIYB0SLWnEWuqhudS3b121FM5B6ThJlm2
-X-Gm-Gg: AfdE7cnA35C6nfZYaeLxonJ9NVQLD6Qv1g3SewPksAwp5LcC0ZbY8csCx8AQoQtITRy
-	LES6cpm+04EmprZzHyMgTqd7s5p+dWUhdB9ytTAGR1JXe9gEr0nHujVFiRs8sLO2z30DTW3tjQZ
-	/Q9kQEbv+56JY0eOea44O+l1ZHhFZBdppINliwjGVhJ2blPeDvC7cUFvrJW6n/fbf6Um7drejv8
-	PWBBw16J3vckU9CWPhxj6nBr+8u8J95y1v/MkLjBrR97Q8MozmimD1jeqsgtaCS0wuAzzxzY4f3
-	UPYjd3gqPthRjMqofoIMH9g4ioC1sQj9GnJ2BH1oATiTb3zDeuLXUsF+DoYrcoUccFv2qxGA1nZ
-	EgOoYyBVNfgU1UQEtSJvKCUSR1Raj+up9vwGwJ6jBBAw5GSsPMmDnaY+3SpFZgrRsTsH6Oztgr6
-	SZDgwi7wQVjumCCw==
-X-Received: by 2002:a17:907:709:b0:c16:5a9b:5966 with SMTP id a640c23a62f3a-c16b47c50damr506688866b.33.1784498310938;
-        Sun, 19 Jul 2026 14:58:30 -0700 (PDT)
-Received: from nv-msd-x1c.mtdk.labs.mlnx ([212.60.125.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c16eb80bbf8sm379116766b.0.2026.07.19.14.58.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jul 2026 14:58:29 -0700 (PDT)
-From: Mark Ruvald Pedersen <wabsie@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: Jeff Johnson <jjohnson@kernel.org>,
-	ath11k@lists.infradead.org
-Subject: [RFC PATCH 3/3] wifi: ath11k: use private page-frag caches for RXDMA rings
-Date: Sun, 19 Jul 2026 23:58:17 +0200
-Message-ID: <20260719215817.2468580-4-wabsie@gmail.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20260719215817.2468580-1-wabsie@gmail.com>
-References: <20260719215817.2468580-1-wabsie@gmail.com>
+        d=1e100.net; s=20251104; t=1784514008; x=1785118808;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=WwYCea8We6mdjWm+dC6kPkTmaclY2KKsawC/nEua+YM=;
+        b=rVwf8m/TEt/CYpYoMrfMusvDuz4SllZ7ExUuXJL6KO+yLiE0Yt0M9VwdZrALRoEVl/
+         3/r+II7QifvxzG3v/XE0b1q5JGJm89+0HS4eUMWKlFxs3kL4qXSAuzfDvwol9Zx/L3Os
+         h+iUiKPDWRQ2LVXxOXtLEIitsQefJEkwNHX4Mt+QUtBuhy3YHvKfOl/7nXCL+EMciIUj
+         6h/p3aKAe1AuXux5EuWefW5hi4F3kbJe1lWx1uHqRJWssUPi7ZTfu8t1vG2JSkLeFe1C
+         DRXUJgZFeh731NVeEuxfknb0sh/OGn84EseZwklcMWh5vYme9eDRPMMioshLqYKFwI5E
+         2N3w==
+X-Forwarded-Encrypted: i=1; AHgh+Robuidl4O4y0frQvoDgPn2bSyKMo4Gro/0QNoo7NOFJns2ECx69QZ2ffuKc6jyYqSfTT9xwkOw=@lists.infradead.org
+X-Gm-Message-State: AOJu0YzUdw86MEAh3vUlJam7o08zELxfYP2zX1swBXvxb0RsTcV/fJ+W
+	PDsGOlWuGUFpgFVNoJ3kerUgnPZL8tkAU4sINH8taLYVsRlnzc94zsPee37qpFCIMfwMkUBK5a2
+	D0xNev8uzX9jXYxHF2dMWj5lmaaLOxg3td3Dsy7pZ1bRShEHkxNUlxugokQJ17Ftb
+X-Gm-Gg: AfdE7cmSUKIKaFaGxryTzSQ6UvmK7PjYDymKZ5WJMIFZnCoGVHOkQ1Mpg1TVpjdvb++
+	HnE3oF2R6aZqiw/qdSczOeQbQ/mrVlYN1OMw2u2I1P0rFijz34cIy2IWCg0tND8ll4fIUdlKnBl
+	yyykd0XBi7Rh0PT78uyijTM/83QRzvpEbX+xn/JgS+OuDHNN2qQI8gZZGRd+xLoFDwz322LxrHP
+	GojoNlrxbjV2pZBmu8hfUTa4efn2Ml4YtWK4OitIZQxLuEilByvuzHZJnJcWolJi+5NerG7EC8a
+	kdMrp2F1PYN453t3YcAfctQ4g7Nct1L8Wx9C6MhqNG1hnCzUss98j9ecxKwJIG8JQfiaZ93l0K2
+	I5X6pzyo5K7nUcSqypXBVMFo6abC29JsD4d3ac8xm+ct93cT6og/z9L17/UYzz7karpesSUUj
+X-Received: by 2002:a17:903:3b85:b0:2cc:777f:d67c with SMTP id d9443c01a7336-2cf3488b0d2mr126545055ad.13.1784514008107;
+        Sun, 19 Jul 2026 19:20:08 -0700 (PDT)
+X-Received: by 2002:a17:903:3b85:b0:2cc:777f:d67c with SMTP id d9443c01a7336-2cf3488b0d2mr126544685ad.13.1784514007385;
+        Sun, 19 Jul 2026 19:20:07 -0700 (PDT)
+Received: from [10.133.33.82] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2cf344b1348sm48167765ad.18.2026.07.19.19.20.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jul 2026 19:20:06 -0700 (PDT)
+Message-ID: <7d76cc32-5022-48c1-b33d-f16521ab5b7a@oss.qualcomm.com>
+Date: Mon, 20 Jul 2026 10:20:02 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] wifi: ath11k/ath12k: release QMI handles on late
+ init failures
+To: Guangshuo Li <lgs201920130244@gmail.com>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
+        Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>,
+        Sathishkumar Muruganandam <quic_murugana@quicinc.com>,
+        Anilkumar Kolli <quic_akolli@quicinc.com>,
+        Ganesh Sesetti <gseset@codeaurora.org>, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
+        ath12k@lists.infradead.org
+References: <20260718074026.3085688-1-lgs201920130244@gmail.com>
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20260718074026.3085688-1-lgs201920130244@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzIwMDAyMiBTYWx0ZWRfX3zzALd0F8pRO
+ 7wUmUIS7qPu3FMMwJ+0rQfx5MYeRJxJPZ9HJI9NHoIWN2tFoRZp2efgPCbnQt+DoVv5/dDmSh6u
+ INoe0ZLNyTVWbYZoCU+9JqnaQYKBlc8=
+X-Proofpoint-GUID: v41BDHnW7BtmlD_C0yOLuWV5OqpS5uMT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzIwMDAyMiBTYWx0ZWRfX/xYT/FKaPYZI
+ hFybj7eBAZXvHibLG8FRgzT/hHb3CDC6NvbhTM8dZFNSN1wRwJR8DJDFqFbcmvVWvj+3ATjQW4y
+ eBFspV0UaaHT9cah5pswORZSfmvFifbACbPw5ppSpTi7KMwVZ/xn/nx01F83jDUzLsWJPoCKul6
+ JXr8tZxganwltEJUDt1j04/n8ttSGC4x2KE4piZAnDlPdzcyd3a6IBKMExkLhj6KPNqRgx3SGUQ
+ PYML++tY+kG2SAi0KweIDSaOgMBJb63E/WSuR0PKlQgpu1Zy6Ekb+x8uIoxwHTU6jCfm9ZDOnT8
+ BdNY4FKD81u75RIyGRLPJSvFEuaa7Ft3LOWP4BlNFcP1OmqJToRoTpzSY7alhvG5yr3KGsu54XV
+ VEQaoYqubYfqWj8LDD//mLhvEy+7Ts0XNX2DXEqqjq8u0a0ns2BlG3EwhGz7Vlsp1sw7lzcqqc5
+ /fpXHWJbICJLzkV8vTw==
+X-Authority-Analysis: v=2.4 cv=T5K8ifKQ c=1 sm=1 tr=0 ts=6a5d85d9 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=9O-bytELmrVEQ99AJk0A:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: v41BDHnW7BtmlD_C0yOLuWV5OqpS5uMT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-19_08,2026-07-17_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 impostorscore=0 bulkscore=0 adultscore=0
+ suspectscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607200022
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260719_145832_847549_0FDE864E 
-X-CRM114-Status: GOOD (  15.04  )
+X-CRM114-CacheID: sfid-20260719_192010_606239_A4EEA285 
+X-CRM114-Status: GOOD (  12.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,168 +155,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k allocates RXDMA skb heads with dev_alloc_skb(), which draws from
-shared per-CPU page-frag caches. RX buffers from different rings and
-unrelated networking allocations can therefore share a high-order
-backing page despite having different ownership lifetimes.
 
-On IPQ8074, RX ownership tracing found bounded ring and IDR occupancy
-while page-frag backing grew. Two captures found current or historical
-cross-origin fragments on 86-87% of the final tracker-visible physical
-pages.
 
-Give each RXDMA ring its own page_frag_cache and use it for regular and
-monitor-status buffers. New fragments from distinct rings can no longer
-share backing pages with one another or with unrelated users. The
-monitor-destination path that intentionally uses the data refill ring
-also uses that ring's cache.
+On 7/18/2026 3:40 PM, Guangshuo Li wrote:
+> This series fixes QMI handle leaks in the late initialization failure
+> paths of ath11k and ath12k.
+> 
+> Both drivers initialize the QMI handle before allocating the QMI event
+> workqueue and registering the service lookup. If either of these later
+> steps fails, the initialized QMI handle is not released.
+> 
+> Patch 1 fixes the leak in ath11k.
+> 
+> Patch 2 fixes the leak in ath12k and sets ab->qmi.ab only after QMI
+> service initialization completes successfully.
+> 
+> v3:
+>   - Split the ath11k and ath12k changes into separate patches, as
+>     requested by Jeff Johnson.
+> 
+> v2:
+>   - Set ath12k ab->qmi.ab only after QMI service initialization succeeds,
+>     as suggested by Baochen Qiang.
+>   - Fix the same late initialization QMI handle leak in ath11k, as
+>     suggested by Vasanthakumar Thiagarajan.
+>   - Drop the Reviewed-by tag due to the code changes.
+> 
+> Guangshuo Li (2):
+>   wifi: ath11k: release QMI handle on late init failures
+>   wifi: ath12k: release QMI handle on late init failures
+> 
+>  drivers/net/wireless/ath/ath11k/qmi.c | 10 ++++++++--
+>  drivers/net/wireless/ath/ath12k/qmi.c | 13 ++++++++++---
+>  2 files changed, 18 insertions(+), 5 deletions(-)
+> 
 
-Commit d455e805de70 ("wifi: ath11k: rearrange IRQ enable/disable in reset
-path") moved HIF IRQ shutdown from the common crash-reconfiguration path
-into the reset worker. The non-reset QMI recovery path can consequently
-reach DP teardown while NAPI can still refill an RXDMA ring.
+Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
 
-Quiesce HIF IRQ/NAPI processing on that non-reset path before teardown.
-The reset worker already does so before power cycling, therefore keep the
-existing reset path unchanged. This makes the cache change self-contained
-without relying on repeated IRQ lifecycle transitions.
-
-The refill paths serialize each cache with the corresponding SRNG lock.
-Drain the cache only after ring-owned skbs have been DMA-unmapped and
-freed and the IDR has been destroyed. Keep the dev_alloc_skb() allocation
-flags and headroom behavior; build_skb() propagates head-frag and
-pfmemalloc metadata from the backing page.
-
-This leaves buffer and ring sizes and all DMA map/unmap operations
-unchanged. It isolates cross-owner lifetime mixing; it does not prevent
-lifetime variation among buffers belonging to the same ring.
-
-With the private caches, page-frag backing remained bounded in natural
-load, resident, and high-packet-rate pressure runs on IPQ8074. The
-non-reset recovery path has not been runtime-tested in isolation.
-
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Fixes: d455e805de70 ("wifi: ath11k: rearrange IRQ enable/disable in reset path")
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
-Signed-off-by: Mark Ruvald Pedersen <wabsie@gmail.com>
----
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 8dacc878c006..e71a22ce332d 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2330,6 +2330,9 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- {
- 	int ret;
- 
-+	if (!ab->is_reset)
-+		ath11k_hif_irq_disable(ab);
-+
- 	mutex_lock(&ab->core_lock);
- 	ath11k_thermal_unregister(ab);
- 	ath11k_dp_pdev_free(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 84f66839f0c6..e69dc23b2051 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -7,6 +7,8 @@
- #ifndef ATH11K_DP_H
- #define ATH11K_DP_H
- 
-+#include <linux/page_frag_cache.h>
-+
- #include "hal_rx.h"
- 
- #define MAX_RXDMA_PER_PDEV     2
-@@ -72,6 +74,7 @@ struct dp_srng {
- 
- struct dp_rxdma_ring {
- 	struct dp_srng refill_buf_ring;
-+	struct page_frag_cache frag_cache;
- 	struct idr bufs_idr;
- 	/* Protects bufs_idr */
- 	spinlock_t idr_lock;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index e4ea0c216740..6bbfa0ebddd0 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -5,9 +5,11 @@
-  */
- 
- #include <linux/fips.h>
-+#include <linux/gfp.h>
- #include <linux/ieee80211.h>
- #include <linux/kernel.h>
- #include <linux/skbuff.h>
-+#include <net/sock.h>
- #include "core.h"
- #include "debug.h"
- #include "debugfs_htt_stats.h"
-@@ -340,6 +342,36 @@ static int ath11k_dp_purge_mon_ring(struct ath11k_base *ab)
- 	return -ETIMEDOUT;
- }
- 
-+static struct sk_buff *
-+ath11k_dp_rx_alloc_skb(struct dp_rxdma_ring *rx_ring, unsigned int len)
-+{
-+	struct page_frag_cache *cache = &rx_ring->frag_cache;
-+	gfp_t gfp_mask = GFP_ATOMIC;
-+	struct sk_buff *skb;
-+	void *data;
-+
-+	len += NET_SKB_PAD;
-+	len = SKB_HEAD_ALIGN(len);
-+
-+	if (sk_memalloc_socks())
-+		gfp_mask |= __GFP_MEMALLOC;
-+
-+	/* Refill paths serialize the per-ring cache with the SRNG lock. */
-+	data = page_frag_alloc(cache, len, gfp_mask);
-+	if (!data)
-+		return NULL;
-+
-+	skb = build_skb(data, len);
-+	if (!skb) {
-+		page_frag_free(data);
-+		return NULL;
-+	}
-+
-+	skb_reserve(skb, NET_SKB_PAD);
-+
-+	return skb;
-+}
-+
- /* Returns number of Rx buffers replenished */
- int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
- 			       struct dp_rxdma_ring *rx_ring,
-@@ -371,8 +403,8 @@ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
- 	num_remain = req_entries;
- 
- 	while (num_remain > 0) {
--		skb = dev_alloc_skb(DP_RX_BUFFER_SIZE +
--				    DP_RX_BUFFER_ALIGN_SIZE);
-+		skb = ath11k_dp_rx_alloc_skb(rx_ring, DP_RX_BUFFER_SIZE +
-+					     DP_RX_BUFFER_ALIGN_SIZE);
- 		if (!skb)
- 			break;
- 
-@@ -453,6 +485,8 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
- 	idr_destroy(&rx_ring->bufs_idr);
- 	spin_unlock_bh(&rx_ring->idr_lock);
- 
-+	page_frag_cache_drain(&rx_ring->frag_cache);
-+
- 	return 0;
- }
- 
-@@ -2867,8 +2901,8 @@ static struct sk_buff *ath11k_dp_rx_alloc_mon_status_buf(struct ath11k_base *ab,
- 	struct sk_buff *skb;
- 	dma_addr_t paddr;
- 
--	skb = dev_alloc_skb(DP_RX_BUFFER_SIZE +
--			    DP_RX_BUFFER_ALIGN_SIZE);
-+	skb = ath11k_dp_rx_alloc_skb(rx_ring, DP_RX_BUFFER_SIZE +
-+				     DP_RX_BUFFER_ALIGN_SIZE);
- 
- 	if (!skb)
- 		goto fail_alloc_skb;
 
