@@ -4,76 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E64FC44521
-	for <ath11k@archiver.kernel.org>; Mon, 20 Jul 2026 07:09:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44F5DC4451C
+	for <ath11k@archiver.kernel.org>; Tue, 21 Jul 2026 07:22:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ItVte48j2cfPO1m44LhBPhM+Ix/JT2D7ZKzubkk1kfg=; b=VMXOTg266qyVT/NdNeZc28OIBG
-	iNXraA0IBMkKrBZDEj4VDJBbPc2dCh2BQoTqEliMLiBtDB2CmuND1+t+NKZ3BI4hQMivYtykHdlM8
-	7m/HWczi68nQ6/P5Q1hIPRk3MnPhkNHrc3fCgLkPvMBRa7HfP2fQfpN78SE5rTOAbmJX5EgBKMTr+
-	NcF+FbQ4MDRl2aAd6kVI3v9qD0ddewoUeuPr73jGnXkeRFpQDrbqeAExCw2rbbUWldBAhticeU+B3
-	TO8MUBBB/CYkLKqXY5MAZ6mv/ix1fYHj/03XAruFlW7Pjg/exOMxFMBlvCFKpjv12X5NPQKyGTk3p
-	RoyUwiaw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Ss/nWa/pahTed7gehVQPHqqDpxTkq68vTxA4pvKZoEc=; b=yI8AVr0/KMVvGNZoG64RY4XLb0
+	9LrNiLpM6POprq13FTEMSMzIh1BEiVi0fPGjG9E2GpuVqKnyn6kv4Lco7hU+8dRgjoe9mvItUXbDT
+	MEXMyynjrYBdMjPyKv1uOlJwIWDgyTgg+7qHDQ6TB1g0Oki+13v+vVPRL/UUKdURXd5BjXe9J6f0j
+	TM2+dg+gIemZMtNp7TtnokzlXERaAtGtp18VI/UgxF2ansQDUwY4k9sbErvg+q3AOWfwBvYkIKfFv
+	5fjV9PExk/t2PIc4ULCVHrpCDn++pUsaSp851FmNct6eSNuptySjOrseZpDzfg1rY50ih01Fs5AdG
+	LBwqrmxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wli80-000000061Z8-0qwG;
-	Mon, 20 Jul 2026 07:09:28 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1wm4nx-00000008dnD-0ECY;
+	Tue, 21 Jul 2026 07:22:17 +0000
+Received: from smtpbguseast3.qq.com ([54.243.244.52])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wli7w-000000061V9-3YEq
+	id 1wm4nu-00000008dlF-0L61
 	for ath11k@lists.infradead.org;
-	Mon, 20 Jul 2026 07:09:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1784531364;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ItVte48j2cfPO1m44LhBPhM+Ix/JT2D7ZKzubkk1kfg=;
-	b=eXC+ygxomTLTkWTlslmKoGF3XAIkO77hoqpBR8708L4tpokuiE0j96c7VqXMkrsaYk1GO1
-	i54FaMuvlo+3j0CRbI96fkUPqx0ifAq4VvBrVXTGmGutJLHSMoTvO5iIlaOlVEvpwVi3gn
-	Bq8xTpYK2I5M+Hv33d52ZO2cQRrx6Yg=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-457-d72ivhm9POeYtwKMbp4s_w-1; Mon,
- 20 Jul 2026 03:09:20 -0400
-X-MC-Unique: d72ivhm9POeYtwKMbp4s_w-1
-X-Mimecast-MFC-AGG-ID: d72ivhm9POeYtwKMbp4s_w_1784531359
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 14D5A1953961;
-	Mon, 20 Jul 2026 07:09:18 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.44.48.69])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id ADC06180034F;
-	Mon, 20 Jul 2026 07:09:15 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: jjohnson@kernel.org
-Cc: ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
+	Tue, 21 Jul 2026 07:22:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+	s=onoh2408; t=1784618507;
+	bh=Ss/nWa/pahTed7gehVQPHqqDpxTkq68vTxA4pvKZoEc=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version;
+	b=SbURJrINBDkg3SnFPa8rEtj6aRuZnqyx+W5kAFVhMwXzNG50O+sI/a6vMInlNRx0f
+	 QGbfqHuKOBS8p90bgeZEkhcdjA6XBWKzVlR0+JQlw3sbsu/dXwSh59JFX2dHBOZivb
+	 Kc2mSwzoblaavJg+/6su7JbOwtk11FxEprVkgFeY=
+X-QQ-mid: esmtpgz16t1784618502t9516302f
+X-QQ-Originating-IP: HOigY9Rd6k/kt34iDN2UyWsh90v3c3PUfaKhBCy1Nho=
+Received: from localhost.localdomain ( [1.202.39.170])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 21 Jul 2026 15:21:34 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 8367647681801684182
+EX-QQ-RecipientCnt: 6
+From: ZhaoJinming <zhaojinming@uniontech.com>
+To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH v3 3/3] wifi: ath12k: implement custom wake_tx_queue with flow control
-Date: Mon, 20 Jul 2026 09:08:51 +0200
-Message-ID: <20260720070852.206495-4-jtornosm@redhat.com>
-In-Reply-To: <20260720070852.206495-1-jtornosm@redhat.com>
-References: <20260720070852.206495-1-jtornosm@redhat.com>
+	ZhaoJinming <zhaojinming@uniontech.com>
+Subject: [PATCH v4] wifi: ath11k: fix resource leak on error in ext IRQ setup
+Date: Tue, 21 Jul 2026 15:21:28 +0800
+Message-Id: <20260721072128.142668-1-zhaojinming@uniontech.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <181b5ee0-f002-4f5e-93ff-49b6aa0a6e61@oss.qualcomm.com>
+References: <181b5ee0-f002-4f5e-93ff-49b6aa0a6e61@oss.qualcomm.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-MFC-PROC-ID: 36A3a2tjLbOE8MjiDADwF7vCY-hZPKYMPueeejtKREM_1784531359
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: ObMUpol0MB3oh9WN8JfKKnhAS5Rf8yeydTB8Zq/dq9yxNACDtMV2ZPtt
+	bRK7I5UkPIazpjyjEH9DoGCVGQtLwSFR8ufN9dJ1GUVy7BTLZCi1I9X5GKGTIHWwmtzjHsT
+	z4DeeLxZoVPtKYs5ob2ZnOs0MnTbi35TzDj5rVmMnie+K/EfAjvFOjzsF26pKyh7fCML7b0
+	oAbzAEy9q8yVlUjjeZe8O3j1W55dxaW86/d217S/pN4Or1OjJCtzP0ixR8WS6MuBURPgLQr
+	grt+nad4JNYsNXX6B/w8/OzWoBFiVBPc3sRV+fm8AkHhUWXrJ45Sw64OVohrWKC/j91s4f6
+	pjKp9jJ9gr2JYs4obL8Uk8mWEHON552bG/ZDDgHV2kLdxMGz0udgZ9c7UeDXs1VIneOALSg
+	iC3uYWZs79C8DV81SDcZkiwVifV5E4NSS5salX8ys2zzYuUBj2uid/udP77wwAjn6JilWFY
+	9QffeBXO/0SGBP5Au4K1OLwI41unlwlHaOYaPKMXv2GSXrBN7URzE6HiqYUd7qRzZmgx0uO
+	DvVH6J7aINB/yb8XrqPW2CDe44ZPZpFF0t702wpnmW2nSp4dm88rr1Tf7hai2qiZRjT1PnH
+	tjdaXCgwi3EN4m8+V/lse+EPSW9y8LL1ZHsJamqx6RVdDjaFs1d2ZV5tOPzBFTpigLij3Mb
+	nDHmPnOvmUiA/61vthHcguDESNvn0A0D8g5xKb60jcBDdhhHwiN1FUxxlj7j2oVkYXc2HZW
+	b3dqBVgI1CLuP/W9QN5J2NT0OL4OsQEmJk5YfCKTo2HehtWqFx6JDHcyZ84ux46cDlEM5KM
+	EaPKRFTz5sYxC/ZsC2kNvKpN2KUCaCBzZmgstXgm7Jg8WgAaJh8tlDk6tRJK1LQQrbFS2Sf
+	2ZJyMMt02OuLhCbLePszJOsLul1w6iwjbahbjNxDXHBpfw8V5GWY217BvEWIg2H8VkPn47Y
+	N6XVwdnFJtR8nnkZxvYW2s5CA5PlWm66XYAOYV6J17QteeThuRwwNtPRS03/D/bC3kcKHta
+	GwWItPYqm5sSD67FXx/O46UHZ6Y7vfF1lXrAznBQ==
+X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
+X-QQ-RECHKSPAM: 0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260720_000924_959698_F386B383 
-X-CRM114-Status: GOOD (  18.14  )
+X-CRM114-CacheID: sfid-20260721_002214_721283_317792CC 
+X-CRM114-Status: GOOD (  18.61  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,237 +95,210 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Under heavy traffic, ath12k can hang and experiences -ENOMEM errors
-("failed to transmit frame -12") when the hardware TCL ring fills up.
-This issue is more commonly observed in VMs with PCIe passthrough but
-also occurs on bare metal systems.
+In ath11k_ahb_config_irq(), when a CE request_irq() fails, the function
+returns the error immediately without freeing the CE IRQs that were
+successfully registered in previous loop iterations. The probe error
+path does not call ath11k_ahb_free_irq() either, so the previously
+registered CE IRQ handlers remain attached to the interrupt lines and
+are never released.
 
-Implement a custom wake_tx_queue operation that:
+In ath11k_ahb_config_ext_irq(), when an external request_irq() fails,
+the error is only logged and the loop continues. The function then
+returns 0 indicating success, leaving the device in a partially
+configured state where some external IRQs are not registered. This
+causes enable_irq()/disable_irq()/free_irq() to be called on
+unregistered IRQs during runtime and remove/shutdown, triggering
+WARN_ON(!desc->action), and missing interrupt handlers lead to data
+loss.
 
-1. Checks hardware ring space before dequeuing packets from mac80211
-2. Uses per-txq locking via txq->drv_priv to serialize peek and
-   dequeue operations for the same txq, preventing use-after-free
-   races between ieee80211_tx_peek() and ieee80211_tx_dequeue() when
-   multiple CPUs process the same txq concurrently, while keeping
-   different txqs fully parallel
-3. Syncs with hardware state to get accurate free slot count
-4. Uses ieee80211_tx_peek() to determine the exact target ring via
-   get_ring_selector(), matching dp_tx on all platforms
-5. Returns early during firmware crash in the same way as other
-   tx paths
+Additionally, if alloc_netdev_dummy() fails for a later IRQ group, the
+function returns -ENOMEM without freeing the ext IRQs and napi_ndev
+that were successfully set up for earlier groups.
 
-This approach follows the pattern used in the iwlwifi driver, adapted
-for ath12k's hardware ring architecture.
+Fix all three issues: propagate the error up to the caller and unwind
+all successfully registered IRQs and allocated resources on failure.
 
-This prevents hangs, eliminates -ENOMEM errors, and improves throughput
-by optimizing resource usage and preventing unnecessary packet drops.
-
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+Signed-off-by: ZhaoJinming <zhaojinming@uniontech.com>
 ---
-v3: Address the review comments from Tamizh Raja:
-    - Replace per-ring wake_tx_lock with per-txq spinlock via
-      txq->drv_priv to fix race condition between ieee80211_tx_peek() and
-      ieee80211_tx_dequeue() when multiple CPUs process the same txq
-    - Fix MLO link selection in wake_tx_queue to use
-      rcu_dereference(ahvif->link[link_id]) instead of deflink, matching
-      the link selection logic in op_tx
-v2: https://lore.kernel.org/all/20260715125017.277242-4-jtornosm@redhat.com/
 
- drivers/net/wireless/ath/ath12k/hal.c      |  1 +
- drivers/net/wireless/ath/ath12k/mac.c      | 17 +++++
- drivers/net/wireless/ath/ath12k/mac.h      |  5 ++
- drivers/net/wireless/ath/ath12k/wifi7/hw.c | 87 +++++++++++++++++++++-
- 4 files changed, 109 insertions(+), 1 deletion(-)
+Changes in v4:
+- Drop the napi_ndev NULL guard in ath11k_ahb_free_ext_irq_grp() as it
+  is unreachable in all existing call paths. A silent guard against an
+  impossible condition hides bugs instead of exposing them.
 
-diff --git a/drivers/net/wireless/ath/ath12k/hal.c b/drivers/net/wireless/ath/ath12k/hal.c
-index a164563fff28..c1c656e4550b 100644
---- a/drivers/net/wireless/ath/ath12k/hal.c
-+++ b/drivers/net/wireless/ath/ath12k/hal.c
-@@ -390,6 +390,7 @@ int ath12k_hal_srng_src_num_free(struct ath12k_base *ab, struct hal_srng *srng,
- 	else
- 		return ((srng->ring_size - hp + tp) / srng->entry_size) - 1;
+Changes in v3:
+- Extract ath11k_ahb_free_ext_irq_grp() to handle per-group ext IRQ
+  cleanup and refactor ath11k_ahb_free_ext_irq() to use it.
+- On request_irq() failure in ath11k_ahb_config_ext_irq(), immediately
+  clean up the current group via ath11k_ahb_free_ext_irq_grp() before
+  jumping to the error label to unwind earlier groups.
+- Move u32 num_irq declaration before the irq_grp assignment to follow
+  declaration-before-statement ordering.
+- Extract ath11k_ahb_free_ce_irqs() to handle partial/full CE IRQ cleanup
+  and refactor ath11k_ahb_free_irq() to use it, replacing the duplicated
+  err_ce_irq cleanup loop in ath11k_ahb_config_irq().
+
+Changes in v2:
+- Move `irq_grp` declaration from for-loop body to function scope to fix
+  compile error in err_request_irq error path.
+- Set ret = -ENOMEM before goto err_request_irq on alloc_netdev_dummy()
+  failure to avoid returning uninitialized value.
+- When ath11k_ahb_config_ext_irq() fails, unwind the already-registered
+  CE IRQs via a shared err_ce_irq cleanup path to avoid leaking them.
+
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index f566d699d074..bdf53aa7ddf1 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -431,36 +431,44 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
+ 	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
  }
-+EXPORT_SYMBOL_GPL(ath12k_hal_srng_src_num_free);
  
- void *ath12k_hal_srng_src_next_peek(struct ath12k_base *ab,
- 				    struct hal_srng *srng)
-diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
-index 51c4df32e716..03618a8d3e65 100644
---- a/drivers/net/wireless/ath/ath12k/mac.c
-+++ b/drivers/net/wireless/ath/ath12k/mac.c
-@@ -7705,10 +7705,12 @@ int ath12k_mac_op_sta_state(struct ieee80211_hw *hw,
- 	struct ath12k_link_vif *arvif;
- 	struct ath12k_link_sta *arsta;
- 	unsigned long valid_links;
-+	struct ath12k_txq *atxq;
- 	u16 selected_links = 0;
- 	u8 link_id = 0, i;
- 	struct ath12k *ar;
- 	int ret = -EINVAL;
-+	int tid;
- 	struct ath12k_dp_peer_create_params dp_params = {};
+-static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
++static void ath11k_ahb_free_ext_irq_grp(struct ath11k_base *ab,
++				      struct ath11k_ext_irq_grp *irq_grp)
+ {
+-	int i, j;
+-
+-	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+-		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
++	int j;
  
- 	lockdep_assert_wiphy(hw->wiphy);
-@@ -7728,6 +7730,14 @@ int ath12k_mac_op_sta_state(struct ieee80211_hw *hw,
- 		memset(ahsta, 0, sizeof(*ahsta));
- 		ahsta->free_logical_link_idx_map = U16_MAX;
+-		for (j = 0; j < irq_grp->num_irq; j++)
+-			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
++	for (j = 0; j < irq_grp->num_irq; j++)
++		free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
  
-+		for (tid = 0; tid < ARRAY_SIZE(sta->txq); tid++) {
-+			if (!sta->txq[tid])
-+				continue;
-+
-+			atxq = (void *)sta->txq[tid]->drv_priv;
-+			spin_lock_init(&atxq->lock);
-+		}
-+
- 		arsta = &ahsta->deflink;
+-		netif_napi_del(&irq_grp->napi);
+-		free_netdev(irq_grp->napi_ndev);
+-	}
++	netif_napi_del(&irq_grp->napi);
++	free_netdev(irq_grp->napi_ndev);
+ }
  
- 		/* ML sta */
-@@ -10790,6 +10800,7 @@ int ath12k_mac_op_add_interface(struct ieee80211_hw *hw,
- 	struct ath12k_vif *ahvif = ath12k_vif_to_ahvif(vif);
- 	struct ath12k_reg_info *reg_info;
- 	struct ath12k_link_vif *arvif;
-+	struct ath12k_txq *atxq;
- 	struct ath12k_base *ab;
- 	struct ath12k *ar;
+-static void ath11k_ahb_free_irq(struct ath11k_base *ab)
++static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+ {
+-	int irq_idx;
  	int i;
-@@ -10802,6 +10813,11 @@ int ath12k_mac_op_add_interface(struct ieee80211_hw *hw,
- 	ahvif->vif = vif;
- 	arvif = &ahvif->deflink;
  
-+	if (vif->txq) {
-+		atxq = (void *)vif->txq->drv_priv;
-+		spin_lock_init(&atxq->lock);
-+	}
-+
- 	ath12k_mac_init_arvif(ahvif, arvif, -1);
+-	if (ab->hw_params.hybrid_bus_type)
+-		return ath11k_pcic_free_irq(ab);
++	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++)
++		ath11k_ahb_free_ext_irq_grp(ab, &ab->ext_irq_grp[i]);
++}
  
- 	/* Allocate Default Queue now and reassign during actual vdev create */
-@@ -14899,6 +14915,7 @@ static int ath12k_mac_hw_register(struct ath12k_hw *ah)
- 
- 	hw->vif_data_size = sizeof(struct ath12k_vif);
- 	hw->sta_data_size = sizeof(struct ath12k_sta);
-+	hw->txq_data_size = sizeof(struct ath12k_txq);
- 	hw->extra_tx_headroom = ab->hw_params->iova_mask;
- 
- 	wiphy_ext_feature_set(wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
-diff --git a/drivers/net/wireless/ath/ath12k/mac.h b/drivers/net/wireless/ath/ath12k/mac.h
-index aba98afd4365..2855d8fdb99d 100644
---- a/drivers/net/wireless/ath/ath12k/mac.h
-+++ b/drivers/net/wireless/ath/ath12k/mac.h
-@@ -17,6 +17,11 @@ struct ath12k_hw;
- struct ath12k_hw_group;
- struct ath12k_pdev_map;
- 
-+struct ath12k_txq {
-+	/* protects ieee80211_tx_peek/dequeue serialization per txq */
-+	spinlock_t lock;
-+};
-+
- struct ath12k_generic_iter {
- 	struct ath12k *ar;
- 	int ret;
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/hw.c b/drivers/net/wireless/ath/ath12k/wifi7/hw.c
-index d9fdd2fc8298..86c3e9a8b87c 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/hw.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/hw.c
-@@ -1100,9 +1100,94 @@ static void ath12k_wifi7_mac_op_tx(struct ieee80211_hw *hw,
- 	}
- }
- 
-+static void ath12k_wifi7_mac_op_wake_tx_queue(struct ieee80211_hw *hw,
-+					      struct ieee80211_txq *txq)
+-	for (i = 0; i < ab->hw_params.ce_count; i++) {
++static void ath11k_ahb_free_ce_irqs(struct ath11k_base *ab, int max_idx)
 +{
-+	struct ath12k_vif *ahvif = ath12k_vif_to_ahvif(txq->vif);
-+	struct ath12k_txq *atxq = (void *)txq->drv_priv;
-+	struct ath12k_hw *ah = ath12k_hw_to_ah(hw);
-+	struct ieee80211_tx_control control = {
-+		.sta = txq->sta,
-+	};
-+	struct ieee80211_vif *vif = txq->vif;
-+	const struct ath12k_hw_ops *ops;
-+	const struct sk_buff *peek_skb;
-+	struct ath12k_link_vif *arvif;
-+	struct dp_tx_ring *tx_ring;
-+	struct hal_srng *tcl_ring;
-+	struct ath12k_sta *ahsta;
-+	struct ath12k_dp *dp;
-+	struct sk_buff *skb;
-+	struct ath12k *ar;
-+	u32 ring_selector;
-+	int num_free;
-+	u8 ring_id;
-+	u8 link_id;
++	int irq_idx, i;
 +
-+	while (1) {
-+		if (unlikely(test_bit(ATH12K_FLAG_CRASH_FLUSH,
-+				      &ah->radio[0].ab->dev_flags)))
-+			break;
-+
-+		spin_lock_bh(&atxq->lock);
-+
-+		peek_skb = ieee80211_tx_peek(hw, txq);
-+		if (!peek_skb) {
-+			spin_unlock_bh(&atxq->lock);
-+			break;
-+		}
-+
-+		if (ieee80211_vif_is_mld(vif) && txq->sta) {
-+			ahsta = ath12k_sta_to_ahsta(txq->sta);
-+			link_id = ahsta->assoc_link_id;
-+		} else {
-+			link_id = ahvif->deflink.link_id;
-+		}
-+
-+		rcu_read_lock();
-+
-+		arvif = rcu_dereference(ahvif->link[link_id]);
-+		if (!arvif || !arvif->ar) {
-+			rcu_read_unlock();
-+			spin_unlock_bh(&atxq->lock);
-+			break;
-+		}
-+
-+		ar = arvif->ar;
-+		dp = ar->ab->dp;
-+
-+		ops = dp->hw_params->hw_ops;
-+		ring_selector = ops->get_ring_selector((struct sk_buff *)peek_skb);
-+		ring_id = ring_selector % dp->hw_params->max_tx_ring;
-+
-+		tx_ring = &dp->tx_ring[ring_id];
-+		tcl_ring = &dp->hal->srng_list[tx_ring->tcl_data_ring.ring_id];
-+
-+		spin_lock(&tcl_ring->lock);
-+		num_free = ath12k_hal_srng_src_num_free(ar->ab, tcl_ring, true);
-+		spin_unlock(&tcl_ring->lock);
-+
-+		if (num_free == 0) {
-+			rcu_read_unlock();
-+			spin_unlock_bh(&atxq->lock);
-+			break;
-+		}
-+
-+		skb = ieee80211_tx_dequeue(hw, txq);
-+
-+		rcu_read_unlock();
-+		spin_unlock_bh(&atxq->lock);
-+
-+		if (!skb)
-+			break;
-+
-+		ath12k_wifi7_mac_op_tx(hw, &control, skb);
-+	}
++	for (i = 0; i < max_idx; i++) {
+ 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
+ 			continue;
+ 		irq_idx = ATH11K_IRQ_CE0_OFFSET + i;
+ 		free_irq(ab->irq_num[irq_idx], &ab->ce.ce_pipe[i]);
+ 	}
 +}
 +
- static const struct ieee80211_ops ath12k_ops_wifi7 = {
- 	.tx				= ath12k_wifi7_mac_op_tx,
--	.wake_tx_queue			= ieee80211_handle_wake_tx_queue,
-+	.wake_tx_queue			= ath12k_wifi7_mac_op_wake_tx_queue,
- 	.start                          = ath12k_mac_op_start,
- 	.stop                           = ath12k_mac_op_stop,
- 	.reconfig_complete              = ath12k_mac_op_reconfig_complete,
--- 
-2.54.0
-
++static void ath11k_ahb_free_irq(struct ath11k_base *ab)
++{
++	if (ab->hw_params.hybrid_bus_type)
++		return ath11k_pcic_free_irq(ab);
+ 
++	ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
+ 	ath11k_ahb_free_ext_irq(ab);
+ }
+ 
+@@ -524,20 +532,25 @@ static irqreturn_t ath11k_ahb_ext_interrupt_handler(int irq, void *arg)
+ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ {
+ 	struct ath11k_hw_params *hw = &ab->hw_params;
++	struct ath11k_ext_irq_grp *irq_grp;
+ 	int i, j;
+ 	int irq;
+ 	int ret;
+ 
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+-		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 		u32 num_irq = 0;
+ 
++		irq_grp = &ab->ext_irq_grp[i];
++
+ 		irq_grp->ab = ab;
+ 		irq_grp->grp_id = i;
+ 
+ 		irq_grp->napi_ndev = alloc_netdev_dummy(0);
+-		if (!irq_grp->napi_ndev)
+-			return -ENOMEM;
++		if (!irq_grp->napi_ndev) {
++			ret = -ENOMEM;
++			irq_grp->num_irq = 0;
++			goto err_request_irq;
++		}
+ 
+ 		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
+ 			       ath11k_ahb_ext_grp_napi_poll);
+@@ -585,9 +598,7 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 				}
+ 			}
+ 		}
+-		irq_grp->num_irq = num_irq;
+-
+-		for (j = 0; j < irq_grp->num_irq; j++) {
++		for (j = 0; j < num_irq; j++) {
+ 			int irq_idx = irq_grp->irqs[j];
+ 
+ 			irq = platform_get_irq_byname(ab->pdev,
+@@ -600,11 +611,23 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 			if (ret) {
+ 				ath11k_err(ab, "failed request_irq for %d\n",
+ 					   irq);
++				irq_grp->num_irq = j;
++				ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
++				goto err_request_irq;
+ 			}
+ 		}
++
++		irq_grp->num_irq = num_irq;
+ 	}
+ 
+ 	return 0;
++
++err_request_irq:
++	for (i--; i >= 0; i--) {
++		irq_grp = &ab->ext_irq_grp[i];
++		ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
++	}
++	return ret;
+ }
+ 
+ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+@@ -629,16 +652,24 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+ 		ret = request_irq(irq, ath11k_ahb_ce_interrupt_handler,
+ 				  IRQF_TRIGGER_RISING, irq_name[irq_idx],
+ 				  ce_pipe);
+-		if (ret)
++		if (ret) {
++			ath11k_err(ab, "failed request_irq for %d\n", irq);
++			ath11k_ahb_free_ce_irqs(ab, i);
+ 			return ret;
++		}
+ 
+ 		ab->irq_num[irq_idx] = irq;
+ 	}
+ 
+ 	/* Configure external interrupts */
+ 	ret = ath11k_ahb_config_ext_irq(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to configure ext irq: %d\n", ret);
++		ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
++		return ret;
++	}
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
 
