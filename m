@@ -4,61 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8C64C4452B
-	for <ath11k@archiver.kernel.org>; Tue, 21 Jul 2026 16:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E36AC4452D
+	for <ath11k@archiver.kernel.org>; Tue, 21 Jul 2026 20:02:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=yBHQuwqRSrRRpd3ZRMLaZ//+19pguEtC6eLH644rrmw=; b=QoTBc42ZTPh4Qtgs2cpiPw9vUA
-	4OxxxhQThx45PUP79lXN/u7X+IpjXyvXVVGfo3s0vIZLHjZwnLD2fX4uULD4QSD8Bs7iGJLSknuwE
-	ObCt42AaYbEyQe6rC/LI1dRkENb8bq/9VxOtcSb+InNey6msY/atGhR5FTpwx6kSUF1rm50umfuq4
-	GamPdEW8M1Anl+jLxHCB/qVQ4h2sNUj2/z9zzqEP+cIm9Di5GYz7R7E72qEm6Ior3JwWouTayNkdr
-	tpmbK4XfXpWrwG8io8lc2TtadkJm9ALOCu9K6ns69KTJuXhNyVbrOyYOblc7ces4ZTH1s8WxeGNnG
-	LXe+drkQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=M7HDa8lD442gBovq8r187WVDYGAUCBh/WDBaT8jv9G8=; b=BVzPKleZQ0l8PHiAhzhF2qJAlL
+	1jvvhTEJBwyx3gWawmDz2WeVDAwpjjrBJ91MoICSFbS8BkKxlB86ACTdvm15IfznTlKg5tMeSr4a4
+	TF5/9GzS+00sZOmJUW1Fsd0evZieBr95u+ECKbn0AEViUh8cM5Qyki3BKbm/c4P1Ag4P5D1gSrRQs
+	Hs7rPdEUhm+I8PA9o4dBY4LbMWBa+5hAymtB5TVw8ABoRXJfua1+Q6FyzqGkix291DfKBj2z/YbO9
+	hc5TLMWwbP2of6dG5KDtoIqao4E8jh19Gkl5fJDJFeXqMVHq3I0lI//vDjEiFsTCnChsbHbYyFkSF
+	seHzZSoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmDKI-00000009wKo-3JBx;
-	Tue, 21 Jul 2026 16:28:14 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1wmGfd-0000000AKsK-4Am8;
+	Tue, 21 Jul 2026 20:02:29 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmDKG-00000009wK6-2Mzb;
-	Tue, 21 Jul 2026 16:28:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=yBHQuwqRSrRRpd3ZRMLaZ//+19pguEtC6eLH644rrmw=;
-	t=1784651292; x=1785860892; b=NcVDZhsONHORNf0lr/Otox+3Zgt7v1lVToumDGJ7mdYCE53
-	EtmAMKKbhEF12pPbnvPSOL0fdRMQL/Yi+3pDJHyuOdO1L5hvuc1UMYKATqQa4l9Bjeano2Wwzwrhu
-	d/+OQlYOPdJl3DjmxuUKQ6X/q5NE0gslrhY067Bg54a74lkvpGCcEK7EJCoL3rTsyV/UvGmPI1Q7f
-	bsWYFK8J5Bai4CG0DfZr3nklJEwm5oOZowZ+gMTZAvPVBOXnAESK7pFRM8dQfMSIX8xBu8zLWLAhD
-	FUnpgWS5jzjXfizyK+MGiTD4JW+ddECo5QVdxOHGxXpeo6SrKS6vcdyY1GX3y/Vg==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__ECDSA_SECP256R1_SHA256__AES_256_GCM:256)
-	(Exim 4.98.2)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1wmDKC-00000002AEV-0MRj;
-	Tue, 21 Jul 2026 18:28:08 +0200
-Message-ID: <c913114343692dd201da3af8f05fe1bc356702a8.camel@sipsolutions.net>
-Subject: Re: [PATCH v3 1/3] wifi: mac80211: add ieee80211_tx_peek API
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>, jjohnson@kernel.org
-Cc: ath11k@lists.infradead.org, ath12k@lists.infradead.org, 
-	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Tue, 21 Jul 2026 18:28:07 +0200
-In-Reply-To: <20260720070852.206495-2-jtornosm@redhat.com>
-References: <20260720070852.206495-1-jtornosm@redhat.com>
-	 <20260720070852.206495-2-jtornosm@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	id 1wmGfb-0000000AKqf-39AG
+	for ath11k@lists.infradead.org;
+	Tue, 21 Jul 2026 20:02:29 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66LHRM7o2376854
+	for <ath11k@lists.infradead.org>; Tue, 21 Jul 2026 20:02:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	M7HDa8lD442gBovq8r187WVDYGAUCBh/WDBaT8jv9G8=; b=Be/EUH4S4qWblnhv
+	GjAF2JziCJuFE/iSFIhJEzXdfRQ1OJsVeE0WDcroUwXQlgnoeAlUTdPIm27IKFs1
+	9PA26QKMzk3s7kTadNKf6oIzpYnCvoUlFfdUIPFm/bPtyJJo7B1E/+bzdKiXblbS
+	GY09yP0nq0mjDZM7ham5QyOWMWlBQ5USwzJkqnEtiGLVruMr4OAE7YTCBD5CTQKC
+	DC9CrEofxqZXl+4yc4diXVZvSC43XuinR6KbNTFA2igUvlYay6+6eHh/DxLVbaV2
+	RdszfKFtsxTywv4FDLy0TcWA8ocQSANjxrXax9zDKaUudJY47qrwobB6kjNUpnZK
+	qAmMUw==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fjd6a8nt8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Tue, 21 Jul 2026 20:02:26 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-ca7c1e22995so17914091a12.3
+        for <ath11k@lists.infradead.org>; Tue, 21 Jul 2026 13:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1784664146; x=1785268946; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=M7HDa8lD442gBovq8r187WVDYGAUCBh/WDBaT8jv9G8=;
+        b=LM64YWFub9LCCU/ZqUCvZ/sTZjDE8asFSjtp/yc/69zjmug+H/iZsiPke0KV8GNfQc
+         T/OYOlK3AClavypnexfg4vMegah4ZlmkQgGI8oGXMBDONw46TEiUgzScKY57xI2OuZdt
+         f7ZLYMzurY6QmnTgfENRnmFnCF0I/qO4YM2qFGwqvQECkBxPtBfJYeUk4q47kzdrFDV9
+         KPSfGXDaQBHCBNiKME70/fNNeeTf4NjZq23h+kwEMbrjibN0TClLfkp8F2XaXHuJzjbc
+         +0cAsN/g3gpMFl1rtRGr7S/Sd8rL1dmHhYQbu3rK9oY1ycPUjoU28/YGJFDyejpWS47a
+         pZtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784664146; x=1785268946;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=M7HDa8lD442gBovq8r187WVDYGAUCBh/WDBaT8jv9G8=;
+        b=Ab4mkHgU87UBPD8CXothfU4y8trFebTMcWV8+vk1HFNUm8Xo2/Mx6lSogP2LiSCdSp
+         4lcDFM/uM2+jCro9K3XAP1ouqLwy0IbUIQ5Y5nhA8gXoX68oTQCwkXKr4HckjTYSJp5a
+         0H/6arv9bP4Ugxd4B/9HeOdIbFOOHtZ9gnZ7IM7FcjgCml/pb3mpnylQePq7J1nLlVvL
+         QqrQK4lMuOabqbTjNJ1MBBKxZyTITDlYRMWcA3whmj2Du26nmghiUnVUfUXQQsVZGsk1
+         q2YSyswBbOu7Dc3GTRUTWjS3RkxZ5qiCzACIlPZgTApnj1Rgrm6QMA66iGILBjyK5f+F
+         8rYA==
+X-Forwarded-Encrypted: i=1; AHgh+RqmSN60XgkazTBlGlJqac9nXsmL5h0C/CwN5WlBV3L8+USZDSjkB7GW91baEAFzHApAd+5CTJg=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxZ+insY7idIzmU74kleQW9Zc0UTOZcfblOIaE4+sdM4aKzZf1a
+	tV4bQfpbKPN1HX9LGpoS61ZF0QcGqhFcjmzcQq8FW1G2xXUJY8o9H04PIzM/h2Bj9YswIqFN/Mw
+	3RBi4HHm0pv30Ioa2kQ0vcZ+6JNPl0htlAXk7QraKNMV6lo0yJTCQO5u8EsDeNit9gvqzGqHf
+X-Gm-Gg: AR+sD11tvIEwx088knRSXFPrFQIYFh2Ru3POj/ITI2STqnoS9pO4JkPxiOPRs8HOaqs
+	kQYXXm630bxL3ammd6A4O26M+koLxl3Cgn25TuQXhlatI0xrkEiFBsJrABPSZQd+oPA6mTU8MXW
+	RhWgtM+/u/cqUXTYDJE7KaumuqdYti27FsLJKuddpm7BwxBrqP0J9K3npf6n4J3mo3M4mwH0i4N
+	tQpkh/qO8PjTSagXGJ53uTZlYPiEWL/MoR8U7DkCJtUu4uffvzNsTg535jWhVWf+HN/ECz5727u
+	viDbf321MG+T2D7UFqf1OGPhO+raeomPg+M1dTS/9LnClda1CPNrFK4InE3p2WksHfEIMbt18a8
+	bYtK0pMF2j078gSftzpOPtf4ERgy5vwZtuw7PgolVOCfD5LnVjTxa58k=
+X-Received: by 2002:a05:6a21:d8c:b0:3c3:91f5:82cf with SMTP id adf61e73a8af0-3c3ad94bb70mr22036494637.46.1784664145653;
+        Tue, 21 Jul 2026 13:02:25 -0700 (PDT)
+X-Received: by 2002:a05:6a21:d8c:b0:3c3:91f5:82cf with SMTP id adf61e73a8af0-3c3ad94bb70mr22036455637.46.1784664145232;
+        Tue, 21 Jul 2026 13:02:25 -0700 (PDT)
+Received: from hu-jjohnson-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3147dc1b99esm1574958eec.3.2026.07.21.13.02.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jul 2026 13:02:22 -0700 (PDT)
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+To: Jeff Johnson <jjohnson@kernel.org>,
+        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20260716-ath11k_wmi_tlv_op_rx-overread-v1-1-0b972b3f1368@oss.qualcomm.com>
+References: <20260716-ath11k_wmi_tlv_op_rx-overread-v1-1-0b972b3f1368@oss.qualcomm.com>
+Subject: Re: [PATCH ath-next] wifi: ath11k: Avoid buffer overread in
+ ath11k_wmi_tlv_op_rx()
+Message-Id: <178466414265.1747165.16576801380148077440.b4-ty@oss.qualcomm.com>
+Date: Tue, 21 Jul 2026 13:02:22 -0700
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzIxMDIwOCBTYWx0ZWRfX3tYCMhnlnMvU
+ rdThTrIM/yxweO6liWr7Gv37zPOYNxxkink6SG4DZZ/XrrleMF7efHLWYo5aQSGqrfJM/YB1zuF
+ OJfjiB32jSJa5wc+1+IhFLKVMWODxKy+sixVmCkOV0nTqWnCuiV3AaoDRCklp94fhsTuFzpdaQP
+ 4Qxsv1OwStj98Hs0uk+yz/V2caye8hCPX40J0AiolybBJvyMbeCyfqUT0F+MN+rgkd4wqh80PES
+ h6mI4g4V24t/ta5XD14G44QFgbHtkGD0N89WVTGVo0mBx2JtMhbLZNpd3temtJqaJmraG22T2yQ
+ xhShP84hGqQ2K9lFpOgbc9jX/pA8EptgmLOG0eErD0wEpUuxLbrA9ESGGO9etBISbCaGvrSNv9E
+ ArBYd9qWCt402hN4v9ICcz3vbHQg5/z6ntrbmZEZqTMJPDqIXNev6JczBFZ67nCkCY4gatJ7I7Q
+ cirq9gBiR0a2PJxpbQw==
+X-Proofpoint-GUID: _kKV_xs178vaQeO0h5t_IF7sH4Vegk6E
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzIxMDIwOCBTYWx0ZWRfX2PeqKr3EPG5r
+ b2xdKS5e5szxry48PQUED6DfOq4X3aebseLe4tr22N4KzSRC3Me+G7bN8PVmjLGGcrNpRljYr69
+ u6N8cm8NGPDX+tcPKTyUzTTB2KcdNnU=
+X-Authority-Analysis: v=2.4 cv=HvJG3UTS c=1 sm=1 tr=0 ts=6a5fd052 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=EUspDBNiAAAA:8 a=Lj7BFKMBFr4BX5uBSNYA:9 a=QEXdDO2ut3YA:10 a=ZXulRonScM0A:10
+ a=zZCYzV9kfG8A:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-ORIG-GUID: _kKV_xs178vaQeO0h5t_IF7sH4Vegk6E
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-21_03,2026-07-21_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0 clxscore=1015
+ adultscore=0 priorityscore=1501 impostorscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607210208
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260721_092812_601083_3554F5F7 
-X-CRM114-Status: GOOD (  15.16  )
+X-CRM114-CacheID: sfid-20260721_130227_920058_21AFC596 
+X-CRM114-Status: GOOD (  11.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,54 +148,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2026-07-20 at 09:08 +0200, Jose Ignacio Tornos Martinez wrote:
->=20
-> +const struct sk_buff *ieee80211_tx_peek(struct ieee80211_hw *hw,
-> +					struct ieee80211_txq *txq)
 
-While it makes some sense, I don't think I like the way you've
-implemented this.
+On Thu, 16 Jul 2026 13:01:31 -0700, Jeff Johnson wrote:
+> Currently, in ath11k_wmi_tlv_op_rx(), the firmware buffer is read
+> without first verifying that the buffer has enough data to hold a
+> header. This could result in a buffer overread.
+> 
+> Add an upfront length check before dereferencing skb->data as a
+> wmi_cmd_hdr. The check is placed before the trace_ath11k_wmi_event()
+> call to preserve the existing trace semantics (tracing the full raw
+> WMI event including the header), unlike the analogous ath12k fix which
+> could use skb_pull_data() directly.
+> 
+> [...]
 
-First, it basically does a lot of the work twice, say if it has to walk
-a lot of flows to find the SKB.
+Applied, thanks!
 
-Second, the work that it does is almost entirely disjoint from
-ieee80211_tx_dequeue(). The latter doesn't even fill the hash (and not
-all drivers might care), although I'm not even sure it's _needed_ to do
-skb_get_hash() there, seems like this fairly obviously happens *after*
-ieee80211_select_queue() or ieee80211_select_queue_80211(). So maybe
-this isn't strictly more work than what dequeue() would do, because it's
-a nop anyway.
-Also though it does a LOT less work, although it pretends that the SKB
-is fully formed, at least it makes no representations otherwise, and
-that's obviously not true. Most things in the ieee80211_tx_info are not
-filled in, kind of randomly by where and when mac80211 decided to do
-that (which isn't really random, of course, but might as well be random
-to the driver). As such, it seems only useful in a very limited subset
-of cases.
+[1/1] wifi: ath11k: Avoid buffer overread in ath11k_wmi_tlv_op_rx()
+      commit: 2ab768b2a3c0a31a6270d3c7fdd25912fc341533
 
-Third, it documents that the skb will be returned by a subsequent
-ieee80211_tx_dequeue() call, but that's obviously not true - the next
-such call might not return anything at all, even for quite a while if
-queues are stopped etc. which isn't considered in peek(), and I'm not
-even convinced that it must ever be returned, if something else happened
-in the meantime while such a situation occurred (queues stopped). Even
-ieee80211_tx_dequeue() itself can drop SKBs entirely.
+Best regards,
+-- 
+Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 
-As such I'm not even convinced that there's a guarantee that after the
-skb peek you even have done the work you claim to have done, if a
-different skb is returned from dequeue() instead of this one.
-
-
-I think I sort of understand the motivation, but it feels like you need
-to go back to the drawing board. Maybe even further back, and perhaps
-ath11k/ath12k just shouldn't use the hash of the SKB itself, but
-something else that can be derived without the SKB hash?
-
-If that's not feasible then this probably needs to be turned upside
-down; perhaps there's some way to dequeue it anyway and hold it
-somewhere for later (though that has issues with all the pointers in the
-skb->cb), I don't have a good idea though.
-
-johannes
 
