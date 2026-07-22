@@ -4,135 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A39BC44539
-	for <ath11k@archiver.kernel.org>; Wed, 22 Jul 2026 14:18:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AD67C4453F
+	for <ath11k@archiver.kernel.org>; Wed, 22 Jul 2026 15:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Subject:From:To:Date:Message-ID:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Hk+u1/myfto+NipN2hBQTG13UhLHv+p5mljgoM9oPhM=; b=K8v2yxd4zQMpcE
-	vjMxdEcRVqJBfTqZgm2oZ0lIY60EizEdx87KxE7gB+CT5VI5Pimr4iwU98XXY+RRwzXtsinhuhk/o
-	5X+QOF8Hi2PWvY+nb9KfQgZhZ9vhDaoDZ1NT7A1DpIXyZCYMgepM/naHEmlc6ofzym0hNT+8Noqpm
-	55Z6VSpVvwlsw5ihTypf1YBgFy4OIu50M1ZxgUTr3rPka8d82OLVXP0Q8X39+zyXN9I6tr5iWzuUH
-	3F2BMoTQ30Nt5OoLeRYZmfYmXS/3TrSnfAr/R3FZbAH7nGjYupafKkZMtpevRk8Kf4IsjlOs5qau8
-	jrv1z83SKhZXwtbQ8cIQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=hOS8C9O2mpDSWwcI2U+Die3+r9YuIRHaNSGUW96C7PU=; b=M/CxakLt4sfTPTsb9/MT2ztuAQ
+	cy1E62mQIRFXr4lVlgPwepf/XJEscqBFwMTLUMQQoRMneZJGwCzgSPP2lBE2MOLPNzDI1LVmldR4Z
+	PplAGQd9W9x/OSN5YO6N6tZyndQ+W5AG2gEFfi/1jDK5gv72J9aqfeBH9YLJYx5ND2IPrHPDL5qAL
+	XY8ryTeO5iFS59vCWKMiqv157v29vVBRhDGQVB5kGMOECeAtrTuZPpJOdwiDQkaJrOASPW9Gp5C0R
+	nqDC8pCGnAvQ4P8jg2rutrWenJyprFIwviGBX32b7hDp+Ag/TUmZf0/8fS7kkh+UNo51Gfpg/6V5d
+	v5kU2P9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmXly-0000000C0fK-1ylI;
-	Wed, 22 Jul 2026 14:18:10 +0000
-Received: from mail-westcentralusazon11023085.outbound.protection.outlook.com ([40.93.201.85] helo=CY3PR05CU001.outbound.protection.outlook.com)
+	id 1wmZEZ-0000000CG5Q-30zL;
+	Wed, 22 Jul 2026 15:51:47 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmXlw-0000000C0eH-1qA0
+	id 1wmZEW-0000000CG3d-1ALX
 	for ath11k@lists.infradead.org;
-	Wed, 22 Jul 2026 14:18:09 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eiJuKWoSQTFsn1dE4MCy7W3yfYSt5fCQBftBZm6NC28YUxWdMwXVUS3SoABhaq74+jN65JWrTBmUWe9WzUWM278eBuUKd9dVp7HWHbJ6m4aaC5HUi1yZAWEkMsAoFvt9kRI3eYPl6jLd1h758oR5wj3Fk1kY/Gh74t9Kg5/xbWsb/aE6Zr4W4tDH+VsK73CurmQtesffMmHFJMtfbCPGhjEHa+lP+rG/cBd6BNSSrjbzGFdrFUuXnAfSLoSDW9/3Qn3R5eEcJ+N7UwowYiYtZWM5VsNHatgUrk77nNug+L6IrSorAp4hXHAaqAnq/r/FUAQSumsTsoknOvZlaVp2+A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hk+u1/myfto+NipN2hBQTG13UhLHv+p5mljgoM9oPhM=;
- b=bGB33f9Dlfwo92BEsgChXmKh5TDtKWw57HvsHzAe9XqTHrQOpdBypCtmSYMXKdGOiahz8WhqKVa+0CyQszILDEPlx6KVqR9wMOJcLg0LbpKxrhP+DeRqLnVw+tfvDMLpMLDobgVc8po52hi50EUSZShiu4muTns/W2sAHCamIhEp/xmUagQZnrjgRlIfQKJIMKlWfTimgcjY5M2UoryWj6gW0hX5DArSOUNXfUVMi2QkH36linMqce8AJ8JGufeKHH4LvYCtGTHIT9aH33VcLVmZtqECdSGGGgJxWbXyKcQU/mDDfnwnQUGAr7JjzS5jhrVMcl98ZXJHC6Jqplw9+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=locusrobotics.com; dmarc=pass action=none
- header.from=locusrobotics.com; dkim=pass header.d=locusrobotics.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=locusrobotics.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Hk+u1/myfto+NipN2hBQTG13UhLHv+p5mljgoM9oPhM=;
- b=H4tePkNttG7mqXEQJUP1I15fK86JgnNdk327PmTk7jJiMit9PH28UaJefp04PexaQbtfeHAAGnAjC0YQjT8ArifjMhUJfOCkhwM5ZcgX+Gq1YXzFm+PT8v4eR1LsynPt9mIaD6y/2g4hgfo9fmw5KMMVTIqWthFy9Iz3cobg0XU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=locusrobotics.com;
-Received: from IA3PR10MB8163.namprd10.prod.outlook.com (2603:10b6:208:515::14)
- by PH0PR10MB4503.namprd10.prod.outlook.com (2603:10b6:510:3a::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Wed, 22 Jul
- 2026 14:17:54 +0000
-Received: from IA3PR10MB8163.namprd10.prod.outlook.com
- ([fe80::2315:3b49:a56b:7750]) by IA3PR10MB8163.namprd10.prod.outlook.com
- ([fe80::2315:3b49:a56b:7750%2]) with mapi id 15.21.0245.009; Wed, 22 Jul 2026
- 14:17:54 +0000
-Message-ID: <6b1db9d8-b338-410a-a980-c2793912d5a6@locusrobotics.com>
-Date: Wed, 22 Jul 2026 07:17:52 -0700
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "open list:MEDIATEK MT76 WIRELESS LAN DRIVER"
- <linux-wireless@vger.kernel.org>,
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-From: James Prestwood <jprestwood@locusrobotics.com>
-Subject: ath11k: unable to connect to 6ghz networks after cycling interface
- (IWD restart)
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MN0P220CA0011.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:52e::23) To IA3PR10MB8163.namprd10.prod.outlook.com
- (2603:10b6:208:515::14)
+	Wed, 22 Jul 2026 15:51:45 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66MFXoI21441281
+	for <ath11k@lists.infradead.org>; Wed, 22 Jul 2026 15:51:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hOS8C9O2mpDSWwcI2U+Die3+r9YuIRHaNSGUW96C7PU=; b=UXD4in6lEx65asPm
+	4IOzpayhTLQ0PJAfzip4L2A1hYHhdMy+4AXS34TJkQr1ptkgob8lqPuPFd0IBa0G
+	Awf0peLgEYF9hncGxu8Tx+vggFPcE7rK8w6eYxthHV2+vQFPfREC9L6o4GlUmUne
+	Wy6aCMkCXk8c8XEjf6D4wasmul7r4duMeFmpJPZgv6DyLQPxi92eUcddLrL1+ZHs
+	rJ8NkgleV8u76dlkzHo4ko4ubT2uD2F8mRjp2+Kik5eKBQtu0VguAGVxlW7rbKVj
+	1wssL+hD0alBP8JS5A40Z0YkERo94/7ugJa57xOr5GgEAvT5b+skLXT/9zBto2cn
+	FnySQA==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fjrtt29jk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Wed, 22 Jul 2026 15:51:43 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c9fe4c5eb39so8955761a12.1
+        for <ath11k@lists.infradead.org>; Wed, 22 Jul 2026 08:51:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1784735502; x=1785340302; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=hOS8C9O2mpDSWwcI2U+Die3+r9YuIRHaNSGUW96C7PU=;
+        b=WyavTzVq+OT1sZon89K5bZGhW3tZWwlxjCzIHy8zo9pqM5tdfu/Js+Ae5Q7tivce/0
+         dAwzzUpFcxB0NhT0MqLyT0WW3+39WgSVDbMNnO8ZJbwhFAWWiUZp2BQcgvg8HL8fc+Gi
+         NzcnYqCrGAKuQpWCzle0jRWFrXTbetUrude+mdte12gYMt9rK6j+8/gvF9f6yh0qSrMd
+         2c+bBEMkM+yrxpz1oKPh1rnx/RMTgvTD+0v9RPKupRqT0EwdKIzHgTgrs/8+g+iST6R4
+         NR/IHwBE0MIvUvvUeK7YQ1OD72W4RhcnSTza1BLFzy7IgcmRcXn9hynrzbB9aoZrQ1a/
+         qN1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784735502; x=1785340302;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=hOS8C9O2mpDSWwcI2U+Die3+r9YuIRHaNSGUW96C7PU=;
+        b=ae4JGG5QvcB/2LwzocwvLsJxTfpgs5Mnzl5aybpIr+bE6ef4FgnjjD4JgSnCaahEVg
+         fOU0w0KRFD58YTDyhYgk9FRkeTCwLb1MuaTLsVLMTN9kR2qRop6wcnGu8h5HKUtv9+fI
+         5KQTBkVrlW5T7f1ShjuW7OeJRQbntQTUXZ7I1pO+8xvdy2AAGsrwHo2EXClXV4zFzABT
+         vYqLYUuZwXg9stgIvVpz/9iaNlDPZYAfHat9JwWg99LOaC4oFqWNDSQrdJmDfQq5a/TI
+         9Y62ia825U+MmIPaMpM7+qHqNRIbe+DHoBLEnI3EQB3GMXoKM3eNMZRYyDiUihc+hBCH
+         msvg==
+X-Forwarded-Encrypted: i=1; AHgh+RpawEMvD9jC2PhKe84hRZmsw3ctfyv4edM1R9YfuOcve74vPulhJyfiWMI31OAsekaunnYdqq8=@lists.infradead.org
+X-Gm-Message-State: AOJu0YykwNwkgv75MKkrnW96KoDxNZJ/hSM0LdhW4A9Ff8JdwA0M+6Ze
+	3g1W3gwIgNScihxPh0+6gRwCBU4v7aZEgXRv3qDj7iDlRoJaYapAtW9Zadh9gDHMD/Ze8sf0jeq
+	uTbE+oQ8O36y3XO590AlH8+oyDykAe9jtv3HPPtZRygvVZy4VSosX6xWOi3jnLRY0Q0auPF5F
+X-Gm-Gg: AR+sD11Vhip+jaXYGDOq3qy1i5eTDKwBX8CrAcKpEo+WwkdW69tZMiMKs0ci7m3gvGh
+	2bBj1iame7dvqDB6v+wAFCklBgSDGUNfCcDwf/WSeM8JsC3c4JkO1pbG4aqFLC5NtIiQ9oWSk7p
+	FQp0Z9cGxuLivrVCWoADF5/2brMyvohUrGlvibE/Dh6Y2zr7yXuTtHXW4/oGX+zmCZxC7M3Jnwv
+	UWyMEoS7lwlVxCibKbP933PBBy48cGBYI0mUILmDmLupBwGaChVaMwJGXKL4m0zCesv33PveY+l
+	TAFWZfMY0Co6Km5LnVxbIR7qlU1AmXTMIJ7UZ+1y3R632gjR/wpWGSZ2vPEFVQUivFkl/XIUZRX
+	599PeJiAB9eflWAaELnQWg4Q6pn2rgXtf1MXtYRSPxLVK94EFDwnZ88lM/rxg
+X-Received: by 2002:a05:6a20:2d07:b0:3c4:3112:45 with SMTP id adf61e73a8af0-3c431120182mr4018434637.1.1784735502577;
+        Wed, 22 Jul 2026 08:51:42 -0700 (PDT)
+X-Received: by 2002:a05:6a20:2d07:b0:3c4:3112:45 with SMTP id adf61e73a8af0-3c431120182mr4018400637.1.1784735502119;
+        Wed, 22 Jul 2026 08:51:42 -0700 (PDT)
+Received: from [10.227.110.203] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3147e088d3fsm10913111eec.25.2026.07.22.08.51.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jul 2026 08:51:41 -0700 (PDT)
+Message-ID: <0833afbd-4a25-4e7d-8e77-ab9fac9d36cf@oss.qualcomm.com>
+Date: Wed, 22 Jul 2026 08:51:37 -0700
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR10MB8163:EE_|PH0PR10MB4503:EE_
-X-MS-Office365-Filtering-Correlation-Id: d52f5ead-caa4-44a2-60f9-08dee7fc0568
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|1800799024|366016|6133799003|56012099006|11063799006|5023799004|10067099003|55112099003|18002099003;
-X-Microsoft-Antispam-Message-Info: +8jCSZRiJ0eV5aaUD67QeMzWkbflmJLDdGSk6Z73dGC0/ch0qdDxln0eUpt9ZCJ8iE2zskBa0ULYa9mSjPEu+IeR/y3E8/6FPqlNq5KpTKpdWRRd8+NKl6AvcL0/aVjj0mkJcu6FhuILMIeXLGzcbnfqnhCpZTXtEZmsJC8gx0ISi7FE5IoMkApOquUM+wHZWbUa/+f+Wkmtv/1E7a5z0EyGexNc3WN+7UwAknmw3gMSDelXJT4r3wib7I7XhbVn7QNbYN5C8roSQk+lMBQxZMSAvcwd+EnT/4yz7qTSHBqgrVwEDzJIO622kP+k7UhjWUFfNrE8xKbFC+U1Y3p2cLNty9KPTcvlL7ypVBpw6ccfD08qyXpgHRiheeLNsz5XhUV7p/0w5BSKNR34poaurNx0cvDvO0crL0uV5MH15P0C7BIvGol8ksJKRVBOMgUjBiYQcK/YDejlNffL22Kms44ifxc3fNtykH9Wlsdu8wDFIQoJrk3A6RVGz2O8yS6W0Ftq6UA2D3LkK3YDaIRCmKHuTHBVCuoN78F/oRetcO/BxCAo8h7GpHyDBZuOfB67tc3N6HISOIkJzCvFctuQ0ZeJNDZUCSKbrvG3gm/X0pNdjq8yo/KIolIhlJp00N9an8CnRngE4A94BO0mB37Ep1UecD55AQIj49hMg8j2h+0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA3PR10MB8163.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(6133799003)(56012099006)(11063799006)(5023799004)(10067099003)(55112099003)(18002099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2Q0U1MzSUU5MVJUQlZNaGVwK210R1Y3d1hsaE5oem5pVU5CaWVFZVRSU1JV?=
- =?utf-8?B?YUJsTlJ0WXU4cGY4U3p2SmNxUno3Y0ZxeHpabldwdlBYYW9Vb21ia0ovcUsz?=
- =?utf-8?B?bWg4eHJNOEZNZ0NDQzhHUm53bU4zcnFRUElRTGxSWDQvK0sxN1Q0WmdOSlI1?=
- =?utf-8?B?S1NtLzUzOGZJaGNvSXh0WnVYRE05WXRQc1d3YXEyOEh1TjJvU1p4VU5oYjBi?=
- =?utf-8?B?WFllcy9FaXNoVXpvb25TTTJiOHZ1MGRGcFV1cCtJOUxFS1g0TllNUGJOVWlx?=
- =?utf-8?B?T1BmKyswaGV5T0dTMklTSFpjRnFBWHJIVXUzaC92ZFRMaWdpdGdaU2FEM0Zw?=
- =?utf-8?B?Mzd0QnU2SENRb1JHdVp2V3hNOXFYTGVpYjB5NHdVRndIWFlISnR1Qjl1OTZW?=
- =?utf-8?B?am91ZFY4RGtxMUVJVWxSM0x4b1BaTDgzT0hjQjk1VU53Q0ttdkRlK3NMU3Qr?=
- =?utf-8?B?RE1VRnNXN0lKQkNyY0ZHUkNSZ3ZVa2tINzNMMlUybURUczRvTUZ6L2ZqSFdj?=
- =?utf-8?B?SkJGNE0yRkVaREtlMUNQWElXM2czdlNVYTgvVEJTdFR4ZFVIWXlLeGtmbktV?=
- =?utf-8?B?TFNabUtSWndGa09xR2x5SUxIeDZJVXJoalFoVkh2R3phTjBaaDlaZzVKcENq?=
- =?utf-8?B?Q3dmMXVoRzNZa0VQdGduODRORXVSZmkyM1JDWk9kbEswZHovNlJLRmg0UzQ0?=
- =?utf-8?B?eXRMV2k2YXc3THNPSzVqNjdPNFNyNHRrQ2xwK2xFMDZCTEcrMG1jdFNIUmtq?=
- =?utf-8?B?ekRsQjY4Vys5US90V1BVc1A3QXhoRitlM2kvNlNZMndlbVFNZDd5aUprNlQ3?=
- =?utf-8?B?Q1ZFeGRvZFBXT1R5NjNCYzF3cVU1UXVCV0h6cjg1LzJiQ0tLK2U5WmppR2o3?=
- =?utf-8?B?aTlmU0dUVjczbHFpTlNqSEl5dldyZWFzK05SUFNUSEdoOHRZWGJ2SXkxUEdp?=
- =?utf-8?B?NU5Ed21ISGw5aGllRWZxUlBheGtMUExrQ1lnb21rVWRwc2pCem9pTDZQSUlz?=
- =?utf-8?B?eVoyNTNaMklDQlB3WUkzbjZoQ1l6eEhVb0VBcWpuNzRQZklKQ1Yyc1lNaUlC?=
- =?utf-8?B?YjgvOXhrOVo4WHRoRVVXSUlUd1NWKzVhT1puQmxvNUNHbzZBeEh1QStnUWNG?=
- =?utf-8?B?L0p5V2QzN2djNnR3REZ3OG5lSHVoK2R4Z3h0SUVCM3Q5SGhXNG90bXpmNC8y?=
- =?utf-8?B?ZjBFWUI5ajdEbklvaFQwRmlma2VsMEwzSXRCUytjSDFSeVVDRUpSVTFWN1pQ?=
- =?utf-8?B?YllGeUQ2Rkl2NjhyUDZNOGhiMTkrOEhlNHRmTkZVVmpMUnRmdVg2VUxsZU5J?=
- =?utf-8?B?YjlmUGJpQWppTzdrbUVuY21sWjNHaFo2TzNFMkJJVHBXTEl0T25LK0Vtdzho?=
- =?utf-8?B?b1RIdFU5ZFBvRjJpUDJUUE8rdUpXZlArTlJEcGJqVzdDR1VZKzYwVm1DZWdl?=
- =?utf-8?B?QU1XZHQxekh2aUZoVGxIZlFIdXo4NFRRbm9YbnkzSGVOM21uMFU2UmpUUHhj?=
- =?utf-8?B?WHorMlY3K2txSFFiZFk3S21DaFQ3c2QzQlZuMjI0K0I1c255VmZlOGEyNlpl?=
- =?utf-8?B?aEhsSVhrTnpkeHQ2OFkrclVNMFZBbjRPNng5Q2JHQVZMK3U2dGJRdVhEeXdZ?=
- =?utf-8?B?R2N0MGdnNUdBUkZPOGZOc2cvVTFlTlo4cmJlNVdFRW1WMjJFVm1CN3VpODFU?=
- =?utf-8?B?VXA2dWhOVGxoVityc1AwVnNheVlDaFhjMG82a09nZkU0VzYzSG1VeHZmcUk0?=
- =?utf-8?B?cVZ3RGlhbXhhOWphVFpHZ1ZlYW05djBsOU1kVnhGYmJId0hqZko5VVltYlBy?=
- =?utf-8?B?T2VsREtoVnZtdkdHVnN1OW9CQWdaL0loTUxmWEticTVIZ0s1QU5iNTE4djly?=
- =?utf-8?B?eEc5ZklkUW91aElKMDJOemRHVk5aUnRnY0oxampEUFRkNTFqZ1E0R0psTzFt?=
- =?utf-8?B?QS9Nbm5PcXFVN1ZHRTVsWFVTc0R3T2Foek1XcmR6dTNsNUgwOUd5OWpOYzho?=
- =?utf-8?B?dmJwQWp0L0NwUzJrZkV4ZXVKeXpseStyeG8wZXh2MWpvdjFkcjhySEVZS1Q4?=
- =?utf-8?B?V2dSYTM4RWEvZkdMVlp0QjdxTkFLWWwyYnZJYjdHalJqMG5Nc2pkSkFkQ1lS?=
- =?utf-8?B?VVdZcTEvVkRGU0xqdWdINUdyWFl4QXUzQzZQWW1OdkxhTTFuSjYweWJvRkpN?=
- =?utf-8?B?b1VPVzRMVlJIV051T05KSkRzYm04bGt5R0VnaWdLMVdWRjNXT0NRZW5GREVN?=
- =?utf-8?B?STNBQlFPUE1SVm4wQmd3bXdqemw4OU1IWkVuOWpCdUdtUVM0Wjd5K2J6WVJk?=
- =?utf-8?B?amt2SUp2cHllTk1QU0ordjBVY0ZGNGNWWHhDUnJsOHlvRE5IOSs0T2FmL2xh?=
- =?utf-8?Q?1vt+A/VfzuhKqHT8=3D?=
-X-OriginatorOrg: locusrobotics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d52f5ead-caa4-44a2-60f9-08dee7fc0568
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR10MB8163.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2026 14:17:54.3311
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 068f275f-67fa-4977-a33b-80fe854a9590
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6I3EBlpphMuJZQMrrLT8gRMDU/L18M9slJ3AcR9Z1TUFlYJM+qep1vCMYuu8zH2qprwbaTZh94en6ql82/1ynQv6uE1aljK3qtyRX5fJckA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB4503
+User-Agent: Mozilla Thunderbird
+Subject: Re: pull-request: ath-next-20260721
+To: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org
+Cc: ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        ath12k@lists.infradead.org, jjohnson@kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sumit Garg <sumit.garg@oss.qualcomm.com>
+References: <f73b76bb-dc27-42d0-8e47-b617eec766a6@oss.qualcomm.com>
+ <67b88a3cc68473a1ee9d2816c4b5fe07c378434f.camel@sipsolutions.net>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <67b88a3cc68473a1ee9d2816c4b5fe07c378434f.camel@sipsolutions.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 9PH8Zj-ZfqwqPMnYRW23bdgYyBUvgALK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzIyMDE1NiBTYWx0ZWRfXzdGhOgqJJTW4
+ r/PBg8zqgWB8S6aoMuelOwlXIP/twtHSeZA17JuCK19c1nEpDh53UrIDOdwKAT1H3mGeXvDNFmz
+ mB8aH9MmXwMeclWsgpT3uaI+POVdApAhgbkeNE+pGz5X1RiciU8z1oIq7EK7lOKnny/sdEetPpa
+ +x/Nu1eEBeUAULYsTq8UP2CFuqxQUsYfdsaez8J4vgHXprCbX9n1bHPlU58wqyCWWNM3/1vtQTY
+ bcC1+Wjya6wWYfM99UPBL5r9uMVBAd/l5AE+kQ9+UI3Fpr5Ooip/pVPJYYc7r8Js2+K8eu56iqv
+ dnEoXG3wLmli4bNFZ/7pN3u42aPzR9vuLko1TYGgBJCC/JCIwuHWoqVAgiJNavNsxLkV+ssPnQt
+ ivHozkft3dYezX4MvAFfkhoiItxRN2wEkbADLt+4SVtu/bodEAzrKkXsq3glj6mGHT4AN0UL3Sy
+ XVtlpk7KRs0htmfWcwg==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzIyMDE1NiBTYWx0ZWRfX7STaohgVP56J
+ Ipjwg24+gFXlVRpPdMTWq90hXLzIu6pxwS/grjqUgf0bzQ8/LD+J8VKhsv/3xwepEVNlyFPzHsf
+ oEwUVBUlxCk3xpTQJMnBaEo+nQ2aIxY=
+X-Proofpoint-GUID: 9PH8Zj-ZfqwqPMnYRW23bdgYyBUvgALK
+X-Authority-Analysis: v=2.4 cv=V8lNF+ni c=1 sm=1 tr=0 ts=6a60e70f cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=VwQbUJbxAAAA:8 a=XsDMgvtJpxJmlFumrWkA:9 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-22_04,2026-07-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0
+ adultscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607220156
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260722_071808_532179_4BC67DE2 
-X-CRM114-Status: GOOD (  11.67  )
+X-CRM114-CacheID: sfid-20260722_085144_341609_68389946 
+X-CRM114-Status: GOOD (  18.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,137 +150,78 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On 7/22/2026 7:08 AM, Johannes Berg wrote:
+> On Tue, 2026-07-21 at 16:46 -0700, Jeff Johnson wrote:
+>>
+>> ----------------------------------------------------------------
+>>
+>> NOTE TO UPSTREAM MAINTAINERS
+>> This PR includes the merge of an immutable branch from the qcom tree
+>> https://lore.kernel.org/all/178362521364.2422497.1305957434056184382.b4-ty@kernel.org/
+> 
+> That's annoying, it added a kernel-doc warning that now shows up on our
+> output... I guess we need to ignore that.
+> 
+>> New warnings added:
+>> Warning: drivers/firmware/qcom/qcom_scm.c:1055 No description found for return value of 'qcom_scm_is_pas_available'
+>> Warning: drivers/firmware/qcom/qcom_scm.c:1055 No description found for return value of 'qcom_scm_is_pas_available'
+>> Per-file breakdown:
+>>      2 drivers/firmware/qcom/qcom_scm.c
 
-Recently I've noticed an issue scanning 6GHz-only SSIDs. I am running:
+:(
 
-Card: Qualcomm Atheros QCNFA765 (rev 01)
-Driver: ath11k
-Kernel: 6.8
-Firmware: fw_version 0x1106196e fw_build_timestamp 2024-01-12 11:30 
-fw_build_id WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.37
-Running IWD
+I run kernel-doc on the patches I process, but since I didn't directly process
+that series I didn't see it.
 
-I can't reproduce this 100% of the time, but it happens quite frequently 
-when I perform the following steps:
+Bjorn/Sumit: looks like there are a lot of those that need cleaning up...
+% scripts/kernel-doc -Wall -Werror -none drivers/firmware/qcom/qcom_scm.c
+Warning: drivers/firmware/qcom/qcom_scm.c:317 No description found for return value of 'qcom_scm_call'
+Warning: drivers/firmware/qcom/qcom_scm.c:343 No description found for return value of 'qcom_scm_call_atomic'
+Warning: drivers/firmware/qcom/qcom_scm.c:440 No description found for return value of 'qcom_scm_set_warm_boot_addr'
+Warning: drivers/firmware/qcom/qcom_scm.c:453 No description found for return value of 'qcom_scm_set_cold_boot_addr'
+Warning: drivers/firmware/qcom/qcom_scm.c:1055 No description found for return value of 'qcom_scm_is_pas_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1147 No description found for return value of 'qcom_scm_restore_sec_cfg_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1325 No description found for return value of 'qcom_scm_assign_mem'
+Warning: drivers/firmware/qcom/qcom_scm.c:1396 No description found for return value of 'qcom_scm_ocmem_lock_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1413 No description found for return value of 'qcom_scm_ocmem_lock'
+Warning: drivers/firmware/qcom/qcom_scm.c:1437 No description found for return value of 'qcom_scm_ocmem_unlock'
+Warning: drivers/firmware/qcom/qcom_scm.c:1767 No description found for return value of 'qcom_scm_hdcp_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1792 No description found for return value of 'qcom_scm_hdcp_req'
+Warning: drivers/firmware/qcom/qcom_scm.c:2526 No description found for return value of 'qcom_scm_is_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:317 No description found for return value of 'qcom_scm_call'
+Warning: drivers/firmware/qcom/qcom_scm.c:343 No description found for return value of 'qcom_scm_call_atomic'
+Warning: drivers/firmware/qcom/qcom_scm.c:440 No description found for return value of 'qcom_scm_set_warm_boot_addr'
+Warning: drivers/firmware/qcom/qcom_scm.c:453 No description found for return value of 'qcom_scm_set_cold_boot_addr'
+Warning: drivers/firmware/qcom/qcom_scm.c:1055 No description found for return value of 'qcom_scm_is_pas_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1147 No description found for return value of 'qcom_scm_restore_sec_cfg_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1325 No description found for return value of 'qcom_scm_assign_mem'
+Warning: drivers/firmware/qcom/qcom_scm.c:1396 No description found for return value of 'qcom_scm_ocmem_lock_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1413 No description found for return value of 'qcom_scm_ocmem_lock'
+Warning: drivers/firmware/qcom/qcom_scm.c:1437 No description found for return value of 'qcom_scm_ocmem_unlock'
+Warning: drivers/firmware/qcom/qcom_scm.c:1767 No description found for return value of 'qcom_scm_hdcp_available'
+Warning: drivers/firmware/qcom/qcom_scm.c:1792 No description found for return value of 'qcom_scm_hdcp_req'
+Warning: drivers/firmware/qcom/qcom_scm.c:2526 No description found for return value of 'qcom_scm_is_available'
+26 warnings as errors
 
-- Device is connected to a 5GHz SSID
-- Switch the IWD profile to a 6GHz-only SSID
-- Restart IWD
+> 
+> I also get two fixes tag reports:
+> 
+>> Commit: b127f79a4933 ("wifi: ath12k: Correctly copy the hint BSSID in WMI scan request")
+>> 	Fixes tag: Fixes: f40abb4788a2 ("ath12k: New driver for Qualcomm 11be hw family")
+>> 	Has these problem(s):
+>> 		- Target SHA1 does not exist
+>> Commit: fde37c064641 ("wifi: ath12k: Set IEEE80211_OFFLOAD_ENCAP_4ADDR after tx_encap_type vdev param")
+>> 	Fixes tag: Fixes: 729cad3c3c9e ("wifi: ath12k: Add 4-address mode support for eth offload")
+>> 	Has these problem(s):
+>> 		- empty lines surround the Fixes tag
+> 
+> Note that the first of those ... the commit exists, but not in the right
+> tree. It's in some ath12k-bringup-start tag in your tree, but not in
+> mainline, got a different sha1 there. So checking locally is confusing.
 
-In some cases this works, but frequently IWD starts up and scans the 
-entire spectrum (2.4/5/6ghz) and sees no 6GHz SSIDs. IWD continues to 
-scan indefinitely and in some cases never sees a 6GHz SSID until its 
-restarted. Restarting IWD does remove and create a wireless interface in 
-the process. AFAICT the regulatory domain is set correctly and very 
-early on when IWD scans and the kernel detects a US-FCC SSID.
+Let me rewrite those and send another PR
 
-This leaves the device unconnected until our external watchdog kicks in 
-and restarts IWD which generally gets things working again. I've 
-captured the netlink comms below and nothing looks wrong or incorrect 
-about how IWD scans, the regdom, or enabled/disabled frequencies in the 
-wiphy dump:
-
-The regulatory domain is set:
-
- > Result: Get Reg (0x1f) len 508     Jul 22 13:32:08
-     Wiphy: 0 (0x00000000)
-     Regulatory Alpha2: US
-     DFS Region: 1 (0x01)
-     ...
-             Rule 7: len 56
-             Flags: len 4
-                 No Outdoor
-                 Auto BW
-             Frequency Start: 5925 MHz
-             Frequency End: 7125 MHz
-             Frequency Range Max BW: 160 MHz
-             Max Antenna Gain: 0 (0x00000000)
-             Max EIRP: 2400 (0x00000960)
-             DFS CAC Time: 0 (0x00000000)
-
-During the wiphy dump when IWD starts up I see the frequency of my SSID 
-and it is not disabled/no-IR:
-
- > Result: New Wiphy (0x03) len 72 [multi]            Jul 22 13:32:08
-     Wiphy: 0 (0x00000000)
-     Wiphy Name: phy0
-     Generation: 1 (0x00000001)
-     Wiphy Bands: len 40
-         Band 3: len 36
-             Frequencies: len 32
-                 Frequency 40: len 28
-*                    Frequency: 6755 (0x00001a63)*
-                     Unknown: 20 len 4
-                         00 00 00 00       ....
-                     Indoor only: true
-                     Max TX Power: 2400 (0x00000960)
-
-IWD will then issues a trigger scan, and requests to scan on frequency 
-6755 (among many others):
-
-< Request: Trigger Scan (0x21) len 848 [ack]             Jul 22 13:32:08
-     Wireless Device: 9 (0x0000000000000009)
-     Information Elements: len 12
-         Extended Capabilities: len 10
-             Capability: bit  2: Extended channel switching
-             Capability: bit 19: BSS transition
-             Capability: bit 22: Multiple BSSID
-             Capability: bit 32: QoS Map
-             Capability: bit 62: Opmode Notification
-             04 00 48 00 01 00 00 40 00 21 ..H....@.!
-     Scan Frequencies: len 816
-         <removed for readability>
-*        69: 6755 (0x00001a63)*
-         <removed for readability>
-
-The kernel responds and includes 6755 in the response:
-
- > Event: Trigger Scan (0x21) len 844             Jul 22 13:32:08
-     Wiphy: 0 (0x00000000)
-     Interface Index: 15 (0x0000000f)
-     Wireless Device: 9 (0x0000000000000009)
-     Scan SSIDs: len 0
-     Scan Frequencies: len 792
-        <removed for readability>
-*        69: 6755 (0x00001a63)*
-        <removed for readability>
-
-IWD receives a new scan result event, which also includes 6755:
-
- > Event: New Scan Results (0x22) len 844             Jul 22 13:32:14
-     Wiphy: 0 (0x00000000)
-     Interface Index: 15 (0x0000000f)
-     Wireless Device: 9 (0x0000000000000009)
-     Scan SSIDs: len 0
-     Scan Frequencies: len 792
-        <removed for readability>
-*        69: 6755 (0x00001a63)*
-        <removed for readability>
-
-But in the scan results there are no 6GHz BSS's found. Plenty of 2.4 and 
-5GHz though so the kernel is scanning. IWD also pulls a survey after the 
-scan, which includes 6755:
-
- > Result: New Survey Results (0x33) len 52 [multi]             Jul 22 
-13:32:14
-     Interface Index: 15 (0x0000000f)
-     Survey Info: len 40
-*        Frequency: 6755 (0x00001a63)*
-         Noise dBm: -96
-         Survey Time: 30 (0x000000000000001e)
-         Busy Time: 0 (0x0000000000000000)
-
-I'm open to upgrading the kernel to debug, or trying patches. But I'm 
-curious if there are any reports of this, or patches that have gone in 
-since 6.8 to address scanning behavior similar to this. We have other 
-devices connected to this SSID during this process so the APs are 
-clearly sending beacons to maintain other connections. It feels to me 
-that the kernel is not actually scanning 6GHz despite the netlink 
-messaging saying it is.
-
-Thanks,
-
-James
+> 
+> johannes
 
 
