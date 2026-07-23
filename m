@@ -4,77 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60ED6C44532
-	for <ath11k@archiver.kernel.org>; Wed, 22 Jul 2026 17:11:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E80CBC44536
+	for <ath11k@archiver.kernel.org>; Thu, 23 Jul 2026 01:12:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=RzfSmIMBg5Zu645nMhfIQg3Rlp0CR4eLtJ/201cLgiE=; b=INx/ONwpT4dobSYIR/xshiQIQj
-	1GMwcL0HI6HcBhmcv8TMP4XdbMz9NBCzIjrNB9U3J+Ni3fJpd/E4KI0uknGuT1o07x1k8PROY7fDl
-	mD/vqo69Tdhu5YDrKZfGaQbwygRBiFpb2hMLhrDTr9wA6RIJswsd8D34D7DKbZcPqTtsR4tGvG/3m
-	RPGldUZgwesq3U36XUuhjy4hnc4wRR6i9/9jA4NiLVbn6LyZIzvBk0SpIo6CDo0W/Ak42q1vEDfRW
-	pe9HbS9HHlSH15JrTK+Kh712jyJobYtdu4t6BCBXo/pZ9hnSZDFzlyRodBXZwuQkWrhHj8nKBXG7t
-	L+Q2Pi7A==;
+	Content-Type:Message-ID:Mime-Version:References:Subject:Cc:To:From:Date:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Owner;
+	bh=PYkSapDs7gVYLipbpFGEaU+VL3bLc5ddWrLrLCEqQZM=; b=1FLYgsFQnt8OA0MtX1IRPC9oIC
+	vnK2vmIqelyNRZaHHegaSGXuWteA0DeN+WxU7b5DYUUW0OfFk+Et9oUfZ5rYIQBuX7Quo2p7MegQy
+	GJkSfKx6USKgerb//xyhCSreLuFM9M22T0b6bgidM/4NLGqGvzj4dObl6s/B1637MLQ205gq7w8S4
+	uOijBl9/Wgsfnz1/QNCL3veIwMbLvcU2p74ofr0d6aCEEJl+Ss5ppUIznJrhrEpQG/PqYUbL9It/W
+	8AJ09SBRraxfUGB19guQnA7nFJ2uq9qWC2q73cOB5UV/a0+llsDPYLd/7OU5HGQ7aud+bfDyZvF23
+	pBqu6FDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmaTx-0000000CQNR-0BvN;
-	Wed, 22 Jul 2026 17:11:45 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1wmhzR-0000000D1OP-09iq;
+	Thu, 23 Jul 2026 01:12:45 +0000
+Received: from smtpbgau1.qq.com ([54.206.16.166])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmaTt-0000000CQME-1ruu
+	id 1wmhzN-0000000D1NX-2Iht
 	for ath11k@lists.infradead.org;
-	Wed, 22 Jul 2026 17:11:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1784740300;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RzfSmIMBg5Zu645nMhfIQg3Rlp0CR4eLtJ/201cLgiE=;
-	b=QLE8FPkUqu3v27f73+2QeJGwOixWSwVYdaM3Fd09CWJf45CBUqCCdl6PF4l+/8yNeN/JiG
-	A65HDZ1X71mT8/WdUpWpdgEBvEzwxY0KeLVCVk6LakDmh3ScpB5jM1nqFUTga4FSByOyRZ
-	tsLaJyADvMkHaC6mia8BDuqGJASEVus=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-467-T1iGTCcONxicw4fmm9AFNw-1; Wed,
- 22 Jul 2026 13:11:38 -0400
-X-MC-Unique: T1iGTCcONxicw4fmm9AFNw-1
-X-Mimecast-MFC-AGG-ID: T1iGTCcONxicw4fmm9AFNw_1784740297
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1E3091805F0D;
-	Wed, 22 Jul 2026 17:11:36 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.44.48.27])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id D166D3004181;
-	Wed, 22 Jul 2026 17:11:32 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: johannes@sipsolutions.net
-Cc: ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	jjohnson@kernel.org,
-	jtornosm@redhat.com,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] wifi: mac80211: add ieee80211_tx_peek API
-Date: Wed, 22 Jul 2026 19:11:28 +0200
-Message-ID: <20260722171131.262239-1-jtornosm@redhat.com>
-In-Reply-To: <c913114343692dd201da3af8f05fe1bc356702a8.camel@sipsolutions.net>
-References: <c913114343692dd201da3af8f05fe1bc356702a8.camel@sipsolutions.net>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: 8yhfHib9dmNPyHiu9z_6cn_QXM2Nz4x4TzzAdA2z_lM_1784740297
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	Thu, 23 Jul 2026 01:12:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+	s=onoh2408; t=1784769132;
+	bh=PYkSapDs7gVYLipbpFGEaU+VL3bLc5ddWrLrLCEqQZM=;
+	h=Date:From:To:Subject:Mime-Version:Message-ID;
+	b=kBxjnbVtCtAoVs3rIDTkzNnvRWNOzmWOYfNz7zpuIjBvHUFOYXPr4quXAFvzzcp8r
+	 LYgBfklroIfMCFQ4vvT4YGrot5tDycR2y0g+s0NP6Lq9xNvvHDiJRaR5bbShFtN1EV
+	 PBpO9gW/OiaERo+X78LsP8U0cWUUYdhNSYFv8BvQ=
+X-QQ-mid: zesmtpsz7t1784769123t6360587c
+X-QQ-Originating-IP: yYjmTf2iaKGi23u9FNOyf7hM0f6iS/1kcv6aSjsYu0E=
+Received: from PEN002676 ( [1.202.39.170])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 23 Jul 2026 09:12:01 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 9086336731519733227
+Date: Thu, 23 Jul 2026 09:12:02 +0800
+From: =?GB2312?B?1dS98MP3?= <zhaojinming@uniontech.com>
+To: "Jeff Johnson" <jeff.johnson@oss.qualcomm.com>, 
+	baochen.qiang <baochen.qiang@oss.qualcomm.com>, 
+	jjohnson <jjohnson@kernel.org>
+Cc: linux-wireless <linux-wireless@vger.kernel.org>, 
+	ath11k <ath11k@lists.infradead.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4] wifi: ath11k: fix resource leak on error in ext IRQ setup
+References: <181b5ee0-f002-4f5e-93ff-49b6aa0a6e61@oss.qualcomm.com>, 
+	<20260721072128.142668-1-zhaojinming@uniontech.com>, 
+	<a85bf89e-5a4d-40f7-9797-66f078427f96@oss.qualcomm.com>
+X-Priority: 3
+X-GUID: 20D9622D-8241-4E97-B2B7-CE9E7F885D5A
+X-Has-Attach: no
+X-Mailer: Foxmail 7.2.25.375[cn]
+Mime-Version: 1.0
+Message-ID: <D1E55E3E9CC1685E+202607230912010225815@uniontech.com>
+Content-Type: text/plain;
+	charset="GB2312"
+Content-Transfer-Encoding: base64
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: NMB3uNxca02mAaaZKl/rhqidUwFfJ1IUMqhj6rrpPrkXrIEwrcYuy3QM
+	1CbNLy25vVkSTjf7AOan+Y9y51RSOfFKTk+0PZ7vR0JuBMmCxdYYcGZaKCxe7OyoilK5D4C
+	jptNHxfx0vVD+Rym+ad4ee/qIoe37UrKh248Tm3BGx0knSh3ux62YGYQ/FZiD0QMZpnaMXV
+	A9Owcud38thOz0WNHAdjQJqCEWK35xZQ0JNHburCYjNaPgagasmLJTNn3RGDbTilQqr8d75
+	TyEwyzi2djE1Iywsx11oBuuyW+VUT/kA32Fmwx6MA+qBygC5Tojyj8KCx5srTGBJRtoKeTY
+	JUd1igSw1jteAKZIbAE5Dd4qAJn0ZIngvs1Cwt+Yg2DNw4nzzxOR7qRR/ptdoBuopY8fHUZ
+	AVFaiYgBScgHDqM0hwrbU6BH91vbaO+d2/JUPK+62yy5qF4vgOEbSI9aREjzVkIM4RavpBq
+	//yUAzOsVnGkISsS538CgW81z1ZUA2/6sXXP32AuD5JzYSlY3mnqbAv4vKZLeDefGW2AZcJ
+	jjEkfQy/YgJTn2VioKxI2Wkg5dS6qK/U1YOJEjRyHkvMWu0ZMaC+xSBCBx8Gym6+4PyBDSX
+	yGnc/WL1xjJuh/tz4ikc+2owTFcX7zU0GurZbKD8nRRRfLgcHUocO/h5YslEx2i1wdxyY+1
+	tdEEpg6r94c+hMIfrXBrrSZr82la5uCQMnMlh5IeRoIsBBw37OoNSWvPh0KwRM6HsLZtxGu
+	7msgwvmr7r1LQ+E92RcMXxFCdKllO7LzfOy6qAkP3WOS7dGon8ttYnI0l3wjwmAL9s39u+R
+	1MTSYvJ+4uN2ggWjl8iF8T7tchImvd4AOYhzeCiTnBSuzf8CSUPrzAFVxFCT17Y9gtuGI7+
+	nWecVgzUTUZweCrq1c9jQVVEfAv/PgV1bey7iVbpCbRbYaoQbSFz8gX9QA7hu94HkMYH4iF
+	WivuX5ZmEwhRJsc/RlZWrfS5iSWCmg0OSWFqzzjMevAtEm7d+mdg2+Pfg
+X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
+X-QQ-RECHKSPAM: 0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260722_101141_550845_FB9D57EF 
-X-CRM114-Status: UNSURE (   6.50  )
+X-CRM114-CacheID: sfid-20260722_181242_412287_DF45CA34 
+X-CRM114-Status: UNSURE (   1.68  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,16 +100,10 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Johannes
-
-Thank you for the review.
-I already had some concerns about the peek approach during development, as
-it was difficult to implement cleanly.
-Your feedback confirms those doubts, so I am reworking the implementation
-to avoid the peek API entirely.
-I will send a v4 with the new approach.
-
-Best regards
-José Ignacio
+SGmjrAoKSSBzZW50IHRoZSBsYXN0IHY0IHZlcnNvbiBpbiBhIG5ldyB0aHJlYWQuCmh0dHBzOi8v
+bG9yZS5rZXJuZWwub3JnL2xpbnV4LXdpcmVsZXNzLzIwMjYwNzIyMDk1NDE5LjE0MTEwMDMtMS16
+aGFvamlubWluZ0B1bmlvbnRlY2guY29tLyAKClJlZ2FyZHMsClpoYW9KaW5taW5nCgoKCgo+SW4g
+dGhlIGZ1dHVyZSBwbGVhc2UgcG9zdCBuZXcgdmVyc2lvbnMgb2YgcGF0Y2hlcyBhcyBhIHNlcGFy
+YXRlIHRocmVhZC4KCgoKPgoKCgo+L2plZmYKCgoKPgoKCg==
 
 
