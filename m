@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDB8FC53209
-	for <ath11k@archiver.kernel.org>; Sun, 26 Jul 2026 22:19:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 296CDC5321C
+	for <ath11k@archiver.kernel.org>; Sun, 26 Jul 2026 22:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=Z6N0boIWyU0J5K0rc/NgMjVGoZ83sDuVKA9GvDpL6Ug=; b=ai5LBCXBZlRYSchyIcINBpbxdi
-	LynFny0FyJfuCEqdEbSxJrEtBpPiFTdtl9m436V6ltk87FpE6CI0oGXZ9JW4Up+Ao2UBVqCveFgLK
-	zCRbBdpdb/t189XRKmklYDe6aNqdKpRqLyS8dB1+SVd/Vd+tBjLugS9dlEy80Vvdv+GhlziogXu90
-	aXJXaKfH5Jbkgk6WP6BLuWKt/w7lRWKC0vTGrx6+Wv37S1bLNiLWuKPZnGMhipex/IAebezLMdyRe
-	xAChDPIQd3r9vcTTxdtXghTdv7n8Tjl+z9uVaG/DK4MhE75CWsg5aBoH4tnJgMfLbnrZVW5oniR9K
-	R30z2qMA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=K9fcVVwyHbUhNRIUxOg0dRn9BUzSneLTHuKU2xQuQd4=; b=lZzcggLfiDUhQ8A72Q408AKKNV
+	n0OMEC0vn4EEvBKnqdSlgkwc/P9+4/lmx5Vaqa0i7Y2zdp0SKboIJ87nHZmHhUHx4l+z7jhtY/IJs
+	qhUCvtbVz49N+qO//I0lbbBxjb2vD5pw4Cx5IR9COxVIKCo1Jw9T8ouoHLdCJvRE3ZzE+iePKyI8v
+	VpaipIye0OIerbEZccj6mfTsPCVi1V3JstVV9gTVmLGrgov0frk8M5he639tVIpqRSezoHdJJEyTU
+	fXe2o4HKmHomy26TbTCi1XHAJjzwhDek1I3bzvHUakLLysW/GIZmP/nsF1juXmPD6c7XqiwZRSF7M
+	2N+D725w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wo7CE-00000001ggG-3Y7q;
-	Sun, 26 Jul 2026 22:19:46 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1wo7CH-00000001ghW-4Bnp;
+	Sun, 26 Jul 2026 22:19:50 +0000
+Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wo7CC-00000001gfM-0f6q
+	id 1wo7CE-00000001gfr-2ILg
 	for ath11k@lists.infradead.org;
-	Sun, 26 Jul 2026 22:19:45 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-c15ba3a2b4bso268127566b.1
-        for <ath11k@lists.infradead.org>; Sun, 26 Jul 2026 15:19:43 -0700 (PDT)
+	Sun, 26 Jul 2026 22:19:47 +0000
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-c15e03c2763so400488166b.0
+        for <ath11k@lists.infradead.org>; Sun, 26 Jul 2026 15:19:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1785104382; x=1785709182; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Z6N0boIWyU0J5K0rc/NgMjVGoZ83sDuVKA9GvDpL6Ug=;
-        b=IICSFTpiGcS9l5WPh3i4WUt1w1H7GNLAPha1Rqj/uP51kv//lcn2tAbwtQ0MF/XkZX
-         SRuB8lkv6vN+odBKo3E5ZQv8hw/4aLJKD5OeGds8at+hCzPIsixRVnzeTlcOumoCxV4I
-         Y+LinMJPzH6xxY/2STBrrn7vh8Bp8swpRoc0spRJ9rQEjQYGzJJuDw3MebAcEamMOSv1
-         mP7bpI/wcn0Au4Vw0jkOaWGAc9CEXoU95ivd9G8bJCk958ti6Cp1eSSHLSw1Dc7hjhI5
-         43uAqp/7JWdBHsMgCiyDtjyi3cMmReXwLFTLqp38ALitRCv1wQTe04WiQ44Q0pRSUBMX
-         HUbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785104382; x=1785709182;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=bairaktaris.de; s=google; t=1785104385; x=1785709185; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Z6N0boIWyU0J5K0rc/NgMjVGoZ83sDuVKA9GvDpL6Ug=;
-        b=MeLTwC3vpkJQhv4TwDN7JgvMNMmCC96TSPQJI+3sSgZG+voVuph+DQVRIQDTtUVYWv
-         1DV00NYWYytRyE1fCUI7BpYpSRo6tKnys5Jb9wQX7fRceYmASWUAxLAp1dcj10vvaAli
-         Ds/2ty+sBgr1bdmRNWN47DCnhEiUj/pqQPSxPns95L0U7kqM/PWHmfMM/cK1eRPhABdu
-         ACeqFJIQahoPUYebJjSx//TyxrvKTt2N0GwVq0p4pH92mtr9gFPAcXhKAj5yJnORsd7M
-         ZKetM8wz2pqSZq8JGFCSbOutDpv8WlNEyPXoWYJ2T2kWZepF79ijTc6NcGXKyE7ZmZXx
-         p1sg==
-X-Gm-Message-State: AOJu0YyOCdWdG9r2ScBbqF63tuE4+SWvEjBYIO6kvgzrba3Zw/PWJj9t
-	9j28ldnNO1YAGVyB2bWS8uUVOB5PGHDT9oUX1+JEK36wMnbKaEao5REzvPEzULYWkA==
-X-Gm-Gg: AR+sD11k8Lvs/gxhRYtaSB5fDpFhTkNYKO2gv1FVZqTPI3X0i6D4Z5wDpMoR6r12S8D
-	tgbQDPvIVLmOgMunxitB26ZE4UAeNmQOZd0pfDkEdCvBkqNhcAEymVO9L5UjE9nQ9dh5aZUVoT4
-	1s/znthoM2u+ml/TgRSYJtVvTa93g8HNCCVn9DdsUjsxtPN5sn7iMC7cT0uLeSlOSiJyNJPFkt6
-	zoJgP8rPr+UIEhZp/6uYtGf+f5irjxlpdL/tb255zPBONfALFDNz06OO5qzGs3hOXRLNRrXj4oq
-	cLujpTrFrZQsUksewmwwaStH35TZBGU0JoOa9N67LD5nGqV/sZRQ53TlDIEG7KTx4/zyn/D6eqE
-	+b7veUIH+5JwTArGBIPFgyVQOQSMzich1/qBLLEzljprsU/x1Fq2tVxpt4eyIXPYSrkH3l/zHgq
-	hR7xAcO+pyfq/cOI++WLIq/LKN8Ta274Qj1zMFl/BLH+/oPXN0rUW2mY83H8W9VFcvfeTfTB00Z
-	C33HcVE/ETE4zBgD9rQE/5LBXTluQgX9mw4gXttoS8lQKq2gwKJZcXyDw+VNZgvjnd0A2YuEZVP
-	8zPapX+N2tuHtyEI6VBlfi0LM7ecRZbRlM2QGIYBV94ypL3Tgz++xx6yARgygYYERQvxIAOr98m
-	1T2DVcG5aeruNjcbYz2soOSr9gxALkho=
-X-Received: by 2002:a17:907:72cf:b0:c15:abe2:e1df with SMTP id a640c23a62f3a-c1f1f07e1d6mr239191166b.43.1785104381647;
-        Sun, 26 Jul 2026 15:19:41 -0700 (PDT)
+        bh=K9fcVVwyHbUhNRIUxOg0dRn9BUzSneLTHuKU2xQuQd4=;
+        b=PSyHK4QY7A2YUPhZXwEZeJPxoXNMbF1aTgZ2Wubq/XIopn6fZPOkJ6WrUIYUGJg76/
+         1geDY5ox5WdZyhd+Btvowua4hol8qLvSByGiVGXOzgEWF9QrKj/zDIXPP1qisAE34HhU
+         U2eZxEcNsIGzdJmo15YTcKWCN9oERAu6rhUk9FjHI4NSGIhcfqRcGW8PRjS5oUsKBOru
+         oD9Ugrxiy7Ci2dm9+LruvHs4pA8MpYAOKz4FIqctHnFMPddADg3z9M/PyOxzmjHmZLId
+         fpWGi2q3UPuWWMGSyOH+OR+ynl4nC6cjer37w+b+AKskQrqhvqZg41QabOQqOdzok2/o
+         wd1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1785104385; x=1785709185;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=K9fcVVwyHbUhNRIUxOg0dRn9BUzSneLTHuKU2xQuQd4=;
+        b=R4SF2EPjJhQoNbVffliBhU8XC87v+o7b6F0TmD8UtrDym3OejZIIW4vbeIN3XyJcKy
+         FK1NHtUzdnNO5smuMrc4FNVHKs9QakoNTewf+UXfqc97NmVguGzgkqg2nxCH+tVxpBJ/
+         2ph6/z1Pwr+5BG3N+7gnsYfncuPyIQhpjUNaQKggNTF5ka6HHdy/HLXbzEbyIGk0kA6+
+         ppt8qvSWptk11abP3pE1TV7G+gsEt37wTD3V3+BbRPgSklGp94cyUEw/B7UKlfx9A8bd
+         hWQiRlWmbJVPvmBp+yVKMy9XOe56oT+Hm6WuU3NlrKbxQ7E2T0COd1+uhwXh91/jqwMs
+         Gosw==
+X-Gm-Message-State: AOJu0YzN2PBxUyqBOsmdgcpT2ssnOqTwQDxuV8UzBdG+aoiCfIR9BsQz
+	eim1621dOYSp4OUiSybF/Jiqz9D6j+GdwftFMRgQp2WrNfDW7VQ2Vj0Xx6hY0YJTeg==
+X-Gm-Gg: AR+sD12v88bNUZgSoduCEF+Yhms5FmdnQcI236xdivHWPNb8+ARW+fzFobh4nldWlUj
+	2AhCMpFt1vcDqBQ2hLes8Sw19P459u3p+FsLgZmUPYSSWhSsiwkz+cVpzFucCDOfaB86Ev9Vbw6
+	o0tTHYD6UqbUHxTOx3drHJ/V//3g1LTIB6LRmy4g21Vr5/OPr+p5sDslLG9xCwpY4GIe256wvtY
+	p5dV9f1sor+dyO4K4mzeKQzJGOhrqjyJIrnja0oxOvYYGFOjqB0cVdFFZQ7KJF080yF6LsIdV/H
+	xwtnsBzwSRwbDrmYUjHYXW5zQwzy5lb1HQwkj5zeYJlkTPuVGcTX+evi8xsvcUbeKshAd1BSJQV
+	WZQbmThZi7TBrZ2y/ScGvk0AV7rnpC/G2yVQqXzXxQ+SBrDq1QHQcFg70ED5kH+CT2BDQeUjwqe
+	MjZSm4S2WwuVEroYsGNHAzRGC5HFLvw/ZYHeSgknnZ/unLDhCyfAWP+tkTdCXTM58ddTxm6r9kD
+	fsngcAiPHnia7riGBKpLvMd2YzuVj90aFqAD/mtiBi5Vw9XxvQVI7xj35zBDS08LJq1YsPK8sHV
+	YEYOD7j7pA7jGUQLags1whCibfKmyRhKEeIUHS0y96St2Ol2RSYeNmsabHCFPJAw2xtfAhQAryc
+	noORM9VSq1rQKkwLLvuita/HfWaPzNCQ=
+X-Received: by 2002:a17:907:9286:b0:c1c:1fbf:5d18 with SMTP id a640c23a62f3a-c1f13388df1mr379927666b.3.1785104384611;
+        Sun, 26 Jul 2026 15:19:44 -0700 (PDT)
 Received: from Desktop (p54affe4b.dip0.t-ipconnect.de. [84.175.254.75])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c1c32a76fecsm561599466b.8.2026.07.26.15.19.40
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c1c32a76fecsm561599466b.8.2026.07.26.15.19.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jul 2026 15:19:41 -0700 (PDT)
+        Sun, 26 Jul 2026 15:19:43 -0700 (PDT)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: jjohnson@kernel.org
 Cc: ath11k@lists.infradead.org,
@@ -78,15 +79,17 @@ Cc: ath11k@lists.infradead.org,
 	baochen.qiang@oss.qualcomm.com,
 	vasanthakumar.thiagarajan@oss.qualcomm.com,
 	rameshkumar.sundaram@oss.qualcomm.com
-Subject: [PATCH ath-next v2 0/2] wifi: ath11k: fix SoC reboot on firmware crash on AHB
-Date: Mon, 27 Jul 2026 00:19:06 +0200
-Message-ID: <20260726221908.104873-1-julius@bairaktaris.de>
+Subject: [PATCH ath-next v2 2/2] wifi: ath11k: disable interrupts during firmware crash recovery
+Date: Mon, 27 Jul 2026 00:19:08 +0200
+Message-ID: <20260726221908.104873-3-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260726221908.104873-1-julius@bairaktaris.de>
+References: <20260726221908.104873-1-julius@bairaktaris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260726_151944_224617_267BDBB9 
-X-CRM114-Status: GOOD (  13.05  )
+X-CRM114-CacheID: sfid-20260726_151946_601532_F4E94AB8 
+X-CRM114-Status: GOOD (  12.96  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,52 +104,71 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On IPQ8074 every firmware assert takes the whole SoC down. The DP NAPI
-keeps polling while ath11k_core_reconfigure_on_crash() frees the data
-path underneath it, and dereferences a ring the teardown has already
+On IPQ8074 a firmware assert reboots the SoC:
+
+  Unable to handle kernel read from unreadable memory at virtual address 0
+  pc : ath11k_hal_srng_access_begin+0xc/0x60 [ath11k]
+  lr : ath11k_dp_rx_process_mon_status+0x15c/0xd84 [ath11k]
+  Call trace:
+   ath11k_hal_srng_access_begin+0xc/0x60 [ath11k]
+   ath11k_dp_rx_process_mon_rings+0xa0/0x5d4 [ath11k]
+   ath11k_dp_service_srng+0x1f4/0x348 [ath11k]
+   ath11k_ahb_ext_grp_napi_poll+0x34/0xd4 [ath11k_ahb]
+   __napi_poll+0x38/0x188
+   net_rx_action+0x120/0x2c0
+
+ath11k_core_reconfigure_on_crash() tears the data path down with
+ath11k_dp_pdev_free(), ath11k_dp_free() and ath11k_hal_srng_clear(),
+which memsets the ring list. The DP NAPI is still running while that
+happens, so it services a ring whose address pointer has just been
 cleared.
 
-The interrupts used to be disabled at the top of that function.
+That function used to disable the interrupts first, until
 commit d455e805de70 ("wifi: ath11k: rearrange IRQ enable/disable in reset path")
-moved the disable into ath11k_core_reset(), which AHB parts never reach
-on a real firmware crash: reset_work is queued only from mhi.c and from
-the debugfs hw-restart handler. Patch 2 puts the disable back on the
-crash path. Patch 1 is a prerequisite - the CE half of the quiesce is a
-no-op on AHB today because the bus never implemented the hif ops.
+moved the disable into ath11k_core_reset(). reset_work is only queued
+from mhi.c and from the debugfs hw-restart handler, so AHB parts never
+run it on a real firmware crash. Their recovery goes QMI server exit ->
+restart_work -> ath11k_core_reconfigure_on_crash() ->
+ath11k_core_qmi_firmware_ready(), and nothing disables the interrupts
+anywhere along it.
 
-Reproduced and fixed on a Xiaomi AX3600 (IPQ8074 hw2.0), with no
-out-of-tree modules loaded, using the debugfs simulate_fw_crash
-'assert' trigger:
+Disable them again on the crash path. The reset path has already done
+so by the time it gets here, hence the ab->is_reset check.
 
-  before: 2/2 asserts panic in ath11k_dp_rx_process_mon_status() and
-          reboot the SoC
-  after:  3/3 asserts recover, 5 firmware boots across a single 397 s
-          uptime, no panics, both radios stay up
+This is also why the debugfs hw-restart trigger never showed the
+problem: it goes through ath11k_core_reset(), the one path that still
+had the disable.
 
-Note the debugfs 'hw-restart' trigger does not reproduce this, since it
-goes through ath11k_core_reset() - the one path that still disables the
-interrupts. Only a real firmware assert does.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.12-01460-QCAHKSWPL_SILICONZ-1
 
-Patch 1 is by inspection: it makes ath11k_hif_ce_irq_disable() take
-effect on AHB, which also fixes the existing call in
-ath11k_core_reset(). I have not managed to trigger a CE-side crash on
-its own, so if you would rather see that split out or dropped, say so.
-
-Changes in v2 (no functional change, review comments from Jeff on 2/2):
-- separate the ath-specific Tested-on tag from the upstream tags with a
-  blank line
-- use the standard kernel block comment style, with /* on its own line
-
-v1: https://lore.kernel.org/ath11k/20260725141757.1316877-1-julius@bairaktaris.de/
-
-Julius Bairaktaris (2):
-  wifi: ath11k: implement CE interrupt enable/disable for AHB
-  wifi: ath11k: disable interrupts during firmware crash recovery
-
- drivers/net/wireless/ath/ath11k/ahb.c  |  9 ++++++++-
+Fixes: d455e805de70 ("wifi: ath11k: rearrange IRQ enable/disable in reset path")
+Assisted-by: Claude:claude-opus-5
+Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+---
  drivers/net/wireless/ath/ath11k/core.c | 10 ++++++++++
- 2 files changed, 18 insertions(+), 1 deletion(-)
+ 1 file changed, 10 insertions(+)
 
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 8039124e7832..d2ed6a0ea7e3 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -2334,6 +2334,16 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
+ 
+ 	mutex_lock(&ab->core_lock);
+ 	ath11k_thermal_unregister(ab);
++
++	/*
++	 * ath11k_core_reset() already disabled the interrupts on the reset
++	 * path; only the firmware crash path reaches here with them live.
++	 */
++	if (!ab->is_reset) {
++		ath11k_hif_irq_disable(ab);
++		ath11k_hif_ce_irq_disable(ab);
++	}
++
+ 	ath11k_dp_pdev_free(ab);
+ 	ath11k_cfr_deinit(ab);
+ 	ath11k_spectral_deinit(ab);
 -- 
 2.53.0
 
