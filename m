@@ -4,138 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E328C54F4C
-	for <ath11k@archiver.kernel.org>; Tue, 28 Jul 2026 05:57:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37B99C53219
+	for <ath11k@archiver.kernel.org>; Tue, 28 Jul 2026 06:11:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=F+odnqadZBL3FcgD3fTy4z7A88GEP8qiW9be37JO80U=; b=tNQPPwfdhvJkDJHekHkNlJc44I
-	x4ojbtJopxa1i2aH0rvyZxFXOE6uRK4aw0DF8L6ml/weQDGKx2Gi1q345khVN74SesC2WrG8YvfAU
-	yFb5OWtHk8Vu2gUHXFIhvC8VRCfreNGvWT6Zk6RdKgL6dovAx56kZWQuc3n9ub8NDt/YkjW1w4/du
-	qBqpB+vxLilGFwnqGaOYbf5ZjPW0FlZOiDrn6o+U1e9wOPJes3nerfxPMuedTLBJdsEe4L8e47Wtl
-	9DDHlQClYuPJL9TiKfpAGjDFCIsO2CSgwmr97sYQUrlSo2el7SJbF4FgP8tBGxV4AN2rkKpcifgQx
-	fT2aLG2w==;
+	Content-Type:Message-ID:Mime-Version:References:Subject:Cc:To:From:Date:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Owner;
+	bh=vlh7QyuhrdQup/erTQkkWx6jiTl4VPd5q3PsfGoy/Dc=; b=ga4/Nsf6ZKITzUdlA27fh6ezoc
+	+evh+96dSONuTXzgd/6g9IOV+2TmSY0lnhyMW4U0WF4QZVrZ2vXl/03Ds1Sg5++jxPA+mre+tbXeO
+	Avj9od/8IA/yRoEzTBv/h8mhw5fgD2YznK8KaaQfSY3y17j0JMik00VfjvUdZ4EweGuMyQqCOL+Ej
+	MxzQtV7eXihNiRVfrQ1cV7dnTqx58gmOcykzw4o0BQz1eDt/TK84S+VSiWEZnR0iqiITlVYWVD12Y
+	TH23Z3N8W3BrA5VCOGlMwKmeIBI4IcSRYdAAyFTgNHHecHRL+AARxgJW0F4l094VaTp3epF2hvuqS
+	z9jYnOiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woaoM-00000004V3F-0Ujn;
-	Tue, 28 Jul 2026 05:57:06 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wob22-00000004Vx4-2GUg;
+	Tue, 28 Jul 2026 06:11:14 +0000
+Received: from smtpbgbr2.qq.com ([54.207.22.56])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woaoI-00000004V2N-30iL
+	id 1wob1y-00000004Vm6-1dmq
 	for ath11k@lists.infradead.org;
-	Tue, 28 Jul 2026 05:57:04 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66S3adEh1527550
-	for <ath11k@lists.infradead.org>; Tue, 28 Jul 2026 05:57:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	F+odnqadZBL3FcgD3fTy4z7A88GEP8qiW9be37JO80U=; b=M2J7ZNOjbhORguU/
-	/IABY3powGCGKcXMlgHwuH63ep/j4C8mL2b+lpeUUI1LO8I+SZdfZsOu3P0njWrG
-	QbJvEeCcTi1IWGD1J3GFFwwLl9HEOIq7oEL9vaxDXW5Pex0+NCnRDZW0zoOlQp35
-	fMwrPLQ9QDBsWk8haEGr6eXHN26qqXJwfz4cxNWTt+EUmMv1pcwuKMzns2K5033P
-	EmGkKkBt+E+oFb98OLgHqIdOuwyZSVi4DkmBqmeF8/pG+vzyxntgW9J51xP9HG8N
-	w5hfT2C6Kx0ewwDNBzSMPAHV5DRyqUTT7an1zX8k8tZeTwtqrxbi6HPROoHL09WF
-	9An0Aw==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fpbn8am99-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 28 Jul 2026 05:57:00 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2cacd6d37edso50762385ad.0
-        for <ath11k@lists.infradead.org>; Mon, 27 Jul 2026 22:57:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1785218220; x=1785823020; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=F+odnqadZBL3FcgD3fTy4z7A88GEP8qiW9be37JO80U=;
-        b=HLK8aG6BAMJIKQklETb85uFPKzf8Ql8MkxBLGe8l/t3l9YK3mcqJ6DHq8cfgRRUB0k
-         fMB/wxCDGcNAIvKGg9ZD6J+PoG+LUvOxn0OmzHYakWl5hFga/tzkdSyn1iWxdy2vmzId
-         uTzCnZALmNtsaKvg8zONPh3sKrBISo79WGTz2Ys0rFRx4qXi+W+XdT2bjYtjXcXVuIPM
-         jWAqW5PahDRuGfH9oVddNr82EhDaGYVoG1HLq5dNvrWrmTA6xVZMDZrOgxhLK/sRsMeh
-         D/nP9jkI2Stu6OtQlaa00B1zrv9nKscFh9R3l1vmez3XFoPy+YePpsnlvWWJXxIerkHU
-         mXvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785218220; x=1785823020;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=F+odnqadZBL3FcgD3fTy4z7A88GEP8qiW9be37JO80U=;
-        b=pNXDN6rmN59yhnRCNSJ8XsXbfIii9Ckz00m8RBfTCBweZt50AUeqDcXri6SnaSm0U+
-         wQdj2/EM8Nzc0rTdhv6AIGIWbQ4d3+qaojon/MczH3fmi0uc37OTTfIDw1KxnVBFf91q
-         PyFfJAWZehKld5IcrMOeEyXw9+heNNHujcn+CnyqPZVScq1SFC8RH5FGCVY4rTUNdRDH
-         yDE8Vxyi18dmUcaFp8Rxc3kFXjpAukGfW0wUNV5fjSI0iz1JKRFsBXJ6FYQ/BBqTnbEL
-         Me9bClNfYGAJ2kxFhdNnOYfVIe3oD5wJGyXMj/n+S/h/0bxooLzngCW9E+TOK2b5l3QC
-         2hCw==
-X-Forwarded-Encrypted: i=1; AHgh+Ro7uo9DoDKVrxnpv2zBoJrOXM9/CGz8i/6pqchV/dkv2f1DqKZmipo+tgwjRrAGEHbrLvtDiyY=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz7zI+dE8M8Nys7GTUR8//cFe4pRL0tYPk+ZCxiInoN0ZStW0ei
-	Xr9Qqr7Ze4J1a72YtKv37fSVOblYF2++XdC7N99JEF9h3iKFqNh+9AdnE6DI+KO8XwlPWlHeCtp
-	mRP3hPs5NA9K7ePrGgs4qA5p8Fh5Z/1eVomDnc/YurNqZs0d//zPn3gvVSQS7aOGt
-X-Gm-Gg: AR+sD11lkEUza9N08TFu629+rUfJyOGWFtVtHW0qi3YRgnAGCLW3Hg6mrTlSMBXuG3T
-	MnN7O08Nw2M2SNr5T1z3FID2hKggkQqUaBE6Kt6z10FQUdaySZ+Ue4UfXOe0+eUEFox46JwzN3J
-	aoA5BNNY+YIniNY/up/nQdxoXb2pl8feRqqTndE2bRuCiUmcREgBfrabY2n72uAteCHVVf/KRuL
-	TDlbtaLwttNjstLhCZxHs05yk2Q1hxnatM0/fGF/ev942szWP4Vc30+KBdpHGRx4heH3EOqyi8V
-	hmE3rY2qBy9sx+zp6NjolLx1eSww+WExBQ1tDgJMyTHkFdF6O9VbVtLDbymfPAbvTkn7b5XwQSg
-	fwmGpWRJ6Gzb+Np/yP5lhLpA1+MeFG4LObEvnsjpXgCOaZCYcMkGTRXo0q1sIL2ypxf3w70Uo2Q
-	==
-X-Received: by 2002:a17:903:2a88:b0:2c9:ae0b:61e3 with SMTP id d9443c01a7336-2d015b145bcmr11801125ad.2.1785218219810;
-        Mon, 27 Jul 2026 22:56:59 -0700 (PDT)
-X-Received: by 2002:a17:903:2a88:b0:2c9:ae0b:61e3 with SMTP id d9443c01a7336-2d015b145bcmr11800865ad.2.1785218219347;
-        Mon, 27 Jul 2026 22:56:59 -0700 (PDT)
-Received: from [10.133.33.251] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2cfde7bc347sm45843315ad.40.2026.07.27.22.56.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jul 2026 22:56:59 -0700 (PDT)
-Message-ID: <1e19adf8-d3cd-47c8-a986-05faae7af3c5@oss.qualcomm.com>
-Date: Tue, 28 Jul 2026 13:56:55 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7] wifi: ath11k: fix resource leak on error in ext IRQ
- setup
-To: ZhaoJinming <zhaojinming@uniontech.com>,
-        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20260728031335.3818736-1-zhaojinming@uniontech.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260728031335.3818736-1-zhaojinming@uniontech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzI4MDA1MiBTYWx0ZWRfX5+RnAB2I0PNL
- D4etx+b9kLeEYnGv7tMrvsmdk35dFWK4axUz0xPvZf1YCZtb0BPEUnNUIgv41Zsr+vPpGc+/VqK
- tK1FSrUOrsz3SW0dAxl73BAqYx2DavWCEGsRLlwEb6Sja0+5aJA9Wf02qtV1fzrf/8s1pa+O841
- mXJA+t7V6gqviQxbgQI0+knJ92eyd2O5QCfMwa5Koew1FeAbXaRMjQY/byq/0s6y7AvQJvSByCi
- VvRJX77yIPZ8Wc7TADMzBnT0iwCvnweMa/HaEyvIIXz/QWJ/nbJYEJPU7SoVIgFhakX3LC6/vNa
- u8XsS3LmuCbCkbqn0dIl/oRTfL8HgQTtuB9NA67rpZRl/0kFVEpzAwA2R1p8mYWs6tFXmKmh/Ws
- OsfMqFkYFS0+n+RbCxfX1ucGHTCyrYGrhOi6o8Iy+1oih0t3MO/Ni1xCmpbLUfEvS2aUwrejr9n
- eHWKnW3cc+s8Tl8Lsbw==
-X-Authority-Analysis: v=2.4 cv=RO+D2Yi+ c=1 sm=1 tr=0 ts=6a6844ac cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=iHwBjlyiAAAA:8 a=X7nvTDC9Kz5FJV0lFOkA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22 a=uNSKXYNwxGiU6LD0JREI:22
-X-Proofpoint-ORIG-GUID: dnxDgWe5MZITdVdUHaEy4-ti-2rJDbPj
-X-Proofpoint-GUID: dnxDgWe5MZITdVdUHaEy4-ti-2rJDbPj
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzI4MDA1MiBTYWx0ZWRfX6bEz9+1AU9iU
- k2BDtXhwBlkz1Fo8AhDxpRFuJn+jnj3FjmWcfZ1zFt4RjbI8YA/YTj3C4DqpPmpK2TF680HhGIb
- YF2idwI18DwhzDH6S2yExWB+FI43i38=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-28_01,2026-07-27_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0
- lowpriorityscore=0 adultscore=0 clxscore=1015 malwarescore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607280052
+	Tue, 28 Jul 2026 06:11:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+	s=onoh2408; t=1785219051;
+	bh=vlh7QyuhrdQup/erTQkkWx6jiTl4VPd5q3PsfGoy/Dc=;
+	h=Date:From:To:Subject:Mime-Version:Message-ID;
+	b=lpNQXG91KPzFvpW/6ZGSfFOIXMtrvoruogxm+Z2VFi0FBMwe1CqT6Z4oOar5Xp8w3
+	 CN7wMCvu9R+CNOlsUg8sdLhe+uTR/PqWJ1BcMZNn5RjDEJAInaLMRUjun/mgGhb8Ij
+	 q9xfYF01tUkgtNjUlmyombIwhTkSq7y01l/17XAQ=
+X-QQ-mid: zesmtpsz9t1785219048tfbf6d5bf
+X-QQ-Originating-IP: G0//23krPZ2uKu0W65Y6+FQMs/cyf5WcboMpEZtAZe8=
+Received: from PEN002676 ( [1.202.39.170])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 28 Jul 2026 14:10:46 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 14532379700892653300
+Date: Tue, 28 Jul 2026 14:10:47 +0800
+From: =?GB2312?B?1dS98MP3?= <zhaojinming@uniontech.com>
+To: baochen.qiang <baochen.qiang@oss.qualcomm.com>, 
+	"Jeff Johnson" <jeff.johnson@oss.qualcomm.com>
+Cc: linux-wireless <linux-wireless@vger.kernel.org>, 
+	ath11k <ath11k@lists.infradead.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7] wifi: ath11k: fix resource leak on error in ext IRQ setup
+References: <20260728031335.3818736-1-zhaojinming@uniontech.com>, 
+	<1e19adf8-d3cd-47c8-a986-05faae7af3c5@oss.qualcomm.com>
+X-Priority: 3
+X-GUID: 9303332F-4AD1-41BD-B14C-819190D565E8
+X-Has-Attach: no
+X-Mailer: Foxmail 7.2.25.375[cn]
+Mime-Version: 1.0
+Message-ID: <1C78A779F3AFA320+202607281410457939688@uniontech.com>
+Content-Type: text/plain;
+	charset="GB2312"
+Content-Transfer-Encoding: base64
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: ObFg/4fca5DRuJhVsUeYYMSClXXAngEhWJawz+3dYMCMYvQJX9y+FXzH
+	ySAt3mpvFPQhfDU6TiAPZtibMKNtnz+W1rUJDpdDVSPnSjlKdi4xzHDlilz4vOK/55/OBJI
+	jx+51g+sUNS1SGAwqREBt5K3CaZ7Y6WqpLBeiIRr8V/82QfIDgssY4YoJUH7KfiCU+D0MXh
+	itNGRhLGFXgMyV88+C1hOI7ymw9cTz7l/dw+go7TOonGK+tc5w1CEOfvFCZgQL2STv1wQNb
+	Yl+EY7D0RtjCwFSE6Og/Yl7lkapWdSyGlG4xdEFt3jMGYv3GAPeBYU+iDX+4bX6qh8VQ46e
+	P5OYyHJBZD2NXALK2xJG1IH8vw6zF0oaEZ8fvAOpTiLSsqvo8CAzS3y4PqtpHSjKl2JmuZW
+	hCsW6w58NhcykKKK4VsEODMbQWxY1etoe8vi6Xz3NHIUATMtcZ7i9MeVbx+l2Jf0z1Wn8Kn
+	oe+l0e+Xjvh7APvXAnSpROfHBXfsbh+pSwZ5vRHmG5UF8CwTzm9SFTOkBLhTewgG7I/M7PU
+	+im9lfZNsK22Ct7cj7chJPToMR7/untxnU7+2nKaTUotGr8tgNjLNhiYQB0WnbpJJPBi6Ks
+	0yFVeC3++OsRQPBb8H+OyqjS5NIGccDWMzrBMX/0ZWH49VYJpQomqF/u7S72agdHlYWumSJ
+	6/BLM+um+mHhhYB7im/wln9OyY1ZY+HszN53vS3X2F4fhRyAktaC3kVQ2232gJokkYxbIae
+	OBO1PNkBv7oRN3yNEemsX06SMNoKxhuXeUTncjmSxXMBlU5fZJUBg7fH/gOcl6I9Ft9GWQt
+	6otGzk+AvVnNDcVzmNTB+MoxRA1zV0H8VLZQvfMsvQxfs8Ofs0v0I9jUjNKpaH7jGxJvtdt
+	xp1BCE/kEnSEMKcxw+zjXld7096j6yUUVZh03YGpmNSYGmjojQZ/RVZoT7yjsAFQHwO0+Yr
+	6a0QpHCN/bKyka6Vb9rANVdSBh1zRr50nieoq3ZK5dzFFwyjtdN+V0sB8fjYzxRjn5wZMs5
+	PGLFmrKw6JDIP/YKAUfonzA8CXzAM=
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+X-QQ-RECHKSPAM: 0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260727_225702_881727_154D18EE 
-X-CRM114-Status: GOOD (  35.69  )
+X-CRM114-CacheID: sfid-20260727_231111_236792_0E76CFEF 
+X-CRM114-Status: GOOD (  25.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,244 +98,173 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 7/28/2026 11:13 AM, ZhaoJinming wrote:
-> In ath11k_ahb_config_irq(), when a CE request_irq() fails, the function
-> returns the error immediately without freeing the CE IRQs that were
-> successfully registered in previous loop iterations. The probe error
-> path does not call ath11k_ahb_free_irq() either, so the previously
-> registered CE IRQ handlers remain attached to the interrupt lines and
-> are never released.
-> 
-> In ath11k_ahb_config_ext_irq(), when an external request_irq() fails,
-> the error is only logged and the loop continues. The function then
-> returns 0 indicating success, leaving the device in a partially
-> configured state where some external IRQs are not registered. This
-> causes enable_irq()/disable_irq()/free_irq() to be called on
-> unregistered IRQs during runtime and remove/shutdown, triggering
-> WARN_ON(!desc->action), and missing interrupt handlers lead to data
-> loss.
-> 
-> Additionally, if alloc_netdev_dummy() fails for a later IRQ group, the
-> function returns -ENOMEM without freeing the ext IRQs and napi_ndev
-> that were successfully set up for earlier groups.
-> 
-> Fix all three issues: propagate the error up to the caller and unwind
-> all successfully registered IRQs and allocated resources on failure.
-> Also move ab->irq_num[irq_idx] assignment after request_irq() succeeds
-> in the ext IRQ path to match the CE IRQ path and avoid storing a stale
-> IRQ number on failure.
-> 
-> Link: https://lore.kernel.org/all/b6903572-52cc-4c41-b9cf-5845e387c176@oss.qualcomm.com/
-
-this is not the right way to track old versions. If want to do that the right place is in
-the changelog.
-
-Note if you use b4 tool this tracking burden can be done automatically.
-
-> Signed-off-by: ZhaoJinming <zhaojinming@uniontech.com>
-> ---
-> 
-> Changes in v7:
-> - Resend in a new thread. No content changes from v6.
-
-I mean here.
-
-> 
-> Changes in v6:
-> - Move ab->irq_num[irq_idx] = irq after request_irq() succeeds in the
->   ext IRQ path to match the CE IRQ logic and avoid storing a stale IRQ
->   number on failure.
-> 
-> Changes in v5:
-> - Resend as a fresh thread. No content changes from v4.
-> 
-> Changes in v4:
-> - Drop the napi_ndev NULL guard in ath11k_ahb_free_ext_irq_grp() as it
->   is unreachable in all existing call paths. A silent guard against an
->   impossible condition hides bugs instead of exposing them.
-> 
-> Changes in v3:
-> - Extract ath11k_ahb_free_ext_irq_grp() to handle per-group ext IRQ
->   cleanup and refactor ath11k_ahb_free_ext_irq() to use it.
-> - On request_irq() failure in ath11k_ahb_config_ext_irq(), immediately
->   clean up the current group via ath11k_ahb_free_ext_irq_grp() before
->   jumping to the error label to unwind earlier groups.
-> - Move u32 num_irq declaration before the irq_grp assignment to follow
->   declaration-before-statement ordering.
-> - Extract ath11k_ahb_free_ce_irqs() to handle partial/full CE IRQ cleanup
->   and refactor ath11k_ahb_free_irq() to use it, replacing the duplicated
->   err_ce_irq cleanup loop in ath11k_ahb_config_irq().
-> 
-> Changes in v2:
-> - Move `irq_grp` declaration from for-loop body to function scope to fix
->   compile error in err_request_irq error path.
-> - Set ret = -ENOMEM before goto err_request_irq on alloc_netdev_dummy()
->   failure to avoid returning uninitialized value.
-> - When ath11k_ahb_config_ext_irq() fails, unwind the already-registered
->   CE IRQs via a shared err_ce_irq cleanup path to avoid leaking them.
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-> index 1e1dea485760..ec5bf5c9fd79 100644
-> --- a/drivers/net/wireless/ath/ath11k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-> @@ -431,36 +431,44 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
->  	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
->  }
->  
-> -static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
-> +static void ath11k_ahb_free_ext_irq_grp(struct ath11k_base *ab,
-> +					struct ath11k_ext_irq_grp *irq_grp)
->  {
-> -	int i, j;
-> -
-> -	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
-> -		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
-> +	int j;
->  
-> -		for (j = 0; j < irq_grp->num_irq; j++)
-> -			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
-> +	for (j = 0; j < irq_grp->num_irq; j++)
-> +		free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
->  
-> -		netif_napi_del(&irq_grp->napi);
-> -		free_netdev(irq_grp->napi_ndev);
-> -	}
-> +	netif_napi_del(&irq_grp->napi);
-> +	free_netdev(irq_grp->napi_ndev);
->  }
->  
-> -static void ath11k_ahb_free_irq(struct ath11k_base *ab)
-> +static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
->  {
-> -	int irq_idx;
->  	int i;
->  
-> -	if (ab->hw_params.hybrid_bus_type)
-> -		return ath11k_pcic_free_irq(ab);
-> +	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++)
-> +		ath11k_ahb_free_ext_irq_grp(ab, &ab->ext_irq_grp[i]);
-> +}
->  
-> -	for (i = 0; i < ab->hw_params.ce_count; i++) {
-> +static void ath11k_ahb_free_ce_irqs(struct ath11k_base *ab, int max_idx)
-> +{
-> +	int irq_idx, i;
-> +
-> +	for (i = 0; i < max_idx; i++) {
->  		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
->  			continue;
->  		irq_idx = ATH11K_IRQ_CE0_OFFSET + i;
->  		free_irq(ab->irq_num[irq_idx], &ab->ce.ce_pipe[i]);
->  	}
-> +}
-> +
-> +static void ath11k_ahb_free_irq(struct ath11k_base *ab)
-> +{
-> +	if (ab->hw_params.hybrid_bus_type)
-> +		return ath11k_pcic_free_irq(ab);
->  
-> +	ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
->  	ath11k_ahb_free_ext_irq(ab);
->  }
->  
-> @@ -524,20 +532,25 @@ static irqreturn_t ath11k_ahb_ext_interrupt_handler(int irq, void *arg)
->  static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
->  {
->  	struct ath11k_hw_params *hw = &ab->hw_params;
-> +	struct ath11k_ext_irq_grp *irq_grp;
->  	int i, j;
->  	int irq;
->  	int ret;
->  
->  	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
-> -		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
->  		u32 num_irq = 0;
->  
-> +		irq_grp = &ab->ext_irq_grp[i];
-> +
->  		irq_grp->ab = ab;
->  		irq_grp->grp_id = i;
->  
->  		irq_grp->napi_ndev = alloc_netdev_dummy(0);
-> -		if (!irq_grp->napi_ndev)
-> -			return -ENOMEM;
-> +		if (!irq_grp->napi_ndev) {
-> +			ret = -ENOMEM;
-> +			irq_grp->num_irq = 0;
-> +			goto err_request_irq;
-> +		}
->  
->  		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
->  			       ath11k_ahb_ext_grp_napi_poll);
-> @@ -585,14 +598,11 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
->  				}
->  			}
->  		}
-> -		irq_grp->num_irq = num_irq;
-> -
-> -		for (j = 0; j < irq_grp->num_irq; j++) {
-> +		for (j = 0; j < num_irq; j++) {
->  			int irq_idx = irq_grp->irqs[j];
->  
->  			irq = platform_get_irq_byname(ab->pdev,
->  						      irq_name[irq_idx]);
-> -			ab->irq_num[irq_idx] = irq;
->  			irq_set_status_flags(irq, IRQ_NOAUTOEN | IRQ_DISABLE_UNLAZY);
->  			ret = request_irq(irq, ath11k_ahb_ext_interrupt_handler,
->  					  IRQF_TRIGGER_RISING,
-> @@ -600,11 +610,24 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
->  			if (ret) {
->  				ath11k_err(ab, "failed request_irq for %d\n",
->  					   irq);
-> +				irq_grp->num_irq = j;
-> +				ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
-> +				goto err_request_irq;
->  			}
-> +			ab->irq_num[irq_idx] = irq;
->  		}
-> +
-> +		irq_grp->num_irq = num_irq;
->  	}
->  
->  	return 0;
-> +
-> +err_request_irq:
-> +	for (i--; i >= 0; i--) {
-> +		irq_grp = &ab->ext_irq_grp[i];
-> +		ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
-> +	}
-> +	return ret;
->  }
->  
->  static int ath11k_ahb_config_irq(struct ath11k_base *ab)
-> @@ -629,16 +652,24 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
->  		ret = request_irq(irq, ath11k_ahb_ce_interrupt_handler,
->  				  IRQF_TRIGGER_RISING, irq_name[irq_idx],
->  				  ce_pipe);
-> -		if (ret)
-> +		if (ret) {
-> +			ath11k_err(ab, "failed request_irq for %d\n", irq);
-> +			ath11k_ahb_free_ce_irqs(ab, i);
->  			return ret;
-> +		}
->  
->  		ab->irq_num[irq_idx] = irq;
->  	}
->  
->  	/* Configure external interrupts */
->  	ret = ath11k_ahb_config_ext_irq(ab);
-> +	if (ret) {
-> +		ath11k_err(ab, "failed to configure ext irq: %d\n", ret);
-> +		ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
-> +		return ret;
-> +	}
->  
-> -	return ret;
-> +	return 0;
->  }
->  
->  static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
+VGhhbmtzIGZvciB5b3VyIHJldmlldy4gCkRvIHlvdSBtZWFuIHRoZSBMaW5rIHRhZyBzaG91bGQg
+YmUgcGxhY2VkIGluIHRoZSBjaGFuZ2Vsb2cgc2VjdGlvbiAoYmVsb3cgLS0tKSByYXRoZXIgdGhh
+biBpbiB0aGUgY29tbWl0IG1lc3NhZ2UgYm9keT8gCklmIHNvLCBJJ2xsIG1vdmUgaXQgdGhlcmUu
+IE9yIGlmIGI0IGhhbmRsZXMgdGhlIHRyYWNraW5nIGF1dG9tYXRpY2FsbHksIEkgY2FuIHNpbXBs
+eSBkcm9wIHRoZSBMaW5rIHRhZy4KClJlZ2FyZHOjrApaaGFvIEppbm1pbmcKCj4KCgoKPgoKCgo+
+T24gNy8yOC8yMDI2IDExOjEzIEFNLCBaaGFvSmlubWluZyB3cm90ZToKCgoKPj4gSW4gYXRoMTFr
+X2FoYl9jb25maWdfaXJxKCksIHdoZW4gYSBDRSByZXF1ZXN0X2lycSgpIGZhaWxzLCB0aGUgZnVu
+Y3Rpb24KCgoKPj4gcmV0dXJucyB0aGUgZXJyb3IgaW1tZWRpYXRlbHkgd2l0aG91dCBmcmVlaW5n
+IHRoZSBDRSBJUlFzIHRoYXQgd2VyZQoKCgo+PiBzdWNjZXNzZnVsbHkgcmVnaXN0ZXJlZCBpbiBw
+cmV2aW91cyBsb29wIGl0ZXJhdGlvbnMuIFRoZSBwcm9iZSBlcnJvcgoKCgo+PiBwYXRoIGRvZXMg
+bm90IGNhbGwgYXRoMTFrX2FoYl9mcmVlX2lycSgpIGVpdGhlciwgc28gdGhlIHByZXZpb3VzbHkK
+CgoKPj4gcmVnaXN0ZXJlZCBDRSBJUlEgaGFuZGxlcnMgcmVtYWluIGF0dGFjaGVkIHRvIHRoZSBp
+bnRlcnJ1cHQgbGluZXMgYW5kCgoKCj4+IGFyZSBuZXZlciByZWxlYXNlZC4KCgoKPj4gCgoKCj4+
+IEluIGF0aDExa19haGJfY29uZmlnX2V4dF9pcnEoKSwgd2hlbiBhbiBleHRlcm5hbCByZXF1ZXN0
+X2lycSgpIGZhaWxzLAoKCgo+PiB0aGUgZXJyb3IgaXMgb25seSBsb2dnZWQgYW5kIHRoZSBsb29w
+IGNvbnRpbnVlcy4gVGhlIGZ1bmN0aW9uIHRoZW4KCgoKPj4gcmV0dXJucyAwIGluZGljYXRpbmcg
+c3VjY2VzcywgbGVhdmluZyB0aGUgZGV2aWNlIGluIGEgcGFydGlhbGx5CgoKCj4+IGNvbmZpZ3Vy
+ZWQgc3RhdGUgd2hlcmUgc29tZSBleHRlcm5hbCBJUlFzIGFyZSBub3QgcmVnaXN0ZXJlZC4gVGhp
+cwoKCgo+PiBjYXVzZXMgZW5hYmxlX2lycSgpL2Rpc2FibGVfaXJxKCkvZnJlZV9pcnEoKSB0byBi
+ZSBjYWxsZWQgb24KCgoKPj4gdW5yZWdpc3RlcmVkIElSUXMgZHVyaW5nIHJ1bnRpbWUgYW5kIHJl
+bW92ZS9zaHV0ZG93biwgdHJpZ2dlcmluZwoKCgo+PiBXQVJOX09OKCFkZXNjLT5hY3Rpb24pLCBh
+bmQgbWlzc2luZyBpbnRlcnJ1cHQgaGFuZGxlcnMgbGVhZCB0byBkYXRhCgoKCj4+IGxvc3MuCgoK
+Cj4+IAoKCgo+PiBBZGRpdGlvbmFsbHksIGlmIGFsbG9jX25ldGRldl9kdW1teSgpIGZhaWxzIGZv
+ciBhIGxhdGVyIElSUSBncm91cCwgdGhlCgoKCj4+IGZ1bmN0aW9uIHJldHVybnMgLUVOT01FTSB3
+aXRob3V0IGZyZWVpbmcgdGhlIGV4dCBJUlFzIGFuZCBuYXBpX25kZXYKCgoKPj4gdGhhdCB3ZXJl
+IHN1Y2Nlc3NmdWxseSBzZXQgdXAgZm9yIGVhcmxpZXIgZ3JvdXBzLgoKCgo+PiAKCgoKPj4gRml4
+IGFsbCB0aHJlZSBpc3N1ZXM6IHByb3BhZ2F0ZSB0aGUgZXJyb3IgdXAgdG8gdGhlIGNhbGxlciBh
+bmQgdW53aW5kCgoKCj4+IGFsbCBzdWNjZXNzZnVsbHkgcmVnaXN0ZXJlZCBJUlFzIGFuZCBhbGxv
+Y2F0ZWQgcmVzb3VyY2VzIG9uIGZhaWx1cmUuCgoKCj4+IEFsc28gbW92ZSBhYi0+aXJxX251bVtp
+cnFfaWR4XSBhc3NpZ25tZW50IGFmdGVyIHJlcXVlc3RfaXJxKCkgc3VjY2VlZHMKCgoKPj4gaW4g
+dGhlIGV4dCBJUlEgcGF0aCB0byBtYXRjaCB0aGUgQ0UgSVJRIHBhdGggYW5kIGF2b2lkIHN0b3Jp
+bmcgYSBzdGFsZQoKCgo+PiBJUlEgbnVtYmVyIG9uIGZhaWx1cmUuCgoKCj4+IAoKCgo+PiBMaW5r
+OiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvYjY5MDM1NzItNTJjYy00YzQxLWI5Y2YtNTg0
+NWUzODdjMTc2QG9zcy5xdWFsY29tbS5jb20vCgoKCj4KCgoKPnRoaXMgaXMgbm90IHRoZSByaWdo
+dCB3YXkgdG8gdHJhY2sgb2xkIHZlcnNpb25zLiBJZiB3YW50IHRvIGRvIHRoYXQgdGhlIHJpZ2h0
+IHBsYWNlIGlzIGluCgoKCj50aGUgY2hhbmdlbG9nLgoKCgo+CgoKCj5Ob3RlIGlmIHlvdSB1c2Ug
+YjQgdG9vbCB0aGlzIHRyYWNraW5nIGJ1cmRlbiBjYW4gYmUgZG9uZSBhdXRvbWF0aWNhbGx5LgoK
+Cgo+CgoKCj4+IFNpZ25lZC1vZmYtYnk6IFpoYW9KaW5taW5nIDx6aGFvamlubWluZ0B1bmlvbnRl
+Y2guY29tPgoKCgo+PiAtLS0KCgoKPj4gCgoKCj4+IENoYW5nZXMgaW4gdjc6CgoKCj4+IC0gUmVz
+ZW5kIGluIGEgbmV3IHRocmVhZC4gTm8gY29udGVudCBjaGFuZ2VzIGZyb20gdjYuCgoKCj4KCgoK
+PkkgbWVhbiBoZXJlLgoKCgo+CgoKCj4+IAoKCgo+PiBDaGFuZ2VzIGluIHY2OgoKCgo+PiAtIE1v
+dmUgYWItPmlycV9udW1baXJxX2lkeF0gPSBpcnEgYWZ0ZXIgcmVxdWVzdF9pcnEoKSBzdWNjZWVk
+cyBpbiB0aGUKCgoKPj4/PyBleHQgSVJRIHBhdGggdG8gbWF0Y2ggdGhlIENFIElSUSBsb2dpYyBh
+bmQgYXZvaWQgc3RvcmluZyBhIHN0YWxlIElSUQoKCgo+Pj8/IG51bWJlciBvbiBmYWlsdXJlLgoK
+Cgo+PiAKCgoKPj4gQ2hhbmdlcyBpbiB2NToKCgoKPj4gLSBSZXNlbmQgYXMgYSBmcmVzaCB0aHJl
+YWQuIE5vIGNvbnRlbnQgY2hhbmdlcyBmcm9tIHY0LgoKCgo+PiAKCgoKPj4gQ2hhbmdlcyBpbiB2
+NDoKCgoKPj4gLSBEcm9wIHRoZSBuYXBpX25kZXYgTlVMTCBndWFyZCBpbiBhdGgxMWtfYWhiX2Zy
+ZWVfZXh0X2lycV9ncnAoKSBhcyBpdAoKCgo+Pj8/IGlzIHVucmVhY2hhYmxlIGluIGFsbCBleGlz
+dGluZyBjYWxsIHBhdGhzLiBBIHNpbGVudCBndWFyZCBhZ2FpbnN0IGFuCgoKCj4+Pz8gaW1wb3Nz
+aWJsZSBjb25kaXRpb24gaGlkZXMgYnVncyBpbnN0ZWFkIG9mIGV4cG9zaW5nIHRoZW0uCgoKCj4+
+IAoKCgo+PiBDaGFuZ2VzIGluIHYzOgoKCgo+PiAtIEV4dHJhY3QgYXRoMTFrX2FoYl9mcmVlX2V4
+dF9pcnFfZ3JwKCkgdG8gaGFuZGxlIHBlci1ncm91cCBleHQgSVJRCgoKCj4+Pz8gY2xlYW51cCBh
+bmQgcmVmYWN0b3IgYXRoMTFrX2FoYl9mcmVlX2V4dF9pcnEoKSB0byB1c2UgaXQuCgoKCj4+IC0g
+T24gcmVxdWVzdF9pcnEoKSBmYWlsdXJlIGluIGF0aDExa19haGJfY29uZmlnX2V4dF9pcnEoKSwg
+aW1tZWRpYXRlbHkKCgoKPj4/PyBjbGVhbiB1cCB0aGUgY3VycmVudCBncm91cCB2aWEgYXRoMTFr
+X2FoYl9mcmVlX2V4dF9pcnFfZ3JwKCkgYmVmb3JlCgoKCj4+Pz8ganVtcGluZyB0byB0aGUgZXJy
+b3IgbGFiZWwgdG8gdW53aW5kIGVhcmxpZXIgZ3JvdXBzLgoKCgo+PiAtIE1vdmUgdTMyIG51bV9p
+cnEgZGVjbGFyYXRpb24gYmVmb3JlIHRoZSBpcnFfZ3JwIGFzc2lnbm1lbnQgdG8gZm9sbG93CgoK
+Cj4+Pz8gZGVjbGFyYXRpb24tYmVmb3JlLXN0YXRlbWVudCBvcmRlcmluZy4KCgoKPj4gLSBFeHRy
+YWN0IGF0aDExa19haGJfZnJlZV9jZV9pcnFzKCkgdG8gaGFuZGxlIHBhcnRpYWwvZnVsbCBDRSBJ
+UlEgY2xlYW51cAoKCgo+Pj8/IGFuZCByZWZhY3RvciBhdGgxMWtfYWhiX2ZyZWVfaXJxKCkgdG8g
+dXNlIGl0LCByZXBsYWNpbmcgdGhlIGR1cGxpY2F0ZWQKCgoKPj4/PyBlcnJfY2VfaXJxIGNsZWFu
+dXAgbG9vcCBpbiBhdGgxMWtfYWhiX2NvbmZpZ19pcnEoKS4KCgoKPj4gCgoKCj4+IENoYW5nZXMg
+aW4gdjI6CgoKCj4+IC0gTW92ZSBgaXJxX2dycGAgZGVjbGFyYXRpb24gZnJvbSBmb3ItbG9vcCBi
+b2R5IHRvIGZ1bmN0aW9uIHNjb3BlIHRvIGZpeAoKCgo+Pj8/IGNvbXBpbGUgZXJyb3IgaW4gZXJy
+X3JlcXVlc3RfaXJxIGVycm9yIHBhdGguCgoKCj4+IC0gU2V0IHJldCA9IC1FTk9NRU0gYmVmb3Jl
+IGdvdG8gZXJyX3JlcXVlc3RfaXJxIG9uIGFsbG9jX25ldGRldl9kdW1teSgpCgoKCj4+Pz8gZmFp
+bHVyZSB0byBhdm9pZCByZXR1cm5pbmcgdW5pbml0aWFsaXplZCB2YWx1ZS4KCgoKPj4gLSBXaGVu
+IGF0aDExa19haGJfY29uZmlnX2V4dF9pcnEoKSBmYWlscywgdW53aW5kIHRoZSBhbHJlYWR5LXJl
+Z2lzdGVyZWQKCgoKPj4/PyBDRSBJUlFzIHZpYSBhIHNoYXJlZCBlcnJfY2VfaXJxIGNsZWFudXAg
+cGF0aCB0byBhdm9pZCBsZWFraW5nIHRoZW0uCgoKCj4+IAoKCgo+PiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9haGIuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNz
+L2F0aC9hdGgxMWsvYWhiLmMKCgoKPj4gaW5kZXggMWUxZGVhNDg1NzYwLi5lYzViZjVjOWZkNzkg
+MTAwNjQ0CgoKCj4+IC0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvYWhiLmMK
+CgoKPj4gKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9haGIuYwoKCgo+PiBA
+QCAtNDMxLDM2ICs0MzEsNDQgQEAgc3RhdGljIHZvaWQgYXRoMTFrX2FoYl9pbml0X3FtaV9jZV9j
+b25maWcoc3RydWN0IGF0aDExa19iYXNlICphYikKCgoKPj4/IAlhYi0+cW1pLnNlcnZpY2VfaW5z
+X2lkID0gYWItPmh3X3BhcmFtcy5xbWlfc2VydmljZV9pbnNfaWQ7CgoKCj4+PyB9CgoKCj4+PyAK
+CgoKPj4gLXN0YXRpYyB2b2lkIGF0aDExa19haGJfZnJlZV9leHRfaXJxKHN0cnVjdCBhdGgxMWtf
+YmFzZSAqYWIpCgoKCj4+ICtzdGF0aWMgdm9pZCBhdGgxMWtfYWhiX2ZyZWVfZXh0X2lycV9ncnAo
+c3RydWN0IGF0aDExa19iYXNlICphYiwKCgoKPj4gKwkJCQkJc3RydWN0IGF0aDExa19leHRfaXJx
+X2dycCAqaXJxX2dycCkKCgoKPj4/IHsKCgoKPj4gLQlpbnQgaSwgajsKCgoKPj4gLQoKCgo+PiAt
+CWZvciAoaSA9IDA7IGkgPCBBVEgxMUtfRVhUX0lSUV9HUlBfTlVNX01BWDsgaSsrKSB7CgoKCj4+
+IC0JCXN0cnVjdCBhdGgxMWtfZXh0X2lycV9ncnAgKmlycV9ncnAgPSAmYWItPmV4dF9pcnFfZ3Jw
+W2ldOwoKCgo+PiArCWludCBqOwoKCgo+Pj8gCgoKCj4+IC0JCWZvciAoaiA9IDA7IGogPCBpcnFf
+Z3JwLT5udW1faXJxOyBqKyspCgoKCj4+IC0JCQlmcmVlX2lycShhYi0+aXJxX251bVtpcnFfZ3Jw
+LT5pcnFzW2pdXSwgaXJxX2dycCk7CgoKCj4+ICsJZm9yIChqID0gMDsgaiA8IGlycV9ncnAtPm51
+bV9pcnE7IGorKykKCgoKPj4gKwkJZnJlZV9pcnEoYWItPmlycV9udW1baXJxX2dycC0+aXJxc1tq
+XV0sIGlycV9ncnApOwoKCgo+Pj8gCgoKCj4+IC0JCW5ldGlmX25hcGlfZGVsKCZpcnFfZ3JwLT5u
+YXBpKTsKCgoKPj4gLQkJZnJlZV9uZXRkZXYoaXJxX2dycC0+bmFwaV9uZGV2KTsKCgoKPj4gLQl9
+CgoKCj4+ICsJbmV0aWZfbmFwaV9kZWwoJmlycV9ncnAtPm5hcGkpOwoKCgo+PiArCWZyZWVfbmV0
+ZGV2KGlycV9ncnAtPm5hcGlfbmRldik7CgoKCj4+PyB9CgoKCj4+PyAKCgoKPj4gLXN0YXRpYyB2
+b2lkIGF0aDExa19haGJfZnJlZV9pcnEoc3RydWN0IGF0aDExa19iYXNlICphYikKCgoKPj4gK3N0
+YXRpYyB2b2lkIGF0aDExa19haGJfZnJlZV9leHRfaXJxKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIp
+CgoKCj4+PyB7CgoKCj4+IC0JaW50IGlycV9pZHg7CgoKCj4+PyAJaW50IGk7CgoKCj4+PyAKCgoK
+Pj4gLQlpZiAoYWItPmh3X3BhcmFtcy5oeWJyaWRfYnVzX3R5cGUpCgoKCj4+IC0JCXJldHVybiBh
+dGgxMWtfcGNpY19mcmVlX2lycShhYik7CgoKCj4+ICsJZm9yIChpID0gMDsgaSA8IEFUSDExS19F
+WFRfSVJRX0dSUF9OVU1fTUFYOyBpKyspCgoKCj4+ICsJCWF0aDExa19haGJfZnJlZV9leHRfaXJx
+X2dycChhYiwgJmFiLT5leHRfaXJxX2dycFtpXSk7CgoKCj4+ICt9CgoKCj4+PyAKCgoKPj4gLQlm
+b3IgKGkgPSAwOyBpIDwgYWItPmh3X3BhcmFtcy5jZV9jb3VudDsgaSsrKSB7CgoKCj4+ICtzdGF0
+aWMgdm9pZCBhdGgxMWtfYWhiX2ZyZWVfY2VfaXJxcyhzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiLCBp
+bnQgbWF4X2lkeCkKCgoKPj4gK3sKCgoKPj4gKwlpbnQgaXJxX2lkeCwgaTsKCgoKPj4gKwoKCgo+
+PiArCWZvciAoaSA9IDA7IGkgPCBtYXhfaWR4OyBpKyspIHsKCgoKPj4/IAkJaWYgKGF0aDExa19j
+ZV9nZXRfYXR0cl9mbGFncyhhYiwgaSkgJiBDRV9BVFRSX0RJU19JTlRSKQoKCgo+Pj8gCQkJY29u
+dGludWU7CgoKCj4+PyAJCWlycV9pZHggPSBBVEgxMUtfSVJRX0NFMF9PRkZTRVQgKyBpOwoKCgo+
+Pj8gCQlmcmVlX2lycShhYi0+aXJxX251bVtpcnFfaWR4XSwgJmFiLT5jZS5jZV9waXBlW2ldKTsK
+CgoKPj4/IAl9CgoKCj4+ICt9CgoKCj4+ICsKCgoKPj4gK3N0YXRpYyB2b2lkIGF0aDExa19haGJf
+ZnJlZV9pcnEoc3RydWN0IGF0aDExa19iYXNlICphYikKCgoKPj4gK3sKCgoKPj4gKwlpZiAoYWIt
+Pmh3X3BhcmFtcy5oeWJyaWRfYnVzX3R5cGUpCgoKCj4+ICsJCXJldHVybiBhdGgxMWtfcGNpY19m
+cmVlX2lycShhYik7CgoKCj4+PyAKCgoKPj4gKwlhdGgxMWtfYWhiX2ZyZWVfY2VfaXJxcyhhYiwg
+YWItPmh3X3BhcmFtcy5jZV9jb3VudCk7CgoKCj4+PyAJYXRoMTFrX2FoYl9mcmVlX2V4dF9pcnEo
+YWIpOwoKCgo+Pj8gfQoKCgo+Pj8gCgoKCj4+IEBAIC01MjQsMjAgKzUzMiwyNSBAQCBzdGF0aWMg
+aXJxcmV0dXJuX3QgYXRoMTFrX2FoYl9leHRfaW50ZXJydXB0X2hhbmRsZXIoaW50IGlycSwgdm9p
+ZCAqYXJnKQoKCgo+Pj8gc3RhdGljIGludCBhdGgxMWtfYWhiX2NvbmZpZ19leHRfaXJxKHN0cnVj
+dCBhdGgxMWtfYmFzZSAqYWIpCgoKCj4+PyB7CgoKCj4+PyAJc3RydWN0IGF0aDExa19od19wYXJh
+bXMgKmh3ID0gJmFiLT5od19wYXJhbXM7CgoKCj4+ICsJc3RydWN0IGF0aDExa19leHRfaXJxX2dy
+cCAqaXJxX2dycDsKCgoKPj4/IAlpbnQgaSwgajsKCgoKPj4/IAlpbnQgaXJxOwoKCgo+Pj8gCWlu
+dCByZXQ7CgoKCj4+PyAKCgoKPj4/IAlmb3IgKGkgPSAwOyBpIDwgQVRIMTFLX0VYVF9JUlFfR1JQ
+X05VTV9NQVg7IGkrKykgewoKCgo+PiAtCQlzdHJ1Y3QgYXRoMTFrX2V4dF9pcnFfZ3JwICppcnFf
+Z3JwID0gJmFiLT5leHRfaXJxX2dycFtpXTsKCgoKPj4/IAkJdTMyIG51bV9pcnEgPSAwOwoKCgo+
+Pj8gCgoKCj4+ICsJCWlycV9ncnAgPSAmYWItPmV4dF9pcnFfZ3JwW2ldOwoKCgo+PiArCgoKCj4+
+PyAJCWlycV9ncnAtPmFiID0gYWI7CgoKCj4+PyAJCWlycV9ncnAtPmdycF9pZCA9IGk7CgoKCj4+
+PyAKCgoKPj4/IAkJaXJxX2dycC0+bmFwaV9uZGV2ID0gYWxsb2NfbmV0ZGV2X2R1bW15KDApOwoK
+Cgo+PiAtCQlpZiAoIWlycV9ncnAtPm5hcGlfbmRldikKCgoKPj4gLQkJCXJldHVybiAtRU5PTUVN
+OwoKCgo+PiArCQlpZiAoIWlycV9ncnAtPm5hcGlfbmRldikgewoKCgo+PiArCQkJcmV0ID0gLUVO
+T01FTTsKCgoKPj4gKwkJCWlycV9ncnAtPm51bV9pcnEgPSAwOwoKCgo+PiArCQkJZ290byBlcnJf
+cmVxdWVzdF9pcnE7CgoKCj4+ICsJCX0KCgoKPj4/IAoKCgo+Pj8gCQluZXRpZl9uYXBpX2FkZChp
+cnFfZ3JwLT5uYXBpX25kZXYsICZpcnFfZ3JwLT5uYXBpLAoKCgo+Pj8gCQkJPz8/Pz8/IGF0aDEx
+a19haGJfZXh0X2dycF9uYXBpX3BvbGwpOwoKCgo+PiBAQCAtNTg1LDE0ICs1OTgsMTEgQEAgc3Rh
+dGljIGludCBhdGgxMWtfYWhiX2NvbmZpZ19leHRfaXJxKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIp
+CgoKCj4+PyAJCQkJfQoKCgo+Pj8gCQkJfQoKCgo+Pj8gCQl9CgoKCj4+IC0JCWlycV9ncnAtPm51
+bV9pcnEgPSBudW1faXJxOwoKCgo+PiAtCgoKCj4+IC0JCWZvciAoaiA9IDA7IGogPCBpcnFfZ3Jw
+LT5udW1faXJxOyBqKyspIHsKCgoKPj4gKwkJZm9yIChqID0gMDsgaiA8IG51bV9pcnE7IGorKykg
+ewoKCgo+Pj8gCQkJaW50IGlycV9pZHggPSBpcnFfZ3JwLT5pcnFzW2pdOwoKCgo+Pj8gCgoKCj4+
+PyAJCQlpcnEgPSBwbGF0Zm9ybV9nZXRfaXJxX2J5bmFtZShhYi0+cGRldiwKCgoKPj4/IAkJCQkJ
+CT8/Pz8/IGlycV9uYW1lW2lycV9pZHhdKTsKCgoKPj4gLQkJCWFiLT5pcnFfbnVtW2lycV9pZHhd
+ID0gaXJxOwoKCgo+Pj8gCQkJaXJxX3NldF9zdGF0dXNfZmxhZ3MoaXJxLCBJUlFfTk9BVVRPRU4g
+fCBJUlFfRElTQUJMRV9VTkxBWlkpOwoKCgo+Pj8gCQkJcmV0ID0gcmVxdWVzdF9pcnEoaXJxLCBh
+dGgxMWtfYWhiX2V4dF9pbnRlcnJ1cHRfaGFuZGxlciwKCgoKPj4/IAkJCQkJPyBJUlFGX1RSSUdH
+RVJfUklTSU5HLAoKCgo+PiBAQCAtNjAwLDExICs2MTAsMjQgQEAgc3RhdGljIGludCBhdGgxMWtf
+YWhiX2NvbmZpZ19leHRfaXJxKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIpCgoKCj4+PyAJCQlpZiAo
+cmV0KSB7CgoKCj4+PyAJCQkJYXRoMTFrX2VycihhYiwgImZhaWxlZCByZXF1ZXN0X2lycSBmb3Ig
+JWRcbiIsCgoKCj4+PyAJCQkJCT8/IGlycSk7CgoKCj4+ICsJCQkJaXJxX2dycC0+bnVtX2lycSA9
+IGo7CgoKCj4+ICsJCQkJYXRoMTFrX2FoYl9mcmVlX2V4dF9pcnFfZ3JwKGFiLCBpcnFfZ3JwKTsK
+CgoKPj4gKwkJCQlnb3RvIGVycl9yZXF1ZXN0X2lycTsKCgoKPj4/IAkJCX0KCgoKPj4gKwkJCWFi
+LT5pcnFfbnVtW2lycV9pZHhdID0gaXJxOwoKCgo+Pj8gCQl9CgoKCj4+ICsKCgoKPj4gKwkJaXJx
+X2dycC0+bnVtX2lycSA9IG51bV9pcnE7CgoKCj4+PyAJfQoKCgo+Pj8gCgoKCj4+PyAJcmV0dXJu
+IDA7CgoKCj4+ICsKCgoKPj4gK2Vycl9yZXF1ZXN0X2lycToKCgoKPj4gKwlmb3IgKGktLTsgaSA+
+PSAwOyBpLS0pIHsKCgoKPj4gKwkJaXJxX2dycCA9ICZhYi0+ZXh0X2lycV9ncnBbaV07CgoKCj4+
+ICsJCWF0aDExa19haGJfZnJlZV9leHRfaXJxX2dycChhYiwgaXJxX2dycCk7CgoKCj4+ICsJfQoK
+Cgo+PiArCXJldHVybiByZXQ7CgoKCj4+PyB9CgoKCj4+PyAKCgoKPj4/IHN0YXRpYyBpbnQgYXRo
+MTFrX2FoYl9jb25maWdfaXJxKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIpCgoKCj4+IEBAIC02Mjks
+MTYgKzY1MiwyNCBAQCBzdGF0aWMgaW50IGF0aDExa19haGJfY29uZmlnX2lycShzdHJ1Y3QgYXRo
+MTFrX2Jhc2UgKmFiKQoKCgo+Pj8gCQlyZXQgPSByZXF1ZXN0X2lycShpcnEsIGF0aDExa19haGJf
+Y2VfaW50ZXJydXB0X2hhbmRsZXIsCgoKCj4+PyAJCQkJPyBJUlFGX1RSSUdHRVJfUklTSU5HLCBp
+cnFfbmFtZVtpcnFfaWR4XSwKCgoKPj4/IAkJCQk/IGNlX3BpcGUpOwoKCgo+PiAtCQlpZiAocmV0
+KQoKCgo+PiArCQlpZiAocmV0KSB7CgoKCj4+ICsJCQlhdGgxMWtfZXJyKGFiLCAiZmFpbGVkIHJl
+cXVlc3RfaXJxIGZvciAlZFxuIiwgaXJxKTsKCgoKPj4gKwkJCWF0aDExa19haGJfZnJlZV9jZV9p
+cnFzKGFiLCBpKTsKCgoKPj4/IAkJCXJldHVybiByZXQ7CgoKCj4+ICsJCX0KCgoKPj4/IAoKCgo+
+Pj8gCQlhYi0+aXJxX251bVtpcnFfaWR4XSA9IGlycTsKCgoKPj4/IAl9CgoKCj4+PyAKCgoKPj4/
+IAkvKiBDb25maWd1cmUgZXh0ZXJuYWwgaW50ZXJydXB0cyAqLwoKCgo+Pj8gCXJldCA9IGF0aDEx
+a19haGJfY29uZmlnX2V4dF9pcnEoYWIpOwoKCgo+PiArCWlmIChyZXQpIHsKCgoKPj4gKwkJYXRo
+MTFrX2VycihhYiwgImZhaWxlZCB0byBjb25maWd1cmUgZXh0IGlycTogJWRcbiIsIHJldCk7CgoK
+Cj4+ICsJCWF0aDExa19haGJfZnJlZV9jZV9pcnFzKGFiLCBhYi0+aHdfcGFyYW1zLmNlX2NvdW50
+KTsKCgoKPj4gKwkJcmV0dXJuIHJldDsKCgoKPj4gKwl9CgoKCj4+PyAKCgoKPj4gLQlyZXR1cm4g
+cmV0OwoKCgo+PiArCXJldHVybiAwOwoKCgo+Pj8gfQoKCgo+Pj8gCgoKCj4+PyBzdGF0aWMgaW50
+IGF0aDExa19haGJfbWFwX3NlcnZpY2VfdG9fcGlwZShzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiLCB1
+MTYgc2VydmljZV9pZCwKCgoKPgoKCgo+CgoK
 
 
