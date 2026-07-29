@@ -4,142 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 398BDC54F52
-	for <ath11k@archiver.kernel.org>; Wed, 29 Jul 2026 01:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D430FC54F55
+	for <ath11k@archiver.kernel.org>; Wed, 29 Jul 2026 02:01:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=yl4SkjwOHuqi6RO7BshtqcwKa8UMFH3u0MJsjjRIo6M=; b=q60dakPWvtlPIkexN+Zzd5OHrR
-	PDMjCcI0iaRTR07vPqvMJ+ZwLB7xO6b5ZhJ8nJB7momTdP2vrHkC2o1UgNQKiPAiQKaCi7NjHCTfx
-	kmHyZQeHc15jCI+5KtY113Aq26ASd6EYNno4fUXdF8JWyA9KdH+1rWA4APav4tiu5NovMY1hPuVPe
-	6018s//ob4jmSm/ZYm0QpqMLQy6wrV07YkTLj1fcYsGXb1Jbqigf2KP8/LxXmTXFA0pW2n5CvfrhV
-	clGy1HQF9+0rXtq/XrauxLNr/euG+OaB6fQsAqodGgJZZealKsZlsROSPF/fAhecPRkkkprCrt3iS
-	K/hGzZPw==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=CrLETh4iSEl/P6eqGC67l43WN4aXXH9eFzGL2XXCsNI=; b=DPytt1BRn8clmaFBSA4oa8MT7o
+	wHtWaDQYmS+KZkEzc4LZV+eqd7I5Oq+alkWyQm0I9snofLZgQXTkRpy+trNj1tracqeArLmv5k3EB
+	/wBqkQxikhrBNwJ7RlazSL7A/7xjwcpVtr57PKDdJypaYrBbSIkhCGF4OAUwCb203gH7DbpQZ+FiH
+	Kv3L7zzx0zbKCFUf5tYP92AG0dnjy4y0u2sZJMUiT7r44EoAzcFmte5Kb0QTOUgdb40U7b8QAiK8R
+	C66y2CpmYmbcFOqCYdhsFUcYN5B+f+fXrgotdiPtTvaJR8QslCyq31dQ3C02ydW0I+Texg0RhinBL
+	eit+iOpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wotHi-00000006ce7-2LNb;
-	Wed, 29 Jul 2026 01:40:38 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wotbZ-00000006eQS-2cfE;
+	Wed, 29 Jul 2026 02:01:10 +0000
+Received: from smtpbg150.qq.com ([18.132.163.193])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wotHf-00000006cdb-0HkK
+	id 1wotbU-00000006eOv-2Ci1
 	for ath11k@lists.infradead.org;
-	Wed, 29 Jul 2026 01:40:36 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66T1HGgE526858
-	for <ath11k@lists.infradead.org>; Wed, 29 Jul 2026 01:40:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yl4SkjwOHuqi6RO7BshtqcwKa8UMFH3u0MJsjjRIo6M=; b=VMJZ1tXm/vbsaqZg
-	CRGnqEczqMyH/RsMUKYrqw+8sbSqu4Izqtqi9Am/VzH+KvnOZcrIz8gC7ZZdgt4c
-	7ndQIcgv24ZVLvzaVizB2gcpxfLX50fBpJt5G62i9+9JwTimJyJ1wqth+Q2Q90Ae
-	eX/V1UtMHKtzpIm9eZ1Gw0xQf9prHGuKU3oPp2pzBkCcxg2MlgF9ZFSdl0NILRPH
-	GZMLxvyOWWnxW1XolRji84b19DkFU1F7s6HJoc2RjzTS8tt83WK5/pRnMI7Way1c
-	/05f/c63xV2vCZX9k0oN5ug3urvguU0z9GXrHFfQORIvHIG2ODcwYyuYYfXpdhlw
-	EpBzDw==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fq0q09kfj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 29 Jul 2026 01:40:33 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c88cfe287e1so313374a12.1
-        for <ath11k@lists.infradead.org>; Tue, 28 Jul 2026 18:40:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1785289233; x=1785894033; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=yl4SkjwOHuqi6RO7BshtqcwKa8UMFH3u0MJsjjRIo6M=;
-        b=PN1IebsAM48OyTjDFxg31/BMoQSrHIwkUzEEgM1oAcRhYNmrVklkER7oiJWGDQ9i9R
-         MIkqoYf1BOHNMYxGkKepURDahg+yLZNivQIpILcIRvybPLxfzs9UgwPTvXCGyzYVJ0Kx
-         7qVLH8bkth8FFXJD1xRuNFNel5RqyDePUx6IuWiPboG7eV31GygyXcabKUD2tfdEibHB
-         jnNAbb7qYYEEQUXFJvMEnBDwMcvm4oxQifu8ecBXeg/kHRcSJ+CCzaPBekgZa38LSGQY
-         HqxliQ+NUCs0432Q2lYxMuN0rB4leXe0JAWurJ6DUfE9mFjzuWP23eGR4jQwFmcNXOxy
-         I7kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785289233; x=1785894033;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=yl4SkjwOHuqi6RO7BshtqcwKa8UMFH3u0MJsjjRIo6M=;
-        b=LIm59UPG+w1qJBsXqdlpvusCe53YHrdDGqcOR4x0N3uvIxfnl1MaHDAye/wKloawOQ
-         wg8PCVjfgkvyHYYcGWyKA3T6fGTqCH1Xlvn2G1IQGykUQ9+S/qef4hxCtjBftihxKjrs
-         n4TrJze5KhMDTc4gy1ZCRir+lT2K1G53aGwFB8icvjGE1o4EVRHHNSVIFJt3nb6COsKa
-         pTtAdqZ/PJdctPDEiU0jgjJm+d/zAgp8w/MxlnVnmKlZ1QW8ykFKoFYQ7blS16hRZyyJ
-         jOPUDn4d0PdKvdkkIVRpmfOZyv6CvrInQ2fyRL07H4nrg1/3xcPOVXaTwNX44kC39Tsc
-         mJPw==
-X-Forwarded-Encrypted: i=1; AHgh+RpGN3T/VKPmTCW5zzLdSvIMmxKHSNDqoQseejho6583ZEU/aLsvdwVTPo6drPkpzpi+4C6KjB0=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw9BYPGIQbO7LhZOad8M94Cf06r4SOFjyHdbZCJRMATCDqRIOIb
-	vB8xWJRN/oW9JRoxmTajWV7/oVCiKIrgVL/x6bC4lN8pOaOsBawhmeVmFq9FwtGOUFSf99eLtIJ
-	fpaZJJXp8jy2AgJ6vHemDf7Aq+xJ1o1mwDkhbrWM9cBO7/QksOfgO6qJbF8rK/Kfm
-X-Gm-Gg: AR+sD12RCXmHN+r6S6W0B+NB5qt3kdh5xsPpW8+gF45Qb/k5LMWyMtKynOjWml8rQr9
-	lPkOsZWeMsXNu9S58GZeX4mxx6sFBoC/6gsEQgJoxmdxcW2wReQxWODk9NDtoFDLVvYlNaF2opI
-	+pWZ6//7odh+NBVb71/Z4sVCBAiIaAfpR/j3PqKhuKr0pQC9dkWhtmnORrx4IA5axOHCB6IZjA0
-	5kT5IdDR93YfkJn4YGspOJ/6C97J5AUsYpqKnrlvzOfJpDfOypWGB1geQOTT+Z2iL173OmZYLVC
-	mTUa9O0HOv9BH2L/+f8PayPhur3DB3D8n+zODnSNZs0PXJUuwdcm/7VkQjiE79djcVEQY3L2Std
-	gaCvb1QU9q6qPOJg1XZgrd2gXKgGp75sXWKYngZEqD/RtUaKp5FSJMwkdn3pCwXs9MYBhL4gDlA
-	==
-X-Received: by 2002:a05:6300:2206:b0:3c3:a31b:3949 with SMTP id adf61e73a8af0-3c8aafb6e6amr5808971637.11.1785289232880;
-        Tue, 28 Jul 2026 18:40:32 -0700 (PDT)
-X-Received: by 2002:a05:6300:2206:b0:3c3:a31b:3949 with SMTP id adf61e73a8af0-3c8aafb6e6amr5808950637.11.1785289232431;
-        Tue, 28 Jul 2026 18:40:32 -0700 (PDT)
-Received: from [10.133.33.251] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cbdba7341c0sm194223a12.24.2026.07.28.18.40.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jul 2026 18:40:32 -0700 (PDT)
-Message-ID: <ef64b516-49e5-48b0-bdbd-5a62476d012f@oss.qualcomm.com>
-Date: Wed, 29 Jul 2026 09:40:29 +0800
+	Wed, 29 Jul 2026 02:01:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+	s=onoh2408; t=1785290435;
+	bh=CrLETh4iSEl/P6eqGC67l43WN4aXXH9eFzGL2XXCsNI=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version;
+	b=TnhPCF3hNn2vNPN+s/aG0JcgE3YLzFbzKiooE84IbSUpJoEL3cQmwmjRKRhUDb4E+
+	 Zgga63uMkkqNpJhXb7USlwWL+GS81kQPKyS2b0JnFheVstvFrgDfU7Wldaf2YpqLlE
+	 g0oDfABkEJknhp8D3UlzrCuMEOmoDfZiKHYuL490=
+X-QQ-mid: zesmtpsz7t1785290431te5a25bea
+X-QQ-Originating-IP: m91qHMmZsmOkvposUvkoyf/ytvEWwnp6lqy5qi6adTE=
+Received: from localhost.localdomain ( [124.126.19.250])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 29 Jul 2026 10:00:09 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 14955744681332169406
+EX-QQ-RecipientCnt: 6
+From: ZhaoJinming <zhaojinming@uniontech.com>
+To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	ZhaoJinming <zhaojinming@uniontech.com>
+Subject: [PATCH v8] wifi: ath11k: fix resource leak on error in ext IRQ setup
+Date: Wed, 29 Jul 2026 10:00:05 +0800
+Message-Id: <20260729020005.219253-1-zhaojinming@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7] wifi: ath11k: fix resource leak on error in ext IRQ
- setup
-To: =?UTF-8?B?6LW16YeR5piO?= <zhaojinming@uniontech.com>,
-        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>,
-        ath11k <ath11k@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20260728031335.3818736-1-zhaojinming@uniontech.com>
- <1e19adf8-d3cd-47c8-a986-05faae7af3c5@oss.qualcomm.com>
- <1C78A779F3AFA320+202607281410457939688@uniontech.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <1C78A779F3AFA320+202607281410457939688@uniontech.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=ZOPnX37b c=1 sm=1 tr=0 ts=6a695a11 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=casdFaPNnGWWuao0AncA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-GUID: Zaa68CUsd6Sb_J61AQv9nfobTQxRl4RK
-X-Proofpoint-ORIG-GUID: Zaa68CUsd6Sb_J61AQv9nfobTQxRl4RK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzI5MDAxMCBTYWx0ZWRfX9rZeXxz/n5kO
- 380xSFqIx5XcwTyP6rRAXckzbpaEcyDLoU5mjLNAr+8zChuYktHyTcKZz45IfwdBK8CjkwUCmot
- xPTQQBzfFlenGdcMZ6q/0+aT+H7rqXwuepQr0e+hP8c9WuBw/osTBdus642uJ73Edjlb/gAdOkq
- Uujd/2Ql0IRjvPlDC/XU+oNxKOeF+NF6qimFTsndh8uQLGfWVqJBI55QPaY1oqzZsXL5r6rI7hU
- 6Xv+be1FG71fiB94JLGdnLcjTYwZ8nlp0IaAlbf3uw7r/xUbn4GtfSPfhUVOT0uO2I5JM8PS9oW
- rVtKN6l4AQmq9WvUDcP1+ljjPoOa/PqTjk4k1BHWB6P2ZwNJ2qgarm3uXVwOmiMMWVfjI1N0J6g
- C7h++uWKEmVR5hkPORsycZNrl8xYf2O/O953PtD1Uydfu2OgL7IXV9Qx7TOiScgytDwnFflEsZj
- Gt8NJj+s+qtCbR2iVfg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzI5MDAxMCBTYWx0ZWRfXxspBFaqYeABk
- ZNWFqXHiM9SWuFAAKwo3RVrWOXxiq86ssE7Ph9rMZCgvBH27H6xqT3jSGQwPC8VRgRtvT3o6dIw
- q4rtfm7jXgoUXovZSxZ5z1WaSEHLctc=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-29_01,2026-07-28_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- clxscore=1015 suspectscore=0 adultscore=0 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607290010
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: OPdvjVtisQSK8sXHbk6V5VvHNSwVgXkB7n6/5XQn3ydsVxXE7oLpj5nm
+	FAAFyddEjwWwvk/M3h10x3dnHoxwBJFeT1U/2bZ/3/3S6+cz57WF20eecmumgfiYaiFRbPB
+	cgcYMNaKnw8YmxP1dN72xMIrxrXkFlyXJkuFJhexa4DuPZGMshSDzCfis/0bUUPKm12TExy
+	O4e4Vwo+PqNNzEsOuliTzie6ESUEiEzF5+A9vbgJrAvG1sUddbCQIYO7vcK5FnZ1eF91Rwq
+	DQunLahlyt9SybaoQZsY4PN6BdCMxApSflnVkpuECqLBxUEF8yPc1iMNtDd2iz0O6GbCn2h
+	2jBv7v9Jwmc2/h7KJO+9Dm8PsTQ6azjkBqOe/26hkXBMZBD1Sb8ex3EiyIEbY7+xeXtJ3ky
+	W2vKgR92+8Txxb3NMrtO9p0GcwIm+mmrs39JQ1oOzZooRiwk8nBxQQzcBKcbKpPnVFu0SeF
+	Vh2nb4ldz163MeSu4Y6C20UbimGsYStepvVKt72QCL8Hq+ON1wm1OJaMtX+t3AQZqrrxpdk
+	cdZhJOPa3PNrztLLPN6h/Hw+xykAIYml1hyNlDyym8VpifYlO4L2/Ucc56sPbv8wLISTw97
+	nxckvW2xcvloqyBGIDHszjEyzoqJl2/b058xXB/LkDAZ+viCr9AEIToZMmrmd5tYYV5J+cW
+	aECRyls8O26+4lYBZw4mV9DzMQo6zXWm8ffbkz76LOV1tl0+sJblyhwhYPBPK+uFTp389wq
+	WAvOY0QAxZoy7bq5XDlLvMmfklt39uqOuZ1aJKmPctx7BGPKC2NaTUfE2Z0iOKibbKpfG+K
+	exFI6bz1CQWaFJUGoqEZYxgE/e05Gn3OlC+unyR0w5QSQOhZncdk4rbGB5vB1bbSBVn1a3w
+	LYetDiher2TRvzE70T0ykKmuzZzl08FVGYpFSDAEdS0meoiuyJ926Hia6JX5pN5jfsFB+h0
+	G4+bEf257OX3TdasTe0suS0jFNmFMhkH/acSHWrYepImo39L9jhtzMiixpvgWoIjdBh4+wE
+	IUBJI0yEKgsKJUUDPcOZKxneDT+wH37WXP+BTPQW+3h3GQ8DScMtTGtaJ9sVg=
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+X-QQ-RECHKSPAM: 0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260728_184035_361233_7B8E5E8F 
-X-CRM114-Status: UNSURE (   9.17  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260728_190105_376032_D18C541B 
+X-CRM114-Status: GOOD (  19.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -154,20 +93,234 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+In ath11k_ahb_config_irq(), when a CE request_irq() fails, the function
+returns the error immediately without freeing the CE IRQs that were
+successfully registered in previous loop iterations. The probe error
+path does not call ath11k_ahb_free_irq() either, so the previously
+registered CE IRQ handlers remain attached to the interrupt lines and
+are never released.
 
+In ath11k_ahb_config_ext_irq(), when an external request_irq() fails,
+the error is only logged and the loop continues. The function then
+returns 0 indicating success, leaving the device in a partially
+configured state where some external IRQs are not registered. This
+causes enable_irq()/disable_irq()/free_irq() to be called on
+unregistered IRQs during runtime and remove/shutdown, triggering
+WARN_ON(!desc->action), and missing interrupt handlers lead to data
+loss.
 
-On 7/28/2026 2:10 PM, 赵金明 wrote:
-> Thanks for your review. 
-> Do you mean the Link tag should be placed in the changelog section (below ---) rather than in the commit message body? 
+Additionally, if alloc_netdev_dummy() fails for a later IRQ group, the
+function returns -ENOMEM without freeing the ext IRQs and napi_ndev
+that were successfully set up for earlier groups.
 
-exactly
+Fix all three issues: propagate the error up to the caller and unwind
+all successfully registered IRQs and allocated resources on failure.
+Also move ab->irq_num[irq_idx] assignment after request_irq() succeeds
+in the ext IRQ path to match the CE IRQ path and avoid storing a stale
+IRQ number on failure.
 
-> If so, I'll move it there. Or if b4 handles the tracking automatically, I can simply drop the Link tag.
+Signed-off-by: ZhaoJinming <zhaojinming@uniontech.com>
+---
 
-b4 can automatically insert below tag in your changelog, e.g. for the v7 changelog:
+Changes in v8:
+- Move Link tag from commit body to changelog per maintainer's request.
 
-Link to v6: <lore link>
+Changes in v7:
+- Resend in a new thread. No content changes from v6.
+  Link: https://lore.kernel.org/all/b6903572-52cc-4c41-b9cf-5845e387c176@oss.qualcomm.com/
 
+Changes in v6:
+- Move ab->irq_num[irq_idx] = irq after request_irq() succeeds in the
+  ext IRQ path to match the CE IRQ logic and avoid storing a stale IRQ
+  number on failure.
 
-> 
+Changes in v5:
+- Resend as a fresh thread. No content changes from v4.
+
+Changes in v4:
+- Drop the napi_ndev NULL guard in ath11k_ahb_free_ext_irq_grp() as it
+  is unreachable in all existing call paths. A silent guard against an
+  impossible condition hides bugs instead of exposing them.
+
+Changes in v3:
+- Extract ath11k_ahb_free_ext_irq_grp() to handle per-group ext IRQ
+  cleanup and refactor ath11k_ahb_free_ext_irq() to use it.
+- On request_irq() failure in ath11k_ahb_config_ext_irq(), immediately
+  clean up the current group via ath11k_ahb_free_ext_irq_grp() before
+  jumping to the error label to unwind earlier groups.
+- Move u32 num_irq declaration before the irq_grp assignment to follow
+  declaration-before-statement ordering.
+- Extract ath11k_ahb_free_ce_irqs() to handle partial/full CE IRQ cleanup
+  and refactor ath11k_ahb_free_irq() to use it, replacing the duplicated
+  err_ce_irq cleanup loop in ath11k_ahb_config_irq().
+
+Changes in v2:
+- Move `irq_grp` declaration from for-loop body to function scope to fix
+  compile error in err_request_irq error path.
+- Set ret = -ENOMEM before goto err_request_irq on alloc_netdev_dummy()
+  failure to avoid returning uninitialized value.
+- When ath11k_ahb_config_ext_irq() fails, unwind the already-registered
+  CE IRQs via a shared err_ce_irq cleanup path to avoid leaking them.
+
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 1e1dea485760..ec5bf5c9fd79 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -431,36 +431,44 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
+ 	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
+ }
+ 
+-static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
++static void ath11k_ahb_free_ext_irq_grp(struct ath11k_base *ab,
++					struct ath11k_ext_irq_grp *irq_grp)
+ {
+-	int i, j;
+-
+-	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+-		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
++	int j;
+ 
+-		for (j = 0; j < irq_grp->num_irq; j++)
+-			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
++	for (j = 0; j < irq_grp->num_irq; j++)
++		free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
+ 
+-		netif_napi_del(&irq_grp->napi);
+-		free_netdev(irq_grp->napi_ndev);
+-	}
++	netif_napi_del(&irq_grp->napi);
++	free_netdev(irq_grp->napi_ndev);
+ }
+ 
+-static void ath11k_ahb_free_irq(struct ath11k_base *ab)
++static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+ {
+-	int irq_idx;
+ 	int i;
+ 
+-	if (ab->hw_params.hybrid_bus_type)
+-		return ath11k_pcic_free_irq(ab);
++	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++)
++		ath11k_ahb_free_ext_irq_grp(ab, &ab->ext_irq_grp[i]);
++}
+ 
+-	for (i = 0; i < ab->hw_params.ce_count; i++) {
++static void ath11k_ahb_free_ce_irqs(struct ath11k_base *ab, int max_idx)
++{
++	int irq_idx, i;
++
++	for (i = 0; i < max_idx; i++) {
+ 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
+ 			continue;
+ 		irq_idx = ATH11K_IRQ_CE0_OFFSET + i;
+ 		free_irq(ab->irq_num[irq_idx], &ab->ce.ce_pipe[i]);
+ 	}
++}
++
++static void ath11k_ahb_free_irq(struct ath11k_base *ab)
++{
++	if (ab->hw_params.hybrid_bus_type)
++		return ath11k_pcic_free_irq(ab);
+ 
++	ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
+ 	ath11k_ahb_free_ext_irq(ab);
+ }
+ 
+@@ -524,20 +532,25 @@ static irqreturn_t ath11k_ahb_ext_interrupt_handler(int irq, void *arg)
+ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ {
+ 	struct ath11k_hw_params *hw = &ab->hw_params;
++	struct ath11k_ext_irq_grp *irq_grp;
+ 	int i, j;
+ 	int irq;
+ 	int ret;
+ 
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+-		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 		u32 num_irq = 0;
+ 
++		irq_grp = &ab->ext_irq_grp[i];
++
+ 		irq_grp->ab = ab;
+ 		irq_grp->grp_id = i;
+ 
+ 		irq_grp->napi_ndev = alloc_netdev_dummy(0);
+-		if (!irq_grp->napi_ndev)
+-			return -ENOMEM;
++		if (!irq_grp->napi_ndev) {
++			ret = -ENOMEM;
++			irq_grp->num_irq = 0;
++			goto err_request_irq;
++		}
+ 
+ 		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
+ 			       ath11k_ahb_ext_grp_napi_poll);
+@@ -585,14 +598,11 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 				}
+ 			}
+ 		}
+-		irq_grp->num_irq = num_irq;
+-
+-		for (j = 0; j < irq_grp->num_irq; j++) {
++		for (j = 0; j < num_irq; j++) {
+ 			int irq_idx = irq_grp->irqs[j];
+ 
+ 			irq = platform_get_irq_byname(ab->pdev,
+ 						      irq_name[irq_idx]);
+-			ab->irq_num[irq_idx] = irq;
+ 			irq_set_status_flags(irq, IRQ_NOAUTOEN | IRQ_DISABLE_UNLAZY);
+ 			ret = request_irq(irq, ath11k_ahb_ext_interrupt_handler,
+ 					  IRQF_TRIGGER_RISING,
+@@ -600,11 +610,24 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 			if (ret) {
+ 				ath11k_err(ab, "failed request_irq for %d\n",
+ 					   irq);
++				irq_grp->num_irq = j;
++				ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
++				goto err_request_irq;
+ 			}
++			ab->irq_num[irq_idx] = irq;
+ 		}
++
++		irq_grp->num_irq = num_irq;
+ 	}
+ 
+ 	return 0;
++
++err_request_irq:
++	for (i--; i >= 0; i--) {
++		irq_grp = &ab->ext_irq_grp[i];
++		ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
++	}
++	return ret;
+ }
+ 
+ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+@@ -629,16 +652,24 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+ 		ret = request_irq(irq, ath11k_ahb_ce_interrupt_handler,
+ 				  IRQF_TRIGGER_RISING, irq_name[irq_idx],
+ 				  ce_pipe);
+-		if (ret)
++		if (ret) {
++			ath11k_err(ab, "failed request_irq for %d\n", irq);
++			ath11k_ahb_free_ce_irqs(ab, i);
+ 			return ret;
++		}
+ 
+ 		ab->irq_num[irq_idx] = irq;
+ 	}
+ 
+ 	/* Configure external interrupts */
+ 	ret = ath11k_ahb_config_ext_irq(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to configure ext irq: %d\n", ret);
++		ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
++		return ret;
++	}
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
 
