@@ -4,77 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A5DCC531D0
-	for <ath11k@archiver.kernel.org>; Thu, 30 Jul 2026 06:14:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9F2C54FDF
+	for <ath11k@archiver.kernel.org>; Thu, 30 Jul 2026 07:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VxR8UAJtcjYgK0Ks1J1kqZQ3imslT1g86zOzrovDsfo=; b=0KT7u3mFYYDUmgCsWT3EpqwQ/+
-	Y4wZBMhOJDmHJYFcorInTTvQBPgNTAFRZ6iRLXamB1mV0pWmI4P4qCFkooKxlo+DR6sXdWBzLduti
-	dyKxNl4R8TeBCuBhID91QISbOD84ZjPY52d2HTeqbuOsEcPU/qvVw9nwSa3DQn2VeFyxyRC363OE5
-	m8H9/U3XIiqGbm4RlbaEwNAPCSH0IFpw3x2oUJDYPq02NtcN8QLy2jNuFqPHayHGp9012dvTiVgDW
-	xyEm3khbpdm0dqBgd/cuaeqmfeDbYB4DHRsiymxuJEIFlFzBAOLIalAzGz15t+LM7uHYlI6gkSeew
-	2Cx+RZ2g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
+	Subject:To:From:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=HCHJEQTS2go+xdAjlsFW/vaUrtHdmk1rhiv3rFQeuCA=; b=UG5aOKuswwhK6PzklVTLRhhn1o
+	j3nXWokFkHerBZF+dqZqc+pcaztBBBhCtMq1no+MW8q9oCcU16H22D5OLCRJJe+Qtlt7XYeUu5itM
+	54l24b27yMWXSXf4L84Qfe1h4v3fOIipqlBDgK9/xAB9LkVJDk2x4D0Jx8xa8ymYJMFoolkxlWSBK
+	26+SRTVxYDBJx7s2BS1kM6ECUJBsZ9n7g2vrZvz/bpSaFOcQnGfDex+ljPD/KrH/1xTMtP/AM4b9C
+	JWTLvql1Kxg4pvEIYZwbZ4MqgrrgnUZqCdA/UMqkOV83Ihpzn2xyjVYClfUSiWrj+eh2C84bf30+o
+	a0ReCKfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpK20-00000009afr-0U5t;
-	Thu, 30 Jul 2026 06:14:12 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1wpLKj-00000009l43-3o8A;
+	Thu, 30 Jul 2026 07:37:37 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpK1w-00000009afD-3opp
+	id 1wpLKh-00000009l2Y-3Xm7
 	for ath11k@lists.infradead.org;
-	Thu, 30 Jul 2026 06:14:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1785392046;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VxR8UAJtcjYgK0Ks1J1kqZQ3imslT1g86zOzrovDsfo=;
-	b=Bbze3Eu73ODvKI0uvWhDV9rW9MfPXQaKPQ056aD3OtKhLxdlHH+r+ntMTlX7nb2Z4ljlQL
-	3CHoD6calaH8+IbWdCI3xmTBpLthEy+FSqqLuS3QS6hkR7ZzbSs0Z/Z/USZwq+ei2ciU7x
-	xjt7YvgL/9tBAJTYx5DfinnyIiG2HPc=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-220-9olPWGfROyS3-zhNItRBAg-1; Thu,
- 30 Jul 2026 02:14:02 -0400
-X-MC-Unique: 9olPWGfROyS3-zhNItRBAg-1
-X-Mimecast-MFC-AGG-ID: 9olPWGfROyS3-zhNItRBAg_1785392041
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 30A8B19560B4;
-	Thu, 30 Jul 2026 06:14:01 +0000 (UTC)
-Received: from fedora.redhat.com (unknown [10.44.48.33])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0C54F180049F;
-	Thu, 30 Jul 2026 06:13:56 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: tamizh.raja@oss.qualcomm.com
-Cc: ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	jjohnson@kernel.org,
-	jtornosm@redhat.com,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] wifi: ath11k: use queue mapping for WCN6750 ring selection
-Date: Thu, 30 Jul 2026 08:13:53 +0200
-Message-ID: <20260730061355.212639-1-jtornosm@redhat.com>
-In-Reply-To: <CABkEBKZ7+Z=DL5scE7LnFQz==c3JKoUfFgfDYRf5HoLS_=fr=g@mail.gmail.com>
-References: <CABkEBKZ7+Z=DL5scE7LnFQz==c3JKoUfFgfDYRf5HoLS_=fr=g@mail.gmail.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-MFC-PROC-ID: BLdYX3Hq9E_V-TKwDN6W2lnMR8rvTjIiEZBlsevp3fM_1785392041
-X-Mimecast-Originator: redhat.com
+	Thu, 30 Jul 2026 07:37:36 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4720f3bf164so244482f8f.1
+        for <ath11k@lists.infradead.org>; Thu, 30 Jul 2026 00:37:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1785397053; x=1786001853; darn=lists.infradead.org;
+        h=in-reply-to:references:subject:to:from:message-id:date:content-type
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=HCHJEQTS2go+xdAjlsFW/vaUrtHdmk1rhiv3rFQeuCA=;
+        b=eHTto3bNIKlcPiMIcY/1OcF98KERi2H120MpkOIZgbTGu30S0X5Ph/UwtgqMlyFUDe
+         MbaqRvE7/0l5TlW3Ju1DFF4H4k5rUXolLoj4Qjm/e5ALr5vHSM92cCRIOKSwNnS4Ee60
+         y9q8DBVPCz63P8SBk5FaPYcyOLpjTzE49byGDM2VvAe/X0ioLZrFQFxrdPP7blnLyVNF
+         WmmxRnem1SImhKaGsbOcT0VCdaslbiRPAvv3SZD9TeU/dB9Dy1DfkbTXQknVI4kTY4fJ
+         uCG/NoRIvpf7ZqOYIicBzjkzQpggpcEwlpmDK+fb/cvQR4323g1f6Xi7gBCFdXPc5/RT
+         KaMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1785397053; x=1786001853;
+        h=in-reply-to:references:subject:to:from:message-id:date:content-type
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=HCHJEQTS2go+xdAjlsFW/vaUrtHdmk1rhiv3rFQeuCA=;
+        b=JME1Gy3SZWhS43MG4Z+Nzodn7Okt2lHi0HQJxNt3v41DiUawk0UJB055tgTDEihpIP
+         3CIlc6zJxg+0qfG0yW8vuNItPkvc9svIP6OPNbTls/BoVwopIAIXbCIyGtA+difASfui
+         KloYxzU/hV+M9S4m8KJmItGpQziUF5FbdbM5+6lSrNlbfV01313MSZTFMQla6F4IveBF
+         AM2cp6E55+zyjnPE2dalf0sDgb6qo+QT9RMni0MoEn8veaAJK6LOtAetzAPDD4Ss9ww/
+         D77eN5M7xQ4LJkwWGggkJum/VqyPPWjJmQm0iDwz3kKj0ENB6vdcP9KlSgF+qPKJJBMa
+         1wKg==
+X-Forwarded-Encrypted: i=1; AHgh+Rrd6rgKfMh4Js7p+S8NRjwCgCaThzOcL1cwQz58NtPozvheiQd77Qk5HQa6silkT0HnQCxzcp8=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw9KJdGlol6HwjP7g3f68oA8n6/3s7elm/1sdNEG+V99PuSlVZ2
+	kuEXbGpBZAnAIttzi5d+0pCiAdX0adKwWodFcXFJ0Cs6NQ5z7ojir26s
+X-Gm-Gg: AR+sD13kdcyEHuU1jwYoFiMf5qKut+QXxI69msyP4JQKHFrCPQpqR48G5Go1W9dkSlN
+	ELB/di4xJCFW2C0x88LUw/3jkF2seiMUlofkVynMoO9rX3842mBrv7xY/Z9Hb6Xc+53hvgIngRI
+	Y/vOOuhd2qa1YLfGEkHcvTkaP+nZQVwn/TAs/m2FX8/wihU28vkVm7jykTT47ejAZ3erE27Z70n
+	vZ++cKb/z7kNKvFzSVoXxXH99zydJAkTv3GvJVx4CDCBVP0HGamVgIYHRx0PsXpANDhkZy1JVJx
+	H4VujpCc6IeM4U771jAoQj+zQXr+vPrkHTO3DHWz66WigKjacBxEjcRmjZV+yPnOSKR4vHN+Mqe
+	ZIas4A5aoZ1bUDwLnvbDGG0Iw3wmI8xsaAOfxJuJnpx3udChGdYpDurHs6bGFFisCa2xVfIUg37
+	Z1kKba1yPSqIbwtsAd5Gqt+0UKK8zneUbKIpgtoQ6I82rnX9lbTOa5CqCbHFyuLeInrRTNP68nq
+	yt26v0=
+X-Received: by 2002:a5d:588a:0:b0:47f:8603:a879 with SMTP id ffacd0b85a97d-47fc8bdca86mr1528752f8f.11.1785397053158;
+        Thu, 30 Jul 2026 00:37:33 -0700 (PDT)
+Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47fc8941e7asm3419194f8f.36.2026.07.30.00.37.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jul 2026 00:37:32 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Thu, 30 Jul 2026 09:37:32 +0200
+Message-Id: <DKBQFMYL5NRQ.1B2HU7KN1QBXP@gmail.com>
+From: "Nicolas Escande" <nico.escande@gmail.com>
+To: "Jeff Johnson" <jeff.johnson@oss.qualcomm.com>,
+ <ath11k@lists.infradead.org>
+Subject: Re: [PATCH ath-current] wifi: ath11k: reset ar->num_station on
+ hardware start
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260729090347.3488257-1-nico.escande@gmail.com>
+ <592c0749-c3f9-4156-9624-edfa360cf53b@oss.qualcomm.com>
+In-Reply-To: <592c0749-c3f9-4156-9624-edfa360cf53b@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260729_231409_027793_FCE8AEB6 
-X-CRM114-Status: UNSURE (   9.04  )
+X-CRM114-CacheID: sfid-20260730_003735_894102_1F73DF6E 
+X-CRM114-Status: UNSURE (   9.24  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,40 +102,22 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello Tamizh,
+On Wed Jul 29, 2026 at 8:16 PM CEST, Jeff Johnson wrote:
+> On 7/29/2026 2:03 AM, Nicolas Escande wrote:
+> ...snip...> ---
+>>  Sent by mistake to ath12k list, sorry for the noise
+>
+> you failed to send to linux-wireless so this isn't being tracked in patch=
+work
+>
+> please resend, making sure to get all the required recipients from
+> get_maintainer.pl
 
-> Sure thanks for the information. Do we have throughput values with
-> this change?
+Yes I wrongly sent both of them to linux-wireless + ath12k instead of ath11=
+k.
+So I reposted them only to ath11k to correct my mistake without spamming
+linux-wireless. I added a note but this was not ideal to be sure.
 
-I don't have WCN6750 hardware, but since WCN7850 (ath12k) already
-uses skb_get_queue_mapping() for ring selection, I tested on
-WCN7850 comparing queue mapping vs hash based ring selection with
-the following change:
-
-  static u8 ath12k_wifi7_hw_get_ring_selector_wcn7850(struct sk_buff *skb)
-  {
-  -       return skb_get_queue_mapping(skb);
-  +       return skb_get_hash(skb);
-  }
-
-The hash based test was done on top of the v3 tx flow control
-series, which is needed to get stable throughput results.
-
-Results (100s iperf3 TCP TX, open radio environment with VMs):
-
-  skb_get_queue_mapping: 764 Mbits/sec (8.89 GB, 19 retries)
-  skb_get_hash:          744 Mbits/sec (8.67 GB, 25 retries)
-
-Throughput is comparable with no measurable regression from using
-queue mapping based ring selection.
-
-Note that VM-based testing may not reach peak hardware throughput,
-but I think it is sufficient to compare the two ring selection
-methods under identical conditions.
-
-Thanks
-
-Best regards
-José Ignacio
-
+I'll repost a v2 of them both to the right lists. Sorry for the noise.
+ =20
 
