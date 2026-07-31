@@ -4,138 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80003C55167
-	for <ath11k@archiver.kernel.org>; Fri, 31 Jul 2026 08:52:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC19C55167
+	for <ath11k@archiver.kernel.org>; Fri, 31 Jul 2026 09:24:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xl5ePMbIiG1ItJgNEqxcqTd1coZwPOYQkPqbXF90I1k=; b=IvalRNFJ8F67moWAk7Z3E823Dw
-	hItx5AQAV4HZFTCh0w8h9DxKnZ+atVZRwl+1XI0kmYKNBNEdQZGJmDLuJuKTA/xmUY6lb3fWNrEmc
-	k+q3CPl+RnMfRVQTGMMQezL155rgG5mzwY48SwaMb0sDHdsTaAkZZ/EbtwjKrIM0QjW0BonQpVG0m
-	Su8+HPJCvkUVKaqz0WEjdvx15quZCJjPuxTyOV4GWqDznIr36WmjFYrws81sbzXlfm30TSHld5C+T
-	3rHh+7d7thnIMcGvjYbod/09GJZBzvXv+kx9OTpJRnkd93F0F4mratWQ5FXcPojUCV0Za3TgNz/LR
-	fm49qCkQ==;
+	bh=fBbt58it9lwrasUx+0rlFP3m0rR06R8No8JhxzBeIV8=; b=n7i+9yVQ2SvKDy200Qtk2ROYg6
+	UnBixCWvcI6YPtH6FHRoVs5n6x2ia7MfQ7X2gvnGmUG6bWZBT2ULE56wz2xLukOj/qCd1XC5Zn2tD
+	eRrQPF/BaDevJbEAqEcn61w9F4XF2jTa8f4zfQoQCy/MxptGbLkesSpysMvo7QJ+hmBFQ1wuy6bb1
+	9qVQQhFSIP3NFjDxXNWqo2s4fN+PPAA43rnHbkcYvlemSVosCf9Rp9KT2B33wSa3mxdMEEZAYtOMz
+	Y39IURp1xDhkXGvSw86klOYO2tuMapFpAxMfhXvHMmYc3vTcU3oPvhNcHEeY9ovG3Iu1zCNWQUxEu
+	HIIXmOIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpiyP-0000000C78s-2TIk;
-	Fri, 31 Jul 2026 08:52:09 +0000
+	id 1wpjTb-0000000CBIW-1MMM;
+	Fri, 31 Jul 2026 09:24:23 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpiyM-0000000C78Z-30jV
+	id 1wpjTY-0000000CBH8-1GR5
 	for ath11k@lists.infradead.org;
-	Fri, 31 Jul 2026 08:52:07 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66V8lQ8B2991345
-	for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 08:52:06 GMT
+	Fri, 31 Jul 2026 09:24:21 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66V8om2s3708243
+	for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 09:24:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xl5ePMbIiG1ItJgNEqxcqTd1coZwPOYQkPqbXF90I1k=; b=iYbSb7jv2lru7ndh
-	MWbpopBtz3bGkecfvT7UYVukzwjqm38O5poQtf/zoy8HNVTsWPGp9S0t4sAF4h+/
-	2nQX+H+9AK8F93RTRjDbrEQrHbADH0y5/fVSfMG9LSJwRIk8znT73/88sS1NJrDW
-	Xn3TAD68ia7It+ZnpqfQXhOJL91OQ6Fc+9KW/HKTC6Xl+dsg9JZ5K+DKTSeO8JpU
-	xCr3IscLoGAFpbCO41dbNQLOv519ycep48GIAwx6LYfM38u8B57UO8LOsjMlqaAZ
-	PaJ7MV9txUWU2UcRhrHEZmJsEZJ2UlOQSg7wTo+paxRucQBCLZT/J9z4EtJLvlDW
-	ry99bg==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4frrgpg0hq-1
+	fBbt58it9lwrasUx+0rlFP3m0rR06R8No8JhxzBeIV8=; b=TWXXb+iSfen26tuB
+	uj2KnrebNi0K7q/BhhyODxFWBOBnF3sHx4hbpwk9l/vjl2RGPRdLk/ZWOVYwhl55
+	W119NeQAhzLOzGIHU9FWJwNFNE/z5JMe+kjasnmbyf1Pra3/MYvx8Ob4iGst78tz
+	UqpwcPKGlisdv98vdDJs/aiUxJW2icm7oX55j+bYq4FEGvwI0Ipf0dsyTPolSvZ6
+	n1ebUKtlak9+i0b9lGWU8HWPdrMD93ldRwh9a9jZ+jfNYqt6f0BBx2/8BcUiLg1R
+	CCTUI39YkjMa/K6IF2+wa87MF5CTox2I9jIr6Ae2wmTCDXAMPvisOr3odj1TrMAO
+	Y3nr6Q==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4frrj8r46h-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 08:52:05 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-8487eb67173so1615386b3a.2
-        for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 01:52:05 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 09:24:19 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-cbb92868263so1029793a12.2
+        for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 02:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1785487925; x=1786092725; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1785489859; x=1786094659; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=xl5ePMbIiG1ItJgNEqxcqTd1coZwPOYQkPqbXF90I1k=;
-        b=ejSKHOtJDF/dFkzPFwwBe9XVK9yTxZDTJZTefV0WxTTErWw9lniUPfoUMQd4426CMJ
-         WIh6fUeBXC531SmUMyvx3+JpGlS/m2FkC9QaW+Pftiv9VaYrwQXgNlB9UHYIUFZpVp0E
-         UczVQS+EeqRdOcIVnV3VanO9+GkTqx0jAfN2YwpvEvZEr91DtR9JOv1zCDQV+TTI5fwY
-         kEdzEoLmrNbym03GIUI0meVnwkg1ylpZ1PcV4eCnO2G/RyLpkATBosSvGDBfE5T3aReG
-         pduS2LeGJhRFdMm1KxKpCCJYMBCOfsn0lq8gCNm1pZiRIFV20d50CH7pNsmxg9fGfQ3I
-         6vRQ==
+        bh=fBbt58it9lwrasUx+0rlFP3m0rR06R8No8JhxzBeIV8=;
+        b=Zny8IjhaBwJtGoymPEY8mUCMdZfGNH+5QpES9uMdUhDIzf9Oc04a6dsgFt9LPEmkIU
+         yFktf9T/SG/Wgmv4V0wn3Q8xxqt0/wDids0sZVzj6jTC9v+dJswycbQkq4B8rbf4CjOL
+         93cHN1MwlZSADUdXML+Ssj3iEtySyhakJ/C9/cazi2FrQCz6E3LBya+OxdBUpFak/+LB
+         jVMIiig4Z1HIlLS3Xj94wsTk0F0l1W5P9YBU4CTkWCjkbxGzX6FRH7wYSboWeybw71EL
+         /Wyt8xX0lLC1AvpIMb7ftLHlXa7lYmF4e3G1vSlKWrXboeGaL4qpey5CqvT9yo4YJM24
+         MJXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785487925; x=1786092725;
+        d=1e100.net; s=20251104; t=1785489859; x=1786094659;
         h=content-transfer-encoding:content-type:in-reply-to:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=xl5ePMbIiG1ItJgNEqxcqTd1coZwPOYQkPqbXF90I1k=;
-        b=rQjS/nsq8iKXJVGtpMgHKIn9VDHRJAOsJuvjDFgOvwShlp4XnrkixoacPwMkwoo7RA
-         nUATNM4481nmnjXcmdhVpOVmZmKWUu10CGaTFCx4xwzZjqRtr62c+mTHr5BGU336OmJY
-         0kXbwDzrW1AL9i93q+IzTNWgnhGleuYFHF6t+j9YmSQS6ulnxYzoGutsSjhc6pg/0g6Z
-         de8GzxxlhC/Lz9MORhJc9ZtI4MwwEqp7c2zxmPEvWHIz/hFGAa1G8/pZ9l89EPMZXB4p
-         xcpe3Cp1MBFO2XMZdw49ip/16Efes2W1r6yFR03gCdCh7ZWd2bl/Eq9+QBDXOcIev320
-         ZtZA==
-X-Gm-Message-State: AOJu0YyVyxigohxRXOh6wX8WsdBOv5hr4VwyTSvE+OzGZ3pZlvHnhz7a
-	M2yXvnR+DqkkuOFaYdV0CC3kvAxle52h2sMctfeTeQLASLqthZ8rGbzihfDjb1CheRxrKt+yFub
-	Kp1D8WxR+SVBs6Suhbhxct8ebO9mStN95k/XSYFcfK4iKDDrz+OOcNY35kui4LmRP
-X-Gm-Gg: AR+sD10+rka64dMUbetSflAX2ZntuOCSAEEKDxWplIwNZSVTq8JN7CXGvMzEGN8VqMX
-	a9oZWZgMIk9zLR1UJDbT2wF7iFeXUCV20M11XFJhPYLhn9KeW2JxAlehtd61b/0QCLFaMM+VxxH
-	cuehPFFE8AURsS0KdriUqfXtszOB/6XBhfdEMn1ix9cjO3ykv+S9aEN1ZrUSWS/1bYGiRCEk2Cs
-	LNWhthdWHsRuDX392kHnGVKTH27Sgx+UFzuJ9qfgycMsFSQobDq6ml2/ClhBOQpDYaEf5REkIA0
-	YW6oXizy/z2o66agjnLYX80AZyPIsIhKwSoMcZYwg6SYNVWT3x6En2PB25M1HWZmdlkfh6toUK0
-	wHEJnbv3GGKUYJXDRSzK2SP+I4Gvnl8cx4wl/o/XEhhiNpk+ggDwkxCv17bkvB5q547niJcGAdA
-	==
-X-Received: by 2002:a05:6a00:4fce:b0:847:df4c:40c9 with SMTP id d2e1a72fcca58-84ed719ee7emr1021620b3a.46.1785487925087;
-        Fri, 31 Jul 2026 01:52:05 -0700 (PDT)
-X-Received: by 2002:a05:6a00:4fce:b0:847:df4c:40c9 with SMTP id d2e1a72fcca58-84ed719ee7emr1021601b3a.46.1785487924655;
-        Fri, 31 Jul 2026 01:52:04 -0700 (PDT)
-Received: from [10.133.33.123] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84edc2d7bbdsm162774b3a.47.2026.07.31.01.52.02
+        bh=fBbt58it9lwrasUx+0rlFP3m0rR06R8No8JhxzBeIV8=;
+        b=ZPOm4jnT02IiP3Ie3NIMiC2CdrSZnl99ccDvKOJuSpL02fskpOiNaTwOZaD5TEcuQ5
+         cdBVsMu1hSRvnYOQKRuBM9JpdUwDsW+MsIiZbZFWt4t7vuZfhmAk+X37z7TL5baf5OaU
+         r0lKnWZhsfNwFOrI88KA+u232sAuZZcmFAVzdLRgT4oYwvnligJdXPc8Hb6NBIwElSvM
+         xOTBYHWuD4R6We8cpbnYyDb0/gxREby6ZYbhDG873NNEe9L3ZAntpTLZ9mRX8k0vphvB
+         nmUKJ79efkFZXnPK6WQkBnVOltdlQIvT3YvVtuAQr9NHDWfWiI1+VpQQ6WPENQrrhtas
+         JcrQ==
+X-Gm-Message-State: AOJu0YzNci5wZQDVrvYqHvwbbnuHuK1ob9RgVbXsbm6OYsD3VTmOGJkH
+	YS9ziCQ4LT+gaYlb4rGKQo66DWsFmPTJso4n1RhLkDnwQvEWXlxQy0T0tXj8aCVnp8GCmRRigMM
+	+VqXzU2F6bOa7lEk7DZwbxhS5ToocngNsM+gQ9e9uyGQylGrCnkEjdcrqz9Qt/eyQ
+X-Gm-Gg: AR+sD13TvnjtZvnnI/u+Ff8FiX4GSbHv4vjEqVvScXX2nmBWSZsomjglFkUIyu3ssJE
+	0z2L8vPcYL/ZnIgXX91qdjYmX+N+A9zJnB14z8oKeKV4pGmSlUqatQAWhw8G4t4pFoJQVE3EjgS
+	jRlJgTeLJfxm/Nj52BqjgO7JI+8R2utHdPyxjNEexRhAwSsaqE9tMDjD0YrfA6CP1zUymvEkHUI
+	TgYvpBj6et7KnWAQPywt+D/tsvGcAdHSeHCWDJ+63sKdnjQINI8ZSMAiCWY7saFsCWhPiGzYd/d
+	C7SoMJlun0QrB09/TL6xPNgPIjOx7h7d1YUyTD90fPF9t0DzSFkGFg/MBs3ecjxGBUNQoYCIdml
+	wFehTjjqBz277CqE2sfY472Nr48AklYO1H13U4NjF
+X-Received: by 2002:a05:6a21:a346:b0:3c3:875d:704d with SMTP id adf61e73a8af0-3c91b267ba5mr1156594637.25.1785489859049;
+        Fri, 31 Jul 2026 02:24:19 -0700 (PDT)
+X-Received: by 2002:a05:6a21:a346:b0:3c3:875d:704d with SMTP id adf61e73a8af0-3c91b267ba5mr1156577637.25.1785489858618;
+        Fri, 31 Jul 2026 02:24:18 -0700 (PDT)
+Received: from [10.152.199.23] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3153e06fe9fsm3355290eec.25.2026.07.31.02.24.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Jul 2026 01:52:04 -0700 (PDT)
-Message-ID: <c07deb05-0422-4c06-af72-755c26ccf2be@oss.qualcomm.com>
-Date: Fri, 31 Jul 2026 16:52:01 +0800
+        Fri, 31 Jul 2026 02:24:18 -0700 (PDT)
+Message-ID: <114b5ae4-002a-4f35-8fb1-0ebf44e9250a@oss.qualcomm.com>
+Date: Fri, 31 Jul 2026 14:54:13 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH ath-current 0/3] wifi: ath11k: fix QRTR readiness
- related WLAN initialization failures
+Subject: Re: [RESEND PATCH ath-current 2/3] wifi: ath11k: fix NULL dereference
+ in ahb remove when QMI init incomplete
 To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20260730030948.147892-1-miaoqing.pan@oss.qualcomm.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+ <20260730030948.147892-3-miaoqing.pan@oss.qualcomm.com>
+From: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20260730030948.147892-1-miaoqing.pan@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20260730030948.147892-3-miaoqing.pan@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: QzDo7IF5zJopOQHHHt1FE62jVOM3xjsW
-X-Authority-Analysis: v=2.4 cv=SK5ykuvH c=1 sm=1 tr=0 ts=6a6c6235 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Proofpoint-GUID: icET32tlq6-q2_xpM02O7t3mUNusbxZ8
+X-Proofpoint-ORIG-GUID: icET32tlq6-q2_xpM02O7t3mUNusbxZ8
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzMxMDA2OCBTYWx0ZWRfX1IQVwI5snXHb
+ s1ikqSdE0lnvuhYl8hkRp8nfrLkQa3XDV2/Hnd5Fh7JgU386INDs3nSPy+wwnMU6O33JzxumerT
+ mIkGiMwqrOC4dNvEWt2WJeIlwNS7PUg=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzMxMDA2OCBTYWx0ZWRfX/UjFkfocYMEZ
+ aD308e5Y0NUYYfypfSjnuyXaorR2fnVLGpZ5cedx6W1/+V02BhTd/nDFI9+tkDUhjDGcl7I/wUX
+ BM2qJM8x9Z5Y3nxYDVyaPI0v5dBqTRLYpkg6LwuCpj/ufP1N4fqmApxs0f619frcrlo9eG2A/dw
+ 34uS/Mjraa1HE2eKkTU1Wqqzr+FnvnRLV7v4rRuCrYCZK32k07L36XcTVLuKAqEeE8FFBg1CVOy
+ 3berFTEXji0NyECU1KKpCPD4lSuvoKK0w/lcBs0FmvOM0+pre1jdSBvp7Qy6ImIu+WukTir0HM2
+ riRCYiO9wKxCUq/6R+DeNEB5xcOalsQM2tNQCZ+DcFx9cyPNyPHizTOMwkQwPH43eF1gipI1qHL
+ 1RX71uDT83WrWc+u4YRWbXwy3Ydej9bgYXXbLVJ95DYbM9L3rSZjK5JeswEG0L1a5A++2fQKdDa
+ WlPfZpRr9pIn2WZOHFQ==
+X-Authority-Analysis: v=2.4 cv=dJeWXuZb c=1 sm=1 tr=0 ts=6a6c69c3 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
  a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=EUspDBNiAAAA:8 a=Jsd1VwQIYPtyK_QoHY8A:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzMxMDA2MyBTYWx0ZWRfX4rLDuxSF0Wg6
- KjEkIaSvOiB4k9umdPvhEs/EaRCNQSSCLF2aXBcSAPWR/cYk1CKF2dkSHY3+csYzHoj0h7TDCSo
- VmqCv3k648ecxWghO/lYQNX4cwIp+sLi7Dqhn1jAFxMDaW8B5UqHRxwNPpm5gCkbGKQcZM0wFVW
- sTN/6jhJ79FzlLR6CTXdVt3zyqCYa/mn71ml3K6e3/xt4oIESCkqxnE3zExSEyNDjtdCMuO+FY/
- BhZw9Yb+wpNJ8hOBqH45H27ABXaTEIsqoWm+wmIwwAgKWI+jc1/wnMHKWUO/tdFh27elvGSK0gL
- reohkOvfkFkMgl11oyeNHDr9GdbjHIpgmWxQKEdWe4f//iqe5LRl2gTs7m4KlRODfy54Hvbis7e
- eBOz39DmS1Ez8frFHPTMqW6wJDdLKt0TeEACrnazfx9r/bWhX+k24fchz7uTpNfjKJ86DAm2say
- 8ZBgcEQQJ1l0vCVETgQ==
-X-Proofpoint-ORIG-GUID: QzDo7IF5zJopOQHHHt1FE62jVOM3xjsW
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzMxMDA2MyBTYWx0ZWRfXydiHZ0xxG/uB
- Q6GeK0Y/POHXM/52lqzdK6DAMh/ha9xMSF6SjKI4E02XiTGFbuau0mu9+Psm+aRnG8UGgx/Uzqm
- 00oScjMKAAnstKxOeIvkq1XJnKkZrKY=
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=EUspDBNiAAAA:8 a=-97xbg0PSBK8MHoIRpsA:9 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-07-31_03,2026-07-30_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 lowpriorityscore=0 suspectscore=0 priorityscore=1501
- clxscore=1015 spamscore=0 impostorscore=0 malwarescore=0 phishscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2607310063
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
+ adultscore=0 clxscore=1015 malwarescore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607310068
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260731_015206_786912_D31F5B4D 
-X-CRM114-Status: UNSURE (   9.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260731_022420_349900_3354B71D 
+X-CRM114-Status: GOOD (  23.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,30 +148,71 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 7/30/2026 11:09 AM, Miaoqing Pan wrote:
-> On WCN6750 platforms, QRTR SMD may not be available when ath11k starts
-> during boot. If QMI messages never arrive, WLAN initialization can stall,
-> leaving firmware running but no wireless interface created.
+On 7/30/2026 8:39 AM, Miaoqing Pan wrote:
+> On WCN6750, if QMI messages never arrive (for example when qrtr_smd
+> is not ready), WLAN initialization stops before the device is fully
+> registered. In this case ATH11K_FLAG_QMI_FAIL is not set because no
+> QMI event handler is executed.
 > 
-> It also hardens the cleanup path to avoid crashes when deinitializing
-> partially initialized devices after QMI setup failures.
+> When the driver is removed, ath11k_ahb_remove() still calls
+> ath11k_core_deinit(), which eventually triggers
+> ath11k_ce_cleanup_pipes() on uninitialized CE pipes and results in a
+> NULL pointer dereference in ath11k_hal_srng_access_begin():
 > 
+>    ath11k_hal_srng_access_begin+0x14/0x68 [ath11k]
+>    ath11k_ce_cleanup_pipes+0x184/0x190 [ath11k]
+>    ath11k_pcic_stop+0x24/0x38 [ath11k]
+>    ath11k_core_deinit+0xfc/0x1c0 [ath11k]
+>    ath11k_ahb_remove+0x38/0xa0 [ath11k_ahb]
+> 
+> Fix this by invoking ath11k_ahb_remove_prepare() before the state
+> check and skipping ath11k_core_deinit() when either QMI initialization
+> failed or the device was never registered. If ATH11K_FLAG_REGISTERED
+> is not set, core initialization did not complete and CE pipes may
+> remain uninitialized, making ath11k_core_deinit() unsafe.
+> 
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.2.0.c2-00204-QCAMSLSWPLZ-1
+> 
+> Fixes: 00402f49d26f ("ath11k: Add support for WCN6750 device")
+> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
 > ---
-> Miaoqing Pan (3):
->   wifi: ath11k: fix sporadic WLAN initialization failures
->   wifi: ath11k: fix NULL dereference in ahb remove when QMI init
->     incomplete
->   wifi: ath11k: unregister PM notifier on QMI init failure path
+>   drivers/net/wireless/ath/ath11k/ahb.c | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
 > 
->  drivers/net/wireless/ath/ath11k/Kconfig | 3 +++
->  drivers/net/wireless/ath/ath11k/ahb.c   | 8 ++++++--
->  2 files changed, 9 insertions(+), 2 deletions(-)
-> 
-> 
-> base-commit: 6776197cc88d0d397084bc47bca7e983017cecc2
+> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+> index fb5640882b98..7f5f5c8d7c56 100644
+> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+> @@ -1265,14 +1265,16 @@ static void ath11k_ahb_remove(struct platform_device *pdev)
+>   {
+>   	struct ath11k_base *ab = platform_get_drvdata(pdev);
+>   
+> -	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
+> +	ath11k_ahb_remove_prepare(ab);
+> +
+> +	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags) ||
+> +	    !test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
 
-Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Can we use ATH11K_FLAG_REGISTERED alone to decide the cleanup path? If 
+REGISTERED is set, ath11k_core_qmi_firmware_ready() completed at least 
+once and the normal ath11k_core_deinit() path should run. If QMI failed 
+on recovery (say before FW_READY or INIT_DONE) this should still do 
+core_deinit() isn't ?
 
+
+>   		ath11k_ahb_power_down(ab, false);
+>   		ath11k_debugfs_soc_destroy(ab);
+>   		ath11k_qmi_deinit_service(ab);
+>   		goto qmi_fail;
+>   	}
+>   
+> -	ath11k_ahb_remove_prepare(ab);
+>   	ath11k_core_deinit(ab);
+>   
+>   qmi_fail:
+
+
+
+--
+Ramesh
 
