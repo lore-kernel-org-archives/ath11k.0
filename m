@@ -4,137 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4230C5516F
-	for <ath11k@archiver.kernel.org>; Fri, 31 Jul 2026 23:06:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CCC3C55173
+	for <ath11k@archiver.kernel.org>; Sat,  1 Aug 2026 11:38:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=U7tpd0S2YwULBAdlt+aVaG0rTF0GEY2FTOIPMSdKP60=; b=FNtsLvHiDJWUkQKcHDo3H38Rtk
-	pARhBOUzHeHCm++Wu7oTSBqSDde1jkqkYQYjOmhT1JkGe9nCp1edN83iHLIH1q42XcRO5xIh+JHY6
-	c2fKbzzlk6CrXfpzr0rN5I3Y7gKYoYhQCauUzZ39eObbcPi1LENDgBFcJtlPhjb7eWAx0QSV9lUnW
-	APJwRU/hKgi2urCMgih9laADxhDA6pybly1WKaEDkkmnFsHjYzKgY3m/DsT34dilr4B8MafQSuR0Q
-	aBbfA0nqsxBOpCMysxjGgfTGNa9iDDv2p+xaHNKwdxL46vamGsdsR/b+iJMHseQOj+05O6FI8ahEQ
-	Eyb7FoZQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=p+f2gJFRKiSHuvZrOCKoONo8EmCeMk/bZVo3Md0qG7E=; b=IUUh30jmYsF30/rOlF6lJZ72xb
+	kz3rFK8U+tbTridxFHiCgzlYKVxECo6yYJLu6FOrd/AzPB2xITlQmaLgHMqmmra0VqeHnGZoWknBg
+	4KUxOCyh/RkGSBSseYoUIZcobZit1bg5EPy5ef/DVAJhKJVnaymvVsNGrAcPevSVFinGk5Hc48aTB
+	XP+tKMlzInzmXnlyLw7aoWU6d0AL8dzxn+Ktl2ybYeft68r6CfivsrMdRtquVVEjrs7rj+5NytD+X
+	T5N7iRb/qbQEIYz+WLcqR55huWZHkY+vd1nvo4IFpKjLf47e5RZEsJWmwRCsWkDFyh267S8xPtUGa
+	NU75OVrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpwJW-0000000Di2P-3Mmp;
-	Fri, 31 Jul 2026 23:06:50 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wq83F-0000000EHdx-2DaO;
+	Sat, 01 Aug 2026 11:38:49 +0000
+Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpwJT-0000000Di1z-1hx8
+	id 1wq83B-0000000EHdW-2xAZ
 	for ath11k@lists.infradead.org;
-	Fri, 31 Jul 2026 23:06:48 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66VM0XFp573662
-	for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 23:06:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	U7tpd0S2YwULBAdlt+aVaG0rTF0GEY2FTOIPMSdKP60=; b=kZKgMv1XSSOQ7puU
-	XbSnkuVRS+Ih44Nrdk/1d0zPjix3f0k5HTSa3wl8P3IDafmm8djhKlqaqWcI8Upe
-	BNZrLQeme0UmZAqhcf6xlH3+TJkw/3alfRyJIXiIVTguYT2CnRocBmd/Mop6P/m1
-	gxEbW1UAUtESgNhhZ50atSytTUVR2ZBOFysbUnOrwK7inx5U5JDuUoISm11KDG14
-	z7zOBkeXZpMx6dR25Zs1Cw/O8RZgtm5oOUniwBFRQbfZFknocGc5bHTfrCca8o5q
-	lJKsrDcRP1v4zfGRQMRZ6EHyX4x3xX0OxryBbOkCbqejovMbZZ5gDohupcW2nKA4
-	al4cRg==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fru0y2s7q-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 23:06:44 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-38e7b87ce77so3701218a91.0
-        for <ath11k@lists.infradead.org>; Fri, 31 Jul 2026 16:06:44 -0700 (PDT)
+	Sat, 01 Aug 2026 11:38:47 +0000
+Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-383cb94f742so1869346a91.3
+        for <ath11k@lists.infradead.org>; Sat, 01 Aug 2026 04:38:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1785539204; x=1786144004; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=U7tpd0S2YwULBAdlt+aVaG0rTF0GEY2FTOIPMSdKP60=;
-        b=UdQv4nt/bXuhxd6FOMSOP4W/OD9F33jgikEkLMV3AokRNUwJ05EaaegoofeR1ReRNC
-         mvE6lRKS5dJKQCS/nYYHSKUjFE0+9tioHXg7dKH3uLT117pzGQVRBAdLl3pfnyYScmec
-         d/PrxGXgSvAJ+r+yZEadC221pvdi/jL3NGqk0w6xD+WHwNk54KZKpb77wZtkrHpGHpMh
-         RK+D2vgPV5SDZ5PBkWn3tvfVSZz/7uGJnq69COWI+RgraVO/EordoS/0ewC9A/oUoN6/
-         GKQxRpV7uo86O2WZQsBtaRCmcD4giyco81TiyPKyqf8+ji5e4AALYwwID6F6ix1+2Zts
-         SIhw==
+        d=cse-iitm-ac-in.20251104.gappssmtp.com; s=20251104; t=1785584324; x=1786189124; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=p+f2gJFRKiSHuvZrOCKoONo8EmCeMk/bZVo3Md0qG7E=;
+        b=SbqXUsqfsxmzSd0vYXK77AqBs0Tr64g2/k8GIc2k7RHpV+lr6gRlS8JqMN0MWyIv/r
+         sSLL+fyGWHZCs1vbbavtZR70M8xOHvVecAwbhTOKrFBaIIr24DDYkuezvBFGti7++Lq0
+         FNU/eAPvCM2TTXkFKrhpFYydjxhDCTOCTW9lpFLupoJgSGmPSxCO03iwo0stCl09RzoJ
+         gmh7q4F5F2JLPBwwkDQSeL+xfh585o5He4Q5sGQvGecxOsRltqad91VurpUOuHCAhQJq
+         VJ5e+cD3xmJ7k1STgQiwXxaKTASGWAYp7fpnnyZTeuEL2TEfw2wv1dFron/EoJtSyThS
+         rK9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785539204; x=1786144004;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=U7tpd0S2YwULBAdlt+aVaG0rTF0GEY2FTOIPMSdKP60=;
-        b=K/rc4kmLcHz3LtoO4bzjqDsOgbCojNVjBtkIHppML3U7/2LuqcaMePo26Ca/PYt96t
-         oQf3KJ5fDKNwMSAJlLOTFcVk7PvRgyWqqVs6/uWtnExEKuWc8bTBlcpIS+DWiqioLqnq
-         C5KcS5l6nGQ+9D2vKv6+vFhLYD8+blsL3j6Km5kLSeIJ7MNS2qIS6jsoTxdB3YBliARe
-         lAVfP/rCPZvwuJEoSN7qWGaFv3lEKOMwLMBhJd77N45HibaTnwG7jT7W67H2ys9+8xSA
-         9CTbNTntdpRiXjDRtGCbYTBXU9ZT1U6nESnTf/IN0w/pZvDmMRYP/89thYFLkbJC2now
-         wpUg==
-X-Gm-Message-State: AOJu0YzPJewHMnqccGmQamje9pmBsP4bI4Mrvait074IJEb8qCCrtvhD
-	IJyCSIUwPLz/rc6BWlpur3+06mTVlmA1htOikFAt99J39OznJQPP1BFFRxDZLwa/UbEn3+RUONP
-	tNWWHHI6FI6DaSgbOc9R7dqxZRAUc3WuDtLqRfN+w9ahh1BY5UPT0Lo+5DoS44YUpSpPSrtkv
-X-Gm-Gg: AR+sD13vMwbzY/gfwW1pw7nyeCzMO6m8Bj4iHezGnr4u251ueUU7ZV0LZ9knVc0i8Oc
-	uERiBrUqeKpkAbPhftqqh2l+BOrHBSoG+jmAxJU3eqLVjyA7H5NKRzSokNZIbGKoopGj4EtlxHC
-	aZQbCaYdj3tQBoKWZX5kyuvLq2cb2SlJWHwRpE85YhCr4x8SM8s8wgKDCPP6/seJw/Qg1kMTZLn
-	9aPYO/kxAGM0D75f9rZOY0ML17pD2JHxll4sDfN0hmzMC/KbPWo+dL3vyPrKtdMnK4trytlYWSS
-	pZtwsG7vU0SUwXBhWU+UisHKl0B0vTUpns+5g5Xv0hL91Gt/35Yqg2SzKaLuWKNPQKy7GGtuxjS
-	8/ZcV9vHdJllTzkV3wUy4OaPBLZ7EDOD7MfBG1fix2NrS+swAJG5Hkah2SxM=
-X-Received: by 2002:a17:90b:1c86:b0:38d:ef48:b04 with SMTP id 98e67ed59e1d1-38fbc4249efmr1421277a91.10.1785539203847;
-        Fri, 31 Jul 2026 16:06:43 -0700 (PDT)
-X-Received: by 2002:a17:90b:1c86:b0:38d:ef48:b04 with SMTP id 98e67ed59e1d1-38fbc4249efmr1421253a91.10.1785539203358;
-        Fri, 31 Jul 2026 16:06:43 -0700 (PDT)
-Received: from [192.168.1.9] (103.sub-97-215-187.myvzw.com. [97.215.187.103])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13fab4e44bcsm9419228c88.12.2026.07.31.16.06.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Jul 2026 16:06:42 -0700 (PDT)
-Message-ID: <f105a3df-6769-4a61-ba37-a6b874a918b6@oss.qualcomm.com>
-Date: Fri, 31 Jul 2026 16:06:41 -0700
+        d=1e100.net; s=20251104; t=1785584324; x=1786189124;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=p+f2gJFRKiSHuvZrOCKoONo8EmCeMk/bZVo3Md0qG7E=;
+        b=I+Ugv4Dd9QHyGb73Ta3kk1UGXAXB4MiJ02mHmD9i930M0dtCmddA36uIWMk2x2VWue
+         SUt4Euv0D6QgRyeZE4VIu3+MwqXsFXBS1hwhwZHdiK6/wUID24p3EB6Czy4kf67WRyDt
+         IU/93tBIRvl7c/SV7SaX/gIY70h2J9VvtnB10JshUCSo90iY/2YwJ4veqhfWnhEYDREC
+         GB5g8r/cpd2E1lES1ARTguxDrKwOvX01UiA1hN+4rhkj9qDEzQ3iRNVyrGgdFyhqDva7
+         myuS/5aEsLZwWO87bsoiuLTSrkuAUIUkdf/js7nbwKKBDXygXWHrF5g6r/c2D9U4bmTr
+         oF7w==
+X-Forwarded-Encrypted: i=1; AHgh+RpJX3O3y+z71nL/6vAQAIZthH+f8Resy3owrZ9VTvbR4xCL8/7pKxPUhXbpBpmVM6bDKFfp5WY=@lists.infradead.org
+X-Gm-Message-State: AOJu0YyLch7okZvNid09RqYt5YypPPsfrLWzxt4x8osE0SRzyu1Or3FR
+	uiw8y4pAPHT7n1Ccv7gUcW/saMFG9HFBE8MoSaLJ+UEv013qUFVsMVspUc1Vs7Uj7jc=
+X-Gm-Gg: AR+sD131IqrEEl3CCw4zZ312Wx3G/gTGSrJsEYuUm/wR+QA4oVBz4ddwbBBFEyoX3cS
+	8V71LBMcP9G+tq4Er6Igo9PsuZYsmqXfWLoC0y1DV16htYXgPp4bdegXmWbH0NpGRHf0V2/gmTw
+	VZstZ9NC2ydF6dcMCBqndJawlMkS0KPhosdH1qJ1Cu6ZKu305srUtp9g4k36mIx+zsNLzOur3nn
+	K4xBZeiyfxNSXcPPUqNOwlBJBEMIBQOUepM4dNvLgN+sk8QSkmo4jJE3CpvwIhgD+SjIUWrVAdL
+	Rty5Cb85HZCHJLYy/jW6Ru3fyyidRDiTK+lRoJXbJ1CBNREZCxLszGfBSFJv+VHZ9qntEKMzfU8
+	o5ujMPeZHG4yZc7X3TkUU+i6Vv+Zxq1Du4iopivEjY6bojg/jPltStkRcKYPqk3fjjDiWqWGeB1
+	z21TKPZ95TAWMQMxjjHLA8P7iqLoSQL404/1A15dDEnw5mE2RCj1CGqHtho2dfKt1TGtNEFWcx5
+	82DjtA+9DDgZtXOrbVBSzLUShrRP8QkzZlOXFEGQRsmjuPFteI6GHsVJ0dlJeRLgqa0m8lKDZWy
+X-Received: by 2002:a17:90b:4a11:b0:37d:f983:7b5 with SMTP id 98e67ed59e1d1-38fbc3f9a96mr2804697a91.9.1785584324474;
+        Sat, 01 Aug 2026 04:38:44 -0700 (PDT)
+Received: from Metius ([103.158.43.43])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13fab4fdb80sm11588402c88.15.2026.08.01.04.38.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Aug 2026 04:38:44 -0700 (PDT)
+Date: Sat, 1 Aug 2026 17:08:38 +0530
+From: Abdun Nihaal <nihaal@cse.iitm.ac.in>
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: jjohnson@kernel.org, linux-wireless@vger.kernel.org, 
+	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] wifi: ath11k: Fix possible memory leak in
+ ath11k_dp_srng_setup()
+Message-ID: <l2m3df76j6tzdshgoecqx2fn3b2kzjsytqsxq6mpououga2wjn@zjxksj4z6iov>
+References: <20260727105532.118164-1-nihaal@cse.iitm.ac.in>
+ <041f72ea-7dfc-4d50-ac0d-e0556f037a27@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH ath-current 3/3] wifi: ath11k: unregister PM
- notifier on QMI init failure path
-To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260730030948.147892-1-miaoqing.pan@oss.qualcomm.com>
- <20260730030948.147892-4-miaoqing.pan@oss.qualcomm.com>
-Content-Language: en-US
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-In-Reply-To: <20260730030948.147892-4-miaoqing.pan@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzMxMDE3MyBTYWx0ZWRfX9iCwU2thaQk0
- N3Pl4tzpGl3A5n2ccwBtmgA2Ns+02CxRccbKQwqNMTb2kYTIeo+KAXfj+f34BsSyAooTn2XBjmC
- 4a0EJ8ZoFMN4gyQQJjfreEdPs1TsR3U=
-X-Authority-Analysis: v=2.4 cv=TcamcxQh c=1 sm=1 tr=0 ts=6a6d2a84 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=UaEkX0D7FlC0tWE/LoNF7Q==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=EUspDBNiAAAA:8 a=8LiCHbkhAqqawgbigPAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzMxMDE3MyBTYWx0ZWRfXyXHycQwEMjbb
- awDZFL80+xrMcKcCsSSPYSdOSkp51L/2Ghkq9THIF/08w2Z3aYKq4/lOOCaC2iY80n7hWFICXqo
- Z8+dbAf+CAfo+L7OHpLEX+MaWEJvaxFSC4VWc3OOGL/kwiUAGDUJaM1uNR4DJu650lsYwnu1sXQ
- 7e82DmcDGPmYxAWCXX9aXmSpYwGsNDlo/Yt0BW7anINp8kdA8fxEHfisLyoN9d9vcCQmke/UY+f
- x9tKVybi3hFsBFpz8TAug+v6m17NqJcqP4O494nmxXAWjY+f/Uf7ONsujWuwYdMQOcNIvKHBn0B
- Ta4Ptmi2J1YScc2PUZ1UqaytLt8AuJhHkZXOimIYmVOZEEaVPTxYmQ0dSbwTNocTqYNWVghuhGn
- ft0jTq9lfdoF/G2uYiLjtp9bj+pOgRbDU+bpdYGmd2slrXg2BSRsNnKajUO2wt3EzETRyjC7HiE
- pjq5yiUOpKo5Aj0az5Q==
-X-Proofpoint-ORIG-GUID: Bua2iHbu04CRtCZJW24ZG6AlRZfhA_gU
-X-Proofpoint-GUID: Bua2iHbu04CRtCZJW24ZG6AlRZfhA_gU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-31_07,2026-07-30_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0 priorityscore=1501
- suspectscore=0 spamscore=0 adultscore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607310173
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <041f72ea-7dfc-4d50-ac0d-e0556f037a27@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260731_160647_495301_CBEBB3A6 
-X-CRM114-Status: GOOD (  27.53  )
+X-CRM114-CacheID: sfid-20260801_043845_768753_2E404844 
+X-CRM114-Status: GOOD (  15.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,85 +102,30 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 7/29/2026 8:09 PM, Miaoqing Pan wrote:
-> ath11k_core_init() registers a PM notifier before the QMI server
-> becomes available. If the QMI server never arrives, the device remove()
-> path can take the early-exit path introduced for QMI initialization
-> failures, skipping ath11k_core_deinit().
-
-This patch felt wrong to me, so I spent some time with my buddy Claude.
-
-I asked Claude: in the last patch the commit text says "If the QMI server
-never arrives, the device remove() path can take the early-exit path
-introduced for QMI initialization failures". where is this device remove()
-path code? I'm trying to understand why there needs to be a call to
-ath11k_core_pm_notifier_unregister() in ath11k_ahb_remove() as well as in
-ath11k_core_deinit(). since ath11k_core_pm_notifier_register() is only called
-from one place it is logical that ath11k_core_pm_notifier_unregister() should
-also be called in one place that is symmetrical. the proposed patch breaks the
-init/deinit symmetry.
-
-Claude said:
-The symmetry argument is well-founded. Here's the actual structure:
-
-ath11k_core_init() registers the notifier. ath11k_core_deinit() is its
-symmetric counterpart and unregisters it. That is the intended 1:1 pairing.
-
-The problem is that both ath11k_ahb_remove() and ath11k_pci_remove() have an
-early-exit path for QMI_FAIL that bypasses ath11k_core_deinit() — but still
-need to undo what ath11k_core_init() did. So they replicate the unregister
-call directly. This is an existing pattern: pci.c:1188 already had
-ath11k_core_pm_notifier_unregister() in its QMI_FAIL early-exit before this
-patch series.
-
-Patch 3 simply extends that same pattern to ahb.c's early-exit path, which was
-missing it.
-
-The symmetry break isn't introduced by this patch — it was already present for
-PCI. The fix for the symmetry issue would be to restructure so the early-exit
-paths all go through ath11k_core_deinit() (or a new partial-deinit function),
-but that's a larger refactor. This patch's approach matches the existing
-convention in the tree.
-
-The commit message claim about "the early-exit path introduced for QMI
-initialization failures" refers to the QMI_FAIL branch at ahb.c:1301 — the
-goto qmi_fail block that skips ath11k_core_deinit().
-
-Thank you, Claude.
-
-So I guess this patch is OK since it is replicating the PCI pattern, but is
-there any way to have ath11k_core_deinit() called in those early exit paths so
-that we can keep the init/deinit symmetry? It just seems wrong that if
-ath11k_core_init() did not return an error that we would have deinit logic
-that would skip calling ath11k_core_deinit()
-
+On Fri, Jul 31, 2026 at 02:40:37PM -0700, Jeff Johnson wrote:
+> On 7/27/2026 3:55 AM, Abdun Nihaal wrote:
+> > In ath11k_dp_srng_setup(), the memory allocated for
+> > ring->vaddr_unaligned is not freed when ath11k_hal_srng_setup() fails.
+> > Fix that by calling ath11k_dp_srng_cleanup() in that error path.
 > 
-> As a result, the PM notifier remains registered after the ath11k base
-> object has been freed. A subsequent suspend or resume event may invoke
-> the stale notifier and trigger a use-after-free.
-> 
-> Fix this by explicitly unregistering the PM notifier in the QMI failure
-> cleanup path before releasing ath11k resources.
-> 
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.2.0.c2-00204-QCAMSLSWPLZ-1
-> 
-> Fixes: 32d93b51bc7e ("wifi: ath11k: choose default PM policy for hibernation")
-> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-> ---
->  drivers/net/wireless/ath/ath11k/ahb.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-> index 7f5f5c8d7c56..bdb8c99f10fa 100644
-> --- a/drivers/net/wireless/ath/ath11k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-> @@ -1272,6 +1272,7 @@ static void ath11k_ahb_remove(struct platform_device *pdev)
->  		ath11k_ahb_power_down(ab, false);
->  		ath11k_debugfs_soc_destroy(ab);
->  		ath11k_qmi_deinit_service(ab);
-> +		ath11k_core_pm_notifier_unregister(ab);
->  		goto qmi_fail;
->  	}
->  
+> Did you find this on your own? Just want to make sure you are aware of:
+> https://docs.kernel.org/process/coding-assistants.html
 
+I used a prototype static analysis tool that I'm building using the LLVM
+compiler infrastructure, to detect this memory leak issue.
+Didn't use LLMs, that's why didn't include the Assisted-by tag.
+
+> FWIW my coding agent says this patch is correct but incomplete. There is a 2nd
+> leak, at the switch (type) default: case which returns -EINVAL without cleanup.
+> 
+> Care to incorporate a fix for that in a v2?
+> For that part you can add Assisted-by: Claude:claude-sonnet-4-6
+
+I didn't find any calls to ath11k_dp_srng_setup() that passes any
+hal_ring_type other than the handled ones. That's why I left the default
+case as infeasible. But anyways, to be safe, I'll add a free in the
+default case as well, and send a v2.
+
+Regards,
+Nihaal
 
