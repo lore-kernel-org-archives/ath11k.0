@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB070C5518F
-	for <ath11k@archiver.kernel.org>; Tue,  4 Aug 2026 17:50:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6E57C55184
+	for <ath11k@archiver.kernel.org>; Tue,  4 Aug 2026 17:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3THMtZXW+3uc+ICg/Df1H+KExhySdFSX7okiNUpifcE=; b=4p875iuY2N+KB1atq7apjecjVC
-	BjTMoCpU2iad2Mw5ktlcwBw8Sk3fv44mgUrbpD88RncUbQkt5iUH0VR0+THKibfxzHcc9H2waYPqW
-	adYebeQ7PNa9zajB0JuitnVMr1bE+ll5bRDw/zABYjayn2bODLyY4rGFDCXXvYwZEEzD7trh647+e
-	WCmX6PqxnydxaNiD64WKh3UwrqRSWvEjY+WEcNomUBD04gBLtQn7MeVxXo7E1/Xw+Nd9k4JiTiCjq
-	hTF/vHCyslJL6ahfyOSkLene/kTXo988h/QSNevsGlVADQPzOL5AyD9MODMOw7okPtCbBL+WlrhLI
-	55PA7TOg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=kkH9dBMV0lW/KsrnejqWfXNL9BnpKUf7QPuFDKsTwBU=; b=NCSydTNhkB6a2h1nGnrci4jWm4
+	LPwbmBbNFlT1gX0qrSGwtWj+b6W1g5PR6Xyw6OVP4Ux+lmpQmPYNljEpVuIWca7jSbR96u5zlPxZi
+	SRig/0Lq7wToWh1ybBfHH2fFriq27LI3IHPJdLaXcPoPi8xBTqs4dykI3SnmoEf8uhEW0dmnp9hqo
+	jSp45ypvPTiA6nC4y6pbI5ckTcpp3SlVOSXZ/myKusJzUMCILFKmoLTdcLBspF6nUgW/oKZxaiwj2
+	YtdNy/YXkDhzFNM6xDvHDIOXIrn3sJ5G1z3jZqIfgwN4L33azn+yfkTVs7B3o5ajQkM61BtgQYtV9
+	nvXMxyNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wrJHU-00000002WlU-1pLk;
-	Tue, 04 Aug 2026 17:50:24 +0000
+	id 1wrJHV-00000002WmZ-2pT7;
+	Tue, 04 Aug 2026 17:50:25 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wrJHS-00000002WjW-1DrC
+	id 1wrJHT-00000002WkR-3OcR
 	for ath11k@lists.infradead.org;
-	Tue, 04 Aug 2026 17:50:23 +0000
+	Tue, 04 Aug 2026 17:50:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1785865821;
+	s=mimecast20190719; t=1785865823;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=3THMtZXW+3uc+ICg/Df1H+KExhySdFSX7okiNUpifcE=;
-	b=Rt+QqfViGbrf59KjbpXmugt2SOzGBmaQO15hCxR++VhmFOUIX3l8sUBScdo4qT064t+wOk
-	e/byxIXmc4NaNp3mW2R6bhLZxhnQ2dc847Sxvg7t+Amd2ulResKyWdAImXSwyw6PnHRlXc
-	C6g45kAHCmP3aU6Rarc4hJE0G8HADIw=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+	bh=kkH9dBMV0lW/KsrnejqWfXNL9BnpKUf7QPuFDKsTwBU=;
+	b=URhsWIV1CLUPTEms6Cvjl1AtF1v/B8PLVmOdfKknH1BM9Tz65armQrIoUHvfphVkQhBshL
+	XYvJqYagknilGRVLf/9tMCKlud7x3rLCrBX0h1WT9mp3fMbaAWXugPkJug2xFopxhaIur2
+	QyGd2uczMbQR0VJDjxqSH8mTj3xQxL0=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-298-3BnXttuiPQ6vBgz91YnuVw-1; Tue,
- 04 Aug 2026 13:50:19 -0400
-X-MC-Unique: 3BnXttuiPQ6vBgz91YnuVw-1
-X-Mimecast-MFC-AGG-ID: 3BnXttuiPQ6vBgz91YnuVw_1785865817
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-78-CU0HFwGCO5uoDMVi4t3ppg-1; Tue,
+ 04 Aug 2026 13:50:14 -0400
+X-MC-Unique: CU0HFwGCO5uoDMVi4t3ppg-1
+X-Mimecast-MFC-AGG-ID: CU0HFwGCO5uoDMVi4t3ppg_1785865813
 Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id AB9761956095;
-	Tue,  4 Aug 2026 17:50:16 +0000 (UTC)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 4C0C119560AD;
+	Tue,  4 Aug 2026 17:50:13 +0000 (UTC)
 Received: from fedora.redhat.com (unknown [10.44.48.70])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 84015180044F;
-	Tue,  4 Aug 2026 17:50:14 +0000 (UTC)
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 01730180044F;
+	Tue,  4 Aug 2026 17:50:10 +0000 (UTC)
 From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
 To: jjohnson@kernel.org
 Cc: ath11k@lists.infradead.org,
@@ -60,20 +60,20 @@ Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH v2 2/3] wifi: ath12k: prevent scan during firmware recovery
-Date: Tue,  4 Aug 2026 19:50:00 +0200
-Message-ID: <20260804175004.1761075-3-jtornosm@redhat.com>
+Subject: [PATCH v2 1/3] wifi: ath12k: fix MLO station firmware crash recovery
+Date: Tue,  4 Aug 2026 19:49:59 +0200
+Message-ID: <20260804175004.1761075-2-jtornosm@redhat.com>
 In-Reply-To: <20260804175004.1761075-1-jtornosm@redhat.com>
 References: <20260804175004.1761075-1-jtornosm@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-MFC-PROC-ID: 5Fqp6Xg_k4QhMJBbvdMcN2iv9u3r-LdfI-0ecBSqG7s_1785865817
+X-Mimecast-MFC-PROC-ID: lKgbuyseOHtHSeWjV-aTLaYuhb3XQznOEdLbJa_P9fA_1785865813
 X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260804_105022_420365_9126BD31 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20260804_105023_976241_F9AF4D36 
+X-CRM114-Status: GOOD (  20.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,49 +88,215 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When firmware crashes while wpa_supplicant has an active connection,
-wpa_supplicant may immediately attempt a scan via nl80211 while the
-firmware is still powering on through MHI. ath12k_mac_op_hw_scan()
-proceeds without checking the recovery state, accessing partially
-initialized radio structures which leads to a NULL pointer dereference:
+ATH12K_FLAG_RECOVERY is cleared too early in
+ath12k_core_reconfigure_on_crash(), before mac80211 runs
+ieee80211_reconfig(). By the time mac80211 calls back into the driver
+(sta_state, change_vif_links, set_key), the RECOVERY flag is already false,
+so the driver treats recovery callbacks as normal operations.
 
-  BUG: unable to handle page fault for address: 0000000000001508
-  RIP: ath12k_mac_op_hw_scan+0x148/0x2b0 [ath12k]
-  Call Trace:
-   drv_hw_scan+0x88/0x140 [mac80211]
-   __ieee80211_start_scan+0x2bc/0x6b0 [mac80211]
-   nl80211_trigger_scan+0x54a/0x9f0 [cfg80211]
+This causes several problems during MLO recovery:
 
-Fix by checking ATH12K_FLAG_RECOVERY at the start of
-ath12k_mac_op_hw_scan() and returning -EBUSY. mac80211 will retry the
-scan after the recovery completes.
+- ath12k_mac_op_sta_state() tries to activate MLO links during the
+  AUTH->ASSOC transition, calling ieee80211_set_active_links()
+  recursively, which triggers a WARNING at net/mac80211/link.c.
+
+- ath12k_mac_op_change_vif_links() processes link removal during
+  reconfig, causing inconsistent state.
+
+- ath12k_mac_set_key() fails with "cannot install key for non-existent
+  peer" because peers do not exist yet during reconfig. Keys will be
+  re-established during normal reconnection after
+  ieee80211_hw_restart_disconnect() triggers a fresh association.
+
+- ath12k_mac_flush() waits for pending TX to complete, but after a
+  firmware crash the TX will never complete, causing a 20 second timeout.
+
+- ath12k_mac_station_remove() calls ath12k_bss_disassoc() and
+  ath12k_mac_vdev_stop() which send WMI commands to dead firmware,
+  causing timeouts that delay recovery.
+
+- ath12k_clear_peer_keys() tries to look up and clear peer keys, but
+  peers are already gone after firmware crash.
+
+- ath12k_dp_rx_ampdu_stop() dereferences per-link station state that
+  may not be valid during crash teardown.
+
+- ath12k_peer_mlo_link_peers_delete() sends WMI peer delete commands
+  for each MLO link peer. With dead firmware these time out and can
+  trigger cascading resets.
+
+These issues were observed during sporadic firmware crashes in MLO
+operation. To allow systematic testing and reproduction, the debugfs
+simulate_fw_crash interface was used to trigger controlled firmware
+crashes during active MLO connections with traffic.
+
+Fix by moving clear_bit(ATH12K_FLAG_RECOVERY) from
+ath12k_core_reconfigure_on_crash() to ath12k_mac_op_reconfig_complete(),
+so the flag stays set through the entire mac80211 reconfig phase. Add
+ATH12K_FLAG_RECOVERY checks in change_vif_links, set_key, and sta_state
+to skip operations that are invalid during recovery. Add
+ATH12K_FLAG_CRASH_FLUSH checks in mac_flush, station_remove,
+clear_peer_keys, dp_rx_ampdu_stop, and peer_mlo_link_peers_delete to
+return immediately when the firmware is dead.
 
 Tested on WCN7850 with MLO (Wi-Fi 7).
 
 Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
 ---
-v2: Fix radio[0] usage
-v1: https://lore.kernel.org/all/20260727162748.963275-3-jtornosm@redhat.com/
+v2: Rebase and address comments from Baochen Qiang:
+    - Remove CRASH_FLUSH guards from HAL srng source ring helpers
+    (ath12k_hal_srng_src_num_free, ath12k_hal_srng_src_get_next_entry,
+    ath12k_hal_srng_access_end). They were a layering violation — the
+    HAL should not know about device crash semantics. They were added
+    as a precautionary measure to abort as soon as possible, but
+    ath12k_wifi7_dp_tx() already has a CRASH_FLUSH check before any
+    HAL call.
+    - Fix radio[0] usage in change_vif_links, sta_state, and
+    peer_mlo_link_peers_delete to use per-radio ab.
+v1: https://lore.kernel.org/all/20260727162748.963275-2-jtornosm@redhat.com/
 
- drivers/net/wireless/ath/ath12k/mac.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/net/wireless/ath/ath12k/core.c  |  2 --
+ drivers/net/wireless/ath/ath12k/dp_rx.c |  3 +++
+ drivers/net/wireless/ath/ath12k/mac.c   | 27 ++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath12k/peer.c  |  6 ++++++
+ 4 files changed, 35 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath12k/core.c b/drivers/net/wireless/ath/ath12k/core.c
+index 262a2045309b..5c0ee74808cd 100644
+--- a/drivers/net/wireless/ath/ath12k/core.c
++++ b/drivers/net/wireless/ath/ath12k/core.c
+@@ -1391,8 +1391,6 @@ static int ath12k_core_reconfigure_on_crash(struct ath12k_base *ab)
+ 	if (ret)
+ 		goto err_hal_srng_deinit;
+ 
+-	clear_bit(ATH12K_FLAG_RECOVERY, &ab->dev_flags);
+-
+ 	return 0;
+ 
+ err_hal_srng_deinit:
+diff --git a/drivers/net/wireless/ath/ath12k/dp_rx.c b/drivers/net/wireless/ath/ath12k/dp_rx.c
+index 8fa0e90b4531..473855ded8a7 100644
+--- a/drivers/net/wireless/ath/ath12k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath12k/dp_rx.c
+@@ -751,6 +751,9 @@ int ath12k_dp_rx_ampdu_stop(struct ath12k *ar,
+ 
+ 	lockdep_assert_wiphy(ath12k_ar_to_hw(ar)->wiphy);
+ 
++	if (test_bit(ATH12K_FLAG_CRASH_FLUSH, &ab->dev_flags))
++		return 0;
++
+ 	arsta = wiphy_dereference(ath12k_ar_to_hw(ar)->wiphy,
+ 				  ahsta->link[link_id]);
+ 	if (!arsta)
 diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
-index 7b7110ca6428..a57c2e91be84 100644
+index 99bf5cf79d10..7b7110ca6428 100644
 --- a/drivers/net/wireless/ath/ath12k/mac.c
 +++ b/drivers/net/wireless/ath/ath12k/mac.c
-@@ -5783,6 +5783,11 @@ int ath12k_mac_op_hw_scan(struct ieee80211_hw *hw,
+@@ -4341,12 +4341,22 @@ ath12k_mac_op_change_vif_links(struct ieee80211_hw *hw,
+ 	struct ath12k_vif *ahvif = ath12k_vif_to_ahvif(vif);
+ 	unsigned long to_remove = old_links & ~new_links;
+ 	unsigned long to_add = ~old_links & new_links;
++	unsigned long existing = old_links;
+ 	struct ath12k_hw *ah = ath12k_hw_to_ah(hw);
+ 	struct ath12k_link_vif *arvif;
+ 	u8 link_id;
  
  	lockdep_assert_wiphy(hw->wiphy);
  
-+	for_each_ar(ah, ar, i) {
-+		if (test_bit(ATH12K_FLAG_RECOVERY, &ar->ab->dev_flags))
-+			return -EBUSY;
++	if (old_links) {
++		for_each_set_bit(link_id, &existing, IEEE80211_MLD_MAX_NUM_LINKS) {
++			arvif = wiphy_dereference(hw->wiphy, ahvif->link[link_id]);
++			if (arvif && arvif->ar &&
++			    test_bit(ATH12K_FLAG_RECOVERY, &arvif->ar->ab->dev_flags))
++				return -EINVAL;
++		}
 +	}
 +
- 	chan_list = kzalloc_objs(*chan_list, hw_req->req.n_channels);
- 	if (!chan_list)
- 		return -ENOMEM;
+ 	ath12k_generic_dbg(ATH12K_DBG_MAC,
+ 			   "mac vif link changed for MLD %pM old_links 0x%x new_links 0x%x\n",
+ 			   vif->addr, old_links, new_links);
+@@ -6025,6 +6035,9 @@ static int ath12k_clear_peer_keys(struct ath12k_link_vif *arvif,
+ 
+ 	lockdep_assert_wiphy(ath12k_ar_to_hw(ar)->wiphy);
+ 
++	if (test_bit(ATH12K_FLAG_CRASH_FLUSH, &ab->dev_flags))
++		return 0;
++
+ 	spin_lock_bh(&dp->dp_lock);
+ 	peer = ath12k_dp_link_peer_find_by_vdev_and_addr(dp, arvif->vdev_id, addr);
+ 	if (!peer || !peer->dp_peer) {
+@@ -6100,6 +6113,8 @@ static int ath12k_mac_set_key(struct ath12k *ar, enum set_key_cmd cmd,
+ 		spin_unlock_bh(&dp->dp_lock);
+ 
+ 		if (cmd == SET_KEY) {
++			if (test_bit(ATH12K_FLAG_RECOVERY, &ab->dev_flags))
++				return 0;
+ 			ath12k_warn(ab, "cannot install key for non-existent peer %pM\n",
+ 				    peer_addr);
+ 			return -EOPNOTSUPP;
+@@ -7100,7 +7115,8 @@ static int ath12k_mac_station_remove(struct ath12k *ar,
+ 
+ 	wiphy_work_cancel(ar->ah->hw->wiphy, &arsta->update_wk);
+ 
+-	if (ahvif->vdev_type == WMI_VDEV_TYPE_STA) {
++	if (ahvif->vdev_type == WMI_VDEV_TYPE_STA &&
++	    !test_bit(ATH12K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)) {
+ 		ath12k_bss_disassoc(ar, arvif);
+ 		ret = ath12k_mac_vdev_stop(arvif);
+ 		if (ret)
+@@ -7861,6 +7877,10 @@ int ath12k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 		 * MLO case. Other cases would be handled in the future.
+ 		 */
+ 		ab = ah->radio[0].ab;
++		if (test_bit(ATH12K_FLAG_RECOVERY, &ab->dev_flags)) {
++			ret = 0;
++			goto exit;
++		}
+ 		if (ab->ag->num_devices == 1) {
+ 			ret = ath12k_mac_select_links(ab, vif, hw, &selected_links);
+ 			if (ret) {
+@@ -12661,6 +12681,9 @@ static int ath12k_mac_flush(struct ath12k *ar)
+ 	long time_left;
+ 	int ret = 0;
+ 
++	if (test_bit(ATH12K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags))
++		return -ESHUTDOWN;
++
+ 	time_left = wait_event_timeout(ar->dp.tx_empty_waitq,
+ 				       (atomic_read(&ar->dp.num_tx_pending) == 0),
+ 				       ATH12K_FLUSH_TIMEOUT);
+@@ -13559,6 +13582,8 @@ ath12k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+ 	for_each_ar(ah, ar, i) {
+ 		ab = ar->ab;
+ 
++		clear_bit(ATH12K_FLAG_RECOVERY, &ab->dev_flags);
++
+ 		ath12k_warn(ar->ab, "pdev %d successfully recovered\n",
+ 			    ar->pdev->pdev_id);
+ 
+diff --git a/drivers/net/wireless/ath/ath12k/peer.c b/drivers/net/wireless/ath/ath12k/peer.c
+index 80edebf0e364..d64e62192cd7 100644
+--- a/drivers/net/wireless/ath/ath12k/peer.c
++++ b/drivers/net/wireless/ath/ath12k/peer.c
+@@ -376,12 +376,18 @@ int ath12k_peer_mlo_link_peers_delete(struct ath12k_vif *ahvif, struct ath12k_st
+ 	unsigned long links;
+ 	struct ath12k *ar;
+ 	u8 link_id;
++	int i;
+ 
+ 	lockdep_assert_wiphy(ah->hw->wiphy);
+ 
+ 	if (!sta->mlo)
+ 		return -EINVAL;
+ 
++	for_each_ar(ah, ar, i) {
++		if (test_bit(ATH12K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags))
++			return 0;
++	}
++
+ 	struct ath12k_peer_delete_wait *waits __free(kfree) =
+ 				kzalloc_objs(*waits, IEEE80211_MLD_MAX_NUM_LINKS);
+ 	if (!waits)
 -- 
 2.54.0
 
