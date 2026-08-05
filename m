@@ -4,74 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2E54C561E6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 673DEC55174
 	for <ath11k@archiver.kernel.org>; Wed,  5 Aug 2026 19:22:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=lTF4WLzFw0fB3oAy0Rqnuzx+Ko8HpiZOmOtSBbcLZxo=; b=h0acj1qtkG4PBAg5N5tDA8WLZp
-	SgQEZxLvYjis+zFwWD5AInyLHMP9oCHNV96X4RwBfz5GeDPaxEFQuKADRJgQav3DiK3YlIdu29r86
-	rhpjWsup7XeXCmyKgZqxrzm2kKEe6vAK7lq84Kq95ac2gSvV2krL7QecAdBhLF2bxzXC/qUl62qvL
-	wBIzYjJSE9VNIzV157ZozkX6m7bYCh7owulhdKpPi5wsGOMSIb0zq2RPLTh+XMsR7JB2z2oGtfke4
-	tKBUDnL9/2o9phceSfp9dEqQzR6ZxWBRnMygxS3ZZqb7XctbJ0vfG3UQcW4iD79X57UE0F+C0TOF7
-	B72uDvSw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=vFVpN+bB4EEuxs813hnK+WuPIS45ZqdvBVCb5hchvAg=; b=q6ns+GxgpYvrQU0yDOxK0XPH8k
+	ODyl0eCC4kC964ljbcsaoQmvlfPNk2XHYclAm7PwsuJM7qVzOivaiNBUaVWKtx4lsUlO86yKtkXzK
+	aR/fC1HqYo4PnzcgeogWPOQpDCVOPy8upqyC2PJRfEvnUdP1tJOwnGm7u+dQ+RjUckTUM4zByclwg
+	19jOlgq0fpN3l1xHD/oY1BBlVwzU0J1roaT1Yjryl2F266AAJgLaSB0eAj88oaTKRtr6uMxXM6tog
+	KXyQXgUcfv2kJEvjF9Ho21XxrLwPJqzgNIU9h/3pBLoN14GIFK4vlYW+SDoXjK3zLIYvzVleJ9VH1
+	oe3cVpUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wrhCc-00000004Sm8-1M67;
-	Wed, 05 Aug 2026 19:22:58 +0000
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+	id 1wrhCa-00000004SlW-0moo;
+	Wed, 05 Aug 2026 19:22:56 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wrhCZ-00000004Sl5-3waH
+	id 1wrhCY-00000004SkM-0cBr
 	for ath11k@lists.infradead.org;
-	Wed, 05 Aug 2026 19:22:57 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-6a051b737d8so1478623a12.1
-        for <ath11k@lists.infradead.org>; Wed, 05 Aug 2026 12:22:55 -0700 (PDT)
+	Wed, 05 Aug 2026 19:22:55 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c1c50c1e29bso203412566b.3
+        for <ath11k@lists.infradead.org>; Wed, 05 Aug 2026 12:22:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1785957774; x=1786562574; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=lTF4WLzFw0fB3oAy0Rqnuzx+Ko8HpiZOmOtSBbcLZxo=;
-        b=bmazal5XHSnbaVhZqYxqG+aTQWD9MbqJYNfx/L3ZCFom5gE6/sHRefNnE8QpumdmeA
-         HyqC5GQgxgAcu8nd6BUBsNQrgtm8KZgk1BGnrvMBawK+1O+YP+IKXpC7e0EX2665Qlvd
-         9uC55sCZAFnhl0CCCwLyU720trderHZKDhRCYkhS8dhM6drCZArIXAlhhBJKgPVo/qYD
-         JOWc4b7WnyuiPNmZemxlTpGHwX4LK8cu6mHaGK2D1KhlIv0wP6rSQTvJ5GXuYXFiZQnN
-         5HQ/ZK9YIs91LhxZaK1ztc6QPDjRJ5Dn15GhQjiNKMo/zeSKxmByEycGUyNSoBijEUgz
-         3BVg==
+        d=bairaktaris.de; s=google; t=1785957772; x=1786562572; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=vFVpN+bB4EEuxs813hnK+WuPIS45ZqdvBVCb5hchvAg=;
+        b=M/n+NXywVuqdROCx/ER9PLqmxzeL8kfA0NxEUGdXS8JD+OmWlPHnkdPZPwrCEZhARg
+         AXprHnE1zq6IedLADrX/MG83zs2MMiQGS1H4aWXLo1oEeINNYY7+wp4v/oPQOXrG/1xT
+         okd0FxusyjXD67Y1wNlSZQD328AZA+xhs/pNbXC64LXKfPJN/xOHPhwSSwZPWsk6giXF
+         9x4AhXoRq5d/pWJTE1kE4kzkw4OC/U91DLvG3QRmgjksZmb+OQm7em5jZPa/So0eqUGG
+         oZ3qGMxSUz3QZyhqTvzNFyPXnOIq56GExak5Lq8GpFOyWm+Ao0qfT3eU8uyWYlN4FaGI
+         B0Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785957774; x=1786562574;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=lTF4WLzFw0fB3oAy0Rqnuzx+Ko8HpiZOmOtSBbcLZxo=;
-        b=CEkueeTEvV29z26li3ChXY2IbN7JhTb/mB71kROabp/t0ZuFrmYHD68SVjg621qnwG
-         ga8X0cFmLbLbH+vPPCKXsUlxGk0ckkew+b3JJnlc1J0Kk3feRtSgt/DTkHy7mPXC9EFM
-         0qOXKescAgsnpZPUrYwapU/w6+pjiqwM2PvCCNLQ1BEoCOUNGB2miZ3tZKyuyTxuzX6j
-         qEiO8mEZyJn9+Jjilcx6FtmTj2tr6HhoM5uD9WtSu9szmIW2DceaD9exsLUxL22QgAcJ
-         Co9tbiMrGOhhmrMg5hdeA+lJMiWGoqKiFVMW2nliJ3RiHMqKSJn0g8D51Sy42whgiCYr
-         06OA==
-X-Gm-Message-State: AOJu0YwXpqhH0y58l/QFPIyBv6AJTfd0DwAmIH+p4lYU3UQIfN9HcOlz
-	GSV6iNNU5FH9ccUBycKOK4aIl6AU4lJxuHB+IS4PfXczYU/NPpfN9rl5t8T8jCkANA==
-X-Gm-Gg: AR+sD10lGmEWnbe7Ih7gB31AgFfXkqL0FDhHBJePOFURAjf9gXaxsyagcdhXfj4cokY
-	q8jn2BG0IWGbw2DizF/3MDIJCrFca7wlv7MCt3VtZCxzvwsm1c7UC2W7nzUfIkDbmro5iHLR6o6
-	43jTnOdCuzuc1z/UImCPxVZvmYaMdXDAc1Irqo3SlHUprW7DD5yuSD7v5mRJy43g+ysdcEwJ3FY
-	SL+wAXAp1tSUK9QWrHIVbdd9B0R4Yya9paATqWhSRiqwKzX38uJO/tcra8TD2gAkPLvE/F9hwiL
-	/mvloJvxKjI2ffJkxEmgYc6mNCpTL1SOB+GJHF8HAW7ip3z1hs9qmlcStR6VxHiYoG/UG9GvBw1
-	otbpm5NOg574ltjBywnm//VnG5MqI+qYsICbcWsDDOcX0mwRIz4CWocIZZoBm/uwbblR5CNycrd
-	xd+9C3GpBk3JiJuRe5PGSB1GkbMABFzI0ekL3CRMDdDra3rW2AlupUuHO4+yLzwzl8ZBDr+VTDc
-	TyXtfmf8C6yKG+/hbrGnreDzUn2kq+nsyzxHNQxqCQWihzfAtAjUsm9HhzRBvcPru/SBdb+mxy7
-	a0Yu6k2lP5uQ839Nkd3TvwzYovrk/2l5EDya30W98zDM1vkUyJxcxZCsa07vFcoFw9itmNcJrVH
-	gv8bNxZ8C+YHM5rjkT6Zfep3ioc2RdXQwvoqe2ndOKR19NOhX/5pksIq/YuEYmvlqvnfoR9uOQE
-	vl1GZ7IEkB1hzuSzUwguXguEZ5
-X-Received: by 2002:a05:6402:51cf:b0:6a1:4458:7f2d with SMTP id 4fb4d7f45d1cf-6a14f0a65d2mr4988463a12.5.1785957773983;
-        Wed, 05 Aug 2026 12:22:53 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1785957772; x=1786562572;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=vFVpN+bB4EEuxs813hnK+WuPIS45ZqdvBVCb5hchvAg=;
+        b=rekusLnII6MJhY0TNtwubvLslzsDjoxFoi0Vr3NB4IiF/x1VCOLkGIzU8pXNPo9t2D
+         RezINmbR7vus3GRWA6kAUUWyWrZFzaL/A+e4iI56sxkaltgXm7qq9b8QykKF4sURkuJX
+         3LYa9s+Hpt6eA7DSpBZQcWX2mbUJWwuCPIi3otg9p0ZnWFK7XfEiAiKqRXW2dW+VVedA
+         MLcZfvWZozGVSPMobH8u37N3NtT1aDAA8S8bq8MMhGIm7aof7gTaXiON9w3yeZDDTKxl
+         5MSkXkZwP1Y+M0zz7HcRu5AZfslxTY2dqg92H7N46l1EEFc3dhz5i2Z0KNQnCSaibIJY
+         9dGA==
+X-Gm-Message-State: AOJu0Yw6MAMI0XftiwvZ2hKe/5ZQ9HFm96rqzRqJw0Ct2yopQUTj6zeL
+	QasL1JzrvHrI9EMmBRT7z5z0F8uvXcU38YtqoaIJ43FNLB8YWEZMIUIp1Ag2RbtlzQ==
+X-Gm-Gg: AR+sD10HbwPFIWFE+RE3zDcq0CfDRXRg3GodK41OYxC4zyIqwbhSfiqj/zdmJiHPe0P
+	S7w1BNyTe6hfeAIAFVzEFDw76WKFBCRJVyhth07ozcAMU9zV97Bzc/vRKnfvcexQaveo0oJKHiV
+	idmugHVrfAToRnCoHZFxMnW+hX3LwcyPFh41yZoim56YaG2iiLAzthfvbSrzCIM7ulw/sdgeH4h
+	gL3UbDttadUhoK7Bm3m1yw/hFFg/COqQEREcMGmfzsaX5Ti0GD+d7AAW6CfX9fbQnMRlApYMngW
+	aNFEmJ8mjJ+vTDAvV8POykxBtetRn3vosMeMzuDJX6WjojLSEt6iMJsbq+NCR6Bjrak/2jTEYCQ
+	G9LmX2zAO1zmbvCiL+0atj+5JnVSuYfwZDUKZFE+Fq1FYRQ2VFaEx0HmggmsDcbCbXxhAB20J+c
+	6JSqkEU+AoEefkv7ecCyn0RgJMiTuEGbAd7tpIcHPCVVbFcJSXY3/ro1iCudVB5Gzucgjo3CCjc
+	R5i2oUVLza5Vsi2Oiqpjx7C4u98L/3+k2SqZP8X4UGfQssMIV2Ak4vacR6NUrEa/geuN/XiFjYr
+	yj3XayN+yrcD6XP7vnyzweMWxcrMIO09jikvGBIqfDDpUtwZWV6DCoqDvUonnpZw12/xiNFdZMS
+	S3A97vURfPaJoh0d+LjkbQ0lkvi/tY4YatIHYT0MPqMK0wCVoA0Rh6xlC0psDIRqu12XO5O5ezr
+	guSeCvDZiyHvdkZQ==
+X-Received: by 2002:a17:906:99d4:b0:c19:611c:fa8f with SMTP id a640c23a62f3a-c2039c1f2b9mr464669266b.18.1785957771812;
+        Wed, 05 Aug 2026 12:22:51 -0700 (PDT)
 Received: from Desktop (pd9513cee.dip0.t-ipconnect.de. [217.81.60.238])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6a17d6216cesm1180713a12.31.2026.08.05.12.22.51
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6a17d6216cesm1180713a12.31.2026.08.05.12.22.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Aug 2026 12:22:52 -0700 (PDT)
+        Wed, 05 Aug 2026 12:22:50 -0700 (PDT)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: jjohnson@kernel.org
 Cc: ath11k@lists.infradead.org,
@@ -80,17 +79,15 @@ Cc: ath11k@lists.infradead.org,
 	baochen.qiang@oss.qualcomm.com,
 	vasanthakumar.thiagarajan@oss.qualcomm.com,
 	rameshkumar.sundaram@oss.qualcomm.com
-Subject: [PATCH ath-next 2/2] wifi: ath11k: initialise the CE descriptor waitqueue once per device
-Date: Wed,  5 Aug 2026 21:21:29 +0200
-Message-ID: <20260805192129.61113-2-julius@bairaktaris.de>
+Subject: [PATCH ath-next 1/2] wifi: ath11k: guard copy engine access against a cleared srng
+Date: Wed,  5 Aug 2026 21:21:28 +0200
+Message-ID: <20260805192129.61113-1-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260805192129.61113-1-julius@bairaktaris.de>
-References: <20260805192129.61113-1-julius@bairaktaris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260805_122255_993278_F1CEA946 
-X-CRM114-Status: GOOD (  15.84  )
+X-CRM114-CacheID: sfid-20260805_122254_234387_6BF05402 
+X-CRM114-Status: GOOD (  16.76  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,84 +102,96 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k_wmi_pdev_attach() runs init_waitqueue_head() on the pdev's
-tx_ce_desc_wq. It is called from ath11k_wmi_attach() ->
-ath11k_core_start(), which firmware crash recovery re-runs through
-ath11k_core_qmi_firmware_ready(), so the head is reinitialised on every
-recovery - including while a task is still queued on it.
+ath11k_core_reconfigure_on_crash() zeroes the ring list with
+ath11k_hal_srng_clear() and only rebuilds the copy engine rings later,
+inside ath11k_core_qmi_firmware_ready() -> ath11k_ce_init_pipes().
 
-Parts with hw_params.credit_flow clear - ipq8074, ipq6018, ipq5018,
-wcn6750 - take the else branch of ath11k_wmi_cmd_send() and sleep there
-in wait_event_timeout() for up to WMI_SEND_TIMEOUT_HZ. That is longer
-than a recovery takes, so an ordinary WMI command issued from userspace
-just before the crash is still on the queue when the head is cleared
-under it, and finish_wait() then deletes the entry from a list head that
-no longer refers to it:
+ath11k_ce_send() is gated on ATH11K_FLAG_CRASH_FLUSH, but that flag is
+cleared before ath11k_core_qmi_firmware_ready() is called - it has to be,
+since the firmware bring-up itself sends WMI commands through the copy
+engine. For the whole of that bring-up the gate is open while the ring is
+still zeroed, so any WMI command issued in that window dereferences the
+NULL u.src_ring.tp_addr in ath11k_hal_srng_access_begin():
 
-  WARNING: CPU: 1 PID: 1861 at lib/list_debug.c:62 __list_del_entry_valid_or_report+0x110/0x154
-  CPU: 0 UID: 101 Comm: hostapd
+  Unable to handle kernel read from unreadable memory at virtual address 0
+  CPU: 0 UID: 101 PID: 1846 Comm: hostapd
+  pc : ath11k_hal_srng_access_begin+0xc/0x60 [ath11k]
+  lr : ath11k_ce_send+0x114/0x350 [ath11k]
   Call trace:
-   __list_del_entry_valid_or_report+0x110/0x154 (P)
-   finish_wait+0xcc/0xd0
-   ath11k_wmi_cmd_send+0x150/0x2f4 [ath11k]
-   ath11k_wmi_vdev_set_param_cmd+0x64/0xd8 [ath11k]
-   ath11k_mac_op_bss_info_changed+0xe8/0xf60 [ath11k]
-   drv_link_info_changed+0x118/0x160 [mac80211]
-   ieee80211_link_info_change_notify+0xe0/0x100 [mac80211]
-   ieee80211_change_bss+0x1c8/0x250 [mac80211]
-   nl80211_set_bss+0x1a0/0x330 [cfg80211]
+   ath11k_hal_srng_access_begin+0xc/0x60 [ath11k] (P)
+   ath11k_htc_send+0x188/0x3c8 [ath11k]
+   ath11k_wmi_cmd_send+0xc8/0x2f4 [ath11k]
+   ath11k_wmi_send_peer_create_cmd+0x78/0xe0 [ath11k]
+   ath11k_peer_create+0x138/0x500 [ath11k]
 
-Initialise it where its credit-flow sibling ab->wmi_ab.tx_credits_wq is
-already initialised, in ath11k_core_alloc(), which runs once per device.
-The array is fixed size, so all of it can be set up before any pdev is
-attached, and nothing on the recovery path touches the head again.
+The caller matters: this is a command issued fresh during the recovery,
+not a task that was already blocked in ath11k_wmi_cmd_send(). A blocked
+one sleeps through the whole window and never re-enters ath11k_ce_send(),
+which is why hammering beacon updates does not reproduce it and a station
+associating during recovery does.
 
-Reproduced on a Xiaomi AX3600 (IPQ8074 hw2.0) with a userspace loop
-pushing beacon updates while the firmware is asserted through the debugfs
-simulate_fw_crash 'assert' trigger, on a stock ath11k with no out-of-tree
-modules loaded: one warning per recovery, on all eleven recoveries
-observed across two builds, and none at all over six recoveries with this
-applied.
+ath11k_ce_completed_send_next() has no gate at all, and
+ath11k_core_reconfigure_on_crash() calls ath11k_ce_cleanup_pipes() before
+anything else, so a crash arriving after a previous recovery already ran
+ath11k_hal_srng_clear() reaps rings whose tp_addr is NULL. This is a
+different entry into the same dereference from the one fixed by
+commit e8d85672dd7e ("wifi: ath11k: fix NULL pointer dereference in
+ath11k_hal_srng_access_begin"), which stops a successful bring-up from
+being repeated; it does not close this window.
+
+Test u.src_ring.tp_addr rather than srng->initialized in both places:
+ath11k_hal_srng_setup() publishes ->initialized before ->tp_addr with no
+barrier between them, so an ->initialized check can be true while the
+pointer that is about to be dereferenced is still NULL.
 
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.12-01460-QCAHKSWPL_SILICONZ-1
 
-Fixes: f951380a6022 ("ath11k: Disabling credit flow for WMI path")
+Fixes: 32be3ca4cf78 ("wifi: ath11k: HAL SRNG: don't deinitialize and re-initialize again")
 Assisted-by: Claude:claude-opus-5
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 5 +++++
- drivers/net/wireless/ath/ath11k/wmi.c  | 1 -
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/ce.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2746,6 +2746,7 @@
- 				      enum ath11k_bus bus)
- {
- 	struct ath11k_base *ab;
-+	int i;
- 
- 	ab = kzalloc(sizeof(*ab) + priv_size, GFP_KERNEL);
- 	if (!ab)
-@@ -2772,6 +2773,10 @@
- 	INIT_LIST_HEAD(&ab->peers);
- 	init_waitqueue_head(&ab->peer_mapping_wq);
- 	init_waitqueue_head(&ab->wmi_ab.tx_credits_wq);
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -472,6 +472,17 @@ static struct sk_buff *ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe
+
+ 	spin_lock_bh(&srng->lock);
+
++	/*
++	 * ath11k_ce_cleanup_pipes() can reach this on a ring that
++	 * ath11k_hal_srng_clear() has zeroed and that recovery has not
++	 * rebuilt. Bail out as for an empty ring rather than dereference
++	 * the NULL tp_addr in ath11k_hal_srng_access_begin().
++	 */
++	if (unlikely(!srng->u.src_ring.tp_addr)) {
++		skb = ERR_PTR(-EIO);
++		goto err_unlock;
++	}
 +
-+	for (i = 0; i < ARRAY_SIZE(ab->wmi_ab.wmi); i++)
-+		init_waitqueue_head(&ab->wmi_ab.wmi[i].tx_ce_desc_wq);
+ 	ath11k_hal_srng_access_begin(ab, srng);
+
+ 	desc = ath11k_hal_srng_src_reap_next(ab, srng);
+@@ -750,6 +761,19 @@ int ath11k_ce_send(struct ath11k_base *ab, struct sk_buff *skb, u8 pipe_id,
+
+ 	srng = &ab->hal.srng_list[pipe->src_ring->hal_ring_id];
+
++	/*
++	 * ATH11K_FLAG_CRASH_FLUSH is cleared before the copy engine rings
++	 * are rebuilt, so the check above lets a send through while the
++	 * ring is still zeroed. Test the pointer that would be
++	 * dereferenced: ath11k_hal_srng_setup() publishes ->initialized
++	 * before ->tp_addr without a barrier, so ->initialized would still
++	 * race the rebuild.
++	 */
++	if (unlikely(!srng->u.src_ring.tp_addr)) {
++		spin_unlock_bh(&ab->ce.ce_lock);
++		return -ESHUTDOWN;
++	}
 +
- 	init_waitqueue_head(&ab->qmi.cold_boot_waitq);
- 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
- 	INIT_WORK(&ab->update_11d_work, ath11k_update_11d);
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -9064,7 +9064,6 @@
- 	ab->wmi_ab.wmi_endpoint_id[pdev_idx] = conn_resp.eid;
- 	ab->wmi_ab.wmi[pdev_idx].eid = conn_resp.eid;
- 	ab->wmi_ab.max_msg_len[pdev_idx] = conn_resp.max_msg_len;
--	init_waitqueue_head(&ab->wmi_ab.wmi[pdev_idx].tx_ce_desc_wq);
- 
- 	return 0;
- }
+ 	spin_lock_bh(&srng->lock);
+
+ 	ath11k_hal_srng_access_begin(ab, srng);
 
