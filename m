@@ -4,79 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A3A5C5B569
-	for <ath11k@archiver.kernel.org>; Mon, 10 Aug 2026 19:26:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD4EC5AD7B
+	for <ath11k@archiver.kernel.org>; Mon, 10 Aug 2026 19:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qgajvSGIEs6UxN62o3yRmb3UpZn4o7uMaWnX+4bt62M=; b=kcQWUkwqMdTqkOJ8Xwnn5htg5X
-	pEbgjMWJ6qKXhiE5xA753TzkfVACFBytiLXKI0jP5EG6LO11jvxXYa9T8OlBHH9aRB54jAULcV+ok
-	l51g3cTvAzCJq41Y+YCr6hrhr630HxB1ccaV9xPbMOB76FpN9cbQFY1du/JVt59KHKHo8nLwcSz9w
-	tBVjghWdpR71kv8n0jCBSUEfGJe51OwvX5lSg1xsHWSg6SXoBwKos7Dyc+1YyoPzJa2kyP9ptDu/j
-	KvF50Wvy/KEr834yP9aBF6rjdVQUxKOgW0DamCecgLDBzWS5LWN7GlcoU3zpfx/sawNiYqE4suQXp
-	ns35GMJg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=rvdl9kcK3h/HGJkyOzJDtw5a44dH9kR79k1JcbpYz1k=; b=IdMgcSQQY0tsSWqsJ4wcAs3GsO
+	wF9X9oAkQZDUFsDgl+PHIFh/BmBpsDd96bkcjobyJ20QNNNNEJlv5eJDr3t2eO8Utb7Kp9r4zkTdr
+	xpjKZykDILU3E7njhQ/vFYFXyfN5mcQ71UFa+wlCXn3bTuiceyNAOdvZgPuDLYnjeriAjynE7lMjo
+	yCU4KHDk1ST3MYjjDquG/g9HefBn8G9Q3aQF2VzE6M4tEXjhTgPHqzUaEtk/zkE0RKERpIOy1Ur62
+	vl9pxFqC2DsGk/c903/dhSgbSP3RboYnRrv8YjVcESDETtQlf9BLs4kZr26/2L61Ggns63zpz2L1O
+	GOoWksoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtVdh-0000000Ck84-0ucA;
-	Mon, 10 Aug 2026 19:26:25 +0000
-Received: from mgamail.intel.com ([192.198.163.17])
+	id 1wtVgh-0000000CkbX-2fbr;
+	Mon, 10 Aug 2026 19:29:31 +0000
+Received: from mx-relay48-hz3-if1.hornetsecurity.com ([94.100.134.218])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtVdf-0000000Ck7T-0HE9;
-	Mon, 10 Aug 2026 19:26:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1786389983; x=1817925983;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GCKXdOc28NC5OnXa1/mzOFkq4JmD7AhEVOgj5N6tN5k=;
-  b=jyCeUZqYnb2cxEsHIx40ac4s+ZeeOAPB7kF+urR7p1I6D/ZfCWL35Uy6
-   ASK0gTCIpz9m0PjfPMQzM30xBoiF8eAW6x4r2ndQdKfoMTiz6Oug65yEp
-   VzZD9vMgFpiQpPU+4rBxQfRzbG70vprpOtSb07/oMvTbqfHIJ9IyJtwc+
-   Xoqtq3zBl7OjuDog7KZRolSjyrFnyW1Y59yuVnWlktqI9srxYjnRbOXeq
-   O/+gnWQUavabfH2mhj0K0SjFZPUo0Z/wvDamdkhfCczfIVnXJij1x61HL
-   WzFnk0G6Kr+1ABrgmejeFM6k0tm516vpUcu0q03b+PirHGreLTxFBE1lQ
-   w==;
-X-CSE-ConnectionGUID: m4x+G5QeTsmFjZQJgeKkIg==
-X-CSE-MsgGUID: Py/u5cfXSomHs+nbuwJE8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="86793157"
-X-IronPort-AV: E=Sophos;i="6.25,216,1779174000"; 
-   d="scan'208";a="86793157"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2026 12:26:22 -0700
-X-CSE-ConnectionGUID: k/JuUWB9RUahXHf7zbkVEg==
-X-CSE-MsgGUID: oCH/whz2SUKhdpn+p+oIQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,216,1779174000"; 
-   d="scan'208";a="259819073"
-Received: from lkp-server01.sh.intel.com (HELO 6eda058d650d) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 10 Aug 2026 12:26:19 -0700
-Received: from kbuild by 6eda058d650d with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1wtVdZ-00000000Neo-0AdI;
-	Mon, 10 Aug 2026 19:26:17 +0000
-Date: Tue, 11 Aug 2026 03:25:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>, bhelgaas@google.com,
-	alex@shazbot.org, mani@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, jjohnson@kernel.org,
-	linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org, ath12k@lists.infradead.org,
-	mhi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: Re: [PATCH v11] PCI: Add device-specific reset for Qualcomm devices
-Message-ID: <202608110204.wb17Qqit-lkp@intel.com>
-References: <20260626055023.197470-1-jtornosm@redhat.com>
+	id 1wtVgd-0000000CkaM-0NC7
+	for ath11k@lists.infradead.org;
+	Mon, 10 Aug 2026 19:29:30 +0000
+ARC-Authentication-Results: i=1; mx-gate48-hz3.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=217.14.160.69, headerfrom=marcant.net)
+ smtp.mailfrom=marcant.net smtp.helo=rossini.marcant.net; dkim=pass
+ header.d=marcant.net header.s=gandalf header.a=rsa-sha256; dmarc=pass
+ header.from=marcant.net orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=rvdl9kcK3h/HGJkyOzJDtw5a44dH9kR79k1JcbpYz1k=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1786390143;
+ b=VOHBtskmhfyE1CeIe/8n0Fp1Rh4FiLGsoyFDhTqD2cVjGOOmoBLrLW9PTuxPtAuEjQ8IXXqx
+ Hjp0weQkJWs2F3FElLblQardZEaVNnMSHTfy1GdriBTS/MOI8DP4yJ8s5AEW9dWu43lFdPrl3v6
+ 9nCdVFnrX7/M4ZhgPwYuj5tSA4lXdxa4B2uTdZOV5xGl1XSoplQRsufgN5sW23Sgwxb1GEGecu1
+ w8Ga/tvai46v0/MC+wMZA1F0fMLi+Kl4wtSx/9iaeOXajgX012eNxE8fqdvV50PTooqmdSjUCvu
+ bV4uq9xOZ1xbuYDC4QDIW7hxXA0fci068VA55eXeW7D8g==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1786390143;
+ b=aqovxToYoe8sv6crNGeikdqYOTykaiafaeWtJ27YgusIBwFcCZsnDlLboA/r7CKVCoeHUqYT
+ rqFEGzNWyUE4TF2KR9ZBG8ipBEuu8roCaOb9QRmMg7hilFWrk7CfePoPbbHwQ3ffxNJsDGFJE+k
+ DXkJmZPZAGthah9jxBAmadvtGnPTlKHzCtY68dqKQsqDQYnx7D/jXf+KkA456W/LWBvSQhfFtC0
+ 9sufPP4MmOdoOo651mRpwgt2gHGXby0VYizHdlQgjEJyUBEUyf6WSrRVyjjOfCm4m7zn+7/U1hy
+ XWGsSRirCoTm4vAQvkfOY8kege6zVl/rZXkGJzSqZaW2w==
+Received: from rossini.marcant.net ([217.14.160.69]) by mx-gate48-hz3;
+ Mon, 10 Aug 2026 21:29:03 +0200
+Received: from futile.kalnet.hooya.de (unknown [192.168.203.16])
+	by rossini.marcant.net (Postfix) with ESMTP id E3F4F960010;
+	Mon, 10 Aug 2026 21:28:59 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 rossini.marcant.net E3F4F960010
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marcant.net;
+	s=gandalf; t=1786390140;
+	bh=rvdl9kcK3h/HGJkyOzJDtw5a44dH9kR79k1JcbpYz1k=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=uU9d5b0KrTrh8RpzxO9bEvV7y4JAf5cEkEXM34laS61gnXcp+vHY9nrG+PLISI+kA
+	 nMxw8aL4DLhLlgz4Hhk5aTNgrJi4t/MN8wKX0uVf6DhSHM8m20uKRFTqW6hQtE0rKw
+	 Ks5cXKjmf1/2u53x7YQWAiveAviO5HhqiI0X3bm4=
+From: =?UTF-8?q?Andr=C3=A9=20Valentin?= <avalentin@marcant.net>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	Kalle Valo <kvalo@kernel.org>,
+	avalentin@marcant.net,
+	stable@vger.kernel.org,
+	Manikanta Pubbisetty <manikanta.pubbisetty@oss.qualcomm.com>
+Subject: [PATCH v3] wifi: ath11k: run ahb shutdown() teardown only on WCN6750
+Date: Mon, 10 Aug 2026 21:28:59 +0200
+Message-ID: <20260810192859.949348-1-avalentin@marcant.net>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260808213551.4169863-1-avalentin@marcant.net>
+References: <20260808213551.4169863-1-avalentin@marcant.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260626055023.197470-1-jtornosm@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender: avalentin@marcant.net
+X-cloud-security-recipient: ath11k@lists.infradead.org
+X-cloud-security-Mailarchiv: E-Mail archived for: avalentin@marcant.net
+X-cloud-security-Mailarchivtype: outbound
+X-cloud-security-Virusscan: CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-gate48-hz3 with 4hJlDX1vqSz1kNcF7
+X-cloud-security-connect: rossini.marcant.net[217.14.160.69], TLS=1, IP=217.14.160.69
+X-cloud-security-Digest: e56c1128890484b534035f16abfc5fd8
+X-cloud-security: scantime:1.758
+DKIM-Signature: a=rsa-sha256;
+ bh=rvdl9kcK3h/HGJkyOzJDtw5a44dH9kR79k1JcbpYz1k=; c=relaxed/relaxed;
+ d=marcant.net; h=content-type:mime-version:subject:from:to:message-id:date;
+ s=hse1; t=1786390143; v=1;
+ b=c6ZSH7a5VN8pCk2oU/OIU74BLQy90++Fc7QlKWJr3mLyUl7ijrqCtTDnCk2xiazbBC3K3xsS
+ 8XYQAdTq33DIYohMmf52joR1R1Fm4RL9/zyFKuRLOQpPcIWk7b9sU8+8+WWG4+TcdUdCYWkVfeQ
+ 1WqXguMhUJQLLjiqvi0pZSaoycCFc7FnZm7AQs8Q+b+/agvEV4FeMHmAZ8krSS3rnC1RjT8UW5U
+ MhyyI0lQF1p7kD4rXk3Fh2NBpx+LXsPDrv9rPOwT6/6fd7rSs11UvYlW3ZpkRpsDaBmv5Sj7KHR
+ oGqVXFyJP3M/imYetZgGzX14UQV2mVj6mhpPXWkT9S5Ng==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260810_122623_148506_89ABF9B2 
-X-CRM114-Status: UNSURE (   9.64  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260810_122927_770514_02BDF854 
+X-CRM114-Status: GOOD (  22.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,108 +113,179 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Jose,
+The AHB shutdown() callback was added solely for WCN6750, which must stop
+DMA before the SMMU is torn down at system reboot/shutdown. It was
+registered unconditionally in the shared ath11k_ahb_driver, so it also
+runs on the IPQ AHB targets (IPQ8074/IPQ6018/IPQ5018), which never had a
+shutdown() handler before and have no such SMMU requirement.
 
-kernel test robot noticed the following build warnings:
+The commit message claimed the change "will not impact other AHB ath11k
+devices", but it does: on IPQ6018 the teardown stops the WCSS Q6 remote
+processor firmware, which leaves shared WCSS state such that the boot ROM
+hangs during DDR training on the following warm reset -- only a cold
+(power-on) reset recovers, so a plain reboot never comes back and needs a
+physical power cycle. This was pinned by bisecting the teardown: skipping
+ath11k_qmi_firmware_stop() (i.e. not stopping the Q6) is what lets the
+warm reset train DDR and boot normally, whereas none of the q6v5 power,
+reset or clock steps reproduce it on their own.
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus linus/master v7.2-rc6 next-20260807]
-[cannot apply to linux-review/Jose-Ignacio-Tornos-Martinez/Add-device-specific-reset-for-Qualcomm-devices/20260804-001013]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Restrict the shutdown() teardown to WCN6750 via hw_params, restoring the
+pre-regression behaviour for the IPQ AHB targets: they simply have no
+shutdown() teardown again, exactly as they did for years before that
+change, and on reboot/shutdown the SoC reset re-initializes the WCSS from
+scratch. WCN6750 keeps the teardown. Module removal (rmmod / remove()) is
+unchanged for all targets.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jose-Ignacio-Tornos-Martinez/PCI-Add-device-specific-reset-for-Qualcomm-devices/20260810-131417
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20260626055023.197470-1-jtornosm%40redhat.com
-patch subject: [PATCH v11] PCI: Add device-specific reset for Qualcomm devices
-config: um-randconfig-r073-20260810 (https://download.01.org/0day-ci/archive/20260811/202608110204.wb17Qqit-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-smatch: v0.5.0-9187-g5189e3fb
+Verified on a MikroTik Chateau 5G R17 ax (IPQ6018): before, a plain
+reboot froze in the boot ROM during DDR training; after, it trains DDR
+and boots the kernel across repeated reboots.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202608110204.wb17Qqit-lkp@intel.com/
+Fixes: ac41c2b642b1 ("wifi: ath11k: Register shutdown handler for WCN6750")
+Cc: stable@vger.kernel.org
+Cc: Manikanta Pubbisetty <manikanta.pubbisetty@oss.qualcomm.com>
+Signed-off-by: André Valentin <avalentin@marcant.net>
+---
+Changes in v3 (per Jeff Johnson's v2 review):
+- ahb.c/hw.h: fix block comment style (/* on its own line) and drop the
+  chip references from the generic code -- describe the behaviour, not the
+  chipset; only the hw_params initializer ties it to WCN6750.
+- core.c: explicitly initialize shutdown_teardown in every hw_params record
+  (= false on all but WCN6750).
 
-smatch warnings:
-drivers/pci/quirks.c:4278 reset_qualcomm_wifi() warn: always true condition '(val != (~0)) => (0-u32max != u64max)'
+v2: https://lore.kernel.org/linux-wireless/20260808213551.4169863-1-avalentin@marcant.net/
+v1: https://lore.kernel.org/linux-wireless/20260807094858.1548216-1-avalentin@marcant.net/
 
-vim +4278 drivers/pci/quirks.c
+ drivers/net/wireless/ath/ath11k/ahb.c  | 10 ++++++++++
+ drivers/net/wireless/ath/ath11k/core.c | 10 ++++++++++
+ drivers/net/wireless/ath/ath11k/hw.h   |  7 +++++++
+ 3 files changed, 27 insertions(+)
 
-  4234	
-  4235	/*
-  4236	 * Qualcomm WiFi device-specific reset using SoC global reset via BAR0
-  4237	 * registers.
-  4238	 */
-  4239	static int reset_qualcomm_wifi(struct pci_dev *pdev, bool probe)
-  4240	{
-  4241		bool link_recovered = false;
-  4242		unsigned long timeout;
-  4243		void __iomem *bar;
-  4244		u32 val;
-  4245		u16 cmd;
-  4246	
-  4247		if (probe)
-  4248			return 0;
-  4249	
-  4250		if (pdev->current_state != PCI_D0)
-  4251			return -EINVAL;
-  4252	
-  4253		pci_read_config_word(pdev, PCI_COMMAND, &cmd);
-  4254		pci_write_config_word(pdev, PCI_COMMAND, cmd | PCI_COMMAND_MEMORY);
-  4255	
-  4256		bar = pci_iomap(pdev, 0, 0);
-  4257		if (!bar) {
-  4258			pci_write_config_word(pdev, PCI_COMMAND, cmd);
-  4259			return -ENODEV;
-  4260		}
-  4261	
-  4262		val = ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-  4263		val |= QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET_V;
-  4264		iowrite32(val, bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-  4265		ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-  4266	
-  4267		msleep(10);
-  4268	
-  4269		val &= ~QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET_V;
-  4270		iowrite32(val, bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-  4271		ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-  4272	
-  4273		msleep(10);
-  4274	
-  4275		timeout = jiffies + msecs_to_jiffies(5000);
-  4276		while (time_before(jiffies, timeout)) {
-  4277			val = ioread32(bar + QUALCOMM_WIFI_PCIE_SOC_GLOBAL_RESET);
-> 4278			if (val != PCI_ERROR_RESPONSE) {
-  4279				link_recovered = true;
-  4280				break;
-  4281			}
-  4282			msleep(20);
-  4283		}
-  4284	
-  4285		if (!link_recovered) {
-  4286			pci_err(pdev, "PCIe link failed to recover after reset\n");
-  4287			goto out_restore;
-  4288		}
-  4289	
-  4290		/* After SOC_GLOBAL_RESET, MHISTATUS may still have SYSERR bit set
-  4291		 * and thus need to set MHICTRL_RESET to clear SYSERR.
-  4292		 */
-  4293		iowrite32(QUALCOMM_WIFI_MHICTRL_RESET_MASK, bar + QUALCOMM_WIFI_MHICTRL);
-  4294		ioread32(bar + QUALCOMM_WIFI_MHICTRL);
-  4295	
-  4296		msleep(10);
-  4297	
-  4298	out_restore:
-  4299		pci_iounmap(pdev, bar);
-  4300		pci_write_config_word(pdev, PCI_COMMAND, cmd);
-  4301	
-  4302		return link_recovered ? 0 : -ETIMEDOUT;
-  4303	}
-  4304	
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 1e1dea4..18f7bff 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -1288,6 +1288,16 @@ static void ath11k_ahb_shutdown(struct platform_device *pdev)
+ 	 * remove() is invoked during rmmod & shutdown() during
+ 	 * system reboot/shutdown.
+ 	 */
++
++	/*
++	 * Only run the teardown where hw_params requests it. Where it is not
++	 * required, stopping the firmware here would leave shared state that
++	 * hangs the following warm reset, so skip it and let the SoC reset
++	 * re-initialize the hardware from scratch instead.
++	 */
++	if (!ab->hw_params.shutdown_teardown)
++		return;
++
+ 	ath11k_ahb_remove_prepare(ab);
+ 
+ 	if (!(test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)))
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 8dacc87..2a10173 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -41,6 +41,7 @@ MODULE_PARM_DESC(ftm_mode, "Boots up in factory test mode");
+ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ8074,
++		.shutdown_teardown = false,
+ 		.name = "ipq8074 hw2.0",
+ 		.fw = {
+ 			.dir = "IPQ8074/hw2.0",
+@@ -130,6 +131,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
++		.shutdown_teardown = false,
+ 		.name = "ipq6018 hw1.0",
+ 		.fw = {
+ 			.dir = "IPQ6018/hw1.0",
+@@ -218,6 +220,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.name = "qca6390 hw2.0",
+ 		.hw_rev = ATH11K_HW_QCA6390_HW20,
++		.shutdown_teardown = false,
+ 		.fw = {
+ 			.dir = "QCA6390/hw2.0",
+ 			.board_size = 256 * 1024,
+@@ -310,6 +313,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.name = "qcn9074 hw1.0",
+ 		.hw_rev = ATH11K_HW_QCN9074_HW10,
++		.shutdown_teardown = false,
+ 		.fw = {
+ 			.dir = "QCN9074/hw1.0",
+ 			.board_size = 256 * 1024,
+@@ -396,6 +400,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.name = "wcn6855 hw2.0",
+ 		.hw_rev = ATH11K_HW_WCN6855_HW20,
++		.shutdown_teardown = false,
+ 		.fw = {
+ 			.dir = "WCN6855/hw2.0",
+ 			.board_size = 256 * 1024,
+@@ -488,6 +493,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.name = "wcn6855 hw2.1",
+ 		.hw_rev = ATH11K_HW_WCN6855_HW21,
++		.shutdown_teardown = false,
+ 		.fw = {
+ 			.dir = "WCN6855/hw2.1",
+ 			.board_size = 256 * 1024,
+@@ -578,6 +584,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.name = "wcn6750 hw1.0",
+ 		.hw_rev = ATH11K_HW_WCN6750_HW10,
++		.shutdown_teardown = true,
+ 		.fw = {
+ 			.dir = "WCN6750/hw1.0",
+ 			.board_size = 256 * 1024,
+@@ -662,6 +669,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ5018_HW10,
++		.shutdown_teardown = false,
+ 		.name = "ipq5018 hw1.0",
+ 		.fw = {
+ 			.dir = "IPQ5018/hw1.0",
+@@ -748,6 +756,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.name = "qca2066 hw2.1",
+ 		.hw_rev = ATH11K_HW_QCA2066_HW21,
++		.shutdown_teardown = false,
+ 		.fw = {
+ 			.dir = "QCA2066/hw2.1",
+ 			.board_size = 256 * 1024,
+@@ -839,6 +848,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.name = "qca6698aq hw2.1",
+ 		.hw_rev = ATH11K_HW_QCA6698AQ_HW21,
++		.shutdown_teardown = false,
+ 		.fw = {
+ 			.dir = "QCA6698AQ/hw2.1",
+ 			.board_size = 256 * 1024,
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 4996536..f35bb96 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -231,6 +231,13 @@ struct ath11k_hw_params {
+ 	bool cfr_support;
+ 	u32 cfr_num_stream_bufs;
+ 	u32 cfr_stream_buf_size;
++	/*
++	 * Run the ahb shutdown() teardown (stop DMA before the SMMU is torn
++	 * down at reboot/shutdown). Only set where the teardown is required;
++	 * where it is not, running it would stop the firmware and leave shared
++	 * state that hangs the following warm reset.
++	 */
++	bool shutdown_teardown;
+ };
+ 
+ struct ath11k_hw_ops {
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+base-commit: f9a2394a23482bfd330911e9c8295b71724feacd
+-- 
+2.47.3
+
 
