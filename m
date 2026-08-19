@@ -4,138 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93692C5DF86
-	for <ath11k@archiver.kernel.org>; Wed, 19 Aug 2026 11:03:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D47E9C5DF8B
+	for <ath11k@archiver.kernel.org>; Wed, 19 Aug 2026 12:41:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=p4rGRVXIFEkP/eFGaEOLoP/WZecNrB0d3SfXEBkRIEA=; b=lO7sMwb3E1TCp2vRt7Jl87hMPh
-	wmh+CKK+4m8YrYdFRaaEYKSGK979bG3O6Okfx5AxGROzaR2rJ9lbTgNqz3jqyFSbaSIK5kxhAVGiN
-	3EGNScaznwVXyTEro4ppTjfWr42nm0WL9+9qdm+L9VArztmEJA+Q2+/caMF03NbR5Z7W/3rpRJy2S
-	o8YpDJr6+RAppidpyHDn4MS5iPUFuBF96a+kwBZdHmPmEXEVdE1XZ4u0ZkKCfSkWy2MVFGuDyYZzy
-	OfqdsNXqmMADsJ7IvNEemnNy1aCSkLdh2mIpTjK2u9uLIreEOWsdXPlNfIcUUPoakFKM/FvX7u4j5
-	z2n4B+yA==;
+	bh=M+Vp7Hj45ZQKaNArf4gq+RTJIat+1z6IOv9TIUEaawI=; b=3h7GDG67WoPCVQAviz2zvVF6uN
+	D3VvVpTvPW9IHph2C3guSP7A6FbpNAqCZojEcnrW5l9JVWvLq3xSmoFh09rC8OWQ/UZtNPxigVQyX
+	phH/vV/w//mGCnQ1BgBhLX+WVf1pG0zMsJo+gKsx4/CAuURWYIvmblfIyO8lWlQyKhKYFcSY2uLCs
+	bPxZ6wyCvyDC/2gi8FybYgVt9gatYl1lbNXZJl/X6VxgtzVzVA+dxjIGX3pah3NvTYFkEGrIjLyAL
+	BUYDNA7FCu9ByU5/2xofuPKwQEdjBUNoAWvIpPPHbmQS/0WFWOsPAk8kLZVsBhiKotB/ZRyJsj6oJ
+	5FUzv9+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwe5F-00000009bwA-2XUa;
-	Wed, 19 Aug 2026 11:03:49 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wwfbi-00000009lRX-1ICF;
+	Wed, 19 Aug 2026 12:41:26 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwe5B-00000009bvh-0naE
-	for ath11k@lists.infradead.org;
-	Wed, 19 Aug 2026 11:03:47 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 67JA7aQo3660873
-	for <ath11k@lists.infradead.org>; Wed, 19 Aug 2026 11:03:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	p4rGRVXIFEkP/eFGaEOLoP/WZecNrB0d3SfXEBkRIEA=; b=T3bhPkxlKYaFrpoR
-	XxRnFXfG8v/FBPQaMhlKed2BwcNmT6vQqpkh7qJJY7FkF5465nW5u/0Y1PrvHGdS
-	wbk6Y5osJyXrtsF261EQQAqs7MinIA6lq3n571NHwNaGYCaLXPLYZeIg45JOO+OF
-	VeaxKySZa9mkUPf6bIS5r6Llu3MbKbi5dP02Z7+NzUOj/e9NhAf55xrsDE3Pm6gK
-	aS8/z7bmMZsWY1XW5kw7tL2l1dt5zbWhdPD7hzzTdy88aj/FkdcqDPR5uqt6gMzb
-	c8927nZqGcIZRwiBxopGXh28a+eWtb9rmf2cE7gFjMMuY3AZ2+v1uJ6yZpegX1Rt
-	bi1K3g==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4g4yfkjw34-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 19 Aug 2026 11:03:44 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2d5d00fd19bso15504255ad.1
-        for <ath11k@lists.infradead.org>; Wed, 19 Aug 2026 04:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1787137424; x=1787742224; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=p4rGRVXIFEkP/eFGaEOLoP/WZecNrB0d3SfXEBkRIEA=;
-        b=F5s8e7wLHaev5Wl6kZ+X019uXJTnWJYQEKtO3RiELMDhkNSzOzglIHIs1jm02IBs9C
-         rh03Vn5RHWHu7K4+9fY+OYliY1hmQRMQKLbwjfb0KE2470ygLXwdclz2rK9aU1G/JfGL
-         EslOhtmCs3jilwrka64O2aRfiKjrOahJo42gYsQ/84r8OIxtPHiBfwIIxtDMG3eTm6IB
-         txDbZqmWnMCtAL2z2ilXeU8Ex/9+JHoSxOFI9pqn2nHM/+R2HRAJUrYVFAUmZi7U6I9b
-         C0MqSuLe+hA/B0C3v2kpV0HHWGMOP1h34hp0RvQgeJ0FBBtLeEAxA+C3JolJ+4+FEDuo
-         jWng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787137424; x=1787742224;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=p4rGRVXIFEkP/eFGaEOLoP/WZecNrB0d3SfXEBkRIEA=;
-        b=PdXcIpypWVnYEYLMO/YK2/CjVwK8iV7/yUatsbUOvXnLWr8opkubiLmFSYkAA/n2Ih
-         LgG12kUANogfljooSFGlp+PQWfgA0eLxt+aJ3EhPTfYqasO7pNYvy/tA2UqH9xKzCBvn
-         qBAlaATYJKhqPy5/r5Zg1HJunJhcBEEJdUeA0bxTfiLDRHaygYbDyZteSaglspU4/31x
-         BOQufRefQDaydet/hJFWMX+1eliaPbkTs0/K56p+qHbAQeT9W4L9Sp9PnM5HB6OlDOjQ
-         /IZokzJQBPJBonbjJCO9ROvU+LGIoxNmmw4hdjnRxxRh/6CarwoHP79zDCSdzrWhKrxI
-         nQmg==
-X-Forwarded-Encrypted: i=1; AHgh+RpKunXwtiBBnecNQG3NVacd4PqLmaN0yUM23b8oLgvOnAq6QIfftLyo7ZGmhvZjXSEe9AzGEnU=@lists.infradead.org
-X-Gm-Message-State: AFuF++lDmmWz5rMu+p4LhmoLaOEyDVUZGZxkWzWpE9ziEL4cHxa/aEC3
-	7XruZjutuxVxa7oogepO85lZC1T81Wmrh0bgGIC+4fILa8At61qHFVI4ZN1QJ6fIWsGy/X+nWUN
-	n/dyPf8VLr5jxm5lhUdp0L/Wj3moBkeocPr1uFW8q2EnTI+uWNr+15yf+MMo4Jhxg
-X-Gm-Gg: AR+sD10DgY7hHxczmeCFLlMSkz7hoSbDlLYGI9YIeh7TVFyI9xZeUt3ulR2OSPUa8e/
-	nIJtsTuS0UzjAUo9xX+T4slhq+ghpPdtTt2E7r3R+1WU9eI89+wYpJXqK0sKU/JIXkSLYJRv5RH
-	//SP2zGfePKvoiRfnJugUZQzNXy62SFJh/5D2tOpkA/hWJ0oqNnZyNcvMFbYSSeuOsNHNzrZZya
-	5ekmjQqo3OvsSAISujtKl2jgxZKJhN4VWocT2Rfqs9coftMB1fwtVbQ105mgLbU+ILhhJx0nnxG
-	S0E8X2utqartHMzja6ADR8v2BXu+ldHmFMA8MBoHZndG8gTpAjZw6TzrgmZ2zcKQ7fyZdzWxk40
-	/8IzF7TV6kkpyrHjqN02YkrXamEqSo6+Z2NQIQ+D4U0AzJaMHUF1G0C3uWc+2pmvlEJZ0TV+g0A
-	==
-X-Received: by 2002:a17:902:e949:b0:2cc:f5b8:4c2e with SMTP id d9443c01a7336-2d601468c49mr75918245ad.9.1787137423871;
-        Wed, 19 Aug 2026 04:03:43 -0700 (PDT)
-X-Received: by 2002:a17:902:e949:b0:2cc:f5b8:4c2e with SMTP id d9443c01a7336-2d601468c49mr75917245ad.9.1787137423415;
-        Wed, 19 Aug 2026 04:03:43 -0700 (PDT)
-Received: from [10.133.33.152] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2d5bb51e0e5sm25564745ad.32.2026.08.19.04.03.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Aug 2026 04:03:43 -0700 (PDT)
-Message-ID: <cb770572-c837-4431-a6dd-d23b3a59f352@oss.qualcomm.com>
-Date: Wed, 19 Aug 2026 19:03:39 +0800
+	id 1wwfbd-00000009lM6-3Ikc;
+	Wed, 19 Aug 2026 12:41:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=M+Vp7Hj45ZQKaNArf4gq+RTJIat+1z6IOv9TIUEaawI=;
+	t=1787143281; x=1788352881; b=GQvkcYcf3v+Nboj97VmAiZyR3BngmQzICFiPA3dpOgYiV1p
+	cVWjLL260V4OFcYAGvkRjOVnDLk0CTB8H4a+15lBtv4mHjHEkhCtmdQQNPG1USMJRUmPqUhAfab0p
+	JzstywahY/yD2PKZc3yLEEgZObgUrsqKm3xXKT3uXKD+vgni6giOw9Z4bPTotOmFLg73MD67TqT/Q
+	IWt2TK2i9dCUqbyi1pTdTR8lrIaJoTTYj9uqmzJd69WJLwdfkV3ZvP1rtDHcH0yV5X0uAqcdLVEsV
+	hQiDmK/RhjgJ8yHy45Bdmb6LRDm6aM+YbYWBWn8DvfMIrR0LTpNAhovChvZ483RQ==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__ECDSA_SECP256R1_SHA256__AES_256_GCM:256)
+	(Exim 4.98.2)
+	(envelope-from <benjamin@sipsolutions.net>)
+	id 1wwfbG-000000089Cs-3fvw;
+	Wed, 19 Aug 2026 14:40:59 +0200
+From: Benjamin Berg <benjamin@sipsolutions.net>
+To: linux-wireless@vger.kernel.org
+Cc: Jeff Johnson <jjohnson@kernel.org>,
+	Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+	Felix Fietkau <nbd@nbd.name>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Ping-Ke Shih <pkshih@realtek.com>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	Benjamin Berg <benjamin.berg@intel.com>
+Subject: [wireless-next PATCH v2 4/8] wifi: mac80211: rework RX packet handling
+Date: Wed, 19 Aug 2026 14:39:03 +0200
+Message-ID: <20260819143858.1e179ba508f9.Ie12ec077142c6a7fdbb58cdfc5660497cc75150e@changeid>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260819123858.4025935-10-benjamin@sipsolutions.net>
+References: <20260819123858.4025935-10-benjamin@sipsolutions.net>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next] wifi: ath11k: fix reg_info_store leak in
- ath11k_service_ready_ext_event()
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20260817-reg_info_store-leak-v1-1-77025a99b074@oss.qualcomm.com>
-From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260817-reg_info_store-leak-v1-1-77025a99b074@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=NoPhtcdJ c=1 sm=1 tr=0 ts=6a858d90 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Sv0fKeRqtYgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=EUspDBNiAAAA:8 a=kraVzMtvL2C5sCo40MEA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: KrUtXxbOyTD_FpkFP2Y1Ir112qB8WScP
-X-Proofpoint-Spam-Info: AW1haW4tMjYwODE5MDA4NSBTYWx0ZWRfX+tT9MfrqLnNC
- WL0g0i2Sk7+VsKwyNBViFg3/NENqQVzbPbEIarVFy7U8QWFFEq3vzNme4wNvXMZZfdspNoSZ8hK
- 3aBpRIGJQNOHnkcq/OrtK2FdY5tzwtM=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODE5MDA4NSBTYWx0ZWRfXy8Pxt1xmQUqb
- 6ec/8+RqYAs0ZUovT56pfuNGde20vLw4Qpy61zFXGV+UBcFUfDMQHsWBZ8UPVUWRaGVzxXtB+sE
- SjJU4LhWVW9McpoeMs5uMoEWyuBSve61OIF76YHgT0NUX//aaxo4/AdQzAregnhlVF5V8kSih7Y
- JuQhIwTd5ELfejFo8kLNugh6tQN7emF6TPLoYO+3Y2xqCtVbD30OH/j0hjzPJ4/urv7Uqk+i946
- D16SI8y+/Q1C0t1urWacx+uF/+A1tsEpN0K9+v1BNEIW/1li/+UYyntKPwx50nd1id7gk6dlACA
- 872ETbc3UA+rx/6buujVu8IqXuWsyAfTFAw0HDSDRZ9OhzWUvJlaGFxJcHCAquu90PQlWnte2tC
- bQ3FMVICaQGSWcuJyr6svbXCZLXrj7cJ7dz+JKzyixfi7tDz+XCMkC3dIU1WgsCecimkblUhZfY
- FNVT066Yw/hssK5pkoA==
-X-Proofpoint-GUID: KrUtXxbOyTD_FpkFP2Y1Ir112qB8WScP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-08-19_03,2026-08-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
- spamscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2608190085
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260819_040345_250098_A11EC546 
-X-CRM114-Status: GOOD (  12.08  )
+X-CRM114-CacheID: sfid-20260819_054122_012984_879AFB44 
+X-CRM114-Status: GOOD (  27.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,28 +78,418 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+From: Benjamin Berg <benjamin.berg@intel.com>
 
+The code has grown over time and it was not correctly handling all
+cases. Examples of issues are that for management frames we would match
+the received address against the MLD address even though we should not
+resolve the station in that case. Another issue was that for data frames
+we would not correctly fall back to use link addresses when the driver
+does not provide the pubsta already.
 
-On 8/18/2026 7:46 AM, Jeff Johnson wrote:
-> Currently, while processing the WMI Service Ready Ext event, the iterator
-> in ath11k_service_ready_ext_event() can dispatch the HAL Regulatory
-> Capabilities handler ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse() which can
-> allocate ab->reg_info_store.
-> 
-> If a subsequent failure occurs during iteration, the ab->reg_info_store
-> allocation is leaked.
-> 
-> Directly free and clear the pointer on the error path.
-> 
-> Note that the normal cleanup function ath11k_reg_free() cannot be used
-> since other regulatory-related fields are not yet populated at this point.
-> 
-> Compile tested only.
-> 
-> Fixes: 7004bdceef60 ("wifi: ath11k: store cur_regulatory_info for each radio")
-> Assisted-by: Claude:claude-sonnet-4-6
-> Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+The new code still uses the same approach as before. For data frames,
+assume that a valid station exists and interfaces do not need to be
+iterated. On the other hand, for non-data frames (or if a data frame
+without a station is received) all interfaces must be iterated.
 
-Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Note that this rework makes mac80211 slightly more strict. For example,
+previously mac80211 would have incorrectly accepted a data frame that
+was transmitted on the wrong link.
+
+Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
+
+---
+
+v1:
+ * Handle NAN_DATA interface type
+ * Fix missing variable initialization in loop
+---
+ net/mac80211/rx.c | 291 +++++++++++++++++++++++++++-------------------
+ 1 file changed, 171 insertions(+), 120 deletions(-)
+
+diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
+index b654b2d57f15..f9e8c5ec7e1e 100644
+--- a/net/mac80211/rx.c
++++ b/net/mac80211/rx.c
+@@ -4318,9 +4318,33 @@ static bool
+ ieee80211_rx_is_valid_sta_link_id(struct ieee80211_sta *sta, u8 link_id)
+ {
+ 	if (sta->mlo)
+-		return !!(sta->valid_links & BIT(link_id));
+-	else
+-		return sta->deflink.link_id == link_id;
++		return sta->valid_links & BIT(link_id);
++
++	return sta->deflink.link_id == link_id;
++}
++
++static bool ieee80211_rx_data_set_link_sta(struct ieee80211_rx_data *rx,
++					   struct link_sta_info *link_sta)
++{
++	struct sta_info *sta;
++
++	if (WARN_ON_ONCE(!link_sta) ||
++	    !ieee80211_rx_is_valid_sta_link_id(&link_sta->sta->sta,
++					       link_sta->link_id))
++		return false;
++
++	sta = link_sta->sta;
++
++	rx->sta = sta;
++	rx->local = sta->sdata->local;
++	rx->link = rcu_dereference(sta->sdata->link[link_sta->link_id]);
++	if (!rx->link)
++		return false;
++
++	rx->link_id = rx->link->link_id;
++	rx->link_sta = link_sta;
++
++	return true;
+ }
+ 
+ static bool ieee80211_rx_data_set_link(struct ieee80211_rx_data *rx,
+@@ -5296,60 +5320,19 @@ static void __ieee80211_rx_handle_8023(struct ieee80211_hw *hw,
+ 	dev_kfree_skb(skb);
+ }
+ 
+-static bool ieee80211_rx_for_interface(struct ieee80211_rx_data *rx,
+-				       struct sk_buff *skb, bool consume)
++static bool ieee80211_rx_valid_freq(int freq, struct ieee80211_link_data *link)
+ {
+-	struct link_sta_info *link_sta;
+-	struct ieee80211_hdr *hdr = (void *)skb->data;
+-	struct sta_info *sta;
+-	int link_id = -1;
+-
+-	if (ieee80211_is_s1g_beacon(hdr->frame_control)) {
+-		if (!ieee80211_rx_data_set_sta(rx, NULL, -1))
+-			return false;
+-
+-		return ieee80211_prepare_and_rx_handle(rx, skb, consume);
+-	}
+-
+-	/*
+-	 * FIXME: Here we can assume that link addresses have not
+-	 * been translated.
+-	 *
+-	 * Look up link station first, in case there's a
+-	 * chance that they might have a link address that
+-	 * is identical to the MLD address, that way we'll
+-	 * have the link information if needed.
+-	 */
+-	link_sta = link_sta_info_get_bss(rx->sdata, hdr->addr2);
+-	if (link_sta) {
+-		sta = link_sta->sta;
+-		link_id = link_sta->link_id;
+-	} else {
+-		struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
+-
+-		sta = sta_info_get_bss(rx->sdata, hdr->addr2);
+-		if (ieee80211_vif_is_mld(&rx->sdata->vif) &&
+-		    status->freq) {
+-			struct ieee80211_link_data *link;
+-			struct ieee80211_chanctx_conf *conf;
+-
+-			for_each_link_data_rcu(rx->sdata, link) {
+-				conf = rcu_dereference(link->conf->chanctx_conf);
+-				if (!conf || !conf->def.chan)
+-					continue;
++	struct ieee80211_chanctx_conf *conf;
+ 
+-				if (status->freq == conf->def.chan->center_freq) {
+-					link_id = link->link_id;
+-					break;
+-				}
+-			}
+-		}
+-	}
++	if (!freq || link->sdata->vif.type == NL80211_IFTYPE_NAN ||
++	    link->sdata->vif.type == NL80211_IFTYPE_NAN_DATA)
++		return true;
+ 
+-	if (!ieee80211_rx_data_set_sta(rx, sta, link_id))
++	conf = rcu_dereference(link->conf->chanctx_conf);
++	if (!conf || !conf->def.chan)
+ 		return false;
+ 
+-	return ieee80211_prepare_and_rx_handle(rx, skb, consume);
++	return freq == conf->def.chan->center_freq;
+ }
+ 
+ /*
+@@ -5363,11 +5346,14 @@ static void __ieee80211_rx_handle_packet(struct ieee80211_hw *hw,
+ {
+ 	struct ieee80211_local *local = hw_to_local(hw);
+ 	struct ieee80211_sub_if_data *sdata;
++	struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
+ 	struct ieee80211_hdr *hdr;
++	struct link_sta_info *link_sta;
++	struct sta_info *sta;
+ 	__le16 fc;
+ 	struct ieee80211_rx_data rx;
+-	struct ieee80211_sub_if_data *prev;
+ 	struct rhlist_head *tmp;
++	bool rx_data_pending;
+ 	int err = 0;
+ 
+ 	fc = ((struct ieee80211_hdr *)skb->data)->frame_control;
+@@ -5414,92 +5400,102 @@ static void __ieee80211_rx_handle_packet(struct ieee80211_hw *hw,
+ 		     ieee80211_is_s1g_beacon(hdr->frame_control)))
+ 		ieee80211_scan_rx(local, skb);
+ 
++	/*
++	 * RX of a data frame should only happen to existing stations.
++	 * It is therefore more efficient to use the one provided by the driver
++	 * or search based on the station's address.
++	 *
++	 * Note we will fall through and handle a spurious data frame in the
++	 * same way as a management frame.
++	 */
+ 	if (ieee80211_is_data(fc)) {
+-		struct sta_info *sta, *prev_sta;
+-
+ 		if (link_pubsta) {
+-			sta = container_of(link_pubsta->sta,
+-					   struct sta_info, sta);
+-			if (!ieee80211_rx_data_set_sta(&rx, sta,
+-						       link_pubsta->link_id))
+-				goto out;
++			sta = container_of(link_pubsta->sta, struct sta_info,
++					   sta);
++			link_sta = rcu_dereference(sta->link[link_pubsta->link_id]);
+ 
+-			if (ieee80211_prepare_and_rx_handle(&rx, skb, true))
++			rx.sdata = sta->sdata;
++			if (ieee80211_rx_data_set_link_sta(&rx, link_sta) &&
++			    ieee80211_prepare_and_rx_handle(&rx, skb, true))
+ 				return;
++
+ 			goto out;
+ 		}
+ 
+-		prev_sta = NULL;
++		rx_data_pending = false;
+ 
++		/* Search for stations on non-MLD interfaces */
+ 		for_each_sta_info(local, hdr->addr2, sta, tmp) {
+-			int link_id;
++			struct ieee80211_link_data *link;
+ 
+-			if (!prev_sta) {
+-				prev_sta = sta;
++			if (ieee80211_vif_is_mld(&sta->sdata->vif))
+ 				continue;
+-			}
+ 
+-			rx.sdata = prev_sta->sdata;
+-
+-			/*
+-			 * FIXME: This is not correct as the addr2 cannot be a
+-			 * link address if the loop itself is iterated.
+-			 */
+-			if (prev_sta->sta.mlo) {
+-				struct link_sta_info *link_sta;
+-
+-				link_sta = link_sta_info_get_bss(rx.sdata,
+-								 hdr->addr2);
+-				if (!link_sta)
+-					continue;
++			link = &sta->sdata->deflink;
++			if (!ieee80211_rx_valid_freq(status->freq, link))
++				continue;
+ 
+-				link_id = link_sta->link_id;
+-			} else {
+-				link_id = sta->deflink.link_id;
++			if (rx_data_pending) {
++				ieee80211_prepare_and_rx_handle(&rx, skb,
++								false);
++				rx_data_pending = false;
+ 			}
+ 
+-			if (!ieee80211_rx_data_set_sta(&rx, prev_sta, link_id))
+-				goto out;
+-
+-			ieee80211_prepare_and_rx_handle(&rx, skb, false);
++			rx.sdata = sta->sdata;
++			if (!ieee80211_rx_data_set_link_sta(&rx, &sta->deflink))
++				continue;
+ 
+-			prev_sta = sta;
++			rx_data_pending = true;
+ 		}
+ 
+-		if (prev_sta) {
+-			int link_id;
+-
+-			rx.sdata = prev_sta->sdata;
++		/* And search stations on MLD interfaces */
++		for_each_link_sta_info(local, hdr->addr2, link_sta, tmp) {
++			struct ieee80211_link_data *link;
+ 
+-			/*
+-			 * FIXME: This is not correct as the addr2 cannot be a
+-			 * link address if the loop itself is iterated.
+-			 */
+-			if (prev_sta->sta.mlo) {
+-				struct link_sta_info *link_sta;
++			sta = link_sta->sta;
++			sdata =	sta->sdata;
++			link = rcu_dereference(sdata->link[link_sta->link_id]);
+ 
+-				link_sta = link_sta_info_get_bss(rx.sdata,
+-								 hdr->addr2);
+-				if (!link_sta)
+-					goto out;
++			if (!ieee80211_rx_valid_freq(status->freq, link))
++				continue;
+ 
+-				link_id = link_sta->link_id;
+-			} else {
+-				link_id = sta->deflink.link_id;
++			if (rx_data_pending) {
++				ieee80211_prepare_and_rx_handle(&rx, skb,
++								false);
++				rx_data_pending = false;
+ 			}
+ 
+-			if (!ieee80211_rx_data_set_sta(&rx, prev_sta, link_id))
+-				goto out;
++			rx.sdata = sta->sdata;
++			if (!ieee80211_rx_data_set_link_sta(&rx, link_sta))
++				continue;
+ 
++			rx_data_pending = true;
++		}
++
++		if (rx_data_pending) {
+ 			if (ieee80211_prepare_and_rx_handle(&rx, skb, true))
+ 				return;
++
+ 			goto out;
+ 		}
++
++		/* fall through, e.g. for spurious frame notification */
+ 	}
+ 
+-	prev = NULL;
++	/*
++	 * This is a management frame (or a data frame without a station) and
++	 * it will be delivered independent of whether a station exists,
++	 * so iterate the interfaces.
++	 */
++	rx_data_pending = false;
++
++	/* We expect the driver to provide frequency information */
++	if (WARN_ON_ONCE(!local->emulate_chanctx && !status->freq))
++		goto out;
+ 
+ 	list_for_each_entry_rcu(sdata, &local->interfaces, list) {
++		struct ieee80211_link_data *link = NULL;
++
+ 		if (!ieee80211_sdata_running(sdata))
+ 			continue;
+ 
+@@ -5507,30 +5503,85 @@ static void __ieee80211_rx_handle_packet(struct ieee80211_hw *hw,
+ 		    sdata->vif.type == NL80211_IFTYPE_AP_VLAN)
+ 			continue;
+ 
++		link_sta = NULL;
++		link = NULL;
++
++		/* Try to resolve the station */
++		if (!ieee80211_vif_is_mld(&sdata->vif)) {
++			sta = sta_info_get_bss(sdata, hdr->addr2);
++
++			if (sta) {
++				link_sta = &sta->deflink;
++				link = &sdata->deflink;
++			}
++		} else {
++			link_sta = link_sta_info_get_bss(sdata, hdr->addr2);
++
++			if (link_sta)
++				link = rcu_dereference(sdata->link[link_sta->link_id]);
++		}
++
+ 		/*
+-		 * frame is destined for this interface, but if it's
+-		 * not also for the previous one we handle that after
+-		 * the loop to avoid copying the SKB once too much
++		 * If we found a STA and it has a valid link information, then
++		 * RX using the station.
+ 		 */
++		if (link_sta && link &&
++		    ieee80211_rx_valid_freq(status->freq, link)) {
++			if (rx_data_pending) {
++				ieee80211_prepare_and_rx_handle(&rx, skb, false);
++				rx_data_pending = false;
++			}
++
++			/* No valid_links check as we need to RX beacons */
++
++			rx.sdata = sdata;
++			if (ieee80211_rx_data_set_link_sta(&rx, link_sta))
++				rx_data_pending = true;
+ 
+-		if (!prev) {
+-			prev = sdata;
+ 			continue;
+ 		}
+ 
+-		rx.sdata = prev;
+-		ieee80211_rx_for_interface(&rx, skb, false);
++		/* No station, try to resolve the link and RX */
++		if (ieee80211_vif_is_mld(&sdata->vif)) {
++			struct ieee80211_chanctx_conf *conf;
++			bool found = false;
+ 
+-		prev = sdata;
+-	}
++			for_each_link_data_rcu(sdata, link) {
++				conf = rcu_dereference(link->conf->chanctx_conf);
++				if (!conf || !conf->def.chan)
++					continue;
+ 
+-	if (prev) {
+-		rx.sdata = prev;
++				if (status->freq == conf->def.chan->center_freq) {
++					found = true;
++					break;
++				}
++			}
+ 
+-		if (ieee80211_rx_for_interface(&rx, skb, true))
+-			return;
++			if (!found)
++				link = &sdata->deflink;
++		} else {
++			link = &sdata->deflink;
++		}
++
++		if (rx_data_pending) {
++			ieee80211_prepare_and_rx_handle(&rx, skb, false);
++			rx_data_pending = false;
++		}
++
++		rx.sdata = sdata;
++		rx.local = sdata->local;
++		rx.link = link;
++		rx.link_id = link->link_id;
++		rx.sta = NULL;
++		rx.link_sta = NULL;
++
++		rx_data_pending = true;
+ 	}
+ 
++	if (rx_data_pending &&
++	    ieee80211_prepare_and_rx_handle(&rx, skb, true))
++		return;
++
+  out:
+ 	dev_kfree_skb(skb);
+ }
+-- 
+2.55.0
 
 
