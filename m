@@ -4,154 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A86BC5DF6D
-	for <ath11k@archiver.kernel.org>; Wed, 19 Aug 2026 13:26:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DF90C5DF86
+	for <ath11k@archiver.kernel.org>; Wed, 19 Aug 2026 14:03:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tzW5IHj5NxVpXb/NDn7q5pRWgTqd/agwSM5EqGTVbRM=; b=Ds86GIOMcmPSf/oQtOQEnKJc9C
-	24PgHXc65lUCNruYJ3NpIRXfNUfaNr+eRv5D0M5ZGZR2LClNGcp2XA3ebtLbtDQ5tC7gGVQgQmfxL
-	2I/dEeAN0acspfZtBwU0TSwKLH5dF6gYs92VpkORmEfTNO4QJcyVTqH6n9esnoPG59Ux35h9J1r2d
-	KyZIAE9RKw9n6hRRiYKwkqElQ86B583u+IZuxrIyzXsrdvcQMophnPLQkstxtu8AcaZVXE80/38SH
-	swdEWgyWron6gMkT1O/hqJh8HpHcc+rW8vvj5tTFB8o+oaLiyn4I9k+GgYPo9kuaF2vbL7RuNimVC
-	jB5VoaNg==;
+	bh=4li65BcNpSkuPJvoyH9P8yXhY9efVvAT0OcmyGsRKBI=; b=ZJeOISs4lHttKNmoGq9A8faqVU
+	8SacE2sC6tomM0b64nJv+gIJDItRq2qU93D+OHZHOEOGAhMi6srvDPKdJ5fJzkFfx7JgI4e34oOBy
+	kUmN+oqenViH2cGyEkCZsn50PUt7dwYQnEuGSahH4qgnUVmmvSAoZhM9OeEYJAMGUPI8d5hWDtkxA
+	6BlHvtC8F1+T0ksNngbbMUDMHqlrrluZdwSeiHqwzDD/S6Iq9ideA32SM3cjbqYHvllnyNdubxaKn
+	zwnDjBrNLv9mVCxdM1ZdI4eI2lftaYKcTNBVOOSZkhNzyRwRPOAMyBxmvNPhB5K9T01PSFQLUv9N7
+	Zw982XJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwgJl-00000009s15-2hyg;
-	Wed, 19 Aug 2026 13:26:57 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wwgt5-00000009upn-1JJr;
+	Wed, 19 Aug 2026 14:03:27 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwgJi-00000009rye-0wYX
-	for ath11k@lists.infradead.org;
-	Wed, 19 Aug 2026 13:26:56 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 67JDLlQl399307
-	for <ath11k@lists.infradead.org>; Wed, 19 Aug 2026 13:26:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tzW5IHj5NxVpXb/NDn7q5pRWgTqd/agwSM5EqGTVbRM=; b=AI4H7C3b2DllNm2C
-	mfg1zG4Qe5AQ2RDvEozScu2JhP59LxOlpO0t8kYdXGsG6rvLT4oTJV6kIKItX2SV
-	6UpDb80fjlTebjInuL7bYXpQua+NFIF5K3oqhl+VvrorbLWr7wDi/3DrBf72MGco
-	pHGj1IXiBZl9/pmhgeXGOqb9IMVStj9yHg+T8wUsiOVnnHHLbudJIKpRrg2P3lXb
-	y7LEdNPzdVRtknGlZ8dDuDqpuB58QjdDJPujDAtaLqoBnUFcHwWTcGEeAwG/xuaJ
-	ca2vRrZJDCucdQb4oVZb63L2u4Pi81PFW0YmfaA4MZ5g1ZftrY4X4MEE9kA4i2s1
-	YosDxQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4g5daa00qn-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Wed, 19 Aug 2026 13:26:53 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2cd01a14e81so14462865ad.1
-        for <ath11k@lists.infradead.org>; Wed, 19 Aug 2026 06:26:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1787146013; x=1787750813; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=tzW5IHj5NxVpXb/NDn7q5pRWgTqd/agwSM5EqGTVbRM=;
-        b=VJ8TbUNyYV7UTteAcgy8o9MHMr0PZRWgvsZLXDNr997wKl4XkllfVkE6KAWZWgAV8M
-         8syGSejRWuxCGJSWI6Kn0YZ2Wv9FD/LJnIBeuaHiJUexPqMoZf4BsXcr0v5Eu8nKKipL
-         DBKjLdN4+m++fODq3iiyIJ4S5vdrS1HZP4bJesWt+KWTnIATtkyJVrM7ybH85jbVh+FM
-         0gK3s15zEcGt4mf2W3SoJZze/rAQKyYvbctREYXKBA9MaQY7UDxSqqP8ZsnIJI5nPBHH
-         fynPnPr8OrWhPE4g3c7xwnh16d5vQHjq0XumJr+oTrxn0gGnsEN+D+yTr+NC0gXw4Ho3
-         zT1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787146013; x=1787750813;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=tzW5IHj5NxVpXb/NDn7q5pRWgTqd/agwSM5EqGTVbRM=;
-        b=oqMdtfevjya6y4f2gPmp3p5CYSY849kHHPOZB6zJ/E9Qin5n2UVA77azd2K8oE/2zX
-         K3QpMa6ByMqmjwtIK9pq34Zmfo11mQdOi8ZmLw5fpAPIDeIU2gQYTJLOe7YU16eXkGQy
-         /lDQcFH7eroE3eYVK421MsdKlHm+waRJFGgFN+o9ISUstkXIv9FE4XEX3qJ9036ceFxd
-         XtBCJV4Lz8ZvbMWxELGzp+yjYuzoVnSRz/21lAknVc0Eg4gBVNZ9wTcDrdp7jI2qZbNT
-         +msoP3q4TiuVmre9ejHzOLThvHptneAhQTH2PZhzTcy8BC9F3agkjJD4WnIDLT2rP/ri
-         miqg==
-X-Forwarded-Encrypted: i=1; AHgh+RplBAzRBzKQYRgDUe4n0vkmv2d2JxzvdEgHXQTZ79kOsjIHjXgTfFoi6tFHkgm9CBcmUAlvLTQ=@lists.infradead.org
-X-Gm-Message-State: AFuF++n0+RGdL3z02PFGZ87TqouaDrOF3m2351rlBgQ/wxZhrOUM58ji
-	/hNWC2JBWTYoAnEdXuU42uN6l8nm2xiEWcbG5G03F/uPRpe8MslviX4NIklokXdhMEJi13WjCY1
-	ejgm61Q4aoUkpa6pBdkGtibL27zzz2K0zmc0+WQYjur45tNz+AYyn0oD3Xsi7SBM4
-X-Gm-Gg: AR+sD12PkEpzQxnc2n3WHU1+QSN93HDb3qSvUMEDCn8GtebJQPzP34OyRiDcPYzIIzx
-	KyAscVEEPD6IuHrIbEUUz5yeazTkFgzPgIWez7tr48pX7XHnbaItbiLKd3Lo3CpSPGy3Fp8tEms
-	JvXkNRgI+Dfkd6BytH5eKO6BCjFVM7a4qfWjPvUE0xOoRTo9nt9N6ihun7U5U87BQVdzxmChRtu
-	1BMpaYfwUIQjSC84E1ZwH18gUKJTGZx5rifUt4R5yXuwykq+U+pYcqPpfUH60oAMXMUl/dZN5jJ
-	6yZyjqSR1qkE/wdYKU49WykEl/emzTt6lLsn1ge+DRB/o327hHb1v4ZcJytffVPJ7ZPo8oehnKF
-	vk+h6LqPVoJ8gKbruwMsk7Wc1T7/7V5GQmUY=
-X-Received: by 2002:a17:90b:510d:b0:38f:18f9:785 with SMTP id 98e67ed59e1d1-39580f2d498mr9334495a91.8.1787146013013;
-        Wed, 19 Aug 2026 06:26:53 -0700 (PDT)
-X-Received: by 2002:a17:90b:510d:b0:38f:18f9:785 with SMTP id 98e67ed59e1d1-39580f2d498mr9334409a91.8.1787146012498;
-        Wed, 19 Aug 2026 06:26:52 -0700 (PDT)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-327c2a92406sm6126465eec.11.2026.08.19.06.26.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2026 06:26:52 -0700 (PDT)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Wed, 19 Aug 2026 18:55:57 +0530
-Subject: [PATCH v5 6/6] PCI: qcom: Enable ASPM disabling during link
- retraining
+	id 1wwgt2-00000009unn-3ovm;
+	Wed, 19 Aug 2026 14:03:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=4li65BcNpSkuPJvoyH9P8yXhY9efVvAT0OcmyGsRKBI=;
+	t=1787148204; x=1788357804; b=LwZVpNLvb8l8IyTvIxeHGGiSZXEfv+xeMKJbw2ufrsPOweA
+	0xhy63J3i2laDm9jpa37xcLRkfFrSvCKoVAQnxW9uGjdlb8kImjii/mGR9w5Udj0vq5AuPZpWKLKd
+	fuvQj61lHP2zMlzUZ3IoZ+D1IXFTlpGKbwbNwuqAzsXWwMTtxpEIhZKFZKWSV/QnhxaDTweqJ6Ood
+	iHTEgPi8KC50J3HK3EKkNn0jVNpvC8z4Txch3OiI/uu0EoSOrCmWgBeDbuV2MdKDuba7Yo7jDrGHn
+	cVZoDxshVShxstFipuAc08117bjtPdeg346dJoAIk+MlApFAFJe0f6HB4SrzbX+w==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__ECDSA_SECP256R1_SHA256__AES_256_GCM:256)
+	(Exim 4.98.2)
+	(envelope-from <benjamin@sipsolutions.net>)
+	id 1wwgsp-0000000B7qc-3gFp;
+	Wed, 19 Aug 2026 16:03:12 +0200
+From: Benjamin Berg <benjamin@sipsolutions.net>
+To: linux-wireless@vger.kernel.org
+Cc: Jeff Johnson <jjohnson@kernel.org>,
+	Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+	Felix Fietkau <nbd@nbd.name>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Ping-Ke Shih <pkshih@realtek.com>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	Benjamin Berg <benjamin.berg@intel.com>
+Subject: [PATCH wireless-next v3 1/8] wifi: iwlwifi: use link_sta internally to the driver
+Date: Wed, 19 Aug 2026 15:57:05 +0200
+Message-ID: <20260819155703.a3a07dd29468.I41df561f8129fac1327a07729cf4734b8752bcd6@changeid>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260819135703.4072215-10-benjamin@sipsolutions.net>
+References: <20260819135703.4072215-10-benjamin@sipsolutions.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260819-bwscale-v5-6-6dea79786b37@oss.qualcomm.com>
-References: <20260819-bwscale-v5-0-6dea79786b37@oss.qualcomm.com>
-In-Reply-To: <20260819-bwscale-v5-0-6dea79786b37@oss.qualcomm.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-        =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        qiang.yu@oss.qualcomm.com,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-        Krishna Chaitanya Chundru <krishnac@codeaurora.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1787145973; l=907;
- i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=f9YlB0Fh+bNAledBbgwJEMD/HQiDELnKiSK0+Ha5n1U=;
- b=OgQCeukC0yqHkRBcMr7JYdM2b51+4QKimpjb1JOms87pWnVBZMA/wPJfz26Gp6RTe0N2xIQPZ
- HXv8nvTacz5BZOz8pgiG9ztzWQqkRsKziXtqPbqDfuD+EpVFPQQZzA2
-X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Authority-Analysis: v=2.4 cv=fv3sol4f c=1 sm=1 tr=0 ts=6a85af1d cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=Sv0fKeRqtYgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=LpQP-O61AAAA:8 a=0KoEUwRExAGgTGxQCIUA:9 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22 a=pioyyrs4ZptJ924tMmac:22
-X-Proofpoint-GUID: m8JsIbn96Z4TC4mf8U1J5xF8kHx9h4vW
-X-Proofpoint-ORIG-GUID: m8JsIbn96Z4TC4mf8U1J5xF8kHx9h4vW
-X-Proofpoint-Spam-Info: AW1haW4tMjYwODE5MDEwNCBTYWx0ZWRfX8zpxa4PAmfXw
- /LDDW4nhOIGySOtLjR0E/Kk1NC496vTRgPP6RtEOib97o/inEMUfv5n6jQOM+aHLKRLQ/f42k1S
- QFFWZg/j7QHcoK0dAKHO2serutyeYfo=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODE5MDEwNCBTYWx0ZWRfXy0tzB8OYUrIV
- oXqpqVJJW5x62OJioWj1iPWsCXuTipJR8M/gWX49AecK605ObWVqlW48nS54928PPSkqPOcsOe8
- QRsF7V1Ua5aKuphslRqSnV/bu5TiXz8NKtiN7InC7BlSSQ5w0KeXz4XNxYydzQqBkCj5j+xlNAD
- QSi7g1M2cC9mLvUxkBEU92VsxYAGJBmr8SC6u/upRolcNNOv7fnJf5tbrDY5HXF7TRXNh+dNfQi
- +qhkwaLYBfG+DawQcTJNfpomoZxLESKxiFuSa0Bxh7bWIORUs3hG90rFwzR2s2WFOWPDQU4Dsnv
- RK1bq8YYoVheVvmmoBgJ4QgphrKDAGmRn1M315LOlWmW2ZTjdt+E+6+GDVNXH2h93BANQZty6Lz
- lhwixA6C6IZRTUAjfgorzOrpF0A3PMHYBW34cHJYd+kKJUFv+dTjGyqHebW+hRSt0HlC37QJ//D
- gJTFoMO1ThNOoYzMt6A==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-08-19_03,2026-08-19_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 spamscore=0 adultscore=0 suspectscore=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2608190104
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260819_062654_288338_F5E3BD4B 
-X-CRM114-Status: GOOD (  10.73  )
+X-CRM114-CacheID: sfid-20260819_070325_093780_9C882B6A 
+X-CRM114-Status: GOOD (  21.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -166,31 +78,332 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Set the disable_aspm_for_retrain flag in qcom_pcie_host_init() to ensure
-ASPM is disabled during link retraining operations. This prevents potential
-issues with link state transitions during bandwidth scaling on Qualcomm
-PCIe controllers.
+From: Benjamin Berg <benjamin.berg@intel.com>
 
-Signed-off-by: Krishna Chaitanya Chundru <krishnac@codeaurora.org>
+Using the link_sta is a natural way to pass both the STA and the link ID
+information at the same time. Use that internally to the driver in
+preparation to mac80211 changing its API and adopting the same method.
+
+Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/net/wireless/intel/iwlwifi/mld/agg.c  | 17 +++----
+ drivers/net/wireless/intel/iwlwifi/mld/agg.h  |  4 +-
+ drivers/net/wireless/intel/iwlwifi/mld/rx.c   | 45 ++++++++++---------
+ drivers/net/wireless/intel/iwlwifi/mld/rx.h   |  2 +-
+ .../wireless/intel/iwlwifi/mld/tests/agg.c    |  7 +--
+ 5 files changed, 39 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 45f4caeb0814..0237f747b69a 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -1395,6 +1395,8 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+diff --git a/drivers/net/wireless/intel/iwlwifi/mld/agg.c b/drivers/net/wireless/intel/iwlwifi/mld/agg.c
+index 96102d2af2cf..c45c47337509 100644
+--- a/drivers/net/wireless/intel/iwlwifi/mld/agg.c
++++ b/drivers/net/wireless/intel/iwlwifi/mld/agg.c
+@@ -7,7 +7,8 @@
+ #include "hcmd.h"
  
- 	qcom_pcie_perst_deassert(pcie);
+ static void
+-iwl_mld_reorder_release_frames(struct iwl_mld *mld, struct ieee80211_sta *sta,
++iwl_mld_reorder_release_frames(struct iwl_mld *mld,
++			       struct ieee80211_link_sta *link_sta,
+ 			       struct napi_struct *napi,
+ 			       struct iwl_mld_baid_data *baid_data,
+ 			       struct iwl_mld_reorder_buffer *reorder_buf,
+@@ -32,7 +33,7 @@ iwl_mld_reorder_release_frames(struct iwl_mld *mld, struct ieee80211_sta *sta,
+ 		while ((skb = __skb_dequeue(skb_list))) {
+ 			iwl_mld_pass_packet_to_mac80211(mld, napi, skb,
+ 							reorder_buf->queue,
+-							sta);
++							link_sta);
+ 			reorder_buf->num_stored--;
+ 		}
+ 	}
+@@ -74,7 +75,7 @@ static void iwl_mld_release_frames_from_notif(struct iwl_mld *mld,
  
-+	pp->bridge->disable_aspm_for_retrain = true;
-+
- 	if (pcie->cfg->ops->config_sid) {
- 		ret = pcie->cfg->ops->config_sid(pcie);
- 		if (ret)
-
+ 	reorder_buf = &ba_data->reorder_buf[queue];
+ 
+-	iwl_mld_reorder_release_frames(mld, link_sta->sta, napi, ba_data,
++	iwl_mld_reorder_release_frames(mld, link_sta, napi, ba_data,
+ 				       reorder_buf, nssn);
+ out_unlock:
+ 	rcu_read_unlock();
+@@ -180,7 +181,7 @@ void iwl_mld_del_ba(struct iwl_mld *mld, int queue,
+ 	reorder_buf = &ba_data->reorder_buf[queue];
+ 
+ 	/* release all frames that are in the reorder buffer to the stack */
+-	iwl_mld_reorder_release_frames(mld, link_sta->sta, NULL,
++	iwl_mld_reorder_release_frames(mld, link_sta, NULL,
+ 				       ba_data, reorder_buf,
+ 				       ieee80211_sn_add(reorder_buf->head_sn,
+ 							ba_data->buf_size));
+@@ -193,7 +194,7 @@ void iwl_mld_del_ba(struct iwl_mld *mld, int queue,
+  */
+ enum iwl_mld_reorder_result
+ iwl_mld_reorder(struct iwl_mld *mld, struct napi_struct *napi,
+-		int queue, struct ieee80211_sta *sta,
++		int queue, struct ieee80211_link_sta *link_sta,
+ 		struct sk_buff *skb, struct iwl_rx_mpdu_desc *desc)
+ {
+ 	struct ieee80211_hdr *hdr = (void *)skb_mac_header(skb);
+@@ -228,12 +229,12 @@ iwl_mld_reorder(struct iwl_mld *mld, struct napi_struct *napi,
+ 		return IWL_MLD_PASS_SKB;
+ 
+ 	/* no sta yet */
+-	if (IWL_FW_CHECK(mld, !sta,
++	if (IWL_FW_CHECK(mld, !link_sta,
+ 			 "Got valid BAID without a valid station assigned - %d\n",
+ 			 baid))
+ 		return IWL_MLD_PASS_SKB;
+ 
+-	mld_sta = iwl_mld_sta_from_mac80211(sta);
++	mld_sta = iwl_mld_sta_from_mac80211(link_sta->sta);
+ 
+ 	/* not a data packet */
+ 	if (!ieee80211_is_data_qos(hdr->frame_control) ||
+@@ -324,7 +325,7 @@ iwl_mld_reorder(struct iwl_mld *mld, struct napi_struct *napi,
+ 	 * will be released when the frame release notification arrives.
+ 	 */
+ 	if (!amsdu || last_subframe)
+-		iwl_mld_reorder_release_frames(mld, sta, napi, baid_data,
++		iwl_mld_reorder_release_frames(mld, link_sta, napi, baid_data,
+ 					       buffer, nssn);
+ 	else if (buffer->num_stored == 1)
+ 		buffer->head_sn = nssn;
+diff --git a/drivers/net/wireless/intel/iwlwifi/mld/agg.h b/drivers/net/wireless/intel/iwlwifi/mld/agg.h
+index 651c80d1c7cd..c6cd5fa219be 100644
+--- a/drivers/net/wireless/intel/iwlwifi/mld/agg.h
++++ b/drivers/net/wireless/intel/iwlwifi/mld/agg.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause */
+ /*
+- * Copyright (C) 2024 Intel Corporation
++ * Copyright (C) 2024, 2026 Intel Corporation
+  */
+ #ifndef __iwl_agg_h__
+ #define __iwl_agg_h__
+@@ -106,7 +106,7 @@ int iwl_mld_ampdu_rx_stop(struct iwl_mld *mld, struct ieee80211_sta *sta,
+ 
+ enum iwl_mld_reorder_result
+ iwl_mld_reorder(struct iwl_mld *mld, struct napi_struct *napi,
+-		int queue, struct ieee80211_sta *sta,
++		int queue, struct ieee80211_link_sta *link_sta,
+ 		struct sk_buff *skb, struct iwl_rx_mpdu_desc *desc);
+ 
+ void iwl_mld_handle_frame_release_notif(struct iwl_mld *mld,
+diff --git a/drivers/net/wireless/intel/iwlwifi/mld/rx.c b/drivers/net/wireless/intel/iwlwifi/mld/rx.c
+index 269439d789f4..5696a247922b 100644
+--- a/drivers/net/wireless/intel/iwlwifi/mld/rx.c
++++ b/drivers/net/wireless/intel/iwlwifi/mld/rx.c
+@@ -47,7 +47,8 @@ iwl_mld_fill_phy_data_from_mpdu(struct iwl_mld *mld,
+ }
+ 
+ static inline int iwl_mld_check_pn(struct iwl_mld *mld, struct sk_buff *skb,
+-				   int queue, struct ieee80211_sta *sta)
++				   int queue,
++				   struct ieee80211_link_sta *link_sta)
+ {
+ 	struct ieee80211_hdr *hdr = (void *)skb_mac_header(skb);
+ 	struct ieee80211_rx_status *stats = IEEE80211_SKB_RXCB(skb);
+@@ -71,13 +72,13 @@ static inline int iwl_mld_check_pn(struct iwl_mld *mld, struct sk_buff *skb,
+ 		return 0;
+ 
+ 	/* if we are here - this for sure is either CCMP or GCMP */
+-	if (!sta) {
++	if (!link_sta) {
+ 		IWL_DEBUG_DROP(mld,
+ 			       "expected hw-decrypted unicast frame for station\n");
+ 		return -1;
+ 	}
+ 
+-	mld_sta = iwl_mld_sta_from_mac80211(sta);
++	mld_sta = iwl_mld_sta_from_mac80211(link_sta->sta);
+ 
+ 	extiv = (u8 *)hdr + ieee80211_hdrlen(hdr->frame_control);
+ 	keyidx = extiv[3] >> 6;
+@@ -119,17 +120,17 @@ static inline int iwl_mld_check_pn(struct iwl_mld *mld, struct sk_buff *skb,
+ void iwl_mld_pass_packet_to_mac80211(struct iwl_mld *mld,
+ 				     struct napi_struct *napi,
+ 				     struct sk_buff *skb, int queue,
+-				     struct ieee80211_sta *sta)
++				     struct ieee80211_link_sta *link_sta)
+ {
+ 	KUNIT_STATIC_STUB_REDIRECT(iwl_mld_pass_packet_to_mac80211,
+-				   mld, napi, skb, queue, sta);
++				   mld, napi, skb, queue, link_sta);
+ 
+-	if (unlikely(iwl_mld_check_pn(mld, skb, queue, sta))) {
++	if (unlikely(iwl_mld_check_pn(mld, skb, queue, link_sta))) {
+ 		kfree_skb(skb);
+ 		return;
+ 	}
+ 
+-	ieee80211_rx_napi(mld->hw, sta, skb, napi);
++	ieee80211_rx_napi(mld->hw, link_sta->sta, skb, napi);
+ }
+ EXPORT_SYMBOL_IF_IWLWIFI_KUNIT(iwl_mld_pass_packet_to_mac80211);
+ 
+@@ -1728,7 +1729,7 @@ static void iwl_mld_update_last_rx_timestamp(struct iwl_mld *mld, u8 baid)
+  * Sets *drop to true if the packet should be dropped.
+  * Returns the station if found, or NULL otherwise.
+  */
+-static struct ieee80211_sta *
++static struct ieee80211_link_sta *
+ iwl_mld_rx_with_sta(struct iwl_mld *mld, struct ieee80211_hdr *hdr,
+ 		    struct sk_buff *skb,
+ 		    const struct iwl_rx_mpdu_desc *mpdu_desc,
+@@ -1803,10 +1804,10 @@ iwl_mld_rx_with_sta(struct iwl_mld *mld, struct ieee80211_hdr *hdr,
+ 							    queue);
+ 	}
+ 
+-	return sta;
++	return link_sta;
+ }
+ 
+-static int iwl_mld_rx_mgmt_prot(struct ieee80211_sta *sta,
++static int iwl_mld_rx_mgmt_prot(struct ieee80211_link_sta *link_sta,
+ 				struct ieee80211_hdr *hdr,
+ 				struct ieee80211_rx_status *rx_status,
+ 				u32 mpdu_status,
+@@ -1820,7 +1821,6 @@ static int iwl_mld_rx_mgmt_prot(struct ieee80211_sta *sta,
+ 	struct ieee80211_key_conf *key;
+ 	const u8 *frame = (void *)hdr;
+ 	const u8 *mmie;
+-	u8 link_id;
+ 
+ 	if ((mpdu_status & IWL_RX_MPDU_STATUS_SEC_MASK) ==
+ 	     IWL_RX_MPDU_STATUS_SEC_NONE)
+@@ -1836,10 +1836,10 @@ static int iwl_mld_rx_mgmt_prot(struct ieee80211_sta *sta,
+ 	if (!ieee80211_is_beacon(hdr->frame_control))
+ 		return 0;
+ 
+-	if (!sta)
++	if (!link_sta)
+ 		return -1;
+ 
+-	mld_sta = iwl_mld_sta_from_mac80211(sta);
++	mld_sta = iwl_mld_sta_from_mac80211(link_sta->sta);
+ 	mld_vif = iwl_mld_vif_from_mac80211(mld_sta->vif);
+ 
+ 	/* key mismatch - will also report !MIC_OK but we shouldn't count it */
+@@ -1853,8 +1853,7 @@ static int iwl_mld_rx_mgmt_prot(struct ieee80211_sta *sta,
+ 		return 0;
+ 	}
+ 
+-	link_id = rx_status->link_valid ? rx_status->link_id : 0;
+-	link = rcu_dereference(mld_vif->link[link_id]);
++	link = rcu_dereference(mld_vif->link[link_sta->link_id]);
+ 	if (WARN_ON_ONCE(!link))
+ 		return -1;
+ 
+@@ -1905,7 +1904,7 @@ static int iwl_mld_rx_mgmt_prot(struct ieee80211_sta *sta,
+ }
+ 
+ static int iwl_mld_rx_crypto(struct iwl_mld *mld,
+-			     struct ieee80211_sta *sta,
++			     struct ieee80211_link_sta *link_sta,
+ 			     struct ieee80211_hdr *hdr,
+ 			     struct ieee80211_rx_status *rx_status,
+ 			     struct iwl_rx_mpdu_desc *desc, int queue,
+@@ -1915,7 +1914,7 @@ static int iwl_mld_rx_crypto(struct iwl_mld *mld,
+ 
+ 	if (unlikely(ieee80211_is_mgmt(hdr->frame_control) &&
+ 		     !ieee80211_has_protected(hdr->frame_control)))
+-		return iwl_mld_rx_mgmt_prot(sta, hdr, rx_status, status,
++		return iwl_mld_rx_mgmt_prot(link_sta, hdr, rx_status, status,
+ 					    le16_to_cpu(desc->mpdu_len));
+ 
+ 	if (!ieee80211_has_protected(hdr->frame_control) ||
+@@ -2023,7 +2022,7 @@ void iwl_mld_rx_mpdu(struct iwl_mld *mld, struct napi_struct *napi,
+ 	struct iwl_rx_packet *pkt = rxb_addr(rxb);
+ 	struct iwl_mld_rx_phy_data phy_data = {};
+ 	struct iwl_rx_mpdu_desc *mpdu_desc = (void *)pkt->data;
+-	struct ieee80211_sta *sta;
++	struct ieee80211_link_sta *link_sta;
+ 	struct ieee80211_hdr *hdr;
+ 	struct sk_buff *skb;
+ 	size_t mpdu_desc_size = sizeof(*mpdu_desc);
+@@ -2086,7 +2085,8 @@ void iwl_mld_rx_mpdu(struct iwl_mld *mld, struct napi_struct *napi,
+ 
+ 	rcu_read_lock();
+ 
+-	sta = iwl_mld_rx_with_sta(mld, hdr, skb, mpdu_desc, pkt, queue, &drop);
++	link_sta = iwl_mld_rx_with_sta(mld, hdr, skb, mpdu_desc, pkt, queue,
++				       &drop);
+ 	if (drop)
+ 		goto drop;
+ 
+@@ -2127,7 +2127,7 @@ void iwl_mld_rx_mpdu(struct iwl_mld *mld, struct napi_struct *napi,
+ 
+ 	iwl_mld_rx_fill_status(mld, link_id, hdr, skb, &phy_data);
+ 
+-	if (iwl_mld_rx_crypto(mld, sta, hdr, rx_status, mpdu_desc, queue,
++	if (iwl_mld_rx_crypto(mld, link_sta, hdr, rx_status, mpdu_desc, queue,
+ 			      le32_to_cpu(pkt->len_n_flags), &crypto_len))
+ 		goto drop;
+ 
+@@ -2140,7 +2140,8 @@ void iwl_mld_rx_mpdu(struct iwl_mld *mld, struct napi_struct *napi,
+ 	if (iwl_mld_time_sync_frame(mld, skb, hdr->addr2))
+ 		goto out;
+ 
+-	reorder_res = iwl_mld_reorder(mld, napi, queue, sta, skb, mpdu_desc);
++	reorder_res = iwl_mld_reorder(mld, napi, queue, link_sta, skb,
++				      mpdu_desc);
+ 	switch (reorder_res) {
+ 	case IWL_MLD_PASS_SKB:
+ 		break;
+@@ -2153,7 +2154,7 @@ void iwl_mld_rx_mpdu(struct iwl_mld *mld, struct napi_struct *napi,
+ 		goto drop;
+ 	}
+ 
+-	iwl_mld_pass_packet_to_mac80211(mld, napi, skb, queue, sta);
++	iwl_mld_pass_packet_to_mac80211(mld, napi, skb, queue, link_sta);
+ 
+ 	goto out;
+ 
+diff --git a/drivers/net/wireless/intel/iwlwifi/mld/rx.h b/drivers/net/wireless/intel/iwlwifi/mld/rx.h
+index 573b89c3c9c6..b08c5ade3db8 100644
+--- a/drivers/net/wireless/intel/iwlwifi/mld/rx.h
++++ b/drivers/net/wireless/intel/iwlwifi/mld/rx.h
+@@ -69,7 +69,7 @@ void iwl_mld_handle_rsc_notif(struct iwl_mld *mld,
+ void iwl_mld_pass_packet_to_mac80211(struct iwl_mld *mld,
+ 				     struct napi_struct *napi,
+ 				     struct sk_buff *skb, int queue,
+-				     struct ieee80211_sta *sta);
++				     struct ieee80211_link_sta *link_sta);
+ 
+ void iwl_mld_handle_phy_air_sniffer_notif(struct iwl_mld *mld,
+ 					  struct napi_struct *napi,
+diff --git a/drivers/net/wireless/intel/iwlwifi/mld/tests/agg.c b/drivers/net/wireless/intel/iwlwifi/mld/tests/agg.c
+index 29b0248cec3d..e9efe2996f07 100644
+--- a/drivers/net/wireless/intel/iwlwifi/mld/tests/agg.c
++++ b/drivers/net/wireless/intel/iwlwifi/mld/tests/agg.c
+@@ -2,7 +2,7 @@
+ /*
+  * KUnit tests for channel helper functions
+  *
+- * Copyright (C) 2024-2025 Intel Corporation
++ * Copyright (C) 2024-2026 Intel Corporation
+  */
+ #include <kunit/test.h>
+ #include <kunit/static_stub.h>
+@@ -441,7 +441,7 @@ static void
+ fake_iwl_mld_pass_packet_to_mac80211(struct iwl_mld *mld,
+ 				     struct napi_struct *napi,
+ 				     struct sk_buff *skb, int queue,
+-				     struct ieee80211_sta *sta)
++				     struct ieee80211_link_sta *link_sta)
+ {
+ 	__skb_queue_tail(&g_released_skbs, skb);
+ 	g_num_released_skbs++;
+@@ -630,7 +630,8 @@ static void test_reorder_buffer(struct kunit *test)
+ 	mpdu_desc = setup_mpdu_desc();
+ 
+ 	rcu_read_lock();
+-	reorder_res = iwl_mld_reorder(mld, NULL, QUEUE, sta, skb, mpdu_desc);
++	reorder_res = iwl_mld_reorder(mld, NULL, QUEUE, &sta->deflink, skb,
++				      mpdu_desc);
+ 	rcu_read_unlock();
+ 
+ 	KUNIT_ASSERT_EQ(test, reorder_res, param->expected.reorder_res);
 -- 
-2.34.1
+2.55.0
 
 
