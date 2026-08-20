@@ -4,66 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 107DCC5DF86
-	for <ath11k@archiver.kernel.org>; Wed, 19 Aug 2026 14:03:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F98DC5DF85
+	for <ath11k@archiver.kernel.org>; Thu, 20 Aug 2026 16:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iTTHacjo3JAjq62LysYrValW8hFSvyVEKw224joKbQU=; b=HJ0OirSjrHSGl1KRb2EcRm5k2O
-	OZ0syI0+K10qeYzOVERo7lUHVlaKVZN4nNbc8JOOqBzd84TFZH7bDDMpWPhL/sZSMynYfXvr0rClI
-	SAgnaW4C34BNHZtutv6fAyT3mRtnOaEMR8koLLtCCdjlvhBZJGfmsLMK3OJMrH2U/dDbKNcJxYeht
-	EH8zwPZyqC1j4o0xggONnDIgK0yjWvF4xj26lM6dPv4p/FQc50FhbDiStyC8i/9OuO+BwRQCh7nG9
-	FmGt/BBHO1//Y80IBPDdd1rYVM0ynSxGaOX9nOOE9Wbj6sYPXi5+s6p84NUs/+sV19VxJ5GBYAZBK
-	WHsXashg==;
+	bh=U4113Go/iZ9yaiCSz08Po1Td0t48YeW8O2ljTwTRbvg=; b=woYk99WAtjDDt+hlNacDBpt608
+	TtmCV86hTvR7rbkh6Nk1Ssh3cEtAUhzF0G3ChaHr7IrOJNJ4KyiHzJl/hBjMrOZoKLIt4oojrl/cI
+	lBMc5fvZ6ygy7EYq+4+A1K9RqQNRKF8mctAup0tyTGRiV01tITYTNf73fh3KwVy79LuwEG/G6KGhF
+	lMXdSCUa8zL0hJkMKr62OAYDG/I+SbiBQsOBNSJgk1FXLBYLkIJwKnvdKCQqoZByB/G5frpOnh8e5
+	L8PHLmJS2+W4MbdzZTHnznv7JyvnAj/QrfIQwbgMy3KA32g/Wcwqbc6tCZgm0fUHMNcIfUuzIOx4k
+	ExB1rILg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwgtO-00000009vDi-0n3m;
-	Wed, 19 Aug 2026 14:03:46 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1wx5Oh-0000000Bs7H-0JJL;
+	Thu, 20 Aug 2026 16:13:43 +0000
+Received: from out-53.mta0.migadu.com ([2001:41d0:1004:224b::35] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwgtB-00000009uvn-0qdM;
-	Wed, 19 Aug 2026 14:03:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=iTTHacjo3JAjq62LysYrValW8hFSvyVEKw224joKbQU=;
-	t=1787148213; x=1788357813; b=hRaqnlknmWh3lCRwAqZJxHwkotJFQPm3NlMRZXH42WVwyRa
-	EZnzt3a8kK0us7mCpjOQ8lVgxvSsTI1JZjssm7ztw0w6ZbBaCKLL629FCJktM1VaB2FjL5w3EVLuC
-	U8xoFoBolm3dNYqFS7De5dL7WjKxdX4rBYWwHfBbhfBWrH48U3U1130gDfedvVMmvs35m6dBqdMoG
-	ITKh6NOahqboW//jdQdjd16rwTrNQLwLpona9d7He+JW4IMYw53MFUP+jinZ56092hsvwb4OgNOT+
-	IXgHts6e0TG0vafoPdvqBs7lomtLNEyrEooN2pO8NrS/Q2RVOaiWYE3Z6cMiOAMw==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__ECDSA_SECP256R1_SHA256__AES_256_GCM:256)
-	(Exim 4.98.2)
-	(envelope-from <benjamin@sipsolutions.net>)
-	id 1wwgt2-0000000B7qc-1K3P;
-	Wed, 19 Aug 2026 16:03:24 +0200
-From: Benjamin Berg <benjamin@sipsolutions.net>
-To: linux-wireless@vger.kernel.org
-Cc: Jeff Johnson <jjohnson@kernel.org>,
+	id 1wx5Od-0000000Bs65-21DK
+	for ath11k@lists.infradead.org;
+	Thu, 20 Aug 2026 16:13:41 +0000
+X-Envelope-To: ath11k@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=GSbd9eXn+aBkKA8yfc5E9UP0zZYOKacQHj+I0EFsxQs=;
+ c=simple/simple; d=justthetip.ca;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1787242416; v=1; x=1787847216;
+ b=OEgrEnXDFwzkf/CFo5uBVQdKsXqxdTguQipmYOO1qcwou9phmYa5cSdfkMx9xC0OFulrbWxi
+ f4zsvONZLbFXUMSi9vHwY7Ewglo0ZxAEoJ+P/RaRZ5Ao9d2dBRHYCBNUUEvSFYmDxFV/um/XQLq
+ TxQbvuQG0Gr3puEj7ZHP/PFo3AdACaW/UGUlBo6k3taPOHlVJWdO7PNsuX0oGhT2nIGQhu3SL4J
+ ZsuwRvvhDZ31kXu65lcrhn6g4xgGiM+g+0wBLb/QHW7l4N2gR1UUSGKcULD3dB8kt8RiJ5gv24C
+ 4+TCn/4UEXTp+8S2xG9L4PD/m0WUyosNmW0pUCyV2XE0A==
+X-Envelope-To: ath11k@lists.infradead.org
+Received: from fedora (187.15.154.68)
+	by smtp.migadu.com with ESMTPS id 7cf7a057dfa13fa4;
+	Thu, 20 Aug 2026 16:13:26 +0000
+X-Mizu-Trace-ID: 7cf7a057dfa13fa4
+X-Migadu-Flow: FLOW_OUT
+From: Devin Wittmayer <lucid_duck@justthetip.ca>
+To: Benjamin Berg <benjamin@sipsolutions.net>
+Cc: linux-wireless@vger.kernel.org,
+	Jeff Johnson <jjohnson@kernel.org>,
 	Miri Korenblit <miriam.rachel.korenblit@intel.com>,
 	Felix Fietkau <nbd@nbd.name>,
 	Lorenzo Bianconi <lorenzo@kernel.org>,
 	Ryder Lee <ryder.lee@mediatek.com>,
 	Ping-Ke Shih <pkshih@realtek.com>,
 	Johannes Berg <johannes@sipsolutions.net>,
+	Benjamin Berg <benjamin.berg@intel.com>,
 	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	Benjamin Berg <benjamin.berg@intel.com>
-Subject: [PATCH wireless-next v3 8/8] uwifi: mac80211: pass error station if non-STA transmit was requested
-Date: Wed, 19 Aug 2026 15:57:12 +0200
-Message-ID: <20260819155703.64912484c2ba.I5ffe7bc0d4ccefca5c1e506d5d3d482e13989cda@changeid>
+	ath12k@lists.infradead.org
+Subject: Re: [PATCH wireless-next v3 2/8] wifi: mac80211: change public RX API to use link stations
+Date: Thu, 20 Aug 2026 09:12:07 -0700
+Message-ID: <20260820161207.125743-1-lucid_duck@justthetip.ca>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260819135703.4072215-10-benjamin@sipsolutions.net>
-References: <20260819135703.4072215-10-benjamin@sipsolutions.net>
+In-Reply-To: <20260819155703.af6d319e6b61.I4a2d45609e94b52654b10ec572e59a45d09c41f4@changeid>
+References: <20260819135703.4072215-10-benjamin@sipsolutions.net> <20260819155703.af6d319e6b61.I4a2d45609e94b52654b10ec572e59a45d09c41f4@changeid>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260819_070333_301555_E3426A5A 
-X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-CacheID: sfid-20260820_091339_886166_3078E0F4 
+X-CRM114-Status: UNSURE (   6.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,63 +82,20 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Benjamin Berg <benjamin.berg@intel.com>
+On Wed, Aug 19, 2026 at 03:57:06PM +0200, Benjamin Berg wrote:
+> -	*sta = wcid_to_sta(mstat.wcid);
 
-When cfg80211 requested a transmit without a station, pass an error
-station to ieee80211_tx_skb_tid instead of the correct one.
+This moves inside the wcid check, so it no longer happens for every frame.
+mt76 uses one variable for a whole receive batch, so a frame with no wcid
+keeps the previous frame's station instead of being cleared.
 
-Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
+Frames with no wcid are normal rather than rare. On an MT7922 they were
+about 98% of everything received, and 16 frames out of roughly 4000 ended
+up carrying a leftover station.
 
----
+No harm that I could show. None of those 16 were data frames, and that is
+the only kind mac80211 reads the link station for. Clearing it when there
+is no wcid still looks worth doing.
 
-v3:
- * Fix logic error in v1 update
-
-v1:
- * Only pass error station if NO_STA flag is set
----
- net/mac80211/offchannel.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
-
-diff --git a/net/mac80211/offchannel.c b/net/mac80211/offchannel.c
-index 5cec8747b193..ddd7a96a2f81 100644
---- a/net/mac80211/offchannel.c
-+++ b/net/mac80211/offchannel.c
-@@ -854,8 +854,10 @@ int ieee80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
- 			need_offchan = true;
- 
- 		rcu_read_lock();
--		sta = sta_info_get_bss(sdata, mgmt->da);
--		mlo_sta = sta && sta->sta.mlo;
-+		if (!params->no_sta) {
-+			sta = sta_info_get_bss(sdata, mgmt->da);
-+			mlo_sta = sta && sta->sta.mlo;
-+		}
- 
- 		if (!ieee80211_is_action(mgmt->frame_control) ||
- 		    mgmt->u.action.category == WLAN_CATEGORY_PUBLIC ||
-@@ -884,7 +886,8 @@ int ieee80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
- 		     local->ops->remain_on_channel &&
- 		     memcmp(sdata->vif.cfg.ap_addr, mgmt->bssid, ETH_ALEN))) {
- 			need_offchan = true;
--		} else if (sdata->u.mgd.associated &&
-+		} else if (!params->no_sta &&
-+			   sdata->u.mgd.associated &&
- 			   ether_addr_equal(sdata->vif.cfg.ap_addr, mgmt->da)) {
- 			sta = sta_info_get_bss(sdata, mgmt->da);
- 			mlo_sta = sta && sta->sta.mlo;
-@@ -1022,7 +1025,9 @@ int ieee80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
- 	}
- 
- 	if (!need_offchan) {
--		ieee80211_tx_skb_tid(sdata, skb, NULL, 7, link_id);
-+		ieee80211_tx_skb_tid(sdata, skb,
-+				     params->no_sta ? ERR_PTR(-ENOENT) : sta,
-+				     7, link_id);
- 		ret = 0;
- 		goto out_unlock;
- 	}
--- 
-2.55.0
-
+Devin
 
