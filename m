@@ -4,97 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8126DC5DF85
-	for <ath11k@archiver.kernel.org>; Thu, 20 Aug 2026 17:40:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9CBFC5DF85
+	for <ath11k@archiver.kernel.org>; Thu, 20 Aug 2026 17:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=eyvVMNnSHQRd17KJq3rwbV9DOJ8cp9AOfAXyWtz2edo=; b=vCpquu2VJSivngiRh9BHNFowX4
-	yLpx0Co0qJyoNhdeik6K2lg7/MxXwdzqro4ik43S8nG/ipk/emXioxZN0saVpb8c8mLUKRTTiLK3Z
-	YDmwY0M+svD3Z24c3+7SXNTtXqgbcBXSZCyTEiIo9LyPnlL6UxiAn+mXfT8JYf52/lvl4x4cP0LFR
-	sIGKyPaQaBZGF0aQ/sT2NZwWpU1K5r/+IKYfSV6h2ruVF/3RUcYqhuStgLgcFJdb516+N0cbO3tuk
-	JFYav5U7sOMVpwOcnTK0lUPTtBD0yjasPpxH536rJqc8fOthrpQ47dMnhEtylW7BkF1W3cMwRsrMi
-	a/mLcj+w==;
+	bh=qGTHQM6yXTCq7iCsg06gYiI/zbE8XuFZp0lB3XIIEd8=; b=kAsXWaAr+cK6O07dwkaSkjGIHf
+	WMQuJPiX7/QxQzbBoRPO7g88vOnc/SWh1AM3cfGk3uDsn3XWWRuRSNSQY2cJYG6VwpuHvcBzfxizi
+	5uGDHVLPb2vXLFes2eLViZF/4nu8Np5q0rGYlgkm9pbP3LH7kC4kRbyFwHcSXzmzZcwna3xa1IENQ
+	nmxP/fNuVRjgrtVp7jWVdoEaq0mWPytTl2xo/pDxIO3L93F35DQHnumsKzqe4uVxKT+nEKbRPbOze
+	cmBnppOR+6CKiSbYDusRo96tAk5x1qeCH0hx9pzePw7OmNUpe0m9Mozo2dnj9/UYBA4u4/4697IeE
+	gy16irpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wx6kz-0000000Byb1-3C4b;
-	Thu, 20 Aug 2026 17:40:49 +0000
+	id 1wx701-0000000C09d-3h1m;
+	Thu, 20 Aug 2026 17:56:21 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wx6kx-0000000ByaO-29yj
+	id 1wx6zz-0000000C08U-3FDN
 	for ath11k@lists.infradead.org;
-	Thu, 20 Aug 2026 17:40:48 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 67KG89mJ3492354
-	for <ath11k@lists.infradead.org>; Thu, 20 Aug 2026 17:40:46 GMT
+	Thu, 20 Aug 2026 17:56:21 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 67KHXRc83158808
+	for <ath11k@lists.infradead.org>; Thu, 20 Aug 2026 17:56:19 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eyvVMNnSHQRd17KJq3rwbV9DOJ8cp9AOfAXyWtz2edo=; b=CJZ22GQZPhA2HOxv
-	SSIjYKrOwKpLDnbPjkmy1agfxPk2AvUyJTmi0uYYE1vVbUIlq69+QQ84xZYNwAOR
-	25gqXnymDAV4iAKrfeFsvu8Qplds9at0xjgWdooDJyyuqcZ4vsbZjkxP34l/sz0G
-	AZL8pmKwkodHkI1c3mTr/s2z//jNCz7KxfN3OnWK//q35bgNE548PXvZqwNFhA8z
-	LgoRwo/fbucHtNszvR+iYI78mPs5kw03u2JCI6OW87S4D4l4cUBjGIHeDiOY5Q3a
-	ZskUsHIttP1TczLuqPsKKTYCaUJLErxTNKvnqA+KRBNIdFMqMeNMZkTrgTv35vYQ
-	mQdSBQ==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4g5x29jehx-1
+	qGTHQM6yXTCq7iCsg06gYiI/zbE8XuFZp0lB3XIIEd8=; b=VR/Eg9Ty9X+sPHRH
+	vlDtUh/9W2Vgu/NdlrP37kJkqWRCh3jbrtERm2JMqAGCaiRsO4LMM1UXja60GjMW
+	LmryfAy/XQz9bfqXFZxRLwdu6T8QpuNA5MoIOXniGw9rFU+pG/IA6BB9dKc6ITlQ
+	L/vo5Jmev94R3NKBUOcBBckJ16UXNY9FkN2X5VvTYm1YVZZ5G5s3lOs7jOeyy9VO
+	2P36Zel3sGU+x8KMxl6Uqp0AtuQ1TVK46hlEG94fY0/nROEMxNyuMdXjnpBvuAyE
+	oIFu8dByausdXSafifshJobofGutW2HpsvmQSZUwa3dQK/8tXkhyD11lkI7Y8EGU
+	5kSwZw==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4g5ytca2eg-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 20 Aug 2026 17:40:45 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-cab3e9cd922so107528a12.0
-        for <ath11k@lists.infradead.org>; Thu, 20 Aug 2026 10:40:45 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Thu, 20 Aug 2026 17:56:19 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c89704da8c7so218884a12.0
+        for <ath11k@lists.infradead.org>; Thu, 20 Aug 2026 10:56:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1787247645; x=1787852445; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1787248579; x=1787853379; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=eyvVMNnSHQRd17KJq3rwbV9DOJ8cp9AOfAXyWtz2edo=;
-        b=df66v0caIzOQJGc0TSPIZhD54wJt6FLEGXlNngQ4CLYL+/NsldvAWbTsTOxByXujwT
-         TNCYDhesbTW2ZbCmKOkPfnoQLmFoCG0680x5fY0OmzSZIUQe1qLFyrgAzOUlQuWHNkh/
-         NGvM2Ui60Ix3+q+p5lsaJEmsLLBf7uw1xBOHsLpGcfVYUeOhdzNxh+xoUhUo92ZXzdmw
-         9EQ+o0EGO5IcayCrt2bjfWZwSXRFe0bca8ljvB/foSEqDewnDh2KV/YXUQszofJ9kxTv
-         5n6aAkEuiHn1RAeDe8hpYSxaITG8e2cH7EvvVToE7eyi6KF/Ty3/SFlPMUwDd4vpq4Ud
-         wyxg==
+        bh=qGTHQM6yXTCq7iCsg06gYiI/zbE8XuFZp0lB3XIIEd8=;
+        b=BhofrPPV1BbFbIrLsoxfML3eWPv4wlaT6q3/qt7XE+tmPS3u5M06phmApZcm306SIp
+         FFkn+k8WSAjXMThCLMQlkqpRcNorUT6O4se21eNw3ZSHVUUPgvu4s3OlfE1Opz6SmUOL
+         Am3kf4fCx8rjIQ9zexFZGYa6W4LkAHBrpFZ8FWAlpMSMky98b79TfjTOqjHv6U7ph2XR
+         3IdIkc7Qggr/C9L5EEZ7xBEGR9EjnX24IyJlvTAIlAQdGyTlj1n2kv3AfuhFIQxxvh2Z
+         gEyWN23n1u1LIOm9DqyDcpQfOGk0lHbRw84BipXsVNy3BuxCTEybJlmDBYKeiKZ08boa
+         knug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787247645; x=1787852445;
+        d=1e100.net; s=20251104; t=1787248579; x=1787853379;
         h=content-transfer-encoding:content-type:in-reply-to:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=eyvVMNnSHQRd17KJq3rwbV9DOJ8cp9AOfAXyWtz2edo=;
-        b=gfF3dwAL1loafyBckWtohrlA6icdiXWyal9VnsUDKXvmrjJ/FXc5OpNoN2EV6uPce7
-         F4G6OfEj1aSlrTcHA/v2Ex0FXM+w46tqVybFCekSN7x4IWkA8qfeNAiPv/G0iM2l9o5o
-         ZVc8dr3i4XKvN88lHiLlPM5i4oP9PLyI9ZZXW0dXz658TaaFsGrylanzdiWjj/MKS4AL
-         P+Zla8+3xq+OoUlI3AoYCKypVoc3e0n5weAQ4UI6FbU4M0/QZhFyuXcC6lO0SU4dGyuF
-         cTecsB7l4H15HjnZlzri12KDrJhmkWYA7GcvpN5Wmx+n+8388ceaHGZLYKwqloBxlF4H
-         6udQ==
-X-Forwarded-Encrypted: i=1; AHgh+RqYLN7TXGxUs+oedsoKFxOK1sp2NsKPEJMJtrIBVZc64q1VVEfjkRLGPZrEtIU8CWg6/JeEsVk=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyt7t0cMk0k+lSOOIbrCEr5hkZOEk+OsWyAvlst+YseXoJd4UcK
-	G9/6S3I7O4sdOXlDnFy8GDlkHRQMbsRVCMyNhe6jiCJ8oRM9ZwMsBKpl4LwY51AP9kd21xmMnq6
-	ZDP0tECl6tCDpSzm509J0jdPiDS65F+6gbM29KUB0yqOTZsYuHgbkO7EXsl7QzAg9
-X-Gm-Gg: AR+sD13BwsXFX3sx928tULVUU19wQLmk1xlaJjc01JNIuqXarAe5PfIl1Fpa6rmntAo
-	bojt6vz7HMeaq1XQIAcAXxg5RBrDt76TV+yoaK/ciPQlHFPHxmbvnPBhYZzzHZrbYuWwSKroHtK
-	iQTdRS1/vkjSVG3c6Lx/ff4QXFMC5u9+GLyV8/f6hxcg+1Ayw1dBdceNtO1yv1bG23lF76Z1V+Q
-	ybENL4htWZiKDRFQtZBCvc1ddhNGPX8c7BTzZB12c4GwN5AG1Gt4Jan4s7VRF+Gh+YaptVTF4A6
-	CGJSzdZ/uLIwVIHoWLVqHQlDNdW5ftyFFzyedWIGrGSoj64/8pIK7l+/4wQbdSSyd11bM9FLgzW
-	mv+mpXA3Sy9xFRbxTLuYkGCeRcRTjBwYTZT9Bbcy5NQu5UPDD344uxCE=
-X-Received: by 2002:a05:6a21:918a:b0:3cc:841d:bb26 with SMTP id adf61e73a8af0-3cd301379e2mr97405637.15.1787247645288;
-        Thu, 20 Aug 2026 10:40:45 -0700 (PDT)
-X-Received: by 2002:a05:6a21:918a:b0:3cc:841d:bb26 with SMTP id adf61e73a8af0-3cd301379e2mr97301637.15.1787247644794;
-        Thu, 20 Aug 2026 10:40:44 -0700 (PDT)
+        bh=qGTHQM6yXTCq7iCsg06gYiI/zbE8XuFZp0lB3XIIEd8=;
+        b=bDGTzMCtS1C7frkXVrLVbPbBm+bcmwHrNyNDpvMUkYXaQ46jBzWtsxT7aZUlO8JxWW
+         JASJ/LrhLqDVa3W0/itz2lDdqf6I48E7MHGVXd3wtyLAOokmqjvs3KvYbWSC97hrlo45
+         MDElubzTm7Qeu1kZJhci5B7mvdjrLDMGZDcIAwvAwT5pMpg8zr/0JXPc0Y5DP2DyWr/3
+         Ow3cTiWTWJy/l6EmEdBRx40mKgbvEFRCtnQyhBZbua42v9KRI4fxFPEcRbJWTbZoG0+H
+         L7uN1T5swXIXxOh1f+P/nUvQlYDEpYKqfBM7WkEw3OuABVUIXkyVkwDz9ko265wIIFuM
+         yVFA==
+X-Forwarded-Encrypted: i=1; AHgh+Rr/eOzlIGX+I68eFqu4jo8re56tEyLoVJ8SusJw5nAN0aATUKT2MV54hEcCdJ/sTQRsocwcvx0=@lists.infradead.org
+X-Gm-Message-State: AOJu0YxJ6I78MwPyWI9H5/6ruWnmrv54zWgpS1/8mgUqBwrFQGnjWeFl
+	Qw9BiCPzdmyaFbOlJH4jdawZcLLJVRY+2q4BrJJz6yje3IrP4sjxjJ9AbeUMd0WSELZGEZbio86
+	By2DFTTQHWht6UmeTfzGypipV4b370scMauFKr1wfJ7Squ3CVhc8lX6/cU+7Remud
+X-Gm-Gg: AR+sD13bk69Pn/pyPF9bEjxKjHelEESrtmhlh7WsgneBCQonyg1R0ytL70Xk9uhwJ/k
+	FlHJI/CJTv+90sj1nzcfIoVZgryS4L52OdNAMw5S/nXtV7Dr2qyDn4ihY/5fC65mT9XcIJ/+R73
+	eehe0EgyGdnLwCQmC4opx7VSYTl2Flkc5LWotcrGQ7dQ0AMrwwLSc+5/4FMkGk1D4M1Xu/v2fKW
+	Vv0LHtzVqr1xjE7K/hMe+f9OxAgr66oa9rGGw2Zr2Qkk1r+96ggslbLZl+a7q9iKVWRJPBGhSzF
+	3DuwxU5rzGZZuaTN3moqIvYzsBQjqRiKCszpNAUMfyVNf3okCHkdBSkAljN5vQbbp+ileH56AVR
+	8Um8fuHPLYuvDnlMbCFjD8PTiXe2BrmXCd/qfLbYFjdqcOgQaYZST9E8=
+X-Received: by 2002:a05:6a21:600c:b0:3b4:61f:1fec with SMTP id adf61e73a8af0-3cd2fd8e339mr427557637.2.1787248578405;
+        Thu, 20 Aug 2026 10:56:18 -0700 (PDT)
+X-Received: by 2002:a05:6a21:600c:b0:3b4:61f:1fec with SMTP id adf61e73a8af0-3cd2fd8e339mr427415637.2.1787248577835;
+        Thu, 20 Aug 2026 10:56:17 -0700 (PDT)
 Received: from [192.168.1.20] (163.sub-97-215-3.myvzw.com. [97.215.3.163])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-327c3fc6675sm26861387eec.13.2026.08.20.10.40.43
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc15523489fsm2134371a12.5.2026.08.20.10.56.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Aug 2026 10:40:44 -0700 (PDT)
-Message-ID: <80f99583-eed0-40bd-856b-56cbad973912@oss.qualcomm.com>
-Date: Thu, 20 Aug 2026 10:40:42 -0700
+        Thu, 20 Aug 2026 10:56:17 -0700 (PDT)
+Message-ID: <1bdf4b7d-2f05-4ae3-8304-60697d2c849d@oss.qualcomm.com>
+Date: Thu, 20 Aug 2026 10:56:14 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH wireless-next v3 8/8] uwifi: mac80211: pass error station
- if non-STA transmit was requested
+Subject: Re: [PATCH wireless-next v3 2/8] wifi: mac80211: change public RX API
+ to use link stations
 To: Benjamin Berg <benjamin@sipsolutions.net>, linux-wireless@vger.kernel.org
 Cc: Jeff Johnson <jjohnson@kernel.org>,
         Miri Korenblit <miriam.rachel.korenblit@intel.com>,
@@ -103,42 +103,43 @@ Cc: Jeff Johnson <jjohnson@kernel.org>,
         Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org,
         ath12k@lists.infradead.org, Benjamin Berg <benjamin.berg@intel.com>
 References: <20260819135703.4072215-10-benjamin@sipsolutions.net>
- <20260819155703.64912484c2ba.I5ffe7bc0d4ccefca5c1e506d5d3d482e13989cda@changeid>
+ <20260819155703.af6d319e6b61.I4a2d45609e94b52654b10ec572e59a45d09c41f4@changeid>
 From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20260819155703.64912484c2ba.I5ffe7bc0d4ccefca5c1e506d5d3d482e13989cda@changeid>
+In-Reply-To: <20260819155703.af6d319e6b61.I4a2d45609e94b52654b10ec572e59a45d09c41f4@changeid>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: P_-3kjdyjYa3jXBznXkVU9ydoqaYeJrw
-X-Authority-Analysis: v=2.4 cv=V8BNF+ni c=1 sm=1 tr=0 ts=6a873c1e cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=7QqFuFOOHQR3GLhHC5mhXA==:17
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=OqZ/DS/t c=1 sm=1 tr=0 ts=6a873fc3 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=7QqFuFOOHQR3GLhHC5mhXA==:17
  a=IkcTkHD0fZMA:10 a=Sv0fKeRqtYgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=mPF9hNEBIKWWczyiqVwA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODIwMDEzMiBTYWx0ZWRfXwu1+DPQYRZrX
- z4092tkJPdeHiCXtconjicKf76F9rQIsir6SVQViMiL/3rP7xV3P5rZPVatjPkDPXeUbbTQFxDz
- oAHZb2uPDs/GfF/2qIw94mqSxUI+OAZ1TG1y+10/RnSxcgJUjHd1qs8uNcV58ILRBOmkIrffbby
- KIkBSx2/JvSU0Gb4MVSwLAQi0Zdun1GZ6EVpv2YrQ3cu3kJJSrOXNlLmisk9YDk3q2+T1QVo7ny
- 7sv3xYLIlv2kI4p4SF8hCDvsOkmw4o76vETkpUSUr5M5P3IZCV3VMXPl4KXKBdBAB0G0Jpk2HaT
- wYDXJlfwI/bIFpltEIba8wEsD3KlcocXIkBaFImUEw50NmCYRVCTqt97CqwIGYdSkwWeEeyJPeJ
- ELdXh8Ex+2aTIW0c7It08DW87MpYy/r2+jol9Mxzn3IHFZ1kuUYS+ORWf8O+PhApvnKGbnVXLX2
- Txk5WPeEOb3ZTbdQixw==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwODIwMDEzMiBTYWx0ZWRfX0QWADAR8BRbP
- uft3t+k3qoJufRo7ZDhskMsomYq/nc1AzDu7o+LymrrmJDHowRBkd8ImeZI/xhjNMMKGMXkYuUY
- P//0chOajbfnLfkjFDgcuOHBElKitBc=
-X-Proofpoint-GUID: P_-3kjdyjYa3jXBznXkVU9ydoqaYeJrw
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=hwlI8agmJUGWGRcycR8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODIwMDEzNCBTYWx0ZWRfX5/pHl3oJPa8L
+ wtMAuyoAyrqbCflUBxpaP7A9rKH4a4wUWm9bTVEBl2FqqCqFWklv/hS9pn204YjigOfGQxyPgZy
+ hgxh0KtJ3KSiJjbGWWKRzePiZrDNIe3ugMMYu3yqP38Ryr0tS0VMFGbbP+foin+Fwr8TyXfm54M
+ Zo9Z9YKMer3NeupBHt4JINNshfWIl9P+6tSQKJVrEvukolbKwA0YG6CO1c6Q6gIWdBju3SZx2oU
+ FWie2Xy3+KtgPHmwuhV6zpPgfrRXN+63opJ1ezXNDvxNAOonKkmky415YEVUnJoUFL7wm107Dy/
+ ZxbylfiZmZ2haSpOwbvU7iOf5RClQ87TTyJoMw1bemTIGvMPCbW2uhdUVBt7nUYQjYEW2+0rkCX
+ SuBk1n6Eq3MQ4O5WZgPjxTLm9RwKKGfwXAwU2VtMqBWL6bbcpswkroVnbVo+16x5ds0gIvKziSW
+ 74IbQyOZrzkt5ZTmRvw==
+X-Proofpoint-ORIG-GUID: CXzrdqPdgqrqOIdiVItXklWV7IApUk-a
+X-Proofpoint-GUID: CXzrdqPdgqrqOIdiVItXklWV7IApUk-a
+X-Proofpoint-Spam-Info: AW1haW4tMjYwODIwMDEzNCBTYWx0ZWRfX+NmQHE/xHdxQ
+ 3mDit72Gaqn2ICj1wIcyOzAGExuyJG6kOBkwtx/4+In/7vmmuTOLtQesG0RIkkRyZjq2+mKn4L8
+ NTVRPehc1dzDd8o7dsBy7RjKCdOjFXs=
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-08-20_01,2026-08-20_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 clxscore=1015 bulkscore=0 adultscore=0
- lowpriorityscore=0 phishscore=0 spamscore=0 suspectscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2608200132
+ phishscore=0 spamscore=0 malwarescore=0 clxscore=1015 adultscore=0
+ bulkscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2608200134
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260820_104047_549124_B38E515C 
-X-CRM114-Status: UNSURE (   5.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260820_105619_811547_11203235 
+X-CRM114-Status: GOOD (  15.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,5 +154,79 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-subject nit: s/uwifi:/wifi:/
+On 8/19/2026 6:57 AM, Benjamin Berg wrote:
+> diff --git a/drivers/net/wireless/mediatek/mt76/mac80211.c b/drivers/net/wireless/mediatek/mt76/mac80211.c
+> index abbe65cbcd89..3da06a55913e 100644
+> --- a/drivers/net/wireless/mediatek/mt76/mac80211.c
+> +++ b/drivers/net/wireless/mediatek/mt76/mac80211.c
+> @@ -1255,7 +1255,7 @@ EXPORT_SYMBOL(mt76_rx_signal);
+>  static void
+>  mt76_rx_convert(struct mt76_dev *dev, struct sk_buff *skb,
+>  		struct ieee80211_hw **hw,
+> -		struct ieee80211_sta **sta)
+> +		struct ieee80211_link_sta **link_sta)
+>  {
+>  	struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
+>  	struct ieee80211_hdr *hdr = mt76_skb_get_hdr(skb);
+> @@ -1302,11 +1302,15 @@ mt76_rx_convert(struct mt76_dev *dev, struct sk_buff *skb,
+>  	       sizeof(mstat.chain_signal));
+>  
+>  	if (mstat.wcid) {
+> -		status->link_valid = mstat.wcid->link_valid;
+> -		status->link_id = mstat.wcid->link_id;
+> +		struct ieee80211_sta *sta = wcid_to_sta(mstat.wcid);
+> +
+> +		if (mstat.wcid->link_valid)
+> +			*link_sta =
+> +				rcu_dereference(sta->link[mstat.wcid->link_id]);
+> +		else
+> +			*link_sta = &sta->deflink;
+>  	}
+>  
+> -	*sta = wcid_to_sta(mstat.wcid);
+>  	*hw = mt76_phy_hw(dev, mstat.phy_idx);
+>  }
+>  
+> @@ -1530,7 +1534,7 @@ mt76_check_sta(struct mt76_dev *dev, struct sk_buff *skb)
+>  void mt76_rx_complete(struct mt76_dev *dev, struct sk_buff_head *frames,
+>  		      struct napi_struct *napi)
+>  {
+> -	struct ieee80211_sta *sta;
+> +	struct ieee80211_link_sta *link_sta;
+
+My review agent says:
+**Issue 1 — mt76: uninitialized `link_sta` pointer on the no-wcid path.**
+
+In `mt76_rx_complete()`, `link_sta` is declared but not initialized to NULL.
+
+Then `mt76_rx_convert()` is called, which only sets `*link_sta` when
+`mstat.wcid != NULL`. If `mstat.wcid` is NULL, `link_sta` remains
+uninitialized and is then passed to `ieee80211_rx_list()`. This is a use of
+an uninitialized pointer. The fix is trivially `= NULL`.
+
+>  	struct ieee80211_hw *hw;
+>  	struct sk_buff *skb, *tmp;
+>  	LIST_HEAD(list);
+> @@ -1541,8 +1545,8 @@ void mt76_rx_complete(struct mt76_dev *dev, struct sk_buff_head *frames,
+>  
+>  		mt76_check_ccmp_pn(skb);
+>  		skb_shinfo(skb)->frag_list = NULL;
+> -		mt76_rx_convert(dev, skb, &hw, &sta);
+> -		ieee80211_rx_list(hw, sta, skb, &list);
+> +		mt76_rx_convert(dev, skb, &hw, &link_sta);
+> +		ieee80211_rx_list(hw, link_sta, skb, &list);
+>  
+>  		/* subsequent amsdu frames */
+>  		while (nskb) {
+> @@ -1550,8 +1554,8 @@ void mt76_rx_complete(struct mt76_dev *dev, struct sk_buff_head *frames,
+>  			nskb = nskb->next;
+>  			skb->next = NULL;
+>  
+> -			mt76_rx_convert(dev, skb, &hw, &sta);
+> -			ieee80211_rx_list(hw, sta, skb, &list);
+> +			mt76_rx_convert(dev, skb, &hw, &link_sta);
+> +			ieee80211_rx_list(hw, link_sta, skb, &list);
+>  		}
+>  	}
+>  	spin_unlock(&dev->rx_lock);
 
