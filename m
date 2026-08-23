@@ -4,91 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C5F1C5DF81
-	for <ath11k@archiver.kernel.org>; Sun, 23 Aug 2026 19:57:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50C48C5DF9B
+	for <ath11k@archiver.kernel.org>; Sun, 23 Aug 2026 19:57:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=dkjpekjfGs9gr2eeO5fTYbep26DOExkXq9P/fdtSzww=; b=Y74LhhrVFKcHpAhxN1LMuTCav1
-	DH7Z9rG07r373KLu/2Evu3/Rt5PyF9XNAHZ3TKY0Ff742Tk0vyPXLo+FKy96lRulqAddf5LjocQ1v
-	8qj3fs2zfYs/9wwKmzoZ2C6fDuuT3szO2P5BC/3zUE1/9I2hD3ccUM3mKP0ROoha4WUYheuQe+8NU
-	m7fR8FLtvtGsv9Kr0ZeyUw1uZ9/v3JjS9rdZzmSWa3A87gvg7Drbj311ZT/fhOoJzAnfhRXNLLzOF
-	k78EB1sf5Y1QuoLEeqrZ9NDB6si7yjOLwN9b2eMPup9P2WruLU75OV0op34JIJNIXBuvQHiFwHZEQ
-	mG/W1JIA==;
+	bh=m2t4yG6gfh8pMrdVrUa/k3ybLPI1hNpC6NthZHGNkDo=; b=ntgyjZWhxh7ZcqA7sEPuM/x+42
+	4ero2JFSdf8riseX0vLnJlx+9USKM8U5zHMRSlrCd/ZEBsgN+F5N1maxGxu9aGjI3J7VdeoRx+TfS
+	IPx3yKDYSZ6nGcUIrlK7z6E6OHd7yKS7quIx5TOf+rZaF5n2egC1q0nGEaq6pK939AwoZk5Ok2n+t
+	WMBQhtAS4rQU2kDhN80XJPlmHIlmijx9gFqttIDPweIVK/vZKCkP28WtNJyfC7LVqJ1F7hvcBP5gX
+	KLou9hCMLRP1DbNXoO5T4wCkRVL9PXFs6QGtK+mCpu/6U5cbZcCTb/YRtyxMzNs7xLSVp2id0El+B
+	7MucG6dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyEK5-0000000FZuW-1qKx;
-	Sun, 23 Aug 2026 19:57:41 +0000
+	id 1wyEK9-0000000FZvu-28AV;
+	Sun, 23 Aug 2026 19:57:45 +0000
 Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyEK3-0000000FZsw-05UG
+	id 1wyEK3-0000000FZsz-28Z1
 	for ath11k@lists.infradead.org;
-	Sun, 23 Aug 2026 19:57:40 +0000
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-c20fb91ed0fso413045766b.3
-        for <ath11k@lists.infradead.org>; Sun, 23 Aug 2026 12:57:38 -0700 (PDT)
+	Sun, 23 Aug 2026 19:57:41 +0000
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-c1670dad7a8so486089266b.3
+        for <ath11k@lists.infradead.org>; Sun, 23 Aug 2026 12:57:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1787515057; x=1788119857; darn=lists.infradead.org;
+        d=bairaktaris.de; s=google; t=1787515058; x=1788119858; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=dkjpekjfGs9gr2eeO5fTYbep26DOExkXq9P/fdtSzww=;
-        b=T5NcltYUBEX12DPmB6ZRvrvp0WoYzgqetSaWN0cE/zgDDQjzhk4CTZiw7hNX00FbuY
-         ijqPFIqokqmDL3rCE22DcknXughvUc9oXicEWpRbOgHFQ0MNMWDQJt+dMGQFECGJxhoQ
-         hFexo7Ml1D9YBtbzzh5VcdlkTusJdmyNPKUrUfbCOZpM54dYvDQBXczuVZGG2tDTTyaK
-         0x0zhtGnv2ATZvF8WBQRh4+zWIQmwDHRZwM65q3nIs/5gtvyFXUpKE/2PU+SRdt3rdQ3
-         MhdMSlMIt0sH6GAE7hEpma75Cj/bedai36zfW912V1j2jQFy8UWg4+HBbr40V6dtJ3Jy
-         GKSg==
+        bh=m2t4yG6gfh8pMrdVrUa/k3ybLPI1hNpC6NthZHGNkDo=;
+        b=VciPzSIaL7KbViA5c7I2BAgKJFiKGLBgSRlCfp8gvUNYxhzpK0C7Iy5gagzLgA1p9n
+         WbetgilCxzLwUGtAAV8qUerkukrLMdHAnwY/FATvSN4e4R7NKbuf8+zc3X9Wvd5b/C+p
+         K4bxCpQbvN8DHO284K0V+w0UGD1R9KzO3XqMhWVwHnfdCJPXuvQBpGtuY2EaHZ8DUZ84
+         4hHzxOfDqg7Vqivv5Hsgm482leWVVzgYh6eq22jKxxIcUY6kVo/AR5qUpTRF1HliAICm
+         JrF11AiV62Xc188y31JtUAzzxF/Mfy+XwRo1oERDP8UoDC93EbnCXuTvtZBBuBGuBWZp
+         3Ugg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787515057; x=1788119857;
+        d=1e100.net; s=20251104; t=1787515058; x=1788119858;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=dkjpekjfGs9gr2eeO5fTYbep26DOExkXq9P/fdtSzww=;
-        b=ecpnC3bP/mZ7IqnrVgzqQCXI91F264859APZH6ZYZB1bplqcWnCXLE0wAjeXW/xh2e
-         j+8MPIBaG3BE2U0F9LH5O+45UEO2NCdz06vX6WEqaUkMad8M0dvjfnSoRvtg4L5wwUE0
-         SVmvNjBJCoCunPuOFCvkpWd+WcX0hi3m1WE5QC7odUto43G1CxFUvshjbwqv/V6tOh5K
-         muapOaSWKFf5DFnjiQHOD8+l2EvhSoADfK/B5ag1/gOvritYtXPO5t/t2SZY9hZcPWK8
-         ruf8MvFt3oTXvbjr+VveyKDcj7aJteXnS/Zx6opNWh1H5qfYH33IB1bYm3ZjY4gphvsf
-         NPfw==
-X-Forwarded-Encrypted: i=1; AHgh+RogXG/vxLsG4brYhm09qUnUJa7I3QqVlAqQw8LHmO8dkKPjZ6+KcEb5PmhhsrUDEkl6uq/Y3Y4=@lists.infradead.org
-X-Gm-Message-State: AFuF++lueZPWMJ0QgLbLY0tqZmpyL3Ja4BEubromrtdNwEijoUSn8dRT
-	AKEra5pC9FqtQ//UQYlAQMCDm+wmbu2Hee8hnl/KCk4poAOQstbW+FHYAjIXedJyBw==
-X-Gm-Gg: AR+sD13Wvj1hCT4qibslj7UpRnUF0NTSuFj2biYveK6oKsjji3UW6A7XNPJA1chdk6g
-	v3sywFYCLgEKWahPvspyqQgsDE5zgQUADXb5U7hJNkb+ppCzkJfqlYFDhG0rOCVd3RxCC4UYmam
-	YGOjamYAjxxlVUH99cpd+opgeMbbnaj9uA8hd4Ny7Oma/LcbJek+z+o8P7GaAyFOOZCpeCIrF3c
-	FVE0i2QU8S86t1x4TD6SAbIrJPSLmNbkkdTcM0Eo6tv2hmi0X38YjQTNrmsE9K8M+zYeL33OZLD
-	OMbKUdOuRrnmj2+UxK14fiBoWUaUgPLZ5Z+fCReJMqVsG1bgbiGqjRbidb8OpNwFf48rJUsz7qg
-	sagxl9DcYYJCCSarDdwnFKIcFJO/HS1R3I25B+pZr/ma1Fxt3OI0+lxZOpnBca5rgJx7Eaq287V
-	35re+jCfFrAemTLFlat9jk/ZSU2z32v0qcgdA5IzfBVdaNKG/8TlO5z0hnewzgyyP2a7lVl+ipc
-	2KRxiQjSf6DfQQQ5xU4Jjone6GfuBL5Ie4K2tgNgDyPH5vF/jhXr9BT91rw4EbVRDRzww8XG/SA
-	TMValyRo9YrIxC3clSTsxde4Gdip+7E7X2ZdxxOm6th1Z0NMAV9eXm4QjOFXP4jonKuCUIJf4to
-	5DwUANLTV/ZgNucyAnLrGeyV7sIvbjXNW5KK4ARIiIxM+RKkIxQl+52YDMTrcl3HnKu0Nh6R1Tg
-	WDv40PA3Bum+gB
-X-Received: by 2002:a17:907:97c1:b0:c1c:64d4:5ba3 with SMTP id a640c23a62f3a-c246a651d39mr2378935866b.20.1787515056375;
-        Sun, 23 Aug 2026 12:57:36 -0700 (PDT)
+        bh=m2t4yG6gfh8pMrdVrUa/k3ybLPI1hNpC6NthZHGNkDo=;
+        b=d6unIkqSHzAQV7Eyg1fDTBzlMSkfm0TOpdSMSFOO4l0cK5REq+3yVV201wMdSpaZY0
+         GtCwPALooGT4/jEVOQdlBGxTMrpHV2uvO0f8qASC45UTHB2il9QiKMpYJN3SvtFmM68u
+         OSZhZNjRxk/J6Hk1fXScIAfT3bHKuSRCbquJ6LIR6n5M/S9/ciAU3Vdtq6Lxd+P09g2N
+         +RG9lefORVcHUhQw1lFhaICZV8cpfRLU2kHvIwRZptOxJcdJJp2yDtPcN+uPLy6NMpYb
+         Zr9FPLxX0qDTNNB6RQn5zj9ktNAilUyIUYf9trOCTFwUUeGxcoy/s8S1uMxenmUDssyI
+         EitQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rpg22KYWLn8ayeFpgeEdqU0Byj9JOmTc7CVm9sIV19bKqUAI6azt5k02+am91J93ChNmQExKw4=@lists.infradead.org
+X-Gm-Message-State: AFuF++l1IiH+PvkhYACC+nkPIsRdp32c9lT0bjKcO7KSqNrvYTG3wBep
+	VB8YPTwfzyDKdZkIEbeDKufVjTnUxRWRp6rC5xNtFpejLjaVRn1vZM+wVwWwTvbKjw==
+X-Gm-Gg: AR+sD10MUgpB8AAl2pAf56syGuhZJcDQ3tyF7hi3Xh660zp3BwrVKD4pFnxdKVcGjue
+	5LT5TELVkIcs85Vv/sR++ZaKloOr7ooMKAEpSJU659jkvgbob3do8XNqfJn+0VHOp6QAavX1j7d
+	qciZ2qq3bRNRU+GhxPsxST/WKys0AIvtQNwSklNhMK8MLRlxfMpMUoahMNsbdehPnraUVJ1ntP1
+	cFR0V+nSZia4mh04Y8OqLIPwO9ODvyJubaR7hspHbxQ8gomRcNCV5heKRSY4q6bb8SSiY7pgxTm
+	eVAs7MKKQnVt3BdPkNw/1exIAq0gVZJ2RHvUWJ2wBVjAS/IXMGYQCry97EJ8fXCoPTUUaLtGnLD
+	P9dLNLog+PKp23QhJ9ypWf52U58gPeKgg1k7qxQMIn/hSPWE0IT5NPJ2UAy0K8gRi1Zr1Dz5blR
+	6gboOi1u2U5mgiLCmLEfVWKD4FsrOntF+BLrzm3267Oy4HkxcAK8J2zFjDULxCSp/a/JDhWcPU4
+	0M8I/bAtlJj0ubEmcNn2lJI5OUmqHCjU1pRnnBPhw7YgwOSHfGa4RtPb13rTMnA3yyK4XUvPqGg
+	iuAPu90wZsUo5vFlWKOVPAhq7Oeyh6WI4ZDQynSpaquaWJZUIpf1E6GIp0LVFDOVnnGBGeTA4AY
+	vA6CI7g/9cGGLxEWU4fdxDCUBo6WY8D2y0cBl0P9S9EuA6oDHAjk8Rrmo8qWZeiop9oOJFOt98X
+	eViLjaaUhpA2ar3Q4Od+Gre3w=
+X-Received: by 2002:a17:907:d08c:b0:c16:8931:245c with SMTP id a640c23a62f3a-c246a72fdcdmr2465179066b.21.1787515057687;
+        Sun, 23 Aug 2026 12:57:37 -0700 (PDT)
 Received: from Desktop (pd9513a95.dip0.t-ipconnect.de. [217.81.58.149])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c249606a8edsm889532666b.6.2026.08.23.12.57.35
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c249606a8edsm889532666b.6.2026.08.23.12.57.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Aug 2026 12:57:35 -0700 (PDT)
+        Sun, 23 Aug 2026 12:57:37 -0700 (PDT)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
 	=?UTF-8?q?Toke=20H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>
-Subject: [PATCH v1 2/4] wifi: ath11k: enable airtime queue limits
-Date: Sun, 23 Aug 2026 21:57:01 +0200
-Message-ID: <20260823195703.49198-3-julius@bairaktaris.de>
+Subject: [PATCH v1 4/4] wifi: ath11k: report tx airtime and enable airtime fairness
+Date: Sun, 23 Aug 2026 21:57:03 +0200
+Message-ID: <20260823195703.49198-5-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260823195703.49198-1-julius@bairaktaris.de>
 References: <20260823195703.49198-1-julius@bairaktaris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260823_125739_083793_2D914C47 
-X-CRM114-Status: GOOD (  14.88  )
+X-CRM114-CacheID: sfid-20260823_125739_575590_E7BA59C5 
+X-CRM114-Status: GOOD (  15.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,67 +103,84 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k does not advertise NL80211_EXT_FEATURE_AQL, and every user of AQL in
-mac80211 is gated on that bit: the airtime charge in
-ieee80211_tx_dequeue(), ieee80211_txq_airtime_check(),
-ieee80211_sta_update_pending_airtime(), and the per-station aql file in
-debugfs, which is not even created. AQL is not untuned on this driver, it
-is absent.
+mac80211's airtime scheduler charges sta->airtime[ac].deficit from one
+place, ieee80211_sta_register_airtime(). Unlike AQL there is no estimator
+fallback, and ath11k never calls it, so the ATF feature bit cannot be
+advertised on its own: the deficit would only ever be
+replenished, every station would stay permanently in credit, and the DRR
+would be inert. The bit is not a no-op in that state either, because it
+also moves txq insertion to the head of the active list, which
+__ieee80211_schedule_txq() documents as safe only because the DRR moves a
+station back once its deficit goes negative.
 
-That matters here more than it would elsewhere, because AQL is the only
-brake. ath11k uses ieee80211_handle_wake_tx_queue(), whose
-wake_tx_push_queue() drains a selected txq whole into the driver, and the
-check at the top of ieee80211_tx_dequeue() is what stops that drain.
-Without the feature bit nothing does, so mac80211 holds no backlog and
-every queued byte of a saturated download sits in the hardware TX rings,
-where there is no AQM and no flow separation.
+fes_duration_us arrives with every PPDU's stats and is already
+accumulated into arsta->tx_duration a few lines above. Register it, and
+set the feature bit in the same change so the two cannot be separated.
 
-Measured on an IPQ8074 AP against one HE 160 MHz station at MCS 11, taken
-from that station's own aql file while it received 280 Mbit/s: its BE queue
-depth reaches 6356 us of the 12000 us default limit, and 2972 us when the
-limit is lowered to 500/1000 us. Without this patch the file does not exist
-and the limits are never consulted.
+Measured on an IPQ8074 AP with two stations on one radio, a 1x1 VHT
+client at 433 Mbit/s and a 2x2 HE client, both receiving at once. Before,
+'iw station set <mac> airtime_weight' is refused with -EOPNOTSUPP and the
+per-station airtime file reads zero. After, the weight is accepted and
+read back, TX airtime accumulates, and the per-AC deficits move.
 
-The rate the estimator needs is already there: ath11k keeps a per-station
-rate_info in arsta->last_txrate and passes it to ieee80211_tx_status_ext(),
-which stores it as tx_stats.last_rate_info, and that is what
-ieee80211_calc_expected_tx_airtime() reads. Where no rate is known yet the
-estimator returns zero, no airtime is charged, and AQL stays inert, so this
-cannot behave worse than the current code.
+The fairness this delivers is coarse. Weighting the fast station 4:1 moves
+the slow station's share of airtime from 59.5% to 52.1% and the fast
+station's throughput from 315 to 392 Mbit/s: the direction is correct, the
+magnitude is not the ratio requested. The granularity is bounded by the
+driver's push model, since ieee80211_handle_wake_tx_queue() drains a
+selected txq whole into the hardware and the scheduler therefore reorders
+only between selections. Tightening the AQL limit to shorten those drains
+does not improve it: the share moves by one point and aggregate
+throughput falls from 401 to 178 Mbit/s. Finer control would require a TXQ
+scheduler in the driver.
 
-The estimate is only as fresh as arsta->last_txrate, which is updated from
-the HTT PPDU stats when a descriptor is evicted from ar->ppdu_stats_info,
-so the rate behind it can lag a rate change by up to
-HTT_PPDU_DESC_MAX_DEPTH PPDUs.
+Two properties of the source are worth stating. fes_duration_us spans the
+frame exchange sequence, so it includes the SIFS and the responding
+BlockAck, time the radio spends receiving; the airtime registered is
+therefore larger than the airtime transmitted. And it is a per-PPDU field,
+so on a downlink MU PPDU each user is charged the whole sequence. No
+per-user duration is reported in these stats. On the firmware tested here
+every PPDU carried exactly one user, measured over 21051 PPDUs, so the MU
+case is latent rather than observed.
 
-ieee80211_sta_update_pending_airtime() returns the airtime but does not
-reschedule the txq, and ath11k has no completion-side push, so a queue held
-back by AQL is re-poked only by the next enqueue or queue wake.
-
-An AQL enable was proposed once before [1] with a custom .wake_tx_queue and
-a tx-completion driven push. That scheduler is not needed:
-ieee80211_tx_dequeue() performs the check itself, so the generic handler is
-already braked.
-
-ath10k and mt76 set the same feature bit.
-
-Link: https://lore.kernel.org/all/20230501130725.7171-1-quic_tamizhr@quicinc.com/ [1]
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 Assisted-by: Claude:claude-opus-5
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 9 +++++++++
+ drivers/net/wireless/ath/ath11k/mac.c   | 2 ++
+ 2 files changed, 11 insertions(+)
 
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 33425707c084..33c6fd9553a6 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1485,6 +1485,15 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 
+ 	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
+ 	arsta->tx_duration += tx_duration;
++
++	/* tid is HTT_PPDU_STATS_NON_QOS_TID when no ack/BA TLV came with the
++	 * PPDU; mask it so that airtime lands in a real access category rather
++	 * than one chosen by the spare bits.
++	 */
++	if (tx_duration)
++		ieee80211_sta_register_airtime(sta,
++					       tid & IEEE80211_QOS_CTL_TID_MASK,
++					       tx_duration, 0);
+ 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
+ 
+ 	/* PPDU stats reported for mgmt packet doesn't have valid tx bytes.
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2d55cdc4d165..38f641bbc53c 100644
+index 38f641bbc53c..40a2b6d2f804 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -10592,6 +10592,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	ar->hw->sta_data_size = sizeof(struct ath11k_sta);
+@@ -10593,6 +10593,8 @@ static int __ath11k_mac_register(struct ath11k *ar)
  
  	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
-+	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_AQL);
+ 	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_AQL);
++	wiphy_ext_feature_set(ar->hw->wiphy,
++			      NL80211_EXT_FEATURE_AIRTIME_FAIRNESS);
  	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_STA_TX_PWR);
  	if (test_bit(WMI_TLV_SERVICE_BSS_COLOR_OFFLOAD,
  		     ar->ab->wmi_ab.svc_map)) {
