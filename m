@@ -4,144 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44256C5DF88
-	for <ath11k@archiver.kernel.org>; Fri, 21 Aug 2026 06:51:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10E7CC5DF81
+	for <ath11k@archiver.kernel.org>; Sun, 23 Aug 2026 19:57:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=dmqPZVgfMRSVKaGhmQWhxyx2Fl2asnnJWzRYPeVvggw=; b=MQqAf8tGCr0RwoXA1rpncoXbyp
-	MO6pU/PBK+yVK50yZEdnhDdWVVh2wu+xSKs+Ao0gqBw60wkpVczuynY6HAg3Q2zxb+OQFZX3u2LRZ
-	jM0oWSbTL4VlW++at2nAp5twxQMg8Lw8A5GEamZJSunp1RKIwZ4d67DNJ/WCCXRJOPen64MHt4wu6
-	7x5Q0FHa3e/hY5QvwVEIZj/DyV4NSxJhb9r8sGp5nM6MMs/D3GnOdGyvQugew3Qve4phaMUeC/y7M
-	yLpc7qzec2nBZAHCAPNgADAzSZxGcEhBWw6vJ3jZ0ZbEt65LnZ+CLOduGR30ImyF69/uktUIeKti5
-	mXILVMWw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=AMG07QQWS+s9tSGkNXtvc6vnCfKc2sWGJhO/gRex6GU=; b=JiIuGrTuVYkIG2g4ppNUHmp9D0
+	R3lwCXwY51nxrktJMUrI6hBhU0hZaP+Z0CaWPjHOJH0GXYX6CpE+gMmgUQOBPuuEKzO8d5nHh0bur
+	3YSIBwQ0RV/9mJ3K4ZfvFIVPJdZLHB23Cu7CSUiH4pqt6XuxHuyo477IuaaHmTBmAU0CLcBVB858x
+	h5FQo8iwNLfEupkEZqLFZ7bD3KeZbXZSuv0Zs5yh2QCno/f456foKTpyFauzuICNrzZZSej1V1Bxj
+	RQ1G4ZcyLzYQLY1twhQChVISji2oJ/wISKf6B1Ac6XUGS3qqei9mmJ9UufuZ9q2oZyUDuelyKAb4b
+	Gjv7xCAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxJ5f-0000000Cf0Q-03nV;
-	Fri, 21 Aug 2026 06:50:59 +0000
-Received: from mx-relay38-hz1-if1.hornetsecurity.com ([94.100.128.48])
+	id 1wyEK5-0000000FZuO-1YzJ;
+	Sun, 23 Aug 2026 19:57:41 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxJ5a-0000000Cf02-49DQ
+	id 1wyEK2-0000000FZss-46Hj
 	for ath11k@lists.infradead.org;
-	Fri, 21 Aug 2026 06:50:58 +0000
-ARC-Authentication-Results: i=1; mx-gate38-hz1.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=217.14.160.69, headerfrom=marcant.net)
- smtp.mailfrom=marcant.net smtp.helo=rossini.marcant.net; dkim=pass
- header.d=marcant.net header.s=gandalf header.a=rsa-sha256; dmarc=pass
- header.from=marcant.net orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=dmqPZVgfMRSVKaGhmQWhxyx2Fl2asnnJWzRYPeVvggw=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1787295044;
- b=B+A/LZPsuhxZxzPX9WXAPIaQ/c0xChksB1K4FNTw0YdV2vC7zuBg/OGL2MRZiqpBKt1Z+HSH
- Y4AmPgejVxij+41Frhn+esykkD9kn4X+ZNUb/GLG2gf6bWkUjAGbRIkE+/R2RSHw01je1QL6LL/
- qWvAPD+PNMyE8Ljguge9EzvCyr6/UZykRr3vtHkM1mwU/HvwN2QvXHaGLv/Srq/qvYegKUlA6Xt
- 3/ArIAPDaKXFEjXyw1O2mEXYGMeOf2U5iAbaLNYn/TLv6U9Xela7sf6d7DM+7RwJewfwt+jV/rJ
- HX1+dALT0Y9n4s8/4Ou/wmWcpvPtOapTcnIiulPGULmKw==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1787295044;
- b=JOnsaxxxBkotbkzOF5Y6qCEkWxiRHveMeTwOjflI5++2eEIFz4ecZdDbbhdfGmGEp0mxA4ji
- sb8tiwxaaTeI56HDto7Sg3xGs/wePp2+zUmDYG48qNyg1tr8I0iC301w/cMGEKIcxvfzwzX9xoO
- DfThXMluhdpQpt9uYnGwIFZ+Jy4Ocu5nOL8trNuHyv0uTBlm51dWeR8tDyHg+l/4IL9F9tz7yAm
- zgT+xI98//K7g4IB1ygEGtT4bzJ/XUG7Gnvb0Q7KXbTrQpGKzeoA2gtrmygVNCoRtWxod+Z8c9M
- bNQQ5u2xJP3h5T+DLjGj7bcuKcmHz8i2XleXoH8x8HFzw==
-Received: from rossini.marcant.net ([217.14.160.69]) by mx-gate38-hz1;
- Fri, 21 Aug 2026 08:50:44 +0200
-Received: from [192.168.203.16] (unknown [192.168.203.16])
-	by rossini.marcant.net (Postfix) with ESMTP id 6C8E896163A;
-	Fri, 21 Aug 2026 08:50:41 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 rossini.marcant.net 6C8E896163A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marcant.net;
-	s=gandalf; t=1787295041;
-	bh=dmqPZVgfMRSVKaGhmQWhxyx2Fl2asnnJWzRYPeVvggw=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=BorRw+sDKf95caVnrYk19DWyZRj59G1T7Bkq8zIxpAGQuS38ERyBwcbXpb14iSWp5
-	 4IcF66CjN4cuCQ2Q8noP1WT/ivVzPBj/rBtnzkpsPvx3rUrJl0FYTEXG7KERE+5rqz
-	 3BZDzHjKE6qe/4/3S0cnM5vHPhXp9soegvmZEXz8=
-Message-ID: <a1ff9ecb-7338-4b14-848c-d4034a584b4d@marcant.net>
-Date: Fri, 21 Aug 2026 08:50:41 +0200
+	Sun, 23 Aug 2026 19:57:40 +0000
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-6a38098734bso4863209a12.1
+        for <ath11k@lists.infradead.org>; Sun, 23 Aug 2026 12:57:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bairaktaris.de; s=google; t=1787515055; x=1788119855; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=AMG07QQWS+s9tSGkNXtvc6vnCfKc2sWGJhO/gRex6GU=;
+        b=La1Lnb2Ep0+4hFp7LulWl1KWSt02wKfbX0vaJGKjk1IK9EyWZsfl08wTniqnV5K1Vs
+         Y91dEdaBZ3CTbPQp9qpjxb7wfyF68hGe9MTwbWNVAOaurJ2/5DPzxgQmMcyjvXt+hnQN
+         s8Kp3NI/wyKjFCWhyeWPlgzyRmyDaRICeouaqfp7rjHkeRhlCZu6hJQDhO46Iu6PIjHX
+         tQuEiJr1QqQfoM8HsY4+ZPFfRIc90WKS+RyWjr1NUC1mtGx7r1t63EgysVh591eSWHAh
+         VHltoSV5KdRk4jtLE2izC6w2j3jML9ZtL07F6EmUTA7n0pOUstBZ2CGjmTCNCDC5Vf/b
+         HxBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787515055; x=1788119855;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=AMG07QQWS+s9tSGkNXtvc6vnCfKc2sWGJhO/gRex6GU=;
+        b=UyOfVJ/dnYJaGngvowTxBcjJiE4Mib/qgm6/4TJ1CFcuE2pyI5RrBETwgBkt4PlUaz
+         ZElc5tNRswxqd/FV8o7CFotn5bxYjCwuscjb9SJGGvnCo9WNc+QSbcV6JnWCGMcKuYua
+         nkt1AqRPVVNlZjOmtPWFqjXLqJM88h8Rcmm7918WqqaC5d8VYllf5pZxr28uhman1GNc
+         aooFi6271A5bNSPnlCu/3BA8UJZSBWANSV6fmmfV/MiB4QP3GJT9vyjNcPOxLUy3/OhW
+         eCPyO++N7Sz8O6cm441qAYigLuv0rPVxQDPiI8h/0vd9y5DXeJ9eNz+cFOBVQeYc2FsE
+         3q4w==
+X-Forwarded-Encrypted: i=1; AHgh+RoWS3b15Ea4OdR+DRw7xgOa6xk4tBf4qR3o0nyBMUprC3lgqqT/kWDZBHEDl+3VjFeYFVfmNyY=@lists.infradead.org
+X-Gm-Message-State: AFuF++ljMXMb0wLhT9e6TACCbH4AqGkJqoXdazMerhv61ujfhqdWSaib
+	SJmZXYoyKeFf0EYyVHIJR2sAOfmrut/DKKctlgxZmuUlNZTcSlJ4yFm+2G9HPbKJdJ27AGlAcRZ
+	JnkSwZ45M
+X-Gm-Gg: AR+sD11WAxJeWOeXmbx2e3q7/FpgdiYlLw/eBtj5dUi6+dSFKEtz2ou73y0e3/yPjku
+	gr2QCJ5cSHtH1ddA2eYm9pi9SxCtoBr/SSb3cB1RiMAqIcty2zHj3dCoRaoEYkvEAMlFEwh6sOT
+	/apR37qRFtniRibNd9UDrBZnGStZq1KDTubMKhsgtYtpTyL1c5eLIwIBMf3PW9tXEcB84kB1rdV
+	14xyW8Xhovj2jBhEbZUFXVUONGFSQ7TmTF3R0d0tKnsotTeu9QjU7uBkDvyv/1u/OzcU8dii1NR
+	Gvf5uA5e3+l13ZdDl1K+zOzvFl2HI4TPUTH9t/5Ru3L3uI62e6C3UGM5c1hQ7QQ9jDmZWxA3414
+	gJKNHBcWv5bMeJJBcyEH2C5Pwq/4ekG+JpTeQdyoNsRT0GZVy579FpHdhlK5RF4pbPRTaiCr+IZ
+	AtErBfl67Z6xaeMFEJYVQs8HTYrx5e3QQyxai4Z7be95Ejl7hEmznsoqYAA+IqRfjyGFwJ9P3no
+	x3Z7YaZqFXbGHRX3la2RyHLYGe9EBI67OE4SLigiPdvtEjlwCTdc47C4jMeFuxsQ07Y3BR2iAmI
+	vGzIJglmXdFekaKHHUD9yCtwxHfpM4Pd90biwZqtDnIiPNU/k4ScA4EIEF77+nE9WtxlEVywnoP
+	UWpZlIsM6gBVczwTqjIDZEatyrXff1hEHhLl9fnS/yxC3MUYrjSEnHVyUcZ9mUZmafmYPJReU+L
+	MDN4E6dmnKpQOA
+X-Received: by 2002:a17:907:a49:b0:c21:4393:c41a with SMTP id a640c23a62f3a-c246a606cdamr2258331766b.11.1787515055057;
+        Sun, 23 Aug 2026 12:57:35 -0700 (PDT)
+Received: from Desktop (pd9513a95.dip0.t-ipconnect.de. [217.81.58.149])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c249606a8edsm889532666b.6.2026.08.23.12.57.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Aug 2026 12:57:34 -0700 (PDT)
+From: Julius Bairaktaris <julius@bairaktaris.de>
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	=?UTF-8?q?Toke=20H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>
+Subject: [PATCH v1 0/4] wifi: ath11k: enable airtime queue limits and fairness
+Date: Sun, 23 Aug 2026 21:56:59 +0200
+Message-ID: <20260823195703.49198-1-julius@bairaktaris.de>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: =?UTF-8?Q?Andr=C3=A9_Valentin?= <avalentin@marcant.net>
-Subject: Re: [PATCH v3] wifi: ath11k: run ahb shutdown() teardown only on
- WCN6750
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: Manikanta Pubbisetty <manikanta.pubbisetty@oss.qualcomm.com>,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20260810192859.949348-1-avalentin@marcant.net>
-Content-Language: de-DE
-Autocrypt: addr=avalentin@marcant.net; keydata=
- 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 Gbeh
-Organization: MarcanT AG
-In-Reply-To: <20260810192859.949348-1-avalentin@marcant.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-cloud-security-sender: avalentin@marcant.net
-X-cloud-security-recipient: ath11k@lists.infradead.org
-X-cloud-security-Mailarchiv: E-Mail archived for: avalentin@marcant.net
-X-cloud-security-Mailarchivtype: outbound
-X-cloud-security-Virusscan: CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-gate38-hz1 with 4hR9tT5MS2zLlxs
-X-cloud-security-connect: rossini.marcant.net[217.14.160.69], TLS=1, IP=217.14.160.69
-X-cloud-security-Digest: 4ec1c4b26dbc0c14e3d9a22eb319e47c
-X-cloud-security: scantime:1.230
-DKIM-Signature: a=rsa-sha256;
- bh=dmqPZVgfMRSVKaGhmQWhxyx2Fl2asnnJWzRYPeVvggw=; c=relaxed/relaxed;
- d=marcant.net; h=content-type:mime-version:subject:from:to:message-id:date;
- s=hse1; t=1787295043; v=1;
- b=si3dmLCWMFt1k0qz9ADKbDUwxeYIU0dXm4W5nkI49P3M7yUnEFknc6tAGQMLPP+su53+qaYZ
- WbzJT71E2zDFF+4fLUdJg7yWSg0rdlYsw73SRJ8NmJMcOGXCnzjnftOPK7Xhu/CIiB6AvvMH+nv
- FCunVfrVCeFJBbGQbyA4egTYfFPmjKFbkqJDTp7uVa8+3zi4xWInXQ9wkDXj4fl/IbEI5lUU3cD
- GtizL6IPftsxk7Ile95sUYHtFL2qpSxJo3Br/+w0qHVVPLMcs1AtXPBJDoDrWSSHEYe2omHfuQ/
- 9XF31ttfz9K/l05okbEOAkZXpA4Gpx3Mo9WLi6Rzm0pPw==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260820_235055_648675_F3A6B606 
-X-CRM114-Status: UNSURE (   9.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260823_125739_065556_D1E3596D 
+X-CRM114-Status: GOOD (  14.91  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -156,30 +101,65 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Jeff,
+ath11k advertises neither NL80211_EXT_FEATURE_AQL nor the airtime
+fairness bit, and every user of either inside mac80211 is gated on the
+corresponding feature. Both are inert on this driver.
 
-gentle ping on v3, sent 2026-08-10. It is still marked "new" in patchwork
-(https://patchwork.kernel.org/project/linux-wireless/patch/20260810192859.949348-1-avalentin@marcant.net/),
-so I want to make sure it did not simply fall through the cracks rather
-than that you are waiting on something from me.
+AQL matters here more than it would for a driver with its own TXQ
+scheduler, because it is the only brake. ath11k uses
+ieee80211_handle_wake_tx_queue(), whose wake_tx_push_queue() drains a
+selected txq whole into the driver, and the check at the top of
+ieee80211_tx_dequeue() is what stops that drain. Without the feature bit
+mac80211 holds no backlog at all: on a saturated download every queued
+byte sits in the hardware TX rings, where there is no AQM and no flow
+separation.
 
-v3 addresses all three points from your v2 review:
+Measured on an IPQ8074 AP against one HE 160 MHz station at MCS 11
+receiving 280 Mbit/s, read from that station's own aql file: its BE queue
+depth reaches 6356 us of the 12000 us default limit, and 2972 us when the
+limit is lowered to 500/1000 us. Without patch 2 that file is not created
+and the limits are never consulted.
 
-- ahb.c and hw.h use the /* on its own line block comment style.
-- The comments in the generic code describe the behaviour only; no
-chipset is named there any more. Only the ath11k_hw_params initializer
-correlates the feature with the hardware.
-- .shutdown_teardown is now initialized explicitly in every
-ath11k_hw_params record (= false on all but WCN6750).
+Patch 1 converts the last tx completion path in dp_tx.c that still frees a
+frame with dev_kfree_skb_any(), leaking the ack-status clone and its idr
+entry. It is independent of the rest and carries Cc: stable.
 
-Is there anything else you would like changed, or should I resend as v4
-with a fresh base?
+Patch 2 advertises AQL. The rate its estimator needs is already kept in
+arsta->last_txrate and already reaches mac80211.
 
-For context on the impact: without this, a plain reboot on the IPQ AHB
-targets (IPQ8074/IPQ6018/IPQ5018) stops in the boot ROM during DDR
-training and only a physical power cycle recovers, so the affected
-devices cannot be rebooted remotely at all.
+Patch 3 exposes the outstanding-MSDU count the driver already keeps, so
+soc_dp_stats can report how deep the transmit path is and not only when it
+overflowed.
 
-Kind regards,
-André
+Patch 4 registers per-station tx airtime and advertises airtime fairness.
+Unlike AQL there is no estimator fallback for the deficit, so the bit
+cannot be set without the reporting. The fairness it delivers is coarse
+for reasons stated in that patch, and it is last so the first three can be
+applied without it.
+
+An AQL enable was proposed once before and left at changes-requested for a
+commit message that did not say why or show a measurement. This series
+answers both, and needs no custom .wake_tx_queue: ieee80211_tx_dequeue()
+performs the check itself. It is orthogonal to the in-flight
+"ath11k/ath12k: implement TX flow control" series, which replaces that
+callback for an unrelated reason and leaves the check where it is.
+
+ath10k and mt76 set both feature bits.
+
+Julius Bairaktaris (4):
+  wifi: ath11k: free tx skbs through ieee80211_free_txskb()
+  wifi: ath11k: enable airtime queue limits
+  wifi: ath11k: report the pending tx MSDU count in soc_dp_stats
+  wifi: ath11k: report tx airtime and enable airtime fairness
+
+ drivers/net/wireless/ath/ath11k/debugfs.c | 12 ++++++++++++
+ drivers/net/wireless/ath/ath11k/dp_rx.c   | 10 ++++++++++
+ drivers/net/wireless/ath/ath11k/dp_tx.c   |  3 ++-
+ drivers/net/wireless/ath/ath11k/mac.c     |  3 +++
+ 4 files changed, 27 insertions(+), 1 deletion(-)
+
+base-commit: ca800a9302764c445de0da0e84d2252400a770ee
+-- 
+2.53.0
+
 
