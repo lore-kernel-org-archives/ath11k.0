@@ -4,88 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 706F3C5DF9D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDAF1C5DF94
 	for <ath11k@archiver.kernel.org>; Mon, 24 Aug 2026 07:43:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=fjcWIAy7x/ETai6n4CfB8f6nIC+kIzPbY8w6pVYrWR0=; b=iZQ4LZvf36cVTe8wgaM3kRbHkV
-	iJ+PJnjwSRYFkx/gf9mU98Ocs7/etw/b7JeN1t98eu/3HlN8h/Touk0iadc2mnhw7Zp7LGdhz35ng
-	mgLLy7bUiRn4V9x1XMzI6o0evXn0oJ22ipig+mcbjWFMXP9L+/DCwpqe9/RQOmu8Fygg5WTIrTegT
-	fHil+FmRZnYB9OCBuxNqQtQ9F2RUUU6/O3QFFpKvfnz2HPmTlfPDCVvxFiiQ1Bl+dmbThKlaFD5ta
-	Au9x66sZEjQd1gWC4J7t2W8jG7a9kz4F3LBhMg6uqZnvNqi/BA6HhQyF25vi+YFJg6PzrtX1kA5er
-	WlzlQx1w==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NseC193O6mLkVIeO24aPT+5wuVWeRgDqN0479cwztvs=; b=pIEM1lUULDK88uiYmX6kIohvXS
+	T/CLJDTeEQcbvHaZeDltf/Yiky8ZfpUMeQTv1hVAlDdzVMa1xzSWzaEoWRFvfTEFwCtnP6+QIuM08
+	6psrY1aZiO3XK+z0Y3Wb7KS0cDCgguQPu/KPwnu8vu1fS/v6w7gyH6hrz7Pim5d0uuFFT1UYPF6uA
+	R2YmJOd10snAhleo2TUcxTr/P8H8uwoG9861voKmscRKwdgLasTzCrIQ+ILTzcR328LsNU8fzCslV
+	hGl1saV2/23DsQSQQvpy10v9Erf9buCkg5wS4rjm6TTfO/8ivkFuM39HCONrunknfBg87pQk6h5O4
+	D7ab7mhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyPKa-0000000G799-3Oad;
-	Mon, 24 Aug 2026 07:42:56 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1wyPKc-0000000G7AX-0D33;
+	Mon, 24 Aug 2026 07:42:58 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyPKX-0000000G76q-08n8
+	id 1wyPKY-0000000G77Z-3FXf
 	for ath11k@lists.infradead.org;
-	Mon, 24 Aug 2026 07:42:54 +0000
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-c1671ec8692so445456866b.0
-        for <ath11k@lists.infradead.org>; Mon, 24 Aug 2026 00:42:52 -0700 (PDT)
+	Mon, 24 Aug 2026 07:42:56 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c197eaaab00so520090466b.0
+        for <ath11k@lists.infradead.org>; Mon, 24 Aug 2026 00:42:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1787557371; x=1788162171; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=fjcWIAy7x/ETai6n4CfB8f6nIC+kIzPbY8w6pVYrWR0=;
-        b=R1XL1rKOVBGEJOPcD83rNXz/uo4M+22EOvhV7HBUyYZUdWKlFCJElE6icV6MxQRM+j
-         vnGw12BW+A7p/+DwOX9xfe8h8dgb5YZAVp01Usvx3Bx55FuhubDekIcvlAJdKqLE8fbq
-         5O29NS/wcmJF89BAtR/ivH3g39Xuig2hq1G0Tj+vC335ANakKjKTFAoQTrbEDjXqD1dF
-         IlTw+8rrHe2itW7lNq/lTr7Z70r2l9YCeBZuntPPBm4H7aIqwjgw6zrKTjcF9YTOMRUA
-         rdDwjcEYtuxLMGIdzE+AvFrzEaFqb7l/j03dIY27WNXm5Ueal++PRKzU+6ZT0cRq26Vn
-         4XWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787557371; x=1788162171;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=bairaktaris.de; s=google; t=1787557373; x=1788162173; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=fjcWIAy7x/ETai6n4CfB8f6nIC+kIzPbY8w6pVYrWR0=;
-        b=JpvcnQcEkGJfJIQUnQdtq9OEj4ZmoBY3U4fXKGj20MpecHNuo8G14Jlmzlx2BuAqxI
-         37rAQvwTC529R219GRgnhB4fK2KQBQWOZOukYLz/RiOxoVpPiMAm8YbePV35p5n8roLV
-         yI3BKLXmG/mVfywBk2GdbDryKjBMXGaR09t5wIwSxz4Xjy7k+0eolubl0a1JMv6Omqv0
-         gJ+BgkbQz9ZgBC4zc45hs+5fhlAUPowR0i3hFfPAMp64YM3VgBV5vs5djTczh4PL4XyQ
-         lmRYyfttqaDPjcR70uDgak5/bI6bMUL0lvVgbcZZLpCpd3hnoXXG4IEck6RH6s+XBBFU
-         ksIA==
-X-Forwarded-Encrypted: i=1; AHgh+Rp64t8lD+Pzyb6Wg1PSbqpxaps8EBYcinV+N+zfL5Xkr8/BMw2TEpfxU1fmgToJpflm4coWj1A=@lists.infradead.org
-X-Gm-Message-State: AFuF++nH76E3pjEKE2dj/3/qxVite96ZZ5OPfv1C1ahC3u6kA+B8stP/
-	auEJYlaa7mrHEUXNJ0HsT40VOmXQPHDznqKLcrQY/l3RX79Zs/xLZgF0DwO+wZgclg==
-X-Gm-Gg: AR+sD10HZrVJAIiHfgF0A0xJCyFb8I12M7Idv5fTMbrbPcALkZzVinfRc86qZpIvsnN
-	Zyox+6k/5VIBqpcPn38ScmrQrGSGdDpfRBd8tOR2I/x1exiMXTYl6KO76dAa0w+dsvXCT5B9VO7
-	2ShGpJ8LvaBPZ6GSlAY8lmaz2WHHpMFw0RCIsJHcZmEAEvQpVk7f1Ee6sOeX/jXq3NtnzCxxGJK
-	rsm871pMdwaVmNUBs7wczTC+kqwHPO53/aIxM30gyiRQMMQCHI88KD+mYUB4k5gjZKoOXwHL0Kg
-	O5LrXFilw81B5R6M/Cjl1gL1+n60Zdk5mWTMNVcwkA/jPEa9LsRGQe+Pm+dJ48hbR3geAM62u6q
-	sWfurej19zMpX7ULWR675ImyEXuRvFvBEl8VFbHFCuA3p3NcSiNMuPhn9DwlP6E6LffOzGjlywz
-	rg0jhbPLnk7DiQfiidtUWcWOZZqF0NiVNHTenzT6PpRHwMuCQpxXvlAmInch/29JRIJgDrx7CJ3
-	vnMjBza6t4ZdlYaoS9Hs14C8FQI/vRxH8pRQBZZuvEVp1TOEqkTj62b+LPOjMdVyskcYOZT3eo6
-	6CHT+y6wCOf3hOnm/yA6Nd6f3ow/Fx8nARSRoOMbITL8tgt9q6UeLJ5lAw/BRdF6bh4MZAVkj1Z
-	vyyX4iMRgToJI9u15cZNrqWcomua7wdG5MYI8vpyWIQVbmzRCph9+Rp2uyp5C2wdkf3dAIo/Ne3
-	t1NtPd7VfMEvBfug==
-X-Received: by 2002:a17:906:ba8f:b0:c1c:3b06:ed03 with SMTP id a640c23a62f3a-c24920e2f93mr2097394466b.23.1787557371057;
-        Mon, 24 Aug 2026 00:42:51 -0700 (PDT)
+        bh=NseC193O6mLkVIeO24aPT+5wuVWeRgDqN0479cwztvs=;
+        b=HGTsMP0dgrSjpEqldxbruoXatvfugVDOiS6UZoCySkF2/7WT0J7Ln8uumGI+KUE4Et
+         zA9dRjGVi6do6J2dNCiQ/D7x0yznu+BcQNWZF4dvfxJTG3XlmBT5txPGzEnRKF9s5iUZ
+         rl87998TAznXAme9aesyj+N8/9VLUi60i/optGn7NrRwd8O+Eum8RhMfDoAov3mwYa/W
+         OYIvIWROJONPlNYr5kpR/e/c2Iuxmx24KIkzJ/MlPaIqgUME5/f5WXs1Eoh/zpRTB3MB
+         V3kvo19hnZsiBEbpigdRTca5HPDYe9I93xwIoswQq5kDpAhohvPOBOAAQCASGEPWNJwq
+         +n9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787557373; x=1788162173;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=NseC193O6mLkVIeO24aPT+5wuVWeRgDqN0479cwztvs=;
+        b=g5tyfS8pBtEidr6I+MdkJPtJfTaEIWhNLvL2E0/pW22g0QNbZseNfULsqrRnLRDS2g
+         JKtTWziCMOMB/YxT9VRqudNbshDuT/gV1HYdhalilf5HZhrduYm+ngmw07FV3A0px6xk
+         aCL5HlqskbtAq3S0kwhXnWChXnszbL9ffottnEbb/LJoyQST7YocVZPCVaNXFFosgfiX
+         eAMyy1xYa5hl86ncaJA7dvYlpi0ztl9sAJWsjy0zHSjLL+7ar1udJgHEs+esiZTj5Vjw
+         G2o2r/Ytc4poaP+0A1rutw4gt0BMoOY4QxrACDgYwvJmIQgsdmCcIX2HwEEJ4uuDsgrz
+         fdMQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rq74LvVuaXiLUgzLUT6chWnL9B9k+/Y8tHBbn7U6vdWCuhCSLTufWxkVqRc2ikeB6zi82J2DEQ=@lists.infradead.org
+X-Gm-Message-State: AFuF++nt/Yc1lOlpFJofXeAsUMEzwHZAezW+Qv0Irgbk3sS+OzmVlkUZ
+	qFi/0J+PQd9/tyrPX2WDkAkNeis7C4LyFgCpBrHTiUlQTARaw34vTmk70/b7NfVYyQ==
+X-Gm-Gg: AR+sD13zS/SG/QXBdDx9ASg4befZEtO9R0PTtPtH31VqdJqTneuhlsK2e5gfj/4kqTr
+	Ns//IieoEBly2B8+lqTRFM4omriV/4FY+0wbItlRyQEOcPd51kLls+Ni85r6b5/AKwakYeHtGOW
+	n/bGc2sq9RohyWq7Q6eKj1iK/4fCd70bFMBh71ZT7LDSoe4+KNiUMDI/X+/FCHWGFcJgUmR5AJ8
+	aC2vrfQtQkjBN/4Xy4vtf8qDR3XmqqW4PBXrSuRMGYKwyZbvt0ytFGTpKgBdzepFj7v6LwRv5az
+	YGmmk4KdGoP9ZPZ3tfd+4ih9g09DK8a0drHWJnbFXnlwn2q6qTTG7ZSJbNq6F02HtCLJAmIv98u
+	qnueVzZTnyDM3/69m7KdcZt1+Kp1/YIzreSOMd5QRoJvD24bQ2mSd62O2JWQ5TWC4exLVwbVNCL
+	NvH8hgBErNT9jwtxSnhCqFACkrZpmsZa1DRTCndNfsFYPfIcF2v238GrHBTkfR88gNljdwxdLur
+	RxZ3G1IwGR9xzXYB35PeJTGlMOkVyJj65g35H3t4X9L1Pldevaj/Al6WhCc1vheujVfB+WDVU8/
+	JaCbB4hIYNNHZWrbXFtxzM5IYn21mydJVCXimxS67WBvCkffsWngV65RHjOez60t6se+Jhq7Kh4
+	3r8JcqERk/em3rFyApg8nnCKr2T3duNWBPw9ywnKabI/6WWxjzJANqlInkII4UAPhixa8FUDvrb
+	L30AKPTHYSCq+9AQ==
+X-Received: by 2002:a17:907:3e02:b0:c21:6f8c:2335 with SMTP id a640c23a62f3a-c246a6b1745mr2800831166b.16.1787557372785;
+        Mon, 24 Aug 2026 00:42:52 -0700 (PDT)
 Received: from Desktop (p54affeee.dip0.t-ipconnect.de. [84.175.254.238])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c249685ef7bsm1261549266b.52.2026.08.24.00.42.49
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c249685ef7bsm1261549266b.52.2026.08.24.00.42.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Aug 2026 00:42:50 -0700 (PDT)
+        Mon, 24 Aug 2026 00:42:52 -0700 (PDT)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: jjohnson@kernel.org
 Cc: linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH ath-next v2 0/9] wifi: ath11k: airtime queue limits, fairness and a driver TXQ scheduler
-Date: Mon, 24 Aug 2026 09:42:19 +0200
-Message-ID: <20260824074228.2114579-1-julius@bairaktaris.de>
+Subject: [PATCH ath-next v2 2/9] wifi: ath11k: enable airtime queue limits
+Date: Mon, 24 Aug 2026 09:42:21 +0200
+Message-ID: <20260824074228.2114579-3-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260824074228.2114579-1-julius@bairaktaris.de>
+References: <20260824074228.2114579-1-julius@bairaktaris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260824_004253_123740_B4EE68CC 
-X-CRM114-Status: GOOD (  25.87  )
+X-CRM114-CacheID: sfid-20260824_004254_851573_CDD84744 
+X-CRM114-Status: GOOD (  16.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,133 +103,73 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k advertises neither NL80211_EXT_FEATURE_AQL nor
-NL80211_EXT_FEATURE_AIRTIME_FAIRNESS, and every user of either inside
-mac80211 is gated on the corresponding bit. Both mechanisms are inert on
-this driver, and the driver keeps no queue of its own, so on a saturated
-download every queued byte sits in the hardware TX rings, where there is
-no AQM and no flow separation.
+ath11k does not advertise NL80211_EXT_FEATURE_AQL, and every user of AQL in
+mac80211 is gated on that bit: the airtime charge in
+ieee80211_tx_dequeue(), ieee80211_txq_airtime_check(),
+ieee80211_sta_update_pending_airtime(), and the per-station aql file in
+debugfs, which is not even created. AQL is not untuned on this driver, it
+is absent.
 
-Measured on an IPQ8074 access point serving one HE station: saturated TCP
-downstream, a 20 Hz probe from that station through the same access
-category, arms interleaved, three pairs each.
+That matters here more than it would elsewhere, because AQL is the only
+brake. ath11k uses ieee80211_handle_wake_tx_queue(), whose
+wake_tx_push_queue() drains a selected txq whole into the driver, and the
+check at the top of ieee80211_tx_dequeue() is what stops that drain.
+Without the feature bit nothing does, so mac80211 holds no backlog and
+every queued byte of a saturated download sits in the hardware TX rings,
+where there is no AQM and no flow separation.
 
-  stock                             94.6 Mbit/s   155 ms
-  series, default limit             94.0 Mbit/s   157 ms
-  series, BE aql_txq_limit 500/1000 74.3 Mbit/s    22 ms
-  the same, patch 6 reverted        33.7 Mbit/s    21 ms
+Measured on an IPQ8074 AP against one HE 160 MHz station at MCS 11, taken
+from that station's own aql file while it received 280 Mbit/s: its BE queue
+depth reaches 6356 us of the 12000 us default limit, and 2972 us when the
+limit is lowered to 500/1000 us. Without this patch the file does not exist
+and the limits are never consulted.
 
-On stock, mac80211 reports no pending airtime and one frame of FQ-CoDel
-backlog, and aql_txq_limit has the same effect at either setting, which
-is none. The series puts the queue back under mac80211's control at no
-cost where the limit does not bind, and roughly seven times lower latency
-where it does. Patch 6, the completion-driven scheduling round, is worth
-2.2x throughput at identical latency and nothing at the default limit.
+The rate the estimator needs is already there: ath11k keeps a per-station
+rate_info in arsta->last_txrate and passes it to ieee80211_tx_status_ext(),
+which stores it as tx_stats.last_rate_info, and that is what
+ieee80211_calc_expected_tx_airtime() reads. Where no rate is known yet the
+estimator falls back to its 4 us floor, so a station's queue is charged the
+minimum until the first HTT PPDU stats arrive and the per-AC limits of 5000
+and 12000 us stay loose over that window. The current code charges nothing
+and consults no limit at all, so this cannot behave worse.
 
-With two stations on one radio, a 1x1 VHT client and a 2x2 HE client both
-receiving at once, the slow client takes 65% of the medium on stock for
-95 Mbit/s while the fast one gets 35% for 550, and airtime_weight is
-refused with -EOPNOTSUPP. With the series and the limit binding, the
-split is 43-45/55-57 at equal weights.
+The estimate is only as fresh as arsta->last_txrate, which is updated from
+the HTT PPDU stats when a descriptor is evicted from ar->ppdu_stats_info,
+so the rate behind it can lag a rate change by up to
+HTT_PPDU_DESC_MAX_DEPTH PPDUs.
 
-No default is changed. The series makes the existing knobs reach the
-hardware; where the limit sits is left to whoever configures the access
-point, and the curve is a continuous trade rather than a free win: on
-this hardware 900/1800 us gives 92 Mbit/s at 127 ms, 550/1100 gives
-81 Mbit/s at 31-46 ms, and 500/1000 gives 72 Mbit/s at 19-21 ms.
+ieee80211_sta_update_pending_airtime() returns the airtime but does not
+reschedule the txq, and ath11k has no completion-side push, so a queue held
+back by AQL is re-poked only by the next enqueue or queue wake.
 
-One result is worth stating because it bears on how the limit should be
-chosen. A sweep of 12000, 6000, 3000, 2000, 1000 and 700 us shows pending
-airtime tracking the configured limit across the whole range while the
-latency through the same queue only responds below roughly 2000 us. At
-94 Mbit/s, 155 ms of delay is about 1.8 MB in flight while AQL believes
-14 ms of airtime is outstanding, so mac80211's estimate runs about an
-order of magnitude under the occupancy the medium shows. Nothing here
-changes the estimator; patch 3 exposes the driver-side outstanding MSDU
-count so that the two can be compared.
+The bit alone brakes the queue but does not refill it: the check at the
+top of ieee80211_tx_dequeue() stops the drain, and nothing restarts it
+until the next frame arrives from the network stack. Later patches in
+this series give the driver a scheduling round and run it from tx
+completion, which is what makes a binding limit affordable.
 
-Patch 1 is a prerequisite for patch 2 rather than an unrelated fix, and
-the series should not be split on it: the tx completion path it corrects
-is also the path that returns the AQL charge, so with the feature bit set
-and that path still calling dev_kfree_skb_any(), pending airtime for an
-access category rises without bound and no station on the radio is
-scheduled in it again.
+ath10k and mt76 set the same feature bit.
 
-Patch 2 advertises AQL. Patch 3 reports the outstanding MSDU count.
-Patch 4 registers per-station transmit airtime and advertises airtime
-fairness, which cannot be set without the reporting because the deficit
-has no estimator fallback. Patch 5 moves the scheduling round into the
-driver so a second context can drive it, patch 6 drives it from tx
-completion, and patch 8 ends it when the hardware has no room. Patch 7
-registers the hardware's per-PPDU receive duration into the same deficit.
-Patch 9 gives the tx completion handler a budget, which it did not have
-and now needs.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Assisted-by: Claude:claude-opus-5
+Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Patches 1, 2, 4, 6 and 7 carry a measurement. Patch 5 is a prerequisite
-with no behaviour change beyond a narrower lock, patch 3 adds a counter,
-patch 8 covers a descriptor-exhaustion path the tested configuration does
-not reach, and patch 9 bounds a loop that was unbounded.
-
-Two notes on overlap and prior art.
-
-"wifi: ath11k/ath12k: implement TX flow control" [1] also replaces
-.wake_tx_queue in ath11k, to stop -ENOMEM under a full TCL ring. Its
-handler serves only the TXQ it is handed and calls neither
-ieee80211_txq_schedule_start() nor ieee80211_next_txq(), so it removes
-the deficit round robin that ieee80211_handle_wake_tx_queue() performs
-today and forecloses airtime fairness on this driver. This series keeps
-that scheduling and adds the airtime accounting it needs; patch 8 handles
-descriptor exhaustion by ending the round on -ENOSPC or -ENOMEM rather
-than by reading the ring pointer once per frame.
-
-An AQL enable with a custom .wake_tx_queue and a tx-completion driven
-push was proposed for ath11k in 2023 [2]. The design was right. What it
-was asked for and did not have is the measurement above.
-
-A related mac80211 change is posted separately: the airtime queue limit
-is the same for every station, so it binds before the deficit does and
-airtime_weight has no effect on the airtime a station receives. Scaling
-the per-station limit by the weight makes a 4:1 weight produce a 4.5:1
-airtime ratio on the pair above, symmetric in both directions.
-
-v2:
- - add the driver TXQ scheduler, the completion-driven round, the receive
-   half of the airtime accounting, the round-ending on descriptor
-   exhaustion and the completion-handler budget (patches 5 to 9)
- - patch 1: state that it is a prerequisite for patch 2, and why
- - patch 2: correct the claim that the airtime estimator returns zero
-   before a rate is known; it falls back to a 4 us floor
- - patch 2: drop the assertion that a driver scheduler is not needed,
-   which patches 5 and 6 refute
- - patch 4: take the airtime TID from the completion and rate TLVs when
-   the ack/BA status TLV is absent, instead of charging it to best effort
- - v1: https://lore.kernel.org/all/20260823195703.49198-1-julius@bairaktaris.de/
-
-[1] https://lore.kernel.org/all/20260811172435.616200-4-jtornosm@redhat.com/
-[2] https://lore.kernel.org/all/20230501130725.7171-1-quic_tamizhr@quicinc.com/
-
-Julius Bairaktaris (9):
-  wifi: ath11k: free tx skbs through ieee80211_free_txskb()
-  wifi: ath11k: enable airtime queue limits
-  wifi: ath11k: report the pending tx MSDU count in soc_dp_stats
-  wifi: ath11k: report tx airtime and enable airtime fairness
-  wifi: ath11k: schedule TXQs from the driver
-  wifi: ath11k: run the TXQ scheduler on tx completion
-  wifi: ath11k: charge received airtime to the station deficit
-  wifi: ath11k: stop a scheduling round when the hardware refuses a frame
-  wifi: ath11k: budget the tx completion handler
-
- drivers/net/wireless/ath/ath11k/core.h    |  5 ++
- drivers/net/wireless/ath/ath11k/debugfs.c | 12 +++++
- drivers/net/wireless/ath/ath11k/dp.c      | 10 +++-
- drivers/net/wireless/ath/ath11k/dp_rx.c   | 42 ++++++++++++++++
- drivers/net/wireless/ath/ath11k/dp_tx.c   | 26 ++++++++--
- drivers/net/wireless/ath/ath11k/dp_tx.h   |  3 +-
- drivers/net/wireless/ath/ath11k/mac.c     | 82 ++++++++++++++++++++++++++++---
- drivers/net/wireless/ath/ath11k/mac.h     |  1 +
- 8 files changed, 168 insertions(+), 13 deletions(-)
-
---
-2.51.0
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 2d55cdc4d165..38f641bbc53c 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -10592,6 +10592,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	ar->hw->sta_data_size = sizeof(struct ath11k_sta);
+ 
+ 	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
++	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_AQL);
+ 	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_STA_TX_PWR);
+ 	if (test_bit(WMI_TLV_SERVICE_BSS_COLOR_OFFLOAD,
+ 		     ar->ab->wmi_ab.svc_map)) {
+-- 
+2.53.0
 
 
