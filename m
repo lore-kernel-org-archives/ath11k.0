@@ -4,93 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56641C61DB7
-	for <ath11k@archiver.kernel.org>; Mon, 24 Aug 2026 14:24:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B3BBC5DF9B
+	for <ath11k@archiver.kernel.org>; Mon, 24 Aug 2026 14:24:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TEHKshZ50VF+vld2tceM1/dTFTvHUFhobWJ0AfZzzco=; b=e/a/CP3jZnRIZhcufdqRZNaScl
-	bKYv5TqaVU1Ii0fefwLFCQ6ohdEGmNxQXB3FWOfcEJzwoFt18iJeljmGIX9+BabGl4T39DIkHTfG2
-	xH5+BjpTXP9dAeFRrbNwnw5AhH6l+ZKDHoBgsyV7JAKi3Jt6Fs8v99nGJpwR1Wvu5IJhVs9JVZdbN
-	213jfBGhvgYTlP4Dmcih/UX10lpRCEE3ISSkl1ptDMLw+SQIRds6RXGTUR5qcwtgrQ8apQunamM0M
-	xtN27nqe/+zxHowrfwPr69fR7/7uv8Hk/C0wMUCZDQsCsLbQnbV5dgBQ42H7XxhjDk5Mco+/xndbl
-	6gYoV0Rw==;
+	bh=Z+s09lJoW19HOfjqPgOsY+MAuN3xrwX1WGWVvclfdOM=; b=kJzDRNLBZ1s33woKKnBlLG4o4t
+	WIV6CU3yVQ5GE3E6YRFX5XExFKybcKHi/vIU0uDjylDoOx2fvKb7OxFoy508Z1oVxnq7RG3gXxMz9
+	/0pEtIuksl+Togd8Ni6K/+i4kJCSCy0zfniexN2V3UTCjPdDXYjJnesgJvM3Idlg1mrHxgHI4gXZL
+	x6Ub62hQHKcFIPktu2R16I8BTHs29sr/6l0mAq6XVJTuU3TUQirLSIXyejKPwpRWSFuZuBawSiL0M
+	vtM0P/sX4rr2uSy2kz3Jvd0NkIGEGIFX2zHNsD1lYLf60V3hA3BMhl57aRu/pJuMjcEbdIHeB77GX
+	ChqN7ZAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyVbN-0000000Glz4-2nGn;
-	Mon, 24 Aug 2026 14:24:41 +0000
-Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
+	id 1wyVbQ-0000000Gm2x-0Jol;
+	Mon, 24 Aug 2026 14:24:44 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyVbG-0000000GlsB-1PYL
+	id 1wyVbH-0000000GlsC-0Re2
 	for ath11k@lists.infradead.org;
 	Mon, 24 Aug 2026 14:24:40 +0000
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-c1c52d920b8so505358466b.2
-        for <ath11k@lists.infradead.org>; Mon, 24 Aug 2026 07:24:33 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c15d3cd51b2so533720866b.3
+        for <ath11k@lists.infradead.org>; Mon, 24 Aug 2026 07:24:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bairaktaris.de; s=google; t=1787581473; x=1788186273; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=TEHKshZ50VF+vld2tceM1/dTFTvHUFhobWJ0AfZzzco=;
-        b=C/5weCK25UH5tmldmAqX94+QUnnDlVHUqribgp0th18Eqoj68CRvzSjb71Hc5y12Wf
-         Bf6Jppx4yz0sAjENsQEZuA+jCbkVFRbRC83m0l1SJxhs2tDJY1s3yocZ/LRtDv+PD4mZ
-         wrCYbWK1sRX8mjgbIXNLsl22ctCYsbpiqKOdb2iw6/DJosudYIglJsLmH81zWMPDc4p3
-         M6qAqtN2cjwxGH1mswUPzSWfG4Lxm6LXV3oSX3RRFgXwBxR0G+5leKKR/EasV1Ui8Kdz
-         zR6OSVn0NavlTpenbtyaR8ga3DxGxKttYVg4/f6tGS/JNKYJpY9QGDp3u2kyPeIHTGsP
-         y6Qg==
+        bh=Z+s09lJoW19HOfjqPgOsY+MAuN3xrwX1WGWVvclfdOM=;
+        b=qwAiag1DCgf6/ByT0Vby5VdrDLhNny6+Kpb/YVax1o/3gqic7Zn9UfEb1x2SzLEfx3
+         opZ103x9S/Ov08e066Jz27+k4a+k/spROeFvF5uqppmEpwfUJLvQI1FFS5uR/0uFU8VH
+         SMrIdt/VdYmTOdH4PprHmmexkl8ezRRw5ddBNca5NMRIZZc/LTGEjAYE09iT65Q5QI+y
+         JV7vcHt0a1UODsey2VqJhprWYzX2RNqYYL03y50PqGeJavnI/HbIImk1GDfWHy8UcKCN
+         1/2uSTGA07guLwxX+whgEZXDIjLAOPqSEn498d4lwlgtJvyOQTh7xeWbCgC5ESn3cdBW
+         fDxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1787581473; x=1788186273;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=TEHKshZ50VF+vld2tceM1/dTFTvHUFhobWJ0AfZzzco=;
-        b=RtEH5tld7iKjSlPFCyyUyA6swXTJ1t9vIajOI4cV69PBJpf3c1EtfzkkXgMPnLxbBq
-         tGyGbfaTmZ70FHFpGe4M2gL2D+pOsaeyiJRlAzLjNDPTC6af6psbqMrEeH2506/RTgo5
-         79jQtN5vuAJ/maeiasVZ3IYTfSWf2f+qudM2854TPAXGdPZBc6OOYJyb7pIGXnBbsrzS
-         25lRiMdBzhZBMBRDaNxgWWPBeyPvBrbvHpjebFS8kvMuze3ptdOg+oYtX0YEEdManGWB
-         Tk1+XXwFww5TjmHJvZO1JHUTUBWoDnZnc03ij/KUJXVC1Yne9y8fQb7WKEBss1noqiyD
-         WabQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rqy4/ufuAGIDSNnrTT6FP/DUakJFBX27ITMptS1IzLwVYFfASmYLg+sVCKMC4R8IQjftTeQfls=@lists.infradead.org
-X-Gm-Message-State: AFuF++lvNZT7TzpS3J3IY5f6D7ASCMzvFIvmUDtM49mnrpfiw3Q2Ee+h
-	DH3vS2ZCbALneKCrHAOw/oPita7oQXPgaz5BZSqy2rFQvRLzQoR2iFw3vCoWMP/ey5kukx8y8dB
-	WI+jTZCOb
-X-Gm-Gg: AR+sD13HJlKkjwk6jeK3DyKxiUdlqdo/0NkpbHkggbADPXZ/FQIY8wDtgO/LB4zlB2e
-	jKKpEj5CkZn7iyqR7T60htbAHWoSD4qw4/qYl0LpZ74Vc3S47P/busHw6n5r/aWmPa4P54yxotJ
-	bDPCgIBVrRCr/aqi0/Jzi2rwFCZdS/s4J4GrLIdl6tFeqSSCGHJ0OoKZcQTwxmaDGHrY1YsbU0L
-	q6hXNh9mebAh224vY9gUwWHIb5/a1nNAmu6DnpRZ+i8Ys1WjRjdtDiR+0jLSrQewDgwEZbfOWes
-	oWbC7wnBkkFvXX89nIM6H9ufgNXB8z2GwO439ViBPfuEwtpL5t0J7QSZQVseYtdW/UU4JnH4cUI
-	XsVgTuezttv5zYesabRDEJ1Mznb5IC7GS5SqbsY5JWbjYbsnulC+68gn9vSCsn/66pzKav8sAhv
-	7vDwHw4m0V0r9J5Ow28tN1e9fi6gcxQizuasgKzGHMGE77Sb5We+ry7BBE4k7z6OedLAmO+btj7
-	dxStdTvHCxg2nitGUgdB0iJu9KGTrB8G33DYbLICvMBLRA4dlmELdIlCQXWFCp+7PSkJcvoDcAd
-	Zq/EXNP1vRS89PEXa4BRXrFF3JuBJWJnq32VjbBESntgIHK0hnjaPdG7XgWhHqcVK5dGxUrmHQA
-	X9Zgotrs5J++E0BmPXl6OSdcaInrJb1hsuqePJyBqN6IPd8YNhy+hGo9lnF+WBoivIDoWqVHjTZ
-	Fp/cPi+rM=
-X-Received: by 2002:a17:907:c706:b0:c20:f913:9337 with SMTP id a640c23a62f3a-c246a657f9fmr3239680366b.20.1787581471726;
-        Mon, 24 Aug 2026 07:24:31 -0700 (PDT)
+        bh=Z+s09lJoW19HOfjqPgOsY+MAuN3xrwX1WGWVvclfdOM=;
+        b=nQzMyLmU8Kh76WUgN2RHaY6ZIrmMqvWUp2xXUqLcfv2shZhqORTU0VFfBLH8r0QwZf
+         ni0u7USf8h0gq/9qsV4jQsgw626gtmqj7PcPMAqsOmVJ/AAX2leEWTSdzMqBEzvEuPCd
+         Nhwy8bt9SmaUoSAuQjBOI4OiC03mXd3nU/+v9oqJcQ3A5IbZrOO+6SvKeLK36VrZ/Vdo
+         ccYE7wz2jsZ4M8sLC4lSgAEufIAP7F3lJkEwC3+9nHsYIXb58LSXRiqLj0xKtn+pmxUI
+         Vn1R0aai/HjUy5sCFDDjFvjNzKC7UULM9RXvwzu04YEYFgrS62VkLPnooUCf/Tn1bvLa
+         QMwg==
+X-Forwarded-Encrypted: i=1; AHgh+Rq8u75sPNnKYPuJn8nTZM68PapjIuS/k4nnWos5PTEry7xY7pyhRxKcBc/jo+9LXeFBljPXqdo=@lists.infradead.org
+X-Gm-Message-State: AFuF++lxKl3RoTv/CqognyGSIJW6Br4Ou6AkIGNkNewWes1SRWzu+S4g
+	R0pU8y7G0JzLNDsQ3U0cvv8iDIp/KdLUBrFumqmBT7QrLNEy8N4YoC//sCbO/B79yA==
+X-Gm-Gg: AR+sD1395wuD20Lb8fMVxNq0pTz362Rxw4em9HndS32qeoSVC4I4B48M0sxSBjYN5/m
+	Thc/87v7pam+Kor7BnpeFcDFONXeyUPDJY1G/FEGDJqGYh9133DdnkLgipByIvv6FeRDxZ990Gr
+	oRo7LR/Y2K0OLkEiHHXFiSRmhBeWTmk/TpCizFNLxM8OKeD06B+pS70fpbBiEcAONnR7R7ALsU7
+	h0G4XdQRf43rm92FrlL7zrre0uo0l5lYhe7E+uPkemkaanf1UgcHDu1W7d0ZTdsBVz7cZ0nhb+r
+	DFTS/d3103RVuMcEybUbsM53+kSf7zXqd4hL4N9tnmhlZsfdXJ9lwlKp7aZ4WwTBmxMA/BGlRUp
+	FxnaYbXxxVqSeF2R0Yaamcv3smbNcnRu664fp2Cvv9x8OAd9lyhhxcaLflYlfxFIhDkDltWNl1B
+	JPPiqq43Vumn0U/yy4pkZiP4ELB+9kv6Fk1LDo6rMqnd4Rf0tLwsr4fzARZYKl01lS03PgrkAki
+	W60RnrKs6z2W1K8/7h1oiX0mogs+yU2ZAk0QmR55LAZMpGFAXP9VhKzR7KtwTUdRZFHoeJEf6RM
+	ZZdDfh57ixEq6UsOQkaG7EAfboKcx1wTMBCNvaigH1pytS7XJ0JBZ0SZnLgv74dSOnrdx4Fhr2R
+	xPrw6/dv8f7ov5L5HDz18X1KjUPFH/4teSref2MCnclZOeJgRvn5h/w963+vvb6U5GAD6GBNf
+X-Received: by 2002:a17:907:97c4:b0:c20:af9d:454a with SMTP id a640c23a62f3a-c2492621bf8mr2119993566b.16.1787581473076;
+        Mon, 24 Aug 2026 07:24:33 -0700 (PDT)
 Received: from Desktop.fritz.box ([113.30.181.102])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c249672becesm1329890866b.42.2026.08.24.07.24.31
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c249672becesm1329890866b.42.2026.08.24.07.24.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Aug 2026 07:24:31 -0700 (PDT)
+        Mon, 24 Aug 2026 07:24:32 -0700 (PDT)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: jjohnson@kernel.org
 Cc: linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	toke@toke.dk
-Subject: [PATCH ath-next v3 5/9] wifi: ath11k: schedule TXQs from the driver
-Date: Mon, 24 Aug 2026 16:23:46 +0200
-Message-ID: <20260824142350.1757379-6-julius@bairaktaris.de>
+Subject: [PATCH ath-next v3 7/9] wifi: ath11k: charge received airtime to the station deficit
+Date: Mon, 24 Aug 2026 16:23:48 +0200
+Message-ID: <20260824142350.1757379-8-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260824142350.1757379-1-julius@bairaktaris.de>
 References: <20260824142350.1757379-1-julius@bairaktaris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260824_072434_882123_8359E284 
-X-CRM114-Status: GOOD (  20.67  )
+X-CRM114-CacheID: sfid-20260824_072435_158869_17BE2F28 
+X-CRM114-Status: GOOD (  16.04  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,141 +103,68 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ieee80211_handle_wake_tx_queue() has exactly one entry point, the
-wake_tx_queue callback, so a round starts only where mac80211 calls that
-callback: a frame arriving from the network stack, a block ack session
-starting or stopping, a station leaving powersave, or a stopped hardware
-queue restarting. Every round runs under
-local->handle_wake_tx_queue_lock, which is shared by all four access
-categories of the hardware.
+mac80211's airtime scheduler is configured to account both directions:
+local->airtime_flags is AIRTIME_USE_TX | AIRTIME_USE_RX, and
+ieee80211_sta_register_airtime() adds the received airtime to the same
+deficit the transmit side subtracts from. ath11k passes zero for it, so
+an access point serving a station that mostly uploads charges that
+station nothing for the medium it occupies, and the deficit that decides
+whose queue is served next describes half the traffic.
 
-That is the wrong shape for a driver whose only backpressure is the
-airtime queue limit. When ieee80211_txq_airtime_check() refuses a
-station, ieee80211_tx_dequeue() stops handing out frames and the
-station's intermediate queue keeps its backlog until the next enqueue,
-not until the airtime it is waiting on comes back from the hardware.
-Returning that airtime does not reschedule anything.
+Register the duration the hardware reports for each received PPDU. It
+arrives in the RXPCU PPDU end TLV on the monitor status ring, which is
+subscribed for every radio, and ath11k already accumulates it as the
+station's rx_duration. Charging it once per PPDU matches what the
+transmit side registers, whereas an estimate rebuilt per MSDU counts the
+preamble and the interframe space once for every subframe of an
+aggregate: measured against one HE station, the per-MSDU estimate from
+ieee80211_calc_rx_airtime() reports 16.9 s of receive airtime where the
+hardware measured 6.8 s.
 
-Open-code the round in the driver so that a second context can drive it.
-The walk is the same deficit round-robin over the active TXQs of one
-access category that the generic handler performs. A selection ends
-where the airtime queue limit binds, because ieee80211_tx_dequeue()
-applies the limit itself, and drains the station's queue where it does
-not, which is what the generic handler does today.
-
-mac80211 documents that a driver must not run concurrent scheduling rounds,
-and the next patch adds a second context that starts one. The round
-therefore takes a per-category lock rather than the hardware-wide one.
-ath10k and mt76 also drive the round from the driver; ath10k takes its
-per-category lock on the wake path alone, and mt76 serialises instead by
-running its rounds from one per-device tx worker.
-
-A custom .wake_tx_queue with a tx-completion driven push was proposed for
-ath11k once before [1]; the design was right and the measurement that
-justifies it is in this series.
-
-Link: https://lore.kernel.org/all/20230501130725.7171-1-quic_tamizhr@quicinc.com/ [1]
+A PPDU that reports no TID is charged to BE, matching what the transmit
+side does with a frame carrying no QoS control field; the value cannot be
+masked into range because ppdu_info->tid is ffs() of the TID bitmap less
+one, so a PPDU reporting none leaves 65535 and masking would select VO. A
+PPDU from a peer with no station entry is not charged to anyone.
 
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 Assisted-by: Claude:claude-opus-5
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
- drivers/net/wireless/ath/ath11k/core.h |  5 +++
- drivers/net/wireless/ath/ath11k/mac.c  | 44 ++++++++++++++++++++++++--
- 2 files changed, 47 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a0d725923ef2..40895d276de5 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -709,6 +709,11 @@ struct ath11k {
- 	 */
- 	spinlock_t data_lock;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 28aaf39cf342..7ef58152719d 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -5341,6 +5341,26 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
+ 		arsta = ath11k_sta_to_arsta(peer->sta);
+ 		ath11k_dp_rx_update_peer_stats(arsta, ppdu_info);
  
-+	/* serialises one scheduling round per access category against the
-+	 * other contexts that drive it
-+	 */
-+	spinlock_t txq_lock[IEEE80211_NUM_ACS];
++		/* The airtime a station spends transmitting is airtime it takes
++		 * from the others, so the fairness deficit is charged for it as
++		 * well. This is the duration the hardware measured for the
++		 * whole PPDU, which is what the transmit side registers too.
++		 *
++		 * ppdu_info->tid is ffs() of the TID bitmap less one, so a PPDU
++		 * that reports no TID leaves it at 65535; charge that airtime to
++		 * the same access category the transmit side gives a frame with
++		 * no QoS TID.
++		 */
++		if (ppdu_info->rx_duration) {
++			u8 tid = 0;
 +
- 	struct list_head arvifs;
- 	/* should never be NULL; needed for regular htt rx */
- 	struct ieee80211_channel *rx_channel;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 40a2b6d2f804..342b38308468 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6546,6 +6546,43 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
- 	}
- }
++			if (ppdu_info->tid < IEEE80211_NUM_TIDS)
++				tid = ppdu_info->tid;
++
++			ieee80211_sta_register_airtime(peer->sta, tid, 0,
++						       ppdu_info->rx_duration);
++		}
++
+ 		if (ath11k_debugfs_is_pktlog_peer_valid(ar, peer->addr))
+ 			trace_ath11k_htt_rxdesc(ar, skb->data, log_type, rx_buf_sz);
  
-+static void ath11k_mac_tx_push_txq(struct ath11k *ar, struct ieee80211_txq *txq)
-+{
-+	struct ieee80211_tx_control control = { .sta = txq->sta };
-+	struct sk_buff *skb;
-+
-+	/* ieee80211_tx_dequeue() applies the airtime queue limit itself, so a
-+	 * selection ends where that limit binds, where the hardware queue is
-+	 * stopped, or when the queue empties, as the generic handler does
-+	 * today.
-+	 */
-+	while ((skb = ieee80211_tx_dequeue(ar->hw, txq)))
-+		ath11k_mac_op_tx(ar->hw, &control, skb);
-+}
-+
-+static void ath11k_mac_schedule_txq(struct ath11k *ar, u8 ac)
-+{
-+	struct ieee80211_hw *hw = ar->hw;
-+	struct ieee80211_txq *txq;
-+
-+	spin_lock_bh(&ar->txq_lock[ac]);
-+
-+	ieee80211_txq_schedule_start(hw, ac);
-+	while ((txq = ieee80211_next_txq(hw, ac))) {
-+		ath11k_mac_tx_push_txq(ar, txq);
-+		ieee80211_return_txq(hw, txq, false);
-+	}
-+	ieee80211_txq_schedule_end(hw, ac);
-+
-+	spin_unlock_bh(&ar->txq_lock[ac]);
-+}
-+
-+static void ath11k_mac_op_wake_tx_queue(struct ieee80211_hw *hw,
-+					struct ieee80211_txq *txq)
-+{
-+	ath11k_mac_schedule_txq(hw->priv, txq->ac);
-+}
-+
- void ath11k_mac_drain_tx(struct ath11k *ar)
- {
- 	/* make sure rcu-protected mac80211 tx path itself is drained */
-@@ -10067,7 +10104,7 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 
- static const struct ieee80211_ops ath11k_ops = {
- 	.tx				= ath11k_mac_op_tx,
--	.wake_tx_queue			= ieee80211_handle_wake_tx_queue,
-+	.wake_tx_queue			= ath11k_mac_op_wake_tx_queue,
- 	.start                          = ath11k_mac_op_start,
- 	.stop                           = ath11k_mac_op_stop,
- 	.reconfig_complete              = ath11k_mac_op_reconfig_complete,
-@@ -10757,7 +10794,7 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
- 	struct ath11k *ar;
- 	struct ath11k_pdev *pdev;
- 	int ret;
--	int i;
-+	int i, j;
- 
- 	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
- 		return 0;
-@@ -10791,6 +10828,9 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
- 
- 		pdev->ar = ar;
- 		spin_lock_init(&ar->data_lock);
-+
-+		for (j = 0; j < IEEE80211_NUM_ACS; j++)
-+			spin_lock_init(&ar->txq_lock[j]);
- 		INIT_LIST_HEAD(&ar->arvifs);
- 		INIT_LIST_HEAD(&ar->ppdu_stats_info);
- 		mutex_init(&ar->conf_mutex);
 -- 
 2.53.0
 
