@@ -4,68 +4,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A457DC624C6
-	for <ath11k@archiver.kernel.org>; Mon, 31 Aug 2026 13:51:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D27DC61DFD
+	for <ath11k@archiver.kernel.org>; Mon, 31 Aug 2026 18:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=JcFqPQ4TWgXMnuZg61x6R9zAyZTT0bouo2OLeij6rhA=; b=AsRE6kEGz6PAFRqUm+mcCnM97+
-	1jOjsUKFP7DtP953dEChiRiQTSgph44Y8RuDSJEXaei6BLm5kDRutUk2cCSNXCi7Hk4E7PJLDnfTc
-	XIMoiJo7HnwV2y/V1cmS22XKodUBl/aEi60qBEXlCxFUW6v2jswwDnSMBSj0li9lqmKPLuDvRwBv8
-	xEA2IZKfuaaWSzwtGB48ddo78QiGlz20nVVpw6ETaASPPrgK+Kbs9cS+IgK4UqP3iobN1mmRR8g1K
-	2J+wINPjPm58MekSxbKOi5s9Y0yTISxAxV1vcrJOZaJF9mB50kfsdwiqyHtIfttOrtxa88NaTgnRs
-	ikTfZFCA==;
+	Content-Type:From:Subject:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=HZHW3hkiKEKh+3lY2MSqr02obqLy+h9PcFgQfJDAbMA=; b=0jTuveYAEBeiFuYfCbvBNP41em
+	9NXaHmvoln7cmQCkNK/qx9Jm+kH5c19CAcWXA1Nsh/a0x/80E24Sun0G9pY66/RZfuiqpf3neaaoh
+	KFKniGvqidGZ4OTK6/Bai7CI35QLvKsosBlL9n7nC2CfWYG7o253enfXBegeaHylrNVdO0oI1EtcN
+	lubKFmxVu1SwJ00ZmM0Zay4srnxEivK4jQ1Mc/5iU3ZjAxdnYgTlWBdSC70F1c5xNVY6HMFiimQ/b
+	Ckjmu4JUqAm+NFpLvxxjvnMODANvvDUBTiYTUQa0wj7EJk6HzxZZnR/U0KinpfFic17d+cLuhtyhM
+	pHwnMhLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x12Py-00000009YO8-2uoJ;
-	Mon, 31 Aug 2026 13:51:23 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1x174i-0000000AJVC-3RHO;
+	Mon, 31 Aug 2026 18:49:44 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x12Pw-00000009YN4-43mI
+	id 1x174e-0000000AJT3-0NVt
 	for ath11k@lists.infradead.org;
-	Mon, 31 Aug 2026 13:51:21 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4909D60211;
-	Mon, 31 Aug 2026 13:51:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAB631F00A3D;
-	Mon, 31 Aug 2026 13:51:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788184280;
-	bh=JcFqPQ4TWgXMnuZg61x6R9zAyZTT0bouo2OLeij6rhA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=TKwFqX6j44cQfaj+wnVOw8es1MnZZ6IY3hlkJctVp0b998Iyb6q15MR6ZCQPWNbnh
-	 6ubOeaKyFguozVIxwKHrStnYJ8YDMcE+ClyG2kQnm4mhKORzKgfCaHjHI+vXWxouhR
-	 BsTEaNDK59Jb7Xq126Nsap66zGYmrjBbQ6ISchQ+0cq0VHO3jobzO6yCXu+g69AtYd
-	 sgKSwR4djguYLWnHJ2i2enitKQ/DkeU5L0mXBO4eFc9bHjmxQzt6j5oFZNwjPV1p+/
-	 wu4qXzwLqvwhgWPfSmVLbUVNRPhIj6M/PUucah9Xf+DnKaARm9eXJKlvacHlTxwZGU
-	 c5kHQI37ri8Wg==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>,
-	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
-	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-	Sasha Levin <sashal@kernel.org>,
-	jjohnson@kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.18-6.1] wifi: ath11k: fix invalid data access in ath11k_dp_rx_h_undecap_nwifi
-Date: Mon, 31 Aug 2026 09:30:26 -0400
-Message-ID: <20260831133314.4125787-598-sashal@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260831133314.4125787-1-sashal@kernel.org>
-References: <20260831133314.4125787-1-sashal@kernel.org>
+	Mon, 31 Aug 2026 18:49:42 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 67VIXxep3851278
+	for <ath11k@lists.infradead.org>; Mon, 31 Aug 2026 18:49:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=HZHW3hkiKEKh+3lY2MSqr0
+	2obqLy+h9PcFgQfJDAbMA=; b=YoaCRXvPl7KaDCHPA/qHOt0UcWyYenPzyXi8Wc
+	3y8z5ARu+VNYlcdCpPy8xMrMYnaN6gDHEjv0WmHOLNn3SVPKb1cCR+yxf2Tjukeb
+	PiW8D0hAAt6N4rGCenhd4KPwNv0YpG3jB1o5BLLse8Qjh5z8QdUWvyQufvGhUpga
+	o67WBhKyTeMAtr08pMHLrpapkNGyf+aqyHEMjlhzw+CsVrtPJdKvKn9o0LRsBZMJ
+	BJcYap+dSdswlDeyJ4SaaVyxpDRnPK5CmuQgbyjNf5fFWJi1OzVhuzTjc4WlrR5w
+	uDruHSUnefLr/vp+SLCBa4eenRgTAMetInoVof5ARSskZSOw==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4gd6ayjs8g-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Mon, 31 Aug 2026 18:49:38 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3968bb86fb7so113472a91.2
+        for <ath11k@lists.infradead.org>; Mon, 31 Aug 2026 11:49:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1788202178; x=1788806978; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:from:content-language
+         :subject:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=HZHW3hkiKEKh+3lY2MSqr02obqLy+h9PcFgQfJDAbMA=;
+        b=FhfDAdgcHXETWGU11dPpeltb/1Uqb7FCdsRSaEiUmNyIHkh0YBAIECgEJt9HSj46tK
+         AwoB9AxEZC/0+EkF0OVscsD4MsEGpbKiMPZSzjEqPjKDNSwSGcbtGRMFvaV24mFvOZ4m
+         oS1KSt+k8CxtA7KeaMGH6f5g+O3nJjbqWk2GfO7M9vHvOZleZCn7Lc8mNShh0q6mTc9Y
+         VR+VlZ7PTAc31R0EuGKJKwZVvcst2fb8r4ROojK+OaSTzPyblu6u8mWvNzSFk8VAoAjV
+         dGlfae8CfKDJUr5eSJAzMBCzNfWv5bWeHUENSE2RepR1+7BnP70Of1W8KzLlRVmJc0hm
+         cdJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1788202178; x=1788806978;
+        h=content-transfer-encoding:content-type:from:content-language
+         :subject:cc:to:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=HZHW3hkiKEKh+3lY2MSqr02obqLy+h9PcFgQfJDAbMA=;
+        b=faa3xNRyjcsl/BpFn+YJmFY2v0mGkcXsMvBROb3OAzVsRTf1P01/1d/EEcYE1SRd8O
+         ShBChhXMRvnoVqGq5e/6W5NjtzQyyxw1AfGBa+ey3TZUl7Xc8aXQCigPiGG3o/yFehI4
+         +cUC1G4u6QACNzZVLikw7jeR2WMr7Y05kRCXHVFllQL1gW52k7QYV5dpbxHSiwOmU1id
+         gYhw+qU3v68WyuRldMlL4DMgnjpKY3/2BdvSsfe68CwprV8OfP0hBW5/HsT9kdCHjVAz
+         ulhV/Wv3BI/l4/pRAOqpvvvUCrrrF6lhvxfh6CgxaeJ+cZxook819tJ/1D4HrtcHJ0hC
+         03XQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxA73GS3md3gQ3a5izGaEgHRH1U1AYdNXnKkuwPjtHXKPBM0V4Yt/iepHkBcfHQlKzxYDGeotA=@lists.infradead.org
+X-Gm-Message-State: AFuF++k6s6+itc8djxifv9dzcijRB6eV8RA69PAMQ5lrXAVdXrjY8nc2
+	H/Vvpp9Pox8uaz37IRai3vH6MVXHpPOlOs4puZEUogUGZMk1ZIMyc1oeTYz0Sw9Unn7H/CvKyUj
+	3P0nJXrmi9zq17cYVFViaGmJplXhHB3MoYN6wCTjty/on0Va6BYrmVZJkQdrAI0k6
+X-Gm-Gg: AYBFou2kznk4aU4XDCiamNV8Yz40ekLBtyl6j28i/N/4Abt4/E0Zc3D2KVuZgRer52o
+	NFz8HKFJMa8NHEyAIbkY4aRN15FGOsM0LB5aITbIjPGcJwImnYLv+iTYqB9cP88aTZqakem4L7/
+	6yAITVGHOrXHm4bvTTip56+ZyynUcifHGknsgDel9mfS0wikdjiu5fyRLbaTsP9YOKvmIcThDsI
+	qIVeoqYYCU6gcKTYhEzrx0damnb4RUpXFD0onVVnG3daySPCOFlhRi2RoX/6d2aCLHf1/5OnK+f
+	PFQfvqzH2GMPymkiQrgfiWmkYSPF5CRXwQXFHioNQjw4Cuoe5aekbKQ25W4Nz0K6z0UL3w3KIdI
+	S4sy2q/LVna/sd4yL8Y6KfqbJQTY3OBALoibE
+X-Received: by 2002:a17:90b:2d82:b0:38e:5c6:4db9 with SMTP id 98e67ed59e1d1-396d0f2f709mr43742493a91.11.1788202177914;
+        Mon, 31 Aug 2026 11:49:37 -0700 (PDT)
+X-Received: by 2002:a17:90b:2d82:b0:38e:5c6:4db9 with SMTP id 98e67ed59e1d1-396d0f2f709mr43742416a91.11.1788202177338;
+        Mon, 31 Aug 2026 11:49:37 -0700 (PDT)
+Received: from [10.81.91.45] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-142e0bf8a13sm44942268c88.0.2026.08.31.11.49.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Aug 2026 11:49:36 -0700 (PDT)
+Message-ID: <a1b69517-a18c-49ba-8ef3-9b5de089eba5@oss.qualcomm.com>
+Date: Mon, 31 Aug 2026 11:49:36 -0700
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.18.48
+User-Agent: Mozilla Thunderbird
+To: linux-firmware@kernel.org
+Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+        ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+        jjohnson@kernel.org
+Subject: [PULL linux-firmware] ath10k, ath11k and ath12k firmware ath-20260831
+Content-Language: en-US
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwODMxMDE2MiBTYWx0ZWRfX5SzWQIaeW2X6
+ A8T4qPMF5q3v9HyiJbMb0tJ00vlt7fIrIV1m1eTJYRm3/CqStm2z+N6BBND2WvoDQl84sNUG3Gt
+ 3EBi6qA0fvPKM8l0DOfzlDgCjKxGOLQ=
+X-Proofpoint-GUID: QUV3elu6raeJ40xmFUVc0kJFF6XluFHj
+X-Authority-Analysis: v=2.4 cv=CYE4Irrl c=1 sm=1 tr=0 ts=6a95ccc3 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=Sv0fKeRqtYgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=VwQbUJbxAAAA:8 a=-bKND4alXjPcxD5Ql1gA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-ORIG-GUID: QUV3elu6raeJ40xmFUVc0kJFF6XluFHj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODMxMDE2MiBTYWx0ZWRfXytdL2lq/libQ
+ EOuAgSzglFFQYzt+PIPYavNQPEmvagwr9fzipBX5DUxNcXjg5ttnoAQ/BiK3kfbJ47BgXnNNthI
+ 9d+iLe5C1qGvRxsnLHzqIOe4S/WdDprArlYFcHfmvmnmcJgfaMLj4orDHUryH+s+c7w50FCWJSM
+ mwJUejLH5l1kwW1a+jmREVK5MlZItaPDUZ8+s7/sPXlp7KiiFo+ky4ELY86BT51OrSLY5mUVxkK
+ vYDC1NRb0huzJP926fX0A6u7c0I0RstbMddlDLTtMdRPMQ1TToEhKSQl74rbGeHT5IuLXkrPsjO
+ ekuUBmmdC003RY1m3ymLNFQdVqGmvTu7FjAwJSETVF6+UBkE2R2UJshnwgdI/lCwQvGVLvH3w43
+ dFOnhI9yJefcpviVSRaR3hqaZzIgGy7SmctvbCAMqVwcxt4xs93ZAWDZXJ8634sbR7GU4FqsNFC
+ yIQOQpKaP1jYenPS/Dw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-08-31_06,2026-08-31_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 suspectscore=0 bulkscore=0 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2608310162
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260831_114940_284574_098DF6CD 
+X-CRM114-Status: GOOD (  10.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,182 +145,38 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Hi,
+Here's a new pull request for ath10k, ath11k and ath12k firmware.
 
-[ Upstream commit 6b471e9aefee9ed73278eb1141e0d8530a56fae9 ]
+There are no changes for ath10k or ath11k.
 
-In certain cases, hardware might provide packets with a
-length greater than the maximum native Wi-Fi header length.
-This can lead to accessing and modifying fields in the header
-within the ath11k_dp_rx_h_undecap_nwifi() function for the
-DP_RX_DECAP_TYPE_NATIVE_WIFI decap type and
-potentially result in invalid data access and memory corruption.
+For ath12k, update the QCC2072 hw1.0 firmware to WLAN.COL.1.0.c2-00228.
+This version enables Multi-link Operation (MLO).
 
-Kernel stack is corrupted in: ath11k_dp_rx_h_undecap+0x6b0/0x6b0 [ath11k]
-Call trace:
- ath11k_dp_rx_h_mpdu+0x0/0x2e8 [ath11k]
- ath11k_dp_rx_h_mpdu+0x1e0/0x2e8 [ath11k]
- ath11k_dp_rx_wbm_err+0x1e0/0x450 [ath11k]
- ath11k_dp_rx_process_wbm_err+0x2fc/0x460 [ath11k]
- ath11k_dp_service_srng+0x2e0/0x348 [ath11k]
+Please let me know if there are any problems.
 
-Add a sanity check before processing the SKB to prevent invalid
-data access in the undecap native Wi-Fi function for the
-DP_RX_DECAP_TYPE_NATIVE_WIFI decap type.
+Thanks,
+/jeff
 
-This adapted from the discussion/patch of the ath12k driver [1].
+----------------------------------------------------------------
 
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+The following changes since commit e981caea6ed33c48d25b7dbf473327dbd01df163:
 
-Link: https://lore.kernel.org/linux-wireless/20250211090302.4105141-1-tamizh.raja@oss.qualcomm.com/ # [1]
-Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-Reviewed-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Link: https://patch.msgid.link/20260512022351.2033155-2-miaoqing.pan@oss.qualcomm.com
-Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
+  Merge branch 'inf43455' into 'main' (2026-08-31 12:35:31 +0000)
 
-LLM Generated explanations, may be completely bogus:
+are available in the Git repository at:
 
-The background searches finished and match the earlier analysis:
+  git://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git ath-20260831
 
-- **Ath11k fix not in tree** — `git log --grep` found no commit for
-  `ath11k_dp_rx_check_nwifi_hdr_len_valid` or the ath11k undecap_nwifi
-  fix.
-- **Ath12k analogue present** — `9a0dddfb30f12` (`wifi: ath12k: Fix
-  invalid data access in ath12k_dp_rx_h_undecap_nwifi`) is already in
-  v6.18.44.
+for you to fetch changes up to 59005d7898134a2898c5a17f37a9f629a3bc6807:
 
-That supports the **YES** backport verdict: the bug is still present in
-ath11k here, and the fix is a proven port of code already merged for
-ath12k in this tree.
+  ath12k: QCC2072 hw1.0: update to WLAN.COL.1.0.c2-00277-QCACOLSWPL_V1_TO_SILICONZ-1 (2026-08-31 11:44:42 -0700)
 
- drivers/net/wireless/ath/ath11k/dp_rx.c | 50 +++++++++++++++++++++++--
- 1 file changed, 47 insertions(+), 3 deletions(-)
+----------------------------------------------------------------
+Jeff Johnson (1):
+      ath12k: QCC2072 hw1.0: update to WLAN.COL.1.0.c2-00277-QCACOLSWPL_V1_TO_SILICONZ-1
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 330446f279cd6..1514f8657d546 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2501,6 +2501,29 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
- 	ieee80211_rx_napi(ar->hw, pubsta, msdu, napi);
- }
- 
-+static bool ath11k_dp_rx_check_nwifi_hdr_len_valid(struct ath11k_base *ab,
-+						   struct hal_rx_desc *rx_desc,
-+						   struct sk_buff *msdu)
-+{
-+	struct ieee80211_hdr *hdr;
-+	u8 decap_type;
-+	u32 hdr_len;
-+
-+	decap_type = ath11k_dp_rx_h_msdu_start_decap_type(ab, rx_desc);
-+	if (decap_type != DP_RX_DECAP_TYPE_NATIVE_WIFI)
-+		return true;
-+
-+	hdr = (struct ieee80211_hdr *)msdu->data;
-+	hdr_len = ieee80211_hdrlen(hdr->frame_control);
-+
-+	if (likely(hdr_len <= DP_MAX_NWIFI_HDR_LEN))
-+		return true;
-+
-+	ab->soc_stats.invalid_rbm++;
-+	WARN_ON_ONCE(1);
-+	return false;
-+}
-+
- static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
- 				     struct sk_buff *msdu,
- 				     struct sk_buff_head *msdu_list,
-@@ -2571,6 +2594,11 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
- 		}
- 	}
- 
-+	if (unlikely(!ath11k_dp_rx_check_nwifi_hdr_len_valid(ab, rx_desc, msdu))) {
-+		ret = -EINVAL;
-+		goto free_out;
-+	}
-+
- 	ath11k_dp_rx_h_ppdu(ar, rx_desc, rx_status);
- 	ath11k_dp_rx_h_mpdu(ar, msdu, rx_desc, rx_status);
- 
-@@ -3306,6 +3334,12 @@ static int ath11k_dp_rx_h_verify_tkip_mic(struct ath11k *ar, struct ath11k_peer
- 		    RX_FLAG_IV_STRIPPED | RX_FLAG_DECRYPTED;
- 	skb_pull(msdu, hal_rx_desc_sz);
- 
-+	if (unlikely(!ath11k_dp_rx_check_nwifi_hdr_len_valid(ar->ab, rx_desc,
-+							     msdu))) {
-+		dev_kfree_skb_any(msdu);
-+		return -EINVAL;
-+	}
-+
- 	ath11k_dp_rx_h_ppdu(ar, rx_desc, rxs);
- 	ath11k_dp_rx_h_undecap(ar, msdu, rx_desc,
- 			       HAL_ENCRYPT_TYPE_TKIP_MIC, rxs, true);
-@@ -3998,6 +4032,10 @@ static int ath11k_dp_rx_h_null_q_desc(struct ath11k *ar, struct sk_buff *msdu,
- 		skb_put(msdu, hal_rx_desc_sz + l3pad_bytes + msdu_len);
- 		skb_pull(msdu, hal_rx_desc_sz + l3pad_bytes);
- 	}
-+
-+	if (unlikely(!ath11k_dp_rx_check_nwifi_hdr_len_valid(ar->ab, desc, msdu)))
-+		return -EINVAL;
-+
- 	ath11k_dp_rx_h_ppdu(ar, desc, status);
- 
- 	ath11k_dp_rx_h_mpdu(ar, msdu, desc, status);
-@@ -4042,7 +4080,7 @@ static bool ath11k_dp_rx_h_reo_err(struct ath11k *ar, struct sk_buff *msdu,
- 	return drop;
- }
- 
--static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
-+static bool ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
- 					struct ieee80211_rx_status *status)
- {
- 	u16 msdu_len;
-@@ -4050,6 +4088,7 @@ static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
- 	u8 l3pad_bytes;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
- 	u32 hal_rx_desc_sz = ar->ab->hw_params.hal_desc_sz;
-+	struct ath11k_base *ab = ar->ab;
- 
- 	rxcb->is_first_msdu = ath11k_dp_rx_h_msdu_end_first_msdu(ar->ab, desc);
- 	rxcb->is_last_msdu = ath11k_dp_rx_h_msdu_end_last_msdu(ar->ab, desc);
-@@ -4059,6 +4098,9 @@ static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
- 	skb_put(msdu, hal_rx_desc_sz + l3pad_bytes + msdu_len);
- 	skb_pull(msdu, hal_rx_desc_sz + l3pad_bytes);
- 
-+	if (unlikely(!ath11k_dp_rx_check_nwifi_hdr_len_valid(ab, desc, msdu)))
-+		return true;
-+
- 	ath11k_dp_rx_h_ppdu(ar, desc, status);
- 
- 	status->flag |= (RX_FLAG_MMIC_STRIPPED | RX_FLAG_MMIC_ERROR |
-@@ -4066,19 +4108,21 @@ static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
- 
- 	ath11k_dp_rx_h_undecap(ar, msdu, desc,
- 			       HAL_ENCRYPT_TYPE_TKIP_MIC, status, false);
-+
-+	return false;
- }
- 
- static bool ath11k_dp_rx_h_rxdma_err(struct ath11k *ar,  struct sk_buff *msdu,
- 				     struct ieee80211_rx_status *status)
- {
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
--	bool drop = false;
-+	bool drop;
- 
- 	ar->ab->soc_stats.rxdma_error[rxcb->err_code]++;
- 
- 	switch (rxcb->err_code) {
- 	case HAL_REO_ENTR_RING_RXDMA_ECODE_TKIP_MIC_ERR:
--		ath11k_dp_rx_h_tkip_mic_err(ar, msdu, status);
-+		drop = ath11k_dp_rx_h_tkip_mic_err(ar, msdu, status);
- 		break;
- 	default:
- 		/* TODO: Review other rxdma error code to check if anything is
--- 
-2.53.0
-
+ WHENCE                              |   2 +-
+ ath12k/QCC2072/hw1.0/firmware-2.bin | Bin 7148724 -> 7148724 bytes
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
