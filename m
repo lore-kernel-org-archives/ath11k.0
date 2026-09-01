@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E266C61DD3
-	for <ath11k@archiver.kernel.org>; Tue,  1 Sep 2026 07:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECBEBC61DD6
+	for <ath11k@archiver.kernel.org>; Tue,  1 Sep 2026 07:44:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8MysSjN5BiHyKVnu9WLokfhYFbub8w6aLjsPVpWNVEk=; b=iLyDnQLgnblEAOYZ39G2yEKfdc
-	X/yTnRK/8mK5WHTR5QLJx2RCeBw+YBSISoR1sOiR5zjNMVqpEfR9/mdWkjqnwtJSfyV6zGLXCpJXm
-	t0OnAL8V0UIMkGGu0BH7QfLzsTtZyFMz5D7leXBBOXaZoPJZGNVvZ5xkyIKOXY3ekuC9U0JQWKiUu
-	98uQDtOATU55yixvO8rOR6GISpmVr2KBRyKD5gUhyqm4HnFDdL0SnjqZoKeHgjmJFdcbgZ7n5IJpe
-	2NXjxhnHSlyIWz3YqFXD08vcVLLZVCar6wjOi0vqYw+CiLdcHrBk9STv823UYYeUjtoH66mYheMjf
-	t3kMUKZg==;
+	bh=PMuwU4uDb7rEj6/4JiiTKDPJ13YLZj7n0SxKldQGwJw=; b=Xmuby3OnrFoTgnynFKANHylZNc
+	I/8XURA8bwhxBC34pwOtM9kFN9d0oWB4aixpQ5CLGPkDXuytgIULQnFCitGtiowSaZ5v075978vhf
+	8l12m9PBl39NGMygGimL3Kpgg+oNDAuScGRozd9VwxoUWBChkdMxxOcrvkbCbr0IDXv91eegpswMt
+	sG1crTWMwsC0bqlc3dIgsIOXghgK/oQh4FU9cowTfOIx/hNROlgfAEuEZYqNcqboxoVE+Ui9NKzoI
+	ljtR+FmGz/CXh2Dw4GdwVeerFbGxNyJOeGOhuIDJbS9PPB06x9zw8E0N+87icf1o/lyGH5MO6eqol
+	/+BSXMEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1J96-0000000B9Pi-1xpp;
-	Tue, 01 Sep 2026 07:43:04 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1x1JAZ-0000000B9ZY-3dqr;
+	Tue, 01 Sep 2026 07:44:35 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1J95-0000000B9PW-1c2C
+	id 1x1JAY-0000000B9ZQ-30uX
 	for ath11k@lists.infradead.org;
-	Tue, 01 Sep 2026 07:43:03 +0000
+	Tue, 01 Sep 2026 07:44:34 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7A18660202;
-	Tue,  1 Sep 2026 07:43:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB251F000E9;
-	Tue,  1 Sep 2026 07:42:57 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1F93340C1F;
+	Tue,  1 Sep 2026 07:44:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFA251F000E9;
+	Tue,  1 Sep 2026 07:44:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788248582;
-	bh=8MysSjN5BiHyKVnu9WLokfhYFbub8w6aLjsPVpWNVEk=;
+	s=k20260515; t=1788248674;
+	bh=PMuwU4uDb7rEj6/4JiiTKDPJ13YLZj7n0SxKldQGwJw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=UNMDG2qs+RipyyPPrYH4e8EY5MOSWjrbQRFLh5cmMcRnZiSqoIVvXjKt9ymlzr0Vw
-	 +4lWJ8kKsslWNLgt/foNbIii9s3D6RyYJXaGIzYPxePOmbH5SwEi0nnvq63XaWvwpc
-	 37l3qpwmE5V0GdYEr8plIh3eLLoSdJq5XAkzyVM6Zvr8lRKTYzdK2A4RfzfQM2nExM
-	 i3o9qd2PfdFdLbd5tVml1JRxKQmLyHa4kHq8RFIJ50K8sAXlOkmHjdHJlaIrQxWTXR
-	 SveyLPqdVlc+/tR3NTfIGcKlL9//cM+mW0evRWYf0KSqnU4QoNPGgFuPExQ8zyXXIe
-	 j6YfMSJxQSphQ==
-Date: Tue, 1 Sep 2026 09:42:43 +0200
+	b=RWtHfyjjVOYK+ltbUdjcxvqx66SMK8QaTv02Krtz/G+/g3novQpAJgHJ7LZ5rJIxr
+	 U7/OWl7XtSv2d6fazO+wgH8UOcJxvZVufzxYOip8bv7gQ1t7ZRQQsBLhYZW/aLMhY1
+	 xQzqL12pRxaUozutOeyitjihac27TrgAhsRe3mcrWAnUvDuLDbhGMFTrFXcuEaiqzM
+	 fyUCkDXtxA5JvUZrLlKnBA4UjxLj7nE3tkBq+cZqVHDKonvYdQRXx1OUeh6Al+OpD2
+	 ojFlhDmrDBkVgTXL2anNj23x6c5oKdcW5sb3Qi6BXmCTXpaesB9e+gWqlHFspFlJlo
+	 HUoYiAHZvGP0Q==
+Date: Tue, 1 Sep 2026 09:44:20 +0200
 From: Manivannan Sadhasivam <mani@kernel.org>
 To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Cc: Bjorn Helgaas <bhelgaas@google.com>, 
@@ -52,16 +52,15 @@ Cc: Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev, linux-wireless@vger.kernel.org, 
 	ath11k@lists.infradead.org, qiang.yu@oss.qualcomm.com
-Subject: Re: [PATCH v5 1/6] PCI/bwctrl: Set host bridge OPP and optionally
- disable ASPM around link retraining
-Message-ID: <atba2336nxz566wvbfrvclbx7yyma5elhnojb7ozz4ku6dk3q3@c2wa24laiqyd>
+Subject: Re: [PATCH v5 2/6] PCI: Export pci_set_target_speed()
+Message-ID: <hm23ew6au75saw6dtm5rdkf3k4x3sgpf4gnudqmms23rlppuhn@l3pmu3qh4q4s>
 References: <20260819-bwscale-v5-0-6dea79786b37@oss.qualcomm.com>
- <20260819-bwscale-v5-1-6dea79786b37@oss.qualcomm.com>
+ <20260819-bwscale-v5-2-6dea79786b37@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260819-bwscale-v5-1-6dea79786b37@oss.qualcomm.com>
+In-Reply-To: <20260819-bwscale-v5-2-6dea79786b37@oss.qualcomm.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,153 +75,13 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 19, 2026 at 06:55:52PM +0530, Krishna Chaitanya Chundru wrote:
-> PCIe host bridge controllers may need their operating point raised before
-
-Use either "Host Bridge devices" or "PCIe controllers".
-
-> retraining to a higher link speed so that hardware resources (e.g., RPMh
-> votes on Qualcomm platforms) are available at the requested data rate.
-> After retraining, the operating point must be updated to reflect the
-> actual negotiated speed.
-> 
-> Add pcie_set_opp() to look up an OPP on the host bridge parent device
-> using a key of (per-lane frequency in kHz, LNKCTL2 Target Link Speed
-> level).  Keying by generation rather than total bandwidth lets OPP tables
-> remain width-independent.
-> 
-> In pcie_set_target_speed(), call pcie_set_opp() before retraining only
-> when upscaling (speed_req > cur_bus_speed), since only raising the
-> operating point requires pre-staging hardware.  After retraining, call
-> pcie_set_opp() unconditionally with the actual cur_bus_speed to settle
-> the votes.  Both calls are skipped for downstream ports of PCIe switches,
-> as those are outside the host controller's scope.
-> 
-> Some controllers also require ASPM to be disabled around link retraining.
-> Add a disable_aspm_for_retrain flag to pci_host_bridge; when set,
-> pcie_set_target_speed() saves the child device's ASPM state, disables all
-> ASPM link states before retraining, and restores them afterward.
+On Wed, Aug 19, 2026 at 06:55:53PM +0530, Krishna Chaitanya Chundru wrote:
+> Export pci_set_target_speed() so that other kernel drivers can use it
+> to change the PCIe data rate.
 > 
 > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/pcie/bwctrl.c | 63 ++++++++++++++++++++++++++++++++++++++++++++++-
->  include/linux/pci.h       |  1 +
->  2 files changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
-> index c4c8d260bf96..6fa1522c47db 100644
-> --- a/drivers/pci/pcie/bwctrl.c
-> +++ b/drivers/pci/pcie/bwctrl.c
-> @@ -28,9 +28,11 @@
->  #include <linux/mutex.h>
->  #include <linux/pci.h>
->  #include <linux/pci-bwctrl.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/rwsem.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
-> +#include <linux/units.h>
->  
->  #include "../pci.h"
->  #include "portdrv.h"
-> @@ -120,6 +122,38 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
->  	return pcie_retrain_link(port, use_lt);
->  }
->  
-> +static int pcie_set_opp(struct pci_dev *pdev, struct pci_host_bridge *host,
-> +			enum pci_bus_speed speed)
-> +{
-> +	struct device *dev = host->dev.parent;
-> +	struct dev_pm_opp_key key = {};
-> +	int ret, freq_mbps, width;
-> +	unsigned long freq_kbps;
-> +	struct dev_pm_opp *opp;
-> +	u16 lnksta;
-> +
-> +	pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnksta);
-> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, lnksta);
-> +
-> +	freq_mbps = pcie_dev_speed_mbps(speed);
-> +	if (freq_mbps < 0)
-> +		return -EINVAL;
-> +
-> +	freq_kbps = freq_mbps * KILO;
-> +	key.freq = freq_kbps;
-> +	key.level = pci_bus_speed2lnkctl2(speed);
-> +	key.bw = 0;
 
-'key' is already 0 initialized above.
-
-> +	opp = dev_pm_opp_find_key_exact(dev, &key, true);
-> +	if (!IS_ERR(opp)) {
-> +		ret = dev_pm_opp_set_opp(dev, opp);
-> +		if (ret)
-> +			dev_err(dev, "Failed to set OPP for freq (%lu): %d\n",
-> +				freq_kbps * width, ret);
-> +		dev_pm_opp_put(opp);
-> +	}
-> +	return 0;
-> +}
-> +
->  /**
->   * pcie_set_target_speed - Set downstream Link Speed for PCIe Port
->   * @port:	PCIe Port
-> @@ -140,9 +174,12 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
->  int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->  			  bool use_lt)
->  {
-> +	struct pci_host_bridge *host = pci_find_host_bridge(port->bus);
-> +	bool is_rootbus = pci_is_root_bus(port->bus);
->  	struct pci_bus *bus = port->subordinate;
-> +	struct pci_dev *child = NULL;
-> +	int aspm_state = 0, ret;
->  	u16 target_speed;
-> -	int ret;
->  
->  	if (WARN_ON_ONCE(!pcie_valid_speed(speed_req)))
->  		return -EINVAL;
-> @@ -152,6 +189,24 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->  
->  	target_speed = pcie_bwctrl_select_speed(port, speed_req);
->  
-> +	/*
-> +	 * The host bridge driver may need to be scaled for targeted speed
-
-"Host Bridge resources may need to be..."
-
-> +	 * otherwise link might not come up at requested speed.
-> +	 */
-> +	if (is_rootbus && host && bus) {
-> +		/* Get function 0 of downstream device */
-> +		list_for_each_entry(child, &bus->devices, bus_list)
-> +			if (PCI_FUNC(child->devfn) == 0)
-> +				break;
-> +
-> +		if (child && host->disable_aspm_for_retrain) {
-> +			aspm_state = pcie_aspm_enabled(child);
-> +			pci_disable_link_state_locked(child, PCIE_LINK_STATE_ALL);
-> +		}
-
-You mentioned that the Host Bridge requires disabling ASPM during retraining,
-but here you are disabling ASPM of the downstream device. So the issue is device
-specific or Host Bridge (RP?) specific?
-
-> +		if (speed_req > bus->cur_bus_speed)
-> +			pcie_set_opp(port, host, speed_req);
-> +	}
-> +
->  	scoped_guard(rwsem_read, &pcie_bwctrl_setspeed_rwsem) {
->  		struct pcie_bwctrl_data *data = port->link_bwctrl;
->  
-> @@ -176,6 +231,12 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->  	    !list_empty(&bus->devices))
->  		ret = -EAGAIN;
->  
-> +	if (bus && is_rootbus && host) {
-
-Maintain an order for this check. I think this order makes sense than the above
-one.
-
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
 - Mani
 
