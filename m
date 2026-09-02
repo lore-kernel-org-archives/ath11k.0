@@ -4,128 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF045C624D3
-	for <ath11k@archiver.kernel.org>; Tue,  1 Sep 2026 14:45:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E729C61DFD
+	for <ath11k@archiver.kernel.org>; Wed,  2 Sep 2026 04:53:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cMkyp7j0GDArFH/6epwRcq8HmCIf0xcPQczhEQvkqh8=; b=P1DvRuUsLv5Hig
-	y+NCGzeoKJph1o5/3AnCRthlgDbhgliW/Qu/ZZ3urasl647JCpAUnQQYHy7y8OL1FFLh3sIxDrzo9
-	dKHYF/Exa6RyLl/sCMDNDUoqEGNkQj5qXuWf7q3PWTz5MEhPDCsqBWb/XZAyZ/ALMw4mrVOYh33M6
-	qlCIer4Pnbu/ser1S3ldOD7UM7tL3ln/XS7JEcSi9QWTP3XodqtfF8LL7n6rtUUvpgMpCd73IpFW4
-	Te8dnRC3xUpotj7q5ANZ3Jzi5bf/Fche1iH9eujsA4WOCRZ6g2XYiUBv+J5k4bMKIt4gC8gMay7lf
-	V7wxpNaXtGWafx4JOUAQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=IpYFqn52MzyyerSAhaJx9+MNvz9oY9L3KfTClhX+lTk=; b=G6cFI6DGVHLkmEh/McFCPZttJ4
+	3lEBueYZdemFkRylg82O87DPaw1KZhf56/4SU+maidNwPdX0qD3CvwER5sqS/SCHTw19DcEQa17HR
+	FqOfQiQ8ffQy0qmQvOK7sU9G5dfnM6DDRDpGk/ReWOva++hPYVuU5R0BoiB/uRm66KHGkhMKpoIgx
+	4LfxduTZDqqOiWlPL1ZaScvC19vcCcW2XQRhV5bPubIeZ28fwtTrmEBst/4qxlmnSQKcDuJG17Hcq
+	4JK0rRfJyJ4zl07v2o18UwXznE3EwDyKot0eIHmhf/hS0+GBU2Jv1+fjgOYsU7eUMwpPT+axzi8Pq
+	2VhWu/hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1Pk1-0000000CNaE-3YB2;
-	Tue, 01 Sep 2026 14:45:37 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1x1cy8-0000000DmcO-1a8o;
+	Wed, 02 Sep 2026 04:53:04 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1Pjz-0000000CNZG-06P7
+	id 1x1cy5-0000000Dmc3-1jRX
 	for ath11k@lists.infradead.org;
-	Tue, 01 Sep 2026 14:45:36 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-47f96c5b722so3112484f8f.0
-        for <ath11k@lists.infradead.org>; Tue, 01 Sep 2026 07:45:33 -0700 (PDT)
+	Wed, 02 Sep 2026 04:53:02 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6824NS824097961
+	for <ath11k@lists.infradead.org>; Wed, 2 Sep 2026 04:53:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IpYFqn52MzyyerSAhaJx9+MNvz9oY9L3KfTClhX+lTk=; b=U4UyBEj7NkKGWdyG
+	q1Mw86N1eMYbj6BtBltl9J7A3Z+rgCHPb119lZGYX+tbBY/HGzzj3TpPCEBcetXJ
+	4XHJtslfDYoCb3ffmVQ1PqrqP5lWLoidDLlug+RFQ8pZQ03HVcOwjQTD5QWaU5en
+	3UxryAXhnO3d6IlcYOZedDq9+5OwmRb3zyi3c3dgniofwggkfUMXuJ7hfiBeWg0a
+	wHvcYZnf0YVm352Hgqbz8R7aioJPAdQUFgTWonWPAfzzCd4xJw9yEpq2F9nMje8n
+	7hz+fD5fMjARQL6AApAJ7wgacICECaAMu452SzxLIDvqWIs+YU0ZbsB9L/oM2rxu
+	Rn/CFA==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4gdynt3geg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Wed, 02 Sep 2026 04:52:59 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-398ba5404d2so915661a91.1
+        for <ath11k@lists.infradead.org>; Tue, 01 Sep 2026 21:52:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1788273932; x=1788878732; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:from:references:cc:to:subject:reply-to
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=cMkyp7j0GDArFH/6epwRcq8HmCIf0xcPQczhEQvkqh8=;
-        b=P62hxk0mRdB+v0Uiq3c3j1Sj1TVpcEMwMlNv4xj/AfHLDwMN6A3i/c53+5ApOkqp+I
-         VaH2yFcREq/GizDXLnHoCDtPvrTdlGU91ViUZZ+Gyu/sNLwUhzC8qdvtuTfRpks7jaeT
-         /w5HzdGfNL0PywJVBxrkY37SS+qV1oo5I7igF+9n8ogA13J7XQ0qTB/mvVlot6tFc5n9
-         t8Y5TvQQM6udzEZItm33F36cw9+LAK0cEy65KlznmjKUZSCzAFi9zkhMBLCgiaLZHFn3
-         dyDwJ9yli53Yazjy0W/dArQXwmiyjdxVfitbvrbu0HwlVkD6jOFOTWLdSZTpWLXJhZjB
-         wciw==
+        d=oss.qualcomm.com; s=google; t=1788324779; x=1788929579; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=IpYFqn52MzyyerSAhaJx9+MNvz9oY9L3KfTClhX+lTk=;
+        b=IiFa2rcT+pK9oUi+REo/HYEThooEKC/BlluPzfKS5WCVlYz/MIXkpfpGP/6rdZDp4u
+         asKESJrD0sNsxMGYtbCWLc9AdnaR1Xvq5X6IqayR+BMDR8PruSb4VBsmVGB7+rKXGzhC
+         M/SiJ4XXsOECFCp5mHm3mGMb91zs428ZDyoPYexZQp/wJvMP1SCyv61Yit6E2M8QVKds
+         z9Dz4xDvBiW5YC0VOcSm/hguJZlmTMJAiDcMyHDt7mV/0fyGaEUnX6fYGAPLALCXXGRZ
+         ixxnxm+8Bvle8zA6vouyWbaPj5xWZQbDJtG4yqP+hwP7UgdHGZwvtAUA18fGuF1xe+AU
+         szaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788273932; x=1788878732;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:from:references:cc:to:subject:reply-to
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=cMkyp7j0GDArFH/6epwRcq8HmCIf0xcPQczhEQvkqh8=;
-        b=PqZ7sjzpw+IJygJH+P42C3wX/1BtOn+8DnPyKzVuAEDha1MQ51hgxPopdOfrGiQp56
-         owd60KAjbOI95tTosxeUx/L5GTH9NJinq8Gx8H21KkLKKEeb8nDv42P9GeXZmLOD7+BA
-         I6mbp1T9mpXPoKGGOwljDu8nnVtWjGafsOo8c8ZJOrMFtOXaM6nPukxk+TE+QC9qSlc2
-         9ACqZyfrEcceQMleR/m8NcYis2s7ELX4c7bBAa7vGhWG3gQX27JEgubIPLOkK7sqnPPw
-         8lyJB0SgmdlZd2Blw99izbcnXPxmekQiLbpqHjfRRww2uz73+ElYC9VGn31KhtxZZiU0
-         ZKmg==
-X-Forwarded-Encrypted: i=1; AKwUvBxT5WGXJ7TAXKVHYqYgqTaj8kXnsfmqQLyF1IpskvX9rHNxYpqSTjI5w9dh9cZftQZV8Lcqp1E=@lists.infradead.org
-X-Gm-Message-State: AFuF++mweeNOLb+fJYUW4eMBOKpvzykci9PHbWdbsPEibchW2vUTppEg
-	8jlC34xP3monsp4BvsXnS8QQfmJcrVpFwgoNziErEFMyM6YyLSLwOKpluy1cXVayNK3OwDbWAlu
-	cX7KaDj8=
-X-Gm-Gg: AYBFou2bDkXmGUbgvdDtRoXZvRXltXgtLJyP1m/0wgRWr/omptqvs3WFn8YQYd5jJXH
-	zWwZk+r10p7wdjV6PsgxNpOid2qJzkJsYNQfzFRlCvuxp6ifd8L9gdPyU/QvkUcASNV/a3W5gRm
-	g1lImlpMODxfofBkPvbmAvX4wJp0J9hrx16CoixKnjzaWET4TcJOD+KY8hF3ze4NTQ6Ml48RZ+P
-	xcowAxS9OOdHi0Kr+TlaVF1PG04BWdDH8/onTZkTVIjo6Bk/GbIoGoqHwMSBgDInI5y95YOBST2
-	zwmREACHfhLcovSzvVsNhmnhWF4VPrP4lgrqCXNlxz6yXLEGARlACF8LS5iVini3I175RNih3O1
-	7/DoR3ARDY/blB8acEaz6PEK1r0O7yzCnqtwdGdrf1gu8SnPWRkLAOa7VecGb1tR+FjfIebgSsC
-	z/id6SWw5Xj3ITL8OkaitlRV7kwVO9M7wwka2NDEHkKK9LSkaAL3gPaBt/o73kLTIt90SARhnHz
-	2FAS10nJJBeLL4vwy2A5Xj6hDil1Gu8ExsFFLy4isU=
-X-Received: by 2002:a05:6000:64a:b0:484:3621:6341 with SMTP id ffacd0b85a97d-48441011660mr15993949f8f.15.1788273932264;
-        Tue, 01 Sep 2026 07:45:32 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:3b72:e9ec:2552:5b90? ([2a01:e0a:106d:1080:3b72:e9ec:2552:5b90])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48442d37111sm5175659f8f.5.2026.09.01.07.45.30
+        d=1e100.net; s=20251104; t=1788324779; x=1788929579;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=IpYFqn52MzyyerSAhaJx9+MNvz9oY9L3KfTClhX+lTk=;
+        b=g8Q8soMRVM837lvwGoojT+xqrBGO201ElA7qLpx7XHm247AZxB7fufdO+wA2RXfVSO
+         vmyAM55XmfTmYKCZw3uwWV3Dq3WxOdyNZRDntAL/Flazaa3aiEekkGFDIhkcifxH8M/w
+         F5o87KVycpaGp4VNb8gFBE9CIqb34i+HhC71QbZ4q8ffq9yAE5QnwHSFjkusYUAEIgpc
+         fS2tL0osFIr2OtMi79FSN2CW1IbxM/Z5UBQAEA/4dHKF3t8ZsFulCIM/3A2ECnlhW4a1
+         yDAyYMkIpvGpYuea5QS2OgU8kHrWUyrtievP/RvoT3Pf4g7JVhbV2U8teSFyw+/M5Ynx
+         OOrA==
+X-Forwarded-Encrypted: i=1; AKwUvBzAl2ntWBUgSUNLgF3ZNASwPvl4hjz7BK0T7Zytn3mCv5qyMr9gKJ8h0IAjPK5vQ2xtbUxe/ek=@lists.infradead.org
+X-Gm-Message-State: AFuF++liQHes5YyfWQ5O4xpTCiO6ycKBfWY2vBeKpUu6ActvJ6gUrRg+
+	h4/tytm8EqeQkbj6eECdGkOCGVIHBAEBu5aimXE6Gv1/YfYBc3fmok57p2Phmm4g3tFL6X27ZNH
+	5tw1E5gA6XQKvka6eXYcqCNqwi3tDvac5Fr1/GCDgc3xdTFjgd6ntkLvtEh/DZcn8lIto2pf8
+X-Gm-Gg: AYBFou04WRqiX6ReypVuQTCef0KUcA/iszIS18tVNoYFHWVixVXsZCFpVMJD6krreu+
+	Zz1mRpHkRm/57FTzWTlRx/6zydeeqOG08tnksKyL0/pb/hiJHJhIi2FLEScAxiK0pX1JHTbeLiT
+	ijUO854dSPHM0jx3SeNztsQAGs/W6gZUCB8CcPKSSpVl7odHgUUIkj6gJipezPpCD95+zxLa+vm
+	REDDFjXZcNFvzqlm2oCEf4FLMBElAGGEZfaZ5Cfob2ie45TiE3f9JHIjYxyngnq6kM6O2PR1fCz
+	sNlCn+fiXQIcdlIetv+IuO0cojFpJg7LKoUFuNOpjjDwFnCnA+rjcb2mfksJGwBKNBUNFG0XeTM
+	2m3oXzGVrk1UNvFuKjlJMoKx8jhMqpRHY
+X-Received: by 2002:a17:90b:35c8:b0:393:194d:5366 with SMTP id 98e67ed59e1d1-39aedf43130mr3258296a91.10.1788324778547;
+        Tue, 01 Sep 2026 21:52:58 -0700 (PDT)
+X-Received: by 2002:a17:90b:35c8:b0:393:194d:5366 with SMTP id 98e67ed59e1d1-39aedf43130mr3258234a91.10.1788324778096;
+        Tue, 01 Sep 2026 21:52:58 -0700 (PDT)
+Received: from [10.218.35.45] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-14310adaeaasm1068788c88.10.2026.09.01.21.52.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Sep 2026 07:45:31 -0700 (PDT)
-Message-ID: <5b10cb13-77e6-4754-a885-92c873866ef4@linaro.org>
-Date: Tue, 1 Sep 2026 16:45:30 +0200
+        Tue, 01 Sep 2026 21:52:57 -0700 (PDT)
+Message-ID: <5c3f1611-275e-4664-b3e2-748da6d210ed@oss.qualcomm.com>
+Date: Wed, 2 Sep 2026 10:22:51 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/6] wifi: ath11k: Add support for MHI bandwidth
- scaling
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi
- <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>,
- Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Manivannan Sadhasivam <mani@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- qiang.yu@oss.qualcomm.com, Miaoqing Pan <quic_miaoqing@quicinc.com>
+Subject: Re: [PATCH v5 1/6] PCI/bwctrl: Set host bridge OPP and optionally
+ disable ASPM around link retraining
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Lorenzo Pieralisi
+ <lpieralisi@kernel.org>,
+        Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        qiang.yu@oss.qualcomm.com
 References: <20260819-bwscale-v5-0-6dea79786b37@oss.qualcomm.com>
- <20260819-bwscale-v5-5-6dea79786b37@oss.qualcomm.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260819-bwscale-v5-5-6dea79786b37@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <20260819-bwscale-v5-1-6dea79786b37@oss.qualcomm.com>
+ <atba2336nxz566wvbfrvclbx7yyma5elhnojb7ozz4ku6dk3q3@c2wa24laiqyd>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <atba2336nxz566wvbfrvclbx7yyma5elhnojb7ozz4ku6dk3q3@c2wa24laiqyd>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTAyMDA0MSBTYWx0ZWRfX3vxvo7iuIIoE
+ mf0+qoasf9HDDydwSaq/0m/EOgnretp4CWTBltFCPIOWscwTgJCAfGKmBvXYWDYu2BuaretadIv
+ cg8xz2RrZZFhWpwcwnC6Ldd0K/iu3zPxNMR7KZ46FCOUjQzZIZoK5VXY3zobQnxXWb++UpmleT4
+ u3pIbxOOsH9u6GikrqZeKTAmkQ+2Rn9JsWKFhIBCYuwi5ltdb/jndMXfSsLNpC5lQmt5fzX3BKX
+ Rj7yDTAXPIOQ8TXiZ1WmG0Trycv6xpLkQ9JppuzrDJ+JJgm1qvZigEYRUPj0orhyYWfxMYe7zlG
+ HJogSbN7cnO2GkRHdgT45r9yT+3wRxQiKv67gvx9mXwt8ne03IWrQGVFwEyP5kBcBoAMW8l3zvI
+ XdhZF+DgsqnmMZeMB0s8wY1m4FV64jV6UdSTyHADwS/ZFEqZpMEtSoosE6CHednFZ4wnSV26R16
+ WbA5q41Hi1jEQTA073Q==
+X-Proofpoint-ORIG-GUID: mEC8P3VdWGKNW6zCAgQx9YZwHU6owOSj
+X-Proofpoint-Spam-Info: AW1haW4tMjYwOTAyMDA0MSBTYWx0ZWRfX62DrdWXaZNrN
+ JBcB+8YUlR+QODpr5f+7bLDVkW62Xnr9z3SVJm4DU6wHsvWHnTSL8Qvy8LYoWttd4Ba92ksZd9p
+ VEFPVz5ZNv0NxGIWmT3FO/YkEfv5Ioc=
+X-Authority-Analysis: v=2.4 cv=LfkMLDfi c=1 sm=1 tr=0 ts=6a97abab cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=VdqzKS8jKosA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=EUspDBNiAAAA:8 a=6HI80psrSe5n1y8aGwAA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-GUID: mEC8P3VdWGKNW6zCAgQx9YZwHU6owOSj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-09-01_06,2026-09-01_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ phishscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2609020041
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260901_074535_125025_5DBD7EA3 
-X-CRM114-Status: GOOD (  22.94  )
+X-CRM114-CacheID: sfid-20260901_215301_578509_2825307F 
+X-CRM114-Status: GOOD (  33.38  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,112 +158,162 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-On 8/19/26 15:25, Krishna Chaitanya Chundru wrote:
-> From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-> 
-> Add support for MHI bandwidth scaling, which will reduce power consumption
-> if WLAN operates with lower bandwidth. This feature is only enabled for
-> QCA6390.
-> 
-> Bandwidth scaling is initiated by the endpoint firmware based upon the
-> bandwidth requirements, if there is high bandwidth data endpoint requests
-> for higher data rates or if there is less bandwidth they request for lower
-> data rates to reduce power. Endpoint initiates this through MHI protocol.
-> 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04546-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
 
-Somehow unrelated, but I added this to the ath12k to test on an WCN785x and I just
-got a single event to set the speed to 5GT/s and no further event whatever the state
-of the Wireless link is.
+On 9/1/2026 1:12 PM, Manivannan Sadhasivam wrote:
+> On Wed, Aug 19, 2026 at 06:55:52PM +0530, Krishna Chaitanya Chundru wrote:
+>> PCIe host bridge controllers may need their operating point raised before
+> Use either "Host Bridge devices" or "PCIe controllers".
+>
+>> retraining to a higher link speed so that hardware resources (e.g., RPMh
+>> votes on Qualcomm platforms) are available at the requested data rate.
+>> After retraining, the operating point must be updated to reflect the
+>> actual negotiated speed.
+>>
+>> Add pcie_set_opp() to look up an OPP on the host bridge parent device
+>> using a key of (per-lane frequency in kHz, LNKCTL2 Target Link Speed
+>> level).  Keying by generation rather than total bandwidth lets OPP tables
+>> remain width-independent.
+>>
+>> In pcie_set_target_speed(), call pcie_set_opp() before retraining only
+>> when upscaling (speed_req > cur_bus_speed), since only raising the
+>> operating point requires pre-staging hardware.  After retraining, call
+>> pcie_set_opp() unconditionally with the actual cur_bus_speed to settle
+>> the votes.  Both calls are skipped for downstream ports of PCIe switches,
+>> as those are outside the host controller's scope.
+>>
+>> Some controllers also require ASPM to be disabled around link retraining.
+>> Add a disable_aspm_for_retrain flag to pci_host_bridge; when set,
+>> pcie_set_target_speed() saves the child device's ASPM state, disables all
+>> ASPM link states before retraining, and restores them afterward.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>  drivers/pci/pcie/bwctrl.c | 63 ++++++++++++++++++++++++++++++++++++++++++++++-
+>>  include/linux/pci.h       |  1 +
+>>  2 files changed, 63 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
+>> index c4c8d260bf96..6fa1522c47db 100644
+>> --- a/drivers/pci/pcie/bwctrl.c
+>> +++ b/drivers/pci/pcie/bwctrl.c
+>> @@ -28,9 +28,11 @@
+>>  #include <linux/mutex.h>
+>>  #include <linux/pci.h>
+>>  #include <linux/pci-bwctrl.h>
+>> +#include <linux/pm_opp.h>
+>>  #include <linux/rwsem.h>
+>>  #include <linux/slab.h>
+>>  #include <linux/types.h>
+>> +#include <linux/units.h>
+>>  
+>>  #include "../pci.h"
+>>  #include "portdrv.h"
+>> @@ -120,6 +122,38 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
+>>  	return pcie_retrain_link(port, use_lt);
+>>  }
+>>  
+>> +static int pcie_set_opp(struct pci_dev *pdev, struct pci_host_bridge *host,
+>> +			enum pci_bus_speed speed)
+>> +{
+>> +	struct device *dev = host->dev.parent;
+>> +	struct dev_pm_opp_key key = {};
+>> +	int ret, freq_mbps, width;
+>> +	unsigned long freq_kbps;
+>> +	struct dev_pm_opp *opp;
+>> +	u16 lnksta;
+>> +
+>> +	pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnksta);
+>> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, lnksta);
+>> +
+>> +	freq_mbps = pcie_dev_speed_mbps(speed);
+>> +	if (freq_mbps < 0)
+>> +		return -EINVAL;
+>> +
+>> +	freq_kbps = freq_mbps * KILO;
+>> +	key.freq = freq_kbps;
+>> +	key.level = pci_bus_speed2lnkctl2(speed);
+>> +	key.bw = 0;
+> 'key' is already 0 initialized above.
+>
+>> +	opp = dev_pm_opp_find_key_exact(dev, &key, true);
+>> +	if (!IS_ERR(opp)) {
+>> +		ret = dev_pm_opp_set_opp(dev, opp);
+>> +		if (ret)
+>> +			dev_err(dev, "Failed to set OPP for freq (%lu): %d\n",
+>> +				freq_kbps * width, ret);
+>> +		dev_pm_opp_put(opp);
+>> +	}
+>> +	return 0;
+>> +}
+>> +
+>>  /**
+>>   * pcie_set_target_speed - Set downstream Link Speed for PCIe Port
+>>   * @port:	PCIe Port
+>> @@ -140,9 +174,12 @@ static int pcie_bwctrl_change_speed(struct pci_dev *port, u16 target_speed, bool
+>>  int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>>  			  bool use_lt)
+>>  {
+>> +	struct pci_host_bridge *host = pci_find_host_bridge(port->bus);
+>> +	bool is_rootbus = pci_is_root_bus(port->bus);
+>>  	struct pci_bus *bus = port->subordinate;
+>> +	struct pci_dev *child = NULL;
+>> +	int aspm_state = 0, ret;
+>>  	u16 target_speed;
+>> -	int ret;
+>>  
+>>  	if (WARN_ON_ONCE(!pcie_valid_speed(speed_req)))
+>>  		return -EINVAL;
+>> @@ -152,6 +189,24 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>>  
+>>  	target_speed = pcie_bwctrl_select_speed(port, speed_req);
+>>  
+>> +	/*
+>> +	 * The host bridge driver may need to be scaled for targeted speed
+> "Host Bridge resources may need to be..."
+>
+>> +	 * otherwise link might not come up at requested speed.
+>> +	 */
+>> +	if (is_rootbus && host && bus) {
+>> +		/* Get function 0 of downstream device */
+>> +		list_for_each_entry(child, &bus->devices, bus_list)
+>> +			if (PCI_FUNC(child->devfn) == 0)
+>> +				break;
+>> +
+>> +		if (child && host->disable_aspm_for_retrain) {
+>> +			aspm_state = pcie_aspm_enabled(child);
+>> +			pci_disable_link_state_locked(child, PCIE_LINK_STATE_ALL);
+>> +		}
+> You mentioned that the Host Bridge requires disabling ASPM during retraining,
+> but here you are disabling ASPM of the downstream device. So the issue is device
+> specific or Host Bridge (RP?) specific?
+Issue is RP specific, if aspm driver disables the ASPM only when we pass the
+child, if the we pass root port dev, it will just return without modifying the
+aspm.
 
-Is there anything required on the ath12k side to allow lowering the speed to 2.5GT/s ?
+Ack for remaining comments.
 
-Thanks,
-Neil
-
-> 
-> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->   drivers/net/wireless/ath/ath11k/mhi.c | 38 +++++++++++++++++++++++++++++++++++
->   1 file changed, 38 insertions(+)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-> index a6c9ff112c68..9bff4c4bca3b 100644
-> --- a/drivers/net/wireless/ath/ath11k/mhi.c
-> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
-> @@ -20,6 +20,7 @@
->   #define MHI_TIMEOUT_DEFAULT_MS	20000
->   #define RDDM_DUMP_SIZE	0x420000
->   #define MHI_CB_INVALID	0xff
-> +#define MHI_BW_SCALE_CHAN_DB 126
->   
->   static const struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
->   	{
-> @@ -71,6 +72,17 @@ static struct mhi_event_config ath11k_mhi_events_qca6390[] = {
->   		.client_managed = false,
->   		.offload_channel = false,
->   	},
-> +	{
-> +		.num_elements = 8,
-> +		.irq_moderation_ms = 0,
-> +		.irq = 1,
-> +		.mode = MHI_DB_BRST_DISABLE,
-> +		.data_type = MHI_ER_BW_SCALE,
-> +		.priority = 2,
-> +		.hardware_event = false,
-> +		.client_managed = false,
-> +		.offload_channel = false,
-> +	},
->   };
->   
->   static const struct mhi_controller_config ath11k_mhi_config_qca6390 = {
-> @@ -311,6 +323,30 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
->   	writel(val, addr);
->   }
->   
-> +static int ath11k_mhi_op_get_misc_doorbell(struct mhi_controller *mhi_cntrl,
-> +					   enum mhi_er_data_type type)
-> +{
-> +	if (type == MHI_ER_BW_SCALE)
-> +		return MHI_BW_SCALE_CHAN_DB;
-> +
-> +	return -EOPNOTSUPP;
-> +}
-> +
-> +static int ath11k_mhi_op_bw_scale(struct mhi_controller *mhi_cntrl,
-> +				  struct mhi_link_info *link_info)
-> +{
-> +	enum pci_bus_speed speed = pci_lnkctl2_bus_speed(link_info->target_link_speed);
-> +	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
-> +	struct pci_dev *pci_dev = to_pci_dev(ab->dev);
-> +	struct pci_dev *pdev;
-> +
-> +	pdev = pci_upstream_bridge(pci_dev);
-> +	if (!pdev)
-> +		return -ENODEV;
-> +
-> +	return pcie_set_target_speed(pdev, speed, true);
-> +}
-> +
->   static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
->   {
->   	struct device_node *np;
-> @@ -387,6 +423,8 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
->   	mhi_ctrl->status_cb = ath11k_mhi_op_status_cb;
->   	mhi_ctrl->read_reg = ath11k_mhi_op_read_reg;
->   	mhi_ctrl->write_reg = ath11k_mhi_op_write_reg;
-> +	mhi_ctrl->bw_scale = ath11k_mhi_op_bw_scale;
-> +	mhi_ctrl->get_misc_doorbell = ath11k_mhi_op_get_misc_doorbell;
->   
->   	switch (ab->hw_rev) {
->   	case ATH11K_HW_QCN9074_HW10:
-> 
+- Krishna Chaitanya.
+>> +		if (speed_req > bus->cur_bus_speed)
+>> +			pcie_set_opp(port, host, speed_req);
+>> +	}
+>> +
+>>  	scoped_guard(rwsem_read, &pcie_bwctrl_setspeed_rwsem) {
+>>  		struct pcie_bwctrl_data *data = port->link_bwctrl;
+>>  
+>> @@ -176,6 +231,12 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
+>>  	    !list_empty(&bus->devices))
+>>  		ret = -EAGAIN;
+>>  
+>> +	if (bus && is_rootbus && host) {
+> Maintain an order for this check. I think this order makes sense than the above
+> one.
+>
+>
+> - Mani
+>
 
 
