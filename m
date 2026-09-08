@@ -4,136 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81D78C79F82
-	for <ath11k@archiver.kernel.org>; Tue,  8 Sep 2026 09:44:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A0BC79F82
+	for <ath11k@archiver.kernel.org>; Tue,  8 Sep 2026 13:53:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=okk/6UKvvJuFy0HfkixIG69h3/2z4AmE9S0HHh3WLco=; b=Fdbe9NELDvvWF0r4S0WQlZZ0x/
-	1gSIcR9E7KpBSP6FFWx4qp07J8ECdtu9wWK1zYVQ8waiN5X6MfRXZfwlutqvzQegm8EtrTIRvoOrF
-	e4o+pm3jhlpe82v6z8k9cAjFodPwOHXzQpWmpI7qQDSBlWrWMZCxp0fMO2APe5SgoTHAUAUtpD5Xs
-	QJgczPs80/Oi8HS+AVFlpwftZZDsVnCcmWyc4pJ3QjpvRsterIjvgbe28j3lBh5xtKRommTL7Tp51
-	726+aDazhCHoBWamnNSQ5Ebb44+RqbNnDbGLqXoAFkRirgJiaafNQskBLMHtd/K2Pmqe/miG1739H
-	ey8x3WQg==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=jLbvcyq3q/pbF30deRaLGbbCTJlJfhASYsjhDtA/Jsc=; b=zE/+TB9gBvDd8NVFI+UgvbPfXA
+	lBSGVlnqJEowexaIF7NQAE60ly7wPMH8AyhOFw6yi2p/YdT56WVd2YGTMrTSZa4indMCZ2ftAE1MQ
+	SrYretVkI2KhqwZldM/hrR7QtUVZa9rkv1AE1XTEzf0WnAQ7Hbj6ebSfxbmyyUpwTuGONnRHqba/A
+	HMYIYNYVTrW+jTTe6FaJZr7i5t5dLFAxJ5JZypDfTQBkzhTgJNPgxbVYnhgVXfzBpaxyxSdaOmSCo
+	N12dib9LC2nkC8Qqz5vSC8Rp2M3tsvdA08Axjp/TrVmEs5N8CQfyBTQI7PZBNohuVjhVJfqToGk3S
+	6X1hqccg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x3sNo-00000008ePi-09Wj;
-	Tue, 08 Sep 2026 09:44:52 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1x3wGJ-00000009BhS-3Ubc;
+	Tue, 08 Sep 2026 13:53:23 +0000
+Received: from mail-ed2-x0a.google.com ([2a00:1450:4864:33::a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x3sNn-00000008eP8-0mkO
-	for ath11k@bombadil.infradead.org;
-	Tue, 08 Sep 2026 09:44:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=okk/6UKvvJuFy0HfkixIG69h3/2z4AmE9S0HHh3WLco=; b=l9E/fKpvjpBqo5bxo9f+k4T70u
-	qumSsJZBqKcvc8PKEqRa91n2+T5OOGlkA5c4fTQBoggD1uAlqDhLXag+ktZIxf47/q2Glrwcy+MwZ
-	LzMfaV6hcBrNqbnK83hX1xJu4+QhF6v8tOqdsglGmsDE82miBnaucs3oNU8ew+v+iulxifnr1UxQu
-	UOlfbAJwEX6hluHHNitNqokAQPB16DjP8j8Ckw1jqa/TjbeoOZeYnW2HWysdvMlWeQ3d9QCriwwjT
-	nZWd8NRj3lzMDAFvJFENcgDsZgDd7CXwwdqeHoG3KcJ+/cCseIb6q4Qf0rX4NmNAymPC9ANx3CxOF
-	KfNUJgTQ==;
-Received: from lahtoruutu.iki.fi ([2a0b:5c81:1c1::37])
-	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
-	id 1x3sNj-0000000HDjM-39ZF
+	id 1x3wGH-00000009Bbf-1iR0
 	for ath11k@lists.infradead.org;
-	Tue, 08 Sep 2026 09:44:50 +0000
-Received: from fauth-c2-smtp.messagingengine.com (fauth-c2-smtp.messagingengine.com [204.75.18.201])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmtilli)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4hfJtw5MtWz49Q5T;
-	Tue, 08 Sep 2026 12:44:40 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1788860681;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=okk/6UKvvJuFy0HfkixIG69h3/2z4AmE9S0HHh3WLco=;
-	b=AkkoA4g+cdgtOntOBeCtgp7e5YEL5kCQnDqxmKvSZPwzZX4MLzi7IVLpez33Wjv8mA00Jb
-	gLnRewcuvFht5TvhvCuHXijTWDGGOjUQLfUcoDxakJvUys+jnzGraBLCbiJKFXQNmBfeqV
-	XaUYPpui2v4eiMYt0Ha7fdOoBM+BNFVjp8fJGs85jPh0LTxldvPufaAHfSGEc/z6CqNlo7
-	gYfdSCBnBKgJdFbF28Dn9xqjdhuSqVPPcRnVez36oqeYH5pi+HqXnhY2PVmcIacEktPf77
-	M9wEV6K6d/uYs541XGNjKBzl6ISUNlEkiqDAntfVdq+0V/DbJ6tc623pFGKxcQ==
-ARC-Seal: i=1; a=rsa-sha256; d=iki.fi; s=lahtoruutu; cv=none; t=1788860681;
-	b=cd7AyBRDueQ3jJ07ANj8QVqU/kQcA2cgPwWB+a1kMFB17+jff+jVogBR19z9cBvB3JLG5d
-	IghYGue4kaEhJ0gHF5Le074jyFkZKUZbAzNdR/ZDW/2L5z4TGS7DJpjBNC2JCmJ8tghWJq
-	/NzwsYKa1EJOCy0Fk++A04t3RxTk1FxpwVeErcjxnuVQRyAtRnKy7rctvOAmiqpn1tkA4h
-	2+jtrhdXBmV8R+rYaAaKJbHuVSvEV5q++dKxKK8hq7iJgz9Y+MAqrcJcsGP5Ie+wFBrLny
-	sdTRrtYdfuEKcwKg7CQhk/7v3bV0I6Rr46soi8kpDDj6NH31G57yBghjZZrVJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1788860681;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=okk/6UKvvJuFy0HfkixIG69h3/2z4AmE9S0HHh3WLco=;
-	b=nNypRlsdhiGVdeSHQ37mzYZAzZIc0jJKwjTR1/SRSPlUYWgarZeLvY1Ur0/lcfZ8q654ii
-	keouWkEih2fcBl2ASgw/pU0lITT780nD1NinxsNAJ21yYS8+OngDOjKHQZcJRXzeOjNCLD
-	fuYrEH18QUBbamuINv8V4nusbz7F5MOTZb3mQ5HJLmtzIMaNMOLujHC+QoOojwTChIV7kx
-	jveuPjbs79ZmnM/QLOjsiI2kptslQplomSHzPGHnUuK12cStr2/BL/xzlju9GTwpE5gIPf
-	MMJu/HD/tYBtWnV1E5N+G/jfKlpvD8nooc5lBYuJDBPS2U7BXWZLxaSC37ABfw==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=jmtilli smtp.mailfrom=juha-matti.tilli@iki.fi
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfauth.ams.internal (Postfix) with ESMTP id 0D73E198003A;
-	Tue,  8 Sep 2026 05:44:40 -0400 (EDT)
-Received: from ams-imap-13 ([10.64.2.33])
-  by ams-compute-02.internal (MEProxy); Tue, 08 Sep 2026 05:44:40 -0400
-X-ME-Sender: <xms:Bdmfag0oJIPtIHdp15FNK_ZlFdN56u-GxgQtG_P6tcyg-IKQuxu50w>
-    <xme:Bdmfal6P618KOufT0AatJ7zRE4WPse3oGZosgxLcXeX3xEYbamL5ACxj0a94aXzP6
-    4rZ0G6g-gEzVQKHhwMpfThmMB0F4Q7zlK9rvH05npXZlKoMVGSFgeoE>
-X-ME-Proxy-Cause: dmFkZTEQ6RAYbZbS6n2XZ91CCDVH1PswnGr8U2+3tuLiFTy4d1Bb10G7XCafM0ID5ejv1h
-    UZXyfcVmyzTcL718ElzEntJLirWMZWQhFqPCw2ydLCRkreUBMw2X3HnoN+1F7JnndHR8zi
-    Sp4ODtSghtSxRKi4Cg861W0s4zHP/rrBOdathqyDMBoI/8T7s8i7Sbxh3vHOGHKpO+cw7K
-    kcvpmbSz0nr0H1WhIwf4idE53v9ZsBaHoldGedv2Gdl6cVY0ywUqLCFL7w588aYhy64fOv
-    SArJG669zMjCkJOlbyfwleJPE+mp9+24JBGl4a/sLnqcR7NpKb6o2Jut9dnpzXgjBXBjN+
-    ZbaBEggnrGmIsPujM9VgF9Oug0fw8KuqtdbLn7kzmkc3wPC30aIXgzv6OFPNklHY+Fypmc
-    HqanJxDTY6vLsYHuUxlM0qgUcp8bR4T/88Lfcnfr0gPXfre+lJPGQ8bXt2GBrNuOOzKlZY
-    hEgQQss4L2oBP+d9CNGZJXrTGm8/jCRjQ9nL6XpH1UqHyvNuhYZfC6kNuph0jCo944fk0r
-    E7kl6dQ/ntbsfOL1i4biQAriVlCJgrKbCpMweYBxAaDPHEP+/r919UIhhC/IYmWg5unr14
-    V1LF0wEfCTTYNlVAPB+LBTdH9H8+SQRHgOasCrb6mtNlINf1A5NIcjiy3zNQ
-X-ME-Proxy: <xmx:CNmfakY1PnJ90UlsCm8XHJwYiV_5SHH34CS-GYqSCvPOjzxhjoKRzQ>
-    <xmx:CNmfaoIuCvbPae8Iatr8AFQel9kzLtqBvQCF-9mZfNDKjANJ47Kwxw>
-    <xmx:CNmfatq4lc6ZVy1cPfkC6DZ0N7p7rvggsllI4zSFJtQmgebEKIVsQw>
-    <xmx:CNmfahAo5lASRNKEZmoX9AoEIxTZhw7W3mioKr96w7lbO0rA63w9fA>
-    <xmx:CNmfajcudKS2cF_hGTgEqVcCI_OV8tv7zL1oiUTz9Nh6UtNVV37URmL0>
-Feedback-ID: i02414972:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id 71AD9F80083; Tue,  8 Sep 2026 05:44:37 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	Tue, 08 Sep 2026 13:53:22 +0000
+Received: by mail-ed2-x0a.google.com with SMTP id 4fb4d7f45d1cf-6a672286019so2529638a12.1
+        for <ath11k@lists.infradead.org>; Tue, 08 Sep 2026 06:53:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bairaktaris.de; s=google; t=1788875597; x=1789480397; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=jLbvcyq3q/pbF30deRaLGbbCTJlJfhASYsjhDtA/Jsc=;
+        b=YZhKZUV8095gB1JofPrbpwugfEYclQl84V9rnck3C9JmGBP8dYbFT2g15uB9r85QED
+         01ajNdYDw/BfQ1zEm2852GolaSuaLQ2nUk1M/Wx0Tz3vpT4NXFEp89ohyVPG5OHfQnOG
+         9Jgmvjx+EPbUmfCI/IykdAbUTpHeedP5Oaz0vk0FUaXpmzPwbapGFnCMIm4UTgTolgZm
+         HNKOe9I94MdsXq+6+0UaL4JrptOy8HDL5LgXfPDY9TKQ9kiurRV579s3QxZEA4MH7Dw8
+         LZJko2LFKwuLNvpA8V33Guz/h7a+htPIOcHzPIcQ6AF+nVIPBDAcEAOSjmGWD/bA2FpY
+         gRew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1788875597; x=1789480397;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=jLbvcyq3q/pbF30deRaLGbbCTJlJfhASYsjhDtA/Jsc=;
+        b=Tkv8qH1iumkJj79JZhOcGCCi8H9qwyCyPQLiXsyiap9OeIIRscUKElnEh/5qqdm3WT
+         ZTFMBqvmVtA5OQe4t+vZrch/jPq+W7cuox9mjPKDxx0mcPqGZrr7YgA+UVk9uN0DD5PY
+         2vwOTOryDTxS2L6IvFYWRGaxVai0WMSAN0caT0KCh95/3dmIZ0eqsSTZ3QnDcvndnpJA
+         ZGpeuN0q3uSDYJfixWss0d3BGYeu+o4j0eqVMS026iZRqUxGTr0AGe39XJw68yCL+sJB
+         VyZus8LScjUAwDA1HFvl9Jh6VXfjqe/Qljwndn6jrcK0DttnhYJGMgH4rInyAGzBpmdQ
+         yyVg==
+X-Forwarded-Encrypted: i=1; AKwUvByfZxZwuL6wn4IEjUwi3ZqsfW6Wi7iao73/ykgHKKUmuZOgF2e/cOIe+7zM2ZKP+QO//aClAFs=@lists.infradead.org
+X-Gm-Message-State: AFuF++lzVsX2Xp3q1JO/Lt+ld7wg1L/D07pM1Ee1MGxuRZM7MdGUnops
+	ti4+3jPha9XRsewc9MTfs1lsR4Z7qq7rMTXa419PpjkYScRYmr+X/+IdQqr4lM3Odg==
+X-Gm-Gg: AYBFou3+r48BY0GBXs5NJIJtuV0TAmiVQYdGRWDp44WO72ji40pAd+APYLyqY2+Svgd
+	FPeeKdzl3+h2A3aGGYn6Yb7TVeaLdfgjaD5AHs2LmcRxOinyHV8PjNWK1Z4UCRF0n6VmKHA2/ks
+	j0pkvasivQkCnrTI3wgddHBzZz8ezZOfVuIkjixFll3Uvyiap7EQLIeWqxtj30EhwA8wr18YdCK
+	bq9Ya5m3OAi1bpf5zWQ8daqcgBWCTEssSZ59nGfWdcGo72pGj+82DatTJduAcAuZOi5jzfzS1Bv
+	CRpsN7EiKUPQH179rOfUv7Sp70U6JtH9BwWxeOQDFbzBw22TFjtWHl8g2KcYVp49rBGyLSgbOhC
+	JzlPFOLByPoKyPMrKpGMtOweKrbgUOqARgH4+GXhamWpiOY40yDOc1T77gz2LtzBSNCzcAE/B5F
+	WP9L7yYpZjpJUYvXq7AIjLoK1bdHTFz29D7P/YuqgFqUYqw2MemDFa6iQ8DpWwnMxjzPIOgPcvM
+	PUWC1wTVW22uGydnNtrH1IFWJkSrRaAUeXcZouE3J2bRKNbVabsYlvrqIikS1nmSMZ+qfClZGCH
+	caWnJCJiBwZQ5mQK7LwmD7jlbVgRIRP8dA1ol67m14Amr/lfx1pN0mMO0vA/YwV+FSkdB4JTskG
+	/o4+gzrxWMF+BjrnhFSK82Y+58FhU5QFKVYltseyx3X+lVZxpUGiTFdzC3tElo2mAdz8RMlMgbN
+	7TTCAa0q7blmqR
+X-Received: by 2002:a05:6402:3241:b0:6a7:f207:278e with SMTP id 4fb4d7f45d1cf-6a7f2072851mr6378442a12.15.1788875597050;
+        Tue, 08 Sep 2026 06:53:17 -0700 (PDT)
+Received: from Desktop (pd951346e.dip0.t-ipconnect.de. [217.81.52.110])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6a7e68a6e19sm5519140a12.10.2026.09.08.06.53.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Sep 2026 06:53:16 -0700 (PDT)
+From: Julius Bairaktaris <julius@bairaktaris.de>
+To: johannes@sipsolutions.net
+Cc: toke@toke.dk,
+	jjohnson@kernel.org,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: [PATCH v2 1/2] wifi: mac80211: scale the airtime queue limit by the station's weight
+Date: Tue,  8 Sep 2026 15:53:14 +0200
+Message-ID: <20260908135315.754126-1-julius@bairaktaris.de>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-ThreadId: Av35K2MZ7qUg
-Date: Tue, 08 Sep 2026 12:44:17 +0300
-From: "Juha-Matti Tilli" <juha-matti.tilli@iki.fi>
-To: ath11k@lists.infradead.org, ath12k@lists.infradead.org,
- "Kalle Valo" <kvalo@kernel.org>, "Jeff Johnson" <jjohnson@kernel.org>,
- "Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>
-Cc: "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Simon Horman" <horms@kernel.org>,
- "Mihai Moldovan" <ionic@ionic.de>, linux-wireless@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Message-Id: <2cf63e00-95aa-41ba-ae8e-8abbfbc486e7@app.fastmail.com>
-In-Reply-To: <20260908093145.2492666-1-juha-matti.tilli@iki.fi>
-References: <20260908093145.2492666-1-juha-matti.tilli@iki.fi>
-Subject: Re: [PATCH v3 00/12] ath1{1,2}k: support multiple PCI devices in one system
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260908_104448_279887_18DE3D57 
-X-CRM114-Status: UNSURE (   7.22  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260908_065321_563422_345AAF54 
+X-CRM114-Status: GOOD (  21.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,33 +101,145 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 8, 2026, at 12:31, Juha-Matti Tilli wrote:
-> As you may well know, multiple identical ath11k and ath12k devices are
-> not supported in a single Linux host because they use conflicting QRTR
-> node IDs. Fortunately, Denis Kenzior created a patchset to support
-> multiple QRTR endpoints with identical node IDs, and Mihai Moldovan
-> refined it, after which I took over the patchset and refined it more.
+A driver that hands every frame it dequeues to the hardware at once
+holds nothing back but the airtime queue limit, so every station keeps
+its full limit in flight and the hardware picks the next transmitter
+among them. The order in which ieee80211_next_txq() serves the queues
+never reaches the air, and the airtime weight has no effect on the
+airtime a station gets. ath11k is such a driver.
 
-Hello,
+Add IEEE80211_HW_TX_NO_PUSHBACK for a driver to say so, and scale the
+per-station limits by the weight when it is set. A station with twice
+the default weight may keep twice the limit in flight. The scaled value
+is capped at aql_threshold and never drops below the configured limit.
+A driver without the flag is not affected.
 
-I am incredibly sorry by messing up the threading. git-send-email said:
+Measured on an IPQ8074 AP with ath11k, a 2x2 HE160 and a 1x1 VHT80
+client both saturated downstream, BE aql_txq_limit 500/1000 us, 15 s
+runs, three per setting. Share of the tx airtime taken by the HE160
+client in per cent, at weights 256:256, 1024:256 and 256:1024:
 
-4.7.1 Error: too many recipients from 83.150.90.33
+  without the flag  55.2, 54.1, 52.8  55.9, 51.9, 59.8  54.8, 56.3, 59.2
+  with the flag     57.8, 57.5, 55.1  73.8, 76.7, 74.4  22.6, 22.7, 22.4
 
-...and failed at the patch id 8/12.
+Mid-run the favoured client holds 1.2 to 3.2 ms in flight and the
+other stays at the configured 1 ms.
 
-So I thought retrying from where it failed would be safe. But that
-broke the threading.
+Ping from the AP to the HE160 client under the same load is 4.8 to
+7.4 ms mean at equal weights and 18.1 to 25.1 ms at 1024:256, where it
+is the favoured client: the deeper queue costs it that latency.
 
-The next time, I'll increase the waiting time between subsequent mails.
+The scaled limit takes effect only where the configured one binds. At
+the default 5000/12000 us both clients hold several milliseconds in
+flight, neither queue runs empty between transmissions, and the weight
+does not move the split.
 
-Links to mails missed from the thread:
+Assisted-by: Claude:claude-opus-5
+Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+---
+v2:
+- gate on a new hw flag, IEEE80211_HW_TX_NO_PUSHBACK, so a driver that
+  pulls when the hardware has room is not affected. The flag is set by
+  the driver rather than derived from the use of
+  ieee80211_handle_wake_tx_queue(): a driver with its own callback can
+  push everything it dequeues just the same, and ath11k does once it
+  schedules its TXQs itself
+- add the ath11k patch that sets the flag as 2/2
+- rewrite the message
+- v1: https://lore.kernel.org/linux-wireless/20260824142435.1757391-1-julius@bairaktaris.de/
 
-https://lore.kernel.org/all/20260908093437.2493698-1-juha-matti.tilli@iki.fi/
-https://lore.kernel.org/all/20260908093437.2493698-2-juha-matti.tilli@iki.fi/
-https://lore.kernel.org/all/20260908093437.2493698-3-juha-matti.tilli@iki.fi/
-https://lore.kernel.org/all/20260908093437.2493698-4-juha-matti.tilli@iki.fi/
-https://lore.kernel.org/all/20260908093437.2493698-5-juha-matti.tilli@iki.fi/
+Measured with the ath11k series "wifi: ath11k: airtime queue limits,
+fairness and a driver TXQ scheduler" v4 applied, which advertises AQL
+and airtime fairness on ath11k, and with "wifi: mac80211: keep the TXQ
+scheduling round number across a closed round" applied.
 
-BR, Juha-Matti
+ include/net/mac80211.h |  7 +++++++
+ net/mac80211/debugfs.c |  1 +
+ net/mac80211/tx.c      | 21 +++++++++++++++++++--
+ 3 files changed, 27 insertions(+), 2 deletions(-)
+
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index 7bb4618065b6..80381c7abd84 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -3086,6 +3086,12 @@ struct ieee80211_txq {
+  * @IEEE80211_HW_SUPPORTS_NDP_BLOCKACK: HW can transmit/receive S1G NDP
+  *	BlockAck frames.
+  *
++ * @IEEE80211_HW_TX_NO_PUSHBACK: The driver hands every frame it dequeues
++ *	to the hardware at once, and the hardware picks the station it serves
++ *	next, so the order in which mac80211 schedules the queues does not
++ *	reach the air. mac80211 then applies the airtime weight to the
++ *	airtime queue limit instead.
++ *
+  * @NUM_IEEE80211_HW_FLAGS: number of hardware flags, used for sizing arrays
+  */
+ enum ieee80211_hw_flags {
+@@ -3147,6 +3153,7 @@ enum ieee80211_hw_flags {
+ 	IEEE80211_HW_HANDLES_QUIET_CSA,
+ 	IEEE80211_HW_STRICT,
+ 	IEEE80211_HW_SUPPORTS_NDP_BLOCKACK,
++	IEEE80211_HW_TX_NO_PUSHBACK,
+ 
+ 	/* keep last, obviously */
+ 	NUM_IEEE80211_HW_FLAGS
+diff --git a/net/mac80211/debugfs.c b/net/mac80211/debugfs.c
+index 8946b027782c..ddbfa991ec74 100644
+--- a/net/mac80211/debugfs.c
++++ b/net/mac80211/debugfs.c
+@@ -462,6 +462,7 @@ static const char *hw_flag_names[] = {
+ 	FLAG(HANDLES_QUIET_CSA),
+ 	FLAG(STRICT),
+ 	FLAG(SUPPORTS_NDP_BLOCKACK),
++	FLAG(TX_NO_PUSHBACK),
+ #undef FLAG
+ };
+ 
+diff --git a/net/mac80211/tx.c b/net/mac80211/tx.c
+index c33092960df2..c94efff48d74 100644
+--- a/net/mac80211/tx.c
++++ b/net/mac80211/tx.c
+@@ -4217,6 +4217,21 @@ EXPORT_SYMBOL(__ieee80211_schedule_txq);
+ 
+ DEFINE_STATIC_KEY_FALSE(aql_disable);
+ 
++static u32 ieee80211_aql_sta_limit(struct ieee80211_local *local,
++				   struct sta_info *sta, u32 limit)
++{
++	u32 scaled;
++
++	if (!ieee80211_hw_check(&local->hw, TX_NO_PUSHBACK) ||
++	    sta->airtime_weight == IEEE80211_DEFAULT_AIRTIME_WEIGHT)
++		return limit;
++
++	scaled = mult_frac(limit, sta->airtime_weight,
++			   IEEE80211_DEFAULT_AIRTIME_WEIGHT);
++
++	return min(scaled, max(limit, local->aql_threshold));
++}
++
+ bool ieee80211_txq_airtime_check(struct ieee80211_hw *hw,
+ 				 struct ieee80211_txq *txq)
+ {
+@@ -4238,13 +4253,15 @@ bool ieee80211_txq_airtime_check(struct ieee80211_hw *hw,
+ 
+ 	sta = container_of(txq->sta, struct sta_info, sta);
+ 	if (atomic_read(&sta->airtime[txq->ac].aql_tx_pending) <
+-	    sta->airtime[txq->ac].aql_limit_low)
++	    ieee80211_aql_sta_limit(local, sta,
++				    sta->airtime[txq->ac].aql_limit_low))
+ 		return true;
+ 
+ 	if (atomic_read(&local->aql_total_pending_airtime) <
+ 	    local->aql_threshold &&
+ 	    atomic_read(&sta->airtime[txq->ac].aql_tx_pending) <
+-	    sta->airtime[txq->ac].aql_limit_high)
++	    ieee80211_aql_sta_limit(local, sta,
++				    sta->airtime[txq->ac].aql_limit_high))
+ 		return true;
+ 
+ 	return false;
+-- 
+2.53.0
+
 
