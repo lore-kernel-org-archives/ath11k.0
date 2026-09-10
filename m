@@ -4,88 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D7A7C79FB9
-	for <ath11k@archiver.kernel.org>; Thu, 10 Sep 2026 07:18:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9381BC79FB9
+	for <ath11k@archiver.kernel.org>; Thu, 10 Sep 2026 07:26:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=g3oKadEwUB89/gkFFNEt4XJ5XQBlxybI+fNNIa++1CA=; b=UXdr9E0Whk7XW7E9JnINwP5eVO
-	awVDVoQf1keXkvAQgSm1nU0EOk/QItEWX/mexYzzs9tWwDwc3Vb6kKXtTWPcyYYvlTikdxFr3cug/
-	qppsVd2Xe8E7HekQmmrBr/8futLpBvSjHSCumW+HwNOHi6TCIy21UZCGy+d1tMs/8jkNZYITRDDvk
-	ubEtQ2Tv+9OcPoWayW6gP0jpPb8yxqqMLKQqLWwRjem0AzZWGx4GMSPtj9m/FGyH/gryo+saO8tI0
-	BSx4iz2GQfcqk6sQWGjsGOgASxyQe7xDCR60FFm1s+gfphWIePKwRYtfMcDeEnw0OVI64VHLSaOAq
-	NnoaZR9A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/vXglpmyQqtm2vQGfMHWvnjy2MGvK+hpILt4Bijo3TU=; b=RqFsB0JVXUtfLm4pADkZG7OHU1
+	YEPllrjjBFl5p1iNJX9vgptJR9DLTKU64wjYYFFklqBKYO8aMi2tOMJjIUT4P4Bz60OaFViOs7bO1
+	Maum24ifzeXMJM/85Bzc1xsNE21SM/gmmWZf4fabyVsSEbc9Cbo5WjDU54zg/HJAxQMIWofHVQzqF
+	7pT6kYShxo/aH24LKM6bUGBf97IEuchjAeH8oQqapYYbf3WmQIiiLd5eoTUtOmDOafh3vXI9NTuff
+	/B33PY1C/CsKWXFP/f/LGsS54dJKce3q91taK9knXwZxyoyn5X9xWGu5MPty1DquZ7tm5MV/9HE/3
+	9ZiRY9lQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Z3V-0000000Dc46-1jQD;
-	Thu, 10 Sep 2026 07:18:45 +0000
-Received: from mail-ej2-x0a.google.com ([2a00:1450:4864:34::a])
+	id 1x4ZB8-0000000Dcve-0SEP;
+	Thu, 10 Sep 2026 07:26:38 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Z3T-0000000Dc3i-1q7n
+	id 1x4ZB7-0000000DcvU-33bo
+	for ath11k@bombadil.infradead.org;
+	Thu, 10 Sep 2026 07:26:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:Subject:Message-ID:
+	Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=/vXglpmyQqtm2vQGfMHWvnjy2MGvK+hpILt4Bijo3TU=; b=fdK0I4WXU4LXIdIzr9zD8pviVA
+	0kP+fLYTJzFT/skZ8rlfglls+/nuzdj/WVdFyXGh3egLfwo4j+ezIIUVJ5gJTOrt9grT+MAkDyyiX
+	ZcG/vk+KGoZskk8XjS6ZtOObww2dtlsSjTjbsFmmA/Ss61oykBuDUXYREGDI4iKXYB9Rb+ltIZ8a6
+	mdBVoB4DOtKaolhAAlcBdBVWuHLf05DtXfdbWtbjZNFidxjtTFdTxq8yhWcT/uXRnGri4Ke6n/vht
+	4DSpMOljLh/SzNxEtRUFelvfbs1cZdlPsLc+2KdoZpIdS4qlGO4Vye8Bp9+AhwcQZ1bi0UFp77k9t
+	KT4Vsn3A==;
+Received: from mail-yw1-x1130.google.com ([2607:f8b0:4864:20::1130])
+	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
+	id 1x4ZB4-000000028CB-1sdg
 	for ath11k@lists.infradead.org;
-	Thu, 10 Sep 2026 07:18:45 +0000
-Received: by mail-ej2-x0a.google.com with SMTP id a640c23a62f3a-c25b4493edfso296193466b.0
-        for <ath11k@lists.infradead.org>; Thu, 10 Sep 2026 00:18:42 -0700 (PDT)
+	Thu, 10 Sep 2026 07:26:36 +0000
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-87ffa98d4a9so19431067b3.3
+        for <ath11k@lists.infradead.org>; Thu, 10 Sep 2026 00:26:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789025192; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ByAgOkAtY8ukIY6kRvDvyKF9Qp3+xGWVknkHAkxGa3ui+ae8Jcfu1ktKCGJO8jtxg7
+         69iNskCBKNH+WHBTqKTqC+V8VomGufbMB0n+EGtUS/998RBlFu9Mfike6bQAQQgWV9RB
+         7xXND6wc3mTGkerF0kqowTHHsSwqXnIe/7ek1E17uQy35JvbrrShAq5dTGBDyhqPSnp5
+         VO/vpovmgZARZBN8+KQNc5aFycdxq56KG1z/FiY15tDNdJguyj6Mdf0aucs6P4c4u7Xr
+         7EBE34B3wxHa0ioulKYppEwEw1Ujxyt7eAjFlkQJ5+ovgJ/C/yx+3AmE/jrp2CwsCND8
+         6TPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=/vXglpmyQqtm2vQGfMHWvnjy2MGvK+hpILt4Bijo3TU=;
+        fh=nq4qwE8CskWUmtBIwYw4Wn8WKi0kx1TIhCtAMDfkI4w=;
+        b=XypD34gjYRCe/VlEpvwa6ZEEofhZlPHYHVaqdYD06Ux3pWYwLGyjeWlmZ5Z3UCLON4
+         EJxViVvnQ/OYTKA7c3CxHPvsOEYXTysBkR4ipBUjdbX8wLdctwkQM5LGAWaoo7o6UFb0
+         RGl3ICG8MU7qkqmPhqr4+n44zxXSeXleNENpCFc8uuqIr+wdgVMZaE//kNFKY1tNIl1X
+         TW/Ni0EP7UAKlukAp8m7RYCDNSLdsdu0TsP9vgzuOZ3ZsPJyo1NwJzIs05cs5cIFTNc0
+         FRHG+VyWb3UEGMkDMpPOUY5AuK3+fC5T8ZQM0UubjgkpuI6WcIayUqs9sbj9MXubAtGj
+         eTLA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1789024721; x=1789629521; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=g3oKadEwUB89/gkFFNEt4XJ5XQBlxybI+fNNIa++1CA=;
-        b=N3CRknDRImyAWlNUSA+FDbkX0ooXJhWRxVGw1e5X21/cLMxL+cWBRx/Hds/YjhvLP0
-         lb87bnTHSzG38hxW9JVN8puEVSd5BRGO0I4u2E4rcIrhk4ZECsWEvvGPMqzddO4MNu/x
-         FIifjHGpaQabX1GVqElRCyh5+RNIFwDtwFWwB09EVKPqJf94RCSMPDAYBlO8Ws+guvsW
-         kOAUkYUDUF5vAwu/EGo4rPd0ARfpn1fLMnvpMZsijIHXGb/mQabz2/mTEFt8aFUA1jka
-         3bqQEl0ZD+wcKUUx/ZJ79uP2nnnjtVa0vvZUvmW0uPv7IcHjCMqZNDs3ZayDfKhIruce
-         MXmA==
+        d=bairaktaris.de; s=google; t=1789025192; x=1789629992; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/vXglpmyQqtm2vQGfMHWvnjy2MGvK+hpILt4Bijo3TU=;
+        b=qSrxa7znZQ4Uf3bXrw5adhdELk7nH5jnCnygFEpdAzY+g0rItZOOdJ/nV2PL82IwPT
+         M50jp/0BVlock3JBeSET5c9Bj18I8dZ3aDzb+ftu8HgsSJQFesqot7vMmL3CQYicZjqx
+         CNZAFSFFJs4LqpbOCoekL3qtpQ1i5zLrtmuQpWZaaqH6NIcnaSE2J+Xo12pMrqbbhhjX
+         U2kU/QIV9Vat8Vi2uvgy/BXRad2yt+2rTHLwUoxtaQ5cD2/y/SluzT8ARUAVsiJcvopO
+         sFmrAfY+eiM8d56Ai0IQJzngNVe7XKPwBCOVaG9xh6UDzbW+LhMVlBBPNbfSZaDG4TWY
+         8wfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789024721; x=1789629521;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=g3oKadEwUB89/gkFFNEt4XJ5XQBlxybI+fNNIa++1CA=;
-        b=VZEfAwl7CbsPBhB6TNi/Hdad5ZOpo1Ly+xC+ApTRrP8sKJSyg04k4//9pypB+XXdbx
-         PD4lG9WcYGhBRom8zcBQvl1yrbuMSjEXrYMASawZWNTDbzgaN8L6z/WDdr7kuUzqJ9DE
-         +7S4LRxir5uBhsklpB1ibDnMekt+BiVFHdb87FkD1vPstvvQXYBb8Tpo4ZdHsX/Sarl4
-         pxD+AymOUKgirxnCX23G2ORv9B/7lnx3Uv7xD3k8YQSuS09Ve+20HQQDZgtyJUGcTEvJ
-         +jUsQUStYDAkPTd6A2KFGIg/N2kTXDfmpaqmiZJc7G7nIfJ++K93ltT2il7cBjR1ZV2d
-         81sg==
-X-Forwarded-Encrypted: i=1; AKwUvBzE7B1XvT5Z3OX8eXvbKzYuxiyJyvsJ3zUyoeG/iaBfqyBt/uUfSe0yuGspEwUyiWQYlEXyV4I=@lists.infradead.org
-X-Gm-Message-State: AFuF++n5WkpRl2aQPxz5hRgLOom+uHCxf/wyq11X5oQqKsMMK2cIaBA1
-	3Inr81jog8OCfiEshagopN7p8i4nYQ+ZAn9gRMAZ9uxJHFZcJJID+5oosqbIceIFXw==
-X-Gm-Gg: AYBFou0NZBah/enacfCJz6b8EBdpGqokJURJCPsbi7bFgCVCml77Q4ZRECoigUuhg+v
-	QmPmFmeW4D4CFMLyp2Uv5IOjcohUeR8lzFjSktxKUQzajZxKFUxwkmwyoudTtnyRL9/59yWbe36
-	fF9VevMHh3cQcoAvtuzkmzUVp2q3ZvDlIegsjBGNvCmyWafgmiBvMe36C0LW8tuAYn8GPZS8mtV
-	0uIMSIrv44jftb6fokCe8RZ2X7M2UKW2J4JmKG/UazcJY5/wRiQjkLpdYtcbh6HCiT3tXcL9qXz
-	jL03xcEc/GM4KTWtKnhtCCXkTyKt2W9Eczf9QQynkKZZT5SiW87yH6z1foH/DmuctPphZ+I858B
-	vF0uD0yQLb9HdDF4yGp2vgiudbJ/JUUI3dAyc++5ykOfPc5ULTDBkyE1wLV+/jAUIJ9HvRbF3W2
-	yzJX75ODAj5E4AQap/dkKkpIsjFq/wCIHud4seQZvek7uk3OW5T0b7J4Z3ImkmxeCecp/ui1ToC
-	EqA95GmkFIWKzxLi/oYpDGTBeB0Xo4dGqt0QmnpApoce2kVhHimVW4fFg5qCtGTbDHSb1MjQ6lA
-	SyamycENlt5+tPaOqDvZ34yiCOxJZ2fiYpwcS2cxUaxyA82zgqB2DwqEXviXxeDnOSbqf4DOugu
-	cFTs6c1cDfOOc5BB+L+sgib8JCVA0zsdhzMFEOn3IKQKL0v4tesRiIslCufZ99XKAwg+yOvAgEk
-	kaOTyQ7w==
-X-Received: by 2002:a17:907:1c09:b0:c25:2fb9:b897 with SMTP id a640c23a62f3a-c260ca1e763mr1519573166b.18.1789024720961;
-        Thu, 10 Sep 2026 00:18:40 -0700 (PDT)
-Received: from Desktop.fritz.box ([217.26.235.87])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c2938a59134sm170305966b.51.2026.09.10.00.18.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2026 00:18:40 -0700 (PDT)
-From: Julius Bairaktaris <julius@bairaktaris.de>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: request firmware-2.bin directly
-Date: Thu, 10 Sep 2026 09:18:38 +0200
-Message-ID: <20260910071838.1983652-1-julius@bairaktaris.de>
-X-Mailer: git-send-email 2.53.0
+        d=1e100.net; s=20251104; t=1789025192; x=1789629992;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=/vXglpmyQqtm2vQGfMHWvnjy2MGvK+hpILt4Bijo3TU=;
+        b=ghYc4zFlXIGmcFdhoTV+Lawa2KstIM347ognoGrl0nfbN+FLtiMBCRl5eOr8xYnuHt
+         C2LuVFIlxncOj1EUQU8w0ac0lE5+O/dqUfXCYUDO8RAOgqYSU/IdoX9u4VdMC+xyd2ez
+         qdIgbfIcHFgPaSu9+zVDGYBpmU5n+IX78WhR9/tKtonjiYzS8FwoMxJAn3b8HJrNvDIq
+         XQA6o+sJIoE74Lk39k66vaBzDOV6SY6j0D/gi8EZ2XJFIL0XMzBIP2TXNYSBp0l3Uwl1
+         +EWCZMfLadBbb3RZjs13kP99dcTgASX3qGZoahR8PvR3roSj9W2mzbLgjlMFy5DzCEI/
+         JIzg==
+X-Forwarded-Encrypted: i=1; AKwUvBwPAI+41bMksk3DzoMJvsctcaGyWJOdKAN1ThB231oCUC/5J5Z6o7DZlkhclp0z9M3E6NTa+Rg=@lists.infradead.org
+X-Gm-Message-State: AFuF++lW6d/udEBlSoY7QtQaEjeEe3SuJOxinDBH4dWDr7qhFtDVsgiu
+	B4Jvu7+8KCQ4/gXgO9GvpW14qVoH/+qipD4KN1xilTrwUwMnoM6NtHjxGvR0GBDLzbJj3XYEEM6
+	gSSzWiI9PA9KhU89dkxlU5S+SvZRRhhd0otL3Uo6h
+X-Gm-Gg: AYBFou31yUdknjxMS1glJJoBUg6HHLUaSLtOGuJPBc9XMQ6STsWgp9+pF+uD2dxYVHc
+	9RCPtFacf/a3k9sz6lAdxxqCWlBnAr+WecH9WV3e8DvMsnjSGiJeXVA4lrmqp1D9yEDysr7mrDT
+	g1Ntsox0U/ESHa1bfXjHi3HNMJlRJZ+PkovnaSF1ywXosuS8MiJhAaMjpjACkJyY2+xtlBFjDWc
+	epR29AOke/ZZyH+pWhz7SpsJd0wCGDGatD2wCgHoadkBgo6/kx/bKwv5ReUgiQvumHKRBgY0lZz
+	C3fAxk66D5GDhaPpRt2BnqoFHu/kHhrFwNOufeU1GJ/ymXZ1iaB7LAqCRvT+CSj2mq6DLhKsbGC
+	cnTdfi9TEYZv1L7lBr2IjOujd51LXY7PIRXUU/WI6/7A9J6WuWjXLxEJsL5mVDWHlOf8+zMd3IN
+	ymUJWk3+HQcS5EJvDrxsEreTGVcp8jR7LkDBf69JEWYl3xqWGB5b3qOlyEHxuzvxRZA1k5Y6Bv+
+	ywnsCVGj3oBLaX9nK7oDIFYvh1b1R6f0s6KY2ZIwfEzUlHc0Iy2DpsGsAvhEFJK3VQnxWltPcUB
+	lmxglOj9hIl46MbqtL90rhqB
+X-Received: by 2002:a05:690c:e28a:10b0:873:5bb2:6c0a with SMTP id
+ 00721157ae682-8735bb26e53mr93150277b3.52.1789025191861; Thu, 10 Sep 2026
+ 00:26:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260910071838.1983652-1-julius@bairaktaris.de>
+In-Reply-To: <20260910071838.1983652-1-julius@bairaktaris.de>
+From: Julius Bairaktaris <julius@bairaktaris.de>
+Date: Thu, 10 Sep 2026 07:25:56 +0000
+X-Gm-Features: AcwNN1WlZOuuaCW-CiTDQ_naRpa8Ngn8cqeQa6DliN7h_89pveR3c7oHeLWNBjo
+Message-ID: <CAC1t37+f7+CJ+kBSe25g31fMWE65hme1m1gvB7ZZ_Ydvmce4vQ@mail.gmail.com>
+Subject: Re: [PATCH] wifi: ath11k: request firmware-2.bin directly
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260910_001843_506961_A41F537D 
-X-CRM114-Status: GOOD (  10.35  )
+X-CRM114-CacheID: sfid-20260910_082634_652201_85E4BB66 
+X-CRM114-Status: GOOD (  16.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,38 +134,55 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k treats firmware-2.bin as optional and falls back to API 1 when
-the file is not present. Request it with request_firmware_direct(),
-which does not fall back to the userspace firmware helper.
+Hi,
 
-Closes: https://github.com/openwrt/openwrt/issues/24743
-Assisted-by: Claude:claude-opus-5
-Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
----
- drivers/net/wireless/ath/ath11k/fw.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+This doesn't change functionality, but log lines like
 
-diff --git a/drivers/net/wireless/ath/ath11k/fw.c b/drivers/net/wireless/ath/ath11k/fw.c
-index ef1b4c81843a..88ec2ffd9f00 100644
---- a/drivers/net/wireless/ath/ath11k/fw.c
-+++ b/drivers/net/wireless/ath/ath11k/fw.c
-@@ -16,10 +16,12 @@ static int ath11k_fw_request_firmware_api_n(struct ath11k_base *ab,
- 	struct ath11k_fw_ie *hdr;
- 	const u8 *data;
- 	__le32 *timestamp;
-+	char path[100];
- 
--	ab->fw.fw = ath11k_core_firmware_request(ab, name);
--	if (IS_ERR(ab->fw.fw)) {
--		ret = PTR_ERR(ab->fw.fw);
-+	ath11k_core_create_firmware_path(ab, name, path, sizeof(path));
-+
-+	ret = request_firmware_direct(&ab->fw.fw, path, ab->dev);
-+	if (ret) {
- 		ath11k_dbg(ab, ATH11K_DBG_BOOT, "failed to load %s: %d\n", name, ret);
- 		ab->fw.fw = NULL;
- 		return ret;
--- 
-2.53.0
+    Could not find firmware /lib/firmware/ath11k/IPQ8074/hw2.0/firmware-2.bin
 
+confuse the average user.
+
+linux-firmware does not ship firmware-2.bin for IPQ5424. I don't have the
+hardware, so the fix would be unverified there. Would you like the same
+change for ath12k?
+
+Julius
+
+Am Do., 10. Sept. 2026 um 07:18 Uhr schrieb Julius Bairaktaris
+<julius@bairaktaris.de>:
+>
+> ath11k treats firmware-2.bin as optional and falls back to API 1 when
+> the file is not present. Request it with request_firmware_direct(),
+> which does not fall back to the userspace firmware helper.
+>
+> Closes: https://github.com/openwrt/openwrt/issues/24743
+> Assisted-by: Claude:claude-opus-5
+> Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+> ---
+>  drivers/net/wireless/ath/ath11k/fw.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/fw.c b/drivers/net/wireless/ath/ath11k/fw.c
+> index ef1b4c81843a..88ec2ffd9f00 100644
+> --- a/drivers/net/wireless/ath/ath11k/fw.c
+> +++ b/drivers/net/wireless/ath/ath11k/fw.c
+> @@ -16,10 +16,12 @@ static int ath11k_fw_request_firmware_api_n(struct ath11k_base *ab,
+>         struct ath11k_fw_ie *hdr;
+>         const u8 *data;
+>         __le32 *timestamp;
+> +       char path[100];
+>
+> -       ab->fw.fw = ath11k_core_firmware_request(ab, name);
+> -       if (IS_ERR(ab->fw.fw)) {
+> -               ret = PTR_ERR(ab->fw.fw);
+> +       ath11k_core_create_firmware_path(ab, name, path, sizeof(path));
+> +
+> +       ret = request_firmware_direct(&ab->fw.fw, path, ab->dev);
+> +       if (ret) {
+>                 ath11k_dbg(ab, ATH11K_DBG_BOOT, "failed to load %s: %d\n", name, ret);
+>                 ab->fw.fw = NULL;
+>                 return ret;
+> --
+> 2.53.0
+>
 
