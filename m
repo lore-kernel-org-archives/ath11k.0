@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80AB9C88E53
-	for <ath11k@archiver.kernel.org>; Tue, 15 Sep 2026 13:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4275EC88E7F
+	for <ath11k@archiver.kernel.org>; Tue, 15 Sep 2026 13:22:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fuDuV9JdMaqBB1i4BS6ejH/c03yoLcQ+BAFv2pIzN8I=; b=QsEaVIUAaLgYyc26XBHJgQ35Av
-	zuxiEqXXdMSeCxVS3dbmKA6rPjTlBpkbcvav581HJgugXJBorMkTyhUxQlEcJ6/fmSEeuNbdcRSva
-	qqTu+SergC8mvHvKL79/+EJ4t9ZsOEyiWkiUWdfaP+7sbTk3SUFv6umnTdZ9dRS471n87qCVkGaWN
-	3L4QaWvzvEwSrYLnUSzbBcBBNJkEISGRAhYw2J25+UuK3pVWanRv4uLSjzBzuSY44riirYIVdooou
-	sfvo6VrofbdbXkf3AaoKEHJhmueq+vMy1hIoNh06yWrXktVbgJFmX9i3j9WEuY6FqunjDKV5nmlPm
-	aw3E1zYg==;
+	bh=Z3qD+/A7jhv0PWCPSvpwUGPxq8lg0rVk9lWjUUhnDS4=; b=JUT17wG1p7ttMYh+hcbSXDmIPw
+	7jFprYIkoc47bJIiAxkQYCUYyDr/ifRba3wqdu0nutUgyP5orjd9QH8DFJ8r+8UFU0msV8op5VV8q
+	yiMbqoAjH9YAz+4w+HkJ3sqIvZEhE4eAPxy4Bn0LyOCb1UKsxiSbPimynoKSB4OZpl2L5UwvT9eRp
+	IVmvfG+I+Ovpfo3+BvITr1owEz71K3y/watVwCmeUOsVNMhMf3t12PNURZiG0qexPZOu/ieYH1Yeq
+	9Qg97qTQsN3a+KBC4MQqFifV57TlychUcjOASQ0+DJHeUUDdhCeUmfkZ3Dp9rcFr/ZrAGo5ZJ5FOX
+	8XzsjJZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6T6z-00000006hJc-0XSi;
-	Tue, 15 Sep 2026 13:22:13 +0000
+	id 1x6T71-00000006hN0-3Rq6;
+	Tue, 15 Sep 2026 13:22:15 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6T6x-00000006hGy-0Mso;
-	Tue, 15 Sep 2026 13:22:11 +0000
+	id 1x6T70-00000006hKr-1bYc;
+	Tue, 15 Sep 2026 13:22:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=fuDuV9JdMaqBB1i4BS6ejH/c03yoLcQ+BAFv2pIzN8I=; b=C1f7N5ZmCKulhjKMi0nZ6AXtEp
-	KanVZYnbO4lyztVP8x0vF2gpizbIwdWvyH74zeDmD9nWYGQgSiuGVWlodtivVVO2xfA8zR5bbIhAt
-	BLorph9Bwobor+9DFEcLqohHMfId7JdpwvLARIlPzbPKG1GAN4JliCrALGIME9OSCBx9XLxmAd3RU
-	2kjqEWnAmUjh76/ZRoIlGjjqPCT7f6pCdefIV5Yd83RPIQIoqxevdgUDJLzyMEilE1mNaK3AAG5um
-	7Ezp+agKqVHYkHun6S4sHedDDpXsJ5dGmz7weg4EblXxcfRm54aAwvAoMKizevLhsCtsUc/zzFljC
-	3tcoGi5Q==;
+	bh=Z3qD+/A7jhv0PWCPSvpwUGPxq8lg0rVk9lWjUUhnDS4=; b=br+CI4bkOhTdrdGmAsLNP5YsCn
+	kCrdRCJruYYRpJYgY2uNCiddAD7DByUjQ35vfgFxVdS9svIstBvPIz/WsKOtpSmCvkuLUl8sd+15p
+	3TgR1OSmfwfHuKAfOI47dhyBPITLLkjYE47PtD191S3thwlIs3/zjXmaDXhOPFaCFn/p2Td60M7LD
+	itxZOJU5k2Y0R2bdJh0fXou3zU9GbRpyjRP6EeeuiCw3ppmYl2FijozoBQf9GfNM7sDoGB/7lOlpG
+	vZB7gVgOzirXZs+bTV9NVpaqBRybQvkXcY7uejm8wb7ieMtH7N9xCZ1kl7DZluZLfw2Pa8906k6Ka
+	Z8saWTmQ==;
 Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
-	id 1x6T6s-00000006oIF-3E67;
-	Tue, 15 Sep 2026 13:22:10 +0000
+	id 1x6T6x-00000006oJz-36ys;
+	Tue, 15 Sep 2026 13:22:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:Sender
 	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=fuDuV9JdMaqBB1i4BS6ejH/c03yoLcQ+BAFv2pIzN8I=;
-	t=1789478526; x=1790688126; b=LVsiE2lB5ygUyINgWxFc87BVC2u7ssUHvGuo6QvjGx278b8
-	80woaBGKvAmB2tvKagXbYR0heRqgAVttspnNbf4FF0pkQqNaXDxuy9R0lH58tINv9vbYlgUg94Zps
-	Pmg1v7wuxvZWLOz8O3tco14BgQlNDo4qbNujIgXqc4dDW5hB+BBXg4HvEVdEjZgfSXZrRCXeES/fg
-	yHlqj3n35WQIbPdG/RpJuPQyX8YYAn8NfIcOmHhsgT9yZ9WhnUuvzx05C4eDcaIxiW8x9aZvMPB/U
-	k64A1PEebx39+YJ+mxlKRwkI8Ryl7cy0PZTZWOmXv/lWvODJTIUDbGEr7gTWxoYg==;
+	Resent-Cc:Resent-Message-ID; bh=Z3qD+/A7jhv0PWCPSvpwUGPxq8lg0rVk9lWjUUhnDS4=;
+	t=1789478531; x=1790688131; b=D0dnmiZCPc9rPuCUJ2TIf0E+FdJ1QDd9F0x0cwSBvRRlNIo
+	GwOrCZs90XeA2ldAamU5oBcTaqNpHs5l5Qp6cnY2bjkoGwi7XS7aaMyVu9w0f6NsOppO3VBtwvC94
+	VZzliboZtHC76eeH93g9lXB0Qpyo3eMkkhLJSCj7Qv48Onsw9qzAWoZFFWXfbjtSknZp3M1PGuSD8
+	lcMEY5xWvnaipdRy7SV9Fo2fIvWbbBm2PYYcJP17uTmpLsTNDYIYUxnX1p6QQo/IYEhApuFf0OR4j
+	yof9OSyVYyOP0IizEYAS82pqWJqmiSKExwja1l8IqvC3HH5d3ZUF4sLu79EbjctQ==;
 Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__ECDSA_SECP256R1_SHA256__AES_256_GCM:256)
 	(Exim 4.98.2)
 	(envelope-from <benjamin@sipsolutions.net>)
-	id 1x6T6j-0000000H08V-1jgO;
-	Tue, 15 Sep 2026 15:21:57 +0200
+	id 1x6T6n-0000000H08V-3olp;
+	Tue, 15 Sep 2026 15:22:02 +0200
 From: Benjamin Berg <benjamin@sipsolutions.net>
 To: linux-wireless@vger.kernel.org
 Cc: Jeff Johnson <jjohnson@kernel.org>,
@@ -67,17 +67,18 @@ Cc: Jeff Johnson <jjohnson@kernel.org>,
 	ath11k@lists.infradead.org,
 	ath12k@lists.infradead.org,
 	Benjamin Berg <benjamin.berg@intel.com>
-Subject: [PATCH wireless-next v4 4/8] wifi: mac80211: rework RX packet handling
-Date: Tue, 15 Sep 2026 15:19:30 +0200
-Message-ID: <20260915151925.de2fc9a47273.Ie12ec077142c6a7fdbb58cdfc5660497cc75150e@changeid>
+Subject: [PATCH wireless-next v4 8/8] wifi: mac80211: pass error station if non-STA transmit was requested
+Date: Tue, 15 Sep 2026 15:19:34 +0200
+Message-ID: <20260915151925.92499fb21e4a.I5ffe7bc0d4ccefca5c1e506d5d3d482e13989cda@changeid>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260915131925.1780764-10-benjamin@sipsolutions.net>
 References: <20260915131925.1780764-10-benjamin@sipsolutions.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260915_142206_985614_AAA7FEE3 
-X-CRM114-Status: GOOD (  27.19  )
+X-CRM114-CacheID: sfid-20260915_142211_888862_56C359BF 
+X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,415 +95,63 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Benjamin Berg <benjamin.berg@intel.com>
 
-The code has grown over time and it was not correctly handling all
-cases. Examples of issues are that for management frames we would match
-the received address against the MLD address even though we should not
-resolve the station in that case. Another issue was that for data frames
-we would not correctly fall back to use link addresses when the driver
-does not provide the pubsta already.
-
-The new code still uses the same approach as before. For data frames,
-assume that a valid station exists and interfaces do not need to be
-iterated. On the other hand, for non-data frames (or if a data frame
-without a station is received) all interfaces must be iterated.
-
-Note that this rework makes mac80211 slightly more strict. For example,
-previously mac80211 would have incorrectly accepted a data frame that
-was transmitted on the wrong link.
+When cfg80211 requested a transmit without a station, pass an error
+station to ieee80211_tx_skb_tid instead of the correct one.
 
 Signed-off-by: Benjamin Berg <benjamin.berg@intel.com>
 
 ---
 
-v1:
- * Handle NAN_DATA interface type
- * Fix missing variable initialization in loop
----
- net/mac80211/rx.c | 291 +++++++++++++++++++++++++++-------------------
- 1 file changed, 171 insertions(+), 120 deletions(-)
+v4:
+ * Fix typo in subject
 
-diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
-index 753d639d1955..1273c9067aed 100644
---- a/net/mac80211/rx.c
-+++ b/net/mac80211/rx.c
-@@ -4318,9 +4318,33 @@ static bool
- ieee80211_rx_is_valid_sta_link_id(struct ieee80211_sta *sta, u8 link_id)
- {
- 	if (sta->mlo)
--		return !!(sta->valid_links & BIT(link_id));
--	else
--		return sta->deflink.link_id == link_id;
-+		return sta->valid_links & BIT(link_id);
-+
-+	return sta->deflink.link_id == link_id;
-+}
-+
-+static bool ieee80211_rx_data_set_link_sta(struct ieee80211_rx_data *rx,
-+					   struct link_sta_info *link_sta)
-+{
-+	struct sta_info *sta;
-+
-+	if (WARN_ON_ONCE(!link_sta) ||
-+	    !ieee80211_rx_is_valid_sta_link_id(&link_sta->sta->sta,
-+					       link_sta->link_id))
-+		return false;
-+
-+	sta = link_sta->sta;
-+
-+	rx->sta = sta;
-+	rx->local = sta->sdata->local;
-+	rx->link = rcu_dereference(sta->sdata->link[link_sta->link_id]);
-+	if (!rx->link)
-+		return false;
-+
-+	rx->link_id = rx->link->link_id;
-+	rx->link_sta = link_sta;
-+
-+	return true;
- }
+v3:
+ * Fix logic error in v1 update
+
+v1:
+ * Only pass error station if NO_STA flag is set
+---
+ net/mac80211/offchannel.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/net/mac80211/offchannel.c b/net/mac80211/offchannel.c
+index 5cec8747b193..ddd7a96a2f81 100644
+--- a/net/mac80211/offchannel.c
++++ b/net/mac80211/offchannel.c
+@@ -854,8 +854,10 @@ int ieee80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
+ 			need_offchan = true;
  
- static bool ieee80211_rx_data_set_link(struct ieee80211_rx_data *rx,
-@@ -5296,60 +5320,19 @@ static void __ieee80211_rx_handle_8023(struct ieee80211_hw *hw,
- 	dev_kfree_skb(skb);
- }
- 
--static bool ieee80211_rx_for_interface(struct ieee80211_rx_data *rx,
--				       struct sk_buff *skb, bool consume)
-+static bool ieee80211_rx_valid_freq(int freq, struct ieee80211_link_data *link)
- {
--	struct link_sta_info *link_sta;
--	struct ieee80211_hdr *hdr = (void *)skb->data;
--	struct sta_info *sta;
--	int link_id = -1;
--
--	if (ieee80211_is_s1g_beacon(hdr->frame_control)) {
--		if (!ieee80211_rx_data_set_sta(rx, NULL, -1))
--			return false;
--
--		return ieee80211_prepare_and_rx_handle(rx, skb, consume);
--	}
--
--	/*
--	 * FIXME: Here we can assume that link addresses have not
--	 * been translated.
--	 *
--	 * Look up link station first, in case there's a
--	 * chance that they might have a link address that
--	 * is identical to the MLD address, that way we'll
--	 * have the link information if needed.
--	 */
--	link_sta = link_sta_info_get_bss(rx->sdata, hdr->addr2);
--	if (link_sta) {
--		sta = link_sta->sta;
--		link_id = link_sta->link_id;
--	} else {
--		struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
--
--		sta = sta_info_get_bss(rx->sdata, hdr->addr2);
--		if (ieee80211_vif_is_mld(&rx->sdata->vif) &&
--		    status->freq) {
--			struct ieee80211_link_data *link;
--			struct ieee80211_chanctx_conf *conf;
--
--			for_each_link_data_rcu(rx->sdata, link) {
--				conf = rcu_dereference(link->conf->chanctx_conf);
--				if (!conf || !conf->def.chan)
--					continue;
-+	struct ieee80211_chanctx_conf *conf;
- 
--				if (status->freq == conf->def.chan->center_freq) {
--					link_id = link->link_id;
--					break;
--				}
--			}
--		}
--	}
-+	if (!freq || link->sdata->vif.type == NL80211_IFTYPE_NAN ||
-+	    link->sdata->vif.type == NL80211_IFTYPE_NAN_DATA)
-+		return true;
- 
--	if (!ieee80211_rx_data_set_sta(rx, sta, link_id))
-+	conf = rcu_dereference(link->conf->chanctx_conf);
-+	if (!conf || !conf->def.chan)
- 		return false;
- 
--	return ieee80211_prepare_and_rx_handle(rx, skb, consume);
-+	return freq == conf->def.chan->center_freq;
- }
- 
- /*
-@@ -5363,11 +5346,14 @@ static void __ieee80211_rx_handle_packet(struct ieee80211_hw *hw,
- {
- 	struct ieee80211_local *local = hw_to_local(hw);
- 	struct ieee80211_sub_if_data *sdata;
-+	struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
- 	struct ieee80211_hdr *hdr;
-+	struct link_sta_info *link_sta;
-+	struct sta_info *sta;
- 	__le16 fc;
- 	struct ieee80211_rx_data rx;
--	struct ieee80211_sub_if_data *prev;
- 	struct rhlist_head *tmp;
-+	bool rx_data_pending;
- 	int err = 0;
- 
- 	fc = ((struct ieee80211_hdr *)skb->data)->frame_control;
-@@ -5414,92 +5400,102 @@ static void __ieee80211_rx_handle_packet(struct ieee80211_hw *hw,
- 		     ieee80211_is_s1g_beacon(hdr->frame_control)))
- 		ieee80211_scan_rx(local, skb);
- 
-+	/*
-+	 * RX of a data frame should only happen to existing stations.
-+	 * It is therefore more efficient to use the one provided by the driver
-+	 * or search based on the station's address.
-+	 *
-+	 * Note we will fall through and handle a spurious data frame in the
-+	 * same way as a management frame.
-+	 */
- 	if (ieee80211_is_data(fc)) {
--		struct sta_info *sta, *prev_sta;
--
- 		if (link_pubsta) {
--			sta = container_of(link_pubsta->sta,
--					   struct sta_info, sta);
--			if (!ieee80211_rx_data_set_sta(&rx, sta,
--						       link_pubsta->link_id))
--				goto out;
-+			sta = container_of(link_pubsta->sta, struct sta_info,
-+					   sta);
-+			link_sta = rcu_dereference(sta->link[link_pubsta->link_id]);
- 
--			if (ieee80211_prepare_and_rx_handle(&rx, skb, true))
-+			rx.sdata = sta->sdata;
-+			if (ieee80211_rx_data_set_link_sta(&rx, link_sta) &&
-+			    ieee80211_prepare_and_rx_handle(&rx, skb, true))
- 				return;
-+
- 			goto out;
- 		}
- 
--		prev_sta = NULL;
-+		rx_data_pending = false;
- 
-+		/* Search for stations on non-MLD interfaces */
- 		for_each_sta_info(local, hdr->addr2, sta, tmp) {
--			int link_id;
-+			struct ieee80211_link_data *link;
- 
--			if (!prev_sta) {
--				prev_sta = sta;
-+			if (ieee80211_vif_is_mld(&sta->sdata->vif))
- 				continue;
--			}
- 
--			rx.sdata = prev_sta->sdata;
--
--			/*
--			 * FIXME: This is not correct as the addr2 cannot be a
--			 * link address if the loop itself is iterated.
--			 */
--			if (prev_sta->sta.mlo) {
--				struct link_sta_info *link_sta;
--
--				link_sta = link_sta_info_get_bss(rx.sdata,
--								 hdr->addr2);
--				if (!link_sta)
--					continue;
-+			link = &sta->sdata->deflink;
-+			if (!ieee80211_rx_valid_freq(status->freq, link))
-+				continue;
- 
--				link_id = link_sta->link_id;
--			} else {
--				link_id = sta->deflink.link_id;
-+			if (rx_data_pending) {
-+				ieee80211_prepare_and_rx_handle(&rx, skb,
-+								false);
-+				rx_data_pending = false;
- 			}
- 
--			if (!ieee80211_rx_data_set_sta(&rx, prev_sta, link_id))
--				goto out;
--
--			ieee80211_prepare_and_rx_handle(&rx, skb, false);
-+			rx.sdata = sta->sdata;
-+			if (!ieee80211_rx_data_set_link_sta(&rx, &sta->deflink))
-+				continue;
- 
--			prev_sta = sta;
-+			rx_data_pending = true;
- 		}
- 
--		if (prev_sta) {
--			int link_id;
--
--			rx.sdata = prev_sta->sdata;
-+		/* And search stations on MLD interfaces */
-+		for_each_link_sta_info(local, hdr->addr2, link_sta, tmp) {
-+			struct ieee80211_link_data *link;
- 
--			/*
--			 * FIXME: This is not correct as the addr2 cannot be a
--			 * link address if the loop itself is iterated.
--			 */
--			if (prev_sta->sta.mlo) {
--				struct link_sta_info *link_sta;
-+			sta = link_sta->sta;
-+			sdata =	sta->sdata;
-+			link = rcu_dereference(sdata->link[link_sta->link_id]);
- 
--				link_sta = link_sta_info_get_bss(rx.sdata,
--								 hdr->addr2);
--				if (!link_sta)
--					goto out;
-+			if (!ieee80211_rx_valid_freq(status->freq, link))
-+				continue;
- 
--				link_id = link_sta->link_id;
--			} else {
--				link_id = sta->deflink.link_id;
-+			if (rx_data_pending) {
-+				ieee80211_prepare_and_rx_handle(&rx, skb,
-+								false);
-+				rx_data_pending = false;
- 			}
- 
--			if (!ieee80211_rx_data_set_sta(&rx, prev_sta, link_id))
--				goto out;
-+			rx.sdata = sta->sdata;
-+			if (!ieee80211_rx_data_set_link_sta(&rx, link_sta))
-+				continue;
- 
-+			rx_data_pending = true;
+ 		rcu_read_lock();
+-		sta = sta_info_get_bss(sdata, mgmt->da);
+-		mlo_sta = sta && sta->sta.mlo;
++		if (!params->no_sta) {
++			sta = sta_info_get_bss(sdata, mgmt->da);
++			mlo_sta = sta && sta->sta.mlo;
 +		}
-+
-+		if (rx_data_pending) {
- 			if (ieee80211_prepare_and_rx_handle(&rx, skb, true))
- 				return;
-+
- 			goto out;
- 		}
-+
-+		/* fall through, e.g. for spurious frame notification */
+ 
+ 		if (!ieee80211_is_action(mgmt->frame_control) ||
+ 		    mgmt->u.action.category == WLAN_CATEGORY_PUBLIC ||
+@@ -884,7 +886,8 @@ int ieee80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
+ 		     local->ops->remain_on_channel &&
+ 		     memcmp(sdata->vif.cfg.ap_addr, mgmt->bssid, ETH_ALEN))) {
+ 			need_offchan = true;
+-		} else if (sdata->u.mgd.associated &&
++		} else if (!params->no_sta &&
++			   sdata->u.mgd.associated &&
+ 			   ether_addr_equal(sdata->vif.cfg.ap_addr, mgmt->da)) {
+ 			sta = sta_info_get_bss(sdata, mgmt->da);
+ 			mlo_sta = sta && sta->sta.mlo;
+@@ -1022,7 +1025,9 @@ int ieee80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
  	}
  
--	prev = NULL;
-+	/*
-+	 * This is a management frame (or a data frame without a station) and
-+	 * it will be delivered independent of whether a station exists,
-+	 * so iterate the interfaces.
-+	 */
-+	rx_data_pending = false;
-+
-+	/* We expect the driver to provide frequency information */
-+	if (WARN_ON_ONCE(!local->emulate_chanctx && !status->freq))
-+		goto out;
- 
- 	list_for_each_entry_rcu(sdata, &local->interfaces, list) {
-+		struct ieee80211_link_data *link = NULL;
-+
- 		if (!ieee80211_sdata_running(sdata))
- 			continue;
- 
-@@ -5507,30 +5503,85 @@ static void __ieee80211_rx_handle_packet(struct ieee80211_hw *hw,
- 		    sdata->vif.type == NL80211_IFTYPE_AP_VLAN)
- 			continue;
- 
-+		link_sta = NULL;
-+		link = NULL;
-+
-+		/* Try to resolve the station */
-+		if (!ieee80211_vif_is_mld(&sdata->vif)) {
-+			sta = sta_info_get_bss(sdata, hdr->addr2);
-+
-+			if (sta) {
-+				link_sta = &sta->deflink;
-+				link = &sdata->deflink;
-+			}
-+		} else {
-+			link_sta = link_sta_info_get_bss(sdata, hdr->addr2);
-+
-+			if (link_sta)
-+				link = rcu_dereference(sdata->link[link_sta->link_id]);
-+		}
-+
- 		/*
--		 * frame is destined for this interface, but if it's
--		 * not also for the previous one we handle that after
--		 * the loop to avoid copying the SKB once too much
-+		 * If we found a STA and it has a valid link information, then
-+		 * RX using the station.
- 		 */
-+		if (link_sta && link &&
-+		    ieee80211_rx_valid_freq(status->freq, link)) {
-+			if (rx_data_pending) {
-+				ieee80211_prepare_and_rx_handle(&rx, skb, false);
-+				rx_data_pending = false;
-+			}
-+
-+			/* No valid_links check as we need to RX beacons */
-+
-+			rx.sdata = sdata;
-+			if (ieee80211_rx_data_set_link_sta(&rx, link_sta))
-+				rx_data_pending = true;
- 
--		if (!prev) {
--			prev = sdata;
- 			continue;
- 		}
- 
--		rx.sdata = prev;
--		ieee80211_rx_for_interface(&rx, skb, false);
-+		/* No station, try to resolve the link and RX */
-+		if (ieee80211_vif_is_mld(&sdata->vif)) {
-+			struct ieee80211_chanctx_conf *conf;
-+			bool found = false;
- 
--		prev = sdata;
--	}
-+			for_each_link_data_rcu(sdata, link) {
-+				conf = rcu_dereference(link->conf->chanctx_conf);
-+				if (!conf || !conf->def.chan)
-+					continue;
- 
--	if (prev) {
--		rx.sdata = prev;
-+				if (status->freq == conf->def.chan->center_freq) {
-+					found = true;
-+					break;
-+				}
-+			}
- 
--		if (ieee80211_rx_for_interface(&rx, skb, true))
--			return;
-+			if (!found)
-+				link = &sdata->deflink;
-+		} else {
-+			link = &sdata->deflink;
-+		}
-+
-+		if (rx_data_pending) {
-+			ieee80211_prepare_and_rx_handle(&rx, skb, false);
-+			rx_data_pending = false;
-+		}
-+
-+		rx.sdata = sdata;
-+		rx.local = sdata->local;
-+		rx.link = link;
-+		rx.link_id = link->link_id;
-+		rx.sta = NULL;
-+		rx.link_sta = NULL;
-+
-+		rx_data_pending = true;
+ 	if (!need_offchan) {
+-		ieee80211_tx_skb_tid(sdata, skb, NULL, 7, link_id);
++		ieee80211_tx_skb_tid(sdata, skb,
++				     params->no_sta ? ERR_PTR(-ENOENT) : sta,
++				     7, link_id);
+ 		ret = 0;
+ 		goto out_unlock;
  	}
- 
-+	if (rx_data_pending &&
-+	    ieee80211_prepare_and_rx_handle(&rx, skb, true))
-+		return;
-+
-  out:
- 	dev_kfree_skb(skb);
- }
 -- 
 2.55.0
 
