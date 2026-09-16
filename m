@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEC5BC88E5C
-	for <ath11k@archiver.kernel.org>; Wed, 16 Sep 2026 06:46:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C43BC88E5C
+	for <ath11k@archiver.kernel.org>; Wed, 16 Sep 2026 06:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=taOEqL4siH3lxxx1UH5RkTc6W3vPtQoc/t7GJVuIGJw=; b=dDN49nSS20U4YJMThN9bjevHz/
-	8gBDAMd0KTjP5rxwL7x4ZDO4LL9ET0jWKoW0301ah43BUnhywNDfbp9pPVUNe9tUmUBIwx58THhUe
-	lGVIyDzkuimSURFAPHJP1klIRxWG/1bVoCpq/OqCECro4Nms6gYSqOu4bMclp+x/kp632mrQS1GpO
-	BQWPr9B9ZgctLjcLVzGx/804Phu0OHqF1EnKm75ofYImBM6ZR2VKGYsdvs9Vt/+QGmICF2LcsI63m
-	rQpld6nyAWtc6aD0ZDokFpT7M2TiiYuvWI5s/AMOyMqga6JZSV8N9AAJbI0iI3BImalXkwW6RP7Oo
-	tDHd44mw==;
+	bh=IvF/lDWIxjmdBnUQu2pw5iZ8dJc+t4gXd603fw/T2So=; b=dRTL7OaD+Mh7d+nAqirTMkh0vO
+	LofCAhRpUvrekzWGwKNjsC0LILqFhNtEHOUaDsRgVUDa9cjpjmHzV3f1UG8EWHG8Q16u7DFBdWpo3
+	jIm5Ukbs/Zy6Yv4zVmT7zB0UZ1vvvfHVDLSts0kbtIJ1RJTiSeiAzOwObszDP6Bp/m/I39lX3WXLe
+	bjOaUHc4XF6Of+Z/uGaC7hkmzpZNmw2JsN06mgc2+N8EvQcescRVv+yD1LSKBPX/OukltLPDyt3oF
+	TF/G1Cd3VEqSZ1Vun8yTXcU6UufajyXK5iAQLDfkyh6jUfaUxk/AEx39cBoS33gemerbB96ahZCMy
+	SUFwoi2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6jP7-00000008VWt-2NJm;
-	Wed, 16 Sep 2026 06:46:01 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1x6jSu-00000008WAC-2YXy;
+	Wed, 16 Sep 2026 06:49:56 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6jP4-00000008VWI-2Pnw;
-	Wed, 16 Sep 2026 06:45:59 +0000
+	id 1x6jSt-00000008W9t-09NH;
+	Wed, 16 Sep 2026 06:49:55 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 78F1360200;
-	Wed, 16 Sep 2026 06:45:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15BE01F000FF;
-	Wed, 16 Sep 2026 06:45:49 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1863960008;
+	Wed, 16 Sep 2026 06:49:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B1F31F000FF;
+	Wed, 16 Sep 2026 06:49:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789541157;
-	bh=taOEqL4siH3lxxx1UH5RkTc6W3vPtQoc/t7GJVuIGJw=;
+	s=k20260515; t=1789541393;
+	bh=IvF/lDWIxjmdBnUQu2pw5iZ8dJc+t4gXd603fw/T2So=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ACAVyIFhrftw/R6xa50icqAmL7UozbxRjlWRNvte13eswSGg7vgO0zg4mULqhyL2c
-	 iHCohyHxSHLyx5BlFuNe9obKCSnmsSGkSBUe89qjqvD9DFYidFmCKBv/eSv+ymQY8H
-	 mYdjt2/FWhqv8ofu4DF7EvbDkBSENNeoJfdkFMcoKM3W3nX46eQ8+lRPR41FAfmS6i
-	 88iNrayH1la8aNgoWASgJBIV3E9T42k2tE/SWZJRkb9HS+8JNdgLVfYu+tOWj1pPg4
-	 RCeXpfdsNs2YvvFUIbtO1AR0DJopyl0HLhV24eckCwHuX6KfLcY0QQ8k0q9HX8tucX
-	 /2rLyzN9JYGNw==
-Date: Wed, 16 Sep 2026 08:45:46 +0200
+	b=n8LGoYWNtpMnTBlGfCbN23m/T84d83Q38jhIFbxr1lPs5b23nLdcNIDWZlcnGYn4R
+	 4rKmj2862NZ6AxDZFJ+elEghp1nUPg61brH6238b/4/CyRxtbD/7TpVrHvtjWevlHv
+	 VvCS4DHnbNntVbtgjeNMEMBXagW7zo2guZcEWpa09TIp85JznGsoz0D6R+ccuxDWa4
+	 OMFzFRr8/Ixyr16SS9C7RGiUuUhmNnXjPDd1KUrfSFvrhyERTTc5zmV1lRRFk4P4pR
+	 BgXgRI0bEA/VJyfQT+GUWgNnoUCoJ6rLxS5net0RDlCfYSis+6vrRi9YaroCtLtK46
+	 eHtIgBSrHsrPw==
+Date: Wed, 16 Sep 2026 08:49:41 +0200
 From: Manivannan Sadhasivam <mani@kernel.org>
 To: Juha-Matti Tilli <juha-matti.tilli@iki.fi>
 Cc: linux-arm-msm@vger.kernel.org, Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
@@ -54,16 +54,15 @@ Cc: linux-arm-msm@vger.kernel.org, Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
 	Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org, mhi@lists.linux.dev, 
 	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, ath12k@lists.infradead.org, 
 	netdev@vger.kernel.org
-Subject: Re: [PATCH v7 01/15] net: qrtr: ns: validate msglen before ctrl_pkt
- use
-Message-ID: <uo3sk7ygezaysxs3xgizspx6usbtin63rrpoc42l2jp4yxrii4@2jcof2iillbd>
+Subject: Re: [PATCH v7 02/15] net: qrtr: allocate and track endpoint ids
+Message-ID: <k3wxn3ga5gqj5dlhykgnslxfgj536ecfirfc34cd6tc7nbzgo7@jmz46unm7q6f>
 References: <20260915054207.2513877-1-juha-matti.tilli@iki.fi>
- <20260915054207.2513877-2-juha-matti.tilli@iki.fi>
+ <20260915054207.2513877-3-juha-matti.tilli@iki.fi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260915054207.2513877-2-juha-matti.tilli@iki.fi>
+In-Reply-To: <20260915054207.2513877-3-juha-matti.tilli@iki.fi>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,18 +77,32 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 15, 2026 at 08:41:53AM +0300, Juha-Matti Tilli wrote:
+On Tue, Sep 15, 2026 at 08:41:54AM +0300, Juha-Matti Tilli wrote:
 > From: Denis Kenzior <denkenz@gmail.com>
 > 
-> The qrtr_ctrl_pkt structure is currently accessed without checking
-> if the received payload is large enough to hold the structure's fields.
-> Add a check to ensure the payload length is sufficient.
+> Currently, QRTR endpoints are tracked solely by their pointer value,
+> which is sufficient as they are not exposed to user space and it is
+> assumed that each endpoint has a unique set of node identifiers
+> associated with it.  However, this assumption does not hold when
+> multiple devices of the same type are connected to the system.  For
+> example, multiple PCIe based 5G modems.  Such a setup results in
+> multiple endpoints with confliciting node identifiers.
+> 
+> To enable support for such scenarios, introduce the ability to track
+> and assign unique identifiers to QRTR endpoints. These identifiers
+> can then be exposed to user space, allowing for userspace clients to
+> identify which endpoint sent a given message, or to direct a message
+> to a specific endpoint.
+> 
+> A simple allocation strategy is used based on xa_alloc_cyclic.  Remote
+> endpoint ids start at 'qrtr_local_nid' + 1.  Since qrtr_local_nid is
+> currently always set to 1 and never changed, node identifiers start at
+> '1' for the local endpoint and 2..INT_MAX for remote endpoints.
 > 
 > Signed-off-by: Denis Kenzior <denkenz@gmail.com>
 > Reviewed-by: Marcel Holtmann <marcel@holtmann.org>
 > Reviewed-by: Andy Gross <agross@kernel.org>
 > Signed-off-by: Mihai Moldovan <ionic@ionic.de>
-> Fixes: 0c2204a4ad71 ("net: qrtr: Migrate nameservice to kernel from userspace")
 > Signed-off-by: Juha-Matti Tilli <juha-matti.tilli@iki.fi>
 
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
