@@ -4,76 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 795B9C982CD
-	for <ath11k@archiver.kernel.org>; Thu, 17 Sep 2026 06:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 847E4C982C1
+	for <ath11k@archiver.kernel.org>; Thu, 17 Sep 2026 06:59:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=nBOKDWHJ5d/WX+9vDbLuOmrdk3Z30++1D+Jr/5PySfA=; b=Hw11efeotpaVZZwS7nc+qCHgqC
-	sHntRa0mImFHah1Rm/AW1zSgvgHQW/C1dhEsTRnUNNDg29mRZoXdg8ASFLNCI/BkllJXZdB90HOAy
-	gRILAN4ig8uYz7WGfcIi2Ip2wHmzm/WfrDTJ7hrjuTaKoFNZNi1egaqU8r86vXvfd3xZg63GWUKk0
-	9q2S2ULHS5WpqmF7aq2A73bzuK7IMacwKe28Z2J4qDe19yJ9EPoFhS1uhy68qtLfV19txNUbIa2Yb
-	+sVuTVBFUVlgZPURfxDRmPNpk7PLQ2MX8lU4o9FbNIaQ6weAjZqknnksv+ePg4EVR5onJw6DPK8SG
-	s1C2MLAw==;
+	bh=uTBRx/POh6sMNSgm0GJh52YtrZBru3mV1Q9aul2DNLU=; b=G6xmOrV19QsXbnbOh/7arLe7n1
+	ypRFT6HVZTXI0LsWxZ/CKTymFWXmsU7Iq8tXHIbvQ9umyOFz772JEKrkYKpJiCnp0mDMmNLCu3tvB
+	rHS7PPmGp2RKIsm6/Cly1G1PKeRp9fUoJ6U9ZhAfd2lQrQ6c8gN/A5kKamAzGTPyk4QRCdKCo7hts
+	d82hBgWAutuvJgbDl/S2MRP544poe5yeyOLn5yrxP5ptTgt/YucMK3oXDHCMBzVh9ejYrIgRy8uEH
+	c5QUl2AkYSCcr8nwP4MwCdx6hKTj2T9TGCYDsp3bAMxVA3y1NtC6fy52uNGV88TCg5Zeg/dLGuAMg
+	k914gYww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x75vd-0000000Ahbe-0C7B;
-	Thu, 17 Sep 2026 06:49:05 +0000
+	id 1x765k-0000000AjgR-2gLP;
+	Thu, 17 Sep 2026 06:59:32 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x75vX-0000000AhSt-1B8e
+	id 1x765i-0000000Ajfq-14uE
 	for ath11k@lists.infradead.org;
-	Thu, 17 Sep 2026 06:49:03 +0000
+	Thu, 17 Sep 2026 06:59:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1789627738;
+	s=mimecast20190719; t=1789628369;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nBOKDWHJ5d/WX+9vDbLuOmrdk3Z30++1D+Jr/5PySfA=;
-	b=U4zW/RMsLO6emCxYCiZEJxjqvs98BFPITPERCRRsMh3vWVqAT+9IoeuuEHJyghcmQFd/ih
-	8lUS+71zhSkMP1vf9tOyYzjYXPEtZVsJKxSQi2lanoLF4/T2/4AIQrTqzug/lcALuBux1F
-	VXKBbfYR/pFcVLYVQenAeWn3Zh1qIyU=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+	bh=uTBRx/POh6sMNSgm0GJh52YtrZBru3mV1Q9aul2DNLU=;
+	b=gyG0ZS8h/sH3uwMRSzbwfIOKgvFnx5HNK0qd+Zq+IdfyyXYzJLdsAyyR2Bdb+xz+GhQh6t
+	zfFhzAC5Y1byM7HZ1RmD5sh69x+Q8v5sMLe/ShLwGKud42rjEy3DWALHAspux7xdzXiQ9T
+	3DRudZrDsf6Bv6BB/EvnBmVeEr5MG9Y=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-311-1nHO73epMROil569RZVwAQ-1; Thu,
- 17 Sep 2026 02:48:53 -0400
-X-MC-Unique: 1nHO73epMROil569RZVwAQ-1
-X-Mimecast-MFC-AGG-ID: 1nHO73epMROil569RZVwAQ_1789627732
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-311-B3nzCZyuN6qmTGsSQWl-GQ-1; Thu,
+ 17 Sep 2026 02:59:26 -0400
+X-MC-Unique: B3nzCZyuN6qmTGsSQWl-GQ-1
+X-Mimecast-MFC-AGG-ID: B3nzCZyuN6qmTGsSQWl-GQ_1789628364
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D75BE1955DB9;
-	Thu, 17 Sep 2026 06:48:51 +0000 (UTC)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1CBC21954B13;
+	Thu, 17 Sep 2026 06:59:24 +0000 (UTC)
 Received: from fedora.redhat.corp (headnet05.pony-001.prod.iad2.dc.redhat.com [10.2.32.117])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id F366F3003EF4;
-	Thu, 17 Sep 2026 06:48:49 +0000 (UTC)
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9524230001BE;
+	Thu, 17 Sep 2026 06:59:19 +0000 (UTC)
 From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: jjohnson@kernel.org
-Cc: ath11k@lists.infradead.org,
+To: helgaas@kernel.org
+Cc: alex@shazbot.org,
+	ath11k@lists.infradead.org,
 	ath12k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
+	bhelgaas@google.com,
+	jjohnson@kernel.org,
+	jtornosm@redhat.com,
 	linux-kernel@vger.kernel.org,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH v7 4/4] wifi: ath12k: implement custom wake_tx_queue with flow control
-Date: Thu, 17 Sep 2026 08:48:25 +0200
-Message-ID: <20260917064825.12747-5-jtornosm@redhat.com>
-In-Reply-To: <20260917064825.12747-1-jtornosm@redhat.com>
-References: <20260917064825.12747-1-jtornosm@redhat.com>
+	linux-pci@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	mani@kernel.org,
+	mhi@lists.linux.dev
+Subject: Re: [PATCH v13] PCI: Add device-specific reset for Qualcomm devices
+Date: Thu, 17 Sep 2026 08:59:18 +0200
+Message-ID: <20260917065918.13357-1-jtornosm@redhat.com>
+In-Reply-To: <20260915223634.GA878346@bhelgaas>
+References: <20260915223634.GA878346@bhelgaas>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: UNxt4LDozENuOVM9khc8UUhfQekklzUqgipk_Z3zHUs_1789627732
+X-Mimecast-MFC-PROC-ID: kj2yZEIB32PDRow4H2t44A5yuu9HWDT1DbRZXCXiw3A_1789628364
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260916_234859_434651_0EC72271 
-X-CRM114-Status: GOOD (  16.91  )
+X-CRM114-CacheID: sfid-20260916_235930_375139_0E48C422 
+X-CRM114-Status: GOOD (  14.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,163 +94,45 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Under heavy traffic, ath12k can hang and experiences -ENOMEM errors
-("failed to transmit frame -12") when the hardware TCL ring fills up.
-This issue is more commonly observed in VMs with PCIe passthrough but
-also occurs on bare metal systems.
+Hi Bjorn,
 
-Implement a custom wake_tx_queue operation that:
+Thanks for the review.
 
-1. Checks hardware ring space before dequeuing packets from mac80211
-2. Uses per-ring locking (wake_tx_lock with spin_lock_bh) to serialize
-   concurrent wake_tx_queue calls targeting the same ring and to ensure
-   bottom halves are disabled as required by ieee80211_tx_dequeue()
-3. Syncs with hardware state to get accurate free slot count
-4. Resolves the target TCL ring once using get_ring_selector(txq->ac),
-   which selects the ring based on the access category
-5. Returns early during firmware crash in the same way as other
-   tx paths
+> I guess you are saying that some kind of reset *does* work
+> fine in normal, clean VM termination?  If reset works fine
+> for normal VM termination but not for VM crash, do we have
+> any idea why they are different?
+It depends on the device:
 
-This approach follows the pattern used in the iwlwifi driver, adapted
-for ath12k's hardware ring architecture.
+- For the modems (SDX62/SDX65), without a proper reset
+  capability, these devices never successfully initialize
+  even on first VM assignment.
 
-This prevents hangs, eliminates -ENOMEM errors, and improves throughput
-by optimizing resource usage and preventing unnecessary packet drops.
+- For the WLAN devices (WCN6855/WCN7850), the reset fails
+  in both cases, but on clean VM shutdown the guest driver's
+  .shutdown/.remove callbacks properly deinitialize the device
+  (stop DMA, disable interrupts, etc.), so it ends up in a
+  known-good state even without a successful reset. On unclean
+  termination (crash, force-off), the guest driver callbacks
+  never run, the device stays in an undefined state, and
+  without a working reset it cannot be reused.
 
-Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.1.c7-00108-QCAHMTSWPL_V1.0_V2.0_SILICONZ_UPSTREAM-3
+I will try to clarify this better in the commit messages for v14.
 
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
----
-v7: Address comments from Jeff Johnson:
-  - Add the defensive pattern _bh in both spinlocks
-v6: https://lore.kernel.org/all/20260811172435.616200-5-jtornosm@redhat.com/
+> Since these basically copy code from other drivers, is there
+> an opportunity to remove it from those drivers and use this
+> instead?
+Yes, that could be a follow-up after this lands.
 
- drivers/net/wireless/ath/ath12k/dp.c       |  1 +
- drivers/net/wireless/ath/ath12k/dp.h       |  2 +
- drivers/net/wireless/ath/ath12k/hal.c      |  1 +
- drivers/net/wireless/ath/ath12k/wifi7/hw.c | 69 +++++++++++++++++++++-
- 4 files changed, 72 insertions(+), 1 deletion(-)
+> This looks like two patches squashed together.  If there's
+> any other reason to touch this patch, I would split them
+> apart.
+Ok, I will split the WLAN and modem resets into separate
+patches for v14.
 
-diff --git a/drivers/net/wireless/ath/ath12k/dp.c b/drivers/net/wireless/ath/ath12k/dp.c
-index f9b37d75956d..e62fa416b992 100644
---- a/drivers/net/wireless/ath/ath12k/dp.c
-+++ b/drivers/net/wireless/ath/ath12k/dp.c
-@@ -1537,6 +1537,7 @@ static int ath12k_dp_setup(struct ath12k_base *ab)
- 	}
- 
- 	for (i = 0; i < ab->hw_params->max_tx_ring; i++) {
-+		spin_lock_init(&dp->tx_ring[i].wake_tx_lock);
- 		dp->tx_ring[i].tcl_data_ring_id = i;
- 
- 		dp->tx_ring[i].tx_status_head = 0;
-diff --git a/drivers/net/wireless/ath/ath12k/dp.h b/drivers/net/wireless/ath/ath12k/dp.h
-index bef0f2ba0560..4bf8a8a6d76c 100644
---- a/drivers/net/wireless/ath/ath12k/dp.h
-+++ b/drivers/net/wireless/ath/ath12k/dp.h
-@@ -58,6 +58,8 @@ struct dp_tx_ring {
- 	u8 tcl_data_ring_id;
- 	struct dp_srng tcl_data_ring;
- 	struct dp_srng tcl_comp_ring;
-+	/* Serializes wake_tx_queue operations for this ring */
-+	spinlock_t wake_tx_lock;
- 	struct hal_wbm_completion_ring_tx *tx_status;
- 	int tx_status_head;
- 	int tx_status_tail;
-diff --git a/drivers/net/wireless/ath/ath12k/hal.c b/drivers/net/wireless/ath/ath12k/hal.c
-index c0c3d2f047ef..fbe4dc41e34b 100644
---- a/drivers/net/wireless/ath/ath12k/hal.c
-+++ b/drivers/net/wireless/ath/ath12k/hal.c
-@@ -390,6 +390,7 @@ int ath12k_hal_srng_src_num_free(struct ath12k_base *ab, struct hal_srng *srng,
- 	else
- 		return ((srng->ring_size - hp + tp) / srng->entry_size) - 1;
- }
-+EXPORT_SYMBOL(ath12k_hal_srng_src_num_free);
- 
- void *ath12k_hal_srng_src_next_peek(struct ath12k_base *ab,
- 				    struct hal_srng *srng)
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/hw.c b/drivers/net/wireless/ath/ath12k/wifi7/hw.c
-index 678c512a2199..7bfeb9397465 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/hw.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/hw.c
-@@ -1160,9 +1160,76 @@ static void ath12k_wifi7_mac_op_tx(struct ieee80211_hw *hw,
- 	}
- }
- 
-+static void ath12k_wifi7_mac_op_wake_tx_queue(struct ieee80211_hw *hw,
-+					      struct ieee80211_txq *txq)
-+{
-+	struct ath12k_vif *ahvif = ath12k_vif_to_ahvif(txq->vif);
-+	struct ieee80211_tx_control control = {
-+		.sta = txq->sta,
-+	};
-+	struct ieee80211_vif *vif = txq->vif;
-+	struct ath12k_link_vif *arvif;
-+	struct dp_tx_ring *tx_ring;
-+	struct hal_srng *tcl_ring;
-+	struct ath12k_sta *ahsta;
-+	struct ath12k_dp *dp;
-+	struct sk_buff *skb;
-+	struct ath12k *ar;
-+	u8 ring_selector;
-+	int num_free;
-+	u8 ring_id;
-+	u8 link_id;
-+
-+	if (ieee80211_vif_is_mld(vif) && txq->sta) {
-+		ahsta = ath12k_sta_to_ahsta(txq->sta);
-+		link_id = ahsta->assoc_link_id;
-+	} else {
-+		link_id = ahvif->deflink.link_id;
-+	}
-+
-+	rcu_read_lock();
-+
-+	arvif = rcu_dereference(ahvif->link[link_id]);
-+	if (!arvif || !arvif->ar) {
-+		rcu_read_unlock();
-+		return;
-+	}
-+
-+	ar = arvif->ar;
-+	dp = ar->ab->dp;
-+
-+	ring_selector = dp->hw_params->hw_ops->get_ring_selector(txq->ac);
-+	ring_id = ring_selector % dp->hw_params->max_tx_ring;
-+	tx_ring = &dp->tx_ring[ring_id];
-+	tcl_ring = &dp->hal->srng_list[tx_ring->tcl_data_ring.ring_id];
-+
-+	while (1) {
-+		if (unlikely(test_bit(ATH12K_FLAG_CRASH_FLUSH,
-+				      &ar->ab->dev_flags)))
-+			break;
-+
-+		guard(spinlock_bh)(&tx_ring->wake_tx_lock);
-+
-+		spin_lock_bh(&tcl_ring->lock);
-+		num_free = ath12k_hal_srng_src_num_free(ar->ab, tcl_ring, true);
-+		spin_unlock_bh(&tcl_ring->lock);
-+
-+		if (num_free == 0)
-+			break;
-+
-+		skb = ieee80211_tx_dequeue(hw, txq);
-+		if (!skb)
-+			break;
-+
-+		ath12k_wifi7_mac_op_tx(hw, &control, skb);
-+	}
-+
-+	rcu_read_unlock();
-+}
-+
- static const struct ieee80211_ops ath12k_ops_wifi7 = {
- 	.tx				= ath12k_wifi7_mac_op_tx,
--	.wake_tx_queue			= ieee80211_handle_wake_tx_queue,
-+	.wake_tx_queue			= ath12k_wifi7_mac_op_wake_tx_queue,
- 	.start                          = ath12k_mac_op_start,
- 	.stop                           = ath12k_mac_op_stop,
- 	.reconfig_complete              = ath12k_mac_op_reconfig_complete,
--- 
-2.54.0
+Thanks
+
+Best regards
+Jose Ignacio
 
 
