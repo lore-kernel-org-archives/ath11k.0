@@ -4,149 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 766D9C982D8
-	for <ath11k@archiver.kernel.org>; Fri, 18 Sep 2026 18:13:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6278C982D7
+	for <ath11k@archiver.kernel.org>; Sat, 19 Sep 2026 15:45:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=vlrqp6hzEyvS2JuXrzVg/2ASZasMwkiKMUs6oP7YPjU=; b=JEt2yGQMU1h09Go2Ojg142Q0W8
-	LIdPviL93dbx0wuhMy+BssdYOsrWacBiiAb9gYAEh4jMW66rMsjyUvnN2NwpMLu0uBfWG9LJGpg6p
-	z88S1tGuJcv4OJyE2c2o4gQT2Pqf5/r3JD9+siTcc7iAezvEMtiFmXgkeKfx7vPSXMdgDqxgY/8Cq
-	mtWOWZobnyZsvSqQE/l01BARorSCSaeK9LpM32x6i7deHBBEPpyzIC/9z8KoB2VNHVKHum20JWDkh
-	9YqzAej3QipptGCARFrKoCSPzd9ScqxQieVQX5dY7LjjJdElx5km6bdkACH+ckSeKLotXPoD5nGi4
-	gF2GXh4g==;
+	bh=XiISkel6KBAPLBDsHIAjLXGjpU5Y1cWRc8OXIgY4sm4=; b=GyeBoIgIBc1wtDgVnggll4HiEG
+	KBSgrSood3OTXQEnCq3CAX6Mewbw42HLW9lLOaXWjQG4tUSfQ5igh9pL/JniHgyBHcPJm/ACPFf1s
+	qZN0dPHYCLuSue4AmEG2+RcjmMVCj/dGKaVBmqjR7WK8yvte8GHH/kknYp+Nd+wgQZ846Aw5AyG+n
+	dfNucw3IhjgQ1fCkF+4cboOAXvxSbbQymf2Wn9mUTBjCTIE9m2aBeCnuRhAMaCwMzR6FXfn/hCkOO
+	QQtw949q1isWkOt3/AL//4Prj376+zvDGMdHHKTnvAiapnzOq3AhzggVEaNws38oBD7WHotm/1Cjd
+	fSfU1QTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7d5p-0000000FGK6-3GTj;
-	Fri, 18 Sep 2026 18:13:49 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1x7xG8-0000000GSrm-2oiG;
+	Sat, 19 Sep 2026 15:45:48 +0000
+Received: from ionic.de ([145.239.234.145] helo=mail.ionic.de)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7d5n-0000000FGJH-0mkh
-	for ath11k@lists.infradead.org;
-	Fri, 18 Sep 2026 18:13:48 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 68IGo6mS508582
-	for <ath11k@lists.infradead.org>; Fri, 18 Sep 2026 18:13:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vlrqp6hzEyvS2JuXrzVg/2ASZasMwkiKMUs6oP7YPjU=; b=QnSiSkrBsQffLT2m
-	/WdGxKrll1bdiyVF5lVP37RUWAP1kVlS37YajVydWd+bTWHY6SP/0NFwUhDO3ZtV
-	6MySMjpuVY0RQ2x4J5kye9lloYTC3mXXc6vvo3X0jOSro38GWRDRcsh8RpdMQ7f8
-	wrNG+VRzNNNH5fLuQleWYapmnEAalGWb1GK/KXXOiNBrfQ9hUzLprhbZlNR+IUmN
-	TIO2uA3b5iLJHP+LR8RBcPKra+YAIWPs6LpaXgIOERPuhUUce1tQ5KVY7wvGd/l0
-	lnnY6vzkGGO1jB4EYQShfL3YJvlnTT+FV0fDMJZsaCFrmL7ozjCRRNkiWO532YSX
-	fBGxlQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4gs84a0q7e-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Fri, 18 Sep 2026 18:13:46 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-38e1118e4abso1845446a91.0
-        for <ath11k@lists.infradead.org>; Fri, 18 Sep 2026 11:13:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1789755226; x=1790360026; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=vlrqp6hzEyvS2JuXrzVg/2ASZasMwkiKMUs6oP7YPjU=;
-        b=B4SSC11gbcERh5GGM19ZHBfvzoJKL3IjSlcwGZRagzBCOtjt97PwUKinmflC3TKR71
-         A0kfye29GlkZ6qG2vuemJMsTjPBWbllZiDnv4mj58Lv32NTobM/ZHTFLpu3CahFtPieK
-         YhHpkgmyBL5idA3qrHKwISaxFTGYPHrimzHqUIoWmRNO3f1yHHE4Jpxx3sCZh3Kfj8F+
-         Ys6mJYZ98l8T0BjwTcUT+88OKQBFlmkEW+t9TCYcTgxX0Bag3ohht9IPLiMbCT9n4V4x
-         vDvN85TCS/ebEuFHS/uy87SQXEtCg2ImQCuV3b5uPImBhieE21G5GqyaglSxRLxttJ7S
-         JA0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789755226; x=1790360026;
-        h=content-transfer-encoding:content-type:in-reply-to:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=vlrqp6hzEyvS2JuXrzVg/2ASZasMwkiKMUs6oP7YPjU=;
-        b=V9rGf48cCKDtVWhxuYkXfcAbibAlLOleYev1vuPPvqqqeiP5X0BOyyiSwr30IYMest
-         jTJpEtorwW1mc2ELUJ8eeeNYxrHWjJuENrzzOMWubB6ue1eaV90JVyExF20CgE+cKG2+
-         8ThkSemBtlsNyabpLl0PsRnddeNLbVZcL0o7Em/9HR5kSfXBmwgkjVp17AcuiEZEYBTw
-         4OxsQj5Cz//yiQGpQRMspYbJaJb2ov0U08mRhSeUTYyek2Dzwq8gfGsCv/G0CKm3OsBE
-         cwEinIbS0rsIqhflwIEHE9W8Lx+LXYHzV1N9tfnXuIfJqzxiqDGtXkk4sy+7xOViLLWm
-         Gi0g==
-X-Forwarded-Encrypted: i=1; AKwUvByjMzPX+TdWAcBTDsla+ZNFLt96R1KTcxRsDjWrXegV/kaz0NsjuOkadkSoSC1e8uoIO1Nlofc=@lists.infradead.org
-X-Gm-Message-State: AFuF++loOpmA9Lu8ZTX+Y5sQ3cBcihcmWRK/aqDK8nnYrxfOIOzJ6lmE
-	it++/Y5pbscFIr3+RS9Jaz4zhW4Mtx5PzEhCEMOA5KAz7p8zfJBCE5RmbBV+u8Hz4J+6LsPaDA3
-	oAQ7mmiUfGYCMCyPd037dscmG9OVojou5FFb+CBgTBzCDOBXbfphvV7DDuQQTy8lj
-X-Gm-Gg: AYBFou30u6+8AdwtCiAhhr7LtbMkIsP92G57YX84uXBf5yGT/0q1wiDmBuk4iovcK3a
-	WLQl2DcodCzZr/vjP/QHklkuvKWk3aGi2foIGVprgVHwvTLHPVD/pjNiAzbNwtDRHkHGrDfJ66P
-	yyA9F7Uy4SWR8nGsSRcMZH1xd06qWJAiQdBABiBjISHlpW30Zz938i+JOoVv2poQoayxVKsfvw9
-	5iUEbeU9BAc4Ajsf/0oSrycCHIIf5+W96s1RcqPd73201qbmihtSGq6hFKZ+Wjqxr+mg6T13Zg9
-	FTGrSoBWybcZ1zUdyz0wkQB08K4tXuA6RuqLGCfiWYQSHGlgLVn68n3FpkO9yRh6AlaGb943gJ5
-	VQMXNXmpDgTbQRYTorA7C5frlEFh8+fFp9PJUKKFeDpD4kN6dyytb/vpVYQ==
-X-Received: by 2002:a17:90b:134f:b0:39d:febe:7460 with SMTP id 98e67ed59e1d1-39e54d3651cmr7028582a91.22.1789755225604;
-        Fri, 18 Sep 2026 11:13:45 -0700 (PDT)
-X-Received: by 2002:a17:90b:134f:b0:39d:febe:7460 with SMTP id 98e67ed59e1d1-39e54d3651cmr7028536a91.22.1789755225051;
-        Fri, 18 Sep 2026 11:13:45 -0700 (PDT)
-Received: from [192.168.1.20] (33.sub-75-218-193.myvzw.com. [75.218.193.33])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-33c331433besm467963eec.16.2026.09.18.11.13.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Sep 2026 11:13:44 -0700 (PDT)
-Message-ID: <4e0481c1-9288-42d4-94c9-e18da5cf8e5d@oss.qualcomm.com>
-Date: Fri, 18 Sep 2026 11:13:42 -0700
+	id 1x7xG4-0000000GSr0-2c7x;
+	Sat, 19 Sep 2026 15:45:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ionic.de; s=default;
+	t=1789832738; bh=adUDFqO22StJ6ilTA57a3K94u917eEMrpj1AlJLZDrE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MHqaz3MOS0UJVLgEDnlQ0sUPeaydyOSC8WzdXtCWrEQwlUAL+C/I2KMthIoGENSOP
+	 uDwWLSddV34njdRoxXiBUGoL9/opSYuroBEXHhtRpncCZfFnjSyeTz0O174TcqzQkp
+	 CwlaGNYfCSVyjJ39li9HkDfARb8gaw4hY49OdNIE=
+Received: from [172.24.215.49] (unknown [185.102.219.57])
+	by mail.ionic.de (Postfix) with ESMTPSA id 9FBCC1480E15;
+	Sat, 19 Sep 2026 17:45:38 +0200 (CEST)
+Message-ID: <a13e783a-1c55-4e9d-92e0-634f8fbb10d1@ionic.de>
+Date: Sat, 19 Sep 2026 17:45:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] net: qrtr: Add support for using identical MHI
- endpoint devices
-To: manivannan.sadhasivam@oss.qualcomm.com,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>
+Subject: Re: [PATCH 4/4] wifi: ath12k: Connect to the QMI server belonging to
+ the device owned by this driver
+To: Juha-Matti Tilli <juha-matti.tilli@iki.fi>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+ Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, ath12k@lists.infradead.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Chris Lew <christopher.lew@oss.qualcomm.com>,
-        Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>,
-        Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>,
-        Juha-Matti Tilli <juha-matti.tilli@iki.fi>,
-        Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Chris Lew <christopher.lew@oss.qualcomm.com>,
+ Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>,
+ Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>,
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>, david@3adesign.co.uk,
+ nakonechnij.sergsj@gmail.com
 References: <20260918-qrtr-multi-ep-v1-0-8a06caa368d3@oss.qualcomm.com>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+ <20260918-qrtr-multi-ep-v1-4-8a06caa368d3@oss.qualcomm.com>
+ <cb6766f8-54b9-435f-a69a-e712727dabdb@app.fastmail.com>
 Content-Language: en-US
-In-Reply-To: <20260918-qrtr-multi-ep-v1-0-8a06caa368d3@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: Mihai Moldovan <ionic@ionic.de>
+Autocrypt: addr=ionic@ionic.de; keydata=
+ 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
+ tS48DBVD
+In-Reply-To: <cb6766f8-54b9-435f-a69a-e712727dabdb@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: cWU-gTIvmi3GMS_WJrhj0tBUiSDhdeBc
-X-Proofpoint-Spam-Info: AW1haW4tMjYwOTE4MDI2MSBTYWx0ZWRfX326KCu3SA2Iv
- ZBan1VRqi6LL6Q1qP577HvJUcLr31NGTsCHgy6DQ7u3LNKFtXOpxCbFzr72OFpvpmhM51jZ5mAi
- Pp/kQQILKAXWKKIJeb9c3cGqi3vPI+Q=
-X-Proofpoint-ORIG-GUID: cWU-gTIvmi3GMS_WJrhj0tBUiSDhdeBc
-X-Authority-Analysis: v=2.4 cv=MLD1C8Zl c=1 sm=1 tr=0 ts=6aad7f5a cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=AnolQpdaNwb4XK4FG+QP+g==:17
- a=IkcTkHD0fZMA:10 a=VdqzKS8jKosA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KAMPhC-K3bquQAzTacoA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTE4MDI2MSBTYWx0ZWRfX2p881DsYWFA/
- jrb5t2RjTrXRx+nWKRBdp2gW7p7j3FqArTM2HsBxBiC3zp7sbrDuvVG8fMq5st5CfQFGlon7114
- wodeN+MoJHBe+AEzqnRBAq/RlFnBSh00P7VZFROSgIbcAOWC8HkzNr7HIQeBT9HKGWQsJfZ3+zn
- nMbLI7scqmmzEbVoyLUmniy2me0NGizKo49RpnQkh2lhecjg/JwrKlzjReeeLCRpNVNr4uW1BMV
- Jyi8e+l6DPiWUWf4NC40DkO/yn89D0E31XuEvkgty3TSzNL+5DglkfDsCdKgai+gfWw1lp3yTeM
- JPzctRbTAXmKLNKAQHaBioZF7FmtOt7QXySHQ9PPmo/mVzQ2coqkEoD/QnjplE2woYLwnurlafF
- 8uviMzkriXiz8xDGgjd01RPXYyeAvXxwz0kjBRh54Ga6Il4aaWuNOTK6KvT+HvlCpwim4B8Ass0
- HAR7OYaWvGYt3ZebjgA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-09-18_05,2026-09-16_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 spamscore=0 suspectscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2609040000
- definitions=main-2609180261
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260918_111347_244965_3117E122 
-X-CRM114-Status: GOOD (  24.49  )
+X-CRM114-CacheID: sfid-20260919_084545_168164_A70098C7 
+X-CRM114-Status: GOOD (  14.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -161,74 +126,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/18/2026 9:28 AM, Manivannan Sadhasivam via B4 Relay wrote:
-> Hi,
+* On 9/18/26 18:51, Juha-Matti Tilli wrote:
+>> But now, QRTR provides each MHI endpoint a unique node id which is
+>> different from the node id announced by the device. So use the same id to
+>> pick the correct server. Add a get_qrtr_node_id() HIF callback that returns
+>> the node id derived from the MHI controller index and zero for transports
+>> that do not assign one. In the new_server callback, skip any service whose
+>> node id does not match. A node id of zero disables the check, so transports
+>> that do not assign one keep their current behavior.
+>>
+>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 > 
-> This series reworks the QRTR driver to add support for using identical MHI
-> endpoint devices at the same time. Currently, QRTR driver has a limitation on
-> using more than one identical MHI endpoint devices like QCS6490 or any Qcom
-> Endpoint device making use of QRTR at the same time. Because of the fact that
-> these devices will have the identical QRTR node id, they cannot be used at the
-> same time, on the same host machine.
-> 
-> This limitation is a blocker for running upstream kernel on devices like Qcom
-> based routers as they often have multiple identical WLAN Endpoint devices
-> connected to the Router SoC.
-> 
-> This series supersedes the following 2 series from Juha:
-> https://lore.kernel.org/all/20260915054207.2513877-1-juha-matti.tilli@iki.fi
-> https://lore.kernel.org/all/20260915074135.2567411-1-juha-matti.tilli@iki.fi
-> 
-> Compared to the series from Juha, this series simplifies the multi-endpoint
-> support by computing a unique node id for each MHI endpoint and uses it for the
-> internal QRTR book keeping. This ensures that even if the MHI endpoint devices
-> have same node ids, the host QRTR will always use a unique node id for each one
-> of them.
-> 
-> More details can be found in the individual patches.
-> 
-> Testing
-> =======
-> 
-> Juha tested this series on multi ath11k setup by backporting this series to
-> 6.6.156 kernel. I'd appreciate a formal tested-by tag from Juha and other folks
-> CCed to this series.
-> 
-> Merge Strategy
-> ==============
-> 
-> Since both QRTR and ath drivers are falling under the networking tree, the whole
-> series can be merged through netdev tree.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
-> Manivannan Sadhasivam (4):
->       net: qrtr: Allow the host QRTR to assign a unique node id
->       net: qrtr: Assign unique node id for MHI endpoints
->       wifi: ath11k: Connect to the QMI server belonging to the device owned by this driver
->       wifi: ath12k: Connect to the QMI server belonging to the device owned by this driver
-> 
->  MAINTAINERS                           |  1 +
->  drivers/net/wireless/ath/ath11k/hif.h |  9 ++++++
->  drivers/net/wireless/ath/ath11k/pci.c |  9 ++++++
->  drivers/net/wireless/ath/ath11k/qmi.c | 10 ++++++
->  drivers/net/wireless/ath/ath12k/hif.h |  9 ++++++
->  drivers/net/wireless/ath/ath12k/pci.c |  9 ++++++
->  drivers/net/wireless/ath/ath12k/qmi.c | 11 +++++++
->  include/net/qrtr.h                    | 21 ++++++++++++
->  net/qrtr/af_qrtr.c                    | 61 +++++++++++++++++++++++++++++++----
->  net/qrtr/mhi.c                        |  4 ++-
->  10 files changed, 136 insertions(+), 8 deletions(-)
-> ---
-> base-commit: cee9395acd8043be0644b25c34bfa86623f2b935
+> CC'ing Mihai. He is known to have a platform with two ath12k cards,
+> but he said he's been busy recently, so his testing input is uncertain.
 
-I see this is based upon v7.3-rc1 (current release tree).
-This series doesn't cleanly apply on the net-next tree.
+I probably could change the setup to use 2 x ath12k modules, yes, but really I 
+have always been testing with one module using ath11k and the other module using 
+ath12k. Never tested two ath11k or ath12k at a time. There might be even more 
+obstacles to getting that to work correctly.
 
-Are you planning on netdev taking this through current or next?
+My "test setup" is in the new flat where I don't have a proper networking setup, 
+though, so... meh. Don't count on me testing it this year still.
 
-And an alternate merge strategy would be for netdev to take the first two
-patches and then after wireless fast-forwards and ath fast-forwards, I could
-take the last two though the ath tree.
+The proposed code looks simple enough, though, and generally makes sense. It 
+also does away with aux data on the qrtr socket, and if both endpoints can 
+access the same MHI data, it probably makes sense to let them both determine the 
+node ID via the shared MHI controller index (the important part here is that the 
+node ID knowledge is not stored or passed through anywhere in a common qrtr data 
+structure, but essentially becomes a "shared secret" that both end points 
+determine individually, but also in a deterministic, matching way).
 
+Since this changes the endpoint ID completely, this might even make the 
+user-space qrtr tools work transparently with multiple devices, i.e., not 
+requiring any changes to that part. That would be my hope at least. Definitely 
+needs testing, though. It would be great if the user-space tools could directly 
+communicate with the servers on the modules, but I'm not quite sure how the 
+user-space tools would come to the correct node ID conclusion. This might be one 
+drawback of the "shared knowledge" architecture - it might be difficult to make 
+it work outside of the driver realm.
+
+
+Indeed a cleaner and more simple approach, though.
+
+
+
+Mihai
 
