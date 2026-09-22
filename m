@@ -4,86 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E62EC98310
-	for <ath11k@archiver.kernel.org>; Tue, 22 Sep 2026 13:42:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC175C982FA
+	for <ath11k@archiver.kernel.org>; Tue, 22 Sep 2026 14:54:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZyMfFKs13NBIbRrUO0iG5h7b0cNxN3JFur1XPbojwj8=; b=mBouQiigOL4WX0xaeMMalwjQiD
-	lBpHuN1HB+bXukFAgr69skekCdf0VtdyifcUu2w18kehulIniBt1vJ39xXU2diH1HEaOeKDYaryT6
-	+e3XtZ11YXatEQMXbRNAa0Tv8h9V5sRV4rOd1sBG1DJhEJbb1Keoxe7IeBmX2lcUYmn90UJYD4YqL
-	whWQJrWLXa1GEircnHoGkR2NDR/6vbsLQgKg2BMO90LR/2HM+rmd/2H1Vn1g+6madtmGe5jP4nGn2
-	gzfKkmfNYm0dOctmGqdiG7w5+61XLPMifZFZAlZw7k9UdEDCmyyAe1BkCAaILKNJqnb3aIhV7F4W0
-	0p9T5t9g==;
+	bh=Z0GiNNz7mvXA6xuheXPBRxDg0LpQpCzQPfazm+MFnlQ=; b=PWcBs9gdQcfctPesMh7/OYdVpS
+	XZM7Jw/7cFKu2GskZHz5jIDM285+fgxKsFaG1rfjyhoGe/H9C153B2hXM9WyeDc8W18rNjPpGAq7R
+	S/A0vDUSnM/kVota6khrePFjR5MVXVYe+QplcuChix+M6TkQYnLXYFka/OBSCZjpkuVj+vDLIzLaZ
+	6WbeT3myv40GI55VRYXdqItdGzFveMinpDxEf3AN9GKVX4PapJUjYCdKNxrgsJmEM9zsYZNbMq+X0
+	A+KPY520FS9AJ337NBwTwXoUpQOLPaR6FKA6gOlrHkHLqjjkC+52gMtPp2FvoxrDifzbI73Q83Xr6
+	tP8EtpSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x90l5-00000005ZBV-2pL8;
-	Tue, 22 Sep 2026 13:42:07 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x91tC-00000005kns-2I6E;
+	Tue, 22 Sep 2026 14:54:34 +0000
+Received: from lahtoruutu.iki.fi ([2a0b:5c81:1c1::37])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x90l3-00000005Z9X-1hc4;
-	Tue, 22 Sep 2026 13:42:05 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id CBF7143DF9;
-	Tue, 22 Sep 2026 13:42:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A14E2C2BCFA;
-	Tue, 22 Sep 2026 13:42:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790084524;
-	bh=ui+TXvwrceC03rroE/Q4o0li/haNQJon38ShWlc2EVE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=G6K2V3hfxV8r+6ZtFmtnLu4ih7IPQs+y1XyytoQWBKS6m600IsltVrhtwrCBheq2I
-	 qUGX4r7XtKZKalpluawZjWH4qA3vmSnhGjF07qGWXHxxzqq+bWPFAo5w11YxWj9gmQ
-	 uVUHXJPfNrIYjD/bYxui47zSYqInlcy0a8E7EEfWVgb/kBd9Xd0qExY+zTai3lC8O/
-	 BQcccDntbL7pixs++cJwDag5HVo1kBLwt1kGxcBwc9PZ35i6y/zulJcz8UtvS4WrNU
-	 gTv0XqFIwh/tQftlYhAb2IHmr5qkEUf3RlNKgIQFgLbYkTGZ1uyS0QTBB9xj7TAp1w
-	 j9122tpLF1C3w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A37CC98304;
-	Tue, 22 Sep 2026 13:42:04 +0000 (UTC)
-From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
-Date: Tue, 22 Sep 2026 15:41:45 +0200
-Subject: [PATCH v3 1/4] net: qrtr: Allow the host QRTR to assign a unique
- node id
+	id 1x91tA-00000005kmZ-0ItG
+	for ath11k@lists.infradead.org;
+	Tue, 22 Sep 2026 14:54:33 +0000
+Received: from fauth-c1-smtp.messagingengine.com (fauth-c1-smtp.messagingengine.com [204.75.18.200])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmtilli)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4hq35q4KNLz49Q4V;
+	Tue, 22 Sep 2026 17:54:23 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1790088863;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Z0GiNNz7mvXA6xuheXPBRxDg0LpQpCzQPfazm+MFnlQ=;
+	b=KakClOL+N0I9FuqLRFh5qZ690CSpMRF4EfC2F1e1YIrxZ2Ay31uclDnz6+8sp8fOCSxUlL
+	6LKoUBJ+1ifVGXbjsuxbUkg9AEaqf9vFAOs/lFNXo+pIOp6NH1XypgS8yn/OAnog6EdbIg
+	2C2c9S02ITGA+YK2Wsu/1g/M/dPpZ8SeOHKA2TfRsKEyGtAM3MC/153RgC2XslOAmGHNy8
+	RVKKmpyPuYKM9x0czCLUyf6ttvM1DkIs0PuoqKtTq0tJJQHWXJosxur0BxG09zpTB1z1VD
+	3hpKvAD2KX407Qk531mnG8jCUqTU+cG5ps1/kJ/AZfFtjrXvnvAS2fIf3kGcFQ==
+ARC-Seal: i=1; a=rsa-sha256; d=iki.fi; s=lahtoruutu; cv=none; t=1790088863;
+	b=JJXDylkmVDEwcKmvhX9tETKs7TnQ/xrgcFQCws5Zd1p2EFCKhTqW56dBaN6Y0SzAePIrvN
+	jPr9BNMMfT1/KRJuXR8k03MK+uSWGxo+KoShz48FSmnijsvuDnHYE5NmL0R6rKmD+iGmaS
+	Or+8JGXTcQvIOZyPC3aVFUjSMCtEgIunQ1pP9YlWrQ86Ij1JBC+rALHRiqQobTGrrujXbE
+	SWjS9jvOvIvcn1FSFwH8sG4g6oC3nnHchTiMfzNo9iP7oeKi3QnkYYxsmPGCyghBOQ4xk0
+	WDM6VNRWwklgfHolApe1zszCgpceJq9fyA4+yaN7hMKvYIXaG0UNs2n0is5o8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1790088863;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Z0GiNNz7mvXA6xuheXPBRxDg0LpQpCzQPfazm+MFnlQ=;
+	b=Bi4hPzvBe96CI/I4nv8IPAgWZaVYnftFeSxQ3eYHLdxJvDeWHFdtUlko9I8tc70eVTX3gq
+	+TBke7nTcW2pW0n3Va/35UN97FMoNa3QZpxxOezE1+g3joPqAsCWMxhDX0I/VwKBTq9eWl
+	3ShruJhWIXojK+EugW1c1Pbrzbqew8A3s4xcM7EL/ldSgtb+G5nSbozBfC15pSTsxgPpdI
+	ZC0HUSlDgtq36Lu/kXpYB5dtBJ215qz2y5qrVAeT7m2GAhYm7hyxKpmYuhUS2w3LYqJii8
+	g8p+wiPA24h4PDYezPkQJC8xeB/MreI+qJSr1tOuPVArdPZBdnQctxRKnpjC/g==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=jmtilli smtp.mailfrom=juha-matti.tilli@iki.fi
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 9A38A1980047;
+	Tue, 22 Sep 2026 10:54:22 -0400 (EDT)
+Received: from ams-imap-13 ([10.64.2.33])
+  by ams-compute-02.internal (MEProxy); Tue, 22 Sep 2026 10:54:22 -0400
+X-ME-Sender: <xms:nJayahOoafvGRBHnapWIyTJk6EhrmhVJY0GvCoTm60wkzaZGn_c4Iw>
+    <xme:nJayaux1EEDSx5z2uUL6LKtq4wLmKBLayvDqdFnN2fvuYW7VX5N1W3mRdMLdoiZ40
+    OIEyOIr8gKynWfvbkndsLOzu5snXRJ_tVMVWXru4eGmJOA5ANdBzRz8>
+X-ME-Proxy-Cause: dmFkZTFHpedGAVLKiQnrNYraarc+m8y6pLFP5Ws5yDrx6JiPDe99pKJ36EE4458D8owMzI
+    CVyo4xyRD/1B3H7QMoDwJozOc+q/Qd0uLw0fzgf+wNbXR7DBV6y68OpQi/yydjLyfs3u2j
+    9ub+qnoI5s1SO7rmds48axDjne3beJ7ZSCdGoucQ9oqMX9AhRyd/5Wk1qRDJAg6SYH6B78
+    ynBy9qOdx+4dqAHjn76/cFsXf0dY9JupyHdpSRkc2JRH65rRxREBrIRGKsa0HaQZ+1ya2m
+    j8Ryquurp9LnkGsEOIW9eTjSLyAN2uq5fOFQxiRf//ZisjfE8+ttENVOKUvTh8JumdRSLj
+    p+V2YKSBbxHflVNgbuG3pGSsvZ1uhHJkUn8Vxqq+zjf82EI7Cjz8tLP0s5ZvPlJUHwSGCh
+    pfN9xT0fgl+poHmSbIdOAtNVsuUpuFyxhLaM2/BfsltmkEo/IUZVYBkaHk0+y9F9UBlpEg
+    qV4CTCisVOl6Ujz6Lzo+kwyBYVLuCDgMWyLRw05vlu3cRzm6QYkkIRuqkU9LFGpkAz+2Hc
+    Qye07P78PbHmTjNdIeyyX/peVk1yqCmoAl3ZWNsVld/58+wdy3AHFb2YAba32HcCuB71xH
+    MHNmIHKRQpdAJmfJTPH/Ni9E8t4LZeQCIkDzRBIMyePRFtGu60aNXJg6zGYw
+X-ME-Proxy: <xmx:npayapTb__p_DydNxb3WN6NoMrFnM88L_Fnpa3c2v7WL4lxTvMZUcQ>
+    <xmx:npayahJgGtZlTJtQfoOd0qA9wiKp3saf9VLhoRc9mB5Mx4fVdgd_hQ>
+    <xmx:npayaq3MjoMpyT20e6fEpDiQmW5LN-38-EYKJuRpisdiWp6JT7lkUw>
+    <xmx:npayakIqiMXo49KaBxMDixyAp9w5j9_CtFWIg4-oXLOh9XwbihIPXQ>
+    <xmx:npayaqlrk6tNoyC_B_CpQ4aBKPvFqbLV33GpgSXznrmb2MXaV7Y0l7ic>
+Feedback-ID: i02414972:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 1BF8BF80089; Tue, 22 Sep 2026 10:54:20 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+X-ThreadId: AtmlxWozq_rN
+Date: Tue, 22 Sep 2026 17:53:59 +0300
+From: "Juha-Matti Tilli" <juha-matti.tilli@iki.fi>
+To: "Manivannan Sadhasivam" <mani@kernel.org>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>, "Simon Horman" <horms@kernel.org>,
+ "Jeff Johnson" <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, "Bjorn Andersson" <andersson@kernel.org>,
+ "Chris Lew" <christopher.lew@oss.qualcomm.com>,
+ "Deepak Kumar Singh" <deepak.singh@oss.qualcomm.com>,
+ "Raj Kumar Bhagat" <raj.bhagat@oss.qualcomm.com>,
+ "Jeff Hugo" <jeff.hugo@oss.qualcomm.com>
+Message-Id: <ce12d73a-ca7d-4e89-9c88-53029d58260a@app.fastmail.com>
+In-Reply-To: <g63vg7ho5al6f2hfxbgssrisnjl5ui6isxlrv3265ocatvdmay@anmhz3vcxcbo>
+References: <20260921-qrtr-multi-ep-v2-0-27dd80d841a0@oss.qualcomm.com>
+ <20260921-qrtr-multi-ep-v2-4-27dd80d841a0@oss.qualcomm.com>
+ <e7e8a499-9e89-4efa-a99f-18ce7dc37ab5@app.fastmail.com>
+ <g63vg7ho5al6f2hfxbgssrisnjl5ui6isxlrv3265ocatvdmay@anmhz3vcxcbo>
+Subject: Re: [PATCH v2 4/4] wifi: ath12k: Connect to the QMI server belonging to the
+ device owned by this driver
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260922-qrtr-multi-ep-v3-1-c00831e88957@oss.qualcomm.com>
-References: <20260922-qrtr-multi-ep-v3-0-c00831e88957@oss.qualcomm.com>
-In-Reply-To: <20260922-qrtr-multi-ep-v3-0-c00831e88957@oss.qualcomm.com>
-To: Manivannan Sadhasivam <mani@kernel.org>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Simon Horman <horms@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
- ath11k@lists.infradead.org, ath12k@lists.infradead.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Chris Lew <christopher.lew@oss.qualcomm.com>, 
- Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>, 
- Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>, 
- Juha-Matti Tilli <juha-matti.tilli@iki.fi>, 
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5742;
- i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=SBSrI+qlLmBFZ+dE+vFKRI0DdSkol2nyOzoeOTlj9jg=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBqsoWpbuOyoQKV02+GoxJrFYPlSGJH68jOs7wMr
- CDEg/wp0rSJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCarKFqQAKCRBVnxHm/pHO
- 9RcNB/9Imo5XHaW0CoxAo1arRjZkVC9Pi5NdmD5TJnnRtZtHPqJukKAgUq+T1QMDJODb9T4jQRI
- l1HYvNzc0DY5/RtMUbmyhv8150KdgqfHDZgSL5laDLOLSitqRXvR+Xu9PeND9KOdMb75JY1H7cn
- ix7DaTI9v/5ViUY39bUs3cpiLeEaSBRxU68SJieioxEzQBp4PqX6Se/r7FC+qBHZNpesj+l+ZWJ
- Nuc15UcBm3gzpQ05Nr3X3T9nQc06uVuyyOYxBlL9Tt4uxtVnDRmNmAg4/tugcW/dTC2EauUEuNI
- 4u72wA8v1E398uOzTvT0FwX1FyGRVXBYLyIPMS6fzA/4EkBs
-X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
-X-Endpoint-Received: by B4 Relay for
- manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
-X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260922_075432_274994_048FB251 
+X-CRM114-Status: GOOD (  12.81  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,166 +134,35 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: manivannan.sadhasivam@oss.qualcomm.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+On Tue, Sep 22, 2026, at 16:30, Manivannan Sadhasivam wrote:
+> On Tue, Sep 22, 2026 at 02:43:05PM +0300, Juha-Matti Tilli wrote:
+> > So, I believe the patch works.
+> 
+> Thanks a lot for testing. I asked our WLAN team member to test this series on
+> multi-ath12k setup and found one issue with QRTR_TYPE_RESUME_TX. After fixing
+> it, multi-ath12k setup works fine.
+> 
+> I'll submit v3 with that fix. Please give it a shot on this setup, one final
+> time :) Appreciate your help here.
 
-Currently, QRTR identifies each remote node by the value of the
-'src_node_id' field in the received packet and uses the node id as the key
-to store the node to the internal 'qrtr_nodes' radix tree.
+Is this issue perhaps related to this (2x ath12k):
 
-But this approach comes with a limitation. When more than one remote node
-share the same id, then QRTR can only add the first node to the radix tree
-and has to drop the successive nodes with the same node id as the 'key' in
-radix tree has to be unique. This prevents connecting identical Qcom PCIe
-WLAN devices to a single host at the same time.
+ath12k_pci 0001:01:00.0: dp_tx: failed to find the peer with peer_id 2
 
-To fix this limitation, allow the host QRTR to use the node id (nid)
-received from the endpoint driver during qrtr_endpoint_register() as the
-unique node id and use it as the 'key' for the internal radix tree. Also,
-store the received 'src_id' in a new 'qrtr_node->ep_nid' field and replace
-the 'ep_nid' with the unique 'nid' in the QRTR control packets if both
-differ i.e., an endpoint driver has passed a unique 'nid' during
-qrtr_endpoint_register(). To maintain symmetry, replace the 'nid' with the
-'ep_nid' while sending the packet back to the remote node if both differ.
+I managed to switch to 6.18.53 kernel and now the regulatory DB issue
+is gone, but I'm getting this repeatedly to dmesg.
 
-Currently, all QRTR endpoint drivers pass 'QRTR_EP_NID_AUTO' as the 'nid'
-during qrtr_endpoint_register(). So 'ep_nid' and 'nid' are same and the
-functionality is not changed.
+Yet, despite this issue, I see the network and data flows (with v2).
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
----
- net/qrtr/af_qrtr.c | 62 ++++++++++++++++++++++++++++++++++++++++++++++++------
- 1 file changed, 55 insertions(+), 7 deletions(-)
+Also the other card gives:
 
-diff --git a/net/qrtr/af_qrtr.c b/net/qrtr/af_qrtr.c
-index 78347c937af7..6387b85a7a2c 100644
---- a/net/qrtr/af_qrtr.c
-+++ b/net/qrtr/af_qrtr.c
-@@ -118,7 +118,8 @@ static DEFINE_XARRAY_ALLOC(qrtr_ports);
-  * @ep_lock: lock for endpoint management and callbacks
-  * @ep: endpoint
-  * @ref: reference count for node
-- * @nid: node id
-+ * @nid: node id assigned by the host QRTR
-+ * @ep_nid: endpoint's own node id as received
-  * @qrtr_tx_flow: xarray of qrtr_tx_flow, keyed by node << 32 | port
-  * @qrtr_tx_lock: lock for qrtr_tx_flow inserts
-  * @hello_sent: hello packet send successful
-@@ -131,6 +132,7 @@ struct qrtr_node {
- 	struct qrtr_endpoint *ep;
- 	struct kref ref;
- 	unsigned int nid;
-+	unsigned int ep_nid;
- 
- 	struct xarray qrtr_tx_flow;
- 	struct mutex qrtr_tx_lock; /* for qrtr_tx_flow */
-@@ -347,6 +349,7 @@ static int qrtr_node_enqueue(struct qrtr_node *node, struct sk_buff *skb,
- {
- 	struct qrtr_hdr_v1 *hdr;
- 	size_t len = skb->len;
-+	unsigned int dst_node;
- 	int rc, confirm_rx;
- 
- 	mutex_lock(&node->ep_lock);
-@@ -369,10 +372,14 @@ static int qrtr_node_enqueue(struct qrtr_node *node, struct sk_buff *skb,
- 	hdr->src_node_id = cpu_to_le32(from->sq_node);
- 	hdr->src_port_id = cpu_to_le32(from->sq_port);
- 	if (to->sq_port == QRTR_PORT_CTRL) {
--		hdr->dst_node_id = cpu_to_le32(READ_ONCE(node->nid));
-+		hdr->dst_node_id = cpu_to_le32(READ_ONCE(node->ep_nid));
- 		hdr->dst_port_id = cpu_to_le32(QRTR_PORT_CTRL);
- 	} else {
--		hdr->dst_node_id = cpu_to_le32(to->sq_node);
-+		/* Put back the endpoint's own node id */
-+		dst_node = to->sq_node;
-+		if (dst_node == READ_ONCE(node->nid))
-+			dst_node = node->ep_nid;
-+		hdr->dst_node_id = cpu_to_le32(dst_node);
- 		hdr->dst_port_id = cpu_to_le32(to->sq_port);
- 	}
- 
-@@ -441,6 +448,32 @@ static void qrtr_node_assign(struct qrtr_node *node, unsigned int nid)
- 	spin_unlock_irqrestore(&qrtr_nodes_lock, flags);
- }
- 
-+/* Replace the node id in the control packet with 'node->nid', if both are
-+ * different.
-+ */
-+static void qrtr_node_rewrite_ctrl(struct qrtr_node *node, unsigned int type,
-+				   struct sk_buff *skb)
-+{
-+	struct qrtr_ctrl_pkt *pkt;
-+	__le32 *nid;
-+
-+	if (node->nid == node->ep_nid)
-+		return;
-+
-+	if (skb->len < sizeof(*pkt))
-+		return;
-+
-+	pkt = (struct qrtr_ctrl_pkt *)skb->data;
-+	if (type == QRTR_TYPE_DEL_CLIENT || type == QRTR_TYPE_RESUME_TX)
-+		nid = &pkt->client.node;
-+	else
-+		nid = &pkt->server.node;
-+
-+	/* Rewrite only the endpoint's node id, not those of bridged nodes */
-+	if (le32_to_cpu(*nid) == node->ep_nid)
-+		*nid = cpu_to_le32(node->nid);
-+}
-+
- /**
-  * qrtr_endpoint_post() - post incoming data
-  * @ep: endpoint handle
-@@ -531,16 +564,30 @@ int qrtr_endpoint_post(struct qrtr_endpoint *ep, const void *data, size_t len)
- 
- 	skb_put_data(skb, data + hdrlen, size);
- 
--	qrtr_node_assign(node, cb->src_node);
-+	if (node->ep_nid == QRTR_EP_NID_AUTO)
-+		WRITE_ONCE(node->ep_nid, cb->src_node);
-+
-+	if (node->nid == QRTR_EP_NID_AUTO || node->nid == cb->src_node)
-+		qrtr_node_assign(node, cb->src_node);
- 
- 	if (cb->type == QRTR_TYPE_NEW_SERVER) {
- 		/* Remote node endpoint can bridge other distant nodes */
--		const struct qrtr_ctrl_pkt *pkt;
-+		const struct qrtr_ctrl_pkt *pkt = data + hdrlen;
-+		unsigned int server_node = le32_to_cpu(pkt->server.node);
- 
--		pkt = data + hdrlen;
--		qrtr_node_assign(node, le32_to_cpu(pkt->server.node));
-+		if (server_node != node->ep_nid)
-+			qrtr_node_assign(node, server_node);
- 	}
- 
-+	if (cb->src_node == node->ep_nid)
-+		cb->src_node = node->nid;
-+
-+	if (cb->type == QRTR_TYPE_NEW_SERVER ||
-+	    cb->type == QRTR_TYPE_DEL_SERVER ||
-+	    cb->type == QRTR_TYPE_DEL_CLIENT ||
-+	    cb->type == QRTR_TYPE_RESUME_TX)
-+		qrtr_node_rewrite_ctrl(node, cb->type, skb);
-+
- 	if (cb->type == QRTR_TYPE_RESUME_TX) {
- 		qrtr_tx_resume(node, skb);
- 	} else {
-@@ -646,6 +693,7 @@ int qrtr_endpoint_register(struct qrtr_endpoint *ep, unsigned int nid)
- 	mutex_init(&node->ep_lock);
- 	skb_queue_head_init(&node->rx_queue);
- 	node->nid = QRTR_EP_NID_AUTO;
-+	node->ep_nid = QRTR_EP_NID_AUTO;
- 	node->ep = ep;
- 
- 	node->hello_sent = false;
+ath12k_pci 0000:01:00.0: failed to pull fw stats: -71
+ath12k_pci 0000:01:00.0: time out while waiting for get fw stats
 
--- 
-2.43.0
+...but it's lacking antennas so could be related to that.
 
-
+BR, Juha-Matti
 
