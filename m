@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF0FC98318
-	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E697BC98317
+	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8LGi87kBmuajrhGVWkFdcCaZsLTHzRhVd7ql6fhIDYo=; b=TMkO3kqcNNGzw+DMBE2Ke6uJHi
-	fOMniKScLIbiJbDDzFBfajVlrznHFRWFVYQXRYZx+ik8MklElJie+pQQMXZ6zGCbMf+pyR5X8ElvT
-	M6sJc66MpoN7LolkoI0bucs/oyaZNyDzjmYp3uQrtm+R0lQqcDplf8O30MN5+MEZbpd18HMVRmA2m
-	VmHQ5xOUlDs+0lDkALWBlSIGHRQJg561G3I0j77THCHCZvicvsXMsAMXxkw8p7SnYxyBH2Ls8qbFv
-	8SNercBRHGZUOwK8OsZpguirIkrw0NtEJWlXdw5+uUvHn8ohkVS6SfTqErBC65U0FGgioJFrcQho+
-	whwgMceg==;
+	bh=ESGTEPS6dVhXirUlztXOr+QQ/iAH5OC3k0oVLOHBZMM=; b=v5lyWYzyMoBRlilQBVRvQsK9xG
+	9MjWJ22yjiq87YqtJ0GxiIcnVv/DUKCt246Gw+y8CfYTHsu7JydbNJNCIDWutPfQsao8dwwUMTARk
+	tdcqMFqGOv/DbSulQKA1XC+tbhYnLLhi52TaT5kM5FAEcCKMEcQI6sQ+SGNSVDF4TLG5Azc24daGa
+	vwAb29injnQwvCnkdtg0DRBrFCTD7Nbndih3Vt7erklpb6r4a3Xe+uv3okEXZgIzCadPlNmJ0qJAu
+	ORtKY7FH8549xZkONOM31xaS0Srd2P5HawBKXGDUBpsYbLr7Fp/wr8U8oclHzoJOQ8oP2UbTkcxdt
+	s1TnAGNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Lj5-00000008BJR-3Bgg;
-	Wed, 23 Sep 2026 12:05:27 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1x9Lj2-00000008BBj-1V0X;
+	Wed, 23 Sep 2026 12:05:24 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Lj0-00000008B8x-09Fh
+	id 1x9Liz-00000008B8R-3hH1
 	for ath11k@lists.infradead.org;
-	Wed, 23 Sep 2026 12:05:22 +0000
+	Wed, 23 Sep 2026 12:05:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id BD99B4478A;
+	by sea.source.kernel.org (Postfix) with ESMTP id 47DCB43376;
 	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9FCFAC4AF12;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2AB34C2BD01;
 	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1790165121;
-	bh=S687wPIWnngoSYYE8QrRewba5wXRcqwoRWDDHq0Jsz4=;
+	bh=Z6/Qk3n4xeJSYUtJybmaG4oCwMF/08rA0O1ozW4Hj7w=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jC/Rs/syZ9Mup/u9Q2aD1FvJNysQTG7xEcz54APWE2Lzb9cIJlm49BORjXQrzfrob
-	 xU0KyCZ34unsJmwPnxDWXImWhpdu9dT77K5ljVw0te4LKNZIpeW8XBYEsUUTuMummu
-	 QXDxSmd21vKyXZEpS7GTPHdvCqzsVpaK5+W3h3JPy2FO2eNSs86qOm8aOEYha3BqmA
-	 eW9rvtf22Hx/aSLRduXclwR4eS4Wudv+49D9j7g0Mxlqjr87PgvzPoWi6QVtmGrURN
-	 0wnB2sD70WiD/TPEjYGwub90yP09sCFTl8jmsqp+t9E3YZFVtjEJUDdPQ00oIfMPAu
-	 47GkXr3F/jskQ==
+	b=X9EvgTBRr32+EqMMWUEaAppxkOL/OtnL6jsEUbj/VyY8+Tc+0XbfS1saS0AMHEpdf
+	 GgHMW6tyGlT8uDXLhk0q9e0CvcVGubQ5esdAB0Q6NOITJRfylwVbN4/kHkqAlt7HzL
+	 8hmgY8WX58VxanfE3mbp3bwcjYBkZ92EA9wYJpn+MkW/jMDVYHZJm/gBCeF+K33DJP
+	 f4CfvPPOUuGyixOmIySk+VyFKshIVJCull+lE2oQ+XlOSkcOlKtTmKvM1S+BgLB2sg
+	 4VnYkXRiDb8kZTivrTT8dB6vwUUnREidgvf4GYItNuAHRRyu/Pd5IyU16zMJ6vDzfd
+	 lsMXh/cs68lPw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8CF39C9830D;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17DAEC9830B;
 	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
 From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 23 Sep 2026 16:05:20 +0400
-Subject: [PATCH ath-next 14/16] wifi: ath11k: update hif and pci ops for
- QCN6122
+Date: Wed, 23 Sep 2026 16:05:13 +0400
+Subject: [PATCH ath-next 07/16] wifi: ath11k: Register userPD interrupts
+ and SMEM entries
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-14-86729521a75c@outlook.com>
+Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-7-86729521a75c@outlook.com>
 References: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 In-Reply-To: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 To: Johannes Berg <johannes@sipsolutions.net>, 
@@ -67,11 +67,11 @@ Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, 
  George Moussalem <george.moussalem@outlook.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=4286;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=10055;
  i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=KAfYNiJSlBqkx5nRUcT0tjr+2gqae9Hk9UcR8v+Y2kU=;
- b=tWmSWuokIX04sHQ/skHZfIGfbroeqBvobVRWhObbpfO2LDTFZnARd1W4ShuaoSn+DuIEIo2Gg
- 0cmybhN6UJAA23f5a9T1hcSvLmUfA0+fR5KsqeXpXa93YAkgxWis5Ui
+ bh=7rpr5lypcGKAhre+UQc1WGPdhHabdKnP7DtLs3iPrPY=;
+ b=WiChA4t5yACxD/OYP58ovQZ3RNhOIJsQOeGFLG4BJ7b/MvgrZrJ7/bfR4SDpFU2J03zT61yif
+ sz/Egm+NbJhAjaD4q43JjOHAGrtB3OLTjEiKDmetlNA1HPo+nGnfUWQ
 X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
  pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
 X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
@@ -94,115 +94,324 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: George Moussalem <george.moussalem@outlook.com>
 
-Add HIF and PCI ops for QCN6122. QCN6122 by default uses DP window 3.
-However, this is configurable, so let's introduce a function to do that and
-follow the existing register access code for (hybrid)AHB devices and use
-DP window 1.
+Q6 and the ath11k driver communicate using SMEM and IRQs.
+
+Spawn interrupt is triggered once the userPD thread is spawned.
+Ready interrupts denote that the userPD is completely powered up and
+ready. Stop-ack is to acknowledge the ath11k driver that userPD has
+stopped.
+
+The root PD sets the spawn and stop bits in SMEM upon boot which the
+ath11k driver reads to derive the userPD ID.
+
+Set the spawn bit in SMEM to instruct Q6 to spawn a userPD which brings
+up the radio. Similarly, the stop bit is set when a userPD needs to be
+stopped.
+
+Keep track of the userPDs that have been spawned and stopped in the
+global rproc_info structure to determine when the rootPD can be stopped.
+
+Move boot and shutdown of the root PD to probe and remove functions
+respectively. This is to ensure that the root PD is booted before any
+userPDs are spawned. For non-MPD platforms, the this move has no
+functional impact.
 
 Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c | 34 ++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/hif.h |  9 +++++++++
- drivers/net/wireless/ath/ath11k/qmi.c |  2 ++
- 3 files changed, 45 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.c | 176 ++++++++++++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/ahb.h |  25 +++++
+ 2 files changed, 191 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 1b9115311bed..03936f574c8d 100644
+index 9fe2e112dfb8..25f9a992a7d2 100644
 --- a/drivers/net/wireless/ath/ath11k/ahb.c
 +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -892,6 +892,18 @@ static int ath11k_ahb_hif_resume(struct ath11k_base *ab)
- 	return 0;
- }
+@@ -22,6 +22,13 @@
+ #include <linux/soc/qcom/smem.h>
+ #include <linux/soc/qcom/smem_state.h>
  
-+static void ath11k_ahb_config_static_window_qcn6122(struct ath11k_base *ab)
-+{
-+	u32 umac_window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, HAL_SEQ_WCSS_UMAC_OFFSET);
-+	u32 ce_window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, HAL_CE_WFSS_CE_REG_BASE);
-+	u32 window;
-+
-+	window = (umac_window) | (ce_window << 6);
-+
-+	iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
-+		  ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
-+}
-+
- static const struct ath11k_hif_ops ath11k_ahb_hif_ops_ipq8074 = {
- 	.start = ath11k_ahb_start,
- 	.stop = ath11k_ahb_stop,
-@@ -907,6 +919,24 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_ipq8074 = {
- 	.ce_irq_disable = ath11k_ahb_ce_irq_disable_sync,
- };
- 
-+static const struct ath11k_hif_ops ath11k_ahb_hif_ops_qcn6122 = {
-+	.start = ath11k_pcic_start,
-+	.stop = ath11k_pcic_stop,
-+	.read32 = ath11k_pcic_read32,
-+	.write32 = ath11k_pcic_write32,
-+	.read = NULL,
-+	.irq_enable = ath11k_pcic_ext_irq_enable,
-+	.irq_disable = ath11k_pcic_ext_irq_disable,
-+	.get_msi_address =  ath11k_pcic_get_msi_address,
-+	.get_user_msi_vector = ath11k_pcic_get_user_msi_assignment,
-+	.map_service_to_pipe = ath11k_pcic_map_service_to_pipe,
-+	.power_down = ath11k_ahb_power_down,
-+	.power_up = ath11k_ahb_power_up,
-+	.ce_irq_enable = ath11k_pci_enable_ce_irqs_except_wake_irq,
-+	.ce_irq_disable = ath11k_pci_disable_ce_irqs_except_wake_irq,
-+	.config_static_window = ath11k_ahb_config_static_window_qcn6122,
++#define ATH11K_UPD_IRQ_WRD_LEN  18
++static const char *const ath11k_userpd_irq[ATH11K_USERPD_MAX_IRQ] = {
++	"spawn",
++	"ready",
++	"stop-ack",
 +};
 +
- static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
- 	.start = ath11k_pcic_start,
- 	.stop = ath11k_pcic_stop,
-@@ -1638,6 +1668,10 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		hif_ops = &ath11k_ahb_hif_ops_wcn6750;
- 		pci_ops = &ath11k_ahb_pci_ops_wcn6750;
- 		break;
-+	case ATH11K_HW_QCN6122_HW10:
-+		hif_ops = &ath11k_ahb_hif_ops_qcn6122;
-+		pci_ops = &ath11k_ahb_pci_ops_wcn6750;
-+		break;
- 	default:
- 		dev_err(&pdev->dev, "unsupported device type %d\n", hw_rev);
- 		return -EOPNOTSUPP;
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index 017fed1b4bd1..2e1a4fedf139 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -32,6 +32,7 @@ struct ath11k_hif_ops {
- 	void (*ce_irq_disable)(struct ath11k_base *ab);
- 	void (*get_ce_msi_idx)(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
- 	void (*coredump_download)(struct ath11k_base *ab);
-+	void (*config_static_window)(struct ath11k_base *ab);
+ static const struct of_device_id ath11k_ahb_of_match[] = {
+ 	/* TODO: Should we change the compatible string to something similar
+ 	 * to one that ath10k uses?
+@@ -46,6 +53,15 @@ MODULE_DEVICE_TABLE(of, ath11k_ahb_of_match);
+ #define ATH11K_IRQ_CE0_OFFSET 4
+ 
+ /*
++ * Multi-UserPD Architecture:
++ *
++ * One Q6 RootPD (managed by separate rproc driver) supports multiple
++ * ath12k UserPDs. Each UserPD represents a WiFi radio instance.
++ *
++ * Lifecycle:
++ *  - RootPD boots when first UserPD probes
++ *  - All UserPDs share RootPD's SSR notifier
++ *
+  * Global Driver-level Locking:
+  *  - ath11k_rproc_info_lock: Protects rproc_info allocation/free
+  */
+@@ -831,6 +847,126 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
+ 	.ce_irq_disable = ath11k_pci_disable_ce_irqs_except_wake_irq,
  };
  
- static inline void ath11k_hif_ce_irq_enable(struct ath11k_base *ab)
-@@ -159,4 +160,12 @@ static inline void ath11k_hif_coredump_download(struct ath11k_base *ab)
- 		ab->hif.ops->coredump_download(ab);
- }
- 
-+static inline void ath11k_hif_config_static_window(struct ath11k_base *ab)
++static int ath11k_ahb_init_userpd(struct ath11k_base *ab, int userpd_id)
 +{
-+	if (!ab->hw_params.static_window_map || !ab->hif.ops->config_static_window)
-+		return;
++	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
 +
-+	ab->hif.ops->config_static_window(ab);
++	lockdep_assert_held(&ath11k_rproc_info_lock);
++
++	switch (ab->hw_rev) {
++	case ATH11K_HW_IPQ5018_HW10:
++		if (userpd_id != ATH11K_AHB_USERPD_ID_1)
++			return -EINVAL;
++
++		ab_ahb->userpd_id = userpd_id;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	g_rproc_info->userpd[userpd_id - 1] = ab_ahb;
++	g_rproc_info->num_userpd++;
++
++	return 0;
 +}
 +
- #endif /* _HIF_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 771ef9b5304f..7d77f5c8c609 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2243,6 +2243,8 @@ static int ath11k_qmi_request_device_info(struct ath11k_base *ab)
- 	if (!ab->hw_params.ce_remap)
- 		ab->mem_ce = ab->mem;
++static irqreturn_t ath11k_userpd_irq_handler(int irq, void *data)
++{
++	struct ath11k_base *ab = data;
++	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
++
++	if (irq == ab_ahb->userpd_irq_num[ATH11K_USERPD_SPAWN_IRQ]) {
++		complete(&ab_ahb->userpd_spawned);
++	} else if (irq == ab_ahb->userpd_irq_num[ATH11K_USERPD_READY_IRQ]) {
++		complete(&ab_ahb->userpd_ready);
++	} else if (irq == ab_ahb->userpd_irq_num[ATH11K_USERPD_STOP_ACK_IRQ])	{
++		complete(&ab_ahb->userpd_stopped);
++	} else {
++		ath11k_err(ab, "Invalid userpd interrupt\n");
++		return IRQ_NONE;
++	}
++
++	return IRQ_HANDLED;
++}
++
++static void ath11k_ahb_cleanup_userpd(struct ath11k_base *ab)
++{
++	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
++	struct ath11k_ahb_rproc_info *rproc_info = ab_ahb->rproc_info;
++
++	lockdep_assert_held(&ath11k_rproc_info_lock);
++
++	if (!rproc_info)
++		return;
++
++	if (rproc_info && ab_ahb->userpd_id > 0 &&
++	    ab_ahb->userpd_id < ATH11K_AHB_USERPD_ID_MAX) {
++		rproc_info->userpd[ab_ahb->userpd_id - 1] = NULL;
++		rproc_info->num_userpd--;
++		ab_ahb->rproc_info = NULL;
++	}
++}
++
++static int ath11k_ahb_config_userpd_irq(struct ath11k_base *ab)
++{
++	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
++	char *upd_irq_name;
++	int userpd_id;
++	int i, ret;
++
++	ab_ahb->spawn_state = devm_qcom_smem_state_get(&ab->pdev->dev, "spawn",
++						       &ab_ahb->spawn_bit);
++	if (IS_ERR(ab_ahb->spawn_state))
++		return dev_err_probe(&ab->pdev->dev, PTR_ERR(ab_ahb->spawn_state),
++				     "Failed to acquire spawn state\n");
++
++	ab_ahb->stop_state = devm_qcom_smem_state_get(&ab->pdev->dev, "stop",
++						      &ab_ahb->stop_bit);
++	if (IS_ERR(ab_ahb->stop_state))
++		return dev_err_probe(&ab->pdev->dev, PTR_ERR(ab_ahb->stop_state),
++				     "Failed to acquire stop state\n");
++
++	mutex_lock(&ath11k_rproc_info_lock);
++
++	userpd_id = ab_ahb->spawn_bit / 8;
++	ret = ath11k_ahb_init_userpd(ab, userpd_id);
++	if (ret) {
++		mutex_unlock(&ath11k_rproc_info_lock);
++		return ret;
++	}
++
++	mutex_unlock(&ath11k_rproc_info_lock);
++
++	for (i = 0; i < ATH11K_USERPD_MAX_IRQ; i++) {
++		ab_ahb->userpd_irq_num[i] = platform_get_irq_byname_optional(ab->pdev,
++									     ath11k_userpd_irq[i]);
++		if (ab_ahb->userpd_irq_num[i] < 0)
++			return ab_ahb->userpd_irq_num[i];
++
++		upd_irq_name = devm_kzalloc(&ab->pdev->dev, ATH11K_UPD_IRQ_WRD_LEN,
++					    GFP_KERNEL);
++		if (!upd_irq_name)
++			return -ENOMEM;
++
++		scnprintf(upd_irq_name, ATH11K_UPD_IRQ_WRD_LEN, "UserPD%u-%s",
++			  ab_ahb->userpd_id, ath11k_userpd_irq[i]);
++		ret = devm_request_threaded_irq(&ab->pdev->dev, ab_ahb->userpd_irq_num[i],
++						NULL, ath11k_userpd_irq_handler,
++						IRQF_TRIGGER_RISING | IRQF_ONESHOT,
++						upd_irq_name, ab);
++		if (ret)
++			return dev_err_probe(&ab->pdev->dev, ret,
++					     "Request %s irq failed: %d\n",
++					     ath11k_userpd_irq[i], ret);
++	}
++
++	init_completion(&ab_ahb->userpd_spawned);
++	init_completion(&ab_ahb->userpd_ready);
++	init_completion(&ab_ahb->userpd_stopped);
++
++	return 0;
++}
++
+ static int ath11k_ahb_root_pd_state_notifier(struct notifier_block *nb,
+ 					     const unsigned long event, void *data)
+ {
+@@ -1032,7 +1168,7 @@ static int ath11k_ahb_configure_rproc(struct ath11k_base *ab)
+ 	if (ret < 0) {
+ 		ret = dev_err_probe(&ab->pdev->dev, ret,
+ 				    "failed to register rproc notifier\n");
+-		goto err_put_rproc;
++		goto err_cleanup_userpd;
+ 	}
  
-+	ath11k_hif_config_static_window(ab);
+ 	if (ab->hw_params.m3_fw_support &&
+@@ -1057,13 +1193,28 @@ static int ath11k_ahb_configure_rproc(struct ath11k_base *ab)
+ 
+ 	mutex_unlock(&ath11k_rproc_info_lock);
+ 
++	/*
++	 * UserPD interrupts are specific to multi-PD configs/firmware only.
++	 * If interrupts aren't found, continue execution for non-MPD platforms.
++	 */
++	ret = ath11k_ahb_config_userpd_irq(ab);
++	if (ret && ret != -EINVAL && ret != -ENXIO)
++		return dev_err_probe(&ab->pdev->dev, ret,
++				     "failed to configure userpd interrupts\n");
 +
  	return 0;
- out:
+ 
+ err_unreg_notifier:
+ 	ath11k_ahb_unregister_rproc_notifier();
+ 
+-err_put_rproc:
+-	rproc_put(g_rproc_info->tgt_rproc);
++err_cleanup_userpd:
++	ath11k_ahb_cleanup_userpd(ab);
++	if (g_rproc_info && !g_rproc_info->num_userpd) {
++		rproc_put(g_rproc_info->tgt_rproc);
++		kfree(g_rproc_info);
++		g_rproc_info = NULL;
++	}
++
+ 	mutex_unlock(&ath11k_rproc_info_lock);
  	return ret;
+ }
+@@ -1078,15 +1229,19 @@ static void ath11k_ahb_deconfigure_rproc(struct ath11k_base *ab)
+ 
+ 	mutex_lock(&ath11k_rproc_info_lock);
+ 
+-	ath11k_ahb_unregister_rproc_notifier();
++	ath11k_ahb_cleanup_userpd(ab);
+ 
+-	if (g_rproc_info->root_pd_booted &&
+-	    g_rproc_info->tgt_rproc->state == RPROC_RUNNING)
+-		rproc_shutdown(g_rproc_info->tgt_rproc);
++	if (!g_rproc_info->num_userpd) {
++		ath11k_ahb_unregister_rproc_notifier();
+ 
+-	rproc_put(g_rproc_info->tgt_rproc);
+-	kfree(g_rproc_info);
+-	g_rproc_info = NULL;
++		if (g_rproc_info->root_pd_booted &&
++		    g_rproc_info->tgt_rproc->state == RPROC_RUNNING)
++			rproc_shutdown(g_rproc_info->tgt_rproc);
++
++		rproc_put(g_rproc_info->tgt_rproc);
++		kfree(g_rproc_info);
++		g_rproc_info = NULL;
++	}
+ 
+ 	mutex_unlock(&ath11k_rproc_info_lock);
+ }
+@@ -1429,6 +1584,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 	platform_set_drvdata(pdev, ab);
+ 	ab_ahb = ath11k_ahb_priv(ab);
+ 	ab_ahb->ab = ab;
++	ab_ahb->userpd_id = 0;
+ 
+ 	ret = ath11k_pcic_register_pci_ops(ab, pci_ops);
+ 	if (ret) {
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
+index 033d6223494b..12e0c4d27a0c 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.h
++++ b/drivers/net/wireless/ath/ath11k/ahb.h
+@@ -19,6 +19,11 @@
+ #define ATH11K_ROOTPD_READY_TIMEOUT		(5 * HZ)
+ #define ATH11K_RPROC_AFTER_POWERUP		QCOM_SSR_AFTER_POWERUP
+ 
++enum ath11k_ahb_userpd_id {
++	ATH11K_AHB_USERPD_ID_1 = 1,
++	ATH11K_AHB_USERPD_ID_MAX,
++};
++
+ enum ath11k_ahb_smp2p_msg_id {
+ 	ATH11K_AHB_POWER_SAVE_ENTER = 1,
+ 	ATH11K_AHB_POWER_SAVE_EXIT,
+@@ -34,10 +39,20 @@ struct ath11k_ahb_rproc_info {
+ 	void *root_pd_notifier;
+ 	bool root_pd_booted;
+ 
++	u8 num_userpd;
++	struct ath11k_ahb *userpd[ATH11K_AHB_USERPD_ID_MAX];
++
+ 	/* Bitmap of loaded M3 firmwares indexed by hardware revision */
+ 	u32 m3_loaded;
+ };
+ 
++enum ath11k_ahb_userpd_irq {
++	ATH11K_USERPD_SPAWN_IRQ,
++	ATH11K_USERPD_READY_IRQ,
++	ATH11K_USERPD_STOP_ACK_IRQ,
++	ATH11K_USERPD_MAX_IRQ,
++};
++
+ struct ath11k_ahb {
+ 	struct ath11k_base *ab;
+ 	struct {
+@@ -55,6 +70,16 @@ struct ath11k_ahb {
+ 		struct qcom_smem_state *smem_state;
+ 	} smp2p_info;
+ 	struct ath11k_ahb_rproc_info *rproc_info;
++
++	struct qcom_smem_state *spawn_state;
++	struct qcom_smem_state *stop_state;
++	struct completion userpd_spawned;
++	struct completion userpd_ready;
++	struct completion userpd_stopped;
++	u32 userpd_id;
++	u32 spawn_bit;
++	u32 stop_bit;
++	int userpd_irq_num[ATH11K_USERPD_MAX_IRQ];
+ };
+ 
+ static inline struct ath11k_ahb *ath11k_ahb_priv(struct ath11k_base *ab)
 
 -- 
 2.53.0
