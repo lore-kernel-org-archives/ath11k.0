@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6719C98314
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D463C98313
 	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
@@ -12,46 +12,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CmlNs/NQyTDb+4cfH9kTUhyiLqxPyoT10276RMBdPzg=; b=MJJYXwt8PQm4IIjlmD5RZGt5NP
-	4VniDo9xs68jT8OXhxLZh3sDBXQ2L3KltaVkZMZbwza6Z5XVjVUMNmQZrMGDX5ZcS/EJIerXtdG2z
-	2n5HNXw6JO5HhJzKbebHcGg+Cvu/p00FN7tSf3Y95Fuqa7rCnVTTaJl1YqHHmMTW7N9rRwJ9oWZ5P
-	4z+nrWmmj8E9oKq+qwNtX/+s5KYfOv8AHw/oaseqcYIpVyfoBX3QCrrMAKn/5Fx3rPcDk0mRICzzZ
-	TE5yAs1vXeq8Q6s0an4fGiz8Dj+G8jix4OlJOUKN0RKde+5ndMTiT33ryd8VL2TdGPd3hJIkWnIio
-	O0Kpkxrw==;
+	bh=H663O8isef1F9joPmKRk+XIhgnEwiu5yVkCMMznpdnQ=; b=ZOyEo3xgNMEkv+jaxMFSqeaQSo
+	rNIj8LZA+pg1B8PlNv3CiAkYpD6+hCnPD9JqeOmaBM71vmcxPMoIHb35y4R+uUzrNriX90ygWfKJN
+	7dar/49idC1uR6xuO+K3DYmRM2+WFBtHuw4TgdeCwj+MXTIEirH1OKFOpReEIRbaBBtHXJZrbYfBL
+	zr8IyKvoYWiWm/imBh96sknH4D6KBDsDLDRZ98XCJyHc9HFcgqoGv71o7817FxnZKoEHmrTDSYAGa
+	TjkXKtpZiw8AHQHnlJreZ9JVOBbATrzK0uFRYW5kQz+KFiOFQASgtt6CGjaGO2wCeSKCeVwwkHF/z
+	MSq2I9Bw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Lj5-00000008BHo-0coa;
-	Wed, 23 Sep 2026 12:05:27 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x9Lj1-00000008BB1-3xZo;
+	Wed, 23 Sep 2026 12:05:23 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Lj0-00000008B8w-06IY
+	id 1x9Liz-00000008B8E-2ijV
 	for ath11k@lists.infradead.org;
-	Wed, 23 Sep 2026 12:05:22 +0000
+	Wed, 23 Sep 2026 12:05:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id ADA4244517;
+	by tor.source.kernel.org (Postfix) with ESMTP id 1D6E560202;
 	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 90815C2BD00;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C3B8AC2BCB8;
+	Wed, 23 Sep 2026 12:05:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790165121;
-	bh=xwjhHq+axtyNZtf3ucpzpJBoQOgD2kDsTykcF1+22VU=;
+	s=k20201202; t=1790165120;
+	bh=aiu5BQmooqpYpTxUiTsFRkUauq9c6vOlNTSSE9Hp2cE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=L0WJviDT2c4j9z652S8+95ezSOvIjOT1EoHGwjEk8dIE+bjnQ9zPfEDFUrJCKt5ZB
-	 rVfj6B+wjHY4L+yXcT62sTpE0Cu5mtHmftvuEN154YK3x0S3oGn8WNSAdqkKxHtL4j
-	 GmZa/lnWsWL71ixP9N+JMVUeTMd5yetmmKd7DrVUsADGoBRVk7gcg48VYpxguD+iB5
-	 ivK6Es2UaFq90I+Vwj1VQ58+XybOKrPryo/+y8vmvu+hYwRawK7DaRcooHXvNyzlBn
-	 GHgFTO0dIeXSCTK8b6Kn1VFWZLPbY/sE/lL1EiWHLVf3zT8MYhXp76vTPel6Xs3e4O
-	 P/EaKufUYdBgg==
+	b=hhMXezZC4F734ZEYTNu0ImTcn1++ayl23Vp6sFKPd6wz8iUNWKd5dHihz69NbPipQ
+	 8zuPIAfqcHJxmsfBJqaky2XT7Qo/iSLlEWyAU30rqRAm/+OwRhvnJFxEzD1AMbu2Ep
+	 p61wbSSdcNbKEkOv6szKDylR69JS0Ar+gB+4Az7yh17MqU6AkA+YYpaZ9OFirPcKtC
+	 OAL3U7RwgixpYLNcKoIgv8yEwrvuuNgsR3Ib3g9SIiBM9HtAp+vWafn8THhRtWcj44
+	 gWYi98hZ/3qaNXGLtoK2uLdg5U+3feDHBfqTXqCXZ3eDH7mkcOTpk2pL4EPQmhCSn4
+	 6f8nPg6jXOWJA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7DBBCC9830C;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97F91C98307;
+	Wed, 23 Sep 2026 12:05:20 +0000 (UTC)
 From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 23 Sep 2026 16:05:19 +0400
-Subject: [PATCH ath-next 13/16] wifi: ath11k: add hw ring mask for QCN6122
+Date: Wed, 23 Sep 2026 16:05:07 +0400
+Subject: [PATCH ath-next 01/16] dt-bindings: net: wireless: ath11k: Sort
+ compatible names alphabetically
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-13-86729521a75c@outlook.com>
+Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-1-86729521a75c@outlook.com>
 References: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 In-Reply-To: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 To: Johannes Berg <johannes@sipsolutions.net>, 
@@ -66,11 +67,11 @@ Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, 
  George Moussalem <george.moussalem@outlook.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=2926;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=1172;
  i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=ZS+ghizA2JnJORyhUeyzkT6PiFQkDEnAqkqpPDbBCt4=;
- b=oc8KKCzLEqR8y0YejgVoqOfzgsPd1UyzJB67HNuqi3DnHAhkRQIBLSDVrtLi/DS0KcxMFmfNa
- TamHpCY+jhXAcFEXohGRlgRkT3YCLTi/HayF26SEjdylq2gKXl9JolP
+ bh=8Rc10oeOzKG46Y973OUa46HiYgABQNhQH09OMbqE0/A=;
+ b=3+IjZNJc/3kIEHzthob1GBb8swjvmJm3tT2XGZdAeVqB3+1bxIGOUS3jPiFtH7zw2XhSFeb45
+ S8mdKrSK7N/DUNla87oYJd+YhC7B6MW3DhOtcsbJ2gvPyGxpPV27ex4
 X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
  pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
 X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
@@ -93,87 +94,41 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: George Moussalem <george.moussalem@outlook.com>
 
-Add ring mask for QCN6122 and register them in hw params.
+Sort the compatible names in the binding file alphabetically for
+legibility and correct ordering.
 
 Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c |  1 +
- drivers/net/wireless/ath/ath11k/hw.c   | 37 ++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/hw.h   |  1 +
- 3 files changed, 39 insertions(+)
+ Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index cf37975fa4cf..8fa1171b6bdd 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -948,6 +948,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.max_radios = MAX_RADIOS_5018,
- 		.bdf_addr = 0x4D200000,
- 		.hw_ops = &ipq5018_ops,
-+		.ring_mask = &ath11k_hw_ring_mask_qcn6122,
- 		.internal_sleep_clock = false,
- 		.regs = &qcn6122_regs,
- 		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCN6122,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 8442fbeb9c58..bb375efd50fe 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -2070,6 +2070,43 @@ const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_wcn6750 = {
- 	},
- };
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index d4aa56e2f823..a846cd704b19 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -17,10 +17,10 @@ description: |
+ properties:
+   compatible:
+     enum:
+-      - qcom,ipq8074-wifi
++      - qcom,ipq5018-wifi
+       - qcom,ipq6018-wifi
++      - qcom,ipq8074-wifi
+       - qcom,wcn6750-wifi
+-      - qcom,ipq5018-wifi
  
-+const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qcn6122 = {
-+	.tx  = {
-+		ATH11K_TX_RING_MASK_0,
-+		ATH11K_TX_RING_MASK_1,
-+		ATH11K_TX_RING_MASK_2,
-+	},
-+	.rx_mon_status = {
-+		0, 0, 0,
-+		ATH11K_RX_MON_STATUS_RING_MASK_0,
-+	},
-+	.rx = {
-+		0, 0, 0, 0,
-+		ATH11K_RX_RING_MASK_0,
-+		ATH11K_RX_RING_MASK_1,
-+		ATH11K_RX_RING_MASK_2,
-+		ATH11K_RX_RING_MASK_3,
-+	},
-+	.rx_err = {
-+		0, 0, 0, 0, 0, 0, 0, 0,
-+		ATH11K_RX_ERR_RING_MASK_0,
-+	},
-+	.rx_wbm_rel = {
-+		0, 0, 0, 0, 0, 0, 0, 0, 0,
-+		ATH11K_RX_WBM_REL_RING_MASK_0,
-+	},
-+	.reo_status = {
-+		0, 0, 0,
-+		ATH11K_REO_STATUS_RING_MASK_0,
-+	},
-+	.rxdma2host = {
-+		ATH11K_RXDMA2HOST_RING_MASK_0,
-+	},
-+	.host2rxdma = {
-+		ATH11K_HOST2RXDMA_RING_MASK_0,
-+	},
-+};
-+
- /* Target firmware's Copy Engine configuration for IPQ5018 */
- const struct ce_pipe_config ath11k_target_ce_config_wlan_ipq5018[] = {
- 	/* CE0: host->target HTC control and raw streams */
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index d9646a491808..2bcfdae9519b 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -296,6 +296,7 @@ extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_ipq8074;
- extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qca6390;
- extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qcn9074;
- extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_wcn6750;
-+extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qcn6122;
- 
- extern const struct ce_ie_addr ath11k_ce_ie_addr_ipq8074;
- extern const struct ce_ie_addr ath11k_ce_ie_addr_ipq5018;
+   reg:
+     maxItems: 1
+@@ -108,8 +108,8 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - qcom,ipq8074-wifi
+               - qcom,ipq6018-wifi
++              - qcom,ipq8074-wifi
+     then:
+       properties:
+         interrupts:
 
 -- 
 2.53.0
