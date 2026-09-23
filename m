@@ -4,79 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D6DBC9831A
-	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EFA1C9830B
+	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 15:03:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=e4G9iJCZt4c7QL9A92g9dKktDrA6Kzy8KwhJAvTORWw=; b=TU+lSjhh79KJC5mU+KAoE1M2Zs
-	BiM1CyfopMr1iDA3ydIL/XwxJQEYPTnY5vN8yN3IRAW6nQZbAOMdgCSNnHh987sUX/X+rB5yO01Zn
-	CbPX1jNxdg1suqy4STYT48PEDhcrfd2qlNojqCrn0Y1NOCGmvnKKdg+cg5MjWwloFRcNW7SZnJMvy
-	DFQpH35TPYX86SDTQZkGj1cIYRd/aHm53rI0kxnYHiu010YstOdiM0w2Z4rNFRJLOa1FAY+bJki1R
-	oARvxLKxVWFrJOBke3aYqURMsM6X034aP0FrwMmLqhpWXkmFgv6ebWZkzvoOP25VpFDrA2OsD5V4V
-	CzNLuLDQ==;
+	bh=/PeU2gEC3LoYHxgoHpBg+aDS+BEleaPfi9f+JiK36Js=; b=eFXG0ThwDI/1R42qw6bkwhLuSL
+	E3igJCifLT4xUuDFZ6IQn+PXqoX+NZABdCBzI6xWsvwGOFf4QYwi6LtvnVZH91clbFZjGiw1uMDNM
+	tDyoJAS3/fMY9DxlQ9K6mQKl8zpvDzgthmlBjaUlASmcA4biIztfZhkhB6fR431J3WJ8Q9rFj6scf
+	F7wDYYBLiuiErC/8Yv0wVhZQ/fmMR1VRPM9oQ5DrYQ0mLwa3uRkY5itzhAqMWMjKO0Tl7DSckyxii
+	yA9UtUJxYyl1gqqRiGJNUDAxNxNdbUuv/MRwYZjIz7vYY2rnW5LAYaZhjJv6ym/VgfqyETEXUP0Ad
+	eAH3KIAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Lj4-00000008BHR-3waK;
-	Wed, 23 Sep 2026 12:05:26 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1x9OVn-00000008cYv-3DZZ;
+	Wed, 23 Sep 2026 15:03:55 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Liz-00000008B8W-3h6n
+	id 1x9OVk-00000008cYH-08xP
 	for ath11k@lists.infradead.org;
-	Wed, 23 Sep 2026 12:05:21 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7EC4244872;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6077DC32786;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790165121;
-	bh=EhK0W4v/QWQboSgQv0FiQZyCRjGIoZ4QrJsYKB6dfn8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=EReKHZsVjtaj262kHJ+tkTTga2kFSlEl/P0mW65wYJITyoVMFYhKEp+dFzD4U450N
-	 8breq4yZKDsQhjc2VfRatTVggL60n46NvLn2ikvNEOQvRc58nYaaLKylsvf0ccQUvR
-	 nPYmb3VVvqy0j4svCJQf5CI75Ocrw5OsY/aJIVEe4ZFRdmIO+b2XLdFpjjAOjCN6zk
-	 8DAygTlrzuYwLdV8qpyT92Luu9oXVk9YeuttVIfYlSPEgSFw4yPgMJbqJ/MNw1b5ps
-	 3VvEaS3LeH2Pq5XDtBeg0ifVnh5AFGqpesUOfG/bblV80n2ih1V9DC4TQ0Cbe5g2uu
-	 rBJiZQulPxyWA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D205C9830D;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 23 Sep 2026 16:05:16 +0400
-Subject: [PATCH ath-next 10/16] dt-bindings: net: wireless: ath11k: Add
- bindings for QCN6122
+	Wed, 23 Sep 2026 15:03:53 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 68NDKm6F322352
+	for <ath11k@lists.infradead.org>; Wed, 23 Sep 2026 15:03:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/PeU2gEC3LoYHxgoHpBg+aDS+BEleaPfi9f+JiK36Js=; b=DEl3D4b/MaQwai3J
+	Rc+Ru+AqBDlYi16WsBv2QLOrZss1Lb1ZCPQaal+Sle+OwKskQ+snUYVyT+yNJ01A
+	F0EN9a3fIwy+dh6RNxn0j0O97M3Ghajsv9xbNbmZIefIpu6tVOh518WaktBrsTao
+	6oeuHsh2TUYpTtNu8TvZJ06p0huj0qVwZHVOIFqNXV2mYmroJ2YVyYD+mNDEY2PI
+	WEpk+pNxxufNYo7Oc+PmbtPBI5IaQRShwKSfQVexsbeZpIm5nyFeain6juIhH9OA
+	hY3neNnzwcAqrav+o2rbpDeQqiwC+IhDhfPEydTnYmOV0kgpTGZ/E/Bxmx4bY0uz
+	XWNVLg==
+Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com [209.85.222.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4gvfjsgfjb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Wed, 23 Sep 2026 15:03:51 +0000 (GMT)
+Received: by mail-ua1-f70.google.com with SMTP id a1e0cc1a2514c-98087b0c5deso801061241.2
+        for <ath11k@lists.infradead.org>; Wed, 23 Sep 2026 08:03:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1790175830; cv=none;
+        d=google.com; s=arc-20260327;
+        b=r+EwbJBWYXStxLlAzAYhoYxEytW6bVfPer5c50r50C8rfBd/EfEsrCct+RAOZBa0xr
+         ydr883azZ8QHq8yh027UvIx4LrkEMxDjnycpnafS4MZhybrRx/Ct0QMu/nIs2lXIsiE+
+         TP9eZlA83Y5gllUD6+sO6Ex+EgCZi3Egm6VYOLWvGM9eg3Guowk7L+9ttPQFKjwzh7Ky
+         tzwL9+SbgF+sOg/vxFK6EL6crSIZvv6KgVTP76fuVTTzgSeON6GY46bdJWyqhMs21eI3
+         RggAFVqJK8shw73Y2RlB2HPLhffsS4TUnniylLS27C2UffK4UazXKNqUEQnYtqxNl89j
+         UYrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=/PeU2gEC3LoYHxgoHpBg+aDS+BEleaPfi9f+JiK36Js=;
+        fh=Pd8H2yN4TLIizxA6iOGcLJLwdxYlZqxWIcQca23F2sk=;
+        b=YucAZEMke2zg+1griArP/9DmxSHMZO3Lpvbme5tlmXqTwV/yUdA7bxGb6DxEskiXBe
+         YWxZf3j308TUm6lU8/CkDD8J6NLhFh+xsxBJeOXdcwfMPvuFFwXbgAAwUjPgpERSlHuR
+         qfj3lzURQmdY0qB80RjVFN5BBENsu2q8FPJg4lnMGJt5KUw9nWLhKmHYpQnEgoNngcZG
+         4K8t5/mOf0oR7i0o9zQKVLVD+TG9ho/P+RCVDfr4G9ZGHknTCr3yG14rFC7q3fr5i+Hb
+         JWfXhQLK68yA0FyeWyKP8DbWqWd315Rrn9GLIkm5VQkt5ay74Mnl9bYziovQFa/loqDv
+         jYNw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1790175830; x=1790780630; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=/PeU2gEC3LoYHxgoHpBg+aDS+BEleaPfi9f+JiK36Js=;
+        b=T0kXkBW1QGbMLeA8/5q90J9qkYXrqIBZh2ro9kUuAZ9ZnAAC4y+JwzufvFN0uh77KQ
+         +6UO12B6hL4ohW+MnKfbkQ8qxsaZpZ3TVGvbsgXGMyFrkdCRl+NODtJcPwJWEOzLvRNO
+         xUQDvHQZtUtLiodQvO31Zr5zTc4/sipSJ3P8yMZBSMvGcgP8Nk3dXt30STonM2XbULnG
+         Vas9IZ0kQFUHG2nG+zdsPcLHZPIYzQ0wmS1VLEoyO82/CsaWbHEr1T83VbvVFTHItxjt
+         H+4SEY+j66xUnSJe9uIrnLZ5gDPRbBYmGtq4xiPfxsoOqLgvfhwdL7iw0NsHcmQKebrS
+         F/NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1790175830; x=1790780630;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/PeU2gEC3LoYHxgoHpBg+aDS+BEleaPfi9f+JiK36Js=;
+        b=VUROqh7Yh7ImZVow0ar3l2ywCFkdFwmggVswBRSrHL54nwQcIr7SC3qRYAmkE7snjM
+         bE/MjUse4UZoA6THoTiuzLMWHYeAZAaMRLkQPBGLoR7HPg/45u7KW6BF14MKJghVN7ph
+         mVVG/z77jltEub7Q1FHwFgGJudh2GHP9338zwh08VHX7OyQfDTMpQAy5SaLeaTlBhS9E
+         NJ7Q9mcAI0cvbZErKWi4z+pnoA6LRxjmpC66mZT4iO8YAEfskewF38k36zjrcPM4tdSG
+         QYwH85p59xzexGwjBE1s6fot2DOrmBNOFn92gqRRR/2FlJUgAlUn3iKXc1GvcRnlwnpt
+         0etw==
+X-Forwarded-Encrypted: i=1; AKwUvBxRoRHoEXJ7flw7PU9EfVnfYsrx/GbIOH3p9iuFy6Mbds1TqCFYkvUKVGt4JjNvH4/zC6QZBbY=@lists.infradead.org
+X-Gm-Message-State: AFuF++kbzZTm0f0ZOGClYOfGo4V4WNJpHpevMBZ4JDNK8x6jJiMtrIPx
+	TncR3Tv6Cv14wNFtjXdNwU2woreVGPnEYjiZk92sNmaVvw9AnemdmALT+2H65Zmqxu+HirJ1al9
+	HTmGUQPuqYK4KX0Yal81uFE631AkA8Tcrx/lBiJp2TSjFEZf+IHz2QgP8pmsI5jUkq3ScwW7g/i
+	5Xi3dYVDd0OgLcklLBzK0BJGrauBB27plYNaAhX9g=
+X-Gm-Gg: AYBFou2A9jR5crtzmKICXQwmkFmtD5qELksAljYnvImHIoSOFAs38oQ+/n/oWOMfnGj
+	xUrwFQm8hy+WwH4B3uBMdZfs1HjZWSh9bfMxWvms80ceicWwbqTGL1YEiYMd4EBjnFrYWcn56ML
+	bA+zIkhadIlZqiIUR+5KvLrJ8zUmiIFtBuPfKCTKIMSt3lIkF2DKL/uQCUUg==
+X-Received: by 2002:a05:6102:5488:b0:7a5:e455:182f with SMTP id ada2fe7eead31-7ac1cfb78f8mr2788545137.26.1790175830222;
+        Wed, 23 Sep 2026 08:03:50 -0700 (PDT)
+X-Received: by 2002:a05:6102:5488:b0:7a5:e455:182f with SMTP id
+ ada2fe7eead31-7ac1cfb78f8mr2788466137.26.1790175829576; Wed, 23 Sep 2026
+ 08:03:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-10-86729521a75c@outlook.com>
-References: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
-In-Reply-To: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
-To: Johannes Berg <johannes@sipsolutions.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>, 
- Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=9542;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=AMmUM3ppUAEMYWiKIHUzMgENqvh58tpVmet+RfpQRGA=;
- b=KddqHTm2dhPWaE2pvLI3lphALP/XjHvwb66YiQi0ATFRsAwBVw1o7rW8eU8f7RMsko7i5Qy4G
- VPH400sOf2dBPijM66rmtkG3yrwzaGbdnlvpuaVMpkxXkPSWR3QMIsr
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
+References: <20260921-qrtr-multi-ep-v2-0-27dd80d841a0@oss.qualcomm.com>
+ <20260921-qrtr-multi-ep-v2-2-27dd80d841a0@oss.qualcomm.com>
+ <a16d507e-17f7-4074-8817-4b8da3a71c3b@oss.qualcomm.com> <8ed398ba-2ebe-488a-a213-8ca7ecbe861d@app.fastmail.com>
+In-Reply-To: <8ed398ba-2ebe-488a-a213-8ca7ecbe861d@app.fastmail.com>
+From: Youssef Samir <youssef.abdulrahman@oss.qualcomm.com>
+Date: Wed, 23 Sep 2026 16:03:38 +0100
+X-Gm-Features: AcwNN1Ug9EBugFkjb8PX3BJuksaN57IKAVy35yQBrKwT5dMg_Iz0UHaPN9Wobrw
+Message-ID: <CANyhwx0hZJC6xXaSC2g4GFgUOp5n_KN4tdXksW+s8Mk_+7xEAA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] net: qrtr: Assign unique node id for MHI endpoints
+To: Juha-Matti Tilli <juha-matti.tilli@iki.fi>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        ath12k@lists.infradead.org, Bjorn Andersson <andersson@kernel.org>,
+        Chris Lew <christopher.lew@oss.qualcomm.com>,
+        Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>,
+        Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>,
+        Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTIzMDA1OSBTYWx0ZWRfXxDaTPtcOXr54
+ g1iY2qAP4jOAlfBc+PN/uRSoLeFZmg3Ew5MjD5/fuOB4uak5Hq8PkG9p6ym4iwxNrudfJ+iqhs9
+ frKrc0DYv/DubDhHZdHi1hRhDen2kBYI91DKDgHgA6cx6T3gBtyZe18piOFxJx0baMrixR7XJ0T
+ L9yAGkvEQuSPbNqIEf5Lia9PCwSObaIdpf1nB6Kz/2mguk8fuWS/MFlZq4dpRO2KRWA9bejTSbh
+ 7c0R2gUP/iDm6icF3jQFs4+wNo8fBB+q86WKM1mAaQNPC9Py3w/ibHqqxn/6QYyrxcc9y+TE83e
+ bQsI+VsijG3EphvVvtVUUix0U7DHWEONEzdiLbazZM3cmUFXVXGk5G2Ra40OwGNcHN6N3APxTkq
+ qkqaYfQ0SqOgnhSyIESwwkMkzKhat47Y0Op38dyfoLoHxaN921dabX+NmLxnZkXOLYtlTtHR0fN
+ IQ6XdaSC1ssndT6ywYQ==
+X-Proofpoint-GUID: XwoyJKSbJmnv9aFq_cEp185SO1pZXng9
+X-Proofpoint-ORIG-GUID: XwoyJKSbJmnv9aFq_cEp185SO1pZXng9
+X-Authority-Analysis: v=2.4 cv=K4+3jCWI c=1 sm=1 tr=0 ts=6ab3ea57 cx=c_pps
+ a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=IkcTkHD0fZMA:10 a=VdqzKS8jKosA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=eoimf2acIAo5FJnRuUoq:22 a=astPFzNtX3-rckHXrNEA:9 a=QEXdDO2ut3YA:10
+ a=TD8TdBvy0hsOASGTdmB-:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwOTIzMDA1OSBTYWx0ZWRfXztA2PLgmHGJ6
+ i8oRpJlzqO6bSkp3qMBjcVwzVHtePk6vEI5mg7f3Xl9a9oL0NAc49vtW6xyDZbS2+6mpL6SEKab
+ aBPOkx5M+MhNVUM7WVG68V5tH7R7aa8=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-09-23_04,2026-09-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 suspectscore=0 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 bulkscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2609040000 definitions=main-2609230059
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260923_080352_200089_EBE8C2AF 
+X-CRM114-Status: GOOD (  19.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,243 +171,46 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: george.moussalem@outlook.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: George Moussalem <george.moussalem@outlook.com>
+On Tue, Sep 22, 2026 at 6:24=E2=80=AFPM Juha-Matti Tilli
+<juha-matti.tilli@iki.fi> wrote:
+>
+> On Tue, Sep 22, 2026, at 20:14, Youssef Samir wrote:
+> > On 9/21/2026 12:23 PM, Manivannan Sadhasivam via B4 Relay wrote:
+> > > +
+> > > +/* The offset is chosen carefully to not collide with the node ids a=
+llocated by
+> > > + * the remote nodes. All the remote nodes use node ids in range 0 to=
+ 0xffff.
+> > This assumption does not hold up for QRTR V1 headers where the node ids=
+ are 32bit.
+> > QAIC devices use BHI_SERIALNUM as the node ID, and it is definitely lar=
+ger than
+> > 0xFFFF.> + */
+>
+> Does that mean we have to go back to my endpoint id patchset?  It's an
+> option, but a quite complex one.
+I'm not sure. Last time I tested the endpoint ID series was its v5 and it w=
+as
+functionally acceptable, and other than switching to sendmsg(2) instead of
+send(2) and sendto(2), it did not require much changing on the user-space
+side. But as you mentioned, it was/is complex compared to this one.
+>
+> However, what is the likelihood that serial number would clash with
+> these host node id values? Maybe just adjusting the comment could be
+> acceptable.
+The chance of collision is slim, but still not impossible.
+I think a solution would be to treat qrtr_host_node_id(idx) as the
+preferred id, not
+the one that will actually be assigned to the node. And before
+assigning the nid,
+we check it against the radix tree, and if it exists, we try to probe
+the next available
+id (so an IDA). This will also require exposing the nid to the user in
+sysfs (i.e. /sys/bus/mhi/devices/mhix/mhix_IPCR/nid).
 
-Add bindings for QCN6122, which is a companion chip to IPQ5018. The
-QCN6122 is a 5G/6G WiFi chip that is used in conjunction with the
-IPQ5018 SoC in a multi-PD (MPD) configuration.
-
-WiFi on IPQ5018 boards come in one of the following configurations:
-1. IPQ5018 (standalone) + optional 5G/6G WiFi card (such as QCN9074)
-2. IPQ5018 (MPD) + one or two 5G/6G QCN6122 WiFi chips.
-
-IPQ5018 implements the multi-PD architecture as follows:
-
-                     +-----------------------------+
-                     |     Q6 Remote Processor     |
-                     |            RootPD           |
-                     +--------------+--------------+
-                                    |
-                                    |
-                                    |
-              +---------------------+---------------------+
-              |                     |                     |
-        +-----v-----+         +-----v-----+         +-----v-----+
-        |  UserPD1  |         |  UserPD2  |         |  UserPD3  |
-        |  IPQ5018  |         | QCN6122 #1|         | QCN6122 #2|
-        |  (Radio)  |         |  (Radio)  |         |  (Radio)  |
-        +-----------+         +-----------+         +-----------+
-
-The rootPD is responsible for managing the lifecycle of the UserPD and
-shared resources and providing SSR notifiers. There are different
-firmware blobs that include either the rootPD and userPD binaries for
-IPQ5018-only which auto-spawns the userPD for IPQ5018 WiFi, or for
-IPQ5018 and QCN6122 for which the userPDs for each radio must be spawned
-by the ath11k driver.
-
-SMP2P is used for signaling between the host and the Q6 remote processor
-to manage the lifecycle of the userPDs, so add the required interrupts
-and smem-states for incoming and outgoing interrupts in the case of the
-IPQ5018 + QCN6122 MPD configuration. Otherwise, the SMP2P interrupts and
-smem-states are not required for the IPQ5018-only configuration.
-
-In addition, document the memory regions needed for loading the BDF and
-M3 firmware as well as for assigning the M3 dump memory block.
-
-It's worth noting that QCN6122 does not have its own Q6 firmware blobs.
-Instead, the firmware segments for QCN6122 are included in the IPQ5018
-MPD firmware blob(s). In addition, the QCN6122 M3 firmware which does
-come separately is loaded into the Q6 memory carveout of IPQ5018, hence
-the need for a dedicated "m3-region" reserved memory region.
-
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- .../bindings/net/wireless/qcom,ath11k.yaml         | 144 ++++++++++++++++++++-
- 1 file changed, 142 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-index 621ad6d4ddad..10102b5ea8c8 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-@@ -20,6 +20,7 @@ properties:
-       - qcom,ipq5018-wifi
-       - qcom,ipq6018-wifi
-       - qcom,ipq8074-wifi
-+      - qcom,qcn6122-wifi
-       - qcom,wcn6750-wifi
- 
-   reg:
-@@ -30,11 +31,11 @@ properties:
-     maxItems: 52
- 
-   interrupts-extended:
--    minItems: 56
-+    minItems: 17
-     maxItems: 56
- 
-   interrupt-names:
--    minItems: 32
-+    minItems: 17
-     maxItems: 56
- 
-   qcom,rproc:
-@@ -459,6 +460,93 @@ allOf:
-       required:
-         - interrupt-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,qcn6122-wifi
-+    then:
-+      properties:
-+        interrupts-extended:
-+          items:
-+            - description: interrupt event for ring CE1
-+            - description: interrupt event for ring CE2
-+            - description: interrupt event for ring CE3
-+            - description: interrupt event for ring CE4
-+            - description: interrupt event for ring CE5
-+            - description: interrupt event for ring DP1
-+            - description: interrupt event for ring DP2
-+            - description: interrupt event for ring DP3
-+            - description: interrupt event for ring DP4
-+            - description: interrupt event for ring DP5
-+            - description: interrupt event for ring DP6
-+            - description: interrupt event for ring DP7
-+            - description: interrupt event for ring DP8
-+            - description: Q6 firmware user PD fatal interrupt event
-+            - description: Q6 firmware user PD ready interrupt event
-+            - description: Q6 firmware user PD spawn interrupt event
-+            - description: Q6 firmware user PD stop ack interrupt event
-+        interrupt-names:
-+          minItems: 17
-+          items:
-+            - const: ce1
-+            - const: ce2
-+            - const: ce3
-+            - const: ce4
-+            - const: ce5
-+            - const: dp1
-+            - const: dp2
-+            - const: dp3
-+            - const: dp4
-+            - const: dp5
-+            - const: dp6
-+            - const: dp7
-+            - const: dp8
-+            - const: fatal
-+            - const: ready
-+            - const: spawn
-+            - const: stop-ack
-+        memory-region:
-+          minItems: 1
-+          items:
-+            - description: memory region for Q6 firmware
-+            - description: memory region for M3 firmware
-+            - description: memory region for M3 dump
-+        memory-region-names:
-+          minItems: 1
-+          items:
-+            - const: q6-region
-+            - const: m3-region
-+            - const: m3-dump
-+        qcom,smem-states:
-+          items:
-+            - description: Signal bit used to shutdown Q6 user PD
-+              items:
-+                - description: Phandle to the Shared Memory Point 2 Point device
-+                - description: Single bit index to toggle in the value sent to the remote processor
-+                  maximum: 32
-+            - description: Signal bit used to stop Q6 user PD
-+              items:
-+                - description: Phandle to the Shared Memory Point 2 Point device
-+                - description: Single bit index to toggle in the value sent to the remote processor
-+                  maximum: 32
-+            - description: Signal bit used to spawn Q6 user PD
-+              items:
-+                - description: Phandle to the Shared Memory Point 2 Point device
-+                - description: Single bit index to toggle in the value sent to the remote processor
-+                  maximum: 32
-+        qcom,smem-state-names:
-+          items:
-+            - const: shutdown
-+            - const: stop
-+            - const: spawn
-+      required:
-+        - interrupts-extended
-+        - interrupt-names
-+        - qcom,smem-states
-+        - qcom,smem-state-names
-+
-   - if:
-       properties:
-         compatible:
-@@ -861,3 +949,55 @@ examples:
- 
-         qcom,rproc = <&q6v5_wcss>;
-     };
-+
-+    wifi1: wifi@b00a040 {
-+        reg = <0x0b00a040 0x0>;
-+        compatible = "qcom,qcn6122-wifi";
-+
-+        interrupts-extended = <&intc GIC_SPI 416 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 417 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 418 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 419 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 420 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 421 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 422 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 423 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 424 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 425 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 426 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 427 IRQ_TYPE_EDGE_RISING>,
-+                              <&intc GIC_SPI 428 IRQ_TYPE_EDGE_RISING>,
-+                              <&wcss_smp2p_in 16 IRQ_TYPE_NONE>,
-+                              <&wcss_smp2p_in 17 IRQ_TYPE_NONE>,
-+                              <&wcss_smp2p_in 20 IRQ_TYPE_NONE>,
-+                              <&wcss_smp2p_in 19 IRQ_TYPE_NONE>;
-+        interrupt-names = "ce1",
-+                          "ce2",
-+                          "ce3",
-+                          "ce4",
-+                          "ce5",
-+                          "dp1",
-+                          "dp2",
-+                          "dp3",
-+                          "dp4",
-+                          "dp5",
-+                          "dp6",
-+                          "dp7",
-+                          "dp8",
-+                          "fatal",
-+                          "ready",
-+                          "spawn",
-+                          "stop-ack";
-+
-+        qcom,smem-states = <&wcss_smp2p_out 16>,
-+                           <&wcss_smp2p_out 17>,
-+                           <&wcss_smp2p_out 18>;
-+        qcom,smem-state-names = "shutdown",
-+                                "stop",
-+                                "spawn";
-+
-+        memory-region = <&q6_region_qcn6122_1>, <&q6_region_ipq5018>, <&m3_dump_qcn6122_1>;
-+        memory-region-names = "q6-region", "m3-region", "m3-dump";
-+
-+        status = "disabled";
-+    };
-
--- 
-2.53.0
-
-
+Thanks,
+Youssef
 
