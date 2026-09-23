@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0921EC98312
-	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8E8AC9830B
+	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gmKYyMyZibStEvtERE72tPem4HBPxzHyRa59Wz/ilqg=; b=OPedp/oWKAhovZlsHIn0Ta9VKk
-	HpCawDK9a/qZfnfIqvHaFlALJ/G++0fVwV/1GLu3Q22w+j3QI9FtPCBldM0KVTlJeJV2gYFs3a8su
-	hsggvM5jJF87JznDSUoQExYWsemTpnfxhtuq7iUbJDbsoBMFtukyn6iz8SUYKvYfnzlUFQQmgSuw0
-	rQtK4bIG+ExpcfDWbrAMeW7SHq/Fgx/2uQorDME9t5OI5BSzNcJAWn03gq08ZgTOBCC09UMlaCutg
-	GajrPC5HlUDKIjiRShmfabXrLQDaULBABPA7iUnJFoWskQXCwD8Ppqi07wjhJi/kwex1FpgWDWyyQ
-	6QHl8AzQ==;
+	bh=n5GXyHtmqjl3ylM9/94ma/gogKk1axBglD3aFrM5prQ=; b=f/IVhMjsbSgJ3LT/NsgN5tXL2o
+	85c8ZXvEKKtzmneVZPdOa6Zp++ka2qXJ+jVj18DeefkBm6QzSwlgHwK9xvEWzIEvH88R6KorEKEiV
+	o2WVSUJVBAOIBsfOYBOR4zK8SKpDGoRh0QKlV0FHyFyNjuuLbAwMm/HdnhKwR6zstfmpBM7MWlCyT
+	7dWeXFjBiHRqhNRq2buEoR3oDbtePyVLRmcbrHUBKJcPL09Gt0asmAzxRyEO0SNdq+fWhNp4ONInm
+	X7Xtn3veqPf1wyRC3diSI+mkjyL00xCDqRfi90aZjHEIyVrqkn4aamax97OCrL/VdhK74xQip98J9
+	jgcoHAPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Lj4-00000008BGU-2DF2;
-	Wed, 23 Sep 2026 12:05:26 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1x9Lj1-00000008BAE-0T4m;
+	Wed, 23 Sep 2026 12:05:23 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Liz-00000008B8v-43YP
+	id 1x9Liz-00000008B88-2CkP
 	for ath11k@lists.infradead.org;
-	Wed, 23 Sep 2026 12:05:22 +0000
+	Wed, 23 Sep 2026 12:05:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9CB9044505;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7F617C32782;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id F40DF43E00;
+	Wed, 23 Sep 2026 12:05:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D2E3EC2BCFD;
+	Wed, 23 Sep 2026 12:05:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790165121;
-	bh=V8EpBw6k67scWE9ppUReXHMdRE5KShJwjQSCU4ziemI=;
+	s=k20201202; t=1790165120;
+	bh=Wr8vF9+tB3URgYwuk9Ft1iOQyMg6r2dF8K6KfcjCEdE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=LlR4E/nfchZUCMdSpV8rOxOIZp5F1Y6zZ/Y1xIDBA18/T3SZiSoUKhA3ylfUCWGkQ
-	 bM4G0L0GUvkWMPkV655WydwWUBbwuJs1ysSR/RfPUy1UHzREqy3UiFIiniAKKFNeik
-	 9w4etVnod5thmRgyZaIHP4zWWKZN6xz6Waa//7AsLh5p14h7QkY3D4NkEZrZLkAIfC
-	 tG56pqhzzeJcKgWTCkNWEM9MftM2tzlelkUjvcgUpAp9o0M9KOeFIVNiO0FmcnH52D
-	 COQquHD+gzX0dK1MHmsTmWVCG8mM0Ki4Tj+/cOG7kKf96lQ9ohseEwV2zLCz2dRJu3
-	 RdosGFyM1MtmQ==
+	b=qQ/rmZGIGu8gb1vSY2PxQGocqK/13oUWvteMLS1YZHly7CuG5NmAq+uxlh2uoZk33
+	 JOTjwq09me3JRuco/B3zUeOPigSISARHBYD74uIXRnOPnsLXCPDH/RQNf8iDVVTORj
+	 6Zsasbs1R7CGNVnxBUGJTihqIHHyiPxwQcE1/611/myUFdl18DIuAV3Otgilb+LDtx
+	 s7cXw6I9teU019tufUwWb5Y0/JAx4RxX/n8IG4b7EYm7vWOrFZlS+3d+vpyABAhlvM
+	 ywVUgNVCScnUjqVie45lMA1EX8ByOSWoSsq1VvYFuHEmCIEBJbICy37rI2TuxUdFOC
+	 WUvp7H2+RYDgQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E3A1C982FA;
-	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD53BC9830B;
+	Wed, 23 Sep 2026 12:05:20 +0000 (UTC)
 From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 23 Sep 2026 16:05:18 +0400
-Subject: [PATCH ath-next 12/16] wifi: ath11k: add hal regs for QCN6122
+Date: Wed, 23 Sep 2026 16:05:08 +0400
+Subject: [PATCH ath-next 02/16] dt-bindings: net: wireless: ath11k: Add
+ bindings for IPQ5018
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-12-86729521a75c@outlook.com>
+Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-2-86729521a75c@outlook.com>
 References: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 In-Reply-To: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 To: Johannes Berg <johannes@sipsolutions.net>, 
@@ -66,11 +67,11 @@ Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, 
  George Moussalem <george.moussalem@outlook.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=4921;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=26029;
  i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=BNVxrxCvphr2PbaY3QLCfMXAa89mIJNLaIy4fyfiBB0=;
- b=CyIsVjJsILDCihgmPBFEa8x1E/e4/uO3WqMYyXCmeOHB6ipTjw7ii0YjhmtSz2AbRWThG2u00
- w1VU9u3YWSKAgo/WYatWR/amSb/0pTU3ELNMKnl0l0J45jY/ye8TWgw
+ bh=dwazGgTGl3nBGZ/RveaF17QPykvP/UUXWu672qGRCJw=;
+ b=4m5wHIpLginPQMIjSmLLu4rIwxDrFAMW0hymXr3zs3QfzxeQuZTNMwur2kducDS+pPbHFJCGm
+ 4XSm9IPeymmDvtqYAnV1WPTsl5YztsaUSPzLQX8QR41IE3zW6yH9IMc
 X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
  pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
 X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
@@ -93,128 +94,526 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: George Moussalem <george.moussalem@outlook.com>
 
-Add HAL changes required to support QCN6122. While offsets for QCN6122
-are similar to those of WCN6750, QCN6122 does not support shadow regs
-and the PCIE PCS/Serdes tuning register offsets do not apply to QCN6122.
-So add its own HAL register offsets.
+Although support was added for IPQ5018, the bindings are missing, so
+let's add them.
+
+WiFi on IPQ5018 boards come in one of the following configurations:
+1. IPQ5018 (standalone) + optional 5G/6G WiFi card (such as QCN9074)
+2. IPQ5018 (MPD) + one or two 5G/6G QCN6122 WiFi chips where QCN6122
+   is an IPQ5018-specific companion chip.
+
+IPQ5018 implements the multi-PD architecture as follows:
+
+                     +-----------------------------+
+                     |     Q6 Remote Processor     |
+                     |            RootPD           |
+                     +--------------+--------------+
+                                    |
+                                    |
+                                    |
+              +---------------------+---------------------+
+              |                     |                     |
+        +-----v-----+         +-----v-----+         +-----v-----+
+        |  UserPD1  |         |  UserPD2  |         |  UserPD3  |
+        |  IPQ5018  |         | QCN6122 #1|         | QCN6122 #2|
+        |  (Radio)  |         |  (Radio)  |         |  (Radio)  |
+        +-----------+         +-----------+         +-----------+
+
+The rootPD is responsible for managing the lifecycle of the UserPD and
+shared resources and providing SSR notifiers. There are different
+firmware blobs that include either the rootPD and userPD binaries for
+IPQ5018-only which auto-spawns the userPD for IPQ5018 WiFi, or for
+IPQ5018 and QCN6122 for which the userPDs for each radio must be spawned
+by the ath11k driver.
+
+SMP2P is used for signaling between the host and the Q6 remote processor
+to manage the lifecycle of the userPDs, so add the required interrupts
+and smem-states for incoming and outgoing interrupts in the case of the
+IPQ5018 + QCN6122 MPD configuration. Otherwise, the SMP2P interrupts and
+smem-states are not required for the IPQ5018-only configuration.
+
+In addition, document the memory regions needed for loading the BDF and
+M3 firmware as well as for assigning the M3 dump memory block.
 
 Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c |  1 +
- drivers/net/wireless/ath/ath11k/hw.c   | 75 ++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/hw.h   |  1 +
- 3 files changed, 77 insertions(+)
+ .../bindings/net/wireless/qcom,ath11k.yaml         | 423 ++++++++++++++++++++-
+ 1 file changed, 410 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 0a38db1ee175..cf37975fa4cf 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -949,6 +949,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.bdf_addr = 0x4D200000,
- 		.hw_ops = &ipq5018_ops,
- 		.internal_sleep_clock = false,
-+		.regs = &qcn6122_regs,
- 		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCN6122,
- 		.host_ce_config = ath11k_host_ce_config_qcn9074,
- 		.ce_count = CE_CNT_5018,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 93f9a03c48dc..8442fbeb9c58 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -2836,6 +2836,81 @@ const struct ath11k_hw_hal_params ath11k_hw_hal_params_ipq5018 = {
- 	.num_tx_rings = ARRAY_SIZE(ath11k_hw_tcl2wbm_rbm_map_ipq5018),
- };
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index a846cd704b19..621ad6d4ddad 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -29,8 +29,13 @@ properties:
+     minItems: 32
+     maxItems: 52
  
-+const struct ath11k_hw_regs qcn6122_regs = {
-+	/* SW2TCL(x) R0 ring configuration address */
-+	.hal_tcl1_ring_base_lsb = 0x00000694,
-+	.hal_tcl1_ring_base_msb = 0x00000698,
-+	.hal_tcl1_ring_id = 0x0000069c,
-+	.hal_tcl1_ring_misc = 0x000006a4,
-+	.hal_tcl1_ring_tp_addr_lsb = 0x000006b0,
-+	.hal_tcl1_ring_tp_addr_msb = 0x000006b4,
-+	.hal_tcl1_ring_consumer_int_setup_ix0 = 0x000006c4,
-+	.hal_tcl1_ring_consumer_int_setup_ix1 = 0x000006c8,
-+	.hal_tcl1_ring_msi1_base_lsb = 0x000006dc,
-+	.hal_tcl1_ring_msi1_base_msb = 0x000006e0,
-+	.hal_tcl1_ring_msi1_data = 0x000006e4,
-+	.hal_tcl2_ring_base_lsb = 0x000006ec,
-+	.hal_tcl_ring_base_lsb = 0x0000079c,
++  interrupts-extended:
++    minItems: 56
++    maxItems: 56
 +
-+	/* TCL STATUS ring address */
-+	.hal_tcl_status_ring_base_lsb = 0x000008a4,
-+
-+	/* REO2SW(x) R0 ring configuration address */
-+	.hal_reo1_ring_base_lsb = 0x000001ec,
-+	.hal_reo1_ring_base_msb = 0x000001f0,
-+	.hal_reo1_ring_id = 0x000001f4,
-+	.hal_reo1_ring_misc = 0x000001fc,
-+	.hal_reo1_ring_hp_addr_lsb = 0x00000200,
-+	.hal_reo1_ring_hp_addr_msb = 0x00000204,
-+	.hal_reo1_ring_producer_int_setup = 0x00000210,
-+	.hal_reo1_ring_msi1_base_lsb = 0x00000234,
-+	.hal_reo1_ring_msi1_base_msb = 0x00000238,
-+	.hal_reo1_ring_msi1_data = 0x0000023c,
-+	.hal_reo2_ring_base_lsb = 0x00000244,
-+	.hal_reo1_aging_thresh_ix_0 = 0x00000564,
-+	.hal_reo1_aging_thresh_ix_1 = 0x00000568,
-+	.hal_reo1_aging_thresh_ix_2 = 0x0000056c,
-+	.hal_reo1_aging_thresh_ix_3 = 0x00000570,
-+
-+	/* REO2SW(x) R2 ring pointers (head/tail) address */
-+	.hal_reo1_ring_hp = 0x00003028,
-+	.hal_reo1_ring_tp = 0x0000302c,
-+	.hal_reo2_ring_hp = 0x00003030,
-+
-+	/* REO2TCL R0 ring configuration address */
-+	.hal_reo_tcl_ring_base_lsb = 0x000003fc,
-+	.hal_reo_tcl_ring_hp = 0x00003058,
-+
-+	/* SW2REO ring address */
-+	.hal_sw2reo_ring_base_lsb = 0x0000013c,
-+	.hal_sw2reo_ring_hp = 0x00003018,
-+
-+	/* REO CMD ring address */
-+	.hal_reo_cmd_ring_base_lsb = 0x000000e4,
-+	.hal_reo_cmd_ring_hp = 0x00003010,
-+
-+	/* REO status address */
-+	.hal_reo_status_ring_base_lsb = 0x00000504,
-+	.hal_reo_status_hp = 0x00003070,
-+
-+	/* WCSS relative address */
-+	.hal_seq_wcss_umac_ce0_src_reg = 0x01b80000,
-+	.hal_seq_wcss_umac_ce0_dst_reg = 0x01b81000,
-+	.hal_seq_wcss_umac_ce1_src_reg = 0x01b82000,
-+	.hal_seq_wcss_umac_ce1_dst_reg = 0x01b83000,
-+
-+	/* WBM Idle address */
-+	.hal_wbm_idle_link_ring_base_lsb = 0x00000874,
-+	.hal_wbm_idle_link_ring_misc = 0x00000884,
-+
-+	/* SW2WBM release address */
-+	.hal_wbm_release_ring_base_lsb = 0x000001ec,
-+
-+	/* WBM2SW release address */
-+	.hal_wbm0_release_ring_base_lsb = 0x00000924,
-+	.hal_wbm1_release_ring_base_lsb = 0x0000097c,
-+};
-+
- const struct ath11k_hw_hal_params ath11k_hw_hal_params_ipq8074 = {
- 	.rx_buf_rbm = HAL_RX_BUF_RBM_SW3_BM,
- 	.tcl2wbm_rbm_map = ath11k_hw_tcl2wbm_rbm_map_ipq8074,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 5a1100ceb895..d9646a491808 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -433,6 +433,7 @@ extern const struct ath11k_hw_regs qcn9074_regs;
- extern const struct ath11k_hw_regs wcn6855_regs;
- extern const struct ath11k_hw_regs wcn6750_regs;
- extern const struct ath11k_hw_regs ipq5018_regs;
-+extern const struct ath11k_hw_regs qcn6122_regs;
+   interrupt-names:
+-    maxItems: 52
++    minItems: 32
++    maxItems: 56
  
- static inline const char *ath11k_bd_ie_type_str(enum ath11k_bd_ie_type type)
- {
+   qcom,rproc:
+     $ref: /schemas/types.yaml#/definitions/phandle
+@@ -56,11 +61,15 @@ properties:
+ 
+   memory-region:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 3
+     description:
+       phandle to a node describing reserved memory (System RAM memory)
+       used by ath11k firmware (see bindings/reserved-memory/reserved-memory.txt)
+ 
++  memory-region-names:
++    minItems: 1
++    maxItems: 3
++
+   iommus:
+     minItems: 1
+     maxItems: 2
+@@ -78,20 +87,11 @@ properties:
+   qcom,smem-states:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     description: State bits used by the AP to signal the WLAN Q6.
+-    items:
+-      - description: Signal bits used to enable/disable low power mode
+-          on WCN6750 in the case of WoW (Wake on Wireless).
+-        items:
+-          - description: Phandle to the Shared Memory Point 2 Point device
+-              handling the communication with a remote processor
+-          - description: Single bit index to toggle in the value sent to
+-              the remote processor
+-            maximum: 32
++    minItems: 1
++    maxItems: 3
+ 
+   qcom,smem-state-names:
+     description: The names of the state bits used for SMP2P output.
+-    items:
+-      - const: wlan-smp2p-out
+ 
+ required:
+   - compatible
+@@ -103,6 +103,242 @@ additionalProperties: false
+ 
+ allOf:
+   - $ref: ieee80211.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,ipq5018-wifi
++    then:
++      properties:
++        interrupts:
++          items:
++            - description: misc-pulse1 interrupt events
++            - description: misc-latch interrupt events
++            - description: sw exception interrupt events
++            - description: watchdog interrupt events
++            - description: interrupt event for ring CE0
++            - description: interrupt event for ring CE1
++            - description: interrupt event for ring CE2
++            - description: interrupt event for ring CE3
++            - description: interrupt event for ring CE4
++            - description: interrupt event for ring CE5
++            - description: interrupt event for ring CE6
++            - description: interrupt event for ring CE7
++            - description: interrupt event for ring CE8
++            - description: interrupt event for ring CE9
++            - description: interrupt event for ring CE10
++            - description: interrupt event for ring CE11
++            - description: interrupt event for ring host2wbm-desc-feed
++            - description: interrupt event for ring host2reo-re-injection
++            - description: interrupt event for ring host2reo-command
++            - description: interrupt event for ring host2rxdma-monitor-ring3
++            - description: interrupt event for ring host2rxdma-monitor-ring2
++            - description: interrupt event for ring host2rxdma-monitor-ring1
++            - description: interrupt event for ring reo2ost-exception
++            - description: interrupt event for ring wbm2host-rx-release
++            - description: interrupt event for ring reo2host-status
++            - description: interrupt event for ring reo2host-destination-ring4
++            - description: interrupt event for ring reo2host-destination-ring3
++            - description: interrupt event for ring reo2host-destination-ring2
++            - description: interrupt event for ring reo2host-destination-ring1
++            - description: interrupt event for ring rxdma2host-monitor-destination-mac3
++            - description: interrupt event for ring rxdma2host-monitor-destination-mac2
++            - description: interrupt event for ring rxdma2host-monitor-destination-mac1
++            - description: interrupt event for ring ppdu-end-interrupts-mac3
++            - description: interrupt event for ring ppdu-end-interrupts-mac2
++            - description: interrupt event for ring ppdu-end-interrupts-mac1
++            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac3
++            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac2
++            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac1
++            - description: interrupt event for ring host2rxdma-host-buf-ring-mac3
++            - description: interrupt event for ring host2rxdma-host-buf-ring-mac2
++            - description: interrupt event for ring host2rxdma-host-buf-ring-mac1
++            - description: interrupt event for ring rxdma2host-destination-ring-mac3
++            - description: interrupt event for ring rxdma2host-destination-ring-mac2
++            - description: interrupt event for ring rxdma2host-destination-ring-mac1
++            - description: interrupt event for ring host2tcl-input-ring4
++            - description: interrupt event for ring host2tcl-input-ring3
++            - description: interrupt event for ring host2tcl-input-ring2
++            - description: interrupt event for ring host2tcl-input-ring1
++            - description: interrupt event for ring wbm2host-tx-completions-ring3
++            - description: interrupt event for ring wbm2host-tx-completions-ring2
++            - description: interrupt event for ring wbm2host-tx-completions-ring1
++            - description: interrupt event for ring tcl2host-status-ring
++        interrupts-extended:
++          items:
++            - description: misc-pulse1 interrupt events
++            - description: misc-latch interrupt events
++            - description: sw exception interrupt events
++            - description: watchdog interrupt events
++            - description: interrupt event for ring CE0
++            - description: interrupt event for ring CE1
++            - description: interrupt event for ring CE2
++            - description: interrupt event for ring CE3
++            - description: interrupt event for ring CE4
++            - description: interrupt event for ring CE5
++            - description: interrupt event for ring CE6
++            - description: interrupt event for ring CE7
++            - description: interrupt event for ring CE8
++            - description: interrupt event for ring CE9
++            - description: interrupt event for ring CE10
++            - description: interrupt event for ring CE11
++            - description: interrupt event for ring host2wbm-desc-feed
++            - description: interrupt event for ring host2reo-re-injection
++            - description: interrupt event for ring host2reo-command
++            - description: interrupt event for ring host2rxdma-monitor-ring3
++            - description: interrupt event for ring host2rxdma-monitor-ring2
++            - description: interrupt event for ring host2rxdma-monitor-ring1
++            - description: interrupt event for ring reo2ost-exception
++            - description: interrupt event for ring wbm2host-rx-release
++            - description: interrupt event for ring reo2host-status
++            - description: interrupt event for ring reo2host-destination-ring4
++            - description: interrupt event for ring reo2host-destination-ring3
++            - description: interrupt event for ring reo2host-destination-ring2
++            - description: interrupt event for ring reo2host-destination-ring1
++            - description: interrupt event for ring rxdma2host-monitor-destination-mac3
++            - description: interrupt event for ring rxdma2host-monitor-destination-mac2
++            - description: interrupt event for ring rxdma2host-monitor-destination-mac1
++            - description: interrupt event for ring ppdu-end-interrupts-mac3
++            - description: interrupt event for ring ppdu-end-interrupts-mac2
++            - description: interrupt event for ring ppdu-end-interrupts-mac1
++            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac3
++            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac2
++            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac1
++            - description: interrupt event for ring host2rxdma-host-buf-ring-mac3
++            - description: interrupt event for ring host2rxdma-host-buf-ring-mac2
++            - description: interrupt event for ring host2rxdma-host-buf-ring-mac1
++            - description: interrupt event for ring rxdma2host-destination-ring-mac3
++            - description: interrupt event for ring rxdma2host-destination-ring-mac2
++            - description: interrupt event for ring rxdma2host-destination-ring-mac1
++            - description: interrupt event for ring host2tcl-input-ring4
++            - description: interrupt event for ring host2tcl-input-ring3
++            - description: interrupt event for ring host2tcl-input-ring2
++            - description: interrupt event for ring host2tcl-input-ring1
++            - description: interrupt event for ring wbm2host-tx-completions-ring3
++            - description: interrupt event for ring wbm2host-tx-completions-ring2
++            - description: interrupt event for ring wbm2host-tx-completions-ring1
++            - description: interrupt event for ring tcl2host-status-ring
++            - description: Q6 firmware user PD fatal interrupt event
++            - description: Q6 firmware user PD ready interrupt event
++            - description: Q6 firmware user PD spawn interrupt event
++            - description: Q6 firmware user PD stop ack interrupt event
++        interrupt-names:
++          minItems: 52
++          items:
++            - const: misc-pulse1
++            - const: misc-latch
++            - const: sw-exception
++            - const: watchdog
++            - const: ce0
++            - const: ce1
++            - const: ce2
++            - const: ce3
++            - const: ce4
++            - const: ce5
++            - const: ce6
++            - const: ce7
++            - const: ce8
++            - const: ce9
++            - const: ce10
++            - const: ce11
++            - const: host2wbm-desc-feed
++            - const: host2reo-re-injection
++            - const: host2reo-command
++            - const: host2rxdma-monitor-ring3
++            - const: host2rxdma-monitor-ring2
++            - const: host2rxdma-monitor-ring1
++            - const: reo2ost-exception
++            - const: wbm2host-rx-release
++            - const: reo2host-status
++            - const: reo2host-destination-ring4
++            - const: reo2host-destination-ring3
++            - const: reo2host-destination-ring2
++            - const: reo2host-destination-ring1
++            - const: rxdma2host-monitor-destination-mac3
++            - const: rxdma2host-monitor-destination-mac2
++            - const: rxdma2host-monitor-destination-mac1
++            - const: ppdu-end-interrupts-mac3
++            - const: ppdu-end-interrupts-mac2
++            - const: ppdu-end-interrupts-mac1
++            - const: rxdma2host-monitor-status-ring-mac3
++            - const: rxdma2host-monitor-status-ring-mac2
++            - const: rxdma2host-monitor-status-ring-mac1
++            - const: host2rxdma-host-buf-ring-mac3
++            - const: host2rxdma-host-buf-ring-mac2
++            - const: host2rxdma-host-buf-ring-mac1
++            - const: rxdma2host-destination-ring-mac3
++            - const: rxdma2host-destination-ring-mac2
++            - const: rxdma2host-destination-ring-mac1
++            - const: host2tcl-input-ring4
++            - const: host2tcl-input-ring3
++            - const: host2tcl-input-ring2
++            - const: host2tcl-input-ring1
++            - const: wbm2host-tx-completions-ring3
++            - const: wbm2host-tx-completions-ring2
++            - const: wbm2host-tx-completions-ring1
++            - const: tcl2host-status-ring
++            - const: fatal
++            - const: ready
++            - const: spawn
++            - const: stop-ack
++        memory-region:
++          items:
++            - description: memory region for Q6 firmware
++            - description: memory region for M3 firmware
++            - description: memory region for M3 dump
++        memory-region-names:
++          items:
++            - const: q6-region
++            - const: m3-region
++            - const: m3-dump
++        qcom,smem-states:
++          items:
++            - description: Signal bit used to shutdown Q6 user PD
++              items:
++                - description: Phandle to the Shared Memory Point 2 Point device
++                - description: Single bit index to toggle in the value sent to the remote processor
++                  maximum: 32
++            - description: Signal bit used to stop Q6 user PD
++              items:
++                - description: Phandle to the Shared Memory Point 2 Point device
++                - description: Single bit index to toggle in the value sent to the remote processor
++                  maximum: 32
++            - description: Signal bit used to spawn Q6 user PD
++              items:
++                - description: Phandle to the Shared Memory Point 2 Point device
++                - description: Single bit index to toggle in the value sent to the remote processor
++                  maximum: 32
++        qcom,smem-state-names:
++          items:
++            - const: shutdown
++            - const: stop
++            - const: spawn
++      allOf:
++        - anyOf:
++            - required:
++                - interrupts
++            - required:
++                - interrupts-extended
++        - if:
++            required:
++              - interrupts-extended
++          then:
++            properties:
++              interrupt-names:
++                minItems: 56
++            required:
++              - interrupts-extended
++              - memory-region
++              - memory-region-names
++              - qcom,smem-states
++              - qcom,smem-state-names
++          else:
++            properties:
++              interrupt-names:
++                minItems: 52
++                maxItems: 52
++
+   - if:
+       properties:
+         compatible:
+@@ -265,6 +501,19 @@ allOf:
+             - description: interrupt event for ring DP20
+             - description: interrupt event for ring DP21
+             - description: interrupt event for ring DP22
++        qcom,smem-states:
++          items:
++            - description: Signal bits used to enable/disable low power mode
++                on WCN6750 in the case of WoW (Wake on Wireless).
++              items:
++                - description: Phandle to the Shared Memory Point 2 Point device
++                    handling the communication with a remote processor
++                - description: Single bit index to toggle in the value sent to
++                    the remote processor
++                  maximum: 32
++        qcom,smem-state-names:
++          items:
++            - const: wlan-smp2p-out
+ 
+ examples:
+   - |
+@@ -464,3 +713,151 @@ examples:
+             iommus = <&apps_smmu 0x1c02 0x1>;
+         };
+     };
++
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    reserved-memory {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        q6_region: q6-region@4b000000 {
++            no-map;
++            reg = <0x0 0x4b000000 0x0 0x1400000>;
++        };
++
++        m3_dump: m3-dump@4d100000 {
++            reg = <0x0 0x4d100000 0x0 0x100000>;
++            no-map;
++        };
++    };
++
++    wifi@c000000 {
++        compatible = "qcom,ipq5018-wifi";
++        reg = <0x0c000000 0x1000000>;
++
++        interrupts-extended = <&intc GIC_SPI 288 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 289 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 290 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 291 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 292 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 293 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 294 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 295 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 300 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 301 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 302 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 303 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 304 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 305 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 306 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 307 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 308 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 309 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 310 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 311 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 334 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 313 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 314 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 315 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 316 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 317 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 318 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 319 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 320 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 321 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 322 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 323 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 324 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 325 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 326 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 327 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 328 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 329 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 330 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 331 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 332 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 333 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 312 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 335 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 336 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 337 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 338 IRQ_TYPE_EDGE_RISING>,
++                              <&intc GIC_SPI 339 IRQ_TYPE_EDGE_RISING>,
++                              <&wcss_smp2p_in 8 IRQ_TYPE_NONE>,
++                              <&wcss_smp2p_in 9 IRQ_TYPE_NONE>,
++                              <&wcss_smp2p_in 12 IRQ_TYPE_NONE>,
++                              <&wcss_smp2p_in 11 IRQ_TYPE_NONE>;
++        interrupt-names = "misc-pulse1",
++                          "misc-latch",
++                          "sw-exception",
++                          "watchdog",
++                          "ce0",
++                          "ce1",
++                          "ce2",
++                          "ce3",
++                          "ce4",
++                          "ce5",
++                          "ce6",
++                          "ce7",
++                          "ce8",
++                          "ce9",
++                          "ce10",
++                          "ce11",
++                          "host2wbm-desc-feed",
++                          "host2reo-re-injection",
++                          "host2reo-command",
++                          "host2rxdma-monitor-ring3",
++                          "host2rxdma-monitor-ring2",
++                          "host2rxdma-monitor-ring1",
++                          "reo2ost-exception",
++                          "wbm2host-rx-release",
++                          "reo2host-status",
++                          "reo2host-destination-ring4",
++                          "reo2host-destination-ring3",
++                          "reo2host-destination-ring2",
++                          "reo2host-destination-ring1",
++                          "rxdma2host-monitor-destination-mac3",
++                          "rxdma2host-monitor-destination-mac2",
++                          "rxdma2host-monitor-destination-mac1",
++                          "ppdu-end-interrupts-mac3",
++                          "ppdu-end-interrupts-mac2",
++                          "ppdu-end-interrupts-mac1",
++                          "rxdma2host-monitor-status-ring-mac3",
++                          "rxdma2host-monitor-status-ring-mac2",
++                          "rxdma2host-monitor-status-ring-mac1",
++                          "host2rxdma-host-buf-ring-mac3",
++                          "host2rxdma-host-buf-ring-mac2",
++                          "host2rxdma-host-buf-ring-mac1",
++                          "rxdma2host-destination-ring-mac3",
++                          "rxdma2host-destination-ring-mac2",
++                          "rxdma2host-destination-ring-mac1",
++                          "host2tcl-input-ring4",
++                          "host2tcl-input-ring3",
++                          "host2tcl-input-ring2",
++                          "host2tcl-input-ring1",
++                          "wbm2host-tx-completions-ring3",
++                          "wbm2host-tx-completions-ring2",
++                          "wbm2host-tx-completions-ring1",
++                          "tcl2host-status-ring",
++                          "fatal",
++                          "ready",
++                          "spawn",
++                          "stop-ack";
++
++        qcom,smem-states = <&wcss_smp2p_out 8>,
++                           <&wcss_smp2p_out 9>,
++                           <&wcss_smp2p_out 10>;
++        qcom,smem-state-names = "shutdown",
++                                "stop",
++                                "spawn";
++
++        memory-region = <&q6_region>, <&q6_region>, <&m3_dump>;
++        memory-region-names = "q6-region", "m3-region", "m3-dump";
++
++        qcom,rproc = <&q6v5_wcss>;
++    };
 
 -- 
 2.53.0
