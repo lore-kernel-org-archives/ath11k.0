@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03685C9830D
-	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A46C6C98311
+	for <ath11k@archiver.kernel.org>; Wed, 23 Sep 2026 12:05:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Rk6nINkYlkm7Zw4Cbc1NTFg1VBHdhmJgw2S6j+VQNGc=; b=KTvSe9iGPedNfqcjLGmIR5ZFEw
-	takPchuhUmbt5ZrcodE3xBKj3vmJh53pDZcLaabcuGj/jTDfqfDbwbvjxhXFr8D6hOyZmXxrajFl8
-	8eGTMbu32q277DwhI1ZUUYQxnAuTyXQZctcXGvim+jGLNUWCwBk5Utt4tK5k938Tv4gbLi2fPyTcR
-	ThWEAN+HatS/umYhER2kNlmh8MPyjdaE737ZpM4Ot/271mqqmPLQpx3v4g32RN157GcvIT1y440Mk
-	I/UdPe9fnEHW+nRxOzRQttJYFOCXm6IeSJjQE9u8lqHCi5xJfzNSSnVmolVc2hnfjYvDzr6+87JXo
-	AFzUF9SA==;
+	bh=lr1sSD6oPVRFzXyEte48EDlfhqEqMis7rkdiY7FM2Sk=; b=FZ0/FR1SeBoPyAL4FLRhM3+6JE
+	/3IIQULwstLapThyduQVJCBBtvGrLlnRS3Vm2Atm9EXDXth4UuMhbBXqX9Y6gFkD++1BoJUSyhL25
+	0IvmRnpyqm7IU5ubBGc52xQhZR7ZVwKzrCjzvsmfOUPauIX3RSBurQN75bdhi9k1l2QkOMfXMpj+r
+	sDp9HL0S2n0qjZ2VnKZ/L2LgBJ7QUAirL21kkkMORiIS4VfETDgIXuXRNqKsMhRPrYVPkbcApvKSd
+	CoezvL5OR9IxK+otDGpwWfSPb6Vk9ZxB5v82gUU14NNkxjHav72oBElQRx7DdO/B/H/T7tDVZo3lp
+	BUUUIPdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Lj1-00000008BAR-1RsJ;
-	Wed, 23 Sep 2026 12:05:23 +0000
+	id 1x9Lj2-00000008BCy-3CVA;
+	Wed, 23 Sep 2026 12:05:24 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Liz-00000008B8D-2Ck5
+	id 1x9Liz-00000008B8X-3YJa
 	for ath11k@lists.infradead.org;
 	Wed, 23 Sep 2026 12:05:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3357F447BC;
+	by sea.source.kernel.org (Postfix) with ESMTP id 6B8FF44841;
 	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1626AC4AF14;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4E8F9C2BCFC;
 	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1790165121;
-	bh=U65tT/XuausYcSGRR+nBv1qFV7Ddpj0lJkZ4vH1copM=;
+	bh=f5A3aOPcpzcnyloEZkCpzWN2JqMgiC0WgPDk/yfr8jk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pS9WqHmsxjiQz6raHXOxBZg/V2RhegwdP0S/q/wzVJDNaiOB/0dlgRWy5CCIxddvt
-	 w6YdYiDspFb3gX/o2VQGxelLJf1cC0twNci7qRnzLxMyBFG1fUQwMAojoCwiMFPa9z
-	 BRwQJUPatSlb9Kg4LkTTfYTs0HcoweWty05fuumO3pcYESQPlpnSV5LTr6Qqeq1Ht6
-	 9CWzbePnZg0SkQR7j1Y11jyWu27FTWZUJ5C4Xed+SQhSvIvdK6n9ghgR0Ej1PHQj59
-	 wrY0ZDS+GVjo/i1pgyRxsMNobMG/y0s2arbeDkyUnl6GA/VzcKz7gtn35Mxrh/t6g2
-	 w56pBik4EbSJg==
+	b=HVBX4hOh/YRnQc4UjLUWKa//MqZ9sZsYuIRRDHjz6E181sNABE+xo1K+++sp+Vm5O
+	 YoeCJsQBQMR7x7xUVnFfZB3/POrK/G+PpSApVZGgk+D48YOGr0y85pUwigahoyfVF1
+	 6REN0Q2O5OzshLTXCZ9ZtQ5JNC0ePgkyQ/Ka/djvJgXi7VDMgucYCsbGT6/PN4Ofic
+	 CxXesyhSsGw1MTmcmkvy3BXjx7ZMeKYYX+01aOJkX5g1zu7dU70ZqjLcZcjZtZ3y5T
+	 +dAlCNMQfiwqsPKeNMbtkiIFaOE07jmSjVHrmbVK/jFblkENL00sU83gjX+ukcfZtB
+	 ZAWFkQqjwWGPw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 027A3C98307;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BFABC9830C;
 	Wed, 23 Sep 2026 12:05:21 +0000 (UTC)
 From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 23 Sep 2026 16:05:12 +0400
-Subject: [PATCH ath-next 06/16] firmware: qcom: scm: Add support for
- setting internal WiFi power mode
+Date: Wed, 23 Sep 2026 16:05:15 +0400
+Subject: [PATCH ath-next 09/16] wifi: ath11k: Power down userPD
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-6-86729521a75c@outlook.com>
+Message-Id: <20260923-ipq5018-qcn6122-mpd-v1-9-86729521a75c@outlook.com>
 References: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 In-Reply-To: <20260923-ipq5018-qcn6122-mpd-v1-0-86729521a75c@outlook.com>
 To: Johannes Berg <johannes@sipsolutions.net>, 
@@ -67,11 +66,11 @@ Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, 
  George Moussalem <george.moussalem@outlook.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=3732;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1790165117; l=1688;
  i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=S3tayyPPojcv8MgCJKPIjYb3bobuwrtC6mchI6StDhA=;
- b=yEeCFoFH8MkwAgM7jDcHmtMYntNrocu/jD5KcO5zp83+wJabLj9r+0QEamATBQeJh3sWOsb7U
- Gd89W0Ww3VbAn0Yd3d30H9ILQQwoC4ZLMpo77DHPMN3Ne66bDVp30YL
+ bh=f09E/N0UiP2BKaMQj6y/PbCNtm6/77F+Gx3rtxqkmB0=;
+ b=8Th6YZPBmOceHukUz3XAVEKAdI2Cb3gd5mOzw5oZb3/5aqmJLgMbeVE3tRwO8PaAU9+RY1cc6
+ W713+4AAuEVBuPqzDvgliJZ/m4MhgZmELOS/ZXzN9j2FWPOlmA5dlAo
 X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
  pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
 X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
@@ -94,106 +93,55 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: George Moussalem <george.moussalem@outlook.com>
 
-Add SCM call to power up / down the SoC's internal WiFi radio.
-The SoC's internal WiFi radio needs to be powered up/down through a SCM
-call when MPD firmware is loaded by the rproc driver. Multi-PD firmware
-only loads the root PD and provides services and resources to one or
-multiple user PDs which are firmware segments required for each WiFi
-radio (for ex. in the case of the MPD firmware for IPQ5018 which
-contains the firmware binaries for the SoC's internal WiFi radio and one
-or two IPQ5018-specific QCN6122 WiFi companion chips).
+Set the stop bit in SMEM to stop the userPD. Wait for stop-ack IRQ to
+indicate power down completion.
 
-For non-MPD firmware, this call is not required.
-
-Not all Trusted Execution Environment (QSEE) images support this call,
-so first check if the call is available.
+For IPQ5018 wifi specifically, invoke an SCM call to power down the
+radio.
 
 Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 ---
- drivers/firmware/qcom/qcom_scm.c       | 43 ++++++++++++++++++++++++++++++++++
- drivers/firmware/qcom/qcom_scm.h       |  2 ++
- include/linux/firmware/qcom/qcom_scm.h |  1 +
- 3 files changed, 46 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.c | 25 ++++++++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index 3eaa4c9ccf3c..8e5f5c235cb7 100644
---- a/drivers/firmware/qcom/qcom_scm.c
-+++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -1084,6 +1084,49 @@ static bool qcom_scm_is_pas_available(void)
- 	return true;
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 2c41cf585d00..1b9115311bed 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -491,9 +491,32 @@ static int ath11k_ahb_power_up(struct ath11k_base *ab)
+ 	return 0;
  }
  
-+/**
-+ * qcom_scm_pas_set_wifi_power_mode() - Power on/off internal wifi
-+ * @peripheral:	peripheral id
-+ * @enable:	true to power up, false to power down
-+ *
-+ * Return 0 on success.
-+ */
-+int qcom_scm_pas_set_wifi_power_mode(u32 peripheral, bool enable)
++static void ath11k_ahb_stop_user_pd(struct ath11k_base *ab)
 +{
-+	struct qcom_scm_desc desc = {
-+		.svc = QCOM_SCM_SVC_PIL,
-+		.cmd = enable ? QCOM_SCM_PIL_PAS_WIFI_PWR_EN :
-+		       QCOM_SCM_PIL_PAS_WIFI_PWR_DIS,
-+		.arginfo = QCOM_SCM_ARGS(1),
-+		.args[0] = peripheral,
-+		.owner = ARM_SMCCC_OWNER_SIP,
-+	};
-+	struct qcom_scm_res res;
-+	int ret;
++	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
++	unsigned long time_left;
 +
-+	if (!__qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_PIL,
-+					  enable ? QCOM_SCM_PIL_PAS_WIFI_PWR_EN :
-+					  QCOM_SCM_PIL_PAS_WIFI_PWR_DIS))
-+		return -EOPNOTSUPP;
++	qcom_smem_state_update_bits(ab_ahb->stop_state, BIT(ab_ahb->stop_bit),
++				    BIT(ab_ahb->stop_bit));
 +
-+	ret = qcom_scm_clk_enable();
-+	if (ret)
-+		return ret;
++	time_left = wait_for_completion_timeout(&ab_ahb->userpd_stopped,
++						ATH11K_USERPD_STOP_TIMEOUT);
++	if (!time_left)
++		ath11k_warn(ab, "UserPD stop wait timed out\n");
 +
-+	ret = qcom_scm_bw_enable();
-+	if (ret)
-+		goto disable_clk;
++	qcom_smem_state_update_bits(ab_ahb->stop_state, BIT(ab_ahb->stop_bit), 0);
 +
-+	ret = qcom_scm_call(__scm->dev, &desc, &res);
-+	qcom_scm_bw_disable();
-+
-+disable_clk:
-+	qcom_scm_clk_disable();
-+
-+	return ret ? : res.result[0];
++	if (ab->hw_rev == ATH11K_HW_IPQ5018_HW10)
++		qcom_scm_pas_set_wifi_power_mode(MPD_WCNSS_PAS_ID, false);
 +}
-+EXPORT_SYMBOL_GPL(qcom_scm_pas_set_wifi_power_mode);
 +
- static int __qcom_scm_pas_mss_reset(struct device *dev, bool reset)
+ static void ath11k_ahb_power_down(struct ath11k_base *ab, bool is_suspend)
  {
- 	struct qcom_scm_desc desc = {
-diff --git a/drivers/firmware/qcom/qcom_scm.h b/drivers/firmware/qcom/qcom_scm.h
-index cf90a565fdfb..e1554997ca08 100644
---- a/drivers/firmware/qcom/qcom_scm.h
-+++ b/drivers/firmware/qcom/qcom_scm.h
-@@ -105,6 +105,8 @@ int qcom_scm_shm_bridge_enable(struct device *scm_dev);
- #define QCOM_SCM_PIL_PAS_SHUTDOWN	0x06
- #define QCOM_SCM_PIL_PAS_IS_SUPPORTED	0x07
- #define QCOM_SCM_PIL_PAS_MSS_RESET	0x0a
-+#define QCOM_SCM_PIL_PAS_WIFI_PWR_EN	0x17
-+#define QCOM_SCM_PIL_PAS_WIFI_PWR_DIS	0x18
- #define QCOM_SCM_PIL_PAS_GET_RSCTABLE	0x21
+-	return;
++	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
++
++	if (ab_ahb->userpd_id > 0 &&
++	    ab_ahb->userpd_id < ATH11K_AHB_USERPD_ID_MAX)
++		ath11k_ahb_stop_user_pd(ab);
+ }
  
- #define QCOM_SCM_SVC_IO			0x05
-diff --git a/include/linux/firmware/qcom/qcom_scm.h b/include/linux/firmware/qcom/qcom_scm.h
-index 5747bd191bf1..9258839ae746 100644
---- a/include/linux/firmware/qcom/qcom_scm.h
-+++ b/include/linux/firmware/qcom/qcom_scm.h
-@@ -93,6 +93,7 @@ struct resource_table *qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_context *c
- 						  size_t *output_rt_size);
- 
- int qcom_scm_pas_prepare_and_auth_reset(struct qcom_scm_pas_context *ctx);
-+int qcom_scm_pas_set_wifi_power_mode(u32 peripheral, bool enable);
- 
- int qcom_scm_io_readl(phys_addr_t addr, unsigned int *val);
- int qcom_scm_io_writel(phys_addr_t addr, unsigned int val);
+ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
 
 -- 
 2.53.0
