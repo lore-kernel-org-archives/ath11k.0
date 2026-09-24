@@ -4,65 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EE50C98315
-	for <ath11k@archiver.kernel.org>; Thu, 24 Sep 2026 14:28:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71C1EC98321
+	for <ath11k@archiver.kernel.org>; Thu, 24 Sep 2026 15:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oBGeYaT7U7Oeqkdin5+zXLHvnMbkDCbYA00G5ZSA5N4=; b=wMDdkFnsiofSFs0qt3TtvQIAx7
-	k87whBfcztg4/TR7jiDqBMEedSwaPhERAgkMBvCsxc4uYlRhUArIGrLXvTmN4ptVdE9KmA26yDZ2e
-	k2MJjvhtPn19B5nuBn+fZyHtv8TreKtpZfMzWmwFRKrpGjE46BjNkJ0rTBWCy0zAMTFA9uM9BuaQu
-	nyol0YfQbSgC2yPZq5rDDNMhLg1TF6pb41ptXzpx6egKdkp9In98AZc8255kUc6CayDp8I1lYgByc
-	m23n7OGXmCGyvYUcfz+9nZmrumsX05iab5EiEUPYrsaiJc5w856knW8LzIrTcsnd/m9dW0WyTA3c2
-	0RpOJWdg==;
+	bh=ntCPRNmhHP0xEpdWDgj6ZKP31wN/fxbhz+6bG3Gb24k=; b=h+xr+uO1CkgzgyW51SNA8ZKF1g
+	p7UM+iZO7cFPViJvuleV0THRll79gqv6cwFxN6b1H4XyEORowzS6E562QWJ+p5UbilhqsKxg3sNZg
+	b7sMHVAHgtwAyMy4ZZPg5TwUGafPOfZMrDJFHTimojszEisv+LTI53gBj5gosIgYQdKbYe4PufJW1
+	Nr68sW1UHSckbKRHsaRqJCe1MmM9Xzvk2uwRcl5Rwd6L/+RLsbynAFi7mGg2O9N5Sj33tdLMNkNtp
+	DieKX4JjWAeiclV9H6AHeJY8a3Dbdewl2j/sZrHB+q+P6WwvN3gM5c6LZRBeGbWQaGxPdwC9teTFR
+	OE5S5OwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9kQs-0000000BGEQ-2kCa;
-	Thu, 24 Sep 2026 14:28:18 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1x9lqK-0000000BVBx-1Afh;
+	Thu, 24 Sep 2026 15:58:40 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9kQr-0000000BGED-1XE4;
-	Thu, 24 Sep 2026 14:28:17 +0000
+	id 1x9lqI-0000000BVBh-3FeE;
+	Thu, 24 Sep 2026 15:58:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D2F604392E;
-	Thu, 24 Sep 2026 14:28:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01B2A1F000FF;
-	Thu, 24 Sep 2026 14:28:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id D697F601DE;
+	Thu, 24 Sep 2026 15:58:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D30C51F000FF;
+	Thu, 24 Sep 2026 15:58:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790260096;
-	bh=oBGeYaT7U7Oeqkdin5+zXLHvnMbkDCbYA00G5ZSA5N4=;
+	s=k20260515; t=1790265517;
+	bh=ntCPRNmhHP0xEpdWDgj6ZKP31wN/fxbhz+6bG3Gb24k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ldrv+j6p5LSbs0gKXl3lUpryj2GVrvXfQO7w+yzvHX/puIJe0SyT2ixY6Ap283/Bl
-	 THdzBIvSOpZCHKDOA8Fwv7K4xEopkOXLy0g2nAC9C73cfnX7EGgIAW+dEHxWG6Egvm
-	 s7HqMhQWyHuDI+J6rxjPNtVx81CBA9lHlkRBmnIQsmC3IUb3XLxD/9Zl/YwSd4DAzc
-	 0/iLXDyhvwte6ZknHWkveUdAN7+kc1MhgyKsoAuh+u2QkZC/hGeOb1vY11up9VBiHl
-	 x0GuQY5UbLGW0KvGyHnCNZghAEI4VZ7fhAs3Ph5xyPrer9Z+nTvmYwshBUCybdMpWy
-	 X1zzWPWNykrSw==
-Date: Thu, 24 Sep 2026 16:27:57 +0200
+	b=IuWWk/ehkegX/ttgIRCu0DLztu+mvo32r6PgEGd9HryTT44P3aBcJxQPfSvfVY1XA
+	 O4QRPNnGtQNEDb5nlxrbDmMFN240bWTyPmrY+xYGQ7+SPGRuKhqk2hgInQPV0aqMsM
+	 S7NKZk+t7prFPLguTH2qrdOTYx+xxwPPbaTwFu9TpnQnjI/D2/cPpIBTci0jtORbPw
+	 B70lWjPeN9I2drRegbZS9zEjSRnduMjfHz07hOCcirqwayUBsPh/ilDwDeS9LqVv7C
+	 MzREzUOg0b06utFzXw50TGVLFw38rqFXOs46EIQdVfy9MmZzwPuvDbTE/mDiW1Tgzo
+	 vpG8LaduoGTeQ==
+Date: Thu, 24 Sep 2026 17:58:17 +0200
 From: Manivannan Sadhasivam <mani@kernel.org>
 To: Youssef Samir <youssef.abdulrahman@oss.qualcomm.com>
-Cc: "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+Cc: Juha-Matti Tilli <juha-matti.tilli@iki.fi>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
 	Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
 	ath12k@lists.infradead.org, Bjorn Andersson <andersson@kernel.org>, 
 	Chris Lew <christopher.lew@oss.qualcomm.com>, Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>, 
-	Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>, Juha-Matti Tilli <juha-matti.tilli@iki.fi>, 
-	Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+	Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>
 Subject: Re: [PATCH v2 2/4] net: qrtr: Assign unique node id for MHI endpoints
-Message-ID: <qu6bdcvaueap22snis66orodtwx4cwhkxfzk7kpr7laqbr2hxg@2iilvscjqtcx>
+Message-ID: <ayyrvpxnxonroz6kafehepplhltnzgopgt6pn5fnpdmft6rbxm@a5sps2dnso47>
 References: <20260921-qrtr-multi-ep-v2-0-27dd80d841a0@oss.qualcomm.com>
  <20260921-qrtr-multi-ep-v2-2-27dd80d841a0@oss.qualcomm.com>
  <a16d507e-17f7-4074-8817-4b8da3a71c3b@oss.qualcomm.com>
+ <8ed398ba-2ebe-488a-a213-8ca7ecbe861d@app.fastmail.com>
+ <CANyhwx0hZJC6xXaSC2g4GFgUOp5n_KN4tdXksW+s8Mk_+7xEAA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a16d507e-17f7-4074-8817-4b8da3a71c3b@oss.qualcomm.com>
+In-Reply-To: <CANyhwx0hZJC6xXaSC2g4GFgUOp5n_KN4tdXksW+s8Mk_+7xEAA@mail.gmail.com>
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,19 +78,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 22, 2026 at 06:14:21PM +0100, Youssef Samir wrote:
-> 
-> 
-> On 9/21/2026 12:23 PM, Manivannan Sadhasivam via B4 Relay wrote:
-> > +
-> > +/* The offset is chosen carefully to not collide with the node ids allocated by
-> > + * the remote nodes. All the remote nodes use node ids in range 0 to 0xffff.
-> This assumption does not hold up for QRTR V1 headers where the node ids are 32bit.
-> QAIC devices use BHI_SERIALNUM as the node ID, and it is definitely larger than
-> 0xFFFF.> + */
+On Wed, Sep 23, 2026 at 04:03:38PM +0100, Youssef Samir wrote:
+> On Tue, Sep 22, 2026 at 6:24 PM Juha-Matti Tilli
+> <juha-matti.tilli@iki.fi> wrote:
+> >
+> > On Tue, Sep 22, 2026, at 20:14, Youssef Samir wrote:
+> > > On 9/21/2026 12:23 PM, Manivannan Sadhasivam via B4 Relay wrote:
+> > > > +
+> > > > +/* The offset is chosen carefully to not collide with the node ids allocated by
+> > > > + * the remote nodes. All the remote nodes use node ids in range 0 to 0xffff.
+> > > This assumption does not hold up for QRTR V1 headers where the node ids are 32bit.
+> > > QAIC devices use BHI_SERIALNUM as the node ID, and it is definitely larger than
+> > > 0xFFFF.> + */
+> >
+> > Does that mean we have to go back to my endpoint id patchset?  It's an
+> > option, but a quite complex one.
+> I'm not sure. Last time I tested the endpoint ID series was its v5 and it was
+> functionally acceptable, and other than switching to sendmsg(2) instead of
+> send(2) and sendto(2), it did not require much changing on the user-space
+> side. But as you mentioned, it was/is complex compared to this one.
+> >
+> > However, what is the likelihood that serial number would clash with
+> > these host node id values? Maybe just adjusting the comment could be
+> > acceptable.
+> The chance of collision is slim, but still not impossible.
 
-This is true. I only considered the v2 devices. Will fix this comment and the
-code.
+When you mean collision, do you mean node id collision due to bridged nodes?
+Because, even if the directly connected QAIC devices use 32bit node ids, the
+collision won't affect the functionality.
+
+Also, there is a collision with SMD and TUN endpoints, but that's out of scope
+for this series.
+
+> I think a solution would be to treat qrtr_host_node_id(idx) as the
+> preferred id, not
+> the one that will actually be assigned to the node. And before
+> assigning the nid,
+> we check it against the radix tree, and if it exists, we try to probe
+> the next available
+> id (so an IDA). This will also require exposing the nid to the user in
+> sysfs (i.e. /sys/bus/mhi/devices/mhix/mhix_IPCR/nid).
+> 
+
+I guess the QAIC userspace tooling needs the allocated node id. This can be
+added.
 
 - Mani
 
