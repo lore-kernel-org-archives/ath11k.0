@@ -4,172 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11F6DC9830D
-	for <ath11k@archiver.kernel.org>; Fri, 25 Sep 2026 14:01:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4307C98321
+	for <ath11k@archiver.kernel.org>; Fri, 25 Sep 2026 14:18:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=hXvCnIf4yLnGuCiaJ121sOZbcQJ5VgrBaZeXwYor2gc=; b=CuzU/qsHqeqOF7QHSSnCjAMIyD
-	F5II/K6F3ZYMH1jOA8NDNyNlKrHcmFlhu6sWgbG/jWAxIZLOnTaJF8KQQmO29H63zLVUwKT1jInK4
-	M015vxM0VbQ7vJZxIfTse85OGjhhRs13dyLozQ5W7TPgC9SSqByDqJJAqnRBhepnOIOzHNtlKTBWJ
-	LYA6RWoYzoRNw8wj0plKukjLMmVBacJ7GMVQIgzzE6u4RpStaKWxdUQSFAjLDqeBogdzrQBo6s2zk
-	e43A2j4ktlbRrVLWcHgYes0WXlvk8g3nHVGdvEljfbTjWPHZEWXcY90Ow7CfyHlCjvEzqucTBDHWY
-	zHfyEh3Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=02HI3Gd0i3pyIFXxptZviDeo1MkzmKnEOfZytROwY3c=; b=I9ED3gi1+ATi/1CpeCwpFMwvpb
+	+zxdHILDEISXKE6p83+QGFjA7tuKUi5QaG+NKWZhcYZJF3EeV1vyu2Rsx948fasQZ5EX+c6AAepRo
+	G7pYYeBiPivszvH6F3f8uGaHzmKSZ+f7j4iUc1J1IG8R2NqxzR+UgnjwaoxPicm/U/+HXi4qiVAAM
+	AVCuDM3CR6CERrh0dNNLF/gGnNzqMJ3Ut/qPcoBwoLMHdOJG5CtI9VcGmgf5f6yTAEjoiFNSZZgB2
+	fNidylEqOu0hcYqfh7g8/d5/1QevWXh48imLzCF4Kh5uVx+mJCZOe0xL/9pgQTq1fVJJs5faV9A93
+	lJ4mJl0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA6Tw-0000000DVtD-2G2j;
-	Fri, 25 Sep 2026 14:00:56 +0000
-Received: from mx08-0057a101.pphosted.com ([185.183.31.45])
+	id 1xA6l1-0000000DYtl-20Qj;
+	Fri, 25 Sep 2026 14:18:35 +0000
+Received: from meesny.iki.fi ([2001:67c:2b0:1c1::201])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA6Tt-0000000DVsf-3xzA;
-	Fri, 25 Sep 2026 14:00:55 +0000
-Received: from pps.filterd (m0214196.ppops.net [127.0.0.1])
-	by mx07-0057a101.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 68P5o3aL1678033;
-	Fri, 25 Sep 2026 16:00:38 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	270620241; bh=hXvCnIf4yLnGuCiaJ121sOZbcQJ5VgrBaZeXwYor2gc=; b=Yg
-	m6PowFNuTeXwMDS67gvMhjhp6JSmxrdOBB+JHA6RLT8EB1Gn7fxT+3eAke46NrYu
-	nilxnyLmd+wYpaRWvWLZ6/ayOhlUUc60QPsH5l+QL6I4uQqbWgE0CxSajTgq7+u7
-	XQJwWbp5Vlrg8VqjW3XGkguU6XiRcG41iT7cq63Ia5trpRdm58LaQvaaIFbaQAeh
-	gh6WdgzNNC09VG9tDLyi054l4uVOt34/2ulWnT02n8Giw9ulUIH8nfvQcyB4E4rE
-	Yho6t+XXoILCLi7rO8Yk14jYv4XLkQURcEr/QGuX7Cho8Vig0D1adhPrJDlnemfY
-	BTmnbmVZGo0cF99eaU9Q==
-Received: from du2pr03cu002.outbound.protection.outlook.com (mail-northeuropeazon11021085.outbound.protection.outlook.com [52.101.65.85])
-	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 4gweje0n07-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 25 Sep 2026 16:00:38 +0200 (MEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JFtF+en2OZwGWVhKdWpBdGBQMVq9v+TiDfLnNysNvvXWmJJDpue7PIjncjUpHO1P3v7eO+cUlrw1iF9panz/gebZeQMSdzirwud9yWe4Os4fRwVCwt33psiRt4uk8phJexBsshl2xqenXC08NL+ORoGCHYdn3CqkCXbw65VUEyNka41tN7lX2A93gbD5kbKymfgtd7YkLGy7EHEYnRUKmH5QM4aHstyb3CHeGtWsJ1/5/ULav0mG/g/ZwsHfjSb6LCMgHbXg0PmKq0BnzQ9yp7JRwa6j/OF+n/webLX8uVjny7X0vxwzePTLzKRayCRUByycy/LHr29qEHV5AhLUvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hXvCnIf4yLnGuCiaJ121sOZbcQJ5VgrBaZeXwYor2gc=;
- b=BPiTtWiB53Mas86QEtRSHN1xT/hMu45we19EpEeRr50YXWBmonj4Lpql7xJtiWcDlxPtuVY/ZqOX8dQW2F4AwWx8diBtcmbY9x6NyQJrKDP3hKk5PeUxT4xCHaDUeQ+6bdYGzoBZO26/68ZJsfSxR9ozFF1cPuEUkxSSEUyxLCkJUg0fUSq3ZUF6Iu0KEkHNnbTq0jM5qIZ8Bdq8xjaNWXrgfecqa5lAoGSjQLaoRgpnxXn1drZZpvIXx5NcIeyg7/KWYJjcYh+uJ4LhNvCNRjyMJ6focD7f1ab0ioYtV27jjPBxSqq02b8MULDm5yR5pu+v8blJauoxlCfeyt/M9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
- dkim=pass header.d=westermo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=beijerelectronicsab.onmicrosoft.com;
- s=selector1-beijerelectronicsab-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hXvCnIf4yLnGuCiaJ121sOZbcQJ5VgrBaZeXwYor2gc=;
- b=aP/iAaOqskESXs2HZIEuAc7y1tPHYzYCj91/11TzMPhmSFoQMi2KA8iZEZ0kJGiZpI1Njpa2zFJjG9WNA+iN4S8bS00mSEI4UxXPo0JTM8X85fBbyQpFm1mVe7PvJg3LYwmFkvO+4mo8rMNiA04TiMMvFfmqXcUlQlsbC/IXQBw=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=westermo.com;
-Received: from DB9P192MB3090.EURP192.PROD.OUTLOOK.COM (2603:10a6:10:5e2::11)
- by DB8P192MB0566.EURP192.PROD.OUTLOOK.COM (2603:10a6:10:167::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Fri, 25 Sep
- 2026 14:00:36 +0000
-Received: from DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
- ([fe80::656d:42d4:bdce:a46b]) by DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
- ([fe80::656d:42d4:bdce:a46b%6]) with mapi id 15.21.0451.014; Fri, 25 Sep 2026
- 14:00:36 +0000
-Date: Fri, 25 Sep 2026 16:00:32 +0200
-From: Alexander Wilhelm <alexander.wilhelm@westermo.com>
-To: Jeff Johnson <jjohnson@kernel.org>, Jouni Malinen <j@w1.fi>
-Cc: ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hostap@lists.infradead.org
-Subject: ath11k: Question about active scanning of DFS channels
-Message-ID: <arZ-gEnmv0QyuGI0@FUE-ALEWI-WINX>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-ClientProxiedBy: GV3PEPF0001DC3C.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::2f8) To DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:10:5e2::11)
+	id 1xA6ky-0000000DYtN-3Qkq
+	for ath11k@lists.infradead.org;
+	Fri, 25 Sep 2026 14:18:34 +0000
+Received: from fauth-c2-smtp.messagingengine.com (fauth-c2-smtp.messagingengine.com [204.75.18.201])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmtilli)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4hrt8s2gwWzyVg;
+	Fri, 25 Sep 2026 17:18:20 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1790345902;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=02HI3Gd0i3pyIFXxptZviDeo1MkzmKnEOfZytROwY3c=;
+	b=hbXhTa1QjkYHsFDExMT5rDu8sObCIeJRdZZbBNh2IY+NS2m/VPiu4aOULimDO/BkIW4My+
+	K6Aak88AaXJZSmKcgephP46CEpmoKfDxANrwIZAKGj+ajtbh9i03tfpkUfL85VGztnjbDz
+	dySBvqAJ89Dm+hdOpjmQe86MrZevUSE=
+ARC-Seal: i=1; a=rsa-sha256; d=iki.fi; s=meesny; cv=none; t=1790345902;
+	b=hkoxLes20gO1PUnDWBpo4+BnoqEUfWHom1KaCejerYUnSlrH49OVWpkgSeaGr1itl4Xeju
+	qc/gmX5LabAHRxlI3Ekxe6uqiLUEDO/P2lYO9eJ5M6AutnJYbl3tj3KwPxIAJMFME55kVB
+	AgKl2mi+qlgK5MHh3adI+geqlO6X7fk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1790345902;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=02HI3Gd0i3pyIFXxptZviDeo1MkzmKnEOfZytROwY3c=;
+	b=olvR021iTfYIJCVGi8xkEwU3QD6KdvH1YTtpij1dTJYnyvPDBz+qWnJF4uChr6Pqjs0I55
+	J8v1klnJTxFG4gVe7hEiZqc3y7O6QZU+HWrPnwnck5CGdmYRyNtBhNrGJtkRassMN1j2nL
+	YklpChjc5Vl/BE1W/qKvd2PN3BxODic=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=jmtilli smtp.mailfrom=juha-matti.tilli@iki.fi
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 0B9E1198005A;
+	Fri, 25 Sep 2026 10:18:19 -0400 (EDT)
+Received: from ams-imap-13 ([10.64.2.33])
+  by ams-compute-02.internal (MEProxy); Fri, 25 Sep 2026 10:18:19 -0400
+X-ME-Sender: <xms:qIK2atgsua0tF96b7QKWNDl9lm7R_Dj7V_ETpo4FAqORrOc57AzxRg>
+    <xme:qIK2as370NguGk9nUpegTcz18X2SO6MWU2knFNLzN7kPm5J5KoSYeRucqkywoSNBs
+    cJI6Q_9CKyS5OstgAm8j1XD4X8CmnsOVWEcfhTKR4RhclKGmKunrKXs>
+X-ME-Proxy-Cause: dmFkZTFig1SXBo3qZsT1AZhF0+n52ZbYWBdqUb+cbB4VEsPctKu3tj+7Ur8gdha0wgkn4x
+    M9PqPAayUqKdrwtN+dKK1879+21cfPasXzF0Ni63A6H4jBPvNXdtUHmDdpjruPG31ws0hQ
+    Hik8MYam2jqZb8aox6HCQiqPGisSlnljKyKxu++353GiJDjXq01BAjV3KlWbjExViWIGc/
+    aW0tkxYFy1B+ZEOFLBrkkuj2c17Q9sQc/rd3fbopjvYKJ8zK+CX1prIYaSmCd2FsxEgUDl
+    2p+2CvxszkDlj5FAxktGXwPnM/wzghJvhVWYfkrdqZ1kzL468jlVtTCi8uG5i1VvKDsYog
+    ybUuRfwKvEsDxXFeMykkj3h4d9jCsZ4f1U9UbOaFrUINOaPVih4rpgClDxv9dKkVBy2i/8
+    Bqx+B7dsg/bZHxmvEN9ZAkqNONoiWIRT55pfT6e2Ty6FGhjuJRK7Pi6H5S0GEhVLa+22Mf
+    eRiHeFh6D7RkxFmnY2+xqaFYP0e+q1bnZD5r8QotSS+GeyqsjTWkFbPQOYuFtcFekRiuzP
+    PKzwSjFWbWOwf9A/hjNzaE4ra7Q0ZfawgGeT6qQ9GuJAut6e5ZCFLtiWUog4gzloxIpWCW
+    tZn+DZ4hXHMVIqJuBxL92WohpyTzMD29Rehe9RV5AG9mh0qtYCYZx91wV7mg
+X-ME-Proxy: <xmx:q4K2auwxnF_GAS3YAlP-aASgfZVe4Rabe_3BadIK83TBdz59T6k1Fg>
+    <xmx:q4K2akzxpmLBYZJnEfZjt0jpk2Mq9Gx7ma5FXC1VQeEfMhQbmiLxcA>
+    <xmx:q4K2atSiFJ6smI9KsCPKnity4jmkrwxYb8h7ML8Lvwg5Nf7Q1H1AkQ>
+    <xmx:q4K2anOT8Odin0qVhGceWX1Q3_biDPyRnVYIPsAXnNl4-6nV5jILvQ>
+    <xmx:q4K2aoRdqmJdiZxIx0-44KMJZm9Q61FrGNQKt_Marwgh2kXgOmXZuxmd>
+Feedback-ID: i02414972:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 28752F8008F; Fri, 25 Sep 2026 10:18:16 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9P192MB3090:EE_|DB8P192MB0566:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0021a20c-3a06-4430-dfbc-08df1b0d5f6d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|366016|376014|10067099003|5023799004|11063799006|56012099006|3023799007|6133799003|18002099003;
-X-Microsoft-Antispam-Message-Info: WEE1IrptX4D9SGiU+pEoJO99MbTQfEyo/mJgPMe/UR7R6Qh9QZsFa1Gg3AHMW1F2tcyFSsVMeLZ2BjkxSpFqSGOf/vHY5nCgJmyiJ5S/2aYnL5pSnh4+XVhv0DkawomVFC6viVG3BpH+fsElj+3OxG5fO1Eq6lzgGEf/Ca+hf2Q0GJwhjv/B/77Vft4IHyysKhKObWDfTWQeeodwaOasemP9PqzsRNMy08vYpvwMJX/Gkhsmc+a4Dd/MbH/o8kY8jO3AZslrosJ4DyFbQX3sGt0RxQ5bQQBGb5C60vcDCpPdkqHpPzRN2Q9zyi11PvURpyRMeMrOT2AKKN9rlg17ICq77t3fWzHkvY29b6MTocVQNaNcpx1W+FHnHY+W2L3+D1d8CTZrgfjYp5j9/acZtVeGqzb8flZvIaMBQfZuCaVN8xmdZp+FsAyXNgtxw8loNHZjxA6zu5JYHmQNVby3bdB0lpegjX5VqTCL7nzpTcDc2iaq9CGoxlrSKLoELmCAwiax11wVQj9kbNmzWBMTC2G2j83+25Y2O5n4q7f3JjhTM0fWDm8Hc3AKAiUCv4euvSnDOteYd4aiczIL2h2p9xoR8XoMCosZaH0yqQLD66nRfQATOD0uFIUab20++A7qpVix+BBkWc9HeqXzVAyMGR4FcsmpLmbE+BzXYbSoKmo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9P192MB3090.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(10067099003)(5023799004)(11063799006)(56012099006)(3023799007)(6133799003)(18002099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6zd/w8EKxmRiZTM1tEDBYaLWY0WWufTWUlb+zSoo4Tw5GeuWvkMZfnLaGZQR?=
- =?us-ascii?Q?ZrNFEqEGzh9/V3TR8nTSessrvuSCyh6yh2+U7dw95NV2NZqLmX6vG1Oa478S?=
- =?us-ascii?Q?Ja8/R/3zir305ysbORWnkO/+cak6JTiCMLdefiIW7/WZ9PzBcPasR5UX1BKF?=
- =?us-ascii?Q?esGC4PI62uFP3JUqwFu+bR6Zd0oKxODCQFgAnHuCE3KccuoXal17jKqHZOZM?=
- =?us-ascii?Q?um0p9pTrO0j0kaFJzmi6J17QNSDl3iY0wCsQB3QX6tIHoC5PXqJla5kI41vW?=
- =?us-ascii?Q?cBXAP6AtQusm5pS0CyR9qbU++UDHH0bz6J2vFBv4uyiNp9rXI+1pvrr8cgRB?=
- =?us-ascii?Q?Iuu7SUI4fSQZ/ZpwT8q2tBNbDI00lYgyaJ+x5rccXEXVeavKRQWqmM/QJt83?=
- =?us-ascii?Q?0TjmLPK0WmM2AV3edEqKK7OmwrTTHI7x7xQU+xp15WY4Lkb6EADqQwGQXGL8?=
- =?us-ascii?Q?coI5KDFYcnw1KVjdTti2/clt3iRLXAlJNptTYmKpw4Dl38lB6oMIo33W2FsY?=
- =?us-ascii?Q?N7fXR/kJf4NdtPwxsm0IQc4ssQOUab7fWyEamvolI/cLDBmrbCQhhgIzKRq5?=
- =?us-ascii?Q?DvUqCepLtRE1F43NmPVrJrGS8d8jaqb9BLa1ivoKkwZAFyPkYDBUqvusj33t?=
- =?us-ascii?Q?XZK6zCpYWXbsxeqUjzpraql9bii7c6zeKAPlq6DKBN1myRZTukzX5KOIZAqN?=
- =?us-ascii?Q?cE+60x6FR4gYavKnkPRzYzibLqik+REblbVvPASnxmomWYeGdGvqDiG3B/a1?=
- =?us-ascii?Q?FAAkl0vNlxgnnn95zbdsJeeiutV9Z9XHHHLv2AAC+7UxnqyDQbbVIp2F/S48?=
- =?us-ascii?Q?UbPTurq/xZDK+EFmEqRJV8zuMWaUvvYV+VdyCuYqXbmrYsEQ7K8gn/rsvWT3?=
- =?us-ascii?Q?3O7fQ1sx61ke/sWyCcZ5w7jk4K9wSaTJlhyJAK5IN5lLf68AN7nZ6SWhVi1d?=
- =?us-ascii?Q?T6f+IVqUip6LZ1Y2TE0UvVn2RKXwP9ltD51rPSKidVSC0WFCQjpran2VLnRP?=
- =?us-ascii?Q?z2JhevQViM0Tptt+5MH3RhpjF64caluiog2AxNj/0sDx3rgnZD1W01/GVRZ0?=
- =?us-ascii?Q?IWWM3ubfkBhrZmbWljoePEa5Fp+toRXMtftnBHiNTVsa665pmfY3bDlC5gIB?=
- =?us-ascii?Q?kDDnoYwfCfEipRDb50EYJ7bAv29doSGAjc7q/8xtJedPlCaOGJyTzwovSC6f?=
- =?us-ascii?Q?eF1/8llH1rT5qD+hROribAbtEFyEwAfXuugsvkotSSIGhcmqS0Wpv9Uz/u/Q?=
- =?us-ascii?Q?UQV0qB3iUBjrNDpjmJc/sMj2ZxkMKVjtwDjqbXxQG+P4iVBgug58jRnY7Nj1?=
- =?us-ascii?Q?c4F2WZFTf8k95h+RrH5HO+NVJ30NBUP+Kl9yl+9Zno2np5ThL0pxLlX8quig?=
- =?us-ascii?Q?iCEOUOLdE9bO6mD5B66axWiGv99UhbwK1ox1x1I3yaYmh3c2ZZbDIyBHdP7a?=
- =?us-ascii?Q?OhpAzF493oX2H7BSCEM3QaPxRbCDmRSkFdfI+94X74GYS+00bgcJG0znjDr9?=
- =?us-ascii?Q?lZlVOf2vRmNqd93aqE2jixOkbisxObo4JJAbABYsH9+ZYUDWXrVywi6J8i2P?=
- =?us-ascii?Q?1Jv5SVSOobLp0wA6ay1z8cPd3tev3KKU/HcENXFpZgMOg8zG97k3ZD3UnT3Q?=
- =?us-ascii?Q?oWD8vfROJk3/GpAiqmLFKIFyRc4zmN2uOt3Qxh64/VPPxe4bJV8+T75E8c3u?=
- =?us-ascii?Q?2pkzWZXLdpHbaAcToKn97p42aVXra91iMlSXBbP4mdvkETOxqwJEGwozuJqM?=
- =?us-ascii?Q?g3OlN8FeMQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: BFFoX4TS3ipmnkOugOi40LBYY9CRlqRHc67JwMoJuoTouhIg6kynkvKOaaXF9+zJcn0D+SCAOwGIPYiA810/NnGaZmyQheTap8b0qtY2Tq8yjGSY1uhFfxzIK0aRuEXd/q+dTAI7MIZgmMzVbrAbfHZXp0TyOHb6GKCD8L7usRq9eixZ8DGe6lc79+lQmWrTUE2p1WFRL7qkqIOy9w18d3lBElrARvL4cqGHrdiUmJ6SjMXeY7SPDxg8HCKYq0dtjhNil/Skey8Z5SEwTU14gAuqPr5vGDw2os5n2jazBhAmkZ3JTTPy4JDF1q9L6QGLyzJR7hLsBoruCpo3J8BpDw==
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: ImDau3L6uBXpZydkT8EC36wOwi0grFsexr+WlvVrRO9ZoeJpXku3bDY5IGVVdE9F34zySsIwzv+BL9KdvnDSnRESUkz7Pzu3UiSvQeYxtGABRU59QGk2+Gj2ket/DEKw5onQEG9wNLrmjj5hs2A/k0jNAenJrNYkPTaNwhzRaD3CMQjR1cM8/O49v0mHHhJpiwElNSrP2IcJdRPlMKm43Kt6s3vgty/xd24d25T0WVCrD9tsGZ24crNg36/KUwyzM8GKfZW/D2p9WMALg7ry2wcjdDth4onZ3hS/kzmdap8RMxOpkDceZx2s8Ozdh2mdRbivfb9t4hbn3e5XHx0MAmj8NOpYtq6/0jDGmc/6Xs3zEb/wzDOAB42jzsSRupqT0MQ/2+xjG4HG89+5m+CopBExFNg59epeR0/nJG4GyAPFRrEBt3lTRSRAn/TV8tXzL514oQHpDh0utbPNH9tWRZvKDlak/+lyXrHI92UvGGw7mjJ+wCsKZpd1/PnVM6TU5Ni0DDCrR0M8D0rB4QZ/moi+Os4YsGSEfOBAsAvUUbS80FlkrVIxhvWyeoWIoPm/5E+eXwEm76JBiL5Dgs5IBBK0LSiEC3mAlD7va+sZXEur0dbJSTRI4UOROvh+aNym
-X-OriginatorOrg: westermo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0021a20c-3a06-4430-dfbc-08df1b0d5f6d
-X-MS-Exchange-CrossTenant-AuthSource: DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2026 14:00:36.0778
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xdkfiQ9+1TnNZuE0G1amQc5q0MWsxcBkzudvjLq3IM/jp6PEHXPldqiZsDibGBuQhFUkZ/RT4nqhTrV0a7i5tA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8P192MB0566
-X-MS-Exchange-CrossPremises-AuthSource: DB9P192MB3090.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossPremises-AuthAs: Internal
-X-MS-Exchange-CrossPremises-AuthMechanism: 14
-X-MS-Exchange-CrossPremises-Mapi-Admin-Submission: 
-X-MS-Exchange-CrossPremises-MessageSource: StoreDriver
-X-MS-Exchange-CrossPremises-BCC: 
-X-MS-Exchange-CrossPremises-OriginalClientIPAddress: 104.151.95.196
-X-MS-Exchange-CrossPremises-TransportTrafficType: Email
-X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:0;
-X-MS-Exchange-CrossPremises-SCL: 1
-X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
-X-OrganizationHeadersPreserved: DB8P192MB0566.EURP192.PROD.OUTLOOK.COM
-X-Proofpoint-ORIG-GUID: rIsfkcGvjnqBGqBK8f-dJNS-jJ2uObG4
-X-Proofpoint-GUID: rIsfkcGvjnqBGqBK8f-dJNS-jJ2uObG4
-X-Proofpoint-Spam-Info: AW1haW4tMjYwOTI1MDA1NSBTYWx0ZWRfX+YkYnZio+cGq
- Y73biAeDVM+POHSvBIVEqmHASyCkEAK2Tg0kaNXMiCp9+g+X42IYq2eFvpiU4lQGEL9YHQ3Blvv
- EJL+Qy8M2oWDeWJjEhFfe1+7nnJuYmE=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTI1MDA1NSBTYWx0ZWRfX5oB9YUnhNpki
- aFhzmqr62RDJ5M06bs6ePG9xoUyafbDp/RpFbHF6uSdpfXktsfPs7DXvuje4RJ76qTCTCdbV60P
- la4SksAe1ZVnOeVZGfUCFRB5L5hPPQFKOt/LyEZRZfWrbVqP/whTibdzORCQZqMfYwb+ivF/eaw
- ldYhlKO19Yu9Ec+fZJ8UCw11vulegDj3Qng4dYLB8mmOY/MwGN+dXCyMh84mV9p03PxLXJmzLea
- J2ZJfTNu1qw/4wAaKyPVRNle7/XLwRYJoyvPY0BukNe32qXUg4AxmjIuYQ7lbgBtOJT7KKRIK0W
- tvtiKqT9td7Es2nAdmz5PPwWEI31VA3ecuAzsiv/WhfGOGV8Thj7qPZ3xDPLXwnbKNYKqZkUuwt
- Wjj4sZACYzIH0CLxaJ8HDjYuiyTrVrU+r3ZU0HDdBcknxmARjMOzAf5Pe7vGzJCorwgq5KDiaXb
- 7q/A/twlSlbWiPZlSUw==
-X-Authority-Analysis: v=2.4 cv=DMYacCNb c=1 sm=1 tr=0 ts=6ab67e86 cx=c_pps
- a=dceCaKy/xC/3bTNpRNSjDw==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=VdqzKS8jKosA:10 a=8gLI3H-aZtYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=tr3XZvuDWTETL0Uaxejn:22 a=WQ4YJ39tjzx_Hbm9pN5v:22
- a=ZoHfLQ28jryDjCGo3uoA:9 a=CjuIK1q_8ugA:10
+X-ThreadId: A_PuV4p-mAYk
+Date: Fri, 25 Sep 2026 17:17:55 +0300
+From: "Juha-Matti Tilli" <juha-matti.tilli@iki.fi>
+To: "Youssef Samir" <youssef.abdulrahman@oss.qualcomm.com>,
+ "Manivannan Sadhasivam" <mani@kernel.org>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>, "Simon Horman" <horms@kernel.org>,
+ "Jeff Johnson" <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, "Bjorn Andersson" <andersson@kernel.org>,
+ "Chris Lew" <christopher.lew@oss.qualcomm.com>,
+ "Deepak Kumar Singh" <deepak.singh@oss.qualcomm.com>,
+ "Raj Kumar Bhagat" <raj.bhagat@oss.qualcomm.com>,
+ "Jeff Hugo" <jeff.hugo@oss.qualcomm.com>
+Message-Id: <73152e3c-fd11-492b-be04-7986f6af03f6@app.fastmail.com>
+In-Reply-To: <CANyhwx1EG=2FyBm150wrKpj=kQ1066iwZWndx=ZL3BKNoZUhVA@mail.gmail.com>
+References: <20260921-qrtr-multi-ep-v2-0-27dd80d841a0@oss.qualcomm.com>
+ <20260921-qrtr-multi-ep-v2-2-27dd80d841a0@oss.qualcomm.com>
+ <a16d507e-17f7-4074-8817-4b8da3a71c3b@oss.qualcomm.com>
+ <8ed398ba-2ebe-488a-a213-8ca7ecbe861d@app.fastmail.com>
+ <CANyhwx0hZJC6xXaSC2g4GFgUOp5n_KN4tdXksW+s8Mk_+7xEAA@mail.gmail.com>
+ <ayyrvpxnxonroz6kafehepplhltnzgopgt6pn5fnpdmft6rbxm@a5sps2dnso47>
+ <CANyhwx1EG=2FyBm150wrKpj=kQ1066iwZWndx=ZL3BKNoZUhVA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] net: qrtr: Assign unique node id for MHI endpoints
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260925_070054_319692_871C94B9 
-X-CRM114-Status: GOOD (  18.08  )
+X-CRM114-CacheID: sfid-20260925_071833_053106_1446DB0A 
+X-CRM114-Status: GOOD (  19.55  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -184,44 +134,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello Developers,
+On Fri, Sep 25, 2026, at 15:46, Youssef Samir wrote:
+> On Thu, Sep 24, 2026 at 4:58=E2=80=AFPM Manivannan Sadhasivam <mani@ke=
+rnel.org> wrote:
+> > On Wed, Sep 23, 2026 at 04:03:38PM +0100, Youssef Samir wrote:
+> > > The chance of collision is slim, but still not impossible.
+> >
+> > When you mean collision, do you mean node id collision due to bridge=
+d nodes?
+> > Because, even if the directly connected QAIC devices use 32bit node =
+ids, the
+> > collision won't affect the functionality.
+>
+> As in ep_nid of one device matching the nid of another device. In MHI,
+> that shouldn't
+> really matter since this patch moves away from using QRTR_EP_NID_AUTO =
+in node
+> assignment, but as you mentioned below, it could clash with TUN and SM=
+D EPs that
+> are already registered with their ep_nid.
+> > Also, there is a collision with SMD and TUN endpoints, but that's ou=
+t of scope
+> > for this series.
+>
+> I have not worked on a system that simultaneously uses different types=
+ of EPs;
+> only MHI EPs. But if there is a real case of that, we can move to
+> global ID assignment
+> that includes SMD and TUN.
 
-I would like to investigate the following issue and would greatly appreciate
-your support and feedback. I am using a QCN9074 chipset with the `ath11k` driver
-and would like to use the background scan functionality in `wpa_supplicant`.
-During my testing, I noticed that hidden access points operating on DFS channels
-are not discovered. Even when I manually trigger a scan, I can only see the
-hidden AP to which the client is currently connected. Other hidden APs remain
-absent from the scan results.
+Global ID assigment sounds like a good way to solve these possible
+collisions. My patchset had xarray based endpoint id allocation, maybe
+that could be reused for nid allocation.
 
-Based on my research, DFS channels cannot be scanned passively, so I used a
-sniffer to verify that the "directed" probe requests with given SSID were
-actually being transmitted. I also confirmed that the hidden AP responded with a
-probe response. However, despite receiving the probe response, the AP never
-appears in the `scan_results` list reported by `wpa_supplicant`.
+One challenge in MHI is that the two sides, ath11k/ath12k and qrtr_mhi,
+need to agree on the endpoint id. If storing it inside MHI controller is
+out of the question, then the only way really is to use MHI controller
+index to derive it. Maybe something similar could be done for SMD. But
+for TUN, this sounds harder. Can ath11k/ath12k use TUN at all?
 
-To further investigate, I modified the `ath11k` driver in the scan request
-handling path `ath11k_wmi_start_scan_init()` as follows:
-
-    -   arg->repeat_probe_time = 0;
-    +   arg->repeat_probe_time = 50;
-    +   arg->n_probes = 2;
-
-After applying this changes, I was able to verify that two directed probe
-requests were transmitted with a spacing of 50 ms between them. My main question
-is how this use case is intended to work. At first glance, this does not appear
-to be a driver bug. However, with the default configuration (repeat_probe_time =
-0), the scan results do not seem to be updated as expected. Is this modification
-to the `ath11k` driver considered valid, or is there a preferred way to handle
-this scenario? Are there any `wpa_supplicant` parameters that should be adjusted
-instead?
-
-I would like to fully understand the intended behavior and the interaction
-between `ath11k`, firmware, and `wpa_supplicant` in this case. Any insights,
-recommendations, or background information would be greatly appreciated. Thank
-you for your time and support.
-
-
-Best regards
-Alexander Wilhelm
+BR, Juha-Matti
 
