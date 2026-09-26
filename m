@@ -4,81 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53EB0C9832F
-	for <ath11k@archiver.kernel.org>; Sat, 26 Sep 2026 15:49:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A037CC9832F
+	for <ath11k@archiver.kernel.org>; Sat, 26 Sep 2026 15:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WIMo/C9HBVn2XTdqyHiurAejlgPCNjRxM5+52AVZcG4=; b=snuqsCatlwT71goLYn6PrOXpG/
-	OKHf5+8qtozPd1OnUirjk6sQRQGgY5zuZ2eqJA8S3kjccpWB4aNl4D+f3ENpAk/26F9J+Mt+XkI7C
-	HygSPqzdteYRsZXWyq60xEgBimJLx9EDYJulGN/Z0qvyfS7CftH8b+wwWpJAnK2Jy4tBzoUqeh+Ei
-	yMRJmgCrQi6/g1/uXE52DF1o4zbu7sSxYQd1BZhH2V+IGiDHTdTLijTM8Fq87HlruFzDMYcohvFS8
-	73LN8MRvzfAU1SRuyDjaGiELn5Pg1a+IEYSwlKK6Q8nrPPVLuxSCXxU5ol1ja1LSZ2SVOPcjexD7c
-	2DzYkszA==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=N90PVcEBaJjmtFZtExELpFQU0K3QU2o0KNqwUaSuAI8=; b=SVikG+lmt0Z4Mv65srBUofUr/c
+	PN/0ijciGCKdnrahTh3BOgXWUSZOwRMcKeHJIAByCCss5pDNXFon/qnPcgd2/aroIRG+1xYM+4UeP
+	vYQWw2ULqs4K7mRuJkJzqTPs2Lz0syL+IOhPKLnjN/NBZ8le/thmoz+XvLeRRo4s5z2GThjkQFsvC
+	W6xC7rk+ax2KRVI3C86C9ViR8C2Hp99CrNMmPOhF+snH/eu8qmlzHCEF5alhONxsWb/j2zSdH9ziy
+	pSL85yWvAHqK95pOwCdRfTEDcDaGAQnhlT2fD/QDbh1j1CN3NndQ065E2i5cfX0j+BS3+TDYo7Z9F
+	tMapvshQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xAUe5-0000000Fbg5-3r1i;
-	Sat, 26 Sep 2026 15:49:01 +0000
+	id 1xAUe8-0000000FbiJ-26q4;
+	Sat, 26 Sep 2026 15:49:04 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xAUe4-0000000FbfR-1QJp
-	for ath11k@bombadil.infradead.org;
-	Sat, 26 Sep 2026 15:49:00 +0000
+	id 1xAUe5-0000000Fbfk-34xQ;
+	Sat, 26 Sep 2026 15:49:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=WIMo/C9HBVn2XTdqyHiurAejlgPCNjRxM5+52AVZcG4=; b=jMQbPzylgU+cGYdawlBYGYNeKK
-	rLQ2HMQPjnZ+VWVp3Ehfn8funyOWtLBmSxLTMPG3qqcGtx8h4SfLv70V21gm3e74kot2tJpN2dvku
-	MNvJbvPLXOtSlPo5LxTUyAzWPWWFret127KnQM76DRvjlppzGwu5qWRusWMtZFNjbhcNSkKRGawJy
-	aREjW90uZI41QsKF8B5xn4wH/M9pNec1Uv5/25pqCxkcpgU3ztE9+42UnQILYqKUDubK5lqIXnEln
-	xygFDrTNADhAAU4psHboJJ3Bx0eCPDbws7Pms0ZxaNif3boc5NrGmqRfFhG4ZBmVwqU9EAR+qYzh5
-	kwSJhZrw==;
+	:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=N90PVcEBaJjmtFZtExELpFQU0K3QU2o0KNqwUaSuAI8=; b=OLDDT7CVu1OiodaFd0cXqIu8iN
+	y7Vm+xbUMC7kNkUO76YPpVpkEkXfjrbcOc0rvJOZCA5VPE9LY9K5nmfe2bYcZBZCAZCIWIUmLFO9G
+	UdD8RdyV3ohrgyqA/CCJVM+3FBv7919vdoPZUvFS1/Z7tiKG8vS/3eJotxHST09KVoXB0px6z5m4f
+	WveBRlXhdsKE5Puio58VrnZnGvBSxwrRQNFIC2daZAnAvkB7Bm/BZMwuEmHtQrOlehJW6Xi7WJfkE
+	Z/wcGuZh5XkNcIjyvsinm0MIrXOLU48oSD1hGscQXLKFt5lUkAzQP+Fu8EKmKvt1CYf5IwNEDuj6p
+	LvycDkSQ==;
 Received: from m16.mail.163.com ([220.197.31.4])
 	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
-	id 1xAUe0-00000000GIv-2apv
-	for ath11k@lists.infradead.org;
-	Sat, 26 Sep 2026 15:48:58 +0000
+	id 1xAUe1-00000000GIC-2tq9;
+	Sat, 26 Sep 2026 15:49:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=WI
-	Mo/C9HBVn2XTdqyHiurAejlgPCNjRxM5+52AVZcG4=; b=GeC5v3kuycr5vyxkf6
-	qfjGRAq5zfaHTQYE9NmWs0IpWgbFm43pLRzhExoVUgoqzvANiW8RZ9RVFr17U46h
-	/TXgCmlqpQh+1sMlEduVuGhGcH5JDb6byd5T5wHBDb+cfVLLLCPKm3G95xFhhheV
-	Kv16ul8zAQ6Et+tI34Kz13jcQ=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=N9
+	0PVcEBaJjmtFZtExELpFQU0K3QU2o0KNqwUaSuAI8=; b=EiLm0ZvCe5CBHYTiLl
+	W9lY7Yjk1P4AVlRDElfr5VxaNsuCIdp9fzP1fEqz04TBwVk6hZ5GXKIQGXX+4Wyn
+	C4yc6fvzAohOPPB4N1S9lXUQ+V9Vx1zqEhQrk4z+mLvkKpoDR2HmQ6xFCMg1CvlF
+	BE4qimdsMkxwrF31lecIHr7UA=
 Received: from pc.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3F4pL6bdqlpIIBA--.11355S4;
-	Sat, 26 Sep 2026 23:48:30 +0800 (CST)
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3F4pL6bdqlpIIBA--.11355S2;
+	Sat, 26 Sep 2026 23:48:28 +0800 (CST)
 From: Jiale Yao <yaojiale02@163.com>
 To: Jeff Johnson <jjohnson@kernel.org>,
-	Shashidhar Lakkavalli <slakkavalli@datto.com>,
-	Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
+	Michal Kazior <michal.kazior@tieto.com>,
+	Kalle Valo <kvalo@qca.qualcomm.com>,
+	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+	Sathishkumar Muruganandam <quic_murugana@quicinc.com>,
 	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
-	Ganesh Sesetti <gseset@codeaurora.org>,
-	Miles Hu <milehu@codeaurora.org>,
+	Karthikeyan Periyasamy <quic_periyasa@quicinc.com>,
+	Anilkumar Kolli <quic_akolli@quicinc.com>,
+	Baochen Qiang <quic_bqiang@quicinc.com>,
+	Bhagavathi Perumal S <bperumal@codeaurora.org>,
+	Sriram R <quic_srirrama@quicinc.com>,
+	Balamurugan Selvarajan <quic_bselvara@quicinc.com>,
 	linux-wireless@vger.kernel.org,
+	ath10k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
+	ath12k@lists.infradead.org
 Cc: Jiale Yao <yaojiale02@163.com>
-Subject: [PATCH 2/5] wifi: ath11k: avoid IDR mutation during pending mgmt TX cleanup
-Date: Sat, 26 Sep 2026 23:48:21 +0800
-Message-Id: <20260926154824.75224-3-yaojiale02@163.com>
+Subject: [PATCH 0/5] wifi: ath: avoid IDR mutation while iterating
+Date: Sat, 26 Sep 2026 23:48:19 +0800
+Message-Id: <20260926154824.75224-1-yaojiale02@163.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260926154824.75224-1-yaojiale02@163.com>
-References: <20260926154824.75224-1-yaojiale02@163.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wD3F4pL6bdqlpIIBA--.11355S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CF1xJr4fXw4kZw18JF1kZrb_yoW8tw4DpF
-	4rW3sFyFyUAr47Xr4vyF48J3WrX3Z5Gw4DKrWrK34rJF9FqFnavFy8Aa42yrW5KFW8XFy5
-	ArWUKFy5GrWDtaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pK0PTAUUUUU=
-X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC8A8WUGq36U+7UwAA3q
+X-CM-TRANSID: _____wD3F4pL6bdqlpIIBA--.11355S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWrKr4xur4kGr1xCw4xXr4UXFb_yoW8JF15pr
+	4fu3W3uF1xZr97tFnxJa18WF1rWFn3CF4jgrZFk3WrWrn5CF18tF98tF1fZFy7GFWfJw12
+	93yUtr1fCryDA3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piY9akUUUUU=
+X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbCzQwWUGq36Uz7GgAA3e
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260926_164857_190661_05690084 
-X-CRM114-Status: GOOD (  10.12  )
+X-CRM114-CacheID: sfid-20260926_164858_261360_2E2A9732 
+X-CRM114-Status: UNSURE (   3.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,71 +98,31 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k_mac_tx_mgmt_pending_free() is passed as an idr_for_each()
-callback and removes the current entry from txmgmt_idr. This can
-invalidate the radix-tree iterator retained by idr_for_each().
+The ath10k, ath11k, and ath12k cleanup paths walk an IDR while their
+callbacks remove the current entry. idr_for_each() retains radix-tree
+iterator state across the callback, so that removal can invalidate the
+walk.
 
-Both callers destroy the IDR immediately after the walk, so removing
-each entry in the callback is unnecessary. Split skb release from IDR
-removal and let the callback release the supplied skb without updating
-the IDR. The following idr_destroy() tears down the IDR itself.
+For ath11k and ath12k full teardown, keep the callback limited to
+releasing the supplied skb and leave IDR teardown to the following
+idr_destroy(), matching the established SCMI fix. For selective per-vif
+cleanup, use idr_for_each_entry() so each iteration starts with a fresh
+lookup before removing a matching entry. ath10k also uses
+idr_for_each_entry() because its shared TX completion helper must retain
+the per-entry removal.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Jiale Yao <yaojiale02@163.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 25 +++++++++++++++----------
- 1 file changed, 15 insertions(+), 10 deletions(-)
+Jiale Yao (5):
+  wifi: ath10k: avoid IDR mutation during TX cleanup
+  wifi: ath11k: avoid IDR mutation during pending mgmt TX cleanup
+  wifi: ath11k: avoid IDR mutation during vif mgmt TX cleanup
+  wifi: ath12k: avoid IDR mutation during pending mgmt TX cleanup
+  wifi: ath12k: avoid IDR mutation during vif mgmt TX cleanup
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ae91b57c8422..696f9dd65ad4 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6146,18 +6146,11 @@ static void ath11k_mgmt_over_wmi_tx_drop(struct ath11k *ar, struct sk_buff *skb)
- 		wake_up(&ar->txmgmt_empty_waitq);
- }
- 
--static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
-+static void ath11k_mac_tx_mgmt_free_skb(struct ath11k *ar,
-+					struct sk_buff *msdu)
- {
--	struct sk_buff *msdu;
- 	struct ieee80211_tx_info *info;
- 
--	spin_lock_bh(&ar->txmgmt_idr_lock);
--	msdu = idr_remove(&ar->txmgmt_idr, buf_id);
--	spin_unlock_bh(&ar->txmgmt_idr_lock);
--
--	if (!msdu)
--		return;
--
- 	dma_unmap_single(ar->ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
- 			 DMA_TO_DEVICE);
- 
-@@ -6167,11 +6160,23 @@ static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
- 	ath11k_mgmt_over_wmi_tx_drop(ar, msdu);
- }
- 
-+static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
-+{
-+	struct sk_buff *msdu;
-+
-+	spin_lock_bh(&ar->txmgmt_idr_lock);
-+	msdu = idr_remove(&ar->txmgmt_idr, buf_id);
-+	spin_unlock_bh(&ar->txmgmt_idr_lock);
-+
-+	if (msdu)
-+		ath11k_mac_tx_mgmt_free_skb(ar, msdu);
-+}
-+
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
- {
- 	struct ath11k *ar = ctx;
- 
--	ath11k_mac_tx_mgmt_free(ar, buf_id);
-+	ath11k_mac_tx_mgmt_free_skb(ar, skb);
- 
- 	return 0;
- }
+ drivers/net/wireless/ath/ath10k/htt_tx.c |  7 +++-
+ drivers/net/wireless/ath/ath11k/mac.c    | 46 +++++++++++++-----------
+ drivers/net/wireless/ath/ath12k/mac.c    | 46 +++++++++++++-----------
+ 3 files changed, 58 insertions(+), 41 deletions(-)
+
 -- 
 2.34.1
 
