@@ -4,153 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FA65CA5FA7
-	for <ath11k@archiver.kernel.org>; Tue, 29 Sep 2026 16:11:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9175BCA5FB1
+	for <ath11k@archiver.kernel.org>; Tue, 29 Sep 2026 16:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qJy0ahWd0XaGUEphe2afeC6dCP3o9esmii2MCwrad+M=; b=0UdbzjKqC19TaDR4EC3os+AO5x
-	wpt2sHZsNJFoQQajjH1VyPUhcZocBQan1iRUPlDa4FPEd/kjuIcrr7M84t0c58cZdRLxkLyC9a7on
-	vwJF/NQBlW/UWBCCoeR8OGcvkyhDEorVg+KhWLbORxVa7vdLy5ix9k6+RnGYqbw/jonq9ErM1RbNN
-	oajoLBTo0vYp+MwuoHPUjOUVAdIySzAJjcrUV8eHQAS99RKUlG7txwRNiSAgzCZXr0Jj4N/be6o2r
-	tlIsSjW8mYlaTdKJ8nnIuZokgwC7ICM0OotmaJKzwBRhCuGEbhNYzR1aWySMLXB1bieQ+kAK9dHlQ
-	FlYa1XzQ==;
+	bh=0skssNQvXHTm92GRJQRQsimYFU/uUs18xsPOZJ94ZoU=; b=kJxwunnowILyWR5obZRHSZ97Fl
+	qY7YvmPaBx4ncnButFN58wcSMvznPvXZR83a6CN/wwAdPAPDZcA+jQMUIMTH4fCMK/4TNhS9FjEbb
+	RT2//cMW1imB6pix4G+H0XkxLlULgCDTAObPLnRUArj/WwEwkyiJKZuxY0XFVmlqUDAhB93Bduty+
+	pycgVBSZKc6rHK/bYXrRo68RE2Jh4ej/sAYsEwq+jLUqtyuUQDvpCtvIXdKsdUlO/S2HK0ByjwtMS
+	okJvekQ77f8j4c8MfNSgiUHPsuYKzsZ0CcNktfU2Apf6LgzR6oCJKRfsWkau/8JR6QPbCaA9u4ZSl
+	BBMEBDlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBaQZ-000000041ML-2VHB;
-	Tue, 29 Sep 2026 16:11:35 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xBay9-0000000465V-1v1C;
+	Tue, 29 Sep 2026 16:46:17 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBaQW-000000041Ll-40nT
+	id 1xBay6-0000000464e-2DVz
 	for ath11k@lists.infradead.org;
-	Tue, 29 Sep 2026 16:11:34 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 68TCqbsY1576957
-	for <ath11k@lists.infradead.org>; Tue, 29 Sep 2026 16:11:32 GMT
+	Tue, 29 Sep 2026 16:46:15 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 68TFUd3a708398
+	for <ath11k@lists.infradead.org>; Tue, 29 Sep 2026 16:46:13 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qJy0ahWd0XaGUEphe2afeC6dCP3o9esmii2MCwrad+M=; b=Aj2nl+y8KxtWdZE8
-	+qdWDHad+Yi+SRNY2tyW37v7NRHV40tbQ4W6w29fTc8h2v0ACAVrfb7Nkvf+d0rN
-	j1iq7IHb46ANIldXzXrKNalw9oGs6MqP6TGQ9SJpy4HRTZgtVNiF+BFS0lwSob2I
-	T78u3XDpUIc3+9BFL4M4WETWd6XvJGf1e5rTP/sARa+ic8ty7ykoJ/b2BrbOryP+
-	GmqDDItZtcRwItmz+bNX0xsTHiC83eW6gjT2djkivcdMeFBeTwXr11J4Njtci3oe
-	raysUqpFEJfjB2uDyXUFckw2igIoBcK4qQxw+GVaX2wb74JSWsGJmMSMbXGRXOUD
-	WLFDEQ==
-Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4h09x4t012-1
+	0skssNQvXHTm92GRJQRQsimYFU/uUs18xsPOZJ94ZoU=; b=dEBN0i2tek0zDky6
+	2xI8SRkTy6muUz4dBIrz5fe7jg4NsDeBcPu1fmFwmFPism/3Mve1tUgchm9vVWiy
+	rbGvcFEEKFcZj7H+hBGqfrNwUVs0WLk17xz4pfc/afWR25wAD6QjogN1PTTGx4zw
+	qeD7XSMnBp328oah9kwACp33yA6E075kQbHQPfJlHPBLA5JD9V2yTLZ/+QlDGCCv
+	g1GygBe2FclhSsPSm7KcP6DP/Yy584l0vcAVGOXzvdreTAF7Eado4xpA9w+2QJXH
+	/m8beGrThSCMXvlWsajxYKXc2ig1azBaBspMBFo7EgC+CbiLC61r5+ZhMM1aQtjs
+	yc1JSw==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4h0g1krbv8-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Tue, 29 Sep 2026 16:11:32 +0000 (GMT)
-Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-342daef97efso403303eec.3
-        for <ath11k@lists.infradead.org>; Tue, 29 Sep 2026 09:11:32 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1790698291; cv=none;
-        d=google.com; s=arc-20260327;
-        b=C8o80DTfaHqVy7OidEzXr2ldHjjIUegU2PLN9cQJYClQTE/CBdoFZyfXv4aC6NtBq8
-         8DTYMeBsE5x2qDQWE4XDA1Lap1V8GDxsSksdSROK5MCj0pg1Z8tOfZzNknYxcy/LXLZc
-         VhSOhPhsGgnBtOYd61r1MgLz3m1cPRhS1poFhEKURMSno3l8LkA0MPqtGf9dAJSbJyB1
-         kSQ6QyyFcouyz695DPgalabmj1vW3UIUxrJLltR9a9oKB9M42icGkfHFWDCehso822+U
-         njN/O8JO4+KhU3ofRWhhCegx4SzK1G5FBQ8vcR7WKJk+yEzXZEap0MdI53w68PgRsrWH
-         Q5vQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=qJy0ahWd0XaGUEphe2afeC6dCP3o9esmii2MCwrad+M=;
-        fh=/csExs+HeIC97b6xzOfYQl7FmhC55S9dNCldMJqFbqc=;
-        b=YcB81WSB1K4tlFGtnyV9yHZocD9EdOc+lIF18YCs5JhQZ1RkG0d7ac4WR5DPM7OVIX
-         K3fqHuL7p2KZd0dUfY7VvBTKAqgDjeUiIluwdVaPhRtZ9x7E6ttW8v8gHVKXqXE3bH3t
-         z0/cKfIaHx+gKP5USlWdyC66AvvdYmkndiFAmoRW6HwFwnC+a95e/YTMRcst3t3MPhbv
-         vEUwwBkYI8Wla3utYC6w20puMEZ8Rye7Ye83xWocUgXQuNsj4NV2a8aVXRkERwLNxCgS
-         5kL6TobomRMbye7X4JoDXfS6OIDktVzdvAE1odsv74P+ETICVhIR9QBZ5wTGRE5zDRGA
-         gvYw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	for <ath11k@lists.infradead.org>; Tue, 29 Sep 2026 16:46:13 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3a0be20102fso4045837a91.0
+        for <ath11k@lists.infradead.org>; Tue, 29 Sep 2026 09:46:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1790698291; x=1791303091; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=qJy0ahWd0XaGUEphe2afeC6dCP3o9esmii2MCwrad+M=;
-        b=Y4c7qyEaydRI0ncF6yzt1y+GjIXBNY6uVeqcCqM9Ma43b+D+1l1gO2foQgInzRqEv/
-         ZqK+bm0AE/tbZ1qGUJfZyxAQfwMD4b9fz5l7SwtEmiGbXGzpsP9ZYuo+YJckXH2O2Mra
-         q7Djm8d+BbJt5sovxkU3JcQZYD88O+MQ1IhdHae9STuI9NrLhVEjWx9P/y5UfhaXUay4
-         ZWK7026VZl29kGUut2M89LOhe7/OA/EXvZ1axvflpcA6xjUOFnBbLgb2prOLZpYS/0n8
-         pJYrIhw1rQ8v6LHM5tVtDE9Eky9CkwnWH+giPozcDa8bAqhCuM5p277K5mRoAD9YPKPI
-         6Ryg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790698291; x=1791303091;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=oss.qualcomm.com; s=google; t=1790700372; x=1791305172; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=qJy0ahWd0XaGUEphe2afeC6dCP3o9esmii2MCwrad+M=;
-        b=1RTc4RhGhWyxJRzlLB1uerO44tB6TBeAGmRyz3pbIWTpfZ596iFHEWY3H9hutPA3mG
-         jWmP79qQk4VLRvrb94KkIVjx/f+veAaWopUIIBSQct5byxuenJD8/AvLe1aa08o9oETd
-         8Ne5rxlnxBJYnwJIBTlDhI87EUQl++IMeJPkgaBGXkx3Un/jwZqllLY3H7kW8xHWs/OJ
-         soRw9KWLOSGReJbFFVqgbcWtdNJYQR4WapPICaDlWwCLZ0G/yjY0xyFXlpknJ/KJNLG9
-         Zq1V3JU3C8wLU3CVYUU7jYK5WnVUfxpiwAyPfbHTaCTp7UEGGhDkO/xgRd4TI5zSXTWZ
-         cHXQ==
-X-Forwarded-Encrypted: i=1; AKwUvByys65VawyIeNBqDwtR4/XKzI2bcOBFWpsjkAgMdK7SKTTX5d8Y+X+0GS1Z0XhjdrDRZ7je7Ps=@lists.infradead.org
-X-Gm-Message-State: AFuF++llC/2qLp3GO1dhVPQ8X6ELzxXrJhHq8x+xMZEFLlr0nj4j70Fc
-	vR6ZVtGa6ijXhD8z9XZh8mek9jJ7hLDxQBl7e1VULh/bJNe1CRU9BfCznm6UctwNkS3QNeEfnTi
-	3l2nWi/whsdGRgMPGAA4Iv73uEZLlgmS6pdMjnywomhMxfHLGdZ7V6Wz6+gp60I02V4xGZH9oC6
-	n3y+IFDsNBs7d9Dsp4tZUicsFoo2hLCm3Cv+Yn04E=
-X-Gm-Gg: AYBFou2lgzdH6DYqFMgOJ/0CzKtIR3XQTRQgiq8S1McDcKHFCO9C06OPB6c6juVp49v
-	dXukUVHUwo8yoa5gxfPSf4JXtQU8XBtANhNuqKLKMFd/FQLNL9MYzwZGeJZmmLtdqpipq5DBcFw
-	xiTzU3oFA/4yREnkeKUa3GPAP0GK5pl1F0XUcfjxT4RVam0j1p0RSI7U3DQdI+OVYTm28L/KJ3w
-	6706hBBVATttN3zqUE=
-X-Received: by 2002:a05:701b:4542:20b0:139:81c6:67a1 with SMTP id a92af1059eb24-146cf7ee6efmr21646720c88.1.1790698291185;
-        Tue, 29 Sep 2026 09:11:31 -0700 (PDT)
-X-Received: by 2002:a05:701b:4542:20b0:139:81c6:67a1 with SMTP id
- a92af1059eb24-146cf7ee6efmr21646648c88.1.1790698290460; Tue, 29 Sep 2026
- 09:11:30 -0700 (PDT)
+        bh=0skssNQvXHTm92GRJQRQsimYFU/uUs18xsPOZJ94ZoU=;
+        b=hMmUpasRy0WNN4CWbTB2Ln5I1+LxWw4nlh5IDCfkPlO0BMHS0MEplBI6/BjgIVOmpE
+         RQMFIZtgR86XqxVrK7VJf2dSJjqJWRfo58SAnoWvPv3cmgL7lyLT+DDRWpop8+umypOL
+         Sa9bEo32gvfBQb4fG2yA49reIGE0ikgIIdkeiKUA5muOZy5l9dyWIG8tighqKASGnTza
+         twKAnwCvfu3TMuWOpOFz20BRmwJjQEgf7XIdy8ox8pTSeAmXxCsOTQ4a//voFNIe2F9w
+         kYyXw4ygN+4F5VY0N7U+220X/rL1EWgVpbxZbF4/KfnBAwfEZKW6OANDFrUZ3T9vDPn1
+         QgIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1790700372; x=1791305172;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=0skssNQvXHTm92GRJQRQsimYFU/uUs18xsPOZJ94ZoU=;
+        b=qZnuvvU+m4rWcvI143x6Fuh6aZLBD1yFCOAs7ZkxzzdwkjlrJj4LRLKy68MgcH3EKk
+         ev0pbLfKHiW3BOcAyBwnlTW+m5I2TFFbCRtYP+VibIB02RnIFrLfybXh78avMhlRhdkK
+         WBsDOMiTEU9aEYCXxa6Z0TJJMrhfjvufgh43/uvp/S1vfFWllyCykUfxE4JPlYt0UppJ
+         JKhjxwjOcXn6e6w8u5//WFTVqgBh2endvjUddc8w8wSIwALu4wXLG3eTHogX3o7+m3oF
+         aMJB2aZ2Z8+y0cRmakonIDDIUkTddYAteWY9NOrXxCDs4DrDdwWajdQiyWw6mLd8/yKU
+         fyow==
+X-Forwarded-Encrypted: i=1; AKwUvBzpra+nDxSv6nEFXbJmXRnXvU2hWHJMzeqjDpbue14wPN3y+QowYTJGkkLmCRuaHerziyFD0PY=@lists.infradead.org
+X-Gm-Message-State: AFq9FYLLoGiv4VbJSofBVijo2rrbBWQe1bsWCYhh88LP1ftsbcy/jBDV
+	OVwTc6N2dRn1yMm9BQh7p24Vrc0qVDXTvMRgT32qs2xU7xqj/XycORhaBVVWkuqzOknpfLDlv4B
+	gKaQU01FOvUE9ddpjMNDLyDJ0fhN9HWcDdyzW1/y5co4rZvqjBRLBrBlb9Bk9ZgV/
+X-Gm-Gg: AYBFou2fliTyhj71QfjCC4fbug6lTFVi8FxnvrwY8zjvDCq33KHDbOYATeSPt4r8wMR
+	NVKbRYlWBkjkki1g0w4JtZalZoRhkQ7rzVgLhOKlub6ocqK5w0DPO3MjKzEdHYizhDMvbkn+d8O
+	sgmhIfkxwM+sQwnQd8/N9W5RuiSzY9jw4BluWTKE56078B/zk1YY/7X3xIJ/e8eSPO6dN4MeWcc
+	ufRBx08eZzkm3hwyvvb+HndcMn1rXc+sdAsvZ1To3LIuHux74EnvIYEMrezLeLQgMSi+BsveX6X
+	n2PGY/KQBNeKnOfDbiaQxcQ16IvbUyRrsFoo/x4ytlf8gGDkPHWoffuCx0FTIgcK4De70dyskng
+	kpaiJO5pcLgdqQUVK
+X-Received: by 2002:a17:90b:384d:b0:39d:fcbe:fe04 with SMTP id 98e67ed59e1d1-3a0986eb55amr14369936a91.2.1790700372111;
+        Tue, 29 Sep 2026 09:46:12 -0700 (PDT)
+X-Received: by 2002:a17:90b:384d:b0:39d:fcbe:fe04 with SMTP id 98e67ed59e1d1-3a0986eb55amr14369900a91.2.1790700371572;
+        Tue, 29 Sep 2026 09:46:11 -0700 (PDT)
+Received: from [10.216.29.115] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a49858bf27sm6367683a91.4.2026.09.29.09.46.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Sep 2026 09:46:10 -0700 (PDT)
+Message-ID: <7aed969d-0868-4c9c-967e-7766dbba427e@oss.qualcomm.com>
+Date: Tue, 29 Sep 2026 22:15:52 +0530
 MIME-Version: 1.0
-References: <20260908135319.754140-1-julius@bairaktaris.de> <20260908135319.754140-8-julius@bairaktaris.de>
-In-Reply-To: <20260908135319.754140-8-julius@bairaktaris.de>
-From: Tamizh Raja <tamizh.raja@oss.qualcomm.com>
-Date: Tue, 29 Sep 2026 21:41:19 +0530
-X-Gm-Features: AclHuK8I2Y8Z38X2skQxxlHpAPaU8tbrT2ff2ker0EVsU01MrqsPdyvez8x7uGI
-Message-ID: <CABkEBKa0pEB9cL1+yoOF0OQSkYb7T1ji36oJ3sVYYV+Nc-_dcg@mail.gmail.com>
-Subject: Re: [PATCH ath-next v4 7/9] wifi: ath11k: charge received airtime to
- the station deficit
-To: Julius Bairaktaris <julius@bairaktaris.de>
-Cc: jjohnson@kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, toke@toke.dk,
-        sven@narfation.org, quic_vthiagar@quicinc.com, john@phrozen.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Info: AW1haW4tMjYwOTI5MDA2NCBTYWx0ZWRfXxePCK2N22LtE
- /amrYju3SFl31DfQ8479njvyVTwH3LD4DZnr7q7X6mhXpykzmSb4oaaxfAC+l4Y8RjPcVHwxfzk
- l91gv7pQQAbeJ4s2chR1QqMClx2hOCI=
-X-Proofpoint-GUID: TlE-7hLrF36qUMfKjPThyPA-0H1aknsT
-X-Authority-Analysis: v=2.4 cv=I5Hw19gg c=1 sm=1 tr=0 ts=6abbe334 cx=c_pps
- a=Uww141gWH0fZj/3QKPojxA==:117 a=IkcTkHD0fZMA:10 a=VdqzKS8jKosA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=eoimf2acIAo5FJnRuUoq:22 a=ISQwfr-Fe-Q9zp4uqk8A:9 a=QEXdDO2ut3YA:10
- a=PxkB5W3o20Ba91AHUih5:22
-X-Proofpoint-ORIG-GUID: TlE-7hLrF36qUMfKjPThyPA-0H1aknsT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTI5MDA2NCBTYWx0ZWRfX3+rLE0XI5/RY
- uJGjBLwxsTA42+AV2C4xxhl1Cfp9u9E18Pzb/+hZsSjFBWYTX7J5UKZtD5DFkLhRXMpmRLIacLh
- oxTYR1qXEz5GnObqBn6Mj+uCO6X2iaPDI/n4nnIyQx9vnIzD4IDO2nraA2syGu2pAXS6m21PfKT
- MhdMYGQdHg3vNCbt8bbPPFGjHOVo5nuSv3qhNcZRfAl9j1v8bhIReB9SVqPEHFbPb+3ArEjfNhE
- zXYfBiOrg/ScVgv0c2zPT1yOL2X93GtK78YATCBsr/BWlBSkxAFJlm/W35DjamRDHNISIKagWCM
- DZzWGbvkaU0DN34XQ1T11H57c42Iu9kOmziiGEhbX1IBZ4E3n3WdmOYJOkDiPxCPPb4s3QwNyNT
- 4H7tXhxtbLEDEJSCueenaABMzHbI2I0+ysq7JnZhDuGIPGJaHCqkscUvyl6Ry/xo1F/odwfNhlU
- 8JXvUHpckB0K0xOFF+w==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] net: qrtr: Assign unique node id for MHI endpoints
+To: manivannan.sadhasivam@oss.qualcomm.com,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Lew <christopher.lew@oss.qualcomm.com>,
+        Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>,
+        Juha-Matti Tilli <juha-matti.tilli@iki.fi>,
+        Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+References: <20260922-qrtr-multi-ep-v3-0-c00831e88957@oss.qualcomm.com>
+ <20260922-qrtr-multi-ep-v3-2-c00831e88957@oss.qualcomm.com>
+Content-Language: en-US
+From: Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>
+In-Reply-To: <20260922-qrtr-multi-ep-v3-2-c00831e88957@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: o1d0RoWTuyiHF93pBYhlyHoimZEwGLbj
+X-Proofpoint-ORIG-GUID: o1d0RoWTuyiHF93pBYhlyHoimZEwGLbj
+X-Proofpoint-Spam-Info: AW1haW4tMjYwOTI5MDA2NiBTYWx0ZWRfX5SYsrmPPplEu
+ 8kbNBGvYNwnUtIcMjUBwl1OPR9jYb/BfyRHQLfLSPQ06QKop4jJIXyIeMajIfI5koPOcT+K75eX
+ QIwYFmQVtJgpk3u+IYmgadH37Gk8HSs=
+X-Authority-Analysis: v=2.4 cv=Ysia1IYX c=1 sm=1 tr=0 ts=6abbeb55 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=VdqzKS8jKosA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=4CdhTua64AM6UaT4niYA:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTI5MDA2NiBTYWx0ZWRfX5nnc8yKw8ScO
+ sIJSMEqLxvh45B7XG9rb4aTsqPxgRs4kxfYZWija0rDlRu/JnCmB5Pbu9cUA3f7kWJQShpiJd78
+ jItdCxMKHZWQxyQTz4pE4LeWhK6yNjpB1Sfm/lQUumQafwih6j7skAcQHVqOMfP2ADfs+QOzBWk
+ oXTkfZHh8UMpTvvVW7WOxF5xkjqzXBiPUsQtJHFpBCDPKUT1ArTooWUZrxPQ7Ksvy+XcnlyDaY8
+ FtaZ7WLekV7ANNBZ8nVZEKBv++ZOBUsOhSzJj6BYppYLRgTH8fli7G95ed6CGfROLl6huKSWiUv
+ 5qSG95gUGnFKPQPDG0lo/Olw/FWRlP/OsUzJ+Bws5kYxJZeGKeJAds+VOK2JSj7E7PIKBJx9QGq
+ PajTRiYUPUS2281s3ZzYeCezau8HfnrVb+1tWBL9aR/Rp8zv+YXX6ufH9YHRb51Uz/ITG31hhk2
+ 3gLo57oaLt+UwX7hNsQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-09-29_04,2026-09-21_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 clxscore=1015
- impostorscore=0 suspectscore=0 adultscore=0 spamscore=0 malwarescore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2609040000
- definitions=main-2609290064
+ impostorscore=0 spamscore=0 suspectscore=0 phishscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2609040000
+ definitions=main-2609290066
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260929_091133_000477_C38973C1 
-X-CRM114-Status: GOOD (  27.29  )
+X-CRM114-CacheID: sfid-20260929_094614_677878_DAC3EBC6 
+X-CRM114-Status: GOOD (  28.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -165,110 +161,96 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 8, 2026 at 7:23=E2=80=AFPM Julius Bairaktaris <julius@bairaktar=
-is.de> wrote:
->
-> mac80211's airtime scheduler is configured to account both directions:
-> local->airtime_flags is AIRTIME_USE_TX | AIRTIME_USE_RX, and
-> ieee80211_sta_register_airtime() adds the received airtime to the same
-> deficit the transmit side subtracts from. ath11k passes zero for it, so
-> an access point serving a station that mostly uploads charges that
-> station nothing for the medium it occupies, and the deficit that decides
-> whose queue is served next describes half the traffic.
->
-> Register the duration the hardware reports for each received PPDU. It
-> arrives in the RXPCU PPDU end TLV on the monitor status ring, which is
-> subscribed for every radio, and ath11k already accumulates it as the
-> station's rx_duration. Charging it once per PPDU matches what the
-> transmit side registers, whereas an estimate rebuilt per MSDU counts the
-> preamble and the interframe space once for every subframe of an
-> aggregate.
->
-> The PPDU end user stats TLV that names the TID is not in the default
-> monitor status filter, so the airtime is charged to best effort, the
-> access category the deficit arbitrates the bulk of the traffic in. The
 
-This means the resulting fairness accounting is only an approximation
-and can leave VO/VI deficits
-uncharged while accumulating all received airtime against BE
-
-> call is made after ab->base_lock is dropped, under the rcu read lock the
-> loop holds, as the tx completion path does; base_lock is contended by
-> every tx completion. A PPDU from a peer with no station entry is not
-> charged to anyone.
+On 9/22/2026 7:11 PM, Manivannan Sadhasivam via B4 Relay wrote:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 >
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+> Now that the QRTR driver allows using the unique node id for each device,
+> which is different from the node id received from the remote node, compute
+> a unique node id using a new API, qrtr_host_node_id().
 >
-> Assisted-by: Claude:claude-opus-5
-> Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+> This API takes the 'index' parameter and adds it to QRTR_NODE_HOST_BASE,
+> whose value is outside of the node id range used by the remote nodes (0 to
+> 0xffff).
+>
+> Finally, call the new API from MHI endpoint driver by passing the MHI
+> controller index as the parameter. The MHI controller index is unique for
+> each controller, thereby for each MHI endpoint device.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 > ---
->  drivers/net/wireless/ath/ath11k/dp_rx.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>   MAINTAINERS        |  1 +
+>   include/net/qrtr.h | 21 +++++++++++++++++++++
+>   net/qrtr/mhi.c     |  4 +++-
+>   3 files changed, 25 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wirele=
-ss/ath/ath11k/dp_rx.c
-> index 68472e1e748a..a7b9bb295728 100644
-> --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-> +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-> @@ -5270,6 +5270,7 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_b=
-ase *ab, int mac_id,
->         struct sk_buff_head skb_list;
->         struct ath11k_peer *peer;
->         struct ath11k_sta *arsta;
-> +       struct ieee80211_sta *sta;
->         int num_buffs_reaped =3D 0;
->         u32 rx_buf_sz;
->         u16 log_type;
-> @@ -5324,6 +5325,7 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_b=
-ase *ab, int mac_id,
->                         continue;
->                 }
->
-> +               sta =3D NULL;
->                 rcu_read_lock();
->                 spin_lock_bh(&ab->base_lock);
->                 peer =3D ath11k_peer_find_by_id(ab, ppdu_info->peer_id);
-> @@ -5337,12 +5339,25 @@ int ath11k_dp_rx_process_mon_status(struct ath11k=
-_base *ab, int mac_id,
->
->                 arsta =3D ath11k_sta_to_arsta(peer->sta);
->                 ath11k_dp_rx_update_peer_stats(arsta, ppdu_info);
-> +               sta =3D peer->sta;
->
->                 if (ath11k_debugfs_is_pktlog_peer_valid(ar, peer->addr))
->                         trace_ath11k_htt_rxdesc(ar, skb->data, log_type, =
-rx_buf_sz);
->
->  next_skb:
->                 spin_unlock_bh(&ab->base_lock);
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index df8ab9b82402..9c8bb086be28 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22511,6 +22511,7 @@ QUALCOMM IPC ROUTER (QRTR) DRIVER
+>   M:	Manivannan Sadhasivam <mani@kernel.org>
+>   L:	linux-arm-msm@vger.kernel.org
+>   S:	Maintained
+> +F:	include/net/qrtr.h
+>   F:	include/trace/events/qrtr.h
+>   F:	include/uapi/linux/qrtr.h
+>   F:	net/qrtr/
+> diff --git a/include/net/qrtr.h b/include/net/qrtr.h
+> new file mode 100644
+> index 000000000000..745d51b4a6ba
+> --- /dev/null
+> +++ b/include/net/qrtr.h
+> @@ -0,0 +1,21 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 > +
-> +               /* The airtime a station spends transmitting is taken fro=
-m
-> +                * the others, so its deficit is charged for it too, with=
- the
-> +                * duration the hardware measured for the whole PPDU, as =
-on
-> +                * the transmit side. The TLV that names the TID is not i=
-n
-> +                * the default monitor status filter, so the charge goes =
-to
-> +                * BE. Outside base_lock, which tx completion contends fo=
-r;
-> +                * sta is held by the rcu read lock.
-> +                */
-> +               if (sta && ppdu_info->rx_duration)
-> +                       ieee80211_sta_register_airtime(sta, 0, 0,
-> +                                                      ppdu_info->rx_dura=
-tion);
->                 rcu_read_unlock();
->
->                 dev_kfree_skb_any(skb);
-> --
-> 2.53.0
->
->
+> +#ifndef _NET_QRTR_H
+> +#define _NET_QRTR_H
+> +
+> +#include <linux/types.h>
+> +
+> +/* The offset is chosen carefully to not collide with the node ids allocated by
+> + * the remote nodes. All the remote nodes use node ids in range 0 to 0xffff.
+> + */
+> +#define QRTR_NODE_HOST_BASE 0x10000u
 
+Can it be exposed with include/uapi/linux/qrtr.h also. There are user space clients like modem manager
+which need to calculate modified node id to distinguish same service from multi modem over mhi.
+This is same as wlan use case.
 
---=20
-- Tamizh.
+- Deepak
+
+> +
+> +/* Compute host node id from a per-device index. The index must be unique
+> + * among the host assigned endpoints and smaller than QRTR_NODE_HOST_BASE.
+> + */
+> +static inline unsigned int qrtr_host_node_id(unsigned int index)
+> +{
+> +	return QRTR_NODE_HOST_BASE + index;
+> +}
+> +
+> +#endif /* _NET_QRTR_H */
+> diff --git a/net/qrtr/mhi.c b/net/qrtr/mhi.c
+> index 3990da1a65dc..c920ab61f848 100644
+> --- a/net/qrtr/mhi.c
+> +++ b/net/qrtr/mhi.c
+> @@ -6,6 +6,7 @@
+>   #include <linux/mhi.h>
+>   #include <linux/module.h>
+>   #include <linux/skbuff.h>
+> +#include <net/qrtr.h>
+>   #include <net/sock.h>
+>   
+>   #include "qrtr.h"
+> @@ -127,7 +128,8 @@ static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
+>   	if (rc)
+>   		return rc;
+>   
+> -	rc = qrtr_endpoint_register(&qdev->ep, QRTR_EP_NID_AUTO);
+> +	rc = qrtr_endpoint_register(&qdev->ep,
+> +				    qrtr_host_node_id(mhi_dev->mhi_cntrl->index));
+>   	if (rc)
+>   		goto err_unprepare;
+>   
+>
 
