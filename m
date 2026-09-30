@@ -4,180 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABD2CCA5FC5
-	for <ath11k@archiver.kernel.org>; Wed, 30 Sep 2026 13:15:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA2C2CA5FC5
+	for <ath11k@archiver.kernel.org>; Wed, 30 Sep 2026 14:08:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Bv85Z0EES1Pygm2Td24oFbUHt0302SkW18IvIa4qP1g=; b=nLTK48YkfrIDjr5WEtr9V2AxHk
-	JbRKxGTyY8Au7D3Kk7BxYljx15I9iFA4HLGNjagc4i2HghoVy72pGd2GbxupNS5A6BWPM7ve+jocP
-	z4mWu8/4RrJlSO4ia/FhPdYS4xAzBSLgdTn+gkcLoxrOsYuBuRWv7xvDc69a5l6cEl/Z0qflbW1jz
-	WH4H1FB5kYOSJSdI+h4VW24MK93Z+lCCFx72QuVQWRoZve8sUemZ3/g04y32MzOOoBC6PswaxvY4w
-	qWuv8v/oc6Ggu/tnfAkoR7CR5SSvh95OmV2BqXVMczf8QNAgQxW5P8Fo5Y25gkZD8k/gg3woQFaR5
-	RRkFC+aw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=kog7asmMh6wog1adNQUGIn243OW/BEgANRMVLg38o7k=; b=aTyuBRCnV92aguYAG3wslokpU2
+	Lq+NLGsndJH01p4VOJYDQlNcc/bW5X6VHKS/IaYa/Grm7vMP10ngUgY/GjeTlOgZg3Uwbn3bA3X7x
+	BX85v2zDIn7pXB3Ivi3luBQNBicB7gh+QFwC7O3LTvTPI0jwiMNdPYUrvvHZ1vYj4a8KwJtI3qgil
+	WRMOD1YZR/cvwMbD/dXgNg4aa6m5XYbUzY4oam7hbJ2zW1oD9qLfC6MN0H4sCz1jeY2fLLy+lbCck
+	+vDj5EVHt6C26fofyafcmFriaJfEJ7LIe4WeZVAqE+wf1XoycpfiD9U1tuBI7btRMPAsOJEqETgOT
+	qAwY+eNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBu9j-000000066R6-0Sha;
-	Wed, 30 Sep 2026 13:15:31 +0000
-Received: from mx08-0057a101.pphosted.com ([185.183.31.45])
+	id 1xBuzP-00000006ELX-059q;
+	Wed, 30 Sep 2026 14:08:55 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBu9g-000000066PH-1CJh
+	id 1xBuzL-00000006EJk-0wXZ
 	for ath11k@lists.infradead.org;
-	Wed, 30 Sep 2026 13:15:29 +0000
-Received: from pps.filterd (m0214196.ppops.net [127.0.0.1])
-	by mx07-0057a101.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 68UB9x911517728;
-	Wed, 30 Sep 2026 15:15:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=270620241; bh=Bv85Z0EES1Pygm2Td24oFbUH
-	t0302SkW18IvIa4qP1g=; b=ELkrbrP93+2yOQhJIL7UuZ8NPHvV5vn5YiM0BO69
-	sbyMG33XiNzOFgz7s1GdiHs8HPPVnO8bqiiKsONv+mH5RjmpuQCyowbu19HeLc4U
-	Q2Uxu2Pckl5MhuR8qQwEs/vhNklIH3VKzGvhi5Sh/7INZvG1wWlmpFPBx6iVQplK
-	YdhWeBBBvlummoS3QV52JIjf3DL8Szkpo7ULiuTRRltbrG4xwtXsvKQqve2qbaUK
-	Jq7VnfnPvsFq/pDkKkgGuJyixrAPoJxuCKqet3d5qMv3SAQanmj7T9bYnxmavjVL
-	OkqognbuNRHpjp0YRPJwgNeN4PmbvTxlBk3E/i4BTKmDZg==
-Received: from osppr02cu001.outbound.protection.outlook.com (mail-norwayeastazon11023113.outbound.protection.outlook.com [40.107.159.113])
-	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 4gx221vjj6-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 30 Sep 2026 15:15:13 +0200 (MEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CPWCOWG809Orvbz7hXl4wRITm+9vW2vHyAXTgE9P4526AcODexBVfit2kAd1MZ2QAX0i4N3/WaPWDFwSdyl2W1SKKrd/b2TDlWLZYItK+eXiShAjRTH19CvOa7s3Eh9Q9n8TzHm81rJ4kFEozzp1KGprGp4xjhDtVL+Qdsq7LWMNc+K7JQW+9R1YUIHPoYzqO48MP/WgZ3lMWQIes3HNBf0s2ADOP2XD+CJv2Mr5wIjJ4KMLi6ucQ9vSU8y9/d6Y3N1JJAFZjvkcy6FbOnLl/+yJ8b1tT/ECU+UhRkknwsX+QXzWPX8HRhvxzer3K4+nV9mSaOMEsNl6Wf9LYsf7cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bv85Z0EES1Pygm2Td24oFbUHt0302SkW18IvIa4qP1g=;
- b=dWpj8Ka8ifyADIht62ToDctlStt+fYSq2Nz4hoRhUwRypjpKMmOsFk1zz5zE8+AmOQA8jXWcdR0B5BSVIMfW/vXFfNjPFvS7jk02zHlnXO44n1wGhQ5PSSt6SM1TfmKBi2u/5jT3kQgfsNnDjSWCybeR8qBdAD7Makeu2Sv2xJgzk9Miaq5vWITAsh9feASKeG5j8KBvCXjpQeLbEeRJB6fe25Ne2gLrz6AzO7UiegSHMf6SzZ8RP6ZjxEIpXH1qK42LGs/NQDFF8qi2wpqkXpWHD9FFygpureN9l1WD9inKz6S0q+/JMzxraQorK3JU0QDP9gCm9BdZDr6ZSgy7Uw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
- dkim=pass header.d=westermo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=beijerelectronicsab.onmicrosoft.com;
- s=selector1-beijerelectronicsab-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bv85Z0EES1Pygm2Td24oFbUHt0302SkW18IvIa4qP1g=;
- b=pt13rdTMS9dx2RYvA6eC+RLM2maCWAx7x+1DJFxIWLr6P9BSx1YjqZIm43iUc5i8Md1dJyr85BeVXHqMBsyNhW01VFeft+QG1BS+D5G5d/oQ5is6RgiYJ7HXyLiJcAt26ibx55nY4VrvfVhFx6cBPmkRPYQjwV5hf3SQ9ZdiX78=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=westermo.com;
-Received: from PA3P192MB2868.EURP192.PROD.OUTLOOK.COM (2603:10a6:102:4d7::12)
- by DB9P192MB1444.EURP192.PROD.OUTLOOK.COM (2603:10a6:10:326::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Wed, 30 Sep
- 2026 13:15:11 +0000
-Received: from PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
- ([fe80::bd96:8c85:982d:19ce]) by PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
- ([fe80::bd96:8c85:982d:19ce%4]) with mapi id 15.21.0472.015; Wed, 30 Sep 2026
- 13:15:11 +0000
-Date: Wed, 30 Sep 2026 15:15:02 +0200
-From: Michael Pfeifroth <micpf@westermo.com>
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org,
-        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] wifi: ath11k: release peer accounting on peer delete
- timeout
-Message-ID: <ar0LVqHZF8UlRB0o@mpf-ESPRIMO-P9012>
-References: <arJzxQcf4intXBqS@mpf-ESPRIMO-P9012>
- <9d8307ee-e9bd-4538-92f8-b33410caecae@oss.qualcomm.com>
- <arTp/9A0iMNpIhl2@mpf-ESPRIMO-P9012>
- <8bc3eaa1-7233-48db-a41b-ce3f08fbdd15@oss.qualcomm.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8bc3eaa1-7233-48db-a41b-ce3f08fbdd15@oss.qualcomm.com>
-X-ClientProxiedBy: GVZP280CA0093.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:275::7) To PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:102:4d7::12)
+	Wed, 30 Sep 2026 14:08:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1790777328;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kog7asmMh6wog1adNQUGIn243OW/BEgANRMVLg38o7k=;
+	b=DKApNMJFbGJ5nWu3znzX8PO1dQTcVBVR/zKvSEy4LAVwz6bUp+y15SAyqjf+upWxwWc/eC
+	fTUbKXDuyuJbcM7zQNArpk7DPeDusZt6NGBmF7qGY0yTJwMPHbeX94g0mYuKu8Pz+NWSZj
+	gebOM9WfUlq95iZIpjkNbIP4YGlt9bU=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-195-ukPi9VarMwyl1rb-JwJdFw-1; Wed,
+ 30 Sep 2026 10:08:44 -0400
+X-MC-Unique: ukPi9VarMwyl1rb-JwJdFw-1
+X-Mimecast-MFC-AGG-ID: ukPi9VarMwyl1rb-JwJdFw_1790777321
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BB63A1955F19;
+	Wed, 30 Sep 2026 14:08:39 +0000 (UTC)
+Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id B95001956044;
+	Wed, 30 Sep 2026 14:08:34 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: bhelgaas@google.com,
+	alex@shazbot.org,
+	jjohnson@kernel.org
+Cc: johannes@sipsolutions.net,
+	mani@kernel.org,
+	jgg@ziepe.ca,
+	yishaih@nvidia.com,
+	skolothumtho@nvidia.com,
+	kevin.tian@intel.com,
+	linux-pci@vger.kernel.org,
+	kvm@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] Enable Qualcomm WiFi PCIe passthrough to VMs
+Date: Wed, 30 Sep 2026 16:08:26 +0200
+Message-ID: <20260930140833.576941-1-jtornosm@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA3P192MB2868:EE_|DB9P192MB1444:EE_
-X-MS-Office365-Filtering-Correlation-Id: e9e8d032-1f74-4fc3-5cf2-08df1ef4db4c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|23010399003|366016|376014|10067099003|11063799006|22082099003|18002099003|56012099006|4143699003;
-X-Microsoft-Antispam-Message-Info: S6+MSdaOYpP8vvUgyd6slO0vsniPiMlrxOOIppCkyIrNf253jQds1ZymdVTOBvlsm9k2Jh0vY2YkZMoAKEaVuaGZf8iMLE+lPv/C05awcnXFKPXI/ue/uCSFhxBqr7R3jcokcKE9t6Roah5MeZvB2VkTy6NdSiYpH50m+vBGqCFSwmbDIoSRiZ/6zTBthXO2HGSOTrgEbVu6WYv4ffzPNIfLbmOIB3zdv6d7cPvBjcjkjHGDK3T5ZxNLLnzF8cprB6vybwk/wYH/A7dnxp8Lsog14bdcUTViYySh+7qEggRvw2aN0xUxQ00wkstCDT6lhMnUiBTiNlbOz1fp7VE+t0GSyv8Rj70IitufFfPcdPv/kI/StW6RA9MUzWlg00ExZqQZu8ao7xnsxkkhYdr+EBY/Hracs8teoxSpe4DnkyW15kufP2L7eh/7U+MWFRTgc/pl8Afk3R7FoIShO5rG7WLwN43J37sxdmjpyMBWtXixV1FSAPkjgmQkPApYjPjSwgXzZGGYcIi15/m5CxbCWPTuKzK/0epacK8gE9ypSAAQX9bYfScI5eqGRwe0wcsb8qk4RZTZ1QuDAw8hw/s2crpJPzTwaS4d3vOByl9NIAvExmy0PVKspCGi8LcXnC6y1qzkZQYnAN1VlInEf5SIGkmYyKIbEsh4YZv/0C7aYNs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA3P192MB2868.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(10067099003)(11063799006)(22082099003)(18002099003)(56012099006)(4143699003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NrHEGnTfhGwqwbQUNK67/RD2PNwvGmR+tqzzxopSpUkX/a7MXw7xiRpWllPm?=
- =?us-ascii?Q?9r0/S6xJrqX7eaJIFhx1FQvv1Qc9nubq3c2sE7kZwpqy90YF9FMzwkfTs7IY?=
- =?us-ascii?Q?vCoBEhUNYbEJ7NCBxdz88PwQ32vmiePufjKkCvB1nz69hhTu8m8HQWMx5RA0?=
- =?us-ascii?Q?F35SbrbJY3GcTUmXak6iXEejdRVjSKfOORovo/DVnQGlx6vLDltb0BPSsx3+?=
- =?us-ascii?Q?1gilKWF6itxcqwegzziuE07tJAcss3yUW5wxTh8pmR7PxHZAZt+xPeP/+rFn?=
- =?us-ascii?Q?rcfAsGbl4ECSc6xbpxm13dq0nPLYW+R4RLImEdXB/uWjgZvTXe5jZjOcTp6L?=
- =?us-ascii?Q?vDXWBE4RYyNella+Xqq+jRIJ75gmIrc/MYUoJJjp71stdYbsxk0oxYHroCEh?=
- =?us-ascii?Q?UkLRKglPHHo+jDpSpTWQ4c8JKUxa3hB4d+o+RIpEn2HZYcra3XsgojOxEwZD?=
- =?us-ascii?Q?cc3ACdkiPtcbcLyq7dqX6F0FGll6O1ZzbrY6TOyKUq5d/bM5MoTsYElsh5hO?=
- =?us-ascii?Q?1Q0akLWbsXL5nA5eC7gEy7fLWGfqKIvI5rrFcAvo8xbyBKub5GHx2dXwKoxW?=
- =?us-ascii?Q?Rs19fc3EnVVbjGZvDH/00ubL/M0TU6V+5cfCWyoMPgw73AwdFnrKmY3E//YE?=
- =?us-ascii?Q?qbds3ltElrBS0vyqxv899AQPLNRYCVwUuZhFwgLAOzg4N0Edr+BRRqM+RQbt?=
- =?us-ascii?Q?yPD1WzxJDr0rP9QJ5y3e1bbDbAryqE2dw5oWwNp+c9kGETwlG0RAqdR94rkR?=
- =?us-ascii?Q?IWlnJR3HTpK9T8aAH2uBcCzc/hcxVRYQ16bRK09ZMutKELDAWwWcEaTw6gDb?=
- =?us-ascii?Q?Sdkcq8lTOyk240BbXwKnjUdHroqNMadRIeqAjMs1IiNXpka01h+EKeM1H5jZ?=
- =?us-ascii?Q?1NivYns1ofFCwJILSWVsVQbeRv7ajawE1j41arjYwUuWTIm/RVRL5r+Yr9Os?=
- =?us-ascii?Q?EZFv7gbToKGMCVG9+jLZtrJs6dKTcyn6v5i0DqqIFq16sUZnBHO5As+2+7Em?=
- =?us-ascii?Q?9p4+XlVOGCQN18YfgBUf6zk+J/fWK34kiheOhtXABJxUeioJjo7rRnDhwmHB?=
- =?us-ascii?Q?kuZckf2ww5VCShEA7Lz9ndY40Kf3L0FFs4uWU08iM84rNxxdlr+Xz148iSKn?=
- =?us-ascii?Q?znjqs7JmP6kIo2cn6vyKN+vouJIlCk5UL/vi8HDDWfm1iOqFTjKdjmBBKRJu?=
- =?us-ascii?Q?tP25CiIwRSG4Z8mM+7AzXTbeTUUCzeyvbloKL8S5j63ThU2bsXs08yV4nSVO?=
- =?us-ascii?Q?xCezJYzBSwKvIwP5y3ugUnk1Fd+lxiVZpY0f7O+4dJhMXSlzeURzNmp2MYCh?=
- =?us-ascii?Q?PW8x020QpIDIER4wc50f4Lnq4IER6seu6eejUxX9mPxnhqKHBdsZ1qDe7N0m?=
- =?us-ascii?Q?7swKhiKeEsr/7KgvxXzopk9r23yjISindYpHtE+4FaReSvS5EVpFf5wGaK93?=
- =?us-ascii?Q?9OAFAI6++4FBTmv+i+UoGvAvIMQ2ZaU1v13STGoSlb+w7LPQ9YzlUUp5fbmr?=
- =?us-ascii?Q?+pCRYVknir5EFyTkpM8jEhCgaM5jaaLI2YSENmgiECCA0pheiP//NeNUKy2A?=
- =?us-ascii?Q?cVSyb97Cb9vY2h2cW554+7NE5h09FN9Kt9HWDFA6cFAtpRKNn9TRQ6exJWR1?=
- =?us-ascii?Q?PN187f+aCR5BIfaIEWxPFp5fdeahfpsszRWvNkJWHktudVKTsLW7F60z4u6V?=
- =?us-ascii?Q?40AWrkq1yY43vdEeN1rS0rLtd4nYfUZc7EAvSQkkUDhd7RiBddvTWZaYvCkn?=
- =?us-ascii?Q?v1A0CoCDGA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: stUWySYdjBYGbqMzQY/+2c5Ud04cwByBI1W8P3WewmevVxBmqec7qjcsgJB97UGzjdZyphA5X1GlnzKgWa3vOQgLfqCWynkpRFX1RjZPRaOqjrvf/AB8lxHwWW02268lqqN3tTTnVlQ+1x6cpJqokblt9c/gmDZRP8fz+9rY8T1hZLWHKcW3Jr01wO4ryfGb+8Xi4P1yrz1t6ir6B6pIgadoaE/a3SqzwG/dhFgH3gmagelEooo2+/YBlZkxRL5w+4iLXxXbJauExJ1/9716iIrdcVYXCDLQKBw0pfMg1ecea6QMMTs42v0I+OeYqPpBhYLfXdFZKPBfjZi3KkSzvA==
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: OaAg4KAIFwQc6YzTaGQyEN42t0GXvnJxxg+orLpIlYegn/W7XD1/FxXZSvEsmTES+YF34hiCZY3qNTwIQlw813A+UMgxrXPo4MRsBaMQp0z0KENKQU42nwyIJ6MuG2PSOYUcnmmg0ipWes4i3E5Yf1Al2/K0AdZpYecNP2/X5kgQ1z+YI3GOR4jt3V4WQj/BKDSKlpgUJMUnW3SE3Sy/X3pzXC7gDryebH3Rfdj5hhnUx3jKFaH9Y5NVPb4Efw/u+WBk9MFV40CpTQqFukkA3IFO6Wal4zYB8GLUSYSezhg8AxyWxn5dybXoyQg1TTaOw0xwA5V+YCsKQpEwy6GteeCtF8BSQe2B4lcLzkW9EuC29b4J8s7gxk5yUjm4yGR92fMR4qpccA/ekoJHY+IOIBYRbokk9ZdFENaa7poIH5Mr84oJVKH1ZTmBL45Rt0rCo/97Fj/Ws0wzd+Qahg8WNSM64Ua9tMmYXkTdu66hy9qKI2vmJ9rIpr0jxREb1zUNEE274u9FTbvG+n3wqL9/tPSJY54e5Hi+SrwD+PlCrJWHA4/BzhnQ5Kmx1AdCFGU6Lg04qhOYbZZj0PpB/y+QVOgzAJp2t5vRUOVLDCIxH9DojT9YmWB1hEdZBBm03z85
-X-OriginatorOrg: westermo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9e8d032-1f74-4fc3-5cf2-08df1ef4db4c
-X-MS-Exchange-CrossTenant-AuthSource: PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2026 13:15:11.0703
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Y9/DQ1OAJuvLM/Wn7fmE+6W+amdtVr2yMvntuMsXTkLBSZjBhM8Sd0QMd3YHnwqoRM4XSjhge3LpYzg+V30FCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P192MB1444
-X-MS-Exchange-CrossPremises-AuthSource: PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossPremises-AuthAs: Internal
-X-MS-Exchange-CrossPremises-AuthMechanism: 14
-X-MS-Exchange-CrossPremises-Mapi-Admin-Submission: 
-X-MS-Exchange-CrossPremises-MessageSource: StoreDriver
-X-MS-Exchange-CrossPremises-BCC: 
-X-MS-Exchange-CrossPremises-OriginalClientIPAddress: 104.151.95.196
-X-MS-Exchange-CrossPremises-TransportTrafficType: Email
-X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:0;
-X-MS-Exchange-CrossPremises-SCL: 1
-X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
-X-OrganizationHeadersPreserved: DB9P192MB1444.EURP192.PROD.OUTLOOK.COM
-X-Proofpoint-GUID: r2Y-Vv7Jh4ywBGQNih83elvx7gMSjpok
-X-Proofpoint-Spam-Info: AW1haW4tMjYwOTMwMDA1MiBTYWx0ZWRfX5qdt+5yt1omU
- 9/jVmuIKmM52heKPCe5MSHLcoBi9O6gGFP5xF5qliNcjzoiYK79nI7FVZJDfc/gJc3YHBnSGVjj
- VvLdejl5sLQraML0vSJmb8TMMzncBJI=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTMwMDA1MiBTYWx0ZWRfX+COh2Ygdw7js
- VxNr6Qz3JEZ8RmPK3o4XSe/7hzL94LUutLwXn1HK2NW6q3oFtspEbjsJivGcou3svJP88Vpo7Xv
- Q101m4XUwH3mcWpAod3hDejMFpDtpZ7grEYZmJJ/5vsMDySPUvh02neytoWHc1sUgk+UkAkdH0X
- IcdI9ovgoV4jH22fGM9wBmeActCpxdRfLuQSWmAVeQZFA29h9E2mnp2UsThZNDibt1ZJQzxrB8d
- /BE5k0Z0DrmcPD+IzRPwBBtPdOV5o/v5dXTcj+QPnzuKxQBPD5kEES/ojj6RnYt42iZ2BchUG+X
- RM9mcLt9ZVZFqeQcyVnJA3gN0sfr8gn5r8ey5lB0//kVfbtBwQ7PhsqHZFZwgbRFZgWd+VPQyoS
- 39XxG27KihhHntvBnxGvp3IdAEA2gv0e7mKmb+1Q/oivnm7BiG9VeHc1o9raxYXJhsBvP7icQyc
- bT76jnL20aWtuzlR0tw==
-X-Authority-Analysis: v=2.4 cv=HcqB3SE8 c=1 sm=1 tr=0 ts=6abd0b61 cx=c_pps
- a=BsJo92phwnomxPsqyV2TWg==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=VdqzKS8jKosA:10 a=8gLI3H-aZtYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=tr3XZvuDWTETL0Uaxejn:22 a=WQ4YJ39tjzx_Hbm9pN5v:22
- a=VwQbUJbxAAAA:8 a=N9GNhs4bAAAA:8 a=-3fE0hjeeAZz44GM79oA:9 a=CjuIK1q_8ugA:10
- a=PZhj9NlD-CKO8hVp7yCs:22
-X-Proofpoint-ORIG-GUID: r2Y-Vv7Jh4ywBGQNih83elvx7gMSjpok
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+X-Mimecast-MFC-PROC-ID: kYAi-KpNjuC4OrBxwtSP4enSItsDRJxrS8XdP5syVRM_1790777321
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260930_061528_657710_0C49A3D3 
-X-CRM114-Status: GOOD (  15.13  )
+X-CRM114-CacheID: sfid-20260930_070851_346702_84286427 
+X-CRM114-Status: UNSURE (   8.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -192,69 +96,64 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k_peer_delete() only decrements ar->num_peers when
-__ath11k_peer_delete() returns 0. On a peer-delete-confirmation timeout
-__ath11k_peer_delete() returns -ETIMEDOUT, so the decrement is skipped
-and one ar->num_peers slot is leaked. Once enough slots have leaked the
-ar->num_peers > (ar->max_num_peers - 1) gate in ath11k_peer_create()
-rejects every new station with "insufficient peer entry resource in
-firmware", and the AP stops accepting associations until the radio is
-restarted with a wifi down/up.
+This series enables Qualcomm ath11k/ath12k WiFi devices to work in VM
+passthrough scenarios, addressing a long-standing issue where these
+devices fail to initialize when passed through to VMs via VFIO.
 
-This was observed in the field on an AP after hours of uptime with
-frequent roaming and reconnects: clients could no longer associate even
-though the firmware peer table was not actually exhausted, only the
-host-side ar->num_peers accounting had leaked.
+Qualcomm ath11k/ath12k WiFi devices have been broken in VM passthrough
+since they were introduced. The devices use an embedded interrupt
+controller that requires physical host MSI addresses programmed to
+device registers, but in VMs the driver only sees virtualized guest
+addresses. This causes firmware initialization to fail with errors like
+"BHI offset: 0xffffffff is out of range".
 
-The delete-confirmation timeout itself is otherwise harmless. The host
-first waits for the peer unmap event in ath11k_wait_for_peer_deleted(),
-so by the time the delete-response completion times out the peer has
-already been removed from ab->peers and freed by
-ath11k_peer_unmap_event(). Only the ar->num_peers counter is left
-inconsistent.
+Multiple attempts have been made to solve this over the past 2 years:
 
-The timeout is reached when the peer unmap event arrives but the peer
-delete response is missed, e.g. because the response event is dropped in
-ath11k_peer_delete_resp_event() on an unresolved vdev id (logged as
-"invalid vdev id in peer delete resp ev"). Do not treat the delete
-confirmation timeout as fatal so that ath11k_peer_delete() releases the
-ar->num_peers slot instead of leaking it.
+March 2024: Workaround using module parameters [1]
+  - Required manually copying MSI values from host to VM
+  - Rejected by Johannes Berg as too manual, suggested VMM solution
 
-Fixes: 690ace20ff79 ("ath11k: peer delete synchronization with firmware")
-Cc: stable@vger.kernel.org
-Signed-off-by: Michael Pfeifroth <micpf@westermo.com>
----
-v3:
- - Drop the defensive peer list_del()/kfree() branch; it is dead code
-   since the peer is already freed via the unmap event or on recovery
-   (Baochen Qiang), leaving a minimal fix that just ignores the delete
-   timeout.
- - Reframe the commit message around the field-observed num_peers leak
-   and the resulting station association failures.
-v2:
- - Correct the root-cause description and switch to netdev comment style.
- drivers/net/wireless/ath/ath11k/peer.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+August 2024: QEMU + kernel solution by Alex Williamson [2]
+  - Kernel disables MSI virtualization, QEMU intercepts config writes
+  - Uses brute force pattern matching to infer MSI data writes
+  - Stuck as RFC - no progress in 8+ months
 
-diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
-index b30a906..f573a2c 100644
---- a/drivers/net/wireless/ath/ath11k/peer.c
-+++ b/drivers/net/wireless/ath/ath11k/peer.c
-@@ -340,9 +340,10 @@ static int __ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, const u8 *addr)
- 		return ret;
- 	}
- 
--	ret = ath11k_wait_for_peer_delete_done(ar, vdev_id, addr);
--	if (ret)
--		return ret;
-+	/* Ignore the return value: the peer is already freed, only its
-+	 * ar->num_peers slot would otherwise leak on a delete timeout.
-+	 */
-+	ath11k_wait_for_peer_delete_done(ar, vdev_id, addr);
- 
- 	return 0;
- }
--- 
-2.34.1
+No action from Qualcomm: Despite multiple reports, no vendor solution
+
+The solution in this series provides a clean, kernel-only solution that
+addresses the previous concerns.
+
+Architecture:
+1. qcom-vfio-pci variant driver caches physical host MSI values and
+   exposes them via extended config space with magic signature "QMSI"
+   In this way, device-specific hardware quirks belong only in kernel
+   drivers, not userspace, independent of the tools used.
+   This follows the established VFIO variant driver pattern used by
+   other drivers like mlx5-vfio-pci (netdev tree) and nvgrace-gpu (platform
+   tree).
+2. VM drivers (ath11k/ath12k) automatically discover and use cached values
+3. PCIe link recovery handles VM timing variations
+
+Thoroughly tested: 3 VMs across 2 WiFi generations, all devices successfully
+initialized and are ready for use.
+- VM1: ath11k (WCN6855)
+- VM2: ath11k (WCN6855)
+- VM3: ath12k (WCN7850)
+
+[1] https://lore.kernel.org/all/20240322104912.94811-1-jtornosm@redhat.com/
+[2] https://lore.kernel.org/kvm/20240812170014.1583783-1-alex.williamson@redhat.com/
+[3] Original problem report:
+    https://lore.kernel.org/all/fc6bd06f-d52b-4dee-ab1b-4bb845cc0b95@quicinc.com/
+
+Jose Ignacio Tornos Martinez (7):
+  PCI: Add pci_find_free_ext_cap_offset() helper
+  vfio: Add qcom_vfio.h header for MSI cache protocol
+  vfio/pci: Add qcom-vfio-pci variant driver
+  ath11k: Add PCIe link recovery retry for VMs
+  ath11k: Use VFIO MSI cache when available
+  ath12k: Add PCIe link recovery retry for VMs
+  ath12k: Use VFIO MSI cache when available
+--
+2.53.0
 
 
