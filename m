@@ -4,121 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C856CA5FAB
-	for <ath11k@archiver.kernel.org>; Wed, 30 Sep 2026 05:55:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABD2CCA5FC5
+	for <ath11k@archiver.kernel.org>; Wed, 30 Sep 2026 13:15:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=v0WHvqPEy1zCdoeR4zoo3J7a0wQn2OXgPRqA4AplJPY=; b=REd2+pzIUY21Bj8U3gtd27DSKY
-	MnEafAJTVgp5nnRldUUkf3VT9GRxorUb/A2uBx+T5BZSxIuyreIwncdPKR/4Lr+lbT40mUFBqhEYW
-	eGoWZioqyWx6tXJy8yD+fPXbA1nsVMpWld8LLwjmeHp0vtZlgxDa94+EbJEmEmrZuPnQQNHegyySe
-	dIV5dsRJMM9yJmCyh0upRWdHZvYAiscf5jyr5i2e/KPBc4hi9kk75TFUJb0AURyCn9DsbrojZF0YA
-	vsU5qlJb1HPWo7dCH3paDkNISEjeL1U6YjEQpM53qXARbVcbMOJkYmHSUmnrvzKuAtupXxE2Pv6zM
-	oNGJ0z+w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Bv85Z0EES1Pygm2Td24oFbUHt0302SkW18IvIa4qP1g=; b=nLTK48YkfrIDjr5WEtr9V2AxHk
+	JbRKxGTyY8Au7D3Kk7BxYljx15I9iFA4HLGNjagc4i2HghoVy72pGd2GbxupNS5A6BWPM7ve+jocP
+	z4mWu8/4RrJlSO4ia/FhPdYS4xAzBSLgdTn+gkcLoxrOsYuBuRWv7xvDc69a5l6cEl/Z0qflbW1jz
+	WH4H1FB5kYOSJSdI+h4VW24MK93Z+lCCFx72QuVQWRoZve8sUemZ3/g04y32MzOOoBC6PswaxvY4w
+	qWuv8v/oc6Ggu/tnfAkoR7CR5SSvh95OmV2BqXVMczf8QNAgQxW5P8Fo5Y25gkZD8k/gg3woQFaR5
+	RRkFC+aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBnHu-000000055EJ-2TxU;
-	Wed, 30 Sep 2026 05:55:31 +0000
-Received: from meesny.iki.fi ([195.140.195.201])
+	id 1xBu9j-000000066R6-0Sha;
+	Wed, 30 Sep 2026 13:15:31 +0000
+Received: from mx08-0057a101.pphosted.com ([185.183.31.45])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBnHr-000000055Dl-0tzJ;
-	Wed, 30 Sep 2026 05:55:29 +0000
-Received: from fauth-c2-smtp.messagingengine.com (fauth-c2-smtp.messagingengine.com [204.75.18.201])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmtilli)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4hvkm5703RzyS4;
-	Wed, 30 Sep 2026 08:55:17 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1790747718;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=v0WHvqPEy1zCdoeR4zoo3J7a0wQn2OXgPRqA4AplJPY=;
-	b=mi89WtC16ViDEso6lptBHLrWYe4WmAkcOzvBYiG4IdBLL4cuul3g8kAb++WwgW4R31YxAX
-	qpLPNQprQzpBsU5RZ5lhhxvgyIKdrSK43CLzaUGNY7TnotPueTdfIQRz5Srgu0qUHbgcL5
-	hA1PuBFvq1OWOaUUyYnEVl/9Z31O9H0=
-ARC-Seal: i=1; a=rsa-sha256; d=iki.fi; s=meesny; cv=none; t=1790747718;
-	b=taouanStDp19rbXzAw6kFJv4hXOdAUFol/pe49jDLHWlDIl5lP4gyEI1E1kmoH6SDN+wjV
-	J6eWoeIrxsjXltLNv+iMQok6m1359fzctQotlk6MF2vAt3sbjcF0P0S33RyvOG61AV/h16
-	rrANrQm4AEUCLald818xIgRIa08PTC8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1790747718;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=v0WHvqPEy1zCdoeR4zoo3J7a0wQn2OXgPRqA4AplJPY=;
-	b=nx/Hkgl5Civpx/g4A5wgbIqbjVpgLoxPdm/d7l6nl1xI+MB5tLixw91AtJUqg7PUDAjUj+
-	9BsTrDdVQr0OA6boZNS0MVCsfhVgRof+bg8dtVDvChstq71Pt9Y9C4+wHAsvUH33aKIulp
-	eSoZt9+VCzs2ZbSqZSukc5somAz05GA=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=jmtilli smtp.mailfrom=juha-matti.tilli@iki.fi
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfauth.ams.internal (Postfix) with ESMTP id B9DBB198003A;
-	Wed, 30 Sep 2026 01:55:16 -0400 (EDT)
-Received: from ams-imap-13 ([10.64.2.33])
-  by ams-compute-02.internal (MEProxy); Wed, 30 Sep 2026 01:55:16 -0400
-X-ME-Sender: <xms:QaS8aq-2dFrxDqeERM4INVMEk-f_Q5DIFHuE-lanC2UGp7EpTfGKfw>
-    <xme:QaS8aljWtWZDzrZyRwH80vhYAJh8mmf9gwoLUH9sl5D1-Q4br9l6tiWVFB0TiPGAL
-    c7b_8R-gBcvfcq04NFpecTzMmm2WQxvhnxUnniR8hnjOXyLLjD6bmxX>
-X-ME-Proxy-Cause: dmFkZTFp4NH+YWpk8RRtOx7/9/eJYhhRF0wfwR+qn9fmA0oEIQrIu+sy7ZWXMsFF9LAvVM
-    SzfwpA0Tf+EgBAQ3rHRnsEGdl4HiNVUiyvbIC4JFIhF1rdlZiPSv0L+N5KHe9Oqohxp70I
-    ofLhf90YJnnXnyUNgykBjUrru4MOOiGzSHELeoY2UKCrZNeDPRp/0wWt53PTFKf3y6cUd3
-    zcNd434ipqiO8/tYVE0McZzgmOXQrmxVTOki7dlgcQ6L66mQSNNlCS+Nmwst3TClrhaDW+
-    jnL6bxTvP43a9NQjoQRsLlDqTjAbZmmdddYC1bEepu6oC5ImfqbchtR2bBvdPDUxnLIePg
-    t89nxml+h4BBpA7zMiiztQorDh42JLvPo5ob+kM4IBUYS4ixZJO0khvcLOEQFWRThOg97U
-    GjNQ1d0hR/hi1AD3FXPrTi0CSpRKReJgHpeSVxCh4AJ+UukwMJf7Glh8Gofd9EU6PMLhML
-    /kf4v0ebmNLcaN8KFwZoIHqttW6IcxOmHE6TnPfD9gGes0ONvOyEdK6qkssOTuJ2/fGMbN
-    1G9LvVOBGdfV/7Um4zCbSUXfC5jwc1/oVMjBPHGsBAN2aNIJ/nZcaUeo70SVLCHdSOLwm3
-    s+SUPfDaQBVm768N7gxb72e0uQBNdIlUvFBJdpmPQPq40UL3UdF4h+Ko3JOQ
-X-ME-Proxy: <xmx:RKS8ariZTGfwhc1rJ1dsuaOh-1QRQ5pCVL52yaVPkrRP1T_rflQZBA>
-    <xmx:RKS8apV0KrErLbqYgeVLZ4PpgYKuIqDL2mkucfSbYNNXXeYrnyXtRA>
-    <xmx:RKS8avuFXN4B4TKRuhud6s4p1pE1mkGZaI2dZAjcHVYIo1-blS3w0g>
-    <xmx:RKS8aq815KUJNwDbNDPTXI6eaxznnNTpR0eCkL4jmvRlZfUsCz7OeQ>
-    <xmx:RKS8avuy3y9T435MADUjjZwuuVzQ62ieA5fMTiBpPyFnUX44JsOsSs7S>
-Feedback-ID: i02414972:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id 73D7CF8008F; Wed, 30 Sep 2026 01:55:13 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	id 1xBu9g-000000066PH-1CJh
+	for ath11k@lists.infradead.org;
+	Wed, 30 Sep 2026 13:15:29 +0000
+Received: from pps.filterd (m0214196.ppops.net [127.0.0.1])
+	by mx07-0057a101.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 68UB9x911517728;
+	Wed, 30 Sep 2026 15:15:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=westermo.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=270620241; bh=Bv85Z0EES1Pygm2Td24oFbUH
+	t0302SkW18IvIa4qP1g=; b=ELkrbrP93+2yOQhJIL7UuZ8NPHvV5vn5YiM0BO69
+	sbyMG33XiNzOFgz7s1GdiHs8HPPVnO8bqiiKsONv+mH5RjmpuQCyowbu19HeLc4U
+	Q2Uxu2Pckl5MhuR8qQwEs/vhNklIH3VKzGvhi5Sh/7INZvG1wWlmpFPBx6iVQplK
+	YdhWeBBBvlummoS3QV52JIjf3DL8Szkpo7ULiuTRRltbrG4xwtXsvKQqve2qbaUK
+	Jq7VnfnPvsFq/pDkKkgGuJyixrAPoJxuCKqet3d5qMv3SAQanmj7T9bYnxmavjVL
+	OkqognbuNRHpjp0YRPJwgNeN4PmbvTxlBk3E/i4BTKmDZg==
+Received: from osppr02cu001.outbound.protection.outlook.com (mail-norwayeastazon11023113.outbound.protection.outlook.com [40.107.159.113])
+	by mx07-0057a101.pphosted.com (PPS) with ESMTPS id 4gx221vjj6-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 30 Sep 2026 15:15:13 +0200 (MEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CPWCOWG809Orvbz7hXl4wRITm+9vW2vHyAXTgE9P4526AcODexBVfit2kAd1MZ2QAX0i4N3/WaPWDFwSdyl2W1SKKrd/b2TDlWLZYItK+eXiShAjRTH19CvOa7s3Eh9Q9n8TzHm81rJ4kFEozzp1KGprGp4xjhDtVL+Qdsq7LWMNc+K7JQW+9R1YUIHPoYzqO48MP/WgZ3lMWQIes3HNBf0s2ADOP2XD+CJv2Mr5wIjJ4KMLi6ucQ9vSU8y9/d6Y3N1JJAFZjvkcy6FbOnLl/+yJ8b1tT/ECU+UhRkknwsX+QXzWPX8HRhvxzer3K4+nV9mSaOMEsNl6Wf9LYsf7cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Bv85Z0EES1Pygm2Td24oFbUHt0302SkW18IvIa4qP1g=;
+ b=dWpj8Ka8ifyADIht62ToDctlStt+fYSq2Nz4hoRhUwRypjpKMmOsFk1zz5zE8+AmOQA8jXWcdR0B5BSVIMfW/vXFfNjPFvS7jk02zHlnXO44n1wGhQ5PSSt6SM1TfmKBi2u/5jT3kQgfsNnDjSWCybeR8qBdAD7Makeu2Sv2xJgzk9Miaq5vWITAsh9feASKeG5j8KBvCXjpQeLbEeRJB6fe25Ne2gLrz6AzO7UiegSHMf6SzZ8RP6ZjxEIpXH1qK42LGs/NQDFF8qi2wpqkXpWHD9FFygpureN9l1WD9inKz6S0q+/JMzxraQorK3JU0QDP9gCm9BdZDr6ZSgy7Uw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=westermo.com; dmarc=pass action=none header.from=westermo.com;
+ dkim=pass header.d=westermo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=beijerelectronicsab.onmicrosoft.com;
+ s=selector1-beijerelectronicsab-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Bv85Z0EES1Pygm2Td24oFbUHt0302SkW18IvIa4qP1g=;
+ b=pt13rdTMS9dx2RYvA6eC+RLM2maCWAx7x+1DJFxIWLr6P9BSx1YjqZIm43iUc5i8Md1dJyr85BeVXHqMBsyNhW01VFeft+QG1BS+D5G5d/oQ5is6RgiYJ7HXyLiJcAt26ibx55nY4VrvfVhFx6cBPmkRPYQjwV5hf3SQ9ZdiX78=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=westermo.com;
+Received: from PA3P192MB2868.EURP192.PROD.OUTLOOK.COM (2603:10a6:102:4d7::12)
+ by DB9P192MB1444.EURP192.PROD.OUTLOOK.COM (2603:10a6:10:326::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Wed, 30 Sep
+ 2026 13:15:11 +0000
+Received: from PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
+ ([fe80::bd96:8c85:982d:19ce]) by PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
+ ([fe80::bd96:8c85:982d:19ce%4]) with mapi id 15.21.0472.015; Wed, 30 Sep 2026
+ 13:15:11 +0000
+Date: Wed, 30 Sep 2026 15:15:02 +0200
+From: Michael Pfeifroth <micpf@westermo.com>
+To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+        Jeff Johnson <jjohnson@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org,
+        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] wifi: ath11k: release peer accounting on peer delete
+ timeout
+Message-ID: <ar0LVqHZF8UlRB0o@mpf-ESPRIMO-P9012>
+References: <arJzxQcf4intXBqS@mpf-ESPRIMO-P9012>
+ <9d8307ee-e9bd-4538-92f8-b33410caecae@oss.qualcomm.com>
+ <arTp/9A0iMNpIhl2@mpf-ESPRIMO-P9012>
+ <8bc3eaa1-7233-48db-a41b-ce3f08fbdd15@oss.qualcomm.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8bc3eaa1-7233-48db-a41b-ce3f08fbdd15@oss.qualcomm.com>
+X-ClientProxiedBy: GVZP280CA0093.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:275::7) To PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:102:4d7::12)
 MIME-Version: 1.0
-X-ThreadId: A0G5p0OZ_htJ
-Date: Wed, 30 Sep 2026 08:54:53 +0300
-From: "Juha-Matti Tilli" <juha-matti.tilli@iki.fi>
-To: "Marcel Holtmann" <marcel@holtmann.org>,
- "Manivannan Sadhasivam" <mani@kernel.org>
-Cc: "Deepak Kumar Singh" <deepak.singh@oss.qualcomm.com>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Simon Horman" <horms@kernel.org>,
- "Jeff Johnson" <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- ath12k@lists.infradead.org, "Bjorn Andersson" <andersson@kernel.org>,
- "Chris Lew" <christopher.lew@oss.qualcomm.com>,
- "Raj Kumar Bhagat" <raj.bhagat@oss.qualcomm.com>,
- "Jeff Hugo" <jeff.hugo@oss.qualcomm.com>
-Message-Id: <6e0ed085-07d0-46f0-97dd-b8d942842e1f@app.fastmail.com>
-In-Reply-To: <10091679-7567-42C2-B77E-EFD95CEDD649@holtmann.org>
-References: <20260922-qrtr-multi-ep-v3-0-c00831e88957@oss.qualcomm.com>
- <20260922-qrtr-multi-ep-v3-2-c00831e88957@oss.qualcomm.com>
- <7aed969d-0868-4c9c-967e-7766dbba427e@oss.qualcomm.com>
- <13BFC5B0-77E6-48F2-B857-37686EA1DB2C@holtmann.org>
- <05e539f8-bb7c-4038-8a83-8ab0d1a5b917@app.fastmail.com>
- <m657dtesuagn7vdajsuzjb4mfysf5xabsu3s6n6lujj7yb3z4p@m2e7e3n4zyev>
- <10091679-7567-42C2-B77E-EFD95CEDD649@holtmann.org>
-Subject: Re: [PATCH v3 2/4] net: qrtr: Assign unique node id for MHI endpoints
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA3P192MB2868:EE_|DB9P192MB1444:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9e8d032-1f74-4fc3-5cf2-08df1ef4db4c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|23010399003|366016|376014|10067099003|11063799006|22082099003|18002099003|56012099006|4143699003;
+X-Microsoft-Antispam-Message-Info: S6+MSdaOYpP8vvUgyd6slO0vsniPiMlrxOOIppCkyIrNf253jQds1ZymdVTOBvlsm9k2Jh0vY2YkZMoAKEaVuaGZf8iMLE+lPv/C05awcnXFKPXI/ue/uCSFhxBqr7R3jcokcKE9t6Roah5MeZvB2VkTy6NdSiYpH50m+vBGqCFSwmbDIoSRiZ/6zTBthXO2HGSOTrgEbVu6WYv4ffzPNIfLbmOIB3zdv6d7cPvBjcjkjHGDK3T5ZxNLLnzF8cprB6vybwk/wYH/A7dnxp8Lsog14bdcUTViYySh+7qEggRvw2aN0xUxQ00wkstCDT6lhMnUiBTiNlbOz1fp7VE+t0GSyv8Rj70IitufFfPcdPv/kI/StW6RA9MUzWlg00ExZqQZu8ao7xnsxkkhYdr+EBY/Hracs8teoxSpe4DnkyW15kufP2L7eh/7U+MWFRTgc/pl8Afk3R7FoIShO5rG7WLwN43J37sxdmjpyMBWtXixV1FSAPkjgmQkPApYjPjSwgXzZGGYcIi15/m5CxbCWPTuKzK/0epacK8gE9ypSAAQX9bYfScI5eqGRwe0wcsb8qk4RZTZ1QuDAw8hw/s2crpJPzTwaS4d3vOByl9NIAvExmy0PVKspCGi8LcXnC6y1qzkZQYnAN1VlInEf5SIGkmYyKIbEsh4YZv/0C7aYNs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA3P192MB2868.EURP192.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(10067099003)(11063799006)(22082099003)(18002099003)(56012099006)(4143699003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NrHEGnTfhGwqwbQUNK67/RD2PNwvGmR+tqzzxopSpUkX/a7MXw7xiRpWllPm?=
+ =?us-ascii?Q?9r0/S6xJrqX7eaJIFhx1FQvv1Qc9nubq3c2sE7kZwpqy90YF9FMzwkfTs7IY?=
+ =?us-ascii?Q?vCoBEhUNYbEJ7NCBxdz88PwQ32vmiePufjKkCvB1nz69hhTu8m8HQWMx5RA0?=
+ =?us-ascii?Q?F35SbrbJY3GcTUmXak6iXEejdRVjSKfOORovo/DVnQGlx6vLDltb0BPSsx3+?=
+ =?us-ascii?Q?1gilKWF6itxcqwegzziuE07tJAcss3yUW5wxTh8pmR7PxHZAZt+xPeP/+rFn?=
+ =?us-ascii?Q?rcfAsGbl4ECSc6xbpxm13dq0nPLYW+R4RLImEdXB/uWjgZvTXe5jZjOcTp6L?=
+ =?us-ascii?Q?vDXWBE4RYyNella+Xqq+jRIJ75gmIrc/MYUoJJjp71stdYbsxk0oxYHroCEh?=
+ =?us-ascii?Q?UkLRKglPHHo+jDpSpTWQ4c8JKUxa3hB4d+o+RIpEn2HZYcra3XsgojOxEwZD?=
+ =?us-ascii?Q?cc3ACdkiPtcbcLyq7dqX6F0FGll6O1ZzbrY6TOyKUq5d/bM5MoTsYElsh5hO?=
+ =?us-ascii?Q?1Q0akLWbsXL5nA5eC7gEy7fLWGfqKIvI5rrFcAvo8xbyBKub5GHx2dXwKoxW?=
+ =?us-ascii?Q?Rs19fc3EnVVbjGZvDH/00ubL/M0TU6V+5cfCWyoMPgw73AwdFnrKmY3E//YE?=
+ =?us-ascii?Q?qbds3ltElrBS0vyqxv899AQPLNRYCVwUuZhFwgLAOzg4N0Edr+BRRqM+RQbt?=
+ =?us-ascii?Q?yPD1WzxJDr0rP9QJ5y3e1bbDbAryqE2dw5oWwNp+c9kGETwlG0RAqdR94rkR?=
+ =?us-ascii?Q?IWlnJR3HTpK9T8aAH2uBcCzc/hcxVRYQ16bRK09ZMutKELDAWwWcEaTw6gDb?=
+ =?us-ascii?Q?Sdkcq8lTOyk240BbXwKnjUdHroqNMadRIeqAjMs1IiNXpka01h+EKeM1H5jZ?=
+ =?us-ascii?Q?1NivYns1ofFCwJILSWVsVQbeRv7ajawE1j41arjYwUuWTIm/RVRL5r+Yr9Os?=
+ =?us-ascii?Q?EZFv7gbToKGMCVG9+jLZtrJs6dKTcyn6v5i0DqqIFq16sUZnBHO5As+2+7Em?=
+ =?us-ascii?Q?9p4+XlVOGCQN18YfgBUf6zk+J/fWK34kiheOhtXABJxUeioJjo7rRnDhwmHB?=
+ =?us-ascii?Q?kuZckf2ww5VCShEA7Lz9ndY40Kf3L0FFs4uWU08iM84rNxxdlr+Xz148iSKn?=
+ =?us-ascii?Q?znjqs7JmP6kIo2cn6vyKN+vouJIlCk5UL/vi8HDDWfm1iOqFTjKdjmBBKRJu?=
+ =?us-ascii?Q?tP25CiIwRSG4Z8mM+7AzXTbeTUUCzeyvbloKL8S5j63ThU2bsXs08yV4nSVO?=
+ =?us-ascii?Q?xCezJYzBSwKvIwP5y3ugUnk1Fd+lxiVZpY0f7O+4dJhMXSlzeURzNmp2MYCh?=
+ =?us-ascii?Q?PW8x020QpIDIER4wc50f4Lnq4IER6seu6eejUxX9mPxnhqKHBdsZ1qDe7N0m?=
+ =?us-ascii?Q?7swKhiKeEsr/7KgvxXzopk9r23yjISindYpHtE+4FaReSvS5EVpFf5wGaK93?=
+ =?us-ascii?Q?9OAFAI6++4FBTmv+i+UoGvAvIMQ2ZaU1v13STGoSlb+w7LPQ9YzlUUp5fbmr?=
+ =?us-ascii?Q?+pCRYVknir5EFyTkpM8jEhCgaM5jaaLI2YSENmgiECCA0pheiP//NeNUKy2A?=
+ =?us-ascii?Q?cVSyb97Cb9vY2h2cW554+7NE5h09FN9Kt9HWDFA6cFAtpRKNn9TRQ6exJWR1?=
+ =?us-ascii?Q?PN187f+aCR5BIfaIEWxPFp5fdeahfpsszRWvNkJWHktudVKTsLW7F60z4u6V?=
+ =?us-ascii?Q?40AWrkq1yY43vdEeN1rS0rLtd4nYfUZc7EAvSQkkUDhd7RiBddvTWZaYvCkn?=
+ =?us-ascii?Q?v1A0CoCDGA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: stUWySYdjBYGbqMzQY/+2c5Ud04cwByBI1W8P3WewmevVxBmqec7qjcsgJB97UGzjdZyphA5X1GlnzKgWa3vOQgLfqCWynkpRFX1RjZPRaOqjrvf/AB8lxHwWW02268lqqN3tTTnVlQ+1x6cpJqokblt9c/gmDZRP8fz+9rY8T1hZLWHKcW3Jr01wO4ryfGb+8Xi4P1yrz1t6ir6B6pIgadoaE/a3SqzwG/dhFgH3gmagelEooo2+/YBlZkxRL5w+4iLXxXbJauExJ1/9716iIrdcVYXCDLQKBw0pfMg1ecea6QMMTs42v0I+OeYqPpBhYLfXdFZKPBfjZi3KkSzvA==
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: OaAg4KAIFwQc6YzTaGQyEN42t0GXvnJxxg+orLpIlYegn/W7XD1/FxXZSvEsmTES+YF34hiCZY3qNTwIQlw813A+UMgxrXPo4MRsBaMQp0z0KENKQU42nwyIJ6MuG2PSOYUcnmmg0ipWes4i3E5Yf1Al2/K0AdZpYecNP2/X5kgQ1z+YI3GOR4jt3V4WQj/BKDSKlpgUJMUnW3SE3Sy/X3pzXC7gDryebH3Rfdj5hhnUx3jKFaH9Y5NVPb4Efw/u+WBk9MFV40CpTQqFukkA3IFO6Wal4zYB8GLUSYSezhg8AxyWxn5dybXoyQg1TTaOw0xwA5V+YCsKQpEwy6GteeCtF8BSQe2B4lcLzkW9EuC29b4J8s7gxk5yUjm4yGR92fMR4qpccA/ekoJHY+IOIBYRbokk9ZdFENaa7poIH5Mr84oJVKH1ZTmBL45Rt0rCo/97Fj/Ws0wzd+Qahg8WNSM64Ua9tMmYXkTdu66hy9qKI2vmJ9rIpr0jxREb1zUNEE274u9FTbvG+n3wqL9/tPSJY54e5Hi+SrwD+PlCrJWHA4/BzhnQ5Kmx1AdCFGU6Lg04qhOYbZZj0PpB/y+QVOgzAJp2t5vRUOVLDCIxH9DojT9YmWB1hEdZBBm03z85
+X-OriginatorOrg: westermo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9e8d032-1f74-4fc3-5cf2-08df1ef4db4c
+X-MS-Exchange-CrossTenant-AuthSource: PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2026 13:15:11.0703
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4b2e9b91-de77-4ca7-8130-c80faee67059
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y9/DQ1OAJuvLM/Wn7fmE+6W+amdtVr2yMvntuMsXTkLBSZjBhM8Sd0QMd3YHnwqoRM4XSjhge3LpYzg+V30FCw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P192MB1444
+X-MS-Exchange-CrossPremises-AuthSource: PA3P192MB2868.EURP192.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossPremises-AuthAs: Internal
+X-MS-Exchange-CrossPremises-AuthMechanism: 14
+X-MS-Exchange-CrossPremises-Mapi-Admin-Submission: 
+X-MS-Exchange-CrossPremises-MessageSource: StoreDriver
+X-MS-Exchange-CrossPremises-BCC: 
+X-MS-Exchange-CrossPremises-OriginalClientIPAddress: 104.151.95.196
+X-MS-Exchange-CrossPremises-TransportTrafficType: Email
+X-MS-Exchange-CrossPremises-Antispam-ScanContext: DIR:Originating;SFV:NSPM;SKIP:0;
+X-MS-Exchange-CrossPremises-SCL: 1
+X-MS-Exchange-CrossPremises-Processed-By-Journaling: Journal Agent
+X-OrganizationHeadersPreserved: DB9P192MB1444.EURP192.PROD.OUTLOOK.COM
+X-Proofpoint-GUID: r2Y-Vv7Jh4ywBGQNih83elvx7gMSjpok
+X-Proofpoint-Spam-Info: AW1haW4tMjYwOTMwMDA1MiBTYWx0ZWRfX5qdt+5yt1omU
+ 9/jVmuIKmM52heKPCe5MSHLcoBi9O6gGFP5xF5qliNcjzoiYK79nI7FVZJDfc/gJc3YHBnSGVjj
+ VvLdejl5sLQraML0vSJmb8TMMzncBJI=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwOTMwMDA1MiBTYWx0ZWRfX+COh2Ygdw7js
+ VxNr6Qz3JEZ8RmPK3o4XSe/7hzL94LUutLwXn1HK2NW6q3oFtspEbjsJivGcou3svJP88Vpo7Xv
+ Q101m4XUwH3mcWpAod3hDejMFpDtpZ7grEYZmJJ/5vsMDySPUvh02neytoWHc1sUgk+UkAkdH0X
+ IcdI9ovgoV4jH22fGM9wBmeActCpxdRfLuQSWmAVeQZFA29h9E2mnp2UsThZNDibt1ZJQzxrB8d
+ /BE5k0Z0DrmcPD+IzRPwBBtPdOV5o/v5dXTcj+QPnzuKxQBPD5kEES/ojj6RnYt42iZ2BchUG+X
+ RM9mcLt9ZVZFqeQcyVnJA3gN0sfr8gn5r8ey5lB0//kVfbtBwQ7PhsqHZFZwgbRFZgWd+VPQyoS
+ 39XxG27KihhHntvBnxGvp3IdAEA2gv0e7mKmb+1Q/oivnm7BiG9VeHc1o9raxYXJhsBvP7icQyc
+ bT76jnL20aWtuzlR0tw==
+X-Authority-Analysis: v=2.4 cv=HcqB3SE8 c=1 sm=1 tr=0 ts=6abd0b61 cx=c_pps
+ a=BsJo92phwnomxPsqyV2TWg==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=VdqzKS8jKosA:10 a=8gLI3H-aZtYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=tr3XZvuDWTETL0Uaxejn:22 a=WQ4YJ39tjzx_Hbm9pN5v:22
+ a=VwQbUJbxAAAA:8 a=N9GNhs4bAAAA:8 a=-3fE0hjeeAZz44GM79oA:9 a=CjuIK1q_8ugA:10
+ a=PZhj9NlD-CKO8hVp7yCs:22
+X-Proofpoint-ORIG-GUID: r2Y-Vv7Jh4ywBGQNih83elvx7gMSjpok
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260929_225527_607812_B325D14C 
-X-CRM114-Status: GOOD (  19.73  )
+X-CRM114-CacheID: sfid-20260930_061528_657710_0C49A3D3 
+X-CRM114-Status: GOOD (  15.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,39 +192,69 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 29, 2026, at 23:37, Marcel Holtmann wrote:
-> >> I'm still willing to submit a new version of that patchset originally by
-> >> Denis, if the kernel devs so decide that it's the way. For example, the
-> >> "radix tree of radix trees" approach could be replaced with a hash
-> >> table.
-> >> 
-> >> There was also some criticism about a layering violation in storing the
-> >> endpoint id to mhi controller. However, maybe that could be reduced by
-> >> providing a correct abstraction around it, so that other code doesn't
-> >> touch the mhi controller structure directly.
-> >> 
-> >> Other criticism for that patchset by Denis was its overt complexity.
-> >> Yes, it has more lines of code changed.
-> >> 
-> >> This dual-card setup needs to be handled somehow, either by Denis's
-> >> patchset or by Manivannan's patchset.
-> >> 
-> > 
-> > I wish to go ahead with my series as it is simple and tested across the
-> > multi-WLAN setups. For concern around exposing the nid to userspace, I'll
-> > implement it in next version, thanks!
-> 
-> actually no. Seems you have no plan on how to address the userspace problem.
-> 
-> It would be useful to actually review the endpoint_id concept introduced by Denis since it has a userspace facing API. What is your plan? Are you planning to break all existing userspace code?
+ath11k_peer_delete() only decrements ar->num_peers when
+__ath11k_peer_delete() returns 0. On a peer-delete-confirmation timeout
+__ath11k_peer_delete() returns -ETIMEDOUT, so the decrement is skipped
+and one ar->num_peers slot is leaked. Once enough slots have leaked the
+ar->num_peers > (ar->max_num_peers - 1) gate in ath11k_peer_create()
+rejects every new station with "insufficient peer entry resource in
+firmware", and the AP stops accepting associations until the radio is
+restarted with a wifi down/up.
 
-Well, in defense of Manivannan's patchset it currently works for PCI+AHB
-setups better than the last version of that by Denis/Mihai/me (although 
-I could easily fix that), and it may be simpler for userspace to
-continue using nid than having to bind to an endpoint, which requires
-more changes in userspace code.
+This was observed in the field on an AP after hours of uptime with
+frequent roaming and reconnects: clients could no longer associate even
+though the firmware peer table was not actually exhausted, only the
+host-side ar->num_peers accounting had leaked.
 
-The userspace just needs to know the nid.
+The delete-confirmation timeout itself is otherwise harmless. The host
+first waits for the peer unmap event in ath11k_wait_for_peer_deleted(),
+so by the time the delete-response completion times out the peer has
+already been removed from ab->peers and freed by
+ath11k_peer_unmap_event(). Only the ar->num_peers counter is left
+inconsistent.
 
-BR, Juha-Matti
+The timeout is reached when the peer unmap event arrives but the peer
+delete response is missed, e.g. because the response event is dropped in
+ath11k_peer_delete_resp_event() on an unresolved vdev id (logged as
+"invalid vdev id in peer delete resp ev"). Do not treat the delete
+confirmation timeout as fatal so that ath11k_peer_delete() releases the
+ar->num_peers slot instead of leaking it.
+
+Fixes: 690ace20ff79 ("ath11k: peer delete synchronization with firmware")
+Cc: stable@vger.kernel.org
+Signed-off-by: Michael Pfeifroth <micpf@westermo.com>
+---
+v3:
+ - Drop the defensive peer list_del()/kfree() branch; it is dead code
+   since the peer is already freed via the unmap event or on recovery
+   (Baochen Qiang), leaving a minimal fix that just ignores the delete
+   timeout.
+ - Reframe the commit message around the field-observed num_peers leak
+   and the resulting station association failures.
+v2:
+ - Correct the root-cause description and switch to netdev comment style.
+ drivers/net/wireless/ath/ath11k/peer.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
+index b30a906..f573a2c 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.c
++++ b/drivers/net/wireless/ath/ath11k/peer.c
+@@ -340,9 +340,10 @@ static int __ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, const u8 *addr)
+ 		return ret;
+ 	}
+ 
+-	ret = ath11k_wait_for_peer_delete_done(ar, vdev_id, addr);
+-	if (ret)
+-		return ret;
++	/* Ignore the return value: the peer is already freed, only its
++	 * ar->num_peers slot would otherwise leak on a delete timeout.
++	 */
++	ath11k_wait_for_peer_delete_done(ar, vdev_id, addr);
+ 
+ 	return 0;
+ }
+-- 
+2.34.1
+
 
