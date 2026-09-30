@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CED5CA5FC7
-	for <ath11k@archiver.kernel.org>; Wed, 30 Sep 2026 14:10:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4AD3CA5FCD
+	for <ath11k@archiver.kernel.org>; Wed, 30 Sep 2026 14:11:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=L1hpiA9PSrEgTziY9kUXLTeM8Im79Dj/E5wLN7KEwBw=; b=4bvEHdX2e61MLxeaBk4HlbEo+x
-	cFFSTqXcflFI3DNQLmLP0vB6j8jms5tFycCOpDJhgZUD/h6uOftRxUns5nG/dir+eAgysW673wEHD
-	X0okZG0+0qmpyfHBRBWqqDQAtC7BBFAfms+ij7hxv/Vgi265avkoTwgutQcOzDs3IWtK7fJWzd5mP
-	xyFcVpGQga7Qwyb235+Xj+5oinpeCHslKbhnTEqX7ezJRpwWcUowzSAhJxMo+Mpxj5V9xQSxLVUKR
-	Nn2uYZlglzWydI9TxQRtDKvWkWNDY5hj/dfJtFcLLNacQG6vsin7QUibS2sTfL6DXNQOHP5IKmps+
-	U2kHtcdA==;
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=kog7asmMh6wog1adNQUGIn243OW/BEgANRMVLg38o7k=; b=f46DYTB3XsPwzhPg4R/n37IIDB
+	JJb4/byEU0f1mD/1mp8IJd4VYL+B+9gVgEY/Aj2FWmzgVX4+FwDuPKq8CptGVLqXyy+2VVLfKMQme
+	F2qLSrijKpOYYBQFJj0RmhCEM0Xth0jLWO+9YC4vUfiO6Vlfmy8sj6m7a2EqJkbmFr9oD1VXg5kpW
+	pm0yw4Ogyi5dZF3F9g2CGObB3N62Lx3qy1RYb7V6h6MPS5b7jzDXf9507pYL+TaTbdyfHxXdR4/SB
+	NJmnt5fglqjrfk1oj2Rsvz5sxbXZlOr24Ga1EkQ+rLs8tpplaBkz4a9AN/dVXmZtf1yOd/tF3iR0e
+	QU1bJLZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBv0U-00000006EmZ-0AkL;
-	Wed, 30 Sep 2026 14:10:02 +0000
+	id 1xBv1S-00000006F8C-2eok;
+	Wed, 30 Sep 2026 14:11:02 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBv0J-00000006Ei5-1sGr
+	id 1xBv1N-00000006F5b-3DsN
 	for ath11k@lists.infradead.org;
-	Wed, 30 Sep 2026 14:09:55 +0000
+	Wed, 30 Sep 2026 14:10:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1790777390;
+	s=mimecast20190719; t=1790777456;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=L1hpiA9PSrEgTziY9kUXLTeM8Im79Dj/E5wLN7KEwBw=;
-	b=c2GVDGA8sdzr8TAjeJQyKZUbhkTT/WgyxoVBf2tyFDG7bw7kEOZ3FdQqE1f44LRnlWGZeR
-	zR9uykRPLc97INEXvIJvJOEw7dpMqmMNLhH/XWIEjA3KddNXDwaNou+hfuUdD+/gkN2L2b
-	ZFi6StbFM9HH0vUMkh5n7Y0uN4eIALo=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kog7asmMh6wog1adNQUGIn243OW/BEgANRMVLg38o7k=;
+	b=ha9U6P/5yRbPSvfKUiio+hCm+iNn5nkQRjvfEoDttctNx533AjKfJOJQzVBe6eje08f3BU
+	Qe531WJcHQMyFgRgQB2CS0ziwsAAE+HVvxvp7rSUjztCTv1ge2WYw4z3cqNJlLDz3Vp2iR
+	VHOz573M4fzJEjiOnBl1B6Q3W9PxpK4=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-649-vG0PtuP-M6KWTOdKg7iCaw-1; Wed,
- 30 Sep 2026 10:09:46 -0400
-X-MC-Unique: vG0PtuP-M6KWTOdKg7iCaw-1
-X-Mimecast-MFC-AGG-ID: vG0PtuP-M6KWTOdKg7iCaw_1790777384
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-543-DJl6E92WOv2gFGzQ13y3SA-1; Wed,
+ 30 Sep 2026 10:10:53 -0400
+X-MC-Unique: DJl6E92WOv2gFGzQ13y3SA-1
+X-Mimecast-MFC-AGG-ID: DJl6E92WOv2gFGzQ13y3SA_1790777451
 Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 50ECE180214B;
-	Wed, 30 Sep 2026 14:09:44 +0000 (UTC)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id EF668197700A;
+	Wed, 30 Sep 2026 14:10:50 +0000 (UTC)
 Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 86EC51956044;
-	Wed, 30 Sep 2026 14:09:40 +0000 (UTC)
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 18C2C1956044;
+	Wed, 30 Sep 2026 14:10:46 +0000 (UTC)
 From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
 To: bhelgaas@google.com,
 	alex@shazbot.org,
@@ -69,22 +68,20 @@ Cc: johannes@sipsolutions.net,
 	ath11k@lists.infradead.org,
 	ath12k@lists.infradead.org,
 	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH 5/7] ath11k: Use VFIO MSI cache when available
-Date: Wed, 30 Sep 2026 16:08:31 +0200
-Message-ID: <20260930140833.576941-6-jtornosm@redhat.com>
-In-Reply-To: <20260930140833.576941-1-jtornosm@redhat.com>
-References: <20260930140833.576941-1-jtornosm@redhat.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] Enable Qualcomm WiFi PCIe passthrough to VMs
+Date: Wed, 30 Sep 2026 16:10:45 +0200
+Message-ID: <20260930141045.577212-1-jtornosm@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-MFC-PROC-ID: CRHe0p6zgKgm9lLnoa-UEeZZ4AKVKxU6_Hkix4dWPnU_1790777384
+X-Mimecast-MFC-PROC-ID: mgtt-rlenna7N0EN7cvi7ng5sYsKY_je3_KNPPzC894_1790777451
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260930_070951_674980_43F03184 
-X-CRM114-Status: GOOD (  15.49  )
+X-CRM114-CacheID: sfid-20260930_071058_475805_CAE9B7F4 
+X-CRM114-Status: UNSURE (   8.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,94 +96,64 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The Qualcomm ath11k firmware requires physical host MSI addresses for
-interrupt configuration but cannot handle IOVA-based MSI addressing in
-virtualized environments.
+This series enables Qualcomm ath11k/ath12k WiFi devices to work in VM
+passthrough scenarios, addressing a long-standing issue where these
+devices fail to initialize when passed through to VMs via VFIO.
 
-When the device is passed through to a VM via VFIO:
-- The guest kernel allocates MSI vectors and sees IOVA addresses
-- The ath11k firmware expects physical host MSI addresses
-- Providing IOVA to the firmware causes interrupt delivery to fail
-- Result: device is non-functional in VMs
+Qualcomm ath11k/ath12k WiFi devices have been broken in VM passthrough
+since they were introduced. The devices use an embedded interrupt
+controller that requires physical host MSI addresses programmed to
+device registers, but in VMs the driver only sees virtualized guest
+addresses. This causes firmware initialization to fail with errors like
+"BHI offset: 0xffffffff is out of range".
 
-The qcom-vfio-pci variant driver (introduced in earlier patches) solves
-this by caching the physical host MSI values and exposing them through
-PCI extended config space with a "QMSI" magic signature for discovery.
+Multiple attempts have been made to solve this over the past 2 years:
 
-Search for the QMSI magic signature in extended config space. If found,
-the device is running on a VM and we can read the cached host MSI values
-from that location. If the VFIO cache is not present (i.e. on baremetal),
-fall back to standard PCI MSI configuration.
+March 2024: Workaround using module parameters [1]
+  - Required manually copying MSI values from host to VM
+  - Rejected by Johannes Berg as too manual, suggested VMM solution
 
-This change is transparent, arch independent and requires no user
-configuration when used with the qcom-vfio-pci driver.
+August 2024: QEMU + kernel solution by Alex Williamson [2]
+  - Kernel disables MSI virtualization, QEMU intercepts config writes
+  - Uses brute force pattern matching to infer MSI data writes
+  - Stuck as RFC - no progress in 8+ months
 
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
----
- drivers/net/wireless/ath/ath11k/pci.c | 33 +++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+No action from Qualcomm: Despite multiple reports, no vendor solution
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index c372676b097f..99a3a709831c 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -10,6 +10,7 @@
- #include <linux/of.h>
- #include <linux/time.h>
- #include <linux/vmalloc.h>
-+#include <linux/qcom_vfio.h>
- 
- #include "pci.h"
- #include "core.h"
-@@ -463,8 +464,11 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci *ab_pci)
- 	struct ath11k_base *ab = ab_pci->ab;
- 	const struct ath11k_msi_config *msi_config = ab->pci.msi.config;
- 	struct pci_dev *pci_dev = ab_pci->pdev;
-+	u32 msi_addr_lo = 0, msi_addr_hi = 0;
- 	struct msi_desc *msi_desc;
-+	u16 msi_data = 0;
- 	int num_vectors;
-+	int msi_offset;
- 	int ret;
- 
- 	num_vectors = pci_alloc_irq_vectors(pci_dev,
-@@ -488,6 +492,35 @@ static int ath11k_pci_alloc_msi(struct ath11k_pci *ab_pci)
- 	}
- 	ath11k_info(ab, "MSI vectors: %d\n", num_vectors);
- 
-+	/*
-+	 * Try to get host MSI address from VFIO cache.
-+	 * When running on a VM, the ath11k firmware requires physical host
-+	 * MSI addresses and cannot handle guest IOVA addresses.
-+	 * qcom-vfio-pci writes host MSI values to extended config space with
-+	 * a magic signature "QMSI" for discovery. Search for it.
-+	 */
-+	msi_offset = qcom_vfio_find_msi_cache(pci_dev);
-+	if (msi_offset) {
-+		pci_read_config_dword(pci_dev,
-+				      msi_offset + QCOM_VFIO_MSI_ADDR_LO_OFFSET,
-+				      &msi_addr_lo);
-+		pci_read_config_dword(pci_dev,
-+				      msi_offset + QCOM_VFIO_MSI_ADDR_HI_OFFSET,
-+				      &msi_addr_hi);
-+		pci_read_config_word(pci_dev,
-+				     msi_offset + QCOM_VFIO_MSI_DATA_OFFSET,
-+				     &msi_data);
-+
-+		if (msi_addr_lo && msi_addr_lo != 0xFFFFFFFF) {
-+			ab->pci.msi.addr_lo = msi_addr_lo;
-+			ab->pci.msi.addr_hi = msi_addr_hi;
-+			ab->pci.msi.ep_base_data = msi_data;
-+			ath11k_info(ab, "VFIO MSI cache at offset 0x%x: addr_lo=0x%x addr_hi=0x%x data=%d\n",
-+				    msi_offset, msi_addr_lo, msi_addr_hi, msi_data);
-+			return 0;
-+		}
-+	}
-+
- 	ath11k_pci_msi_disable(ab_pci);
- 
- 	msi_desc = irq_get_msi_desc(ab_pci->pdev->irq);
--- 
-2.55.0
+The solution in this series provides a clean, kernel-only solution that
+addresses the previous concerns.
+
+Architecture:
+1. qcom-vfio-pci variant driver caches physical host MSI values and
+   exposes them via extended config space with magic signature "QMSI"
+   In this way, device-specific hardware quirks belong only in kernel
+   drivers, not userspace, independent of the tools used.
+   This follows the established VFIO variant driver pattern used by
+   other drivers like mlx5-vfio-pci (netdev tree) and nvgrace-gpu (platform
+   tree).
+2. VM drivers (ath11k/ath12k) automatically discover and use cached values
+3. PCIe link recovery handles VM timing variations
+
+Thoroughly tested: 3 VMs across 2 WiFi generations, all devices successfully
+initialized and are ready for use.
+- VM1: ath11k (WCN6855)
+- VM2: ath11k (WCN6855)
+- VM3: ath12k (WCN7850)
+
+[1] https://lore.kernel.org/all/20240322104912.94811-1-jtornosm@redhat.com/
+[2] https://lore.kernel.org/kvm/20240812170014.1583783-1-alex.williamson@redhat.com/
+[3] Original problem report:
+    https://lore.kernel.org/all/fc6bd06f-d52b-4dee-ab1b-4bb845cc0b95@quicinc.com/
+
+Jose Ignacio Tornos Martinez (7):
+  PCI: Add pci_find_free_ext_cap_offset() helper
+  vfio: Add qcom_vfio.h header for MSI cache protocol
+  vfio/pci: Add qcom-vfio-pci variant driver
+  ath11k: Add PCIe link recovery retry for VMs
+  ath11k: Use VFIO MSI cache when available
+  ath12k: Add PCIe link recovery retry for VMs
+  ath12k: Use VFIO MSI cache when available
+--
+2.53.0
 
 
