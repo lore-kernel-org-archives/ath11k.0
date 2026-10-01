@@ -4,87 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC948CA5FB3
-	for <ath11k@archiver.kernel.org>; Thu,  1 Oct 2026 07:20:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 563F0CA5FCB
+	for <ath11k@archiver.kernel.org>; Thu,  1 Oct 2026 14:21:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7Bmie9JTdC7GvOREgQKIaVbNDMTF41K5ZHDK/CLSZFA=; b=QUEO058DeJ5cOo8UpGbNFOmt8Y
-	ZJfQQKDBScJf36UxwJvINRAXijaiF2JNsgLAjkuDURsJ2ZgIme3absV4+LAtLNo9vdLasHMef7dfL
-	yQ65Lfc+f+LkqV/s7RyGiK11hAV4px2yqXKj3nG/fJPSnh0qx90djHO5MptSxdYFP6LE+DZ4iayCI
-	SGHqQpATwYlTii9/a+0Qtstz1E2+p5M3up0nZT2bQPlGTawanVW3DC9+UTOaPzrrcUiQTXLqKI/GO
-	DQweSozvhe//O831j4WEFK6jmLQEX7kUWK2Bl1oCuhMhFN3KVFdqK+eQ3P2ZycNvBd99q5wdx6jfj
-	pfC/BrsA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fh3mHGVp2bOdCQOsMBmhI2ZiToofIndaNbGggmqwne0=; b=iv6KczvyzXkc2uTZsRrgopchax
+	4qq5F/NekK5KtliI1TyZrt1FoD3rQEr8t+1gGK/P8SZvsWB8ktuR3lwV62dAk8HwpQ75OChh/s1Yi
+	/B7PGVJdc2i0DhepuPR81ko0D6AbC2ir9qACYZTUg+v72KYB7t+b+rT/CGqPrxahPknnvGXoNHzLH
+	xnEwraEX6XQNvTiKja8tihZ8eTthXcviseXUvTSKeEVJ/kQ7D/2SEJsCYWosT1RVlHAL2wwJiigdc
+	jOqHsjjw5TzR3gnsEix0YPchtSCAysNCBALW7c3G5tqyEXPFeqmscz5/vD18+33vBF08Hn3OMY6aU
+	UjSEpz5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCB5H-00000007ytp-3M0b;
-	Thu, 01 Oct 2026 07:20:03 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1xCHek-00000009Lyv-3M4z;
+	Thu, 01 Oct 2026 14:21:06 +0000
+Received: from meesny.iki.fi ([2001:67c:2b0:1c1::201])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCB5E-00000007ysG-3Ndv
-	for ath11k@lists.infradead.org;
-	Thu, 01 Oct 2026 07:20:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1790839199;
+	id 1xCHei-00000009Ly2-2tfy;
+	Thu, 01 Oct 2026 14:21:06 +0000
+Received: from fauth-c2-smtp.messagingengine.com (fauth-c2-smtp.messagingengine.com [204.75.18.201])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmtilli)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4hwYx01JfzzySy;
+	Thu, 01 Oct 2026 17:20:51 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1790864453;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=7Bmie9JTdC7GvOREgQKIaVbNDMTF41K5ZHDK/CLSZFA=;
-	b=W71QLNoP8PRCn9eZga+q3//ONdcHsXDwsnVqsxGa7bLoJxam8tivlN4eevqkVwJuDdOFhq
-	n7dpvC6r280Hxo6FIquAMaiVYCU9TV9/+f967wmggNbDHPvVtWf5A5YNqBOp+TD7cnzspX
-	jnzdMJnKXSFcfl8/1zZ+01GbqfpDjRs=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-361-3KcQEm1XMWOnIp_ceFAq8Q-1; Thu,
- 01 Oct 2026 03:19:55 -0400
-X-MC-Unique: 3KcQEm1XMWOnIp_ceFAq8Q-1
-X-Mimecast-MFC-AGG-ID: 3KcQEm1XMWOnIp_ceFAq8Q_1790839193
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 502561953977;
-	Thu,  1 Oct 2026 07:19:52 +0000 (UTC)
-Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 59D061956089;
-	Thu,  1 Oct 2026 07:19:47 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: jgg@ziepe.ca
-Cc: alex@shazbot.org,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	bhelgaas@google.com,
-	jjohnson@kernel.org,
-	johannes@sipsolutions.net,
-	jtornosm@redhat.com,
-	kevin.tian@intel.com,
-	kvm@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	mani@kernel.org,
-	skolothumtho@nvidia.com,
-	yishaih@nvidia.com
-Subject: Re: [PATCH 3/7] vfio/pci: Add qcom-vfio-pci variant driver
-Date: Thu,  1 Oct 2026 09:19:45 +0200
-Message-ID: <20261001071945.83116-1-jtornosm@redhat.com>
-In-Reply-To: <20260930151229.GR163130@ziepe.ca>
-References: <20260930151229.GR163130@ziepe.ca>
+	bh=fh3mHGVp2bOdCQOsMBmhI2ZiToofIndaNbGggmqwne0=;
+	b=DpzvqErdiWc2K5YIF+OzDN15s8j+bsrE5SOtT7KCvFo8PosXQizB++XGKcP2imKHUaBgpf
+	otkvTovY0Us1wC+X7e9sIppuE45eGeOZVo1JGMmHXDTcbCQMEUwWv+Nw+7G4FZByDPtDew
+	f+3HfLRTfU7FR4iRAbkP0ESTNxcWJoE=
+ARC-Seal: i=1; a=rsa-sha256; d=iki.fi; s=meesny; cv=none; t=1790864453;
+	b=jJy7xXxWEp2UCahsaxJ5BRPNv9KMChG+ayUOCpVG9aWFX0eHd7cypjuVMd4GLk20kyyjzq
+	InnaSVek3NEqSy3teFleM39Bt5agGaWm6C2Ote0oD2DHGT5V3asYcsKHgbMgpfnyANCX8q
+	KcbObU06tx6HdJfpT+vbntdcwBm6DFU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1790864453;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fh3mHGVp2bOdCQOsMBmhI2ZiToofIndaNbGggmqwne0=;
+	b=rJcf50jmOzRdsQGm/H53R1upeTvfAbJ7y1AbhTKLJ9VkOlROJXDNdtu5JjgaqhA+xr9fu0
+	hScwrE61Svp1Ql0VoWalOITdhtJlRSr7ZsqdTaL1fwVkzCmqfI0G7nHvmdYEXPFHNLB7Cv
+	8+DjMc7EvWnj7SbXH92Khp3OdhOOQeo=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=jmtilli smtp.mailfrom=juha-matti.tilli@iki.fi
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id C25A9198003A;
+	Thu,  1 Oct 2026 10:20:49 -0400 (EDT)
+Received: from ams-imap-13 ([10.64.2.33])
+  by ams-compute-02.internal (MEProxy); Thu, 01 Oct 2026 10:20:49 -0400
+X-ME-Sender: <xms:P2y-at5Sq2K2YBXmoamxP3_aegmdBY88kcXAEm3CjsS37unnNGaOlA>
+    <xme:P2y-av1xmuX4fZgneKrDgZobXyMcQT5ZiuMNAFLouu1tO96A7GKWAXw-67NYUQPk9
+    7F0sk3hc8OKxye5MB_nEWthdVolyvKtGtY2D9nN_o37r6Ag0fIBN68s>
+X-ME-Proxy-Cause: dmFkZTEalv8rOj2Uj3+4YFCUjdY/jYEb/+9gtNNrCuYEzSg/QJULIbYWKJ1VzCB/eCjHp6
+    kfyShI04ct/CIcgZMVclZs6vAFYUtJQiVdI09AQwptSTRrOuR88rxCE6cQxvjs8rTz/v+T
+    mnEMYXmbDqWqQNsxamR7ByALCwVQ780Vapo8pwgxZ38PmYyLc/lkFKJ9hMnlJ+grHwGGHI
+    FGMvYeL/D0s8RH/kvjcilPzTiLhDB4XxarKa/426kQ2ek9K5MLJXPouMuiX8WK8RZu+l9I
+    GVTWdqZaq0T/2A1/yYQGikTFvz3vyNJ2LkT3mXtTThp5+4jMPTjGl2Q2OOx9oeQN3ud0uA
+    wUxl1jw6ut4i+cic/zrSufGHZGBkHi2d9Dkh0/uqVzLdUPhnqYOh+Hpg0XDwmdthr4Qtwz
+    o2JyQsQ7mGssAQLe/XweruY/GYqcDOqxIz4kIjmPOaO5ARMZEi4k8iuo/QjQphqW3PxiAZ
+    7kXs/OxmDe4kWuMGzzRC2a780ta6UscrViCOcspVNUy5w2TEEvXxzoCiDS/PVSIQ863PUR
+    nIh/zqdLtXjXi6Cc2+BkfNUUn1xj7tpCxsrGPGc8CdvsCi1uWBRgDgWsiy+OJHn8at3/a7
+    iZWEvMJhoVtyDiuYQhhot+otiBduMBtyee/dtPcCz4ISZHtCjNOusIxmy0+w
+X-ME-Proxy: <xmx:QWy-aiFkC4gpk_Pl-MUOTzG8-khCCwSXOcQgAdbxIqi0EEoxEs_Vfw>
+    <xmx:QWy-ajze2VroZWdrYm6Q8u3cYVzfql40lsa5gJbClFHuNVwDYRePmA>
+    <xmx:QWy-ajDKjy4Vko2m8TDkF3lF7_3ridpKXSC8Bu5OLUkS4BH6n6vOeQ>
+    <xmx:QWy-aiWmM15F7kbqvcJIIMJqfzwy0MNDozQSvEHpWU2AH2GfZuBgyg>
+    <xmx:QWy-ali2M8V1ecKfKNxSBx0bQieQpAQS6KVM3mqmPcZiKMRdz2NblIfr>
+Feedback-ID: i02414972:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 2DCD6F80094; Thu,  1 Oct 2026 10:20:47 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-MFC-PROC-ID: vLUB9MDJQRtak6rpgMNcro7EaJBurUWscZsR36zwf_I_1790839193
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
+X-ThreadId: A0G5p0OZ_htJ
+Date: Thu, 01 Oct 2026 17:20:27 +0300
+From: "Juha-Matti Tilli" <juha-matti.tilli@iki.fi>
+To: "Marcel Holtmann" <marcel@holtmann.org>
+Cc: "Manivannan Sadhasivam" <mani@kernel.org>,
+ "Deepak Kumar Singh" <deepak.singh@oss.qualcomm.com>,
+ "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>, "Simon Horman" <horms@kernel.org>,
+ "Jeff Johnson" <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, "Bjorn Andersson" <andersson@kernel.org>,
+ "Chris Lew" <christopher.lew@oss.qualcomm.com>,
+ "Raj Kumar Bhagat" <raj.bhagat@oss.qualcomm.com>,
+ "Jeff Hugo" <jeff.hugo@oss.qualcomm.com>
+Message-Id: <19433f85-4cf1-4ec1-a26f-0eab7df062df@app.fastmail.com>
+In-Reply-To: <0A4EB216-06E0-4A7D-A0FD-821DD371773B@holtmann.org>
+References: <20260922-qrtr-multi-ep-v3-0-c00831e88957@oss.qualcomm.com>
+ <20260922-qrtr-multi-ep-v3-2-c00831e88957@oss.qualcomm.com>
+ <7aed969d-0868-4c9c-967e-7766dbba427e@oss.qualcomm.com>
+ <13BFC5B0-77E6-48F2-B857-37686EA1DB2C@holtmann.org>
+ <05e539f8-bb7c-4038-8a83-8ab0d1a5b917@app.fastmail.com>
+ <m657dtesuagn7vdajsuzjb4mfysf5xabsu3s6n6lujj7yb3z4p@m2e7e3n4zyev>
+ <10091679-7567-42C2-B77E-EFD95CEDD649@holtmann.org>
+ <6e0ed085-07d0-46f0-97dd-b8d942842e1f@app.fastmail.com>
+ <0A4EB216-06E0-4A7D-A0FD-821DD371773B@holtmann.org>
+Subject: Re: [PATCH v3 2/4] net: qrtr: Assign unique node id for MHI endpoints
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261001_002000_932203_FE0FC3DC 
-X-CRM114-Status: GOOD (  17.48  )
+X-CRM114-CacheID: sfid-20261001_072104_928099_0CA4D819 
+X-CRM114-Status: GOOD (  13.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,73 +135,31 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Jason,
+On Wed, Sep 30, 2026, at 17:33, Marcel Holtmann wrote:
+> > Well, in defense of Manivannan's patchset it currently works for PCI=
++AHB
+> > setups better than the last version of that by Denis/Mihai/me (altho=
+ugh=20
+> > I could easily fix that), and it may be simpler for userspace to
+> > continue using nid than having to bind to an endpoint, which requires
+> > more changes in userspace code.
+> >=20
+> > The userspace just needs to know the nid.
+>=20
+> and existing userspace? You can _NOT_ break existing userspace.
+>=20
+> Don=E2=80=99t you need to re-write all existing QRTRIPC packets to act=
+ually even make this work?
 
-Thank you for the review.
+Well, from what I understand this rewriting is the plan.
 
-You're right that the commit message should better explain the current
-driver behavior. The flow today is:
+It is true that if someone has a single card, the nid changes, thus
+maybe breaking userspace if the userspace has hardcoded nid.
 
-1. Linux allocates MSI-X vectors (standard PCI MSI-X table)
-2. The Qualcomm firmware has its own interrupt controller with
-   private registers that need to be programmed with MSI addr/data
-3. The ath11k/ath12k driver extracts the addr/data from the MSI
-   descriptor and programs the firmware's private registers
-4. In a VM, the driver only sees virtual (IOVA) addr/data, but
-   the firmware's private writes bypass the IOMMU, so they need
-   the physical host values
+But if someone has multiple cards, the breakage to userspace is less
+with this patch, since userspace can keep on using the same code and
+just change the nid, whereas with the endpoint_id patch, the userspace
+needs code changes to bind to an endpoint.
 
-I'll improve the commit message.
-
-Regarding platform_device_msi_init_and_alloc_irqs(), I agree that
-moving the driver to device MSI domains would be cleaner on the
-driver side. However, even with that change, I think the VM problem
-remains exactly the same: the device MSI domain in the VM would
-allocate virtual addr/data pairs, and the firmware's private interrupt
-controller still needs the physical host values. The problem is not
-how the driver allocates MSI vectors, but that the firmware writes
-to its own registers bypassing the IOMMU.
-
-Also, the VFIO variant driver scheme would not fully break if the
-driver moved to device MSI domains. The variant driver caches host
-MSI values from the MSI descriptor, regardless of the allocation
-method. The hook point may need adaptation, but the fundamental
-approach (host caches physical values, VM reads them) remains valid.
-
-Regarding the hypercall idea for device MSI domains, I think that
-would be an interesting direction worth exploring as a generic
-solution, but that's a multi-subsystem effort that will take time to
-design and land. If there is any existing work or design discussion
-in this direction, I'd be happy to look into it and contribute.
-In the meantime, the VFIO variant driver provides an immediate path
-for users with deployed hardware, using an established kernel
-pattern. For now, it could coexist and be replaced later on when
-everything is ready.
-
-I completely agree that this could theoretically affect any device
-with private MSI registers. However, in practice, I'm only aware of
-this specific behavior in Qualcomm ath11k/ath12k firmware, where the
-device's interrupt controller requires the host physical MSI
-addresses to be programmed directly. I haven't seen this in other
-devices, which is why I think a device-specific approach seems
-appropriate, and the VFIO variant driver pattern fits well for this,
-following the same pattern as mlx5-vfio-pci and nvgrace-gpu for
-their own device-specific needs. I'd be happy to incorporate any
-ideas or suggestions to improve the approach, make it acceptable,
-and allow finally to use these devices from VMs.
-
-It's also worth noting that the PCI reset support for these devices
-has already landed in linux-next (commit 290153d46d1a "PCI: Add
-device-specific reset for Qualcomm devices") [1], solving the
-device reset path for VFIO passthrough. This MSI series is the
-remaining piece, with both in place, these Qualcomm WiFi devices
-would be fully operational in VMs for the first time.
-
-[1] https://lore.kernel.org/all/20260721081301.205374-1-jtornosm@redhat.com/
-
-Thanks
-
-Best regards
-Jose Ignacio
-
+BR, Juha-Matti
 
