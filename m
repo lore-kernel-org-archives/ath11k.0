@@ -4,72 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10A5BCA5FCE
-	for <ath11k@archiver.kernel.org>; Thu,  1 Oct 2026 20:05:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9524CA5FD4
+	for <ath11k@archiver.kernel.org>; Fri,  2 Oct 2026 12:19:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gFa6HvAarHDlIrjmTAUOJ7RLBY11icZwWxARmx5iXy8=; b=U3R2/RFL1TwsE1g/U6WF7U36be
-	rCIPYqtlP9sXXYiDgdT/50cNFyYa696UHgOTV8riXWHFhxzKMaH3U8ZzITf22pPCk+PZ4R9AaHk3g
-	ev9IEQi4GKQi/rkIwIqCzQIobkTHhAxR19draNTBXsLhG8+UllsKIlxWDsqdSn2K4mCkD92I1yL+K
-	pIC3Np+k1JHEcITdZ4WEVtzf6Rvcs2I/EDG/pxGqpWKWhaguJ+cA52bHQTRb8WtQIaToKBMdU7S2v
-	9/sxcZw+JOrUyxi2aqFdYKGa3L31qp3iXUBz+EWCCvZhcINLehUn0+3ZwkOl59SFjdYnbvGHQw0Dq
-	oZbxvTMg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=CUSQwQ8vAjSojfF/giLhvIKYInkvHMUZuOWv7KAxxtE=; b=aa4EIo1zGHJgc0b98b4+r1YiFn
+	nW83fyxhcGdRWGTISd1nQc1c5ZmCtkUvv3AXh/vewivUeUEoAOKXh9wLSFdZCJts3L3/RFs67Zjax
+	xroXnSA2X2npEdEJFWhW2ormF9PLNvJUOD/NCcFR9DUCsnqcqpAVgAs4nrdRWhoNckVJvJCe7jXWu
+	BGMrJ5tb9FgQbCFo+pLDimS2MO2MZTA2rQiFyGukWWnUMJ+bi6tryDhV8VZQ5AeFW8c6dk9LOxrM0
+	IcoEN/hj2hk9HoyweJhIB7T2fUwjSnw9uO1yODRdXpceFxwobxklcudrxEw+/ILjVbBC7/+NJHqx2
+	QSz88M5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCN1y-0000000A7jB-2fNx;
-	Thu, 01 Oct 2026 20:05:26 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xCcEd-0000000BYHs-2Q8B;
+	Fri, 02 Oct 2026 12:19:31 +0000
+Received: from vtj.irix.systems ([82.76.27.144])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCN1w-0000000A7j1-2IQi;
-	Thu, 01 Oct 2026 20:05:24 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0C20B4340A;
-	Thu,  1 Oct 2026 20:05:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D974B1F00893;
-	Thu,  1 Oct 2026 20:05:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790885123;
-	bh=gFa6HvAarHDlIrjmTAUOJ7RLBY11icZwWxARmx5iXy8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=oFkvLWac2KsZh3NfUjCP/h7/HaiDSvHH7LZO0D+Iifpk/isoYSSxhI2v3BWzn3FE3
-	 ezPWKN5dBMirfln9QwBABBts0lU4yCJGluJ9V/VhUTd+ZBBRDwsyzZLXDcKCmbvuHn
-	 weSfehPmwqdfc0w/3m30Pxs66Mivq+g5gBaMq+pOoNTzFy0lYhkbSwj3FX6Qk5MyiN
-	 SQLtwwBKnaT1X8J1Z1sMhAHSdQsrac6gpvJIlWjBeFXj4V7HwE7EL6+tumL9iaeWb/
-	 cViDa1SdbWNXvATKsmMJmiE7FSMKp018IxkjR135SkAFeLIVLA08eFdCVezKskDigm
-	 WfgD1TkfwukMw==
-Date: Thu, 1 Oct 2026 22:05:15 +0200
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Marcel Holtmann <marcel@holtmann.org>
-Cc: Juha-Matti Tilli <juha-matti.tilli@iki.fi>, 
-	Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
-	ath12k@lists.infradead.org, Bjorn Andersson <andersson@kernel.org>, 
-	Chris Lew <christopher.lew@oss.qualcomm.com>, Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>, 
-	Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/4] net: qrtr: Assign unique node id for MHI endpoints
-Message-ID: <6isrx67suid5qcha47ihlphxmmeiiapdl57h57hejkwchwtfdb@i3g2cwz6oavn>
-References: <20260922-qrtr-multi-ep-v3-2-c00831e88957@oss.qualcomm.com>
- <7aed969d-0868-4c9c-967e-7766dbba427e@oss.qualcomm.com>
- <13BFC5B0-77E6-48F2-B857-37686EA1DB2C@holtmann.org>
- <05e539f8-bb7c-4038-8a83-8ab0d1a5b917@app.fastmail.com>
- <m657dtesuagn7vdajsuzjb4mfysf5xabsu3s6n6lujj7yb3z4p@m2e7e3n4zyev>
- <10091679-7567-42C2-B77E-EFD95CEDD649@holtmann.org>
- <6e0ed085-07d0-46f0-97dd-b8d942842e1f@app.fastmail.com>
- <0A4EB216-06E0-4A7D-A0FD-821DD371773B@holtmann.org>
- <19433f85-4cf1-4ec1-a26f-0eab7df062df@app.fastmail.com>
- <A709172A-40F7-4986-B7D3-02A422F6584A@holtmann.org>
+	id 1xCcEa-0000000BYH8-2i99
+	for ath11k@lists.infradead.org;
+	Fri, 02 Oct 2026 12:19:30 +0000
+Received: from MAILGW-BIG.big.vtj.corp.irix.systems (localhost [127.0.0.1])
+	by vtj.irix.systems (Proxmox) with ESMTP id B127DB35C;
+	Fri, 02 Oct 2026 15:19:22 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=andrei-z.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=sig1; bh=CUSQwQ8vAjSojfF/giLhvIKYInkvHMUZuOWv7KAxxtE=; b=
+	h9DX/AVQtCNoVfzwftVQCwuZRgsaw62AnCKRowXTBJnhF055xAYjh/JxAl6otQWn
+	ySk5hnQ0+CGCOJhgLMAyfWCuxGEUblna5j+Mju0QtxfRIoAgnEskLyrcDP8Q0vKH
+	EzsHsmEeP0ZJl9DgEPApJYvhEDR4tccbTy1Pb1nUsuxERcrToBKRgc1P3q/Xnk7i
+	mFpQ2nC2t/H0/FV7+bUCTMJuLVf49DYq1ZJt13Bsis7U2tRLBovnscDJEw0/vhgc
+	Rxp2GxsyjiKYvdMFEyjfH5DEIYDU+rEjFPGoi+/sqChq79fYB32iQI2i+RIO+Rtv
+	chmucIWA1gzUlj7vWoJ36w==
+Received: from VTJ-MX.corp.irix.systems (unknown [IPv6:2a02:2f04:1:9c24::6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by vtj.irix.systems (Proxmox) with ESMTPS id 3F131B273;
+	Fri, 02 Oct 2026 15:19:20 +0300 (EEST)
+Received: from workspace.corp.irix.systems (2a02:2f04:1:9c23::c) by
+ VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Fri, 2 Oct 2026 15:19:19 +0300
+From: Andrei-Alexandru Bleortu <me@andrei-z.com>
+To: Jeff Johnson <jjohnson@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-wireless@vger.kernel.org>
+Subject: [PATCH] wifi: ath11k: handle HTT PPDU ID format indication
+Date: Fri, 2 Oct 2026 15:19:14 +0300
+Message-ID: <20261002121914.994458-1-me@andrei-z.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <A709172A-40F7-4986-B7D3-02A422F6584A@holtmann.org>
+Content-Type: text/plain
+X-Originating-IP: [2a02:2f04:1:9c23::c]
+X-ClientProxiedBy: VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) To
+ VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261002_051928_892661_34F4B721 
+X-CRM114-Status: GOOD (  12.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,62 +80,66 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Oct 01, 2026 at 05:39:47PM +0200, Marcel Holtmann wrote:
-> Hi Juha-Matti,
-> 
-> >>> Well, in defense of Manivannan's patchset it currently works for PCI+AHB
-> >>> setups better than the last version of that by Denis/Mihai/me (although 
-> >>> I could easily fix that), and it may be simpler for userspace to
-> >>> continue using nid than having to bind to an endpoint, which requires
-> >>> more changes in userspace code.
-> >>> 
-> >>> The userspace just needs to know the nid.
-> >> 
-> >> and existing userspace? You can _NOT_ break existing userspace.
-> >> 
-> >> Don’t you need to re-write all existing QRTRIPC packets to actually even make this work?
-> > 
-> > Well, from what I understand this rewriting is the plan.
-> > 
-> > It is true that if someone has a single card, the nid changes, thus
-> > maybe breaking userspace if the userspace has hardcoded nid.
-> > 
-> > But if someone has multiple cards, the breakage to userspace is less
-> > with this patch, since userspace can keep on using the same code and
-> > just change the nid, whereas with the endpoint_id patch, the userspace
-> > needs code changes to bind to an endpoint.
-> 
-> the general rule for Linux is to _not_ break existing userspace.
-> 
+Firmware from WLAN.HK 2.8 onwards sends HTT_T2H_PPDU_ID_FMT_IND (0x30)
+once per radio at bring-up. It describes how the firmware packs a PPDU
+ID: for each field (HW scheduler command id, ring, sequence index,
+link, command type, TQM command, MAC id and CRC) whether it is present,
+its width and its bit offset.
 
-The rule is that the kernel must not break ABI and the node id is not ABI.
+ath11k only ever compares PPDU IDs and never decodes them, so it has no
+use for this layout, but the unknown message type ends up in the
+default case and logs
 
-Node ids are assigned dynamically and discovered at runtime through qrtr lookup.
-They are not a fixed property of a device. For an AUTO endpoint, the id is
-simply whatever the firmware advertised and nothing guarantees it stays
-constant.
+  htt event 48 not handled
 
-I internally checked with the other uses of QRTR, ModemManager and QAIC teams:
+at warning level on every boot. Add the message type and dump the
+message at the ATH11K_DBG_DP_HTT debug level instead.
 
-- ModemManager never computes or hardcodes node ids. It discovers them live over
-AF_QIPCRTR (via libqrtr-glib) and groups ports into modems by physdev_uid, not
-by node id. It is not affected by this series.
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 
-- The QAIC userspace queries the device's serial number over its own control
-channel and then assumes that BHI serial number is same as node id. That
-assumption is what breaks. The kernel never guaranteed it. QAIC devices just
-happened to advertise the serial as the node id, so only QAIC userspace had this
-assumption.
+Assisted-by: LLM
+Signed-off-by: Andrei-Alexandru Bleortu <me@andrei-z.com>
+---
+Found and fixed with an AI coding assistant (Claude Code), which also
+drafted this changelog. Tested on a Ubiquiti UniFi U6 Enterprise
+(IPQ5018 + 2x QCN9074) running 7.2.8 with the OpenWrt backports ath11k:
+the warning is gone from both QCN9074 radios. On ath-next the patch is
+compile-tested (W=1) only.
 
-So I don't agree this is an ABI break.
+ drivers/net/wireless/ath/ath11k/dp.h    | 1 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-To give QAIC a proper interface to migrate to, I will expose the assigned node
-id via sysfs entry in next version, and the QAIC team has agreed to update their
-userspace to read it from there. That sysfs attribute will become the documented
-stable ABI, the specific node id value never was.
-
-- Mani
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 84f66839f0c6..bace81c453e1 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1033,6 +1033,7 @@ enum htt_t2h_msg_type {
+ 	HTT_T2H_MSG_TYPE_PPDU_STATS_IND = 0x1d,
+ 	HTT_T2H_MSG_TYPE_EXT_STATS_CONF = 0x1c,
+ 	HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND = 0x24,
++	HTT_T2H_MSG_TYPE_PPDU_ID_FMT_IND = 0x30,
+ };
+ 
+ #define HTT_TARGET_VERSION_MAJOR 3
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 6d95f7b343a5..a22cf1b9f43a 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1747,6 +1747,11 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 	case HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND:
+ 		ath11k_htt_backpressure_event_handler(ab, skb);
+ 		break;
++	case HTT_T2H_MSG_TYPE_PPDU_ID_FMT_IND:
++		/* The bit layout of the firmware's PPDU IDs; ath11k only compares them. */
++		ath11k_dbg_dump(ab, ATH11K_DBG_DP_HTT, NULL, "htt ppdu id format: ",
++				skb->data, skb->len);
++		break;
+ 	default:
+ 		ath11k_warn(ab, "htt event %d not handled\n", type);
+ 		break;
 -- 
-மணிவண்ணன் சதாசிவம்
+2.47.3
+
+
 
