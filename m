@@ -4,69 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB4D3CA5FEC
-	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 15:56:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47501CA5FDD
+	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 21:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=XvIrXc1fFfzKNgh15SbDAaaz7UPjmjrI0Y9cfPx7zxg=; b=xTl+xIDHIUg5v8YzVeR1gZ8AGh
-	H5ZpvJImLJcwaw/968gHZM3BO59o3+l+go3qkLDRNB5hjJA+gkUq12XT6HoBM2bMmrcXfPpbW6LaJ
-	1vUP1SNZKW5tHl9HSglv/EuJ1QsKIhD8X/1SuPEb8R+SorpsfOtonwWUcg3/6sMRVyWDlmp2xrlPM
-	YK0BiXi6H+GpMOFnvXctnuuYQ9TUiLa8xZDwmqBeJs0wl8N9VsZvk28nsy7asRZvZy8mFiUX5nsq4
-	sZV73rn9MaGpEQWygHvBkbLNp+LoXo/BH0Xbn/RLx37WUDSDTt7c+5JOi7ioZXY/pLhgTEN179fOF
-	LEbmA3Ug==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=8cIdndPyOHMf56UK9tLY6SNuenfeu2ZIWB6f+X1P2ks=; b=V0UNGLj6TVzYngLHNmg1T4uqFn
+	9CDMd/WD+IQQEwLD9fIftpHxD7oN7zEhNbnK0V6ROzcbagwxsw9jRb1Ta53ehPoEvgPzWMkwfQGtf
+	fDpnx8Y03ckQBtywlXAwVxgXHtzXcvUqlJnlTCPNpj0uJ7OQum+C5A5UhGeZiRJ8lVxqO5U+lbnMO
+	cxurcuErTiNgpFMTCEYINMw64x6P8ZLS58S89GI+aoOvkZ0T7BZzYuv8Ti5B25IGZuRBiOcEghKIj
+	QvyZQ7ZOsp+DPEvz4pf+Y4KP+51LHOsAz+CpSW0Y9gd9cjn/8w9X0Aui0h89uNQFEIMbPVEgzBmVe
+	ZF//GjwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xD25k-0000000Diqp-1dzP;
-	Sat, 03 Oct 2026 15:56:04 +0000
-Received: from vtj.irix.systems ([82.76.27.144])
+	id 1xD6sa-0000000E333-1WdK;
+	Sat, 03 Oct 2026 21:02:48 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xD25g-0000000DioT-2Wae
+	id 1xD6sZ-0000000E32x-1NNA
 	for ath11k@lists.infradead.org;
-	Sat, 03 Oct 2026 15:56:02 +0000
-Received: from MAILGW-BIG.big.vtj.corp.irix.systems (localhost [127.0.0.1])
-	by vtj.irix.systems (Proxmox) with ESMTP id 4FA71E1C3;
-	Sat, 03 Oct 2026 18:55:48 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=andrei-z.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:message-id:mime-version:reply-to:subject:subject:to
-	:to; s=sig1; bh=XvIrXc1fFfzKNgh15SbDAaaz7UPjmjrI0Y9cfPx7zxg=; b=
-	Dp7yRJmRLVkGNZctwULHvBw+rfVifuZiaZfAnptPRTjFQlxDMpB3Hj5RiSI/PdBL
-	xY1slMbiHdUXubmCQg6AH38Novku61Pw2dNrREroH0qnGZxkh0sihSGYQgcW8ebc
-	SGlrHWmYAUyeF634OPJ9nxpaKCoX56KcZHl52M+/D36PxveF8vRRU8Kk5qfId7sH
-	OWyWTlBcZ9GuIvVsbVWurqEPwS9ysW0Oe2PK+BCrodMKe4nJRZupuJcjeMkzRJvp
-	4vSGTsCInEvpZayrCtPH+O3FiQTcDlcC58GCsF4Ubp74ifhnJKN/F3LRuytzMyxq
-	HDLYTFjacItKqcXENnaSkA==
-Received: from VTJ-MX.corp.irix.systems (unknown [IPv6:2a02:2f04:1:9c24::6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by vtj.irix.systems (Proxmox) with ESMTPS id D11DEE16F;
-	Sat, 03 Oct 2026 18:55:47 +0300 (EEST)
-Received: from workspace.corp.irix.systems (2a02:2f04:1:9c23::c) by
- VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Sat, 3 Oct 2026 18:55:47 +0300
-From: Andrei-Alexandru Bleortu <me@andrei-z.com>
-To: Jeff Johnson <jjohnson@kernel.org>, Johannes Berg
-	<johannes@sipsolutions.net>
-CC: <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-wireless@vger.kernel.org>, Felix Fietkau <nbd@nbd.name>
-Subject: [PATCH 0/4] wifi: ath11k: beacon protection and firmware airtime fairness
-Date: Sat, 3 Oct 2026 18:55:38 +0300
-Message-ID: <20261003155542.96363-1-me@andrei-z.com>
-X-Mailer: git-send-email 2.47.3
+	Sat, 03 Oct 2026 21:02:47 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id BA25441480;
+	Sat,  3 Oct 2026 21:02:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A1EB1F0089B;
+	Sat,  3 Oct 2026 21:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791061366;
+	bh=8cIdndPyOHMf56UK9tLY6SNuenfeu2ZIWB6f+X1P2ks=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=CguJFy1ST3HdW+k9La9ASkiBrEJFGCNeh9+zBskr65UTdcDEXVE4s81iLOtJxVsNF
+	 oUX1UxvMs36qO39J6PfVtZIDJ5I9G/51oUcwa0CmJQHQbJco0ZPe7c7js2ufnl7Nhc
+	 K5aTHV+JWur5iXM8gJeW8uf+b8xLp4W+InPATMtOHL7j9QA/exDIZzLeEhM5y9s06I
+	 WhlrohO0DFxeXWRjL5qh2N3jRkwUaWNKiIVWZcHRGYgkSeZ1ruzbIQtFmLGG1kv+py
+	 el6ymg9lZR3bMUGI6RV0pMyiJDVendAogvKJn9A+fcgD8OxK8C2y5/aUATrHekdz6K
+	 XEUlnLLVLJB9g==
+Message-ID: <70c91780-a18f-487d-8036-92c0e3e68e55@kernel.org>
+Date: Sat, 3 Oct 2026 23:02:41 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [2a02:2f04:1:9c23::c]
-X-ClientProxiedBy: VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) To
- VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261003_085600_831411_3D7B076F 
-X-CRM114-Status: GOOD (  11.53  )
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: net: wireless: qcom,ath11k-pci: add
+ QCN9074
+To: Andrei-Alexandru Bleortu <me@andrei-z.com>,
+ Abel Vesa <abelvesa@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ Johannes Berg <johannes@sipsolutions.net>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: ath11k@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org
+References: <20261003083410.3126453-1-me@andrei-z.com>
+ <20261003083410.3126453-2-me@andrei-z.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGPBBMBCgA5AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJp2mE8AAoJEBuTQ307QWKbeaIP
+ /ihHTkTW4KsN/DQ945JJbyu5tI0J80Wue7QyyLPglyKfhgb5cLLNPpOC8cCIJsc7+W3i2P38
+ s2c1cOH6CYGE7E9ur3Vfme8NW2S2I/Z8VC7bZnzyS23wT17LrsdS/qCpx4o8U+pt/xdXDKph
+ EGRYrIEmMpUWvyYzyYKGIe25FtaayIIKpq8eZYyFcp2f/sG5IkOW5uZzHPMPdcm87jU7fyuQ
+ rAU2vx9r+ulUfQ/q9Z2roC/ode3l7t2pN7BCBCsUDp6JCrUyZrtT1e7EbA0ZRP3aOBNk2P2E
+ DQOgJGjGdO5Yx2Y9LFtltu6JbsBJHi1syGRX3AtQYOMc4Y1WGoeZJmMlvKj2ZqqXNkcWi2DS
+ IQEWB0uW6CqFsBBIMGDa+6OzdaVO/uAVXWDWml02Men3CILdI1MbVjoh8ECqYUY7OQ+JJvNN
+ vnliuq5WM3Ghd3jg/LZZrxXjdIginRHFQCjIJYLKpLZWm1/iDFedcfzqRNYmTtqscdCNHW41
+ oT3Z7BmO9xwdjuwBS6nmS6JJwkbf5Ot2QR4pB/DRU7ZwjT1qHe+9r9gF32wXVQatHNGK/VVu
+ sfwOnkdxCWkp/qb2gdQRmZh+SedStWshigH6sNfuHBloF/q+hjMRc8b2m326OZdrbSHwY1Sz
+ vti8Hn7n8NjdHO9LKB7BIdjkA9DA5WsqOuVCzsFNBFVDXDQBEADNkrQYSREUL4D3Gws46JEo
+ Z9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLueMNsWLJBv
+ BaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6eiOMheesVS
+ 5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wAGldWsRxb
+ f3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA6z6lBZn0
+ WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9YegxWKvX
+ XHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt91pFzBSO
+ IpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gUBLHFTg2h
+ YnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/JoFzZ4B0
+ p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu4vXVFBYI
+ GmpyNPYzRm0QPwARAQABwsF2BBgBCgAgAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmna
+ YUkACgkQG5NDfTtBYptX+BAApg32CkxwNucNEi8WfWA8oKkW0y8YDuY6ORMo9FWNGiT/OTy0
+ vyJrLocrpn86zwfjVp+eCrssPYh8eqJfnWqmYv6ACQtHPYzPZQ3mSo8H97Z01oUxITzCxpXm
+ ZkLgPIqtDPcC2E3dPM/fVxcyowM8XsaMA9wcsaUYrta8toOq2b9tKcjleKMfMrm0gQ9u7wUc
+ QbLkwj6TCLOwucb07GXzLTNF9PZmaDUpKAZjMjmrW+le+SFvQbhamx0rxLWPR0NWntXpbCn+
+ +ACch03p/JyTBVktxFsFyCt7pTPE1kEaeuXBTe/a2D9iQvRxRW19LvuO2e59/u1wYUiH/orz
+ wbIC2S4dBsPAPihL3ztOU1yE86GPyQtSE0kU+/7snnLt4QGi6PChf3t5gnNjAzjUUovO8rgI
+ c+5yN5heq5loYHgK6OQ9OlHzsPHO9e9MOQcKlFycs1pyijFGzDwdNUm/SchK8iWT2QApTx4A
+ K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
+ n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
+ qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
+In-Reply-To: <20261003083410.3126453-2-me@andrei-z.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,66 +121,22 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Firmware features ath11k does not use yet, found while bringing up a
-Ubiquiti UniFi U6 Enterprise (IPQ5018 with two QCN9074) with the data
-path offloaded to NSS: a debugfs view of the firmware's services, beacon
-protection and firmware airtime fairness, plus the mac80211 change the
-last one needs.
-
-Patch 1 lists the firmware's WMI service bits in debugfs, as ath10k
-does: whether a feature exists is usually a service bit, and ath11k only
-logs part of the map at debug level.
-
-Patch 2 is beacon protection, following ath12k's implementation: the
-firmware signs beacons with the BIGTK. Checked over the air on both
-chips: every beacon in a monitor capture carried a Management MIC
-element whose BIP-CMAC-128 MIC verifies against the BIGTK hostapd
-installed (624 of 624; none with another radio's key), and a
-wpa_supplicant client verified the SSID from a protected beacon.
-
-Patch 3 is Felix Fietkau's mac80211 change from OpenWrt, which gives
-drivers the station airtime weight (sta_set_airtime_weight). Patch 4
-needs it; it is included unchanged, with his authorship.
-
-Patch 4 is firmware airtime fairness: per-station airtime shares the
-firmware schedules by, derived from the stations' airtime weights. With
-the data path offloaded, mac80211's own airtime scheduler never sees the
-frames, so the firmware is the only place fairness can happen there. A
-station capped at 10% under strict scheduling drops from 885 to
-122 Mbit/s and recovers when uncapped; at its normal fair share
-throughput is unchanged (900 Mbit/s on 5 GHz HE80). The firmware needs
-its ATF group defined before it accepts shares, which the commit
-message details.
-
-Patch 3 is for mac80211; the others go through the ath tree, and patch 4
-depends on patch 3.
-
-The patches were written with an AI coding assistant (Claude Code),
-which also drafted the changelogs; the testing above was done on the
-device.
-
-Andrei-Alexandru Bleortu (3):
-  wifi: ath11k: add a debugfs file listing the firmware WMI services
-  wifi: ath11k: support beacon protection
-  wifi: ath11k: support firmware airtime fairness
-
-Felix Fietkau (1):
-  wifi: mac80211: notify driver on airtime weight changes
-
- drivers/net/wireless/ath/ath11k/core.h    |   2 +
- drivers/net/wireless/ath/ath11k/debugfs.c |  15 ++
- drivers/net/wireless/ath/ath11k/mac.c     | 166 +++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.c     |  99 +++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h     |  58 +++++++-
- include/net/mac80211.h                    |   5 +
- net/mac80211/cfg.c                        |   6 +-
- net/mac80211/driver-ops.c                 |   4 +
- net/mac80211/driver-ops.h                 |  19 +++
- net/mac80211/sta_info.c                   |   7 +-
- net/mac80211/trace.h                      |  27 ++++
- 11 files changed, 400 insertions(+), 8 deletions(-)
+On 03/10/2026 10:34, Andrei-Alexandru Bleortu wrote:
+> QCN9074 is a PCIe 802.11ax radio that boards such as the IPQ5018-based
+> Ubiquiti UniFi U6 Enterprise solder down, two of them on different
+> bands. Like the other ath11k PCIe devices, each needs
+> qcom,calibration-variant to select its board data. Document its PCI ID.
+> 
+> No supplies are added: on these boards the radio's rails are fixed and
+> not under software control.
+> 
+> Assisted-by: LLM
+> Signed-off-by: Andrei-Alexandru Bleortu <me@andrei-z.com>
+> ---
 
 
-base-commit: f0406245cb9855e6318335a8a223551354291a46
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
+Best regards,
+Krzysztof
 
