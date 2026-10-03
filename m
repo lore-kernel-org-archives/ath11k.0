@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4557ACA5FDD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC162CA5FED
 	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 15:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
@@ -12,51 +12,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xH6S5OjKbYJWdEh8nIEtHsohRD3NkPr2SaIOuoY0sS0=; b=08qgUht+2zgpvAfcjY1w3otiUs
-	jFqJsoRdoMAP+s/2EGSD8pOSfHTXwGi0Z2iZWhaP7Wx0XyeCX04PsZVE3ld+ijCyn5TciHisXdRk7
-	Qwj+UE29tEm4GW9yeMeYPBCk+Oye9UKnglvamozmGp2qqa8EcskTYuzxy1xloqcjYCNw2sO2Y9zYE
-	2T/YObCAr7cpASrxkeDJKx+3RwGaLZDZV0Cr5c3vMH8walNn86V7AtTN99GJ8EXP+WB3nlfX1MBB8
-	mPtpvrUjPcUTlD+GImBMxNmc4DJGekw+ja++3zZkUPwsHlgL8uztfxOHef7nc6p1H7//MAf6JZYr0
-	Qs/1OssQ==;
+	bh=wbLJu/N2OQZWzMUCpZsGC2a6p7BIw5fHdNfe+gpkMNM=; b=4lVr4s5fbQYEagHpgXkiYNOAlF
+	b2HNKE08VSXQ8wHb7c/dky3k/gh2NM+s6z/a2Evx7RoAcy5xuamYKsu+tYUbhqCGpuACGz6wrR8VL
+	cjQn148EdeksdnOclKjO3fmHGuCtEEl32U7eeew9DkED3jWmtSD5W8VUqatu4anKun9E6Y6NutcIq
+	cc4cW3OGu8StKx9xk1BsgV9edXYSqtEQQNFHHgx7LKBgawXM0fseiMkR3r/kBFay91cWpFtad/dUu
+	A7xuD2Owrq0T5arh9w3qBzexmgseCdGcOtpsIOTICFqEtZTA0N0O6cXMPdl3s1EH+0v28pPFxJBlg
+	1eXId4Rg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xD25k-0000000Diqt-1urd;
-	Sat, 03 Oct 2026 15:56:04 +0000
+	id 1xD25l-0000000Dirm-0Txc;
+	Sat, 03 Oct 2026 15:56:05 +0000
 Received: from vtj.irix.systems ([82.76.27.144])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xD25g-0000000DioU-2Zz3
+	id 1xD25g-0000000Dioi-3EPv
 	for ath11k@lists.infradead.org;
-	Sat, 03 Oct 2026 15:56:02 +0000
-Received: from MAILGW-BIG.big.vtj.corp.irix.systems (localhost [127.0.0.1])
-	by vtj.irix.systems (Proxmox) with ESMTP id 05334E0FD;
-	Sat, 03 Oct 2026 18:55:49 +0300 (EEST)
+	Sat, 03 Oct 2026 15:56:03 +0000
+Received: from MAILGW-DELL.dell.vtj.corp.irix.systems (localhost [127.0.0.1])
+	by vtj.irix.systems (Proxmox) with ESMTP id 0F02FE83B;
+	Sat, 03 Oct 2026 18:55:50 +0300 (EEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=andrei-z.com; h=
 	cc:cc:content-transfer-encoding:content-type:content-type:date
 	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=sig1; bh=xH6S5OjKbYJWdEh8nIEt
-	HsohRD3NkPr2SaIOuoY0sS0=; b=VkE64RAYclEf2U+VzYPXalWPPzEQpNtisb6M
-	7UINDJrMZL7OpDd+qLF9CQi8UaOva3cfzDTtcQS/n80CJ0Wddl8leLPCouW07E+h
-	620stUz3ejZj1ir6TPlyDJUb74HQuNymb9T9RNayt1Xl0R2FOALgff8NHpbTSgHW
-	aKX20sOgMz8PDm5J87casI2FJN/RSCtJS9W/xxxaG5hUgBqVsvM+BUCe60QR9C38
-	fq1MkyX1DiA55viBgzsNrVa/0Y7NOM76Nl4p/EOJtthvTJlnRH22VSea8DRD/807
-	rIiKlek115h2xgro0S5NYG5MvPDvdDdf/LQtOnAgGp1cahMOmQ==
-Received: from VTJ-MX.corp.irix.systems (unknown [10.57.36.6])
+	:reply-to:subject:subject:to:to; s=sig1; bh=wbLJu/N2OQZWzMUCpZsG
+	C2a6p7BIw5fHdNfe+gpkMNM=; b=fmnXSeWS4rXLDSellhYa8Jv00MY+LUshnixU
+	G9LhF2SKKn8TH8pkc1mICQ1DbgMfFqx8V1t1BjoK8DWlZ1jMX7ltpiiiv5aXSxtY
+	ysaBwP3JwPtGYHC47zonFo5gVY5O7fHK3KuKYizSpoNw91ONFSzIfgJ9wvsGFmke
+	7m2mTk7CUjsLDjW8B5xVpId0VQNDZlUgc7HXfIr7UNnw7anjdn5uKxB34Pvw2iJT
+	7fE6ru8zeiEEn2giuPOR88OmEN/4hehqJunM1eNR3cV/sn/jD2S1zts/I0p2Hxd6
+	1iSyADK+sjbr025G9PP9nsqJZTKNmKvkjDazmfZMFYx1oT58Xw==
+Received: from VTJ-MX.corp.irix.systems (unknown [IPv6:2a02:2f04:1:9c24::6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by vtj.irix.systems (Proxmox) with ESMTPS id 40B6DE1C2;
+	by vtj.irix.systems (Proxmox) with ESMTPS id 3612CE83A;
 	Sat, 03 Oct 2026 18:55:48 +0300 (EEST)
 Received: from workspace.corp.irix.systems (2a02:2f04:1:9c23::c) by
  VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Sat, 3 Oct 2026 18:55:48 +0300
+ 15.2.2562.49; Sat, 3 Oct 2026 18:55:47 +0300
 From: Andrei-Alexandru Bleortu <me@andrei-z.com>
 To: Jeff Johnson <jjohnson@kernel.org>, Johannes Berg
 	<johannes@sipsolutions.net>
 CC: <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<linux-wireless@vger.kernel.org>, Felix Fietkau <nbd@nbd.name>
-Subject: [PATCH 3/4] wifi: mac80211: notify driver on airtime weight changes
-Date: Sat, 3 Oct 2026 18:55:41 +0300
-Message-ID: <20261003155542.96363-4-me@andrei-z.com>
+Subject: [PATCH 2/4] wifi: ath11k: support beacon protection
+Date: Sat, 3 Oct 2026 18:55:40 +0300
+Message-ID: <20261003155542.96363-3-me@andrei-z.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261003155542.96363-1-me@andrei-z.com>
 References: <20261003155542.96363-1-me@andrei-z.com>
@@ -67,8 +67,8 @@ X-Originating-IP: [2a02:2f04:1:9c23::c]
 X-ClientProxiedBy: VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) To
  VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261003_085600_862956_AE915F80 
-X-CRM114-Status: GOOD (  19.45  )
+X-CRM114-CacheID: sfid-20261003_085601_030532_F76929C6 
+X-CRM114-Status: GOOD (  19.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,167 +83,191 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Felix Fietkau <nbd@nbd.name>
+Firmware with WMI_TLV_SERVICE_BEACON_PROTECTION_SUPPORT protects the
+beacons it transmits with the BIGTK. Advertise
+NL80211_EXT_FEATURE_BEACON_PROTECTION when the service is present,
+install the BIGTK (key index 6/7) in hardware with the BIP ciphers, and
+set the beacon protection bit of the beacon template command when the
+beacon's Extended Capabilities, or those of a nontransmitted BSSID
+profile in it, enable it. The IGTK (index 4/5) stays in software, which
+protects the management frames mac80211 sends.
 
-Add a new sta_set_airtime_weight driver op so drivers can program the
-airtime fairness weight into hardware. The op is called when the weight
-is updated via sta_apply_parameters, and on station upload if a
-non-default weight is already set.
+This follows the ath12k change that added the same support, commit
+"wifi: ath12k: allow beacon protection keys to be installed in hardware".
 
-Signed-off-by: Felix Fietkau <nbd@nbd.name>
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 
+Assisted-by: LLM
 Signed-off-by: Andrei-Alexandru Bleortu <me@andrei-z.com>
 ---
- include/net/mac80211.h    |  5 +++++
- net/mac80211/cfg.c        |  6 +++++-
- net/mac80211/driver-ops.c |  4 ++++
- net/mac80211/driver-ops.h | 19 +++++++++++++++++++
- net/mac80211/sta_info.c   |  7 ++++++-
- net/mac80211/trace.h      | 27 +++++++++++++++++++++++++++
- 6 files changed, 66 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 61 +++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.c  |  2 +
+ drivers/net/wireless/ath/ath11k/wmi.h  |  5 ++-
+ 4 files changed, 63 insertions(+), 6 deletions(-)
 
-diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index cb9f8e14b..aab98d92e 100644
---- a/include/net/mac80211.h
-+++ b/include/net/mac80211.h
-@@ -4694,6 +4694,8 @@ struct ieee80211_prep_tx_info {
-  * @set_sar_specs: Update the SAR (TX power) settings.
-  * @sta_set_decap_offload: Called to notify the driver when a station is allowed
-  *	to use rx decapsulation offload
-+ * @sta_set_airtime_weight: Called to notify the driver of a change to a
-+ *	station's airtime fairness weight, so it can be programmed in hardware.
-  * @add_twt_setup: Update hw with TWT agreement parameters received from the peer.
-  *	This callback allows the hw to check if requested parameters
-  *	are supported and if there is enough room for a new agreement.
-@@ -5108,6 +5110,9 @@ struct ieee80211_ops {
- 	void (*sta_set_decap_offload)(struct ieee80211_hw *hw,
- 				      struct ieee80211_vif *vif,
- 				      struct ieee80211_sta *sta, bool enabled);
-+	void (*sta_set_airtime_weight)(struct ieee80211_hw *hw,
-+				       struct ieee80211_vif *vif,
-+				       struct ieee80211_sta *sta, u16 weight);
- 	void (*add_twt_setup)(struct ieee80211_hw *hw,
- 			      struct ieee80211_sta *sta,
- 			      struct ieee80211_twt_setup *twt);
-diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
-index bd1a857c8..28f99a8f8 100644
---- a/net/mac80211/cfg.c
-+++ b/net/mac80211/cfg.c
-@@ -2616,8 +2616,12 @@ static int sta_apply_parameters(struct ieee80211_local *local,
- 	if (ieee80211_vif_is_mesh(&sdata->vif))
- 		sta_apply_mesh_params(local, sta, params);
- 
--	if (params->airtime_weight)
-+	if (params->airtime_weight) {
- 		sta->airtime_weight = params->airtime_weight;
-+		if (sta->uploaded)
-+			drv_sta_set_airtime_weight(local, sdata, &sta->sta,
-+						   sta->airtime_weight);
-+	}
- 
- 	if (params->nmi_mac) {
- 		struct ieee80211_sub_if_data *nmi =
-diff --git a/net/mac80211/driver-ops.c b/net/mac80211/driver-ops.c
-index 49753b73a..083c26517 100644
---- a/net/mac80211/driver-ops.c
-+++ b/net/mac80211/driver-ops.c
-@@ -157,6 +157,10 @@ int drv_sta_state(struct ieee80211_local *local,
- 			sta->uploaded = true;
- 			if (rcu_access_pointer(sta->sta.rates))
- 				drv_sta_rate_tbl_update(local, sdata, &sta->sta);
-+			if (sta->airtime_weight != IEEE80211_DEFAULT_AIRTIME_WEIGHT)
-+				drv_sta_set_airtime_weight(local, sdata,
-+							   &sta->sta,
-+							   sta->airtime_weight);
- 		}
- 	} else if (old_state == IEEE80211_STA_ASSOC &&
- 		   new_state == IEEE80211_STA_AUTH) {
-diff --git a/net/mac80211/driver-ops.h b/net/mac80211/driver-ops.h
-index f1c0b87fd..bd5c9d1ed 100644
---- a/net/mac80211/driver-ops.h
-+++ b/net/mac80211/driver-ops.h
-@@ -1633,6 +1633,25 @@ static inline void drv_sta_set_decap_offload(struct ieee80211_local *local,
- 	trace_drv_return_void(local);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index a0d725923..31eee25c0 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -408,6 +408,7 @@ struct ath11k_vif {
+ 	int txpower;
+ 	bool rsnie_present;
+ 	bool wpaie_present;
++	bool beacon_prot;
+ 	bool bcca_zero_sent;
+ 	bool do_not_send_tmpl;
+ 	struct ath11k_arp_ns_offload arp_ns_offload;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index c1fa42edd..57cc6dbdd 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1495,6 +1495,44 @@ static int ath11k_mac_remove_vendor_ie(struct sk_buff *skb, unsigned int oui,
+ 	return 0;
  }
  
-+static inline void drv_sta_set_airtime_weight(struct ieee80211_local *local,
-+					      struct ieee80211_sub_if_data *sdata,
-+					      struct ieee80211_sta *sta,
-+					      u16 weight)
++static bool ath11k_mac_ext_capa_bcn_prot(const struct element *ext_capa)
 +{
-+	sdata = get_bss_sdata(sdata);
-+
-+	might_sleep();
-+	lockdep_assert_wiphy(local->hw.wiphy);
-+	if (!check_sdata_in_driver(sdata))
-+		return;
-+
-+	trace_drv_sta_set_airtime_weight(local, sdata, sta, weight);
-+	if (local->ops->sta_set_airtime_weight)
-+		local->ops->sta_set_airtime_weight(&local->hw, &sdata->vif, sta,
-+						   weight);
-+	trace_drv_return_void(local);
++	return ext_capa && ext_capa->datalen >= 11 &&
++	       (ext_capa->data[10] & WLAN_EXT_CAPA11_BCN_PROTECT);
 +}
 +
- static inline void drv_add_twt_setup(struct ieee80211_local *local,
- 				     struct ieee80211_sub_if_data *sdata,
- 				     struct ieee80211_sta *sta,
-diff --git a/net/mac80211/sta_info.c b/net/mac80211/sta_info.c
-index e81cd1551..2ce3ef905 100644
---- a/net/mac80211/sta_info.c
-+++ b/net/mac80211/sta_info.c
-@@ -872,8 +872,13 @@ static int sta_info_insert_drv_state(struct ieee80211_local *local,
- 		 * Drivers using legacy sta_add/sta_remove callbacks only
- 		 * get uploaded set to true after sta_add is called.
- 		 */
--		if (!local->ops->sta_add)
-+		if (!local->ops->sta_add) {
- 			sta->uploaded = true;
-+			if (sta->airtime_weight != IEEE80211_DEFAULT_AIRTIME_WEIGHT)
-+				drv_sta_set_airtime_weight(local, sdata,
-+							   &sta->sta,
-+							   sta->airtime_weight);
++/* Beacon protection covers the whole beacon, so enable it when the
++ * transmitted BSS or any nontransmitted profile in it advertises it.
++ */
++static bool ath11k_mac_bcn_prot_enabled(struct sk_buff *bcn)
++{
++	struct ieee80211_mgmt *mgmt = (struct ieee80211_mgmt *)bcn->data;
++	const u8 *ies = mgmt->u.beacon.variable;
++	int ies_len = skb_tail_pointer(bcn) - ies;
++	const struct element *elem, *profile;
++
++	if (ath11k_mac_ext_capa_bcn_prot(cfg80211_find_elem(WLAN_EID_EXT_CAPABILITY,
++							    ies, ies_len)))
++		return true;
++
++	for_each_element_id(elem, WLAN_EID_MULTIPLE_BSSID, ies, ies_len) {
++		if (elem->datalen < 1)
++			continue;
++
++		for_each_element(profile, elem->data + 1, elem->datalen - 1) {
++			if (profile->id != 0)
++				continue;
++
++			if (ath11k_mac_ext_capa_bcn_prot(cfg80211_find_elem(WLAN_EID_EXT_CAPABILITY,
++									    profile->data,
++									    profile->datalen)))
++				return true;
 +		}
- 		return 0;
++	}
++
++	return false;
++}
++
+ static int ath11k_mac_set_vif_params(struct ath11k_vif *arvif,
+ 				     struct sk_buff *bcn)
+ {
+@@ -1598,6 +1636,7 @@ static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif,
+ 		params |= ((!i ? 1 : 0) << WMI_EMA_FIRST_TMPL_SHIFT);
+ 		params |= ((i + 1 == beacons->cnt ? 1 : 0) << WMI_EMA_LAST_TMPL_SHIFT);
+ 
++		tx_arvif->beacon_prot = ath11k_mac_bcn_prot_enabled(beacons->bcn[i].skb);
+ 		ret = ath11k_wmi_bcn_tmpl(tx_arvif->ar, tx_arvif->vdev_id,
+ 					  &beacons->bcn[i].offs,
+ 					  beacons->bcn[i].skb, params);
+@@ -1651,6 +1690,7 @@ static int ath11k_mac_setup_bcn_tmpl_mbssid(struct ath11k_vif *arvif,
+ 		goto free;
  	}
  
-diff --git a/net/mac80211/trace.h b/net/mac80211/trace.h
-index 562a4964a..3ae7e78de 100644
---- a/net/mac80211/trace.h
-+++ b/net/mac80211/trace.h
-@@ -2462,6 +2462,33 @@ DEFINE_EVENT(sta_flag_evt, drv_sta_set_decap_offload,
- 	TP_ARGS(local, sdata, sta, enabled)
- );
++	arvif->beacon_prot = ath11k_mac_bcn_prot_enabled(bcn);
+ 	ret = ath11k_wmi_bcn_tmpl(ar, arvif->vdev_id, &offs, bcn, 0);
+ 	if (ret)
+ 		ath11k_warn(ab, "failed to submit beacon template command: %d\n",
+@@ -4412,6 +4452,14 @@ static int ath11k_install_key(struct ath11k_vif *arvif,
+ 		arg.key_cipher = WMI_CIPHER_AES_GCM;
+ 		key->flags |= IEEE80211_KEY_FLAG_GENERATE_IV_MGMT;
+ 		break;
++	case WLAN_CIPHER_SUITE_AES_CMAC:
++	case WLAN_CIPHER_SUITE_BIP_CMAC_256:
++		arg.key_cipher = WMI_CIPHER_AES_CMAC;
++		break;
++	case WLAN_CIPHER_SUITE_BIP_GMAC_128:
++	case WLAN_CIPHER_SUITE_BIP_GMAC_256:
++		arg.key_cipher = WMI_CIPHER_AES_GMAC;
++		break;
+ 	default:
+ 		ath11k_warn(ar->ab, "cipher %d is not supported\n", key->cipher);
+ 		return -EOPNOTSUPP;
+@@ -4523,11 +4571,10 @@ static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
+ 	int ret = 0;
+ 	u32 flags = 0;
  
-+TRACE_EVENT(drv_sta_set_airtime_weight,
-+	TP_PROTO(struct ieee80211_local *local,
-+		 struct ieee80211_sub_if_data *sdata,
-+		 struct ieee80211_sta *sta, u16 weight),
+-	/* BIP needs to be done in software */
+-	if (key->cipher == WLAN_CIPHER_SUITE_AES_CMAC ||
+-	    key->cipher == WLAN_CIPHER_SUITE_BIP_GMAC_128 ||
+-	    key->cipher == WLAN_CIPHER_SUITE_BIP_GMAC_256 ||
+-	    key->cipher == WLAN_CIPHER_SUITE_BIP_CMAC_256)
++	/* The IGTK protects management frames, which are done in software;
++	 * only the BIGTK (index 6/7) goes to the firmware, which signs beacons.
++	 */
++	if (key->keyidx == 4 || key->keyidx == 5)
+ 		return 1;
+ 
+ 	if (test_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ar->ab->dev_flags))
+@@ -10633,6 +10680,10 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 		wiphy_ext_feature_set(ar->hw->wiphy,
+ 				      NL80211_EXT_FEATURE_ENABLE_FTM_RESPONDER);
+ 
++	if (test_bit(WMI_TLV_SERVICE_BEACON_PROTECTION_SUPPORT, ar->ab->wmi_ab.svc_map))
++		wiphy_ext_feature_set(ar->hw->wiphy,
++				      NL80211_EXT_FEATURE_BEACON_PROTECTION);
 +
-+	TP_ARGS(local, sdata, sta, weight),
+ 	ar->hw->wiphy->mbssid_max_interfaces = TARGET_NUM_VDEVS(ab);
+ 	ar->hw->wiphy->ema_max_profile_periodicity = TARGET_EMA_MAX_PROFILE_PERIOD;
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 08fd6795e..2c3e14a65 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -1811,6 +1811,8 @@ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
+ 	cmd->buf_len = bcn->len;
+ 	cmd->mbssid_ie_offset = offs->mbssid_off;
+ 	cmd->ema_params = ema_params;
++	if (arvif->beacon_prot)
++		cmd->feature_enable_bitmap |= WMI_BCN_TMPL_BEACON_PROTECTION_EN;
+ 
+ 	ptr = skb->data + sizeof(*cmd);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index b2dade051..ae8b4cc08 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -2128,6 +2128,7 @@ enum wmi_tlv_service {
+ 	WMI_TLV_SERVICE_PER_PEER_HTT_STATS_RESET = 213,
+ 	WMI_TLV_SERVICE_FREQINFO_IN_METADATA = 219,
+ 	WMI_TLV_SERVICE_EXT2_MSG = 220,
++	WMI_TLV_SERVICE_BEACON_PROTECTION_SUPPORT = 244,
+ 	WMI_TLV_SERVICE_PEER_POWER_SAVE_DURATION_SUPPORT = 246,
+ 	WMI_TLV_SERVICE_SRG_SRP_SPATIAL_REUSE_SUPPORT = 249,
+ 	WMI_TLV_SERVICE_MBSS_PARAM_IN_VDEV_START_SUPPORT = 253,
+@@ -3628,6 +3629,8 @@ struct ath11k_wmi_p2p_noa_info {
+ #define WMI_EMA_FIRST_TMPL_SHIFT          16
+ #define WMI_EMA_LAST_TMPL_SHIFT           24
+ 
++#define WMI_BCN_TMPL_BEACON_PROTECTION_EN BIT(0)
 +
-+	TP_STRUCT__entry(
-+		LOCAL_ENTRY
-+		VIF_ENTRY
-+		STA_ENTRY
-+		__field(u16, weight)
-+	),
-+
-+	TP_fast_assign(
-+		LOCAL_ASSIGN;
-+		VIF_ASSIGN;
-+		STA_ASSIGN;
-+		__entry->weight = weight;
-+	),
-+
-+	TP_printk(
-+		LOCAL_PR_FMT  VIF_PR_FMT  STA_PR_FMT " weight:%u",
-+		LOCAL_PR_ARG, VIF_PR_ARG, STA_PR_ARG, __entry->weight
-+	)
-+);
-+
- TRACE_EVENT(drv_add_twt_setup,
- 	TP_PROTO(struct ieee80211_local *local,
- 		 struct ieee80211_sta *sta,
+ struct wmi_bcn_tmpl_cmd {
+ 	u32 tlv_header;
+ 	u32 vdev_id;
+@@ -5237,7 +5240,7 @@ enum wmi_ap_ps_peer_param {
+ 
+ #define DISABLE_SIFS_RESPONSE_TRIGGER 0
+ 
+-#define WMI_MAX_KEY_INDEX   3
++#define WMI_MAX_KEY_INDEX   7
+ #define WMI_MAX_KEY_LEN     32
+ 
+ #define WMI_KEY_PAIRWISE 0x00
 
 
