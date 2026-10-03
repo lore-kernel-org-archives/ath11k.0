@@ -4,58 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FCEDCA5FDD
-	for <ath11k@archiver.kernel.org>; Fri,  2 Oct 2026 23:47:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7796CA5FE6
+	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 08:34:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=mN4BUccomOxQP6dbLy3uvQNSnAAqcoTSVXqAPXIymNY=; b=IrzzPTZi3KZog0
-	fEZA0zIuootz3TfFVPtegZHVXJ4859JiQDlB/6vXdp33OMZhsKWxsIgDB6nsYKNpx1IZhmzpbgEWe
-	6hHPmJ0zbif1yNrhDNcpNWUBsILqoRTYdl6LQ2PAgHYiPFyAYj8l8F4fgh3SsyHtmEdZiyUqqGH8Y
-	857iMswoZNQHc7cllAM7frYSqENyHE918VmPOYeGBtjpR5NnLxIiqqonRU08P3GSQGmToC4Opr1rM
-	gJIAwZwUkp4xbufNElOoKPrm2lRseuqUfhZgA8xeqpZxynsJkeyGxP96qgKzUVTCEhHG0dRQ2n/oN
-	k6mDCDtlzqbgx1O3vrKw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=v2P/zXpAn3qRYJyJlYJ78XIv6fn9MiapQOOLUEKE75o=; b=ke/fnSpSTbW7Ke07mmCVyJbN3Q
+	3YeEQn9AAIg8bPBqi+kwleMaVMOWvjXXu3WHzyPMgj2t9TXyqok2DATD4V2Ovv7hs6o769TwMVvqJ
+	+5TACRwMI7yQdPqsdjYbS9ErQbCBLK36sbQBErviXfzdvngY2p/8xUNtTT7nBUfxX3aRVPaPCgyE0
+	gj03kALFDM5vljhHDWXBhvI0E6H/oqLyr7D5vv1Rj2PmwQi+58NdyjQXbC4wVO57ydMPA+TNL5z1s
+	p5hNKhgHTuJRIgmGEQpLf4vThcBp5L60vZb6/HeAe6RsNQJhrK9IP/xjwcqLqL+8hjS1lH+T3LxTp
+	TPy/YGTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCmyn-0000000CkgA-0GPh;
-	Fri, 02 Oct 2026 23:47:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xCvCK-0000000DBZC-1bwc;
+	Sat, 03 Oct 2026 08:34:24 +0000
+Received: from vtj.irix.systems ([82.76.27.144])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCmyl-0000000Ckfm-3SaW;
-	Fri, 02 Oct 2026 23:47:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5077843C52;
-	Fri,  2 Oct 2026 23:47:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0362B1F000FF;
-	Fri,  2 Oct 2026 23:47:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790984871;
-	bh=mN4BUccomOxQP6dbLy3uvQNSnAAqcoTSVXqAPXIymNY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=PRabq4VU4ZLHFbxtawTgO6RXWIeLXb6I4LbdyVZboLOfbiCesxv0UKv8vK1UIytj1
-	 wXmTfmTN1Bu1A7mkDrT1Z8OK5IVtSYeeaYlp8UJUa/nVXBAcTTByRRI3zpknkCtAyy
-	 y7ukLW4ydY6pn1zVUQmxQkLoCJi4oNdForZ0I1xz1dVX1L+rX1k7cmYd21/4KLwjkg
-	 /uaZ54lo+pyKodDxeYdvVbzeC5NCiEr2EBkxGlHTsSP7pbRhpjEsWEdg1S39TiNziT
-	 JmYpQP8SbG/27yiI1AP8MMJ7YKil7aeLBo+xEpAiBy1sYi16BcGx3oOdwvHOocSYsI
-	 vy3G8KKEPXPmQ==
-Date: Fri, 2 Oct 2026 18:47:49 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Alex Williamson <alex@shazbot.org>
-Cc: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>, bhelgaas@google.com,
-	mani@kernel.org, jjohnson@kernel.org, linux-pci@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org, mhi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH v14 0/2] PCI: Add device-specific reset for Qualcomm
- devices
-Message-ID: <20261002234749.GA411439@bhelgaas>
+	id 1xCvCG-0000000DBWr-44VY
+	for ath11k@lists.infradead.org;
+	Sat, 03 Oct 2026 08:34:23 +0000
+Received: from MAILGW-DELL.dell.vtj.corp.irix.systems (localhost [127.0.0.1])
+	by vtj.irix.systems (Proxmox) with ESMTP id 74AC6CAE0;
+	Sat, 03 Oct 2026 11:34:17 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=andrei-z.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=sig1; bh=v2P/zXpAn3qRYJyJlYJ7
+	8XIv6fn9MiapQOOLUEKE75o=; b=UClasF8CSwKfvVCMDXK+ypZIoMrf1PcUWMfF
+	1gPN2zmhKTZOsPiZHXBRniGjm8KSrvJEH2qJJvxHEoQBDw+7lLh2UeH65Hu5rxmq
+	05FZkZIr6ictVc8EHICi5V2Nq3ingWyjo+iR1Qd82rj+2xVKU0TyEOXAkETfPv9D
+	GKHEZsDerWmkw+GmyJgOZGHvTo/le82YDvyaPMl5DPJYvpFNLvOOhSX+6m84ktHU
+	zOOHt3sVqPQuCypqARcAm/vQq0hJftmNkYW1oXVNytMfaKdUPdcFU1LfB+pmI7hs
+	Ozic/rzz+xBzsUnapLdNsxZotrS6/jxbjCBqiIKax+9u41l48g==
+Received: from VTJ-MX.corp.irix.systems (unknown [IPv6:2a02:2f04:1:9c24::6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by vtj.irix.systems (Proxmox) with ESMTPS id 58459CB47;
+	Sat, 03 Oct 2026 11:34:16 +0300 (EEST)
+Received: from workspace.corp.irix.systems (2a02:2f04:1:9c23::c) by
+ VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Sat, 3 Oct 2026 11:34:16 +0300
+From: Andrei-Alexandru Bleortu <me@andrei-z.com>
+To: Abel Vesa <abelvesa@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+	Johannes Berg <johannes@sipsolutions.net>, Konrad Dybcio
+	<konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob
+ Herring <robh@kernel.org>
+CC: <ath11k@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-wireless@vger.kernel.org>
+Subject: [PATCH 2/4] dt-bindings: arm: qcom: add Ubiquiti UniFi U6 Enterprise
+Date: Sat, 3 Oct 2026 11:34:08 +0300
+Message-ID: <20261003083410.3126453-3-me@andrei-z.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261003083410.3126453-1-me@andrei-z.com>
+References: <20261003083410.3126453-1-me@andrei-z.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261002170949.59c3d47a@shazbot.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [2a02:2f04:1:9c23::c]
+X-ClientProxiedBy: VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) To
+ VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261003_013421_188251_57610734 
+X-CRM114-Status: UNSURE (   7.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,68 +88,29 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Oct 02, 2026 at 05:09:49PM -0600, Alex Williamson wrote:
-> On Fri, 2 Oct 2026 16:40:58 -0500
-> Bjorn Helgaas <helgaas@kernel.org> wrote:
-> 
-> > [cc->to: Alex, +cc Jason]
-> > 
-> > On Thu, Sep 17, 2026 at 09:16:49AM +0200, Jose Ignacio Tornos Martinez wrote:
-> > > Some Qualcomm PCIe devices (WCN6855, WCN7850 WLAN; SDX62/SDX65 modems)
-> > > lack working reset methods for VFIO passthrough scenarios. These devices
-> > > have no FLR capability, advertise NoSoftRst+ (blocking PM reset), and have
-> > > broken bus reset (addressed by quirk_no_bus_reset, merged for v7.2).  
-> > 
-> > Specifically, 6a4f64c3a3ad ("PCI: Avoid SBR for Qualcomm
-> > WCN6855/WCN7850 WiFi, SDX62/SDX65 modems").  I don't know what the
-> > behavior was prior to that commit.  I suppose it was something
-> > obvious?
-> > 
-> > > VFIO attempts to reset devices on every reassignment:
-> > > - For the listed modems, without a proper reset capability, these devices
-> > > never successfully initialize even on first VM assignment.
-> > > - For the listed WLAN devices, without a working reset method, the attempt
-> > > fails. On clean VM shutdown, the guest driver properly deinitializes the
-> > > device via .shutdown/.remove callbacks, leaving it in a usable state despite
-> > > the failed reset. However, on unclean VM termination (crash, force-off), the
-> > > guest driver callbacks are not triggered, the device remains in an undefined
-> > > state (DMA active, interrupts enabled, etc.), and without a working reset it
-> > > cannot be reused.  
-> > 
-> > So IIUC, prior to these patches, these devices were functional when
-> > passed through to several successive guests as long as the guests shut
-> > down cleanly, but the resets done by VFIO didn't work, so the host
-> > couldn't enforce isolation between those guests.
-> > 
-> > If true, I propose updating the commit logs to emphasize the lack of
-> > isolation and de-emphasize the VM clean shutdown vs crash behavior,
-> > e.g.:
-> > 
-> >   Resets of this device always failed prior to this commit, so VFIO on
-> >   the host could not enforce isolation between successive passthrough
-> >   users.
-> > 
-> >   If a guest driver deinitialized the device, it may have been
-> >   functional if passed through to a subsequent guest, despite the lack
-> >   of isolation.  Otherwise the device may have been left in an
-> >   undefined state (e.g., DMA and interrupts active) and unusable.
-> > 
-> > It would also be great to have Alex's ack here.
-> 
-> Yes, aiui it's an isolation and repeatability issue.  In fact, without
-> knowing what's actually stored in the hardware, I'd suspect it's more
-> the latter and the testing proves that.  Mani is really the one
-> vouching for it from the hardware, isolation perspective.
-> 
-> Standard reset methods have never worked on these devices and that's
-> now evident by the quirks that disable them for these devices.  This
-> fills the remaining gap by providing device specific resets for the same
-> hardware.
-> 
-> Both patches should properly reference the quirk_no_bus_reset commit,
-> but otherwise these look correct, afaict.
-> 
-> Acked-by: Alex Williamson <alex@shazbot.org>
+Document the Ubiquiti UniFi U6 Enterprise, an IPQ5018 based access
+point.
 
-Thanks, Alex!
+Assisted-by: LLM
+Signed-off-by: Andrei-Alexandru Bleortu <me@andrei-z.com>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 121ca557c..4524f76b4 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -113,6 +113,7 @@ properties:
+           - enum:
+               - qcom,ipq5018-rdp432-c2
+               - tplink,archer-ax55-v1
++              - ubnt,u6-enterprise
+           - const: qcom,ipq5018
+ 
+       - items:
+-- 
+2.47.3
+
+
 
