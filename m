@@ -4,66 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99ED0CA5FE6
-	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 09:21:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4557ACA5FDD
+	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 15:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=aKfbK6viYS5HPrJhhIkHWb/Xk1VwHI0VgEEBup0zH+M=; b=D6vW/BVgRMs1KuGsbB9Uzu3opd
-	7OoKSkbFF3ZP6V5GHh+mUin3Kmi+vso5QMrSGg42pThbX8QX3oUdnmLRXLuWE2hy/HneNRzztEyeJ
-	86AZw02FbYEXZFD8bEKedbbpD2ZEKnus8CsLDoNnW/PLAJBVcinazIlUiSy4/lB/Cglp09IP0SF30
-	bx9UOS9LWOuAIMPvWDch6DrNdh+kAGuY9CqmqRXO4Hcb4MAOFcPJrQYShgG6qbKTxB1Wq8p1yMTZM
-	CP1lWcvIfHIVyBnta7SEEBk0Zj429AF/FdYz5SnZBL2+IUdIuGkApgtlhWpHEd4dReBilCq+p3Rh5
-	hEtgOhbg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=xH6S5OjKbYJWdEh8nIEtHsohRD3NkPr2SaIOuoY0sS0=; b=08qgUht+2zgpvAfcjY1w3otiUs
+	jFqJsoRdoMAP+s/2EGSD8pOSfHTXwGi0Z2iZWhaP7Wx0XyeCX04PsZVE3ld+ijCyn5TciHisXdRk7
+	Qwj+UE29tEm4GW9yeMeYPBCk+Oye9UKnglvamozmGp2qqa8EcskTYuzxy1xloqcjYCNw2sO2Y9zYE
+	2T/YObCAr7cpASrxkeDJKx+3RwGaLZDZV0Cr5c3vMH8walNn86V7AtTN99GJ8EXP+WB3nlfX1MBB8
+	mPtpvrUjPcUTlD+GImBMxNmc4DJGekw+ja++3zZkUPwsHlgL8uztfxOHef7nc6p1H7//MAf6JZYr0
+	Qs/1OssQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCvvv-0000000DG4q-31j9;
-	Sat, 03 Oct 2026 09:21:31 +0000
-Received: from m16.mail.163.com ([220.197.31.3])
+	id 1xD25k-0000000Diqt-1urd;
+	Sat, 03 Oct 2026 15:56:04 +0000
+Received: from vtj.irix.systems ([82.76.27.144])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCvvr-0000000DG02-49Bf
+	id 1xD25g-0000000DioU-2Zz3
 	for ath11k@lists.infradead.org;
-	Sat, 03 Oct 2026 09:21:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=aK
-	fbK6viYS5HPrJhhIkHWb/Xk1VwHI0VgEEBup0zH+M=; b=DazRDYvZG3o6tEgBYZ
-	rC1RR0AvoA527cRJ/cYmvBV/C1FdLOe+sJrdJsXAE7fGz5A12WkmLZu+lsslKHxN
-	LtbSop9vNGER+qQYDEtmsoNypQaMUy1qh7SkeKaN6m4k6+CXHhP40f8KTvpFam7f
-	ieCKI8eo1l4CPK0QP672Eevlw=
-Received: from pc.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wD3n1YCycBqC7WjCQ--.62376S4;
-	Sat, 03 Oct 2026 17:21:10 +0800 (CST)
-From: Jiale Yao <yaojiale02@163.com>
-To: Jeff Johnson <jjohnson@kernel.org>,
-	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-	kbuild test robot <lkp@intel.com>,
-	Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>,
-	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
-	Rajkumar Manoharan <rmanohar@codeaurora.org>,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Jiale Yao <yaojiale02@163.com>
-Subject: [PATCH v2 2/5] wifi: ath11k: avoid IDR mutation during pending mgmt TX cleanup
-Date: Sat,  3 Oct 2026 17:20:59 +0800
-Message-Id: <20261003092104.520135-3-yaojiale02@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261003092104.520135-1-yaojiale02@163.com>
-References: <20261003092104.520135-1-yaojiale02@163.com>
+	Sat, 03 Oct 2026 15:56:02 +0000
+Received: from MAILGW-BIG.big.vtj.corp.irix.systems (localhost [127.0.0.1])
+	by vtj.irix.systems (Proxmox) with ESMTP id 05334E0FD;
+	Sat, 03 Oct 2026 18:55:49 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=andrei-z.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=sig1; bh=xH6S5OjKbYJWdEh8nIEt
+	HsohRD3NkPr2SaIOuoY0sS0=; b=VkE64RAYclEf2U+VzYPXalWPPzEQpNtisb6M
+	7UINDJrMZL7OpDd+qLF9CQi8UaOva3cfzDTtcQS/n80CJ0Wddl8leLPCouW07E+h
+	620stUz3ejZj1ir6TPlyDJUb74HQuNymb9T9RNayt1Xl0R2FOALgff8NHpbTSgHW
+	aKX20sOgMz8PDm5J87casI2FJN/RSCtJS9W/xxxaG5hUgBqVsvM+BUCe60QR9C38
+	fq1MkyX1DiA55viBgzsNrVa/0Y7NOM76Nl4p/EOJtthvTJlnRH22VSea8DRD/807
+	rIiKlek115h2xgro0S5NYG5MvPDvdDdf/LQtOnAgGp1cahMOmQ==
+Received: from VTJ-MX.corp.irix.systems (unknown [10.57.36.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by vtj.irix.systems (Proxmox) with ESMTPS id 40B6DE1C2;
+	Sat, 03 Oct 2026 18:55:48 +0300 (EEST)
+Received: from workspace.corp.irix.systems (2a02:2f04:1:9c23::c) by
+ VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Sat, 3 Oct 2026 18:55:48 +0300
+From: Andrei-Alexandru Bleortu <me@andrei-z.com>
+To: Jeff Johnson <jjohnson@kernel.org>, Johannes Berg
+	<johannes@sipsolutions.net>
+CC: <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-wireless@vger.kernel.org>, Felix Fietkau <nbd@nbd.name>
+Subject: [PATCH 3/4] wifi: mac80211: notify driver on airtime weight changes
+Date: Sat, 3 Oct 2026 18:55:41 +0300
+Message-ID: <20261003155542.96363-4-me@andrei-z.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261003155542.96363-1-me@andrei-z.com>
+References: <20261003155542.96363-1-me@andrei-z.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wD3n1YCycBqC7WjCQ--.62376S4
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJFyxtw43tFWxJFWfGF1xZrb_yoW5trWUpF
-	W8ua9FyFyUArsrXws5AF4xAFy5X3Z5twsFkr4kC34fXF9FvFnaqF1YvFy3JryYyr4UJFyj
-	vr4Utr15G3s8t3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pK-eoAUUUUU=
-X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7wY+eGrAyQYqLAAA3M
+Content-Type: text/plain
+X-Originating-IP: [2a02:2f04:1:9c23::c]
+X-ClientProxiedBy: VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) To
+ VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261003_022128_378415_5091AEA6 
-X-CRM114-Status: GOOD (  10.46  )
+X-CRM114-CacheID: sfid-20261003_085600_862956_AE915F80 
+X-CRM114-Status: GOOD (  19.45  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,82 +83,167 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The pending management TX cleanup walks txmgmt_idr with idr_for_each(),
-and its callback removes the current entry. This can invalidate the
-radix-tree iterator retained by idr_for_each().
+From: Felix Fietkau <nbd@nbd.name>
 
-Use idr_for_each_entry() so every iteration starts with a fresh lookup.
-Continue to remove each entry under txmgmt_idr_lock before freeing its skb,
-preventing concurrent TX completion from finding a stale skb pointer.
+Add a new sta_set_airtime_weight driver op so drivers can program the
+airtime fairness weight into hardware. The op is called when the weight
+is updated via sta_apply_parameters, and on station upload if a
+non-default weight is already set.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Jiale Yao <yaojiale02@163.com>
+Signed-off-by: Felix Fietkau <nbd@nbd.name>
+
+Signed-off-by: Andrei-Alexandru Bleortu <me@andrei-z.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c |  3 +--
- drivers/net/wireless/ath/ath11k/mac.c  | 12 ++++++------
- drivers/net/wireless/ath/ath11k/mac.h  |  2 +-
- 3 files changed, 8 insertions(+), 9 deletions(-)
+ include/net/mac80211.h    |  5 +++++
+ net/mac80211/cfg.c        |  6 +++++-
+ net/mac80211/driver-ops.c |  4 ++++
+ net/mac80211/driver-ops.h | 19 +++++++++++++++++++
+ net/mac80211/sta_info.c   |  7 ++++++-
+ net/mac80211/trace.h      | 27 +++++++++++++++++++++++++++
+ 6 files changed, 66 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 8039124e7832..31ac17c51036 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -2449,8 +2449,7 @@ void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
- 		complete(&ar->thermal.wmi_sync);
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index cb9f8e14b..aab98d92e 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -4694,6 +4694,8 @@ struct ieee80211_prep_tx_info {
+  * @set_sar_specs: Update the SAR (TX power) settings.
+  * @sta_set_decap_offload: Called to notify the driver when a station is allowed
+  *	to use rx decapsulation offload
++ * @sta_set_airtime_weight: Called to notify the driver of a change to a
++ *	station's airtime fairness weight, so it can be programmed in hardware.
+  * @add_twt_setup: Update hw with TWT agreement parameters received from the peer.
+  *	This callback allows the hw to check if requested parameters
+  *	are supported and if there is enough room for a new agreement.
+@@ -5108,6 +5110,9 @@ struct ieee80211_ops {
+ 	void (*sta_set_decap_offload)(struct ieee80211_hw *hw,
+ 				      struct ieee80211_vif *vif,
+ 				      struct ieee80211_sta *sta, bool enabled);
++	void (*sta_set_airtime_weight)(struct ieee80211_hw *hw,
++				       struct ieee80211_vif *vif,
++				       struct ieee80211_sta *sta, u16 weight);
+ 	void (*add_twt_setup)(struct ieee80211_hw *hw,
+ 			      struct ieee80211_sta *sta,
+ 			      struct ieee80211_twt_setup *twt);
+diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
+index bd1a857c8..28f99a8f8 100644
+--- a/net/mac80211/cfg.c
++++ b/net/mac80211/cfg.c
+@@ -2616,8 +2616,12 @@ static int sta_apply_parameters(struct ieee80211_local *local,
+ 	if (ieee80211_vif_is_mesh(&sdata->vif))
+ 		sta_apply_mesh_params(local, sta, params);
  
- 		wake_up(&ar->dp.tx_empty_waitq);
--		idr_for_each(&ar->txmgmt_idr,
--			     ath11k_mac_tx_mgmt_pending_free, ar);
-+		ath11k_mac_tx_mgmt_pending_free(ar);
- 		idr_destroy(&ar->txmgmt_idr);
- 		wake_up(&ar->txmgmt_empty_waitq);
+-	if (params->airtime_weight)
++	if (params->airtime_weight) {
+ 		sta->airtime_weight = params->airtime_weight;
++		if (sta->uploaded)
++			drv_sta_set_airtime_weight(local, sdata, &sta->sta,
++						   sta->airtime_weight);
++	}
  
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ae91b57c8422..f9af403a2f0d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6167,13 +6167,13 @@ static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
- 	ath11k_mgmt_over_wmi_tx_drop(ar, msdu);
+ 	if (params->nmi_mac) {
+ 		struct ieee80211_sub_if_data *nmi =
+diff --git a/net/mac80211/driver-ops.c b/net/mac80211/driver-ops.c
+index 49753b73a..083c26517 100644
+--- a/net/mac80211/driver-ops.c
++++ b/net/mac80211/driver-ops.c
+@@ -157,6 +157,10 @@ int drv_sta_state(struct ieee80211_local *local,
+ 			sta->uploaded = true;
+ 			if (rcu_access_pointer(sta->sta.rates))
+ 				drv_sta_rate_tbl_update(local, sdata, &sta->sta);
++			if (sta->airtime_weight != IEEE80211_DEFAULT_AIRTIME_WEIGHT)
++				drv_sta_set_airtime_weight(local, sdata,
++							   &sta->sta,
++							   sta->airtime_weight);
+ 		}
+ 	} else if (old_state == IEEE80211_STA_ASSOC &&
+ 		   new_state == IEEE80211_STA_AUTH) {
+diff --git a/net/mac80211/driver-ops.h b/net/mac80211/driver-ops.h
+index f1c0b87fd..bd5c9d1ed 100644
+--- a/net/mac80211/driver-ops.h
++++ b/net/mac80211/driver-ops.h
+@@ -1633,6 +1633,25 @@ static inline void drv_sta_set_decap_offload(struct ieee80211_local *local,
+ 	trace_drv_return_void(local);
  }
  
--int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
-+void ath11k_mac_tx_mgmt_pending_free(struct ath11k *ar)
- {
--	struct ath11k *ar = ctx;
--
--	ath11k_mac_tx_mgmt_free(ar, buf_id);
-+	struct sk_buff *msdu;
-+	int buf_id;
++static inline void drv_sta_set_airtime_weight(struct ieee80211_local *local,
++					      struct ieee80211_sub_if_data *sdata,
++					      struct ieee80211_sta *sta,
++					      u16 weight)
++{
++	sdata = get_bss_sdata(sdata);
++
++	might_sleep();
++	lockdep_assert_wiphy(local->hw.wiphy);
++	if (!check_sdata_in_driver(sdata))
++		return;
++
++	trace_drv_sta_set_airtime_weight(local, sdata, sta, weight);
++	if (local->ops->sta_set_airtime_weight)
++		local->ops->sta_set_airtime_weight(&local->hw, &sdata->vif, sta,
++						   weight);
++	trace_drv_return_void(local);
++}
++
+ static inline void drv_add_twt_setup(struct ieee80211_local *local,
+ 				     struct ieee80211_sub_if_data *sdata,
+ 				     struct ieee80211_sta *sta,
+diff --git a/net/mac80211/sta_info.c b/net/mac80211/sta_info.c
+index e81cd1551..2ce3ef905 100644
+--- a/net/mac80211/sta_info.c
++++ b/net/mac80211/sta_info.c
+@@ -872,8 +872,13 @@ static int sta_info_insert_drv_state(struct ieee80211_local *local,
+ 		 * Drivers using legacy sta_add/sta_remove callbacks only
+ 		 * get uploaded set to true after sta_add is called.
+ 		 */
+-		if (!local->ops->sta_add)
++		if (!local->ops->sta_add) {
+ 			sta->uploaded = true;
++			if (sta->airtime_weight != IEEE80211_DEFAULT_AIRTIME_WEIGHT)
++				drv_sta_set_airtime_weight(local, sdata,
++							   &sta->sta,
++							   sta->airtime_weight);
++		}
+ 		return 0;
+ 	}
  
--	return 0;
-+	idr_for_each_entry(&ar->txmgmt_idr, msdu, buf_id)
-+		ath11k_mac_tx_mgmt_free(ar, buf_id);
- }
+diff --git a/net/mac80211/trace.h b/net/mac80211/trace.h
+index 562a4964a..3ae7e78de 100644
+--- a/net/mac80211/trace.h
++++ b/net/mac80211/trace.h
+@@ -2462,6 +2462,33 @@ DEFINE_EVENT(sta_flag_evt, drv_sta_set_decap_offload,
+ 	TP_ARGS(local, sdata, sta, enabled)
+ );
  
- static int ath11k_mac_vif_txmgmt_idr_remove(int buf_id, void *skb, void *ctx)
-@@ -10417,7 +10417,7 @@ static void __ath11k_mac_unregister(struct ath11k *ar)
- 
- 	ieee80211_unregister_hw(ar->hw);
- 
--	idr_for_each(&ar->txmgmt_idr, ath11k_mac_tx_mgmt_pending_free, ar);
-+	ath11k_mac_tx_mgmt_pending_free(ar);
- 	idr_destroy(&ar->txmgmt_idr);
- 
- 	kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 59f83c7175fd..127cb476b44b 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -162,7 +162,7 @@ struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id)
- 
- void ath11k_mac_drain_tx(struct ath11k *ar);
- void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
--int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
-+void ath11k_mac_tx_mgmt_pending_free(struct ath11k *ar);
- u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
- enum nl80211_he_gi ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi);
- enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy);
--- 
-2.34.1
++TRACE_EVENT(drv_sta_set_airtime_weight,
++	TP_PROTO(struct ieee80211_local *local,
++		 struct ieee80211_sub_if_data *sdata,
++		 struct ieee80211_sta *sta, u16 weight),
++
++	TP_ARGS(local, sdata, sta, weight),
++
++	TP_STRUCT__entry(
++		LOCAL_ENTRY
++		VIF_ENTRY
++		STA_ENTRY
++		__field(u16, weight)
++	),
++
++	TP_fast_assign(
++		LOCAL_ASSIGN;
++		VIF_ASSIGN;
++		STA_ASSIGN;
++		__entry->weight = weight;
++	),
++
++	TP_printk(
++		LOCAL_PR_FMT  VIF_PR_FMT  STA_PR_FMT " weight:%u",
++		LOCAL_PR_ARG, VIF_PR_ARG, STA_PR_ARG, __entry->weight
++	)
++);
++
+ TRACE_EVENT(drv_add_twt_setup,
+ 	TP_PROTO(struct ieee80211_local *local,
+ 		 struct ieee80211_sta *sta,
 
 
