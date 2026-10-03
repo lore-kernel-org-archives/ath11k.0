@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D68DFCA5FDD
-	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 21:04:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B610CA5FDD
+	for <ath11k@archiver.kernel.org>; Sat,  3 Oct 2026 21:04:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jZz1Kj8TjYNquMY6qMQQHQiwtsTvfFCS+qTsMxTiZIY=; b=pbp10YDrv1NibnGQJbJXr1EzLH
-	wjpW3wIC6VgQziIPuvP1HKr2dO/qqV8CpQQzXpJ0YI/zzIe5QmIcouv57OaTqp/h2gYudSnW7E3tJ
-	IroGOuuErp08anuler2SBl9ka1A14dlnslZRCcFfyufbo0MG7tSP5/an168pIBre6HB087W98XEx2
-	YTfT5aYqd8ZVskVyr40HEosMILKzFi2G9OHrKsjdi0KiFG9Mlm6vr4NugAoEjYY5dGFKZQ0ut9CGg
-	CO5jc2tYQyDrPKSLqbOYwkRa+3v9izqoGw4MpMJO7tyhCYaSPc3IwFIjWHsd3suYs5LNRIk5VOHCZ
-	wyvpsG+A==;
+	bh=5Xr5Ce4bVBsn6r+13ZUYI2wGy+3IpmNKSwmiCEO1A6c=; b=aJ+bTYt9IhGEyY0pCnUZv/mHhm
+	qe8OiAMOAoWel6KbNW8JLgMGkaceKbQ+mhGeD4n0r1KDMgtloAbbHxSJPkDwwOhNQ727hZ2bJAmb9
+	HjPPpBEMwGeXWESwz1TDVxrZajUKpyUEUqqhN4IbVZkED0N7dJA4pkHkgxEnADJl/IfvRs0Kw+eyW
+	51sSIJ/GzceRmU76M3sEO4wDvnUQDeGV7n7GpeDFQYKfXxdmuGTgqW4w2sBfgY/XSyUo7kQFz35Xi
+	HINy38+RW8Mx1ey5whfLsR5qZHKMKsj5wknxwv2eQ23oQtngB2BVypV+h/fLnad3nprFLC0N2ctRd
+	VK5NXycw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xD6to-0000000E3FK-2b5a;
-	Sat, 03 Oct 2026 21:04:04 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xD6uM-0000000E3Mj-3gYW;
+	Sat, 03 Oct 2026 21:04:38 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xD6tn-0000000E3F7-1Nyg
+	id 1xD6uK-0000000E3M6-1XyS
 	for ath11k@lists.infradead.org;
-	Sat, 03 Oct 2026 21:04:03 +0000
+	Sat, 03 Oct 2026 21:04:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1BDD341814;
-	Sat,  3 Oct 2026 21:04:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41C561F0089B;
-	Sat,  3 Oct 2026 21:03:59 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C12BA43B31;
+	Sat,  3 Oct 2026 21:04:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEB031F0089B;
+	Sat,  3 Oct 2026 21:04:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791061443;
-	bh=jZz1Kj8TjYNquMY6qMQQHQiwtsTvfFCS+qTsMxTiZIY=;
+	s=k20260515; t=1791061475;
+	bh=5Xr5Ce4bVBsn6r+13ZUYI2wGy+3IpmNKSwmiCEO1A6c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=cOHPdgcBxLt3QHgtC8FYXVO0q5wis6boFjRo1kkZQpdjuXH2L02AqdQjmvDDK7YcV
-	 XPH04/HqMS0u19K5tsKJKn2V0AXjD24oO5C9bX21V+CoQubtjP7NuyqNDV07i0n3aH
-	 mxKvnSuM6DdNMMgtZTGmX40fotwMfQDtwgrdxoQBsB2tfd7gx4qFCQFdV3mBlihtD7
-	 Q6FDc5174H1+WT39i/Gt/MQWnXQVxHApDoNW4LsBL4Od2J9TANYN/o32Q89g4YgBOF
-	 O1sjiRggEQkw//DnyNF48g5M6gf8Vzygog5uHOBi8Is5/mN9Oo8ELH5mrByXA+X0oQ
-	 0zQqp+zAxj6Wg==
-Message-ID: <1a6c64a9-b351-4bb3-8051-8a521cec0a4e@kernel.org>
-Date: Sat, 3 Oct 2026 23:03:57 +0200
+	b=G39eG3I2WCIEMQjDY2o8kacZmbg+JH+HcI2afxYSLmjUfjMjn5ceD569kgM2gzvyh
+	 DjQySWZVw+cIxBdsGtFwmIUhFGBqBrstlLIt0O+pYc9MLxmspcqpiMO1hpIQ1H3j4v
+	 1Usr6SNozZsv0wgIE9FEWW59BlQuH0Jq42XHDAGFAXLMQD8g5JVediezn+F+riswjZ
+	 uOPdwNYTZfqlpEaDWJpuy1KOx2y5Bv75CbbwjLEXsSJk2l0sL8AJb7RWPFhRMYZ9Sy
+	 WsU/vps4MZ6+5kCD+xJ+BfZsAfu7E4nJig6frgzzzLRU6/GvWWYMbADBp8fnPsiE6q
+	 jGvRABH8VOyyg==
+Message-ID: <12fee7f5-7fb8-4956-9079-e69087caaf59@kernel.org>
+Date: Sat, 3 Oct 2026 23:04:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: arm: qcom: add Ubiquiti UniFi U6
- Enterprise
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: ipq5018: label the PCIe1 root port
 To: Andrei-Alexandru Bleortu <me@andrei-z.com>,
  Abel Vesa <abelvesa@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
@@ -58,7 +57,7 @@ Cc: ath11k@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-wireless@vger.kernel.org
 References: <20261003083410.3126453-1-me@andrei-z.com>
- <20261003083410.3126453-3-me@andrei-z.com>
+ <20261003083410.3126453-4-me@andrei-z.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,7 +103,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261003083410.3126453-3-me@andrei-z.com>
+In-Reply-To: <20261003083410.3126453-4-me@andrei-z.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: ath11k@lists.infradead.org
@@ -122,17 +121,13 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 On 03/10/2026 10:34, Andrei-Alexandru Bleortu wrote:
-> Document the Ubiquiti UniFi U6 Enterprise, an IPQ5018 based access
-> point.
-> 
-> Assisted-by: LLM
+> The root port of pcie0 has a label, the one of pcie1 has none, so a
 
-I am still surprised people use LLM for such single liners.
+This is pointless commit. The label does not end up in DTB and there is
+no user of it.
 
-> Signed-off-by: Andrei-Alexandru Bleortu <me@andrei-z.com>
+Drop or squash.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
