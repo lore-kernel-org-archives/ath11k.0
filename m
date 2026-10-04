@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25C44CA5FE6
-	for <ath11k@archiver.kernel.org>; Sun,  4 Oct 2026 11:20:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 024FBCA5FEC
+	for <ath11k@archiver.kernel.org>; Sun,  4 Oct 2026 11:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8C7L5pliSom0lO9g3nHVGPCRYQtR384zHPRAUX1iNhg=; b=twSRbEvZ1f3wX6+4hvkmCUc0CJ
-	J5UdO+iPBmlATxZu9n/YL9pp9xgw55/rLDGw0xzQ+5FMsMLVwflxZgL0pcjsdV4ouIv7e+42qcFew
-	LwhYYptXEiLLvWowLxeqq8Vm6tDb4jVFnKI+BgTWNWwOhYn1a6dsUbIaIiUCPbsO6cVaqn2fCQUHV
-	LLii2A8SzwFbwXaFY3RiXV/UAwjjLu3YXft0yLiAu4Xw2GSn+fEUpogs8Ws+13UZsTsWmVtio/kF9
-	QNwOw48HL+JsT/F0iQcT0WaixLvU5H3UGJjvdtkNhG4IiTgPSt3OGt/RsElDy6m928LM+Bzt2zfZp
-	rGCStEGA==;
+	bh=8wdFPkKVBD1u4gBOGxIYK1bcdkahVAWWGkvnOUYqIJY=; b=fqTteZ1tn64QVzNon41wG+K1Mc
+	1r/g0I1oh8yDPf08SXna1eZyxRVUxAkhhszX3/nRUvvPsYGZGr32vMeDfPXcO2Bp1PKkm4Ei5eFMo
+	MjCvBiCyX5k2BiYnbKTujc030YUF+/M+E9b3gb+ZqvU4G88PoR+BXd5Ed33+j6ZXfWf1Gc6XOO/08
+	c7Ixr/M4rZ06/v7weGpS5tmvIxB3nex6ZsR9IgWMH+0OtX0pZDyxyfWjqYe0PmwVK0ixQP3/aBKRX
+	z3iF/CCZ3dmRX+x5XG5yAAoeW8DxZlLVmtYbOu0VcgUk/ksuXKxw06agSogB3vbxDDo1f0Zbg0ssz
+	D6rLQc5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDKGb-0000000Ej1d-30V7;
-	Sun, 04 Oct 2026 11:20:29 +0000
+	id 1xDKHi-0000000Ej91-3t2Q;
+	Sun, 04 Oct 2026 11:21:38 +0000
 Received: from vtj.irix.systems ([82.76.27.144])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDKGY-0000000Ej1F-19IW
+	id 1xDKHb-0000000Ej7v-2suB
 	for ath11k@lists.infradead.org;
-	Sun, 04 Oct 2026 11:20:28 +0000
-Received: from MAILGW-HP.hp.vtj.corp.irix.systems (localhost [127.0.0.1])
-	by vtj.irix.systems (Proxmox) with ESMTP id 54D991BAB7;
-	Sun, 04 Oct 2026 14:20:24 +0300 (EEST)
+	Sun, 04 Oct 2026 11:21:36 +0000
+Received: from MAILGW-DELL.dell.vtj.corp.irix.systems (localhost [127.0.0.1])
+	by vtj.irix.systems (Proxmox) with ESMTP id 8F27413C3A;
+	Sun, 04 Oct 2026 14:21:29 +0300 (EEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=andrei-z.com; h=
 	cc:cc:content-transfer-encoding:content-type:content-type:date
 	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=sig1; bh=8C7L5pliSom0lO9g3nHV
-	GPCRYQtR384zHPRAUX1iNhg=; b=D2rO67wuovxSXjyQmoeUMuhrb9zc/FLGCqlp
-	T32SGpKyQKR5/8SyY2SUc3cOX+fTzaATV96YTlFt9JTrCaQ+RI8pbDPs1xfaVNLy
-	u0e1Eg7DtIJbosrQVS1Fn/z0nZl7t+YhAOjC8nEOpWhKxXVe3aUdWPzci+i0R6hT
-	rbnzMBLVkdMqMCL2fp8qZMNASI2vkak78rkmQvDu/KAFYCVRi2Nc/0ue7RftepgU
-	gEX1DDcvsiGd3zLDdKUopULfMsM9Ui6G1xCKLHRIricB/gke6QfLsUsa8eJM5K5M
-	Ji2RS27Jv7WRpCOSiKCH173Vdx5bmgvGPW8ljDeuevMxX5rMPQ==
+	:reply-to:subject:subject:to:to; s=sig1; bh=8wdFPkKVBD1u4gBOGxIY
+	K1bcdkahVAWWGkvnOUYqIJY=; b=bWam9cm/a1SsiVLrPM2IGcwHz9qKJjBImvzw
+	AbxiZ/uMx96b6aPmcRjhysoFkaKMcne6TfjZAGXS4GPH7GN9wM87gmwWRublxwEf
+	kOAaQdWZrZyKRQBeN9ifMcgGav9btxJfHxDwFlRit+TC52uWSffi55IcFUy5hp8V
+	P/SVcxOkmvVACLgx0hmi3uHvneWHomD0EWzTMozrGuMeDmjuup3uFByy1nWvhT4L
+	LHKOCoWGNLKyfWfIVbR2VkLSP1pAkJVJw/bNDjLtPe6Bj+aR3O4j9hC4C/yIi9Hf
+	5nAsvQL+Ag36iftrWgPKIGrJ/QOuDhEHQuaQMKCYYzjK6f2ihQ==
 Received: from VTJ-MX.corp.irix.systems (unknown [IPv6:2a02:2f04:1:9c24::6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by vtj.irix.systems (Proxmox) with ESMTPS id 8EF551BAB6;
-	Sun, 04 Oct 2026 14:20:23 +0300 (EEST)
+	by vtj.irix.systems (Proxmox) with ESMTPS id C5AF513D27;
+	Sun, 04 Oct 2026 14:21:28 +0300 (EEST)
 Received: from workspace.corp.irix.systems (2a02:2f04:1:9c23::c) by
  VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Sun, 4 Oct 2026 14:20:23 +0300
+ 15.2.2562.49; Sun, 4 Oct 2026 14:21:28 +0300
 From: Andrei-Alexandru Bleortu <me@andrei-z.com>
 To: Jeff Johnson <jjohnson@kernel.org>
 CC: <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<linux-wireless@vger.kernel.org>
-Subject: [PATCH ath-next 2/5] wifi: ath11k: count down channel switch announcements in mac80211
-Date: Sun, 4 Oct 2026 14:18:04 +0300
-Message-ID: <8d40acb1fc26b8f18b0cffcbb17b408f0746f529.1791111135.git.me@andrei-z.com>
+Subject: [PATCH ath-next 3/5] wifi: ath11k: leave OBSS PD off when spatial reuse is not configured
+Date: Sun, 4 Oct 2026 14:18:05 +0300
+Message-ID: <794ed7804f86fb8b8b607a703ce110a0b18e9b9f.1791111135.git.me@andrei-z.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1791111135.2.git.me@andrei-z.com>
 References: <cover.1791111135.2.git.me@andrei-z.com>
@@ -66,8 +66,9 @@ X-Originating-IP: [2a02:2f04:1:9c23::c]
 X-ClientProxiedBy: VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6) To
  VTJ-MX.corp.irix.systems (2a02:2f04:1:9c24::6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261004_042026_498956_F2B00EC3 
-X-CRM114-Status: GOOD (  16.06  )
+X-CRM114-CacheID: sfid-20261004_042131_907398_F2E9D52A 
+X-CRM114-Status: UNSURE (   9.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,90 +83,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k handled the CSA switch count event only once the count reached
-zero, to finish the switch, and did not ask the firmware for an event at
-any other count. mac80211's countdown therefore never moved: Probe
-Response frames, which mac80211 fills from it, and every beacon template
-uploaded during the switch carried the initial Channel Switch Count,
-although IEEE Std 802.11-2024, 9.4.2.17 has it give the number of TBTTs
-left until the switch.
+mac80211 reports BSS_CHANGED_HE_OBSS_PD when an HE AP starts even if
+user space configured no spatial reuse parameters, with he_obss_pd
+.enable false. ath11k ignored the flag and, with an empty SR Control,
+enabled non-SRG OBSS PD at its default maximum threshold of -62 dBm,
+where IEEE Std 802.11-2024, 26.10.2.4 puts the non-SRG OBSS PD maximum
+at -82 dBm plus an offset that the AP did not advertise.
 
-Request an event for every count in the beacon template command and
-decrement mac80211's countdown on each one that matches the expected
-count; a beacon that failed to go out repeats the previous count, which
-is then skipped. This is how ath12k handles the same event.
+Disable OBSS PD unless it is enabled, as ath12k does.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 
 Assisted-by: LLM
 Signed-off-by: Andrei-Alexandru Bleortu <me@andrei-z.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h |  2 ++
- drivers/net/wireless/ath/ath11k/wmi.c  | 23 ++++++++++++++++++-----
- 2 files changed, 20 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a0d725923e..0b10dac706 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -395,6 +395,8 @@ struct ath11k_vif {
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index c1fa42edd3..a10d191b1a 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3373,7 +3373,8 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
  
- 	bool is_started;
- 	bool is_up;
-+	/* CSA countdown value the firmware is expected to report next */
-+	u8 current_cntdown_counter;
- 	bool ftm_responder;
- 	bool spectral_enabled;
- 	bool ps;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 08fd6795ed..b7944f98a6 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1806,6 +1806,9 @@ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
- 	if (vif->bss_conf.csa_active) {
- 		cmd->csa_switch_count_offset = offs->cntdwn_counter_offs[0];
- 		cmd->ext_csa_switch_count_offset = offs->cntdwn_counter_offs[1];
-+		/* a switch count event for every count, not just the last */
-+		cmd->csa_event_bitmap = 0xffffffff;
-+		arvif->current_cntdown_counter = bcn->data[offs->cntdwn_counter_offs[0]];
- 	}
- 
- 	cmd->buf_len = bcn->len;
-@@ -8385,10 +8388,6 @@ ath11k_wmi_process_csa_switch_count_event(struct ath11k_base *ab,
- 	struct ath11k_vif *arvif;
- 	int i;
- 
--	/* Finish CSA once the switch count becomes NULL */
--	if (ev->current_switch_count)
--		return;
--
- 	if (num_vdevs > vdev_ids_len / sizeof(*vdev_ids)) {
- 		ath11k_warn(ab, "csa switch count num_vdevs %u exceeds tlv array length %u\n",
- 			    num_vdevs, vdev_ids_len);
-@@ -8405,8 +8404,22 @@ ath11k_wmi_process_csa_switch_count_event(struct ath11k_base *ab,
- 			continue;
- 		}
- 
--		if (arvif->is_up && arvif->vif->bss_conf.csa_active)
-+		if (!arvif->is_up || !arvif->vif->bss_conf.csa_active)
-+			continue;
-+
-+		if (!ev->current_switch_count) {
- 			ieee80211_csa_finish(arvif->vif, 0);
-+			arvif->current_cntdown_counter = 0;
-+		} else if (ev->current_switch_count > 1) {
-+			/* A beacon that failed to go out repeats the previous
-+			 * count; mac80211 counts down once per beacon sent.
-+			 */
-+			if (ev->current_switch_count != arvif->current_cntdown_counter)
-+				continue;
-+
-+			arvif->current_cntdown_counter =
-+				ieee80211_beacon_update_cntdwn(arvif->vif, 0);
-+		}
- 	}
- 	rcu_read_unlock();
- }
+ 	/* Set and enable SRG/non-SRG OBSS PD Threshold */
+ 	param_id = WMI_PDEV_PARAM_SET_CMD_OBSS_PD_THRESHOLD;
+-	if (test_bit(ATH11K_FLAG_MONITOR_STARTED, &ar->monitor_flags)) {
++	if (test_bit(ATH11K_FLAG_MONITOR_STARTED, &ar->monitor_flags) ||
++	    !he_obss_pd->enable) {
+ 		ret = ath11k_wmi_pdev_set_param(ar, param_id, 0, pdev_id);
+ 		if (ret)
+ 			ath11k_warn(ar->ab,
 -- 
 2.47.3
 
