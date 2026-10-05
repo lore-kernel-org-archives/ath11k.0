@@ -4,81 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D42CCA5FCE
-	for <ath11k@archiver.kernel.org>; Mon,  5 Oct 2026 10:55:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65798CA5FFD
+	for <ath11k@archiver.kernel.org>; Mon,  5 Oct 2026 11:01:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
 	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=X9ybfkjjQyEBOnKyW7ywsxv+01LedkQkjdz2/XCnQyA=; b=LqoR3Fe4PA6EaiCSitEIBsS2v5
-	jSux83/czcvo7wBdu3+l0itlW5hAZ4M0UaWkeaRpWRqI/MXD6M8LN9b4W1Su/vc8/vjWNnXxT3CS2
-	Ixa0wPVkxtVWDYjr4KuHj/gN0mgtooBp5w16QqsP5T7VHtZ4g/fZ1crHN+sXXzmSP4rl8/Q7hnz8h
-	1SkxZWAzzjzs8KZu5cOgXLXZmwQ5Ns8qMRlNJaBvLb1rT9zmGRIJvA5UOkL5p+NFaJADGqer3qQKj
-	x6cOKTmn3eJjjH7nHn9kHw9uHSLvUhycPxjXEMZTI0Kud1q+frfsJtklYcD+ZS6ltN9g03NY8cLF+
-	ydt6usig==;
+	bh=VAKmTovVzb87d5A8hUeHQhkh9HG4yeL7dyz+l+PJrmo=; b=SnkqalEDfVwYyQb7nou+fvotJH
+	cT/WfrwJ/4T401SYBNIgzK+s6SfhyllKGVPStfT/i6cf7F/dZla5s+5rtEkJEIkZYCt1rqnebMcCA
+	/6eLeAgCRwlRIzWk2IZ8NbzYilaZEOsZ1wFlm5C2mCeR70g2eN5kKjUbMAKBjH5XV7xIAAZ1tSnQp
+	y4j+c9mXn63qsk+0VyafLXqFR0uds8LJUE1uV9UUNEk9c+8hV+ZtiiNipZZxbLoMIk7ocefsdqwBk
+	88URKL8VhTIqXABaEhjSo43n/eNyo/anNhTeZOpfICYOWTp5gjJUmZdkJQhKIK453KN67PcPoiwsR
+	IYGWc73A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDgLY-0000000GEr4-1Zb1;
-	Mon, 05 Oct 2026 10:55:04 +0000
+	id 1xDgS0-0000000GGN6-1BhK;
+	Mon, 05 Oct 2026 11:01:44 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDgLS-0000000GEnp-0dPi
+	id 1xDgRx-0000000GGMS-3ys6
 	for ath11k@lists.infradead.org;
-	Mon, 05 Oct 2026 10:55:03 +0000
+	Mon, 05 Oct 2026 11:01:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1791197697;
+	s=mimecast20190719; t=1791198100;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=X9ybfkjjQyEBOnKyW7ywsxv+01LedkQkjdz2/XCnQyA=;
-	b=PDicREENdyWElIXtgR+GxrBz8JaT3eQmdZbjoVnP9KxmPh/bSkHvR0DeCw4O/E/IlsOQx6
-	yNkjw6JKGfW+DEeqjbVmxoXzWkFoM4VCuCFd1rr4s0GDqM4LMXO11SmiTokyPoD0rmCMJr
-	9+sXgtc5T+B4HQ91xjicJlqeMRkkkqk=
+	bh=VAKmTovVzb87d5A8hUeHQhkh9HG4yeL7dyz+l+PJrmo=;
+	b=gno7AuXArXbVcap0wuY/CkRNDst7Q+wq+9gop2/2Fi6/sLlhD/YMvzkjhjPAh1UfgTPzy2
+	qmCG1SbmgjI7aPkV/lLOGJvtoLlH5e1cdc54LEYRWqese7g2FJwhMAW9cmS2qerZRd5BmT
+	AvxkyST423LL+EFWPLuQk1BhmKBsS5A=
 Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-594-0fQc6ZMxMuKEoHzXhDfGmw-1; Mon,
- 05 Oct 2026 06:54:53 -0400
-X-MC-Unique: 0fQc6ZMxMuKEoHzXhDfGmw-1
-X-Mimecast-MFC-AGG-ID: 0fQc6ZMxMuKEoHzXhDfGmw_1791197691
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-76-uq9_KcWuNnGBqTT2Pu5KUw-1; Mon,
+ 05 Oct 2026 07:01:39 -0400
+X-MC-Unique: uq9_KcWuNnGBqTT2Pu5KUw-1
+X-Mimecast-MFC-AGG-ID: uq9_KcWuNnGBqTT2Pu5KUw_1791198096
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id AF876182A128;
-	Mon,  5 Oct 2026 10:54:51 +0000 (UTC)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 8B6521801220;
+	Mon,  5 Oct 2026 11:01:36 +0000 (UTC)
 Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet03.pony-001.prod.iad2.dc.redhat.com [10.2.32.114])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 549501800446;
-	Mon,  5 Oct 2026 10:54:48 +0000 (UTC)
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id A51F23001D2A;
+	Mon,  5 Oct 2026 11:01:32 +0000 (UTC)
 From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: bhelgaas@google.com,
-	alex@shazbot.org,
-	mani@kernel.org
-Cc: jjohnson@kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
+To: jgg@ziepe.ca
+Cc: alex@shazbot.org,
 	ath11k@lists.infradead.org,
 	ath12k@lists.infradead.org,
-	mhi@lists.linux.dev,
+	bhelgaas@google.com,
+	jjohnson@kernel.org,
+	johannes@sipsolutions.net,
+	jtornosm@redhat.com,
+	kevin.tian@intel.com,
+	kvm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH v15 1/2] PCI: Add device-specific reset for Qualcomm SDX62/SDX65 modems
-Date: Mon,  5 Oct 2026 12:54:35 +0200
-Message-ID: <20261005105436.83962-2-jtornosm@redhat.com>
-In-Reply-To: <20261005105436.83962-1-jtornosm@redhat.com>
-References: <20261005105436.83962-1-jtornosm@redhat.com>
+	linux-pci@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	mani@kernel.org,
+	skolothumtho@nvidia.com,
+	yishaih@nvidia.com
+Subject: Re: [PATCH 3/7] vfio/pci: Add qcom-vfio-pci variant driver
+Date: Mon,  5 Oct 2026 13:01:31 +0200
+Message-ID: <20261005110131.84545-1-jtornosm@redhat.com>
+In-Reply-To: <20261002171046.GA32083@ziepe.ca>
+References: <20261002171046.GA32083@ziepe.ca>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-MFC-PROC-ID: G7uULgLLHNoDiyywkqMjDWgNW_vSExE6nia2KhbRuHI_1791197691
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+X-Mimecast-MFC-PROC-ID: Eaz-WhKTHIK3MDgw-ilNZyiXydJ_jgaHKrwXxjhL9Os_1791198096
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261005_035500_581073_BA2B1589 
-X-CRM114-Status: GOOD (  13.49  )
+X-CRM114-CacheID: sfid-20261005_040142_131138_A4D15367 
+X-CRM114-Status: GOOD (  26.61  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,107 +99,80 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Qualcomm SDX62/SDX65 5G modems (17cb:0308) lack working reset methods for
-VFIO passthrough scenarios. These devices have no FLR capability, advertise
-NoSoftRst+ (blocking PM reset), and have broken bus reset.
+Hi Jason,
 
-Standard reset methods were already disabled for these devices by commit
-6a4f64c3a3ad ("PCI: Avoid SBR for Qualcomm WCN6855/WCN7850 WiFi,
-SDX62/SDX65 modems") because they were not working (quirk_no_bus_reset).
+Thanks for the follow-up.
 
-VFIO attempts to reset devices on every reassignment. Without a proper
-reset capability, these devices never successfully initialize even on first
-VM assignment.
+> It breaks because VFIO will only cache *actual* MSI-X table entries,
+> it does not have visibility into anything that
+> platform_device_msi_init_and_alloc_irqs()
 
-Add a device-specific reset method using BAR-space hardware reset registers
-that exist in these devices.
+You're right, the current hook is on SET_IRQS which is tied to standard
+PCI MSI allocation. If the driver moved to device MSI domains, this specific
+hook would stop working.
 
-SDX62/SDX65 modem devices use MHI SoC reset via BAR0 (sequence from MHI
-driver: mhi_soc_reset(), mhi_pci_reset_prepare()):
-- Write reset request to offset 0xb0
-- Wait 2 seconds for reset completion
+However, and I was referring to this, the variant driver is a
+self-contained module, it doesn't prevent anyone from moving
+ath11k/ath12k to device MSI domains. If that work happens, the
+variant driver can be adapted to hook the new allocation path, or
+replaced entirely.
 
-These are true hardware reset mechanisms (not power management or firmware
-error recovery), providing proper device reset for VFIO scenarios, allowing
-to enforce isolation between successive passthrough users.
+> The only reason this works for you at all is because the driver
+> hackily copies the vectors from the real MSI-X table so it can look in
+> the "cache" to find their true physical versions.
+>
+> Which is my general objection, I would like to see the driver to use
+> platform_device_msi_init_and_alloc_irqs() and don't want to get stuck
+> unable to do that because it would break this.
 
-Testing shows stable operation over 109 VM crash/reset cycles. Device-
-specific reset is position #1 in the reset hierarchy, so these Qualcomm
-devices will use hardware reset as their primary reset method.
+I understand the concern, but I haven't seen any active work on
+moving ath11k/ath12k to device MSI domains, and the VM problem would
+remain exactly the same after that move (as you acknowledged). It would
+mean waiting for a refactoring that has no active work or timeline yet,
+while users remain without a working solution.
 
-Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-Acked-by: Alex Williamson <alex@shazbot.org>
----
-v15: Address Bjorn Helgaas feedback:
-    - Explain the relationship with 6a4f64c3a3ad ("PCI: Avoid SBR for Qualcomm
-    WCN6855/WCN7850 WiFi, SDX62/SDX65 modems") and previous status.
-    - No code changes from v14, only commit message clarification (Mani's
-    Reviewed-by and Alex's Acked-by retained)
-v14: https://lore.kernel.org/all/20260917071651.14174-2-jtornosm@redhat.com/
+> Yes, but it does actually solve the problem in all its forms..
 
- drivers/pci/quirks.c | 40 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+From my research, there is currently no existing work on device
+MSI domain virtualization in KVM. Building it would require
+coordinated changes across multiple subsystems (KVM, QEMU, VFIO,
+IRQ core, guest drivers, arch code) and several maintainer trees,
+and there is no KVM hypercall that bridges to VFIO, so the
+architecture would need to be designed from scratch.
 
-diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index de9bbccda21f..e72af7d2c775 100644
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -4230,6 +4230,45 @@ static int reset_hinic_vf_dev(struct pci_dev *pdev, bool probe)
- 	return 0;
- }
- 
-+#define MHI_SOC_RESET_REQ_OFFSET		0xb0
-+#define MHI_SOC_RESET_REQ			BIT(0)
-+
-+/*
-+ * Qualcomm modem device-specific reset using MHI SoC reset via BAR0
-+ * register.
-+ */
-+static int reset_qualcomm_modem(struct pci_dev *pdev, bool probe)
-+{
-+	void __iomem *bar;
-+	u16 cmd;
-+
-+	if (probe)
-+		return 0;
-+
-+	if (pdev->current_state != PCI_D0)
-+		return -EINVAL;
-+
-+	pci_read_config_word(pdev, PCI_COMMAND, &cmd);
-+	pci_write_config_word(pdev, PCI_COMMAND, cmd | PCI_COMMAND_MEMORY);
-+
-+	bar = pci_iomap(pdev, 0, 0);
-+	if (!bar) {
-+		pci_write_config_word(pdev, PCI_COMMAND, cmd);
-+		return -ENODEV;
-+	}
-+
-+	iowrite32(MHI_SOC_RESET_REQ, bar + MHI_SOC_RESET_REQ_OFFSET);
-+	ioread32(bar + MHI_SOC_RESET_REQ_OFFSET);
-+
-+	/* Be sure device reset has been executed */
-+	msleep(2000);
-+
-+	pci_iounmap(pdev, bar);
-+	pci_write_config_word(pdev, PCI_COMMAND, cmd);
-+
-+	return 0;
-+}
-+
- static const struct pci_dev_reset_methods pci_dev_reset_methods[] = {
- 	{ PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_82599_SFP_VF,
- 		 reset_intel_82599_sfp_virtfn },
-@@ -4245,6 +4284,7 @@ static const struct pci_dev_reset_methods pci_dev_reset_methods[] = {
- 		reset_chelsio_generic_dev },
- 	{ PCI_VENDOR_ID_HUAWEI, PCI_DEVICE_ID_HINIC_VF,
- 		reset_hinic_vf_dev },
-+	{ PCI_VENDOR_ID_QCOM, 0x0308, reset_qualcomm_modem }, /* SDX62/SDX65 modems */
- 	{ 0 }
- };
- 
--- 
-2.54.0
+In the meantime, the variant driver provides an immediate solution
+using an established kernel pattern, for users with deployed hardware.
+It can coexist and be replaced when a generic mechanism arrives.
+
+That said, I'm open to restructuring the current approach as a more
+generic VFIO mechanism for exposing host-side device metadata to VM
+guests, where MSI address caching would be one quirk type rather than
+a Qualcomm-specific driver. This way the framework would be reusable
+for any device with similar needs. Would that direction be more
+acceptable as an intermediate step?
+
+> Everyone else seems to know this stuff doesn't work for
+> virtualization and doesn't try to do something like that.
+
+The firmware is what it is, and the hardware is deployed. The kernel
+regularly supports devices with non-ideal firmware designs through
+quirks and device-specific drivers, and this is what I am trying to
+do with the VFIO variant driver pattern (as it was previously done
+for other drivers).
+
+> Why do people care so much about this? I always thought it was a bit
+> odd?
+
+WiFi passthrough to VMs is useful for network function virtualization,
+security isolation (running the wireless stack in a separate VM),
+edge computing, and development/testing environments. These are real
+use cases with real users who have this hardware deployed today.
+Qualcomm wireless cards are widely deployed, perform well, and could be
+actively used in these scenarios.
+
+Thanks
+
+Best regards
+Jose Ignacio
 
 
