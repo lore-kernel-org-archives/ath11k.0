@@ -4,72 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40852CA5FFF
-	for <ath11k@archiver.kernel.org>; Wed,  7 Oct 2026 09:12:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D95A1CA6002
+	for <ath11k@archiver.kernel.org>; Wed,  7 Oct 2026 17:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8uCmO+1BAgS2yvpG6z8niC0iA2Pfur9FRxphHCDjWEk=; b=3s6+Xtm4yBMfrb00eqR3wbnjDR
-	vJCTBkvE2VgrF7GSl/G/r0DrmKwKE02t+s4BuAeiTNvlh6ceRNLh9Yowd6Tv0H8gvblOG8T/ZYy4Y
-	ur8v/bvzAUJZ2XRcEzew/f2yO4z/cz2acm0okCsQH+NlcUbDcEjzf5uK27p7LhFRhAyWzMUIa1G9b
-	mccjQfQIv2HBjDT0bXz5ViRd5Msk8XM40Bo02+m2kvbEMQyeEDaIKdmTMmNi+PO813BY7OXYM+9nF
-	fHrqCTM3VSZHh1T6JYxDTd6EuVvNktR2LD/4pxofcxvDLyF00diRX6a8PyxWVWWoLF3TUMgN95oKq
-	6E6+t+RA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=XylpUE0I2nGeBgwFtrUE5wzNHACJyMShQ047aik0R0Y=; b=X5/SoFyJBvdWFq+S+rriITfouC
+	0cZUJbYBKcCkbFf9AehAmYu9zxSriTsSeFvljq3/oclCwJZUaixVLsmoavh9/vrnBod/s/fAp0P6x
+	Ec5dLwDFu2C+tYvx053wb2Cih86ZcaZOOu+xvWW86zW9rKAFIEsIkBqZq4LSyik7p2T6pSPjRfLm0
+	HJZPFb1169Loo7YQgN+0/zdvMVDtQ80PLcnHpKeoJrIU7laU6iyyJe8mM8tkBEvXPo2RckjIPxjzC
+	N11Xev7DxtvUxrHJ0Xz2aHniO660JQsqh1pHF4g73wF0EXU0s7G5IwFNFTNBHtVSBJRvQFNo/E9l3
+	aM5/CFXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xENh9-0000000224y-0OeE;
-	Wed, 07 Oct 2026 09:12:15 +0000
-Received: from out-232.mta0.migadu.com ([2001:41d0:1004:224b::e8] helo=mta0.migadu.com)
+	id 1xEVdw-00000002ody-042Z;
+	Wed, 07 Oct 2026 17:41:28 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xENh6-0000000223y-20d1
+	id 1xEVdt-00000002odg-351b
 	for ath11k@lists.infradead.org;
-	Wed, 07 Oct 2026 09:12:14 +0000
-X-Envelope-To: ath11k@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=J/y1H3eemnVhW06Ctyt4QVgncGhn8rhFQ+PbyfP1y1s=;
- c=simple/simple; d=packett.cool;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1791364327; v=1; x=1791969127;
- b=ZVkxtwZt3ZJe6XW1B92izeivSqqn1LIsMOTLykadXsblRXNpsgFBaBbJ8Yokc+ws5ZYEM79e
- FPvn/GVkXzNhxBLhyHwQFi0jY0qcPGgs+yHaRK8J3Ds208S+Uvd0ex1NL8r//ye0cuSwDzKTPzV
- 6axXhjt/+dMDDsO4/Mjq3KDn09OhkFtQBOqPBaPL2tiyZbc/ybAT9/GizN2A5zhsh1oObvFdfi4
- mSQKdeMusSXt2MyobsgLiBvY7Z+VDu+ks2NacTqFVIbIpb+kKcrb67o+bJoxccqu2agMbb+Z1M3
- 57x40tfZ4rChTEm1p9uwtwRa+pKqnx41RVG/TdnIPrP7w==
-X-Envelope-To: ath11k@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 7d4030431edfb94a;
-	Wed, 07 Oct 2026 09:11:57 +0000
-X-Mizu-Trace-ID: 7d4030431edfb94a
-X-Migadu-Flow: FLOW_OUT
-Message-ID: <f189cfc2-c36a-4bf5-bac7-36ddb15cc7a4@packett.cool>
-Date: Wed, 7 Oct 2026 06:11:46 -0300
+	Wed, 07 Oct 2026 17:41:26 +0000
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-6acbdbc1725so6203111a12.3
+        for <ath11k@lists.infradead.org>; Wed, 07 Oct 2026 10:41:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1791394883; cv=none;
+        d=google.com; s=arc-20260327;
+        b=cRYroD4wX7cSGzLakJpZBPZvEqh4cescmchv0gAoF2J2Esn6DE+28Ghy2LYiQafjsK
+         Hnd0dfyFLl0PehwU9BXTf6lUq6uq8H2pyLLhoIZzcXfsJNPxGx8ZACH/cCp3//0SWmw/
+         cMhPejNSIfXmMz4UI0FvWhLuPmyhW9ta+eIlGVKCLAvb/c8pag16LIImQRDyzKUedRjT
+         WlLs3/89efUn7x5LsUv+Oa6y9vKH7PdF7K5y0HQOG77av0tX1FJqV+gEbXWpuNrfUIhV
+         REDR0Gh5Z0jltlf2AR5sqsuxUn6ybGki/V1ipN88GpSm1BIjzIVdG6pjoccsLH8+LjVG
+         PfIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=XylpUE0I2nGeBgwFtrUE5wzNHACJyMShQ047aik0R0Y=;
+        fh=P8JnnWkwNLrKSKxnDbU+mi+UbCTIFHcZgGeDERvZPL8=;
+        b=FbS580VWDefEHTJLQH5+86BkkINtUMCp0aQ93RZ3PajlL+/tsL/iwj7z2T6dxTzniz
+         j856Q70s77uzJ5gROi0ypigpDID4TIsgcQGqB65U8g0SRD9yZPXKwz2lbfPOgzfEetjw
+         ZnFzjMpwPESVHqZQKg19OVxhYgCfpqcMKNbQp87xFQXQf3ndneqk93/Yxou56KJEVIqI
+         qEDTP3gDpM4wEGiq8FF9HZ0F6Y6szj3we5vFxE24by+ih1uyiDH9HZeiU4B1qAraH7KB
+         8Q8VPDY4/cgWgRFxzRL0m586qO/RFx+SHT8YjrBC6B2CHg8MUnSwyvFTT0rzpKZjYszI
+         fOvw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1791394883; x=1791999683; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=XylpUE0I2nGeBgwFtrUE5wzNHACJyMShQ047aik0R0Y=;
+        b=U/2IdGTts61Lbgy8JDOfI/KZcAHF850DZjp6GnY+closbIQhLeWeW1qskymZ6IQGZx
+         iF9OGdBTrAU47Tu/U2SNLO+DBRgEQtJVYRKCWefU5eI2W64SfQ/jmVUYNNiP/ZIJmH5P
+         Zk8fTw9DzGd89YdRqg2AIultKk3+SxUMSm0NXY4lK8EhqEYOvlN6LMBiOk11RocIDVZ5
+         UdWovNW5v0l/wwRkcKyoj8/7B2WEPQWYIaADvLMufehWIX5ti0LlmEO4j7iW/Tg9MF1O
+         K/JIMMPnKR/VZIWflYjWGmwmizyXPKdqM3VEM5Kc+ZBm53DAculUecrCWUMcTpL1Q9j5
+         iHLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791394883; x=1791999683;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=XylpUE0I2nGeBgwFtrUE5wzNHACJyMShQ047aik0R0Y=;
+        b=bx6LbQHfEVTlLSS/NSTAM7F7aW591yhDaHEciKBWnI/YWrroSbbWQjX+mhZ6LLWY5G
+         /qpIhH7egBQGAsDWzDCdCVO/8ogiiEzY8UV/5dlrVp34yo8YPAow0Ubn97709jsnAZ9j
+         TH/2kEWnrvxvD4HxE2JlVTc1YDESUTQi7oD3OzPAnsBoBo6eqFkPgR33Bf6xR8QiAkSA
+         gkovGReU1aZ/BaXaDStxxAhqwVqcUb6WKE80YXQhTNSfynixnb6nEOXntu638byHeeU4
+         4fQgPeqX8EihQbAcsizoSGQJYskHMHpHf3S9HiXR6NzXeaJHK1CWLHS1LNKR0hAp0oAz
+         s98A==
+X-Gm-Message-State: AFq9FYLQPOTNbcSCPZkIO4YOcchY1rle1jbMriCuddz0LWALUdWBQb96
+	S5QsJYtKdB8OSiB+S5gOyr9lq32FlGQxWPIpZ9rW88UD11qr4pannQpEBgj8FZlZOtXLnJNbW6F
+	8RwYZGWMiP0F5OlqIfGIRqVgBKcopmKVAFA==
+X-Gm-Gg: AYBFou0yliEUjncqurqO3TYtyruLUgep4INaLhui1RAdxjrHe4aN5L4QEx9MCEfekbt
+	OQzGvXfyYqlh4C1aEhpgZ5T15NyI8iEgnwxfHVeWZIoAAy6HBdc7y4vZkz9uTQ3c8ipzlsxnKQV
+	x6p8QFWc1Q1T8Wi0LSIoGG5uwdVSVvLpvBgmAI0kNzFYOGDo10FPbaHoCOiYMeMHAPT5CSqDFUA
+	INQcuWpA7E0qF8nhPv6gy1sXycHUaAQPyIgbgDCUUAQyBGtIZdDugYlifZDs11ilMRwzVzwn3D3
+	z4AWh/KDqjxg/cKqHJ3IVBapLTd6lMzBdcq0Bj+S1YqdXw4okk/y3g==
+X-Received: by 2002:a05:6402:218e:20b0:6ab:81e:e827 with SMTP id
+ 4fb4d7f45d1cf-6aff441894bmr2332913a12.43.1791394883309; Wed, 07 Oct 2026
+ 10:41:23 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Wed, 7 Oct 2026 10:41:22 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Wed, 7 Oct 2026 10:41:22 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Val Packett <val@packett.cool>
-Subject: Re: [PATCH v5 1/6] PCI/bwctrl: Set host bridge OPP and optionally
- disable ASPM around link retraining
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi
- <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>,
- Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Manivannan Sadhasivam <mani@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- qiang.yu@oss.qualcomm.com
-References: <20260819-bwscale-v5-0-6dea79786b37@oss.qualcomm.com>
- <20260819-bwscale-v5-1-6dea79786b37@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260819-bwscale-v5-1-6dea79786b37@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Zephyr Madera <dencity7@gmail.com>
+Date: Wed, 7 Oct 2026 10:41:22 -0700
+X-Gm-Features: AclHuK8Pxavj5AL4tzu3fUd_5x4Qx9JoVZa7mcyYokAr-1cN1zJq2Bx2A_FU96I
+Message-ID: <CA+KzPsr0G_1tpEDyi2Dk_1ZF_JVeGJL5Y6_A0aCe=dY+5ufq+A@mail.gmail.com>
+Subject: [RFC] IPQ8074 v1 / Netgear RAX120 v1: interest in support and review prerequisites
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Robert Marko <robimarko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261007_021212_945657_96B8C7A6 
-X-CRM114-Status: GOOD (  14.54  )
+X-CRM114-CacheID: sfid-20261007_104125_866787_BCE6EA30 
+X-CRM114-Status: UNSURE (   8.19  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,129 +114,74 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Hello ath11k maintainers,
 
-On 8/19/26 10:25 AM, Krishna Chaitanya Chundru wrote:
-> PCIe host bridge controllers may need their operating point raised before
-> retraining to a higher link speed so that hardware resources (e.g., RPMh
-> votes on Qualcomm platforms) are available at the requested data rate.
-> After retraining, the operating point must be updated to reflect the
-> actual negotiated speed.
->
-> Add pcie_set_opp() to look up an OPP on the host bridge parent device
-> using a key of (per-lane frequency in kHz, LNKCTL2 Target Link Speed
-> level).  Keying by generation rather than total bandwidth lets OPP tables
-> remain width-independent.
->
-> In pcie_set_target_speed(), call pcie_set_opp() before retraining only
-> when upscaling (speed_req > cur_bus_speed), since only raising the
-> operating point requires pre-staging hardware.  After retraining, call
-> pcie_set_opp() unconditionally with the actual cur_bus_speed to settle
-> the votes.  Both calls are skipped for downstream ports of PCIe switches,
-> as those are outside the host controller's scope.
->
-> Some controllers also require ASPM to be disabled around link retraining.
-> Add a disable_aspm_for_retrain flag to pci_host_bridge; when set,
-> pcie_set_target_speed() saves the child device's ASPM state, disables all
-> ASPM link states before retraining, and restores them afterward.
->
-> Signed-off-by: Krishna Chaitanya Chundru<krishna.chundru@oss.qualcomm.com>
-> ---
-> [..]
-> @@ -176,6 +231,12 @@ int pcie_set_target_speed(struct pci_dev *port, enum pci_bus_speed speed_req,
->   	    !list_empty(&bus->devices))
->   		ret = -EAGAIN;
->   
-> +	if (bus && is_rootbus && host) {
-> +		if (child && host->disable_aspm_for_retrain)
-> +			pci_enable_link_state_locked(child, aspm_state);
-> +		pcie_set_opp(port, host, bus->cur_bus_speed);
-> +	}
-> +
->   	return ret;
->   }
+Robert Marko suggested asking here whether there is interest in supporting
+IPQ8074 v1 before preparing a formal support series. I own a Netgear
+RAX120 v1 and have an experimental OpenWrt port developed with AI
+assistance. I would like to make the useful source work available for
+review, without presenting it as upstream-ready.
 
-ASPM is not actually reenabled here:
+Linux socinfo on the unit reports:
 
-LnkCap: Port #0, Speed 16GT/s, Width x4, ASPM L1, Exit Latency L1 <8us
-         ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp+
-LnkCtl: ASPM Disabled; RCB 128 bytes, LnkDisable- CommClk+
-         ExtSynch+ ClockPM- AutWidDis- BWInt- AutBWInt- FltModeDis-
-LnkSta: Speed 2.5GT/s (downgraded), Width x4
-         TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
+    machine:  IPQ8074
+    revision: 1.2
+    soc_id:   323
 
+In the OpenWrt discussion, Robert explained that this early silicon was
+intentionally left unsupported, differs in peripherals and clocks, does
+not comply with the final 802.11ax standard, and lacks publicly available
+ath11k firmware. I understand that successful local bring-up does not
+resolve those concerns.
 
-Because as the comment for pci_enable_link_state(_locked) says, "note 
-that this does not enable states disabled by pci_disable_link_state(). 
-Use pci_force_enable_link_state() for that"!
+The bring-up was rebased to OpenWrt main at:
+    edc6b8f160c798cd211893bc5df25aec7cfca838
 
-This needs something like:
+The tested base uses Linux 6.18.55 and mac80211 backports 7.2. On this one
+unit, recorded checks include Q6 startup, both internal PHYs, LAN1
+management, and four client cases: 2.4 GHz and 5 GHz with WPA2-PSK and
+WPA3-SAE. Those cases covered association, LAN-side DHCP/DNS, ping and a
+checksum-verified local HTTPS transfer. These are limited bring-up
+results, not standards-conformance, sustained-load or cross-device
+qualification.
 
+The source work has been separated for discussion into:
+- Two candidate generic ath11k parser corrections: host-sized MAC/PHY
+  record allocation and bounds on READY MAC-address array reads.
+- Secure WCSS separate-M3 loading and its binding, retaining PAS6.
+- IPQ8074 v1 register/descriptor/ring handling and legacy firmware
+  startup/event compatibility.
+- Separate RAX120v1 board, image and upgrade integration.
 
-diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-index 4bad311dc7..c54f2658e0 100644
---- a/drivers/pci/pcie/aspm.c
-+++ b/drivers/pci/pcie/aspm.c
-@@ -1709,6 +1709,12 @@
-  }
-  EXPORT_SYMBOL(pci_force_enable_link_state);
+The generic corrections have been checked against the pinned OpenWrt
+wireless stack, but have not yet been rebased and validated against the
+current upstream wireless tree. The v1 development sequence also needs
+review and reduction.
 
-+int pci_force_enable_link_state_locked(struct pci_dev *pdev, int state)
-+{
-+    return __pci_enable_link_state(pdev, state, true, true);
-+}
-+EXPORT_SYMBOL(pci_force_enable_link_state_locked);
-+
-  void pcie_aspm_remove_cap(struct pci_dev *pdev, u32 lnkcap)
-  {
-      if (lnkcap & PCI_EXP_LNKCAP_ASPM_L0S)
-diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
-index 623731b96c..530b9047a0 100644
---- a/drivers/pci/pcie/bwctrl.c
-+++ b/drivers/pci/pcie/bwctrl.c
-@@ -211,7 +211,7 @@
+The working setup depends on owner-retained HK1.2 firmware and this
+unit's calibration. A public, repeatable firmware acquisition path and
+redistribution terms are unresolved. Source provenance, attribution and
+DCO certification also need completion before formal submission. No
+firmware blobs, calibration data, private settings or flashable images
+are attached.
 
-      if (bus && is_rootbus && host) {
-          if (child && host->disable_aspm_for_retrain)
--            pci_enable_link_state_locked(child, aspm_state);
-+            pci_force_enable_link_state_locked(child, aspm_state);
-          pcie_set_opp(port, host, bus->cur_bus_speed);
-      }
+Could you advise on three points?
 
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 9f20bae6d7..59d7b67c9d 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1960,6 +1960,7 @@
-  int pci_enable_link_state(struct pci_dev *pdev, int state);
-  int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
-  int pci_force_enable_link_state(struct pci_dev *pdev, int state);
-+int pci_force_enable_link_state_locked(struct pci_dev *pdev, int state);
-  void pcie_no_aspm(void);
-  bool pcie_aspm_support_enabled(void);
-  u32 pcie_aspm_enabled(struct pci_dev *pdev);
-@@ -1974,6 +1975,8 @@
-  { return 0; }
-  static inline int pci_force_enable_link_state(struct pci_dev *pdev, 
-int state)
-  { return 0; }
-+static inline int pci_force_enable_link_state_locked(struct pci_dev 
-*pdev, int state)
-+{ return 0; }
-  static inline void pcie_no_aspm(void) { }
-  static inline bool pcie_aspm_support_enabled(void) { return false; }
-  static inline u32 pcie_aspm_enabled(struct pci_dev *pdev) { return 0; }
+1. Is there any interest in reviewing IPQ8074 v1 support, or do the
+   hardware and firmware constraints make this unsuitable for upstream?
+2. If there is interest, what minimum firmware availability and hardware
+   evidence would you need, and which tree should the initial source
+   series target?
+3. Independently of v1 support, would it be useful to submit the generic
+   parser corrections separately if they still apply to current upstream?
 
-(the addition of the new force+locked variant should go as a separate 
-commit, but well)
+I can follow up with focused source-only patches and sanitized test
+evidence. Local button and diagnostic customizations are separate from
+this proposed hardware work. I have the router available for coordinated
+testing, but cannot claim testing on other IPQ8074 revisions.
 
-With that,
+Thank you for helping establish whether there is a useful upstream path.
 
-Tested-by: Val Packett <val@packett.cool> # x1e80100-dell-latitude-7455
-
-Well, tested without that too, but losing ASPM is not good :)
-
-
-Thanks,
-~val
-
+Regards,
+John
 
