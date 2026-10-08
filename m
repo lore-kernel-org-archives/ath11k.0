@@ -4,69 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98EACCA6013
-	for <ath11k@archiver.kernel.org>; Thu,  8 Oct 2026 22:59:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ACD1CA6015
+	for <ath11k@archiver.kernel.org>; Thu,  8 Oct 2026 22:59:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=HfIuMkKcZhoNGOCpjkNiN0ls+U2IBKT483IcF3W/m8s=; b=f4FA9kiVMzx7iTbD4qMQSpOlGR
-	gX5nqMfiaZwu5ZZo+IAokD7D6D2DOVLAoUmUq6s2vZ5+b50t4ha72L8vFi5U+EyGbWKuvoNKCdJsX
-	18N7XzstuWYzAyj4Ed1mHTM0UDxHb/sv4v82BgXnbf7iKc7oi1WxKYqfx/yjpLK9PbHmpkvTuWBPy
-	Csh1OW7iFAvsOOGDScfHR1lo9Z/jFTG9EWz5qf0NROly9tjnyGKaYf3gqwk1TDgByhucdthOVDWFN
-	CE/Zjsw+RAhtyVXrdIvWgPi3+odTRo6J/ZUcEqV/WlwrPf3nfCFzoHnuNzWb9RLOda5ZIQHFauhOm
-	4oVNmRiA==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=xRoGZQlYlVAuxRfgdxXpGqhgqrrcnM9oFsa9ZYtBb+A=; b=lHlVRKPYp42N6fnAvEVoxLFT79
+	4ZIsS8uXx3QmMolK5uMNh8qjMfVy9NlC4Y1xErrtlamrVMuNwGcLJeh8IPIHTPMjTexmJbUOeMhIm
+	id+iXlk7WQv30cbvtdDgXmszs7+yaH4FdnA8W7lOyRyH7U8OVIyaGgYSliX34ltT5aFM+jH6Cbu6r
+	AOkwiU4GwAPvrzCadwDU0vhLp8Kwm0A3xQBFKeI1sZyryyod+DIJN7ArlIsi+U2jv7k6wkru/bnbN
+	LRvB2VhPpdIlh9v93hfPqVsTMxrZcBZ1LpkFbq4E0r+6LNIFoBLREzL3WipvUv0ZZ9guqEdL4+fwH
+	2I7O3R9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEx4z-000000059Ai-1EXK;
+	id 1xEx4z-000000059Ad-0zC8;
 	Thu, 08 Oct 2026 22:59:13 +0000
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEx4w-0000000599u-1Bz8
+	id 1xEx4v-0000000599t-3vI2
 	for ath11k@lists.infradead.org;
 	Thu, 08 Oct 2026 22:59:11 +0000
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-c29c6a3930bso775317066b.3
-        for <ath11k@lists.infradead.org>; Thu, 08 Oct 2026 15:59:09 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-c2dc63f8d8aso564333666b.0
+        for <ath11k@lists.infradead.org>; Thu, 08 Oct 2026 15:59:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791500348; x=1792105148; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=HfIuMkKcZhoNGOCpjkNiN0ls+U2IBKT483IcF3W/m8s=;
-        b=eiaOUW01tuvmQ0SHnrmM6Eg0Ch1CbSyBTbDJkCgNtY3nIDfd2oKogoINtoVqiqcixP
-         0vsRqYtZxr/jkLazFK0oYVGjZZTZr2Odzg8G2cT87i9we2l3ND4oWHnrbhqn0ZdRFOt/
-         un9HQ7trHc9pK8SBZHuM+2Db1UpBmlIGGu/wgC2+hX/s9jFowxw+IVWWLTRl8t4aJYTU
-         JKmSB3b5UgQpmr41QYsrlPz+qGx3ceoFxStsh7qmEm8cDwswhm4VqlJO/3RDz47XJS9K
-         1d44AHJc0M7cLVnFTtdm5q2b/ogTEGos5gFD7ixMeYD7+8pUOVlbP+2oZeMwM5q1LdHE
-         j+SQ==
+        d=gmail.com; s=20251104; t=1791500347; x=1792105147; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=xRoGZQlYlVAuxRfgdxXpGqhgqrrcnM9oFsa9ZYtBb+A=;
+        b=ObyM/9YMxa2f35PsrRDA/09YUsbMJY1yHzvYHi/xLPG8r5DqpwcnbCAupoaYD+1UT5
+         4dFYCPmaGUX9XLVioCic8KDqnRW1GgWliCWk61JgkKKergTn6z7LTCzmB8+LUy2CGcrY
+         m1n2HLEf4VZtNSaGZ/x/rVR/gdz7GGf381bMfDfgI4f/cABBykTBAk5nM54SbOs7uYi+
+         2T2sWRGn7DgmBIurN1+vLD7IITf1HXJhlp9zunTB7a+bZRseqV5Yz0FQxHUA06EowlEz
+         CvRh7PG0XNVHNUZY/frp3kxVbMikmyYp4vxG9fXP2Hkr1KfrdZJCsz3GZZY9F4Ta2LLa
+         CSBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20260707; t=1791500348; x=1792105148;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=HfIuMkKcZhoNGOCpjkNiN0ls+U2IBKT483IcF3W/m8s=;
-        b=QlXPoyhSeW8Jp8pbolpyyED1eWE5D3McFa57qFAgy00x0NrvjW4NBLxX6/UXcgFmJh
-         iR7kHBVWxCl3cDlMoOz6tm4Br1F+XzIWjwqGZoXZAXDlojZD5fe6bzHWWa4M80YObap+
-         LsEDEvk+HRtKdGd1tKncQYUN1HZdjXrBsPuLLNlW6DAE1wL1II9QHoADMWtiMiyCoUna
-         zXFiwyIltgvsSl4j7ljqTPuWswZ1TQLfuBsCl6zL1LVouQZEIAYc84pL3mUidmRM/Cec
-         Wgl7c2E2qVz8NoV1h93qRZS7/7b3sHLLhHyJaAhkT9qxEddUrohgosL8eL9ka6kqRXBA
-         LaZg==
-X-Gm-Message-State: AFuF++n2QbvxgACrL1jBb5UJ0EDLOGgw0jdSr42KrBXy6dZk3Xoq6bLv
-	Q2wtWSJhlPqGPi/4cI3g0VEftb5tP9ollnQFHocWOYeiwOfubGAk8GUH
-X-Gm-Gg: AYBFou21jkSGRGo+jwJH3xB1C8hmAtCFVEQnvVgQZoEV0f3Cd7EmGKLvG2xNUcel2uY
-	WIirUbMjM2GmNh+oWNg69Zdkb+UNuDHl80gWOLM1eREsSJ+4q5sZzbE/Kz/ZYLFK1Qdgh9ahLTj
-	nkWTFKA/M7QjgKWK1YtyKGiISKmhvNfxwHrvAh8R0TMbNCYM6Sj9tg+ixgy4anTAU9l2RfbJ7Bt
-	u2s5bvA71zORMFKFyIrblLaYedBZhw1Zl4fKUgVnHInI8mQIZxcYMtp6qp/Yt2FIO/vt2Ul0GF7
-	HuFbn+yxYB31/3IqnrfE9Q5R3ytLfFTlsXP3Kcc0Ia3O+pel6WsFPG+vXrXuu4bkiEpNgW4VVws
-	WqGZrvp4KoLiF1BdajhHZCWx21js41V6K4eQ+j4aWNTAFbHH5janGu9Kp7BY+gVBvF1lFbIppFm
-	dsVC2zv5bSgv/Rgrmhhv4WIt9yIpiUANY3t6RYKH0KvpIolpzAjtOrEjBYb5YrXhbneBGeQb+FW
-	GAOpg==
-X-Received: by 2002:a17:907:6d12:b0:c2a:704c:8c74 with SMTP id a640c23a62f3a-c31a9d578e7mr16894766b.28.1791500348119;
-        Thu, 08 Oct 2026 15:59:08 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=xRoGZQlYlVAuxRfgdxXpGqhgqrrcnM9oFsa9ZYtBb+A=;
+        b=n3N2QP3lLfKbKjxCorxslENAwsdc20dy76141/EaKphZkZBizmY8lDQ2JVfaNTS8G9
+         n4VHjlvcpjBiwqQZspur80UnDEny+j/YxMSwQNcnldLY5oQAERDflylqPbZEDoo91f6J
+         uUh2nD5xDqfadE01IefHmyxREzexX0bYo3RixegTKNKGNbHod9McxsYshqGcZ7AhrRRj
+         fYLl7bgVCKIKJmBsRleNltdWNrBld5jl6RR7pTEW3wIfN5JjSCngPX7gpUaoUECwLQDr
+         70S0I74p3CsqFHPJurKCG+xvvH0wJechW4OuG2tZuMlUtf0m/qzHXziQ7BT1oiEXTTcK
+         G8Vw==
+X-Gm-Message-State: AFuF++mKAS808nx+1VEsU4iZb3RlfgQTGCgd5MczkqUlkfvaUR1IqqzH
+	89uux+jK5s9qa/RANv4rD5wwzIyz9Sx2pj145TGr0Iu8gJMNmn2isF4Z
+X-Gm-Gg: AYBFou2GDm2RTS3X3svG7kgocdMYA8DIr+b7ZBxCX990yGwTi5H0jjHgjyrtVrf3dXy
+	0GBBfSxnWOHDGSJrfF8lwJbNsxkO6S6Y5NdMC1DnDCDtGCbq2uoAIkNjp4gwp9qvCBSIzfCjfr5
+	pqdsGn+nGKrKi5e88RTWr8goSnR35mbUlvtIc1+EeuK5OLNiGI84pmH8sDmu6Xu23+hFgEjWv6E
+	paHawF//krE36HagvplxvfTszOLoUiLsWpWjXXTxsV27+Ozjgt16L5t9izXJzzzlubAhYvktWq1
+	HFWmjPWqpYORF+8BzRbpcAkgBnSRJh7J64+IbQCGksShO9SU7efpRuTdAwdTU9Jj+I1MFyKqr21
+	h/YlCIgxAD77BtysFu6ulx/yHwFZpFoynMBqY+HKfsjBdKhBsxTP5DojfVW9yg/8pb+CGxH+i6j
+	AXret3r9rRrVsUv9HgiZE+xSQDup2OPFIKNEBbFcwolJmdAB4P0kcAYgZL6cAPcKXMZLBFp3coD
+	jK7Lw==
+X-Received: by 2002:a17:907:948f:b0:c31:9a1c:de76 with SMTP id a640c23a62f3a-c31a9fd424emr16644266b.14.1791500347484;
+        Thu, 08 Oct 2026 15:59:07 -0700 (PDT)
 Received: from nb-xps.ts.zxczxc.org ([78.56.243.43])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c31a9ae59f9sm6993566b.80.2026.10.08.15.59.07
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c31a9ae59f9sm6993566b.80.2026.10.08.15.59.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 08 Oct 2026 15:59:07 -0700 (PDT)
 From: Nikolay Bryskin <nbryskin@gmail.com>
@@ -75,17 +74,15 @@ Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	johannes@sipsolutions.net,
 	Nikolay Bryskin <nbryskin@gmail.com>
-Subject: [PATCH 1/2] wifi: ath11k: initialize txmgmt_empty_waitq before registering the hw
-Date: Fri,  9 Oct 2026 01:58:52 +0300
-Message-ID: <20261008225853.15399-2-nbryskin@gmail.com>
+Subject: [PATCH ath-next 0/2] wifi: ath11k: fix two races between ieee80211_register_hw() and the rest of mac registration
+Date: Fri,  9 Oct 2026 01:58:51 +0300
+Message-ID: <20261008225853.15399-1-nbryskin@gmail.com>
 X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261008225853.15399-1-nbryskin@gmail.com>
-References: <20261008225853.15399-1-nbryskin@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261008_155910_335736_7C81A6E8 
-X-CRM114-Status: UNSURE (   9.52  )
+X-CRM114-CacheID: sfid-20261008_155910_018665_32AB5279 
+X-CRM114-Status: UNSURE (   8.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,61 +98,53 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k_mac_register() initializes ar->txmgmt_empty_waitq only after
-__ath11k_mac_register() has returned, but __ath11k_mac_register() calls
-ieee80211_register_hw(). From that point on userspace can transmit
-management frames (iwd starts authenticating as soon as the wiphy shows
-up), and a WMI mgmt TX completion event then ends up in
-wmi_process_mgmt_tx_comp(), which calls wake_up() on the not yet
-initialized wait queue head:
+ath11k does part of its per-radio setup only after
+ieee80211_register_hw(), when userspace can already see and use the
+wiphy. This series fixes two consequences of that:
 
-  BUG: kernel NULL pointer dereference, address: 0000000000000000
-  RIP: 0010:__wake_up+0x5a/0xf0
-  Call Trace:
-   <IRQ>
-   ath11k_wmi_tlv_op_rx+0x174c/0x32b0 [ath11k]
-   ath11k_htc_rx_completion_handler+0x4fd/0x670 [ath11k]
-   ath11k_ce_per_engine_service+0x2b2/0x380 [ath11k]
-   ath11k_pcic_ce_tasklet+0x1d/0x40 [ath11k]
-   tasklet_action_common+0x186/0x290
-   handle_softirqs+0xe8/0x2a0
-   ...
-  Kernel panic - not syncing: Fatal exception in interrupt
+1. txmgmt_empty_waitq is initialized after registration. A mgmt TX
+   completion arriving before that (e.g. iwd authenticating as soon as
+   the wiphy shows up) calls wake_up() on an uninitialized wait queue
+   head and panics in softirq context.
 
-The window is normally very short. The panic above was hit at boot with
-an msleep(2000) inserted after ieee80211_register_hw() for testing, while
-iwd authenticated to an AP during the delay.
+2. The regdomain received from the firmware is applied after
+   registration, and asynchronously, although the wiphy is
+   REGULATORY_WIPHY_SELF_MANAGED. A GET_REG from userspace in that window
+   hits the WARN_ON() in nl80211_get_reg_do(), and a connection made
+   before the regdomain lands ends up with badly degraded TX once it does.
+   This is the driver-side fix Johannes asked for when a patch dropping
+   that WARN_ON() was proposed [1].
 
-Initialize the wait queue together with the rest of the txmgmt state,
-before registering, as ath12k already does.
+Both were found on a Dell XPS 13 9310 (QCA6390 hw2.0, WLAN.HST.1.0.1-05266)
+with iwd. Patch 2's warning occurred naturally at boot; both failures
+were reproduced reliably by inserting an msleep(2000) right after
+ieee80211_register_hw(), and tested with and without each fix:
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
+  delay  regd fix  waitq fix  result
+  yes    no        no         WARN_ON, then NULL deref panic in __wake_up()
+  yes    no        yes        WARN_ON, no panic, TX failing (83% tx failed)
+  yes    yes       yes        no warning, no panic, link stable for 6+ min
+  no     yes       yes        in daily use, no issues
 
-Fixes: dddaa64d0af3 ("ath11k: add wait operation for tx management packets for flush from mac80211")
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Nikolay Bryskin <nbryskin@gmail.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+The patches were developed and tested on v7.2.8 and rebased onto
+ath-next without changes (git range-diff shows them identical); on
+ath-next they are compile-tested only (W=1, no new warnings).
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c1fa42edd363..3dfd24d7b5a6 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -10738,12 +10738,11 @@ int ath11k_mac_register(struct ath11k_base *ab)
- 
- 		idr_init(&ar->txmgmt_idr);
- 		spin_lock_init(&ar->txmgmt_idr_lock);
-+		init_waitqueue_head(&ar->txmgmt_empty_waitq);
- 
- 		ret = __ath11k_mac_register(ar);
- 		if (ret)
- 			goto err_cleanup;
--
--		init_waitqueue_head(&ar->txmgmt_empty_waitq);
- 	}
- 
- 	return 0;
+The same register-then-apply-regd ordering exists in ath12k
+(ath12k_mac_hw_register()); I have no ath12k hardware to test a fix
+there.
+
+[1] https://lore.kernel.org/all/16aa99921c4e92e8d4da3c84aacbec2e673666aa.camel@sipsolutions.net/
+
+Nikolay Bryskin (2):
+  wifi: ath11k: initialize txmgmt_empty_waitq before registering the hw
+  wifi: ath11k: apply the initial regdomain before registering the wiphy
+
+ drivers/net/wireless/ath/ath11k/mac.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
+
+
+base-commit: 129324b60343dec19d45dcf87736f129b18b95bb
 -- 
 2.56.0
 
