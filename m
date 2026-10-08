@@ -4,149 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3C96CA6007
-	for <ath11k@archiver.kernel.org>; Thu,  8 Oct 2026 05:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12CC8CA600B
+	for <ath11k@archiver.kernel.org>; Thu,  8 Oct 2026 11:02:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=eQV9p9UYhsQ3ApYT0Wh4i0ldneTjolAW8NyWSQEXrtU=; b=rFjtyQ0HN05ZQHg5OSfilW9bY9
-	y+9zgeGjcFApUnDv/F7HBx3ZCHeIHZUENdpxUy3pAviMGziWV2V1eIoFnJJcXQhdm0Nur8CEHmhem
-	gFlgSDnJ/115dH04hQ4iIqkuTVTl/BUCNVsskKpyWPRx1w2i3hnivJJSzMAfeus6OdtcRxAcqwByn
-	4JiJAgJXBZCUEqicsWheUVy2oO00W1I1kLBKb0PM+DS/jrHdlOwqDwIvYw/tRuN4s78IIYsobjt+a
-	sblBAZsWCgv/w1+CWS1uu7MjeipebHrNTq6J22qhQhS0S9zjLvWXPN3z9+Vu8oLpCN8Oae9KIBpNO
-	m1USjKOw==;
+	bh=6YHQnEULCZieeaLxdgJmpoPCPlP2is0QYfWrbkAwUvY=; b=NUZ2GW5X3mlOLsPVkc7i+Hi14G
+	XHc6QYxO0uOVpw1BrWIJCWD8leUTWOA3zLnqQwllv6BselG8/1bmKdAONnl2kBe86nG04ub9pbukJ
+	VmvHMqQ12mFFhAG+dpjCGB8vbcXHJ9G6/M4jz0YT5v2OC4KnMF72yg/p9usJpdo2264/S4u0xyrL7
+	kTmPtMypn3OIqPOwu/N3olsgIdOS6wrS/tB1Sm02c38yMLRgfZx+hccsyJ1USmeUyHTdPlMhqWHr6
+	B/0GCzcVPJW9HA4w4gjpz5C/IYmSMSlXZ75N+CXgWcxuxZEzD+6cOESX8d6LAF2yY7hiVmEb+Xo3g
+	YqBclxvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEh3D-00000003Zib-4APV;
-	Thu, 08 Oct 2026 05:52:19 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xEltg-00000004D1Z-48fa;
+	Thu, 08 Oct 2026 11:02:49 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEh3A-00000003ZiF-3fkQ
+	id 1xElte-00000004D0z-27N4
 	for ath11k@lists.infradead.org;
-	Thu, 08 Oct 2026 05:52:19 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6984BXAE1157823
-	for <ath11k@lists.infradead.org>; Thu, 8 Oct 2026 05:52:16 GMT
+	Thu, 08 Oct 2026 11:02:47 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 698AbQlC2289877
+	for <ath11k@lists.infradead.org>; Thu, 8 Oct 2026 11:02:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eQV9p9UYhsQ3ApYT0Wh4i0ldneTjolAW8NyWSQEXrtU=; b=Ny2TzCJVR2wZYgLe
-	QbVAU/dgqbupsn9ExdPxgbi6YZmWbKmmx8V5YH1dZFf9uB8kUnQcO3P8WvvgZVGb
-	+ENAlmVMtF8R9+Q+s42e2mVu/xweeWKpkmC2+hT8lyJtdhCgn9iWRI11rg1z37sR
-	ITodF/lToSxtGSWJrHNX+vh5fQyN9jXW/x64b1uEc8O+XEQh29Aiy5hGvClyQub4
-	GNs4e5B0mdiYVp44k5NZ4uGyiyckfqIDMhRl/+3cDzv6FF/jKuY9K3mZn9lPdocY
-	A2yvs+vYGUhg6TfqgEh+KvFE7FRVmOFIf8RMCdm1cNaHaE3mV4YMoIj2TVJa63y2
-	RIpH5g==
+	6YHQnEULCZieeaLxdgJmpoPCPlP2is0QYfWrbkAwUvY=; b=GJd8CGRMdgEPoDTA
+	LcP5RdfpB7vD55+ZKGi7XWh7XfLoB1+NYKrSHuCRAyjhSULl4WUcjkK17UlXFf2B
+	gibqAYi+wkhvphiQKCRIxPkHSZLveoO24La6gemjemAL6mOIghc90zS/VG7hZ92X
+	Ru0ER0/CjkXNl7x5t7ZG9JIIPX/n2JVu8lalUAvNZqnnGoltR8M7cOrgqaQSnP4Z
+	Gyz1yTNQTKOtz8ubKUsIRv1NEZgCj0rvs9fp5JVbsx8H8mvyibaENEveJo2k7yee
+	xvxmYhG4eybbG6E9IGhEYOv/m9r9k+1xKqdN4CUjulNVkakb9cdLOvTCVtff8Pf+
+	ilZrUw==
 Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4h5xe51b5e-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4h5xe3jp2s-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <ath11k@lists.infradead.org>; Thu, 08 Oct 2026 05:52:15 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2cfc52ddc55so50355835ad.3
-        for <ath11k@lists.infradead.org>; Wed, 07 Oct 2026 22:52:15 -0700 (PDT)
+	for <ath11k@lists.infradead.org>; Thu, 08 Oct 2026 11:02:44 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2db8e9fe9c7so53218395ad.0
+        for <ath11k@lists.infradead.org>; Thu, 08 Oct 2026 04:02:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1791438735; x=1792043535; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=eQV9p9UYhsQ3ApYT0Wh4i0ldneTjolAW8NyWSQEXrtU=;
-        b=J7bNy934KWKAyzo5X59e/gSAtS2cwWAFNh/K79Zi4/U8FUFZ1NGOdOHTEfEwvn1Vuj
-         oPzucwum3CPk5A0J3/ESsnZ+ByzYKgUjTJYM+fDLqHi1aU/n6a1/4ufsTE8PROO4F1ev
-         sOuIGxwPJQgOeKOt8lOll02bAmB26dLHPdSv8s/lKwwHZUFYz/fwNohE3o0ye0Dqf5mf
-         a9lfHIq0JU8/W9CY24uh60yif4u362CI8BAyr+PJpbdbgqBkMjsYk5E6ofRbM7E+JOet
-         /Lvo4yuLTUFLzM5FpgOSF1gCBYke54ZpF1MYMZzfgXcjCUk08A9xBHxF8hwLK2P+/LFI
-         hhLg==
+        d=oss.qualcomm.com; s=google; t=1791457364; x=1792062164; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=6YHQnEULCZieeaLxdgJmpoPCPlP2is0QYfWrbkAwUvY=;
+        b=VAQFik5a5M7B6A+eWKy5GJOeM4zDnOpV+fT2VBGIH7uogSKf7hNUevzTr77EowWwQo
+         AwBJRlSSr4RgDdQ0SBqkzlxfx/uIGbv60epTV6n6oQyWDrGKCYTLq5mlzd7qJybDDnfT
+         W4at+pYSWAuoHW9u/WTac7+0idT8jqAxO90fuwZDXrcZSdReRRXxZRxcqN7VSrFCffEJ
+         1X9dJWaLHbM1s+0EWcoZWC7Hp7Uf6jB2zDs9SK9KvWvTQuhR1bbXkODaWfOzlIkDc6YD
+         bXek37XR852DRkXXpjG1UPrwR3zJg5rwicJqUb6KP95DQa5EjGn2AVCdMAMNkMytpiLF
+         /juw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791438735; x=1792043535;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20260707; t=1791457364; x=1792062164;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=eQV9p9UYhsQ3ApYT0Wh4i0ldneTjolAW8NyWSQEXrtU=;
-        b=ytiKe3nzghEvNBLr7iw4tQfFCE1oMeNEKNwCQK3A9mOTSASZIxYJpUmriY15sjkkrL
-         fbkS4UIdJ0NBOvYgAK5GlGcXDd+K9av4R7zMxI8K2osa61msIkYMBWkqoIG/X6lPpd5M
-         T+GJ1ph4iqx04FwAA4FuVq1yA7grGYfH2e7J+fQriDus4t0mEOL5PppK789uE+wK2W/Q
-         h1sz4t42xWTIMGVTyfp9tzI4T+G+/Cf9qbYVSE/xNNMDBrXCOfEeeVsoFqZgVu7oHfj5
-         95nNaZrm+I1IGgo5CG6LrKLCTFEu0k4rSV2+uOfeFAL6HKFYlbezeEDBGZ9Y7V0Exp4B
-         DF9g==
-X-Forwarded-Encrypted: i=1; AKwUvBxIwL8RTOQzFSfby8W/KPgKy2aa9caRXkzpvkUaJcscPjWScM+H6vmSPz+qh04kAM396omOHQY=@lists.infradead.org
-X-Gm-Message-State: AFq9FYJycBoYisn7Wb+fTdp+3Q891Zmd93XOqhlT6+redvKO0bG6Mij4
-	xmiE9I9FaWYXlrtHYjVRqtFiQyTutFS2XdhWgTQlLQg4C/TalV63WsnHQwzXyG9R9WG0Fyy46ve
-	VhYd29WNfn9IQSnVSV4XIDiGebcOqcmBaxeN1Pd8kyjtJwPd38yqQ0QdPb1hZsf5mdANITJxP
-X-Gm-Gg: AYBFou3vJZTdaYXvxxVzSjnygKWioigFwg9zd+IlNE4RZJKTIJvcSlEkmQR3HslEOuu
-	5Ip08LEsRwKAyvHFUUrfyal7GS30A73cc4U9V6cHLHdOfqHztXhTphZ9IjYGLll+vXw3XNHgdlU
-	o4w8qELr1DmllVv9LLXfXgngN1+EBgRwmr/CLzIyDpMn91MDwUzuJPCBHfIwUk0aU4aKrblsiD5
-	u0cCLqKeSNXDFahsbyo7iJINPxcI33rO583Aqx+/xEPIHh8Efp8fwlH9xnhqnLpmpVgnADbZIcv
-	sQ0DJgt179aIfBKlZFIzYoRexp2wm9UaZCjuqRVNgmo8iDhAMuGxPK2MvhFbzJcgqM+LE5FYObe
-	N75s/qEWmF5JqUExwCCJ3Hp7b2eentdYy
-X-Received: by 2002:a17:90b:17c2:b0:3a8:10e2:acfc with SMTP id 98e67ed59e1d1-3a8a1ceec9cmr3579225a91.65.1791438734940;
-        Wed, 07 Oct 2026 22:52:14 -0700 (PDT)
-X-Received: by 2002:a17:90b:17c2:b0:3a8:10e2:acfc with SMTP id 98e67ed59e1d1-3a8a1ceec9cmr3579214a91.65.1791438734295;
-        Wed, 07 Oct 2026 22:52:14 -0700 (PDT)
-Received: from [10.218.42.145] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a9f1a79babsm2629601a91.6.2026.10.07.22.52.08
+        bh=6YHQnEULCZieeaLxdgJmpoPCPlP2is0QYfWrbkAwUvY=;
+        b=hsehK25T94If4lXrMksydWR6sjtRnSaUkKlWDSYzg4m42uyNkG6MBpJ5ctkdyNf4Q/
+         y1VtCnA2bB7CLsu+ntRbJ1twl40O/f1xxp8vLTMpFb9Fjrh/l5qCV/gt3HNr/0IckSPG
+         KuWEr56BMH4xHv7jIJQh66SO4nc4yFb0kznJKuwO8L6Qhxp53D6mqlBWWqoBZgsEuRZb
+         4WdxuGmrXeYxOAtRvA9Eqo0ekFRlLID8dH2iwmURTdljIElW2j+OZGCataTxRHi0PdqB
+         xnSgt4IOhrDOQJzGQdYK5HprkG76QALpCUiZv27LhK+PaCO0/6TjzzuMoxHvHGoafRiq
+         T0iQ==
+X-Forwarded-Encrypted: i=1; AKwUvBykHZPYr2Rs0qpKJGWz8b+N4LogUYIbVBxH0hbEyVW/Czxxsp+mBEUTJE1GAlO3YhCOw9SwOmM=@lists.infradead.org
+X-Gm-Message-State: AFq9FYKJsixYkp+2o1w2z73LKGSLYgGuqYiq6bJPImsVoJ5FN6HrYVKn
+	W6lid4v8ezggeL1drdCp2cfswTDh4ZFzN8OXlARrqNY6wK0DTbMJXYzzhQQX5sgav3weRCMPLo2
+	+SmvdoojauX/7kN2oKbpEmJfSoth6ujP7NH23A0XVW2JiQ7uARDGH//CgBlrUnkF8
+X-Gm-Gg: AYBFou3DGX41zINjPzfnI6cxxPWavtUizLs2lbw3/3gjv62PBGHUnp7JWjQZpZLPO6d
+	iZ4hXjfkEukna1U4JUKWO3Mex4iTZJqT9FY6o4Fu+svkJLq5cVTtgWID9PJhiwOXnIURG03EYC+
+	npzfmTXOJssZRJMza8YD4lM/8ITF8eB5vO48zEk0X4CkemEb53tjcMKYz8AxzJiRkJLJNx91c9p
+	CYOx0FWuL9eHq34bMW7vsdjvFfpz38AtIGaUxflUqIZuG7Rs7irtoPIrSJwJls7rkvJwrBbAh7P
+	CQWpMEaazPqhssygoAPjij30rxXq8O5JWeRU71ZgrLmLZxI0Pwv2B5TyFWAGulYebIf//JGAfhm
+	PPsNQJDRZfau/GmQspNjQI4BSnz5VQkTqqywuFb4ijOP9f+56jeWja5xwk2ZElNYqgsZoEao=
+X-Received: by 2002:a17:903:2c8:b0:2dd:c053:9c70 with SMTP id d9443c01a7336-2e6004f2a86mr45269575ad.38.1791457363536;
+        Thu, 08 Oct 2026 04:02:43 -0700 (PDT)
+X-Received: by 2002:a17:903:2c8:b0:2dd:c053:9c70 with SMTP id d9443c01a7336-2e6004f2a86mr45269055ad.38.1791457362639;
+        Thu, 08 Oct 2026 04:02:42 -0700 (PDT)
+Received: from [10.133.33.26] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2e604437bb7sm22753685ad.1.2026.10.08.04.02.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Oct 2026 22:52:13 -0700 (PDT)
-Message-ID: <ad34ebc7-df81-414f-848c-0d5b820227b8@oss.qualcomm.com>
-Date: Thu, 8 Oct 2026 11:22:06 +0530
+        Thu, 08 Oct 2026 04:02:42 -0700 (PDT)
+Message-ID: <c3564de9-c228-429e-8e04-3ff65619d1fc@oss.qualcomm.com>
+Date: Thu, 8 Oct 2026 19:02:38 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/6] PCI/bwctrl: Set host bridge OPP and optionally
- disable ASPM around link retraining
-To: Val Packett <val@packett.cool>, Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Lorenzo Pieralisi
- <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, mhi@lists.linux.dev,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        qiang.yu@oss.qualcomm.com
-References: <20260819-bwscale-v5-0-6dea79786b37@oss.qualcomm.com>
- <20260819-bwscale-v5-1-6dea79786b37@oss.qualcomm.com>
- <f189cfc2-c36a-4bf5-bac7-36ddb15cc7a4@packett.cool>
+Subject: Re: [PATCH v3] wifi: ath11k: release peer accounting on peer delete
+ timeout
+To: Michael Pfeifroth <micpf@westermo.com>, Jeff Johnson <jjohnson@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org,
+        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <arJzxQcf4intXBqS@mpf-ESPRIMO-P9012>
+ <9d8307ee-e9bd-4538-92f8-b33410caecae@oss.qualcomm.com>
+ <arTp/9A0iMNpIhl2@mpf-ESPRIMO-P9012>
+ <8bc3eaa1-7233-48db-a41b-ce3f08fbdd15@oss.qualcomm.com>
+ <ar0LVqHZF8UlRB0o@mpf-ESPRIMO-P9012>
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
 Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <f189cfc2-c36a-4bf5-bac7-36ddb15cc7a4@packett.cool>
+In-Reply-To: <ar0LVqHZF8UlRB0o@mpf-ESPRIMO-P9012>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: pKxFLta-NHIEuNuanE-TVHH1kLQcJxtz
-X-Authority-Analysis: v=2.4 cv=E4dYNqdl c=1 sm=1 tr=0 ts=6ac72f8f cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMDA4MDA0MyBTYWx0ZWRfX8/Pqmqiv+xWn
+ 6ibcbfdXURcI+cG9uyJ7hgAiIICbxKwSkatQq6tYGhmRwo+bccwltD5wW08VKdWJR+hDBsu7T32
+ OgmJ3m8lM7hHM9SxsgtmXgYzT4dcN4U=
+X-Proofpoint-ORIG-GUID: 20AnXUjFi1qXQUrzLDvsoO3JWOyIUSca
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDA4MDA0MyBTYWx0ZWRfX5dE0d0xEE2Il
+ VDh1lO34MRfMgdAeYdZ1UF9U9aE5nZbC1K2zqS1PigANK9w/pkVDpP9lFilvCJ5GO9dlrNI6ItB
+ bR/QENp8h+O4oVHSV4Vv/It/QG6Tmx8pX7o9SG9pvaamI+K4wQ6UNvfS067/cMq9ISi21UBDhlf
+ YbKxCopDKOFIHVwpzI4pxTpSP/7zNs2axwNVxoyJ9W05mdePCrL9z7J/ZwIkDofNoLluLv7qBB0
+ GJ7BBxPbcwnK6dPbKjhudGf8XvkbMPvLqaVdpCinCQatAf7VhnIs0DJuL6d4S5/C+Hixyfcd1Be
+ MXo5Y1A6qK7pCJcY8IrB1VlXlg1kW1ZeIDvc6T5YjU4ZBdDiUbHQ0IdPITfBMKn4jidIsDcq3gR
+ 6wLHTao62Zf2+fE/mDQIi1PWH8F06KC9xyL5zCdTPQBuThdLWr2UCOrW51DSh0jqWzkDoa7O/pZ
+ 5MlJul/nSTQ5/j7D9Kg==
+X-Authority-Analysis: v=2.4 cv=IIuXmQvG c=1 sm=1 tr=0 ts=6ac77854 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=660iZSQnnn4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=6HI80psrSe5n1y8aGwAA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMDA4MDAyMyBTYWx0ZWRfXzbyiE1OvY/Sl
- a066Bzo4pYE4gfs1jsCEBU3z4W+6Kyv9G1BQfLnFXlEpxqWxC6euAHtCwNt7Qfa8Kn3KGbEoo4D
- WZT208auU/wLpKKzpuuiiwIVprxGPQE=
-X-Proofpoint-GUID: pKxFLta-NHIEuNuanE-TVHH1kLQcJxtz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDA4MDAyMyBTYWx0ZWRfX4DlmSf1hzZ4d
- mbVsXiHmrf/zUHWAsNtbyzYGT3tqpR6PYLII5IfzkJzcuxGPQ2kCr77NVD5clBK0Ng2Ln+LXa1F
- E0WSc2GBzVkryiFVLG+Cm4E/3qVFgmzRLQ4dK5iE8hLPjfKEul9RK35bu+NCCISW/xdEQGbr/hF
- N1bV/28MCLkwQsqyHNx+fnf7+qpzyJMstpYxjwg1z6H5eQ0GJ0KofCCAnKXmBIkIE+hg/Yrk89U
- HSUdaLic0B0Udfs3kpDOPL3WQWJF6lMtcJ6xYKBdglGNdjPyR5wPptGZNk3ntYxum3DDCJMEd5h
- 8VzRd+x7WyABSr9cU5y0DGuImBJmD+MrRn+RpIsB+NGaYm4B6N0xxu8tlB1GsX9qpGO+s7m+Mzj
- YJdu9nXZBQhOw41oFp/hw0JNT/aavMXFoez+T6w7wi/++DE6ClBxD0wd6um6ZXlyPkIjTRBXGER
- 4evDx9gcORStbohSQmQ==
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=VwQbUJbxAAAA:8 a=N9GNhs4bAAAA:8 a=URxyR80WDTEKk2XSxLwA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22 a=PZhj9NlD-CKO8hVp7yCs:22
+X-Proofpoint-GUID: 20AnXUjFi1qXQUrzLDvsoO3JWOyIUSca
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-10-08_02,2026-10-06_03,2025-10-01_01
+ definitions=2026-10-08_04,2026-10-06_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 phishscore=0 spamscore=0 impostorscore=0
- clxscore=1015 priorityscore=1501 bulkscore=0 suspectscore=0 malwarescore=0
+ spamscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 adultscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1015 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2610020000 definitions=main-2610080023
+ reason=mlx scancount=1 engine=8.22.0-2610020000 definitions=main-2610080043
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261007_225216_942327_EC038061 
-X-CRM114-Status: GOOD (  28.63  )
+X-CRM114-CacheID: sfid-20261008_040246_665631_83F5A276 
+X-CRM114-Status: GOOD (  29.45  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -163,138 +154,81 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 
 
-On 10/7/2026 2:41 PM, Val Packett wrote:
->
-> On 8/19/26 10:25 AM, Krishna Chaitanya Chundru wrote:
->> PCIe host bridge controllers may need their operating point raised before
->> retraining to a higher link speed so that hardware resources (e.g., RPMh
->> votes on Qualcomm platforms) are available at the requested data rate.
->> After retraining, the operating point must be updated to reflect the
->> actual negotiated speed.
->>
->> Add pcie_set_opp() to look up an OPP on the host bridge parent device
->> using a key of (per-lane frequency in kHz, LNKCTL2 Target Link Speed
->> level).  Keying by generation rather than total bandwidth lets OPP tables
->> remain width-independent.
->>
->> In pcie_set_target_speed(), call pcie_set_opp() before retraining only
->> when upscaling (speed_req > cur_bus_speed), since only raising the
->> operating point requires pre-staging hardware.  After retraining, call
->> pcie_set_opp() unconditionally with the actual cur_bus_speed to settle
->> the votes.  Both calls are skipped for downstream ports of PCIe switches,
->> as those are outside the host controller's scope.
->>
->> Some controllers also require ASPM to be disabled around link retraining.
->> Add a disable_aspm_for_retrain flag to pci_host_bridge; when set,
->> pcie_set_target_speed() saves the child device's ASPM state, disables all
->> ASPM link states before retraining, and restores them afterward.
->>
->> Signed-off-by: Krishna Chaitanya Chundru<krishna.chundru@oss.qualcomm.com>
->> ---
->> [..]
->> @@ -176,6 +231,12 @@ int pcie_set_target_speed(struct pci_dev *port, enum
->> pci_bus_speed speed_req,
->>           !list_empty(&bus->devices))
->>           ret = -EAGAIN;
->>   +    if (bus && is_rootbus && host) {
->> +        if (child && host->disable_aspm_for_retrain)
->> +            pci_enable_link_state_locked(child, aspm_state);
->> +        pcie_set_opp(port, host, bus->cur_bus_speed);
->> +    }
->> +
->>       return ret;
->>   }
->
-> ASPM is not actually reenabled here:
->
-> LnkCap: Port #0, Speed 16GT/s, Width x4, ASPM L1, Exit Latency L1 <8us
->         ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp+
-> LnkCtl: ASPM Disabled; RCB 128 bytes, LnkDisable- CommClk+
->         ExtSynch+ ClockPM- AutWidDis- BWInt- AutBWInt- FltModeDis-
-> LnkSta: Speed 2.5GT/s (downgraded), Width x4
->         TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
->
->
-> Because as the comment for pci_enable_link_state(_locked) says, "note that
-> this does not enable states disabled by pci_disable_link_state(). Use
-> pci_force_enable_link_state() for that"!
->
-> This needs something like:
->
->
-> diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-> index 4bad311dc7..c54f2658e0 100644
-> --- a/drivers/pci/pcie/aspm.c
-> +++ b/drivers/pci/pcie/aspm.c
-> @@ -1709,6 +1709,12 @@
->  }
->  EXPORT_SYMBOL(pci_force_enable_link_state);
->
-> +int pci_force_enable_link_state_locked(struct pci_dev *pdev, int state)
-> +{
-> +    return __pci_enable_link_state(pdev, state, true, true);
-> +}
-> +EXPORT_SYMBOL(pci_force_enable_link_state_locked);
-> +
->  void pcie_aspm_remove_cap(struct pci_dev *pdev, u32 lnkcap)
->  {
->      if (lnkcap & PCI_EXP_LNKCAP_ASPM_L0S)
-> diff --git a/drivers/pci/pcie/bwctrl.c b/drivers/pci/pcie/bwctrl.c
-> index 623731b96c..530b9047a0 100644
-> --- a/drivers/pci/pcie/bwctrl.c
-> +++ b/drivers/pci/pcie/bwctrl.c
-> @@ -211,7 +211,7 @@
->
->      if (bus && is_rootbus && host) {
->          if (child && host->disable_aspm_for_retrain)
-> -            pci_enable_link_state_locked(child, aspm_state);
-> +            pci_force_enable_link_state_locked(child, aspm_state);
->          pcie_set_opp(port, host, bus->cur_bus_speed);
->      }
->
-> diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index 9f20bae6d7..59d7b67c9d 100644
-> --- a/include/linux/pci.h
-> +++ b/include/linux/pci.h
-> @@ -1960,6 +1960,7 @@
->  int pci_enable_link_state(struct pci_dev *pdev, int state);
->  int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
->  int pci_force_enable_link_state(struct pci_dev *pdev, int state);
-> +int pci_force_enable_link_state_locked(struct pci_dev *pdev, int state);
->  void pcie_no_aspm(void);
->  bool pcie_aspm_support_enabled(void);
->  u32 pcie_aspm_enabled(struct pci_dev *pdev);
-> @@ -1974,6 +1975,8 @@
->  { return 0; }
->  static inline int pci_force_enable_link_state(struct pci_dev *pdev, int state)
->  { return 0; }
-> +static inline int pci_force_enable_link_state_locked(struct pci_dev *pdev,
-> int state)
-> +{ return 0; }
->  static inline void pcie_no_aspm(void) { }
->  static inline bool pcie_aspm_support_enabled(void) { return false; }
->  static inline u32 pcie_aspm_enabled(struct pci_dev *pdev) { return 0; }
->
-> (the addition of the new force+locked variant should go as a separate
-> commit, but well)
->
-> With that,
->
-> Tested-by: Val Packett <val@packett.cool> # x1e80100-dell-latitude-7455
-Thanks Val for testing and pointing the ASPM issue, there is actually patch
-for this[1], I missed this new API change, I will fix in the next series.
+On 9/30/2026 9:15 PM, Michael Pfeifroth wrote:
+> ath11k_peer_delete() only decrements ar->num_peers when
+> __ath11k_peer_delete() returns 0. On a peer-delete-confirmation timeout
+> __ath11k_peer_delete() returns -ETIMEDOUT, so the decrement is skipped
+> and one ar->num_peers slot is leaked. Once enough slots have leaked the
+> ar->num_peers > (ar->max_num_peers - 1) gate in ath11k_peer_create()
+> rejects every new station with "insufficient peer entry resource in
+> firmware", and the AP stops accepting associations until the radio is
+> restarted with a wifi down/up.
+> 
+> This was observed in the field on an AP after hours of uptime with
+> frequent roaming and reconnects: clients could no longer associate even
+> though the firmware peer table was not actually exhausted, only the
+> host-side ar->num_peers accounting had leaked.
+> 
+> The delete-confirmation timeout itself is otherwise harmless. The host
+> first waits for the peer unmap event in ath11k_wait_for_peer_deleted(),
+> so by the time the delete-response completion times out the peer has
+> already been removed from ab->peers and freed by
+> ath11k_peer_unmap_event(). Only the ar->num_peers counter is left
+> inconsistent.
+> 
+> The timeout is reached when the peer unmap event arrives but the peer
+> delete response is missed, e.g. because the response event is dropped in
+> ath11k_peer_delete_resp_event() on an unresolved vdev id (logged as
+> "invalid vdev id in peer delete resp ev"). Do not treat the delete
+> confirmation timeout as fatal so that ath11k_peer_delete() releases the
+> ar->num_peers slot instead of leaking it.
+> 
+> Fixes: 690ace20ff79 ("ath11k: peer delete synchronization with firmware")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Michael Pfeifroth <micpf@westermo.com>
+> ---
+> v3:
+>  - Drop the defensive peer list_del()/kfree() branch; it is dead code
+>    since the peer is already freed via the unmap event or on recovery
+>    (Baochen Qiang), leaving a minimal fix that just ignores the delete
+>    timeout.
+>  - Reframe the commit message around the field-observed num_peers leak
+>    and the resulting station association failures.
+> v2:
+>  - Correct the root-cause description and switch to netdev comment style.
+>  drivers/net/wireless/ath/ath11k/peer.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
+> index b30a906..f573a2c 100644
+> --- a/drivers/net/wireless/ath/ath11k/peer.c
+> +++ b/drivers/net/wireless/ath/ath11k/peer.c
+> @@ -340,9 +340,10 @@ static int __ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, const u8 *addr)
+>  		return ret;
+>  	}
+>  
+> -	ret = ath11k_wait_for_peer_delete_done(ar, vdev_id, addr);
+> -	if (ret)
+> -		return ret;
+> +	/* Ignore the return value: the peer is already freed, only its
+> +	 * ar->num_peers slot would otherwise leak on a delete timeout.
+> +	 */
+> +	ath11k_wait_for_peer_delete_done(ar, vdev_id, addr);
 
-[1] [PATCH v3 2/8] PCI/ASPM: Add pci_force_enable_link_state() API -
-Manivannan Sadhasivam
-<https://lore.kernel.org/all/20260708-pci-aspm-fix-v3-2-6bd72451746e@kernel.org/>
+as stated in the commit message, the purpose is to ease the case where firmware peer table
+is not exhausted but host's table is, however the change here is to ignore the return
+value by default, regardless of whether firmware peer table has free slots. So what about
+ath11k_wait_for_peer_delete_done() timeouts due to firmware peer table exhaustion in fact?
 
-- Krishna Chaitanya.
->
-> Well, tested without that too, but losing ASPM is not good :)
->
->
-> Thanks,
-> ~val
->
+More importantly, host rejects new peer association only after the
+
+ar->num_peers > (ar->max_num_peers - 1)
+
+But if we really hit it, I would suspect something wrong with firmware. So even if we give
+it one more chance I don't think we can survive in the end.
+
+>  
+>  	return 0;
+>  }
 
 
