@@ -4,86 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ACD1CA6015
-	for <ath11k@archiver.kernel.org>; Thu,  8 Oct 2026 22:59:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1918ECA6013
+	for <ath11k@archiver.kernel.org>; Thu,  8 Oct 2026 22:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=xRoGZQlYlVAuxRfgdxXpGqhgqrrcnM9oFsa9ZYtBb+A=; b=lHlVRKPYp42N6fnAvEVoxLFT79
-	4ZIsS8uXx3QmMolK5uMNh8qjMfVy9NlC4Y1xErrtlamrVMuNwGcLJeh8IPIHTPMjTexmJbUOeMhIm
-	id+iXlk7WQv30cbvtdDgXmszs7+yaH4FdnA8W7lOyRyH7U8OVIyaGgYSliX34ltT5aFM+jH6Cbu6r
-	AOkwiU4GwAPvrzCadwDU0vhLp8Kwm0A3xQBFKeI1sZyryyod+DIJN7ArlIsi+U2jv7k6wkru/bnbN
-	LRvB2VhPpdIlh9v93hfPqVsTMxrZcBZ1LpkFbq4E0r+6LNIFoBLREzL3WipvUv0ZZ9guqEdL4+fwH
-	2I7O3R9w==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fmc8osNOh8IgZplHnLzxqA7D71f13vW1JNQrlYkSov0=; b=b3bHzRLslhlUJYgdQUAN20kCIT
+	L51oA75Her4KtgqYKGGL8Tu4i3DA8aDcVGLSSTExGCMz9eq/OgJxE8d3qHhs67D6cq4Ua1U4KH4Zz
+	jI8LUDi22IdTTscfzHWWTQjuvl8xfVX/iqUHZ/FiwUathsg5i5CCVSwVs298ALk4ojm4RQMbvG2lF
+	5BZXM6YAcaaiOKN3We0Vj1m7hp1srNF8GbI41n7tA0EuKS0p7c4V/dWUk445Ct2r5kwfYbx4nrUfL
+	UMOhGPpQZxc8fn6bOqERaUh24x2UURa18XvBP608Y/UWLOGl1ztIqvChdKf4d0X8UVqR5JL/Gevfd
+	KAjfUVdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEx4z-000000059Ad-0zC8;
-	Thu, 08 Oct 2026 22:59:13 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1xEx53-000000059Cr-1jOM;
+	Thu, 08 Oct 2026 22:59:17 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEx4v-0000000599t-3vI2
+	id 1xEx51-000000059BS-2FEj
+	for ath11k@bombadil.infradead.org;
+	Thu, 08 Oct 2026 22:59:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=fmc8osNOh8IgZplHnLzxqA7D71f13vW1JNQrlYkSov0=; b=RFTnmYJZzwYirv6rA3ae9F2ZDi
+	5762XlSJXKdmHMBCSkpmaHM98WpWCssS8kXEjXPWcQ5R4UaDsOZY/dgRj6t1GJBwDU9zZ+Y1g8KUP
+	j9yuqBqIsVD3bdc2rdSYpPAy+V37lyjOD1eKgNaQxziXNjRkQD7Ff9am9zewznAZ3DnH5+twTXStZ
+	mXanQ7+mE6y417K4DY7Oi+iTXulxnaO4AHjL70khwQxKVw8X0sMlvKgyyDlxduWM2e3zuxYNZRiVu
+	BC4o6JbYL0OvcrKPJRBRSq7zs9oNXWunrn3mChHkhiPNeOQQLWAVgO9Z0joYfsHl7Q0W0PII2C0X2
+	KiwuqKag==;
+Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
+	id 1xEx4x-0000000AilX-3gwA
 	for ath11k@lists.infradead.org;
-	Thu, 08 Oct 2026 22:59:11 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-c2dc63f8d8aso564333666b.0
-        for <ath11k@lists.infradead.org>; Thu, 08 Oct 2026 15:59:08 -0700 (PDT)
+	Thu, 08 Oct 2026 22:59:14 +0000
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-c2e7496f947so557247166b.1
+        for <ath11k@lists.infradead.org>; Thu, 08 Oct 2026 15:59:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791500347; x=1792105147; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=xRoGZQlYlVAuxRfgdxXpGqhgqrrcnM9oFsa9ZYtBb+A=;
-        b=ObyM/9YMxa2f35PsrRDA/09YUsbMJY1yHzvYHi/xLPG8r5DqpwcnbCAupoaYD+1UT5
-         4dFYCPmaGUX9XLVioCic8KDqnRW1GgWliCWk61JgkKKergTn6z7LTCzmB8+LUy2CGcrY
-         m1n2HLEf4VZtNSaGZ/x/rVR/gdz7GGf381bMfDfgI4f/cABBykTBAk5nM54SbOs7uYi+
-         2T2sWRGn7DgmBIurN1+vLD7IITf1HXJhlp9zunTB7a+bZRseqV5Yz0FQxHUA06EowlEz
-         CvRh7PG0XNVHNUZY/frp3kxVbMikmyYp4vxG9fXP2Hkr1KfrdZJCsz3GZZY9F4Ta2LLa
-         CSBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791500348; x=1792105148;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1791500350; x=1792105150; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=xRoGZQlYlVAuxRfgdxXpGqhgqrrcnM9oFsa9ZYtBb+A=;
-        b=n3N2QP3lLfKbKjxCorxslENAwsdc20dy76141/EaKphZkZBizmY8lDQ2JVfaNTS8G9
-         n4VHjlvcpjBiwqQZspur80UnDEny+j/YxMSwQNcnldLY5oQAERDflylqPbZEDoo91f6J
-         uUh2nD5xDqfadE01IefHmyxREzexX0bYo3RixegTKNKGNbHod9McxsYshqGcZ7AhrRRj
-         fYLl7bgVCKIKJmBsRleNltdWNrBld5jl6RR7pTEW3wIfN5JjSCngPX7gpUaoUECwLQDr
-         70S0I74p3CsqFHPJurKCG+xvvH0wJechW4OuG2tZuMlUtf0m/qzHXziQ7BT1oiEXTTcK
-         G8Vw==
-X-Gm-Message-State: AFuF++mKAS808nx+1VEsU4iZb3RlfgQTGCgd5MczkqUlkfvaUR1IqqzH
-	89uux+jK5s9qa/RANv4rD5wwzIyz9Sx2pj145TGr0Iu8gJMNmn2isF4Z
-X-Gm-Gg: AYBFou2GDm2RTS3X3svG7kgocdMYA8DIr+b7ZBxCX990yGwTi5H0jjHgjyrtVrf3dXy
-	0GBBfSxnWOHDGSJrfF8lwJbNsxkO6S6Y5NdMC1DnDCDtGCbq2uoAIkNjp4gwp9qvCBSIzfCjfr5
-	pqdsGn+nGKrKi5e88RTWr8goSnR35mbUlvtIc1+EeuK5OLNiGI84pmH8sDmu6Xu23+hFgEjWv6E
-	paHawF//krE36HagvplxvfTszOLoUiLsWpWjXXTxsV27+Ozjgt16L5t9izXJzzzlubAhYvktWq1
-	HFWmjPWqpYORF+8BzRbpcAkgBnSRJh7J64+IbQCGksShO9SU7efpRuTdAwdTU9Jj+I1MFyKqr21
-	h/YlCIgxAD77BtysFu6ulx/yHwFZpFoynMBqY+HKfsjBdKhBsxTP5DojfVW9yg/8pb+CGxH+i6j
-	AXret3r9rRrVsUv9HgiZE+xSQDup2OPFIKNEBbFcwolJmdAB4P0kcAYgZL6cAPcKXMZLBFp3coD
-	jK7Lw==
-X-Received: by 2002:a17:907:948f:b0:c31:9a1c:de76 with SMTP id a640c23a62f3a-c31a9fd424emr16644266b.14.1791500347484;
-        Thu, 08 Oct 2026 15:59:07 -0700 (PDT)
+        bh=fmc8osNOh8IgZplHnLzxqA7D71f13vW1JNQrlYkSov0=;
+        b=A/fIxeppKLqbjwMLRa5BLmZI+M0Zq1VKEN/+eR2lONmvrlKXRFXMzN8LI6MqIXVeyF
+         Vm/dx00GqdGT/GkNfMxDH617iMO34DeR73viKBoETU4riBjIk12M81c67P6a1X1MY/5p
+         bXAljSCZH3UCnDoGnIVE6Lq3xjxw4xYpMDIm6m9L+ocQ/wwfaAfmnFewCUDY7JJyFPwY
+         OgPtCDkLVSzCU/OXs6tX/mJpHwrsJm/kC/1UIBLIiVmMa7hAf4XkUJoHIRumG52X9nKq
+         iIJUcMWtAP0garp4Rw9sd98zFPbT87gW4ew+MUOxMnLRqTKh2F7qxERhnbRifXomId9h
+         Ur9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791500350; x=1792105150;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=fmc8osNOh8IgZplHnLzxqA7D71f13vW1JNQrlYkSov0=;
+        b=iziXQSurevHndXtmz+DaA5D+8KlbgA434KclpvwYkbXIcBKo+IWE2iOQrx3EfUnVc9
+         qjUGPLKYK6TD2QiRjDPW12lu5SiGWNqOuvun++cBNADbk4t8fdKYFGN4EEeG5NVtYnuo
+         BTBHIUqgRy1wfWkt8suKUUkjHSNT1+bUYc/5/Y7wuKuRFz+nFdHFM9iu3h9NAK8g4sBi
+         +S5fJ+0UWVlbS/Ywo3iq2P2QUAsuPsYoqdkI963b7vauO2Ydu6tkeemPpaymFSZkITbX
+         HohWywfnrTJIzRMKSqUcS1QrASjoFpkUMSojRuGyOSgGHTXutUrelP5ta35kK2gkxbFw
+         tPpA==
+X-Gm-Message-State: AFuF++n4mrGwrHEsfKIJeeKr3cCyYsQ9Atx69DBF1ATowVsXMGr1gPTL
+	UhBJ+xh68wSSJLmP2jGyzjCZmt5fadlc3X4/WWMlDLV+GBvtMbPSIcgm
+X-Gm-Gg: AYBFou283uASYlrWRqPL+K/rXMgPkdJaw4H2zoesoDluWpPpyVbyOk0hXY6espDvQzr
+	L/fD1ubozlQYNYFWMn6RJgmi9CXcT8ZfM0r2V8kf2qyiGQ8GdwtcTR81dqD6k1vjeWfceX+fy0E
+	GbWLvBDf4Xs5sZO1wpVV/26FFGcTd54+vQkd77xDD+shWWruBNsjxHL2KPmLljdfW96H196iL/o
+	3gdhNNIlyiHW7Lbs6lH0i2UkEiSE9uIETcYfwf+NGT1hqTFQzqKTWc71iu3Rkk3K84rm6mm8glH
+	BzsG/HrZP7yT+hNU9+U7PZHHWolMX4d3OhfpucCghF49xEjvWkcrBo9T1ETSA+T8gkQrgIC/Nrk
+	wSkY+QctcIybsae7lBBaefyQu3Gwgh/Y/z1minzzYBmEfkQRc0r5+v7IUaAZRYUVbB0E5GEt/cX
+	jhPIsusOFLFBc70bhgEFgZw8sMirlTCUFPAzr1ZooW3W3EdrlICzytqNW2jdUTUiKWI6X4zP5z9
+	mm/ig==
+X-Received: by 2002:a17:907:9709:b0:c2e:1b4d:e9f4 with SMTP id a640c23a62f3a-c31a9f68e76mr15707666b.31.1791500349693;
+        Thu, 08 Oct 2026 15:59:09 -0700 (PDT)
 Received: from nb-xps.ts.zxczxc.org ([78.56.243.43])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c31a9ae59f9sm6993566b.80.2026.10.08.15.59.06
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c31a9ae59f9sm6993566b.80.2026.10.08.15.59.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2026 15:59:07 -0700 (PDT)
+        Thu, 08 Oct 2026 15:59:08 -0700 (PDT)
 From: Nikolay Bryskin <nbryskin@gmail.com>
 To: jjohnson@kernel.org
 Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	johannes@sipsolutions.net,
 	Nikolay Bryskin <nbryskin@gmail.com>
-Subject: [PATCH ath-next 0/2] wifi: ath11k: fix two races between ieee80211_register_hw() and the rest of mac registration
-Date: Fri,  9 Oct 2026 01:58:51 +0300
-Message-ID: <20261008225853.15399-1-nbryskin@gmail.com>
+Subject: [PATCH 2/2] wifi: ath11k: apply the initial regdomain before registering the wiphy
+Date: Fri,  9 Oct 2026 01:58:53 +0300
+Message-ID: <20261008225853.15399-3-nbryskin@gmail.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261008225853.15399-1-nbryskin@gmail.com>
+References: <20261008225853.15399-1-nbryskin@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261008_155910_018665_32AB5279 
-X-CRM114-Status: UNSURE (   8.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261008_235912_202607_BC31EA69 
+X-CRM114-Status: GOOD (  15.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,53 +115,97 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k does part of its per-radio setup only after
-ieee80211_register_hw(), when userspace can already see and use the
-wiphy. This series fixes two consequences of that:
+ath11k marks its wiphy REGULATORY_WIPHY_SELF_MANAGED in
+ath11k_reg_init(), but applies the regdomain received from the firmware
+only after ieee80211_register_hw(), and asynchronously:
+regulatory_set_wiphy_regd() just stores the request and schedules
+reg_work. Userspace is told about the new wiphy from wiphy_register(), so
+it can query the regdomain before there is one. iwd does exactly that as
+soon as the wiphy appears, which triggers the WARN_ON() in
+nl80211_get_reg_do():
 
-1. txmgmt_empty_waitq is initialized after registration. A mgmt TX
-   completion arriving before that (e.g. iwd authenticating as soon as
-   the wiphy shows up) calls wake_up() on an uninitialized wait queue
-   head and panics in softirq context.
+  !regdom && self_managed
+  WARNING: net/wireless/nl80211.c:10576 at nl80211_get_reg_do+0x229/0x270 [cfg80211], CPU#4: iwd/716
+  Call Trace:
+   genl_family_rcv_msg_doit+0x144/0x1a0
+   genl_rcv_msg+0x1cc/0x300
+   netlink_rcv_skb+0xcd/0x150
+   genl_rcv+0x28/0x40
+   netlink_unicast+0x2fb/0x4a0
+   netlink_sendmsg+0x219/0x480
+   __sys_sendto+0x226/0x230
+   ...
 
-2. The regdomain received from the firmware is applied after
-   registration, and asynchronously, although the wiphy is
-   REGULATORY_WIPHY_SELF_MANAGED. A GET_REG from userspace in that window
-   hits the WARN_ON() in nl80211_get_reg_do(), and a connection made
-   before the regdomain lands ends up with badly degraded TX once it does.
-   This is the driver-side fix Johannes asked for when a patch dropping
-   that WARN_ON() was proposed [1].
+The regdomain is already known at that point (ab->default_regd[], or
+ab->new_regd[] if an update arrived meanwhile), so apply it before
+ieee80211_register_hw(). wiphy_register() then installs the pending
+regdomain itself, via wiphy_regulatory_register() ->
+reg_process_self_managed_hints(). That happens under the same RTNL hold
+as the NL80211_CMD_NEW_WIPHY notification, and nl80211_get_reg_do() takes
+the RTNL as well, so userspace can no longer see the wiphy without its
+regdomain.
 
-Both were found on a Dell XPS 13 9310 (QCA6390 hw2.0, WLAN.HST.1.0.1-05266)
-with iwd. Patch 2's warning occurred naturally at boot; both failures
-were reproduced reliably by inserting an msleep(2000) right after
-ieee80211_register_hw(), and tested with and without each fix:
+The window matters beyond the warning. With an msleep(2000) inserted
+after ieee80211_register_hw() for testing, iwd associated before the
+regdomain was applied; the late regdomain then went through
+ath11k_reg_notifier() ("driver initiated regd update") and the channel
+list update to the firmware while associated, and from then on TX was
+badly degraded while RX stayed fine (QCA6390, 5 GHz DFS channel, signal
+-33 dBm, no beacon loss):
 
-  delay  regd fix  waitq fix  result
-  yes    no        no         WARN_ON, then NULL deref panic in __wake_up()
-  yes    no        yes        WARN_ON, no panic, TX failing (83% tx failed)
-  yes    yes       yes        no warning, no panic, link stable for 6+ min
-  no     yes       yes        in daily use, no issues
+  tx packets: 2012, tx failed: 1678, tx retries: 0
+  tx bitrate: 48.0 MBit/s
+  rx bitrate: 648.5 MBit/s 80MHz HE-MCS 6 HE-NSS 2
 
-The patches were developed and tested on v7.2.8 and rebased onto
-ath-next without changes (git range-diff shows them identical); on
-ath-next they are compile-tested only (W=1, no new warnings).
+ping showed 39% loss. Without the delay, the WARN_ON() shows up at boot
+only occasionally. With this patch and the same delay neither the
+warning nor the TX degradation occurred.
 
-The same register-then-apply-regd ordering exists in ath12k
-(ath12k_mac_hw_register()); I have no ath12k hardware to test a fix
-there.
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1
 
-[1] https://lore.kernel.org/all/16aa99921c4e92e8d4da3c84aacbec2e673666aa.camel@sipsolutions.net/
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Link: https://lore.kernel.org/all/16aa99921c4e92e8d4da3c84aacbec2e673666aa.camel@sipsolutions.net/
+Assisted-by: Claude:claude-opus-5-5
+Signed-off-by: Nikolay Bryskin <nbryskin@gmail.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
-Nikolay Bryskin (2):
-  wifi: ath11k: initialize txmgmt_empty_waitq before registering the hw
-  wifi: ath11k: apply the initial regdomain before registering the wiphy
-
- drivers/net/wireless/ath/ath11k/mac.c | 20 +++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
-
-
-base-commit: 129324b60343dec19d45dcf87736f129b18b95bb
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 3dfd24d7b5a6..4ebdde872213 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -10648,6 +10648,16 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	    ab->hw_params.bios_sar_capa)
+ 		ar->hw->wiphy->sar_capa = ab->hw_params.bios_sar_capa;
+ 
++	/* Apply the regd received during initialization. Do it before
++	 * registering so that cfg80211 installs it while registering the
++	 * wiphy, before userspace can query a self-managed wiphy without one.
++	 */
++	ret = ath11k_regd_update(ar);
++	if (ret) {
++		ath11k_err(ar->ab, "ath11k regd update failed: %d\n", ret);
++		goto err_free_if_combs;
++	}
++
+ 	ret = ieee80211_register_hw(ar->hw);
+ 	if (ret) {
+ 		ath11k_err(ar->ab, "ieee80211 registration failed: %d\n", ret);
+@@ -10662,13 +10672,6 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 		 */
+ 		ar->hw->wiphy->interface_modes &= ~BIT(NL80211_IFTYPE_MONITOR);
+ 
+-	/* Apply the regd received during initialization */
+-	ret = ath11k_regd_update(ar);
+-	if (ret) {
+-		ath11k_err(ar->ab, "ath11k regd update failed: %d\n", ret);
+-		goto err_unregister_hw;
+-	}
+-
+ 	if (ab->hw_params.current_cc_support && ab->new_alpha2[0]) {
+ 		memcpy(&ar->alpha2, ab->new_alpha2, 2);
+ 		ret = ath11k_reg_set_cc(ar);
 -- 
 2.56.0
 
