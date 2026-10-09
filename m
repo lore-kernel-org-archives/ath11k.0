@@ -4,105 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0573CA601D
-	for <ath11k@archiver.kernel.org>; Fri,  9 Oct 2026 15:32:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08AEECA9EBE
+	for <ath11k@archiver.kernel.org>; Fri,  9 Oct 2026 22:08:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oK3Ivt8NRMhrN8+YhB16r8C5VJnRhcnbe0Nh4n/MAUU=; b=cjtDK3VZAQ/aNSMcqXuS2lCB8M
-	nU77WruaQ0mr0rpdwDUnY4HjkLj2eYHNQML510iHSlI1qacQM5KSBW71CL5IWIRjc2vtzSP8tanlI
-	pN7fTodDKtR9Rrb/2SPrgmt6hmFiB0J/V+Vmmsze8KV/0gKopP68TeViGD4xZ+LSPpesc2dce8mh8
-	cAZEg/cdCPElUsE4SBP7lIF0845a7E66ccJKs1fMqmu3KqcJ7J3bkp1xHHFz6urCLPC9WYdOdUr4B
-	7CzSttFYKN/d4ftneLbh14nxjVTTKhgy+JgfmGTGF4OlUO4s4R+9evtQRWj+G3/K/nbYYQ90nYfl6
-	YQm9M7iA==;
+	bh=Jot2RFAnsnkeM5kfPFj75St8/mCcz8u7h4DuLJdUQdI=; b=3Q1ftALGWSoSuKYuTu79RyXjZH
+	Sf5Q3ZKNsbnrdeTe3lEIT0UIxU8T1tWwT4CEzeVOy8kKbFgzu2yXLHMtVZKTUBkS350eJ9hEytw9v
+	FzlJ0lvXLIKk9TBi1VUZuBiWJjoH8a9Zj1BJyl2S52iSzLLvQHB9y+NI3TQtcNFsyp+DNmEATs0so
+	8M9bnZIMgmed3E5Almk8GW6Obplp3Q72xRy2TLOuCZE3lGWq5VXcrBlYHFoqc8Bwm2Gn0p/Zek+gL
+	rQ1+lwcjOY0yiQaafuJLEdXCRv28KPoZ9azMru2zheY8wA2RSJ/xEDQJjs5IvGrXBh10OSxGAQzgs
+	eBuzkuwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFCaW-00000006XPr-2uKZ;
-	Fri, 09 Oct 2026 15:32:48 +0000
-Received: from mail-vs1-xe34.google.com ([2607:f8b0:4864:20::e34])
+	id 1xFIl4-00000007Gp6-0J9z;
+	Fri, 09 Oct 2026 22:08:06 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFCaT-00000006XP8-36hb
+	id 1xFIl1-00000007Gog-17Pa
 	for ath11k@lists.infradead.org;
-	Fri, 09 Oct 2026 15:32:47 +0000
-Received: by mail-vs1-xe34.google.com with SMTP id ada2fe7eead31-7cb3388613fso588777137.3
-        for <ath11k@lists.infradead.org>; Fri, 09 Oct 2026 08:32:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1791559964; cv=none;
-        d=google.com; s=arc-20260327;
-        b=exr0Jqi3kE4MlEiy8uekTWsM9dpbFCZYmPRQlrwfrcu8kt7driF/jqY1pyHIjc+FCj
-         uqyb7JTiHSlfjT6Fmm1J3RG9YVmPFmIm9GUR7w+fbNsA5T9W+cUmeX0/3y7q3Drg4cBj
-         iDBpgE1bqTF2VV5TNFbQWkWUE3sp8wrDD1Vq9LbzgD5KEERkuEebr3KvmlVs3a4lkKK1
-         jroAyZXhfA2vkO6pdESO+EFsXoI2gJbRdQDFM4+YcsLkGH9L6TdovYdu7vilebDq5e7a
-         NCmSaun/jfTgdSCxDL8m7j4fOex7wmYlxDribUDIMwrbvx6MU32ct1VEtSOAlxzjG+wm
-         U10Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=oK3Ivt8NRMhrN8+YhB16r8C5VJnRhcnbe0Nh4n/MAUU=;
-        fh=8LjIFTwOjp3md9+jC/wqNNbpswq/tWMA+hFA4RbSO5U=;
-        b=hp/YSSH+K+cM4As8V4nuaWHY7XDn48xsAZ7obZSGkVg/sUG9DKmrbnTKTrI+ALmCsi
-         gV/lPWs2VYz6k0gXD4H+SgLgQuyPE7soRDuCN/mrCL7tAMRYznSw1DZb5chCWTOnUuKa
-         6/q5D+/q6oSeZOVNHs6HtMto/hUQpdxolFvGs0egNroyRrfL3kAFohnZmVMRHk/8iJgQ
-         Lk5+giPDFLSuajttZVbc4kx7YSRKPUw4BXkINaazmT6vmeUFEzPbc0AC9+QlqEz2vNps
-         7BS8jx9rsIbsYAIKgUNtV2ruOLRRccQDG3JkQL5LwrltDnuh14UM6tcCfNpm3Imibpy4
-         HRWA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Fri, 09 Oct 2026 22:08:04 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 699KhlVU3274896
+	for <ath11k@lists.infradead.org>; Fri, 9 Oct 2026 22:08:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Jot2RFAnsnkeM5kfPFj75St8/mCcz8u7h4DuLJdUQdI=; b=LrikMMDxqlrAhRtJ
+	QztnB9LLwVHtvrAZlZq34h0mI910nPUKnbop6irhayiAlj6y7FgUpcFJZpIEvi3A
+	oBL9SVqWLyRlgzj3e4HOdajUgTI0Kz1F4Fzgc82S9Vd9Co++SkA6WvAsU8TZTSU5
+	yRqN0nEIJIVGmjV+XLuCpZ8WmTyNqT+lvhaAS3zNG8iKq4mk9AXzNqL5I4u55LRx
+	E88OM+/gNQqmPsR9A4m7vQVsBXXz+/bTqTIe1o84GPfg4l4iCo5wq8G9YuQfVB//
+	K0ujpyfgXiDVXCwRnQovSE1u55vT6/PopMyhZ8XLOpYdWs+K+d4vwMgPGywy4Oui
+	dIwwWg==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4h74t7gweh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Fri, 09 Oct 2026 22:08:01 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-33c35f5ca6cso309333eec.1
+        for <ath11k@lists.infradead.org>; Fri, 09 Oct 2026 15:08:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791559964; x=1792164764; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=oK3Ivt8NRMhrN8+YhB16r8C5VJnRhcnbe0Nh4n/MAUU=;
-        b=ct6TRoSNk09YZwn5anGPczEcbpb8FxTPEymXqvqRNsLf/mM6aqqjoa87MW/elcWlfN
-         4qijuv1JMvmtq5uX9XiylvH55UWkAdBH6qsbNRMklhZoHvSF1nInw2Ik1V0kQArDjdBc
-         aCxV7n652D26UF9wualUxSsaDObvnlOpLH0GJP8igDX0H1pB0O8CKCAeElrFQVDO8NRs
-         iXVXMy2vfpdvK9T5HZp68yST7UJ+PUlemQYbIe2e5o86YKMMNDGzFpASnfArRCXBeZR0
-         PLdom/RIJtVkUi6okrP/BlJV0DV1KrnDpX1/FCqT74TSG86FCdq1aoG0sQ2EsUqDZYDs
-         xSUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791559964; x=1792164764;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=oss.qualcomm.com; s=google; t=1791583681; x=1792188481; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=oK3Ivt8NRMhrN8+YhB16r8C5VJnRhcnbe0Nh4n/MAUU=;
-        b=G+x7nFiDShl0Ivnqu87XZ9EqziZj0sURNku0hdFLWEb1qAFcC0TzsXR5kFKFNhrCcf
-         ytt1Q6rb97PQUy4QdolM5p77OrC2/uASvDQhmER4dXJ+fNNHSgB3sXrnB9u2ENfkwPvZ
-         thdofCgif2/fv3NsFcKDr5Res5cidaWLCuZRb2f9od5IlcVhQ1yU2bMoNtgUZSzqgpZm
-         7mP55QQP+zGLqwK51GNWcNqCmsOq4DqQOwvnXIzJpZBZ9+Sp/ozKfDg46kkxYVe1aJgG
-         mY5/9nIcM0vYH93ni56pTNTOm4x6lpQV6b1YOzLf9wB70irwP/aWGD9CPmNETFglKPpb
-         U55Q==
-X-Forwarded-Encrypted: i=1; AKwUvBysqBYO9WakPc7ntEAu/5UjRAss7+wdRD2plgzP/iBQs86cXVWJinSy5mb87wN3Ki7fT0fK8RQ=@lists.infradead.org
-X-Gm-Message-State: AFq9FYKKkGt0thyo6zl7V3/zjx15zOXnevFnie56vAMtKTFahMpo2vcd
-	xMzYpGgyhtK54pyrMKp6CugnLRGGZ6x32mw7VCzyQ7BaN4zW2BmEep4QASvnzDUZCmaF2f9wisx
-	81AIxIOqLhMA4A6CYUHx2wvFl2PaYqLo=
-X-Gm-Gg: AYBFou1+burTKm0/u+txzUETZQ5oL3EH6XED7z13RTYX/hYioLOGXNoSWSiiXchx4aq
-	jx8WVVib9lEABHjaOgekWXOrfu0f5F1VaKp0o9e5U2fetjQWAJeNCVuPuDlty7+yK+/inveEplL
-	eQCb0jWE2HB/rEgxOlE5wl7U/OjXfUB0RDTx2k10stwdwlwKiQArkMhXlr+0QLxEvBreU5E43OX
-	H8fNU4wHx3jwuaxdD6OZmaNEmMwLH0pTX9cnUG/IGIuPLapRcZHTAzFNceV1HRBl9HO404CCoiA
-	sVpEzPjvwDR1x6eSSjoeq2pt72c9pRVy5C6MJHeN1hiUJa396vJYg0o=
-X-Received: by 2002:a05:6102:14aa:b0:7c2:5692:1951 with SMTP id
- ada2fe7eead31-7cb373e4803mr871432137.30.1791559964184; Fri, 09 Oct 2026
- 08:32:44 -0700 (PDT)
+        bh=Jot2RFAnsnkeM5kfPFj75St8/mCcz8u7h4DuLJdUQdI=;
+        b=YRmy0AWtnr7jfU/QFCf+WYLsNHwMMuByYlzLkwe8ccGLiXbzhxUpnoHJ8VCyrvYyTJ
+         ewoRMCAuJtNgJmrUtvmGokKZuDCFhDUoxdB+yyCA4qhzPGwfkstMs2xawzbT3UYUj3w8
+         dvdgCRC7Dnlux/OvtYfriDR7vaSWHcN8LwnEu41QOOnofGNHhP+qmJKdymhooY0FphxA
+         ndxJF4lQhH5K5m0wiXZP7pL/ZlR93A8wfahzNHkdVVF5/vsgjgA994uo1fgpImt2JlMr
+         nbpLQLy6pUp10EOByQ4oyfHquvY3hTtJYAk20Zm8GQ8NlNJzID8cwhRavcl4WotQ91ry
+         X/KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791583681; x=1792188481;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Jot2RFAnsnkeM5kfPFj75St8/mCcz8u7h4DuLJdUQdI=;
+        b=fbPf/TKkygq89hXnhBzQfwkRT2UV5rr5alBIfIURj8TvWtQYMbujOEwX6wWL7K2zp6
+         bHF6Ac4K8azMRJGUbxohKJMB3EEbDspqTp9lF2xkij8SFnQA4COKd5yrJek7IhEwLLCV
+         5rKySBpVaKf4OB8Ns7/F3ukgumMXzM3VbvEpzVNEz2R2Au9qncxyR3SOpsYOg0hR6ZK9
+         VWrlLGKeFinzzPcqK1LD8mVUV7TUHvNcNRsvIZqx8CPxu6nglLQ4u+meDWbeMAVDsiDp
+         9w0+ZH2gj4vuFdc1IEIWDkt/+hnAgdTpu+4gWeOWenXtL6t2PtwTIffy470y/YV0dTau
+         zHyQ==
+X-Forwarded-Encrypted: i=1; AKwUvBzJn+BWA8IHGeq6soSFKPy1Qn3AR51uO1ElBSsRJdz+V67/cJHiSdhwQqgE5JZCW0yqbvjcApE=@lists.infradead.org
+X-Gm-Message-State: AFq9FYIiMcuglJIpzkUlpyTkCRJbilqwHZj8CKJHGdS4i8+MxxpgorgW
+	FZWvN682JKGVyokhpEnwVXEu7b7kVn84uIxjcts3manm6h0ZrEqm79jb7vWjgku7yb/sp3yzct/
+	BJkSHcK7G87SuvDl43PCDS9TaJkcoL93ORAmavkxeBNKSuU1BsGWEqqFF/qpmyata
+X-Gm-Gg: AYBFou0SynO2xSDB34Q+YDr58g2+mDLkvsgLDzZu/W++x4W7s9q+nUtFrOn04BbnMvH
+	zVHiu3ZUiTwffR+v06Wd0AYw85UOB2efvzl61V9+V3bWgtjml1ih9jlZHsDWE6N+/oOUBfy5NTT
+	AZu/HydCcGtkJiBMb8BsK6GZs7L0gC2mTIiUm20Vy7XveAWSJFXw9y5WnAlAOz6xCtFSpj5B0NZ
+	XNpuQxNrLGVo6DPpt/DRobHeHX+1Can/ovNfDx5I11C7wezs8clr1MXzwS3JnhrhrO0v4q+6H7C
+	CJ6gNKwbqrQkWmYpKbPYG9IUDWR4kzB+SZT//CPNVUu5Ldveu23OHy98UxVoh1oNiygWdburyEY
+	/lqJOCff3ei3VZC5lURb8MYFmXkE/gIz16Y5XQ2jBoEuTiJHDPVPlLtrzuA==
+X-Received: by 2002:a05:7300:c7cc:b0:351:7dab:58e4 with SMTP id 5a478bee46e88-3537e134b4dmr4228793eec.32.1791583680309;
+        Fri, 09 Oct 2026 15:08:00 -0700 (PDT)
+X-Received: by 2002:a05:7300:c7cc:b0:351:7dab:58e4 with SMTP id 5a478bee46e88-3537e134b4dmr4228760eec.32.1791583679655;
+        Fri, 09 Oct 2026 15:07:59 -0700 (PDT)
+Received: from [192.168.1.20] (33.sub-75-218-193.myvzw.com. [75.218.193.33])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3537cb1d6e6sm8860018eec.24.2026.10.09.15.07.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Oct 2026 15:07:58 -0700 (PDT)
+Message-ID: <b96945e6-bebe-480b-80ed-d3343e94f2db@oss.qualcomm.com>
+Date: Fri, 9 Oct 2026 15:07:57 -0700
 MIME-Version: 1.0
-References: <CAKobHXBuRr2Mz=yqFoqzQpeL9nY6ZeXY1HftEwyUxPYoDkS_+w@mail.gmail.com>
-In-Reply-To: <CAKobHXBuRr2Mz=yqFoqzQpeL9nY6ZeXY1HftEwyUxPYoDkS_+w@mail.gmail.com>
-From: Christopher Griffin <christophergriffin05@gmail.com>
-Date: Fri, 9 Oct 2026 10:32:32 -0500
-X-Gm-Features: AclHuK_EQ-0DYke54sK5jxs4nUybyttZZCF6eDf-JhIc3m9-XUz1QLIcbxnien4
-Message-ID: <CAKobHXCMdy1YT8SO+kkZP9sCr+KOhOXU+if_r=_hb_5pgKO0mQ@mail.gmail.com>
-Subject: Re: ath11k: QCN9074 public firmware stalls at QMI cap request on C-360
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, vasanthakumar.thiagarajan@oss.qualcomm.com, 
-	dchen@silexamerica.com, ath11k@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: ath11k: initialize CFR locks before capability
+ checks
+To: Runyu Xiao <runyu.xiao@seu.edu.cn>, Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Jianhao Xu <jianhao.xu@seu.edu.cn>
+References: <20261009060326.1162818-1-runyu.xiao@seu.edu.cn>
+Content-Language: en-US
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+In-Reply-To: <20261009060326.1162818-1-runyu.xiao@seu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=W8atxhWk c=1 sm=1 tr=0 ts=6ac965c1 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=AnolQpdaNwb4XK4FG+QP+g==:17
+ a=IkcTkHD0fZMA:10 a=660iZSQnnn4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=MAiKVQkammv_BUypPwIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=6Ab_bkdmUrQuMsNx7PHu:22
+X-Proofpoint-GUID: liZHhLXYAMaNkhPR5rtNbFESiCiRXEd9
+X-Proofpoint-ORIG-GUID: liZHhLXYAMaNkhPR5rtNbFESiCiRXEd9
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMDA5MDA4OCBTYWx0ZWRfX38bTb1rdjvnF
+ UjcaPCR0Y2qQiR6f+zDboHqx9jxIkh18Kjy0FrJH9bjh2JvNdOtt3nrPTofIUbFF7l+aweBVaPd
+ Vl/FweZe9K9zvqjVplzBU90/NeNYQuM=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDA5MDA4OCBTYWx0ZWRfX6P0ZMtKajZGu
+ nbzm6w7xclACpcUcKHvYyTGMFLTiHuOCN020bplTEXjj3IQB2uiZs2VnI2VNzHNqLI2NODmtnmd
+ jFiYicMtIAGlMpgUbnums/5fL3d8T17DBQitvkwOPxj5ZfRK0XPDzNMyochm1rgm+APh9cKnTTE
+ oh89nrp5XcaISns3vQrdDb7rkYydsHvg6prqrF9Apy33ezL36x2/VUKWvEQv2vmXROhYm03szlJ
+ LKJjYwVo/OldqIVvGd7be3nF5OC/pWq8bEzNz7Ok5/T9wIIGV1TLhbSAC/rusjtXaLImTTcKc9w
+ a/m0zxkv8ufUd6yg4GjjUqayhz0Oi5UNiCIUJFHYFb4UNJFL/ETf5RFga00bb5qwD5brh6c8cQA
+ 4+Z+ITiVMK0YTR8vjgUu6mZL3rA0SLEEXLHbKQKoTpvYNa8+rhAUr1gZwgBrWHtw71PkjTJ0ulW
+ j0nY/BQQxjtWLB/wePw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-10-09_06,2026-10-09_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 phishscore=0 priorityscore=1501 bulkscore=0
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 adultscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2610080000 definitions=main-2610090088
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261009_083246_237222_41147BCA 
-X-CRM114-Status: GOOD (  37.03  )
+X-CRM114-CacheID: sfid-20261009_150803_449307_6EB7036D 
+X-CRM114-Status: GOOD (  14.50  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,229 +150,68 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello Jeff, hello ath11k list,
+On 10/8/2026 11:03 PM, Runyu Xiao wrote:
+> ath11k_cfr_init() returns before initializing cfr->lock when CFR
+> capability is absent.  However, station removal still calls
+> ath11k_cfr_decrement_peer_count(), which unconditionally takes this
+> lock.  This leaves a production path using an uninitialized spinlock.
 
-A follow-up, with a request: could Qualcomm publish a newer QCN9074
-firmware in ath11k-firmware / linux-firmware?
+If this is really happening...
 
- I have Cc'd Vasanthakumar and Dawei, from the March thread "A question abo=
-ut
-supporting the QCN9072 radio": the second card here looks like a
-QCN9072, and below is what it does with the QCN9074 firmware.
+> 
+> Initialize cfr->lock for every radio before the capability check.  Keep
+> the CFR ring and lookup-table lock initialization conditional, since
+> those objects are only used after CFR capability setup.
 
-The newest public QCN9074 build is still WLAN.HK.2.9.0.1-02146 (built
-2024-09-23; also what linux-firmware 20260910 carries). A build from a
-newer branch, WLAN.HK.2.15.0.1.r2-00004 (fw_version 0x2f0b0214, built
-2026-09-22), answers the target-capability request on both C-360 cards
-where every public build from 2.5.0.1 to 2.9.0.1 times out. Same ath11k
-(OpenWrt 25.12: Linux 6.12.112, ath11k from 6.18.55), same device tree,
-the vendor's board data. That build came to us as redistributed by
-DD-WRT, so we can't ship it; a public one would let OpenWrt support this
-board with linux-firmware instead of copying the vendor's build from the
-unit's flash.
+...then this is a poor solution.
 
-It would help more than this board. OpenWrt has 13 boards with a
-QCN9074 (IPQ5018, IPQ6018 and IPQ807x: among them the Xiaomi AX9000 and
-AX6000, Linksys MX8500, MR7500 and MX5500, TP-Link EAP650-Outdoor, prpl
-Haze), all on 2.9.0.1-02146, and some downstream builds already ship
-2.12 and 2.15 blobs from other sources because the public build is two
-years old.
+And my review agent agreed:
 
-What we see with 2.15, in case it is useful:
+- Initializing the locks unconditionally at the top of ath11k_cfr_init()
+before the early-exit check would work mechanically, but it's wrong
+semantically — callers should not need to reason about which subset of struct
+fields is safe to use at any given time.
 
-- board_id is reported as 0xffffffff, not 0xff, so ath11k looks for
-  "qmi-board-id=3D-1" in board-2.bin.
+It also ruled out:
+- Guarding the call site in mac.c with a capability check would duplicate the
+firmware/hw-support logic outside cfr.c, and there could be other callers in
+the future.
+- Moving the locks to ath11k_ar_init() would be over-engineering; cfr->lock
+only protects CFR state.
 
-- PCIe 0 (6 GHz, bdwlan.bab) ran 15 minutes as a 6 GHz AP (SAE,
-  channel 37, 80 MHz) with no error, and a 6 GHz scan on it completes.
+And concluded:
 
-- PCIe 1 (2.4/5/6 GHz, bdwlan.baa) never completes a scan: a scan of
-  2.4 GHz alone, 5 GHz alone or 6 GHz alone, each after a fresh driver
-  load, gets no scan-started event, and then nothing more answers:
+The fix: guard ath11k_cfr_decrement_peer_count() with cfr->enabled
 
-    ath11k_pci 0001:01:00.0: failed to receive scan abort comple: timed out
-    ath11k_pci 0001:01:00.0: failed to start hw scan: -110
-    ath11k_pci 0001:01:00.0: Timeout in receiving vdev delete response
-    ath11k_pci 0001:01:00.0: ce desc not available for wmi command 16387
+In cfr.c, add an early return at the top of ath11k_cfr_decrement_peer_count():
 
-  The same with the fixed memory-region (ath11k then leaves out the
-  paged memory, types 9 and 10) and with host memory ath11k allocates
-  (every segment given), so it is not the memory. Perhaps it needs a
-  newer board data than the vendor's 2.5-era bdwlan.baa.
+void ath11k_cfr_decrement_peer_count(struct ath11k *ar,
+                                     struct ath11k_sta *arsta)
+{
+      struct ath11k_cfr *cfr = &ar->cfr;
 
-  PCIe 1 is the 2x2 card (antenna mask 0x5, where PCIe 0 has 0xf), which
-  we believe is a QCN9072 (the same 17cb:1104). In March, Vasanthakumar
-  expected a QCN9072 to work with ath11k and the QCN9074 firmware (the
-  thread "A question about supporting the QCN9072 radio"). With 2.15 it
-  boots, registers its bands and then never completes a scan; with the
-  vendor's 2.5.r4 it runs fully, scanning all three bands.
+      if (!cfr->enabled)
+              return;
 
-Both cards, and the vendor's own 2.5.r4 build for comparison, are here
-to test any build you can share, on Linux 6.12 and 6.18. Logs on
-request.
+      spin_lock_bh(&cfr->lock);
 
-Thank you,
-Christopher Griffin
+      if (arsta->cfr_capture.cfr_enable)
+              cfr->cfr_enabled_peer_cnt--;
 
-On Thu, Oct 8, 2026 at 9:26=E2=80=AFPM Christopher Griffin
-<christophergriffin05@gmail.com> wrote:
->
-> To: Jeff Johnson <jjohnson@kernel.org>
-> Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-> Subject: ath11k: QCN9074 public firmware stalls at QMI cap request on C-3=
-60
->
-> Hello Jeff, hello ath11k list,
->
-> I'm bringing up OpenWrt on the Arista C-360 access point (IPQ8076A with
-> two QCN9074 cards, 17cb:1104). The IPQ8074 radios run the public
-> firmware fine. The two QCN9074 cards don't, with any public QCN9074
-> build: 15 builds, WLAN.HK.2.5.0.1 to 2.9.0.1.
->
-> With every one of them, each card gets as far as:
-> - MHI mission mode;
-> - QMI connected;
-> - host-cap and the memory exchange completed;
-> - FW_MEM_READY.
->
-> Then it never answers the target-capability request.
->
-> The firmware Arista ships, WLAN.HK.2.5.r4-00683, works on the same
-> cards with the same ath11k: it answers in 3.7 ms and runs normally.
-> Swapping files shows that amss.bin decides it, not m3.bin: the vendor
-> amss.bin with a public m3.bin works, and a public amss.bin with the
-> vendor m3.bin fails.
->
-> It reproduces 100% (every boot, both cards) on:
-> - Linux 6.18.55 with ath11k from wireless 7.2 (OpenWrt main);
-> - linux-firmware 20260910 (WLAN.HK.2.9.0.1-02146).
->
-> It also fails on OpenWrt 25.12 (Linux 6.12, ath11k from 6.18.55).
->
-> Failing, 2.9.0.1-02146, debug_mask=3D0x1060, card 0001:01:00.0
-> (timestamps in seconds; "ath11k_pci 0001:01:00.0:" removed):
->
->   170.464 qmi wifi fw qmi service connected
->   170.466 qmi indication register request
->   170.467 qmi host cap request
->   170.472 qmi firmware request memory request
->   170.476 qmi mem seg type 1 size 36700160
->   170.476 qmi mem seg type 4 size 3784704
->   170.476 qmi mem seg type 3 size 1048576
->   170.476 qmi mem seg type 9 size 8388608
->   170.476 qmi mem seg type 10 size 8192
->   170.476 qmi ignore invalid mem req type 9
->   170.481 qmi ignore invalid mem req type 10
->   170.488 qmi req mem_seg[0] 0x0000000054800000 36700160 1
->   170.488 qmi req mem_seg[1] 0x0000000000000000 3784704 4
->   170.488 qmi req mem_seg[2] 0x0000000057500000 1048576 3
->   170.488 qmi respond memory request delayed 0
->   170.491 qmi firmware memory ready indication
->   170.491 qmi target cap request
->   180.975 failed to wait qmi cap request: -110
->   180.975 failed to request qmi target capabilities: -110
->
-> Working, the same system, driver and debug mask, with Arista's
-> WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1.691405.6.706957.1:
->
->   229.140 qmi host cap request
->   229.148 qmi mem seg type 1 size 36700160
->   229.148 qmi mem seg type 4 size 3768320
->   229.148 qmi mem seg type 3 size 1048576
->   229.150 qmi firmware memory ready indication
->   229.150 qmi target cap request
->   229.153 fw_version 0x250affff fw_build_timestamp 2025-03-21 04:01
->   229.162 boot using board name 'bus=3Dpci,qmi-chip-id=3D0,
->           qmi-board-id=3D255,variant=3DArista-C360-pcie1'
->   229.263 qmi firmware init done
->
-> Hardware:
->
->   SoC       IPQ8076A (soc_id 391, rev 2.0), 2 GiB RAM
->   card 0    0000:01:00.0, PCIe Gen3 x1 (root port 17cb:1002)
->   card 1    0001:01:00.0, PCIe Gen2 x1 (root port 17cb:0302)
->   cards     17cb:1104, subsystem 17cb:1104, revision 01
->   QMI       chip_id 0x0 chip_family 0x0 board_id 0xff
->             soc_id 0xffffffff (as reported with the vendor firmware)
->   memory    fixed regions (memory-region), fw memory mode 0:
->             card 0 0x51100000, card 1 0x54800000, 0x3700000 each;
->             M3 dump at 0x53e00000 and 0x57500000
->
-> The vendor system (QSDK, qca_ol.ko, Linux 4.4.60) describes each card
-> as "qcom,cnss-qcn9000" with:
->
->   base-addr       0x51100000 / 0x54800000
->   hremote-size    0x2d00000 (45 MiB)
->   m3-dump-addr    0x53e00000 / 0x57500000
->   etr-addr        0x53f00000 / 0x57600000
->   caldb-addr      0x54000000 / 0x57700000, caldb-size 0x800000
->   tgt-mem-mode    0
->   board_id        0xab / 0xaa
->   qrtr_node_id    0x20 / 0x21
->
-> It also gives each card's MHI a 24 MiB shared-dma-pool (0x57f00000,
-> 0x59700000) and LOOPBACK, DIAG and IPCR channels. It has no pageable
-> region.
->
-> Firmware tested, every one failing the same way:
->
->   2.5.0.1  -01100 -01192 -01201 -01208 (SILICONZ-1), -03982 (SILICONZ-3)
->   2.6.0.1  -00861 -00883 -01081
->   2.7.0.1  -01744 -02409
->   2.9.0.1  -01837 -01862 -01890 -01977 -02146
->   (2.9.0.1-02175-SILICONZ-2 has 02146's amss.bin, so it was not tested
->   separately)
->
-> Ruled out, each tested with the same failure:
-> - memory mode 0 (fixed) and 2 (dynamic);
-> - CALDB at 0, and inside the region;
-> - the type 9 and 10 segments given inside the region;
-> - the reserved memory zeroed;
-> - host cap without m3_support and m3_cache_support (as cnss2);
-> - 1 and 16 MSI vectors;
-> - a single card on the bus;
-> - ath11k_ahb unloaded;
-> - the vendor's PCIe CLKREQ/WAKE and PTA pin functions;
-> - two ath11k versions.
->
-> For comparison, OpenWrt supports the Xiaomi AX9000 (IPQ8072A + QCN9074)
-> on the same ath11k with the public firmware. Its board data is keyed
-> qmi-board-id=3D255, so its card also has an unprogrammed board ID.
->
-> After the timeout the firmware is alive: MHI stays in mission mode M0
-> and the IPCR channels are up. A forced RDDM dump of each card (about
-> 46 MB, ATH11K-FW-DUMP v2) shows a thread table with wlan_platform
-> (entry in a paged segment), DLPager_main, IPCRTR, diag_task and MHI
-> CORE, but none of the main WLAN threads. The rest is hashed ulog we
-> can't read.
->
-> Three questions:
->
-> 1. What do the public QCN9074 builds wait for between FW_MEM_READY and
->    the capability response, and could someone decode the ulog in our
->    RDDM dumps? I can send them.
->
-> 2. Is there a known board, module or host requirement that these
->    Arista modules don't meet and that the 2.5.r4 build doesn't need?
->
-> 3. Would Qualcomm consider a QCN9074 build in linux-firmware that runs
->    on these modules? Today OpenWrt can use these radios only by copying
->    the vendor's firmware from the unit's own flash.
->
-> I can test any firmware build or debug option on the hardware. Full
-> logs are available on request.
->
-> Firmware files present during the failing run
-> (md5, path under /lib/firmware/ath11k/):
->
->   1f7baaccad424a768233eaabb684b5ad  IPQ8074/hw2.0/board-2.bin
->   90654417600d4438918ec9e5e42fcd3b  QCN9074/hw1.0/amss.bin
->   16c532c984d22895601d2107c11920be  QCN9074/hw1.0/m3.bin
->   efcfc16a938d16875500bf9250bc5a52  QCN9074/hw1.0/board-2.bin
->
-> uname -a: Linux OpenWrt 6.18.55 #0 SMP aarch64 GNU/Linux
->
-> Thank you,
->
-> Christopher Griffin
+      spin_unlock_bh(&cfr->lock);
+}
+
+Why this is the right approach:
+
+- cfr->enabled is set to true only after spin_lock_init(&cfr->lock) succeeds
+and the ring allocation succeeds (cfr.c:997). It stays false in all early-exit
+paths: the firmware/hardware capability check at line 959, the
+ath11k_dbring_get_cap() failure continue at line 970, and the ring alloc
+failure at line 991.
+- The check is already used analogously at line 937 in the relay flush path,
+so it's an established pattern in this file.
+- This avoids touching ath11k_cfr_init() or the call site in mac.c, keeping
+the fix minimal and localized to the function that has the precondition.
+
+/jeff
 
