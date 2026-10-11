@@ -4,87 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70063CA9EC7
-	for <ath11k@archiver.kernel.org>; Sun, 11 Oct 2026 12:36:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 041D8CA9EC7
+	for <ath11k@archiver.kernel.org>; Sun, 11 Oct 2026 13:26:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=pzss4JcabUItox2qeyTRJ/af2NkdjCKndfZJuFTzwT4=; b=J2jBRik1hKCamgw3oN1q50KL+c
-	H8TsrMkEc4xDz4uDAKw3Ol9OYh0Bne2VNLgL5tEw6bd8c0PJwCzHtor5P+3g+ZzsI8hb6IVgTqSSJ
-	Je+4iS3vmxE05RhFGISBiFMCsYpjtXUOZbTLCGuETElfgd1M55T5qaNxn5cP+hI5f8wuwZVG0YzrF
-	Zlqu/Up7CqZGuQH//WxjOFE0yA7syQOS46IpLcnOlDGYxLI8VA0tzxC59nfq0/ihjNOgGTikyY+zd
-	H+CczyzcEZf+7q0v9TuzRyEQADPGayFl1EXfiD0fL0RHXKrk6t0JFnQ6VjQP2WvdKamKiLiHDhgV5
-	960hqxKg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=PVcr7aWiZ8GvYwkyY6ZnXaDcRM8rUn6uQRQ7DpHdIyE=; b=tRdqq9PQJVkqPuSpSDTc1eeMJT
+	zlC4T05jJ2hl1m6C9pH51T+a2eOxai6K+4RDRxtL2bImSoZIoPgnl5vhghPO1dc8oBEa3bTed61Hw
+	6u9xtmeX7OzrPu/ntTaQ1LFOnWice1AdhXV97mGcc2bP71W6ffk9sq+MjBdphVUE2dxJx9Q1qKu++
+	5uO9Pf7yJrCXRULwyyNWaRXbjYao5w9PPqeXTguLue+R38R2mxfHRAysVBfQJoncWsznv39+LsXOc
+	q4ZCqRkGrVbLhsWLnbTXeEebBaynXGVMvLfbryDai9TjrOTwTTYnFZ1gOyKbSeI0Ak6d8TUA2oDKr
+	mNHzhjfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFsnE-000000090WY-1k7c;
-	Sun, 11 Oct 2026 12:36:44 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1xFtZ4-000000093MV-2dqc;
+	Sun, 11 Oct 2026 13:26:10 +0000
+Received: from mail-qt1-x82c.google.com ([2607:f8b0:4864:20::82c])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFsn8-000000090VL-41mI
+	id 1xFtYv-000000093K7-1hpC
 	for ath11k@lists.infradead.org;
-	Sun, 11 Oct 2026 12:36:42 +0000
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6af9cc73235so239913a12.0
-        for <ath11k@lists.infradead.org>; Sun, 11 Oct 2026 05:36:36 -0700 (PDT)
+	Sun, 11 Oct 2026 13:26:03 +0000
+Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-53397325663so12725521cf.1
+        for <ath11k@lists.infradead.org>; Sun, 11 Oct 2026 06:26:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1791722195; x=1792326995; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=pzss4JcabUItox2qeyTRJ/af2NkdjCKndfZJuFTzwT4=;
-        b=Y0D3fh1qtIiweOnHIJ/xgN5w3RzABwFKCA2Ozh8ETqhIsYWlY92Sh/NBFQhgFeNckj
-         5cXDLe4kH2pQ1w+Jy73HaSeU/TpQntyJbMxhI2YvLJF43A1tWeKHtrVEnbVUeKbBqGEb
-         tG/u4I1Iu+jLybCPFT5sGwvQPeKzl2rTMFIXA0ksJO65LtRxT2Ie7hGLg6gZXU5vGudG
-         vNSpiwQQYDOCdGYONeO1WZe8Qnxj+ei5iTsuI/hga3ZftAXP13gn7VwkPfpaOOgL2gEl
-         nfr0w66o88ejfHmcBKqYPQu4EGJrM2VJ0tzMk2CHMzQ2Zf9Xngnj6mkujPnBRpLWYzUz
-         MwdA==
+        d=ziepe.ca; s=google; t=1791725160; x=1792329960; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=PVcr7aWiZ8GvYwkyY6ZnXaDcRM8rUn6uQRQ7DpHdIyE=;
+        b=OaK0V2IqNv4RJxv8tMAQih6lBd55XVZGWr+a+P8Rt6VGn2M+O3OUi/ravhEQAVlVlE
+         U0vl60fPWz0NOWZXUdQXFw2dbRK9lfpDu8AOCUHXLfU7BR4YiWaNR/6con5FB/q8cSvL
+         4HFN9DOWOwe1H5S89AnGZ+lSxlcLG7g0TRYaNFg4QL8nIUDX2qhk7mHfgWyr9TeJf9PG
+         WOnDcPrZ1kHozF5D9GEEZfj71fXywp6zxxTVLuFaloWDNUONfgnOPdXaYVnwHkqYmnQB
+         6GKhJJiipl95H5K+Uq59hbwmSXC/VFcxX5clRlvfT+uhMu6x9AOqdjat+0yNXx7mUW78
+         /shQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791722195; x=1792326995;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=pzss4JcabUItox2qeyTRJ/af2NkdjCKndfZJuFTzwT4=;
-        b=Hg5Qlk6ujwXzSShXxK0W8d3kGyEBqqjKZ9eFoGNaV+Of7O5d6MNHhHezPu9aqlNNXV
-         gikFwNUI+qe9Zv+EMh1yHyTIUWusex/pDlbiOTVyGFLZbsyn3kGw0CV8ASaNwcxUNbf0
-         WW6RPMN/yCQUp1oylBj86ER/PeW8nEUIDDzkoO/toYmNUnCQ9oOZD+XthnVrhudeGJRz
-         uNOBoNuRPw+PjfCtah3ihLe5vbAQ3uZm1UrHfKnaybKL4ImHt2L8LG8oXTETyqBfnZnj
-         asM8lEIgWz7xkndQjc+KShnPY+YsaLoSr3nvbGdIaVvhvG1Kad1wpdLYPVVwbqAD+YWO
-         nLZg==
-X-Gm-Message-State: AFq9FYJKQr6/DPt5ubw1wy6CEE3pFJoIRQzV16bPeLIHURHLKNej05NR
-	m4SsmtSwpr/vDg3D7vLUleKrdWvGRBTqRY+jtGGUzDKl/gnZttMnkytDlRuHz4qE/7E5FlTlAXp
-	EOoQpeW6I
-X-Gm-Gg: AYBFou2tD3WmZux57xZViyr8JqspDBNGBPnaBP7qs8/z0wWWU4xijWePP170YA87MPn
-	5EehC4rESPxJWg/2dxc2/zTSWbkHyJz1ROhoJ9SLj/RJtv1tm0k0wfYjXtpZqEhiQl0Ojx8Fin2
-	cZBBm7AjbDc8uMQFlxvLQAsdO0JA5crlnvkyU1i2/0Elcya2XCOLHe3UL8Y4X6ePdSgln+USBxJ
-	vxb1OuaGGYiRERp8yIFuA65HzE1Mq2BE6f22p4RIJ2NytL3TqPU7XXvI+6qhYHNY2gmdTI49dl9
-	FxVTGf6EOBL+0ELGsY+Hvpr50sl3D+3/HHeECZLE5Va7oTGvbBZP97mhNZ8twFi1+k5bURB+sp/
-	2LTOSoZ1H2/gkpgseisY4w89V5mBcJw8UOMT+9xVHiBl+5lhGf6r1lcDJModwuf5EhDTDe+5ZT2
-	I5NDx4/Q12zUK8aXjSjbgPS6idawRME7XpZ7kw6sIycTGXgiSIhohTkLWuedIF9NdtG6ADpnp2z
-	VjLqM7060kDMzh5DmaGEonogZPxBBP6qxlfs0W/vv3SsSFY8Durmoqok7+UFDFUti3dR9KeyKFk
-	6RiBauRcRs1j0k/ivYcJhIjYXKvus7Khhk0cmnLq5AICfJj0/AZJXIf7EUOjwSm99Q1CWwQiawt
-	Lv4lHDUXX/hyWOw10E9uA8Sj/1rH9Uy5TjkznpRuBEXxk5e8WSUc/nD1I3N4NL7/Bpton/EzmFB
-	3pCzOB/w==
-X-Received: by 2002:a17:907:6d19:b0:c31:6a37:f281 with SMTP id a640c23a62f3a-c31a9a28baemr762386066b.2.1791722195363;
-        Sun, 11 Oct 2026 05:36:35 -0700 (PDT)
-Received: from Desktop.fritz.box ([217.26.236.61])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c344ab1453bsm59920966b.67.2026.10.11.05.36.34
+        d=1e100.net; s=20260707; t=1791725160; x=1792329960;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=PVcr7aWiZ8GvYwkyY6ZnXaDcRM8rUn6uQRQ7DpHdIyE=;
+        b=EEJ3hAYnhl4w6m0OwzBu3pohvMpDPQfNVdlrnwAoHxv0c7rEuUgZJXJSFNG1wu/Pz1
+         jalscEWYE3eqIOM4wntWZWB4lhiy56paDqoU/ctzMx+6Pzkq5vOCaXx+gakGtbS6lCgK
+         zGZKUnKXBosVknWCUfKd0dMVCjIaD6d+qYnAv3YK7gxl7JxHynUG4xWy4+7cYRWt2l+E
+         1j0AuhVBHQVOHjc58YIHGeP7TPdFap6O26OPQtLm5rf1GbGLt3iwed5TBjKrKvRBjBTX
+         GxxvpK0ws2TmolW3tiFLwnQYqc+ic9t1dyrFT1zUzDoeFJZlNoztPewULRD26By1Zdb/
+         Ywkg==
+X-Forwarded-Encrypted: i=1; AKwUvBzaurxDw5/AeCDYCiDzIIXtXR7NDbN/SHTG8yQlh6XAdofSRorOrF3At0AUA77zs+vPU5g8YWw=@lists.infradead.org
+X-Gm-Message-State: AFq9FYL3MYrtNb6mpibIa5zFelqUtQleKXmjgzXguX/MagnU6juPySvR
+	fz6Bx9FOU/awURJLpY+XbkmLHabSCQ73ejZ6ME6YUqnh1AKVkq8ATm+Oe52lAljgZtk=
+X-Gm-Gg: AYBFou022ZiWVCypdmwCAN+nrP3pe8OmCQQXb0dgWagGZYwlHj3ovpaEW8xi1v/KV20
+	F4phx79LPqVaZ6PrigfVMqSDroA6N7+k6fpUhRjfBz9BL02xJklAYNjdABeI/EC7gQ0ZTkWtXgs
+	VsF7fHJtR226AYyAYXZ4dOkgsgvri7Yp7uBbBkV8kUxEaiCy5ulaoSpu9Xhz9CTQt0cMkQZbNvO
+	1LjtxeQL+1DEmj9ju3QeR8oUPGXDGVXMf8B6NPBA78O6wkxiU8uM/H/z5UPPEcZV5iWsilASPQb
+	BOGGDO8wGrWPHzMjugnhix1MVUVNZCH19O2mIrwSivZAK7djf2mJtnQo7RHhlz7a1IZNCatJz71
+	6HjuBrPCcC3dmWliRfC+cQmbyRAlQB6my8xud3Wmyterl19Z+RQOo4tqj8EBx2pzkM9E+DonTj+
+	KxySFcL7Xsmt05crRuMWTZ+H7BicqlAx6Z8b3Mlbc9o0w+85hVyhiW3jE3YfUGSn3fggIYOGO4M
+	VzoTwAY6BsJbE3NQOb3y3eMeK6JSCJbQXecMOnjc8BpWz0yn6avdDVJm1y1sZ2EhPBL
+X-Received: by 2002:a05:622a:e111:10b0:535:a5f9:752e with SMTP id d75a77b69052e-535a5f9789bmr75892511cf.77.1791725159958;
+        Sun, 11 Oct 2026 06:25:59 -0700 (PDT)
+Received: from ziepe.ca (hlfxns010zw-159-2-239-150.pppoe-dynamic.high-speed.ns.bellaliant.net. [159.2.239.150])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91b54e80353sm71122656d6.1.2026.10.11.06.25.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Oct 2026 05:36:34 -0700 (PDT)
-From: Julius Bairaktaris <julius@bairaktaris.de>
-To: jjohnson@kernel.org
-Cc: ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: apply the 160 MHz NSS ratio to the radio
-Date: Sun, 11 Oct 2026 14:36:30 +0200
-Message-ID: <20261011123631.1664734-1-julius@bairaktaris.de>
-X-Mailer: git-send-email 2.53.0
+        Sun, 11 Oct 2026 06:25:58 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1xFtYs-00000003FEK-1U1k;
+	Sun, 11 Oct 2026 10:25:58 -0300
+Date: Sun, 11 Oct 2026 10:25:58 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+Cc: alex@shazbot.org, bhelgaas@google.com, jjohnson@kernel.org,
+	johannes@sipsolutions.net, mani@kernel.org, yishaih@nvidia.com,
+	skolothumtho@nvidia.com, kevin.tian@intel.com,
+	linux-pci@vger.kernel.org, kvm@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/7] Enable Qualcomm WiFi PCIe passthrough to VMs
+Message-ID: <20261011132558.GD14213@ziepe.ca>
+References: <20260930140833.576941-1-jtornosm@redhat.com>
+ <20261011075425.516927-1-jtornosm@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261011075425.516927-1-jtornosm@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261011_053639_047708_95677805 
-X-CRM114-Status: GOOD (  10.68  )
+X-CRM114-CacheID: sfid-20261011_062601_576002_CAD04FF2 
+X-CRM114-Status: UNSURE (   9.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,95 +111,27 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The firmware reports the NSS a radio supports at 160 MHz as a ratio of
-its 80 MHz NSS. Peer assoc applies that ratio to the peer's NSS instead,
-so on a radio with a 1:2 ratio a two-stream peer is sent one stream at
-160 MHz. The HE 160 and 80+80 MCS maps copy the 80 MHz map, so a
-4-chain radio with that ratio offers 4 streams at 160 MHz where it
-supports 2.
+On Sun, Oct 11, 2026 at 09:54:25AM +0200, Jose Ignacio Tornos Martinez wrote:
+> Hi,
+> 
+> Since no further feedback was received after the last discussion,
+> I proceeded with v2 addressing review findings (Sashiko):
+> https://lore.kernel.org/all/20261011074514.515894-1-jtornosm@redhat.com/
+> 
+> I remain open to suggestions and happy to iterate further if needed
+> to get this acceptable.
 
-Take the 160 MHz NSS from the radio's TX chains, as ath12k does since
-commit a82ce08775bc ("wifi: ath12k: add extended NSS bandwidth support
-for 160 MHz"), and limit the 160 and 80+80 MCS maps to the ratio when
-the firmware reports one.
+IMHO this is not OK, building a new crazy hypervisor interface that
+only works with the broken driver design we have today is not OK. This
+is not some "quirk", it is a permanent new ABI between VMM and kernel
+that has real compatibility implications.
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Go tell an AI to convert it to
+platform_device_msi_init_and_alloc_irqs() and then solve for that so
+at least we are not getting trapped into a completely broken ABI by
+all the hacks here.
 
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
----
-On a Xiaomi AX3600 (IPQ8071A, 4-chain 5 GHz radio, firmware reports
-WMI_NSS_RATIO_1BY2_NSS), `iw phy` lists 4 streams in the HE 160 MHz
-MCS sets without this patch and 2 with it.
+The whole "MSI Caching" concept is fully wrong to be an ABI to a VM.
 
- drivers/net/wireless/ath/ath11k/mac.c | 24 +++++++++++++++++-------
- 1 file changed, 17 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c1fa42edd3630..6cd163cab9bd7 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2278,7 +2278,7 @@ static void ath11k_peer_assoc_h_vht(struct ath11k *ar,
- 
- 	if (arg->peer_phymode == MODE_11AC_VHT160 ||
- 	    arg->peer_phymode == MODE_11AC_VHT80_80) {
--		tx_nss = ath11k_get_nss_160mhz(ar, max_nss);
-+		tx_nss = ath11k_get_nss_160mhz(ar, ar->num_tx_chains);
- 		rx_nss = min(arg->peer_nss, tx_nss);
- 		arg->peer_bw_rxnss_override = ATH11K_BW_NSS_MAP_ENABLE;
- 
-@@ -2588,7 +2588,7 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
- 
- 	if (arg->peer_phymode == MODE_11AX_HE160 ||
- 	    arg->peer_phymode == MODE_11AX_HE80_80) {
--		tx_nss = ath11k_get_nss_160mhz(ar, max_nss);
-+		tx_nss = ath11k_get_nss_160mhz(ar, ar->num_tx_chains);
- 		rx_nss = min(arg->peer_nss, tx_nss);
- 		arg->peer_bw_rxnss_override = ATH11K_BW_NSS_MAP_ENABLE;
- 
-@@ -5940,7 +5940,7 @@ static void ath11k_mac_set_hemcsmap(struct ath11k *ar,
- 				    struct ieee80211_sta_he_cap *he_cap,
- 				    int band)
- {
--	u16 txmcs_map, rxmcs_map;
-+	u16 txmcs_map, rxmcs_map, txmcs_map_160, rxmcs_map_160;
- 	u32 i;
- 
- 	rxmcs_map = 0;
-@@ -5958,18 +5958,28 @@ static void ath11k_mac_set_hemcsmap(struct ath11k *ar,
- 		else
- 			rxmcs_map |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
- 	}
-+
-+	txmcs_map_160 = txmcs_map;
-+	rxmcs_map_160 = rxmcs_map;
-+	if (cap->nss_ratio_enabled) {
-+		for (i = ath11k_get_nss_160mhz(ar, ar->num_tx_chains); i < 8; i++)
-+			txmcs_map_160 |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
-+		for (i = ath11k_get_nss_160mhz(ar, ar->num_rx_chains); i < 8; i++)
-+			rxmcs_map_160 |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
-+	}
-+
- 	he_cap->he_mcs_nss_supp.rx_mcs_80 =
- 		cpu_to_le16(rxmcs_map & 0xffff);
- 	he_cap->he_mcs_nss_supp.tx_mcs_80 =
- 		cpu_to_le16(txmcs_map & 0xffff);
- 	he_cap->he_mcs_nss_supp.rx_mcs_160 =
--		cpu_to_le16(rxmcs_map & 0xffff);
-+		cpu_to_le16(rxmcs_map_160);
- 	he_cap->he_mcs_nss_supp.tx_mcs_160 =
--		cpu_to_le16(txmcs_map & 0xffff);
-+		cpu_to_le16(txmcs_map_160);
- 	he_cap->he_mcs_nss_supp.rx_mcs_80p80 =
--		cpu_to_le16(rxmcs_map & 0xffff);
-+		cpu_to_le16(rxmcs_map_160);
- 	he_cap->he_mcs_nss_supp.tx_mcs_80p80 =
--		cpu_to_le16(txmcs_map & 0xffff);
-+		cpu_to_le16(txmcs_map_160);
- }
- 
- static int ath11k_mac_copy_he_cap(struct ath11k *ar,
--- 
-2.53.0
-
+Jason
 
