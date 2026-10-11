@@ -4,88 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B963ECA9EC7
-	for <ath11k@archiver.kernel.org>; Sun, 11 Oct 2026 07:54:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70063CA9EC7
+	for <ath11k@archiver.kernel.org>; Sun, 11 Oct 2026 12:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=dEcJ/pFItgtT4/Uq84V4nCOcw5lFpC5TWp8hGwZydFE=; b=R/T19ct7CbKvAAth+6ZdrWWd0c
-	Fd9GZTykGJ34lTTmoHBE+BxXeS+Zw137Gu0ncaXbkWJbdW75FC1d/nTKlg6/zMY/ToWQ8zhrm8KLg
-	ld+pwsp0mXvxSpXakyHZvThvLLlPlo79IqFuxo+mgnNmlA0xANgUfV6H6Z3Szz04pkNS2H1zUbQpW
-	dLXA/UjaWkDZU6uoKRQ0yckSYpZ6zQ/CGWg5n8rB5c5h3Rvo4nr5z5iS8NrROyWMwE0NJ/QcWlnn5
-	uqDdLcQV1dpV6uEYkwSQtzsF3yGn2oTS6VDS1cKO5W4CyBuDuSEgP9Rylv5XVA3/tdNIpbIfD4Bul
-	xES0y7YA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=pzss4JcabUItox2qeyTRJ/af2NkdjCKndfZJuFTzwT4=; b=J2jBRik1hKCamgw3oN1q50KL+c
+	H8TsrMkEc4xDz4uDAKw3Ol9OYh0Bne2VNLgL5tEw6bd8c0PJwCzHtor5P+3g+ZzsI8hb6IVgTqSSJ
+	Je+4iS3vmxE05RhFGISBiFMCsYpjtXUOZbTLCGuETElfgd1M55T5qaNxn5cP+hI5f8wuwZVG0YzrF
+	Zlqu/Up7CqZGuQH//WxjOFE0yA7syQOS46IpLcnOlDGYxLI8VA0tzxC59nfq0/ihjNOgGTikyY+zd
+	H+CczyzcEZf+7q0v9TuzRyEQADPGayFl1EXfiD0fL0RHXKrk6t0JFnQ6VjQP2WvdKamKiLiHDhgV5
+	960hqxKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFoOI-00000008puk-00l9;
-	Sun, 11 Oct 2026 07:54:42 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1xFsnE-000000090WY-1k7c;
+	Sun, 11 Oct 2026 12:36:44 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFoOF-00000008pu7-2Dml
+	id 1xFsn8-000000090VL-41mI
 	for ath11k@lists.infradead.org;
-	Sun, 11 Oct 2026 07:54:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1791705278;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dEcJ/pFItgtT4/Uq84V4nCOcw5lFpC5TWp8hGwZydFE=;
-	b=bG/iRlHznXC2rDxgo8uasdx8f/p+RQJJP73H6esDuVgo/gt4eh415v30WxogCoXALyExbx
-	hhgiwfpynDFk/jNe26jZiIgk7MW3AAVVqlDOsRjLw6Cy82ez5RDFBsgvLE86TjWuAzc5TA
-	1c4s2l2K1Z2Kiui2WCiSDYoQu6gc+WA=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-404-76GULbi8MJqa5ia54w_hFw-1; Sun,
- 11 Oct 2026 07:54:33 +0000
-X-MC-Unique: 76GULbi8MJqa5ia54w_hFw-1
-X-Mimecast-MFC-AGG-ID: 76GULbi8MJqa5ia54w_hFw_1791705271
-Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1C0F31800A7F;
-	Sun, 11 Oct 2026 07:54:31 +0000 (UTC)
-Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet03.pony-001.prod.iad2.dc.redhat.com [10.2.32.114])
-	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 4FEC8472;
-	Sun, 11 Oct 2026 07:54:26 +0000 (UTC)
-From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-To: jgg@ziepe.ca,
-	alex@shazbot.org,
-	bhelgaas@google.com,
-	jjohnson@kernel.org
-Cc: jtornosm@redhat.com,
-	johannes@sipsolutions.net,
-	mani@kernel.org,
-	yishaih@nvidia.com,
-	skolothumtho@nvidia.com,
-	kevin.tian@intel.com,
-	linux-pci@vger.kernel.org,
-	kvm@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] Enable Qualcomm WiFi PCIe passthrough to VMs
-Date: Sun, 11 Oct 2026 09:54:25 +0200
-Message-ID: <20261011075425.516927-1-jtornosm@redhat.com>
-In-Reply-To: <20260930140833.576941-1-jtornosm@redhat.com>
-References: <20260930140833.576941-1-jtornosm@redhat.com>
+	Sun, 11 Oct 2026 12:36:42 +0000
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6af9cc73235so239913a12.0
+        for <ath11k@lists.infradead.org>; Sun, 11 Oct 2026 05:36:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bairaktaris.de; s=google; t=1791722195; x=1792326995; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=pzss4JcabUItox2qeyTRJ/af2NkdjCKndfZJuFTzwT4=;
+        b=Y0D3fh1qtIiweOnHIJ/xgN5w3RzABwFKCA2Ozh8ETqhIsYWlY92Sh/NBFQhgFeNckj
+         5cXDLe4kH2pQ1w+Jy73HaSeU/TpQntyJbMxhI2YvLJF43A1tWeKHtrVEnbVUeKbBqGEb
+         tG/u4I1Iu+jLybCPFT5sGwvQPeKzl2rTMFIXA0ksJO65LtRxT2Ie7hGLg6gZXU5vGudG
+         vNSpiwQQYDOCdGYONeO1WZe8Qnxj+ei5iTsuI/hga3ZftAXP13gn7VwkPfpaOOgL2gEl
+         nfr0w66o88ejfHmcBKqYPQu4EGJrM2VJ0tzMk2CHMzQ2Zf9Xngnj6mkujPnBRpLWYzUz
+         MwdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791722195; x=1792326995;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=pzss4JcabUItox2qeyTRJ/af2NkdjCKndfZJuFTzwT4=;
+        b=Hg5Qlk6ujwXzSShXxK0W8d3kGyEBqqjKZ9eFoGNaV+Of7O5d6MNHhHezPu9aqlNNXV
+         gikFwNUI+qe9Zv+EMh1yHyTIUWusex/pDlbiOTVyGFLZbsyn3kGw0CV8ASaNwcxUNbf0
+         WW6RPMN/yCQUp1oylBj86ER/PeW8nEUIDDzkoO/toYmNUnCQ9oOZD+XthnVrhudeGJRz
+         uNOBoNuRPw+PjfCtah3ihLe5vbAQ3uZm1UrHfKnaybKL4ImHt2L8LG8oXTETyqBfnZnj
+         asM8lEIgWz7xkndQjc+KShnPY+YsaLoSr3nvbGdIaVvhvG1Kad1wpdLYPVVwbqAD+YWO
+         nLZg==
+X-Gm-Message-State: AFq9FYJKQr6/DPt5ubw1wy6CEE3pFJoIRQzV16bPeLIHURHLKNej05NR
+	m4SsmtSwpr/vDg3D7vLUleKrdWvGRBTqRY+jtGGUzDKl/gnZttMnkytDlRuHz4qE/7E5FlTlAXp
+	EOoQpeW6I
+X-Gm-Gg: AYBFou2tD3WmZux57xZViyr8JqspDBNGBPnaBP7qs8/z0wWWU4xijWePP170YA87MPn
+	5EehC4rESPxJWg/2dxc2/zTSWbkHyJz1ROhoJ9SLj/RJtv1tm0k0wfYjXtpZqEhiQl0Ojx8Fin2
+	cZBBm7AjbDc8uMQFlxvLQAsdO0JA5crlnvkyU1i2/0Elcya2XCOLHe3UL8Y4X6ePdSgln+USBxJ
+	vxb1OuaGGYiRERp8yIFuA65HzE1Mq2BE6f22p4RIJ2NytL3TqPU7XXvI+6qhYHNY2gmdTI49dl9
+	FxVTGf6EOBL+0ELGsY+Hvpr50sl3D+3/HHeECZLE5Va7oTGvbBZP97mhNZ8twFi1+k5bURB+sp/
+	2LTOSoZ1H2/gkpgseisY4w89V5mBcJw8UOMT+9xVHiBl+5lhGf6r1lcDJModwuf5EhDTDe+5ZT2
+	I5NDx4/Q12zUK8aXjSjbgPS6idawRME7XpZ7kw6sIycTGXgiSIhohTkLWuedIF9NdtG6ADpnp2z
+	VjLqM7060kDMzh5DmaGEonogZPxBBP6qxlfs0W/vv3SsSFY8Durmoqok7+UFDFUti3dR9KeyKFk
+	6RiBauRcRs1j0k/ivYcJhIjYXKvus7Khhk0cmnLq5AICfJj0/AZJXIf7EUOjwSm99Q1CWwQiawt
+	Lv4lHDUXX/hyWOw10E9uA8Sj/1rH9Uy5TjkznpRuBEXxk5e8WSUc/nD1I3N4NL7/Bpton/EzmFB
+	3pCzOB/w==
+X-Received: by 2002:a17:907:6d19:b0:c31:6a37:f281 with SMTP id a640c23a62f3a-c31a9a28baemr762386066b.2.1791722195363;
+        Sun, 11 Oct 2026 05:36:35 -0700 (PDT)
+Received: from Desktop.fritz.box ([217.26.236.61])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c344ab1453bsm59920966b.67.2026.10.11.05.36.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Oct 2026 05:36:34 -0700 (PDT)
+From: Julius Bairaktaris <julius@bairaktaris.de>
+To: jjohnson@kernel.org
+Cc: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: [PATCH] wifi: ath11k: apply the 160 MHz NSS ratio to the radio
+Date: Sun, 11 Oct 2026 14:36:30 +0200
+Message-ID: <20261011123631.1664734-1-julius@bairaktaris.de>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
-X-Mimecast-MFC-PROC-ID: Hlm-c1fi4fjgpnLXmf_ShXLZ7LIigh9IXvsZsfsReuQ_1791705271
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261011_005439_641245_FD733068 
-X-CRM114-Status: UNSURE (   4.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261011_053639_047708_95677805 
+X-CRM114-Status: GOOD (  10.68  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,18 +99,95 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+The firmware reports the NSS a radio supports at 160 MHz as a ratio of
+its 80 MHz NSS. Peer assoc applies that ratio to the peer's NSS instead,
+so on a radio with a 1:2 ratio a two-stream peer is sent one stream at
+160 MHz. The HE 160 and 80+80 MCS maps copy the 80 MHz map, so a
+4-chain radio with that ratio offers 4 streams at 160 MHz where it
+supports 2.
 
-Since no further feedback was received after the last discussion,
-I proceeded with v2 addressing review findings (Sashiko):
-https://lore.kernel.org/all/20261011074514.515894-1-jtornosm@redhat.com/
+Take the 160 MHz NSS from the radio's TX chains, as ath12k does since
+commit a82ce08775bc ("wifi: ath12k: add extended NSS bandwidth support
+for 160 MHz"), and limit the 160 and 80+80 MCS maps to the ratio when
+the firmware reports one.
 
-I remain open to suggestions and happy to iterate further if needed
-to get this acceptable.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 
-Thanks
+Assisted-by: Claude:claude-opus-5-5
+Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+---
+On a Xiaomi AX3600 (IPQ8071A, 4-chain 5 GHz radio, firmware reports
+WMI_NSS_RATIO_1BY2_NSS), `iw phy` lists 4 streams in the HE 160 MHz
+MCS sets without this patch and 2 with it.
 
-Best regards
-Jose Ignacio
+ drivers/net/wireless/ath/ath11k/mac.c | 24 +++++++++++++++++-------
+ 1 file changed, 17 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index c1fa42edd3630..6cd163cab9bd7 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2278,7 +2278,7 @@ static void ath11k_peer_assoc_h_vht(struct ath11k *ar,
+ 
+ 	if (arg->peer_phymode == MODE_11AC_VHT160 ||
+ 	    arg->peer_phymode == MODE_11AC_VHT80_80) {
+-		tx_nss = ath11k_get_nss_160mhz(ar, max_nss);
++		tx_nss = ath11k_get_nss_160mhz(ar, ar->num_tx_chains);
+ 		rx_nss = min(arg->peer_nss, tx_nss);
+ 		arg->peer_bw_rxnss_override = ATH11K_BW_NSS_MAP_ENABLE;
+ 
+@@ -2588,7 +2588,7 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 
+ 	if (arg->peer_phymode == MODE_11AX_HE160 ||
+ 	    arg->peer_phymode == MODE_11AX_HE80_80) {
+-		tx_nss = ath11k_get_nss_160mhz(ar, max_nss);
++		tx_nss = ath11k_get_nss_160mhz(ar, ar->num_tx_chains);
+ 		rx_nss = min(arg->peer_nss, tx_nss);
+ 		arg->peer_bw_rxnss_override = ATH11K_BW_NSS_MAP_ENABLE;
+ 
+@@ -5940,7 +5940,7 @@ static void ath11k_mac_set_hemcsmap(struct ath11k *ar,
+ 				    struct ieee80211_sta_he_cap *he_cap,
+ 				    int band)
+ {
+-	u16 txmcs_map, rxmcs_map;
++	u16 txmcs_map, rxmcs_map, txmcs_map_160, rxmcs_map_160;
+ 	u32 i;
+ 
+ 	rxmcs_map = 0;
+@@ -5958,18 +5958,28 @@ static void ath11k_mac_set_hemcsmap(struct ath11k *ar,
+ 		else
+ 			rxmcs_map |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
+ 	}
++
++	txmcs_map_160 = txmcs_map;
++	rxmcs_map_160 = rxmcs_map;
++	if (cap->nss_ratio_enabled) {
++		for (i = ath11k_get_nss_160mhz(ar, ar->num_tx_chains); i < 8; i++)
++			txmcs_map_160 |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
++		for (i = ath11k_get_nss_160mhz(ar, ar->num_rx_chains); i < 8; i++)
++			rxmcs_map_160 |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
++	}
++
+ 	he_cap->he_mcs_nss_supp.rx_mcs_80 =
+ 		cpu_to_le16(rxmcs_map & 0xffff);
+ 	he_cap->he_mcs_nss_supp.tx_mcs_80 =
+ 		cpu_to_le16(txmcs_map & 0xffff);
+ 	he_cap->he_mcs_nss_supp.rx_mcs_160 =
+-		cpu_to_le16(rxmcs_map & 0xffff);
++		cpu_to_le16(rxmcs_map_160);
+ 	he_cap->he_mcs_nss_supp.tx_mcs_160 =
+-		cpu_to_le16(txmcs_map & 0xffff);
++		cpu_to_le16(txmcs_map_160);
+ 	he_cap->he_mcs_nss_supp.rx_mcs_80p80 =
+-		cpu_to_le16(rxmcs_map & 0xffff);
++		cpu_to_le16(rxmcs_map_160);
+ 	he_cap->he_mcs_nss_supp.tx_mcs_80p80 =
+-		cpu_to_le16(txmcs_map & 0xffff);
++		cpu_to_le16(txmcs_map_160);
+ }
+ 
+ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
+-- 
+2.53.0
 
 
