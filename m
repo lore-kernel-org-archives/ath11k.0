@@ -4,81 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF776CC6B03
-	for <ath11k@archiver.kernel.org>; Tue, 13 Oct 2026 11:41:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B902CC6B08
+	for <ath11k@archiver.kernel.org>; Tue, 13 Oct 2026 13:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-ID:Content-Type:
-	MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To:Date:From:
-	Reply-To:Content-Transfer-Encoding:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CKHgPqu2Azg7/nNri0RDYdQFf19RQLzbv3/NH2TS2ck=; b=VeCJtUFt9eXqOHxVaK7uecYqXd
-	51AnKYxZ8zZAFKTsu7aGLtv8f8HdIdmljrs24JW2UfUUsNWtbgDFZS0vPOPBaabWGGtOWYJsPuRjT
-	pQ3qJHKTVBh96jsQ4WEAL3qDqOXJtc2/orGNFhPpkZdWxfv5aLUZDqdCWN5EQ58Wxs6z0A9bMrMng
-	YIr1+qOsyTS42OaHZjH/xq6km85D0ziZr8BzSz7dCVmBt3+fMxaYanTVtnJBqhq523X10qzYYM1Q1
-	DE9Svm2c5jaXVYAS6l/uA47cgg5I0UBpCx5Mv0EOYvXHWxfaO1tYkHuLclx6zs0EkyFovcmMYlbHQ
-	LOy6beWA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=nuNOjwtGxdFWi5b1GBEExDlpsvyC11ZHFEhl4qwDTFQ=; b=oyul5ESX3VAx8BAu+vPqHgxukv
+	GBbLdZy2zkUBO1kA/CC2kCvwpx1lddtIARE1T1h0sQ/GeupJmRZGWhwkb5t7F6Ida06a7nsTrfwh1
+	U2tj1bFLcevoWNF6byCMlBTP+YCWh5y55wYzgonHpwJTLOZDIR+kaJnXsIk9asxXQ8uTpsuM4MRlU
+	s9LQQOomT/VYBTkvSUY/9HsQ3/VAMwBARuG4JkcAgQfTc2B43mKzgufohWLOXPTgydcCSPvoaiZxT
+	ch1Oya+uiXDtCeCqpL06lzu4xSgVG3236mpslUMum2r2KZcLOITTZz8RoHbS+dmweRiojf5KEcI25
+	3GNut/ZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGatE-0000000Cj6d-3O5n;
-	Tue, 13 Oct 2026 11:41:52 +0000
-Received: from mgamail.intel.com ([192.198.163.11])
+	id 1xGcn4-0000000CzGp-2PQs;
+	Tue, 13 Oct 2026 13:43:38 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGat7-0000000Cj5l-3Zw0;
-	Tue, 13 Oct 2026 11:41:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1791891706; x=1823427706;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version:content-id;
-  bh=YAJaHA3FL843BSgj3aVZh2SzSmUdAo8/w5ok0jPj4ro=;
-  b=npu+QCRdxHDeQ+hopmntH8gv6i/ESNlGJk1TX/xF3RNfXOAl+Qx6VW/h
-   ubozrqrGhDTvFDvekO4D98ycDLQ2C/iivUEewR1ALAGOKmuXV/wgKrrGN
-   q4GGAQ0cCtAdY3Xh8vKpwa9Jrvfv6dzYzmW0UPegyiPOpTQwJn+p3ixBF
-   OLmqjkZzKg2ILDlvCWEVfauYx/Jh94j7DXMdO22yYX0K/Cd6pR+L9EjVx
-   3KVnZhFqL2dI0URDrp5Br1i3kRX7biWO87qs97NUAiJuVG3d+ELPZMXlT
-   LqpF60TCsWHuatdhsx2k5f+r50vDiKblsHbwxssCungEOt2Wh+mN+4/d6
-   w==;
-X-CSE-ConnectionGUID: j22tdh1JQvipLTeF40PYvA==
-X-CSE-MsgGUID: QgY6QZ3FSQ6AEGGKP+VH0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="515084"
-X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="515084"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2026 04:41:45 -0700
-X-CSE-ConnectionGUID: b8gYIYLoRdyjmsQDQ/nStQ==
-X-CSE-MsgGUID: JaGIfAB3QKqpSXdMgk+ecQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="1501815"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.106])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2026 04:41:39 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 13 Oct 2026 14:41:32 +0300 (EEST)
-To: Bjorn Helgaas <helgaas@kernel.org>
-cc: Manivannan Sadhasivam <mani@kernel.org>, 
-    Bjorn Helgaas <bhelgaas@google.com>, 
-    Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, 
-    Rob Herring <robh@kernel.org>, Nirmal Patel <nirmal.patel@linux.intel.com>, 
-    Jonathan Derrick <jonathan.derrick@linux.dev>, 
-    Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>, linux-arm-msm@vger.kernel.org, 
-    linux-wireless@vger.kernel.org, ath12k@lists.infradead.org, 
-    ath11k@lists.infradead.org, ath10k@lists.infradead.org, 
-    Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-    Qiang Yu <qiang.yu@oss.qualcomm.com>, 
-    Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/8] PCI/ASPM: Add pci_force_enable_link_state() API
-In-Reply-To: <20261012225832.GA1415301@bhelgaas>
-Message-ID: <f1390db8-2369-9ab7-49a9-b7f09ef7b1ea@linux.intel.com>
-References: <20261012225832.GA1415301@bhelgaas>
+	id 1xGcn1-0000000CzFW-3tGI
+	for ath11k@lists.infradead.org;
+	Tue, 13 Oct 2026 13:43:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1791899013;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nuNOjwtGxdFWi5b1GBEExDlpsvyC11ZHFEhl4qwDTFQ=;
+	b=CkyFNq3ii65tR4p2eBA2Kl9pnccg7nR9YXaju8kyy2X4kMgG1mgX2a3CSW5cLxjSU59aq4
+	JDHeKwXMedpcjnIcdpf2IN3XK9b62wlfQnP30t4A0o1SDZaLbaCgZYv5iHsJ8u0P4ieClP
+	X/FDros3qFsLuNQwRclZg+WepyF3MQY=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-495-Eo4ETPSKPqS56a6pMauarw-1; Tue,
+ 13 Oct 2026 13:43:28 +0000
+X-MC-Unique: Eo4ETPSKPqS56a6pMauarw-1
+X-Mimecast-MFC-AGG-ID: Eo4ETPSKPqS56a6pMauarw_1791899006
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id EEF501945CBC;
+	Tue, 13 Oct 2026 13:43:24 +0000 (UTC)
+Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id AA6391800592;
+	Tue, 13 Oct 2026 13:43:19 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: jgg@ziepe.ca
+Cc: alex@shazbot.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	bhelgaas@google.com,
+	jjohnson@kernel.org,
+	johannes@sipsolutions.net,
+	jtornosm@redhat.com,
+	kevin.tian@intel.com,
+	kvm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	mani@kernel.org,
+	skolothumtho@nvidia.com,
+	yishaih@nvidia.com
+Subject: Re: [PATCH 0/7] Enable Qualcomm WiFi PCIe passthrough to VMs
+Date: Tue, 13 Oct 2026 15:43:13 +0200
+Message-ID: <20261013134317.174234-1-jtornosm@redhat.com>
+In-Reply-To: <20261011132558.GD14213@ziepe.ca>
+References: <20261011132558.GD14213@ziepe.ca>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323328-2110680251-1791890800=:1237"
-Content-ID: <eb4da7c3-6b95-7dae-87b6-bb3fda24da91@linux.intel.com>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+X-Mimecast-MFC-PROC-ID: D5zMYxkwglTC3LC_gBgWOhXj_lOzYh7mxtF03jEGbwk_1791899006
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261013_044145_910615_3F87716A 
-X-CRM114-Status: GOOD (  39.68  )
+X-CRM114-CacheID: sfid-20261013_064336_036083_3CC473C6 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,240 +100,32 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hi Jason,
 
---8323328-2110680251-1791890800=:1237
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Content-ID: <6e83485e-223f-0f0c-17ad-c73df48cefdf@linux.intel.com>
+I understand the concern about compatibility implications, but to
+clarify, my intention is not to create an ABI or a "MSI caching
+concept". It is simply passing the necessary information from the
+host driver to the VM driver so the device can work. The mechanism
+uses the existing VFIO variant driver pattern, but I'm open to any
+other mechanism that achieves the same goal.
 
-On Mon, 12 Oct 2026, Bjorn Helgaas wrote:
+I can explore converting ath11k/ath12k to
+platform_device_msi_init_and_alloc_irqs(). However, if I understood
+correctly, the VM problem remains identical after that change — the
+firmware still needs physical host addresses, and device MSI domains
+in the VM would still provide virtual ones.
 
-> On Wed, Jul 08, 2026 at 04:30:16PM +0200, Manivannan Sadhasivam wrote:
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> >=20
-> > pci_enable_link_state() and pci_enable_link_state_locked() APIs only en=
-able
-> > the ASPM states that were not previously disabled via
-> > pci_disable_link_state*() API or blacklisted during init (e.g. the pre-=
-1.1
-> > device blacklist, which is only meant to be overridden with
-> > 'pcie_aspm=3Dforce'). This is an intentional behavior as these APIs mus=
-t not
-> > silently re-enable states that were deliberately disabled, since doing =
-so
-> > could enable ASPM on a link where it is known to be unsafe.
->=20
-> I think this is saying that many uses of pci_disable_link_state() are
-> to avoid hardware errata, i.e., these are basically quirks, and we
-> should *never* enable those ASPM states.
->=20
-> > However, some drivers (e.g. the atheros WLAN drivers) save the currentl=
-y
-> > enabled ASPM states, disable all ASPM states before firmware download, =
-and
-> > then try to restore exactly the states that were enabled before. Restor=
-ing
-> > those states requires re-enabling states that were just disabled via
-> > pci_disable_link_state() API. But, this cannot be achieved using the
-> > existing APIs.
->=20
-> This sounds like it's also for hardware errata: if ASPM works
-> correctly, there's no need to disable it during firmware download.  I
-> think this is *only* the atheros drivers, isn't it?  I didn't see any
-> others.
+I'm happy to do this refactoring if it opens a path to get these
+devices working in VMs. What VM mechanism would you accept for
+exposing physical MSI values through device MSI domains?
 
-Hi,
+Jeff is escalating to Qualcomm engineering again (thank you for
+that), but users with deployed hardware need something working in
+a reasonable timeframe.
 
-There are more that should use disable/enable API. In addition ath*, I had=
-=20
-also these in my unfinished series:
+Thanks
 
-  brcmfmac
-  ib-hfi1
-  rtlwifi
-  rtsx
-  r8169
+Best regards
+Jose Ignacio
 
-> > Hence, add pci_force_enable_link_state() API for such callers. Unlike
-> > pci_enable_link_state(), it re-enables the requested states even if the=
-y
-> > were previously disabled via pci_disable_link_state() or disabled durin=
-g
-> > init. The caller is therefore responsible for only enabling states the
-> > device actually supports, typically the ones previously reported by
-> > pcie_aspm_enabled().
->=20
-> The problem is that pci_enable_link_state() cannot enable things that
-> were disabled by pci_disable_link_state().  They're not symmetric,
-> which violates the caller's expectation.
-
-Yes.
-
-This patch seems to come with my Suggested-by but what I suggested (and=20
-had a patch for) was to make disable/enable proper symmetric pairs because=
-=20
-it is very trappy otherwise. If something else is needed in addition, that=
-=20
-should be named differently like Bjorn also seems to suggest (however see=
-=20
-my alternative suggestion below).
-
-I renamed the current pci_enable_link_state() to=20
-pci_set_default_link_state() in my own attempt to get room for adding the=
-=20
-symmetric pair.
-
-> Instead of adding pci_force_enable_link_state(), I think we should add
-> a new interface for the *quirk* behavior that permanently disables
-> states.  Then pci_enable_link_state() and pci_disable_link_state()
-> could be made symmetric.
-
-My suggestion is to make the disables/enables counted per state which=20
-would allow parallel sources of disables to function without clashing.
-
-Disable quirks could simply not have the pairing enable, no special=20
-interface needed.
-
-And the lane margining proposal would also just fit in with that approach=
-=20
-as well.
-
---
- i.
-
-> > This API is implemented by adding a 'force' parameter to the shared
-> > __pci_enable_link_state() helper. When 'force' is true, the requested
-> > states are cleared from 'link->aspm_disable' before enabling.
-> >=20
-> > Suggested-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcom=
-m.com>
-> > ---
-> >  drivers/pci/pcie/aspm.c | 37 ++++++++++++++++++++++++++++++++++---
-> >  include/linux/pci.h     |  3 +++
-> >  2 files changed, 37 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-> > index 1c15a14718e8..c04fb71de91c 100644
-> > --- a/drivers/pci/pcie/aspm.c
-> > +++ b/drivers/pci/pcie/aspm.c
-> > @@ -1506,7 +1506,8 @@ int pci_disable_link_state(struct pci_dev *pdev, =
-int state)
-> >  }
-> >  EXPORT_SYMBOL(pci_disable_link_state);
-> > =20
-> > -static int __pci_enable_link_state(struct pci_dev *pdev, int state, bo=
-ol locked)
-> > +static int __pci_enable_link_state(struct pci_dev *pdev, int state, bo=
-ol locked,
-> > +=09=09=09=09   bool force)
-> >  {
-> >  =09struct pcie_link_state *link =3D pcie_aspm_get_link(pdev);
-> > =20
-> > @@ -1527,6 +1528,10 @@ static int __pci_enable_link_state(struct pci_de=
-v *pdev, int state, bool locked)
-> >  =09=09down_read(&pci_bus_sem);
-> >  =09mutex_lock(&aspm_lock);
-> >  =09link->aspm_default =3D pci_calc_aspm_enable_mask(state);
-> > +
-> > +=09/* Force enable states that were previously disabled */
-> > +=09if (force)
-> > +=09=09link->aspm_disable &=3D ~link->aspm_default;
-> >  =09pcie_config_aspm_link(link, policy_to_aspm_state(link));
-> > =20
-> >  =09link->clkpm_default =3D (state & PCIE_LINK_STATE_CLKPM) ? 1 : 0;
-> > @@ -1553,7 +1558,7 @@ static int __pci_enable_link_state(struct pci_dev=
- *pdev, int state, bool locked)
-> >   */
-> >  int pci_enable_link_state(struct pci_dev *pdev, int state)
-> >  {
-> > -=09return __pci_enable_link_state(pdev, state, false);
-> > +=09return __pci_enable_link_state(pdev, state, false, false);
-> >  }
-> >  EXPORT_SYMBOL(pci_enable_link_state);
-> > =20
-> > @@ -1576,10 +1581,36 @@ int pci_enable_link_state_locked(struct pci_dev=
- *pdev, int state)
-> >  {
-> >  =09lockdep_assert_held_read(&pci_bus_sem);
-> > =20
-> > -=09return __pci_enable_link_state(pdev, state, true);
-> > +=09return __pci_enable_link_state(pdev, state, true, false);
-> >  }
-> >  EXPORT_SYMBOL(pci_enable_link_state_locked);
-> > =20
-> > +/**
-> > + * pci_force_enable_link_state - Force enable device link state
-> > + * @pdev: PCI device
-> > + * @state: Mask of ASPM link states to enable
-> > + *
-> > + * Enable device link state, so the link will enter the specified stat=
-es.
-> > + * Unlike pci_enable_link_state(), this also re-enables states previou=
-sly
-> > + * disabled by pci_disable_link_state() and overrides the ASPM states =
-disabled
-> > + * during init (e.g., the pre-1.1 device blacklist). The caller is the=
-refore
-> > + * responsible for only enabling states the device supports, typically=
- the ones
-> > + * previously reported by pcie_aspm_enabled().
-> > + *
-> > + * Note that if the BIOS didn't grant ASPM control to the OS, this doe=
-s nothing
-> > + * because we can't touch the LNKCTL register.
-> > + *
-> > + * Note: Ensure devices are in D0 before enabling PCI-PM L1 PM Substat=
-es, per
-> > + * PCIe r6.0, sec 5.5.4.
-> > + *
-> > + * Return: 0 on success, a negative errno otherwise.
-> > + */
-> > +int pci_force_enable_link_state(struct pci_dev *pdev, int state)
-> > +{
-> > +=09return __pci_enable_link_state(pdev, state, false, true);
-> > +}
-> > +EXPORT_SYMBOL(pci_force_enable_link_state);
-> > +
-> >  void pcie_aspm_remove_cap(struct pci_dev *pdev, u32 lnkcap)
-> >  {
-> >  =09if (lnkcap & PCI_EXP_LNKCAP_ASPM_L0S)
-> > diff --git a/include/linux/pci.h b/include/linux/pci.h
-> > index ebb5b9d76360..be6719626c8f 100644
-> > --- a/include/linux/pci.h
-> > +++ b/include/linux/pci.h
-> > @@ -1918,6 +1918,7 @@ int pci_disable_link_state(struct pci_dev *pdev, =
-int state);
-> >  int pci_disable_link_state_locked(struct pci_dev *pdev, int state);
-> >  int pci_enable_link_state(struct pci_dev *pdev, int state);
-> >  int pci_enable_link_state_locked(struct pci_dev *pdev, int state);
-> > +int pci_force_enable_link_state(struct pci_dev *pdev, int state);
-> >  void pcie_no_aspm(void);
-> >  bool pcie_aspm_support_enabled(void);
-> >  bool pcie_aspm_enabled(struct pci_dev *pdev);
-> > @@ -1930,6 +1931,8 @@ static inline int pci_enable_link_state(struct pc=
-i_dev *pdev, int state)
-> >  { return 0; }
-> >  static inline int pci_enable_link_state_locked(struct pci_dev *pdev, i=
-nt state)
-> >  { return 0; }
-> > +static inline int pci_force_enable_link_state(struct pci_dev *pdev, in=
-t state)
-> > +{ return 0; }
-> >  static inline void pcie_no_aspm(void) { }
-> >  static inline bool pcie_aspm_support_enabled(void) { return false; }
-> >  static inline bool pcie_aspm_enabled(struct pci_dev *pdev) { return fa=
-lse; }
-> >=20
-> > --=20
-> > 2.43.0
-> >=20
-> >=20
->=20
-
---=20
- i.
---8323328-2110680251-1791890800=:1237--
 
