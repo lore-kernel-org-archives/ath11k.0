@@ -4,109 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39E8ACC6B30
-	for <ath11k@archiver.kernel.org>; Thu, 15 Oct 2026 00:07:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17BE2CC6B2F
+	for <ath11k@archiver.kernel.org>; Thu, 15 Oct 2026 05:51:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3XFik+OiPTKZRBTKKsNSHHZcnVJeKmiSTNRzSNQWFTw=; b=AMbgrAnSfqz0V+Jt4pbpPTrqzb
-	66G/+CMfYPekm21RQRMdcTqh+sRBt0yzH0Rc0QWtzqR9BL7zLimKWxVyElGK6d8zyWoM6HAYe/PqL
-	2SKe5hbiMmi/VDWi+Y19RIw9RFtHlxhGfbzu6VzF7HAFjiGLJoCxFUVQzbUFWmtXT7CIKOzsM+MrJ
-	teGCZFjAqp4sm2VAEo+Rzr0t14Jw6Snq7tNj7eyCQ+I2q8bhX6EztcaWl4Omj7EpFrtTYS5nP5Cp7
-	og0vbB3ASower/CDS28/ifDtu8HvpilwirKuR9N81U0uWtEjUbWyLQJlYkO/PafpSIOrhI5EuBR1t
-	EXpUgT2g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=1VByP+HgL4tMgo0fXnPHtZaEKMdZ3+L8eEwWP22mboo=; b=EZ7vxKC4qu9QTfvZbI39maNzyK
+	oog4eOMh3hWG2rjUitXwOnlutB/xFpiB72vrwGcBrhA+Wygv+o7bIVeNa9zmcr/WjBgXqlUDX4xzh
+	ZMy02enuHzx2r0r+J71l3BhzamafQJqSIj9eo8NCytn1+2puBrHaGeTCawlosXkaBFnDRtMWvL4m8
+	KMNzeufLgJiSH6WyF1bYy9p5XFJsFKJBFzgOYP9TQHn4lZvh1ZEOIWrqMxRuxUs1PuIP59z+Z2S1t
+	tKarUtefChme4siPs6LR/4NJGyeGVrFiqKzbNR/PIUYWuPh/rmSNkGL8ops7naLlv6Qea1PCSXK9I
+	qquW5LOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xH8zn-0000000GUH7-2Q6n;
-	Thu, 15 Oct 2026 00:06:55 +0000
-Received: from mail-qk1-x732.google.com ([2607:f8b0:4864:20::732])
+	id 1xHEN4-0000000GtFn-0Q2A;
+	Thu, 15 Oct 2026 05:51:18 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xH8zk-0000000GUGN-2BTA
+	id 1xHEN1-0000000GtEx-1Wx4
 	for ath11k@lists.infradead.org;
-	Thu, 15 Oct 2026 00:06:53 +0000
-Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-93e64d52949so446445885a.1
-        for <ath11k@lists.infradead.org>; Wed, 14 Oct 2026 17:06:51 -0700 (PDT)
+	Thu, 15 Oct 2026 05:51:16 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 69F3xZlY2738642
+	for <ath11k@lists.infradead.org>; Thu, 15 Oct 2026 05:51:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1VByP+HgL4tMgo0fXnPHtZaEKMdZ3+L8eEwWP22mboo=; b=cGOFA7OzkrW5dQ18
+	1lt9QomyvLvWouWBXReJz9W7wn+QIIkGxIj9yD7Y478SS6XnH5nJYwmC5J/8itec
+	1BcLVJu0rI7VgF5RN6o2Qp3hdo355KjQKCx1QI3VwHdy6zevlgbIZ91NQKv8K4IG
+	bRRYKYDOnxTeRsQ83Oz3ynmOtd30jBM/nUO7YMoPKRvtpdtqfYQ7/4/0aXlnaPkH
+	NDhH2YWdbe0OEck0mtANQ7tYythDM5rGgObRUw/k2AX1iURk9nWU+oO2LqgOmtPP
+	crlxiQ4vCSHd8L3UV1AVQg5/9v+sGUI33GEGzczr1RP9AuJPuAwphnmBkV3+Wthy
+	rRaFKA==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4haqds8b3t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 15 Oct 2026 05:51:13 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3a4aa263a4aso1055462a91.1
+        for <ath11k@lists.infradead.org>; Wed, 14 Oct 2026 22:51:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1792022811; x=1792627611; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=3XFik+OiPTKZRBTKKsNSHHZcnVJeKmiSTNRzSNQWFTw=;
-        b=W6JfZZIeqPOAXlLUZbDOn3Fa6oNtkFs1/rzXYbYLAHZbG+HiYH2Qb3szRe60b/yjPb
-         lgm46R/R//zwY7/tRCp9TL6FDIYstpuipk5XXCP8xEAnI+k4MtYGU8i43v8UFUnmXcHE
-         MS7LopZ2fKYn4ULeSC5wbsGigwYey9Fo0YGnBplociG4pPXTq30JhFHmSjPWJkSfp6+x
-         EyiwotNmcy0qwlSAAvsgUylqlLBTfaTJiCp8zE9flxu44XGb2O9vtaGaHXe9N10Ofsdg
-         ACYnopyGxiUoOk8pDL6/AsnqEkwp9z/Qx1NsAZ3+JBO7uUw0WyfYExCyg44/gPcfaWWT
-         67IQ==
+        d=oss.qualcomm.com; s=google; t=1792043472; x=1792648272; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=1VByP+HgL4tMgo0fXnPHtZaEKMdZ3+L8eEwWP22mboo=;
+        b=gxBtVUHlQ54xPCmKRwhHiPBwSRnAHSZso00q0jw/2UAbADwAArGqUOIgLkw3jss6ua
+         bydihRmuZ4D6ng7yl5bkjxbWYY57pItgs+85U1VjB47+nQ1xBV/EzMy63Z6b00eQ7g6l
+         nID/5mlEuWyR9PJIIJHv0eyhs37VSevyaHzDXjWtjFpfc2piV+SXhEOlStDJo/C5jqw+
+         jCpzJ3oqg6MrCdCH/IUzXBl0Aa+mt5AAx7mapmP+Ah2/fU2wzzttWBPAJ/9jmzogBpCn
+         HThyBDi8pY0H4eBHd4Or1kSR4GrM4hu77BqSqzFOO/K+FFKALa1puA2In3cmDeqluTp8
+         BGHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792022811; x=1792627611;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=3XFik+OiPTKZRBTKKsNSHHZcnVJeKmiSTNRzSNQWFTw=;
-        b=NpDWbRLIFt/x9uLxq72ik5zJ7vQkpJYIrwDxXUoUfaLsmRRDMDLDgJpWuopE/E7nP8
-         GpOq8Ib87G4nXHSIHW93SdtuENtdogaSxgSjPLuJLNG9kLpJwtwYDEZ84g26hN+baYqA
-         jHEhLAGKrZMNpH7LWkY38W2V9Hphptp12lxRb2q6MXj4vmrV/+RxWD9rlU8VidrFp5OL
-         2SAS2kgKdhXd/50HLHUC3rQc30l/DzsWN2gEpzukVJiBzcOMIYp+rLoRLGoYCgem9Kjn
-         9VJlL128VJp76lJicBlpOKuYKX+Y/FRROX+hf3Y7sRFSap/zXNcGytnlGZ6qh95+vIQg
-         Dfpg==
-X-Forwarded-Encrypted: i=1; AKwUvBx3zYlhOzo6UyFTdzmXnW+tO1rspkKdzB9VGWDfF0EnGeAL8TV/Zpp6lsrC/raTmQC8W6wKHV4=@lists.infradead.org
-X-Gm-Message-State: AFq9FYI2QPmZFWBgKxtgI7i42BhRiq4MIg3MmuA/3JPMJMUc4PR9JBc1
-	dST8SG5Fp+tY3dpNVH0RvfHbg3WSWUYl0JY/P2mp5JQF+78MrTypWhHNJmG+IZblzk8=
-X-Gm-Gg: AYBFou1i7+Bu46s+aqdeHXuLiFnE+lQ8npG0Ndq+c1HkimE6MEQeocdnkWZOo8ZRxDC
-	N00FuYm+w9WxgoAkfm7a8tc0D7mjiFCQMlO8IqC0rxMRGM6rpJrdPAv1DPG0oNyFqTemhVZjpcQ
-	a89HpRcxBxSq6lmxps4QNjiCG7WoFiM9t/LVZjOkSACEhP9L4cjj2h8DzWdZm1MGPyNhrWHJ0C9
-	3eLWG4htuKP0ZRzbijQ91kVzCu+vwHfsgXceV3/Vpdzwf0Nud6NeJ9phKJbA76RqIKbme8tE5/2
-	wJep5e+YBu26dADB+nZpUGP0iEcp2qcZIBBeg0PAzieGkzleuCQOKJOb1HoTshhM0fgvA2JlPyx
-	MJeRr6vW4vE7H/osfLhEumgGgpez485ICzIGwvKann2dT5r7yyS+1cO/X5rrASi08KIcrtBwKQE
-	kXuLZdP7EdlgZMzgTgJcxYI0K9BX7CQk0s+aZbrLpWdhbm/+vUWazqjjV09Ol5LxyDqvCxbb7bZ
-	U/2ihOWuRiOtaNwjkxsnqORcrTVBeC1JcCpCsMOXfGSZ2EUYPSaf4u/
-X-Received: by 2002:a05:620a:2992:b0:93b:e5e9:23d9 with SMTP id af79cd13be357-93ebd229343mr2677174285a.23.1792022810691;
-        Wed, 14 Oct 2026 17:06:50 -0700 (PDT)
-Received: from ziepe.ca (hlfxns010zw-159-2-239-150.pppoe-dynamic.high-speed.ns.bellaliant.net. [159.2.239.150])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-93ef5051333sm620942285a.28.2026.10.14.17.06.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2026 17:06:49 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1xH8zh-0000000EzB1-0n38;
-	Wed, 14 Oct 2026 21:06:49 -0300
-Date: Wed, 14 Oct 2026 21:06:49 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Michael Kelley <mhklinux@outlook.com>
-Cc: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>,
-	"alex@shazbot.org" <alex@shazbot.org>,
-	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
-	"ath12k@lists.infradead.org" <ath12k@lists.infradead.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"jjohnson@kernel.org" <jjohnson@kernel.org>,
-	"johannes@sipsolutions.net" <johannes@sipsolutions.net>,
-	"kevin.tian@intel.com" <kevin.tian@intel.com>,
-	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"mani@kernel.org" <mani@kernel.org>,
-	"skolothumtho@nvidia.com" <skolothumtho@nvidia.com>,
-	"yishaih@nvidia.com" <yishaih@nvidia.com>
-Subject: Re: [PATCH 0/7] Enable Qualcomm WiFi PCIe passthrough to VMs
-Message-ID: <20261015000649.GP14213@ziepe.ca>
-References: <20261013140345.GK14213@ziepe.ca>
- <20261013154225.214531-1-jtornosm@redhat.com>
- <20261014150047.GO14213@ziepe.ca>
- <MN2PR02MB68639A3F262110A6E9B96683D49D2@MN2PR02MB6863.namprd02.prod.outlook.com>
+        d=1e100.net; s=20260707; t=1792043472; x=1792648272;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=1VByP+HgL4tMgo0fXnPHtZaEKMdZ3+L8eEwWP22mboo=;
+        b=smNxzaVpiTBuLN5L1i/XA1JmYf1t2u0QGvdRUUwQiuuVYOiS1eXfr3jjFmgBU7C0WR
+         y6Zj9/cXrE2Qxtcxa89VbudtLKoOwB+8qE84VEYWP4lo/htTsFBfLlDJDR9ykWPDlQWa
+         1kiPBNJ1jbBYBYNQ4B99JFjn/sR86e6SaqoOdM2Bbuzr67ZQTxmhSxos3Ity9ymdyR8d
+         YrexB4EJhViQzxf7cecfxC5maeYh7rgc5y+p8C6D89vnze09lwzXWyBXULZMX7JUFpq9
+         TdSNE3DogaNGELshqqaITSd3rJFkjW46PwfGRka4tvMM+oS8ltmh6BPuTKdSQxYpYTt+
+         w3nA==
+X-Gm-Message-State: AFq9FYKVkBRq53QL/oHdXv/6PZMkjBSi6vqeAcfBial41IyOlOtH83Mx
+	UuDuT4aQePSe0FlQtcJktKYUe7oO0UiVh+THtoeBrf6jebjcG8Jy0m6LIPPMCCCUHmzahzyXwp/
+	moTZ3t+UCm17SmZYSqYZaHf4O+EJRWHP0mZIBoc9zylsBRifEqfIYOeUEi1fBr8U+wWVESUOy
+X-Gm-Gg: AYBFou1ybZRdMm3rvweLT7iMJ6vP30YTYkSWHhgFBuW5aGFoSRF/GBPuqA6Ll0ClR+u
+	9Jsd+ru/8PABCx20bMUKpqu2ultWMcFwxU5QuAMRp1uzSP/JKDGAAnnI05TZSkkz+gpJSpdWvIc
+	KgIQTsmg+unG7/285z9iHdiBFZBS10UTEV8Aw0yWp5p/JAY5ELk9zdUYmWspabK3s2vC99sdHOF
+	HCUDmBKr78BwyR2ya9RWFNB7GJFSUKsLQZ9ksZci4N5C2I9AqfFjF/Mqau1/wmGshKa91Nxd0C1
+	kP+6wVCcSHSKcIZE2+O/6KxlAc84OINymLDOJS0V34yswMFaFTsVuQIZXU7IR416shdF/jIqzaB
+	f++SB+AoriQWbfcTw7CnOe3pX6WCTXhZLMD84Pyq3Wmm7NkehWF+Wpd94uRhxi9P7u0m5Ki0=
+X-Received: by 2002:a17:90a:d006:b0:3a7:bf13:6007 with SMTP id 98e67ed59e1d1-3ab3a9128c8mr15464778a91.14.1792043472114;
+        Wed, 14 Oct 2026 22:51:12 -0700 (PDT)
+X-Received: by 2002:a17:90a:d006:b0:3a7:bf13:6007 with SMTP id 98e67ed59e1d1-3ab3a9128c8mr15464767a91.14.1792043471638;
+        Wed, 14 Oct 2026 22:51:11 -0700 (PDT)
+Received: from [10.133.33.32] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3ac944af2f1sm2614738a91.15.2026.10.14.22.51.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Oct 2026 22:51:11 -0700 (PDT)
+Message-ID: <aaf175a7-86e0-4da2-a3fc-df87d906f800@oss.qualcomm.com>
+Date: Thu, 15 Oct 2026 13:51:07 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN2PR02MB68639A3F262110A6E9B96683D49D2@MN2PR02MB6863.namprd02.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] wifi: ath12k: fix MLO station firmware crash
+ recovery
+To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>, jjohnson@kernel.org,
+        Johannes Berg <johannes@sipsolutions.net>
+Cc: ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260804175004.1761075-1-jtornosm@redhat.com>
+ <20260804175004.1761075-2-jtornosm@redhat.com>
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20260804175004.1761075-2-jtornosm@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: frqR1n4AZ0UJxFiuVOV0ozMtULxnpMj8
+X-Authority-Analysis: v=2.4 cv=fNusTpae c=1 sm=1 tr=0 ts=6ad069d1 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=660iZSQnnn4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=s5qa2rFyFl07KiwIxvkA:9 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDE1MDAyMyBTYWx0ZWRfX954PRxgdJ040
+ 7i/y7jkbGvuX/vjTu+cDXobpzvbtyP8wvG/jpuvFgHeZzf2Gt1J4czyvfOxFe29ZtXgUkBoE/jI
+ WE8IYD80NQddBi6TuqG7vFoyf+l1u508zt2N944kW9y5B85M8ZAHf65bBszWrnuWD0dudPsHx4U
+ fuUqpWQRqdck3eU/U8Q83X6sYFD+poO23JF/1MXvQ5uNKvNQCrMRhYxsPvpDv9xBTZLkNNrrKXu
+ LbGT68dDu9TchEwWcF3/FR5jLV5e62eenVK7/GV1HPVyvwJM3LISL7NowRwDUcn50l3DzqMrBKo
+ J7cJ/cUbns0cCE+bPQW3Sw5KkOGLAC36Gqevcki0ZXdwTXX4IpcKw00IoL6PvKY1Py70cUKVuYP
+ VutEEWtWb+u5HorQHZHdGN7Zlv0FQWvZKBhrTYFzf3WBZRlG/wEYsyAasMCm8NisjRXzM9obj+a
+ UR1z4Hf+zfRqhUY59rg==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMDE1MDAyMyBTYWx0ZWRfX70Nwku0BZuAc
+ pllpdHM36CnnfosLVo7x23zSX/+/w/MH49SzOQdcG63057qZkeio4mFx0jHfI+7B/S35ey1jukJ
+ Ejdm1B5pFXdBQnco+GYklLMsxe2xCok=
+X-Proofpoint-GUID: frqR1n4AZ0UJxFiuVOV0ozMtULxnpMj8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-10-13_01,2026-10-14_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 adultscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2610080000 definitions=main-2610150023
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261014_170652_669376_B81F4FDD 
-X-CRM114-Status: GOOD (  24.57  )
+X-CRM114-CacheID: sfid-20261014_225115_513799_1F52AF03 
+X-CRM114-Status: GOOD (  21.62  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,37 +148,62 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Oct 14, 2026 at 08:46:33PM +0000, Michael Kelley wrote:
-> From: Jason Gunthorpe <jgg@ziepe.ca> Sent: Wednesday, October 14, 2026 8:01 AM
-> > 
-> > On Tue, Oct 13, 2026 at 05:42:25PM +0200, Jose Ignacio Tornos Martinez wrote:
-> > > Thank you for the direction on device MSI domains. The Hyper-V
-> > > reference is difficult for me to follow for this case. Could
-> > > you point me to some existing KVM/VFIO equivalent, or similar
-> > > example for my use case? Any pointers to relevant code,
-> > > documentation, or previous discussions on this topic would be
-> > > very helpful to get started in the right direction.
-> > >
-> > > Also, where would this need to be implemented? Kernel only
-> > > because it is already supported in QEMU in a general way, or
-> > > kernel and QEMU for some specifics?
-> > 
-> > I spent some time with AI to research this and drafted up some slop
-> > for you that outlines a bunch of ideas and explains how some of the
-> > bits work today. Not saying this is something to follow but it should
-> > be a good starting point to come up with a good idea.
-> 
-> This is a nice summary of what Hyper-V does. It looks right to me
-> based on my experience with that driver (pci-hyperv.c) over the
-> years.
-> 
-> I wrote the documentation in Documentation/virt/hyperv/vpci.rst.
-> With your permission, I'd like to adapt some of your material below
-> and add it to vpci.rst, primarily to provide some broader context
-> on the "why" and the implications of the overall approach. I'm
-> not sure how soon that will be, but it will go on my "to do" list.
 
-Sure, no worries do with it as you like!
+On 8/5/2026 1:49 AM, Jose Ignacio Tornos Martinez wrote:
 
-Jason
+[...]
+
+> Fix by moving clear_bit(ATH12K_FLAG_RECOVERY) from
+> ath12k_core_reconfigure_on_crash() to ath12k_mac_op_reconfig_complete(),
+> so the flag stays set through the entire mac80211 reconfig phase. Add
+> ATH12K_FLAG_RECOVERY checks in change_vif_links, set_key, and sta_state
+> to skip operations that are invalid during recovery. Add
+> ATH12K_FLAG_CRASH_FLUSH checks in mac_flush, station_remove,
+> clear_peer_keys, dp_rx_ampdu_stop, and peer_mlo_link_peers_delete to
+> return immediately when the firmware is dead.
+
+
+I don't think patches 1 and 2 are the right approach. Guarding every callback that can run
+during recovery with a RECOVERY/CRASH_FLUSH check doesn't scale, whatever callback we
+forget today is the next crash report. Besides, such guards don't help those in-flight ops.
+
+The actual problem is that nothing stops mac80211 from issuing control ops while the
+ath12k driver is in mid-recovery. I'd rather fix that than keep adding per-op checks.
+
+
+---
+
+Hi Johannes,
+
+We keep running into this in ath12k and I'd like your opinion before I send anything.
+
+Firmware crash recovery in ath12k (and probably other drivers too) is slow and async: we
+detect the crash, then do driver internal state cleanup, then power-cycle + firmware
+reload (total ~1.3s) before the driver is usable again, and only then call
+ieee80211_restart_hw(). For that whole window mac80211 doesn't know about the crash and
+keeps pushing scan, connect, add_key, sta_state etc. into the driver that's tearing its
+state down, which gets us NULL derefs rather than clean failures.
+
+The trouble is I can't see a clean driver-only fix. The driver knows the device is gone at
+crash-detect, but it has no way to tell mac80211 to hold off until it calls restart_hw().
+in_reconfig would do exactly what I want, but it's only raised inside restart_hw(), which
+is far too late for a device like this - by the time it goes up we've already taken the ops.
+
+So the driver and mac80211 are out of sync for that window and I don't see a good hook to
+close it today. I see two ways out and I'm not sure which you'd prefer:
+
+1. Do the whole recovery inside the restart path, i.e. move the whole thing including
+state reset, power cycle and firmware reload into the driver's .start() reached from
+ieee80211_reconfig(). Then it all runs with the wiphy lock held and in_reconfig already
+set, so the sync is free and no new API is needed. The downside is we'd be holding rtnl
+for ~1.3s, which I don't think you'll like.
+
+2. Let the driver raise the barrier early, right after crash is detected, e.g. split
+ieee80211_restart_hw() into two parts behind separate APIs: the first stops queues and
+sets in_reconfig, the second just queues the restart work. That way ath12k can do the
+time-consuming part outside the rtnl lock while staying in sync with mac80211. This would
+also need a few op entry points that don't currently check in_reconfig (the scan entry,
+for one) to be filled in, otherwise raising it early doesn't actually fence those ops.
+
+Does either of these look right to you, or is there a direction I'm missing?
 
