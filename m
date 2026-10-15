@@ -4,66 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 696A3CCA464
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 703C4CCA46A
 	for <ath11k@archiver.kernel.org>; Thu, 15 Oct 2026 20:55:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7Lo8K72+x+3BIcLLPGxgUbde81XtXZI0ot8cn4aPlxc=; b=gEmKnIjGTrNkPay2Zu6oYwuP4h
-	tigrFTJgTRsZZAE3HrW5CWvkHXW+F0sj7nEzwt6NM191uGxlM9Fa72oHWPu12mPkdo6zGKSzOO7I5
-	k0LjP/6+/7BEJv44WpB4E/BKbz3vzWu7hBOKlfGVCXZlnYqdvGNhF58RCZr34IR4R3K0GWg+1/sIT
-	HftIGUXoRfGRlLm+DP/LmWXXReQRV2z0IKxqHd/gAuQ23sJiq9JwP2Ha+fkoO/l0ZmukUEXMDo4VU
-	kD/14rf9WyXnkW9RhfodNmnl9i6R4BuTPtqhcYHwSjgiiq6mUk8Cb299iT2S7tQF+gZuJSApkca0T
-	nvDaoXpg==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=P6tm0ZYS9uGd96wC3x6dvmU9GyhPLWaY7eJL8wnh+gA=; b=RQM7p4eY8ZwBGZ2PFpjjEz2SlL
+	kNjrxFgMPKs1jLL3zaxZxKq4U+FdRDndCeCkDO1AxHFVAqerdD161frhY12haxLnMXeRwYWSQED7A
+	us+bYDvcJtT+z7h4jJhNktxPR5XE+NpoO1FHVic77l66S7KqaMl5DAW7dBSqNPDqf0xMrcz9mzvdS
+	95tNNgGwaoL1Nlgj5oT5+diHaAxt/jZyvlKKGOjkHh0TFvK3lHzm0SotBLIeIJ5FBWSg9Le4AWzAQ
+	cIXAHiyyrDBkCBE28c9+JKOhqP7Hd3wXCdL7+tBo8YHiiFwRDdKo02qR8HMqxrUBCB6D48Ot/fb3Y
+	AyE6l7gQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHSUD-00000001OA5-46qC;
-	Thu, 15 Oct 2026 20:55:37 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xHSUE-00000001OBB-3877;
+	Thu, 15 Oct 2026 20:55:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHSUD-00000001O9a-0FH4;
+	id 1xHSUD-00000001O9b-1kXK;
 	Thu, 15 Oct 2026 20:55:37 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7248E4479E;
+	by tor.source.kernel.org (Postfix) with ESMTP id 830F860A57;
 	Thu, 15 Oct 2026 20:55:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 51017C2BCFF;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 30B21C2BCF4;
 	Thu, 15 Oct 2026 20:55:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1792097736;
-	bh=8TFgXrqm00gTUkYWKQDkyq2nEt87hZ1bR+nt+jFn4KY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=XCuEMW7yHvNa50Pc6fIRq4R8fcDklDEWseu5tr0BYxA0IbOwzi6ITi6byt/65aEZY
-	 0ZLGI3dMg/qPwXPn4C8/vU19Wo1FMJeLNk0RcrGWhGMTDLLpfZvt101yv361ucNbpI
-	 zRPwxthqgmCDRv/FO+pBLamGCP9y+0EAk75J5lMOClITzjwy66uwtOGgGykY7L1gSY
-	 VmgZcTbSDCX+KclTo0XSyR5YWN1PndmspkIylE0+ABa50gIBJXFM4fPtPdruv/9ifg
-	 s+1oKs02FbeBweIV4REWCqOXZAS8mV/+Sai1Qb18HcDfaJzYiPJeHKGbsObrjqHITd
-	 wG3XocqFBC3sg==
+	bh=ReHuuM+HjdzYLwEJhUbU5VO8Ceo+V/a93dpA2WxkIYk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=aKFNWcvUaIbXq+pUX+qEceSb/hpvsleNUZIiSmKDP0Te5mlNc73LAE071uFuLhC/n
+	 ocawNDkpOFMMmo5L9o9WcdZW3Uj8eBGeNungeC25edBEUof1M4e+//2ODvz4ItR4GW
+	 O0BIinddUg+k9R2jBoh6pl/KAx9yyGKS5aRtSbuKLHfJlYH/V1bYQ96tYWAtWZHEBD
+	 0iolVIPID+Wa08vWMizwfSLo/dNuYplrots9Dz6T6yLky3VpjQvbC0KvZ1HA8l+X/h
+	 t2gumeN0J1xD//2N0wjHfVgJlVuOrf5sJ2EH1Kf8P6YbGUGD8MrBRc5SCTHOqoGEUt
+	 s/YIdjfp4NrqQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34F05CCA464;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DF84CCA465;
 	Thu, 15 Oct 2026 20:55:36 +0000 (UTC)
 From: John Macias via B4 Relay <devnull+dencity7.gmail.com@kernel.org>
-Date: Thu, 15 Oct 2026 13:55:25 -0700
-Subject: [PATCH RFC ath-next 2/2] wifi: ath12k: bound READY MAC address
- array reads
+Subject: [PATCH RFC ath-next 0/2] wifi: ath11k/ath12k: bound READY MAC
+ address array reads
+Date: Thu, 15 Oct 2026 13:55:23 -0700
+Message-Id: <20261015-rdy-mac-array-bounds-v1-0-5de276b752a3@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261015-rdy-mac-array-bounds-v1-2-5de276b752a3@gmail.com>
-References: <20261015-rdy-mac-array-bounds-v1-0-5de276b752a3@gmail.com>
-In-Reply-To: <20261015-rdy-mac-array-bounds-v1-0-5de276b752a3@gmail.com>
+X-B4-Tracking: v=1; b=H4sIALs90WoC/yWMQQrCMBBFr1Jm7UASqAG3ggdwK11Mk9FGMJWZV
+ FpK726qy/f5762gLIkVTs0Kwp+kacwV7KGBMFB+MKZYGZxxR2tsixIXfFFAEqEF+3HKUTGyN8H
+ 71jjroapv4Xuaf9kbXC/nfaMyYOa5QPc/6NQ/OZQ9Dtv2BdKfhwGJAAAA
+X-Change-ID: 20261015-rdy-mac-array-bounds-de70c7750217
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  linux-kernel@vger.kernel.org, ath12k@lists.infradead.org, 
  John Macias <dencity7@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1792097735; l=1848;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1792097735; l=1380;
  i=dencity7@gmail.com; s=20261015; h=from:subject:message-id;
- bh=Q7bR+qmBnYByCGbR1Dt5w8wYWTuypEv1iCd0orMgbPU=;
- b=ep45ZWSDL6ranuUgrWsBGU9OMaYKx7UAoVEQdVgNNlPaBcT+MtrLTsK4H+er3Zk+QobJQE5tK
- eD+x4sEMsHBCGHkLiKnE5Bhwd282SAFQnUWslyydsc4jEQWSLCDKlfz
+ bh=ReHuuM+HjdzYLwEJhUbU5VO8Ceo+V/a93dpA2WxkIYk=;
+ b=qk3rH7i82oGLnWB/24kgq4kwfhaT5xl9p5uCpzh6HOY2aLvfidVKg+nmL1kF468n9NZkjKcaJ
+ 61byeB9jHX9C2be+01FH/DZMPfXf3byB1D3ZQvanz3y2pBmiD+WZvhM
 X-Developer-Key: i=dencity7@gmail.com; a=ed25519;
  pk=z7cMHA0B6NULvJzsST/bbOOegMB6xCo9+/ytQure7B8=
 X-Endpoint-Received: by B4 Relay for dencity7@gmail.com/20261015 with
@@ -84,53 +86,39 @@ Reply-To: dencity7@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: John Macias <dencity7@gmail.com>
+ath11k_wmi_tlv_rdy_parse() and ath12k_wmi_rdy_parse() copy one MAC
+address per radio from the READY event's fixed-struct array after
+checking only the count advertised in the fixed record, not the array
+TLV length. A firmware READY event with a short array makes the copy
+read past the end of the TLV value.
 
-ath12k_wmi_rdy_parse() has the same pattern as ath11k: after checking
-that the READY fixed record advertises at least num_radios extra MAC
-addresses, it copies one address per radio from the
-WMI_TAG_ARRAY_FIXED_STRUCT TLV without checking that the TLV actually
-holds num_radios entries.
+These patches check the array length first and fall back to the
+driver's default per-radio addresses when it is too short.
 
-With two radios and an array shorter than two 8-byte entries, the second
-ether_addr_copy() reads past the end of the TLV value.
+Found while bringing up an IPQ8074 v1 device with older firmware; the
+issue is not specific to that hardware. Verified with a userspace harness
+around the unmodified parsers under AddressSanitizer. Compile tested
+only (ath-next, W=1); not tested on hardware with a malformed event.
 
-Check the array length against num_radios before copying. When it is too
-short, warn and leave pdevs_macaddr_valid unset, so the driver keeps its
-default per-radio addresses instead of failing READY processing.
+Jeff, following your pointers on my earlier ath12k RX-ring RFC, these
+carry a full-name sign-off, an Assisted-by tag, and state the testing
+explicitly. This work was developed with AI assistance.
 
-A userspace harness that includes the unmodified parser reports a 6-byte
-heap-buffer-overflow read under AddressSanitizer for 8- and 12-byte
-arrays with two radios, and the fixed parser passes. Compile tested only
-(ath-next, W=1).
-
-Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices")
-Assisted-by: LLM
-Signed-off-by: John Macias <dencity7@gmail.com>
 ---
+John Macias (2):
+      wifi: ath11k: bound READY MAC address array reads
+      wifi: ath12k: bound READY MAC address array reads
+
+ drivers/net/wireless/ath/ath11k/wmi.c | 6 ++++++
  drivers/net/wireless/ath/ath12k/wmi.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ 2 files changed, 12 insertions(+)
+---
+base-commit: cd026e68fdbf88b9cc522b76c7a9d92c9a41f709
+change-id: 20261015-rdy-mac-array-bounds-de70c7750217
 
-diff --git a/drivers/net/wireless/ath/ath12k/wmi.c b/drivers/net/wireless/ath/ath12k/wmi.c
-index 75b259990c..ef070ace08 100644
---- a/drivers/net/wireless/ath/ath12k/wmi.c
-+++ b/drivers/net/wireless/ath/ath12k/wmi.c
-@@ -7099,6 +7099,12 @@ static int ath12k_wmi_rdy_parse(struct ath12k_base *ab, u16 tag, u16 len,
- 		if (!(ab->num_radios > 1 && num_mac_addr >= ab->num_radios))
- 			break;
- 
-+		if (len < ab->num_radios * sizeof(*addr_list)) {
-+			ath12k_warn(ab, "ready event mac address array too short: %u bytes for %d radios\n",
-+				    len, ab->num_radios);
-+			break;
-+		}
-+
- 		for (i = 0; i < ab->num_radios; i++) {
- 			pdev = &ab->pdevs[i];
- 			ether_addr_copy(pdev->mac_addr, addr_list[i].addr);
-
--- 
-2.47.3
+Best regards,
+--  
+John Macias <dencity7@gmail.com>
 
 
 
