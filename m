@@ -4,68 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10091CCA462
-	for <ath11k@archiver.kernel.org>; Thu, 15 Oct 2026 23:07:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E06ADCCA462
+	for <ath11k@archiver.kernel.org>; Fri, 16 Oct 2026 03:03:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:List-Owner;
-	bh=D4l1NUHjgo8T25PXCBA6/6ltQgVMkPc3iCqrBBCvMEw=; b=RjNialpPkpBGjwx9CY/XOK2tIY
-	wtgbWL2L0zXdcRo0lOrqqbhHkquaobN1hmRsfXosQeMHtI2C19DDWV3tSN7oRFzKZ+uBUAhkKyhoL
-	oT3K6dMVBtV+0H/2Vz6WNGBpYfBj2mYPgsqQbV7JuowZFGMsCYaMDVIgFJTbrDilkaJO5J/rzkpa1
-	iD4xngnxPqWzQizhChEYRjEZ8kmuaKb128sBdn5ywJM1+z7A/RiNqXG2k9dJqXa5vZZmEWBos4nX6
-	K51UU6zioT7jLL7s0MnAuUBB6CYdvyq1FUJ5Goam3jflksb++B0aG3/M5ulCcUpr9hry6Km3E0NTz
-	wMPCYErQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gXo3vu+kQ+7jaN7ywrrxzbnLHTPWgIs9D5YOpR7+/eQ=; b=ZQ8g+YjDgCun0wKlPEgs5PfgMO
+	k/1e+H1BxyRFCxZ/P4gIlo4yTkA9h9uuF0AGfw7a7ZvQR9Qgy7OemRmKy863aHgTWierZscS2QGXC
+	4V3O6AzRndYgWqhn/Ul46hOgywFk6yJwnaQ9YlIjPA9vtd3tuCtVJxZQsJ7V02SvYtWlTct+7t54h
+	ygQabz4oUvSQkpDg+q5TwszAxz8qsUB2dis0Ng3dvj1CYNSe+RAFu7fl1y+zEz7rywc556sqow49W
+	pbvDiB1/2QPEi1Hl19kV6h5tkWzNbkSjShm4JLpc7Pw0amH2QCct5/BLcHKpZZJiRMfAfHYJ6Alln
+	/V1GFUyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHUXf-00000001W28-2ReM;
-	Thu, 15 Oct 2026 23:07:19 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xHYE2-00000001me9-3bAy;
+	Fri, 16 Oct 2026 03:03:18 +0000
+Received: from out-101.mta1.migadu.com ([95.215.58.101] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHUXd-00000001W1c-1Edl;
-	Thu, 15 Oct 2026 23:07:17 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5E26360A74;
-	Thu, 15 Oct 2026 23:07:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEB4F1F000C4;
-	Thu, 15 Oct 2026 23:07:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792105636;
-	bh=D4l1NUHjgo8T25PXCBA6/6ltQgVMkPc3iCqrBBCvMEw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=SkHPTNBFFOJOqXqRrLFIaOuVEVY8YOImW0QU/aQ5y6Hu3XIMXg/gGMgjlu9YM+hOF
-	 YoCKjHCg2MHVxKa8cVQjZyPGT8785f8iiM0VKkzvNfSoKKQp6Q8yrXb2AjJW+5s4O8
-	 VjGATE4TPXWMOPQtPQ7ePL6eJ3y4JE7v0XyfpjEhUP7GrVixa2MwQQ2iDwhrHbc76Z
-	 lRD8+ySt+rDHHcnYi4gQhLr2tMJgNmKSGz2cL9/GYoW2XOmHoNN+4BHii8e6r+j0+j
-	 GWw9i6VrH21D7MneqrE5G9YG4T8QwID1UoA965Mo62Cklofypks2m+IBKNugQTy5Go
-	 4Ka6hYHLL2veA==
-Date: Thu, 15 Oct 2026 18:07:14 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Nirmal Patel <nirmal.patel@linux.intel.com>,
-	Jonathan Derrick <jonathan.derrick@linux.dev>,
-	Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
-	ath11k@lists.infradead.org, ath10k@lists.infradead.org,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Qiang Yu <qiang.yu@oss.qualcomm.com>,
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Subject: Re: [PATCH v3 1/8] PCI/ASPM: Always disable ASPM when driver
- requests it
-Message-ID: <20261015230714.GA1802070@bhelgaas>
+	id 1xHYDy-00000001mct-24IP
+	for ath11k@lists.infradead.org;
+	Fri, 16 Oct 2026 03:03:17 +0000
+X-Envelope-To: ath11k@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=4wygRKFSnqgr6PR5rOi3tKEHsDx4IhZAfPvVtWyXV6w=;
+ c=simple/simple; d=packett.cool;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1792119790; v=1; x=1792724590;
+ b=UyVu8LvVi9FBljEix6kcgd/o2rQR7UMjRVbX86NR/5frH/B+RQnMOIeVAAFC1C1tfkxjm0pM
+ N/juytQyF1fOgcpLwROY20Axskw4x0X9FW/F0TN56cGiGX8BzcTgH9KGVOFqiE4PTWb/Iq/XV74
+ 1qbaB7f5c/B0sMOITmxB+MCPKScKAbuviCVQPXaE2po5+tpX5UPlTuPhXPajaqi97N0NVcX6sgd
+ m0tcNrvfjRIPysFyRrSDBbMdi3ES3HYxT7tKjj3K6lJY9mR2pLQp4QGkdEN128pvde/pDWFqh+N
+ yODkxwWde/gcZukmtFykyj9I/kxgwkQDd110+SlLzNh3A==
+X-Envelope-To: ath11k@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 0d9d1dbd2876dfe1;
+	Fri, 16 Oct 2026 03:03:09 +0000
+X-Mizu-Trace-ID: 0d9d1dbd2876dfe1
+X-Migadu-Flow: FLOW_OUT
+Message-ID: <5f0ee2bd-1b2b-4745-a547-83708b977544@packett.cool>
+Date: Fri, 16 Oct 2026 00:03:02 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/8] PCI/ASPM: Add pci_force_enable_link_state() API
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Bjorn Helgaas <helgaas@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Rob Herring <robh@kernel.org>, Nirmal Patel <nirmal.patel@linux.intel.com>,
+ Jonathan Derrick <jonathan.derrick@linux.dev>,
+ Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
+ ath11k@lists.infradead.org, ath10k@lists.infradead.org,
+ Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ Qiang Yu <qiang.yu@oss.qualcomm.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+References: <20261013163107.GA1522779@bhelgaas>
+ <2517d322-9e5d-5b81-aa67-56705879be74@linux.intel.com>
+Content-Language: en-US
+From: Val Packett <val@packett.cool>
+In-Reply-To: <2517d322-9e5d-5b81-aa67-56705879be74@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260708-pci-aspm-fix-v3-1-6bd72451746e@kernel.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261015_200314_670474_70DFD25E 
+X-CRM114-Status: GOOD (  18.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,120 +86,79 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 08, 2026 at 04:30:15PM +0200, Manivannan Sadhasivam wrote:
-> From: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-> 
-> PCI core/ASPM service driver allows controlling ASPM state through
-> pci_disable_link_state() API. It was decided earlier (see the Link
-> below), to not allow ASPM changes when OS does not have control over it
-> but only log a warning about the problem 'commit 2add0ec14c25 ("PCI/ASPM:
-> Warn when driver asks to disable ASPM, but we can't do it")'.
-> 
-> A number of drivers have added workarounds to force ASPM off with own
-> writes into the Link Control Register (some even with comments
-> explaining why PCI core does not disable it under some circumstances).
-> According to the comments, some drivers require ASPM to be off for
-> reliable operation.
-> 
-> Having custom ASPM handling in drivers is problematic because the state
-> kept in the ASPM service driver is not updated by the changes made
-> outside the link state management API.
-> 
-> As the first step to address this issue, make pci_disable_link_state()
-> to unconditionally disable ASPM so the motivation for drivers to come
-> up with custom ASPM handling code is eliminated.
-> 
-> To fully take advantage of the ASPM handling core provides, the drivers
-> that need to quirk ASPM have to be altered depend on PCIEASPM and the
-> custom ASPM code is removed. This is to be done separately. As PCIEASPM
-> is already behind EXPERT, it should be no problem to limit disabling it
-> for configurations that do not require touching ASPM.
-> 
-> Make pci_disable_link_state() function comment to comply kerneldoc
-> formatting while changing the description.
-> 
-> Link: https://lore.kernel.org/all/CANUX_P3F5YhbZX3WGU-j1AGpbXb_T9Bis2ErhvKkFMtDvzatVQ@mail.gmail.com/
-> Link: https://lore.kernel.org/all/20230511131441.45704-1-ilpo.jarvinen@linux.intel.com/
-> Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-> [mani: commit message fixup]
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-I was a little confused about the provenance of this patch.  It
-*looks* like it should have been posted somewhere by Ilpo and
-something tweaked by Mani when applying, but none of the links above
-are a posting of this patch.  I dug around and found
-https://lore.kernel.org/linux-pci/20230918131103.24119-4-ilpo.jarvinen@linux.intel.com/,
-and this patch looks like basically the aspm.c part of it, so I assume
-that should probably be the https://patch.msgid.link/?
+On 10/13/26 2:42 PM, Ilpo Järvinen wrote:
+> On Tue, 13 Oct 2026, Bjorn Helgaas wrote:
+>> On Tue, Oct 13, 2026 at 02:41:32PM +0300, Ilpo Järvinen wrote:
+>>> On Mon, 12 Oct 2026, Bjorn Helgaas wrote:
+>>>> On Wed, Jul 08, 2026 at 04:30:16PM +0200, Manivannan Sadhasivam wrote:
+>>>>> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>>>>>
+>>>>> pci_enable_link_state() and pci_enable_link_state_locked() APIs only enable
+>>>>> the ASPM states that were not previously disabled via
+>>>>> pci_disable_link_state*() API or blacklisted during init (e.g. the pre-1.1
+>>>>> device blacklist, which is only meant to be overridden with
+>>>>> 'pcie_aspm=force'). This is an intentional behavior as these APIs must not
+>>>>> silently re-enable states that were deliberately disabled, since doing so
+>>>>> could enable ASPM on a link where it is known to be unsafe.
+>>>> I think this is saying that many uses of pci_disable_link_state() are
+>>>> to avoid hardware errata, i.e., these are basically quirks, and we
+>>>> should *never* enable those ASPM states.
+>>>>
+>>>>> However, some drivers (e.g. the atheros WLAN drivers) save the currently
+>>>>> enabled ASPM states, disable all ASPM states before firmware download, and
+>>>>> then try to restore exactly the states that were enabled before. Restoring
+>>>>> those states requires re-enabling states that were just disabled via
+>>>>> pci_disable_link_state() API. But, this cannot be achieved using the
+>>>>> existing APIs.
+>>>> This sounds like it's also for hardware errata: if ASPM works
+>>>> correctly, there's no need to disable it during firmware download.  I
+>>>> think this is *only* the atheros drivers, isn't it?  I didn't see any
+>>>> others.
+>>> There are more that should use disable/enable API. In addition ath*, I had
+>>> also these in my unfinished series:
+>>>
+>>>    brcmfmac
+>>>    ib-hfi1
+>>>    rtlwifi
+>>>    rtsx
+>>>    r8169
+> [..]
+>>>> Instead of adding pci_force_enable_link_state(), I think we should add
+>>>> a new interface for the *quirk* behavior that permanently disables
+>>>> states.  Then pci_enable_link_state() and pci_disable_link_state()
+>>>> could be made symmetric.
+>>> My suggestion is to make the disables/enables counted per state which
+>>> would allow parallel sources of disables to function without clashing.
+>> By parallel sources, are you thinking of sysfs and driver calls?  If
+>> locking would be sufficient I think that would end up being simpler.
+>>
+>> But maybe the issue is these devices where we think ASPM breakage only
+>> happens in certain circumstances, e.g., firmware download, so we want
+>> to keep states disabled for that period.  Then I guess locking inside
+>> the enable/disable doesn't prevent sysfs from enabling those states
+>> during that period.
+> There are (at least) these sources:
+>
+> - quirks (disable only)
+> - hw has ASPM related problem at certain phase of operation
+> [..]
 
-To fix the provenance and the "Drivers can controlling" typo mentioned
-by Ilpo, I replaced this with just the aspm.c changes from
-https://lore.kernel.org/linux-pci/20230918131103.24119-4-ilpo.jarvinen@linux.intel.com/
-and added the CONFIG_PCIEASPM dependency to the commit log.  The code
-change is the same.
+FWIW, one not-yet-merged user is this patch that disables ASPM around 
+link retraining for bwctrl on host controllers that do require that:
 
-> ---
->  drivers/pci/pcie/aspm.c | 33 ++++++++++++++++++++-------------
->  1 file changed, 20 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-> index 172783e7f519..1c15a14718e8 100644
-> --- a/drivers/pci/pcie/aspm.c
-> +++ b/drivers/pci/pcie/aspm.c
-> @@ -1449,16 +1449,23 @@ static int __pci_disable_link_state(struct pci_dev *pdev, int state, bool locked
->  		return -EINVAL;
->  	/*
->  	 * A driver requested that ASPM be disabled on this device, but
-> -	 * if we don't have permission to manage ASPM (e.g., on ACPI
-> +	 * if we might not have permission to manage ASPM (e.g., on ACPI
->  	 * systems we have to observe the FADT ACPI_FADT_NO_ASPM bit and
-> -	 * the _OSC method), we can't honor that request.  Windows has
-> -	 * a similar mechanism using "PciASPMOptOut", which is also
-> -	 * ignored in this situation.
-> +	 * the _OSC method), previously we chose to not honor disable
-> +	 * request in that case. Windows has a similar mechanism using
-> +	 * "PciASPMOptOut", which is also ignored in this situation.
-> +	 *
-> +	 * Not honoring the requests to disable ASPM, however, led to
-> +	 * drivers forcing ASPM off on their own. As such changes of ASPM
-> +	 * state are not tracked by this service driver, the state kept here
-> +	 * became out of sync.
-> +	 *
-> +	 * Therefore, honor ASPM disable requests even when OS does not have
-> +	 * ASPM control. Plain disable for ASPM is assumed to be slightly
-> +	 * safer than fully managing it.
->  	 */
-> -	if (aspm_disabled) {
-> -		pci_warn(pdev, "can't disable ASPM; OS doesn't have ASPM control\n");
-> -		return -EPERM;
-> -	}
-> +	if (aspm_disabled)
-> +		pci_warn(pdev, "OS doesn't have ASPM control, disabling ASPM anyway\n");
->  
->  	if (!locked)
->  		down_read(&pci_bus_sem);
-> @@ -1485,13 +1492,13 @@ int pci_disable_link_state_locked(struct pci_dev *pdev, int state)
->  EXPORT_SYMBOL(pci_disable_link_state_locked);
->  
->  /**
-> - * pci_disable_link_state - Disable device's link state, so the link will
-> - * never enter specific states.  Note that if the BIOS didn't grant ASPM
-> - * control to the OS, this does nothing because we can't touch the LNKCTL
-> - * register. Returns 0 or a negative errno.
-> - *
-> + * pci_disable_link_state - Disable device's link state
->   * @pdev: PCI device
->   * @state: ASPM link state to disable
-> + *
-> + * Disable device's link state so the link will never enter specific states.
-> + *
-> + * Return: 0 or a negative errno
->   */
->  int pci_disable_link_state(struct pci_dev *pdev, int state)
->  {
-> 
-> -- 
-> 2.43.0
-> 
-> 
+https://lore.kernel.org/all/20260819-bwscale-v5-1-6dea79786b37@oss.qualcomm.com/
+
+That particular version of the patch was already written assuming 
+symmetric enable/disable and I hit that when testing it, so here's an 
+example of the potential trouble :)
+
+
+Naming suggestion: if it ends up being that counter thing, it should use 
+the verb "inhibit", like idle inhibitors in userspace. Those are 
+commonly understood to be counter-based ("as long as there's at least 
+one inhibitor, the state is disabled") and temporary.
+
+~val
+
 
