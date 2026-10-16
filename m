@@ -4,65 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69FE8CCA464
-	for <ath11k@archiver.kernel.org>; Fri, 16 Oct 2026 05:58:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E99ACC6B38
+	for <ath11k@archiver.kernel.org>; Fri, 16 Oct 2026 06:39:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tVbSNI4vH0q4W6ilT5tPWpXP7+YaXbgkLCULideNzNQ=; b=OUABBKOeUcj9JZwgILxYSAGis0
-	F6X59THEsqCMMp/uz39f2fJp8hrkni2Gn0H16UpWn7zZkpz82ap0vggFkIuDj9jlKHN4kcdWlplSm
-	CQ3bNe6LIHqRByLkfVi1ELFBmsiS2gqaX+Uwnx8YbHtmBKGSbXs3upQxG5NiTdMZcGKnyNIfXAJOt
-	DDZ3+D5pUPSGrUExn9xc9TL67YP/eUJ+crzCNrSZZTbS3xbrjKq+Q0loWWZwcLL6Y8g4WypgMHeGy
-	h1OO9mLyqYnV2yIt2iloSrmCMSKvdS+4GIn4IKa5qQYvJ69KRfoDj125Y0T9xDEXT7Fcx2uraE41Q
-	FPTnKBOA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=TgDyxgu8IDR41V90BIj5qe9X5y5frV/UovMkQLzWCYY=; b=yXg0kJa0Z6Z/sjdzXAbXs5igtE
+	u4K3YD+3ZhNfEqf2LD8L7/GFPs1LxO+X51Okfgqpw47OaHxOdryzVnTzuSsS5XQVsDcWwrm25OEYM
+	N7o5i+Xcu6GSvDDcavQFUub6aYMAFJoPlgM45ZrUjOxDGNqM73wAOJYe79pXGNTXXIo0C3G8UnX/k
+	5QNKexpNyu0EkezqZzWpU0eZWs6UieElyUQKSuZw7umY3CZIOe++YqZH0GaRU/1amNBIhGG1HdAxV
+	ZUHtYFEzqxCqhcjiS1/VtA3EIGN9mxX+K8y9EXFILYFwiTX6IUXd9TxCYn+2TKWNHYLcBHNKsfcmb
+	WkqQikpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHaxO-0000000249s-3QcO;
-	Fri, 16 Oct 2026 05:58:18 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xHbbR-000000028bn-227o;
+	Fri, 16 Oct 2026 06:39:41 +0000
+Received: from 4do.net ([2001:41d0:602:1f80::1])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHaxN-0000000249X-22GV;
-	Fri, 16 Oct 2026 05:58:17 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C754242DEE;
-	Fri, 16 Oct 2026 05:58:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B151F000C4;
-	Fri, 16 Oct 2026 05:58:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792130296;
-	bh=tVbSNI4vH0q4W6ilT5tPWpXP7+YaXbgkLCULideNzNQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=PG9WM6mDDiYMBp730f28wrS1Ar/R8wT31iRXH2/9TKEjpXs21rFLZmtBE0aXtuoCE
-	 KdsH4eBCb3pzsQ44ybJPsGV+KxolHJq6KaOFJ+u+iPaEMzRHDp95dHx+9P7Pes0kns
-	 xzrNaBQ+yYebEEUM92grALuCdhxF4Yq8hhZP5Gvv+yXVjFucEEkBZ6FVe5DeM0p6oE
-	 Js9kWW/zwxNcB+7nGnEVXi0eqSwGC2nAXi+Ckn3GAudjI56rf7110z9pEudJTHglht
-	 TWIhmbbQJc0lmb5Nh7PeKBC19KxfcFdSaO73SaxL/rE44Ql/a1IiTVklmhcp+g0TW/
-	 83e/OIDQR/kvg==
-Date: Fri, 16 Oct 2026 11:28:03 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Nirmal Patel <nirmal.patel@linux.intel.com>, 
-	Jonathan Derrick <jonathan.derrick@linux.dev>, Jeff Johnson <jjohnson@kernel.org>, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	ath12k@lists.infradead.org, ath11k@lists.infradead.org, ath10k@lists.infradead.org, 
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Qiang Yu <qiang.yu@oss.qualcomm.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Emmanuel Grumbach <egrumbach@gmail.com>, 
-	Matthew Garrett <mjg59@srcf.ucam.org>
-Subject: Re: [PATCH v3 0/8] PCI/ASPM: Add pci_force_enable_link_state() API
- and convert Atheros drivers
-Message-ID: <atG61oicHbsLKiib@debian>
-References: <20260708-pci-aspm-fix-v3-0-6bd72451746e@kernel.org>
- <20261014205117.GA1665327@bhelgaas>
+	id 1xHbbP-000000028b4-0rS4
+	for ath11k@lists.infradead.org;
+	Fri, 16 Oct 2026 06:39:40 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261014205117.GA1665327@bhelgaas>
+Date: Fri, 16 Oct 2026 06:39:31 +0000
+From: Demeter Barna <me@fromdisposition.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi
+ <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Qiang
+ Yu <qiang.yu@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bartosz
+ Golaszewski <brgl@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, Luiz
+ Augusto von Dentz <luiz.dentz@gmail.com>, Balakrishna Godavarthi
+ <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, Bjorn
+ Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, devicetree@vger.kernel.org, Bartosz Golaszewski
+ <brgl@bgdev.pl>, linux-bluetooth@vger.kernel.org, Bartosz Golaszewski
+ <bartosz.golaszewski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 2/7] wifi: ath11k: enable support for WCN6851
+In-Reply-To: <fiuuh6rwohtlmwdiy7cwqee62e7jrtdgii7fklfy7jkgh25yul@mzlefhqgzo55>
+References: <20260608-sm8350-wifi-v2-0-efb68f1ff04c@oss.qualcomm.com>
+ <20260608-sm8350-wifi-v2-2-efb68f1ff04c@oss.qualcomm.com>
+ <fiuuh6rwohtlmwdiy7cwqee62e7jrtdgii7fklfy7jkgh25yul@mzlefhqgzo55>
+Message-ID: <850ada71460dc62152218e42e78079c6@fromdisposition.org>
+X-Sender: me@fromdisposition.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261015_233939_415565_A682CC32 
+X-CRM114-Status: UNSURE (   5.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,120 +75,16 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Oct 14, 2026 at 03:51:17PM -0500, Bjorn Helgaas wrote:
-> [+cc Emmanuel, Matthew]
-> 
-> On Wed, Jul 08, 2026 at 04:30:14PM +0200, Manivannan Sadhasivam wrote:
-> > Hi,
-> > 
-> > This series converts the atheros WLAN drivers (ath10k/ath11k/ath12k) to
-> > use the PCI core ASPM APIs for enabling/disabling ASPM instead of writing
-> > to the LNKCTL register directly. Touching LNKCTL behind the PCI core's
-> > back leaves the ASPM service driver's view of the link state out of sync
-> > with the hardware, which is not nice.
-> > 
-> > The catch is that these drivers save the currently enabled ASPM states,
-> > disable ASPM before firmware download, and restore the saved states
-> > afterwards. pci_enable_link_state() cannot restore states that were
-> > disabled via pci_disable_link_state() or blacklisted during init (like
-> > the pre-1.1 device blacklist, which is only meant to be overridden with
-> > pcie_aspm=force), and that is intentional. So the save/restore sequence
-> > cannot be expressed with the existing APIs.
-> > 
-> > In v2 I tried to fix this by making pci_enable_link_state*() symmetric
-> > with the disable APIs, but as pointed out during review, that also ends
-> > up overriding the init-time blacklist for every caller (including VMD),
-> > which is not something we want. So instead, this version adds a separate
-> > pci_force_enable_link_state() API (patch 2) that re-enables the requested
-> > states unconditionally. The caller is responsible for only asking for
-> > states the device actually supports, and the ath drivers do this by
-> > restoring exactly what pcie_aspm_enabled() reported earlier.
-> > 
-> > The first five patches touch the PCI core: patch 1 (from Ilpo) makes
-> > pci_disable_link_state() disable ASPM unconditionally, patch 2 adds the
-> > new API, patch 3 moves the D0 transition needed before enabling PCI-PM
-> > L1 PM Substates (PCIe r6.0, sec 5.5.4) into the shared helper and drops
-> > it from the vmd and pcie-qcom callers, patch 4 cleans up the kernel-doc,
-> > and patch 5 makes pcie_aspm_enabled() return the enabled state mask so it
-> > can be used for save/restore. The last three patches convert the ath
-> > drivers.
-> > 
-> > Testing
-> > =======
-> > 
-> > I've tested this series on a Lenovo Thinkpad T14s with WCN7850 (so that's
-> > just the ath12k driver). Rest of the drivers are compile tested only.
-> > 
-> > Merging Strategy
-> > ================
-> > 
-> > Even though there is no build dependency between the PCI core and atheros
-> > patches, there is a functional dependency. So I'd recommend creating an
-> > immutable branch with the PCI patches and merging that branch into both
-> > the PCI and linux-wireless trees, and finally merging the atheros patches
-> > into the linux-wireless tree.
-> > 
-> > If the immutable branch seems like a hassle, then the PCI core patches
-> > could get merged first and the atheros patches can wait for the next
-> > cycle.
-> > 
-> > - Mani
-> > 
-> > Changes in v3:
-> > * Dropped the change that made pci_enable_link_state*() symmetric with the
-> >   disable APIs. Instead added a new pci_force_enable_link_state() API used
-> >   only by the ath drivers, so the init-time blacklist stays overridable
-> >   only via pcie_aspm=force and existing callers like VMD are left
-> >   untouched.
-> > * Fixed the locked path to use pci_set_power_state_locked() for the D0
-> >   transition. The previous version called the non-locked variant, which
-> >   re-acquires pci_bus_sem.
-> > * ath drivers now disable PCIE_LINK_STATE_ASPM_ALL instead of
-> >   PCIE_LINK_STATE_ALL so that CLKPM is preserved and can be restored
-> >   (pcie_aspm_enabled() doesn't report CLKPM).
-> > * Reworked the kernel-doc patch to cover both the enable and disable APIs
-> >   and reference the new API.
-> > * Rebased on top of v7.2-rc1.
-> > 
-> > Changes in v2:
-> > * Reworked the pcie_aspm_enabled() API to return the enabled states
-> >   instead of bool and used it to save/restore the ASPM states in ath
-> >   drivers.
-> > * Added a patch from Ilpo to disable ASPM even if BIOS didn't grant
-> >   permission.
-> > * Added the CONFIG_PCIEASPM dependency to ath{10/11/12}k drivers.
-> > * Rebased on top of v6.17-rc1.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> > Ilpo Järvinen (1):
-> >       PCI/ASPM: Always disable ASPM when driver requests it
-> 
-> I put this first patch on pci/aspm for v7.4 because there seems to be
-> a consensus that it's better to have the ASPM core disable things even
-> if it doesn't technically have control of ASPM, because the
-> alternative is that drivers just do it themselves, also ignoring ASPM
-> ownership concerns.  Having the drivers do it just means the PCI core
-> ASPM support doesn't know what's happening.
-> 
-> I think we should defer the rest of these because I think there's a
-> little room to make the enable/disable/force-enable dance more
-> intuitive for the drivers.  As far as I know, the rest of the series
-> is definite cleanups but doesn't fix any actual functional issues.
-> 
+On 2026-06-11 20:05, Dmitry Baryshkov wrote:
+> This crashes with the firmware that came with the board,
+> WLAN.HSP.1.1.c3-00200-QCAHSPSWPL_V1_V2_SILICONZ. I will revert to 3
+> vdevs for v3.
 
-I wouldn't just categorize the rest of the patches as mere cleanups. They are
-indeed fixing an obvious race between PCI core and the driver doing ASPM dance
-at the same time. But for sure, even after these patches, one can trigger the
-same race between sysfs 'config' and the driver/PCI core, but that's more of an
-user trying to perform an action to trigger a race vs race happening within the
-kernel without user intervention (which is too bad).
+Same here with a newer firmware, WLAN.HSP.1.1-02922 (2021-11-04),
+on a Razer Edge 5G (SM8350, WCN6855 hw1.1; next-20261012 plus a
+board DTS that is not upstream yet). With 4 vdevs the firmware
+crashes (MHI_CB_EE_RDDM, no WMI ready event). With 2 + 1, as in
+v1, Wi-Fi works.
 
-I'd really like to see a way forward for these patches, even with a new API and
-not let them fall through the cracks.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Happy to test v3.
 
