@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522E1CCF2CA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EF22CCF2C9
 	for <ath11k@archiver.kernel.org>; Sun, 18 Oct 2026 21:02:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=p05I9ZTr0xocFHcXHKxdWxiCmf5s7sTPdQviWKawAQI=; b=reX/Q4udrrRnw/pfyXSGm+YSyK
-	fqv3tUTIr6MxtyLCY+51y/j91D97jrbCmjDu7iGY5Q8hVUSsuJu0KvqdwPqGkE3/H4DMgkzBbI82X
-	gDmJ+KPO7bvgU8tCXMSDBBAvCbMogW1EbaLTSyuwydxq4Oh+FP0TAY151bLCRjmxQSfxKTZK2oQ0s
-	GxuQHYV7GgPmA+FQuumN6sgVA826ZAQqUMQZhRGMBikYW3JAcNA0sL9viWBw/RY0zUG5P6jAMs4MM
-	RojP3og3PDB//uCf60J1QwgYji4FjEupFKgj+tUimmdz6AddtbF3XvyYuAuhDbWXAWER6ifSDAb6D
-	H64Wf7Rw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=1oo0PqywFNeZrvrmnjqdyWLME0kdzU+Bq4MvwdsJPtA=; b=kKTEVXBje0SB1HST5Rm4DwIPwX
+	Heoz0h0y6hGoSgL5liR37+kyM/Sh3MS5A0r0FiZVafvRHdFcCVGGX34umD115RTyiiW02sEpkLrLC
+	tmHRrcW/qqXUddcDP8dOvE1yUKjEB6yzB2LRfODZMVX+r+FN5N8qlIctJNa2lcr558sCzxsH45NRp
+	R2r4QMIVGv2yXNRI6kb46EejwFSSs7SzEKswXltRoZLgCwkA0a7SjtOSv6/B/5w4q1Okq60A8awgM
+	M8DTbxs1u/gQ5wboAYx5HdfoA8yjIraNkZhkRXJ3TGKJ4V2dM5cIXSnWZDEx1e4/ogyAsLOGxOtsI
+	iZPq5Btw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIY13-00000006EBm-1BTL;
-	Sun, 18 Oct 2026 21:02:01 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1xIY15-00000006ECN-1RQ5;
+	Sun, 18 Oct 2026 21:02:03 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIY10-00000006EAz-1V1h
+	id 1xIY12-00000006EBR-3Hme
 	for ath11k@lists.infradead.org;
-	Sun, 18 Oct 2026 21:01:59 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-c2acc1e170cso203768666b.1
-        for <ath11k@lists.infradead.org>; Sun, 18 Oct 2026 14:01:57 -0700 (PDT)
+	Sun, 18 Oct 2026 21:02:02 +0000
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-6b1dae0febeso1626424a12.2
+        for <ath11k@lists.infradead.org>; Sun, 18 Oct 2026 14:02:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1792357316; x=1792962116; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=p05I9ZTr0xocFHcXHKxdWxiCmf5s7sTPdQviWKawAQI=;
-        b=cbS1LrcqiFzRLG2TXLCkVI8WbJyxvHbl8ezkMVHZKJNlVeR8XrKLaAyya85qS/JeUm
-         F1UhkELYmNGq+ha2Z9aVKaDJ/3t4VeEmf8sOgK4WLci18Cw8FD0UP0PsvnLFoJsc49nD
-         lNddilWff16NOd9ORnNWOB5CgDhlnq3mBDDvhaiDUgfGkIj43LYwPC4T0VpzRdDMoJ2P
-         Xt0A12+k7xHbcqYIu+iHJ+iVtCrfUnIuff31nuhSOmqP7nZ222hLkRiFqyNi0w5rqSb+
-         JRyMEGLLAjp/iFMkf0bWqAOiok04VKiV0yU8HTHRVEdhO8QDhsEGxQlAXtBk4MoMbEO7
-         3TxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792357316; x=1792962116;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=bairaktaris.de; s=google; t=1792357319; x=1792962119; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=p05I9ZTr0xocFHcXHKxdWxiCmf5s7sTPdQviWKawAQI=;
-        b=DmGFSLPLm7HEv7kcK46pV9EQMDjd2h41Lkf+UXp/Ea0rDBiogMFoHgPJyUMOLLiCTH
-         rO4qn6JbiuNDndQx8mZV8AvlCht18xSWA2MA/QfoTw9CZ58xBGSu6aaPCb5lgk4D+wvo
-         cqicCdi/S8Coi00Kbm3p+SmPtO+wW8ql2wXeJrTgavTtIunRLwtxpUpw3WKeKDo9QGSD
-         o9nl/mqEW4y/6xtI7LnEvDel9HR/1IRt0j+4OJNi2Q0gtALZmqFC1WPQiYLLt7cJY+/6
-         BVS8bBehVDh2/WWrPNUq9uTUNQj6+wBxMs0CO8afjE+44LR6qBUb/xk1TJ61frFP3loc
-         rkmA==
-X-Gm-Message-State: AFq9FYK1wH0AgqmP1aLykdtsv5w0z904LzEwbG1Nm7UR+KECcj53Mm+K
-	XziVbKP7j/bY4f0ItQNWiVUyuK4mtnGhOmxvH5yylCan2Ut8zw+qWzRJKGkPOBCA5MHQUMxhNKd
-	i03YZ92MYcfE=
-X-Gm-Gg: AYBFou2KMA/JhbT1/KfDoKjQWxRj0+3xXIGRx5Di3ZwdypYCMMF9sxSz6hYeXLQhQub
-	mcBYvOWEr6VAEsYCsiE9lnc2rkal5qj8x8B46Of+NTSuQCV8bBYe2V+G8NvdCIHNhWcf1ww/n7q
-	HY8GlVvTpK+0ZNCcnDWLb6GYKz3UO7jtfhW3UfJTE5k89SIdZw/pejF3coGfq7vYd0FCG2mmYD+
-	C+vMQstEIgTXvzargnL0stf6jWW3OhqiE2ld1iY+fEnvlETd4N/yi0KIC9v5LelW7wbdynm00Jn
-	1/53woVQuVrSaQjN3If/Yl2SSNopUV3VDF5eRJ+AoitWXZj5nC1wp1NM26Ecy3iirOOfsTPEp/o
-	/jhKv43cdIYqR2nbWQbpvpBI9cwVpOZVAN0GgBZHa+x8DuRTZhVRySjsnhhNIEM72pFIEXn+liJ
-	IfN9sNkF3qAwEtsX5lYtgo5qw/GYHYmX0diIExfU7Ib6jYUW7Xa+H7E1IgYPoE/iH+610wiqf51
-	hAJ7YY2nKdn5fn/UiEwI4JdJaFn4Js7DlbPClPJVSAI6kO2UvlLOJVHa7IWbuVhmkHtsDlRb0M8
-	KggvkO90cV0pH10LzHoK82ZndU/u6bUgkcIzHOsBN2hlFMthppjbyi5NPJbhKlUoTb+ENpIKzf0
-	tbJco9Ztb6Biw4gk8yaPOApZ5uO4VwiyWNy3sgaaMUhPB1CPYp3R4/obq4UklrV2lULprGuij3H
-	8/XdNnIqX3kg==
-X-Received: by 2002:a17:906:c150:b0:c3f:d8f2:f08e with SMTP id a640c23a62f3a-c41a01f2fd9mr408627066b.44.1792357316312;
-        Sun, 18 Oct 2026 14:01:56 -0700 (PDT)
+        bh=1oo0PqywFNeZrvrmnjqdyWLME0kdzU+Bq4MvwdsJPtA=;
+        b=cGHs0PCuUanuOxC1LS6Doj4zMW2QxEs237rUtXm/FOtbOlOA312w2fnmmPHD9i+69i
+         95NXVpXqgVJvuP9RUmX/VzXQgu/FJSj4Rgg+ICgqG/Plm41NeJEQKsBLAc6FCc4eLslu
+         Ib2/eQUaIDRKo4K1WXSXfEs8oOF5XX0k1L2KZLZPcy02EI71/lUuHUtyF/ClpfFKuH6t
+         mcU1N9PNWbE0iz8nUFmiIk46Q6hiqPa/UII+fqtLky5MCLUTIOrbk1kItu4YyGZkW3uL
+         PMIXRdolIrnUMIOd7KCWevz6hbQa3dnc+R3u0xe1NT5/GdWFLizwQqe6J8cFNDwLdb73
+         RY8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792357319; x=1792962119;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=1oo0PqywFNeZrvrmnjqdyWLME0kdzU+Bq4MvwdsJPtA=;
+        b=Ef7EcUL75a7kOGxAZu+FV76P4z0OAxiWZy/AF9ckYYCgim+8biRjLiP/23Yo28nvLJ
+         tB623m58h2Ir8oudIjYwRcq4gajWZ/ZXDyGLoyyhAG6Z1VRuFa91tiSoiTRmrzuPNCXp
+         dHSt4PS8fFyCRb68/hUF63JyhTc+kPCnzzla5LmswaD9gOYrBGM/PjcVVQXywSHbXB8q
+         KUH93LJPWdCTn1vcvmhdTWzPhN8fmtcz6ertUgElAz7R2j110EF72ieRI11C3nljJ2NQ
+         QbnU8TwjS+cbTmVDiSpbUNnCz9sqlsUzqM12Tj5qHlHG/BO9VNsaPKfjEbXTYjrGcy9s
+         F9Ng==
+X-Gm-Message-State: AFq9FYLaLTk1xr10/X5Jdy0RbpdsXAV85SnALINmmMPdN7sXPS3lmWhq
+	40XLdY0r0oAecBKc0SRSPFy18lvH1zRjCHXU9vVeKioj0hTP+heAYFybyRIajpPnsA==
+X-Gm-Gg: AYBFou2PzVPxnvseRHxPCv/5cJlB4EcfBu6yKiRG2I0Wd9l5aJ2I/AqvCsd4LvBovcl
+	Bx1/4GhpUFKFhjYie1PVZPnSaClb088ips08WOBUXr7b06DT3bEbazRILHEIDT/i3qlm9FeuKKb
+	KbpXPYzxqlZO9Oijkp0k9zzjS7jdwUmBYSYsODUGSjbYyGCVAhuxd6U/xAG9MCrJQeJUCxCQCQ/
+	HgfqwBI8lWAJGCJWY1NA0iNp4omrn0/rD01tdzQYV8Nu8LtCGvwRRQfHdaEWjhT31jB9lCT/Q5V
+	uj00MmmdlbYvwom3EIZn23MMRcbRe0UYQFFrysShrPFM8aTSLQJoSx2vmxrvpCbcFAZCpHoEMik
+	Vjh1bwhiwX+5NMxqa/Fum0m1ABXlG/KUuUhAP1i/NCmxPJNzpXygfWqmb+7Ts2sNh5f/XHTvIqB
+	yJhj0fNEVz/iLhuZ7kGKOIPPyiKTOZ8ZIzBfxhySxYcrMft5dIoID7WF6W0+kVNwxQlEhSfe7D5
+	7wsKCW9TDjM3vN38c3gGIPIoqpFWx6Lso223FssEraYyoe4gymRo1rNAkyGwwKm+/VUv0qIcDet
+	jtSDM5E2kQocARk1Pdxc/9Np+drFGzQP6C9OxXVnsqf8XjNP3em5U3qLHXzW89mD/Ni9xzVGnZ9
+	WHnBcVkh2Pt58sH3LP4akNc1Mkqq8Wybunv9gjT5LwuOHjSYWBpM5fLIuqiCyVECdkoH4E29Rhc
+	1jebz/LTK+
+X-Received: by 2002:a17:907:2d92:b0:c43:bf29:152b with SMTP id a640c23a62f3a-c43bf292f40mr113631066b.40.1792357318362;
+        Sun, 18 Oct 2026 14:01:58 -0700 (PDT)
 Received: from Desktop.fritz.box ([185.181.130.213])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c40912cefd4sm291618666b.35.2026.10.18.14.01.54
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c40912cefd4sm291618666b.35.2026.10.18.14.01.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Oct 2026 14:01:55 -0700 (PDT)
+        Sun, 18 Oct 2026 14:01:57 -0700 (PDT)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: ath11k@lists.infradead.org,
@@ -85,16 +85,17 @@ Cc: ath11k@lists.infradead.org,
 	Muhammad Usama Anjum <usama.anjum@arm.com>,
 	John Crispin <john@phrozen.org>,
 	Sriram R <sriram.ramachandran@oss.qualcomm.com>
-Subject: [PATCH ath-next v2 0/5] wifi: ath11k: firmware crash recovery fixes
-Date: Sun, 18 Oct 2026 23:01:48 +0200
-Message-ID: <20261018210153.1925962-1-julius@bairaktaris.de>
+Subject: [PATCH ath-next v2 1/5] wifi: ath11k: initialise the CE descriptor waitqueue once per device
+Date: Sun, 18 Oct 2026 23:01:49 +0200
+Message-ID: <20261018210153.1925962-2-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261018210153.1925962-1-julius@bairaktaris.de>
+References: <20261018210153.1925962-1-julius@bairaktaris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261018_140158_419874_BE867C5C 
-X-CRM114-Status: UNSURE (   8.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261018_140200_835320_8800BC34 
+X-CRM114-Status: GOOD (  12.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,45 +110,76 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Firmware crash recovery on IPQ8074 resets a waitqueue under a sleeping
-WMI sender (1/5), frees radios and ring memory still in use when it
-fails (2/5, 3/5), sends on rings it has not rebuilt yet (4/5), and lets
-cfg80211 commands crash the restarting firmware again (5/5). Patches 1
-and 4 are v2 of the series linked below; 2, 3 and 5 are new.
+Firmware crash recovery reinitialises tx_ce_desc_wq in
+ath11k_connect_pdev_htc_service(), reached through ath11k_core_start()
+and ath11k_wmi_connect(), while a WMI command on a device without credit
+flow can still sleep on it in ath11k_wmi_cmd_send(). finish_wait() then
+unlinks the waiter from the reset list head:
 
-Tested on IPQ8074 (WLAN.HK.2.9.0.1-02146) with the firmware assert from
-debugfs. Without the series, every recovery reported list_del corruption
-on the CE waitqueue (6 of 6), an RTS threshold loop during recovery
-faulted in ath11k_hal_srng_access_begin() (3 of 3), and after a failed
-recovery the next crash faulted in sta_info_hash_lookup() and rmmod in
-ath11k_dp_rx_pdev_free() (1 of 1 each). With the series, 12 recoveries
-(5 with the RTS loop, 2 with beacon updates, 2 after a failed recovery,
-3 idle) showed no fault or list corruption, a failed recovery recovered
-on the next crash, and rmmod and reload worked.
+  list_del corruption. prev->next should be ffffffc084293648, but was
+  ffffff80075109a8. (prev=ffffff80075109a8)
+  WARNING: CPU: 2 PID: 1782 at lib/list_debug.c:62
+  __list_del_entry_valid_or_report+0x134/0x174
+  CPU: 2 UID: 101 PID: 1782 Comm: hostapd
+  Call trace:
+   __list_del_entry_valid_or_report+0x134/0x174 (P)
+   finish_wait+0x68/0xb8
+   ath11k_wmi_cmd_send+0x150/0x2f4 [ath11k]
+   ath11k_wmi_vdev_set_param_cmd+0x64/0xd8 [ath11k]
+   ath11k_mac_op_bss_info_changed+0xe8/0xf6c [ath11k]
+   drv_link_info_changed+0x128/0x180 [mac80211]
+   ieee80211_link_info_change_notify+0xe0/0x100 [mac80211]
+   ieee80211_change_bss+0x1bc/0x250 [mac80211]
+   nl80211_set_bss+0x1a0/0x328 [cfg80211]
 
-v2:
-- 1/5: name ath11k_connect_pdev_htc_service() and ath11k_wmi_connect()
-  (Baochen). Add Reviewed-by.
-- 4/5: fix the recovery ordering instead of testing srng fields in the
-  CE layer (Baochen). Drop the ath11k_ce_completed_send_next() hunk.
-  Fixes: the first driver version.
-- 2/5, 3/5, 5/5: new.
+Initialise the queues once in ath11k_core_alloc().
 
-v1: https://lore.kernel.org/r/20260805192129.61113-1-julius@bairaktaris.de
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 
-Julius Bairaktaris (5):
-  wifi: ath11k: initialise the CE descriptor waitqueue once per device
-  wifi: ath11k: keep the radios when a firmware recovery fails
-  wifi: ath11k: keep the srng allocations when a firmware recovery fails
-  wifi: ath11k: clear CRASH_FLUSH only after recovery rebuilds the rings
-  wifi: ath11k: hold back WMI commands while the firmware restarts
+Fixes: f951380a6022 ("ath11k: Disabling credit flow for WMI path")
+Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Assisted-by: Claude:claude-opus-5-5
+Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 5 +++++
+ drivers/net/wireless/ath/ath11k/wmi.c  | 1 -
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
- drivers/net/wireless/ath/ath11k/core.c | 21 ++++++++++++---------
- drivers/net/wireless/ath/ath11k/wmi.c  |  5 ++++-
- 2 files changed, 16 insertions(+), 10 deletions(-)
-
-
-base-commit: cd026e68fdbf88b9cc522b76c7a9d92c9a41f709
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 766ae27306f43..8e4dab61a3009 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -2743,6 +2743,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 				      enum ath11k_bus bus)
+ {
+ 	struct ath11k_base *ab;
++	int i;
+ 
+ 	ab = kzalloc(sizeof(*ab) + priv_size, GFP_KERNEL);
+ 	if (!ab)
+@@ -2769,6 +2770,10 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 	INIT_LIST_HEAD(&ab->peers);
+ 	init_waitqueue_head(&ab->peer_mapping_wq);
+ 	init_waitqueue_head(&ab->wmi_ab.tx_credits_wq);
++
++	for (i = 0; i < ARRAY_SIZE(ab->wmi_ab.wmi); i++)
++		init_waitqueue_head(&ab->wmi_ab.wmi[i].tx_ce_desc_wq);
++
+ 	init_waitqueue_head(&ab->qmi.cold_boot_waitq);
+ 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
+ 	INIT_WORK(&ab->update_11d_work, ath11k_update_11d);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 08fd6795ed9e7..3d5b6605eace8 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -9101,7 +9101,6 @@ static int ath11k_connect_pdev_htc_service(struct ath11k_base *ab,
+ 	ab->wmi_ab.wmi_endpoint_id[pdev_idx] = conn_resp.eid;
+ 	ab->wmi_ab.wmi[pdev_idx].eid = conn_resp.eid;
+ 	ab->wmi_ab.max_msg_len[pdev_idx] = conn_resp.max_msg_len;
+-	init_waitqueue_head(&ab->wmi_ab.wmi[pdev_idx].tx_ce_desc_wq);
+ 
+ 	return 0;
+ }
 -- 
 2.53.0
 
