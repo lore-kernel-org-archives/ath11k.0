@@ -4,93 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC1FCCF2C4
-	for <ath11k@archiver.kernel.org>; Sun, 18 Oct 2026 17:18:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2720CCA490
+	for <ath11k@archiver.kernel.org>; Sun, 18 Oct 2026 17:49:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=xsuOl66B+NTjagROmLIHJ/ZmiibRBs0hE2dnTH1r3+4=; b=uIj2BKaIJto1/OCbP7hDQJMxUu
-	zBz6kzD0Y6QVpPFLa5Z6PBwEfAEstiCh5nxT2ljS91MU2Tw/bNWWGIz4Ftirqg4Wz5xgPrSpnSgHq
-	Gvwf9yemqgLWl09mJjUdWBIDxl5Fi0WmyihGlsimZ0gEWaUXPy15SXUfjupxI3y/rW7qSjvJc8qJj
-	rgCVtG0UeHjltlgCxrkPuPHYHaPa+vUfd0rIl1uSjdGPUGpSmTKnLXb9WI/D+YOA3HVohtABhFq+y
-	5AnkW+cT1Ywv6Fob5CHYBbvLTYd03Fl0fjj/FUuPQ+oX0n4STA5hTO+AH3hncXdkzXVeI46NUZMxm
-	BTw5jLSQ==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=RlOGk4B2S+sC0KxKSWrB/2y4+wcPHldmFXjF9XSW5C4=; b=uVErN70fPlaG7FDOLHoc2YRRRT
+	yS7T7mz6kr/zh1VNRBNCBVGAlYO0J02PQR9vRwmilynZGARRxjC+LaJQtDXUFq48jju8udLl4tXN/
+	0TlSqadF7544NPvH4mtC8vxPaSGVMfziXc3JOf/5HYr8+mnmZ6qQhd4kITwyerM845Nsn+ng48KQX
+	kaX2jJTIyiGArU7QNlNR3TijAUGVCqwkWmvhDTONKSluxRRQ+mWHsKtKIrHW+sdRlgTIPdVZ2PYrH
+	4Za1I8XLV9LtRmbiPz1KK/WbcygcCMPREN2TPxWEqcgKjMcUB4Sn7GMUv1fBA+n6Ogh1d+1wzXnox
+	RaKq4tLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIUWR-000000065Hj-1QAE;
-	Sun, 18 Oct 2026 17:18:11 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1xIV0T-0000000673Z-2WNC;
+	Sun, 18 Oct 2026 17:49:13 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIUWO-000000065HP-3Eg9
+	id 1xIV0R-0000000672r-3HBA
 	for ath11k@lists.infradead.org;
-	Sun, 18 Oct 2026 17:18:09 +0000
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-6afbc363efeso2135614a12.3
-        for <ath11k@lists.infradead.org>; Sun, 18 Oct 2026 10:18:08 -0700 (PDT)
+	Sun, 18 Oct 2026 17:49:12 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-c43373ae89aso65672066b.3
+        for <ath11k@lists.infradead.org>; Sun, 18 Oct 2026 10:49:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bairaktaris.de; s=google; t=1792343887; x=1792948687; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=xsuOl66B+NTjagROmLIHJ/ZmiibRBs0hE2dnTH1r3+4=;
-        b=UIAGoNMvP8YppsmjVEQIlqUz7q/IvorNWoQQoX2Yvd6bDvpJIwP6fQNi8Q47JD6wsM
-         eVbxgKBqUjzN0M5XUg9Qu35qHzRU/GEX6XoQk2u2G77eGeE2vFZzHeDkFfMP+Q91ZzsG
-         Z8plevKZo7UlTbVHcc7+jaKfX8pMzXyo/Rh3fQR9husRcrTLf65O5vYebIo/72jy1ZN6
-         NIKtAM2bmi5X7Wj2jVc9efrDdhUjehAaCxdlpkxO9qnl+GPN+f5JGK5pe+0kpT5zkJit
-         KBYR+fHHbPUPguuJkAaMU1AE3WjdMJechw8bleutePAxvttcEeAlXtrtN2ijTY/2dvih
-         aZbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792343887; x=1792948687;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=bairaktaris.de; s=google; t=1792345750; x=1792950550; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=xsuOl66B+NTjagROmLIHJ/ZmiibRBs0hE2dnTH1r3+4=;
-        b=Twt8JnP/CY6RbZr8AqMws/GGu0OaAu2orzgJTCpuhKFfSXZBQ4T6HJC+5VNo8/86ys
-         IJ1okfZeB4eSq7Cs1kGf/VFYskbg80Xxc8erbwJGXSG7PuBK462kmFNn8r8brhupOYEr
-         BmlsSDdlrxyILo3O/lr5onHAHvPDsRhDvOXwjXXhlLGoyjhKpSG27OTmCB3f1BAg7j8h
-         UqcoGRKRnV54d4KPPXfC7t7wjsGLsbO5Cp3jxK52YJQefp089wWwcDeuXi6UjLBSLgMj
-         okzLU1v2+smA6YFAED3EqKfWdNcBa8LMexGsBscWwN+X2a+zaGaI+Ei46Hfr+d5dtpsr
-         1rjA==
-X-Forwarded-Encrypted: i=1; AKwUvByNc5VQdnPn+DJVuoOgL4DYpxa3O1TsVL9nxTMiUcpt8cI+qMeaesvCJ1LvaMAb3jwACMYbxII=@lists.infradead.org
-X-Gm-Message-State: AFq9FYLH+FcpHLyoJROyvEinounTtaYZrf+Dz9Su3z0zfZUrCVCcynUP
-	hbLcGe7F4LYuOJOrrJJyvTuqBoSP44zSq0KlvSG4UtV5oNqXm2oiCNVrYABpAyI1RldFRzobdkM
-	+/sBsHRIgpv0=
-X-Gm-Gg: AYBFou1PlUP2NNvu4G12NIDujaHo1O4u8JmLExEX873gF1ygX2M6MbcnAfsDZjXe9YA
-	P7NIRBaz2mVACVcnPYZZ3Nv9ve72+NtstblAIT7bQxX+lsJ6XekX5W8ImPO922f95ne4soKPOV7
-	OJ04kSvOuw8Ae00fSbABSn12CjjmKPksqQw//g95cD7tLOE9v/qdEPljmwstjcjHfM2G+Ottq3Q
-	202PWQEIzhWRXtrsEzSGZAAOlBSEHrpV7JKLM1pOQg95ixNAB8j4DhpffwoQTw0fnjAgvpFAxcQ
-	K31txNZccDewpMF9MClGT0+q9TTyIkOEp7KZ99CO/pU7PprB0PmvQuAk5WJ0sTTM/F0+dxg43K4
-	9iHNiOS6zGU6fSzbzU/zkbS510+5Sk4eBnO9GsyjoUDbZYA4AIvTjRADfg4in3nbFiTOIMdZh0T
-	tS7TLU0k+FTSOH2C4+zt8fdSpfCsoX60phh1l6dIW4vesVH+KQQkkHE1DeX9g7mseuDo5nS/NFd
-	YmA8DEQLLhwmorEbEOeEfy9w6oYdydGeDq9PFER05V61AIW+iEQjkqnxs+MuLmI4Xa0e9MYWylD
-	atIwqFlQ3n5Xjt7yiHFyugRoKTtvb87UUMJBD6xdkwZ8nbC9nUmKjwLcmyibZ52iHlrXUbGQod2
-	GMMwRa61uTIEGJeS3yYDf3fNDs5RsLJ0e1YOWg+vUHoEJTyO17+7aBWDujuV8opSdN2YhpU/mg+
-	eBwa4NsbqJKStDRZ0nS7w=
-X-Received: by 2002:a05:6402:404f:20b0:6b1:c2ed:d027 with SMTP id 4fb4d7f45d1cf-6b3a81abaa0mr2274193a12.29.1792343886584;
-        Sun, 18 Oct 2026 10:18:06 -0700 (PDT)
+        bh=RlOGk4B2S+sC0KxKSWrB/2y4+wcPHldmFXjF9XSW5C4=;
+        b=r54zBmiJJXuShwmrwmCEE9ooVytZXAPiq9D5x/HVPYxuP+K4wk25tgjABY6zHAAh1l
+         5mkZ6z0W4lPMx4F8NgHhKeXVCyLydeUPrHVZ1tTMVVTyUuReGGGb3V/OR1QA4JJE3eaz
+         pikLSSfQCffFwsKJ9dIDQlGRWZIsei8lCqWMETD+beHgYLlCtqaVaM4iX8H9UjoS2pbm
+         S8TM+0NYA2TEInK47mBwCOeD1treRR/Ymw+6e1izThIPaGOKTUET2I8L+BeQY19X54CR
+         DzJwsbi5QXhzWpUCrQ4xIOM3K7szUjzuVrQQZVgobA/2m0n+96A7qZ+qlW6kLYYK79wv
+         PTcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792345750; x=1792950550;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=RlOGk4B2S+sC0KxKSWrB/2y4+wcPHldmFXjF9XSW5C4=;
+        b=M50b/xgC4fDU0XyCVKc18G+TVJ4+FNlymTsJXktqOmLWclicU4BnzSM2jMa833S1Bm
+         cjmMtaQBFCcPfl2ookWRxmiOv3796gHMHupykp4n8R5Abecys1p/0rHE+GqG/A0l1L+4
+         ORJMoZ5D2qIzzT16MqXOQBMuxxWooOqQI/1jx7NS01K8ls1e+vRERwV3+et/aqS72rGQ
+         J0lAhHHuQ7I5FG4c0cyVHCv4sbGLt27wPD0S6zlHhoSbI64WJASw6svmIlpT4NaYUnqM
+         qEE4DkK0bbZl+QCd3lU1aIIfQ/sAmimfYx057BmRjhYkS2w5drmwbV4WRp6+mNqs6WFS
+         ig+w==
+X-Forwarded-Encrypted: i=1; AKwUvBxYqRO0WvyrRE+k5eqSnfxCIEgCFKMQm46UY8MKx8ow18DTi/qTozuxxLBcvtgX91xrbL6qWoA=@lists.infradead.org
+X-Gm-Message-State: AFq9FYK1xkAwUx4yunc4SrTVJrcxEsORZmHqsIfD2t5un1LFxDNdWG1H
+	HgmRWMVxM6nCdS2jHvVK3QINBXDFjuEudYmobYmlYU/fJ5zRcnIYfTbFIKSnLq2pOg==
+X-Gm-Gg: AYBFou1jrQr40B1hqoVu+lky3W0U2C+bAxNZAtMYuAycC2tvP4d1JkWHqHjjiMO0DnN
+	qYEI+smkDkh+DnuQ9tv+CepO7R2vexNH7gTHtuRUJnc17ckOURfBe4LvvUqxDddxKP9ZQhte41y
+	tdAFJ9ECahmJ2OtNV6O5ySh0DXr1UV7or4KDN6Z5cp9qfmdW7T3ffQndXciJ68QCQ/xKw08K/E0
+	PXEL0JpTj9aoR7RiOESWI8ZL/0xzJAP+1gRwyZStBuG8ZHnftBp88wSnbUVz0yKViJdjxHhqL4J
+	PH+q/z2mSA2xTeyuY3LHt7imAQcDAYZMa5VsCN0mEqegCDJtHxoIShJDC6rmEJdcneg37Tq5/pO
+	F2ZVmEPhjA1pzQ5VFRaoGVSWC0zwpBnQ8B/M+aT8V3pjfDDmG6eTG1lj1ahJalYYEOMNpgOqrvz
+	1tqWRjXI3wvTJsFISkzs2HhUcF8bNimBdKQcLxDqJyRRhzYNAzQNgQfdkEMi6k68bV5Hj08cQCo
+	bJ2BXugYmo5U7uQY+XIRlvgis1PxA9oEYQsLqf2hRQJsUtas0wLSLapfezTUMOrjntbPLjDl3VJ
+	ihizPtXZ9h7/ZCBAHVPKZfirdlEu9ffUaziqC+Pm0zTEKsmxhF/FGB1zO2qV1zeWog7yuWAhqLU
+	YQTaJUeZNSW8POpfnZ2drrKohQjqEeVX68q/cYTe3Og5RTyuN4yTy+ABs9g0DAmy8HOxDgaZHgd
+	tPji8jbtCo
+X-Received: by 2002:a17:906:ba89:b0:c31:6a37:f284 with SMTP id a640c23a62f3a-c419a05c3d2mr331429866b.1.1792345749860;
+        Sun, 18 Oct 2026 10:49:09 -0700 (PDT)
 Received: from Desktop.fritz.box ([185.181.130.213])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b3cbe98563sm525698a12.27.2026.10.18.10.18.04
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c4091eb14a7sm291056366b.76.2026.10.18.10.49.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Oct 2026 10:18:05 -0700 (PDT)
+        Sun, 18 Oct 2026 10:49:09 -0700 (PDT)
 From: Julius Bairaktaris <julius@bairaktaris.de>
 To: jjohnson@kernel.org
 Cc: linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
+	tamizh.raja@oss.qualcomm.com,
+	jtornosm@redhat.com,
 	baochen.qiang@oss.qualcomm.com,
 	rameshkumar.sundaram@oss.qualcomm.com,
+	vasanthakumar.thiagarajan@oss.qualcomm.com,
+	sriram.ramachandran@oss.qualcomm.com,
+	yaojiale02@163.com,
+	quic_pradeepc@quicinc.com,
+	kvalo@kernel.org,
+	sven@narfation.org,
 	john@phrozen.org,
-	kvalo@kernel.org
-Subject: [PATCH ath-next] wifi: ath11k: report TX retries in station statistics
-Date: Sun, 18 Oct 2026 19:18:03 +0200
-Message-ID: <20261018171803.1545946-1-julius@bairaktaris.de>
+	toke@toke.dk
+Subject: [PATCH ath-next v5 1/9] wifi: ath11k: free tx skbs through ieee80211_free_txskb()
+Date: Sun, 18 Oct 2026 19:48:56 +0200
+Message-ID: <20261018174904.1757161-2-julius@bairaktaris.de>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261018174904.1757161-1-julius@bairaktaris.de>
+References: <20261018174904.1757161-1-julius@bairaktaris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261018_101808_840758_3FC0EEC3 
-X-CRM114-Status: UNSURE (   9.58  )
+X-CRM114-CacheID: sfid-20261018_104911_841594_CD15E977 
+X-CRM114-Status: UNSURE (   9.17  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,66 +116,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k does not fill NL80211_STA_INFO_TX_RETRIES, and mac80211's TX
-status accounting leaves it at zero because the driver reports no
-per-rate try counts. The HTT PPDU statistics carry the MPDUs tried and
-acknowledged per user. Report the unacknowledged MPDUs per station as TX
-retries and leave TX failures to mac80211. Over 6 runs of 30 s the
-station's TX retries track the firmware's pdev mpdu_requeued counter to
-within 57 MPDUs.
+ath11k_dp_tx_free_txbuf(), reached for the HTT REINJ and INSPECT
+statuses, frees the frame with dev_kfree_skb_any(), unlike every other
+tx completion path in dp_tx.c. This leaks the tx status clone and idr
+entry mac80211 keeps for a frame whose socket asked for status, as
+commit 29d15589f084 ("wifi: ath11k: Cleanup mac80211 references on
+failure during tx_complete") fixed on three sibling paths. With
+NL80211_EXT_FEATURE_AQL, set by the next patch, it also keeps the
+frame's airtime charge, and an access category at its limit is never
+scheduled again.
+
+Free the frame with ieee80211_free_txskb(). Neither status occurred on
+the hardware below; the change is by inspection.
 
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
 Assisted-by: Claude:claude-opus-5-5
 Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
 ---
- drivers/net/wireless/ath/ath11k/core.h  | 1 +
- drivers/net/wireless/ath/ath11k/dp_rx.c | 5 +++++
- drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
- 3 files changed, 9 insertions(+)
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a0d725923e..f7ba888b61 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -556,6 +556,7 @@ struct ath11k_sta {
- 	struct rate_info last_txrate;
- 	u64 rx_duration;
- 	u64 tx_duration;
-+	u32 tx_retries;
- 	u8 rssi_comb;
- 	struct ewma_avg_rssi avg_rssi;
- 	s8 rssi_beacon;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 6d95f7b343..726a9fc807 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1454,6 +1454,11 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	sta = peer->sta;
- 	arsta = ath11k_sta_to_arsta(sta);
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 083aca8ff355b..f7d3cf0ff0358 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -305,9 +305,10 @@ static void ath11k_dp_tx_free_txbuf(struct ath11k_base *ab, u8 mac_id,
+ 	skb_cb = ATH11K_SKB_CB(msdu);
  
-+	if (usr_stats->cmpltn_cmn.mpdu_tried >
-+	    usr_stats->cmpltn_cmn.mpdu_success)
-+		arsta->tx_retries += usr_stats->cmpltn_cmn.mpdu_tried -
-+				     usr_stats->cmpltn_cmn.mpdu_success;
+ 	dma_unmap_single(ab->dev, skb_cb->paddr, msdu->len, DMA_TO_DEVICE);
+-	dev_kfree_skb_any(msdu);
+ 
+ 	ar = ab->pdevs[mac_id].ar;
++	ieee80211_free_txskb(ar->hw, msdu);
 +
- 	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
- 
- 	switch (flags) {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1a237adaa3..066a503d76 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9435,6 +9435,9 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 	sinfo->tx_duration = arsta->tx_duration;
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_DURATION);
- 
-+	sinfo->tx_retries = arsta->tx_retries;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_RETRIES);
-+
- 	if (arsta->txrate.legacy || arsta->txrate.nss) {
- 		if (arsta->txrate.legacy) {
- 			sinfo->txrate.legacy = arsta->txrate.legacy;
+ 	if (atomic_dec_and_test(&ar->dp.num_tx_pending))
+ 		wake_up(&ar->dp.tx_empty_waitq);
+ }
 -- 
 2.53.0
 
