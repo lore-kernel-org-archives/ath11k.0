@@ -4,90 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F6E5CCF2D6
-	for <ath11k@archiver.kernel.org>; Mon, 19 Oct 2026 07:16:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 323BBCCF2D3
+	for <ath11k@archiver.kernel.org>; Mon, 19 Oct 2026 07:42:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fFviAY7RiS+Pu91f0DrvvXmCcQam18iVZl23zB2xTik=; b=rX+6h/khU8vfFsJVfccmljM/y9
-	T2fKxKnj41eapJ+0JijTkeFO3ipfruxYrowPpMO+Nkr/Qbu6IZwvDU6aNvFHv3VKUkBfXfJhOwlxm
-	SldrZcHBZJgbD+L7bClw0WREadxsyU8Lq3I3HK5lzGKiyDvbNHf+CxcunU9lCdE8CJH/wK0rmuBrI
-	y4pL4uYMC6t/dbB04po6InHnuMZanqUoCqVelS1e4kntAaHbpymGo3W6KT5/DRYKEQ9Jwjg1AujUo
-	gn8Ax8RqHZHZ8fbzf62th0EY4FhltmgErZcBQe6wHgkCzMnUReeoMTJCPqlZN3ja5bxqt6NSePxt5
-	ykyZOTkw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=UgudJ0WI4oNl1UfszSq5K5yCfvW/TgnZ/aoECPr1no0=; b=yzPCZNMpFI+lAclQpY0AbNFZgQ
+	9PTQghQG4gMMC6YmG2PZOhjZNQek0x6VxRANwg1crBEOC8bGhfg0pjNS8k3MSMNBPpGyBR4iM6+Lk
+	2z9PEsWMFR2yNyb+AX8WsP3+OBMyRRBDhMH9ZGUEtLV0QxNozGZmPyZh2H0cTBwz0azkJdNotG52e
+	xw0HJPW4AZbQ8wcodilOP/dhvSoLTf2cz5wDjJj2E1mNkpCmjJRHQVjIegR2bqsyA8Hrb3dZ3EV/O
+	Tw/p4BTRpLEuDAE/nohdtgp7gWguCxPF+pTD3pAVpTOIE8dZOAiMcyvz+61EMxwhZ2A4459k5/NQx
+	rJReURTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIhc8-00000006kqb-0px7;
-	Mon, 19 Oct 2026 07:16:56 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xIi0t-00000006mYp-3hKX;
+	Mon, 19 Oct 2026 07:42:31 +0000
+Received: from mail-yx1-xb132.google.com ([2607:f8b0:4864:20::b132])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIhc6-00000006kqF-0PC7
+	id 1xIi0s-00000006mYU-00Jc
 	for ath11k@lists.infradead.org;
-	Mon, 19 Oct 2026 07:16:55 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a140e7405dso15093295e9.3
-        for <ath11k@lists.infradead.org>; Mon, 19 Oct 2026 00:16:52 -0700 (PDT)
+	Mon, 19 Oct 2026 07:42:31 +0000
+Received: by mail-yx1-xb132.google.com with SMTP id 956f58d0204a3-679aeeddc6bso1824430d50.2
+        for <ath11k@lists.infradead.org>; Mon, 19 Oct 2026 00:42:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1792395748; cv=none;
+        d=google.com; s=arc-20260327;
+        b=kLUv5mTcGhq37VgtbtKGDIcht4MURThGHbGWFfLlq0QDQ275Jyu2/bVNQacjAwjX/9
+         GlCorhw8rM8EfDq1AYl6bp1E+XIczhpkA8lUnBAp9tgKTb/DuBx4b/10eGvKoG5XotrL
+         OpN6HlYDW8lgBsJF8P2HIvXwKNp8Gwu7MadnQRIfmq9NnqGHst2iNv8QBtNIx+L8L/9A
+         PKWeNMKuBNe4WWPutI6Uh9k/mPsG8iOS9mCV3YheHXlMmuByonGcyud82A2yiA454G21
+         4uYgZNbOJ4x8oh6nOxC9s1AwEXRAwpV5TdDbQrRrUjJhkE09B4ovEPp4zaVlb1fkvU5n
+         fomQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=UgudJ0WI4oNl1UfszSq5K5yCfvW/TgnZ/aoECPr1no0=;
+        fh=CH6cEeOaNltfFMzo0HxdT8Cyy2mF7fPzV0lQGQNJYXo=;
+        b=JycJg6vxLgmN7D+UkhlrqV+iwDD9AeJzskXvy2JXOmYlUPdP9wIlD1nWD1RYgftkyr
+         41K+Vy6kjGYQu6+heX42ckBeAbji643tX69O9FLzQb5B+gILSlQcO8k24gA0yFJ5izrs
+         lK+D8uFSo/EJEZFV4+aqDrWZLlyPyLNoG1JtDyBdNEC0mIiFruIdcRGZfGhD//e2xXEh
+         QS6Ug0HEVH+MvKrrJ66hWYYz+zg7kT+x6GFv1tlEIDmr8bx6RxAv3PMROaqmttFkpL+8
+         Wbynzz06sO5Imi5HQ6c+CGawYKqI3qfXLmXU2y2tY/CYoGGVtXxwQLuM4XbuNU83urRR
+         5JIA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792394212; x=1792999012; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=fFviAY7RiS+Pu91f0DrvvXmCcQam18iVZl23zB2xTik=;
-        b=dNto115/tSVqisKJkFKekG0PAY4rR0H+6nY9bZP8u2enLNS1mv3upDwaV5CfjgsY0n
-         y7Tbam+Sg4l9bR4sZSt4UKUEZjKw1dZkDrAN9tCsbkaXZQM+nwnluHMJm62mIBBdo/T4
-         1Ir2FGP4yRwGmCdsMqx+ZF1sOgo7afAibZH66HVuidKIbpBuEjRbhqFQhxB6DgVgJQ24
-         KiVnS7GlHWuNPl2d8CpzmtdynAwSEcKjp/LNWuvdE53UlkTLl589OrgDV89s4deAZ8KS
-         AhydkDRXmvMmTn58iXhMGl/zBIi65rsq3qvqRknKr1zqqUwqxXrtDgqGbEo33TD5PLyS
-         PDnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792394212; x=1792999012;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=bairaktaris.de; s=google; t=1792395748; x=1793000548; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=fFviAY7RiS+Pu91f0DrvvXmCcQam18iVZl23zB2xTik=;
-        b=iLWdutgSk1DlKFD/rjFG13SuN5VnT+I886VDyAkFsqeehu8WFdYULh87BZoCbty8D1
-         KMun1Y6IoyVt7QoHv9AloPcwT5w/l6q/lORcoM55X0u7GTa1FoL/JCWmYzlKJBaVtnZi
-         Tnelw5++GIWn2gEAZMRAE5WByRvevEM3mabPdpa/lDFzO3TizsatsJe/0qP7hzMSUnIS
-         icab/s8ePzwxW6R5bQQOZYYOEDderb+5ekEp8ChMs0iUNRJUIy0/pWfOwOySH9yChqWW
-         tI5tpbeEtxIqECT7LxEvxlx/k+dfFeppSYr9HyZBwVybgRrD3+6LbpJkHiCNDLa9gIW2
-         oW2Q==
-X-Forwarded-Encrypted: i=1; AKwUvBzV4CxJjl38s4n57sohwxIvYXSYbV4KTbOaZsDb9hpzaw06huTQ94yTI+WZ6lhNLePYQFBUQlQ=@lists.infradead.org
-X-Gm-Message-State: AFq9FYKALSwRlTegbbo1+zlOkqUYaQniDaxZJjUuNXQlHUKGNVP5Uyt2
-	Vcv3EAjwZ4P3FFY5YeQmuAqAskhrOxkY2BtnGBGdca1KUNTuY56k0OHb
-X-Gm-Gg: AYBFou1iBZXoUWA/+Z5ugnqNbsI8ybksLuzwrw8qFp2uktYPvYa4zLj/9BZljFLujxs
-	DT+VcOAbznXzRvIFqIu4M+bAwhIaKvpixH3TTgyEmVmhVRZuFxGLGtRMAAX2eHnOpqHJHVm0xYF
-	VBGijw5VPU6bY1p5PqEaQoqXphpiWxzEEA9qhaAy76e4juWs0wZslSDyCPUCEVRNyeS8Li+JxWC
-	Qui+Rb21c58rwAh9ZWI2ED6Ibn4pQ6x/gIO7WoW2UYNf7HRVsXQP5KmeVQ3npx/Py3BlOjKW5pm
-	Zy/Hig2TCQNlxK5xMt6vxAhtTZHhivEOHCe90g+8uE4bfMEndqbTxTawunUP/BM7mTyygtMhwky
-	MV0ixe0t+YxgVrCpKL6At4uVlifSI6Y2WNI2NKc7npC8BNGqjKoyB/f4/aw4901sW09ovFURjQA
-	E/lFA0+opaHZDfZVFWNgPEpDGeHy+T+ShL47XcLCRPSHt8bZVwEzBoS11l3naMoGLcCpcRo2PxZ
-	SJwHh1lEbxDjCoE7dMq1rtiPouqrg1yjBOboECDj+h6f9AicaRaUdE6XY5mBlFSePk2nJKd5VzE
-	NggjXgnmkZp2ALJ3
-X-Received: by 2002:a05:600c:3b13:b0:4a0:2150:55fb with SMTP id 5b1f17b1804b1-4a1d75ad08amr171537945e9.4.1792394211456;
-        Mon, 19 Oct 2026 00:16:51 -0700 (PDT)
-Received: from localhost (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a1cf05009csm224628845e9.10.2026.10.19.00.16.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Oct 2026 00:16:50 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 19 Oct 2026 09:16:50 +0200
-Message-Id: <DM8MPWZ7TFEE.11W2Q780HK4FT@gmail.com>
-Cc: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
-Subject: Re: [PATCH ath-next] wifi: ath11k: report TX retries in station
- statistics
-From: "Nicolas Escande" <nico.escande@gmail.com>
-To: "Julius Bairaktaris" <julius@bairaktaris.de>, <jjohnson@kernel.org>
-X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
-References: <20261018171803.1545946-1-julius@bairaktaris.de>
-In-Reply-To: <20261018171803.1545946-1-julius@bairaktaris.de>
+        bh=UgudJ0WI4oNl1UfszSq5K5yCfvW/TgnZ/aoECPr1no0=;
+        b=xg19BuM6BvsjHF139RSJytIadGjJLj3X1k+8XFFlSDIJg/zTiYFXu7CPEzXUFpIruo
+         +1yoJcCnzBdOJZ3Ulk0nbGzE6GD/2naWMZS4ShGFg/7W15iW/dcP9T8wb6SxQlitzFsX
+         aAvexgBnFZXY/xh5QmaeIKLaXNwMe/dfpyFflg1rBzudCHhv9UOa2NM5DRmW9K+/xZKH
+         /JC51conMCc4216UKXp1D++kWMnS+p2ADMTzocBu/2cBaK0opy95lML4bAr7ugvx+KL+
+         NTjG7X0Ac/mBNdvtQC3fMO6qxXA2MrfJO3t4OFUtSD/xTuRxZPA7Lu35jyOdOVKntopG
+         3u1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792395748; x=1793000548;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=UgudJ0WI4oNl1UfszSq5K5yCfvW/TgnZ/aoECPr1no0=;
+        b=HYOuUZcACGAyzftkrk7YMmgPsXr5ugLoXIbabvylrdRTjYon61Cq/jw6+yBfzs+pQQ
+         9MjHOC/bvKps7zKsF2F5ItVmN9pqLsyVpWGPH39n+sqiCXQTJzsTrH09kVcOV5dJaheg
+         EuROVMuiEIG9GHA0Utqfg/vher2Nv5irXAkSQyuGxDexQ113rBgOgrZ5fe9JHmkA1hDQ
+         KgLyqNFNSXwJ9/bdEAUN3vYZFtScS5Fym0j2cxJwvk0QncTTysDvN5JiRdgmEE0VxMls
+         osnaZyM4RwUbr1YR5awXhnNTvqEKmGLmgsxkXSIYnUGDWSgYz287W81G3EFTwH7XbsYG
+         AEMA==
+X-Forwarded-Encrypted: i=1; AKwUvBxvj/JRwTxfx4nOBwLZBcr6BUTHpHK0kzo7vz+R2Nr7zEqlen74Vuxp6Uo76oZlxeiApD4hE9c=@lists.infradead.org
+X-Gm-Message-State: AFq9FYKiOQlnalTAr0jcUhELOOVTLpSSm0Uncvu72OTwvPffD2YwNY5H
+	dwmofsOIFELI64w7C69ysiOxxMCbCATPh/KVwP4Ur/e5bo9M5KeWWflo33s3ML+5AfmGGMvVJK9
+	OpRACw49sadYfvuuUUAej5H55BhqfvIZ7RzxrBBc0
+X-Gm-Gg: AYBFou0njR7cbJ7EjtU8dvX6ERHX0uzciSD8fq8ZaTB+6lsJi4tEHVzCJGw2ZiGI0fZ
+	/UjULwHRHq86KZ632calj+vnC4RX1fT1J1PHUwsA8ftVjK/gv17JmDixEQqiSVp6Mr+yhcYHVmg
+	BJwc7IRRTYhwpvV7Mb2wdR1Adkl+rlBDvfFNpanHc+W4sMiNPBKqr+LPeTjwwVRv4YteUl8ex39
+	2VUyVpI2FbSbLjFDUmDXuts2AmoJFP+BOocvFke8uqFrPlY0W2ByDZQLGq0UHpG36rvwwJbSSP3
+	dGk9LhVyTbfxfFbffybVh10827YTSO9idI1LiGOXA2nppgoA6rkAkMkq6R+TE0+SjEXqmKha3Xf
+	O853tobHuKqO9wgNZnZmJap3X7yrOM61JolmFhaXz4rTR1FjgL/ZDH3jLz0wouOt2JZy1CE4M2J
+	DFOKoQrzx1FJwgugXklSZR8Tp9XrWdQi8SmXXR+Px7k6t1kXrCY198so/ZnRlboYalHlmSlPZSn
+	Q5uv2X/uM3nLRx3m8biq4SmWyoE4SSUGeptNAlzG6du3wtrowQjGv9G5Itd/lhfEPNMTCAhiWBe
+	amqMxetvcVliKas=
+X-Received: by 2002:a05:690e:e84:b0:679:8bba:3200 with SMTP id
+ 956f58d0204a3-679ca7aa86bmr1822026d50.38.1792395748396; Mon, 19 Oct 2026
+ 00:42:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <20261018171803.1545946-1-julius@bairaktaris.de> <DM8MPWZ7TFEE.11W2Q780HK4FT@gmail.com>
+In-Reply-To: <DM8MPWZ7TFEE.11W2Q780HK4FT@gmail.com>
+From: Julius Bairaktaris <julius@bairaktaris.de>
+Date: Mon, 19 Oct 2026 07:41:52 +0000
+X-Gm-Features: AclHuK8hH8s9UhWNUS2-04GWjMo-KQMgMTX8POhMSkdKvor1YvD5d8cNyp89uvs
+Message-ID: <CAC1t37Kw86_eb6nYxG-hHwuL7ynKYFzauy1j5Q5n8FU7Bk883Q@mail.gmail.com>
+Subject: Re: [PATCH ath-next] wifi: ath11k: report TX retries in station statistics
+To: Nicolas Escande <nico.escande@gmail.com>
+Cc: jjohnson@kernel.org, linux-wireless@vger.kernel.org, 
+	ath11k@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261019_001654_153932_8E99013C 
-X-CRM114-Status: GOOD (  10.28  )
+X-CRM114-CacheID: sfid-20261019_004230_053084_7847B367 
+X-CRM114-Status: UNSURE (   5.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,32 +120,15 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sun Oct 18, 2026 at 7:18 PM CEST, Julius Bairaktaris wrote:
-> ath11k does not fill NL80211_STA_INFO_TX_RETRIES, and mac80211's TX
-> status accounting leaves it at zero because the driver reports no
-> per-rate try counts. The HTT PPDU statistics carry the MPDUs tried and
-> acknowledged per user. Report the unacknowledged MPDUs per station as TX
-> retries and leave TX failures to mac80211. Over 6 runs of 30 s the
-> station's TX retries track the firmware's pdev mpdu_requeued counter to
-> within 57 MPDUs.
->
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
->
-> Assisted-by: Claude:claude-opus-5-5
-> Signed-off-by: Julius Bairaktaris <julius@bairaktaris.de>
-> ---
->  drivers/net/wireless/ath/ath11k/core.h  | 1 +
->  drivers/net/wireless/ath/ath11k/dp_rx.c | 5 +++++
->  drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
->  3 files changed, 9 insertions(+)
-There seems to be a way to retrieve this info directly per tx completion:=
-=20
+Hi Nicolas,
 
-https://git.codelinaro.org/clo/qsdk/oss/system/feeds/wlan-open/-/raw/win.wl=
-an_host_opensource.4.0.r39/patches/ath11k/0149-ath11k-fix-tx-bitrate-retry-=
-signal-in-station-dump.patch
-and the try_cnt comes from
-https://git.codelinaro.org/clo/qsdk/oss/system/feeds/wlan-open/-/raw/win.wl=
-an_host_opensource.4.0.r39/patches/ath11k/0117-001-ath11k-optimize-tx-compl=
-etions.patch
+> There seems to be a way to retrieve this info directly per tx completion:
+
+I checked the links and the way I see it the WBM transmit count is per
+MSDU, so A-MSDUs inflate it.
+The PPDU stats count MPDUs, as nl80211 expects so i will not switch.
+
+Thanks for looking into this!
+
+Julius
 
