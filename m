@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 157F0CCF2E7
-	for <ath11k@archiver.kernel.org>; Mon, 19 Oct 2026 14:02:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1CCFCCF2DE
+	for <ath11k@archiver.kernel.org>; Mon, 19 Oct 2026 14:04:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/+myPmVbI9znAEmr8DN9yfg2ABmzWBxhiHOVL+nrSUw=; b=J6KXvFB7OtffNDAUGdVz2wmmem
-	9qALrFiBPhN/0kRuzj1TLXrI33O5m0c0QrlLrLbC+3Rmb9QRPGh47G8zTbe/unJl2qi9V2wmy+Da/
-	manES5doYw4Y9kNXBdVJBp5ERhOZaHmc/IZzjVr+QBUgFS9hzjNd986hSdZpHtQkI93/codVFF6q7
-	1TKGk7j8ZGsg9fA9fTpdH8BHFsvqlIELsKEaXckKseoL85mywHSqlelK344kdNfOZvilwp+FGfehj
-	8h6S5989XEphJTvNVPIKl+s7YIwf8GRDqG3SCLhXscYWN/WmQq1KxRlmaYZiXBwAfS+Iv84mF/Ub0
-	KHGCoy6A==;
+	bh=DIhielErLTTM7llarhAejxyZ2UE6k/WPB0646jrq39k=; b=in9vh8gouHNhXwU9JmE0IGCH8g
+	0nJVh1wug5tHDDlDIicaQWkBf+qtjA7BpRqy/r4gmcDKH1K4xX6005v+UQPTpnxOhtNEH101F2KcJ
+	2Chmu1vhjVElj34lmthPEU2UZVCIvB4+Fb+wpxaPbMewya9MFocJz7O/E8NSW7TpPqqEIMGxPNGEc
+	Am/Jq2dRb0r8D9mJnzT9+YTnRX+7Cfz/qoZDG1f3jimVXdvGYHf0/6doaQkw7hdHR3j+f9+e50aFx
+	NmzzQpFIQT31IqosLPNEFe/0u43vmhyL4cbpttbOl1DIBSJGuYd9I9JcLqTiVGjVSorZUzV5L4MBd
+	xJB/9kow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xInwW-00000007e78-1Uoh;
-	Mon, 19 Oct 2026 14:02:24 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xIny9-00000007fLL-0n6l;
+	Mon, 19 Oct 2026 14:04:05 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xInwU-00000007e6E-3hD5
+	id 1xIny7-00000007fJx-2Gjs
 	for ath11k@lists.infradead.org;
-	Mon, 19 Oct 2026 14:02:22 +0000
+	Mon, 19 Oct 2026 14:04:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4592B602BE;
-	Mon, 19 Oct 2026 14:02:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D75511F000C4;
-	Mon, 19 Oct 2026 14:02:20 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E787260213;
+	Mon, 19 Oct 2026 14:04:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8030F1F000C5;
+	Mon, 19 Oct 2026 14:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792418542;
-	bh=/+myPmVbI9znAEmr8DN9yfg2ABmzWBxhiHOVL+nrSUw=;
+	s=k20260515; t=1792418642;
+	bh=DIhielErLTTM7llarhAejxyZ2UE6k/WPB0646jrq39k=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=HGX8RH+FeTCN2UZjI/Z5ESIL7pESDs+/pui29FyQp77K6D57pF8EfZPLvMe7ewqt0
-	 W5X5QFIiRoF2M5NiGQJdxvJQA6/FkauuMd9l/ttaY5QSS0I7Iii0i6XuI0kqvjE1DQ
-	 JzQoL6HVDLaggBKHt80zh2NDSlyNeUZB+HBCluB/vQW1+3bjtxMe2gRinrNLbUeXuJ
-	 5qeEozYqwalDztYZM6dbAay97INrcuZvNQGL9PJyL1FKXArThshpdoWzFi55r3XRd7
-	 0NM00w1eTekQFlkvRMoiJxEOcku31H5gJlvYnfjKuxMYnQV9JTUyCTU5mLNWbpnLl1
-	 bJf2mN1wyCC9Q==
+	b=gI4Nvyo0c3cHyXGkO5KUa/rX3itWSs66laY/o0pHGoU0+nvVcJDxcPmA9jLCY9yoK
+	 H3apCQqi8cB1weGLzyieq3tNrnzksTqm2r8/b7/Y30tcJgapTuEJUDIuxeMN6H4zqh
+	 vYx+q5ISmX8u3sQmyjC+EHyiSKGC+KNYiTApkK2DnxPdSgHDTNMHX5EMfJbxO77ATM
+	 83TR3qT8OhaK+lbpm4WCq69VJmOSoBrC/5GMU2bU73k4au6DfjsqPEKMPh42jbwyk1
+	 ihKL1w+3tUVmBtM9N/0nG7n0E8D9Y4lhI29KwHky0aRh3DdBZMQk2foCEzn3RBQkCX
+	 d4DOmaQrZtgWg==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Pengpeng Hou <pengpeng@iscas.ac.cn>,
+Cc: ZhaoJinming <zhaojinming@uniontech.com>,
 	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
 	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
 	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
@@ -54,9 +54,9 @@ Cc: Pengpeng Hou <pengpeng@iscas.ac.cn>,
 	linux-wireless@vger.kernel.org,
 	ath11k@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.18-5.10] wifi: ath11k: validate regulatory capability phy_id
-Date: Mon, 19 Oct 2026 09:50:13 -0400
-Message-ID: <20261019135441.1420968-322-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.18-6.12] wifi: ath11k: fix resource leak on error in ext IRQ setup
+Date: Mon, 19 Oct 2026 09:51:25 -0400
+Message-ID: <20261019135441.1420968-394-sashal@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261019135441.1420968-1-sashal@kernel.org>
 References: <20261019135441.1420968-1-sashal@kernel.org>
@@ -80,416 +80,643 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Pengpeng Hou <pengpeng@iscas.ac.cn>
+From: ZhaoJinming <zhaojinming@uniontech.com>
 
-[ Upstream commit f8729a40ebcc94d164be8f154483a21669f3ab52 ]
+[ Upstream commit 8ab38bbac02298e3fb03008ed4a0227485c0fd62 ]
 
-ath11k_wmi_tlv_ext_hal_reg_caps() copies firmware regulatory
-capability records into soc->hal_reg_cap[] using reg_cap.phy_id as
-the destination index.  The loop count is bounded by num_phy, but the
-phy_id embedded in each record is not checked against the fixed
-MAX_RADIOS-sized destination array.
+In ath11k_ahb_config_irq(), when a CE request_irq() fails, the function
+returns the error immediately without freeing the CE IRQs that were
+successfully registered in previous loop iterations. The probe error
+path does not call ath11k_ahb_free_irq() either, so the previously
+registered CE IRQ handlers remain attached to the interrupt lines and
+are never released.
 
-Reject firmware records whose phy_id does not fit soc->hal_reg_cap[]
-before copying the parsed capability.
+In ath11k_ahb_config_ext_irq(), when an external request_irq() fails,
+the error is only logged and the loop continues. The function then
+returns 0 indicating success, leaving the device in a partially
+configured state where some external IRQs are not registered. This
+causes enable_irq()/disable_irq()/free_irq() to be called on
+unregistered IRQs during runtime and remove/shutdown, triggering
+WARN_ON(!desc->action), and missing interrupt handlers lead to data
+loss.
 
-Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
+Additionally, if alloc_netdev_dummy() fails for a later IRQ group, the
+function returns -ENOMEM without freeing the ext IRQs and napi_ndev
+that were successfully set up for earlier groups.
+
+Fix all three issues: propagate the error up to the caller and unwind
+all successfully registered IRQs and allocated resources on failure.
+Also move ab->irq_num[irq_idx] assignment after request_irq() succeeds
+in the ext IRQ path to match the CE IRQ path and avoid storing a stale
+IRQ number on failure.
+
+Signed-off-by: ZhaoJinming <zhaojinming@uniontech.com>
 Reviewed-by: Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
 Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-Link: https://patch.msgid.link/20260704011040.26233-1-pengpeng@iscas.ac.cn
+Link: https://patch.msgid.link/20260729020005.219253-1-zhaojinming@uniontech.com
 Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
-This tree is **7.3.0-rc4** (`v7.3-rc4-27-gf0100363d8c37`). The candidate
-is a 6-line firmware `phy_id` bounds check in ath11k WMI parsing. The
-buggy `memcpy` has been in this driver since v5.6; the check is
-obviously correct and belongs here.
+# Stable backport analysis: `8ab38bbac022` (“wifi: ath11k: fix resource
+leak on error in ext IRQ setup”)
+
+Local tree: **Linux 6.1.188** (`p-6.1-11-gffee1c0de6cf2`). The candidate
+is **not** an ancestor of HEAD. Verdict is for this 6.1.y tree only.
 
 ---
 
 ## PHASE 1: COMMIT MESSAGE FORENSICS
 
-**Step 1.1: PARSE THE SUBJECT LINE**
-Record: **[wifi: ath11k] [validate] [reject firmware `phy_id` that is
-out of range for `soc->hal_reg_cap[]`]**
+**Step 1.1 — Subject**
+- Record: **[wifi: ath11k]** **[fix]** resource leak on error in AHB ext
+  IRQ setup.
 
-**Step 1.2: PARSE ALL COMMIT MESSAGE TAGS**
-Record:
-- **Fixes:** none (expected for this review pipeline)
-- **Reported-by:** none
-- **Tested-by:** none
-- **Reviewed-by:** Rameshkumar Sundaram
-  `<rameshkumar.sundaram@oss.qualcomm.com>`; Baochen Qiang
-  `<baochen.qiang@oss.qualcomm.com>` (Qualcomm ath11k reviewers)
-- **Acked-by:** none
-- **Link:**
-  `https://patch.msgid.link/20260704011040.26233-1-pengpeng@iscas.ac.cn`
-- **Cc: stable:** none (expected; not a negative signal)
-- **Signed-off-by:** Pengpeng Hou (author); Jeff Johnson (ath11k
-  maintainer)
+**Step 1.2 — Tags**
+- Record:
+  - `Reviewed-by: Rameshkumar Sundaram
+    <rameshkumar.sundaram@oss.qualcomm.com>` (Qualcomm ath11k reviewer)
+  - `Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>`
+    (Qualcomm ath11k reviewer)
+  - `Link: https://patch.msgid.link/20260729020005.219253-1-
+    zhaojinming@uniontech.com`
+  - `Signed-off-by: ZhaoJinming <zhaojinming@uniontech.com>` (author)
+  - `Signed-off-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>`
+    (ath11k maintainer, applied)
+  - No `Fixes:`, `Reported-by:`, `Tested-by:`, `Cc: stable` (absence is
+    expected for this pipeline)
+  - No syzbot / sanitizer tags
 
-**Step 1.3: ANALYZE THE COMMIT BODY TEXT**
-Record:
-- **Bug:** `ath11k_wmi_tlv_ext_hal_reg_caps()` copies firmware HAL
-  regulatory-capability records into `soc->hal_reg_cap[]` using
-  **`reg_cap.phy_id` as the destination index**. The loop is bounded by
-  `num_phy`, but **`phy_id` inside each record is not checked** against
-  `MAX_RADIOS`.
-- **Symptom/failure mode:** out-of-bounds write into `struct
-  ath11k_base` (memory corruption).
-- **Version information:** none in the message.
-- **Root cause:** firmware-controlled `u32 phy_id` used as an array
-  index without a bounds check.
+**Step 1.3 — Body**
+The commit describes three bugs in `ath11k_ahb_config_irq()` /
+`ath11k_ahb_config_ext_irq()`:
 
-**Step 1.4: DETECT HIDDEN BUG FIXES**
-Record: **Not disguised.** This is an explicit firmware-index validation
-/ OOB-write fix. Verb “validate” is a bounds check, not cleanup.
+1. **CE `request_irq()` fail:** returns immediately; previously
+   registered CE IRQs are not freed. Probe `err_ce_free` does **not**
+   call `ath11k_ahb_free_irq()`, so those handlers stay attached.
+2. **Ext `request_irq()` fail:** error is logged only; function still
+   returns 0. Device probes in a partial-IRQ state. Later `enable_irq()`
+   / `disable_irq()` / `free_irq()` on unregistered lines trigger
+   `WARN_ON(!desc->action)`; missing handlers cause data loss.
+3. **`alloc_netdev_dummy()` fail** on a later group: `-ENOMEM` without
+   freeing earlier groups’ ext IRQs / dummy netdevs.
+
+Fix: propagate errors, unwind registered IRQs/resources, assign
+`ab->irq_num[irq_idx]` only after a successful `request_irq()`.
+
+- Record: **[Bugs: IRQ leak, swallowed setup error, dummy-netdev leak]**
+  **[Symptoms: leaked IRQ handlers; WARN_ON; missing datapath IRQs /
+  data loss]** **[No version bounds in the message]** **[Root cause:
+  missing unwind + ignored `request_irq()` failure]**
+
+**Step 1.4 — Hidden bug fix?**
+- Record: **No.** This is an explicit error-path / resource-leak fix,
+  not cleanup disguised as a fix.
 
 ---
 
 ## PHASE 2: DIFF ANALYSIS
 
-**Step 2.1: INVENTORY THE CHANGES**
-Record:
-- **File:** `drivers/net/wireless/ath/ath11k/wmi.c` — **+6 / -0**
-- **Function:** `ath11k_wmi_tlv_ext_hal_reg_caps()`
-- **Scope:** single-file surgical fix
+**Step 2.1 — Inventory**
+- Record: **1 file**, `drivers/net/wireless/ath/ath11k/ahb.c`, **+55 /
+  −24**.
+- Functions: `ath11k_ahb_free_ext_irq` split into
+  `ath11k_ahb_free_ext_irq_grp` + wrapper; new
+  `ath11k_ahb_free_ce_irqs`; `ath11k_ahb_free_irq` uses the new helpers;
+  `ath11k_ahb_config_ext_irq` and `ath11k_ahb_config_irq` grow unwind
+  paths.
+- Scope: **single-file surgical fix** (small helper extract, no API
+  change).
 
-**Step 2.2: UNDERSTAND THE CODE FLOW CHANGE**
-Record (verified in this tree at `wmi.c:4862-4880`):
-- **Before:** `ath11k_pull_reg_cap_svc_rdy_ext()` fills `reg_cap` from
-  firmware TLV `ext_reg_cap[i].phy_id`, then
-  `memcpy(&soc->hal_reg_cap[reg_cap.phy_id], &reg_cap, sizeof(reg_cap))`
-  with no check that `phy_id < MAX_RADIOS`.
-- **After:** if `reg_cap.phy_id >= ARRAY_SIZE(soc->hal_reg_cap)`, log a
-  warning and return `-EINVAL`; otherwise copy as before.
-- **Path:** firmware `WMI_SERVICE_READY_EXT` event during ath11k bring-
-  up (probe/init), not a hot datapath.
+**Step 2.2 — Flow change**
+- **`free_ext_irq`:** all-groups cleanup → per-group helper so a failed
+  group can be unwound without touching later groups.
+- **`config_ext_irq` `request_irq` fail:** log and continue / return 0 →
+  set `num_irq = j`, free current group, unwind prior groups, return
+  error.
+- **`alloc_netdev_dummy` fail:** immediate `-ENOMEM` → same unwind of
+  prior groups.
+- **`irq_num` store:** before `request_irq` → after success (avoids a
+  stale IRQ number used by later enable/disable/free).
+- **`config_irq` CE fail:** bare `return ret` →
+  `ath11k_ahb_free_ce_irqs(ab, i)` then return.
+- **`config_irq` ext fail:** return `ret` with CE IRQs still held → free
+  all CE IRQs then return.
 
-**Step 2.3: IDENTIFY THE BUG MECHANISM**
-Record:
-- **Category:** **(d) memory safety — buffer overflow / out-of-bounds
-  write**
-- **Mechanism:** `phy_id` is a firmware `u32`
-  (`wmi_hal_reg_capabilities_ext.phy_id`). Destination is
-  `hal_reg_cap[MAX_RADIOS]` with **`MAX_RADIOS == 3`** (`core.h:242`,
-  `core.h:971`). Loop bound `num_phy` is also firmware-supplied and is
-  **not** the same as `phy_id`. A record with `phy_id >= 3` writes
-  `sizeof(struct ath11k_hal_reg_capabilities_ext)` (10 × `u32` = 40
-  bytes) past the array into following `ath11k_base` fields
-  (`free_vdev_map`, `tbl_mtx_lock`, peer rhashtables).
-- The parse helper only checks TLV count vs `num_phy`
-  (`n_ext_hal_reg_caps >= param.num_phy` → `-ENOBUFS`); it does **not**
-  validate `phy_id`.
+**Step 2.3 — Bug mechanism**
+- Record: **[Error-path resource leak + logic/correctness (swallowed
+  error)]**
+- CE leak = missing `free_irq` on probe failure.
+- Ext path = ignored `request_irq` error so probe “succeeds” with
+  unregistered IRQs; `ath11k_ahb_ext_grp_enable()` then calls
+  `enable_irq()` over `irq_grp->num_irq`.
+- Dummy-netdev leak is mainline-only (see Phase 6).
 
-**Step 2.4: ASSESS THE FIX QUALITY**
-Record:
-- **Obviously correct:** `ARRAY_SIZE(soc->hal_reg_cap)` is the real
-  destination size; reject-and-return is the right failure mode.
-- **Minimal:** 6 lines, one check, no API/struct changes.
-- **Regression risk:** **very low**. Well-formed firmware with `phy_id`
-  0–2 is unchanged. Invalid `phy_id` now fails WMI parse instead of
-  corrupting memory. That is the intended probe failure, not a behavior
-  change for working hardware.
-
----
-
-## PHASE 3: GIT HISTORY INVESTIGATION
-
-**Step 3.1: BLAME THE CHANGED LINES**
-Record:
-- Loop + `memcpy`: **`d5c65159f28953`** — “ath11k: driver for Qualcomm
-  IEEE 802.11ax devices” (Kalle Valo, 2019-11-25).
-- Bounds check: **`f8729a40ebcc9`** (this commit).
-- Introducer is in **v5.6**, not v5.5 (`git merge-base --is-ancestor`).
-  Bug has been in every tree with ath11k since then.
-
-**Step 3.2: FOLLOW THE FIXES: TAG**
-Record: **No Fixes: tag.** Not applicable. Introducer identified by
-blame: `d5c65159f28953` (original driver).
-
-**Step 3.3: CHECK FILE HISTORY FOR RELATED CHANGES**
-Record:
-- Recent `wmi.c` work is other firmware TLV hardening (overread, stride,
-  leak) — related thematically, **not prerequisites**.
-- Earlier `84eee3c845d37` (“refine the phy_id check in
-  ath11k_reg_chan_list_event”) is a **different** event path.
-- **Standalone**, not patch N/M. Maintainer applied it as `[1/1]`.
-
-**Step 3.4: CHECK THE AUTHOR'S OTHER COMMITS**
-Record: Pengpeng Hou has this one ath11k commit here. Weight comes from
-**Qualcomm reviewers** and **maintainer Jeff Johnson** (MAINTAINERS:
-ATH11K).
-
-**Step 3.5: CHECK FOR DEPENDENT/PREREQUISITE COMMITS**
-Record: **None.** Uses existing `ARRAY_SIZE`, `ath11k_warn`, `-EINVAL`,
-`soc->hal_reg_cap`. Can apply standalone on any tree with this 2019
-function.
+**Step 2.4 — Fix quality**
+- Record: **Obviously correct for the two `request_irq` bugs.** Helpers
+  match existing free loops. `num_irq = j` before freeing the failed
+  group is right (only successful IRQs). `err_request_irq` does `i--` so
+  the current group is not double-freed. **Regression risk is low** if
+  adapted; **high if the mainline diff is applied blindly** because it
+  calls `free_netdev(irq_grp->napi_ndev)` and `napi_ndev` is an embedded
+  `struct net_device` here, not a pointer.
 
 ---
 
-## PHASE 4: MAILING LIST AND EXTERNAL RESEARCH
+## PHASE 3: GIT HISTORY
 
-**Step 4.1: FIND THE ORIGINAL PATCH DISCUSSION**
-Record:
-- **Lore URL (b4 dig):**
-  `https://patch.msgid.link/20260704011040.26233-1-pengpeng@iscas.ac.cn`
-- **Revisions:** **v1 only** (`b4 dig -a`); committed v1.
-- **Thread (saved via `b4 dig -m`):**
-  - Baochen Qiang: `Reviewed-by`
-  - Rameshkumar Sundaram: `Reviewed-by`
-  - Jeff Johnson: “Applied, thanks!” `[1/1]`
-- **No NAKs, no stable nomination, no requested revisions.**
+**Step 3.1 — Blame / introduction**
+- Record: Buggy CE early-return and swallowed ext `request_irq` error
+  are in the original driver **`d5c65159f2895` (2019-11-23, “ath11k:
+  driver for Qualcomm IEEE 802.11ax devices”)**. Present since before
+  v5.6; certainly in 6.1.
 
-**Step 4.2: CHECK WHO REVIEWED THE PATCH**
-Record (`b4 dig -w`): To/Cc were Jeff Johnson, `linux-wireless`,
-`ath11k@lists.infradead.org`, `linux-kernel`. Right lists and
-maintainer.
+**Step 3.2 — Fixes: tag**
+- Record: **No `Fixes:` tag.** Original buggy commit is `d5c65159f2895`,
+  which **is** in this tree.
 
-**Step 4.3: SEARCH FOR THE BUG REPORT**
-Record: **No user/syzbot/bugzilla report.** Found by code review of
-firmware TLV parsing. Severity is from the mechanism (OOB write), not
-from a crash log.
+**Step 3.3 — File history on this tree**
+- Record: Recent 6.1.y ahb.c commits are unrelated (IPQ5018 CE remap,
+  rproc defer, fw deinit, `platform_get_irq` for MSI). Related older
+  commit **`22b59cb965f79`** added `netif_napi_del()` on free to fix a
+  reload oops — same area, does **not** fix these leaks. **Standalone
+  candidate**, not patch X/Y.
 
-**Step 4.4: CHECK FOR RELATED PATCHES AND SERIES**
-Record: Standalone `[PATCH]`, not a series. ath12k still has an
-analogous unguarded `soc->hal_reg_cap[reg_cap.phy_id] = reg_cap` in
-`ath12k/wmi.c` — sibling issue, **not a dependency**.
+**Step 3.4 — Author**
+- Record: ZhaoJinming has **no other ath11k commits in this 6.1 tree**.
+  Review/apply came from Qualcomm (Baochen Qiang, Rameshkumar Sundaram,
+  Jeff Johnson).
 
-**Step 4.5: CHECK STABLE MAILING LIST HISTORY**
-Record: **UNVERIFIED** for lore.kernel.org/stable (HTTP 403). Local
-history has no stable-specific discussion of this subject.
+**Step 3.5 — Prerequisites**
+- Record: Mainline diff **depends on `bca592ead8252` (2024-04-22,
+  dynamic dummy netdev)** for `alloc_netdev_dummy` / `free_netdev`. That
+  commit is **not** in 6.1 (`git merge-base --is-ancestor` failed).
+  CE/ext `request_irq` unwind does **not** need that commit. **Cannot
+  apply the mainline diff standalone; a 6.1-shaped backport can.**
+
+---
+
+## PHASE 4: MAILING LIST / EXTERNAL
+
+**Step 4.1 — Original discussion**
+- Record: `b4 dig -c 8ab38bbac0229` → lore thread
+  https://patch.msgid.link/20260728031335.3818736-1-
+  zhaojinming@uniontech.com
+- Revisions: **v1 (2026-06-22) through v7 (2026-07-28)**; committed
+  message id is a follow-up of v7. Review drove: move `irq_grp` to
+  function scope, init `ret` on ENOMEM, unwind CE IRQs on ext failure,
+  extract per-group/CE free helpers, drop an unreachable `napi_ndev`
+  NULL guard, store `irq_num` only after success.
+- **No NAK.** Baochen’s v7 comment was process-only (don’t put old-
+  version `Link:` in the commit body). **No reviewer `Cc: stable`.**
+
+**Step 4.2 — Recipients (`b4 dig -w`)**
+- Record: Jeff Johnson, Baochen Qiang, `ath11k@lists.infradead.org`,
+  `linux-wireless@vger.kernel.org`, `linux-kernel@vger.kernel.org`.
+  Right maintainers were on the thread.
+
+**Step 4.3 — Bug report**
+- Record: **No user/syzbot/bugzilla report.** Analysis-driven. Severity
+  claimed by the author is verified in this tree’s code (Phase 6).
+
+**Step 4.4 — Series**
+- Record: **Single-patch series** (v1–v7 are revisions of the same
+  change). No sibling patches required.
+
+**Step 4.5 — Stable list**
+- Record: **UNVERIFIED.** `lore.kernel.org/stable` fetch returned HTTP
+  403. No stable-list discussion found via `b4`.
 
 ---
 
 ## PHASE 5: CODE SEMANTIC ANALYSIS
 
-**Step 5.1: KEY FUNCTIONS**
-Record: `ath11k_wmi_tlv_ext_hal_reg_caps()`; helpers
-`ath11k_pull_reg_cap_svc_rdy_ext()`,
-`ath11k_wmi_tlv_ext_hal_reg_caps_parse()`.
+**Step 5.1 — Functions**
+- Record: `ath11k_ahb_free_ext_irq_grp` (new),
+  `ath11k_ahb_free_ext_irq`, `ath11k_ahb_free_ce_irqs` (new),
+  `ath11k_ahb_free_irq`, `ath11k_ahb_config_ext_irq`,
+  `ath11k_ahb_config_irq`.
 
-**Step 5.2: TRACE CALLERS**
-Record (verified with grep/read):
-- `ath11k_wmi_tlv_ext_hal_reg_caps()` ←
-  `ath11k_wmi_tlv_svc_rdy_ext_parse()` (`WMI_TAG_ARRAY_STRUCT` after hw-
-  mode and mac-phy TLVs)
-- ← `ath11k_service_ready_ext_event()`
-- ← WMI event switch `WMI_SERVICE_READY_EXT_EVENTID`
+**Step 5.2 — Callers (this tree)**
+- `ath11k_ahb_config_irq()` — only from `ath11k_ahb_probe()`
+  (`ahb.c:1219`).
+- `ath11k_ahb_free_irq()` — from `ath11k_ahb_free_resources()` on
+  remove/shutdown (`ahb.c:1268`), **not** from probe `err_ce_free`.
+- `ath11k_ahb_ext_grp_enable()` — from `ath11k_ahb_ext_irq_enable()` /
+  NAPI complete; walks `irq_grp->num_irq` and `enable_irq()`.
+- Hybrid WCN6750 uses `ath11k_pcic_config_irq()` instead (PCI probe
+  **does** have `err_free_irq`).
 
-**Step 5.3: TRACE CALLEES**
-Record: `ath11k_wmi_tlv_iter()`, `ath11k_pull_reg_cap_svc_rdy_ext()`
-(copies firmware `phy_id`), `memcpy()`.
+**Step 5.3 — Callees**
+- Record: `request_irq`, `free_irq`, `platform_get_irq_byname`,
+  `irq_set_status_flags`, `netif_napi_add` / `netif_napi_del`,
+  `init_dummy_netdev` (6.1) vs `alloc_netdev_dummy` / `free_netdev`
+  (mainline).
 
-**Step 5.4: FOLLOW THE CALL CHAIN**
-Record: Reachable on **ath11k device init** when firmware sends service-
-ready-ext. Not a syscall hot path. Trigger needs **CONFIG_ATH11K** +
-Qualcomm 802.11ax hardware + firmware that puts `phy_id >= 3` (or
-otherwise ≥ `ARRAY_SIZE`). Unprivileged users cannot poke this WMI path
-directly; **buggy or malicious firmware** can. That is still a real
-kernel OOB write.
+**Step 5.4 — Reachability**
+- Record: Probe / start / remove of `CONFIG_ATH11K_AHB` devices
+  (IPQ8074/6018/5018 and similar). Userspace cannot hit it via a normal
+  syscall; it runs on device bind, `ath11k_ahb_start()`, and unbind.
+  **Reachable on every AHB ath11k probe.** The *failure* path needs
+  `request_irq()` to fail (missing DT IRQ, IRQ alloc failure).
 
-**Step 5.5: SEARCH FOR SIMILAR PATTERNS**
-Record: Same driver already bounds other firmware indices (e.g. `phy_idx
->= reg_caps->num_phy` in the pull helper). This copy site was the hole.
-ath12k has the same hole unfixed.
-
----
-
-## PHASE 6: CROSS-REFERENCING AGAINST THE LOCAL TREE
-
-**Step 6.1: DOES THE BUGGY CODE EXIST IN THIS TREE?**
-Record: **Yes.** `ath11k_wmi_tlv_ext_hal_reg_caps()` and
-`hal_reg_cap[MAX_RADIOS]` are present. The unguarded `memcpy` was here
-from v5.6 until `f8729a40ebcc9`. **Bug introduced in v5.6, long before
-7.3.** `git merge-base --is-ancestor f8729a40ebcc9 HEAD` is true (fix is
-in 7.3-rc1+); that is mainline merge, not “already selected for stable.”
-
-**Step 6.2: CHECK FOR BACKPORT COMPLICATIONS**
-Record: **Clean apply.** Surrounding function body is still the 2019
-structure plus this 6-line check. No refactor of this function in
-between.
-
-**Step 6.3: CHECK IF RELATED FIXES ARE ALREADY HERE**
-Record: No alternate fix for this memcpy. Other nearby TLV fixes address
-different bugs.
+**Step 5.5 — Similar patterns**
+- Record: `ath11k_pcic_ext_irq_config()` **does** return `request_irq`
+  errors; PCI probe frees IRQs on error. AHB is the inconsistent path.
+  Same swallowed-`request_irq` pattern has been in AHB since 2019.
 
 ---
 
-## PHASE 7: SUBSYSTEM AND MAINTAINER CONTEXT
+## PHASE 6: THIS TREE (6.1.188)
 
-**Step 7.1: SUBSYSTEM AND CRITICALITY**
-Record: **ath11k (Qualcomm 802.11ax)** under
-`drivers/net/wireless/ath/ath11k/`. **IMPORTANT** — not core mm/fs, but
-a widely used Wi-Fi driver (laptops, AP SoCs, Chromebooks, phones).
-CONFIG: `ATH11K` / `ATH11K_PCI` / `ATH11K_AHB`.
+**Step 6.1 — Does the buggy code exist?**
+Yes, two of three bugs:
 
-**Step 7.2: SUBSYSTEM ACTIVITY**
-Record: Actively maintained (Jeff Johnson). Recent WMI work is firmware-
-message validation, consistent with this patch.
+```617:624:drivers/net/wireless/ath/ath11k/ahb.c
+                        if (ret) {
+                                ath11k_err(ab, "failed request_irq for
+%d\n",
+                                           irq);
+                        }
+                }
+        }
 
----
+        return 0;
+```
 
-## PHASE 8: IMPACT AND RISK ASSESSMENT
+`num_irq` is set to the **full** count **before** that loop
+(`ahb.c:605`), and `ab->irq_num[irq_idx] = irq` is stored **before**
+`request_irq()` (`ahb.c:612`). `ath11k_ahb_ext_grp_enable()` then
+`enable_irq()`s every entry (`ahb.c:247-248`).
 
-**Step 8.1: WHO IS AFFECTED**
-Record: **Driver-specific / config-specific:** `CONFIG_ATH11K` users.
-Impact only if firmware sends a `phy_id` that does not fit
-`hal_reg_cap[]`.
+```649:650:drivers/net/wireless/ath/ath11k/ahb.c
+                if (ret)
+                        return ret;
+```
 
-**Step 8.2: TRIGGER CONDITIONS**
-Record: Device init / firmware service-ready-ext. **Not** every packet.
-Needs bad `phy_id` in the WMI record (firmware bug or hostile firmware).
-Unprivileged userspace cannot fire it without controlling firmware.
+Probe error path:
 
-**Step 8.3: FAILURE MODE SEVERITY**
-Record: **Out-of-bounds write** of 40 bytes into `struct ath11k_base`
-after `hal_reg_cap[]` — can corrupt `free_vdev_map`, mutexes, peer
-tables → crash, deadlock, or further memory corruption. **Severity:
-HIGH** (OOB write / memory corruption). Not a panic on every boot with
-good firmware.
+```1219:1230:drivers/net/wireless/ath/ath11k/ahb.c
+        ret = ath11k_ahb_config_irq(ab);
+        if (ret) {
+                ath11k_err(ab, "failed to configure irq: %d\n", ret);
+                goto err_ce_free;
+        }
+        ...
+err_ce_free:
+        ath11k_ce_free_pipes(ab);
+```
 
-**Step 8.4: RISK-BENEFIT RATIO**
-Record:
-- **Benefit:** High for ath11k — stops a real OOB write on a long-
-  standing path (v5.6+).
-- **Risk:** Very low — 6 lines, error-path reject, no lock/API change,
-  good firmware unaffected.
-- **Ratio:** strongly favors backport.
+No `ath11k_ahb_free_irq()` on that path.
 
----
+**Third bug does not exist here.** Dummy NAPI netdev is embedded:
 
-## PHASE 9: FINAL SYNTHESIS
+```172:172:drivers/net/wireless/ath/ath11k/core.h
+        struct net_device napi_ndev;
+```
 
-**Step 9.1: COMPILE THE EVIDENCE**
+Setup uses `init_dummy_netdev(&irq_grp->napi_ndev)` (`ahb.c:558`). No
+`alloc_netdev_dummy`, no `free_netdev`.
 
-**FOR:**
-- Real OOB write: firmware `u32 phy_id` used as index into a 3-element
-  array.
-- Small, obviously correct check (`ARRAY_SIZE` + `-EINVAL`).
-- Present in this tree’s ath11k code; bug dates to original driver
-  (v5.6).
-- Reviewed by Qualcomm ath11k developers; applied by the maintainer.
-- Standalone; no new APIs; no series dependencies.
-- Matches stable pattern: buffer overflow / firmware TLV validation.
+- Record: **Bugs 1 and 2 present since 2019. Bug 3 introduced in 2024;
+  not in 6.1.**
 
-**AGAINST:**
-- No `Reported-by` / syzbot / production crash.
-- Trigger is firmware-supplied data at probe, not a generic syscall.
-- No explicit `Cc: stable` (not a negative per pipeline rules).
+**Step 6.2 — Backport difficulty**
+- `git show 8ab38bb | git apply --check` **fails**: context expects
+  `free_netdev(irq_grp->napi_ndev)`.
+- Needed 6.1 backport: same error propagation and CE/ext unwind;
+  **omit** `free_netdev` and the `alloc_netdev_dummy` ENOMEM path; keep
+  `netif_napi_del` only.
+- Record: **Needs rework (not a clean cherry-pick).** Blind apply would
+  not compile.
 
-**UNRESOLVED:**
-- Could not query lore.kernel.org/stable (403).
-- No public report that shipping firmware actually sent `phy_id >= 3`.
-
-**Step 9.2: STABLE RULES CHECKLIST**
-1. Obviously correct and tested? **PASS** — local review + two Qualcomm
-   Reviewed-by + maintainer apply.
-2. Fixes a real bug that affects users? **PASS** — OOB write on firmware
-   parse; ath11k users are real users.
-3. Important issue? **PASS** — OOB write / memory corruption (**HIGH**),
-   not style.
-4. Small and contained? **PASS** — +6 lines, one function.
-5. No new features or APIs? **PASS**.
-6. Can apply to the local tree? **PASS** — same function/context; no
-   missing prerequisites.
-
-**Step 9.3: EXCEPTION CATEGORIES**
-Record: None (not a device ID / quirk / DT / build / doc exception).
-Qualifies as a normal bugfix.
-
-**Step 9.4: DECISION**
-
-This is a surgical firmware-index bounds check that stops a memcpy past
-`hal_reg_cap[MAX_RADIOS]`. The destination array and unguarded copy
-exist in this 7.3 tree’s ath11k code; the bug is older than this branch.
-Risk is negligible; the failure mode is memory corruption. That meets
-stable criteria for **this** tree.
+**Step 6.3 — Related fixes already here?**
+- Record: **No equivalent fix.** `22b59cb965f79` only added
+  `netif_napi_del` on the success/remove free path.
 
 ---
 
-### What the commit solves for this tree
-`ath11k_wmi_tlv_ext_hal_reg_caps()` trusted firmware `phy_id` as an
-index into a 3-slot array. A bad `phy_id` overwrites the rest of `struct
-ath11k_base`. The patch rejects those records before the copy.
+## PHASE 7: SUBSYSTEM CONTEXT
 
-### Stable rules
-Small, obviously correct, no new APIs, applies cleanly, fixes a real OOB
-write.
+**Step 7.1**
+- Record: **`drivers/net/wireless/ath/ath11k` (AHB HIF).** Criticality:
+  **IMPORTANT** — Qualcomm Wi-Fi 6 on IPQ SoCs used in routers/APs; not
+  core mm/net, but common on 6.1 LTS embedded/enterprise images.
+  `CONFIG_ATH11K_AHB`.
 
-### Risk vs benefit
-Benefit is preventing kernel memory corruption on ath11k bring-up with
-bad firmware. Risk is an early `-EINVAL` only when `phy_id` is already
-invalid.
-
-### Concerns
-No in-the-wild crash report; trigger is firmware, not unprivileged
-syscalls. That does not make an OOB write unsuitable for stable. No
-backport rework needed here.
+**Step 7.2**
+- Record: Mature driver (2019). 6.1.y still receives targeted ath11k
+  backports (rproc defer, fw deinit, IPQ5018 CE remap). Not a staging or
+  newly added subsystem.
 
 ---
 
-Verification:
-- **[Phase 1]** Parsed tags: two Qualcomm Reviewed-by, maintainer
-  SOB/Link; no Fixes/Reported-by/Cc:stable
-- **[Phase 2]** Diff: +6 in `ath11k_wmi_tlv_ext_hal_reg_caps()`;
-  `ARRAY_SIZE` check before `memcpy(&soc->hal_reg_cap[reg_cap.phy_id],
-  ...)`
-- **[Phase 2]** `MAX_RADIOS` is 3; `hal_reg_cap[MAX_RADIOS]` in
-  `core.h:971`; `phy_id` is firmware `u32`
-- **[Phase 3]** `git blame`: memcpy from `d5c65159f28953` (2019); check
-  from `f8729a40ebcc9`
-- **[Phase 3]** Introducer in v5.6, not v5.5; fix in v7.3-rc1, not v7.2
-- **[Phase 3]** `git merge-base --is-ancestor f8729a40ebcc9 HEAD` → yes
-  (mainline already has the fix; ignored as “already selected”)
-- **[Phase 3]** No series/prereqs; author has only this ath11k commit
-  here
-- **[Phase 4]** `b4 dig -c f8729a40ebcc9`: v1 at
-  patch.msgid.link/20260704011040.26233-1-pengpeng@iscas.ac.cn
-- **[Phase 4]** `b4 dig -a`: v1 only; `b4 dig -w`: maintainer + linux-
-  wireless + ath11k list
-- **[Phase 4]** mbox: Reviewed-by Baochen Qiang + Rameshkumar Sundaram;
-  Jeff Johnson applied `[1/1]`; no NAK
-- **[Phase 4]** lore HTTP fetch 403; used `b4 dig -m` instead
-- **[Phase 5]** Call chain: WMI `SERVICE_READY_EXT` →
-  `ath11k_service_ready_ext_event` → TLV parse → this function
-- **[Phase 5]** ath12k has the same unguarded pattern (sibling, not a
-  prereq)
-- **[Phase 6]** `git describe HEAD` = `v7.3-rc4-27-gf0100363d8c37`;
-  `make kernelversion` = 7.3.0-rc4; buggy function present
-- **[Phase 6]** Surrounding code still matches 2019 introducer → clean
-  apply
-- **[Phase 7]** MAINTAINERS: Jeff Johnson, Supported
-- **[Phase 8]** Failure mode: 40-byte OOB write into `ath11k_base` after
-  `hal_reg_cap[]` → HIGH
-- **UNVERIFIED:** stable@ lore search (HTTP 403); whether any shipping
-  firmware actually sent `phy_id >= 3`
+## PHASE 8: IMPACT AND RISK
+
+**Step 8.1 — Who is affected**
+- Record: **Driver-specific / config-specific:** `CONFIG_ATH11K_AHB`
+  (IPQ8074/6018/5018 class). Hybrid WCN6750 uses the PCI-common path and
+  is not fixed (or broken) by this change.
+
+**Step 8.2 — Trigger**
+- Record: `request_irq()` failure during probe (bad/missing DT
+  interrupt, IRQ exhaustion). **Uncommon on a correct board DT**, but
+  then **every** subsequent enable/disable/free and datapath completion
+  is wrong. Not an unprivileged syscall primitive; bind is typically
+  module load / boot. **Unprivileged users do not directly trigger it.**
+
+**Step 8.3 — Failure mode**
+- Swallowed ext IRQ error: **`WARN_ON(!desc->action)`** plus missing
+  TX/RX completion IRQs → **data loss / broken Wi-Fi while probe reports
+  success**. Severity: **HIGH**.
+- CE IRQ leak on failed probe: leaked IRQ actions, messy rebind.
+  Severity: **MEDIUM–HIGH** (reload already oopsed in this area before
+  `22b59cb`).
+- Dummy-netdev leak: **N/A on this tree**.
+
+**Step 8.4 — Risk vs benefit**
+- Benefit: **High** for AHB boards if `request_irq` fails (WARN_ON +
+  silent datapath loss is worse than a clean probe failure).
+- Risk of a **correct 6.1 backport**: **Low** (error paths + helper
+  split; success path behavior unchanged).
+- Risk of the **raw mainline patch**: **High** (`free_netdev` on an
+  embedded `net_device`).
+- Ratio: **favorable if adapted; do not cherry-pick as-is.**
+
+---
+
+## PHASE 9: SYNTHESIS
+
+**Step 9.1 — Evidence**
+
+**For:**
+- Real bugs in **this** 6.1 tree (CE leak; swallowed ext `request_irq`).
+- User-visible: kernel `WARN_ON`, missing datapath IRQs, data loss,
+  leaked IRQ handlers.
+- Small, one-file, no new API/feature.
+- Logic checked against probe/remove and `enable_irq` paths in this
+  checkout.
+- Present since 2019; reviewed by Qualcomm ath11k reviewers; applied by
+  Jeff Johnson.
+- PCI sibling already returns `request_irq` errors; AHB is the hole.
+
+**Against:**
+- Mainline diff **does not apply**; it assumes `alloc_netdev_dummy` /
+  pointer `napi_ndev` (`bca592ead8252` not in 6.1).
+- Third issue is **not** in 6.1.
+- Trigger is uncommon (needs `request_irq` failure).
+- No `Reported-by` / syzbot / stable-list nomination (stable search
+  UNVERIFIED).
+- Author is not an ath11k regular on this tree.
+
+**Unresolved:** stable@ discussion (HTTP 403).
+
+**Step 9.2 — Stable rules**
+1. Obviously correct and tested? **PASS** for the two applicable bugs
+   (review + maintainer apply). The shipped diff is **not** drop-in
+   correct on 6.1.
+2. Real bug affecting users? **PASS** (WARN_ON, data loss, IRQ leak on
+   AHB probe/remove).
+3. Important (crash / warn / data loss / leak)? **PASS** — HIGH for
+   swallowed ext IRQ failure.
+4. Small and contained? **PASS** (one file, ~50 lines of logic).
+5. No new features/APIs? **PASS**.
+6. Can apply to this tree? **FAIL** as a raw cherry-pick; **PASS** as a
+   small mechanical backport (drop `free_netdev` / `alloc_netdev_dummy`
+   ENOMEM path).
+
+**Step 9.3 — Exception category**
+- Record: **None** (not a device ID, quirk, DT, build, or doc fix).
+  Qualifies as a normal error-path / correctness bug fix.
+
+**Step 9.4 — Decision**
+The two bugs that matter on 6.1 are in this tree, are real, and are
+serious when they fire. The mainline commit also cleans up a later
+dummy-netdev leak that 6.1 does not have; that does not erase the AHB
+`request_irq` holes. A 6.1 backport must **not** call `free_netdev` on
+the embedded `napi_ndev`. With that adjustment, this belongs on 6.1.y.
+
+---
+
+## What the commit solves for 6.1 users
+
+On IPQ AHB ath11k, a failed `request_irq()` for an ext IRQ is ignored
+and probe still succeeds. Start/remove then `enable_irq`/`free_irq`
+unregistered lines (`WARN_ON`) and drop datapath interrupts. A failed CE
+`request_irq()` also leaks earlier CE handlers because probe’s
+`err_ce_free` never calls `ath11k_ahb_free_irq()`. Both are old,
+contained, and worth fixing on this LTS tree. The dummy-netdev part of
+the mainline patch is irrelevant here and must be omitted.
+
+---
+
+## Verification
+- [Phase 1] Parsed tags: Reviewed-by Rameshkumar Sundaram, Baochen
+  Qiang; SOB ZhaoJinming + Jeff Johnson; Link msgid 20260729020005; no
+  Fixes/Reported-by/Cc:stable
+- [Phase 2] Diff: +55/−24 in `ahb.c`; helper split + error unwind;
+  `irq_num` assigned after success
+- [Phase 3] `git log` on `ahb.c`: swallowed ext error and CE early-
+  return since `d5c65159f2895` (2019-11-23)
+- [Phase 3] No Fixes: tag; `bca592ead8252` is **not** an ancestor of
+  HEAD
+- [Phase 3] `git log --author=ZhaoJinming` on ath11k in this tree: no
+  other commits
+- [Phase 4] `b4 dig -c 8ab38bbac0229`: thread https://patch.msgid.link/2
+  0260728031335.3818736-1-zhaojinming@uniontech.com
+- [Phase 4] `b4 dig -a`: v1–v7; committed version is latest content
+  (v6+irq_num ordering, v7 resend)
+- [Phase 4] `b4 dig -w`: Jeff Johnson, Baochen Qiang, ath11k and linux-
+  wireless lists
+- [Phase 4] mbox: Baochen process comment only; no NAK; no Cc:stable
+- [Phase 4] lore.kernel.org WebFetch: HTTP 403; stable-list search
+  UNVERIFIED
+- [Phase 5] Callers: `ath11k_ahb_probe` → `config_irq`; enable path
+  `ath11k_ahb_ext_grp_enable` uses `num_irq`
+- [Phase 6] `git describe HEAD` / Makefile: **6.1.188**
+  (`p-6.1-11-gffee1c0de6cf2`); `v6.1.188` is ancestor
+- [Phase 6] `git merge-base --is-ancestor 8ab38bbac0229 HEAD`: **not
+  present**
+- [Phase 6] Read `ahb.c` 545–659 and 1219–1230: bugs 1 and 2 present;
+  `init_dummy_netdev` / embedded `napi_ndev`
+- [Phase 6] `git apply --check` of 8ab38bb: **does not apply** (expects
+  `free_netdev`)
+- [Phase 8] Failure mode verified: `enable_irq` on stored irq_num after
+  ignored `request_irq` → WARN_ON / data loss
+- UNVERIFIED: whether stable@ already discussed this commit (lore 403)
+
+The two AHB `request_irq` bugs exist in 6.1.188, are user-visible when
+they trigger, and a small adapted backport (no `free_netdev`) is the
+right way to take this commit.
 
 **YES**
 
- drivers/net/wireless/ath/ath11k/wmi.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.c | 79 +++++++++++++++++++--------
+ 1 file changed, 55 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 3305ec66ddbf2..c6b9e84b169c9 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -4816,6 +4816,12 @@ static int ath11k_wmi_tlv_ext_hal_reg_caps(struct ath11k_base *soc,
- 			return ret;
- 		}
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index b8437e23e5192..5d8c0457721cd 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -431,36 +431,44 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
+ 	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
+ }
  
-+		if (reg_cap.phy_id >= ARRAY_SIZE(soc->hal_reg_cap)) {
-+			ath11k_warn(soc, "invalid reg cap phy_id %u\n",
-+				    reg_cap.phy_id);
-+			return -EINVAL;
-+		}
+-static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
++static void ath11k_ahb_free_ext_irq_grp(struct ath11k_base *ab,
++					struct ath11k_ext_irq_grp *irq_grp)
+ {
+-	int i, j;
+-
+-	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+-		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
++	int j;
+ 
+-		for (j = 0; j < irq_grp->num_irq; j++)
+-			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
++	for (j = 0; j < irq_grp->num_irq; j++)
++		free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
+ 
+-		netif_napi_del(&irq_grp->napi);
+-		free_netdev(irq_grp->napi_ndev);
+-	}
++	netif_napi_del(&irq_grp->napi);
++	free_netdev(irq_grp->napi_ndev);
+ }
+ 
+-static void ath11k_ahb_free_irq(struct ath11k_base *ab)
++static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+ {
+-	int irq_idx;
+ 	int i;
+ 
+-	if (ab->hw_params.hybrid_bus_type)
+-		return ath11k_pcic_free_irq(ab);
++	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++)
++		ath11k_ahb_free_ext_irq_grp(ab, &ab->ext_irq_grp[i]);
++}
+ 
+-	for (i = 0; i < ab->hw_params.ce_count; i++) {
++static void ath11k_ahb_free_ce_irqs(struct ath11k_base *ab, int max_idx)
++{
++	int irq_idx, i;
 +
- 		memcpy(&soc->hal_reg_cap[reg_cap.phy_id],
- 		       &reg_cap, sizeof(reg_cap));
++	for (i = 0; i < max_idx; i++) {
+ 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
+ 			continue;
+ 		irq_idx = ATH11K_IRQ_CE0_OFFSET + i;
+ 		free_irq(ab->irq_num[irq_idx], &ab->ce.ce_pipe[i]);
  	}
++}
++
++static void ath11k_ahb_free_irq(struct ath11k_base *ab)
++{
++	if (ab->hw_params.hybrid_bus_type)
++		return ath11k_pcic_free_irq(ab);
+ 
++	ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
+ 	ath11k_ahb_free_ext_irq(ab);
+ }
+ 
+@@ -524,20 +532,25 @@ static irqreturn_t ath11k_ahb_ext_interrupt_handler(int irq, void *arg)
+ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ {
+ 	struct ath11k_hw_params *hw = &ab->hw_params;
++	struct ath11k_ext_irq_grp *irq_grp;
+ 	int i, j;
+ 	int irq;
+ 	int ret;
+ 
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+-		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 		u32 num_irq = 0;
+ 
++		irq_grp = &ab->ext_irq_grp[i];
++
+ 		irq_grp->ab = ab;
+ 		irq_grp->grp_id = i;
+ 
+ 		irq_grp->napi_ndev = alloc_netdev_dummy(0);
+-		if (!irq_grp->napi_ndev)
+-			return -ENOMEM;
++		if (!irq_grp->napi_ndev) {
++			ret = -ENOMEM;
++			irq_grp->num_irq = 0;
++			goto err_request_irq;
++		}
+ 
+ 		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
+ 			       ath11k_ahb_ext_grp_napi_poll);
+@@ -585,14 +598,11 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 				}
+ 			}
+ 		}
+-		irq_grp->num_irq = num_irq;
+-
+-		for (j = 0; j < irq_grp->num_irq; j++) {
++		for (j = 0; j < num_irq; j++) {
+ 			int irq_idx = irq_grp->irqs[j];
+ 
+ 			irq = platform_get_irq_byname(ab->pdev,
+ 						      irq_name[irq_idx]);
+-			ab->irq_num[irq_idx] = irq;
+ 			irq_set_status_flags(irq, IRQ_NOAUTOEN | IRQ_DISABLE_UNLAZY);
+ 			ret = request_irq(irq, ath11k_ahb_ext_interrupt_handler,
+ 					  IRQF_TRIGGER_RISING,
+@@ -600,11 +610,24 @@ static int ath11k_ahb_config_ext_irq(struct ath11k_base *ab)
+ 			if (ret) {
+ 				ath11k_err(ab, "failed request_irq for %d\n",
+ 					   irq);
++				irq_grp->num_irq = j;
++				ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
++				goto err_request_irq;
+ 			}
++			ab->irq_num[irq_idx] = irq;
+ 		}
++
++		irq_grp->num_irq = num_irq;
+ 	}
+ 
+ 	return 0;
++
++err_request_irq:
++	for (i--; i >= 0; i--) {
++		irq_grp = &ab->ext_irq_grp[i];
++		ath11k_ahb_free_ext_irq_grp(ab, irq_grp);
++	}
++	return ret;
+ }
+ 
+ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+@@ -629,16 +652,24 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
+ 		ret = request_irq(irq, ath11k_ahb_ce_interrupt_handler,
+ 				  IRQF_TRIGGER_RISING, irq_name[irq_idx],
+ 				  ce_pipe);
+-		if (ret)
++		if (ret) {
++			ath11k_err(ab, "failed request_irq for %d\n", irq);
++			ath11k_ahb_free_ce_irqs(ab, i);
+ 			return ret;
++		}
+ 
+ 		ab->irq_num[irq_idx] = irq;
+ 	}
+ 
+ 	/* Configure external interrupts */
+ 	ret = ath11k_ahb_config_ext_irq(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to configure ext irq: %d\n", ret);
++		ath11k_ahb_free_ce_irqs(ab, ab->hw_params.ce_count);
++		return ret;
++	}
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
 -- 
 2.53.0
 
