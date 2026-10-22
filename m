@@ -2,104 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6F3606A31F
-	for <ath11k@archiver.kernel.org>; Thu, 22 Oct 2026 06:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DC9606A31F
+	for <ath11k@archiver.kernel.org>; Thu, 22 Oct 2026 06:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FkgJWnSx;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kfQjMjbR
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oy7bUrk2;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iiVh0ko0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=InOhwMgahGJyb6tOkMeBMHX6+1D9KY8fWjWr1Ll22Rw=; b=FkgJWnSxEe+iU/kP9odo3JuNN3
-	646PRCytkI2ta5d4dBgwKYvhLtGdnZKvIflHPO8zSNF4AeAAhkN2r+c6rAh8AefI1HYgg+0oaH8EA
-	2TEYAD6Qg/RHTgD8jHLQ74gDtNLMaC06mL4YJ/TSp4nYl4+iOP6vWpp9G5Hr356vx4PlLXvaMrcZk
-	IFsptA+4J+Q90CyeibPY8m9JJOgOuAzJK3q7G4NJvpTqoUyaKWI8BFWUc3KL64tzjaF3HImDiNZue
-	M8nwiF3PBIDXrMNBEWMleIIsP6j8TA7tO35w07qXbpDMo1MwL+QY+DevRyehNTsdb+iAsgBsi8u1o
-	s2wMOqFg==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7Lo8K72+x+3BIcLLPGxgUbde81XtXZI0ot8cn4aPlxc=; b=oy7bUrk2+Xq3Qn
+	CY80aURsoyWe996xYIaAkNoZhmkPYN95EaP2sH3DO4ouOnLGx9M/1WG+2AuxIBtlf8/VLZPOUG5w4
+	+jdJkKPnHWGyTu3yTIvXt7q17UK19rOL8rKpo84JIbT+tVCY1StAHVZZ5XGZxedHGvVg0blrmss6L
+	8k3wOD6JPQHzkSSRqY1yeDf4G66VgAbdhbKuUBC8e18JuSktX0pf7dSxZOxCkMEsMiHxJulS3wBDe
+	nDDXEKsq4sBIuRm0iNRtsig0PdFva9Sr1ZJig9CudS3busve6CrC3jEXx4d3AeWMRzthEgi6MknbJ
+	pO2fcY3zUczjTNs2Q1ow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xJmVe-0000000DUT9-28Ru;
-	Thu, 22 Oct 2026 06:42:42 +0000
+	id 1xJmVh-0000000DUUr-36SU;
+	Thu, 22 Oct 2026 06:42:45 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xJmVd-0000000DUSd-3joM;
+	id 1xJmVe-0000000DUSf-0VFr;
 	Thu, 22 Oct 2026 06:42:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 15BF2601F1;
+	by tor.source.kernel.org (Postfix) with ESMTP id 8FE3560210;
 	Thu, 22 Oct 2026 06:42:41 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1792651360;
-	b=wG4eV1eJY9bxsFDzF5oOiU+7yGLpZHjZD4F6X2E2wz+k2hC9li8iamZtLzTk8nqetVuL
-	 UxKZsFYvhk81LeecQHboeHI0hxd1rj2fhGiGRG3TgfDlQXr61pZKiuUdzGParH1V78zEm
-	 2jiFT6SaQ233g/rgdU3NxS0vEoUDB4ffGNzXrzo3uL+xrtiBsu1+qxo9S/Bh1cjibhYwH
-	 nB2717UZ8RkK8xAW6fb953pZAqpWKgIa7Tjy1L5C9ifoGu3Kd/gFi91SyEF/oixnpaWP5
-	 8Y2zt56HVFfywYaa/8r8RIozbOhEmHZV9Sfd1VblzKeVJE7zwenMPENnoguKG5jrv4A==
+	t=1792651361;
+	b=C4pfUa6sCV2y+QV9oPm2hIvfecuDRFVwH0YyjTCejFRMiGnAt/1W2OIOBBiTufWMS8W0
+	 8WDPZSExBZnf851Z/PGtFgTsdxKlIIiyCPYPGCYIjS9Lrtv0Df8Vdkgdl+QEDHvHNQ5aU
+	 KcOp/OoxTlzqXFa1UDrNY9Em0RN1NaNHKqT21UYcQ2kV4zVOxyihruPK4ycB7+1MxZfD1
+	 hhqqQwsa6tZIRH2xLc8kx+cPVylz5H/zTstPqjrSMMQtIWy2BEv098DjOHbdK/iTqybkK
+	 JAfhcX+9ZVhpXQr5uHgntCoR9h0ACIBRrqmeM9KmkB92cfazu53x0QsFYROBGEPhXhw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1792651360;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=InOhwMgahGJyb6tOkMeBMHX6+1D9KY8fWjWr1Ll22Rw=;
-	b=j4YBUvK3fO2yvzzZi0YNlvezFLKlADr5cQt7//YynEGavqFMSBFNIcTRSjL1UVvn0mSQ
-	 SqP3mH10Kl9RB3P6KMqRAfvhgUxwefVDJqk7/LhzstW3hp5vePJ+3vwh19dHALr0MTFe3
-	 Ga1ej6/jfBqSwZPqoYg829YiOcArs5siL3gzxFJ55vLam2uOcaVprNIFLuPErZDHjE/P3
-	 Khkt74uMQw1y5MYm7L1VvhjweW4XMzn+kjaaTdrrMKq3mJijWj1GubWDK9aNVxSKuXWFA
-	 BEfTbS5jPHKupjFW+QxafEWVbzBaBlsZBazTCDj75amZqAFXJrVPk5Fh36BIYoyShIQ==
+	c=relaxed/relaxed; t=1792651361;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=7Lo8K72+x+3BIcLLPGxgUbde81XtXZI0ot8cn4aPlxc=;
+	b=MMwS3PftW6CEVP9d0GHoHSIh310z5Vkp1nrStziBQA3syJ/9OxKq8H+Nj2qnoyiJHXsi
+	 9iT+xcsj27rR4oMTOtgAFnlDr5rhdcX8iDgEt/Hk7V7+d6CmXusiIhiQyLehMTegUbhQ7
+	 /qPHV09haKrH5OWFGwKjomO+QEjbYbL6MXPt8RCHikAGwTpWXn3TLx5IxREQs0O7vG+Ml
+	 Y8UNAQlANFmXFWWoWZ6Bcawm/iFhB//GCqvqwXmSeeZZ1fGc5abvgU+86zqp8hGQo3Oib
+	 MlX3hQEn7SBbK/Sfk8uw3j+8ZMBC0MgLAMEkqN0rP+c2/gq5kBAN8jfsSu0tj1QgHow==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 354DA1F000C1;
+	by smtp.kernel.org (Postfix) with ESMTPS id 43AA31F000C3;
 	Thu, 22 Oct 2026 06:42:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792651360;
-	bh=InOhwMgahGJyb6tOkMeBMHX6+1D9KY8fWjWr1Ll22Rw=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=kfQjMjbRE+fWIWapQF5rODqSkaos6NNzbGi9VaXr5sq6eZYp7EGb3ZZdnNFwt/Tf/
-	 5NV2TlkR+AbwH+HmVIjFDf3wZUEgBj+7gHDGu2udu2FM3X4euULZH5p9HU5iXb5/xG
-	 mCDzHymNDkJxghUyhlttWsJ2T36VedGSPni4j7nKw9F6mt9ers/p4Kn8k07H7TTOgQ
-	 R0vqJgICC25zli96bOfDY/s9lFb1qMCmB248YkZYzUC54b8ATPOIS3W976Av2fdDQu
-	 3F6JsA59Vvx91ZkldnakMFx6K1Kojs1yg0ZG4erwht24oH6hFffhGQgpKbcQoOTuXL
-	 3QaU7iFrjCgmw==
+	s=k20260515; t=1792651361;
+	bh=7Lo8K72+x+3BIcLLPGxgUbde81XtXZI0ot8cn4aPlxc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=iiVh0ko00ZABYm9K6MadoQZ+VYkoxRvhUOUvXRKURTQwL+4m364+VQu2GX3O3Cbqs
+	 uLijuIQPRSlHoX2Mb+gcVwf0tjvoaP8FAoY3FSwSWx39JBr7vA1qX3jl5bn37SoGik
+	 C3GHaDMCqB5RTxCtfS6LjD4iuvIfmOmDUeNe2GrCgDq2oiQS4tFermvF0aOc/K0ZKI
+	 O7tfjQD4ZATOzx3CLOvEU17CTWpqwFZBv1hz2Z4M2PU+e2gpMcIU/BFMH5HqYWEAVM
+	 RqwLZLwTU+j4BeXd5dDnW4hP5hQHVBDAcCVhmmKF5QcF+Lg9GHQ9RS8VY2+mDbLUAH
+	 shmtzRo1WUEKA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B99C14349D;
+	by lkml.kernel.org (Postfix) with ESMTP id C992043527;
 	Thu, 22 Oct 2026 06:42:39 +0000 (UTC)
 From: John Macias via B4 Relay <devnull+dencity7.gmail.com@kernel.org>
-Subject: [PATCH ath-next v2 0/2] wifi: ath11k/ath12k: bound READY MAC
- address array reads
-Date: Wed, 21 Oct 2026 23:42:36 -0700
-Message-Id: <20261021-rdy-mac-array-bounds-v2-0-cf7f45f868dd@gmail.com>
+Date: Wed, 21 Oct 2026 23:42:38 -0700
+Subject: [PATCH ath-next v2 2/2] wifi: ath12k: bound READY MAC address
+ array reads
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFyw2WoC/32OwQ6CMBBEf8Xs2TVtTWniyf8wHEq7Qo20ZlsIh
- PDvAt49TmbezCyQiQNluJ0WYBpDDiluQp1P4DobW8LgNw1KqEoKqZH9jL11aJntjE0aos/oyQh
- njBZKGtjQD9MzTEftA2zpMNJUoP45eWhe5Mreume7kEvi+XgwyoP4PzZKFKg9KVM1Rit7vbe9D
- e+LSz3U67p+AcxXqDnUAAAA
-X-Change-ID: 20261015-rdy-mac-array-bounds-de70c7750217
+Message-Id: <20261021-rdy-mac-array-bounds-v2-2-cf7f45f868dd@gmail.com>
+References: <20261021-rdy-mac-array-bounds-v2-0-cf7f45f868dd@gmail.com>
+In-Reply-To: <20261021-rdy-mac-array-bounds-v2-0-cf7f45f868dd@gmail.com>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  linux-kernel@vger.kernel.org, ath12k@lists.infradead.org, 
  John Macias <dencity7@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1792651359; l=1870;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1792651359; l=1848;
  i=dencity7@gmail.com; s=20261015; h=from:subject:message-id;
- bh=x634za5mpA5H7Frs7sJ8rHx/6pRCwtwzuVGuauUUndo=;
- b=yaLCM504EmJZP6hNt0Myf5YCfZ1kgaq5TM0OZFN40E16PNsE/PADW/nPDvEmFiNMFcHI0nUoy
- Zddlo9Wx0AuBQV544WoGKR0KpxRpo+LvEDRx9GlO+z2AjEbrcDfMVNj
+ bh=Q7bR+qmBnYByCGbR1Dt5w8wYWTuypEv1iCd0orMgbPU=;
+ b=iszuxz1/FBi89e2XnAoX0xyM5ZS1WT29ZYeAuY7KlQQiVQdr4s5xAI1f8R0Y2fUZ18SmHXrC1
+ z7yvZPmE6i+AQEXadz7ju3C8X5cNlYyrxkHy25tJCQOt2cZ6Y3APOJB
 X-Developer-Key: i=dencity7@gmail.com; a=ed25519;
  pk=z7cMHA0B6NULvJzsST/bbOOegMB6xCo9+/ytQure7B8=
 X-Endpoint-Received: by B4 Relay for dencity7@gmail.com/20261015 with
  auth_id=1198
 X-Original-From: John Macias <dencity7@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,58 +108,61 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Reply-To: dencity7@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ath11k_wmi_tlv_rdy_parse() and ath12k_wmi_rdy_parse() copy one MAC
-address per radio from the READY event's fixed-struct array after
-checking only the count advertised in the fixed record, not the array
-TLV length. A firmware READY event with a short array makes the copy
-read past the end of the TLV value.
+From: John Macias <dencity7@gmail.com>
 
-These patches check the array length first and fall back to the
-driver's default per-radio addresses when it is too short.
+ath12k_wmi_rdy_parse() has the same pattern as ath11k: after checking
+that the READY fixed record advertises at least num_radios extra MAC
+addresses, it copies one address per radio from the
+WMI_TAG_ARRAY_FIXED_STRUCT TLV without checking that the TLV actually
+holds num_radios entries.
 
-Found while bringing up an IPQ8074 v1 device with older firmware; the
-issue is not specific to that hardware. Verified with a userspace harness
-around the unmodified parsers under AddressSanitizer. Compile tested
-on ath-next (W=1). The ath11k change has also run on an IPQ8074 hw1.0
-board on every boot since 16 Oct; its firmware sends a well-formed
-array, so that covers the normal path only. The ath12k change is
-compile tested only. Neither has been tested on hardware with a
-malformed event.
+With two radios and an array shorter than two 8-byte entries, the second
+ether_addr_copy() reads past the end of the TLV value.
 
-Jeff, following your pointers on my earlier ath12k RX-ring RFC, these
-carry a full-name sign-off, an Assisted-by tag, and state the testing
-explicitly. This work was developed with AI assistance.
+Check the array length against num_radios before copying. When it is too
+short, warn and leave pdevs_macaddr_valid unset, so the driver keeps its
+default per-radio addresses instead of failing READY processing.
 
+A userspace harness that includes the unmodified parser reports a 6-byte
+heap-buffer-overflow read under AddressSanitizer for 8- and 12-byte
+arrays with two radios, and the fixed parser passes. Compile tested only
+(ath-next, W=1).
+
+Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices")
+Assisted-by: LLM
+Signed-off-by: John Macias <dencity7@gmail.com>
 ---
-Changes in v2:
-- Drop RFC.
-- ath11k: note the hardware run and add a Tested-on tag; no code change.
-- v1 was accidentally sent twice; apologies for the duplicate.
-- Link to v1: https://patch.msgid.link/20261015-rdy-mac-array-bounds-v1-0-5de276b752a3@gmail.com
-
----
-John Macias (2):
-      wifi: ath11k: bound READY MAC address array reads
-      wifi: ath12k: bound READY MAC address array reads
-
- drivers/net/wireless/ath/ath11k/wmi.c | 6 ++++++
  drivers/net/wireless/ath/ath12k/wmi.c | 6 ++++++
- 2 files changed, 12 insertions(+)
----
-base-commit: cd026e68fdbf88b9cc522b76c7a9d92c9a41f709
-change-id: 20261015-rdy-mac-array-bounds-de70c7750217
+ 1 file changed, 6 insertions(+)
 
-Best regards,
---  
-John Macias <dencity7@gmail.com>
+diff --git a/drivers/net/wireless/ath/ath12k/wmi.c b/drivers/net/wireless/ath/ath12k/wmi.c
+index 75b259990c..ef070ace08 100644
+--- a/drivers/net/wireless/ath/ath12k/wmi.c
++++ b/drivers/net/wireless/ath/ath12k/wmi.c
+@@ -7099,6 +7099,12 @@ static int ath12k_wmi_rdy_parse(struct ath12k_base *ab, u16 tag, u16 len,
+ 		if (!(ab->num_radios > 1 && num_mac_addr >= ab->num_radios))
+ 			break;
+ 
++		if (len < ab->num_radios * sizeof(*addr_list)) {
++			ath12k_warn(ab, "ready event mac address array too short: %u bytes for %d radios\n",
++				    len, ab->num_radios);
++			break;
++		}
++
+ 		for (i = 0; i < ab->num_radios; i++) {
+ 			pdev = &ab->pdevs[i];
+ 			ether_addr_copy(pdev->mac_addr, addr_list[i].addr);
+
+-- 
+2.47.3
 
 
 
