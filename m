@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F10606A32C
-	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 16:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE9F606A31C
+	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 16:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a+rTRSwH;
-	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=V2eYtkcO
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w8vEu3lc;
+	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=gg6X6lYt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
@@ -14,47 +14,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=+Hcw6ChGcYDsBOLvV15AWtaOoAcXtAbBHg8paBG5N7A=; b=a+rTRSwHQ0sAxzU2H/XWwFUWht
-	L6VO9eINw8zEYMTFz3Qlpa5Yk8bOy1lPipMGnBKn8sLXeE723CED6fc+i+sV3FjJJnTAyj/Ylg5+n
-	BY5tAeM3mwtPktSHz4YfWxnjAW4Ej48AYi2SQE5S7yurRmXIartuFRQmLv2oalDIs88Whxfw/309s
-	8Qzh0finNU8DY923P4G+oeGdlp8DMHZlKB9L1T2cKNTAR+RUcR6KVfQ/R3Q4QjYDHYsu/yAz7ehcR
-	GvRPzqahQjv94zmelJSGlBj68GVQzuzRxNsJG1WLQX1ncxTsuIFzxV4n9mxHaPcxhr93twg+y7HFO
-	kZc3gnVw==;
+	bh=Kd9tL7nbYj58IN9wQcXJ3Dyge2/jqnTJA16TRM9TzyM=; b=w8vEu3lc6So91JJKPhfLOTIgAs
+	+rEJwG/VyB2P763ae7Sm01nGj2dsBN5L1kUADVP2hqmNQcG5IiojeRZpxURjrp4l60COKVTOjiZld
+	KwVscW6c+66TLlQ6Xfe2hWzcQMmag9P/TRiMrRnjZYSGAm5aeAWwWVa3/sL+JWdk2xfPFvFHqGSwT
+	CU4ASNyOeuQEM7j4kNk0tLRfaDq6zd3hcUFrH1z2QvS/m4NBsAQXJmSZfaHSlkYR1kHOb5CVfX9uG
+	2/DkIE03zTvVU5QWRnkrL1V8kG+u+vzB0KPhMyMMEQiamMDh31oi3rgibqvWbz1sAvp7Bov0OVv8P
+	UGYpp3tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMT9H-00000009pt2-1d99;
-	Thu, 29 Oct 2026 16:38:43 +0000
+	id 1xMT9M-00000009pwM-26WS;
+	Thu, 29 Oct 2026 16:38:48 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMT94-00000009pk3-2PNi
+	id 1xMT9F-00000009pr4-0Xnl
 	for ath11k@lists.infradead.org;
-	Thu, 29 Oct 2026 16:38:42 +0000
+	Thu, 29 Oct 2026 16:38:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1793291909;
+	s=mimecast20190719; t=1793291920;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+Hcw6ChGcYDsBOLvV15AWtaOoAcXtAbBHg8paBG5N7A=;
-	b=V2eYtkcOl29x7Gvmr3aXYxfWWVh8Utbv20rara+NUkIzqpM1x4N32N0OCS4GaDNCfUmw0I
-	u78AyRPlj1JoUOuJdzEft5q+j/9UJIY8qYFG95cL7RXkh06FYH28mod40mSwAE6H22+GOP
-	WIQF1G++aZO/2KhDMGiePCS3J9e4wcI=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+	bh=Kd9tL7nbYj58IN9wQcXJ3Dyge2/jqnTJA16TRM9TzyM=;
+	b=gg6X6lYtFQcKS0RHve+0K4BxkcnoJY1/0PQBmR3yVuzdEFEpqahqcMDNwgaCoPFh6Aj2+s
+	lEPiyFjIWQmCPepagrWICjKPN+DrXaqX6TgapruI/d9CCGAiB+VrdC+NwNgg94EsYXWTxv
+	SjouCsT8T0jO9o1W+X0fhj/vcrC4b28=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-54-IZUHoYpdON-BLUmfP8xBgg-1; Thu,
- 29 Oct 2026 12:38:24 -0400
-X-MC-Unique: IZUHoYpdON-BLUmfP8xBgg-1
-X-Mimecast-MFC-AGG-ID: IZUHoYpdON-BLUmfP8xBgg_1793291901
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-588-e7qNfC78PaKQ5hKdG1KwUw-1; Thu,
+ 29 Oct 2026 12:38:36 -0400
+X-MC-Unique: e7qNfC78PaKQ5hKdG1KwUw-1
+X-Mimecast-MFC-AGG-ID: e7qNfC78PaKQ5hKdG1KwUw_1793291914
 Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 6867A1935311;
-	Thu, 29 Oct 2026 16:38:21 +0000 (UTC)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id B9801180B5CC;
+	Thu, 29 Oct 2026 16:38:33 +0000 (UTC)
 Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 5426E1956088;
-	Thu, 29 Oct 2026 16:38:16 +0000 (UTC)
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 669011955F01;
+	Thu, 29 Oct 2026 16:38:29 +0000 (UTC)
 From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
 To: jgg@ziepe.ca,
 	alex@shazbot.org,
@@ -76,22 +76,22 @@ Cc: johannes@sipsolutions.net,
 	ath12k@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Subject: [PATCH v3 5/8] ath11k: use KVM MSI domain for VM passthrough
-Date: Thu, 29 Oct 2026 17:37:10 +0100
-Message-ID: <20261029163713.1366077-6-jtornosm@redhat.com>
+Subject: [PATCH v3 6/8] ath12k: add PCIe link recovery retry
+Date: Thu, 29 Oct 2026 17:37:11 +0100
+Message-ID: <20261029163713.1366077-7-jtornosm@redhat.com>
 In-Reply-To: <20261029163713.1366077-1-jtornosm@redhat.com>
 References: <20261029163713.1366077-1-jtornosm@redhat.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-MFC-PROC-ID: eAeZ3g7KfXu9otytYq1t10Ta_50EA0aSdetkuI-h_Qg_1793291901
+X-Mimecast-MFC-PROC-ID: FIIyV50kZmGAGQ1JTc0LJOxMWYuJzTs5avil4YZhhDk_1793291914
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261029_093830_718141_0F6499F8 
-X-CRM114-Status: GOOD (  13.44  )
-X-Spam-Score: 0.5 (/)
+X-CRM114-CacheID: sfid-20261029_093841_263277_E5EFEFB8 
+X-CRM114-Status: GOOD (  14.70  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,82 +105,121 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Qualcomm ath11k firmware programs MSI addresses directly into
-device BAR registers for CE/SRNG ring interrupt delivery, bypassing
-the standard PCI config MSI path managed by QEMU/VFIO. In a VM, the
-firmware receives the guest virtual APIC address instead of the host
-IRTE address, causing DMAR faults and non-functional interrupts.
+When ath12k devices are passed through to VMs via PCIe passthrough,
+the PCIe link may not stabilize immediately after global reset due to
+virtualization layer timing variations. This causes MHI initialization
+to fail with "BHI offset: 0xffffffff is out of range" errors because
+the device is read before it's ready.
 
-When CONFIG_PCI_KVM_MSI_DOMAIN is enabled, use the KVM PCI MSI domain
-synchronization functions to obtain the correct host physical MSI
-address after MSI is enabled in power_up. The kvm_pci_msi_wait_ready()
-function performs a KVM hypercall to retrieve the host MSI address,
-and kvm_pci_msi_get_address() reads the cached values to update the
-driver's internal MSI address/data used for ring configuration.
+Currently, ath12k_pci_soc_global_reset() just warns if the link is
+down but continues anyway, leading to inevitable MHI failures.
 
-This placement (after msi_enable in power_up) ensures:
-- Host MSI is enabled and stable (QEMU has completed setup)
-- No MSI state transitions are in progress
-- CE/SRNG rings have not been programmed yet
-- The function runs on every power_up, including recovery
+This patch adds:
+1. A retry loop (up to 5000ms) to wait for the PCIe link to recover
+   after global reset (similar to the existing LTSSM retry logic)
+2. Proper error propagation to prevent continuing with a dead link
 
-On baremetal, if CONFIG_PCI_KVM_MSI_DOMAIN is not enabled the code is
-compiled out and the behavior is identical to the original. If
-CONFIG_PCI_KVM_MSI_DOMAIN is enabled (e.g. distribution kernels), the
-KVM MSI functions detect baremetal at runtime and return immediately,
-preserving the original behavior with no side effects.
+This is especially important for VM environments where timing can vary
+significantly from bare metal.
 
 Signed-off-by: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
 ---
-v3: new
-v2: https://lore.kernel.org/all/20261011074514.515894-1-jtornosm@redhat.com/
+v3: no modification
+v2: https://lore.kernel.org/all/20261011074514.515894-7-jtornosm@redhat.com/
 
- drivers/net/wireless/ath/ath11k/pci.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/net/wireless/ath/ath12k/pci.c | 38 ++++++++++++++++++++++-----
+ 1 file changed, 31 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 7e29ebaf9773..31889e5caa8d 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -7,6 +7,9 @@
- #include <linux/module.h>
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#if IS_ENABLED(CONFIG_PCI_KVM_MSI_DOMAIN)
-+#include <linux/pci-kvm-msi.h>
-+#endif
- #include <linux/of.h>
- #include <linux/time.h>
- #include <linux/vmalloc.h>
-@@ -855,6 +858,13 @@ static int ath11k_pci_power_up(struct ath11k_base *ab)
+diff --git a/drivers/net/wireless/ath/ath12k/pci.c b/drivers/net/wireless/ath/ath12k/pci.c
+index 12bbb75570f1..f7879fb48d32 100644
+--- a/drivers/net/wireless/ath/ath12k/pci.c
++++ b/drivers/net/wireless/ath/ath12k/pci.c
+@@ -181,8 +181,10 @@ static void ath12k_pci_restore_window(struct ath12k_base *ab)
+ 	spin_unlock_bh(&ab_pci->window_lock);
+ }
  
- 	ath11k_pci_msi_enable(ab_pci);
+-static void ath12k_pci_soc_global_reset(struct ath12k_base *ab)
++static int ath12k_pci_soc_global_reset(struct ath12k_base *ab)
+ {
++	bool link_recovered = false;
++	int retries = 250;
+ 	u32 val, delay;
  
-+#if IS_ENABLED(CONFIG_PCI_KVM_MSI_DOMAIN)
-+	if (kvm_pci_msi_wait_ready(ab_pci->pdev, 500) > 0)
-+		kvm_pci_msi_get_address(ab_pci->pdev, &ab->pci.msi.addr_lo,
-+					&ab->pci.msi.addr_hi,
-+					&ab->pci.msi.ep_base_data);
-+#endif
+ 	val = ath12k_pci_read32(ab, PCIE_SOC_GLOBAL_RESET);
+@@ -206,14 +208,28 @@ static void ath12k_pci_soc_global_reset(struct ath12k_base *ab)
+ 
+ 	mdelay(delay);
+ 
+-	val = ath12k_pci_read32(ab, PCIE_SOC_GLOBAL_RESET);
+-	if (val == 0xffffffff)
+-		ath12k_warn(ab, "link down error during global reset\n");
++	/* Wait for PCIe link to recover, especially important in VM environments
++	 * where timing can vary significantly from bare metal.
++	 */
++	while (retries-- > 0) {
++		val = ath12k_pci_read32(ab, PCIE_SOC_GLOBAL_RESET);
++		if (val != 0xffffffff) {
++			link_recovered = true;
++			break;
++		}
++		mdelay(20);
++	}
++	if (!link_recovered) {
++		ath12k_err(ab, "PCIe link failed to recover - device may need power cycle\n");
++		return -ETIMEDOUT;
++	}
+ 
+ 	/* Restore window register as its content is cleared during
+ 	 * hardware global reset, such that it aligns with host cache.
+ 	 */
+ 	ath12k_pci_restore_window(ab);
 +
- 	ret = ath11k_mhi_start(ab_pci);
- 	if (ret) {
- 		ath11k_err(ab, "failed to start mhi: %d\n", ret);
-@@ -1350,6 +1360,9 @@ module_exit(ath11k_pci_exit);
++	return 0;
+ }
  
- MODULE_DESCRIPTION("Driver support for Qualcomm Technologies PCIe 802.11ax WLAN devices");
- MODULE_LICENSE("Dual BSD/GPL");
-+#if IS_ENABLED(CONFIG_PCI_KVM_MSI_DOMAIN)
-+MODULE_SOFTDEP("pre: pci-kvm-msi");
-+#endif
+ static void ath12k_pci_clear_dbg_registers(struct ath12k_base *ab)
+@@ -299,8 +315,10 @@ static void ath12k_pci_force_wake(struct ath12k_base *ab)
+ 	mdelay(5);
+ }
  
- /* firmware files */
- MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/*");
+-static void ath12k_pci_sw_reset(struct ath12k_base *ab, bool power_on)
++static int ath12k_pci_sw_reset(struct ath12k_base *ab, bool power_on)
+ {
++	int ret;
++
+ 	if (power_on) {
+ 		ath12k_pci_enable_ltssm(ab);
+ 		ath12k_pci_clear_all_intrs(ab);
+@@ -309,8 +327,12 @@ static void ath12k_pci_sw_reset(struct ath12k_base *ab, bool power_on)
+ 
+ 	ath12k_mhi_clear_vector(ab);
+ 	ath12k_pci_clear_dbg_registers(ab);
+-	ath12k_pci_soc_global_reset(ab);
++	ret = ath12k_pci_soc_global_reset(ab);
++	if (ret)
++		return ret;
+ 	ath12k_mhi_set_mhictrl_reset(ab);
++
++	return 0;
+ }
+ 
+ static void ath12k_pci_free_ce_irq(struct ath12k_base *ab, int num_ce)
+@@ -1452,7 +1474,9 @@ int ath12k_pci_power_up(struct ath12k_base *ab)
+ 
+ 	ab_pci->register_window = 0;
+ 	clear_bit(ATH12K_PCI_FLAG_INIT_DONE, &ab_pci->flags);
+-	ath12k_pci_sw_reset(ab_pci->ab, true);
++	ret = ath12k_pci_sw_reset(ab_pci->ab, true);
++	if (ret)
++		return ret;
+ 
+ 	/* Disable ASPM during firmware download due to problems switching
+ 	 * to AMSS state.
 -- 
 2.56.0
 
