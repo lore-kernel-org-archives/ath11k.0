@@ -2,40 +2,40 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35981606A325
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52CCA606A320
 	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 04:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pnCa8qs3;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Gr8qnu41
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JvZd7C6C;
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=m/tFNfMJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TIS1eakvHI8+nc46GSQLddSxCI4HVRv7Ah/8EnxGvVs=; b=pnCa8qs3AlAtyR
-	ISfRsSx3EHbIPTs86aJ44VgUsAsBXIJqg/VKs0xKnkNTS34sG6JkRRPq8QNSVYFwX20uDljTb4pLE
-	gbOz5QkXU0SOE+GaMqXG72gzgSGYFtBDvLhiz//4jOS1KTDPJg7DHlzOvf7JPg7GXuFi4b6VwrvRP
-	t4v86PgCYYmXs+sKUEF7q0o4ZTIM9QnXogS/vIGsZdFWwqE5zd2Bbyokr8lbkk1glc3csVIMG1l1+
-	MvvoN4jCcM4jNgk6wm685ISCbHBAu9YjyfglmqEBNMS3nFtwbb1zokbxpDbbat2vA7S0k9aS9GwJU
-	Z07lz2Z5unGxbnLiQsjw==;
+	List-Owner; bh=9eDZ1tyXFZupu+NBPF56Dz9t7vnEPEkY79v4CEYA78k=; b=JvZd7C6CxyC6hK
+	LPFXZcBU2kaWRxXUGJkbSKw2JfkXF10Zq8RheWSh5NcWRwnQ1lH/pgQiuMMMcB9ba/5hSPjFQzpwl
+	ZhxvkwxFBxmBbYAmIvCUmW2hEWLqHxHPQF3pf7p6tx7kqysdaBXoXdzUhrxWJvRze0EdV0VO6awG/
+	LCXoF40npwrMWabWTTODr/ouKls4D0cilqY0VltTqD9FN4ojsNdnYQKVc4bhbZdvV5mKV7/i2NZe2
+	JN5ow+eBnUwURKdqIKlo+jR5SiNgrew4w0cGpdSFUN6GhTPwmNOdq3B9Q2XuZZanFt3dJ8QPbXJg5
+	YN/4zP+aRm+v8daTszeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMHau-00000008Ie2-0W98;
-	Thu, 29 Oct 2026 04:18:28 +0000
-Received: from m16.mail.163.com ([117.135.210.3])
+	id 1xMHat-00000008IdV-1mLr;
+	Thu, 29 Oct 2026 04:18:27 +0000
+Received: from m16.mail.163.com ([220.197.31.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMHaq-00000008Ib6-1c6e;
+	id 1xMHap-00000008Ib5-2lKU;
 	Thu, 29 Oct 2026 04:18:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=TI
-	S1eakvHI8+nc46GSQLddSxCI4HVRv7Ah/8EnxGvVs=; b=Gr8qnu41zMvgzCQFL4
-	CMliPrLiR9VssdJgAtch18G6V8SSXQz4d85j/89Sa3H/kGQBlxpwB437j8M11C+T
-	AB+OAXh9qf6VQCnGQnoEZS1aOvfYxaKwRLKUo3MNPISN9m83kL+pznqBq6Q9GQXp
-	olUEJUbqaZNHeOqVBGzAfsveg=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=9e
+	DZ1tyXFZupu+NBPF56Dz9t7vnEPEkY79v4CEYA78k=; b=m/tFNfMJMY54Tccop+
+	gTW1MusOgvZuQw8toDZ0F5peh2VCPg5TLbX2Ejn2ob4jDJ/OJX3OW3LFx+U9qhiK
+	QnnN2m8Tyav4qp2G+vVUriPpdYhyAivPrsDRoIW+i0gkHAM1CHCE0faF1wr8EafF
+	pBYtk68V5cGqps+SxttIE/lak=
 Received: from pc.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3nzIDyeJqQW5fDg--.62716S4;
-	Thu, 29 Oct 2026 12:18:13 +0800 (CST)
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3nzIDyeJqQW5fDg--.62716S6;
+	Thu, 29 Oct 2026 12:18:14 +0800 (CST)
 From: Jiale Yao <yaojiale02@163.com>
 To: Jeff Johnson <jjohnson@kernel.org>,
 	ath11k@lists.infradead.org,
@@ -43,24 +43,24 @@ To: Jeff Johnson <jjohnson@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-wireless@vger.kernel.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH v2 2/5] wifi: ath11k: validate hardware mode capability TLVs
-Date: Thu, 29 Oct 2026 12:18:08 +0800
-Message-Id: <20261029041811.2379878-3-yaojiale02@163.com>
+Subject: [PATCH v2 4/5] wifi: ath12k: validate DMA buffer release TLV lengths
+Date: Thu, 29 Oct 2026 12:18:10 +0800
+Message-Id: <20261029041811.2379878-5-yaojiale02@163.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261029041811.2379878-1-yaojiale02@163.com>
 References: <20261029041811.2379878-1-yaojiale02@163.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wD3nzIDyeJqQW5fDg--.62716S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7JF4xJFy3JF4xKrW7tFyDAwb_yoW8JrWDpF
-	4xGw1UA348Jw47Jw4fAa1xZa45Kan5K34agFW7t34fWF18CF1rXFyYqFWYqFyrtF4UGFya
-	qF4qqrW5AF98t3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jDL05UUUUU=
-X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7wXGAWriyQXt7wAA3r
+X-CM-TRANSID: _____wD3nzIDyeJqQW5fDg--.62716S6
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WFW3uFW5WF1DArW7Gr45Jrb_yoW8WrW3pF
+	4fWw12k348CrsrWwn3Zw4xZa4Ykan3W347KFWxt34fua1rCr15tFyYgFWYvFyYyr1rtr12
+	9a1jgr4fArn8trJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UROJOUUUUU=
+X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7wbGAWriyQbuDAAA3L
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261028_211824_791088_B6F6957E 
-X-CRM114-Status: UNSURE (   8.71  )
+X-CRM114-CacheID: sfid-20261028_211824_074027_9E2CD064 
+X-CRM114-Status: UNSURE (   8.33  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.8 (-)
 X-BeenThere: ath11k@lists.infradead.org
@@ -82,33 +82,39 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The service-ready parser indexes hardware mode capability TLVs using the
-full structure stride and reads their PHY maps without validating the
-firmware-declared payload length.  A short TLV can therefore cause an
-out-of-bounds read.
+The DMA buffer release parser copies fixed parameters and counts nested
+entry and metadata TLVs. It does not ensure that their payloads cover
+the complete structures later read by the parser and direct buffer ring
+handler. Short firmware TLVs can therefore lead to out-of-bounds reads.
 
-Add a minimum-length policy for hardware mode capability TLVs.
+Add minimum-length policies for the fixed TLV and both nested TLV types.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices")
 Cc: stable@vger.kernel.org
 Signed-off-by: Jiale Yao <yaojiale02@163.com>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/net/wireless/ath/ath12k/wmi.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index ef2c2c300854..047ae8f5bb60 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -167,6 +167,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
- 		.min_len = sizeof(struct wmi_dma_buf_release_entry) - TLV_HDR_SIZE },
- 	[WMI_TAG_DMA_BUF_RELEASE_SPECTRAL_META_DATA] = {
- 		.min_len = sizeof(struct wmi_dma_buf_release_meta_data) - TLV_HDR_SIZE },
-+	[WMI_TAG_HW_MODE_CAPABILITIES] = {
-+		.min_len = sizeof(struct wmi_hw_mode_capabilities) - TLV_HDR_SIZE },
+diff --git a/drivers/net/wireless/ath/ath12k/wmi.c b/drivers/net/wireless/ath/ath12k/wmi.c
+index 75b259990c79..0109f56fd429 100644
+--- a/drivers/net/wireless/ath/ath12k/wmi.c
++++ b/drivers/net/wireless/ath/ath12k/wmi.c
+@@ -209,6 +209,14 @@ static const struct ath12k_wmi_tlv_policy ath12k_wmi_tlv_policies[] = {
+ 		.min_len = sizeof(struct wmi_obss_color_collision_event) },
+ 	[WMI_TAG_PDEV_CSA_SWITCH_COUNT_STATUS_EVENT] = {
+ 		.min_len = sizeof(struct ath12k_wmi_pdev_csa_event) },
++	[WMI_TAG_DMA_BUF_RELEASE] = {
++		.min_len = sizeof(struct ath12k_wmi_dma_buf_release_fixed_params) },
++	[WMI_TAG_DMA_BUF_RELEASE_ENTRY] = {
++		.min_len = sizeof(struct ath12k_wmi_dma_buf_release_entry_params) -
++			   TLV_HDR_SIZE },
++	[WMI_TAG_DMA_BUF_RELEASE_SPECTRAL_META_DATA] = {
++		.min_len = sizeof(struct ath12k_wmi_dma_buf_release_meta_data_params) -
++			   TLV_HDR_SIZE },
  };
  
- #define PRIMAP(_hw_mode_) \
+ __le32 ath12k_wmi_tlv_hdr(u32 cmd, u32 len)
 -- 
 2.34.1
 
