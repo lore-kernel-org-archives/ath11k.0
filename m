@@ -2,107 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26669606A338
-	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 17:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54A9606A31D
+	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 22:15:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ij53Xlyy;
-	dkim=pass (2048-bit key, unprotected) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=kzqM+nj1
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YknxE1p3;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GPelaCvM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ZD/qDGi1O6nHsAaexh1x5wdETQZTzQoYlRWPgZIsXpY=; b=Ij53XlyygdWTvhG0v0TbgRL6aU
-	NV2DbkKn5PWv730LoF5fzwpdmymQP5L1ul1BoyCDsAX2NegGSpsoGFy6mEKtRSP8BJZb53WGDcO1K
-	u2ImrC/cj+IhtFoIeWs8HK7MeSq4pm/7hXWusKaxVbGaGwsmZfBcIiUTdVKiHCDpqtbZOifOOW3aP
-	uTSCfV5yx2urGivYO16Ik8QhMxODHb1QHCctt4moUgg4DFExNsa4l//Hgr0ujP6aOTUmjDlHF8AJv
-	crTY38vrpaH93whyd25G0CJy+gCLEB9zlsdQPR+SuAwbdH/SvvK2MCz+828byViuUdXA4u+wWWR03
-	0W5OoT7Q==;
+	bh=MWYlf8XcgjyLVzWD26ZQSwWE8DILydKaeCY9WPoYanE=; b=YknxE1p3g9ZrUyuA3gPrXVraXQ
+	MVMPAjpJZVtFjoQ7NjmYD3PedkAtrzQx5+yThF5Ml4ZyAC1JeqHKyYcb2fZeRYxM6I41936P9oNpb
+	zJXi3Mh9nN6myNhB1m8NQPXGfUcZ1LKzHFQGKrrvbaO4sHLFasZnqXbLAiWUNj5sa10YcihX3Oh7M
+	h563fuKvsQf/mJpxASo99afpF1BdDK9u3ecofFQPJW1lK/KYB7LlzK2SejIU9l/b2zliyvb5ESBYU
+	tUjOSykoE7Nwpkx+j1KeVmUnlDPD9Gm0Z0fVJv3XcOMHRVWOhu5a4aqpE/Z6r7Fe3QfkRJKYaeQiX
+	1hL1xDkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMTUf-00000009ush-2QFb;
-	Thu, 29 Oct 2026 17:00:49 +0000
-Received: from mail-qv1-xf2c.google.com ([2607:f8b0:4864:20::f2c])
+	id 1xMYPY-0000000ASxB-0oM1;
+	Thu, 29 Oct 2026 22:15:52 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMTUd-00000009urH-3f3i
+	id 1xMYPX-0000000ASx5-0NPF
 	for ath11k@lists.infradead.org;
-	Thu, 29 Oct 2026 17:00:49 +0000
-Received: by mail-qv1-xf2c.google.com with SMTP id 6a1803df08f44-91c7b00a75fso26151146d6.2
-        for <ath11k@lists.infradead.org>; Thu, 29 Oct 2026 10:00:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1793293246; x=1793898046; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ZD/qDGi1O6nHsAaexh1x5wdETQZTzQoYlRWPgZIsXpY=;
-        b=kzqM+nj1Faxguwq6v31hxZkHbU3zgpCJgS7Gt3J0XaHjsgZFPm7P4rgstF8YKmS+a8
-         f0xnZPMdGHu73BwB+mAFg5x73yaCuw4MsjwD5ZjCHcvwkRBmqjuRNRv/qwkeIxvv94pL
-         TdCyU27yEHXfx4eP350jH7naG7IQXEn+Ld+GcycEog3YpwevSQknSnrSfh18J7wRxmho
-         Zt9QCKzgB+yR4GPYCFFF1OGpru0deuLmSZAzT5dlUBNxk9WQB7cKdTnTGfQDhwgFn8oA
-         0LAe1vDTEC9FwPGm8XnnH2tjisCCF4MifA5awht9ifyaXBSG1YsoaKaGSo+W/wHDjgWS
-         Z+Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793293246; x=1793898046;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ZD/qDGi1O6nHsAaexh1x5wdETQZTzQoYlRWPgZIsXpY=;
-        b=MtwsTocPbOC+0/Dyh8mCqwN3EdQZL4qLhudVw+9pfEzI1aANNHj/yJl/AHABuyiIpG
-         HSd9AmXbTd8UQH48LonXK1QlA5ptw359pK3M42ec9FDo1yovIBDORqOkdrWd0C8YkqxM
-         sOPCsKTWcm+0P/70//Qvqy6JG0wiUDhvkFIsVmybC0ACmsjaMMPHAcRR1Ihwasi51MEV
-         +fQSfmCiQpIMZb84PyL8q40rnT5K23ujV3icM0CyiI4KvbQkU5aLcfknpZq9jLbpdkVJ
-         pckYMjSy1mj3sRsScoyJq5vbEEQM8HZJ5OPaVS+jqRWYDTr/u1IRw0Lnv0agXjc37UMW
-         6ujw==
-X-Forwarded-Encrypted: i=1; AKwUvBzDbPn03KVi30mVMT9eApI4cX1HOw4xrBHmEo4ewsdpqtANkcDxwXZ0EJXvOZhYB6JCnrVXtmc=@lists.infradead.org
-X-Gm-Message-State: AFq9FYLMch//u9FHrBaBHY8Voy9bSqKWFE6osHG+Q34d7DwHczEC4Fph
-	V2SHJrI7py97+q942Rp9qif4lpL6War3+E+hGGtaYm3GNKP+P37oELSlPSEtrDjqvvs=
-X-Gm-Gg: AYBFou1xTAqG7MxvTYoEBuWPtCR5uUDXatcZI3OP/L/LCTeSwrlR02OeRYu700xaYKp
-	CFQo9F8KdNqaNiYuO2pxj33IarlC1N4T40JEZcSTda2tvdOSFSeIuTQxwT0osgyfzCt9nE4sJCq
-	g6evxMeotMieMq4bTX/AJdvHgyLEw+ZLs7yzNqRUvTYg7FjwQDqKKtJ691EpGybuTli/uhCw00N
-	5WrcrC6VDHgk5Yndu5iOyrfxyd8LoZGkS+RV2Oi8BOpPHAkSk2FKfeXKkFAMKVfjJVTE0QWEGvj
-	Ekt2QLehQADPFamwnBO3aiFiv84ryM/eFzZLDuNGdeshvmjFWUc7MZllyZfmUZ8hP4A3oT7rtGr
-	FwtE6Lzbpq++GzDdiWFs7sClB8yXnUucgA+o8YGdCD5EY1UbeSz4h6Nkw8R1hB67Liwdc8Y2D6C
-	sh4u9pY1gbcI8fvRQIJ/p+q5RRR0qRvNmWAcbm3JylxIm2uDu8TtcYO/HBrvwea+EntraJgysh5
-	Zu5yGkCbgmiEsFO+5U6lFzVVsw8kdOFq6qWlKNK566EYxo05+jRiivn3KgFl7buE2rHVN9KrR3V
-	7OW+W4PGRSx2fGRFMI7o2mh10wgKqCkOcbOnfn7QNaYneb6p+ONnWmlkQR1jEb5Bb79tAGCTBDV
-	OiAeHC1aAAos=
-X-Received: by 2002:a05:6214:3a87:b0:91c:6e6a:f1ad with SMTP id 6a1803df08f44-91c7cb836c2mr100048286d6.0.1793293245829;
-        Thu, 29 Oct 2026 10:00:45 -0700 (PDT)
-Received: from ziepe.ca (hlfxns010zw-159-2-239-150.pppoe-dynamic.high-speed.ns.bellaliant.net. [159.2.239.150])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ca317a421sm870346d6.44.2026.10.29.10.00.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2026 10:00:45 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1xMTUa-0000000G37w-2g1i;
-	Thu, 29 Oct 2026 14:00:44 -0300
-Date: Thu, 29 Oct 2026 14:00:44 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
-Cc: alex@shazbot.org, pbonzini@redhat.com, seanjc@google.com,
-	bhelgaas@google.com, jjohnson@kernel.org, johannes@sipsolutions.net,
-	mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, vkuznets@redhat.com, kevin.tian@intel.com,
-	linux-pci@vger.kernel.org, kvm@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/8] ath11k: use KVM MSI domain for VM passthrough
-Message-ID: <20261029170044.GR1685504@ziepe.ca>
-References: <20261029163713.1366077-1-jtornosm@redhat.com>
- <20261029163713.1366077-6-jtornosm@redhat.com>
+	Thu, 29 Oct 2026 22:15:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4B5AD43228
+	for <ath11k@lists.infradead.org>; Thu, 29 Oct 2026 22:15:50 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1793312150;
+	b=pdi4+5bimXtHC+FSXhR7g0mq8XrP4NMq7bospIKxyAc707nrtOsuHXYjVPp6h/DLyD3E
+	 6U0LZ75OC9kXlUcHk6eK+MDT8dzkRPNn6iRt24LfXvqgBm34Sl7/NQ/joYrXb5jCant0l
+	 ys1O2/eJaZTaUTRlYGLbsw3tMxND8NJZUHmeJj4DrSRV8xLRCXWL5R5OAaZvf7hiTfgc2
+	 4iobCSmTWQRNbyVUT1iBMosWgqrCnYvllaPYRz7gqIVBE/KMbp2bVVBWt6h83hwsWvvJa
+	 M3/92Y3s+1Emj96geJ+KeEviudYHHPKDSNWEeK9iKEbt0xv6JkGQ4OQt73YzKLfC+lQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1793312150;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=MWYlf8XcgjyLVzWD26ZQSwWE8DILydKaeCY9WPoYanE=;
+	b=gw9095RFhKep6oLJDnVjyT8Eh7zVMve51whLEPmRx5gspelj6dwB91JBuqMg0wlqYZ7z
+	 tcNnukVttwKVP8u6gBXW98Vt+1KkhLXhNj1gWX6fYPiwTgxsKZKrfBL3z7K1yc0KWScSY
+	 yTZNrPmoDfQ/6fGHWN9XhtQ1vGwhJpE11mHOTx/gXouHMuXgVXJFhJz5MaI3/ja2bAggd
+	 70I55oDZU1RUFM9d8LeEgFcnkdeLLpXEPQUjof8V89Dffgn8ScWwn4Yn0CJybXCX36qCb
+	 WLN6ZXYj5fFbZiQQOxyiWSa2Nokm1R6aGtjiHuqt5iTp2fxFhrCm8yj0JChs4sV3+oQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 3C9391F01816;
+	Thu, 29 Oct 2026 22:15:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793312150;
+	bh=MWYlf8XcgjyLVzWD26ZQSwWE8DILydKaeCY9WPoYanE=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=GPelaCvM/fntZhAplPpPWOS7IcJ47jr+ioaWzqHzHzpU+3AiwVD3JzT/FQ3gCrLxa
+	 CN9c2yX7jAWk0pC8/nSzqzPQohcBT11Dn86F8+fRmBBNeBQv7C/AyBsV4dCNdo39WT
+	 0Z1SlRyZSkSdHE1JZJDqTc+83B2FrsqCL+OT0JSFZzhCHqt9OdH5z/uPTFyFK2/Var
+	 Sddf5uvdHuyYh9fEf7pE38Xxk2rrklQIy1o4ZND+a8u8WQzxNDWlw0acIAaM1y8NU2
+	 06YAb6OPu4cyGUJnKAVCdnZ9mh+uF8AN3hYGE2noERItqQikU6AwX39An7eECY1tOd
+	 QxTpjZQptz6ag==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9004C459FA;
+	Thu, 29 Oct 2026 22:15:48 +0000 (UTC)
+From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
+Date: Thu, 29 Oct 2026 17:15:48 -0500
+Subject: [PATCH ath-next] wifi: ath11k: add the measured noise floor, not
+ -95, to a received signal
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261029163713.1366077-6-jtornosm@redhat.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261029_100047_914338_B0D70AE7 
-X-CRM114-Status: UNSURE (   8.22  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261029-ath11k-signal-noise-floor-v1-1-dd5d6a04dcf2@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAJPF42oC/2WP0U7EIBREf6XhWRIgbYH+itkHuFy2aBcUaK3Z7
+ L/LajUaHydzZ87cKymYAxYydVeScQslpNgEf+gIzCaekQbXNBFMjJwJTU2dOX+mJZyjWWhMoSD
+ 1S0qZgrSceQGOWUda/iWjD/tn9yNpMRpxr+T05ZTVPiHUe/Vxm/F1bfh6BH7oU3ew+2923undj
+ bjQ8hYqzLQ3yAaQRgkJ08bJ7/X/82XNG77/3a7MoEGBUr4/CqxpLqTLJdSpa0+JEUflnfVKWQ0
+ wCGHl2JjaaQHa9NxLpsnpdvsAljUqc1QBAAA=
+X-Change-ID: 20261029-ath11k-signal-noise-floor-c7b10f2cd0bd
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ ath11k@lists.infradead.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793312148; l=14047;
+ i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
+ bh=an+cFuf9qofjguKNKpiOOW55It8wu9JPo5kVIgrvAJA=;
+ b=Sjf7zhxr8VdGzQAV7i8iwQhfQ8UY0QGDsx4ENXSVeOOXv0iGbNrlhebYvbnR6EjHEivqRqiRS
+ AVsqllwqHewA+TOpawy+k0h8TFPLcR36YEGjmvCoQ7hdEaEG7/DyPk+
+X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
+ pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
+X-Endpoint-Received: by B4 Relay for
+ christophergriffin05@gmail.com/20261024 with auth_id=1309
+X-Original-From: Christopher Griffin <christophergriffin05@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,29 +111,357 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: christophergriffin05@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 29, 2026 at 05:37:10PM +0100, Jose Ignacio Tornos Martinez wrote:
-> @@ -855,6 +858,13 @@ static int ath11k_pci_power_up(struct ath11k_base *ab)
->  
->  	ath11k_pci_msi_enable(ab_pci);
->  
-> +#if IS_ENABLED(CONFIG_PCI_KVM_MSI_DOMAIN)
-> +	if (kvm_pci_msi_wait_ready(ab_pci->pdev, 500) > 0)
-> +		kvm_pci_msi_get_address(ab_pci->pdev, &ab->pci.msi.addr_lo,
-> +					&ab->pci.msi.addr_hi,
-> +					&ab->pci.msi.ep_base_data);
-> +#endif
+From: Christopher Griffin <christophergriffin05@gmail.com>
 
-This connection should be done through ACPI somehow, and I think
-Thomas would expect this to be modeled on the platform msi domain,
-just ported to PCI instead of this.
+The firmware gives a received signal (rssi_comb of a PPDU, the ack rssi
+of a tx completion, the snr of a management frame) in dB above the noise
+floor it measures on the channel. Without the firmware's own conversion
+to dBm (WMI_TLV_SERVICE_HW_DB2DBM_CONVERSION_SUPPORT), ath11k adds a
+fixed ATH11K_DEFAULT_NOISE_FLOOR (-95 dBm), so every signal it reports
+reads low by as much as the channel's floor is above -95 dBm: 5 dB on a
+channel at -90, 7 dB at -88.
 
-Jason
+On an IPQ8074 (WLAN.HK.2.9.0.1) the HTT PDEV RX rate stats give each
+chain's signal of the last PPDU in dB and in dBm. Their difference is
+that chain's measured floor (-87 to -95 dBm across chains and channels),
+and the chains' summed power is rssi_comb plus the channel noise floor
+of the pdev stats to within about 1 dB, on 2.4 and 5 GHz. A client whose
+chains summed to -42 dBm on a 5 GHz channel at -90 showed as -46 in a
+station dump.
+
+Keep the measured floor of the channel in use per radio, read from the
+pdev stats when the survey of that channel is read or a station dump
+finds it older than 10 s, and add it in place of -95 to the station
+signal and its average, the ack signal, management frames received on
+that channel, and monitor frames. Drop it when the radio changes
+channel; until it is read again, and for frames on another channel
+(during a scan), -95 stays. Chips with db2dbm are unchanged. ath12k
+already adds the noise floor its firmware reports.
+
+Tested on an Arista C-360 (IPQ8074): a client whose chains summed to -42
+to -44 dBm on a 5 GHz channel at -90 now shows -40 to -42, where -95 gave
+-45 to -48. The management frame and monitor paths were not checked
+separately; they take the same offset.
+
+Assisted-by: Claude:claude-opus-5-5
+Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
+---
+This applies on top of two ath11k patches I sent on 2026-10-24, listed
+as prerequisites: "wifi: ath11k: update rx_channel on a channel switch"
+and "wifi: ath11k: report the measured noise floor of the channel in
+use". It reads the floor where the second one does and drops it where
+the first one moves rx_channel.
+
+Found on an Arista C-360 running OpenWrt, where an AP on a channel with
+a raised floor (-88 dBm) seemed to hear its clients 8-10 dB worse than
+they heard it. On an IPQ8074 5 GHz radio with a floor of -90 dBm, the
+HTT PDEV RX rate stats of the last PPDU gave per-chain signals of
+40/37/36/39 dB and -51/-51/-57/-52 dBm (chain floors -91/-88/-93/-91);
+the chains summed to -46.1 to -47.1 dBm with rssi_comb at 44. With this
+patch the station dump shows -46, without it -51. On 2.4 GHz (floor -94)
+the chains summed to within 1 dB of rssi_comb plus the floor as well.
+The firmware's combined rssi_in_dbm in the same stats did not follow the
+chains on two of three radios, so I did not use it.
+
+Not tested: the management frame and monitor paths on their own (they
+take the same offset), and chips other than IPQ8074. The QCN9074 and
+QCN9072 in the same AP read their floors the same way, but I did not
+compare their chains. Chips with db2dbm are unchanged.
+
+The investigation and the patch were done with Claude Code
+(claude-opus-5-5): it found the offset by comparing the per-chain dB and
+dBm figures with the pdev noise floor, wrote the patch and its
+changelog, and ran the tests on the APs. Tested on OpenWrt's
+backports-7.2 ath11k with the two prerequisites; built with W=1 on
+ath-next with them applied.
+---
+ drivers/net/wireless/ath/ath11k/core.h  | 25 ++++++++++
+ drivers/net/wireless/ath/ath11k/dp_rx.c |  2 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c |  4 +-
+ drivers/net/wireless/ath/ath11k/mac.c   | 88 +++++++++++++++++++++++++--------
+ drivers/net/wireless/ath/ath11k/wmi.c   |  2 +-
+ 5 files changed, 97 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index a0d725923ef2..0901695de015 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -716,6 +716,14 @@ struct ath11k {
+ 	/* valid during scan; needed for mgmt rx during scan */
+ 	struct ieee80211_channel *scan_channel;
+ 
++	/* measured noise floor (dBm) of rx_channel for the signals reported
++	 * on it, or 0 until it is read; set under conf_mutex and data_lock,
++	 * read without them on the rx and tx paths
++	 */
++	s32 noise_floor;
++	u32 noise_floor_freq;
++	unsigned long noise_floor_time;
++
+ 	u8 cfg_tx_chainmask;
+ 	u8 cfg_rx_chainmask;
+ 	u8 num_rx_chains;
+@@ -1370,6 +1378,23 @@ static inline const char *ath11k_bus_str(enum ath11k_bus bus)
+ 	return "unknown";
+ }
+ 
++/* The firmware gives a received signal (rssi_comb, ack rssi, management
++ * snr) in dB above the noise floor it measures on the channel. Without its
++ * own conversion to dBm (db2dbm), add that measured noise floor, not a
++ * nominal -95 dBm, or every signal reads low by as much as the floor is
++ * above -95. A frame on another channel than the one in use (freq given),
++ * or a channel whose floor has not been read yet, gets the nominal one.
++ */
++static inline s32 ath11k_noise_floor(struct ath11k *ar, u32 freq)
++{
++	s32 nf = READ_ONCE(ar->noise_floor);
++
++	if (!nf || (freq && freq != READ_ONCE(ar->noise_floor_freq)))
++		return ATH11K_DEFAULT_NOISE_FLOOR;
++
++	return nf;
++}
++
+ void ath11k_core_pm_notifier_unregister(struct ath11k_base *ab);
+ 
+ #endif /* _CORE_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 6d95f7b343a5..8c6bec1d6fa8 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -5050,7 +5050,7 @@ static void ath11k_update_radiotap(struct ath11k *ar,
+ 	u8 *ptr = NULL;
+ 
+ 	rxs->flag |= RX_FLAG_MACTIME_START;
+-	rxs->signal = ppduinfo->rssi_comb + ATH11K_DEFAULT_NOISE_FLOOR;
++	rxs->signal = ppduinfo->rssi_comb + ath11k_noise_floor(ar, rxs->freq);
+ 
+ 	if (ppduinfo->nss)
+ 		rxs->nss = ppduinfo->nss;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index cac970c92806..6cd03258a5d1 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -358,7 +358,7 @@ ath11k_dp_tx_htt_tx_complete_buf(struct ath11k_base *ab,
+ 
+ 			if (!test_bit(WMI_TLV_SERVICE_HW_DB2DBM_CONVERSION_SUPPORT,
+ 				      ab->wmi_ab.svc_map))
+-				info->status.ack_signal += ATH11K_DEFAULT_NOISE_FLOOR;
++				info->status.ack_signal += ath11k_noise_floor(ar, 0);
+ 
+ 			info->status.flags |=
+ 				IEEE80211_TX_STATUS_ACK_SIGNAL_VALID;
+@@ -593,7 +593,7 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 
+ 		if (!test_bit(WMI_TLV_SERVICE_HW_DB2DBM_CONVERSION_SUPPORT,
+ 			      ab->wmi_ab.svc_map))
+-			info->status.ack_signal += ATH11K_DEFAULT_NOISE_FLOOR;
++			info->status.ack_signal += ath11k_noise_floor(ar, 0);
+ 
+ 		info->status.flags |= IEEE80211_TX_STATUS_ACK_SIGNAL_VALID;
+ 	}
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 155ce76d9a2a..ada0f3a3c856 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7522,6 +7522,20 @@ static int ath11k_mac_op_ampdu_action(struct ieee80211_hw *hw,
+ 	return ret;
+ }
+ 
++/* how long a station dump reports signals with a noise floor before it
++ * reads the floor again
++ */
++#define ATH11K_NOISE_FLOOR_REFRESH	(10 * HZ)
++
++/* forget the noise floor of the channel the radio is leaving */
++static void ath11k_mac_clear_noise_floor(struct ath11k *ar)
++{
++	lockdep_assert_held(&ar->data_lock);
++
++	WRITE_ONCE(ar->noise_floor, 0);
++	ar->noise_floor_time = jiffies - ATH11K_NOISE_FLOOR_REFRESH - 1;
++}
++
+ static int ath11k_mac_op_add_chanctx(struct ieee80211_hw *hw,
+ 				     struct ieee80211_chanctx_conf *ctx)
+ {
+@@ -7539,6 +7553,7 @@ static int ath11k_mac_op_add_chanctx(struct ieee80211_hw *hw,
+ 	 * Rx PPDU desc information.
+ 	 */
+ 	ar->rx_channel = ctx->def.chan;
++	ath11k_mac_clear_noise_floor(ar);
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+ 	mutex_unlock(&ar->conf_mutex);
+@@ -7563,6 +7578,7 @@ static void ath11k_mac_op_remove_chanctx(struct ieee80211_hw *hw,
+ 	 * rx_channel with the channel of that remaining channel context.
+ 	 */
+ 	ar->rx_channel = NULL;
++	ath11k_mac_clear_noise_floor(ar);
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+ 	mutex_unlock(&ar->conf_mutex);
+@@ -7803,6 +7819,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
+ 	if (n_vifs) {
+ 		spin_lock_bh(&ar->data_lock);
+ 		ar->rx_channel = vifs[0].new_ctx->def.chan;
++		ath11k_mac_clear_noise_floor(ar);
+ 		spin_unlock_bh(&ar->data_lock);
+ 	}
+ 
+@@ -9342,44 +9359,71 @@ ath11k_mac_update_bss_chan_survey(struct ath11k *ar,
+ 		ath11k_warn(ar->ab, "bss channel survey timed out\n");
+ }
+ 
+-/* The noise floor in the firmware's bss channel info event is not the
+- * channel's measured noise floor: on IPQ8074 it reads about -109 dBm on
+- * 5 GHz and -102 dBm on 2.4 GHz, and barely moves, while the measured value
+- * the firmware reports in its pdev stats is -94 and -96. Report the measured
+- * one for the channel in use, as the channel info events of a scan do for
+- * the other channels.
++/* Read the measured noise floor of the channel in use from the firmware's
++ * pdev stats, and keep it for the signals reported on that channel (see
++ * ath11k_noise_floor()). Return it, or 0 if there is none.
+  */
+-static void ath11k_mac_get_chan_noise_floor(struct ath11k *ar,
+-					    struct survey_info *ar_survey,
+-					    struct survey_info *survey)
++static s32 ath11k_mac_read_noise_floor(struct ath11k *ar)
+ {
+ 	struct ath11k_fw_stats_pdev *pdev;
++	bool db2dbm = test_bit(WMI_TLV_SERVICE_HW_DB2DBM_CONVERSION_SUPPORT,
++			       ar->ab->wmi_ab.svc_map);
+ 	s32 nf;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+ 
+-	if (ar->scan.state != ATH11K_SCAN_IDLE)
+-		return;
++	ar->noise_floor_time = jiffies;
++
++	if (!ar->rx_channel || ar->scan.state != ATH11K_SCAN_IDLE)
++		return 0;
+ 
+ 	if (ath11k_mac_get_fw_stats(ar, ar->pdev->pdev_id, 0,
+ 				    WMI_REQUEST_PDEV_STAT))
+-		return;
++		return 0;
+ 
+ 	spin_lock_bh(&ar->data_lock);
+ 	pdev = list_first_entry_or_null(&ar->fw_stats.pdevs,
+ 					struct ath11k_fw_stats_pdev, list);
+ 	nf = pdev ? pdev->ch_noise_floor : 0;
++	if (nf >= 0 || nf <= -127)
++		nf = 0;
++	if (nf && !db2dbm) {
++		WRITE_ONCE(ar->noise_floor_freq, ar->rx_channel->center_freq);
++		WRITE_ONCE(ar->noise_floor, nf);
++	}
++	spin_unlock_bh(&ar->data_lock);
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "noise floor %d dBm on %u MHz\n",
++		   nf, ar->rx_channel->center_freq);
++
++	return nf;
++}
++
++/* The noise floor in the firmware's bss channel info event is not the
++ * channel's measured noise floor: on IPQ8074 it reads about -109 dBm on
++ * 5 GHz and -102 dBm on 2.4 GHz, and barely moves, while the measured value
++ * the firmware reports in its pdev stats is -94 and -96. Report the measured
++ * one for the channel in use, as the channel info events of a scan do for
++ * the other channels.
++ */
++static void ath11k_mac_get_chan_noise_floor(struct ath11k *ar,
++					    struct survey_info *ar_survey,
++					    struct survey_info *survey)
++{
++	s32 nf = ath11k_mac_read_noise_floor(ar);
++
++	if (!nf)
++		return;
++
+ 	/* keep it for the channel too, so its survey shows the last measured
+ 	 * value once the radio has left it
+ 	 */
+-	if (nf < 0 && nf > -127)
+-		ar_survey->noise = nf;
++	spin_lock_bh(&ar->data_lock);
++	ar_survey->noise = nf;
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+-	if (nf < 0 && nf > -127) {
+-		survey->noise = nf;
+-		survey->filled |= SURVEY_INFO_NOISE_DBM;
+-	}
++	survey->noise = nf;
++	survey->filled |= SURVEY_INFO_NOISE_DBM;
+ }
+ 
+ static int ath11k_mac_op_get_survey(struct ieee80211_hw *hw, int idx,
+@@ -9507,6 +9551,10 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
+ 		ath11k_mac_put_chain_rssi(sinfo, arsta, "fw stats", true);
+ 	}
+ 
++	if (!db2dbm &&
++	    time_after(jiffies, ar->noise_floor_time + ATH11K_NOISE_FLOOR_REFRESH))
++		ath11k_mac_read_noise_floor(ar);
++
+ 	signal = arsta->rssi_comb;
+ 	if (!signal &&
+ 	    arsta->arvif->vdev_type == WMI_VDEV_TYPE_STA &&
+@@ -9521,14 +9569,14 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
+ 		   db2dbm, arsta->rssi_comb, arsta->rssi_beacon);
+ 
+ 	if (signal) {
+-		sinfo->signal = db2dbm ? signal : signal + ATH11K_DEFAULT_NOISE_FLOOR;
++		sinfo->signal = db2dbm ? signal : signal + ath11k_noise_floor(ar, 0);
+ 		sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL);
+ 	}
+ 
+ 	sinfo->signal_avg = ewma_avg_rssi_read(&arsta->avg_rssi);
+ 
+ 	if (!db2dbm)
+-		sinfo->signal_avg += ATH11K_DEFAULT_NOISE_FLOOR;
++		sinfo->signal_avg += ath11k_noise_floor(ar, 0);
+ 
+ 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL_AVG);
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 08fd6795ed9e..dfb8509ede75 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -7695,7 +7695,7 @@ static void ath11k_mgmt_rx_event(struct ath11k_base *ab, struct sk_buff *skb)
+ 		status->freq = ieee80211_channel_to_frequency(rx_ev.channel,
+ 							      status->band);
+ 
+-	status->signal = rx_ev.snr + ATH11K_DEFAULT_NOISE_FLOOR;
++	status->signal = rx_ev.snr + ath11k_noise_floor(ar, status->freq);
+ 	status->rate_idx = ath11k_mac_bitrate_to_idx(sband, rx_ev.rate / 100);
+ 
+ 	hdr = (struct ieee80211_hdr *)skb->data;
+
+---
+base-commit: cd026e68fdbf88b9cc522b76c7a9d92c9a41f709
+change-id: 20261029-ath11k-signal-noise-floor-c7b10f2cd0bd
+prerequisite-change-id: 20261024-ath11k-rx-channel-switch-4ae05c7a827c:v1
+prerequisite-patch-id: 56c9f55a2b8fc7289ed2f2d736587a8869952253
+prerequisite-change-id: 20261024-ath11k-survey-noise-floor-c8a59c8c88f4:v1
+prerequisite-patch-id: 2d448d49f848e484eda837fc11f04458b594c770
+
+Best regards,
+--  
+Christopher Griffin <christophergriffin05@gmail.com>
+
+
 
