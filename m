@@ -2,104 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7640606A31E
-	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 12:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F54606A329
+	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 16:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XZYbiPyU;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DlpxLCSm
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dxEutADJ;
+	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=TJeZJCGR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=eZ22/2ihBZuRYoMMXlwinYX9sdB0aTg/WqKfiHjALN0=; b=XZYbiPyULg9n4HLLCSRJUv7umR
-	Y6eRg1sJ+cJr37FsbyndmzGp0LtZ+3Ewj1F2kGKZ2eAt0qYbUY+MdQnzg1UQSij7aZ3jLn4KEcoMd
-	JkzLWUEFBY3lIj0YgnsoJYd/iN4eoQyaLEqALf7JgyKh0YGWE6mFZ5xtlDZJPz8b5jUQTDwkIp9px
-	ZOn6iLazYKIJW6xdayDW3ln2d8qxVqNx87PC3GLZjgJ061w+U/hdDraX2gS5snaO1SEBNXukDpGUG
-	2I452LI6TAEkNlen2k2UHz7Wm8A5OlWJa2AO1OhTsaucN726ZnXyxKtC27zTINohtFwN6Dzqffu6m
-	fCmhyRjQ==;
+	bh=60oBdK7pSBMfkj8btrUeLXs/eWEM8pNj/zNxGpSWBnU=; b=dxEutADJbyuixi48SgLP7nEzAc
+	YoJoXmUQa29v6xqBsdnSO5ihbY4sQl9dUCTn51U7egke6d2hMPYwUvbZd5CCm0mc0UY1gqYVuM64Z
+	9lGnwINjd4DIKRhYCyGe0ZOpVOogbvbHu9Hr0lPuGzDWtySc7iFuOVVg7KwwTtc5htEhLGjux9cx9
+	DXxtV6tEUWkV+EhioPifZ2uodV/+hqswiaCU50ZBvoaTp6F634twCQ8dCq+odS4FCgZRZKQ3dOlek
+	DqexgRoPfzGedMR+Vld1jwXRktwqp9Z6K6hBmSjbJ/urglrJyJ9PHYGRuHUOHfAZC3hhEg86/tseB
+	37ckQhiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMOvP-000000097MA-1XzY;
-	Thu, 29 Oct 2026 12:08:07 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xMT8C-00000009p34-2q6g;
+	Thu, 29 Oct 2026 16:37:36 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMOvM-000000097Lp-49MR
+	id 1xMT8A-00000009p27-0Gz8
 	for ath11k@lists.infradead.org;
-	Thu, 29 Oct 2026 12:08:06 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BCAD741232
-	for <ath11k@lists.infradead.org>; Thu, 29 Oct 2026 12:08:04 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1793275684;
-	b=zWkzU+5sN4evVkPJwGAfPo6Z5bAoZH9MoCSjdbV6P/ze6o0KdSvIbK5US+GV2zLGcBou
-	 +4smkK0NSNzE5IC73uTgwQ5y4ayOKgewK4usJcvANC6frbKHDGQWCS73DdrLnqWCyr/xQ
-	 wGA0IWuH7HWTKuOPR04FoJsZF4Kxp3Nf/x0/cL3Ksh76jUIKBy2vpHn7clRje8saoG6JQ
-	 phZw9A9ihOQqfE/QBP35TxT4th+PV9i4Qh9EwIR2Ipw24e2vscdIalFXk9Ceja9mDzqb+
-	 jdbh9S7Xugrihb2FHSL88AmMKWOeI+hLk9E7WDP8QL6Y3RmZFU/qD41TgvEW6ul+EjA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1793275684;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=eZ22/2ihBZuRYoMMXlwinYX9sdB0aTg/WqKfiHjALN0=;
-	b=xZLS1vGuCC8hhuY7h/utxDUkaL+NDB88rt6r1Q6gDZljk5vvwp+XWQTN95iZDGM5U6yf
-	 hS8fFt49zbgRuur3XYq21gnYmn9ger8ghrtvxwvpz9ogm820uZhQpSjw9tSi+e5OfC8xy
-	 KW8lmU6sza7U8HqkYUyXMgmDBOUeHrqBRWjyORs3iDT83C4r1gGqgc4JEldC5w6bOGH5A
-	 RXATG6f8H6LbQH9yX2EyF0CxWlbjByYVFCX0gyWuZFPgL+0o+iRG33PsKtCtWIMSynhUM
-	 hg17Ibxs8GVT52e8+nrPlbUMIRQ/rvL9Rl/BfSifuYYfcxleot9BLIIJNjU/nFzonnQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	Thu, 29 Oct 2026 16:37:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1793291852;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=60oBdK7pSBMfkj8btrUeLXs/eWEM8pNj/zNxGpSWBnU=;
+	b=TJeZJCGRilWiS6q2qCEHOiI1V5nFQ6zfiQvsA0vehuP/M7Q/QPkp6FqanSJQ1iiAgzaN0p
+	LO35w+iJ3cqUWp8ok+qmk+BCs4pEyQoy+yyt2gQdnctR/4U6zO5dQ44VaFlW7y77qBhbs5
+	ec13s6F50wlKS26BXa9K1V12vgHxlak=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-517-93ymQZXkP_6lq8rkYhGv0A-1; Thu,
+ 29 Oct 2026 12:37:26 -0400
+X-MC-Unique: 93ymQZXkP_6lq8rkYhGv0A-1
+X-Mimecast-MFC-AGG-ID: 93ymQZXkP_6lq8rkYhGv0A_1793291844
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1245C1F01825;
-	Thu, 29 Oct 2026 12:08:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793275684;
-	bh=eZ22/2ihBZuRYoMMXlwinYX9sdB0aTg/WqKfiHjALN0=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=DlpxLCSmc9upG3CJoNGtGl29sANDyZte80K+Kx9qoUxUvxZwSfK7aB+3HNYXMvmgs
-	 3hrDT3xpaO2y+fajQR0SdGDp+XYc+Q8zbLkW/USf9wwVq1Ko7X5Pv2sux46KuHoukM
-	 gVe56gqgjLLNC7xMH1w2e4ZYwGddRD2A/c0FvzZe8dohG+oDXUt2aON1OBMi5wibIJ
-	 /JC3ygvWSRb2OoajTMa73ng93GOSyHlb2fGxgJmqugBaOkEBc/uJO7+CMcNeAvqWRq
-	 Sgcx7o/qEQ/8bS/Q3ZJbV3KrEpKkKYhAOBQZy0yMOhHub/HW1J7G2lnmAl6lVyzQUA
-	 F/UkNYwNmrx3Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6A2E445836;
-	Thu, 29 Oct 2026 12:08:03 +0000 (UTC)
-From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Thu, 29 Oct 2026 07:08:03 -0500
-Subject: [PATCH ath-next] wifi: ath11k: stop every vdev before starting
- them on a new channel
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 0B424180AEBD;
+	Thu, 29 Oct 2026 16:37:24 +0000 (UTC)
+Received: from jtornosm-thinkpadp1gen7.rmtes.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0BAD91956088;
+	Thu, 29 Oct 2026 16:37:17 +0000 (UTC)
+From: Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+To: jgg@ziepe.ca,
+	alex@shazbot.org,
+	pbonzini@redhat.com,
+	seanjc@google.com,
+	bhelgaas@google.com,
+	jjohnson@kernel.org
+Cc: johannes@sipsolutions.net,
+	mani@kernel.org,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	robh@kernel.org,
+	vkuznets@redhat.com,
+	kevin.tian@intel.com,
+	linux-pci@vger.kernel.org,
+	kvm@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	ath12k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jose Ignacio Tornos Martinez <jtornosm@redhat.com>
+Subject: [PATCH v3 0/8] PCI/KVM/VFIO: MSI address passthrough for Qualcomm WiFi devices
+Date: Thu, 29 Oct 2026 17:37:05 +0100
+Message-ID: <20261029163713.1366077-1-jtornosm@redhat.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261029-ath11k-csa-stop-vdevs-v1-1-4f7c94422a66@gmail.com>
-X-B4-Tracking: v=1; b=H4sIACI342oC/yWMQQqDMBAAvyJ77kKy1EL6ldLDNllrWoiSjUEQ/
- 95Uj8Mws4FKjqJw7zbIUqPGKTWwlw78yOktGENjIEM3a8ghl9HaL3pl1DLNWINUxcG4wHylnno
- HrZ2zDHE9vg9oCSZZCzxPo8vrI778t7DvP/NvC1ODAAAA
-X-Change-ID: 20261029-ath11k-csa-stop-vdevs-f09daa425259
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-wireless@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793275682; l=5190;
- i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=bBP0WQR79rtL6Evxb1jkylTLJeI12NDSekdwCY42Dyg=;
- b=lhNhFtC5hVdaq94i4v2tq0yXk0eDs2yi37jKI4Jp/zQFZdQHJlB9SCCHzLteLjRyZ50/9NvPn
- LSAzUg+1PVIBSzjTwhpGgyTtTnJLLBRyL3qaw4v8fNc/7Gw9veQXfIM
-X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
- pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
-X-Endpoint-Received: by B4 Relay for
- christophergriffin05@gmail.com/20261024 with auth_id=1309
-X-Original-From: Christopher Griffin <christophergriffin05@gmail.com>
-Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+X-Mimecast-MFC-PROC-ID: Y7lMyqmkUZxl2SBLKUtgGneWNrkz7hQqfUdTDKgAfpQ_1793291844
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261029_093734_175197_B1690A6B 
+X-CRM114-Status: GOOD (  11.54  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,143 +98,119 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: christophergriffin05@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Christopher Griffin <christophergriffin05@gmail.com>
+This series enables Qualcomm ath11k/ath12k WiFi devices to work in VM
+passthrough scenarios, addressing a long-standing issue where these
+devices fail to initialize when passed through to VMs via VFIO.
 
-On a channel switch, ath11k_mac_update_vif_chan() restarts each vdev
-that is up on the new channel (WMI_VDEV_RESTART_REQUEST). On an IPQ8074
-5 GHz radio the transmit rates collapse after that, and stay low until
-the radio is stopped and started again. From a client heard at -70 dBm,
-after a fresh start on channel 149 the downlink was 76 Mbit/s, with the
-firmware sending 16-55 % of its PPDUs at MCS 0-4 (HTT PDEV_TX_RATE
-stats). After two switches, 149 -> 157 -> 149, it was 7 Mbit/s three
-times in a row, with 98-100 % at MCS 0-4, and the uplink fell from 120
-to 16-65 Mbit/s. Stations that join after the switch are affected too.
+Qualcomm ath11k/ath12k WiFi devices have been broken in VM passthrough
+since they were introduced. These devices have embedded firmware that
+programs MSI target addresses directly into device BAR registers,
+bypassing the standard PCI config MSI path. The driver extracts the
+addr/data from the MSI descriptor and programs the firmware's private
+registers. In a VM, the driver only sees the guest's virtual APIC
+address instead of the host's physical IRTE address. The firmware
+programs the guest address into the BAR registers, and the resulting
+MSI writes hit a stale or invalid IRTE in the host's interrupt
+remapping table, causing DMAR faults:
 
-Sending the HE MU and sounding modes again after the restart does not
-help, nor does stopping and starting the vdevs one at a time, which
-leaves the others started on the old channel. Taking every vdev down
-and stopping it before any of them starts on the new channel, as a
-fresh start of the radio does, helps: after the same two switches,
-68.5, 107.8 and 86.2 Mbit/s down (ten runs after switches: median 84;
-fresh starts: median 92).
+  DMAR: DRHD: ... INTR-REMAP
+  DMAR: [INTR-REMAP] ... Present field in the IRTE entry is clear
 
-Do that, and keep the restart for a vdev that could not be stopped. A
-vdev start leaves the HE MU and sounding modes at the firmware's
-defaults, so set them again, as enabling the beacon does on the first
-start.
+Standard VFIO MSI virtualization handles PCI config space MSI
+correctly (MHI interrupts work fine), but has no visibility into
+firmware-managed BAR-level MSI programming.
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Multiple attempts have been made to solve this over the past 2 years:
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
----
-Found on the IPQ8074 5 GHz radios of an Arista C-360 and C-260 running
-OpenWrt, each with four AP vdevs up, where a management system moves
-the radio to another channel by CSA. On the C-260 the downlink after
-the same two switches was 245.7, 234.6 and 241.1 Mbit/s with this patch,
-against 257.3 from a fresh start.
+March 2024: Workaround using module parameters [1]
+  - Required manually copying MSI values from host to VM
+  - Rejected by Johannes Berg as too manual, suggested VMM solution
 
-Not tested: station, mesh or monitor vdevs, and any chip but IPQ8074.
-a4146249a333 ("ath11k: skip sending vdev down for channel switch")
-dropped a vdev down before the restart because QCA6390 firmware crashed
-on it; here the down is followed by a stop and a start, not a restart,
-but I could not try that on a QCA6390 or WCN6855.
+August 2024: QEMU + kernel solution by Alex Williamson [2]
+  - Kernel disables MSI virtualization, QEMU intercepts config writes
+  - Uses brute force pattern matching to infer MSI data writes
+  - Stuck as RFC - no progress in 14+ months
 
-The investigation and the patch were done with Claude Code
-(claude-opus-5-5): it compared ath11k's WMI debug log of a fresh start
-with that of a CSA, wrote and ran the variants on the APs, and wrote this
-patch and its changelog. The downlink figures are iperf3 runs from a
-QCN9072 client; the MCS shares are deltas of the HTT PDEV_TX_RATE stats.
-Built with W=1 on ath-next.
----
- drivers/net/wireless/ath/ath11k/mac.c | 41 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 40 insertions(+), 1 deletion(-)
+No action from Qualcomm: Despite multiple reports [4], no vendor
+solution.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1a237adaa37d..a9b940c2da41 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7793,6 +7793,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 	int ret;
- 	int i;
- 	bool monitor_vif = false;
-+	unsigned long stopped = 0;
- 
- 	lockdep_assert_held(&ar->conf_mutex);
- 
-@@ -7802,6 +7803,33 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 
- 	/* TODO: Update ar->rx_channel */
- 
-+	/* Take every vdev that is up down and stop it before any of them
-+	 * starts on the new channel, as a fresh start of the radio does.
-+	 * Restarting the vdevs in place, or stopping and starting them one
-+	 * at a time while the others stay started, leaves the radio sending
-+	 * at far lower rates on the new channel until it is restarted.
-+	 */
-+	for (i = 0; i < n_vifs && i < BITS_PER_LONG; i++) {
-+		arvif = ath11k_vif_to_arvif(vifs[i].vif);
-+
-+		if (!arvif->is_started || !arvif->is_up)
-+			continue;
-+
-+		ret = ath11k_wmi_vdev_down(ar, arvif->vdev_id);
-+		if (ret)
-+			ath11k_warn(ab, "failed to down vdev %d: %d\n",
-+				    arvif->vdev_id, ret);
-+
-+		ret = ath11k_mac_vdev_stop(arvif);
-+		if (ret) {
-+			ath11k_warn(ab, "failed to stop vdev %d: %d\n",
-+				    arvif->vdev_id, ret);
-+			continue;
-+		}
-+
-+		stopped |= BIT(i);
-+	}
-+
- 	for (i = 0; i < n_vifs; i++) {
- 		arvif = ath11k_vif_to_arvif(vifs[i].vif);
- 
-@@ -7815,7 +7843,18 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 		 * Firmware expect vdev_restart only if vdev is up.
- 		 * If vdev is down then it expect vdev_stop->vdev_start.
- 		 */
--		if (arvif->is_up) {
-+		if (i < BITS_PER_LONG && (stopped & BIT(i))) {
-+			ret = ath11k_mac_vdev_start(arvif, vifs[i].new_ctx);
-+			if (ret) {
-+				ath11k_warn(ab, "failed to start vdev %d: %d\n",
-+					    arvif->vdev_id, ret);
-+				continue;
-+			}
-+
-+			/* as enabling the beacon did for the first start */
-+			ath11k_mac_set_he_txbf_conf(arvif);
-+		} else if (arvif->is_up) {
-+			/* the vdev could not be stopped */
- 			ret = ath11k_mac_vdev_restart(arvif, vifs[i].new_ctx);
- 			if (ret) {
- 				ath11k_warn(ab, "failed to restart vdev %d: %d\n",
+The PCI reset support for these devices has already landed in mainline
+(commit f8522a518e59 "PCI: Add device-specific reset for Qualcomm
+WCN6855/WCN7850 WLAN") [3], solving the device reset path for VFIO
+passthrough. This MSI series is the remaining piece, with both in
+place, these Qualcomm WiFi devices would be fully operational in VMs
+for the first time.
+
+v1/v2 explored passing the host MSI address through VFIO extended
+config space. Jason Gunthorpe pointed out [5] that a guest-initiated
+approach via KVM paravirtualization would be cleaner, avoid VFIO
+internal coupling, and generalize better to other devices with
+similar firmware behavior. The proposal here is a new guest module
+that tries to address this by creating a custom MSI domain that
+provides the physical host values instead.
+
+v3 implements this as a 3-piece kernel-only solution:
+
+  1. Host side (KVM + VFIO): A new KVM hypercall
+     (KVM_HC_PCI_MSI_ALLOC) dispatches to a VFIO handler that reads
+     the host's physical MSI address/data for the passthrough device.
+     Connected via function pointer in struct kvm to avoid hard
+     subsystem dependencies.
+
+  2. Guest side (PCI controller): A new MSI IRQ domain module
+     (pci-kvm-msi, taking pci-hyperv.c as a reference as Jason
+     suggested) that intercepts MSI composition for matched devices.
+     In order to sync host initialization with the guest driver, it
+     provides kvm_pci_msi_wait_ready() to poll the hypercall until the
+     host MSI is configured, and kvm_pci_msi_get_address() to read
+     cached values.
+
+  3. Driver changes (ath11k, ath12k): Guarded with
+     IS_ENABLED(CONFIG_PCI_KVM_MSI_DOMAIN). Call wait_ready after
+     msi_enable in power_up, then use get_address where needed.
+     Zero overhead on baremetal (kvm_para_available() returns false).
+
+The solution requires no QEMU changes. Tested with WCN6855 (ath11k),
+WCN7850 (ath12k), and QCN9274 (ath12k) on host with KVM/VFIO
+passthrough, all three create fully working WiFi interfaces in
+the guest VM.
+
+Patches:
+  1-3: Core infrastructure (VFIO helpers, KVM handler, guest module)
+  4-5: ath11k support (link retry + KVM MSI integration)
+  6-7: ath12k support (link retry + KVM MSI integration)
+    8: QCN9274 device support (reset quirks + KVM MSI ID)
+
+[1] https://lore.kernel.org/all/20240322104912.94811-1-jtornosm@redhat.com/
+[2] https://lore.kernel.org/kvm/20240812170014.1583783-1-alex.williamson@redhat.com/
+[3] https://lore.kernel.org/all/20261005105436.83962-1-jtornosm@redhat.com/
+[4] https://lore.kernel.org/all/fc6bd06f-d52b-4dee-ab1b-4bb845cc0b95@quicinc.com/
+[5] https://lore.kernel.org/all/20261014150047.GO14213@ziepe.ca/
 
 ---
-base-commit: 7b14c8f4a9615579b09cbcdc4515b65ae6124753
-change-id: 20261029-ath11k-csa-stop-vdevs-f09daa425259
+v3: KVM paravirtualization approach based on Jason Gunthorpe feedback.
+    New hypercall + guest MSI domain module replaces VFIO variant
+    driver.
+    Added QCN9274 support.
+v2: https://lore.kernel.org/all/20261014142606.418972-1-jtornosm@redhat.com/
+v1: https://lore.kernel.org/all/20260930140833.576941-1-jtornosm@redhat.com/
 
-Best regards,
---  
-Christopher Griffin <christophergriffin05@gmail.com>
-
+Jose Ignacio Tornos Martinez (8):
+  vfio: add helper to find PCI device by vendor/device ID
+  KVM: add PCI MSI hypercall for VFIO passthrough
+  PCI: add KVM MSI domain guest module
+  ath11k: add PCIe link recovery retry
+  ath11k: use KVM MSI domain for VM passthrough
+  ath12k: add PCIe link recovery retry
+  ath12k: use KVM MSI domain for VM passthrough
+  PCI: add QCN9274 to reset quirks and KVM MSI domain
 
 
