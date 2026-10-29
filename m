@@ -2,40 +2,40 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52CCA606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326FD606A322
 	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 04:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JvZd7C6C;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=m/tFNfMJ
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Tl+UHa8q;
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=aNV352Zy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9eDZ1tyXFZupu+NBPF56Dz9t7vnEPEkY79v4CEYA78k=; b=JvZd7C6CxyC6hK
-	LPFXZcBU2kaWRxXUGJkbSKw2JfkXF10Zq8RheWSh5NcWRwnQ1lH/pgQiuMMMcB9ba/5hSPjFQzpwl
-	ZhxvkwxFBxmBbYAmIvCUmW2hEWLqHxHPQF3pf7p6tx7kqysdaBXoXdzUhrxWJvRze0EdV0VO6awG/
-	LCXoF40npwrMWabWTTODr/ouKls4D0cilqY0VltTqD9FN4ojsNdnYQKVc4bhbZdvV5mKV7/i2NZe2
-	JN5ow+eBnUwURKdqIKlo+jR5SiNgrew4w0cGpdSFUN6GhTPwmNOdq3B9Q2XuZZanFt3dJ8QPbXJg5
-	YN/4zP+aRm+v8daTszeQ==;
+	List-Owner; bh=QGAW60ly4dJn3r9jBzjnajf80vcBLeMOp3uPKg7LNrQ=; b=Tl+UHa8qP14+1s
+	HVSHhtQcoZahF4mZKmKpsmSkdXD/wBYwA3R6Mo4Fu876LByrGO0Nwqyz14uo9n5OaxVLhPfg1yiz7
+	Q7mjqCKkl/vLFh49GDhvbkbHILbY0D0RGYj5K0gkcZ9hS0rK8xJgCps09+Kqmq1WsacQvsJqOOBVr
+	YWRI49a1+/8EwijJad15x9ePVOhuVveyc7OIOaJCLF9OLkkmgIKQ9kAwjCq4APkSJ4JCaNnUiWxKJ
+	q7zgZiMaZaHml9k23XBxN3S8YT6a5mj3QE7E9b3uzWK/AVR9E3wh7u2Je/2egnspRsIyJqRG/5uCp
+	koHqFPNcY/tW/FJL9Qww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMHat-00000008IdV-1mLr;
-	Thu, 29 Oct 2026 04:18:27 +0000
-Received: from m16.mail.163.com ([220.197.31.4])
+	id 1xMHau-00000008IfJ-37OB;
+	Thu, 29 Oct 2026 04:18:28 +0000
+Received: from m16.mail.163.com ([117.135.210.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMHap-00000008Ib5-2lKU;
-	Thu, 29 Oct 2026 04:18:26 +0000
+	id 1xMHap-00000008IbA-3bwe;
+	Thu, 29 Oct 2026 04:18:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=9e
-	DZ1tyXFZupu+NBPF56Dz9t7vnEPEkY79v4CEYA78k=; b=m/tFNfMJMY54Tccop+
-	gTW1MusOgvZuQw8toDZ0F5peh2VCPg5TLbX2Ejn2ob4jDJ/OJX3OW3LFx+U9qhiK
-	QnnN2m8Tyav4qp2G+vVUriPpdYhyAivPrsDRoIW+i0gkHAM1CHCE0faF1wr8EafF
-	pBYtk68V5cGqps+SxttIE/lak=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=QG
+	AW60ly4dJn3r9jBzjnajf80vcBLeMOp3uPKg7LNrQ=; b=aNV352Zya6qwmFZMoA
+	Fqec2fClT87pXiZ8EckPOTGu1NKQecYVkrkgoR4MxDQ55pLkrs+gWOrVZ5AIQ15f
+	9U8wDuDtJLoLNFcZM0tjb9oIdrpsdzB5x3VGIW6LXUux3MzqzC04w+8mlNpZlwnl
+	MnAiTXMZegXuswsXyuC4FGR+I=
 Received: from pc.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3nzIDyeJqQW5fDg--.62716S6;
-	Thu, 29 Oct 2026 12:18:14 +0800 (CST)
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3nzIDyeJqQW5fDg--.62716S5;
+	Thu, 29 Oct 2026 12:18:13 +0800 (CST)
 From: Jiale Yao <yaojiale02@163.com>
 To: Jeff Johnson <jjohnson@kernel.org>,
 	ath11k@lists.infradead.org,
@@ -43,24 +43,24 @@ To: Jeff Johnson <jjohnson@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-wireless@vger.kernel.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH v2 4/5] wifi: ath12k: validate DMA buffer release TLV lengths
-Date: Thu, 29 Oct 2026 12:18:10 +0800
-Message-Id: <20261029041811.2379878-5-yaojiale02@163.com>
+Subject: [PATCH v2 3/5] wifi: ath11k: validate DMA ring capability TLVs
+Date: Thu, 29 Oct 2026 12:18:09 +0800
+Message-Id: <20261029041811.2379878-4-yaojiale02@163.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261029041811.2379878-1-yaojiale02@163.com>
 References: <20261029041811.2379878-1-yaojiale02@163.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wD3nzIDyeJqQW5fDg--.62716S6
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WFW3uFW5WF1DArW7Gr45Jrb_yoW8WrW3pF
-	4fWw12k348CrsrWwn3Zw4xZa4Ykan3W347KFWxt34fua1rCr15tFyYgFWYvFyYyr1rtr12
-	9a1jgr4fArn8trJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UROJOUUUUU=
-X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7wbGAWriyQbuDAAA3L
+X-CM-TRANSID: _____wD3nzIDyeJqQW5fDg--.62716S5
+X-Coremail-Antispam: 1Uf129KBjvJXoW7XFyUWFyDWw15WFyDAFWDurg_yoW8Jr43pF
+	4Ig3W7C34rXr47Jw1fJa1xZa45K3Z5t3yakFWUJ34fWa1kCF1rJFyYqFWYvFyrJF4UGFya
+	qFWqgrW3AF98t3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jTxRDUUUUU=
+X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7wXGAWriyQXt+QAA39
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261028_211824_074027_9E2CD064 
-X-CRM114-Status: UNSURE (   8.33  )
+X-CRM114-CacheID: sfid-20261028_211824_288469_7142D548 
+X-CRM114-Status: UNSURE (   8.91  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.8 (-)
 X-BeenThere: ath11k@lists.infradead.org
@@ -82,39 +82,33 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The DMA buffer release parser copies fixed parameters and counts nested
-entry and metadata TLVs. It does not ensure that their payloads cover
-the complete structures later read by the parser and direct buffer ring
-handler. Short firmware TLVs can therefore lead to out-of-bounds reads.
+The service-ready parser counts DMA ring capability TLVs and later
+indexes the firmware array using the full structure stride.  It does not
+validate that each TLV payload covers that structure, so a short element
+can cause out-of-bounds reads.
 
-Add minimum-length policies for the fixed TLV and both nested TLV types.
+Add a minimum-length policy for DMA ring capability TLVs.
 
-Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices")
+Fixes: bd6478559e27 ("ath11k: Add direct buffer ring support")
 Cc: stable@vger.kernel.org
 Signed-off-by: Jiale Yao <yaojiale02@163.com>
 ---
- drivers/net/wireless/ath/ath12k/wmi.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/net/wireless/ath/ath11k/wmi.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath12k/wmi.c b/drivers/net/wireless/ath/ath12k/wmi.c
-index 75b259990c79..0109f56fd429 100644
---- a/drivers/net/wireless/ath/ath12k/wmi.c
-+++ b/drivers/net/wireless/ath/ath12k/wmi.c
-@@ -209,6 +209,14 @@ static const struct ath12k_wmi_tlv_policy ath12k_wmi_tlv_policies[] = {
- 		.min_len = sizeof(struct wmi_obss_color_collision_event) },
- 	[WMI_TAG_PDEV_CSA_SWITCH_COUNT_STATUS_EVENT] = {
- 		.min_len = sizeof(struct ath12k_wmi_pdev_csa_event) },
-+	[WMI_TAG_DMA_BUF_RELEASE] = {
-+		.min_len = sizeof(struct ath12k_wmi_dma_buf_release_fixed_params) },
-+	[WMI_TAG_DMA_BUF_RELEASE_ENTRY] = {
-+		.min_len = sizeof(struct ath12k_wmi_dma_buf_release_entry_params) -
-+			   TLV_HDR_SIZE },
-+	[WMI_TAG_DMA_BUF_RELEASE_SPECTRAL_META_DATA] = {
-+		.min_len = sizeof(struct ath12k_wmi_dma_buf_release_meta_data_params) -
-+			   TLV_HDR_SIZE },
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 047ae8f5bb60..4cf5f57a93e1 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -169,6 +169,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
+ 		.min_len = sizeof(struct wmi_dma_buf_release_meta_data) - TLV_HDR_SIZE },
+ 	[WMI_TAG_HW_MODE_CAPABILITIES] = {
+ 		.min_len = sizeof(struct wmi_hw_mode_capabilities) - TLV_HDR_SIZE },
++	[WMI_TAG_DMA_RING_CAPABILITIES] = {
++		.min_len = sizeof(struct wmi_dma_ring_capabilities) - TLV_HDR_SIZE },
  };
  
- __le32 ath12k_wmi_tlv_hdr(u32 cmd, u32 len)
+ #define PRIMAP(_hw_mode_) \
 -- 
 2.34.1
 
