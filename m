@@ -2,103 +2,142 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B1D60A260C
-	for <ath11k@archiver.kernel.org>; Wed, 28 Oct 2026 19:37:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3961C606A31A
+	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 00:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y5Z8wn6h;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Pu+9aDKu
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SbNcSFV3;
+	dkim=pass (2048-bit key, unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=nS5l03fE;
+	dkim=pass (2048-bit key, unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=R8ZGb+5f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=CEXAY6FI854zgRGoF4r4PjZbyhjQOwJWATqvlH3EHFI=; b=y5Z8wn6hf1DLPVhUw1Ydv9MXXb
-	YWTin3Q+PLOaO1sUQ0tSBM8awT0X4ssDLlYsf4Pup6qzU8g9Z+pRwQYW+Rbt+TpQ8Z7rS8EYjFPia
-	5Mhnm8PSSWguhN6BG1l4RUq3KTnZ/x2qSxKHqkLGebd0fxRWd7Skl+LeKW50Oiozlgg8L5RUgHPd7
-	MaQOefXKK39wt+pmR+BHGoHeSu51mafWt8FsAwC6CHCAnjk2gT2EswdH3EsVTVTK3dbGpqFZoG4Lw
-	WjhkfmaM+VNBsnPOZpk7EKfWtVl1LafNUXGld0atQsonXQ6UNkB36UCIrbSiiGdd36n3aQtQNNWI5
-	+ADus4hw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=161wcd9EPFoe3fJhGneKDOtD4VA/F1JbIvr2VPER94s=; b=SbNcSFV3fXVWe+
+	a31ZDyMhz4POfKCU/0LHFVFVv9kmogfLSxypHs5sVHMIRBzRjMI6jCV7lB3DfOClVM8tGLY1ZcOHn
+	zXFiVXwAAiVKyyPB588eUE1lZgd+X0YYZgOua9NcA4CTjGoWzt0Gf8yMiIaOmdpYl2WmJLtmfVRxg
+	SMphJ6Y3miNmlaSveoAoBkT8tRTJBA2UKB91+plm9Uk4Sxltwq7REBINPDcvrQ7c6Vwn4+A/C3Xvb
+	mveXS7G4upPXJNatWqCpCjXlW4r9sJRwbAFYkYTKGxq2yqWQVzc9qSqEiYWTXmczdZX8ZbsTVnIbv
+	YxXRygcY/aWLU4SmH3sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xM9Sw-00000007rdE-3EMw;
-	Wed, 28 Oct 2026 19:37:42 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xME09-000000085jC-3NJB;
+	Thu, 29 Oct 2026 00:28:17 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xM9Sv-00000007rco-1RxZ
+	id 1xME07-000000085iW-0RT5
 	for ath11k@lists.infradead.org;
-	Wed, 28 Oct 2026 19:37:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 96B4143A3C;
-	Wed, 28 Oct 2026 19:37:40 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1793216260;
-	b=Xhn6akBEiNMAHh4Yq6UkWqc5ejCCWHZaK+2G4w6M5Dr3TDIaazMKubJozbGIDOaVhg3y
-	 gDwYtVFsSdMVn/W+JU7Hgsso9PuTQRw76x3ZbawV0KUvtgFbvLjs8UckU/2mY4NwThEx8
-	 +u88uNc+kBdBFAjqnW+vvQTDKcfVg2BFj/VvOFP59LF41dUv6i+oqy/2Oi73ySH7rsGUo
-	 PukeniKmYWmOvtbML6QJ+F9kupbQUC0kU+8O3xeecR25B8RqbFONVc7w5fh0FRM9bfzpp
-	 zuwFHxiVmcxheK4si01VQu0+FiiPIncpscSDesakguRKnqK9yiAbJOuEWatBRgrJnwA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1793216260;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=CEXAY6FI854zgRGoF4r4PjZbyhjQOwJWATqvlH3EHFI=;
-	b=IYlVxOhNMdGn5eK9TeoSJV0KfrO0KLLBokWCuDFVM3Rr+q99gqzpKbzylGGtF1nrvsQl
-	 xhnNPlXlesgo6ahpK1FXQftBE0VXTAvjsRNh7mtflU2iUCcy1M8TwuQv/UY9ejfqQagwB
-	 CnbANp66NHvRndxvs6Lzzd31N1apDIFfbjjv3/E/OdRC9kJyeO99g2ULoYkxkBEODPJOF
-	 c6rfcwoXJ1G14bF1iyuZMky+sykMdLkSrQnHpVND/3b2YiSkyzyQ99VaHZ9UvFjD4VdJ6
-	 xl6UmZHhppO1uyD+5DM/XNX/Xy2/eNiX8n+QN4TBtAOfCKE2PruJekxTcJYZUdtumvQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 685491F031E0;
-	Wed, 28 Oct 2026 19:37:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793216260;
-	bh=CEXAY6FI854zgRGoF4r4PjZbyhjQOwJWATqvlH3EHFI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=Pu+9aDKuz4XXOghLkOmuqDfiPa380a+YRg5JgbbjKWbLtly/sWI49ei7MEVhv4diT
-	 iwQUnCaI8/IWnR0S/CCsxy99IQ1fyku4tpiL6QYG7j8QfAFMJno7MgXcRb8hpaDKOB
-	 gn6SIaqM2YupjVKNR5yWeyeDGuwMMF7/tKZ8/LqaVeazg7yquqCLuVf8OkvhResXuT
-	 CSp4r+qLgWZRyiiErslsyMummKX/76vMkazXMuC1f49weDF4GzXB+DRXJ3GE2Hv2Ys
-	 stU4wexex9UP7zoutS2M/Y4TVDH0UHf0W+nRsmXIcrfGzdF+OnAPq/UY7XzpgoKWrf
-	 N4TJonVKSLMQw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D72C64557F;
-	Wed, 28 Oct 2026 19:37:38 +0000 (UTC)
-From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Wed, 28 Oct 2026 14:37:39 -0500
-Subject: [PATCH ath-next 2/2] wifi: ath11k: advertise a spatial stream for
- every chain
+	Thu, 29 Oct 2026 00:28:16 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 69SMAS292428620
+	for <ath11k@lists.infradead.org>; Thu, 29 Oct 2026 00:28:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	161wcd9EPFoe3fJhGneKDOtD4VA/F1JbIvr2VPER94s=; b=nS5l03fEVUvDe0RT
+	cRhgGB4bxhYdd7GkTwMJ7APOQy6+oPJIUncnlhygtyk2VY+KPgalb/hnlMeBr0hs
+	4i5IdqnU8daYm1b6lyJk/lv0UBaNj3pmgIxPFp7m9s7hwcepVnmOqj8TNmKvgVML
+	RJs35MV1YQYdbAK/yaZGukQ1XcJq8Vkve4uHk4z4z9LDomtMoh/qSwaOBwkNpxWl
+	LSBrTkJzsVoT+LrKH8zoApgwRfLOOlQKqcK7d5DtO6nuj6yGMq6PYSpfdxS342ZE
+	TYDG+H4Jipn1F1JSTY7fwWtv2ow0Cc8m6h24lebVt1gnGqHtRnwYAOB5qaRhiAeL
+	H8j2jQ==
+Received: from mail-dl1-f70.google.com (mail-dl1-f70.google.com [74.125.82.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hkbhwc55m-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <ath11k@lists.infradead.org>; Thu, 29 Oct 2026 00:28:13 +0000 (GMT)
+Received: by mail-dl1-f70.google.com with SMTP id a92af1059eb24-1a71dd190b0so4622529c88.1
+        for <ath11k@lists.infradead.org>; Wed, 28 Oct 2026 17:28:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1793233693; x=1793838493; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=161wcd9EPFoe3fJhGneKDOtD4VA/F1JbIvr2VPER94s=;
+        b=R8ZGb+5fLc7fLJcEa20X4RjVBAzpr7MNMrl6YcdmKnPFiWDrvS0EWeNpiBc3+ztZPU
+         gWt0z9EmAdgVA9rNZbj8+mX7+MfxB8K+17sED5whSD3zmM7rnX79ASZtnrQopfdAo5v6
+         Boiwf/UmDStMfgnGUYpVpQOSEzoTQ+nreL4NEZsu4gBMw/wiFMda9Sd493eKu5wIbg2l
+         g/w2PRN9MCA6XfewrbxFBqRlF87aCPTx43rgpVf+oxnjtvOPJgkcPxb9AvReIx3LcvQc
+         2vjmlsrYIn8EFGDS1ajDZKNHEYWQ22OPkAteeaP1t6H/VSDHX9S/MlyD+DJKtnyTLC9E
+         Z51A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793233693; x=1793838493;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=161wcd9EPFoe3fJhGneKDOtD4VA/F1JbIvr2VPER94s=;
+        b=Pd/c2ysZcGBOUYsES6i85l6pPqleeversjDIeAEY7Zo7S4uAZ006z1N7VarYRa7m87
+         2AOhj37qm4PYvaAaaGzcwZ2l8sJ9xPaX/6BbXeexFJA3bOmsxPAyHOUJxr+F8l1/WWQ4
+         pD4vpp4VSZzLrJcmbAW6dcEHk9NQmlqdMeW5Ww3xPcSdUDRkcNmfWETjYuHjw2ko8rMn
+         zhb1uso19GfALECOi2RPylVjIHKhwuHu1WmkII2PTm8Fa0Lo3emZR+fxWR6gP3kR9nhw
+         ROs5gBAQYGPIXCx7XtbZHZr3z85CBA5UmslCVSr8MCHFjzuc9dWzqTDMMPraGvmr6rhf
+         hh5A==
+X-Forwarded-Encrypted: i=1; AKwUvBxHk5EZSoY1n9BV2a1JEk8o8YZbgL83muwmhRfwfJUskhIrBhbcpSIp/2BliKEG+mKmBDNCBsQ=@lists.infradead.org
+X-Gm-Message-State: AFq9FYIy3qZdgZTsDCVFLrCMGTm2fcQ9S6khPwq1GCNrH8qLBCJQTNXA
+	OP7Y2Hn0R5+kRAq+c/EZqefd4sUj3VddDL3fyNNVK7hc2iUDx5pMkyGH063XY0qc8Owwf3/LM4U
+	oVZlI/P532wbnpbk1gXwr2/q8C9NHr2xj24tyQtwXYMNljPYgq/ueAx55V09uHsC1MJ4ERJ87
+X-Gm-Gg: AYBFou340QVRqk4zA6QNMSxahhYQ5IHhGTh9CfYVbMaYkxfLPJeJ+WSZflreBoqvgzM
+	h6Gqis34IT/6k8X64P7xuHakjPUYsz3lUz1YBtPYJuL+Bh+7sUSZ+1DJBxziw0q3SxrY1PTI5QW
+	NJiCgcCxCHGEOz2bcH73vAETmmReEUX2Jut/Qw3nMuvR72iFjyffQTyJNN9sq2UdI4/sVvxiOzb
+	Bm04Y+iuo03epsU5RQmcmyVIIWzzy16jT0Yw8bkihmN5ZqofLzOwgpUBJhH361UPWGsPO8BMT+W
+	lcOjqdqbNnovo9qMvVuAqis8QbIorXBW4k0qRGstzhQ3V4fS9P7mWPl9mP5SakoPCbf66FZPk2W
+	1TOu6fTxkuXVMuhQY099bYK1xCuLzQXG6Q1GKDhX8b0Q/eZDvO77GYpr2FU3RsIA3XvM6ydj6o8
+	k4fWOIp/1bCuDWGpRgRInl2NltuRlhUMg=
+X-Received: by 2002:a05:7023:88c:b0:167:d73a:e994 with SMTP id a92af1059eb24-1a6cd779e67mr6125339c88.24.1793233692774;
+        Wed, 28 Oct 2026 17:28:12 -0700 (PDT)
+X-Received: by 2002:a05:7023:88c:b0:167:d73a:e994 with SMTP id a92af1059eb24-1a6cd779e67mr6125313c88.24.1793233692158;
+        Wed, 28 Oct 2026 17:28:12 -0700 (PDT)
+Received: from [192.168.1.20] (33.sub-75-218-193.myvzw.com. [75.218.193.33])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1a76056a001sm13527135c88.22.2026.10.28.17.28.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Oct 2026 17:28:11 -0700 (PDT)
+Message-ID: <35ec209a-a62c-4fd9-aaba-edeed86dedf5@oss.qualcomm.com>
+Date: Wed, 28 Oct 2026 17:28:10 -0700
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261028-b4-ath11k-qcn907x-caps-v1-2-c7daa6f1c02c@gmail.com>
-References: <20261028-b4-ath11k-qcn907x-caps-v1-0-c7daa6f1c02c@gmail.com>
-In-Reply-To: <20261028-b4-ath11k-qcn907x-caps-v1-0-c7daa6f1c02c@gmail.com>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Christopher Griffin <christophergriffin05@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793216257; l=6123;
- i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=8Uwxeg8UHngxATx0eZ4/cEVXGxe0+dvdWqlppGkOKfE=;
- b=ZpPF/FYUsE/MwMmiwn21IqxNMU7TLlxzf60JrTgfkhg3KzaxYjeAko1eP8rwUFmfscY2HG2LA
- K+MZiwC6CuqCnjVGY6jAs5SbSp7SkkO2Al2v0MgLbV/u8y2ybDyDW1H
-X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
- pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
-X-Endpoint-Received: by B4 Relay for
- christophergriffin05@gmail.com/20261024 with auth_id=1309
-X-Original-From: Christopher Griffin <christophergriffin05@gmail.com>
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] wifi: ath11k/ath12k: validate capability TLV lengths
+To: Jiale Yao <yaojiale02@163.com>, Jeff Johnson <jjohnson@kernel.org>,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        ath12k@lists.infradead.org
+References: <20261028051254.147628-1-yaojiale02@163.com>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20261028051254.147628-1-yaojiale02@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: XfIKDQz2ezpZ4S7g5Ze96Ma0czUsq7qU
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMDI5MDAwMSBTYWx0ZWRfX/S+jouezbkjX
+ 8lMRbyXo00XFY2u+8iLAPZNslJbGb2M6LAYYiIsDS3wd6XafDKNgnQYnKBsEXgIGJDjaLdsuVny
+ e+j/ltez7BrEUZAHk1vRnbHvFmGVgp0=
+X-Authority-Analysis: v=2.4 cv=V+joQuni c=1 sm=1 tr=0 ts=6ae2931d cx=c_pps
+ a=SvEPeNj+VMjHSW//kvnxuw==:117 a=AnolQpdaNwb4XK4FG+QP+g==:17
+ a=IkcTkHD0fZMA:10 a=660iZSQnnn4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=zf6acwKC7uJQSQTK7isA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=Kq8ClHjjuc5pcCNDwlU0:22
+X-Proofpoint-ORIG-GUID: XfIKDQz2ezpZ4S7g5Ze96Ma0czUsq7qU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDI5MDAwMSBTYWx0ZWRfX7gtVjaZFm+mO
+ 6FpLmSTn7T7H53kTrtvB90mTH6GIR6S2QI/9SanozhOr62MZC0Lzp9vXoDrLEHBYO6IbuSt0x3X
+ 7fkgZ2byYPv5TE5dd1jvjg8+KL69EhkV3tdv8LluobbyTIuhSARKugrzVhkmkHcu3t2vmvqnr29
+ 0wUKQLM7dTa3ntNq5a3RMIVy8MO7Yng1iSt25BSANqziMEoYyD00awOCCxxlgYw8HJt/E5xaBSr
+ VhYJ0jFUGpf1U0UN3CMP2nBXKyuxRLL/qKqjycb5wFBOFK8aHW8tSvgd56HYhsovdcroVDQfBFR
+ 4GJymxPaf9bwSI55wgr/QPx96LA5nACmQclYWH862nBuf0ZhH6QJPVuqkYqX+dMHvuNIlrkhccs
+ DihWKurRtuWnK2WNke8hUdplo2CRgaGiGTVPyqrri6IdEqZx1qS0DOl4eP4rbN6VL+2qAOAJLcn
+ l6KGkfr9FnK5534u1ZQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-10-28_07,2026-10-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ phishscore=0 impostorscore=0 priorityscore=1501 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2610190000 definitions=main-2610290001
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261028_172815_173739_4FB1EF49 
+X-CRM114-Status: GOOD (  15.12  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,166 +147,58 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: christophergriffin05@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Christopher Griffin <christophergriffin05@gmail.com>
+On 10/27/2026 10:12 PM, Jiale Yao wrote:
+> Several ath11k and ath12k WMI parsers count firmware TLVs and later
+> consume them as arrays of complete capability structures.  The generic
+> iterator validates that a TLV fits in its enclosing message, but these
+> tags have no minimum-length policies, so a short element can still cause
+> an out-of-bounds structure read.
+> 
+> Add policies for the DMA buffer release, hardware mode, DMA ring, and
+> extended MAC/PHY capability TLVs used by these paths.
+> 
+> Jiale Yao (5):
+>   wifi: ath11k: validate DMA buffer release TLV lengths
+>   wifi: ath11k: validate hardware mode capability TLVs
+>   wifi: ath11k: validate DMA ring capability TLVs
+>   wifi: ath12k: validate DMA buffer release fixed TLV length
+>   wifi: ath12k: validate service-ready capability TLV lengths
+> 
+>  drivers/net/wireless/ath/ath11k/wmi.c | 8 ++++++++
+>  drivers/net/wireless/ath/ath12k/wmi.c | 8 ++++++++
+>  2 files changed, 16 insertions(+)
+> 
 
-ath11k counts stream i as supported only when bit i of the radio's
-chainmask is set: in the HT RX MCS mask (ath11k_create_ht_cap()), the
-VHT MCS maps (ath11k_create_vht_cap()) and the HE MCS maps
-(ath11k_mac_set_hemcsmap()). A chainmask need not be contiguous. The
-QCN9072 in an Arista C-360 reports 0x5, chains 0 and 2: it has two
-chains, and ar->num_tx_chains and ar->num_rx_chains say so, but bit 1
-is clear, so its HT, VHT and HE capabilities offer one stream ("2
-streams: not supported" in iw phy, on 2.4, 5 and 6 GHz) and it
-associates as a 1x1 client.
+I was surprised by the asymmetry between patch 1 (which just added validation
+to the array entry TLVs) and patch 4 (which just added validation to the fixed
+params TLV). After a session with an LLM we came to the conclusion that both
+are incomplete:
 
-A radio can use as many streams as it has chains, whichever chains
-they are. Count the streams up to ar->num_tx_chains and
-ar->num_rx_chains, the chainmasks' weights, and take TX STBC away when
-there is one TX chain rather than when the shifted TX chainmask is at
-most 1. The rate-cap chainmasks that only fed these tests go. This also
-ends the HE RX map's use of tx_chain_mask_shift for the RX chainmask.
+The DMA-buf-release event has two independent OOB sinks in each driver — a
+fixed-header copy and a fixed-stride array walk. Both drivers are affected by
+both. The series fixes only one sink per driver, and in a complementary
+pattern that makes each driver look "done" at a glance but leaves each one
+half-covered:
 
-With this the QCN9072 shows HT MCS 0-15 and two VHT and HE streams on
-every band, and as a client on 5 GHz at 40 MHz it associated at
-HE-MCS 10, 2 streams, and ran 310 Mbit/s down and 438 up to a local
-server. Contiguous chainmasks get the same capabilities as before: the
-IPQ8074's radios (0xf, and 0xf0 shifted by 4) are unchanged.
+- ath11k: patch 1 guards the array elements (_ENTRY, _META_DATA) ✅ but the
+fixed-header memcpy at wmi.c:4669 (16 bytes, unconditional, from firmware
+payload) is still unguarded. Needs the [WMI_TAG_DMA_BUF_RELEASE] policy.
+- ath12k: patch 4 guards the fixed header ✅ but the array stride reads
+ev->buf_entry[i] / ev->meta_data[i] in dbring.c are still unguarded. Needs the
+[WMI_TAG_DMA_BUF_RELEASE_ENTRY] and [..._SPECTRAL_META_DATA] policies.
 
-Tested-on: QCN9074 hw1.0 PCI fw_version 0x250affff (vendor build)
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+And since you are playing in this area, my LLM thinks that
+WMI_TAG_HAL_REG_CAPABILITIES_EXT has this issue in both drivers, and thinks
+that WMI_TAG_RSSI_STATS may have this issue. I haven't verified that analysis.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Fixes: ebf82988f844 ("wifi: ath11k: generate rx and tx mcs maps for supported HE mcs")
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 38 ++++++++++++-----------------------
- 1 file changed, 13 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index af01ef1cf4c9..62c3a6a7cd20 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5556,7 +5556,7 @@ static int ath11k_mac_op_conf_tx(struct ieee80211_hw *hw,
- }
- 
- static struct ieee80211_sta_ht_cap
--ath11k_create_ht_cap(struct ath11k *ar, u32 ar_ht_cap, u32 rate_cap_rx_chainmask)
-+ath11k_create_ht_cap(struct ath11k *ar, u32 ar_ht_cap)
- {
- 	int i;
- 	struct ieee80211_sta_ht_cap ht_cap = {};
-@@ -5611,10 +5611,9 @@ ath11k_create_ht_cap(struct ath11k *ar, u32 ar_ht_cap, u32 rate_cap_rx_chainmask
- 	if (ar_vht_cap & WMI_VHT_CAP_MAX_MPDU_LEN_MASK)
- 		ht_cap.cap |= IEEE80211_HT_CAP_MAX_AMSDU;
- 
--	for (i = 0; i < ar->num_rx_chains; i++) {
--		if (rate_cap_rx_chainmask & BIT(i))
--			ht_cap.mcs.rx_mask[i] = 0xFF;
--	}
-+	/* a stream for every chain, whichever chains the chainmask names */
-+	for (i = 0; i < ar->num_rx_chains; i++)
-+		ht_cap.mcs.rx_mask[i] = 0xFF;
- 
- 	ht_cap.mcs.tx_params |= IEEE80211_HT_MCS_TX_DEFINED;
- 
-@@ -5723,8 +5722,7 @@ static void ath11k_set_vht_txbf_cap(struct ath11k *ar, u32 *vht_cap)
- }
- 
- static struct ieee80211_sta_vht_cap
--ath11k_create_vht_cap(struct ath11k *ar, u32 rate_cap_tx_chainmask,
--		      u32 rate_cap_rx_chainmask)
-+ath11k_create_vht_cap(struct ath11k *ar)
- {
- 	struct ieee80211_sta_vht_cap vht_cap = {};
- 	u16 txmcs_map, rxmcs_map;
-@@ -5742,18 +5740,18 @@ ath11k_create_vht_cap(struct ath11k *ar, u32 rate_cap_tx_chainmask,
- 	rxmcs_map = 0;
- 	txmcs_map = 0;
- 	for (i = 0; i < 8; i++) {
--		if (i < ar->num_tx_chains && rate_cap_tx_chainmask & BIT(i))
-+		if (i < ar->num_tx_chains)
- 			txmcs_map |= IEEE80211_VHT_MCS_SUPPORT_0_9 << (i * 2);
- 		else
- 			txmcs_map |= IEEE80211_VHT_MCS_NOT_SUPPORTED << (i * 2);
- 
--		if (i < ar->num_rx_chains && rate_cap_rx_chainmask & BIT(i))
-+		if (i < ar->num_rx_chains)
- 			rxmcs_map |= IEEE80211_VHT_MCS_SUPPORT_0_9 << (i * 2);
- 		else
- 			rxmcs_map |= IEEE80211_VHT_MCS_NOT_SUPPORTED << (i * 2);
- 	}
- 
--	if (rate_cap_tx_chainmask <= 1)
-+	if (ar->num_tx_chains <= 1)
- 		vht_cap.cap &= ~IEEE80211_VHT_CAP_TXSTBC;
- 
- 	vht_cap.vht_mcs.rx_mcs_map = cpu_to_le16(rxmcs_map);
-@@ -5767,20 +5765,14 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
- 					u32 *ht_cap_info)
- {
- 	struct ieee80211_supported_band *band;
--	u32 rate_cap_tx_chainmask;
--	u32 rate_cap_rx_chainmask;
- 	u32 ht_cap;
- 
--	rate_cap_tx_chainmask = ar->cfg_tx_chainmask >> cap->tx_chain_mask_shift;
--	rate_cap_rx_chainmask = ar->cfg_rx_chainmask >> cap->rx_chain_mask_shift;
--
- 	if (cap->supported_bands & WMI_HOST_WLAN_2G_CAP) {
- 		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
- 		ht_cap = cap->band[NL80211_BAND_2GHZ].ht_cap_info;
- 		if (ht_cap_info)
- 			*ht_cap_info = ht_cap;
--		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap,
--						    rate_cap_rx_chainmask);
-+		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap);
- 	}
- 
- 	/* A 6 GHz capable radio may cover 5 GHz as well, as a QCN9074 does:
-@@ -5793,10 +5785,8 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
- 		ht_cap = cap->band[NL80211_BAND_5GHZ].ht_cap_info;
- 		if (ht_cap_info)
- 			*ht_cap_info = ht_cap;
--		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap,
--						    rate_cap_rx_chainmask);
--		band->vht_cap = ath11k_create_vht_cap(ar, rate_cap_tx_chainmask,
--						      rate_cap_rx_chainmask);
-+		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap);
-+		band->vht_cap = ath11k_create_vht_cap(ar);
- 	}
- }
- 
-@@ -5949,14 +5939,12 @@ static void ath11k_mac_set_hemcsmap(struct ath11k *ar,
- 	rxmcs_map = 0;
- 	txmcs_map = 0;
- 	for (i = 0; i < 8; i++) {
--		if (i < ar->num_tx_chains &&
--		    (ar->cfg_tx_chainmask >> cap->tx_chain_mask_shift) & BIT(i))
-+		if (i < ar->num_tx_chains)
- 			txmcs_map |= IEEE80211_HE_MCS_SUPPORT_0_11 << (i * 2);
- 		else
- 			txmcs_map |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
- 
--		if (i < ar->num_rx_chains &&
--		    (ar->cfg_rx_chainmask >> cap->tx_chain_mask_shift) & BIT(i))
-+		if (i < ar->num_rx_chains)
- 			rxmcs_map |= IEEE80211_HE_MCS_SUPPORT_0_11 << (i * 2);
- 		else
- 			rxmcs_map |= IEEE80211_HE_MCS_NOT_SUPPORTED << (i * 2);
-
--- 
-2.43.0
-
-
+/jeff
 
