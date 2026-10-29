@@ -2,65 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326FD606A322
-	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 04:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A744606A31C
+	for <ath11k@archiver.kernel.org>; Thu, 29 Oct 2026 04:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Tl+UHa8q;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=aNV352Zy
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=41Q/HWAX;
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=HFAL8oBg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:MIME-Version:
+	Content-Type:Content-Transfer-Encoding:References:In-Reply-To:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QGAW60ly4dJn3r9jBzjnajf80vcBLeMOp3uPKg7LNrQ=; b=Tl+UHa8qP14+1s
-	HVSHhtQcoZahF4mZKmKpsmSkdXD/wBYwA3R6Mo4Fu876LByrGO0Nwqyz14uo9n5OaxVLhPfg1yiz7
-	Q7mjqCKkl/vLFh49GDhvbkbHILbY0D0RGYj5K0gkcZ9hS0rK8xJgCps09+Kqmq1WsacQvsJqOOBVr
-	YWRI49a1+/8EwijJad15x9ePVOhuVveyc7OIOaJCLF9OLkkmgIKQ9kAwjCq4APkSJ4JCaNnUiWxKJ
-	q7zgZiMaZaHml9k23XBxN3S8YT6a5mj3QE7E9b3uzWK/AVR9E3wh7u2Je/2egnspRsIyJqRG/5uCp
-	koHqFPNcY/tW/FJL9Qww==;
+	List-Owner; bh=dszobB3X2DrniL8erhzzfrWDq5pb/IBtHAO2jhrc3yU=; b=41Q/HWAX7DtVbN
+	eSLuxjplxY6hEfRPdUII789ztXQadKsd331gqbzJmT5NOVNCwxQsiRNT44p9PwsFtVwIoXlFlALC4
+	fEPo2hbnrxkkpQlgWuXStsskhJRDegRpyLfkZfH6oaVq5hFpNThkBhtPQuhVGwmjOqqCazAQDRl5Y
+	4lMCExy2T+YftMCQBCN+gZPp+w0pLYbn1ZStchKtQZmTSFHOv1ek7eqNVBv2LElhsnnV3CU2G8TsO
+	fnX7q9XrlWzXA7tvjDiYQcJCH+3AAowcIiEh/0o4Loscyb+pOqt8od4ltF/uofMF0JpBSGYoJWnWp
+	vBjTWgn81a/MZ8Xhb5yQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMHau-00000008IfJ-37OB;
-	Thu, 29 Oct 2026 04:18:28 +0000
-Received: from m16.mail.163.com ([117.135.210.4])
+	id 1xMHcp-00000008JcN-2Aki;
+	Thu, 29 Oct 2026 04:20:27 +0000
+Received: from m16.mail.163.com ([117.135.210.2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMHap-00000008IbA-3bwe;
-	Thu, 29 Oct 2026 04:18:27 +0000
+	id 1xMHcm-00000008Jbf-1eGW;
+	Thu, 29 Oct 2026 04:20:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=QG
-	AW60ly4dJn3r9jBzjnajf80vcBLeMOp3uPKg7LNrQ=; b=aNV352Zya6qwmFZMoA
-	Fqec2fClT87pXiZ8EckPOTGu1NKQecYVkrkgoR4MxDQ55pLkrs+gWOrVZ5AIQ15f
-	9U8wDuDtJLoLNFcZM0tjb9oIdrpsdzB5x3VGIW6LXUux3MzqzC04w+8mlNpZlwnl
-	MnAiTXMZegXuswsXyuC4FGR+I=
-Received: from pc.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3nzIDyeJqQW5fDg--.62716S5;
-	Thu, 29 Oct 2026 12:18:13 +0800 (CST)
-From: Jiale Yao <yaojiale02@163.com>
-To: Jeff Johnson <jjohnson@kernel.org>,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH v2 3/5] wifi: ath11k: validate DMA ring capability TLVs
-Date: Thu, 29 Oct 2026 12:18:09 +0800
-Message-Id: <20261029041811.2379878-4-yaojiale02@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261029041811.2379878-1-yaojiale02@163.com>
-References: <20261029041811.2379878-1-yaojiale02@163.com>
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=dszobB3X2DrniL8erhzzfrWDq5pb/IBtHAO2jhrc3yU=; b=H
+	FAL8oBgmwoNdNsmUEIoIzFvYhUo22vwkN2AWtBjPP8+YvnWdF5fwutQoRRVV0VZT
+	4Kgu3d8dr9EVDzis9MM/9KJYyqXtYLPyUCgRscChJCPmWCNyeyIeeQh9h2que45o
+	luOmz5WUHISLQ0t+G8/zcFQyPbzxacfnpA6XMyPt54=
+Received: from 19888972804$163.com ( [2610:150:c001:15:81:7818:302a:b455] )
+ by ajax-webmail-wmsvr-40-102 (Coremail) ; Thu, 29 Oct 2026 12:20:13 +0800
+ (CST)
+Date: Thu, 29 Oct 2026 12:20:13 +0800 (CST)
+From: "jiale yao" <19888972804@163.com>
+To: "Jeff Johnson" <jeff.johnson@oss.qualcomm.com>
+Cc: "Jeff Johnson" <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org, ath12k@lists.infradead.org
+Subject: Re:Re: [PATCH 0/5] wifi: ath11k/ath12k: validate capability TLV
+ lengths
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 163com
+In-Reply-To: <35ec209a-a62c-4fd9-aaba-edeed86dedf5@oss.qualcomm.com>
+References: <20261028051254.147628-1-yaojiale02@163.com>
+ <35ec209a-a62c-4fd9-aaba-edeed86dedf5@oss.qualcomm.com>
+X-NTES-SC: AL_Qu2SAf6fuE4q5SSbY+kcn08ShO49XMOyvfoi2YFTc+0EoDzV3BInXF1gPGDxz8mkDT2vlyCFSTp15+JbY6xAC4wuYCmzPzzZjti2WuOfog==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wD3nzIDyeJqQW5fDg--.62716S5
-X-Coremail-Antispam: 1Uf129KBjvJXoW7XFyUWFyDWw15WFyDAFWDurg_yoW8Jr43pF
-	4Ig3W7C34rXr47Jw1fJa1xZa45K3Z5t3yakFWUJ34fWa1kCF1rJFyYqFWYvFyrJF4UGFya
-	qFWqgrW3AF98t3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jTxRDUUUUU=
-X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7wXGAWriyQXt+QAA39
+Message-ID: <551c02b7.3ba4.1a185e31205.Coremail.19888972804@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: ZigvCgD3P75+yeJq8SNjAA--.1075W
+X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7x7kH2riyX73gQAA3D
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261028_211824_288469_7142D548 
-X-CRM114-Status: UNSURE (   8.91  )
+X-CRM114-CacheID: sfid-20261028_212024_813330_D30AD627 
+X-CRM114-Status: UNSURE (   9.33  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.8 (-)
 X-BeenThere: ath11k@lists.infradead.org
@@ -73,43 +74,55 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	FREEMAIL_FROM,FROM_LOCAL_DIGITS,FROM_LOCAL_HEX,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The service-ready parser counts DMA ring capability TLVs and later
-indexes the firmware array using the full structure stride.  It does not
-validate that each TLV payload covers that structure, so a short element
-can cause out-of-bounds reads.
-
-Add a minimum-length policy for DMA ring capability TLVs.
-
-Fixes: bd6478559e27 ("ath11k: Add direct buffer ring support")
-Cc: stable@vger.kernel.org
-Signed-off-by: Jiale Yao <yaojiale02@163.com>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 047ae8f5bb60..4cf5f57a93e1 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -169,6 +169,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
- 		.min_len = sizeof(struct wmi_dma_buf_release_meta_data) - TLV_HDR_SIZE },
- 	[WMI_TAG_HW_MODE_CAPABILITIES] = {
- 		.min_len = sizeof(struct wmi_hw_mode_capabilities) - TLV_HDR_SIZE },
-+	[WMI_TAG_DMA_RING_CAPABILITIES] = {
-+		.min_len = sizeof(struct wmi_dma_ring_capabilities) - TLV_HDR_SIZE },
- };
- 
- #define PRIMAP(_hw_mode_) \
--- 
-2.34.1
-
+QXQgMjAyNi0xMC0yOSAwODoyODoxMCwgIkplZmYgSm9obnNvbiIgPGplZmYuam9obnNvbkBvc3Mu
+cXVhbGNvbW0uY29tPiB3cm90ZToKPk9uIDEwLzI3LzIwMjYgMTA6MTIgUE0sIEppYWxlIFlhbyB3
+cm90ZToKPj4gU2V2ZXJhbCBhdGgxMWsgYW5kIGF0aDEyayBXTUkgcGFyc2VycyBjb3VudCBmaXJt
+d2FyZSBUTFZzIGFuZCBsYXRlcgo+PiBjb25zdW1lIHRoZW0gYXMgYXJyYXlzIG9mIGNvbXBsZXRl
+IGNhcGFiaWxpdHkgc3RydWN0dXJlcy4gIFRoZSBnZW5lcmljCj4+IGl0ZXJhdG9yIHZhbGlkYXRl
+cyB0aGF0IGEgVExWIGZpdHMgaW4gaXRzIGVuY2xvc2luZyBtZXNzYWdlLCBidXQgdGhlc2UKPj4g
+dGFncyBoYXZlIG5vIG1pbmltdW0tbGVuZ3RoIHBvbGljaWVzLCBzbyBhIHNob3J0IGVsZW1lbnQg
+Y2FuIHN0aWxsIGNhdXNlCj4+IGFuIG91dC1vZi1ib3VuZHMgc3RydWN0dXJlIHJlYWQuCj4+IAo+
+PiBBZGQgcG9saWNpZXMgZm9yIHRoZSBETUEgYnVmZmVyIHJlbGVhc2UsIGhhcmR3YXJlIG1vZGUs
+IERNQSByaW5nLCBhbmQKPj4gZXh0ZW5kZWQgTUFDL1BIWSBjYXBhYmlsaXR5IFRMVnMgdXNlZCBi
+eSB0aGVzZSBwYXRocy4KPj4gCj4+IEppYWxlIFlhbyAoNSk6Cj4+ICAgd2lmaTogYXRoMTFrOiB2
+YWxpZGF0ZSBETUEgYnVmZmVyIHJlbGVhc2UgVExWIGxlbmd0aHMKPj4gICB3aWZpOiBhdGgxMWs6
+IHZhbGlkYXRlIGhhcmR3YXJlIG1vZGUgY2FwYWJpbGl0eSBUTFZzCj4+ICAgd2lmaTogYXRoMTFr
+OiB2YWxpZGF0ZSBETUEgcmluZyBjYXBhYmlsaXR5IFRMVnMKPj4gICB3aWZpOiBhdGgxMms6IHZh
+bGlkYXRlIERNQSBidWZmZXIgcmVsZWFzZSBmaXhlZCBUTFYgbGVuZ3RoCj4+ICAgd2lmaTogYXRo
+MTJrOiB2YWxpZGF0ZSBzZXJ2aWNlLXJlYWR5IGNhcGFiaWxpdHkgVExWIGxlbmd0aHMKPj4gCj4+
+ICBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5jIHwgOCArKysrKysrKwo+PiAg
+ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEyay93bWkuYyB8IDggKysrKysrKysKPj4gIDIg
+ZmlsZXMgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKQo+PiAKPgo+SSB3YXMgc3VycHJpc2VkIGJ5
+IHRoZSBhc3ltbWV0cnkgYmV0d2VlbiBwYXRjaCAxICh3aGljaCBqdXN0IGFkZGVkIHZhbGlkYXRp
+b24KPnRvIHRoZSBhcnJheSBlbnRyeSBUTFZzKSBhbmQgcGF0Y2ggNCAod2hpY2gganVzdCBhZGRl
+ZCB2YWxpZGF0aW9uIHRvIHRoZSBmaXhlZAo+cGFyYW1zIFRMVikuIEFmdGVyIGEgc2Vzc2lvbiB3
+aXRoIGFuIExMTSB3ZSBjYW1lIHRvIHRoZSBjb25jbHVzaW9uIHRoYXQgYm90aAo+YXJlIGluY29t
+cGxldGU6Cj4KPlRoZSBETUEtYnVmLXJlbGVhc2UgZXZlbnQgaGFzIHR3byBpbmRlcGVuZGVudCBP
+T0Igc2lua3MgaW4gZWFjaCBkcml2ZXIg4oCUIGEKPmZpeGVkLWhlYWRlciBjb3B5IGFuZCBhIGZp
+eGVkLXN0cmlkZSBhcnJheSB3YWxrLiBCb3RoIGRyaXZlcnMgYXJlIGFmZmVjdGVkIGJ5Cj5ib3Ro
+LiBUaGUgc2VyaWVzIGZpeGVzIG9ubHkgb25lIHNpbmsgcGVyIGRyaXZlciwgYW5kIGluIGEgY29t
+cGxlbWVudGFyeQo+cGF0dGVybiB0aGF0IG1ha2VzIGVhY2ggZHJpdmVyIGxvb2sgImRvbmUiIGF0
+IGEgZ2xhbmNlIGJ1dCBsZWF2ZXMgZWFjaCBvbmUKPmhhbGYtY292ZXJlZDoKPgo+LSBhdGgxMWs6
+IHBhdGNoIDEgZ3VhcmRzIHRoZSBhcnJheSBlbGVtZW50cyAoX0VOVFJZLCBfTUVUQV9EQVRBKSDi
+nIUgYnV0IHRoZQo+Zml4ZWQtaGVhZGVyIG1lbWNweSBhdCB3bWkuYzo0NjY5ICgxNiBieXRlcywg
+dW5jb25kaXRpb25hbCwgZnJvbSBmaXJtd2FyZQo+cGF5bG9hZCkgaXMgc3RpbGwgdW5ndWFyZGVk
+LiBOZWVkcyB0aGUgW1dNSV9UQUdfRE1BX0JVRl9SRUxFQVNFXSBwb2xpY3kuCj4tIGF0aDEyazog
+cGF0Y2ggNCBndWFyZHMgdGhlIGZpeGVkIGhlYWRlciDinIUgYnV0IHRoZSBhcnJheSBzdHJpZGUg
+cmVhZHMKPmV2LT5idWZfZW50cnlbaV0gLyBldi0+bWV0YV9kYXRhW2ldIGluIGRicmluZy5jIGFy
+ZSBzdGlsbCB1bmd1YXJkZWQuIE5lZWRzIHRoZQo+W1dNSV9UQUdfRE1BX0JVRl9SRUxFQVNFX0VO
+VFJZXSBhbmQgWy4uLl9TUEVDVFJBTF9NRVRBX0RBVEFdIHBvbGljaWVzLgo+Cj5BbmQgc2luY2Ug
+eW91IGFyZSBwbGF5aW5nIGluIHRoaXMgYXJlYSwgbXkgTExNIHRoaW5rcyB0aGF0Cj5XTUlfVEFH
+X0hBTF9SRUdfQ0FQQUJJTElUSUVTX0VYVCBoYXMgdGhpcyBpc3N1ZSBpbiBib3RoIGRyaXZlcnMs
+IGFuZCB0aGlua3MKPnRoYXQgV01JX1RBR19SU1NJX1NUQVRTIG1heSBoYXZlIHRoaXMgaXNzdWUu
+IEkgaGF2ZW4ndCB2ZXJpZmllZCB0aGF0IGFuYWx5c2lzLgoKQWdyZWUsIHRoZSB1cGRhdGVkIG9u
+ZSBpcyBoZXJlLCBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzIwMjYxMDI5MDQxODExLjIz
+Nzk4NzgtMS15YW9qaWFsZTAyQDE2My5jb20vCj4KPi9qZWZmCg==
 
