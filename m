@@ -2,61 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69269606A324
-	for <ath11k@archiver.kernel.org>; Fri, 30 Oct 2026 18:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520AA606B786
+	for <ath11k@archiver.kernel.org>; Fri, 30 Oct 2026 21:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K610jwnS;
-	dkim=pass (2048-bit key, unprotected) header.d=adriel.eu header.i=@adriel.eu header.a=rsa-sha256 header.s=dkim header.b=b7/OrD70
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hbYpxu+Y;
+	dkim=pass (2048-bit key, unprotected) header.d=karpenko.ca header.i=@karpenko.ca header.a=rsa-sha256 header.s=google header.b=czSz81Vc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qHLOZ3eazynpKs4MwOyw7uyzuUk6W5PCYG4t6E8R0nI=; b=K610jwnS0N1Vju
-	E/m9OjGtDxkBGswYfOS2s+KikhZCA05De/6t+MB45GXa0uhIm909pqnxBWyY9DG+UzSC90qGD8YkI
-	kLU1w5pO6sCgu7AhOSHO9L5ZIcAXBHhkNACXz1MQ72zuGgBqbTKOJKCJ3VLS8cuXUggHLMRFMz9rx
-	wgoEhYukX1dhdeQ2Hgr3qMKOWfKwN7TxNKiFneeH9nIxaz8nCamBdoekM1y/4UGPQLRr8zeL1EQhi
-	Q03gZHSRK0fR88uPiLrUYdrwcX6ucYKvtby7oU0NuWZPIcW24RGWr5nmYq1E0gFb4kZS7ouN4fvmK
-	BeVALF5d04H3Cg7hwVYQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=VD5yToGOxft/iAlbljIC7sImw3W+GTcv6yvpKGraM1E=; b=hbYpxu+YmMmFaKXlpwjRt92L+B
+	jYEnXejzFsyq157mtFCTRhqwwWVpvMwueIVFY2kh8yvctMMuk1MpZyenFltrYHQXzpvC9GaIAz/iP
+	aB8v1AVEvDg3hcIrJMTU+lOAalB//qub9xxeecvT9I3caqlcsxU5y8yA/d0hlxOZz3qujJ51Yhg/4
+	Elk38zIDzSR28uidUkAVV7yO6NmGfRMPznEyEbzJzXcvDvYzrKNtYfwUiVxNfd6BWJy/WZdTLeCjw
+	V1ihRFzQUVAqXiiRlUJe4f9CA8xlPB3ZGK7B6YYlCAkr9+ulfNYXXY+xqPkDgjAdEZcp5GTGLsc1N
+	sVSAl10g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMr22-0000000CMTN-02mL;
-	Fri, 30 Oct 2026 18:08:50 +0000
-Received: from mail.adriel.eu ([51.75.77.166])
+	id 1xMu5X-0000000CbaW-1AEj;
+	Fri, 30 Oct 2026 21:24:39 +0000
+Received: from mail-oa1-x2f.google.com ([2001:4860:4864:20::2f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMr1v-0000000CMPq-0CnG;
-	Fri, 30 Oct 2026 18:08:48 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98C3426224B;
-	Fri, 30 Oct 2026 14:08:34 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=adriel.eu; s=dkim;
-	t=1793383716; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=qHLOZ3eazynpKs4MwOyw7uyzuUk6W5PCYG4t6E8R0nI=;
-	b=b7/OrD70rGhRxJoMv/jB3Sqiko0OtFaMlIpr22TzsagyeceoMdWfpEAZLutI/zBeXJEs0v
-	f0yy0xbtoVN1BGzgL/x1HcOojyQVLPUHi+3tCkW39SSYybppiK+Bw/16NE3DncyDpGWND2
-	hL/ptZIvWmYhbNtbqm8gCZIIIW7TMGmk271k3fqgnpSyuSvkoHQ9fbSvuJHGkgUJ6tEv/5
-	x2S7EE92OGyHbowHbKyXlvtbsTPczIk10GR5GPfOKDJufWXqxa2A9GUHzrOp3nIiLhAay1
-	SbNhCqEAdYEGkCIqCU6lnCJpJ0Hy/5t9Vi2xFojv6I2myCbqQViCV4zIK9DW+A==
-From: Adriel Santos <adriel@adriel.eu>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	ath12k@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH ath-next 2/2] wifi: ath12k: copy the first fragment's descriptor before queuing it
-Date: Fri, 30 Oct 2026 15:07:05 -0300
-Message-ID: <20261030180705.1702009-3-adriel@adriel.eu>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261030180705.1702009-1-adriel@adriel.eu>
-References: <20261030180705.1702009-1-adriel@adriel.eu>
+	id 1xMu5V-0000000CbaC-02uX
+	for ath11k@lists.infradead.org;
+	Fri, 30 Oct 2026 21:24:38 +0000
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-49e08af5fd4so541113fac.1
+        for <ath11k@lists.infradead.org>; Fri, 30 Oct 2026 14:24:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1793395475; cv=none;
+        d=google.com; s=arc-20260327;
+        b=P4BLZ/CW3mxGfl2DqMdVjyuSphX0wmB1T1hR7EBQQ0kQEIigF7VVbZZMAkZIH9uA2Y
+         PUfXxD8V4r8xYvG2DuNsHTxnsPBvTat3KYMDlwyqTE3BuKNoQE3evpcTyQWEM5iYklCz
+         9V/HOcuDt0FU8wMlxcgsK2Cc8IFZ6p5BDEc3H5nmWa/dZKM6NfIP7Sb/ZvPB720FvJvD
+         OwgXHVre1OCyoVUfQHlj61fKoEz7K5EmsiwkBxKtP/jR+YFgdfXvb+ZS50muc2GW0RZI
+         NMFoy0UTqTrb+Bbo3ks6TRFsmvT3t6q6/yvwXOooIIoBHhOXGxIXmhEWKfsDLS3KKXqf
+         gYJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=VD5yToGOxft/iAlbljIC7sImw3W+GTcv6yvpKGraM1E=;
+        fh=4jkMva2oprAKxuInkc4lNGygjtHDZXv8TmWWlCiAkg0=;
+        b=A7WVnf104KjWizRltHWZh810mrUyiRNGT39WlamTVWIu6xN7npqR/XC40o3qrG9bFe
+         aVyez8uZQv6yTGQsOZ8M/+IQsrm28GWtIMKafIJk4oRJD2M6gLLLC+aJyhmRO74hHrMO
+         uq3sB15dP8w4KHvj78wtvA78Kf0HAte+ch13gSaK+KJ0Hj2h5BusCpmxGIYXiEOe/Wst
+         uF07v3rKXT9arC4gtV0M+9CWNIJM08TdRQm+9Bpf0qNgmDMlJtQl+lj+VwYAFDhWMiEd
+         2LD/DAOMid4uD00t1SK+2DRR4a9fQ8SW8HgChK7TzrtVKb/B+2ay+r7qGtMfmVvrEsHx
+         +mLQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=karpenko.ca; s=google; t=1793395475; x=1794000275; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=VD5yToGOxft/iAlbljIC7sImw3W+GTcv6yvpKGraM1E=;
+        b=czSz81VcUTahgbE9U9OroqLspxF3/GgL//glOSME5ep7DkZOGdVohPUQzdhYN9QkGa
+         aM8EEThe2mQh5u8lc+85Kao34vacCa+EE+1D2W9Bjv60U2PGt6Dui02fO8roxEGJEFbd
+         s2cpvb/cj95rBD6yeiz0H1xRyhk08nx6Pew59+zFoMZO/N3BKQhppF3q7EnK1pkrqkGv
+         8X+DowJMQXpTgFfpgQbTYk3plqn3PAiC58jbvh8AxIdhPIgnQZPKJiJyEfTFBkZvuNxg
+         AUn5uo5WPeuaJl6nHgUlgom8Fz00E6atz5W67aJ95OAiuwzrq9ubqjEj9NogyJH/tik3
+         FAFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793395475; x=1794000275;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=VD5yToGOxft/iAlbljIC7sImw3W+GTcv6yvpKGraM1E=;
+        b=JLKWQmYmGI6IH3cp3PA/MM7q8HqOAlspRLhcaj+wBp4ydC69nMtX51aPGBwena7oEg
+         bCCp5cVyXIGRCJS/ssQtJedaD8QvMr9UW8j4umFzYbowzhzu1TkV0jEd/Fh/n+UNeLEj
+         sTTRXl20HnvkAqvd0Wtefl0SznhYkkVgtqfrNjjHzysEis3BL7hp/1OnANlhzNhSgMIM
+         E64/rOsE6oVHcEVFnZjUukl3K+1YJdCT6gRSqA73Ls0wJ3y9fLsfJPRQw8nnpOxlC/rK
+         8TQiPTsB3+Q8qE6bnF7O4WY+JjC9aX464EDuJ8vKLSNaFsKHrS0LkbDgssvKluEbKqFI
+         fu6A==
+X-Gm-Message-State: AFq9FYLzXRH1VdCiL7odBeZfec2he4tFP/qWSJUDzDHNsDn0n2YHv6kq
+	rOUm8kA3H7jtw+t/CJfEEPYD5U1Jwgx/wS8g2fjwvLBPUy2XhuvV7sm2pg7+qrAKGbdB/ap/eLm
+	F/EurioQrW1h0tgBzYuMRLcPZFOrMUAzu3uBs9eiRL/1ie3EAUgcX8f0=
+X-Gm-Gg: AYBFou1J8L3hynUg9q4f5Jh02Uz+/0Uc71h2ilHrD+lM+tEdBfqcYtxpdXb4v7e5Xaq
+	3jPh1qPswp2QsPQjJ+GZWXDy7aKG84qh48ZRVqqC8LgjHuIXxGnHfZIZdwC9csUQeMQBJJc1nNK
+	9kwzCnywv70dFYn4kMdsEzW2OWuSD80MtJALpb7y8WpxFwHE6EBg/3gnu07cfV+DDdPf3Gghpmi
+	koPueLbhfUqo7HSOvIGE5zIUyIE26OAtCLQdXUj5Xj14UHPucj0lXTfb/M20/sLPZWevXwZ3YO+
+	/IsXTi08i4D04nb3EdG7J2FoIkbL7m/2JDQcAW9QpmRZ7z4ztXKSVSL765EcL4hTSOpwUxYi1XY
+	LHK5synFqnsRaPH0SSJwd3CL/oACFac5UU8VkGQCl3Q7PF1JUE4WS5QLoirxr9RboM2OtwxkHDb
+	Uwi6JAv86yixlCKg==
+X-Received: by 2002:a05:6870:d3ca:b0:4a6:942c:7b05 with SMTP id
+ 586e51a60fabf-4a9076f991amr2445401fac.32.1793395475309; Fri, 30 Oct 2026
+ 14:24:35 -0700 (PDT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+From: Alexei Karpenko <alexei@karpenko.ca>
+Date: Fri, 30 Oct 2026 14:24:24 -0700
+X-Gm-Features: AclHuK_LC0lC8hHw_UwEONtzcp3mlVEURddifkSfuchxQbiy1tD1SUIUgYTw23g
+Message-ID: <CAOHMRc8bR13o3BpkMbBhs44TpQYbjTUQsoah0xvtB5-Yo5fd_w@mail.gmail.com>
+Subject: [RFC] ath11k: firmware RX cache-clean range
+To: ath11k@lists.infradead.org
+Cc: jjohnson@kernel.org, linux-wireless@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261030_110843_248986_9D1B37FC 
-X-CRM114-Status: GOOD (  15.20  )
+X-CRM114-CacheID: sfid-20261030_142437_073567_8B503546 
+X-CRM114-Status: UNSURE (   3.52  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -68,99 +112,23 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ath12k_wifi7_dp_rx_frag_h_mpdu() queues a received fragment on
-rx_tid->rx_frags and sets its bit in rx_frag_bitmap before, for fragment
-0, it copies the REO destination descriptor with kmemdup(GFP_ATOMIC). If
-that copy fails, the function returns -ENOMEM and its caller,
-ath12k_wifi7_dp_process_rx_err_buf(), frees the msdu and returns its link
-descriptor while the msdu is still on rx_frags:
+Firmware: WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.41
 
-- the next flush of rx_frags (a new sequence number, the fragment timer
-  or peer teardown) frees the skb a second time;
-- if the remaining fragments of the MPDU arrive first, the bitmap is
-  complete, ath12k_wifi7_dp_rx_h_defrag() walks the list with the freed
-  skb, and ath12k_wifi7_dp_rx_h_defrag_reo_reinject() dereferences the
-  NULL rx_tid->dst_ring_desc.
+RX refill clears descriptor offsets 0x50-0x5c, but cleans only 12 bytes
+from descriptor-8. Dirty writeback can overwrite hardware-updated status,
+including msdu_done.
 
-This has not been seen in the field; it was reproduced, on ath11k only,
-by forcing the allocation to fail.
+Proposed correction at 0x01500fa8: r1 = #12 -> r1 = #104.
+This covers all cleared attention words before buffer reuse.
 
-Copy the descriptor before the fragment is queued, so a failure leaves
-nothing of this fragment in rx_tid and the caller's free is the only
-one. Fragments other than 0 still return their link descriptor after
-being queued.
+Could you incorporate this into the firmware source?
 
-ath11k has the same code and gets the same fix.
-
-Found during an LLM-assisted review of the RX defragmentation path; the
-fix was LLM-assisted as well.
-
-Compile tested only.
-
-Fixes: d889913205cf ("wifi: ath12k: driver for Qualcomm Wi-Fi 7 devices")
-Signed-off-by: Adriel Santos <adriel@adriel.eu>
----
-
-Notes:
-    Found while fixing the same bug in ath11k (previous patch), which was
-    tested on IPQ5018 with forced kmemdup() failures. No ath12k hardware was
-    available: this patch is build-tested only (arm64, W=1, no new
-    warnings), and no reproducer was run on ath12k.
-
- drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c | 22 ++++++++++---------
- 1 file changed, 12 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c b/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-index a32c80440..d84cbb8df 100644
---- a/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath12k/wifi7/dp_rx.c
-@@ -1227,6 +1227,17 @@ static int ath12k_wifi7_dp_rx_frag_h_mpdu(struct ath12k_pdev_dp *dp_pdev,
- 		goto out_unlock;
- 	}
- 
-+	/* On failure the caller frees msdu, so it must not be queued yet */
-+	if (frag_no == 0) {
-+		rx_tid->dst_ring_desc = kmemdup(ring_desc,
-+						sizeof(*rx_tid->dst_ring_desc),
-+						GFP_ATOMIC);
-+		if (!rx_tid->dst_ring_desc) {
-+			ret = -ENOMEM;
-+			goto out_unlock;
-+		}
-+	}
-+
- 	if ((!rx_tid->rx_frag_bitmap || frag_no > __fls(rx_tid->rx_frag_bitmap)))
- 		__skb_queue_tail(&rx_tid->rx_frags, msdu);
- 	else
-@@ -1236,18 +1247,9 @@ static int ath12k_wifi7_dp_rx_frag_h_mpdu(struct ath12k_pdev_dp *dp_pdev,
- 	if (!more_frags)
- 		rx_tid->last_frag_no = frag_no;
- 
--	if (frag_no == 0) {
--		rx_tid->dst_ring_desc = kmemdup(ring_desc,
--						sizeof(*rx_tid->dst_ring_desc),
--						GFP_ATOMIC);
--		if (!rx_tid->dst_ring_desc) {
--			ret = -ENOMEM;
--			goto out_unlock;
--		}
--	} else {
-+	if (frag_no != 0)
- 		ath12k_wifi7_dp_rx_link_desc_return(dp, &ring_desc->buf_addr_info,
- 						    HAL_WBM_REL_BM_ACT_PUT_IN_IDLE);
--	}
- 
- 	if (!rx_tid->last_frag_no ||
- 	    rx_tid->rx_frag_bitmap != GENMASK(rx_tid->last_frag_no, 0)) {
--- 
-2.47.3
-
+Alexei
 
