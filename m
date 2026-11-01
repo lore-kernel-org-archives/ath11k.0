@@ -2,104 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F20F606A326
-	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 16:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DED3606A325
+	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 16:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dNRAgCC9;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LasUPCyP
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uWRcssrm;
+	dkim=pass (2048-bit key, unprotected) header.d=bairaktaris.de header.i=@bairaktaris.de header.a=rsa-sha256 header.s=google header.b=u5bKh0Td
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=nvDPA+NzRyC3DnvcGd1DRI0muHnvZ5aXhyJRCB4IZig=; b=dNRAgCC9lD6pEaHkyeufPJplit
-	tP3jhmDenq/LdeJb7VbfBNjyzT1lv8tS/Hs8eRFadxMYZm8RFZOpANcK4/LOmQcfawk6+GN9Z3kXK
-	Pw0jCglVWRxzT3MCXJwiIJnoZoFBoYlpsrVm5N0PLFAJiE2KYb6vLTftcqKqqCB6D7oM3RuOd8/Hp
-	2AUhrdOpd0FoOftJs+WFynZ14mbg4Hd6M+uqm+ALzqvH5GpCaUMXGnSLvDIvoaAHLXSUhsI1fUFc8
-	lOXad2TbRcg7OscmFxyM6oRJMQ6R/83yet8DB323o/oJp0HW9fgt4hguoofC3j2EVGZsprvJpAQkR
-	Rm5OWxdg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+QmBRgJFhtFLO88pUA9+jvHOb9ztG8eZY/mf5WUdXt4=; b=uWRcssrmoZNSDu
+	2pHT31WPVd5yAcZPVurS2fQ5gwk8IYNX1eZE5lQFysBLG7zkJaWcxc4ikjztgzAr/YxKfIVJCx291
+	lxV07sQWqLcswUAevGriJLxTJg1HFramqF/VNy8wIZyUCxCMDI2bocyf93drZApXKhq+jGGfzE34Q
+	TixCWiFEIrCSlQ68jvDs2OCa9A2xGwufmcuZOq5+x91fkjohtenJV5aRoNBlibcyXJjJnA8zZTCtT
+	bQSUUROR/+g9dXNHYnLO5TvaI/CTr30ObKdRkyMcVz0td96DWEfN1zKpo3wfWFwh2BUynzhOXgAOG
+	aHvJXGz88tCta2W3oMgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNY4v-0000000Eeuy-3Yim;
-	Sun, 01 Nov 2026 16:06:41 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xNYiH-0000000EgbG-3gby;
+	Sun, 01 Nov 2026 16:47:21 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNY4t-0000000Eeu3-3nSR
+	id 1xNYiF-0000000Egax-3qR2
 	for ath11k@lists.infradead.org;
-	Sun, 01 Nov 2026 16:06:40 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id EC6F7601F8;
-	Sun,  1 Nov 2026 16:06:38 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1793549198;
-	b=GpfDo9VygtKu50pEebHPvknAWFBM9rlBJkSr+QfEYtqjT/alzzSYjxjCuMWdHicWs1mt
-	 Lwfhi8DtvO85+Q1Nzo8GOWmG72AMn3tKXZoGaGOF9Javl97mRet7+EmtNNmhiw3BEPzuN
-	 GXaBTGqP7eIMM6dJvE550dJcRjCyyuR1JVgjVUme0JGsH6wxL9ycGNThgiQ6ouW8RO720
-	 dGwPZpcdRw/zRbqvwOQT4uXchsUxHQRJsU49ps57tNI2jCo4uQovqPlNSTXYmYg6m+H5c
-	 XA6zLNlsN9ALKyzLlEpPFmydXL74KZxm+daO0BLgCID+iWpBkhwRx7fwNDr1n9zvYRQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1793549198;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=nvDPA+NzRyC3DnvcGd1DRI0muHnvZ5aXhyJRCB4IZig=;
-	b=QC/EPohRnbe1AarIv3aN55ud5sTEexllMUqjkix6fG6JfApOEpfQuImyxYAdntelQSv8
-	 6z1TNi4BTPcVK1Pcnd/amDTZ7K/B9RCy/rSz/8y2toMuf06E6jgOclJRf9XKvbzCG11QV
-	 ofmS6RwLee72nOG8dk7jdQ0PqlONBvmRV2nGGfvvrFa6KF4dvovuUWwQeLVlCF7nVrzel
-	 vttaCmbf2LMnGsD7Hxafd4v6PRmjqucGJWj1CrTAZBbzQfJdPGR68QYxlINZm9bv5ISDQ
-	 rEs/wlC37/9xl6JS0+JH5q6uZgGBy7+O+eExjjcGD2U/FqGZjYdrZWLd9pmcif2bvow==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3CE451F000C1;
-	Sun,  1 Nov 2026 16:06:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793549198;
-	bh=nvDPA+NzRyC3DnvcGd1DRI0muHnvZ5aXhyJRCB4IZig=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=LasUPCyPiJPMnGbkRzW1ROGJj123SAeLju3+fbaB6eh9Wa6qyue3I3+IKoP9qFJpL
-	 uHmozmy2A1i5eUlohSyscECZ3G2ZEo/yvUK2X5DKNNibzBjYJFJeLElMNtuEYS0Aqk
-	 dPjLxa/TfJIRUE7Om6qgxoQr8cHiAQHJzCACtDQDOV6xt2+ORoWp0CQr3ueW9jj9ae
-	 4Oc9ozgHVAJgQXYpM7PdcRb71YCvTWE2x19lX8WxHsLOkEcv3SVv6C/uFhw+lcBntd
-	 UDKpi1CXOnyBVDzMvjgWgeEnQSnugGzloWYJhdOQybF3gmUYyGkCeKXzKi7Aaufu82
-	 mNnhYPiS9j4nw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C5A17461DD;
-	Sun,  1 Nov 2026 16:06:37 +0000 (UTC)
-From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
-Date: Sun, 01 Nov 2026 10:06:38 -0600
-Subject: [PATCH ath-next] wifi: ath11k: report a station's TX retries
+	Sun, 01 Nov 2026 16:47:21 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-6ae14eecc64so2875387a12.1
+        for <ath11k@lists.infradead.org>; Sun, 01 Nov 2026 08:47:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bairaktaris.de; s=google; t=1793551638; x=1794156438; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=+QmBRgJFhtFLO88pUA9+jvHOb9ztG8eZY/mf5WUdXt4=;
+        b=u5bKh0Td9sC3prr2kD4xl6sNpF5wiNf5DDBCAjemGlBi4nNk+u5kAFOOTtSTnr7gM/
+         R7Nk9TE8nP+JhS0iBSiPzxfSB9c6hpfjEK5v94FodQXUBtgINaWe2K033EalMPkEGv25
+         mp77H4CUOBimPy0ntkEnUqvpi+5lMeTKvaRb/iTfDvO9PxUt4TJVhQgqZ0M2Oy75FXIS
+         x8Cq2QbH4BKaDG8FpsV/IYfx6nbR+Oz5OjywouzPU/TmvU8m8E7uGV6JLaCtIbtuTvyx
+         NE3vlP30DqBaUHduVcJ5gRj6Y56zlovLjgwMjtPjjAtq0NhwhKokCBI6oyq43SprsGOV
+         788A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793551638; x=1794156438;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=+QmBRgJFhtFLO88pUA9+jvHOb9ztG8eZY/mf5WUdXt4=;
+        b=aWRfHvhibBw22tx/bip21oilL852noHmyvSnP2Wi/2SaRCkG76WXueAsTRdzZGBKck
+         YjLDitfVW19CoAVCi58s6Nf3PoSE2zxNttX4cytyRe+/NaXAzKyByUuk9ebEGBbkgwxQ
+         8GhhqwM+RDZRBLKD3n0g2av6O85iMr3VwaFgqiCHx1SPx10reP1CgJesDxCPplawGPEt
+         U94VRvG+2FlCC+BKTSoENlA7ey4jP0WY5W9EQFTuajG5iL9V6pL2+NGRQbKuJ4Vyt0fb
+         QGXC67VHxcLvIqLa25CUxdL+WgmBTsxrxviqJbwofQlsEosgpXlotRl8dC5Z5qxnJo3c
+         ZA6Q==
+X-Forwarded-Encrypted: i=1; AKwUvBxOekQ05pmjANu1mmtdu+OTXqCg0N7eox68Ul245VnqR7iEvg+XIQzplUNUhdvypt6CeUSue7w=@lists.infradead.org
+X-Gm-Message-State: APuU4Z9YeA1jNpmJm7EDHTQisuNGf6KqwGotSMa5uAhSBFIhXQyL7i7z
+	DvaYpBd9dEqRG5jbxWGZ5gzOGfN8skJ1rk9ZXyWvUbxR17Hrwyvzk2RGlaNFHaQSZA==
+X-Gm-Gg: AYBFou2OJ3WT9FOQhaSNPN+x44DOYLBj9+TUb3+jWnDy//rxJT9sYaiB3ic3kplhwW1
+	qS5yyFEFQTZcM5sp5KGECF7gqoRC799Gz4jl4CMSmbBpQJ9Kpqn3p5tTyG/BGr/OW/fiD0oxDiV
+	ZfjSD7Hy0SUnk7237cR33H8Ly2Up7d1Y/jwKaUXIn+g2X1tJjZ6KClTsouEQLmTEYbNt0NRq8MC
+	1vx9hOELHhxFyqAOHUiaxCSnjoWlVKaF2iAPKgvg0OkBrZDfPZfJRDNa29zT6+4LC2GPfivwqo3
+	ixSlfOs+G4mzJywfdTt7lnXgpXqi5vbgo3MopqbqoX6Q0PZi3tFw3OsauutvOZG5LeJuiU5LyFd
+	5sG5NyLWzwkdPzft2QdUrqvj9XbI299NPV7G3P63lSw6z/VoTH+/ZOQ+qNTHUDcBirNlMQdNuSV
+	mV8tGQchaDdEvOYIsCTQgWuseeqlR+ECw5U6sBvdfTVRpKnZpaRRwABy7ilcDZQZp4m4orKzeOw
+	sAlJ4G4/Rh7fxbtNvmFLiLxBLRVJ2CQ2wJma6xuql/qxLVVQN2//VST/KInmPhWmuuvHSNtKoy7
+	nUBzFVQjz2TmZOhK+XGPYPC0ycBtFzeWxxBFfBQYhAcou0LqoTgYFOENfTN/62MCjhugOqLzzNc
+	/ylR3JDdsrtE9cJxIUUQ4JVad7BHKOY8ukazxG3kxkPMitNzZEybeRnm5HB9UVdH3Bax2vg0U3J
+	aN0tC+HN9X2ouzpA8SCkRzG3Bsd4ws2TkMr5kIxBuHe7ODPHNhLR5xhtbbqIX2LXqhLA96L7KJ9
+	zfW4PF/i0xnJWSRVoSTtGQ5L0ZB/teSVje7NN5/1o47ayzSHfvhYmO9BtJWu0Al1ehvcdHRu4Ka
+	XgxLV6Nu0rsp1dSBQ3H5
+X-Received: by 2002:aa7:d387:0:b0:6b1:ce74:2913 with SMTP id 4fb4d7f45d1cf-6b4d467561bmr3616851a12.8.1793551637969;
+        Sun, 01 Nov 2026 08:47:17 -0800 (PST)
+Received: from Desktop (p54aff790.dip0.t-ipconnect.de. [84.175.247.144])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b4eca0f376sm2371248a12.26.2026.11.01.08.47.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Nov 2026 08:47:16 -0800 (PST)
+From: Julius Bairaktaris <julius@bairaktaris.de>
+To: Florian Maurer <fmaurer@disroot.org>
+Cc: Jeff Johnson <jjohnson@kernel.org>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>,
+	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
+	P Praneesh <praneesh.p@oss.qualcomm.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Muhammad Usama Anjum <usama.anjum@arm.com>,
+	John Crispin <john@phrozen.org>,
+	Sriram R <sriram.ramachandran@oss.qualcomm.com>
+Subject: Re: [PATCH ath-next v2 0/5] wifi: ath11k: firmware crash recovery fixes
+Date: Sun,  1 Nov 2026 17:47:16 +0100
+Message-ID: <20261101164716.302826-1-julius@bairaktaris.de>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261101131550.1890062-1-fmaurer@disroot.org>
+References: <20261018210153.1925962-1-julius@bairaktaris.de> <20261101131550.1890062-1-fmaurer@disroot.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261101-b62-tx-retries-v1-1-c00d4e6e2739@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAI1j52oC/yWMwQrCMBAFf6Xs2YXuHtrir4iHND7b9RAlWSVQ+
- u+mehyGmY0KsqHQudso42PFnqmBnDqKa0gL2G6NSXsdRHrheVD2yhl+dAwZJSJMcVKlFr0y7lZ
- /wwsFXzmhOl3/prznB6IfP9r3L43ZscR8AAAA
-X-Change-ID: 20261101-b62-tx-retries-e171cea8c822
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Christopher Griffin <christophergriffin05@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793549197; l=3031;
- i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
- bh=Pyj7rUa/qALXE2SogX70i3iq6z68HhjTQNXdCtw1Ngg=;
- b=utIthFnUbeVp92VTZjAi8ZhiEUnBoT+e26f339DHFflX3htYp/4WLq8BrY4h79myjasym9hS1
- N17OBjQt0BSB52eCjvUA2sUBtNd8tjcIeorw2vbbsmhK239jzWyBqdn
-X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
- pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
-X-Endpoint-Received: by B4 Relay for
- christophergriffin05@gmail.com/20261024 with auth_id=1309
-X-Original-From: Christopher Griffin <christophergriffin05@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261101_084719_980490_B30CDE80 
+X-CRM114-Status: UNSURE (   8.24  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,92 +113,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: christophergriffin05@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Christopher Griffin <christophergriffin05@gmail.com>
+Hi Florian,
 
-ath11k_dp_tx_complete_msdu() hands mac80211 a status with no entry in
-info->status.rates[], so that mac80211 does not update its rate
-statistics from it, and a single rate with a try count of 1. mac80211
-takes its retry count from info->status.rates[], so it counts none, and
-"iw station dump" shows "tx retries: 0" for every station: on an Arista
-C-360 (QCN9074, 6 GHz) a client showed 0 retries after 55284 frames at
-HE-MCS 11.
+Thanks for the testing and for your three patches.
 
-The TX completion carries the frame's transmit count (try_cnt), which
-the extended TX stats already use. Count the retransmissions per
-station from it and report them as NL80211_STA_INFO_TX_RETRIES, as
-ath12k does. mac80211's TX failed count (frames never acked) is
-unchanged.
+> That recovery fails after ath11k_hal_srng_clear() but before
+> ath11k_ce_init_pipes(). The next recovery then tears down the CE pipes
+> on the cleared rings and hits a NULL pointer with BHs disabled (under
+> ce_lock):
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+My v3 covers this case in 3/5 and 4/5. In 3/5,
+ath11k_ce_completed_send_next() returns -EIO for a ring without a tail
+pointer before it takes srng->lock, since ath11k_hal_srng_clear()
+zeroes the lock with the ring, and ath11k_ce_send() tests CRASH_FLUSH
+before it reaps. In 4/5, ath11k_core_qmi_firmware_ready() clears
+CRASH_FLUSH once the rings are rebuilt and sets it again on its error
+path before ath11k_dp_free().
 
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
----
-Seen on an Arista C-360 with OpenWrt, on its IPQ8074 and QCN9074 radios.
----
- drivers/net/wireless/ath/ath11k/core.h  | 1 +
- drivers/net/wireless/ath/ath11k/dp_tx.c | 2 ++
- drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
- 3 files changed, 6 insertions(+)
+> I can try that if you don't plan to cover it in a v3.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a0d725923ef24..ba32063092254 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -556,6 +556,7 @@ struct ath11k_sta {
- 	struct rate_info last_txrate;
- 	u64 rx_duration;
- 	u64 tx_duration;
-+	u64 tx_retries;
- 	u8 rssi_comb;
- 	struct ewma_avg_rssi avg_rssi;
- 	s8 rssi_beacon;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index cac970c92806a..2329c2449b572 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -637,6 +637,8 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 		return;
- 	}
- 	arsta = ath11k_sta_to_arsta(peer->sta);
-+	if (ts->try_cnt > 1)
-+		arsta->tx_retries += ts->try_cnt - 1;
- 	status.sta = peer->sta;
- 	status.skb = msdu;
- 	status.info = info;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1a237adaa37d1..066a503d76d4c 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -9435,6 +9435,9 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 	sinfo->tx_duration = arsta->tx_duration;
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_DURATION);
- 
-+	sinfo->tx_retries = arsta->tx_retries;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_RETRIES);
-+
- 	if (arsta->txrate.legacy || arsta->txrate.nss) {
- 		if (arsta->txrate.legacy) {
- 			sinfo->txrate.legacy = arsta->txrate.legacy;
+I will run your crash 10-20 ms after "is now up" against v3 on my
+AX3600 and post it with your three patches on top as one series, with
+your From: and Signed-off-by kept and your Tested-by on my five. Is
+that fine with you?
 
----
-base-commit: a3ddbb45768717b5c9f923489387cf55c838d1ad
-change-id: 20261101-b62-tx-retries-e171cea8c822
-
-Best regards,
---  
-Christopher Griffin <christophergriffin05@gmail.com>
-
-
+Thanks,
+Julius
 
