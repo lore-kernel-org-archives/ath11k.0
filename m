@@ -2,66 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCE4606A324
-	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 13:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92559606A327
+	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 16:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TLQFNU+l;
-	dkim=pass (2048-bit key, unprotected) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=HxF4hgh/
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iphT+qVR;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ph+E5Rpv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BUt2Z09wK4LSp7ylKwrL85powLevpTqnbmj/kdSRxtE=; b=TLQFNU+ll+bdw5
-	1wwvpsZ0aNaO/ZeteLCnWDnfA8OC4jgagcepkIjhtY8S44zKuh5c7BAM/WsK1XvO0pSNh87ocLHhJ
-	IUsamPOuIdpCDAIcVGjaARsSeWEAEcDcujtuj/iRaSGiDHr86m0IRb34KrWFbSwstQgNpwbFkNXn5
-	wiha7MVtNPMtlQGccfke6QdmZ9SIVwppvua1tlhzsQcVrPTLPay1Av2CeKSLlIXE95q3rOEC220tQ
-	rVgySWcaPNRkEM2B89XmpUcdREUoBB2m6jNZzc/xr4glPidS6ViSpiQ/5NIX9UhXrxqnMdV0gv2UJ
-	wKYajhkFXQXlPZWDaT8Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=eRGWWGhx4P2qAtaaAXKvk7Nog5Hz8VCi7ow8vJBFAQE=; b=iphT+qVRPCGSh04vPM+HovCnfD
+	2cn6s0TkroqH/X2Mo83HDbk3YfWr/IVW5XXNlzI71uimgMT+/oODJ4v+l3+u0CWRobuyyg3CglFJ1
+	46xM94iuUlgZs5F0rSecMcze+W60brVxU/2eWSdLJjXYRyYGzwKFP22iXcEAg86FffIUsJjU0SKFH
+	tWdsBPX8MFIxhc7jpgE8W8S/evtJiFUeUBzVp9B9pfT3PnBpojgLPnT/KfuullCYBtrTp6WSXh38c
+	NwOd1BKNuF3hm6apV5gbdv3DGg5BPg/RxSW4Hq5gxuK3wHgdDsd+aKXLYQsGacfJe+kbpwqBjrP/L
+	W1d5yDFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNVc3-0000000EXEQ-4B5r;
-	Sun, 01 Nov 2026 13:28:43 +0000
-Received: from layka.disroot.org ([178.21.23.139])
+	id 1xNY4f-0000000Eerr-39MU;
+	Sun, 01 Nov 2026 16:06:25 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNVc0-0000000EXDy-3z3x
+	id 1xNY4e-0000000Eerl-1zeT
 	for ath11k@lists.infradead.org;
-	Sun, 01 Nov 2026 13:28:42 +0000
-Received: from mail01.layka.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 27AB3805EC;
-	Sun, 01 Nov 2026 14:28:39 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 93v_HZUPztKi; Sun,  1 Nov 2026 14:28:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1793539718; bh=L8f3j7ouq04gW7/lLDtNrjgW6rikViytGiRXmBLKk4o=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=HxF4hgh/+xlcmz7GAbseou5s8xkEXGuLhHDEKIqKQyKhtzSscH+qebkXn935cW2bd
-	 kx2i7Iewy8P1Llwxyg9q/AW06WXUqWPacNPziMDMZYh5DowMJW5uIXbrv1bNn45hgT
-	 QqtgBNCpitbc7txgao0BdbWtusSAihY7rdOQjAN/bP/e7bI576/wZ5HMen/mXh+4lU
-	 kz/2OAxSf/+matvlctNXGA9uCDAvOtkBrakap5Qkn2E5qepbNpWvpNPJLN9qetvTWA
-	 WlAsIAZufuW1uxoP0T6rPCyK+XxewiTi3ZOz9Q8aocbbOZdGpvEk1ZIJMT0Of7A7mT
-	 aagupa0Nbjpgg==
-From: Florian Maurer <fmaurer@disroot.org>
-To: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
-Cc: Florian Maurer <fmaurer@disroot.org>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org
-Subject: Re: [RFC PATCH] ath11k: add ath11k_mac_op_flush_sta to properly flush pending packets
-Date: Sun,  1 Nov 2026 13:28:21 +0000
-Message-ID: <20261101132821.1920036-1-fmaurer@disroot.org>
-In-Reply-To: <88fbbb46-0f2a-459e-8dff-2a7679e1ffd4@oss.qualcomm.com>
-References: <88fbbb46-0f2a-459e-8dff-2a7679e1ffd4@oss.qualcomm.com>
+	Sun, 01 Nov 2026 16:06:24 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id BDFA6410CC;
+	Sun,  1 Nov 2026 16:06:23 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1793549183;
+	b=XhgKXj9cJ0ZJUMDgtmZjqXZR6st6mP4cs7+kK8tKEwZmQz/gJXJF/1mPxHZsoHLhfHpD
+	 thMHW4U9u/SijcF31JL3uc8UBoDvtkG/sMAJAUnfibsU0BmxKZPKqPUHlJkF7L4Zr6aaz
+	 0GAlkOs5XD7BgNJw6X/EVAi57v76KSMwuPqthqe4blK5Wh+2Ax4arjWcI0gvDeQmEZ1cf
+	 X3pJA+ZvRaedOJlp19y8DgX59uyJd2OclLu2KV0GFffMhVNhIsrqgtnQvXnS4jpgeoIUv
+	 nf1aEc4ubcdj4XzjdBh31SFP4CuyMj1xZPMBl7TJwFulJSQ9hV/1nsRW7TCCNjt//eA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1793549183;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=eRGWWGhx4P2qAtaaAXKvk7Nog5Hz8VCi7ow8vJBFAQE=;
+	b=g/ZQmaFOfZYFvzWpqS9JMAy2u4LoW4ZgblmiJf4jVODTHSEZobb0TFrVebWWxPMkId+T
+	 72Euar3KrHE7NNbpiKpmCMk4I2L0Qsg0vxNmFeGNjQNA+fmx9Bx2bI8x3Ko1TztU28nFe
+	 98sjumZVT6lupGo6tupRBb+GADGc9/z6+gy9ZJi2+z9ImVlQYW7j5j0/UB3ORddt0C4wn
+	 6q3DDdtz96Myz1w847uhh7D44qsyts/tPL4xsJlAJRRd6qmOs7B0Twx2npDgz38aytcB5
+	 YTFZD5+gOsHnAyiYJIE007kD+cJTGNXaFIq0EsKdpK6DbkTudTBreXjfjetGdTnLmjg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 26BB51F000C1;
+	Sun,  1 Nov 2026 16:06:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793549183;
+	bh=eRGWWGhx4P2qAtaaAXKvk7Nog5Hz8VCi7ow8vJBFAQE=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=Ph+E5RpvrZl8qamsd+ujCZ+QpTReY6f+BIhFiG85T5/qTB5MTb8elCFG28KAWqAh2
+	 vjcCTIk1mFJkQUwvEB+zvk3z6nQo+wGojfEVWD7ch1+7gLLsqhOXQlxsg5K5aZ4LUp
+	 R4yCHfZYQHMW9UwpVqjLUtKyEH3dCv36I+GTGbVLSz8ltsl38UuhLkpsES/Y6LaBLu
+	 K+Xx8Ff05MkBbeNvsYS/MJRSVGBDeP3aEUXJGjWuE2Y+hYQeplDXPKzyvsPJYV+hCe
+	 RPtyYdBaJg9yvG7jKEi8EIx4rfCj7Z4mg6/zJtqvOLhabirymDDW9a86P258B+p/E3
+	 HZl9ZcQQQnONg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 7F8D9461DD;
+	Sun,  1 Nov 2026 16:06:22 +0000 (UTC)
+From: Christopher Griffin via B4 Relay <devnull+christophergriffin05.gmail.com@kernel.org>
+Date: Sun, 01 Nov 2026 10:06:23 -0600
+Subject: [PATCH ath-next] wifi: ath11k: look for firmware-N.bin without the
+ user-space fallback
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261101_052841_274868_F447E5CE 
-X-CRM114-Status: GOOD (  16.99  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261101-b123-fw-api-n-direct-v1-1-a9b734520abc@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAH5j52oC/yWMwQrCMBAFf6W8swvZBBX9FfGQpBu7HmJJohZK/
+ 92ox2GYWVGlqFSchxVFXlr1kTvwbkCcfL4J6dgZ1tgDs2EKbB2lN/lZKdOoRWKjozuZkPZJYnD
+ o6Vwk6fLbXuDbRFmWhuvf1Ge49+h7xbZ9APsX/sCCAAAA
+X-Change-ID: 20261101-b123-fw-api-n-direct-7390bf5fecb3
+To: Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Christopher Griffin <christophergriffin05@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793549182; l=2493;
+ i=christophergriffin05@gmail.com; s=20261024; h=from:subject:message-id;
+ bh=7FihErGI/rxuO2qBCwtRnH7nsLSwQjP+NG+2mzhjaCw=;
+ b=h5I/GzmP40OJbuvR6vdmnMCQvlkWlbMBtyvvZuVKywePUAm6injCk7McFvQia3eyFTa035Mz2
+ +DeBUl+boJqDIyAJvZC0EQ9KE88czoNVyp3pgM0+Oi68FG+UZlGNV89
+X-Developer-Key: i=christophergriffin05@gmail.com; a=ed25519;
+ pk=oa9tkTNpiGoFWdGvpDHXLSobApmsh9BfrJRJrRJAvWA=
+X-Endpoint-Received: by B4 Relay for
+ christophergriffin05@gmail.com/20261024 with auth_id=1309
+X-Original-From: Christopher Griffin <christophergriffin05@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,111 +110,77 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: christophergriffin05@gmail.com
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Vasanth,
+From: Christopher Griffin <christophergriffin05@gmail.com>
 
-On 2/10/2026 Vasanthakumar Thiagarajan wrote:
-> The recommendation from the firmware developers is that all 32-bit has
-> to be sent in WMI_PEER_FLUSH_TIDS_CMDID for both AP and STA mode,
-> otherwise some of the tid queues may still have pending packets.
-> Firmware does the intersection and gracefully ignores the inactive tid
-> queues when all the bits are set. We may need to check the firmware
-> crash dump to understand the issue with 0xffffffff bitmap.
+ath11k_fw_pre_init() asks for firmware-2.bin through
+ath11k_core_firmware_request(), that is firmware_request_nowarn(), and
+falls back to API 1 when the file is not there. The file is optional,
+and many installations have none: on an Arista C-360 the QCN9074 runs
+from amss.bin alone. With CONFIG_FW_LOADER_USER_HELPER_FALLBACK, which
+OpenWrt sets, firmware_request_nowarn() still hands a missing file to
+the user-space loader, so every probe of such a device waits on a
+uevent and its answer, and the loader logs the miss; when the device
+goes away before the answer, as when it is unbound right after probing,
+the loader then fails to write its answer:
 
-thanks for checking with the firmware team, and sorry for the late
-reply. I tested this on IPQ8074 (Xiaomi AX3600, AHB, OpenWrt 25.12 with
-backports 6.18), firmware WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
-(8074.wlanfw.eval_v2Q), with peer_tid_bitmap made tunable via a
-test-only module parameter.
+  procd: Failed to write to .../firmware/ath11k!QCN9074!hw1.0!firmware-2.bin/loading: Bad file descriptor
 
-With 0xffffffff the firmware asserts 0.2-2.3 s after
-WMI_PEER_FLUSH_TIDS_CMDID, but only if the peer still has queued
-downlink traffic:
+Request it with request_firmware_direct() instead, which looks on the
+filesystem only, as ath11k already does for the optional calibration
+file in ath11k_qmi_load_bdf_qmi().
 
-  wal_peer_control.c:11907 Assertion !CHK_TID_FLG(ptid, WAL_TID_IN_SCHEDQ) failed
-  Thread name: WLAN RT0 / WLAN RT1, PC 0x4b107f58, LR 0x4b1076f4
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.r4-00683-QCAHKSWPL_SILICONZ-1
 
-Peers without queued traffic survived every bitmap I tried, including
-0xffffffff.
+Assisted-by: Claude:claude-opus-5-5
+Signed-off-by: Christopher Griffin <christophergriffin05@gmail.com>
+---
+Seen on an Arista C-360 with OpenWrt: its QCN9074 has no firmware-2.bin,
+and its scan radio is unbound right after probing.
+---
+ drivers/net/wireless/ath/ath11k/fw.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-AP vif (2.4 GHz, HE20), 2x2 HE client, best-effort downlink load (many
-parallel large pings), flush triggered by the client disconnecting:
+diff --git a/drivers/net/wireless/ath/ath11k/fw.c b/drivers/net/wireless/ath/ath11k/fw.c
+index ef1b4c81843a3..3628e33e57f6e 100644
+--- a/drivers/net/wireless/ath/ath11k/fw.c
++++ b/drivers/net/wireless/ath/ath11k/fw.c
+@@ -16,10 +16,14 @@ static int ath11k_fw_request_firmware_api_n(struct ath11k_base *ab,
+ 	struct ath11k_fw_ie *hdr;
+ 	const u8 *data;
+ 	__le32 *timestamp;
+-
+-	ab->fw.fw = ath11k_core_firmware_request(ab, name);
+-	if (IS_ERR(ab->fw.fw)) {
+-		ret = PTR_ERR(ab->fw.fw);
++	char path[100];
++
++	/* The file is optional: look for it on the filesystem only, so a
++	 * missing one does not go through the user-space fallback loader.
++	 */
++	ath11k_core_create_firmware_path(ab, name, path, sizeof(path));
++	ret = request_firmware_direct(&ab->fw.fw, path, ab->dev);
++	if (ret) {
+ 		ath11k_dbg(ab, ATH11K_DBG_BOOT, "failed to load %s: %d\n", name, ret);
+ 		ab->fw.fw = NULL;
+ 		return ret;
 
-  0x000000ff     ok      (many runs)
-  0x0000ff00     ok      2/2
-  0x00ff0000     ok      2/2
-  bit 24         ok      3/3
-  bit 25         ok      3/3
-  bit 26         assert  3/3
-  bit 27         ok      3/3
-  bit 28         assert  3/3
-  bit 29/30/31   ok      2/2 each
-  0x1e0000ff     assert  3/3
-  0xebffffff     ok      3/3   (all bits except 26 and 28)
-  0xffffffff     assert  every run
+---
+base-commit: a3ddbb45768717b5c9f923489387cf55c838d1ad
+change-id: 20261101-b123-fw-api-n-direct-7390bf5fecb3
 
-Mesh vif (2.4 GHz, mesh peer with downlink UDP/ping load, flush
-triggered by deleting the station):
+Best regards,
+--  
+Christopher Griffin <christophergriffin05@gmail.com>
 
-  0xffffffff     assert  every run
-  0x1e0000ff     assert
-  bit 26         ok      3/3
-  bit 28         assert  3/3
-  0xebffffff     ok      3/3
 
-STA vif (AX3600 as client of another AP, downlink load including a
-UDP flood above link rate, flush on own disconnect and on deauth by the
-AP): 0xffffffff, 0x1e0000ff, bit 26, bit 28 and 0xebffffff were all ok
-3/3. So the 0x1e000000 that v3 [1] ORs in for STA vifs did not cause
-asserts in my tests, but bit 26 does on AP vifs and bit 28 on AP and
-mesh vifs.
-
-So on this firmware, bits 26 and 28 are not ignored for a peer with
-pending frames: bit 26 alone triggers the assert on AP vifs, bit 28
-alone on AP and mesh vifs. This also means my earlier statements that
-anything beyond 0xFF, or bit 17 alone, crashes in AP mode were too
-broad; with this setup those bits did not assert.
-
-With 0xFF on AP and mesh vifs I see no "failed to flush transmit queue"
-warnings and no asserts, also when peers disconnect under load. It is
-the value I have tested most. The test router has since run for a week
-with 0xFF in a live mesh network (about 1450 station flushes, mostly
-AP clients) without a single firmware crash.
-
-Is the assert with bits 26/28 fixed in a newer HK firmware, and if so,
-which version? If not, which bitmap would you recommend for these
-firmware versions? I have not captured a full firmware crash dump yet;
-if that would help, I can try to get one.
-
-Separately, these asserts were also a good test for the AHB recovery
-path. With the 6.18 backport in OpenWrt 25.12, without the ath-next
-IRQ fixes, every firmware assert, real or simulated, ended
-in a kernel panic during recovery. With the three IRQ fixes from
-ath-next (a7ab5c835e42, f7a74e131d3f, e56c9d429ba0) backported, it
-still failed in other ways: WMI commands from userspace (survey,
-station stats) reaching the firmware while it restarts, TX into the
-rings before CE/DP are set up again, the registered hw being freed on a
-failed recovery, and TX writing to WCSS after remoteproc has already
-reset it (asynchronous SError). With fixes for these, 20 of 20 firmware
-crashes recovered without a reboot (10 real asserts on AP and mesh
-vifs under load, 10 simulated while survey and station stats are
-polled). Julius Bairaktaris has meanwhile posted fixes for the first
-three of these, on the same hardware and firmware [2]. I have posted
-the last one (stopping TX before remoteproc resets WCSS), and a fix for
-the ext IRQs staying masked when a recovery follows a failed one, on
-top of his series [3].
-
-[1] https://lore.kernel.org/linux-wireless/GV1P250MB1433E723AF90A69AEBB696DAE8CBA@GV1P250MB1433.EURP250.PROD.OUTLOOK.COM/
-[2] https://lore.kernel.org/linux-wireless/20261018210153.1925962-1-julius@bairaktaris.de/
-[3] https://lore.kernel.org/linux-wireless/cover.1793531790.git.fmaurer@disroot.org/
-
-Regards
-Florian
 
