@@ -2,49 +2,48 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840E9606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BF8606A32D
 	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 12:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2JK1D2vJ;
-	dkim=pass (2048-bit key, unprotected) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=Zbq8qJbI
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eIE6+APb;
+	dkim=pass (2048-bit key, unprotected) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=Ah3+st6H
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=42uUpwxeFlIt+oVlZYyg3MehKD4BJExenLU7k+2MNBE=; b=2JK1D2vJOvDf3aAdas9Obr6LZu
-	iTE8GbWghdCHgXL66Pk5wabhrGmiai3Vf43tZLBI8LZfYmEOqtnpE7RuO7zwaXy4pQF9UlS4NOaTx
-	BJXYOGZaSdk4Mi2oX0bbc3Z2mdNvPkmEB5O6DN16nKVNPCFb/qdrBSbgUpOqG8c8l4GRQRFerC5y6
-	eRgoI68yCaY/AOn0AfeXUkIYue54X8SnXFETcjTsQUAWkP/soJn9sV3gXYvaAlvqK5wBGGNxAgh/o
-	gtqm278lQNm2fuEOciUo9AQ2vpAc1h+e7zQfVDRU2Ste9Kg5U9VOMrYYjrei7pSpYMPqVPRLqNVFa
-	JG1TJVig==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=n6s0PbgjoxExCuhdVbLCqymraLrHLOREUbqNiOJDGAo=; b=eIE6+APbPQW1bD
+	erA6IB5akGwTiOL+AFAl8fTSrxEWSW9Qk/LLRkabVFdiRCU/qwMBoSySARokIiAPJgdT3GI6kiPlW
+	bCpo68eyrSkMgwQrTmMxoq4kD1b65hC6PRLu7CEpAY+MzG1nvUVvsPq3FRKUQOKQnTYVHFXosM21X
+	weeBI7e1TK5lpOe884U1XxhdcHJyK5AlexViMH4yemsFQ2jZHq5cXw9q9b/xIWa9TsxTbGIApLvrX
+	r1HGZredOPWV+vLNmJiEiPETbRkYnBGFPfmLRqjHugG7tCQ1f6i9MOn6uYRRURukvBrlH1w++MDUQ
+	xYdxn33Q0rBZSul4KKXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNV9K-0000000EDxg-0vl3;
+	id 1xNV9K-0000000EDxc-0h8A;
 	Sun, 01 Nov 2026 12:59:02 +0000
 Received: from layka.disroot.org ([178.21.23.139])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNV9G-0000000EDwt-0iFF
+	id 1xNV9G-0000000EDwu-17Vt
 	for ath11k@lists.infradead.org;
 	Sun, 01 Nov 2026 12:59:00 +0000
 Received: from mail01.layka.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 70E3D80710;
-	Sun, 01 Nov 2026 13:58:53 +0100 (CET)
+	by disroot.org (Postfix) with ESMTP id 91D9F80736;
+	Sun, 01 Nov 2026 13:58:56 +0100 (CET)
 X-Virus-Scanned: SPAM Filter at disroot.org
 Received: from layka.disroot.org ([127.0.0.1])
  by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Esdo88_qE1eM; Sun,  1 Nov 2026 13:58:52 +0100 (CET)
+ id FvKG7l_Ws-ol; Sun,  1 Nov 2026 13:58:55 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1793537932; bh=6sl3s0b1KzqpQad7r6W0dlFWZcquTtdY7WN+602Jpg4=;
-	h=From:To:Cc:Subject:Date;
-	b=Zbq8qJbIWzsun0y2XIFeg7/KX+NbKsNCqrjoDxGmkBzL4fwlXZVeSG+/CGbMdWyKs
-	 pfUex37BHb4Q9aF/J5BgZ1USh/HD16pG7nXrSOBD84txLi6RgyqiWJNLMCI2XJA2Eh
-	 AAAKLLYhMkyuD6LS+hpnAz675iNkC7fKpauVqQALKcDdH0USzWDGOX1EWGiznQh3kI
-	 eEeClwNexVxFEpGaEdaxwVG/80XA9hrRIZjQ8jbqRCHlcawFQx4W/rGv2d/HDwx7Il
-	 pwKXkr8bD2DardiPhwDEvtgW/L6NEr/rAPDnnhGvr/RnSXaql8MXJH6RVTjMKmXG4N
-	 spEZQ3H9wql+A==
+	t=1793537935; bh=ZLT1WbLas04zpKBdCe4IEe1IgdHhHJeTD5MXp7RfssU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Ah3+st6HlE/ZHo2/14wlrBD1qWmRrCn6eSKK+/vvrff+DIQRbOsJxrLIEZzAp7LF0
+	 GvuYJxFteyEEml65xc7hO1lohNFH4HIflS+bVFWYKToRKEB0riECRcHCmIEI0yIN7C
+	 rN9vty2aX84kkrUBhIPYtQ9SEdsDhL7eVLcU0mswWc9Cld5UF7Py5+4M3LR0Wl7QtS
+	 VEFQTZBAH/Xf5C67BUqDWgXmkfvFt+KbMmjxzQc3kYvYLQOhcIOJ8JV8zZR3vy8W78
+	 BVY+TG3RaKMM4kJASmGOhlXnAeWgHbyZos/QA7rijOr+PoNIXFfV5BohXL0AafCQJY
+	 MhtMNRyg9kgLg==
 From: Florian Maurer <fmaurer@disroot.org>
 To: Jeff Johnson <jjohnson@kernel.org>
 Cc: Florian Maurer <fmaurer@disroot.org>,
@@ -55,15 +54,17 @@ Cc: Florian Maurer <fmaurer@disroot.org>,
 	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
 	Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>,
 	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-Subject: [PATCH ath-next 0/3] wifi: ath11k: more firmware crash recovery fixes for AHB
-Date: Sun,  1 Nov 2026 12:58:00 +0000
-Message-ID: <cover.1793531790.git.fmaurer@disroot.org>
+Subject: [PATCH ath-next 1/3] wifi: ath11k: don't disable ext IRQs twice
+Date: Sun,  1 Nov 2026 12:58:01 +0000
+Message-ID: <84ffca34cf7f76d6642dfeb9f2b1a34c288d5234.1793531790.git.fmaurer@disroot.org>
+In-Reply-To: <cover.1793531790.git.fmaurer@disroot.org>
+References: <cover.1793531790.git.fmaurer@disroot.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261101_045858_640461_E264C46E 
-X-CRM114-Status: GOOD (  11.91  )
+X-CRM114-CacheID: sfid-20261101_045858_640431_DE88A762 
+X-CRM114-Status: GOOD (  15.88  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,66 +76,87 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Three patches on top of Julius Bairaktaris' "wifi: ath11k: firmware crash
-recovery fixes" v2 [1], for firmware crash recovery on IPQ8074 (AHB).
+ath11k_core_reconfigure_on_crash() disables the IRQs at the start of
+every firmware recovery and ath11k_core_qmi_firmware_ready() enables
+them again at its end. If a recovery fails, they stay disabled. The
+next recovery disables them again, so the disable depth of the ext
+IRQs goes to two and the single enable_irq() leaves them masked. The
+DP rings would then not be serviced after an otherwise successful
+recovery.
 
-Patch 1 keeps the ext IRQs from being disabled twice when a recovery
-follows a failed one. With 2/5 and 3/5 of [1] a failed recovery is
-recoverable, but without this patch TX completions stop afterwards.
+This is the same kind of imbalance as the one fixed for suspend/resume
+by commit e56c9d429ba0 ("wifi: ath11k: fix unbalanced IRQ enable/disable
+during suspend/resume"), but caused by a failed recovery.
 
-Patch 2 turns the "select RPMSG" of ATH11K_AHB into a dependency, which
-patch 3 needs to depend on QCOM_RPROC_COMMON without a recursive
-Kconfig dependency.
+NAPI already handles this: it is only disabled if it is enabled. The
+ext IRQs are only enabled together with NAPI, so only disable them if
+NAPI is enabled as well. The pcic ext IRQ code has the same pattern, so
+change it there too. The PCI CE IRQs (ath11k_pcic_ce_irqs_disable())
+can have the same imbalance after a failed recovery; they are not
+changed here. The AHB CE IRQs are not affected, as they are enabled
+and disabled through register bits without a disable depth.
 
-Patch 3 stops TX before remoteproc resets WCSS on a firmware crash.
-Today a TX in that window ends in an asynchronous SError and a kernel
-panic. It depends on 4/5 of [1].
+On IPQ8074 (AHB) this shows up when a failed recovery (forced with a
+test patch) is followed by another firmware crash: the recovery reports
+success, but TX completions stop, TX fails with "failed to transmit
+frame -12" and the firmware asserts again repeatedly. With this change
+the same sequence recovered 3 out of 3 times. The pcic change is
+compile-tested only.
 
-Patches 1 and 3 were tested on a Xiaomi AX3600 (IPQ8074,
-WLAN.HK.2.9.0.1-02146) together with [1], backported to
-backports-6.18.55 (OpenWrt 25.12), with real firmware asserts under AP
-and mesh load, with simulated crashes, and with a forced failed
-recovery followed by another crash.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
 
-Not covered yet, both to be addressed separately:
-- A second firmware crash 10-20 ms after the firmware is up again can
-  make the QMI firmware start fail before the CE pipes are set up
-  again; the next recovery then dereferences the cleared srngs in
-  ath11k_ce_cleanup_pipes(). This is not caused by these patches; I'm
-  reporting it in the thread of [1].
-- A crash within the few milliseconds before the restart work clears
-  ATH11K_FLAG_CRASH_FLUSH (see patch 3).
+Fixes: f7a74e131d3f ("wifi: ath11k: disable interrupts during firmware crash recovery")
+Signed-off-by: Florian Maurer <fmaurer@disroot.org>
+---
+Hardware-tested on IPQ8074 with [1] backported to backports-6.18.55
+(OpenWrt 25.12), build-tested on ath-next with [1].
 
 [1] https://lore.kernel.org/linux-wireless/20261018210153.1925962-1-julius@bairaktaris.de/
 
-Florian Maurer (3):
-  wifi: ath11k: don't disable ext IRQs twice
-  wifi: ath11k: depend on RPMSG instead of selecting it
-  wifi: ath11k: ahb: stop TX before WCSS is reset on a firmware crash
+ drivers/net/wireless/ath/ath11k/ahb.c  | 4 ++--
+ drivers/net/wireless/ath/ath11k/pcic.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
- drivers/net/wireless/ath/ath11k/Kconfig |  3 +-
- drivers/net/wireless/ath/ath11k/ahb.c   | 63 ++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/ahb.h   |  2 +
- drivers/net/wireless/ath/ath11k/ce.c    |  7 +++
- drivers/net/wireless/ath/ath11k/core.c  |  1 +
- drivers/net/wireless/ath/ath11k/hw.h    |  1 +
- drivers/net/wireless/ath/ath11k/pcic.c  |  4 +-
- 7 files changed, 76 insertions(+), 5 deletions(-)
-
-
-base-commit: 7b14c8f4a9615579b09cbcdc4515b65ae6124753
-prerequisite-patch-id: cd9f2849ade92e165f15fe3f887edabd1d06b6e8
-prerequisite-patch-id: 3c9ba2aec0d93942448aba1dc5d26b632d519e5a
-prerequisite-patch-id: 9a833c602db147b490fba6df590eeea3847f4877
-prerequisite-patch-id: 6fd3e11242fb3ead65751e3cd9972c4d7c63f989
-prerequisite-patch-id: 01e149ed860e5e40e79725580548ce4034f344b2
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 27d01411b6e9..3ff7d5f27f5e 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -235,9 +235,9 @@ static void __ath11k_ahb_ext_irq_disable(struct ath11k_base *ab)
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+-		ath11k_ahb_ext_grp_disable(irq_grp);
+-
++		/* The IRQs are only enabled together with NAPI */
+ 		if (irq_grp->napi_enabled) {
++			ath11k_ahb_ext_grp_disable(irq_grp);
+ 			napi_synchronize(&irq_grp->napi);
+ 			napi_disable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = false;
+diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
+index 2259adc3bbdc..2e7dfa8388b0 100644
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -455,9 +455,9 @@ static void __ath11k_pcic_ext_irq_disable(struct ath11k_base *ab)
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+-		ath11k_pcic_ext_grp_disable(irq_grp);
+-
++		/* The IRQs are only enabled together with NAPI */
+ 		if (irq_grp->napi_enabled) {
++			ath11k_pcic_ext_grp_disable(irq_grp);
+ 			napi_synchronize(&irq_grp->napi);
+ 			napi_disable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = false;
 -- 
 2.47.3
 
