@@ -2,69 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC870606A326
-	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 12:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D514D606A325
+	for <ath11k@archiver.kernel.org>; Sun,  1 Nov 2026 13:17:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wMniWSa0;
-	dkim=pass (2048-bit key, unprotected) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=glYxgGNt
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3bMYozYg;
+	dkim=pass (2048-bit key, unprotected) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=hsHTIJG/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oezvX4wVlPBCtdLJnzOOZGh58INnyDHTs19NjagDrWQ=; b=wMniWSa0hGc6wr
-	3qxpn+PrOXJpewYtKxB0u5nTnxVd11bC9ev7gvtgR5zPn864cI7Ap2XMaj0CoiYfnzo1+7/HmjMNE
-	ktQglmsHGz75UsIfTFLjmeNPfS2Di1/7Llgv3GUSMtwPe8+ZczvqOqDAVGUXjmkkXuleYKjpkNmXf
-	7iQGAhf6attGIh5rLjOCeVVIsT+3hWVFXc7GRkv/3H6fK0cwUQbvp4C302wA0l2hgI1RHBSRhtobk
-	ZUVSMhqMzsCm0L3wcQyYTowdKVu0tYaby+bxmUhGOPrywpStBWByFOAOGsUTywUNMEvabQiljwEsd
-	rk1G7eNKW+XgDMdZ/RSA==;
+	List-Owner; bh=sR5ie4tJ1WjHnkmUfnOmHpKTm3TzECiPGao53FlKIfo=; b=3bMYozYgRWPkKJ
+	fn7P3RWNLNAs9W9Z7jaOd6a0OkFSLTlRXm2h9utb+WoB1X5JXnwRdyZ+ipGO0nHSd+LUd46ymzYBx
+	7rAlTScAUc1RqClzGgiIUNMl5K8g/6Bq70H3n+6InHCDM/GVgoxl9b5l+efX5FkFSeCHmLXkUftl1
+	bDvUJujSRsvVtyk39OFPN0ToAs3vL88grBIsGZ7CFhN690G98tIQixU0QGhp0tbPHvVpkAWo9ogmV
+	8JO/DmaZAI1Clz2UNrgZe4vdzu9QP0pytms0cP0wc2DmuSjqYhePsitP0u8TfZGAK8iIzNF+d0I6l
+	MoOSf/DvGR03jPOiznXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNV9X-0000000EE51-1ki4;
-	Sun, 01 Nov 2026 12:59:15 +0000
+	id 1xNVQr-0000000EWi2-2L5Q;
+	Sun, 01 Nov 2026 13:17:09 +0000
 Received: from layka.disroot.org ([178.21.23.139])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNV9U-0000000EE2U-0isZ
+	id 1xNVQo-0000000EWhf-3r7L
 	for ath11k@lists.infradead.org;
-	Sun, 01 Nov 2026 12:59:13 +0000
+	Sun, 01 Nov 2026 13:17:08 +0000
 Received: from mail01.layka.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 63A02808FD;
-	Sun, 01 Nov 2026 13:59:10 +0100 (CET)
+	by disroot.org (Postfix) with ESMTP id D77EC8086C;
+	Sun, 01 Nov 2026 14:17:04 +0100 (CET)
 X-Virus-Scanned: SPAM Filter at disroot.org
 Received: from layka.disroot.org ([127.0.0.1])
  by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Eia_lZS8kHqw; Sun,  1 Nov 2026 13:59:09 +0100 (CET)
+ id aTqhoqVt2ltI; Sun,  1 Nov 2026 14:17:04 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1793537949; bh=t7EiQOFtNu0anEmbJYBpt9lRDtKGRLmScEKJ2mHier0=;
+	t=1793539023; bh=Cap59tPzgyoMi8G0Vy10GjN4ejlXEnh4z+J/nWuu/zA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=glYxgGNt0kT2RYDcwmZOa8cNQF/V7b4iGsYpIaufSfL3ZkeEqYarT8ybS2SB8djHq
-	 1HeN91g408rTgh7iT7iZpjVaAld36L9hWO4oKfe8nDcZ04BPzgBZZE8SI1+rAJ4ooo
-	 pGUMD4XKOF0kjM8sS0gzGRTRniXMSZHTsNdpb+FUNSaY7kIel6r5llHZCcchMQ6796
-	 ZZRrQA2s6pti/uVBWQd9rl50PuFIL/ivFsKYYzTRa90sfczR+hSgnmm/VosDQP4aR8
-	 vsPSfeyeXEvuS/mJgEqqxrqIF3gqBO9w66FyohzjW8WJrbWdTTyz/nCb7T5QzzZbH/
-	 ERDye7dwkbj9A==
+	b=hsHTIJG/nC9YT8EfoYvlmP1+2yioi8Ciw00gShVGkdkD2770WfXmIhjF1/qnLbCsI
+	 B8XVD4Z/rw8ksH+SnAMkrFfMBmlc+dUfalWP94mPsehMO3fKjvlfgsHg2I2b3i2ROH
+	 l3YbFiMAbtv0YB7oAqw0B817Xsn6RJ+jK89Yggprva6QM+gSL7NrFYtXuZvx3Vi32W
+	 jI7xP28prkwH7e6uTROXhDyqPz25IHkeu8NgndPwWXqmn+CZsYQGHJXZfnt5TuunBz
+	 J3HZLChSIRc5C7XwCvXFPboel0m8POQ8y/Emyz2hON/LAiebuLmmOtoqw7lRKLkp+h
+	 DHzbIbyX0ECsQ==
 From: Florian Maurer <fmaurer@disroot.org>
-To: Jeff Johnson <jjohnson@kernel.org>
-Cc: Florian Maurer <fmaurer@disroot.org>,
+To: Julius Bairaktaris <julius@bairaktaris.de>
+Cc: Jeff Johnson <jjohnson@kernel.org>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Julius Bairaktaris <julius@bairaktaris.de>,
 	Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-	Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>,
-	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>
-Subject: [PATCH ath-next 3/3] wifi: ath11k: ahb: stop TX before WCSS is reset on a firmware crash
-Date: Sun,  1 Nov 2026 12:58:03 +0000
-Message-ID: <1ae20599a69bfb6fac30bcc03e519bad26c78b1d.1793531790.git.fmaurer@disroot.org>
-In-Reply-To: <cover.1793531790.git.fmaurer@disroot.org>
-References: <cover.1793531790.git.fmaurer@disroot.org>
+	Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>,
+	Rameshkumar Sundaram <rameshkumar.sundaram@oss.qualcomm.com>,
+	P Praneesh <praneesh.p@oss.qualcomm.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Muhammad Usama Anjum <usama.anjum@arm.com>,
+	John Crispin <john@phrozen.org>,
+	Sriram R <sriram.ramachandran@oss.qualcomm.com>
+Subject: Re: [PATCH ath-next v2 0/5] wifi: ath11k: firmware crash recovery fixes
+Date: Sun,  1 Nov 2026 13:15:50 +0000
+Message-ID: <20261101131550.1890062-1-fmaurer@disroot.org>
+In-Reply-To: <20261018210153.1925962-1-julius@bairaktaris.de>
+References: <20261018210153.1925962-1-julius@bairaktaris.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261101_045912_495530_6C55B27F 
-X-CRM114-Status: GOOD (  25.95  )
+X-CRM114-CacheID: sfid-20261101_051707_104223_C4B5959F 
+X-CRM114-Status: GOOD (  14.57  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,252 +80,90 @@ List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On IPQ8074 a firmware crash is handled by remoteproc, which stops the
-remote processor and thereby resets WCSS. ath11k sets
-ATH11K_FLAG_CRASH_FLUSH, which stops the TX paths, only when it handles
-the QMI server exit event. That event results from the glink teardown
-in rproc_stop() and is handled asynchronously, so it can be processed
-after WCSS is already in reset. A TX in that window writes a ring head
-pointer to the reset block, which ends in an asynchronous SError:
+Hi Julius,
 
+I have been chasing the same recovery problems on IPQ8074 (Xiaomi
+AX3600, WLAN.HK.2.9.0.1-02146) in a Freifunk mesh network and ended up
+with fixes very close to your 2/5-5/5, so I tested your series instead.
+
+Setup: OpenWrt 25.12, kernel 6.12.112, your series backported to
+backports-6.18.55 on top of the three ath-next IRQ fixes (a7ab5c835e42,
+f7a74e131d3f, e56c9d429ba0), plus two fixes of mine that I posted on
+top of your series [1], together with a Kconfig prerequisite (A: stop
+TX before remoteproc resets WCSS; B: don't disable the ext IRQs twice
+after a failed recovery). AP and mesh vifs on both radios, real
+clients and mesh peers.
+
+With your series + A:
+- 10 simulated asserts (debugfs) while survey and station dumps are
+  polled and downlink traffic runs: all recovered, no WARN/Oops.
+- 10 real firmware asserts under load (5 AP vif, 5 mesh vif),
+  triggered by an out-of-tree patch that sends WMI_PEER_FLUSH_TIDS_CMDID
+  with all 32 TID bits set: all recovered, no WARN/Oops.
+- Failed recovery (forced via a test-only knob) followed by another
+  crash: the radios come back, but TX completions stop, TX fails with
+  -12 and the firmware asserts again repeatedly, 2/2. That is what B
+  fixes.
+
+With your series + A + B:
+- Failed recovery followed by another crash: recovered 3/3, which
+  your 2/5 and 3/5 make possible in the first place.
+
+One case is still open. It is not a regression of your series: before
+3/5 the same failure freed the srng memory and crashed in the same
+ath11k_ce_cleanup_pipes() path. If the firmware crashes again while
+the restart work is bringing it up, the QMI firmware start can fail:
+
+  remoteproc remoteproc0: remote processor cd00000.q6v5_wcss is now up
+  remoteproc remoteproc0: crash detected in cd00000.q6v5_wcss: type fatal error
+  ath11k c000000.wifi: fw_version 0x290b84a5 ...
   remoteproc remoteproc0: stopped remote processor cd00000.q6v5_wcss
-  SError Interrupt on CPU3, code 0x00000000bf000002 -- SError
-  pc : ath11k_dp_tx+0x45c/0x878 [ath11k]
-  Kernel panic - not syncing: Asynchronous SError Interrupt
+  ath11k c000000.wifi: failed to send firmware start: -104
+  ath11k c000000.wifi: failed to start firmware: -104
+  ath11k c000000.wifi: failed to reconfigure driver on crash recovery
 
-remoteproc sends a QCOM_SSR_BEFORE_SHUTDOWN notification with crashed
-set before it stops the processor. Register for it, like ath10k does on
-SNOC, set ATH11K_FLAG_CRASH_FLUSH there and wait with synchronize_rcu()
-for TX paths which have not seen the flag yet. ath11k_dp_tx() is called
-by mac80211 within RCU read-side critical sections or with BHs
-disabled. Check the flag in ath11k_ce_send() again under ce_lock, so
-that this also covers WMI and HTC.
+That recovery fails after ath11k_hal_srng_clear() but before
+ath11k_ce_init_pipes(). The next recovery then tears down the CE pipes
+on the cleared rings and hits a NULL pointer with BHs disabled (under
+ce_lock):
 
-This stops new TX descriptors, for data and for everything sent through
-CE. Ring pointer updates from the RX and TX completion paths (NAPI, CE
-tasklets) are not stopped by this.
+  Unable to handle kernel read from unreadable memory at virtual address 0000000000000000
+  pc : ath11k_hal_srng_access_begin+0xc/0x60 [ath11k]
+  Kernel panic - not syncing: Oops: Fatal exception in interrupt
 
-A crash during the restart work of an earlier crash, after the QMI
-firmware start and before ath11k_core_qmi_firmware_ready() clears
-ATH11K_FLAG_CRASH_FLUSH after ath11k_dp_alloc(), is not covered yet:
-the flag set by the notifier is cleared again, and CE/HTC sends from
-the restart work can still reach the reset WCSS. mac80211 data queues
-are still stopped at that point. That window is a few milliseconds and
-will be addressed separately.
+Decoded call chain (6.18 backport, the raw trace has wrong symbols
+for the stripped module):
 
-The SSR subsystem name depends on the remoteproc driver, so add it to
-hw_params. Only IPQ8074 sets it for now. qcom_register_ssr_notifier()
-must be reachable from ath11k_ahb, so add the same Kconfig dependency
-on QCOM_RPROC_COMMON as ath10k SNOC has.
+  ath11k_hal_srng_access_begin       hal.c:834
+  ath11k_ce_poll_send_completed      ce.c:706
+  ath11k_ce_cleanup_pipes            ce.c:884
+  ath11k_core_reconfigure_on_crash   core.c:2403
+  ath11k_core_restart                core.c:2574
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146-QCAHKSWPL_SILICONZ-1
+Reproduced 2/2 by triggering a remoteproc crash 10-20 ms after "is now
+up" (measured 11 and 21 ms), with your series and my two patches
+applied. So 2/5 and 3/5 cover a recovery that fails once the rings are
+set up again, but not a failure inside ath11k_core_start_firmware().
 
-Signed-off-by: Florian Maurer <fmaurer@disroot.org>
----
-Depends on 4/5 of [1], which moved clearing ATH11K_FLAG_CRASH_FLUSH
-into ath11k_core_qmi_firmware_ready(), and on patch 2 of this series for
-the Kconfig dependency. For that reason there is no Fixes tag: without
-patch 2 the Kconfig dependency added here is a recursive dependency
-error, so this must not be backported on its own.
+I haven't tried a fix yet. Since the CE-layer guard from v1 was
+dropped, one option at the core level would be to remember whether the
+CE pipes and DP were set up again since the last teardown, and to skip
+that teardown in ath11k_core_reconfigure_on_crash() otherwise. I can
+try that if you don't plan to cover it in a v3.
 
-Hardware-tested on IPQ8074 with [1] backported to backports-6.18.55
-(OpenWrt 25.12). The tested version also had a give-up path for a
-crash during the restart work, which was never triggered in the tests
-and is left out here; the remaining code is the same apart from a
-shorter comment. Build-tested on ath-next with [1], including
-ATH11K_AHB=y with QCOM_RPROC_COMMON=y.
+For the series:
 
-[1] https://lore.kernel.org/linux-wireless/20261018210153.1925962-1-julius@bairaktaris.de/
+Tested-by: Florian Maurer <fmaurer@disroot.org> # IPQ8074 hw2.0 AHB WLAN.HK.2.9.0.1-02146 (backport to 6.18)
 
- drivers/net/wireless/ath/ath11k/Kconfig |  1 +
- drivers/net/wireless/ath/ath11k/ahb.c   | 59 +++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/ahb.h   |  2 +
- drivers/net/wireless/ath/ath11k/ce.c    |  7 +++
- drivers/net/wireless/ath/ath11k/core.c  |  1 +
- drivers/net/wireless/ath/ath11k/hw.h    |  1 +
- 6 files changed, 71 insertions(+)
+[1] https://lore.kernel.org/linux-wireless/cover.1793531790.git.fmaurer@disroot.org/
 
-diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
-index 84b7eb5df253..a425da76934b 100644
---- a/drivers/net/wireless/ath/ath11k/Kconfig
-+++ b/drivers/net/wireless/ath/ath11k/Kconfig
-@@ -14,6 +14,7 @@ config ATH11K_AHB
- 	tristate "Atheros ath11k AHB support"
- 	depends on ATH11K
- 	depends on REMOTEPROC
-+	depends on QCOM_RPROC_COMMON || QCOM_RPROC_COMMON=n
- 	depends on RPMSG
- 	select QRTR
- 	select QRTR_SMD
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 3ff7d5f27f5e..893a3270394e 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -20,6 +20,7 @@
- #include "pcic.h"
- #include <linux/soc/qcom/smem.h>
- #include <linux/soc/qcom/smem_state.h>
-+#include <linux/remoteproc/qcom_rproc.h>
- 
- static const struct of_device_id ath11k_ahb_of_match[] = {
- 	/* TODO: Should we change the compatible string to something similar
-@@ -832,6 +833,60 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
- 	.ce_irq_disable = ath11k_pci_disable_ce_irqs_except_wake_irq,
- };
- 
-+static int ath11k_ahb_ssr_notifier(struct notifier_block *nb,
-+				   unsigned long action, void *data)
-+{
-+	struct ath11k_ahb *ab_ahb = container_of(nb, struct ath11k_ahb, ssr_nb);
-+	struct ath11k_base *ab = container_of((void *)ab_ahb, struct ath11k_base,
-+					      drv_priv);
-+	struct qcom_ssr_notify_data *notify = data;
-+
-+	if (action != QCOM_SSR_BEFORE_SHUTDOWN || !notify->crashed)
-+		return NOTIFY_DONE;
-+
-+	/* WCSS can be reset before the QMI server exit event sets the flag.
-+	 * ath11k_dp_tx() runs in RCU read-side sections or with BHs disabled
-+	 * and ath11k_ce_send() checks the flag under ce_lock, so after
-+	 * synchronize_rcu() no new TX descriptors are queued.
-+	 */
-+	ath11k_dbg(ab, ATH11K_DBG_AHB, "firmware crashed, stopping tx\n");
-+	set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
-+	synchronize_rcu();
-+
-+	return NOTIFY_OK;
-+}
-+
-+static void ath11k_ahb_register_ssr_notifier(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	void *handle;
-+
-+	if (!ab->hw_params.ssr_name)
-+		return;
-+
-+	ab_ahb->ssr_nb.notifier_call = ath11k_ahb_ssr_notifier;
-+	handle = qcom_register_ssr_notifier(ab->hw_params.ssr_name,
-+					    &ab_ahb->ssr_nb);
-+	if (IS_ERR(handle)) {
-+		ath11k_warn(ab, "failed to register ssr notifier: %ld\n",
-+			    PTR_ERR(handle));
-+		return;
-+	}
-+
-+	ab_ahb->ssr_handle = handle;
-+}
-+
-+static void ath11k_ahb_unregister_ssr_notifier(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+
-+	if (!ab_ahb->ssr_handle)
-+		return;
-+
-+	qcom_unregister_ssr_notifier(ab_ahb->ssr_handle, &ab_ahb->ssr_nb);
-+	ab_ahb->ssr_handle = NULL;
-+}
-+
- static int ath11k_core_get_rproc(struct ath11k_base *ab)
- {
- 	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-@@ -1230,6 +1285,8 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_ce_free;
- 
-+	ath11k_ahb_register_ssr_notifier(ab);
-+
- 	ret = ath11k_core_init(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to init core: %d\n", ret);
-@@ -1247,6 +1304,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	return 0;
- 
- err_ce_free:
-+	ath11k_ahb_unregister_ssr_notifier(ab);
- 	ath11k_ce_free_pipes(ab);
- 
- err_hal_srng_deinit:
-@@ -1288,6 +1346,7 @@ static void ath11k_ahb_free_resources(struct ath11k_base *ab)
- {
- 	struct platform_device *pdev = ab->pdev;
- 
-+	ath11k_ahb_unregister_ssr_notifier(ab);
- 	ath11k_ahb_free_irq(ab);
- 	ath11k_hal_srng_deinit(ab);
- 	ath11k_ahb_release_smp2p_handle(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
-index 8c1eb1e8e6b1..d7ea47f42edf 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.h
-+++ b/drivers/net/wireless/ath/ath11k/ahb.h
-@@ -23,6 +23,8 @@ struct ath11k_base;
- 
- struct ath11k_ahb {
- 	struct rproc *tgt_rproc;
-+	struct notifier_block ssr_nb;
-+	void *ssr_handle;
- 	struct {
- 		struct device *dev;
- 		struct iommu_domain *iommu_domain;
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index 1e08b0970b14..895648687d99 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -745,6 +745,12 @@ int ath11k_ce_send(struct ath11k_base *ab, struct sk_buff *skb, u8 pipe_id,
- 
- 	spin_lock_bh(&ab->ce.ce_lock);
- 
-+	/* Check again with BHs disabled, see ath11k_ahb_ssr_notifier() */
-+	if (test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags)) {
-+		ret = -ESHUTDOWN;
-+		goto err_ce_unlock;
-+	}
-+
- 	write_index = pipe->src_ring->write_index;
- 	nentries_mask = pipe->src_ring->nentries_mask;
- 
-@@ -791,6 +797,7 @@ int ath11k_ce_send(struct ath11k_base *ab, struct sk_buff *skb, u8 pipe_id,
- err_unlock:
- 	spin_unlock_bh(&srng->lock);
- 
-+err_ce_unlock:
- 	spin_unlock_bh(&ab->ce.ce_lock);
- 
- 	return ret;
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 4666245aee36..7ba05c63ede6 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -91,6 +91,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.coldboot_cal_mm = true,
- 		.coldboot_cal_ftm = true,
- 		.cbcal_restart_fw = true,
-+		.ssr_name = "q6wcss",
- 		.fw_mem_mode = 0,
- 		.num_vdevs = 16 + 1,
- 		.num_peers = 512,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 4996536fbd14..ce52c61d661d 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -191,6 +191,7 @@ struct ath11k_hw_params {
- 	bool coldboot_cal_mm;
- 	bool coldboot_cal_ftm;
- 	bool cbcal_restart_fw;
-+	const char *ssr_name;
- 	int fw_mem_mode;
- 	u32 num_vdevs;
- 	u32 num_peers;
--- 
-2.47.3
-
+Regards
+Florian
 
